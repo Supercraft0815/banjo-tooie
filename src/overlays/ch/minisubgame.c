@@ -45,7 +45,123 @@ void func_80800018_chminisubgame(Actor *arg0) {
     _susubgame_entrypoint_11(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_808000C8_chminisubgame.s")
+void func_808000C8_chminisubgame(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void func_80090708(s32);
+    void func_800BF99C(s32, s32, s32);
+    s32 func_800CEAD0(s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800D24E8(s32, s32, u32);
+    s32 func_800D395C(void);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC0C0(void);
+    int func_800DC298(f32);
+    void func_800FC6B0(u32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_80800AAC_chminisubgame(Actor *);
+    s32 sp44;
+    s32 sp40;
+    s32 sp3C;
+    s32 sp38;
+    u8 *sp34;
+    s32 sp30;
+    s32 sp2C;
+    f32 sp28;
+    s16 sp24[2];
+    u8 *sp20;
+
+    switch (arg0->unk70_10) {
+    case 2:
+        func_800D24E8(0xFC, arg0->actorData[4], 0);
+        if (func_800CEAD0(0)) {
+            sp40 = 4;
+            sp38 = func_800D2054(0, 0x88, arg0->actorData[4]);
+            sp34 = func_80100094(arg0, 0);
+            func_800BF99C(0, 0x5AA, 1);
+            func_80090708(2);
+            _susubgame_entrypoint_5(arg0, sp34 + 0x30C, 5, 1, 0);
+            func_80101180(0x4AE, 0x3E, 0);
+            if (func_800D395C()) {
+                if (sp38 == 1) {
+                    sp44 = 0x104A;
+                    sp3C = 0x16;
+                } else if (sp38 == 0) {
+                    sp44 = 0x104B;
+                    sp3C = 0x17;
+                } else {
+                    sp44 = 0x104C;
+                    sp3C = 0x17;
+                }
+            } else if (!func_800D0A9C(0x1F, 1) && (s32)arg0->actorData[4] >= 0x3C) {
+                sp44 = 0x1030;
+                sp40 = 0x44;
+                sp3C = 0x16;
+            } else {
+                sp40 = 6;
+                if (!func_800D0A9C(0x1F, 1)) {
+                    switch (arg0->actorData[4]) {
+                    default:
+                        sp44 = 0x1032;
+                        sp3C = 0x17;
+                        break;
+                    case 0:
+                        sp44 = 0x1034;
+                        sp3C = 0x17;
+                        break;
+                    case 1:
+                        sp44 = 0x1046;
+                        sp3C = 0x17;
+                        break;
+                    }
+                } else if (sp38 == 1) {
+                    sp44 = 0x1031;
+                    sp3C = 0x16;
+                } else {
+                    sp44 = arg0->actorData[4] ? 0x1033 : 0x1034;
+                    sp3C = 0x17;
+                }
+            }
+            func_800FDC28(0);
+            func_800FC6B0(sp3C);
+            _subaddiedialog_entrypoint_11(arg0->unk0, sp44, sp40, NULL, 0x22);
+            func_80101FDC(arg0, 3);
+            break;
+        }
+    case 1:
+        if ((s32)arg0->actorData[5] < 0xF && func_800DC298(0.2f)) {
+            sp30 = func_80800AAC_chminisubgame(arg0);
+            sp2C = 0;
+            sp28 = func_800DC0C0();
+            if (sp28 < 0.1666666f) {
+                sp2C = 2;
+            } else if (sp28 < 0.5f) {
+                sp2C = 1;
+            }
+            if (sp30 != -1) {
+                sp24[0] = sp2C;
+                sp24[1] = sp30;
+                func_80108B04(arg0, *(u32 *)sp24);
+            }
+        }
+        break;
+    case 5:
+        if (func_800D0B68(0x1F, 1) && func_800D90A4((f32 *)arg0->actorData)) {
+            sp20 = func_80100094(arg0, 0);
+            func_80090708(2);
+            _susubgame_entrypoint_5(arg0, sp20 + 0x30C, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x46, NULL, 0x22);
+            func_80101FDC(arg0, 3);
+        }
+        break;
+    }
+}
 
 void func_80800430_chminisubgame(Actor *arg0) {
     s32 _susubgame_entrypoint_11(s32);

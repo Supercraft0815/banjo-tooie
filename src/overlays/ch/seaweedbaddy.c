@@ -14,7 +14,142 @@ OSThread *chseaweedbaddy_entrypoint_1(void)
     return (OSThread *) D_80800EFC_chseaweedbaddy;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800018_chseaweedbaddy.s")
+void func_80800018_chseaweedbaddy(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8010B990(Actor *, s32);
+    void func_8010D254(f32 *);
+    void func_80800710_chseaweedbaddy(u8 *, s32);
+    s32 func_8080082C_chseaweedbaddy(Actor *);
+    s32 func_80800910_chseaweedbaddy(Actor *);
+    void func_80800CE0_chseaweedbaddy(Actor *, f32);
+    extern u32 D_80800F44_chseaweedbaddy[];
+    extern u32 D_80800F50_chseaweedbaddy[];
+    struct SeaweedRoute {
+        u16 unk0;
+        u16 unk2;
+        u16 unk4;
+        u16 index;
+        u32 unk8;
+    };
+    struct SeaweedData {
+        f32 position[3];
+        f32 angle;
+        s32 index;
+        struct SeaweedRoute route;
+    };
+    union SeaweedActor {
+        Actor actor;
+        struct {
+            u32 reserved[30];
+            u32 : 29;
+            u32 inactive : 1;
+            u32 : 2;
+        } flags;
+    };
+    f32 delta;
+    f32 speed;
+    struct SeaweedData *data;
+    f32 distance;
+    f32 *position;
+    struct SeaweedRoute *route;
+    f32 oldYaw;
+
+    speed = 0.0f;
+    data = func_80100094(arg0, 1);
+    if (!((union SeaweedActor *)arg0)->flags.inactive) {
+        delta = func_800D8FF8();
+        func_800D9078(&arg0->unk58);
+        switch (arg0->unk70_10) {
+        case 1:
+            if (func_8080082C_chseaweedbaddy(arg0)) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 2);
+            }
+            break;
+        case 2:
+            speed = 700.0f;
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800F44_chseaweedbaddy, 0.2f);
+            if (func_80101DDC(arg0)) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 3);
+            }
+            break;
+        case 3:
+            position = (f32 *)arg0->actorData;
+            speed = 700.0f;
+            func_8010D254(position);
+            if (arg0->unk64_29) {
+                distance = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3) * 350.0f;
+                data->angle = arg0->unk54;
+                func_800EEB9C((f32 *)&arg0->actorData[4], data->angle, distance);
+                func_8010B990(arg0, 0x205027);
+            } else {
+                if (_subaddierouteDll_entrypoint_4(arg0)) {
+                    arg0->unk54 = func_80102D78(arg0, position);
+                    route = &data->route;
+                    _subaddierouteDll_entrypoint_7(arg0, route, data->angle, arg0->unk54, 100.0f, 0x5000);
+                    data->index = route->index;
+                }
+                data->angle = func_800F1FF0(data->angle, arg0->unk54, 0.2f, 2.0f, func_800D8FF8() * 450.0f);
+                func_800EEB9C((f32 *)&arg0->actorData[4], data->angle, 350.0f);
+                func_8010B990(arg0, 0x5307);
+            }
+            if (func_80800910_chseaweedbaddy(arg0)) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 6);
+            }
+            break;
+        case 4:
+            if (func_80101DDC(arg0)) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 5);
+            }
+            break;
+        case 5:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800F50_chseaweedbaddy, 0.2f);
+            if (func_80101DDC(arg0)) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 6);
+            }
+            break;
+        case 6:
+            speed = 300.0f;
+            if (_subaddierouteDll_entrypoint_4(arg0)) {
+                arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+                route = &data->route;
+                _subaddierouteDll_entrypoint_7(arg0, route, data->angle, arg0->unk54, 100.0f, 0x5000);
+                data->index = route->index;
+            }
+            position = (f32 *)arg0->actorData;
+            data->angle = func_800F1FF0(data->angle, arg0->unk54, 0.2f, 2.0f, func_800D8FF8() * 450.0f);
+            func_800EEB9C((f32 *)&arg0->actorData[4], data->angle, 350.0f);
+            func_8010B990(arg0, 0x5307);
+            if (func_800EEB40(arg0->position, position) < 6400.0f) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 7);
+            } else if (func_8080082C_chseaweedbaddy(arg0)) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 3);
+            }
+            break;
+        case 7:
+            if (func_80101DDC(arg0)) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 1);
+            }
+            break;
+        }
+        oldYaw = arg0->rotation[1];
+        arg0->unk50 = func_800F15F8(arg0->unk50, speed, delta * 800.0f);
+        arg0->rotation[1] = func_800136E4(arg0->rotation[1] + arg0->unk50 * delta);
+        func_80800CE0_chseaweedbaddy(arg0, oldYaw);
+    }
+}
 
 void func_8080043C_chseaweedbaddy(Actor *arg0) {
     void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);

@@ -107,7 +107,71 @@ void func_80800170_chvolcanobits(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_8080027C_chvolcanobits.s")
+s32 func_8080027C_chvolcanobits(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800CD08C(s32, f32 *);
+    void func_800CF2D4(s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    s32 func_800EA05C(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    struct Entry {
+        s32 id;
+        f32 timer;
+        f32 height;
+    };
+    struct Params {
+        s16 index;
+        s16 mode;
+    };
+    struct Entry *data;
+    Actor *actor;
+    f32 pos[3];
+    s32 index;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x3D:
+        switch (((struct Params *)&arg2)->mode) {
+        case 0:
+            index = ((struct Params *)&arg2)->index;
+            func_800CD08C(((struct Entry *)((u8 *)data + index * 0xC))->id, pos);
+            pos[1] = ((struct Entry *)((u8 *)data + index * 0xC))->height;
+            ((struct Entry *)((u8 *)data + index * 0xC))->timer = func_800DC178(3.0f, 5.0f);
+            actor = func_80108528(0x425, pos, 0, &arg0);
+            func_800EFA4C((f32 *)&actor->actorData[4], func_800DC178(-200.0f, 200.0f), func_800DC178(600.0f, 1200.0f), func_800DC178(-200.0f, 200.0f));
+            func_80102FDC(actor, func_800DC178(0.8f, 1.2f));
+            actor->unk54 = (func_800DC298(0.5f) ? 1.0f : -1.0f) * func_800DC178(100.0f, 200.0f);
+            actor->unk50 = (func_800DC298(0.5f) ? 1.0f : -1.0f) * func_800DC178(60.0f, 120.0f);
+            actor->unk64_20 = func_800DC298(0.6f);
+            actor->unk58 = func_800DC178(0.8f, 1.2f);
+            break;
+        case 1:
+            func_800EFA4C(pos, 250.0f, -815.0f, -400.0f);
+            actor = func_80108528(0x425, pos, 0, &arg0);
+            func_800EFA4C((f32 *)&actor->actorData[4], 0.0f, 1200.0f, 0.0f);
+            func_80102FDC(actor, func_800DC178(0.8f, 1.2f));
+            actor->unk54 = (func_800DC298(0.5f) ? 1.0f : -1.0f) * func_800DC178(100.0f, 200.0f);
+            actor->unk50 = (func_800DC298(0.5f) ? 1.0f : -1.0f) * func_800DC178(60.0f, 120.0f);
+            actor->unk64_20 = 1;
+            actor->unk64_19 = 1;
+            actor->unk58 = 2.0f;
+            break;
+        }
+        break;
+    case 0x95:
+        if (func_800EA05C() == 0x133) {
+            func_800CF2D4(5);
+            arg0->unk64_20 = 1;
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080061C_chvolcanobits(u8 *arg0) {
     struct Flags {

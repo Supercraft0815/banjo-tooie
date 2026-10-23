@@ -110,7 +110,138 @@ void func_8080057C_chterryegg(Actor *arg0) {
     func_801088A8(arg0, 0x10002000, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_808005C4_chterryegg.s")
+void func_808005C4_chterryegg(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x74];
+        u32 pad74_31 : 11;
+        u32 unk74_20 : 1;
+        u32 pad74_0 : 20;
+    } TerryEggFlags;
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddietaxi_entrypoint_1(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_5(Actor *, s32);
+    void _subaddietaxi_entrypoint_9(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_11(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_12(Actor *, s32);
+    void _subaddietaxi_entrypoint_14(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_15(Actor *, s32);
+    s32 func_800CB698(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    void func_800EFD24(f32 *);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_801058C4(Actor *, s32, f32, u32);
+    void func_8010A590(Actor *);
+    void func_80800FE0_chterryegg(u8 *);
+    void func_80801050_chterryegg(Actor *);
+    int func_80801080_chterryegg(s32);
+    s32 func_808010DC_chterryegg(void);
+    extern u8 D_80801260_chterryegg[];
+    s32 active = 1;
+    s32 *data;
+    f32 position[3];
+    f32 *actorPosition;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            active = 0;
+            arg0->unk64_16 = 0; ((TerryEggFlags *)arg0)->unk74_20 = 0;
+            if (func_800DA298(0xE5)) {
+                func_80800FE0_chterryegg(arg0);
+            }
+            break;
+        case 2:
+            arg0->unk64_16 = 1;
+            ((TerryEggFlags *)arg0)->unk74_20 = arg0->unk64_16;
+            active = 0;
+            if (func_80101DDC(arg0)) {
+                func_800F82D4(func_800F54E4(), 0);
+                if (func_808010DC_chterryegg() == 1) {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x17FE, 0xF, arg0->position, 0);
+                    func_800DA7A8(0x361, arg0->unk74_7 - 0x31, 3);
+                    func_80102424(arg0, 4);
+                    func_8010A590(arg0);
+                } else {
+                    data = func_80100094(arg0, 0);
+                    func_800DA544(arg0->unk74_7 + 0x143);
+                    func_800CB698(arg0->unk74_7 - 0x2B, 6);
+                    func_80102424(arg0, 5);
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x17E1, 0x44, arg0->position, 0);
+                    _subaddieDll_entrypoint_4(arg0, 1);
+                    if (*data != -1) {
+                        _capod_entrypoint_13(arg0->unk0, NULL, D_80801260_chterryegg[arg0->unk74_7 - 0x2A], 0x31);
+                        func_801058C4(arg0, *data, 200.0f, 1);
+                    }
+                }
+            }
+            break;
+        case 3:
+            func_80801080_chterryegg(arg0);
+            break;
+        case 4:
+            func_80801050_chterryegg(arg0);
+            break;
+        case 5:
+            func_800FFAB0(arg0);
+            break;
+        case 6:
+            func_80801050_chterryegg(arg0);
+            break;
+        case 7:
+            func_80801050_chterryegg(arg0);
+            break;
+        case 8:
+            active = 0;
+            break;
+        case 9:
+            active = 0;
+            func_80801080_chterryegg(arg0);
+            if (_subaddietaxi_entrypoint_1(arg0, arg0->unk74_7 - 0x2B)) {
+                func_80102424(arg0, 0xB);
+                func_800DA544(arg0->unk74_7 + 0x143);
+                func_80101180(0x36F, 0x31, arg0->unk74_7 - 0x32);
+            }
+            break;
+        case 10:
+            func_80801050_chterryegg(arg0);
+            if (_subaddietaxi_entrypoint_11(arg0, arg0->unk74_7 - 0x2B) &&
+                _subaddietaxi_entrypoint_5(arg0, arg0->unk74_7 - 0x2B)) {
+                _subaddietaxi_entrypoint_14(arg0, arg0->unk74_7 - 0x2B);
+                func_80102424(arg0, 0xC);
+            }
+            active = _subaddietaxi_entrypoint_12(arg0, arg0->unk74_7 - 0x2B);
+            break;
+        case 11:
+            func_800EFD24(position);
+            arg0->unk54 = func_80102D78(arg0, position);
+            func_80102BF8(arg0, 0.1f, 4.0f, 80.0f);
+            func_80801080_chterryegg(arg0);
+            break;
+        case 12:
+            if (_subaddietaxi_entrypoint_15(arg0, arg0->unk74_7 - 0x2B)) {
+                func_80102424(arg0, 6);
+                func_8010A590(arg0);
+            }
+            break;
+    }
+    _subaddietaxi_entrypoint_9(arg0, arg0->unk74_7 - 0x2B);
+    if (active) {
+        actorPosition = arg0->position;
+        func_800F4F34(func_800F54E4(), actorPosition, arg0->scale * 20.0f, arg0->scale * 20.0f);
+    }
+}
 
 void func_808009B4_chterryegg(Actor *arg0) {
     void _capod_entrypoint_14(void);

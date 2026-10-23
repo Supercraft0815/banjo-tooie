@@ -35,7 +35,171 @@ void func_800F9444(s32 arg0) {
     func_800C964C(0xF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED2CF0/func_800F9488.s")
+void func_800F9488(s32 arg0) {
+    extern u8 D_80135520;
+    extern u8 D_80135521;
+    extern u8 D_80135522;
+    
+    s32 _plsu_entrypoint_1(s32);
+    int func_800DB9B0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_800F6224(s32);
+    void func_800F759C(s32);
+    s32 func_800F7CF4(s32 arg0, s32 arg1, void *arg2);
+    void func_800F7E64(s32 arg0, s32 arg1);
+    s16 func_800F8A5C();
+    void func_800F9240(f32 *, s32);
+    void func_800F92CC(u32 *, s32 *, s32 *, s32 *);
+    void func_800F9354(u32 *, s32 *, s32 *);
+    s32 sp5C;
+    u32 sp58;
+    s32 sp54;
+    s32 sp50;
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+    f32 sp20[3];
+
+    switch (D_80135520) {
+        case 3:
+            if (arg0 == 1) {
+                func_800F92CC(&sp58, &sp5C, &sp50, &sp54);
+                func_800F82D4(sp58, 0);
+                func_800F8268(sp58, 1, 1);
+            }
+            break;
+        case 6:
+            if (arg0 == 1) {
+                func_800F9354(&sp58, &sp5C, &sp54);
+                func_800F8EBC(sp58);
+                func_800F8268(sp58, 1, 1);
+                func_800F82D4(sp58, 0);
+            }
+            break;
+        case 9:
+            if (arg0 == 1) {
+                func_800F93C4(&sp58, &sp5C);
+                func_800F8EBC(sp58);
+                func_800F8268(sp58, 1, 1);
+                func_800F82D4(sp58, 0);
+            }
+            break;
+        case 15:
+            if (arg0 == 1) {
+                func_800F93C4(&sp58, &sp5C);
+                func_800F8E78(10);
+            }
+            break;
+    }
+    D_80135520 = arg0;
+    switch (D_80135520) {
+        case 2:
+            func_800F92CC(&sp58, &sp5C, &sp50, &sp54);
+            func_800F82D4(sp58, 2);
+            func_800F8268(sp58, 0, 1);
+            func_800F9444(sp5C);
+            break;
+        case 3:
+            func_800F92CC(&sp58, &sp5C, &sp50, &sp54);
+            func_800F8128(sp50);
+            func_800F8EE4(sp58);
+            func_800F8EBC(sp50);
+            func_800F9400(sp54);
+            break;
+        case 4:
+            func_800F9354(&sp58, &sp5C, &sp54);
+            func_800F82D4(sp58, 2);
+            func_800F9444(sp5C);
+            break;
+        case 5:
+            func_800F9354(&sp58, &sp5C, &sp54);
+            func_800F9070(sp54, 1);
+            func_800F8268(sp58, 0, 1);
+            func_800F8EE4(sp58);
+            func_800F9070(sp5C, 0);
+            func_800A7990(func_800F8A5C(sp54), 0, 0);
+            break;
+        case 6:
+            func_800F9354(&sp58, &sp5C, &sp54);
+            func_800F82D4(sp58, 2);
+            func_800F9400(sp5C);
+            break;
+        case 7:
+            func_800F9444(func_800F929C());
+            break;
+        case 8:
+            sp54 = func_800F929C();
+            func_800F9070(sp54, 1);
+            if (func_800DB9B0() == 0) {
+                func_800A7990(func_800F8A5C(sp54), 0, 0);
+            }
+            break;
+        case 9:
+            func_800F93C4(&sp58, &sp5C);
+            func_800F82D4(sp58, 2);
+            func_800F9400(sp5C);
+            break;
+        case 10:
+            func_800F93C4(&sp58, &sp5C);
+            sp50 = _plsu_entrypoint_1(17);
+            func_800F8128(sp58);
+            func_800F759C(sp50);
+            func_800F8268(sp58, 1, 1);
+            break;
+        case 11:
+            sp50 = D_80135522;
+            sp58 = D_80135521;
+            func_800F8128(sp50);
+            func_800F759C(sp58);
+            func_800F8268(sp50, 1, 1);
+            break;
+        case 13:
+            func_800F93C4(&sp58, &sp5C);
+            func_800F82D4(sp58, 2);
+            func_800F9444(11);
+            break;
+        case 14:
+            func_800F9070(10, 1);
+            func_800A7990(func_800F8A5C(10), 0, 0);
+            break;
+        case 15:
+            func_800F93C4(&sp58, &sp5C);
+            sp50 = func_800F6224(sp58);
+            func_800F7E64(sp50, 11);
+            func_800F608C(sp50, 1);
+            func_800F9240(sp44, sp58);
+            func_800F7CF4(sp50, 0x50, sp44);
+            func_800F9400(10);
+            break;
+        case 16:
+            sp58 = _plsu_entrypoint_1(11);
+            sp50 = _plsu_entrypoint_1(10);
+            func_800F5A00(sp58, sp20);
+            func_800F5A00(sp50, sp2C);
+            if (func_800EEB40(sp20, sp2C) < 48400.0f) {
+                func_800EE7F8(sp38, sp20);
+            } else {
+                func_800F9240(sp38, sp50);
+            }
+            func_800F7CF4(sp58, 0x50, sp38);
+            func_800F8128(sp50);
+            func_800F8EBC(sp50);
+            func_800F8268(sp50, 1, 1);
+            break;
+        case 17:
+            sp58 = _plsu_entrypoint_1(11);
+            sp50 = _plsu_entrypoint_1(10);
+            func_800F759C(sp58);
+            func_800D5234(0);
+            func_800A16BC(0);
+            func_800F8128(sp50);
+            func_800F8EBC(sp50);
+            func_800F7B9C(sp50, 0x60);
+            func_800F8268(sp50, 1, 1);
+            break;
+    }
+}
 
 s32 func_800F99E8(void) {
     extern u8 D_80135520;

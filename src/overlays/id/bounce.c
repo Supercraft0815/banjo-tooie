@@ -160,7 +160,88 @@ void idbounce_entrypoint_3(void *arg0) {
     state[3]--;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_4.s")
+void idbounce_entrypoint_4(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    s32 *func_80800874_idbounce(s32 arg0);
+    s16 _glidmake_entrypoint_3(s32, s32);
+    void *heap_alloc(s32);
+    s32 func_80106314(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800EA05C(void);
+    extern u8 D_80135480[];
+    f32 *sp2C;
+    s32 sp28;
+    Actor *sp24;
+    Actor *temp_v0;
+    s32 map;
+    u8 *counter;
+
+    sp2C = func_80800874_idbounce(arg1);
+    sp28 = _glidmake_entrypoint_3(arg2, arg3);
+    *(f32 **)((u8 *)arg0 + 0x24) = heap_alloc(sp28 * 4);
+    *(f32 **)((u8 *)arg0 + 0x2C) = *(f32 **)((u8 *)arg0 + 0x24) + sp28;
+    *(f32 **)((u8 *)arg0 + 0x28) = *(f32 **)((u8 *)arg0 + 0x24);
+    while (*(f32 **)((u8 *)arg0 + 0x28) < *(f32 **)((u8 *)arg0 + 0x2C)) {
+        **(f32 **)((u8 *)arg0 + 0x28) = 0.0f;
+        (*(f32 **)((u8 *)arg0 + 0x28))++;
+    }
+    *(f32 *)((u8 *)arg0 + 0x20) = 0.0f;
+    *(f32 *)((u8 *)arg0 + 0x30) = -sp2C[1] / -2700.0f;
+    *(f32 *)((u8 *)arg0 + 0x34) = sp2C[2];
+    *(f32 *)((u8 *)arg0 + 0x38) = sp2C[3];
+    *(f32 *)((u8 *)arg0 + 0x40) = sp2C[4];
+    *(f32 *)((u8 *)arg0 + 0x44) = sp2C[5];
+    *(f32 *)((u8 *)arg0 + 0x48) = sp2C[6];
+    *(f32 *)((u8 *)arg0 + 0x4C) = sp2C[7];
+    if (arg4 == 4) {
+        temp_v0 = func_80106790(func_80106314());
+        sp24 = temp_v0;
+        *(f32 *)((u8 *)arg0 + 0x50) = 1.0f / temp_v0->scale;
+        func_800EE7F8((f32 *)((u8 *)arg0 + 0x54), temp_v0->position);
+        switch (sp24->unk6C_9) {
+            case 0x34C:
+                *(s8 *)arg0 = 2;
+                break;
+            case 0x47E:
+            case 0x4C4:
+            case 0x4C5:
+            case 0x4C6:
+            case 0x4C7:
+            case 0x50B:
+            case 0x50C:
+            case 0x531:
+                *(s8 *)arg0 = 3;
+                break;
+            default:
+                *(s8 *)arg0 = 1;
+                break;
+        }
+    } else {
+        *(f32 *)((u8 *)arg0 + 0x5C) = 0.0f;
+        *(f32 *)((u8 *)arg0 + 0x58) = 0.0f;
+        *(f32 *)((u8 *)arg0 + 0x54) = 0.0f;
+        map = func_800EA05C();
+        if (map != 0xE2 && map != 0xE4 && map != 0xE5 && map != 0xF8 && map != 0x138) {
+            *(f32 *)((u8 *)arg0 + 0x50) = 0.0f;
+            *(s8 *)arg0 = 0;
+        } else {
+            *(s8 *)arg0 = 3;
+            *(f32 *)((u8 *)arg0 + 0x50) = 1.0f;
+        }
+    }
+    if (*(f32 *)((u8 *)arg0 + 0x50)) {
+        *(f32 *)((u8 *)arg0 + 0x30) *= *(f32 *)((u8 *)arg0 + 0x50);
+        *(f32 *)((u8 *)arg0 + 0x34) *= *(f32 *)((u8 *)arg0 + 0x50);
+        *(f32 *)((u8 *)arg0 + 0x38) *= *(f32 *)((u8 *)arg0 + 0x50);
+        *(f32 *)((u8 *)arg0 + 0x40) *= *(f32 *)((u8 *)arg0 + 0x50);
+        *(f32 *)((u8 *)arg0 + 0x44) *= *(f32 *)((u8 *)arg0 + 0x50);
+        *(f32 *)((u8 *)arg0 + 0x48) *= *(f32 *)((u8 *)arg0 + 0x50);
+        *(f32 *)((u8 *)arg0 + 0x4C) /= *(f32 *)((u8 *)arg0 + 0x50);
+    }
+    counter = D_80135480;
+    *(f32 *)((u8 *)arg0 + 0x3C) = 1.0f / (sp2C[3] - sp2C[2]);
+    counter[3]++;
+}
 
 void idbounce_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
     f32 func_800D8FF8(void);

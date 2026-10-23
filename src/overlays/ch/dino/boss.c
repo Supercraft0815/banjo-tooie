@@ -443,7 +443,185 @@ void func_80800F28_chdinoboss(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800F70_chdinoboss.s")
+void func_80800F70_chdinoboss(Actor *arg0, s32 arg1) {
+    typedef struct {
+        s16 unk0;
+        s16 unk2;
+        u8 pad4[0x100];
+        f32 unk104[3];
+        f32 unk110[3];
+        s16 unk11C;
+        s16 unk11E;
+        s32 unk120;
+        f32 unk124;
+        u32 initialized : 1;
+        u32 dialog12 : 1;
+        u32 pad128_28 : 2;
+        u32 dialog15 : 1;
+        u32 pad128_16 : 11;
+        u8 unk12A;
+        u8 pad12B;
+        f32 unk12C;
+        f32 unk130;
+        f32 unk134;
+    } DinoBossData;
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    f32 func_800136E4(f32);
+    f32 func_80013728(f32);
+    s32 func_800C064C(void);
+    s32 func_800C067C(s32);
+    void func_800C964C(s32);
+    s32 func_800DA298(s32);
+    void func_800DA524(s32);
+    void func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EFD24(f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80109EEC(s16 *, s32);
+    void func_80109FE8(void **, s32);
+    void func_808015AC_chdinoboss(Actor *);
+    void func_80801660_chdinoboss(Actor *, f32, f32);
+    void func_80801AE4_chdinoboss(Actor *);
+    s32 func_80801C28_chdinoboss(Actor *);
+    void func_80801CDC_chdinoboss(Actor *);
+    void func_80801FAC_chdinoboss(Actor *, s32, s32);
+    void func_8080248C_chdinoboss(Actor *, s32, s32);
+    DinoBossData *data;
+    s32 sp48;
+    s32 sp44;
+    f32 sp3C[2];
+    f32 sp30[3];
+
+    data = func_80100094(arg0, 0);
+    sp48 = 0;
+    sp44 = 0;
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 3:
+        func_800FDC28(1);
+        break;
+    case 4:
+        func_8080248C_chdinoboss(arg0, 4, 0x30);
+        break;
+    case 5:
+        func_800DA544(1);
+        break;
+    case 6:
+        if (func_800DA298(0x172) == 0) {
+            _chintrotext_entrypoint_1(0x18B9, 1, 1, 0);
+        }
+        func_808015AC_chdinoboss(arg0);
+        break;
+    case 7:
+        data->unk12C = 30.0f;
+        data->unk134 = 2500.0f;
+        func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+        arg0->unk58 = func_800DC178(2.0f, 4.0f);
+        sp48 = 1;
+        break;
+    case 8:
+        data->unk120--;
+        sp48 = 1;
+        break;
+    case 9:
+        arg0->unk58 = 0.7f;
+        data->unk11E = 0;
+        sp48 = 1;
+        break;
+    case 10:
+        data->unk12C = 40.0f;
+        data->unk134 = 3500.0f;
+        func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+        if (data->unk12A == 0) {
+            data->unk12A = 1;
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17FC, 0x44, arg0->position, 0x57);
+        }
+        func_80109FE8(arg0, 1);
+        data->unk11C = arg0->pad5E;
+        break;
+    case 11:
+        data->unk12C = 30.0f;
+        data->unk134 = 2500.0f;
+        func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+        func_80109FE8(arg0, 0);
+        arg0->unk58 = func_800DC178(1.0f, 2.0f);
+        data->unk2 = func_80801C28_chdinoboss(arg0);
+        data->unk120 = data->unk2;
+        func_80801AE4_chdinoboss(arg0);
+        sp48 = 1;
+        sp44 = 1;
+        break;
+    case 12:
+        if (!data->dialog12) {
+            data->dialog12 = 1;
+            if (func_800C064C() == 0x17FC) {
+                func_800C067C(0x17FC);
+            }
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17B4, 0x44, arg0->position, 0x57);
+        }
+        data->unk120--;
+        sp48 = 1;
+        sp44 = 1;
+        break;
+    case 13:
+        data->unk12C = 40.0f;
+        data->unk134 = 3500.0f;
+        func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+        arg0->unk58 = 4.0f;
+        sp48 = 2;
+        sp44 = 1;
+        break;
+    case 14:
+        arg0->unk64_16 = 0;
+        arg0->unk58 = 2.0f;
+        break;
+    case 15:
+        if (!data->dialog15) {
+            data->dialog15 = 1;
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1802, 0x44, arg0->position, 0x57);
+        }
+        arg0->unk64_16 = 1;
+        arg0->unk58 = 4.0f;
+        sp48 = 3;
+        sp44 = 1;
+        break;
+    case 23:
+        func_800EFD24(sp30);
+        func_800F18FC(data->unk110, sp30, sp3C);
+        data->unk12C = func_800136E4(-sp3C[0]);
+        data->unk134 = func_800EEF94(data->unk110);
+        data->unk124 = func_80013728(data->unk124);
+        func_80801660_chdinoboss(arg0, 0.0f, 0.0f);
+        func_80109EEC(arg0, 1);
+        func_80109FE8(arg0, 0);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x17B5, 0x44, arg0->position, 0x57);
+        func_800DA544(0xE5);
+        func_800DA524(1);
+        func_800FDC28(0);
+        arg0->pad5E = 0;
+        func_80801CDC_chdinoboss(arg0);
+        break;
+    case 16:
+        sp44 = 1;
+        break;
+    case 17:
+        func_800EE7F8(arg0->position, data->unk104);
+        break;
+    case 18:
+        arg0->unk58 = 10.0f;
+        break;
+    case 19:
+        func_800C964C(3);
+        break;
+    }
+    func_80801FAC_chdinoboss(arg0, sp48, sp44);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801408_chdinoboss.s")
 

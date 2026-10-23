@@ -1474,7 +1474,324 @@ void func_800C431C(u8 arg0, s32 arg1) {
     (*(s8 *)((s8 *)(func_800C1414(arg0)) + (0x63))) = (s8) arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C4350.s")
+u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (s16 *)command_list;
+    struct Source {
+        f32 position[3];
+        f32 near_squared;
+        f32 far_squared;
+        u8 pad14[6];
+        s8 unk1A;
+        s8 positioned;
+        s8 unk1C;
+        s8 unk1D;
+        u8 pad1E[10];
+        f32 unk28;
+        f32 unk2C;
+        f32 unk30;
+        f32 unk34;
+        f32 unk38;
+        f32 unk3C;
+        u8 pad40[24];
+        s16 unk58;
+        u8 pad5A[4];
+        s16 map;
+        s8 unk60;
+        s8 unk61;
+        s8 unk62;
+        s8 unk63;
+        void (*callback)(u8, s32);
+        s32 callback_arg;
+        f32 unk6C;
+        f32 unk70;
+        f32 unk74;
+        unsigned int unused78 : 19;
+        unsigned int state : 3;
+        unsigned int mode : 4;
+        unsigned int unused7B : 3;
+        unsigned int flag : 1;
+        unsigned int unused7B2 : 2;
+    };
+    extern f32 D_8012A990;
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800EA05C(void);
+    void func_800C1860(void *);
+    void func_800C2E40(u8);
+    void func_800C316C(u8, s32, s32, f32);
+    void func_800C3A40(u8, f32, f32, f32);
+    f32 func_800DC264(f32, f32);
+    s32 func_800DC214(s32, s32);
+    void *source;
+    s32 start = 0;
+    s32 command;
+    s32 value;
+    s32 value2;
+    f32 a, b, c, d, e, f;
+
+    command_list = 0;
+    if ((u8)index == 0) {
+        if ((index = func_800C2E04()) == 0) {
+            return 0;
+        }
+        source = func_800C1414(index);
+    } else {
+        source = func_800C1414(index);
+    }
+    if (position != 0) {
+        func_800EE7F8((f32 *)source, position);
+        func_800C13A0(source, 2);
+        (*(s8 *)((u8 *)source + 0x1b)) = 1;
+        (*(s16 *)((u8 *)source + 0x5e)) = func_800EA05C();
+    }
+    if (commands == 0) {
+        if ((u8)index != 0) {
+            func_800C3BDC(index);
+        }
+        return (u8)index;
+    }
+    while (command = *(s16 *)commands, commands = (s16 *)((s16 *)commands + 1), command != 0) {
+        switch (command & 0xFF) {
+        case 1:
+            a = ((s16 *)commands)[0];
+            b = ((s16 *)commands)[1];
+            if (position != 0) {
+                (*(f32 *)((u8 *)source + 0xc)) = a * a;
+                (*(f32 *)((u8 *)source + 0x10)) = b * b;
+                (*(s8 *)((u8 *)source + 0x1b)) = 1;
+                func_800C13A0(source, 2);
+            }
+            commands = (s16 *)((s16 *)commands + 2);
+            break;
+        case 2:
+            (*(s8 *)((u8 *)source + 0x63)) = (command & 0xFF00) >> 8;
+            break;
+        case 32:
+            if ((command & 0xFF00) >> 8) {
+                func_800C13B0(source, 0x200);
+            } else {
+                func_800C13A0(source, 0x200);
+            }
+            break;
+        case 34:
+            if ((command & 0xFF00) >> 8) {
+                func_800C13B0(source, 0x400);
+            } else {
+                func_800C13A0(source, 0x400);
+            }
+            break;
+        case 36:
+            if ((command & 0xFF00) >> 8) {
+                func_800C13A0(source, 0x800);
+            } else {
+                func_800C13B0(source, 0x800);
+            }
+            break;
+        case 3:
+            return (u8)index;
+        case 4:
+            func_800C2FDC(index);
+            return 0;
+        case 5:
+            (*(s8 *)((u8 *)source + 0x60)) = (command & 0xFF00) >> 8;
+            func_800C13A0(source, 0x10);
+            break;
+        case 6:
+            func_800C11F8(source, (command & 0xFF00) >> 8);
+            break;
+        case 7:
+            (*(s8 *)((u8 *)source + 0x62)) = (command & 0xFF00) >> 8;
+            break;
+        case 8:
+            (*(s8 *)((u8 *)source + 0x61)) = (command & 0xFF00) >> 8;
+            func_800C13A0(source, 0x100);
+            break;
+        case 9:
+            if ((u8)((command & 0xFF00) >> 8)) {
+                (*(s8 *)((u8 *)source + 0x1a)) = 1;
+            } else {
+                (*(s8 *)((u8 *)source + 0x1a)) = 0;
+            }
+            break;
+        case 10:
+            a = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(f32 *)((u8 *)source + 0x6c)) = a;
+            func_800C13A0(source, 4);
+            break;
+        case 11:
+            a = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            b = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            c = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(f32 *)((u8 *)source + 0x6c)) = a;
+            (*(f32 *)((u8 *)source + 0x2c)) = b;
+            (*(f32 *)((u8 *)source + 0x28)) = c;
+            ((struct Source *)source)->mode = 1;
+            func_800C13A0(source, 4);
+            break;
+        case 12:
+            a = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            b = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            c = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            d = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(f32 *)((u8 *)source + 0x28)) = a;
+            (*(f32 *)((u8 *)source + 0x2c)) = b;
+            (*(f32 *)((u8 *)source + 0x30)) = c;
+            (*(f32 *)((u8 *)source + 0x34)) = d;
+            ((struct Source *)source)->mode = 3;
+            func_800C13A0(source, 4);
+            break;
+        case 13: {
+            f32 minimum, maximum;
+            minimum = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            maximum = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(f32 *)((u8 *)source + 0x6c)) = func_800DC264(minimum, maximum);
+            func_800C13A0(source, 4);
+            break;
+        }
+        case 29:
+            a = D_8012A990;
+            (*(f32 *)((u8 *)source + 0x6c)) = a;
+            func_800C13A0(source, 4);
+            break;
+        case 14:
+            a = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            b = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            c = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(f32 *)((u8 *)source + 0x2c)) = a;
+            (*(f32 *)((u8 *)source + 0x28)) = b;
+            (*(f32 *)((u8 *)source + 0x30)) = c;
+            (*(f32 *)((u8 *)source + 0x6c)) = (a + b) * 0.5f;
+            ((struct Source *)source)->mode = 2;
+            func_800C13A0(source, 4);
+            break;
+        case 15:
+            func_800C11F8(source, 1);
+            start = 1;
+            (*(s8 *)((u8 *)source + 0x62)) = 0;
+            break;
+        case 16:
+            func_800C2E40(index);
+            break;
+        case 17:
+            start = 1;
+            break;
+        case 18:
+            start = 0;
+            if (((struct Source *)source)->state == 1) {
+                func_800C1860(source);
+                if ((*(void (**)(u8, s32))((u8 *)source + 0x64)) != 0) {
+                    (*(void (**)(u8, s32))((u8 *)source + 0x64))(index, (*(s32 *)((u8 *)source + 0x68)));
+                }
+            }
+            break;
+        case 19: {
+            s32 duration = *(s16 *)commands;
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(s16 *)((u8 *)source + 0x58)) = duration;
+            break;
+        }
+        case 20:
+            value = (command & 0xFF00) >> 8;
+            if (position != 0) {
+                (*(s8 *)((u8 *)source + 0x1b)) = value;
+                if (value != 0) {
+                    func_800C13A0(source, 2);
+                } else {
+                    func_800C13B0(source, 2);
+                }
+            }
+            break;
+        case 21:
+            a = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            b = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            c = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            func_800C3A40(index, a, b, c);
+            break;
+        case 31:
+            (*(s8 *)((u8 *)source + 0x1d)) = 1;
+            break;
+        case 22:
+            func_800C3058(index, *commands++);
+            break;
+        case 23:
+            value = *(s16 *)commands;
+            commands = (s16 *)((s16 *)commands + 1);
+            value2 = *(s16 *)commands;
+            commands = (s16 *)((s16 *)commands + 1);
+            a = *(s16 *)commands;
+            commands = (s16 *)((s16 *)commands + 1);
+            func_800C316C(index, value, value2, a);
+            break;
+        case 24:
+            func_800C3058(index, 0x7FFF);
+            break;
+        case 25:
+            func_800C3058(index, func_800DC214(((s16 *)commands)[0], ((s16 *)commands)[1]));
+            commands = (s16 *)((s16 *)commands + 2);
+            break;
+        case 30:
+            func_800C3058(index, *(s16 *)((u8 *)&D_8012A990 + 4));
+            break;
+        case 26:
+            a = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            b = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(f32 *)((u8 *)source + 0x70)) = a;
+            (*(f32 *)((u8 *)source + 0x74)) = b;
+            break;
+        case 27:
+            func_800C3418(index, (command & 0xFF00) >> 8);
+            break;
+        case 28:
+            ((struct Source *)source)->flag = 1;
+            break;
+        case 33:
+            func_800C301C(index, *(s16 *)((u8 *)&D_8012A990 + 6));
+            break;
+        case 35:
+            a = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            b = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            c = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            d = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            e = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            f = *(s16 *)commands * (1.0f / 256.0f);
+            commands = (s16 *)((s16 *)commands + 1);
+            (*(f32 *)((u8 *)source + 0x28)) = a;
+            (*(f32 *)((u8 *)source + 0x2c)) = b;
+            (*(f32 *)((u8 *)source + 0x30)) = c;
+            (*(f32 *)((u8 *)source + 0x34)) = d;
+            (*(f32 *)((u8 *)source + 0x38)) = e;
+            (*(f32 *)((u8 *)source + 0x3c)) = f;
+            ((struct Source *)source)->mode = 4;
+            func_800C13A0(source, 4);
+            break;
+        }
+    }
+    if (start != 0) {
+        func_800C3BDC(index);
+    }
+    return (u8)index;
+}
 
 /* extern */
 

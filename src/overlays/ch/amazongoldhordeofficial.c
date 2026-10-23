@@ -53,7 +53,160 @@ void func_8080000C_chamazongoldhordeofficial(Actor *arg0) {
     _susubgame_entrypoint_12(((struct HordeInitData *)func_80100094(arg0, 0))->subgame, D_808011C0_chamazongoldhordeofficial);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/amazongoldhordeofficial/func_80800150_chamazongoldhordeofficial.s")
+void func_80800150_chamazongoldhordeofficial(Actor *arg0) {
+    void _subaddieDll_entrypoint_12(void *, s16 *);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void func_8008F8B0(void);
+    void func_8008F8D8(s32);
+    void func_8008F904(s32 *, Unk80132ED0 *);
+    void func_8008F990(f32 *, f32);
+    s32 func_8008FE14(void);
+    void func_800902E4(f32 *, f32, s32, Actor **);
+    s32 func_80090768(f32 *);
+    s32 func_80090818(void);
+    f32 func_800D8FF8(void);
+    s32 func_800DA544(s32);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800F54E4(void);
+    s32 func_800F56AC(s32);
+    f32 func_800F5F7C(s32);
+    s32 func_800F64A4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102924(void *, f32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    f32 func_8010CD28(Actor *);
+    void func_8010CEAC(Actor *);
+    void func_80800A84_chamazongoldhordeofficial(Actor *);
+    s32 func_80800C60_chamazongoldhordeofficial(s32);
+    void func_80800E18_chamazongoldhordeofficial(Actor *);
+    void func_80800E64_chamazongoldhordeofficial(Actor *);
+    void func_80800E94_chamazongoldhordeofficial(Actor *);
+    int func_80800F40_chamazongoldhordeofficial(Actor *, s32, s32);
+    extern s32 func_8010D5DC;
+    extern u32 D_80801288_chamazongoldhordeofficial;
+    extern u32 D_80801294_chamazongoldhordeofficial;
+    extern u32 D_808012A0_chamazongoldhordeofficial;
+    extern u32 D_808012BC_chamazongoldhordeofficial;
+    struct HordeUpdateData {
+        u8 pad0[8];
+        s16 unk8;
+        s16 unkA;
+        s16 x[15];
+        s16 z[15];
+        u8 count;
+        u8 ids[15];
+        u8 flags[15];
+        u8 index;
+        u8 pad68[2];
+        s16 unk6A;
+        u32 subgame[1];
+    };
+    struct HordeUpdateData *data;
+    s32 character;
+    f32 offset[3];
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    _sudeflect_entrypoint_0(arg0->position, 150.0f, 150.0f, 10);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800E64_chamazongoldhordeofficial(arg0);
+            if (data->unk8 == -999) {
+                _subaddieDll_entrypoint_12(data, &data->unk8);
+            }
+            if (func_80800F40_chamazongoldhordeofficial(arg0, data->unk8, data->unkA)) {
+                func_80800E18_chamazongoldhordeofficial(arg0);
+            }
+            func_80800C60_chamazongoldhordeofficial((s32)arg0);
+            break;
+        case 2:
+            func_80800E64_chamazongoldhordeofficial(arg0);
+            if (func_80800F40_chamazongoldhordeofficial(arg0, data->x[data->index], data->z[data->index])) {
+                func_80102424(arg0, 3);
+            }
+            func_80800C60_chamazongoldhordeofficial((s32)arg0);
+            break;
+        case 3:
+            func_80800E64_chamazongoldhordeofficial(arg0);
+            func_80102924(arg0, data->flags[data->index] * 2);
+            func_80102B2C(arg0, func_800D8FF8() * 180.0f);
+            if (func_80102CF4(arg0, 0x41200000)) {
+                func_80102424(arg0, 4);
+            }
+            func_80800C60_chamazongoldhordeofficial((s32)arg0);
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80801288_chamazongoldhordeofficial, &D_808012A0_chamazongoldhordeofficial);
+            _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80801294_chamazongoldhordeofficial, &D_808012BC_chamazongoldhordeofficial);
+            func_80800A84_chamazongoldhordeofficial(arg0);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 5);
+            }
+            func_80800C60_chamazongoldhordeofficial((s32)arg0);
+            break;
+        case 5:
+            func_80800E64_chamazongoldhordeofficial(arg0);
+            func_80102924(arg0, data->flags[data->index] * 2 + data->unk6A * 120);
+            func_80102B2C(arg0, func_800D8FF8() * 630.0f);
+            if (func_80102CF4(arg0, 0x41200000)) {
+                if (data->unk6A == 1) {
+                    data->unk6A = -1;
+                } else {
+                    data->unk6A = 1;
+                }
+                func_80102424(arg0, 1);
+            }
+            func_80800C60_chamazongoldhordeofficial((s32)arg0);
+            break;
+        case 6:
+            func_80800C60_chamazongoldhordeofficial((s32)arg0);
+            func_80800E94_chamazongoldhordeofficial(arg0);
+            break;
+        case 7:
+            func_8010CEAC(arg0);
+            break;
+        case 9:
+            func_8010CEAC(arg0);
+            break;
+        case 10:
+            character = func_800F54E4();
+            func_8010CEAC(arg0);
+            if (!arg0->unk64_19 && func_800F5F7C(character) < 10.0f && func_800F56AC(character) != 0x12 && func_800F64A4(character, 1)) {
+                func_800EEB9C(offset, func_8010CD28(arg0), 400.0f);
+                func_800EF04C(offset, arg0->position);
+                func_8008F8B0();
+                func_8008F904(&func_8010D5DC, arg0->unk0);
+                func_8008F8D8(1);
+                func_8008F990(offset, 300.0f);
+                _susubgame_entrypoint_6(arg0, ((struct HordeUpdateData *)func_80100094(arg0, 0))->subgame, 0x12, 0x60, 0);
+                func_80102424(arg0, 7);
+                arg0->unk64_19 = 1;
+            }
+            break;
+        case 11:
+            func_8010CEAC(arg0);
+            func_80800E94_chamazongoldhordeofficial(arg0);
+            func_800902E4(arg0->position, 500.0f, 0x1D9, &arg0);
+            if (func_8008FE14() == 0x1D9 && func_80090818()) {
+                func_800EEB9C(position, func_8010CD28(arg0), 200.0f);
+                func_800EF04C(position, arg0->position);
+                func_80090768(position);
+                func_800DA544(0x5A);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xF2D, 0xE, arg0->position, 0x31);
+                func_80102424(arg0, 6);
+            }
+            break;
+    }
+}
 
 void *_func_unused(void);
 void *func_80100094(Actor *, u32);

@@ -15,7 +15,104 @@ void func_8080000C_chflowerbaddie(Actor *arg0) {
     arg0->unk64_20 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_8080005C_chflowerbaddie.s")
+void func_8080005C_chflowerbaddie(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800F3780(f32, u8 *, s16);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102B2C(Actor *, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_8010D254(f32 *);
+    s32 func_808007F0_chflowerbaddie(Actor *);
+    void func_80800980_chflowerbaddie(Actor *, f32 *);
+    s32 func_808009F0_chflowerbaddie(Actor *, void *, f32);
+    extern u32 D_80800C5C_chflowerbaddie[];
+    extern u8 D_80800C68_chflowerbaddie[];
+    extern f32 D_80800C80_chflowerbaddie[];
+    extern f32 D_80800C94_chflowerbaddie[];
+    extern u8 D_80800CA8_chflowerbaddie[];
+    union FlowerBaddieUpdateActor {
+        Actor actor;
+        struct {
+            u32 reserved[30];
+            u32 : 29;
+            u32 inactive : 1;
+            u32 : 2;
+        } flags;
+    };
+    void *sp34;
+
+    sp34 = func_80100094(arg0, 0);
+    if (((union FlowerBaddieUpdateActor *)arg0)->flags.inactive) {
+        return;
+    }
+    func_8010D254((f32 *)arg0->actorData);
+    func_800D9078(&arg0->unk58);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_808007F0_chflowerbaddie(arg0)) {
+            func_80102424(arg0, 2);
+        }
+        break;
+    case 2:
+        if (func_80101F24(arg0) > 0.1f) {
+            arg0->unk64_20 = 1;
+        } else {
+            arg0->unk64_20 = 0;
+        }
+        func_80800980_chflowerbaddie(arg0, D_80800C80_chflowerbaddie);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800C5C_chflowerbaddie, 0.15f);
+        if (func_80101F24(arg0) > 0.5f) {
+            if (!func_808009F0_chflowerbaddie(arg0, sp34,
+                    func_800F3780(func_80101F24(arg0), D_80800C68_chflowerbaddie, 3))) {
+                return;
+            }
+        } else {
+            if (arg0->unk64_29) {
+                _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+            } else {
+                arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+            }
+            func_80102B2C(arg0, func_800D8FF8() * 120.0f);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 3);
+        }
+        break;
+    case 3:
+        func_80800980_chflowerbaddie(arg0, D_80800C94_chflowerbaddie);
+        if (!(arg0->unk58 > 0.0f)) {
+            func_808009F0_chflowerbaddie(arg0, sp34,
+                func_800F3780(func_80101F24(arg0), D_80800CA8_chflowerbaddie, 3));
+        }
+        break;
+    case 4:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800C5C_chflowerbaddie, 0.08f);
+        if (func_80101F24(arg0) > 0.7f) {
+            arg0->unk64_20 = 0;
+        } else {
+            arg0->unk64_20 = 1;
+        }
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 1);
+        }
+        break;
+    case 5:
+        if (func_80101DDC(arg0)) {
+            if (!func_808007F0_chflowerbaddie(arg0)) {
+                func_80102424(arg0, arg0->unk64_20 ? 4 : 1);
+            } else {
+                func_80102424(arg0, arg0->unk64_20 ? 3 : 2);
+            }
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_80800380_chflowerbaddie.s")
 

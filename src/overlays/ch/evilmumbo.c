@@ -212,7 +212,164 @@ void func_80800774_chevilmumbo(Actor *arg0) {
     _suexpression_entrypoint_4(func_80100094(arg0, 1), 0x77);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808007C4_chevilmumbo.s")
+s32 func_808007C4_chevilmumbo(Actor *arg0, s32 arg1) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _suexpression_entrypoint_12(void *, f32, f32);
+    void func_80090734(s32, f32 *);
+    int func_800DC298(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101CDC(Actor *, f32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010A800(Actor *, s32);
+    extern u8 D_80804140_chevilmumbo[];
+    extern u8 D_8080414C_chevilmumbo[];
+    extern u8 D_80804190_chevilmumbo[];
+    extern u8 D_80804198_chevilmumbo[];
+    extern u8 D_808041C0_chevilmumbo[];
+    extern f32 D_8080427C_chevilmumbo[3];
+    struct {
+        u8 pad0[0x84];
+        s8 pattern[10];
+        u8 pad8E[4];
+        u8 unk92;
+        u8 unk93;
+        u8 pad94;
+        u8 unk95;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 6:
+        func_80800774_chevilmumbo(arg0);
+        arg0->unk6C_0 = 0;
+        _chintrotext_entrypoint_1(0x18B9, 8, 1, 0);
+        func_800FDC28(1);
+        break;
+    case 4:
+        arg0->unk74_29 = 0;
+        break;
+    case 9:
+    case 19:
+        arg0->unk74_29 = 0;
+        break;
+    case 12:
+        func_8010A800(arg0, 1);
+        break;
+    case 11:
+        func_8010A590(arg0);
+        arg0->unk64_16 = 1;
+        break;
+    }
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+    case 21:
+        data->pattern[0] = 2;
+        data->pattern[1] = 1;
+        data->pattern[2] = 2;
+        data->pattern[3] = 1;
+        data->pattern[4] = 2;
+        data->pattern[5] = 2;
+        data->pattern[6] = 1;
+        data->pattern[7] = 2;
+        data->pattern[8] = 2;
+        data->pattern[9] = 2;
+        func_800EE7F8(arg0->position, D_8080427C_chevilmumbo);
+        func_80800774_chevilmumbo(arg0);
+        arg0->unk74_29 = 1;
+        break;
+    case 2:
+        func_80800300_chevilmumbo((s32 *)arg0);
+        break;
+    case 1:
+        _suexpression_entrypoint_12(func_80100094(arg0, 1), 0.0f, 0.0f);
+        break;
+    case 5:
+        func_808001F4_chevilmumbo(arg0, 5, 0x20, NULL);
+        break;
+    case 4:
+        arg0->unk74_29 = 1;
+        break;
+    case 7:
+    case 13:
+        arg0->unk74_29 = 1;
+        break;
+    case 8:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080414C_chevilmumbo);
+        arg0->unk6C_0--;
+        break;
+    case 10:
+        func_8010A800(arg0, 2);
+        func_80101EE4(arg0, 0.677f);
+        func_80101CDC(arg0, 0.75f);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804140_chevilmumbo);
+        break;
+    case 9:
+        if (data->unk93 < 5) {
+            arg0->unk58 = 0.0f;
+        } else {
+            arg0->unk58 = 0.5f;
+        }
+        break;
+    case 19:
+        if (data->unk93 < 5) {
+            arg0->unk58 = 2.0f;
+        } else {
+            arg0->unk58 = 3.0f;
+        }
+        arg0->unk74_29 = 0;
+        break;
+    case 14:
+        func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+        ((f32 *)arg0->actorData)[3] = 500.0f;
+        if (func_800DC298(0.5f)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804190_chevilmumbo);
+        } else {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804198_chevilmumbo);
+        }
+        break;
+    case 18:
+        func_808001F4_chevilmumbo(arg0, 13, 0x30, NULL);
+        func_80800354_chevilmumbo(arg0, 0x11E5, 0);
+        break;
+    case 12:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804140_chevilmumbo);
+        func_80800670_chevilmumbo(arg0);
+        arg0->rotation[1] = func_800F1DF4(arg0->position, (f32 *)arg0->actorData);
+        func_80101CDC(arg0, 0.75f);
+        break;
+    case 11:
+        arg0->unk58 = 0.0f;
+        func_8010A570(arg0);
+        arg0->unk64_16 = 0;
+        break;
+    case 15:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808041C0_chevilmumbo);
+        func_80090734(2, arg0->position);
+        data->unk92 = 0;
+        func_80800144_chevilmumbo(arg0, 3, 1);
+        func_80800354_chevilmumbo(arg0, 0x11E1, 0);
+        arg0->unk50 = arg0->rotation[1];
+        ((f32 *)arg0->actorData)[3] = 4.5f;
+        break;
+    case 16:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808041C0_chevilmumbo);
+        arg0->unk58 = 7.0f;
+        break;
+    case 20:
+        if (data->unk95) {
+            func_80800290_chevilmumbo(arg0);
+        }
+        func_800FDC28(0);
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800C50_chevilmumbo.s")
 

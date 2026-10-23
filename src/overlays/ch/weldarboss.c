@@ -631,7 +631,202 @@ void func_80801944_chweldarboss(Actor *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80801AA0_chweldarboss.s")
+void func_80801AA0_chweldarboss(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x60];
+        s8 unk60;
+        u8 pad61[0xD];
+        s8 unk6E;
+        u8 pad6F;
+        u8 unk70;
+        u8 pad71[3];
+        s16 unk74;
+        s16 unk76;
+        u8 pad78[2];
+        u8 unk7A;
+        u8 unk7B;
+        u8 pad7C;
+        u8 unk7D;
+        u8 unk7E;
+        u8 unk7F;
+        u8 pad80[0x32];
+        u8 unkB2;
+        u8 padB3;
+        f32 unkB4;
+    } WeldarData;
+    void _chexploder_entrypoint_5(Actor *, s32, f32 *, f32, f32, s32);
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _gcfrontend_entrypoint_10(void);
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800BF744(s32, s32);
+    s32 func_800D395C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F4FC4(void);
+    s32 func_800F8150(u32, s32);
+    void func_800F82D4(s32, s32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80802214_chweldarboss(Actor *, s32, s32);
+    f32 func_80803378_chweldarboss(Actor *);
+    void func_8080340C_chweldarboss(Actor *);
+    void func_80803460_chweldarboss(Actor *);
+    void func_8080373C_chweldarboss(Actor *);
+    void func_80803CF0_chweldarboss(Actor *, s32, s32);
+    void func_80803D64_chweldarboss(Actor *);
+    extern u8 D_808048F8_chweldarboss[];
+    WeldarData *data;
+    s32 update;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    update = 0;
+    func_80102424(arg0, arg1);
+    func_80803460_chweldarboss(arg0);
+    switch (arg1) {
+    case 2:
+        func_80803CF0_chweldarboss(arg0, 0x1D, 0x30);
+        data->unk70 = 0;
+        break;
+    case 3:
+        arg0->unk64_16 = 1;
+        data->unkB4 = 4.0f;
+        func_800BF744(1, 1);
+        func_800FDC28(1);
+        func_80803CF0_chweldarboss(arg0, 0, 0x30);
+        func_80101180(0x341, 7, 0);
+        break;
+    case 4:
+        arg0->pad7A_7 = 1;
+        func_80101180(0x341, 8, 0);
+        func_80803CF0_chweldarboss(arg0, 0xB, 0x30);
+        break;
+    case 5:
+        _chintrotext_entrypoint_1(0x18B9, 6, 1, 0);
+        break;
+    case 8:
+        update = 1;
+        if (data->unk7A == 0) {
+            data->unk7A = 1;
+            func_80802214_chweldarboss(arg0, 0x1357, 0x44);
+        }
+        break;
+    case 7:
+    case 9:
+    case 13:
+    case 19:
+    case 21:
+    case 24:
+    case 37:
+    case 40:
+        update = 1;
+        break;
+    case 12:
+    case 23:
+    case 39:
+        update = 1;
+        arg0->unk58 = func_80803378_chweldarboss(arg0);
+        data->unkB2 = _subaddieaudioloop_entrypoint_3(data->unkB2);
+        break;
+    case 10:
+        update = 1;
+        if (data->unk7B == 0) {
+            data->unk7B = 1;
+            func_80802214_chweldarboss(arg0, 0x1358, 0x44);
+        }
+        break;
+    case 14:
+    case 25:
+    case 41:
+        func_80803CF0_chweldarboss(arg0, 0x1B, 0x438);
+        break;
+    case 11:
+    case 22:
+    case 38:
+        update = 1;
+        arg0->unk58 = 8.0f;
+        break;
+    case 16:
+    case 26:
+    case 42:
+        data->unkB2 = _subaddieaudioloop_entrypoint_3(data->unkB2);
+        func_800F82D4(data->unk76, 2);
+        func_800F8150(data->unk76, 0);
+        func_800F4FC4();
+        data->unk60 = 1;
+        func_80803CF0_chweldarboss(arg0, 0x19, 0x428);
+        break;
+    case 17:
+    case 27:
+    case 43:
+        arg0->unk58 = 1.4f;
+        break;
+    case 28:
+        if (data->unk7E == 0) {
+            data->unk7E = 1;
+            func_80802214_chweldarboss(arg0, 0x135B, 0x44);
+        }
+        func_80803CF0_chweldarboss(arg0, 0x39, 0x10);
+        data->unk74 = 0;
+        break;
+    case 35:
+        data->unk74 = 0;
+        break;
+    case 32:
+        if (data->unk7F == 0) {
+            data->unk7F = 1;
+            func_80802214_chweldarboss(arg0, 0x135C, 0x44);
+        }
+        break;
+    case 18:
+        update = 1;
+        if (data->unk7D == 0) {
+            data->unk7D = 1;
+            func_80802214_chweldarboss(arg0, 0x135A, 0x44);
+        }
+        break;
+    case 44:
+        func_80802214_chweldarboss(arg0, 0x135E, 6);
+        func_80803CF0_chweldarboss(arg0, 0x22, 0x30);
+        break;
+    case 45:
+        data->unk6E = 1;
+        func_800FDC28(0);
+        func_8080373C_chweldarboss(arg0);
+        func_80802214_chweldarboss(arg0, 0x135D, 0xE);
+        func_80803CF0_chweldarboss(arg0, 0x22, 0x30);
+        break;
+    case 46:
+        arg0->unk58 = 1.0f;
+        func_80803CF0_chweldarboss(arg0, 0x12, 0x430);
+        break;
+    case 47:
+        func_800EE7F8(position, arg0->position);
+        position[1] += 800.0f;
+        _subaddieaudioquick_entrypoint_2(arg0, position, D_808048F8_chweldarboss);
+        arg0->unk58 = 0.9f;
+        _chexploder_entrypoint_5(arg0, 0x870, position, arg0->rotation[1], arg0->scale, 0x100);
+        func_80803CF0_chweldarboss(arg0, 0x29, 0x30);
+        break;
+    case 48:
+        arg0->unk58 = 4.0f;
+        break;
+    case 49:
+        if (func_800D395C() != 0) {
+            func_80803D64_chweldarboss(arg0);
+            _gcfrontend_entrypoint_10();
+        } else {
+            func_80803CF0_chweldarboss(arg0, 0x1D, 0x30);
+            func_80101180(0x431, 7, 0);
+        }
+        break;
+    }
+    if (update != 0) {
+        func_8080340C_chweldarboss(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80801F30_chweldarboss.s")
 

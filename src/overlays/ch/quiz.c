@@ -1345,7 +1345,125 @@ void func_80803470_chquiz(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80803588_chquiz.s")
+s32 func_80803588_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800DF500(f32, f32, f32);
+    void func_800DF744(s32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101074(void *);
+    s32 func_801015D0(Actor *);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(void *, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_8080737C_chquiz;
+    extern s32 D_808073A4_chquiz;
+    extern s32 D_808073CC_chquiz;
+    extern s32 D_8080741C_chquiz;
+    extern s32 D_80807444_chquiz;
+    Actor *other;
+    f32 value;
+    s32 padding[2];
+    f32 progress;
+    s32 visibility;
+
+    switch (arg1) {
+    default:
+        return 0;
+    case 0x95:
+        func_80103140(arg0,
+            func_8080008C_chquiz(arg0->unk74_7) & 0xFFFF,
+            arg0->unk0->unk16);
+        func_80102FDC(arg0, func_808000A8_chquiz(arg0->unk74_7));
+        func_80102424(arg0, arg0->unk70_10);
+        goto success;
+    case 0x99:
+        switch (arg0->unk74_7) {
+        case 1:
+            func_80101074(&D_8080737C_chquiz);
+            return 1;
+        case 0:
+            func_80101074(&D_808073A4_chquiz);
+            return 1;
+        case 2:
+            func_80101074(&D_808073CC_chquiz);
+            return 1;
+        case 3:
+            func_80101074(&D_808073CC_chquiz);
+            return 1;
+        case 4:
+            func_80101074(&D_8080741C_chquiz);
+            return 1;
+        case 5:
+            func_80101074(&D_808073CC_chquiz);
+            return 1;
+        case 6:
+            func_80101074(&D_80807444_chquiz);
+            return 1;
+        default:
+            return 0;
+        }
+    case 0x1F:
+        func_801015D0(arg0);
+        switch (arg0->unk74_7) {
+        case 1:
+            func_800DF744(1, 2);
+            break;
+        case 0:
+            func_800DF744(1, 1);
+            break;
+        case 2:
+            func_800DF744(1, 3);
+            break;
+        case 3:
+            func_800DF744(1, 1);
+            break;
+        case 4:
+            func_800DF744(1, 2);
+            break;
+        case 5:
+            func_800DF744(1, 3);
+            break;
+        case 6:
+            func_800DF744(1, 4);
+            break;
+        }
+        switch (arg0->unk70_10) {
+        default:
+            return 1;
+        case 1:
+            func_800DF744(2, 1);
+            return 1;
+        case 2:
+            progress = func_80101F24(arg0);
+            func_800DF744(2, progress > func_808000E0_chquiz(arg0->unk74_7) ? 2 : 1);
+            return 1;
+        case 3:
+            func_800DF744(2, 2);
+            return 1;
+        case 4:
+            other = func_80106790(arg0->unk3C);
+            func_800DF744(2, 1);
+            if (other != NULL) {
+                progress = func_80101F24(other);
+                value = progress;
+            } else {
+                return 1;
+            }
+            if (progress > 0.5f) {
+                if (progress < 0.65f) {
+                    value = func_800F10B4(value, 0.5f, 0.65f, 1.0f, 0.01f);
+                } else {
+                    value = 0.01f;
+                }
+                func_800DF500(1.0f, value, 1.0f);
+            }
+            return 1;
+        }
+    }
+success:
+    return 1;
+}
 
 void func_80803910_chquiz(u8 *arg0) {
     void func_800C8B84(volatile s32);

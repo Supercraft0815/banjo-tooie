@@ -6,7 +6,256 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80800434_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80800A94_chpotogoldgame.s")
+s32 func_80800A94_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
+    void _gcfrontend_entrypoint_10(void);
+    void func_800C0850(void);
+    s32 func_800D211C(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    s32 func_80800434_chpotogoldgame(s32, s32);
+    void func_808010A0_chpotogoldgame(void *);
+    void func_8080111C_chpotogoldgame(s32);
+    s32 func_8080206C_chpotogoldgame();
+    void func_8080219C_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2);
+    void func_8080227C_chpotogoldgame(void *);
+    Actor *child;
+    s32 message;
+
+    switch (arg1) {
+    case 0x3D:
+        if (!arg0->unk64_20) {
+            child = func_80108528(0x1CD, arg0->position, 0, &arg0);
+            child->unk74_7 = 0x32;
+            arg0->unk64_20 = 1;
+            if (arg2 == 0) {
+                _chappearfx_entrypoint_1(child, 0x20, 0, 1.0f);
+            }
+            return 1;
+        }
+        return 0;
+    case 0x30:
+        switch (((s16 *)&arg2)[0]) {
+        case 0x141F:
+        case 0x1420:
+        case 0x1421:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x89);
+            }
+            return arg0->actorData[2];
+        case 0x1422:
+        case 0x1423:
+        case 0x1424:
+            return arg0->actorData[2];
+        case 0x1425:
+            return func_800D211C(0x89);
+        case 0x13D2:
+        case 0x13D3:
+        case 0x13D4:
+        case 0x13D5:
+        case 0x13D6:
+        case 0x13D9:
+        case 0x141E:
+            return func_8080206C_chpotogoldgame(arg0);
+        case 0x13D7:
+        case 0x13D8:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x84);
+            }
+            return func_8080206C_chpotogoldgame(arg0);
+        case 0x13CD:
+        case 0x13CF:
+            switch (((s16 *)&arg2)[1]) {
+            case 1:
+                return 0x2D;
+            case 2:
+                return 0x5A;
+            default:
+                return 0x4B;
+            }
+            return 0x4B;
+        case 0x13D0:
+            if (((s16 *)&arg2)[1] != 0) {
+                return 0x2D;
+            }
+            return 0x5A;
+        case 0x13D1:
+            return func_800D211C(0x84);
+        case 0x1438:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x84);
+            }
+            return 0x2D;
+        case 0x1439:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x89);
+            }
+            return 0x2D;
+        case 0x143A:
+            return func_8080206C_chpotogoldgame(arg0);
+        case 0x143D:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x89);
+            }
+            return arg0->actorData[2];
+        case 0x143C:
+            return arg0->actorData[2];
+        case 0x143B:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x89);
+            }
+            return arg0->actorData[2];
+        case 0x1440:
+            return func_8080206C_chpotogoldgame(arg0);
+        case 0x143F:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x84);
+            }
+            return func_8080206C_chpotogoldgame(arg0);
+        case 0x143E:
+            return arg0->actorData[2];
+        case 0x1441:
+            if (((s16 *)&arg2)[1] != 0) {
+                return func_800D211C(0x84);
+            }
+            return func_8080206C_chpotogoldgame(arg0);
+        }
+        return 1;
+    case 0x2E:
+        message = ((s16 *)&arg2)[0];
+        if (message < 0x13DA) {
+            goto lower_messages;
+        }
+        switch (message) {
+        case 0x1425:
+            goto message_1;
+        case 0x1423:
+            goto message_3;
+        case 0x1424:
+            goto message_4;
+        case 0x141E:
+        case 0x141F:
+        case 0x1420:
+        case 0x1421:
+        case 0x1422:
+            goto message_5;
+        case 0x141D:
+            goto message_6;
+        case 0x1438:
+        case 0x1439:
+            goto message_7;
+        case 0x143A:
+        case 0x143B:
+        case 0x143C:
+        case 0x143D:
+        case 0x143E:
+        case 0x143F:
+        case 0x1440:
+        case 0x1441:
+            goto message_8;
+        case 0x1442:
+            goto message_9;
+        default:
+            goto message_default;
+        }
+lower_messages:
+        if (message < 0xCED) {
+            goto small_messages;
+        }
+        switch (message) {
+        case 0x13CD:
+        case 0x13CF:
+        case 0x13D0:
+        case 0x13D1:
+            goto message_1;
+        case 0x13D3:
+            goto message_2;
+        case 0x13D6:
+            goto message_3;
+        case 0x13D4:
+            goto message_4;
+        case 0x13D2:
+        case 0x13D5:
+        case 0x13D7:
+        case 0x13D8:
+        case 0x13D9:
+            goto message_5;
+        default:
+            goto message_default;
+        }
+small_messages:
+        if (message != 0xCEC) {
+            goto message_default;
+        }
+            func_80800434_chpotogoldgame((s32)arg0, 7);
+            return 1;
+message_1:
+            if (((s16 *)&arg2)[1] != 0) {
+                func_80800434_chpotogoldgame((s32)arg0, 6);
+            } else {
+                func_80800434_chpotogoldgame((s32)arg0, 0xC);
+            }
+            return 1;
+message_2:
+            func_808010A0_chpotogoldgame(arg0);
+            func_80800434_chpotogoldgame((s32)arg0, 9);
+            return 1;
+message_3:
+            func_808010A0_chpotogoldgame(arg0);
+            func_80800434_chpotogoldgame((s32)arg0, 0xA);
+            return 1;
+message_4:
+            func_808010A0_chpotogoldgame(arg0);
+            func_80800434_chpotogoldgame((s32)arg0, 0xB);
+            return 1;
+message_5:
+            func_808010A0_chpotogoldgame(arg0);
+            func_80800434_chpotogoldgame((s32)arg0, 5);
+            return 1;
+message_6:
+            func_8080227C_chpotogoldgame(arg0);
+            func_800F7B9C(func_800F54E4(), 0x93);
+            return 1;
+message_7:
+            func_80800434_chpotogoldgame((s32)arg0, 6);
+            return 1;
+message_8:
+            func_808010A0_chpotogoldgame(arg0);
+            func_8080219C_chpotogoldgame(arg0, 0x1442, 0x4E);
+            return 1;
+message_9:
+            if (((s16 *)&arg2)[1] != 0) {
+                func_80800434_chpotogoldgame((s32)arg0, 6);
+                return 1;
+            }
+            func_8080227C_chpotogoldgame(arg0);
+            func_800C0850();
+            _gcfrontend_entrypoint_10();
+            return 1;
+message_default:
+        return 1;
+    case 0xB:
+        if (arg2 == 5 && (s32)arg0->unk70_10 == 0xB) {
+            func_8080111C_chpotogoldgame((s32)arg0);
+        } else if (arg2 == 0) {
+            func_80800434_chpotogoldgame((s32)arg0, 4);
+        } else if (arg2 == 3 || arg2 == 5) {
+            func_80800434_chpotogoldgame((s32)arg0, 5);
+        } else {
+            func_80800434_chpotogoldgame((s32)arg0, 5);
+        }
+        return 4;
+    case 0x95:
+        if ((s32)arg0->unk70_10 == 4) {
+            func_80108B04(arg0, 1);
+            arg0->unk64_20 = 0;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 

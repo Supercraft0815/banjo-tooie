@@ -304,7 +304,123 @@ void func_80800D84_chdippy(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x1C))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_80800D9C_chdippy.s")
+void func_80800D9C_chdippy(void *self) {
+    struct Dippy {
+        s32 marker;
+        f32 position[3];
+        u8 pad10[8];
+        f32 offset;
+        f32 baseY;
+        f32 timer;
+        f32 soundTimer;
+        u8 pad28[0x30];
+        f32 elapsed;
+        u8 pad5C[9];
+        u8 flags;
+        u8 pad66[0xA];
+        unsigned int : 16;
+        unsigned int state : 6;
+        unsigned int : 10;
+        u8 pad74[4];
+        unsigned int : 8;
+        unsigned int counter : 4;
+        unsigned int : 20;
+        u8 pad7C[0x1C];
+        u8 pad98[3];
+        u8 alpha;
+    };
+    void _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _idwibble_entrypoint_5(s32, s16);
+    s32 _idworld_entrypoint_4(s32, s32);
+    void _chdippy_entrypoint_2(void);
+    void _chdippy_entrypoint_3(void);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA4D0(s32, s32);
+    void func_800BA544(s32 *, s32);
+    void func_800BA5A8(s16 *, s32);
+    void func_800BA714(void *, s16, s16);
+    s32 func_800BABB8(s32, s32, s32, f32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800BEA88(s32);
+    u8 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    s32 func_800EE7F8();
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 func_800FFAB0(s32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8010D930(s32, s32, s32, s32 *);
+    extern s32 D_808014D8_chdippy;
+    extern s32 D_808016F0_chdippy;
+    extern s32 D_80801734_chdippy;
+    s32 count;
+    f32 position[3];
+    s32 emitter;
+    s32 glid;
+    s32 world;
+    s32 wibble;
+
+    switch (((struct Dippy *)self)->state) {
+        case 2:
+            func_800D9078(&((struct Dippy *)self)->elapsed);
+            ((struct Dippy *)self)->offset = func_800F12D4(((struct Dippy *)self)->elapsed, 0.0f, 6.0f, 0.0f, -2000.0f);
+            ((struct Dippy *)self)->position[1] = ((struct Dippy *)self)->offset + ((struct Dippy *)self)->baseY;
+            if (((struct Dippy *)self)->elapsed > 1.0f) {
+                func_800BBCB8((s32)((struct Dippy *)self)->position, (s32)((struct Dippy *)self)->position, 1.0f, 2, &D_808016F0_chdippy);
+            } else {
+                ((struct Dippy *)self)->alpha = (s32)func_800F10B4(((struct Dippy *)self)->elapsed, 1.0f, 0.0f, 255.0f, 0.0f);
+            }
+            ((Actor *)self)->unk64_16 = 1;
+            if (func_800D90A4(&((struct Dippy *)self)->timer)) {
+                ((struct Dippy *)self)->flags &= 0xFFFE;
+                func_80101FDC((Actor *)self, 3);
+            } else {
+                if (func_800D90A4(&((struct Dippy *)self)->soundTimer)) {
+                    ((struct Dippy *)self)->soundTimer = func_800DC178(0.2f, 0.5f);
+                    func_8010D930(9, -1, (s32)((struct Dippy *)self)->position, &D_80801734_chdippy);
+                }
+                if (((struct Dippy *)self)->timer < 15.0f) {
+                    if (func_800DC0C0() < func_800F10B4(((struct Dippy *)self)->timer, 15.0f, 0.0f, 1.0f, 0.0f)) {
+                        count = 1;
+                    } else {
+                        count = 0;
+                    }
+                } else {
+                    count = func_800F10B4(((struct Dippy *)self)->timer, 30.0f, 0.0f, 3.0f, 1.0f);
+                }
+                if (count) {
+                    emitter = func_800B53A4(count);
+                    func_800EE7F8(position, ((struct Dippy *)self)->position);
+                    position[1] += 6000.0f;
+                    func_800BA5A8((s16 *)emitter, 0x200);
+                    func_800BA714((void *)emitter, 500, 500);
+                    func_800BABB8(emitter, (s32)position, 0, 1.0f, &D_808014D8_chdippy);
+                    func_800BA4D0(emitter, 1500);
+                    func_800BA544((s32 *)emitter, (s32)_chdippy_entrypoint_2);
+                    func_800BA22C(emitter, count);
+                }
+            }
+            break;
+        case 1:
+        case 3:
+            glid = func_800BEA88(1);
+            _glid_entrypoint_0(glid, 1, (s32 *)_chdippy_entrypoint_3, ((struct Dippy *)self)->marker);
+            _glid_entrypoint_0(glid, 2, (s32 *)_chdippy_entrypoint_3, ((struct Dippy *)self)->marker);
+            if (((struct Dippy *)self)->counter-- == 0) {
+                func_800FFAB0((s32)self);
+            }
+            break;
+    }
+    world = func_800BEA88(1);
+    wibble = _idworld_entrypoint_4(world, 1);
+    if (wibble) {
+        _idwibble_entrypoint_5(wibble, (s16)((struct Dippy *)self)->offset);
+    }
+    _glid_entrypoint_0(world, 2, (s32 *)_chdippy_entrypoint_3, ((struct Dippy *)self)->marker);
+}
 
 /* extern */
 

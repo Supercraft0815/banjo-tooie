@@ -186,7 +186,110 @@ void func_80800228_chfantasycannon(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/cannon/func_80800544_chfantasycannon.s")
+s32 func_80800544_chfantasycannon(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_1(f32 *, f32 *);
+    void func_800F5A00(s32, f32[3]);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80015184(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F5EF8(s32);
+    int func_800F78EC(s32, f32 *, f32, f32);
+    s32 func_800F8294(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_8010FFB0(s32, f32 *, f32 *);
+    f32 *sp84;
+    f32 sp78[3];
+    f32 sp6C[3];
+    f32 launchSpeed;
+    f32 verticalSpeed;
+    f32 gravity;
+    f32 discriminant;
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    Actor *other;
+
+    sp84 = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 1:
+        _subaddieDll_entrypoint_4(arg0, 0);
+        func_800F7F98(func_800F54E4(), 0);
+        if (arg0->unk64_19) {
+            arg0->unk64_19 = 0;
+            _capod_entrypoint_3(0);
+        }
+        break;
+    case 2:
+        arg0->unk54 = 1.0f;
+        break;
+    case 3:
+        if (func_800DA298(0x1E1)) {
+            other = _subaddiefind_entrypoint_2(0x40E, 0);
+            if (other != NULL) {
+                func_8010A624(other);
+            }
+        }
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_8010FFB0(func_800F5EF8(func_800F54E4()), sp6C, sp78);
+        _capod_entrypoint_2(arg0->unk0, 0x2D, 0x10804);
+        _capod_entrypoint_8(0);
+        _capod_entrypoint_1(sp6C, sp78);
+        if (func_80800000_chfantasycannon(arg0)) {
+            func_800EE7F8(sp84, sp6C);
+            func_800EE7F8(sp84 + 3, sp78);
+        }
+        func_800F7F98(func_800F54E4(), 1);
+        arg0->unk64_19 = 1;
+        func_800F5A00(func_800F54E4(), (f32 *)&arg0->actorData[4]);
+        *(s32 *)&arg0->unk50 = func_80015184();
+        func_80015178(4);
+        break;
+    case 4:
+        if (func_80800000_chfantasycannon(arg0)) {
+            func_800EEC30(sp44, 45.0f,
+                func_800F1DF4((f32 *)arg0->actorData, arg0->position), 1250.0f);
+            func_800EFA4C(sp50,
+                ((f32 *)arg0->actorData)[0] + sp44[0],
+                ((f32 *)arg0->actorData)[1] + sp44[1],
+                ((f32 *)arg0->actorData)[2] + sp44[2]);
+            func_800F8294(func_800F54E4(), sp50);
+            gravity = -1250.0f;
+            verticalSpeed = 50.0f;
+        } else {
+            gravity = -800.0f;
+            func_800EFA4C(sp38, arg0->position[0],
+                arg0->position[1] + 350.0f, arg0->position[2]);
+            func_800F8294(func_800F54E4(), sp38);
+            launchSpeed = 1700.0f;
+            verticalSpeed = launchSpeed * launchSpeed -
+                (((f32 *)arg0->actorData)[1] - sp38[1]) * (gravity + gravity);
+            if (verticalSpeed > 0.0f) {
+                verticalSpeed = sqrtf(verticalSpeed);
+            } else {
+                verticalSpeed = launchSpeed;
+            }
+        }
+        func_800F78EC(func_800F54E4(), (f32 *)arg0->actorData, verticalSpeed, gravity);
+        break;
+    case 6:
+        arg0->unk54 = 0.25f;
+        func_80015178(*(s32 *)&arg0->unk50);
+        func_80800028_chfantasycannon((u8 *)arg0);
+        if (func_800DA298(0x1E1)) {
+            other = _subaddiefind_entrypoint_2(0x40E, 0);
+            if (other != NULL) {
+                func_8010A63C(other);
+            }
+        }
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 void func_808008B0_chfantasycannon(Actor *arg0) {
     void _capod_entrypoint_1(f32 *, f32 *);

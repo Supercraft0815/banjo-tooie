@@ -52,7 +52,141 @@ void func_80800018_chfactorycrusher(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/crusher/func_80800150_chfactorycrusher.s")
+void func_80800150_chfactorycrusher(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    void func_800E148C(s32, f32, f32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F5578(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A624(Actor *);
+    u32 func_8010A654(void ***, s32);
+    void func_8010D640(s32);
+    f32 mlAbsF(f32);
+    void func_808006CC_chfactorycrusher(Actor *);
+    int func_80800738_chfactorycrusher(s32, f32 *);
+    int func_80800800_chfactorycrusher(Actor *);
+    Actor *func_80800898_chfactorycrusher(Actor *);
+    void func_808008B8_chfactorycrusher(s32, f32);
+    void func_808008F0_chfactorycrusher(Actor *);
+    extern u8 D_80800AE0_chfactorycrusher[];
+    struct {
+        f32 bounds[6];
+        s32 unk18;
+    } *data;
+    Actor *other;
+
+    data = func_80100094(arg0, 0);
+    other = func_80800898_chfactorycrusher(arg0);
+    switch (arg0->unk70_10) {
+        case 1: {
+            f32 position[3];
+            u32 animation;
+
+            if (func_800DA298(0x329) == 0 && !arg0->unk64_19 && data->unk18 == 0
+                && func_800D90A4(&arg0->unk58) != 0) {
+                arg0->unk64_20 = 0;
+                if (func_80800738_chfactorycrusher((s32)arg0, position) != 0) {
+                    if (func_800F64A4(func_800F54E4(), 0x10000) != 0
+                        || func_800F5578(func_800F54E4()) >= 2) {
+                        animation = ((f32 *)arg0->actorData)[0] < position[0] ? 0x22 : 0x1E;
+                        _capod_entrypoint_13(arg0->unk0, NULL, animation, 0);
+                        arg0->unk64_19 = 1;
+                    }
+                    func_800F7F98(func_800F54E4(), 1);
+                    arg0->unk64_20 = 1;
+                    func_80101180(0x3EE, 0xB9, 0);
+                    func_8010A624(arg0);
+                    func_8010A624(other);
+                }
+                func_80101FDC(arg0, 2);
+                arg0->unk58 = 0.25f;
+            }
+            ((f32 *)arg0->actorData)[7] = 0.0f;
+            break;
+        }
+        case 2: {
+            s32 finished;
+            f32 position[3];
+            f32 shake;
+            f32 progress;
+
+            finished = func_800D9078(&arg0->unk58);
+            progress = func_800F12D4(arg0->unk58, 0.0f, 0.25f, 1.0f, 0.0f);
+            ((f32 *)arg0->actorData)[7] = progress;
+            func_808008B8_chfactorycrusher((s32)arg0, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((s32)other, ((f32 *)arg0->actorData)[7]);
+            if (arg0->unk64_20) {
+                func_808008F0_chfactorycrusher(arg0);
+            }
+            if (finished != 0) {
+                if (arg0->unk74_7 == 0x32) {
+                    func_800E148C(func_800E1610(2, 80.0f, 0.85f, (f32 *)&arg0->actorData[4]), 2000.0f, 8000.0f);
+                    func_8010D640((s32)position);
+                    shake = (800.0f / func_800F0E00(800.0f, mlAbsF(position[2] - 4000.0f))) * 2.75f;
+                    if (shake > 0.25f) {
+                        func_80018820(0, shake, 0.35f);
+                    }
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800AE0_chfactorycrusher);
+                }
+                func_80800800_chfactorycrusher(arg0);
+                func_80101FDC(arg0, 3);
+                arg0->unk58 = 0.35f;
+            }
+            break;
+        }
+        case 3:
+            if (func_800D90A4(&arg0->unk58) != 0) {
+                func_80101FDC(arg0, 4);
+                arg0->unk58 = 1.5f;
+            }
+            ((f32 *)arg0->actorData)[7] = 1.0f;
+            break;
+        case 4: {
+            f32 progress;
+            s32 finished;
+
+            finished = func_800D9078(&arg0->unk58);
+            progress = func_800F12D4(arg0->unk58, 0.0f, 1.5f, 0.0f, 1.0f);
+            ((f32 *)arg0->actorData)[7] = progress;
+            func_808008B8_chfactorycrusher((s32)arg0, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((s32)other, ((f32 *)arg0->actorData)[7]);
+            if (finished != 0) {
+                func_80101FDC(arg0, 1);
+                if (arg0->unk64_20) {
+                    arg0->unk58 = 2.0f;
+                } else {
+                    arg0->unk58 = 0.0f;
+                }
+                arg0->unk64_20 = 0;
+            }
+            break;
+        }
+        case 5:
+            func_808008B8_chfactorycrusher((s32)arg0, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((s32)other, ((f32 *)arg0->actorData)[7]);
+            break;
+    }
+    if (!arg0->unk64_19) {
+        func_808006CC_chfactorycrusher(arg0);
+        func_808006CC_chfactorycrusher(other);
+        if (!arg0->unk64_20) {
+            func_8010A654((void ***)arg0, arg0->unk7C_12);
+            func_8010A654((void ***)other, other->unk7C_12);
+        }
+    }
+}
 
 s32 func_80800580_chfactorycrusher(Actor *arg0, s32 arg1, s32 arg2) {
     Unk80132ED0 **_subaddiefind_entrypoint_1(Actor *, s32, s32, s32);

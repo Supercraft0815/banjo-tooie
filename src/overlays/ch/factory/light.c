@@ -16,7 +16,94 @@ void func_8080000C_chfactorylight(s32 arg0) {
     func_8010A800(arg0, 0x2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_80800038_chfactorylight.s")
+void func_80800038_chfactorylight(Actor *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _subaddiezone_entrypoint_1(void *);
+    f32 func_800136E4(f32);
+    void func_800C4140(u32, f32 *, u32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    int func_800D9154(f32 *, f32);
+    s32 func_800E3E8C(f32 *, f32);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFD3C(u32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    s32 func_800F2E60();
+    int func_800F3214(void *, void *, void *, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_801065A4(void *);
+    extern s32 _chfactorylight_entrypoint_1;
+    typedef struct {
+        f32 unk18[3];
+        f32 timer;
+        f32 unk28[3];
+        f32 speed;
+    } LightActorData;
+    typedef struct {
+        s32 lights[2];
+        f32 angles[2];
+        u32 color[3];
+    } LightData;
+    u32 sp6C[3];
+    LightData *sp68;
+    s32 i;
+    f32 sp58[3];
+    f32 sp54;
+    s32 sp50;
+    u32 sp44[3];
+
+    sp68 = func_80100094(arg0, 0);
+    sp54 = func_800D8FF8();
+    func_800EE7F8(sp58, arg0->position);
+    func_800EF1B8(sp58, arg0->rotation[1], arg0->scale * 300.0f);
+    sp50 = func_800E3E8C(sp58, arg0->scale * 1300.0f);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_800F2E60(sp6C, sp68->color);
+            arg0->unk54 = 1.0f;
+            break;
+        case 2:
+            func_800EFD3C(sp6C);
+            arg0->unk54 = 0.0f;
+            break;
+        case 3:
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80101FDC(arg0, 1);
+            }
+            arg0->unk54 = func_800F10B4(arg0->unk58, 5.0f, 0.0f, 0.0f, 1.0f);
+            func_800EFD3C(sp44);
+            func_800F3214(sp6C, sp44, sp68->color, arg0->unk54);
+            break;
+    }
+    arg0->rotation[2] = func_800136E4(arg0->rotation[2] + sp54 * ((LightActorData *)arg0->actorData)->speed * arg0->unk54);
+    if (arg0->unk78 && !_subaddiezone_entrypoint_1(arg0)) {
+        sp50 = 0;
+    }
+    for (i = 0; i < 2; i++) {
+        sp68->angles[i] = func_800136E4(sp68->angles[i] + sp54 * ((LightActorData *)arg0->actorData)->speed * arg0->unk54);
+        func_800EEC30(sp58, sp68->angles[i], arg0->rotation[1] + 90.0f, arg0->scale * 500.0f);
+        func_800EF04C(sp58, arg0->position);
+        func_800EF1B8(sp58, arg0->rotation[1], arg0->scale * 300.0f);
+        if (sp50) {
+            func_800C8CB8(sp68->lights[i], sp58);
+            func_800C8E84(sp68->lights[i], sp6C);
+        }
+    }
+    if (arg0->unk7C_12 && func_801065A4(arg0)) {
+        _glid_entrypoint_0(func_801065A4(arg0), 1, &_chfactorylight_entrypoint_1, (s32)arg0->unk0);
+    }
+    if (func_800EA05C() == 0x10D && (arg0->unk70_10 == 3 || arg0->unk70_10 == 1) && func_800D9154(&((LightActorData *)arg0->actorData)->timer, 1.3f)) {
+        func_800C4140(((u16)(u32)(func_800F1214(arg0->unk54, 0.9f, 1.1f) * 1023.0f) << 21) + 0x1F4566, arg0->position, 0x138800FA);
+    }
+}
 
 void func_80800408_chfactorylight(Actor *arg0) {
     void func_800C8B84(s32);

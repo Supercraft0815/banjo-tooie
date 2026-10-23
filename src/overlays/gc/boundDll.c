@@ -197,7 +197,7 @@ s32 func_808006A8_gcboundDll(u8 *arg0, s16 *arg1) {
     return ((*(u32 *)arg1 >> 9) * 0x18) + func_80800688_gcboundDll(arg0, arg1);
 }
 
-void func_808006E0_gcboundDll(u8 *arg0, s16 *arg1)
+s32 func_808006E0_gcboundDll(u8 *arg0, s16 *arg1)
 {
     func_808006A8_gcboundDll(arg0, arg1);
 }
@@ -282,7 +282,74 @@ loop_5:
     func_80800720_gcboundDll((s32)arg0, *(s32 *)(arg0 + 0x10), *(u32 *)(arg0 + 0x14));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_808008D8_gcboundDll.s")
+void func_808008D8_gcboundDll(void *arg0, s32 arg1, s32 arg2) {
+    f32 sqrtf(f32);
+    typedef struct { f32 v[2]; } Pair;
+    extern Pair D_808015B0_gcboundDll;
+    extern Pair D_808015B8_gcboundDll;
+    extern Pair D_808015C0_gcboundDll;
+    extern Pair D_808015C8_gcboundDll;
+    u32 group;
+    u32 group_end;
+    u32 first;
+    u32 end;
+
+    if (arg2 != 0 && arg1 != 0) {
+        group_end = arg2 + arg1 * 0x1C;
+        for (group = (u32)arg2; group < group_end; group += 0x1C) {
+            Pair minimum = D_808015B0_gcboundDll;
+            Pair maximum = D_808015B8_gcboundDll;
+            Pair lower = D_808015C0_gcboundDll;
+            Pair upper = D_808015C8_gcboundDll;
+            u32 item;
+            f32 radius;
+            f32 distance;
+
+            first = func_80800688_gcboundDll((u8 *)arg0, (s16 *)group);
+            end = func_808006A8_gcboundDll((u8 *)arg0, (s16 *)group);
+            for (item = first; item < end; item += 0x18) {
+                lower.v[0] = *(f32 *)item - *(s16 *)(item + 0xC);
+                lower.v[1] = *(f32 *)(item + 8) - *(s16 *)(item + 0xC);
+                upper.v[0] = *(s16 *)(item + 0xC) + *(f32 *)item;
+                upper.v[1] = *(s16 *)(item + 0xC) + *(f32 *)(item + 8);
+                if (item == first || lower.v[0] < minimum.v[0]) {
+                    minimum.v[0] = lower.v[0];
+                }
+                if (item == first || lower.v[1] < minimum.v[1]) {
+                    minimum.v[1] = lower.v[1];
+                }
+                if (item == first || maximum.v[0] < upper.v[0]) {
+                    maximum.v[0] = upper.v[0];
+                }
+                if (item == first || maximum.v[1] < upper.v[1]) {
+                    maximum.v[1] = upper.v[1];
+                }
+                radius = *(s16 *)(item + 0xC);
+                *(f32 *)(item + 0x10) = radius * radius;
+            }
+            end = func_80800700_gcboundDll((u8 *)arg0, (s16 *)group);
+            for (item = func_808006E0_gcboundDll((u8 *)arg0, (s16 *)group);
+                 item < end; item += 0x18) {
+                *(f32 *)(item + 0x10) = (f32)*(s16 *)(item + 0xC) * (f32)*(s16 *)(item + 0xC);
+            }
+            *(f32 *)(group + 4) = (maximum.v[0] + minimum.v[0]) * 0.5f;
+            *(f32 *)(group + 0xC) = (maximum.v[1] + minimum.v[1]) * 0.5f;
+            *(f32 *)(group + 8) = 0;
+            *(f32 *)(group + 0x10) = 0.0f;
+            end = func_808006A8_gcboundDll((u8 *)arg0, (s16 *)group);
+            for (item = first; item < end; item += 0x18) {
+                lower.v[0] = *(f32 *)item - *(f32 *)(group + 4);
+                lower.v[1] = *(f32 *)(item + 8) - *(f32 *)(group + 0xC);
+                radius = sqrtf(lower.v[0] * lower.v[0] + lower.v[1] * lower.v[1]);
+                distance = radius + *(s16 *)(item + 0xC);
+                radius = distance * distance;
+                if (*(f32 *)(group + 0x10) < radius) {
+                    *(f32 *)(group + 0x10) = radius;
+                }
+            }
+        }
+    }
+}
 
 void gcboundDll_entrypoint_7(s32 arg0) {
     void func_80800F6C_gcboundDll(s32, s32, s32);

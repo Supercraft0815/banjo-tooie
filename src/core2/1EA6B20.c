@@ -169,15 +169,16 @@ s32 func_800CD6B4(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4) {
     return 0;
 }
 
+typedef struct {
+    u8 *marker;
+    s32 unk4;
+    u32 unk8:27;
+    u32 active:1;
+    u32 unk9:3;
+    u32 isMarker:1;
+} HitProp;
+
 u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
-    typedef struct {
-        u8 *marker;
-        s32 unk4;
-        u32 unk8:27;
-        u32 active:1;
-        u32 unk9:3;
-        u32 isMarker:1;
-    } HitProp;
     typedef struct {
         u32 unused:22;
         u32 enabled:1;
@@ -298,7 +299,183 @@ u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     return nearest;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA6B20/func_800CDBA8.s")
+s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
+    typedef struct {
+        u32 unused:22;
+        u32 enabled:1;
+        u32 rest:9;
+    } MarkerFlags;
+    typedef union {
+        struct { u16 collision; u16 other; } halves;
+        struct { u32 unused:27; u32 value:4; u32 rest:1; } query;
+        struct { u32 unused:11; u32 value:4; u32 rest:17; } result;
+    } HitFlags;
+    typedef struct {
+        u32 unused[3];
+        u8 *(*getCustom)(void);
+        u32 unk10;
+        u16 id;
+        u16 unk16;
+        HitFlags flags;
+        u32 unk1C;
+        u32 unk20;
+        u32 unk24;
+        u32 stateUnused:22;
+        u32 enabled:1;
+        u32 stateRest:9;
+    } Marker;
+    typedef struct {
+        u32 unused[3];
+        s32 (*test)(u8 *, f32 *, f32, f32 *, u32);
+    } Custom;
+    typedef struct {
+        u32 unused[4];
+        s32 (*test)(u8 *, u8 *);
+    } Callbacks;
+    f32 _subaddiecustomhits_entrypoint_5(void *, f32 *);
+    s32 *func_800BE444(f32 *);
+    s16 func_800CB854(s32 *);
+    HitProp *func_800E9E88(s32);
+    HitProp *func_800E9EB4(s32);
+    u8 *func_800EC3C4(u8 *);
+    f32 func_800EC75C(void *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern f32 D_801259A4;
+    extern u8 D_8012AF70[];
+    extern u8 D_8012AFF0[];
+    register s32 count;
+    s32 *cubes;
+    f32 center[3];
+    f32 reach;
+    f32 radius;
+    f32 position[3];
+    s32 i;
+    s32 mask;
+    f32 distance;
+    f32 extent;
+    s32 result;
+    HitProp *prop[1];
+    HitProp *end;
+    u8 *marker;
+    Actor *actor;
+    f32 contact[3];
+    u8 *custom;
+    f32 *point;
+    f32 *radii;
+    Callbacks *callbacks;
+
+    count = 0;
+    if (func_800CB854(NULL) != 0) {
+        mask = 1 << (func_800CB854(NULL) + 0x1F);
+    } else {
+        mask = 0;
+    }
+    func_800EE7F8(center, arg1);
+    i = 1;
+    if (arg3 >= 2) {
+        point = arg1 + 3;
+        do {
+            func_800EF04C(center, point);
+            i++;
+            point += 3;
+        } while (i != arg3);
+    }
+    func_800EF334(center, 1.0f / (f32)arg3);
+    distance = func_800EEAD4(center, arg1);
+    distance += arg2[0];
+    reach = distance;
+    i = 1;
+    point = arg1;
+    point += 3;
+    if (arg3 >= 2) {
+        radii = arg2 + 1;
+        do {
+            distance = func_800EEAD4(center, point);
+            distance += *radii;
+            extent = distance;
+            if (reach < extent) {
+                reach = extent;
+            }
+            i++;
+            point += 3;
+            radii++;
+        } while (i != arg3);
+    }
+    reach *= D_801259A4;
+    cubes = func_800BE444(center);
+    if (*cubes != 0) {
+        do {
+            prop[0] = func_800E9E88(*cubes);
+            end = func_800E9EB4(*cubes);
+            if (prop[0] < end) {
+                do {
+                    if (!prop[0]->active) goto next_prop;
+                    if (!prop[0]->isMarker) goto next_prop;
+                    {
+                        marker = prop[0]->marker;
+                        if (((Marker *)marker)->enabled && arg0 != marker) {
+                            if (((Marker *)marker)->id != 0 && ((Marker *)marker)->id != 0xFFFF && (((Marker *)marker)->flags.halves.collision & 1)) {
+                                actor = func_80106790((Unk80132ED0 *)marker);
+                                if (!actor->unk64_17 && !(actor->unk64_0 & mask)) {
+                                    radius = _subaddiecustomhits_entrypoint_5(actor, position);
+                                    distance = func_800EEB40(position, center);
+                                    if (!((radius + reach) * (radius + reach) < distance)) {
+                                        callbacks = (Callbacks *)func_800EC3C4(marker);
+                                        if (callbacks->test == NULL || callbacks->test(marker, arg0) != 0) {
+                                            i = 0;
+                                            if (((Marker *)marker)->getCustom != NULL) {
+                                                custom = ((Marker *)marker)->getCustom();
+                                            } else {
+                                                custom = NULL;
+                                            }
+                                            point = arg1;
+                                            if (arg3 > 0) {
+                                                radii = arg2;
+                                                do {
+                                                if (custom != NULL && ((Custom *)custom)->test != NULL) {
+                                                    result = ((Custom *)custom)->test(marker, point, *radii, contact, ((Marker *)marker)->flags.query.value);
+                                                    if (result != 0) {
+                                                        ((Marker *)marker)->flags.result.value = result;
+                                                        D_8012AFF0[count] = i;
+                                                        ((u8 **)D_8012AF70)[count] = marker;
+                                                        count++;
+                                                        break;
+                                                    }
+                                                } else {
+                                                    radius = func_800EC75C(marker, position);
+                                                    distance = func_800EEB40(point, position);
+                                                    if (distance < (*radii + radius) * (*radii + radius)) {
+                                                        D_8012AF70[count + 0x80] = i;
+                                                        ((u8 **)D_8012AF70)[count] = marker;
+                                                        count++;
+                                                        break;
+                                                    }
+                                                }
+                                                i++;
+                                                point += 3;
+                                                radii++;
+                                                } while (i != arg3);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+next_prop:
+                    prop[0]++;
+                } while (prop[0] < end);
+            }
+            cubes++;
+        } while (*cubes != 0);
+    }
+    return count;
+}
 
 s32 func_800CDFA8(s32 arg0, s32 *arg1) {
     extern u8 D_8012AF70[];

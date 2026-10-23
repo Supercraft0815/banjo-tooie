@@ -46,7 +46,131 @@ void func_80800000_chfactorysparkroom(Actor *arg0) {
     ((struct SparkRoomActorData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomActorData *)arg0->actorData)->audio, arg0->position, 0, &D_80801070_chfactorysparkroom, ((struct SparkRoomActorData *)arg0->actorData)->active);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_8080013C_chfactorysparkroom.s")
+struct Unk800C7A68;
+
+void func_8080013C_chfactorysparkroom(Actor *arg0) {
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    void func_80018820(s32, f32, f32);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    void func_800C8CB8(s32, f32 *);
+    s32 func_800C8E84(s32, s32 *);
+    void *func_800D7520(s32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC0C0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EFC7C(void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_800F3214(void *, void *, void *, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F55FC(s32);
+    s32 func_800F581C(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    s32 func_800F796C(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_808005E0_chfactorysparkroom(Actor *, f32 *);
+    void func_808006D0_chfactorysparkroom(Actor *, f32);
+    void func_808007E0_chfactorysparkroom(Actor *);
+    void func_80800B60_chfactorysparkroom(Actor *, s32);
+    void func_80800BE0_chfactorysparkroom(Actor *, s32);
+    struct SparkRoomUpdateData {
+        s32 pad0[7];
+        s32 count;
+        u8 pad20[0x18];
+        u8 audio;
+    };
+    struct SparkRoomEntry {
+        f32 unk0[4];
+        f32 unk10;
+        f32 unk14;
+        s32 unk18;
+        s32 unk1C;
+    };
+    struct SparkRoomUpdateColor { s32 values[3]; };
+    extern s32 D_80801060_chfactorysparkroom;
+    extern s32 D_80801070_chfactorysparkroom;
+    extern struct SparkRoomUpdateColor D_8080107C_chfactorysparkroom;
+    extern struct SparkRoomUpdateColor D_80801088_chfactorysparkroom;
+    f32 spCC[3];
+    f32 minDistance = 10000000.0f;
+    s32 i;
+    struct SparkRoomEntry *entry;
+    f32 spB4[3];
+    f32 spA8[3];
+    f32 progress;
+    f32 distance;
+    struct SparkRoomUpdateColor sp94;
+    struct SparkRoomUpdateColor sp88;
+    s32 sp7C[3];
+    f32 sp70[3];
+    struct SparkRoomEntry *entries;
+
+    entries = func_80100094(arg0, 0);
+    i = 0;
+    entry = entries;
+    if (arg0->unk6C_0) {
+        do {
+            if (entry->unk0[1] == 0.0f) {
+                if (func_800D90A4(&entry->unk0[0]) &&
+                    ((struct SparkRoomUpdateData *)arg0->actorData)->count < 4) {
+                    func_80800BE0_chfactorysparkroom(arg0, i);
+                }
+            } else if (func_800D90A4(&entry->unk0[1])) {
+                func_80800B60_chfactorysparkroom(arg0, i);
+            } else {
+                progress = func_800F10B4(entry->unk0[1], entry->unk0[0], 0.0f, entry->unk0[2], entry->unk0[3]);
+                sp94 = D_8080107C_chfactorysparkroom;
+                sp88 = D_80801088_chfactorysparkroom;
+                func_800F5A00(func_800F54E4(), spA8);
+                func_800C7A68(func_800D7520(entry->unk18), progress, spB4);
+                distance = func_800EFC7C(spA8, spB4);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    func_800EE7F8(spCC, spB4);
+                }
+                spB4[1] += 50.0f;
+                func_800F3214(sp7C, &sp94, &sp88, func_800DC0C0() * 0.2f + 0.8f);
+                func_800C8E84(entry->unk1C, sp7C);
+                func_800C8CB8(entry->unk1C, spB4);
+            }
+            i++;
+            entry++;
+        } while (i < arg0->unk6C_0);
+    }
+    if (minDistance < 10000000.0f) {
+        ((struct SparkRoomUpdateData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomUpdateData *)arg0->actorData)->audio, spCC, 1, &D_80801060_chfactorysparkroom, arg0->unk70_0);
+    } else {
+        ((struct SparkRoomUpdateData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomUpdateData *)arg0->actorData)->audio, spCC, 0, &D_80801060_chfactorysparkroom, arg0->unk70_0);
+    }
+    if (arg0->unk54 == 0.0f) {
+        if (((func_800F581C(func_800F54E4()) & 0x08000000) ||
+             (func_800F55FC(func_800F54E4()) & 0x08000000)) &&
+            func_800F6C5C(func_800F54E4())) {
+            func_800F5A00(func_800F54E4(), arg0->position);
+            func_800F796C(func_800F54E4(), 3);
+            _chelectricfence_entrypoint_1(arg0, arg0->position);
+            func_80018820(0, 5.0f, (f32)arg0->unk74_7 / 10.0f);
+            arg0->unk54 = (f32)arg0->unk74_7 / 10.0f;
+            func_800EE7F8(sp70, arg0->position);
+            sp70[1] += 500.0f;
+            func_808005E0_chfactorysparkroom(arg0, sp70);
+        }
+    } else {
+        if (func_800D90A4(&arg0->unk54)) {
+            func_808007E0_chfactorysparkroom(arg0);
+            _subaddieaudioloop_entrypoint_2(arg0);
+            return;
+        }
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80801070_chfactorysparkroom);
+        distance = arg0->unk54;
+        if (distance < ((f32)arg0->unk74_7 / 10.0f) * 0.3f) {
+            func_808006D0_chfactorysparkroom(arg0, func_800F10B4(distance, 0.0f, ((f32)arg0->unk74_7 / 10.0f) * 0.3f, 0.0f, 1.0f));
+        }
+    }
+}
 
 void func_808005E0_chfactorysparkroom(Actor *arg0, f32 *arg1) {
     s32 func_800C8A98(void);

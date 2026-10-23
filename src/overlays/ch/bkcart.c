@@ -36,7 +36,110 @@ void func_80800000_chbkcart(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bkcart/func_80800130_chbkcart.s")
+void func_80800130_chbkcart(Actor *arg0) {
+    typedef struct Vec3s32 {
+        f32 x, y, z;
+    } Vec3s32;
+    typedef struct {
+        f32 unused[3];
+        f32 speed;
+        f32 route;
+        f32 targetSpeed;
+    } CartData;
+    typedef struct {
+        u32 unused;
+        u16 unused4;
+        u16 node;
+    } CartRoute;
+    typedef struct {
+        u32 unused : 29;
+        u32 stopped : 1;
+        u32 unused2 : 2;
+    } CartFlags;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, s32, f32, f32, f32);
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, u32, f32, s32, s32);
+    void _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    void func_800C4140(u32, f32 *, u32);
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    u32 func_800F54E4(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_801026CC(Actor *, Vec3s32, f32);
+    s32 func_8010C3A8(Actor *, u32, f32);
+    s32 func_8010C500(Actor *);
+    s32 func_8010C710(Actor *);
+    s32 func_8010CA74(f32 *, u32);
+    s32 func_8010CB84(f32 *, u32);
+    f32 func_8010CD50(Actor *, u32);
+    void func_8010CEAC(Actor *);
+    extern u8 D_80800828_chbkcart[];
+    extern f32 D_80800858_chbkcart[];
+    extern Vec3s32 D_80800864_chbkcart;
+    CartRoute *route;
+
+    route = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_8010CA74(arg0->position, 600) && !arg0->unk74_30) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x154B, 0xF, arg0->position, 0x6F);
+                arg0->unk74_30 = 1;
+            }
+            func_8010CEAC(arg0);
+            if (func_800DA298(0x342)) {
+                func_80102424(arg0, 2);
+            }
+            break;
+        case 2:
+            if (!((CartFlags *)&arg0->unk78)->stopped) {
+                if (_subaddierouteDll_entrypoint_4(arg0)) {
+                    if (func_8010C500(arg0) || (f32)func_8010C710(arg0) < 1000000.0f) {
+                        arg0->unk54 = func_8010CD50(arg0, func_800F54E4()) - 180.0f;
+                    } else {
+                        _subaddierouteDll_entrypoint_6(arg0, route, (s32)((CartData *)arg0->actorData)->route, 0x3F, 0.4f, 20, 40);
+                    }
+                    _subaddierouteDll_entrypoint_7(arg0, route, arg0->rotation[1], arg0->unk54, 200.0f, 0x4803);
+                    ((CartData *)arg0->actorData)->route = (u32)route->node;
+                }
+                _subaddierouteDll_entrypoint_5(arg0, route, (s32)((CartData *)arg0->actorData)->route, 0.15f, 8.0f, 200.0f);
+                if (func_8010CB84(arg0->position, 1500)) {
+                    ((CartData *)arg0->actorData)->targetSpeed = 400.0f;
+                } else {
+                    ((CartData *)arg0->actorData)->targetSpeed = 150.0f;
+                }
+                ((CartData *)arg0->actorData)->speed = func_800F15F8(((CartData *)arg0->actorData)->speed, ((CartData *)arg0->actorData)->targetSpeed, func_800D8FF8() * 300.0f);
+                func_801026CC(arg0, D_80800864_chbkcart, ((CartData *)arg0->actorData)->speed);
+                func_8010C3A8(arg0, 0x305425, func_800F3780(func_80101F24(arg0), D_80800828_chbkcart, 6));
+                if (func_80101E4C(arg0, D_80800858_chbkcart)) {
+                    func_800C4140(0xBFCFA447, arg0->position, 0x04B000FA);
+                }
+            }
+            break;
+        case 3:
+            if (func_80101E14(arg0, 0.58f)) {
+                func_800C4140(0xBFD77447, arg0->position, 0x04B000FA);
+            } else if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 2);
+            }
+            break;
+        case 4:
+            if (func_80101E14(arg0, 0.58f)) {
+                func_800C4140(0xBFD77447, arg0->position, 0x04B000FA);
+            } else if (func_80101DDC(arg0)) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bkcart/func_808004DC_chbkcart.s")
 

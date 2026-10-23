@@ -345,7 +345,126 @@ void func_80800A40_chsilo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800B80_chsilo.s")
+void func_80800B80_chsilo(Actor *arg0) {
+    s32 _gcgoto_entrypoint_1(s32, s32);
+    s32 _gcnewoption_entrypoint_0(s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddieaudioquick_entrypoint_2(u8 *, f32 *, s32 *);
+    s32 func_8008FA2C(s32, s32);
+    void func_8008FB58(f32 *, f32, f32);
+    s32 func_80090178(AllowedTransformation);
+    void func_800904C8(s32);
+    void func_800907C0(f32 *);
+    void func_800A7AD4(s32, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800DA544(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_8010CAC0(f32 *, u32);
+    s32 func_8010CB0C(f32 *, s32, s32, s32);
+    s32 func_80800000_chsilo(s32);
+    extern u32 D_808012D0_chsilo;
+    extern s32 D_808012E0_chsilo;
+    extern s16 D_808012E8_chsilo[][4];
+    f32 delta;
+
+    delta = func_800D8FF8();
+    if (arg0->unk6C_0) {
+        switch (arg0->unk70_10) {
+        case 1:
+            func_8008FB58(arg0->position, arg0->scale * 30.0f, arg0->scale * 60.0f);
+            func_80800A40_chsilo(arg0);
+            break;
+        case 2:
+            func_8008FB58(arg0->position, arg0->scale * 30.0f, arg0->scale * 60.0f);
+            if (func_80101DDC(arg0)) {
+                func_808004C0_chsilo((u8 *)arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_8010CB0C(arg0->position, (s32)(arg0->scale * 55.0f),
+                    (s32)(arg0->scale * 45.0f), (s32)(arg0->scale * -50.0f)) &&
+                func_8008FA2C(1, 0)) {
+                if (func_808001A8_chsilo(arg0) > 0) {
+                    if (func_80800420_chsilo(arg0, 1)) {
+                        func_808004C0_chsilo((u8 *)arg0, 4);
+                    }
+                } else {
+                    func_80800104_chsilo(arg0, 0xDA8, 0);
+                    func_80800378_chsilo((s32)arg0);
+                    func_808004C0_chsilo((u8 *)arg0, 7);
+                }
+            } else {
+                func_80800A40_chsilo(arg0);
+            }
+            break;
+        case 4:
+            *(f32 *)&arg0->actorData[4] += (arg0->position[0] - *(f32 *)&arg0->actorData[4]) * 0.2f;
+            *(f32 *)&arg0->actorData[6] += (arg0->position[2] - *(f32 *)&arg0->actorData[6]) * 0.2f;
+            if (*(f32 *)&arg0->actorData[5] < arg0->position[1] - 150.0f) {
+                _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, &D_808012E0_chsilo);
+                func_808004C0_chsilo((u8 *)arg0, 5);
+            } else {
+                *(f32 *)&arg0->actorData[5] -= 300.0f * delta;
+                func_800907C0((f32 *)&arg0->actorData[4]);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808012D0_chsilo);
+            }
+            break;
+        case 5:
+            _gcnewoption_entrypoint_0(func_80100094(arg0, 0));
+            break;
+        case 11:
+            if (arg0->position[1] < *(f32 *)&arg0->actorData[5]) {
+                func_80800398_chsilo(arg0, 0);
+                func_80800420_chsilo(arg0, 0);
+                _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, &D_808012E0_chsilo);
+                func_80800378_chsilo((s32)arg0);
+                func_808004C0_chsilo((u8 *)arg0, 7);
+            } else {
+                *(f32 *)&arg0->actorData[5] += 300.0f * delta;
+                func_800907C0((f32 *)&arg0->actorData[4]);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808012D0_chsilo);
+            }
+            break;
+        case 10:
+            if (func_80101DDC(arg0)) {
+                func_800DA544(0x6BF);
+                func_800A7AD4(1, 0x11);
+                _gcgoto_entrypoint_1(func_80800000_chsilo((s32)arg0->unk58 - 1),
+                    D_808012E8_chsilo[(s32)arg0->unk58][0]);
+            }
+            break;
+        case 6:
+            func_8008FB58(arg0->position, arg0->scale * 30.0f, arg0->scale * 60.0f);
+            func_80800A40_chsilo(arg0);
+            if (func_80101DDC(arg0)) {
+                func_808004C0_chsilo((u8 *)arg0, 1);
+            }
+            break;
+        case 8:
+            if (func_80101E14(arg0, 0.4f)) {
+                func_808004C0_chsilo((u8 *)arg0, 9);
+            }
+            break;
+        case 9:
+            if (!func_8010CAC0(arg0->position, (s32)(arg0->scale * 150.0f))) {
+                func_808004C0_chsilo((u8 *)arg0, 3);
+            }
+            break;
+        case 7:
+            if (!func_8010CB0C(arg0->position, (s32)(arg0->scale * 55.0f),
+                    (s32)(arg0->scale * 500.0f), (s32)(arg0->scale * -50.0f))) {
+                func_808004C0_chsilo((u8 *)arg0, 3);
+            }
+            break;
+        }
+        if (func_80090178(0x10000) &&
+            func_8010CAC0(arg0->position, (s32)(arg0->scale * 60.0f))) {
+            func_800904C8(0x1F);
+        }
+    }
+}
 
 s32 func_80801080_chsilo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800DF744(s32, s32);

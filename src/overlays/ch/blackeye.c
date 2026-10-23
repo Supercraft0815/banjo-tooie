@@ -218,7 +218,96 @@ void func_80800774_chblackeye(Actor *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFEF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/blackeye/func_80800838_chblackeye.s")
+void func_80800838_chblackeye(Actor *arg0) {
+    typedef union {
+        Actor actor;
+        struct {
+            u8 pad[0x70];
+            u32 pad70_4 : 28;
+            u32 active : 1;
+            u32 pad70_0 : 3;
+        } flags;
+    } BlackeyeActor;
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 func_8008FA60(s32, s32);
+    void func_8008FA94(f32 *, f32 *);
+    s32 func_8008FB10(f32 *, f32, f32, f32);
+    f32 func_800D8FF8(void);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    s32 func_8010CAC0(f32 *, u32);
+    extern s32 D_80800E00_chblackeye;
+    extern s32 D_80800E50_chblackeye;
+    extern s32 D_80800E60_chblackeye;
+    extern f32 D_80800FB8_chblackeye[];
+    extern f32 D_80800FF8_chblackeye[];
+    extern f32 D_80801004_chblackeye[];
+    extern f32 D_8080101C_chblackeye[];
+    extern f32 D_80801024_chblackeye[];
+    f32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    if (((BlackeyeActor *)arg0)->flags.active) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+        func_8080003C_chblackeye(arg0);
+        switch (arg0->unk70_10) {
+            case 1:
+                if (arg0->unk7C_12 && func_80101E4C(arg0, D_80800FB8_chblackeye)) {
+                    func_8080061C_chblackeye(arg0);
+                }
+                if (func_80101E4C(arg0, D_80800FF8_chblackeye)) {
+                    func_80800000_chblackeye((s32)arg0, (s32)&D_80800E00_chblackeye);
+                } else if (func_80101E4C(arg0, D_80801004_chblackeye)) {
+                    func_80800000_chblackeye((s32)arg0, (s32)&D_80800E50_chblackeye);
+                }
+                func_8008FB10((f32 *)arg0->actorData, arg0->scale * 600.0f, 0.0f, arg0->scale * 250.0f);
+                break;
+            case 2:
+                sp44 = func_80101F24(arg0);
+                if (func_80101E4C(arg0, D_8080101C_chblackeye)) {
+                    func_80800000_chblackeye((s32)arg0, (s32)&D_80800E00_chblackeye);
+                } else if (func_80101E4C(arg0, D_80801024_chblackeye)) {
+                    func_80800000_chblackeye((s32)arg0, (s32)&D_80800E50_chblackeye);
+                } else if (func_80101E14(arg0, 0.04f)) {
+                    func_80800000_chblackeye((s32)arg0, (s32)&D_80800E60_chblackeye);
+                } else if (func_80101DDC(arg0)) {
+                    func_80800314_chblackeye(arg0, 3);
+                } else if (func_80101E14(arg0, 0.815f)) {
+                    func_80800774_chblackeye(arg0);
+                }
+                if (arg0->unk7C_12 && sp44 > 0.73f && sp44 < 0.83f) {
+                    func_80800478_chblackeye(arg0);
+                }
+                func_8008FA94((f32 *)&arg0->actorData[4], (f32 *)arg0->actorData);
+                break;
+            case 3:
+                func_8008FA94((f32 *)&arg0->actorData[4], (f32 *)arg0->actorData);
+                break;
+        }
+        if (arg0->unk7C_12) {
+            func_800DBEFC(arg0->unk0->unk4, 4, sp38);
+            func_8008FB10(sp38, 10.0f, -50.0f, 50.0f);
+        }
+        if (!arg0->unk74_30 && func_8010CAC0(arg0->position, 500) && func_8008FA60(1, 0)) {
+            sp2C[0] = arg0->position[0];
+            sp2C[1] = arg0->position[1] + 100.0f;
+            sp2C[2] = arg0->position[2];
+            if (_subaddiedialog_entrypoint_4(sp2C, 500, 0)) {
+                func_80800128_chblackeye(arg0, 1);
+            } else if (arg0->unk58 <= 0.0f) {
+                func_80800128_chblackeye(arg0, 0);
+            }
+        }
+        if (arg0->unk58 > 0.0f && !arg0->unk74_30) {
+            arg0->unk58 -= func_800D8FF8();
+        }
+    }
+}
 
 s32 func_80800BC4_chblackeye(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
