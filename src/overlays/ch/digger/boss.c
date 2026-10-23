@@ -1895,7 +1895,57 @@ void func_808053BC_chdiggerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805448_chdiggerboss.s")
+void func_80805448_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_80805960_chdiggerboss(s32, s32, s32);
+    void func_808056F8_chdiggerboss(Actor *);
+    extern u8 D_8080A068_chdiggerboss[];
+    struct MarkerFlags {
+        u8 pad0[0x18];
+        unsigned int pad18:27; u8 flags18:4; unsigned int end18:1;
+        u8 pad1C[0xC];
+        unsigned int pad28:23; u16 flags28:8; unsigned int end28:1;
+    };
+    u8 *data;
+    s32 i;
+    s32 count;
+
+    data = func_80100094(arg0, 0);
+    count = 0;
+    *(s16 *)(data + arg1 * 0x1C + 0x34) = arg2;
+    switch (arg2) {
+    case 0:
+        func_80805960_chdiggerboss(arg0, arg1, 0);
+        ((struct MarkerFlags *)arg0->unk0)->flags18 |= D_8080A068_chdiggerboss[arg1];
+        data[arg1 * 0x1C + 0x4A] = 0;
+        data[arg1 * 0x1C + 0x49] = 0;
+        break;
+    case 1:
+        func_80805960_chdiggerboss(arg0, arg1, func_800DC128(1, 5));
+        ((struct MarkerFlags *)arg0->unk0)->flags18 &= ~D_8080A068_chdiggerboss[arg1];
+        break;
+    case 2:
+        func_80805960_chdiggerboss(arg0, arg1, func_800DC128(1, 5));
+        ((struct MarkerFlags *)arg0->unk0)->flags18 |= D_8080A068_chdiggerboss[arg1];
+        *(f32 *)(data + arg1 * 0x1C + 0x38) = func_800DC178(0.8f, 1.2f);
+        break;
+    }
+    for (i = 0; i != 0x70; i += 0x1C) {
+        if (*(s16 *)(data + i + 0x34) == 1) {
+            count++;
+        }
+    }
+    i = count > 0;
+    data[0x25] = i;
+    func_808056F8_chdiggerboss(arg0);
+    if (i) {
+        ((struct MarkerFlags *)arg0->unk0)->flags28 |= 4;
+    } else {
+        ((struct MarkerFlags *)arg0->unk0)->flags28 &= ~4;
+    }
+}
 
 void func_808056B8_chdiggerboss(s32 arg0) {
     void *func_80100094(Actor *, u32);
