@@ -1966,7 +1966,162 @@ void func_80805D64_chdiggerboss(Actor *arg0, s32 arg1) {
     func_80804A50_chdiggerboss((s32)sp20, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805DF4_chdiggerboss.s")
+s32 func_80805DF4_chdiggerboss(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    u8 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    f32 func_800EFC7C(void *, void *);
+    void func_800EFD24(f32 *);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F6D24(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_808063C8_chdiggerboss(Actor *, s32, f32);
+    void func_808064CC_chdiggerboss(s32, s32);
+    f32 mlAbsF(f32);
+    struct DiggerState {
+        f32 prefix[5];
+        f32 value;
+        f32 speed;
+        f32 unk1C;
+        f32 turnSpeed;
+        f32 unk24;
+        s16 state;
+        f32 turnRemaining;
+        f32 duration;
+        f32 timer;
+        f32 targetSpeed;
+        f32 movement;
+    };
+    struct DiggerActorState { f32 prefix[3]; f32 value; };
+    struct DiggerState *state;
+    Actor *actor;
+    f32 *position;
+    s32 sp78;
+    s32 sp74;
+    s32 sp70;
+    f32 sp6C;
+    s32 sp68;
+    f32 sp64;
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp3C;
+    f32 dot;
+    f32 sp34;
+    f32 angle;
+    s32 active;
+
+    state = func_80100094(arg0, 0);
+    actor = func_80802228_chdiggerboss(arg0);
+    sp78 = 0;
+    sp74 = 0;
+    func_80802C40_chdiggerboss((s32)arg0);
+    if (func_800F6D24(func_800F54E4()) != 0) {
+        return 0;
+    }
+    active = func_800D90A4(&state->value) != 0;
+    if (active) {
+        active = func_808042D8_chdiggerboss((s32)actor) == 2;
+    }
+    switch (state->state) {
+    case 1:
+        if (func_800D9078(&state->speed)) {
+            state->state = 2;
+        }
+        break;
+    case 2:
+        sp70 = func_800D9078(&state->timer);
+        if (active) {
+            ((struct DiggerActorState *)actor->actorData)->value = func_800F15F8(((struct DiggerActorState *)actor->actorData)->value, state->targetSpeed, func_800D8FF8() * 300.0f);
+            func_808063C8_chdiggerboss(arg0, 0, state->movement);
+            func_8010B990(actor, 5);
+        }
+        if (sp70) {
+            state->state = 3;
+        }
+        break;
+    case 3:
+        ((struct DiggerActorState *)actor->actorData)->value = func_800F15F8(((struct DiggerActorState *)actor->actorData)->value, 0.0f, func_800D8FF8() * 300.0f);
+        func_808063C8_chdiggerboss(arg0, 0, state->movement);
+        func_8010B990(actor, 5);
+        if (((struct DiggerActorState *)actor->actorData)->value == 0.0f) {
+            state->state = 4;
+            state->turnRemaining = 360.0f;
+        }
+        break;
+    case 4:
+        sp6C = func_800D8FF8() * state->turnSpeed;
+        state->turnRemaining -= mlAbsF(sp6C);
+        actor->rotation[1] += sp6C;
+        func_80805B8C_chdiggerboss(arg0, state->turnSpeed);
+        if (state->turnRemaining < 0.0f) {
+            state->state = 5;
+            state->timer = state->duration;
+        } else {
+            sp74 = 1;
+        }
+        break;
+    case 5:
+        sp68 = func_800D9078(&state->timer);
+        if (active) {
+            ((struct DiggerActorState *)actor->actorData)->value = func_800F15F8(((struct DiggerActorState *)actor->actorData)->value, state->targetSpeed, func_800D8FF8() * 300.0f);
+            func_808063C8_chdiggerboss(arg0, 0, state->movement);
+            func_8010B990(actor, 5);
+        }
+        if (sp68) {
+            state->state = 6;
+        }
+        break;
+    case 6:
+        ((struct DiggerActorState *)actor->actorData)->value = func_800F15F8(((struct DiggerActorState *)actor->actorData)->value, 0.0f, func_800D8FF8() * 300.0f);
+        func_808063C8_chdiggerboss(arg0, 0, state->movement);
+        func_8010B990(actor, 5);
+        if (((struct DiggerActorState *)actor->actorData)->value == 0.0f) {
+            state->state = 7;
+            state->turnRemaining = 360.0f;
+        }
+        break;
+    case 7:
+        sp64 = func_800D8FF8() * state->turnSpeed;
+        state->turnRemaining -= mlAbsF(sp64);
+        actor->rotation[1] += sp64;
+        func_80805B8C_chdiggerboss(arg0, state->turnSpeed);
+        if (state->turnRemaining < 0.0f) {
+            state->state = 0;
+            func_80802CB4_chdiggerboss(arg0);
+            ((struct DiggerActorState *)actor->actorData)->value = 0.0f;
+            func_80804A50_chdiggerboss((s32)actor, 1);
+            sp78 = 1;
+        } else {
+            sp74 = 1;
+        }
+        break;
+    }
+    func_808064CC_chdiggerboss((s32)arg0, sp74);
+    func_800EFD24(sp58);
+    sp58[1] = actor->position[1];
+    func_800EEB9C(sp4C, actor->rotation[1], 1.0f);
+    position = actor->position;
+    func_800EEB9C(sp40, func_800F1DF4(sp58, position), 1.0f);
+    dot = func_800EEAA4(sp4C, sp40);
+    if (dot > 0.0f) {
+        sp3C = 1800.0f - dot * 650.0f;
+    } else {
+        sp3C = 1800.0f - dot * 250.0f;
+    }
+    if (sp3C * sp3C < func_800EFC7C(sp58, position)) {
+        sp34 = actor->position[1];
+        angle = func_800F1DF4(sp58, position);
+        func_800EEB9C(position, angle, sp3C);
+        actor->position[1] = sp34;
+    }
+    return sp78;
+}
 
 void func_808062B8_chdiggerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
