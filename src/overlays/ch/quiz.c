@@ -114,7 +114,73 @@ void func_80800298_chquiz(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080034C_chquiz.s")
+s32 func_8080034C_chquiz(Actor *arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_13(s32, s32, s32 *);
+    s32 _gcnewoption_entrypoint_37(s32, s32);
+    void _gcnewoption_entrypoint_41();
+    void _gcnewoption_entrypoint_46();
+    s32 _gcnewoption_entrypoint_25(s32, s32);
+    s32 _gcnewoption_entrypoint_26(s32, s32);
+    void _gcnewoption_entrypoint_29(s32, s32);
+    void _gcnewoption_entrypoint_43(s32 , s32, s32);
+    void _gcnewoption_entrypoint_44(s32 , s32);
+    s32 _suquiz_entrypoint_10(s32);
+    s32 _suquiz_entrypoint_6(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800B6C_chquiz(Actor *);
+    s32 func_80800C00_chquiz(Actor *);
+    extern s32 D_808070B0_chquiz;
+    s32 option;
+
+    option = (s32 )((Actor *)func_80100094(arg0, 0))->pad94;
+    if (((Actor *)func_80100094(arg0, 0))->pad98 == 0) {
+        if (arg1 == 0) {
+            return;
+        }
+        option = (s32 )func_808000FC_chquiz(arg0, func_80800B6C_chquiz(arg0));
+    }
+    switch (arg1) {
+    case 0:
+        if (option != 0) {
+            _gcnewoption_entrypoint_37((s32 )((Actor *)func_80100094(arg0, 0))->pad94, 1);
+        }
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 0;
+        break;
+    case 1:
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        _gcnewoption_entrypoint_46(option, -1);
+        break;
+    case 2:
+        _gcnewoption_entrypoint_25(option, 1);
+        _gcnewoption_entrypoint_26(option, 1);
+        _gcnewoption_entrypoint_29(option, 1);
+        _gcnewoption_entrypoint_46(option, _suquiz_entrypoint_10(_suquiz_entrypoint_6()));
+        _gcnewoption_entrypoint_44(option, 1);
+        _gcnewoption_entrypoint_41(option, 0);
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        break;
+    case 3:
+        _gcnewoption_entrypoint_25(option, 1);
+        _gcnewoption_entrypoint_26(option, 0);
+        _gcnewoption_entrypoint_29(option, 0);
+        _gcnewoption_entrypoint_46(option, -1);
+        _gcnewoption_entrypoint_44(option, 0);
+        if (func_80800C00_chquiz(arg0) != -1) {
+            _gcnewoption_entrypoint_43(option, func_80800C00_chquiz(arg0), 0);
+            _gcnewoption_entrypoint_13(option, func_80800C00_chquiz(arg0), &D_808070B0_chquiz);
+        }
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        break;
+    case 4:
+        _gcnewoption_entrypoint_26(option, 1);
+        _gcnewoption_entrypoint_29(option, 1);
+        _gcnewoption_entrypoint_41(option, func_80800C00_chquiz(arg0) == 0 ? 1 : 0);
+        _gcnewoption_entrypoint_46(option, _suquiz_entrypoint_10(_suquiz_entrypoint_6()));
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        break;
+    }
+    ((Actor *)func_80100094(arg0, 0))->pad98 = arg1;
+}
 
 s32 func_808005C0_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_25(s32, s32);
