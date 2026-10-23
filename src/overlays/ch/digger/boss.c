@@ -2086,7 +2086,52 @@ void func_80805A00_chdiggerboss(s32 arg0, s32 arg1) {
     (*(f32 *)((s8 *)(sp1C) + (0x18))) = 1.5f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80805A64_chdiggerboss.s")
+s32 func_80805A64_chdiggerboss(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    u8 func_800D9078(f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F6D24(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80805B8C_chdiggerboss(Actor *, f32);
+    void func_808064CC_chdiggerboss(s32, s32);
+    s32 pad[2];
+    s32 result;
+    Actor *other;
+    s32 i;
+    u8 state;
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    other = func_80802228_chdiggerboss(arg0);
+    result = 0;
+    func_80802C40_chdiggerboss((s32)arg0);
+    if (func_800F6D24(func_800F54E4()) != 0) {
+        return 0;
+    }
+    state = data[0x25];
+    switch (state) {
+        case 1:
+            if (func_800D9078((f32 *)(data + 0x18)) != 0) {
+                data[0x25] = 2;
+            }
+            break;
+        case 2:
+            result = func_800D9078((f32 *)(data + 0x1C));
+            other->rotation[1] += *(f32 *)(data + 0x20) * func_800D8FF8();
+            func_808064CC_chdiggerboss((s32)arg0, result == 0);
+            func_80805B8C_chdiggerboss(arg0, *(f32 *)(data + 0x20));
+            i = 0;
+            if (result != 0) {
+                do {
+                    func_80805448_chdiggerboss(other, i, 0);
+                    i++;
+                } while (i != 4);
+                func_80802CB4_chdiggerboss(arg0);
+            }
+            break;
+    }
+    return result;
+}
 
 void func_80805B8C_chdiggerboss(Actor *arg0, f32 arg1) {
     void func_80805C1C_chdiggerboss(Actor *, s32, f32 *, f32);
