@@ -618,7 +618,62 @@ void func_8080233C_chdiggerboss(Actor *arg0) {
     func_80108B04(arg0, 7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808023D8_chdiggerboss.s")
+void func_808023D8_chdiggerboss(Actor *arg0) {
+    void _subaddieDll_entrypoint_7(Actor *, s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F4E5C(s32, s32, s32, s32, s32);
+    s32 func_800F6438(u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_808026F8_chdiggerboss(void *);
+    void func_80803E84_chdiggerboss(Actor *);
+    void func_808047A8_chdiggerboss(Actor *);
+    void func_80804D44_chdiggerboss(s32);
+    void func_80808034_chdiggerboss(Actor *);
+    void func_808088CC_chdiggerboss(Actor *);
+    void func_80808CD0_chdiggerboss(Actor *);
+    extern u32 D_80809F04_chdiggerboss;
+    extern s32 D_80809F10_chdiggerboss;
+    extern s32 D_80809F1C_chdiggerboss;
+    struct DiggerBossUpdateData {
+        Unk80132ED0 *unk0;
+        u8 unk4[3];
+        u8 unk7;
+    } *data;
+    Actor *actor;
+    f32 *position;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    func_80800200_chdiggerboss(arg0);
+    func_80803E84_chdiggerboss(arg0);
+    func_808047A8_chdiggerboss(arg0);
+    func_80804D44_chdiggerboss(arg0);
+    func_80808034_chdiggerboss(arg0);
+    func_808088CC_chdiggerboss(arg0);
+    func_80808CD0_chdiggerboss(arg0);
+    position = arg0->position;
+    _subaddieaudioloop_entrypoint_4(arg0, position, data->unk7, &D_80809F04_chdiggerboss);
+    if (data->unk7 != 0) {
+        _subaddieDll_entrypoint_7(arg0, 8);
+    }
+    for (i = 0; i != 8; i++) {
+        if (func_800F6438(i) != 0) {
+            func_800F4E5C(i, position, arg0->rotation, &D_80809F10_chdiggerboss, &D_80809F1C_chdiggerboss);
+        }
+    }
+    if (arg0->unk3C != NULL) {
+        actor = func_808026F8_chdiggerboss(arg0);
+        func_800EE7F8(actor->position, position);
+        actor->rotation[1] = arg0->rotation[1];
+    }
+    if (data->unk0 != NULL) {
+        actor = func_80106790(data->unk0);
+        func_800EE7F8(actor->position, position);
+        actor->position[1] += 300.0f;
+    }
+}
 
 void func_80802550_chdiggerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
