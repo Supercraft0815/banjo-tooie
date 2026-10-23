@@ -1191,7 +1191,90 @@ void func_80802CF0_chflysaucer(Actor *arg0) {
     func_800906DC(rotation);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80802ED8_chflysaucer.s")
+void func_80802ED8_chflysaucer(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D2054(s32, s32, s32);
+    s16 func_800D211C(s32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    int func_800DC298(f32);
+    s32 func_800EA05C();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    u8 *sp24;
+    s32 sp20;
+
+    sp24 = func_80100094(arg0, 0);
+    sp20 = func_800EA05C();
+    sp24[0x2D] = 3;
+    if (func_800D211C(0x8D) < 0x226) {
+        func_800D2054(0, 0x8D, 0x226);
+    }
+    func_800EFA4C((f32 *)(sp24 + 0xC), 0.0f, 110.0f, 0.0f);
+    switch (func_80800000_chflysaucer(arg0)) {
+    case 0:
+        if (_glcutDll_entrypoint_20()) {
+            func_80801568_chflysaucer(arg0, 6);
+            return;
+        }
+        if (func_800D395C() && sp20 == 0x124) {
+            func_80801034_chflysaucer(arg0);
+            func_808005FC_chflysaucer(arg0);
+            func_80801568_chflysaucer(arg0, 2);
+            return;
+        }
+        if (sp20 == 0xD6 && func_800DA298(0x94)) {
+            func_80801034_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 6:
+        if (sp20 == 0xD6) {
+            func_80801034_chflysaucer(arg0);
+            func_80801130_chflysaucer((s32)arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 2:
+        if (sp20 == 0x13C) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 3:
+        if (sp20 == 0x124) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 4:
+        if (sp20 == 0x13B) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 5:
+        if (sp20 == 0x124) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 1:
+        if (sp20 == 0x124) {
+            func_800DA3B8(0x6E9, func_800DC298(0.001f) ? 1 : 0);
+            func_80801568_chflysaucer(arg0, 2);
+        }
+        break;
+    }
+}
 
 void func_80803150_chflysaucer(Actor *arg0) {
     void *func_80100094(Actor *, u32);
