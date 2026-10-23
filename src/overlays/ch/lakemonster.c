@@ -257,7 +257,72 @@ void func_808009CC_chlakemonster(void) {
     func_800DA544(0x6E8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800A14_chlakemonster.s")
+s32 func_8001210C(s32);
+
+void func_80800A14_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    void func_8009086C(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    extern s32 D_80802058_chlakemonster;
+    extern s32 D_8080207C_chlakemonster;
+    struct {
+        u8 pad0[0x18];
+        f32 unk18;
+        u8 pad1C[0x21];
+        s8 unk3D;
+    } *sp5C;
+
+    sp5C = func_80100094(arg0, 0);
+    if (arg2 != 0) {
+        func_8080064C_chlakemonster(arg0);
+    }
+    if (arg0->unk7C_12) {
+        struct AnimTimes5 { f32 values[5]; };
+        struct AnimTimes2 { f32 values[2]; };
+        extern struct AnimTimes5 D_808021B4_chlakemonster;
+        extern struct AnimTimes2 D_808021C8_chlakemonster;
+        extern struct AnimTimes5 D_808021D0_chlakemonster;
+        extern struct AnimTimes2 D_808021E4_chlakemonster;
+        struct AnimTimes5 sp48 = D_808021B4_chlakemonster;
+        struct AnimTimes2 sp40 = D_808021C8_chlakemonster;
+        struct AnimTimes5 sp2C = D_808021D0_chlakemonster;
+        struct AnimTimes2 sp24 = D_808021E4_chlakemonster;
+        f32 sp20;
+
+        sp20 = func_80101F24(arg0);
+        if (func_80101E4C(arg0, sp2C.values) != 0) {
+            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)&arg0->actorData[4], &D_80802058_chlakemonster);
+            sp5C->unk18 = 0.85f;
+        } else if (func_80101E4C(arg0, sp40.values) != 0) {
+            func_808008E8_chlakemonster(arg0);
+            func_808001C0_chlakemonster(arg0);
+        } else if (func_80101E4C(arg0, sp48.values) != 0) {
+            func_80800968_chlakemonster(arg0);
+        } else if (func_80101E4C(arg0, sp24.values) == 0) {
+            if (func_80101E14(arg0, 0.965f) != 0) {
+                _subaddieaudioquick_entrypoint_2(arg0, (f32 *)&arg0->actorData[4], &D_8080207C_chlakemonster);
+                func_80018820(0, 2.0f, 0.25f);
+                if (arg1 != 0) {
+                    func_80101180(0x501, 0xBC, 0);
+                } else {
+                    sp5C->unk3D = 1;
+                    func_8009086C(0);
+                }
+            } else if ((func_80101DDC(arg0) != 0) && (arg1 == 0)) {
+                func_808009CC_chlakemonster();
+            }
+        }
+        if ((sp20 > 0.24f) && (sp20 < 0.31f) && (func_8001210C(0xF) != 0)) {
+            func_808001C0_chlakemonster(arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800C88_chlakemonster.s")
 
