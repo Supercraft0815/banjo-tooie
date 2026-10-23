@@ -1757,7 +1757,62 @@ void func_80804C28_chdiggerboss(s32 arg0) {
     func_808056B8_chdiggerboss(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80804D44_chdiggerboss.s")
+void func_80804D44_chdiggerboss(s32 arg0) {
+    void *func_80100094(Actor *, u32);
+    u8 func_800D9078(f32 *);
+    s32 func_800DC128(s32, s32);
+    int func_800DC298(f32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void func_800E8830(u8, f32 *);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void func_80805960_chdiggerboss(s32, s32, s32);
+    void func_80805448_chdiggerboss(Actor *, s32, s32);
+    void func_808056F8_chdiggerboss(Actor *);
+    void func_808057D0_chdiggerboss(Actor *);
+    extern s32 D_8080A040_chdiggerboss;
+    extern s16 D_8080A058_chdiggerboss[];
+    struct DiggerPart { s32 handle; s16 state; s16 appendage; f32 timer; f32 position[3]; u8 effect; u8 pad[3]; };
+    struct DiggerData { u8 prefix[0x24]; u8 active; u8 pad[3]; f32 timer; s32 unk2C; struct DiggerPart parts[4]; };
+    struct DiggerData *data;
+    s32 active;
+    s32 i;
+    s16 state;
+    s32 choice;
+    data = func_80100094((Actor *)arg0, 0);
+    active = 0;
+    func_800D9078(&data->timer);
+    for (i = 0; i != 4; i++) {
+        state = data->parts[i].state;
+        switch (state) {
+        case 0:
+            break;
+        case 1:
+            active = 1;
+            func_80805960_chdiggerboss(arg0, i, func_800DC128(1, 5));
+            break;
+        case 2:
+            choice = func_800DC298(0.5f);
+            active = 1;
+            if (choice) {
+                choice = 0;
+            } else {
+                choice = func_800DC128(1, 5);
+            }
+            func_80805960_chdiggerboss(arg0, i, choice);
+            if (func_800D9078(&data->parts[i].timer)) {
+                func_80805448_chdiggerboss((Actor *)arg0, i, 0);
+            }
+            break;
+        }
+        if (data->parts[i].effect) {
+            _subaddieskeleton_entrypoint_2(((Actor *)arg0)->unk0, D_8080A058_chdiggerboss[i], data->parts[i].position);
+            func_800E8830(data->parts[i].effect, data->parts[i].position);
+        }
+    }
+    func_808056F8_chdiggerboss((Actor *)arg0);
+    func_808057D0_chdiggerboss((Actor *)arg0);
+    data->active = _subaddieaudioloop_entrypoint_7(data->active, ((Actor *)arg0)->position, active, &D_8080A040_chdiggerboss, ((Actor *)arg0)->unk70_0);
+}
 
 void func_80804EFC_chdiggerboss(Actor *arg0, void *arg1) {
     struct DiggerPart { s16 active; s16 appendage; u8 rest[0x18]; };
