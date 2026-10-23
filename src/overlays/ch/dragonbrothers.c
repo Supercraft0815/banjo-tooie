@@ -1020,7 +1020,73 @@ void func_80803F4C_chdragonbrothers(Actor *arg0) {
 void func_808040A0_chdragonbrothers(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808040A8_chdragonbrothers.s")
+void func_808040A8_chdragonbrothers(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    f32 func_800D8FF8(void);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    extern s32 D_80805448_chdragonbrothers;
+    extern s32 D_80805460_chdragonbrothers;
+    extern s32 D_80805474_chdragonbrothers;
+    extern s32 D_80805794_chdragonbrothers;
+    extern s32 D_808057A8_chdragonbrothers;
+    extern s32 D_808057E0_chdragonbrothers;
+    extern s32 D_80805810_chdragonbrothers;
+    typedef struct {
+    f32 angularVelocity[3];
+    f32 padC;
+    f32 velocity[3];
+    } DragonData;
+    f32 dt;
+    void *collision;
+    f32 displacement[3];
+    f32 position[3];
+    f32 normal[3];
+    f32 *pos[1];
+    dt = func_800D8FF8();
+    arg0->unk58 += dt;
+    if (arg0->unk70_10 == 1) {
+    func_800EFA20(displacement, ((DragonData *)arg0->actorData)->velocity, dt);
+    pos[0] = arg0->position;
+    func_800EE780(position, pos[0], displacement);
+    collision = func_800C6A7C(pos[0], position, normal, 0x20020);
+    func_800EE7F8(pos[0], position);
+    if (collision != NULL) {
+    _chexploder_entrypoint_3(arg0, position, 8);
+    func_800E1610(2, 100.0f, 0.85f, position);
+    if (arg0->unk7A_8) {
+    _subaddieaudioquick_entrypoint_2(arg0, NULL, &D_80805794_chdragonbrothers);
+    
+    } else {
+    _subaddieaudioquick_entrypoint_2(arg0, pos[0], &D_80805448_chdragonbrothers);
+    } 
+    } else if (arg0->position[1] < -400.0f) {
+    _subaddiefade_entrypoint_3(arg0);
+    } func_800EFA20(position, ((DragonData *)arg0->actorData)->angularVelocity, dt);
+    func_800EF04C(arg0->rotation, ((DragonData *)arg0->actorData)->angularVelocity);
+    if (arg0->unk58 > 0.25f) {
+    if (!arg0->unk7A_8) {
+    func_800BBCB8(pos[0], NULL, arg0->scale, 1, &D_808057A8_chdragonbrothers);
+    if (!arg0->unk64_20 && arg0->unk58 > 0.3f) {
+    _subaddieaudioquick_entrypoint_2(arg0, pos[0], &D_80805460_chdragonbrothers);
+    arg0->unk64_20 = 1;
+    } 
+    } else {
+    func_800BBCB8(pos[0], NULL, arg0->scale, 1, &D_808057E0_chdragonbrothers);
+    func_800BBCB8(pos[0], NULL, arg0->scale, 2, &D_80805810_chdragonbrothers);
+    if (!arg0->unk64_20 && arg0->unk58 > 0.3f) {
+    _subaddieaudioquick_entrypoint_2(arg0, pos[0], &D_80805474_chdragonbrothers);
+    arg0->unk64_20 = 1;
+    }
+    } }
+    } }
 
 /* extern */
 
