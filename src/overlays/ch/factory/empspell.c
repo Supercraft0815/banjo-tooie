@@ -362,7 +362,59 @@ void func_808016AC_chfactoryempspell(Actor *arg0) {
     } while (i != 0x3C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80801844_chfactoryempspell.s")
+void func_80801844_chfactoryempspell(Actor *arg0) {
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    void func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C8CB8(s32, f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80802328_chfactoryempspell;
+    extern s32 D_80802374_chfactoryempspell;
+    extern f32 D_80802384_chfactoryempspell[3];
+    extern f32 D_80802390_chfactoryempspell[3];
+    extern f32 D_8080239C_chfactoryempspell[3];
+    extern f32 D_808023A8_chfactoryempspell[3];
+    extern f32 D_808023B4_chfactoryempspell[3];
+    struct {
+        f32 x;
+        f32 y;
+        u8 audio;
+        u8 pad9[3];
+        s32 handle;
+        u16 first : 7;
+        u16 second : 7;
+        u16 flag : 1;
+        u16 last : 1;
+        u8 pad12[2];
+    } *entry;
+    s32 i;
+    s32 random;
+    void *data;
+
+    data = func_80100094(arg0, 1);
+    for (i = 0, entry = data; i != 0x3C; i += 0x14, entry++) {
+        if (entry->first-- == 0) {
+            random = func_800DC128(0, 9);
+            entry->second = random;
+            entry->first = random;
+            entry->audio = _subaddieaudioloop_entrypoint_3(entry->audio);
+            entry->x = D_80802384_chfactoryempspell[0] = D_80802390_chfactoryempspell[0] = D_8080239C_chfactoryempspell[0] = D_808023A8_chfactoryempspell[0] = func_800DC178(-2400.0f, 3600.0f);
+            entry->y = D_80802384_chfactoryempspell[1] = D_80802390_chfactoryempspell[1] = D_8080239C_chfactoryempspell[1] = D_808023A8_chfactoryempspell[1] = func_800DC178(200.0f, 1400.0f);
+            entry->flag = func_800DC128(0, 2);
+            func_800BBCB8(D_80802384_chfactoryempspell, D_80802390_chfactoryempspell, 1.0f, 2, &D_80802328_chfactoryempspell);
+            func_800BBCB8(D_8080239C_chfactoryempspell, D_808023A8_chfactoryempspell, 1.0f, 2, &D_80802328_chfactoryempspell);
+            D_80802384_chfactoryempspell[2] = 4000.0f;
+            func_800C8CB8(entry->handle, D_80802384_chfactoryempspell);
+        } else {
+            func_800EFA4C(D_808023B4_chfactoryempspell, entry->x, entry->y, 4000.0f);
+            func_800C8CB8(entry->handle, D_808023B4_chfactoryempspell);
+            entry->audio = _subaddieaudioloop_entrypoint_7(entry->audio, D_808023B4_chfactoryempspell, 1, &D_80802374_chfactoryempspell, arg0->unk70_0);
+        }
+    }
+}
 
 void func_80801AB4_chfactoryempspell(Actor *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
