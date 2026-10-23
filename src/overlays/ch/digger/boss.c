@@ -1310,7 +1310,64 @@ s32 func_80803660_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808039C0_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803BE8_chdiggerboss.s")
+s32 func_80803BE8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_80800180_chdiggerboss(Actor *, s32);
+    Actor *func_80802228_chdiggerboss(Actor *);
+    void func_80805448_chdiggerboss(Actor *, s32, s32);
+    s32 i;
+    struct {
+        s16 unk0;
+        u8 pad2[0x1A];
+        f32 unk1C;
+        f32 unk20;
+        u8 pad24[0xC];
+        f32 unk30;
+        f32 unk34;
+        f32 unk38;
+        f32 unk3C;
+    } *data;
+
+    data = func_80100094((Actor *)arg0, 0);
+    data->unk0 = arg1;
+    if (arg2 != -1) {
+        func_80800180_chdiggerboss((Actor *)arg0, arg2);
+    }
+    switch (arg1) {
+        case 6:
+            func_80805448_chdiggerboss(func_80802228_chdiggerboss((Actor *)arg0), 0, 1);
+            func_80805448_chdiggerboss(func_80802228_chdiggerboss((Actor *)arg0), 2, 1);
+            data->unk20 = 40.0f;
+            data->unk1C = 10.0f;
+            break;
+        case 14:
+            for (i = 0; i != 4; i++) {
+                func_80805448_chdiggerboss(func_80802228_chdiggerboss((Actor *)arg0), i, 1);
+            }
+            data->unk1C = 10.0f;
+            data->unk20 = -60.0f;
+            break;
+        case 39:
+            func_80805448_chdiggerboss(func_80802228_chdiggerboss((Actor *)arg0), 0, 1);
+            func_80805448_chdiggerboss(func_80802228_chdiggerboss((Actor *)arg0), 3, 1);
+            data->unk30 = 5.0f;
+            data->unk34 = 5.0f;
+            data->unk3C = 40.0f;
+            data->unk20 = 40.0f;
+            data->unk38 = 250.0f;
+            break;
+        case 49:
+            for (i = 0; i != 4; i++) {
+                func_80805448_chdiggerboss(func_80802228_chdiggerboss((Actor *)arg0), i, 1);
+            }
+            data->unk30 = 5.0f;
+            data->unk34 = 5.0f;
+            data->unk3C = 60.0f;
+            data->unk38 = 350.0f;
+            data->unk20 = -60.0f;
+            break;
+    }
+}
 
 /* extern */
 
