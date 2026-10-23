@@ -22,7 +22,76 @@ void func_8080000C_chdinofoot(void *arg0) {
     func_80102FDC(arg0, (*(f32 *)((s8 *)(arg0) + (0x38))) * 4.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/foot/func_80800084_chdinofoot.s")
+void func_80800084_chdinofoot(Actor *arg0) {
+    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800F3780(f32, u8 *, s16);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010D09C(s32, f32 *, f32);
+    s32 func_80800480_chdinofoot(Actor *);
+    s32 func_8080055C_chdinofoot(void *);
+    s32 func_808006BC_chdinofoot(Actor *);
+    extern u8 D_80800860_chdinofoot[];
+
+    if (func_800F6438(func_800F54E4()) != 0) {
+        func_8010D09C(func_800F54E4(), (f32 *)arg0->actorData, 0.79998779296875f);
+        ((f32 *)arg0->actorData)[1] = arg0->position[1];
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_80800480_chdinofoot(arg0) == 0 && !arg0->unk64_20 && func_800D90A4(&arg0->unk58) != 0) {
+            func_80102424(arg0, 3);
+        }
+        break;
+    case 2:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            _chintrotext_entrypoint_1(0x18B9, 7, 1, 0);
+            func_80102424(arg0, 4);
+            func_8010A590(arg0);
+        }
+        break;
+    case 3:
+        if (arg0->unk64_20 || func_8080055C_chdinofoot(arg0) != 0) {
+            func_80102424(arg0, 4);
+            func_8010A590(arg0);
+        }
+        break;
+    case 4:
+        func_808006BC_chdinofoot(arg0);
+        if (func_80101E14(arg0, 0.6f) != 0) {
+            func_8010A570(arg0);
+        }
+        if (func_80101DDC(arg0) != 0) {
+            func_80102424(arg0, 1);
+            arg0->unk58 = 1.399993896f;
+        }
+        break;
+    case 5:
+        if (func_800D9078(&arg0->unk58) != 0) {
+            func_80102424(arg0, 6);
+        }
+        break;
+    case 6:
+        func_808006BC_chdinofoot(arg0);
+        if (func_80101DDC(arg0) != 0) {
+            func_80102424(arg0, 5);
+            arg0->unk58 = 1.4f;
+        }
+        break;
+    }
+    _subaddiefade_entrypoint_1((s32)arg0, (s32)(func_800F3780(func_80101F24(arg0), D_80800860_chdinofoot, 4) * 255.0f));
+    _chbadshad_entrypoint_1(arg0, arg0->position, 8.5f);
+}
 
 /* extern */
 

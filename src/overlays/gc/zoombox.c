@@ -767,7 +767,60 @@ void func_8080156C_gczoombox(void *this, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_2.s")
+/* extern */
+
+void gczoombox_entrypoint_2(u8 *arg0, s32 arg1) {
+    int func_800A819C(void);
+    s32 func_800DA298(s32);
+    typedef struct {
+        u8 pad[0x1AC];
+        s16 alpha;
+        u8 pad1[0x36];
+        u32 unused31 : 3;
+        u32 visible : 1;
+        u32 unused27 : 4;
+        u32 animated : 1;
+        u32 unused22 : 4;
+        u32 highlighted : 1;
+        u32 unused17 : 4;
+        u32 blend : 1;
+        u32 unused12 : 6;
+        u32 dim : 1;
+        u32 capped : 1;
+        u32 unused4 : 5;
+    } Box;
+    s32 minimum;
+
+    if (arg0 != NULL) {
+        if (((Box *)arg0)->visible && arg0[0x171]) {
+            minimum = ((Box *)arg0)->dim ? 0xAA : 0x80;
+            func_80800FE0_gczoombox(arg0);
+            func_80801424_gczoombox(arg0, arg1);
+            if (arg0[0x176] == 2 || (!func_800A819C() && !func_800DA298(0x650))) {
+                func_8080156C_gczoombox(arg0, 0);
+            } else {
+                func_8080156C_gczoombox(arg0, ((Box *)arg0)->animated);
+            }
+            if (!((Box *)arg0)->blend) {
+                func_808014A8_gczoombox(arg0, arg1, *(s8 *)(arg0 + 0x1B7), *(s8 *)(arg0 + 0x1B8), *(u16 *)(arg0 + 0x140), 1.0f);
+            } else {
+                func_808014A8_gczoombox(arg0, arg1, *(s8 *)(arg0 + 0x1B7), *(s8 *)(arg0 + 0x1B8), *(u16 *)(arg0 + 0x140), 1.0f - *(f32 *)(arg0 + 0x1C0));
+                func_808014A8_gczoombox(arg0, arg1, *(s8 *)(arg0 + 0x1B9), *(s8 *)(arg0 + 0x1BA), *(u16 *)(arg0 + 0x142), *(f32 *)(arg0 + 0x1C0));
+            }
+            if (!((Box *)arg0)->highlighted && minimum < ((Box *)arg0)->alpha) {
+                ((Box *)arg0)->alpha -= 0x10;
+                ((Box *)arg0)->alpha = minimum < ((Box *)arg0)->alpha ? ((Box *)arg0)->alpha : minimum;
+            }
+            if (((Box *)arg0)->highlighted && ((Box *)arg0)->alpha < (((Box *)arg0)->capped ? 0xAA : 0xFF)) {
+                ((Box *)arg0)->alpha += 0x10;
+                ((Box *)arg0)->alpha = ((Box *)arg0)->alpha < (((Box *)arg0)->capped ? 0xAA : 0xFF) ? ((Box *)arg0)->alpha : (((Box *)arg0)->capped ? 0xAA : 0xFF);
+            }
+            if (((Box *)arg0)->alpha == 0xFF && ((Box *)arg0)->capped) {
+                ((Box *)arg0)->alpha = 0xAA;
+            }
+        }
+    }
+}
 
 void func_80801B30_gczoombox(u8 *box) {
     void gczoombox_entrypoint_15(void *);

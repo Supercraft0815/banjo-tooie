@@ -793,7 +793,86 @@ void func_8080150C_bstnt(struct player_state_s *arg0) {
     *(s32 *)((u8 *)arg0 + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_8080166C_bstnt.s")
+void func_8080166C_bstnt(struct player_state_s *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    int bakey_pressed(struct player_state_s *, int);
+    int bakey_released(struct player_state_s *, int);
+    int func_8008DF8C(struct player_state_s *, s32);
+    void func_8009D2D8(struct player_state_s *, s32);
+    void func_8009D3A8(struct player_state_s *, s32);
+    int player_isStable(void *);
+    s32 bs_setState(s32, s32);
+    f32 func_8009BB5C(struct player_state_s *);
+    void func_800A2EAC(void *);
+    f32 baphysics_get_vertical_velocity(struct player_state_s *);
+    s32 player_inWater(struct player_state_s *);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 sp24;
+    struct anctrl_s *sp20;
+
+    sp24 = 0;
+    sp20 = baanim_getAnimCtrlPtr(arg0);
+    func_80800164_bstnt(arg0);
+    if (bakey_released(arg0, 8) && baphysics_get_vertical_velocity(arg0) > 0.0f) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    case 0:
+        if (func_8008DF8C(arg0, 0x82)) {
+            baanim_setEndAndDuration(arg0,
+                1.0f + 0.0f,
+                0.7f);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+        } else if (anctrl_isStopped(sp20)) {
+            baanim_setEndAndDuration(arg0, 0.651f, 3.0f);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+        }
+        break;
+    case 1:
+        if (func_8008DF8C(arg0, 0x82)) {
+            baanim_setEndAndDuration(arg0,
+                1.0f + 0.0f,
+                1.0f);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+        }
+        break;
+    case 2:
+        func_8009D3A8(arg0, 0);
+        if (player_isStable(arg0)) {
+            func_800A2EAC(arg0);
+            baanim_setEndAndDuration(arg0,
+                1.0f + 0.0f,
+                1.0f);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 3;
+        }
+        break;
+    case 3:
+        baphysics_set_target_horizontal_velocity(arg0, func_8009BB5C(arg0) * 0.25f);
+        func_8009D2D8(arg0, 3);
+        func_8009D3A8(arg0, 0);
+        if (anctrl_isStopped(sp20)) {
+            if (func_8009BB5C(arg0) > 0.0f) {
+                sp24 = 0x108;
+            } else {
+                sp24 = 0x10C;
+            }
+        }
+        break;
+    }
+    if (baphysics_get_vertical_velocity(arg0) < 0.0f && player_inWater(arg0)) {
+        sp24 = 0x111;
+    }
+    if (bstnt_entrypoint_8(arg0)) {
+        sp24 = 0x10E;
+    }
+    if (player_isStable(arg0) && bakey_pressed(arg0, 8)) {
+        sp24 = 0x107;
+    }
+    bstnt_entrypoint_4(arg0);
+    bs_setState((s32)arg0, sp24);
+}
 
 void func_808018D0_bstnt(s32 arg0) {
     void func_8009BF5C(s32, f32);

@@ -1,5 +1,7 @@
 #include "bs/trexlarge.h"
 
+struct anctrl_s;
+
 void func_80800000_bstrexlarge(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x168))) = 5;
 }
@@ -349,7 +351,6 @@ s32 bstrexlarge_entrypoint_5(s32 arg0) {
 }
 
 void func_80800934_bstrexlarge(void *arg0, s32 arg1) {
-    struct anctrl_s;
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setIndex();
@@ -639,7 +640,57 @@ void func_8080126C_bstrexlarge(PlayerState *arg0) {
     func_80801230_bstrexlarge(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_808012EC_bstrexlarge.s")
+void func_808012EC_bstrexlarge(PlayerState *arg0) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    int baanim_isStopped(PlayerState *);
+    s32 bs_setState(s32, s32);
+    struct func_800E0960_1_s *func_80092AD8(PlayerState *);
+    void func_800E0AF0(struct func_800E0960_1_s *, f32);
+    void func_800E0AFC(struct func_800E0960_1_s *, u8, f32, f32, f32, f32);
+    void func_8009C128(PlayerState *, f32[3]);
+    int baanim_isAt(PlayerState *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_800DB9B0(void);
+    s32 func_8009D2E4(void *);
+    void func_8009D2D8(PlayerState *, s32);
+    s32 func_801013A8(f32 *, s32, s32);
+    struct anctrl_s *anim;
+    s32 nextState;
+    f32 timer;
+    struct func_800E0960_1_s *model;
+    f32 offset;
+    f32 position[3];
+
+    anim = baanim_getAnimCtrlPtr(arg0);
+    nextState = 0;
+    timer = anctrl_getAnimTimer(anim);
+    bstrexlarge_entrypoint_3(arg0);
+    if (*(u8 *)((u8 *)arg0 + 0x15E) != 0) {
+        model = func_80092AD8(arg0);
+        func_800E0AF0(model, 1.0f);
+        offset = func_800F10B4(timer, 0.75f, 1.0f, -25.0f, 0.0f);
+        func_800E0AFC(model, 1, 1.0f, offset, 0.0f, 0.0f);
+        func_800E0AFC(model, 0x12, 1.0f, offset, 0.0f, 0.0f);
+    }
+    if (func_800DB9B0() != 0 && func_8009D2E4(arg0) == 8) {
+        func_8009D2D8(arg0, 2);
+    }
+    if (timer >= 0.3f && timer <= 0.7f) {
+        func_8009C128(arg0, position);
+        func_801013A8(position, 0x1B, *(s32 *)((u8 *)arg0 + 0x184));
+    }
+    if (baanim_isAt(arg0, 0.13f)) {
+        func_80801110_bstrexlarge(arg0);
+    }
+    if (baanim_isAt(arg0, 0.9f)) {
+        func_808011A8_bstrexlarge(arg0);
+    }
+    if (baanim_isStopped(arg0)) {
+        nextState = 0x151;
+    }
+    bs_setState(arg0, nextState);
+}
 
 s32 bstrexlarge_entrypoint_12(s32 arg0) {
     extern s32 D_80801A10_bstrexlarge[];

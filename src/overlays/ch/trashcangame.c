@@ -47,7 +47,83 @@ void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
     func_80800098_chtrashcangame(arg0, arg1, func_80800014_chtrashcangame() + arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800180_chtrashcangame.s")
+void func_80800180_chtrashcangame(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_800CEAD0(s32);
+    s32 func_800D0A9C(s32, s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    void func_80108B04(Actor *, u32);
+    void func_8010CEAC(void *);
+    void func_808003D0_chtrashcangame(void *, s32);
+    void func_80800728_chtrashcangame(Actor *);
+    void func_80800BA8_chtrashcangame(Actor *);
+    void func_80801740_chtrashcangame(Actor *, s32, s32);
+    void func_808018E4_chtrashcangame();
+    extern s32 D_80803090_chtrashcangame;
+    extern s16 D_80803096_chtrashcangame;
+
+    _sudeflect_entrypoint_1(arg0->position, func_80103EF4(arg0), 0.0f, func_80103EAC(arg0), 0x1E);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            func_808003D0_chtrashcangame(arg0, 2);
+        }
+        break;
+    case 3:
+        if (func_800D0A9C(0x4E, 1) != 0) {
+            D_80803096_chtrashcangame = 0x13F0;
+        }
+        if (_subaddiedialog_entrypoint_7(arg0, arg0->position, &D_80803090_chtrashcangame) != 0) {
+            func_80801740_chtrashcangame(arg0, 2, 0);
+        }
+        break;
+    case 8:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            arg0->unk58 = 0.299987793f;
+            func_80108B04(arg0, 0);
+        }
+        if (_subaddiedialog_entrypoint_4(arg0->position, 0x190, 0) != 0) {
+            if (func_800D0A9C(0x4E, 1) != 0) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, func_800DC128(0x1403, 0x1405), 7, arg0->position, 0x6A);
+            } else {
+                _subaddiedialog_entrypoint_11(arg0->unk0, func_800DC128(0x1401, 0x1405), 7, arg0->position, 0x6A);
+            }
+        }
+        if (func_800CEAD0(0) != 0) {
+            func_80800728_chtrashcangame(arg0);
+        }
+        func_800D2498(0xF8, func_80800014_chtrashcangame(arg0, 0), 0);
+        break;
+    case 9:
+    case 11:
+        func_8010CEAC(arg0);
+        func_800D2498(0xF8, func_80800014_chtrashcangame(arg0, 0), 0);
+        break;
+    case 13:
+        if (_subaddiefind_entrypoint_2(0x21F, 0) == NULL) {
+            func_808003D0_chtrashcangame(arg0, 0xE);
+        }
+        break;
+    case 14:
+        if (func_800D90A4(&arg0->unk58) != 0) {
+            func_808003D0_chtrashcangame(arg0, 0xF);
+        }
+        break;
+    case 15:
+        func_8010CEAC(arg0);
+        break;
+    }
+    func_80800BA8_chtrashcangame(arg0);
+    func_808018E4_chtrashcangame(arg0);
+}
 
 void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     typedef struct { u8 padding[0x79]; u8 variant : 4; u8 other : 4; } TrashFlags;
@@ -161,7 +237,61 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     func_80102424(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_80800728_chtrashcangame.s")
+void func_80800728_chtrashcangame(Actor *arg0) {
+    s32 func_800D0A9C();
+    s16 func_800D211C(s32);
+    s32 func_800D395C(void);
+    void func_800FC660(u32);
+    u32 func_800FDC28(u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_808017F0_chtrashcangame(Actor *, s32, s32);
+    s32 sp24;
+
+    func_800FDC28(0);
+    func_80101180(0x533, 7, 0);
+    if (func_800D395C() != 0) {
+        sp24 = func_80800014_chtrashcangame(arg0, 0);
+        if (func_800D211C(0x86) == sp24) {
+            func_800FC660(0x17);
+            func_808017F0_chtrashcangame(arg0, 0x1446, 0xF);
+        } else {
+            sp24 = func_80800014_chtrashcangame(arg0, 0);
+            if (sp24 < func_800D211C(0x86)) {
+                func_800FC660(0x17);
+                func_808017F0_chtrashcangame(arg0, 0x1445, 0xF);
+            } else {
+                func_800FC660(0x16);
+                func_808017F0_chtrashcangame(arg0, 0x1447, 0xF);
+            }
+        }
+        func_808003D0_chtrashcangame(arg0, 0x12);
+        return;
+    }
+    if (func_800D0A9C(0x4E, 1) != 0) {
+        sp24 = func_80800014_chtrashcangame(arg0, 0);
+        if (func_800D211C(0x86) == sp24) {
+            func_808017F0_chtrashcangame(arg0, 0x13F9, 0xF);
+            func_808003D0_chtrashcangame(arg0, 9);
+            return;
+        }
+        sp24 = func_80800014_chtrashcangame(arg0, 0);
+        if (sp24 < func_800D211C(0x86)) {
+            func_808017F0_chtrashcangame(arg0, 0x13F8, 0xF);
+            func_808003D0_chtrashcangame(arg0, 9);
+            return;
+        }
+        func_808017F0_chtrashcangame(arg0, 0x13FA, 0xF);
+        func_808003D0_chtrashcangame(arg0, 0xB);
+        return;
+    }
+    if (func_80800014_chtrashcangame(arg0, 0) < 0x32) {
+        func_808017F0_chtrashcangame(arg0, 0x13F6, 0xF);
+        func_808003D0_chtrashcangame(arg0, 9);
+        return;
+    }
+    func_808017F0_chtrashcangame(arg0, 0x13F7, 0xF);
+    func_808003D0_chtrashcangame(arg0, 0xB);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080093C_chtrashcangame.s")
 
@@ -265,7 +395,97 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080134C_chtrashcangame.s")
+void func_8080134C_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void func_800C0850(void);
+    s32 func_800D2054(s32, s32, s32);
+    void func_808017F0_chtrashcangame(Actor *, s32, s32);
+
+    switch (arg1) {
+        case 0x13EE:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 4);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 5);
+            return;
+        case 0x13EF:
+        case 0x13F0:
+        case 0x13F1:
+        case 0x13F2:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 6);
+            return;
+        case 0x13F3:
+            func_808003D0_chtrashcangame(arg0, 3);
+            return;
+        case 0x13F4:
+        case 0x13F5:
+        case 0x1444:
+            func_808003D0_chtrashcangame(arg0, 8);
+            return;
+        case 0x13F6:
+        case 0x13F8:
+        case 0x13F9:
+            func_808003D0_chtrashcangame(arg0, 10);
+            return;
+        case 0x13FA:
+            func_808003D0_chtrashcangame(arg0, 15);
+            return;
+        case 0x13F7:
+            func_808003D0_chtrashcangame(arg0, 12);
+            return;
+        case 0x13FD:
+            func_808003D0_chtrashcangame(arg0, 3);
+            return;
+        case 0x13FC:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 6);
+            return;
+        case 0x13FB:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 6);
+            return;
+        case 0x13FE:
+        case 0x13FF:
+        case 0x1400:
+            func_808003D0_chtrashcangame(arg0, 1);
+            return;
+        case 0x1443:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 17);
+                return;
+            }
+            func_808003D0_chtrashcangame(arg0, 7);
+            return;
+        case 0x1451:
+            func_808003D0_chtrashcangame(arg0, 7);
+            return;
+        case 0x1445:
+        case 0x1446:
+        case 0x1447:
+            func_808017F0_chtrashcangame(arg0, 0x1448, 0x4E);
+            func_800D2054(0, 0x86, func_80800014_chtrashcangame(arg0, 0));
+            return;
+        case 0x1448:
+            if (arg2 != 0) {
+                func_808003D0_chtrashcangame(arg0, 7);
+                return;
+            }
+            func_800C0850();
+            _gcfrontend_entrypoint_10();
+            return;
+    }
+}
 
 s32 func_80801558_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
     s16 func_800D211C(s32);

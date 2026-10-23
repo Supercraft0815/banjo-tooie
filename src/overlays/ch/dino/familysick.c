@@ -1,4 +1,5 @@
 #include "common.h"
+void func_80102424(Actor *, s32);
 
 OSThread *chdinofamilysick_entrypoint_0(void)
 {
@@ -103,7 +104,73 @@ s32 func_80800368_chdinofamilysick(s32 arg0, s32 arg1, f32 arg2[3]) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_808003B0_chdinofamilysick.s")
+s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
+    s32 _subaddietaxi_entrypoint_2(Actor *, s32);
+    s32 func_800CB3E0(s32);
+    s32 func_800DA298(s32);
+    void func_800DF744(s32, s32);
+    void func_800FFAB0(Actor *);
+    s32 func_801015D0(Actor *);
+    void func_80101EE4(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    void func_80102424(Actor *, s32);
+    extern s32 D_80800E98_chdinofamilysick;
+    extern s32 _chdinofamilysick_entrypoint_0;
+
+    switch (arg1) {
+        case 0x3E:
+            if (arg0->unk70_10 == 1 || arg0->unk70_10 == 2 || arg0->unk70_10 == 4) {
+                if (func_800DA298(0x15D) && _subaddietaxi_entrypoint_2(arg0, 2)) {
+                    func_80102424(arg0, 2);
+                }
+                return 1;
+            }
+            return 0;
+        case 0x44:
+            func_80800244_chdinofamilysick(arg0, arg2);
+            return 1;
+        case 0x1F:
+            func_801015D0(arg0);
+            if (func_801022E4(arg0) == 0x3F7) {
+                func_800DF744(3, 1);
+                return 1;
+            }
+            func_800DF744(1, 0);
+            func_800DF744(2, 1);
+            func_800DF744(3, 2);
+            return 1;
+        case 0x37:
+            func_80101EE4(arg0, 0.0f);
+            return 1;
+        case 0x95:
+            if (_glcutDll_entrypoint_20()) {
+                func_800FFAB0(arg0);
+                return 1;
+            }
+            if (arg0->unk7A_5) {
+                if (func_800DA298(0x189) || func_800DA298(0x15E)) {
+                    func_800FFAB0(arg0);
+                    return 1;
+                }
+                if (!_subaddietaxi_entrypoint_13(arg0, 2, &_chdinofamilysick_entrypoint_0, 7)) {
+                    func_800FFAB0(arg0);
+                    return 1;
+                }
+            } else if (func_800CB3E0(2) == 6 || func_800DA298(0x189) || func_800DA298(0x15E)) {
+                func_800FFAB0(arg0);
+            }
+            return 1;
+        case 0x52:
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_3(&D_80800E98_chdinofamilysick, arg0->scale);
+            return 3;
+    }
+    return 0;
+}
 
 OSThread *chdinofamilysick_entrypoint_1(void)
 {

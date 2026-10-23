@@ -56,7 +56,41 @@ void func_808005B4_chevilspirit(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808005EC_chevilspirit.s")
+s32 func_808005EC_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    void func_80801C04_chevilspirit(Actor *);
+    void func_80801F1C_chevilspirit(Actor *, s32, s32);
+    void func_80802024_chevilspirit(Actor *, s32, s32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    extern s32 D_808021D0_chevilspirit[];
+    void *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x2E:
+            func_80801F1C_chevilspirit(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x2F:
+            func_80802024_chevilspirit(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x95:
+            func_80801C04_chevilspirit(arg0);
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            break;
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, (u8 *)data + 0x40, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(D_808021D0_chevilspirit, arg0->scale);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
     s32 func_800EB854(void);
@@ -435,7 +469,71 @@ void func_80801B00_chevilspirit(s32 arg0, Actor *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801C04_chevilspirit.s")
+void func_80801C04_chevilspirit(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddielink_entrypoint_3(u8 *);
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s8 func_800BF8E4(void);
+    s32 func_800C8A98(void);
+    void func_800C8E54(s32, f32, f32);
+    s32 func_800D3934(void);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_80801E18_chevilspirit(void *);
+    extern s32 D_808021D0_chevilspirit[];
+    u8 *link;
+    f32 marker[6];
+    u32 *game;
+
+    link = func_80100094(arg0, 0);
+    _susubgame_entrypoint_0(arg0, (u32 *)(link + 0x40), 0);
+    game = (u32 *)(link + 0x40);
+    _susubgame_entrypoint_12(game, D_808021D0_chevilspirit);
+    if (_subaddielink_entrypoint_3(func_80100094(arg0, 0)) == 0) {
+        if (arg0->unk70_10 != 1 && arg0->unk70_10 != 2 && arg0->unk70_10 != 3) {
+            func_80102424(arg0, 8);
+        }
+    }
+    if (func_800EA05C() == 0xAF) {
+        _subaddiemarker_entrypoint_1(arg0, 0x154, 0x32, marker, 1);
+        if (func_800D3934() == 0) {
+            if (func_800DA298(0x3B) != 0) {
+                func_800FFAB0(arg0);
+                return;
+            }
+            func_800EE7F8(arg0->position, marker);
+            arg0->rotation[1] = marker[4];
+            func_80103140(arg0, 0x90E, arg0->unk0->unk16);
+            func_80102424(arg0, 0xD);
+        } else if (func_800DA298(0xCA) == 0) {
+            func_800EE7F8(arg0->position, marker);
+            arg0->rotation[1] = marker[4];
+            func_80103140(arg0, 0x90E, arg0->unk0->unk16);
+            func_80102424(arg0, 9);
+            func_800F82D4(func_800F54E4(), 1);
+            _susubgame_entrypoint_6(arg0, game, 8, 0x20, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x15C5, 6, arg0->position, 0xBB);
+        }
+    }
+    if (func_800BF8E4() != 0 && func_80800FF8_chevilspirit((s32)arg0) == 0) {
+        ((f32 *)arg0->actorData)[7] = 0.0f;
+        arg0->actorData[3] = func_800C8A98();
+        func_800C8E54(arg0->actorData[3], 150.0f, 450.0f);
+        func_80801E18_chevilspirit(arg0);
+    } else {
+        arg0->actorData[3] = 0;
+    }
+}
 
 void func_80801E18_chevilspirit(void *arg0) {
     void func_800C8CB8(s32, f32[3]);

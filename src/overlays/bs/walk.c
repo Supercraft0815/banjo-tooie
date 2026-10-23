@@ -1,6 +1,12 @@
 #include "common.h"
 #include "overlays/bs/walk.h"
 
+struct anctrl_s;
+enum asset_e;
+enum baanim_update_type_e;
+enum yaw_type_e;
+enum ba_physics_type_e;
+
 s32 bastick_getZone(PlayerState *);
 s32 func_8008DE24(PlayerState *);
 
@@ -107,7 +113,48 @@ void bswalk_entrypoint_2(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_3.s")
+void bswalk_entrypoint_3(PlayerState *self) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void bastick_resetZones(PlayerState *);
+    s32 bs_getPreviousState(PlayerState *);
+    void *func_8008AEDC(void *);
+    f32 func_8008C0C8(f32 *);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    int func_8008E0E8(PlayerState *);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void func_800A2EDC(void *, f32);
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    struct anctrl_s *control;
+    f32 start;
+
+    control = baanim_getAnimCtrlPtr(self);
+    if (bs_getPreviousState(self) == 2) {
+        start = func_8008C0C8(func_8008AEDC(control));
+    } else {
+        start = 0.0f;
+    }
+    anctrl_reset(control);
+    anctrl_setIndex(control, 2);
+    anctrl_setDuration(control, 0.43f);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(self, 2, 1, 1, 2);
+    baanim_setDurationRange(self, 0.3f, 1.5f);
+    func_8008C9F0(self, 30.0f, 80.0f, 1.8f, 1.2f);
+    bastick_resetZones(self);
+    func_800A2EDC(self, 0.2f);
+    if (func_8008E0E8(self) != 0) {
+        _bapackctrl_entrypoint_5(self, 2);
+    }
+}
 
 void bswalk_entrypoint_4(PlayerState *self) {
     f32 bastick_distance(PlayerState *);
@@ -185,13 +232,8 @@ s32 bswalk_entrypoint_5(s32 arg0) {
     return ((s32 *)&D_80801520_bswalk)[arg0];
 }
 
-enum asset_e;
-enum baanim_update_type_e;
-enum yaw_type_e;
-enum ba_physics_type_e;
 
 void bswalk_entrypoint_6(PlayerState *self) {
-    struct anctrl_s;
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -317,9 +359,121 @@ s32 bswalk_entrypoint_9(s32 arg0) {
     return ((s32 *)&D_80801530_bswalk)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_10.s")
+void bswalk_entrypoint_10(PlayerState *self) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_reset();
+    void anctrl_setIndex();
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType();
+    void anctrl_start();
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    void bastick_resetZones(PlayerState *);
+    s32 bs_getPreviousState(PlayerState *);
+    void *func_8008AEDC(void *);
+    f32 func_8008C0C8(f32 *);
+    int func_8008E0E8(PlayerState *);
+    struct anctrl_s *control;
+    f32 start;
+    s32 previous;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_11.s")
+    control = baanim_getAnimCtrlPtr(self);
+    previous = bs_getPreviousState(self);
+    if (previous != 2 && previous != 4) {
+        start = 0.0f;
+    } else {
+        start = func_8008C0C8(func_8008AEDC(control));
+    }
+    anctrl_reset(control);
+    anctrl_setIndex(control, 0xC);
+    anctrl_setDuration(control, 0.66f);
+    func_8008B1C8(control, 0.14f);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(self, 2, 1, 1, 2);
+    baanim_setDurationRange(self, 0.3f, 1.5f);
+    func_8008C9F0(self, 150.0f, 225.0f, 0.92f, 0.58f);
+    func_808001D8_bswalk(self, 0.3f);
+    bastick_resetZones(self);
+    if (func_8008E0E8(self) != 0) {
+        _bapackctrl_entrypoint_5(self, 2);
+    }
+}
+
+void bswalk_entrypoint_11(PlayerState *self) {
+    void func_800A2CE8(PlayerState *, f32, s32);
+    s32 func_8009BCD4(PlayerState *, f32);
+    int func_8008E300(PlayerState *);
+    f32 func_8009BB5C(PlayerState *);
+    s32 _badrone_entrypoint_24(PlayerState *);
+    s32 _badrone_entrypoint_25(PlayerState *);
+    int func_8008DD04(PlayerState *);
+    int bakey_held(PlayerState *, s32);
+    int bakey_pressed(PlayerState *, ButtonId);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    int func_8008D714(PlayerState *);
+    int func_8008D790(PlayerState *);
+    void _baduo_entrypoint_12(PlayerState *);
+    s32 func_8008E148(PlayerState *);
+    s32 state = 0;
+
+    func_8080016C_bswalk(self);
+    func_800A2CE8(self, 0.4f, 4);
+    func_800A2CE8(self, 0.9f, 3);
+    func_808001E4_bswalk(self);
+    func_80800000_bswalk(self);
+    switch (bastick_getZone(self)) {
+    case 0:
+    case 1:
+    case 2:
+        if (func_8009BCD4(self, 150.0f) && func_80800220_bswalk(self)) {
+            state = 2;
+        }
+        break;
+    case 4:
+        state = 4;
+        break;
+    }
+    if (func_8008DE24(self)) {
+        state = 0x7A;
+    }
+    if (func_8008E300(self) && func_8009BB5C(self) > 125.0f) {
+        state = 0xC;
+    }
+    if (bainput_should_enter_first_person(self)) {
+        state = _badrone_entrypoint_24(self);
+    }
+    if (func_8008DD04(self)) {
+        state = 0x2F;
+    }
+    if (bakey_held(self, 1)) {
+        state = 7;
+    }
+    state = func_80800248_bswalk(self, state);
+    if (bakey_pressed(self, 8)) {
+        state = bs_getTypeOfJump(self);
+        if (baphysics_get_target_horizontal_velocity(self) == 0.0f) {
+            if (func_8008D714(self)) {
+                state = 0xB8;
+            } else if (func_8008D790(self)) {
+                _baduo_entrypoint_12(self);
+                return;
+            }
+        }
+    }
+    if (func_8008E148(self)) {
+        state = _badrone_entrypoint_25(self);
+    }
+    if (player_inWater(self)) {
+        state = 0x2D;
+    }
+    bs_setState(self, func_800A02DC(self, state));
+}
 
 /* extern */
 
@@ -336,7 +490,69 @@ s32 bswalk_entrypoint_13(s32 arg0) {
     return ((s32 *)&D_80801540_bswalk)[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_14.s")
+void bswalk_entrypoint_14(PlayerState *self) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSmoothTransition(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void _badust_entrypoint_3(PlayerState *, f32, f32);
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    void *func_8008AEDC(void *);
+    f32 func_8008C0C8(f32 *);
+    void baanim_setDurationRange(PlayerState *, f32, f32);
+    void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void bastick_resetZones(PlayerState *);
+    s32 bs_getPreviousState(PlayerState *);
+    int func_8008E0E8(PlayerState *);
+    f32 func_8009BB5C(PlayerState *);
+    void func_8009BFE4(PlayerState *, f32, f32);
+    void baroll_setAngularVelocity(PlayerState *, f32, f32);
+    struct anctrl_s *control;
+    f32 start;
+    s32 smooth;
+
+    control = baanim_getAnimCtrlPtr(self);
+    start = 0.0f;
+    smooth = 1;
+    switch (bs_getPreviousState(self)) {
+        case 1:
+        case 2:
+            if (func_8009BB5C(self) < 200.0f) {
+                _badust_entrypoint_3(self, 0.0f, 0.0f);
+            }
+            break;
+        case 12:
+            smooth = 0;
+            break;
+        case 3:
+            start = func_8008C0C8(func_8008AEDC(control));
+            break;
+    }
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, smooth);
+    anctrl_setIndex(control, 12);
+    anctrl_setDuration(control, 0.66f);
+    func_8008B1C8(control, 0.1f);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
+    func_8009FFD8(self, 2, 1, 1, 2);
+    baanim_setDurationRange(self, 0.3f, 1.5f);
+    func_8008C9F0(self, 225.0f, 500.0f, 0.54f, 0.44f);
+    func_8009BFE4(self, 1000.0f, 12.0f);
+    baroll_setAngularVelocity(self, 1000.0f, 12.0f);
+    func_808001D8_bswalk(self, 0.3f);
+    bastick_resetZones(self);
+    if (func_8008E0E8(self) != 0) {
+        _bapackctrl_entrypoint_5(self, 2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/walk/bswalk_entrypoint_15.s")
 

@@ -420,7 +420,99 @@ void func_80800E10_chtntmineshoot(Actor *arg0) {
     _susubgame_entrypoint_11(0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80800E64_chtntmineshoot.s")
+int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_800CE8D8(s32, f32, s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D2054(s32, s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800FE820(f32);
+    s32 func_80801974_chtntmineshoot(Actor *, s32);
+    s32 func_80101180(s32, s32, s32);
+    s32 _susubgame_entrypoint_11(s32);
+    u32 func_800F54E4(void);
+    void func_800D284C(u32);
+    s32 func_800F7F98(s32, u32);
+    s32 func_800D211C(s32);
+    s32 func_800F7B9C(s32, s32);
+    void _gcfrontend_entrypoint_9(s32);
+    void *data;
+    s32 player;
+    s32 pad0;
+    s32 pad1;
+    s32 message;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 != ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10)) {
+        switch (arg1) {
+        case 2:
+            *(s32 *)((u8 *)data + 4) = 0;
+            func_800D2498(0x102, *(s32 *)data, 0);
+            break;
+        case 3:
+            _gcfrontend_entrypoint_9(0x63);
+            func_800CE8D8(0, (f32)((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7),
+                         (u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7);
+            func_800CE88C(0, 1);
+            func_80101180(0x2BE, 0xA, 0);
+            break;
+        case 4:
+            func_800FE820(1.0f);
+            *(s32 *)((u8 *)data + 4) = 1;
+            _susubgame_entrypoint_11(0);
+            func_80801974_chtntmineshoot(arg0, 0xFA2);
+            break;
+        case 5:
+            *(s32 *)((u8 *)data + 4) = 2;
+            *(s32 *)((u8 *)data + 0x10) = 0;
+            _susubgame_entrypoint_11(0);
+            break;
+        case 7:
+            _susubgame_entrypoint_11(0);
+            func_800D284C(0xCC);
+            func_800D284C(0x102);
+            break;
+        case 8:
+            player = func_800F54E4();
+            func_800F49D4(player, 0, 0);
+            func_800F7B9C(player, 0x8F);
+            func_800F7B9C(player, 0x62);
+            func_800F7C58(player, 0x61, 0);
+            func_80801974_chtntmineshoot(arg0, func_800D211C(0x95) ? 0xFB3 : 0xCEC);
+            func_800F7F98(func_800F54E4(), 1);
+            break;
+        case 9:
+            *(s32 *)((u8 *)data + 4) = 0;
+            *(f32 *)((u8 *)data + 8) = 0.0f;
+            func_800D2498(0xCC, (s32)*(f32 *)((u8 *)data + 8), 0);
+            func_800D2498(0x102, *(s32 *)data, 0);
+            func_80101180(0x2BE, 0xA, 0);
+            break;
+        case 11:
+            switch (func_800D2054(1, 0x95, (s32)*(f32 *)((u8 *)data + 8))) {
+            case -1:
+                message = 0xFB6;
+                break;
+            case 0:
+                message = 0xFB5;
+                break;
+            case 1:
+                message = 0xFB4;
+                break;
+            }
+            func_80801974_chtntmineshoot(arg0, message);
+            break;
+        case 10:
+            *(s32 *)((u8 *)data + 0x10) = 0;
+            break;
+        case 12:
+            func_80801974_chtntmineshoot(arg0, 0xCEB);
+            break;
+        }
+        func_80101FDC(arg0, arg1);
+    }
+}
 
 /* extern */
 
@@ -440,7 +532,45 @@ void func_80801128_chtntmineshoot(Actor *arg0) {
     func_800FE820(var_f0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808011D4_chtntmineshoot.s")
+void func_808011D4_chtntmineshoot(Actor *arg0) {
+    s32 func_800CEAD0(s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D24E8(s32, s32, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800F13F0(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80801318_chtntmineshoot(Actor *);
+    void func_8080146C_chtntmineshoot(Actor *);
+    struct { s32 value; s32 unk4; f32 time; } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 2:
+        func_800D24E8(0x102, data->value, 0);
+        break;
+    case 3:
+        func_800D24E8(0x102, data->value, 0);
+        func_80801128_chtntmineshoot(arg0);
+        if (func_800CEAD0(0)) {
+            func_80800E64_chtntmineshoot(arg0, 5);
+        }
+        break;
+    case 5:
+        func_80801318_chtntmineshoot(arg0);
+        break;
+    case 9:
+        data->time = func_800F13F0(func_800D8FF8() + data->time, 999.0f);
+        func_800D2498(0x102, data->value, 0);
+        func_800D2498(0xCC, (s32)data->time, 0);
+        break;
+    case 11:
+        func_800D2498(0xCC, (s32)data->time, 0);
+        break;
+    case 10:
+        func_8080146C_chtntmineshoot(arg0);
+        break;
+    }
+}
 
 void func_80801318_chtntmineshoot(Actor *arg0) {
     void func_800C301C(u8, s32);
@@ -491,7 +621,63 @@ void func_80801318_chtntmineshoot(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_8080146C_chtntmineshoot.s")
+void func_8080146C_chtntmineshoot(Actor *arg0) {
+    void func_800C301C(u8, s32);
+    void func_800C3058(u8, s32);
+    void func_800C35E8(u8, f32 *);
+    void func_800C3BDC(u8);
+    void func_800C3CE8(u8);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    f32 sp28[4];
+    struct { u8 pad[12]; u8 id; s32 state; f32 timer; } *data;
+
+    data = func_80100094(arg0, 0);
+    func_800F5A00(func_800F54E4(), sp28);
+    switch (data->state) {
+        case 0:
+            func_800C35E8(data->id, arg0->position);
+            func_800C301C(data->id, 0x414);
+            func_800C3058(data->id, 0x7FFF);
+            func_800C3BDC(data->id);
+            arg0->unk58 = 1.0f;
+            data->state = 1;
+            data->timer = 5.0f;
+            break;
+        case 1:
+            if (func_800D9078(&arg0->unk58)) {
+                func_800C3CE8(data->id);
+                func_80101180(0x2BE, 5, 0);
+                data->state = 2;
+            }
+            break;
+        case 2:
+            func_80800078_chtntmineshoot(NULL, 0.95f);
+            func_80800188_chtntmineshoot(NULL);
+            arg0->unk58 = func_800DC178(0.67f, 1.0f);
+            data->state = 3;
+            break;
+        case 3:
+            if (func_800D9078(&data->timer)) {
+                func_80800078_chtntmineshoot(NULL, 0.95f);
+                func_80800150_chtntmineshoot(arg0);
+                data->state = 4;
+                arg0->unk58 = 1.0f;
+            } else if (func_800D9078(&arg0->unk58)) {
+                data->state = 2;
+            }
+            break;
+        case 4:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80800E64_chtntmineshoot(arg0, 0xC);
+            }
+            break;
+    }
+}
 
 void func_80801604_chtntmineshoot(Actor *arg0) {
     s32 _susubgame_entrypoint_11(s32);
@@ -548,7 +734,74 @@ s32 func_80801658_chtntmineshoot(Actor **arg0) {
     return var_s2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801714_chtntmineshoot.s")
+s32 func_80801714_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_800FC660(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80801A18_chtntmineshoot(s32, s32, s32);
+    void func_80801A54_chtntmineshoot(Actor *, s32, s32);
+    s32 *sp2C;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    s32 sp1C;
+
+    sp2C = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x49:
+            if (func_800D395C()) {
+                sp28 = func_80801658_chtntmineshoot(&arg0);
+                *(s32 *)func_80100094(arg0, 0) = sp28;
+                func_80800E64_chtntmineshoot(arg0, 8);
+            } else if (!func_800D0A9C(0xF, 1)) {
+                sp24 = func_80801658_chtntmineshoot(&arg0);
+                *(s32 *)func_80100094(arg0, 0) = sp24;
+                func_80800E64_chtntmineshoot(arg0, 2);
+            } else {
+                *sp2C = 0;
+            }
+            break;
+        case 5:
+            sp20 = func_800D395C() ? 10 : 5;
+            func_80800E64_chtntmineshoot(arg0, sp20);
+            func_800F7F98(func_800F54E4(), 1);
+            break;
+        case 0x4F:
+            if (--*sp2C) {
+                if (!func_800D395C() && arg0->unk70_10 == 2) {
+                    func_80800E64_chtntmineshoot(arg0, 3);
+                }
+                if (arg0->unk70_10 == 3) {
+                    func_800FC660(0xE);
+                }
+            } else {
+                sp1C = func_800D395C() ? 11 : 4;
+                func_800FC660(0x10);
+                func_80800E64_chtntmineshoot(arg0, sp1C);
+            }
+            break;
+        case 0x30:
+            return func_80801A18_chtntmineshoot((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        case 0x2E:
+            func_80801A54_chtntmineshoot(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x9F:
+            func_80800E64_chtntmineshoot(arg0, 7);
+            break;
+        case 0x96:
+            if (!func_800D395C()) {
+                return 0;
+            }
+            func_80800E64_chtntmineshoot(arg0, 12);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 s32 func_80801974_chtntmineshoot(Actor *arg0, s32 arg1) {
     u32 func_800F54E4(void);
@@ -587,7 +840,45 @@ s32 func_80801A18_chtntmineshoot(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801A54_chtntmineshoot.s")
+void func_80801A54_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
+    u32 func_800F54E4(void);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void func_800A7AD4(s32, s32);
+    s32 func_800F7F98(s32, u32);
+
+    switch (arg1) {
+        case 0xFA3:
+            func_80800078_chtntmineshoot(NULL, 0.95f);
+            func_80800150_chtntmineshoot(arg0);
+            func_800A7AD4(1, 5);
+            _gcgoto_entrypoint_1(0x163, 3);
+            break;
+        case 0xFA2:
+            _glcutDll_entrypoint_6(0x163, 0x18);
+            break;
+        case 0xFB3:
+            func_80801974_chtntmineshoot(arg0, 0xCEC);
+            break;
+        case 0xCEC:
+            func_800F7F98(func_800F54E4(), 0);
+            func_80800E64_chtntmineshoot(arg0, 9);
+            break;
+        case 0xFB4:
+        case 0xFB5:
+        case 0xFB6:
+            func_80800E64_chtntmineshoot(arg0, 0xC);
+            break;
+        case 0xCEB:
+            func_800F7F98(func_800F54E4(), 0);
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+    }
+}
 
 OSThread *chtntmineshoot_entrypoint_1(void)
 {

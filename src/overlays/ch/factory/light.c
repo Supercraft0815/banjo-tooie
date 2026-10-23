@@ -139,7 +139,54 @@ void chfactorylight_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_8080057C_chfactorylight.s")
+s32 func_8080057C_chfactorylight(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800C8FE0(s32, s32);
+    s32 func_800EA05C(void);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_808008E4_chfactorylight(Actor *);
+    struct LightActorFlags {
+        u8 pad[0x7C];
+        u32 upper : 16;
+        u32 initialized : 1;
+        u32 lower : 15;
+    };
+    void *data;
+    s32 i;
+    u8 *ptr;
+    s32 enabled;
+
+    switch (arg1) {
+        case 0xA:
+            if (arg2 != 0) {
+                enabled = 1;
+            } else {
+                enabled = 0;
+            }
+            data = func_80100094(arg0, 0);
+            if (!((struct LightActorFlags *)arg0)->initialized) {
+                func_808008E4_chfactorylight(arg0);
+                ((struct LightActorFlags *)arg0)->initialized = 1;
+            }
+            if (func_800EA05C() == 0x10D) {
+                func_80101FDC(arg0, enabled ? 3 : 2);
+                arg0->unk58 = 5.0f;
+                ((f32 *)arg0->actorData)[3] = 1.3f;
+            } else {
+                func_80101FDC(arg0, enabled ? 1 : 2);
+            }
+            for (i = 0, ptr = data; i != 8; i += 4, ptr += 4) {
+                func_800C8FE0(*(s32 *)ptr, enabled);
+            }
+            break;
+        case 0x95:
+            func_808008E4_chfactorylight(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_808006B8_chfactorylight(Actor *arg0, s32 arg1) {
     void func_800DF5D8(u32, u32, u32, s32);
@@ -248,4 +295,65 @@ void func_80800830_chfactorylight(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/light/func_808008E4_chfactorylight.s")
+void func_808008E4_chfactorylight(Actor *arg0) {
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8FE0(s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DC128(s32, s32);
+    s32 func_800EA05C(void);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    struct LightData {
+        s32 handles[2];
+        f32 angles[2];
+        u32 color[3];
+    };
+    struct LightActorData {
+        f32 values[8];
+    };
+    struct LightData *sp94;
+    f32 temp_f20;
+    f32 sp84[3];
+    u32 *temp_s6;
+    s32 i;
+    s32 index;
+
+    sp94 = func_80100094(arg0, 0);
+    index = arg0->unk74_7 - 50;
+    if (index < 0 || index >= 8) {
+        index = 0;
+    }
+    arg0->unk6C_0 = index;
+    ((struct LightActorData *)arg0->actorData)->values[7] = func_800DC128(200, 300);
+    temp_s6 = sp94->color;
+    func_80800778_chfactorylight(arg0, (s32 *)temp_s6);
+    for (i = 0; i != 2; i++) {
+        sp94->handles[i] = func_800C8A98();
+        temp_f20 = (f32)i * 180.0f;
+        sp94->angles[i] = temp_f20;
+        func_800C8E84(sp94->handles[i], temp_s6);
+        func_800EEC30(sp84, temp_f20, arg0->rotation[1] + 90.0f, arg0->scale * 500.0f);
+        func_800EF04C(sp84, arg0->position);
+        func_800EF1B8(sp84, arg0->rotation[1], arg0->scale * 300.0f);
+        func_800C8CB8(sp94->handles[i], sp84);
+        func_800C8E54(sp94->handles[i], arg0->scale * 350.0f, arg0->scale * 800.0f);
+    }
+    if (func_800EA05C() == 0x10D) {
+        if (func_800DA298(0x1BD) != 0) {
+            func_80101FDC(arg0, 1);
+            func_800C8FE0(sp94->handles[0], 1);
+            func_800C8FE0(sp94->handles[1], 1);
+            ((struct LightActorData *)arg0->actorData)->values[3] = 1.3f;
+        } else {
+            func_80101FDC(arg0, 2);
+            func_800C8FE0(sp94->handles[0], 0);
+            func_800C8FE0(sp94->handles[1], 0);
+        }
+    }
+}

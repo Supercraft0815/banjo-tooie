@@ -269,7 +269,59 @@ void func_808000CC_bsstonehead(PlayerState *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/func_80800194_bsstonehead.s")
+void func_80800194_bsstonehead(PlayerState *arg0, s32 arg1) {
+    void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+    void _batimer_set(PlayerState *, s32, f32);
+    f32 yaw_getIdeal(PlayerState *);
+    struct anctrl_s *sp34;
+    f32 unused[2];
+    f32 sp28;
+
+    sp34 = baanim_getAnimCtrlPtr(arg0);
+    if (arg0->unk15C.word == 0) {
+        func_80800060_bsstonehead(arg0);
+    }
+    arg0->unk15C.word = arg1;
+    switch (arg1) {
+    case 1:
+        if (func_8008DE24(arg0) != 0 && player_isStable(arg0) != 0) {
+            arg0->unk16C = 150.0f;
+        } else {
+            arg0->unk16C = 600.0f;
+        }
+        func_8009DF94(arg0, 0x5A7, 1.4f, 0x55F0);
+        baflag_set(arg0, 0x20);
+        _batimer_set(arg0, 0, 0.01f);
+        func_8009FFD8(arg0, 1, 1, 3, 3);
+        _badust_entrypoint_12(arg0, 2);
+        baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+        baphysics_set_target_horizontal_velocity(arg0, arg0->unk16C);
+        sp28 = yaw_getIdeal(arg0);
+        baphysics_set_horizontal_velocity(arg0, sp28, baphysics_get_target_horizontal_velocity(arg0));
+        anctrl_reset(sp34);
+        anctrl_setIndex(sp34, 0x64);
+        anctrl_setDuration(sp34, 1.0f);
+        anctrl_setSubrange(sp34, 0.0f, 0.26f);
+        anctrl_setPlaybackType(sp34, 1);
+        anctrl_start(sp34);
+        return;
+    case 2:
+        anctrl_setDuration(sp34, 5.0f);
+        baanim_setEnd(arg0, 0.3078f);
+        return;
+    case 3:
+        _badust_entrypoint_12(arg0, 1);
+        baflag_clear(arg0, 0x20);
+        anctrl_setDuration(sp34, 1.0f);
+        baanim_setEnd(arg0, 1.0f);
+        return;
+    case 0:
+        _badust_entrypoint_12(arg0, 1);
+        baflag_clear(arg0, 0x20);
+        func_80800000_bsstonehead(arg0);
+        return;
+    }
+}
 
 int func_808003B8_bsstonehead(PlayerState *arg0) {
     int bakey_pressed();
@@ -303,7 +355,43 @@ void bsstonehead_entrypoint_0(s32 arg0)
 
 void bsstonehead_entrypoint_1(s32 *arg0) { arg0[87] = 0; func_80800194_bsstonehead(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stonehead/bsstonehead_entrypoint_2.s")
+void bsstonehead_entrypoint_2(PlayerState *arg0) {
+    int _batimer_isZero(PlayerState *, s32);
+    f32 baanim_getTimer(PlayerState *);
+    int baanim_isStopped(PlayerState *);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 func_800F1574(f32 *, f32);
+    s32 bs_setState(s32, s32);
+    s32 next_state = 0;
+
+    switch (arg0->unk15C.word) {
+        case 1:
+            if (baanim_isStopped(arg0) != 0) {
+                func_80800194_bsstonehead(arg0, 2);
+            }
+            break;
+        case 2:
+            _batimer_decrement(arg0, 0);
+            if (_batimer_isZero(arg0, 0) != 0) {
+                arg0->unk16C -= 80.0f;
+                baphysics_set_target_horizontal_velocity(arg0, arg0->unk16C);
+                if (arg0->unk16C < 200.0f) {
+                    func_80800194_bsstonehead(arg0, 3);
+                }
+            }
+            break;
+        case 3:
+            func_800F1574(&arg0->unk16C, 0.8f);
+            if (baanim_isStopped(arg0) != 0) {
+                next_state = 0xB3;
+            }
+            if (baanim_getTimer(arg0) > 0.8f) {
+                next_state = func_808003F4_bsstonehead(arg0, next_state);
+            }
+            break;
+    }
+    bs_setState((s32)arg0, next_state);
+}
 
 s32 bsstonehead_entrypoint_3(s32 arg0) {
     extern s32 D_80801630_bsstonehead[];

@@ -147,7 +147,61 @@ void func_80015190(void)
     osSendMesg(&D_80079010, NULL, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_800151BC.s")
+void func_800151BC(s32 arg0) {
+    s32 func_80013474(void);
+    void func_80013488(void);
+    void func_800134C4(void);
+    void func_80013500(OSPri);
+    s32 func_80081D28(void);
+    extern s16 D_80078F60;
+    extern s16 D_80078F62;
+    extern s16 D_80078F64;
+    extern s32 D_80078F80;
+    extern OSMesgQueue D_80079030;
+    extern volatile s32 D_80079138;
+    extern s32 D_80079700;
+    extern s32 D_80079704;
+
+    osSetThreadPri(NULL, 0x7F);
+    func_80013500(0x23);
+    func_80013488();
+    if (arg0 != 0) {
+        osRecvMesg(&D_80079010, NULL, 1);
+    }
+    {
+    s32 *const waitCount = &D_80079704;
+    if (D_80079138 < func_80015184() - *waitCount) {
+    wait_for_frame:
+        osRecvMesg(&D_80079030, NULL, 1);
+        if (D_80079138 < func_80015184() - *waitCount) {
+            goto wait_for_frame;
+        }
+    }
+    while (D_80079030.validCount != 0) {
+        osRecvMesg(&D_80079030, NULL, 0);
+    }
+    if (D_80078F62 == 0) {
+        if (D_80079700 != 0 && --D_80079700 == 0) {
+            osViBlack(0);
+        }
+        D_80078F60 = func_80014F38();
+        osViSwapBuffer(((s32 *) &D_80078F80)[D_80078F60]);
+        for (*waitCount = 0; !(osDpGetStatus() & 2) && osViGetCurrentFramebuffer() != osViGetNextFramebuffer(); (*waitCount)++) {
+            osRecvMesg(&D_80079030, NULL, 1);
+        }
+    } else {
+        D_80078F62 = 0;
+    }
+    D_80078F64 = D_80079138;
+    D_80079138 = 0;
+    func_800134C4();
+    osSetThreadPri(NULL, 0x14);
+    while (func_80013474() == 0 && func_80081D28() != 0) {
+        osYieldThread();
+    }
+    func_80013500(0xA);
+    }
+}
 
 void func_80015410()
 {

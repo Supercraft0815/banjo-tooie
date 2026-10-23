@@ -384,9 +384,107 @@ void func_800E2A14(s32 arg0) {
 
 void func_800E2A3C(u8 *arg0, u8 *arg1, s32 arg2) { void func_800E1DF4(void); void func_800E2180(u8 *, u8 *, s32); void func_800E2260(u8 *, u8 *); s32 func_800E22F0(s32, s32); u8 *a = arg0; u8 *b = arg1; arg0 = NULL; arg1 = NULL; func_800E1DF4(); func_800E204C(a, b); func_800E2180(a, b, arg2); func_800E2260(a, b); func_800E22F0(a, b); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2AA4.s")
+void func_800E2AA4(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg, f32 *scale) {
+    void func_800191F8(f32, f32, f32);
+    void *func_800E401C(void);
+    void mlMtxSet(void *);
+    void mlMtxRotRoll(f32);
+    void mlMtxApply(Mtx *);
+    void mlMtxScale_xyz(f32, f32, f32);
+    extern f32 D_8012D498;
+    void func_800E1DF4();
+    void func_800E23A4();
+    f32 sx;
+    f32 sy;
+    f32 sz;
+    f32 position[3];
+    f32 scaleX;
+    Gfx *list;
+    Gfx *pop;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2C54.s")
+    if (scale != NULL) {
+        sx = scale[0];
+        sy = scale[1];
+        sz = scale[2];
+    } else {
+        sx = sy = sz = 1.0f;
+    }
+    if (func_800E1C00((void *)resource, (s32)positionArg, sx, sy, (s32)position) == 0) {
+        func_800E23A4();
+        return;
+    }
+    func_800E1DF4(arg0, resource);
+    mlMtxSet(func_800E401C());
+    if (D_8012D498 != 0.0f) {
+        mlMtxRotRoll(D_8012D498);
+    }
+    func_800191F8(position[0], position[1], position[2]);
+    if (scale != NULL || flip != 0) {
+        scaleX = flip != 0 ? -sx : sx;
+        mlMtxScale_xyz(scaleX, sy, sz);
+    }
+    mlMtxApply(*(Mtx **)(arg0 + 4));
+    list = (*(Gfx **)arg0)++;
+    list->words.w0 = 0xDA380002;
+    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    (*(Mtx **)(arg0 + 4))++;
+    func_800E204C(arg0, resource);
+    func_800E2180(arg0, resource, index);
+    func_800E2260(arg0, resource);
+    pop = (*(Gfx **)arg0)++;
+    pop->words.w0 = 0xD8380002; pop->words.w1 = 0x40;
+    func_800E22F0((s32)arg0, (s32)resource);
+}
+
+void func_800E2C54(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg, f32 *rotation, f32 *scale) {
+    void func_800191F8(f32, f32, f32);
+    s32 func_80019CD4(void);
+    void mlMtxApply(Mtx *);
+    void mlMtxRotatePYR(f32, f32, f32);
+    void mlMtxScale_xyz(f32, f32, f32);
+    void func_800E1DF4();
+    void func_800E23A4();
+    f32 sx;
+    f32 sy;
+    f32 sz;
+    f32 position[3];
+    f32 scaleX;
+    Gfx *list;
+    Gfx *pop;
+
+    if (scale != NULL) {
+        sx = scale[0];
+        sy = scale[1];
+        sz = scale[2];
+    } else {
+        sx = sy = sz = 1.0f;
+    }
+    if (func_800E1C00((void *)resource, (s32)positionArg, sx, sy, (s32)position) == 0) {
+        func_800E23A4();
+        return;
+    }
+    func_800E1DF4(arg0, resource);
+    func_80019CD4();
+    func_800191F8(position[0], position[1], position[2]);
+    if (rotation != NULL) {
+        mlMtxRotatePYR(rotation[0], rotation[1], rotation[2]);
+    }
+    if (scale != NULL || flip != 0) {
+        scaleX = flip ? -sx : sx;
+        mlMtxScale_xyz(scaleX, sy, sz);
+    }
+    mlMtxApply(*(Mtx **)(arg0 + 4));
+    list = (*(Gfx **)arg0)++;
+    list->words.w0 = 0xDA380002;
+    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    (*(Mtx **)(arg0 + 4))++;
+    func_800E204C(arg0, resource);
+    func_800E2180(arg0, resource, index);
+    func_800E2260(arg0, resource);
+    pop = (*(Gfx **)arg0)++;
+    pop->words.w0 = 0xD8380002; pop->words.w1 = 0x40;
+    func_800E22F0((s32)arg0, (s32)resource);
+}
 
 f32 func_800E2DF0(void) {
     s32 func_800A89F8();

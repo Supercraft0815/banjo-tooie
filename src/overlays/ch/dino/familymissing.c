@@ -36,7 +36,73 @@ void func_80800000_chdinofamilymissing(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymissing/func_80800104_chdinofamilymissing.s")
+void func_80800104_chdinofamilymissing(Actor *arg0) {
+    struct DinoFamilyMissingFlags {
+        u8 pad0[0x74];
+        u32 pad74_4 : 28;
+        u32 unk74_0 : 4;
+    };
+    s32 _chdinofamilyfx_entrypoint_0(Actor *);
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    void func_800FFAB0(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    void func_80105834(Actor *);
+    s32 func_80105998(Actor *, f32);
+    s32 func_80105A5C(Actor *);
+    void func_80800418_chdinofamilymissing(Actor *);
+    extern u32 D_808006A0_chdinofamilymissing;
+    _sudeflect_entrypoint_1(arg0->position, func_80103EF4(arg0), 0.0f, func_80103EAC(arg0), 10);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800418_chdinofamilymissing(arg0);
+            func_80105834(arg0);
+            if (func_80105998(arg0, 0.15f)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x17CD, 0xF, arg0->position, 0x39);
+            }
+            if (func_80105A5C(arg0)) {
+                _glcutDll_entrypoint_24(0x118, -1, 0x35);
+                func_800FFAB0(arg0);
+            }
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808006A0_chdinofamilymissing, 0.47f);
+            break;
+        case 2:
+            if (func_80105A5C(arg0)) {
+                func_800DA524(0x588);
+                func_80102424(arg0, 3);
+                ((struct DinoFamilyMissingFlags *)arg0)->unk74_0 = 0;
+            } else {
+                func_80800418_chdinofamilymissing(arg0);
+                func_80105834(arg0);
+            }
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808006A0_chdinofamilymissing, 0.47f);
+            break;
+        case 3:
+            if (func_80105A5C(arg0)) {
+                func_800DA544(0x8A);
+                func_80101180(0x290, 0x33, 2);
+                func_80102424(arg0, 4);
+            }
+            break;
+        case 4:
+            break;
+        case 5:
+            _sudeflect_entrypoint_1(arg0->position, arg0->scale * 235.0f, 0.0f, arg0->scale * 179.0f, 30);
+            if (_subaddiedialog_entrypoint_4(arg0->position, 0x258, 0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x17CE, 0xF, arg0->position, 0x39);
+            }
+            break;
+    }
+    _chdinofamilyfx_entrypoint_0(arg0);
+}
 
 s32 func_80800324_chdinofamilymissing(Actor *arg0, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);

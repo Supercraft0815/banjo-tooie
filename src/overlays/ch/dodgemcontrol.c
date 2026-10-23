@@ -129,7 +129,90 @@ void func_8080061C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x22);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808006CC_chdodgemcontrol.s")
+void func_808006CC_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 _gcgoto_entrypoint_1(s32, s32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800D395C(void);
+    void func_800DA3B8(s32, s32);
+    s32 func_800EA05C(void);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_808019C4_chdodgemcontrol(Actor *, s32);
+    typedef struct {
+        u8 pad0[0xC2];
+        u8 count;
+        u8 unkC3;
+        u8 unkC4;
+        u8 unkC5;
+    } DodgemData;
+    s32 pad[2];
+    s32 sp1C;
+    DodgemData *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x10D9:
+    case 0x10DA:
+        _gcfrontend_entrypoint_10();
+        break;
+    case 0x10FC:
+        func_8080061C_chdodgemcontrol(arg0, 0x10D3, 0);
+        break;
+    case 0x10D3:
+    case 0x10EB:
+        sp1C = func_808005CC_chdodgemcontrol(arg0->unk79_4);
+        func_800CE8D8(0, (f32)sp1C, func_808005CC_chdodgemcontrol(arg0->unk79_4));
+        func_800CE88C(0, 1);
+        func_808019C4_chdodgemcontrol(arg0, 0);
+        arg0->unk70_10 = 3;
+        func_800FDC28(0xC);
+        break;
+    case 0x10D4:
+        func_800DA3B8(0xA9, 1);
+        _gcgoto_entrypoint_1(0xDD, 5);
+        break;
+    case 0x10D5:
+        func_800DA3B8(0xAA, 1);
+        _gcgoto_entrypoint_1(0xDD, 5);
+        break;
+    case 0x10D6:
+        func_800DA3B8(0xB0, 1);
+        _gcgoto_entrypoint_1(0xDD, 5);
+        break;
+    case 0xCEB:
+        if (func_800D395C()) {
+            if (arg2 == 1) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+        } else {
+            if (arg2 == 1) {
+                _gcgoto_entrypoint_1(func_800EA05C(), 1);
+            } else {
+                _gcgoto_entrypoint_1(0xDD, 5);
+            }
+        }
+        break;
+    case 0x10D7:
+    case 0x10EC:
+    case 0x10ED:
+    case 0x10EE:
+    case 0x10EF:
+    case 0x10F0:
+    case 0x10F1:
+        func_8080061C_chdodgemcontrol(arg0, 0xCEB, 0x40);
+        break;
+    case 0x10BB:
+    case 0x10BC:
+    case 0x10BD:
+        data->unkC4 = 1;
+        break;
+    }
+}
 
 s32 func_808008EC_chdodgemcontrol(Actor *arg0) { switch (arg0->unk79_4) { case 0: return 0x3C; case 1: return 0x32; case 2: return 0x28; default: return 0; } }
 
@@ -211,7 +294,73 @@ void func_80801344_chdodgemcontrol(Actor *arg0) {
     func_800D2748(0xC6, 0x26);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808013D0_chdodgemcontrol.s")
+void func_808013D0_chdodgemcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s16 func_800D211C(s32);
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800EA05C(void);
+    s32 func_800DA298(s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800F6438(u32);
+    void func_800F4CEC(s32, u32);
+    s32 _gcstatusDll_entrypoint_11(void);
+    void func_808017F0_chdodgemcontrol(Actor *);
+    void func_800BF744(s32, s32);
+    extern s32 D_80804D00_chdodgemcontrol[];
+    typedef struct {
+        u8 pad0[0xC2];
+        u8 count;
+        u8 unkC3;
+        u8 unkC4;
+        u8 unkC5;
+    } DodgemData;
+    DodgemData *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    if (func_800D211C(0x8A) == 0) {
+        func_800D2054(0, 0x8A, 3);
+        func_800D2054(0, 0x8B, 3);
+        func_800D2054(0, 0x8C, 3);
+    }
+    switch (func_800EA05C()) {
+    case 0xDE:
+        arg0->unk79_4 = 0;
+        data->unkC5 = 3;
+        func_808012C8_chdodgemcontrol(arg0, func_800DA298(0xAC));
+        data->count = D_80804D00_chdodgemcontrol[arg0->unk79_4];
+        break;
+    case 0xDF:
+        arg0->unk79_4 = 1;
+        data->unkC5 = 3;
+        func_808012C8_chdodgemcontrol(arg0, func_800DA298(0xAD));
+        data->count = D_80804D00_chdodgemcontrol[arg0->unk79_4];
+        break;
+    case 0xE0:
+        arg0->unk79_4 = 2;
+        data->unkC5 = 3;
+        func_808012C8_chdodgemcontrol(arg0, func_800D0A9C(0x16, 1));
+        data->count = D_80804D00_chdodgemcontrol[arg0->unk79_4];
+        break;
+    case 0x186:
+        for (i = 0; i != 8; i++) {
+            if (func_800F6438(i)) {
+                func_800F4CEC(i, 0);
+            }
+        }
+        arg0->unk79_4 = 3;
+        data->count = _gcstatusDll_entrypoint_11();
+        data->unkC5 = 3;
+        break;
+    }
+    if (data->unkC5 >= 11) {
+        data->unkC5 = 10;
+    }
+    data->unkC3 = 0;
+    func_808017F0_chdodgemcontrol(arg0);
+    func_800BF744(1, 1);
+    func_80801344_chdodgemcontrol(arg0);
+}
 
 void func_808015E8_chdodgemcontrol(Actor *arg0) {
     switch (arg0->unk79_4) {
@@ -1313,7 +1462,65 @@ f32 func_808046EC_chdodgemcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080476C_chdodgemcontrol.s")
+void func_8080476C_chdodgemcontrol(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    struct DodgemData {
+        u8 pad0[0x34];
+        f32 positions[10][3];
+        u8 flags[0x16];
+        u8 count;
+        u8 padC3[2];
+        u8 positionCount;
+    };
+    Actor *player;
+    Actor *controller;
+    struct DodgemData *data;
+    s32 index;
+    s32 i;
+    s32 count;
+    Actor *other;
+    f32 position[3];
+
+    controller = func_80106790(arg0->unk3C);
+    data = func_80100094(controller, 0);
+    if (controller->unk79_4 == 3) {
+        if (arg0->unk50 <= 0.0f) {
+            index = func_800DC128(0, data->positionCount);
+            if (data->flags[index] == 1) {
+                ((f32 *)arg0->actorData)[7] = index;
+            }
+            arg0->unk50 = func_800DC178(3.0f, 5.0f);
+        }
+        arg0->unk54 = func_800F1DF4(arg0->position, data->positions[(s32)((f32 *)arg0->actorData)[7]]);
+    } else {
+        player = func_8080000C_chdodgemcontrol(controller, 0);
+        count = 0;
+        for (i = 1; i < data->count; i++) {
+            if (i != arg0->unk6C_0) {
+                other = func_8080000C_chdodgemcontrol(controller, i);
+                if (func_800EEB40(other->position, player->position) < 90000.0f) {
+                    count++;
+                }
+            }
+        }
+        if (count >= 2) {
+            if (arg0->unk50 <= 0.0f) {
+                position[1] = 0.0f;
+                position[0] = func_800DC178(-600.0f, 600.0f);
+                position[2] = func_800DC178(-600.0f, 600.0f);
+                arg0->unk54 = func_800F1DF4(arg0->position, position);
+                arg0->unk50 = func_800DC178(0.5f, 1.5f);
+            }
+        } else {
+            arg0->unk54 = func_800F1DF4(arg0->position, player->position);
+        }
+    }
+}
 
 OSThread *chdodgemcontrol_entrypoint_2(void)
 {

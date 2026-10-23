@@ -28,7 +28,15 @@ void func_800AA2A0(s16 *arg0, s32 *arg1, f32 *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA7FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AAAE0.s")
+void func_800AAAE0(u8 *arg0) {
+    extern f32 D_80127938[];
+    s32 i, j;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 4; j++) {
+            arg0[i * 4 + j] = (u32)D_80127938[i * 4 + j + 9];
+        }
+    }
+}
 
 void func_800AAD28(f32 *arg0) {
     void func_800EE7F8(f32 *, f32 *);

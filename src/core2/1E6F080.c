@@ -673,7 +673,64 @@ s32 func_80097104(PlayerState *arg0, f32 *arg1, f32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800972BC.s")
+s32 func_800972BC(PlayerState *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 var_f0;
+    f32 sp60;
+    f32 sp5C;
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_800EE7F8(sp50, arg1);
+    func_80095870(arg0, &sp5C, &sp60);
+    sp50[1] += sp5C - sp60;
+    if ((*(u8 **)((u8 *)arg0 + 0x98))[0x24]) {
+        var_f0 = 15.0f;
+    } else {
+        var_f0 = 0.0f;
+    }
+    switch (func_80096E30(*(f32 **)((u8 *)arg0 + 0x98), sp44, sp50,
+                         sp60 + 30.0f, -sp60 * 0.5f,
+                         var_f0)) {
+    case 0:
+        (*(u8 **)((u8 *)arg0 + 0x98))[0x25] = 2;
+        return 0;
+    case 1:
+        (*(u8 **)((u8 *)arg0 + 0x98))[0x25] = 3;
+        return 0;
+    case 4:
+        (*(u8 **)((u8 *)arg0 + 0x98))[0x25] = 3;
+        return 0;
+    case 2:
+        (*(u8 **)((u8 *)arg0 + 0x98))[0x24] = 1;
+        break;
+    case 3:
+        (*(u8 **)((u8 *)arg0 + 0x98))[0x24] = 0;
+        break;
+    }
+    func_800EE7F8(*(f32 **)((u8 *)arg0 + 0x98) + 3, sp44);
+    if (func_80097104(arg0, sp44, sp60) == 0) {
+        return 0;
+    }
+    func_800EFA20(sp2C, *(f32 **)((u8 *)arg0 + 0x98), sp60 + -18.0f);
+    func_800EFB24(sp50, sp44, sp2C);
+    sp50[1] = (sp44[1] - sp5C) + -43.0f;
+    if (func_8009700C((s32)arg0, sp38, sp50, sp60 * 0.75f + sp5C, -50.0f) != 0) {
+        if (sp38[1] > 0.0f) {
+            (*(u8 **)((u8 *)arg0 + 0x98))[0x25] = 4;
+        } else {
+            (*(u8 **)((u8 *)arg0 + 0x98))[0x25] = 5;
+        }
+        return 0;
+    }
+    func_800EE7F8(*(f32 **)((u8 *)arg0 + 0x98) + 6, sp50);
+    (*(u8 **)((u8 *)arg0 + 0x98))[0x25] = 1;
+    return 1;
+}
 
 /* extern */
 
@@ -722,7 +779,49 @@ s32 func_80097530(PlayerState *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6F080/func_800976DC.s")
+s32 func_800976DC(PlayerState *arg0) {
+    s32 bastatetimer_isActive(PlayerState *, s32);
+    void func_8009C128(PlayerState *, f32 [3]);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EF2A0(f32 [3]);
+    void func_800F0410(f32 [3], f32 [3][3], f32 [3]);
+    f32 sp74;
+    f32 sp70;
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp28[3][3];
+    f32 *temp_v0;
+
+    if (bastatetimer_isActive(arg0, 7) != 0) {
+        return 0;
+    }
+    if (func_8009650C(arg0) == 0) {
+        return 0;
+    }
+    func_80096440(arg0, sp58);
+    if (sp58[1] > 0.028f && sp58[1] < 0.98f) {
+        return 0;
+    }
+    func_8009C128(arg0, sp64);
+    func_80095870(arg0, &sp70, &sp74);
+    sp64[1] += sp70;
+    func_8009646C((u8 *)arg0, sp28[0]);
+    func_800F0410(sp4C, sp28, sp64);
+    func_800EFB24(*(f32 **)((u8 *)arg0 + 0x98), sp4C, sp64);
+    (*(f32 **)((u8 *)arg0 + 0x98))[1] = 0.0f;
+    func_800EF2A0(*(f32 **)((u8 *)arg0 + 0x98));
+    temp_v0 = *(f32 **)((u8 *)arg0 + 0x98);
+    if (temp_v0[0] == 0.0f && temp_v0[2] == 0.0f) {
+        return 0;
+    }
+    *((s8 *)temp_v0 + 0x24) = 1;
+    func_8009C128(arg0, sp64);
+    if (func_800972BC(arg0, sp64) == 0) {
+        return 0;
+    }
+    return func_800972BC(arg0, *(f32 **)((u8 *)arg0 + 0x98) + 6);
+}
 
 /* extern */
 

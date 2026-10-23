@@ -69,7 +69,61 @@ void func_80800174_chjujubagfx(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jujubagfx/func_808001A8_chjujubagfx.s")
+void func_808001A8_chjujubagfx(Actor *arg0) {
+    s32 _sumumbofx_entrypoint_14(void *);
+    void _sumumbofx_entrypoint_17(void *, f32);
+    f32 _sumumbofx_entrypoint_21(void *);
+    f32 _sumumbofx_entrypoint_22(u8 *);
+    s32 _sumumbofx_entrypoint_7(void *, f32, s32, s32, f32 *, f32 *, f32 *);
+    void _chnewmumbo_entrypoint_0(Actor *, f32 *);
+    s32 func_800DA298(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8008FE94(s32, u8 *);
+    void func_800FFAB0(Actor *);
+    s32 func_8010D278();
+    typedef struct { f32 v[3]; } Vec3;
+    extern Vec3 D_808004B8_chjujubagfx;
+    extern Vec3 D_808004C4_chjujubagfx;
+    Vec3 sp4C = D_808004B8_chjujubagfx;
+    Vec3 sp40 = D_808004C4_chjujubagfx;
+    void *sp3C;
+    s32 pad;
+
+    sp3C = func_80100094(arg0, 1U);
+    if (func_800DA298(0x9F3)) {
+        func_8080000C_chjujubagfx(arg0, 4);
+    }
+    if (!arg0->unk64_20) {
+        if (func_8010D278() != 0xD) {
+            if (arg0->unk3C != NULL) {
+                _chnewmumbo_entrypoint_0(func_80106790(arg0->unk3C), arg0->position);
+            }
+        } else {
+            func_8008FE94(1, arg0->position);
+        }
+    }
+    switch (arg0->unk70_10) {
+        case 2:
+            _sumumbofx_entrypoint_14(sp3C);
+            _sumumbofx_entrypoint_7(sp3C, 28.0f, 0, 10, arg0->position, sp40.v, sp4C.v);
+            if (_sumumbofx_entrypoint_21(sp3C) == 0.0f) {
+                _sumumbofx_entrypoint_17(sp3C, 10.0f);
+                func_8080000C_chjujubagfx(arg0, 3);
+            }
+            break;
+        case 3:
+            _sumumbofx_entrypoint_14(sp3C);
+            _sumumbofx_entrypoint_7(sp3C, 28.0f, 0, 10, arg0->position, sp40.v, sp4C.v);
+            break;
+        case 4:
+            _sumumbofx_entrypoint_14(sp3C);
+            _sumumbofx_entrypoint_7(sp3C, 28.0f, 0, 10, arg0->position, sp40.v, sp4C.v);
+            if (_sumumbofx_entrypoint_22(sp3C) < 0.05f) {
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+}
 
 void func_808003D4_chjujubagfx(Actor *arg0, s32 arg1) { void *_sumumbofx_entrypoint_8(u8 *, s32); _sumumbofx_entrypoint_8(func_80100094(arg0, 1U), arg1); }
 

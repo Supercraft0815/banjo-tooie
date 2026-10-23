@@ -14,7 +14,80 @@ OSThread *chstonepillar_entrypoint_1(void)
     return (OSThread *) D_80801438_chstonepillar;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800018_chstonepillar.s")
+void func_80800018_chstonepillar(Actor *arg0)
+{
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, s16, u32);
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_80800474_chstonepillar(Actor *);
+    s32 func_80800870_chstonepillar(Actor *);
+    void func_80800ADC_chstonepillar(Actor *, s32);
+    s32 func_80800B58_chstonepillar(Actor *);
+    void func_80800FE0_chstonepillar(Actor *);
+    s32 func_8080112C_chstonepillar(Actor *);
+    void func_80801174_chstonepillar(Actor *);
+    void func_808011CC_chstonepillar(Actor *, u32, f32, f32);
+    s32 func_80801238_chstonepillar(Actor *);
+    void func_80801374_chstonepillar(Actor *, s32);
+    struct PillarData {
+        u8 unk0[0x18];
+        f32 position[3];
+        f32 unk24;
+        s32 unk28;
+        s16 index;
+        s8 unk2E;
+        s8 unk2F;
+    };
+    struct PillarData *sp2C;
+    u32 sp28;
+    u32 sp24;
+
+    sp2C = func_80100094(arg0, 0);
+    sp28 = arg0->unk70_10;
+    func_80800FE0_chstonepillar(arg0);
+    if (sp2C->index == 4 || func_800D0B68(8, 1) != 0) {
+        if (_glcutDll_entrypoint_19(0xB) != 0 && sp28 == 3) {
+            func_80800ADC_chstonepillar(arg0, 0);
+        }
+    } else if (func_800DA298(0x9D7) != 0 || func_8080112C_chstonepillar(arg0) != 0) {
+        func_80801374_chstonepillar(arg0, 2);
+        switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(0x9D7) != 0 && sp2C->index == 0) {
+                func_80801174_chstonepillar(arg0);
+                func_80800B58_chstonepillar(arg0);
+                sp2C->unk24 = 0.5f;
+                func_800DA524(0x9D7);
+                if (func_800DA298(0x9D9) == 0) {
+                    sp24 = 0x810;
+                    if (_glcutDll_entrypoint_19(0xB) != 0) {
+                        sp24 = 0x910;
+                    }
+                    _capod_entrypoint_13(arg0->unk0, NULL, 0xC, sp24);
+                    func_800DA544(0x9D9);
+                }
+            } else if (func_80800474_chstonepillar(arg0) != 0) {
+                func_808011CC_chstonepillar(arg0, 2, 1.0f, 1.0f);
+            }
+            break;
+        case 2:
+            if (func_80801238_chstonepillar(arg0) == 0) {
+                func_80101FDC(arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_80800870_chstonepillar(arg0) == 0) {
+                func_80800ADC_chstonepillar(arg0, 1);
+            }
+            break;
+        }
+    }
+}
 
 void func_808001FC_chstonepillar(Actor *arg0)
 {
@@ -251,7 +324,71 @@ void func_808007C8_chstonepillar(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stonepillar/func_80800870_chstonepillar.s")
+s32 func_80800870_chstonepillar(Actor *arg0) {
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    void func_800D1218(u32, u32, f32 *);
+    void func_800D1254(u32, u32, f32 *);
+    f32 func_800D8FF8(void);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_8080148C_chstonepillar;
+    struct PillarData {
+        f32 position[3];
+        f32 destination[3];
+        u8 unknown[0x17];
+        u8 bounced;
+        f32 angle;
+        f32 speed;
+        f32 velocity;
+    } *data;
+    f32 dt;
+    f32 position[3];
+    f32 acceleration;
+
+    dt = func_800D8FF8();
+    data = func_80100094(arg0, 0);
+    func_800D1218(8, 1, position);
+    _fxsparkle_entrypoint_1(position, 0x12);
+    if (data->bounced == 0) {
+        if (position[1] < data->destination[1]) {
+            position[1] = data->destination[1];
+            data->velocity *= -0.54f;
+            data->speed *= 0.08f;
+            func_800D1254(8, 1, position);
+            data->bounced = 1;
+            func_8010D930(3, 0, position, &D_8080148C_chstonepillar);
+            return 1;
+        } else {
+            acceleration = data->velocity;
+            data->velocity -= 1200.0f * dt;
+            position[1] += data->velocity * dt;
+            if (acceleration >= 0.0f && data->velocity < 0.0f) {
+                data->angle = func_800F1DF4(position, data->destination);
+            }
+            func_800EF1B8(position, data->angle, data->speed * dt);
+        }
+    } else {
+        acceleration = 1200.0f * dt;
+        data->velocity -= acceleration;
+        position[1] += data->velocity * dt;
+        func_800EF1B8(position, data->angle, data->speed * dt);
+        if (data->velocity < 0.0f) {
+            if (position[1] < data->destination[1]) {
+                position[1] = data->destination[1];
+                data->velocity *= -0.6f;
+                func_8010D930(3, 0, position, &D_8080148C_chstonepillar);
+                if (data->velocity < 2.0f * acceleration) {
+                    func_800D1254(8, 1, position);
+                    return 0;
+                }
+            }
+        }
+    }
+    func_800D1254(8, 1, position);
+    return 1;
+}
 
 void func_80800ADC_chstonepillar(Actor *arg0, s32 arg1) {
     void _glcutDll_entrypoint_17(void);

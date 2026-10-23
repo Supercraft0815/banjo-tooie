@@ -113,7 +113,41 @@ void func_8080024C_chpowerhutwitchy(s32 *arg0) {
     _glid_entrypoint_0(temp_v0, 6, callback, *arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/powerhutwity/chpowerhutwitchy_entrypoint_4.s")
+void chpowerhutwitchy_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_800F2FD0(s32, s32, f32);
+    s32 func_800F3320(u8 *, u8 *, u8 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern u8 D_80800C48_chpowerhutwitchy[];
+    f32 amount;
+    f32 alpha;
+    amount = *(f32 *)((u8 *)func_80106790(arg4) + 0x28);
+    switch (arg0) {
+    case 1:
+        while (arg3 > 0) {
+            func_800F2FD0(arg2->v.cn, arg1->v.cn, amount);
+            arg3--; arg1++; arg2++;
+        }
+        break;
+    case 2:
+        while (arg3 > 0) {
+            func_800F3320(arg2->v.cn, D_80800C48_chpowerhutwitchy, arg1->v.cn, amount);
+            arg3--; arg1++; arg2++;
+        }
+        break;
+    case 3:
+        alpha = func_800F10B4(amount, 0.0f, 1.0f, 0.3f, 1.0f);
+        for (; arg3 > 0; arg1++, arg3--, arg2++) {
+            arg2->v.cn[3] = (u32)((f32)(u32)arg1->v.cn[3] * alpha);
+        }
+        break;
+    case 6:
+        for (; arg3 > 0; arg1++, arg3--, arg2++) {
+            arg2->v.cn[3] = (u32)((f32)(u32)arg1->v.cn[3] * amount);
+        }
+        break;
+    }
+}
 
 void func_808005C8_chpowerhutwitchy(Actor *arg0) {
     s32 _chpowerhut_entrypoint_0(Actor *, s32 *);

@@ -629,7 +629,73 @@ void func_8080200C_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
     func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802FC4_chinflatableboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80802058_chinflatableboss.s")
+void func_80802058_chinflatableboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x28];
+        f32 position[3];
+        u8 pad34[0x400];
+        s32 effect;
+        u8 sound;
+        u8 pad439[3];
+        s32 effects[12];
+        u8 sounds[12];
+    } BossData;
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    s32 func_800BA198(void *);
+    int func_800BA28C(void *);
+    s32 func_800BA2C4(void *);
+    void func_800BBD18(s32, f32 *, f32 *, f32, s32 *);
+    void *func_80100094(Actor *, u32);
+    f32 func_80101F24(Actor *);
+    s32 func_80802590_chinflatableboss(Actor *, f32 *, s32);
+    extern s32 D_80802FF8_chinflatableboss;
+    s32 *effects;
+    u8 *sounds;
+    s32 i;
+    BossData *data;
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    s32 effect;
+
+    data = func_80100094(arg0, 0);
+    effects = data->effects;
+    sounds = data->sounds;
+    i = 0;
+    do {
+        if (*effects != 0 || *sounds != 0) {
+            func_80801904_chinflatableboss(arg0, i + 3, sp60);
+            func_80802590_chinflatableboss(arg0, sp6C, i + 3);
+            effect = *effects;
+            *sounds = _subaddieaudioloop_entrypoint_7(*sounds, sp6C,
+                effect != 0 && func_800BA198((void *)effect) >= 8,
+                &D_80802FF8_chinflatableboss, arg0->unk70_0);
+            effect = *effects;
+            if (effect != 0) {
+                func_800BBD18(effect, sp6C, sp60, arg0->scale, NULL);
+                if (func_800BA28C((void *)*effects)) {
+                    data->effects[i] = func_800BA2C4((void *)*effects);
+                }
+            }
+        }
+        i++;
+        effects++;
+        sounds++;
+    } while (i != 12);
+    if (data->effect != 0 || data->sound != 0) {
+        _subaddieskeleton_entrypoint_3(arg0->unk0, 7, sp54);
+        data->sound = _subaddieaudioloop_entrypoint_7(data->sound, sp54,
+            data->effect != 0 && func_80101F24(arg0) < 0.43f,
+            &D_80802FF8_chinflatableboss, arg0->unk70_0);
+        if (data->effect != 0) {
+            func_800BBD18(data->effect, sp54, data->position, arg0->scale, NULL);
+            if (func_800BA28C((void *)data->effect)) {
+                data->effect = func_800BA2C4((void *)data->effect);
+            }
+        }
+    }
+}
 
 void func_80802264_chinflatableboss(Actor *arg0, f32 arg1, f32 arg2, f32 *arg3, s16 arg4) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);

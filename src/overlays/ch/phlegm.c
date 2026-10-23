@@ -127,7 +127,83 @@ void func_80800354_chphlegm(Actor *arg0) {
     arg0->unk58 = func_800DC178(0.8f, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/phlegm/func_808003B4_chphlegm.s")
+void func_808003B4_chphlegm(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _suchase_entrypoint_1(Actor *);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    s32 func_80101DDC(Actor *);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102BF8(void *, f32, f32, f32);
+    void func_8010A590(Actor *);
+    f32 func_8010CD28(Actor *);
+    s32 func_8010D248(void);
+    extern u8 D_80800C30_chphlegm[];
+    typedef union {
+        Actor actor;
+        struct {
+            u32 prefix[25];
+            u32 unk64_31 : 1;
+            u32 unk64_30 : 1;
+        } flags;
+    } PhlegmActor;
+    f32 sp8C[3];
+    f32 sp80[3];
+    f32 sp74[3];
+    f32 sp70;
+    u8 *actors[10];
+    s32 i;
+    s32 remaining;
+    s32 count;
+    f32 speed;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_80101DDC(arg0)) {
+                func_8010A590(arg0);
+                func_80102424(arg0, 2);
+            }
+            break;
+        case 2:
+            if (func_8010D248()) {
+                if (arg0->unk64_29) {
+                    speed = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+                } else {
+                    speed = 1.0f;
+                    arg0->unk54 = func_8010CD28(arg0);
+                }
+                func_80102BF8(arg0, 0.15f, 120.0f, 360.0f);
+                if (func_800DA298(0) && func_800D90A4(&arg0->unk58)) {
+                    count = _subaddiefind_entrypoint_4(0x399, actors, 10);
+                    remaining = count;
+                    for (i = 0; i < count; i++) {
+                        if (!((PhlegmActor *)actors[i])->flags.unk64_30) {
+                            remaining--;
+                        }
+                    }
+                    if (arg0->unk64_29 || remaining < 4 || _suchase_entrypoint_1(arg0)) {
+                        sp70 = func_800D8FF8() * (*(f32 *)&arg0->actorData[3] * speed) * func_800F3780(func_80101F24(arg0), D_80800C30_chphlegm, 4);
+                        func_800EE7F8(sp80, arg0->position);
+                        func_800EF1B8(sp80, arg0->rotation[1], sp70);
+                        sp80[1] -= 80.0f;
+                        func_800EE7F8(sp8C, sp80);
+                        sp8C[1] = arg0->position[1] + 100.0f;
+                        if (func_800C6A7C(sp8C, sp80, sp74, arg0->unk14)) {
+                            func_800EE7F8(arg0->position, sp80);
+                        }
+                    }
+                }
+            }
+            break;
+    }
+}
 
 s32 func_808005E4_chphlegm(Actor *arg0, s32 arg1, s32 *arg2) {
     extern void _chbaddiesetup_entrypoint_10(void);

@@ -81,7 +81,87 @@ void func_8008E6BC(void *arg0) {
     *(*(s32 **)((s8 *)(arg0) + (0xC))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E67DA0/func_8008E6F0.s")
+void func_8008E6F0(PlayerState *arg0) {
+    struct Flags {
+        u8 pad[0x28];
+        unsigned int upper : 22;
+        unsigned int flag : 1;
+        unsigned int rest : 9;
+    };
+    void func_8009C128(PlayerState *, f32[3]);
+    void func_800EC0EC(f32 *, void **);
+    void baflag_clear(PlayerState *, int);
+    int baflag_isTrue(PlayerState *, s32);
+    s32 func_80091E80(u8 *, s32);
+    s32 func_8008DAA8(void *);
+    s32 func_800EA068(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F5410(s32);
+    s32 func_800F6D24(s32);
+    s32 func_800F8B88(void);
+    void _bsfirstp_entrypoint_14(PlayerState *);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    s32 func_800CDBA8(void *, f32 (*)[3], f32 *, s32);
+    s32 func_800CDFA8(s32, s32 *);
+    extern f32 D_80126CE0[][3];
+    extern f32 D_80126D08[];
+    f32 position[3];
+    s32 map;
+    s32 mode;
+    s32 enabled;
+    s32 other;
+    s32 flag;
+    s32 count;
+    s32 i;
+    s32 index;
+    s32 j;
+    Unk80132ED0 *marker;
+    f32 radius;
+
+    func_8009C128(arg0, position);
+    func_800EC0EC(position, *(void ***)arg0->unkC);
+    baflag_clear(arg0, 8);
+    if ((*(struct Flags **)arg0->unkC)->flag && func_80091E80((u8 *)arg0, 8)) {
+        if (!func_800EA068(0x20)) {
+            if (!func_8008DAA8(arg0)) {
+                map = func_800F54E4();
+                mode = func_800F5410(map);
+                if (mode != 9) {
+                    if (mode != 0xB) {
+                        if (mode != 0x11) return;
+                        if (func_800F6D24(map)) return;
+                    } else {
+                        if (func_800F8B88() != 3) return;
+                        if (func_800F6D24(map)) return;
+                    }
+                }
+            }
+        } else {
+            enabled = func_800EA068(8);
+            other = func_800EA068(0x4000);
+            flag = baflag_isTrue(arg0, 0x3B);
+            if (enabled && other && flag) {
+                _bsfirstp_entrypoint_14(arg0);
+            }
+        }
+        func_800CB840(1, arg0->unk184);
+        for (i = 0; i != 3; i++) {
+            radius = func_8009E138(arg0, i);
+            if (radius == 0.0f) break;
+            D_80126D08[i] = radius;
+            func_8009E154(arg0, i, D_80126CE0[i]);
+        }
+        count = func_800CDBA8(*(void **)arg0->unkC, D_80126CE0, D_80126D08, i);
+        for (j = 0; j < count; j++) {
+            marker = (Unk80132ED0 *)func_800CDFA8(j, &index);
+            *(s32 *)((u8 *)arg0->unkC + 0x18) = index;
+            func_8008E530(arg0, marker);
+        }
+        func_800CB870();
+        *(s32 *)((u8 *)arg0->unkC + 0x18) = -1;
+    }
+}
 
 s32 func_8008E92C(void *arg0)
 {

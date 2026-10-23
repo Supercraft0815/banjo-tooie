@@ -302,7 +302,73 @@ update_timer:
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/gcnewoption_entrypoint_1.s")
+/* extern */
+
+void gcnewoption_entrypoint_1(u8 *arg0, s32 arg1) {
+    struct RenderOption {
+        s16 state;
+        s16 count;
+        u8 pad4[0x10];
+        f32 spacing;
+        u8 pad18[8];
+        s32 box;
+        u8 pad24[0x10];
+        s16 height;
+        u8 pad36[6];
+        s32 boxes[17];
+        f32 positions[17];
+        u8 padC4[0x192];
+        s16 offset;
+    };
+    s32 _gczoombox_entrypoint_2(s32, s32);
+    void _gczoombox_entrypoint_28(s32, s16);
+    s32 _gczoombox_entrypoint_29(s32);
+    s32 _gczoombox_entrypoint_38(s32, s32);
+    f32 savedPosition;
+    s32 savedHeight;
+    s32 index;
+    s32 i;
+    int count;
+    struct RenderOption *box;
+    struct RenderOption *entry;
+
+    if (((struct RenderOption *)arg0)->state >= 2 && ((struct RenderOption *)arg0)->state < 12) {
+        i = 0;
+        box = ((struct RenderOption *)arg0);
+        if (((struct RenderOption *)arg0)->count > 0) {
+            do {
+                index = func_80800000_gcnewoption((u8 *)((struct RenderOption *)arg0), i);
+                _gczoombox_entrypoint_2(box->boxes[0], arg1);
+                entry = (struct RenderOption *)((u8 *)((struct RenderOption *)arg0) + index * 4);
+                if (entry->positions[0] < ((struct RenderOption *)arg0)->spacing) {
+                    savedPosition = entry->positions[0];
+                    savedHeight = _gczoombox_entrypoint_29(entry->boxes[0]);
+                    _gczoombox_entrypoint_28(entry->boxes[0], ((struct RenderOption *)arg0)->height);
+                    _gczoombox_entrypoint_38(entry->boxes[0], entry->positions[0] + ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
+                    _gczoombox_entrypoint_2(entry->boxes[0], arg1);
+                    _gczoombox_entrypoint_38(entry->boxes[0], ((struct RenderOption *)arg0)->offset + savedPosition);
+                    _gczoombox_entrypoint_28(entry->boxes[0], (s16)savedHeight);
+                }
+                count = ((struct RenderOption *)arg0)->count;
+                if (((struct RenderOption *)arg0)->spacing * count < entry->positions[0]) {
+                    savedPosition = entry->positions[0];
+                    savedHeight = _gczoombox_entrypoint_29(entry->boxes[0]);
+                    _gczoombox_entrypoint_28(entry->boxes[0], ((struct RenderOption *)arg0)->height);
+                    _gczoombox_entrypoint_38(entry->boxes[0], entry->positions[0] - ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
+                    _gczoombox_entrypoint_2(entry->boxes[0], arg1);
+                    _gczoombox_entrypoint_38(entry->boxes[0], ((struct RenderOption *)arg0)->offset + savedPosition);
+                    _gczoombox_entrypoint_28(entry->boxes[0], (s16)savedHeight);
+                }
+                count = ((struct RenderOption *)arg0)->count;
+                i++;
+                box = (struct RenderOption *)((u8 *)box + 4);
+            } while (i < count);
+        }
+        if (((struct RenderOption *)arg0)->box != 0) {
+            _gczoombox_entrypoint_2(((struct RenderOption *)arg0)->box, arg1);
+        }
+    }
+}
 
 int gcnewoption_entrypoint_2(void)
 {
@@ -868,9 +934,195 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801B5C_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801E68_gcnewoption.s")
+s32 func_80801E68_gcnewoption(void *arg0) {
+    int _gczoombox_entrypoint_11();
+    s32 _gczoombox_entrypoint_3();
+    s32 _gczoombox_entrypoint_9(s32);
+    s32 func_800D9078(f32 *);
+    s32 pad;
+    s32 result;
+    s32 state;
+    s32 box;
+    s32 headerBox;
+    s32 i;
+    s32 headerState;
+    u8 *ptr;
+    u8 *stateptr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808020C4_gcnewoption.s")
+    result = 1;
+    ptr = arg0;
+    i = 0;
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        stateptr = arg0;
+        do {
+            state = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            switch (state) {
+            case 0:
+                if (i == 0) {
+                    box = *(s32 *)((u8 *)arg0 + 0x20);
+                    if (box == 0 || _gczoombox_entrypoint_3(box) == 1 ||
+                        _gczoombox_entrypoint_3(*(s32 *)((u8 *)arg0 + 0x20)) == 2 ||
+                        _gczoombox_entrypoint_3(*(s32 *)((u8 *)arg0 + 0x20)) == 3 ||
+                        func_800D9078((f32 *)((u8 *)arg0 + 0x38))) {
+                        _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
+                        if (*(f32 *)(ptr + 0x9C) == 0.0f) {
+                            *(f32 *)(ptr + 0x9C) = *(f32 *)((u8 *)arg0 + 0x18);
+                        }
+                    }
+                } else if (_gczoombox_entrypoint_3(*(s32 *)(ptr + 0x38)) == 1 ||
+                           _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x38)) == 2 ||
+                           _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x38)) == 3 ||
+                           func_800D9078((f32 *)(ptr + 0x98))) {
+                    _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
+                    if (*(f32 *)(ptr + 0x9C) == 0.0f) {
+                        *(f32 *)(ptr + 0x9C) = *(f32 *)((u8 *)arg0 + 0x18);
+                    }
+                }
+                break;
+            case 1:
+                _gczoombox_entrypoint_11(*(s32 *)(ptr + 0x3C));
+                *(s8 *)(stateptr + 0x94) = state;
+                break;
+            case 2:
+            case 3:
+                *(s8 *)(stateptr + 0x94) = state;
+                break;
+            }
+            if (*(s8 *)(stateptr + 0x94) <= 0) {
+                result = 0;
+            }
+            i++;
+            ptr += 4;
+            stateptr++;
+        } while (i < *(s16 *)((u8 *)arg0 + 2));
+    }
+    headerBox = *(s32 *)((u8 *)arg0 + 0x20);
+    if (headerBox != 0) {
+        headerState = _gczoombox_entrypoint_3(headerBox);
+        switch (headerState) {
+        case 2:
+        case 3:
+            break;
+        case 0:
+            result = 0;
+            if (headerState != *((u8 *)arg0 + 0x24)) {
+                _gczoombox_entrypoint_9(*(s32 *)((u8 *)arg0 + 0x20));
+                _gczoombox_entrypoint_11(*(s32 *)((u8 *)arg0 + 0x20));
+                if (*(f32 *)((u8 *)arg0 + 0x38) == 0.0f) {
+                    *(f32 *)((u8 *)arg0 + 0x38) = *(f32 *)((u8 *)arg0 + 0x18);
+                }
+            }
+            break;
+        }
+        *((u8 *)arg0 + 0x24) = headerState;
+    }
+    return result;
+}
+
+s32 func_808020C4_gcnewoption(void *arg0) {
+    int _gczoombox_entrypoint_10();
+    s32 _gczoombox_entrypoint_3();
+    s32 _gczoombox_entrypoint_33(s32);
+    s32 i;
+    s32 busy;
+    s32 result;
+    s32 state;
+    s32 firstState;
+    s32 headerState;
+    s32 finalState;
+    s32 box;
+    u8 *ptr;
+    s8 *stateptr;
+
+    result = 1;
+    busy = 0;
+    i = 0;
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        ptr = arg0;
+        do {
+            firstState = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            if (firstState == 0 || firstState == 2 || firstState == 3) {
+                busy = 1;
+            }
+            i++;
+            ptr += 4;
+        } while (i < *(s16 *)((u8 *)arg0 + 2));
+        i = 0;
+    }
+    box = *(s32 *)((u8 *)arg0 + 0x20);
+    if (box != 0) {
+        headerState = _gczoombox_entrypoint_3(box);
+        switch (headerState) {
+            case 0:
+            case 2:
+            case 3:
+                busy = 1;
+                break;
+        }
+    }
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        ptr = arg0;
+        do {
+            state = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            switch (state) {
+                case 0:
+                case 2:
+                case 3:
+                    stateptr = (s8 *)arg0 + i;
+                    result = 0;
+                    if (state != stateptr[0x94]) {
+                        _gczoombox_entrypoint_33(*(s32 *)(ptr + 0x3C));
+                    }
+                    stateptr[0x94] = state;
+                    break;
+                case 4:
+                    result = 0;
+                    if (busy == 0) {
+                        stateptr = (s8 *)arg0 + i;
+                        if (state != stateptr[0x94]) {
+                            _gczoombox_entrypoint_10(*(s32 *)(ptr + 0x3C));
+                        }
+                        stateptr[0x94] = state;
+                    }
+                    break;
+                case 5:
+                    ((u8 *)arg0 + i)[0x94] = state;
+                    break;
+                default:
+                    ((u8 *)arg0 + i)[0x94] = state;
+                    break;
+            }
+            i++;
+            ptr += 4;
+        } while (i < *(s16 *)((u8 *)arg0 + 2));
+    }
+    box = *(s32 *)((u8 *)arg0 + 0x20);
+    if (box != 0) {
+        finalState = _gczoombox_entrypoint_3(box);
+        switch (finalState) {
+            case 1:
+            case 5:
+            case 6:
+                break;
+            case 0:
+            case 2:
+            case 3:
+                result = 0;
+                if (finalState != ((u8 *)arg0)[0x24]) {
+                    _gczoombox_entrypoint_33(*(s32 *)((u8 *)arg0 + 0x20));
+                }
+                break;
+            case 4:
+                result = 0;
+                if (finalState != ((u8 *)arg0)[0x24]) {
+                    _gczoombox_entrypoint_10(*(s32 *)((u8 *)arg0 + 0x20));
+                }
+                break;
+        }
+        ((u8 *)arg0)[0x24] = finalState;
+    }
+    return result;
+}
 
 s32 func_808022E0_gcnewoption(void *arg0) {
     int _gczoombox_entrypoint_10();

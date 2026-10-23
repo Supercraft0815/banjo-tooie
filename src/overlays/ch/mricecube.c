@@ -146,7 +146,75 @@ void func_808000AC_chmricecube(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mricecube/func_8080050C_chmricecube.s")
+s32 func_8080050C_chmricecube(Actor *arg0, s32 arg1, void *arg2) {
+    extern s32 D_808008B0_chmricecube;
+    extern s32 D_808009A8_chmricecube;
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800EF1B8(f32 *, f32, f32);
+    void func_800F77E8(s32, f32 *);
+    void func_800FC660(u32);
+    s32 func_800FFAB0(u8 *);
+    s32 func_80102424(u8 *, s32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_8010A624(Actor *);
+    s32 dialog;
+    f32 sp38[3];
+    Unk80132ED0 *sp34;
+
+    switch (arg1) {
+    case 0x2E:
+        dialog = *(s16 *)&arg2;
+        if (_subaddiedialog_entrypoint_9((s32)arg0, dialog, &D_808008B0_chmricecube, 5) == 1) {
+            func_8010A590(arg0);
+        }
+        if (arg0->unk70_10 == 3 || arg0->unk70_10 == 2) {
+            func_80102424(arg0, 4);
+        }
+        break;
+    case 0x40:
+        sp34 = arg2;
+        func_8010A624(arg0);
+        func_800EE7F8(sp38, arg0->position);
+        func_800EF1B8(sp38, arg0->rotation[1], 300.0f);
+        func_800F77E8((u32)(u16)sp34->unk18 >> 5, sp38);
+        _capod_entrypoint_13(arg0->unk0, 0, 0, 0x831);
+        func_80102424(arg0, 5);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_8010A570(arg0);
+        func_800FC660(0xE);
+        break;
+    case 0x49:
+        if (func_800EA05C() == 0x127 && _glcutDll_entrypoint_19(0x49) != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x13CC, 4, 0, 0xA9);
+            func_80102424(arg0, 8);
+            _subaddieDll_entrypoint_4(arg0, 1);
+            *(f32 *)&arg0->actorData[6] = 100.0f;
+            *(f32 *)&arg0->actorData[5] = 1200.0f;
+            _capod_entrypoint_13(arg0->unk0, 0, 0x13, 0x2831);
+            break;
+        }
+        return 0;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808009A8_chmricecube, arg0->scale);
+        break;
+    case 0x95:
+        if (func_800EA05C() == 0x127 && _glcutDll_entrypoint_19(0x49) == 0) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 

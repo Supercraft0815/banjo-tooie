@@ -50,11 +50,106 @@ s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B0ECC.s")
+s32 func_800B0ECC(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7) {
+    void func_800193C4(f32 *, f32 *);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    void func_80019A10(f32 *, f32 *);
+    s32 func_80019CD4(void);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF334(f32 *, f32);
+    f32 radius;
+    f32 origin[3];
+    f32 minimum[3];
+    f32 maximum[3];
+    f32 rotation[3];
+    int i;
+    s32 id;
+    f32 position[3];
+    u8 *end;
+    u8 *entry;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1110.s")
+    end = *(s16 *)arg0 * 0x18 + arg0 + 8;
+    for (entry = arg0 + 8; entry < end; entry += 0x18) {
+        id = entry[0x15];
+        id--;
+        if ((1 << id) & arg7) {
+            continue;
+        }
+            radius = arg6 / arg3;
+            func_800EE88C(origin, (s16 *)(entry + 0xC));
+            func_800EE88C(minimum, (s16 *)entry);
+            func_800EE88C(maximum, (s16 *)(entry + 6));
+            rotation[0] = (u32)entry[0x12];
+            rotation[1] = (u32)entry[0x13];
+            rotation[2] = (u32)entry[0x14];
+            func_800EF334(rotation, 2.0f);
+            func_80019CD4();
+            func_80019A10(origin, rotation);
+            func_8001980C(arg1, arg2, arg3, arg4);
+            func_800193C4(position, arg5);
+            for (i = 0; i != 3; i++) {
+                if (minimum[i] >= position[i] + radius || position[i] - radius >= maximum[i]) {
+                    break;
+                }
+            }
+            if (i == 3) {
+                return entry[0x15];
+        }
+    }
+    return 0;
+}
 
-u8 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
+s32 func_800B1110(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
+{
+    void func_800193C4(f32 *, f32 *);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    void func_80019924(f32 *, f32 *);
+    s32 func_80019CD4(void);
+    void func_800EE88C(f32 *, s16 *);
+    f32 totalRadius;
+    f32 center[3];
+    f32 rotation[3];
+    f32 radius;
+    f32 height;
+    f32 scaledRadius;
+    f32 halfHeight;
+    f32 position[3];
+    s32 id;
+    u8 *end;
+    u8 *entry;
+
+    entry = *(s16 *)arg0 * 0x18 + arg0 + 8;
+    end = *(s16 *)(arg0 + 2) * 0x10 + entry;
+    while (entry < end) {
+        id = entry[0xD];
+        id--;
+        if (!((1 << id) & arg7)) {
+            scaledRadius = arg6 / arg3;
+            func_800EE88C(center, (s16 *)(entry + 4));
+            rotation[0] = entry[0xA] * 2;
+            rotation[1] = entry[0xB] * 2;
+            rotation[2] = entry[0xC] * 2;
+            radius = *(s16 *)entry;
+            height = *(s16 *)(entry + 2);
+            func_80019CD4();
+            func_80019924(center, rotation);
+            func_8001980C(arg1, arg2, arg3, arg4);
+            func_800193C4(position, arg5);
+            halfHeight = height * 0.5f;
+            if (!(halfHeight <= position[2] - scaledRadius) &&
+                !(position[2] + scaledRadius <= -halfHeight)) {
+                totalRadius = scaledRadius + radius;
+                if (!(totalRadius * totalRadius <= position[0] * position[0] + position[1] * position[1])) {
+                    return entry[0xD];
+                }
+            }
+        }
+        entry += 0x10;
+    }
+    return 0;
+}
+
+s32 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5, f32 arg6, s32 arg7)
 {
   void func_800193C4(f32 *, f32 *);
   void func_8001980C(f32 *, f32 *, f32, f32 *);
@@ -111,7 +206,7 @@ u8 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5,
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1508.s")
 
-u8 func_800B196C(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+s32 func_800B196C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
     void func_80019480(f32 *, f32, f32, f32);
     void func_800198D4(f32 *, f32 *);
     void func_80019AA0(void *, s32);
@@ -177,9 +272,64 @@ rejected:
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1D3C.s")
+s32 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+    void func_80019224(f32 *, f32 *);
+    void func_800193C4(f32 *, f32 *);
+    void func_8001980C(f32 *, f32 *, f32, f32 *);
+    s32 func_80019CD4(void);
+    s32 func_800ADE2C(s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void mlMtxSet(void *);
+    f32 sqrtf(f32);
+    extern s16 D_80127EE0;
+    f32 scaledRadiusSquared;
+    u8 *base;
+    f32 position[3];
+    f32 center[3];
+    f32 edge[3];
+    f32 radiusSquared;
+    f32 radius;
+    s32 id;
+    f32 delta[3];
+    u8 *entry;
+    u8 *end;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1F8C.s")
+    func_80019CD4();
+    func_8001980C(arg1, arg2, arg3, arg4);
+    func_800193C4(position, arg6);
+    base = *(s16 *)arg0 * 0x18 + arg0 + 8;
+    entry = *(s16 *)(arg0 + 2) * 0x10 + base;
+    end = *(s16 *)(arg0 + 4) * 0xC + entry;
+    arg7 /= arg3;
+    for (; entry < end; entry += 0xC) {
+        id = entry[8];
+        id--;
+        if ((1 << id) & arg8) {
+            continue;
+        }
+        scaledRadiusSquared = arg7 * arg7;
+        func_800EE88C(center, (s16 *)(entry + 2));
+        func_800EFA4C(edge, (f32)*(s16 *)entry + center[0], center[1], center[2]);
+        mlMtxSet(func_800ADE2C(arg5, *(s8 *)(entry + 9)));
+        func_80019224(center, center);
+        func_80019224(edge, edge);
+        delta[0] = edge[0] - center[0];
+        delta[1] = edge[1] - center[1];
+        delta[2] = edge[2] - center[2];
+        radiusSquared = func_800EEFD4(delta);
+        radius = sqrtf(radiusSquared);
+        if (func_800EEB40(center, position) <= scaledRadiusSquared + radiusSquared + 2.0f * radius * arg7) {
+            D_80127EE0 = (s32)((entry - *(s16 *)(arg0 + 2) * 0x10) - base) / 12;
+            return entry[8];
+        }
+    }
+    return 0;
+}
+
+s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9) { void func_80019750(f32 *, f32 *, f32, f32 *); s32 func_80019CD4(void); s32 func_800B1508(u8 *, f32 *, f32 *, f32, f32 *, s32, f32 *, f32, s32); void func_800EFA4C(f32 *, f32, f32, f32); void mlMtxGet(void *); extern s32 D_80127EA0; s32 result; f32 **translation = &arg1; f32 **rotation = &arg2; if (arg5 != 0) { func_80019CD4(); func_80019750(*translation, *rotation, arg3, arg4); mlMtxGet(&D_80127EA0); result = func_800B1D3C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); if (result == 0) { result = func_800B1508(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } if (result == 0) { result = func_800B196C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } } else { result = func_800B1328(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); if (result == 0) { result = func_800B0ECC(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } if (result == 0) { result = func_800B1110(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } } if (result != 0) { func_800EFA4C(arg8, 0.0f, 1.0f, 0.0f); } return result; }
 
 void *func_800B2190(void *arg0) {
     return (u8 *)arg0 + 0x18;

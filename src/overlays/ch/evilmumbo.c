@@ -677,7 +677,59 @@ void func_8080362C_chevilmumbo(Actor *arg0, s32 arg1) {
     arg0->unk58 = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80803700_chevilmumbo.s")
+void func_80803700_chevilmumbo(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void func_800C4140(u32, f32 *, u32);
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    void func_800EFA20(void *, void *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern f32 D_80804538_chevilmumbo[];
+    extern u32 D_80804234_chevilmumbo[];
+    f32 dt;
+
+    dt = func_800D8FF8();
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(0xA33)) {
+                func_8080362C_chevilmumbo(arg0, 2);
+            }
+            break;
+        case 2:
+            if (arg0->unk58 <= 2.5f) {
+                func_800EFA20(arg0->position, arg0->actorData,
+                    func_800F10B4(arg0->unk58, 0.0f, 2.5f, 1.0f, 0.0f));
+                arg0->unk58 += dt;
+                _subaddieaudioloop_entrypoint_4(arg0, D_80804538_chevilmumbo, 1, D_80804234_chevilmumbo);
+            } else {
+                if (arg0->unk64_19) {
+                    func_800C4140(0x665194CC, D_80804538_chevilmumbo, 0x138809C4);
+                    arg0->unk64_19 = 0;
+                }
+                func_8080362C_chevilmumbo(arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_800DA298(0xA32)) {
+                func_8080362C_chevilmumbo(arg0, 4);
+            }
+            break;
+        case 4:
+            if (arg0->unk58 <= 3.0f) {
+                func_800EFA20(arg0->position, arg0->actorData,
+                    func_800F10B4(arg0->unk58, 0.0f, 3.0f, 0.0f, 1.0f));
+                arg0->unk58 += dt;
+                _subaddieaudioloop_entrypoint_4(arg0, D_80804538_chevilmumbo, 1, D_80804234_chevilmumbo);
+            } else {
+                if (arg0->unk64_19) {
+                    func_800C4140(0x7FEBBCCC, D_80804538_chevilmumbo, 0x138809C4);
+                    arg0->unk64_19 = 0;
+                }
+                func_8080362C_chevilmumbo(arg0, 1);
+            }
+            break;
+    }
+}
 
 void func_80803918_chevilmumbo(s32 arg0) 
 {

@@ -1409,9 +1409,109 @@ void func_8080373C_chweldarboss(Actor *arg0) {
     (*(f32 *)((s8 *)(temp_v0) + (0xA8))) = 2.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803770_chweldarboss.s")
+void func_80803770_chweldarboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800D90A4(f32 *);
+    s32 _mlwave_entrypoint_1(u8 *);
+    f32 _mlwave_entrypoint_5(u8 *, f32, f32);
+    s32 _mlwave_entrypoint_8(u8 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800BF744(s32, s32);
+    s32 func_800BEA88(s32);
+    s32 func_808038F8_chweldarboss(Actor *);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    extern s32 _chweldarboss_entrypoint_2;
+    s32 pad;
+    s32 update;
+    s32 timer2;
+    s32 timer4;
+    u8 *data;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808038F8_chweldarboss.s")
+    data = func_80100094(arg0, 0U);
+    update = 0;
+    switch (*(s16 *)(data + 0xAC)) {
+        case 1:
+            break;
+        case 2:
+            timer2 = func_800D90A4((f32 *)(data + 0xA8));
+            _mlwave_entrypoint_1(data + 0x88);
+            *(s16 *)(data + 0xAE) = (s32)_mlwave_entrypoint_5(data + 0x88, 0, 255.0f);
+            if (timer2 && _mlwave_entrypoint_8(data + 0x88, 0.75f)) {
+                *(s16 *)(data + 0xAE) = 255;
+                *(s16 *)(data + 0xAC) = 3;
+            }
+            update = 1;
+            break;
+        case 3:
+            if (func_800D90A4((f32 *)(data + 0xA4))) {
+                func_808038F8_chweldarboss(arg0);
+            }
+            break;
+        case 4:
+            timer4 = func_800D90A4((f32 *)(data + 0xA8));
+            *(s16 *)(data + 0xAE) = (s32)func_800F10B4(*(f32 *)(data + 0xA8), 0.0f, 2.0f, 0, 255.0f);
+            if (timer4) {
+                *(s16 *)(data + 0xAC) = 1;
+                func_800BF744(3, 0);
+            }
+            update = 1;
+            break;
+    }
+    if (update) {
+        timer2 = func_800BEA88(0);
+        if (timer2) {
+            _glid_entrypoint_0(timer2, 1, &_chweldarboss_entrypoint_2, (s32)arg0->unk0);
+        }
+    }
+}
+
+s32 func_808038F8_chweldarboss(Actor *arg0) {
+    void func_800F5A00(s32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_800F6438(u32);
+    int func_800F6AA4(s32);
+    int func_80803B48_chweldarboss(s32);
+    s32 func_800F796C(s32, s32);
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    s32 pad;
+    f32 pos[3];
+    f32 x;
+    s32 i;
+    s32 cell[2];
+    int count;
+    u8 *data;
+    f32 hit[3];
+
+    data = func_80100094(arg0, 0U);
+    count = 0;
+    for (i = 0; i < 8; i++) {
+        if (func_800F6438(i) && func_80803B48_chweldarboss(i) && !func_800F6AA4(i)) {
+            func_800F5A00(i, pos);
+            if (pos[0] > 0.0f) {
+                cell[0] = (s32)(pos[0] / 800.0f);
+            } else {
+                cell[0] = (s32)(pos[0] / 800.0f + -1.0f);
+            }
+            if (pos[2] > 0.0f) {
+                cell[1] = (s32)(pos[2] / 800.0f);
+            } else {
+                cell[1] = (s32)(pos[2] / 800.0f + -1.0f);
+            }
+            x = pos[0] - (f32)(cell[0] * 800);
+            if (x < 50.0f || x > 750.0f ||
+                pos[2] - (f32)(cell[1] * 800) < 50.0f || pos[2] - (f32)(cell[1] * 800) > 750.0f) {
+                func_800F796C(i, 0xD);
+                func_800EE7F8(hit, pos);
+                hit[1] += 20.0f;
+                _chelectricfence_entrypoint_1(arg0, hit);
+                count += 1;
+                *(f32 *)(data + 0xA4) = 2.0f;
+            }
+        }
+    }
+    return count;
+}
 
 /* extern */
 
@@ -1564,7 +1664,69 @@ void func_80803E50_chweldarboss(Actor *arg0) {
     arg0->unk3C = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80803EA4_chweldarboss.s")
+void func_80803EA4_chweldarboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[8];
+        f32 amount;
+        s32 light;
+    } WeldarLightData;
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    s32 func_800C8FE0(s32, s32);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    s32 func_8001210C(s32);
+    void func_808041C4_chweldarboss(Actor *, s32);
+    extern u32 D_80804ABC_chweldarboss[];
+    extern u32 D_80804AC8_chweldarboss[];
+    WeldarLightData *data;
+    s32 light;
+    f32 position[3];
+    f32 inner;
+    f32 outer;
+    f32 delta;
+    f32 distance;
+
+    data = func_80100094(arg0, 0U);
+    light = data->light;
+    delta = func_800D8FF8();
+    switch (arg0->unk70_10) {
+        case 1:
+            arg0->unk64_16 = 0;
+            break;
+        case 2:
+            arg0->unk64_16 = 1;
+            data->amount = func_800F15F8(data->amount, 1.0f, delta * 1.4f);
+            if (data->amount == 1.0f) {
+                func_808041C4_chweldarboss(arg0, 3);
+            }
+            break;
+        case 3:
+            arg0->unk64_16 = 1;
+            break;
+        case 4:
+            arg0->unk64_16 = 1;
+            data->amount = func_800F15F8(data->amount, 0.0f, delta * 1.6f);
+            if (data->amount == 0.0f) {
+                func_808041C4_chweldarboss(arg0, 1);
+            }
+            break;
+    }
+    distance = func_800F12D4(data->amount, 0.0f, 1.0f, 400.0f, 700.0f);
+    func_800EE7F8(position, arg0->position);
+    func_800EF214(position, 90.0f - arg0->rotation[0], arg0->rotation[1], distance);
+    inner = func_800F12D4(data->amount, 0.0f, 1.0f, 200.0f, 600.0f);
+    outer = func_800F12D4(data->amount, 0.0f, 1.0f, 400.0f, 1000.0f);
+    func_800C8FE0(light, arg0->unk64_16);
+    func_800C8E54(light, inner, outer);
+    func_800C8CB8(light, position);
+    func_800C8E84(light, func_8001210C(1) ? D_80804AC8_chweldarboss : D_80804ABC_chweldarboss);
+}
 
 u32 func_808040F4_chweldarboss(s32 unused, s32 arg1, s32 arg2) {
     void func_80804230_chweldarboss(Actor *);

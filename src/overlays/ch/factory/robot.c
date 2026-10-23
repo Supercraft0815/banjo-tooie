@@ -31,7 +31,70 @@ void func_80800024_chfactoryrobot(void *arg0) {
     func_80105010();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800058_chfactoryrobot.s")
+u32 func_800F54E4(void);
+
+void func_80800058_chfactoryrobot(Actor *arg0) {
+    u8 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010D254(f32 *);
+    void func_80800264_chfactoryrobot(Actor *);
+    int func_808006DC_chfactoryrobot(Actor *, f32, f32);
+    f32 sp3C[3];
+    f32 sp30[3];
+    f32 sp28[2];
+
+    func_800EE7F8(sp3C, arg0->position);
+    func_800EF1B8(sp3C, arg0->rotation[1], 40.0f);
+    func_800F4F34(func_800F54E4(), sp3C, 30.0f, 100.0f);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800264_chfactoryrobot(arg0);
+            arg0->unk54 = 50.0f;
+            arg0->unk50 = 20.0f;
+            if (func_808006DC_chfactoryrobot(arg0, 1.0f, 15.0f)) {
+                ((f32 *)arg0->actorData)[0] = func_800DC178(1.0f, 1.2f);
+                func_80101FDC(arg0, 2);
+            }
+            break;
+        case 2:
+            func_80800264_chfactoryrobot(arg0);
+            if (func_800D9078((f32 *)arg0->actorData)) {
+                func_80101FDC(arg0, 3);
+            }
+            break;
+        case 3:
+            func_80800264_chfactoryrobot(arg0);
+            arg0->unk54 = -50.0f;
+            arg0->unk50 = 20.0f;
+            if (func_808006DC_chfactoryrobot(arg0, 1.0f, 15.0f)) {
+                ((f32 *)arg0->actorData)[0] = func_800DC178(1.0f, 1.2f);
+                func_80101FDC(arg0, 4);
+            }
+            break;
+        case 4:
+            func_80800264_chfactoryrobot(arg0);
+            if (func_800D9078((f32 *)arg0->actorData)) {
+                func_80101FDC(arg0, 1);
+            }
+            break;
+        case 5:
+            func_80800264_chfactoryrobot(arg0);
+            func_8010D254(sp30);
+            func_800F18FC(arg0->position, sp30, sp28);
+            arg0->unk54 = sp28[1] - arg0->rotation[1];
+            arg0->unk50 = -sp28[0];
+            func_808006DC_chfactoryrobot(arg0, 4.0f, 40.0f);
+            if (arg0->unk58 == 0.0f) {
+                func_80101FDC(arg0, 3);
+            }
+            break;
+    }
+}
 
 void func_80800264_chfactoryrobot(Actor *arg0) {
     u8 func_800D9078(f32 *);
@@ -182,7 +245,7 @@ void func_808005D4_chfactoryrobot(Actor *arg0) {
 
 /* extern */
 
-void func_808006DC_chfactoryrobot(Actor *arg0, f32 arg1, f32 arg2) {
+int func_808006DC_chfactoryrobot(Actor *arg0, f32 arg1, f32 arg2) {
     f32 func_80013728(f32);
     f32 func_800D8FF8(void);
     f32 func_800F0D50(f32, f32, f32);

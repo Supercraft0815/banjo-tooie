@@ -64,7 +64,43 @@ void func_8080044C_chmumbopad(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800514_chmumbopad.s")
+s32 func_80800514_chmumbopad(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x28];
+        u32 : 18;
+        u32 enabled : 1;
+        u32 : 13;
+    } PadMarker;
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void func_80103110(void *, s32);
+    void func_80800674_chmumbopad(Actor *, s32);
+    void func_808008CC_chmumbopad(void *, s32);
+
+    switch (arg1) {
+        case 0x91:
+            if (!arg0->unk64_19 && !arg0->unk74_29 && !((PadMarker *)arg0->unk0)->enabled) {
+                func_808008CC_chmumbopad(arg0, arg2);
+            }
+            func_80103110(arg0, 1);
+            break;
+        case 0x32:
+            func_80800674_chmumbopad(arg0, arg2);
+            break;
+        case 0xBB:
+            if (arg2 == arg0->unk6C_0) {
+                ((PadMarker *)arg0->unk0)->enabled = 0;
+            }
+            break;
+        case 0x2E:
+            if (*(s16 *)&arg2 == 0x11DE) {
+                _chintrotext_entrypoint_1(0x18BD, arg0->unk6C_0, 0, 1);
+                arg0->unk64_19 = 0;
+            }
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
@@ -75,7 +111,83 @@ void func_8080063C_chmumbopad(s32 *arg0, s32 arg1) {
     func_800F5FA8(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800674_chmumbopad.s")
+void func_80800674_chmumbopad(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad[0x28];
+        u32 : 18;
+        u32 enabled : 1;
+        u32 : 13;
+    } PadMarker;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800C067C(s32);
+    s32 func_800F7CF4(s32, s32, void *);
+    s32 func_80101180(s32, s32, s32);
+
+    func_800F7CF4(arg1, 0x43, arg0->actorData);
+    func_800C067C(0x11DD);
+    if (func_80800048_chmumbopad(arg0) == 0) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x11DE, 6, arg0->position, 0);
+        arg0->unk64_19 = 1;
+    }
+    arg0->unk64_20 = 1;
+    arg0->unk74_30 = 0;
+    func_800C067C(0x11DD);
+    switch (arg0->unk6C_0) {
+        case 0:
+        case 1:
+            break;
+        case 2:
+            arg0->unk64_20 = 0;
+            break;
+        case 3:
+            func_80101180(0x337, 0xA, 0);
+            break;
+        case 4:
+            func_80101180(0x39D, 0xA, 0);
+            break;
+        case 5:
+            func_80101180(0x39C, 0xA, 0);
+            break;
+        case 6:
+            func_80101180(0x297, 0x4B, 0);
+            break;
+        case 7:
+            func_80101180(0x292, 0x4B, 0);
+            break;
+        case 8:
+            func_80101180(0x28E, 0x4B, 8);
+            break;
+        case 9:
+            func_80101180(0x28D, 0x4B, 9);
+            arg0->unk64_20 = 0;
+            break;
+        case 11:
+            func_80101180(0x3EE, 0x4B, 0);
+            arg0->unk64_20 = 0;
+            break;
+        case 10:
+            func_80101180(0x3F5, 0x4B, 0);
+            arg0->unk64_20 = 0;
+            break;
+        case 12:
+            func_80101180(0x40E, 0x4B, 12);
+            arg0->unk64_20 = 0;
+            break;
+        case 13:
+            func_80101180(0x346, 0x4B, 0);
+            break;
+        case 14:
+            func_80101180(0x45A, 0x4B, 0);
+            break;
+        case 15:
+            func_80101180(0x457, 0x4B, 0);
+            break;
+        case 16:
+            func_80101180(0x4D8, 0x4B, 0);
+            break;
+    }
+    ((PadMarker *)arg0->unk0)->enabled = !arg0->unk64_20;
+}
 
 void func_808008CC_chmumbopad(void *arg0, s32 arg1) {
     typedef struct {

@@ -177,7 +177,69 @@ void func_80800428_choctopus(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/octopus/func_80800540_choctopus.s")
+s32 func_80800540_choctopus(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 arg4) {
+    s32 _subaddiecustomhits_entrypoint_3(Actor *, f32 *, f32);
+    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);
+    s16 func_800CB854(s32 *);
+    f32 func_800EFC7C(void *, void *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u8 *func_80103D98(Unk80132ED0 *);
+    f32 func_80103F38(Actor *, f32 *);
+    void *func_801040A8(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 mlAbsF(f32);
+    Actor *actor;
+    s32 sp78;
+    f32 radius2;
+    f32 sp68[3];
+    f32 radius5;
+    f32 sp58[3];
+    f32 magnitude;
+    f32 angle;
+    s32 result;
+    u8 *model;
+
+    actor = func_80106790(arg0);
+    if (_subaddiecustomhits_entrypoint_3(actor, arg1, arg2)) {
+        return 0;
+    }
+    switch (func_800CB854(&sp78)) {
+        case 2:
+            radius2 = func_80103F38(actor, sp68);
+            magnitude = arg2;
+            magnitude += radius2 * 0.8f;
+            return func_800EFFB4(sp68, magnitude, arg1);
+        case 5:
+            radius5 = func_80103F38(actor, sp58);
+            magnitude = arg2;
+            magnitude += radius5 * 0.8f;
+            result = func_800EFFB4(sp58, magnitude, arg1);
+            break;
+        default:
+            model = func_80103D98(arg0);
+            if (!model) {
+                return 0;
+            }
+            angle = func_800F1DCC(actor->rotation[1], func_800F1DF4(actor->position, arg1));
+            magnitude = mlAbsF(angle);
+            arg4 = 0;
+            if (magnitude < 90.0f) arg4 = 8;
+            if (magnitude > 35.0f) arg4 |= 2;
+            if (angle < 35.0f) arg4 |= 0x10;
+            if (angle > -35.0f) arg4 |= 4;
+            angle = func_800EFC7C(actor->position, arg1);
+            magnitude = actor->scale * 800.0f;
+            if (magnitude * magnitude < angle) arg4 |= 0x201;
+            result = func_800B1F8C(model, actor->position, actor->rotation, actor->scale, 0, func_801040A8(actor), arg1, arg2, arg3, arg4);
+            break;
+    }
+    if (result) {
+        actor->unk6C_0 = result;
+    }
+    return result;
+}
 
 OSThread *choctopus_entrypoint_1(void)
 {

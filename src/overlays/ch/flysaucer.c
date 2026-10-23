@@ -222,7 +222,48 @@ void func_80800514_chflysaucer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808005FC_chflysaucer.s")
+void func_808005FC_chflysaucer(Actor *arg0) {
+    s32 func_800D395C(void);
+    void *func_80100094(Actor *, u32);
+    void func_808009DC_chflysaucer(Actor *, s32);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    switch (data[0x26]) {
+        case 0:
+            func_808012A4_chflysaucer(arg0, 1);
+            func_808009DC_chflysaucer(arg0, 3);
+            func_8080003C_chflysaucer(arg0, 1);
+            if (func_800D395C() == 0) {
+                func_80800514_chflysaucer(arg0);
+            }
+            break;
+        case 1:
+            func_8080003C_chflysaucer(arg0, 2);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 2:
+            func_8080003C_chflysaucer(arg0, 3);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 3:
+            func_8080003C_chflysaucer(arg0, 4);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 4:
+            func_8080003C_chflysaucer(arg0, 5);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 5:
+            func_8080003C_chflysaucer(arg0, 6);
+            func_80800514_chflysaucer(arg0);
+            break;
+        case 6:
+            func_8080003C_chflysaucer(arg0, 0);
+            break;
+    }
+}
 
 s16 func_80800728_chflysaucer(Actor *arg0) {
     void* func_80100094(Actor*, u32);
@@ -248,11 +289,219 @@ s32 func_80800758_chflysaucer(s16 arg0) {
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808007C4_chflysaucer.s")
+void func_808007C4_chflysaucer(Actor *arg0, s16 arg1) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800A5800(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F0EF0(s32, f32 *);
+    s32 _cadbfunc_entrypoint_0(u8 *);
+    s32 _cadbfunc_entrypoint_2(s32);
+    s32 _cadbfunc_entrypoint_10(f32 *);
+    s32 _cadbfunc_entrypoint_12(f32 *);
+    s32 _cadbfunc_entrypoint_14(f32 *);
+    s32 _cadbfunc_entrypoint_16(s16 *);
+    s32 _cadbfunc_entrypoint_29(s32, s32 *);
+    void _suspline_entrypoint_0(void *, s32, s32);
+    void *_suspline_entrypoint_10(void *, s32);
+    f32 *_suspline_entrypoint_11(void *, s32);
+    void _suspline_entrypoint_20(Actor *, s32, s32, s32, s32, s32);
+    s16 i;
+    f32 *vectors[2];
+    f32 *values[3];
+    s32 count;
+    u8 *data;
+    void *spline;
+    s32 first;
+    s32 flags;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808009DC_chflysaucer.s")
+    data = func_80100094(arg0, 0);
+    count = func_80800758_chflysaucer(arg1);
+    if (data[0x26] == 1) {
+        first = 1;
+    } else {
+        first = 0;
+    }
+    _suspline_entrypoint_20(arg0, count, 2, 3, 0, 0);
+    spline = func_80100094(arg0, 1);
+    for (i = 0; i < 2; i++) {
+        vectors[i] = _suspline_entrypoint_10(spline, i);
+    }
+    for (i = 0; i < 3; i++) {
+        values[i] = _suspline_entrypoint_11(spline, i);
+    }
+    i = 0;
+    while (arg1 != -1) {
+        func_800A5800(arg1);
+        if (i == 0 && first != 0) {
+            func_800EE7F8(vectors[0], arg0->position);
+            vectors[0][1] += 175.0f;
+        } else {
+            _cadbfunc_entrypoint_0((u8 *)vectors[0]);
+        }
+        _cadbfunc_entrypoint_2((s32)vectors[1]);
+        _cadbfunc_entrypoint_10(values[0]);
+        _cadbfunc_entrypoint_12(values[1]);
+        _cadbfunc_entrypoint_14(values[2]);
+        _cadbfunc_entrypoint_29(8, &flags);
+        _suspline_entrypoint_0(spline, i, flags);
+        vectors[0] += 3;
+        vectors[1] += 3;
+        values[0]++;
+        values[1]++;
+        values[2]++;
+        i++;
+        _cadbfunc_entrypoint_16(&arg1);
+    }
+    func_800F0EF0(count, _suspline_entrypoint_10(spline, 1));
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80800C3C_chflysaucer.s")
+struct anctrl_s;
+enum asset_e;
+void func_808009DC_chflysaucer(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_800904F4(s32, Unk80132ED0 *);
+    void func_800904C8(s32);
+    void func_800F4CEC(s32, u32);
+    void func_800F4CC0(s32);
+    u32 func_800F54E4(void);
+    void func_800BF4A4(s32, s32);
+    s32 func_8008FFE8(void);
+    void func_8010FD38(s32, f32);
+    struct anctrl_s *func_80104200(s16);
+    struct anctrl_s *func_80104268(u32 *);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_80801428_chflysaucer(Actor *);
+    void func_8080149C_chflysaucer(Actor *);
+    void func_80802CF0_chflysaucer(Actor *);
+    struct {
+        union {
+            u32 packed;
+            s16 index[2];
+        } anim;
+        u8 pad[0x20];
+        u8 state;
+    } *data;
+    struct FlysaucerFlags {
+        u8 pad[0x74];
+        u32 before : 11;
+        u32 active : 1;
+    };
+    s32 pad;
+    struct anctrl_s *control;
+    struct anctrl_s *control1;
+    struct anctrl_s *control0;
+
+    data = func_80100094(arg0, 0);
+    if (arg1 != data->state) {
+        switch (data->state) {
+        case 0:
+            if (arg1 == 1U || arg1 == 3U) {
+                func_800904F4(0x27, arg0->unk0);
+                func_80104268(&data->anim.packed);
+                func_80801428_chflysaucer(arg0);
+                func_800F4CEC(func_800F54E4(), 0x71);
+                func_80802CF0_chflysaucer(arg0);
+            }
+            break;
+        case 2:
+            if (arg1 == 1 || arg1 == 3) {
+                func_800904C8(0x4B);
+                func_800F4CC0(func_800F54E4());
+                func_800BF4A4(0, 1);
+                func_800BF4A4(1, 1);
+                ((struct FlysaucerFlags *)arg0)->active = 1;
+                func_8010FD38(func_8008FFE8(), 0.0f);
+                control = func_80104200(data->anim.index[0]);
+                anctrl_setIndex(control, 0x486);
+                anctrl_setDuration(control, 1.0f);
+                anctrl_setPlaybackType(control, 3);
+                anctrl_start(control);
+            }
+            break;
+        case 1:
+        case 3:
+            if (arg1 != 0) {
+                if (arg1 == 2) {
+                    func_800F4CEC(func_800F54E4(), 0x60);
+                    func_800BF4A4(0, 0);
+                    func_800BF4A4(1, 0);
+                    ((struct FlysaucerFlags *)arg0)->active = 0;
+                    func_800904C8(0x4B);
+                    func_80802CF0_chflysaucer(arg0);
+                    func_8010FD38(func_8008FFE8(), 75.0f);
+                    control1 = func_80104200(data->anim.index[1]);
+                    control0 = func_80104200(data->anim.index[0]);
+                    anctrl_setIndex(control1, 0x484);
+                    anctrl_setIndex(control0, 0x489);
+                    anctrl_setPlaybackType(control1, 3);
+                    anctrl_start(control1);
+                    anctrl_setPlaybackType(control0, 3);
+                    anctrl_start(control0);
+                }
+            } else {
+                func_800904C8(0x28);
+                func_800F4CC0(func_800F54E4());
+                func_8080149C_chflysaucer(arg0);
+            }
+            break;
+        }
+        data->state = arg1;
+    }
+}
+
+s32 func_80800C3C_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _suspline_entrypoint_1(void *);
+    void _suspline_entrypoint_14(void *);
+    void _suspline_entrypoint_16(void *);
+    void _suspline_entrypoint_17(void *);
+    void _suspline_entrypoint_3(void *, s32, f32 *);
+    void _suspline_entrypoint_5(void *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    u8 *sp3C;
+    void *sp38;
+    s32 sp34;
+    f32 sp28[3];
+
+    sp3C = func_80100094(arg0, 0);
+    sp38 = func_80100094(arg0, 1);
+    sp34 = 0;
+    _suspline_entrypoint_14(sp38);
+    _suspline_entrypoint_17(sp38);
+    _suspline_entrypoint_3(sp38, 0, (f32 *)&arg0->actorData[4]);
+    _suspline_entrypoint_3(sp38, 1, arg0->rotation);
+    arg0->rotation[1] += 180.0f;
+    arg0->rotation[0] = -arg0->rotation[0];
+    _suspline_entrypoint_5(sp38, (f32 *)&arg0->actorData[4]);
+    if (_suspline_entrypoint_1(sp38)) {
+        if (sp3C[0x26] == 5) {
+            func_808012A4_chflysaucer(arg0, 3);
+            func_808009DC_chflysaucer(arg0, 1);
+        } else {
+            func_808009DC_chflysaucer(arg0, 1);
+            func_808012A4_chflysaucer(arg0, 4);
+            func_808005FC_chflysaucer(arg0);
+        }
+        sp34 = 1;
+    }
+    _suspline_entrypoint_16(sp38);
+    if (arg0->unk74_29) {
+        func_800EFB24(sp28, (f32 *)&arg0->actorData[4], arg0->position);
+        func_800EF334(sp28, 0.3f);
+        func_800EF04C(arg0->position, sp28);
+    } else {
+        func_800EE7F8(arg0->position, (f32 *)&arg0->actorData[4]);
+        arg0->unk74_29 = 1;
+    }
+    return sp34;
+}
 
 s32 func_80800DAC_chflysaucer(Actor *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void *func_80100094(Actor *, u32);
@@ -572,7 +821,84 @@ void func_80801534_chflysaucer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80801568_chflysaucer.s")
+void func_80102424(Actor *, s32);
+void func_80801568_chflysaucer(Actor *arg0, s32 arg1) {
+    void func_808004F0_chflysaucer();
+    s32 _gcfrontend_entrypoint_9(s32);
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D395C(void);
+    s32 func_800DA9E4(s32, s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7C0C(s32, s32, f32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    struct anctrl_s *func_80104268(u32 *);
+    struct {
+        s16 anim[2];
+        u8 pad4[0x14];
+        f32 speed;
+        u8 pad1C[0xE];
+        s16 index;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 5:
+            func_800F7C0C(func_800F54E4(), 0x5F, 0.0f);
+            func_80801534_chflysaucer(arg0);
+            break;
+        case 4:
+            func_808004B0_chflysaucer(arg0);
+            break;
+    }
+    func_80102424(arg0, arg1);
+    switch (arg0->unk70_10) {
+        case 6:
+            arg0->unk64_20 = 1;
+            break;
+        case 2:
+            func_80800424_chflysaucer(arg0, 0x9C, 0x4020, NULL);
+            data->speed = 0.3f;
+            func_808012A4_chflysaucer(arg0, 1);
+            func_808009DC_chflysaucer(arg0, 3);
+            break;
+        case 4:
+            if (func_800D395C() == 0 &&
+                (func_800D0A9C(0x18, 1) == 0 || func_800D0A9C(9, 4) == 0)) {
+                if (func_800DA9E4(0x417, 1) == 0) {
+                    func_8080105C_chflysaucer(arg0, 0x10C5, 1);
+                    _gcfrontend_entrypoint_9(0x69);
+                } else {
+                    func_8080105C_chflysaucer(arg0, 0x1102, 1);
+                }
+            } else {
+                if (func_800DA9E4(0x418, 1) == 0) {
+                    func_8080105C_chflysaucer(arg0, 0x10E1, 1);
+                    return;
+                }
+                func_808004F0_chflysaucer(arg0);
+                func_80801568_chflysaucer(arg0, 5);
+            }
+            break;
+        case 5:
+            data->index = 0;
+            data->speed = 0.8f;
+            _subaddieDll_entrypoint_4(arg0, 1);
+            _subaddieDll_entrypoint_0(arg0);
+            func_800FDC28(0x11);
+            func_808007C4_chflysaucer(arg0, func_80800728_chflysaucer(arg0));
+            func_808012A4_chflysaucer(arg0, 1);
+            func_808009DC_chflysaucer(arg0, 1);
+            func_80800C3C_chflysaucer(arg0);
+            func_800F7C0C(func_800F54E4(), 0x5F, -1.0f);
+            func_80104268((u32 *)&data->anim[1]);
+            func_808013B4_chflysaucer(arg0);
+            break;
+    }
+}
 
 void func_808017D0_chflysaucer(Actor *arg0) {
     void *func_80100094(Actor *, u32);
@@ -719,7 +1045,86 @@ void func_808021C0_chflysaucer(Actor *arg0, u8 *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80802290_chflysaucer.s")
+void func_80802290_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104200(s16);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    void func_8008ADE4(struct anctrl_s *);
+    void func_80016068(u32, f32 *);
+    struct {
+        s16 control0;
+        s16 control1;
+        f32 stick[2];
+        u8 padC[0x18];
+        u8 mode;
+        u8 pad25[2];
+        u8 direction;
+    } *data;
+    struct anctrl_s *control1;
+    struct anctrl_s *control0;
+    f32 stick[2];
+    f32 x;
+    f32 y;
+    f32 absX;
+    f32 absY;
+    s32 direction;
+
+    data = func_80100094(arg0, 0);
+    if (data->mode == 2) {
+        control1 = func_80104200(data->control1);
+        control0 = func_80104200(data->control0);
+        direction = 0;
+        func_80016068(0, stick);
+        x = stick[0] - data->stick[0];
+        y = stick[1] - data->stick[1];
+        absX = x > 0.0f ? x : -x;
+        absY = y > 0.0f ? y : -y;
+        if (absX > absY) {
+            if (x > 0.25f) {
+                direction = 4;
+            } else if (x < -0.25f) {
+                direction = 3;
+            }
+        } else if (y > 0.25f) {
+            direction = 2;
+        } else if (y < -0.25f) {
+            direction = 1;
+        }
+        if (direction != data->direction) {
+            switch (direction) {
+                case 0:
+                    break;
+                case 3:
+                    anctrl_setIndex(control1, 0x484);
+                    anctrl_setIndex(control0, 0x489);
+                    break;
+                case 4:
+                    anctrl_setIndex(control1, 0x485);
+                    anctrl_setIndex(control0, 0x48A);
+                    break;
+                case 1:
+                    anctrl_setIndex(control1, 0x482);
+                    anctrl_setIndex(control0, 0x487);
+                    break;
+                case 2:
+                    anctrl_setIndex(control1, 0x483);
+                    anctrl_setIndex(control0, 0x488);
+                    break;
+            }
+            if (direction != 0) {
+                anctrl_setPlaybackType(control1, 1);
+                anctrl_start(control1);
+                anctrl_setPlaybackType(control0, 1);
+                anctrl_start(control0);
+            }
+            data->direction = direction;
+        }
+        func_8008ADE4(control1);
+        func_8008ADE4(control0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808024E0_chflysaucer.s")
 
@@ -786,7 +1191,90 @@ void func_80802CF0_chflysaucer(Actor *arg0) {
     func_800906DC(rotation);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_80802ED8_chflysaucer.s")
+void func_80802ED8_chflysaucer(Actor *arg0) {
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800D2054(s32, s32, s32);
+    s16 func_800D211C(s32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    int func_800DC298(f32);
+    s32 func_800EA05C();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    u8 *sp24;
+    s32 sp20;
+
+    sp24 = func_80100094(arg0, 0);
+    sp20 = func_800EA05C();
+    sp24[0x2D] = 3;
+    if (func_800D211C(0x8D) < 0x226) {
+        func_800D2054(0, 0x8D, 0x226);
+    }
+    func_800EFA4C((f32 *)(sp24 + 0xC), 0.0f, 110.0f, 0.0f);
+    switch (func_80800000_chflysaucer(arg0)) {
+    case 0:
+        if (_glcutDll_entrypoint_20()) {
+            func_80801568_chflysaucer(arg0, 6);
+            return;
+        }
+        if (func_800D395C() && sp20 == 0x124) {
+            func_80801034_chflysaucer(arg0);
+            func_808005FC_chflysaucer(arg0);
+            func_80801568_chflysaucer(arg0, 2);
+            return;
+        }
+        if (sp20 == 0xD6 && func_800DA298(0x94)) {
+            func_80801034_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 6:
+        if (sp20 == 0xD6) {
+            func_80801034_chflysaucer(arg0);
+            func_80801130_chflysaucer((s32)arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 2:
+        if (sp20 == 0x13C) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 3:
+        if (sp20 == 0x124) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 4:
+        if (sp20 == 0x13B) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 5:
+        if (sp20 == 0x124) {
+            func_808017D0_chflysaucer(arg0);
+            return;
+        }
+        func_800FFAB0(arg0);
+        return;
+    case 1:
+        if (sp20 == 0x124) {
+            func_800DA3B8(0x6E9, func_800DC298(0.001f) ? 1 : 0);
+            func_80801568_chflysaucer(arg0, 2);
+        }
+        break;
+    }
+}
 
 void func_80803150_chflysaucer(Actor *arg0) {
     void *func_80100094(Actor *, u32);

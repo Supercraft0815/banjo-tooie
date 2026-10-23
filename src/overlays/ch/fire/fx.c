@@ -38,7 +38,37 @@ void func_80800018_chfirefx(ChFireFxActor *arg0) {
     chfirefx_entrypoint_2(&arg0->actor, arg0->actor.scale, (f32)arg0->actor.unk74_7, (s32)arg0->actor.rotation[1], var_v0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_2.s")
+void chfirefx_entrypoint_2(Actor *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+    struct FireData {
+        s32 unk0;
+        f32 scale;
+        s16 unk8, unkA, count, active;
+        u16 flags;
+        s16 value;
+        u16 radius, range;
+        u8 link[8];
+    } *data;
+    u32 *func_80100074(Actor *, u32, u32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    s32 func_800EA05C(void);
+    Actor *other;
+    data = (struct FireData *)func_80100074(arg0, 0, arg3 * 20 + 32);
+    data->count = arg3;
+    data->unk8 = 0;
+    data->unkA = data->unk8;
+    data->active = 0;
+    data->scale = arg1;
+    data->flags = arg4;
+    data->value = (s32)arg2;
+    data->radius = (u32)(arg1 * 150.0f);
+    data->range = (u32)(arg1 * 850.0f);
+    if ((arg4 & 8) && arg2 <= 70.0f) { data->active = 1; }
+    if (arg4 & 16) { data->active = 1; }
+    other = _subaddiefind_entrypoint_2(0x289, NULL);
+    _subaddielink_entrypoint_1(data->link, other ? other->unk0 : NULL);
+    arg0->unk64_20 = func_800EA05C() == 0xED;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_3.s")
 
@@ -73,7 +103,70 @@ void chfirefx_entrypoint_6(Actor *arg0, s16 arg1, s16 arg2) {
     (*(s16 *)((s8 *)(temp_v0) + (0x16))) = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800884_chfirefx.s")
+s32 func_80800884_chfirefx(Actor *arg0) {
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800E3980(f32 *);
+    void func_800EE940(s16 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct Particle {
+        f32 time;
+        s16 lifetime;
+        s16 flag;
+        s16 velocity[3];
+        s16 pad;
+        f32 scale;
+    };
+    struct FireData {
+        s32 unk0;
+        f32 scale;
+        s16 count;
+        s16 limit;
+        s16 unkC;
+        s16 mode;
+        s16 unk10;
+        s16 distance;
+        s16 unk14[6];
+        struct Particle particles[1];
+    };
+    f32 angle;
+    f32 offset;
+    f32 camera[3];
+    f32 velocity[3];
+    s32 count;
+    struct Particle *particle;
+    struct FireData *data;
+
+    data = func_80100094(arg0, 0);
+    count = 0;
+    if (data->count >= data->limit) {
+        return 1;
+    }
+    if (data->mode == 1) {
+        if (arg0->unk58 != 0.0f) {
+            return 1;
+        }
+        arg0->unk58 = 0.06f;
+    }
+    func_800E3980(camera);
+    while (data->count < data->limit && count < 2) {
+        particle = &data->particles[data->count];
+        particle->time = 0.0f;
+        particle->lifetime = (s32)((f32)func_800DC128(30, 40) * data->scale);
+        particle->scale = func_800DC178(0.8f, 1.2f);
+        particle->flag = func_800DC298(0.5f);
+        angle = func_800F1DF4(arg0->position, camera);
+        offset = func_800DC178(-90.0f, 90.0f);
+        func_800EEB9C(velocity, offset + angle, func_800DC178(data->distance * 0.25f, data->distance));
+        func_800EE940(particle->velocity, velocity);
+        count++;
+        (data->count)++;
+    }
+    return 1;
+}
 
 void func_80800AA8_chfirefx(Actor *arg0) {
     void *func_80100094(Actor *, u32);

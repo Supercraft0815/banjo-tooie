@@ -257,7 +257,73 @@ int func_80800BE4_chtoxicroombits(u8 *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800CB0_chtoxicroombits.s")
+s32 func_80800CB0_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_19(f32[3]);
+    void _chmrtannoy_entrypoint_0(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_800CF2D4(s32);
+    s32 func_800D0634(u32, u32);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    u8 *func_80106790(s32);
+    Actor *func_80108474(u32, f32 *, s32);
+    void func_80109F08(void *, s32);
+    extern f32 D_80801028_chtoxicroombits[];
+    f32 sp34[3];
+    Actor *sp30;
+
+    switch (arg1) {
+        case 0x34:
+            if (arg2 != 0) {
+                arg0->unk64_19 = 1;
+                ((f32 *)arg0->actorData)[0] = 0.25f;
+            } else {
+            if (func_800DA298(0x6AB) == 0) {
+                _chmrtannoy_entrypoint_0();
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x133E, 7, arg0->position, 0xA3);
+                func_800DA544(0x6AB);
+            } else {
+                func_800CF2D4(4);
+            }
+            ((f32 *)arg0->actorData)[0] = 1.5f;
+            arg0->unk64_19 = 0;
+            }
+            return 1;
+        case 0xE:
+            if (arg2 == 5) {
+                sp30 = func_80106790(func_800D0634(0x38, 1));
+                func_800EE7F8(sp34, sp30->position);
+                if (((f32 *)arg0->actorData)[1] < sp34[1]) {
+                    sp34[1] = ((f32 *)arg0->actorData)[1];
+                } else {
+                    ((f32 *)arg0->actorData)[1] = sp34[1];
+                }
+                _capod_entrypoint_19(sp34);
+            }
+            return 3;
+        case 0x2E:
+            if (*(s16 *)&arg2 == 0x133E) {
+                func_800CF2D4(4);
+            }
+            return 1;
+        case 0x3D:
+            sp30 = func_80108474(0x3EA, D_80801028_chtoxicroombits, 0xB4);
+            func_80109F08(sp30, 0x40);
+            if (arg2 >= 100) {
+                func_80103140(sp30, 0x885, sp30->unk0->unk16);
+                arg2 -= 100;
+            } else {
+                func_80103140(sp30, 0x884, sp30->unk0->unk16);
+            }
+            sp30->position[2] -= func_800F10B4(arg2, 0.0f, 16.0f, 0.0f, 4000.0f);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chtoxicroombits_entrypoint_1(void)
 {

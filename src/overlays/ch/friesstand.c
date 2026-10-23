@@ -156,7 +156,38 @@ void func_80800620_chfriesstand(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_8080101C_chfriesstand, &D_8080105C_chfriesstand);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808006D4_chfriesstand.s")
+void func_808006D4_chfriesstand(Actor *arg0) {
+    s32 func_80101E14(Actor *, f32);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA610(s32, s16, s16);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EF1B8(f32 *, f32, f32);
+    extern s32 D_8080106C_chfriesstand[];
+    f32 position[3];
+    f32 angle;
+    f32 scale;
+    s32 emitter;
+
+    if (func_80101E14(arg0, 0.345f)) {
+        if (!_subaddieskeleton_entrypoint_3(arg0->unk0, 4, position)) {
+            return;
+        }
+        func_800EF1B8(position, arg0->rotation[1], 20.0f);
+        emitter = func_800B53A4(12); func_800BABB8(emitter, position, NULL, arg0->scale, D_8080106C_chfriesstand);
+        func_800BA610(emitter, -100, -100);
+        angle = arg0->rotation[1]; scale = arg0->scale; func_800BA994(emitter, 15, (s16)(s32)(angle - 50.0f), (s16)(s32)(scale * 300.0f), 20, (s32)(angle + 50.0f), (s32)(scale * 450.0f));
+        func_800BA22C(emitter, 12);
+    }
+    if (func_80101E14(arg0, 0.43f) && _subaddieskeleton_entrypoint_3(arg0->unk0, 4, position)) {
+        emitter = func_800B53A4(5); func_800BABB8(emitter, position, NULL, arg0->scale * 1.2f, D_8080106C_chfriesstand);
+        func_800BA610(emitter, -800, -1000);
+        angle = arg0->rotation[1] + 90.0f; scale = arg0->scale; func_800BA994(emitter, -25, (s16)(s32)(angle - 10.0f), (s16)(s32)(scale * 200.0f), -15, (s32)(angle + 10.0f), (s32)(scale * 400.0f));
+        func_800BA22C(emitter, 5);
+    }
+}
 
 s32 func_80800904_chfriesstand(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);

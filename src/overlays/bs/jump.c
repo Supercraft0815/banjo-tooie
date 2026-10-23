@@ -16,7 +16,80 @@ void func_80800000_bsjump(s32 arg0) {
     func_8009D7A4(arg0, 0.91f, 1.09f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_0.s")
+void bsjump_entrypoint_0(void *arg0) {
+    s32 _bswalk_entrypoint_1();
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 baflag_isTrue(void *, s32);
+    f32 baphysics_get_target_horizontal_velocity(void *);
+    void baphysics_set_gravity(struct player_state_s *, f32);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    s32 bs_getPreviousState(struct player_state_s *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    s32 func_8008E23C(struct player_state_s *);
+    void func_80098840(u8 *);
+    s32 func_8009CA70(struct player_state_s *, s32, s32);
+    s16 func_8009CBDC(struct player_state_s *, s32);
+    void func_8009DE38(struct player_state_s *, s32, f32);
+    void func_8009FFD8();
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    struct anctrl_s *anim_ctrl;
+    s32 previous_state;
+
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    *(s32 *)((u8 *)arg0 + 0x164) = baflag_isTrue(arg0, 2) && !func_8008E23C(arg0);
+    previous_state = bs_getPreviousState(arg0);
+    if (func_8009CBDC(arg0, previous_state) == 0xA) {
+        func_80098840(arg0);
+    }
+    if (previous_state == 0x11) {
+        anctrl_setSubrange(anim_ctrl, 0.0f, 0.6667f);
+        anctrl_setStart(anim_ctrl, 0.5042f);
+        anctrl_setDuration(anim_ctrl, 8.0f);
+        anctrl_setPlaybackType(anim_ctrl, 1);
+        *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+        return;
+    }
+    *(s32 *)((u8 *)arg0 + 0x160) = func_8009CA70(arg0, previous_state, 1);
+    anctrl_reset(anim_ctrl);
+    anctrl_setIndex(anim_ctrl, 8);
+    anctrl_setDuration(anim_ctrl, 1.9f);
+    func_8008B1C8(anim_ctrl, 0.134f);
+    anctrl_setStart(anim_ctrl, 0.3f);
+    anctrl_setSubrange(anim_ctrl, 0.0f, 0.5042f);
+    anctrl_setPlaybackType(anim_ctrl, 1);
+    anctrl_start(anim_ctrl);
+    func_8009FFD8(arg0, 1, 1, 3, 6);
+    if (bastick_distance(arg0) != 0.0f) {
+        yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+    }
+    baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+    _bswalk_entrypoint_1(arg0);
+    baphysics_set_horizontal_velocity(arg0, yaw_getIdeal(arg0), baphysics_get_target_horizontal_velocity(arg0));
+    if (*(s32 *)((u8 *)arg0 + 0x160) != 0) {
+        baphysics_set_vertical_velocity(arg0, 610.0f);
+    } else {
+        baphysics_set_vertical_velocity(arg0, 710.0f);
+    }
+    baphysics_set_gravity(arg0, -1350.0f);
+    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    if (*(s32 *)((u8 *)arg0 + 0x164) != 0) {
+        func_8009DE38(arg0, 0x422, 1.0f);
+    } else {
+        func_80800000_bsjump((s32)arg0);
+    }
+}
 
 void bsjump_entrypoint_1(void *arg0) {
     s32 _bswalk_entrypoint_1();
@@ -154,7 +227,86 @@ void bsjump_entrypoint_4(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/jump/bsjump_entrypoint_5.s")
+void bsjump_entrypoint_5(void *arg0) {
+    s32 _bswalk_entrypoint_1();
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    s32 baflag_isTrue(void *, s32);
+    s32 bs_setState(s32, s32);
+    void func_8009B7C0(void *);
+    void func_8009BB24(void *, f32 *);
+    s32 next_state;
+    struct anctrl_s *anim_ctrl;
+    f32 velocity[3];
+
+    next_state = 0;
+    anim_ctrl = baanim_getAnimCtrlPtr(arg0);
+    if (baflag_isTrue(arg0, 0xF)) {
+        func_8009B7C0(arg0);
+    } else {
+        _bswalk_entrypoint_1(arg0);
+    }
+    func_8009BB24(arg0, velocity);
+    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    case 0:
+        if (func_8008DF8C(arg0, 0x5A)) {
+            anctrl_reset(anim_ctrl);
+            anctrl_setIndex(anim_ctrl, 8);
+            anctrl_setStart(anim_ctrl, 0.6667f);
+            anctrl_setDuration(anim_ctrl, 2.0f);
+            anctrl_setPlaybackType(anim_ctrl, 1);
+            anctrl_start(anim_ctrl);
+            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+        }
+        break;
+    case 1:
+        break;
+    }
+    if (baflag_isFalse(arg0, 0xF)) {
+        if (func_8008E260(arg0)) {
+            next_state = 0x3D;
+        }
+        switch (func_800A3274(arg0)) {
+        case 1:
+            if (bainput_func_80097DF4(arg0) && baflag_isFalse(arg0, 5)) {
+                next_state = 0x10;
+            }
+            if (bainput_func_80097F08(arg0)) {
+                next_state = 0x11;
+            }
+            if (bainput_should_beak_bust(arg0)) {
+                next_state = 0xF;
+            }
+            break;
+        case 10:
+            if (bainput_func_80097EC8(arg0)) {
+                next_state = 0xE4;
+            }
+            break;
+        }
+        if (func_8008DA24(arg0)) {
+            next_state = 0xA8;
+        }
+        if (player_inWater(arg0)) {
+            next_state = 0x4C;
+        }
+    } else if (player_inWater(arg0)) {
+        func_800A046C(arg0);
+        if (baflag_isTrue(arg0, 6) || baflag_isTrue(arg0, 0x14)) {
+            next_state = 0xD;
+        }
+    }
+    if (player_isStable(arg0)) {
+        func_8009FE58(arg0);
+        next_state = 0x20;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void bsjump_entrypoint_6(s32 arg0) 
 {

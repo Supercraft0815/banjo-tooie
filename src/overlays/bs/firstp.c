@@ -507,7 +507,38 @@ void func_80800C88_bsfirstp(void *arg0, void *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800D18_bsfirstp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80800F14_bsfirstp.s")
+void func_80800F14_bsfirstp(void *arg0) {
+    void *func_8009370C(u8 *);
+    u32 func_800A3280(void *);
+    void func_800E0ACC(void *);
+    void func_800E0AF0(void *, f32);
+    void func_80800D18_bsfirstp(void *, void *);
+    u8 *state;
+    void *model;
+
+    state = *(u8 **)((u8 *)arg0 + 0x188);
+    model = func_8009370C(arg0);
+    func_800E0ACC(model);
+    func_800E0AF0(model, 1.0f);
+    *(f32 *)(state + 0x18) = *(f32 *)(state + 0x58) * 0.02f;
+    *(f32 *)(state + 0x1C) = *(f32 *)(state + 0x60) * 0.03f;
+    switch (func_800A3280(arg0)) {
+        case 1:
+        case 6:
+            func_80800A18_bsfirstp(arg0, model);
+            break;
+        case 4:
+            func_80800B44_bsfirstp(arg0, model);
+            break;
+        case 5:
+            func_80800C88_bsfirstp(arg0, model);
+            break;
+        case 2:
+        case 3:
+            func_80800D18_bsfirstp(arg0, model);
+            break;
+    }
+}
 
 void func_80801000_bsfirstp(void *arg0) {
     f32 func_80013728(f32);

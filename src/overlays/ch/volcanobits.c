@@ -190,7 +190,63 @@ void func_8080061C_chvolcanobits(u8 *arg0) {
 void func_8080065C_chvolcanobits(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/volcanobits/func_80800664_chvolcanobits.s")
+void func_80800664_chvolcanobits(Actor *arg0) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 *_fxgenlist_entrypoint_2(void);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_8001210C(s32);
+    f32 func_800136E4(f32);
+    s32 func_800B5BE4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800BFA1C();
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800914_chvolcanobits(Actor *);
+    extern s32 D_80801100_chvolcanobits;
+    extern s32 D_80801288_chvolcanobits;
+    extern s32 D_8080129C_chvolcanobits;
+    extern s32 D_808012AC_chvolcanobits;
+    f32 dt;
+    f32 position[3];
+    f32 *pos;
+
+    dt = func_800D8FF8();
+    arg0->rotation[1] = func_800136E4(arg0->rotation[1] + arg0->unk54 * dt);
+    arg0->rotation[0] = func_800136E4(arg0->rotation[0] + arg0->unk50 * dt);
+    pos = arg0->position;
+    if (arg0->unk70_10 == 1) {
+        if (func_800BFA1C(pos) == 0 && ((f32 *)arg0->actorData)[5] < 0.0f) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        ((f32 *)arg0->actorData)[5] -= dt * 800.0f;
+        func_80800914_chvolcanobits(arg0);
+        if ((func_8010B990(arg0, 0x400007) & 0x20) ||
+            (arg0->unk64_20 && func_800D9078(&arg0->unk58))) {
+            func_800C8E54(arg0->actorData[0], 400.0f, 1000.0f);
+            func_800C8E84(arg0->actorData[0], (u32 *)&D_80801100_chvolcanobits);
+            arg0->actorData[0] = _chlightfader_entrypoint_1(arg0->actorData[0], 1.8f, 2);
+            func_800BBCB8(pos, NULL, 1.0f, 1, _fxgenlist_entrypoint_2());
+            _subaddieaudioquick_entrypoint_2(arg0, pos,
+                arg0->unk64_19 ? &D_8080129C_chvolcanobits : &D_80801288_chvolcanobits);
+            func_800EE7F8(position, pos);
+            position[1] -= arg0->scale * 10.0f;
+            _chexploder_entrypoint_3(arg0, position, 0x1C);
+            func_80101FDC(arg0, 2);
+        }
+        if (func_8001210C(1) == 0) {
+            func_800BABB8(func_800B5BE4(0x18), pos, NULL, 1.0f, &D_808012AC_chvolcanobits);
+        }
+    }
+}
 
 void func_8080086C_chvolcanobits(u8 *arg0) {
     void func_800C8B84(s32);

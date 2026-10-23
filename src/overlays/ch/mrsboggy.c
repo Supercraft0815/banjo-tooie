@@ -31,7 +31,76 @@ block_4:
     func_80105BAC(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mrsboggy/func_80800088_chmrsboggy.s")
+void func_80800088_chmrsboggy(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_20();
+    s32 func_800DA980(s32, s32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    s32 func_800FFAB0(s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80102424(s32, s32);
+    s32 func_80105230(Actor *, f32 *);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    void func_80800568_chmrsboggy(void *);
+    void func_80800790_chmrsboggy(void *);
+    void func_808007CC_chmrsboggy(Actor *, s32, s32);
+    void func_80800878_chmrsboggy(Actor *, s32, s32, Unk80132ED0 *);
+    void func_80800910_chmrsboggy(Actor *, s32, s32);
+    extern s32 D_80800A58_chmrsboggy;
+    extern s32 D_80800B20_chmrsboggy;
+    f32 *sp28;
+    s32 temp_v0;
+
+    sp28 = arg0->position;
+    _sudeflect_entrypoint_1(sp28, 200.0f, 0.0f, 100.0f, 10);
+    if (_suexpression_entrypoint_20(arg0) != 0) {
+        _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80800568_chmrsboggy(arg0);
+        break;
+    case 6:
+        temp_v0 = _subaddiedialog_entrypoint_8(arg0, sp28, &D_80800B20_chmrsboggy, &D_80800A58_chmrsboggy, 5);
+        if (temp_v0 != 0 && _subaddiedialog_entrypoint_9(arg0, temp_v0, &D_80800A58_chmrsboggy, 5) != 3) {
+            func_808007CC_chmrsboggy(arg0, 3, 0);
+        }
+        break;
+    case 3:
+        if (func_80101DDC(arg0) != 0) {
+            func_80102424(arg0, 4);
+        }
+        break;
+    case 5:
+        if (func_80101DDC(arg0) != 0) {
+            func_800F82D4(func_800F54E4(), 0);
+            if (func_800DA980(0x8C, 3) == 3) {
+                func_80800910_chmrsboggy(arg0, 0x4B, 0x10);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x109E, 0x4E, sp28, 0x3E);
+                func_80102424(arg0, 7);
+            } else {
+                func_80800878_chmrsboggy(arg0, 0xE, 0x31, _subaddiefind_entrypoint_2(0x142, 0)->unk0);
+                func_80102424(arg0, 1);
+            }
+        }
+        break;
+    case 8:
+        func_80105834(arg0);
+        func_80105230(arg0, 0);
+        if (func_80105A5C(arg0) != 0) {
+            func_80800790_chmrsboggy(arg0);
+            func_800FFAB0(arg0);
+        }
+        break;
+    }
+}
 
 void func_80800290_chmrsboggy(Actor* arg0)
 {

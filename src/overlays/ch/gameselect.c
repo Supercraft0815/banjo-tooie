@@ -84,7 +84,74 @@ void func_8080015C_chgameselect(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80800228_chgameselect.s")
+s32 func_80800228_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_808005D4_chgameselect(Actor *, s32);
+    void func_808006A0_chgameselect(Actor *, s32);
+    void func_8080086C_chgameselect(Actor *, s32);
+    void func_808020CC_chgameselect(Actor *, s32);
+    s32 func_80803D00_chgameselect(s32, s32);
+    s32 func_80803D60_chgameselect(s32);
+    void func_808065F4_chgameselect(Actor *);
+    extern f32 B_80808578_chgameselect[3];
+    Actor *child;
+
+    switch (arg1) {
+        case 0x95:
+            func_80803D00_chgameselect(0, 0);
+            break;
+        case 0x3D:
+            if (arg2 >= 9) {
+                child = func_80108528(arg2, B_80808578_chgameselect, 0, &arg0);
+                child->unk79_4 = arg0->unk79_4;
+                switch (arg2) {
+                    default:
+                        arg0->unk3C = child->unk0;
+                        break;
+                    case 0x4AB:
+                        arg0->actorData[4] = (u32)child->unk0;
+                        child->scale = arg0->scale;
+                        break;
+                    case 0x4AA:
+                        arg0->actorData[5] = (u32)child->unk0;
+                        break;
+                    case 0x4A9:
+                        arg0->actorData[3] = (u32)child->unk0;
+                        child->unk64_20 = 1;
+                        break;
+                    case 0x4AC:
+                        arg0->actorData[6] = (u32)child->unk0;
+                        break;
+                    case 0x1E8:
+                        arg0->actorData[7] = (u32)child->unk0;
+                        break;
+                }
+            } else {
+                child = func_80108528(0x4A8, B_80808578_chgameselect, 0, &arg0);
+                child->unk79_4 = arg2;
+                func_808020CC_chgameselect(child, func_80803D60_chgameselect(arg2));
+            }
+            child->unk3C = arg0->unk0;
+            break;
+        case 0xA:
+            func_808005D4_chgameselect(arg0, arg2);
+            break;
+        case 7:
+            func_808006A0_chgameselect(arg0, arg2);
+            break;
+        case 8:
+            func_8080086C_chgameselect(arg0, arg2);
+            break;
+        case 0x23:
+            if (arg0->unk70_10 == 5) {
+                func_808065F4_chgameselect(arg0);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800440_chgameselect(void *arg0) {
     void func_808036D8_chgameselect(void);
@@ -884,7 +951,84 @@ void func_808021E4_chgameselect(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x34))) = heap_alloc(0x40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80802248_chgameselect.s")
+void func_80802248_chgameselect(Actor *arg0) {
+    int _gczoombox_entrypoint_10();
+    s32 _gczoombox_entrypoint_11(s32);
+    void _gczoombox_entrypoint_12();
+    void _gczoombox_entrypoint_15();
+    void _gczoombox_entrypoint_16(s32);
+    void _gczoombox_entrypoint_17();
+    void _gczoombox_entrypoint_18();
+    int _gczoombox_entrypoint_32();
+    s32 _gczoombox_entrypoint_4();
+    int _gczoombox_entrypoint_7();
+    int _gczoombox_entrypoint_8();
+    s32 _gczoombox_entrypoint_9(s32);
+    void func_800DB8BC(char *, s32);
+    void func_800E6A58(char *, char);
+    void func_800E73D4(s8 *);
+    s32 func_80803738_chgameselect(s32, s32 *, s32 *);
+    void func_80803E94_chgameselect(char *, s32, s32, s32, s32 *);
+    extern char *B_80808558_chgameselect[];
+    s32 state = 0;
+    s32 time;
+    s32 count;
+    s32 value;
+
+    if (arg0->unk64_20) {
+        switch (arg0->unk79_4) {
+            case 0:
+            case 1:
+            case 2:
+                state = arg0->unk79_4 + 1;
+                break;
+        }
+    }
+    if (arg0->actorData[0]) {
+        _gczoombox_entrypoint_18(arg0->actorData[4]);
+        _gczoombox_entrypoint_16(arg0->actorData[4]);
+        _gczoombox_entrypoint_9(arg0->actorData[4]);
+        _gczoombox_entrypoint_11(arg0->actorData[4]);
+    } else if (state) {
+        if (state != (s32)arg0->actorData[5]) {
+            _gczoombox_entrypoint_18(arg0->actorData[4]);
+            _gczoombox_entrypoint_16(arg0->actorData[4]);
+            _gczoombox_entrypoint_9(arg0->actorData[4]);
+            _gczoombox_entrypoint_11(arg0->actorData[4]);
+            func_800E73D4((s8 *)arg0->actorData[3]);
+            func_800E73D4((s8 *)arg0->actorData[7]);
+            value = arg0->unk79_4 + 1;
+            if (func_80803738_chgameselect(arg0->unk79_4, &time, &count)) {
+                func_80803E94_chgameselect((char *)arg0->actorData[3], 0x18F3, 1, 1, &value);
+                func_800DB8BC((char *)arg0->actorData[3], time);
+                func_800E6A58((char *)arg0->actorData[3], ',');
+                value = count;
+                if (count == 1) {
+                    func_80803E94_chgameselect((char *)arg0->actorData[7], 0x18F3, 3, 1, &value);
+                } else {
+                    func_80803E94_chgameselect((char *)arg0->actorData[7], 0x18F3, 2, 1, &value);
+                }
+            } else {
+                func_80803E94_chgameselect((char *)arg0->actorData[3], 0x18F3, 0, 1, &value);
+            }
+            _gczoombox_entrypoint_32(arg0->actorData[4]);
+            if (*(u8 *)arg0->actorData[7]) {
+                B_80808558_chgameselect[0] = (char *)arg0->actorData[3];
+                B_80808558_chgameselect[1] = (char *)arg0->actorData[7];
+                _gczoombox_entrypoint_7(arg0->actorData[4], 2, B_80808558_chgameselect);
+            } else {
+                _gczoombox_entrypoint_8(arg0->actorData[4], (char *)arg0->actorData[3]);
+            }
+        }
+    } else {
+        _gczoombox_entrypoint_15(arg0->actorData[4]);
+        _gczoombox_entrypoint_17(arg0->actorData[4]);
+        _gczoombox_entrypoint_12(arg0->actorData[4]);
+        _gczoombox_entrypoint_10(arg0->actorData[4]);
+    }
+    arg0->actorData[5] = state;
+    _gczoombox_entrypoint_4(arg0->actorData[4]);
+}
 
 void func_80802620_chgameselect(void *arg0);
 
@@ -3384,7 +3528,60 @@ s32 func_808070C0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080714C_chgameselect.s")
+void func_8080714C_chgameselect(Actor *arg0, s32 (*arg1)(s32), s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+    typedef struct {
+        s32 entries[4];
+        char *texts[4];
+        char *buffer;
+        s16 winner;
+    } GameSelectScoreData;
+    void *func_80100094(Actor *, u32);
+    u32 func_800AA194(void);
+    void func_800AA220(s32, s32);
+    void _sumultiscore_entrypoint_0(s32 *, s32 *, s32);
+    void _sumultiscore_entrypoint_1(s32 *, s32 *, s32);
+    int _gczoombox_entrypoint_8();
+    void _gczoombox_entrypoint_27(s32, s16 *);
+    extern s32 B_80808560_chgameselect[];
+    extern s16 D_808084FC_chgameselect[];
+    s32 i;
+    GameSelectScoreData *data;
+    s32 scores[4];
+    s32 players[4];
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < arg0->unk6C_0; i++) {
+        scores[i] = arg1(i);
+        players[i] = i + 1;
+    }
+    if (arg6 || !func_800AA194()) {
+        _sumultiscore_entrypoint_0(scores, players, arg0->unk6C_0);
+    } else {
+        _sumultiscore_entrypoint_1(scores, players, arg0->unk6C_0);
+    }
+    for (i = 0; i < arg0->unk6C_0; i++) {
+        B_80808560_chgameselect[0] = players[i];
+        B_80808560_chgameselect[1] = scores[i];
+        if (i > 0 && scores[i] == scores[i - 1]) {
+            B_80808560_chgameselect[2] = B_80808560_chgameselect[2];
+        } else {
+            B_80808560_chgameselect[2] = 4 - i;
+        }
+        if (scores[i] == scores[0]) {
+            data->winner = i + 1;
+        }
+        if (arg5 && !arg0->unk64_19) {
+            func_800AA220(players[i] - 1, B_80808560_chgameselect[2]);
+        }
+        func_80803E94_chgameselect(data->texts[i], 0x18F3,
+            B_80808560_chgameselect[arg2] == 1 ? arg4 : arg3, 3, B_80808560_chgameselect);
+        _gczoombox_entrypoint_8(data->entries[i], data->texts[i]);
+        _gczoombox_entrypoint_27(data->entries[i], D_808084FC_chgameselect);
+    }
+    if (arg5) {
+        arg0->unk64_19 = 1;
+    }
+}
 
 void func_808073AC_chgameselect(Actor *arg0) {
     typedef struct {
@@ -3625,4 +3822,62 @@ s32 func_808079D0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80807A10_chgameselect.s")
+s32 func_80807A10_chgameselect(arg0, arg1, arg2) {
+    s32 _cadbfunc_entrypoint_0(s32 *);
+    s32 _cadbfunc_entrypoint_2(s32 *);
+    s32 func_800A5800(s32);
+    void func_800E39A8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EFE50(f32 *, void *, void *, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_800F16AC(u8 *, f32 *, f32 *, f32);
+    f32 distance;
+    f32 position[3];
+    f32 rotation[3];
+
+    func_800E39A8(((Actor *)arg0)->position, ((Actor *)arg0)->rotation);
+    func_800A5800(arg1);
+    _cadbfunc_entrypoint_0((s32 *)((Actor *)arg0)->actorData);
+    _cadbfunc_entrypoint_2((s32 *)&((Actor *)arg0)->actorData[4]);
+    distance = func_800EEAD4(((Actor *)arg0)->position, (f32 *)((Actor *)arg0)->actorData);
+    switch (arg2) {
+    case 0:
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 1;
+        ((Actor *)arg0)->unk6C_0 = arg1;
+        ((Actor *)arg0)->unk64_20 = 0;
+        ((f32 *)((Actor *)arg0)->actorData)[3] = 1.0f;
+        break;
+    case 1:
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 0.0f;
+        ((Actor *)arg0)->unk6C_0 = arg1;
+        ((Actor *)arg0)->unk64_20 = 0;
+        ((f32 *)((Actor *)arg0)->actorData)[3] = 1.0f;
+        break;
+    case 2:
+        func_800A5800(((Actor *)arg0)->unk6C_0);
+        _cadbfunc_entrypoint_0((s32 *)position);
+        _cadbfunc_entrypoint_2((s32 *)rotation);
+        func_800EFE50((f32 *)((Actor *)arg0)->actorData, position, (f32 *)((Actor *)arg0)->actorData, 0.3f);
+        func_800F16AC((u8 *)&((Actor *)arg0)->actorData[4], rotation, (f32 *)&((Actor *)arg0)->actorData[4], 0.3f);
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 0.0f;
+        if (((Actor *)arg0)->unk64_20) {
+            distance = func_800EEAD4(((Actor *)arg0)->position, (f32 *)((Actor *)arg0)->actorData);
+            ((f32 *)((Actor *)arg0)->actorData)[3] = 320.0f / distance;
+        } else {
+            ((f32 *)((Actor *)arg0)->actorData)[3] = 1.6666666f;
+        }
+        ((Actor *)arg0)->unk64_20 = 1;
+        break;
+    case 3:
+        ((f32 *)((Actor *)arg0)->actorData)[7] = 0.0f;
+        ((Actor *)arg0)->unk6C_0 = arg1;
+        ((f32 *)((Actor *)arg0)->actorData)[3] = 1.6666666f;
+        ((Actor *)arg0)->unk64_20 = 0;
+        break;
+    }
+    if (distance < 0.01f) {
+        func_80101FDC((Actor *)arg0, 1);
+    } else {
+        func_80101FDC((Actor *)arg0, 2);
+    }
+}

@@ -461,7 +461,51 @@ OSThread *chfactorybattery_entrypoint_1(void)
     return (OSThread *) D_80801BA8_chfactorybattery;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_8080150C_chfactorybattery.s")
+void func_8080150C_chfactorybattery(Actor *arg0) {
+    void _chdoormake_entrypoint_1(Actor *, f32, s32, s32);
+    s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    void _chdoormake_entrypoint_6(Actor *, s32);
+    void _chdoormake_entrypoint_8(void *, u32);
+    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C(void);
+    s32 func_80103140(Actor *, u32, u16);
+    f32 func_80103EF4(Actor *);
+    f32 sp28[2];
+    s32 map;
+
+    map = func_800EA05C();
+    switch (map) {
+    case 0x101:
+        func_80103140(arg0, 0x87F, 0);
+        _chdoormake_entrypoint_1(arg0, -90.0f, 0x4C, func_80800480_chfactorybattery());
+        _chdoormake_entrypoint_9(arg0, 0, 6, 0x10);
+        break;
+    case 0x106:
+        sp28[0] = func_80103EF4(arg0);
+        _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, sp28[0] * 0.75f, 0x44, func_80800480_chfactorybattery());
+        _chdoormake_entrypoint_9(arg0, 0, 3, 0x10);
+        break;
+    case 0x109:
+        sp28[0] = func_80103EF4(arg0);
+        _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, sp28[0] * 0.75f, 0x44, func_80800480_chfactorybattery());
+        _chdoormake_entrypoint_9(arg0, 0, 1, 0x10);
+        break;
+    case 0x10B:
+        sp28[0] = func_80103EF4(arg0);
+        _chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, sp28[0] * 0.75f, 0x44, func_80800480_chfactorybattery());
+        _chdoormake_entrypoint_9(arg0, 0, 1, 0x10);
+        break;
+    }
+    _chdoormake_entrypoint_8(arg0, 4);
+    _chdoormake_entrypoint_5(arg0, 3.0f);
+    _chdoormake_entrypoint_6(arg0, 0x3F800000);
+    if (func_800DA298(func_80800480_chfactorybattery()) != 0) {
+        arg0->unk74_30 = 1;
+        arg0->unk74_29 = arg0->unk74_30;
+    }
+}
 
 /* extern */
 

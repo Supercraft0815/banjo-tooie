@@ -59,7 +59,38 @@ void func_80800098_chbanjoctrl(Actor *arg0) {
 void func_808011F4_chbanjoctrl(void);
 void func_8080012C_chbanjoctrl(Actor *arg0) { if ((u32) arg0->unk70_10 == 0xB) { func_808011F4_chbanjoctrl(); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800160_chbanjoctrl.s")
+void func_80800160_chbanjoctrl(Actor *arg0) {
+    void func_8008FE68(f32 *);
+    s32 func_80090128();
+    void func_8080025C_chbanjoctrl(u8 *);
+    void func_808003F8_chbanjoctrl(Actor *);
+    void func_80800728_chbanjoctrl(void *);
+    void func_80800ADC_chbanjoctrl(s32);
+    void func_80800B18_chbanjoctrl(Actor *);
+    void func_80800D04_chbanjoctrl(u8 *);
+    void func_80800D50_chbanjoctrl(u8 *);
+    void func_80800DF8_chbanjoctrl(u8 *);
+    void func_80801088_chbanjoctrl(Actor *);
+    void func_808010FC_chbanjoctrl(Actor *);
+
+    if (func_80090128() != 0) {
+        func_8008FE68((f32 *) arg0->actorData);
+        switch ((u32) arg0->unk70_10) {
+            case 1: break;
+            case 2: func_8080025C_chbanjoctrl((u8 *) arg0); break;
+            case 3: func_808003F8_chbanjoctrl(arg0); break;
+            case 4:
+            case 5: func_80800728_chbanjoctrl(arg0); break;
+            case 6: func_80800ADC_chbanjoctrl((s32) arg0); break;
+            case 7: func_80800B18_chbanjoctrl(arg0); break;
+            case 8: func_80800D04_chbanjoctrl((u8 *) arg0); break;
+            case 9: func_80800D50_chbanjoctrl((u8 *) arg0); break;
+            case 10: func_80800DF8_chbanjoctrl((u8 *) arg0); break;
+            case 11: func_808010FC_chbanjoctrl(arg0); break;
+            case 12: func_80801088_chbanjoctrl(arg0); break;
+        }
+    }
+}
 
 s32 func_808007D8_chbanjoctrl(u8 *);
 void func_8080025C_chbanjoctrl(u8 *arg0) { if (func_808007D8_chbanjoctrl(arg0) && (*(f32 *)(arg0 + 0x1C) < *(f32 *)(arg0 + 8))) func_800904C8(0x91); }
@@ -413,7 +444,66 @@ void func_80800D50_chbanjoctrl(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjoctrl/func_80800DF8_chbanjoctrl.s")
+void func_80800DF8_chbanjoctrl(u8 *arg0) {
+    s32 func_8001210C(s32);
+    s32 func_800C696C(f32 *, f32, f32, s32, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    Unk80132ED0 *func_800F55D0(s32);
+    s32 func_800F56AC(s32);
+    s32 func_800F6438(u32);
+    s32 func_800F6478(s32);
+    s32 func_800F6590(s32);
+    int func_800F6AA4(s32);
+    s32 func_800F6C5C(s32);
+    s32 func_800F6DA0(s32);
+    s32 func_800F6E40(s32);
+    s32 func_800F7018(s32);
+    s32 func_800F7058(s32);
+    s32 func_800F7D90(s32, s32, void *, s32);
+    extern f32 D_808012F4_chbanjoctrl[3];
+    f32 distance;
+    f32 position[3];
+    f32 first;
+    f32 last;
+    f32 angle;
+    s32 player;
+    s32 i;
+    if (func_8001210C(4) == 0) return;
+    player = func_800F54E4();
+    if (func_800F7058(player) == 2) return;
+    if (func_800F6590(player) != 0) return;
+    if (func_800F7018(player) != 0) return;
+    if (func_800F6DA0(player) != 0) return;
+    if (func_800F6E40(player) != 0) return;
+    if (func_800F56AC(player) != 0x14) return;
+    if (func_800F6AA4(player) != 0) return;
+    if (func_800F55D0(player) != 0) return;
+    if (func_800F6478(player) == 0) return;
+    if (func_800F6438(player) == 0) return;
+    if (func_800F6C5C(player) == 0) return;
+    first = 0.0f;
+    last = 0.0f;
+    angle = func_800F1DF4(D_808012F4_chbanjoctrl, (f32 *)(arg0 + 0x18));
+    i = 0;
+    while (1) {
+    distance = (f32)i + 3200.0f;
+    func_800EEB9C(position, angle, distance);
+    position[1] = -3000.0f;
+    if ((func_800C696C(position, 100.0f, -100.0f, 0, &position[1]) != 0) && (position[1] > -3020.0f) && (position[1] < -2980.0f)) {
+    last = distance;
+    if (first == 0.0f) {
+    first = distance;
+    }
+    }
+    i += 100;
+    if (i == 600) break;
+    }
+    func_800EEB9C(position, angle, (first + last) * 0.5f);
+    position[1] = -3000.0f;
+    func_800F7D90(func_800F54E4(), 0x52, position, 1);
+}
 
 void func_8080102C_chbanjoctrl(Actor *arg0) {
     if (arg0->unk64_20) {

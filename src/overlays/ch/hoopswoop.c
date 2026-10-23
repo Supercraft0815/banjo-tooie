@@ -500,7 +500,82 @@ void func_80801130_chhoopswoop(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808011DC_chhoopswoop.s")
+void func_808011DC_chhoopswoop(Actor *arg0) {
+    typedef struct {
+        s16 rotation : 15;
+        u16 active : 1;
+        s16 position[3];
+        f32 time;
+    } Hoop;
+    typedef struct {
+        s32 count;
+        u8 unk4[8];
+        s32 dialog;
+        s32 dialogFlags;
+        Hoop hoops[100];
+        u8 subgame[0x18];
+        u8 score[0x51C];
+        f32 timer;
+    } HoopData;
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefind_entrypoint_9(s32);
+    void _sumultiscore_entrypoint_6(u8 *);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_9(void);
+    s32 func_800C954C(void);
+    s32 func_800CEAD0(s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    int func_800D9154(f32 *, f32);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_808015A4_chhoopswoop(Actor *);
+    HoopData *data;
+    int i;
+    f32 *time;
+    f32 interval;
+
+    data = func_80100094(arg0, 0);
+    _sumultiscore_entrypoint_6(data->score);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (!func_800C954C() && !func_800DA298(0x6AD)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0x22);
+            func_80101FDC(arg0, 2);
+        }
+        return;
+    case 3:
+        i = 0;
+        time = &data->hoops[0].time;
+        if (data->count > 0) {
+            do {
+                func_800D90A4(time);
+                time += 3;
+                i++;
+            } while (i < data->count);
+        }
+        if (_subaddiefind_entrypoint_9(0x356) < 5) {
+            interval = func_800DC178(0.5f, 1.0f);
+            if (func_800D9154(&arg0->unk58, interval / (f32)_gcstatusDll_entrypoint_11())) {
+                func_80108B04(arg0, -1);
+            }
+        }
+        if (func_800CEAD0(arg0->unk6C_0)) {
+            func_808015A4_chhoopswoop(arg0);
+        }
+        return;
+    case 4:
+        if (_susubgame_entrypoint_9() || func_800D9078(&data->timer)) {
+            _susubgame_entrypoint_5(arg0, data->subgame, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, data->dialog, data->dialogFlags, NULL, 0x22);
+            func_80101FDC(arg0, 5);
+        }
+    }
+}
 
 void func_808013C4_chhoopswoop(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
@@ -570,7 +645,60 @@ void func_8080153C_chhoopswoop(void *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_808015A4_chhoopswoop.s")
+void func_808015A4_chhoopswoop(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_1(s32, s32);
+    void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
+    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
+    void func_800AA20C(s32, s32);
+    void func_800FC6B0(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 temp;
+    s32 scores[8];
+    s32 *data;
+    s32 max;
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 dialog;
+
+    data = func_80100094(arg0, 0);
+    max = -1;
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        scores[j] = _sumultiscore_entrypoint_8(data + 311, j, 7);
+        if (max < scores[j]) {
+            max = scores[j];
+        }
+        func_800AA20C(j, scores[j]);
+    }
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        if (max == scores[j]) {
+            _sumultiscore_entrypoint_11((u8 *)(data + 311), j, 7, 3.0f);
+        }
+    }
+    for (i = 1; i < _gcstatusDll_entrypoint_11(); i++) {
+        for (k = i; k > 0 && scores[k - 1] < scores[k]; k--) {
+            temp = scores[k];
+            scores[k] = scores[k - 1];
+            scores[k - 1] = temp;
+        }
+    }
+    func_800FC6B0(0x16);
+    if (scores[0] != scores[1]) {
+        for (k = 0; _sumultiscore_entrypoint_8(data + 311, k, 7) != scores[0]; k++) {
+        }
+        data[2] = k;
+        dialog = 0x10CD;
+    } else {
+        dialog = 0x10CE;
+    }
+    _subaddiemulti_entrypoint_1(0, 0);
+    data[3] = dialog;
+    data[4] = 6;
+    ((f32 *)data)[638] = 3.0f;
+    func_80101FDC(arg0, 4);
+}
 
 void func_808017C4_chhoopswoop(Actor *arg0) {
     f32 func_800DC178(f32, f32);
@@ -587,7 +715,62 @@ void func_808017C4_chhoopswoop(Actor *arg0) {
     func_80801D8C_chhoopswoop(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801838_chhoopswoop.s")
+void func_80801838_chhoopswoop(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void func_8010A800(Actor *, s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800CEAD0(s32);
+    f32 func_800136E4(f32);
+    void func_800FFAB0(Actor *);
+    s32 func_80801AB4_chhoopswoop(Actor *);
+    void func_80801DCC_chhoopswoop(Actor *);
+    s32 func_80801A10_chhoopswoop(u8 *, s32, s32);
+    f32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    sp34 = func_800D8FF8();
+    sp2C = func_800DA298(0);
+    sp28 = 0;
+    sp24 = 1;
+    func_8010A800(arg0, _subaddiefade_entrypoint_0(arg0) == 0xFF ? 1 : 0);
+    sp30 = func_800D90A4(&arg0->unk58);
+    if (!sp2C && func_800CEAD0(arg0->unk6C_0)) {
+        arg0->unk64_20 = 1;
+    }
+    switch (arg0->unk70_10) {
+        case 4:
+            sp28 = func_800DA298(3);
+            break;
+        case 3:
+            sp28 = func_800DA298(2);
+            break;
+        case 2:
+            sp28 = func_800DA298(1);
+            break;
+        case 5:
+            sp24 = 0;
+            if (_subaddiefade_entrypoint_0(arg0) == 0) {
+                func_80801DCC_chhoopswoop(arg0);
+                func_800FFAB0(arg0);
+                return;
+            }
+            break;
+    }
+    if (!sp2C) {
+        func_80801AB4_chhoopswoop(arg0);
+    }
+    arg0->rotation[2] = func_800136E4(arg0->rotation[2] + arg0->unk50 * sp34);
+    if (sp24) {
+        if ((!sp2C && (sp30 != 0 || arg0->unk64_20)) || (sp2C && sp28)) {
+            func_80801A10_chhoopswoop((u8 *)arg0, 0x4F, sp30 != 0 && !sp2C);
+        }
+    }
+}
 
 s32 func_80801A10_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2)
 {
@@ -617,7 +800,85 @@ void func_80801A94_chhoopswoop()
     func_80101870();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80801AB4_chhoopswoop.s")
+s32 func_80801AB4_chhoopswoop(Actor *arg0) {
+    typedef struct {
+        s32 side[8];
+        s32 initialized[8];
+        s32 points;
+    } HoopData;
+    typedef struct {
+        s32 count;
+        s32 score;
+        u8 pad8[0x4D4];
+        u8 multiplayer[1];
+    } ParentData;
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _gcstatusDll_entrypoint_11();
+    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
+    s32 func_800D3948(void);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    void *func_80100094(Actor *, u32);
+    f32 func_80103F38(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80801D20_chhoopswoop(s32, s32, s32);
+    f32 position[3];
+    s32 side;
+    s32 i;
+    f32 radius;
+    ParentData *parent;
+    HoopData *data;
+    f32 forward[3];
+    s32 points;
+
+    parent = func_80100094(func_80106790(arg0->unk3C), 0);
+    radius = func_80103F38(arg0, NULL);
+    if (arg0->unk64_20) {
+        return 0;
+    }
+    data = func_80100094(arg0, 0);
+    i = 0;
+    if (i < _gcstatusDll_entrypoint_11()) {
+      do {
+        points = i;
+        if (func_800F6438(points)) {
+            func_800F5A00(points, position);
+            position[1] += 50.0f;
+            func_800EF3DC(position, arg0->position);
+            if (data->initialized[points] && func_800EEFD4(position) < radius * radius) {
+                func_800EFA4C(forward, 0, 0, 1);
+                func_800EF934(forward, forward, arg0->rotation[1]);
+                if (func_800EEAA4(position, forward) >= 0.0f) {
+                    side = 1;
+                } else {
+                    side = -1;
+                }
+                if (side == -data->side[points]) {
+                    points = data->points + 1;
+                    if (func_800D3948()) {
+                        _sumultiscore_entrypoint_7(parent->multiplayer, i, 7, points);
+                    } else {
+                        parent->score += points;
+                        func_80801D20_chhoopswoop((s32)arg0, 0x9E2, 10);
+                    }
+                    arg0->unk64_20 = 1;
+                    _chscorepoints_entrypoint_2(points, i, arg0->position, 1);
+                    return 1;
+                }
+            }
+            data->initialized[points] = 1;
+            data->side[points] = side;
+        }
+        i++;
+      } while (i < _gcstatusDll_entrypoint_11());
+    }
+    return 0;
+}
 
 void func_80801D20_chhoopswoop(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800B53A4(s32);

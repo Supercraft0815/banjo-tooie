@@ -39,7 +39,56 @@ void func_80800000_chping(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/ping/func_808001B8_chping.s")
+void func_808001B8_chping(Actor *arg0) {
+    f32 func_80013970(f32);
+    s32 func_800A940C(s32);
+    void func_800C4B90(s32, f32, f32);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F0F9C(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F5A00(s32, f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094();
+    s32 func_80109CC4(f32 *, f32, void *);
+    s32 func_8010A570();
+    void func_8010A590(Actor *);
+    f32 phase;
+    f32 wave1;
+    f32 wave2;
+    f32 scale;
+    f32 radius;
+    f32 elapsed;
+    f32 position[3];
+    s32 source;
+    struct { s32 source; f32 time; } *data;
+
+    data = func_80100094(arg0, 0);
+    source = data->source;
+    func_800F5A00(source, position);
+    position[1] += 60.0f;
+    func_800EE7F8(arg0->position, position);
+    elapsed = data->time;
+    phase = func_800F0F9C(elapsed, 0.5f);
+    wave1 = func_80013970(phase * 360.0f);
+    wave2 = func_80013970(phase * 360.0f + 180.0f);
+    scale = func_800F10B4(elapsed, 0.0f, 3.0f, 3.0f, 0.01f);
+    func_800C4B90(func_800A940C(source), wave1 * scale, wave2 * scale);
+    if (elapsed < 3.0f) {
+        radius = func_800F10B4(elapsed, 0.0f, 3.0f, 14.0f, 840.0f);
+        func_8010A590(arg0);
+        func_800CB840(5, (s32)arg0);
+        func_80109CC4(arg0->position, radius, arg0->unk0);
+        func_800CB870();
+        func_8010A570(arg0);
+    }
+    data->time += func_800D8FF8();
+    if (data->time > 4.2f) {
+        func_800FFA88(arg0->unk0);
+    }
+}
 
 /* extern */
 

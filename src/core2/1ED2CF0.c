@@ -39,7 +39,7 @@ void func_800F9488(s32 arg0) {
     extern u8 D_80135520;
     extern u8 D_80135521;
     extern u8 D_80135522;
-    
+
     s32 _plsu_entrypoint_1(s32);
     int func_800DB9B0(void);
     void func_800EE7F8(f32 *, f32 *);
@@ -301,4 +301,98 @@ void func_800F9BC4(void) {
 
 void func_800F9C38(void) { if (func_800F8B88() == 3) func_800F9488(0x13); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED2CF0/func_800F9C6C.s")
+void func_800F9C6C(void) {
+    s32 _plsu_entrypoint_1(s32);
+    s32 func_800C9510(void);
+    s32 func_800C95D4(void);
+    s32 func_800EA05C();
+    s16 func_800F8A5C();
+    extern u8 D_80135520;
+    s32 pad;
+    s32 sp18;
+
+    switch (D_80135520) {
+    case 2:
+        if (func_800C9510() == 0) {
+            func_800F9488(3);
+        }
+        break;
+    case 3:
+        if (func_800C95D4() != 0) {
+            func_800F9488(1);
+        }
+        break;
+    case 4:
+        if (func_800C9510() == 0) {
+            func_800F9488(5);
+        }
+        break;
+    case 5:
+        func_800F9488(6);
+        break;
+    case 6:
+        if (func_800C95D4() != 0) {
+            func_800F9488(1);
+        }
+        break;
+    case 7:
+        if (func_800C9510() == 0) {
+            func_800F9488(8);
+        }
+        break;
+    case 8:
+        func_800F9488(9);
+        break;
+    case 9:
+        if (func_800C95D4() != 0) {
+            func_800F9488(1);
+        }
+        break;
+    case 10:
+        func_800F9488(1);
+        break;
+    case 11:
+        func_800F9488(1);
+        break;
+    case 12:
+        if (_plsu_entrypoint_1(func_800F929C()) == -1) {
+            func_800F9488(7);
+        } else {
+            func_800F9488(10);
+        }
+        break;
+    case 13:
+        if (func_800C9510() == 0) {
+            func_800F9488(14);
+        }
+        break;
+    case 14:
+        func_800F9488(15);
+        break;
+    case 15:
+        if (func_800C95D4() != 0) {
+            func_800F9488(1);
+        }
+        break;
+    case 16:
+        func_800F9488(1);
+        break;
+    case 17:
+        func_800F9488(1);
+        break;
+    case 18:
+        sp18 = func_800F8A5C(10);
+        if (func_800EA05C() == sp18) {
+            func_800F9488(16);
+        } else {
+            func_800F9488(13);
+        }
+        break;
+    case 19:
+        sp18 = func_800F8A5C(10);
+        if (func_800EA05C() == sp18) {
+            func_800F9488(17);
+        }
+        break;
+    }
+}

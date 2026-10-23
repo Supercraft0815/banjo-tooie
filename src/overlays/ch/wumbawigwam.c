@@ -1,6 +1,46 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800000_chwumbawigwam.s")
+void func_80800000_chwumbawigwam(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 func_800EA05C(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    f32 func_80103EAC(u8 *);
+    s32 func_8010C9FC(f32 *, s32, s32, s32);
+    void func_80800B9C_chwumbawigwam(u8 *, s32);
+    f32 pad[2];
+    f32 var_f2;
+    f32 sp2C;
+    f32 sp24;
+    f32 var_f0;
+
+    if (func_800EA05C() == 0x112) {
+        if (func_800DA298(0x18A) != 0 && func_800EA05C() == 0x112) {
+            arg0->scale = 2.8f;
+        } else {
+            arg0->scale = 1.0f;
+        }
+        sp24 = func_80103EAC((u8 *)arg0);
+        if (func_800F64A4(func_800F54E4(), 0x40000) != 0) {
+            var_f2 = 1.0f;
+        } else {
+            var_f2 = 0.6f;
+        }
+        sp2C = var_f2;
+        if (func_800F64A4(func_800F54E4(), 0x40000) != 0) {
+            var_f0 = 40.0f;
+        } else {
+            var_f0 = arg0->scale * 280.0f;
+        }
+        if (func_8010C9FC(arg0->position, (s32)(var_f2 * sp24), (s32)var_f0, 0) != 0) {
+            func_80800B9C_chwumbawigwam((u8 *)arg0, 2);
+        } else {
+            func_80800B9C_chwumbawigwam((u8 *)arg0, 3);
+        }
+        func_800EFA4C((f32 *)&arg0->actorData[4], 1.0f, 1.0f, 1.0f);
+    }
+}
 
 void func_80800158_chwumbawigwam(u8 *arg0) {
     typedef struct { f32 v[3]; } WigwamVec;
@@ -170,7 +210,89 @@ void func_80800158_chwumbawigwam(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wumbawigwam/func_80800B9C_chwumbawigwam.s")
+/* extern */
+
+void func_80800B9C_chwumbawigwam(u8 *arg0, s32 arg1) {
+    typedef struct { s32 pad[4]; f32 scale[3]; } WigwamData;
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chglowbo_entrypoint_6(void);
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _subaddieDll_entrypoint_4(u8 *, s32);
+    s32 _sumumbofx_entrypoint_0(u8 *, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_1(u8 *, s32);
+    s32 _sumumbofx_entrypoint_15(s32, s32);
+    s32 _sumumbofx_entrypoint_16(s32, s32);
+    s32 _sumumbofx_entrypoint_17(s32, s32);
+    s32 _sumumbofx_entrypoint_18(s32, s32);
+    s32 _sumumbofx_entrypoint_2(s32);
+    s32 _sumumbofx_entrypoint_24(s32, s32);
+    s32 _sumumbofx_entrypoint_25(s32, s32, s32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    s32 func_80100094(u8 *, s32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101FDC(u8 *, s32);
+    s32 func_8010A800(u8 *, s32);
+    s32 sp34[3];
+    s32 pad[2];
+    s32 sp28;
+
+    switch (arg1) {
+    case 4:
+        _subaddieDll_entrypoint_4(arg0, 1);
+        ((Actor *)arg0)->unk64_20 = 0;
+        ((Actor *)arg0)->unk64_19 = 0;
+        ((Actor *)arg0)->unk74_29 = 0;
+        func_8010A800(arg0, 2);
+        break;
+    case 5:
+        sp34[0] = 0;
+        sp34[1] = 0;
+        sp34[2] = 0;
+        _sumumbofx_entrypoint_0(arg0, 1, 0x28, _chmumbopad_entrypoint_0(9));
+        _sumumbofx_entrypoint_2(func_80100094(arg0, 1));
+        _sumumbofx_entrypoint_25(func_80100094(arg0, 1), 0x7D, sp34);
+        sp28 = func_80100094(arg0, 1);
+        func_800DA298(0x18A);
+        _sumumbofx_entrypoint_24(sp28, 0x3FC00000);
+        _sumumbofx_entrypoint_15(func_80100094(arg0, 1), 0x40400000);
+        func_80101180(0x2B0, 0xBB, 9);
+        _capod_entrypoint_13(((Actor *)arg0)->unk0, 0, 0xE, 0x210);
+        func_800DA544(0x57D);
+        break;
+    case 6:
+        _sumumbofx_entrypoint_18(func_80100094(arg0, 1), 0x40400000);
+        break;
+    case 7:
+        _sumumbofx_entrypoint_17(func_80100094(arg0, 1), 0x40800000);
+        func_800DA544(0x18A);
+        break;
+    case 8:
+        _sumumbofx_entrypoint_17(func_80100094(arg0, 1), 0x40800000);
+        func_800DA524(0x18A);
+        break;
+    case 9:
+        _sumumbofx_entrypoint_16(func_80100094(arg0, 1), 0x40400000);
+        if (func_800DA298(0x18A) != 0) {
+            ((Actor *)arg0)->scale = 2.8f;
+        } else {
+            ((Actor *)arg0)->scale = 1.0f;
+        }
+        ((WigwamData *)((Actor *)arg0)->actorData)->scale[0] = 1.0f;
+        ((WigwamData *)((Actor *)arg0)->actorData)->scale[1] = 1.0f;
+        ((WigwamData *)((Actor *)arg0)->actorData)->scale[2] = 1.0f;
+        _chglowbo_entrypoint_6();
+        break;
+    case 10:
+        _sumumbofx_entrypoint_1(arg0, 1);
+        func_8010A800(arg0, 0);
+        func_800DA544(0x9DF);
+        _subaddieDll_entrypoint_4(arg0, 0);
+        break;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 void func_80800E04_chwumbawigwam(Actor *arg0, void *arg1) {
     typedef struct {

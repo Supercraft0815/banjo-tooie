@@ -68,7 +68,94 @@ void func_8080000C_chspotlight(Actor *arg0) {
     data->unk38 = 525.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/spotlight/func_80800210_chspotlight.s")
+void func_80800210_chspotlight(Actor *arg0)
+{
+  void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+  void func_800C8FE0(s32, s32);
+  f32 func_800D8FF8(void);
+  s32 func_800DA298(s32);
+  f32 func_800DC178(f32, f32);
+  int func_800DC298(f32);
+  void *func_80100094(Actor *, u32);
+  void func_80101FDC(Actor *, u32);
+  void func_80102B2C(Actor *, f32);
+  void func_80102B6C(u8 *, f32);
+  s32 func_80102CA4(void *);
+  s32 func_80102CCC(void *);
+  void func_808007F4_chspotlight(Actor *, f32);
+  struct SpotlightData
+  {
+    s32 light;
+    s32 unk4[3];
+    f32 position[3];
+    f32 yaw;
+    f32 unk20;
+    s32 unk24;
+  } *data;
+  s32 state;
+  f32 intensity;
+  data = func_80100094(arg0, 0);
+  _sudeflect_entrypoint_1(arg0->position, arg0->scale * 200.0f, 0.0f, arg0->scale * 125.0f, 10);
+  state = arg0->unk70_10;
+  switch (state)
+  {
+    case 1:
+      if (!arg0->unk70_10)
+    {
+    }
+      if (func_800DA298((arg0->unk74_7 == 0x33) ? (2) : (4)))
+    {
+      func_80101FDC(arg0, 2);
+      data->unk24 = 1;
+      if (data->light)
+      {
+        func_800C8FE0(data->light, 1);
+      }
+    }
+      break;
+
+    case 2:
+      intensity = data->unk20;
+      intensity += 0.06f;
+      if (intensity > 1.0f)
+    {
+      data->unk20 = (intensity = 1.0f);
+      func_80101FDC(arg0, 3);
+    }
+    else
+    {
+      data->unk20 = intensity;
+      if ((intensity < 0.9f) && func_800DC298(0.6f))
+      {
+        intensity *= func_800DC178(0.25f, 0.5f);
+        data->unk24 = 0;
+      }
+      else
+      {
+        data->unk24 = 1;
+      }
+    }
+      func_808007F4_chspotlight(arg0, intensity);
+      break;
+
+    case 3:
+      func_808007F4_chspotlight(arg0, 1.0f);
+      break;
+
+    case 4:
+      func_80102B2C(arg0, func_800D8FF8() * 60.0f);
+      func_80102B6C((u8 *) arg0, func_800D8FF8() * 60.0f);
+      if (func_80102CCC(arg0) && func_80102CA4(arg0))
+    {
+      arg0->rotation[1] = data->yaw;
+      arg0->rotation[0] = 0.0f;
+      func_80101FDC(arg0, 5);
+    }
+      break;
+
+  }
+
+}
 
 /* extern */
 

@@ -653,7 +653,80 @@ void func_800DD65C(Gfx **arg0, void *arg1) {
     packet->words.w1 = osVirtualToPhysical(list);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DD728.s")
+struct GeoContext800DD728 { Gfx *gfx; Mtx *mtx; };
+void func_800DD728(struct GeoContext800DD728 *context, void *arg1) {
+    MtxF *func_80018BB4(void);
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    void mlMtxApply(Mtx *);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    struct DrawCommand {
+        s32 header[2];
+        s16 indices[6];
+        s16 counts1[6];
+        s16 counts2[6];
+        s16 start;
+        s16 flags;
+    } *command = arg1;
+    s32 start[2];
+    s32 start2;
+    MtxF *mtx;
+    MtxF *mtx2;
+    Gfx *packet;
+    Gfx *matrixPacket;
+    Gfx *listPacket;
+    s32 i;
+
+    start[0] = command->start;
+    start2 = start[0];
+    mtx = mlMtx_get_stack_pointer();
+    mtx2 = func_80018BB4();
+    mlMtxApply(context->mtx);
+    if (command->flags && (command->flags & 1)) {
+        if (command->counts2[0]) {
+            func_8010F070(mtx, &start2, command->counts2[0]);
+        }
+        if (command->counts1[0]) {
+            func_8010F070(mtx2, &start2, command->counts1[0]);
+        }
+    }
+    if (D_8012CEC4 != NULL) {
+        if (command->counts2[0]) {
+            D_8012CEC4(mtx, start, command->counts2[0]);
+        }
+        if (command->counts1[0]) {
+            D_8012CEC4(mtx2, start, command->counts1[0]);
+        }
+    }
+    packet = context->gfx++;
+    packet->words.w0 = 0xDE000000;
+    packet->words.w1 = osVirtualToPhysical(command->indices[0] + D_8012C960->commands);
+    for (i = 1; command->indices[i]; i++) {
+            if (command->flags && (command->flags & 1)) {
+                if (command->counts2[i]) {
+                    func_8010F070(mtx, &start2, command->counts2[i]);
+                }
+                if (command->counts1[i]) {
+                    func_8010F070(mtx2, &start2, command->counts1[i]);
+                }
+            }
+            if (D_8012CEC4 != NULL) {
+                if (command->counts2[i]) {
+                    D_8012CEC4(mtx, start, command->counts2[i]);
+                }
+                if (command->counts1[i]) {
+                    D_8012CEC4(mtx2, start, command->counts1[i]);
+                }
+            }
+            matrixPacket = context->gfx++;
+            matrixPacket->words.w0 = 0xDA380002;
+            matrixPacket->words.w1 = (u32)context->mtx;
+            listPacket = context->gfx++;
+            listPacket->words.w0 = 0xDE000000;
+            listPacket->words.w1 = osVirtualToPhysical(command->indices[i] + D_8012C960->commands);
+    }
+    context->mtx++;
+}
 
 struct GeoContext800DD998 {
     Gfx *gfx;

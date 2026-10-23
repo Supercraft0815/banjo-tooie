@@ -12,7 +12,65 @@ void func_80800000_chpufferfish(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x34))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_80800040_chpufferfish.s")
+void func_80800040_chpufferfish(Actor *arg0) {
+    s32 func_8008FCC8(Unk80132ED0 *);
+    s32 func_8010BA80(Actor *volatile, volatile s32, s32);
+    s32 func_8010C500(void *);
+    void func_8010D690(u8 *);
+    void func_80800274_chpufferfish(Actor *, s32);
+    void func_80800518_chpufferfish(Actor *);
+    void func_80800AB0_chpufferfish(void *, s32, f32, f32);
+    void func_80800E20_chpufferfish(Actor *);
+    void func_80800F30_chpufferfish(Actor *);
+
+    func_80800518_chpufferfish(arg0);
+    func_8010D690(arg0);
+    switch (arg0->unk79_4) {
+    case 0:
+        if (arg0->unk64_29) {
+            func_80800F30_chpufferfish(arg0);
+            return;
+        }
+        func_80800AB0_chpufferfish(arg0, 1, 300.0f, 300.0f);
+        func_80800E20_chpufferfish(arg0);
+        if (func_8010BA80(arg0, 0x26, 0x10)) {
+            arg0->unk54 += 10.0f;
+        }
+        if (func_8010C500(arg0) && arg0->unk58 == 0.0f) {
+            if (func_8008FCC8(arg0->unk0) == 0x14) {
+                func_80800274_chpufferfish(arg0, 2);
+                return;
+            }
+            func_80800274_chpufferfish(arg0, 1);
+            return;
+        }
+    default:
+    case 3:
+    case 4:
+        return;
+    case 1:
+        func_80800AB0_chpufferfish(arg0, 2, 600.0f, 600.0f);
+        func_80800E20_chpufferfish(arg0);
+        if (func_8010BA80(arg0, 0x26, 0x10)) {
+            arg0->unk54 += 10.0f;
+        }
+        if (!func_8010C500(arg0)) {
+            func_80800274_chpufferfish(arg0, 0);
+            return;
+        }
+        break;
+    case 2:
+        func_80800AB0_chpufferfish(arg0, 4, 450.0f, 550.0f);
+        func_80800E20_chpufferfish(arg0);
+        if (func_8010BA80(arg0, 0x26, 0x10)) {
+            arg0->unk54 += 10.0f;
+        }
+        if ((!func_8010C500(arg0) || func_8008FCC8(arg0->unk0) != 0x14) && arg0->unk58 == 0.0f) {
+            func_80800274_chpufferfish(arg0, 0);
+        }
+        break;
+    }
+}
 
 void func_80800274_chpufferfish(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);

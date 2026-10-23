@@ -60,7 +60,76 @@ void func_8080052C_chboggyfatboy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808005AC_chboggyfatboy.s")
+s32 func_808005AC_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void func_800C9C70(f32, u32, f32, u32, f32 *, f32, f32);
+    s32 func_800DA298(s32);
+    s32 func_800DA980(s32, s32);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    void func_80800808_chboggyfatboy(Actor *, s32, s32);
+    void func_808009E0_chboggyfatboy(Actor *);
+    void func_80800AF0_chboggyfatboy(s32, s32);
+    void func_80800C5C_chboggyfatboy(Actor *, s32);
+    void func_80800F40_chboggyfatboy(Actor *);
+    s32 func_80800FE0_chboggyfatboy(s32);
+    extern s32 D_80801234_chboggyfatboy;
+    extern s32 D_80801244_chboggyfatboy;
+    f32 *position[5];
+    s16 *parts;
+    s32 masked;
+
+    switch (arg1) {
+    case 0x3E:
+        func_80800AF0_chboggyfatboy((s32)arg0, arg2);
+        break;
+    case 0x44:
+        func_80800C5C_chboggyfatboy(arg0, arg2);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80801234_chboggyfatboy, arg0->scale);
+        break;
+    case 0x29:
+        func_80800F40_chboggyfatboy(arg0);
+        break;
+    case 0x95:
+        func_808009E0_chboggyfatboy(arg0);
+        arg0->unk74_30 = func_800DA298(0xBA);
+        break;
+    case 0x2E:
+        parts = (s16 *)&arg2;
+        func_80800808_chboggyfatboy(arg0, parts[0], parts[1]);
+        break;
+    case 0xB8:
+        masked = arg2 & 0xFFFF;
+        switch (masked) {
+        case 1:
+            if (func_800DA298(0xBA)) {
+                return func_80800FE0_chboggyfatboy(0x3CA) ? 0x1093 : 0x1092;
+            }
+            return func_800F64A4(func_800F54E4(), 0x200) ? 0x110F : 0x1091;
+        case 2:
+            if (func_800DA298(0xBB)) {
+                return 0x1096;
+            }
+            return func_80800FE0_chboggyfatboy(0x3CA) ? 0x1093 : 0x1092;
+        }
+        break;
+    case 0x2D:
+        _subaddieaudioquick_entrypoint_2(arg0, position[0] = arg0->position, &D_80801244_chboggyfatboy);
+        func_800C9C70(1.0f, 0x525, 1.05f, 0x55F0, position[0], 200.0f, 3000.0f);
+        break;
+    case 0x30:
+        return 3 - func_800DA980(0x8C, 3);
+    case 0x2A:
+        func_80800FAC_chboggyfatboy(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800808_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);

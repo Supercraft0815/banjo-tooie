@@ -91,7 +91,34 @@ void func_808002FC_chlakemonster(Actor *arg0) {
     func_800BA22C(emitter, 6);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800404_chlakemonster.s")
+void func_80800404_chlakemonster(Actor *arg0) {
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800DBEFC(void *, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80802150_chlakemonster;
+    f32 position[3];
+    s32 emitter;
+    struct {
+        u8 pad[0x1C];
+        f32 unk1C;
+        f32 unk20;
+    } *data;
+
+    emitter = func_800B53A4(3);
+    data = func_80100094(arg0, 0);
+    func_800DBEFC(arg0->unk0->unk4, 0xC, position);
+    func_800BABB8(emitter, position, NULL, 1.0f, &D_80802150_chlakemonster);
+    func_800BA994(emitter, (s16)(s32)((data->unk20 - 5.0f) - 15.0f), (s16)(s32)((data->unk1C - 5.0f) - 25.0f), (s16)(s32)(arg0->scale * 50.0f), (s32)((data->unk20 + 5.0f) - 15.0f), (s32)((data->unk1C + 5.0f) - 25.0f), (s32)(arg0->scale * 100.0f));
+    func_800BA22C(emitter, 3);
+    emitter = func_800B53A4(3);
+    func_800DBEFC(arg0->unk0->unk4, 0xD, position);
+    func_800BABB8(emitter, position, NULL, 1.0f, &D_80802150_chlakemonster);
+    func_800BA994(emitter, (s16)(s32)((data->unk20 - 5.0f) - 15.0f), (s16)(s32)((data->unk1C - 5.0f) + 25.0f), (s16)(s32)(arg0->scale * 50.0f), (s32)((data->unk20 + 5.0f) - 15.0f), (s32)(data->unk1C + 5.0f + 25.0f), (s32)(arg0->scale * 100.0f));
+    func_800BA22C(emitter, 3);
+}
 
 void func_8080064C_chlakemonster(Actor *arg0) {
     typedef struct {
@@ -230,7 +257,72 @@ void func_808009CC_chlakemonster(void) {
     func_800DA544(0x6E8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800A14_chlakemonster.s")
+s32 func_8001210C(s32);
+
+void func_80800A14_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    void func_8009086C(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    extern s32 D_80802058_chlakemonster;
+    extern s32 D_8080207C_chlakemonster;
+    struct {
+        u8 pad0[0x18];
+        f32 unk18;
+        u8 pad1C[0x21];
+        s8 unk3D;
+    } *sp5C;
+
+    sp5C = func_80100094(arg0, 0);
+    if (arg2 != 0) {
+        func_8080064C_chlakemonster(arg0);
+    }
+    if (arg0->unk7C_12) {
+        struct AnimTimes5 { f32 values[5]; };
+        struct AnimTimes2 { f32 values[2]; };
+        extern struct AnimTimes5 D_808021B4_chlakemonster;
+        extern struct AnimTimes2 D_808021C8_chlakemonster;
+        extern struct AnimTimes5 D_808021D0_chlakemonster;
+        extern struct AnimTimes2 D_808021E4_chlakemonster;
+        struct AnimTimes5 sp48 = D_808021B4_chlakemonster;
+        struct AnimTimes2 sp40 = D_808021C8_chlakemonster;
+        struct AnimTimes5 sp2C = D_808021D0_chlakemonster;
+        struct AnimTimes2 sp24 = D_808021E4_chlakemonster;
+        f32 sp20;
+
+        sp20 = func_80101F24(arg0);
+        if (func_80101E4C(arg0, sp2C.values) != 0) {
+            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)&arg0->actorData[4], &D_80802058_chlakemonster);
+            sp5C->unk18 = 0.85f;
+        } else if (func_80101E4C(arg0, sp40.values) != 0) {
+            func_808008E8_chlakemonster(arg0);
+            func_808001C0_chlakemonster(arg0);
+        } else if (func_80101E4C(arg0, sp48.values) != 0) {
+            func_80800968_chlakemonster(arg0);
+        } else if (func_80101E4C(arg0, sp24.values) == 0) {
+            if (func_80101E14(arg0, 0.965f) != 0) {
+                _subaddieaudioquick_entrypoint_2(arg0, (f32 *)&arg0->actorData[4], &D_8080207C_chlakemonster);
+                func_80018820(0, 2.0f, 0.25f);
+                if (arg1 != 0) {
+                    func_80101180(0x501, 0xBC, 0);
+                } else {
+                    sp5C->unk3D = 1;
+                    func_8009086C(0);
+                }
+            } else if ((func_80101DDC(arg0) != 0) && (arg1 == 0)) {
+                func_808009CC_chlakemonster();
+            }
+        }
+        if ((sp20 > 0.24f) && (sp20 < 0.31f) && (func_8001210C(0xF) != 0)) {
+            func_808001C0_chlakemonster(arg0);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80800C88_chlakemonster.s")
 
@@ -259,7 +351,88 @@ void func_80801448_chlakemonster(u8 *arg0, u32 arg1, s32 arg2) {
     ((struct Flags *)arg0)->flag = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lakemonster/func_80801494_chlakemonster.s")
+s32 func_80801494_chlakemonster(s32 arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_80090658(s32);
+    void func_80090708(s32);
+    void func_8009086C(s32);
+    int func_800C6E38(s32);
+    s32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    u32 func_800FDC28(u32);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101EE4(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    struct {
+        u8 pad0[0x18];
+        f32 unk18;
+        u8 pad1C[0x20];
+        u8 unk3C;
+        u8 unk3D;
+        u8 unk3E;
+    } *data;
+    Actor *actor = (Actor *)arg0;
+
+    data = func_80100094(actor, 0);
+    switch (actor->unk70_10) {
+        case 1:
+            func_80100074(actor, 0, 0x40);
+            data = func_80100094(actor, 0);
+            data->unk3C = 0;
+            data->unk3D = 0;
+            data->unk3E = 0;
+            data->unk18 = 0.0f;
+            func_80090658(1);
+            actor->unk64_16 = 1;
+            break;
+        case 2:
+            func_800FDC28(0);
+            break;
+    }
+    func_80102424(actor, arg1);
+    switch (arg1) {
+        case 0:
+            break;
+        case 7:
+            func_80101EE4(actor, 0.35f);
+            break;
+        case 1:
+            actor->unk64_16 = 0;
+            func_80090658(0);
+            func_80100074(actor, 0, 0);
+            break;
+        case 2:
+            func_808013E8_chlakemonster((s32 *)actor);
+            func_800FDC28(1);
+            _capod_entrypoint_13(actor->unk0, NULL, 6, 0x20);
+            break;
+        case 3:
+            _capod_entrypoint_13(actor->unk0, NULL, 8, 0x10);
+            func_800F7B9C(func_800F54E4(), 0x96);
+            data->unk3D = 1;
+            func_8009086C(0);
+            func_80090658(0);
+            func_80090708(2);
+            break;
+        case 4:
+            func_808013E8_chlakemonster((s32 *)actor);
+            _capod_entrypoint_13(actor->unk0, NULL, 0xA, 0x20);
+            break;
+        case 5:
+            actor->unk64_16 = 0;
+            break;
+        case 6:
+            func_80090658(0);
+            actor->unk64_16 = 0;
+            if (!func_800C6E38(0x15)) {
+                func_80801448_chlakemonster((u8 *)actor, 0x1819, 0);
+            } else {
+                func_80801448_chlakemonster((u8 *)actor, 0x180E, 0);
+            }
+            break;
+    }
+}
 
 s32 func_808016B0_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80090708(s32);

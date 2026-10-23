@@ -271,7 +271,59 @@ void func_80800A14_chonearmbandit(u8 *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800AB8_chonearmbandit.s")
+void func_80800AB8_chonearmbandit(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    f32 func_800136E4(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    int func_800F20BC(f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80108944(Actor *, Actor *);
+    void func_8010D09C(s32, f32 *, f32);
+    f32 target[3];
+    f32 position[3];
+    Actor *spawned;
+    f32 yaw;
+    f32 difference;
+
+    if (!_subaddieskeleton_entrypoint_2(arg0->unk0, 4, position)) {
+        func_800EE7F8(position, arg0->position);
+        position[1] += arg0->scale * 60.0f;
+    }
+    spawned = func_80108528(0x35B, position, (s32)arg0->rotation[1], &arg0);
+    func_80102FDC(spawned, arg0->scale);
+    func_8010D09C(func_800F54E4(), target, 0.8f);
+    target[1] += 60.0f;
+    if (arg0->unk64_29) {
+        yaw = func_800136E4(func_800F1DF4(spawned->position, target));
+        if (func_800F20BC(yaw, arg0->rotation[1], 8.0f)) {
+            spawned->rotation[1] = yaw;
+        } else {
+            spawned->rotation[1] = arg0->rotation[1];
+        }
+    } else {
+        spawned->rotation[1] = func_800136E4(func_800F1DF4(spawned->position, target));
+        difference = func_800F1DCC(spawned->rotation[1], arg0->rotation[1]);
+        if (difference < -60.0f) {
+            spawned->rotation[1] = arg0->rotation[1] - 60.0f;
+        } else if (difference > 60.0f) {
+            spawned->rotation[1] = arg0->rotation[1] + 60.0f;
+        }
+    }
+    spawned->rotation[0] = func_800136E4(func_800F1828(spawned->position, target));
+    if (spawned->rotation[0] > 180.0f) {
+        if (spawned->rotation[0] < 350.0f) {
+            spawned->rotation[0] = 350.0f;
+        }
+    } else if (spawned->rotation[0] > 10.0f) {
+        spawned->rotation[0] = 10.0f;
+    }
+    func_80108944(spawned, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800D00_chonearmbandit.s")
 

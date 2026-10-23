@@ -7,7 +7,65 @@ OSThread *chanemone_entrypoint_0(void)
     return (OSThread *) D_808008D8_chanemone;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_8080000C_chanemone.s")
+void func_8080000C_chanemone(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_800D9078(f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_8010A590(Actor *);
+    s32 func_8010D23C(void);
+    void func_808003A8_chanemone(Actor *);
+    extern s32 D_80800920_chanemone[];
+    extern u32 D_80800934_chanemone[];
+    extern u32 D_80800944_chanemone[];
+    s32 flags = 4;
+    s32 active = arg0->unk70_10 != 3;
+
+    func_808003A8_chanemone(arg0);
+    if (func_8010D23C()) {
+        if (arg0->unk70_10 != 1) {
+            flags = 0x1E;
+        }
+        if (func_800F64A4(func_800F54E4(), 0x400)) {
+            flags |= 2;
+        }
+    }
+    if (active) {
+        _sudeflect_entrypoint_1(arg0->position, arg0->scale * 850.0f, 0.0f, arg0->scale * 600.0f, flags);
+        _sudeflect_entrypoint_0(arg0->position, arg0->scale * 800.0f, arg0->scale * 600.0f, flags);
+    } else {
+        _sudeflect_entrypoint_0(arg0->position, arg0->scale * 250.0f, arg0->scale * 700.0f, flags);
+    }
+    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, arg0->unk70_10 == 1, 2000, D_80800920_chanemone);
+    switch (arg0->unk70_10) {
+        case 2:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800934_chanemone, 0.2f);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 3);
+                arg0->unk58 = 6.0f;
+            }
+            break;
+        case 3:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 4);
+            }
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800944_chanemone, 0.6f);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 1);
+                _subaddieDll_entrypoint_4(arg0, 0);
+                func_8010A590(arg0);
+            }
+            break;
+    }
+}
 
 /* extern */
 
@@ -123,7 +181,63 @@ extend:
 done:;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anemone/func_80800648_chanemone.s")
+s32 func_80800648_chanemone(Unk80132ED0 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4)
+{
+    f32 func_800136E4(f32);
+    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);
+    s16 func_800CB854(s32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u8 *func_80103D98(Unk80132ED0 *);
+    void *func_801040A8(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor;
+    s32 result;
+    s32 sp64;
+    f32 sp58[3];
+    u8 *sp54;
+    f32 angle;
+    u8 *sp4C;
+
+    actor = func_80106790(arg0);
+    switch (func_800CB854(&sp64)) {
+    case 2:
+        func_800EE88C(sp58, (s16 *)&arg0->unk1C + 1);
+        func_800EF04C(sp58, actor->position);
+        return func_800EFFB4(sp58, (u32)*(u16 *)&actor->pad68 * 0.8f * actor->scale + arg2, (f32 *)arg1);
+    case 5:
+        sp54 = func_80103D98(arg0);
+        if (sp54 == NULL) {
+            return 0;
+        }
+        result = func_800B1F8C(sp54, actor->position, actor->rotation, actor->scale, 0, func_801040A8(actor), arg1, arg2, arg3, 30);
+        break;
+    default:
+        sp4C = func_80103D98(arg0);
+        if (sp4C == NULL) {
+            return 0;
+        }
+        angle = func_800136E4(func_800F1DCC(func_800F1DF4(actor->position, (f32 *)arg1), actor->rotation[1]));
+        if (angle < 90.0f) {
+            arg4 = 12;
+        } else if (angle < 180.0f) {
+            arg4 = 24;
+        } else if (angle < 270.0f) {
+            arg4 = 18;
+        } else {
+            arg4 = 6;
+        }
+        result = func_800B1F8C(sp4C, actor->position, actor->rotation, actor->scale, 0, func_801040A8(actor), arg1, arg2, arg3, arg4);
+        break;
+    }
+    if (result != 0) {
+        actor->unk6C_0 = result;
+    }
+    return result;
+}
 
 OSThread *chanemone_entrypoint_1(void)
 {

@@ -32,7 +32,52 @@ void func_8080000C_ch2dbaddy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808000A0_ch2dbaddy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808002A8_ch2dbaddy.s")
+s32 func_808002A8_ch2dbaddy(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _sucoaster_entrypoint_21(Actor *, s32, s32);
+    u8 *_sucoaster_entrypoint_3();
+    void func_80101074(void *);
+    s32 func_801032B0(Actor *, u16, u16);
+    void func_808004A8_ch2dbaddy(Actor *);
+    void func_808004F4_ch2dbaddy(Actor *);
+    s32 func_80800564_ch2dbaddy(Actor *, s32, u32);
+    extern u8 D_80800A3C_ch2dbaddy[];
+    struct ActorFlags {
+        u8 pad[0x78];
+        u32 : 29;
+        u32 flag : 1;
+        u32 : 2;
+    };
+    s32 result;
+
+    switch (arg1) {
+    case 1:
+    case 2:
+        result = _sucoaster_entrypoint_21(arg0, arg1, arg2);
+        if (!((struct ActorFlags *)arg0)->flag) {
+            if (arg0->unk64_29) {
+                func_808004A8_ch2dbaddy(arg0);
+                return 1;
+            }
+            func_808004F4_ch2dbaddy(arg0);
+            return 1;
+        }
+        break;
+    case 0x42:
+        result = func_80800564_ch2dbaddy(arg0, *(s16 *)&arg2, ((u8 *)&arg2)[2]);
+        break;
+    case 0x95:
+        func_801032B0(arg0, ((u16 *)_sucoaster_entrypoint_3(arg0))[3], 0);
+        result = _sucoaster_entrypoint_21(arg0, arg1, arg2);
+        break;
+    case 0x38:
+        func_80101074(D_80800A3C_ch2dbaddy);
+        return 8;
+    default:
+        result = _sucoaster_entrypoint_21(arg0, arg1, arg2);
+        break;
+    }
+    return result;
+}
 
 /* extern */
 
@@ -102,7 +147,72 @@ void func_808004A8_ch2dbaddy(Actor *arg0) {
 
 void func_808004F4_ch2dbaddy(Actor *arg0) { s32 _subaddieDll_entrypoint_3(Actor *); s32 _sucoaster_entrypoint_10(Actor *, s32); s32 _sucoaster_entrypoint_6(Actor *, f32, ...); s32 var_a2; if ((arg0->unk70_10 == 2) || (arg0->unk70_10 == 3) || (arg0->unk70_10 == 8)) { if (_subaddieDll_entrypoint_3(arg0) != 0) { var_a2 = 0x15; } else { var_a2 = 0xE; } _sucoaster_entrypoint_6(arg0, 200.0f, var_a2); _sucoaster_entrypoint_10(arg0, var_a2); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_80800564_ch2dbaddy.s")
+s32 func_80800564_ch2dbaddy(Actor *arg0, s32 arg1, u32 arg2) {
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 func_800D9058(f32);
+    void func_801020DC(void *, s32);
+    void func_8010297C(void *, f32, f32, f32);
+    s32 func_80800700_ch2dbaddy(Actor *, s32);
+
+    switch (arg2) {
+    case 0:
+        if (arg0->unk70_10 == 19) {
+            return 0;
+        }
+        switch (arg1) {
+        case 2:
+        case 3:
+            func_80800700_ch2dbaddy(arg0, 21);
+            break;
+        case 4:
+            func_80800700_ch2dbaddy(arg0, 21);
+            break;
+        case 5:
+        case 8:
+        case 9:
+        case 18:
+            return 1;
+        case 7:
+            _sucoaster_entrypoint_10(arg0, 8);
+            break;
+        }
+        break;
+    case 2:
+    case 7:
+        func_80800700_ch2dbaddy(arg0, 21);
+        break;
+    case 3:
+        arg0->unk6C_0 = func_800D9058(2.0f);
+        func_8010297C(arg0, arg0->unk54, 70.0f, 120.0f);
+        if (arg0->unk70_10 == 8) {
+            func_80800700_ch2dbaddy(arg0, 21);
+        }
+        return 0;
+    case 4:
+        if (arg0->unk70_10 == 19) {
+            break;
+        }
+        return 1;
+    case 1:
+    case 6:
+        return 1;
+    case 5:
+        func_80800700_ch2dbaddy(arg0, 12);
+        break;
+    case 8:
+        if (arg1 == 17) {
+            func_801020DC(arg0, 0);
+        }
+        return 1;
+    case 9:
+        if (arg0->unk64_29) {
+            _sucoaster_entrypoint_10(arg0, 2);
+            break;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 s32 func_80800700_ch2dbaddy(Actor *arg0, s32 arg1) {
     u8 *_sucoaster_entrypoint_3();

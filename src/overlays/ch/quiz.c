@@ -114,7 +114,73 @@ void func_80800298_chquiz(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_8080034C_chquiz.s")
+s32 func_8080034C_chquiz(Actor *arg0, s32 arg1) {
+    s32 _gcnewoption_entrypoint_13(s32, s32, s32 *);
+    s32 _gcnewoption_entrypoint_37(s32, s32);
+    void _gcnewoption_entrypoint_41();
+    void _gcnewoption_entrypoint_46();
+    s32 _gcnewoption_entrypoint_25(s32, s32);
+    s32 _gcnewoption_entrypoint_26(s32, s32);
+    void _gcnewoption_entrypoint_29(s32, s32);
+    void _gcnewoption_entrypoint_43(s32 , s32, s32);
+    void _gcnewoption_entrypoint_44(s32 , s32);
+    s32 _suquiz_entrypoint_10(s32);
+    s32 _suquiz_entrypoint_6(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800B6C_chquiz(Actor *);
+    s32 func_80800C00_chquiz(Actor *);
+    extern s32 D_808070B0_chquiz;
+    s32 option;
+
+    option = (s32 )((Actor *)func_80100094(arg0, 0))->pad94;
+    if (((Actor *)func_80100094(arg0, 0))->pad98 == 0) {
+        if (arg1 == 0) {
+            return;
+        }
+        option = (s32 )func_808000FC_chquiz(arg0, func_80800B6C_chquiz(arg0));
+    }
+    switch (arg1) {
+    case 0:
+        if (option != 0) {
+            _gcnewoption_entrypoint_37((s32 )((Actor *)func_80100094(arg0, 0))->pad94, 1);
+        }
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 0;
+        break;
+    case 1:
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        _gcnewoption_entrypoint_46(option, -1);
+        break;
+    case 2:
+        _gcnewoption_entrypoint_25(option, 1);
+        _gcnewoption_entrypoint_26(option, 1);
+        _gcnewoption_entrypoint_29(option, 1);
+        _gcnewoption_entrypoint_46(option, _suquiz_entrypoint_10(_suquiz_entrypoint_6()));
+        _gcnewoption_entrypoint_44(option, 1);
+        _gcnewoption_entrypoint_41(option, 0);
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        break;
+    case 3:
+        _gcnewoption_entrypoint_25(option, 1);
+        _gcnewoption_entrypoint_26(option, 0);
+        _gcnewoption_entrypoint_29(option, 0);
+        _gcnewoption_entrypoint_46(option, -1);
+        _gcnewoption_entrypoint_44(option, 0);
+        if (func_80800C00_chquiz(arg0) != -1) {
+            _gcnewoption_entrypoint_43(option, func_80800C00_chquiz(arg0), 0);
+            _gcnewoption_entrypoint_13(option, func_80800C00_chquiz(arg0), &D_808070B0_chquiz);
+        }
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        break;
+    case 4:
+        _gcnewoption_entrypoint_26(option, 1);
+        _gcnewoption_entrypoint_29(option, 1);
+        _gcnewoption_entrypoint_41(option, func_80800C00_chquiz(arg0) == 0 ? 1 : 0);
+        _gcnewoption_entrypoint_46(option, _suquiz_entrypoint_10(_suquiz_entrypoint_6()));
+        ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
+        break;
+    }
+    ((Actor *)func_80100094(arg0, 0))->pad98 = arg1;
+}
 
 s32 func_808005C0_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_25(s32, s32);
@@ -534,7 +600,7 @@ typedef struct QuizCamera {
         s16 unk52;
         f32 unk54;
         f32 unk58;
-        s8 unk5C;
+        u8 unk5C;
 } QuizCamera;
 
 void func_8080100C_chquiz(Actor *arg0, void *arg1, u8 arg2) {
@@ -581,7 +647,78 @@ void func_80801058_chquiz(Actor *arg0, QuizCamera *data, f32 arg2, s8 arg3, s8 a
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801170_chquiz.s")
+s32 func_80801170_chquiz(s32 *arg0, void *arg1) {
+    f32 _ncpod_entrypoint_10(s32);
+    s32 _ncpod_entrypoint_8(s32, s32, s32);
+    s32 _ncpod_entrypoint_9(s32, f32);
+    s32 func_800A89F8();
+    s32 func_800A9478(s32);
+    s32 func_800D90A4(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F1214(f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    void func_800F16AC(u8 *, f32 *, f32 *, f32);
+    s32 func_800F5EF8(s32);
+    void *func_80110024(s16 *);
+    f32 position[3];
+    f32 rotation[3];
+    s32 done;
+    f32 t;
+    f32 fov;
+    s32 camera;
+
+    done = func_800D90A4(&((QuizCamera *)arg1)->unk54);
+    t = func_800F12D4(((QuizCamera *)arg1)->unk54, ((QuizCamera *)arg1)->unk58, 0.0f, 0.0f, 1.0f);
+    camera = func_800F5EF8(func_800A9478(func_800A89F8()));
+    camera = func_80110024(camera);
+    if (((QuizCamera *)arg1)->unk5C != 4) {
+        fov = _ncpod_entrypoint_10(camera);
+        if (fov != 40.0f) {
+            _ncpod_entrypoint_9(camera, func_800F15F8(fov, 40.0f, 0.5f));
+        }
+    }
+    switch (((QuizCamera *)arg1)->unk5C) {
+    case 3:
+    case 4:
+        break;
+    case 0:
+        func_800EE7F8(((QuizCamera *)arg1)->unk38, ((QuizCamera *)arg1)->unk1C);
+        func_800EE7F8(((QuizCamera *)arg1)->unk44, ((QuizCamera *)arg1)->unk28);
+        _ncpod_entrypoint_8(camera, ((QuizCamera *)arg1)->unk1C, ((QuizCamera *)arg1)->unk28);
+        break;
+    case 1:
+        func_800EFE50(position, ((QuizCamera *)arg1)->unk0, ((QuizCamera *)arg1)->unk1C, t);
+        func_800F16AC(rotation, ((QuizCamera *)arg1)->unkC, ((QuizCamera *)arg1)->unk28, t);
+        func_800EE7F8(((QuizCamera *)arg1)->unk38, position);
+        func_800EE7F8(((QuizCamera *)arg1)->unk44, rotation);
+        _ncpod_entrypoint_8(camera, position, rotation);
+        break;
+    case 2:
+        func_800EFE50(position, ((QuizCamera *)arg1)->unk0, ((QuizCamera *)arg1)->unk1C, 0.5f);
+        func_800EFB24(rotation, ((QuizCamera *)arg1)->unk0, position);
+        func_800EF934(rotation, rotation, 180.0f * t);
+        func_800EF04C(position, rotation);
+        position[1] = func_800F1214(t, ((QuizCamera *)arg1)->unk0[1], ((QuizCamera *)arg1)->unk1C[1]);
+        func_800F16AC(rotation, ((QuizCamera *)arg1)->unkC, ((QuizCamera *)arg1)->unk28, t);
+        func_800EE7F8(((QuizCamera *)arg1)->unk38, position);
+        func_800EE7F8(((QuizCamera *)arg1)->unk44, rotation);
+        _ncpod_entrypoint_8(camera, position, rotation);
+        break;
+    }
+    if (done != 0) {
+        if (((QuizCamera *)arg1)->unk5C != 3 && ((QuizCamera *)arg1)->unk5C != 4) {
+            ((QuizCamera *)arg1)->unk5C = 3;
+            func_800EE7F8(((QuizCamera *)arg1)->unk0, ((QuizCamera *)arg1)->unk1C);
+            func_800EE7F8(((QuizCamera *)arg1)->unkC, ((QuizCamera *)arg1)->unk28);
+        }
+    }
+    return done;
+}
 
 int func_808013E0_chquiz(s32 arg0, void *arg1) {
     return *((u8 *)arg1 + 0x5C) == 3 || *((u8 *)arg1 + 0x5C) == 4;

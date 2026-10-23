@@ -693,7 +693,66 @@ void func_800D7948(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 s32 func_800D7DE8(Actor *arg0) { typedef struct { u32 pad[9]; u32 unused:16; u32 flag:1; u32 flag2:1; u32 rest:14; } State; void *func_80105494(Actor *); s32 var_a0; s32 var_v1; State *temp_v0; temp_v0 = func_80105494(arg0); if (temp_v0->flag) { var_a0 = 0x800; } else { var_a0 = 0x100; } var_v1 = temp_v0->flag2 ? 0x1000 : 0x200; return var_v1 + var_a0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7E38.s")
+s32 func_800D7E38(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    typedef struct { u32 data[4]; u32 flags; } Node;
+    typedef struct { s32 count; Node nodes[1]; } NodeList;
+    typedef struct { f32 unused0[3]; f32 time; f32 unused10[10]; f32 start; f32 end; } PathState;
+    void *func_8001B798(s16);
+    void *func_80105494(Actor *);
+    s32 _glsplinenode_entrypoint_1(s32 *, void *, void *, NodeList *);
+    extern s32 D_8011B920;
+    extern s16 D_8012BFF6;
+    f32 unused[4];
+    s32 result;
+    f32 unusedTimeAfter;
+    f32 previousTime;
+    f32 unusedTimeBefore;
+    s16 *handles;
+    NodeList *list;
+    s32 count;
+    u32 endOffset;
+    s32 step;
+    s32 index;
+    s32 last;
+    PathState *state;
+    u8 *node;
+
+    handles = func_8001B798(D_8012BFF6);
+    result = 0;
+    state = func_80105494(arg0);
+    list = func_8001B798(handles[arg1]);
+    count = list->count;
+    if (count == 0) {
+        return result;
+    }
+    if (arg2 == -9999) {
+        index = count - 1;
+    } else {
+        index = arg2;
+    }
+    step = arg5 * 20;
+    node = index * sizeof(Node) + (u8 *)list + sizeof(list->count);
+    index = arg3 == -9999 ? count + arg4 : arg3;
+    endOffset = index * sizeof(Node);
+    while (node != (u8 *)(index + list->nodes) && result != 1) {
+        if ((step >= 20 && !(((Node *)node)->flags & 1)) || (step < 0 && (((Node *)node)->flags & 1) == 1)) {
+            if (D_8011B920 == 1) {
+                previousTime = state->time;
+            }
+            result = _glsplinenode_entrypoint_1(&D_8012BE70, arg0, node, list);
+            if ((0.0f != state->start || 0.0f != state->end) &&
+                (!(state->start <= state->time) || !(state->time < state->end))) {
+                state->start = 0.0f;
+                state->end = 0.0f;
+            }
+        }
+        node += step;
+    }
+    if (D_8011B920 == 1 && result == 1) {
+        state->time = 0.00001f + previousTime;
+    }
+    return result;
+}
 
 s32 func_800D8070(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     typedef struct {

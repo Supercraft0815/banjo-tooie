@@ -44,9 +44,139 @@ void func_8080000C_chboggygirl(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_808000A8_chboggygirl.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_80800508_chboggygirl.s")
+s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_800C9C70(f32, u32, f32, u32, f32[3], f32, f32);
+    s32 func_800DA298(s32);
+    s32 func_800DA980(s32, s32);
+    void func_80800708_chboggygirl(Actor *, s32, s32);
+    void func_80800ABC_chboggygirl(Actor *);
+    s32 func_80800B5C_chboggygirl(s32);
+    extern s32 D_80800D48_chboggygirl;
+    extern s32 D_80800D58_chboggygirl;
+    s32 value;
+    f32 *position;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_80800708_chboggygirl.s")
+    switch (arg1) {
+        case 0x2E:
+            func_80800708_chboggygirl(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x95:
+            _subaddierouteDll_entrypoint_1(arg0);
+            arg0->unk74_30 = func_800DA298(0xB9);
+            break;
+        case 0x29:
+            func_80800ABC_chboggygirl(arg0);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80800D48_chboggygirl, arg0->scale);
+            break;
+        case 0xB8:
+            value = arg2 & 0xFFFF;
+            switch (value) {
+                case 1:
+                    if (func_800DA298(0xB9)) {
+                        return func_80800B5C_chboggygirl(0x3CB) ? 0x108E : 0x108C;
+                    }
+                    return 0x108C;
+                case 2:
+                    return func_80800B5C_chboggygirl(0x3CB) ? 0x108E : 0x108C;
+            }
+            break;
+        case 0x2D:
+            position = arg0->position;
+            _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800D58_chboggygirl);
+            func_800C9C70(1.0f, 0x525, 1.05f, 0x55F0, position, 200.0f, 3000.0f);
+            break;
+        case 0x30:
+            return 3 - func_800DA980(0x8C, 3);
+        case 0x2A:
+            func_80800B28_chboggygirl(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
+
+void func_80800708_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x14];
+        s16 unk14;
+        u8 high : 1;
+        u8 flag : 1;
+        u8 low : 6;
+        u8 unk17;
+        u8 item[1];
+    } GirlData;
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void _subaddieitem_entrypoint_2(void *);
+    void func_800C01A8(s16, s32);
+    void func_800C0850(void);
+    void func_800DA544(s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80102924(void *, f32);
+    void func_80800A4C_chboggygirl(Actor *);
+    s32 func_80800B5C_chboggygirl(s32);
+    extern s32 D_80800C50_chboggygirl;
+    GirlData *sp2C;
+
+    sp2C = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x1090:
+        func_80102424(arg0, 5);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_800DA544(0x8D);
+        func_80800A4C_chboggygirl(arg0);
+        func_80101180(0x13F, 0x23, 0);
+        break;
+    case 0x108F:
+        func_80102924(arg0, arg0->rotation[1] + 180.0f);
+        func_80102424(arg0, 3);
+        sp2C->unk14 = 0;
+        break;
+    case 0x108E:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x108B, 0x4E, arg0->position, 0x3C);
+        break;
+    case 0x108B:
+        if (arg2 > 0) {
+            func_80102424(arg0, 0xF);
+            _subaddieitem_entrypoint_2(sp2C->item);
+        } else {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x108F, 0xE, arg0->position, 0x3C);
+        }
+        break;
+    case 0x1098:
+    case 0x1099:
+        sp2C->flag = 0;
+        break;
+    default:
+        switch (_subaddiedialog_entrypoint_9(arg0, arg1, &D_80800C50_chboggygirl, 3)) {
+        case 1:
+            func_800DA544(0xB9);
+            if (func_80800B5C_chboggygirl(0x3CB)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x108E, 0xE, arg0->position, 0x3C);
+                break;
+            }
+            func_800C01A8(0x64, 0);
+            func_800C0850();
+        case 2:
+            func_80102924(arg0, arg0->rotation[1] + 180.0f);
+            func_80102424(arg0, 3);
+            sp2C->unk14 = 0;
+            break;
+        default:
+            func_80102424(arg0, 1);
+            break;
+        }
+        break;
+    }
+}
 
 void func_8080091C_chboggygirl(Actor* arg0)
 {

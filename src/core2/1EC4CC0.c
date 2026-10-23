@@ -232,7 +232,80 @@ void func_800EB880(s32 *arg0, s32 arg1, s32 arg2) {
     dst[7] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EB8C0.s")
+void func_800EB8C0(s32 arg0) {
+    typedef struct {
+        s32 unk0;
+        s16 x, y;
+        signed int z : 16;
+        unsigned int unused : 14;
+        unsigned int type : 1;
+        unsigned int disabled : 1;
+    } Entry;
+    Prop *func_800E9D68(s16 *);
+    u32 func_800E9D90(s16 *);
+    s32 func_800E9DC4(s16 *);
+    s32 func_800E9DCC(s16 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    extern s32 D_80132EA0;
+    Entry *entry;
+    s16 *prop;
+    u32 end;
+    u32 prop_end;
+    s32 distance;
+    s32 x1, y1, z1, distance1;
+    s32 x, y, z;
+    s32 type;
+    s32 group;
+
+    if (func_800E9DCC((s16 *)arg0) && ((type = (*(s32 *)((s8 *)&D_80132EA0 + 0x10))) == 1 || type == 2)) {
+        entry = (Entry *)func_800E9E88((s32)arg0);
+        end = func_800E9EB4((s16 *)arg0);
+        for (; (u32)entry < end; entry++) {
+            if (!entry->disabled) {
+                z1 = entry->z - (*(s32 *)((s8 *)&D_80132EA0 + 0x8));
+                x1 = entry->x - (*(s32 *)((s8 *)&D_80132EA0 + 0x0));
+                y1 = entry->y - (*(s32 *)((s8 *)&D_80132EA0 + 0x4));
+                distance1 = z1*z1 + x1*x1 + y1*y1;
+                if (distance1 < (*(s32 *)((s8 *)&D_80132EA0 + 0xC))) {
+                    group = entry->type ? 2 : 1;
+                    type = (*(s32 *)((s8 *)&D_80132EA0 + 0x10));
+                    if (group == type) {
+                    (*(s32 *)((s32)&D_80132EA0 + 0xC)) = distance1;
+                    (*(s32 *)((s8 *)&D_80132EA0 + 0x14)) = (s32)arg0;
+                    (*(s32 *)((s8 *)&D_80132EA0 + 0x18)) = (s32)entry;
+                    (*(s32 *)((s8 *)&D_80132EA0 + 0x1C)) = type;
+                    }
+                }
+            }
+        }
+    }
+    if (func_800E9DC4((s16 *)arg0) && (*(s32 *)((s8 *)&D_80132EA0 + 0x10)) == 3) {
+        prop = (s16 *)func_800E9D68((s16 *)arg0);
+        prop_end = func_800E9D90((s16 *)arg0);
+        for (; (u32)prop < prop_end; prop += 10) {
+            z = prop[2] - (*(s32 *)((s8 *)&D_80132EA0 + 0x8));
+            x = prop[0] - (*(s32 *)((s8 *)&D_80132EA0 + 0x0));
+            y = prop[1] - (*(s32 *)((s8 *)&D_80132EA0 + 0x4));
+            distance = z*z + x*x + y*y;
+            if (distance < (*(s32 *)((s8 *)&D_80132EA0 + 0xC))) {
+                if ((*(s32 (**)(s16 *, s32))((s8 *)&D_80132EA0 + 0x20))) {
+                    if (!((*(s32 (**)(s16 *, s32))((s8 *)&D_80132EA0 + 0x20)))(prop, (*(s32 *)((s8 *)&D_80132EA0 + 0x24)))) {
+                        continue;
+                    }
+                    z = prop[2] - (*(s32 *)((s8 *)&D_80132EA0 + 0x8));
+                    x = prop[0] - (*(s32 *)((s8 *)&D_80132EA0 + 0x0));
+                    y = prop[1] - (*(s32 *)((s8 *)&D_80132EA0 + 0x4));
+                    distance = z*z + x*x + y*y;
+                }
+                (*(s32 *)((s32)&D_80132EA0 + 0xC)) = distance;
+                (*(s32 *)((s8 *)&D_80132EA0 + 0x14)) = (s32)arg0;
+                (*(s32 *)((s8 *)&D_80132EA0 + 0x18)) = (s32)prop;
+                (*(s32 *)((s8 *)&D_80132EA0 + 0x1C)) = (*(s32 *)((s8 *)&D_80132EA0 + 0x10));
+            }
+        }
+    }
+}
 
 s32 func_800EBB30(s32 *arg0, s32 *arg1) {
     extern s32 D_80132EA0;
@@ -504,7 +577,23 @@ void func_800EC0EC(f32 *arg0, void **arg1) {
     func_800EC058(sp1C, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC4CC0/func_800EC124.s")
+void func_800EC124(f32 *arg0, void *arg1, f32 *arg2) {
+    struct Angles {
+        u8 pad[0x24];
+        u32 unused24 : 16;
+        u32 x : 9;
+        u32 unused27 : 7;
+        u32 y : 9;
+        u32 z : 9;
+        u32 unused2A : 14;
+    };
+    f32 func_800136E4(f32);
+    struct Angles *data = arg1;
+    data->x = (u32)func_800136E4(arg2[0]);
+    data->y = (u32)func_800136E4(arg2[1]);
+    data->z = (u32)func_800136E4(arg2[2]);
+    func_800EC0EC(arg0, arg1);
+}
 
 void func_800EC340(void *arg0, s32 arg1) {
     struct Fields {

@@ -45,7 +45,92 @@ void func_8010AA9C(s32 *arg0) {
     func_800EE7F8(arg0, &D_80136F40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010AAC0.s")
+s32 func_8010AAC0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800D4584(void *, f32 *, f32 *, f32 *);
+    f32 func_800EC708(Unk80132ED0 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF410(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_8010A40C(void *);
+    void func_8010A624(Actor *);
+    u32 func_8010A654(Actor *, s32);
+    u32 func_8010A698(Actor *);
+    extern f32 D_80126510, D_80126514;
+    extern f32 D_80136F30[3];
+    struct {
+        s32 object;
+        f32 height;
+        f32 radius;
+        s32 unkC;
+        s32 unk10;
+        u32 flags;
+        u8 unk18;
+        s32 triangle;
+        f32 matrix[3][3];
+        f32 normal[3];
+        s32 unk50;
+        u8 blocked;
+        u8 count;
+        u8 flag;
+    } state;
+    f32 delta[3];
+    s32 saved;
+    s32 result;
+    Actor **argAddress = (Actor **)&arg0;
+    Actor *actor;
+    f32 normal[3];
+    s32 special;
+
+    saved = func_8010A698(arg0);
+    func_8010A624(arg0);
+    state.radius = func_800EC708(((Actor *)arg0)->unk0);
+    special = 0;
+    if ((arg2 & 0xF000) == 0x1000 || (arg2 & 0xF000) == 0x3000 ||
+        (arg2 & 0xF000) == 0x5000 || (arg2 & 0xF000) == 0x6000) {
+        special = 1;
+    }
+    if (special) {
+        state.radius *= D_80126510 * func_8010A40C(arg0);
+        if (state.radius * 1.25f < *(s16 *)&(actor = *argAddress)->unk0->unk20) {
+            state.height = *(s16 *)&actor->unk0->unk20;
+        } else {
+            state.height = state.radius * 1.25f;
+        }
+    } else {
+        state.radius *= 0.5f * func_8010A40C(arg0);
+        if (state.radius * 1.25f < *(s16 *)&((Actor *)arg0)->unk0->unk20) {
+            state.height = *(s16 *)&((Actor *)arg0)->unk0->unk20;
+        } else {
+            state.height = state.radius * 1.25f;
+        }
+    }
+    actor = *argAddress;
+    state.object = 0;
+    state.unkC = 0;
+    state.unk10 = 0;
+    state.flags = actor->unk14;
+    state.unk18 = 0;
+    state.triangle = 0;
+    state.unk50 = 0;
+    state.blocked = 0;
+    state.count = 0;
+    state.flag = 0;
+    func_800EFB24(delta, actor->position, (void *)arg1);
+    func_800D4584(&state, (f32 *)arg1, actor->position, delta);
+    result = state.count;
+    if (state.count) {
+        func_800EE7F8(D_80136F30, state.normal);
+        if (!state.blocked) {
+            func_800EF410(normal, delta);
+            if (D_80126514 < func_800EEAA4(state.normal, normal)) {
+                result = 0;
+            }
+        }
+    }
+    func_8010A654(arg0, saved);
+    return result ? 1 : 0;
+}
 
 /* extern */
 

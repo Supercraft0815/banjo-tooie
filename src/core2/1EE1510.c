@@ -334,9 +334,93 @@ s32 func_80108618(Actor *arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108658.s")
-
 /* extern */
+
+void func_80108658(void *arg0, s32 arg1, s32 arg2, void *arg3) {
+    void func_8010381C(Actor *);
+    struct ActorFlags {
+        u8 pad0[0x70];
+        u32 pad70_25 : 7;
+        u32 flag70_24 : 1;
+        u32 pad70_22 : 2;
+        u32 flag70_21 : 1;
+        u32 pad70_4 : 17;
+        u32 flag70_3 : 1;
+        u32 pad70_0 : 3;
+        union {
+            struct {
+                u8 pad74_26 : 6;
+                u8 flag74_25 : 1;
+                u8 pad74_24 : 1;
+                u8 pad75[2];
+                u8 pad74_7 : 1;
+                u8 flag74_6 : 1;
+                u8 pad74_0 : 6;
+            } bytes;
+            struct {
+                u32 pad74_7 : 25;
+                u32 flag74_6 : 1;
+                u32 pad74_0 : 6;
+            } word;
+        } flags74;
+        u16 pad78;
+        u16 pad7A_8 : 8;
+        u16 flag7A_6 : 2;
+        u16 pad7A_0 : 6;
+        u8 pad7C[0x18];
+        u32 pad94_16 : 16;
+        u32 flag96_15 : 1;
+        u32 pad96_0 : 15;
+    } *actor = arg0;
+    struct PropFlags {
+        u8 pad0[0x10];
+        u32 pad10_5 : 27;
+        u32 flag10_4 : 1;
+        u32 flag10_2 : 2;
+        u32 pad10_0 : 2;
+    } *prop = arg3;
+
+    actor->flag7A_6 = actor->flags74.bytes.flag74_6 = actor->flags74.bytes.flag74_25 = actor->flag96_15 = 0;
+    if (arg1 & 0x10000000) {
+        actor->flag7A_6 += 1;
+        if (!actor->flag70_21 && !actor->flag70_24) {
+            actor->flag70_21 = 1;
+        }
+    }
+    if (arg1 & 0x20000000) {
+        actor->flag7A_6 += 2;
+        if (!actor->flag70_21 && !actor->flag70_24) {
+            actor->flag70_21 = 1;
+        }
+    }
+    if (arg1 & 0x2000) {
+        if (!actor->flag7A_6) {
+            actor->flag7A_6 = 1;
+        }
+        actor->flags74.bytes.flag74_6 = 1;
+    }
+    if ((arg2 & 0x80010000) == 0x80010000) {
+        actor->flags74.bytes.flag74_25 = 1;
+    }
+    if ((arg2 & 0x80080000) == 0x80080000) {
+        actor->flag96_15 = 1;
+    }
+    if (prop != NULL) {
+        if (arg1 & 0x30002000) {
+            if (prop->flag10_2) {
+            }
+        } else {
+            actor->flag7A_6 = prop->flag10_2;
+            actor->flags74.bytes.flag74_6 = prop->flag10_4;
+            if ((actor->flag7A_6 || actor->flags74.word.flag74_6) && !actor->flag70_21 && !actor->flag70_24) {
+                actor->flag70_21 = 1;
+            }
+        }
+    }
+    if (actor->flag7A_6 && actor->flag70_3) {
+        func_8010381C(arg0);
+    }
+}
 
 void func_801088A8(void *arg0, s32 arg1, s32 arg2, void *arg3) {
     s8 func_800BF8E4(void);

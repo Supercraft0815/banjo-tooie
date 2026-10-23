@@ -233,7 +233,42 @@ void func_800E90A4(s32 arg0, s32 arg1) {
     *p = *p - 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E90D8.s")
+u8 *func_800E90D8(s32 arg0, s32 arg1, s32 arg2) {
+    s32 func_8001211C(void);
+    void func_800E95AC(u32, s32);
+    extern s32 D_80123514[];
+    extern s32 D_8012351C[];
+    extern struct StateView D_8012D690;
+    extern s16 D_80132560[];
+    extern u8 D_80132650[];
+    s32 index;
+    s32 cached;
+    s32 lookup;
+
+    lookup = (u16)D_80132560[arg0] + arg1;
+    cached = D_80132650[lookup * 2 + arg2];
+    if (cached != 0xFF) {
+        D_8012D690.times[cached] = func_8001211C();
+        return (u8 *)&D_8012D690 + cached * 0xD8 + 0x3A8;
+    }
+    if (D_8012D690.counts[arg2] >= D_80123514[arg2] - D_8012351C[arg2]) {
+        func_800E95AC(0, arg2);
+        if (D_8012D690.counts[arg2] >= D_80123514[arg2] - D_8012351C[arg2]) {
+            D_8012D690.times[D_8012351C[arg2]] = func_8001211C();
+            return &D_8012D690.padding[D_8012351C[arg2] * 0xD8 + 0xD8];
+        }
+    }
+    for (index = D_8012351C[arg2]; index < D_80123514[arg2]; index++) {
+        if (D_8012D690.slots[index] == -1) break;
+    }
+    func_800E8F8C(index, arg0, arg1, arg2);
+    D_8012D690.slots[index] = arg0;
+    D_8012D690.offsets[index] = arg1;
+    D_8012D690.times[index] = func_8001211C();
+    (D_8012D690.counts[arg2])++;
+    D_80132650[lookup * 2 + arg2] = index;
+    return (u8 *)&D_8012D690 + index * 0xD8 + 0x3A8;
+}
 
 void func_800E9300(s32 arg0,s32 arg1)
 {

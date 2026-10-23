@@ -79,7 +79,65 @@ void bsbreegullbash_entrypoint_1(struct player_state_s *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/breegullbash/bsbreegullbash_entrypoint_2.s")
+void bsbreegullbash_entrypoint_2(struct player_state_s *arg0) {
+    void _babackpack_entrypoint_5(struct player_state_s *, f32 *, s32);
+    int _babackpack_get_state();
+    s32 _bashake_entrypoint_0(struct player_state_s *, s32, s32);
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    s32 baflag_clear(s32, s32);
+    void baflag_set(struct player_state_s *, s32);
+    s32 bs_setState(s32, s32);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    void func_8009DFD4(struct player_state_s *, s32, f32, f32, s32, s32);
+    void func_8009E4E0(void *, s32, s32);
+    void func_8009E55C(struct player_state_s *, s32, f32);
+    void func_8009E5A4(struct player_state_s *, s32, s32);
+    s32 player_inWater(struct player_state_s *);
+    s32 next_state = 0;
+
+    if (baanim_isAt(arg0, 0.22f) && _babackpack_get_state(arg0) == 7) {
+        baflag_set(arg0, 0x3E);
+        func_8009E55C(arg0, 2, 60.0f);
+        func_8009E4E0(arg0, 2, _babackpack_entrypoint_5);
+        func_8009E5A4(arg0, 2, 2);
+    }
+    if (baanim_isAt(arg0, 0.1188f)) {
+        func_808001B4_bsbreegullbash(arg0);
+    }
+    if (baanim_isAt(arg0, 0.21f)) {
+        func_8009DFD4(arg0, 0x4595, 1.0f, 1.1f, 0x55F0, 0x55F0);
+    }
+    if (baanim_isAt(arg0, 0.36f)) {
+        func_8009DB04(arg0, 0x416, 1.0f, 0x55F0);
+    }
+    if (baanim_isAt(arg0, 0.37f)) {
+        func_8009DFD4(arg0, 0x4596, 1.0f, 1.1f, 0x7FFF, 0x7FFF);
+    }
+    if (baanim_isAt(arg0, 0.6714f)) {
+        func_8009DF18(arg0, 0x3EA, 1.0f, 0x55F0);
+    }
+    if (baanim_isAt(arg0, 0.335f)) {
+        _bashake_entrypoint_0(arg0, 3, 2);
+        func_8009E55C(arg0, 2, 180.0f);
+        func_808000A4_bsbreegullbash(arg0);
+    }
+    if (baanim_isAt(arg0, 0.38f)) {
+        func_8009E55C(arg0, 2, 0.0f);
+        baflag_clear(arg0, 0x3E);
+    }
+    if (baanim_isAt(arg0, 0.8911f)) {
+        func_808001D4_bsbreegullbash(arg0);
+    }
+    if (baanim_isStopped(arg0)) {
+        next_state = 1;
+    }
+    if (player_inWater(arg0)) {
+        next_state = 0x4C;
+    }
+    bs_setState(arg0, next_state);
+}
 
 s32 bsbreegullbash_entrypoint_3(s32 arg0) {
     extern s32 D_80800560_bsbreegullbash[];

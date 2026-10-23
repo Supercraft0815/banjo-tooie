@@ -13,9 +13,9 @@ f32 func_80800040_chstoneballcontrol(void *arg0) {
 
 /* extern */
 
-f32 func_80800070_chstoneballcontrol(void) {
+f32 func_80800070_chstoneballcontrol(void *arg0) {
     f32 func_80800040_chstoneballcontrol();
-    return func_80800040_chstoneballcontrol() * 0.75f;
+    return func_80800040_chstoneballcontrol(arg0) * 0.75f;
 }
 
 /* extern */
@@ -110,9 +110,147 @@ position_actor:
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800360_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_8080079C_chstoneballcontrol.s")
+void func_8080079C_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    void _sukickball_entrypoint_17(Actor *);
+    void _sukickball_entrypoint_19(Actor *, s32, u8);
+    s32 func_800CEB54(s32, f32);
+    s32 func_800CEAD0(s32);
+    u32 func_800FDC28(u32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    void func_80800908_chstoneballcontrol(Actor *);
+    void func_8080145C_chstoneballcontrol(Actor *);
+    struct StoneballUpdateData {
+        f32 timer0;
+        f32 timer1;
+        u8 pad8[0x32];
+        u8 mode;
+    } *data;
+    f32 delta;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800908_chstoneballcontrol.s")
+    data = func_80100094(arg0, 0);
+    delta = func_800D8FF8();
+    data->timer0 -= delta;
+    data->timer1 -= delta;
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800144_chstoneballcontrol(arg0);
+            break;
+        case 3:
+            _sukickball_entrypoint_17(arg0);
+            break;
+        case 6:
+            _sukickball_entrypoint_19(arg0, 1, data->mode);
+            break;
+        case 4:
+            _sukickball_entrypoint_19(arg0, 0, data->mode);
+            func_8080145C_chstoneballcontrol(arg0);
+            if (func_800CEB54(0, 6.0f)) {
+                func_800FDC28(0xE);
+            } else if (func_800CEAD0(0)) {
+                func_80800908_chstoneballcontrol(arg0);
+            }
+            break;
+        case 7:
+            func_8080145C_chstoneballcontrol(arg0);
+            break;
+        case 8:
+            _sukickball_entrypoint_19(arg0, 1, data->mode);
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else {
+                _gcgoto_entrypoint_1(0xBB, 4);
+            }
+            break;
+    }
+}
+
+void func_80800908_chstoneballcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    u32 func_800FDC28(u32);
+    void func_80801734_chstoneballcontrol(Actor *, s32);
+    s32 _sumultiscore_entrypoint_2(s32 *, s32 *, s32 *, s32, s32);
+    void func_800FC6B0(u32);
+    s32 func_800D2054(s32, s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_80101FDC();
+    struct StoneballScore {
+        u8 pad0[0x20];
+        s32 scores[4];
+        u8 winners[4];
+        u8 pad34[5];
+        u8 mode;
+        u8 count;
+        s8 result;
+    } *data;
+    s32 places[4];
+    s32 ties[4];
+    s32 result;
+    u32 dialog;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk70_10 = 6;
+    func_800FDC28(0);
+    func_80801734_chstoneballcontrol(arg0, 1);
+    result = _sumultiscore_entrypoint_2(data->scores, places, ties, 0, data->count);
+    if (data->mode < 3) {
+        if (arg0->unk64_19) {
+            switch (places[0]) {
+                case 1:
+                    if (ties[0] == 0) {
+                        func_800FC6B0(0x16);
+                        func_80800000_chstoneballcontrol(&arg0->unk0, 0xF4D, 0x200);
+                        return;
+                    }
+                case 2:
+                case 3:
+                case 4:
+                    func_80800000_chstoneballcontrol(&arg0->unk0, 0xF4E, 0x200);
+                    func_800FC6B0(0x17);
+                    return;
+            }
+        } else {
+            switch (places[0]) {
+                case 1:
+                    if (ties[0] == 0) {
+                        func_800D2054(0, data->mode + 0x8E, data->scores[0]);
+                        func_800DA544(0x9CB);
+                        func_800FC6B0(0x16);
+                        func_80101FDC(arg0, 8);
+                        arg0->unk58 = 2.5f;
+                        return;
+                    }
+                case 2:
+                case 3:
+                    func_800FC6B0(0x17);
+                    func_80800000_chstoneballcontrol(&arg0->unk0, 0xF21, 0x200);
+                    return;
+                case 4:
+                    func_80800000_chstoneballcontrol(&arg0->unk0, 0xF22, 0x200);
+                    func_800FC6B0(0x17);
+                    return;
+            }
+        }
+    } else {
+        for (i = 0; i < data->count; i++) {
+            if (places[i] == 1) {
+                data->winners[i] = 1;
+            } else {
+                data->winners[i] = 0;
+            }
+        }
+        if (result != 0) {
+            dialog = 0xF51;
+            data->result = result;
+        } else {
+            dialog = 0xF52;
+        }
+        func_800FC6B0(0x10);
+        func_80800000_chstoneballcontrol(&arg0->unk0, dialog, 0);
+    }
+}
 
 void func_80800B4C_chstoneballcontrol(void *arg0, s32 arg1) {
     void func_80102424(Actor *, s32);
@@ -141,8 +279,8 @@ void func_80800B4C_chstoneballcontrol(void *arg0, s32 arg1) {
 void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
     typedef struct { f32 v[3]; } Vec3;
     f32 func_800DC178(f32, f32);
-    s32 func_800EE780(u8 *, u8 *, s32 *);
-    s32 func_800EFCD8(s32 *, f32, s32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
     f32 func_80102D78(u8 *);
     void func_80800B4C_chstoneballcontrol(void *, s32);
     f32 func_8080009C_chstoneballcontrol();
@@ -157,8 +295,8 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
         sp24 = func_80102D78(arg0);
         var_f2 = func_800DC178(110.0f, 250.0f) + sp24;
     }
-    func_800EFCD8((s32 *)&sp2C, var_f2, 0x43FA0000);
-    func_800EE780(arg0 + 0x18, arg0 + 4, (s32 *)&sp2C);
+    func_800EFCD8((f32 *)&sp2C, var_f2, 500.0f);
+    func_800EE780((f32 *)(arg0 + 0x18), (f32 *)(arg0 + 4), (f32 *)&sp2C);
     (*(f32 *)((s8 *)(arg0) + (0x24))) = func_8080009C_chstoneballcontrol(arg0);
     if ((*(f32 *)((s8 *)(arg0) + (0x18))) > 720.0f) {
         (*(f32 *)((s8 *)(arg0) + (0x18))) = 720.0f;
@@ -1439,7 +1577,53 @@ void func_808047E8_chstoneballcontrol(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804810_chstoneballcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804B60_chstoneballcontrol.s")
+void func_80804B60_chstoneballcontrol(Actor *arg0) {
+    typedef struct { f32 v[3]; } Vec3;
+    typedef struct { f32 position[3]; f32 speed; f32 velocity[3]; } BallMotion;
+    extern Vec3 D_80805428_chstoneballcontrol;
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 func_80102D78();
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80804D40_chstoneballcontrol(void *);
+    void func_80804DA0_chstoneballcontrol(void *);
+    Vec3 sp2C = D_80805428_chstoneballcontrol;
+    Actor *parent;
+
+    parent = func_80106790(arg0->unk3C);
+    if (arg0->unk70_10 != 10) {
+        arg0->unk54 = func_80102D78(arg0, ((BallMotion *)arg0->actorData)->position);
+        if (!func_80102CF4(arg0, 0x43700000)) {
+            func_80804DA0_chstoneballcontrol(arg0);
+        } else {
+            func_80804D40_chstoneballcontrol(arg0);
+        }
+        if (!func_80102CF4(arg0, 0x41800000)) {
+            func_80102B2C(arg0, 16.0f);
+        } else if (!func_80102CF4(arg0, 0x40800000)) {
+            func_80102B2C(arg0, 4.0f);
+        }
+    } else if (!func_80102CF4(arg0, 0x42000000)) {
+        func_80102B2C(arg0, 32.0f);
+    } else if (!func_80102CF4(arg0, 0x41800000)) {
+        func_80102B2C(arg0, 16.0f);
+    } else if (!func_80102CF4(arg0, 0x40800000)) {
+        func_80102B2C(arg0, 4.0f);
+    }
+    if (_sukickball_entrypoint_12((u8 *)parent, arg0->unk6C_0) &&
+        func_80800070_chstoneballcontrol(arg0) < ((BallMotion *)arg0->actorData)->speed) {
+        ((BallMotion *)arg0->actorData)->speed = func_80800070_chstoneballcontrol(arg0);
+    }
+    func_800EFCD8(((BallMotion *)arg0->actorData)->velocity, arg0->rotation[1], func_800D8FF8() * ((BallMotion *)arg0->actorData)->speed);
+    func_800EE780(arg0->position, arg0->position, ((BallMotion *)arg0->actorData)->velocity);
+    func_80804304_chstoneballcontrol((u8 *)arg0);
+    arg0->rotation[1] = func_800136E4(arg0->rotation[1]);
+}
 
 void func_80804D40_chstoneballcontrol(void *arg0) {
     if ((*(f32 *)((s8 *)(arg0) + (0x24))) < func_80800040_chstoneballcontrol(arg0)) {

@@ -100,7 +100,7 @@ s32 *func_8002BD40(s32 arg0, s32 *arg1, s32 arg2, s32 *arg3) {
         u8 pad[0x34];
         Bus *buses;
     } *D_800411F4;
-    
+
     Command *func_8002AD60(Source *, s32, Command *);
     Command *cmd;
     Bus *bus;

@@ -228,7 +228,53 @@ OSThread *chfiregen_entrypoint_11(void)
     return (OSThread *) D_80801924_chfiregen;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_80800C44_chfiregen.s")
+void func_80800C44_chfiregen(Actor *arg0) {
+    f32 delta;
+    s32 i;
+    s32 color[3];
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    s32 func_800C8E84();
+
+    delta = func_800D8FF8();
+    if (((f32 *)arg0->actorData)[3] > 0.0f) {
+        ((f32 *)arg0->actorData)[3] -= delta;
+        return;
+    }
+    if (func_800DA298(arg0->unk6C_0)) {
+        if (arg0->unk70_10 != 3) {
+            arg0->unk70_10 = 2;
+        }
+    } else {
+        if (arg0->unk70_10 != 1) {
+            arg0->unk70_10 = 4;
+        }
+    }
+    switch (arg0->unk70_10) {
+    case 2:
+        if (((f32 *)arg0->actorData)[6] <= 0.85f) {
+            ((f32 *)arg0->actorData)[6] += 0.15f;
+        } else {
+            arg0->unk70_10 = 3;
+        }
+        break;
+    case 4:
+        if (((f32 *)arg0->actorData)[6] >= 0.08f) {
+            ((f32 *)arg0->actorData)[6] -= 0.08f;
+        } else {
+            arg0->unk70_10 = 1;
+        }
+        break;
+    }
+    if (arg0->rotation[2] != ((f32 *)arg0->actorData)[6]) {
+        for (i = 0; i < 3; i++) {
+            color[i] = ((f32 *)arg0->actorData)[i] * ((f32 *)arg0->actorData)[6];
+        }
+        func_800C8E84((s32)arg0->unk50, (u32 *)color);
+        arg0->rotation[2] = ((f32 *)arg0->actorData)[6];
+        ((f32 *)arg0->actorData)[3] = 0.15f;
+    }
+}
 
 /* extern */
 

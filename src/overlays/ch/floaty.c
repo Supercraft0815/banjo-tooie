@@ -151,9 +151,135 @@ void func_80800118_chfloaty(Actor *arg0)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_808006AC_chfloaty.s")
+void func_808006AC_chfloaty(Actor *arg0, s32 arg1) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    f32 func_800C6920(f32 *, f32, f32, s32);
+    s32 func_800CB698(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F77E8(s32, f32 *);
+    s32 func_800F7C0C(s32, s32, f32);
+    void func_80102FDC(Actor *, f32);
+    void func_80104580(Actor *);
+    void func_8010A63C(Actor *);
+    f32 func_8010CD28(Actor *);
+    f32 func_80800B68_chfloaty(Actor *);
+    void func_80800BD8_chfloaty(s32, s32);
+    extern f32 D_80800E84_chfloaty[][3];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/floaty/func_8080090C_chfloaty.s")
+    switch (arg1) {
+    case 1:
+        func_8010A63C(arg0);
+        func_80103140(arg0, 0x923, arg0->unk0->unk16);
+        func_80102FDC(arg0, 1.0f);
+        func_8010A63C(arg0);
+        break;
+    case 2:
+        func_800DA544(arg0->unk74_7 + 0x320);
+        func_8010A624(arg0);
+        func_8010A570(arg0);
+        func_800F77E8(func_800F54E4(), D_80800E84_chfloaty[arg0->unk74_7 - 0x32]);
+        break;
+    case 3:
+        func_80104580(arg0);
+        arg0->unk50 = 1.5f;
+        func_80103140(arg0, 0x924, arg0->unk0->unk16);
+        arg0->rotation[1] = func_8010CD28(arg0);
+        func_80800BD8_chfloaty((s32)arg0, 0xA);
+        arg0->position[1] = func_800C6920(arg0->position, 1000.0f, -1000.0f, 0) + 100.0f;
+        break;
+    case 4:
+        func_80104580(arg0);
+        func_8010A624(arg0);
+        func_80103140(arg0, 0x924, arg0->unk0->unk16);
+        func_80102FDC(arg0, 1.0f);
+        arg0->position[1] = func_800C6920(arg0->position, 1000.0f, -1000.0f, 0) + 100.0f;
+        break;
+    case 5: {
+        func_800F7C0C(func_800F54E4(), 0x6E, func_80800B68_chfloaty(arg0));
+        break;
+    }
+    case 6: {
+        func_800CB698(arg0->unk74_7 - 0x25, 5);
+        func_800EEB9C((f32 *)arg0->actorData, arg0->rotation[1], 300.0f);
+        func_800EF04C((f32 *)arg0->actorData, arg0->position);
+        *(f32 *)&arg0->actorData[1] = func_800C6920((f32 *)arg0->actorData, 1000.0f, -1000.0f, 0) + 100.0f;
+        func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+        *(f32 *)&arg0->actorData[3] = 8.0f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+        break;
+    }
+    }
+    func_80102424(arg0, arg1);
+}
+
+s32 func_8080090C_chfloaty(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
+    s32 _subaddietaxi_entrypoint_2(Actor *, s32);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_8010A3E8(void *, f32);
+    extern s32 _chfloaty_entrypoint_0;
+    Actor *sp1C;
+    Actor *temp;
+
+    switch (arg1) {
+    case 0x18:
+        if (arg0->unk70_10 != 2) {
+            func_808006AC_chfloaty(arg0, 2);
+        }
+        return 1;
+    case 0x44:
+        func_8080007C_chfloaty(arg0, arg2);
+        return 1;
+    case 0x3E:
+        if (func_800DA298(arg0->unk74_7 + 0x320) &&
+            _subaddietaxi_entrypoint_2(arg0, arg0->unk74_7 - 0x25)) {
+            func_808006AC_chfloaty(arg0, 5);
+        }
+        return 1;
+    case 0x1F:
+        if (func_801015D0(arg0)) {
+        }
+        switch (arg0->unk70_10) {
+        case 1:
+            func_800DF744(3, 1);
+            break;
+        case 2:
+            func_800DF744(3, 2);
+            break;
+        }
+        return 1;
+    case 0x3D:
+        temp = func_80108528(0x486, arg0->position, (s32)arg0->rotation[1], &arg0);
+        sp1C = temp;
+        func_808006AC_chfloaty(temp, 3);
+        sp1C->unk74_7 = arg0->unk74_7;
+        return 1;
+    case 0x95:
+        if (_subaddietaxi_entrypoint_13(arg0, arg0->unk74_7 - 0x25, &_chfloaty_entrypoint_0, 1)) {
+            func_80102FDC(arg0, 1.0f);
+            if (!func_800DA298(arg0->unk74_7 + 0x320)) {
+                func_808006AC_chfloaty(arg0, 1);
+            } else {
+                func_808006AC_chfloaty(arg0, 4);
+            }
+        } else if (arg0->unk7A_5) {
+            func_800FFA88(arg0->unk0);
+            return 1;
+        }
+        if (arg0->unk0->unk14 == 0x924) {
+            func_8010A3E8(arg0, 0.5f);
+            *(s16 *)&arg0->unk0->unk20 = -0x50;
+        }
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 f32 func_80800B68_chfloaty(Actor *arg0) {
     switch (arg0->unk74_7 - 0x32) {

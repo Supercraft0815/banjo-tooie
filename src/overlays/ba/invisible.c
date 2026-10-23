@@ -200,7 +200,65 @@ void bainvisible_entrypoint_5(s32 arg0, f32 arg1) {
     bastatetimer_set((void *)arg0, 9, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/invisible/bainvisible_entrypoint_6.s")
+void bainvisible_entrypoint_6(s32 arg0) {
+    s32 bastatetimer_isDone(s32, s32);
+    void func_8009DBF0(struct player_state_s *, s32, f32);
+    f32 func_800D8FF8(void);
+    s32 offset;
+    u8 *entry;
+    f32 elapsed;
+    f32 duration;
+    f32 fraction;
+    f32 start;
+
+    if ((*(u8 **)((u8 *)arg0 + 0xA8))[0x1C] == 3) {
+        func_808001BC_bainvisible((void *)arg0);
+    }
+    offset = 0;
+    do {
+        entry = *(u8 **)((u8 *)arg0 + 0xA8) + offset + 0x1C;
+        switch (*entry) {
+        case 2:
+            *(f32 *)(entry + 4) -= func_800D8FF8();
+            if (*(f32 *)(entry + 4) < 0.0f) {
+                func_80800000_bainvisible(arg0, entry, 3);
+            }
+            break;
+        case 3:
+            func_808003AC_bainvisible(entry);
+            if (bastatetimer_isDone(arg0, 9)) {
+                func_80800000_bainvisible(arg0, entry, 1);
+                func_8009DBF0((struct player_state_s *)arg0, 0x65D, 1.0f);
+            }
+            if (entry[0x1C]) {
+                *(f32 *)(entry + 0x18) -= func_800D8FF8();
+                if (*(f32 *)(entry + 0x18) <= 0.0f) {
+                    entry[0x1C] = 0;
+                }
+            }
+            break;
+        case 4:
+            *(f32 *)(entry + 0x28) += func_800D8FF8();
+            elapsed = *(f32 *)(entry + 0x28);
+            duration = *(f32 *)(entry + 0x2C);
+            if (elapsed < duration) {
+                fraction = elapsed / duration;
+            } else {
+                fraction = 1.0f;
+            }
+            start = *(f32 *)(entry + 0x24);
+            *(f32 *)(entry + 0xC) = start;
+            *(f32 *)(entry + 0xC) += (*(f32 *)(entry + 0x20) - start) * fraction;
+            break;
+        case 1:
+            if (func_808003AC_bainvisible(entry)) {
+                func_80800000_bainvisible(arg0, entry, 0);
+            }
+            break;
+        }
+        offset += 0x30;
+    } while (offset != 0x60);
+}
 
 void bainvisible_entrypoint_7(u8 *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     s8 var_v0;

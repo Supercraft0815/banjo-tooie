@@ -299,7 +299,82 @@ void func_8080057C_chfactorytoxicpools(Actor *arg0) {
     arg0->unk58 = 1.2f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxicpools/func_80800670_chfactorytoxicpools.s")
+void func_80800670_chfactorytoxicpools(Actor *arg0) {
+    s32 func_800CC338(f32 *, s32, s32);
+    s32 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F5578(s32);
+    f32 func_800F5628(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5C94(s32);
+    s32 func_800F5D18(s32);
+    s32 func_800F6A38(s32);
+    void func_800F7D90(s32, s32, void *, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800898_chfactorytoxicpools(Actor *);
+    struct PoolData {
+        s16 unk0;
+        s16 count;
+        struct {
+            s16 room;
+            s16 pad;
+            f32 position[3];
+            f32 velocity[3];
+        } entries[8];
+    } *data;
+    s32 player;
+    s32 state;
+    s32 active;
+    f32 position[3];
+    s32 i;
+    f32 height;
+    s32 valid;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+            player = func_800F54E4();
+            if (func_800F6A38(player)) {
+                state = func_800F5C94(player);
+                active = func_800F5D18(player);
+                if (state != 12 && state != 14 && active && func_800D9078(&arg0->unk58)) {
+                    func_800F7D90(player, 0x52, data->entries[data->unk0].velocity, 1);
+                    func_80101FDC(arg0, 2);
+                    func_80800898_chfactorytoxicpools(arg0);
+                    arg0->unk58 = 2.5f;
+                }
+            } else {
+                func_800F5A00(player, position);
+                for (i = 0; i < data->count; i++) {
+                    height = func_800F5628(player);
+                    valid = height != -18000.0f;
+                    if (valid) {
+                        position[1] = height;
+                    } else {
+                        position[1] = data->entries[i].velocity[1];
+                    }
+                    if (func_800CC338(position, data->entries[i].room, 0) != -1) {
+                        if (!valid) {
+                            func_800EE7F8(data->entries[i].velocity, data->entries[i].position);
+                        } else {
+                            func_800EE7F8(data->entries[i].velocity, position);
+                        }
+                        data->unk0 = i;
+                    }
+                }
+                arg0->unk58 = 1.2f;
+            }
+            break;
+        case 2:
+            if (func_800D9078(&arg0->unk58) && func_800F5578(func_800F54E4()) > 0) {
+                func_80101FDC(arg0, 1);
+                arg0->unk58 = 1.2f;
+            }
+            break;
+    }
+}
 
 void func_80800898_chfactorytoxicpools(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);

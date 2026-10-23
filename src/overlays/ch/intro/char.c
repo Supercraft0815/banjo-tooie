@@ -41,7 +41,78 @@ void func_80800000_chintrochar(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_808000FC_chintrochar.s")
+s32 func_808000FC_chintrochar(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_0(Actor *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void func_80108658(void *, s32, s32, void *);
+    void func_8010A63C(Actor *);
+    void func_8010A800(Actor *, s32);
+    extern u16 D_80804790_chintrochar[][16];
+    struct IntroFlags {
+        u8 pad0[0x70];
+        u8 pad70 : 7;
+        u8 flag70 : 1;
+        u8 pad71 : 2;
+        u8 flag71 : 1;
+        u8 pad71low : 5;
+        u8 pad72[5];
+        u8 pad77 : 4;
+        u8 mode : 4;
+        u8 pad78[3];
+        u8 pad7B : 6;
+        u8 flag7B : 1;
+        u8 pad7B0 : 1;
+        u8 pad7C[0x18];
+        u8 pad94 : 1;
+        u8 flag94 : 1;
+        u8 pad94low : 6;
+    };
+    s32 flags;
+    s32 flags2;
+    s32 color[3];
+
+    flags = *(u32 *)&D_80804790_chintrochar[arg0->unk74_7][-0x31C] & 0x3FFFFFFF;
+    flags2 = *(u32 *)&D_80804790_chintrochar[arg0->unk74_7][-0x31A] & 0x3FFFFFFF;
+    if (flags & 0x400) {
+        _subaddieDll_entrypoint_0(arg0);
+    }
+    if (flags2 & 0x80800000) {
+        ((struct IntroFlags *)arg0)->flag94 = 1;
+    }
+    if (flags & 0x800000) {
+        ((struct IntroFlags *)arg0)->flag71 = 1;
+    }
+    if (flags & 8) {
+        ((struct IntroFlags *)arg0)->flag70 = 1;
+    }
+    if (flags2 & 0x80000010) {
+        ((struct IntroFlags *)arg0)->flag7B = 1;
+        color[0] = ((u8 *)D_80804790_chintrochar[arg0->unk74_7])[-0x62C];
+        color[1] = ((u8 *)D_80804790_chintrochar[arg0->unk74_7])[-0x62B];
+        color[2] = ((u8 *)D_80804790_chintrochar[arg0->unk74_7])[-0x62A];
+        _subaddiefade_entrypoint_11(arg0, color);
+    }
+    if (flags & 0x20000) {
+        func_8010A800(arg0, 2);
+    }
+    if (flags & 0x400000) {
+        func_8010A800(arg0, 3);
+    }
+    if (flags & 0x100) {
+        ((struct IntroFlags *)arg0)->mode = 1;
+    }
+    func_80108658(arg0, flags, flags2, NULL);
+    if (flags & 0x20000) {
+        func_8010A800(arg0, 2);
+    } else if (flags & 0x400000) {
+        func_8010A800(arg0, 3);
+    } else {
+        func_8010A800(arg0, 0);
+    }
+    if (flags & 0x800) {
+        func_8010A63C(arg0);
+    }
+}
 
 void func_808002FC_chintrochar(Actor *arg0) {
     s16 func_800AE020(void);

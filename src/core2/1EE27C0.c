@@ -300,9 +300,71 @@ void func_80109704(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s
     func_80109748(arg0 + 4, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109748.s")
+void func_80109748(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7) {
+    void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    extern f32 D_80124688[];
+    f32 spA4[3];
+    f32 sp98[3];
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_801098D0.s")
+    sp98[0] = ((f32 *)arg0)[0];
+    sp98[2] = ((f32 *)arg0)[2];
+    for (i = 0; i < arg1; i++) {
+        sp98[1] = ((f32 *)arg0)[1] + func_800DC178((f32)arg2, (f32)arg3);
+        spA4[1] = func_800DC178(4.0f, 10.0f);
+        spA4[0] = func_800DC178(-8.0f, 8.0f);
+        spA4[2] = func_800DC178(-8.0f, 8.0f);
+        func_800B4470(sp98, spA4, D_80124688, 1, arg4, 50.0f, arg5, func_800DC128(arg6, arg7), 0);
+    }
+}
+
+s32 func_801098D0(f32 *arg0, f32 arg1, void *arg2) {
+    f32 func_800EC75C(void *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    struct HitTable {
+        u32 pad[3];
+        s32 (*hit)(void *, f32 *, f32, f32 *, u32);
+    };
+    struct HitMarker {
+        u32 pad[3];
+        struct HitTable *(*get)(void);
+        u32 pad10[2];
+        u32 unused0 : 11;
+        u32 hit : 4;
+        u32 unused1 : 12;
+        u32 mode : 4;
+        u32 unused2 : 1;
+    };
+    f32 sp4C[3];
+    f32 sp48;
+    s32 result;
+    f32 sp38[3];
+    struct HitTable *table;
+    struct HitMarker *marker = arg2;
+
+    if (marker->get != NULL) {
+        table = marker->get();
+        if (table->hit != NULL) {
+            result = table->hit(marker, arg0, arg1, sp38, marker->mode);
+            if (result != 0) {
+                marker->hit = result;
+                return 1;
+            }
+            return 0;
+        }
+    }
+    sp48 = func_800EC75C(marker, sp4C) + arg1;
+    func_800EF3DC(sp4C, arg0);
+    if (func_800EEFD4(sp4C) < sp48 * sp48) {
+        result = 1;
+    } else {
+        result = 0;
+    }
+    return result;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_801099D0.s")
 
@@ -324,7 +386,84 @@ void func_80109C20(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
 
 void func_80109C4C(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) { struct Flags { u8 pad[0x24]; u32 value : 10; u32 rest : 22; }; s32 temp; u32 saved; void func_801099D0(s32, f32, s32, s32, s32, s32); saved = ((struct Flags *)arg5)->value; ((struct Flags *)arg5)->value = arg6; func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5); ((struct Flags *)arg5)->value = saved; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_80109CC4.s")
+s32 func_80109CC4(f32 *arg0, f32 arg1, void *arg2) {
+    typedef struct {
+        u8 pad0[0x14];
+        u16 id;
+        u16 pad16;
+        u16 flags18;
+        u8 pad1A[0xA];
+        u32 group : 10;
+        u32 pad24 : 22;
+        u32 pad28 : 22;
+        u32 enabled : 1;
+        u32 pad28b : 9;
+    } HitMarker;
+    typedef struct {
+        HitMarker *marker;
+        u32 pad4;
+        u32 pad8 : 27;
+        u32 active : 1;
+        u32 pad8b : 3;
+        u32 valid : 1;
+    } HitEntry;
+    typedef struct {
+        u8 pad0[0x10];
+        s32 (*test)(void *, void *);
+    } HitCallbacks;
+    typedef struct {
+        u8 pad0[0x70];
+        u32 pad70 : 30;
+        u32 hit : 1;
+        u32 pad70b : 1;
+    } HitFlags;
+    s32 *func_800BE444(f32 *);
+    s16 func_800CB854(s32 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    void *func_80106790();
+    void *func_800EC3C4(void *);
+    s32 _glhittableDll_entrypoint_1(void *, void *);
+    void func_800EB210(void *, void *, s32);
+    s32 pad;
+    s32 *cubes;
+    HitEntry *entry;
+    HitEntry *end;
+    HitMarker *marker;
+    Actor *actor;
+    HitCallbacks *callbacks;
+    s32 mask;
+    s32 result = 0;
+
+    cubes = func_800BE444(arg0);
+    mask = func_800CB854(NULL) ? 1 << (func_800CB854(NULL) + 31) : 0;
+    for (; *cubes; cubes++) {
+        entry = (HitEntry *)func_800E9E88(*cubes);
+        end = (HitEntry *)func_800E9EB4((s16 *)*cubes);
+        for (; entry < end; entry++) {
+            if (entry->active && entry->valid) {
+                marker = entry->marker;
+                if (marker != arg2 && marker->enabled && (marker->flags18 & 1)
+                    && marker->id && marker->id != 0xFFFF
+                    && marker->group != ((HitMarker *)arg2)->group) {
+                    actor = func_80106790(marker);
+                    if (!actor->unk64_17 && !(actor->unk64_0 & mask)
+                        && func_801098D0(arg0, arg1, marker)) {
+                        callbacks = func_800EC3C4(marker);
+                        if (!callbacks->test || callbacks->test(marker, arg2)) {
+                            result = 1;
+                            ((HitFlags *)actor)->hit = 1;
+                            if (!_glhittableDll_entrypoint_1(arg2, marker)) {
+                                func_800EB210(marker, arg2, 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
 
 s32 func_80109EE0(void *arg0, s32 arg1) {
     return (*(u16 *)((s8 *)(arg0) + (0x66))) & arg1;
@@ -393,7 +532,7 @@ void func_80109FE8(void **arg0, s32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A01C.s")
 
 void func_8010A2FC(Actor *arg0, f32 *arg1, f32 *arg2) {
-    void func_800EC75C(Unk80132ED0 *, f32 *);
+    f32 func_800EC75C(void *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void *func_80101080(void);

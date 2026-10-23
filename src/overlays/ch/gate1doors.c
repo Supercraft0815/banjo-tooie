@@ -50,7 +50,53 @@ void func_808000A4_chgate1doors(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gate1doors/func_80800128_chgate1doors.s")
+void func_80800128_chgate1doors(Actor *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EEB9C(f32 dst[3], f32 angle, f32 distance);
+    void func_800EF04C(f32 *, f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    void func_80103110(Actor *, u32);
+    void func_80109748(f32 *, s32, s32, s32, f32, s32, s32, s32);
+    extern u8 D_80800480_chgate1doors[];
+    extern u8 D_80800494_chgate1doors[];
+    extern u8 D_808004A8_chgate1doors[];
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void _subaddieaudioloop_entrypoint_4(Actor *, f32 *, s32, void *);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    void _subaddieDll_entrypoint_4(Actor *, s32);
+    f32 sp34[3];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(0xB1) != 0) {
+                func_800EEB9C(sp34, arg0->rotation[1] - 180.0f, 400.0f);
+                func_800EF04C(sp34, arg0->position);
+                func_80109748(sp34, 8, -40, 100, 2.15f, 180, 60, 80);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800480_chgate1doors);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800494_chgate1doors);
+                func_80101FDC(arg0, 2);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                arg0->unk74_30 = 0;
+                arg0->unk58 = 0.0f;
+            }
+            break;
+        case 2:
+            arg0->unk54 = 90.0f;
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808004A8_chgate1doors);
+            if (func_80102CF4(arg0, 0x40000000) != 0) {
+                func_80101FDC(arg0, 3);
+                func_80103110(arg0, 0);
+                _subaddieaudioloop_entrypoint_2(arg0);
+            } else {
+                func_80102B2C(arg0, 1.0f);
+            }
+            break;
+        case 3:
+            break;
+    }
+}
 
 /* extern */
 

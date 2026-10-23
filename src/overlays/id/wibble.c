@@ -88,7 +88,62 @@ s32 *func_80800324_idwibble(s32 arg0) {
     return D_80800770_idwibble[0].words;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/wibble/idwibble_entrypoint_2.s")
+void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    void func_800EE88C(f32 *, s16 *);
+    s32 *entry;
+    s16 first[3];
+    s16 second[3];
+    f32 value;
+
+    entry = func_80800324_idwibble(arg1);
+    arg1 %= 100;
+    _glidmake_entrypoint_2(arg2, arg3, (u8 *)first, (u8 *)second);
+    *(s16 *)((u8 *)arg0 + 0x18) = (first[1] + second[1]) / 2;
+    func_800EE88C(arg0, first);
+    func_800EE88C(arg0 + 3, second);
+    arg0[7] = *((u8 *)entry + 0xD) << 6;
+    if (*((u8 *)entry + 0xD)) {
+        *((u8 *)arg0 + 0x33) = 1;
+    } else {
+        *((u8 *)arg0 + 0x33) = 0;
+    }
+    value = ((f32 *)entry)[1];
+    if (value < 0.0f) {
+        *(s16 *)((u8 *)arg0 + 0x1A) = (s32)-value;
+        *((u8 *)arg0 + 0x31) = 2;
+    } else if (value > 0.0f) {
+        *(s16 *)((u8 *)arg0 + 0x1A) = (s32)value;
+        *((u8 *)arg0 + 0x31) = 0;
+    } else {
+        *(s16 *)((u8 *)arg0 + 0x1A) = (s32)((arg0[4] - arg0[1]) * 0.5f);
+        *((u8 *)arg0 + 0x31) = 1;
+    }
+    if (0.0f == *(s16 *)((u8 *)arg0 + 0x1A)) {
+        *(s16 *)((u8 *)arg0 + 0x1A) = 1;
+    }
+    arg0[8] = (f32)(u32)*((u8 *)entry + 0xC) / *(s16 *)((u8 *)arg0 + 0x1A);
+    *((u8 *)arg0 + 0x30) = 0xFF - *((u8 *)entry + 0xC);
+    if (*((u8 *)entry + 0xC)) {
+        *((u8 *)arg0 + 0x32) = 1;
+    } else {
+        *((u8 *)arg0 + 0x32) = 0;
+    }
+    arg0[9] = 0.0f;
+    arg0[10] = 6.2831855f / ((f32 *)entry)[0];
+    value = ((f32 *)entry)[2];
+    if (value < 0.0f) {
+        arg0[11] = -value;
+    } else {
+        arg0[11] = (f32)arg1 * value;
+    }
+    *(s16 *)((u8 *)arg0 + 0x34) = 0;
+    if (arg4 != 1 && arg4 != 2) {
+        *((u8 *)arg0 + 0x37) = 1;
+    } else {
+        *((u8 *)arg0 + 0x37) = 0;
+    }
+}
 
 void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, void *);

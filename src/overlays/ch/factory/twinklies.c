@@ -95,7 +95,82 @@ void func_80800048_chfactorytwinklies(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808001A0_chfactorytwinklies.s")
+void func_808001A0_chfactorytwinklies(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_9(void);
+    s32 func_800CEAD0(s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800D2498(u32, s32, u32);
+    int func_800D9154(f32 *, f32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F7ECC(s32, s32, f32);
+    void func_800F8300();
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_80800B80_chfactorytwinklies(Actor *, s32 *);
+    void func_80800D00_chfactorytwinklies(Actor *);
+    struct {
+        s32 counts[16];
+        s32 values[8][3];
+        s32 unkA0;
+        s32 dialog;
+        s32 duration;
+        u32 game;
+    } *data;
+    s32 i;
+    s32 player;
+    f32 random;
+    s32 animation;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+            break;
+        case 3:
+            player = func_800F54E4();
+            func_800D2498(0xEF, data->counts[player], 0);
+            for (i = 0; i < 3; i++) {
+                func_800D2498(i + 0xF0, data->values[player][i], 0);
+            }
+            func_80800D00_chfactorytwinklies(arg0);
+            if (func_800CEAD0(0) != 0) {
+                data->dialog = func_80800B80_chfactorytwinklies(arg0, &data->duration);
+                func_800F7ECC(func_800F54E4(), 3, 0.0f);
+                func_800F8300(func_800F54E4(), 2, 0);
+                func_80101FDC(arg0, 4);
+            } else if (func_800D9154(&arg0->unk58, func_800DC178(1.0f, 1.199996948f))) {
+                random = func_800DC0C0();
+                if (random < 0.1666f) {
+                    animation = 0;
+                } else if (random < 0.5f) {
+                    animation = 1;
+                } else {
+                    animation = 2;
+                }
+                func_80108B04(arg0, animation);
+            }
+            break;
+        case 4:
+            if (_susubgame_entrypoint_9()) {
+                _susubgame_entrypoint_5(arg0, &data->game, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, data->dialog, data->duration, NULL, 0xA3);
+                func_80101FDC(arg0, 5);
+            }
+            break;
+        case 7:
+            if (func_800D0B68(0x3B, 1)) {
+                func_800F8300(func_800F54E4(), 2, 0);
+                data->dialog = 0xCEB;
+                data->duration = 0x46;
+                func_80101FDC(arg0, 4);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080040C_chfactorytwinklies.s")
 
@@ -284,7 +359,59 @@ void func_80800DE0_chfactorytwinklies(Actor *arg0) {
     _subaddiemulti_entrypoint_3(0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800E9C_chfactorytwinklies.s")
+void func_80800E9C_chfactorytwinklies(Actor *arg0) {
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefind_entrypoint_9(s32);
+    s32 func_800C954C(void);
+    s32 func_800CEAD0(s32);
+    int func_800D9154(f32 *, f32);
+    s32 func_800DA298(s32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_808011B0_chfactorytwinklies(Actor *);
+    void func_808013BC_chfactorytwinklies(Actor *, s32);
+    s32 choice;
+    f32 random;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800C954C() == 0 && func_800DA298(0x6AD) == 0) {
+            _chmrtannoy_entrypoint_0();
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, 0, 0xA3);
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    case 3:
+        func_808013BC_chfactorytwinklies(arg0, 0);
+        func_80800D00_chfactorytwinklies(arg0);
+        if (func_800CEAD0(0) != 0) {
+            func_808011B0_chfactorytwinklies(arg0);
+            return;
+        }
+        if (_subaddiefind_entrypoint_9(0x443) + _subaddiefind_entrypoint_9(0x444) + _subaddiefind_entrypoint_9(0x445) < 4 &&
+            func_800D9154(&arg0->unk58, func_800DC178(1.0f, 1.199996948f) / _gcstatusDll_entrypoint_11())) {
+                random = func_800DC0C0();
+                if (random < 0.25f) {
+                    choice = 0;
+                } else if (random < 0.6f) {
+                    choice = 1;
+                } else {
+                    choice = 2;
+                }
+                func_80108B04(arg0, choice);
+                return;
+        }
+        break;
+    case 5:
+    case 6:
+        func_808013BC_chfactorytwinklies(arg0, 1);
+        break;
+    }
+}
 
 s32 func_8080105C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80801108_chfactorytwinklies(Actor *, s32, s32);
@@ -337,7 +464,56 @@ s32 func_80801174_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808011B0_chfactorytwinklies.s")
+void func_808011B0_chfactorytwinklies(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiemulti_entrypoint_1(s32, s32);
+    void func_800AA20C(s32, s32);
+    void func_800FC6B0(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 temp;
+    s32 scores[8];
+    s32 *data;
+    s32 max;
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 dialog;
+
+    data = func_80100094(arg0, 0);
+    max = -1;
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        scores[j] = data[j];
+        if (max < scores[j]) {
+            max = scores[j];
+        }
+        func_800AA20C(j, scores[j]);
+    }
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        if (max == scores[j]) {
+            data[j + 8] = 1;
+        }
+    }
+    for (i = 1; i < _gcstatusDll_entrypoint_11(); i++) {
+        for (k = i; k > 0 && scores[k - 1] < scores[k]; k--) {
+            temp = scores[k];
+            scores[k] = scores[k - 1];
+            scores[k - 1] = temp;
+        }
+    }
+    func_800FC6B0(0x16);
+    if (scores[0] != scores[1]) {
+        for (k = 0; data[k] != scores[0]; k++) {}
+        data[40] = k;
+        dialog = 0x1348;
+    } else {
+        dialog = 0x1349;
+    }
+    _subaddiemulti_entrypoint_1(0, 0);
+    func_80101FDC(arg0, 5);
+    _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 6, NULL, 0xA3);
+}
 
 void func_808013BC_chfactorytwinklies(Actor *arg0, s32 arg1) {
     s32 _gcstatusDll_entrypoint_11();

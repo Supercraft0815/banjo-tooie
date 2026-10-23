@@ -1,6 +1,53 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800000_chfactorymagnet.s")
+void func_80800000_chfactorymagnet(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    f32 func_800EFC7C(void *, void *);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80801508_chfactorymagnet(Actor *, s32);
+    Prop *props[3];
+    Prop *center[2];
+    f32 position[3];
+    f32 first[3];
+    f32 second[3];
+    f32 third[3];
+    f32 distances[3];
+    s32 i;
+    s32 j;
+    f32 temp;
+
+    if (_gccubesearch_entrypoint_9(0x299, props, 3) != 3) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    if (_gccubesearch_entrypoint_9(0x3FC, center, 1) == 0) {
+        func_800FFA88(arg0->unk0);
+        return;
+    }
+    _gspropctrl_entrypoint_11(props[0], first);
+    _gspropctrl_entrypoint_11(props[1], second);
+    _gspropctrl_entrypoint_11(props[2], third);
+    _gspropctrl_entrypoint_11(center[0], position);
+    distances[0] = func_800EFC7C(position, first);
+    distances[1] = func_800EFC7C(position, second);
+    distances[2] = func_800EFC7C(position, third);
+    for (i = 0; i < 2; i++) {
+        for (j = i; j < 3; j++) {
+            if (distances[j] < distances[i]) {
+                temp = distances[j];
+                distances[j] = distances[i];
+                distances[i] = temp;
+            }
+        }
+    }
+    ((f32 *)arg0->actorData)[4] = distances[0];
+    ((f32 *)arg0->actorData)[5] = distances[1];
+    ((f32 *)arg0->actorData)[6] = distances[2];
+    for (i = 0; i != 30; i++) {
+        func_80801508_chfactorymagnet(arg0, i);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800224_chfactorymagnet.s")
 
@@ -380,9 +427,121 @@ OSThread *chfactorymagnet_entrypoint_3(void)
     return (OSThread *) D_80802AB4_chfactorymagnet;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80802390_chfactorymagnet.s")
+void func_80802390_chfactorymagnet(Actor *arg0) {
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_8001210C(s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800C8A98(void);
+    void func_800C8B84(s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8F64(s32, s32);
+    void func_800C8FB0(s32, u32, u32, u32);
+    void func_800C8FE0(s32, s32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    void func_80101FDC(Actor *, u32);
+    extern s32 D_80802AFC_chfactorymagnet[];
+    extern f32 D_80802B50_chfactorymagnet[];
+    extern u32 D_80802B58_chfactorymagnet[];
+    s32 active;
+    f32 *first;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808025B4_chfactorymagnet.s")
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800D90A4(&arg0->unk58)) {
+                if (_subaddiefind_entrypoint_2(0x3F5, 0)->unk70_10 == 0x11) {
+                    first = (f32 *)&arg0->actorData[4];
+                    func_800BBCB8(first, (f32 *)&arg0->actorData[0], 1.0f, 10, D_80802AFC_chfactorymagnet);
+                    func_800BBCB8((f32 *)&arg0->actorData[0], first, 1.0f, 10, D_80802AFC_chfactorymagnet);
+                    arg0->actorData[3] = func_800C8A98();
+                    func_800C8D4C(arg0->actorData[3], D_80802B50_chfactorymagnet);
+                    func_800C8FE0(arg0->actorData[3], 1);
+                    func_800C8F64(arg0->actorData[3], 15);
+                    func_800C8CB8(arg0->actorData[3], arg0->position);
+                    func_800C8FB0(arg0->actorData[3], 200, 200, 255);
+                    arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(0.5f, 1.25f);
+                    func_80101FDC(arg0, 2);
+                    arg0->unk64_16 = 1;
+                } else {
+                    arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(2.0f, 20.0f);
+                }
+            }
+            break;
+        case 2:
+            if (func_800D90A4(&arg0->unk58)) {
+                _subaddieaudioloop_entrypoint_2(arg0);
+                func_800C8B84(arg0->actorData[3]);
+                arg0->actorData[3] = 0;
+                func_80101FDC(arg0, 1);
+                arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(2.0f, 20.0f);
+                arg0->unk64_16 = 0;
+            } else {
+                active = func_8001210C(1);
+                func_800C8FB0(arg0->actorData[3], active ? 200 : 160, active ? 200 : 160, active ? 255 : 200);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80802B58_chfactorymagnet);
+            }
+            break;
+    }
+}
+
+s32 func_808025B4_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32 *);
+    s32 _gspropctrl_entrypoint_8(Prop *);
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_801015D0(Actor *);
+    f32 func_80103EAC(Actor *);
+    Prop *props[20];
+    s32 count;
+    s32 i;
+    f32 angles[4];
+    f32 speed;
+
+    switch (arg1) {
+        case 0x1F:
+            arg0->alpha = (u32)func_800F10B4(arg0->unk58, ((f32 *)arg0->actorData)[7], 0.0f, 255.0f, 50.0f);
+            func_801015D0(arg0);
+            func_800DF744(1, 1);
+            func_800DF744(2, func_800DC128(1, 5));
+            return 1;
+        case 0x95:
+            count = _gccubesearch_entrypoint_9(0x511, props, 20);
+            for (i = 0; i < count; i++) {
+                if (_gspropctrl_entrypoint_8(props[i]) == arg0->unk74_7) {
+                    speed = func_80103EAC(arg0);
+                    angles[2] = func_800DC0C0() * 200.0f;
+                    angles[3] = angles[2] + func_800DC0C0() * 200.0f;
+                    _gspropctrl_entrypoint_11(props[i], (f32 *)arg0->actorData);
+                    func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+                    func_800F18FC(arg0->position, (f32 *)arg0->actorData, angles);
+                    arg0->rotation[0] = angles[0];
+                    arg0->rotation[1] = angles[1];
+                    speed = func_800EEAD4((f32 *)&arg0->actorData[4], (f32 *)arg0->actorData) / speed;
+                    arg0->scale = speed;
+                    func_800EF214(arg0->position, angles[0], angles[1], -speed);
+                    arg0->unk64_16 = 0;
+                    arg0->unk58 = ((f32 *)arg0->actorData)[7] = func_800DC178(2.0f, 20.0f);
+                    return 1;
+                }
+            }
+            func_800FFAB0(arg0);
+            return 0;
+        default:
+            return 0;
+    }
+}
 
 void func_8080281C_chfactorymagnet(u8 *arg0) {
     void func_800C8B84(s32);

@@ -56,7 +56,68 @@ void *func_800B3390(void *arg0, f32 arg1) {
     return entry;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8CC00/func_800B3494.s")
+s32 func_800B3494(s32 arg0, f32 *arg1, f32 arg2) {
+    s32 func_800C8760(s32, s32);
+    s32 func_800C878C(s32, s32, s32);
+    void func_800C8800(s32, f32 *);
+    void func_800C8898(s32, f32 *);
+    void func_800C8900(s32, s32 *);
+    void func_800EE830(s32 *, s32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    s32 func_800B3784(u8 *);
+    struct entry {
+        f32 position[3];
+        s32 value[3];
+        f32 radius;
+    };
+    struct entry *entry;
+    f32 distance, inverse;
+    s32 object;
+    f32 delta[3];
+    f32 position[3];
+    f32 params[3];
+    s32 value[3];
+    s32 i;
+    f32 scale;
+
+    *(s32 *)(arg0 + 0x10) = arg0 + 0x18;
+    object = func_800C8760(0, 1);
+    if (object != 0) {
+      do {
+        func_800C8800(object, position);
+        func_800C8898(object, &params[0]);
+        func_800EFB24(delta, position, arg1);
+        distance = func_800EEF94(delta);
+        if (!(params[1] + arg2 <= distance)) {
+            entry = func_800B3390((void *)arg0, distance);
+            if (entry != NULL) {
+                entry->radius = distance;
+                inverse = 1.0f / distance;
+                i = 0;
+                do {
+                    i++;
+                    entry->position[i - 1] = delta[i - 1] * inverse;
+                } while (i < 3);
+                distance -= arg2;
+                func_800C8900(object, value);
+                if (distance <= params[0]) {
+                    func_800EE830(entry->value, value);
+                } else {
+                    scale = 1.0f - (distance - params[0]) * params[2];
+                    i = 0;
+                    do {
+                        entry->value[i] = value[i] * scale;
+                        i++;
+                    } while (i < 3);
+                }
+            }
+        }
+        object = func_800C878C(object, 0, 1);
+      } while (object != 0);
+    }
+    return func_800B3784((u8 *)arg0);
+}
 
 void func_800EE830(s32 *, s32 *);
 

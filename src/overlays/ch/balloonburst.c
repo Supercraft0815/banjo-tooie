@@ -290,7 +290,58 @@ void func_80800EDC_chballoonburst(Actor *arg0) {
     _sumultiscore_entrypoint_4(data + 0x30, 6, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800F4C_chballoonburst.s")
+void func_80800F4C_chballoonburst(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void _sumultiscore_entrypoint_6(u8 *);
+    s32 func_800C954C(void);
+    s32 func_800DA298(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_80101FDC(Actor *, u32);
+    s32 _subaddiefind_entrypoint_9(s32);
+    f32 func_800DC178(f32, f32);
+    s32 _gcstatusDll_entrypoint_11(void);
+    int func_800D9154(f32 *, f32);
+    void func_80108B04(Actor *, u32);
+    s32 func_800CEAD0(s32);
+    void func_80801338_chballoonburst(Actor *);
+    s32 _susubgame_entrypoint_9(void);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    u8 *data;
+    s32 state;
+    f32 interval;
+    u8 *temp;
+
+    temp = func_80100094(arg0, 0U);
+    data = temp;
+    _sumultiscore_entrypoint_6(data + 0x30);
+    state = arg0->unk70_10;
+    switch (state) {
+    case 1:
+        if (func_800C954C() == 0 && func_800DA298(0x6AD) == 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0x22);
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    case 3:
+        if (_subaddiefind_entrypoint_9(0x350) < 8) {
+            interval = func_800DC178(0.5f, 1.0f);
+            if (func_800D9154(&arg0->unk58, interval / (f32)_gcstatusDll_entrypoint_11())) {
+                func_80108B04(arg0, -1);
+            }
+        }
+        if (func_800CEAD0(arg0->unk6C_0)) {
+            func_80801338_chballoonburst(arg0);
+        }
+        break;
+    case 4:
+        if (_susubgame_entrypoint_9()) {
+            _susubgame_entrypoint_5(arg0, data + 0x18, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, ((s32 *)data)[4], ((s32 *)data)[5], NULL, 0x22);
+            func_80101FDC(arg0, 5);
+        }
+        break;
+    }
+}
 
 void func_808010D8_chballoonburst(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
@@ -382,7 +433,61 @@ void func_80801290_chballoonburst(void *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80801338_chballoonburst.s")
+void func_80801338_chballoonburst(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _subaddiemulti_entrypoint_1(s32, s32);
+    void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
+    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
+    void func_800AA20C(s32, s32);
+    void func_800FC6B0(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 temp;
+    s32 scores[8];
+    s32 *data;
+    s32 max;
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 dialog;
+
+    data = func_80100094(arg0, 0);
+    max = -1;
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        scores[j] = _sumultiscore_entrypoint_8(data + 12, j, 6);
+        if (max < scores[j]) {
+            max = scores[j];
+        }
+        func_800AA20C(j, scores[j]);
+    }
+    for (j = 0; j < _gcstatusDll_entrypoint_11(); j++) {
+        if (max == scores[j]) {
+            _sumultiscore_entrypoint_11((u8 *)(data + 12), j, 6, 3.0f);
+        }
+    }
+    for (i = 1; i < _gcstatusDll_entrypoint_11(); i++) {
+        for (k = i; k > 0 && scores[k - 1] < scores[k]; k--) {
+            temp = scores[k];
+            scores[k] = scores[k - 1];
+            scores[k - 1] = temp;
+        }
+    }
+    func_800FC6B0(0x16);
+    k = 0;
+    if (scores[0] != scores[1]) {
+        while (_sumultiscore_entrypoint_8(data + 12, k, 6) != scores[0]) {
+            k++;
+        }
+        data[2] = k;
+        dialog = 0x10CF;
+    } else {
+        dialog = 0x10D0;
+    }
+    _subaddiemulti_entrypoint_1(0, 0);
+    data[4] = dialog;
+    data[5] = 6;
+    func_80101FDC(arg0, 4);
+}
 
 /* extern */
 

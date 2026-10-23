@@ -37,7 +37,89 @@ void func_800125B0(void) {
     func_80012EA0();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_8001268C.s")
+void func_8001268C(void) {
+    struct AudioConfig {
+        s32 maxVVoices, maxPVoices, maxUpdates, unkC;
+        s32 *(*dmaproc)(s32 **);
+        ALHeap *heap;
+        s32 outputRate;
+        s8 fxType;
+        s32 *params;
+    };
+    struct DMAState {
+        ALLink link;
+        s32 unk8, unkC, heap;
+    };
+    struct AudioInfo {
+        u8 *data;
+        s32 unk4;
+        s16 unk8;
+        struct AudioInfo *self;
+    };
+    void func_80020D80(s32, s32);
+    void func_80020E40(ALLink *, ALLink *);
+    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    void func_800128C0(void *);
+    s32 *func_80012D4C(s32 **);
+    extern s32 D_8003CA44[];
+    extern s32 D_800459E0[];
+    extern OSThread D_800459F8;
+    extern __OSThreadOddFpStorage D_80045BA8;
+    extern u8 D_80045BB8[];
+    extern OSMesg D_80045BD0[];
+    extern OSMesgQueue D_80045BF0;
+    extern OSMesg D_80045C08[];
+    extern ALHeap D_80046A78;
+    extern u8 D_80069488[];
+    extern OSMesg D_800694A0[];
+    extern s32 D_80069A40;
+    extern struct DMAState D_80069A54;
+    extern s32 D_8006A158;
+    extern struct AudioConfig D_8006A1A8;
+    extern s8 D_8006A1D2;
+    extern u8 D_8006A1D8[], D_80073E18[], D_80076938[];
+    struct DMAState *dma, *next;
+    int i;
+    s32 *cmd, *info;
+    u8 *buffer, *samples;
+
+    osCreateMesgQueue((OSMesgQueue *)D_80069488, D_800694A0, 50);
+    osCreateMesgQueue(&D_80045BF0, D_80045C08, 8);
+    osCreateMesgQueue((OSMesgQueue *)D_80045BB8, D_80045BD0, 8);
+    D_8006A1D2 = 0;
+    D_8006A1A8.maxVVoices = 24;
+    D_8006A1A8.maxPVoices = 24;
+    D_8006A1A8.maxUpdates = 128;
+    D_8006A1A8.unkC = 1;
+    D_8006A1A8.dmaproc = func_80012D4C;
+    D_8006A1A8.fxType = 6;
+    D_8006A1A8.params = D_8003CA44;
+    D_8006A1A8.heap = &D_80046A78;
+    D_8006A1A8.outputRate = osAiSetFrequency(22050);
+    func_80020D80((s32)&D_8006A158, (s32)&D_8006A1A8);
+    *(s32 *)((u8 *)&D_80069A40 + 4) = 0;
+    D_80069A40 = 0;
+    for (i = 0; i < 89; i++) {
+        dma = (struct DMAState *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState));
+        func_80020E40((ALLink *)((u8 *)&D_80069A54 + i * sizeof(struct DMAState)), &dma->link);
+        ((s32 *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState)))[4] = func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x200);
+    }
+    ((s32 *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState)))[4] = func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x200);
+    i = 0;
+    do {
+        D_800459E0[i] = (s32)(D_8006A1D8 + i * 0x4E20);
+        i++;
+    } while (D_8006A1D8 + i * 0x4E20 < D_80073E18);
+    i = 0;
+    do {
+        D_800459E0[i + 2] = func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x10);
+        ((struct AudioInfo *)D_800459E0[i + 2])->unk8 = 0;
+        ((struct AudioInfo *)D_800459E0[i + 2])->self = (struct AudioInfo *)D_800459E0[i + 2];
+        ((struct AudioInfo *)D_800459E0[i + 2])->data = D_80073E18 + i * 0xE60;
+        i++;
+    } while (D_80076938 != D_80073E18 + i * 0xE60);
+    func_8001DCB0(&D_800459F8, &D_80045BA8, 4, func_800128C0, NULL, &D_80046A78, 50);
+}
 
 // audio_thread_entry
 void func_800128C0(void *arg) {
