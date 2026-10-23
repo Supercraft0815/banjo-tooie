@@ -878,7 +878,43 @@ void func_808029C8_chdiggerboss(Actor *arg0) {
     _gcdialogcamera_entrypoint_5(sp4C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80802AB8_chdiggerboss.s")
+s32 func_80802AB8_chdiggerboss(Actor *arg0, s32 arg1) {
+    s32 func_800DA544(s32);
+    s32 _gcfrontend_entrypoint_9(s32);
+    s32 _gcgoto_entrypoint_2(s32, s32, s32);
+    void func_800A7AD4(s32, s32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    s32 func_80803660_chdiggerboss(Actor *, s32, s32);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    void func_80805D64_chdiggerboss(Actor *, s32);
+
+    switch (arg1) {
+        case 0x1C:
+            func_8080290C_chdiggerboss(arg0, 0x1F, 0x20);
+            return 4;
+        case 0x1F:
+            func_800F82D4(func_800F54E4(), 0);
+            _gcgoto_entrypoint_2(0x19A, 1, 0);
+            func_800A7AD4(1, 0x15);
+            break;
+        case 0xD:
+            func_800F82D4(func_800F54E4(), 0);
+            func_80803660_chdiggerboss(arg0, 0x171D, 0x14C);
+            func_8080290C_chdiggerboss(arg0, 0x18, 0x20);
+            return 4;
+        case 0x18:
+            func_800DA544(0x44);
+            _gcfrontend_entrypoint_9(0x2C);
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 2, 2);
+            return 4;
+        case 0x3B:
+            func_80805D64_chdiggerboss(arg0, 0x27);
+            return 4;
+    }
+    return 3;
+}
 
 void func_80802BE0_chdiggerboss(s32 arg0, f32 arg1) {
     void *func_80100094(Actor *, u32);
