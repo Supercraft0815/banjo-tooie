@@ -125,7 +125,9 @@ s32 func_800E4BF4(s32 arg0) {
     return sp20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E4C7C.s")
+void func_800E4C7C(void) { extern void *D_8012D560; extern long D_8012D570; extern void *defrag(void *);  void **p;
+p=&D_8012D560; do { if(*p) *p=defrag(*p); p++; } while(p!=(void **)(unsigned long)&D_8012D570); D_8012D570=(long)defrag((void *)D_8012D570); }
+
 
 /* extern */
 
