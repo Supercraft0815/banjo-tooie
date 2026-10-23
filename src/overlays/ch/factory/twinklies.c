@@ -518,7 +518,154 @@ void func_8080171C_chfactorytwinklies(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_808018A0_chfactorytwinklies.s")
+void func_808018A0_chfactorytwinklies(Actor *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, s32, f32, f32, f32);
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    f32 func_80013970(f32);
+    void func_800C8CB8(s32, f32 *);
+    s32 func_800CEAD0(s32);
+    f32 func_800D8FF8(void);
+    u8 func_800D9078(f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void func_80102BF8(Actor *, f32, f32, f32);
+    void func_80103DFC(Actor *, f32 *);
+    void func_8010A570(Actor *);
+    void func_8010C3A8(Actor *, s32, f32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    f32 func_80801F5C_chfactorytwinklies(void *);
+    s32 func_80802020_chfactorytwinklies(u8 *);
+    s32 func_8080207C_chfactorytwinklies(u8 *);
+    extern u8 D_808021C0_chfactorytwinklies[];
+    extern s32 D_80802414_chfactorytwinklies[];
+    extern s32 D_80802428_chfactorytwinklies[];
+    typedef struct {
+        Unk80132ED0 *marker;
+        f32 position[3];
+        u32 pad10[5];
+        f32 velocity;
+        f32 timer;
+        s32 color;
+        f32 value;
+        u32 pad34[7];
+        s32 light;
+        u32 pad54[8];
+        u32 unused : 11;
+        u32 visible : 1;
+        u32 rest : 20;
+    } Twinklie;
+    typedef struct {
+        u32 unused : 18;
+        u32 active : 1;
+        u32 rest : 13;
+    } MarkerFlags;
+    struct {
+        u8 pad0[6];
+        u16 index;
+        s32 pad8;
+        s32 current;
+        f32 start[3];
+        f32 end[3];
+    } *sp5C;
+    f32 sp58;
+    f32 sp54;
+    f32 sp50;
+    s32 pad4C;
+    s32 sp48;
+    f32 sp44;
+    f32 sp38[3];
+
+    sp5C = func_80100094(arg0, 0);
+    sp58 = func_800D8FF8();
+    if (arg0->unk70_10 != 4 && func_800CEAD0(0) && !((MarkerFlags *)&arg0->unk0->unk28)->active) {
+        if (((Twinklie *)arg0)->light) {
+            ((Twinklie *)arg0)->light = _chlightfader_entrypoint_1(((Twinklie *)arg0)->light, 0.65f, 2);
+        }
+        func_8010A570(arg0);
+        func_80101FDC(arg0, 4);
+        _subaddiefade_entrypoint_3(arg0);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_80802020_chfactorytwinklies((u8 *)arg0)) {
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    case 2:
+        sp54 = func_800F3780(func_80101F24(arg0), D_808021C0_chfactorytwinklies, 5);
+        if (func_80101E14(arg0, 0.25f)) {
+            func_8010D930(2, arg0->unk70_0, arg0->position, D_80802414_chfactorytwinklies);
+        }
+        if (arg0->unk64_29) {
+            sp50 = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+            ((Twinklie *)arg0)->velocity = func_80801F5C_chfactorytwinklies(arg0) * 1.4f;
+            func_80102BF8(arg0, 0.2f, 8.0f, 600.0f);
+            func_8010C3A8(arg0, 0x201025, sp50 * sp54);
+        } else {
+            if (_subaddierouteDll_entrypoint_4(arg0)) {
+                _subaddierouteDll_entrypoint_7(arg0, sp5C, arg0->rotation[1], arg0->unk54, 400.0f, 0x4802);
+                sp5C->current = sp5C->index;
+            }
+            _subaddierouteDll_entrypoint_6(arg0, sp5C, sp5C->current, 0x3F, 0.4f, 0x14, 0x28);
+            _subaddierouteDll_entrypoint_5(arg0, sp5C, sp5C->current, 0.2f, 4.0f, 200.0f);
+            ((Twinklie *)arg0)->velocity = func_800F15F8(((Twinklie *)arg0)->velocity, ((Twinklie *)arg0)->value, sp58 * 800.0f);
+            if (!((MarkerFlags *)&arg0->unk0->unk28)->active) {
+                func_8010C3A8(arg0, 0x1325, sp54);
+            }
+        }
+        if (func_800D9078(&arg0->unk58)) {
+            if (((Twinklie *)arg0)->light) {
+                ((Twinklie *)arg0)->light = _chlightfader_entrypoint_1(((Twinklie *)arg0)->light, 1.0f, 2);
+            }
+            func_80101FDC(arg0, 3);
+            ((Twinklie *)arg0)->timer = 0.6f;
+            arg0->unk64_24 = 0;
+        }
+        break;
+    case 3:
+        if (!arg0->unk64_19 && func_800F10B4(((Twinklie *)arg0)->timer, 0.0f, 0.6f, 1.0f, 0.0f) > 0.3f) {
+            ((Twinklie *)arg0)->visible = 0;
+            func_8010D930(5, arg0->unk70_0, arg0->position, D_80802428_chfactorytwinklies);
+            arg0->unk64_19 = 1;
+        }
+        if (func_8080207C_chfactorytwinklies((u8 *)arg0)) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    case 4:
+        break;
+    case 5:
+        sp48 = func_800D9078(&arg0->unk58);
+        sp44 = func_800F12D4(arg0->unk58, 0.0f, 1.2f, 1.0f, 0.0f);
+        arg0->rotation[0] += func_800D8FF8() * 100.0f;
+        arg0->rotation[1] += func_800D8FF8() * 60.0f;
+        arg0->scale = func_800F15F8(arg0->scale, 1.0f, 2.0f * func_800D8FF8());
+        func_800EFE50(arg0->position, sp5C->start, sp5C->end, sp44);
+        arg0->position[1] += 80.0f * func_80013970(sp44 * 180.0f);
+        if (sp48) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    }
+    if (((Twinklie *)arg0)->light) {
+        func_80103DFC(arg0, sp38);
+        sp38[1] += 100.0f;
+        func_800C8CB8(((Twinklie *)arg0)->light, sp38);
+    }
+}
 
 void func_80801D58_chfactorytwinklies(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
