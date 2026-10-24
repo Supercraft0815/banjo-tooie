@@ -252,7 +252,76 @@ void suquiz_entrypoint_18(u32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_19.s")
+void suquiz_entrypoint_19(s32 arg0) {
+    s32 func_800D3948(void);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    extern void *D_80127614;
+    extern f32 D_80800F90_suquiz[][6][2];
+    s32 pad[6];
+    f32 chance;
+    f32 duration;
+    f32 random;
+    s32 i;
+    s32 kind;
+    s32 last;
+    s32 first;
+    s32 index;
+
+    switch (arg0) {
+    case 3:
+    case 5:
+        break;
+    case 0:
+    case 2:
+        ((s8 *)D_80127614)[0x26] = -1;
+        ((s8 *)D_80127614)[0x28] = -1;
+        ((s8 *)D_80127614)[0x29] = -1;
+        break;
+    case 1:
+        ((s8 *)D_80127614)[0x26] = -1;
+        break;
+    case 4:
+        ((s8 *)D_80127614)[0x29] = ((s8 *)D_80127614)[0x28];
+        ((s8 *)D_80127614)[0x26] = -1;
+        ((s8 *)D_80127614)[0x28] = -1;
+        break;
+    }
+    if (arg0 != 0 && arg0 != 1 && arg0 != 2 && arg0 != 4) {
+        goto done;
+    } else {
+        if (func_800D3948()) {
+            first = 3;
+            last = 6;
+        } else {
+            last = 2;
+            first = 0;
+        }
+        i = first;
+        if (first <= last) {
+        do {
+            if (i != ((s8 *)D_80127614)[0x29] && !suquiz_entrypoint_9(i) && !suquiz_entrypoint_11(i)) {
+                kind = func_80800000_suquiz(i);
+                chance = func_80800074_suquiz(i, arg0, kind);
+                if (func_800DC0C0() <= chance) {
+                    index = suquiz_entrypoint_4();
+                    chance = func_800DC178(D_80800F90_suquiz[index][arg0][0], D_80800F90_suquiz[suquiz_entrypoint_4()][arg0][1] - 0.4f);
+                    duration = func_8080009C_suquiz(i, arg0, kind);
+                    random = func_800DC0C0();
+                    ((s8 *)D_80127614)[0x26] = i;
+                    *(f32 *)((u8 *)D_80127614 + 0x18) = chance;
+                    ((s8 *)D_80127614)[0x27] = random <= duration;
+                    break;
+                }
+            }
+            i++;
+        } while (i != last + 1);
+        }
+    }
+done:
+    *(f32 *)((s8 *)D_80127614 + 0x1C) = 0.0f;
+    ((u8 *)D_80127614)[0x25] = arg0;
+}
 
 void suquiz_entrypoint_20(s32 arg0) {
     if (arg0 != 0) {
