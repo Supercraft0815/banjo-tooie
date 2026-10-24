@@ -97,7 +97,40 @@ void func_8008AB84(AnimCtrl *this) {
     func_8008C1C0(anim, tmp);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/anctrl/func_8008AC4C.s")
+void func_8008AC4C(AnimCtrl *this) {
+    struct Flags { u8 padding[0x1B]; u8 high : 1; u8 smooth : 1; u8 low : 6; };
+    void *func_8008AEDC(void *);
+    f32 func_8008B2AC(f32 *);
+    f32 func_8008C0C8(f32 *);
+    void func_8008C1C0(f32 *, f32);
+    void *anim;
+    f32 tmp;
+    f32 delta;
+
+    anim = func_8008AEDC(this);
+    func_8008AA0C(this);
+    *(f32 *)this = func_8008C0C8(anim);
+    delta = func_8008A990(this) / func_8008B2AC((f32 *)this);
+    if (((struct Flags *)this)->high == 0) {
+        delta = -delta;
+    }
+    tmp = *(f32 *)this + delta;
+    if (tmp < 0.0f) {
+        tmp = 0.0f;
+        anctrl_setPlaybackType(this, 3);
+    } else {
+        if ((((f32 *)this)[2] < tmp) || (0.999999f < tmp)) {
+            if (((f32 *)this)[2] < tmp)
+                tmp = ((f32 *)this)[2];
+            if (0.999999f < tmp)
+                tmp = 0.999999f;
+            anctrl_setPlaybackType(this, 3);
+        } else {
+            tmp = tmp - (f32)(s32)tmp;
+        }
+    }
+    func_8008C1C0(anim, tmp);
+}
 
 /* extern */
 
