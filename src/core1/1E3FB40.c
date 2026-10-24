@@ -11,7 +11,39 @@ typedef struct {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3FB40/func_80028010.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3FB40/func_80028328.s")
+Gfx *func_80028328(s32 *arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4, Gfx *arg5) {
+    Gfx *cursor;
+    s32 firstCount;
+    s32 secondCount;
+    u32 end;
+    u32 limit;
+
+    cursor = arg5;
+    limit = arg0[0] * 2 + arg0[arg1 + 8];
+    if (arg2 < (u32)arg0[arg1 + 8]) {
+        arg2 += arg0[0] * 2;
+    }
+    end = arg4 * 2 + arg2;
+    if (end > limit) {
+        firstCount = (s32)(end - limit) >> 1;
+        secondCount = (s32)(limit - arg2) >> 1;
+        {
+            Gfx *first = cursor++;
+            first->words.w0 = 0x04000000 | (((secondCount * 2) & 0xFFF) << 12) | (arg3 & 0xFFF);
+            first->words.w1 = osVirtualToPhysical((void *)arg2);
+        }
+        {
+            Gfx *second = cursor++;
+            second->words.w0 = 0x04000000 | (((firstCount * 2) & 0xFFF) << 12) | ((arg3 + secondCount * 2) & 0xFFF);
+            second->words.w1 = osVirtualToPhysical((void *)arg0[arg1 + 8]);
+        }
+    } else {
+        Gfx *single = cursor++;
+        single->words.w0 = 0x04000000 | (((arg4 * 2) & 0xFFF) << 12) | (arg3 & 0xFFF);
+        single->words.w1 = osVirtualToPhysical((void *)arg2);
+    }
+    return cursor;
+}
 
 Gfx *func_80028520(s32 *arg0, s32 arg1, u32 arg2, s32 arg3, Gfx *arg4) {
     Gfx *cursor;
