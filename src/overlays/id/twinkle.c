@@ -41,7 +41,36 @@ void idtwinkle_entrypoint_1(s32 arg0, void *arg1, s32 arg2, void *arg3) {
     (*(s16 *)((s8 *)(arg3) + (0x24))) = (s16) ((*(s16 *)((s8 *)(arg3) + (0x24))) + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinkle/idtwinkle_entrypoint_2.s")
+void idtwinkle_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *arg4) {
+    u8 *end = arg1 + arg3 * 0x10;
+    s32 i;
+    u8 *entry;
+    f32 scale;
+    s16 x;
+
+    for (; arg1 < end; arg1 += 0x10, arg2 += 0x10) {
+        i = 0;
+        if (*(s16 *)(arg4 + 0x28) > 0) {
+            x = *(s16 *)arg1;
+            entry = *(u8 **)(arg4 + 0x2C);
+            do {
+                if (x == *(s16 *)(entry + 8) &&
+                    *(s16 *)(arg1 + 2) == *(s16 *)(entry + 0xA) &&
+                    *(s16 *)(arg1 + 4) == *(s16 *)(entry + 0xC)) {
+                    break;
+                }
+                i++;
+                entry += 0x10;
+            } while (i < *(s16 *)(arg4 + 0x28));
+        }
+        if (i != *(s16 *)(arg4 + 0x28)) {
+            scale = *(f32 *)(*(u8 **)(arg4 + 0x2C) + i * 0x10);
+            arg2[12] = (u32)((f32)arg1[12] + (f32)(255 - arg1[12]) * scale);
+            arg2[13] = (u32)((f32)arg1[13] + (f32)(255 - arg1[13]) * scale);
+            arg2[14] = (u32)((f32)arg1[14] + (f32)(255 - arg1[14]) * scale);
+        }
+    }
+}
 
 void func_80800478_idtwinkle(void *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_2(s32, s32, s32 *, void *);
