@@ -6461,6 +6461,8 @@ segments:
       - [0x01FE8580, c, klungo]
       - [0x01FEBB10, .rodata, klungo]
       - [0x01FEBE20, data, klungo]
+      - [0x01FEC0E0, .data, klungo]
+      - [0x01FEC140, data, klungo_data_tail]
       - [0x01FEC2D0, bss, klungo]
   - name: chklungophial_header
     dir: overlays/chklungophial

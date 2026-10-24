@@ -1,8 +1,39 @@
 #include "common.h"
 
+extern u8 D_80803A4C_chklungo[];
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_8080000C_chklungo();
+void func_808002D0_chklungo();
+void func_8080101C_chklungo(Actor *arg0);
+void func_808011B4_chklungo(void *arg0, s32 arg1);
+s32 func_80801220_chklungo(Actor *arg0, s32 arg1, s32 arg2);
+void func_8080162C_chklungo(Actor *arg0);
+
+u32 D_80803B60_chklungo[] = {
+    0x025C0001, 0x3F333333,
+    0x02640001,
+};
+
+u32 D_80803B6C_chklungo[] = {
+    0x00B3041E, 0xFFFF0001,
+    (u32)D_80803A4C_chklungo, (u32)func_808002D0_chklungo,
+    (u32)func_8080101C_chklungo, (u32)func_808011B4_chklungo,
+    0x00000000, 0x40000000,
+    0x00000000, 0x00040561,
+    (u32)func_8080162C_chklungo, (u32)func_80108ED0,
+    0x00A00000, (u32)func_8080000C_chklungo,
+    (u32)func_80107C2C, 0x80201404,
+    (u32)func_80801220_chklungo, 0x00000000,
+};
+
+u32 D_80803BB4_chklungo[] = {
+    0x00130567, 0x000A00B3,
+    0x00020000,
+};
+
 OSThread *chklungo_entrypoint_0(void)
 {
-    extern u8 D_80803B6C_chklungo[];
 
     return (OSThread *) D_80803B6C_chklungo;
 }
@@ -105,7 +136,145 @@ void func_808011B4_chklungo(void *arg0, s32 arg1)
   func_80101808(arg0, &func_801017D0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801220_chklungo.s")
+s32 func_80801220_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void *_suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    s32 _suexpression_entrypoint_12(void *, f32, f32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 func_800D395C(void);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_801032B0(void *, u16, u16);
+    void func_80108B04(Actor *, u32);
+    void func_8010A800(Actor *, s32);
+    void func_80801680_chklungo(Actor *, s32);
+    s32 func_80801744_chklungo(Actor *, s16, s16);
+    s32 func_80801848_chklungo(Actor *, s32, s32);
+    void func_80801964_chklungo(Actor *, s32);
+    s32 func_80802480_chklungo(Actor *, s32);
+    void func_80802558_chklungo(Actor *);
+    s32 func_80802B84_chklungo(Actor *, s32);
+    s32 func_80803158_chklungo(Actor *, s32, s32);
+    extern u16 D_808038A6_chklungo[];
+    extern s32 D_80803A3C_chklungo[];
+    struct KlungoData {
+        s16 pad0[4];
+        s16 index;
+        s16 padA[8];
+        s16 state;
+        s16 count;
+        s16 pad1E[5];
+        s16 flag28;
+        s16 flag2A;
+        s16 pad2C[10];
+        s16 flag40;
+    } *data;
+    void *expression;
+
+    data = func_80100094(arg0, 0);
+    switch ((int)arg1) {
+    case 0x2E:
+        func_80801744_chklungo(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0xB:
+        switch (func_80802480_chklungo(arg0, arg2)) {
+        case 2:
+            func_80801964_chklungo(arg0, 9);
+            return 4;
+        case 6:
+            func_80801964_chklungo(arg0, 0x1F);
+            return 4;
+        default:
+            return 3;
+        }
+        break;
+    case 0x40:
+        func_80801680_chklungo(arg0, *(s32 *)&arg2);
+        break;
+    case 0x3D:
+        func_80802B84_chklungo(arg0, arg2);
+        break;
+    case 0x2C:
+        if (data->state != 0) {
+            func_80801964_chklungo(arg0, 0x19);
+        } else {
+            func_8010A800(arg0, 0);
+            if (arg2 == 0) {
+                if (data->flag28 == 0) {
+                    data->flag28 = 1;
+                    func_80803158_chklungo(arg0, 0x1631, 0x44);
+                }
+                func_80801964_chklungo(arg0, 0x1A);
+            }
+        }
+        break;
+    case 0xA:
+        if (data->state != 0) {
+            return 0;
+        }
+        if (data->count == 0) {
+            func_80802558_chklungo(arg0);
+            func_80801964_chklungo(arg0, 0x17);
+            func_8010A800(arg0, 0);
+            return 0;
+        }
+        data->count--;
+        func_80108B04(arg0, 2);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(D_80803A3C_chklungo, arg0->scale);
+        break;
+    case 0x32:
+        if (data->flag40 == 0) {
+            func_80801964_chklungo(arg0, 7);
+        }
+        break;
+    case 0x57:
+        return func_80801848_chklungo(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+    case 0x95:
+        func_801032B0(arg0, *(u16 *)((u8 *)D_808038A6_chklungo + data->index * 0x84), 0);
+        if (data->flag2A != 0) {
+            func_800FDC28(1);
+            data->flag2A = 0;
+        }
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    case 0x29:
+        if (data->state == 0) {
+            expression = _suexpression_entrypoint_7(arg0, 1, 0xAB);
+            _suexpression_entrypoint_12(expression, 70.0f, 30.0f);
+            _suexpression_entrypoint_17(expression, 1000);
+        }
+        break;
+    case 0x2A:
+        if (data->state == 0) {
+            _suexpression_entrypoint_8(arg0, 1);
+        }
+        break;
+    case 0x1F:
+        func_808010E0_chklungo(arg0, *(s32 *)&arg2);
+        break;
+    case 0x96:
+        if (data->state != 0 || func_800D395C() == 0) {
+            return 0;
+        }
+        func_80803158_chklungo(arg0, 0xCEB, 0x4E);
+        break;
+    case 0x9F:
+        if (data->state != 0) {
+            func_80801964_chklungo(arg0, 0x19);
+            return 0;
+        }
+        func_800FDC28(0);
+        func_80801964_chklungo(arg0, 8);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080162C_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
@@ -155,10 +324,10 @@ void func_80801680_chklungo(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801744_chklungo.s")
 
-void func_80801848_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_80801848_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    _susubgame_entrypoint_3(arg0, (s32)func_80100094(arg0, 0U) + 0x88, arg1, arg2);
+    return _susubgame_entrypoint_3(arg0, (s32)func_80100094(arg0, 0U) + 0x88, arg1, arg2);
 }
 
 void func_80801888_chklungo(void *arg0) {
