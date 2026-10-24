@@ -12,7 +12,7 @@ import shutil
 import struct
 import uuid
 
-from .common import atomic_write, command, digest
+from .common import HarnessError, atomic_write, command, digest
 from .guard import extract_function
 
 M2C = '''import subprocess, sys
@@ -256,11 +256,18 @@ def run_permuter(builder, workspace: Path, function, candidate: bytes, original:
             finally:
                 atomic_write(workspace/function['source'], original)
         imported = folder/'nonmatchings'/function['symbol']
-        if code or not imported.is_dir():
-            return None
-        builder.invoke(['timeout', str(int(seconds)), 'python3', 'tools/decomp-permuter/permuter.py',
-                        f'.permuter/{name}/nonmatchings/{function["symbol"]}', '--stack-diffs', '--stop-on-zero', '--quiet',
+        import_log = log_dir/'permuter-import.log'
+        if code or not imported.is_dir() or 'Syntax error' in import_log.read_text(errors='replace'):
+            raise HarnessError(f'Permuter import failed (exit {code}); see {import_log}')
+        code = builder.invoke(['timeout', str(int(seconds)), 'python3', 'tools/decomp-permuter/permuter.py',
+                        f'.permuter/{name}/nonmatchings/{function["symbol"]}', '--stack-diffs', '--stop-on-zero',
                         '-j', str(builder.config['build']['jobs'])], log_dir/'permuter.log')
+        search_log = log_dir/'permuter.log'
+        output = search_log.read_text(errors='replace')
+        if (code not in (0, 124) or not re.search(r'base score = \d+', output)
+                or not re.search(r'iteration [1-9]\d*,', output)
+                or 'Traceback (most recent call last)' in output):
+            raise HarnessError(f'Permuter search failed (exit {code}); see {search_log}')
         results = []
         for output in imported.glob('output-*'):
             match = re.fullmatch(r'output-(\d+)-\d+', output.name)

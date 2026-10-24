@@ -650,20 +650,21 @@ class Loop:
         if (not seconds or best is None or self.control.stopped()
                 or (function['best_score'] or 0) < self.config['permuter_min_score'] or function['best_score'] >= 100):
             return False
-        key = 'permuter:stack-diffs:' + trial_key(best, function)
+        # Older entries could cache an import/search failure as a completed search.
+        key = 'permuter:checked:stack-diffs:' + trial_key(best, function)
         if self.tried(function, key):
             return False
         directory = new_run(self.root, 'local')
         run_id = self.state.start_run(function['id'], 'local', 'permuter', 'none', directory)
         self.state.finish_run(run_id, provider='local')
         print(f"{function['symbol']}: permuter {seconds}s from score {function['best_score']:.2f} (no model usage)", flush=True)
-        outcome = 'improve'
+        outcome = 'no_improvement'
         try:
             found = run_permuter(self.builder, self.workspace, function, best, target.original, self.gate, seconds, directory)
             candidate = candidate_source(target.original.decode(), function['symbol'], found[1]) if found else None
         except (HarnessError, OSError) as e:
-            candidate = None
-            self.state.finish_run(run_id, error=str(e)[:2000])
+            self.state.finish_run(run_id, ended=time.time(), outcome='technical', error=str(e)[:2000])
+            return False
         if candidate and candidate != best:
             self.state.transition(function['id'], 'attempting', model='local')
             atomic_write(directory/'source-before.c', target.original)
