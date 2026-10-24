@@ -1,4 +1,30 @@
 #include "common.h"
+
+extern u8 D_80803030_chfantasyathlete[];
+void func_801018A4(Actor *, s32);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_80800060_chfantasyathlete();
+s32 func_80800314_chfantasyathlete(s32 arg0);
+s32 func_808011E4_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2);
+void func_80802DA8_chfantasyathlete(s32 arg0);
+
+u32 D_808031B0_chfantasyathlete[] = {
+    0x00000000,
+};
+
+u32 D_808031B4_chfantasyathlete[] = {
+    0x01580477, 0x089E0001,
+    (u32)D_80803030_chfantasyathlete, (u32)func_80802DA8_chfantasyathlete,
+    (u32)func_80800314_chfantasyathlete, (u32)func_801018A4,
+    0x0BB80000, 0x3FC00000,
+    0x00000000, 0x00840100,
+    0x00000000, (u32)func_80108ED0,
+    0x00B00000, (u32)func_80800060_chfantasyathlete,
+    (u32)func_80107C2C, 0x84004402,
+    (u32)func_808011E4_chfantasyathlete, 0x00000000,
+    0x00000000,
+};
 #include "core2/1E9A960.h"
 #include "core2/1EB5980.h"
 #include "core2/1EDB4D0.h"
@@ -476,7 +502,142 @@ s32 func_80801114_chfantasyathlete(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f3
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_808011E4_chfantasyathlete.s")
+s32 func_808011E4_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
+    void func_800C01A8(s16, s32);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    void func_8080094C_chfantasyathlete(Actor *, s32);
+    void func_80802C94_chfantasyathlete(Actor *, s32, s32);
+    void func_80802D38_chfantasyathlete(void *);
+    f32 camera[4];
+    s32 low;
+    u32 high;
+    struct {
+        s16 id;
+        s16 result;
+    } *dialog;
+
+    switch (arg1) {
+    case 0x2E:
+        arg0->unk79_4 = 3;
+        dialog = (void *)&arg2;
+        switch (dialog->id) {
+        case 0x13E2:
+            func_8080094C_chfantasyathlete(arg0, 5);
+            break;
+        case 0x1434:
+        case 0x1435:
+            if (dialog->result == 1) {
+                func_8080094C_chfantasyathlete(arg0, 0xA);
+            } else {
+                func_8080094C_chfantasyathlete(arg0, 9);
+            }
+            break;
+        case 0x1412:
+            func_8080094C_chfantasyathlete(arg0, 8);
+            break;
+        case 0x1411:
+            func_8080094C_chfantasyathlete(arg0, 8);
+            break;
+        case 0x13E5:
+            func_8080094C_chfantasyathlete(arg0, 0xC);
+            break;
+        case 0x13E7:
+            if (dialog->result == 1) {
+                func_8080094C_chfantasyathlete(arg0, 0xB);
+            } else {
+                func_8080094C_chfantasyathlete(arg0, 0x10);
+            }
+            break;
+        case 0x1413:
+            func_8080094C_chfantasyathlete(arg0, 0x11);
+            break;
+        case 0x13E6:
+            func_800C01A8(0x6B, 0x4000);
+            func_8080094C_chfantasyathlete(arg0, 0x13);
+            break;
+        case 0x13E8:
+        case 0x13E9:
+        case 0x1437:
+            if (dialog->result == 1) {
+                func_8080094C_chfantasyathlete(arg0, 0x18);
+            } else {
+                func_8080094C_chfantasyathlete(arg0, 0x17);
+            }
+            break;
+        case 0x1414:
+            func_8080094C_chfantasyathlete(arg0, 0x16);
+            break;
+        case 0x13EA:
+            func_8080094C_chfantasyathlete(arg0, 0x1A);
+            break;
+        case 0x13EC:
+            if (dialog->result == 1) {
+                func_8080094C_chfantasyathlete(arg0, 0x19);
+            } else {
+                func_8080094C_chfantasyathlete(arg0, 0x1E);
+            }
+            break;
+        case 0x1415:
+            func_8080094C_chfantasyathlete(arg0, 0x20);
+            break;
+        case 0x13EB:
+            func_8080094C_chfantasyathlete(arg0, 0x21);
+            break;
+        case 0x13E0:
+        case 0x13E1:
+        case 0x13E3:
+        case 0x13E4:
+        case 0x1454:
+        case 0x1455:
+        case 0x1456:
+            func_80802D38_chfantasyathlete(arg0);
+            break;
+        default:
+            break;
+        }
+        return 1;
+    case 0x52:
+        camera[0] = func_80103EF4(arg0);
+        camera[1] = func_80103EAC(arg0);
+        camera[2] = func_80103EAC(arg0);
+        camera[3] = camera[0] * 0.25f;
+        _gcdialogcamera_entrypoint_3(camera, arg0->scale);
+        return 1;
+    case 0x57:
+        low = arg2 & 0xFFFF;
+        high = (arg2 & 0xFFFF0000) >> 16;
+        if (_gcdialogcamera_entrypoint_0(low, high)) {
+            func_80802C94_chfantasyathlete(arg0, low, high);
+            return 2;
+        }
+        return 1;
+    case 0x1F:
+        func_801015D0(arg0);
+        switch (D_80803034_chfantasyathlete[arg0->unk70_10][0]) {
+        case 0x3F9:
+        case 0x3FA:
+        case 0x3FD:
+        case 0x3FE:
+            func_800DF744(3, 0);
+            func_800DF744(4, 1);
+            break;
+        case 0x3FB:
+        case 0x3FC:
+        case 0x3FF:
+        case 0x400:
+            func_800DF744(3, 1);
+            func_800DF744(4, 2);
+            break;
+        }
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
@@ -773,7 +934,7 @@ void func_80802DA8_chfantasyathlete(s32 arg0) {
 
 OSThread *chfantasyathlete_entrypoint_0(void)
 {
-    extern u8 D_808031B4_chfantasyathlete[];
+
 
     return (OSThread *) D_808031B4_chfantasyathlete;
 }

@@ -11920,6 +11920,7 @@ segments:
       - [0x020D8810, c, athlete]
       - [0x020DB600, .rodata, athlete]
       - [0x020DB840, data, athlete]
+      - [0x020DB9C0, .data, athlete]
       - [0x020DBA10, bss, athlete]
   - name: chfantasycannon_header
     dir: overlays/chfantasycannon
