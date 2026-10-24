@@ -89,7 +89,218 @@ void func_80800408_chalienkids(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800454_chalienkids.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800648_chalienkids.s")
+typedef union {
+    Actor actor;
+    struct {
+        u8 pad0[0x74];
+        u32 pad74_6 : 26;
+        u32 unk74_5 : 1;
+        u32 pad74_0 : 5;
+    } flags;
+    struct {
+        u8 pad0[0x50];
+        s32 dialogFlag;
+    } dialog;
+} AlienKidsActor;
+
+s32 func_80800648_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 _chlifeforcespell_entrypoint_1(Actor **, void *, s32, f32, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F77E8(s32, f32 *);
+    void func_800F8300(s32, s32, f32 *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(void *, s32);
+    Actor *func_801084B0(s32, Actor **);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A63C();
+    void func_80800DB8_chalienkids(Actor *, s32, s32);
+    void func_808014B0_chalienkids(AlienKidsActor *, s32);
+    void func_8080193C_chalienkids(Actor *);
+    typedef struct {
+        f32 v[3];
+    } KidPosition;
+    typedef struct {
+        u8 pad0[0x2C];
+        s32 spell;
+        Unk80132ED0 *child;
+    } KidData;
+    extern KidPosition D_8080220C_chalienkids;
+    extern KidPosition D_80802218_chalienkids;
+    extern s32 D_80802224_chalienkids[];
+    KidData *data;
+    Actor *child;
+    f32 position[3];
+    s16 *params;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x3D:
+        switch (arg2) {
+        case 0:
+        case 1:
+            child = func_801084B0(0x459, &arg0);
+            data->child = child->unk0;
+            child->unk3C = arg0->unk0;
+            child->rotation[1] = 0.0f;
+            if (arg2 == 1) {
+                ((AlienKidsActor *)child)->dialog.dialogFlag = 0x6B4;
+            } else {
+                ((AlienKidsActor *)child)->dialog.dialogFlag = 0;
+            }
+            if (!func_800DA298(0x376)) {
+                func_8010A570(child);
+            } else {
+                child->unk64_16 = 0;
+            }
+            break;
+        case 2:
+            func_800EE7F8(position, arg0->position);
+            position[1] -= 120.0f;
+            data->spell = _chlifeforcespell_entrypoint_1(&arg0, position, 100, 4.0f, 0x12);
+            break;
+        case 3:
+            arg0->unk3C = func_80108528(0x466, arg0->position, 0, &arg0)->unk0;
+            break;
+        }
+        break;
+    case 0xA:
+        if (arg0->unk6C_9 == 0x456) {
+            KidPosition position1 = D_8080220C_chalienkids;
+            func_800F77E8(func_800F54E4(), position1.v);
+            func_80102424(arg0, 5);
+            ((AlienKidsActor *)arg0)->flags.unk74_5 = 0;
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x60, 0x30);
+        } else if (arg0->unk6C_9 == 0x457) {
+            KidPosition position2 = D_80802218_chalienkids;
+            func_800F77E8(func_800F54E4(), position2.v);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x12CE, 6, arg0->position, 0xB7);
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x5D, 0x30);
+        }
+        data->child = NULL;
+        break;
+    case 0x18:
+        {
+            f32 position3[3];
+            s32 pad[2];
+            func_800EE7F8(position3, arg0->position);
+            func_800EF1B8(position3, arg0->rotation[1] + 40.0f, 150.0f);
+            func_800F77E8(func_800F54E4(), position3);
+            func_800F8300(func_800F54E4(), 2, arg0->position);
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x65, 0x30);
+            func_80102424(arg0, 0xB);
+            arg0->unk58 = 2.0f;
+        }
+        break;
+    case 0x2E:
+        params = (s16 *)&arg2;
+        func_80800DB8_chalienkids(arg0, params[0], params[1]);
+        break;
+    case 0xB:
+        switch (arg2) {
+        case 0xC:
+            func_80101180(0x457, 0x4A, 0);
+            return 4;
+        case 0xF:
+            func_80101180(0x458, 0x4A, 0);
+            return 4;
+        case 0x13:
+            func_808014B0_chalienkids((AlienKidsActor *)arg0, 0x372);
+            _subaddieDll_entrypoint_4(arg0, 0);
+            func_80102424(arg0, 0x10);
+            _capod_entrypoint_14();
+            func_80101180(0x45A, 0x31, arg0->unk6C_9);
+            return 4;
+        case 0x16:
+            func_808014B0_chalienkids((AlienKidsActor *)arg0, 0x373);
+            _subaddieDll_entrypoint_4(arg0, 0);
+            func_80102424(arg0, 0x10);
+            _capod_entrypoint_14();
+            func_80101180(0x45A, 0x31, arg0->unk6C_9);
+            return 4;
+        }
+        return 2;
+    case 0x4A:
+        func_80102424(arg0, 2);
+        func_80103110(arg0, 1);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        switch (arg0->unk6C_9) {
+        case 0x456:
+            arg0->unk58 = 4.0f;
+            _capod_entrypoint_13(arg0->unk0, NULL, 0xC, 0x2030);
+            break;
+        case 0x457:
+            arg0->unk58 = 2.5f;
+            _capod_entrypoint_14();
+            _capod_entrypoint_13(arg0->unk0, NULL, 0xF, 0x2030);
+            break;
+        case 0x458:
+            arg0->unk58 = 2.0f;
+            func_8010A63C(arg0);
+            _capod_entrypoint_14();
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x12, 0x2010);
+            break;
+        }
+        break;
+    case 0x4B:
+        func_80108B04(arg0, 2);
+        _capod_entrypoint_13(arg0->unk0, NULL, 0x31, 0x30);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        arg0->unk58 = 6.0f;
+        func_80102424(arg0, 7);
+        break;
+    case 0x4C:
+        ((KidData *)func_80100094(arg0, 0))->spell = 0;
+        break;
+    case 0x4E:
+        if (arg0->unk70_10 == 0x10) {
+            _subaddieDll_entrypoint_4(arg0, 1);
+            func_80102424(arg0, 0x12);
+            func_80108B04(arg0, 3);
+            arg0->unk58 = 1.2f;
+        }
+        break;
+    case 0x29:
+        func_8080193C_chalienkids(arg0);
+        break;
+    case 0x2A:
+        func_80801994_chalienkids(arg0);
+        break;
+    case 0x95:
+        ((KidData *)func_80100094(arg0, 0))->child = NULL;
+        switch (arg0->unk6C_9) {
+        case 0x456:
+            if (!func_800DA298(0x372) && !_glcutDll_entrypoint_20()) {
+                func_80108B04(arg0, 0);
+            }
+            break;
+        case 0x457:
+            if (!func_800DA298(0x373) && !func_800DA298(0x6B4) && !_glcutDll_entrypoint_20()) {
+                func_80108B04(arg0, 1);
+            }
+            break;
+        }
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(D_80802224_chalienkids, arg0->scale);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
+
 
 void func_80800D58_chalienkids(Actor *arg0, s32 arg1) {
     s32 func_80101870(s32, s32);
@@ -236,16 +447,6 @@ void func_80801138_chalienkids(Actor* arg0)
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801158_chalienkids.s")
 
 void *func_80100094(Actor *, u32);
-
-typedef union {
-    Actor actor;
-    struct {
-        u8 pad0[0x74];
-        u32 pad74_6 : 26;
-        u32 unk74_5 : 1;
-        u32 pad74_0 : 5;
-    } flags;
-} AlienKidsActor;
 
 void func_808014B0_chalienkids(AlienKidsActor *arg0, s32 arg1) {
     s32 func_800DA544(s32);
