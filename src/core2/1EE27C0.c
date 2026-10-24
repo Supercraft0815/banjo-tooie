@@ -366,25 +366,101 @@ s32 func_801098D0(f32 *arg0, f32 arg1, void *arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_801099D0.s")
+s32 func_801099D0(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    struct Marker {
+        u32 pad[5];
+        u16 id;
+        u16 pad16;
+        u32 pad18 : 15;
+        u32 active : 1;
+        u32 pad1a : 16;
+        u32 pad1c[3];
+        u32 pad28 : 22;
+        u32 enabled : 1;
+        u32 pad28b : 9;
+    };
+    struct Entry {
+        struct Marker *marker;
+        u32 pad4;
+        u32 pad8 : 27;
+        u32 enabled : 1;
+        u32 pad8b : 3;
+        u32 active : 1;
+    };
+    struct Table {
+        u32 pad[4];
+        s32 (*test)(void *, void *);
+    };
+    s32 *func_800BE444(f32 *);
+    s16 func_800CB854(s32 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    void *func_80106790(s32);
+    void *func_800EC3C4(void *);
+    s32 _glhittableDll_entrypoint_1(void *, void *);
+    void func_800EB210(void *, void *, s32);
+    s32 result = 0;
+    s32 *list;
+    struct Entry *entry;
+    struct Entry *end;
+    struct Marker *marker;
+    Actor *actor;
+    struct Table *table;
+    s32 mask;
+    struct Marker *excluded = (struct Marker *)arg5;
+
+    list = func_800BE444((f32 *)arg0);
+    if (func_800CB854(NULL) != 0) {
+        mask = 1U << (func_800CB854(NULL) + 31);
+    } else {
+        mask = 0;
+    }
+    while (*list != 0) {
+        entry = (struct Entry *)func_800E9E88(*list);
+        end = (struct Entry *)func_800E9EB4((s16 *)*list);
+        for (; entry < end; entry++) {
+            if (entry->enabled && entry->active) {
+                marker = entry->marker;
+                if (marker != excluded && marker->enabled && marker->active) {
+                    if (marker->id != 0 && marker->id != 0xFFFF) {
+                        actor = func_80106790((s32)marker);
+                        if (!actor->unk64_17 && !(actor->unk64_0 & mask) &&
+                            (arg3 == 0 || ((s32 (*)(Actor *, s32))arg3)(actor, arg4)) &&
+                            func_801098D0((f32 *)arg0, arg1, marker)) {
+                            table = func_800EC3C4(marker);
+                            if (table->test == NULL || table->test(marker, (void *)arg5)) {
+                                result = 1;
+                                if (!_glhittableDll_entrypoint_1((Unk80132ED0 *)arg5, marker)) {
+                                    func_800EB210(marker, (void *)arg5, arg2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        list++;
+    }
+    return result;
+}
 
 /* extern */
 
 void func_80109BEC(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    void func_801099D0(s32, f32, s32, s32, s32, s32);
+    s32 func_801099D0(s32, f32, s32, s32, s32, s32);
     func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5);
 }
 
 /* extern */
 
 void func_80109C20(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
-    void func_801099D0(s32, f32, s32, s32, s32, s32);
+    s32 func_801099D0(s32, f32, s32, s32, s32, s32);
     func_801099D0(arg0, arg1, arg2, arg3, 0, 0);
 }
 
 /* extern */
 
-void func_80109C4C(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) { struct Flags { u8 pad[0x24]; u32 value : 10; u32 rest : 22; }; s32 temp; u32 saved; void func_801099D0(s32, f32, s32, s32, s32, s32); saved = ((struct Flags *)arg5)->value; ((struct Flags *)arg5)->value = arg6; func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5); ((struct Flags *)arg5)->value = saved; }
+void func_80109C4C(s32 arg0, f32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) { struct Flags { u8 pad[0x24]; u32 value : 10; u32 rest : 22; }; s32 temp; u32 saved; s32 func_801099D0(s32, f32, s32, s32, s32, s32); saved = ((struct Flags *)arg5)->value; ((struct Flags *)arg5)->value = arg6; func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5); ((struct Flags *)arg5)->value = saved; }
 
 s32 func_80109CC4(f32 *arg0, f32 arg1, void *arg2) {
     typedef struct {
