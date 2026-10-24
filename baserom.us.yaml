@@ -8540,6 +8540,8 @@ segments:
       - [0x02050D30, c, evilmumbo]
       - [0x02054A30, .rodata, evilmumbo]
       - [0x02054DC0, data, evilmumbo]
+      - [0x02055190, .data, evilmumbo]
+      - [0x02055220, data, evilmumbo_tail]
       - [0x02055310, bss, evilmumbo]
   - name: chmole_witchy_header
     dir: overlays/chmole_witchy

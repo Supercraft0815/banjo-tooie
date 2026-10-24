@@ -1,5 +1,34 @@
 #include "common.h"
 
+extern u32 D_80804090_chevilmumbo[];
+void func_8080129C_chevilmumbo(Actor *);
+void func_80105834(Actor *);
+void func_801018A4(Actor *, s32);
+void func_808023E8_chevilmumbo(Actor *);
+OSThread *func_80108ED0(void);
+void func_8080241C_chevilmumbo(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_80802618_chevilmumbo(Actor *, s32, s32);
+
+u32 D_80804460_chevilmumbo[] = {
+    0x005B037C, 0x06650001, (u32)D_80804090_chevilmumbo, (u32)func_8080129C_chevilmumbo,
+    (u32)func_80105834, (u32)func_801018A4, 0x00000000, 0x00000000,
+    0x00000000, 0x00800164, (u32)func_808023E8_chevilmumbo, (u32)func_80108ED0,
+    0x00980000, (u32)func_8080241C_chevilmumbo, (u32)func_80107C2C, 0x80000400,
+    (u32)func_80802618_chevilmumbo, 0x00000000,
+};
+
+s32 D_808044A8_chevilmumbo[] = {
+    0x001D09E9, 0x00160200, 0x00150000, 0x0099002B,
+    0x00C00100, 0x002200CC, 0x01000040, 0x0059002D,
+    0x006400C8, 0x000E0028, 0x003C001B, 0xFF6AFF9C,
+    0x0027FF38, 0xFF3800C8, 0x00C80000,
+};
+
+u32 D_808044E4_chevilmumbo[] = {
+    0x000000FF, 0x00000060, 0x000000FF,
+};
+
 void func_80800000_chevilmumbo(Actor *arg0) {
     s32 _plcamera_entrypoint_9(s32, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
@@ -909,11 +938,313 @@ void func_808023E8_chevilmumbo(Actor* arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080241C_chevilmumbo.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80802618_chevilmumbo.s")
+s32 func_80802618_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_6(Actor *, f32, f32);
+    void _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_10(Actor *, s32 *);
+    void _chexploder_entrypoint_12(Actor *, s32);
+    void _chexploder_entrypoint_13(Actor *, u32);
+    void _chexploder_entrypoint_14(Actor *, s32);
+    void _chexploder_entrypoint_15(Actor *, u32, f32);
+    void _chexploder_entrypoint_16(Actor *, s32);
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void func_80090708(s32);
+    void func_800A51C0(void);
+    void func_800C4140(u32, f32 *, u32);
+    void func_800C9C70(f32, u32, f32, u32, f32 *, f32, f32);
+    s32 func_800D395C(void);
+    void func_800DF3E0(void);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800FDC28(u32);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    f32 func_80101F24(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_801084B0(s32, Actor **);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_808003DC_chevilmumbo(Actor *, s32);
+    void func_80800C50_chevilmumbo(Actor *);
+    extern u32 D_808043E4_chevilmumbo[];
+    extern f32 D_808043F4_chevilmumbo[], D_80804400_chevilmumbo[];
+    extern s32 D_8080440C_chevilmumbo[], D_80804414_chevilmumbo[];
+    extern s32 D_8080441C_chevilmumbo[], D_80804428_chevilmumbo[];
+    extern s32 D_80804430_chevilmumbo[], D_80804434_chevilmumbo[];
+    extern s32 D_80804438_chevilmumbo[], D_8080443C_chevilmumbo[];
+    extern s32 D_80804440_chevilmumbo[];
+    struct {
+        u8 pad0[0x78];
+        f32 position[3];
+        u8 unk84;
+        u8 unk85;
+        u8 unk86;
+        u8 unk87;
+        u8 unk88;
+        u8 unk89;
+        u8 unk8A;
+        u8 unk8B;
+        u8 unk8C;
+        u8 unk8D;
+        u8 unk8E;
+        u8 unk8F;
+        u8 unk90;
+        u8 unk91;
+        u8 unk92;
+        u8 unk93;
+        u8 unk94;
+    } *data;
+    s32 camera;
+    s32 mode;
+    s16 *dialog;
+    Actor *actor;
+    f32 position[3];
+    Actor *actor2;
+    Actor *exploder;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x32:
+        func_808003DC_chevilmumbo(arg0, 1);
+        break;
+    case 0x96:
+        if (!func_800D395C()) {
+            return 0;
+        }
+        func_80800354_chevilmumbo(arg0, 0xCEB, 0);
+        break;
+    case 0x9F:
+        func_808007C4_chevilmumbo(arg0, 0x14);
+        break;
+    case 0x2E:
+        dialog = (s16 *)&arg2;
+        switch (dialog[0]) {
+        case 0x11DF:
+            func_808007C4_chevilmumbo(arg0, 5);
+            break;
+        case 0x11E2:
+            data->unk92 = 1;
+            func_80800ECC_chevilmumbo(arg0, 1);
+            func_80090708(0);
+            func_800FDC28(0xA);
+            func_808000BC_chevilmumbo(arg0);
+            break;
+        case 0x11E0:
+            arg0->unk64_19 = 1;
+            data->unk92 = 1;
+            func_808003DC_chevilmumbo(arg0, 6);
+            break;
+        case 0x11E1:
+            func_80800144_chevilmumbo(arg0, 2, 1);
+            func_808003DC_chevilmumbo(arg0, 0);
+            func_808007C4_chevilmumbo(arg0, 0x10);
+            func_808001F4_chevilmumbo(arg0, 0x11, 0x20, NULL);
+            break;
+        case 0x11E3:
+            func_800A51C0();
+            func_808003DC_chevilmumbo(arg0, 0);
+            func_808000BC_chevilmumbo(arg0);
+            break;
+        case 0x11E5:
+            func_808000BC_chevilmumbo(arg0);
+            func_808007C4_chevilmumbo(arg0, 0xA);
+            break;
+        case 0xCEB:
+            if (dialog[1] == 1) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+        }
+        arg0->unk74_30 = 0;
+        break;
+    case 0xB:
+        switch (arg2) {
+        case 1:
+            func_80800144_chevilmumbo(arg0, 3, 1);
+            break;
+        case 3:
+            func_80800290_chevilmumbo(arg0);
+            break;
+        case 15:
+            func_808003DC_chevilmumbo(arg0, 9);
+            break;
+        case 9:
+            func_808003DC_chevilmumbo(arg0, 7);
+            break;
+        case 2:
+        default:
+            return 3;
+        }
+        return 4;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(D_808043E4_chevilmumbo, arg0->scale);
+        if ((s32)arg0->unk70_10 < 5) {
+            _gcdialogcamera_entrypoint_4(D_808043F4_chevilmumbo);
+        }
+        break;
+    case 0x57:
+        camera = arg2 & 0xFFFF;
+        mode = (arg2 & 0xFFFF0000) >> 16;
+        if (_gcdialogcamera_entrypoint_0(camera, mode)) {
+            func_80800144_chevilmumbo(arg0, camera, mode);
+        }
+        break;
+    case 0x40:
+        switch (arg0->unk70_10) {
+        case 7:
+        case 8:
+        case 9:
+        case 19:
+            func_80800C50_chevilmumbo(arg0);
+            break;
+        case 10:
+            if (func_80101F24(arg0) < 0.75f) {
+                func_80800C50_chevilmumbo(arg0);
+            }
+            break;
+        case 12:
+            if (func_80101F24(arg0) > 0.25f) {
+                func_80800C50_chevilmumbo(arg0);
+            }
+            break;
+        }
+        break;
+    case 0x3D:
+        switch (arg2) {
+        case 2:
+            if (arg0->unk7C_12) {
+                actor = func_801084B0(0x380, &arg0);
+                actor->unk3C = arg0->unk0;
+            }
+            break;
+        case 1:
+            if (arg0->unk7C_12) {
+                func_800EE7F8(position, data->position);
+            } else {
+                func_800EE7F8(position, arg0->position);
+                position[1] += 100.0f;
+            }
+            actor2 = func_80108528(0x37D, position, 0, &arg0);
+            actor2->unk3C = arg0->unk0;
+            break;
+        case 0:
+            actor2 = func_80108528(0x37E, D_80804400_chevilmumbo, 0, &arg0);
+            actor2->unk3C = arg0->unk0;
+            break;
+        }
+        break;
+    case 0x90:
+        exploder = func_80106790(func_80101080());
+        arg0->unk64_16 = 1;
+        _chexploder_entrypoint_9(exploder, 0x15, 0);
+        switch (data->unk94) {
+        case 0:
+            _chexploder_entrypoint_10(exploder, D_8080440C_chevilmumbo);
+            _chexploder_entrypoint_9(exploder, 0xA, 3);
+            _chexploder_entrypoint_15(exploder, 3, 0.25f);
+            break;
+        case 1:
+            _chexploder_entrypoint_10(exploder, D_80804414_chevilmumbo);
+            _chexploder_entrypoint_9(exploder, 0xB, 3);
+            _chexploder_entrypoint_15(exploder, 3, 0.25f);
+            break;
+        case 2:
+            _chexploder_entrypoint_10(exploder, D_8080441C_chevilmumbo);
+            _chexploder_entrypoint_9(exploder, 0xD, 3);
+            _chexploder_entrypoint_15(exploder, 3, 0.25f);
+            break;
+        case 3:
+            _chexploder_entrypoint_10(exploder, D_80804428_chevilmumbo);
+            _chexploder_entrypoint_9(exploder, 0xC, 3);
+            _chexploder_entrypoint_15(exploder, 3, 0.25f);
+            break;
+        case 4:
+            _chexploder_entrypoint_10(exploder, D_80804430_chevilmumbo);
+            _chexploder_entrypoint_9(exploder, 8, 5);
+            _chexploder_entrypoint_15(exploder, 3, 0.5f);
+            break;
+        case 5:
+            _chexploder_entrypoint_10(exploder, D_80804434_chevilmumbo);
+            _chexploder_entrypoint_9(exploder, 8, 4);
+            _chexploder_entrypoint_15(exploder, 3, 0.5f);
+            break;
+        case 6:
+            _chexploder_entrypoint_10(exploder, D_80804438_chevilmumbo);
+            _chexploder_entrypoint_9(exploder, 0xE, 3);
+            _chexploder_entrypoint_15(exploder, 3, 0.4f);
+            break;
+        case 7:
+            _chexploder_entrypoint_16(exploder, 0x697);
+            _chexploder_entrypoint_10(exploder, D_8080443C_chevilmumbo);
+            _chexploder_entrypoint_15(exploder, 2, 0.4f);
+            _chexploder_entrypoint_6(exploder, 600.0f, 800.0f);
+            _chexploder_entrypoint_13(exploder, 7);
+            _chexploder_entrypoint_14(exploder, 4);
+            _chexploder_entrypoint_12(exploder, 0x3C);
+            func_800C4140(0x7FF19413, arg0->position, 0x138801F4);
+            data->unk94 = 8;
+            break;
+        case 8:
+            func_800C4140(0x7FFF4413, arg0->position, 0x138801F4);
+            _chexploder_entrypoint_9(exploder, 0xA, 4);
+            _chexploder_entrypoint_9(exploder, 0xB, 4);
+            _chexploder_entrypoint_9(exploder, 0xD, 4);
+            _chexploder_entrypoint_9(exploder, 0xC, 4);
+            _chexploder_entrypoint_9(exploder, 8, 0);
+            _chexploder_entrypoint_9(exploder, 0xE, 4);
+            _chexploder_entrypoint_15(exploder, 2, 0.35f);
+            _chexploder_entrypoint_10(exploder, D_80804440_chevilmumbo);
+            _chexploder_entrypoint_6(exploder, 600.0f, 800.0f);
+            func_800C9C70(0.4f, 0x5F3, 1.0f, 0x7FFF, arg0->position, 250.0f, 5400.0f);
+            arg0->unk64_16 = 0;
+            break;
+        }
+        break;
+    case 0x1F:
+        func_800DF3E0();
+        func_801015D0(arg0);
+        if (arg0->unk64_20) {
+            func_800DF744(0x21, arg0->unk7A_11 + 1);
+            func_800DF744(4, data->unk84);
+            func_800DF744(0x14, data->unk85);
+            func_800DF744(8, data->unk86);
+            func_800DF744(0xA, data->unk87);
+            func_800DF744(0xB, data->unk88);
+            func_800DF744(0xD, data->unk89);
+            func_800DF744(0xC, data->unk8A);
+            func_800DF744(0xE, data->unk8B);
+            func_800DF744(0x15, data->unk8C);
+            func_800DF744(0x11, data->unk8D);
+            func_800DF744(0x16, 1);
+        } else {
+            if (data->unk8F) {
+                func_800DF744(5, 1);
+                func_800DF744(6, 1);
+            } else {
+                func_800DF744(5, 0);
+                func_800DF744(6, 0);
+            }
+            if (data->unk8E) {
+                func_800DF744(4, 1);
+            } else {
+                func_800DF744(4, 0);
+            }
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chevilmumbo_entrypoint_0(void)
 {
-    extern u8 D_80804460_chevilmumbo[];
+
 
     return (OSThread *) D_80804460_chevilmumbo;
 }
@@ -925,12 +1256,12 @@ void func_8080300C_chevilmumbo(Actor *arg0) {
     void func_8010A570(Actor *);
     void func_800FFAB0(Actor *);
     extern s32 D_80804220_chevilmumbo;
-    extern s32 D_808044A8_chevilmumbo;
+
 
     if (arg0->unk6C_0 != 0) {
         arg0->unk6C_0 = _chlightfader_entrypoint_1(arg0->unk6C_0, 1.4f, 3);
     }
-    func_800BBCB8(arg0->position, arg0->position, 1.0f, 12, &D_808044A8_chevilmumbo);
+    func_800BBCB8(arg0->position, arg0->position, 1.0f, 12, D_808044A8_chevilmumbo);
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804220_chevilmumbo);
     func_8010A570(arg0);
     func_800FFAB0(arg0);
@@ -1027,7 +1358,7 @@ void func_808035A8_chevilmumbo(u8 *arg0, s32 arg1) {
     s32 func_800D674C(s32);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
     void func_800DF830(s32);
-    s32 func_801018A4(u8 *, s32);
+    void func_801018A4(Actor *, s32);
     s32 func_80101970();
     (*(f32 *)((s8 *)(arg0) + (0x44))) = (f32) -(*(f32 *)((s8 *)(arg0) + (0x44)));
     func_80101970();
