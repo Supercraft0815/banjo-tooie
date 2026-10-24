@@ -156,7 +156,48 @@ void func_80800050_chflamer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flamer/func_80800434_chflamer.s")
+/* extern */
+
+void func_80800434_chflamer(Actor *arg0, s32 arg1) {
+    void * func_80100094(Actor *, u32);
+    s32 func_800D674C(s32);
+    s32 func_800E2588(s32);
+    s32 func_800E2594(s32, s32);
+    s32 func_800E2720(s32, s32, s16, s32 *, s32 *, s32);
+    s32 func_800E2A14(s32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800EFA4C(s32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, s32, f32);
+    f32 temp_f20;
+    f32 temp_f22;
+    s32 temp_s0;
+    s32 var_s2;
+    void *temp_s5;
+    s32 sp68[3];
+    s32 sp5C[3];
+    void *var_s0;
+
+    temp_s5 = func_80100094(arg0, 0U);
+    temp_s0 = func_800D674C(0x9CE);
+    func_800E2588(1);
+    func_800E2594(arg1, temp_s0);
+    temp_f22 = func_800F10B4((*(f32 *)((s8 *)(temp_s5) + (0x1B0))), 50.0f, 200.0f, 0x3F19999A, 1.6f) * 0.5f;
+    var_s0 = (u8 *)(u8 *)temp_s5 + 0x1C;
+    var_s2 = 0;
+    if ((*(s16 *)((s8 *)(temp_s5) + (0x16))) > 0) {
+        do {
+            temp_f20 = (*(f32 *)((s8 *)(var_s0) + (0x10))) * temp_f22;
+            func_800EE88C(sp68, (u8 *)(u8 *)var_s0 + 8);
+            func_800EF04C(sp68, arg0->position);
+            func_800EFA4C(sp5C, temp_f20, temp_f20, temp_f20);
+            func_800E2720(arg1, (s32) (*(f32 *)((s8 *)(var_s0) + (0))), (*(s16 *)((s8 *)(var_s0) + (6))), sp68, sp5C, 0xC0);
+            var_s2 += 1;
+            var_s0 = (u8 *)(u8 *)var_s0 + (0x14);
+        } while (var_s2 < (*(s16 *)((s8 *)(temp_s5) + (0x16))));
+    }
+    func_800E2A14(arg1);
+}
 
 /* extern */
 
