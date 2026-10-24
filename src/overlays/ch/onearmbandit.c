@@ -157,7 +157,48 @@ void func_8080007C_chonearmbandit(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800520_chonearmbandit.s")
+s32 func_80800520_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    s32 _chexploder_entrypoint_4(void *, s32, s32);
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_80101074(void *);
+    s32 func_80107070(Actor *, u32);
+    s32 func_801072A8(void *);
+    void func_808006F8_chonearmbandit(u8 *, s32);
+    void func_80800AB8_chonearmbandit(Actor *);
+    void func_80800D00_chonearmbandit(Actor *);
+    extern s32 D_80801280_chonearmbandit;
+    switch (arg1) {
+        case 0x3F:
+            func_808006F8_chonearmbandit((u8 *)arg0, arg2);
+            break;
+        case 0x40:
+            _chexploder_entrypoint_4(arg0, *(s32 *)*(s32 *)&arg2 + 4, 4);
+            break;
+        case 0x3D:
+            if (func_801072A8(arg0) == 0) {
+                func_80800AB8_chonearmbandit(arg0);
+            }
+            break;
+        case 0x90:
+            func_80800D00_chonearmbandit(arg0);
+            break;
+        case 2:
+            if ((s32)arg0->unk70_10 > 0 && _subaddieDll_entrypoint_3(arg0) == 0) {
+                func_80107070(arg0, 1);
+            }
+            break;
+        case 0x95:
+            _subaddierouteDll_entrypoint_1(arg0);
+            break;
+        case 0x38:
+            func_80101074(&D_80801280_chonearmbandit);
+            return 5;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
