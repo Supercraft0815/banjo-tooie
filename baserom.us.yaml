@@ -7038,6 +7038,7 @@ segments:
       - [0x02006880, c, weldarboss]
       - [0x0200AB00, .rodata, weldarboss]
       - [0x0200AE70, data, weldarboss]
+      - [0x0200B010, .data, weldarboss]
       - [0x0200B360, bss, weldarboss]
   - name: chaliendad_header
     dir: overlays/chaliendad

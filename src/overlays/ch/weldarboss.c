@@ -1,15 +1,205 @@
 #include "common.h"
 
+typedef struct { f32 position[3]; } WeldarVector;
+
+extern u32 D_808045F0_chweldarboss[];
+void func_8080030C_chweldarboss(Actor *);
+void func_80105834(Actor *);
+void func_80801944_chweldarboss(Actor *, void *);
+void func_808002BC_chweldarboss(Actor *);
+OSThread *func_80108ED0(void);
+void func_80800018_chweldarboss(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_808014CC_chweldarboss(Actor *, s32, s32);
+void func_80803EA4_chweldarboss(Actor *);
+void func_8080412C_chweldarboss(Actor *, void *);
+void func_80803E50_chweldarboss(Actor *);
+u32 func_808040F4_chweldarboss(s32, s32, s32);
+
+u32 D_80804790_chweldarboss[] = {
+    0x00000000, 0x00000000, 0x3E23D70A, 0x037A0001,
+    0x3E23D70A, 0x037A0001, 0x3E23D70A, 0x037A0001,
+    0x3E23D70A, 0x037A0001,
+};
+
+s32 D_808047B8_chweldarboss[] = {
+    0x0013041D, 0x000D00C0, 0x00D90000,
+};
+
+u32 D_808047C4_chweldarboss[] = {
+    0x02F80465, 0x08170001, (u32)D_808045F0_chweldarboss, (u32)func_8080030C_chweldarboss,
+    (u32)func_80105834, (u32)func_80801944_chweldarboss, 0x00000000, 0x00000000,
+    0x00000000, 0x00000568, (u32)func_808002BC_chweldarboss, (u32)func_80108ED0,
+    0x00B80000, (u32)func_80800018_chweldarboss, (u32)func_80107C2C, 0x82010480,
+    (u32)func_808014CC_chweldarboss, 0x00000000,
+};
+
+u32 D_8080480C_chweldarboss[] = {
+    0x01580468, 0x086B0001, (u32)D_80804790_chweldarboss, (u32)func_80803EA4_chweldarboss,
+    (u32)func_80105834, (u32)func_8080412C_chweldarboss, 0x00000000, 0x00000000,
+    0x00000000, 0x00020400, 0x00000000, 0x00000000,
+    0x00100000, (u32)func_80803E50_chweldarboss, (u32)func_80107C2C, 0x80000402,
+    (u32)func_808040F4_chweldarboss, 0x00000000,
+};
+
+s32 D_80804854_chweldarboss[] = {
+    0x0013061C, 0x0018000D, 0x00F3010C, 0x00020000,
+};
+
+s32 D_80804864_chweldarboss[] = {
+    0x00130612, 0x0018000A, 0x00C00002, 0x00000000,
+};
+
+s32 D_80804874_chweldarboss[] = {
+    0x00130413, 0x00180002, 0x00000000,
+};
+
+s32 D_80804880_chweldarboss[] = {
+    0x001D078F, 0x00150019, 0x00660016, 0x12000032,
+    0x0002001E, 0x001E001E, 0x00180000, 0x00000F00,
+    0x0F000022, 0x01000100, 0x04000400, 0x002B0100,
+    0x01000000,
+};
+
+s32 D_808048B4_chweldarboss[] = {
+    0x001D09DD, 0x002B0800, 0x0A000022, 0x04000500,
+    0x08800A00, 0x00150000, 0x00660019, 0x00000007,
+    0x002D0064, 0x00C80020, 0xC0C0C080, 0x000B003C,
+    0x007800B4, 0xFF4C0000,
+};
+
+WeldarVector D_808048EC_chweldarboss = {{-1800.0f, 1200.0f, -2200.0f}};
+
+u8 D_808048F8_chweldarboss[] = {
+    0x00, 0x13, 0x04, 0xFE,
+    0x00, 0x18, 0x00, 0x02,
+    0x00, 0x0A, 0x00, 0x8C,
+    0x00, 0x00, 0x00, 0x00,
+};
+
+u32 D_80804908_chweldarboss[] = {
+    0x00130606, 0x000A0133, 0x00163E80, 0x00020000,
+};
+
+u32 D_80804918_chweldarboss[] = {
+    0x001304A4, 0x000D00AE, 0x00B80002, 0x00000000,
+};
+
+u32 D_80804928_chweldarboss[] = {
+    0x001D09E2, 0x00160200, 0x00050000, 0x00040099,
+    0x00070004, 0x00150000, 0x00CC002B, 0x01800200,
+    0x0022004C, 0x00590026, 0x0033002D, 0x00FA0190,
+    0x000AFF9C, 0x000AFF9C, 0x0064000A, 0x0064001B,
+    0xF9C0FB50, 0x00000000,
+};
+
+u32 D_80804970_chweldarboss[] = {
+    0x00130609, 0x000D00F3, 0x010C0002, 0x00000000,
+};
+
+u32 D_80804980_chweldarboss[] = {
+    0x0013060A, 0x000D00F3, 0x010C0002, 0x00000000,
+};
+
+u32 D_80804990_chweldarboss[] = {
+    0x00130608, 0x000D00F3, 0x010C0002, 0x00166D60,
+    0x00000000,
+};
+
+u32 D_808049A4_chweldarboss[] = {
+    0x00130607, 0x000D00F3, 0x010C0002, 0x00180000,
+};
+
+s32 D_808049B4_chweldarboss[] = {
+    0x001D09DD, 0x00168000, 0x002D0258, 0x03200113,
+    0x002200F3, 0x010C0040, 0x00590015, 0x00260099,
+    0x002B004C, 0x00660000,
+};
+
+s32 D_808049DC_chweldarboss[] = {
+    0x0013060B, 0x000D00F3, 0x010C0002, 0x00180000,
+};
+
+u32 D_808049EC_chweldarboss[] = {
+    0x001304A0, 0x000D0099, 0x00A60002, 0x00000000,
+};
+
+s32 D_808049FC_chweldarboss[] = {
+    0x001304A0, 0x000D0099, 0x00A60016, 0x6D600002,
+    0x00000000,
+};
+
+s32 D_80804A10_chweldarboss[] = {
+    0x001D09DD, 0x002B0180, 0x02000022, 0x01800200,
+    0x03800400, 0x00150000, 0x00990027, 0xFF9CFF9C,
+    0x00640064, 0x00190000, 0x0007002D, 0x00FA015E,
+    0x0020C0C0, 0xC0C0011A, 0x00000000,
+};
+
+u8 D_80804A4C_chweldarboss[] = {
+    0x3E, 0x4C, 0xCC, 0xCD,
+    0x00, 0x00, 0x00, 0x00,
+    0x3E, 0xCC, 0xCC, 0xCD,
+    0x3F, 0x80, 0x00, 0x00,
+    0x3F, 0x26, 0x66, 0x66,
+    0x00, 0x00, 0x00, 0x00,
+};
+
+u8 D_80804A64_chweldarboss[] = {
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x3E, 0xCC, 0xCC, 0xCD,
+    0x3F, 0x80, 0x00, 0x00,
+    0x3F, 0x40, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+};
+
+u8 D_80804A7C_chweldarboss[] = {
+    0x00, 0x00, 0x00, 0x00,
+    0x3F, 0x80, 0x00, 0x00,
+    0x3E, 0xCC, 0xCC, 0xCD,
+    0x00, 0x00, 0x00, 0x00,
+    0x3F, 0x40, 0x00, 0x00,
+    0x3F, 0x80, 0x00, 0x00,
+};
+
+u8 D_80804A94_chweldarboss[] = {
+    0x00, 0x13, 0x04, 0x9C,
+    0x00, 0x18, 0x00, 0x0D,
+    0x00, 0x66, 0x00, 0x80,
+    0x00, 0x02, 0x00, 0x00,
+};
+
+u8 D_80804AA4_chweldarboss[] = {
+    0x00, 0x13, 0x06, 0x1C,
+    0x00, 0x18, 0x00, 0x0D,
+    0x00, 0xF3, 0x01, 0x0C,
+    0x00, 0x02, 0x00, 0x00,
+};
+
+s32 D_80804AB4_chweldarboss[] = {
+    0x001304A9, 0x00020000,
+};
+
+u32 D_80804ABC_chweldarboss[] = {
+    0x00000080, 0x000000C0, 0x000000FF,
+};
+
+u32 D_80804AC8_chweldarboss[] = {
+    0x000000FF, 0x000000FF, 0x000000FF, 0x00000000,
+    0x00000000, 0x00000000,
+};
+
 OSThread *chweldarboss_entrypoint_0(void)
 {
-    extern u8 D_808047C4_chweldarboss[];
+
 
     return (OSThread *) D_808047C4_chweldarboss;
 }
 
 OSThread *chweldarboss_entrypoint_1(void)
 {
-    extern u8 D_8080480C_chweldarboss[];
+
 
     return (OSThread *) D_8080480C_chweldarboss;
 }
@@ -113,12 +303,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
     void func_80803D64_chweldarboss(Actor *);
     s32 func_80803D98_chweldarboss(s32);
     extern f32 B_80804AE0_chweldarboss[3];
-    extern s32 D_808047B8_chweldarboss[];
-    extern s32 D_80804854_chweldarboss[];
-    extern s32 D_80804864_chweldarboss[];
-    extern s32 D_80804874_chweldarboss[];
-    extern s32 D_80804880_chweldarboss[];
-    extern s32 D_808048B4_chweldarboss[];
+
     extern void _chbaddiesetup_entrypoint_10(void);
 
     WeldarData *sp94;
@@ -571,7 +756,170 @@ void func_8080030C_chweldarboss(Actor *arg0)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808014CC_chweldarboss.s")
+s32 func_808014CC_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x30];
+        u8 link[0x14];
+        u8 pad44[0x1D];
+        u8 unk61;
+        u8 pad62[4];
+        u8 unk66;
+        u8 pad67;
+        u8 unk68[6];
+    } WeldarData;
+    typedef struct {
+        u8 pad0[0x18];
+        u32 pad18_16 : 16;
+        u32 id : 11;
+        u32 pad18_0 : 5;
+        u8 pad1C[8];
+        u32 unk24_22 : 10;
+        u32 pad24_0 : 22;
+    } HitData;
+
+    void *func_80100094(Actor *, u32);
+    void func_80801F30_chweldarboss(Actor *, s16, s16);
+    s32 func_80802100_chweldarboss(Actor *, s32);
+    void func_8080227C_chweldarboss(Actor *, s32);
+    void func_80801AA0_chweldarboss(Actor *, s32);
+    s32 func_80803DD8_chweldarboss(Actor *);
+    s32 func_800F79DC(s32, s32, s32);
+    s32 _sueggmisc_entrypoint_0();
+    s32 func_8010114C(s32, s32, s32);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    void _chexploder_entrypoint_15(Actor *, u32, f32);
+    void _chexploder_entrypoint_13(Actor *, u32);
+    void _chexploder_entrypoint_6(Actor *, f32, f32);
+    void _chexploder_entrypoint_8(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void func_80101010(f32 *);
+    s32 _subaddielink_entrypoint_3(u8 *);
+    u32 func_800FDC28(u32);
+    s32 func_800D395C(void);
+    void func_80802214_chweldarboss(Actor *, s32, s32);
+    void func_8080373C_chweldarboss(Actor *);
+    void func_80803D64_chweldarboss(Actor *);
+    WeldarData *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x2E:
+        func_80801F30_chweldarboss(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0xB:
+        return func_80802100_chweldarboss(arg0, arg2);
+    case 0x3D:
+        func_8080227C_chweldarboss(arg0, arg2);
+        break;
+    case 0x3F: {
+        HitData *hit = *(HitData **)&arg2;
+        if (hit->unk24_22 == 0) {
+            switch (arg0->unk70_10) {
+            case 11: case 12: case 16: case 22: case 23:
+            case 26: case 38: case 39: case 42:
+                break;
+            case 32:
+                func_80801AA0_chweldarboss(arg0, 0x21);
+            default:
+                func_800F79DC(hit->id, 7, (s32)arg0->unk0);
+                break;
+            }
+        }
+        break;
+    }
+    case 0x40: {
+        Actor *other = *(Actor **)&arg2;
+        if (func_80803DD8_chweldarboss(arg0) && _sueggmisc_entrypoint_0(other)) {
+            func_8010114C((s32)other, 0x2C, 0);
+        }
+        break;
+    }
+    case 0x90: {
+        s32 id;
+        Actor *exploder = func_80106790(func_80101080());
+        id = arg2;
+        switch (id) {
+        case 0x86E:
+            _chexploder_entrypoint_15(exploder, 2, 1.0f);
+            _chexploder_entrypoint_13(exploder, 1);
+            break;
+        case 0x86F:
+            arg0->unk64_16 = 0;
+            _chexploder_entrypoint_6(exploder, 1000.0f, 1200.0f);
+            break;
+        case 0x870:
+            _chexploder_entrypoint_6(exploder, 3000.0f, 3000.0f);
+            _chexploder_entrypoint_8(exploder, 450.0f, 450.0f);
+            _chexploder_entrypoint_9(exploder, 1, 1);
+            _chexploder_entrypoint_9(exploder, 2, 1);
+            _chexploder_entrypoint_13(exploder, 11);
+            _chexploder_entrypoint_8(exploder, 320.0f, 320.0f);
+            break;
+        }
+        break;
+    }
+    case 0x8D: {
+        Actor *other = func_80106790(func_80101080());
+        switch (arg2) {
+        case 0x86E: {
+            f32 position[3];
+            f32 angle;
+            angle = func_800F1DF4(arg0->position, other->position);
+            func_800EE7F8(position, other->position);
+            func_800EF1B8(position, angle, -200.0f);
+            func_80101010(position);
+            data->unk68[data->unk66] = 0;
+            data->unk66++;
+            goto handled;
+        }
+        case 0x870: {
+            WeldarVector target = D_808048EC_chweldarboss;
+            f32 rotation[2];
+            f32 position[3];
+            func_800F18FC(other->position, target.position, rotation);
+            func_800EE7F8(position, other->position);
+            func_800EF214(position, -rotation[0], rotation[1], -500.0f);
+            position[1] -= 200.0f;
+            func_80101010(position);
+            return 1;
+        }
+        }
+        return 0;
+    }
+    case 7:
+        func_80801AA0_chweldarboss(arg0, 0x30);
+        break;
+    case 0x95:
+        _subaddielink_entrypoint_3(data->link);
+        if (data->unk61) {
+            func_800FDC28(1);
+            data->unk61 = 0;
+        }
+        break;
+    case 0x96:
+        if (!func_800D395C()) {
+            return 0;
+        }
+        func_80802214_chweldarboss(arg0, 0xCEB, 0x4E);
+        break;
+    case 0x9F:
+        func_800FDC28(0);
+        func_8080373C_chweldarboss(arg0);
+        func_80801AA0_chweldarboss(arg0, 0x32);
+        func_80803D64_chweldarboss(arg0);
+        break;
+    default:
+        return 0;
+    }
+handled:
+    return 1;
+}
 
 void func_80801944_chweldarboss(Actor *arg0, void *arg1) {
     typedef struct {
@@ -676,7 +1024,7 @@ void func_80801AA0_chweldarboss(Actor *arg0, s32 arg1) {
     void func_8080373C_chweldarboss(Actor *);
     void func_80803CF0_chweldarboss(Actor *, s32, s32);
     void func_80803D64_chweldarboss(Actor *);
-    extern u8 D_808048F8_chweldarboss[];
+
     WeldarData *data;
     s32 update;
     f32 position[3];
@@ -980,8 +1328,7 @@ void func_808029D8_chweldarboss(Actor *arg0) {
     void func_800EF04C(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_808049B4_chweldarboss;
-    extern s32 D_808049DC_chweldarboss;
+
     WeldarData *sp3C;
     f32 sp30[3];
     f32 sp2C;
@@ -992,16 +1339,16 @@ void func_808029D8_chweldarboss(Actor *arg0) {
     sp28 = func_800F10B4(sp2C, 300.0f, 1000.0f, 1.0f, 1.5f);
     func_800EEB9C(sp30, arg0->rotation[1], sp2C);
     func_800EF04C(sp30, sp3C->unk44);
-    func_800BBCB8(sp30, sp3C->unk44, *(s32 *)&sp28, 1, &D_808049B4_chweldarboss);
-    sp3C->unkB2 = _subaddieaudioloop_entrypoint_7(sp3C->unkB2, sp3C->unk44, 1, &D_808049DC_chweldarboss, arg0->unk70_0);
+    func_800BBCB8(sp30, sp3C->unk44, *(s32 *)&sp28, 1, D_808049B4_chweldarboss);
+    sp3C->unkB2 = _subaddieaudioloop_entrypoint_7(sp3C->unkB2, sp3C->unk44, 1, D_808049DC_chweldarboss, arg0->unk70_0);
 }
 
 void func_80802ABC_chweldarboss(Actor *arg0, f32 arg1) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     void func_80018820(s32, f32, f32);
     s32 func_800E15CC(s32, f32, f32);
-    extern u32 D_808049EC_chweldarboss;
-    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 4), &D_808049EC_chweldarboss, arg1) != 0) {
+
+    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 4), D_808049EC_chweldarboss, arg1) != 0) {
         func_800E15CC(0, 10.0f, 0.8f);
         func_80018820(0, 0.8f, 0.3f);
     }
@@ -1016,8 +1363,7 @@ void func_80802B1C_chweldarboss(Actor *arg0) {
     s32 func_800E15CC(s32, f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    extern s32 D_808049FC_chweldarboss;
-    extern s32 D_80804A10_chweldarboss;
+
     s32 particles;
     f32 position[3];
     s32 i;
@@ -1027,9 +1373,9 @@ void func_80802B1C_chweldarboss(Actor *arg0) {
         func_800EEB9C(position, (f32)i * 45.0f, func_800DC178(120.0f, 160.0f));
         func_800EF04C(position, arg0->position);
         position[1] += func_800DC178(10.0f, 50.0f);
-        func_800BABB8(particles, position, arg0->position, 1.0f, &D_80804A10_chweldarboss);
+        func_800BABB8(particles, position, arg0->position, 1.0f, D_80804A10_chweldarboss);
     }
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808049FC_chweldarboss);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808049FC_chweldarboss);
     func_800E15CC(0, 30.0f, 0.9f);
     func_80018820(0, 1.8f, 0.75f);
 }
@@ -1037,19 +1383,17 @@ void func_80802B1C_chweldarboss(Actor *arg0) {
 f32 func_80802C9C_chweldarboss(Actor *arg0, s32 arg1) {
     f32 func_800F3780(f32, u8 *, s16);
     f32 func_80101F24(Actor *);
-    extern u8 D_80804A4C_chweldarboss;
-    extern u8 D_80804A64_chweldarboss;
-    extern u8 D_80804A7C_chweldarboss;
+
     f32 progress;
 
     progress = func_80101F24(arg0);
     switch (arg1) {
         case 0:
-            return func_800F3780(progress, &D_80804A4C_chweldarboss, 3);
+            return func_800F3780(progress, D_80804A4C_chweldarboss, 3);
         case 1:
-            return func_800F3780(progress, &D_80804A64_chweldarboss, 3);
+            return func_800F3780(progress, D_80804A64_chweldarboss, 3);
         case 2:
-            return func_800F3780(progress, &D_80804A7C_chweldarboss, 3);
+            return func_800F3780(progress, D_80804A7C_chweldarboss, 3);
         default:
             return 0.0f;
     }
@@ -1174,7 +1518,7 @@ s32 func_80803184_chweldarboss(Actor *arg0, s32 arg1) {
     void func_800F7B9C(s32, u32);
     void *func_80100094(Actor *, u32);
     s32 func_80803DD8_chweldarboss(Actor *);
-    extern u8 D_80804A94_chweldarboss[];
+
     WeldarData *data;
     f32 sp38[3];
     f32 sp2C[3];
@@ -1222,7 +1566,7 @@ void func_808032A8_chweldarboss(Actor *arg0) {
     void func_800F8294(s32, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80101E14(Actor *, f32);
-    extern u8 D_80804AA4_chweldarboss[];
+
     s32 pad3C;
     f32 sp30[3];
     f32 sp24[3];
@@ -1362,13 +1706,13 @@ void func_808035D0_chweldarboss(Actor *arg0) {
 void func_80803624_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
-    extern s32 D_80804AB4_chweldarboss;
+
     u8 *sp24;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
     sp24 = temp_v0;
-    (*(s8 *)((s8 *)(sp24) + (0xB1))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(temp_v0) + (0xB1))), arg0->position, (*(u8 *)((s8 *)(temp_v0) + (0x6E))), &D_80804AB4_chweldarboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
+    (*(s8 *)((s8 *)(sp24) + (0xB1))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(temp_v0) + (0xB1))), arg0->position, (*(u8 *)((s8 *)(temp_v0) + (0x6E))), D_80804AB4_chweldarboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
 }
 
 void func_8080367C_chweldarboss(Actor *arg0) {
@@ -1682,8 +2026,7 @@ void func_80803EA4_chweldarboss(Actor *arg0) {
     void func_800C8E84(s32, u32 *);
     s32 func_8001210C(s32);
     void func_808041C4_chweldarboss(Actor *, s32);
-    extern u32 D_80804ABC_chweldarboss[];
-    extern u32 D_80804AC8_chweldarboss[];
+
     WeldarLightData *data;
     s32 light;
     f32 position[3];
