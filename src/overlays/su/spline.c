@@ -74,7 +74,77 @@ void suspline_entrypoint_12(void *arg0, s8 arg1) {
     (*(s8 *)((s8 *)(arg0) + (0x8A))) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/func_80800224_suspline.s")
+/* extern */
+
+f32 func_80800224_suspline(u8 *arg0, f32 *arg1, void *arg2) {
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    int func_80800074_suspline(u8 *, s32);
+    f32 temp_f0;
+    f32 temp_f0_2;
+    s32 temp_v0;
+    s32 temp_v1;
+
+    temp_v1 = (*(s16 *)((s8 *)(arg0) + (0x78)));
+    if (temp_v1 >= 4) {
+        if ((*(u8 *)((s8 *)(arg0) + (0x8A))) & 2) {
+            (*(s16 *)((s8 *)(arg2) + (2))) = (s16) (s32) (*arg1 * (f32) temp_v1);
+        } else {
+            (*(s16 *)((s8 *)(arg2) + (2))) = (s16) (s32) (*arg1 * (f32) (temp_v1 - 1));
+        }
+        temp_v0 = (*(s16 *)((s8 *)(arg2) + (2)));
+        (*(s16 *)((s8 *)(arg2) + (0))) = (s16) (temp_v0 - 1);
+        (*(s16 *)((s8 *)(arg2) + (4))) = (s16) (temp_v0 + 1);
+        temp_v1 = (*(s16 *)((s8 *)(arg0) + (0x78)));
+        if ((*(s16 *)((s8 *)(arg2) + (4))) >= temp_v1) {
+            if ((*(u8 *)((s8 *)(arg0) + (0x8A))) & 2) {
+                (*(s16 *)((s8 *)(arg2) + (4))) = (s16) ((*(s16 *)((s8 *)(arg2) + (4))) - temp_v1);
+            } else {
+                (*(s16 *)((s8 *)(arg2) + (4))) = (s16) (temp_v1 - 1);
+            }
+        }
+        (*(s16 *)((s8 *)(arg2) + (6))) = (s16) ((*(s16 *)((s8 *)(arg2) + (4))) + 1);
+        temp_v1 = (*(s16 *)((s8 *)(arg0) + (0x78)));
+        temp_v0 = (*(s16 *)((s8 *)(arg2) + (6)));
+        if (temp_v0 >= temp_v1) {
+            if ((*(u8 *)((s8 *)(arg0) + (0x8A))) & 2) {
+                (*(s16 *)((s8 *)(arg2) + (6))) = (s16) (temp_v0 - temp_v1);
+            } else {
+                (*(s16 *)((s8 *)(arg2) + (6))) = (s16) (temp_v1 - 1);
+            }
+        }
+        if ((*(s16 *)((s8 *)(arg2) + (0))) < 0) {
+            if ((*(u8 *)((s8 *)(arg0) + (0x8A))) & 2) {
+                (*(s16 *)((s8 *)(arg2) + (0))) += (*(s16 *)((s8 *)(arg0) + (0x78)));
+            } else {
+                (*(s16 *)((s8 *)(arg2) + (0))) = 0;
+            }
+        }
+        if (func_80800074_suspline(arg0, (s32) (*(s16 *)((s8 *)(arg2) + (2)))) != 0) {
+            if ((*(u8 *)((s8 *)(arg0) + (0x8A))) & 2) {
+                *arg1 = (f32) ((*(s16 *)((s8 *)(arg2) + (2))) + 1) / (f32) (*(s16 *)((s8 *)(arg0) + (0x78)));
+            } else {
+                *arg1 = (f32) ((*(s16 *)((s8 *)(arg2) + (2))) + 1) / (f32) ((*(s16 *)((s8 *)(arg0) + (0x78))) - 1);
+            }
+            (*(s8 *)((s8 *)(arg0) + (0x8B))) = 1;
+        } else {
+            (*(s8 *)((s8 *)(arg0) + (0x8B))) = 0;
+        }
+        if (func_80800074_suspline(arg0, (s32) (*(s16 *)((s8 *)(arg2) + (4)))) != 0) {
+            (*(s16 *)((s8 *)(arg2) + (6))) = (s16) (*(s16 *)((s8 *)(arg2) + (4)));
+        }
+        if (func_80800074_suspline(arg0, (s32) (*(s16 *)((s8 *)(arg2) + (0)))) != 0) {
+            (*(s16 *)((s8 *)(arg2) + (0))) = (s16) (*(s16 *)((s8 *)(arg2) + (2)));
+        }
+        temp_v0 = (*(s16 *)((s8 *)(arg2) + (2)));
+        if ((*(u8 *)((s8 *)(arg0) + (0x8A))) & 2) {
+            temp_f0_2 = (f32) (*(s16 *)((s8 *)(arg0) + (0x78)));
+            return func_800F10B4(*arg1, (f32) temp_v0 / temp_f0_2, (f32) (temp_v0 + 1) / temp_f0_2, 0.333f, 0.666f);
+        }
+        temp_f0 = (f32) ((*(s16 *)((s8 *)(arg0) + (0x78))) - 1);
+        return func_800F10B4(*arg1, (f32) temp_v0 / temp_f0, (f32) (*(s16 *)((s8 *)(arg2) + (4))) / temp_f0, 0.333f, 0.666f);
+    }
+    return 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_13.s")
 
