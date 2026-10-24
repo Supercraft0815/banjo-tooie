@@ -109,7 +109,129 @@ s32 func_808002F8_chlagoonfish(LagoonFishActor *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/fish/func_8080038C_chlagoonfish.s")
+void func_8080038C_chlagoonfish(Actor *arg0) {
+    s32 func_8001210C(s32);
+    void func_8008FE68(f32 *);
+    void func_8008FFBC(f32 *);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F1828(f32 *, f32 *);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80800A44_chlagoonfish(Actor *, s32);
+    f32 mlAbsF(f32);
+    typedef struct {
+        f32 position[3];
+        f32 speed;
+    } FishHome;
+    struct {
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 scale;
+        f32 speed;
+        s8 image;
+        u8 pad2D[3];
+    } *data;
+    f32 player[3];
+    f32 speed;
+    f32 delta;
+    s32 frame;
+    u32 i;
+    f32 rotation[3];
+    f32 difference;
+    f32 target[3];
+
+    if (func_80100094(arg0, 0) == NULL) {
+        func_80800000_chlagoonfish(arg0);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80800284_chlagoonfish(arg0);
+            if (!func_808002F8_chlagoonfish((LagoonFishActor *)arg0)) {
+                func_80800A44_chlagoonfish(arg0, 2);
+            } else if (((FishHome *)arg0->actorData)->speed > 600.0f * arg0->scale) {
+                ((FishHome *)arg0->actorData)->speed -= 5.0f * arg0->scale;
+            }
+            if (func_800DC0C0() < 0.2f) {
+                arg0->unk50 += func_800DC178(-15.0f, 15.0f);
+            }
+            if (func_800DC0C0() < 0.2f) {
+                arg0->unk54 += func_800DC178(-15.0f, 15.0f);
+            }
+            break;
+        case 2:
+            arg0->unk54 = func_800F1DF4(arg0->position, ((FishHome *)arg0->actorData)->position);
+            arg0->unk50 = func_800F1828(arg0->position, ((FishHome *)arg0->actorData)->position);
+            func_80800284_chlagoonfish(arg0);
+            if (func_800EFFB4(((FishHome *)arg0->actorData)->position, 200.0f, arg0->position)) {
+                if (func_808002F8_chlagoonfish((LagoonFishActor *)arg0)) {
+                    func_80800A44_chlagoonfish(arg0, 1);
+                }
+            } else if (((FishHome *)arg0->actorData)->speed > 600.0f * arg0->scale) {
+                ((FishHome *)arg0->actorData)->speed -= 15.0f * arg0->scale;
+            }
+            break;
+    }
+    delta = func_800D8FF8();
+    frame = func_8001210C(1);
+    data = func_80100094(arg0, 0);
+    func_8008FFBC(player);
+    speed = mlAbsF(player[0]) + mlAbsF(player[1]) + mlAbsF(player[2]);
+    func_8008FE68(player);
+    for (i = 0; i < arg0->unk6C_0; i++, data++) {
+        func_800EF214(data->position, data->rotation[0], data->rotation[1], data->speed * delta);
+        if ((frame && (i & 1)) || (!frame && !(i & 1))) {
+            if (func_800EFFB4(data->position, speed * 0.5f, player)) {
+                func_800F18FC(player, data->position, rotation);
+                if (data->speed < 400.0f * arg0->scale) {
+                    data->speed += 50.0f * arg0->scale;
+                }
+            } else {
+                func_800EE780(target, arg0->position, data->velocity);
+                func_800F18FC(data->position, target, rotation);
+                if (data->speed > 400.0f * arg0->scale) {
+                    data->speed -= 50.0f * arg0->scale;
+                }
+            }
+            if (func_800DC0C0() < 0.02f) {
+                data->velocity[0] = func_800DC178(-400.0f, 400.0f);
+                data->velocity[1] = func_800DC178(-400.0f, 400.0f);
+                data->velocity[2] = func_800DC178(-400.0f, 400.0f);
+            }
+            difference = func_800F1DCC(rotation[1], data->rotation[1]);
+            if (difference > 1.0f) {
+                if (data->rotation[2] < 8.0f) {
+                    data->rotation[2] += 2.0f;
+                }
+                data->rotation[1] += data->rotation[2] * 0.5f;
+                data->rotation[2] *= 0.9f;
+            } else if (difference < -1.0f) {
+                if (data->rotation[2] > -8.0f) {
+                    data->rotation[2] -= 2.0f;
+                }
+                data->rotation[1] += data->rotation[2] * 0.5f;
+                data->rotation[2] *= 0.9f;
+            }
+            difference = func_800F1DCC(rotation[0], data->rotation[0]);
+            if (difference > 1.0f) {
+                if (data->rotation[0] < 10.0f) {
+                    data->rotation[0] += 1.0f;
+                }
+            } else if (difference < -1.0f) {
+                if (data->rotation[0] > -10.0f) {
+                    data->rotation[0] -= 1.0f;
+                }
+            }
+        }
+    }
+}
 
 void func_80800908_chlagoonfish(Actor *arg0, s32 arg1) {
     s32 func_800D674C(s32);
