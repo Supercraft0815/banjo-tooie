@@ -313,7 +313,158 @@ void func_808007C4_chfactoryrobot(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800920_chfactoryrobot.s")
+void func_80800920_chfactoryrobot(Actor *arg0) {
+    void _chelectricfence_entrypoint_1(Actor *, f32 *);
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    u8 _subaddieaudioloop_entrypoint_6(u8, f32 *, s32, s32, u32 *, s32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void func_800C31DC(u8, f32);
+    void func_800C8CB8(s32, f32 *);
+    s32 func_800C8E84(s32, s32 *);
+    void func_800C8FE0(s32, s32);
+    u8 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    f32 func_800F57F0(s32, f32 *);
+    s32 func_800F7B9C(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    void func_80107200(Actor *);
+    s32 func_8010CFBC(f32 *, s32, s32);
+    s32 func_80801160_chfactoryrobot(u8 *, s32);
+    s32 func_80801278_chfactoryrobot(Actor *);
+    s32 func_80801A80_chfactoryrobot(Actor *);
+    s32 func_80801B3C_chfactoryrobot(Actor *);
+    s32 func_80801BB0_chfactoryrobot(Actor *);
+    void func_80801C7C_chfactoryrobot(Actor *);
+    extern s32 D_80802890_chfactoryrobot;
+    extern u32 D_80802A8C_chfactoryrobot[];
+    extern u32 D_80802A9C_chfactoryrobot[];
+    extern u32 D_80802AAC_chfactoryrobot[];
+    struct RobotUpdateData {
+        s16 position[3];
+        s16 timer;
+        u8 sound;
+        u8 electricSound;
+        u8 padA[2];
+        f32 yaw;
+        f32 targetYaw;
+        s32 light;
+        s16 activated;
+        s16 pad1A;
+        f32 cooldown;
+        f32 electricTimer;
+        f32 unk24;
+        f32 volume;
+        u8 pad2C[8];
+        u8 route[4];
+    };
+    struct RobotFlags {
+        u32 pad : 29;
+        u32 disabled : 1;
+        u32 pad2 : 2;
+    };
+    struct RobotUpdateData *data;
+    s32 electricFinished;
+    f32 playerPosition[3];
+    f32 fraction;
+    f32 position[3];
+    s32 finished;
+
+    data = func_80100094(arg0, 0);
+    if (!((struct RobotFlags *)&arg0->unk78)->disabled) {
+        data->electricSound = _subaddieaudioloop_entrypoint_6(data->electricSound, arg0->position, data->electricTimer > 0.0f, -1, D_80802AAC_chfactoryrobot, arg0->unk70_0);
+        data->sound = _subaddieaudioloop_entrypoint_6(data->sound, arg0->position, 1, -1, D_80802A9C_chfactoryrobot, arg0->unk70_0);
+        if (data->sound) {
+            func_800C31DC(data->sound, data->volume);
+        }
+        func_800D9078(&data->cooldown);
+        electricFinished = func_800D9078(&data->electricTimer);
+        if (data->electricTimer > 0.0f) {
+            if (data->cooldown == 0.0f) {
+                if (func_8010CFBC(arg0->position, (s32)(arg0->scale * 80.0f), (s32)(arg0->scale * 175.0f)) && func_800F7B9C(func_800F54E4(), 0x51) == 2) {
+                    if (arg0->unk64_29) {
+                        data->cooldown = 1.5f;
+                    } else {
+                        data->cooldown = 6.0f;
+                    }
+                    data->activated = arg0->unk64_29;
+                    data->electricTimer = 0.4f;
+                    func_800F57F0(func_800F54E4(), playerPosition);
+                    _chelectricfence_entrypoint_1(arg0, playerPosition);
+                }
+            }
+            func_800C8CB8(data->light, arg0->position);
+            func_800C8E84(data->light, ((s32 (*)[3])&D_80802890_chfactoryrobot)[func_800DC298(0.35f)]);
+        } else if (electricFinished) {
+            func_800C8FE0(data->light, 0);
+        }
+        switch (arg0->unk70_10) {
+        case 1:
+            finished = func_800D9078(&arg0->unk58);
+            fraction = func_800F12D4(arg0->unk58, 0.0f, 1.0f, 1.0f, 0.0f);
+            func_800EE88C(position, data->position);
+            func_800EFE50(arg0->position, position, (f32 *)arg0->actorData, fraction);
+            if (finished) {
+                _subaddieDll_entrypoint_1(arg0);
+                _subaddierouteDll_entrypoint_3(arg0, data->route, arg0->position);
+                _subaddierouteDll_entrypoint_1(arg0);
+                func_80107200(arg0);
+                func_80801160_chfactoryrobot((u8 *)arg0, 2);
+                arg0->unk64_24 = 1;
+            }
+            break;
+        case 2:
+            if (func_80801278_chfactoryrobot(arg0)) {
+                _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A8C_chfactoryrobot, 0.0f);
+                if (func_80101DDC(arg0)) {
+                    func_80801160_chfactoryrobot((u8 *)arg0, 3);
+                    arg0->unk58 = func_800DC178(2.0f, 4.0f);
+                    func_80801C7C_chfactoryrobot(arg0);
+                }
+            }
+            break;
+        case 3:
+            if (func_80801278_chfactoryrobot(arg0)) {
+                func_80801BB0_chfactoryrobot(arg0);
+                func_80801A80_chfactoryrobot(arg0);
+            }
+            break;
+        case 4:
+            if (func_80801278_chfactoryrobot(arg0)) {
+                _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A8C_chfactoryrobot, 0.0f);
+                if (func_80101DDC(arg0)) {
+                    func_80801160_chfactoryrobot((u8 *)arg0, 5);
+                    if (arg0->unk64_29) {
+                        arg0->unk58 = func_800DC178(2.0f, 3.0f);
+                    } else {
+                        arg0->unk58 = func_800DC178(4.0f, 5.0f);
+                    }
+                }
+            }
+            break;
+        case 5:
+            if (func_80801278_chfactoryrobot(arg0)) {
+                func_80801B3C_chfactoryrobot(arg0);
+            }
+            break;
+        case 6:
+            break;
+        }
+        if (!arg0->unk64_29 && data->activated && data->electricTimer == 0.0f) {
+            if (func_800EEB40(arg0->position, (f32 *)arg0->actorData) < 62500.0f) {
+                func_800C8FE0(data->light, 1);
+                data->electricTimer = func_800DC178(1.2f, 1.6f);
+            }
+        }
+    }
+}
 
 /* extern */
 
