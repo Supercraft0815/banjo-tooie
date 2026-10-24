@@ -187,7 +187,200 @@ void func_808003EC_chbadjinjo(Actor *arg0)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_8080059C_chbadjinjo.s")
+void func_8080059C_chbadjinjo(Actor *arg0) {
+    typedef struct Vec3s32 {
+        f32 x, y, z;
+    } Vec3s32;
+    typedef struct {
+        u8 pad0[6];
+        u16 route;
+        u32 unk8;
+        u32 current;
+        f32 position[3];
+        f32 timer;
+        f32 timer2;
+    } JinjoRoute;
+    typedef struct {
+        u8 pad0[0x24];
+        u32 id : 10;
+        u32 flags : 22;
+    } JinjoMarker;
+    typedef struct {
+        u8 pad0[0x78];
+        u32 pad78 : 29;
+        u32 inactive : 1;
+        u32 pad78_0 : 2;
+        u8 pad7C[0x10];
+        s16 animation;
+    } JinjoFlags;
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    s32 func_800901CC(f32 *, f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC0C0(void);
+    int func_800DC298(f32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    f32 func_800F3780(f32, u8 *, s16);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    s32 func_801022E4(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_801026CC(Actor *, Vec3s32, f32);
+    void func_80102BF8(Actor *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_80105230(Actor *, f32 *);
+    s32 func_80107070(Actor *, s32);
+    void func_8010C3A8(Actor *, s32, f32);
+    s32 func_8010C500(void *);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_8010D254(f32 *);
+    void func_8010D690(Actor *);
+    void func_80800E28_chbadjinjo(Actor *, s32);
+    s32 func_80800F7C_chbadjinjo(Actor *);
+    void func_80801054_chbadjinjo(Actor *, s32 *, f32);
+    void func_80801118_chbadjinjo(void *);
+    extern s32 D_80801308_chbadjinjo;
+    extern s32 D_80801324_chbadjinjo;
+    extern u8 D_80801348_chbadjinjo[];
+    extern Vec3s32 D_80801370_chbadjinjo;
+    extern f32 D_8080137C_chbadjinjo[];
+    JinjoRoute *sp54;
+    f32 sp50;
+    f32 sp4C;
+    f32 sp48;
+    f32 sp3C[3];
+    f32 dt;
+    f32 sp34;
+
+    sp54 = func_80100094(arg0, 0);
+    sp50 = 1.0f;
+    dt = func_800D8FF8();
+    if (((JinjoFlags *)arg0)->inactive) {
+        func_80801118_chbadjinjo(arg0);
+        return;
+    }
+    if (sp54->timer2 > 0.0f) {
+        sp54->timer2 -= dt;
+        ((JinjoMarker *)arg0->unk0)->id = 0x232;
+    } else {
+        ((JinjoMarker *)arg0->unk0)->id = 0x231;
+    }
+    func_800D9078(&arg0->unk58);
+    func_8010D254(sp3C);
+    func_800F1E6C(arg0->position, sp3C, &sp4C);
+    sp48 = func_800F1DCC(arg0->rotation[1], sp4C);
+    if (((JinjoFlags *)arg0)->animation != 0) {
+        sp50 = func_800F3780(func_80101F24(arg0), D_80801348_chbadjinjo, 5);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800DC0C0() < 0.015f) {
+            if (func_800901CC(arg0->position, 55.0f)) {
+                func_80102424(arg0, 3);
+            } else {
+                func_80102424(arg0, 2);
+            }
+        }
+        if (func_80800F7C_chbadjinjo(arg0)) {
+            func_80800E28_chbadjinjo(arg0, 5);
+        }
+        break;
+    case 2:
+        func_80801054_chbadjinjo(arg0, &D_80801308_chbadjinjo, 0.2f);
+        if (func_80101E14(arg0, 0.999f)) {
+            func_80800E28_chbadjinjo(arg0, 1);
+        }
+        break;
+    case 3:
+        func_80801054_chbadjinjo(arg0, &D_80801324_chbadjinjo, 0.2f);
+        if (func_80101E14(arg0, 0.999f)) {
+            func_80800E28_chbadjinjo(arg0, 1);
+        }
+        break;
+    case 4:
+        func_80105230(arg0, D_8080137C_chbadjinjo);
+        if (func_80101E14(arg0, 0.999f)) {
+            func_80800E28_chbadjinjo(arg0, 1);
+        } else if (sp48 >= 0.0f) {
+            arg0->rotation[1] -= 80.0f * func_800D8FF8();
+        } else {
+            arg0->rotation[1] += 80.0f * func_800D8FF8();
+        }
+        break;
+    case 5:
+        func_8010D254((f32 *)arg0->actorData);
+        if (arg0->unk64_29) {
+            sp34 = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+            ((f32 *)arg0->actorData)[3] = ((f32 *)arg0->actorData)[5];
+            func_80102BF8(arg0, 0.2f, 8.0f, 500.0f);
+            func_8010C3A8(arg0, 0x205015, sp34 * sp50);
+            if (_subaddiejoy_entrypoint_9(arg0, NULL, 0) < 0.05f) {
+                func_80800E28_chbadjinjo(arg0, 1);
+            }
+            func_808003EC_chbadjinjo(arg0);
+        } else {
+            if (_subaddierouteDll_entrypoint_4(arg0)) {
+                arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+                _subaddierouteDll_entrypoint_7(arg0, sp54, arg0->rotation[1], arg0->unk54, 200.0f, 0x5800);
+                sp54->current = sp54->route;
+            }
+            _subaddierouteDll_entrypoint_5(arg0, sp54, sp54->current, 0.15f, 8.0f, 200.0f);
+            ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], ((f32 *)arg0->actorData)[5], func_800D8FF8() * 400.0f);
+            func_801026CC(arg0, D_80801370_chbadjinjo, ((f32 *)arg0->actorData)[3]);
+            func_8010C3A8(arg0, 0x305115, sp50);
+            func_808003EC_chbadjinjo(arg0);
+            if (_subaddierouteDll_entrypoint_4(arg0) && func_800DC298(0.2f) && (!func_8010C9B0(arg0->position, 1000) || !func_8010C500(arg0))) {
+                func_80800E28_chbadjinjo(arg0, 6);
+            }
+        }
+        break;
+    case 6:
+        if (func_80800F7C_chbadjinjo(arg0)) {
+            func_80800E28_chbadjinjo(arg0, 5);
+        }
+        if (_subaddierouteDll_entrypoint_4(arg0)) {
+            arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+            _subaddierouteDll_entrypoint_7(arg0, sp54, arg0->rotation[1], arg0->unk54, 200.0f, 0x5800);
+            sp54->current = sp54->route;
+        }
+        _subaddierouteDll_entrypoint_5(arg0, sp54, sp54->current, 0.15f, 8.0f, 200.0f);
+        ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], ((f32 *)arg0->actorData)[5], func_800D8FF8() * 400.0f);
+        func_801026CC(arg0, D_80801370_chbadjinjo, ((f32 *)arg0->actorData)[3]);
+        func_8010C3A8(arg0, 0x305115, sp50);
+        if (_subaddierouteDll_entrypoint_4(arg0) && func_800DC298(0.2f) && func_800EFFB4(arg0->position, 100.0f, sp54->position)) {
+            func_80800E28_chbadjinjo(arg0, 1);
+        }
+        break;
+    case 7:
+        if (func_80101DDC(arg0)) {
+            _subaddieDll_entrypoint_4(arg0, 0);
+            if (!func_80107070(arg0, 2)) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+        }
+        break;
+    }
+    if (func_801022E4(arg0) == 0x1AD) {
+        func_80105230(arg0, NULL);
+    }
+    if (!arg0->unk64_29 && (s32)arg0->unk70_10 < 4 && (sp48 > 45.0f || sp48 < -45.0f)) {
+        func_80102424(arg0, 4);
+    }
+    if ((s32)arg0->unk70_10 < 8) {
+        func_8010D690(arg0);
+    }
+    func_80801118_chbadjinjo(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800C90_chbadjinjo.s")
 
