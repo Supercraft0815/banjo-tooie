@@ -34,7 +34,169 @@ void func_80800304_chboilerboss(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800324_chboilerboss.s")
+void func_80800324_chboilerboss(Actor *arg0) {
+    void _subaddieDll_entrypoint_7(Actor *, s32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_9(u32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800CEAD0(s32);
+    void func_800DA544(GameFlag);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F4EC8(u32, s32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80105834(Actor *);
+    void func_80108B04(Actor *, u32);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    void func_808012C8_chboilerboss(Actor *);
+    void func_808013C4_chboilerboss(Actor *);
+    void func_80801464_chboilerboss(Actor *, f32 *, f32);
+    void func_808014F4_chboilerboss(Actor *, f32 *, f32);
+    void func_80801628_chboilerboss(Actor *);
+    void func_808017F0_chboilerboss(Actor *);
+    void func_80801C24_chboilerboss(Actor *);
+    void func_80801CE8_chboilerboss(Actor *);
+    void func_80802114_chboilerboss(Actor *);
+    void func_8080221C_chboilerboss(Actor *, s32, volatile s32);
+    void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
+    s32 func_808023C8_chboilerboss(s32);
+    void func_808025DC_chboilerboss(Actor *);
+    extern s32 D_80802AB0_chboilerboss;
+    extern u32 D_80802B08_chboilerboss;
+    extern u32 D_80802B14_chboilerboss;
+    extern f32 D_80802B34_chboilerboss;
+    extern f32 D_80802B40_chboilerboss;
+    extern f32 D_80802B5C_chboilerboss;
+    extern u32 D_80802D2C_chboilerboss;
+    extern s32 D_80802D38_chboilerboss;
+    extern u32 D_80802D60_chboilerboss;
+    f32 *sp5C;
+    s32 sp58;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+
+    sp5C = func_80100094(arg0, 0);
+    _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 4, sp5C);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp5C + 3);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 6, sp5C + 6);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 7, sp5C + 15);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 8, sp5C + 12);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 9, sp5C + 9);
+    func_808012C8_chboilerboss(arg0);
+    func_80801628_chboilerboss(arg0);
+    func_80802114_chboilerboss(arg0);
+    func_808023C8_chboilerboss((s32)arg0);
+    switch (arg0->unk70_10) {
+    case 1:
+    case 4:
+    case 12:
+    case 13:
+        break;
+    case 2:
+        func_808017F0_chboilerboss(arg0);
+        if (func_80101DDC(arg0)) {
+            func_80800F34_chboilerboss(arg0, 3);
+        }
+        func_80801C24_chboilerboss(arg0);
+        break;
+    case 3:
+        if (func_80101DDC(arg0)) {
+            func_800F82D4(func_800F54E4(), 0);
+            func_8080238C_chboilerboss(&arg0->unk0, 0xF97, 0x10E);
+            func_80800F34_chboilerboss(arg0, 4);
+        }
+        break;
+    case 5:
+        func_80105834(arg0);
+        func_808013C4_chboilerboss(arg0);
+        func_80801CE8_chboilerboss(arg0);
+        break;
+    case 6:
+        func_80105834(arg0);
+        func_80801CE8_chboilerboss(arg0);
+        if (func_80101E14(arg0, 0.2f)) {
+            _subaddieaudioquick_entrypoint_2(arg0, sp5C + 15,
+                func_800DC298(0.5f) ? &D_80802B34_chboilerboss : &D_80802B40_chboilerboss);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80800F34_chboilerboss(arg0, 5);
+        }
+        break;
+    case 10:
+        if (func_80101DDC(arg0)) {
+            func_80800F34_chboilerboss(arg0, 5);
+        }
+        if (func_80101E14(arg0, 0.8f)) {
+            sp58 = -((arg0->unk0->unk28 << 20) >> 31) - ((arg0->unk0->unk28 << 19) >> 31) - ((arg0->unk0->unk28 << 18) >> 31) + 3;
+            if (func_800CEAD0(0)) {
+                func_800DA544(0x670);
+                func_8080221C_chboilerboss(arg0, 1, 0x501502F9);
+            } else {
+                func_8080221C_chboilerboss(arg0, 1, 0x40A00000);
+            }
+            sp5C[18] = func_800DC178(((f32 (*)[2])&D_80802B5C_chboilerboss)[sp58][0], ((f32 (*)[2])&D_80802B5C_chboilerboss)[sp58][1]);
+        }
+        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802D2C_chboilerboss, 0.2f);
+        break;
+    case 7:
+        _suexpression_entrypoint_9(func_80100094(arg0, 1));
+        if (func_80101E14(arg0, 0.5f)) {
+            func_80801464_chboilerboss(arg0, sp4C, 40.0f);
+            func_800BBCB8(sp4C, sp5C + 6, arg0->scale, 8, &D_80802AB0_chboilerboss);
+            _subaddieaudioquick_entrypoint_2(arg0, sp4C, &D_80802B14_chboilerboss);
+            func_80108B04(arg0, 0x223);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80800F34_chboilerboss(arg0, 5);
+        }
+        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802B08_chboilerboss, 0.2f);
+        break;
+    case 8:
+        _suexpression_entrypoint_9(func_80100094(arg0, 1));
+        if (func_80101E14(arg0, 0.5f)) {
+            func_808014F4_chboilerboss(arg0, sp40, 40.0f);
+            func_800BBCB8(sp40, sp5C + 6, arg0->scale, 8, &D_80802AB0_chboilerboss);
+            _subaddieaudioquick_entrypoint_2(arg0, sp40, &D_80802B14_chboilerboss);
+            func_80108B04(arg0, 0x224);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80800F34_chboilerboss(arg0, 5);
+        }
+        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802B08_chboilerboss, 0.2f);
+        break;
+    case 9:
+        _suexpression_entrypoint_9(func_80100094(arg0, 1));
+        if (func_80101E14(arg0, 0.3f)) {
+            func_800EE7F8(sp34, sp5C + 6);
+            sp34[1] -= 120.0f;
+            func_800BBCB8(sp5C + 6, sp34, arg0->scale, 16, &D_80802D38_chboilerboss);
+            _subaddieaudioquick_entrypoint_2(arg0, sp5C + 6, &D_80802B14_chboilerboss);
+            func_80108B04(arg0, 0x225);
+        }
+        if (func_80101DDC(arg0)) {
+            func_80800F34_chboilerboss(arg0, 5);
+        }
+        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802B08_chboilerboss, 0.0f);
+        break;
+    case 11:
+        func_800F4EC8(func_800F54E4(), (s32)arg0->position, 340.0f, 0.0f, 300.0f);
+        _subaddieDll_entrypoint_7(arg0, 8);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80802D60_chboilerboss);
+        break;
+    }
+    func_808025DC_chboilerboss(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808008B0_chboilerboss.s")
 
