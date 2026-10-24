@@ -125,7 +125,49 @@ void func_8080019C_chfpsgame(Actor **arg0) {
     *arg0 = actor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_808002FC_chfpsgame.s")
+/* extern */
+
+void func_808002FC_chfpsgame(Actor *arg0) {
+    void func_808003D0_chfpsgame(Actor *arg0, s32 arg1);
+    void func_808004E0_chfpsgame(Actor *arg0);
+    void func_808005B0_chfpsgame(Actor *arg0);
+    void func_808006A8_chfpsgame(Actor *arg0);
+    void func_8080075C_chfpsgame(Actor *arg0);
+    void func_80801C5C_chfpsgame(Actor *arg0);
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _gcstatusDll_entrypoint_14();
+    void* func_80100094();
+    s32 func_80800CF8_chfpsgame(Actor *, s32);
+    void *sp24;
+    s32 sp20;
+
+    sp24 = func_80100094(arg0, 0);
+    sp20 = _gcstatusDll_entrypoint_14();
+    (*(s32 *)((s8 *)(sp24) + (4))) = 0;
+    func_80800CF8_chfpsgame(arg0, 0);
+    func_80801C5C_chfpsgame(arg0);
+    (*(s32 *)((s8 *)(sp24) + (0))) = _gcstatusDll_entrypoint_11();
+    switch (sp20) {
+    case 1:
+    case 4:
+        func_808003D0_chfpsgame(arg0, sp20);
+        return;
+    case 3:
+        func_808004E0_chfpsgame(arg0);
+        return;
+    case 2:
+        func_808005B0_chfpsgame(arg0);
+        return;
+    case 6:
+        func_808006A8_chfpsgame(arg0);
+        return;
+    case 5:
+        func_8080075C_chfpsgame(arg0);
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 typedef struct player_state_s PlayerState;
 
