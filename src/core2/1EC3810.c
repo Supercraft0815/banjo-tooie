@@ -3,7 +3,63 @@
 extern u16 D_80132DC2;
 extern s32 D_80132DC0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800E9F20.s")
+void func_800E9F20(s32 arg0, s32 arg1) {
+    s32 _sufade_entrypoint_1(s32);
+    s32 func_800A7180();
+    s32 func_800A8EF0(s32, s32);
+    s32 func_800B525C(s32);
+    s32 func_800B52EC(s32);
+    s32 func_800B7BB0();
+    s32 func_800BC8F8(s32);
+    s32 func_800BC948(s32);
+    s32 func_800BD594(s32);
+    s32 func_800BE9B0();
+    s32 func_800BE9E4(s32);
+    s32 func_800BEA24(s32);
+    s32 func_800BF3E4();
+    s32 func_800BFD6C(s32, s32);
+    s32 func_800D2A44(s32);
+    s32 func_800E44FC(s32);
+    s32 func_800EB51C(s32, s32);
+    s32 func_800F5008(s32);
+    s32 func_800F50D0(s32);
+    s32 func_800F51CC();
+    extern s32 D_80127EF4;
+    extern s16 D_80132DCC;
+    s32 temp_v0;
+
+    temp_v0 = func_800A7180();
+    if (D_80132DCC == 0) {
+        func_800E44FC(temp_v0);
+        return;
+    }
+    func_800BE9B0();
+    func_800BFD6C(temp_v0, arg0);
+    func_800E44FC(temp_v0);
+    func_800D2A44(temp_v0);
+    func_800BC8F8(temp_v0);
+    func_800BE9E4(temp_v0);
+    func_800BD594(temp_v0);
+    func_800EB51C(1, temp_v0);
+    func_800EB51C(5, temp_v0);
+    func_800F5008(temp_v0);
+    func_800EB51C(0, temp_v0);
+    func_800B525C(temp_v0);
+    if (func_800BF3E4() != 0) {
+        func_800BEA24(temp_v0);
+    }
+    func_800B7BB0();
+    func_800F50D0(temp_v0);
+    func_800EB51C(2, temp_v0);
+    func_800B52EC(temp_v0);
+    func_800BC948(temp_v0);
+    func_800EB51C(6, temp_v0);
+    if (D_80127EF4 != 0) {
+        _sufade_entrypoint_1(temp_v0);
+    }
+    func_800A8EF0(temp_v0, arg0);
+    func_800F51CC();
+}
 
 // Get World Section
 MapId func_800EA05C(void) 
