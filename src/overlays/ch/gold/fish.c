@@ -5,7 +5,7 @@
 void func_80800000_chgoldfish(u8 *arg0) {
     s32 func_800DA298(s32);
     s32 func_800FFA88(s32);
-    s32 func_808005F0_chgoldfish(u8 *, s32);
+    void func_808005F0_chgoldfish(u8 *, s32);
     s32 func_80800BA8_chgoldfish(u8 *, f32 *);
     if (func_800DA298(0x1BF) != 0) {
         func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
@@ -34,13 +34,13 @@ void func_8080009C_chgoldfish(u8 *arg0) {
     s32 func_800DA544(s32);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
-    void func_800EE7F8(u8 *, u8 *);
+    void func_800EE7F8(f32 *, f32 *);
     f32 func_800F1214(f32, f32, f32);
-    s32 func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F71D4(s32);
     void func_8010C964(Actor *);
     s32 func_8010CE70(u8 *, s32, s32);
-    s32 func_808005F0_chgoldfish(u8 *, s32);
+    void func_808005F0_chgoldfish(u8 *, s32);
     void func_80800924_chgoldfish(u8 *);
     void func_80800964_chgoldfish(u8 *);
     f32 func_80800AB4_chgoldfish(Actor *, f32 *, f32 *, f32 *, f32, f32);
@@ -82,7 +82,7 @@ void func_8080009C_chgoldfish(u8 *arg0) {
                 } else {
                     *(f32 *)(arg0 + 0x50) = 90.0f;
                 }
-                func_800EE7F8(arg0 + 0x28, arg0 + 4);
+                func_800EE7F8((f32 *)(arg0 + 0x28), (f32 *)(arg0 + 4));
                 func_800CD08C((*(u32 *)(arg0 + 0x70) >> 25) - 1, arg0 + 0x18);
                 if (func_80800BA8_chgoldfish(arg0, arg0 + 0x18)) {
                     func_808005F0_chgoldfish(arg0, 4);
@@ -144,9 +144,9 @@ s32 func_808004AC_chgoldfish(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_800C7074(s32, s32);
     void func_800CF700(void);
     s32 func_800DA298(s32);
-    s32 func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(s32, s32);
-    s32 func_808005F0_chgoldfish(u8 *, s32);
+    void func_808005F0_chgoldfish(u8 *, s32);
     extern s32 D_80800D3C_chgoldfish;
 
     switch (arg1) {
@@ -179,7 +179,103 @@ s32 func_808004AC_chgoldfish(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/fish/func_808005F0_chgoldfish.s")
+void func_808005F0_chgoldfish(u8 *arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddiefade_entrypoint_3(u8 *);
+    void func_8008FE94(s32, f32 *);
+    f32 func_80090010(void);
+    void func_80090708(s32);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    s32 func_800C84B0(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_800F8300(s32, s32, f32 *);
+    void func_800FC6B0(u32);
+    void func_80102424(u8 *, s32);
+    f32 func_80103EF4(Actor *);
+    f32 func_8010CD28(Actor *);
+    f32 start[3];
+    f32 normal[3];
+    s32 i;
+    s32 *triangle;
+    f32 height;
+
+    switch (arg1) {
+    case 3:
+        *(f32 *)(arg0 + 0x58) = 1.0f;
+        func_80102424(arg0, 3);
+        return;
+    case 4:
+        *(f32 *)(arg0 + 0x58) = 0.5f;
+        func_80102424(arg0, 4);
+        return;
+    case 5:
+        func_800FC6B0(0xE);
+        func_8008FE94(1, (f32 *)(arg0 + 0x18));
+        func_800EE7F8((f32 *)(arg0 + 0x28), (f32 *)(arg0 + 4));
+        *(f32 *)(arg0 + 0x58) = 1.0f;
+        *(f32 *)(arg0 + 0x54) = func_80090010();
+        *(f32 *)(arg0 + 0x50) = 0.0;
+        func_80090708(1);
+        func_80102424(arg0, 5);
+        return;
+    case 6:
+        ((Actor *)arg0)->unk64_16 = 0;
+        *(f32 *)(arg0 + 0x58) = 40.0f;
+        func_80102424(arg0, 6);
+        return;
+    case 7:
+        *(f32 *)(arg0 + 0x58) = 1.0f;
+        func_8008FE94(1, (f32 *)(arg0 + 0x28));
+        *(f32 *)(arg0 + 0x54) = func_80090010();
+        for (i = 0; i < 4; i++) {
+            func_800EFCD8((f32 *)(arg0 + 0x18), *(f32 *)(arg0 + 0x54), 300.0f);
+            func_800EF04C((f32 *)(arg0 + 0x18), (f32 *)(arg0 + 0x28));
+            func_800EE7F8(start, (f32 *)(arg0 + 0x18));
+            start[1] = *(f32 *)(arg0 + 0x2C) + 500.0f;
+            *(f32 *)(arg0 + 0x4C) = 0.0f;
+            *(f32 *)(arg0 + 0x50) = 0.0f;
+            *(f32 *)(arg0 + 0x1C) = *(f32 *)(arg0 + 0x2C) - 500.0f;
+            if ((triangle = func_800BEF00(start, (f32 *)(arg0 + 0x18), normal, 0)) == NULL) {
+                continue;
+            }
+            if (func_800C84B0(triangle[2]) == 4) {
+                *(f32 *)(arg0 + 0x34) = *(f32 *)(arg0 + 0x1C);
+                func_800EE7F8(start, (f32 *)(arg0 + 0x18));
+                height = func_80103EF4((Actor *)arg0);
+                *(f32 *)(arg0 + 0x1C) = *(f32 *)(arg0 + 0x1C) - 3.0f * height;
+                if (func_800BEF00(start, (f32 *)(arg0 + 0x18), normal, 0) == NULL) {
+                    ((Actor *)arg0)->unk64_16 = 1;
+                    func_80102424(arg0, 7);
+                    return;
+                }
+            }
+            *(f32 *)(arg0 + 0x54) += 90.0f;
+        }
+        return;
+    case 8:
+        func_800FC6B0(0xE);
+        *(f32 *)(arg0 + 0x54) = func_8010CD28((Actor *)arg0);
+        func_800F8300(func_800F54E4(), 1, (f32 *)(arg0 + 4));
+        func_80102424(arg0, 8);
+        return;
+    case 9:
+        _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x15C0, 0x4E, (f32 *)(arg0 + 4), 0x67);
+        func_80102424(arg0, 9);
+        return;
+    case 10:
+        func_800F82D4(func_800F54E4(), 0);
+        _subaddiefade_entrypoint_3(arg0);
+        func_80102424(arg0, 10);
+        return;
+    default:
+        func_80102424(arg0, arg1);
+        return;
+    }
+}
 
 void func_80800924_chgoldfish(u8 *arg0) {
     s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
@@ -243,7 +339,7 @@ f32 func_80800AB4_chgoldfish(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 a
 /* extern */
 
 s32 func_80800BA8_chgoldfish(u8 *arg0, f32 *arg1) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 sp2C[3];
     f32 sp20[3];
