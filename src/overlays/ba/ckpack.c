@@ -8,6 +8,7 @@
 #include "core2/1EB5E70.h"
 
 s32 func_8008CA74(PlayerState *self);
+void func_800A0714(s32, s32);
 
 s32 babackpack_get_size(void) {
     return sizeof(BaBackpack);
@@ -80,7 +81,7 @@ void babackpack_entrypoint_2(PlayerState *self) {
         func_8008B10C(self->backpack->anctrl, baanim_getTimer(self));
         func_8008B304(self->backpack->anctrl);
         func_800DF41C(func_8008B4D4(self->backpack->anctrl));
-        func_800A0714(self, self->backpack->unk0);
+        func_800A0714((s32)self, self->backpack->unk0);
     } else if (self->backpack->unkA) {
         func_800DF818(func_8080021C_babackpack(self));
     } else {
@@ -96,7 +97,7 @@ void babackpack_entrypoint_3(PlayerState *self, f32 *position, f32 *arg2, s32 ar
         func_8008B10C(self->backpack->anctrl, baanim_getTimer(self));
         func_8008B304(self->backpack->anctrl);
         func_800DF41C(func_8008B4D4(self->backpack->anctrl));
-        func_800A0714(self, self->backpack->unk0);
+        func_800A0714((s32)self, self->backpack->unk0);
     } else {
         func_800DF41C(func_8008CA74(self));
     }

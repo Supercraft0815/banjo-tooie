@@ -897,7 +897,7 @@ s32 func_8009375C(u8 *arg0, Gfx **arg1, s32 arg2) {
 
 s32 func_80093864(u8 *arg0, Gfx **arg1, s32 arg2) {
     void func_800A06E8(s32);
-    s32 func_800A0714(s32, s32);
+    void func_800A0714(s32, s32);
     s32 func_800A946C(void);
     void *func_800AE080(s16);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
