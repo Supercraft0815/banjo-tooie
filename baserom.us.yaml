@@ -2688,7 +2688,7 @@ segments:
     subsegments: 
       - [0x01F57640, c, washer]
       - [0x01F59330, .rodata, washer]
-      - [0x01F593A0, data, washer]
+      - [0x01F593A0, .data, washer]
       - [0x01F59530, bss, washer]
   - name: baalarm_header
     dir: overlays/baalarm

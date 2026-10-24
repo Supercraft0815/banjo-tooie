@@ -1,5 +1,113 @@
 #include "common.h"
+
 struct player_state_s;
+s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
+
+void _basudie_entrypoint_11();
+void _bsdrone_entrypoint_3();
+void func_80099AA8();
+void func_80800590_bswasher(s32 arg0);
+void func_808005B8_bswasher(struct player_state_s *arg0);
+void func_80800608_bswasher(struct player_state_s *arg0);
+void func_80800714_bswasher(s32 arg0);
+void func_80800770_bswasher(struct player_state_s *arg0);
+void func_808007DC_bswasher(struct player_state_s *arg0);
+void func_808008BC_bswasher(s32 arg0);
+void func_808008F4_bswasher(struct player_state_s *arg0);
+void func_8080099C_bswasher(struct player_state_s *arg0);
+void func_80800B08_bswasher(struct player_state_s *arg0);
+void func_80800C70_bswasher(struct player_state_s *arg0);
+void func_80800E74_bswasher(s32 arg0);
+void func_80800EC8_bswasher(u8 *arg0);
+void func_8080100C_bswasher(s32 arg0);
+void func_80801034_bswasher(struct player_state_s *arg0);
+void func_808010DC_bswasher(struct player_state_s *arg0);
+void func_808011B4_bswasher(s32 arg0);
+void func_808011DC_bswasher(s32 arg0);
+void func_80801218_bswasher(struct player_state_s *arg0);
+void func_80801294_bswasher(s32 arg0);
+void func_808012BC_bswasher(struct player_state_s *arg0);
+void func_80801314_bswasher(s32 arg0);
+void func_8080137C_bswasher(s32 arg0);
+void func_808013A4_bswasher(s32 arg0);
+void func_808013CC_bswasher(s32 arg0);
+void func_8080142C_bswasher(s32 arg0);
+void func_80801454_bswasher(s32 arg0);
+void func_808014C8_bswasher(struct player_state_s *arg0);
+void func_80801744_bswasher(s32 arg0);
+void func_80801770_bswasher(s32 arg0);
+void func_808017A0_bswasher(u8 *arg0);
+void func_80801B10_bswasher(struct player_state_s *arg0);
+void func_80801B30_bswasher(struct player_state_s *arg0);
+void func_80801BA4_bswasher(struct player_state_s *arg0);
+
+s32 D_80801D60_bswasher[] = {
+    0x001D09DC, 0x002CFFD8, 0x0032FFD8, 0x00280064,
+    0x00280015, 0x00140066, 0x0020F0F0, 0xF0500022,
+    0x01800199, 0x02000280, 0x00161000, 0x00180000,
+    0x00030000, 0x0000002B, 0x01800199, 0x00210000,
+    0x00000000, 0x000AFFB0, 0x003C0000, 0xFFB0003C,
+    0x0000011A, 0x002B0199, 0x01B30021, 0x00000000,
+    0x005A000A, 0x0050003C, 0x00000050, 0x003C0000,
+    0x011A002B, 0x01B301CC, 0x00210000, 0x000000B4,
+    0x000A0000, 0x003CFFB0, 0x0000003C, 0xFFB0011A,
+    0x002B01CC, 0x01E60021, 0x00000000, 0x010E000A,
+    0x0000003C, 0x00500000, 0x003C0050, 0x011A0000,
+};
+
+u32 D_80801E10_bswasher[] = {
+    (u32)func_80800590_bswasher, (u32)func_808005B8_bswasher, (u32)func_80800608_bswasher, (u32)_basudie_entrypoint_11,
+};
+
+u32 D_80801E20_bswasher[] = {
+    (u32)func_80800714_bswasher, (u32)func_80800770_bswasher, (u32)func_808007DC_bswasher, (u32)_bsdrone_entrypoint_3,
+};
+
+u32 D_80801E30_bswasher[] = {
+    (u32)func_808008BC_bswasher, (u32)func_808008F4_bswasher, (u32)func_8080099C_bswasher, (u32)func_80800EC8_bswasher,
+};
+
+u32 D_80801E40_bswasher[] = {
+    (u32)func_80800E74_bswasher, (u32)func_80800B08_bswasher, (u32)func_80800C70_bswasher, (u32)func_80800EC8_bswasher,
+};
+
+s32 D_80801E50_bswasher[] = {
+    0x03060016, 0x2EE00013, 0x05E80011, 0x00000000,
+};
+
+u32 D_80801E60_bswasher[] = {
+    (u32)func_8080100C_bswasher, (u32)func_80801034_bswasher, (u32)func_808010DC_bswasher, (u32)func_80800EC8_bswasher,
+};
+
+u32 D_80801E70_bswasher[] = {
+    (u32)func_808011B4_bswasher, (u32)func_808011DC_bswasher, (u32)func_80801218_bswasher, (u32)func_80099AA8,
+};
+
+u32 D_80801E80_bswasher[] = {
+    (u32)func_80801294_bswasher, (u32)func_808012BC_bswasher, (u32)func_80801314_bswasher, (u32)func_80800EC8_bswasher,
+};
+
+u32 D_80801E90_bswasher[] = {
+    (u32)func_8080137C_bswasher, (u32)func_808013A4_bswasher, (u32)func_808013CC_bswasher, (u32)func_80800EC8_bswasher,
+};
+
+u32 D_80801EA0_bswasher[] = {
+    (u32)func_8080142C_bswasher, (u32)func_80801454_bswasher, (u32)func_808014C8_bswasher, (u32)func_80800EC8_bswasher,
+};
+
+s32 D_80801EB0_bswasher[] = {
+    0x03060016, 0x6D60000A, 0x00CC0013, 0x05E60011,
+    0x00000000,
+};
+
+u32 D_80801EC4_bswasher[] = {
+    (u32)func_80801744_bswasher, (u32)func_80801770_bswasher, (u32)func_808017A0_bswasher, (u32)func_80800EC8_bswasher,
+};
+
+u32 D_80801ED4_bswasher[] = {
+    (u32)func_80801B10_bswasher, (u32)func_80801B30_bswasher, (u32)func_80801BA4_bswasher, (u32)func_80800EC8_bswasher,
+    0x00000000, 0x00000000, 0x00000000,
+};
 
 void func_80800000_bswasher(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
@@ -40,7 +148,6 @@ void func_808000BC_bswasher(s32 arg0) {
     yaw_setVelocityBounded(arg0, 0x43960000, 0x40C00000);
 }
 
-struct player_state_s;
 void func_800947EC(struct player_state_s *, s32, s32);
 
 void func_808000F0_bswasher(struct player_state_s *arg0) {
@@ -111,13 +218,13 @@ void bswasher_entrypoint_0(s32 arg0) {
     s32 func_800B5BE4(s32);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     void func_8009C128(struct player_state_s *, f32[3]);
-    extern s32 D_80801D60_bswasher;
+
     f32 sp24[3];
     s32 sp20;
 
     sp20 = func_800B5BE4(8);
     func_8009C128(arg0, sp24);
-    func_800BABB8(sp20, sp24, NULL, 1.0f, &D_80801D60_bswasher);
+    func_800BABB8(sp20, sp24, NULL, 1.0f, D_80801D60_bswasher);
 }
 
 s32 func_80800300_bswasher(s32 arg0) {
@@ -210,7 +317,6 @@ void func_80800590_bswasher(s32 arg0)
     _basudie_entrypoint_6();
     func_808000F0_bswasher(arg0);
 }
-struct player_state_s;
 
 void func_808005B8_bswasher(struct player_state_s *arg0) {
     void _basudie_entrypoint_2(struct player_state_s *, f32, f32, f32);
@@ -259,7 +365,7 @@ void func_80800608_bswasher(struct player_state_s *arg0) {
 }
 
 s32 bswasher_entrypoint_1(s32 arg0) {
-    extern s32 D_80801E10_bswasher[];
+
     return ((s32 *)&D_80801E10_bswasher)[arg0];
 }
 
@@ -300,7 +406,7 @@ void func_808007DC_bswasher(struct player_state_s *arg0) {
 }
 
 s32 bswasher_entrypoint_2(s32 arg0) {
-    extern s32 D_80801E20_bswasher[];
+
     return ((s32 *)&D_80801E20_bswasher)[arg0];
 }
 
@@ -396,7 +502,7 @@ void func_8080099C_bswasher(struct player_state_s *arg0) {
 }
 
 s32 bswasher_entrypoint_3(s32 arg0) {
-    extern s32 D_80801E30_bswasher[];
+
     return ((s32 *)&D_80801E30_bswasher)[arg0];
 }
 
@@ -535,7 +641,7 @@ void func_80800E74_bswasher(s32 arg0) {
 }
 
 s32 bswasher_entrypoint_4(s32 arg0) {
-    extern s32 D_80801E40_bswasher[];
+
     return ((s32 *)&D_80801E40_bswasher)[arg0];
 }
 
@@ -565,8 +671,8 @@ void func_80800F1C_bswasher(s32 arg0) {
 }
 
 void func_80800F54_bswasher(void *arg0) {
-    extern s32 D_80801E50_bswasher;
-    (*(s8 *)((s8 *)(arg0) + (0x165))) = func_8009D454(arg0, 0, &D_80801E50_bswasher);
+
+    (*(s8 *)((s8 *)(arg0) + (0x165))) = func_8009D454(arg0, 0, D_80801E50_bswasher);
 }
 
 /* extern */
@@ -649,7 +755,7 @@ void func_808010DC_bswasher(struct player_state_s *arg0) {
 }
 
 s32 bswasher_entrypoint_5(s32 arg0) {
-    extern s32 D_80801E60_bswasher[];
+
     return ((s32 *)&D_80801E60_bswasher)[arg0];
 }
 
@@ -684,7 +790,7 @@ void func_80801218_bswasher(struct player_state_s *arg0) {
 }
 
 s32 bswasher_entrypoint_6(s32 arg0) {
-    extern s32 D_80801E70_bswasher[];
+
     return ((s32 *)&D_80801E70_bswasher)[arg0];
 }
 
@@ -726,7 +832,7 @@ void func_80801314_bswasher(s32 arg0) {
 }
 
 s32 bswasher_entrypoint_7(s32 arg0) {
-    extern s32 D_80801E80_bswasher[];
+
     return ((s32 *)&D_80801E80_bswasher)[arg0];
 }
 
@@ -758,7 +864,7 @@ void func_808013CC_bswasher(s32 arg0) {
 }
 
 s32 bswasher_entrypoint_8(s32 arg0) {
-    extern s32 D_80801E90_bswasher[];
+
     return ((s32 *)&D_80801E90_bswasher)[arg0];
 }
 
@@ -820,7 +926,7 @@ void func_808014C8_bswasher(struct player_state_s *arg0) {
 }
 
 s32 bswasher_entrypoint_9(s32 arg0) {
-    extern s32 D_80801EA0_bswasher[];
+
     return ((s32 *)&D_80801EA0_bswasher)[arg0];
 }
 
@@ -877,10 +983,95 @@ void func_80801744_bswasher(s32 arg0)
 
 void func_80801770_bswasher(s32 arg0) { func_808001A8_bswasher(arg0); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_808015EC_bswasher(arg0, 1); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/washer/func_808017A0_bswasher.s")
+void func_808017A0_bswasher(u8 *arg0) {
+    void _bawasher_entrypoint_3(u8 *, f32 *);
+    void _chfactoryworkerdirty_entrypoint_2(s32, f32 *, f32);
+    void _chfactoryworkerdirty_entrypoint_3(s32, f32);
+    f32 baanim_getTimer();
+    int baanim_isAt(struct player_state_s *, f32);
+    int baanim_isStopped(struct player_state_s *);
+    void bs_setState(struct player_state_s *, int);
+    s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
+    void func_8009DB04(u8 *, s32, f32, s32);
+    void func_800C31DC(u8, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+
+    s32 next_state;
+    f32 timer;
+    f32 position[3];
+    f32 speed;
+    s32 at_sound;
+
+    next_state = 0;
+    at_sound = baanim_isAt(arg0, 0.0001f);
+    if (at_sound != 0) {
+        func_8009DB04(arg0, 0x5E7, 1.1f, 20000);
+    }
+    if (baanim_isAt(arg0, 0.1052f) != 0) {
+        func_8009DB04(arg0, 0x519, 1.1f, 20000);
+    }
+    if (baanim_isAt(arg0, 0.275f) != 0) {
+        func_8009DB04(arg0, 0x5E7, 0.9f, 20000);
+    }
+    if (baanim_isAt(arg0, 0.8572f) != 0) {
+        func_8009DB04(arg0, 0x5E7, 1.1f, 20000);
+    }
+    at_sound = baanim_isAt(arg0, 0.93f);
+    if (at_sound != 0) {
+        func_8009DB04(arg0, 0x5E7, 0.85f, 20000);
+    }
+    switch (*(s32 *)(arg0 + 0x15C)) {
+        case 1:
+            if (baanim_isAt(arg0, 0.07f) != 0) {
+                func_808015EC_bswasher(arg0, 2);
+            }
+            break;
+        case 2:
+            _bawasher_entrypoint_3(arg0, position);
+            _chfactoryworkerdirty_entrypoint_2(*(s32 *)(arg0 + 0x160), position,
+                func_800F10B4(baanim_getTimer(arg0), 0.07f, 0.12f, 0.0f, 1.0f));
+            if (baanim_isAt(arg0, 0.12f) != 0) {
+                func_808015EC_bswasher(arg0, 3);
+            }
+            break;
+        case 3:
+            if (baanim_isAt(arg0, 0.2949f) != 0) {
+                *(u8 *)(arg0 + 0x164) = func_8009D454((void *)arg0, 0, D_80801EB0_bswasher);
+            }
+            timer = baanim_getTimer(arg0);
+            if (timer < 0.77f) {
+                speed = func_800F10B4(timer, 0.2949f, 0.77f, 0.0f, 1400.0f);
+            } else {
+                speed = func_800F10B4(timer, 0.84f, 0.77f, 0.0f, 1400.0f);
+            }
+            _chfactoryworkerdirty_entrypoint_3(*(s32 *)(arg0 + 0x160), speed);
+            if (*(u8 *)(arg0 + 0x164) != 0) {
+                func_800C31DC(*(u8 *)(arg0 + 0x164),
+                    func_800F10B4(speed, 0.0f, 800.0f, 0.8f, 1.9f));
+            }
+            if (baanim_isAt(arg0, 0.89f) != 0) {
+                func_808015EC_bswasher(arg0, 4);
+            }
+            break;
+        case 4:
+            _bawasher_entrypoint_3(arg0, position);
+            _chfactoryworkerdirty_entrypoint_2(*(s32 *)(arg0 + 0x160), position,
+                func_800F10B4(baanim_getTimer(arg0), 0.89f, 0.94f, 1.0f, 0.0f));
+            if (baanim_isAt(arg0, 0.94f) != 0) {
+                func_808015EC_bswasher(arg0, 5);
+            }
+            break;
+        case 5:
+            if (baanim_isStopped(arg0) != 0) {
+                next_state = 0x32;
+            }
+            break;
+    }
+    bs_setState((s32)arg0, next_state);
+}
 
 s32 bswasher_entrypoint_10(s32 arg0) {
-    extern s32 D_80801EC4_bswasher[];
+
     return ((s32 *)&D_80801EC4_bswasher)[arg0];
 }
 
@@ -942,6 +1133,6 @@ void func_80801BA4_bswasher(struct player_state_s *arg0) {
 }
 
 s32 bswasher_entrypoint_11(s32 arg0) {
-    extern s32 D_80801ED4_bswasher[];
+
     return ((s32 *)&D_80801ED4_bswasher)[arg0];
 }
