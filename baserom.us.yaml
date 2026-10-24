@@ -11495,7 +11495,7 @@ segments:
     subsegments: 
       - [0x020C1700, c, toxiccloud]
       - [0x020C2AE0, .rodata, toxiccloud]
-      - [0x020C2B20, data, toxiccloud]
+      - [0x020C2B20, .data, toxiccloud]
       - [0x020C2CB0, bss, toxiccloud]
   - name: chfactoryempspell_header
     dir: overlays/chfactoryempspell
