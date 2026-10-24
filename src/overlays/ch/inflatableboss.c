@@ -198,7 +198,196 @@ void func_80800408_chinflatableboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_808004A0_chinflatableboss.s")
+struct anctrl_s;
+void func_808004A0_chinflatableboss(Actor *arg0) {
+    typedef struct {
+        u8 unk0[0x1C];
+        f32 position1[3];
+        f32 position2[3];
+        f32 position3[3];
+        u8 unk40[0x3F4];
+        s32 effect;
+        u8 unk438[0x5D];
+        u8 remaining;
+        u8 unk496[6];
+        u8 unk49C;
+    } BossData;
+    void _gcfrontend_entrypoint_10(void);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    struct anctrl_s *func_80104248(void *);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_800C4AF0(f32 *, void *);
+    void func_800C4B64(f32);
+    s32 func_800D395C(void);
+    s32 func_800D9078(f32 *);
+    void func_800DA544(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 func_80102CF4(Actor *, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_80108B04(Actor *, u32);
+    f32 func_8010CD28(Actor *);
+    void func_80800F84_chinflatableboss(Actor *, s32);
+    void func_8080183C_chinflatableboss(Actor *);
+    void func_80801B04_chinflatableboss(Actor *);
+    s32 func_80801CB4_chinflatableboss(Actor *);
+    s32 func_8080200C_chinflatableboss(Actor *, f32 *, f32 *);
+    void func_80802058_chinflatableboss(Actor *);
+    void func_80802264_chinflatableboss(Actor *, f32, f32, f32 *, s16);
+    void func_80802450_chinflatableboss(Actor *);
+    void func_808024BC_chinflatableboss(Actor *);
+    void func_8080267C_chinflatableboss(Actor *);
+    void func_8080272C_chinflatableboss(Actor *);
+    void func_80802910_chinflatableboss(Actor *);
+    void func_808029AC_chinflatableboss(Actor *);
+    void func_80802A9C_chinflatableboss(Actor *);
+    extern f32 D_80802E98_chinflatableboss[];
+    extern f32 D_80802EA0_chinflatableboss[];
+    extern f32 D_80802EB4_chinflatableboss[];
+    extern u32 D_80802EC4_chinflatableboss[];
+    extern u32 D_80802ED0_chinflatableboss[];
+    extern u32 D_80802EDC_chinflatableboss[];
+    extern u32 D_80802EE8_chinflatableboss[];
+    BossData *data;
+    s32 pad[2];
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    func_80802058_chinflatableboss(arg0);
+    _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    func_8080272C_chinflatableboss(arg0);
+    func_808029AC_chinflatableboss(arg0);
+    switch (arg0->unk70_10) {
+        case 2:
+            func_80802264_chinflatableboss(arg0, 0.3f, 0.3f, D_80802E98_chinflatableboss, 2);
+            func_80802264_chinflatableboss(arg0, 0.3f, 0.5f, D_80802EA0_chinflatableboss, 5);
+            if (func_80101DDC(arg0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1082, 0x106, arg0->position, 0x3A);
+                func_80800F84_chinflatableboss(arg0, 3);
+                func_8008B1C8(func_80104248(arg0), 0.8f);
+            }
+            break;
+        case 4:
+            func_80802264_chinflatableboss(arg0, 0.5f, 0.8f, D_80802EB4_chinflatableboss, 4);
+            if (func_80101E14(arg0, 0.5f)) {
+                func_800DA544(4);
+            }
+            if (func_80101DDC(arg0)) {
+                if (data->unk49C) {
+                    func_80802910_chinflatableboss(arg0);
+                } else {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x1083, 0x106, arg0->position, 0x3A);
+                    func_80800F84_chinflatableboss(arg0, 5);
+                    func_8008B1C8(func_80104248(arg0), 0.8f);
+                }
+            }
+            break;
+        case 9:
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102BF8(arg0, 0.1f, 3.0f, 90.0f);
+            if (func_800D9078(&arg0->unk58)) {
+                func_8080183C_chinflatableboss(arg0);
+                func_808024BC_chinflatableboss(arg0);
+                arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+            }
+            break;
+        case 10:
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102BF8(arg0, 0.1f, 3.0f, 90.0f);
+            if (func_80102CF4(arg0, 8.0f)) {
+                func_80800F84_chinflatableboss(arg0, 11);
+            }
+            break;
+        case 6:
+            if (!arg0->unk74_30) {
+                func_80801B04_chinflatableboss(arg0);
+            }
+            break;
+        case 7:
+            if (func_800D9078(&arg0->unk58)) {
+                func_808024BC_chinflatableboss(arg0);
+            }
+            break;
+        case 8:
+            if (!arg0->unk74_30) {
+                func_80801B04_chinflatableboss(arg0);
+            }
+            break;
+        case 11:
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102BF8(arg0, 0.1f, 3.0f, 90.0f);
+            if (func_80101E14(arg0, 0.3f)) {
+                func_800C4B64(func_800F10B4(arg0->scale, 1.4f, 0.19913846f, 0.9f, 1.2f));
+                _subaddieaudioquick_entrypoint_2(arg0, data->position1, D_80802EC4_chinflatableboss);
+            } else if (func_80101E14(arg0, 0.45f)) {
+                func_80108B04(arg0, 1);
+                arg0->unk58 = 1.0f;
+                data->remaining--;
+            } else if (func_80101E14(arg0, 0.999f) && data->remaining == 0) {
+                func_8080183C_chinflatableboss(arg0);
+                func_808024BC_chinflatableboss(arg0);
+                arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+            }
+            break;
+        case 12:
+            if (func_80101E14(arg0, 0.25f)) {
+                func_800C4B64(func_800F10B4(arg0->scale, 1.4f, 0.19913846f, 1.0f, 1.4f) * 0.8f);
+                _subaddieaudioquick_entrypoint_2(arg0, data->position1, D_80802ED0_chinflatableboss);
+            }
+            if (func_80101DDC(arg0)) {
+                func_80800F84_chinflatableboss(arg0, 13);
+            }
+            break;
+        case 13:
+            func_80802450_chinflatableboss(arg0);
+            if (func_80101DDC(arg0)) {
+                if (!func_80801CB4_chinflatableboss(arg0)) {
+                    func_80800F84_chinflatableboss(arg0, 14);
+                } else {
+                    func_808024BC_chinflatableboss(arg0);
+                }
+            }
+            break;
+        case 15:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802EDC_chinflatableboss, 0.03f);
+            if (func_80101E14(arg0, 0.06f)) {
+                _subaddieskeleton_entrypoint_3(arg0->unk0, 7, position);
+                data->effect = func_8080200C_chinflatableboss(arg0, position, data->position2);
+            }
+            if (func_80101E14(arg0, 0.43f)) {
+                func_800C4AF0(data->position3, D_80802EE8_chinflatableboss);
+            }
+            if (func_80101DDC(arg0)) {
+                func_800FDC28(0);
+                func_800DA544(3);
+                if (func_800D395C()) {
+                    func_80800F84_chinflatableboss(arg0, 16);
+                    func_80802A9C_chinflatableboss(arg0);
+                    _gcfrontend_entrypoint_10();
+                } else {
+                    func_800DA544(0x9C);
+                    func_80108B04(arg0, 3);
+                    func_80800F84_chinflatableboss(arg0, 16);
+                }
+            }
+            break;
+        case 18:
+            func_80802264_chinflatableboss(arg0, 0.5f, 0.8f, D_80802EB4_chinflatableboss, 4);
+            if (func_80101DDC(arg0)) {
+                func_80800F84_chinflatableboss(arg0, 19);
+            }
+            break;
+    }
+    func_8080267C_chinflatableboss(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80800A98_chinflatableboss.s")
 
@@ -623,7 +812,7 @@ s32 func_80801FC0_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
     func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802F90_chinflatableboss);
 }
 
-void func_8080200C_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
+s32 func_8080200C_chinflatableboss(Actor *arg0, f32 *arg1, f32 *arg2) {
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_80802FC4_chinflatableboss;
     func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802FC4_chinflatableboss);
