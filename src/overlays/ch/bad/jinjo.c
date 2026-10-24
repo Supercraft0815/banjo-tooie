@@ -382,7 +382,61 @@ void func_8080059C_chbadjinjo(Actor *arg0) {
     func_80801118_chbadjinjo(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/jinjo/func_80800C90_chbadjinjo.s")
+s32 func_80800C90_chbadjinjo(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_800DF744(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101074(void *);
+    s32 func_801015D0(Actor *);
+    s32 func_80103140(Actor *, u32, u16);
+    s32 func_80107070(Actor *, s32);
+    void func_80800E28_chbadjinjo(Actor *, s32);
+    void func_80801090_chbadjinjo(Actor *, s32 *);
+    extern s32 D_8080124C_chbadjinjo;
+    extern s32 D_808012E8_chbadjinjo;
+    void *sp1C;
+
+    switch (arg1) {
+    case 0x95:
+        sp1C = func_80100094(arg0, 0);
+        _subaddierouteDll_entrypoint_1(arg0);
+        func_80103140(arg0, 0x643, *((u8 *)sp1C + 0x24) + 0xC31);
+        break;
+    case 0x40:
+        func_80801090_chbadjinjo(arg0, &D_808012E8_chbadjinjo);
+        func_80800E28_chbadjinjo(arg0, 7);
+        break;
+    case 1:
+        func_80800E28_chbadjinjo(arg0, 5);
+        break;
+    case 2:
+        if (_subaddieDll_entrypoint_3(arg0) == 0) {
+            if (func_80107070(arg0, 1) == 0) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+        } else {
+            func_80800E28_chbadjinjo(arg0, 6);
+        }
+        break;
+    case 0x1F:
+        func_801015D0(arg0);
+        func_800DF744(3, 2);
+        break;
+    case 0x38:
+        func_80101074(&D_8080124C_chbadjinjo);
+        return 5;
+    case 0x4D:
+        if (func_80107070(arg0, 3) == 0) {
+            return 0;
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800DF0_chbadjinjo(s32 arg0) 
 {
