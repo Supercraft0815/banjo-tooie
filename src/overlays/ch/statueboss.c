@@ -1165,7 +1165,49 @@ void func_80801ECC_chstatueboss(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, sp1C->position, D_80802668_chstatueboss);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80801F74_chstatueboss.s")
+void func_80801F74_chstatueboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x8C];
+        Unk80132ED0 *marker;
+    } StatueBossData;
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800D1254(u32, u32, f32 *);
+    s32 func_800D395C(void);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_800FFAB0(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    f32 func_8010CD28(Actor *);
+    StatueBossData *sp6C;
+    f32 yaw;
+    s32 i;
+    Actor *part;
+    f32 position[3];
+
+    sp6C = func_80100094(arg0, 0U);
+    yaw = func_8010CD28(arg0);
+    for (i = 0; i < 10; i++) {
+        func_800EEB9C(position, yaw, 50.0f);
+        func_800EF04C(position, arg0->position);
+        position[1] += 100.0f;
+        part = func_80108528(0x448, position, (s32)yaw, &arg0);
+        part->rotation[1] = yaw;
+        *(f32 *)&part->actorData[3] = D_8080264C_chstatueboss[3];
+        yaw += 36.0f;
+    }
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802668_chstatueboss);
+    func_800D1254(1, 1, arg0->position);
+    if (func_800D395C() != 0) {
+        func_80800DA8_chstatueboss(arg0, 0x19);
+    } else {
+        func_80101180(0x450, 7, 0);
+        func_800FFAB0(arg0);
+    }
+    func_800FFA88(sp6C->marker);
+    sp6C->marker = NULL;
+}
 
 void func_808020EC_chstatueboss(Actor *arg0) {
     void func_80102FDC(Actor*, f32);
