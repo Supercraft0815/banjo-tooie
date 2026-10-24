@@ -56,7 +56,43 @@ void func_808000C4_scinfobar(u32 *arg0, s32 temp_a1) {
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/infobar/func_80800144_scinfobar.s")
+void func_80800144_scinfobar(u8 *arg0, s32 arg1) {
+    extern struct {
+        s32 (*callback)(u8 *, s32);
+        s32 unk4;
+        s32 unk8;
+    } D_80800D58_scinfobar[];
+    void scinfobar_entrypoint_10(void *, s32);
+    s32 index;
+    s32 (*callback)(u8 *, s32);
+    if (arg1 != arg0[0]) {
+        if (arg0[2] != 0 && arg0[0] == arg0[2]) {
+            func_808000C4_scinfobar((u32 *)arg0, arg1);
+        }
+        *(u8 *)arg0 = arg1;
+        switch (arg1) {
+        case 0x65:
+            if (*(u8 *)((s8 *)arg0 + 2) != 0) {
+                index = *(s16 *)((s8 *)arg0 + 0x30);
+            } else {
+                index = *(s32 *)((s8 *)arg0 + 0x1C);
+            }
+            callback = D_80800D58_scinfobar[index].callback;
+            if (callback != NULL) {
+                scinfobar_entrypoint_10(arg0, callback(arg0, arg1));
+            }
+            break;
+        case 0x66:
+            *(f32 *)((s8 *)arg0 + 0x14) = 1.0f;
+            break;
+        case 0x64:
+            *(f32 *)((s8 *)arg0 + 0x14) = 0.0f;
+            break;
+        case 0x67:
+            break;
+        }
+    }
+}
 
 void *scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
     void *heap_alloc(s32);
