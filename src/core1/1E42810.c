@@ -17,7 +17,228 @@ void func_8002ACE0(s32 arg0, s32 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5) {
     func_80026500((void *)(arg0 + 0x48), (void *)&event, delay, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002AD60.s")
+void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
+    typedef struct Event Event;
+    typedef struct Voice Voice;
+    struct Event {
+        Event *next;
+        s32 time;
+        s16 type;
+        s16 unity;
+        union {
+            s32 integer;
+            f32 pitch;
+            Voice *voice;
+            struct { s16 hi, lo; } halves;
+        } value;
+        union {
+            s32 duration;
+            struct { s16 volume; u8 pan, mix; } start;
+        } settings;
+        u8 priority;
+        u8 mode;
+        s16 pad16;
+        f32 rate;
+        s32 duration;
+        void *sound;
+    };
+    struct Voice {
+        u8 pad0[0x44];
+        f32 pitch;
+        s32 unity;
+        u8 pad4C[0xC];
+        s16 pan, volume, left, right;
+        s16 mixLeft, mixRight;
+        u16 leftRate;
+        s16 leftFraction, leftTarget;
+        u16 rightRate;
+        s16 rightFraction, rightTarget;
+        s32 elapsed, duration, dirty;
+        Event *head, *tail;
+        s32 active, allocated;
+        u8 priority;
+        u8 pad8D[3];
+        s16 rate, mode;
+        u8 pad94[0x24];
+        s32 changed;
+    };
+    extern s16 D_80041290[], D_8004138E[];
+    extern u8 D_8007EA30, D_8007EA31, D_8007EA32;
+    extern void func_8002CC9C(void *, s32, void *);
+    extern void *func_8002B7C8(void *, s16 *, s16 *, s32, void *);
+    extern s16 func_8002BCBC(s16, s32, s16, u16);
+    extern s32 func_8002B684(void *, s32, void *);
+    extern void func_80021884(void *);
+    extern void func_800217F4(void *);
+    void *output;
+    Voice *voice;
+    s16 flags;
+    s32 previousTime;
+    s32 time;
+    s32 count;
+    s16 offset;
+    s32 volume;
+    Event *event;
+    s32 remaining;
+
+    output = arg2;
+    voice = arg0;
+    time = arg1;
+    offset = 0;
+    remaining = 184;
+    flags = 0;
+    while (voice->head) {
+        previousTime = time;
+        time = voice->head->time;
+        count = ((time - previousTime + 183) / 184) * 184;
+        if (count == 0) {
+            time = previousTime;
+        }
+        if (count > remaining) {
+            break;
+        }
+        switch (voice->head->type) {
+            case 13: {
+                Event *start;
+                s32 startVolume;
+                start = voice->head;
+                if (start->unity) {
+                    voice->unity = 1;
+                }
+                func_8002CC9C(voice, 5, start->sound);
+                voice->active = 1;
+                voice->dirty = 1;
+                voice->elapsed = 0;
+                voice->duration = ((start->duration + 183) / 184) * 184;
+                startVolume = (start->settings.start.volume + start->settings.start.volume) / 2;
+                voice->volume = startVolume;
+                voice->pan = start->settings.start.pan;
+                voice->mixLeft = (D_80041290[start->settings.start.mix & 0x7F] & 0xFFFE) | (start->settings.start.mix >> 7);
+                if (!D_8007EA30) {
+                    voice->mixLeft &= 0xFFFE;
+                }
+                voice->mixRight = D_8004138E[-(start->settings.start.mix & 0x7F)] & 0xFFFE;
+                if (D_8007EA32) {
+                    voice->pan = (voice->pan >> 1) + 32;
+                } else if (D_8007EA31) {
+                    voice->pan = 64;
+                }
+                if (start->duration) {
+                    voice->left = 1;
+                    voice->right = 1;
+                } else {
+                    voice->left = (D_80041290[voice->pan] * voice->volume) >> 15;
+                    voice->right = (D_8004138E[-voice->pan] * voice->volume) >> 15;
+                }
+                voice->pitch = start->value.pitch;
+                voice->mode = start->mode;
+                voice->rate = start->rate;
+                voice->changed = 1;
+                voice->priority = start->priority;
+                break;
+            }
+            case 11:
+            case 12:
+            case 16:
+                output = func_8002B7C8(voice, &flags, &offset, count, output);
+                if (voice->elapsed >= voice->duration) {
+                    voice->leftTarget = (D_80041290[voice->pan] * voice->volume) >> 15;
+                    voice->rightTarget = (D_8004138E[-voice->pan] * voice->volume) >> 15;
+                    voice->elapsed = voice->duration;
+                    voice->left = voice->leftTarget;
+                    voice->right = voice->rightTarget;
+                } else {
+                    voice->left = func_8002BCBC(voice->left, voice->elapsed, voice->leftFraction, voice->leftRate);
+                    voice->right = func_8002BCBC(voice->right, voice->elapsed, voice->rightFraction, voice->rightRate);
+                }
+                if (voice->left == 0) {
+                    voice->left = 1;
+                }
+                if (voice->right == 0) {
+                    voice->right = 1;
+                }
+                if (voice->head->type == 12) {
+                    if (D_8007EA32) {
+                        voice->pan = (voice->head->value.halves.lo >> 1) + 32;
+                    } else if (D_8007EA31) {
+                        voice->pan = 64;
+                    } else {
+                        voice->pan = voice->head->value.integer;
+                    }
+                }
+                if (voice->head->type == 11) {
+                    voice->elapsed = 0;
+                    volume = voice->head->value.integer;
+                    volume = (volume + volume) / 2;
+                    voice->volume = volume;
+                    voice->duration = ((voice->head->settings.duration + 183) / 184) * 184;
+                }
+                if (voice->head->type == 16) {
+                    if ((((voice->mixLeft ^ voice->mixRight) & 1) ^ ((voice->head->value.integer + 1) >> 7)) && D_8007EA30) {
+                        if (voice->pan > 64) {
+                            voice->mixLeft ^= 1;
+                        } else {
+                            voice->mixRight ^= 1;
+                        }
+                    }
+                    voice->mixLeft = (D_80041290[voice->head->value.integer & 0x7F] & 0xFFFE) | (voice->mixLeft & 1);
+                    voice->mixRight = (D_8004138E[-(voice->head->value.integer & 0x7F)] & 0xFFFE) | (voice->mixRight & 1);
+                }
+                voice->dirty = 1;
+                break;
+            case 14: {
+                Event *start;
+                start = voice->head;
+                if (start->unity) {
+                    voice->unity = 1;
+                }
+                func_8002CC9C(voice, 5, (void *) start->value.integer);
+                voice->active = 1;
+                break;
+            }
+            case 15:
+                output = func_8002B7C8(voice, &flags, &offset, count, output);
+                func_8002B684(voice, 4, 0);
+                break;
+            case 0: {
+                Event *freeEvent;
+                freeEvent = voice->head;
+                freeEvent->value.voice->allocated = 0;
+                func_80021884(freeEvent->value.voice);
+                break;
+            }
+            case 7:
+                output = func_8002B7C8(voice, &flags, &offset, count, output);
+                voice->pitch = voice->head->value.pitch;
+                break;
+            case 8:
+                output = func_8002B7C8(voice, &flags, &offset, count, output);
+                voice->unity = 1;
+                break;
+            case 5:
+                output = func_8002B7C8(voice, &flags, &offset, count, output);
+                func_8002CC9C(voice, 5, (void *) voice->head->value.integer);
+                break;
+            default:
+                output = func_8002B7C8(voice, &flags, &offset, count, output);
+                func_8002B684(voice, voice->head->type, (void *) voice->head->value.integer);
+                break;
+        }
+        offset += count * 2;
+        remaining -= count;
+        event = voice->head;
+        voice->head = voice->head->next;
+        if (!voice->head) {
+            voice->tail = NULL;
+        }
+        func_800217F4(event);
+    }
+    output = func_8002B7C8(voice, &flags, &offset, remaining, output);
+    if (voice->elapsed > voice->duration) {
+        voice->elapsed = voice->duration;
+    }
+    return output;
+}
 
 s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
     void func_8002D328(void *, s32, void *);
@@ -101,7 +322,6 @@ s32 *func_8002BD40(s32 arg0, s32 *arg1, s32 arg2, s32 *arg3) {
         Bus *buses;
     } *D_800411F4;
 
-    Command *func_8002AD60(Source *, s32, Command *);
     Command *cmd;
     Bus *bus;
     Source **sources;
