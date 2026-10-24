@@ -341,7 +341,60 @@ void func_808008C0_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)((((u8 *)func_80100094(arg0, 0)) + arg1)) + (0xE4))) = (s8) arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808008F8_chdiggerboss.s")
+/* extern */
+
+void func_808008F8_chdiggerboss(s32 arg0) {
+    u16 func_80802158_chdiggerboss(s32 arg0, s32 arg1);
+    int func_80802170_chdiggerboss(Actor *arg0, s32 arg1);
+    void func_80802BE0_chdiggerboss(s32 arg0, f32 arg1);
+    void func_80802CDC_chdiggerboss(s32 arg0);
+    s32 func_80803BE8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2);
+    s32 _gcnewoption_entrypoint_2(void);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800EA05C();
+    s32 func_800EA090();
+    void func_800FFAB0(Actor *);
+    void *func_80100074(s32, s32, s32);
+    void func_80102FDC(void *, f32);
+    s32 func_80109EEC(s32, s32);
+    void func_80109FE8(void **, s32);
+    void func_8010A828(void **, s32);
+    s32 temp_s0;
+    s32 var_s0;
+    s32 temp_v0;
+    void *temp_s0_2;
+
+    temp_s0 = func_800EA05C();
+    if (func_800DA298(0x43U) != 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if ((temp_s0 == 0x15D) && (func_800EA090() != 6)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    var_s0 = 0;
+    do {
+        temp_v0 = func_80802158_chdiggerboss(arg0, var_s0);
+        if ((temp_v0 != 0) && (func_800DA298(temp_v0) != 0)) {
+            func_80802170_chdiggerboss((Actor *) arg0, var_s0);
+        }
+        var_s0 += 1;
+    } while (var_s0 != 0xF);
+    (*(u8 *)((s8 *)(arg0) + (0x75))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x75))) & 0xFFFD);
+    temp_s0_2 = func_80100074(arg0, 0, _gcnewoption_entrypoint_2() + 0x10C);
+    func_80109FE8(arg0, 0);
+    func_80109EEC(arg0, 0x40);
+    func_80102FDC(arg0, 0.25f);
+    (*(s8 *)((s8 *)(temp_s0_2) + (2))) = 0x64;
+    func_8010A828(arg0, 1);
+    func_80803BE8_chdiggerboss(arg0, 1, 1);
+    func_80802CDC_chdiggerboss(arg0);
+    func_80802BE0_chdiggerboss(arg0, 1.0f);
+    func_800DA524(0xA4F);
+    func_800DA524(0xA50);
+}
 
 void func_80800A4C_chdiggerboss(Actor *arg0) {
     void _gcfrontend_entrypoint_10(void);
