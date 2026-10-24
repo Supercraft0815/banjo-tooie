@@ -2,7 +2,103 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80800000_chpotogoldgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80800124_chpotogoldgame.s")
+void func_80800124_chpotogoldgame(Actor *arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_800CE88C(s32, s32);
+    s16 func_800CEA84(s32);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    s32 func_8010CB84(f32 *, s32);
+    s32 func_80800434_chpotogoldgame(s32, s32);
+    void func_808011DC_chpotogoldgame(Actor *);
+    void func_80801244_chpotogoldgame(Actor *);
+    void func_808013BC_chpotogoldgame(Actor *, s32, s32, s32, s32, f32 *);
+    void func_80801558_chpotogoldgame(Actor *);
+    s32 func_80801A7C_chpotogoldgame(Actor *);
+    s32 func_8080206C_chpotogoldgame(Actor *);
+    struct GameState {
+        u8 cells[5][4][5];
+        u8 unk64;
+        u8 unk65;
+        u8 unk66;
+    } *data;
+    s32 i;
+    s32 score;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80801A7C_chpotogoldgame(arg0);
+        if (func_800DA298(0x9F6) && func_800DA298(0x9F7) &&
+            func_800DA298(0x9F8) && func_800DA298(0x9F9)) {
+            func_80800434_chpotogoldgame((s32)arg0, 2);
+        }
+        break;
+    case 2:
+        if (func_80801A7C_chpotogoldgame(arg0)) {
+            func_808013BC_chpotogoldgame(arg0, data->unk64, data->unk65, data->unk66, 0, NULL);
+            if (++data->unk65 == 4) {
+                data->unk65 = 0;
+                if (++data->unk66 == 5) {
+                    data->unk66 = 0;
+                    if (++data->unk64 == 5) {
+                        func_80800434_chpotogoldgame((s32)arg0, 4);
+                    }
+                }
+            }
+        }
+        break;
+    case 4:
+        if (arg0->unk64_20 && !_subaddiefind_entrypoint_2(0x1CD, 0)) {
+            arg0->unk64_20 = 0;
+            if (func_800F64A4(func_800F54E4(), 0x10220)) {
+                func_80800434_chpotogoldgame((s32)arg0, 12);
+            } else {
+                func_80800434_chpotogoldgame((s32)arg0, 5);
+            }
+        }
+        break;
+    case 5:
+        if (data->unk64 < 5) {
+            func_808011DC_chpotogoldgame(arg0);
+            for (i = 0; i < 4; i++) {
+                func_808013BC_chpotogoldgame(arg0, data->unk64, i, data->unk66, 0, NULL);
+            }
+            if (++data->unk66 == 5) {
+                data->unk66 = 0;
+                data->unk64++;
+            }
+        }
+        break;
+    case 7:
+        func_80801244_chpotogoldgame(arg0);
+        score = func_8080206C_chpotogoldgame(arg0);
+        func_800D2498(0xEB, score, 0);
+        if (score == 100) {
+            arg0->actorData[2] = (s32)(45.0f - (f32)func_800CEA84(0));
+            if (func_800D395C()) {
+                func_80800434_chpotogoldgame((s32)arg0, 14);
+            } else {
+                func_80800434_chpotogoldgame((s32)arg0, 8);
+            }
+            func_800CE88C(0, 0);
+        }
+        break;
+    case 12:
+        if (!func_8010CB84(arg0->position, 500) &&
+            !func_800F64A4(func_800F54E4(), 0x10220)) {
+            func_80108B04(arg0, 0);
+            func_80800434_chpotogoldgame((s32)arg0, 4);
+        }
+        break;
+    }
+    func_80801558_chpotogoldgame(arg0);
+}
 
 s32 func_80800434_chpotogoldgame(s32 arg0, s32 arg1) {
     s32 _gcfrontend_entrypoint_9(s32);
