@@ -18,7 +18,78 @@ OSThread *chdinoboss_entrypoint_1(void)
     return (OSThread *) D_80802B88_chdinoboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800018_chdinoboss.s")
+void func_80800018_chdinoboss(Actor *arg0) {
+    typedef struct {
+        s16 count;
+        f32 positions[20][3];
+        u8 padF4[0x10];
+        f32 position[3];
+        f32 unk110[3];
+        s16 unk11C;
+        u8 pad11E[0x1A];
+        s16 unk138;
+        u8 pad13A[0x2A];
+        s16 unk164;
+    } DinoBossData;
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800DA524(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(Actor *, f32);
+    void func_80109EEC(s16 *, s32);
+    void func_80109FE8(void **, s32);
+    s32 func_80800E2C_chdinoboss(void);
+    void func_80800F70_chdinoboss(Actor *, s32);
+    void func_8080248C_chdinoboss(Actor *, s32, s32);
+    Prop *props[20];
+    DinoBossData *data;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    func_80102FDC(arg0, arg0->scale * 1.25f);
+    func_800EE7F8(data->position, arg0->position);
+    data->unk138 = 0;
+    data->unk164 = 1;
+    func_800DA524(1);
+    arg0->pad5E = 0x1E;
+    data->unk11C = arg0->pad5E;
+    data->unk138 = 0;
+    func_80109EEC(arg0, 0x40);
+    func_80109FE8(arg0, 0);
+    if (_glcutDll_entrypoint_20()) {
+        func_80102424(arg0, 0x1A);
+    } else if (func_800D395C()) {
+        if (func_800DA298(0x172)) {
+            func_8080248C_chdinoboss(arg0, 0xD, 0x30);
+            func_80800F70_chdinoboss(arg0, 3);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1801, 6, arg0->position, 0x57);
+        } else {
+            func_8080248C_chdinoboss(arg0, 0x28, 0x30);
+            func_80800F70_chdinoboss(arg0, 2);
+        }
+    } else if (func_800DA298(0xE5)) {
+        func_80101FDC(arg0, 0x14);
+        func_80109EEC(arg0, 1);
+        if (func_80800E2C_chdinoboss() == 4) {
+            func_80101FDC(arg0, 0x18);
+        }
+    }
+    if (!func_800D395C() && !_glcutDll_entrypoint_20()) {
+        _chintrotext_entrypoint_2(1);
+    }
+    data->count = _gccubesearch_entrypoint_9(0x154, props, 20);
+    for (i = 0; i < data->count; i++) {
+        func_800EE88C(data->positions[i], props[i]->position);
+    }
+}
 
 void func_80800220_chdinoboss(Actor* arg0) {
     typedef struct {
