@@ -377,7 +377,70 @@ void func_80800A50_chfireicestorm(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800BA4_chfireicestorm.s")
+s32 func_80800BA4_chfireicestorm(Actor *arg0, s32 arg1, void *arg2) {
+    s32 _capod_entrypoint_17(f32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_800F6438(u32);
+    s32 func_800F6478(s32);
+    void func_800F7B9C(s32, u32);
+    void func_800FFAB0(Actor *);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    void func_80800D0C_chfireicestorm(Actor *);
+    extern f32 D_80800F4C_chfireicestorm[];
+    extern s32 D_80800F54_chfireicestorm;
+    struct {
+        u8 pad0[0x18];
+        u32 pad18 : 16;
+        u32 flag : 11;
+        u32 pad1B : 5;
+        u32 unk1C;
+        u32 unk20;
+        u32 kind : 10;
+        u32 pad24 : 22;
+    } *marker;
+    Actor *actor;
+    f32 *value;
+    u32 flag;
+    s32 i;
+
+    void **markerArg = &arg2;
+
+    switch (arg1) {
+    case 0x90:
+        actor = func_80106790(func_80101080());
+        _chexploder_entrypoint_9(actor, 1, 2);
+        _subaddiefade_entrypoint_3(actor);
+        return 1;
+    case 0x3E:
+        marker = *markerArg;
+        func_80800D0C_chfireicestorm(arg0);
+        if (marker->kind == 0) {
+            flag = marker->flag;
+            if (func_800F6438(flag) && func_800F6478(flag)) {
+                func_800F7B9C(flag, 0x51);
+            }
+        }
+        break;
+    case 0xE:
+        for (i = 0; i < 2; i++) {
+            if (_capod_entrypoint_17(D_80800F4C_chfireicestorm[i])) {
+                func_8010D930(4, arg0->unk70_0, arg0->position, &D_80800F54_chfireicestorm);
+                return 3;
+            }
+        }
+        return 3;
+    case 0xB:
+        func_80800558_chfireicestorm(func_80106790(arg0->unk3C), 4);
+        func_800FFAB0(arg0);
+        return 3;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800D0C_chfireicestorm(Actor *arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
