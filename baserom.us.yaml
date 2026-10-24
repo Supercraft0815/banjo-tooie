@@ -9310,7 +9310,7 @@ segments:
     subsegments: 
       - [0x02082840, c, collballcontrol]
       - [0x02087350, .rodata, collballcontrol]
-      - [0x02087490, data, collballcontrol]
+      - [0x02087490, .data, collballcontrol]
       - [0x02087960, bss, collballcontrol]
   - name: chcolldoors_header
     dir: overlays/chcolldoors
