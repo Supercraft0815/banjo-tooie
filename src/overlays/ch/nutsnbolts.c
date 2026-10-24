@@ -214,7 +214,68 @@ void func_808008FC_chnutsnbolts(Actor *arg0) {
     _subaddiefx_entrypoint_1(arg0, func_80100094(arg0, 0U));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_8080092C_chnutsnbolts.s")
+s32 func_8080092C_chnutsnbolts(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_80107070(Actor *, u32);
+    void func_8010A570(Actor *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    struct NutsData {
+        u8 effects[8];
+        u8 route[6];
+        u16 routeEnd;
+        u8 pad10[4];
+        s16 routeTarget;
+        u8 active;
+        u8 pad17;
+        f32 timer;
+        f32 speed;
+    } *data;
+    struct NutsActorFlags {
+        u8 pad[0x64];
+        u32 flag31 : 1;
+        u32 pad64 : 6;
+        u32 flag24 : 1;
+        u32 tail64 : 24;
+        u32 pad68;
+        u32 pad6C;
+        u32 savedState : 7;
+        u32 pad70 : 8;
+        u32 flag16 : 1;
+        u32 pad72 : 6;
+        u32 state : 6;
+        u32 pad73 : 4;
+    };
+
+    data = func_80100094(arg0, 0U);
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 1:
+        arg0->unk64_24 = 0;
+        break;
+    case 2:
+        arg0->unk64_24 = 1;
+        break;
+    case 4:
+        data->speed = func_800DC178(700.0f, 800.0f);
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        break;
+    case 7:
+        data->timer = func_800DC178(3.0f, 4.0f);
+        break;
+    case 8:
+        ((struct NutsActorFlags *)arg0)->state = 0;
+        ((struct NutsActorFlags *)arg0)->savedState = ((struct NutsActorFlags *)arg0)->state;
+        ((struct NutsActorFlags *)arg0)->flag16 = 0;
+        ((struct NutsActorFlags *)arg0)->flag31 = (u8)((struct NutsActorFlags *)arg0)->flag16; ((struct NutsActorFlags *)arg0)->flag24 = ((struct NutsActorFlags *)arg0)->flag16;
+        if (!func_80107070(arg0, 2)) {
+            func_8010A570(arg0);
+            _subaddiefade_entrypoint_3(arg0);
+        }
+        break;
+    }
+}
 
 s32 func_80800A88_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_8080092C_chnutsnbolts(Actor *, s32);
