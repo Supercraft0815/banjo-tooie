@@ -270,7 +270,63 @@ int func_80800904_bafpctrl(PlayerState *arg0) {
         && ((*(*(s32 **)((s8 *)arg0 + 0x90)) & 4) == 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800970_bafpctrl.s")
+s32 func_80800970_bafpctrl(PlayerState *arg0) {
+    u32 _baeggcursor_entrypoint_2(void *);
+    s32 _ncba1p_entrypoint_10();
+    f32 _ncba1p_entrypoint_11(PlayerState *);
+    int baflag_isTrue(PlayerState *, s32);
+    u32 bafpctrl_entrypoint_6(void *);
+    void func_80094AB4(void *);
+    s32 result;
+
+    result = 0;
+    switch (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x14)) {
+    case 1:
+        if (func_80800904_bafpctrl(arg0) || baflag_isTrue(arg0, 0x24)) {
+            *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x15) = 1;
+        }
+        if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x15)
+            && _baeggcursor_entrypoint_2(arg0) == 1
+            && _ncba1p_entrypoint_11(func_800A4CA8(arg0)) < 0.25f) {
+            func_80800424_bafpctrl(arg0, 2);
+        } else if (func_80800008_bafpctrl(arg0)
+            && _ncba1p_entrypoint_10(func_800A4CA8(arg0)) == 2) {
+            result = 1;
+        } else if (bafpctrl_entrypoint_6(arg0)) {
+            if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x11)) {
+                func_8080022C_bafpctrl(arg0);
+            } else {
+                func_808002A4_bafpctrl(arg0);
+            }
+            func_80800880_bafpctrl((u8 *)arg0);
+            func_808008CC_bafpctrl((s32)arg0);
+        }
+        break;
+    case 2:
+        func_80094AB4(arg0);
+        if (func_80800904_bafpctrl(arg0) && _baeggcursor_entrypoint_2(arg0) == 2) {
+            if (baflag_isTrue(arg0, 0x24)) {
+                result = 1;
+            } else {
+                func_80800424_bafpctrl(arg0, 1);
+            }
+        } else if (func_80800008_bafpctrl(arg0)) {
+            result = 1;
+        } else if (bafpctrl_entrypoint_6(arg0)) {
+            if (*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x11)) {
+                func_8080022C_bafpctrl(arg0);
+            } else {
+                func_808003BC_bafpctrl(arg0);
+            }
+            func_808008CC_bafpctrl((s32)arg0);
+            func_80800880_bafpctrl((u8 *)arg0);
+            _baeggaim_entrypoint_3(arg0);
+        }
+        break;
+    }
+    func_80800114_bafpctrl(arg0);
+    return result;
+}
 
 u32 bafpctrl_entrypoint_1(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 17);
