@@ -1,6 +1,57 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95F80/func_800BC690.s")
+void func_800BC690(void) {
+    void func_800B5680(s32);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF410(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void *heap_alloc(s32);
+    typedef struct { s16 map, count, mode, flag; f32 point[3]; f32 normal[3]; } Entry;
+    typedef struct { void *buffers[2]; s32 unk8; u8 unkC, active, unkE, unkF, unk10, mode; s16 count; f32 matrix[4][4]; } State;
+    extern Entry D_8011A760[3];
+    extern s8 D_8011A7C0[];
+    extern s32 D_801282E0, D_801282F4, D_80128338;
+    extern f32 D_80128324[], D_80128378[], D_80128384[];
+    s32 i;
+    s32 map;
+    f32 normal[3];
+
+    map = func_800EA05C();
+    i = 0;
+    do {
+        if (map == D_8011A760[i].map) break;
+        i++;
+    } while (i < 3);
+    if (D_8011A7C0 != (s8 *)&D_8011A760[i]) {
+        if (D_8011A760[i].flag) {
+            func_800B5680((s32)D_8011A760[i].point[1]);
+        }
+        ((State *)&D_801282E0)->unk10 = ((State *)&D_801282E0)->active = 1;
+        ((State *)&D_801282E0)->unkF = ((State *)&D_801282E0)->unkE = 0;
+        ((State *)&D_801282E0)->count = D_8011A760[i].count;
+        ((State *)&D_801282E0)->mode = D_8011A760[i].mode;
+        *(void **)&D_801282E0 = heap_alloc(0x5DC0);
+        *(void **)((s8 *)&D_801282E0 + 4) = heap_alloc(0x5DC0);
+        func_800EF410(normal, D_8011A760[i].normal);
+        ((f32 *)&D_801282E0)[5] = 1.0f - (2.0f * normal[0]) * normal[0];
+        ((f32 *)&D_801282E0)[9] = (2.0f * -normal[1]) * normal[0];
+        ((f32 *)&D_801282E0)[13] = (2.0f * -normal[2]) * normal[0];
+        ((f32 *)&D_801282E0)[6] = (2.0f * -normal[0]) * normal[1];
+        ((f32 *)&D_801282E0)[10] = 1.0f - (2.0f * normal[1]) * normal[1];
+        ((f32 *)&D_801282E0)[14] = (2.0f * -normal[2]) * normal[1];
+        ((f32 *)&D_801282E0)[7] = (2.0f * -normal[0]) * normal[2];
+        ((f32 *)&D_801282E0)[11] = (2.0f * -normal[1]) * normal[2];
+        ((f32 *)&D_801282E0)[15] = 1.0f - (2.0f * normal[2]) * normal[2];
+        ((f32 *)&D_801282E0)[8] = ((f32 *)&D_801282E0)[12] = ((f32 *)&D_801282E0)[16] = 0.0f;
+        func_800EFA20(D_80128324, normal, 2.0f * func_800EEAA4(D_8011A760[i].point, normal));
+        ((f32 *)&D_801282E0)[20] = 1.0f;
+        guMtxF2L((f32 (*)[4])&D_801282F4, (Mtx *)&D_80128338);
+        func_800EE7F8(D_80128384, normal);
+        func_800EE7F8(D_80128378, D_8011A760[i].point);
+    }
+}
 
 void func_800BC8A0(void) {
     s32 heap_free(s32);
