@@ -71,13 +71,157 @@ void func_8008EEC4(void *arg0, f32 *arg1, f32 arg2, s32 arg3) {
     func_800CB870();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E68670/func_8008EF3C.s")
+s32 func_8008EF3C(struct player_state_s *arg0, Unk80132ED0 *arg1) {
+    s32 _bstrexlarge_entrypoint_7(struct player_state_s *, f32 *);
+    s32 _bstrexsmall_entrypoint_7(struct player_state_s *, f32 *);
+    int baflag_isTrue(struct player_state_s *, s32);
+    f32 baphysics_get_vertical_velocity(struct player_state_s *);
+    s32 bs_getCurrentState(struct player_state_s *);
+    int func_8008DAE8(struct player_state_s *, f32 *, f32);
+    int func_8008DC90(struct player_state_s *, f32 *, f32);
+    s32 func_8008E92C(void *);
+    int func_800A3274(struct player_state_s *);
+    Actor *func_80106790(Unk80132ED0 *);
+    int player_isStable(struct player_state_s *);
+    s32 unused;
+    s32 sp20;
+    s32 sp1C;
+    s32 temp_t8;
+    s32 temp_v0;
+    s32 temp_v0_2;
+
+    sp20 = bs_getCurrentState(arg0);
+    temp_v0_2 = func_800A3274(arg0);
+    switch (temp_v0_2) {
+    case 2:
+        return func_8008EE04(baflag_isTrue(arg0, 0x3C), 9);
+    case 13:
+        if (sp20 == 0xF7) {
+            return func_8008EE04(baflag_isTrue(arg0, 0x2C), 0xF);
+        }
+        return 0;
+    case 14:
+        if (sp20 == 0xFC) {
+            return func_8008EE04(baflag_isTrue(arg0, 0x2B), 0xE);
+        }
+        if (sp20 == 0xFB) {
+            return func_8008EE04(baflag_isTrue(arg0, 0x2D), 0x10);
+        }
+        return 0;
+    case 15:
+        if (sp20 == 0x10E) {
+            return func_8008EE04(baflag_isTrue(arg0, 0x32), 0x11);
+        }
+        return 0;
+    case 16:
+        return 0x12;
+    case 11:
+        switch (sp20) {
+        case 0xC2:
+        case 0xC4:
+            return func_8008EE04(baflag_isTrue(arg0, 0x36), 0x15);
+        case 0x18A:
+        case 0x18B:
+            return 0x19;
+        default:
+            if (baflag_isTrue(arg0, 0x35) != 0) {
+                if (arg1 != 0) {
+                    if (func_8008DC90(arg0, func_80106790(arg1)->position, 90.0f) != 0) {
+                        return 0x14;
+                    }
+                    return 0;
+                }
+                return 0x14;
+            }
+            return 0;
+        }
+        break;
+    case 9:
+        sp1C = baflag_isTrue(arg0, 0x3B);
+        temp_t8 = func_8008E92C(arg0) == 0;
+        if ((sp1C != 0) && (temp_t8 != 0)) {
+            return 0x16;
+        }
+        return 0;
+    case 18:
+        if ((arg1 != 0) && (_bstrexsmall_entrypoint_7(arg0, func_80106790(arg1)->position) != 0)) {
+            return 0x18;
+        }
+        return 0;
+    case 19:
+        if ((arg1 != 0) && (_bstrexlarge_entrypoint_7(arg0, func_80106790(arg1)->position) != 0)) {
+            return 0x17;
+        }
+        return 0;
+    default:
+        if (**(u8 **)((u8 *)arg0 + 0x18) != 0) {
+            return 3;
+        }
+        switch (sp20) {
+        case 0x189:
+            return func_8008EE04(baflag_isTrue(arg0, 0x3E), 0xD);
+        case 0xE4:
+            return func_8008EE04(baflag_isTrue(arg0, 0x28), 0xC);
+        case 0xA9:
+            return 5;
+        case 0xB6:
+            return func_8008EE04(baflag_isTrue(arg0, 0x22), 0xB);
+        case 0xF:
+            return func_8008EE04(baflag_isTrue(arg0, 0x21), 1);
+        case 0x13:
+            return func_8008EE04(baflag_isTrue(arg0, 0x20), 2);
+        case 0xB4:
+            return func_8008EE04(baflag_isTrue(arg0, 0x20), 2);
+        case 0x2A:
+            return func_8008EE04(baflag_isTrue(arg0, 0x1C), 3);
+        case 0x6:
+            if ((arg1 != 0) && (func_8008DAE8(arg0, func_80106790(arg1)->position, 90.0f) == 0)) {
+                return 0;
+            }
+            temp_v0 = func_8008EE04(baflag_isTrue(arg0, 0x1F), 4);
+            if (temp_v0 != 0) {
+                return temp_v0;
+            }
+            return 8;
+        case 0x11:
+            if ((arg1 != 0) && (func_8008DAE8(arg0, func_80106790(arg1)->position, 60.0f) == 0)) {
+                return 0;
+            }
+            return func_8008EE04(baflag_isTrue(arg0, 0x2A), 5);
+        case 0x1A:
+        case 0x1B:
+        case 0x1C:
+        case 0x1D:
+        case 0x1E:
+        case 0xA4:
+        case 0xA5:
+            return 6;
+        case 0x31:
+            return func_8008EE04(baflag_isTrue(arg0, 0x29), 7);
+        case 0x5:
+        case 0x3D:
+            if ((baphysics_get_vertical_velocity(arg0) < 0.0f) && (player_isStable(arg0) == 0)) {
+                return 0xA;
+            }
+        case 0x2F:
+            if ((baphysics_get_vertical_velocity(arg0) < -1400.0f) && (player_isStable(arg0) == 0)) {
+                return 0xA;
+            }
+        case 0x124:
+            return func_8008EE04(baflag_isTrue(arg0, 0x33), 0x13);
+        case 0x18A:
+            return 0x19;
+        }
+        break;
+    }
+    return 0;
+}
 
 /* extern */
 
 s32 func_8008F4F0(struct player_state_s *arg0) {
     int baflag_isTrue(struct player_state_s *, s32);
-    s32 func_8008EF3C(struct player_state_s *);
+    s32 func_8008EF3C();
     s32 result;
 
     result = func_8008EF3C(arg0);
