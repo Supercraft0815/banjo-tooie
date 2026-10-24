@@ -82,7 +82,26 @@ f32 func_800287FC(f32 *arg0, s32 arg1) {
     return arg0[7] * value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3FB40/func_800288C0.s")
+/* extern */
+
+void func_800288C0(f32 arg0, f32 arg1, f32 arg2, void *arg3, void *arg4) {
+    f32 func_80013C48(f32, f32);
+    f32 sp24;
+    f32 sp20;
+    f32 sp1C;
+
+    if (arg1 >= (arg0 - 200.0f)) {
+        arg1 = arg0 - 200.0f;
+    }
+    sp24 = func_80013C48(arg1 * 3.1415927f, arg0);
+    sp20 = sp24 * sp24;
+    sp1C = (sp24 * 1.4142137f) / arg2;
+    (*(f32 *)((s8 *)(arg3) + (0))) = (f32) (sp20 / (1.0f + sp20 + sp1C));
+    (*(f32 *)((s8 *)(arg3) + (4))) = (f32) ((*(f32 *)((s8 *)(arg3) + (0))) * 2.0f);
+    (*(f32 *)((s8 *)(arg3) + (8))) = (f32) (*(f32 *)((s8 *)(arg3) + (0)));
+    (*(f32 *)((s8 *)(arg4) + (4))) = (f32) (((sp20 - 1.0f) * 2.0f) / (1.0f + sp20 + sp1C));
+    (*(f32 *)((s8 *)(arg4) + (8))) = (f32) (((1.0f + sp20) - sp1C) / (1.0f + sp20 + sp1C));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3FB40/func_80028A24.s")
 
