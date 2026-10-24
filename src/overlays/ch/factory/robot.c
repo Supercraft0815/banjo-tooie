@@ -496,7 +496,74 @@ void func_80800DC4_chfactoryrobot(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80800E40_chfactoryrobot.s")
+s32 func_80800E40_chfactoryrobot(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x18];
+        s16 unk18;
+        f32 unk1C;
+    } RobotData;
+    void *func_80100094(Actor *, u32);
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    s32 func_80107070(Actor *, s32);
+    void *func_80101080(void);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_13(s32, u32);
+    void func_800FFAB0(Actor *);
+    void func_8010A590(Actor *);
+    void func_80109FE8(void **, s32);
+    s32 func_80801160_chfactoryrobot(u8 *, s32);
+    void func_8080183C_chfactoryrobot(Actor *);
+    s32 func_80801C50_chfactoryrobot(s32);
+    s32 func_80802470_chfactoryrobot(Actor *, s32);
+    RobotData *data;
+    Actor *sp20;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x40:
+        func_80801160_chfactoryrobot((u8 *)arg0, 7);
+        break;
+    case 2:
+        if (_subaddieDll_entrypoint_3(arg0) == 0) {
+            func_80107070(arg0, 1);
+        }
+        break;
+    case 0x3E:
+        if (arg0->unk64_29) {
+            data->unk1C = 1.5f;
+        } else {
+            data->unk1C = 6.0f;
+        }
+        data->unk18 = arg0->unk64_29;
+        break;
+    case 0x90:
+        sp20 = func_80106790(func_80101080());
+        _chexploder_entrypoint_9(sp20, 3, 0);
+        _chexploder_entrypoint_13((s32)sp20, 10);
+        if (func_80107070(arg0, 3) == 0) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    case 0x93:
+        func_80802470_chfactoryrobot(arg0, 0);
+        break;
+    case 0x95:
+        func_8080183C_chfactoryrobot(arg0);
+        break;
+    case 0x38:
+        return func_80801C50_chfactoryrobot((s32)arg0);
+    case 0x8F:
+        if (arg2 == 0) {
+            func_8010A590(arg0);
+            func_80109FE8((void **)arg0, 1);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800FFC_chfactoryrobot(Actor *arg0, void *arg1) {
     typedef struct {
