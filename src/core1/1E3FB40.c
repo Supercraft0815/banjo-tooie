@@ -135,7 +135,30 @@ void func_800288C0(f32 arg0, f32 arg1, f32 arg2, void *arg3, void *arg4) {
     (*(f32 *)((s8 *)(arg4) + (8))) = (f32) (((1.0f + sp20) - sp1C) / (1.0f + sp20 + sp1C));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3FB40/func_80028A24.s")
+s32 func_80028A24(s16 *arg0) {
+    s32 i;
+    s32 value;
+    s16 coefficient;
+    f32 ratio;
+    f32 power;
+    f32 scale;
+
+    value = (s32)((f32)arg0[0] * 16384.0f);
+    coefficient = value >> 15;
+    arg0[1] = (s32)(16384.0f - (f32)coefficient);
+    *(s32 *)((u8 *)arg0 + 0x28) = 0;
+    for (i = 0; i < 8; i++) {
+        (arg0 + i)[4] = 0;
+    }
+    (arg0 + i)[4] = coefficient;
+    i++;
+    scale = 16384.0f;
+    power = ratio = (f32)coefficient / scale;
+    for (; i < 16; i++) {
+        power *= ratio;
+        (arg0 + i)[4] = (s32)(power * scale);
+    }
+}
 
 f32 func_80028B74(s32 arg0) {
     f32 x;
