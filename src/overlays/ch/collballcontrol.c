@@ -741,7 +741,142 @@ void func_80801964_chcollballcontrol(Actor *arg0) {
     arg0->position[1] = -75.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80801A20_chcollballcontrol.s")
+void func_80801A20_chcollballcontrol(Actor *arg0) {
+    s32 _sukickball_entrypoint_6(u8 *, s32);
+    s32 _sukickball_entrypoint_7(u8 *, s32);
+    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC0C0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800EFBFC(void *, void *);
+    s32 func_800EFCD8(s32 *, f32, s32);
+    void func_800F5A00(s32, f32 *);
+    void func_800F5D70(s32, f32 *);
+    f32 func_800F5F24(u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_808020B0_chcollballcontrol(void *);
+    void func_808020F4_chcollballcontrol(Actor *);
+    void func_808021D4_chcollballcontrol(Actor *);
+    void func_808022F0_chcollballcontrol(f32 *);
+    void func_80802764_chcollballcontrol(s32 *);
+    void func_80802CE0_chcollballcontrol(u8 *);
+    void func_808030D0_chcollballcontrol(Actor *);
+    extern s32 D_80804DF4_chcollballcontrol[];
+    f32 *data;
+    u8 *linked;
+    f32 position[3];
+    f32 previous[3];
+    f32 velocity[3];
+    Actor *carrier;
+    Actor *kicker;
+    f32 sine;
+    f32 cosine;
+
+    data = func_80100094(arg0, 0);
+    linked = (u8 *)func_80106790(arg0->unk3C);
+    switch (arg0->unk70_10) {
+        case 5:
+            if (arg0->position[1] < 25.0f) {
+                arg0->position[1] += 5.0f;
+            }
+            if ((u32)arg0->alpha < 240.0f) {
+                arg0->alpha = (u32)arg0->alpha + 15.0f;
+            } else if (arg0->position[1] >= 25.0f) {
+                arg0->unk70_10 = 1;
+                arg0->alpha = 255;
+            }
+            break;
+        case 1:
+            func_80802CE0_chcollballcontrol((u8 *)arg0);
+            func_80802764_chcollballcontrol((s32 *)arg0);
+            func_808020B0_chcollballcontrol(arg0);
+            break;
+        case 2:
+            func_800EE7F8(previous, arg0->position);
+            func_80802764_chcollballcontrol((s32 *)arg0);
+            if (_sukickball_entrypoint_6(linked, ((u8 *)data)[0x20])) {
+                func_800F5A00(((u8 *)data)[0x20], position);
+                arg0->unk54 = func_800F5F24(((u8 *)data)[0x20]);
+                arg0->position[1] = 0.0f;
+                func_800EFCD8((s32 *)arg0->position, arg0->unk54, 0x42700000);
+                func_800EF04C(arg0->position, position);
+                func_800F5D70(((u8 *)data)[0x20], velocity);
+                arg0->unk50 = velocity[0] * velocity[0] + velocity[2] * velocity[2];
+                func_800EE7F8((f32 *)arg0->actorData, position);
+            } else {
+                carrier = func_80106790(_sukickball_entrypoint_8(linked, ((u8 *)data)[0x20]));
+                arg0->position[1] = 0.0f;
+                func_800EFCD8((s32 *)arg0->position, carrier->rotation[1], 0x42700000);
+                func_800EF04C(arg0->position, carrier->position);
+                arg0->unk54 = carrier->rotation[1];
+                arg0->unk50 = ((f32 *)carrier->actorData)[3] * ((f32 *)carrier->actorData)[3];
+                func_800EE7F8((f32 *)arg0->actorData, carrier->position);
+            }
+            if (func_800EFBFC(previous, arg0->position) > 25.0f && func_800DC0C0() < 0.1f) {
+                func_800B4470((u8 *)previous, 0, D_80804DF4_chcollballcontrol, 1, 0.75f, 0.0f, 75, 150, 0);
+            }
+            func_800D9078(data);
+            func_80802CE0_chcollballcontrol((u8 *)arg0);
+            if (_sukickball_entrypoint_7(linked, ((u8 *)data)[0x20])) {
+                kicker = func_80106790(_sukickball_entrypoint_8(linked, ((u8 *)data)[0x20]));
+                if (kicker->unk64_20 == 1) {
+                    func_808030D0_chcollballcontrol(arg0);
+                    kicker->unk58 = 0.0f;
+                    kicker->unk64_20 = 0;
+                }
+            }
+            func_808020B0_chcollballcontrol(arg0);
+            break;
+        case 3:
+            func_80802764_chcollballcontrol((s32 *)arg0);
+            func_800EF1B8(arg0->position, arg0->rotation[1], ((f32 *)arg0->actorData)[3] * func_800D8FF8());
+            ((f32 *)arg0->actorData)[3] -= 6.0f;
+            if ((arg0->unk0->unk24 >> 22) == 0x42 && ((f32 *)arg0->actorData)[3] < 600.0f) {
+                data[5] += data[6];
+                data[6] += 0.5f;
+            }
+            if (((f32 *)arg0->actorData)[3] <= 0.0f) {
+                func_80801764_chcollballcontrol((u8 *)arg0, 1);
+                func_808021D4_chcollballcontrol(arg0);
+            }
+            func_80802CE0_chcollballcontrol((u8 *)arg0);
+            if (func_800DC0C0() < 0.15f && ((f32 *)arg0->actorData)[3] > 120.0f) {
+                func_800B4470((u8 *)arg0->position, 0, D_80804DF4_chcollballcontrol, 1, 0.75f, 0.0f, 50, 100, 0);
+            }
+            func_808020B0_chcollballcontrol(arg0);
+            break;
+        case 4:
+            func_80802764_chcollballcontrol((s32 *)arg0);
+            func_808020F4_chcollballcontrol(arg0);
+            break;
+        case 6:
+            ((f32 *)arg0->actorData)[3] -= 15.0f;
+            func_808020F4_chcollballcontrol(arg0);
+            break;
+    }
+    if (((f32 *)arg0->actorData)[3] > 30.0f) {
+        sine = func_800137AC(arg0->rotation[1]);
+        cosine = func_800137C4();
+        arg0->rotation[0] += 2.0f * (sine * ((f32 *)arg0->actorData)[3]) / 30.0f;
+        arg0->rotation[2] -= 2.0f * (cosine * ((f32 *)arg0->actorData)[3]) / 30.0f;
+    }
+    if ((arg0->unk0->unk24 >> 22) == 0x42 && arg0->unk70_10 != 4 && arg0->unk70_10 != 6 && arg0->unk7C_12 && func_800DC0C0() < 0.1f) {
+        func_808022F0_chcollballcontrol(data + 2);
+    }
+    if (arg0->unk64_19) {
+        data[5] += data[6];
+    }
+    if (data[7] > 0.0f) {
+        data[7] -= func_800D8FF8();
+    }
+}
 
 /* extern */
 
