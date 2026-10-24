@@ -923,7 +923,144 @@ void func_808036EC_chdragonbrothers(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808037B0_chdragonbrothers.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808038AC_chdragonbrothers.s")
+void func_808038AC_chdragonbrothers(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101DDC(Actor *);
+    void func_80108B04(Actor *, s32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void func_808036EC_chdragonbrothers(Actor *, s32);
+    extern u32 D_808053A0_chdragonbrothers;
+    typedef struct {
+        f32 home[3];
+        f32 speed;
+    } DragonState;
+    f32 dt;
+    f32 target;
+    u8 *data;
+    u8 command;
+
+    dt = func_800D8FF8();
+    data = func_80100094(func_80106790(arg0->unk3C), 0);
+    if (arg0->position[1] <= ((DragonState *)arg0->actorData)->home[1] - 450.0f) {
+        arg0->unk64_16 = 0;
+    } else {
+        arg0->unk64_16 = 1;
+    }
+    if (arg0->position[1] <= ((DragonState *)arg0->actorData)->home[1] - 310.0f) {
+        arg0->unk64_20 = 0;
+    } else {
+        arg0->unk64_20 = 1;
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        command = *(u8 *)((u32)data + arg0->unk74_7);
+        if (command != 0) {
+            if (command != 1) {
+                if (command == 2) {
+                    func_808036EC_chdragonbrothers(arg0, 9);
+                }
+            } else {
+                func_808036EC_chdragonbrothers(arg0, 2);
+            }
+        }
+        break;
+    case 2:
+        if (arg0->position[1] < ((DragonState *)arg0->actorData)->home[1]) {
+            arg0->position[1] += ((DragonState *)arg0->actorData)->speed * dt;
+            if (arg0->position[1] > ((DragonState *)arg0->actorData)->home[1] - 40.0f) {
+                ((DragonState *)arg0->actorData)->speed *= 1.0f - 3.5f * dt;
+            }
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808053A0_chdragonbrothers);
+        } else {
+            func_808036EC_chdragonbrothers(arg0, 3);
+        }
+        break;
+    case 3:
+        if (func_80101DDC(arg0)) {
+            func_808036EC_chdragonbrothers(arg0, 4);
+        }
+        break;
+    case 4:
+        command = *(u8 *)((u32)data + arg0->unk74_7);
+        if (command != 0) {
+            if (command == 2) {
+                func_808036EC_chdragonbrothers(arg0, 9);
+            }
+        } else {
+            func_808036EC_chdragonbrothers(arg0, 6);
+        }
+        break;
+    case 5:
+        if (func_80101E14(arg0, 0.5f) && arg0->unk7C_12) {
+            func_80108B04(arg0, arg0->unk79_4);
+        }
+        if (func_80101DDC(arg0)) {
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else {
+                func_808036EC_chdragonbrothers(arg0, 4);
+            }
+        }
+        break;
+    case 6:
+    case 7:
+        if (func_80101DDC(arg0)) {
+            command = *(u8 *)((u32)data + arg0->unk74_7);
+            if (command != 0) {
+                if (command == 2) {
+                    func_808036EC_chdragonbrothers(arg0, 9);
+                }
+            } else {
+                func_808036EC_chdragonbrothers(arg0, 8);
+            }
+        }
+        break;
+    case 8: {
+        if (arg0->position[1] > ((DragonState *)arg0->actorData)->home[1] - 310.0f) {
+            arg0->position[1] -= ((DragonState *)arg0->actorData)->speed * dt;
+            if (arg0->position[1] > ((DragonState *)arg0->actorData)->home[1] - 75.0f) {
+                ((DragonState *)arg0->actorData)->speed *= 1.0f + 1.5f * dt;
+            }
+            if (arg0->position[1] < ((DragonState *)arg0->actorData)->home[1] - 310.0f) {
+                arg0->position[1] = ((DragonState *)arg0->actorData)->home[1] - 310.0f;
+            }
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808053A0_chdragonbrothers);
+        }
+        command = *(u8 *)((u32)data + arg0->unk74_7);
+        if (command != 1) {
+            if (command == 2) {
+                func_808036EC_chdragonbrothers(arg0, 9);
+            }
+        } else {
+            func_808036EC_chdragonbrothers(arg0, 2);
+        }
+        break;
+    }
+    case 9:
+        if (arg0->position[1] > ((DragonState *)arg0->actorData)->home[1] - 450.0f) {
+            arg0->position[1] -= ((DragonState *)arg0->actorData)->speed * dt;
+            if (arg0->position[1] > (((DragonState *)arg0->actorData)->home[1] - 450.0f) - 150.0f) {
+                ((DragonState *)arg0->actorData)->speed *= 1.0f + 1.5f * dt;
+            }
+            if (arg0->position[1] < ((DragonState *)arg0->actorData)->home[1] - 450.0f) {
+                arg0->position[1] = ((DragonState *)arg0->actorData)->home[1] - 450.0f;
+            }
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808053A0_chdragonbrothers);
+        }
+        command = *(u8 *)((u32)data + arg0->unk74_7);
+        if (command != 0) {
+            if (command == 1) {
+                func_808036EC_chdragonbrothers(arg0, 2);
+            }
+        } else {
+            func_808036EC_chdragonbrothers(arg0, 6);
+        }
+        break;
+    }
+}
 
 s32 func_80803DC4_chdragonbrothers(Actor *arg0, s32 arg1, void *arg2) {
     extern Vec3f D_80805740_chdragonbrothers;
