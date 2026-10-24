@@ -623,7 +623,57 @@ void func_80800F70_chdinoboss(Actor *arg0, s32 arg1) {
     func_80801FAC_chdinoboss(arg0, sp48, sp44);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80801408_chdinoboss.s")
+void func_80801408_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_14(void);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_8080248C_chdinoboss(Actor *, s32, s32);
+
+    switch (arg1) {
+    case 0x17B3:
+    case 0x1801:
+        func_80800F70_chdinoboss(arg0, 4);
+        arg0->unk58 = 0.75f;
+        break;
+    case 0x17B6:
+        func_800D1000(0x2C, 1, NULL, 1, 0);
+        func_8080248C_chdinoboss(arg0, 0xB, 0x10);
+        func_80800F70_chdinoboss(arg0, 0x14);
+        func_80101180(0x461, 7, 0);
+        func_80101180(0x469, 7, 0);
+        break;
+    case 0x120B:
+    case 0x17B7:
+        func_80800F70_chdinoboss(arg0, 0x14);
+        _capod_entrypoint_14();
+        break;
+    case 0x17DF:
+        func_800D1000(0x2F, 1, NULL, 1, 0);
+        func_8080248C_chdinoboss(arg0, 0x22, 0x10);
+        func_80102424(arg0, 0x18);
+        break;
+    case 0xCEB:
+        if (arg2 > 0) {
+            _gcfrontend_entrypoint_11();
+        } else {
+            _gcfrontend_entrypoint_10();
+        }
+        break;
+    case 0x17B4:
+    case 0x17B5:
+    case 0x17FC:
+        break;
+    default:
+        if (func_800DA298(0xE5) != 0) {
+            func_80800F70_chdinoboss(arg0, 0x14);
+        }
+        break;
+    }
+}
 
 void func_808015AC_chdinoboss(Actor *arg0) {
     typedef struct {
