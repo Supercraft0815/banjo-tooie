@@ -654,7 +654,7 @@ void func_8011413C(s32 camera, f32 rotation[3], f32 scale, s32 index) {
         f32 normal[3];
         CameraCollisionEntry entries[7];
     } CameraCollisionData;
-void func_80114184(CameraCollisionData *data, s32 camera, f32 scale, s32 enabled, u32 flags) {
+s32 func_80114184(CameraCollisionData *data, s32 camera, f32 scale, s32 enabled, u32 flags) {
     extern f32 D_801265E0;
     void func_800CA8F4(f32 *, f32 *, f32 *);
     f32 func_800EEAA4(f32 *, f32 *);
@@ -785,7 +785,48 @@ s32 func_8011447C(f32 *arg0, f32 *arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011458C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80114774.s")
+f32 func_80114774(CameraCollisionData *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    extern f32 D_801265F0;
+    extern f32 D_801265F4;
+    s32 func_800C954C(void);
+    f32 func_800C9588(void);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F13F0(f32, f32);
+    s32 func_8011458C(s32, s32, f32 *);
+    f32 sp44[3];
+    f32 value;
+    f32 minimum;
+    s32 index;
+
+    index = func_80114184(arg0, arg1, func_800F0E00(350.0f, *(f32 *)((u8 *)arg0 + 0xC)), 1, 0x820020);
+    value = *(f32 *)((u8 *)arg0 + 0xC);
+    if (index != -1) {
+        value = func_800F13F0(value, arg0->entries[index].value * D_801265F0 - 15.0f);
+    }
+    sp44[2] = value;
+    if (func_8011447C((f32 *)arg1, &sp44[2])) {
+        if (sp44[2] < 0.0f) {
+            sp44[2] = 0.0f;
+        }
+        value = func_800F13F0(value, sp44[2]);
+    }
+    sp44[2] = value;
+    if (value > 25.0f && func_8011458C(arg1, arg3, &sp44[2])) {
+        value = func_800F13F0(value, sp44[2]);
+    }
+    if (func_800C954C()) {
+        value = func_800F13F0(value, func_800C9588() * D_801265F4);
+    }
+    if (arg0->hit) {
+        minimum = 25.0f;
+    } else {
+        minimum = 10.0f;
+    }
+    if (value < minimum) {
+        value = minimum;
+    }
+    return value;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011490C.s")
 
