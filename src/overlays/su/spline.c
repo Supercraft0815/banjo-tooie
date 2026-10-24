@@ -146,7 +146,43 @@ f32 func_80800224_suspline(u8 *arg0, f32 *arg1, void *arg2) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_13.s")
+void suspline_entrypoint_13(u8 *arg0) {
+    struct SplineOffsets {
+        u8 pad[0x70];
+        s16 offsets[8];
+    };
+    void _mlspline_entrypoint_1(f32, s16, f32 *, f32 *);
+    void _mlspline_entrypoint_3(f32, s16, f32 *, f32 *);
+    void _mlspline_entrypoint_9(f32, s32, f32 *, f32 *);
+    f32 func_800D8FF8(void);
+    f32 pad;
+    s16 indices[4];
+    f32 values[4];
+    f32 t;
+    s16 count;
+    f32 *points;
+
+    if (!(arg0[0x8A] & 1)) {
+        count = *(s16 *)(arg0 + 0x78);
+        points = (f32 *)(((struct SplineOffsets *)arg0)->offsets[*(s16 *)(arg0 + 0x7C)] + arg0);
+        if (count >= 4) {
+            t = func_80800224_suspline(arg0, (f32 *)(arg0 + 0x58), indices);
+            values[0] = points[indices[0]];
+            values[1] = points[indices[1]];
+            values[2] = points[indices[2]];
+            values[3] = points[indices[3]];
+            _mlspline_entrypoint_9(t, 4, values, (f32 *)(arg0 + 0x60));
+        } else if (count == 3) {
+            _mlspline_entrypoint_3(*(f32 *)(arg0 + 0x58), count, points, (f32 *)(arg0 + 0x60));
+        } else {
+            _mlspline_entrypoint_1(*(f32 *)(arg0 + 0x58), count, points, (f32 *)(arg0 + 0x60));
+        }
+        if (*(f32 *)(arg0 + 0x54) < 0.05f) {
+            *(f32 *)(arg0 + 0x54) = 0.05f;
+        }
+        *(f32 *)(arg0 + 0x64) = *(f32 *)(arg0 + 0x60) * func_800D8FF8();
+    }
+}
 
 void suspline_entrypoint_14(u8 *arg0) {
     struct SplineOffsets {
