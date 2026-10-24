@@ -342,7 +342,87 @@ void sucoasterfly_entrypoint_3(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/fly/sucoasterfly_entrypoint_4.s")
+s32 sucoasterfly_entrypoint_4(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void *_sucoasterflydata_entrypoint_2(u32, s32 *);
+    void _suexpression_entrypoint_13(void *, f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101010(f32 *);
+    void func_80101074(void *);
+    s32 func_80107070(Actor *, s32);
+    s32 func_808014AC_sucoasterfly(Actor *, s32);
+    void func_80802080_sucoasterfly(Actor *);
+    struct CoasterFlyActorFlags {
+        u8 unused[0x74];
+        u32 other : 28;
+        u32 mode : 4;
+    };
+    struct CoasterFlyData {
+        f32 position[3];
+        f32 unkC;
+        u8 unk10;
+        u8 variant : 4;
+        u8 flags : 4;
+        s16 unk12;
+        s32 unk14;
+        s16 height;
+        s16 unk1A;
+    };
+    f32 position[3];
+    s32 result;
+
+    switch (arg1) {
+    case 1:
+        func_808014AC_sucoasterfly(arg0, 1);
+        break;
+    case 2:
+        if (arg0->unk70_10 != 11 && !_subaddieDll_entrypoint_3(arg0) && !func_80107070(arg0, 1)) {
+            _subaddiefade_entrypoint_3(arg0);
+            func_808014AC_sucoasterfly(arg0, 15);
+            arg0->unk64_24 = 0;
+        }
+        break;
+    case 0x8F:
+        if (arg2 == 0) {
+            arg0->unk64_25 = 1;
+            ((struct CoasterFlyActorFlags *)arg0)->mode = 1;
+            func_808014AC_sucoasterfly(arg0, 3);
+        }
+        break;
+    case 0x29:
+        func_80802080_sucoasterfly(arg0);
+        break;
+    case 0x2A:
+        func_80802128_sucoasterfly(arg0);
+        break;
+    case 0x4D:
+        _subaddieDll_entrypoint_4(arg0, 0);
+        if (!func_80107070(arg0, 3)) {
+            return 0;
+        }
+        break;
+    case 0x94:
+        if (func_80100094(arg0, 1) == NULL) {
+            return 0;
+        }
+        position[2] = 0.0f;
+        _suexpression_entrypoint_13(func_80100094(arg0, 1), &position[1], &position[0]);
+        func_80101010(position);
+        break;
+    case 0x95:
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    case 0x38:
+        func_80101074(_sucoasterflydata_entrypoint_2(((struct CoasterFlyData *)func_80100094(arg0, 0))->variant, &result));
+        return result;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800EF0_sucoasterfly(Unk80132ED0 *arg0, u8 *arg1)
 {
