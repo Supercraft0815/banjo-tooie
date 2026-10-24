@@ -30,7 +30,89 @@ void func_8080000C_ch2dbaddy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/2dbaddy/func_808000A0_ch2dbaddy.s")
+void func_808000A0_ch2dbaddy(Actor *arg0) {
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 _sucoaster_entrypoint_13();
+    s32 _sucoaster_entrypoint_19(void *);
+    s32 _sucoaster_entrypoint_2();
+    u8 *_sucoaster_entrypoint_3();
+    void _sucoaster_entrypoint_7(Actor *, s32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    s32 func_80101DDC(Actor *);
+    f32 func_80101F24(Actor *);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_8010A570(Actor *);
+    u32 func_8010A5B0(Actor *, s32);
+    f32 func_8010CD28(Actor *);
+    s32 func_808003C4_ch2dbaddy(f32 *);
+    s32 func_8080041C_ch2dbaddy(u8 *);
+    s32 func_80800468_ch2dbaddy(u8 *);
+    s32 func_80800700_ch2dbaddy(Actor *, s32);
+    void func_80800820_ch2dbaddy(Actor *);
+    struct ActorFlags {
+        u8 pad[0x78];
+        u32 : 29;
+        u32 flag : 1;
+        u32 : 2;
+    };
+    f32 sp24[3];
+
+    _sucoaster_entrypoint_2(arg0);
+    if (!((struct ActorFlags *)arg0)->flag) {
+        switch (arg0->unk70_10) {
+        case 2:
+        case 3:
+        case 8:
+            if (func_80800468_ch2dbaddy((u8 *)arg0)) {
+                _sucoaster_entrypoint_10(arg0, 0x16);
+                ((f32 *)arg0->actorData)[3] = 0.0f;
+            }
+            break;
+        case 19:
+            _sucoaster_entrypoint_19(arg0);
+            if (func_8080041C_ch2dbaddy((u8 *)arg0)) {
+                func_80800700_ch2dbaddy(arg0, 0x14);
+            }
+            break;
+        case 20:
+            func_80800820_ch2dbaddy(arg0);
+            arg0->unk54 = func_8010CD28(arg0);
+            func_80102BF8(arg0, 0.2f, 60.0f, 300.0f);
+            func_8010A5B0(arg0, arg0->unk64_20);
+            arg0->unk64_20 = 1;
+            if (func_80101DDC(arg0)) {
+                _sucoaster_entrypoint_10(arg0, arg0->unk64_29 ? 2 : 8);
+            }
+            break;
+        case 22:
+            _sucoaster_entrypoint_19(arg0);
+            if (func_80101F24(arg0) > 0.6f) {
+                func_8010A570(arg0);
+            }
+            if (func_80101DDC(arg0)) {
+                func_80800700_ch2dbaddy(arg0, 0x13);
+            }
+            break;
+        case 21:
+            _sucoaster_entrypoint_19(arg0);
+            if (!_sucoaster_entrypoint_13(arg0)) {
+                if (func_808003C4_ch2dbaddy((f32 *)arg0)) {
+                    _sucoaster_entrypoint_10(arg0, 0x16);
+                    ((f32 *)arg0->actorData)[3] = 0.0f;
+                    break;
+                }
+                if (_subaddierouteDll_entrypoint_4(arg0)) {
+                    func_800EE88C(sp24, (s16 *)_sucoaster_entrypoint_3(arg0));
+                    arg0->unk54 = func_80102D78(arg0, sp24);
+                }
+            }
+            _sucoaster_entrypoint_7(arg0, 0x5802, 30.0f);
+            break;
+        }
+    }
+}
 
 s32 func_808002A8_ch2dbaddy(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _sucoaster_entrypoint_21(Actor *, s32, s32);
