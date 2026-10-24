@@ -141,7 +141,85 @@ void baduo_entrypoint_12(s32 arg0) {
     func_800F9A6C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_13.s")
+void baduo_entrypoint_13(PlayerState *arg0) {
+    void _bapackctrl_entrypoint_5(PlayerState *, s32);
+    s32 _plsu_entrypoint_1(s32);
+    s32 bs_setState(s32, s32);
+    s32 func_8008D40C(PlayerState *);
+    void func_8009C128(PlayerState *, f32 *);
+    int func_800A3274(PlayerState *);
+    void func_800A3410(PlayerState *, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    void func_800A91A8(s32);
+    int func_800D5034(s32, s32);
+    f32 func_800F1F0C(f32 *, f32 *, f32);
+    PlayerState *func_800F53D0(s32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5B0C(s32);
+    void func_800F759C(s32);
+    s32 func_800F80D8(s32);
+    void func_800F8268(s32, s32, s32);
+    void func_800F82D4(s32, s32);
+    void func_800F8EBC(s32);
+    void func_800F911C(s32);
+    s32 func_80101180(s32, s32, s32);
+    f32 mlAbsF(f32);
+    f32 yaw_get(PlayerState *);
+    s32 sp54;
+    s32 pad50;
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 sp30;
+
+    sp54 = func_800F54E4();
+    switch (**(u8 **)((u8 *)arg0 + 0x58)) {
+    case 3:
+        if ((func_800A3274(arg0) == 0xA) && (func_8008D40C(arg0) != 0)) {
+            baduo_entrypoint_7(arg0, 4);
+        }
+        break;
+    case 4:
+        if (func_800F5B0C(sp54) == 2) {
+            sp30 = baduo_entrypoint_2(arg0);
+            if (sp54 == *(s32 *)((u8 *)arg0 + 0x184)) {
+                func_800F8EBC(_plsu_entrypoint_1(0xB));
+            } else {
+                func_800F8EBC(*(s32 *)((u8 *)arg0 + 0x184));
+            }
+            if (sp54 == *(s32 *)((u8 *)arg0 + 0x184)) {
+                func_800F82D4(sp54, 0);
+            } else {
+                func_800F82D4(sp54, 0);
+                func_800F82D4(*(s32 *)((u8 *)arg0 + 0x184), 0);
+            }
+            _bapackctrl_entrypoint_5(arg0, 1);
+            func_800F911C(1);
+            func_800F80D8(*(s32 *)((u8 *)arg0 + 0x184));
+            func_800D5034(func_800A3274(arg0), 1);
+            func_800A3410(arg0, 1);
+            func_800F8268(*(s32 *)((u8 *)arg0 + 0x184), 0, 1);
+            if (sp54 != *(s32 *)((u8 *)arg0 + 0x184)) {
+                func_80800008_baduo(func_800F53D0(sp30), func_800F53D0(*(s32 *)((u8 *)arg0 + 0x184)));
+            }
+            sp4C = yaw_get(arg0);
+            func_800F5A00(sp30, sp34);
+            func_8009C128(arg0, sp40);
+            func_800F759C(sp30);
+            func_800A38F0(arg0, 1, 1);
+            func_800A91A8(*(s32 *)((u8 *)arg0 + 0x184));
+            baduo_entrypoint_7(arg0, 1);
+            if (mlAbsF(func_800F1F0C(sp40, sp34, sp4C)) > 90.0f) {
+                bs_setState(arg0, 0x69);
+            } else {
+                bs_setState(arg0, 0x6A);
+            }
+            func_80101180(0x158, 0x17, 0);
+        }
+        break;
+    }
+}
 
 /* extern */
 
