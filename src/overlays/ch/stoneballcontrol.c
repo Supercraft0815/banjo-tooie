@@ -688,7 +688,99 @@ void func_80800F24_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     _chintrotext_entrypoint_2(1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80800F9C_chstoneballcontrol.s")
+void func_80800F9C_chstoneballcontrol(Actor *arg0) {
+    s32 _gcstatusDll_entrypoint_11(void);
+    void _sukickball_entrypoint_18(Actor *);
+    u8 _sukickball_entrypoint_3(void);
+    s32 func_80090178(AllowedTransformation);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    s32 func_800EA05C(void);
+    void func_800F4CEC(s32, u32);
+    s32 func_800F6438(u32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_801084B0(s32, Actor **);
+    void func_8080128C_chstoneballcontrol(Actor *);
+    void func_80801330_chstoneballcontrol(Actor *, s32);
+    void func_8080145C_chstoneballcontrol(Actor *);
+    extern s32 D_8080509C_chstoneballcontrol[];
+    struct Fields {
+        u8 pad0[0xA];
+        u8 types[4];
+        u8 padE[2];
+        Unk80132ED0 *markers[4];
+        u8 pad20[0x19];
+        u8 state;
+        u8 count;
+        u8 pad3B;
+        u8 active;
+    };
+    struct Fields *data;
+    Actor *actor;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    data->state = _sukickball_entrypoint_3();
+    data->active = 0;
+    if (func_800DA298(0x667) != 0 || func_80090178(0x80) == 0) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (func_800EA05C() != 0xBB) {
+        func_800DA3B8(0x65A, 1);
+    }
+    data->count = D_8080509C_chstoneballcontrol[data->state];
+    switch (data->state) {
+        case 0:
+            data->state = 0;
+            func_80800F24_chstoneballcontrol(arg0, func_800DA298(0x5E), data->state);
+            break;
+        case 1:
+            func_80800F24_chstoneballcontrol(arg0, func_800DA298(0x5F), data->state);
+            break;
+        case 2:
+            func_80800F24_chstoneballcontrol(arg0, func_800D0A9C(3, 1), data->state);
+            break;
+        case 3:
+            break;
+        case 4:
+            for (i = 0; i != 8; i++) {
+                if (func_800F6438(i) != 0) {
+                    func_800F4CEC(i, 0);
+                }
+            }
+            data->count = _gcstatusDll_entrypoint_11();
+            break;
+    }
+    func_8080128C_chstoneballcontrol(arg0);
+    if (data->state == 4) {
+        data->types[0] = 1;
+    } else {
+        data->types[0] = 2;
+    }
+    data->types[1] = 1;
+    data->types[2] = 1;
+    data->types[3] = 1;
+    for (i = 0; i < data->count; i++) {
+        switch (data->types[i]) {
+            case 1:
+                data->markers[i] = (actor = func_801084B0(0x1B6, &arg0))->unk0;
+                actor->unk3C = arg0->unk0;
+                break;
+            case 2:
+                break;
+        }
+        func_80801330_chstoneballcontrol(arg0, i);
+    }
+    if (func_800EA05C() == 0xBB) {
+        func_8080145C_chstoneballcontrol(arg0);
+        arg0->unk70_10 = 7;
+    }
+    _sukickball_entrypoint_18(arg0);
+    data->active = 1;
+}
 
 void func_8080120C_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
