@@ -6840,7 +6840,7 @@ segments:
     subsegments: 
       - [0x01FFC5A0, c, monsterinterior]
       - [0x01FFE270, .rodata, monsterinterior]
-      - [0x01FFE3F0, data, monsterinterior]
+      - [0x01FFE3F0, .data, monsterinterior]
       - [0x01FFE640, bss, monsterinterior]
   - name: chalienkids_header
     dir: overlays/chalienkids

@@ -1,36 +1,167 @@
 #include "common.h"
 
+void func_80101870(Actor *, void *);
+void func_801018A4(Actor *, s32);
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_8080003C_chmonsterinterior(Actor *arg0);
+void func_808000BC_chmonsterinterior(Actor *arg0);
+s32 func_808002D4_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
+void func_8080060C_chmonsterinterior(Actor *arg0);
+void func_80800DA4_chmonsterinterior(Actor *arg0);
+void func_80800E0C_chmonsterinterior();
+void func_8080101C_chmonsterinterior(Actor *arg0, s32 arg1);
+s32 func_80801050_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
+void func_808013D0_chmonsterinterior(Actor *arg0);
+void func_808014E8_chmonsterinterior();
+void func_808017E8_chmonsterinterior(s32 arg0);
+s32 func_808017F0_chmonsterinterior(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2);
+
+s16 D_80801E50_chmonsterinterior[] = {
+    0x0003, 0x0002, 0x0001, 0x0000,
+};
+
+u8 D_80801E58_chmonsterinterior[] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x3F, 0x80, 0x00, 0x00, 0x03, 0x61, 0x00, 0x4A,
+    0x40, 0x80, 0x00, 0x00, 0x03, 0x62, 0x00, 0x09,
+    0x3F, 0x80, 0x00, 0x00, 0x03, 0x61, 0x00, 0x92,
+    0x3F, 0x80, 0x00, 0x00, 0x03, 0x61, 0x00, 0x09,
+};
+
+u32 D_80801E80_chmonsterinterior[] = {
+    0x01580451, 0x00000001,
+    0x00000000, (u32)func_808000BC_chmonsterinterior,
+    (u32)func_80105834, (u32)func_80101870,
+    0x00000000, 0x00000000,
+    0x00000000, 0x00000001,
+    (u32)func_8080060C_chmonsterinterior, 0x00000000,
+    0x05440000, (u32)func_8080003C_chmonsterinterior,
+    (u32)func_80107C2C, 0x80000602,
+    (u32)func_808002D4_chmonsterinterior, 0x00000000,
+};
+
+u32 D_80801EC8_chmonsterinterior[] = {
+    0x01580455, 0xFFFF0001,
+    0x00000000, (u32)func_80800E0C_chmonsterinterior,
+    (u32)func_80105834, (u32)func_8080101C_chmonsterinterior,
+    0x00000000, 0x00000000,
+    0x00000000, 0x00400401,
+    (u32)func_8080060C_chmonsterinterior, 0x00000000,
+    0x05440000, (u32)func_80800DA4_chmonsterinterior,
+    (u32)func_80107C2C, 0x80000402,
+    (u32)func_80801050_chmonsterinterior, 0x00000000,
+};
+
+u32 D_80801F10_chmonsterinterior[] = {
+    0x02A60452, 0xFFFF0001,
+    0x00000000, (u32)func_808014E8_chmonsterinterior,
+    (u32)func_80105834, (u32)func_801018A4,
+    0x00000000, 0x00000000,
+    0x00000000, 0x00000124,
+    (u32)func_808017E8_chmonsterinterior, (u32)func_80108ED0,
+    0x002C0000, (u32)func_808013D0_chmonsterinterior,
+    (u32)func_80107C2C, 0x80241001,
+    (u32)func_808017F0_chmonsterinterior, 0x00000000,
+};
+
+u32 D_80801F58_chmonsterinterior[] = {
+    0x02A60453, 0xFFFF0001,
+    0x00000000, (u32)func_808014E8_chmonsterinterior,
+    (u32)func_80105834, (u32)func_801018A4,
+    0x00000000, 0x00000000,
+    0x00000000, 0x00000124,
+    (u32)func_808017E8_chmonsterinterior, (u32)func_80108ED0,
+    0x002C0000, (u32)func_808013D0_chmonsterinterior,
+    (u32)func_80107C2C, 0x80241001,
+    (u32)func_808017F0_chmonsterinterior, 0x00000000,
+};
+
+u32 D_80801FA0_chmonsterinterior[] = {
+    0x02A60454, 0xFFFF0001,
+    0x00000000, (u32)func_808014E8_chmonsterinterior,
+    (u32)func_80105834, (u32)func_801018A4,
+    0x00000000, 0x00000000,
+    0x00000000, 0x00000124,
+    (u32)func_808017E8_chmonsterinterior, (u32)func_80108ED0,
+    0x002C0000, (u32)func_808013D0_chmonsterinterior,
+    (u32)func_80107C2C, 0x80241001,
+    (u32)func_808017F0_chmonsterinterior, 0x00000000,
+};
+
+u16 D_80801FE8_chmonsterinterior[] = {
+    0x0806, 0x0804, 0x0805, 0x0000,
+};
+
+u16 D_80801FF0_chmonsterinterior[] = {
+    0x099F, 0x099E, 0x099D, 0x0000,
+    0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x00FF, 0x0000, 0x0000,
+    0x0000, 0x00FF, 0x0000, 0x0000,
+    0x0000, 0x00FF, 0x0000, 0x0000,
+    0x0000, 0x0000,
+};
+
+s32 D_8080201C_chmonsterinterior[] = {
+    0x001304B2, 0x000D00A6,
+    0x00C00001, 0x03200898,
+    0x00000000,
+};
+
+u32 D_80802030_chmonsterinterior[] = {
+    0x0013060F, 0x000D00F3,
+    0x010C0001, 0x03200898,
+    0x00000000,
+};
+
+s32 D_80802044_chmonsterinterior[] = {
+    0x00161200, 0x00150000,
+    0x00CC002B, 0x00B300CC,
+    0x002200CC, 0x01330080,
+    0x0099002D, 0x02580320,
+    0x0027FF38, 0xFF3800C8,
+    0x00C8000E, 0x00190032,
+    0x001BFC18, 0xFCE00000,
+};
+
+s32 D_8080207C_chmonsterinterior[] = {
+    0x0013041F, 0x0018000D,
+    0x00F3010C, 0x00000000,
+};
+
+s16 D_8080208C_chmonsterinterior[] = {
+    0x0922, 0x0921, 0x0920, 0x0000,
+    0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000,
+};
+
 OSThread *chmonsterinterior_entrypoint_0(void)
 {
-    extern u8 D_80801E80_chmonsterinterior[];
 
     return (OSThread *) D_80801E80_chmonsterinterior;
 }
 
 OSThread *chmonsterinterior_entrypoint_1(void)
 {
-    extern u8 D_80801EC8_chmonsterinterior[];
 
     return (OSThread *) D_80801EC8_chmonsterinterior;
 }
 
 OSThread *chmonsterinterior_entrypoint_2(void)
 {
-    extern u8 D_80801F10_chmonsterinterior[];
 
     return (OSThread *) D_80801F10_chmonsterinterior;
 }
 
 OSThread *chmonsterinterior_entrypoint_3(void)
 {
-    extern u8 D_80801F58_chmonsterinterior[];
 
     return (OSThread *) D_80801F58_chmonsterinterior;
 }
 
 OSThread *chmonsterinterior_entrypoint_4(void)
 {
-    extern u8 D_80801FA0_chmonsterinterior[];
 
     return (OSThread *) D_80801FA0_chmonsterinterior;
 }
@@ -119,7 +250,98 @@ void func_808000BC_chmonsterinterior(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808002D4_chmonsterinterior.s")
+s32 func_808002D4_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_3(void *, s32, s32, u32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800D395C(void);
+    s32 func_800DA9E4(s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    u32 func_800F54E4(void);
+    void func_800F7B9C(s32, u32);
+    void func_800F7C58(s32, s32, s32);
+    void func_800F82D4(s32, s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_8080068C_chmonsterinterior(Actor *);
+    void func_8080078C_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
+    s32 func_808009C0_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
+    void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1);
+    void _bsfirstp_entrypoint_18(void);
+    s32 data;
+    s32 player;
+    s32 text;
+
+    data = (s32)func_80100094(arg0, 0);
+    switch (arg1) {
+        default:
+            return 0;
+        case 0x2E:
+            func_8080078C_chmonsterinterior(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            return 1;
+        case 0x30:
+            return func_808009C0_chmonsterinterior(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        case 0x3D:
+            func_80800A44_chmonsterinterior(arg0, arg2);
+            return 1;
+        case 0xB:
+            if (arg2 == 6) {
+                _susubgame_entrypoint_4(arg0, data + 0x10);
+                func_800F7B9C(func_800F54E4(), 0x62);
+                func_800F82D4(func_800F54E4(), 0);
+                func_80101FDC(arg0, 7);
+                return 4;
+            }
+            return 3;
+        case 0x49:
+            player = func_800F54E4();
+            if (((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) != 1) {
+                return 0;
+            }
+            if (_glcutDll_entrypoint_20()) {
+                func_800FFAB0(arg0);
+                return 0;
+            }
+            if (!func_800DA9E4(0x370, 1)) {
+                func_800F49D4(player, _bsfirstp_entrypoint_18, 0);
+                _susubgame_entrypoint_6(arg0, data + 0x10, 0, 0x20, 0);
+                _chintrotext_entrypoint_2(1);
+            } else {
+                func_800F49D4(player, NULL, 0);
+                func_800F7B9C(player, 0x8F);
+                func_800F7B9C(player, 0x63);
+                func_800F7C58(player, 0x61, 0);
+                _susubgame_entrypoint_5(arg0, data + 0x10, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0xCEC, 0x46, NULL, 0xB3);
+                func_800F82D4(func_800F54E4(), 2);
+            }
+            func_80101FDC(arg0, 2);
+            return 1;
+        case 0x77:
+            text = func_800D395C() ? 0x181A : 0x17F2;
+            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, text, 0x46, NULL, 0xB3);
+            func_800F82D4(func_800F54E4(), 2);
+            return 1;
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, data + 0x10, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x59:
+            text = arg2;
+            if (text != 0xCEB) {
+                if (text == 0xCEC) {
+                    func_8080068C_chmonsterinterior(arg0);
+                    _susubgame_entrypoint_4(arg0, data + 0x10);
+                }
+            } else {
+                _susubgame_entrypoint_4(arg0, data + 0x10);
+            }
+            return 1;
+    }
+}
 
 void func_8080060C_chmonsterinterior(Actor *arg0) {
     void *func_80100094(Actor *, u32);
@@ -308,8 +530,6 @@ void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1) {
 void func_80800BC8_chmonsterinterior(u8 **arg0, s32 arg1) {
     s32 func_800D3948(void);
     void func_801032B0(void *, u16, u16);
-    extern u16 D_80801FE8_chmonsterinterior[];
-    extern u16 D_80801FF0_chmonsterinterior[];
     if (func_800D3948() != 0) {
         func_801032B0(arg0, D_80801FF0_chmonsterinterior[arg1], *(u16 *)(*arg0 + 0x16));
         return;
@@ -507,7 +727,6 @@ void func_808013D0_chmonsterinterior(Actor *arg0) {
     void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
     void _subaddierouteDll_entrypoint_1(Actor *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_8080201C_chmonsterinterior;
     typedef struct {
         s32 pad[10];
         f32 unk28;
@@ -535,7 +754,7 @@ void func_808013D0_chmonsterinterior(Actor *arg0) {
         arg0->unk64_24 = 0;
         arg0->unk58 = 5.5f;
     }
-    func_8010D930(4, ((MonsterInteriorData *)arg0)->flags & 1, arg0->position, &D_8080201C_chmonsterinterior);
+    func_8010D930(4, ((MonsterInteriorData *)arg0)->flags & 1, arg0->position, D_8080201C_chmonsterinterior);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808014E8_chmonsterinterior.s")
@@ -550,7 +769,6 @@ s32 func_808017F0_chmonsterinterior(Actor *arg0, s32 arg1, Unk80132ED0 *volatile
     void func_8010DCB4(s32);
     int func_8010DD20(u8 *, s32, u8 *);
     void func_80801930_chmonsterinterior(Actor *, Unk80132ED0 *);
-    extern u8 D_80801E58_chmonsterinterior[];
     Unk80132ED0 *data;
 
     switch (arg1) {
@@ -600,10 +818,6 @@ void func_80801930_chmonsterinterior(Actor *arg0, Unk80132ED0 *arg1) {
     void func_80103DFC(Actor *, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s16 D_80801E50_chmonsterinterior[];
-    extern s32 D_80802044_chmonsterinterior[];
-    extern s32 D_8080207C_chmonsterinterior[];
-    extern s16 D_8080208C_chmonsterinterior[];
     s32 pad;
     s32 *data;
     s32 count;
