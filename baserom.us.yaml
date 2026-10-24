@@ -9381,7 +9381,7 @@ segments:
     subsegments: 
       - [0x02088320, c, dragonbrothers]
       - [0x0208D2F0, .rodata, dragonbrothers]
-      - [0x0208D6C0, data, dragonbrothers]
+      - [0x0208D6C0, .data, dragonbrothers]
       - [0x0208DDD0, bss, dragonbrothers]
   - name: chwallsnakebaddy_header
     dir: overlays/chwallsnakebaddy
