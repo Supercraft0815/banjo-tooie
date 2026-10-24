@@ -156,7 +156,72 @@ void func_800A7380(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E80A70/func_800A73F4.s")
+void func_800A73F4(s32 arg0, s32 arg1) {
+    void func_800A8670(void);
+    void func_800A9378(void);
+    void func_800A9AA4();
+    void func_800A8BA8(Gfx **, s32);
+    s32 func_800A8BD4(Gfx **, s32, s32);
+    void func_800A8CCC(s32, s32);
+    s32 func_800A89F8(void);
+    void func_800B7448(Gfx **);
+    void func_800C0130(s32);
+    void func_800C0984(s32);
+    void func_800C9358(Gfx **, s32);
+    s32 func_800C940C(s32, s32);
+    void func_800D36A8(void);
+    void func_800E7EF4(Gfx **);
+    void func_800E9F20(s32, s32);
+    s32 func_800EA358(void);
+    void func_800EB51C(s32, s32);
+    void func_800F5184(void);
+    void func_800F51A8(void);
+    void func_800FA508(s32);
+    void func_800FFC90(void);
+    extern s16 D_80127632;
+    Mtx *sp24;
+    Vtx *sp20;
+    Gfx **gfx = &D_80127658;
+
+    sp24 = (Mtx *)gfx[1];
+    sp20 = (Vtx *)gfx[2];
+    func_800A8670();
+    func_800A9378();
+    func_800F5184();
+    func_800A8BA8(gfx, arg1);
+    if (!func_800A8BD4(gfx, -1, arg1)) {
+        goto views_done;
+    }
+render_view:
+    func_800E9F20(func_800A89F8(), arg1);
+    if (func_800A8BD4(gfx, -1, arg1)) {
+        goto render_view;
+    }
+views_done:
+    func_800A8CCC((s32)gfx, arg1);
+    if (D_80127632 == 5) {
+        func_800A9AA4(gfx);
+    }
+    if (func_800EA358()) {
+        func_800EB51C(3, (s32)gfx);
+    }
+    func_800C0984((s32)gfx);
+    func_800C9358(gfx, arg1);
+    func_800C0130((s32)gfx);
+    if (func_800EA358()) {
+        func_800EB51C(4, (s32)gfx);
+    }
+    func_800FA508((s32)gfx);
+    func_800B7448(gfx);
+    func_800C940C((s32)gfx, arg1);
+    func_800E7EF4(gfx);
+    osWritebackDCache(sp24, ((Mtx *)((Gfx *volatile *)gfx)[1] - sp24) * sizeof(Mtx));
+    osWritebackDCache(sp20, ((Vtx *)((Gfx *volatile *)gfx)[2] - sp20) * sizeof(Vtx));
+    func_800F51A8();
+    func_800D36A8();
+    func_800FFC90();
+    func_800A89BC(0);
+}
 
 void func_800A7584(s32 arg0, s32 arg1) {
     D_80127630.unk1A = arg0 + 1;
