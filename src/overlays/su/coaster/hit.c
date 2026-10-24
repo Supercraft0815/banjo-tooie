@@ -132,7 +132,199 @@ s32 func_80800208_sucoasterhit(s32 arg0, void *arg1, s32 arg2, s32 *arg3, s32 *a
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/hit/func_80800294_sucoasterhit.s")
+void func_80800294_sucoasterhit(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+    Actor *func_80106790(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 _glhittableDll_entrypoint_10(s32);
+    s32 _glhittableDll_entrypoint_7(s32);
+    s32 _glhittableDll_entrypoint_9(s32);
+    s32 _glhittableDll_entrypoint_6(s32);
+    s32 _glhittableDll_entrypoint_8();
+    s32 func_800F70EC(u32);
+    s32 func_800F6C1C(u32);
+    s32 func_800F0E28(s32, s32, ...);
+    s32 _sueggmisc_entrypoint_0();
+    void _suegg_entrypoint_18(Actor *, f32 *);
+    void _suegg_entrypoint_19(Actor *, f32 *);
+    void func_800F57F0(u32, f32 *);
+    void func_800F5D70(u32, f32 *);
+    f32 func_800EEFD4(f32[3]);
+    f32 func_800F5F24(u32);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EC398(Unk80132ED0 *, f32 *);
+    void func_800EFD24(f32[3]);
+    f32 func_800F1DF4(f32[3], f32[3]);
+    int func_800F1EA4(f32[3], f32 *);
+    f32 func_800DC178(f32, f32);
+    f32 func_800136E4(f32);
+    void _chbounce_entrypoint_3(f32);
+    void _chbounce_entrypoint_2(f32);
+    void _chbounce_entrypoint_5(s32, void *);
+    void func_80109600(Actor *, Unk80132ED0 *);
+    void _chflamer_entrypoint_1(void *, void *);
+    void func_800EC370(void **, void *);
+    void _chfreezy_entrypoint_1(void *, s16 *);
+    void func_8010965C(Actor *);
+    s32 func_8010A430(Actor *);
+    u32 func_800F54E4(void);
+    void func_800EB860(s32, s32);
+    void func_80108EF4(void);
+    f32 func_800EC708(Unk80132ED0 *);
+    void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void func_800EB874(void);
+    void func_8010D930(s32, s32, f32 *, void *);
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    extern u8 D_80800CC4_sucoasterhit[];
+    struct MarkerFields {
+        u8 padding[0x18];
+        u32 upper18 : 11;
+        u32 mode : 4;
+        u32 bit16 : 1;
+        u32 player : 11;
+        u32 lower18 : 5;
+        u32 unk1C;
+        u32 unk20;
+        u32 id : 10;
+        u32 lower24 : 22;
+    };
+    struct DataFlags {
+        u8 padding[0x19];
+        u8 upper : 2;
+        u8 flag : 1;
+        u8 lower : 5;
+    };
+    struct HitVitals { u8 pad[0x5C]; u8 health[3]; };
+    Actor *sp9C;
+    s32 sp98;
+    s32 sp94;
+    s32 sp90;
+    s32 sp8C;
+    s32 sp88;
+    s32 sp84;
+    s32 sp80;
+    s32 sp7C;
+    s32 sp78;
+    struct DataFlags *sp74;
+    u32 sp70;
+    f32 sp6C;
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp50;
+    f32 sp4C;
+    Actor *sp48;
+    s32 sp3C[3];
+    f32 sp38;
+    f32 sp34;
+    s32 pad30;
+
+    sp9C = func_80106790(arg0);
+    sp98 = _glhittableDll_entrypoint_10(arg2);
+    sp94 = _glhittableDll_entrypoint_7(arg2);
+    sp90 = _glhittableDll_entrypoint_9(arg2);
+    sp8C = _glhittableDll_entrypoint_6(arg2);
+    sp78 = ((struct MarkerFields *)arg1)->id == 0;
+    sp74 = func_80100094(sp9C, 0);
+    if (!sp78 || ((sp70 = ((struct MarkerFields *)arg1)->player,
+                   func_800F70EC(sp70)) && func_800F6C1C(sp70)) ||
+        !_glhittableDll_entrypoint_8(arg2)) {
+        sp88 = func_80800208_sucoasterhit(sp9C, arg1, &sp94, &sp90, &sp8C);
+        if ((u32)sp90 != 0) {
+            if (sp88 & 1) {
+                sp7C = sp90;
+            } else {
+                sp7C = 100 / sp90;
+            }
+            ((struct HitVitals *)sp9C)->health[sp8C] = func_800F0E28(0, ((struct HitVitals *)sp9C)->health[sp8C] - sp7C);
+            if (((struct HitVitals *)sp9C)->health[sp8C] && !(sp88 & 1) && *(s32 *)&sp90 >= 2) {
+                sp94 /= 2;
+            }
+            sp84 = sp8C == 2 && ((struct HitVitals *)sp9C)->health[sp8C] == 0;
+            if ((sp88 & 4) && !sp84) {
+                sp94 = 0;
+            }
+            if (sp94 != 0) {
+                if (_sueggmisc_entrypoint_0(arg1)) {
+                    sp48 = func_80106790(arg1);
+                    _suegg_entrypoint_18(sp48, sp60);
+                    _suegg_entrypoint_19(sp48, sp54);
+                } else if (sp78) {
+                    func_800F57F0(((struct MarkerFields *)arg1)->player, sp60);
+                    func_800F5D70(((struct MarkerFields *)arg1)->player, sp54);
+                    if (func_800EEFD4(sp54) < 100.0f) {
+                        func_800EEB9C(sp54, func_800F5F24(((struct MarkerFields *)arg1)->player), 200.0f);
+                    }
+                } else {
+                    func_800EC398(arg1, sp60);
+                    func_800EFD24(sp54);
+                }
+                sp4C = func_800F1DF4(sp60, sp9C->position);
+                if (!func_800F1EA4(sp54, &sp50)) {
+                    sp50 = sp4C;
+                }
+                sp50 += func_800DC178(-30.0f, 30.0f);
+                sp6C = func_800136E4(sp50);
+                _chbounce_entrypoint_3(sp6C);
+                _chbounce_entrypoint_2(sp6C);
+                _chbounce_entrypoint_5(sp94 + 15, sp9C);
+                sp9C->rotation[1] = sp9C->unk54 = func_800136E4(sp6C + 180.0f);
+            }
+            sp80 = !(sp88 & 2) || sp84;
+            if (sp80) {
+                switch (sp8C) {
+                    case 2:
+                        func_80109600(sp9C, arg1);
+                        if (((struct MarkerFields *)arg1)->id == 0x26D) {
+                            _chflamer_entrypoint_1(sp9C, arg1);
+                        }
+                        break;
+                    case 1:
+                        func_80109600(sp9C, arg1);
+                        if (((struct MarkerFields *)arg1)->id == 0x26E) {
+                            func_800EC370(arg1, sp3C);
+                            _chfreezy_entrypoint_1(sp9C, sp3C);
+                        }
+                        break;
+                }
+            }
+            if (sp90 && sp9C->unk70_10 == 9 && ((struct MarkerFields *)sp9C->unk0)->mode == 1) {
+                func_8010965C(sp9C);
+                sp74->flag = 1;
+            }
+            if (((struct HitVitals *)sp9C)->health[sp8C] == 0 || sp8C != 0) {
+                if (((struct HitVitals *)sp9C)->health[sp8C] != 0) {
+                    sp8C--;
+                }
+                if (sp8C != 2) {
+                    ((struct HitVitals *)sp9C)->health[sp8C] = 99;
+                }
+                if (sp8C == 2 && sp98 && func_8010A430(sp9C)) {
+                    sp38 = func_800F5F24(func_800F54E4());
+                    func_800EB860(func_80108EF4, sp9C);
+                    sp34 = sp9C->position[1] + func_800EC708(arg0);
+                    _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, sp98 + 2,
+                        *(s32 *)&sp9C->position[0], *(s32 *)&sp34, *(s32 *)&sp9C->position[2], *(s32 *)&sp38);
+                    func_800EB874();
+                }
+                switch (sp8C) {
+                    case 0:
+                        func_8080000C_sucoasterhit(sp9C->unk0, arg1);
+                        break;
+                    case 1:
+                        func_80800114_sucoasterhit(sp9C->unk0, arg1);
+                        break;
+                    case 2:
+                        func_808001C8_sucoasterhit(sp9C->unk0, arg1);
+                        break;
+                }
+            }
+            if (sp80) {
+                func_8010D930(1, sp9C->unk70_0, sp9C->position, D_80800CC4_sucoasterhit);
+                _subaddiejoy_entrypoint_10(sp9C, 1.0f, 0.25f);
+            }
+        }
+    }
+}
 
 void func_80800870_sucoasterhit(Actor *arg0, Actor *arg1, s32 arg2, s32 arg3) {
     void *_sucoasterdata_entrypoint_1(u32);
