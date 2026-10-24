@@ -755,7 +755,7 @@ void func_80801A20_chcollballcontrol(Actor *arg0) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800EFBFC(void *, void *);
-    s32 func_800EFCD8(s32 *, f32, s32);
+    void func_800EFCD8(f32 *, f32, f32);
     void func_800F5A00(s32, f32 *);
     void func_800F5D70(s32, f32 *);
     f32 func_800F5F24(u32);
@@ -805,7 +805,7 @@ void func_80801A20_chcollballcontrol(Actor *arg0) {
                 func_800F5A00(((u8 *)data)[0x20], position);
                 arg0->unk54 = func_800F5F24(((u8 *)data)[0x20]);
                 arg0->position[1] = 0.0f;
-                func_800EFCD8((s32 *)arg0->position, arg0->unk54, 0x42700000);
+                func_800EFCD8(arg0->position, arg0->unk54, 60.0f);
                 func_800EF04C(arg0->position, position);
                 func_800F5D70(((u8 *)data)[0x20], velocity);
                 arg0->unk50 = velocity[0] * velocity[0] + velocity[2] * velocity[2];
@@ -813,7 +813,7 @@ void func_80801A20_chcollballcontrol(Actor *arg0) {
             } else {
                 carrier = func_80106790(_sukickball_entrypoint_8(linked, ((u8 *)data)[0x20]));
                 arg0->position[1] = 0.0f;
-                func_800EFCD8((s32 *)arg0->position, carrier->rotation[1], 0x42700000);
+                func_800EFCD8(arg0->position, carrier->rotation[1], 60.0f);
                 func_800EF04C(arg0->position, carrier->position);
                 arg0->unk54 = carrier->rotation[1];
                 arg0->unk50 = ((f32 *)carrier->actorData)[3] * ((f32 *)carrier->actorData)[3];
@@ -1397,7 +1397,7 @@ void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
     typedef struct { f32 v[3]; } Vec3;
     f32 func_800DC178(f32, f32);
     s32 func_800EE780(u8 *, u8 *, s32 *);
-    s32 func_800EFCD8(s32 *, f32, s32);
+    void func_800EFCD8(f32 *, f32, f32);
     f32 func_80102D78(u8 *);
     void func_8080324C_chcollballcontrol();
     f32 func_8080009C_chcollballcontrol();
@@ -1412,7 +1412,7 @@ void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
         sp24 = func_80102D78(arg0);
         var_f2 = func_800DC178(110.0f, 250.0f) + sp24;
     }
-    func_800EFCD8((s32 *)&sp2C, var_f2, 0x43FA0000);
+    func_800EFCD8((f32 *)&sp2C, var_f2, 500.0f);
     func_800EE780(arg0 + 0x18, arg0 + 4, (s32 *)&sp2C);
     (*(f32 *)((s8 *)(arg0) + (0x24))) = func_8080009C_chcollballcontrol(arg0);
     if ((*(f32 *)((s8 *)(arg0) + (0x18))) > 720.0f) {
@@ -1476,7 +1476,7 @@ void func_80803484_chcollballcontrol(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    s32 func_800EFCD8(s32 *, f32, s32);
+    void func_800EFCD8(f32 *, f32, f32);
     s32 func_800EFFB4(f32 *, f32, f32 *);
     int func_800F0064(f32 *, f32, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -1610,7 +1610,7 @@ void func_80803484_chcollballcontrol(Actor *arg0) {
             func_8080324C_chcollballcontrol(arg0, 1);
         }
         _sukickball_entrypoint_16(arg0->unk6C_0, (f32 *)arg0->actorData);
-        func_800EFCD8((s32 *)sp50.v, _sukickball_entrypoint_15(arg0->unk6C_0), 0x437A0000);
+        func_800EFCD8(sp50.v, _sukickball_entrypoint_15(arg0->unk6C_0), 250.0f);
         func_800EF04C((f32 *)arg0->actorData, sp50.v);
         if (func_800F0064(arg0->position, 100.0f, (f32 *)arg0->actorData) || _sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0) == 3) {
             func_8080324C_chcollballcontrol(arg0, 5);
@@ -1917,7 +1917,87 @@ void func_808044F4_chcollballcontrol(Actor *arg0) {
     func_800BD09C(*data);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080451C_chcollballcontrol.s")
+s32 func_8080451C_chcollballcontrol(Actor *arg0)
+{
+    s32 *_subaddiefind_entrypoint_0();
+    f32 func_800136E4(f32);
+    f32 func_800DC0C0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    int func_800F0064(f32 *, f32, f32 *);
+    s32 func_80102CF4(Actor *, s32);
+    f32 func_80102D78();
+    void func_8080324C_chcollballcontrol(Actor *, s32);
+    u8 *selected;
+    union { f32 f; s32 i; } distance;
+    u8 *other;
+    f32 angle;
+    f32 speed;
+
+    selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, -1, &distance.f);
+    if (selected == NULL) {
+        selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A2, -1, &distance.f);
+        if (selected == NULL) {
+            selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A3, -1, &distance.f);
+            if (selected == NULL) {
+                return NULL;
+            }
+        }
+    } else if ((((u32)*(u16 *)(selected + 0x72) >> 10) == 2 &&
+                !func_800F0064((f32 *)((u8 *)arg0 + 4), 100.0f, (f32 *)(selected + 4))) ||
+               ((u32)*(u16 *)(selected + 0x72) >> 10) == 6 ||
+               ((u32)*(u16 *)(selected + 0x72) >> 10) == 4 ||
+               ((u32)*(u16 *)(selected + 0x72) >> 10) == 3) {
+        switch ((u32)*(u16 *)(selected + 0x72) >> 10) {
+            case 2:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 2, &distance.f);
+                break;
+            case 3:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 3, &distance.f);
+                break;
+            case 6:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 6, &distance.f);
+                break;
+            case 4:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 4, &distance.f);
+                break;
+        }
+        if (other != NULL && (((u32)*(u16 *)(other + 0x72) >> 10) == 1 ||
+                              ((u32)*(u16 *)(other + 0x72) >> 10) == 3)) {
+            selected = other;
+        }
+    }
+    if (((u32)*(u16 *)(selected + 0x72) >> 10) == 2) {
+        angle = *(f32 *)(selected + 0x54) - func_80102D78(arg0, (f32 *)(selected + 0x18));
+        speed = 0.0f;
+        angle = func_800136E4(angle);
+        if (angle < 90.0f) {
+            angle = *(f32 *)(selected + 0x54) + 65.0f;
+            speed = *(f32 *)(selected + 0x50) * 0.006666666828f;
+        } else if (angle > 270.0f) {
+            angle = *(f32 *)(selected + 0x54) - 65.0f;
+            speed = *(f32 *)(selected + 0x50) * 0.006666666828f;
+        } else if (*(f32 *)(selected + 0x50) > 10.0f) {
+            speed = *(f32 *)(selected + 0x50) * 0.002857142827f;
+        }
+        if (speed < 25.0f) {
+            speed = 25.0f;
+        }
+        if (speed < 30.0f) {
+            *(f32 *)((u8 *)arg0 + 0x54) = func_80102D78(arg0, (f32 *)(selected + 0x18));
+            if (!func_80102CF4(arg0, 0x42340000) && func_80102CF4(arg0, 0x42B40000) &&
+                func_800DC0C0() < 0.8f) {
+                func_8080324C_chcollballcontrol(arg0, 8);
+            }
+        }
+        func_800EFCD8((f32 *)((u8 *)arg0 + 0x18), angle, speed);
+        func_800EF04C((f32 *)((u8 *)arg0 + 0x18), (f32 *)(selected + 4));
+    } else {
+        func_800EE7F8((f32 *)((u8 *)arg0 + 0x18), (f32 *)(selected + 4));
+    }
+    return (s32)selected;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_8080486C_chcollballcontrol.s")
 
