@@ -142,7 +142,68 @@ s32 func_800CE59C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CE628.s")
+s32 func_800CE628(void) {
+    f32 func_800D9004(void);
+    int func_800DB9B0(void);
+    s32 func_800EA09C(void);
+    u32 func_800F54E4(void);
+    s32 func_800F68B8(s32);
+    s32 func_800F6D24(s32);
+    int func_800F8004(s32);
+    void func_800CEC94(u8 *, s32, s32);
+    extern s16 D_8011AA30;
+    void (*callback)(s32, s32);
+    s16 *entry;
+    f32 previous;
+    f32 delta;
+    s32 callback_arg;
+    s32 player;
+    s32 state;
+    s32 flag1;
+    s32 flag2;
+    s32 flag3;
+    s32 active;
+    s32 i;
+    u8 *timer;
+
+    if (func_800EA09C() == 2) {
+        player = func_800F54E4();
+        delta = func_800D9004();
+        state = func_800DB9B0();
+        flag1 = func_800F6D24(player);
+        flag2 = func_800F8004(player);
+        flag3 = func_800F68B8(player);
+        entry = &D_8011AA30;
+        i = 0;
+        do {
+            timer = func_800CE3E0(i);
+            active = func_800CE59C(i, state, flag1, flag2, flag3);
+            if ((*(s8 *)(timer + 0x12) > 0) && (timer[0x13] == 0) && (timer[0x14] == 0) && active) {
+                *(f32 *)(timer + 4) = *(f32 *)timer;
+                *(s16 *)(timer + 8) = *(s16 *)(timer + 0xA);
+                *(f32 *)timer = *(f32 *)(timer + 4) - delta;
+                if (*(volatile f32 *)timer < 0.0f) {
+                    *(f32 *)timer = 0.0f;
+                    if (*(void (**)(s32, s32))(timer + 0x18) != NULL) {
+                        callback = *(void (**)(s32, s32))(timer + 0x18);
+                        callback_arg = *(s32 *)(timer + 0x1C);
+                        *(void (**)(s32, s32))(timer + 0x18) = NULL;
+                        *(s32 *)(timer + 0x1C) = 0;
+                        callback(i, callback_arg);
+                    }
+                    *(s8 *)(timer + 0x12) = 0;
+                }
+                func_800CE49C(timer, i, 1);
+            }
+            if (entry[1] != 0) {
+                func_800CEC94(timer, i, active);
+            }
+            i++;
+            entry += 3;
+            timer[0x14] = 0;
+        } while (i != 9);
+    }
+}
 
 void func_800CE7DC(void) {
     s32 func_800C2FDC(u8);
