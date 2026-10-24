@@ -127,7 +127,106 @@ void func_808003E8_chcredits(s32 *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800710_chcredits.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800800_chcredits.s")
+void func_80800800_chcredits(void *arg0) {
+    typedef struct {
+        u8 pad0[0x34];
+        f32 timer1;
+        u8 pad38[0x20];
+        f32 timer2;
+        u8 pad5C[0x12];
+        u16 flags6E : 7;
+        u16 alpha : 9;
+        unsigned int flags70 : 16;
+        unsigned int state : 6;
+        unsigned int flags72 : 10;
+    } CreditsActor;
+    void chcredits_entrypoint_0(s32);
+    void func_80015ECC(s32, void *);
+    s32 func_800C954C(void);
+    f32 func_800D8FF8(void);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA05C(void);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80800300_chcredits(s32 *arg0);
+    void func_8080038C_chcredits(void);
+    void func_80800710_chcredits(s32 *, s32);
+    f32 delta;
+    s32 buttons[6];
+    CreditsActor *self = arg0;
+
+    delta = func_800D8FF8();
+    if ((s32)self->state >= 3 && (s32)self->state <= 5) {
+        /* Preserve IDO's original argument setup order. */
+        if (!buttons) {}
+        func_80015ECC(0, buttons);
+        if (buttons[1] == 1) {
+            func_808000C8_chcredits();
+        }
+    }
+    switch (self->state) {
+    case 2:
+        if (self->timer1 <= 0) {
+            func_80800710_chcredits(arg0, 3);
+            return;
+        }
+        self->timer1 -= delta;
+        return;
+    case 3:
+        if (self->timer2 <= 0) {
+            func_80800710_chcredits(arg0, 4);
+            self->alpha = 255;
+            return;
+        }
+        self->timer2 -= delta;
+        self->alpha = func_800F10B4(self->timer2, 0.75f, 0.0f, 0.0f, 255.0f);
+        return;
+    case 4:
+        if (self->timer2 <= 0) {
+            func_80800710_chcredits(arg0, 5);
+            return;
+        }
+        self->timer2 -= delta;
+        return;
+    case 5:
+        if (self->timer2 <= 0) {
+            func_80800300_chcredits(arg0);
+            self->alpha = 0;
+            return;
+        }
+        self->timer2 -= delta;
+        self->alpha = func_800F10B4(self->timer2, 0.75f, 0.0f, 255.0f, 0.0f);
+        return;
+    case 7:
+        if (func_800C954C() == 0) {
+            switch (func_800EA05C()) {
+            case 0x19C:
+                if (func_800DA9E4(0x650, 0) != 0) {
+                    func_8080038C_chcredits();
+                    return;
+                }
+                chcredits_entrypoint_0(0);
+                return;
+            case 0x19D:
+                if (func_800DA9E4(0x650, 0) != 0) {
+                    func_8080038C_chcredits();
+                    return;
+                }
+                chcredits_entrypoint_0(1);
+                return;
+            }
+        }
+        return;
+    case 6:
+        if (self->timer1 <= 0) {
+            func_80800710_chcredits(arg0, 8);
+            return;
+        }
+        self->timer1 -= delta;
+        break;
+    case 8:
+        break;
+    }
+}
 
 void func_80800BCC_chcredits(s32 arg0) 
 {
