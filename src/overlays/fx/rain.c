@@ -67,14 +67,14 @@ int fxrain_entrypoint_3(void *arg0) {
 /* extern */
 
 void fxrain_entrypoint_4(u8 *arg0) {
-    s32 func_800C2FDC(s32, u8 *, u8);
+    s32 func_800C2FDC();
     s32 heap_free(u8 *);
     s32 vector_free(s32, u8 *);
     u8 temp_a2;
 
     temp_a2 = (*(u8 *)((s8 *)(arg0) + (0)));
     if (temp_a2 != 0) {
-        func_800C2FDC(temp_a2 & 0xFF, arg0, temp_a2);
+        func_800C2FDC(temp_a2 & 0xFF, arg0, (u32)temp_a2);
         (*(u8 *)((s8 *)(arg0) + (0))) = 0;
     }
     vector_free((*(s32 *)((s8 *)(arg0) + (0x20))), arg0);
@@ -139,4 +139,125 @@ void fxrain_entrypoint_8(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/fxrain_entrypoint_9.s")
+void fxrain_entrypoint_9(void *arg0) {
+    typedef struct {
+        u8 sound;
+        f32 position[3];
+        f32 displacement[3];
+        u8 cursor;
+        s32 particles;
+        s32 unk24;
+        s32 active;
+        f32 timer;
+        u8 phase;
+        f32 elapsed;
+        f32 periods[5];
+    } Rain;
+    typedef struct {
+        f32 position[3];
+        f32 velocity[3];
+        u8 persistent;
+    } RainParticle;
+    s32 func_800A5490(void);
+    s32 func_800C2E04(void);
+    s32 func_800C2FDC();
+    void func_800C301C(u8, s32);
+    void func_800C316C(u8, s32, s32, f32);
+    void func_800C330C(u8, s32);
+    void func_800C3418(u8, s32);
+    void func_800C37E0(u8, f32, f32, f32);
+    s32 func_800C3A40(u8, f32, f32, f32);
+    void func_800C3BDC(u8);
+    f32 func_800D8FF8(void);
+    void func_800E3980(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    s32 func_800F1574(f32 *, f32);
+    void *vector_at(s32, s32);
+    s32 vector_clear(s32);
+    s32 vector_erase(s32, s32);
+    s32 vector_size(s32);
+    f32 position[3];
+    f32 delta;
+
+    delta = func_800D8FF8();
+    func_800E3980(position);
+    func_800EFB24(((Rain *)arg0)->displacement, position, ((Rain *)arg0)->position);
+    func_800EE7F8(((Rain *)arg0)->position, position);
+    if (func_800A5490()) {
+        vector_clear(((Rain *)arg0)->particles);
+    }
+    if (vector_size(((Rain *)arg0)->particles) > 0) {
+        if (((Rain *)arg0)->sound == 0) {
+            ((Rain *)arg0)->sound = func_800C2E04();
+            func_800C330C(((Rain *)arg0)->sound, 3);
+            func_800C301C(((Rain *)arg0)->sound, 0x465);
+            func_800C37E0(((Rain *)arg0)->sound, 0.95f, 1.05f, 0.01f);
+            func_800C3A40(((Rain *)arg0)->sound, 3.0f, 12960000.0f, 0.0f);
+            func_800C3418(((Rain *)arg0)->sound, 2);
+            func_800C316C(((Rain *)arg0)->sound, 5000, 6000, 5.0f);
+            func_800C3BDC(((Rain *)arg0)->sound);
+        }
+    } else if (((Rain *)arg0)->sound != 0) {
+        func_800C2FDC(((Rain *)arg0)->sound);
+        ((Rain *)arg0)->sound = 0;
+    }
+    {
+        s32 i;
+        RainParticle *particle;
+        for (i = 0; i < vector_size(((Rain *)arg0)->particles); i++) {
+            particle = vector_at(((Rain *)arg0)->particles, i);
+            particle->position[0] += particle->velocity[0] * delta;
+            particle->position[1] += particle->velocity[1] * delta;
+            particle->position[2] += particle->velocity[2] * delta;
+            if (particle->position[1] < position[1] - 500.0f && particle->persistent == 0) {
+                vector_erase(((Rain *)arg0)->particles, i);
+                i--;
+            }
+        }
+    }
+    ((Rain *)arg0)->cursor++;
+    if (((Rain *)arg0)->cursor < vector_size(((Rain *)arg0)->particles)) {
+        f32 distance;
+        distance = 2200.0f;
+        if (func_800EEB40(vector_at(((Rain *)arg0)->particles, ((Rain *)arg0)->cursor), position) >
+            distance * distance) {
+            vector_erase(((Rain *)arg0)->particles, ((Rain *)arg0)->cursor);
+        }
+    } else {
+        ((Rain *)arg0)->cursor = 0;
+    }
+    if (((Rain *)arg0)->phase != 0) {
+        ((Rain *)arg0)->elapsed += delta;
+        if (((Rain *)arg0)->elapsed >= ((Rain *)arg0)->periods[((Rain *)arg0)->phase]) {
+            ((Rain *)arg0)->phase++;
+            ((Rain *)arg0)->elapsed = 0.0f;
+            if (((Rain *)arg0)->phase >= 5) {
+                ((Rain *)arg0)->phase = 1;
+            }
+        }
+        if (((Rain *)arg0)->phase == 1) {
+            ((Rain *)arg0)->periods[0] = (1.0f - ((Rain *)arg0)->elapsed / ((Rain *)arg0)->periods[1]) * 0.1f;
+        } else if (((Rain *)arg0)->phase == 2) {
+            ((Rain *)arg0)->periods[0] = 0.01f;
+        } else if (((Rain *)arg0)->phase == 3) {
+            ((Rain *)arg0)->periods[0] = ((Rain *)arg0)->elapsed / ((Rain *)arg0)->periods[3] * 0.1f;
+        } else {
+            ((Rain *)arg0)->periods[0] = 0.01f;
+        }
+        if (((Rain *)arg0)->periods[0] <= 0.01f) {
+            ((Rain *)arg0)->periods[0] = 0.01f;
+        }
+    }
+    if (func_800F1574(&((Rain *)arg0)->timer, delta)) {
+        if (((Rain *)arg0)->active == 1 && !func_800A5490() && ((Rain *)arg0)->phase != 4) {
+            func_80800000_fxrain(arg0);
+        }
+        if (((Rain *)arg0)->phase != 0) {
+            ((Rain *)arg0)->timer = ((Rain *)arg0)->periods[0];
+        } else {
+            ((Rain *)arg0)->timer = 0.01f;
+        }
+    }
+}
