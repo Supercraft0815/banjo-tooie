@@ -1384,7 +1384,257 @@ void func_808029A4_chquiz(Actor *arg0) {
     func_8080216C_chquiz(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80802A2C_chquiz.s")
+s32 func_80802A2C_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80101010(f32 *);
+    void func_80101074(void *);
+    void _chblink_entrypoint_2(s16);
+    void _chblink_entrypoint_4(s16);
+    Actor *_subaddiefind_entrypoint_11(s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_8(Actor *, s32);
+    s32 _suquiz_entrypoint_11(s32);
+    s32 _suquiz_entrypoint_21(s32, s32);
+    s32 _suquiz_entrypoint_6(void);
+    s32 _suquiz_entrypoint_9(s32);
+    s32 func_800D3948(void);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800DF500(f32, f32, f32);
+    void func_800DF744(s32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_8010A800(Actor *, s32);
+    void func_80803368_chquiz(s32, s32);
+    Actor *sp54;
+    Actor *spawned;
+    f32 sp44[3];
+    s16 *sp40;
+    s16 blink_id;
+    Actor *other;
+    f32 sp34;
+    s32 completed;
+    s32 i;
+    s16 *blink;
+
+    switch (arg1) {
+    case 0x3D:
+        sp54 = _subaddiefind_entrypoint_11(0x52C, arg0->unk74_7);
+        if (sp54 == NULL) {
+            sp54 = func_80108528(0x52C, arg0->position, (s32)arg0->rotation[1], &arg0);
+            func_800EFA4C((f32 *)&sp54->actorData[4], arg0->position[0], arg0->position[1], arg0->position[2]);
+            func_800EFA4C(sp54->position, arg0->position[0], arg0->position[1] + -80.0f, arg0->position[2]);
+            func_8010A800(sp54, 1);
+            sp54->unk74_7 = arg0->unk74_7;
+        }
+        if (func_800D3948()) {
+            completed = 0;
+        } else if (!func_800D395C() && func_800DA298(0x441)) {
+            completed = 1;
+        } else {
+            completed = _suquiz_entrypoint_9(arg0->unk74_7);
+        }
+        if (completed) {
+            func_80102424(sp54, 3);
+            func_800FFAB0(arg0);
+            return 1;
+        }
+        spawned = func_80108528(0x52B, arg0->position, (s32)arg0->rotation[1], &arg0);
+        spawned->unk74_7 = arg0->unk74_7;
+        return 1;
+    case 0x99:
+        func_80101074(func_808000C4_chquiz(arg0->unk74_7));
+        return 1;
+    case 0x95:
+        func_80802250_chquiz(arg0);
+        return 1;
+    case 0x82:
+        func_80802434_chquiz(arg0, 3);
+        return 1;
+    case 0x83:
+        if (arg2 != arg0->unk74_7) {
+            func_80802434_chquiz(arg0, 7);
+        }
+        return 1;
+    case 0x84:
+        if (arg2 == arg0->unk74_7) {
+            func_80802434_chquiz(arg0, 0xB);
+        }
+        return 1;
+    case 0x85:
+        if (arg2 == arg0->unk74_7) {
+            func_80802434_chquiz(arg0, 9);
+        }
+        return 1;
+    case 0x86:
+        if (arg0->unk70_10 != 0xA && arg0->unk70_10 != 9) {
+            func_80802434_chquiz(arg0, 4);
+        }
+        return 1;
+    case 0x87:
+        if (func_800D3948()) {
+            if (arg2 == arg0->unk74_7) {
+                func_80802434_chquiz(arg0, 0xE);
+            } else {
+                func_80802434_chquiz(arg0, 0xC);
+            }
+        } else {
+            if (arg2 == arg0->unk74_7) {
+                func_80802434_chquiz(arg0, 0xC);
+            } else {
+                func_80802434_chquiz(arg0, 0xE);
+            }
+        }
+        return 1;
+    case 0x88:
+        if (arg0->unk70_10 == 0xD) {
+            func_80802434_chquiz(arg0, 0xF);
+        }
+        return 1;
+    case 0x89:
+        if (_suquiz_entrypoint_6() == arg0->unk74_7) {
+            func_80802434_chquiz(arg0, 6);
+            func_80803368_chquiz(arg0->unk74_7, 0);
+        } else {
+            func_80802434_chquiz(arg0, 7);
+        }
+        return 1;
+    case 0x8A:
+        if (arg2 == arg0->unk74_7) {
+            func_80802434_chquiz(arg0, 0x10);
+        }
+        return 1;
+    case 0x8B:
+        if (arg2 == arg0->unk74_7) {
+            func_80802434_chquiz(arg0, 2);
+        }
+        return 1;
+    case 0x3B:
+        func_80802434_chquiz(arg0, 1);
+        return 1;
+    case 1:
+        if (_suquiz_entrypoint_11(arg0->unk74_7)) {
+            return 0;
+        }
+        _suquiz_entrypoint_21(arg0->unk74_7, 1);
+        return 1;
+    case 2:
+        if (2 != (s32)arg0->unk74_7) {
+            _suquiz_entrypoint_21(arg0->unk74_7, -1);
+        }
+        return 1;
+    case 0x97:
+        func_800EFA4C(sp44, 0.0f, (1.0f / arg0->scale) * 400.0f, 0.0f);
+        func_80101010(sp44);
+        return 1;
+    case 0x1F:
+        sp40 = func_80100094(arg0, 0);
+        func_801015D0(arg0);
+        switch (arg0->unk74_7) {
+        case 2:
+            func_800DF744(3, 1);
+            func_800DF744(4, 1);
+            func_800DF744(9, 1);
+            func_800DF744(0xF, 1);
+            break;
+        case 0:
+            func_800DF744(3, 0);
+            break;
+        case 3:
+            func_800DF744(4, 0);
+            func_800DF744(5, 0);
+            break;
+        case 4:
+            func_800DF744(3, 0);
+            func_800DF744(4, 0);
+            func_800DF744(5, 1);
+            func_800DF744(6, 1);
+            func_800DF744(7, 0);
+            func_800DF744(8, 0);
+            break;
+        case 5:
+            func_800DF744(7, 1);
+            func_800DF744(0xF, 1);
+            func_800DF744(0x12, 1);
+            break;
+        case 6:
+            func_800DF744(3, 0);
+            func_800DF744(5, 0);
+            break;
+        }
+        i = 0;
+        blink = sp40;
+        do {
+            blink_id = *blink;
+            if (blink_id != 0) {
+                _chblink_entrypoint_2(blink_id);
+                _chblink_entrypoint_4(*blink);
+            }
+            i += 2;
+            blink++;
+        } while (i != 4);
+        if (arg0->unk70_10 == 0xD) {
+            other = func_80106790(arg0->unk3C);
+            if (other != NULL) {
+                sp34 = func_80101F24(other);
+            } else {
+                return 1;
+            }
+            if (sp34 > 0.5f) {
+                if (sp34 < 0.65f) {
+                    sp34 = func_800F10B4(sp34, 0.5f, 0.65f, 1.0f, 0.01f);
+                } else {
+                    sp34 = 0.01f;
+                }
+                func_800DF500(1.0f, sp34, 1.0f);
+            }
+        }
+        return 1;
+    case 0x29:
+        switch (arg0->unk74_7) {
+        case 0:
+            _suexpression_entrypoint_7(arg0, 1, 0x7D);
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42700000, 0x41700000);
+            return 1;
+        case 1:
+            _suexpression_entrypoint_7(arg0, 1, 0x7E);
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42700000, 0x41700000);
+            return 1;
+        case 3:
+            _suexpression_entrypoint_7(arg0, 1, 0x10);
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42700000, 0x41700000);
+            return 1;
+        case 4:
+            _suexpression_entrypoint_7(arg0, 1, 0x6F);
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42700000, 0x41700000);
+            return 1;
+        case 6:
+            _suexpression_entrypoint_7(arg0, 1, 0x40);
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0x42700000, 0x41700000);
+            return 1;
+        }
+        return 0;
+    case 0x2A:
+        switch (arg0->unk74_7) {
+        case 0:
+        case 1:
+        case 3:
+        case 4:
+        case 6:
+            _suexpression_entrypoint_8(arg0, 1);
+            return 1;
+        }
+        return 0;
+    }
+    return 0;
+}
 
 OSThread *chquiz_entrypoint_1(void)
 {
