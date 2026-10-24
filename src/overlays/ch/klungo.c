@@ -192,7 +192,272 @@ void func_80801910_chklungo(u8 *arg0) {
     _sudeflect_entrypoint_0(actor->position, actor->scale * 100.0f, actor->scale * 130.0f, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801964_chklungo.s")
+void func_80801964_chklungo(Actor *arg0, s32 arg1) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F497C(s32);
+    void func_800F49A8(s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
+    u32 func_800F54E4(void);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+    void func_80109FE8(void **, s32);
+    void func_8010A570(Actor *);
+    void func_8010A800(Actor *, s32);
+    void func_808020F0_chklungo(Actor *, s32);
+    void func_80802588_chklungo(Actor *, s32, s32);
+    void func_808025CC_chklungo(Actor *, s32);
+    void func_80802F30_chklungo(Actor *);
+    void func_80802FCC_chklungo(Actor *);
+    void func_80803000_chklungo(Actor *);
+    void func_8080305C_chklungo(Actor *);
+    s32 func_80803158_chklungo(Actor *, s32, s32);
+    void func_8080322C_chklungo(Actor *, f32);
+    extern s32 func_8010D5DC;
+    extern s16 D_808038A0_chklungo;
+    extern f32 D_80803910_chklungo;
+    extern s16 D_80803918_chklungo;
+    extern s16 D_8080391A_chklungo;
+    extern u8 D_80803A2C_chklungo[];
+    extern u8 D_80803BC0_chklungo[];
+    extern u8 D_80803BD0_chklungo[];
+    struct KlungoState {
+        s16 unk0;
+        s16 unk2;
+        s16 unk4;
+        s16 unk6;
+        s16 unk8;
+        u8 padA[2];
+        f32 unkC;
+        u8 pad10[2];
+        u8 unk12;
+        u8 pad13[9];
+        s16 unk1C;
+        u8 pad1E[4];
+        s16 unk22;
+        u8 pad24[2];
+        s16 unk26;
+        u8 pad28[0x14];
+        f32 unk3C;
+        s16 unk40;
+        s16 unk42;
+        s16 unk44;
+        u8 pad46[3];
+        u8 unk49;
+        u8 pad4A[0x1A];
+        f32 unk64[3];
+    };
+    struct KlungoTable {
+        u8 pad0[0x60];
+        f32 unk60;
+        f32 unk64;
+        f32 unk68;
+        f32 unk6C;
+        u8 pad70[0x14];
+    };
+    u32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    struct KlungoState *data;
+    s32 sp2C;
+    f32 sp28;
+
+    sp3C = arg0->unk70_10;
+    sp38 = 0;
+    sp34 = 0;
+    data = func_80100094(arg0, 0);
+    func_80102424(arg0, arg1);
+    func_8080305C_chklungo(arg0);
+    switch (arg1) {
+        case 2:
+            data->unk3C = arg0->position[1];
+            data->unk40 = 1;
+            arg0->position[1] += 2500.0f;
+            break;
+        case 5:
+            sp2C = func_800F54E4();
+            func_808025CC_chklungo(arg0, 0);
+            func_800F497C(sp2C);
+            func_800F49A8(sp2C, 1);
+            func_800F49D4(sp2C, &func_8010D5DC, (s32)arg0->unk0);
+            func_800F4A58(sp2C, (s32)data->unk64, data->unk40 ? 220 : 300);
+            func_800FDC28(1);
+            break;
+        case 6:
+            if (data->unk42) {
+                func_80801964_chklungo(arg0, 9);
+            } else {
+                func_808025CC_chklungo(arg0, 2);
+            }
+            func_80101180(0x41F, 8, 0);
+            break;
+        case 7:
+            _chintrotext_entrypoint_1(0x18B9, data->unk8 + 0xB, 1, 0);
+            break;
+        case 9:
+            func_808025CC_chklungo(arg0, 3);
+            break;
+        case 12:
+            arg0->unk58 = func_800DC178(((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk68, ((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk6C);
+            if (sp3C == 11) {
+                arg0->unk58 = 1.0f;
+            }
+            sp38 = 1;
+            break;
+        case 13:
+            sp28 = 0.0f;
+            switch (data->unk8) {
+                case 0:
+                    sp28 = -1.0f;
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    sp28 = 1.0f;
+                    break;
+            }
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803BC0_chklungo);
+            func_8080322C_chklungo(arg0, sp28);
+            func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+            sp38 = 1;
+            break;
+        case 14:
+            data->unk4++;
+            if (data->unk4 == 3) {
+                data->unk12 = 1;
+            }
+            if (!data->unk49 || data->unk12) {
+                data->unk49 = 1;
+                func_808018D4_chklungo(arg0);
+                func_808025CC_chklungo(arg0, 4);
+            }
+            func_80802FCC_chklungo(arg0);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803A2C_chklungo);
+            break;
+        case 15:
+            if (sp3C != 14 && !data->unk26) {
+                func_80803158_chklungo(arg0, 0x1632, 0x44);
+                data->unk26 = 1;
+            }
+            break;
+        case 16:
+            func_80802F30_chklungo(arg0);
+            func_808020F0_chklungo(arg0, 1);
+            break;
+        case 17:
+            ((f32 *)arg0->actorData)[3] = *(f32 *)((u8 *)&D_80803910_chklungo + data->unk8 * 0x84);
+            arg0->unk54 = arg0->rotation[1];
+            sp38 = 1;
+            break;
+        case 18:
+            data->unk4++;
+            if (data->unk4 == 3) {
+                data->unk12 = 1;
+            }
+            func_80802FCC_chklungo(arg0);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803A2C_chklungo);
+            func_808020F0_chklungo(arg0, 5);
+            break;
+        case 19:
+        case 26:
+            func_80109FE8((void **)arg0, 0);
+            break;
+        case 20:
+            switch (data->unk4) {
+                case 0: data->unk1C = 1; break;
+                case 1: data->unk1C = 2; break;
+                case 2: data->unk1C = 3; break;
+            }
+            data->unk1C--;
+            func_80108B04(arg0, 2);
+            func_8010A800(arg0, 2);
+            break;
+        case 23:
+            data->unkC = func_800DC178(((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk60, ((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk64);
+            sp38 = 1;
+            break;
+        case 24:
+            data->unk4++;
+            if (data->unk4 == 3) {
+                data->unk12 = 1;
+            }
+            func_80802FCC_chklungo(arg0);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803A2C_chklungo);
+            break;
+        case 25:
+            func_8010A570(arg0);
+            _subaddiefade_entrypoint_3(arg0);
+            func_8010A800(arg0, 2);
+            break;
+        case 28:
+            if (!data->unk22) {
+                func_80801964_chklungo(arg0, 27);
+                func_808025CC_chklungo(arg0, 9);
+                func_80803158_chklungo(arg0, 0x162F, 0xE);
+                func_80108B04(arg0, 1);
+                data->unk22 = 1;
+            } else {
+                sp34 = 1;
+                if (!func_800DA298(0x685)) {
+                    switch (data->unk4) {
+                        case 0: data->unk2 = 3; data->unk0 = data->unk2; break;
+                        case 1: data->unk2 = 5; data->unk0 = data->unk2; break;
+                        case 2: data->unk2 = 7; data->unk0 = data->unk2; break;
+                    }
+                } else {
+                    data->unk2 = 10000; data->unk0 = data->unk2;
+                }
+                data->unk6 = 0;
+                if (!data->unk44) {
+                    func_80108B04(arg0, 1);
+                }
+            }
+            break;
+        case 29:
+            func_800FDC28(0);
+            func_80802FCC_chklungo(arg0);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803BD0_chklungo);
+            func_808018D4_chklungo(arg0);
+            func_808025CC_chklungo(arg0, 5);
+            func_8010A570(arg0);
+            func_80101180(0x423, 0x4F, 0);
+            func_800DA544(data->unk8 + 0x318);
+            break;
+        case 30:
+            func_808025CC_chklungo(arg0, 6);
+            func_80101180(0x41F, 7, 0);
+            func_80101180(0x420, 7, 0);
+            break;
+        case 31:
+            func_808025CC_chklungo(arg0, 7);
+            arg0->unk58 = 1.4f;
+            break;
+        case 33:
+            arg0->unk58 = 3.0f;
+            break;
+        case 34:
+            func_80802588_chklungo(arg0, 3, 1);
+            func_80803158_chklungo(arg0, *(s16 *)((u8 *)&D_80803918_chklungo + data->unk8 * 0x84), 0xE);
+            break;
+        case 35:
+            func_808025CC_chklungo(arg0, 8);
+            func_80803158_chklungo(arg0, *(s16 *)((u8 *)&D_8080391A_chklungo + data->unk8 * 0x84), 0x44);
+            break;
+    }
+    func_80109FE8((void **)arg0, sp38);
+    if (sp34) {
+        func_80803000_chklungo(arg0);
+    }
+}
 
 void func_808020F0_chklungo(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
