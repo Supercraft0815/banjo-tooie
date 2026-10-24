@@ -343,7 +343,516 @@ void func_808008C0_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808008F8_chdiggerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80800A4C_chdiggerboss.s")
+void func_80800A4C_chdiggerboss(Actor *arg0) {
+    void _gcfrontend_entrypoint_10(void);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 func_800D395C(void);
+    u8 func_800D9078(f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    int func_800F7C58(s32, s32, s32);
+    void func_800F82D4(s32, s32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_801022E4(Actor *);
+    void func_8080783C_chdiggerboss(Actor *, s32);
+    int func_80802170_chdiggerboss(Actor *arg0, s32 arg1);
+    s32 func_808021E8_chdiggerboss(s32 arg0, s32 arg1);
+    Actor *func_80802228_chdiggerboss(Actor *arg0);
+    s32 func_80802248_chdiggerboss(s32 arg0);
+    s32 func_808027F4_chdiggerboss(s32 arg0);
+    void func_80802878_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2);
+    void func_8080290C_chdiggerboss(Actor *arg0, u32 arg1, u32 arg2);
+    void func_80802BE0_chdiggerboss(s32 arg0, f32 arg1);
+    s32 func_80802D00_chdiggerboss(Actor *arg0);
+    void func_80802F00_chdiggerboss(s32 arg0, s32 arg1);
+    void func_80802FEC_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2);
+    s32 func_80803660_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2);
+    s32 func_80803BE8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2);
+    void func_808041E4_chdiggerboss(Actor *arg0, s32 arg1);
+    void func_80804A50_chdiggerboss(s32 arg0, s32 arg1);
+    void func_80805448_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2);
+    void func_80805A00_chdiggerboss(s32 arg0, s32 arg1);
+    s32 func_80805A64_chdiggerboss(Actor *arg0);
+    void func_80805D64_chdiggerboss(Actor *arg0, s32 arg1);
+    s32 func_80805DF4_chdiggerboss(Actor *arg0);
+    s32 func_80806300_chdiggerboss(Actor *arg0);
+    s32 func_808066A0_chdiggerboss(Actor *arg0);
+    void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2);
+    void func_80806EE4_chdiggerboss(s32 arg0, s32 arg1);
+    s32 func_808070B0_chdiggerboss(Actor *arg0);
+    void *func_80807280_chdiggerboss(s32 arg0, s32 arg1, s16 *arg2);
+    void func_80807754_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2);
+    void func_80807B54_chdiggerboss(Actor *arg0);
+    void func_80807DC0_chdiggerboss(s32 arg0, s32 arg1);
+    void func_80807DF4_chdiggerboss(s32 arg0);
+    void func_808080C0_chdiggerboss(Actor *arg0, s32 arg1);
+    void func_80808258_chdiggerboss(Actor *arg0);
+    void func_80808470_chdiggerboss(Actor *arg0, s32 arg1);
+    s32 func_808091E4_chdiggerboss(s32 arg0);
+    extern u8 D_80809C60_chdiggerboss;
+    extern u8 D_80809C70_chdiggerboss;
+    extern u8 D_80809C80_chdiggerboss;
+    extern u8 D_80809C90_chdiggerboss;
+    extern u8 D_80809CA0_chdiggerboss;
+    extern u8 D_80809CB0_chdiggerboss;
+    extern u8 D_80809CC0_chdiggerboss;
+    extern u8 D_80809CD0_chdiggerboss;
+    extern u8 D_80809CE0_chdiggerboss;
+    extern s16 D_80809CF0_chdiggerboss;
+    extern s16 D_80809D00_chdiggerboss;
+    struct DiggerBossActorFlags {
+        u8 pad0[0x70];
+        u32 pad70_4 : 28;
+        u32 expressionEnabled : 1;
+        u32 pad70_0 : 3;
+    };
+    struct {
+        s16 state;
+        u8 unk2;
+        u8 pad3[0xCA];
+        u8 unkCD;
+        u8 padCE[0x2A];
+        f32 unkF8;
+    } *data;
+    s32 pad[3];
+    Actor *sp34;
+    Actor *sp30;
+    s32 i;
+    s32 pad28;
+    Actor *sp24;
+    s32 sp20;
+
+    data = func_80100094(arg0, 0);
+    func_80800000_chdiggerboss(arg0);
+    func_80806300_chdiggerboss(arg0);
+    func_80807B54_chdiggerboss(arg0);
+    switch (data->state) {
+    case 2:
+        if (func_80101DDC(arg0)) {
+            func_80803660_chdiggerboss(arg0, 0x171E, 0x10E);
+            func_80803BE8_chdiggerboss((s32)arg0, 3, 8);
+        }
+        break;
+    case 4:
+        if (func_80101DDC(arg0)) {
+            if (!func_80802170_chdiggerboss(arg0, 0)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 5, 1);
+                func_8080290C_chdiggerboss(arg0, 0x2D, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x1720, 0x14C);
+            } else {
+                func_800FDC28(0x14);
+                func_80805A00_chdiggerboss((s32)arg0, 6);
+            }
+        }
+        break;
+    case 6:
+        if (func_80805A64_chdiggerboss(arg0)) {
+            func_80802F00_chdiggerboss((s32)arg0, 7);
+        }
+        break;
+    case 7:
+        if (func_80101DDC(arg0)) {
+            if (!func_80802170_chdiggerboss(arg0, 1)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 8, 5);
+                func_80803660_chdiggerboss(arg0, 0x172E, 0x10E);
+            } else {
+                func_80802FEC_chdiggerboss(arg0, 9, 0);
+            }
+        }
+        break;
+    case 9:
+        if (func_80802D00_chdiggerboss(arg0)) {
+            func_80806A78_chdiggerboss(arg0, 0xA, &D_80809C60_chdiggerboss);
+        }
+        break;
+    case 0xA:
+        switch (func_808066A0_chdiggerboss(arg0)) {
+        case 1:
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0xB, 3);
+            break;
+        case 2:
+            func_80803BE8_chdiggerboss((s32)arg0, 8, 8);
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803660_chdiggerboss(arg0, 0x1731, 0x10E);
+            break;
+        }
+        break;
+    case 0xB:
+        if (func_80101DDC(arg0)) {
+            func_80805A00_chdiggerboss((s32)arg0, 6);
+        }
+        break;
+    case 0xC:
+        if (func_80101DDC(arg0)) {
+            if (!func_80802170_chdiggerboss(arg0, 5)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 0xD, 1);
+                func_8080290C_chdiggerboss(arg0, 0x30, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x1721, 0x14C);
+            } else {
+                func_80805A00_chdiggerboss((s32)arg0, 0xE);
+            }
+        }
+        break;
+    case 0xE:
+        if (func_80805A64_chdiggerboss(arg0)) {
+            func_80802F00_chdiggerboss((s32)arg0, 0xF);
+        }
+        break;
+    case 0xF:
+        if (func_80101DDC(arg0)) {
+            func_80802FEC_chdiggerboss(arg0, 0x11, 0);
+        }
+        break;
+    case 0x11:
+        if (func_80802D00_chdiggerboss(arg0)) {
+            func_80806A78_chdiggerboss(arg0, 0x12, &D_80809C70_chdiggerboss);
+        }
+        break;
+    case 0x12:
+        switch (func_808066A0_chdiggerboss(arg0)) {
+        case 1:
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x13, 3);
+            break;
+        case 2:
+            func_80803BE8_chdiggerboss((s32)arg0, 0x10, 8);
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803660_chdiggerboss(arg0, 0x1732, 0x10E);
+            break;
+        }
+        break;
+    case 0x13:
+        if (func_80101DDC(arg0)) {
+            func_80805A00_chdiggerboss((s32)arg0, 0xE);
+        }
+        break;
+    case 0x14:
+        if (func_80101DDC(arg0)) {
+            if (!func_80802170_chdiggerboss(arg0, 6)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 0x15, 1);
+                func_8080290C_chdiggerboss(arg0, 0x33, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x1723, 0x14C);
+            } else {
+                func_8080041C_chdiggerboss(func_80802228_chdiggerboss(arg0), 0xE);
+                func_80807280_chdiggerboss((s32)arg0, 0x16, &D_80809CF0_chdiggerboss);
+            }
+        }
+        break;
+    case 0x16:
+        if (func_808070B0_chdiggerboss(arg0)) {
+            func_80802F00_chdiggerboss((s32)arg0, 0x17);
+        }
+        break;
+    case 0x17:
+        if (func_80101DDC(arg0)) {
+            func_80802FEC_chdiggerboss(arg0, 0x19, 1);
+        }
+        break;
+    case 0x19:
+        if (func_80802D00_chdiggerboss(arg0)) {
+            func_80806A78_chdiggerboss(arg0, 0x1A, &D_80809C80_chdiggerboss);
+        }
+        break;
+    case 0x1A:
+        switch (func_808066A0_chdiggerboss(arg0)) {
+        case 1:
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x1B, 3);
+            break;
+        case 2:
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x1C, 3);
+            break;
+        }
+        break;
+    case 0x1B:
+        if (func_80101DDC(arg0)) {
+            func_80807280_chdiggerboss((s32)arg0, 0x16, &D_80809CF0_chdiggerboss);
+        }
+        break;
+    case 0x1C:
+        if (func_80101DDC(arg0)) {
+            if (!func_80802170_chdiggerboss(arg0, 7)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 0x1D, 1);
+                func_8080290C_chdiggerboss(arg0, 0x37, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x1724, 0x14C);
+                func_808008C0_chdiggerboss((s32)func_80802228_chdiggerboss(arg0), 3, 1);
+            } else {
+                func_8080041C_chdiggerboss(func_80802228_chdiggerboss(arg0), 0x10);
+                func_80807280_chdiggerboss((s32)arg0, 0x1E, &D_80809D00_chdiggerboss);
+            }
+        }
+        break;
+    case 0x1E:
+        if (func_808070B0_chdiggerboss(arg0)) {
+            func_80802F00_chdiggerboss((s32)arg0, 0x1F);
+        }
+        break;
+    case 0x1F:
+        if (func_80101DDC(arg0)) {
+            func_80802FEC_chdiggerboss(arg0, 0x21, 1);
+        }
+        break;
+    case 0x21:
+        if (func_80802D00_chdiggerboss(arg0)) {
+            func_80806A78_chdiggerboss(arg0, 0x22, &D_80809C90_chdiggerboss);
+        }
+        break;
+    case 0x22:
+        switch (func_808066A0_chdiggerboss(arg0)) {
+        case 1:
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x23, 3);
+            break;
+        case 2:
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x24, 3);
+            break;
+        }
+        break;
+    case 0x23:
+        if (func_80101DDC(arg0)) {
+            func_80807280_chdiggerboss((s32)arg0, 0x1E, &D_80809D00_chdiggerboss);
+        }
+        break;
+    case 0x24:
+        if (func_80101DDC(arg0)) {
+            if (!func_80802170_chdiggerboss(arg0, 8)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 0x25, 1);
+                func_8080290C_chdiggerboss(arg0, 0x36, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x1725, 0x14C);
+            } else {
+                func_8080041C_chdiggerboss(func_80802228_chdiggerboss(arg0), 0x12);
+                func_80803BE8_chdiggerboss((s32)arg0, 0x26, 1);
+                func_808027F4_chdiggerboss((s32)arg0);
+            }
+        }
+        break;
+    case 0x26:
+        sp34 = func_80802228_chdiggerboss(arg0);
+        if (!func_801022E4(sp34)) {
+            func_80805448_chdiggerboss(sp34, 0, 1);
+            func_80805448_chdiggerboss(sp34, 3, 1);
+            func_80805D64_chdiggerboss(arg0, 0x27);
+        }
+        break;
+    case 0x27:
+        if (func_80805DF4_chdiggerboss(arg0)) {
+            if (data->unk2 != 0x32) {
+                func_80802F00_chdiggerboss((s32)arg0, 0x28);
+            } else {
+                func_80807754_chdiggerboss(arg0, 0x2D, 10.0f);
+            }
+        }
+        break;
+    case 0x28:
+        if (func_80101DDC(arg0)) {
+            func_80802FEC_chdiggerboss(arg0, 0x2A, 2);
+        }
+        break;
+    case 0x2A:
+        if (func_80802D00_chdiggerboss(arg0)) {
+            func_80806A78_chdiggerboss(arg0, 0x2B, &D_80809CA0_chdiggerboss);
+        }
+        break;
+    case 0x2B:
+        if (func_808066A0_chdiggerboss(arg0)) {
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x2C, 3);
+        }
+        break;
+    case 0x2C:
+        if (func_80101DDC(arg0)) {
+            func_80807754_chdiggerboss(arg0, 0x2D, 10.0f);
+            if (!func_80802170_chdiggerboss(arg0, 9)) {
+                func_80803660_chdiggerboss(arg0, 0x1727, 0x106);
+            }
+        }
+        break;
+    case 0x2D:
+        func_8080783C_chdiggerboss(arg0, 0x27);
+        break;
+    case 0x2E:
+        if (func_80101DDC(arg0)) {
+            func_800F82D4(func_800F54E4(), 0);
+            func_80803660_chdiggerboss(arg0, 0x1733, 0x10E);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x30, 8);
+        }
+        break;
+    case 0x2F:
+        if (func_80101DDC(arg0)) {
+            func_80805D64_chdiggerboss(arg0, 0x31);
+        }
+        break;
+    case 0x31:
+        if (func_80805DF4_chdiggerboss(arg0)) {
+            if (data->unk2 != 0x28) {
+                func_80802F00_chdiggerboss((s32)arg0, 0x32);
+            } else {
+                func_80807754_chdiggerboss(arg0, 0x37, 8.0f);
+            }
+        }
+        break;
+    case 0x32:
+        if (func_80101DDC(arg0)) {
+            func_80802FEC_chdiggerboss(arg0, 0x34, 2);
+        }
+        break;
+    case 0x33:
+        if (func_80802D00_chdiggerboss(arg0)) {
+            func_80806A78_chdiggerboss(arg0, 0x35, &D_80809CB0_chdiggerboss);
+        }
+        break;
+    case 0x34:
+        if (func_80802D00_chdiggerboss(arg0)) {
+            func_80806A78_chdiggerboss(arg0, 0x35, &D_80809CB0_chdiggerboss);
+        }
+        break;
+    case 0x35:
+        if (func_808066A0_chdiggerboss(arg0)) {
+            func_80802878_chdiggerboss(arg0, 3, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x36, 3);
+        }
+        break;
+    case 0x36:
+        if (func_80101DDC(arg0)) {
+            func_80807754_chdiggerboss(arg0, 0x37, 8.0f);
+        }
+        break;
+    case 0x37:
+        func_8080783C_chdiggerboss(arg0, 0x31);
+        break;
+    case 0x38:
+        if (func_80101DDC(arg0)) {
+            func_800F82D4(func_800F54E4(), 0);
+            if (!func_80802170_chdiggerboss(arg0, 0xC)) {
+                func_8080290C_chdiggerboss(arg0, 0x3C, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x1734, 0x14C);
+            } else {
+                sp30 = func_80802228_chdiggerboss(arg0);
+                func_80804A50_chdiggerboss((s32)sp30, 0);
+                for (i = 0; i < 4; i++) {
+                    func_80805448_chdiggerboss(sp30, i, 2);
+                }
+                func_808041E4_chdiggerboss(sp30, 4);
+                func_80802878_chdiggerboss(arg0, 3, 1);
+                func_80803660_chdiggerboss(arg0, 0x1729, 0x10E);
+            }
+            func_80803BE8_chdiggerboss((s32)arg0, 0x39, 8);
+        }
+        break;
+    case 0x3A:
+        switch (func_808066A0_chdiggerboss(arg0)) {
+        case 1:
+            func_80806A78_chdiggerboss(arg0, 0x3A, &D_80809CC0_chdiggerboss);
+            break;
+        case 2:
+            func_80803BE8_chdiggerboss((s32)arg0, 0x3B, 8);
+            if (!func_80802170_chdiggerboss(arg0, 0xD)) {
+                func_8080290C_chdiggerboss(arg0, 0x40, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x172A, 0x14C);
+            } else {
+                func_8080041C_chdiggerboss(func_80802228_chdiggerboss(arg0), 0x14);
+                func_80806A78_chdiggerboss(arg0, 0x3C, &D_80809CD0_chdiggerboss);
+                func_80806EE4_chdiggerboss((s32)arg0, 1);
+            }
+            break;
+        }
+        break;
+    case 0x3C:
+        switch (func_808066A0_chdiggerboss(arg0)) {
+        case 1:
+            func_80806A78_chdiggerboss(arg0, 0x3C, &D_80809CD0_chdiggerboss);
+            break;
+        case 2:
+            if (!func_80802170_chdiggerboss(arg0, 0xE)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 0x3D, 8);
+                func_8080290C_chdiggerboss(arg0, 0x44, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x172B, 0x14C);
+            } else {
+                sp24 = func_80802228_chdiggerboss(arg0);
+                func_80806A78_chdiggerboss(arg0, 0x3E, &D_80809CE0_chdiggerboss);
+                func_80806EE4_chdiggerboss((s32)arg0, 1);
+                func_80807DC0_chdiggerboss((s32)arg0, 2);
+                func_808080C0_chdiggerboss(sp24, 2);
+            }
+            break;
+        }
+        break;
+    case 0x3E:
+        switch (func_808066A0_chdiggerboss(arg0)) {
+        case 1:
+            func_80806A78_chdiggerboss(arg0, 0x3E, &D_80809CE0_chdiggerboss);
+            break;
+        case 2:
+            func_808080C0_chdiggerboss(func_80802228_chdiggerboss(arg0), 0);
+            func_80807DF4_chdiggerboss((s32)arg0);
+            if (!func_808021E8_chdiggerboss((s32)arg0, 0xB)) {
+                func_80803BE8_chdiggerboss((s32)arg0, 0x3F, 8);
+                func_80802BE0_chdiggerboss((s32)arg0, 3.0f);
+                func_80802878_chdiggerboss(arg0, 3, 1);
+                func_80803660_chdiggerboss(arg0, 0x172C, 0x10E);
+            } else {
+                func_80802BE0_chdiggerboss((s32)arg0, 1.0f);
+                data->unkCD = 1;
+                func_80808470_chdiggerboss(arg0, 0x40);
+            }
+            break;
+        }
+        break;
+    case 0x40:
+        func_80808258_chdiggerboss(arg0);
+        break;
+    case 0x41:
+        if (func_80101DDC(arg0)) {
+            func_80803BE8_chdiggerboss((s32)arg0, 0x42, 1);
+        }
+        break;
+    case 0x43:
+        if (!func_808091E4_chdiggerboss((s32)arg0)) {
+            func_80802878_chdiggerboss(arg0, 5, 1);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x44, -1);
+            data->unkF8 = 0.4f;
+        }
+        break;
+    case 0x44:
+        if (func_800D9078(&data->unkF8)) {
+            sp20 = func_80802248_chdiggerboss((s32)arg0);
+            func_800F7B9C(sp20, 0x63);
+            func_800F7C58(sp20, 0x61, 2);
+            func_80803BE8_chdiggerboss((s32)arg0, 0x45, -1);
+            data->unkF8 = 1.0f;
+        }
+        break;
+    case 0x45:
+        if (func_800D9078(&data->unkF8)) {
+            if (func_800D395C()) {
+                func_800FDC28(0);
+                _gcfrontend_entrypoint_10();
+            } else {
+                func_80803660_chdiggerboss(arg0, 0x14D8, 0x10E);
+                func_80803BE8_chdiggerboss((s32)arg0, 0x46, -1);
+            }
+        }
+        break;
+    case 0x47:
+        if (func_80101DDC(arg0)) {
+            func_80803BE8_chdiggerboss((s32)arg0, 0x48, 8);
+            if (func_800D395C()) {
+                func_80803660_chdiggerboss(arg0, 0xCEB, 0x144);
+            }
+        }
+        break;
+    case 0x48:
+        break;
+    }
+    if (((struct DiggerBossActorFlags *)arg0)->expressionEnabled) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    }
+}
 
 /* extern */
 
