@@ -1467,7 +1467,59 @@ f32 func_80802C9C_chweldarboss(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80802D2C_chweldarboss.s")
+void func_80802D2C_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x44];
+        f32 position[3];
+        u8 pad50[0x28];
+        s16 unk78;
+    } WeldarData;
+    f32 func_800D8FF8(void);
+    u8 func_800D9078(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80102B2C(Actor *, f32);
+    f32 func_8010CD50(Actor *, u32);
+    s32 func_8010D490(f32 *, f32 *, f32, f32, s32);
+    void func_80802E80_chweldarboss(Actor *);
+    void func_80803080_chweldarboss(Actor *, s32);
+    s32 func_80803184_chweldarboss(Actor *, s32);
+    WeldarData *sp54;
+    s32 sp50;
+    f32 sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 index;
+
+    sp54 = func_80100094(arg0, 0);
+    sp50 = func_800D9078(&arg0->unk58);
+    sp4C = func_800D8FF8();
+    arg0->unk54 = func_8010CD50(arg0, sp54->unk78);
+    func_80102B2C(arg0, 120.0f * sp4C);
+    func_808029D8_chweldarboss(arg0);
+    func_80802E80_chweldarboss(arg0);
+    if (arg0->unk7C_12) {
+        func_800EEB9C(sp40, arg0->rotation[1], 100.0f);
+        func_800EE7F8(sp34, sp54->position);
+        func_800EF1B8(sp34, arg0->rotation[1], -300.0f);
+        index = func_8010D490(sp34, sp40, 2300.0f, 600.0f, -1);
+        if (index != -1) {
+            func_80803080_chweldarboss(arg0, index);
+        }
+        switch (func_80803184_chweldarboss(arg0, index)) {
+            case 1:
+                func_80801AA0_chweldarboss(arg0, arg1);
+                break;
+            case 2:
+                return;
+        }
+    }
+    if (sp50 != 0) {
+        func_80801AA0_chweldarboss(arg0, arg2);
+    }
+}
 
 void func_80802E80_chweldarboss(Actor *arg0) {
     void func_80802F14_chweldarboss(Actor *, s32);
