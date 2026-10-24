@@ -116,7 +116,7 @@ s32 subaddiecustomhits_entrypoint_4(Actor *arg0, f32 *arg1, f32 *arg2) {
 f32 subaddiecustomhits_entrypoint_5(Actor *arg0, f32 *arg1) {
     f32 func_800EC75C(void *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_80103328();
+    void func_80103328(Actor *);
     struct CustomHitFlags {
         u32 pad[2];
         u32 unused : 30;

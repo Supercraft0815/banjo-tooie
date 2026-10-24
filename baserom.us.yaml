@@ -352,6 +352,7 @@ segments:
       - [0x1E59840, .rodata, 1E3FB40]
       - [0x1E59860, rodata]
       - [0x1E59870, .rodata, 1E42810]
+      - [0x1E598C0, rodata]
       - [0x1E598D0, rodata]
       - [0x1E598F0, lib, libultra_rom, setintmask, .rodata]
       - [0x1E59970, lib, libultra_rom, xprintf, .rodata]

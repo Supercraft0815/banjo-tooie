@@ -129,7 +129,68 @@ void func_8080035C_gcmapsects(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_808003F4_gcmapsects.s")
+void func_808003F4_gcmapsects(void *arg0, s32 arg1)
+{
+  s32 _glidmake_entrypoint_4(s32);
+  s32 _idworldmake_entrypoint_2(s32);
+  s32 func_800D6CEC(s32);
+  s32 func_800D70F8(s32, s32);
+  s32 func_800D73CC(s32);
+  s32 func_800E4AF0(s32);
+  s32 func_800E4BB8(s32);
+  struct Section
+  {
+    u8 pad[0x40];
+    u16 first;
+    u16 second;
+    s32 textures[2];
+    u32 flag80 : 1;
+    u32 flag40 : 1;
+    u32 flag20 : 1;
+    u32 flag10 : 1;
+    u32 rest : 28;
+    s32 objects[2];
+  };
+  struct Map
+  {
+    u8 pad[0x68];
+    struct Section *sections;
+  };
+  struct Map *map = arg0;
+  s32 i;
+  u16 second;
+  map->sections[arg1].flag20 = 0;
+  map->sections[arg1].flag80 = 0;
+  if (map->sections[arg1].flag10)
+  {
+    func_800D70F8(map->sections[arg1].first, 0);
+    map->sections[arg1].flag10 = 0;
+  }
+  if (func_800D73CC(map->sections[arg1].first))
+  {
+    func_800D6CEC(map->sections[arg1].first);
+  }
+  second = map->sections[arg1].second;
+  if (second && func_800D73CC(second))
+  {
+    func_800D70F8(map->sections[arg1].second, 0);
+    func_800D6CEC(map->sections[arg1].second);
+  }
+  if (func_800E4AF0(map->sections[arg1].first))
+  {
+    func_800E4BB8(map->sections[arg1].first);
+  }
+  for (i = 0; i < 2; i++)
+  {
+    if (map->sections[arg1].objects[i])
+    {
+      _idworldmake_entrypoint_2(map->sections[arg1].objects[i]);
+      _glidmake_entrypoint_4(map->sections[arg1].objects[i]);
+      map->sections[arg1].objects[i] = 0;
+    }
+  }
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_808005D0_gcmapsects.s")
 
@@ -272,7 +333,7 @@ void func_80800B58_gcmapsects(void *arg0) {
 
 void func_80800C54_gcmapsects(void *arg0) {
     void func_8080035C_gcmapsects(void *, s32);
-    s32 func_808003F4_gcmapsects(void *, s32);
+    void func_808003F4_gcmapsects(void *, s32);
     s32 var_s0;
 
     var_s0 = 0;

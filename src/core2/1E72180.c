@@ -31,7 +31,68 @@ void func_80098898(void *arg0) {
     (*(s8 **)((s8 *)arg0 + 0xBC))[0x19] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72180/func_800989E4.s")
+void func_800989E4(void *arg0) {
+    struct player_state_s;
+    void _gcfrontend_entrypoint_12(void);
+    s32 baphysics_set_type(void *, s32);
+    s32 func_8008DAA8(void *);
+    void func_8009C128(struct player_state_s *, f32[3]);
+    void func_800A05DC(struct player_state_s *);
+    s32 func_800A3274(void *);
+    s32 func_800BF6B8(void);
+    s32 func_800D3948(void);
+    s32 func_800D395C(void);
+    int func_800EFED0(f32[3], f32[3], f32[3]);
+    void func_800F7B9C(s32, u32);
+    s32 func_800F8B88(void);
+    f32 position[3];
+    s32 mode;
+    s32 flag1;
+    s32 flag2;
+
+    if (!func_8008DAA8(arg0)) {
+        return;
+    }
+    if ((*(u8 **)((s8 *)arg0 + 0xBC))[0x19]) {
+        return;
+    }
+    mode = func_800BF6B8();
+    if (mode == 1) {
+        return;
+    }
+    func_8009C128(arg0, position);
+    if (mode == 2 || !func_800EFED0(*(f32 **)((s8 *)arg0 + 0xBC) + 3,
+                                   *(f32 **)((s8 *)arg0 + 0xBC), position)) {
+        if ((*(u8 **)((s8 *)arg0 + 0xBC))[0x18] == 0) {
+            (*(u8 **)((s8 *)arg0 + 0xBC))[0x18] = 1;
+            if (func_800D3948() || func_800D395C()) {
+                _gcfrontend_entrypoint_12();
+                return;
+            }
+            flag1 = 0;
+            flag2 = 0;
+            switch (func_800A3274(arg0)) {
+                case 0x11:
+                    flag1 = 1;
+                    break;
+                case 0xB:
+                    if (func_800F8B88() == 3) {
+                        flag2 = 1;
+                    }
+                    break;
+            }
+            if (flag1) {
+                func_800F7B9C(*(s32 *)((s8 *)arg0 + 0x184), 0x1F);
+            } else if (flag2) {
+                func_800F7B9C(*(s32 *)((s8 *)arg0 + 0x184), 0x88);
+            } else {
+                func_800A05DC(arg0);
+            }
+        } else {
+            baphysics_set_type(arg0, 7);
+        }
+    }
+}
 
 void func_80098B4C(void *arg0, s32 arg1) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xBC)))) + (0x19))) = (s8) (arg1 == 0);
@@ -395,7 +456,7 @@ void func_800991B0(void *arg0)
   s32 func_8009561C(void *);
   s32 func_80095C94(void *);
   s32 func_800987CC(void *);
-  s32 func_800989E4(void *);
+  void func_800989E4(void *);
   s32 func_80099970(void *);
   s32 func_8009AD78(void *, s32);
   s32 func_8009B590(void *);

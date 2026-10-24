@@ -276,7 +276,39 @@ s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002B7C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002BAAC.s")
+s16 func_8002BAAC(f32 arg0, f32 arg1, s32 arg2, u16 *arg3) {
+    s16 spE;
+    s16 spC;
+    f32 sp8;
+    f32 sp4;
+    f32 sp0;
+    if (arg2 == 0) {
+        if (arg0 <= arg1) {
+            *arg3 = 0xFFFF;
+            return 0x7FFF;
+        } else {
+            *arg3 = 0;
+            return -0x8000;
+        }
+    }
+    sp8 = 1.0f / (f32) arg2;
+    if (arg1 < 1.0f) {
+        arg1 = 1.0f;
+    }
+    if (arg0 <= 0.0f) {
+        arg0 = 1.0f;
+    }
+    sp4 = (arg1 - arg0) * sp8 * 8.0f;
+    spE = (s16) (s32) sp4;
+    sp0 = sp4 - (f32) spE;
+    spE -= 1;
+    sp0 += 1.0f;
+    spC = (s16) (s32) sp0;
+    spE += spC;
+    sp0 -= (f32) spC;
+    *arg3 = (u32) (65535.0f * sp0);
+    return spE;
+}
 
 s16 func_8002BCBC(s16 arg0, s32 arg1, s16 arg2, u16 arg3) {
     s32 delta;
@@ -293,6 +325,7 @@ s16 func_8002BCBC(s16 arg0, s32 arg1, s16 arg2, u16 arg3) {
 }
 
 s32 *func_8002BD40(s32 arg0, s32 *arg1, s32 arg2, s32 *arg3) {
+    extern const f32 D_80041D90;
     typedef struct {
         s32 words[2];
     } Command;
@@ -357,7 +390,7 @@ s32 *func_8002BD40(s32 arg0, s32 *arg1, s32 arg2, s32 *arg3) {
     if (count != 0) {
         maximum -= 0x3E;
         if (maximum >= 7U) {
-            scale = (u32) (26755.0f / sqrtf((f32) maximum));
+            scale = (u32) (D_80041D90 / sqrtf((f32) maximum));
         } else {
             scale = (u32) (65536.0f / (f32) maximum);
         }

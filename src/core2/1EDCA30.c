@@ -3,7 +3,7 @@
 s32 func_80103140(Actor *arg0, u32 arg1, u16 arg2) {
     s32 func_800D58FC(s32);
     void func_800D62E4(s32);
-    s32 func_80103328();
+    void func_80103328(Actor *);
     void func_8010381C(Actor *);
     void func_80103938(void *);
     void func_80104328();
@@ -87,13 +87,47 @@ s32 func_801032B0(Actor *arg0, u16 arg1, u16 arg2) {
     return var_v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103328.s")
+void func_80103328(Actor *arg0) {
+    void func_800B2198(void *, void *, void *);
+    s32 func_800B2248(void *);
+    void func_800B237C(void *, f32 *, f32 *);
+    s32 func_800B2840(s32);
+    void func_800D62E4(s32);
+    void func_800EE940(s16 *, f32 *);
+    u8 *func_80103964(u8 *);
+    typedef struct {
+        u16 radius : 11;
+        u16 flags : 5;
+    } RadiusFlags;
+    s32 min[3];
+    s32 max[3];
+    f32 center[3];
+    u16 *list;
+    f32 norm;
+    u8 *model;
+
+    if (((u16 *)&arg0->pad68)[0] == 0) {
+        if ((model = func_80103964((u8 *)arg0->unk0)) != NULL) {
+            func_800D62E4(arg0->unk0->unk14);
+            list = (u16 *)func_800B2840((s32)model);
+            ((u16 *)&arg0->pad68)[0] = list[9];
+            ((u16 *)&arg0->pad68)[1] = list[10];
+            ((s16 *)&arg0->pad60)[1] = func_800B2248(list);
+            func_800B2198(list, min, max);
+            ((s16 *)&arg0->pad88)[0] = min[1];
+            ((s16 *)&arg0->pad88)[1] = max[1];
+            func_800B237C(list, center, &norm);
+            func_800EE940(&((s16 *)&arg0->unk0->unk1C)[1], center);
+            ((RadiusFlags *)&arg0->unk0->unk18)->radius = (u32)norm;
+        }
+    }
+}
 
 /* extern */
 
 s32 func_8010347C(Unk80132ED0 *arg0) {
     void func_800DF7F8(s32, f32, f32);
-    s32 func_80103328();
+    void func_80103328(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *sp1C;
 
@@ -388,7 +422,7 @@ u8 *func_80103D98(Unk80132ED0 *arg0) {
 
 void func_80103DFC(Actor *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_80103328();
+    void func_80103328(Actor *);
     s16 temp_v0;
 
     if ((u16)arg0->unk0->unk14 == 0xFFFF) {
@@ -404,7 +438,7 @@ void func_80103DFC(Actor *arg0, f32 *arg1) {
 /* extern */
 
 f32 func_80103EAC(Actor *arg0) {
-    s32 func_80103328();
+    void func_80103328(Actor *);
     func_80103328(arg0);
     return arg0->scale * (u32)(u16)arg0->pad60;
 }
@@ -412,8 +446,8 @@ f32 func_80103EAC(Actor *arg0) {
 /* extern */
 
 f32 func_80103EF4(Actor *arg0) {
-    s32 func_80103328();
-    func_80103328();
+    void func_80103328(Actor *);
+    func_80103328(arg0);
     return (f32) ((*(s16 *)((s8 *)(arg0) + (0x8A))) - (*(s16 *)((s8 *)(arg0) + (0x88)))) * arg0->scale;
 }
 
@@ -423,7 +457,7 @@ f32 func_80103F38(Actor *arg0, f32 *arg1) {
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
-    s32 func_80103328();
+    void func_80103328(Actor *);
 
     func_80103328(arg0);
     if (arg1 != 0) {
@@ -437,7 +471,7 @@ f32 func_80103F38(Actor *arg0, f32 *arg1) {
 /* extern */
 
 f32 func_80103FB8(Actor *arg0) {
-    s32 func_80103328();
+    void func_80103328(Actor *);
     func_80103328(arg0);
     return (f32) (u32) (u16) arg0->pad68 * arg0->scale;
 }

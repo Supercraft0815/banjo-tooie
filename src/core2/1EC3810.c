@@ -522,7 +522,7 @@ s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
     f32 func_800EEAD4(s32, f32 *);
-    void func_80103328();
+    void func_80103328(Actor *);
     void func_80103508(u8 *);
     u8 *func_80103AA0(u8 *);
     s32 func_80103CDC(u8 *, u8 *);
@@ -694,9 +694,9 @@ void func_800EB2DC(void *arg0, s32 arg1, s32 arg2) {
 
 s32 func_800EB350(Actor *arg0, f32 *arg1, f32 *arg2) {
     s32 func_800AAEF4(f32 *, f32, f32 *, f32 *);
-    void func_80103328();
+    void func_80103328(Actor *);
     extern f32 D_80125E5C;
 
-    func_80103328();
+    func_80103328(arg0);
     return func_800AAEF4(arg0->position, (f32)(u16)arg0->pad68 * arg0->scale * D_80125E5C, arg1, arg2) == 0;
 }
