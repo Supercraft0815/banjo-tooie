@@ -70,7 +70,114 @@ void chfirefx_entrypoint_2(Actor *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4) 
     arg0->unk64_20 = func_800EA05C() == 0xED;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_3.s")
+void chfirefx_entrypoint_3(Actor *arg0) {
+    struct FireParticle {
+        f32 frame;
+        s16 velocity, unk6;
+        s16 position[3];
+        s16 unkE[3];
+    };
+    struct FireData {
+        s32 unk0;
+        f32 scale;
+        s16 used, amount, count, active;
+        u16 flags;
+        s16 value;
+        u16 radius, range;
+        u8 link[8];
+        struct FireParticle particles[1];
+    };
+    s32 _chhotwaterpoolbits_entrypoint_5(s32, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800EFC7C(void *, void *);
+    u32 func_800F54E4(void);
+    s32 func_800F6438(u32);
+    s32 func_800F6478(s32);
+    int func_800F6AA4(s32);
+    s32 func_800F7B9C(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010CEF8(f32 *, s32);
+    s32 func_80800884_chfirefx(Actor *);
+    void func_80800C18_chfirefx(Actor *);
+    void func_80800E9C_chfirefx(Actor *);
+    void rare_memcpy(void *, void *, int);
+    register struct FireData *data;
+    register struct FireParticle *particle;
+    register u32 player;
+    f32 delta;
+    f32 speed;
+    f32 acceleration;
+    struct FireParticle *start;
+    int i;
+    f32 position[3];
+    f32 direction[3];
+
+    data = func_80100094(arg0, 0);
+    player = func_800F54E4();
+    func_800D9078(&arg0->unk58);
+    switch ((s32)arg0->unk70_10) {
+        case 2:
+            data->amount += 2;
+            if (data->amount >= data->count) {
+                data->amount = data->count;
+            }
+            if ((data->flags & 4) && func_800F6438(player) &&
+                !func_800F6AA4(player) && func_800F6478(player) &&
+                func_8010CEF8(arg0, data->value) &&
+                func_800F7B9C(player, 0x51) == 2) {
+                _chhotwaterpoolbits_entrypoint_5(arg0, 0x3F400000);
+            }
+            break;
+        case 1:
+            data->amount -= 2;
+            if (data->amount < 0) {
+                data->amount = 0;
+            }
+            break;
+    }
+    if (func_80800884_chfirefx(arg0)) {
+        delta = func_800D8FF8();
+        speed = (data->scale * delta) * 50.0f;
+        acceleration = (data->scale * delta) * 400.0f;
+        start = data->particles;
+        particle = start;
+        for (i = 0; i < data->used;) {
+            particle->frame += delta * 15.0f;
+            if ((s32)particle->frame >= 9) {
+                data->used--;
+                if (data->used > 0) {
+                    rare_memcpy(particle, &start[data->used], sizeof(*particle));
+                }
+                continue;
+            }
+            {
+                particle->velocity = (s32)(particle->velocity + acceleration);
+                particle->position[1] = (s32)(particle->position[1] + delta * particle->velocity);
+                func_800EE88C(position, particle->position);
+                func_800EF04C(position, arg0->position);
+                if (func_800EFC7C(position, arg0->position) >
+                    (0.4f * data->value) * (0.4f * data->value)) {
+                    func_800EFB24(direction, arg0->position, position);
+                    direction[1] = 0.0f;
+                    func_800EF368(direction, speed);
+                    particle->position[0] += direction[0];
+                    particle->position[2] += direction[2];
+                }
+                particle++;
+                i++;
+            }
+        }
+    }
+    if (data->flags & 1) {
+        func_80800C18_chfirefx(arg0);
+    }
+    func_80800E9C_chfirefx(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_4.s")
 
