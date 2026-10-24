@@ -16,7 +16,301 @@ OSThread *changlerboss_entrypoint_1(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800018_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808002E0_changlerboss.s")
+void func_808002E0_changlerboss(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EFE50(f32 *, void *, void *, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80108B04(s32, s32);
+    void func_80109FE8(Actor *, s32);
+    void func_8010A5B0(Actor *, u32);
+    void func_8010A85C(Actor *, s32);
+    void func_8010D640(f32 *);
+    void func_808012E0_changlerboss(Actor *, s32);
+    void func_808016A8_changlerboss(Actor *);
+    int func_80801948_changlerboss(Actor *);
+    void func_80801A10_changlerboss(Actor *);
+    s32 func_80801AF0_changlerboss(Actor *);
+    void func_80801BC8_changlerboss(Actor *);
+    s32 func_80801C50_changlerboss(Actor *);
+    void func_80801CD8_changlerboss(s32);
+    void func_808021E4_changlerboss(Actor *, u32, u32);
+    void func_808022C4_changlerboss(Actor *);
+    void func_80802340_changlerboss(Actor *);
+    s32 func_808025AC_changlerboss(s32);
+    void func_808025EC_changlerboss(Actor *);
+    void func_80802680_changlerboss(Actor *);
+    extern u32 D_80802F44_changlerboss[];
+    extern u32 D_80802F50_changlerboss[];
+    extern u32 D_80802F60_changlerboss[];
+    struct AnglerBossActorFlags {
+        u8 pad0[0x7A];
+        u8 pad7A_15 : 2;
+        u8 unk7A_13 : 2;
+        u8 unk7A_11 : 3;
+        u8 unk7A_8 : 1;
+    };
+    struct AnglerBossUpdateData {
+        u8 pad0[0x94];
+        s16 unk94;
+        s16 unk96;
+        u8 pad98[8];
+        Unk80132ED0 *unkA0;
+        u8 padA4[0x60];
+        f32 unk104[3];
+        u8 pad110[0xC];
+        f32 unk11C[3];
+        s16 unk128;
+        u8 unk12A;
+        u8 unk12B;
+        u8 unk12C;
+        u8 unk12D;
+        u8 unk12E;
+        u8 unk12F;
+    } *data;
+    f32 position[3];
+    s32 pad44;
+    s32 expired;
+    s32 pad3C;
+    f32 progress;
+
+    data = func_80100094(arg0, 0);
+    data->unk128 = func_808025AC_changlerboss(arg0);
+    if (func_800F6438(data->unk128)) {
+        func_800F5A00(data->unk128, position);
+    } else {
+        func_8010D640(position);
+    }
+    func_808025EC_changlerboss(arg0);
+    func_80802680_changlerboss(arg0);
+    func_808022C4_changlerboss(arg0);
+    func_80802340_changlerboss(arg0);
+    if (arg0->unk7C_12 && data->unkA0) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 0xB, func_80106790(data->unkA0)->position);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            func_8010A5B0(arg0, arg0->unk7C_12);
+            if (func_800D9078(&arg0->unk58)) {
+                func_80101180(0x46C, 8, 0);
+            }
+            if (!func_800DA298(0x6AD) && !data->unk12E) {
+                data->unk12E = 1;
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x103E, 0x144, arg0->position, 0xB4);
+            }
+            if (data->unk12C && data->unk12D) {
+                func_800F82D4(func_800F54E4(), 0);
+                func_808012E0_changlerboss(arg0, 2);
+            }
+            break;
+        case 2:
+            if (func_80101DDC(arg0)) {
+                func_808012E0_changlerboss(arg0, 3);
+            }
+            break;
+        case 3:
+            expired = func_800D9078(&arg0->unk58);
+            func_800EFE50(arg0->position, data->unk11C, data->unk104,
+                         func_800F12D4(arg0->unk58, 0.0f, 4.0f, 1.0f, 0.0f));
+            if (expired) {
+                func_808012E0_changlerboss(arg0, 4);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1027, 0x106, arg0->position, 0xB4);
+                func_808021E4_changlerboss(arg0, 0xA, 0x30);
+            }
+            break;
+        case 4:
+            func_8010A5B0(arg0, arg0->unk7C_12);
+            break;
+        case 5:
+            func_80801A10_changlerboss(arg0);
+            if (func_800D9078(&arg0->unk58)) {
+                func_808012E0_changlerboss(arg0, 6);
+            }
+            break;
+        case 6:
+            func_80801A10_changlerboss(arg0);
+            if (func_80801948_changlerboss(arg0)) {
+                func_808012E0_changlerboss(arg0, 7);
+            }
+            break;
+        case 7:
+            func_80801948_changlerboss(arg0);
+            if (func_80801AF0_changlerboss(arg0)) {
+                func_808012E0_changlerboss(arg0, 8);
+            }
+            break;
+        case 8:
+            func_80801AF0_changlerboss(arg0);
+            if (func_80101E14(arg0, 0.7f)) {
+                func_80108B04(arg0, 1);
+            }
+            if (func_80101E14(arg0, 0.999f) && --data->unk94 == 0) {
+                func_808012E0_changlerboss(arg0, 5);
+            }
+            break;
+        case 9:
+            if (func_80101DDC(arg0)) {
+                switch (func_80801C50_changlerboss(arg0)) {
+                    case 0:
+                        func_808012E0_changlerboss(arg0, 0xB);
+                        break;
+                    case 5:
+                        _subaddiedialog_entrypoint_11(arg0->unk0, 0x102A, 0x106, arg0->position, 0xB4);
+                        func_808012E0_changlerboss(arg0, 0xA);
+                        break;
+                    default:
+                        func_808016A8_changlerboss(arg0);
+                        func_808012E0_changlerboss(arg0, 6);
+                        break;
+                }
+            }
+            break;
+        case 11:
+            if (func_800D9078(&arg0->unk58)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802F44_changlerboss);
+                func_8010A85C(arg0, 1);
+                ((struct AnglerBossActorFlags *)arg0)->unk7A_13 = 1;
+                arg0->unk7A_11 = 3;
+                func_808012E0_changlerboss(arg0, 0xC);
+            }
+            break;
+        case 13:
+            if (func_800D9078(&arg0->unk58)) {
+                func_808012E0_changlerboss(arg0, 0xE);
+            }
+            break;
+        case 14:
+            func_80801A10_changlerboss(arg0);
+            if (func_80801948_changlerboss(arg0)) {
+                func_808012E0_changlerboss(arg0, 0xF);
+            }
+            break;
+        case 15:
+            func_80801948_changlerboss(arg0);
+            if (func_80801AF0_changlerboss(arg0)) {
+                func_808012E0_changlerboss(arg0, 0x10);
+            }
+            break;
+        case 16:
+            progress = func_80101F24(arg0);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802F60_changlerboss, 0.4f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802F50_changlerboss, 0.75f);
+            if (progress > 0.0f && progress >= 0.4f && progress <= 0.75f) {
+                func_80801CD8_changlerboss(arg0);
+            }
+            func_80801AF0_changlerboss(arg0);
+            if (func_80101DDC(arg0)) {
+                func_808012E0_changlerboss(arg0, 0x12);
+                data->unk94 = 2;
+            }
+            break;
+        case 17:
+            func_80801AF0_changlerboss(arg0);
+            if (data->unk94 == 0 && !_subaddiefind_entrypoint_2(0x460, 0)) {
+                func_808012E0_changlerboss(arg0, 0xD);
+            }
+            if (func_800D9078(&arg0->unk58) && data->unk94 > 0) {
+                func_808012E0_changlerboss(arg0, 0x12);
+            }
+            break;
+        case 18:
+            func_80801AF0_changlerboss(arg0);
+            if (func_80101E14(arg0, 0.7f)) {
+                func_80108B04(arg0, 1);
+            }
+            if (func_80101DDC(arg0)) {
+                if (--data->unk94 == 0 && !_subaddiefind_entrypoint_2(0x460, 0)) {
+                    func_808012E0_changlerboss(arg0, 0xD);
+                } else {
+                    func_808012E0_changlerboss(arg0, 0x11);
+                }
+            }
+            break;
+        case 19:
+            func_80801AF0_changlerboss(arg0);
+            if (func_80101E14(arg0, 0.7f)) {
+                func_80108B04(arg0, 1);
+            }
+            if (func_80101E14(arg0, 0.999f)) {
+                data->unk94--;
+                if (data->unk94 == 0) {
+                    func_808012E0_changlerboss(arg0, 0xD);
+                }
+            }
+            break;
+        case 20:
+            func_80801AF0_changlerboss(arg0);
+            if (func_800D9078(&arg0->unk58)) {
+                func_808012E0_changlerboss(arg0, 0x15);
+            }
+            break;
+        case 21:
+            func_80801AF0_changlerboss(arg0);
+            if (func_80101E14(arg0, 0.7f)) {
+                func_80108B04(arg0, 1);
+            }
+            if (func_80101E14(arg0, 0.999f)) {
+                data->unk94--;
+                if (data->unk94 == 0) {
+                    func_808012E0_changlerboss(arg0, 0xD);
+                }
+            }
+            break;
+        case 22:
+            if (func_80101DDC(arg0)) {
+                data->unk12F = 1;
+                if (data->unk96 == 5) {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x1036, 0x106, arg0->position, 0xB4);
+                    func_808012E0_changlerboss(arg0, 0x17);
+                } else {
+                    func_80109FE8(arg0, 0);
+                    func_808012E0_changlerboss(arg0, 0x13);
+                }
+            }
+            break;
+        case 24:
+            if (func_80101DDC(arg0)) {
+                func_808012E0_changlerboss(arg0, 0x19);
+            }
+            break;
+        case 25:
+            func_80801BC8_changlerboss(arg0);
+            break;
+        case 26:
+            func_80801BC8_changlerboss(arg0);
+            if (!data->unk12B && func_800D90A4(&arg0->unk58) &&
+                func_800EEB40(arg0->position, position) < 1960000.0f) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, func_800DC128(0, 4) + 0x1037,
+                                            0x144, arg0->position, 0xB4);
+                func_808012E0_changlerboss(arg0, 0x1B);
+            }
+            break;
+        case 29:
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 0x1E);
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800B7C_changlerboss.s")
 
@@ -224,7 +518,7 @@ void func_80801A10_changlerboss(Actor *arg0) {
     func_80102CF4(arg0, 0x41000000);
 }
 
-void func_80801AF0_changlerboss(Actor *arg0) {
+s32 func_80801AF0_changlerboss(Actor *arg0) {
     f32 func_800D8FF8(void);
     void func_800F18FC(f32 *, f32 *, f32 *);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
