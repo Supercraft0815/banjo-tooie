@@ -188,7 +188,47 @@ void func_80800498_chseaweedbaddy(Actor *arg0) {
     func_80101EE4(arg0, func_800DC0C0());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_80800554_chseaweedbaddy.s")
+s32 func_80800554_chseaweedbaddy(Actor *arg0, s32 arg1, volatile s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 func_80107070(Actor *, s32);
+    void func_80800710_chseaweedbaddy(u8 *, s32);
+    void func_808007E4_chseaweedbaddy(u8 *, s32);
+    void func_80800BCC_chseaweedbaddy(Actor *);
+    switch (arg1) {
+        case 0x3F:
+            func_808007E4_chseaweedbaddy((u8 *)arg0, arg2);
+            break;
+        case 0x40:
+            _chexploder_entrypoint_3(arg0, arg0->position, 4);
+            break;
+        case 0x90:
+            func_80800BCC_chseaweedbaddy(arg0);
+            break;
+        case 0x95:
+            _subaddierouteDll_entrypoint_1(arg0);
+            break;
+        case 0x8F:
+            if (*(s32 *)&arg2 == 0) {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 1);
+            }
+            break;
+        case 2:
+            if (_subaddieDll_entrypoint_3(arg0) == 0) {
+                if (func_80107070(arg0, 1) == 0) {
+                    _subaddiefade_entrypoint_3(arg0);
+                }
+            } else {
+                func_80800710_chseaweedbaddy((u8 *)arg0, 6);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_8080065C_chseaweedbaddy(Actor *arg0) {
     f32 func_800DC0C0(void);
