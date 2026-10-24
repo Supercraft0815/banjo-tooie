@@ -8,7 +8,7 @@ OSThread *func_80108ED0(void);
 void func_80800000_chfactorytoxiccloud(Actor *arg0);
 void func_808001B8_chfactorytoxiccloud(Actor *arg0);
 void func_80800C7C_chfactorytoxiccloud();
-void func_808011A0_chfactorytoxiccloud();
+s32 func_808011A0_chfactorytoxiccloud(Actor *, s32, s32);
 
 u32 D_80801420_chfactorytoxiccloud[] = {
     0x00020000, 0x00060000, 0x00060000, 0x00000000,
@@ -51,8 +51,8 @@ u32 D_80801518_chfactorytoxiccloud[] = {
     0x00640000,
 };
 
-u32 D_8080155C_chfactorytoxiccloud[] = {
-    0x00000000, 0x42C80000, 0x00000000,
+f32 D_8080155C_chfactorytoxiccloud[] = {
+    0.0f, 100.0f, 0.0f,
 };
 
 u32 D_80801568_chfactorytoxiccloud[] = {
@@ -483,7 +483,46 @@ s32 func_80801164_chfactorytoxiccloud(Actor *arg0, s32 arg1, s32 arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_808011A0_chfactorytoxiccloud.s")
+s32 func_808011A0_chfactorytoxiccloud(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800FFAB0(Actor *);
+    void func_800CF494(void);
+    void func_80102424(Actor *, s32);
+    s32 func_80107070(Actor *, u32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_80101074(void *);
+    void func_80101010(f32 *);
+    s32 state = 1;
+
+    switch (arg1) {
+        case 0x40:
+            func_800BBCB8((f32 *)arg0->actorData, NULL, arg0->scale, 4, D_80801518_chfactorytoxiccloud);
+            func_800FFAB0(arg0);
+            if (arg0->unk64_19) {
+                func_800CF494();
+                arg0->unk64_19 = 0;
+            }
+            return 1;
+        case 1:
+            if (state != arg0->unk70_10) {
+                func_80102424(arg0, 3);
+            }
+            return 1;
+        case 2:
+            if (func_80107070(arg0, 1) == 0) {
+                func_80102424(arg0, 6);
+                _subaddiefade_entrypoint_3(arg0);
+            }
+            return 1;
+        case 0x38:
+            func_80101074(D_80801434_chfactorytoxiccloud);
+            return 2;
+        case 0x97:
+            func_80101010(D_8080155C_chfactorytoxiccloud);
+            return 1;
+    }
+    return 0;
+}
 
 s32 func_808012C4_chfactorytoxiccloud(Actor *arg0) {
     typedef union {
