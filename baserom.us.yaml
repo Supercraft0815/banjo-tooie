@@ -8094,7 +8094,7 @@ segments:
     subsegments: 
       - [0x02034420, c, newmumbo]
       - [0x02035CA0, .rodata, newmumbo]
-      - [0x02035DB0, data, newmumbo]
+      - [0x02035DB0, .data, newmumbo]
       - [0x02035F80, bss, newmumbo]
   - name: chfiregen_header
     dir: overlays/chfiregen
