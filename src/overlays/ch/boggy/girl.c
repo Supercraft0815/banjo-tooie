@@ -1,10 +1,73 @@
 #include "ch/boggy/girl.h"
 
+u32 D_80800C68_chboggygirl[];
+void func_80101870(Actor *, void *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+void func_8080000C_chboggygirl(Actor *arg0);
+void func_808000A8_chboggygirl(Actor *arg0);
+s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2);
+void func_8080091C_chboggygirl(Actor* arg0);
+void func_8080097C_chboggygirl(Actor *arg0);
+
+s32 D_80800C50_chboggygirl[] = {
+    0x00000601, 0xFFFF0100,
+    0x00000601, 0xFFFE0200,
+    0xFFFEDFFF, 0x12220300,
+};
+
+u32 D_80800C68_chboggygirl[] = {
+    0x00000000, 0x00000000,
+    0x40133333, 0x02440001,
+    0x3F19999A, 0x02450001,
+    0x3F19999A, 0x02450001,
+    0x40133333, 0x02440001,
+    0x3F19999A, 0x02450001,
+    0x3F19999A, 0x02450001,
+    0x3F19999A, 0x02450001,
+    0x40133333, 0x02440001,
+    0x40133333, 0x02440001,
+    0x40133333, 0x02440001,
+    0x40133333, 0x02440001,
+    0x40133333, 0x02440001,
+    0x40133333, 0x02440001,
+    0x3F4CCCCD, 0x00B70002,
+    0x40133333, 0x02440001,
+    0x00000000, 0x00000000,
+};
+
+u32 D_80800CF0_chboggygirl[] = {
+    0x01930141, 0x075A0002,
+    (u32)D_80800C68_chboggygirl, (u32)func_808000A8_chboggygirl,
+    (u32)func_8080097C_chboggygirl, (u32)func_80101870,
+    0x09C40000, 0x3F800000,
+    0x008D0000, 0x40040128,
+    (u32)func_8080091C_chboggygirl, 0x00000000,
+    0x00300000, (u32)func_8080000C_chboggygirl,
+    (u32)func_80107C2C, 0x80105016,
+    (u32)func_80800508_chboggygirl, 0x00000000,
+};
+
+s32 D_80800D38_chboggygirl[] = {
+    0x00000000, 0x0190003C,
+    0x0000000E, 0x40000400,
+};
+
+s32 D_80800D48_chboggygirl[] = {
+    0x43200000, 0x430C0000,
+    0x430C0000, 0x428C0000,
+};
+
+s32 D_80800D58_chboggygirl[] = {
+    0x001304A4, 0x000A0140,
+    0x00000000, 0x00000000,
+    0x00000000, 0x00000000,
+};
+
 void *func_80100094(Actor *, u32);
 
 OSThread *chboggygirl_entrypoint_0(void)
 {
-    extern u8 D_80800CF0_chboggygirl[];
+
 
     return (OSThread *) D_80800CF0_chboggygirl;
 }
@@ -42,7 +105,127 @@ void func_8080000C_chboggygirl(Actor *arg0) {
     func_8080093C_chboggygirl(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/girl/func_808000A8_chboggygirl.s")
+void func_808000A8_chboggygirl(Actor *arg0) {
+    typedef struct {
+        s16 position[3];
+        s16 spline;
+        u16 route[6];
+        s16 unk14;
+        s16 unk16;
+        u8 item[1];
+    } GirlData;
+    typedef struct {
+        f32 unk18[3];
+        f32 unk24;
+    } GirlActorData;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, s32 *, s32 *, s32);
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    void func_80102424(Actor *, s32);
+    f32 func_801028C4(Actor *, f32 *, f32, f32, f32);
+    void func_80102924(void *, f32);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 func_80102CF4(Actor *, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_80105230();
+    void func_801058C4(Actor *, s32, f32, u32);
+    void func_80105BAC(Actor *);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010CAC0(f32 *, s32);
+    void func_8010CE70(Actor *, s32, s32);
+    s32 func_80800B5C_chboggygirl(s32);
+
+
+    GirlData *sp64;
+    s32 sp60;
+    f32 sp54[3];
+    f32 sp48[3];
+    u32 *expression;
+    s32 pad;
+
+    sp64 = func_80100094(arg0, 0);
+    if (func_800DA298(0xB9) && func_80800B5C_chboggygirl(0x3CB) && !func_8010CAC0(arg0->position, 0x320)) {
+        arg0->unk74_30 = 0;
+    }
+    sp60 = func_800D90A4(&arg0->unk58);
+    if (func_80100094(arg0, 1) != NULL) {
+        expression = func_80100094(arg0, 1);
+        _suexpression_entrypoint_10(expression, arg0->unk0, 0);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            if (!_subaddiedialog_entrypoint_8(arg0, arg0->position, D_80800D38_chboggygirl, D_80800C50_chboggygirl, 3) && sp60) {
+                func_80102924(arg0, arg0->rotation[1] + func_800DC178(90.0f, 270.0f));
+                func_80102424(arg0, 3);
+                sp64->unk14 = 0;
+            }
+            break;
+        case 4:
+            func_8010CE70(arg0, 10, -1);
+            break;
+        case 3:
+            func_80102BF8(arg0, 0.2f, 60.0f, 180.0f);
+            if (func_80102CF4(arg0, 15.0f)) {
+                arg0->unk58 = func_800DC178(8.0f, 12.0f);
+                func_80102424(arg0, 2);
+            }
+            _subaddiedialog_entrypoint_8(arg0, arg0->position, D_80800D38_chboggygirl, D_80800C50_chboggygirl, 3);
+            break;
+        case 2:
+            func_80105230(arg0, 0);
+            if (!_subaddiedialog_entrypoint_8(arg0, arg0->position, D_80800D38_chboggygirl, D_80800C50_chboggygirl, 3)) {
+                _subaddierouteDll_entrypoint_6(arg0, sp64->route, sp64->unk14, 7, 0.7f, 8, 12);
+                if (_subaddierouteDll_entrypoint_4(arg0)) {
+                    _subaddierouteDll_entrypoint_7(arg0, sp64->route, arg0->rotation[1], arg0->unk54, 200.0f, 0x4000);
+                    sp64->unk14 = sp64->route[3];
+                }
+                func_80102BF8(arg0, 0.2f, 30.0f, 180.0f);
+                if (func_8010B990(arg0, 0x1305) & 4) {
+                    func_80102924(arg0, arg0->rotation[1] + 180.0f);
+                    func_80102424(arg0, 3);
+                    sp64->unk14 = 0;
+                } else if (sp60) {
+                    func_80102424(arg0, 1);
+                    arg0->unk58 = func_800DC178(4.0f, 6.0f);
+                }
+            }
+            break;
+        case 5:
+            func_800EE88C(sp54, sp64->position);
+            if (func_801028C4(arg0, sp54, 0.2f, 30.0f, 180.0f) < 40.0f) {
+                func_80102424(arg0, 6);
+            }
+            break;
+        case 6:
+            func_800EE88C(sp48, sp64->position);
+            arg0->unk54 = func_80102D78(arg0, sp48);
+            func_80102BF8(arg0, 0.2f, 30.0f, 180.0f);
+            func_8010B990(arg0, 0x1005);
+            if (func_800F0064(arg0->position, 100.0f, sp48)) {
+                func_801058C4(arg0, sp64->spline, ((GirlActorData *)arg0->actorData)->unk24, 1);
+                func_80105BAC(arg0);
+                func_80102424(arg0, 7);
+            }
+            break;
+        case 15:
+            if (_subaddieitem_entrypoint_3(arg0, NULL, sp64->item)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1090, 0xE, arg0->position, 0x3B);
+                func_80102424(arg0, 4);
+            }
+            break;
+    }
+    _sudeflect_entrypoint_0(arg0->position, 100.0f, 50.0f, 10);
+}
 
 s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
@@ -54,8 +237,8 @@ s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800708_chboggygirl(Actor *, s32, s32);
     void func_80800ABC_chboggygirl(Actor *);
     s32 func_80800B5C_chboggygirl(s32);
-    extern s32 D_80800D48_chboggygirl;
-    extern s32 D_80800D58_chboggygirl;
+
+
     s32 value;
     f32 *position;
 
@@ -71,7 +254,7 @@ s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
             func_80800ABC_chboggygirl(arg0);
             break;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_80800D48_chboggygirl, arg0->scale);
+            _gcdialogcamera_entrypoint_3(&D_80800D48_chboggygirl[0], arg0->scale);
             break;
         case 0xB8:
             value = arg2 & 0xFFFF;
@@ -87,7 +270,7 @@ s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
             break;
         case 0x2D:
             position = arg0->position;
-            _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800D58_chboggygirl);
+            _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800D58_chboggygirl[0]);
             func_800C9C70(1.0f, 0x525, 1.05f, 0x55F0, position, 200.0f, 3000.0f);
             break;
         case 0x30:
@@ -123,7 +306,7 @@ void func_80800708_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102924(void *, f32);
     void func_80800A4C_chboggygirl(Actor *);
     s32 func_80800B5C_chboggygirl(s32);
-    extern s32 D_80800C50_chboggygirl;
+
     GirlData *sp2C;
 
     sp2C = func_80100094(arg0, 0);
@@ -156,7 +339,7 @@ void func_80800708_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
         sp2C->flag = 0;
         break;
     default:
-        switch (_subaddiedialog_entrypoint_9(arg0, arg1, &D_80800C50_chboggygirl, 3)) {
+        switch (_subaddiedialog_entrypoint_9(arg0, arg1, D_80800C50_chboggygirl, 3)) {
         case 1:
             func_800DA544(0xB9);
             if (func_80800B5C_chboggygirl(0x3CB)) {

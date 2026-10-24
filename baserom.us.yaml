@@ -7868,7 +7868,7 @@ segments:
     subsegments: 
       - [0x02028DE0, c, girl]
       - [0x02029990, .rodata, girl]
-      - [0x02029A30, data, girl]
+      - [0x02029A30, .data, girl]
       - [0x02029B50, bss, girl]
   - name: chboggyfatboy_header
     dir: overlays/chboggyfatboy
