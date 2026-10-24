@@ -1,15 +1,45 @@
 #include "common.h"
 
+extern u8 D_80802B7C_chboilerboss[];
+void func_801018A4(Actor *, s32);
+void func_80102EC0();
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_80800030_chboilerboss();
+void func_80800304_chboilerboss(Actor* arg0);
+void func_80800324_chboilerboss(Actor *arg0);
+s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2);
+
+u32 D_80802C00_chboilerboss[] = {
+    0x00BE0002, 0x3F99999A,
+    0x02C60001,
+};
+
+u32 D_80802C0C_chboilerboss[] = {
+    0x00070118, 0x06500001,
+    (u32)D_80802B7C_chboilerboss, (u32)func_80102EC0,
+    (u32)func_80800324_chboilerboss, (u32)func_801018A4,
+    0x00000000, 0x00000000,
+    0x00000000, 0x00011568,
+    (u32)func_80800304_chboilerboss, (u32)func_80108ED0,
+    0x00800000, (u32)func_80800030_chboilerboss,
+    (u32)func_80107C2C, 0x80000422,
+    (u32)func_808008B0_chboilerboss, 0x00000000,
+};
+
+u32 D_80802C54_chboilerboss[] = {
+    0x002B0223, 0x064D000E,
+    (u32)D_80802B7C_chboilerboss,
+};
+
 OSThread *chboilerboss_entrypoint_0(void)
 {
-    extern u8 D_80802C0C_chboilerboss[];
 
     return (OSThread *) D_80802C0C_chboilerboss;
 }
 
 OSThread *chboilerboss_entrypoint_1(void)
 {
-    extern u8 D_80802C54_chboilerboss[];
 
     return (OSThread *) D_80802C54_chboilerboss;
 }
@@ -198,7 +228,111 @@ void func_80800324_chboilerboss(Actor *arg0) {
     func_808025DC_chboilerboss(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_808008B0_chboilerboss.s")
+s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcfrontend_entrypoint_10(void);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    void func_800F8300();
+    u32 func_800FDC28(u32);
+    s32 func_800FFAB0(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800B94_chboilerboss(Actor *, u8 *);
+    void func_80800D50_chboilerboss(Actor *, s32 *);
+    void func_80800E90_chboilerboss(Actor *, s32 *);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    void func_80801584_chboilerboss(Actor *, s32);
+    void func_80801D80_chboilerboss(Actor *, s32, s32);
+    void func_8080221C_chboilerboss(Actor *, s32, volatile s32);
+    void func_808022BC_chboilerboss(Actor *);
+    void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
+    void func_808024DC_chboilerboss(Actor *);
+    s32 func_80802690_chboilerboss(s32, s32, s32);
+    void func_808026F0_chboilerboss(s32);
+    void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
+    extern s32 D_80802AA0_chboilerboss;
+    struct BoilerBossData {
+        u8 pad0[0x55];
+        u8 unk55;
+        u8 unk56;
+        u8 pad57[0xD];
+        s16 unk64;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x3F:
+        func_80800D50_chboilerboss(arg0, (s32 *)arg2);
+        break;
+    case 0x40:
+        func_80800E90_chboilerboss(arg0, (s32 *)arg2);
+        break;
+    case 0x2E:
+        func_80801D80_chboilerboss(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x3D:
+        func_80801584_chboilerboss(arg0, arg2);
+        break;
+    case 0x90:
+        func_808022BC_chboilerboss(arg0);
+        break;
+    case 0x32:
+        data->unk64 = 1;
+        func_800F8300(func_800F54E4(), 2, arg0->position);
+        break;
+    case 0x1F:
+        func_80800B94_chboilerboss(arg0, *(u8 **)&arg2);
+        break;
+    case 0xB:
+        switch (arg2) {
+        case 8:
+            if (func_800D395C()) {
+                func_808026F0_chboilerboss((s32)arg0);
+                _gcfrontend_entrypoint_10();
+            } else {
+                func_808027E4_chboilerboss(arg0, 0x14, 0x30, NULL);
+                func_80101180(0x46D, 7, 0);
+            }
+            return 4;
+        case 20:
+            func_808026F0_chboilerboss((s32)arg0);
+            func_800FFAB0(arg0);
+            return 4;
+        case 19:
+            func_808026F0_chboilerboss((s32)arg0);
+            func_808024DC_chboilerboss(arg0);
+            return 4;
+        }
+        return 3;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80802AA0_chboilerboss, arg0->scale);
+        break;
+    case 0x57:
+        return func_80802690_chboilerboss((s32)arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+    case 0x95:
+        if (data->unk56) {
+            func_800FDC28(1U);
+            data->unk56 = 0;
+        }
+        break;
+    case 0x96:
+        if (!func_800D395C()) {
+            return 0;
+        }
+        func_8080238C_chboilerboss(&arg0->unk0, 0xCEB, 0x4A);
+        break;
+    case 0x9F:
+        func_800FDC28(0U);
+        func_80800F34_chboilerboss(arg0, 4);
+        func_8080221C_chboilerboss(arg0, 0, 0x40A00000);
+        data->unk55 = 0;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800B94_chboilerboss(Actor *arg0, u8 *arg1) {
     s32 _dbmorph_entrypoint_4(u8 *, u8 *, s32, u8, s32);

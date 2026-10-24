@@ -4998,6 +4998,8 @@ segments:
       - [0x01FA9960, c, boss]
       - [0x01FAC1F0, .rodata, boss]
       - [0x01FAC400, data, boss]
+      - [0x01FAC560, .data, boss]
+      - [0x01FAC5C0, data, boss_data_tail]
       - [0x01FAC8D0, bss, boss]
   - name: chburgerstand_header
     dir: overlays/chburgerstand
