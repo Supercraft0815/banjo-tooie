@@ -207,7 +207,158 @@ s32 func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/chbounce_entrypoint_8.s")
+void chbounce_entrypoint_8(Actor *arg0) {
+    f32 func_800BECCC(void);
+    void func_800C4B64(f32);
+    void func_800C4B70(s32);
+    void func_800C4B7C(s32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80104580(void);
+    void *func_80105494(Actor *);
+    void func_8010A63C(Actor *);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    f32 mlAbsF(f32);
+    void func_80800F74_chbounce(Actor *);
+    struct BounceData {
+        f32 position[3];
+        f32 velocity[3];
+        f32 angle;
+        f32 angularVelocity;
+        f32 time;
+        u32 settled : 1;
+        u32 type : 7;
+        u32 reserved : 8;
+        u32 state : 3;
+        u32 reserved2 : 13;
+        s16 sound;
+        s16 volume;
+        f32 pitch;
+        s16 bounces;
+        u16 flags;
+    };
+    struct BounceConfig {
+        u16 flags;
+        u8 pad2[0x10];
+        s16 speed;
+        s16 speedRange;
+        u8 pad16[6];
+        f32 restitution;
+        f32 unk20;
+    };
+    extern struct BounceConfig D_80800FE0_chbounce[];
+    extern s32 D_808014AC_chbounce[];
+    f32 dt;
+    struct BounceData *data;
+    struct BounceConfig *config;
+    f32 previous[3];
+    f32 displacement[3];
+    f32 normal[3];
+    struct { u8 pad[0x1C]; f32 height; } *floor;
+    f32 speed;
+    f32 factor;
+
+    func_80104580();
+    dt = func_800D8FF8();
+    data = func_80100094(arg0, 2);
+    config = &D_80800FE0_chbounce[data->type];
+    switch (data->state) {
+        case 1:
+            data->time += dt;
+            func_800EE7F8(previous, data->position);
+            func_800EFA20(displacement, data->velocity, dt);
+            func_800EF04C(data->position, displacement);
+            if (data->time > 1.2f) {
+                data->settled = 1;
+            }
+            if ((!(config->flags & 0x40) || !(data->time < 1.2f)) &&
+                (func_808007B8_chbounce(arg0, previous, data->position, normal, config->flags & 8) ||
+                 ((config->flags & 0x200) && data->velocity[1] < -(config->speedRange / 2 + config->speed)))) {
+                if (config->flags & 0x204) {
+                    func_800EFA4C(normal, 0.0f, 1.0f, 0.0f);
+                }
+                func_800EF334(data->velocity, -1.0f);
+                func_800EF334(normal, 2.0f * func_800EEAA4(data->velocity, normal));
+                func_800EFB24(data->velocity, normal, data->velocity);
+                data->bounces++;
+                if (data->sound != 0) {
+                    factor = (data->flags & 0x2000)
+                        ? func_800F10B4((f32)data->bounces,
+                                       1.0f,
+                                       4.0f,
+                                       1.0f,
+                                       0.65f)
+                        : 1;
+                    func_800C4B64(data->pitch * factor);
+                    func_800C4B70(data->volume * factor);
+                    func_800C4B7C(data->sound);
+                    func_8010D930(3, arg0->unk70_0, data->position, D_808014AC_chbounce);
+                }
+                func_800EF334(data->velocity, config->restitution);
+                speed = func_800EEF94(data->velocity);
+                if (speed > 800.0f) {
+                    speed = 800.0f;
+                    func_800EF368(data->velocity, speed);
+                }
+                if ((speed < 200.0f && normal[1] > 0.75f) || speed < 10.0f) {
+                    data->state = 2;
+                    data->settled = 1;
+                    if (config->flags & 0x10) {
+                        func_8010A63C(arg0);
+                    }
+                }
+                if (config->flags & 0x200) {
+                    floor = func_80105494(arg0);
+                    if (floor != NULL) {
+                        data->position[1] = floor->height;
+                    }
+                }
+            } else {
+                if (config->flags & 0x100) {
+                    data->velocity[1] -= 4000.0f * dt;
+                } else if (config->flags & 0x800) {
+                    data->velocity[1] -= 750.0f * dt;
+                } else {
+                    data->velocity[1] -= 1500.0f * dt;
+                }
+            }
+            func_800EE7F8(arg0->position, data->position);
+            break;
+        case 2:
+            if (config->flags & 2) {
+                data->angle += data->angularVelocity * dt;
+                while (data->angle >= 360.0f) {
+                    data->angle -= 360.0f;
+                }
+                while (data->angle < 0.0f) {
+                    data->angle += 360.0f;
+                }
+                arg0->rotation[1] = data->angle;
+            }
+            if (mlAbsF(data->angularVelocity) < 0.1f || !(config->flags & 2)) {
+                func_80800F74_chbounce(arg0);
+            }
+            break;
+    }
+    if (arg0->position[1] < func_800BECCC() - 1000.0f) {
+        if (func_8010108C(arg0, 0x4D, 0) > 0) {
+            func_80800F74_chbounce(arg0);
+        } else {
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 /* extern */
 
