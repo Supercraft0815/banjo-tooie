@@ -4238,6 +4238,8 @@ segments:
       - [0x01F82BA0, c, gamenew]
       - [0x01F86540, .rodata, gamenew]
       - [0x01F86680, data, gamenew]
+      - [0x01F868B0, .data, gamenew]
+      - [0x01F869F0, data, gamenew_tail]
       - [0x01F86AD0, bss, gamenew]
   - name: chwaspnestgame_header
     dir: overlays/chwaspnestgame

@@ -1,10 +1,89 @@
 #include "common.h"
 
+typedef struct { f32 value; s32 unknown4; s32 unknown8; } JiggyCameraData;
+void func_80802030_chjiggygamenew(u8 *);
+void func_80102EC0(s32);
+void func_808024F0_chjiggygamenew(Actor *, void *);
+void func_8080245C_chjiggygamenew(s32);
+void func_80801EE8_chjiggygamenew(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_80802858_chjiggygamenew(void *, s32, s32);
+
+f32 D_80803D10_chjiggygamenew[3] = {
+    222.3800048828125f, 328.8999938964844f, -186.39999389648438f,
+};
+
+f32 D_80803D1C_chjiggygamenew[3] = {
+    0.0f, 270.0f, 0.0f,
+};
+
+JiggyCameraData D_80803D28_chjiggygamenew = {
+    0.9969819784164429f, 100, 100,
+};
+
+u32 D_80803D34_chjiggygamenew[] = {
+    0x00000000, 0x00000000, 0x40000000, 0x03D70044,
+};
+
+u32 D_80803D44_chjiggygamenew[] = {
+    0x015801DF, 0x08630001, (u32)D_80803D34_chjiggygamenew, (u32)func_80802030_chjiggygamenew,
+    (u32)func_80102EC0, (u32)func_808024F0_chjiggygamenew, 0x00000000, 0x00000000,
+    0x00000000, 0x00401424, (u32)func_8080245C_chjiggygamenew, 0x00000000,
+    0x02780000, (u32)func_80801EE8_chjiggygamenew, (u32)func_80107C2C, 0x80002002,
+    (u32)func_80802858_chjiggygamenew, 0x00000000,
+};
+
+f32 D_80803D8C_chjiggygamenew[][4] = {
+    62.0f, 240.0f, 48.0f, 183.0f,
+    85.0f, 220.0f, 48.0f, 183.0f,
+};
+
+s32 D_80803DAC_chjiggygamenew[4] = {
+    0x000000D8, 0x000000D8, 0x000000D8, 0x000000FF,
+};
+
+s32 D_80803DBC_chjiggygamenew[4] = {
+    0x000000FF, 0x00000060, 0x00000050, 0x000000FF,
+};
+
+f32 D_80803DCC_chjiggygamenew[3] = {
+    0.699999988079071f, 0.0f, -0.6000000238418579f,
+};
+
+f32 D_80803DD8_chjiggygamenew[3] = {
+    530.0f, 328.8999938964844f, -186.39999389648438f,
+};
+
+u8 D_80803DE4_chjiggygamenew[10][2] = {
+    0xC6, 0x5F, 0xD6, 0x68,
+    0xD9, 0x67, 0x96, 0x8D,
+    0x88, 0xA5, 0x88, 0xA6,
+    0x88, 0xA8, 0x6D, 0xA8,
+    0x6B, 0x7D, 0x76, 0x8D,
+};
+
+u8 D_80803DF8_chjiggygamenew[7][2] = {
+    0x76, 0x5F, 0x94, 0x67,
+    0x9F, 0x70, 0x8C, 0xA5,
+    0x8C, 0xA6, 0x8C, 0xA8,
+    0x95, 0x64,
+};
+
+u32 D_80803E08_chjiggygamenew[] = {
+    0x00000000, 0x00000000, 0x3F800000, 0x03D00049,
+    0x3F800000, 0x03D30049, 0x3ECCCCCD, 0x03D2004A,
+    0x3ECCCCCD, 0x03D1004A, 0x3E99999A, 0x03CF0049,
+    0x3ECCCCCD, 0x03D5004A, 0x40266666, 0x03D4004A,
+    0x40266666, 0x03D6004A,
+};
+
+Actor *func_80106790();
+
 void *func_80100094(Actor *, u32);
 
 OSThread *chjiggygamenew_entrypoint_0(void)
 {
-    extern u8 D_80803D44_chjiggygamenew[];
+
 
     return (OSThread *) D_80803D44_chjiggygamenew;
 }
@@ -12,14 +91,12 @@ OSThread *chjiggygamenew_entrypoint_0(void)
 /* extern */
 
 s32 func_8080000C_chjiggygamenew() {
-    Actor *func_80106790();
     return (*(s32 *)((s8 *)(func_80106790()) + (0x20)));
 }
 
 /* extern */
 
 s32 func_80800030_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1) {
-    Actor *func_80106790();
     void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2);
     typedef struct {
         s16 selection;
@@ -64,7 +141,6 @@ s32 func_80800030_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1) {
 /* extern */
 
 void func_80800158_chjiggygamenew(Unk80132ED0 *arg0) {
-    Actor *func_80106790();
     void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2);
     void func_808035C4_chjiggygamenew(Unk80132ED0 *, f32 *);
     typedef struct {
@@ -148,7 +224,6 @@ s32 func_8080020C_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1)
 /* extern */
 
 void func_80800368_chjiggygamenew(Unk80132ED0 *arg0) {
-    Actor *func_80106790();
     void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2);
     typedef struct {
         s8 selection;
@@ -185,7 +260,6 @@ void func_80800368_chjiggygamenew(Unk80132ED0 *arg0) {
 /* extern */
 
 void func_80800424_chjiggygamenew(Unk80132ED0 *arg0) {
-    Actor *func_80106790();
     void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2);
     typedef struct {
         s8 selection;
@@ -220,10 +294,9 @@ void func_80800424_chjiggygamenew(Unk80132ED0 *arg0) {
 }
 
 void func_808004E0_chjiggygamenew(Unk80132ED0 *arg0) {
-    Actor *func_80106790();
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _sujiggy_entrypoint_21(void);
-    u32 _sujiggy_entrypoint_24(void);
+    s32 _sujiggy_entrypoint_24(void);
     void func_800C082C(s32);
     void func_800C9C34(f32, s32, s32, s32);
     void func_800C9DE4(f32, void *, s32);
@@ -272,7 +345,6 @@ void func_808004E0_chjiggygamenew(Unk80132ED0 *arg0) {
 }
 
 void func_808006E0_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
-    Actor *func_80106790();
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _sujiggy_entrypoint_21(void);
     void func_800C082C(s32);
@@ -305,7 +377,6 @@ void func_808006E0_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 func_808007BC_chjiggygamenew(void) {
-    Actor *func_80106790();
     return (*(s32 *)((s8 *)(func_80106790()) + (0x28))) == 5;
 }
 
@@ -400,7 +471,7 @@ s32 func_808019E0_chjiggygamenew(Actor *arg0) {
     void func_800E4140(f32 *, f32 *);
     extern f32 D_80803AE0_chjiggygamenew[][3];
     extern f32 D_80803BD0_chjiggygamenew[][3];
-    extern f32 D_80803D8C_chjiggygamenew[][4];
+
     f32 screen[2];
     f32 position[2];
     register f32 x, y;
@@ -481,8 +552,7 @@ void func_80801CE8_chjiggygamenew(Actor *arg0) {
     void func_800EDE54(void *, s32[4], s32[4], f32);
     void *func_8010649C(void *, s32);
     s32 func_8080363C_chjiggygamenew();
-    extern s32 D_80803DAC_chjiggygamenew[4];
-    extern s32 D_80803DBC_chjiggygamenew[4];
+
     void *part;
     s32 selected;
     s32 enabled;
@@ -592,7 +662,132 @@ void func_80801EE8_chjiggygamenew(Actor *arg0) {
     _gldbstring_entrypoint_2(0x186D);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802030_chjiggygamenew.s")
+void func_80802030_chjiggygamenew(u8 *arg0) {
+    s32 func_800C0638(void);
+    s32 _sujiggy_entrypoint_18(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    f32 func_800D8FF8(void);
+    s32 _sujiggy_entrypoint_21(void);
+    s32 _sujiggy_entrypoint_24(void);
+    void func_800C082C(s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    void func_800FC6B0(u32);
+    void func_800FC74C(u32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    s32 func_800FCCD4(s32);
+    void func_800FCD14(s32, s32);
+    void func_800CE980(s32, f32, s32);
+    s32 func_80102424(s32, s32);
+    void func_80801CE8_chjiggygamenew(Actor *arg0);
+    struct GameFlags {
+        u32 unused : 11;
+        u32 paused : 1;
+        u32 rest : 20;
+    };
+    f32 dt;
+    s32 now;
+    s32 previous;
+    s32 elapsed;
+
+    dt = func_800D8FF8();
+    if (*(s16 *)(arg0 + 0x90) != 0) {
+        func_80801CE8_chjiggygamenew(arg0);
+    }
+    *(f32 *)(arg0 + 0x58) += dt;
+    switch (*(s32 *)(arg0 + 0x28)) {
+        case 1:
+            if (*(f32 *)(arg0 + 0x58) > 0.1f) {
+                func_800FC6B0(0x31);
+                if (func_800FCCD4(0x2E) != 0) {
+                    func_800FCAE0(0x2E, 0, 0x1D3);
+                    func_800FCA90(0x2E);
+                }
+                *(s32 *)(arg0 + 0x28) = 2;
+                *(f32 *)(arg0 + 0x18) = 2.0f;
+                func_80800834_chjiggygamenew(arg0);
+            }
+            break;
+        case 2:
+            if (func_800D90A4((f32 *)(arg0 + 0x18)) != 0) {
+                func_80800AF8_chjiggygamenew(arg0);
+                func_800FC74C(0x31);
+                func_800FC6B0(0x83);
+                func_800FCA90(0x83);
+                if (_sujiggy_entrypoint_21() != 0) {
+                    if (func_800DA298(0xD49) == 0) {
+                        func_800C082C(0);
+                        _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x155F, 0x4C7, 0, 0x97);
+                        func_800C082C(1);
+                        *(s32 *)(arg0 + 0x28) = 3;
+                    } else if (_sujiggy_entrypoint_24() != 0) {
+                        func_800C082C(0);
+                        _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x1560, 0x4C7, 0, 0x97);
+                        func_800C082C(1);
+                        *(s32 *)(arg0 + 0x28) = 3;
+                    } else {
+                        func_80801E4C_chjiggygamenew(arg0, 0);
+                    }
+                } else if (func_800DA298(0xD49) == 0) {
+                    func_800C082C(0);
+                    _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x14F9, 0x4C7, 0, 0x97);
+                    func_800C082C(1);
+                    *(s32 *)(arg0 + 0x28) = 3;
+                } else if (_sujiggy_entrypoint_18() != 0) {
+                    func_800C082C(0);
+                    _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x1554, 0x4C7, 0, 0x97);
+                    func_800C082C(1);
+                    *(s32 *)(arg0 + 0x28) = 3;
+                } else {
+                    func_80801E4C_chjiggygamenew(arg0, 0);
+                }
+            }
+            break;
+        case 4:
+            func_800C082C(0);
+            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x1555, 0x4C6, 0, 0x97);
+            func_800C082C(1);
+            *(s32 *)(arg0 + 0x28) = 3;
+            break;
+        case 5:
+            if (func_80801C20_chjiggygamenew(arg0) != 0) {
+                func_808004E0_chjiggygamenew(*(s32 *)arg0);
+                func_80102424((s32)func_80106790(*(Unk80132ED0 **)(arg0 + 0x3C)), 7);
+            } else if (!((struct GameFlags *)(arg0 + 0x64))->paused) {
+                now = osGetCount();
+                previous = *(s32 *)(arg0 + 0x1C);
+                if (now >= previous) {
+                    elapsed = now - previous;
+                } else {
+                    elapsed = 0xFFFFFFFF - previous + now + 1;
+                }
+                *(f32 *)(arg0 + 0x18) -= ((f32)elapsed * 0.021333333f) / 1000000.0f;
+                *(s32 *)(arg0 + 0x1C) = osGetCount();
+                if (*(f32 *)(arg0 + 0x58) > 2.0f) {
+                    func_800FCD14(0x83, (s32)((131538.0f * *(f32 *)(arg0 + 0x18)) / *(f32 *)(arg0 + 0x30) + 330000.0f));
+                }
+                if (*(f32 *)(arg0 + 0x18) < -0.1f) {
+                    func_808006E0_chjiggygamenew(*(s32 *)arg0, 0xD4B, 0x14FB);
+                } else {
+                    func_800CE980(4, *(f32 *)(arg0 + 0x18), 0);
+                }
+            }
+            break;
+        case 7:
+        case 8:
+            if (func_80801C20_chjiggygamenew(arg0) != 0 && func_800C0638() == 0) {
+                if (*(s32 *)(arg0 + 0x28) == 7) {
+                    _sujiggy_entrypoint_11(*(s32 *)(arg0 + 0x2C));
+                } else {
+                    _sujiggy_entrypoint_10();
+                }
+                *(s32 *)(arg0 + 0x28) = 6;
+            }
+            break;
+    }
+    func_80800CC0_chjiggygamenew(arg0);
+}
 
 void func_8080245C_chjiggygamenew(s32 arg0) 
 {
@@ -605,9 +800,7 @@ f32 func_80802464_chjiggygamenew(Gfx **arg0) {
     void func_800E3C8C(f32, f32);
     void func_800E3CE8(void);
     void func_800E41CC(void);
-    extern f32 D_80803D10_chjiggygamenew[3];
-    extern f32 D_80803D1C_chjiggygamenew[3];
-    extern f32 D_80803D28_chjiggygamenew;
+
 
     func_800E41CC();
     func_800E3C8C(50.0f, 2000.0f);
@@ -615,7 +808,7 @@ f32 func_80802464_chjiggygamenew(Gfx **arg0) {
     func_800E3C30(D_80803D1C_chjiggygamenew);
     func_800E3CE8();
     func_800E44FC(arg0);
-    return D_80803D28_chjiggygamenew;
+    return D_80803D28_chjiggygamenew.value;
 }
 
 void func_808024C8_chjiggygamenew(s32 arg0)
@@ -625,7 +818,106 @@ void func_808024C8_chjiggygamenew(s32 arg0)
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808024F0_chjiggygamenew.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80802858_chjiggygamenew.s")
+s32 func_80802858_chjiggygamenew(void *arg0, s32 arg1, s32 arg2) {
+    typedef struct { s16 id; s16 response; } DialogEvent;
+    typedef struct {
+        Unk80132ED0 *marker;
+        u8 pad4[0x24];
+        s32 state;
+        s32 count;
+        u8 pad30[0x3C];
+        u32 unused : 23;
+        u32 jiggy : 9;
+    } JiggyGame;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _sujiggy_entrypoint_19(void);
+    s32 _sujiggy_entrypoint_24(void);
+    void _sujiggy_entrypoint_25(s32);
+    void _sujiggy_entrypoint_9(void);
+    s32 func_800DA298(s32);
+    void func_800DA544(s32);
+    void func_80800B88_chjiggygamenew(Actor *);
+    void func_80801E4C_chjiggygamenew(Actor *arg0, s32 arg1);
+
+    switch (arg1) {
+    case 46:
+        switch (((DialogEvent *)&arg2)->id) {
+        case 0x155F:
+        case 0x1560:
+        case 0x14F9:
+        func_80801E4C_chjiggygamenew(arg0, 0);
+        break;
+        case 0x1554:
+        if (((DialogEvent *)&arg2)->response == 1) {
+            if (func_800DA298(0xD74) == 0) {
+                _subaddiedialog_entrypoint_11(((JiggyGame *)arg0)->marker, 0x1555, 0x4C7, 0, 0x97);
+                func_800DA544(0xD74);
+            } else {
+                func_80801E4C_chjiggygamenew(arg0, 1);
+            }
+        } else {
+            func_80801E4C_chjiggygamenew(arg0, 0);
+        }
+        break;
+        case 0x1555:
+        func_80801E4C_chjiggygamenew(arg0, 1);
+        break;
+        case 0x14FA:
+        _sujiggy_entrypoint_9();
+        func_80800B88_chjiggygamenew(arg0);
+        case 0x150B:
+        case 0x14FB:
+        if (((DialogEvent *)&arg2)->response == 1) {
+            ((JiggyGame *)arg0)->state = 7;
+        } else {
+            ((JiggyGame *)arg0)->state = 8;
+        }
+        break;
+        case 0x155E:
+        case 0x1561:
+        case 0x1562:
+        case 0x1563:
+        case 0x1564:
+        func_80800B88_chjiggygamenew(arg0);
+        _sujiggy_entrypoint_25(((JiggyGame *)arg0)->jiggy);
+        if (((DialogEvent *)&arg2)->response == 1) {
+            ((JiggyGame *)arg0)->state = 7;
+        } else {
+            ((JiggyGame *)arg0)->state = 8;
+        }
+        break;
+        }
+        break;
+    case 48:
+        switch (((DialogEvent *)&arg2)->id) {
+        default:
+            break;
+        case 0x14FA:
+        case 0x14FB:
+        case 0x14FC:
+            return ((JiggyGame *)arg0)->count + 1;
+        case 0x1554:
+            return _sujiggy_entrypoint_19();
+        case 0x14F9:
+            return _sujiggy_entrypoint_24();
+        case 0x1564:
+        case 0x1561:
+            if (((DialogEvent *)&arg2)->response != 0) {
+                return _sujiggy_entrypoint_24();
+            }
+            return ((JiggyGame *)arg0)->jiggy;
+        case 0x1563:
+            return _sujiggy_entrypoint_24();
+        case 0x1560:
+        case 0x1562:
+            return _sujiggy_entrypoint_24();
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 struct JiggyGameMarker {
     u8 pad0[0x12];
@@ -635,8 +927,7 @@ void chjiggygamenew_entrypoint_1(void) {
     void func_800EC828(void);
     Actor *func_80108474(u32, f32 *, s32);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
-    extern f32 D_80803DCC_chjiggygamenew[3];
-    extern f32 D_80803DD8_chjiggygamenew[3];
+
     Actor *sp24;
     register Actor *third;
     Actor *sp1C;
@@ -662,8 +953,7 @@ void chjiggygamenew_entrypoint_1(void) {
 void chjiggygamenew_entrypoint_2(void) {
     s32 func_80014F00(void);
     s32 _glglobalsettings_entrypoint_3(void);
-    extern u8 D_80803DE4_chjiggygamenew[10][2];
-    extern u8 D_80803DF8_chjiggygamenew[7][2];
+
     u16 *buffer;
     s32 i;
     s32 offset;
@@ -738,7 +1028,6 @@ void func_80803564_chjiggygamenew(s32 arg0)
 
 void func_8080356C_chjiggygamenew(Unk80132ED0 *arg0) {
     s32 func_80102424(s32, s32);
-    Actor *func_80106790();
     func_80102424(func_80106790(arg0), 8);
 }
 
@@ -746,19 +1035,16 @@ void func_8080356C_chjiggygamenew(Unk80132ED0 *arg0) {
 
 void func_80803598_chjiggygamenew(void) {
     s32 func_80102424(s32, s32);
-    Actor *func_80106790();
     func_80102424(func_80106790(), 7);
 }
 
 void func_808035C4_chjiggygamenew(Unk80132ED0 *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    Actor *func_80106790();
     func_800EE7F8(arg1, (f32 *)((u8 *)func_80100094(func_80106790(arg0), 0U) + 0xC));
 }
 
 void func_808035FC_chjiggygamenew(Actor *arg0, f32 *arg1) {
-    Actor *func_80106790(Unk80132ED0 *);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(func_80106790((Unk80132ED0 *)arg0), 0U);
@@ -767,7 +1053,6 @@ void func_808035FC_chjiggygamenew(Actor *arg0, f32 *arg1) {
 }
 
 s32 func_8080363C_chjiggygamenew(void) {
-    Actor *func_80106790();
     return ((u32) (*(u16 *)((s8 *)(func_80106790()) + (0x72))) >> 0xA) == 1;
 }
 
@@ -777,7 +1062,6 @@ void func_80803668_chjiggygamenew(Unk80132ED0 *arg0, void *arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_80101870(Actor *, void *);
-    Actor *func_80106790(Unk80132ED0 *);
     extern f32 D_80803EA4_chjiggygamenew[];
     extern f32 D_80803EB0_chjiggygamenew[];
     f32 *position;
@@ -852,7 +1136,6 @@ void func_8080377C_chjiggygamenew(Actor *arg0) {
 void func_80803928_chjiggygamenew(Unk80132ED0 *arg0, Gfx **arg1) {
     s32 func_800E81D0(void);
     void func_80101870(Actor* arg0, void* arg1);
-    Actor *func_80106790(Unk80132ED0 *);
     Gfx *sp18;
     Gfx *temp_v0_2;
     s32 temp_v0;
