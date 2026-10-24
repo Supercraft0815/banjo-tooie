@@ -400,7 +400,84 @@ s32 func_808007C4_chevilmumbo(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_80800C50_chevilmumbo.s")
+void func_80800C50_chevilmumbo(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800DC0C0(void);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    struct {
+        u8 pad0[0x84];
+        u8 pattern[10];
+        u8 pad8E[5];
+        u8 unk93;
+        u8 unk94;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk79_4++;
+    data->unk93--;
+    switch (arg0->unk79_4) {
+    case 1:
+        if (func_800DC0C0()) {
+            data->pattern[3] = 2;
+            data->unk94 = 0;
+        } else {
+            data->pattern[4] = 2;
+            data->pattern[1] = 1;
+            data->unk94 = 1;
+        }
+        break;
+    case 2:
+        if (func_800DC0C0()) {
+            data->pattern[5] = 2;
+            data->unk94 = 2;
+        } else {
+            data->pattern[6] = 2;
+            data->unk94 = 3;
+        }
+        break;
+    case 3:
+        if (data->pattern[4] == 2) {
+            data->pattern[3] = 2;
+            data->unk94 = 0;
+        } else {
+            data->pattern[4] = 2;
+            data->pattern[1] = 1;
+            data->unk94 = 1;
+        }
+        break;
+    case 4:
+        data->pattern[2] = 2;
+        data->unk94 = 5;
+        break;
+    case 5:
+        data->pattern[7] = 2;
+        data->pattern[8] = 2;
+        data->unk94 = 6;
+        break;
+    case 6:
+        if (data->pattern[6] == 2) {
+            data->pattern[5] = 2;
+            data->unk94 = 2;
+        } else {
+            data->pattern[6] = 2;
+            data->unk94 = 3;
+        }
+        break;
+    case 7:
+        data->pattern[2] = 3;
+        data->unk94 = 4;
+        break;
+    case 8:
+        data->unk94 = 7;
+        break;
+    }
+    if (data->unk93 > 0) {
+        func_808007C4_chevilmumbo(arg0, 14);
+        _chexploder_entrypoint_3(arg0, arg0->position, 3);
+    } else {
+        func_808007C4_chevilmumbo(arg0, 15);
+    }
+}
 
 /* extern */
 
