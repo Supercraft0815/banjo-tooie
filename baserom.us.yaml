@@ -7887,7 +7887,7 @@ segments:
     subsegments: 
       - [0x02029CA0, c, fatboy]
       - [0x0202ACD0, .rodata, fatboy]
-      - [0x0202ADC0, data, fatboy]
+      - [0x0202ADC0, .data, fatboy]
       - [0x0202AFA0, bss, fatboy]
   - name: chdoormake_header
     dir: overlays/chdoormake

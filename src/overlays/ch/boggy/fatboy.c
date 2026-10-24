@@ -1,17 +1,142 @@
 #include "ch/boggy/fatboy.h"
 
+u32 D_80801154_chboggyfatboy[];
+void func_80101870(Actor *, void *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_808000AC_chboggyfatboy(Actor *arg0);
+void func_8080052C_chboggyfatboy(Actor *arg0);
+s32 func_808005AC_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2);
+void func_80800978_chboggyfatboy(Actor* arg0);
+void func_80800B38_chboggyfatboy(s32 arg0, void *arg1, s32 arg2, s32 arg3);
+s32 func_80800BA0_chboggyfatboy(s32 arg0, s32 arg1, f32 *arg2);
+
+u32 D_80801120_chboggyfatboy[] = {
+    (u32)func_80800BA0_chboggyfatboy, (u32)func_80800B38_chboggyfatboy,
+};
+
+s32 D_80801128_chboggyfatboy[] = {
+    0x00000201, 0xFFFF0100,
+    0x00000601, 0xFFFE0200,
+    0x00000400, 0x11100100,
+    0xFFFEDFFF, 0x12220300,
+};
+
+s32 D_80801148_chboggyfatboy[] = {
+    0x00130524, 0x000A00CC,
+    0x00000000,
+};
+
+u32 D_80801154_chboggyfatboy[] = {
+    0x00000000, 0x00000000,
+    0x409CCCCD, 0x02460001,
+    0x3F400000, 0x02470001,
+    0x3F400000, 0x02470001,
+    0x409CCCCD, 0x02460001,
+    0x3F400000, 0x02470001,
+    0x3F400000, 0x02470001,
+    0x3F400000, 0x02470001,
+    0x409CCCCD, 0x02460001,
+    0x409CCCCD, 0x02460001,
+    0x409CCCCD, 0x02460001,
+    0x409CCCCD, 0x02460001,
+    0x409CCCCD, 0x02460001,
+    0x409CCCCD, 0x02460001,
+    0x40A00000, 0x02480002,
+    0x409CCCCD, 0x02460001,
+    0x00000000, 0x00000000,
+};
+
+u32 D_808011DC_chboggyfatboy[] = {
+    0x01940142, 0x075B0001,
+    (u32)D_80801154_chboggyfatboy, (u32)func_808000AC_chboggyfatboy,
+    (u32)func_8080052C_chboggyfatboy, (u32)func_80101870,
+    0x09C40000, 0x40000000,
+    0x00000000, 0x40040164,
+    (u32)func_80800978_chboggyfatboy, (u32)func_80108ED0,
+    0x00240000, 0x00000000,
+    (u32)func_80107C2C, 0x80105014,
+    (u32)func_808005AC_chboggyfatboy, 0x00000000,
+};
+
+s32 D_80801224_chboggyfatboy[] = {
+    0x00000000, 0x0190003D,
+    0x0000000E, 0x463C0400,
+};
+
+s32 D_80801234_chboggyfatboy[] = {
+    0x43340000, 0x430C0000,
+    0x430C0000, 0x42A00000,
+};
+
+s32 D_80801244_chboggyfatboy[] = {
+    0x001304A4, 0x000A0140,
+    0x00000000,
+};
+
+u32 D_80801250_chboggyfatboy[] = {
+    0x00130417, 0x000D00E6,
+    0x01190000,
+};
+
+u32 D_8080125C_chboggyfatboy[] = {
+    0x0013040E, 0x00000000,
+};
+
+s32 D_80801264_chboggyfatboy[] = {
+    0x001D09E3, 0x00150019,
+    0x00990022, 0x00380042,
+    0x0023002E, 0x002B0066,
+    0x0080002D, 0x012C0190,
+    0x000B0014, 0x001E000A,
+    0x00000000,
+};
+
+u32 D_80801290_chboggyfatboy[] = {
+    0x3DF5C28F, 0x3E8A3D71,
+    0x3ECCCCCD, 0xBF800000,
+};
+
+s16 D_808012A0_chboggyfatboy[] = {
+    0x0540, 0x042B, 0x0558, 0x0559,
+    0x0557, 0x0000,
+};
+
+f32 D_808012AC_chboggyfatboy[] = {
+    0.6000000238418579f, 0.7200000286102295f,
+    0.8600000143051147f, -1.0f,
+};
+
+s32 D_808012BC_chboggyfatboy[] = {
+    0x0021000D, 0x00D900F3,
+    0x00194E20, 0x5DC00000,
+};
+
+s32 D_808012CC_chboggyfatboy[] = {
+    0x00130486, 0x000D00C0,
+    0x00D90015, 0x000C00CC,
+    0x00330019, 0x6D607D00,
+    0x00000000,
+};
+
+s32 D_808012E8_chboggyfatboy[] = {
+    0x001305CA, 0x000D00D9,
+    0x00F30018, 0x00000000,
+    0x00000000, 0x00000000,
+};
+
 void *func_80100094(Actor *, u32);
 
 OSThread *chboggyfatboy_entrypoint_0(void)
 {
-    extern u8 D_80801120_chboggyfatboy[];
+
 
     return (OSThread *) D_80801120_chboggyfatboy;
 }
 
 OSThread *chboggyfatboy_entrypoint_1(void)
 {
-    extern u8 D_808011DC_chboggyfatboy[];
+
 
     return (OSThread *) D_808011DC_chboggyfatboy;
 }
@@ -37,7 +162,157 @@ void func_80800078_chboggyfatboy(Actor *arg0) {
     _subaddieitem_entrypoint_0((s32)data + 0xC, 0x3CA, 0x190, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boggy/fatboy/func_808000AC_chboggyfatboy.s")
+void func_808000AC_chboggyfatboy(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    s32 _subaddietaxi_entrypoint_1(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_11(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_12(Actor *, s32);
+    void _subaddietaxi_entrypoint_14(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_15(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_5(Actor *, s32);
+    void _subaddietaxi_entrypoint_9(Actor *, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    int func_800D9154(f32 *, f32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void func_800EE88C(f32 *, s16 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    s32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80102424(s32, s32);
+    f32 func_801028C4(Actor *, f32 *, f32, f32, f32);
+    void func_80102BF8(Actor *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_801058C4(Actor *, s32, f32, u32);
+    void func_80105BAC(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A590(Actor *);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010CAC0(f32 *, s32);
+    void func_80800998_chboggyfatboy(Actor *);
+    void func_80800D84_chboggyfatboy(Actor *);
+    void func_80800E80_chboggyfatboy(Actor *);
+    s32 func_80800FE0_chboggyfatboy(s32);
+
+
+
+    struct {
+        s16 position[3];
+        s16 yaw;
+        u32 flag : 1;
+        u32 pad8 : 31;
+        u8 item[0x14];
+        f32 timer;
+    } *data;
+    s32 deflect;
+    f32 sp4C[3];
+    f32 sp40[3];
+    s32 pad[4];
+
+    data = func_80100094(arg0, 0);
+    deflect = 1;
+    if (func_80100094(arg0, 1) != NULL) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800DA298(0xBA)) {
+            if (func_800DA298(0xBB)) {
+                arg0->unk74_30 = 1;
+            } else if (func_80800FE0_chboggyfatboy(0x3CA) && !func_8010CAC0(arg0->position, 0x320)) {
+                arg0->unk74_30 = 0;
+            }
+        }
+        _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801224_chboggyfatboy[0], &D_80801128_chboggyfatboy[0], 4);
+        break;
+    case 5:
+        func_800EE88C(sp4C, data->position);
+        if (func_801028C4(arg0, sp4C, 0.2f, 30.0f, 180.0f) < 40.0f) {
+            func_80102424(arg0, 6);
+        }
+        break;
+    case 6:
+        func_800EE88C(sp40, data->position);
+        arg0->unk54 = func_80102D78(arg0, sp40);
+        func_80102BF8(arg0, 0.2f, 30.0f, 180.0f);
+        func_8010B990(arg0, 0x1005);
+        if (func_800F0064(arg0->position, 100.0f, sp40)) {
+            func_801058C4(arg0, data->yaw, *(f32 *)&arg0->actorData[3], 1);
+            func_80105BAC(arg0);
+            func_80102424(arg0, 7);
+        }
+        break;
+    case 9:
+        deflect = 0;
+        break;
+    case 10:
+        arg0->unk54 = func_80102D78(arg0, func_80106790(arg0->unk3C)->position);
+        func_80102BF8(arg0, 0.2f, 30.0f, 180.0f);
+        deflect = 0;
+        if (_subaddietaxi_entrypoint_1(arg0, 1)) {
+            func_800DA544(0x8E);
+            func_80102424(arg0, 0xC);
+        }
+        break;
+    case 11:
+        if (_subaddietaxi_entrypoint_11(arg0, 1) && _subaddietaxi_entrypoint_5(arg0, 1)) {
+            _subaddietaxi_entrypoint_14(arg0, 1);
+            func_80102424(arg0, 0xD);
+        }
+        deflect = _subaddietaxi_entrypoint_12(arg0, 1);
+        break;
+    case 12:
+        arg0->unk54 = func_80102D78(arg0, func_80106790(arg0->unk3C)->position);
+        func_80102BF8(arg0, 0.2f, 30.0f, 180.0f);
+        if (!arg0->unk64_20 && func_8010108C(func_80106790(arg0->unk3C), 0x31, arg0->unk6C_9) > 0) {
+            arg0->unk64_20 = 1;
+        }
+        break;
+    case 13:
+        if (_subaddietaxi_entrypoint_15(arg0, 1)) {
+            func_80102424(arg0, 1);
+            func_8010A590(arg0);
+        }
+        break;
+    case 14:
+        func_80800D84_chboggyfatboy(arg0);
+        if (func_80101DDC(arg0)) {
+            func_80800998_chboggyfatboy(arg0);
+            func_80102424(arg0, 5);
+            _subaddieDll_entrypoint_4(arg0, 1);
+        }
+        break;
+    case 15: {
+        s32 text;
+        if (_subaddieitem_entrypoint_3(arg0, NULL, data->item)) {
+            if (func_800F64A4(func_800F54E4(), 0x200)) {
+                text = 0x1111;
+            } else {
+                text = 0x1095;
+            }
+            func_800DA544(0xBB);
+            _subaddiedialog_entrypoint_11(arg0->unk0, text, 0xE, arg0->position, 0x3B);
+            func_80102424(arg0, 4);
+        }
+        break;
+    }
+    }
+    if (data->flag && func_800D9154(&data->timer, 1.4f)) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801148_chboggyfatboy[0]);
+    }
+    func_80800E80_chboggyfatboy(arg0);
+    _subaddietaxi_entrypoint_9(arg0, 1);
+    if (deflect) {
+        _sudeflect_entrypoint_1(arg0->position, 100.0f, 0.0f, 70.0f, 0xA);
+    }
+}
 
 /* extern */
 
@@ -74,8 +349,8 @@ s32 func_808005AC_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800C5C_chboggyfatboy(Actor *, s32);
     void func_80800F40_chboggyfatboy(Actor *);
     s32 func_80800FE0_chboggyfatboy(s32);
-    extern s32 D_80801234_chboggyfatboy;
-    extern s32 D_80801244_chboggyfatboy;
+
+
     f32 *position[5];
     s16 *parts;
     s32 masked;
@@ -88,7 +363,7 @@ s32 func_808005AC_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
         func_80800C5C_chboggyfatboy(arg0, arg2);
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_80801234_chboggyfatboy, arg0->scale);
+        _gcdialogcamera_entrypoint_3(&D_80801234_chboggyfatboy[0], arg0->scale);
         break;
     case 0x29:
         func_80800F40_chboggyfatboy(arg0);
@@ -117,7 +392,7 @@ s32 func_808005AC_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
         }
         break;
     case 0x2D:
-        _subaddieaudioquick_entrypoint_2(arg0, position[0] = arg0->position, &D_80801244_chboggyfatboy);
+        _subaddieaudioquick_entrypoint_2(arg0, position[0] = arg0->position, &D_80801244_chboggyfatboy[0]);
         func_800C9C70(1.0f, 0x525, 1.05f, 0x55F0, position[0], 200.0f, 3000.0f);
         break;
     case 0x30:
@@ -140,7 +415,7 @@ void func_80800808_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800DA544(s32);
     s32 func_80102424(s32, s32);
     s32 func_80800FE0_chboggyfatboy(s32);
-    extern s32 D_80801128_chboggyfatboy;
+
     void *data;
 
     data = func_80100094(arg0, 0);
@@ -161,7 +436,7 @@ void func_80800808_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
         }
         break;
     default:
-        if (_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801128_chboggyfatboy, 4) == 1) {
+        if (_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801128_chboggyfatboy[0], 4) == 1) {
             func_800DA544(0xBA);
             if (func_80800FE0_chboggyfatboy(0x3CA)) {
                 _subaddiedialog_entrypoint_11(arg0->unk0, 0x1093, 0xE, arg0->position, 0x3D);
@@ -324,10 +599,10 @@ void func_80800D84_chboggyfatboy(Actor *arg0) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
-    extern u32 D_80801250_chboggyfatboy[];
-    extern u32 D_8080125C_chboggyfatboy[];
-    extern s32 D_80801264_chboggyfatboy[];
-    extern u32 D_80801290_chboggyfatboy[];
+
+
+
+
     struct { u8 pad[8]; u8 flag : 1; } *sp44;
     f32 sp38[3];
     f32 sp2C[3];
@@ -353,21 +628,21 @@ void func_80800E80_chboggyfatboy(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
     s32 func_801022E4(Actor *);
-    extern s16 D_808012A0_chboggyfatboy[];
-    extern f32 D_808012AC_chboggyfatboy[];
-    extern s32 D_808012BC_chboggyfatboy;
-    extern s32 D_808012CC_chboggyfatboy;
-    extern s32 D_808012E8_chboggyfatboy;
+
+
+
+
+
     if (func_801022E4(arg0) == 0x246) {
         if (func_80101E14(arg0, 0.0f) != 0) {
             func_800C4B7C(D_808012A0_chboggyfatboy[func_800DC128(0, 5)]);
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808012BC_chboggyfatboy);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808012BC_chboggyfatboy[0]);
         }
         if (func_80101E14(arg0, 0.5f) != 0) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808012CC_chboggyfatboy);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808012CC_chboggyfatboy[0]);
         }
         if (func_80101E4C(arg0, D_808012AC_chboggyfatboy) != 0) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808012E8_chboggyfatboy);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808012E8_chboggyfatboy[0]);
         }
     }
 }
