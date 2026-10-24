@@ -118,7 +118,61 @@ void sucoasterplayer_entrypoint_0(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/coaster/player/sucoasterplayer_entrypoint_1.s")
+/* extern */
+
+void sucoasterplayer_entrypoint_1(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 _sucoaster_entrypoint_10(Actor *, s32);
+    s32 _sucoaster_entrypoint_9(void *, s32, s32);
+    int func_800DC298(f32);
+    s32 func_80107070(Actor *, s32);
+    struct CoasterFlags {
+        u8 pad0[0x70];
+        u32 unk70_25 : 7;
+        u32 pad70_10 : 15;
+        u32 unk70_4 : 6;
+        u32 pad70_0 : 4;
+    } *flags = (void *)arg0;
+    s32 var_a1;
+
+    if (!arg0->unk64_29) {
+        if (arg0->unk70_10 != 12) {
+            if (flags->unk70_25 && flags->unk70_4) {
+                if (_subaddieDll_entrypoint_3(arg0)) {
+                    if (arg0->unk70_10 == 2) {
+                        if (func_800DC298(0.5f)) {
+                            var_a1 = 2;
+                        } else {
+                            var_a1 = 3;
+                        }
+                        _sucoaster_entrypoint_9(arg0, var_a1, 7);
+                    }
+                } else if (func_80107070(arg0, 1) == 0) {
+                    _subaddiefade_entrypoint_3(arg0);
+                    _sucoaster_entrypoint_10(arg0, 14);
+                }
+                arg0->unk14 |= 0x80000;
+                goto block_17;
+            }
+        }
+    } else {
+        arg0->unk14 &= ~0x80000;
+        switch (arg0->unk70_10) {
+        case 5:
+        case 6:
+        case 7:
+        case 10:
+            _sucoaster_entrypoint_9(arg0, 2, 6);
+            break;
+        case 4:
+            _sucoaster_entrypoint_9(arg0, 3, 6);
+            break;
+        }
+block_17:
+        arg0->unk54 = arg0->rotation[1];
+    }
+}
 
 /* extern */
 
