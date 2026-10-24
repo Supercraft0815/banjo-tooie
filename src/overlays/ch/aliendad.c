@@ -40,7 +40,231 @@ void func_80800024_chaliendad(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_808000AC_chaliendad.s")
+void func_808000AC_chaliendad(Actor *arg0) {
+    s32 _chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    s32 _subaddieaudioquick_entrypoint_2(void *, void *, s32 *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(Unk80132ED0 *, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    void func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, s32);
+    void func_808012AC_chaliendad(Actor *);
+    void func_80801324_chaliendad(Actor *, s32);
+    void func_80801B9C_chaliendad(s32);
+    void func_80801C60_chaliendad(void *);
+    void func_80801C9C_chaliendad(Actor *, s32, s32);
+    void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
+    void func_808022CC_chaliendad(Actor *);
+    extern u32 D_8080274C_chaliendad[], D_80802764_chaliendad[];
+    extern u32 D_80802774_chaliendad[], D_80802784_chaliendad[];
+    extern u32 D_80802794_chaliendad[], D_808027A4_chaliendad[];
+    extern s32 D_808027B4_chaliendad[];
+    extern u32 D_808027C0_chaliendad[];
+    extern s32 D_808027CC_chaliendad[];
+    extern s32 D_808027D4_chaliendad[];
+    extern s32 D_808027FC_chaliendad[], D_80802808_chaliendad[];
+    extern s32 D_80802814_chaliendad[];
+    typedef struct {
+        s16 position[3];
+        s16 yaw;
+        u8 active[3];
+        u8 loopActive;
+        f32 timers[3];
+        u8 pad18[0x10];
+        Unk80132ED0 *children[3];
+        u32 unk34;
+        u8 loop1;
+        u8 loop2;
+    } AlienData;
+    typedef struct {
+        f32 timer;
+        f32 unk4[2];
+        f32 velocity;
+        f32 position[3];
+        f32 unk1C;
+    } AlienMotion;
+    AlienData *sp74;
+    void *sp70;
+    Actor *sp6C;
+    f32 sp60[3];
+    s32 i;
+    s32 count;
+    f32 dy;
+    s32 done;
+    Actor *sp4C;
+    f32 sp40[3];
+
+    sp74 = func_80100094(arg0, 0);
+    sp70 = func_80100094(arg0, 1);
+    if (sp70 != NULL) {
+        if (func_801022E4(arg0) != 0x367) {
+            _suexpression_entrypoint_18(sp70, 1);
+        }
+        _suexpression_entrypoint_10(sp70, arg0->unk0, 0);
+    }
+    switch (arg0->unk70_10) {
+        case 2:
+            func_800EE7F8(((AlienMotion *)arg0->actorData)->position, arg0->position);
+            if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802764_chaliendad, 0.55f)) {
+                func_80018820(0, 0.7f, 0.3f);
+            }
+            if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802774_chaliendad, 0.71f)) {
+                func_80018820(0, 1.0f, 0.3f);
+            }
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802784_chaliendad, 0.92f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802794_chaliendad, 0.56f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_808027A4_chaliendad, 0.75f);
+            sp74->loop2 = _subaddieaudioloop_entrypoint_7(sp74->loop2, arg0->position, func_80102320(arg0, 0.25f, 0.9f), D_808027B4_chaliendad, arg0->unk70_0);
+            if (func_80101DDC(arg0)) {
+                func_800EE88C(arg0->position, sp74->position);
+                arg0->position[1] += 6500.0f;
+                arg0->rotation[1] = sp74->yaw;
+                func_80102424(arg0, 3);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1288, 0x44, arg0->position, 0x62);
+                func_80801D40_chaliendad(arg0, 7, 0x31, NULL);
+                ((AlienMotion *)arg0->actorData)->velocity = 800.0f;
+                sp6C = _subaddiefind_entrypoint_2(0x45B, NULL);
+                func_80102424(sp6C, 4);
+                sp6C->unk64_16 = 1;
+            }
+            break;
+        case 3:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_8080274C_chaliendad, 0.4f);
+            ((AlienMotion *)arg0->actorData)->velocity += func_800D8FF8() * 600.0f;
+            arg0->position[1] -= func_800D8FF8() * ((AlienMotion *)arg0->actorData)->velocity;
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_8080274C_chaliendad, 0.4f);
+            ((AlienMotion *)arg0->actorData)->velocity += func_800D8FF8() * 400.0f;
+            arg0->position[1] -= func_800D8FF8() * ((AlienMotion *)arg0->actorData)->velocity;
+            break;
+        case 5:
+            if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_808027C0_chaliendad, 0.155f)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808027CC_chaliendad);
+                func_80018820(0, 2.0f, 0.3f);
+                func_800EE7F8(sp60, arg0->position);
+                func_800EF1B8(sp60, arg0->rotation[1], -100.0f);
+                func_800BBCB8(sp60, NULL, 1.2f, 1, D_808027D4_chaliendad);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1289, 0x44, arg0->position, 0x62);
+            }
+            if (func_80101E14(arg0, 0.9f)) {
+                func_80801324_chaliendad(arg0, 1);
+            }
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 6);
+                _subaddieDll_entrypoint_4(arg0, 0);
+            }
+            break;
+        case 7:
+            if (func_800D9078(&arg0->unk58)) {
+                func_80102424(arg0, 8);
+            }
+            break;
+        case 8:
+            if (func_80101E14(arg0, 0.1f)) {
+                func_80801324_chaliendad(arg0, 3);
+            }
+            if (func_80101DDC(arg0)) {
+                func_800DA544(0x376);
+                func_80801C9C_chaliendad(arg0, 3, 1);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1287, 0xE, arg0->position, 0x62);
+                func_80102424(arg0, 10);
+            }
+            break;
+        case 11:
+            if (func_80101E14(arg0, 0.2f)) {
+                func_80108B04(arg0, 3);
+            }
+            if (func_80101DDC(arg0) && func_800D9078(&arg0->unk58)) {
+                func_80801C60_chaliendad(arg0);
+                func_8010114C(sp74->children[0], 0x4A, 0);
+                func_80102424(arg0, 9);
+            }
+            break;
+        case 9:
+            func_80801B9C_chaliendad(arg0);
+            break;
+        case 12:
+            count = 0;
+            for (i = 0; i < 3; i++) {
+                if (func_800D9078(&sp74->timers[i])) {
+                    func_8010114C(sp74->children[i], 0x4E, 0);
+                    sp74->active[i] = 1;
+                    sp74->loopActive = 1;
+                }
+                if (sp74->active[i]) {
+                    count++;
+                }
+            }
+            if (count == 3) {
+                func_80801D40_chaliendad(arg0, 0x41, 0x30, NULL);
+                func_80102424(arg0, 13);
+                func_80108B04(arg0, 2);
+                arg0->unk58 = 2.0f;
+            }
+            break;
+        case 13:
+            if (func_80101DDC(arg0) && func_800D9078(&arg0->unk58)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808027FC_chaliendad);
+                func_80102424(arg0, 14);
+                arg0->unk58 = 4.0f;
+                ((AlienMotion *)arg0->actorData)->velocity = 50.0f;
+                ((AlienMotion *)arg0->actorData)->timer = 0.5f;
+            }
+            break;
+        case 14:
+            done = func_800D9078(&arg0->unk58);
+            ((AlienMotion *)arg0->actorData)->velocity += func_800D8FF8() * 100.0f;
+            dy = func_800D8FF8() * ((AlienMotion *)arg0->actorData)->velocity;
+            arg0->position[1] += dy;
+            if (func_800D9078(&((AlienMotion *)arg0->actorData)->timer)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802808_chaliendad);
+            }
+            if (done) {
+                sp4C = _subaddiefind_entrypoint_2(0x45B, NULL);
+                func_8010114C(arg0->unk3C, 0x4F, 0);
+                arg0->unk3C = NULL;
+                func_800D1000(0x45, 1, arg0->position, 0, NULL);
+                func_80801D40_chaliendad(arg0, 0x47, 0x31, sp4C->unk0);
+                func_808022CC_chaliendad(sp4C);
+                arg0->unk64_16 = 0;
+                func_80102424(arg0, 15);
+            }
+            break;
+    }
+    sp74->loop1 = _subaddieaudioloop_entrypoint_7(sp74->loop1, arg0->position, sp74->loopActive, D_80802814_chaliendad, arg0->unk70_0);
+    if (_subaddieskeleton_entrypoint_0(arg0, 0x2C, sp40)) {
+        _sudeflect_entrypoint_0(sp40, 0.0f, 125.0f, 2);
+    }
+    if (_subaddieskeleton_entrypoint_0(arg0, 1, sp40)) {
+        _sudeflect_entrypoint_0(sp40, 0.0f, 125.0f, 2);
+    }
+    func_808012AC_chaliendad(arg0);
+    if (arg0->unk7C_12) {
+        _chbadshad_entrypoint_2(arg0, 3, arg0->scale + arg0->scale, 0);
+    }
+}
 
 void *func_80100094(Actor *, u32);
 
