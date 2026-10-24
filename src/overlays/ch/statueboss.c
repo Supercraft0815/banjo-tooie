@@ -11,7 +11,240 @@ OSThread *chstatueboss_entrypoint_0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_8080000C_chstatueboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800298_chstatueboss.s")
+void func_80800298_chstatueboss(Actor *arg0) {
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    extern void _chbaddiesetup_entrypoint_10(void);
+    s32 _chexploder_entrypoint_5(Actor *, s32, f32 *, s32, f32, s32);
+    void _gcfrontend_entrypoint_10(void);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void func_80018820(s32, f32, f32);
+    s32 func_800CEAD0(s32);
+    s32 func_800D0B68(u32, u32);
+    void func_800D1254(u32, u32, f32 *);
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800E15CC(s32, f32, f32);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    u32 func_800FDC28(u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80102320(Actor *, f32, f32);
+    void func_80108B04(Actor *, u32);
+    void func_80800DA8_chstatueboss();
+    void func_808011B4_chstatueboss(Actor *);
+    void func_8080124C_chstatueboss(Actor *);
+    void func_80801448_chstatueboss(Actor *);
+    void func_80801804_chstatueboss(Actor *, s32);
+    void func_80801A6C_chstatueboss(Actor *, f32);
+    void func_80801AC4_chstatueboss(s32, s32);
+    void func_80801AF0_chstatueboss(Actor *);
+    void func_80801C78_chstatueboss(Actor *);
+    void func_8080232C_chstatueboss(Actor *);
+    extern u32 D_80802790_chstatueboss;
+    extern u32 D_808027AC_chstatueboss;
+    struct StatueBossData {
+        u8 pad0[0x80];
+        s32 effect;
+        s16 index;
+        s16 selected;
+        s16 hits;
+        s16 total;
+        u8 pad8C[0x142];
+        u8 ready;
+        u8 active;
+        u8 dialog;
+    } *data;
+    s32 sp58;
+    s32 sp54;
+    s32 sp50;
+    f32 sp44[3];
+    f32 sp38[3];
+
+    data = func_80100094(arg0, 0U);
+    sp58 = 0;
+    sp54 = 0;
+    sp50 = 0;
+    _sudeflect_entrypoint_1(arg0->position, 400.0f, -100.0f, 550.0f, 2);
+    if ((s32)arg0->unk70_10 >= 7) {
+        func_800D2498(0xF3, 0x10 - data->total, 0);
+    }
+    if (!func_800D0B68(1, 1) && _subaddieskeleton_entrypoint_2(arg0->unk0, 10, sp44)) {
+        if (sp44[1] < arg0->position[1]) {
+            sp44[1] = arg0->position[1];
+        }
+        func_800D1254(1, 1, sp44);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        if (!func_800DA298(0x6AD) && !data->dialog) {
+            data->dialog = 1;
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xF43, 0x44, arg0->position, 0xB2);
+        }
+        if (data->active && data->ready) {
+            func_800F82D4(func_800F54E4(), 0);
+            func_80800DA8_chstatueboss(arg0, 2);
+        }
+        break;
+    case 3:
+        if (func_80101E14(arg0, 0.1f)) {
+            func_80801C78_chstatueboss(arg0);
+        }
+        func_80801A6C_chstatueboss(arg0, 0.35f);
+        if (func_80101DDC(arg0)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xF33, 6, arg0->position, 0xB2);
+            func_80800DA8_chstatueboss(arg0, 4);
+        }
+        break;
+    case 5:
+        if (_subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80802790_chstatueboss, &D_808027AC_chstatueboss)) {
+            func_800E15CC(0, 10.0f, 0.8f);
+            func_80018820(0, 2.0f, 0.25f);
+        }
+        sp50 = func_80102320(arg0, 0.6f, 0.99f);
+        func_80801AC4_chstatueboss((s32)arg0, sp50);
+        if (func_80101DDC(arg0)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xF34, 6, arg0->position, 0xB2);
+            func_80800DA8_chstatueboss(arg0, 6);
+        }
+        break;
+    case 4:
+    case 6:
+    case 23:
+        func_80801AF0_chstatueboss(arg0);
+        break;
+    case 7:
+        if (_subaddieskeleton_entrypoint_0(arg0, 0x2D, sp38)) {
+            func_800EF1B8(sp38, func_800F1DF4(sp38, arg0->position), 120.0f);
+            _sudeflect_entrypoint_0(sp38, 0.0f, 250.0f, 2);
+        }
+        if (_subaddieskeleton_entrypoint_0(arg0, 0x2C, sp38)) {
+            func_800EF1B8(sp38, func_800F1DF4(sp38, arg0->position), 120.0f);
+            _sudeflect_entrypoint_0(sp38, 0.0f, 250.0f, 2);
+        }
+        sp54 = 1;
+        sp58 = 1;
+        break;
+    case 8:
+        func_80801A6C_chstatueboss(arg0, 0.65f);
+        if (func_80101DDC(arg0)) {
+            func_80800DA8_chstatueboss(arg0, 9);
+        }
+        break;
+    case 9:
+        func_80801AF0_chstatueboss(arg0);
+        sp54 = 2;
+        if (!_subaddiefind_entrypoint_2(0x112, 0)) {
+            func_80801C78_chstatueboss(arg0);
+            func_80800DA8_chstatueboss(arg0, 11);
+        }
+        break;
+    case 11:
+        sp54 = 1;
+        sp58 = 1;
+        break;
+    case 12:
+        func_80801A6C_chstatueboss(arg0, 0.7f);
+        if (func_80101DDC(arg0)) {
+            func_80800DA8_chstatueboss(arg0, 13);
+        }
+        break;
+    case 13:
+        func_80801AF0_chstatueboss(arg0);
+        sp54 = 2;
+        if (!_subaddiefind_entrypoint_2(0x112, 0)) {
+            func_80801C78_chstatueboss(arg0);
+            func_80800DA8_chstatueboss(arg0, 15);
+        }
+        break;
+    case 15:
+        sp54 = 1;
+        sp58 = 1;
+        break;
+    case 16:
+        func_80801A6C_chstatueboss(arg0, 0.7f);
+        if (func_80101DDC(arg0)) {
+            func_80800DA8_chstatueboss(arg0, 17);
+        }
+        break;
+    case 17:
+        func_80801AF0_chstatueboss(arg0);
+        sp54 = 2;
+        if (!_subaddiefind_entrypoint_2(0x112, 0)) {
+            func_80801C78_chstatueboss(arg0);
+            func_80800DA8_chstatueboss(arg0, 19);
+        }
+        break;
+    case 19:
+        sp54 = 1;
+        sp58 = 1;
+        break;
+    case 20:
+        func_80801A6C_chstatueboss(arg0, 0.85f);
+        if (func_80101DDC(arg0)) {
+            func_80800DA8_chstatueboss(arg0, 21);
+        }
+        break;
+    case 21:
+        func_8080232C_chstatueboss(arg0);
+        func_80801AF0_chstatueboss(arg0);
+        sp54 = 2;
+        if (!_subaddiefind_entrypoint_2(0x112, 0)) {
+            func_80800DA8_chstatueboss(arg0, 23);
+        }
+        break;
+    case 24:
+        func_8080232C_chstatueboss(arg0);
+        if (func_800CEAD0(0)) {
+            func_800E15CC(0, 30.0f, 0.8f);
+            func_80018820(0, 3.0f, 0.25f);
+            _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 5, *(s32 *)&arg0->position[0], *(s32 *)&arg0->position[1], *(s32 *)&arg0->position[2], *(s32 *)&arg0->rotation[1]);
+            _chexploder_entrypoint_5(arg0, 0x7CC, arg0->position, data->effect, arg0->scale, 0);
+            func_80108B04(arg0, 2);
+            func_800DA544(0x36F);
+            func_800FDC28(0);
+        }
+        break;
+    case 25:
+        if (func_800D9078(&arg0->unk58)) {
+            _gcfrontend_entrypoint_10();
+        }
+        break;
+    case 10:
+    case 14:
+    case 18:
+    case 22:
+        sp54 = 2;
+        break;
+    case 26:
+        func_80801AF0_chstatueboss(arg0);
+        break;
+    }
+    switch (sp54) {
+    case 1:
+        func_808011B4_chstatueboss(arg0);
+        break;
+    case 2:
+        func_8080124C_chstatueboss(arg0);
+        break;
+    }
+    if (!sp50) {
+        sp50 = sp54 == 1;
+    }
+    func_80801AC4_chstatueboss((s32)arg0, sp50);
+    func_80801804_chstatueboss(arg0, sp58);
+    func_80801448_chstatueboss(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800934_chstatueboss.s")
 
