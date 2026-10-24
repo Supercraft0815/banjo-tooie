@@ -38,7 +38,171 @@ void func_80800024_chnutsnbolts(Actor *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_80800080_chnutsnbolts.s")
+void func_80800080_chnutsnbolts(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefx_entrypoint_0(Actor *, s32, void *);
+    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    s32 func_800BFA1C(f32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    f32 func_800EEFFC(void *);
+    void func_800EFDE8(f32 *, u8 *, f32 *);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    u32 func_800F54E4(void);
+    s32 func_800F6478(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    f32 func_80101F24(Actor *);
+    void func_80102BF8(Actor *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_801072A8(Actor *);
+    s32 func_801072E4(Actor *);
+    void func_8010AA54(f32[3]);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010C3A8(Actor *, u32, f32);
+    s32 func_8010C500(void *);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_8010D254(f32 *);
+    void func_8010D690(Actor *);
+    s32 func_8080092C_chnutsnbolts(Actor *, s32);
+    s32 func_80800A88_chnutsnbolts(Actor *, s32, s32);
+    void func_80800B80_chnutsnbolts(Actor *);
+    void func_80800BD4_chnutsnbolts(Actor *);
+    void func_80800C04_chnutsnbolts(Actor *);
+    extern u8 D_80800F00_chnutsnbolts[];
+    extern u8 D_80800F14_chnutsnbolts[];
+    struct NutsFlags {
+        u32 pad : 29;
+        u32 disabled : 1;
+        u32 tail : 2;
+    };
+    struct NutsData {
+        u8 effects[8];
+        u8 route[6];
+        u16 routeEnd;
+        u8 pad10[4];
+        s16 routeTarget;
+        u8 active;
+        u8 pad17;
+        f32 timer;
+        f32 speed;
+    } *sp54;
+    s32 sp50;
+    s32 sp4C;
+    f32 sp40[3];
+    f32 sp3C;
+
+    sp54 = func_80100094(arg0, 0U);
+    if (!((struct NutsFlags *)&arg0->unk78)->disabled) {
+        func_8010D254((f32 *)arg0->actorData);
+        if (!func_801072A8(arg0) || func_801072E4(arg0)) {
+            func_8010D690(arg0);
+        }
+        sp50 = func_800D90A4(&arg0->unk58);
+        switch (arg0->unk70_10) {
+        case 1:
+            ((f32 *)arg0->actorData)[5] -= func_800D8FF8() * 1000.0f;
+            sp4C = func_8010B990(arg0, 0x400027);
+            if (!func_800BFA1C(arg0->position)) {
+                func_800FFAB0(arg0);
+                return;
+            }
+            if (sp4C & 0x20) {
+                func_8010AA54(sp40);
+                func_800EFDE8((f32 *)&arg0->actorData[4], (u8 *)&arg0->actorData[4], sp40);
+                ((f32 *)arg0->actorData)[4] *= 0.8f;
+                ((f32 *)arg0->actorData)[5] *= 0.4f;
+                ((f32 *)arg0->actorData)[6] *= 0.8f;
+                if (func_800EEFFC(&arg0->actorData[4]) < 50.0f) {
+                    func_8010B990(arg0, 0x1000);
+                    func_8080092C_chnutsnbolts(arg0, 3);
+                } else if (sp50) {
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800F00_chnutsnbolts);
+                    arg0->unk58 = 0.6f;
+                }
+            }
+            break;
+        case 2:
+            func_80800A88_chnutsnbolts(arg0, 0, 3);
+            break;
+        case 3:
+            func_80800B80_chnutsnbolts(arg0);
+            if (func_80101DDC(arg0)) {
+                func_8080092C_chnutsnbolts(arg0, 4);
+            }
+            break;
+        case 4:
+            if (arg0->unk64_29) {
+                sp3C = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+                ((f32 *)arg0->actorData)[3] = sp54->speed;
+                func_80102BF8(arg0, 0.2f, 8.0f, 500.0f);
+                func_8010C3A8(arg0, 0x205025, func_800F3780(func_80101F24(arg0), D_80800F14_chnutsnbolts, 3) * sp3C);
+            } else {
+                if (!sp54->active) {
+                    if (_subaddierouteDll_entrypoint_4(arg0)) {
+                        arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+                        _subaddierouteDll_entrypoint_7(arg0, sp54->route, arg0->rotation[1], arg0->unk54, 200.0f, 0x5800);
+                        sp54->routeTarget = sp54->routeEnd;
+                    }
+                    _subaddierouteDll_entrypoint_5(arg0, sp54->route, sp54->routeTarget, 0.15f, 8.0f, 200.0f);
+                } else {
+                    arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+                    func_80102BF8(arg0, 0.15f, 8.0f, 200.0f);
+                }
+                ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], sp54->speed, func_800D8FF8() * 400.0f);
+                func_8010C3A8(arg0, 0x305425, func_800F3780(func_80101F24(arg0), D_80800F14_chnutsnbolts, 3));
+                if (!sp54->active) {
+                    if (_subaddierouteDll_entrypoint_4(arg0) && func_800DC298(0.2f) &&
+                        (!func_8010C9B0(arg0->position, 1500) || !func_8010C500(arg0))) {
+                        func_8080092C_chnutsnbolts(arg0, 6);
+                    }
+                } else if (!func_800F6478(func_800F54E4())) {
+                    func_8080092C_chnutsnbolts(arg0, 5);
+                }
+            }
+            func_80800BD4_chnutsnbolts(arg0);
+            break;
+        case 5:
+            func_80800BD4_chnutsnbolts(arg0);
+            if (func_800F6478(func_800F54E4()) && !func_80800A88_chnutsnbolts(arg0, 1, 4)) {
+                func_8080092C_chnutsnbolts(arg0, 6);
+            }
+            break;
+        case 6:
+            func_80800C04_chnutsnbolts(arg0);
+            if (func_80101DDC(arg0)) {
+                func_8080092C_chnutsnbolts(arg0, 2);
+                arg0->unk58 = func_800DC178(1.5f, 2.0f);
+            }
+            break;
+        case 7:
+            if (!sp54->active) {
+                _subaddiefx_entrypoint_0(arg0, 4, sp54);
+            }
+            if (func_800D9078(&sp54->timer)) {
+                _subaddiefx_entrypoint_1(arg0, (u8 *)sp54);
+                if (!func_80800A88_chnutsnbolts(arg0, 1, 4)) {
+                    func_8080092C_chnutsnbolts(arg0, 6);
+                }
+            }
+            break;
+        case 8:
+            if (!sp54->active) {
+                _subaddiefx_entrypoint_0(arg0, 4, sp54);
+            }
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_808005D0_chnutsnbolts.s")
 
