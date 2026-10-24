@@ -95,7 +95,133 @@ s32 func_80800950_chfantasyeyeball(Actor *arg0, s32 arg1, Actor *arg2, Actor *ar
     func_80102424(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_80800B68_chfantasyeyeball.s")
+s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 actorFields[0x74];
+        u32 pad74_6 : 26;
+        u32 unk74_5 : 1;
+        u32 pad74_0 : 5;
+        u32 pad78_3 : 29;
+        u32 unk78_2 : 1;
+        u32 pad78_0 : 2;
+    } FantasyEyeballFlags;
+    void _chskeletonexplode_entrypoint_3(Actor *, s32, s32);
+    void _chskeletonexplode_entrypoint_4(Actor *, s32);
+    void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    s32 _subaddielink_entrypoint_3(u8 *);
+    void func_800C4140(s32, f32 *, s32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800D10D4(u32, u32, f32 *, s32, s32);
+    void func_800DF744(s32, s32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_800FC6B0(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101074(void *);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010D12C(s32, f32 *, f32, s32);
+    s32 func_80800950_chfantasyeyeball();
+    void func_80801740_chfantasyeyeball(Actor *, f32 *);
+    extern u8 D_80801E98_chfantasyeyeball[];
+    Actor *sp54;
+    Actor *sp50;
+    f32 sp48[2];
+    f32 sp3C[3];
+    f32 distance;
+    f32 sp2C[3];
+    Actor *sp28;
+
+    switch (arg1) {
+        case 0x3F:
+            switch (arg0->unk70_10) {
+                case 1:
+                case 2:
+                case 4:
+                case 6:
+                    func_80800950_chfantasyeyeball(arg0, 7);
+                    break;
+                case 3:
+                case 5:
+                    func_80800950_chfantasyeyeball(arg0, 10);
+                    break;
+            }
+            if (func_800D0B68(0x4C, 1) == 0) {
+                func_800FC6B0(0xE);
+            }
+            return 1;
+        case 0x40:
+            if (((f32 *)arg0->actorData)[6] <= 0.0f && !((FantasyEyeballFlags *)arg0)->unk78_2) {
+                func_800C4140(0x3FEFA49D, arg0->position, 0x04B000FA);
+            }
+            ((f32 *)arg0->actorData)[6] = 2.0f;
+            return 1;
+        case 0x38:
+            func_80101074(D_80801E98_chfantasyeyeball);
+            return 7;
+        case 0x3D:
+            switch (arg2) {
+                case 0:
+                    if (func_800D0B68(0x4C, 1) == 0 && func_800D0A9C(0x4C, 1) == 0) {
+                        sp54 = func_80106790(func_800D10D4(0x4C, 1, arg0->position, 3, 0));
+                        _subaddielink_entrypoint_1(func_80100094(arg0, 0), sp54->unk0);
+                        ((FantasyEyeballFlags *)sp54)->unk74_5 = 0;
+                        func_8010A570(sp54);
+                    }
+                    return 1;
+                case 1:
+                    func_80801740_chfantasyeyeball(arg0, sp3C);
+                    sp50 = func_80108528(0x483, sp3C, 0, &arg0);
+                    func_800F5A00(func_800F54E4(), sp3C);
+                    sp3C[1] += 40.0f;
+                    sp50->unk58 = func_800EEAD4(sp50->position, sp3C) / 1200.0f;
+                    func_8010D12C(func_800F54E4(), sp3C, sp50->unk58, 0);
+                    distance = func_800EEAD4(sp50->position, sp3C);
+                    sp50->unk58 = distance / 1200.0f;
+                    ((f32 *)sp50->actorData)[7] = func_800F10B4(distance, 500.0f, 5000.0f, 100.0f, 600.0f);
+                    func_800F18FC(sp50->position, sp3C, sp48);
+                    func_800EEBF0((f32 *)&sp50->actorData[4], sp48, 1200.0f);
+                    return 1;
+                case 2:
+                    func_80801740_chfantasyeyeball(arg0, sp2C);
+                    sp28 = func_80108528(0x483, sp2C, 0, &arg0);
+                    sp28->scale = 3.0f;
+                    _chskeletonexplode_entrypoint_7(sp28, sp28->position);
+                    return 1;
+            }
+            return 0;
+        case 0xF:
+            sp28 = func_80106790(func_80101080());
+            _chskeletonexplode_entrypoint_3(sp28, 3, 2);
+            _chskeletonexplode_entrypoint_4(sp28, 6);
+            return 1;
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF744(3, 1);
+            return 1;
+        case 0x2E:
+            if (*(s16 *)&arg2 == 0x141A || *(s16 *)&arg2 == 0x141B || *(s16 *)&arg2 == 0x141C) {
+                arg0->unk64_19 = 0;
+            }
+            return 1;
+        case 0x95:
+            if (_subaddielink_entrypoint_3(func_80100094(arg0, 0)) == 0 && func_800D0B68(0x4C, 1) == 0 && arg0->unk64_20) {
+                func_80108B04(arg0, 0);
+            }
+            return 1;
+    }
+    return 0;
+}
 
 /* extern */
 

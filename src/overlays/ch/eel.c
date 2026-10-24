@@ -146,7 +146,104 @@ s32 func_808002A0_cheel(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_8080031C_cheel.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_80800D60_cheel.s")
+void func_80800D60_cheel(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddiejoy_entrypoint_6(u8 *, s32);
+    s32 func_800B53A4(s32);
+    void func_800BA1D0(s32, f32 *, f32 *, s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
+    s32 func_800C8A98(void);
+    void func_800C8B84(s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8FB0(s32, u32, u32, u32);
+    f32 func_800D8FF8(void);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    u32 func_8010A610(void **);
+    extern u32 D_808015DC_cheel[];
+    extern s32 D_80801608_cheel[];
+    struct {
+        s32 unk0;
+        f32 unk4[9];
+        f32 unk28[9];
+        f32 unk4C[9];
+        f32 unk70[9];
+        f32 unk94[9];
+        f32 unkB8[9];
+        s32 unkDC;
+    } *data;
+    f32 position[3];
+    s32 emitter1;
+    s32 emitter2;
+
+    data = func_80100094(arg0, 0);
+    if (func_8010A610(arg0)) {
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808015DC_cheel);
+        if (!arg0->unk64_29) {
+            if (func_800DC0C0() < 0.5f && arg0->unk70_10 != 3) {
+                func_8010A570(arg0);
+                arg0->unk64_19 = 0;
+            }
+        } else if (!_subaddiejoy_entrypoint_6(arg0, 1)) {
+            func_8010A570(arg0);
+            arg0->unk64_19 = 0;
+        }
+        if (!func_8010A610(arg0)) {
+            if (data->unkDC) {
+                func_800C8B84(data->unkDC);
+                data->unkDC = 0;
+            }
+        } else {
+            if (func_800DC0C0() < 0.5f) {
+                arg0->unk64_19 = (arg0->unk64_19 ^ 1) & 1;
+            }
+            if (arg0->unk58 > -0.15f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else {
+                arg0->unk58 = func_800DC178(0.15f, 0.5f);
+                if (arg0->unk7C_12) {
+                    emitter1 = func_800B53A4(4);
+                    emitter2 = func_800B53A4(4);
+                    func_800DBEFC(arg0->unk0->unk4, 4, position);
+                    func_800DBEFC(arg0->unk0->unk4, 5, (void *)&arg0->actorData[4]);
+                    func_800BABB8(emitter1, arg0->position, NULL, 1.0f, D_80801608_cheel);
+                    func_800BA3FC(emitter1, 0x9E7);
+                    func_800BA1D0(emitter1, arg0->position, (void *)&arg0->actorData[4], 4);
+                    func_800BABB8(emitter2, (void *)&arg0->actorData[4], NULL, 1.0f, D_80801608_cheel);
+                    func_800BA3FC(emitter2, 0x9E7);
+                    func_800BA1D0(emitter2, (void *)&arg0->actorData[4], position, 4);
+                }
+            }
+            if (data->unkDC) {
+                if (arg0->unk64_19) {
+                    func_800C8FB0(data->unkDC, 0x60, 0x60, 0x80);
+                } else {
+                    func_800C8FB0(data->unkDC, 0x40, 0x40, 0x60);
+                }
+                func_800C8CB8(data->unkDC, (void *)&arg0->actorData[4]);
+            }
+        }
+    } else {
+        if (arg0->unk64_29) {
+            if (_subaddiejoy_entrypoint_6(arg0, 1)) {
+                func_8010A590(arg0);
+            }
+        } else if (func_800DC0C0() < 0.5f || (arg0->unk70_10 == 3 && func_800DC0C0() < 0.2f)) {
+            func_8010A590(arg0);
+        }
+        if (func_8010A610(arg0) && !data->unkDC) {
+            data->unkDC = func_800C8A98();
+            func_800C8E54(data->unkDC, 200.0f, 500.0f);
+            func_800C8CB8(data->unkDC, (void *)&arg0->actorData[4]);
+        }
+    }
+}
 
 /* extern */
 
