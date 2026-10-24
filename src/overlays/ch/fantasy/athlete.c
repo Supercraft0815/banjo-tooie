@@ -23,7 +23,239 @@ void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80800314_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_8080094C_chfantasyathlete.s")
+struct AthletePaths {
+        u8 pad0[0x78];
+        s32 unk78[7];
+        f32 unk94[7];
+};
+
+void func_8080094C_chfantasyathlete(Actor *arg0, s32 arg1) {
+    s32 _gcgoto_entrypoint_1(s32, s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D1000(s32, s32, f32 *, s32, s32);
+    void func_800DA3B8(s32, s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    s32 func_800EA05C(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F7B9C(s32, s32);
+    void func_800F82D4(s32, s32);
+    void func_800FC6B0(u32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_8010573C(Actor *, f32);
+    f32 func_8010CD28(Actor *);
+    void func_808018B8_chfantasyathlete(Actor *, struct AthletePaths *, s32, u8);
+    void func_80802C18_chfantasyathlete(Actor *, Unk80132ED0 *, s32, s32);
+    void func_80802C94_chfantasyathlete(Actor *, s32, s32);
+    void func_80802D38_chfantasyathlete(void *);
+    extern f32 D_80803150_chfantasyathlete[3];
+    struct AthletePaths *sp64;
+    f32 sp60;
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    sp64 = func_80100094(arg0, 0);
+    if (arg0->unk70_10 == 22) {
+        func_80800000_chfantasyathlete((s32)arg0, 1);
+    }
+    switch (arg1) {
+    case 1:
+        ((f32 *)arg0->actorData)[5] = 1.0f;
+        func_808018B8_chfantasyathlete(arg0, sp64, 0, 10);
+        ((f32 *)arg0->actorData)[6] = 0.0f;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        break;
+    case 2:
+        func_800FC6B0(0x10);
+        break;
+    case 3:
+        func_800DA544(0x3DC);
+        arg0->unk58 = 0.0f;
+        break;
+    case 5:
+        sp60 = arg0->rotation[1];
+        func_80802C18_chfantasyathlete(arg0, arg0->unk0, 0x3B, 0x2810);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_8010573C(arg0, 0.0f);
+        arg0->unk54 = arg0->rotation[1];
+        arg0->rotation[1] = sp60;
+        break;
+    case 6:
+        ((f32 *)arg0->actorData)[6] = 750.0f;
+        break;
+    case 7:
+        func_808018B8_chfantasyathlete(arg0, sp64, 1, 6);
+        func_80802C18_chfantasyathlete(arg0, arg0->unk0, 0x3C, 0x2810);
+        ((f32 *)arg0->actorData)[6] = 800.0f;
+        ((f32 *)arg0->actorData)[3] = 800.0f;
+        break;
+    case 8:
+        if (arg0->unk70_10 == 7) {
+            func_808018B8_chfantasyathlete(arg0, sp64, 2, 5);
+        } else {
+            func_808018B8_chfantasyathlete(arg0, sp64, 2, 10);
+        }
+        _subaddieDll_entrypoint_4(arg0, 0);
+        ((f32 *)arg0->actorData)[6] = 0.0f;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        arg0->unk58 = 2.0f;
+        func_80802D38_chfantasyathlete(arg0);
+        break;
+    case 9:
+        arg0->unk79_4 = 2;
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1412, 0xF, arg0->position, 0x6B);
+        break;
+    case 10:
+        func_80802D38_chfantasyathlete(arg0);
+        func_800DA524(0x6D6);
+        _gcgoto_entrypoint_1(func_800EA05C(), 0x17);
+        break;
+    case 11:
+        func_800F5A00(func_800F54E4(), sp48);
+        func_800EEB9C(sp54, 65.0f, 200.0f);
+        func_800EF04C(sp54, sp48);
+        func_808018B8_chfantasyathlete(arg0, sp64, 2, 6);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x13E5, 0xF, sp54, 0x6B);
+        func_80802C94_chfantasyathlete(arg0, 2, 0);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_800F7B9C(func_800F54E4(), 0x7F);
+        break;
+    case 12:
+        arg0->unk64_20 = 0;
+        arg0->unk64_19 = 0;
+        ((f32 *)arg0->actorData)[5] = 1.0f;
+        ((f32 *)arg0->actorData)[7] = 1.0f;
+        ((f32 *)arg0->actorData)[6] = 1050.0f;
+        func_800FDC28(0x13);
+        func_80802D38_chfantasyathlete(arg0);
+        break;
+    case 13:
+        func_800DA3B8(0x6D7, !arg0->unk64_19);
+        func_800DA544(0x6D6);
+        _gcgoto_entrypoint_1(func_800EA05C(), 0x17);
+        break;
+    case 14:
+        func_808018B8_chfantasyathlete(arg0, sp64, 2, 10);
+        arg0->rotation[1] = func_8010CD28(arg0);
+        break;
+    case 15:
+        func_800DA544(0x3DD);
+        func_808018B8_chfantasyathlete(arg0, sp64, 2, 10);
+        arg0->rotation[1] = func_8010CD28(arg0);
+        break;
+    case 16:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1413, 0xF, arg0->position, 0x6B);
+        func_800F7B9C(func_800F54E4(), 0x80);
+        break;
+    case 17:
+        arg0->unk54 = sp64->unk94[2];
+        func_80802D38_chfantasyathlete(arg0);
+        break;
+    case 19:
+        sp44 = arg0->rotation[1];
+        func_808018B8_chfantasyathlete(arg0, sp64, 3, 5);
+        arg0->unk54 = arg0->rotation[1];
+        arg0->rotation[1] = sp44;
+        func_80802C18_chfantasyathlete(arg0, arg0->unk0, 0x3D, 0x2811);
+        break;
+    case 20:
+        _subaddieDll_entrypoint_4(arg0, 1);
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        ((f32 *)arg0->actorData)[6] = 750.0f;
+        break;
+    case 21:
+        func_80802C18_chfantasyathlete(arg0, arg0->unk0, 0x3E, 0x2811);
+        func_808018B8_chfantasyathlete(arg0, sp64, 4, 6);
+        ((f32 *)arg0->actorData)[6] = 750.0f;
+        ((f32 *)arg0->actorData)[3] = 750.0f;
+        func_800F7B9C(func_800F54E4(), 0x80);
+        break;
+    case 22:
+        _subaddieDll_entrypoint_4(arg0, 0);
+        if (arg0->unk70_10 == 21) {
+            func_808018B8_chfantasyathlete(arg0, sp64, 5, 5);
+        } else {
+            func_808018B8_chfantasyathlete(arg0, sp64, 5, 10);
+        }
+        ((f32 *)arg0->actorData)[6] = 0.0f;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        func_80800000_chfantasyathlete((s32)arg0, 0);
+        func_80802D38_chfantasyathlete(arg0);
+        break;
+    case 23:
+        arg0->unk79_4 = 2;
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1414, 0xF, arg0->position, 0x6B);
+        break;
+    case 24:
+        func_80802D38_chfantasyathlete(arg0);
+        func_800DA524(0x6D6);
+        _gcgoto_entrypoint_1(func_800EA05C(), 0x18);
+        break;
+    case 25:
+        func_800F5A00(func_800F54E4(), sp2C);
+        func_800EEB9C(sp38, 335.0f, 200.0f);
+        func_800EF04C(sp38, sp2C);
+        func_808018B8_chfantasyathlete(arg0, sp64, 5, 6);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x13EA, 0xF, sp38, 0x6B);
+        break;
+    case 26:
+        func_80802D38_chfantasyathlete(arg0);
+        arg0->unk64_20 = 0;
+        arg0->unk64_19 = 0;
+        ((f32 *)arg0->actorData)[5] = 1.0f;
+        ((f32 *)arg0->actorData)[7] = 1.0f;
+        _subaddieDll_entrypoint_4(arg0, 1);
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        ((f32 *)arg0->actorData)[6] = 1400.0f;
+        func_800FDC28(0x13);
+        break;
+    case 27:
+        func_800DA3B8(0x6D7, !arg0->unk64_19);
+        func_800DA544(0x6D6);
+        _gcgoto_entrypoint_1(func_800EA05C(), 0x18);
+        break;
+    case 28:
+        func_808018B8_chfantasyathlete(arg0, sp64, 5, 10);
+        arg0->rotation[1] = func_8010CD28(arg0);
+        break;
+    case 29:
+        func_808018B8_chfantasyathlete(arg0, sp64, 5, 10);
+        arg0->rotation[1] = func_8010CD28(arg0);
+        break;
+    case 30:
+        func_800F82D4(func_800F54E4(), 0);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1415, 0xF, arg0->position, 0x6B);
+        break;
+    case 31:
+        arg0->unk54 = sp64->unk94[5];
+        break;
+    case 32:
+        func_80802D38_chfantasyathlete(arg0);
+        break;
+    case 33:
+        func_800D1000(0x48, 1, arg0->position, 0, 0);
+        func_80802C18_chfantasyathlete(arg0, arg0->unk0, 0x40, 0x2830);
+        func_808018B8_chfantasyathlete(arg0, sp64, 6, 5);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        arg0->unk58 = 1.0f;
+        ((f32 *)arg0->actorData)[3] = 0.0f;
+        ((f32 *)arg0->actorData)[6] = 700.0f;
+        break;
+    case 34:
+        func_800EE7F8(arg0->position, D_80803150_chfantasyathlete);
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 s32 func_80801114_chfantasyathlete(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6) {
     void func_800EF2A0(f32 vec[3]);
@@ -73,12 +305,6 @@ void func_808015D8_chfantasyathlete(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 
     func_800EF334(arg2, 0x3F000000);
     *arg4 = func_800EEAD4(arg1, arg0) * 0.5f;
 }
-
-struct AthletePaths {
-        u8 pad0[0x78];
-        s32 unk78[7];
-        f32 unk94[7];
-};
 
 void func_80801654_chfantasyathlete(s32 arg0, struct AthletePaths *data) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
