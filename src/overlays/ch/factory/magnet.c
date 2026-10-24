@@ -49,7 +49,191 @@ void func_80800000_chfactorymagnet(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800224_chfactorymagnet.s")
+void func_80800224_chfactorymagnet(Actor *arg0) {
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _sumumbofx_entrypoint_14(s32);
+    s32 _sumumbofx_entrypoint_27(s32);
+    s32 _sumumbofx_entrypoint_5(s32, s32);
+    void func_800CE88C(s32, s32);
+    s16 func_800CEA84(s32);
+    s32 func_800CEAA8(s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    s32 func_800D91EC(u8 *, f32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F8418(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    void func_80108B04(Actor *, s32);
+    void func_8080083C_chfactorymagnet(s32);
+    void func_80800898_chfactorymagnet(Actor *, s32);
+    void func_80800FE8_chfactorymagnet(Actor *);
+    s32 func_808012E4_chfactorymagnet(s32, f32);
+    void func_80801368_chfactorymagnet(u8 *);
+    void func_80801460_chfactorymagnet(Actor *, s32);
+    void func_80801B74_chfactorymagnet(Actor *);
+    f32 sp54[3];
+    f32 sp48[3];
+    s32 sp44;
+    s32 sp40;
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+            func_80800898_chfactorymagnet(arg0, 2);
+        }
+        break;
+    case 2:
+        if (func_800D91EC(&arg0->unk58, 1.0f)) {
+            func_80800898_chfactorymagnet(arg0, func_800DA298(0x19E) ? 3 : 4);
+        }
+        break;
+    case 3:
+        func_8080083C_chfactorymagnet((s32)arg0);
+        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[4])) {
+            func_80800898_chfactorymagnet(arg0, 4);
+        } else if (!func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+            func_80800898_chfactorymagnet(arg0, 5);
+        }
+        break;
+    case 4:
+        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[6])) {
+            func_800F5A00(func_800F54E4(), sp54);
+            func_800EFB24(sp48, sp54, arg0->position);
+            func_800D90A4((f32 *)arg0->actorData);
+            func_800EF334(sp48, func_800F10B4(((f32 *)arg0->actorData)[0], 20.0f, 0.0f, 1.0f, 0.5f));
+            func_800EF04C(sp48, arg0->position);
+            func_800F8418(func_800F54E4(), sp48);
+        } else {
+            func_80800898_chfactorymagnet(arg0, 5);
+        }
+        func_8080083C_chfactorymagnet((s32)arg0);
+        break;
+    case 5:
+        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+            func_80800898_chfactorymagnet(arg0, 2);
+        } else if (--arg0->unk6C_0 == 0) {
+            func_80800898_chfactorymagnet(arg0, 6);
+        }
+        break;
+    case 6:
+        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+            func_80800898_chfactorymagnet(arg0, 2);
+        } else if (func_800D90A4(&arg0->unk58)) {
+            func_80800898_chfactorymagnet(arg0, 1);
+        }
+        break;
+    case 7:
+        if (func_800DA298(0x9DE)) {
+            func_80800898_chfactorymagnet(arg0, 8);
+        }
+        break;
+    case 8:
+        sp44 = (s32)func_80100094(arg0, 0);
+        func_80801460_chfactorymagnet(arg0, sp44);
+        _sumumbofx_entrypoint_14(sp44);
+        if (_sumumbofx_entrypoint_27(sp44)) {
+            func_80800898_chfactorymagnet(arg0, 9);
+        }
+        break;
+    case 9:
+        sp40 = (s32)func_80100094(arg0, 0);
+        func_80801460_chfactorymagnet(arg0, sp40);
+        _sumumbofx_entrypoint_14(sp40);
+        _sumumbofx_entrypoint_5(sp40, 0x40400000);
+        if (_sumumbofx_entrypoint_27(sp40)) {
+            func_80800898_chfactorymagnet(arg0, 11);
+        }
+        break;
+    case 11:
+        sp3C = (s32)func_80100094(arg0, 0);
+        func_80801460_chfactorymagnet(arg0, sp3C);
+        _sumumbofx_entrypoint_14(sp3C);
+        func_800D91EC(&arg0->unk58, 1.0f);
+        if (_sumumbofx_entrypoint_27(sp3C)) {
+            func_800DA544(0x9DF);
+            _chmrtannoy_entrypoint_0();
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1337, 4, arg0->position, 0xA3);
+            func_80800898_chfactorymagnet(arg0, 12);
+        }
+        break;
+    case 12:
+        sp38 = (s32)func_80100094(arg0, 0);
+        func_80801460_chfactorymagnet(arg0, sp38);
+        _sumumbofx_entrypoint_14(sp38);
+        func_80801368_chfactorymagnet(arg0);
+        if (func_800DA298(0x1B8) || !func_800DA298(0xA06) ||
+            (func_800CEAA8(0) && func_800CEA84(0) < 5.0f)) {
+            func_80800898_chfactorymagnet(arg0, 13);
+        }
+        break;
+    case 13:
+        sp34 = (s32)func_80100094(arg0, 0);
+        func_80801460_chfactorymagnet(arg0, sp34);
+        _sumumbofx_entrypoint_14(sp34);
+        func_80801368_chfactorymagnet(arg0);
+        if (_sumumbofx_entrypoint_27(sp34)) {
+            func_80800898_chfactorymagnet(arg0, 14);
+        }
+        break;
+    case 14:
+        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5]) && !func_800DA298(0x1B8)) {
+            func_800DA524(0xA06);
+            func_800DA524(0x9DE);
+            func_80800898_chfactorymagnet(arg0, 2);
+        } else {
+            arg0->unk58 -= func_800D8FF8() * 0.5f;
+            if (arg0->unk58 <= 0.0f) {
+                func_80800898_chfactorymagnet(arg0, 15);
+            }
+        }
+        break;
+    case 15:
+        if (func_800D90A4(&((f32 *)arg0->actorData)[1])) {
+            func_80800898_chfactorymagnet(arg0, 16);
+        }
+        break;
+    case 16:
+        if (func_800CEAA8(0)) {
+            func_800CE88C(0, 0);
+        }
+        if (func_800DA298(0x1B8)) {
+            if (func_800D91EC(&arg0->unk58, 1.0f)) {
+                func_80800898_chfactorymagnet(arg0, 17);
+            }
+        } else if (func_800D91EC(&arg0->unk58, 0.4f)) {
+            func_80800898_chfactorymagnet(arg0, 6);
+        }
+        func_800DA524(0xA06);
+        func_800DA524(0x9DE);
+        break;
+    case 17:
+        func_80103110(arg0, 0);
+        if (func_800D90A4((f32 *)arg0->actorData)) {
+            ((f32 *)arg0->actorData)[0] = func_800DC178(2.0f, 20.0f);
+            func_80108B04(arg0, 1);
+        }
+        break;
+    }
+    if (*(volatile f32 *)&arg0->actorData[7] != *(volatile f32 *)&arg0->unk58 && arg0->unk3C) {
+        func_80800FE8_chfactorymagnet(arg0);
+    }
+    func_80801B74_chfactorymagnet(arg0);
+    ((f32 *)arg0->actorData)[7] = arg0->unk58;
+}
 
 /* extern */
 
