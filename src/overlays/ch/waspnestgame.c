@@ -519,7 +519,71 @@ void func_808019D4_chwaspnestgame(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801A10_chwaspnestgame.s")
+/* extern */
+
+void func_80801A10_chwaspnestgame(Actor *arg0) {
+    void func_8080129C_chwaspnestgame();
+    void func_808012C8_chwaspnestgame(s32 arg0);
+    void func_808012D0_chwaspnestgame(void *arg0);
+    s32 func_80801364_chwaspnestgame(s32 actor, s32 arg1);
+    s32 func_808017DC_chwaspnestgame(Actor *arg0, f32 arg1, s32 arg2);
+    void func_80801880_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2, f32 arg3);
+    void func_80801CE4_chwaspnestgame(Actor *arg0);
+    void func_80801D28_chwaspnestgame(Actor *arg0);
+    s32 func_800DA298(s32);
+    s32 func_800FFA88(Unk80132ED0 *);
+    s32 func_80101DDC(Actor *);
+    s32 func_80801590_chwaspnestgame(Actor *, s32, s32);
+
+    switch (((Actor *)arg0)->unk70_10) {
+    case 1:
+        func_80801D28_chwaspnestgame(arg0);
+        func_808012D0_chwaspnestgame(arg0);
+        func_80801880_chwaspnestgame(arg0, 50.0f, 240.0f, 190.0f);
+        return;
+    case 2:
+        func_80801D28_chwaspnestgame(arg0);
+        func_80801CE4_chwaspnestgame(arg0);
+        if (func_80801590_chwaspnestgame(arg0, 0x42C80000, 0x43FA0000) != 0) {
+            if (func_800DA298(0) == 0) {
+                func_8080129C_chwaspnestgame(arg0->unk3C);
+                func_800FFA88((u8 *)arg0 ->unk0);
+                return;
+            }
+            func_80801364_chwaspnestgame((s32) arg0, 1);
+            return;
+        }
+    default:
+        return;
+    case 5:
+        func_80801D28_chwaspnestgame(arg0);
+        func_80801CE4_chwaspnestgame(arg0);
+        if (func_80801590_chwaspnestgame(arg0, 0x43480000, 0x44FA0000) != 0) {
+            func_800FFA88((u8 *)arg0 ->unk0);
+            return;
+        }
+        break;
+    case 3:
+        func_808012C8_chwaspnestgame((s32) arg0);
+        if (func_808017DC_chwaspnestgame(arg0, 1000.0f, 1) != 0) {
+            func_80801364_chwaspnestgame((s32) arg0, 4);
+            return;
+        }
+        break;
+    case 4:
+        if (func_80101DDC(arg0) != 0) {
+            func_80801364_chwaspnestgame((s32) arg0, 7);
+            return;
+        }
+        break;
+    case 6:
+        func_80801D28_chwaspnestgame(arg0);
+        if (func_808017DC_chwaspnestgame(arg0, 500.0f, 1) != 0) {
+            func_80801364_chwaspnestgame((s32) arg0, 7);
+        }
+        break;
+    }
+}
 
 s32 func_80801B9C_chwaspnestgame(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
     void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
