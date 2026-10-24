@@ -325,7 +325,60 @@ void func_80800AB8_chonearmbandit(Actor *arg0) {
     func_80108944(spawned, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_80800D00_chonearmbandit.s")
+void func_800FFAB0(Actor *);
+void func_80800D00_chonearmbandit(Actor *arg0) {
+    extern void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chexploder_entrypoint_6(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void _subaddiefade_entrypoint_11(Actor *, s32 *);
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    void _subaddiejoy_entrypoint_10(void *, f32, f32);
+    s32 func_800D1000(s32, s32, f32 *, s32, s32);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void *func_80101080(void);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80107070(Actor *, u32);
+    s32 func_8010A430(void *);
+    u32 func_80800E78_chonearmbandit(Actor *);
+    extern u8 D_8080139C_chonearmbandit[];
+    s32 fade[3];
+    Actor *spawned;
+    u32 item;
+    union { f32 f[3]; s32 i[3]; } position;
+    union { f32 f; s32 i; } yaw;
+    s32 kind;
+
+    spawned = func_80106790(func_80101080());
+    _chexploder_entrypoint_9(spawned, 3, 0);
+    _chexploder_entrypoint_9(spawned, 4, 1);
+    _chexploder_entrypoint_6(spawned, 1000.0f, 1200.0f);
+    _subaddiefade_entrypoint_9(arg0, fade);
+    _subaddiefade_entrypoint_11(spawned, fade);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080139C_chonearmbandit);
+    _subaddiejoy_entrypoint_10(arg0, 1.4f, 0.3f);
+    arg0->unk64_24 = 0;
+    item = func_80800E78_chonearmbandit(arg0);
+    if (item != 0) {
+        func_800D1000(item, 8, arg0->position, 1, 0);
+    } else if (func_8010A430(arg0)) {
+        yaw.f = func_800DC178(0.0f, 359.0f);
+        if (func_800DC298(0.5f)) {
+            kind = 0x18;
+        } else {
+            kind = 0x19;
+        }
+        func_80103DFC(arg0, position.f);
+        _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, kind,
+            position.i[0], position.i[1], position.i[2], yaw.i);
+    }
+    if (func_80107070(arg0, 3) == 0) {
+        func_800FFAB0(arg0);
+    }
+}
 
 u32 func_80800E78_chonearmbandit(Actor *arg0) {
     u32 temp_a0;
