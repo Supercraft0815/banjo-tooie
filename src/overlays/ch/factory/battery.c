@@ -291,7 +291,156 @@ void func_808009C8_chfactorybattery(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_80800AB8_chfactorybattery.s")
+void func_80800AB8_chfactorybattery(Actor *arg0) {
+    void _subaddiefx_entrypoint_0(Actor *, s32, void *);
+    f32 _subaddiejoy_entrypoint_3();
+    s32 _subaddiejoy_entrypoint_6(Actor *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, u32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    s32 _subaddietaxi_entrypoint_1(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_11(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_5(Actor *, s32);
+    void _subaddietaxi_entrypoint_9(Actor *, s32);
+    f32 func_80013970(f32);
+    void *func_800CC63C(s32, s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 func_800F3780(f32, u8 *, s16);
+    s32 func_800F54E4();
+    void *func_80100094(Actor *, u32);
+    s32 func_8010108C(Actor *, s32, s32);
+    f32 func_80101F24(Actor *);
+    void func_80102BAC(Actor *, f32, f32, f32);
+    s32 func_80102CCC(Actor *);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    void func_8010BA80(Actor *, s32, s32);
+    void func_8010C3A8(Actor *, s32, f32);
+    s32 func_8010C500(Actor *);
+    s32 func_8010C9FC(f32 *, s32, s32, s32);
+    f32 func_8010CD50(Actor *, s32);
+    void func_8080130C_chfactorybattery(Actor *, s32);
+    extern u8 D_80801B88_chfactorybattery[];
+    struct Route { u16 pad[3]; u16 node; };
+    struct BatteryActorFlags {
+        u8 pad[0x70];
+        u32 unk70_25 : 7;
+        u32 pad70_10 : 15;
+        u32 unk70_4 : 6;
+        u32 pad70_0 : 4;
+    };
+
+    f32 sp4C;
+    struct Route *sp48;
+    s32 pad44;
+    f32 sp40;
+    f32 sp3C;
+    s32 pad38;
+    f32 sp34;
+    f32 sp30;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        _subaddiefx_entrypoint_0(arg0, 4, func_80100094(arg0, 0));
+        if (func_800D90A4(&arg0->unk58)) {
+            func_8080130C_chfactorybattery(arg0, 6);
+        }
+        break;
+    case 3:
+        if (_subaddietaxi_entrypoint_1(arg0, func_80800678_chfactorybattery(arg0))) {
+            func_8080130C_chfactorybattery(arg0, 5);
+        }
+        break;
+    case 4:
+        if (_subaddietaxi_entrypoint_11(arg0, func_80800678_chfactorybattery(arg0)) &&
+            _subaddietaxi_entrypoint_5(arg0, func_80800678_chfactorybattery(arg0))) {
+            func_8080130C_chfactorybattery(arg0, 6);
+        }
+        break;
+    case 6:
+        sp4C = func_800F3780(func_80101F24(arg0), D_80801B88_chfactorybattery, 4);
+        sp48 = func_80100094(arg0, 1);
+        if (_subaddierouteDll_entrypoint_4(arg0)) {
+            if (func_8010C500(arg0)) {
+                sp40 = func_800F1DF4(func_800CC63C(((struct BatteryActorFlags *)arg0)->unk70_25 - 1, ((struct BatteryActorFlags *)arg0)->unk70_4 - 1), arg0->position);
+                arg0->unk54 = func_8010CD50(arg0, func_800F54E4()) - 180.0f;
+                if (sp40 + 90.0f < arg0->unk54) {
+                    arg0->unk54 = sp40 + 90.0f;
+                } else if (arg0->unk54 < sp40 - 90.0f) {
+                    arg0->unk54 = sp40 - 90.0f;
+                }
+            } else {
+                _subaddierouteDll_entrypoint_6(arg0, sp48, arg0->unk74_7, 0x3F, 0.4f, 20, 40);
+            }
+            _subaddierouteDll_entrypoint_7(arg0, sp48, arg0->rotation[1], arg0->unk54, 200.0f, 0x4803);
+            arg0->unk74_7 = sp48->node;
+        }
+        _subaddierouteDll_entrypoint_5(arg0, sp48, arg0->unk74_7, 0.3f, 1.0f, 300.0f * sp4C);
+        func_8010C3A8(arg0, 0x305425, sp4C);
+        break;
+    case 7:
+        if (func_800D90A4(&arg0->unk58)) {
+            func_8080130C_chfactorybattery(arg0, 6);
+        }
+        break;
+    case 10:
+        if (func_800D90A4(&arg0->unk58)) {
+            func_8080130C_chfactorybattery(arg0, 8);
+        }
+        /* fallthrough */
+    case 8:
+        if (arg0->unk64_20) {
+            if (_subaddiejoy_entrypoint_6(arg0, 1)) {
+                if (func_800D90A4(&arg0->unk58)) {
+                    arg0->unk64_20 = 0;
+                    arg0->unk79_4 = 0;
+                    arg0->unk58 = 1.0f;
+                } else {
+                    arg0->unk79_4 = func_800DC128(1, 4);
+                }
+            } else {
+                arg0->unk79_4 = 0;
+            }
+        } else if (func_800D90A4(&arg0->unk58) && _subaddiejoy_entrypoint_6(arg0, 1)) {
+            arg0->unk64_20 = 1;
+            arg0->unk58 = 2.0f;
+            arg0->unk79_4 = func_800DC128(1, 4);
+        }
+        sp3C = _subaddiejoy_entrypoint_3(arg0);
+        sp3C = 600.0f * sp3C;
+        if (func_80101F24(arg0) > 0.5f) {
+            if (func_80102CCC(arg0) == 0) {
+                func_80102BAC(arg0, 1.5f, 1.0f, 20.0f);
+            } else {
+                ((f32 *)arg0->actorData)[3] = func_80013970((func_80101F24(arg0) > 0.5f ? (func_80101F24(arg0) - 0.5f) * 2.0f : 0.0f) * 180.0f) * sp3C;
+                func_8010BA80(arg0, 0x201005, 0x20);
+            }
+        }
+        break;
+    case 9:
+        _subaddiefx_entrypoint_0(arg0, 4, func_80100094(arg0, 0));
+        if (func_800D90A4(&arg0->unk58)) {
+            func_8080130C_chfactorybattery(arg0, 8);
+        }
+        break;
+    case 5:
+    case 13:
+        sp30 = func_80103EAC(arg0);
+        sp34 = func_80103EF4(arg0);
+        if (func_8010C9FC(arg0->position, (s32)sp30, (s32)sp34, 0)) {
+            func_8010108C(arg0, 0x3E, 0);
+        }
+        break;
+    }
+    func_808009C8_chfactorybattery(arg0);
+    func_80800948_chfactorybattery(arg0);
+    func_808008C8_chfactorybattery(arg0);
+    func_80800760_chfactorybattery(arg0);
+    _subaddietaxi_entrypoint_9(arg0, func_80800678_chfactorybattery(arg0));
+}
 
 s32 func_80801040_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddieDll_entrypoint_1();
