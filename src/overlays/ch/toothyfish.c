@@ -1,5 +1,95 @@
 #include "common.h"
 
+extern u32 D_808017DC_chtoothyfish[];
+void func_80101870(Actor *, void *);
+void func_801018A4(Actor *, s32);
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_80800000_chtoothyfish(Actor *arg0);
+void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3);
+void func_808004A4_chtoothyfish(Actor *arg0);
+void func_80800B68_chtoothyfish();
+void func_80800E04_chtoothyfish(Actor *arg0);
+void func_80800EDC_chtoothyfish(s32 arg0);
+void func_8080106C_chtoothyfish(Actor *self);
+
+u32 D_80801760_chtoothyfish[] = {
+    0x00130544, 0x000D00CC, 0x01330016, 0x7FFF0001,
+    0x0FA01D4C, 0x00000000,
+};
+
+u32 D_80801778_chtoothyfish[] = {
+    0x001305CE, 0x000A0066, 0x00167FFF, 0x00010FA0,
+    0x1D4C0000,
+};
+
+u32 D_8080178C_chtoothyfish[] = {
+    0x001303ED, 0x000D0040, 0x004C0016, 0x46500000,
+};
+
+u32 D_8080179C_chtoothyfish[] = {
+    0x001303ED, 0x000D004C, 0x00590016, 0x46500000,
+};
+
+u32 D_808017AC_chtoothyfish[] = {
+    0x00130546, 0x000D00CC, 0x00E60016, 0x7D000001,
+    0x0FA01D4C, 0x00000000,
+};
+
+u32 D_808017C4_chtoothyfish[] = {
+    0x00130547, 0x000D00CC, 0x00E60016, 0x7D000001,
+    0x0FA01D4C, 0x00000000,
+};
+
+u32 D_808017DC_chtoothyfish[] = {
+    0x00000000, 0x00000000, 0x40000000, 0x01190001,
+    0x3F99999A, 0x00FA0042, 0x3FC00000, 0x00FA0042,
+    0x40000000, 0x011A0001, 0x40000000, 0x011A0001,
+    0x40000000, 0x011A0001,
+};
+
+u32 D_80801814_chtoothyfish[] = {
+    0x001D09D9, 0x00161004, 0x00010000, 0x00230000,
+    0x00000032, 0x0000001B, 0x009600C8, 0x00070001,
+    0x00150000, 0x00CC002B, 0x01800480, 0x0020FFFF,
+    0xFEFF002F, 0x00400040, 0x00000000, 0x00190000,
+    0x00330000,
+};
+
+u32 D_80801858_chtoothyfish[] = {
+    0x3E2E147B, 0x3F2E147B, 0xBF800000,
+};
+
+u32 D_80801864_chtoothyfish[] = {
+    0x3EDC28F6, 0x3F68F5C3, 0xBF800000,
+};
+
+u32 D_80801870_chtoothyfish[] = {
+    0x02D4030F, 0x06C50001, (u32)D_808017DC_chtoothyfish, (u32)func_808004A4_chtoothyfish,
+    (u32)func_808004A4_chtoothyfish, (u32)func_801018A4, 0x2EE02AF8, 0x00000000,
+    0x00000000, 0x00000C68, (u32)func_80800470_chtoothyfish, (u32)func_80108ED0,
+    0x00400000, (u32)func_80800000_chtoothyfish, (u32)func_80107C2C, 0x00000000,
+    (u32)func_80800B68_chtoothyfish, 0x00000000,
+};
+
+u32 D_808018B8_chtoothyfish[] = {
+    0x001D09D9, 0x00161004, 0x002C0000, 0x00640000,
+    0x000000C8, 0x0000000B, 0x000F001E, 0x000F0000,
+    0x00010000, 0x00230000, 0x00000032, 0x0000001B,
+    0x009600C8, 0x00070001, 0x00150000, 0x00CC002B,
+    0x01800280, 0x0020FFFF, 0xFEFF002F, 0x00400040,
+    0x00000000, 0x00190000, 0x00330000,
+};
+
+u32 D_80801914_chtoothyfish[] = {
+    0x02D50310, 0x073A0001, 0x00000000, (u32)func_8080106C_chtoothyfish,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000800, (u32)func_80800EDC_chtoothyfish, 0x00000000,
+    0x00000000, (u32)func_80800E04_chtoothyfish, (u32)func_80107C2C, 0x80000002,
+    0x00000000, 0x00000000, 0x00000000,
+};
+
 void func_80800000_chtoothyfish(Actor *arg0) {
     s32 _subaddiesect_entrypoint_1(Actor *);
     s32 func_800DA298(s32);
@@ -38,20 +128,17 @@ void func_808000E8_chtoothyfish(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800FC660(u32);
     void func_80102424(Actor *, s32);
-    extern u32 D_80801760_chtoothyfish;
-    extern u32 D_80801778_chtoothyfish;
-
     if (arg1 != arg0->unk70_10) {
         func_80102424(arg0, arg1);
         switch (arg1) {
         case 1:
             break;
         case 2:
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801760_chtoothyfish);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &(*(u32 *)D_80801760_chtoothyfish));
             func_800FC660(0xE);
             break;
         case 3:
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801778_chtoothyfish);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &(*(u32 *)D_80801778_chtoothyfish));
             func_800FC660(0x10);
             break;
         case 4:
@@ -69,7 +156,6 @@ void func_80800188_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
-    extern s32 D_80801814_chtoothyfish;
     s32 sp34;
     s32 temp_v0;
     s32 temp_v0_2;
@@ -77,7 +163,7 @@ void func_80800188_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     temp_v0 = func_800DC128(0, 5);
     sp34 = temp_v0;
     temp_v0_2 = func_800B53A4(temp_v0);
-    func_800BABB8(temp_v0_2, arg0, 0, 1.0f, &D_80801814_chtoothyfish);
+    func_800BABB8(temp_v0_2, arg0, 0, 1.0f, &(*(s32 *)D_80801814_chtoothyfish));
     func_800BA568(temp_v0_2, (s16) (s32) (arg0[1] + arg1));
     func_800BA7C4(temp_v0_2, 0.16f * arg2, 0.3f * arg2);
     func_800BA7FC(temp_v0_2, 0.45f * arg2, 0.6f * arg2);
@@ -88,29 +174,24 @@ void func_80800188_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 void func_808002DC_chtoothyfish(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
     void _subaddieskeleton_entrypoint_2(Unk80132ED0*, s32, f32*);
-    extern u32 D_8080178C_chtoothyfish;
-    extern u32 D_8080179C_chtoothyfish;
-    extern u32 D_80801858_chtoothyfish;
-    extern u32 D_80801864_chtoothyfish;
     f32 sp1C[3];
 
     if (arg0->unk7C_12) {
         _subaddieskeleton_entrypoint_2(arg0->unk0, 0xA, sp1C);
-        _subaddieaudioquick_entrypoint_4(arg0, sp1C, &D_8080178C_chtoothyfish, &D_80801858_chtoothyfish);
-        _subaddieaudioquick_entrypoint_4(arg0, sp1C, &D_8080179C_chtoothyfish, &D_80801864_chtoothyfish);
+        _subaddieaudioquick_entrypoint_4(arg0, sp1C, &(*(u32 *)D_8080178C_chtoothyfish), &(*(u32 *)D_80801858_chtoothyfish));
+        _subaddieaudioquick_entrypoint_4(arg0, sp1C, &(*(u32 *)D_8080179C_chtoothyfish), &(*(u32 *)D_80801864_chtoothyfish));
     }
 }
 
 void func_80800350_chtoothyfish(Actor *arg0, u8 *arg1, s32 arg2) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80108B04(Actor *, u32);
-    extern s32 D_808017AC_chtoothyfish;
     if ((arg1 + arg2)[0x39] >= 0x1E) {
         func_80108B04(arg0, arg2);
         arg0->unk74_29 = 1;
         return;
     }
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808017AC_chtoothyfish);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &(*(s32 *)D_808017AC_chtoothyfish));
     ((f32 *)(arg1 + 0x18))[arg2] = 1.0f;
 }
 
@@ -153,7 +234,112 @@ void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_808004A4_chtoothyfish.s")
+void func_808004A4_chtoothyfish(Actor *arg0) {
+    s32 _gcgoto_entrypoint_5(s32, s32, f32);
+    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    void func_80090358(f32 *, f32, void *, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800DC298(f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    void func_800E39A8(f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_800F8B88(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    void func_80105834(Actor *);
+    void func_80105A9C(Actor *, f32);
+    void func_8010A624(Actor *);
+    void func_8010A63C(Actor *);
+    s32 func_8010CAC0(f32 *, u32);
+    struct ToothyfishData {
+        f32 unk0[6];
+        f32 timers[5];
+        s32 unk2C;
+        f32 unk30;
+        u8 flags[5];
+        u8 other[5];
+    } *data;
+    s32 i;
+    s32 skeleton;
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk64_19) {
+        func_8010A624(arg0);
+    } else {
+        func_8010A63C(arg0);
+        if (data->unk30 < 1.0f) {
+            data->unk30 += 0.3f * func_800D8FF8();
+        }
+    }
+    ((f32 *)arg0->actorData)[3] = data->unk30 * 200.0f;
+    func_80105A9C(arg0, ((f32 *)arg0->actorData)[3]);
+    func_80105834(arg0);
+    arg0->rotation[0] = 0.0f;
+    arg0->rotation[1] += func_800F1DCC(arg0->unk54, arg0->rotation[1]) * 0.1f;
+    skeleton = func_8010262C(arg0->unk0, 5);
+    if (skeleton) {
+        for (i = 0; i < 5; i++) {
+            if (data->timers[i] > 0.005f || data->timers[i] < -0.005f) {
+                data->timers[i] *= -0.9f;
+            }
+            func_800E0AFC((void *)skeleton, 0x5A - i, 1.0f,
+                         data->timers[i] * 15.0f, data->timers[i] * 15.0f,
+                         data->timers[i] * 0);
+        }
+    }
+    if (arg0->unk74_29) {
+        func_808003D4_chtoothyfish(arg0, (u8 *)data);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        break;
+    case 2:
+        if (func_80101E14(arg0, 0.999f)) {
+            func_808000E8_chtoothyfish(arg0, 1);
+        }
+        break;
+    case 3:
+        if (func_80101E14(arg0, 0.25f)) {
+            func_808000E8_chtoothyfish(arg0, 4);
+        }
+        break;
+    case 4:
+        func_800EEC30(sp50, -arg0->rotation[0] - 30.0f, arg0->rotation[1], arg0->scale * 80.0f);
+        func_800EF04C(sp50, arg0->position);
+        _sudeflect_entrypoint_0(sp50, arg0->scale * 70.0f, arg0->scale * 80.0f, 4);
+        if (func_8010CAC0(sp50, (s32)(arg0->scale * 70.0f)) && func_800F8B88() != 3) {
+            func_800E39A8(data->unk0, &data->unk0[3]);
+            _gcgoto_entrypoint_5(0xF8, 1, arg0->rotation[1] + 180.0f);
+            arg0->unk64_20 = 1;
+            func_80090358(arg0->position, 4.0f, NULL, 0);
+            func_808000E8_chtoothyfish(arg0, 5);
+        }
+        break;
+    case 6:
+        data->unk30 = 0.0f;
+        break;
+    case 5:
+        func_800EEC30(sp44, -arg0->rotation[0] - 20.0f, arg0->rotation[1], arg0->scale * 80.0f);
+        func_800EF04C(sp44, arg0->position);
+        if (!func_8010CAC0(sp44, (s32)(arg0->scale * 150.0f))) {
+            func_808000E8_chtoothyfish(arg0, 4);
+        }
+        break;
+    }
+    func_808002DC_chtoothyfish(arg0);
+    if (arg0->unk7C_12 && (func_800DC298(0.03f) ||
+        (arg0->unk70_10 == 2 && func_800DC298(0.1f)))) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 6, sp38);
+        func_80800188_chtoothyfish(sp38, 1000.0f, arg0->scale, arg0->rotation[1]);
+    }
+}
 
 s32 func_80800908_chtoothyfish(s32 arg0) {
     switch (arg0 &= 0x78000000) {
@@ -253,9 +439,7 @@ void func_8080096C_chtoothyfish(Actor *arg0, Unk80132ED0 *arg1) {
 
 OSThread *chtoothyfish_entrypoint_0(void)
 {
-    extern u8 D_80801870_chtoothyfish[];
-
-    return (OSThread *) D_80801870_chtoothyfish;
+    return (OSThread *) ((u8 *)D_80801870_chtoothyfish);
 }
 
 void func_80800E04_chtoothyfish(Actor *arg0) {
@@ -265,12 +449,11 @@ void func_80800E04_chtoothyfish(Actor *arg0) {
     f32 func_800F1DF4(f32 *, f32 *);
     s32 func_80103140(Actor *, u32, u16);
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_808017C4_chtoothyfish;
     Actor *sp2C;
 
     sp2C = func_80106790(arg0->unk3C);
     _subaddieskeleton_entrypoint_2(arg0->unk3C, arg0->unk6C_0 + 4, arg0->position);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808017C4_chtoothyfish);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &(*(s32 *)D_808017C4_chtoothyfish));
     arg0->scale = sp2C->scale;
     arg0->rotation[2] = sp2C->rotation[2];
     arg0->rotation[0] = sp2C->rotation[0];
@@ -306,7 +489,6 @@ void func_80800F6C_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2) {
     void func_800BA7FC(void *, f32, f32);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
-    extern s32 D_808018B8_chtoothyfish;
     s32 sp2C;
     s32 temp_v0;
     s32 temp_v0_2;
@@ -314,7 +496,7 @@ void func_80800F6C_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2) {
     temp_v0 = func_800DC128(0, 5);
     sp2C = temp_v0;
     temp_v0_2 = func_800B53A4(temp_v0);
-    func_800BABB8(temp_v0_2, arg0, 0, 1.0f, &D_808018B8_chtoothyfish);
+    func_800BABB8(temp_v0_2, arg0, 0, 1.0f, &(*(s32 *)D_808018B8_chtoothyfish));
     func_800BA568(temp_v0_2, (s16) (s32) (arg0[1] + arg1));
     func_800BA7C4(temp_v0_2, 0.08f * arg2, 0.15f * arg2);
     func_800BA7FC(temp_v0_2, 0.09f * arg2, 0.18f * arg2);
@@ -491,7 +673,5 @@ void func_80801588_chtoothyfish(Actor *arg0, s32 arg1) {
 
 OSThread *chtoothyfish_entrypoint_1(void)
 {
-    extern u8 D_80801914_chtoothyfish[];
-
-    return (OSThread *) D_80801914_chtoothyfish;
+    return (OSThread *) ((u8 *)D_80801914_chtoothyfish);
 }

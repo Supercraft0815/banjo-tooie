@@ -9006,7 +9006,7 @@ segments:
     subsegments: 
       - [0x02074760, c, toothyfish]
       - [0x02075D80, .rodata, toothyfish]
-      - [0x02075EC0, data, toothyfish]
+      - [0x02075EC0, .data, toothyfish]
       - [0x020760C0, bss, toothyfish]
   - name: chmole_lagoon_header
     dir: overlays/chmole_lagoon
