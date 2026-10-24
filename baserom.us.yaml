@@ -8217,6 +8217,7 @@ segments:
       - [0x02039F40, c, stoneballcontrol]
       - [0x0203ED40, .rodata, stoneballcontrol]
       - [0x0203EF00, data, stoneballcontrol]
+      - [0x0203EFF0, .data, stoneballcontrol]
       - [0x0203F3C0, bss, stoneballcontrol]
   - name: chmayafarmer_header
     dir: overlays/chmayafarmer
