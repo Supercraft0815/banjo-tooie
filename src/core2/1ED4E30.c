@@ -130,7 +130,7 @@ void func_800FB808(void) {
     void func_800FE614(void);
     void func_80017864(void);
     extern u8 D_80123E40;
-    extern s8 D_801359B0;
+    extern u8 D_801359B0;
     extern f32 D_801359B4;
     extern f32 D_801359B8;
     MusicTrack *track;
@@ -174,7 +174,162 @@ void func_800FB908(void) {
     D_80123E40 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FB968.s")
+void func_800FB968(void)
+{
+  s32 func_80017070(u8);
+  s32 func_800170D4(u8);
+  void func_80017404(u8, s16);
+  void func_80017534(u8, f32, f32);
+  void func_800175F0(void);
+  s32 func_80017778(s32);
+  int func_800177C4(s32);
+  void func_80017EC0(s32);
+  s32 func_80090200(void);
+  s32 func_800A5490(void);
+  f32 func_800D8FF8(void);
+  f32 func_800F13F0(f32, f32);
+  void func_800FDC58(s32);
+  extern f32 D_80126150;
+  extern u8 D_801359B0;
+  MusicTrack *track;
+  s32 index;
+  register f32 delta;
+  s32 active;
+  s32 mode;
+  s32 mask;
+  s32 stopped;
+  s32 requested;
+  f32 blend;
+  u8 *mode_ptr;
+  delta = func_800D8FF8(); mode_ptr = (u8 *) ((s32) ((&D_801359B0) + 1)); mode = *mode_ptr;
+  if (func_80090200()) {
+    mode = func_800A5490();
+    *mode_ptr = mode;
+  }
+  blend = D_80126150; track = D_801357D0; do {
+    if (track->track_id >= 0) {
+      ((f32 *) track)[1] = func_800F13F0(((f32 *) track)[1] + delta, 600.0f);
+      if ((((f32 *) track)[1] > 1.0f) && func_80017778(track - D_801357D0)) {
+        func_800FB774(track);
+      } else if (mode) {
+        if ((((f32 *) track)[6] != ((f32 *) track)[4]) || (((f32 *) track)[7] != ((f32 *) track)[5])) {
+          ((f32 *) track)[6] += (((f32 *) track)[4] - ((f32 *) track)[6]) * blend;
+          ((f32 *) track)[7] += (((f32 *) track)[5] - ((f32 *) track)[7]) * blend;
+          func_80017534(track - D_801357D0, ((f32 *) track)[6], ((f32 *) track)[7]);
+        }
+      }
+      else
+        if ((((f32 *) track)[6] != ((f32 *) track)[2]) || (((f32 *) track)[7] != ((f32 *) track)[3]))
+      {
+        ((f32 *) track)[6] += (((f32 *) track)[2] - ((f32 *) track)[6]) * blend;
+        ((f32 *) track)[7] += (((f32 *) track)[3] - ((f32 *) track)[7]) * blend;
+        func_80017534(track - D_801357D0, ((f32 *) track)[6], ((f32 *) track)[7]);
+      }
+    }
+    track++;
+  }
+  while (track < ((MusicTrack *) ((s32) (&D_801359B0))));
+  func_800175F0();
+  func_800FDC58(mode);
+  track = D_801357D0;
+  do
+  {
+    if (track->track_id >= 0)
+    {
+      index = track - D_801357D0;
+      func_80017EC0(index);
+      active = func_800170D4(index);
+      mask = func_80017070(index);
+      stopped = func_800177C4(index);
+      active &= mask;
+      requested = ((s32 *) track)[11] & mask;
+      if ((stopped && requested) || ((!stopped) && (!active)))
+      {
+        if (active || requested)
+        {
+          func_80017404(index, ((s32 *) track)[8]);
+          track->unk2C[8] = 0;
+        }
+        else
+        {
+          func_80017404(index, 0);
+          track->unk2C[8] = 1;
+        }
+      }
+    }
+    track++;
+  }
+  while (track < ((MusicTrack *) ((s32) (&D_801359B0))));
+  track = D_801357D0;
+  if (D_801359B0)
+  {
+    D_801359B0 = 0;
+    do
+    {
+      if ((track->track_id >= 0) && (track->unk2A != 0))
+      {
+        if (0.0f < ((f32 *) track)[0])
+        {
+          ((f32 *) track)[0] -= func_800D8FF8();
+          D_801359B0 = 1;
+        }
+        else
+          if (track->unk2A < 0)
+        {
+          ((s32 *) track)[8] += track->unk2A;
+          if ((track->unk2C[5] && (((s32 *) track)[9] == 0)) && (((s32 *) track)[8] <= 0))
+          {
+            func_800FB774(track);
+          }
+          else
+          {
+            if (((s32 *) track)[9] >= ((s32 *) track)[8])
+            {
+              ((s32 *) track)[8] = ((s32 *) track)[9];
+              track->unk2A = 0;
+            }
+            else
+            {
+              D_801359B0 = 1;
+            }
+            if (!track->unk2C[8])
+            {
+              func_80017404(track - D_801357D0, ((s32 *) track)[8]);
+            }
+          }
+        }
+        else
+          if (((s32 *) track)[8] < ((s32 *) track)[9])
+        {
+          if (((s32 *) track)[8] == 0)
+          {
+            ((f32 *) track)[1] = 0.0f;
+          }
+          ((s32 *) track)[8] = track->unk2A + ((s32 *) track)[8];
+          if (((s32 *) track)[8] >= ((s32 *) track)[9])
+          {
+            ((s32 *) track)[8] = ((s32 *) track)[9];
+            track->unk2A = 0;
+          }
+          else
+          {
+            D_801359B0 = 1;
+          }
+          if (!track->unk2C[8])
+          {
+            func_80017404(track - D_801357D0, ((s32 *) track)[8]);
+          }
+        }
+        else
+        {
+          track->unk2A = 0;
+        }
+      }
+      track++;
+    }
+    while (track < ((MusicTrack *) ((s32) (&D_801359B0))));
+  }
+}
 
 void func_800FBEC8(u8 *track, s32 *minimum_first, s32 *minimum_second) {
     s32 freelist_capacity(s32);
@@ -513,7 +668,7 @@ void func_800FCB9C(s32 track_id, s32 arg1, s32 arg2, f32 arg3, void *arg4) {
     void func_800172D4(u8, s32);
     void func_80017404(u8, s16);
     void func_800FBF9C(s32 *, s32 *, s32 *, void *);
-    extern s8 D_801359B0;
+    extern u8 D_801359B0;
     s32 *track;
     u32 slot_index;
 
