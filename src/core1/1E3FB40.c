@@ -125,7 +125,31 @@ f32 func_80028B74(s32 arg0) {
     return ratio;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3FB40/func_80028C04.s")
+void func_80028C04(void *arg0, f32 arg1) {
+    s32 i;
+    f32 numerator[3];
+    f32 denominator[3];
+
+    if (*(s16 *)((u8 *)arg0 + 2) == 0) {
+        return;
+    }
+    if (*(s16 *)((u8 *)arg0 + 2) < 10) {
+        *(s16 *)((u8 *)arg0 + 2) = 10;
+    }
+    func_800288C0(arg1, (f32)*(s16 *)arg0 + 10.0f,
+        (f32)*(s16 *)((u8 *)arg0 + 2) / 10.0f, numerator, denominator);
+    for (i = 3; i < 8; i++) {
+        ((s16 *)((u8 *)arg0 + 8))[i] = 0;
+    }
+    *(s16 *)((u8 *)arg0 + 8) = (s32)((26768.0f - (f32)*(s16 *)((u8 *)arg0 + 2) * 128.0f) * (*(f32 *)((u8 *)numerator + 0)));
+    *(s16 *)((u8 *)arg0 + 10) = (s32)((26768.0f - (f32)*(s16 *)((u8 *)arg0 + 2) * 128.0f) * (*(f32 *)((u8 *)numerator + 4)));
+    *(s16 *)((u8 *)arg0 + 12) = 0;
+    *(s16 *)((u8 *)arg0 + 24) = (s32)((*(f32 *)((u8 *)denominator + 4)) * -16384.0f);
+    *(s16 *)((u8 *)arg0 + 26) = (s32)((*(f32 *)((u8 *)denominator + 8)) * -16384.0f);
+    for (i = 10; i < 16; i++) {
+        ((s16 *)((u8 *)arg0 + 8))[i] = 0;
+    }
+}
 
 void func_80028DF0(void *arg0, s32 arg1, s16 arg2, s32 arg3) {
     typedef struct Input {
