@@ -7968,6 +7968,7 @@ segments:
       - [0x0202C310, c, y]
       - [0x0202CD10, .rodata, y]
       - [0x0202CDA0, data, y]
+      - [0x0202CF20, .data, y]
       - [0x0202CF70, bss, y]
   - name: chmolehill_header
     dir: overlays/chmolehill
