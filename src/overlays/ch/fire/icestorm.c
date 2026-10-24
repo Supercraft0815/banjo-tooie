@@ -328,7 +328,54 @@ void func_80800A40_chfireicestorm(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x58))) = 8.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800A50_chfireicestorm.s")
+void func_80800A50_chfireicestorm(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void *func_800C6A7C(f32[3], f32[3], f32[3], u32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80800D0C_chfireicestorm(Actor *);
+    void func_80800DC8_chfireicestorm(Actor *);
+    void func_80800E08_chfireicestorm(Actor *);
+    extern s32 D_80800F38_chfireicestorm;
+    void *sp64;
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+
+    if (arg0->unk70_10 == 1) {
+        sp30 = func_800D8FF8();
+        func_800EFA20(sp58, &arg0->actorData[4], sp30);
+        func_800EE780(sp4C, arg0->position, sp58);
+        sp64 = func_800C6A7C(arg0->position, sp4C, sp34, 0x20020);
+        func_800EE7F8(arg0->position, sp4C);
+        if (arg0->unk64_19) {
+            _subaddieaudioloop_entrypoint_5(arg0, arg0->position, 1, 1500, &D_80800F38_chfireicestorm);
+        }
+        if (sp64 != NULL) {
+            if (arg0->unk64_19) {
+                func_80101180(0x4A4, 0x40, 0);
+            }
+            func_80800D0C_chfireicestorm(arg0);
+        } else if (func_800D9078(&arg0->unk58)) {
+            _subaddiefade_entrypoint_3(arg0);
+        }
+        func_800EFA20(sp40, arg0->actorData, sp30);
+        func_800EF04C(arg0->rotation, sp40);
+        if (arg0->unk64_20) {
+            func_80800E08_chfireicestorm(arg0);
+            return;
+        }
+        func_80800DC8_chfireicestorm(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/icestorm/func_80800BA4_chfireicestorm.s")
 
