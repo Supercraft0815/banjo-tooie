@@ -8626,7 +8626,7 @@ segments:
     subsegments: 
       - [0x0205CE60, c, flysaucercrate]
       - [0x0205DA80, .rodata, flysaucercrate]
-      - [0x0205DB50, data, flysaucercrate]
+      - [0x0205DB50, .data, flysaucercrate]
       - [0x0205DCB0, bss, flysaucercrate]
   - name: chchuffy_header
     dir: overlays/chchuffy
