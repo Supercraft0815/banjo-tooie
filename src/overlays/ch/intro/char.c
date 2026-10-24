@@ -1068,7 +1068,54 @@ void func_80803990_chintrochar(Actor *arg0, Gfx **arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803A78_chintrochar.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803D0C_chintrochar.s")
+s32 func_80803D0C_chintrochar(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_80102FDC(void *, f32);
+    void func_80103110(void *, s32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    extern u32 func_80804160_chintrochar[][8];
+    s32 i;
+    u8 *data;
+    Actor *child;
+    u32 flags;
+    s32 *message;
+
+    message = &arg2;
+    switch (arg1) {
+        case 0x29:
+            func_808002FC_chintrochar(arg0);
+            break;
+        case 0x9C:
+            func_8080374C_chintrochar(arg0, *message);
+            break;
+        case 0x1F:
+            func_80803888_chintrochar(arg0);
+            break;
+        case 0x5A:
+            switch (arg2) {
+                case 0:
+                case 1:
+                    func_80803418_chintrochar(arg0, *message);
+                    break;
+            }
+            break;
+        case 0x3D:
+            flags = func_80804160_chintrochar[arg0->unk74_7][0];
+            if (flags & 0x20000) {
+                data = func_80100094(arg0, 2);
+                for (i = 0; i < 2; i++) {
+                    child = func_80108528(0x50A, arg0->position, 0xA, &arg0);
+                    ((Unk80132ED0 **)(data + 0x104))[i] = child->unk0;
+                    func_80103110(child, 1);
+                    func_80102FDC(child, 1.5f);
+                }
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chintrochar_entrypoint_0(void)
 {
