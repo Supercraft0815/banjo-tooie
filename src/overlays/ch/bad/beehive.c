@@ -205,7 +205,77 @@ void func_80800298_chbadbeehive(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/beehive/func_8080070C_chbadbeehive.s")
+s32 func_8080070C_chbadbeehive(Actor *arg0, s32 arg1, s16 **arg2) {
+    void _chexploder_entrypoint_15(s32, u32, f32);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    u8 func_800C2E04(void);
+    void func_800DF744(s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800FFAB0(Actor *);
+    void func_80101074(void *);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80107070(Actor *, u32);
+    void func_808008F8_chbadbeehive(Actor *, s32);
+    extern u8 D_80800ABC_chbadbeehive[];
+    extern u8 D_80800AFC_chbadbeehive[];
+    extern u8 D_80800B0C_chbadbeehive[];
+    extern s32 D_80800BE4_chbadbeehive[];
+    f32 sp34[3];
+    Actor *sp30;
+
+    switch (arg1) {
+    case 0x95:
+        arg0->unk5F = func_800C2E04();
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    case 0x40:
+        func_800EE88C(sp34, *arg2 + 2);
+        sp34[1] = arg0->position[1];
+        _chexploder_entrypoint_3(arg0, sp34, 0x20);
+        break;
+    case 0x90:
+        sp30 = func_80106790(func_80101080());
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800AFC_chbadbeehive);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800B0C_chbadbeehive);
+        func_800BBCB8(arg0->position, NULL, arg0->scale, 1, D_80800BE4_chbadbeehive);
+        if (!func_80107070(arg0, 3)) {
+            func_800FFAB0(arg0);
+        }
+        _chexploder_entrypoint_15((s32)sp30, 2, 1.0f);
+        _chexploder_entrypoint_9(sp30, 3, 2);
+        break;
+    case 1:
+        func_808008F8_chbadbeehive(arg0, 2);
+        break;
+    case 2:
+        if (!_subaddieDll_entrypoint_3(arg0)) {
+            if (!func_80107070(arg0, 1)) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+        } else {
+            func_808008F8_chbadbeehive(arg0, 3);
+        }
+        break;
+    case 0x1F:
+        func_801015D0(arg0);
+        func_800DF744(3, 2);
+        break;
+    case 0x38:
+        func_80101074(D_80800ABC_chbadbeehive);
+        return 4;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_808008F0_chbadbeehive(s32 arg0) 
 {
