@@ -73,7 +73,123 @@ void func_808000F0_bssub(struct player_state_s *arg0) {
     func_8009BFE4(arg0, var_f22, sp48);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/sub/func_80800254_bssub.s")
+void func_80800254_bssub(void *arg0)
+{
+  void _bamovethrust_entrypoint_3(struct player_state_s *, f32);
+  void _bamovethrust_entrypoint_4(struct player_state_s *, f32);
+  void _basub_entrypoint_11(s32, f32);
+  void _basub_entrypoint_12(void *, f32);
+  void _basub_entrypoint_13(s32, f32);
+  f32 _basub_entrypoint_2(void *);
+  s32 bakey_held(s32, s32);
+  void baphysics_set_gravity(struct player_state_s *, f32);
+  void baphysics_set_terminal_velocity(struct player_state_s *, f32);
+  void func_800914FC(struct player_state_s *, f32, s32);
+  void func_8009C128(struct player_state_s *, f32[3]);
+  f32 func_8009BFD8(void *);
+  f32 yaw_get(void *);
+  f32 yaw_getIdeal(struct player_state_s *);
+  s32 player_inWater(struct player_state_s *);
+  s32 player_isStable(void *);
+  s32 func_800B5BE4(s32);
+  void func_800BA22C(s32, s32);
+  f32 func_800A3048(s32);
+  void func_800BA77C(s32, s32, s32, s16);
+  s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+  f32 func_800D8FF8(void);
+  f32 func_800DC178(f32, f32);
+  f32 func_800F0D50(f32, f32, f32);
+  f32 func_800F10B4(f32, f32, f32, f32, f32);
+  f32 func_800F1344(f32, f32, f32, f32, f32);
+  f32 func_800F1DCC(f32, f32);
+  f32 mlAbsF(f32);
+  void func_808000F0_bssub(struct player_state_s *arg0);
+  extern s32 D_808016E0_bssub;
+  f32 sp5C;
+  f32 sp58;
+  f32 sp54;
+  f32 sp50;
+  f32 sp4C;
+  s32 sp48;
+  f32 sp3C[3];
+  s32 sp38;
+  f32 rate;
+  f32 padding;
+  f32 idealYaw;
+  sp54 = func_800A3048((s32) arg0) * 90;
+  sp4C = func_800D8FF8();
+  sp48 = player_inWater(arg0);
+  if (sp48 != 0)
+  {
+    baphysics_set_gravity(arg0, 0.0f);
+    baphysics_set_terminal_velocity(arg0, -4000.0f);
+    _bamovethrust_entrypoint_4(arg0, 0.9f);
+    _bamovethrust_entrypoint_3(arg0, *((f32 *) (((u8 *) arg0) + 0x16C)));
+  }
+  else
+  {
+    baphysics_set_gravity(arg0, -1800.0f);
+    baphysics_set_terminal_velocity(arg0, -4000.0f);
+    _bamovethrust_entrypoint_4(arg0, 0.95f);
+    _bamovethrust_entrypoint_3(arg0, (*((f32 *) (((u8 *) arg0) + 0x16C))) * 0.25f);
+  }
+  if (bakey_held((s32) arg0, 8) || (_basub_entrypoint_2(arg0) != 0.0f))
+  {
+    sp5C = func_80800030_bssub(*((f32 *) (((u8 *) arg0) + 0x16C)), sp4C);
+  }
+  else
+  {
+    sp5C = func_80800048_bssub(*((f32 *) (((u8 *) arg0) + 0x16C)), sp4C);
+  }
+  if (_basub_entrypoint_2(arg0))
+  {
+    *((f32 *) (((u8 *) arg0) + 0x16C)) = func_800F0D50((*((f32 *) (((u8 *) arg0) + 0x16C))) + sp5C, 0.0f, _basub_entrypoint_2(arg0));
+  }
+  else
+  {
+    *((f32 *) (((u8 *) arg0) + 0x16C)) = func_800F0D50((*((f32 *) (((u8 *) arg0) + 0x16C))) + sp5C, 0.0f, sp54);
+  }
+  _basub_entrypoint_13(arg0, func_800F10B4(*((f32 *) (((u8 *) arg0) + 0x16C)), 0.0f, sp54, 200.0f, 1350.0f));
+  sp50 = func_800F10B4(*((f32 *) (((u8 *) arg0) + 0x16C)), 0.0f, sp54, 0.8f, 1.1f);
+  idealYaw = yaw_getIdeal(arg0);
+  sp58 = func_800F1DCC(idealYaw, yaw_get(arg0));
+  sp58 = mlAbsF(sp58);
+  sp58 = func_800F10B4(sp58 / sp4C, 0.0f, 128.0f, 0.0, -0.12f);
+  sp50 += sp58;
+  if (sp48 == 0)
+  {
+    sp50 += 0.7f;
+  }
+  _basub_entrypoint_11(arg0, sp50);
+  sp58 = func_8009BFD8(arg0);
+  if (sp58 > 180.0f)
+  {
+    sp58 -= 360.0f;
+  }
+  _basub_entrypoint_12(arg0, func_800F1344(sp58, 0.0f, 85.0f, 0.0f, 60.0f));
+  if (sp48 != 0)
+  {
+    if (_basub_entrypoint_2(arg0) != 0.0f)
+    {
+      func_800914FC((struct player_state_s *)arg0, 60.0f, 1);
+    }
+    else
+    {
+      rate = func_800F10B4(*((f32 *) (((u8 *) arg0) + 0x16C)), 0.0f, sp54, func_800DC178(1.0f, 3.0f), 40.0f);
+      func_800914FC((struct player_state_s *)arg0, rate, 0);
+    }
+  }
+  else
+    if (((*((f32 *) (((u8 *) arg0) + 0x16C))) > 0.0f) && player_isStable(arg0))
+  {
+    func_8009C128(arg0, sp3C);
+    sp38 = func_800B5BE4(8);
+    func_800BABB8(sp38, sp3C, 0, 1.0f, &D_808016E0_bssub);
+    func_800BA77C(sp38, 0, 0, (s16) ((s32) func_800DC178(0.0f, 359.0f)));
+    func_800BA22C(sp38, 1);
+  }
+  func_808000F0_bssub(arg0);
+}
 
 struct player_state_s;
 void func_80800634_bssub(struct player_state_s *arg0) {
@@ -514,12 +630,12 @@ void func_80801244_bssub(s32 arg0) {
 void func_80801284_bssub(s32 arg0) {
     s32 _baspin_entrypoint_3(s32);
     s32 bs_setState(s32, s32);
-    s32 func_800914FC(s32, s32, s32);
+    void func_800914FC(struct player_state_s *, f32, s32);
     s32 sp1C;
 
     sp1C = 0;
     func_80800AEC_bssub();
-    func_800914FC(arg0, 0x42200000, 0);
+    func_800914FC((struct player_state_s *)arg0, 40.0f, 0);
     if (_baspin_entrypoint_3(arg0) == 2) {
         sp1C = 0x131;
     }
@@ -549,12 +665,12 @@ void func_80801318_bssub(s32 arg0) {
 void func_80801358_bssub(s32 arg0) {
     s32 _baspin_entrypoint_3(s32);
     s32 bs_setState(s32, s32);
-    s32 func_800914FC(s32, s32, s32);
+    void func_800914FC(struct player_state_s *, f32, s32);
     s32 sp1C;
 
     sp1C = 0;
     func_80800AEC_bssub();
-    func_800914FC(arg0, 0x42200000, 0);
+    func_800914FC((struct player_state_s *)arg0, 40.0f, 0);
     if (_baspin_entrypoint_3(arg0) == 2) {
         sp1C = 0x131;
     }
@@ -586,12 +702,12 @@ void func_808013EC_bssub(s32 arg0) {
 void func_80801428_bssub(s32 arg0) {
     s32 _babounce_entrypoint_9(s32);
     s32 bs_setState(s32, s32);
-    s32 func_800914FC(s32, s32, s32);
+    void func_800914FC(struct player_state_s *, f32, s32);
     s32 sp1C;
 
     sp1C = 0;
     func_80800AEC_bssub();
-    func_800914FC(arg0, 0x42200000, 0);
+    func_800914FC((struct player_state_s *)arg0, 40.0f, 0);
     if (_babounce_entrypoint_9(arg0) != 0) {
         sp1C = 0x131;
     }
