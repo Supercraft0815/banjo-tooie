@@ -779,7 +779,50 @@ void bsbtrot_entrypoint_20(PlayerState *arg0) {
     *(f32 *)((u8 *)arg0 + 0x16C) = 1.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_21.s")
+void bsbtrot_entrypoint_21(PlayerState *arg0) {
+    int bakey_pressed(PlayerState *, int);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    int func_8008DF18(PlayerState *);
+    s32 func_8008E3E8(PlayerState *);
+    void func_800963C0(PlayerState *, f32 *);
+    f32 func_8009BFD8(PlayerState *);
+    void func_8009D3A8(PlayerState *, s32);
+    void func_8009D658(PlayerState *);
+    f32 func_800D8FF8(void);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, s32, f32);
+    int func_800F1EA4(f32 *, f32 *);
+    int player_isStable(PlayerState *);
+    s32 sp44;
+    f32 sp38[3];
+    f32 sp34;
+
+    sp44 = 0;
+    func_808004B4_bsbtrot(arg0);
+    if (func_8008E3E8(arg0) != 0) {
+        _bashoes_entrypoint_20(arg0);
+    }
+    func_8009D658(arg0);
+    *(f32 *)((u8 *)arg0 + 0x16C) = func_800F0E00(*(f32 *)((u8 *)arg0 + 0x16C) - func_800D8FF8(), 0.0f);
+    if (func_8008DF18(arg0) != 0) {
+        func_800963C0(arg0, sp38);
+        func_800F1EA4(sp38, &sp34);
+        func_8009D3A8(arg0, 1);
+        baphysics_set_target_horizontal_velocity(arg0, func_800F10B4(func_8009BFD8(arg0), 20.0f, 60.0f, 0x44098000, 700.0f));
+        baphysics_set_target_yaw(arg0, sp34);
+        _badust_entrypoint_1(arg0);
+    } else {
+        sp44 = 0x15;
+    }
+    if (player_inWater(arg0) != 0) {
+        sp44 = 0x2D;
+    }
+    if ((0.0f == *(f32 *)((u8 *)arg0 + 0x16C)) && (bakey_pressed(arg0, 8) != 0) && (player_isStable(arg0) != 0)) {
+        sp44 = func_8080075C_bsbtrot(arg0, sp44);
+    }
+    bs_setState(arg0, sp44);
+}
 
 void bsbtrot_entrypoint_22(PlayerState *arg0)
 {
