@@ -684,7 +684,42 @@ void func_80800DA8_chstatueboss(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808010A0_chstatueboss.s")
+void func_808010A0_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void func_80801E90_chstatueboss(Actor *arg0);
+    void *temp_v0;
+
+    temp_v0 = func_80100094(arg0, 0U);
+    switch (arg1) {
+    case 0xF33:
+        func_80800DA8_chstatueboss(arg0, 5);
+        return;
+    case 0xF41:
+        func_80800DA8_chstatueboss(arg0, 7);
+        return;
+    case 0xF34:
+        func_80800DA8_chstatueboss(arg0, 7);
+        return;
+    case 0xF36:
+        func_80801E90_chstatueboss(arg0);
+        func_80800DA8_chstatueboss(arg0, 0x18);
+        return;
+    case 0xF43:
+        *(s8 *)((s8 *)temp_v0 + 0x1CF) = 1;
+        return;
+    case 0xF35:
+        func_80801E90_chstatueboss(arg0);
+        return;
+    case 0xCEB:
+        if (arg2 > 0) {
+            _gcfrontend_entrypoint_11();
+            return;
+        }
+        _gcfrontend_entrypoint_10();
+        return;
+    }
+}
 
 s32 func_808011A0_chstatueboss(s32 arg0) {
     return ((s16 *)&D_808027D4_chstatueboss)[arg0];
