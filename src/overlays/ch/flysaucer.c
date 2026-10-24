@@ -1,5 +1,181 @@
 #include "common.h"
 
+extern u16 D_808045A4_chflysaucer[];
+void func_80101870(Actor *, void *);
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_8080185C_chflysaucer();
+void func_808024E0_chflysaucer(Actor *arg0);
+void func_80802ED8_chflysaucer(Actor *arg0);
+void func_80803150_chflysaucer(Actor *arg0);
+void func_808035C4_chflysaucer();
+void func_80803B60_chflysaucer(Actor *arg0);
+void func_80803BE8_chflysaucer(s32 arg0);
+void func_80803C3C_chflysaucer(Actor *arg0);
+s32 func_80803D30_chflysaucer(Actor *arg0, s32 arg1, s32 arg2);
+
+u32 D_80804260_chflysaucer[] = {
+    0x001305E7, 0x000A00B3, 0x00164268, 0x000104E2,
+    0x09C40000,
+};
+
+u32 D_80804274_chflysaucer[] = {
+    0xBF800000, 0x3F63D70A, 0x3F68F5C3, 0x3F7851EC,
+    0x3F6E147B, 0x3F733333, 0xBF800000, 0xBF800000,
+};
+
+u32 D_80804294_chflysaucer[] = {
+    0x04467FBC, 0x3F800000, 0x04397FBC, 0x3F800000,
+    0x04367FBC, 0x3F800000, 0x043A7FBC, 0x3F800000,
+    0x043B7FBC, 0x3F800000, 0x043C7FBC, 0x3F800000,
+    0x043D7FBC, 0x3F800000, 0x04207FBC, 0x3F800000,
+};
+
+u32 D_808042D4_chflysaucer[] = {
+    0x00000201, 0x00000000, 0x33330100, 0x40000000,
+    0x51EB0100, 0x40000000, 0x61470100, 0x40000000,
+    0x73320100, 0x40000000, 0x851E0100, 0x40000000,
+    0x9E340100, 0x40000000, 0xAB840100, 0x40000000,
+    0xB5C10100, 0x400CCCCD, 0xC51D0100, 0x40200000,
+};
+
+u32 D_80804324_chflysaucer[] = {
+    0x0CCC0100, 0x4079999A, 0x19990100, 0x40400000,
+    0x33330100, 0x400CCCCD, 0x3FFF0100, 0x400CCCCD,
+    0x46660100, 0x4019999A, 0x4CCC0100, 0x40000000,
+    0x53320100, 0x40000000, 0x59990100, 0x40000000,
+    0x5FFF0100, 0x40000000, 0x66660100, 0x40000000,
+    0x73320100, 0x40880000, 0x7FFF0100, 0x40800000,
+    0x97090100, 0x3F800000, 0x99990301, 0x00000000,
+    0x9EB70100, 0x3F800000, 0xB3320100, 0x40000000,
+    0xBFFF0100, 0x40533333, 0xCCCC0100, 0x4039999A,
+    0xD47A0100, 0x4019999A,
+};
+
+u32 D_808043BC_chflysaucer[] = {
+    0x06660100, 0x40000000, 0x11260100, 0x40000000,
+    0x1FFF0100, 0x40000000, 0x26660100, 0x40000000,
+    0x2A3D0100, 0x40200000, 0x2E140100, 0x40266666,
+    0x31EB0100, 0x400CCCCD, 0x347A0100, 0x400CCCCD,
+    0x39990100, 0x40266666, 0x3FFF0100, 0x40000000,
+    0x57090701, 0x00000000, 0x59990400, 0x3FC00000,
+    0x73320100, 0x3FB33333, 0x78510100, 0x3FD9999A,
+    0x7D700100, 0x40000000, 0x828E0100, 0x4019999A,
+    0x851E0100, 0x40200000, 0x8A3C0100, 0x40200000,
+    0xAF5B0100, 0x3F99999A, 0xBD6F0100, 0x3F99999A,
+    0xC8F40100, 0x3F99999A, 0xD8510101, 0x00000000,
+    0xD9980100, 0x40000000,
+};
+
+u32 D_80804474_chflysaucer[] = {
+    0x0CCC0100, 0x4059999A, 0x13330100, 0x4059999A,
+    0x19990100, 0x40533333, 0x1FFF0100, 0x404CCCCD,
+    0x26660100, 0x404CCCCD, 0x2CCC0100, 0x40333333,
+    0x33330100, 0x40333333, 0x3FFF0100, 0x3FD9999A,
+    0x4CCC0100, 0x3FD9999A, 0x59990100, 0x3FC00000,
+    0x66660100, 0x3FC00000, 0x73320100, 0x3FC00000,
+    0x7FFF0100, 0x3FC00000, 0x8CCC0100, 0x3FC00000,
+    0x99990100, 0x3FC00000, 0xA6650100, 0x3FC00000,
+    0xB3320100, 0x3FC00000, 0xBFFF0100, 0x3FC00000,
+    0xCCCC0100, 0x400CCCCD, 0xD47A0100, 0x400CCCCD,
+};
+
+u32 D_80804514_chflysaucer[] = {
+    0x0F5C0100, 0x40000000, 0x1EB80100, 0x3FE66666,
+    0x28F50100, 0x3FE66666, 0x33330100, 0x3FC00000,
+    0x3FFF0100, 0x3FE66666, 0x4CCC0100, 0x40000000,
+    0x59990100, 0x3FCCCCCD, 0x70A30001, 0x00000000,
+    0x73320400, 0x3FC00000, 0x8CCC0100, 0x3FC00000,
+    0x99990100, 0x3FE66666, 0xA6650100, 0x3FE66666,
+    0xB3320100, 0x3FE66666, 0xBFFF0100, 0x3FE66666,
+    0xCCCC0100, 0x3FE66666, 0xD6440100, 0x3FF33333,
+    0xDFFF0100, 0x400CCCCD, 0xF3320401, 0x00000000,
+};
+
+u16 D_808045A4_chflysaucer[] = {
+    0x0000, 0x0000, 0x0000, 0x0000,
+    0x4006, 0x6666, 0x0091, 0x0041,
+    0x4082, 0x8F5C, 0x0092, 0x0042,
+    0x3F54, 0x7AE1, 0x0093, 0x0041,
+    0x3F54, 0x7AE1, 0x0093, 0x0001,
+    0x3F54, 0x7AE1, 0x0093, 0x0001,
+    0x4006, 0x6666, 0x0091, 0x0041,
+    0x005B, 0x000F, 0x0008, 0x0014,
+    0x004E, 0x0000,
+};
+
+u32 D_808045E8_chflysaucer[] = {
+    0xFFFF0064, 0x0019006E, 0x001B006A, 0xFFFFFFFF,
+};
+
+u32 D_808045F8_chflysaucer[] = {
+    0x42FA0000, 0x432F0000, 0x432F0000, 0x42480000,
+};
+
+u32 D_80804608_chflysaucer[] = {
+    0x43480000, 0x437A0000, 0x437A0000, 0x00000000,
+};
+
+u32 D_80804618_chflysaucer[] = {
+    0xC5E5B800, 0x44CE4000, 0xC5224000,
+};
+
+u32 D_80804624_chflysaucer[] = {
+    0xFFFF0066, 0x001B006C, 0x001D0068, 0xFFFFFFFF,
+};
+
+u32 D_80804634_chflysaucer[] = {
+    0x02060013, 0x04E00016, 0x27100001, 0x00C807D0,
+    0x00000000,
+};
+
+u32 D_80804648_chflysaucer[] = {
+    0x02060013, 0x06720016, 0x7530001D, 0x000100C8,
+    0x07D00000,
+};
+
+u32 D_8080465C_chflysaucer[] = {
+    0x3F4CCCCD, 0x3F400000, 0x3F59999A,
+};
+
+u32 D_80804668_chflysaucer[] = {
+    0x020202A2, 0x06900001, (u32)D_808045A4_chflysaucer, (u32)func_808024E0_chflysaucer,
+    (u32)func_80105834, (u32)func_808035C4_chflysaucer, 0x09C40000, 0x4019999A,
+    0x00000000, 0x00080024, (u32)func_80803150_chflysaucer, 0x00000000,
+    0x00300000, (u32)func_80802ED8_chflysaucer, (u32)func_80107C2C, 0x84000002,
+    (u32)func_8080185C_chflysaucer, 0x00000000,
+};
+
+u32 D_808046B0_chflysaucer[] = {
+    0x00000002, 0x00000001, 0x00000000, 0x00000001,
+    0x00000002,
+};
+
+u32 D_808046C4_chflysaucer[] = {
+    0x00000050, 0x00000028, 0x00000000, 0xFFFFFFD8,
+    0xFFFFFFB0, 0xFFFFFFFF,
+};
+
+u32 D_808046DC_chflysaucer[] = {
+    0x00161200, 0x00150000, 0x00CC002B, 0x0073008C,
+    0x0022004C, 0x00590026, 0x0033002D, 0x01900258,
+    0x000E000A, 0x00140000,
+};
+
+u32 D_80804704_chflysaucer[] = {
+    0x09E409E8, 0x09E00000,
+};
+
+u32 D_8080470C_chflysaucer[] = {
+    0x020402A4, 0x08250001, 0x00000000, (u32)func_80803C3C_chflysaucer,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (u32)func_80803BE8_chflysaucer, (u32)func_80108ED0,
+    0x00000000, (u32)func_80803B60_chflysaucer, (u32)func_80107C2C, 0x00000000,
+    (u32)func_80803D30_chflysaucer, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000,
+};
+
 /* extern */
 
 s32 func_80800000_chflysaucer(Actor *arg0) {
@@ -26,11 +202,6 @@ void func_8080003C_chflysaucer(Actor *arg0, s32 arg1) {
 
 s32 func_80800080_chflysaucer(Actor *arg0, s32 **arg1) {
     void *func_80100094(Actor *, u32);
-    extern s32 D_808042D4_chflysaucer;
-    extern s32 D_80804324_chflysaucer;
-    extern s32 D_808043BC_chflysaucer;
-    extern s32 D_80804474_chflysaucer;
-    extern s32 D_80804514_chflysaucer;
     s32 result;
     u8 *data;
 
@@ -38,19 +209,19 @@ s32 func_80800080_chflysaucer(Actor *arg0, s32 **arg1) {
     result = 0;
     switch (data[0x26]) {
         case 1:
-            *arg1 = &D_808042D4_chflysaucer;
+            *arg1 = &(*(s32 *)D_808042D4_chflysaucer);
             return 0xA;
         case 2:
-            *arg1 = &D_80804324_chflysaucer;
+            *arg1 = &(*(s32 *)D_80804324_chflysaucer);
             return 0x13;
         case 3:
-            *arg1 = &D_808043BC_chflysaucer;
+            *arg1 = &(*(s32 *)D_808043BC_chflysaucer);
             return 0x17;
         case 4:
-            *arg1 = &D_80804474_chflysaucer;
+            *arg1 = &(*(s32 *)D_80804474_chflysaucer);
             return 0x14;
         case 5:
-            *arg1 = &D_80804514_chflysaucer;
+            *arg1 = &(*(s32 *)D_80804514_chflysaucer);
             return 0x12;
         default:
             break;
@@ -102,7 +273,6 @@ void func_808001B4_chflysaucer(Actor *arg0, s32 arg1) {
         s16 pitch;
         f32 volume;
     };
-    extern struct FlysaucerSound D_80804294_chflysaucer[];
     struct { u8 pad[0x2A]; s16 index; } *data;
     s32 *entries;
     s32 count;
@@ -115,9 +285,9 @@ void func_808001B4_chflysaucer(Actor *arg0, s32 arg1) {
     while (data->index < count && (event = &((struct FlysaucerEvent *)entries)[data->index])->time < arg1) {
         if (event->flags & 1) {
             id = event->id;
-            func_800C4140((D_80804294_chflysaucer[id].id & 0x7FF) +
-                (((D_80804294_chflysaucer[id].pitch >> 5) & 0x3FF) << 11) +
-                (((u32)(D_80804294_chflysaucer[id].volume * 1023.0f) & 0x7FF) << 21),
+            func_800C4140((((struct FlysaucerSound *)D_80804294_chflysaucer)[id].id & 0x7FF) +
+                (((((struct FlysaucerSound *)D_80804294_chflysaucer)[id].pitch >> 5) & 0x3FF) << 11) +
+                (((u32)(((struct FlysaucerSound *)D_80804294_chflysaucer)[id].volume * 1023.0f) & 0x7FF) << 21),
                 arg0->position, 0x09C404E2);
         } else {
             func_80803AF0_chflysaucer((s32 *)arg0, event->id, event->flags, event->value);
@@ -267,8 +437,7 @@ void func_808005FC_chflysaucer(Actor *arg0) {
 
 s16 func_80800728_chflysaucer(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    extern s16 D_808045DA_chflysaucer[];
-    return D_808045DA_chflysaucer[*((u8 *)func_80100094(arg0, 0U) + 0x26)];
+    return ((s16 *)D_808045A4_chflysaucer + 27)[*((u8 *)func_80100094(arg0, 0U) + 0x26)];
 }
 
 /* extern */
@@ -529,7 +698,6 @@ u32 func_80800E48_chflysaucer(s32 arg0) {
     s16 func_800D211C(s32);
     s32 func_800D395C(void);
     extern s32 D_80127194;
-
     if (func_800D395C() != 0) {
         if (func_800D211C(0x8D) < *(s16 *)((s8 *)&D_80127194 + 0x434)) {
             return 4;
@@ -906,13 +1074,12 @@ void func_808017D0_chflysaucer(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     void func_808012A4_chflysaucer(Actor *, s32);
     void func_808009DC_chflysaucer(Actor *, s32);
-    extern s16 D_808045E8_chflysaucer[];
     s32 entry;
     s32 index;
 
     index = ((u8 *)func_80100094(arg0, 0))[0x26];
     func_80801568_chflysaucer(arg0, 5);
-    entry = D_808045E8_chflysaucer[index];
+    entry = ((s16 *)D_808045E8_chflysaucer)[index];
     if (entry != -1) {
         _capod_entrypoint_13(arg0->unk0, NULL, entry, 0x2C21);
     } else {
@@ -979,8 +1146,6 @@ void func_80802044_chflysaucer(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     void func_808012A4_chflysaucer(Actor *, s32);
     void func_808009DC_chflysaucer(Actor *, s32);
-    extern f32 D_80804274_chflysaucer[];
-    extern s16 D_80804624_chflysaucer[];
     u8 *sp34;
     void *spline;
     u8 index;
@@ -989,9 +1154,9 @@ void func_80802044_chflysaucer(Actor *arg0) {
     sp34 = func_80100094(arg0, 0);
     spline = func_80100094(arg0, 1);
     index = sp34[0x26];
-    entry = &D_80804624_chflysaucer[index];
-    if (D_80804274_chflysaucer[index] != -1.0f && *entry != -1) {
-        if (_suspline_entrypoint_2(spline, D_80804274_chflysaucer[index])) {
+    entry = &((s16 *)D_80804624_chflysaucer)[index];
+    if (((f32 *)D_80804274_chflysaucer)[index] != -1.0f && *entry != -1) {
+        if (_suspline_entrypoint_2(spline, ((f32 *)D_80804274_chflysaucer)[index])) {
             _capod_entrypoint_13(arg0->unk0, NULL, *entry, 0x4C21);
             func_808012A4_chflysaucer(arg0, 1);
             func_808009DC_chflysaucer(arg0, 1);
@@ -1002,12 +1167,11 @@ void func_80802044_chflysaucer(Actor *arg0) {
 void func_80802114_chflysaucer(Actor *arg0, f32 arg1) {
     void func_800C31DC(u8, f32);
     u8 func_800C4350(s32, f32[3], s32 *);
-    extern s32 D_80804634_chflysaucer;
     u8 index;
 
     index = arg0->unk5F;
     if (index == 0) {
-        arg0->unk5F = func_800C4350(0, arg0->position, &D_80804634_chflysaucer);
+        arg0->unk5F = func_800C4350(0, arg0->position, &(*(s32 *)D_80804634_chflysaucer));
     } else {
         if (arg1 < 0.5f) {
             arg1 = 0.5f;
@@ -1024,9 +1188,6 @@ void func_808021C0_chflysaucer(Actor *arg0, u8 *arg1, s32 arg2) {
     s32 func_800C2FDC(u8);
     u8 func_800C4350(s32, f32[3], s32 *);
     void func_800C4B64(f32);
-    extern s32 D_80804648_chflysaucer;
-    extern f32 D_8080465C_chflysaucer[];
-
     if (arg2 == arg1[0x2D]) {
         if (arg2 != 3) {
             func_800C4350(arg1[0x2C], arg0->position, NULL);
@@ -1038,8 +1199,8 @@ void func_808021C0_chflysaucer(Actor *arg0, u8 *arg1, s32 arg2) {
                 arg1[0x2C] = 0;
             }
         } else {
-            func_800C4B64(D_8080465C_chflysaucer[arg2]);
-            arg1[0x2C] = func_800C4350(arg1[0x2C], arg0->position, &D_80804648_chflysaucer);
+            func_800C4B64(((f32 *)D_8080465C_chflysaucer)[arg2]);
+            arg1[0x2C] = func_800C4350(arg1[0x2C], arg0->position, &(*(s32 *)D_80804648_chflysaucer));
         }
         arg1[0x2D] = arg2;
     }
@@ -1126,7 +1287,187 @@ void func_80802290_chflysaucer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808024E0_chflysaucer.s")
+void func_808024E0_chflysaucer(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    void func_8008FF40(f32 *);
+    void func_800904C8(s32);
+    void func_800904F4(s32, Unk80132ED0 *);
+    void func_800906B0(f32 *);
+    void func_800906DC(f32 *);
+    void func_8010D254(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_80101F24(Actor *);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80802CF0_chflysaucer(Actor *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void _suspline_entrypoint_13(void *);
+    f32 _suspline_entrypoint_6(void *);
+    void _suspline_entrypoint_9(void *, f32);
+    f32 func_800D8FF8(void);
+    void func_800D2770(s32, s32);
+    s32 func_800D24E8(s32, s32, u32);
+    extern s32 D_80127194;
+    struct {
+        u8 pad0[0x18];
+        f32 speed;
+        u8 pad1C[9];
+        u8 mode;
+        u8 stage;
+        u8 pad27[7];
+        u8 started;
+    } *data;
+    struct FlysaucerCounter {
+        u8 pad0[0x434];
+        s16 count;
+    };
+    f32 position[3];
+    f32 rotation[3];
+    f32 angle;
+    f32 delta[3];
+    f32 destination[3];
+    f32 progress;
+    f32 pathProgress;
+    void *spline;
+    s32 pad[2];
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk64_20) {
+    } else if (func_800DA298(0xEB)) {
+        arg0->unk64_20 = 1;
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            switch (data->stage) {
+                case 0:
+                    switch (data->mode) {
+                        case 0:
+                            func_80801E98_chflysaucer(arg0);
+                            func_80802014_chflysaucer((s32)arg0);
+                            break;
+                        case 5:
+                            func_808012A4_chflysaucer(arg0, 6);
+                            func_800904F4(0x27, arg0->unk0);
+                            break;
+                        case 6:
+                            func_8008FF40(rotation);
+                            angle = func_800F1DCC(arg0->rotation[1], rotation[1]);
+                            rotation[1] += angle * 0.45f;
+                            func_800906DC(rotation);
+                            func_8010D254(position);
+                            func_800EE7F8(destination, arg0->position);
+                            destination[1] += 90.0f;
+                            func_800EFB24(delta, destination, position);
+                            func_800EF334(delta, 0.45f);
+                            func_800EF04C(position, delta);
+                            func_800906B0(position);
+                            if (func_800EEB40(position, destination) < 2500.0f && angle > -5.0f && angle < 5.0f) {
+                                func_800904C8(0x28);
+                                func_808005FC_chflysaucer(arg0);
+                            }
+                            break;
+                    }
+                    break;
+                case 6:
+                    func_80802014_chflysaucer((s32)arg0);
+                    break;
+            }
+            break;
+        case 2:
+            progress = func_80101F24(arg0);
+            if (func_80101DDC(arg0)) {
+                func_80801568_chflysaucer(arg0, 3);
+            }
+            if (progress > 0.05f && progress < 0.14f && data->speed < 0.4f) {
+                data->speed += 0.02f;
+            }
+            if (progress > 0.14f && progress < 0.31f && data->speed > 0.2f) {
+                data->speed -= 0.03f;
+            }
+            if (progress > 0.31f && progress < 0.46f && data->speed < 0.55f) {
+                data->speed += 0.02f;
+            }
+            if (progress > 0.46f && progress < 0.55f && data->speed > 0.45f) {
+                data->speed -= 0.03f;
+            }
+            if (progress > 0.55f && progress < 0.58f && data->speed < 0.7f) {
+                data->speed += 0.02f;
+            }
+            if (progress > 0.58f && progress < 0.65f && data->speed > 0.6f) {
+                data->speed -= 0.03f;
+            }
+            if (progress > 0.65f && progress < 0.71f && data->speed < 0.85f) {
+                data->speed += 0.02f;
+            }
+            if (progress > 0.71f && progress < 0.85f && data->speed > 0.8f) {
+                data->speed -= 0.03f;
+            }
+            func_80802CF0_chflysaucer(arg0);
+            func_80802114_chflysaucer(arg0, data->speed);
+            if (func_80101E14(arg0, 0.62f)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, ((u8 *)D_80804260_chflysaucer));
+                func_808021C0_chflysaucer(arg0, data->pad0, 3);
+            } else if (progress < 0.21f) {
+                func_808021C0_chflysaucer(arg0, data->pad0, 0);
+            } else if (progress > 0.3f && progress < 0.44f) {
+                func_808021C0_chflysaucer(arg0, data->pad0, 1);
+            } else if (progress > 0.5f && progress < 0.62f) {
+                func_808021C0_chflysaucer(arg0, data->pad0, 2);
+            }
+            break;
+        case 3:
+            if (data->speed <= 0.99f) {
+                data->speed += 0.01f;
+            } else {
+                func_80801568_chflysaucer(arg0, 4);
+            }
+            func_80802CF0_chflysaucer(arg0);
+            func_80802114_chflysaucer(arg0, data->speed);
+            break;
+        case 4:
+            func_80802CF0_chflysaucer(arg0);
+            func_80802114_chflysaucer(arg0, data->speed);
+            break;
+        case 5:
+            switch (data->mode) {
+                case 3:
+                    arg0->unk58 -= func_800D8FF8();
+                    if (arg0->unk58 <= 0.0f) {
+                        func_808005FC_chflysaucer(arg0);
+                    }
+                    break;
+                case 4:
+                    break;
+                default:
+                    spline = func_80100094(arg0, 1);
+                    _suspline_entrypoint_13(spline);
+                    pathProgress = _suspline_entrypoint_6(spline);
+                    _suspline_entrypoint_9(spline, pathProgress);
+                    if (!func_80800C3C_chflysaucer(arg0)) {
+                        pathProgress = _suspline_entrypoint_6(spline);
+                        func_8080013C_chflysaucer(arg0, 65535.0f * pathProgress);
+                    }
+                    break;
+            }
+            func_80802CF0_chflysaucer(arg0);
+            func_80802114_chflysaucer(arg0, data->speed);
+            if (!data->started && func_80800000_chflysaucer(arg0) == 1) {
+                func_800D2770(0xC0, 0);
+                data->started = 1;
+            } else {
+                func_800D24E8(0xC0, ((struct FlysaucerCounter *)&D_80127194)->count, 0);
+            }
+            func_80802044_chflysaucer(arg0);
+            break;
+    }
+    func_80802290_chflysaucer(arg0);
+}
 
 void func_80802CF0_chflysaucer(Actor *arg0) {
     void *func_80100094(Actor *, u32);
@@ -1331,9 +1672,7 @@ void func_80803224_chflysaucer(Actor *arg0) {
 
 OSThread *chflysaucer_entrypoint_1(void)
 {
-    extern u8 D_80804668_chflysaucer[];
-
-    return (OSThread *) D_80804668_chflysaucer;
+    return (OSThread *) ((u8 *)D_80804668_chflysaucer);
 }
 
 /* extern */
@@ -1381,7 +1720,6 @@ void func_808038C4_chflysaucer(Unk80132ED0 *arg0, f32 *arg1, f32 *arg2, s32 arg3
 
 s32 func_808039B8_chflysaucer(s32 arg0, s32 *arg1, f32 *arg2, s32 *arg3, s32 arg4, f32 arg5)
 {
-  extern s32 D_808046B0_chflysaucer;
   s32 *p;
   s32 color;
   s32 i;
@@ -1390,13 +1728,12 @@ s32 func_808039B8_chflysaucer(s32 arg0, s32 *arg1, f32 *arg2, s32 *arg3, s32 arg
   s32 *modep = &arg4;
   Unk80132ED0 *owner = (Unk80132ED0 *) arg0;
   f32 *position = (f32 *) arg1;
- do { if ((*arg3) != (-1)) { mode = *modep; i = 0; p = arg3; do { switch (mode) { case 1: color = func_80803844_chflysaucer(); angle = *p; break; case 2: color = 0; angle = *p; break; case 3: color = 1; angle = *p; break; case 4: color = 2; angle = *p; break; case 5: color = *((s32 *) (((u8 *) (&D_808046B0_chflysaucer)) + i)); angle = *p; break; default: angle = *p; break; } func_808038C4_chflysaucer(owner, position, arg2, angle, color, arg5); i += 4; p++; } while ((*p) != (-1)); } } while (0);
+ do { if ((*arg3) != (-1)) { mode = *modep; i = 0; p = arg3; do { switch (mode) { case 1: color = func_80803844_chflysaucer(); angle = *p; break; case 2: color = 0; angle = *p; break; case 3: color = 1; angle = *p; break; case 4: color = 2; angle = *p; break; case 5: color = *((s32 *) (((u8 *) (&(*(s32 *)D_808046B0_chflysaucer))) + i)); angle = *p; break; default: angle = *p; break; } func_808038C4_chflysaucer(owner, position, arg2, angle, color, arg5); i += 4; p++; } while ((*p) != (-1)); } } while (0);
 }
 
 void func_80803AF0_chflysaucer(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     s32 func_80800DAC_chflysaucer(Actor *, f32 *, f32 *, f32);
     s32 func_808039B8_chflysaucer(s32, s32 *, f32 *, s32 *, s32, f32);
-    extern s32 D_808046C4_chflysaucer;
     s32 sp34[3];
     f32 sp28[3];
     s32 sp20[2];
@@ -1404,7 +1741,7 @@ void func_80803AF0_chflysaucer(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     sp20[0] = *arg0;
     func_80800DAC_chflysaucer(arg0, sp34, sp28, 1000.0f);
     sp28[0] = -sp28[0];
-    func_808039B8_chflysaucer(sp20[0], sp34, sp28, &D_808046C4_chflysaucer, arg1, arg3);
+    func_808039B8_chflysaucer(sp20[0], sp34, sp28, &(*(s32 *)D_808046C4_chflysaucer), arg1, arg3);
 }
 
 void func_80803B60_chflysaucer(Actor *arg0) {
@@ -1456,7 +1793,6 @@ void func_80803CC4_chflysaucer(s32 arg0, s32 arg1) {
     s32 func_800BA22C(s32, s32);
     s32 func_800BA3FC(s32, s32);
     s32 func_800BABB8(s32, s32, s32, s32, s32 *);
-    extern s32 D_808046DC_chflysaucer;
     s32 sp24;
     s32 temp_a1;
     s32 temp_v0;
@@ -1464,7 +1800,7 @@ void func_80803CC4_chflysaucer(s32 arg0, s32 arg1) {
     temp_v0 = func_800B53A4(6);
     temp_a1 = arg0 + 4;
     sp24 = temp_v0;
-    func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3FB33333, &D_808046DC_chflysaucer);
+    func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3FB33333, &(*(s32 *)D_808046DC_chflysaucer));
     func_800BA3FC(sp24, arg1);
     func_800BA22C(sp24, 6);
 }
@@ -1475,7 +1811,6 @@ s32 func_80803D30_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_8010114C(s32, s32, s32);
     void func_8010A570(Actor *);
     extern s32 D_80127194;
-    extern s16 D_80804704_chflysaucer[];
     int sp24[1];
     s32 *sp20;
     s16 *temp_v0;
@@ -1486,7 +1821,7 @@ s32 func_80803D30_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
             sp20 = &arg2;
             sp24[0] = *sp20;
             if (_subaddiefade_entrypoint_0(arg0) >= 0x61) {
-                func_80803CC4_chflysaucer((s32) arg0, D_80804704_chflysaucer[arg0->unk79_4]);
+                func_80803CC4_chflysaucer((s32) arg0, ((s16 *)D_80804704_chflysaucer)[arg0->unk79_4]);
                 _chscorepoints_entrypoint_2(arg0->unk79_4 + 1, 0, arg0->position, 1);
                 temp_v0 = (s16 *)&D_80127194;
                 temp_v0 += 0x21A;
@@ -1507,7 +1842,5 @@ s32 func_80803D30_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chflysaucer_entrypoint_2(void)
 {
-    extern u8 D_8080470C_chflysaucer[];
-
-    return (OSThread *) D_8080470C_chflysaucer;
+    return (OSThread *) ((u8 *)D_8080470C_chflysaucer);
 }

@@ -8621,7 +8621,7 @@ segments:
     subsegments: 
       - [0x020585B0, c, flysaucer]
       - [0x0205C3E0, .rodata, flysaucer]
-      - [0x0205C810, data, flysaucer]
+      - [0x0205C810, .data, flysaucer]
       - [0x0205CD10, bss, flysaucer]
   - name: chflysaucercrate_header
     dir: overlays/chflysaucercrate
