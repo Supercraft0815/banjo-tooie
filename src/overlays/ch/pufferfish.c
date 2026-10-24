@@ -113,7 +113,55 @@ void func_80800274_chpufferfish(Actor *arg0, s32 arg1) {
     arg0->unk79_4 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pufferfish/func_808003C8_chpufferfish.s")
+s32 func_808003C8_chpufferfish(Actor *arg0, s32 arg1, s32 arg2) {
+    struct PufferRoute {
+        u8 pad[0x70];
+        u32 region : 7;
+        u32 : 15;
+        u32 node : 6;
+        u32 : 4;
+    };
+    s32 func_800CC63C(s32, s32);
+    void func_80102924(void *, f32);
+    f32 func_80102D78(void *, void *);
+    s32 func_80107070(Actor *, s32);
+    void func_8080086C_chpufferfish(Actor *, s32);
+
+    switch (arg1) {
+        case 0x3E:
+            func_80102924(arg0, func_80102D78(arg0, func_800CC63C(((struct PufferRoute *)arg0)->region - 1, ((struct PufferRoute *)arg0)->node - 1)));
+            func_80800274_chpufferfish(arg0, 2);
+            return 1;
+        case 0x40:
+            func_80800274_chpufferfish(arg0, 3);
+            return 1;
+        case 0x8F:
+            switch (arg2) {
+                case 1:
+                case 4:
+                    func_80800274_chpufferfish(arg0, 0);
+                    func_8080086C_chpufferfish(arg0, 1);
+                    break;
+                case 2:
+                case 3:
+                    break;
+            }
+            return 1;
+        case 1:
+            func_80800274_chpufferfish(arg0, 0);
+            if ((s32)arg0->unk70_10 != 1) {
+                func_8080086C_chpufferfish(arg0, 4);
+            }
+            ((f32 *)arg0->actorData)[5] = 2.0f;
+            return 1;
+        case 2:
+            func_80800274_chpufferfish(arg0, 0);
+            func_80107070(arg0, 1);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 void func_80800518_chpufferfish(Actor *arg0) {
     struct PufferFlags {
