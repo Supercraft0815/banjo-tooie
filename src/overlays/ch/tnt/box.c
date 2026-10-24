@@ -58,7 +58,42 @@ void func_80800044_chtntbox(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/box/func_8080015C_chtntbox.s")
+void func_8080015C_chtntbox(Actor *arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    int func_800F7A7C(s32, s32, s32, s32, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_80107070(Actor *, u32);
+    s32 func_8010CEF8(f32 *, s32);
+    void func_808003F0_chtntbox(s32, f32[3]);
+    void func_80800824_chtntbox(s32, f32);
+    extern s32 D_808008D0_chtntbox;
+    extern s32 D_808008F4_chtntbox;
+    extern s32 D_80800938_chtntbox;
+    extern s32 D_80800A18_chtntbox;
+    f32 position[3];
+
+    func_800EE7F8(position, arg0->position);
+    position[1] += 80.0f;
+    func_800BBCB8(position, NULL, arg0->scale * 1.2f, 4, &D_808008D0_chtntbox);
+    func_800BBCB8(position, position, arg0->scale * 1.2f, 0x10, &D_808008F4_chtntbox);
+    func_800BBCB8(position, position, arg0->scale, 0xA, &D_80800A18_chtntbox);
+    func_808003F0_chtntbox((s32)arg0, position);
+    func_80800824_chtntbox((s32)position, 1.2f);
+    _subaddieaudioquick_entrypoint_2(arg0, position, &D_80800938_chtntbox);
+    func_800E1610(0, 20.0f, 0.9f, position);
+    func_80018820(0, 2.0f, 0.25f);
+    if (func_8010CEF8((f32 *)arg0, (s32)(arg0->scale * 300.0f))) {
+        func_800F7A7C(func_800F54E4(), -1, 2, 5, arg0->position);
+    }
+    if (!func_80107070(arg0, 3)) {
+        func_800FFAB0(arg0);
+    }
+}
 
 /* extern */
 
