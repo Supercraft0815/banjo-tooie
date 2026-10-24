@@ -43,7 +43,165 @@ void func_8080000C_chevilspirit(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800104_chevilspirit.s")
+void func_80800104_chevilspirit(Actor *arg0) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_8001210C(s32);
+    s32 func_8008FFE8();
+    s32 func_800C9510(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    int func_800DB9B0(void);
+    s32 func_800DC128(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_8010297C(void *, f32, f32, f32);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 func_80103140(Actor *, u32, u16);
+    s32 func_801078DC(Actor *, u8 *);
+    u32 func_8010A828(Actor *, u32);
+    s32 func_8010CAC0(f32 *, u32);
+    f32 func_8010CD28(Actor *);
+    s32 func_8010D23C(void);
+    s32 func_80110014(s32);
+    void func_80116088(s32, f32 *);
+    void func_808012CC_chevilspirit(Actor *);
+    void func_80801344_chevilspirit(u8 *);
+    void func_80801398_chevilspirit(Actor *);
+    void func_80801534_chevilspirit(Actor *);
+    void func_808015A4_chevilspirit(Actor *);
+    void func_80801684_chevilspirit(Actor *);
+    s32 func_80801840_chevilspirit(Actor *);
+    s32 func_808018DC_chevilspirit(Actor *);
+    s32 func_80801A6C_chevilspirit(Actor *, s32);
+    void func_80801E18_chevilspirit(void *);
+    s32 func_80801EC4_chevilspirit(s32);
+    void func_80802090_chevilspirit(Actor *, s32 *);
+    void func_80802118_chevilspirit(void *);
+    extern s32 D_808021EC_chevilspirit;
+    extern s32 D_808022B8_chevilspirit;
+    extern s32 D_808022C8_chevilspirit;
+    u8 *link;
+    s32 timerDone;
+    s32 light;
+
+    link = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80801344_chevilspirit((u8 *)arg0);
+            func_808012CC_chevilspirit(arg0);
+            break;
+        case 2:
+            func_80801344_chevilspirit((u8 *)arg0);
+            if (func_800DB9B0()) {
+                func_800DA544(0x38);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x15CA, 0x44, NULL, 0xBB);
+                func_80102424(arg0, 3);
+            }
+            break;
+        case 3:
+            func_80801344_chevilspirit((u8 *)arg0);
+            if (func_800D9078(&arg0->unk58)) {
+                light = arg0->actorData[3];
+                if (light) {
+                    arg0->actorData[3] = _chlightfader_entrypoint_1(light, 1.0f, 2);
+                }
+                func_80802090_chevilspirit(arg0, &D_808022B8_chevilspirit);
+                _subaddiefade_entrypoint_3(arg0);
+                func_8010A828(arg0, 12);
+                func_80102424(arg0, 4);
+                func_800DA524(0x6A7);
+            }
+            break;
+        case 4:
+            func_801078DC(arg0, link + 0x3C);
+            break;
+        case 5:
+            if (func_800C9510()) {
+                func_80801A6C_chevilspirit(arg0, 0);
+            } else if (!func_80801840_chevilspirit(arg0) || !func_80801EC4_chevilspirit((s32)arg0)) {
+                func_80102424(arg0, 8);
+            } else {
+                func_808015A4_chevilspirit(arg0);
+            }
+            break;
+        case 6:
+            func_80116088(func_80110014(func_8008FFE8()), arg0->position);
+            if (func_800C9510()) {
+                func_80801A6C_chevilspirit(arg0, 0);
+            } else if (!func_80801840_chevilspirit(arg0)) {
+                func_80102424(arg0, 7);
+                ((f32 *)arg0->actorData)[4] = 1.5f;
+            } else if (!func_80801EC4_chevilspirit((s32)arg0) && func_80801A6C_chevilspirit(arg0, 3)) {
+                func_80802090_chevilspirit(arg0, &D_808021EC_chevilspirit);
+                func_80102424(arg0, 8);
+                ((f32 *)arg0->actorData)[4] = 1.5f;
+            } else if (!func_808018DC_chevilspirit(arg0)) {
+                func_80802090_chevilspirit(arg0, &D_808021EC_chevilspirit);
+                func_80102424(arg0, 8);
+                ((f32 *)arg0->actorData)[4] = 1.5f;
+            } else {
+                func_80801684_chevilspirit(arg0);
+                func_80801398_chevilspirit(arg0);
+            }
+            break;
+        case 7:
+            if (!func_8001210C(7)) {
+                func_8010297C(arg0, arg0->unk54, 40.0f, 60.0f);
+            }
+            func_80102BF8(arg0, 0.2f, 15.0f, 1200.0f);
+            if (func_800D9078(&((f32 *)arg0->actorData)[4])) {
+                func_80802090_chevilspirit(arg0, &D_808021EC_chevilspirit);
+                func_80102424(arg0, 8);
+            }
+            func_808012CC_chevilspirit(arg0);
+            break;
+        case 8:
+            func_80801534_chevilspirit(arg0);
+            func_808012CC_chevilspirit(arg0);
+            break;
+        case 10:
+            func_801078DC(arg0, link + 0x3C);
+            if (_subaddiefade_entrypoint_0(arg0) == 0) {
+                func_80802090_chevilspirit(arg0, &D_808022C8_chevilspirit);
+                func_80103140(arg0, 0x90F, arg0->unk0->unk16);
+                func_80102424(arg0, 11);
+                _subaddiefade_entrypoint_2(arg0);
+            }
+            break;
+        case 11:
+            func_801078DC(arg0, link + 0x3C);
+            if (_subaddiefade_entrypoint_0(arg0) == 0xFF) {
+                func_80102424(arg0, 12);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x15CB, 6, arg0->position, 0xBB);
+            }
+            break;
+        case 13:
+            timerDone = func_800D90A4(&arg0->unk58);
+            if (func_8010D23C()) {
+                arg0->unk54 = func_8010CD28(arg0);
+                func_80102BF8(arg0, 0.2f, 15.0f, 1200.0f);
+            }
+            if (timerDone && func_8010CAC0(arg0->position, 500)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, func_800DC128(0, 4) + 0x15C6, 0x44, arg0->position, 0xBB);
+                func_80102424(arg0, 14);
+            }
+            break;
+        case 14:
+            if (func_8010D23C()) {
+                arg0->unk54 = func_8010CD28(arg0);
+                func_80102BF8(arg0, 0.2f, 15.0f, 1200.0f);
+            }
+            break;
+    }
+    func_80801E18_chevilspirit(arg0);
+    func_80802118_chevilspirit(arg0);
+}
 
 void func_808005B4_chevilspirit(u8 *arg0) {
     void func_800C8B84(s32);
