@@ -6901,7 +6901,8 @@ segments:
     subsegments: 
       - [0x02001380, c, anglerboss]
       - [0x02003E90, .rodata, anglerboss]
-      - [0x02004120, data, anglerboss]
+      - [0x02004120, .data, anglerboss]
+      - [0x020042D0, data, anglerboss_tail]
       - [0x02004430, bss, anglerboss]
   - name: changlerbossflare_header
     dir: overlays/changlerbossflare

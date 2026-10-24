@@ -1,15 +1,74 @@
 #include "common.h"
 
+void func_808002E0_changlerboss(Actor *);
+void func_80105834(Actor *);
+void func_80800FEC_changlerboss(Actor *, s32);
+OSThread *func_80108ED0(void);
+void func_80800018_changlerboss(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_80800B7C_changlerboss(Actor *, s32, s32);
+void func_80802888_changlerboss(Actor *);
+void func_80101870(Actor *, void *);
+void func_80802844_changlerboss(void *);
+s32 func_80802A90_changlerboss(Actor *, s32, s32);
+
+u32 D_80802DA0_changlerboss[] = {
+    0x001305E2, 0x00180002, 0x00000000,
+};
+
+u32 D_80802DAC_changlerboss[] = {
+    0x001305E2, 0x0018000D, 0x00CC00E6, 0x00020000,
+};
+
+u32 D_80802DBC_changlerboss[] = {
+    0x00000000, 0x00000000, 0x402CCCCD, 0x03EB0001,
+    0x40000000, 0x03EC0002, 0x40000000, 0x03300001,
+    0x40000000, 0x03300001, 0x40000000, 0x03300001,
+    0x40000000, 0x03300001, 0x40000000, 0x03300001,
+    0x40000000, 0x033E0001, 0x3FC00000, 0x033F0002,
+    0x40000000, 0x03300001, 0x40000000, 0x03300001,
+    0x40000000, 0x03300001, 0x40000000, 0x03300001,
+    0x40000000, 0x03300001, 0x40000000, 0x03300001,
+    0x40000000, 0x033E0002, 0x40000000, 0x03300001,
+    0x40000000, 0x033E0042, 0x40000000, 0x033E0001,
+    0x40000000, 0x03300001, 0x40000000, 0x033E0001,
+    0x3FC00000, 0x033F0002, 0x40000000, 0x03300001,
+    0x41133333, 0x03400002, 0x40000000, 0x03410001,
+    0x40000000, 0x03410001, 0x40000000, 0x03410001,
+    0x40000000, 0x03300001, 0x40000000, 0x03EC0002,
+    0x40000000, 0x03300001,
+};
+
+u32 D_80802EB4_changlerboss[] = {
+    0x0002045D, 0x07F90001, (u32)D_80802DBC_changlerboss, (u32)func_808002E0_changlerboss,
+    (u32)func_80105834, (u32)func_80800FEC_changlerboss, 0x0000752F, 0x00000000,
+    0x00000000, 0x00000468, 0x00000000, (u32)func_80108ED0,
+    0x01300000, (u32)func_80800018_changlerboss, (u32)func_80107C2C, 0x80E10402,
+    (u32)func_80800B7C_changlerboss, 0x00000000,
+};
+
+u32 D_80802EFC_changlerboss[] = {
+    0x0158045E, 0x07FB0001, 0x00000000, (u32)func_80802888_changlerboss,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00021404, 0x00000000, 0x00000000,
+    0x00000000, (u32)func_80802844_changlerboss, (u32)func_80107C2C, 0x80000002,
+    (u32)func_80802A90_changlerboss, 0x00000000,
+};
+
+u32 D_80802F44_changlerboss[] = {
+    0x00130692, 0x00180002, 0x00000000,
+};
+
 OSThread *changlerboss_entrypoint_0(void)
 {
-    extern u8 D_80802EB4_changlerboss[];
+
 
     return (OSThread *) D_80802EB4_changlerboss;
 }
 
 OSThread *changlerboss_entrypoint_1(void)
 {
-    extern u8 D_80802EFC_changlerboss[];
+
 
     return (OSThread *) D_80802EFC_changlerboss;
 }
@@ -59,7 +118,7 @@ void func_808002E0_changlerboss(Actor *arg0) {
     s32 func_808025AC_changlerboss(s32);
     void func_808025EC_changlerboss(Actor *);
     void func_80802680_changlerboss(Actor *);
-    extern u32 D_80802F44_changlerboss[];
+
     extern u32 D_80802F50_changlerboss[];
     extern u32 D_80802F60_changlerboss[];
     struct AnglerBossActorFlags {
@@ -312,7 +371,136 @@ void func_808002E0_changlerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800B7C_changlerboss.s")
+s32 func_80800B7C_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101074(void *);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80108B04();
+    void func_80800F14_changlerboss(Actor *, s32);
+    void func_80801070_changlerboss(Actor *, s32);
+    void func_808012E0_changlerboss(Actor *, s32);
+    void func_8080170C_changlerboss(Actor *, s16, s16);
+    void func_80801D0C_changlerboss(Actor *);
+    Actor *func_80801DA0_changlerboss(Actor *);
+    void func_80801E3C_changlerboss(Actor *);
+    void func_80801F54_changlerboss(Actor *);
+    void func_80802108_changlerboss(Actor *);
+    void func_808021E4_changlerboss(Actor *, u32, u32);
+    extern f32 B_808030B0_changlerboss[3];
+    struct AnglerBossMessageData {
+        u8 pad0[0x1B];
+        u8 occupied[6];
+        u8 pad21[0x1B];
+        f32 positions[6][3];
+        f32 position[3];
+        s16 pad90;
+        s16 unk92;
+        u8 pad94[0x96];
+        u8 unk12A;
+        u8 unk12B;
+        u8 unk12C;
+    } *data;
+    union AnglerBossMessage {
+        s32 word;
+        s16 half[2];
+    };
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x3D:
+            switch (arg2) {
+                case 0: func_80801D0C_changlerboss(arg0); break;
+                case 1: func_80801E3C_changlerboss(arg0); break;
+                case 2: func_80801F54_changlerboss(arg0); break;
+                case 3: func_80802108_changlerboss(arg0); break;
+            }
+            break;
+        case 0x2E:
+            func_8080170C_changlerboss(arg0, ((union AnglerBossMessage *)&arg2)->half[0],
+                                      ((union AnglerBossMessage *)&arg2)->half[1]);
+            break;
+        case 0xB:
+            switch (arg2) {
+                case 0x19:
+                    func_80101180(0x46C, 7, 0);
+                    func_808021E4_changlerboss(arg0, 0xE, 0x10);
+                    return 4;
+                case 0xE:
+                    data->unk12B = 0;
+                    break;
+            }
+            return 3;
+        case 0x40:
+            func_80801070_changlerboss(arg0, ((union AnglerBossMessage *)&arg2)->word);
+            break;
+        case 0xA:
+            if (arg0->unk70_10 == 0x11) {
+                func_808012E0_changlerboss(arg0, 0x13);
+            }
+            break;
+        case 0x49:
+            if (!func_800DA298(0x377) || _glcutDll_entrypoint_20()) {
+                func_80801DA0_changlerboss(arg0);
+            }
+            break;
+        case 0x32:
+            data->unk12C = 1;
+            func_800F82D4(func_800F54E4(), 2);
+            break;
+        case 0x95:
+            if (!func_800DA298(0x377)) {
+                func_80108B04(arg0, 0);
+            }
+            if (data->unk12A) {
+                func_800FDC28(1);
+                data->unk12A = 0;
+            }
+            break;
+        case 0x96:
+            if (!func_800D395C()) {
+                return 0;
+            }
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x146, arg0->position, 0xB4);
+            break;
+        case 0x9F:
+            func_800FDC28(0);
+            func_808012E0_changlerboss(arg0, 0x1C);
+            break;
+        case 0xA2:
+            if (!arg0->unk7C_12 || func_800DA298(0x377)) {
+                return 0;
+            }
+            if (data->unk92 == 0) {
+                for (i = 0; i < 6; i++) {
+                    if (data->occupied[i] == 0) {
+                        func_800EE7F8(B_808030B0_changlerboss, data->positions[i]);
+                        func_80101074(B_808030B0_changlerboss);
+                        return 1;
+                    }
+                }
+                return 0;
+            } else {
+                func_800EE7F8(B_808030B0_changlerboss, data->position);
+                func_80101074(B_808030B0_changlerboss);
+            }
+            break;
+        case 0x1F:
+            func_80800F14_changlerboss(arg0, ((union AnglerBossMessage *)&arg2)->word);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
