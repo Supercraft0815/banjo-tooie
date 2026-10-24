@@ -24,7 +24,177 @@ void func_80800000_chfantasyeyeball(Actor *arg0) {
     ((f32 *)arg0->actorData)[6] = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808000D8_chfantasyeyeball.s")
+void func_808000D8_chfantasyeyeball(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 func_800B53A4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C4140(s32, f32 *, s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    int func_800F6720(s32);
+    void func_800FC6B0(u32);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80108B04(Actor *, u32);
+    void func_8010A590(Actor *);
+    void func_8010C93C(s32, s32, f32);
+    s32 func_8010C9B0(f32 *, s32);
+    s32 func_80800950_chfantasyeyeball();
+    void func_808011D0_chfantasyeyeball(Actor *, f32, f32, f32);
+    void func_80801314_chfantasyeyeball(void *);
+    void func_80801378_chfantasyeyeball(Actor *);
+    void func_808013F8_chfantasyeyeball(Actor *);
+    void func_80801740_chfantasyeyeball(Actor *, f32 *);
+    s32 func_808017B4_chfantasyeyeball();
+    extern s32 D_80801EEC_chfantasyeyeball[];
+    f32 sp54[3];
+    s32 sp50;
+    s32 sp4C;
+    Actor *sp48;
+    Actor *sp44;
+    f32 sp40;
+    typedef struct {
+        u32 unused : 29;
+        u32 disabled : 1;
+        u32 remaining : 2;
+    } EyeballUpdateFlags;
+
+    _sudeflect_entrypoint_0(arg0->position, arg0->scale * 456.0f, arg0->scale * 224.0f, 0xE);
+    if (!((EyeballUpdateFlags *)&arg0->unk78)->disabled) {
+        switch (arg0->unk70_10) {
+        case 1:
+            if (func_8010C9B0(arg0->position, 5000) && func_800F6720(func_800F54E4())) {
+                func_80800950_chfantasyeyeball(arg0, 2);
+            }
+            break;
+        case 2:
+            if (func_80101DDC(arg0)) {
+                func_80800950_chfantasyeyeball(arg0, 3);
+            }
+            if (!func_800DA298(0x6EC)) {
+                func_800D90A4(&arg0->unk58);
+                func_808011D0_chfantasyeyeball(arg0, ((f32 *)arg0->actorData)[2], ((f32 *)arg0->actorData)[4], func_800F10B4(arg0->unk58, 2.708f, 0.0f, 1.0f, 0.0f));
+            }
+            if (func_80101E14(arg0, 0.4f)) {
+                func_800C4140(0x8CBB5C1E, arg0->position, 0x1B5801F4);
+            } else if (func_80101E14(arg0, 0.0f)) {
+                func_800C4140(0x7FFB5C1D, arg0->position, 0x1B5801F4);
+            }
+            break;
+        case 3:
+            if (!func_800DA298(0x6EC)) {
+                if (!func_800D90A4(&arg0->unk58) || arg0->unk64_19) {
+                    func_808011D0_chfantasyeyeball(arg0, ((f32 *)arg0->actorData)[2], ((f32 *)arg0->actorData)[4], func_800F10B4(arg0->unk58, 2.708f, 0.0f, 1.0f, 0.0f));
+                } else {
+                    func_80801314_chfantasyeyeball(arg0);
+                    func_800DA544(0x6EC);
+                }
+            } else if (func_8010C9B0(arg0->position, 5000)) {
+                if (!func_800F6720(func_800F54E4())) {
+                    func_80800950_chfantasyeyeball(arg0, 4);
+                } else if (func_800D90A4(&((f32 *)arg0->actorData)[3]) && func_808017B4_chfantasyeyeball(arg0)) {
+                    func_80800950_chfantasyeyeball(arg0, 5);
+                }
+            }
+            break;
+        case 4:
+            if (func_80101DDC(arg0)) {
+                func_80800950_chfantasyeyeball(arg0, 1);
+            }
+            break;
+        case 5:
+            if (func_80101E14(arg0, 0.55f)) {
+                func_800C4140(((u16)(func_800DC178(1.15f, 1.25f) * 1023.0f) << 21) + 0x1B5E3D, arg0->position, 0x1B5801F4);
+                func_80108B04(arg0, 1);
+            } else if (func_80101DDC(arg0)) {
+                func_80800950_chfantasyeyeball(arg0, 3);
+            }
+            break;
+        case 7:
+        case 10:
+            if (func_80101DDC(arg0)) {
+                if (arg0->unk64_20) {
+                    if (arg0->actorData[7]) {
+                        func_80800950_chfantasyeyeball(arg0, arg0->unk70_10 == 7 ? 8 : 11);
+                    } else {
+                        func_8010A590(_subaddielink_entrypoint_4(func_80100094(arg0, 0)));
+                        func_80800950_chfantasyeyeball(arg0, arg0->unk70_10 == 7 ? 9 : 12);
+                    }
+                } else {
+                    func_80800950_chfantasyeyeball(arg0, arg0->unk70_10 == 7 ? 9 : 12);
+                }
+            }
+            if (arg0->unk64_20) {
+                func_800D90A4(&arg0->unk58);
+                func_808011D0_chfantasyeyeball(arg0, ((f32 *)arg0->actorData)[2], ((f32 *)arg0->actorData)[4], func_800F10B4(arg0->unk58, 2.708f, 0.0f, 1.0f, 0.0f));
+            }
+            if (func_80101E14(arg0, 0.35f)) {
+                func_80801740_chfantasyeyeball(arg0, sp54);
+                for (sp50 = 0; sp50 != 8; sp50++) {
+                    sp4C = func_800B53A4(3);
+                    func_800BA3FC(sp4C, sp50 + 0x9DF);
+                    func_800BABB8(sp4C, sp54, sp54, 3.0f, D_80801EEC_chfantasyeyeball);
+                }
+                func_800C4140(0xBFDB5C13, arg0->position, 0x1B5801F4);
+                func_80108B04(arg0, 2);
+            }
+            break;
+        case 8:
+        case 11:
+            sp48 = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80800950_chfantasyeyeball(arg0, arg0->unk70_10 == 8 ? 9 : 12);
+            } else {
+                func_808011D0_chfantasyeyeball(arg0, ((f32 *)arg0->actorData)[2], ((f32 *)arg0->actorData)[4], func_800F10B4(arg0->unk58, 2.708f, 0.0f, 1.0f, 0.0f));
+            }
+            _subaddiefade_entrypoint_1(sp48, (s32)func_800F10B4(arg0->unk58, 1.5f, 0.0f, 255.0f, 0.0f));
+            break;
+        case 6:
+            sp44 = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80801314_chfantasyeyeball(arg0);
+                func_80800950_chfantasyeyeball(arg0, 1);
+            }
+            sp40 = func_800F10B4(arg0->unk58, 1.5f, 0.0f, 0.0f, 1.0f);
+            _subaddiefade_entrypoint_1(sp44, (s32)(sp40 * 255.0f));
+            func_808011D0_chfantasyeyeball(arg0, ((f32 *)arg0->actorData)[0], ((f32 *)arg0->actorData)[1], sp40);
+            break;
+        case 9:
+        case 12:
+            if (arg0->unk64_20) {
+                func_800D90A4(&arg0->unk58);
+                func_800D90A4(&((f32 *)arg0->actorData)[5]);
+                if (!arg0->unk64_19) {
+                    func_80801314_chfantasyeyeball(arg0);
+                    func_800FC6B0(0x18);
+                    func_800FFA88(arg0->unk0);
+                    return;
+                }
+                func_808011D0_chfantasyeyeball(arg0, ((f32 *)arg0->actorData)[2], ((f32 *)arg0->actorData)[4], func_800F10B4(arg0->unk58, 2.708f, 0.0f, 1.0f, 0.0f));
+            } else if (func_800D90A4(&((f32 *)arg0->actorData)[5])) {
+                func_800FFA88(arg0->unk0);
+            }
+            arg0->alpha = func_800F10B4(((f32 *)arg0->actorData)[5], 1.5f, 0.0f, 255.0f, 0.0f);
+            break;
+        default:
+            break;
+        }
+        func_808013F8_chfantasyeyeball(arg0);
+        func_8010C93C(arg0, arg0->position, 0.75f);
+        if (arg0->unk70_10 != 9 && arg0->unk70_10 != 12 && arg0->unk64_20) {
+            func_80801378_chfantasyeyeball(arg0);
+        }
+    }
+}
 
 s32 func_80800950_chfantasyeyeball(Actor *arg0, s32 arg1, Actor *arg2, Actor *arg3) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
