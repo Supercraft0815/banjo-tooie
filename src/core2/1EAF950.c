@@ -555,7 +555,71 @@ f32 func_800D7708(s32 arg0, f32 arg1, s32 arg2) {
     return func_800C7AE4(func_800D7520(arg0), arg1, 1.0f) / ((f32)arg2 / 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D7754.s")
+void func_800D7754(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 unused[0x24];
+        u32 unused24:16;
+        u32 pitch:1;
+        u32 yaw:1;
+        u32 player:1;
+        u32 unused26:4;
+        u32 target:3;
+        u32 unused27:6;
+        u32 unused28:26;
+        u32 actor:6;
+    } PathState;
+    void *func_80105494(Actor *);
+    PathState *state;
+
+    state = func_80105494(arg0);
+    switch (arg1) {
+        case 1:
+            state->actor = 0;
+            state->target = 0;
+            state->player = 1;
+            state->pitch = 1;
+            state->yaw = 1;
+            break;
+        case 2:
+            state->actor = 0;
+            state->target = 0;
+            state->player = 0;
+            state->pitch = 0;
+            break;
+        case 3:
+            state->actor = 0;
+            state->target = 0;
+            state->player = 0;
+            state->pitch = 1;
+            break;
+        case 4:
+            state->actor = 0;
+            state->target = 0;
+            state->player = 0;
+            state->yaw = 0;
+            break;
+        case 5:
+            state->actor = 0;
+            state->target = 0;
+            state->player = 0;
+            state->yaw = 1;
+            break;
+        case 6:
+            state->actor = 0;
+            state->target = 0;
+            state->player = 0;
+            state->pitch = 0;
+            state->yaw = 0;
+            break;
+        case 7:
+            state->actor = 0;
+            state->target = 0;
+            state->player = 0;
+            state->pitch = 1;
+            state->yaw = 1;
+            break;
+    }
+}
 
 void func_800D7900(s32 arg0) 
 {
