@@ -634,6 +634,7 @@ segments:
       - [0x1EFED80, rodata]
       - [0x1EFEE60, .rodata, 1E7D460]
       - [0x1EFEEB0, rodata]
+      - [0x1EFEF00, .rodata, 1E83B90]
       - [0x1EFEF20, .rodata, 1E8DFA0]
       - [0x1EFEF30, rodata]
       - [0x1EFEFB0, .rodata, 1E93440]

@@ -78,7 +78,7 @@ s32 func_800AADEC(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     f32 func_800EEFD4(f32 *);
     void func_800EFB24(void *, void *, void *);
     f32 sqrtf(f32);
-    extern f32 D_80125610;
+
     f32 sp3C[3];
     f32 sp30[3];
     f32 sp24[3];
@@ -87,7 +87,7 @@ s32 func_800AADEC(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 
     func_800EFB24(sp3C, arg1, arg0);
     temp_f0 = func_800EEFD4(sp3C);
-    if (temp_f0 < D_80125610) {
+    if (temp_f0 < 0.01f) {
         return func_800EEB40(arg0, arg2) < arg3;
     }
     temp_f2 = 1.0f / sqrtf(temp_f0);
@@ -143,7 +143,137 @@ void func_800AAFEC(f32 *arg0, f32 *arg1, s32 *arg2, s32 *arg3, f32 *arg4) {
     func_800EFB24(arg4, arg1, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AB0BC.s")
+void *func_800AB0BC(u16 *list, u16 *vertices, f32 line_start[3], f32 line_end[3], f32 normal[3], u32 flag_filter) {
+    typedef struct { u16 vertices[3]; u16 padding; u32 flags; } CollisionTriangle;
+    typedef struct { s16 position[3]; s16 padding[5]; } CollisionVertex;
+    void func_800AA3B4(void *, void *);
+    void func_800AA7FC(void *, s32 *, s32 *, u16 ***, u16 ***);
+    void func_800AAFEC(f32 *, f32 *, s32 *, s32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 mlAbsF(f32);
+    int i;
+    u16 **start_geo, **i_geo, **end_geo, *geo;
+    s32 min_bounds[3], max_bounds[3];
+    f32 direction_vector[3];
+    CollisionTriangle *start_tri, *result_collision, *i_tri;
+    CollisionVertex *vtx_pool;
+    CollisionTriangle *end_tri;
+    f32 tri_edge_ab[3], tri_edge_ac[3];
+    f32 local_line_start[3], local_line_end[3];
+    f32 t;
+    f32 line_current_pos[3];
+    f32 row1[3], row2[3];
+    f32 start_distance, plane_distance, direction_distance, inverse_determinant;
+    f32 vtx_radius;
+    f32 end_distance, barycentric_a;
+    f32 tri_normal[3];
+    s32 primary_axis;
+    f32 barycentric_b;
+    f32 tri[3][3];
+    CollisionVertex *vtx0, *vtx1, *vtx2;
+    s32 coordinate0, coordinate1, coordinate2;
+
+    result_collision = NULL;
+    vtx_radius = vertices[10];
+    func_800AAFEC(line_start, line_end, min_bounds, max_bounds, direction_vector);
+    for (i = 0; i < 3; i++) {
+        if (max_bounds[i] <= -vtx_radius || vtx_radius <= min_bounds[i]) {
+            return NULL;
+        }
+    }
+    func_800AA7FC(list, min_bounds, max_bounds, &start_geo, &end_geo);
+    i_geo = start_geo;
+    if (i_geo < end_geo) {
+    t = 100000.0f;
+    do {
+        start_tri = (CollisionTriangle *)((u8 *)list + list[8] * 4 + 0x18) + (*i_geo)[0];
+        end_tri = start_tri + (*i_geo)[1];
+        for (i_tri = start_tri; i_tri < end_tri; i_tri++) {
+            vtx_pool = (CollisionVertex *)((u8 *)vertices + 0x18);
+            if (i_tri->flags & flag_filter) continue;
+            vtx0 = &vtx_pool[i_tri->vertices[0]];
+            vtx1 = &vtx_pool[i_tri->vertices[1]];
+            vtx2 = &vtx_pool[i_tri->vertices[2]];
+            coordinate0 = vtx0->position[0];
+            coordinate1 = vtx1->position[0];
+            coordinate2 = vtx2->position[0];
+            if (coordinate0 < min_bounds[0] && coordinate1 < min_bounds[0] && coordinate2 < min_bounds[0]) continue;
+            if (coordinate0 > max_bounds[0] && coordinate1 > max_bounds[0] && coordinate2 > max_bounds[0]) continue;
+            tri[0][0] = coordinate0;
+            tri[1][0] = coordinate1;
+            tri[2][0] = coordinate2;
+            coordinate0 = vtx0->position[1];
+            coordinate1 = vtx1->position[1];
+            coordinate2 = vtx2->position[1];
+            if (coordinate0 < min_bounds[1] && coordinate1 < min_bounds[1] && coordinate2 < min_bounds[1]) continue;
+            if (coordinate0 > max_bounds[1] && coordinate1 > max_bounds[1] && coordinate2 > max_bounds[1]) continue;
+            tri[0][1] = coordinate0;
+            tri[1][1] = coordinate1;
+            tri[2][1] = coordinate2;
+            coordinate0 = vtx0->position[2];
+            coordinate1 = vtx1->position[2];
+            coordinate2 = vtx2->position[2];
+            if (coordinate0 < min_bounds[2] && coordinate1 < min_bounds[2] && coordinate2 < min_bounds[2]) continue;
+            if (coordinate0 > max_bounds[2] && coordinate1 > max_bounds[2] && coordinate2 > max_bounds[2]) continue;
+            tri[0][2] = coordinate0;
+            tri[1][2] = coordinate1;
+            tri[2][2] = coordinate2;
+            func_800EFB24(tri_edge_ab, tri[1], tri[0]);
+            func_800EFB24(tri_edge_ac, tri[2], tri[0]);
+            func_800EE97C(tri_normal, tri_edge_ab, tri_edge_ac);
+            if (t < mlAbsF(tri_normal[0]) || t < mlAbsF(tri_normal[1]) || t < mlAbsF(tri_normal[2])) {
+                tri_normal[0] *= 0.00001f;
+                tri_normal[1] *= 0.00001f;
+                tri_normal[2] *= 0.00001f;
+            }
+            func_800EFB24(local_line_start, line_start, tri[0]);
+            func_800EFB24(local_line_end, line_end, tri[0]);
+            start_distance = func_800EEAA4(local_line_start, tri_normal);
+            end_distance = func_800EEAA4(local_line_end, tri_normal);
+            if (!((start_distance >= 0.0f) && (end_distance >= 0.0f)) && !((start_distance <= 0.0f) && (end_distance <= 0.0f))) {
+                if ((i_tri->flags & 0x10000) && start_distance < 0.0f) {
+                    tri_normal[0] = -tri_normal[0];
+                    tri_normal[1] = -tri_normal[1];
+                    tri_normal[2] = -tri_normal[2];
+                }
+                plane_distance = -func_800EEAA4(tri[0], tri_normal);
+                direction_distance = func_800EEAA4(tri_normal, direction_vector);
+                if (direction_distance >= 0.0f) continue;
+                direction_distance = -(func_800EEAA4(tri_normal, line_start) + plane_distance) / direction_distance;
+                if (direction_distance <= 0.0f || direction_distance >= 1.0f) continue;
+                func_800EFA4C(line_current_pos, line_start[0] + direction_vector[0] * direction_distance, line_start[1] + direction_vector[1] * direction_distance, line_start[2] + direction_vector[2] * direction_distance);
+                primary_axis = mlAbsF(tri_normal[0]) > mlAbsF(tri_normal[1]) ? 0 : 1;
+                if (mlAbsF(tri_normal[2]) > mlAbsF(tri_normal[primary_axis])) primary_axis = 2;
+                i = (primary_axis + 1) % 3;
+                func_800EFA4C(row1, line_current_pos[i] - tri[0][i], tri_edge_ab[i], tri_edge_ac[i]);
+                i = (primary_axis + 2) % 3;
+                func_800EFA4C(row2, line_current_pos[i] - tri[0][i], tri_edge_ab[i], tri_edge_ac[i]);
+                inverse_determinant = 1.0f / (row1[1] * row2[2] - row2[1] * row1[2]);
+                barycentric_a = (row1[0] * row2[2] - row2[0] * row1[2]) * inverse_determinant;
+                if (barycentric_a < 0.0f || barycentric_a > 1.0f) {
+                    continue;
+                }
+                barycentric_b = (row1[1] * row2[0] - row2[1] * row1[0]) * inverse_determinant;
+                if (barycentric_b < 0.0f || barycentric_b > 1.0f || barycentric_a + barycentric_b > 1.0f) {
+                    continue;
+                }
+                result_collision = i_tri;
+                func_800EE7F8(line_end, line_current_pos);
+                func_800EE7F8(normal, tri_normal);
+                func_800AAFEC(line_start, line_end, min_bounds, max_bounds, direction_vector);
+            }
+        }
+    } while (++i_geo < end_geo);
+    }
+    if (result_collision != NULL) func_800EF2A0(normal);
+    func_800AA3B4(result_collision, vertices);
+    return result_collision;
+}
 
 s32 func_800AB868(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6, f32 *arg7, s32 arg8) {
     void func_80019224(f32 *, f32 *);
@@ -151,7 +281,7 @@ s32 func_800AB868(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     void func_80019750(f32 *, f32 *, f32, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
     s32 func_80019CD4(void);
-    s32 func_800AB0BC(s32, s32, f32 *, f32 *, f32 *, s32);
+    void *func_800AB0BC(u16 *, u16 *, f32 *, f32 *, f32 *, u32);
     extern f32 D_80127938[];
     extern f32 D_8012795C[];
     f32 sp44[3];
