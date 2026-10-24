@@ -11267,7 +11267,7 @@ segments:
     subsegments: 
       - [0x020B6640, c, drums]
       - [0x020B75B0, .rodata, drums]
-      - [0x020B7620, data, drums]
+      - [0x020B7620, .data, drums]
       - [0x020B78F0, bss, drums]
   - name: chdoubloon_header
     dir: overlays/chdoubloon
