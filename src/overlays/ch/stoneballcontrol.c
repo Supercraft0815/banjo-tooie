@@ -1796,7 +1796,87 @@ void func_808047E8_chstoneballcontrol(Actor *arg0) {
     func_800BD09C(*data);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80804810_chstoneballcontrol.s")
+s32 func_80804810_chstoneballcontrol(Actor *arg0)
+{
+    s32 *_subaddiefind_entrypoint_0();
+    f32 func_800136E4(f32);
+    f32 func_800DC0C0(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    int func_800F0064(f32 *, f32, f32 *);
+    s32 func_80102CF4(Actor *, s32);
+    f32 func_80102D78();
+    void func_80800B4C_chstoneballcontrol(void *, s32);
+    u8 *selected;
+    union { f32 f; s32 i; } distance;
+    u8 *other;
+    f32 angle;
+    f32 speed;
+
+    selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, -1, &distance.f);
+    if (selected == NULL) {
+        selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x29E, -1, &distance.f);
+        if (selected == NULL) {
+            selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1B8, -1, &distance.f);
+            if (selected == NULL) {
+                return NULL;
+            }
+        }
+    } else if ((((u32)*(u16 *)(selected + 0x72) >> 10) == 2 &&
+                !func_800F0064((f32 *)((u8 *)arg0 + 4), 100.0f, (f32 *)(selected + 4))) ||
+               ((u32)*(u16 *)(selected + 0x72) >> 10) == 6 ||
+               ((u32)*(u16 *)(selected + 0x72) >> 10) == 4 ||
+               ((u32)*(u16 *)(selected + 0x72) >> 10) == 3) {
+        switch ((u32)*(u16 *)(selected + 0x72) >> 10) {
+            case 2:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 2, &distance.f);
+                break;
+            case 3:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 3, &distance.f);
+                break;
+            case 6:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 6, &distance.f);
+                break;
+            case 4:
+                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 4, &distance.f);
+                break;
+        }
+        if (other != NULL && (((u32)*(u16 *)(other + 0x72) >> 10) == 1 ||
+                              ((u32)*(u16 *)(other + 0x72) >> 10) == 3)) {
+            selected = other;
+        }
+    }
+    if (((u32)*(u16 *)(selected + 0x72) >> 10) == 2) {
+        angle = *(f32 *)(selected + 0x54) - func_80102D78(arg0, (f32 *)(selected + 0x18));
+        speed = 0.0f;
+        angle = func_800136E4(angle);
+        if (angle < 90.0f) {
+            angle = *(f32 *)(selected + 0x54) + 65.0f;
+            speed = *(f32 *)(selected + 0x50) * 0.006666666828f;
+        } else if (angle > 270.0f) {
+            angle = *(f32 *)(selected + 0x54) - 65.0f;
+            speed = *(f32 *)(selected + 0x50) * 0.006666666828f;
+        } else if (*(f32 *)(selected + 0x50) > 10.0f) {
+            speed = *(f32 *)(selected + 0x50) * 0.002857142827f;
+        }
+        if (speed < 25.0f) {
+            speed = 25.0f;
+        }
+        if (speed < 30.0f) {
+            *(f32 *)((u8 *)arg0 + 0x54) = func_80102D78(arg0, (f32 *)(selected + 0x18));
+            if (!func_80102CF4(arg0, 0x42340000) && func_80102CF4(arg0, 0x42B40000) &&
+                func_800DC0C0() < 0.8f) {
+                func_80800B4C_chstoneballcontrol(arg0, 8);
+            }
+        }
+        func_800EFCD8((f32 *)((u8 *)arg0 + 0x18), angle, speed);
+        func_800EF04C((f32 *)((u8 *)arg0 + 0x18), (f32 *)(selected + 4));
+    } else {
+        func_800EE7F8((f32 *)((u8 *)arg0 + 0x18), (f32 *)(selected + 4));
+    }
+    return (s32)selected;
+}
 
 void func_80804B60_chstoneballcontrol(Actor *arg0) {
     typedef struct { f32 v[3]; } Vec3;
