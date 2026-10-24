@@ -127,7 +127,226 @@ loop_3:
     goto loop_3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_808002E0_chjinjo.s")
+void func_808002E0_chjinjo(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x70];
+        u32 pad70_4 : 28;
+        u32 unk70_3 : 1;
+        u32 pad70_0 : 3;
+        u32 pad74_21 : 11;
+        u32 unk74_20 : 1;
+        u32 pad74_0 : 20;
+    } JinjoFlags;
+    void _fxtwinkle_entrypoint_0(f32 *);
+    s32 _glcutDll_entrypoint_6(s32, s32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_12(void *, f32, f32);
+    void func_8008FFBC(f32 *);
+    s32 func_800901CC(f32 *, f32);
+    void func_800C3EB8(s32);
+    void func_800C4244(s32, f32, u32, f32 *, f32, f32);
+    f32 func_800D8FF8(void);
+    s32 func_800DA7A8(s32, s32, s32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800E3980(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800EF334(f32 *, f32);
+    void func_800EF3DC(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    void func_800F82D4(s32, s32);
+    void func_800FC63C(u32, u32);
+    void func_800FC74C(u32);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    s32 func_800FCCD4(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102FE8(Actor *, s32);
+    void func_8010C908(Actor *, f32 *);
+    void func_8010D254(f32 *);
+    void func_80800EE4_chjinjo(Actor *);
+    void func_80800F14_chjinjo(Actor *);
+    void func_80800F80_chjinjo(Actor *);
+    s32 func_8080102C_chjinjo(Actor *, s32);
+    extern u32 D_8080137C_chjinjo;
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp64;
+    s32 sp60;
+    f32 sp5C;
+    s32 sp58;
+    f32 sp54;
+    f32 sp48[3];
+    s32 sp44;
+    s32 sp40;
+
+    sp64 = func_800D8FF8();
+    if (((JinjoFlags *)arg0)->unk70_3) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+        if (arg0->unk74_29) {
+            func_800E3980(sp74);
+        } else {
+            func_8010D254(sp74);
+        }
+        if (arg0->unk6C_9 == 0x48F) {
+            func_8010C908(arg0, arg0->position);
+        }
+        func_800F1E6C(arg0->position, sp74, &sp5C);
+        sp54 = func_800F1DCC(arg0->rotation[1], sp5C);
+        switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DC0C0() < 0.015f) {
+                if (func_800901CC(arg0->position, 55.0f)) {
+                    func_80102424(arg0, 3);
+                } else {
+                    func_80102424(arg0, 2);
+                }
+            }
+            break;
+        case 2:
+            func_80800F14_chjinjo(arg0);
+            if (func_80101E14(arg0, 0.999f)) {
+                func_80102424(arg0, 1);
+            }
+            break;
+        case 3:
+            func_80800F80_chjinjo(arg0);
+            if (func_80101E14(arg0, 0.999f)) {
+                func_80102424(arg0, 1);
+            }
+            break;
+        case 4:
+            func_80800EE4_chjinjo(arg0);
+            if (func_80101E14(arg0, 0.999f)) {
+                func_80102424(arg0, 1);
+            } else if (sp54 >= 0.0f) {
+                arg0->rotation[1] -= 80.0f * sp64;
+            } else {
+                arg0->rotation[1] += 80.0f * sp64;
+            }
+            break;
+        case 6:
+            func_80800EE4_chjinjo(arg0);
+            if (sp54 >= 0.0f) {
+                arg0->rotation[1] -= 120.0f * sp64;
+            } else {
+                arg0->rotation[1] += 120.0f * sp64;
+            }
+            if (func_80101E14(arg0, 0.0f)) {
+                arg0->unk79_4--;
+                if (arg0->unk79_4 == 0) {
+                    func_80102424(arg0, 7);
+                    func_80102FE8(arg0, 0);
+                    func_800FC63C(2, 0x6D60);
+                }
+            }
+            break;
+        case 7:
+        case 8:
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 0.0f, 0.0f);
+            sp58 = arg0->unk70_10 == 7;
+            if (!sp58 || func_80101F24(arg0) > 0.1f) {
+                func_8008FFBC(sp68);
+                func_800EF334(sp68, sp64 * 6.0f);
+                func_800EF04C(sp68, sp74);
+                func_800EF3DC(sp68, arg0->position);
+                func_800EF334(sp68, sp64 * 3.0f);
+                func_800EF04C(arg0->position, sp68);
+                if (sp58 || func_80101F24(arg0) < 0.8f) {
+                    for (sp60 = 0; sp60 != 4; sp60++) {
+                        if (func_800DC0C0() < 0.3f) {
+                            _subaddieskeleton_entrypoint_0(arg0, 3, sp48);
+                            func_800EF214(sp48, func_800DC178(0.0f, 360.0f), func_800DC178(0.0f, 360.0f), 15.0f);
+                            _fxtwinkle_entrypoint_0(sp48);
+                        }
+                    }
+                }
+            }
+            if (sp58) {
+                if (func_80101F24(arg0) < 0.2f) {
+                    if (sp54 >= 0.0f) {
+                        arg0->rotation[1] -= 120.0f * sp64;
+                    } else {
+                        arg0->rotation[1] += 120.0f * sp64;
+                    }
+                }
+                if (func_80101E14(arg0, 0.1f)) {
+                    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_8080137C_chjinjo);
+                    arg0->actorData[5] = 1;
+                    func_800FC63C(0x1C, 0x7FFF);
+                    func_800FCA90(0x1C);
+                    func_800C4244(0x4A2, 0.8f, 0x7FFF, arg0->position, 300.0f, 2000.0f);
+                } else if (func_80101E14(arg0, 0.434f) || func_80101E14(arg0, 0.811f)) {
+                    func_800C4244(0x4A2, 0.9f, 0x7FFF, arg0->position, 300.0f, 2000.0f);
+                }
+            } else {
+                if (func_80101E14(arg0, 0.214f)) {
+                    func_800C4244(0x4A2, 1.1f, 0x7FFF, arg0->position, 300.0f, 2000.0f);
+                } else if (func_80101E14(arg0, 0.55f)) {
+                    func_800C4244(0x43A, 1.5f, 0x7FFF, arg0->position, 300.0f, 2000.0f);
+                } else if (func_80101E14(arg0, 0.75f)) {
+                    if (func_800FCCD4(2)) {
+                        func_800FCAE0(2, 0, 4000);
+                        func_800FCA90(2);
+                    }
+                } else if (func_80101E14(arg0, 0.85f)) {
+                    _subaddieaudioloop_entrypoint_2(arg0);
+                    func_800C3EB8(0x411);
+                    func_800FC74C(0x1C);
+                    arg0->actorData[5] = 0;
+                }
+                if (func_80101F24(arg0) > 0.75f) {
+                    sp44 = _subaddiefade_entrypoint_0(arg0);
+                    if (sp44 >= 7) {
+                        sp44 -= 7;
+                    }
+                    if (func_80101F24(arg0) > 0.9f) {
+                        sp44 = sp44 >= 21 ? sp44 - 21 : 0;
+                    }
+                    _subaddiefade_entrypoint_1(arg0, sp44);
+                }
+                if (func_80101E14(arg0, 0.999f)) {
+                    func_80102424(arg0, 9);
+                    ((JinjoFlags *)arg0)->unk74_20 = 0;
+                    arg0->unk64_16 = ((JinjoFlags *)arg0)->unk74_20;
+                }
+            }
+            if (sp58 && (func_80101E14(arg0, 0.96f) || func_80101E14(arg0, 0.999f))) {
+                func_80102424(arg0, 8);
+            }
+            break;
+        case 9:
+            if (arg0->unk74_30) {
+                sp40 = func_800D0CC8(arg0->unk6C_0);
+                if (arg0->unk64_19) {
+                    func_800F82D4(arg0->actorData[4], 0);
+                    func_800DA7A8(0x6D0, sp40, 4);
+                    _glcutDll_entrypoint_6(0x142, 0x84);
+                } else {
+                    func_8080102C_chjinjo(arg0, 0);
+                }
+                arg0->unk74_30 = 0;
+                arg0->unk64_19 = 0;
+            }
+            func_800FFAB0(arg0);
+            break;
+        }
+        if ((s32)arg0->unk70_10 < 4 && (sp54 > 45.0f || sp54 < -45.0f)) {
+            func_80102424(arg0, 4);
+        }
+    }
+}
 
 /* extern */
 
