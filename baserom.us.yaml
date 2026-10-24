@@ -6804,7 +6804,7 @@ segments:
     subsegments: 
       - [0x01FF98E0, c, statueboss]
       - [0x01FFBCE0, .rodata, statueboss]
-      - [0x01FFBEA0, data, statueboss]
+      - [0x01FFBEA0, .data, statueboss]
       - [0x01FFC180, bss, statueboss]
   - name: chproplighter_header
     dir: overlays/chproplighter

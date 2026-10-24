@@ -1,10 +1,184 @@
 #include "common.h"
 
+struct Times { f32 values[6]; };
+struct Levels { f32 values[5]; };
+u32 D_80802670_chstatueboss[];
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_8080000C_chstatueboss();
+void func_80800298_chstatueboss(Actor *arg0);
+s32 func_80800934_chstatueboss(Actor *arg0, s32 arg1, s32 arg2);
+void func_80800B74_chstatueboss(Actor *arg0, s32 arg1);
+s16 func_80801724_chstatueboss(u8 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4);
+
+s16 D_808025C0_chstatueboss[][6] = {
+    0x0008, 0x0009, 0x000A, 0x000B,
+    0x000C, 0xFFFF, 0x000D, 0x000E,
+    0x000F, 0x0010, 0xFFFF, 0x0000,
+    0x0011, 0x0012, 0x0013, 0xFFFF,
+    0x0000, 0x0000, 0x0014, 0x0015,
+    0xFFFF, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000,
+};
+
+s16 D_808025FC_chstatueboss[][4] = {
+    0xFFFF, 0x0000, 0x0000, 0x0000,
+    0x0004, 0xFFFF, 0x0000, 0x0000,
+    0x0005, 0x0006, 0xFFFF, 0x0000,
+    0x0007, 0x0008, 0x0009, 0xFFFF,
+    0x0000, 0x0000, 0x0000, 0x0000,
+};
+
+s16 D_80802624_chstatueboss[] = {
+    0x0003, 0x0004, 0x0005, 0x0006,
+    0x0007, 0x0000,
+};
+
+f32 D_80802630_chstatueboss[] = {
+    30.0f, -50.0f,
+    70.0f, -90.0f,
+    110.0f,
+};
+
+s16 D_80802644_chstatueboss[] = {
+    0x0004, 0x0004, 0x0004, 0x0004,
+};
+
+f32 D_8080264C_chstatueboss[] = {
+    0.0f, 2400.0f,
+    2800.0f, 3200.0f,
+};
+
+u8 D_8080265C_chstatueboss[][2] = {
+    0x00, 0x35, 0x00, 0x41, 0x00, 0x40, 0x00, 0x50,
+    0x00, 0x51, 0x00, 0x4F,
+};
+
+u8 D_80802668_chstatueboss[] = {
+    0x00, 0x13, 0x04, 0xAC, 0x00, 0x02, 0x00, 0x00,
+};
+
+u32 D_80802670_chstatueboss[] = {
+    0x00000000, 0x00000000,
+    0x40200000, 0x03090044,
+    0x40200000, 0x03090044,
+    0x40200000, 0x03090002,
+    0x40666666, 0x030A0001,
+    0x40A00000, 0x03030202,
+    0x40666666, 0x03040001,
+    0x3F99999A, 0x03050044,
+    0x3F99999A, 0x03050002,
+    0x40666666, 0x03200001,
+    0x40666666, 0x03040001,
+    0x3F8CCCCD, 0x03060044,
+    0x3F8CCCCD, 0x03060002,
+    0x40666666, 0x03210001,
+    0x40666666, 0x03200001,
+    0x3F800000, 0x03070044,
+    0x3F800000, 0x03070002,
+    0x40666666, 0x03220001,
+    0x40666666, 0x03210001,
+    0x3F800000, 0x03080044,
+    0x3F800000, 0x03080002,
+    0x40666666, 0x030A0001,
+    0x40666666, 0x03220001,
+    0x40666666, 0x030A0001,
+    0x40533333, 0x030B0002,
+    0x00000000, 0x00000000,
+    0x40666666, 0x03040001,
+};
+
+u32 D_80802748_chstatueboss[] = {
+    0x01BC0447, 0x07F40001,
+    (u32)D_80802670_chstatueboss, (u32)func_80800298_chstatueboss,
+    (u32)func_80105834, (u32)func_80800B74_chstatueboss,
+    0x0000752F, 0x00000000,
+    0x00000000, 0x00000560,
+    0x00000000, (u32)func_80108ED0,
+    0x01D40000, (u32)func_8080000C_chstatueboss,
+    (u32)func_80107C2C, 0x80800402,
+    (u32)func_80800934_chstatueboss, 0x00000000,
+};
+
+u32 D_80802790_chstatueboss[] = {
+    0x001304CC, 0x000D00F3,
+    0x010C0002, 0x00000000,
+    0x001304F9, 0x000A00C0,
+    0x00020000,
+};
+
+u32 D_808027AC_chstatueboss[] = {
+    0x3DCCCCCD, 0x3E6147AE,
+    0x3EB33333, 0x3F000000,
+    0xBF800000,
+};
+
+s16 D_808027C0_chstatueboss[] = {
+    0x000A, 0x000E, 0x0012, 0x0016,
+};
+
+u32 D_808027C8_chstatueboss[] = {
+    0x001304F9, 0x000A00D9,
+    0x00020000,
+};
+
+s16 D_808027D4_chstatueboss[] = {
+    0x002A, 0x002E, 0x0036, 0x0042,
+    0x0052, 0x0000,
+};
+
+s16 D_808027E0_chstatueboss[] = {
+    0x0008, 0x000C, 0x0010, 0x0014,
+};
+
+u32 D_808027E8_chstatueboss[] = {
+    0x00000000, 0x00000000,
+    0x00000000, (u32)func_80801724_chstatueboss,
+};
+
+u32 D_808027F8_chstatueboss[] = {
+    0x001304AD, 0x001661A8,
+    0x00020000,
+};
+
+struct Times D_80802804_chstatueboss = {{0.4000000059604645f, 0.6100000143051147f, 0.7599999904632568f, 0.8700000047683716f, 0.9900000095367432f, -1.0f}};
+
+struct Levels D_8080281C_chstatueboss = {{0.699999988079071f, 0.6000000238418579f, 0.550000011920929f, 0.5f, 0.5f}};
+
+struct Levels D_80802830_chstatueboss = {{32000.0f, 30000.0f, 28000.0f, 26000.0f, 25000.0f}};
+
+s32 D_80802844_chstatueboss[] = {
+    0x001304BA, 0x0002001D,
+    0x001E0000,
+};
+
+s32 D_80802850_chstatueboss[] = {
+    0x001304F9, 0x000A00C0,
+    0x00020000,
+};
+
+s32 D_8080285C_chstatueboss[] = {
+    0x001D09DD, 0x002B0300,
+    0x04000022, 0x02800380,
+    0x04800580, 0x00150000,
+    0x00990019, 0x00000007,
+    0x002D0064, 0x0096001F,
+    0xDEA77100, 0x000B0096,
+    0x00C80064, 0x000A0000,
+};
+
+s32 D_80802894_chstatueboss[] = {
+    0x00130413, 0x00180002,
+    0x00000000,
+};
+void func_80800DA8_chstatueboss(Actor *, s32);
+
 void *func_80100094(Actor *, u32);
 
 OSThread *chstatueboss_entrypoint_0(void)
 {
-    extern u8 D_80802748_chstatueboss[];
 
     return (OSThread *) D_80802748_chstatueboss;
 }
@@ -41,7 +215,6 @@ void func_80800298_chstatueboss(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
     s32 func_80102320(Actor *, f32, f32);
     void func_80108B04(Actor *, u32);
-    void func_80800DA8_chstatueboss();
     void func_808011B4_chstatueboss(Actor *);
     void func_8080124C_chstatueboss(Actor *);
     void func_80801448_chstatueboss(Actor *);
@@ -51,8 +224,6 @@ void func_80800298_chstatueboss(Actor *arg0) {
     void func_80801AF0_chstatueboss(Actor *);
     void func_80801C78_chstatueboss(Actor *);
     void func_8080232C_chstatueboss(Actor *);
-    extern u32 D_80802790_chstatueboss;
-    extern u32 D_808027AC_chstatueboss;
     struct StatueBossData {
         u8 pad0[0x80];
         s32 effect;
@@ -107,7 +278,7 @@ void func_80800298_chstatueboss(Actor *arg0) {
         }
         break;
     case 5:
-        if (_subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80802790_chstatueboss, &D_808027AC_chstatueboss)) {
+        if (_subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80802790_chstatueboss[0], &D_808027AC_chstatueboss[0])) {
             func_800E15CC(0, 10.0f, 0.8f);
             func_80018820(0, 2.0f, 0.25f);
         }
@@ -246,7 +417,93 @@ void func_80800298_chstatueboss(Actor *arg0) {
     func_80801448_chstatueboss(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800934_chstatueboss.s")
+s32 func_80800934_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x84];
+        s16 unk84;
+        u8 pad86[0x148];
+        u8 unk1CE;
+    } StatueBossState;
+    void *func_80100094(Actor *, u32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    s32 func_800D395C(void);
+    u32 func_800FDC28(u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddiecustomhits_entrypoint_0(Actor *, void (*)(void));
+    void _chstatueboss_entrypoint_1(void);
+    void func_808010A0_chstatueboss(Actor *, s32, s32);
+    void func_80801320_chstatueboss(Actor *);
+    void func_80801518_chstatueboss(Actor *, Unk80132ED0 *);
+    void func_80801CA0_chstatueboss(Actor *);
+    void func_80801ECC_chstatueboss(Actor *);
+    void func_80801F74_chstatueboss(Actor *);
+    void func_808020EC_chstatueboss(Actor *);
+    void func_80802144_chstatueboss(Actor *);
+    void func_80802268_chstatueboss(Actor *);
+    StatueBossState *state;
+
+    state = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x2E:
+        func_808010A0_chstatueboss(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    default:
+        return 0;
+    case 0x40:
+        func_80801518_chstatueboss(arg0, *(Unk80132ED0 **)&arg2);
+        break;
+    case 0xB:
+        if (arg2 == 0x10) {
+            func_80800DA8_chstatueboss(arg0, 3);
+            return 4;
+        }
+        return 3;
+    case 0x3D:
+        switch (arg2) {
+        case 0:
+            func_80801ECC_chstatueboss(arg0);
+            break;
+        case 1:
+            func_80802144_chstatueboss(arg0);
+            break;
+        case 2:
+            func_80801F74_chstatueboss(arg0);
+            break;
+        case 3:
+            func_808020EC_chstatueboss(arg0);
+            break;
+        case 4:
+            func_80802268_chstatueboss(arg0);
+            break;
+        }
+        break;
+    case 0x90:
+        func_80801CA0_chstatueboss(arg0);
+        break;
+    case 0x32:
+        state->unk1CE = 1;
+        func_800F82D4(func_800F54E4(), 2);
+        break;
+    case 0x96:
+        if (func_800D395C() == 0) {
+            return 0;
+        }
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x146, arg0->position, 0xB2);
+        break;
+    case 0x9F:
+        func_800FDC28(0);
+        func_80800DA8_chstatueboss(arg0, D_808027C0_chstatueboss[state->unk84]);
+        break;
+    case 0x9C:
+        func_80801320_chstatueboss(arg0);
+        break;
+    case 0x95:
+        _subaddiecustomhits_entrypoint_0(arg0, _chstatueboss_entrypoint_1);
+        break;
+    }
+    return 1;
+}
 
 void func_80800B74_chstatueboss(Actor *arg0, s32 arg1)
 {
@@ -269,7 +526,6 @@ void func_80800B74_chstatueboss(Actor *arg0, s32 arg1)
 
 void func_80800BE0_chstatueboss(Actor *arg0) {
     void func_80801640_chstatueboss(Actor *, s32, s32);
-    extern s16 D_808025C0_chstatueboss[][6];
     struct StatueData {
         u8 flags[0x18];
         f32 timers[22];
@@ -308,7 +564,6 @@ void func_80800BE0_chstatueboss(Actor *arg0) {
 }
 
 void func_80800D30_chstatueboss(Actor *arg0) {
-    extern s16 D_808025C0_chstatueboss[][6];
     s32 index;
     s32 i;
     s32 offset;
@@ -327,15 +582,12 @@ void func_80800D30_chstatueboss(Actor *arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808010A0_chstatueboss.s")
 
 s32 func_808011A0_chstatueboss(s32 arg0) {
-    extern s16 D_808027D4_chstatueboss[];
     return ((s16 *)&D_808027D4_chstatueboss)[arg0];
 }
 
 void func_808011B4_chstatueboss(Actor *arg0) {
     f32 func_800136E4(f32);
     f32 func_800D8FF8(void);
-    extern f32 D_80802630_chstatueboss[];
-    extern s16 D_80802644_chstatueboss[];
     typedef struct {
         u8 pad[0x70];
         f32 angles[5];
@@ -357,7 +609,6 @@ void func_8080124C_chstatueboss(Actor *arg0) {
     f32 func_800F1F38(f32, f32, f32);
     int func_800F20BC(f32, f32, f32);
     f32 mlAbsF(f32);
-    extern f32 D_80802630_chstatueboss[];
     typedef struct {
         u8 pad[0x70];
         f32 angles[5];
@@ -382,7 +633,6 @@ void func_80801320_chstatueboss(Actor *arg0) {
     void func_800E0B8C(void *, u8, f32, f32, f32, f32);
     void func_800E0C20(void *, u8, f32, f32, f32, f32);
     s32 func_8010262C(Unk80132ED0 *, u32);
-    extern u8 D_8080265C_chstatueboss[][2];
     struct StatueData {
         u8 pad[0x70];
         f32 angles[5];
@@ -408,7 +658,6 @@ void func_80801320_chstatueboss(Actor *arg0) {
 
 void func_80801448_chstatueboss(Actor *arg0) {
     s32 func_800D9078(f32 *);
-    extern s16 D_808025C0_chstatueboss[][6];
     struct StatueData {
         u8 flags[0x18];
         f32 timers[27];
@@ -434,10 +683,6 @@ void func_80801518_chstatueboss(Actor *arg0, Unk80132ED0 *arg1) {
     s32 func_800DA298(s32);
     void func_800EC398(Unk80132ED0 *, f32 *);
     void func_800FC660(u32);
-    void func_80800DA8_chstatueboss(Actor *, s32, s32);
-    extern s16 D_808025C0_chstatueboss[][6];
-    extern s16 D_80802644_chstatueboss[];
-    extern s16 D_808027E0_chstatueboss[];
     struct StatueData {
         u8 flags[0x18];
         f32 timers[27];
@@ -470,7 +715,7 @@ void func_80801518_chstatueboss(Actor *arg0, Unk80132ED0 *arg1) {
                     limit = 100;
                 }
                 if (limit == data->hits) {
-                    func_80800DA8_chstatueboss(arg0, D_808027E0_chstatueboss[index], index);
+                    func_80800DA8_chstatueboss(arg0, D_808027E0_chstatueboss[index]);
                 }
                 break;
             }
@@ -479,7 +724,6 @@ void func_80801518_chstatueboss(Actor *arg0, Unk80132ED0 *arg1) {
 
 void func_80801640_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    extern s16 D_80802624_chstatueboss[];
     s8 *data;
     s32 offset;
 
@@ -490,13 +734,11 @@ void func_80801640_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chstatueboss_entrypoint_1(void)
 {
-    extern u8 D_808027E8_chstatueboss[];
 
     return (OSThread *) D_808027E8_chstatueboss;
 }
 
 s32 func_80801694_chstatueboss(Actor *arg0) {
-    extern s16 D_808025C0_chstatueboss[][6];
     struct StatueBossData {
         u8 pad[0x84];
         s16 index;
@@ -578,7 +820,6 @@ void func_80801804_chstatueboss(Actor *arg0, s32 arg1) {
         f32 distance;
         struct Part parts[6];
     } *data;
-    extern s16 D_808025FC_chstatueboss[][4];
     s32 boneIndex;
     s32 index;
     f32 position[3];
@@ -636,8 +877,7 @@ void func_80801A6C_chstatueboss(Actor *arg0, f32 arg1) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     void func_80018820(s32, f32, f32);
     s32 func_800E15CC(s32, f32, f32);
-    extern u32 D_80802790_chstatueboss;
-    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 4), &D_80802790_chstatueboss, arg1) != 0) {
+    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 4), &D_80802790_chstatueboss[0], arg1) != 0) {
         func_800E15CC(0, 20.0f, 0.8f);
         func_80018820(0, 3.0f, 0.25f);
     }
@@ -645,8 +885,7 @@ void func_80801A6C_chstatueboss(Actor *arg0, f32 arg1) {
 
 void func_80801AC4_chstatueboss(s32 arg0, s32 arg1) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
-    extern u32 D_808027F8_chstatueboss;
-    _subaddieaudioloop_entrypoint_4((Actor *) arg0, (f32 *) ((u8 *) arg0 + 4), arg1, &D_808027F8_chstatueboss);
+    _subaddieaudioloop_entrypoint_4((Actor *) arg0, (f32 *) ((u8 *) arg0 + 4), arg1, &D_808027F8_chstatueboss[0]);
 }
 
 void func_80801AF0_chstatueboss(Actor *arg0) {
@@ -655,12 +894,6 @@ void func_80801AF0_chstatueboss(Actor *arg0) {
     void func_800C4B70(s32);
     f32 func_800DC178(f32, f32);
     s32 func_80101E14(Actor *, f32);
-    struct Times { f32 values[6]; };
-    struct Levels { f32 values[5]; };
-    extern struct Times D_80802804_chstatueboss;
-    extern struct Levels D_8080281C_chstatueboss;
-    extern struct Levels D_80802830_chstatueboss;
-    extern s32 D_80802844_chstatueboss;
     struct Times times;
     struct Levels pitches;
     struct Levels volumes;
@@ -673,7 +906,7 @@ void func_80801AF0_chstatueboss(Actor *arg0) {
         if (func_80101E14(arg0, times.values[i])) {
             func_800C4B64(pitches.values[i] + func_800DC178(-0.05f, 0.05f));
             func_800C4B70((s32) volumes.values[i]);
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802844_chstatueboss);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802844_chstatueboss[0]);
             return;
         }
     }
@@ -681,8 +914,7 @@ void func_80801AF0_chstatueboss(Actor *arg0) {
 
 void func_80801C78_chstatueboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern s32 D_80802850_chstatueboss;
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802850_chstatueboss);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802850_chstatueboss[0]);
 }
 
 void func_80801CA0_chstatueboss(Actor *arg0) {
@@ -693,8 +925,6 @@ void func_80801CA0_chstatueboss(Actor *arg0) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_8080285C_chstatueboss;
-    extern s32 D_80802894_chstatueboss;
     s32 offset;
     struct StatueBossData {
         u8 pad[0x8C];
@@ -730,8 +960,8 @@ void func_80801CA0_chstatueboss(Actor *arg0) {
             func_80801640_chstatueboss(arg0, 4, 0);
             break;
     }
-    _subaddieaudioquick_entrypoint_2(sp34, sp34->position, &D_80802894_chstatueboss);
-    func_800BBCB8(sp34->position, sp34->position, 1.0f, 6, &D_8080285C_chstatueboss);
+    _subaddieaudioquick_entrypoint_2(sp34, sp34->position, &D_80802894_chstatueboss[0]);
+    func_800BBCB8(sp34->position, sp34->position, 1.0f, 6, &D_8080285C_chstatueboss[0]);
     sp34 = func_80106790(sp38->marker);
     sp34->position[1] -= arg0->scale * (f32)offset;
 }
@@ -777,8 +1007,6 @@ void func_80801ECC_chstatueboss(Actor *arg0) {
     s32 func_800DA298(s32);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern f32 D_8080264C_chstatueboss[];
-    extern u8 D_80802668_chstatueboss[];
     StatueBossData *sp1C;
     Actor *sp18;
     StatueBossData *temp_v0;
