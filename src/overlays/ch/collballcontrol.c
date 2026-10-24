@@ -1452,7 +1452,217 @@ s32 func_80803420_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/collballcontrol/func_80803484_chcollballcontrol.s")
+void func_80803484_chcollballcontrol(Actor *arg0) {
+    struct anctrl_s;
+    typedef struct { f32 v[3]; } BallVector;
+    typedef struct {
+        void *controller;
+        f32 timer;
+        f32 position[3];
+    } BallControl;
+    f32 func_80800070_chcollballcontrol();
+    f32 _subaddiejoy_entrypoint_3();
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_14(Actor *);
+    f32 _sukickball_entrypoint_15(s32);
+    void _sukickball_entrypoint_16(s32, f32 *);
+    void _sukickball_entrypoint_2(Actor *, f32, f32);
+    s32 _sukickball_entrypoint_5(Actor *, f32 *);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800EFCD8(s32 *, f32, s32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    struct anctrl_s *func_80104248(void *);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80803E18_chcollballcontrol(Actor *);
+    void func_80803F70_chcollballcontrol(Actor *);
+    void func_8080405C_chcollballcontrol(u8 *);
+    s32 func_8080451C_chcollballcontrol(Actor *);
+    void func_8080486C_chcollballcontrol(Actor *);
+    extern BallVector D_808050A4_chcollballcontrol;
+    extern s32 D_808050B0_chcollballcontrol[];
+    BallControl *sp64;
+    Actor *sp60;
+    f32 sp5C;
+    BallVector sp50;
+    s32 pad4C;
+
+    sp64 = func_80100094(arg0, 0);
+    sp5C = func_800D8FF8();
+    sp60 = func_80106790(arg0->unk3C);
+    func_800BD2D0(sp64->controller);
+    sp64->timer -= sp5C;
+    switch (arg0->unk70_10) {
+    case 10:
+        ((f32 *)arg0->actorData)[5] = 0.0f;
+        ((f32 *)arg0->actorData)[3] = _subaddiejoy_entrypoint_3(arg0);
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+            ((f32 *)arg0->actorData)[3] = func_800F10B4(((f32 *)arg0->actorData)[3], 0.0f, 1.0f, 0.0f, func_80800070_chcollballcontrol(arg0));
+        } else {
+            ((f32 *)arg0->actorData)[3] = func_800F10B4(((f32 *)arg0->actorData)[3], 0.0f, 1.0f, 0, func_80800040_chcollballcontrol(arg0));
+        }
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0) && func_800BCFC4(sp64->controller, 1)) {
+            arg0->unk58 = func_800F10B4((s32)func_800BCD78(sp64->controller, 1, 1) * func_800D8FF8(), 0.0f, 1.0f, 450.0f, 900.0f);
+            arg0->unk64_20 = 1;
+        }
+        func_8080486C_chcollballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chcollballcontrol(arg0), func_80800040_chcollballcontrol(arg0));
+        if (func_800BD030(sp64->controller, 9)) {
+            func_8080324C_chcollballcontrol(arg0, 8);
+        }
+        break;
+    case 8:
+        if (arg0->unk50 == 0) {
+            if (func_80101E14(arg0, 0.3077f)) {
+                anctrl_setPlaybackType(func_80104248(arg0), 3);
+                arg0->unk50 = 1.0f;
+                ((f32 *)arg0->actorData)[3] = 1050.0f;
+                func_800B4470((u8 *)arg0->position, 0, D_808050B0_chcollballcontrol, 1, 0.75f, 0.0f, 125, 250, 0);
+            }
+        } else if (arg0->unk50 != 0) {
+            arg0->unk50 += sp5C;
+            if (arg0->unk50 > 2.5f || ((f32 *)arg0->actorData)[3] < 150.0f) {
+                func_8080324C_chcollballcontrol(arg0, 2);
+                ((f32 *)arg0->actorData)[3] = func_8080009C_chcollballcontrol(arg0);
+            } else {
+                ((f32 *)arg0->actorData)[3] *= 0.9f;
+            }
+        }
+        ((f32 *)arg0->actorData)[5] = 0;
+        func_800EEB9C(&((f32 *)arg0->actorData)[4], arg0->rotation[1], ((f32 *)arg0->actorData)[3] * sp5C);
+        func_800EF04C(arg0->position, &((f32 *)arg0->actorData)[4]);
+        if (arg0->unk64_29) {
+            _subaddiejoy_entrypoint_3(arg0);
+            if (!func_80102CF4(arg0, 0x41000000)) {
+                func_80102B2C(arg0, 8.0f);
+            }
+        }
+        func_8080405C_chcollballcontrol((u8 *)arg0);
+        break;
+    case 12:
+        if (((f32 *)arg0->actorData)[3] < 150.0f) {
+            func_8080324C_chcollballcontrol(arg0, 2);
+            ((f32 *)arg0->actorData)[3] = func_8080009C_chcollballcontrol(arg0);
+        } else {
+            ((f32 *)arg0->actorData)[3] *= 0.9f;
+        }
+        ((f32 *)arg0->actorData)[5] = 0.0f;
+        func_800EEB9C(&((f32 *)arg0->actorData)[4], arg0->unk54, ((f32 *)arg0->actorData)[3] * sp5C);
+        func_800EF04C(arg0->position, &((f32 *)arg0->actorData)[4]);
+        break;
+    case 2:
+        if (arg0->unk64_29) {
+            func_8080324C_chcollballcontrol(arg0, 10);
+            arg0->unk58 = 0.0f;
+        }
+        if (!func_8080451C_chcollballcontrol(arg0)) {
+            func_8080324C_chcollballcontrol(arg0, 1);
+        }
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+            if (func_800DC0C0() < 0.95f) {
+                func_8080324C_chcollballcontrol(arg0, 5);
+            } else {
+                ((f32 *)arg0->actorData)[7] = func_800DC178(0.0f, 2.5f);
+                func_8080324C_chcollballcontrol(arg0, 4);
+            }
+        }
+        func_8080486C_chcollballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chcollballcontrol(arg0), func_80800040_chcollballcontrol(arg0));
+        break;
+    case 1:
+        _sukickball_entrypoint_16(arg0->unk6C_0, (f32 *)arg0->actorData);
+        func_8080486C_chcollballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chcollballcontrol(arg0), func_80800040_chcollballcontrol(arg0));
+        if (func_8080451C_chcollballcontrol(arg0)) {
+            func_8080324C_chcollballcontrol(arg0, 2);
+        }
+        if (func_800EFFB4(arg0->position, 50.0f, (f32 *)arg0->actorData)) {
+            func_8080324C_chcollballcontrol(arg0, 3);
+        }
+        break;
+    case 3:
+        if (func_8080451C_chcollballcontrol(arg0)) {
+            func_8080324C_chcollballcontrol(arg0, 2);
+        }
+        _sukickball_entrypoint_14(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chcollballcontrol(arg0), func_80800040_chcollballcontrol(arg0));
+        break;
+    case 4:
+        sp50 = D_808050A4_chcollballcontrol;
+        if (((f32 *)arg0->actorData)[7] > 0.0f) {
+            ((f32 *)arg0->actorData)[7] -= sp5C;
+        } else {
+            func_8080324C_chcollballcontrol(arg0, 5);
+        }
+        if (!_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+            func_8080324C_chcollballcontrol(arg0, 1);
+        }
+        _sukickball_entrypoint_16(arg0->unk6C_0, (f32 *)arg0->actorData);
+        func_800EFCD8((s32 *)sp50.v, _sukickball_entrypoint_15(arg0->unk6C_0), 0x437A0000);
+        func_800EF04C((f32 *)arg0->actorData, sp50.v);
+        if (func_800F0064(arg0->position, 100.0f, (f32 *)arg0->actorData) || _sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0) == 3) {
+            func_8080324C_chcollballcontrol(arg0, 5);
+        }
+        func_8080486C_chcollballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chcollballcontrol(arg0), func_80800040_chcollballcontrol(arg0));
+        break;
+    case 5:
+        func_80803E18_chcollballcontrol(arg0);
+        func_80803F70_chcollballcontrol(arg0);
+        func_8080324C_chcollballcontrol(arg0, 6);
+        break;
+    case 6:
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+            func_80803F70_chcollballcontrol(arg0);
+        } else {
+            func_8080324C_chcollballcontrol(arg0, 2);
+        }
+        break;
+    case 7:
+        if (((f32 *)arg0->actorData)[7] > 0.0f) {
+            ((f32 *)arg0->actorData)[7] -= sp5C;
+        } else {
+            func_8080324C_chcollballcontrol(arg0, 2);
+        }
+        func_8080486C_chcollballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chcollballcontrol(arg0), func_80800040_chcollballcontrol(arg0));
+        break;
+    case 9:
+        arg0->unk58 = 0.0f;
+        arg0->unk64_20 = 0;
+        arg0->rotation[1] += ((f32 *)arg0->actorData)[7];
+        if (((f32 *)arg0->actorData)[7] > 1.0f) {
+            ((f32 *)arg0->actorData)[7] *= 0.95f;
+        } else if (((f32 *)arg0->actorData)[7] < -1.0f) {
+            ((f32 *)arg0->actorData)[7] *= 0.95f;
+        } else {
+            func_8080324C_chcollballcontrol(arg0, 2);
+            ((f32 *)arg0->actorData)[7] = 0.0f;
+        }
+        break;
+    }
+    if (_sukickball_entrypoint_5(arg0, sp64->position)) {
+        if (arg0->unk70_10 == 8) {
+            func_8080324C_chcollballcontrol(arg0, 2);
+        } else if (!arg0->unk64_29) {
+            func_808032CC_chcollballcontrol((u8 *)arg0, 0);
+        }
+    } else {
+        func_800EE7F8(sp64->position, arg0->position);
+    }
+}
 
 s32 func_80803D54_chcollballcontrol(s32 arg0, s32 arg1) {
     s32 func_800DC128(s32, s32);
