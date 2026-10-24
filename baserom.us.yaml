@@ -12065,7 +12065,7 @@ segments:
     subsegments: 
       - [0x020E3B70, c, familymother]
       - [0x020E4DE0, .rodata, familymother]
-      - [0x020E4EB0, data, familymother]
+      - [0x020E4EB0, .data, familymother]
       - [0x020E5030, bss, familymother]
   - name: chmumbohealspell_header
     dir: overlays/chmumbohealspell
