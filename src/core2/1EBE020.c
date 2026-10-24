@@ -52,7 +52,104 @@ s32 func_800E47CC(void) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E488C.s")
+s32 func_800E488C(s32 arg0) {
+    extern void *D_8012D560;
+    s32 heap_alloc(s32);
+    void heap_free(void *);
+    void func_8001311C(u8 *, s32);
+    s32 func_800D5A6C(s32);
+    s32 func_800E4B1C(s32);
+    s32 func_800E4D28(void *);
+    s32 func_800E4E54(void *);
+    int func_800E5EC0();
+    s32 func_800E659C(void *);
+    s32 func_800E6728(void *);
+    s32 index;
+    u8 *state;
+    s32 size;
+    s32 status;
+    u32 result;
+
+    index = func_800E4730(arg0);
+    if (index == -1) {
+        index = func_800E47CC();
+        if (index < 0) return 0;
+        (&D_8012D560)[index] = heap_alloc(0x40);
+        *((u8 *)(&D_8012D560)[index] + 0x38) = 1;
+        *(s16 *)((u8 *)(&D_8012D560)[index] + 0x3A) = arg0;
+        *(s16 *)((u8 *)(&D_8012D560)[index] + 0x3C) = 2500;
+    }
+    state = (&D_8012D560)[index];
+    if (state[0x38] == 0) return 1;
+    switch (state[0x38]) {
+    case 1:
+        *(void **)(state + 0x34) = NULL;
+        *(s32 *)(state + 0xC) = 0;
+        *(s32 *)(state + 0x10) = 0;
+        *(s32 *)(state + 0x14) = 0;
+        *(void **)(state + 0x28) = heap_alloc(0x2800);
+        *(s32 *)(state + 0x30) = func_800D5A6C(*(s16 *)(state + 0x3A));
+        *(void **)state = heap_alloc(0x1800);
+        func_8001311C(*(u8 **)state, *(s32 *)(state + 0x30));
+        *(s32 *)(state + 0x30) += 0x1800;
+        size = **(u32 **)state;
+        size = (u32)size >> 16;
+        size *= 16;
+        *(s32 *)(state + 4) = 2;
+        *(void **)(state + 0x34) = heap_alloc(size);
+        if (*(void **)(state + 0x34) == NULL) {
+            func_800E4B1C(index);
+            return 0;
+        }
+        *(void **)(state + 8) = *(void **)(state + 0x34);
+        state[0x38] = 2;
+        return 0;
+    case 2:
+        *(s32 *)(state + 0x2C) = 0;
+        result = 0;
+        status = func_800E4D28(state);
+        switch (status) {
+        case 2:
+            do {
+                func_800E5EC0((void *)state);
+            } while (++result < 0);
+            state[0x38] = 3;
+            break;
+        case 0:
+            func_800E6728(state);
+            state[0x38] = 4;
+            return 0;
+        case 1:
+            func_800E659C(state);
+            state[0x38] = 4;
+            break;
+        }
+        return 0;
+    case 3:
+        if (func_800E4E54(state) == 0) state[0x38] = 4;
+        return 0;
+    case 4:
+        if (state[0x39]) {
+            if (*(void **)(state + 0x28) != NULL) {
+                heap_free(*(void **)(state + 0x28));
+                *(void **)(state + 0x28) = NULL;
+            }
+            if (*(void **)state != NULL) {
+                heap_free(*(void **)state);
+                *(void **)state = NULL;
+            }
+            state[0x38] = 0;
+            osWritebackDCache(*(void **)(state + 0x34), *(s32 *)(state + 0x14));
+            return 1;
+        } else {
+            state[0x38] = 2;
+            return 0;
+        }
+    case 0:
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 

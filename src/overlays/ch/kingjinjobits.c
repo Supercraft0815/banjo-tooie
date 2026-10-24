@@ -10,7 +10,96 @@ OSThread *chkingjinjobits_entrypoint_0(void)
 void func_8080000C_chkingjinjobits(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/kingjinjobits/func_80800014_chkingjinjobits.s")
+void func_80800014_chkingjinjobits(u8 *arg0) {
+
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_14();
+    s32 _glcutDll_entrypoint_0();
+    s32 _glcutDll_entrypoint_12(s32);
+    s32 _glcutDll_entrypoint_16();
+    s32 _glcutDll_entrypoint_22(s32);
+    s32 _glcutDll_entrypoint_7(s32);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800BEA88(s32);
+    void func_800BF744(s32, s32);
+    s32 func_800D9078(u8 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    s32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8010C500(u8 *);
+    s32 func_8010D23C();
+    extern s32 _chkingjinjobits_entrypoint_1;
+    s32 sp24;
+    s32 sp20;
+    s32 temp_v0;
+
+    switch (((Actor *)arg0)->unk70_10) {
+    case 2:
+        if ((func_8010D23C() != 0) && (func_8010C500(arg0) != 0)) {
+            func_800DA544(0x367);
+            _subaddiedialog_entrypoint_11((*(s32 *)((s8 *)(arg0) + (0))), 0x1537, 0x44, 0, 0x97);
+            _capod_entrypoint_13((*(s32 *)((s8 *)(arg0) + (0))), 0, 9, 0x10);
+            func_80101FDC(arg0, 1);
+            return;
+        }
+    default:
+        return;
+    case 3:
+        if (((Actor *)arg0)->unk64_19 && ((Actor *)arg0)->unk64_20) {
+            func_800F82D4(func_800F54E4(), 0);
+            _capod_entrypoint_14();
+            _glcutDll_entrypoint_0();
+            _glcutDll_entrypoint_7(0x18E);
+            _glcutDll_entrypoint_22(0x68);
+            _glcutDll_entrypoint_12(1);
+            _glcutDll_entrypoint_16();
+            return;
+        }
+        break;
+    case 4:
+        if (func_800DA298(0x67A) != 0) {
+            func_800BF744(3, 1);
+            func_800DA544(0x360);
+            func_80101FDC(arg0, 5);
+            return;
+        }
+        break;
+    case 5:
+        sp24 = func_800D9078(arg0 + 0x58);
+        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (*(s32 *)((s8 *)(arg0) + (0))));
+        if (sp24 != 0) {
+            func_800BF744(3, 0);
+            func_800FFAB0(arg0);
+            return;
+        }
+        break;
+    case 6:
+        if (func_800DA298(0x67B) != 0) {
+            func_80101FDC(arg0, 7);
+            func_800BF744(3, 1);
+        }
+        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (*(s32 *)((s8 *)(arg0) + (0))));
+        return;
+    case 7:
+        sp20 = func_800D9078(arg0 + 0x58);
+        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (*(s32 *)((s8 *)(arg0) + (0))));
+        if (sp20 != 0) {
+            func_800BF744(1, 1);
+            func_800BF744(2, 0);
+            func_800BF744(3, 0);
+            func_800DA524(0x360);
+            func_800DA544(0x3B);
+            func_800DA524(0x1A5);
+            func_800FFAB0(arg0);
+        }
+        break;
+    }
+}
 
 /* extern */
 

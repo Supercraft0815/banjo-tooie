@@ -577,7 +577,112 @@ void func_80800D30_chstatueboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_80800DA8_chstatueboss.s")
+/* extern */
+
+void func_80800DA8_chstatueboss(Actor *arg0, s32 arg1) {
+    void * func_80100094(Actor *, u32);
+    void func_80800D30_chstatueboss(Actor *arg0);
+    void func_80801640_chstatueboss(Actor *arg0, s32 arg1, s32 arg2);
+    void func_80801E24_chstatueboss(Actor *arg0, u32 arg1, u32 arg2);
+    void func_80801E90_chstatueboss(Actor *arg0);
+    s32 _chexploder_entrypoint_5(Actor *, s32, f32 *, s32, f32, s32);
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _gcfrontend_entrypoint_9(s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800CE88C(s32, s32);
+    s32 func_800CE8D8(s32, s32, s32);
+    s32 func_800DA544(s32);
+    u32 func_800FDC28(u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+    s32 func_8010A570(Actor *);
+    s32 func_8010A590(Actor *);
+    s32 var_s0;
+    u8 *temp_s0;
+
+    temp_s0 = func_80100094(arg0, 0U);
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 2:
+        func_80801E24_chstatueboss(arg0, 0x10U, 0x30U);
+        func_80101180(0x450, 8, 0);
+        return;
+    case 3:
+        func_80801E24_chstatueboss(arg0, 0U, 0x30U);
+        func_80108B04(arg0, 3);
+        func_800FDC28(1);
+        return;
+    case 5:
+        var_s0 = 0;
+        do {
+            func_80801640_chstatueboss(arg0, var_s0, 1);
+            var_s0 += 1;
+        } while (var_s0 != 4);
+        _chintrotext_entrypoint_1(0x18B9, 4, 1, 0);
+        func_80801E24_chstatueboss(arg0, 6U, 0x30U);
+        func_80101180(0x449, 7, 0);
+        func_80108B04(arg0, 4);
+        return;
+    case 8:
+        (*(s16 *)((s8 *)(temp_s0) + (0x88))) = 0;
+        (*(s16 *)((s8 *)(temp_s0) + (0x84))) = 1;
+        _chexploder_entrypoint_5(arg0, 0x7C8, arg0->position, (*(s32 *)((s8 *)(temp_s0) + (0x70))), arg0->scale, 0);
+        return;
+    case 12:
+        (*(s16 *)((s8 *)(temp_s0) + (0x88))) = 0;
+        (*(s16 *)((s8 *)(temp_s0) + (0x84))) = 2;
+        _chexploder_entrypoint_5(arg0, 0x7C9, arg0->position, (*(s32 *)((s8 *)(temp_s0) + (0x74))), arg0->scale, 0);
+        return;
+    case 16:
+        (*(s16 *)((s8 *)(temp_s0) + (0x88))) = 0;
+        (*(s16 *)((s8 *)(temp_s0) + (0x84))) = 3;
+        _chexploder_entrypoint_5(arg0, 0x7CA, arg0->position, (*(s32 *)((s8 *)(temp_s0) + (0x78))), arg0->scale, 0);
+        return;
+    case 9:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xF35, 6, arg0->position, 0xB2);
+        func_80801E24_chstatueboss(arg0, 0xAU, 0x30U);
+        /* fallthrough */
+    case 13:
+    case 17:
+    case 21:
+        func_80108B04(arg0, 1);
+        return;
+    case 7:
+        func_800FDC28(2);
+        func_800DA544(0x88);
+        _gcfrontend_entrypoint_9(0x23);
+        func_80801E90_chstatueboss(arg0);
+        /* fallthrough */
+    case 11:
+    case 15:
+    case 19:
+        func_8010A590(arg0);
+        func_80800D30_chstatueboss(arg0);
+        return;
+    case 20:
+        (*(s16 *)((s8 *)(temp_s0) + (0x88))) = 0;
+        func_8010A570(arg0);
+        _chexploder_entrypoint_5(arg0, 0x7CB, arg0->position, (*(s32 *)((s8 *)(temp_s0) + (0x7C))), arg0->scale, 0);
+        return;
+    case 23:
+        func_80801E24_chstatueboss(arg0, 0x14U, 0x30U);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xF36, 6, arg0->position, 0xB2);
+        return;
+    case 24:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808027C8_chstatueboss);
+        func_800CE88C(0, 1);
+        func_800CE8D8(0, 0x40400000, 3);
+        return;
+    case 25:
+        (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
+        arg0->unk58 = 6.0f;
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_808010A0_chstatueboss.s")
 

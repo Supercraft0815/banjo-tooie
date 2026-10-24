@@ -62,7 +62,43 @@ void func_8080012C_chquizremotectrl(s32 *arg0) {
     func_80800000_chquizremotectrl((Actor *)arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_808001BC_chquizremotectrl.s")
+void func_808001BC_chquizremotectrl(Actor *arg0, s32 arg1) {
+    s32 _glglobalsettings_entrypoint_3();
+    f32 _suquiz_entrypoint_8(s32);
+    void _suquiz_entrypoint_25(void);
+    void func_800FC660(u32);
+    void func_800FC74C(u32);
+    void func_80102424(Actor *, s32);
+    s32 state;
+
+    func_80102424(arg0, arg1);
+    state = arg0->unk70_10;
+    switch (state) {
+        case 1:
+            if (_glglobalsettings_entrypoint_3()) {
+                ((f32 *)arg0->actorData)[3] = -300.0f;
+            } else {
+                ((f32 *)arg0->actorData)[3] = -500.0f;
+            }
+            func_800FC660(0x1E);
+            ((f32 *)arg0->actorData)[7] = 1.0f;
+            func_8080012C_chquizremotectrl((s32 *)arg0);
+            break;
+        case 2:
+            func_800FC74C(0x1E);
+            arg0->unk58 = _suquiz_entrypoint_8(0);
+            func_80800000_chquizremotectrl(arg0, 1);
+            break;
+        case 3:
+            func_800FC660(0x1D);
+            ((f32 *)arg0->actorData)[7] = 1.0f;
+            func_80800000_chquizremotectrl(arg0, 3);
+            break;
+        case 5:
+            func_800FC74C(0x1D);
+            _suquiz_entrypoint_25();
+    }
+}
 
 /* extern */
 
@@ -70,7 +106,7 @@ void func_808002C8_chquizremotectrl(Actor *arg0) {
     s32 _suquiz_entrypoint_1();
     s32 _suquiz_entrypoint_5();
     s32 func_800D90A4(f32 *);
-    s32 func_808001BC_chquizremotectrl(Actor *, s32);
+    void func_808001BC_chquizremotectrl(Actor *, s32);
 
     _suquiz_entrypoint_1();
     switch (arg0->unk70_10) {
@@ -106,7 +142,7 @@ void func_808003A0_chquizremotectrl(s32 arg0)
 void func_808003A8_chquizremotectrl(Actor *arg0) {
     void func_800CEA38(s32, s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_808001BC_chquizremotectrl(Actor *, s32);
+    void func_808001BC_chquizremotectrl(Actor *, s32);
     func_800CEA38(0, 1);
     func_800EFA4C(arg0->position, 0.0f, 0.0f, 0.0f);
     arg0->rotation[2] = 0.0f;

@@ -49,7 +49,102 @@ void func_80800018_chdippy(Actor *actor) {
     func_80800654_chdippy(actor, flag);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_808000D8_chdippy.s")
+/* extern */
+
+void func_808000D8_chdippy(Actor *arg0) {
+    void func_80800530_chdippy(Actor *arg0);
+    void func_80800654_chdippy(Actor *arg0, s32 arg1);
+    void func_80800800_chdippy(Actor *arg0);
+    void func_80800948_chdippy(Actor *arg0);
+    void func_80800990_chdippy(Actor *arg0);
+    void func_80800D44_chdippy(u8 *arg0);
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, s32);
+    s32 func_808009D8_chdippy(Actor *);
+
+    switch (((Actor *)arg0)->unk70_10) {
+    case 1:
+        func_80800530_chdippy(arg0);
+        return;
+    case 3:
+        if (func_80101E14(arg0, 0x3F19999A) != 0) {
+            _chintrotext_entrypoint_1(0x18B9, 0xE, 1, 0);
+        }
+        func_80800800_chdippy(arg0);
+        if (func_80101DDC(arg0) != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17E9, 6, arg0->position, 0xAC);
+            func_80800654_chdippy(arg0, 5);
+            return;
+        }
+    default:
+        return;
+    case 4:
+        func_80800948_chdippy(arg0);
+        if (func_80101DDC(arg0) != 0) {
+            if (func_800DA298(0x327) != 0) {
+                func_80800654_chdippy(arg0, 0xA);
+                return;
+            }
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17EA, 7, arg0->position, 0xAC);
+            func_80800654_chdippy(arg0, 5);
+            return;
+        }
+        break;
+    case 6:
+        if (func_80101DDC(arg0) != 0) {
+            func_80800D44_chdippy((u8 *) arg0);
+            func_80800654_chdippy(arg0, 1);
+            return;
+        }
+        break;
+    case 7:
+        func_80800990_chdippy(arg0);
+        if (func_80101DDC(arg0) != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17EB, 6, arg0->position, 0xAC);
+            func_80800654_chdippy(arg0, 8);
+            return;
+        }
+        break;
+    case 9:
+        if (func_80101DDC(arg0) != 0) {
+            func_80800D44_chdippy((u8 *) arg0);
+            func_80800654_chdippy(arg0, 1);
+            return;
+        }
+        break;
+    case 10:
+        func_808009D8_chdippy(arg0);
+        if (func_80101DDC(arg0) != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17EC, 6, arg0->position, 0xAC);
+            func_80800654_chdippy(arg0, 8);
+            return;
+        }
+        break;
+    case 11:
+        if (func_80101DDC(arg0) != 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17ED, 7, arg0->position, 0xAC);
+            func_80800654_chdippy(arg0, 0xC);
+            return;
+        }
+        break;
+    case 13:
+        if (func_80101DDC(arg0) != 0) {
+            func_80800D44_chdippy((u8 *) arg0);
+            func_80800654_chdippy(arg0, 1);
+            return;
+        }
+        break;
+    case 14:
+        func_80800990_chdippy(arg0);
+        if (func_80101DDC(arg0) != 0) {
+            func_80800654_chdippy(arg0, 0xF);
+        }
+        break;
+    }
+}
 
 s32 func_80800374_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
     void _glcutDll_entrypoint_17(void);

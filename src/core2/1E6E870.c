@@ -70,4 +70,47 @@ void func_800951B4(PlayerState *player) {
     func_8009518C(player, 1, 0.034f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6E870/func_800951F4.s")
+void func_800951F4(PlayerState *player) {
+    f32 func_800D8FF8(void);
+    f32 dt;
+    f32 eye_position;
+    int i;
+
+    dt = func_800D8FF8();
+    for (i = 0; i < 4; i++) {
+        eye_position = func_80094F88(player, i);
+        switch ((*(EyeStateView **)((u8 *)player + 0x78))[i].state) {
+            case 1:
+                eye_position += dt / (*(EyeStateView **)((u8 *)player + 0x78))[i].duration;
+                if (1.0f < eye_position) {
+                    eye_position = 1.0f;
+                    (*(EyeStateView **)((u8 *)player + 0x78))[i].state = 2;
+                }
+                func_80095004(player, i, eye_position);
+                break;
+            case 2:
+                (*(EyeStateView **)((u8 *)player + 0x78))[i].state = 3;
+                break;
+            case 3:
+            case 4:
+                eye_position -= dt / (*(EyeStateView **)((u8 *)player + 0x78))[i].duration;
+                if (eye_position < 0.0f) {
+                    eye_position = 0.0f;
+                    (*(EyeStateView **)((u8 *)player + 0x78))[i].state = 0;
+                }
+                func_80095004(player, i, eye_position);
+                break;
+            case 5:
+                eye_position += dt / (*(EyeStateView **)((u8 *)player + 0x78))[i].duration;
+                if (1.0f < eye_position) {
+                    eye_position = 1.0f;
+                    (*(EyeStateView **)((u8 *)player + 0x78))[i].state = 0;
+                }
+                func_80095004(player, i, eye_position);
+                break;
+            case 0:
+            default:
+                break;
+        }
+    }
+}

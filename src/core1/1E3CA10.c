@@ -130,7 +130,45 @@ void func_80025820(AudioSeq *seq, AudioSeqMarker *m, u32 ticks) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_8002597C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025BF0.s")
+u32 func_80025BF0(AudioSeq *arg0, u32 arg1) {
+    struct Stream {
+        s32 header[6];
+        u8 *input[32];
+        u8 *repeat[32];
+        u8 count[32];
+    };
+    volatile u8 spF, spE, spD, spC, spB;
+    volatile int sp4;
+
+    if (*(volatile u8 *)((u32)arg0 + (u32)arg1 + 0x118)) {
+        spF = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x98);
+        ((volatile struct Stream *)arg0)->repeat[(u32)arg1] = ((volatile struct Stream *)arg0)->repeat[arg1] + 1;
+        ((volatile struct Stream *)arg0)->count[(u32)arg1] = ((volatile struct Stream *)arg0)->count[arg1] - 1;
+    } else {
+        spF = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+        ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
+        if (spF == 0xFE) {
+            spB = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+            ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
+            if (spB != 0xFE) {
+                spD = spB;
+                spE = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+                ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
+                spC = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+                ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
+                sp4 = spD;
+                sp4 <<= 8;
+                sp4 += spE;
+                ((volatile struct Stream *)arg0)->repeat[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] - sp4 - 4;
+                ((volatile struct Stream *)arg0)->count[(u32)arg1] = spC;
+                spF = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x98);
+                ((volatile struct Stream *)arg0)->repeat[(u32)arg1] = ((volatile struct Stream *)arg0)->repeat[arg1] + 1;
+                ((volatile struct Stream *)arg0)->count[(u32)arg1] = ((volatile struct Stream *)arg0)->count[arg1] - 1;
+            }
+        }
+    }
+    return spF;
+}
 
 u32 func_80025DE4(AudioSeq *seq, u32 track) {
     u32 func_80025BF0(AudioSeq *, u32);

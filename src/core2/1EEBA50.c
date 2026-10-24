@@ -92,7 +92,40 @@ void func_80112398(u8 *arg0) {
     func_800EFD24((f32 *)(*(s32 **)((s8 *)(arg0) + (0x30))) + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEBA50/func_801123D4.s")
+void func_801123D4(PlayerState *arg0) {
+    s32 func_800EE7F8(f32 *, s32);
+    u32 func_8010FFD0(u8 *);
+    s32 func_80110898(s32 *);
+    void func_80111F70(u8 *, u8 *, u8 *, void *, f32 *);
+    f32 sp2C[3];
+
+    switch (**(s32 **)((u8 *)arg0 + 0x30)) {
+        case 1:
+        case 5:
+            func_801121B8(arg0, sp2C);
+            break;
+        case 4:
+            func_801121D8((s32 *)arg0, sp2C);
+            break;
+        case 3:
+            func_80112250((s32 *)arg0, sp2C);
+            break;
+        case 2:
+            func_80112204((s32 *)arg0, sp2C);
+            break;
+        case 6:
+            func_80112354(arg0, (s32)sp2C);
+            break;
+    }
+    if (func_8010FFD0((u8 *)func_80110898((s32 *)arg0))) {
+        func_800EE7F8((f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 4), (s32)sp2C);
+    } else {
+        func_80111F70((u8 *)arg0, (u8 *)sp2C,
+            *(u8 **)((u8 *)arg0 + 0x30) + 4,
+            *(u8 **)((u8 *)arg0 + 0x30) + 0x10,
+            (f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x14));
+    }
+}
 
 void func_801124D0(s32 arg0, s32 arg1) { s32 temp_a2; volatile s32 **temp_a1; temp_a2 = arg1; if (arg1 == 6) { temp_a1 = (volatile s32 **)((s8 *)(arg0) + 0x30); func_801121B8((PlayerState *) arg0, (f32 *)((s8 *)*temp_a1 + 0x28)); } **(s32 ***)((s8 *)(arg0) + 0x30) = temp_a2; }
 

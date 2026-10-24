@@ -25,11 +25,10 @@ void func_8009CFE8(PlayerState *self) {
     f32 func_800F1344(f32, f32, f32, f32, f32);
     f32 yaw_getIdeal(PlayerState *);
     void yaw_setIdeal(PlayerState *, f32);
-    extern f32 D_80125350;
     f32 stick = bastick_getX(self);
     f32 change;
 
-    if (mlAbsF(stick) > D_80125350) {
+    if (mlAbsF(stick) > 0.03f) {
         change = func_800F1344(stick, 0.0f, 1.0f, 1.0f, 6.0f);
     } else {
         change = 0.0f;
@@ -37,7 +36,71 @@ void func_8009CFE8(PlayerState *self) {
     yaw_setIdeal(self, yaw_getIdeal(self) + change);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E76880/func_8009D088.s")
+s32 func_8009D088(void *self) {
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    f32 func_800F1DCC(f32, f32);
+    f32 mlAbsF(f32);
+    f32 yaw_get(PlayerState *);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_set(PlayerState *, f32);
+    void yaw_setIdeal(PlayerState *, f32);
+    void yaw_update(PlayerState *);
+    f32 angle;
+
+    switch (**(s32 **)((u8 *)self + 0xFC)) {
+        case 0:
+        case 2:
+            break;
+        case 1:
+            if (bastick_distance(self) != 0.0f) {
+                yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self));
+            }
+            yaw_update(self);
+            break;
+        case 5:
+            if (bastick_distance(self) != 0.0f) {
+                yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self) + 180.0f);
+            }
+            yaw_update(self);
+            break;
+        case 3:
+            yaw_update(self);
+            break;
+        case 6:
+            func_8009CFE8(self);
+            yaw_update(self);
+            break;
+        case 4:
+            if (bastick_distance(self) != 0.0f) {
+                yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self));
+                yaw_set(self, yaw_getIdeal(self));
+            }
+            yaw_update(self);
+            break;
+        case 7:
+            if (bastick_distance(self) != 0.0f) {
+                angle = bastick_getAngleRelativeToBanjo(self);
+                if (mlAbsF(func_800F1DCC(yaw_getIdeal(self), angle)) >=
+                    *(f32 *)((u8 *)*(void **)((u8 *)self + 0xFC) + 4)) {
+                    yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self));
+                }
+            }
+            yaw_update(self);
+            break;
+        case 8:
+            if (bastick_distance(self) != 0.0f) {
+                yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self));
+            } else {
+                yaw_setIdeal(self, yaw_get(self));
+            }
+            yaw_update(self);
+            break;
+        case 9:
+            yaw_update(self);
+            break;
+    }
+}
 
 void func_8009D2D8(PlayerState *arg0, s32 arg1) {
     **(s32 **)((u8 *)arg0 + 0xFC) = arg1;

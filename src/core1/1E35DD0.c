@@ -82,7 +82,40 @@ void func_8001E490(void) {
     osDestroyThread(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E35DD0/func_8001E4B0.s")
+void func_8001E4B0(void) {
+    extern s32 D_8007E948;
+    void func_8001E380(void);
+
+    switch (D_8007E948) {
+    case 0:
+        func_8001E2C8();
+        break;
+    case 1:
+        func_8001E304();
+        break;
+    case 2:
+        func_8001E34C();
+        break;
+    case 3:
+        func_8001E380();
+        break;
+    case 4:
+        func_8001E418();
+        break;
+    case 5:
+        func_8001E3E0();
+        break;
+    case 6:
+        func_8001E44C();
+        break;
+    case 7:
+        func_8001E490();
+        break;
+    default:
+        func_8001E3A0();
+        break;
+    }
+}
 
 void func_8001E578(s32 arg0) { extern s32 D_8007E94C, D_8007E958; OSThread *func_8001DDA4(s32); void func_8001E7B4(s32); void func_8001E4B0(void); void _gzpublic_entrypoint_0(s32); func_8001E7B4(1); osSetThreadPri(func_8001DDA4(D_8007E958), 0); osSetThreadPri(func_8001DDA4(7), 0x5B); func_8001E4B0(); _gzpublic_entrypoint_0(D_8007E94C); }
 

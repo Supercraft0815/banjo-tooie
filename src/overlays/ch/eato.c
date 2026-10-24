@@ -121,7 +121,95 @@ void func_808003C4_chcheato(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800434_chcheato.s")
+/* extern */
+
+void func_80800434_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80102424(Actor *, s32);
+    int func_80800824_chcheato(s32 *arg0);
+    s32 func_80800888_chcheato(void);
+    s32 func_80800BB8_chcheato(void);
+    s32 func_80800C0C_chcheato(void);
+    void func_80800CC0_chcheato(void *arg0);
+    s32 _capod_entrypoint_14();
+    s32 _glcutDll_entrypoint_17();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieitem_entrypoint_2(s32);
+    s32 func_800C01A8(s32, s32);
+    s32 func_800C0850();
+    s32 func_800D1A04(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    void * func_80100094(Actor *, u32);
+    s32 sp2C;
+
+    switch (arg1) {
+    case 0x1144:
+        _subaddieitem_entrypoint_2(func_80100094(arg0, 1));
+        func_80102424(arg0, 3);
+        return;
+    case 0x115D:
+        _subaddiedialog_entrypoint_11(arg0->unk0, func_80800888_chcheato(), 0xE, arg0->position, 0x37);
+        return;
+    case 0x1142:
+        if (func_800D1A04(0x4A) != 0) {
+            sp2C = 0xE;
+            _subaddiedialog_entrypoint_11(arg0->unk0, func_80800824_chcheato(&sp2C), sp2C, arg0->position, 0x37);
+            return;
+        }
+        func_800C01A8(0x64, 0);
+        func_800C0850();
+        func_80102424(arg0, 1);
+        func_80800CC0_chcheato(arg0);
+        return;
+    case 0x1145:
+        if (func_80800C0C_chcheato() != 0) {
+            func_80102424(arg0, 4);
+            return;
+        }
+        func_80102424(arg0, 1);
+        func_80800CC0_chcheato(arg0);
+        return;
+    case 0x1147:
+        func_80102424(arg0, 4);
+        return;
+    case 0x1148:
+        func_800DA544(0x69);
+        if (func_80800C0C_chcheato() != 0) {
+            func_80102424(arg0, 4);
+            return;
+        }
+        func_80102424(arg0, 1);
+        func_80800CC0_chcheato(arg0);
+        return;
+    case 0x114B:
+    case 0x114C:
+    case 0x114D:
+    case 0x114E:
+    case 0x114F:
+        if ((func_800D1A04(0x4A) >= 5) && (func_80800BB8_chcheato() != -1)) {
+            _subaddieitem_entrypoint_2(func_80100094(arg0, 1));
+            func_80102424(arg0, 3);
+            return;
+        }
+        if (func_800DA298(0x69) == 0) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1148, 0xE, arg0->position, 0x37);
+            return;
+        }
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x115E, 0xE, arg0->position, 0x37);
+        return;
+    case 0x1143:
+        _capod_entrypoint_14();
+        _glcutDll_entrypoint_17();
+        return;
+    case 0x115E:
+        func_80102424(arg0, 4);
+        return;
+    default:
+        func_80102424(arg0, 1);
+        func_80800CC0_chcheato(arg0);
+        return;
+    }
+}
 
 void func_808006B8_chcheato(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);

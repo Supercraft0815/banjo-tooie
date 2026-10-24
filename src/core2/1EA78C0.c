@@ -91,8 +91,7 @@ s32 func_800CE438(u8 *arg0, s32 arg1) {
 
 void func_800CE49C(u8 *arg0, s32 arg1, s32 arg2) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    extern f32 D_801259C0;
-    (*(s16 *)(arg0 + 0xA)) = (s32) (func_800F10B4(*(f32 *)arg0, 0.0f, *(f32 *)(arg0 + 0xC), 1.0f, (f32) *(s16 *)(arg0 + 0x10) + 1.0f) - D_801259C0);
+    (*(s16 *)(arg0 + 0xA)) = (s32) (func_800F10B4(*(f32 *)arg0, 0.0f, *(f32 *)(arg0 + 0xC), 1.0f, (f32) *(s16 *)(arg0 + 0x10) + 1.0f) - 0.0001f);
     if (arg2 != 0) {
         func_800CE3F4(arg0, arg1);
     }
@@ -305,7 +304,49 @@ void func_800CEBD8(s32 arg0, s32 arg1) {
     func_800D284C(*(s16 *)((u8 *)&D_8011AA30 + arg0 * 6));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEC94.s")
+void func_800CEC94(u8 *arg0, s32 arg1, s32 arg2) {
+    s32 func_800C2FDC(u8);
+    void func_800C3BDC(u8);
+    u8 func_800C4350(s32, f32[3], s32 *);
+    void func_800FC6B0(u32);
+    s32 func_800FC74C(s32);
+    void func_800FCD14(s32, s32);
+    extern s32 D_8011AA68;
+    extern s32 D_8012B030;
+    s32 active;
+    s32 music;
+    s32 sound;
+
+    music = *(f32 *)arg0 > 1.0f && *(f32 *)arg0 < 5.0f;
+    sound = *(f32 *)arg0 > 0.0f && *(f32 *)arg0 < 1.0f;
+    active = *(s8 *)(arg0 + 0x12) > 0 && !arg0[0x13] && !arg0[0x14] && (!arg2 || arg0[0x15]);
+    if (!active) {
+        sound = 0;
+        music = 0;
+    }
+    if (music || sound || arg0[0x16]) {
+        if (music) {
+            if (!((u8 *)&D_8012B030)[0x121]) {
+                func_800FC6B0(0x92);
+                ((u8 *)&D_8012B030)[0x121] = 1;
+            }
+            func_800FCD14(0x92, (s32)(((*(f32 *)arg0 - 1.0f) * 200000.0f) / (5.0f - 1.0f) + 200000.0f));
+        } else if (((u8 *)&D_8012B030)[0x121]) {
+            func_800FC74C(0x92);
+            ((u8 *)&D_8012B030)[0x121] = 0;
+        }
+        if (sound) {
+            if (!((u8 *)&D_8012B030)[0x120]) {
+                ((u8 *)&D_8012B030)[0x120] = func_800C4350(0, 0, &D_8011AA68);
+            }
+            func_800C3BDC(((u8 *)&D_8012B030)[0x120]);
+        } else if (((u8 *)&D_8012B030)[0x120]) {
+            func_800C2FDC(((u8 *)&D_8012B030)[0x120]);
+            ((u8 *)&D_8012B030)[0x120] = 0;
+        }
+        arg0[0x16] = music || sound;
+    }
+}
 
 f32 func_800CEF00(s32 arg0) {
     extern f32 D_8011AA80;

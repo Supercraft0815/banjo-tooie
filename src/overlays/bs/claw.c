@@ -48,7 +48,73 @@ void bsclaw_entrypoint_1(struct player_state_s *arg0) {
     func_8009E55C(arg0, 2, 40.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/claw/bsclaw_entrypoint_2.s")
+/* extern */
+
+void bsclaw_entrypoint_2(s32 arg0) {
+
+    s32 _batimer_decrement(s32, s32);
+    f32 _batimer_get(s32, s32);
+    f32 anctrl_getAnimTimer(s32);
+    s32 anctrl_isAt(s32, s32);
+    s32 anctrl_isStopped(s32);
+    s32 baanim_getAnimCtrlPtr();
+    void baflag_clear(struct player_state_s *, s32);
+    s32 baflag_set(s32, s32);
+    s32 bakey_pressed(s32, s32);
+    s32 baphysics_set_horizontal_velocity(s32, f32, s32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    s32 bs_getTypeOfJump(s32);
+    s32 bs_setState(s32, s32);
+    s32 func_8009DE38(s32, s32, s32);
+    s32 player_inWater(s32);
+    f32 yaw_get(s32);
+    s32 sp24;
+    s32 sp20;
+    f32 sp1C;
+    s32 temp_v0;
+
+    temp_v0 = baanim_getAnimCtrlPtr();
+    sp24 = temp_v0;
+    sp20 = 0;
+    sp1C = anctrl_getAnimTimer(temp_v0);
+    if ((_batimer_get(arg0, 0) != 0.0f) && (bakey_pressed(arg0, 9) != 0)) {
+        sp20 = 0x189;
+    }
+    _batimer_decrement(arg0, 0);
+    if (anctrl_isAt(sp24, 0x3F034D6A) != 0) {
+        baphysics_set_horizontal_velocity(arg0, yaw_get(arg0), 0x43B40000);
+    }
+    if (anctrl_isAt(sp24, 0x3F2765FE) != 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0);
+    }
+    if ((anctrl_isAt(sp24, 0x3E185F07) != 0) || ((sp1C > 0.0488f) && (sp1C < 0.24880001f)) || (anctrl_isAt(sp24, 0x3EA85879) != 0) || ((sp1C > 0.2288f) && (sp1C < 0.4288f)) || (anctrl_isAt(sp24, 0x3F142C3D) != 0) || ((sp1C > 0.47880003f) && (sp1C < 0.67880005f))) {
+        baflag_set(arg0, 0x1F);
+    } else {
+        baflag_clear(arg0, 0x1F);
+    }
+    if (anctrl_isAt(sp24, 0x3F142C3D) != 0) {
+        baphysics_set_target_horizontal_velocity(arg0, 0);
+    }
+    if (anctrl_isAt(sp24, 0x3DF34D6A) != 0) {
+        func_8009DE38(arg0, 0x442C, 0x3F90A3D7);
+    }
+    if (anctrl_isAt(sp24, 0x3E93DD98) != 0) {
+        func_8009DE38(arg0, 0x442C, 0x3F8CCCCD);
+    }
+    if (anctrl_isAt(sp24, 0x3F000000) != 0) {
+        func_8009DE38(arg0, 0x442C, 0x3FA8F5C3);
+    }
+    if (anctrl_isStopped(sp24) != 0) {
+        sp20 = 1;
+    }
+    if (player_inWater(arg0) != 0) {
+        sp20 = 0x4C;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        sp20 = bs_getTypeOfJump(arg0);
+    }
+    bs_setState(arg0, sp20);
+}
 
 s32 bsclaw_entrypoint_3(s32 arg0) {
     extern s32 D_80800400_bsclaw[];
