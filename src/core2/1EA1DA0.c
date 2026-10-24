@@ -750,7 +750,40 @@ void *func_800C9750(f32 time, s32 cnt, void *funcPtr, s32 arg0, s32 arg1, s32 ar
     return retVal;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA1DA0/func_800C986C.s")
+void func_800C986C(void *arg0) {
+    typedef struct {
+        s32 unk0;
+        u8 count;
+        void (*callback)();
+        s32 args[5];
+        u8 data[1];
+    } Callback;
+    Callback *entry = (Callback *)arg0;
+
+    switch (entry->count) {
+        case 0:
+            ((void (*)(void))entry->callback)();
+            break;
+        case 1:
+            ((void (*)(s32))entry->callback)(entry->args[0]);
+            break;
+        case 2:
+            ((void (*)(s32, s32))entry->callback)(entry->args[0], entry->args[1]);
+            break;
+        case 3:
+            ((void (*)(s32, s32, s32))entry->callback)(entry->args[0], entry->args[1], entry->args[2]);
+            break;
+        case 4:
+            ((void (*)(s32, s32, s32, s32))entry->callback)(entry->args[0], entry->args[1], entry->args[2], entry->args[3]);
+            break;
+        case 5:
+            ((void (*)(s32, s32, s32, s32, s32))entry->callback)(entry->args[0], entry->args[1], entry->args[2], entry->args[3], entry->args[4]);
+            break;
+        case 6:
+            ((void (*)(void *))entry->callback)(entry->data);
+            break;
+    }
+}
 
 void func_800C9974()
 {
