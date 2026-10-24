@@ -21,7 +21,194 @@ void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80800060_chfantasyathlete.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80800314_chfantasyathlete.s")
+s32 func_80800314_chfantasyathlete(s32 arg0) {
+    s32 _gcgoto_entrypoint_1(s32, s32);
+    s32 func_80016B30(s32, s32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    s32 func_800EA05C(void);
+    s32 func_800F5410(s32);
+    f32 func_800F549C(s32, int);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5C94(s32);
+    s32 func_800F64A4(s32, s32);
+    int func_800F6720(s32);
+    s32 func_800F6C5C(s32);
+    s32 func_800FCCD4(s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    f32 func_80105B0C(Actor *, f32);
+    void func_8010C908(s32, s32);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_8080094C_chfantasyathlete(Actor *, s32);
+    s32 func_80801114_chfantasyathlete(s32, f32 *, f32 *, f32 *, f32, f32 *, f32 *);
+    void func_80801718_chfantasyathlete(Actor *);
+    void func_80801974_chfantasyathlete(Actor *);
+    s32 func_80802730_chfantasyathlete(Actor *, s32, s32, s16, s16, s32);
+    s32 func_80802950_chfantasyathlete(Actor *);
+    s32 func_8080298C_chfantasyathlete(Actor *, f32 *, f32 *, f32 *, f32);
+    void func_80802D38_chfantasyathlete(void *);
+    f32 *data;
+    s32 text1;
+    s32 text2;
+    f32 position[3];
+
+    data = func_80100094((Actor *)arg0, 0);
+    switch (((Actor *)arg0)->unk70_10) {
+        case 1:
+            text1 = 0;
+            switch (func_800F5410(func_800F54E4())) {
+                case 1:
+                    text1 = 0x13E0;
+                    text2 = 0x13E1;
+                    break;
+                case 10:
+                    text1 = 0x1454;
+                    text2 = 0x13E1;
+                    break;
+                case 11:
+                    text1 = 0x1455;
+                    text2 = 0x1456;
+                    break;
+            }
+            if (text1 != 0) {
+                func_80802730_chfantasyathlete((Actor *)arg0, 0x3D9, 0x1F4, text1, text2, 0);
+            }
+            if (!func_800F6720(func_800F54E4()) && func_800DA298(0x3D9)) {
+                func_800F5A00(func_800F54E4(), position);
+                if (func_80801114_chfantasyathlete((s32)arg0, data + 3, data + 6, data, data[9], position, (f32 *)&((Actor *)arg0)->actorData[5])) {
+                    func_8080094C_chfantasyathlete((Actor *)arg0, 2);
+                }
+            }
+            break;
+        case 2:
+            if (func_800F6C5C(func_800F54E4())) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_800D90A4(&((Actor *)arg0)->unk58)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 4);
+            }
+            break;
+        case 4:
+            func_80802730_chfantasyathlete((Actor *)arg0, 0, 0, 0x13E2, 0, 0);
+            break;
+        case 5:
+            if (func_80802950_chfantasyathlete((Actor *)arg0)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, ((Actor *)arg0)->unk70_10 + 1);
+            }
+            break;
+        case 6:
+        case 7:
+        case 20:
+        case 21:
+            func_80801718_chfantasyathlete((Actor *)arg0);
+            func_80105834((Actor *)arg0);
+            if (func_80105A5C((Actor *)arg0)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, ((Actor *)arg0)->unk70_10 + 1);
+            }
+            break;
+        case 8:
+            if (func_800F64A4(func_800F54E4(), 0x200) && func_800F5C94(func_800F54E4()) == 12) {
+                if (func_800D90A4(&((Actor *)arg0)->unk58)) {
+                    func_80802730_chfantasyathlete((Actor *)arg0, 0, 0x1F4, func_800DA298(0x341) ? 0x1435 : 0x1434, 0, 1);
+                }
+            } else {
+                ((Actor *)arg0)->unk58 = 2.0f;
+                func_80802730_chfantasyathlete((Actor *)arg0, 0x3DA, 0x1F4, 0x13E3, 0x13E4, 0);
+            }
+            break;
+        case 11:
+            ((Actor *)arg0)->unk54 = func_80105B0C((Actor *)arg0, 0.0f);
+            func_80802950_chfantasyathlete((Actor *)arg0);
+            break;
+        case 12:
+            if (func_8080298C_chfantasyathlete((Actor *)arg0, data + 13, data + 16, data + 10, data[19])) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 13);
+                func_800DA544(0x341);
+            }
+            break;
+        case 14:
+            func_80802730_chfantasyathlete((Actor *)arg0, 0, 0, 0x13E7, 0, 1);
+            break;
+        case 15:
+            func_80802730_chfantasyathlete((Actor *)arg0, 0, 0, 0x13E6, 0, 0);
+            break;
+        case 17:
+            if (func_80802950_chfantasyathlete((Actor *)arg0)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 18);
+            }
+            break;
+        case 18:
+            if (!func_8010C9B0(((Actor *)arg0)->position, 500) || func_80016B30(0, 1)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 8);
+            }
+            break;
+        case 19:
+            if (func_80802950_chfantasyathlete((Actor *)arg0)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 20);
+            }
+            break;
+        case 22:
+            if (func_800F549C(func_800F54E4(), 3) > 0.0f) {
+                func_80802730_chfantasyathlete((Actor *)arg0, 0x448, 500, 0x1437, 0x1437, 1);
+            } else {
+                func_80802730_chfantasyathlete((Actor *)arg0, 0x3DB, 500, 0x13E8, 0x13E9, 1);
+            }
+            break;
+        case 25:
+            ((Actor *)arg0)->unk54 = func_80105B0C((Actor *)arg0, 0.0f);
+            func_80802950_chfantasyathlete((Actor *)arg0);
+            break;
+        case 26:
+            if (func_8080298C_chfantasyathlete((Actor *)arg0, data + 23, data + 26, data + 20, data[29])) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 27);
+            }
+            break;
+        case 27:
+            if (!func_800FCCD4(0x16) && !func_800FCCD4(0x17)) {
+                _gcgoto_entrypoint_1(func_800EA05C(), 0x18);
+            }
+            break;
+        case 28:
+            func_80802730_chfantasyathlete((Actor *)arg0, 0, 0, 0x13EC, 0, 1);
+            break;
+        case 29:
+            func_80802730_chfantasyathlete((Actor *)arg0, 0, 0, 0x13EB, 0, 0);
+            break;
+        case 31:
+            if (func_80802950_chfantasyathlete((Actor *)arg0)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 32);
+            }
+            break;
+        case 32:
+            if (!func_8010C9B0(((Actor *)arg0)->position, 500) || func_80016B30(0, 1)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 22);
+            }
+            break;
+        case 33:
+            func_80801718_chfantasyathlete((Actor *)arg0);
+            func_80105834((Actor *)arg0);
+            if (func_80105A5C((Actor *)arg0)) {
+                func_80802D38_chfantasyathlete((Actor *)arg0);
+                func_80800000_chfantasyathlete((s32)arg0, 0);
+                func_800FFA88(((Actor *)arg0)->unk0);
+            }
+            break;
+        case 34:
+            if (func_80101DDC((Actor *)arg0)) {
+                func_8080094C_chfantasyathlete((Actor *)arg0, 35);
+            }
+            break;
+    }
+    func_8010C908((s32)arg0, (s32)((Actor *)arg0)->position);
+    func_80801974_chfantasyathlete((Actor *)arg0);
+}
 
 struct AthletePaths {
         u8 pad0[0x78];
