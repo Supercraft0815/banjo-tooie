@@ -115,7 +115,107 @@ void func_800EA148(s32 arg0) {
     _gsworldDll_entrypoint_3(&D_80132DC0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EA170.s")
+s32 func_800EA170(void) {
+    s32 _idworld_entrypoint_5();
+    s32 _sulights_entrypoint_9();
+    void func_8001B50C(void);
+    void func_8008B850(void);
+    void func_800A1450(void);
+    s16 func_800A8184(void);
+    void func_800A8E9C(void);
+    void func_800ABA9C(void);
+    void func_800B50F0(void);
+    void func_800B592C(void);
+    void func_800B7E38(void);
+    void func_800BF710(void);
+    void func_800BF7E0(void);
+    void func_800BFCC4(s32);
+    void func_800BFF70(void);
+    void func_800C0438(void);
+    void func_800C57F0(void);
+    void func_800C718C(void);
+    void func_800C7494(void);
+    void func_800C8A08(void);
+    s32 func_800CE628();
+    void func_800CF264(void);
+    void func_800D154C(void);
+    void func_800D2574(void);
+    void func_800D5270(void);
+    s32 func_800D6E54(s32);
+    void func_800D8744(void);
+    s32 func_800DAE9C();
+    s32 func_800DBC68();
+    s32 func_800E1804();
+    void func_800E8A68(void);
+    void func_800E97C0(void);
+    s32 func_800EE718();
+    s32 func_800EE748();
+    s32 func_800F84FC();
+    s32 func_800FA2C0();
+    s32 func_800FFBE4();
+    s32 func_800FFBEC();
+    s32 func_800FFD10(s32);
+    s32 func_80100534();
+    s32 func_80100C74();
+    s32 func_8010D7EC();
+    extern struct Vector *D_80127EF0;
+    extern s32 D_80127EF8;
+    extern s16 D_80132DCA;
+    func_800C718C();
+    func_800D8744();
+    func_800FA2C0();
+    if (func_800A8184() != 4) {
+        func_800B7E38();
+    }
+    if (D_80132DCA == 0) {
+        return 1;
+    } else {
+        func_800FFBE4();
+        func_800EE718();
+        if (D_80127EF8 != 0) {
+            _idworld_entrypoint_5();
+        }
+        func_800E97C0();
+        func_8010D7EC();
+        func_800EE748();
+        func_800F84FC();
+        func_800BF710();
+        func_800B592C();
+        func_8008B850();
+        func_800E1804();
+        func_800A8E9C();
+        func_800CF264();
+        func_800CE628();
+        func_800D2574();
+        if (func_800EA09C() == 2) {
+            func_800A1450();
+            func_800DAE9C();
+        }
+        func_800C57F0();
+        if (D_80127EF0 != 0) {
+            _sulights_entrypoint_9();
+        }
+        func_800BFCC4(1);
+        func_8001B50C();
+        func_800D6E54(1);
+        func_800ABA9C();
+        func_800BFF70();
+        func_800B50F0();
+        func_800DBC68();
+        func_800E8A68();
+        func_800D5270();
+        func_800C0438();
+        func_800FFD10(1);
+        func_800C7494();
+        func_80100534();
+        func_80100C74();
+        func_800FFBEC();
+        func_800BF7E0();
+        func_800C8A08();
+        func_800D154C();
+    }
+    return 1;
+}
 
 void func_800EA334(s32 arg0) {
     extern s16 D_80132DCA;
