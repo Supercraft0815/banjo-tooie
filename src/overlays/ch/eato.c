@@ -81,7 +81,43 @@ void func_80800068_chcheato(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eato/func_80800204_chcheato.s")
+s32 func_80800204_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80800434_chcheato(Actor *, s32, s32);
+    void func_80800AB4_chcheato(s32, s32, s32, s32);
+    s32 func_80800C64_chcheato(void *, s32, s32);
+    void *func_80101080(void);
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    extern u32 D_80800E50_chcheato;
+
+    switch (arg1) {
+    case 0x2E:
+        func_80800434_chcheato(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x49:
+        if (arg2 == 1) {
+            arg0->unk64_19 = 1;
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1143, 4, arg0->position, 0x37);
+            _capod_entrypoint_13(arg0->unk0, NULL, 1, 0x830);
+        }
+        break;
+    case 0x20:
+        func_80800AB4_chcheato((s32)arg0, (s32)func_80101080(), ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800E50_chcheato, arg0->scale);
+        break;
+    case 0x95:
+        arg0->unk64_20 = 0;
+        break;
+    case 0x57:
+        return func_80800C64_chcheato(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080035C_chcheato(void *arg0, s32 arg1)
 {
