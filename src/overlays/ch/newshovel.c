@@ -23,7 +23,97 @@ void func_80800310_chnewshovel(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_80800330_chnewshovel.s")
+void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+s32 func_80800330_chnewshovel(Actor *arg0, s32 arg1, s32 *arg2) {
+    void _chskeletonexplode_entrypoint_3(Actor *, s32, s32);
+    void _chskeletonexplode_entrypoint_8(Actor *, s32);
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void _subaddiejoy_entrypoint_10(void *, s32, s32);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    void _suexpression_entrypoint_13(void *, f32 *, f32 *);
+    void _suexpression_entrypoint_14(void *, f32, f32);
+    s32 _suexpression_entrypoint_20();
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void func_800DF744(s32, s32);
+    void func_800EFD24(f32 *);
+    void func_800FFAB0(Actor *);
+    void func_80101010(f32 *);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80107070(Actor *, u32);
+    void func_8010A570(Actor *);
+    s32 func_808006B0_chnewshovel(Actor *, s32);
+    s32 func_80800DC8_chnewshovel(s32);
+    extern u8 D_80800FFC_chnewshovel[];
+    void *sp3C;
+    void *temp;
+    s32 **data = &arg2;
+    s32 *ptr;
+    f32 sp2C;
+    f32 sp28;
+
+    switch (arg1) {
+    case 0x1F:
+        func_801015D0(arg0);
+        func_800DF744(3, 1);
+        break;
+    case 0x95:
+        sp3C = (void *)_suexpression_entrypoint_7(arg0, 1, 0x5A);
+        _suexpression_entrypoint_12(sp3C, 0x428C0000, 0x41200000);
+        _suexpression_entrypoint_14(sp3C, 1.0f, 1.0f);
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    case 0x40:
+        {
+            ptr = *data;
+            _chskeletonexplode_entrypoint_8(arg0, *ptr + 4);
+        }
+        func_8010A570(arg0);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800FFC_chnewshovel);
+        _subaddiejoy_entrypoint_10(arg0, 0x3F800000, 0x3E800000);
+        arg0->unk64_24 = 0;
+        break;
+    case 0xF:
+        _chskeletonexplode_entrypoint_3(func_80106790(func_80101080()), 3, 2);
+        if (func_80107070(arg0, 3) == 0) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    case 0x8F:
+        if (arg2 == NULL) {
+            func_808006B0_chnewshovel(arg0, 1);
+        }
+        break;
+    case 0x2:
+        if (_subaddieDll_entrypoint_3(arg0) == 0) {
+            if (func_80107070(arg0, 1) == 0) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+        } else {
+            func_808006B0_chnewshovel(arg0, 6);
+        }
+        break;
+    case 0x38:
+        return func_80800DC8_chnewshovel((s32)arg0);
+    case 0x94:
+        temp = (void *)_suexpression_entrypoint_20(arg0);
+        if (temp == NULL) {
+            return 0;
+        }
+        func_800EFD24(&sp28);
+        _suexpression_entrypoint_13(temp, &sp2C, &sp28);
+        func_80101010(&sp28);
+        break;
+    default:
+        return 0;
+    case 1:
+        break;
+    }
+    return 1;
+}
 
 void func_80800570_chnewshovel(s32 arg0) {
     s32 _subaddieaudioquick_entrypoint_3(s32, s32, s32 *, s32);
