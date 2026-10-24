@@ -514,7 +514,80 @@ s32 func_80800D80_bsbfly(PlayerState *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800F10_bsbfly.s")
+void func_80800F10_bsbfly(PlayerState *arg0) {
+    void _bafly_entrypoint_11(void *);
+    s32 _bafly_entrypoint_12(void *);
+    void _bafly_entrypoint_6(PlayerState *, f32);
+    s32 _batimer_decrement(void *, s32);
+    void _batimer_set(PlayerState *, s32, f32);
+    s32 _chusefeather_entrypoint_1(s32, s32);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex();
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int bakey_held(PlayerState *, s32);
+    int bakey_released(PlayerState *, int);
+    void bs_setState(PlayerState *, s32);
+    void func_8009DDDC(PlayerState *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF3DC(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 next_state = 0;
+    struct anctrl_s *anim;
+    f32 position[3];
+    s32 pad[2];
+
+    anim = baanim_getAnimCtrlPtr(arg0);
+    _bafly_entrypoint_11(arg0);
+    func_8009DDDC(arg0);
+    switch (arg0->unk160.word) {
+    case 1:
+        if (anctrl_isAt(anim, 0.6905f)) {
+            func_80800A24_bsbfly(arg0, 2);
+        }
+        break;
+    case 2:
+        func_80800C38_bsbfly(arg0);
+        if (anctrl_isStopped(anim)) {
+            anctrl_setIndex(anim, 0x47);
+            anctrl_setDuration(anim, 0.3f);
+            anctrl_setPlaybackType(anim, 2);
+            anctrl_start(anim);
+        }
+        func_8009C128(arg0, position);
+        func_800EF3DC(position, (f32 *)arg0->kazfly + 1);
+        _bafly_entrypoint_6(arg0, func_800F10B4(func_800EEFD4(position), 0.0f, 16000000.0f, 0.2f, 0.7f));
+        if (func_800EEFD4(position) > 16000000.0f) {
+            if (bakey_held(arg0, 9)) {
+                func_80800A24_bsbfly(arg0, 3);
+            } else {
+                next_state = 0x57;
+            }
+        }
+        func_80800000_bsbfly(arg0);
+        next_state = func_80800D80_bsbfly(arg0, next_state);
+        break;
+    case 3:
+        func_80800C38_bsbfly(arg0);
+        if (bakey_released(arg0, 9)) {
+            next_state = 0x57;
+        } else if (_batimer_decrement(arg0, 1)) {
+            if (_bafly_entrypoint_12(arg0)) {
+                _chusefeather_entrypoint_1(arg0->unk184, 0);
+                _batimer_set(arg0, 1, 1.0f);
+            } else {
+                next_state = 0x57;
+            }
+        }
+        func_80800000_bsbfly(arg0);
+        next_state = func_80800D80_bsbfly(arg0, next_state);
+        break;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void func_80801138_bsbfly(s32 arg0)
 {
