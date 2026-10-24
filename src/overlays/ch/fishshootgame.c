@@ -610,7 +610,51 @@ void func_80801568_chfishshootgame(Actor *arg0) {
     func_80801424_chfishshootgame(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808015DC_chfishshootgame.s")
+void func_808015DC_chfishshootgame(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_800DA298(s32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80101FDC(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    void func_808003B0_chfishshootgame(Actor *, s32);
+    extern u8 D_80801A74_chfishshootgame[];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            func_80101FDC(arg0, 2);
+            break;
+        case 2:
+            func_80801358_chfishshootgame(arg0);
+            func_808013B8_chfishshootgame(arg0);
+            if (func_800DA298(0) != 0) {
+                func_80801424_chfishshootgame(arg0, 5);
+            } else if (func_800EEAD4(arg0->position, (f32 *)arg0->actorData) < 100.0f) {
+                func_80801424_chfishshootgame(arg0, 3);
+            }
+            break;
+        case 4:
+            if (0.0f != arg0->rotation[0]) {
+                arg0->rotation[0] *= 0.75f;
+            }
+            if (func_80101E14(arg0, 0.999f) != 0) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+            break;
+        case 3:
+            if (func_80101E14(arg0, 0.54f) != 0) {
+                func_808003B0_chfishshootgame(func_80106790(arg0->unk3C), 5);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801A74_chfishshootgame);
+                func_8010A570(arg0);
+            }
+            if (func_80101E14(arg0, 0.999f) != 0) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+            break;
+    }
+}
 
 /* extern */
 
