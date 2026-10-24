@@ -188,7 +188,7 @@ void func_808007F8_chhumba(Actor *arg0) {
 
 /* extern */
 
-void func_80800878_chhumba(void *arg0) {
+s32 func_80800878_chhumba(void *arg0) {
     s32 func_800DA298(s32);
     func_800DA298(((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0xD5);
 }
@@ -624,7 +624,184 @@ void func_8080144C_chhumba(f32 arg0) {
     } while (var_s0 != D_8080272C_chhumba);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_808015DC_chhumba.s")
+void *func_80100094(Actor *, u32);
+
+void func_808015DC_chhumba(Actor *arg0) {
+    u32 _chbaddiesetup_entrypoint_0(u32 *);
+    s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void func_8008F964(f32 *);
+    void func_8008FB10(s32, f32, f32, f32);
+    s32 func_8008FE14(void);
+    s32 func_80090178(s32);
+    s32 func_800902E4(f32 *, f32, s32, Actor **);
+    s32 func_800903D0(f32 *);
+    void func_800904F4(s32, Unk80132ED0 *);
+    s32 func_80090818(void);
+    s32 func_800C0638(void);
+    void func_800D1824(s32);
+    s32 func_800D1A04(s32);
+    f32 func_800D8FF8(void);
+    s32 func_800EA05C(void);
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_8010D254(f32 *);
+    extern u32 _chglowbo_entrypoint_4;
+    f32 sp44[3];
+    f32 sp38[3];
+    s32 sp34;
+    f32 temp_f0;
+    s32 sp2C;
+
+    _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    func_8080144C_chhumba(arg0->scale * 5.0f);
+    if (func_800C0638() != 0) {
+        ((f32 *)arg0->actorData)[3] = 1.5f;
+    } else if (((f32 *)arg0->actorData)[3] > 0.0f) {
+        ((f32 *)arg0->actorData)[3] -= func_800D8FF8();
+    }
+    if (func_80800878_chhumba(arg0) != 0) {
+        func_80800D74_chhumba(arg0);
+    } else if (((f32 *)arg0->actorData)[3] <= 0.0f) {
+        if (arg0->unk74_29) {
+            func_800D1824(0x54);
+        } else {
+            func_800D1824(0x48);
+        }
+    }
+    temp_f0 = arg0->scale;
+    func_8008FB10((s32)arg0->position, temp_f0 * 1350.0f,
+                  temp_f0 * 72.0f, temp_f0 * 350.0f);
+    if (func_80090178(0x10000) == 0) {
+        switch (arg0->unk70_10) {
+        case 1:
+            if (func_800EA05C() == 0x120) {
+                func_8010D254(sp44);
+                if ((sp44[1] > -30.0f) && (func_80090178(0x6C8E3) != 0) &&
+                    (_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x15E, 0x32, 6) != 0)) {
+                    func_80800E44_chhumba((u8 *)arg0, 3);
+                }
+                if (func_80800934_chhumba(arg0, 0x6C8E3) != 0) {
+                    func_80800E44_chhumba((u8 *)arg0, 3);
+                }
+            } else {
+                if ((func_80090178(0x6C8E3) != 0) &&
+                    (_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x15E, 0x32, 0) != 0)) {
+                    func_80800E44_chhumba((u8 *)arg0, 3);
+                }
+                if (func_80800934_chhumba(arg0, 0x6C8E3) != 0) {
+                    func_80800E44_chhumba((u8 *)arg0, 3);
+                }
+            }
+            break;
+        case 3:
+            if (!arg0->unk74_30) {
+                if (arg0->unk74_29) {
+                    sp2C = func_800D1A04(0x54);
+                    if (sp2C >= func_808007EC_chhumba((s32)arg0)) {
+                        func_80800338_chhumba((u8 *)arg0, 0x11BE, 0x4E);
+                    } else {
+                        func_80800338_chhumba((u8 *)arg0, 0x11BF, 0xF);
+                    }
+                } else {
+                    sp2C = func_800D1A04(0x48);
+                    if (sp2C >= func_808007EC_chhumba((s32)arg0)) {
+                        func_80800338_chhumba((u8 *)arg0, 0x11B0, 0x4E);
+                    } else {
+                        func_80800338_chhumba((u8 *)arg0, 0x11B3, 0xF);
+                    }
+                }
+            }
+            break;
+        case 18:
+            func_80800BA8_chhumba(arg0, sp38);
+            func_8008F964(sp38);
+            func_80800CC8_chhumba(arg0);
+            break;
+        case 4:
+            if (func_800EA05C() == 0x120) {
+                func_80108B04(arg0, 0);
+            } else {
+                sp34 = arg0->unk74_29 ? 0x523 : 0x29F;
+                if ((func_800902E4(arg0->position, 2500.0f, sp34, &arg0) != 0) &&
+                    (func_8008FE14() == sp34) && (func_80090818() != 0)) {
+                    func_80800E44_chhumba((u8 *)arg0, 5);
+                }
+            }
+            break;
+        case 5:
+        case 6:
+            if (func_808008A0_chhumba(arg0) != 0) {
+                func_80800E44_chhumba((u8 *)arg0, 7);
+            }
+            break;
+        case 7:
+            if (((func_80090178(0x6C8E3) != 0) &&
+                 (_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x15E, 0x32, 6) != 0)) ||
+                (func_80800934_chhumba(arg0, 0x6C8E3) != 0)) {
+                func_80800338_chhumba((u8 *)arg0, 0x11B8, 0xF);
+            } else {
+                func_8080138C_chhumba((u8 *)arg0);
+            }
+            break;
+        case 8:
+            func_80800E44_chhumba((u8 *)arg0, 9);
+            break;
+        case 9:
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+                if (arg0->unk64_20 && (arg0->unk58 < 1.5f)) {
+                    _chbaddiesetup_entrypoint_0(&_chglowbo_entrypoint_4);
+                    arg0->unk64_20 = 0;
+                }
+            } else if (func_800903D0((f32 *)&arg0->actorData[4]) != 0) {
+                func_800904F4(0x89, arg0->unk0);
+                func_80800E44_chhumba((u8 *)arg0, 10);
+            }
+            func_80801260_chhumba(arg0);
+            break;
+        case 12:
+            if (((func_80090178(0x6C8E3) != 0) &&
+                 (_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x15E, 0x32, 0) != 0)) ||
+                (func_80800934_chhumba(arg0, 0x6C8E3) != 0)) {
+                func_80800338_chhumba((u8 *)arg0, 0x11B9, 0xF);
+            } else {
+                func_8080138C_chhumba((u8 *)arg0);
+            }
+            break;
+        case 13:
+            func_80800E44_chhumba((u8 *)arg0, 14);
+            break;
+        case 14:
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else if (func_800903D0((f32 *)&arg0->actorData[4]) != 0) {
+                func_800904F4(0x89, arg0->unk0);
+                func_80800E44_chhumba((u8 *)arg0, 15);
+            }
+            func_80801260_chhumba(arg0);
+            break;
+        case 17:
+            if ((_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x15E, 0x32, 0) != 0) ||
+                (func_80800934_chhumba(arg0, 0x600) != 0)) {
+                func_80800338_chhumba((u8 *)arg0, 0x11BC, 0xF);
+            } else if (!arg0->unk64_19 && (func_80800A50_chhumba(arg0) != 0)) {
+                arg0->unk64_19 = 1;
+                func_80800338_chhumba((u8 *)arg0, 0x11BA, 0xF);
+            }
+            break;
+        case 19:
+            if ((_subaddiedialog_entrypoint_6(arg0->position, (s32)arg0->rotation[1], 0x15E, 0x32, 0) != 0) ||
+                (func_80800934_chhumba(arg0, 0x600) != 0)) {
+                func_80800338_chhumba((u8 *)arg0, func_80090178(0x200) ? 0x121C : 0x121D, 0xF);
+            } else if (!arg0->unk64_19 && (func_80800A50_chhumba(arg0) != 0)) {
+                arg0->unk64_19 = 1;
+                func_80800338_chhumba((u8 *)arg0, 0x11BB, 0xF);
+            }
+            break;
+        }
+    }
+}
 
 void func_80801DB0_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80090708(s32);
