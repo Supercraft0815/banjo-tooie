@@ -393,7 +393,61 @@ void func_80801188_chexploder(u8 *arg0, u8 *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_1.s")
+/* extern */
+
+void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    s32 pad;
+    void func_80800A18_chexploder(Actor *arg0);
+    void func_80800D7C_chexploder(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3);
+    void func_80800F74_chexploder(Actor *arg0, s32 arg1);
+    void func_808010E0_chexploder(u8 *arg0, s32 arg1, s32 arg2);
+    void func_80801188_chexploder(u8 *arg0, u8 *arg1, s32 arg2);
+    s16 func_800AE020();
+    void func_800EE7F8(f32 *, f32 *);
+    void * func_80100094(Actor *, u32);
+    s32 func_80101074(void *);
+    s32 func_8010108C(void *, s32, u16);
+    s32 func_80103140(Actor *, u32, u16);
+    u8 * func_801039E4(Unk80132ED0 *);
+    s32 func_80104248(void *);
+    void *func_80106790();
+    u8 *func_801084B0(s32, void **);
+    s32 func_80108944(u8 *, void *);
+    s32 func_80800AC8_chexploder(u8 *, void *, u8 *, s32);
+    void *sp30;
+    u8 *temp_v0;
+    void *temp_s1;
+
+    sp30 = func_80106790();
+    temp_v0 = func_801084B0(0x1FF, &sp30);
+    temp_s1 = func_80100094(temp_v0, 0);
+    (*(f32 *)((s8 *)(temp_v0) + (0x18))) = arg1;
+    (*(f32 *)((s8 *)(temp_v0) + (0x1C))) = arg2;
+    (*(f32 *)((s8 *)(temp_v0) + (0x20))) = arg3;
+    func_800EE7F8(temp_v0 + 0x44, (u8 *)(u8 *)sp30 + 0x44);
+    (*(f32 *)((s8 *)(temp_v0) + (0x38))) = (f32) (*(f32 *)((s8 *)(sp30) + (0x38)));
+    if ((*(s16 *)((s8 *)((*(void **)((s8 *)(temp_v0) + (0)))) + (0x10))) == 0) {
+        (*(s16 *)((s8 *)((*(void **)((s8 *)(temp_v0) + (0)))) + (0x10))) = func_800AE020();
+    }
+    (*(u16 *)((s8 *)(temp_s1) + (0x14))) = (u16) (*(u16 *)((s8 *)((*(void **)((s8 *)(sp30) + (0)))) + (0x14)));
+    (*(u16 *)((s8 *)(temp_s1) + (0x16))) = (u16) (*(u16 *)((s8 *)((*(void **)((s8 *)(sp30) + (0)))) + (0x16)));
+    (*(s16 *)((s8 *)(temp_s1) + (0x54))) = (s16) arg4;
+    (*(u8 *)((s8 *)(sp30) + (0x65))) = (u8) ((*(u8 *)((s8 *)(sp30) + (0x65))) & 0xFFFE);
+    func_80108944(temp_v0, sp30);
+    func_80801188_chexploder(temp_v0, func_801039E4((*(void **)((s8 *)(sp30) + (0)))), (s32) sp30);
+    (*(u8 *)((s8 *)(temp_v0) + (0x74))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x74))) & 0xFFFD);
+    func_80103140(temp_v0, (*(u16 *)((s8 *)(temp_s1) + (0x14))), (*(u16 *)((s8 *)(temp_s1) + (0x16))));
+    func_80800A18_chexploder((Actor *) temp_v0);
+    if (func_80104248(sp30) != 0) {
+        func_80800AC8_chexploder(temp_v0, sp30, temp_v0 + 0x18, arg4);
+    } else {
+        func_80800D7C_chexploder((Actor *) temp_v0, (s32) sp30, (f32 *) (temp_v0 + 0x18), arg4);
+    }
+    func_80101074((*(void **)((s8 *)(temp_v0) + (0))));
+    func_8010108C(sp30, 0x90, (*(u16 *)((s8 *)(temp_s1) + (0x14))));
+    func_80800F74_chexploder((Actor *) temp_v0, (s32) sp30);
+    func_808010E0_chexploder(temp_v0, (s32) sp30, arg4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_2.s")
 
