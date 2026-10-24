@@ -56,7 +56,40 @@ void idtwinklecolour_entrypoint_1(s32 arg0, void *arg1, s32 arg2, void *arg3) {
     (*(s16 *)((s8 *)(arg3) + (0x1C))) = (s16) ((*(s16 *)((s8 *)(arg3) + (0x1C))) + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/twinklecolour/idtwinklecolour_entrypoint_2.s")
+void idtwinklecolour_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *arg4) {
+    extern u8 D_80800970_idtwinklecolour[][3];
+    u8 *end = arg1 + arg3 * 0x10;
+    s32 i;
+    u8 *entry;
+    u8 *colour;
+    f32 scale;
+    s16 x;
+
+    for (; arg1 < end; arg1 += 0x10, arg2 += 0x10) {
+        i = 0;
+        if (*(s16 *)(arg4 + 0x22) > 0) {
+            x = *(s16 *)arg1;
+            entry = *(u8 **)(arg4 + 0x24);
+            do {
+                if (x == *(s16 *)(entry + 4) &&
+                    *(s16 *)(arg1 + 2) == *(s16 *)(entry + 6) &&
+                    *(s16 *)(arg1 + 4) == *(s16 *)(entry + 8)) {
+                    break;
+                }
+                i++;
+                entry += 0x14;
+            } while (i < *(s16 *)(arg4 + 0x22));
+        }
+        if (i != *(s16 *)(arg4 + 0x22)) {
+            entry = *(u8 **)(arg4 + 0x24) + i * 0x14;
+            scale = *(f32 *)entry;
+            colour = D_80800970_idtwinklecolour[entry[0xC]];
+            arg2[0xC] = arg1[0xC] + (colour[0] - arg1[0xC]) * scale;
+            arg2[0xD] = arg1[0xD] + (colour[1] - arg1[0xD]) * scale;
+            arg2[0xE] = arg1[0xE] + (colour[2] - arg1[0xE]) * scale;
+        }
+    }
+}
 
 void func_80800574_idtwinklecolour(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _glid_entrypoint_2(s32, s32, s32 *, void *);
