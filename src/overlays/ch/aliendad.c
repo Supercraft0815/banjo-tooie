@@ -1,15 +1,44 @@
 #include "common.h"
 
+extern u8 D_808025F4_chaliendad[];
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+void func_80800024_chaliendad(Actor *arg0);
+void func_808000AC_chaliendad(Actor *arg0);
+void func_808008C8_chaliendad(Actor *arg0);
+void func_80800918_chaliendad(Actor *arg0, void *arg1);
+s32 func_80800A54_chaliendad(Actor *arg0, s32 arg1, s32 arg2);
+
+u32 D_80802670_chaliendad[] = {
+    0x00000000,
+};
+
+u32 D_80802674_chaliendad[] = {
+    0x0158045A, 0x08070009,
+    (u32)D_808025F4_chaliendad, (u32)func_808000AC_chaliendad,
+    (u32)func_80105834, (u32)func_80800918_chaliendad,
+    0x0BB80000, 0x00000000,
+    0x00000000, 0x00040060,
+    (u32)func_808008C8_chaliendad, 0x00000000,
+    0x003C0000, (u32)func_80800024_chaliendad,
+    (u32)func_80107C2C, 0x84400412,
+    (u32)func_80800A54_chaliendad, 0x00000000,
+};
+
+u8 D_808026BC_chaliendad[] = {
+    0x01, 0x58, 0x04, 0x67,
+};
+
 OSThread *chaliendad_entrypoint_0(void)
 {
-    extern u8 D_80802674_chaliendad[];
+
 
     return (OSThread *) D_80802674_chaliendad;
 }
 
 OSThread *chaliendad_entrypoint_1(void)
 {
-    extern u8 D_808026BC_chaliendad[];
+
 
     return (OSThread *) D_808026BC_chaliendad;
 }
@@ -315,7 +344,147 @@ void func_80800918_chaliendad(Actor *arg0, void *arg1) {
     func_80101870(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80800A54_chaliendad.s")
+s32 func_80800A54_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
+    extern u32 D_808025E4_chaliendad;
+    s32 _chlifeforcespell_entrypoint_1(Actor **, void *, s32, f32, s32);
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _glcutDll_entrypoint_17(void);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_800DA544(s32);
+    void func_800E39A8(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80108B04(Actor *, s32);
+    void func_80800F28_chaliendad(Actor *);
+    void func_80801110_chaliendad(Actor *, s32, s32);
+    void func_80801220_chaliendad(void *, s32, s32);
+    s32 func_80801254_chaliendad(void *, s32, s32);
+    void func_80801C60_chaliendad(void *);
+    void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
+    s32 func_80801DD0_chaliendad(void);
+    void func_80801E28_chaliendad(Actor *);
+    void func_80801E80_chaliendad(Actor *);
+    s32 *data;
+    f32 sp50[3];
+    f32 sp44[3];
+    Actor *child;
+    f32 sp34[3];
+    Actor *other;
+    f32 sp24[3];
+
+    data = func_80100094(arg0, 0U);
+    switch (arg1) {
+    default:
+        return 0;
+    case 0x95:
+        func_80800F28_chaliendad(arg0);
+        break;
+    case 0x2E:
+        func_80801110_chaliendad(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x2F:
+        func_80801220_chaliendad(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x3D:
+        switch (arg2) {
+        case 0:
+            func_800EE7F8(sp50, arg0->position);
+            sp50[1] += 60.0f;
+            data[13] = _chlifeforcespell_entrypoint_1(&arg0, sp50, 0x96, 3.2f, 0x12);
+            break;
+        case 1:
+            func_800EE7F8(sp44, arg0->position);
+            sp44[1] += 2000.0f;
+            func_80108528(0x45B, sp44, 0, &arg0);
+            break;
+        case 2:
+            child = func_80108528(0x466, arg0->position, 0, &arg0);
+            arg0->unk3C = child->unk0;
+            break;
+        case 3:
+            if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp34)) {
+                other = func_80108528(0x467, sp34, 0, &arg0);
+                other->unk3C = arg0->unk0;
+            }
+            break;
+        }
+        break;
+    case 0x4B:
+        func_80108B04(arg0, 0);
+        func_80801D40_chaliendad(arg0, 0x15, 0x30, NULL);
+        func_80102424(arg0, 7);
+        arg0->unk58 = 6.0f;
+        break;
+    case 0x4C:
+        data[13] = 0;
+        break;
+    case 0xB:
+        switch (arg2) {
+        case 7:
+            func_800EE88C(arg0->position, (s16 *)data);
+            arg0->position[1] += 6500.0f;
+            func_80102424(arg0, 4);
+            func_80801D40_chaliendad(arg0, 0x2D, 0x31, NULL);
+            *(f32 *)&arg0->actorData[3] = 800.0f;
+            return 4;
+        case 45:
+            func_800EE88C(arg0->position, (s16 *)data);
+            func_80801D40_chaliendad(arg0, 0x27, 0x30, NULL);
+            func_80102424(arg0, 5);
+            return 4;
+        case 39:
+            func_80801C60_chaliendad(arg0);
+            if (_glcutDll_entrypoint_19(0x4A)) {
+                _glcutDll_entrypoint_17();
+            }
+            func_800DA544(0x375);
+            return 4;
+        }
+        return 3;
+    case 0xE:
+        if (arg0->unk70_10 == 2) {
+            func_800E39A8(arg0->position, sp24);
+            func_800EF214(arg0->position, sp24[0], sp24[1], -1000.0f);
+            arg0->rotation[1] = sp24[1];
+            arg0->rotation[0] = sp24[0] + 15.0f;
+        }
+        return 3;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808025E4_chaliendad, arg0->scale);
+        break;
+    case 0x57:
+        return func_80801254_chaliendad(arg0, arg2 & 0xFFFF, (arg2 & 0xFFFF0000) >> 16);
+    case 0x31:
+        if (arg2 == 0x45B) {
+            func_80801D40_chaliendad(arg0, 0x1A, 0x30, NULL);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x12AA, 7, arg0->position, 0x62);
+            func_80102424(arg0, 10);
+        } else if (func_80801DD0_chaliendad() == 3) {
+            func_80108B04(arg0, 1);
+            func_80801D40_chaliendad(arg0, 0x45, 0x2030, NULL);
+        }
+        break;
+    case 0x29:
+        func_80801E28_chaliendad(arg0);
+        break;
+    case 0x2A:
+        func_80801E80_chaliendad(arg0);
+        break;
+    case 0x2C:
+        func_80801C60_chaliendad(arg0);
+        func_800FFAB0(arg0);
+        break;
+    case 0xB8:
+        return 0x12A9 - func_80801DD0_chaliendad();
+    }
+    return 1;
+}
 
 void func_80800F28_chaliendad(Actor *arg0) {
     s32 _glcutDll_entrypoint_19(s32);

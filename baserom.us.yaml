@@ -7054,6 +7054,8 @@ segments:
       - [0x0200B550, c, aliendad]
       - [0x0200D9D0, .rodata, aliendad]
       - [0x0200DB10, data, aliendad]
+      - [0x0200DBC0, .data, aliendad]
+      - [0x0200DC10, data, aliendad_data_tail]
       - [0x0200DDA0, bss, aliendad]
   - name: chalienbeam_header
     dir: overlays/chalienbeam
