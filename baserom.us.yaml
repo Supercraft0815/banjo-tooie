@@ -12385,6 +12385,7 @@ segments:
       - [0x020ED950, c, quiz]
       - [0x020F3EA0, .rodata, quiz]
       - [0x020F4650, data, quiz]
+      - [0x020F4F90, .data, quiz]
       - [0x020F5020, bss, quiz]
   - name: chquizexitdoor_header
     dir: overlays/chquizexitdoor
