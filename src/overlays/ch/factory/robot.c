@@ -441,7 +441,146 @@ s32 func_80801160_chfactoryrobot(u8 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80801278_chfactoryrobot.s")
+s32 func_80801278_chfactoryrobot(Actor *arg0) {
+    typedef struct {
+        s16 position[3];
+        s16 speed;
+        u8 pad8[0x10];
+        s16 active;
+        s16 pad1A;
+        f32 timer;
+        f32 unk20;
+        f32 wait;
+        f32 scale;
+        f32 yaw;
+        f32 targetYaw;
+        u8 route[4];
+    } RobotData;
+    typedef struct {
+        f32 position[3];
+        f32 speed;
+        f32 velocity[3];
+    } RobotMotion;
+    typedef struct {
+        u8 pad0[0x12];
+        u16 flags;
+    } RobotMarker;
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    Unk80132ED0 *_suchase_entrypoint_0(void);
+    void func_8008FE94(s32, f32 *);
+    f32 func_800D8FF8(void);
+    u8 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EFD24(f32 *);
+    f32 func_800F0D50(f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_80104580(Actor *);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010D248(void);
+    void func_80801954_chfactoryrobot(Actor *);
+    void func_80801C7C_chfactoryrobot(Actor *);
+    RobotData *data;
+    f32 dt;
+    f32 targetSpeed;
+    f32 scale;
+    f32 pad4C;
+    f32 angle;
+    s32 id;
+    f32 pad40;
+    f32 angle2;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    scale = 1.0f;
+    if (_subaddierouteDll_entrypoint_4(arg0)) {
+        if (data->active == 0) {
+            if (data->timer == 0.0f && !func_800C0638() &&
+                (arg0->unk64_29 || (func_8010D248() && func_8010C500(arg0) && _suchase_entrypoint_0() == arg0->unk0))) {
+                data->active = 1;
+                data->wait = func_800DC178(2.0f, 4.0f);
+                switch (arg0->unk70_10) {
+                case 4:
+                case 5:
+                    func_80801160_chfactoryrobot((u8 *)arg0, 2);
+                    data->speed = (s32)func_800DC178(100.0f, 200.0f);
+                    break;
+                }
+            }
+        } else if (!arg0->unk64_29 && (!func_8010C500(arg0) || _suchase_entrypoint_0() != arg0->unk0)) {
+            data->active = 0;
+            func_80801C7C_chfactoryrobot(arg0);
+        }
+    }
+    targetSpeed = data->active ? 420.0f : data->speed;
+    ((RobotMotion *)arg0->actorData)->speed = func_800F15F8(((RobotMotion *)arg0->actorData)->speed, targetSpeed, dt * 150.0f);
+    if (((RobotMotion *)arg0->actorData)->speed != 0.0f) {
+        if (data->active) {
+            func_8008FE94(5, ((RobotMotion *)arg0->actorData)->position);
+            if (arg0->unk64_29) {
+                scale = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 1);
+                if (data->timer == 0.0f) {
+                    func_800EEB9C(((RobotMotion *)arg0->actorData)->velocity, arg0->unk54, ((RobotMotion *)arg0->actorData)->speed * scale);
+                    ((RobotMotion *)arg0->actorData)->velocity[1] = func_800F0D50(((RobotMotion *)arg0->actorData)->position[1] - arg0->position[1], -300.0f, 300.0f);
+                } else {
+                    func_800EFD24(((RobotMotion *)arg0->actorData)->velocity);
+                }
+            } else {
+                angle = func_80102D78(arg0, ((RobotMotion *)arg0->actorData)->position);
+                if (_subaddierouteDll_entrypoint_4(arg0)) {
+                    _subaddierouteDll_entrypoint_7(arg0, data->route, angle, angle, 400.0f, 0x5000);
+                    data->targetYaw = arg0->unk54;
+                }
+                data->yaw = func_800F1FF0(data->yaw, data->targetYaw, 0.15f, func_800D8FF8() * 10.0f, func_800D8FF8() * 150.0f);
+                arg0->unk54 = angle;
+                func_800EEB9C(((RobotMotion *)arg0->actorData)->velocity, data->yaw, ((RobotMotion *)arg0->actorData)->speed);
+                ((RobotMotion *)arg0->actorData)->velocity[1] = func_800F0D50(((RobotMotion *)arg0->actorData)->position[1] - arg0->position[1], -300.0f, 300.0f);
+            }
+            func_80801954_chfactoryrobot(arg0);
+            func_8010B990(arg0, arg0->unk64_29 ? 0x204027 : 0x504427);
+        } else {
+            id = (((u32)((RobotMarker *)arg0->unk0)->flags) >> 1) & 0xF;
+            if (func_8001210C(15) == id && func_800DC298(0.6f)) {
+                arg0->unk54 = func_800DC178(0.0f, 359.0f);
+            }
+            func_80801954_chfactoryrobot(arg0);
+            func_800D9078(&data->wait);
+            if (data->wait == 0.0f) {
+                if (func_800EEB40(((RobotMotion *)arg0->actorData)->position, arg0->position) > 6400.0f) {
+                    angle2 = func_80102D78(arg0, ((RobotMotion *)arg0->actorData)->position);
+                    if (_subaddierouteDll_entrypoint_4(arg0)) {
+                        _subaddierouteDll_entrypoint_7(arg0, data->route, angle2, angle2, 400.0f, 0x5000);
+                        data->targetYaw = arg0->unk54;
+                    }
+                        data->yaw = func_800F1FF0(data->yaw, data->targetYaw, 0.15f, func_800D8FF8() * 10.0f, func_800D8FF8() * 120.0f);
+                    arg0->unk54 = angle2;
+                    func_800EEB9C(((RobotMotion *)arg0->actorData)->velocity, data->yaw, ((RobotMotion *)arg0->actorData)->speed);
+                    ((RobotMotion *)arg0->actorData)->velocity[1] = func_800F0D50(((RobotMotion *)arg0->actorData)->position[1] - arg0->position[1], -300.0f, 300.0f);
+                    if (func_8010B990(arg0, 0x504427) & 0x26) {
+                        func_80801C7C_chfactoryrobot(arg0);
+                    }
+                } else {
+                    func_80801C7C_chfactoryrobot(arg0);
+                    data->wait = func_800DC178(2.0f, 4.0f);
+                }
+            } else {
+                scale = 0.0f;
+            }
+        }
+    } else {
+        func_80104580(arg0);
+    }
+    data->scale += 0.7f * (func_800F12D4(((RobotMotion *)arg0->actorData)->speed * scale, 0.0f, 420.0f, 1.0f, 1.1f) - data->scale);
+    return 1;
+}
 
 void func_8080183C_chfactoryrobot(Actor *arg0) {
     typedef struct {
