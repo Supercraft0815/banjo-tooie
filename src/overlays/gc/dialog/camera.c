@@ -162,14 +162,73 @@ void func_8080030C_gcdialogcamera(void) {
     _capod_entrypoint_11(1, (s32) &sp20);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/camera/gcdialogcamera_entrypoint_7.s")
+void gcdialogcamera_entrypoint_7(u32 arg0, f32 *arg1) {
+    s32 func_800F543C(s32);
+    f32 func_800F5C44(s32);
+    s32 func_800F5D18(s32);
+    int func_800F6720(s32);
+    s32 func_800F67EC(s32);
+    s32 func_800F7058(s32);
+    extern f32 D_808007C0_gcdialogcamera[][4];
+    s32 index;
+    f32 *entry;
+    f32 scale;
+    s32 i;
+    s32 state;
+
+    scale = 1.0f;
+    state = func_800F543C(arg0);
+    switch (state) {
+        case 1:
+            if (func_800F7058(arg0)) {
+                index = 16;
+            } else {
+        case 0x200:
+            state = func_800F5D18(arg0);
+            switch (state) {
+                case 0:
+                                    if (func_800F6720(arg0)) index = 12;
+                    else index = 1;
+                    break;
+                case 1: index = 7; break;
+                case 2: index = 8; break;
+            }
+            }
+            break;
+        case 0x80: index = 2; break;
+        case 0x8000: index = 3; break;
+        case 0x4000: index = 4; break;
+        case 0x400:
+            if (func_800F67EC(arg0)) index = 17;
+            else index = 5;
+            break;
+        case 0x1000: index = 6; break;
+        case 0x40: index = 9; break;
+        case 0x20: index = 10; break;
+        case 0x100: index = 11; break;
+        case 0x20000: index = 13; break;
+        case 0x800: index = 14; break;
+        case 0x10000: index = 15; break;
+        case 2:
+            index = 18;
+            scale = func_800F5C44(arg0);
+            break;
+        case 0x2000: index = 19; break;
+        case 0x40000: index = 20; break;
+        default: index = 0; break;
+    }
+    entry = D_808007C0_gcdialogcamera[index];
+    for (i = 0; i < 4; i++) {
+        arg1[i] = entry[i] * scale;
+    }
+}
 
 /* extern */
 
 void func_808005C0_gcdialogcamera(void) {
     void _capod_entrypoint_9(u32, f32*);
     u32 func_800F54E4(void);
-    s32 gcdialogcamera_entrypoint_7(u32, f32 *);
+    void gcdialogcamera_entrypoint_7(u32, f32 *);
     f32 sp20[4];
 
     gcdialogcamera_entrypoint_7(func_800F54E4(), sp20);
