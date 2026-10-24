@@ -9747,7 +9747,7 @@ segments:
     subsegments: 
       - [0x02096C00, c, prisonbits]
       - [0x02097AF0, .rodata, prisonbits]
-      - [0x02097B20, data, prisonbits]
+      - [0x02097B20, .data, prisonbits]
       - [0x02097D50, bss, prisonbits]
   - name: chwaterfallgrillswitch_header
     dir: overlays/chwaterfallgrillswitch
