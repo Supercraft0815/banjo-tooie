@@ -639,7 +639,52 @@ void func_80801904_chinflatableboss(Actor *arg0, s32 arg1, f32 *arg2) {
     func_800EE7F8(arg2, var_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801958_chinflatableboss.s")
+void func_80801958_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_801020DC(void *, s32);
+    void func_80102FDC(Actor *, f32);
+    struct anctrl_s *func_80104248(void *);
+    void func_8080267C_chinflatableboss(Actor *);
+    void func_80802910_chinflatableboss(Actor *);
+    void func_80802A00_chinflatableboss(Actor *, u32, u32);
+
+    switch (arg1) {
+        case 0x1082:
+            _chintrotext_entrypoint_1(0x18B9, 3, 1, 0);
+        case 0x1087:
+            func_80800F84_chinflatableboss(arg0, 4);
+            func_8008B1C8(func_80104248(arg0), 0.8f);
+            func_80802A00_chinflatableboss(arg0, 3U, 0x20U);
+            break;
+        case 0x1083:
+            func_80802910_chinflatableboss(arg0);
+            break;
+        case 0x1085:
+        case 0x1086:
+            arg0->unk74_30 = 0;
+            break;
+        case 0x1084:
+            func_801020DC(arg0, 0);
+            func_80102FDC(arg0, arg0->scale * 4.0f);
+            func_80800F84_chinflatableboss(arg0, 0xF);
+            func_8080267C_chinflatableboss(arg0);
+            func_80802A00_chinflatableboss(arg0, 0xBU, 0x38U);
+            break;
+        case 0xCEB:
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+        case 0x10CC:
+            return;
+    }
+    func_8008B1C8(func_80104248(arg0), 0.8f);
+}
 
 void func_80801AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor*, u32);
