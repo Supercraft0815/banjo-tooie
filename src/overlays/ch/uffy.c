@@ -261,7 +261,161 @@ s32 func_80800864_chchuffy(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808009CC_chchuffy.s")
+void func_808009CC_chchuffy(Actor *arg0) {
+    struct ChuffyUpdateData {
+        u8 pad0[4];
+        f32 speed;
+        u8 pad8[0x18];
+        f32 effectPosition[3];
+        f32 cameraPosition[3];
+        f32 timer;
+        u8 pad3C[0x10];
+        f32 position[3];
+    };
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_14();
+    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    void _glcutDll_entrypoint_17(void);
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    f32 _sumumbofx_entrypoint_22(u8 *);
+    void func_80090734(s32, f32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    void func_800DA544(GameFlag);
+    f32 func_800DC0C0(void);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_800FE734(u32);
+    void func_800FE844(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    s32 func_801022E4(Actor *);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A590(Actor *);
+    void func_80800FBC_chchuffy(Actor *);
+    void func_8080115C_chchuffy(Actor *);
+    void func_8080130C_chchuffy(Actor *);
+    s32 func_808016D0_chchuffy(s32);
+    void func_808017D4_chchuffy(Actor *, s32);
+    extern u32 D_80802320_chchuffy[];
+    extern u32 D_80802334_chchuffy[];
+    extern u32 D_80802348_chchuffy[];
+    extern u32 D_8080235C_chchuffy[];
+    extern u32 D_80802374_chchuffy[];
+    extern s32 _chchuffyglow_entrypoint_0;
+    struct ChuffyUpdateData *data;
+    Actor *other;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800DA298(0x9DE)) {
+            func_800DA3B8(0x9DE, 0);
+            _capod_entrypoint_13(arg0->unk0, NULL, 0, 0);
+            func_80090734(2, data->cameraPosition);
+            func_8080130C_chchuffy(arg0);
+            func_808017D4_chchuffy(arg0, 2);
+            data->speed = 0.0f;
+            _chbaddiesetup_entrypoint_1(&_chchuffyglow_entrypoint_0, arg0->unk0);
+        }
+        break;
+    case 2:
+        func_80800398_chchuffy(arg0);
+        break;
+    case 3:
+        func_80800398_chchuffy(arg0);
+        func_800DA544(0x95);
+        func_800DA544(0x4ED);
+        other = func_80106790(arg0->unk3C);
+        func_80103140(other, 0x87A, other->unk0->unk16);
+        func_8010A590(other);
+        if (func_80101E14(arg0, 0.73f) || func_80101E14(arg0, 0.75f)) {
+            func_800E1610(2, 100.0f, 0.65f, data->effectPosition);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802320_chchuffy);
+        }
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802334_chchuffy, 0.9f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802348_chchuffy, 0.95f);
+        if (func_80101F24(arg0) < 0.1f) {
+            if (func_800DC0C0() < 0.04f) {
+                _subaddieaudioquick_entrypoint_2(arg0, data->position, D_8080235C_chchuffy);
+            }
+        } else if (func_80101F24(arg0) < 0.95f && func_800DC0C0() < 0.04f) {
+            _subaddieaudioquick_entrypoint_2(arg0, data->position, D_80802374_chchuffy);
+        }
+        if (func_80101E14(arg0, 0.95f)) {
+            func_800DA3B8(0x9DF, 1);
+        }
+        break;
+    case 4:
+        func_80800398_chchuffy(arg0);
+        if (_sumumbofx_entrypoint_22(func_80100094(arg0, 1)) < 0.05f) {
+            _sumumbofx_entrypoint_1(arg0, 1);
+            func_808017D4_chchuffy(arg0, 5);
+        }
+    case 5:
+        if (data->speed < 20000.0f) {
+            data->speed += 250.0f;
+        }
+        break;
+    case 6:
+        if (data->timer <= 0.0f) {
+            func_808017D4_chchuffy(arg0, 7);
+        }
+        break;
+    case 7:
+        if (data->speed > 10000.0f) {
+            data->speed -= 250.0f;
+        }
+        if (func_80101DDC(arg0)) {
+            func_800DA3B8(0x66B, 1);
+            if (func_800DA298(0x6B7)) {
+                _glcutDll_entrypoint_17();
+                _capod_entrypoint_14();
+            } else {
+                _glcutDll_entrypoint_24(func_8080000C_chchuffy(func_80800110_chchuffy(1)), -1, 0x70);
+                func_800FE844(0);
+                func_800FE734(0);
+            }
+        }
+        break;
+    case 8:
+        if (func_80101F24(arg0) > 0.75f) {
+            if (data->speed < 20000.0f) {
+                data->speed += 250.0f;
+            }
+        }
+        if (arg0->unk74_30) {
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else {
+                if (!func_808016D0_chchuffy(arg0)) {
+                    _glcutDll_entrypoint_17();
+                    _capod_entrypoint_14();
+                }
+                func_808017D4_chchuffy(arg0, 5);
+            }
+        } else if (func_80101DDC(arg0)) {
+            arg0->unk74_30 = 1;
+            arg0->unk58 = 2.0f;
+        }
+        break;
+    }
+    switch (func_801022E4(arg0)) {
+    case 0x99:
+        func_8080115C_chchuffy(arg0);
+        break;
+    case 0x9A:
+        func_80800FBC_chchuffy(arg0);
+        break;
+    }
+    data->timer -= func_800D8FF8();
+}
 
 void func_80800EF4_chchuffy(Unk80132ED0 *arg0) { void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32); s32 func_80800110_chchuffy(s32); s32 temp_v0; temp_v0 = func_80800110_chchuffy(4); if (D_8080247C_chchuffy[temp_v0].value != -1) { _capod_entrypoint_13(arg0->unk0, 0, D_8080247C_chchuffy[temp_v0].value, 0x2830); } }
 
