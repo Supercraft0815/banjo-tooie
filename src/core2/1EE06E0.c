@@ -74,7 +74,63 @@ void *func_80106F30(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106F70.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80107070.s")
+s32 func_80107070(Actor *arg0, u32 arg1) {
+    void * func_80106F30(void *arg0);
+    void func_801073AC(s32 arg0, s32 arg1);
+    s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2);
+    void func_80107448(void *arg0, f32 *arg1);
+    void func_8010754C(void *arg0, void *arg1);
+    void func_801075E4(Actor *arg0, void *arg1);
+    void func_80107750(s32 arg0, s32 arg1);
+    void _subaddieaudioquick_entrypoint_2();
+    s32 func_80103110(Actor *, s32);
+    extern s32 D_801244F0;
+    f32 *sp24;
+    f32 *temp_v0;
+
+    temp_v0 = func_80106F30(arg0);
+    sp24 = temp_v0;
+    if (temp_v0 == NULL) {
+        return 0;
+    }
+    if (arg1 == (*(s16 *)((s8 *)(temp_v0) + (0xA)))) {
+        return 1;
+    }
+    switch (arg1) {
+    case 0:
+        func_80103110(arg0, 1);
+        break;
+    case 1:
+        _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 ->position, &D_801244F0, arg1);
+        if (func_801073F8((s32) arg0, 1, 1) == 0) {
+            func_80103110(arg0, 0);
+        }
+        func_80107750((s32) arg0, (s32) sp24);
+        break;
+    case 2:
+        if (func_801073F8((s32) arg0, 2, 1) == 0) {
+            func_80103110(arg0, 0);
+        }
+        func_80107750((s32) arg0, (s32) sp24);
+        break;
+    case 3:
+        if (func_801073F8((s32) arg0, 3, 1) == 0) {
+            func_80103110(arg0, 0);
+        }
+        func_80107448(arg0, sp24);
+        break;
+    case 4:
+        if (func_801073F8((s32) arg0, 4, 1) == 0) {
+            func_80103110(arg0, 0);
+        }
+        func_8010754C(arg0, sp24);
+        func_801075E4(arg0, sp24);
+        break;
+    }
+    func_801073AC((s32) arg0, (s32) arg1);
+    (*(s16 *)((s8 *)(sp24) + (0xA))) = (s16) arg1;
+    return 1;
+}
 
 /* extern */
 
