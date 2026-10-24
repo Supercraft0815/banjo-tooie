@@ -72,7 +72,44 @@ void *func_80106F30(void *arg0) {
     return freelist_at(D_80136F00, entry->index);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE06E0/func_80106F70.s")
+void func_80106F70(Actor *arg0) {
+    s32 func_80107070(Actor *, u32);
+    s32 func_80107784(void *, void *);
+    s32 func_80107858(Actor *, u8 *);
+    s32 func_801078AC(s32, f32 *);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void func_800EE88C(f32 *, s16 *);
+    s32 func_8010CAC0(f32 *, u32);
+    void *entry;
+    f32 position[3];
+
+    entry = func_80106F30(arg0);
+    switch (*(s16 *)((u8 *)entry + 0xA)) {
+    case 1:
+        if (func_80107858(arg0, entry)) {
+            func_80107070(arg0, 4);
+        }
+        break;
+    case 2:
+        if (!_subaddiefade_entrypoint_0(arg0)) {
+            func_80107070(arg0, 3);
+        }
+        break;
+    case 3:
+        if (func_801078AC((s32)arg0, entry)) {
+            func_800EE88C(position, (s16 *)((u8 *)entry + 4));
+            if (!func_8010CAC0(position, 200)) {
+                func_80107070(arg0, 4);
+            }
+        }
+        break;
+    case 4:
+        if (func_80107784(arg0, entry)) {
+            func_80107070(arg0, 0);
+        }
+        break;
+    }
+}
 
 s32 func_80107070(Actor *arg0, u32 arg1) {
     void * func_80106F30(void *arg0);
