@@ -133,4 +133,60 @@ void func_808007D4_scradar(void *arg0, f32 *arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/radar/scradar_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/radar/scradar_entrypoint_1.s")
+void scradar_entrypoint_1(Gfx **arg0) {
+    s32 func_800A7180(void);
+    s32 func_800A946C(void);
+    void func_800B9990(Gfx **);
+    s32 func_800D674C(s32);
+    void func_800E2434(s32);
+    void func_800E253C(f32);
+    void func_800E257C(s32);
+    s32 func_800E30E0(s32, s32, s32, void *);
+    struct RadarPoint { u8 data[16]; };
+    struct Radar {
+        u8 pad[8];
+        u8 alpha;
+        u8 pad9;
+        s16 asset;
+        s16 count;
+        s16 count2;
+        struct RadarPoint points[6];
+        struct RadarPoint points2[8];
+    };
+    extern struct Radar B_80800E50_scradar[];
+    Gfx *gfx;
+    struct Radar *entry;
+    struct Radar *entry2;
+    s16 n;
+    s32 buffers;
+    s32 count;
+    s32 j;
+    s32 i;
+
+    count = func_800A946C();
+    for (i = 0; i < count; i++) {
+        entry = &B_80800E50_scradar[i];
+        if (entry->count != 0) {
+            func_800E253C(1.25f);
+            func_800E257C(entry->alpha);
+            func_800E2434(1);
+            buffers = func_800A7180();
+            func_800E30E0(buffers, func_800D674C(entry->asset), 0, entry);
+        }
+    }
+    func_800B9990(arg0);
+    for (i = 0; i < count; i++) {
+        entry2 = &B_80800E50_scradar[i];
+        entry = entry2;
+        if (entry2->count != 0) {
+            for (j = 0; j < entry->count; j++) {
+                func_80800000_scradar(arg0, entry2, (u8 *)entry2 + (j << 4) + 0x10);
+            }
+            for (j = 0; j < entry->count2; j++) {
+                func_80800000_scradar(arg0, entry2, (u8 *)entry2 + (j << 4) + 0x70);
+            }
+        }
+    }
+    gDPPipeSync((*arg0)++);
+    gDPSetCycleType((*arg0)++, G_CYC_2CYCLE);
+}
