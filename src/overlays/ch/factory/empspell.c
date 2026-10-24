@@ -1,5 +1,171 @@
 #include "common.h"
 
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+void func_80800000_chfactoryempspell(Actor *arg0);
+s32 func_80800630_chfactoryempspell(Actor *arg0, s32 arg1, void *arg2);
+void func_80800C7C_chfactoryempspell();
+void func_80801FE0_chfactoryempspell(void *arg0);
+
+u32 D_80802170_chfactoryempspell[] = {
+    0x00130527, 0x001636B0, 0x000100C8, 0x17700000,
+};
+
+u32 D_80802180_chfactoryempspell[] = {
+    0xC5A28000, 0xC4228000, 0x442F0000,
+};
+
+u32 D_8080218C_chfactoryempspell[] = {
+    0x45A28000, 0x45098000, 0x45960000,
+};
+
+u32 D_80802198_chfactoryempspell[] = {
+    0xC5B9F000, 0xC1A00000, 0x457A0000,
+};
+
+u32 D_808021A4_chfactoryempspell[] = {
+    0x00000000, 0x42B40000, 0x00000000,
+};
+
+u32 D_808021B0_chfactoryempspell[] = {
+    0x00000000, 0x43870000, 0x00000000,
+};
+
+u32 D_808021BC_chfactoryempspell[] = {
+    0xC505C000, 0x44A8C000, 0x454B2000, 0x45584000,
+    0x44A8C000, 0x454B2000,
+};
+
+u32 D_808021D4_chfactoryempspell[] = {
+    0xC505C000, 0x43660000, 0x454B2000, 0x45584000,
+    0x43660000, 0x454B2000,
+};
+
+u32 D_808021EC_chfactoryempspell[] = {
+    0xC505C000, 0x44A8C000, 0x45947000, 0x45584000,
+    0x44A8C000, 0x45947000,
+};
+
+u32 D_80802204_chfactoryempspell[] = {
+    0xC505C000, 0x43660000, 0x45947000, 0x45584000,
+    0x43660000, 0x45947000,
+};
+
+u32 D_8080221C_chfactoryempspell[] = {
+    0x00000000, 0x00000000, 0x00000000,
+};
+
+u32 D_80802228_chfactoryempspell[] = {
+    0x42B40000, 0x00000000, 0x00000000,
+};
+
+u32 D_80802234_chfactoryempspell[] = {
+    0x43870000, 0x00000000, 0x00000000,
+};
+
+u32 D_80802240_chfactoryempspell[] = {
+    0x001D09C9, 0x002B0200, 0x03000022, 0x02000280,
+    0x06000800, 0x00161000, 0x00150000, 0x00330019,
+    0x00000007, 0x002CFFEC, 0x00140014, 0x00140028,
+    0x00140020, 0x60606080, 0x00000000,
+};
+
+u32 D_8080227C_chfactoryempspell[] = {
+    0x001D09CD, 0x001BFC18, 0xFCE0002D, 0x015E02EE,
+    0x00161000, 0x00270000, 0x00C80000, 0x01900022,
+    0x0019001E, 0x00000000, 0x00150000, 0x0099000E,
+    0x00000032, 0x002B0100, 0x0180002F, 0x00800080,
+    0x00000033, 0x004C0000, 0x00660000,
+};
+
+u32 D_808022C8_chfactoryempspell[] = {
+    0xC5160000, 0x44A8C000, 0x454E4000, 0x45610000,
+    0x44A8C000, 0x454E4000,
+};
+
+u32 D_808022E0_chfactoryempspell[] = {
+    0xC5160000, 0x43660000, 0x454E4000, 0x45610000,
+    0x43660000, 0x454E4000,
+};
+
+u32 D_808022F8_chfactoryempspell[] = {
+    0xC5160000, 0x44A8C000, 0x4592E000, 0x45610000,
+    0x44A8C000, 0x4592E000,
+};
+
+u32 D_80802310_chfactoryempspell[] = {
+    0xC5160000, 0x43660000, 0x4592E000, 0x45610000,
+    0x43660000, 0x4592E000,
+};
+
+u32 D_80802328_chfactoryempspell[] = {
+    0x001D09CD, 0x001BFC18, 0xFCE0002D, 0x015E02EE,
+    0x00161000, 0x00270000, 0x00C80000, 0x01900022,
+    0x0019001E, 0x00000000, 0x00150000, 0x0099000E,
+    0x00000032, 0x002B0080, 0x00B3002F, 0x00800080,
+    0x00000033, 0x004C0000, 0x00660000,
+};
+
+u32 D_80802374_chfactoryempspell[] = {
+    0x0013052E, 0x000A00CC, 0x00167FFF, 0x00000000,
+};
+
+u32 D_80802384_chfactoryempspell[] = {
+    0x00000000, 0x00000000, 0x458CA000,
+};
+
+u32 D_80802390_chfactoryempspell[] = {
+    0x00000000, 0x00000000, 0x458FC000,
+};
+
+u32 D_8080239C_chfactoryempspell[] = {
+    0x00000000, 0x00000000, 0x455AC000,
+};
+
+u32 D_808023A8_chfactoryempspell[] = {
+    0x00000000, 0x00000000, 0x45548000,
+};
+
+u32 D_808023B4_chfactoryempspell[] = {
+    0x00000000, 0x44548000, 0x457A0000,
+};
+
+u32 D_808023C0_chfactoryempspell[] = {
+    0xC51C4000, 0x44A8C000, 0x454E4000,
+};
+
+u32 D_808023CC_chfactoryempspell[] = {
+    0xC51C4000, 0x43660000, 0x454E4000,
+};
+
+u32 D_808023D8_chfactoryempspell[] = {
+    0xC51C4000, 0x44A8C000, 0x4592E000,
+};
+
+u32 D_808023E4_chfactoryempspell[] = {
+    0xC51C4000, 0x43660000, 0x4592E000,
+};
+
+u32 D_808023F0_chfactoryempspell[] = {
+    0x000000C8, 0x000000C8, 0x000000FF,
+};
+
+u32 D_808023FC_chfactoryempspell[] = {
+    0x0000003C, 0x0000003C, 0x0000003C,
+};
+
+u32 D_80802408_chfactoryempspell[] = {
+    0x001304C0, 0x00020016, 0x59D80000,
+};
+
+u32 D_80802414_chfactoryempspell[] = {
+    0x015803EE, 0x088A0001, 0x00000000, (u32)func_80800000_chfactoryempspell,
+    (u32)func_80105834, (u32)func_80800C7C_chfactoryempspell, 0x1F400000, 0x00000000,
+    0x00000000, 0x08020400, (u32)func_80801FE0_chfactoryempspell, 0x00000000,
+    0x00000070, 0x00000000, (u32)func_80107C2C, 0x80000402,
+    (u32)func_80800630_chfactoryempspell, 0x00000000, 0x00000000,
+};
+
 void func_80800000_chfactoryempspell(Actor *arg0) {
     s32 _capod_entrypoint_13(s32, s32, s32, s32);
     void _chglowbo_entrypoint_6(void);
@@ -192,7 +358,138 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80800630_chfactoryempspell.s")
+s32 func_80800630_chfactoryempspell(Actor *arg0, s32 arg1, void *arg2) {
+    typedef union {
+        s32 word;
+        s16 half;
+        void *resource;
+    } MessageValue;
+    typedef struct {
+        u8 pad0[8];
+        s8 active;
+        u8 pad9[11];
+    } SpellEffect;
+    typedef struct {
+        SpellEffect effects[3];
+        u8 pad3C[16];
+        s32 current;
+        s16 handles[15];
+    } SpellData;
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    void _sumumbofx_entrypoint_17(void *, f32);
+    void _sumumbofx_entrypoint_4(void *);
+    void _sumumbofx_entrypoint_3(void *, f32);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    void func_800DF660(s32, s32, s32, s32);
+    void func_800DF720(s32);
+    void func_800DF818(s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_80100A74(s16, s32);
+    s32 func_80100AC4(s16);
+    s16 func_80100D24(void *, u16, s32, s32, s32, s32);
+    void func_80100E18(s16);
+    void func_80801038_chfactoryempspell(Actor *);
+    void func_80801F30_chfactoryempspell(Actor *);
+    SpellData *data;
+    s32 index;
+    Actor *first;
+    Actor *second;
+    void *fx;
+    s32 i;
+    void *resource;
+    s32 j;
+    s32 k;
+    s32 pad40;
+    s16 handle;
+
+    data = func_80100094(arg0, 1);
+    switch (arg1) {
+    case 0x2E:
+        if (((MessageValue *)&arg2)->half == 0x1339) {
+            func_80801038_chfactoryempspell(arg0);
+        }
+        return 1;
+    case 0x30:
+        if (((MessageValue *)&arg2)->half == 0x1339) {
+            return 0x2D;
+        }
+    case 0xB:
+        if (((MessageValue *)&arg2)->word == 0xA) {
+            func_80801038_chfactoryempspell(arg0);
+        }
+        return 3;
+    case 0x4B:
+        _subaddieDll_entrypoint_4(arg0, 1);
+        func_80101FDC(arg0, 2);
+        return 1;
+    case 0x95:
+        func_800DA3B8(0x9DE, func_800DA298(0xA06) || func_800DA298(0xA05));
+        if (func_800DA298(0xA05)) {
+            first = _subaddiefind_entrypoint_2(0x3BA, &index);
+            second = _subaddiefind_entrypoint_3(0x3BA, &index);
+            func_80801F30_chfactoryempspell(arg0);
+            func_80101FDC(arg0, 9);
+            func_80101FDC(first, 5);
+            func_80101FDC(second, 5);
+            fx = func_80100094(arg0, 0);
+            _sumumbofx_entrypoint_17(fx, 5.0f);
+            _sumumbofx_entrypoint_4(fx);
+            _sumumbofx_entrypoint_3(fx, 10.0f);
+            *(f32 *)((u8 *)first + 0x34) = 0.0f;
+            *(f32 *)((u8 *)second + 0x34) = 0.0f;
+            *((s8 *)arg0 + 0x28) = 0;
+            for (i = 0; i < 3; i++) {
+                data->effects[i].active = 0;
+            }
+            arg0->unk5F = 0;
+            arg0->unk64_19 = 1;
+            *(f32 *)((u8 *)arg0 + 0x2C) = 2.0f;
+        } else {
+            arg0->unk64_19 = 0;
+            *(f32 *)((u8 *)arg0 + 0x2C) = -2.0f;
+            func_80101FDC(arg0, 1);
+        }
+        *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
+        for (index = 0; index < 15; index++) {
+            data->handles[index] = 0;
+        }
+        return 1;
+    case 0x29:
+        resource = ((MessageValue *)&arg2)->resource;
+        for (j = 0; j < 15; j++) {
+            data->handles[j] = func_80100D24(resource,
+                arg0->unk0->unk14, 1, 1,
+                arg0->unk0->unk16, 0);
+        }
+        return 1;
+    case 0x2A:
+        for (k = 0; k < 15; k++) {
+            if (data->handles[k] != 0) {
+                func_80100E18(data->handles[k]);
+                data->handles[k] = 0;
+            }
+        }
+        return 1;
+    case 0x1F:
+        handle = data->handles[data->current];
+        func_800DF818(func_80100A74(handle, 0));
+        func_800DF660(2, -1, 0, arg0->alpha);
+        func_800DF720(func_80100AC4(handle));
+        return 1;
+    case 0xB9:
+        *(f32 *)((u8 *)arg0 + 0x2C) = 0.0f;
+        *(f32 *)((u8 *)arg0 + 0x30) = 1.0f;
+        return 1;
+    case 0xBA:
+        *(f32 *)((u8 *)arg0 + 0x30) = 0;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80800A08_chfactoryempspell.s")
 
@@ -234,13 +531,6 @@ void func_80801130_chfactoryempspell(Actor *arg0, void *arg1, f32 arg2) {
     s32 _sumumbofx_entrypoint_14(void *);
     s32 _sumumbofx_entrypoint_6(void *, f32, f32, s32, s32, u8 *, f32 *, f32 *);
     void func_800E3980(f32 *);
-    extern f32 D_808021BC_chfactoryempspell[][3];
-    extern f32 D_808021D4_chfactoryempspell[][3];
-    extern f32 D_808021EC_chfactoryempspell[][3];
-    extern f32 D_80802204_chfactoryempspell[][3];
-    extern u8 D_8080221C_chfactoryempspell[];
-    extern f32 D_80802228_chfactoryempspell[];
-    extern f32 D_80802234_chfactoryempspell[];
     f32 position[3];
     s32 side;
 
@@ -250,10 +540,10 @@ void func_80801130_chfactoryempspell(Actor *arg0, void *arg1, f32 arg2) {
     } else {
         side = 1;
     }
-    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0, 0xA, D_8080221C_chfactoryempspell, D_808021BC_chfactoryempspell[side], D_80802228_chfactoryempspell);
-    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0xA, 0x14, D_8080221C_chfactoryempspell, D_808021D4_chfactoryempspell[side], D_80802228_chfactoryempspell);
-    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0x14, 0x1E, D_8080221C_chfactoryempspell, D_808021EC_chfactoryempspell[side], D_80802234_chfactoryempspell);
-    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0x1E, 0x28, D_8080221C_chfactoryempspell, D_80802204_chfactoryempspell[side], D_80802234_chfactoryempspell);
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0, 0xA, ((u8 *)D_8080221C_chfactoryempspell), ((f32 (*)[3])D_808021BC_chfactoryempspell)[side], ((f32 *)D_80802228_chfactoryempspell));
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0xA, 0x14, ((u8 *)D_8080221C_chfactoryempspell), ((f32 (*)[3])D_808021D4_chfactoryempspell)[side], ((f32 *)D_80802228_chfactoryempspell));
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0x14, 0x1E, ((u8 *)D_8080221C_chfactoryempspell), ((f32 (*)[3])D_808021EC_chfactoryempspell)[side], ((f32 *)D_80802234_chfactoryempspell));
+    _sumumbofx_entrypoint_6(arg1, 500.0f * arg2, 300.0f, 0x1E, 0x28, ((u8 *)D_8080221C_chfactoryempspell), ((f32 (*)[3])D_80802204_chfactoryempspell)[side], ((f32 *)D_80802234_chfactoryempspell));
     _sumumbofx_entrypoint_14(arg1);
 }
 
@@ -262,12 +552,6 @@ void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
     f32 func_800DC0C0(void);
     void func_800E3980(f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    extern s32 D_80802240_chfactoryempspell;
-    extern s32 D_8080227C_chfactoryempspell;
-    extern f32 D_808022C8_chfactoryempspell[][3];
-    extern f32 D_808022E0_chfactoryempspell[][3];
-    extern f32 D_808022F8_chfactoryempspell[][3];
-    extern f32 D_80802310_chfactoryempspell[][3];
     f32 position[3];
     f32 random;
     s32 side;
@@ -280,35 +564,35 @@ void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
     }
     random = func_800DC0C0();
     if (random < arg0) {
-        func_800BBCB8(D_808022C8_chfactoryempspell[side], NULL, 1.0f, 1, &D_80802240_chfactoryempspell);
+        func_800BBCB8(((f32 (*)[3])D_808022C8_chfactoryempspell)[side], NULL, 1.0f, 1, &(*(s32 *)D_80802240_chfactoryempspell));
     }
     if (random < arg1) {
-        func_800EFA4C(position, D_808022C8_chfactoryempspell[side][0] + 100.0f, D_808022C8_chfactoryempspell[side][1] - 30.0f, D_808022C8_chfactoryempspell[side][2] - 50.0f);
-        func_800BBCB8(D_808022C8_chfactoryempspell[side], position, 1.0f, 2, &D_8080227C_chfactoryempspell);
+        func_800EFA4C(position, ((f32 (*)[3])D_808022C8_chfactoryempspell)[side][0] + 100.0f, ((f32 (*)[3])D_808022C8_chfactoryempspell)[side][1] - 30.0f, ((f32 (*)[3])D_808022C8_chfactoryempspell)[side][2] - 50.0f);
+        func_800BBCB8(((f32 (*)[3])D_808022C8_chfactoryempspell)[side], position, 1.0f, 2, &(*(s32 *)D_8080227C_chfactoryempspell));
     }
     random = func_800DC0C0();
     if (random < arg0) {
-        func_800BBCB8(D_808022E0_chfactoryempspell[side], NULL, 1.0f, 1, &D_80802240_chfactoryempspell);
+        func_800BBCB8(((f32 (*)[3])D_808022E0_chfactoryempspell)[side], NULL, 1.0f, 1, &(*(s32 *)D_80802240_chfactoryempspell));
     }
     if (random < arg1) {
-        func_800EFA4C(position, D_808022E0_chfactoryempspell[side][0] + 100.0f, D_808022E0_chfactoryempspell[side][1] - 30.0f, D_808022E0_chfactoryempspell[side][2] - 50.0f);
-        func_800BBCB8(D_808022E0_chfactoryempspell[side], position, 1.0f, 2, &D_8080227C_chfactoryempspell);
+        func_800EFA4C(position, ((f32 (*)[3])D_808022E0_chfactoryempspell)[side][0] + 100.0f, ((f32 (*)[3])D_808022E0_chfactoryempspell)[side][1] - 30.0f, ((f32 (*)[3])D_808022E0_chfactoryempspell)[side][2] - 50.0f);
+        func_800BBCB8(((f32 (*)[3])D_808022E0_chfactoryempspell)[side], position, 1.0f, 2, &(*(s32 *)D_8080227C_chfactoryempspell));
     }
     random = func_800DC0C0();
     if (random < arg0) {
-        func_800BBCB8(D_808022F8_chfactoryempspell[side], NULL, 1.0f, 1, &D_80802240_chfactoryempspell);
+        func_800BBCB8(((f32 (*)[3])D_808022F8_chfactoryempspell)[side], NULL, 1.0f, 1, &(*(s32 *)D_80802240_chfactoryempspell));
     }
     if (random < arg1) {
-        func_800EFA4C(position, D_808022F8_chfactoryempspell[side][0] + 100.0f, D_808022F8_chfactoryempspell[side][1] - 30.0f, D_808022F8_chfactoryempspell[side][2] + 50.0f);
-        func_800BBCB8(D_808022F8_chfactoryempspell[side], position, 1.0f, 2, &D_8080227C_chfactoryempspell);
+        func_800EFA4C(position, ((f32 (*)[3])D_808022F8_chfactoryempspell)[side][0] + 100.0f, ((f32 (*)[3])D_808022F8_chfactoryempspell)[side][1] - 30.0f, ((f32 (*)[3])D_808022F8_chfactoryempspell)[side][2] + 50.0f);
+        func_800BBCB8(((f32 (*)[3])D_808022F8_chfactoryempspell)[side], position, 1.0f, 2, &(*(s32 *)D_8080227C_chfactoryempspell));
     }
     random = func_800DC0C0();
     if (random < arg0) {
-        func_800BBCB8(D_80802310_chfactoryempspell[side], NULL, 1.0f, 1, &D_80802240_chfactoryempspell);
+        func_800BBCB8(((f32 (*)[3])D_80802310_chfactoryempspell)[side], NULL, 1.0f, 1, &(*(s32 *)D_80802240_chfactoryempspell));
     }
     if (random < arg1) {
-        func_800EFA4C(position, D_80802310_chfactoryempspell[side][0] + 100.0f, D_80802310_chfactoryempspell[side][1] - 30.0f, D_80802310_chfactoryempspell[side][2] + 50.0f);
-        func_800BBCB8(D_80802310_chfactoryempspell[side], position, 1.0f, 2, &D_8080227C_chfactoryempspell);
+        func_800EFA4C(position, ((f32 (*)[3])D_80802310_chfactoryempspell)[side][0] + 100.0f, ((f32 (*)[3])D_80802310_chfactoryempspell)[side][1] - 30.0f, ((f32 (*)[3])D_80802310_chfactoryempspell)[side][2] + 50.0f);
+        func_800BBCB8(((f32 (*)[3])D_80802310_chfactoryempspell)[side], position, 1.0f, 2, &(*(s32 *)D_8080227C_chfactoryempspell));
     }
 }
 
@@ -371,13 +655,6 @@ void func_80801844_chfactoryempspell(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80802328_chfactoryempspell;
-    extern s32 D_80802374_chfactoryempspell;
-    extern f32 D_80802384_chfactoryempspell[3];
-    extern f32 D_80802390_chfactoryempspell[3];
-    extern f32 D_8080239C_chfactoryempspell[3];
-    extern f32 D_808023A8_chfactoryempspell[3];
-    extern f32 D_808023B4_chfactoryempspell[3];
     struct {
         f32 x;
         f32 y;
@@ -401,17 +678,17 @@ void func_80801844_chfactoryempspell(Actor *arg0) {
             entry->second = random;
             entry->first = random;
             entry->audio = _subaddieaudioloop_entrypoint_3(entry->audio);
-            entry->x = D_80802384_chfactoryempspell[0] = D_80802390_chfactoryempspell[0] = D_8080239C_chfactoryempspell[0] = D_808023A8_chfactoryempspell[0] = func_800DC178(-2400.0f, 3600.0f);
-            entry->y = D_80802384_chfactoryempspell[1] = D_80802390_chfactoryempspell[1] = D_8080239C_chfactoryempspell[1] = D_808023A8_chfactoryempspell[1] = func_800DC178(200.0f, 1400.0f);
+            entry->x = ((f32 *)D_80802384_chfactoryempspell)[0] = ((f32 *)D_80802390_chfactoryempspell)[0] = ((f32 *)D_8080239C_chfactoryempspell)[0] = ((f32 *)D_808023A8_chfactoryempspell)[0] = func_800DC178(-2400.0f, 3600.0f);
+            entry->y = ((f32 *)D_80802384_chfactoryempspell)[1] = ((f32 *)D_80802390_chfactoryempspell)[1] = ((f32 *)D_8080239C_chfactoryempspell)[1] = ((f32 *)D_808023A8_chfactoryempspell)[1] = func_800DC178(200.0f, 1400.0f);
             entry->flag = func_800DC128(0, 2);
-            func_800BBCB8(D_80802384_chfactoryempspell, D_80802390_chfactoryempspell, 1.0f, 2, &D_80802328_chfactoryempspell);
-            func_800BBCB8(D_8080239C_chfactoryempspell, D_808023A8_chfactoryempspell, 1.0f, 2, &D_80802328_chfactoryempspell);
-            D_80802384_chfactoryempspell[2] = 4000.0f;
-            func_800C8CB8(entry->handle, D_80802384_chfactoryempspell);
+            func_800BBCB8(((f32 *)D_80802384_chfactoryempspell), ((f32 *)D_80802390_chfactoryempspell), 1.0f, 2, &(*(s32 *)D_80802328_chfactoryempspell));
+            func_800BBCB8(((f32 *)D_8080239C_chfactoryempspell), ((f32 *)D_808023A8_chfactoryempspell), 1.0f, 2, &(*(s32 *)D_80802328_chfactoryempspell));
+            ((f32 *)D_80802384_chfactoryempspell)[2] = 4000.0f;
+            func_800C8CB8(entry->handle, ((f32 *)D_80802384_chfactoryempspell));
         } else {
-            func_800EFA4C(D_808023B4_chfactoryempspell, entry->x, entry->y, 4000.0f);
-            func_800C8CB8(entry->handle, D_808023B4_chfactoryempspell);
-            entry->audio = _subaddieaudioloop_entrypoint_7(entry->audio, D_808023B4_chfactoryempspell, 1, &D_80802374_chfactoryempspell, arg0->unk70_0);
+            func_800EFA4C(((f32 *)D_808023B4_chfactoryempspell), entry->x, entry->y, 4000.0f);
+            func_800C8CB8(entry->handle, ((f32 *)D_808023B4_chfactoryempspell));
+            entry->audio = _subaddieaudioloop_entrypoint_7(entry->audio, ((f32 *)D_808023B4_chfactoryempspell), 1, &(*(s32 *)D_80802374_chfactoryempspell), arg0->unk70_0);
         }
     }
 }
@@ -489,12 +766,6 @@ void func_80801C00_chfactoryempspell(Actor *arg0, f32 arg1) {
     u32 func_800F54E4(void);
     void func_800F5A00(s32, f32 *);
     void *func_80100094(Actor *, u32);
-    extern f32 D_808023C0_chfactoryempspell[3];
-    extern f32 D_808023CC_chfactoryempspell[3];
-    extern f32 D_808023D8_chfactoryempspell[3];
-    extern f32 D_808023E4_chfactoryempspell[3];
-    extern u32 D_808023F0_chfactoryempspell[3];
-    extern u32 D_808023FC_chfactoryempspell[3];
     struct {
         u8 pad[0x3C];
         s32 handles[4];
@@ -518,23 +789,23 @@ void func_80801C00_chfactoryempspell(Actor *arg0, f32 arg1) {
         break;
     case 4:
         func_800F5A00(func_800F54E4(), sp58);
-        func_800EFE50(sp4C, sp58, D_808023C0_chfactoryempspell, arg1);
+        func_800EFE50(sp4C, sp58, ((f32 *)D_808023C0_chfactoryempspell), arg1);
         func_800C8CB8(data->handles[0], sp4C);
-        func_800EFE50(sp4C, sp58, D_808023CC_chfactoryempspell, arg1);
+        func_800EFE50(sp4C, sp58, ((f32 *)D_808023CC_chfactoryempspell), arg1);
         func_800C8CB8(data->handles[1], sp4C);
-        func_800EFE50(sp4C, sp58, D_808023D8_chfactoryempspell, arg1);
+        func_800EFE50(sp4C, sp58, ((f32 *)D_808023D8_chfactoryempspell), arg1);
         func_800C8CB8(data->handles[2], sp4C);
-        func_800EFE50(sp4C, sp58, D_808023E4_chfactoryempspell, arg1);
+        func_800EFE50(sp4C, sp58, ((f32 *)D_808023E4_chfactoryempspell), arg1);
         func_800C8CB8(data->handles[3], sp4C);
         break;
     case 5:
-        func_800C8CB8(data->handles[0], D_808023C0_chfactoryempspell);
-        func_800C8CB8(data->handles[1], D_808023CC_chfactoryempspell);
-        func_800C8CB8(data->handles[2], D_808023D8_chfactoryempspell);
-        func_800C8CB8(data->handles[3], D_808023E4_chfactoryempspell);
+        func_800C8CB8(data->handles[0], ((f32 *)D_808023C0_chfactoryempspell));
+        func_800C8CB8(data->handles[1], ((f32 *)D_808023CC_chfactoryempspell));
+        func_800C8CB8(data->handles[2], ((f32 *)D_808023D8_chfactoryempspell));
+        func_800C8CB8(data->handles[3], ((f32 *)D_808023E4_chfactoryempspell));
         break;
     case 10:
-        func_800F3214(sp40, D_808023F0_chfactoryempspell, D_808023FC_chfactoryempspell, arg1);
+        func_800F3214(sp40, ((u32 *)D_808023F0_chfactoryempspell), ((u32 *)D_808023FC_chfactoryempspell), arg1);
         sp34[0] = func_800F1214(arg1, 300.0f, 0.0f);
         sp34[1] = func_800F1214(arg1, 400.0f, 0.0f);
         for (j = 0; j < 4; j++) {
@@ -569,7 +840,6 @@ void func_80801E9C_chfactoryempspell(Actor *arg0, f32 arg1) {
     void func_800C31DC(u8, f32);
     f32 func_800DC0C0(void);
     f32 func_800F1214(f32, f32, f32);
-    extern s32 D_80802408_chfactoryempspell;
     typedef struct {
         s32 pad[10];
         u8 sound;
@@ -580,7 +850,7 @@ void func_80801E9C_chfactoryempspell(Actor *arg0, f32 arg1) {
     s32 pad;
     volatile f32 volume;
 
-    ((EmpSpellData *)arg0)->sound = _subaddieaudioloop_entrypoint_7(((EmpSpellData *)arg0)->sound, arg0->position, 1, &D_80802408_chfactoryempspell, ((EmpSpellData *)arg0)->active);
+    ((EmpSpellData *)arg0)->sound = _subaddieaudioloop_entrypoint_7(((EmpSpellData *)arg0)->sound, arg0->position, 1, &(*(s32 *)D_80802408_chfactoryempspell), ((EmpSpellData *)arg0)->active);
     volume = func_800F1214(arg1, 1.0f, 0.8f);
     func_800C31DC(((EmpSpellData *)arg0)->sound, func_800DC0C0() * 0.1f + volume);
 }
@@ -631,7 +901,5 @@ void func_80801FE0_chfactoryempspell(void *arg0) {
 
 OSThread *chfactoryempspell_entrypoint_1(void)
 {
-    extern u8 D_80802414_chfactoryempspell[];
-
-    return (OSThread *) D_80802414_chfactoryempspell;
+    return (OSThread *) ((u8 *)D_80802414_chfactoryempspell);
 }

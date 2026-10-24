@@ -11514,7 +11514,7 @@ segments:
     subsegments: 
       - [0x020C2EF0, c, empspell]
       - [0x020C4F30, .rodata, empspell]
-      - [0x020C5060, data, empspell]
+      - [0x020C5060, .data, empspell]
       - [0x020C5350, bss, empspell]
   - name: chtoxicroombits_header
     dir: overlays/chtoxicroombits
