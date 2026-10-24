@@ -936,7 +936,74 @@ void func_808023E8_chevilmumbo(Actor* arg0)
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_8080241C_chevilmumbo.s")
+void func_8080241C_chevilmumbo(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 _glcutDll_entrypoint_20(void);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D395C(void);
+    s32 _chintrotext_entrypoint_2(s32);
+    void func_800FFAB0(Actor *);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    void func_800EE88C(f32 *, s16 *);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void func_80108B04(Actor *, s32);
+    void func_800DA524(s32);
+    s32 func_800DA298(s32);
+    extern f32 D_8080427C_chevilmumbo[3], D_80804288_chevilmumbo[3];
+    Prop *props[10];
+    s32 i;
+    s32 cutscene;
+    struct {
+        f32 positions[11][3];
+        u8 unk84, unk85, unk86, unk87, unk88, unk89, unk8A, unk8B;
+        u8 unk8C, unk8D, unk8E, unk8F, unk90, unk91, unk92, unk93;
+        u8 unk94, unk95, unk96;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    cutscene = _glcutDll_entrypoint_20();
+    func_800EE7F8(arg0->position, D_80804288_chevilmumbo);
+    if (func_800D0A9C(0x47, 1) && !cutscene && !func_800D395C()) {
+        _chintrotext_entrypoint_2(1);
+        func_800FFAB0(arg0);
+        return;
+    }
+    data->unk91 = _gccubesearch_entrypoint_9(0x226, props, 10);
+    for (i = 0; i < data->unk91; i++) {
+        func_800EE88C(data->positions[i], props[i]->position);
+    }
+    arg0->scale = 0.5f;
+    data->unk84 = 1;
+    data->unk85 = 0;
+    data->unk86 = 1;
+    data->unk87 = 1;
+    data->unk88 = 1;
+    data->unk89 = 1;
+    data->unk8A = 1;
+    data->unk8B = 1;
+    data->unk8C = 1;
+    data->unk8D = 1;
+    _suexpression_entrypoint_7(arg0, 1, 0x10);
+    if (!cutscene) {
+        func_80108B04(arg0, 0);
+    }
+    func_800DA524(0xA32);
+    func_800DA524(0xA33);
+    data->unk93 = 8;
+    data->unk92 = 0;
+    arg0->unk64_19 = func_800DA298(0x408);
+    if (cutscene) {
+        func_808007C4_chevilmumbo(arg0, 0x15);
+    } else if (func_800DA298(0x408)) {
+        func_80800774_chevilmumbo(arg0);
+        func_808007C4_chevilmumbo(arg0, 0x11);
+        data->unk96 = 1;
+        func_800EE7F8(arg0->position, D_8080427C_chevilmumbo);
+    } else {
+        func_808007C4_chevilmumbo(arg0, 1);
+    }
+}
 
 s32 func_80802618_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
     void _chexploder_entrypoint_6(Actor *, f32, f32);
