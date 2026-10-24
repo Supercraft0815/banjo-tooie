@@ -361,7 +361,69 @@ void func_808009D0_bsbfly(PlayerState *arg0) {
     func_8009DF58(arg0, 0x40D, 1.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bfly/func_80800A24_bsbfly.s")
+void func_80800A24_bsbfly(PlayerState *arg0, s32 arg1) {
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void baflag_clear(PlayerState *, s32);
+    void baflag_set(PlayerState *, s32);
+    s32 baphysics_set_type(s32, s32);
+    void baroll_setIdeal(PlayerState *, f32);
+    void yaw_setIdeal(PlayerState *, f32);
+    void func_8009BF5C(PlayerState *, f32);
+    void func_8009DF94(PlayerState *, s32, f32, s32);
+    void func_8009E0DC(PlayerState *);
+    void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+    void func_800A0CF4(PlayerState *, s32);
+    PlayerState *func_800A4CA8(PlayerState *);
+    void func_800A4DA4(PlayerState *, s32);
+    void _ncbadive_entrypoint_4(PlayerState *, f32 *);
+    void _ncbafly_entrypoint_5(PlayerState *, s32);
+    void func_8009BA9C(PlayerState *, f32 *);
+    void func_8009C128(PlayerState *, f32 *);
+    void _bafly_entrypoint_1(PlayerState *, f32 *, f32 *, f32);
+    void _batimer_set(PlayerState *, s32, f32);
+    s32 _chusefeather_entrypoint_1(s32, s32);
+    f32 sp34[3];
+    struct anctrl_s *sp30;
+
+    sp30 = baanim_getAnimCtrlPtr(arg0);
+    switch (arg1) {
+    case 0:
+        func_8009E0DC(arg0);
+        baflag_clear(arg0, 0x1C);
+        break;
+    case 1:
+        baanim_playForDuration_onceSmooth(arg0, 0x43, 1.0f);
+        func_8009FFD8(arg0, 1, 1, 3, 7);
+        _bafly_entrypoint_1(arg0, (f32 *)((u8 *)arg0->kazfly + 0x10), sp34, 4200.0f);
+        yaw_setIdeal(arg0, sp34[1] + 180.0f);
+        func_8009BF5C(arg0, sp34[0]);
+        baroll_setIdeal(arg0, 0.0f);
+        func_8009BA9C(arg0, (f32 *)((u8 *)arg0->kazfly + 0x10));
+        func_800A0CF4(arg0, 1);
+        func_800A4DA4(arg0, 4);
+        _ncbadive_entrypoint_4(func_800A4CA8(arg0), (f32 *)((u8 *)arg0->kazfly + 0x10));
+        _ncbafly_entrypoint_5(func_800A4CA8(arg0), 1);
+        func_8009DF94(arg0, 0x439, 1.0f, 0x6D60);
+        baflag_clear(arg0, 0x1C);
+        func_8009C128(arg0, (f32 *)((u8 *)arg0->kazfly + 4));
+        _chusefeather_entrypoint_1(arg0->unk184, 0);
+        break;
+    case 2:
+        baphysics_set_type(arg0, 8);
+        func_800A4DA4(arg0, 4);
+        _ncbadive_entrypoint_4(func_800A4CA8(arg0), (f32 *)((u8 *)arg0->kazfly + 0x10));
+        anctrl_setDuration(sp30, 0.05f);
+        func_8009DF94(arg0, 0x4437, 1.3f, 0x7FFF);
+        baflag_set(arg0, 0x1C);
+        _batimer_set(arg0, 1, 0.0001f);
+        break;
+    case 3:
+        break;
+    }
+    arg0->unk160.word = arg1;
+}
 
 void func_80800C38_bsbfly(PlayerState *arg0) {
     void func_8009BA9C(PlayerState *, f32 *);
