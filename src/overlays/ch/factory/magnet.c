@@ -226,7 +226,93 @@ void func_80801508_chfactorymagnet(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_808016A4_chfactorymagnet.s")
+void func_808016A4_chfactorymagnet(Actor *arg0, s32 arg1) {
+    f32 func_800138D0(f32);
+    f32 func_80013970(f32);
+    s32 func_800D674C(s32);
+    s32 func_800D90A4(f32 *);
+    void func_800E2588(u32);
+    void func_800E2594(u32, void *);
+    s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_808019F4_chfactorymagnet(Actor *, f32 *, f32 *);
+    f32 spC4[3];
+    f32 spB8[3];
+    struct MagnetParticle {
+        f32 position[3];
+        f32 unkC;
+        f32 unk10;
+        f32 unk14;
+        u8 unk18;
+        u8 unk19;
+    } *particles;
+    s32 i;
+    f32 t;
+    f32 position[3];
+    f32 scale[3];
+    s32 alpha;
+    f32 t2;
+    f32 position2[3];
+    f32 scale2[3];
+    struct MagnetParticle *particle;
+
+    particles = func_80100094(arg0, 1);
+    func_808019F4_chfactorymagnet(arg0, spC4, spB8);
+    func_800E2594(arg1, func_800D674C(0x9D8));
+    for (i = 0, particle = particles; i < 20; i++, particle++) {
+        if (particle->unk18 != 0) {
+            if (func_800D90A4(&particle->unkC)) {
+                particle->unk18 = 0;
+            } else {
+                t = func_800F12D4(particle->unkC, particle->unk10, 0.0f, 0.0f, 1.0f);
+                if (t > 0.5f) {
+                    alpha = 255;
+                    t -= 0.5f;
+                    t *= 2.0f;
+                    func_800EFE50(position, particle->position, particle->unk18 == 1U ? spC4 : spB8, t);
+                    scale[2] = func_800F10B4(particle->unkC, particle->unk10, 0.0f, 0.0f, 1.0f);
+                    t = func_800138D0(scale[2] * 720.0f);
+                    scale[0] = particle->unk14 * t;
+                    t = func_80013970(scale[2] * 360.0f);
+                    scale[1] = particle->unk14 * t;
+                } else {
+                    func_800EE7F8(position, particle->unk18 == 1U ? spC4 : spB8);
+                    scale[0] = scale[1] = scale[2] = particle->unk14;
+                    alpha = (s32)(511.0f * t);
+                }
+                func_800E2588(1);
+                func_800E2720(arg1, particle->unk19, 0, position, scale, alpha);
+            }
+        } else {
+            func_80801508_chfactorymagnet(arg0, i);
+        }
+    }
+    func_800E2A14(arg1);
+    func_800E2594(arg1, func_800D674C(0x9DF));
+    for (; i < 30; i++, particle++) {
+        if (particle->unk18 != 0) {
+            if (func_800D90A4(&particle->unkC)) {
+                particle->unk18 = 0;
+            } else {
+                t2 = func_800F12D4(particle->unkC, particle->unk10, 0.0f, 0.0f, 1.0f);
+                func_800EFE50(position2, particle->position, particle->unk18 == 1U ? spC4 : spB8, t2);
+                scale2[2] = particle->unk14;
+                scale2[0] = particle->unk14;
+                scale2[1] = particle->unk14;
+                func_800E2588(1);
+                func_800E2720(arg1, 0, 0, position2, scale2, 255);
+            }
+        } else {
+            func_80801508_chfactorymagnet(arg0, i);
+        }
+    }
+    func_800E2A14(arg1);
+}
 
 /* extern */
 
