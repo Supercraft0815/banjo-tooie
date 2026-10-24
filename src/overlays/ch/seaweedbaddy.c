@@ -368,7 +368,43 @@ s32 func_80800910_chseaweedbaddy(Actor *arg0) {
     return _suchase_entrypoint_0() != arg0->unk0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/seaweedbaddy/func_808009BC_chseaweedbaddy.s")
+void func_808009BC_chseaweedbaddy(Actor *arg0) {
+    s32 _subaddiefind_entrypoint_5(s32, Actor **, s32, f32 *, f32, f32 (*)(f32 *, f32 *));
+    s32 func_800DC128(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 mlAbsF(f32);
+    void func_80103014(u8 *);
+    Actor *actors[8];
+    s32 i;
+    s32 count;
+    f32 position[3];
+    f32 temp;
+    Actor *other;
+    s32 pad;
+
+    count = _subaddiefind_entrypoint_5(0x35D, actors, 8, arg0->position, 3500.0f, func_800EEB40);
+    for (i = 0; i < count;) {
+            if (mlAbsF(actors[i]->position[1] - arg0->position[1]) > 800.0f) {
+                actors[i] = actors[--count];
+            } else {
+                i++;
+            }
+    }
+    if (count != 0) {
+        other = actors[func_800DC128(0, count)];
+        func_800EE7F8(position, arg0->position);
+        func_800EE7F8(arg0->position, other->position);
+        func_800EE7F8(other->position, position);
+        temp = arg0->rotation[1];
+        arg0->rotation[1] = other->rotation[1];
+        other->rotation[1] = temp;
+        temp = arg0->unk74_7;
+        arg0->unk74_7 = other->unk74_7;
+        other->unk74_7 = temp;
+        func_80103014((u8 *)other);
+    }
+}
 
 void func_80800BCC_chseaweedbaddy(Actor *arg0) {
     void _chexploder_entrypoint_10(Actor *, s32 *);
