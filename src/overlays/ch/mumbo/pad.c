@@ -1,8 +1,64 @@
 #include "common.h"
 
+void func_80101870(Actor *, void *);
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+OSThread *func_80108ED0(void);
+void func_80800140_chmumbopad(void *arg0);
+void func_8080044C_chmumbopad(Actor *arg0);
+s32 func_80800514_chmumbopad(Actor *arg0, s32 arg1, s32 arg2);
+
+s16 D_80801060_chmumbopad[] = {
+    0x02A5, 0x017E, 0x0163, 0x0154,
+    0x0154, 0x0154, 0x0297, 0x0292,
+    0x028E, 0x028D, 0x03F5, 0x03EE,
+    0x040E, 0x0346, 0x045A, 0x0457,
+    0x04D8, 0x0000,
+};
+
+u16 D_80801084_chmumbopad[][2] = {
+    0x07D8, 0x09D5, 0x07D8, 0x09D5,
+    0x07E0, 0x09DF, 0x07D9, 0x09E0,
+    0x07D9, 0x09E0, 0x07D9, 0x09E0,
+    0x07DB, 0x09E2, 0x07DC, 0x09E5,
+    0x07DC, 0x09E5, 0x07DC, 0x09E5,
+    0x07DE, 0x09E3, 0x07DE, 0x09E3,
+    0x07DD, 0x09E4, 0x07DA, 0x09E9,
+    0x07DA, 0x09E9, 0x07DA, 0x09E9,
+    0x07DF, 0x09DE,
+};
+
+s16 D_808010C8_chmumbopad[] = {
+    0xFFFF, 0xFFFF, 0x057C, 0xFFFF,
+    0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
+    0xFFFF, 0x057D, 0x057E, 0x057F,
+    0x0580, 0xFFFF, 0xFFFF, 0xFFFF,
+    0xFFFF, 0x0000,
+};
+
+s16 D_808010EC_chmumbopad[] = {
+    0x0095, 0x04FC, 0xFFFF, 0x00EA,
+    0x00EC, 0x00EB, 0x00E9, 0x015F,
+    0x0160, 0xFFFF, 0x01B8, 0x0329,
+    0xFFFF, 0xFFFF, 0xFFFF, 0x0373,
+    0x015E, 0x0000,
+};
+
+u32 D_80801110_chmumbopad[] = {
+    0x021002B0, 0xFFFF0001,
+    0x00000000, (u32)func_8080044C_chmumbopad,
+    (u32)func_80105834, (u32)func_80101870,
+    0x00000000, 0x00000000,
+    0x00000000, 0x0000181C,
+    0x00000000, (u32)func_80108ED0,
+    0x00000000, (u32)func_80800140_chmumbopad,
+    (u32)func_80107C2C, 0x80002C02,
+    (u32)func_80800514_chmumbopad, 0x00000000,
+    0x00000000, 0x00000000,
+};
+
 s32 chmumbopad_entrypoint_0(s32 arg0) {
-    extern s32 D_80801086_chmumbopad[];
-    return *(s16 *)((u8 *)D_80801086_chmumbopad + (arg0 << 2));
+    return *(s16 *)((u8 *)(&D_80801084_chmumbopad[0][1]) + (arg0 << 2));
 }
 
 /* extern */
@@ -18,7 +74,6 @@ s32 func_80800048_chmumbopad(void *arg0) { s32 func_800DA298(s32); extern s16 D_
 int func_80800098_chmumbopad(Actor *arg0) {
     s32 func_800DA298(s32);
     s32 func_800DA564(s32, s32);
-    extern s16 D_808010EC_chmumbopad[];
     s16 flag;
 
     switch (arg0->unk6C_0) {
@@ -36,7 +91,106 @@ int func_80800098_chmumbopad(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/pad/func_80800140_chmumbopad.s")
+void func_80800140_chmumbopad(void *arg0) {
+    typedef struct {
+        Unk80132ED0 *marker;
+        f32 position[3];
+        u8 pad10[0x5C];
+        u32 id : 11;
+        u32 : 12;
+        u32 spell : 9;
+    } MumboPad;
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    s32 func_800DA298(s32);
+    int func_800EA05C(void);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_800FFAB0(s32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_80103140(void **, s32, u16);
+    f32 func_80103EAC(Actor *);
+    s32 func_8010A654(void *, s32);
+    s32 func_8010CB84(f32 *, u32);
+    int func_80800098_chmumbopad(Actor *);
+    MumboPad *pad = arg0;
+    int map;
+
+    map = func_800EA05C();
+    switch (map) {
+        default:
+            break;
+        case 0xD7:
+            pad->spell = 0;
+            break;
+        case 0xC7:
+            pad->spell = 1;
+            break;
+        case 0xB8:
+            pad->spell = 2;
+            break;
+        case 0xE6:
+            pad->spell = 3;
+            break;
+        case 0xD6:
+            if (pad->id == 0xB4) {
+                pad->spell = 5;
+                break;
+            }
+            pad->spell = 4;
+            break;
+        case 0x1A7:
+            pad->spell = 6;
+            break;
+        case 0x118:
+            pad->spell = 7;
+            break;
+        case 0x112:
+            if (pad->id == 0x5D) {
+                pad->spell = 8;
+                break;
+            }
+            pad->spell = 9;
+            break;
+        case 0x107:
+            pad->spell = 0xA;
+            break;
+        case 0x10B:
+            pad->spell = 0xB;
+            break;
+        case 0x136:
+            pad->spell = 0xC;
+            break;
+        case 0x128:
+            if (pad->id == 0x144) {
+                pad->spell = 0xD;
+                break;
+            }
+            if (func_800DA298(0x376)) {
+                pad->spell = 0xF;
+                break;
+            }
+            pad->spell = 0xE;
+            break;
+        case 0x155:
+            pad->spell = 0x10;
+            break;
+    }
+    func_80103140((void **)pad, D_80801084_chmumbopad[pad->spell][0], ((u16 *)pad->marker)[0xB]);
+    func_8010A654(pad, func_800DA298(0x64D));
+    if (func_80800098_chmumbopad((Actor *)pad)) {
+        if (func_8010CB84(pad->position, (s32)func_80103EAC((Actor *)pad))) {
+            func_80101FDC((Actor *)pad, 2);
+            goto active;
+        }
+        func_800FFAB0((s32)pad);
+        return;
+    }
+active:
+    func_80800014_chmumbopad((s32)pad, (s32)((u8 *)pad + 0x18), D_80801060_chmumbopad[pad->spell]);
+    if (func_800F5410(func_800F54E4()) != 0xD) {
+        _subaddiefade_entrypoint_1((s32)pad, 0x87);
+    }
+}
 
 void func_8080044C_chmumbopad(Actor *arg0) {
     void func_80103110(void *, s32);
@@ -344,7 +498,6 @@ void func_808008CC_chmumbopad(void *arg0, s32 arg1) {
 
 OSThread *chmumbopad_entrypoint_1(void)
 {
-    extern u8 D_80801110_chmumbopad[];
 
     return (OSThread *) D_80801110_chmumbopad;
 }

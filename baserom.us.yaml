@@ -8740,7 +8740,7 @@ segments:
     subsegments: 
       - [0x02062460, c, pad]
       - [0x020632B0, .rodata, pad]
-      - [0x020634C0, data, pad]
+      - [0x020634C0, .data, pad]
       - [0x020635C0, bss, pad]
   - name: chhoneycarrier_header
     dir: overlays/chhoneycarrier
