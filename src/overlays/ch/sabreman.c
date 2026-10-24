@@ -100,7 +100,234 @@ int func_80800030_chsabreman(Actor *arg0) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80800218_chsabreman.s")
+void func_80800218_chsabreman(Actor *arg0) {
+    struct SabremanData {
+        u8 pad0[4];
+        s16 unk4;
+        u8 pad6[0x812];
+        s16 unk818;
+        s16 unk81A[3];
+    };
+    struct SabremanFlags {
+        u8 pad0[0x74];
+        u32 pad74_21 : 11;
+        u32 unk74_20 : 1;
+        u32 pad74_0 : 20;
+    };
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiepalette_entrypoint_1(Actor *, void *);
+    s32 _subaddiepalette_entrypoint_2(Actor *, void *, s32, f32);
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    s32 _subaddietaxi_entrypoint_1(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_11(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_12(Actor *, s32);
+    void _subaddietaxi_entrypoint_14(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_15(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_5(Actor *, s32);
+    void _subaddietaxi_entrypoint_9(Actor *, s32);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 func_800C0638(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800D90A4(f32 *);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    s32 func_800F54E4();
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6CC8(s32);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    s32 func_80102BF8(void *, s32, s32, s32);
+    s32 func_80102CF4(Actor *, f32);
+    f32 func_80102D78(void *, s32 *);
+    void func_8010A590(Actor *);
+    void func_8010A85C(u8 *, s32);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010CAC0(f32 *, s32);
+    void func_808011AC_chsabreman(void *);
+    void func_808011F8_chsabreman();
+    void func_80801218_chsabreman(Actor *);
+    void func_80801724_chsabreman(Actor *, s32, s32);
+    extern s32 D_80801BF8_chsabreman;
+    extern s32 D_80801C20_chsabreman;
+    extern s32 D_80801E08_chsabreman;
+    extern s8 D_80801E16_chsabreman;
+    struct SabremanData *data;
+    s32 sp60;
+    s32 sp5C;
+    s32 sp58;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+
+    data = func_80100094(arg0, 0);
+    sp60 = 2;
+    sp5C = 8;
+    switch (arg0->unk70_10) {
+        case 1:
+        case 6:
+        case 12:
+        case 24:
+            break;
+        case 2:
+            if (func_800D9078(&arg0->unk58)) {
+                func_808011F8_chsabreman(arg0, 3);
+                func_80101180(0x1FE, 10, 0);
+                func_8010A85C(arg0, 1);
+                ((struct SabremanFlags *)arg0)->unk74_20 = 1;
+            }
+            break;
+        case 3:
+            if (func_80101DDC(arg0)) {
+                func_808011F8_chsabreman(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_80101DDC(arg0)) {
+                func_80801724_chsabreman(arg0, 3, 1);
+                func_8010A590(arg0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1271, 14, arg0->position, 0xAA);
+                func_808011F8_chsabreman(arg0, 6);
+                func_800DA7A8(0x1CA, 1, 2);
+            }
+            break;
+        case 5:
+            sp5C = 0;
+            D_80801E16_chsabreman = 6;
+            _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801E08_chsabreman, &D_80801BF8_chsabreman, 5);
+            break;
+        case 7:
+            if (func_80101DDC(arg0)) {
+                _subaddieDll_entrypoint_4(arg0, 0);
+                if (*(s32 *)&arg0->unk50 >= 3) {
+                    func_800F82D4(func_800F54E4(), 0);
+                    if (!func_800F6CC8(func_800F54E4())) {
+                        _subaddiepalette_entrypoint_2(arg0, func_80100094(arg0, 0), 0x7F1, 3.0f);
+                        func_808011F8_chsabreman(arg0, 8);
+                        func_808017D8_chsabreman(arg0, 1, 0x30);
+                    } else {
+                        func_808011F8_chsabreman(arg0, 5);
+                    }
+                } else {
+                    func_808011F8_chsabreman(arg0, 5);
+                }
+            }
+            break;
+        case 8:
+            if (((struct SabremanData *)func_80100094(arg0, 0))->unk4 == 0) {
+                func_808011F8_chsabreman(arg0, 9);
+                arg0->unk64_20 = 0;
+            }
+            break;
+        case 9:
+            if (func_80101E14(arg0, 0.23f)) {
+                func_80101180(0x1FE, 0x48, 3);
+                arg0->unk64_20 = 1;
+            }
+            if (func_80101DDC(arg0)) {
+                if (func_800F64A4(func_800F54E4(), 0x400)) {
+                    sp58 = 0x12D9;
+                } else {
+                    sp58 = 0x1273;
+                }
+                func_808011F8_chsabreman(arg0, 11);
+                func_800DA7A8(0x1CA, 2, 2);
+                func_80801724_chsabreman(arg0, 2, 1);
+                _subaddiedialog_entrypoint_11(arg0->unk0, sp58, 14, arg0->position, 0xAA);
+            }
+            break;
+        case 10:
+            func_808011AC_chsabreman(arg0);
+            D_80801E16_chsabreman = 11;
+            _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801E08_chsabreman, &D_80801C20_chsabreman, 4);
+            break;
+        case 11:
+            func_808011AC_chsabreman(arg0);
+            break;
+        case 13:
+            sp60 = 0;
+            break;
+        case 14:
+            sp60 = 0;
+            func_808011AC_chsabreman(arg0);
+            if (_subaddietaxi_entrypoint_1(arg0, 11)) {
+                func_808011F8_chsabreman(arg0, 17);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1275, 14, arg0->position, 0xAA);
+                func_800DA7A8(0x1CA, 3, 2);
+            }
+            break;
+        case 15:
+            if (_subaddietaxi_entrypoint_11(arg0, 11) && _subaddietaxi_entrypoint_5(arg0, 11)) {
+                _subaddietaxi_entrypoint_14(arg0, 11);
+                func_808011F8_chsabreman(arg0, 18);
+                func_8010A590(arg0);
+            }
+            sp60 = _subaddietaxi_entrypoint_12(arg0, 11);
+            break;
+        case 16:
+            func_808011AC_chsabreman(arg0);
+            break;
+        case 17:
+            func_808011AC_chsabreman(arg0);
+            break;
+        case 18:
+            if (_subaddietaxi_entrypoint_15(arg0, 11)) {
+                func_808011F8_chsabreman(arg0, 12);
+            }
+            break;
+        case 19:
+            func_800EE88C(sp4C, data->unk81A);
+            arg0->unk54 = func_80102D78(arg0, sp4C);
+            func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x43160000);
+            if (func_80102CF4(arg0, 8.0f)) {
+                func_808011F8_chsabreman(arg0, 20);
+                ((f32 *)arg0->actorData)[3] = 50.0f;
+            }
+            break;
+        case 20:
+            func_800EE88C(sp40, data->unk81A);
+            arg0->unk54 = func_80102D78(arg0, sp40);
+            func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x43160000);
+            func_8010B990(arg0, 0x1005);
+            if (func_800EEB40(arg0->position, sp40) < 2500.0f) {
+                func_808011F8_chsabreman(arg0, 21);
+            }
+            break;
+        case 21:
+            arg0->unk54 = data->unk818;
+            func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x43160000);
+            if (func_80102CF4(arg0, 8.0f)) {
+                func_808011F8_chsabreman(arg0, 22);
+            }
+            break;
+        case 22:
+            if (func_80101DDC(arg0)) {
+                func_808011F8_chsabreman(arg0, 23);
+            }
+            break;
+        case 23:
+            if (!func_800C0638() && func_800D90A4(&arg0->unk58) && func_8010CAC0(arg0->position, 400) && arg0->unk58 <= 0.0f) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1293 + func_800DC128(0, 3), 0, arg0->position, 0xAA);
+                func_80102424(arg0, 24);
+                arg0->unk58 = func_800DC178(8.0f, 12.0f);
+            }
+            break;
+    }
+    _subaddietaxi_entrypoint_9(arg0, 11);
+    _subaddiepalette_entrypoint_1(arg0, func_80100094(arg0, 0));
+    func_80801218_chsabreman(arg0);
+    if ((sp60 | sp5C) && _subaddieskeleton_entrypoint_0(arg0, 1, sp34)) {
+        _sudeflect_entrypoint_0(sp34, 0.0f, 90.0f, sp60 | sp5C);
+    }
+}
 
 s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chlifeforcespell_entrypoint_1(Actor **, void *, s32, f32, s32);
