@@ -894,7 +894,7 @@ s32 func_80801A04_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80802298_chdiggerboss(u8 *, u8 *);
     void func_808029C8_chdiggerboss(Actor *);
     void func_80803078_chdiggerboss(Actor *, s32, s32, u32);
-    void func_80803694_chdiggerboss(Actor *, s16, s16);
+    void func_80803694_chdiggerboss(Actor *, s32, s32);
     void func_808039C0_chdiggerboss(Actor *, s16, s16);
     s32 func_80803BE8_chdiggerboss(s32, s32, s32);
     void func_80805448_chdiggerboss(Actor *, s32, s32);
@@ -1851,7 +1851,122 @@ s32 func_80803660_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     return _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x22);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80803694_chdiggerboss.s")
+void func_80803694_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_80808560_chdiggerboss(Actor *);
+    void func_80809150_chdiggerboss(Actor *);
+    void func_80808470_chdiggerboss(Actor *arg0, s32 arg1);
+    void func_808080C0_chdiggerboss(Actor *arg0, s32 arg1);
+    void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2);
+    void *func_80807280_chdiggerboss(s32 arg0, s32 arg1, s16 *arg2);
+    void func_80805A00_chdiggerboss(s32 arg0, s32 arg1);
+    u32 func_800FDC28(u32);
+    s32 func_80803BE8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2);
+    void func_80806EE4_chdiggerboss(s32, s32);
+    void func_80807DC0_chdiggerboss(s32, s32);
+    extern u8 D_80809CC0_chdiggerboss;
+    extern u8 D_80809CD0_chdiggerboss;
+    extern u8 D_80809CE0_chdiggerboss;
+    extern s16 D_80809CF0_chdiggerboss;
+    extern s16 D_80809D00_chdiggerboss;
+    void *func_80100094(Actor *, u32);
+    void func_80802878_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    u8 *data;
+    Actor *func_80802228_chdiggerboss(Actor *);
+
+    data = func_80100094((s32)arg0, 0);
+    switch (arg1) {
+        case 0x171D:
+            break;
+        case 0x171E:
+        case 0x171F:
+            func_80803BE8_chdiggerboss(arg0, 4, 3);
+            break;
+        case 0x1720:
+            func_800FDC28(0x14);
+            func_80805A00_chdiggerboss(arg0, 6);
+            break;
+        case 0x172E:
+            func_80802FEC_chdiggerboss(arg0, 9, 0);
+            break;
+        case 0x172F:
+        case 0x1730:
+            func_80802878_chdiggerboss((s32)arg0, 3, 1);
+            if (func_80802170_chdiggerboss(arg0, 2) == 0) {
+                func_80803660_chdiggerboss(arg0, 0x1722, 0x106);
+            } else {
+                func_800C0850();
+                *(s16 *)(data + 0x46) = 0;
+            }
+            break;
+        case 0x1722:
+            *(s16 *)(data + 0x46) = 0;
+            break;
+        case 0x1721:
+            func_80805A00_chdiggerboss(arg0, 0xE);
+            break;
+        case 0x1723:
+            func_80807280_chdiggerboss(arg0, 0x16, &D_80809CF0_chdiggerboss);
+            break;
+        case 0x1724:
+            func_80807280_chdiggerboss(arg0, 0x1E, &D_80809D00_chdiggerboss);
+            break;
+        case 0x1725:
+            func_8080290C_chdiggerboss(arg0, 0x3B, 0);
+            func_80803660_chdiggerboss(arg0, 0x1726, 0x14C);
+            break;
+        case 0x1731:
+            func_80803BE8_chdiggerboss(arg0, 0xC, 3);
+            break;
+        case 0x1732:
+            func_80803BE8_chdiggerboss(arg0, 0x14, 3);
+            break;
+        case 0x1733:
+            func_80803BE8_chdiggerboss(arg0, 0x2F, 3);
+            break;
+        case 0x1734:
+            func_80802878_chdiggerboss((s32)arg0, 3, 1);
+            func_80803660_chdiggerboss(arg0, 0x1729, 0x10E);
+            break;
+        case 0x1729:
+            func_80806A78_chdiggerboss(arg0, 0x3A, &D_80809CC0_chdiggerboss);
+            func_80806EE4_chdiggerboss((s32)arg0, 1);
+            data[4] = 1;
+            break;
+        case 0x172A:
+            func_80806A78_chdiggerboss(arg0, 0x3C, &D_80809CD0_chdiggerboss);
+            func_80806EE4_chdiggerboss((s32)arg0, 1);
+            break;
+        case 0x172B:
+            func_80806A78_chdiggerboss(arg0, 0x3E, &D_80809CE0_chdiggerboss);
+            func_80806EE4_chdiggerboss((s32)arg0, 1);
+            func_80807DC0_chdiggerboss((s32)arg0, 2);
+            func_808080C0_chdiggerboss(func_80802228_chdiggerboss(arg0), 2);
+            break;
+        case 0x172C:
+            func_80808470_chdiggerboss(arg0, 0x40);
+            break;
+        case 0x172D:
+            func_80802BE0_chdiggerboss((s32)arg0, 1.0f);
+            func_80808560_chdiggerboss(arg0);
+            break;
+        case 0x1735:
+            func_80809150_chdiggerboss(arg0);
+            break;
+        case 0x14D8:
+            func_800FDC28(0);
+            _gcgoto_entrypoint_1(0x191, 1);
+            break;
+        case 0xCEB:
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808039C0_chdiggerboss.s")
 
@@ -4034,6 +4149,7 @@ void func_808081AC_chdiggerboss(u8 *volatile arg0) {
 
 void func_80808258_chdiggerboss(Actor *arg0) {
     void func_80808560_chdiggerboss(Actor *);
+    void func_80809150_chdiggerboss(Actor *);
     s32 func_808086A8_chdiggerboss(s32);
     void func_808087F0_chdiggerboss(Actor *);
     s32 func_800D2498(u32, s32, u32);
