@@ -1,6 +1,43 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/potogoldgame/func_80800000_chpotogoldgame.s")
+void func_80800000_chpotogoldgame(Actor *arg0) {
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    s32 func_80800434_chpotogoldgame(s32, s32);
+    void func_808011DC_chpotogoldgame(Actor *);
+    void func_80801494_chpotogoldgame(Actor *, s32);
+    void func_80801558_chpotogoldgame(Actor *);
+    s32 func_80801A7C_chpotogoldgame(Actor *);
+
+    func_808011DC_chpotogoldgame(arg0);
+    arg0->unk64_20 = 0;
+    if (func_800DA298(0x6B6) != 0) {
+        func_80800434_chpotogoldgame((s32)arg0, 0xF);
+    } else if (func_800D0A9C(0x49, 1) != 0 || func_800D0A9C(0x17, 4) != 0 || func_800DA298(0x1DB) != 0 || func_800D395C() != 0) {
+        ((f32 *)arg0->actorData)[0] = 2.0f;
+        ((f32 *)arg0->actorData)[5] = 2.0f;
+        ((f32 *)arg0->actorData)[4] = 2.0f;
+        ((f32 *)arg0->actorData)[6] = 2.0f;
+        ((f32 *)arg0->actorData)[1] = 2.0f;
+        if (func_800D395C() != 0) {
+            func_80800434_chpotogoldgame((s32)arg0, 0xD);
+        } else {
+            func_80800434_chpotogoldgame((s32)arg0, 4);
+        }
+    } else {
+        ((f32 *)arg0->actorData)[0] = 0.0f;
+        ((f32 *)arg0->actorData)[5] = 0.0f;
+        ((f32 *)arg0->actorData)[4] = 0.0f;
+        ((f32 *)arg0->actorData)[6] = 0.0f;
+        ((f32 *)arg0->actorData)[1] = 0.0f;
+    }
+    func_80801A7C_chpotogoldgame(arg0);
+    func_80801494_chpotogoldgame(arg0, 1);
+    func_80801558_chpotogoldgame(arg0);
+    arg0->actorData[7] = 0;
+    _sueggmisc_entrypoint_3();
+}
 
 void func_80800124_chpotogoldgame(Actor *arg0) {
     Actor *_subaddiefind_entrypoint_2(s32, s32);
