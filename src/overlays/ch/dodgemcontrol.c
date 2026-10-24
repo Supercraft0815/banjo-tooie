@@ -1070,7 +1070,142 @@ void func_808028E4_chdodgemcontrol(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80802D04_chdodgemcontrol.s")
+void func_80802D04_chdodgemcontrol(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddieaudioquick_entrypoint_2();
+    s32 _subaddiejoy_entrypoint_2(Actor *, s32, f32 *);
+    s32 anctrl_isStopped(s32);
+    void func_800C3058(u8, s32);
+    void func_800C31DC(u8, f32);
+    void func_800C4B70(s32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800F11E4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    s32 func_80104248();
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    void func_80803200_chdodgemcontrol(Actor *);
+    void func_8080349C_chdodgemcontrol(Actor *);
+    void func_808037C8_chdodgemcontrol(Actor *);
+    void func_8080422C_chdodgemcontrol(s32, s32);
+    f32 func_8080458C_chdodgemcontrol(Actor *);
+    f32 func_8080460C_chdodgemcontrol(Actor *);
+    void func_8080476C_chdodgemcontrol(Actor *);
+    extern u32 D_80804D10_chdodgemcontrol;
+    extern s32 D_80804D48_chdodgemcontrol;
+    extern s32 D_80804D5C_chdodgemcontrol;
+    extern s32 D_80804D74_chdodgemcontrol;
+    extern s32 D_80804D8C_chdodgemcontrol;
+    extern s32 D_80804DA4_chdodgemcontrol;
+    extern f32 D_80804F74_chdodgemcontrol;
+    extern f32 D_80804F84_chdodgemcontrol;
+    extern f32 D_80804F94_chdodgemcontrol;
+    f32 *data;
+    f32 dt;
+    f32 sampleRate;
+    f32 joy;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    if (data[7] >= 0.0f) {
+        data[7] -= dt;
+    }
+    if (((f32 *)arg0->actorData)[3] > 10.0f) {
+        sampleRate = func_800F11E4(((f32 *)arg0->actorData)[3],
+            func_8080460C_chdodgemcontrol(arg0) * 0.1f,
+            func_8080460C_chdodgemcontrol(arg0), 2000.0f, 15000.0f);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80804D10_chdodgemcontrol);
+        func_800C31DC(arg0->unk5F, func_800F11E4(((f32 *)arg0->actorData)[3],
+            func_8080460C_chdodgemcontrol(arg0) * 0.5f,
+            func_8080460C_chdodgemcontrol(arg0), 0.85f, 1.1f));
+        func_800C3058(arg0->unk5F, (s32)sampleRate);
+        if (func_800DC0C0() < 0.01f) {
+            func_800C4B70((s32)sampleRate);
+            func_8010D930(8, 0, arg0->position, &D_80804DA4_chdodgemcontrol);
+        }
+    }
+    if (arg0->unk64_20) {
+        func_80800044_chdodgemcontrol((f32 *)arg0);
+    }
+    switch (arg0->unk70_10) {
+    case 4:
+        ((f32 *)arg0->actorData)[3] *= 0.8f;
+        break;
+    case 3:
+        arg0->unk54 = _subaddiejoy_entrypoint_2(arg0, (s32)arg0->rotation[1], &joy);
+        if (((f32 *)arg0->actorData)[3] < func_8080460C_chdodgemcontrol(arg0)) {
+            ((f32 *)arg0->actorData)[3] += joy * func_8080458C_chdodgemcontrol(arg0);
+        }
+        func_80802180_chdodgemcontrol(arg0);
+        if (!arg0->unk64_29) {
+            arg0->unk70_10 = 2;
+        }
+        func_808028E4_chdodgemcontrol((s32)arg0);
+        break;
+    case 2:
+        if (arg0->unk64_29) {
+            arg0->unk70_10 = 3;
+        }
+        if (data[4] <= 0.0f) {
+            func_8080476C_chdodgemcontrol(arg0);
+            if (((f32 *)arg0->actorData)[3] < func_8080460C_chdodgemcontrol(arg0)) {
+                ((f32 *)arg0->actorData)[3] += func_8080458C_chdodgemcontrol(arg0);
+            }
+            if (data[5] > 0.0f) {
+                data[5] -= dt;
+            } else {
+                arg0->unk50 -= dt;
+            }
+        } else {
+            data[4] -= dt;
+            if (data[5] > 0.0f) {
+                data[5] -= dt;
+                if (((f32 *)arg0->actorData)[3] < func_8080460C_chdodgemcontrol(arg0) * 0.5f) {
+                    ((f32 *)arg0->actorData)[3] += func_8080458C_chdodgemcontrol(arg0);
+                }
+            } else {
+                func_8080349C_chdodgemcontrol(arg0);
+                func_808037C8_chdodgemcontrol(arg0);
+                func_80803200_chdodgemcontrol(arg0);
+            }
+        }
+        func_80802180_chdodgemcontrol(arg0);
+        func_808028E4_chdodgemcontrol((s32)arg0);
+        break;
+    case 5:
+        if (func_80101E14(arg0, 0.7283f)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D48_chdodgemcontrol);
+        }
+        if (func_80101E4C(arg0, &D_80804F74_chdodgemcontrol)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D5C_chdodgemcontrol);
+        }
+        if (anctrl_isStopped(func_80104248(arg0))) {
+            func_8080422C_chdodgemcontrol((s32)arg0, 4);
+        }
+        break;
+    case 6:
+        if (func_80101E4C(arg0, &D_80804F84_chdodgemcontrol)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D74_chdodgemcontrol);
+        }
+        if (anctrl_isStopped(func_80104248(arg0))) {
+            func_8080422C_chdodgemcontrol((s32)arg0, 4);
+        }
+        break;
+    case 7:
+        if (func_80101E4C(arg0, &D_80804F94_chdodgemcontrol)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D8C_chdodgemcontrol);
+        }
+        if (func_80101E14(arg0, 0.39f)) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D48_chdodgemcontrol);
+        }
+        if (anctrl_isStopped(func_80104248(arg0))) {
+            func_8080422C_chdodgemcontrol((s32)arg0, 4);
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80803200_chdodgemcontrol.s")
 
