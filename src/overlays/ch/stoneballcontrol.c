@@ -1315,7 +1315,228 @@ s32 func_808036C0_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/stoneballcontrol/func_80803724_chstoneballcontrol.s")
+void func_80803724_chstoneballcontrol(Actor *arg0) {
+    typedef struct { f32 v[3]; } Vec3;
+    typedef struct {
+        f32 position[3];
+        f32 speed;
+        f32 velocity[3];
+        f32 timer;
+    } BallMotion;
+    typedef struct {
+        void *controller;
+        f32 timer;
+        f32 position[3];
+    } BallControl;
+    extern Vec3 D_8080540C_chstoneballcontrol;
+    extern s32 D_80805418_chstoneballcontrol[];
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    f32 _subaddiejoy_entrypoint_3();
+    s32 _sukickball_entrypoint_12(u8 *, s32);
+    void _sukickball_entrypoint_14(Actor *);
+    f32 _sukickball_entrypoint_15(s32);
+    void _sukickball_entrypoint_16(s32, f32 *);
+    void _sukickball_entrypoint_2(Actor *, f32, f32);
+    s32 _sukickball_entrypoint_5(Actor *, f32 *);
+    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102B2C(Actor *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    struct anctrl_s *func_80104248(void *);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void func_808040B8_chstoneballcontrol(Actor *);
+    void func_80804218_chstoneballcontrol(Actor *);
+    void func_80804304_chstoneballcontrol(u8 *);
+    s32 func_80804810_chstoneballcontrol(Actor *);
+    void func_80804B60_chstoneballcontrol(Actor *);
+    BallControl *sp64;
+    Actor *sp60;
+    f32 sp5C;
+    Vec3 sp50;
+    f32 speedLimit;
+
+    sp64 = func_80100094(arg0, 0);
+    sp5C = func_800D8FF8();
+    sp60 = func_80106790(arg0->unk3C);
+    func_800BD2D0(sp64->controller);
+    sp64->timer -= sp5C;
+    switch (arg0->unk70_10) {
+    case 10:
+        ((BallMotion *)arg0->actorData)->velocity[1] = 0.0f;
+        ((BallMotion *)arg0->actorData)->speed = _subaddiejoy_entrypoint_3(arg0);
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+            ((BallMotion *)arg0->actorData)->speed = func_800F10B4(((BallMotion *)arg0->actorData)->speed, 0.0f, 1.0f, 0.0f, func_80800070_chstoneballcontrol(arg0));
+        } else {
+            speedLimit = func_80800040_chstoneballcontrol(arg0);
+            ((BallMotion *)arg0->actorData)->speed = func_800F10B4(((BallMotion *)arg0->actorData)->speed,
+                0.0f,
+                1.0f,
+                0,
+                speedLimit);
+        }
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0) && func_800BCFC4(sp64->controller, 1)) {
+            arg0->unk58 = func_800F10B4((s32)func_800BCD78(sp64->controller, 1, 1) * func_800D8FF8(), 0.0f, 1.0f, 450.0f, 900.0f);
+            arg0->unk64_20 = 1;
+        }
+        func_80804B60_chstoneballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chstoneballcontrol(arg0), func_80800040_chstoneballcontrol(arg0));
+        if (func_800BD030(sp64->controller, 9)) {
+            func_80800B4C_chstoneballcontrol(arg0, 8);
+        }
+        break;
+    case 8:
+        if (0 == arg0->unk50) {
+            if (func_80101E14(arg0, 0.3077f)) {
+                anctrl_setPlaybackType(func_80104248(arg0), 3);
+                arg0->unk50 = 1.0f;
+                ((BallMotion *)arg0->actorData)->speed = 1050.0f;
+                func_800B4470((u8 *)arg0->position, 0, D_80805418_chstoneballcontrol, 1, 0.75f, 0, 125, 250, 0);
+            }
+        } else if (0 != arg0->unk50) {
+            arg0->unk50 += sp5C;
+            if (arg0->unk50 > 2.5f || ((BallMotion *)arg0->actorData)->speed < 150.0f) {
+                func_80800B4C_chstoneballcontrol(arg0, 2);
+                ((BallMotion *)arg0->actorData)->speed = func_8080009C_chstoneballcontrol(arg0);
+            } else {
+                ((BallMotion *)arg0->actorData)->speed *= 0.9f;
+            }
+        }
+        ((BallMotion *)arg0->actorData)->velocity[1] = 0;
+        func_800EEB9C(((BallMotion *)arg0->actorData)->velocity, arg0->rotation[1], ((BallMotion *)arg0->actorData)->speed * sp5C);
+        func_800EF04C(arg0->position, ((BallMotion *)arg0->actorData)->velocity);
+        if (arg0->unk64_29) {
+            _subaddiejoy_entrypoint_3(arg0);
+            if (!func_80102CF4(arg0, 0x41000000)) {
+                func_80102B2C(arg0, 8.0f);
+            }
+        }
+        func_80804304_chstoneballcontrol((u8 *)arg0);
+        break;
+    case 12:
+        if (((BallMotion *)arg0->actorData)->speed < 150.0f) {
+            func_80800B4C_chstoneballcontrol(arg0, 2);
+            ((BallMotion *)arg0->actorData)->speed = func_8080009C_chstoneballcontrol(arg0);
+        } else {
+            ((BallMotion *)arg0->actorData)->speed *= 0.9f;
+        }
+        ((BallMotion *)arg0->actorData)->velocity[1] = 0.0f;
+        func_800EEB9C(((BallMotion *)arg0->actorData)->velocity, arg0->unk54, ((BallMotion *)arg0->actorData)->speed * sp5C);
+        func_800EF04C(arg0->position, ((BallMotion *)arg0->actorData)->velocity);
+        break;
+    case 2:
+        if (arg0->unk64_29) {
+            arg0->unk70_10 = 10;
+            arg0->unk58 = 0.0f;
+        }
+        if (!func_80804810_chstoneballcontrol(arg0)) {
+            func_80800B4C_chstoneballcontrol(arg0, 1);
+        }
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+            if (func_800DC0C0() < 0.95f) {
+                func_80800B4C_chstoneballcontrol(arg0, 5);
+            } else {
+                ((BallMotion *)arg0->actorData)->timer = func_800DC178(0.0f, 2.5f);
+                func_80800B4C_chstoneballcontrol(arg0, 4);
+            }
+        }
+        func_80804B60_chstoneballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chstoneballcontrol(arg0), func_80800040_chstoneballcontrol(arg0));
+        break;
+    case 1:
+        _sukickball_entrypoint_16(arg0->unk6C_0, ((BallMotion *)arg0->actorData)->position);
+        func_80804B60_chstoneballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chstoneballcontrol(arg0), func_80800040_chstoneballcontrol(arg0));
+        if (func_80804810_chstoneballcontrol(arg0)) {
+            func_80800B4C_chstoneballcontrol(arg0, 2);
+        }
+        if (func_800EFFB4(arg0->position, 50.0f, ((BallMotion *)arg0->actorData)->position)) {
+            func_80800B4C_chstoneballcontrol(arg0, 3);
+        }
+        break;
+    case 3:
+        if (func_80804810_chstoneballcontrol(arg0)) {
+            func_80800B4C_chstoneballcontrol(arg0, 2);
+        }
+        _sukickball_entrypoint_14(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chstoneballcontrol(arg0), func_80800040_chstoneballcontrol(arg0));
+        break;
+    case 4:
+        {
+            sp50 = D_8080540C_chstoneballcontrol;
+            if (((BallMotion *)arg0->actorData)->timer > 0.0f) {
+                ((BallMotion *)arg0->actorData)->timer -= sp5C;
+            } else {
+                func_80800B4C_chstoneballcontrol(arg0, 5);
+            }
+            if (!_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+                func_80800B4C_chstoneballcontrol(arg0, 1);
+            }
+            _sukickball_entrypoint_16(arg0->unk6C_0, ((BallMotion *)arg0->actorData)->position);
+            func_800EFCD8(sp50.v, _sukickball_entrypoint_15(arg0->unk6C_0), 250.0f);
+            func_800EF04C(((BallMotion *)arg0->actorData)->position, sp50.v);
+            if (func_800F0064(arg0->position, 100.0f, ((BallMotion *)arg0->actorData)->position) || _sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0) == 3) {
+                func_80800B4C_chstoneballcontrol(arg0, 5);
+            }
+            func_80804B60_chstoneballcontrol(arg0);
+            _sukickball_entrypoint_2(arg0, func_8080009C_chstoneballcontrol(arg0), func_80800040_chstoneballcontrol(arg0));
+        }
+        break;
+    case 5:
+        func_808040B8_chstoneballcontrol(arg0);
+        func_80804218_chstoneballcontrol(arg0);
+        func_80800B4C_chstoneballcontrol(arg0, 6);
+        break;
+    case 6:
+        if (_sukickball_entrypoint_12((u8 *)sp60, arg0->unk6C_0)) {
+            func_80804218_chstoneballcontrol(arg0);
+        } else {
+            func_80800B4C_chstoneballcontrol(arg0, 2);
+        }
+        break;
+    case 7:
+        if (((BallMotion *)arg0->actorData)->timer > 0.0f) {
+            ((BallMotion *)arg0->actorData)->timer -= sp5C;
+        } else {
+            func_80800B4C_chstoneballcontrol(arg0, 2);
+        }
+        func_80804B60_chstoneballcontrol(arg0);
+        _sukickball_entrypoint_2(arg0, func_8080009C_chstoneballcontrol(arg0), func_80800040_chstoneballcontrol(arg0));
+        break;
+    case 9:
+        arg0->unk64_20 = 0;
+        arg0->unk58 = 0.0f;
+        arg0->rotation[1] += ((BallMotion *)arg0->actorData)->timer;
+        if (((BallMotion *)arg0->actorData)->timer > 1.0f) {
+            ((BallMotion *)arg0->actorData)->timer *= 0.95f;
+        } else if (((BallMotion *)arg0->actorData)->timer < -1.0f) {
+            ((BallMotion *)arg0->actorData)->timer *= 0.95f;
+        } else {
+            func_80800B4C_chstoneballcontrol(arg0, 2);
+            ((BallMotion *)arg0->actorData)->timer = 0.0f;
+        }
+        break;
+    }
+    if (_sukickball_entrypoint_5(arg0, sp64->position)) {
+        if (arg0->unk70_10 == 8) {
+            func_80800B4C_chstoneballcontrol(arg0, 2);
+        } else if (!arg0->unk64_29) {
+            func_80800BCC_chstoneballcontrol((u8 *)arg0, 0);
+        }
+    } else {
+        func_800EE7F8(sp64->position, arg0->position);
+    }
+}
 
 s32 func_80803FF4_chstoneballcontrol(s32 arg0, s32 arg1) {
     s32 func_800DC128(s32, s32);
