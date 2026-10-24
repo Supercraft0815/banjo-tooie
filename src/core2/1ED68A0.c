@@ -1,6 +1,68 @@
 #include "core2/1ED68A0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FCFB0.s")
+void func_800FCFB0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3, f32 arg4) {
+    typedef struct {
+        s32 volume[2];
+        s16 tempo[2];
+    } MusicSettings;
+    s32 func_80017764(s32);
+    void func_800FC688(s32, s32);
+    void func_800FC97C(s32, f32, f32);
+    s32 func_800FCCD4(s32);
+    s32 func_800FCDE0(s32, s32, f32);
+    s32 func_800FCED0(s32, s32, f32);
+    extern u8 D_801359D5;
+    extern s32 D_80135A20[3];
+    extern f32 D_80135A30[3];
+    extern u8 D_80135A3C[3];
+    extern s32 D_80135A40;
+
+    if (arg1 == D_80135A20[arg0]) {
+        if (arg3) {
+            if (((MusicSettings *)arg2)->tempo[1] != -1) {
+                func_800FCED0(arg1, 60000000 / ((MusicSettings *)arg2)->tempo[1], arg4);
+            }
+            func_800FCDE0(arg1, ((MusicSettings *)arg2)->volume[1], arg4);
+        } else {
+            if (((MusicSettings *)arg2)->tempo[0] != -1) {
+                func_800FCED0(arg1, 60000000 / ((MusicSettings *)arg2)->tempo[0], arg4);
+            }
+            func_800FCDE0(arg1, ((MusicSettings *)arg2)->volume[0], arg4);
+        }
+        D_80135A3C[arg0] = 1;
+        return;
+    }
+    if (D_80135A20[arg0] == 0) {
+        D_80135A20[arg0] = arg1;
+        if (!func_800FCCD4(arg1)) {
+            func_800FC688(arg1, func_80017764(arg1));
+            D_801359D5 = 1;
+        }
+        if (arg1 == 0x4B) {
+            func_800FC97C(arg1, 0.125f, 1.0f);
+        } else {
+            func_800FC97C(arg1, 0.25f, 1.0f);
+        }
+        if (arg3) {
+            if (((MusicSettings *)arg2)->tempo[1] != -1) {
+                func_800FCED0(arg1, 60000000 / ((MusicSettings *)arg2)->tempo[1], arg4);
+            }
+            func_800FCDE0(arg1, ((MusicSettings *)arg2)->volume[1], arg4);
+        } else {
+            if (((MusicSettings *)arg2)->tempo[0] != -1) {
+                func_800FCED0(arg1, 60000000 / ((MusicSettings *)arg2)->tempo[0], arg4);
+            }
+            func_800FCDE0(arg1, ((MusicSettings *)arg2)->volume[0], arg4);
+        }
+        D_80135A3C[arg0] = 1;
+        D_80135A30[arg0] = arg4;
+        if (D_80135A40 == -1) {
+            D_80135A40 = 1;
+            return;
+        }
+        D_80135A40++;
+    }
+}
 
 void func_800FD2A0(f32 *arg0, s32 arg1) {
     extern s32 D_801359C0;
@@ -253,7 +315,7 @@ void func_800FE3EC(void) {
     extern s16 D_801359C8;
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
-    extern u8 D_80135A3C;
+    extern u8 D_80135A3C[3];
     extern s32 D_80135A40;
     u32 temp_a0;
     s32 var_s1;
@@ -265,10 +327,10 @@ void func_800FE3EC(void) {
     if (D_80135A40 > 0) {
         for (var_s1 = 0; var_s1 < 3; var_s1++) {
             temp_a0 = D_80135A20[var_s1];
-            if ((temp_a0 != 0) && ((&D_80135A3C)[var_s1] != 0)) {
+            if ((temp_a0 != 0) && (D_80135A3C[var_s1] != 0)) {
                 func_800FCA90(temp_a0);
                 D_80135A20[var_s1] = 0;
-                (&D_80135A3C)[var_s1] = 0;
+                D_80135A3C[var_s1] = 0;
                 D_80135A30[var_s1] = 0.0f;
                 D_80135A40 -= 1;
             }
@@ -284,7 +346,7 @@ s32 func_800FE4E4(void) {
     extern s8 D_80135A01;
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
-    extern u8 D_80135A3C;
+    extern u8 D_80135A3C[3];
     extern s32 D_80135A40;
     u32 temp_a0;
     s32 var_s1;
@@ -301,10 +363,10 @@ s32 func_800FE4E4(void) {
     if (D_80135A40 > 0) {
         for (var_s1 = 0; var_s1 < 3; var_s1++) {
             temp_a0 = D_80135A20[var_s1];
-            if ((temp_a0 != 0) && ((&D_80135A3C)[var_s1] != 0)) {
+            if ((temp_a0 != 0) && (D_80135A3C[var_s1] != 0)) {
                 func_800FC74C(temp_a0);
                 D_80135A20[var_s1] = 0;
-                (&D_80135A3C)[var_s1] = 0;
+                D_80135A3C[var_s1] = 0;
                 D_80135A30[var_s1] = 0.0f;
                 D_80135A40 -= 1;
             }
@@ -351,7 +413,7 @@ void func_800FE740(void) {
     D_801359E2 = _cothemedll_entrypoint_1(sp1C[1]);
 }
 
-s32 func_800FE7A8(s32 arg0) { extern s16 D_801359C8; extern s32 D_80135A20[]; extern u8 D_80135A3C; extern s32 D_80135A40; s32 var_v0; u8 *var_v1; if (arg0 == D_801359C8) { return 1; } var_v0 = 0; var_v1 = &D_80135A3C; if (D_80135A40 > 0) {
+s32 func_800FE7A8(s32 arg0) { extern s16 D_801359C8; extern s32 D_80135A20[]; extern u8 D_80135A3C[3]; extern s32 D_80135A40; s32 var_v0; u8 *var_v1; if (arg0 == D_801359C8) { return 1; } var_v0 = 0; var_v1 = D_80135A3C; if (D_80135A40 > 0) {
         for (; var_v0 < 3; var_v0++, var_v1++) {
             if ((*var_v1 != 0) && (arg0 == D_80135A20[var_v0])) {
                 return 1;
