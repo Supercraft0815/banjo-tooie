@@ -1,8 +1,9 @@
 #include "common.h"
 
-void func_80800000_chbanjocurrent()
+s32 func_80800000_chbanjocurrent(void)
 {
-    func_800F4C24(func_800F54E4());
+    s32 func_800F4C24(s32);
+    return func_800F4C24(func_800F54E4());
 }
 
 OSThread *chbanjocurrent_entrypoint_0(void)
@@ -62,7 +63,83 @@ void func_80800050_chbanjocurrent(u16 *arg0, f32 *arg1, f32 arg2[][2], s32 *arg3
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_808001D0_chbanjocurrent.s")
+void func_808001D0_chbanjocurrent(void *arg0) {
+    extern s32 func_8008FF94(void);
+    extern f32 func_800F5E7C(s32);
+    extern f32 func_800F5F7C(s32);
+    extern void *func_800F5E50(s32);
+    void func_80800050_chbanjocurrent(u16 *arg0, f32 *arg1, f32 arg2[][2], s32 *arg3);
+    extern void func_800EFB24(void *, void *, void *);
+    extern void func_800EF2A0(f32 *);
+    extern void func_800EFD24(f32 *);
+    extern void func_800EF3DC(f32 *, f32 *);
+    extern void func_800EE97C(f32 *, f32 *, f32 *);
+    extern f32 func_80013A7C(f32);
+    extern void func_800EF334(f32 *, f32);
+    extern void func_80090794(f32 *);
+    extern f32 func_800D8FF8(void);
+    extern void func_800EF174(f32 *, f32 *, f32);
+    s32 active;
+    s32 i;
+    s32 player;
+    f32 strength;
+    void *node;
+    s32 type;
+    f32 vertices[3][3];
+    f32 uv[3][2];
+    s32 order[3];
+    f32 delta[3];
+    f32 point[3];
+    f32 ratio;
+    f32 direction[3];
+    f32 span;
+    f32 scale;
+    f32 normal[3];
+    f32 velocity[3];
+    struct CurrentActor { u8 header[0x48]; f32 type; };
+
+    active = func_80800000_chbanjocurrent();
+    if (!active) return;
+    player = func_800F54E4();
+    type = func_8008FF94();
+    if (!type) return;
+    if (type == 2) {
+        span = func_800F5E7C(player) - func_800F5F7C(player);
+        scale = span;
+        if (span >= 1000.0f) return;
+        if (scale < 0) scale = 0;
+        strength = 1.0f - scale * 0.001f;
+    } else {
+        strength = 1.0f;
+    }
+    node = func_800F5E50(player);
+    type = ((s32 *)node)[2];
+    type = (u32)(type & 0x78000000) >> 27;
+    if (!type) return;
+    if (((struct CurrentActor *)arg0)->type != 0.0f && (f32)type != ((struct CurrentActor *)arg0)->type) return;
+    func_80800050_chbanjocurrent(node, vertices, uv, order);
+    func_800EFB24(delta, vertices[order[2]], vertices[order[1]]);
+    span = uv[order[2]][0] - uv[order[1]][0];
+    if (span != 0.0f) {
+        ratio = (uv[order[0]][0] - uv[order[1]][0]) / span;
+        for (i = 0; i < 3; i++) {
+            point[i] = vertices[order[1]][i] + delta[i] * ratio;
+        }
+        func_800EFB24(direction, point, vertices[order[0]]);
+        func_800EF2A0(direction);
+    } else {
+        func_800EFD24(direction);
+    }
+    func_800EF3DC(vertices[1], vertices[0]);
+    func_800EF3DC(vertices[2], vertices[0]);
+    func_800EE97C(normal, vertices[1], vertices[2]);
+    func_800EF2A0(normal);
+    scale = func_80013A7C(normal[1]) * 0.05f + 1.0f;
+    func_800EF334(direction, scale);
+    func_80090794(velocity);
+    func_800EF174(velocity, direction, ((u32)((u16 *)arg0)[59] >> 7) * func_800D8FF8() * strength);
+    if (((struct CurrentActor *)arg0)->type != 0.0f) func_800907C0(velocity);
+}
 
 OSThread *chbanjocurrent_entrypoint_1(void)
 {
