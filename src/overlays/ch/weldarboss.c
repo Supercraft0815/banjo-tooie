@@ -1310,7 +1310,75 @@ void func_808023F8_chweldarboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_8080247C_chweldarboss.s")
+void func_8080247C_chweldarboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x30];
+        u8 link[0x37];
+        u8 unk67;
+        u8 pad68[0x48];
+        u8 unkB0;
+    } WeldarAudioData;
+    typedef struct {
+        f32 unk0[2];
+        f32 unk8;
+    } LinkedAudioData;
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_800C31DC(u8, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    extern u32 D_80804908_chweldarboss[];
+    WeldarAudioData *sp34;
+    Actor *sp30;
+    LinkedAudioData *sp2C;
+    union { s32 word; u8 bytes[4]; } sp28;
+
+    sp34 = func_80100094(arg0, 0);
+    sp30 = _subaddielink_entrypoint_4(sp34->link);
+    sp2C = func_80100094(sp30, 0);
+    sp28.word = 0;
+    if (sp30 != NULL) {
+        switch (func_801022E4(arg0)) {
+        case 0x36F:
+            if (sp34->unk67 == 0 &&
+                (func_80102320(arg0, 0.02f, 0.13f) ||
+                 func_80102320(arg0, 0.26f, 0.55f))) {
+                sp28.word = 1;
+            }
+            func_808023BC_chweldarboss(arg0, sp28.word ? 2 : 4);
+            break;
+        case 0x373:
+            if (func_80101E14(arg0, 0.53f)) {
+                func_808023BC_chweldarboss(arg0, 2);
+            }
+            if (func_80101E14(arg0, 0.75f)) {
+                func_808023BC_chweldarboss(arg0, 4);
+            }
+            sp28.word = func_80102320(arg0, 0.53f, 0.75f);
+            break;
+        case 0x372:
+            if (func_80101E14(arg0, 0.7f)) {
+                func_808023BC_chweldarboss(arg0, 2);
+            }
+            sp28.word = func_80101F24(arg0) > 0.7f;
+            break;
+        default:
+            func_808023BC_chweldarboss(arg0, 4);
+            break;
+        }
+        if (sp2C->unk8 > 0.0f) {
+            sp28.word = 1;
+        }
+        sp34->unkB0 = _subaddieaudioloop_entrypoint_7(sp34->unkB0, sp30->position, sp28.word, (s32 *)D_80804908_chweldarboss, arg0->unk70_0);
+        if (sp34->unkB0) {
+            func_800C31DC(sp34->unkB0, func_800F12D4(sp2C->unk8, 0.0f, 1.0f, 1.2f, 0.8f));
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808026BC_chweldarboss.s")
 
@@ -1321,7 +1389,7 @@ void func_808029D8_chweldarboss(Actor *arg0) {
         u8 pad50[0x62];
         u8 unkB2;
     } WeldarData;
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
     void func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
@@ -1705,7 +1773,7 @@ void func_808035D0_chweldarboss(Actor *arg0) {
 
 void func_80803624_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
 
     u8 *sp24;
     u8 *temp_v0;
