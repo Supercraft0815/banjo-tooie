@@ -580,7 +580,22 @@ void func_808010E4_chmasterjiggy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/chmasterjiggy_entrypoint_2.s")
+/* extern */
+
+void chmasterjiggy_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4) {
+    typedef struct {
+        f32 amount;
+    } MasterJiggyData;
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *actor = func_80106790(arg4);
+    u8 *end = arg1 + arg3 * 0x10;
+
+    for (; arg1 < end; arg1 += 0x10, arg2 += 0x10) {
+        arg2[12] = (u32)((f32)(u32)arg1[12] + (f32)(0xFF - arg1[12]) * ((MasterJiggyData *)actor->actorData)->amount);
+        arg2[13] = (u32)((f32)(u32)arg1[12] + (f32)(0xFF - arg1[13]) * ((MasterJiggyData *)actor->actorData)->amount);
+        arg2[14] = (u32)((f32)(u32)arg1[12] + (f32)(0xFF - arg1[14]) * ((MasterJiggyData *)actor->actorData)->amount);
+    }
+}
 
 void func_80801448_chmasterjiggy(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
