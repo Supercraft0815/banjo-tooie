@@ -8873,7 +8873,7 @@ segments:
     subsegments: 
       - [0x0206AD00, c, lakemonster]
       - [0x0206CC50, .rodata, lakemonster]
-      - [0x0206CCF0, data, lakemonster]
+      - [0x0206CCF0, .data, lakemonster]
       - [0x0206D070, bss, lakemonster]
   - name: chdodgemcontrol_header
     dir: overlays/chdodgemcontrol
