@@ -41,7 +41,93 @@ void subaddiefade_entrypoint_6(u8 *arg0, s32 arg1) {
     (*(u8 *)((s8 *)(arg0) + (0x9B))) = (u8) var_v1_2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/fade/subaddiefade_entrypoint_7.s")
+/* extern */
+
+void subaddiefade_entrypoint_7(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void func_800FFAB0(Actor *);
+    s32 func_80107070(Actor *, s32);
+    struct FadeFlags {
+        u8 padding[0x74];
+        u32 upper : 27;
+        u32 timed : 1;
+        u32 lower : 4;
+        u16 upper78 : 14;
+        u16 state : 2;
+    };
+    f32 dt;
+    s32 alpha;
+
+    if (((struct FadeFlags *)arg0)->timed) {
+        dt = func_800D8FF8();
+        ((f32 *)arg0->actorData)[1] += dt;
+        if (((f32 *)arg0->actorData)[0] < ((f32 *)arg0->actorData)[1]) {
+            ((f32 *)arg0->actorData)[1] = ((f32 *)arg0->actorData)[0];
+        }
+        switch (((struct FadeFlags *)arg0)->state) {
+        case 1:
+            if (0.0f != ((f32 *)arg0->actorData)[0]) {
+                arg0->alpha = (s32)((((f32 *)arg0->actorData)[1] / ((f32 *)arg0->actorData)[0]) * 255.0f);
+            } else {
+                arg0->alpha = 255;
+            }
+            if (arg0->alpha == 255) {
+                ((struct FadeFlags *)arg0)->state = 0;
+                return;
+            }
+            break;
+        case 2:
+            if (0.0f != ((f32 *)arg0->actorData)[0]) {
+                arg0->alpha = 255 - (s32)((((f32 *)arg0->actorData)[1] / ((f32 *)arg0->actorData)[0]) * 255.0f);
+            } else {
+                arg0->alpha = 0;
+            }
+            if (arg0->alpha == 0) {
+                ((struct FadeFlags *)arg0)->state = 0;
+                return;
+            }
+            break;
+        }
+    } else {
+        switch (((struct FadeFlags *)arg0)->state) {
+        case 1:
+            alpha = arg0->alpha + 7;
+            if (alpha >= 256) {
+                arg0->alpha = 255;
+            } else {
+                arg0->alpha = alpha;
+            }
+            if (arg0->alpha == 255) {
+                ((struct FadeFlags *)arg0)->state = 0;
+                return;
+            }
+            return;
+        case 2:
+            alpha = arg0->alpha - 7;
+            if (alpha < 0) {
+                arg0->alpha = 0;
+            } else {
+                arg0->alpha = alpha;
+            }
+            if (arg0->alpha == 0 && func_80107070(arg0, 3) == 0) {
+                func_800FFAB0(arg0);
+                return;
+            }
+            break;
+        case 3:
+            alpha = arg0->alpha - 7;
+            if (alpha < 0) {
+                arg0->alpha = 0;
+            } else {
+                arg0->alpha = alpha;
+            }
+            if (arg0->alpha == 0) {
+                ((struct FadeFlags *)arg0)->state = 0;
+            }
+            break;
+        }
+    }
+}
 
 /* extern */
 
