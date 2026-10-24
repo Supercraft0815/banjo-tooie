@@ -543,7 +543,57 @@ void bsbtrot_entrypoint_8(s32 arg0) {
     func_80800DF4_bsbtrot(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_9.s")
+/* extern */
+
+void bsbtrot_entrypoint_9(PlayerState *arg0) {
+    void bs_setState();
+    void func_8009D3A8(PlayerState *, s32);
+    void func_80800120_bsbtrot(PlayerState *arg0);
+    void func_808002A4_bsbtrot(PlayerState *arg0, s32 arg1);
+    void func_80800438_bsbtrot(PlayerState *arg0);
+    void func_808004B4_bsbtrot(PlayerState *arg0);
+    s32 func_80800710_bsbtrot(void *arg0);
+    int func_8080075C_bsbtrot(PlayerState *arg0, s32 arg1);
+    void func_808008D0_bsbtrot(PlayerState *arg0);
+    s32 func_80800DC4_bsbtrot(s32 arg0);
+    void func_80800DF4_bsbtrot(s32 arg0);
+    s32 player_inWater(PlayerState *);
+    int bakey_pressed(PlayerState *, int);
+    s32 bastick_getZone(PlayerState *);
+    int func_8008DD04(PlayerState *);
+    int func_8008DF18(PlayerState *);
+    s32 func_8009BCD4(PlayerState *, s32);
+    s32 func_800A02DC(PlayerState *, s32);
+    s32 var_s1;
+
+    var_s1 = 0;
+    func_80800120_bsbtrot(arg0);
+    func_80800DF4_bsbtrot((s32) arg0);
+    func_808004B4_bsbtrot(arg0);
+    func_808002A4_bsbtrot(arg0, func_80800DC4_bsbtrot((s32) arg0));
+    func_8009D3A8(arg0, 1);
+    func_80800438_bsbtrot(arg0);
+    func_808008D0_bsbtrot(arg0);
+    if ((bastick_getZone(arg0) == 0) && (func_8009BCD4(arg0, 0x3F800000) != 0)) {
+        var_s1 = 0x15;
+    }
+    if (func_8008DD04(arg0) != 0) {
+        var_s1 = 0x71;
+    }
+    if (func_80800710_bsbtrot(arg0) != 0) {
+        var_s1 = 0x17;
+    }
+    if (bakey_pressed(arg0, 8) != 0) {
+        var_s1 = func_8080075C_bsbtrot(arg0, var_s1);
+    }
+    if (func_8008DF18(arg0) != 0) {
+        var_s1 = 0x45;
+    }
+    if (player_inWater(arg0) != 0) {
+        var_s1 = 0x2D;
+    }
+    bs_setState(arg0, func_800A02DC(arg0, var_s1));
+}
 
 void bsbtrot_entrypoint_10(PlayerState *arg0)
 {
