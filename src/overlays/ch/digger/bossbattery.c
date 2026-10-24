@@ -47,4 +47,57 @@ void func_80800090_chdiggerbossbattery(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/bossbattery/func_80800170_chdiggerbossbattery.s")
+s32 func_80800170_chdiggerbossbattery(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_13(Actor *, u32);
+    void _chexploder_entrypoint_15(Actor *, u32, f32);
+    Actor *_subaddiefind_entrypoint_1(Actor *, s32, s32, s32);
+    s32 func_800DA544(s32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800FC660(u32);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    void func_8010A624(Actor *);
+    extern u8 D_808002F0_chdiggerbossbattery[];
+    f32 sp2C[3];
+    Actor *actor;
+
+    switch (arg1) {
+    case 0x40: {
+        register Actor *battery;
+        func_800EE7F8(sp2C, (f32 *)arg0->actorData);
+        func_800EF1B8(sp2C, arg0->rotation[1], -400.0f);
+        sp2C[1] -= 80.0f;
+        func_800DA544(arg0->unk74_7 + 0xA1D);
+        func_8010A624(arg0);
+        _chexploder_entrypoint_3(arg0, sp2C, 0xC);
+        func_800FC660(0xE);
+        if ((battery = _subaddiefind_entrypoint_1(arg0, arg0->unk6C_9, -1, 0)) != NULL) {
+            func_8010A570(battery);
+        }
+        break;
+    }
+    case 0x90:
+        actor = func_80106790(func_80101080());
+        _chexploder_entrypoint_9(actor, 1, 2);
+        _chexploder_entrypoint_15(actor, 2, 1.0f);
+        _chexploder_entrypoint_13(actor, 1);
+        break;
+    case 0x95:
+        func_80103140(arg0, ((u16 *)(D_808002F0_chdiggerbossbattery - 8))[arg0->unk74_7], 0);
+        break;
+    case 0x1F:
+        func_801015D0(arg0);
+        func_800DF744(1, 1);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
