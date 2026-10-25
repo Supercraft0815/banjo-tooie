@@ -1,6 +1,61 @@
 #include "core2/1EA78C0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CDFD0.s")
+void func_800CDFD0(void **arg0) {
+    s32 _gspropctrl_entrypoint_0(void *);
+    s32 _gspropctrl_entrypoint_1(void *, s32 *);
+    s32 *func_800BDD24(s32 *);
+    int func_800CE1A8(void *, void *, s32);
+    s32 func_800CE21C(s32);
+    void func_800D5318(void *, s32);
+    s32 func_800DAB54(s32 *, s32);
+    u32 func_800E9D68(u32);
+    s32 func_800E9DD4(u32);
+    void func_800EC370(void **, void *);
+    extern s32 D_8012B020;
+    s32 pad;
+    s32 position[3];
+    s32 center[3];
+    u32 end;
+    u32 prop;
+    s16 shortPosition[3];
+    u32 *cells;
+    struct PropFlags { u8 padding[19]; u8 flag : 1; u8 rest : 7; };
+    s32 id;
+    s32 radius;
+    s32 cell;
+
+    id = func_800CE21C(*(u32 *)((u8 *)arg0 + 0x24) >> 22);
+    if (id != -1 && func_800DAB54(&D_8012B020, id) == 1) {
+        func_800EC370(arg0, shortPosition);
+        position[0] = shortPosition[0];
+        position[1] = shortPosition[1];
+        position[2] = shortPosition[2];
+        cells = (u32 *)func_800BDD24(position);
+        if (*cells != 0) {
+        do {
+            prop = func_800E9D68(*cells);
+            end = prop + func_800E9DD4(*cells) * 0x14;
+            while (prop < end) {
+                if (_gspropctrl_entrypoint_0((void *)prop) == id) {
+                    radius = _gspropctrl_entrypoint_1((void *)prop, center);
+                    if (center[1] - radius < position[1] && position[1] < center[1] + radius) {
+                        if (((struct PropFlags *)prop)->flag) {
+                            if (func_800CE1A8(position, center, radius)) {
+                                func_800D5318((void *)prop, (s32)arg0);
+                            }
+                        } else if (center[0] - radius < position[0] && position[0] < center[0] + radius &&
+                                   center[2] - radius < position[2] && position[2] < center[2] + radius) {
+                            func_800D5318((void *)prop, (s32)arg0);
+                        }
+                    }
+                }
+                prop += 0x14;
+            }
+            cells++;
+        } while (*cells != 0);
+        }
+    }
+}
 
 int func_800CE1A8(void *arg0, void *arg1, s32 arg2) {
     extern f32 D_801259B0;
