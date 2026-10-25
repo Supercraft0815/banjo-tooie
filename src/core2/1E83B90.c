@@ -542,7 +542,63 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC100.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC638.s")
+s32 func_800AC638(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, s32 arg6, s32 arg7) {
+    typedef struct {
+        f32 edgeAB[3];
+        f32 edgeAC[3];
+        f32 normal[3];
+        void *triangle;
+        f32 point[3][3];
+    } ProcessedTriangle;
+    void func_800AA3B4(void *, void *);
+    ProcessedTriangle *func_800AC100(void *, f32 *, f32, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    void *end_ptr;
+    f32 distance[3];
+    f32 current, start, end;
+    s32 i;
+    f32 current_pos[3];
+    f32 temp_normal[3];
+    ProcessedTriangle *coll_tri, *cur_coll_tri;
+    f32 velocity[3];
+
+    func_800EFB24(velocity, arg3, arg2);
+    if (!func_800ABCE0((void *)arg0, (void *)arg1, arg2, arg3, velocity, arg4 + 0.5f, arg7, &end_ptr)) {
+        return 0;
+    }
+    coll_tri = func_800AC100(end_ptr, arg3, arg4, temp_normal);
+    if (!coll_tri) {
+        return 0;
+    }
+    func_800EE7F8(arg5, temp_normal);
+    func_800EFB24(distance, arg3, arg2);
+    func_800EE7F8(arg3, arg2);
+    start = 0.0f;
+    end = 1.0f;
+    for (i = 0; i < arg6; i++) {
+        current = (start + end) * 0.5f;
+        current_pos[0] = arg2[0] + current * distance[0];
+        current_pos[1] = arg2[1] + current * distance[1];
+        current_pos[2] = arg2[2] + current * distance[2];
+        cur_coll_tri = func_800AC100(end_ptr, current_pos, arg4, temp_normal);
+        if (cur_coll_tri) {
+            end = current;
+            coll_tri = cur_coll_tri;
+            func_800EE7F8(arg5, temp_normal);
+        } else {
+            start = current;
+            func_800EE7F8(arg3, current_pos);
+        }
+    }
+    if (!coll_tri) {
+        return 0;
+    }
+    func_800EF2A0(arg5);
+    func_800AA3B4(coll_tri->triangle, (void *)arg1);
+    return (s32)coll_tri->triangle;
+}
 
 s32 func_800AC848(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9, s32 arg10) {
     void func_80019224(f32 *, f32 *);
