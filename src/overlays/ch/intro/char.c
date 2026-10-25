@@ -951,7 +951,99 @@ void func_80803418_chintrochar(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_808034C4_chintrochar.s")
+void func_808034C4_chintrochar(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s16 *_anseq_entrypoint_9(s16);
+    void _anseq_entrypoint_8(s16 *, struct anctrl_s *);
+    void func_8010588C(Actor *);
+    void func_80803F7C_chintrochar(Actor *);
+    void func_80803F24_chintrochar(Actor *, u8 *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_801022E4(Actor *);
+    struct anctrl_s *func_80104248(void *);
+    void _chblink_entrypoint_2(s16);
+    void _chanim_entrypoint_9(Actor *);
+    void _chanim_entrypoint_1(Unk80132ED0 *, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_8008FFE8();
+    void func_8010FFB0(f32 **, f32 *, f32 *);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void *func_8001B798(s16);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    extern u32 func_80804160_chintrochar[][8];
+    extern f32 func_8080416C_chintrochar[][8];
+    struct IntroUpdateData {
+        u8 pad[0xC0];
+        s16 sequence;
+        s16 blink1;
+        s16 blink2;
+        s16 expression;
+        s32 state;
+        u8 padCC[0x38];
+        Unk80132ED0 *markers[2];
+    };
+    struct IntroUpdateData *data;
+    s16 *sequence;
+    s32 flags;
+    s32 state;
+    s32 i;
+    f32 position[3];
+    f32 rotation[3];
+    f32 shadow;
+
+    data = func_80100094(arg0, 2);
+    sequence = _anseq_entrypoint_9(data->sequence);
+    flags = func_80804160_chintrochar[arg0->unk74_7][0];
+    func_8010588C(arg0);
+    if (flags & 0x100) {
+        arg0->rotation[0] = 0.0f;
+    }
+    if (flags & 0x10000) {
+        func_80803F7C_chintrochar(arg0);
+    }
+    if (flags & 0x20000) {
+        for (i = 0; i < 2; i++) {
+            func_80803F24_chintrochar(arg0, func_80106790(data->markers[i]), i);
+        }
+    }
+    state = func_801022E4(arg0);
+    if (state != data->state) {
+        data->state = state;
+        func_8080071C_chintrochar(arg0, state);
+    }
+    _anseq_entrypoint_8(sequence, func_80104248(arg0));
+    if (data->blink1 != 0) {
+        _chblink_entrypoint_2(data->blink1);
+    }
+    if (data->blink2 != 0) {
+        _chblink_entrypoint_2(data->blink2);
+    }
+    _chanim_entrypoint_9(arg0);
+    if (flags & 0x80000) {
+        _chanim_entrypoint_1(arg0->unk0, 0xD, func_800DA298(0xD));
+    }
+    if (flags & 0x40) {
+        if (flags & 0x40000) {
+            func_8010FFB0(func_8008FFE8(), position, rotation);
+            _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, position);
+        } else {
+            _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+        }
+    }
+    if (data->expression != 0) {
+        _suexpression_entrypoint_10(func_8001B798(data->expression), arg0->unk0, 0);
+    }
+    if (_subaddiefade_entrypoint_0(arg0) == 0) {
+        arg0->unk64_16 = 0;
+    } else {
+        arg0->unk64_16 = arg0->unk64_19;
+    }
+    shadow = func_8080416C_chintrochar[arg0->unk74_7][0];
+    if (shadow > 0.0f) {
+        _chbadshad_entrypoint_1(arg0, arg0->position, shadow);
+    }
+}
 
 void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
