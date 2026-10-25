@@ -499,7 +499,75 @@ void func_80800F48_chlagoonufoint(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lagoon/ufoint/func_80800FD4_chlagoonufoint.s")
+void func_80800FD4_chlagoonufoint(Actor *arg0) {
+    f32 func_800D8FF8(void);
+    void *func_80100094(Actor *, u32);
+    int func_800F3214(void *, void *, void *, f32);
+    void func_800C8D4C(s32, f32 *);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800DA298(s32);
+    s32 func_800BEA88(s32);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    extern u32 D_80801BB0_chlagoonufoint[];
+    extern u32 D_80801BBC_chlagoonufoint[];
+    extern s32 _chlagoonufoint_entrypoint_5;
+    void _chlagoonufoint_entrypoint_6(s32, u8 *, u8 *, s32, Unk80132ED0 *);
+    f32 dt;
+    f32 speed;
+    s32 i;
+    s32 *light;
+    f32 range[2];
+    u32 color[3];
+    s32 id;
+    s32 base;
+
+    dt = func_800D8FF8();
+    speed = ((f32 *)arg0->actorData)[3] * dt;
+    ((f32 *)arg0->actorData)[0] += 640.0f * speed;
+    ((f32 *)arg0->actorData)[1] += 3200.0f * speed;
+    ((f32 *)arg0->actorData)[2] += 2560.0f * speed;
+    for (i = 0; i < 3; i++) {
+        if (((f32 *)arg0->actorData)[i] > 16384.0f) {
+            ((f32 *)arg0->actorData)[i] -= 16384.0f;
+        }
+    }
+    light = func_80100094(arg0, 0);
+    range[0] = ((f32 *)arg0->actorData)[3] * 350.0f + 150.0f;
+    range[1] = ((f32 *)arg0->actorData)[3] * 350.0f + 250.0f;
+    func_800F3214(color, D_80801BB0_chlagoonufoint, D_80801BBC_chlagoonufoint, ((f32 *)arg0->actorData)[3]);
+    func_800C8D4C(*light, range);
+    func_800C8E84(*light, color);
+    switch (arg0->unk70_10) {
+        case 2:
+            if (--arg0->unk6C_0 == 0) {
+                func_80800E80_chlagoonufoint(arg0, 1);
+            }
+            break;
+        case 3:
+            ((f32 *)arg0->actorData)[3] += dt * ((f32 *)arg0->actorData)[5];
+            if (((f32 *)arg0->actorData)[3] > 1.0f) {
+                func_80800E80_chlagoonufoint(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_800DA298(0)) {
+                func_80800E80_chlagoonufoint(arg0, 5);
+            }
+            break;
+        case 5:
+            ((f32 *)arg0->actorData)[3] += dt * ((f32 *)arg0->actorData)[5];
+            if (((f32 *)arg0->actorData)[3] < 0.0f) {
+                func_80800E80_chlagoonufoint(arg0, 1);
+            }
+            break;
+    }
+    id = func_800BEA88(0);
+    base = arg0->unk74_7 * 4 - 4;
+    _glid_entrypoint_0(id, base + 1, &_chlagoonufoint_entrypoint_5, (s32)arg0->unk0);
+    _glid_entrypoint_0(id, base + 2, (s32 *)_chlagoonufoint_entrypoint_6, (s32)arg0->unk0);
+    _glid_entrypoint_0(id, base + 3, (s32 *)_chlagoonufoint_entrypoint_6, (s32)arg0->unk0);
+    _glid_entrypoint_0(id, base + 4, (s32 *)_chlagoonufoint_entrypoint_6, (s32)arg0->unk0);
+}
 
 void func_808012A4_chlagoonufoint(Actor *arg0) {
     s32 func_800DA298(s32);
