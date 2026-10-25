@@ -121,7 +121,57 @@ loop_1:
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/id/glid_entrypoint_3.s")
+void glid_entrypoint_3(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, s32, s32), s32 arg3) {
+    void *func_800B2190(void *);
+    u8 *func_800B27A0(u8 *);
+    s8 *_dbvtxnormal_entrypoint_0(s32, s32);
+    u8 * volatile sp44;
+    s32 temp_a1_2;
+    s32 temp_a1;
+    s32 temp_fp;
+    u32 var_a0;
+    s8 *var_s1;
+    u8 *temp_s3;
+    u8 *temp_s7;
+    u8 *var_s2;
+    u8 *var_s6;
+    u8 *var_v1;
+
+    sp44 = func_800B2190(*(void **)(arg0 + 0x14));
+    temp_fp = (s32)func_800B27A0((u8 *)func_800D674C(*(s32 *)arg0));
+    temp_a1 = *(s32 *)(arg0 + 4);
+    var_v1 = arg0 + 0x1C;
+    var_a0 = 0;
+    while ((s32)var_a0 < temp_a1) {
+        var_a0 += 1;
+        if (arg1 == *(s16 *)var_v1) {
+            var_s6 = var_v1 + 8;
+            temp_s7 = (*(s16 *)(var_v1 + 2) * 4) + var_v1 + 8;
+            var_s2 = temp_s7;
+            if ((u32)var_s6 < (u32)temp_s7) {
+                do {
+                    u8 *var_s0;
+                    temp_a1_2 = *(s16 *)var_s6;
+                    var_s0 = temp_a1_2 * 0x10 + sp44;
+                    temp_s3 = *(s16 *)(var_s6 + 2) * 0x10 + var_s0;
+                    var_s1 = _dbvtxnormal_entrypoint_0(temp_fp, temp_a1_2);
+                    if (var_s0 < temp_s3) {
+                        do {
+                            arg2(var_s2, (u8 *)var_s0, arg3, (s32)var_s1);
+                            var_s2 += 0x10;
+                            var_s1 += 4;
+                            var_s0 += 0x10;
+                        } while (var_s0 < temp_s3);
+                    }
+                    var_s6 += 4;
+                } while ((u32)var_s6 < (u32)temp_s7);
+            }
+            break;
+        }
+        var_v1 += *(s32 *)(var_v1 + 4);
+        temp_a1 = *(s32 *)(arg0 + 4);
+    }
+}
 
 /* extern */
 
