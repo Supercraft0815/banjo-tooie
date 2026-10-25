@@ -276,7 +276,7 @@ s32 func_80800534_basetup(struct player_state_s *arg0) {
 
 /* extern */
 
-void func_808006F0_basetup(void) {
+Prop *func_808006F0_basetup() {
     Prop *_gccubesearch_entrypoint_14(s32, s32);
     s32 _gemarkersDll_entrypoint_1();
     _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(), 0);
@@ -337,7 +337,111 @@ s32 func_80800778_basetup(s32 arg0) {
     return var_s0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/setup/basetup_entrypoint_2.s")
+void basetup_entrypoint_2(struct player_state_s *arg0) {
+    extern u8 D_8012762C;
+    void _basetup_entrypoint_1(s32);
+    void _bashoes_entrypoint_6(struct player_state_s *, s32);
+    s32 _gclevel_entrypoint_4(s32);
+    void _gspropctrl_entrypoint_11(Prop *, f32 *);
+    s32 _gspropctrl_entrypoint_12(Prop *);
+    s32 _gspropctrl_entrypoint_13(Prop *);
+    s32 _sudeathmatch_entrypoint_0(s32, f32 *, f32 *);
+    void func_80092778(struct player_state_s *);
+    u32 func_8009E958(void);
+    u32 func_8009E994(void);
+    u32 func_8009EA4C(void);
+    void func_8009EAD0(s32);
+    void func_8009EB0C(f32);
+    int func_800A3274(struct player_state_s *);
+    void func_800A3410(struct player_state_s *, s32);
+    void func_800A3544(void *, s32);
+    int func_800C6E38(s32);
+    s32 func_800EA068(s32);
+    s32 func_800EA090(void);
+    void func_800F44DC(void *, s32);
+    void func_800F452C(struct player_state_s *, f32 *);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A8C(s32, f32 *, f32);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void yaw_applyIdeal(struct player_state_s *);
+    Prop *sp64;
+    Prop *sp60;
+    s32 sp5C;
+    f32 sp50[3];
+    f32 sp4C;
+    f32 sp40[3];
+    s32 sp3C;
+    s32 pad38;
+    f32 sp2C[3];
+    f32 sp28;
+    s32 var_a1;
+
+    if ((func_800A3274(arg0) == 4) || (_gclevel_entrypoint_4(1) != 0)) {
+        func_800F44DC(arg0, 0);
+        return;
+    }
+    if (func_80800534_basetup(arg0) == 0) {
+        sp5C = func_800EA090();
+        sp64 = func_808006F0_basetup(sp5C);
+        if (sp64 != NULL) {
+            sp60 = func_8080071C_basetup(sp5C);
+        } else {
+            if (_sudeathmatch_entrypoint_0(*(s32 *)((u8 *)arg0 + 0x184), sp50, sp40) != 0) {
+                sp4C = sp40[1];
+            } else if (sp64 == NULL) {
+                func_800F44DC(arg0, 0);
+                return;
+            }
+            sp60 = NULL;
+        }
+        sp3C = func_80800778_basetup((s32)arg0);
+        if (sp3C == 9) {
+            _bashoes_entrypoint_6(arg0, 1);
+            func_8009EB0C(0.0f);
+            if ((sp60 != NULL) && (func_8009E994() == 0)) {
+                sp3C = func_8009E958();
+            } else {
+                var_a1 = D_8012762C == 0x1B ? 1 : 0;
+                func_800A3544(arg0, var_a1);
+            }
+        }
+        func_800A3410(arg0, sp3C);
+        func_80092778(arg0);
+        func_800F44DC(arg0, 0);
+        if (sp64 != NULL) {
+            _gspropctrl_entrypoint_11(sp64, sp50);
+            sp4C = _gspropctrl_entrypoint_12(sp64);
+        }
+        func_800F44DC(arg0, 1);
+        **(s32 **)((u8 *)arg0 + 0x100) = -1;
+        if (func_8009EA4C() == 2) {
+            if ((func_800EA068(8) != 0) && (func_800C6E38(0x15) != 0)) {
+                func_8009EAD0(1);
+            } else {
+                sp4C += 180.0f;
+            }
+        }
+        yaw_setIdeal(arg0, sp4C);
+        yaw_applyIdeal(arg0);
+        if (sp60 != NULL) {
+            sp28 = 1.0f;
+            if (func_800EA068(4) != 0) {
+                sp28 = _gspropctrl_entrypoint_13(sp60) * 0.1f;
+            }
+            _gspropctrl_entrypoint_11(sp60, sp2C);
+            func_80800194_basetup(arg0, sp2C, sp50);
+            func_800F452C(arg0, sp2C);
+            func_808002D4_basetup((s32)arg0);
+            func_800F497C(*(s32 *)((u8 *)arg0 + 0x184));
+            func_800F49D4(*(s32 *)((u8 *)arg0 + 0x184), _basetup_entrypoint_1, *(s32 *)((u8 *)arg0 + 0x184));
+            func_800F4A8C(*(s32 *)((u8 *)arg0 + 0x184), sp50, sp28);
+            return;
+        }
+        func_800F452C(arg0, sp50);
+        func_808002D4_basetup((s32)arg0);
+    }
+}
 
 void basetup_entrypoint_3(s32 arg0) 
 {
