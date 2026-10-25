@@ -1,6 +1,9 @@
 #include "common.h"
 struct Vector;
 void vector_free(struct Vector *vec);
+struct Vector *vector_new(u32, u32);
+void func_800C8C90(s32);
+void func_800C8F08(s32, f32 *);
 void gclightsDll_entrypoint_1();
 
 void func_80800000_gclightsDll(s32 arg0)
@@ -23,7 +26,71 @@ void gclightsDll_entrypoint_1(struct Vector **arg0) {
     vector_free(*arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/lightsDll/gclightsDll_entrypoint_2.s")
+void gclightsDll_entrypoint_2(s32 arg0, s32 arg1) {
+    s32 _gsmaker_entrypoint_16(s32, s32);
+    s32 _gsmaker_entrypoint_17(s32, s32, u8 *);
+    s32 _gsmaker_entrypoint_20(s32, s32, f32 *, s32);
+    s32 _gsmaker_entrypoint_22(s32, s32, s32 *, s32);
+    u32 vector_begin(s32);
+    u32 vector_end(s32);
+    void *vector_push_back(struct Vector **);
+    s32 gclightsDll_entrypoint_4(void);
+    void gclightsDll_entrypoint_5(f32 *);
+    void func_800C8F64(s32, s32);
+    u32 current;
+    u32 end;
+    struct Vector *vec;
+    f32 position[3];
+    f32 range[2];
+    s32 color[3];
+    u8 flag;
+    s32 light;
+    s32 ambient[3];
+    f32 direction[3];
+    s32 queuedLight;
+    s32 *queuedSlot;
+    s32 otherColor[3];
+    f32 otherPosition[3];
+    s32 unusedColor[3];
+
+    vec = vector_new(4, 16);
+    func_80800000_gclightsDll(arg0);
+    while (!_gsmaker_entrypoint_16(arg1, 0)) {
+        if (_gsmaker_entrypoint_16(arg1, 1) &&
+            _gsmaker_entrypoint_20(arg1, 2, position, 3) &&
+            _gsmaker_entrypoint_20(arg1, 3, range, 2) &&
+            _gsmaker_entrypoint_22(arg1, 4, color, 3)) {
+            light = gclightsDll_entrypoint_4();
+            func_800C8CB8(light, position);
+            func_800C8D4C(light, range);
+            func_800C8E84(light, color);
+            if (_gsmaker_entrypoint_17(arg1, 7, &flag)) {
+                func_800C8F64(light, flag);
+            }
+        } else if (_gsmaker_entrypoint_16(arg1, 5) &&
+                   _gsmaker_entrypoint_22(arg1, 4, ambient, 3)) {
+            func_800C8C90((s32)ambient);
+        } else if (_gsmaker_entrypoint_16(arg1, 6) &&
+                   _gsmaker_entrypoint_22(arg1, 4, direction, 3)) {
+            gclightsDll_entrypoint_5(direction);
+        } else if (_gsmaker_entrypoint_16(arg1, 8)) {
+            queuedLight = gclightsDll_entrypoint_4();
+            queuedSlot = vector_push_back(&vec);
+            *queuedSlot = queuedLight;
+        } else if (_gsmaker_entrypoint_16(arg1, 9) &&
+                   _gsmaker_entrypoint_20(arg1, 2, otherPosition, 3) &&
+                   _gsmaker_entrypoint_22(arg1, 4, otherColor, 3)) {
+            func_800C8F08((s32)otherColor, otherPosition);
+        } else if (_gsmaker_entrypoint_16(arg1, 10)) {
+            _gsmaker_entrypoint_22(arg1, 4, unusedColor, 3);
+        }
+    }
+    end = vector_end((s32)vec);
+    for (current = vector_begin((s32)vec); current < end; current += 4) {
+        func_800C8B84(*(s32 *)current);
+    }
+    vector_free(vec);
+}
 
 /* extern */
 
