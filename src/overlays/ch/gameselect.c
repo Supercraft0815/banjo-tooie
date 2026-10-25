@@ -925,7 +925,72 @@ void func_80801AC4_chgameselect(Actor *arg0) {
     func_8080179C_chgameselect(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801BA8_chgameselect.s")
+s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+    extern u16 D_808080A8_chgameselect[][2];
+    extern s16 D_808080AA_chgameselect[][2];
+    s32 _gcfrontend_entrypoint_1(s32);
+    s32 _gcfrontend_entrypoint_2(void);
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void *func_8008AEDC(void *);
+    void func_8008B304(s32);
+    void func_8008C200(s16, s32, s32);
+    u8 *func_800B27E0(u8 *);
+    void func_80102424(Actor *, s32);
+    s32 func_801032B0(Actor *, u16, u16);
+    u8 *func_801039E4(Unk80132ED0 *);
+    struct anctrl_s *func_80104248(void *);
+    void func_80801D74_chgameselect(Actor *, s32);
+    void func_80802070_chgameselect(Actor *, s32);
+    void func_808020CC_chgameselect(Actor *, s32);
+    s32 func_80803D00_chgameselect(s32, s32);
+    struct anctrl_s *control;
+    u8 *model;
+    s16 *values;
+    s32 index;
+    switch (arg1) {
+    case 0x95:
+        func_801032B0(arg0, D_808080A8_chgameselect[arg0->unk79_4][0], 0);
+        control = func_80104248(arg0);
+        func_8008B304(control);
+        model = func_800B27E0(func_801039E4(arg0->unk0));
+        func_8008C200(*(s16 *)&arg0->unk0->unk10, model, func_8008AEDC(control));
+        func_80102424(arg0, 2);
+        switch (arg0->unk79_4) {
+        case 5:
+            if (!_gcfrontend_entrypoint_1(3)) {
+                _subaddiefade_entrypoint_1(arg0, 100);
+            }
+            break;
+        case 7:
+            if (!_gcfrontend_entrypoint_2()) {
+                _subaddiefade_entrypoint_1(arg0, 100);
+            }
+            break;
+        }
+        break;
+    case 10:
+        func_80802070_chgameselect(arg0, arg2 == arg0->unk79_4 ? 1 : 0);
+        if (arg2 == arg0->unk79_4) {
+            index = D_808080AA_chgameselect[arg2][0];
+            if (index >= 0) {
+                func_80803D00_chgameselect(index, 2);
+            }
+        }
+        break;
+    case 31:
+        func_80801D74_chgameselect(arg0, arg2);
+        break;
+    case 33:
+        values = (s16 *)&arg2;
+        if (arg0->unk79_4 == values[0]) {
+            func_808020CC_chgameselect(arg0, values[1]);
+            break;
+        }
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801D74_chgameselect.s")
 
