@@ -21,7 +21,95 @@ OSThread *chpawnbroker_entrypoint_2(void)
     return (OSThread *) D_80801060_chpawnbroker;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/pawnbroker/func_80800024_chpawnbroker.s")
+void func_80800024_chpawnbroker(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    void func_800D1824(s32);
+    s32 func_800DA544(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    void func_80102424(Actor *, s32);
+    void func_80103DFC(Actor *, f32 *);
+    void func_80800664_chpawnbroker(Actor *);
+    void func_80800694_chpawnbroker(Actor *);
+    s32 func_808007BC_chpawnbroker(Actor *, void *, s32 *, s32, s32);
+    void func_80800AE4_chpawnbroker(Actor *, s32, s32);
+    extern s32 D_80800ED0_chpawnbroker[];
+    extern s32 D_80800F08_chpawnbroker[];
+    extern s32 D_80800F40_chpawnbroker[];
+    extern f32 D_808010A8_chpawnbroker[];
+    extern f32 D_808010B8_chpawnbroker[];
+    void *expression;
+    f32 position[3];
+
+    expression = func_80100094(arg0, 1);
+    func_800D1824(0x4E);
+    _sudeflect_entrypoint_1(D_808010B8_chpawnbroker, 60.0f, 0.0f, 60.0f, 2);
+    _sudeflect_entrypoint_1(arg0->position, 250.0f, 0.0f, 100.0f, 10);
+    _suexpression_entrypoint_10(expression, arg0->unk0, 0);
+    if (func_801022E4(arg0) != 0x115 || !func_80102320(arg0, 0.55f, 0.99f)) {
+        _suexpression_entrypoint_18(expression, 1);
+    }
+    switch (arg0->unk70_10) {
+    case 2:
+        func_80800694_chpawnbroker(arg0);
+        if (func_808007BC_chpawnbroker(arg0, D_808010A8_chpawnbroker, D_80800ED0_chpawnbroker, 7, 0x6A5)) {
+            func_80800AE4_chpawnbroker(arg0, 3, 0);
+        }
+        break;
+    case 6:
+        func_80800694_chpawnbroker(arg0);
+        if (func_808007BC_chpawnbroker(arg0, D_808010A8_chpawnbroker, D_80800F08_chpawnbroker, 7, 0x6A6)) {
+            func_80800AE4_chpawnbroker(arg0, 3, 0);
+        }
+        break;
+    case 5:
+        func_80800694_chpawnbroker(arg0);
+        if (func_808007BC_chpawnbroker(arg0, D_808010A8_chpawnbroker, D_80800F40_chpawnbroker, 4, 0)) {
+            func_80800AE4_chpawnbroker(arg0, 5, 1);
+        }
+        break;
+    case 8:
+        func_80800694_chpawnbroker(arg0);
+        if (func_808007BC_chpawnbroker(arg0, D_808010A8_chpawnbroker, D_80800F40_chpawnbroker, 4, 0)) {
+            func_80800AE4_chpawnbroker(arg0, 5, 1);
+        }
+        break;
+    case 4:
+        func_80800664_chpawnbroker(arg0);
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 5);
+            func_80101180(0x353, 5, 0);
+            func_800DA544(0xB4);
+        }
+        break;
+    case 3:
+        func_80800694_chpawnbroker(arg0);
+        func_80103DFC(arg0, position);
+        if (_subaddieitem_entrypoint_3(arg0, position, func_80100094(arg0, 0))) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xFE8, 0xE, arg0->position, 0x53);
+            func_80102424(arg0, 1);
+        }
+        break;
+    case 7:
+        func_80800664_chpawnbroker(arg0);
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 8);
+            func_80101180(0x353, 5, 0);
+            func_800DA544(0xB5);
+        }
+        break;
+    default:
+        func_80800694_chpawnbroker(arg0);
+        break;
+    }
+}
 
 void func_80800320_chpawnbroker(Actor *arg0) {
     Prop *_gccubesearch_entrypoint_0(u32, Actor *);
