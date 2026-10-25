@@ -17,7 +17,84 @@ void func_8080000C_chcrystalbaddie(Actor *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crystalbaddie/func_80800054_chcrystalbaddie.s")
+void func_80800054_chcrystalbaddie(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    int func_800DC298(f32);
+    f32 func_800F15F8(f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_8010C3A8(Actor *, u32, f32);
+    s32 func_8010C500(void *);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_8010D254(f32 *);
+    void func_808003C4_chcrystalbaddie(Actor *, s32);
+    s32 func_80800424_chcrystalbaddie(Actor *);
+    void func_808004B4_chcrystalbaddie(s32);
+    extern u32 D_808006AC_chcrystalbaddie[];
+    struct {
+        u16 pad0[3];
+        u16 unk6;
+        u32 unk8;
+        u32 unkC;
+    } *route;
+    f32 sound;
+
+    route = func_80100094(arg0, 0);
+    func_8010D254((f32 *)arg0->actorData);
+    func_800D9078(&arg0->unk58);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (arg0->unk64_29) {
+            func_808003C4_chcrystalbaddie(arg0, 2);
+        } else if (func_80800424_chcrystalbaddie(arg0)) {
+            func_808003C4_chcrystalbaddie(arg0, 2);
+        }
+        break;
+    case 2:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_808006AC_chcrystalbaddie, 0.0f);
+        if (func_80101DDC(arg0)) {
+            func_808003C4_chcrystalbaddie(arg0, 3);
+        }
+        break;
+    case 3:
+        if (arg0->unk64_29) {
+            sound = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+            ((f32 *)arg0->actorData)[3] = ((f32 *)arg0->actorData)[5];
+            func_80102BF8(arg0, 0.2f, 8.0f, 500.0f);
+            func_8010C3A8(arg0, 0x205015, sound);
+        } else {
+            if (_subaddierouteDll_entrypoint_4(arg0)) {
+                arg0->unk54 = func_80102D78(arg0, (f32 *)arg0->actorData);
+                _subaddierouteDll_entrypoint_7(arg0, route, arg0->rotation[1], arg0->unk54, 200.0f, 0x5800);
+                route->unkC = route->unk6;
+            }
+            _subaddierouteDll_entrypoint_5(arg0, route, route->unkC, 0.15f, 8.0f, 200.0f);
+            ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], ((f32 *)arg0->actorData)[5], func_800D8FF8() * 400.0f);
+            func_8010B990(arg0, 0x305115);
+            if (_subaddierouteDll_entrypoint_4(arg0) && func_800DC298(0.2f) &&
+                (!func_8010C9B0(arg0->position, 1200) || !func_8010C500(arg0))) {
+                func_808003C4_chcrystalbaddie(arg0, 4);
+            }
+        }
+        func_808004B4_chcrystalbaddie((s32)arg0);
+        break;
+    case 4:
+        if (func_80101DDC(arg0)) {
+            func_808003C4_chcrystalbaddie(arg0, 1);
+            arg0->unk58 = 1.4f;
+        }
+        break;
+    }
+}
 
 s32 func_808002E0_chcrystalbaddie(Actor *arg0, s32 arg1, s32 *arg2) {
     s32 _subaddieDll_entrypoint_3(Actor *);
