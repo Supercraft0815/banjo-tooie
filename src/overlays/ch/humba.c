@@ -1,5 +1,7 @@
 #include "common.h"
 
+s32 func_800EA05C(void);
+
 /* extern */
 
 void func_80800000_chhumba(s32 *arg0, s32 arg1) {
@@ -136,7 +138,104 @@ s32 func_80800414_chhumba(void *arg0) {
     return ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0x346;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/humba/func_80800450_chhumba.s")
+s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad[0x14];
+        u32 pad14 : 31;
+        u32 unk14_0 : 1;
+    } HumbaModel;
+    void func_80800E44_chhumba(u8 *, s32);
+    void func_80801DB0_chhumba(Actor *, s32, s32);
+    void func_80801F74_chhumba(Actor *);
+    
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void func_800904C8(s32);
+    void func_80090708(s32);
+    void func_800DF744(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_801015D0(Actor *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    s32 func_80103CB8(Actor *, u32);
+    Actor *func_801084B0(s32, Actor **);
+    void func_8010D254(f32 *);
+    extern s32 D_80802684_chhumba;
+    Actor *sp2C;
+    f32 sp20[3];
+
+    switch (arg1) {
+        case 0x49:
+            func_80801F74_chhumba(arg0);
+            break;
+        case 0xA1:
+            switch (arg0->unk70_10) {
+                case 10:
+                    func_80800E44_chhumba((u8 *)arg0, 11);
+                    break;
+                case 15:
+                    func_80800E44_chhumba((u8 *)arg0, 16);
+                    break;
+            }
+            break;
+        case 0x3D:
+            func_80800238_chhumba((u8 *)arg0, sp20);
+            sp2C = func_801084B0(0x29F, &arg0);
+            func_800EE7F8((f32 *)sp2C->actorData, sp20);
+            func_8010D254(sp2C->position);
+            sp2C->unk74_30 = 1;
+            arg0->unk3C = sp2C->unk0;
+            func_80800E44_chhumba((u8 *)arg0, 6);
+            break;
+        case 0x2E:
+            func_80801DB0_chhumba(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x2F:
+            if (((s16 *)&arg2)[1] == 1) {
+                func_80090708(0);
+                func_80090708(1);
+            }
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_80802684_chhumba, arg0->scale);
+            break;
+        case 0x57:
+            if (_gcdialogcamera_entrypoint_0(arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16)) {
+                if (arg0->unk74_7 != 2) {
+                    func_80800028_chhumba(arg0, 2, 1);
+                }
+                return 2;
+            }
+            return 1;
+        case 0x32:
+            switch (arg0->unk70_10) {
+                case 17:
+                    func_80800338_chhumba((u8 *)arg0, 0x11AF, 0xF);
+                    break;
+                case 18:
+                    func_80800E44_chhumba((u8 *)arg0, 0x12);
+                    break;
+                default:
+                    func_800904C8(0x8D);
+                    if (arg0->unk74_29) {
+                        func_80800338_chhumba((u8 *)arg0, 0x11BD, 0xF);
+                    } else {
+                        func_80800338_chhumba((u8 *)arg0, 0x11A4, 0xF);
+                    }
+                    break;
+            }
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            sp2C = (Actor *)func_80103CB8(arg0, (u32)func_801039E4(arg0->unk0));
+            ((HumbaModel *)sp2C)->unk14_0 = 1;
+            func_800DF744(3, 0);
+            func_800DF744(5, 0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 s32 func_8080071C_chhumba(s32 arg0) {
     s32 func_800EA05C();
