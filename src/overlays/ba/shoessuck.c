@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct player_state_s;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoessuck/bashoessuck_entrypoint_0.s")
 
 void bashoessuck_entrypoint_1(s32 arg0, f32 arg1[3]) {
@@ -29,7 +31,89 @@ void bashoessuck_entrypoint_3(s32 arg0)
     func_800961AC(arg0,0xA);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoessuck/bashoessuck_entrypoint_4.s")
+void bashoessuck_entrypoint_4(struct player_state_s *arg0) {
+    void _bamovespline_entrypoint_0(struct player_state_s *, f32 *);
+    s32 _bamovespline_entrypoint_4(struct player_state_s *);
+    void _bashoes_entrypoint_10(struct player_state_s *, f32);
+    s32 bashoessuck_entrypoint_0(struct player_state_s *, f32 *);
+    void baroll_setIdeal(struct player_state_s *, f32);
+    f32 func_80013AAC(f32);
+    u32 func_80092BC4(struct player_state_s *);
+    void func_800932BC(void *, f32);
+    f32 func_8009BB18(void *);
+    void func_8009BF5C(struct player_state_s *, f32);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F1C98(f32 *, f32 *);
+    int func_800F1EA4(f32 *, f32 *);
+    void yaw_applyIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    f32 spAC;
+    f32 spA8;
+    f32 spA4;
+    f32 spA0;
+    f32 sp9C;
+    f32 sp90[3];
+    f32 sp84[3];
+    f32 sp78[3];
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+    s32 sp38;
+    f32 sp2C[3];
+
+    sp38 = func_80092BC4(arg0);
+    func_800932CC(arg0, 0);
+    if (_bamovespline_entrypoint_4(arg0) == 0) {
+        func_800EFA4C(sp2C, 0.0f, func_8009BB18(arg0), 0.0f);
+        yaw_setIdeal(arg0, sp2C[1]);
+        return;
+    }
+    _bamovespline_entrypoint_0(arg0, sp78);
+    if (bashoessuck_entrypoint_0(arg0, sp48) != 0) {
+        func_800932CC(arg0, 1);
+        _bashoes_entrypoint_10(arg0, 1.0f);
+        func_800EFA20(sp6C, sp48, func_800EEAA4(sp78, sp48));
+        func_800EFB24(sp60, sp78, sp6C);
+        func_800EFA4C(sp54, 0.0f, 1.0f, 0.0f);
+        if (sp48[1] > 0.99f) {
+            sp9C = 0.0f;
+            spA4 = 0.0f;
+            spAC = 0.0f;
+        } else {
+            func_800EFA4C(sp3C, sp48[0], 0.0f, sp48[2]);
+            func_800F1EA4(sp3C, &sp9C);
+            spA4 = func_80013AAC(func_800F1C98(sp54, sp48));
+            func_800EE97C(sp90, sp54, sp3C);
+            spAC = (func_80013AAC(func_800F1C98(sp60, sp90)) - 90.0f) + 180.0f;
+            if (sp60[1] < 0.0f) {
+                spAC = 180.0f - spAC;
+            }
+            func_800EF934(sp84, sp60, -sp9C);
+            if (sp84[0] < 0.0f) {
+                spAC = 360.0f - spAC;
+            }
+        }
+        if (sp38 != 0) {
+            if (func_8009BB18(arg0) > 180.0f) {
+                spAC += 180.0f;
+            }
+        }
+        func_800932BC(arg0, sp9C);
+        func_8009BF5C(arg0, spA4);
+        yaw_setIdeal(arg0, spAC);
+        baroll_setIdeal(arg0, 0.0f);
+        if (sp38 == 0) {
+            yaw_applyIdeal(arg0);
+        }
+    }
+}
 
 s32 bashoessuck_entrypoint_5(struct player_state_s *arg0, f32 *arg1) {
     s32 _bashoes_entrypoint_9(void);
