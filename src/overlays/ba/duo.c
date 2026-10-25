@@ -261,7 +261,57 @@ void baduo_entrypoint_14(void *arg0, s32 arg1) {
     func_800A38F0(arg0, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/duo/baduo_entrypoint_15.s")
+void baduo_entrypoint_15(PlayerState *arg0, f32 *arg1) {
+    s32 _bababykaz_entrypoint_8(s32);
+    s32 _badrone_entrypoint_29(PlayerState *);
+    void _sudialog_entrypoint_0(s32, s32);
+    s32 bs_setState(s32, s32);
+    void func_80092778(PlayerState *);
+    void func_800A3410(PlayerState *, s32);
+    void func_800A38F0(PlayerState *, s32, s32);
+    PlayerState *func_800A4CA8(PlayerState *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800F3BB0(PlayerState *, f32[3]);
+    s32 func_800F452C(s32, s32);
+    PlayerState *func_800F53D0(s32);
+    s32 func_800F6224(s32);
+    void func_800F8128(s32);
+    void func_800F86C4(s32, s32);
+    s32 func_800F8EE4(s32);
+    void func_80110588(PlayerState *);
+    void func_80800008_baduo(s32, s32);
+    void func_80800C78_baduo(s32, s32);
+    void func_80800CA8_baduo(s32, s32);
+    s32 sp4C;
+    PlayerState *temp_s2;
+    PlayerState *temp_v0_2;
+    s32 var_s0;
+    f32 sp34[3];
+
+    sp4C = func_800F6224(*(s32 *)((s8 *)arg0 + 0x184));
+    temp_v0_2 = func_800F53D0(sp4C);
+    func_800F452C(temp_v0_2, arg1);
+    func_800A3410(temp_v0_2, 0x11);
+    func_80092778(temp_v0_2);
+    _bababykaz_entrypoint_8(temp_v0_2);
+    func_80800008_baduo(arg0, temp_v0_2);
+    temp_s2 = func_800A4CA8(temp_v0_2);
+    func_800F3BB0(arg0, sp34);
+    if (func_800EEB40(arg1, sp34) > 1000000.0f) {
+        for (var_s0 = 0; var_s0 != 0x3C; var_s0++) {
+            func_80110588(temp_s2);
+        }
+    }
+    bs_setState(temp_v0_2, 0x136);
+    func_800F8128(sp4C);
+    func_800A38F0(arg0, 0, 1);
+    func_800F8EE4(*(s32 *)((s8 *)arg0 + 0x184));
+    bs_setState(arg0, _badrone_entrypoint_29(arg0));
+    _sudialog_entrypoint_0(0xE8, 0xC);
+    func_80800C78_baduo(temp_v0_2, 0x11);
+    func_80800CA8_baduo(arg0, temp_v0_2);
+    func_800F86C4(*(s32 *)((s8 *)temp_v0_2 + 0x184), 0x11);
+}
 
 /* extern */
 
