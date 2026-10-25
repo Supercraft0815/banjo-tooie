@@ -317,7 +317,92 @@ void subaddietaxi_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
     sp24->state = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/taxi/subaddietaxi_entrypoint_11.s")
+s32 subaddietaxi_entrypoint_11(Actor *arg0, s32 arg1) {
+    void _fxsparkle_entrypoint_1(f32 *, u32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    int _subaddiefade_entrypoint_0(Actor *);
+    s32 _subaddiefade_entrypoint_1(s32, s32);
+    s32 func_800C696C(f32 *, f32, f32, s32, f32 *);
+    s16 func_800CB518(s32);
+    s32 func_800CB698(s32, s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void func_800EFD24(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_800F1884(f32 *, f32 *);
+    f32 func_800F2094(f32, f32);
+    int func_801078DC(Actor *, u8 *);
+    void func_8010AA54(f32 *);
+    s32 func_8010B990(Actor *, s32);
+    void func_80800C00_subaddietaxi(Actor *);
+    extern u8 D_80800D68_subaddietaxi[];
+    typedef struct {
+        f32 time;
+        f32 scale;
+        f32 unused[2];
+        f32 velocity[3];
+        f32 depth;
+    } TaxiMotion;
+    u8 *sp5C;
+    s32 sp58;
+    s32 sp54;
+    s32 sp50;
+    s32 sp4C;
+    f32 sp40[3];
+    f32 sp3C;
+    f32 sp34[2];
+
+    sp5C = func_8010410C();
+    func_800CB698(arg1, 5);
+    func_800D9078(&((TaxiMotion *)arg0->actorData)->time);
+    if (((TaxiMotion *)arg0->actorData)->depth != 0.0f) {
+        sp54 = func_800CB518(arg1);
+        if (sp54 & 1) {
+            _fxsparkle_entrypoint_1(arg0->position, 11);
+        }
+        sp50 = func_8010B990(arg0, 0x204024);
+        if (sp50 & 0x28) {
+            sp4C = sp50 & 8;
+            if (sp50 & 0x20) {
+                func_8010AA54(sp40);
+                if (func_800F1884(sp40, &sp3C)) {
+                    if (func_800F2094(sp3C, 90.0f) < 45.0f) {
+                        sp4C = (sp50 & 8) + 1;
+                    }
+                } else if (sp40[1] > 0.0f) {
+                    sp4C = (sp50 & 8) + 1;
+                }
+            }
+            if (sp4C) {
+                func_800EFD24(((TaxiMotion *)arg0->actorData)->velocity);
+                ((TaxiMotion *)arg0->actorData)->depth = 0.0f;
+                if (func_800C696C(arg0->position, 50.0f, -50.0f, arg0->unk14, sp34) && arg0->position[1] < sp34[0]) {
+                    arg0->position[1] = sp34[0];
+                }
+                if (sp54 & 4) {
+                    func_800E1610(0, 20.0f, 0.9f, arg0->position);
+                }
+                if (sp54 & 2) {
+                    func_80800C00_subaddietaxi(arg0);
+                }
+            }
+        }
+    }
+    sp58 = _subaddiefade_entrypoint_0(arg0);
+    _subaddiefade_entrypoint_1((s32)arg0, (s32)func_800F10B4(((TaxiMotion *)arg0->actorData)->time, 0.0f, 1.0f, 0, 255.0f));
+    arg0->scale = func_800F10B4(((TaxiMotion *)arg0->actorData)->time, 7.7f, 8.0f, ((TaxiMotion *)arg0->actorData)->scale, 0.05f);
+    if (sp58 == 255 && _subaddiefade_entrypoint_0(arg0) != 255) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800D68_subaddietaxi);
+    }
+    if (_subaddiefade_entrypoint_0(arg0) != 255) {
+        func_801078DC(arg0, sp5C + 0x20);
+    }
+    if (((TaxiMotion *)arg0->actorData)->time == 0.0f || arg0->position[1] < -30000.0f) {
+        _subaddieDll_entrypoint_4(arg0, 0);
+        return 1;
+    }
+    return 0;
+}
 
 s32 subaddietaxi_entrypoint_12(u8 *arg0, s32 arg1) {
     return (*(f32 *)(arg0 + 0x34)) == 0.0f;
