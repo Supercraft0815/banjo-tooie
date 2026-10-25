@@ -157,7 +157,83 @@ void func_808003B8_chnicecavemen(Actor* arg0)
 {
     _suexpression_entrypoint_8(arg0, 1);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_808003D8_chnicecavemen.s")
+s32 func_808003D8_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
+    extern u32 D_808018D8_chnicecavemen;
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiepalette_entrypoint_4(void *, void *);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    void func_80800624_chnicecavemen(Actor *, s32);
+    void func_8080077C_chnicecavemen(Actor *, s32, s32);
+    s32 func_80800C6C_chnicecavemen(Actor *);
+    s32 func_808013D0_chnicecavemen(void *, s32, s32);
+    void func_80801464_chnicecavemen(Actor *, s32, s32);
+    s32 pad;
+    s32 sp30;
+    s32 sp2C;
+    void *expression;
+    struct { u8 pad[0x14]; u16 palette; } *data;
+
+    switch (arg1) {
+        case 0x2E:
+            func_8080077C_chnicecavemen(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x29:
+            data = func_80100094(arg0, 0);
+            _subaddiepalette_entrypoint_4(arg0, &data->palette);
+            break;
+        case 0xB:
+            switch (arg2) {
+                case 9:
+                case 0xC:
+                case 0x10:
+                    func_800F7F98(func_800F54E4(), 0);
+                    if (!func_80800C6C_chnicecavemen(arg0)) {
+                        if (func_800DA298(arg0->actorData[5])) {
+                            sp30 = 0x17D9;
+                        } else {
+                            sp30 = 0x17D4;
+                        }
+                        func_80801464_chnicecavemen(arg0, 3, 1);
+                        _subaddiedialog_entrypoint_11(arg0->unk0, sp30, 0xE, arg0->position, 0xA2);
+                    }
+                    return 4;
+                case 1:
+                    if (func_800F64A4(func_800F54E4(), 0x400)) {
+                        sp2C = 0x1811;
+                    } else {
+                        sp2C = 0x17FD;
+                    }
+                    func_80801464_chnicecavemen(arg0, 3, 1);
+                    _subaddiedialog_entrypoint_11(arg0->unk0, sp2C, 0xE, arg0->position, 0xA2);
+                    return 4;
+            }
+            return 3;
+        case 0x1F:
+            func_80800624_chnicecavemen(arg0, *(s32 *)&arg2);
+            break;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_808018D8_chnicecavemen, arg0->scale);
+            break;
+        case 0x57:
+            return func_808013D0_chnicecavemen(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x95:
+            expression = _suexpression_entrypoint_7(arg0, 1, 0xA2);
+            _suexpression_entrypoint_12(expression, 0x42700000, 0x41700000);
+            _suexpression_entrypoint_17(expression, 0x320);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_80800624_chnicecavemen(Actor *arg0, s32 arg1) {
     void func_800DF6BC(s32, s32);
