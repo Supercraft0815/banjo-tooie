@@ -820,7 +820,57 @@ void gcmapsects_entrypoint_17(void *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_18.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_19.s")
+void gcmapsects_entrypoint_19(u8 *arg0, s32 arg1) {
+    s32 func_800B2840(s32);
+    void func_800BF774(void);
+    s32 func_800D62E4(s32);
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    f32 func_800DF428(f32);
+    void func_800DF440(s32);
+    void func_800DF4B0(s32);
+    void func_800DF7DC(s32);
+    void func_800DF818(s32);
+    void func_800DF830(s32);
+    struct Section {
+        u8 pad0[0x42];
+        u16 asset;
+        u8 pad44[4];
+        s32 textures;
+        u32 flag : 1;
+        u32 rest : 31;
+        u8 pad50[8];
+    };
+    s32 i;
+    s32 asset;
+    s32 vertices;
+    struct Section *section;
+
+    for (i = 0; i < arg0[0x77]; i++) {
+        section = &(*(struct Section **)(arg0 + 0x68))[i];
+        if (!section->flag) {
+            continue;
+        }
+        if (!section->asset) {
+            continue;
+        }
+        asset = func_800D674C(section->asset);
+        if (!asset) {
+            continue;
+        }
+        vertices = func_800B2840(asset);
+        func_800BF774();
+        func_800DF830(2);
+        func_800DF440(0);
+        func_800DF428(29999.0f);
+        func_800DF7DC((*(struct Section **)(arg0 + 0x68))[i].textures);
+        func_800DF818(vertices);
+        func_800DF4B0(2);
+        if (!func_800DE448((f32 *)&(*(struct Section **)(arg0 + 0x68))[i], NULL, 1.0f, NULL, asset)) {
+            func_800D62E4((*(struct Section **)(arg0 + 0x68))[i].asset);
+        }
+    }
+}
 
 /* extern */
 
