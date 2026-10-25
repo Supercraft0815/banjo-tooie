@@ -1,6 +1,59 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/func_80800000_fxleaves.s")
+void func_80800000_fxleaves(void *arg0) {
+    void func_8008FE68(f32 *);
+    void func_800E3958(f32 *);
+    void func_800E3A58(f32 *);
+    s32 func_800E3F8C(f32, f32, f32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    void *vector_push_back(void **);
+    s32 vector_size(s32);
+    f32 sp74[3];
+    f32 sp68[3];
+    f32 sp5C[3];
+    f32 distance;
+    f32 x;
+    f32 *sp50;
+    f32 sp44[3];
+    f32 y;
+    s32 i;
+
+    if (vector_size(*(s32 *)((u8 *)arg0 + 0x1C)) < *(s16 *)((u8 *)arg0 + 0x20)) {
+        func_8008FE68(sp74);
+        func_800E3958(sp68);
+        func_800E3A58(sp5C);
+        sp50 = vector_push_back((void **)((u8 *)arg0 + 0x1C));
+        distance = func_800DC178(50.0f, 1200.0f);
+        func_800EFA4C(sp44, 0.0f, func_800DC178(200.0f, 500.0f), -distance);
+        if (func_800EEFD4((f32 *)((u8 *)arg0 + 0xC)) < 25.0f) {
+            func_800EF934(sp44, sp44, func_800DC178(0.0f, 360.0f));
+        } else {
+            func_800EF934(sp44, sp44, sp5C[1] + func_800DC178(-70.0f, 70.0f));
+        }
+        func_800EE780(sp44, sp74, sp44);
+        if (distance < 600.0f) {
+            for (i = 0; i < 10 && func_800E3F8C(sp44[0], sp44[1] - 10.0f, sp44[2]); i++) {
+                sp44[1] += 100.0f;
+            }
+        }
+        func_800EE7F8(sp50 + 1, sp44);
+        func_800EFA4C(sp50 + 4, 0.0f, -100.0f, 0.0f);
+        func_800EFD24(sp50 + 7);
+        x = func_800DC178(-300.0f, 300.0f);
+        y = func_800DC178(-300.0f, 300.0f);
+        func_800EFA4C(sp50 + 10, x, y, func_800DC178(-300.0f, 300.0f));
+        if (++*((u8 *)arg0 + 0x34) >= 4) {
+            *((u8 *)arg0 + 0x34) = 0;
+        }
+        *(s32 *)sp50 = ((s32 *)((u8 *)arg0 + 0x24))[*((u8 *)arg0 + 0x34)];
+    }
+}
 
 void func_80800288_fxleaves(s8 *arg0, s32 arg1) {
     arg0[34] = arg1;
