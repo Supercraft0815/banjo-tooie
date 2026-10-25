@@ -16,7 +16,110 @@ OSThread *chwaspnestgame_entrypoint_1(void)
     return (OSThread *) D_80801FC8_chwaspnestgame;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800018_chwaspnestgame.s")
+s32 func_800DA544(s32);
+void func_80090708(s32);
+s32 func_80101180(s32, s32, s32);
+s32 func_800D395C(void);
+void func_80101FDC(Actor *, u32);
+void func_80800018_chwaspnestgame(Actor *arg0, s32 arg1) {
+    s32 _gcfrontend_entrypoint_9(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_4(void *, void *);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800D2054(s32, s32, s32);
+    void func_800D2770(s32, s32);
+    s32 func_800DA524(s32);
+    void func_800FC6B0(u32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    u8 *sp3C;
+    s32 text;
+    s32 pad34;
+    s32 music;
+    s32 result;
+    s32 pad28;
+    s32 remaining;
+
+    sp3C = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 2:
+        func_800DA524(0);
+        _susubgame_entrypoint_4(arg0, sp3C + 0x24);
+        func_800DA544(0x6E6);
+        _gcfrontend_entrypoint_9(0x73);
+        func_800FDC28(0xC);
+        func_80090708(0);
+        arg0->actorData[7] = 0;
+        arg0->actorData[3] = 0;
+        func_800CE8D8(0, 60.0f, 60);
+        func_800CE88C(0, 1);
+        func_800D2770(0xF5, 0);
+        break;
+    case 3:
+        result = func_800D2054(0, 0x87, arg0->actorData[3]);
+        func_80090708(2);
+        _susubgame_entrypoint_5(arg0, sp3C + 0x24, 5, 1, 0);
+        func_80101180(0x1E4, 0x45, 0);
+        if (func_800D395C()) {
+            if (result == 1) {
+                text = 0x144E;
+                music = 0x16;
+            } else if (result == 0) {
+                text = 0x144F;
+                music = 0x17;
+            } else {
+                text = 0x1450;
+                music = 0x17;
+            }
+        } else if (!func_800D0A9C(0x18, 4) && (s32)arg0->actorData[3] >= 40) {
+            text = 0x140A;
+            music = 0x16;
+        } else if (!func_800D0A9C(0x4B, 1) && (s32)arg0->actorData[3] >= 50) {
+            text = 0x140C;
+            music = 0x16;
+        } else {
+            remaining = !func_800D0A9C(0x4B, 1);
+            if (!func_800D0A9C(0x18, 4) + remaining) {
+                switch (arg0->actorData[3]) {
+                default:
+                    text = 0x140E;
+                    music = 0x17;
+                    break;
+                case 0:
+                    text = 0x1410;
+                    music = 0x17;
+                    break;
+                case 1:
+                    text = 0x144C;
+                    music = 0x17;
+                    break;
+                }
+            } else if (result == 1) {
+                text = 0x140D;
+                music = 0x16;
+            } else {
+                if (arg0->actorData[3] != 0) {
+                    text = 0x140F;
+                } else {
+                    text = 0x1410;
+                }
+                music = 0x17;
+            }
+        }
+        func_800FDC28(0);
+        func_800FC6B0(music);
+        _subaddiedialog_entrypoint_11(arg0->unk0, text, 6, NULL, 0x99);
+        break;
+    case 5:
+        func_80090708(0);
+        _susubgame_entrypoint_4(arg0, sp3C + 0x24);
+        arg0->unk58 = 0.5f;
+        break;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 /* extern */
 
