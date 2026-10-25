@@ -42,7 +42,96 @@ block_9:
     func_8010B990(arg0, 0x1000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_808000EC_charmouredcaveman.s")
+void func_808000EC_charmouredcaveman(Actor *arg0) {
+    typedef struct {
+        u8 prefix[0x74];
+        u32 pad74_21 : 11;
+        u32 unk74_20 : 1;
+        u32 pad74_0 : 20;
+    } ArmouredCavemanFlags;
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 _subaddiefade_entrypoint_5();
+    s32 _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 func_8010C9B0(f32 *, s32);
+    f32 func_8010CD28(Actor *);
+    s32 func_8010D23C(void);
+    s32 func_8010D278();
+    void func_80800640_charmouredcaveman(Actor *);
+    void func_8080072C_charmouredcaveman(Actor *);
+    void func_808008B0_charmouredcaveman(Actor *);
+    void func_8080092C_charmouredcaveman(Actor *);
+    void func_8080095C_charmouredcaveman(Actor *);
+    void func_808009D4_charmouredcaveman(Actor *);
+    s32 sp34;
+    s32 sp30;
+    s32 deflected;
+    s32 state;
+
+    sp34 = 1;
+    sp30 = func_8010D23C();
+    deflected = 0;
+    if (arg0->unk70_10 != 6) {
+        deflected = _sudeflect_entrypoint_1(arg0->position, 250.0f, -10.0f, 140.0f, 10) & 8;
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80800640_charmouredcaveman(arg0);
+        if (deflected) {
+            func_808009D4_charmouredcaveman(arg0);
+        }
+        if (sp30 && func_8010D278() != 0x11 && func_8010C9B0(arg0->position, 400)) {
+            arg0->unk64_19 = 0;
+            func_80102424(arg0, 4);
+        }
+        break;
+    case 2:
+        func_80800640_charmouredcaveman(arg0);
+        sp34 = 0;
+        break;
+    case 3:
+        func_8080072C_charmouredcaveman(arg0);
+        if (func_80101DDC(arg0)) {
+            state = arg0->unk64_20 ? 2 : 1;
+            func_80102424(arg0, state);
+        }
+        break;
+    case 4:
+        func_808008B0_charmouredcaveman(arg0);
+        if (func_80101DDC(arg0)) {
+            if (arg0->unk64_19) {
+                func_8080095C_charmouredcaveman(arg0);
+            } else {
+                func_80102424(arg0, 1);
+            }
+        }
+        break;
+    case 5:
+        sp34 = 0;
+        func_8080092C_charmouredcaveman(arg0);
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 6);
+            _subaddiefade_entrypoint_5(arg0);
+        }
+        break;
+    case 6:
+        sp34 = 0;
+        state = _subaddiefade_entrypoint_0(arg0) == 0 ? 0 : 1;
+        arg0->unk64_16 = state; ((ArmouredCavemanFlags *)arg0)->unk74_20 = state;
+        break;
+    case 7:
+        func_8080072C_charmouredcaveman(arg0);
+        break;
+    }
+    if (sp34 && sp30) {
+        if (func_8010D278() != 0x11) {
+            arg0->unk54 = func_8010CD28(arg0);
+        }
+        func_80102BF8(arg0, 0.3f, 3.0f, 300.0f);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_80800370_charmouredcaveman.s")
 

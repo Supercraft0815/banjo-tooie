@@ -4,6 +4,6 @@
 #include "common.h"
 
 void _sudeflect_entrypoint_0(f32*, f32, f32, s32);
-void _sudeflect_entrypoint_1(f32[3], f32, f32, f32, s32);
+s32 _sudeflect_entrypoint_1(f32[3], f32, f32, f32, s32);
 
 #endif
