@@ -149,4 +149,69 @@ void suexpressjoint_entrypoint_3(s32 arg0, void *arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressjoint/suexpressjoint_entrypoint_4.s")
+typedef struct {
+        f32 timer;
+        s16 id;
+        s16 index;
+        u8 amount;
+        u8 pad9[3];
+        f32 weights[4];
+        f32 total;
+        u8 current[4];
+} ExpressJoint;
+
+void suexpressjoint_entrypoint_4(ExpressJoint *joint, Actor *actor) {
+    typedef struct {
+        f32 rotation[3];
+        f32 translation[3];
+        f32 scale[3];
+    } JointTransform;
+    typedef struct {
+        u8 bone;
+        u8 flags;
+        JointTransform *transforms;
+    } JointPart;
+    extern JointInfo D_80801818_suexpressjoint[];
+    s32 func_800AE6BC(s32 *);
+    void *func_801040A8(Actor *);
+    struct func_800E0960_1_s;
+    void func_800E0AFC(struct func_800E0960_1_s *, u8, f32, f32, f32, f32);
+    void func_800E0B8C(struct func_800E0960_1_s *, u8, f32, f32, f32, f32);
+    void func_800E0C20(struct func_800E0960_1_s *, u8, f32, f32, f32, f32);
+    s32 i, j, k;
+    f32 translation[3];
+    f32 rotation[3];
+    f32 scale[3];
+    f32 amount;
+    s32 model;
+
+    amount = joint->amount * 0.01f;
+    model = func_800AE6BC(func_801040A8(actor));
+    for (i = 0; i < D_80801818_suexpressjoint[joint->index].padB; i++) {
+        for (j = 0; j < 3; j++) {
+            rotation[j] = 0.0f;
+            translation[j] = 0.0f;
+            scale[j] = 0.0f;
+            for (k = 0; k < D_80801818_suexpressjoint[joint->index].count; k++) {
+                rotation[j] += ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].transforms[k].rotation[j] * joint->weights[k];
+                translation[j] += ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].transforms[k].translation[j] * joint->weights[k];
+                scale[j] += ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].transforms[k].scale[j] * joint->weights[k];
+            }
+        }
+        if (((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].flags & 1) {
+            func_800E0AFC((void *)model, ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].bone, amount, translation[0], translation[1], translation[2]);
+        } else {
+            func_800E0AFC((void *)model, ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].bone, -amount, translation[0], translation[1], translation[2]);
+        }
+        if (((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].flags & 2) {
+            func_800E0C20((void *)model, ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].bone, amount, rotation[0], rotation[1], rotation[2]);
+        } else {
+            func_800E0C20((void *)model, ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].bone, -amount, rotation[0], rotation[1], rotation[2]);
+        }
+        if (((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].flags & 4) {
+            func_800E0B8C((void *)model, ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].bone, amount, scale[0], scale[1], scale[2]);
+        } else {
+            func_800E0B8C((void *)model, ((JointPart *)D_80801818_suexpressjoint[joint->index].unk0)[i].bone, -amount, scale[0], scale[1], scale[2]);
+        }
+    }
+}
