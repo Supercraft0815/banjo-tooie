@@ -290,7 +290,70 @@ void func_80800D18_chmayafarmer(u8 *arg0) {
     func_800EE7F8(arg0 + 0x18, func_800CC63C((temp_v0 >> 0x19) - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_80800D60_chmayafarmer.s")
+void func_80800D60_chmayafarmer(MayaFarmerActor *arg0, Actor *arg1) {
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_80102424(Actor *, s32);
+    void func_80102B6C(u8 *, f32);
+    s32 func_80102CF4(Actor *, s32);
+    s32 func_80102D4C(u8 *, s32);
+
+    switch (arg0->actor.unk70_10) {
+    case 1:
+        if (((f32 *)arg0->actor.actorData)[3] < 8.0f) {
+            ((f32 *)arg0->actor.actorData)[3] += 1.0f;
+        }
+        if (func_80800C58_chmayafarmer(arg0) == 0) {
+            func_80800D18_chmayafarmer(arg0->path.padding);
+            func_80102424(&arg0->actor, 2);
+        }
+        if (func_800DC0C0() < 0.05f) {
+            arg0->actor.unk50 = func_800DC178(-25.0f, 25.0f);
+        }
+        if (func_800DC0C0() < 0.05f) {
+            arg0->actor.unk54 += func_800DC178(-90.0f, 90.0f);
+        }
+        break;
+    case 2:
+        if (func_80800C58_chmayafarmer(arg0) != 0) {
+            func_80102424(&arg0->actor, 1);
+        }
+        if (((f32 *)arg0->actor.actorData)[3] > 6.0f) {
+            ((f32 *)arg0->actor.actorData)[3] -= 2.0f;
+        }
+        arg0->actor.unk54 = func_800F1DF4(arg0->actor.position, (f32 *)arg0->actor.actorData);
+        arg0->actor.unk50 = -func_800F1828(arg0->actor.position, (f32 *)arg0->actor.actorData);
+        break;
+    }
+    if (func_80102CF4(&arg0->actor, 0x41800000) == 0) {
+        if (arg0->actor.rotation[1] < arg0->actor.unk54) {
+            if (arg0->actor.rotation[2] < 15.0f) {
+                arg0->actor.rotation[2] += 1.0f;
+            }
+        } else {
+            if (arg0->actor.rotation[2] > -15.0f) {
+                arg0->actor.rotation[2] -= 1.0f;
+            }
+        }
+    } else {
+        arg0->actor.rotation[2] *= 0.75f;
+    }
+    if (arg1->unk6C_0 == 1) {
+        ((f32 *)arg0->actor.actorData)[3] = 2.0f;
+        arg0->actor.rotation[1] += arg0->actor.rotation[2] * 0.02f;
+        arg0->actor.rotation[0] = 0.0f;
+    } else {
+        if (func_80102D4C(arg0->path.padding, 0x40000000) == 0) {
+            func_80102B6C(arg0->path.padding, 2.0f);
+        }
+        arg0->actor.rotation[1] += arg0->actor.rotation[2] * 0.2f;
+    }
+    func_800EF4E4(&((f32 *)arg0->actor.actorData)[4], arg0->actor.rotation[0],
+                 arg0->actor.rotation[1], 0.0f, 0.0f, ((f32 *)arg0->actor.actorData)[3]);
+}
 
 /* extern */
 
