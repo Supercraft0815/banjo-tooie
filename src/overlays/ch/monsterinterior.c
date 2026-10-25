@@ -757,7 +757,99 @@ void func_808013D0_chmonsterinterior(Actor *arg0) {
     func_8010D930(4, ((MonsterInteriorData *)arg0)->flags & 1, arg0->position, D_8080201C_chmonsterinterior);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_808014E8_chmonsterinterior.s")
+void func_808014E8_chmonsterinterior(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    s32 func_800CEAD0(s32);
+    void func_8010A570(Actor *);
+    void func_80101FDC(Actor *, u32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_80801C1C_chmonsterinterior(u8 *);
+    s32 func_80801C78_chmonsterinterior(u8 *);
+    void func_8010C93C(s32, s32, f32);
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    void func_80102BF8(void *, f32, f32, f32);
+    s32 func_8010C3A8(Actor *, u32, f32);
+    s32 _subaddierouteDll_entrypoint_4(Actor *);
+    s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    void _subaddierouteDll_entrypoint_6(Actor *, void *, u32, s32, f32, s32, s32);
+    void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
+    f32 func_800F15F8(f32, f32, f32);
+    s32 func_8010B990(Actor *, s32);
+    u8 func_800D9078(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    void func_800FFAB0(Actor *);
+    typedef struct {
+        u16 pad0[3];
+        u16 unk6;
+        s32 unk8;
+        s32 unkC;
+        s32 pad10[6];
+        f32 unk28;
+    } RouteData;
+    typedef struct {
+        f32 pad0[9];
+        f32 unk24;
+        f32 unk28;
+        s32 kind;
+        f32 unk30;
+    } MonsterData;
+    RouteData *data;
+    f32 dt;
+    f32 joy;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    if (arg0->unk70_10 != 4 && func_800CEAD0(arg0->unk6C_0) && !arg0->unk64_19) {
+        func_8010A570(arg0);
+        func_80101FDC(arg0, 4);
+        _subaddiefade_entrypoint_3(arg0);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_80801C1C_chmonsterinterior((u8 *)arg0)) {
+                func_80101FDC(arg0, 2);
+            }
+            break;
+        case 2:
+            func_8010C93C((s32)arg0, (s32)arg0->position, 1.0f);
+            if (arg0->unk64_29) {
+                joy = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
+                ((MonsterData *)arg0)->unk24 = data->unk28 * 1.4f;
+                func_80102BF8(arg0, 0.2f, 8.0f, 600.0f);
+                func_8010C3A8(arg0, 0x200025, joy);
+            } else {
+                if (_subaddierouteDll_entrypoint_4(arg0)) {
+                    _subaddierouteDll_entrypoint_7(arg0, data, arg0->rotation[1], arg0->unk54, 400.0f, 0x4802);
+                    data->unkC = data->unk6;
+                }
+                _subaddierouteDll_entrypoint_6(arg0, data, data->unkC, 0x3F, 0.4f, 20, 40);
+                _subaddierouteDll_entrypoint_5(arg0, data, data->unkC, 0.2f, 4.0f, 200.0f);
+                ((MonsterData *)arg0)->unk24 = func_800F15F8(((MonsterData *)arg0)->unk24, ((MonsterData *)arg0)->unk30, dt * 800.0f);
+                if (!arg0->unk64_19) {
+                    func_8010B990(arg0, 0x325);
+                }
+            }
+            if (func_800D9078(&arg0->unk58)) {
+                func_80101FDC(arg0, 3);
+                ((MonsterData *)arg0)->unk28 = 0.6f;
+                arg0->unk64_24 = 0;
+            }
+            break;
+        case 3:
+            if (!arg0->unk64_19 && func_800F10B4(((MonsterData *)arg0)->unk28, 0.0f, 0.6f, 1.0f, 0.0f) > 0.3f) {
+                func_8010D930(5, arg0->unk70_0, arg0->position, D_80802030_chmonsterinterior);
+                arg0->unk64_19 = 1;
+            }
+            if (func_80801C78_chmonsterinterior((u8 *)arg0)) {
+                func_800FFAB0(arg0);
+            }
+            break;
+        case 4:
+            break;
+    }
+}
 
 void func_808017E8_chmonsterinterior(s32 arg0) 
 {
