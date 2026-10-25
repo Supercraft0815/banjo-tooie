@@ -81,7 +81,68 @@ void func_80016E7C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016ED0.s")
+void func_80016ED0(u8 arg0, s32 arg1) {
+    typedef struct {
+        u32 unk0;
+        u32 trackCount;
+    } AudioSeqHeader;
+    typedef struct {
+        AudioSeqHeader *base;
+        u32 validTracks;
+        f32 qnpt;
+        u32 lastTicks;
+        u32 lastDeltaTicks;
+        u32 deltaFlag;
+        u8 *curLoc[32];
+        u8 *curBUPtr[32];
+        u8 curBULen[32];
+        u8 lastStatus[32];
+        u32 evtDeltaTicks[32];
+    } AudioSeq;
+    void func_80017850(s32);
+    s32 func_800178C4(s32, s32, f32);
+    s32 func_80017D74(s32, s32, f32);
+    void func_80024E90(s32);
+    void func_80024EE0(AudioSeq *, AudioSeqHeader *);
+    void func_80025E80(u8 *, void *);
+    void func_80025ED0(u8 *, s16);
+    void func_80025F20(u8 *);
+    s32 func_800D674C(s32);
+    s32 func_800FCDB4();
+    extern s32 D_80079FA0;
+    volatile u64 start;
+
+    if (arg1 == -1) {
+        if (arg1 != ((MusicSlotView *)&D_80079FA0)[arg0].track_id) {
+            func_80024E90((s32)((MusicSlotView *)&D_80079FA0)[arg0].cseqp);
+        }
+        ((MusicSlotView *)&D_80079FA0)[arg0].track_id = arg1;
+        return;
+    }
+    if (((MusicSlotView *)&D_80079FA0)[arg0].track_id != -1) {
+        func_80016ED0(arg0, -1);
+    }
+    start = osGetTime();
+    while (((MusicSlotView *)&D_80079FA0)[arg0].state != 0) {
+        osGetTime();
+    }
+    ((MusicSlotView *)&D_80079FA0)[arg0].unk2 = 0;
+    ((MusicSlotView *)&D_80079FA0)[arg0].unk3 = 0;
+    ((MusicSlotView *)&D_80079FA0)[arg0].track_id = arg1;
+    ((MusicSlotView *)&D_80079FA0)[arg0].pending = 0;
+    func_80016DA0(((MusicSlotView *)&D_80079FA0)[arg0].track_id, 1);
+    func_80024EE0((AudioSeq *)((MusicSlotView *)&D_80079FA0)[arg0].cseq,
+        (AudioSeqHeader *)func_800D674C(((MusicSlotView *)&D_80079FA0)[arg0].track_id + 0x1DDD));
+    func_80025E80(((MusicSlotView *)&D_80079FA0)[arg0].cseqp, ((MusicSlotView *)&D_80079FA0)[arg0].cseq);
+    func_80017850(arg0);
+    if (((MusicSlotView *)&D_80079FA0)[arg0].track_id != -1) {
+        func_800178C4(arg0, func_800FCDB4(((MusicSlotView *)&D_80079FA0)[arg0].track_id), 0.0f);
+    }
+    func_80017D74(arg0, -1, 0.0f);
+    func_80025ED0(((MusicSlotView *)&D_80079FA0)[arg0].cseqp, ((MusicSlotView *)&D_80079FA0)[arg0].volume);
+    func_80025F20(((MusicSlotView *)&D_80079FA0)[arg0].cseqp);
+    ((MusicSlotView *)&D_80079FA0)[arg0].pad4 = 2;
+}
 
 u32 func_80017070(u8 arg0) {
     extern u8 **D_8007A198[][0x9D];

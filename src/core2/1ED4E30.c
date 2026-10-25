@@ -725,7 +725,7 @@ void func_800FCD5C(void) {
 
 /* extern */
 
-s32 func_800FCDB4(void) {
+s32 func_800FCDB4() {
     void *func_800FB5F8();
     void *temp_v0;
 
