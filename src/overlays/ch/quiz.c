@@ -1064,7 +1064,110 @@ Unk80132ED0 *func_80801C7C_chquiz(s32 arg0) {
     return sp1C->unk0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quiz/func_80801CC4_chquiz.s")
+void func_80801CC4_chquiz(Actor *arg0)
+{
+  s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+  void _subaddieaudioloop_entrypoint_2(Actor *);
+  s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+  f32 func_800138D0(f32);
+  void func_800187B4(s32, f32, f32, f32);
+  s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+  void func_800C3F48(u32);
+  s32 func_800E15CC(s32, f32, f32);
+  s32 func_800E1720(s32);
+  void func_800EE7F8(f32 *, f32 *);
+  void func_800EEB9C(f32 *, f32, f32);
+  void func_800EF04C(f32 *, f32 *);
+  void func_800EFA4C(f32 *, f32, f32, f32);
+  f32 func_800F10B4(f32, f32, f32, f32, f32);
+  s32 func_80101180(s32, s32, s32);
+  s32 func_80101238(s32, s32);
+  s32 func_80101DDC(Actor *);
+  s32 func_80101E14(Actor *, f32);
+  f32 func_80101F24(Actor *);
+  void func_80102424(Actor *, s32);
+  void func_8010C908(s32, s32);
+  extern u16 D_80807220_chquiz[][4];
+  extern s32 D_8080723C_chquiz[];
+  extern s32 D_80807274_chquiz[];
+  extern u32 D_808072BC_chquiz[];
+  f32 sp54[3];
+  f32 sp50;
+  f32 sp4C;
+  f32 sp40[3];
+  f32 var_f2;
+  sp4C = func_80101F24(arg0);
+  func_800EE7F8(sp54, (f32 *) (&arg0->actorData[4]));
+  switch (D_80807220_chquiz[arg0->unk70_10][0])
+  {
+    case 0x596:
+      func_800EEB9C(sp40, arg0->rotation[1] - 90.0f, func_800138D0(func_800F10B4(sp4C, 0.0f, 1.0f, 0.0f, 360.0f)) * 30.0f);
+      func_800EF04C(sp54, sp40);
+      sp50 = 2.0f;
+      func_800EFA4C(arg0->position, *((f32 *) (&arg0->actorData[4])), (*((f32 *) (&arg0->actorData[5]))) + (-80.0f), *((f32 *) (&arg0->actorData[6])));
+      break;
+
+    case 0x597:
+      if (sp4C < 0.65f)
+    {
+      sp50 = func_800F10B4(sp4C, 0.0f, 0.65f, 2.0f, 3.0f);
+      var_f2 = func_800F10B4(sp4C, 0.0f, 0.65f, 0.0f, 0.0f);
+    }
+    else
+    {
+      var_f2 = 0.0f;
+      sp50 = 3.0f;
+    }
+      func_800EFA4C(arg0->position, *((f32 *) (&arg0->actorData[4])), ((*((f32 *) (&arg0->actorData[5]))) + var_f2) + (-80.0f), *((f32 *) (&arg0->actorData[6])));
+      break;
+
+  }
+
+  _chbadshad_entrypoint_1(arg0, sp54, sp50);
+ if (1) { }
+  switch (arg0->unk70_10)
+  {
+    case 2:
+      if (func_80101E14(arg0, 0.1f))
+    {
+      func_80101180(0x528, 0x6C, 0);
+    }
+    else
+      if (func_80101E14(arg0, 0.65f))
+    {
+      func_800BBCB8((f32 *) (&arg0->actorData[4]), (f32 *) (&arg0->actorData[4]), 1.0f, 4, D_8080723C_chquiz);
+      func_800BBCB8((f32 *) (&arg0->actorData[4]), (f32 *) (&arg0->actorData[4]), 1.0f, 0x14, D_80807274_chquiz);
+      func_800C3F48(0x7FFB5E84);
+      func_800187B4(0, 1.0f, 0.2f, 0.3f);
+      arg0->actorData[3] = func_800E15CC(0, 10.0f, 0.6f);
+      _subaddieaudioloop_entrypoint_2(arg0);
+    }
+    else
+      if (func_80101DDC(arg0))
+    {
+      func_80101238(0x88, 0);
+      func_80102424(arg0, 3);
+      if (arg0->actorData[3] != 0)
+      {
+        func_800E1720(arg0->actorData[3] - 1);
+      }
+    }
+      if (func_80101F24(arg0) < 0.65f)
+    {
+      _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808072BC_chquiz);
+    }
+      break;
+
+    case 1:
+      break;
+
+    case 3:
+      func_8010C908((s32) arg0, (s32) arg0->position);
+      break;
+
+  }
+
+}
 
 OSThread *chquiz_entrypoint_0(void)
 {
