@@ -9,7 +9,54 @@ typedef struct {
     void *state[2];
 } AudioPoleFilter;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3FB40/func_80028010.s")
+Gfx *func_80028010(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3, Gfx *arg4) {
+    Gfx *func_80028328(s32 *, s32, u32, s32, s32, Gfx *);
+    f32 func_800287FC(f32 *, s32);
+    Gfx *sp54;
+    s32 sp50;
+    s32 sp4C;
+    s32 sp48;
+    u32 sp44;
+    f32 sp40;
+    f32 sp3C;
+    f32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s16 sp2A;
+
+    sp54 = arg4;
+    sp48 = 0x2E0;
+    sp34 = 0;
+    sp2C = 0xB8;
+    if (*(void **)(arg1 + 9) != NULL) {
+        sp30 = ((s32 *)arg1)[1] - ((s32 *)arg1)[0];
+        sp38 = func_800287FC(arg1, sp2C);
+        sp38 /= (f32)sp30;
+        sp38 = (f32)(s32)(sp38 * 32768.0f);
+        sp38 /= 32768.0f;
+        sp3C = 1.0f - sp38;
+        sp40 = (*(f32 **)(arg1 + 9))[9] + sp3C * (f32)sp2C;
+        sp4C = (s32)sp40;
+        (*(f32 **)(arg1 + 9))[9] = sp40 - (f32)sp4C;
+        sp44 = ((u32)-(((s32 *)arg1)[1] - ((s32 *)arg1)[6]) << 1) + arg0[arg2 + 10];
+        sp34 = (s32)(sp44 & 7) >> 1;
+        sp54 = func_80028328(arg0, arg2, sp44 - sp34 * 2, sp48, sp4C + sp34, sp54);
+        sp50 = (s32)(sp3C * 32768.0f);
+        sp2A = arg3 >> 8;
+        {
+            Gfx *sp24 = sp54++;
+            sp24->words.w0 = (osVirtualToPhysical((*(void ***)(arg1 + 9) + arg2)[5]) & 0xFFFFFF) | 0x05000000;
+            sp24->words.w1 = (((*(s32 **)(arg1 + 9))[10] & 3) << 30) | ((sp50 & 0xFFFF) << 14) | (((sp48 + sp34 * 2) & 0xFFF) * 4) | (sp2A & 3);
+        }
+        (*(s32 **)(arg1 + 9))[10] = 0;
+        ((s32 *)arg1)[6] += sp4C - sp2C;
+    } else {
+        sp44 = ((u32)-((s32 *)arg1)[1] << 1) + arg0[arg2 + 10];
+        sp54 = func_80028328(arg0, arg2, sp44, arg3, 0xB8, sp54);
+    }
+    return sp54;
+}
 
 Gfx *func_80028328(s32 *arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4, Gfx *arg5) {
     Gfx *cursor;
