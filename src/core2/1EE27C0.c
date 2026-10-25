@@ -605,7 +605,118 @@ void func_80109FE8(void **arg0, s32 arg1) {
     ((struct Flags *) *arg0)->enabled = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A01C.s")
+Unk80132ED0 *func_8010A01C(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
+    struct Marker {
+        u32 pad[5];
+        u16 id;
+        u16 pad16;
+        u32 pad18 : 15;
+        u32 active : 1;
+        u32 pad1a : 16;
+        u32 pad1c[2];
+        u32 type : 10;
+        u32 pad24 : 22;
+        u32 pad28 : 22;
+        u32 enabled : 1;
+        u32 pad28b : 9;
+    };
+    struct ActorFlags {
+        u32 pad[37];
+        u32 pad94 : 14;
+        u32 enabled : 1;
+        u32 rest : 17;
+    };
+    struct Entry {
+        struct Marker *marker;
+        u32 pad4;
+        u32 pad8 : 27;
+        u32 enabled : 1;
+        u32 pad8b : 3;
+        u32 active : 1;
+    };
+    s32 *func_800BE444(f32 *);
+    s16 func_800CB854(s32 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    int func_800F0BD0(f32 *, f32 *, f32, f32);
+    f32 func_800F0C68(f32 *, f32 *, f32, f32);
+    void *func_80101080(void);
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80103DFC(void *, f32 *);
+    void *func_80106790(s32);
+    extern f32 D_801264B0;
+    s32 *list;
+    s32 mask;
+    f32 distance;
+    f32 cosine;
+    f32 normal[3];
+    s32 count;
+    f32 *points;
+    struct Entry *entry;
+    struct Entry *end;
+    struct Marker *marker;
+    Actor *actor;
+    f32 best;
+    struct Marker *result;
+    f32 fallback[3];
+    f32 point[3];
+    f32 direction[3];
+    s32 pad[2];
+
+    list = func_800BE444(arg0);
+    if (func_800CB854(NULL) != 0) {
+        mask = 1U << (func_800CB854(NULL) + 31);
+    } else {
+        mask = 0;
+    }
+    func_800EE7F8(normal, arg1);
+    cosine = func_800F0C68(arg0, normal, arg2, arg3);
+    best = D_801264B0;
+    result = NULL;
+    while (*list != 0) {
+        entry = (struct Entry *)func_800E9E88(*list);
+        end = (struct Entry *)func_800E9EB4((s16 *)*list);
+        if (entry < end) do {
+            if (!entry->enabled || !entry->active) goto next_entry;
+            marker = entry->marker;
+            if ((arg4 + 1) && arg4 != marker->type) goto next_entry;
+            if (!marker->enabled) goto next_entry;
+            if (marker->id == 0 || marker->id == 0xFFFF || !marker->active) goto next_entry;
+                        actor = func_80106790((s32)marker);
+                        if (!((struct ActorFlags *)actor)->enabled) {
+                            goto next_entry;
+                        }
+                        if (actor->unk64_17 || (actor->unk64_0 & mask)) {
+                            goto next_entry;
+                        }
+                        count = func_8010108C(actor, 0xA2, 0);
+                        if (count > 0) {
+                            points = func_80101080();
+                        } else {
+                            func_80103DFC(actor, fallback);
+                            points = fallback;
+                            count = 1;
+                        }
+                        while (count--) {
+                            func_800EE7F8(point, points);
+                            func_800EFB24(direction, point, arg0);
+                            distance = func_800EEFD4(direction);
+                            if (distance < best && func_800F0BD0(direction, normal, arg2, cosine)) {
+                                best = distance;
+                                result = marker;
+                            }
+                            points += 3;
+                        }
+next_entry:
+            ;
+        } while (++entry < end);
+        list++;
+    }
+    return (Unk80132ED0 *)result;
+}
 
 void func_8010A2FC(Actor *arg0, f32 *arg1, f32 *arg2) {
     f32 func_800EC75C(void *, f32 *);
