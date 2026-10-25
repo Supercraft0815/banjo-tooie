@@ -230,7 +230,53 @@ s32 func_80800B28_ncpoddialog(void *arg0, f32 *arg1, f32 *arg2, s32 *volatile ar
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800D10_ncpoddialog.s")
+void func_80800D10_ncpoddialog(void *arg0, f32 *arg1, f32 *arg2) {
+    void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
+    f32 size[2];
+    f32 center[2];
+    s32 view[4];
+    s32 x;
+    s32 y;
+    s32 i = 0;
+
+    func_800A8A04(0, &view[0], &view[1], &view[2], &view[3]);
+    view[1] = 28;
+    view[3] = 200;
+    x = (s32)((f32)view[0] + (f32)view[2] * 0.5f);
+    y = 114;
+    func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 0, center, size);
+    if (*(s8 *)((u8 *)arg0 + 0x211) != 8 && *(s8 *)((u8 *)arg0 + 0x211) != 9) {
+        while (x < center[0] && i != 10) {
+            i++;
+            func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 1, center, size);
+        }
+        i = 0;
+        while (center[0] < x && i != 10) {
+            i++;
+            func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 2, center, size);
+        }
+        i = 0;
+        while (center[1] < y && i != 10) {
+            i++;
+            func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 3, center, size);
+        }
+        i = 0;
+        while (y < center[1] && i != 10) {
+            i++;
+            func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 4, center, size);
+        }
+        i = 0;
+    }
+    if (*((u8 *)arg0 + 0x217) == 0) {
+        while (func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 5, center, size) && i < 10) {
+            i++;
+        }
+        i = 0;
+    }
+    while (!func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 6, center, size) && i < 10) {
+        i++;
+    }
+}
 
 /* extern */
 
