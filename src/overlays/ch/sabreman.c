@@ -642,7 +642,94 @@ void func_808011F8_chsabreman()
     func_80102424();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/sabreman/func_80801218_chsabreman.s")
+void func_80801218_chsabreman(Actor *arg0) {
+    typedef struct { u32 words[3]; } AudioTimes;
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_8001210C(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    u8 func_800C4350(u8, f32 *, s32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    f32 func_80101F24(Actor *);
+    s32 func_801022E4(Actor *);
+    extern AudioTimes D_80801E18_chsabreman, D_80801E24_chsabreman;
+    extern u32 D_80801E30_chsabreman[], D_80801E40_chsabreman[];
+    extern u32 D_80801E50_chsabreman[], D_80801E8C_chsabreman[];
+    extern u32 D_80801E9C_chsabreman[], D_80801EC4_chsabreman[];
+    extern u32 D_80801EFC_chsabreman[], D_80801F08_chsabreman[];
+    extern u32 D_80801F14_chsabreman[], D_80801F2C_chsabreman[];
+    extern u32 D_80801F44_chsabreman[], D_80801F5C_chsabreman[];
+    extern u32 D_80801F6C_chsabreman[];
+    extern s32 D_80801E60_chsabreman[], D_80801ED4_chsabreman[];
+    extern s32 D_80801F78_chsabreman[], D_80801F88_chsabreman[], D_80801F98_chsabreman[];
+    AudioTimes sp5C;
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+    AudioTimes sp2C;
+
+    switch (func_801022E4(arg0)) {
+        case 0x2F7:
+            sp5C = D_80801E18_chsabreman;
+            _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80801E30_chsabreman, sp5C.words);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801E40_chsabreman, 0.2f);
+            break;
+        case 0x2F9:
+            if (func_80101E14(arg0, 0.02f)) {
+                if (_subaddieskeleton_entrypoint_2(arg0->unk0, 5, sp50)) {
+                    func_800EE7F8(sp44, sp50);
+                    func_800EF1B8(sp44, arg0->rotation[1], -50.0f);
+                    sp44[1] += 30.0f;
+                    func_800BABB8(0, sp50, sp44, 1.0f, D_80801E60_chsabreman);
+                }
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801E50_chsabreman);
+            }
+            _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80801E8C_chsabreman, D_80801E9C_chsabreman);
+            break;
+        case 0x2FA:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801EC4_chsabreman, 0.0f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801E30_chsabreman, 0.75f);
+            if (func_80101F24(arg0) < 0.7f && func_8001210C(1) &&
+                _subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp38)) {
+                func_800BBCB8(sp38, NULL, 1.0f, 1, D_80801ED4_chsabreman);
+            }
+            break;
+        case 0x2FB:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801EFC_chsabreman, 0.6f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801F08_chsabreman, 0.8f);
+            break;
+        case 0x2FC:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801F14_chsabreman, 0.025f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801F2C_chsabreman, 0.12f);
+            _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80801F44_chsabreman, D_80801F5C_chsabreman);
+            break;
+        case 0x2FD:
+            sp2C = D_80801E24_chsabreman;
+            _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80801E30_chsabreman, sp2C.words);
+            break;
+        case 0x2FE:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801F6C_chsabreman, 0.8f);
+            break;
+        case 0x2FF:
+            if (arg0->unk5F == 0) {
+                arg0->unk5F = func_800C4350(0, arg0->position, D_80801F78_chsabreman);
+            }
+            if (arg0->unk5F != 0) {
+                if (func_80101E14(arg0, 0.0f)) {
+                    func_800C4350(arg0->unk5F, arg0->position, D_80801F88_chsabreman);
+                }
+                if (func_80101E14(arg0, 0.65f)) {
+                    func_800C4350(arg0->unk5F, arg0->position, D_80801F98_chsabreman);
+                }
+            }
+            break;
+    }
+}
 
 void func_8080158C_chsabreman(Actor *arg0) {
     s32 func_800DA564(s32, s32);
