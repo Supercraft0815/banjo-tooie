@@ -726,7 +726,82 @@ void func_8080142C_chaliendad(void *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_8080152C_chaliendad.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/aliendad/func_80801868_chaliendad.s")
+void func_80801868_chaliendad(Actor *arg0) {
+    s32 func_800D90A4(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 pad;
+    f32 progress;
+    f32 blinkProgress;
+    s32 expired;
+    struct {
+        u8 pad0[0x18];
+        s16 state;
+        s16 pad1A;
+        f32 duration;
+        f32 scale;
+        f32 targetScale;
+    } *data;
+    struct {
+        u8 pad0[0x78];
+        u32 pad78 : 18;
+        u32 blinkState : 2;
+        u32 blinkFrame : 3;
+        u32 pad7B : 9;
+    } *actor = (void *)arg0;
+    f32 duration;
+    s32 frame;
+    s32 padEnd;
+
+    data = func_80100094(arg0, 0U);
+    func_800D90A4(&data->duration);
+    expired = func_800D90A4(&data->scale);
+    progress = func_800F10B4(data->duration, 0.0f, 6.0f, 1.0f, 0.0f);
+    blinkProgress = func_800F10B4(data->scale, 0.0f, data->targetScale, 1.0f, 0.0f);
+    switch (actor->blinkState) {
+        case 0:
+            if (func_800D90A4(&data->scale)) {
+                actor->blinkState = 1;
+                duration = func_800F10B4(progress, 0.0f, 1.0f, 0.8f, 0.1f);
+                data->targetScale = duration;
+                data->scale = duration;
+            }
+            return;
+        case 1:
+            if (actor->blinkFrame == 3) {
+                if (func_800D90A4(&data->scale)) {
+                    actor->blinkState = 2;
+                    duration = func_800F10B4(progress, 0.0f, 1.0f, 0.8f, 0.0f);
+                data->targetScale = duration;
+                data->scale = duration;
+                }
+            } else {
+                actor->blinkFrame++;
+            }
+            return;
+        case 2:
+            if (func_800D90A4(&data->scale)) {
+                actor->blinkState = 3;
+                duration = func_800F10B4(progress, 0.0f, 1.0f, 0.8f, 0.1f);
+                data->targetScale = duration;
+                data->scale = duration;
+            }
+            return;
+        case 3:
+            frame = func_800F10B4(progress, 0.0f, 1.0f, 2.0f, 0);
+            actor->blinkFrame = func_800F10B4(blinkProgress, 0.0f, 1.0f, frame, 3.0f);
+            if (expired) {
+                actor->blinkFrame = frame;
+                actor->blinkState = 0;
+                duration = func_800F10B4(progress, 0.0f, 1.0f, 0.01f, 0.08f);
+                data->targetScale = duration;
+                data->scale = duration;
+                if (progress == 1.0f) {
+                    func_80801324_chaliendad(arg0, 0.0f);
+                }
+            }
+            return;
+    }
+}
 
 void func_80801B9C_chaliendad(s32 arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
