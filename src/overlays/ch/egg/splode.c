@@ -7,7 +7,80 @@ OSThread *cheggsplode_entrypoint_0(void)
     return (OSThread *) D_80800994_cheggsplode;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/splode/func_8080000C_cheggsplode.s")
+void func_8080000C_cheggsplode(Actor *volatile arg0, s32 arg1) {
+    s32 _gcegg_entrypoint_7(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C8E54(s32, f32, f32);
+    void func_800CB840(s32, s32);
+    void func_800CB870(void);
+    s32 func_800D3948(void);
+    f32 func_800D8FF8(void);
+    s32 func_800F6BE4(s32);
+    int func_800F7A7C(s32, s32, s32, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80109C4C(s32, f32, s32, s32, s32, s32, s32);
+    s32 func_8010CC10(f32 *, f32);
+    void func_8010CCE0(void);
+    s32 func_8010CCEC(void);
+    void func_80800778_cheggsplode(Actor *, s32);
+    s32 func_808007D4_cheggsplode(s32, s32);
+    extern s32 D_80800820_cheggsplode[];
+    extern s32 D_80800868_cheggsplode[];
+    extern s32 D_808008E0_cheggsplode[];
+    f32 radius;
+    f32 previous;
+    f32 progress;
+    struct EggSplodeData {
+    s32 unk0;
+    s16 unk4;
+    s16 unk6;
+    f32 unk8;
+    f32 unkC;
+    s32 unk10;
+    }
+    *data;
+    s32 id;
+    s32 egg;
+    s32 owner;
+    Actor **actor = (Actor **)&arg0;
+    data = func_80100094((*actor), 0);
+    previous = data->unk8;
+    data->unk8 += func_800D8FF8();
+    progress = data->unk8 * 2.2222223f;
+    if (data->unk8 > 0.12f && previous < 0.12f) {
+    func_800BABB8(0, (*actor)->position, NULL, 1.0f, D_80800820_cheggsplode);
+    func_800BABB8(0, (*actor)->position, NULL, 1.0f, D_80800868_cheggsplode);
+    if (func_800D3948() == 0) {
+    func_800BABB8(0, (*actor)->position, NULL, 1.0f, D_808008E0_cheggsplode);
+    }
+    }
+    if (progress > 1.0f) {
+    progress = 1.0f;
+    (*actor)->unk70_10 = 5;
+    }
+    radius = (data->unkC - 50.0f) * progress + 50.0f;
+    if (data->unk6 == 0 && func_800F6BE4(data->unk0) != 0 && func_8010CC10((*actor)->position, radius) != 0) {
+    owner = data->unk0;
+    egg = _gcegg_entrypoint_7(data->unk4);
+    func_8010CCE0();
+    id = func_8010CCEC();
+    while (id != -1) {
+    if (func_808007D4_cheggsplode((s32)(*actor), id) != 0) {
+    func_800F7A7C(id, owner, egg, 5, (*actor)->position);
+    func_80800778_cheggsplode((*actor), id);
+    }
+    id = func_8010CCEC();
+    }
+    }
+    if (data->unk6 == 0) {
+    func_800CB840(7, (s32)(*actor));
+    func_80109C4C((s32)(*actor)->position, radius, 2, 0, 0, (s32)(*actor)->unk0, arg1);
+    func_800CB870();
+    }
+    if (data->unk10 != 0) {
+    func_800C8E54(data->unk10, 1.5f * radius, 3.5f * radius);
+    }
+    }
 
 s32 func_808002A8_cheggsplode(Actor *arg0, s32 arg1, s32 arg2) {
     s8 func_800BF8E4(void);
