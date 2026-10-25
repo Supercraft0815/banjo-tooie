@@ -204,7 +204,97 @@ void func_80800624_chnicecavemen(Actor *arg0, s32 arg1) {
     _subaddiepalette_entrypoint_3(arg0, &data->palette, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_8080077C_chnicecavemen.s")
+void func_8080077C_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_10(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
+    void _subaddieitem_entrypoint_2(s32);
+    void func_800C01A8(s16, s32);
+    void func_800C0850(void);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800DA298(s32);
+    void func_800FC660(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80800AB8_chnicecavemen(Actor *, s32);
+    int func_80800BF8_chnicecavemen(s32);
+    s32 func_8080126C_chnicecavemen(void *);
+    void func_80801428_chnicecavemen(void *);
+    void func_80801508_chnicecavemen(Actor *, s32, s32);
+    int func_80801580_chnicecavemen(f32 *);
+    extern s32 D_80801810_chnicecavemen;
+    extern s32 D_80801848_chnicecavemen;
+    extern s32 D_80801880_chnicecavemen;
+    extern s32 D_808018B8_chnicecavemen;
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+
+    switch (arg1) {
+    case 0x17D5:
+    case 0x1803:
+        if (arg2 > 0) {
+            sp3C = (s32)func_80100094(arg0, 0);
+            func_800FC660(0xE);
+            func_80800AB8_chnicecavemen(arg0, func_800DA298(arg0->actorData[4]) ? 6 : 5);
+            _subaddieitem_entrypoint_0(sp3C, arg0->actorData[6], -1, 1);
+            _subaddieitem_entrypoint_2(sp3C);
+        } else {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17D6, 0xF, arg0->position, 0xA2);
+        }
+        break;
+    case 0x17D7:
+        if (!func_80800BF8_chnicecavemen((s32)arg0)) {
+            func_80801428_chnicecavemen(arg0);
+        }
+        func_80800AB8_chnicecavemen(arg0, func_800DA298(arg0->actorData[4]) ? 12 : 9);
+        break;
+    case 0x17D8:
+        func_80801508_chnicecavemen(arg0, 1, 0x30);
+        func_800D1000(0x2D, 1, NULL, 1, 0);
+        break;
+    case 0x17FD:
+    case 0x1811:
+        func_80801428_chnicecavemen(arg0);
+        func_80800AB8_chnicecavemen(arg0, 12);
+        break;
+    default:
+        sp38 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801810_chnicecavemen, 7);
+        sp34 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801848_chnicecavemen, 7);
+        sp30 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801880_chnicecavemen, 7);
+        sp2C = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_808018B8_chnicecavemen, 4);
+        if (_subaddiedialog_entrypoint_10(sp38) || _subaddiedialog_entrypoint_10(sp30)) {
+            if (func_80801580_chnicecavemen((f32 *)arg0)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, func_8080126C_chnicecavemen(arg0), 0x4E, arg0->position, 0xA2);
+            } else {
+                func_800C01A8(0x64, 0);
+                func_800C0850();
+                func_80801428_chnicecavemen(arg0);
+                func_80800AB8_chnicecavemen(arg0, func_800DA298(arg0->actorData[4]) ? 10 : 1);
+            }
+        } else if (_subaddiedialog_entrypoint_10(sp34)) {
+            func_80801428_chnicecavemen(arg0);
+            func_80800AB8_chnicecavemen(arg0, 9);
+        } else if (_subaddiedialog_entrypoint_10(sp2C)) {
+            if (!func_80800BF8_chnicecavemen((s32)arg0)) {
+                func_80801428_chnicecavemen(arg0);
+            }
+            func_80800AB8_chnicecavemen(arg0, 12);
+        } else {
+            if (func_800DA298(arg0->actorData[4])) {
+                sp28 = func_800DA298(arg0->actorData[5]) ? 12 : 10;
+            } else {
+                sp28 = func_800DA298(arg0->actorData[5]) ? 9 : 1;
+            }
+            func_80801428_chnicecavemen(arg0);
+            func_80800AB8_chnicecavemen(arg0, sp28);
+        }
+        break;
+    }
+}
 
 void func_80800AB8_chnicecavemen(Actor *arg0, s32 arg1) {
     s32 _subaddiepalette_entrypoint_2(Actor *, void *, s32, f32);
