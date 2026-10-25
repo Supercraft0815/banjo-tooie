@@ -355,7 +355,81 @@ s32 func_80800718_cheggproximity(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/egg/proximity/func_80800874_cheggproximity.s")
+s32 func_80800874_cheggproximity(s32 arg0) {
+    struct EggData {
+        u8 pad[0x3A];
+        s16 owner;
+    };
+    struct ProximityData {
+        f32 heights[8];
+        f32 distances[8];
+        s32 states[8];
+        s32 players[8];
+        f32 timers[8];
+        s32 index;
+        s32 disabled;
+    };
+    f32 func_800EFC7C(void *, void *);
+    s32 func_800F5898(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    s32 func_800F6CC8(s32);
+    void *func_80100094(Actor *, u32);
+    struct EggData *egg;
+    f32 distance;
+    f32 height;
+    s32 state;
+    s32 i;
+    f32 position[3];
+    s32 nearest;
+    struct ProximityData *data;
+
+    egg = func_80100094((Actor *)arg0, 0);
+    data = func_80100094((Actor *)arg0, 1);
+    nearest = -1;
+    for (i = 0; i < func_800F5898(); i++) {
+        state = -1;
+        if ((((Actor *)arg0)->unk70_10 != 3 || i != egg->owner) && data->disabled == 0) {
+            if (func_800F6438(i) && !func_800F6CC8(i)) {
+                func_800F5A00(i, position);
+                distance = func_800EFC7C(position, ((Actor *)arg0)->position);
+                height = position[1] - ((Actor *)arg0)->position[1];
+                data->distances[i] = distance;
+                data->heights[i] = height;
+                if (!(distance > 160000.0f)) {
+                    if (distance > 90000.0f) {
+                        state = 0;
+                    } else if (distance > 3600.0f) {
+                        state = 1;
+                    } else {
+                        state = 2;
+                    }
+                }
+                switch (state) {
+                case 2:
+                    if (-height < 175.0f && height < 100.0f) break;
+                    state = 1;
+                case 1:
+                    if (-height < 300.0f && height < 300.0f) break;
+                    state = 0;
+                case 0:
+                    if (-height < 400.0f && height < 400.0f) break;
+                    state = -1;
+                }
+                if (state != -1) {
+                    if (nearest < 0) {
+                        nearest = i;
+                    } else if (data->distances[i] < data->distances[nearest]) {
+                        nearest = i;
+                    }
+                }
+            }
+            data->players[i] = data->states[i];
+            data->states[i] = state;
+        }
+    }
+    data->index = nearest;
+}
 
 void func_80800AFC_cheggproximity(Actor *arg0) {
     typedef struct player_state_s PlayerState;
