@@ -139,7 +139,82 @@ s32 sukickball_entrypoint_8(Actor *arg0, s32 arg1) {
     return ((s32 *)func_80100094(arg0, 0U))[arg1 + 4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_9.s")
+void sukickball_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    int func_800DC298(f32);
+    void func_800C4140(u32, f32 *, u32);
+    struct KickballData {
+        f32 timers[2];
+        u8 pad8[0x18];
+        s32 scores[4];
+        u8 pad30[9];
+        u8 mode;
+    } *data;
+    s32 sound;
+
+    data = func_80100094(arg0, 0);
+    sound = 0;
+    if ((s32)arg0->unk70_10 == 4) {
+        switch (arg2) {
+            case 1:
+                data->scores[arg1] += 2;
+                if ((arg1 == 0 && data->mode != 4) ||
+                    (data->mode == 4 && func_800DC298(0.5f))) {
+                    sound = 2;
+                } else {
+                    sound = 1;
+                }
+                break;
+            case 5:
+                data->scores[arg1] += 4;
+                if ((arg1 == 0 && data->mode != 4) ||
+                    (data->mode == 4 && func_800DC298(0.5f))) {
+                    sound = 2;
+                } else {
+                    sound = 1;
+                }
+                break;
+            case 2:
+                data->scores[arg1] -= 1;
+                if (data->scores[arg1] < 0) {
+                    data->scores[arg1] = 0;
+                }
+                if ((arg1 == 0 && data->mode != 4) ||
+                    (data->mode == 4 && func_800DC298(0.5f))) {
+                    sound = 1;
+                } else {
+                    sound = 2;
+                }
+                break;
+            case 4:
+                data->scores[arg1] -= 2;
+                if (data->scores[arg1] < 0) {
+                    data->scores[arg1] = 0;
+                }
+                if ((arg1 == 0 && data->mode != 4) ||
+                    (data->mode == 4 && func_800DC298(0.5f))) {
+                    sound = 1;
+                } else {
+                    sound = 2;
+                }
+                break;
+        }
+        switch (sound) {
+            case 1:
+                if (data->timers[0] <= 0.0f) {
+                    func_800C4140(0x7FFF453A, arg0->position, 0x3E800640);
+                    data->timers[0] = 1.0f;
+                }
+                break;
+            case 2:
+                if (data->timers[1] <= 0.0f) {
+                    func_800C4140(0x7FFF453B, arg0->position, 0x3E800640);
+                    data->timers[1] = 1.0f;
+                }
+                break;
+        }
+    }
+}
 
 /* extern */
 void sukickball_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
