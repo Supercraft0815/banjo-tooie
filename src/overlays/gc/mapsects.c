@@ -711,7 +711,73 @@ void func_80801724_gcmapsects(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_9.s")
+void gcmapsects_entrypoint_9(u8 *ptr) {
+    s32 func_800D6B0C(s32);
+    s32 func_800DB9B0(void);
+    typedef struct {
+        u8 pad0[0x40];
+        u16 id;
+        u8 pad42[0xA];
+        unsigned int flag0 : 1;
+        unsigned int flag1 : 1;
+        unsigned int active : 1;
+        unsigned int unused : 2;
+        unsigned int previous : 1;
+        unsigned int remaining : 26;
+        u8 pad50[8];
+    } Section;
+    s32 i;
+    void (*callback)(void *);
+
+    ptr[0x7B] = ptr[0x79];
+    ptr[0x7E] = ptr[0x7D];
+    for (i = 0; i < ptr[0x77]; i++) {
+        (*(Section **)(ptr + 0x68))[i].flag0 = 0;
+        (*(Section **)(ptr + 0x68))[i].flag1 = 0;
+        (*(Section **)(ptr + 0x68))[i].previous = (*(Section **)(ptr + 0x68))[i].active;
+        (*(Section **)(ptr + 0x68))[i].active = ptr[0x83];
+    }
+    switch (ptr[0x7F]) {
+    case 1:
+        if (func_800DB9B0() != 0) {
+            func_80801724_gcmapsects(ptr, 2);
+        }
+        break;
+    case 2:
+        if (func_800DB9B0() == 0) {
+            func_80801724_gcmapsects(ptr, 1);
+        }
+        break;
+    }
+    switch (ptr[0x7F]) {
+    case 1:
+        func_80801554_gcmapsects(ptr);
+        func_80801640_gcmapsects(ptr);
+        break;
+    case 2:
+        ptr[0x78] = 0;
+        break;
+    }
+    callback = *(void (**)(void *))(ptr + 0x6C);
+    if (callback != NULL) {
+        callback(ptr);
+    }
+    for (i = 0; i < ptr[0x77]; i++) {
+        if (!(*(Section **)(ptr + 0x68))[i].active) {
+            func_808003F4_gcmapsects(ptr, i);
+        }
+    }
+    if (ptr[0x78] == 0) {
+        func_80800A08_gcmapsects(ptr, ptr[0x83]);
+    } else {
+        func_80800B58_gcmapsects(ptr);
+    }
+    for (i = 0; i < ptr[0x77]; i++) {
+        if ((*(Section **)(ptr + 0x68))[i].active) {
+            func_808005D0_gcmapsects(ptr, i, func_800D6B0C((*(Section **)(ptr + 0x68))[i].id));
+        }
+    }
+}
 
 void gcmapsects_entrypoint_10(s32 arg0) {
     void *func_800BF704();
