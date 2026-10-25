@@ -98,4 +98,105 @@ void glidmake_entrypoint_4(void* arg0)
 {
     heap_free(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/idmake/glidmake_entrypoint_5.s")
+void *glidmake_entrypoint_5(s32 arg0, f32 *arg1) {
+    s32 func_800D674C(s32);
+    s32 func_800B274C(s32);
+    s32 func_800B2840(s32);
+    s16 _dbid_entrypoint_0(s16 *, s16);
+    s32 _dbid_entrypoint_1(s16 *);
+    void aligned4_memcpy(void *, void *, int);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    s16 *data;
+    s16 *loaded;
+    u8 *result;
+    s32 count;
+    s32 total;
+    s32 next;
+    s32 unused;
+    s32 i;
+    s16 *first;
+    s16 *cursor;
+    s16 *indices;
+    s32 run;
+    s32 start;
+    s32 model;
+    u8 *vertices;
+    s32 size;
+    s32 j;
+    u8 *ranges;
+    u8 *dest;
+    u8 *entry;
+
+    model = func_800D674C(arg0);
+    data = (s16 *)func_800B274C(model);
+    if (data == NULL) {
+        return NULL;
+    }
+    vertices = (u8 *)func_800B2840(model);
+    total = _dbid_entrypoint_1(data);
+    count = data[0];
+    size = total * 16 + count * 8 + 28;
+    first = data + 1;
+    cursor = first;
+    i = 0;
+    if (data[0] > 0) {
+        do {
+            size += _dbid_entrypoint_0(data, cursor[0]) * 4;
+            cursor += cursor[1];
+            cursor += 2;
+            i++;
+        } while (i < data[0]);
+        cursor = first;
+        i = 0;
+    }
+    result = heap_alloc(size);
+    *(s32 *)(result + 0) = arg0;
+    *(s32 *)(result + 4) = data[0];
+    if (arg1 != NULL) {
+        func_800EE7F8((f32 *)(result + 8), arg1);
+    } else {
+        func_800EFD24((f32 *)(result + 8));
+    }
+    *(u8 **)(result + 20) = vertices;
+    *(s32 *)(result + 24) = 0;
+    entry = result + 28;
+    if (data[0] > 0) {
+        do {
+            run = 1;
+            *(s16 *)entry = cursor[0];
+            *(s16 *)(entry + 2) = _dbid_entrypoint_0(data, cursor[0]);
+            j = 1;
+            start = cursor[2];
+            ranges = entry + 8;
+            dest = *(s16 *)(entry + 2) * 4 + entry + 8;
+            aligned4_memcpy(dest, start * 16 + vertices + 24, 16);
+            dest += 16;
+            indices = cursor + 1;
+            if (cursor[1] >= 2) {
+                do {
+                    if (indices[2] != indices[1] + 1) {
+                        *(s16 *)ranges = start;
+                        *(s16 *)(ranges + 2) = run;
+                        run = 0;
+                        ranges += 4;
+                        start = indices[2];
+                    }
+                    aligned4_memcpy(dest, indices[2] * 16 + vertices + 24, 16);
+                    j++;
+                    indices++;
+                    dest += 16;
+                    run++;
+                } while (j < cursor[1]);
+            }
+            *(s16 *)ranges = start;
+            *(s16 *)(ranges + 2) = run;
+            *(s32 *)(entry + 4) = dest - entry;
+            i++;
+            cursor += cursor[1];
+            cursor += 2;
+            entry = dest;
+        } while (i < data[0]);
+    }
+    return result;
+}
