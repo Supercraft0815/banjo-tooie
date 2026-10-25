@@ -10,7 +10,97 @@ OSThread *chappearfx_entrypoint_0(void)
 void func_8080000C_chappearfx(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/func_80800014_chappearfx.s")
+void func_80800014_chappearfx(Actor *arg0) {
+    typedef struct {
+        s16 unk0, unk2, unk4, unk6, unk8, unkA;
+        f32 unkC;
+        s32 unk10;
+    } Particle;
+    typedef struct {
+        s16 count, unk2;
+        u16 flags;
+        s16 unk6, limit, unkA;
+        s8 alpha, active;
+        u8 padE[6];
+        u8 link[8];
+        Particle particles[1];
+    } AppearData;
+    void *func_80100094(Actor *, u32);
+    void func_80800554_chappearfx(Actor *);
+    f32 func_800D8FF8(void);
+    s32 _subaddielink_entrypoint_2(u8 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800FCAE0(u32, u32, u32);
+    void func_800FCA90(u32);
+    void func_80101FDC(Actor *, u32);
+    void rare_memcpy(void *, void *, int);
+    s32 pad[3];
+    s32 i;
+    f32 dt;
+    s16 remaining;
+    s32 done;
+    AppearData *data;
+    Particle *particle;
+    Particle *particles;
+    u8 *link;
+
+    data = func_80100094(arg0, 0);
+    if (!func_8001210C(1)) {
+        func_80800554_chappearfx(arg0);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            data->active = 1;
+            func_800FCAE0(0x1C, -1, 500);
+            if (func_800D9078(&arg0->unk58)) {
+                func_80101FDC(arg0, 2);
+                arg0->unk58 = 1.2f;
+            }
+            break;
+        case 2:
+            done = func_800D9078(&arg0->unk58);
+            data->alpha = (u32)func_800F10B4(arg0->unk58, 0.0f, 1.2f, 16.0f, 255.0f);
+            if (done) {
+                data->active = 0;
+                func_800FCAE0(0x1C, 0, 500);
+                func_800FCA90(0x1C);
+                func_800FFAB0(arg0);
+            } else {
+                data->active = 1;
+                func_800FCAE0(0x1C, -1, 500);
+            }
+            break;
+    }
+    link = data->link;
+    if ((data->flags & 8) && _subaddielink_entrypoint_2(link)) {
+        func_800EE7F8(arg0->position, _subaddielink_entrypoint_4(link)->position);
+    }
+    particles = data->particles;
+    dt = func_800D8FF8();
+    particle = particles;
+    i = 0;
+    if (data->count > 0) {
+      do {
+        particle->unk8 = (s32)(particle->unk8 + dt * particle->unk2);
+        particle->unk6 = (s32)(particle->unk6 + dt * particle->unk0);
+        particle->unkC += dt * particle->unkA;
+        if (particle->unk8 >= data->limit) {
+            data->count--;
+            remaining = data->count;
+            if (remaining > 0) {
+                rare_memcpy(particle, &particles[remaining], sizeof(Particle));
+            }
+            remaining = data->count;
+        } else {
+            remaining = data->count;
+            particle++;
+            i++;
+        }
+      } while (i < remaining);
+    }
+}
 
 void func_8080031C_chappearfx(Actor *arg0) {
     void func_800FCA90(u32);
