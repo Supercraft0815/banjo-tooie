@@ -421,7 +421,68 @@ f32 func_808012F8_chnewfreezy(Actor *arg0) {
     return var_f20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/chnewfreezy_entrypoint_0.s")
+Actor *chnewfreezy_entrypoint_0(Unk80132ED0 *marker, s32 x, s32 y, s32 z) {
+    s32 _dbskeleton_entrypoint_0(u8 *);
+    void _sufreezy_entrypoint_3(Actor *);
+    s16 func_800AE020(void);
+    f32 func_800EC708(Unk80132ED0 *);
+    void func_80101038(f32 *);
+    s32 func_8010108C(Actor *, s32, s32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    struct anctrl_s *func_80104248(void *arg0);
+    Actor *sp54;
+    Actor *actor;
+    u8 *sp4C;
+    void *sp48;
+    s32 sp44;
+    s32 sp40;
+    f32 sp3C;
+    f32 sp38;
+    f32 sp2C[3];
+
+    sp40 = 0;
+    sp54 = func_80106790(marker);
+    sp44 = func_8010108C(sp54, 0x38, 0);
+    if (sp44 <= 0) {
+        return NULL;
+    }
+    sp48 = func_80101080();
+    actor = func_801084B0(0x2FF, &sp54);
+    ((f32 *)actor->actorData)[0] = x;
+    ((f32 *)actor->actorData)[1] = y;
+    ((f32 *)actor->actorData)[2] = z;
+    actor->rotation[0] = sp54->rotation[0];
+    actor->rotation[1] = sp54->rotation[1];
+    actor->rotation[2] = sp54->rotation[2];
+    ((f32 *)actor->actorData)[7] = sp54->scale;
+    actor->unk50 = 0.0f;
+    func_80103DFC(sp54, (f32 *)&actor->actorData[4]);
+    sp4C = func_800B27E0(func_801039E4(sp54->unk0));
+    actor->unk6C_0 = _dbskeleton_entrypoint_0(sp4C);
+    func_80100074(actor, 0, actor->unk6C_0 * 0x60);
+    if (*(s16 *)&actor->unk0->unk10 == 0) {
+        *(s16 *)&actor->unk0->unk10 = func_800AE020();
+    }
+    func_800DF41C(func_8008B4D4(func_80104248(sp54)));
+    if (func_8010108C(sp54, 0x94, 0) > 0) {
+        func_80101038(sp2C);
+        sp40 = 1;
+        sp3C = sp2C[0];
+        sp38 = sp2C[1];
+    }
+    if (sp40 != 0) {
+        func_808011A8_chnewfreezy(sp38, sp3C);
+    }
+    func_80800974_chnewfreezy(actor, sp4C);
+    func_80800AA4_chnewfreezy(actor, sp4C);
+    func_80800BFC_chnewfreezy(actor, sp4C);
+    func_80800D28_chnewfreezy(actor, (s32)sp4C);
+    func_80800E74_chnewfreezy(actor, sp4C, sp48, sp44);
+    actor->unk74_7 = func_808012F8_chnewfreezy(actor);
+    actor->scale = actor->unk74_7 / func_800EC708(actor->unk0);
+    _sufreezy_entrypoint_3(actor);
+    return actor;
+}
 
 /* extern */
 
