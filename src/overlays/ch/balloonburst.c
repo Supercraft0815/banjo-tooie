@@ -352,7 +352,87 @@ s32 func_80800A7C_chballoonburst(void *arg0, s32 *arg1) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_80800BE8_chballoonburst.s")
+void func_80102424(Actor *, s32);
+
+void func_80800BE8_chballoonburst(Actor *arg0, s32 arg1) {
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800DA298(s32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801032B0(Actor *, u16, u16);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80801B6C_chballoonburst(Actor *);
+    f32 position[3];
+    s32 choice;
+    u32 *data;
+    Actor *balloon;
+    f32 random;
+    s32 mode;
+    s32 flag;
+
+    data = func_80100094(arg0, 0U);
+    mode = func_800DA298(0);
+    if (mode) {
+        if (arg0->unk3C) {
+            func_800EE7F8(position, func_80106790(arg0->unk3C)->position);
+        } else {
+            func_800EFA4C(position, 1400.0f, 350.0f, -1400.0f);
+        }
+    } else {
+        position[0] = func_800DC178(-1800.0f, 1800.0f);
+        position[1] = func_800DC178(100.0f, 200.0f);
+        position[2] = func_800DC178(-1800.0f, 1800.0f);
+    }
+    balloon = func_80108528(0x350, position, (s32)func_800DC178(0.0f, 360.0f), &arg0);
+    random = func_800DC0C0();
+    if (random < 0.1666f) {
+        choice = 0;
+    } else if (random < 0.5f) {
+        choice = 1;
+    } else {
+        choice = 2;
+    }
+    if (arg1 != -1) {
+        choice = arg1;
+    }
+    balloon->actorData[4] = 2 - choice;
+    flag = data[3];
+    balloon->unk64_20 = flag == 0;
+    switch (choice) {
+        case 0:
+            func_80102424(balloon, 4);
+            func_801032B0(balloon, 0x78C, 0);
+            balloon->unk54 = 350.0f;
+            break;
+        case 1:
+            func_80102424(balloon, 3);
+            func_801032B0(balloon, 0x78D, 0);
+            balloon->unk54 = 300.0f;
+            break;
+        case 2:
+            func_80102424(balloon, 2);
+            func_801032B0(balloon, 0x796, 0);
+            balloon->unk54 = 250.0f;
+            break;
+    }
+    balloon->unk3C = arg0->unk0;
+    balloon->unk6C_0 = arg0->unk6C_0;
+    balloon->unk64_19 = data[3];
+    if (mode) {
+        balloon->unk54 = 50.0f;
+        _susubgame_entrypoint_6(arg0, data + 6, 4, 0xA0, 0);
+        if (arg1 != -1) {
+            if (arg0->unk3C) {
+                func_80801B6C_chballoonburst(func_80106790(arg0->unk3C));
+            }
+        }
+        arg0->unk3C = balloon->unk0;
+    }
+}
 
 /* extern */
 
