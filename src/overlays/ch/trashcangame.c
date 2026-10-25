@@ -297,7 +297,7 @@ void func_80800728_chtrashcangame(Actor *arg0) {
 
 /* extern */
 
-void func_80800B64_chtrashcangame(s32 arg0) {
+s32 func_80800B64_chtrashcangame(f32 *arg0) {
     f32 func_800EFC7C(f32 *, f32 *);
     s32 _subaddiefind_entrypoint_5(s32, s32 *, s32, s32, f32, f32 (*)(f32 *, f32 *));
     struct { s32 before[2]; s32 output; s32 rest[49]; } sp;
@@ -645,7 +645,79 @@ void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_808019EC_chtrashcangame.s")
+void func_808019EC_chtrashcangame(Actor *arg0, s32 arg1) {
+    void func_800CD08C(s32, f32 *);
+    s32 func_800D3948(void);
+    f32 func_800DC0C0(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_80102424(void *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    f32 position[3];
+    Actor *spawned;
+    s32 model;
+    s32 index;
+    f32 chance;
+
+    index = -1;
+    if (*(s32 *)&arg0->unk50 < (s32)arg0->actorData[7]) {
+        (*(s32 *)&arg0->unk50)++;
+        switch (arg1) {
+        case 0:
+            chance = func_800DC0C0();
+            func_800CD08C(arg0->unk70_25 - 1, position);
+            while (func_80800B64_chtrashcangame(position)) {
+                func_800CD08C(arg0->unk70_25 - 1, position);
+            }
+            if (chance < 0.5f) {
+                if (func_800D3948()) {
+                    model = 0x99D;
+                } else {
+                    model = 0x805;
+                }
+            } else if (chance < 0.799987793f) {
+                if (func_800D3948()) {
+                    model = 0x99E;
+                } else {
+                    model = 0x804;
+                }
+            } else if (func_800D3948()) {
+                model = 0x99F;
+            } else {
+                model = 0x806;
+            }
+            break;
+        case 1:
+            model = 0x805;
+            func_800EFA4C(position, -716.0f, 0.0f, -1173.0f);
+            index = 0;
+            break;
+        case 2:
+            model = 0x804;
+            func_800EFA4C(position, 1203.0f, 0.0f, -810.0f);
+            index = 2;
+            break;
+        case 3:
+            model = 0x806;
+            func_800EFA4C(position, 1050.0f, 0.0f, 500.0f);
+            index = 4;
+            break;
+        }
+        spawned = func_80108528(0x476, position, 0, &arg0);
+        spawned->scale = 0.5f;
+        func_80103140(spawned, (u16)model, spawned->unk0->unk16);
+        func_80102424(spawned, spawned->unk70_10);
+        spawned->unk3C = arg0->unk0;
+        if (index != -1) {
+            func_808016B4_chtrashcangame(arg0, arg0->unk0, index, 0x10);
+        }
+        if (arg1 != 0) {
+            spawned->unk64_20 = arg1 == arg0->unk79_4;
+        } else {
+            spawned->unk64_20 = func_800DC0C0() < 0.3f;
+        }
+    }
+}
 
 OSThread *chtrashcangame_entrypoint_0(void)
 {
