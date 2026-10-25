@@ -641,7 +641,68 @@ void func_8080130C_chchuffy(Actor *arg0) {
     _sumumbofx_entrypoint_12(sp3C, &sp28, &sp34, &sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808013E8_chchuffy.s")
+void func_808013E8_chchuffy(Actor *arg0, f32 *arg1, f32 *arg2) {
+    typedef struct { f32 v[3]; } ChuffyVector;
+    void *func_80100094(Actor *, u32);
+    void func_8010D254(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    s32 func_800EFD24();
+    void func_800EE7F8(f32 *, f32 *);
+    void _sumumbofx_entrypoint_6(void *, f32, f32, s32, s32, f32 *, f32 *, f32 *);
+    s32 _sumumbofx_entrypoint_27(void *);
+    s32 _sumumbofx_entrypoint_5(void *, f32);
+    void _sumumbofx_entrypoint_18(void *, f32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    s32 _sumumbofx_entrypoint_11(u8 *, f32 *);
+    s32 _sumumbofx_entrypoint_14(void *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101DDC(Actor *);
+    void _chglowbo_entrypoint_6(void);
+    void func_808017D4_chchuffy(Actor *, s32);
+    void func_80090708(s32);
+    extern ChuffyVector D_80802588_chchuffy;
+    extern ChuffyVector D_80802594_chchuffy;
+    void *effect;
+    ChuffyVector sp58;
+    ChuffyVector sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+
+    effect = func_80100094(arg0, 1);
+    sp58 = D_80802588_chchuffy;
+    sp4C = D_80802594_chchuffy;
+    func_8010D254(sp40);
+    func_800EFA4C(sp58.v, 0.0f, -675.0f, -155.0f);
+    _sumumbofx_entrypoint_6(effect, 700.0f, 300.0f, 0, 20, sp58.v, arg1, arg2);
+    func_800EFD24(sp58.v);
+    _sumumbofx_entrypoint_6(effect, 900.0f, 150.0f, 20, 45, sp58.v, arg1, arg2);
+    func_800EFA4C(sp58.v, 160.0f, -150.0f, 260.0f);
+    _sumumbofx_entrypoint_6(effect, 750.0f, 45.0f, 45, 55, sp58.v, arg1, arg2);
+    func_800EFA4C(sp58.v, 160.0f, 650.0f, 235.0f);
+    _sumumbofx_entrypoint_6(effect, 275.0f, 90.0f, 55, 65, sp58.v, arg1, arg2);
+    switch ((s32)arg0->unk70_10) {
+        case 2:
+            if (_sumumbofx_entrypoint_27(effect) && _sumumbofx_entrypoint_5(effect, 4.6f)) {
+                _sumumbofx_entrypoint_18(effect, 4.0f);
+                func_808017D4_chchuffy(arg0, 3);
+            }
+            break;
+        case 3:
+            if (func_80101E14(arg0, 0.8f)) {
+                _chglowbo_entrypoint_6();
+            }
+            if (func_80101DDC(arg0)) {
+                _sumumbofx_entrypoint_16(effect, 2.0f);
+                func_808017D4_chchuffy(arg0, 4);
+                func_80090708(0);
+            }
+            break;
+    }
+    func_800EE7F8(sp34, (f32 *)arg0->actorData);
+    sp34[1] += 500.0f;
+    _sumumbofx_entrypoint_11(effect, sp34);
+    _sumumbofx_entrypoint_14(effect);
+}
 
 /* extern */
 
