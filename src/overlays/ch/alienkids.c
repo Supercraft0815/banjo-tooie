@@ -38,7 +38,51 @@ void func_80800030_chalienkids(s32 arg0) {
     func_80800FA4_chalienkids(arg0, 0x32, 0x372, 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800058_chalienkids.s")
+void func_80800058_chalienkids(Actor *arg0) {
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_80101DDC(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_80801158_chalienkids(Actor *, s32);
+    void func_8080158C_chalienkids(Actor *);
+    void func_80801628_chalienkids(Actor *);
+    void func_808016D4_chalienkids(Actor *);
+    void func_8080184C_chalienkids(s32, s32 *, s32);
+    void func_80801884_chalienkids(Actor *);
+    void func_808019C8_chalienkids(Actor *);
+    extern s32 D_80801E60_chalienkids[];
+
+    func_808019C8_chalienkids(arg0);
+    switch (arg0->unk70_10) {
+    case 2:
+        func_80801884_chalienkids(arg0);
+        break;
+    case 3:
+        if (func_80801158_chalienkids(arg0, 0x9E5) != 0) {
+            func_80102424(arg0, 4);
+            _subaddieDll_entrypoint_4(arg0, 0);
+        }
+        break;
+    case 5:
+        if (func_80101DDC(arg0) != 0) {
+            _subaddieskeleton_entrypoint_2(arg0->unk0, 4, arg0->position);
+            func_80102424(arg0, 0xE);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1284, 6, arg0->position, 0xB7);
+        }
+        break;
+    case 15:
+        func_8010B990(arg0, 0x1005);
+        break;
+    case 16:
+        func_8080184C_chalienkids((s32) arg0, D_80801E60_chalienkids, 4);
+        break;
+    }
+    func_808016D4_chalienkids(arg0);
+    func_8080158C_chalienkids(arg0);
+    func_80801628_chalienkids(arg0);
+}
 
 /* extern */
 
