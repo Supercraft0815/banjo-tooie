@@ -63,7 +63,79 @@ void func_808001D0_chjigsaw(s32 arg0)
     func_80105834();
     func_8080011C_chjigsaw(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/func_808001F8_chjigsaw.s")
+void func_808001F8_chjigsaw(Actor *arg0) {
+    typedef struct {
+        u32 unused : 28;
+        u32 attached : 1;
+        u32 unused2 : 3;
+    } JigsawFlags;
+    s32 *_fxgenlist_entrypoint_1(void);
+    void _fxtwinkle_entrypoint_0(f32 *);
+    s32 func_800B5BE4(s32);
+    void func_800BA22C(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    void func_800C8CB8(s32, f32 *);
+    void func_800D0778(s32, s32, f32 *);
+    f32 func_800D8FF8(void);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_80103DFC(Actor *, f32 *);
+    union { u32 word; JigsawFlags bits; } flags;
+    f32 dt;
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    f32 sparkle[3];
+    f32 angle;
+    f32 pos[3];
+    s32 i;
+    s32 emitter;
+
+    dt = func_800D8FF8();
+    if (((JigsawFlags *)&arg0->unk78)->attached) {
+        func_800D0778((s32)arg0->unk50, 1, arg0->position);
+    } else if (arg0->unk64_19) {
+        func_800EE7F8(start, arg0->position);
+        start[1] += 100.0f;
+        func_800EE7F8(end, arg0->position);
+        end[1] -= 100.0f;
+        if (func_800BEF00(start, end, normal, arg0->unk14)) {
+            arg0->position[1] = end[1];
+        } else {
+            arg0->position[1] += ((f32 *)arg0->actorData)[7] * dt;
+        }
+    }
+    if (arg0->unk7C_12) {
+        for (i = 0; i != 4; i++) {
+            if (func_800DC0C0() < 0.015f) {
+                func_80103DFC(arg0, sparkle);
+                angle = func_800DC178(0.0f, 360.0f);
+                func_800EF214(sparkle, angle, func_800DC178(0.0f, 360.0f), 40.0f);
+                _fxtwinkle_entrypoint_0(sparkle);
+            }
+        }
+        if (arg0->unk58 > 0.0f) {
+            if (func_800DC0C0() < 2.0f * (arg0->unk58 / 3.0f)) {
+                emitter = func_800B5BE4(16);
+                func_800BABB8(emitter, arg0->position, arg0->position, 1.0f, _fxgenlist_entrypoint_1());
+                func_800BA22C(emitter, 1);
+            }
+            arg0->unk58 -= dt;
+        }
+    }
+    if (arg0->unk70_10 == 1) {
+        flags.word = *(u32 *)&arg0->unk78;
+        if (flags.bits.attached && arg0->unk6C_0) {
+            func_800EE7F8(pos, arg0->position);
+            pos[1] += 100.0f;
+            func_800C8CB8(arg0->unk6C_0, pos);
+        }
+        func_8080011C_chjigsaw(arg0);
+    }
+}
 
 void func_808004A0_chjigsaw(Actor *arg0, s32 arg1) {
     void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
