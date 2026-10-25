@@ -123,7 +123,76 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_808003E8_chdinoswitches.s")
+s32 func_808003E8_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800CE928(s32, s32, s32);
+    s32 func_800CE95C();
+    s32 func_800CEAA8(s32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800F64A4(s32, s32);
+    void func_80101074(void *);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80103110(Actor *, u32);
+    void _chdinoswitches_entrypoint_4(s32, s32);
+    extern u8 D_8011A248[];
+    extern u16 D_80800B22_chdinoswitches[][10];
+    s32 callback;
+    Unk80132ED0 *temp;
+
+    switch (arg1) {
+    case 7:
+        if (func_800D0B68(0x18, 0) == 0) {
+            func_80103110(arg0, 0);
+            func_8010114C((s32)arg0->unk3C, 7, 0);
+            func_800CE8D8(0, 35.0f, 0x23);
+            func_800CE88C(0, 1);
+            func_800CE928(0, (s32)_chdinoswitches_entrypoint_4, 0);
+        }
+        break;
+    case 0x91:
+        if (func_800F64A4(arg2, 0x40000) != 0 &&
+            func_800CEAA8(0) != 0 &&
+            func_800CE95C(0) == (s32)_chdinoswitches_entrypoint_4) {
+            callback = (s32)_chdinoswitches_entrypoint_4;
+            func_800CE8D8(0, 35.0f, 0x23);
+            func_800CE928(0, callback, 0);
+        }
+        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+    case 8:
+        func_80103110(arg0, 1);
+        break;
+    case 0x99:
+        func_80101074(D_8011A248);
+        break;
+    case 0xB7:
+        if (!(arg2 & 0xFFFF) && ((arg2 >> 16) & 0xFFFF) == 0x18) {
+            if (func_800CEAA8(0) != 0 &&
+                func_800CE95C(0) == (s32)_chdinoswitches_entrypoint_4) {
+                func_800CE928(0, 0, 0);
+                func_800CE88C(0, 0);
+            }
+            temp = arg0->unk3C;
+            if (temp != NULL) {
+                func_8010114C((s32)temp, 7, 0);
+            }
+        }
+        break;
+    case 0x95:
+        _subaddiefind_entrypoint_10(arg0, 0x364, arg0->unk74_7);
+        _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+        if (func_800DA298(D_80800B22_chdinoswitches[arg0->actorData[0]][0]) != 0) {
+            func_80103110(arg0, 0);
+        }
+        break;
+    default:
+        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+    }
+    return 1;
+}
 
 /* extern */
 
