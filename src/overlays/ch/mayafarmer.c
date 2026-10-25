@@ -221,8 +221,6 @@ int func_808008F8_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mayafarmer/func_808009A0_chmayafarmer.s")
-
 typedef union {
     Actor actor;
     struct {
@@ -233,6 +231,74 @@ typedef union {
         u32 unusedLow : 4;
     } path;
 } MayaFarmerActor;
+
+void func_808009A0_chmayafarmer(Actor *arg0) {
+    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 func_800DA9E4(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010D254(f32 *);
+    void func_80800D60_chmayafarmer(MayaFarmerActor *, Actor *);
+    void func_80801040_chmayafarmer(Actor *);
+    void func_808010DC_chmayafarmer(Actor *);
+    extern s32 D_8080123C_chmayafarmer;
+    Actor *sp44;
+    f32 sp38[3];
+    f32 sp2C[3];
+
+    func_8010D254(sp38);
+    if (sp38[1] < 2000.0f) {
+        if (arg0->unk70_10 == 1 || arg0->unk70_10 == 2) {
+            func_808010DC_chmayafarmer(arg0);
+        }
+        arg0->unk64_16 = 0;
+        return;
+    }
+    arg0->unk64_16 = 1;
+    sp44 = func_80106790(arg0->unk3C);
+    if (func_800EFFB4(arg0->position, 500.0f, sp44->position)) {
+        func_8010114C(arg0->unk3C, 0x11, 0);
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+        case 2:
+            if (func_800DA9E4(5, 0)) {
+                func_808000B0_chmayafarmer(sp44, 0xF, 0x418, arg0->unk0);
+            }
+            func_80800D60_chmayafarmer((MayaFarmerActor *)arg0, sp44);
+            func_800EF04C(arg0->position, (f32 *)&arg0->actorData[4]);
+            func_808010DC_chmayafarmer(arg0);
+            break;
+        case 3:
+            if (arg0->unk58 < arg0->position[1]) {
+                func_80801040_chmayafarmer(arg0);
+                func_808010DC_chmayafarmer(arg0);
+            } else {
+                ((f32 *)arg0->actorData)[5] = 0.0f;
+                func_800EF04C(arg0->position, (f32 *)&arg0->actorData[4]);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080123C_chmayafarmer);
+                func_80102424(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_80101E14(arg0, 0.75f)) {
+                _subaddiefade_entrypoint_3(arg0);
+            }
+            break;
+    }
+    func_800EE7F8(sp2C, arg0->position);
+    sp2C[1] = 2608.0f;
+    _chbadshad_entrypoint_1(arg0, sp2C, arg0->scale * 1.4f);
+}
+
+
 
 void func_80800B9C_chmayafarmer(MayaFarmerActor *arg0) {
     void *func_800CC63C(s32, s32);
