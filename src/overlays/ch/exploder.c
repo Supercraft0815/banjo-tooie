@@ -123,7 +123,103 @@ void func_80800154_chexploder(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/func_808002FC_chexploder.s")
+s32 func_808002FC_chexploder(Actor *arg0) {
+    s32 func_8001210C(s32);
+    s32 *func_800BF340(f32 *, f32 *, f32 *, s32, f32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFDE8(f32 *, u8 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_8080067C_chexploder(Actor *, void *, f32 *);
+    void func_80800834_chexploder(Actor *, void *, f32 *);
+    struct Part {
+        f32 position[3], pivot[3], velocity[3], rotation[3];
+        s16 spinX, spinZ, gravity;
+        u32 noCollision:1;
+        u32 active:1;
+        u32 bounce:1;
+        u32 unused:13;
+        u8 hits, index;
+        u8 pad3A[2];
+    };
+    struct Data {
+        u8 pad0[0xC];
+        s16 radius, count, maxHits;
+        u8 pad12[0x4A];
+        f32 time;
+    };
+    struct Data *data;
+    struct Part *part;
+    s32 *hit;
+    s32 count;
+    f32 normal[3];
+    f32 speed;
+    f32 dt;
+    s32 parity;
+    f32 position[3];
+    f32 motion[3];
+    f32 step[3];
+    f32 start[3];
+    f32 end[3];
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    part = func_80100094(arg0, 1);
+    count = 0;
+    dt = func_800D8FF8();
+    parity = func_8001210C(1);
+    data->time += dt;
+    for (i = 0; i < data->count; i++, part++) {
+        if (part->active) {
+            part->rotation[0] += part->spinX * dt;
+            part->rotation[2] += part->spinZ * dt;
+            part->velocity[1] += dt * part->gravity;
+            func_800EFA20(motion, part->velocity, 2.0f * dt);
+            func_800EFA20(step, part->velocity, dt);
+            func_800EFA20(position, part->pivot, arg0->scale);
+            func_800EF04C(position, part->position);
+            func_800EF04C(position, arg0->position);
+            func_800EE7F8(start, position);
+            func_800EE7F8(end, position);
+            func_800EF04C(end, motion);
+            if (func_800EEB40(end, arg0->position) > 12250000.0f) {
+                part->active = 0;
+            } else {
+                if (!part->noCollision) {
+                    hit = parity == (i & 1) ? func_800BF340(start, end, normal, arg0->unk14, data->radius) : NULL;
+                    if (hit != NULL) {
+                        if (part->bounce) {
+                            speed = func_800EEF94(part->velocity);
+                            func_800EFDE8(part->velocity, (u8 *)part->velocity, normal);
+                            func_800EF368(part->velocity, speed * 0.35f);
+                            part->spinX *= 0.35f;
+                            part->spinZ *= 0.35f;
+                            part->hits++;
+                            if (data->maxHits < part->hits || 2.0f * (dt * speed) < 10.0f) {
+                                part->active = 0;
+                                continue;
+                            }
+                            func_8080067C_chexploder(arg0, part, end);
+                        }
+                    } else {
+                        if (!part->bounce) {
+                            part->bounce = 1;
+                        }
+                    }
+                }
+                func_800EF04C(part->position, step);
+                func_80800834_chexploder(arg0, part, end);
+                count++;
+            }
+        }
+    }
+    return count;
+}
 
 void func_8080067C_chexploder(Actor *arg0, void *arg1, f32 *arg2) {
     void func_800C4B64(f32);
