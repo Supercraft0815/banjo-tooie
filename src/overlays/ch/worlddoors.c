@@ -122,7 +122,84 @@ void func_80800214_chworlddoors(Actor *arg0, s32 arg1) {
     func_80101FDC(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800388_chworlddoors.s")
+void func_80800388_chworlddoors(Actor *arg0) {
+    f32 _capod_entrypoint_18(void);
+    void _glcutDll_entrypoint_17(void);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void func_80018820(s32, f32, f32);
+    void func_800C4B70(s32);
+    s32 func_800D90A4(f32 *);
+    void func_800E13F0(s32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern s32 D_808009D8_chworlddoors;
+    extern u32 D_808009E8_chworlddoors;
+    f32 sp34;
+
+    switch (arg0->unk70_10) {
+        case 1:
+            sp34 = _capod_entrypoint_18();
+            if (sp34 < 0.1f) {
+                sp34 = 0.1f;
+            }
+            if (arg0->actorData[3] == 0) {
+                arg0->actorData[3] = func_800E15CC(0, 0.0f, 1.0f) + 1;
+            }
+            func_800E13F0(arg0->actorData[3] - 1, sp34 * 10.0f);
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+            func_800C4B70((s32)(24000.0f * sp34));
+            func_80018820(0, sp34, 0.1f);
+            break;
+        case 2:
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+            func_800C4B70(24000);
+            func_80018820(0, 1.0f, 0.1f);
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80800214_chworlddoors(arg0, 3);
+                func_800EE7F8(arg0->position, (f32 *)&arg0->actorData[4]);
+            } else {
+                func_800EFE50(arg0->position, (f32 *)arg0->actorData, (f32 *)&arg0->actorData[4], func_800F10B4(arg0->unk58, 1.0f, 0.0f, 0.0f, 1.0f));
+            }
+            *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[7], arg0->position, 1, &D_808009D8_chworlddoors, 0);
+            break;
+        case 3:
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80800214_chworlddoors(arg0, 4);
+                *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_3(*(u8 *)&arg0->actorData[7]);
+                _subaddieaudioloop_entrypoint_2(arg0);
+            } else {
+                    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+                func_800C4B70(24000);
+                func_80018820(0, 1.0f, 0.1f);
+                func_80800000_chworlddoors((u8 *)arg0);
+                arg0->scale = func_800F10B4(arg0->unk58, 0.8f, 0.0f, 1.0f, 0.001f);
+                *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[7], arg0->position, 1, &D_808009D8_chworlddoors, 0);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+                func_800C4B70(24000);
+            }
+            break;
+        case 4:
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80800214_chworlddoors(arg0, 5);
+            }
+            break;
+        case 5:
+            if (func_800D90A4(&arg0->unk58)) {
+                func_80800214_chworlddoors(arg0, 6);
+            }
+            break;
+        case 6:
+            if (func_800D90A4(&arg0->unk58)) {
+                _glcutDll_entrypoint_17();
+            }
+            break;
+    }
+}
 
 s32 func_808006A8_chworlddoors(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800FFAB0(Actor *);
