@@ -364,7 +364,93 @@ int func_80800FF8_chevilspirit(s32 arg0) {
     goto loop_1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_8080104C_chevilspirit.s")
+s32 func_8080104C_chevilspirit(Actor *arg0, s32 arg1) {
+    typedef struct {
+        Unk80132ED0 *marker;
+        s32 unk4;
+        u32 flags;
+    } SpiritProp;
+    typedef struct {
+        u16 unused : 15;
+        u16 active : 1;
+        u16 id : 11;
+        u16 rest : 5;
+    } MarkerFlags;
+    typedef struct {
+        s32 unk0[2];
+        s16 count;
+        s16 unkA;
+        Unk80132ED0 *markers[1];
+    } SpiritData;
+    s32 func_800BDC5C(void);
+    s32 *func_800BE444(f32 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_801072A8(void *);
+    void func_8010D254(f32 *);
+    s32 *cells;
+    f32 distance;
+    f32 nearestDistance;
+    Actor *actor;
+    Actor *nearest;
+    Unk80132ED0 *marker;
+    f32 position[3];
+    SpiritData *data;
+    SpiritProp *prop;
+    SpiritProp *end;
+    s32 i;
+    s32 j;
+    Unk80132ED0 *swap;
+
+    data = func_80100094(arg0, 0);
+    func_8010D254(position);
+    nearest = NULL;
+    nearestDistance = 3.402823466e38f;
+    cells = func_800BE444(position);
+    data->count = 0;
+    while (*cells != 0) {
+        prop = (SpiritProp *)func_800E9E88(*cells);
+        end = (SpiritProp *)func_800E9EB4((s16 *)*cells);
+        for (; prop < end; prop++) {
+            if (prop->flags & 1) {
+                marker = prop->marker;
+                if (((MarkerFlags *)&marker->unk18)->active) {
+                    actor = func_80106790(marker);
+                    if (actor->unk64_24 && func_801072A8(actor) == 0) {
+                        distance = func_800EEB40(position, actor->position);
+                        if (distance < (f32)(func_800BDC5C() * func_800BDC5C())) {
+                            if (distance < nearestDistance) {
+                                nearest = actor;
+                                nearestDistance = distance;
+                            }
+                            if (arg1 != 0) {
+                                data->markers[data->count] = marker;
+                                data->count++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        cells++;
+    }
+    if (arg1 != 0) {
+        for (i = 1; i < data->count; i++) {
+            for (j = i; j > 0 &&
+                (s32)((MarkerFlags *)&data->markers[j]->unk18)->id <
+                (s32)((MarkerFlags *)&data->markers[j - 1]->unk18)->id;) {
+                swap = data->markers[j];
+                data->markers[j] = data->markers[j - 1];
+                data->markers[j - 1] = swap;
+                j--;
+            }
+        }
+    }
+    return nearest != NULL ? (s32)nearest->unk0 : 0;
+}
 
 void func_808012CC_chevilspirit(Actor *arg0) {
     s32 func_8001210C(s32);
