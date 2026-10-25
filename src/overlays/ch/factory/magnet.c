@@ -338,7 +338,97 @@ void func_80800898_chfactorymagnet(Actor *arg0, s32 arg1) {
     func_80101FDC(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800B20_chfactorymagnet.s")
+s32 func_80800B20_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void _sumumbofx_entrypoint_3(void *, f32);
+    void _sumumbofx_entrypoint_4(void *);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    void func_800CE928(s32, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 func_80103EAC(Actor *);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80108B04(Actor *, s32);
+    void *func_80800E40_chfactorymagnet(Actor *);
+    void func_80801A9C_chfactorymagnet(s32, f32 *, f32 *);
+    void func_80801AE8_chfactorymagnet(Actor *);
+    extern f32 D_80802910_chfactorymagnet[3];
+    extern void _chfactorymagnet_entrypoint_0(void);
+    Actor *sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+    Actor *sp2C;
+    void *sp28;
+
+    switch (arg1) {
+    case 0x4B:
+        func_80800898_chfactorymagnet(arg0, 7);
+        return 1;
+    case 0x30:
+        if (*(s16 *)&arg2 == 0x1337) {
+            return 0x5A;
+        }
+        return 0;
+    case 0xB:
+        if (arg2 == 2) {
+            func_800CE8D8(0, 90.0f, 0x5A);
+            func_800CE928(0, (s32)_chfactorymagnet_entrypoint_0, (s32)arg0->unk0);
+            func_800CE88C(0, 1);
+        }
+        return 3;
+    case 0x3D:
+        switch (arg2) {
+        case 0:
+            sp4C = func_80108528(0x3F6, D_80802910_chfactorymagnet, 0, &arg0);
+            sp4C->unk3C = arg0->unk0;
+            arg0->unk3C = sp4C->unk0;
+            func_80801A9C_chfactorymagnet((s32)arg0, NULL, sp40);
+            func_80108528(0x50F, sp40, 0, &arg0)->scale = arg0->scale;
+            break;
+        case 1:
+            sp30 = func_800DC178(0.0f, 360.0f);
+            func_80801A9C_chfactorymagnet((s32)arg0, NULL, sp34);
+            func_800EF214(sp34, func_800DC178(0.0f, 360.0f), sp30, func_80103EAC(arg0));
+            sp4C = func_80108528(0x52F, sp34, 0, &arg0);
+            sp4C->scale = arg0->scale;
+            sp4C->rotation[1] = func_800DC178(160.0f, 200.0f) + sp30;
+            sp4C->rotation[0] = func_800DC178(-20.0f, 20.0f);
+            sp4C->unk58 = ((f32 *)sp4C->actorData)[7] = func_800DC178(0.5f, 1.25f);
+            break;
+        }
+        return 1;
+    case 0x95:
+        sp2C = _subaddiefind_entrypoint_2(0x3F6, 0);
+        *(s8 *)&arg0->actorData[3] = 0;
+        *(s8 *)&arg0->unk54 = 0;
+        func_80801AE8_chfactorymagnet(arg0);
+        if (sp2C == NULL) {
+            func_80108B04(arg0, 0);
+            arg0->unk3C = NULL;
+        } else {
+            arg0->unk3C = sp2C->unk0;
+        }
+        if (func_800DA298(0xA06)) {
+            sp28 = func_80800E40_chfactorymagnet(arg0);
+            _sumumbofx_entrypoint_4(sp28);
+            _sumumbofx_entrypoint_3(sp28, 10.0f);
+            func_80800898_chfactorymagnet(arg0, 12);
+            if (func_800DA298(0x1B8)) {
+                func_800DA524(0xA06);
+            }
+        } else if (func_800DA298(0x1B8)) {
+            func_80800898_chfactorymagnet(arg0, 17);
+        } else {
+            func_80800898_chfactorymagnet(arg0, 1);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 /* extern */
 
