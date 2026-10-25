@@ -904,7 +904,80 @@ void bstnt_entrypoint_10(void *arg0) {
     func_80099B94(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/tnt/func_80801980_bstnt.s")
+void func_80801980_bstnt(struct player_state_s *arg0, u32 arg1) {
+    void func_8009FFD8();
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
+    void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
+    void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+    void baphysics_set_target_yaw(struct player_state_s *, f32);
+    void baphysics_set_vertical_velocity(struct player_state_s *, f32);
+    void baroll_setIdeal(s32, f32);
+    f32 bastick_distance(struct player_state_s *);
+    f32 bastick_getAngleRelativeToBanjo(struct player_state_s *);
+    f32 func_8009BB5C(struct player_state_s *);
+    void func_8009BF5C(s32, f32);
+    void func_8009D2D8(struct player_state_s *, s32);
+    void func_8009DB04(struct player_state_s *, s32, f32, s32);
+    f32 func_800DC178(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 yaw_getIdeal(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    struct anctrl_s *sp3C;
+    f32 sp38;
+    f32 sp34;
+    f32 sp30;
+
+    sp3C = baanim_getAnimCtrlPtr(arg0);
+    *(u32 *)((u8 *)arg0 + 0x15C) = arg1;
+    switch (arg1) {
+    case 1:
+        func_8009DB04(arg0, 0x3F0, func_800DC178(0.96f, 1.04f), 0x2710);
+        func_800A2EEC(arg0, 4);
+        func_8009FFD8(arg0, 1, 1, 1, 2);
+        if (bastick_distance(arg0) != 0.0f) {
+            yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+        }
+        baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+        func_80800164_bstnt(arg0);
+        baphysics_set_horizontal_velocity(arg0, yaw_getIdeal(arg0), baphysics_get_target_horizontal_velocity(arg0));
+        sp38 = baphysics_get_target_horizontal_velocity(arg0);
+        sp34 = func_800F10B4(sp38, 30.0f, 600.0f, 0.35f, 0.7f);
+        sp30 = func_800F10B4(sp38, 30.0f, 600.0f, 346.75f, 693.5f);
+        anctrl_reset(sp3C);
+        anctrl_setIndex(sp3C, 0xE2);
+        anctrl_setSubrange(sp3C, 0.0f, 0.4008f);
+        anctrl_setDuration(sp3C, sp34);
+        anctrl_setPlaybackType(sp3C, 1);
+        anctrl_start(sp3C);
+        baphysics_set_vertical_velocity(arg0, sp30);
+        break;
+    case 2:
+        baanim_setEndAndDuration(arg0, 0.651f, 3.0f);
+        break;
+    case 3:
+        baanim_setEndAndDuration(arg0, 0.93f, 0.7f);
+        break;
+    case 4:
+        *(f32 *)((u8 *)arg0 + 0x16C) = func_8009BB5C(arg0) * 0.25f;
+        func_8009D2D8(arg0, 3);
+        baphysics_set_target_horizontal_velocity(arg0, *(f32 *)((u8 *)arg0 + 0x16C));
+        func_800A2FCC(arg0, 0);
+        baanim_setEndAndDuration(arg0, 0.93f, 0.7f);
+        break;
+    case 0:
+        func_8009BF5C(arg0, 0.0f);
+        baroll_setIdeal(arg0, 0.0f);
+        break;
+    }
+}
 
 void func_80801C0C_bstnt(s32 arg0) { bstnt_entrypoint_3(arg0); *(s32 *)((u8 *)arg0 + 0x15C) = 0; func_80801980_bstnt(arg0, 1); }
 
