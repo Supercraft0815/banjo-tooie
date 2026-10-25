@@ -151,7 +151,36 @@ void func_800A6B24(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6DAC.s")
+void func_800A6DAC(Actor *arg0, s32 arg1) {
+    s32 _plsu_entrypoint_1(s32);
+    s32 func_800F5410(s32);
+    s32 func_800F55FC(s32);
+    f32 func_800F5628(s32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    s32 func_800F65D0(s32);
+    int func_800F6640(s32);
+    s32 func_800F6E80(s32);
+    s32 func_800F8B88(void);
+
+    if (func_800F6438(arg0->unk74_7) &&
+        func_800F6640(arg0->unk74_7) &&
+        func_800F6E80(arg0->unk74_7) &&
+        !(func_800F55FC(arg0->unk74_7) & 0x80000000) &&
+        (func_800F65D0(arg0->unk74_7) ||
+         (arg0->unk74_30 &&
+          (func_800F8B88() < 2 ||
+           (func_800F5410(arg0->unk74_7) == 0xB &&
+            _plsu_entrypoint_1(0x11) != -1))))) {
+        func_800F5A00(arg0->unk74_7, arg0->position);
+        *(f32 *)&arg0->actorData[3] = func_800F5628(arg0->unk74_7);
+        if (arg0->unk64_20) {
+            func_800A5DB0(arg0);
+            return;
+        }
+        func_800A6B24(arg0);
+    }
+}
 
 void func_800A6EF4(Actor *arg0) {
     s32 func_800A946C(void);
