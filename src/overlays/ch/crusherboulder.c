@@ -223,7 +223,105 @@ void func_808009C0_chcrusherboulder(u8 *arg0) {
     }
     func_8080087C_chcrusherboulder(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800A1C_chcrusherboulder.s")
+void func_80800A1C_chcrusherboulder(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_2(void *);
+    void _sumumbofx_entrypoint_4(void *);
+    void _sumumbofx_entrypoint_15(void *, f32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    void _sumumbofx_entrypoint_25(void *, s32, s32 *);
+    void _sumumbofx_entrypoint_3(void *, f32);
+    s32 _sumumbofx_entrypoint_12(void *, f32 *, f32 *, f32 *);
+    s32 _sumumbofx_entrypoint_24(void *, f32);
+    s32 func_8010A800(s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    s32 func_800DA544(s32);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    u8 _subaddieaudioloop_entrypoint_3(u8);
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    void func_808010EC_chcrusherboulder(void);
+    s32 func_80101180(s32, s32, s32);
+    extern s32 D_808013B4_chcrusherboulder[];
+    extern f32 D_808013C0_chcrusherboulder[];
+    extern f32 D_808013C8_chcrusherboulder[];
+    extern f32 D_808013D4_chcrusherboulder[];
+    extern u8 D_80801360_chcrusherboulder[];
+    extern u8 D_80801374_chcrusherboulder[];
+    void *sp4C;
+    f32 sp40[3];
+    u8 sp3F;
+    void *sp38;
+    f32 sp2C[3];
+
+    sp4C = func_80100094(arg0, 1);
+    func_80101FDC(arg0, arg1);
+    switch (arg1) {
+        case 2:
+            arg0->position[1] = 750.0f;
+            _sumumbofx_entrypoint_0(arg0, 1, 0x19, _chmumbopad_entrypoint_0(1));
+            sp4C = func_80100094(arg0, 1);
+            _sumumbofx_entrypoint_2(sp4C);
+            _sumumbofx_entrypoint_4(sp4C);
+            _sumumbofx_entrypoint_15(sp4C, 0.1f);
+            _sumumbofx_entrypoint_25(sp4C, 0x80, D_808013B4_chcrusherboulder);
+            func_8010A800(arg0, 2);
+            _sumumbofx_entrypoint_3(sp4C, 250.0f);
+            sp40[0] = arg0->position[0];
+            sp40[1] = arg0->position[1] + 300.0f;
+            sp40[2] = arg0->position[2];
+            _sumumbofx_entrypoint_12(sp4C, sp40, D_808013C0_chcrusherboulder, D_808013C8_chcrusherboulder);
+            break;
+        case 4:
+        case 5:
+            _sumumbofx_entrypoint_16(sp4C, 0.5f);
+            break;
+        case 3:
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801360_chcrusherboulder);
+            func_800E1610(0, 10.0f, 0.8f, arg0->position);
+            break;
+        case 6:
+            arg0->position[1] = 15.0f;
+            break;
+        case 7:
+            func_800DA544(0x4FF);
+            func_800DA544(0);
+            arg0->unk74_30 = 0;
+            break;
+        case 12:
+            _subaddieaudioloop_entrypoint_2(arg0);
+            sp3F = _subaddieaudioloop_entrypoint_3(*(u8 *)&arg0->actorData[3]);
+            *(f32 *)&arg0->actorData[3] = *(f32 *)&sp3F;
+            break;
+        case 8:
+            _sumumbofx_entrypoint_0(arg0, 1, 0x2D, _chmumbopad_entrypoint_0(1));
+            sp38 = func_80100094(arg0, 1);
+            _sumumbofx_entrypoint_2(sp38);
+            _sumumbofx_entrypoint_24(sp38, 0.65f);
+            _sumumbofx_entrypoint_15(sp38, 3.0f);
+            _sumumbofx_entrypoint_25(sp38, 0x80, D_808013B4_chcrusherboulder);
+            func_8010A800(arg0, 2);
+            sp2C[0] = arg0->position[0];
+            sp2C[1] = arg0->position[1] + 300.0f;
+            sp2C[2] = arg0->position[2];
+            _sumumbofx_entrypoint_12(sp38, sp2C, D_808013C0_chcrusherboulder, D_808013C8_chcrusherboulder);
+            func_80800210_chcrusherboulder(arg0);
+            _capod_entrypoint_13(arg0->unk0, NULL, 6, 0x4810);
+            arg0->unk58 = 22.5f;
+            break;
+        case 11:
+            _capod_entrypoint_13(arg0->unk0, NULL, 8, 0x2830);
+            arg0->unk64_16 = 0;
+            arg0->unk58 = 3.0f;
+            func_808010EC_chcrusherboulder();
+            func_80101180(0x180, 0xA, 0);
+            _subaddieaudioquick_entrypoint_2(arg0, D_808013D4_chcrusherboulder, D_80801374_chcrusherboulder);
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800D3C_chcrusherboulder.s")
 
