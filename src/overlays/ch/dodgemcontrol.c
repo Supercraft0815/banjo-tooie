@@ -1207,7 +1207,62 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80803200_chdodgemcontrol.s")
+void func_80803200_chdodgemcontrol(Actor *arg0) {
+    f32 func_800DC0C0(void);
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 func_8080458C_chdodgemcontrol(Actor *);
+    f32 func_8080460C_chdodgemcontrol(Actor *);
+    struct DodgemActorData { f32 pad[3]; f32 speed; };
+    struct DodgemState { u8 pad[0x10]; f32 collision; f32 timer; };
+    struct DodgemData { u8 pad[0xC2]; u8 count; };
+    Actor *other;
+    Actor *controller;
+    s32 i;
+    struct DodgemState *state;
+    struct DodgemData *data;
+    f32 sp80[3];
+
+    state = func_80100094(arg0, 0);
+    controller = func_80106790(arg0->unk3C);
+    data = func_80100094(controller, 0);
+    for (i = 0; i < data->count; i++) {
+        if (i != arg0->unk6C_0) {
+            other = func_8080000C_chdodgemcontrol(controller, i);
+            func_800EEB9C(sp80, arg0->rotation[1] - 145.0f, 325.0f);
+            func_800EF04C(sp80, arg0->position);
+            if (func_800F0064(sp80, 110.0f, other->position)) {
+                state->collision = 1.0f;
+                if (func_800DC0C0() < 0.5f) {
+                    arg0->unk54 = arg0->rotation[1] - 65.0f;
+                } else {
+                    arg0->unk54 = arg0->rotation[1] + 65.0f;
+                }
+                if (((struct DodgemActorData *)arg0->actorData)->speed < func_8080460C_chdodgemcontrol(arg0)) {
+                    ((struct DodgemActorData *)arg0->actorData)->speed += func_8080458C_chdodgemcontrol(arg0);
+                }
+                state->timer = 0.25f;
+            }
+            func_800EEB9C(sp80, arg0->rotation[1] + 145.0f, 325.0f);
+            func_800EF04C(sp80, arg0->position);
+            if (func_800F0064(sp80, 110.0f, other->position)) {
+                state->collision = 1.0f;
+                if (func_800DC0C0() < 0.5f) {
+                    arg0->unk54 = arg0->rotation[1] - 65.0f;
+                } else {
+                    arg0->unk54 = arg0->rotation[1] + 65.0f;
+                }
+                if (((struct DodgemActorData *)arg0->actorData)->speed < func_8080460C_chdodgemcontrol(arg0)) {
+                    ((struct DodgemActorData *)arg0->actorData)->speed += func_8080458C_chdodgemcontrol(arg0);
+                }
+                state->timer = 0.25f;
+            }
+        }
+    }
+}
 
 void func_8080349C_chdodgemcontrol(Actor *arg0) {
     void func_800EEB9C(f32[3], f32, f32);
