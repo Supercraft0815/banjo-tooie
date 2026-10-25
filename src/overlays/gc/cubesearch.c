@@ -222,7 +222,63 @@ s32 gccubesearch_entrypoint_13(s32 arg0, s32 arg1, s32 arg2) {
     return func_80800590_gccubesearch(arg0, arg1, arg2, func_800EFC7C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/cubesearch/gccubesearch_entrypoint_14.s")
+void *gccubesearch_entrypoint_14(s32 actor_id, s32 *position) {
+    Prop *_gspropmarker_entrypoint_0(s32, u32);
+    void func_800BD64C(s32 *, f32 *);
+    s32 func_800BDAD4(s32 *);
+    void func_800BE554(s32 *, s32 *);
+    s32 func_800D2E90(s32);
+    s32 cube_indices[3];
+    s32 i;
+    s32 min[3];
+    s32 max[3];
+    f32 position_f32[3];
+    s32 cube_min[3];
+    s32 cube_max[3];
+    s32 *var_a3;
+    Prop *prop;
+
+    func_800BE554(min, max);
+    if (position != NULL) {
+        position_f32[0] = (f32)position[0];
+        position_f32[1] = (f32)position[1];
+        position_f32[2] = (f32)position[2];
+        func_800BD64C(cube_indices, position_f32);
+        for (i = 0; i < 3; i++) {
+            cube_min[i] = cube_indices[i] - 1;
+            cube_max[i] = cube_indices[i] + 1;
+            if (cube_min[i] < min[i]) {
+                cube_min[i] = min[i];
+            }
+            if (max[i] < cube_max[i]) {
+                cube_max[i] = max[i];
+            }
+        }
+        for (cube_indices[0] = cube_min[0]; cube_indices[0] <= cube_max[0]; cube_indices[0]++) {
+            for (cube_indices[1] = cube_min[1]; cube_indices[1] <= cube_max[1]; cube_indices[1]++) {
+                for (cube_indices[2] = cube_min[2]; cube_indices[2] <= cube_max[2]; cube_indices[2]++) {
+                    prop = _gspropmarker_entrypoint_0(func_800BDAD4(cube_indices), actor_id);
+                    if (prop != NULL) {
+                        return prop;
+                    }
+                }
+            }
+        }
+    }
+    for (cube_indices[1] = min[1]; cube_indices[1] <= max[1]; cube_indices[1]++) {
+        if (func_800D2E90(cube_indices[1] - min[1]) != 0) {
+            for (cube_indices[0] = min[0]; cube_indices[0] <= max[0]; cube_indices[0]++) {
+                for (cube_indices[2] = min[2]; cube_indices[2] <= max[2]; cube_indices[2]++) {
+                    prop = _gspropmarker_entrypoint_0(func_800BDAD4(cube_indices), actor_id);
+                    if (prop != NULL) {
+                        return prop;
+                    }
+                }
+            }
+        }
+    }
+    return NULL;
+}
 
 Prop *gccubesearch_entrypoint_15(u32 arg0, u32 arg1, f32 *arg2) {
     Prop *_gspropmarker_entrypoint_0(s32, u32);
