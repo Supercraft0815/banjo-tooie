@@ -1,5 +1,31 @@
 #include "core2/1EB5E70.h"
 
+typedef struct {
+    s32 header;
+    s32 geometry;
+    s16 textures;
+    s16 flags;
+    s32 display_list;
+    s32 vertices;
+    s32 unk14;
+    s32 animation;
+    s32 unk1C;
+    s32 zones;
+    s32 unk24;
+    s32 animated_vertices;
+    s32 unk2C;
+    s32 unk30;
+    s32 unk34;
+    s32 normals;
+} ModelData;
+
+typedef struct {
+    LookAt buffer[32];
+    LookAt *current;
+    LookAt *end;
+    f32 position[3];
+} LookAtBuffer;
+
 s32 D_8012C850[60];
 
 typedef void (*GeoCommandFunction)(s32, u8 *);
@@ -10,23 +36,42 @@ typedef struct {
     Gfx commands[1];
 } DisplayListView;
 
+typedef struct {
+    f32 scale;
+    f32 *position;
+    f32 *rotation;
+    f32 *origin;
+    f32 *extra_rotation;
+    u8 *textures;
+    DisplayListView *display_list;
+    u8 *vertices;
+    u8 *animation;
+    u8 texture_animation;
+    u8 pad25[3];
+    u8 *zones;
+    s32 unk2C;
+    u8 *normals;
+    u8 *animated_vertices;
+    Mtx *matrices;
+} RenderData;
+
 extern DisplayListView *D_8012C960;
 
 extern s32 D_8012C824;
 extern s32 D_8012C940;
 
 void func_800DC580(void *arg0, void *arg1) {
-    extern f32 D_8012C948;
-    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * D_8012C948);
-    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) * D_8012C948);
-    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) * D_8012C948);
+    extern RenderData D_8012C948;
+    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * D_8012C948.scale);
+    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) * D_8012C948.scale);
+    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) * D_8012C948.scale);
 }
 
 void func_800DC5BC(void *arg0, void *arg1) {
-    extern f32 D_8012C948;
-    ((f32 *)arg0)[0] = ((f32 *)arg1)[0] * D_8012C948 + (*(f32 **)((u8 *)&D_8012C948 + 4))[0];
-    ((f32 *)arg0)[1] = ((f32 *)arg1)[1] * D_8012C948 + (*(f32 **)((u8 *)&D_8012C948 + 4))[1];
-    ((f32 *)arg0)[2] = ((f32 *)arg1)[2] * D_8012C948 + (*(f32 **)((u8 *)&D_8012C948 + 4))[2];
+    extern RenderData D_8012C948;
+    ((f32 *)arg0)[0] = ((f32 *)arg1)[0] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[0];
+    ((f32 *)arg0)[1] = ((f32 *)arg1)[1] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[1];
+    ((f32 *)arg0)[2] = ((f32 *)arg1)[2] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[2];
 }
 
 void func_800DC61C(s32 arg0, s32 arg1) {
@@ -50,7 +95,7 @@ void func_800DC634(s32 model, struct GeoCommand800DC634 *cmd) {
     void mlMtxScale(f32);
     void mlMtxTranslate(f32, f32, f32);
     void mlMtx_push_translation(f32, f32, f32);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern f32 D_8012CEA8;
     extern f32 D_8012CEAC;
     struct ModelContext {
@@ -68,7 +113,7 @@ void func_800DC634(s32 model, struct GeoCommand800DC634 *cmd) {
         if (!cmd->do_pitch_rotate) {
             mlMtxRotPitch(D_8012CEA8);
         }
-        mlMtxScale(D_8012C948);
+        mlMtxScale(D_8012C948.scale);
         mlMtxTranslate(-cmd->position[0], -cmd->position[1], -cmd->position[2]);
         mlMtxApply(context->mtx);
         gfx = context->gfx++;
@@ -90,7 +135,7 @@ void func_800DC740(s32 model, struct GeoCommand800DC634 *cmd) {
     void mlMtxScale(f32);
     void mlMtxTranslate(f32, f32, f32);
     void mlMtx_push_translation(f32, f32, f32);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern f32 D_8012CEA8;
     extern f32 D_8012CEAC;
     struct ModelContext {
@@ -108,7 +153,7 @@ void func_800DC740(s32 model, struct GeoCommand800DC634 *cmd) {
         if (!cmd->do_pitch_rotate) {
             mlMtxRotPitch(D_8012CEA8);
         }
-        mlMtxScale(D_8012C948);
+        mlMtxScale(D_8012C948.scale);
         mlMtxTranslate(-cmd->position[0], -cmd->position[1], -cmd->position[2]);
         mlMtxApply(context->mtx);
         gfx = context->gfx++;
@@ -130,7 +175,7 @@ void func_800DC84C(s32 model, struct GeoCommand800DC634 *cmd) {
     void mlMtxScale(f32);
     void mlMtxTranslate(f32, f32, f32);
     void mlMtx_push_translation(f32, f32, f32);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern f32 D_8012CEA8;
     extern f32 D_8012CEAC;
     struct ModelContext {
@@ -148,7 +193,7 @@ void func_800DC84C(s32 model, struct GeoCommand800DC634 *cmd) {
         if (!cmd->do_pitch_rotate) {
             mlMtxRotPitch(D_8012CEA8);
         }
-        mlMtxScale(D_8012C948);
+        mlMtxScale(D_8012C948.scale);
         mlMtxTranslate(-cmd->position[0], -cmd->position[1], -cmd->position[2]);
         mlMtxApply(context->mtx);
         gfx = context->gfx++;
@@ -429,7 +474,7 @@ void func_800DD024(Gfx **gfx, u8 *data) {
 
 void func_800DD07C(void *model, u8 *data) {
     void mlMtxApply(Mtx *);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     struct ModelContext {
         Gfx *gfx;
         Mtx *mtx;
@@ -571,18 +616,18 @@ void func_800DD410(s32 arg0, u8 *arg1) {
 
 void func_800DD4AC(s32 arg0, u8 *arg1) {
     extern s32 D_8012C844;
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     void func_800EFA20(void *arg0, void *arg1, f32 arg2);
     void func_800DC028(s32, s32, s32);
     f32 sp18[4];
 
     if (D_8012C844 != 0) {
-        func_800EFA20(sp18, arg1 + 0xC, D_8012C948);
+        func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale);
         func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18);
     }
 }
 
-void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern f32 D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
+void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern RenderData D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
 void func_800DD56C(s32 model, u8 *data) {
     struct SelectorCommand {
         u32 header[2];
@@ -791,7 +836,7 @@ void func_800DD998(struct GeoContext800DD998 *context, u8 *arg1) {
 
 void func_800DDB38(void *arg0, u8 *arg1) {
     void mlMtxApply(Mtx *);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     struct DrawContext {
         Gfx *gfx;
         Mtx *mtx;
@@ -822,7 +867,7 @@ void func_800DDB38(void *arg0, u8 *arg1) {
 void func_800DDC28(volatile s32 arg0, u8 *arg1) {
     void func_800DE2A4(s32, u8 *);
     s32 func_800E3D0C(f32 *, f32 *);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     f32 scaled_min[3];
     f32 scaled_max[3];
     s32 i;
@@ -835,8 +880,8 @@ void func_800DDC28(volatile s32 arg0, u8 *arg1) {
 
     if (cmd->branch_offset != 0) {
         for (i = 0; i < 3; i++) {
-            scaled_min[i] = cmd->min[i] * D_8012C948;
-            scaled_max[i] = cmd->max[i] * D_8012C948;
+            scaled_min[i] = cmd->min[i] * D_8012C948.scale;
+            scaled_max[i] = cmd->max[i] * D_8012C948.scale;
         }
         if (func_800E3D0C(scaled_min, scaled_max) != 0) {
             func_800DE2A4(arg0, (u8 *)cmd + cmd->branch_offset);
@@ -850,7 +895,7 @@ void func_800DDD14(volatile s32 arg0, u8 *arg1) {
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern f32 *D_8012C94C;
     f32 sp34[3];
     f32 sp28[3];
@@ -859,8 +904,8 @@ void func_800DDD14(volatile s32 arg0, u8 *arg1) {
     if (*(s16 *)(arg1 + 0x14) != 0) {
         func_800EE88C(sp34, (s16 *)(arg1 + 8));
         func_800EE88C(sp28, (s16 *)(arg1 + 0xE));
-        func_800EF334(sp34, D_8012C948);
-        func_800EF334(sp28, D_8012C948);
+        func_800EF334(sp34, D_8012C948.scale);
+        func_800EF334(sp28, D_8012C948.scale);
         func_800EF04C(sp34, D_8012C94C);
         func_800EF04C(sp28, D_8012C94C);
         if (func_800E3D0C(sp34, sp28) != 0) {
@@ -879,7 +924,7 @@ void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
     void func_800EE88C(f32 *, s16 *);
     void func_800EF334(f32 *, f32);
     void mlMtxPop(void);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern s32 D_8012CE58;
     f32 pos[3];
     f32 radius;
@@ -888,8 +933,8 @@ void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
 
     if (*(s16 *)(arg1 + 0x12) == -1) {
         func_800EE88C(pos, (s16 *)(arg1 + 8));
-        func_800EF334(pos, D_8012C948);
-        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948;
+        func_800EF334(pos, D_8012C948.scale);
+        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
         if (func_800E3E8C(pos, radius)) {
             offset = *(s16 *)(arg1 + 0x10);
             model = arg0;
@@ -899,7 +944,7 @@ void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
         }
     } else {
         func_800EE88C(pos, (s16 *)(arg1 + 8));
-        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948;
+        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
         if (*(s32 *)((u8 *)&D_8012C948 + 0x20)) {
             func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), *(s16 *)(arg1 + 0x12)));
             func_80019224(pos, pos);
@@ -922,15 +967,15 @@ void func_800DDF14(volatile s32 arg0, u8 *arg1) {
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF334(f32 *, f32);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     f32 sp2C[3];
     f32 radius;
     s32 offset;
     s32 model;
 
     func_800EE88C(sp2C, (s16 *)(arg1 + 8));
-    func_800EF334(sp2C, D_8012C948);
-    radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948;
+    func_800EF334(sp2C, D_8012C948.scale);
+    radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
     if (func_800E3E8C(sp2C, radius) == 0) {
         return;
     }
@@ -948,7 +993,7 @@ void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern f32 *D_8012C94C;
     f32 sp2C[3];
     f32 radius;
@@ -956,9 +1001,9 @@ void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
     s32 model;
 
     func_800EE88C(sp2C, (s16 *)(arg1 + 8));
-    func_800EF334(sp2C, D_8012C948);
+    func_800EF334(sp2C, D_8012C948.scale);
     func_800EF04C(sp2C, D_8012C94C);
-    radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948;
+    radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
     if (func_800E3E8C(sp2C, radius) == 0) {
         return;
     }
@@ -996,7 +1041,7 @@ void func_800DE0D8(s32 arg0, u8 *arg1) {
     s32 func_800ADE2C(s32, s32);
     MtxF *mlMtx_get_stack_pointer(void);
     void mlMtxPop(void);
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern s32 D_8012CE58;
     extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
     struct command { s32 header[2]; s16 count; s16 id; struct { s16 bone; s16 tag; } entries[1]; };
@@ -1079,7 +1124,7 @@ void func_800DE318(void) {
     extern s32 D_8012C83C;
     extern s32 D_8012C844;
     extern s32 D_8012C848;
-    extern f32 D_8012C948;
+    extern RenderData D_8012C948;
     extern s32 D_8012C988;
     extern s32 D_8012C9A8;
     extern s32 D_8012C9B8;
@@ -1132,15 +1177,345 @@ typedef struct {
 
 GraphicsBuffers* func_800A7180();
 
-void* func_800DE498(GraphicsBuffers*, f32*, f32*, f32, f32*, u8*);
+void* func_800DE498(GraphicsBuffers*, f32*, f32*, f32, f32*, ModelData*);
 
 // modelRender_draw?
 void* func_800DE448(f32* position, f32* arg1, f32 scale, f32* arg3, u8* arg4) {
-    return func_800DE498(func_800A7180(), position, arg1, scale, arg3, arg4);
+    return func_800DE498(func_800A7180(), position, arg1, scale, arg3, (ModelData *)arg4);
 }
 
 // the real modelRender_draw?
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EB5E70/func_800DE498.s")
+// the real modelRender_draw?
+// the real modelRender_draw?
+// the real modelRender_draw?
+void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, ModelData *arg5) {
+
+
+    typedef struct {
+        void (*draw)(RenderData *, s32, s32, void *);
+        s32 value;
+        void (*finish)(void);
+    } RenderCallback;
+    typedef struct {
+        s32 prim[4];
+        s32 env[4];
+    } RenderColors;
+    typedef struct {
+        s32 size;
+        s16 count;
+        s16 padding;
+        u8 data[1][8];
+    } TextureData;
+    extern RenderData D_8012C948;
+    extern s32 D_8012C988;
+    extern s32 D_8012C828, D_8012C834, D_8012C838, D_8012C83C;
+    extern f32 D_8012C82C, D_8012C830;
+    extern u8 D_8012C840;
+    extern s32 D_8012C848, D_8012C9A4;
+    extern s32 D_8012C9A8;
+    extern s32 D_8012C9AC;
+    extern void (*D_8012C9B0)(s32);
+    extern s32 D_8012C9B4, D_8012C9B8, D_8012C9BC, D_8012C9C8;
+    extern s32 D_8012CA08, D_8012CA0C, D_8012CA18, D_8012CA28;
+    extern u8 D_8012CA11;
+    extern f32 D_8012CA1C, D_8012CA20;
+    extern f32 D_8012CE48[3];
+    extern LookAtBuffer D_8012CA40;
+    extern s32 D_8012CE58;
+    extern s32 D_8012CE98;
+    extern f32 D_8012CEB8[3];
+    extern f32 D_8012CEA8;
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    extern s32 D_8012C820;
+    extern Gfx D_80122DB0[], D_80122DF0[], D_80122EB0[], D_80122F70[];
+    extern s32 D_80122DC8[], D_80122DCC[];
+    extern RenderCallback D_80123030[], D_80123038[];
+    extern f32 D_80125D54, D_80125D58, D_80125D5C, D_80125D60, D_80125D64;
+    void func_800E39A8(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800DE318(void);
+    void func_800EFD24(f32 *);
+    s32 func_800EFB24(s32 *, s32 *, s32 *);
+    f32 mlAbsF(f32);
+    f32 func_800EEF94(f32 *);
+    f32 func_800E42C0(void);
+    s32 func_800E3E8C(f32 *, f32);
+    s32 func_800DB9FC(u8, s32, s32 *);
+    void func_80013C80(Mtx *, LookAt *, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+    void func_800D2C54(Gfx **);
+    u8 *func_800B27E0(u8 *);
+    void func_800ADCD0(u8 **, u8 *);
+    void func_800AE160(u8 **, u8 *, s32);
+    void _dbzone_entrypoint_1(u8 *, void *, f32, f32 *);
+    void _glzone_entrypoint_2(s32);
+    void _dbanim_entrypoint_1(u8 *, u8 *, u8 *, u8 *);
+    void _dbanim_entrypoint_0(u8 *, u8 *, u8 *);
+    s32 func_80019CD4(void);
+    void func_80019750(f32 *, f32 *, f32, f32 *);
+    void func_800AE598(u8 *, Mtx **);
+    void func_8010EF70(RenderData *, s32, s32, void *);
+    void func_800E4640(Gfx **);
+    void func_8010F270(void);
+    void mlMtxRotatePYR(f32, f32, f32);
+    void mlMtxScale_xyz(f32, f32, f32);
+    void func_80018C50(void *);
+    void mlMtxGet(void *);
+    void mlMtxApply(Mtx *);
+    f32 camera_focus[3];
+    f32 object_position[3];
+    f32 distance;
+    f32 local_norm;
+    f32 global_norm;
+    void *opaque_mode;
+    Gfx *gfx;
+    u8 *verts;
+    s32 alpha;
+    f32 tmp_f0;
+    void *translucent_mode;
+
+    D_8012C940 = 0;
+    func_800E39A8((s32)&D_8012CE98, (s32)&D_8012CEA8);
+    if (arg1 != NULL) {
+        func_800EE7F8(object_position, arg1);
+    } else {
+        func_800EFD24(object_position);
+    }
+    func_800EFB24((s32 *)camera_focus, (s32 *)object_position, &D_8012CE98);
+    if (D_80125D54 < mlAbsF(camera_focus[0]) ||
+        D_80125D58 < mlAbsF(camera_focus[1]) ||
+        D_80125D5C < mlAbsF(camera_focus[2])) {
+        func_800DE318();
+        return NULL;
+    }
+    if (arg5) {
+        verts = D_8012C948.vertices ? D_8012C948.vertices : ((u8 *)arg5 + arg5->vertices);
+        global_norm = (u32)*(u16 *)(verts + 0x14);
+        local_norm = (u32)*(u16 *)(verts + 0x12);
+    } else {
+        global_norm = D_8012CA20;
+        local_norm = D_8012CA1C;
+    }
+    distance = func_800EEF94(camera_focus);
+    if (4000.0f <= distance && D_8012C82C == D_80125D60) {
+        if (local_norm * arg3 * D_8012C830 * 50.0f < D_8012C82C) {
+            D_8012C82C = local_norm * arg3 * D_8012C830 * 50.0f;
+        }
+    }
+    D_8012C82C *= func_800E42C0();
+    if (D_8012C82C <= distance) {
+        func_800DE318();
+        return NULL;
+    }
+    D_8012C940 = D_8012C828 ? func_800E3E8C(object_position, global_norm * arg3) : 1;
+    if (!D_8012C940) {
+        func_800DE318();
+        return NULL;
+    }
+    if (D_8012C9A8 != NULL) {
+        ((void (*)(s32))D_8012C9A8)(D_8012C9AC);
+    }
+    if (arg5 == 0) {
+        arg5 = (ModelData *)func_800D674C(D_8012CA18);
+        if (arg5 == 0) {
+            func_800DE318();
+            return NULL;
+        }
+    }
+    if (!D_8012C948.display_list) {
+        D_8012C948.display_list = (DisplayListView *)((u8 *)arg5 + arg5->display_list);
+    }
+    if (!D_8012C948.textures) {
+        D_8012C948.textures = ((u8 *)arg5 + arg5->textures);
+    }
+    if (!D_8012C948.vertices) {
+        D_8012C948.vertices = ((u8 *)arg5 + arg5->vertices);
+    }
+    D_8012C948.zones = arg5->zones == 0 ? NULL : ((u8 *)arg5 + arg5->zones);
+    if (!D_8012C948.normals) {
+        D_8012C948.normals = arg5->normals == 0 ? NULL : ((u8 *)arg5 + arg5->normals);
+    }
+    if (D_8012C834) {
+        tmp_f0 = D_8012C82C - 700.0f;
+        if (tmp_f0 < distance) {
+            alpha = (s32)((1.0f - (distance - tmp_f0) / 700.0f) * 256.0f);
+            ((RenderColors *)&D_8012C988)->env[3] = (D_8012C9A4 * alpha) / 256;
+        }
+    }
+    gfx = arg0->gfx;
+    gSPSegment(gfx++, 1, osVirtualToPhysical(D_8012C948.vertices + 0x18));
+    gSPSegment(gfx++, 2, osVirtualToPhysical(((TextureData *)D_8012C948.textures)->data[((TextureData *)D_8012C948.textures)->count]));
+    if (D_8012C948.texture_animation) {
+        s32 i;
+        s32 offset;
+        for (i = 0; i != 7; i++) {
+            if (func_800DB9FC(D_8012C948.texture_animation, i, &offset)) {
+                gSPSegment(gfx++, 15 - i, osVirtualToPhysical(((TextureData *)D_8012C948.textures)->data[((TextureData *)D_8012C948.textures)->count] + offset));
+            }
+        }
+    }
+    if (((RenderColors *)&D_8012C988)->prim[3] && D_8012C83C != 3) {
+        ((RenderColors *)&D_8012C988)->env[3] = ((RenderColors *)&D_8012C988)->env[3] + (((RenderColors *)&D_8012C988)->prim[3] * (255 - ((RenderColors *)&D_8012C988)->env[3])) / 255;
+        ((RenderColors *)&D_8012C988)->prim[3] = 0;
+    }
+    gDPPipeSync(gfx++);
+    gDPPipelineMode(gfx++, G_PM_1PRIMITIVE);
+    gDPSetCycleType(gfx++, G_CYC_2CYCLE);
+    gDPSetBlendColor(gfx++, 0, 0, 0, 128);
+    gDPSetPrimColor(gfx++, 0, 0, ((RenderColors *)&D_8012C988)->prim[0], ((RenderColors *)&D_8012C988)->prim[1], ((RenderColors *)&D_8012C988)->prim[2], ((RenderColors *)&D_8012C988)->prim[3]);
+    gDPSetEnvColor(gfx++, ((RenderColors *)&D_8012C988)->env[0], ((RenderColors *)&D_8012C988)->env[1], ((RenderColors *)&D_8012C988)->env[2], ((RenderColors *)&D_8012C988)->env[3]);
+    if (D_8012CA28) {
+        gSPSetGeometryMode(gfx++, G_ZBUFFER);
+    } else {
+        gSPClearGeometryMode(gfx++, G_ZBUFFER);
+    }
+    if (((RenderColors *)&D_8012C988)->env[3] == 255) {
+        {
+            Gfx *packet = gfx++;
+            packet->words.w0 = _SHIFTL(G_MOVEWORD, 24, 8) | _SHIFTL(G_MW_SEGMENT, 16, 8) | (3 * 4);
+            opaque_mode = (void *)D_80122DC8[D_8012CA28 * 2];
+            packet->words.w1 = osVirtualToPhysical(opaque_mode);
+        }
+    } else {
+        {
+            Gfx *packet = gfx++;
+            packet->words.w0 = _SHIFTL(G_MOVEWORD, 24, 8) | _SHIFTL(G_MW_SEGMENT, 16, 8) | (3 * 4);
+            translucent_mode = (void *)D_80122DCC[D_8012CA28 * 2];
+            packet->words.w1 = osVirtualToPhysical(translucent_mode);
+        }
+    }
+    if (arg5->flags & 2) {
+        D_8012C820 = (s32)D_80122DF0;
+    } else if (arg5->flags & 0x80) {
+        D_8012C820 = (s32)D_80122EB0;
+    } else if (arg5->flags & 0x100) {
+        D_8012C820 = (s32)D_80122F70;
+    } else {
+        D_8012C820 = NULL;
+    }
+    if (D_8012C820) {
+        gSPDisplayList(gfx++, (u32)D_8012C820 - 0x80000000);
+    }
+    if (arg5->flags & 4) {
+        if (camera_focus[2] == 0.0f) {
+            camera_focus[2] = D_80125D64;
+        }
+        func_80013C80(arg0->mtx, (LookAt *)D_8012CA40.current, D_8012CA40.position[0], D_8012CA40.position[1], D_8012CA40.position[2],
+            camera_focus[0], camera_focus[1], camera_focus[2], 0.0f, 1.0f, 0.0f);
+        gSPLookAt(gfx++, D_8012CA40.current);
+        osWritebackDCache(D_8012CA40.current, 0x20);
+        D_8012CA40.current++;
+        if (D_8012CA40.current == D_8012CA40.end) {
+            D_8012CA40.current = D_8012CA40.buffer;
+        }
+    }
+    if (arg5->flags & 0x20) {
+        func_800D2C54(&gfx);
+    }
+    if (D_8012C948.animation && !arg5->animation) {
+        D_8012C948.animation = NULL;
+    } else if (!D_8012C948.animation && arg5->animation) {
+        if (D_8012C824 == 0) {
+            func_800ADCD0((u8 **)&D_8012C840, func_800B27E0((u8 *)arg5));
+        } else {
+            func_800AE160((u8 **)&D_8012C840, func_800B27E0((u8 *)arg5), D_8012C824);
+        }
+        D_8012C948.animation = *(u8 **)&D_8012C840;
+    }
+    if (D_8012C948.zones) {
+        _dbzone_entrypoint_1(D_8012C948.zones, &D_8012CE98, arg3, object_position);
+        if (D_8012C848) {
+            _glzone_entrypoint_2(D_8012C848);
+        }
+    }
+    if (arg5->animated_vertices && D_8012C948.animation) {
+        D_8012C948.animated_vertices = ((u8 *)arg5 + arg5->animated_vertices);
+        if (D_8012C948.normals && D_8012C838 == 1 && D_8012CA11 != 2 && D_8012CA11 != 3) {
+            _dbanim_entrypoint_1(D_8012C948.animated_vertices, D_8012C948.vertices, D_8012C948.animation, D_8012C948.normals);
+        } else {
+            _dbanim_entrypoint_0(D_8012C948.animated_vertices, D_8012C948.vertices, D_8012C948.animation);
+        }
+    }
+    func_80019CD4();
+    func_80019750(object_position, arg2, arg3, arg4);
+    switch (D_8012C9B8) {
+        case 1:
+            mlMtxRotatePYR(((f32 *)&D_8012C9B8)[1], ((f32 *)&D_8012C9B8)[2], ((f32 *)&D_8012C9B8)[3]);
+            break;
+        case 2:
+            mlMtxScale_xyz(((f32 *)&D_8012C9B8)[1], ((f32 *)&D_8012C9B8)[2], ((f32 *)&D_8012C9B8)[3]);
+            break;
+        case 3:
+            func_80018C50(&D_8012C9C8);
+            break;
+    }
+    mlMtxGet(&D_8012CE58);
+    mlMtxApply(arg0->mtx);
+    if (arg5->flags & 0x40) {
+        gSPMatrix(gfx++, (u32)arg0->mtx - 0x80000000, G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
+        arg0->mtx++;
+        if (!D_8012C948.matrices) {
+            Mtx *matrices = arg0->mtx;
+            func_800AE598(D_8012C948.animation, &arg0->mtx);
+            D_8012C948.matrices = matrices + 1;
+        }
+        gSPSegment(gfx++, 5, osVirtualToPhysical(D_8012C948.matrices));
+        if (D_8012C820) {
+            gSPSegment(gfx++, 6, osVirtualToPhysical((void *)D_8012C820));
+        }
+    } else {
+        gSPMatrix(gfx++, arg0->mtx, G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_PUSH);
+        arg0->mtx++;
+    }
+    D_8012C948.position = object_position;
+    D_8012C948.rotation = arg2;
+    D_8012C948.scale = arg3;
+    D_8012C948.origin = arg4;
+    D_8012C948.extra_rotation = D_8012C9B8 == 1 ? (f32 *)&D_8012C9BC : NULL;
+    if (arg2) {
+        func_800EE7F8(D_8012CEB8, arg2);
+    } else {
+        func_800EFD24(D_8012CEB8);
+    }
+    arg0->gfx = gfx;
+    if (arg5->flags & 0x10) {
+        func_8010EF70(&D_8012C948, 0, 0, &D_8012CE98);
+    }
+    if (D_8012C838 == 1) {
+        if (D_80123030[D_8012CA11].draw) {
+            D_80123030[D_8012CA11].draw(&D_8012C948, D_8012CA08, D_8012CA0C, &D_8012CE98);
+        }
+        D_8012CEC4 = (s32 (*)(MtxF *, s32 *, s16))D_80123030[D_8012CA11].value;
+    }
+    func_800DE2A4((s32)arg0, ((u8 *)arg5 + arg5->geometry));
+    if (arg5->flags & 0x40) {
+        func_800E4640(&arg0->gfx);
+    } else {
+        gSPPopMatrix(arg0->gfx++, G_MTX_MODELVIEW);
+    }
+    if (arg5->flags & 0x182) {
+        gSPDisplayList(arg0->gfx++, OS_K0_TO_PHYSICAL(D_80122DB0));
+    }
+    if (D_8012C838 == 1) {
+        if (D_80123038[D_8012CA11].draw) {
+            ((void (*)(void))D_80123038[D_8012CA11].draw)();
+        }
+        D_8012CEC4 = 0;
+    }
+    if (arg5->flags & 0x10) {
+        func_8010F270();
+    }
+    if (D_8012C9B0) {
+        D_8012C9B0(D_8012C9B4);
+    }
+    if (arg5->flags & 4) {
+        LookAt *current = D_8012CA40.current;
+
+        /* IDO retains the original empty reflection branch with this aggregate self-copy. */
+        *current = *current;
+    }
+    func_800DE318();
+    return (void *)arg5;
+}
 
 s32 func_800DF324()
 {
@@ -1171,7 +1546,6 @@ void func_800DF35C(void) {
 }
 
 void func_800DF38C(void) {
-    typedef struct { u8 buffer[0x400]; u8 *current; u8 *end; } LookAtBuffer;
     extern LookAtBuffer D_8012CA40;
     extern f32 D_8012CE48[3];
     extern u8 D_8012C840;
@@ -1183,7 +1557,7 @@ void func_800DF38C(void) {
     func_800DE318();
     buffer = &D_8012CA40;
     buffer->current = buffer->buffer;
-    buffer->end = buffer->current + sizeof(buffer->buffer);
+    buffer->end = buffer->current + 32;
     func_800EFD24(D_8012CE48);
     *(s32 *)&D_8012C840 = func_800ADF98();
     func_8010E334();
@@ -1257,11 +1631,11 @@ void func_800DF4B0(s32 arg0) {
 }
 
 void func_800DF4CC(s32 arg0) {
-    s32 func_800EE7F8(s32 *, s32);
+    void func_800EE7F8(f32 *, f32 *);
     extern s32 D_8012C9B8;
     extern s32 D_8012C9BC;
     D_8012C9B8 = 1;
-    func_800EE7F8(&D_8012C9BC, arg0);
+    func_800EE7F8((f32 *)&D_8012C9BC, (f32 *)arg0);
 }
 
 void func_800DF500(f32 arg0, f32 arg1, f32 arg2) {
@@ -1524,7 +1898,7 @@ ImageStruct *func_800DF944(void *a0, f32 *coords, f32 a2, f32 a3, f32 *a4, s32 a
     }
     func_800DF830(0);
     func_800DF440(0);
-    a6 = func_800DE498(a0, sp44, sp38, 4.0f * a3, sp2C, (s32)a6);
+    a6 = func_800DE498(a0, sp44, sp38, 4.0f * a3, sp2C, (ModelData *)a6);
     func_800E4640(a0);
     return a6;
 }
