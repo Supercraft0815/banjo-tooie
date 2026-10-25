@@ -137,7 +137,107 @@ s32 func_8010347C(Unk80132ED0 *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDCA30/func_80103508.s")
+void func_80103508(u8 *arg0) {
+    struct VertexListView;
+    void _subaddiefade_entrypoint_9(Actor *, s32 *);
+    s16 func_800AE020(void);
+    void func_800B25D8(struct VertexListView *, struct VertexListView *, s32);
+    s32 func_800B2840(s32);
+    void *func_800D674C(s32);
+    s32 func_800D6CEC(s32);
+    s16 func_800D88F8(void);
+    u8 *func_800DBFF8(void);
+    void *func_80100368(void *);
+    s16 func_80100D24(s32, s32, s32, s32, s32, s32);
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80102424(Actor *, s32);
+    s32 func_80102FA0(Actor *, s32);
+    s32 func_801039A4(u8 *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    s32 func_80103C94(Actor *);
+    s32 func_80103D24(Actor *);
+    void func_80104460(u8 *);
+    void func_80105DFC(Actor *);
+    Actor *sp5C;
+    Unk80132ED0 *sp58;
+    void *sp54;
+    s32 sp50;
+    s32 var_a3;
+    s32 var_a2;
+    s32 sp3C[3];
+    struct {
+        u8 pad0[0x70];
+        u32 pad70_25 : 7;
+        u32 mode2 : 1;
+        u32 pad70_22 : 2;
+        u32 mode1 : 1;
+        u32 pad70_4 : 17;
+        u32 active : 1;
+        u32 pad70_0 : 3;
+        u32 pad74_24 : 8;
+        u32 hasResource : 1;
+        u32 pad74_0 : 23;
+        u8 pad78[3];
+        u8 mode : 2;
+        u8 pad7B : 6;
+        u8 pad7C[0x1A];
+        u16 fade : 1;
+        u16 pad96 : 15;
+    } *flags = (void *)arg0;
+    s32 vertices;
+
+    if (!flags->active) {
+        sp58 = ((Actor *)arg0)->unk0;
+        sp5C = func_80100368(arg0);
+        sp50 = func_801039A4((u8 *)sp58);
+        if (sp50 == 0) {
+            sp50 = (s32)func_801039E4(sp58);
+        }
+        func_80103328(arg0);
+        sp54 = sp58->unk16 ? func_800D674C(sp58->unk16) : NULL;
+        if (flags->mode) {
+            var_a3 = 1;
+        } else {
+            var_a3 = 0;
+        }
+        var_a2 = flags->mode2 ? 2 : (flags->mode1 ? 1 : 0);
+        if ((var_a3 || var_a2) && ((s16 *)&((Actor *)arg0)->pad60)[0] == 0) {
+            if (flags->fade) {
+                _subaddiefade_entrypoint_9(arg0, sp3C);
+            }
+            ((s16 *)&((Actor *)arg0)->pad60)[0] = func_80100D24(sp50, sp58->unk14, var_a2, var_a3, sp58->unk16, (s32)(flags->fade ? sp3C : NULL));
+        }
+        if (sp54 && var_a2 >= 2) {
+            vertices = func_80103D24((Actor *)arg0);
+            func_800B25D8((struct VertexListView *)vertices, (struct VertexListView *)func_800B2840(sp50), (s32)sp54);
+        }
+        if (sp54) {
+            vertices = func_80103C94((Actor *)arg0);
+            func_800B25D8((struct VertexListView *)vertices, (struct VertexListView *)func_800B2840(sp50), (s32)sp54);
+            func_800D6CEC(sp58->unk16);
+        }
+        if (sp58->unk4 == NULL && func_80102FA0(sp5C, 0x40)) {
+            sp58->unk4 = (u32 *)func_800DBFF8();
+        }
+        if (((s16 *)&((Actor *)arg0)->pad90)[0] == 0 && func_80102FA0(sp5C, 0x1000)) {
+            func_80105DFC(arg0);
+        }
+        if (((s16 *)&sp58->unk10)[0] == 0 && func_80102FA0(sp5C, 0x20)) {
+            ((s16 *)&sp58->unk10)[0] = func_800AE020();
+        }
+        if (((u16 *)&((Actor *)arg0)->pad80)[0] == 0 && func_80102FA0(sp5C, 0x4000)) {
+            ((u16 *)&((Actor *)arg0)->pad80)[0] = func_800D88F8();
+        }
+        if (((s16 *)&((Actor *)arg0)->pad8C)[0] == 0 && flags->hasResource) {
+            func_80102424(arg0, ((Actor *)arg0)->unk70_10);
+        }
+        if (((s16 *)&((Actor *)arg0)->pad8C)[1] == 0 && func_80102FA0(sp5C, 0x40000)) {
+            func_80104460((u8 *)arg0);
+        }
+        flags->active = 1;
+        func_8010108C(arg0, 0x29, sp50);
+    }
+}
 
 /* extern */
 
@@ -384,7 +484,7 @@ void func_80103D00(s32 arg0,s32 arg1)
     func_80103B24(arg0,0x1,arg1);
 }
 
-void func_80103D24(Actor *arg0) {
+s32 func_80103D24(Actor *arg0) {
     s32 func_80103BF0(Actor*, u32, u32);
     func_80103BF0(arg0, 1, 0);
 }
