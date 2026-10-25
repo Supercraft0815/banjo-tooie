@@ -67,7 +67,67 @@ void func_80800018_chklungophial(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_80800204_chklungophial.s")
+void func_80800204_chklungophial(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    f32 func_800136E4(f32);
+    s32 func_800BFA1C();
+    void func_800C8B84(volatile s32);
+    void func_800C8CB8(s32, f32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    int func_800DC298(f32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010B990(Actor *, s32);
+    s32 func_808003C8_chklungophial(s32, s32);
+    s32 func_80800AEC_chklungophial(Actor *, f32 *, f32);
+    extern u8 D_80800CCC_chklungophial[];
+    struct Phial {
+        f32 position[3];
+        s32 effect;
+        f32 scale;
+    };
+    struct Motion {
+        f32 unused[3];
+        f32 duration;
+        f32 velocity[3];
+    };
+    struct Phial *data;
+    f32 dt;
+    Actor *klungo;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    if (func_800D9078(&data->scale)) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800CCC_chklungophial);
+    }
+    if (arg0->unk70_10 == 1) {
+        dt = func_800D8FF8();
+        klungo = _subaddiefind_entrypoint_2(0x423, 0);
+        arg0->rotation[1] = func_800136E4(arg0->rotation[1] + dt * arg0->unk50);
+        arg0->rotation[0] = func_800136E4(arg0->rotation[0] + dt * arg0->unk54);
+        ((struct Motion *)arg0->actorData)->velocity[1] -= 800.0f * dt;
+        if (func_8010B990(arg0, 0x400007) & 0x20) {
+            func_808003C8_chklungophial((s32)arg0, 1);
+        }
+        if (func_800DC298(0.6f) && klungo != NULL) {
+            _subaddieskeleton_entrypoint_3(arg0->unk0, 4, position);
+            func_80800AEC_chklungophial(klungo, position, 0.0f);
+        }
+    }
+    if (func_800BFA1C(arg0->position) == 0) {
+        func_800FFAB0(arg0);
+        if (data->effect != 0) {
+            func_800C8B84(data->effect);
+            data->effect = 0;
+        }
+    }
+    if (data->effect != 0) {
+        func_800C8CB8(data->effect, arg0->position);
+    }
+}
 
 /* extern */
 
