@@ -200,7 +200,89 @@ void func_800BDD00()
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDD24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BE09C.s")
+s32 func_800BE09C(s32 *arg0, s32 *arg1)
+{
+  s32 func_800E9DCC(s16 *);
+  extern s32 D_8012841C;
+  extern f32 D_80128450;
+  s32 index;
+  s32 base;
+  s32 count;
+  s32 pos[3];
+  s32 iter[3];
+  int new_var;
+  f32 value;
+  for (index = 0; index < 3; index++)
+  {
+    if (arg1[index] >= 0)
+    {
+      value = ((f32) arg1[index]) * D_80128450;
+    }
+    else
+    {
+      value = ((f32) arg1[index]) * D_80128450;
+    }
+    pos[index] = (s32) (value - (&D_80128410)[index + 1]);
+  }
+
+  count = 0;
+  if ((((((pos[0] > 0) && (pos[0] < ((*((s32 *) (((s8 *) (&D_80128410)) + 0x28))) - 1))) && (pos[1] > 0)) && (pos[1] < ((*((s32 *) (((s8 *) (&D_80128410)) + 0x2C))) - 1))) && (pos[2] > 0)) && (pos[2] < ((*((s32 *) (((s8 *) (&D_80128410)) + 0x30))) - 1)))
+  {
+    base = ((pos[0] + ((pos[1] - 1) * (*((s32 *) (((s8 *) (&D_80128410)) + 0x1C))))) + ((pos[2] - 1) * (*((s32 *) (((s8 *) (&D_80128410)) + 0x20))))) - 1;
+    index = base;
+    iter[0] = 0;
+    do
+    {
+      for (iter[1] = 0; iter[1] < 3; iter[1]++)
+      {
+        for (iter[2] = 0; iter[2] < 3; iter[2]++)
+        {
+          if (func_800E9DCC((s16 *) (D_80128410 + (index << 3))))
+          {
+            arg0[count++] = D_80128410 + (index << 3);
+          }
+          index++;
+        }
+
+        index = (index + (*((s32 *) (((s8 *) (&D_80128410)) + 0x1C)))) - (new_var = 3);
+      }
+
+      base += *((s32 *) (((s8 *) (&D_80128410)) + 0x20));
+      index = base;
+    } while (++iter[0] < 3);
+
+  }
+  else
+  {
+    for (iter[0] = pos[0] - 1; iter[0] < (pos[0] + 2); iter[0]++)
+    {
+      if ((iter[0] >= 0) && (iter[0] < (*((s32 *) (((s8 *) (&D_80128410)) + 0x28)))))
+      {
+        for (iter[1] = pos[1] - 1; iter[1] < (pos[1] + 2); iter[1]++)
+        {
+          if ((iter[1] >= 0) && (iter[1] < (*((s32 *) (((s8 *) (&D_80128410)) + 0x2C)))))
+          {
+            for (iter[2] = pos[2] - 1; iter[2] < (pos[2] + 2); iter[2]++)
+            {
+              if ((iter[2] >= 0) && (iter[2] < (*((s32 *) (((s8 *) (&D_80128410)) + 0x30)))))
+              {
+                index = (iter[0] + (iter[1] * (*((s32 *) (((s8 *) (&D_80128410)) + 0x1C))))) + (iter[2] * (*((s32 *) (((s8 *) (&D_80128410)) + 0x20))));
+                if (func_800E9DCC((s16 *) (D_80128410 + (index << 3))))
+                {
+                  arg0[count++] = D_80128410 + (index << 3);
+                }
+              }
+            }
+
+          }
+        }
+
+      }
+    }
+
+  }
+  return count;
+}
 
 s32 *func_800BE3F8(u8 *arg0) {
     void func_800EE904(s32 dst[3], f32 src[3]);
