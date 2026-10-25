@@ -1,6 +1,26 @@
 #include "common.h"
 
-struct SfxState;
+typedef struct {
+    u8 velocityMin, velocityMax, keyMin, keyMax, keyBase;
+    s8 detune;
+} SfxKeyMap;
+typedef struct SfxSound {
+    s32 attackTime, decayTime, releaseTime;
+    u8 attackVolume, decayVolume, padE[2];
+    SfxKeyMap key;
+    u8 pad16[0xBE];
+    u8 pan, volume;
+} SfxSound;
+struct SfxState {
+    struct SfxState *next, *prev;
+    SfxSound *sound;
+    ALVoice voice;
+    f32 pitch, pitchRatio;
+    s32 handle, retries;
+    s16 volume, envelopeVolume;
+    s32 endTime;
+    u8 priority, pan, fxMix, fxBus, flags, phase, pad46[2];
+};
 
 void func_800205D0(void *arg0) {
     void func_80020E74(ALLink *);
@@ -57,7 +77,77 @@ s32 func_80020760(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38100/func_80020790.s")
+struct SfxState *func_80020790(s16 arg0, u16 arg1, u8 arg2, f32 arg3, u8 arg4, u8 arg5, s32 arg6) {
+    struct SfxState *func_8002039C(struct SfxSound *);
+    void func_80026500(void *, void *, s32, s32);
+    u8 *func_800E9320(s32, s32);
+    extern u8 *D_800411DC;
+    struct SfxState *sp5C;
+    struct SfxState *sp58;
+    SfxKeyMap *sp54;
+    SfxSound *sp50;
+    s16 sp4E;
+    s32 sp48;
+    s32 sp44;
+    s32 sp40;
+    s32 sp3C;
+    struct { s16 type; struct SfxState *state; s32 value; s32 pad; } evt1;
+    struct { s16 type; struct SfxState *state; s32 value; s32 pad; } evt2;
+
+    sp58 = NULL;
+    sp4E = 0;
+    sp40 = 0;
+    if (arg0 != 0) {
+        do {
+            sp50 = (SfxSound *)func_800E9320(0, arg0 - 1);
+            sp5C = func_8002039C(sp50);
+            if (sp5C != NULL) {
+                *(struct SfxState **)(D_800411DC + 0x3C) = sp5C;
+                evt1.type = 1;
+                evt1.state = sp5C;
+                sp3C = arg2 + sp5C->pan - 0x40;
+                if (sp3C >= 0x80) {
+                    sp3C = 0x7F;
+                } else if (sp3C < 0) {
+                    sp3C = 0;
+                }
+                sp5C->pan = sp3C;
+                sp5C->volume = (u32)(arg1 * sp5C->volume) >> 15;
+                sp5C->pitchRatio *= arg3;
+                sp5C->fxMix = arg4;
+                sp5C->fxBus = arg5;
+                sp44 = sp50->key.velocityMax * 33333;
+                if (sp5C->flags & 0x10) {
+                    sp5C->flags &= ~0x10;
+                    func_80026500(D_800411DC + 0x14, &evt1, sp40 + 1, 0);
+                    sp48 = sp44 + 1;
+                    sp4E = arg0;
+                } else {
+                    func_80026500(D_800411DC + 0x14, &evt1, sp44 + 1, 0);
+                }
+                sp58 = sp5C;
+            }
+            sp40 += sp44;
+            sp54 = &sp50->key;
+            arg0 = sp54->velocityMin + ((sp54->keyMin & 0xC0) * 4);
+        } while (arg0 != 0 && sp5C != NULL);
+        if (sp58 != NULL) {
+            sp58->flags |= 1;
+            sp58->handle = arg6;
+            if (sp4E != 0) {
+                sp58->flags |= 0x10;
+                evt2.type = 0x200;
+                evt2.state = sp58;
+                evt2.value = sp4E;
+                func_80026500(D_800411DC + 0x14, &evt2, sp48, 0);
+            }
+        }
+    }
+    if (arg6 != 0) {
+        *(struct SfxState **)arg6 = sp58;
+    }
+    return sp58;
+}
 
 void func_80020A60(void *arg0) {
     struct { s16 type; void *state; s32 pad[2]; } evt;
