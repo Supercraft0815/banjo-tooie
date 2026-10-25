@@ -21,7 +21,79 @@ void func_80800000_chfantasydrillfield(Actor *arg0) {
     func_80103014((u8 *)arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_808000C4_chfantasydrillfield.s")
+s32 func_808000C4_chfantasydrillfield(void *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 func_800DA298(s32);
+    void func_800DA3B8(s32, s32);
+    s32 func_800DA544(s32);
+    s32 func_800DC090(void);
+    s32 func_800DC128(s32, s32);
+    void func_800DC324(s32);
+    s32 func_80800360_chfantasydrillfield();
+    extern s32 B_80800A10_chfantasydrillfield[];
+    typedef struct {
+        s16 position[3];
+        u16 flags;
+        u16 item;
+        u16 unkA;
+        u32 unkC;
+        u32 id : 11;
+        u32 rest : 21;
+    } DrillProp;
+    Prop *props[8];
+    s32 count;
+    s32 i;
+    s32 j;
+    s32 oldSeed;
+    s32 temp;
+    s32 seed;
+    s32 *entry;
+    s32 readBits;
+    s32 k;
+    s32 writeBits;
+    s32 choice;
+
+    count = _gccubesearch_entrypoint_9(0x40A, props, 8);
+    for (i = 0; i < count; i++) {
+        ((s32 (*)[2])B_80800A10_chfantasydrillfield)[i][0] = ((DrillProp *)props[i])->id;
+        ((s32 (*)[2])B_80800A10_chfantasydrillfield)[i][1] = -1;
+    }
+    for (i = 0; i < count; i++) {
+        for (j = 0; j < count; j++) {
+            if (((s32 (*)[2])B_80800A10_chfantasydrillfield)[i][0] < ((s32 (*)[2])B_80800A10_chfantasydrillfield)[j][0]) {
+                temp = ((s32 (*)[2])B_80800A10_chfantasydrillfield)[j][0];
+                ((s32 (*)[2])B_80800A10_chfantasydrillfield)[j][0] = ((s32 (*)[2])B_80800A10_chfantasydrillfield)[i][0];
+                ((s32 (*)[2])B_80800A10_chfantasydrillfield)[i][0] = temp;
+            }
+        }
+    }
+    i = 0;
+    if (func_800DA298(0x1DC)) {
+        readBits = 4;
+        seed = 0;
+        for (k = 0; k < readBits; k++) {
+            seed <<= 1;
+            seed = func_800DA298(k + 0x1DD) | seed;
+        }
+    } else {
+        writeBits = 4;
+        seed = func_800DC128(0, 0x10);
+        for (k = 0; k < writeBits; k++) {
+            func_800DA3B8(k + 0x1DD, (seed >> (3 - k)) & 1);
+        }
+        func_800DA544(0x1DC);
+    }
+    oldSeed = func_800DC090();
+    func_800DC324(seed);
+    while (!func_80800360_chfantasydrillfield()) {
+        choice = func_800DC128(0, 8);
+        entry = ((s32 (*)[2])B_80800A10_chfantasydrillfield)[choice];
+        if (entry[1] == -1) {
+            entry[1] = i++;
+        }
+    }
+    func_800DC324(oldSeed);
+}
 
 s32 func_80800360_chfantasydrillfield(s32 *entry, s32 *end) {
     extern s32 B_80800A10_chfantasydrillfield[];
