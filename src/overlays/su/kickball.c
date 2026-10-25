@@ -116,7 +116,79 @@ void sukickball_entrypoint_4(s32 arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_5.s")
+s32 sukickball_entrypoint_5(Actor *arg0, f32 *arg1) {
+    s32 *func_800BF340(f32 *, f32 *, f32 *, s32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA98(f32 *, f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFDE8(f32 *, u8 *, f32 *);
+    f32 sp64[3];
+    u8 sp58[12];
+    f32 sp4C[3];
+    s32 changed = 0;
+    s32 pad;
+    f32 sp38[3];
+
+    func_800EFB24(sp58, arg0->position, arg1);
+    func_800EE7F8(sp4C, arg0->position);
+    if (func_800BF340(arg1, sp4C, sp64, 0x20020, 30.0f)) {
+        func_800EFDE8(sp38, sp58, sp64);
+        sp38[1] = 0.0f;
+        func_800EFA98(sp38, sp38, 5.0f);
+        func_800EE780(arg0->position, sp4C, sp38);
+        func_800EE7F8(arg1, arg0->position);
+        return 1;
+    }
+    if (arg0->position[2] > 690.0f) {
+        if (arg0->position[0] > -159.0f && arg0->position[0] < 159.0f) {
+            if (arg0->position[2] > 822.0f) {
+                changed = 1;
+                arg0->position[2] = 816.0f;
+            }
+        } else {
+            arg0->position[2] = 690.0f;
+            changed = 1;
+        }
+    }
+    if (arg0->position[2] < -696.0f) {
+        if (arg0->position[0] > -159.0f && arg0->position[0] < 159.0f) {
+            if (arg0->position[2] < -822.0f) {
+                changed = 1;
+                arg0->position[2] = -816.0f;
+            }
+        } else {
+            changed = 1;
+            arg0->position[2] = -690.0f;
+        }
+    }
+    if (arg0->position[0] < -696.0f) {
+        if (arg0->position[2] < 159.0f && arg0->position[2] > -159.0f) {
+            if (arg0->position[0] < -822.0f) {
+                changed = 1;
+                arg0->position[0] = -816.0f;
+            }
+        } else {
+            changed = 1;
+            arg0->position[0] = -690.0f;
+        }
+    }
+    if (arg0->position[0] > 696.0f) {
+        if (arg0->position[2] > -159.0f && arg0->position[2] < 159.0f) {
+            if (arg0->position[0] > 822.0f) {
+                changed = 1;
+                arg0->position[0] = 816.0f;
+            }
+        } else {
+            arg0->position[0] = 690.0f;
+            changed = 1;
+        }
+    }
+    if (changed) {
+        func_800EE7F8(arg0->position, arg1);
+    }
+    return changed;
+}
 
 /* extern */
 
