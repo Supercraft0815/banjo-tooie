@@ -1,5 +1,7 @@
 #include "ch/friesstand.h"
 
+void *func_80100094(Actor *, u32);
+
 OSThread *chfriesstand_entrypoint_0(void)
 {
     extern u8 D_80800EC8_chfriesstand[];
@@ -49,7 +51,93 @@ void func_80800030_chfriesstand(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/friesstand/func_808000C4_chfriesstand.s")
+void func_808000C4_chfriesstand(Actor *arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_18(void *, s32);
+    void func_800D175C(s32, s32);
+    s32 func_800D1A04(s32);
+    s32 func_800F4EC8(u32, s32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    void func_800FC660(u32);
+    void func_800FFA88(Unk80132ED0 *);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    void func_80102424(Actor *, s32);
+    void func_808005F0_chfriesstand(Actor *);
+    void func_80800620_chfriesstand(Actor *);
+    void func_808006D4_chfriesstand(Actor *);
+    void func_808009A4_chfriesstand(Actor *);
+    extern u32 D_80800FE8_chfriesstand[];
+
+    if (func_80100094(arg0, 1) != NULL) {
+        _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+        if (func_801022E4(arg0) != 0xD0 || !func_80102320(arg0, 0.45f, 0.85f)) {
+            _suexpression_entrypoint_18(func_80100094(arg0, 1), 1);
+        }
+    }
+    func_800F4EC8(func_800F54E4(), (s32)arg0->actorData, 300.0f, -10.0f, 200.0f);
+    switch (arg0->unk70_10) {
+        case 1:
+            func_808005F0_chfriesstand(arg0);
+            if (func_80101E14(arg0, 0.999f)) {
+                if (arg0->unk6C_0 < 2) {
+                    arg0->unk6C_0++;
+                } else {
+                    func_80102424(arg0, 2);
+                }
+            }
+            func_808009A4_chfriesstand(arg0);
+            break;
+        case 2:
+            func_80800620_chfriesstand(arg0);
+            func_808006D4_chfriesstand(arg0);
+            if (func_80101DDC(arg0)) {
+                arg0->unk6C_0 = 0;
+                func_80102424(arg0, 1);
+            }
+            func_808009A4_chfriesstand(arg0);
+            break;
+        case 3:
+            func_808005F0_chfriesstand(arg0);
+            break;
+        case 4:
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800FE8_chfriesstand, 0.7f);
+            if (func_80101E14(arg0, 0.837f)) {
+                if (arg0->unk3C != NULL) {
+                    func_800FC660(0xE);
+                    func_800D175C(0x4C, 5 - func_800D1A04(0x4C));
+                    func_800FFA88(arg0->unk3C);
+                    arg0->unk3C = NULL;
+                }
+                _subaddiedialog_entrypoint_11(arg0->unk0,
+                    func_800F64A4(func_800F54E4(), 0x200) ? 0x110B : 0x10FD,
+                    6, arg0->position, 0x51);
+            }
+            if (func_80101DDC(arg0)) {
+                arg0->unk6C_0 = 0;
+                func_80102424(arg0, 1);
+            }
+            break;
+        case 5:
+            func_808005F0_chfriesstand(arg0);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 6);
+            }
+            break;
+        case 6:
+            func_80800620_chfriesstand(arg0);
+            func_808006D4_chfriesstand(arg0);
+            if (func_80101DDC(arg0)) {
+                func_80102424(arg0, 5);
+            }
+            break;
+    }
+}
 
 void func_80800398_chfriesstand(Actor* arg0)
 {
