@@ -97,7 +97,87 @@ void func_80800134_vplight(s16 *arg0, f32 *arg1, f32 arg2, s32 *arg3, s32 *arg4)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/light/vplight_entrypoint_2.s")
+void vplight_entrypoint_2(u8 *arg0, s16 *arg1) {
+    s32 func_800C8760(s32, s32);
+    s32 func_800C878C(s32, s32, s32);
+    void func_800C8800();
+    void func_800C883C(s32, void *);
+    u8 func_800C89D8(s32);
+    struct LightEntry { u8 active, count, lights[14]; };
+    struct LightEntry *base = (struct LightEntry *)arg0;
+    s16 *indices;
+    struct LightEntry *end;
+    s32 changed;
+    s32 cell;
+    f32 position[4];
+    f32 radius[2];
+    s32 low[3];
+    s32 high[3];
+    s32 light;
+    struct LightEntry *entry;
+    u8 *slot;
+    u8 *flags;
+    s32 i;
+    s32 x, y, z;
+    s16 index;
+    s32 scan;
+
+    end = base + *(s32 *)((u8 *)arg1 + 0x14);
+    indices = (s16 *)(arg0 + (*(s32 *)((u8 *)arg1 + 0x14) << 4));
+    flags = (u8 *)arg1;
+    flags += *(s32 *)((u8 *)arg1 + 0x1C);
+    light = func_800C8760(2, 2);
+    while (light != 0) {
+        changed = func_800C89D8(light);
+        entry = base;
+        for (; entry < end; entry++) {
+            if (entry->active) {
+                if (entry->count) {
+                    for (scan = 0, slot = (u8 *)entry; scan < 14; scan++, slot++) {
+                        if (light == slot[2]) {
+                            if (changed) {
+                                slot[2] = 0;
+                                entry->count--;
+                            }
+                            flags[(entry - base) * 20 + 3] = 1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        if (changed) {
+            func_800C8800(light, position);
+            func_800C883C(light, radius);
+            func_80800134_vplight(arg1, position, radius[1], low, high);
+            for (z = low[2]; z <= high[2]; z++) {
+                for (y = low[1]; y <= high[1]; y++) {
+                    for (x = low[0]; x <= high[0]; x++) {
+                        cell = y * ((u16 *)arg1)[6] + (u32)(((u16 *)arg1)[7] * z + x);
+                        index = indices[cell];
+                        if (index >= 0) {
+                            entry = base + index;
+                            i = 0;
+                            if (entry->active) {
+                                do {
+                                    slot = (u8 *)entry + i;
+                                    i++;
+                                    if (slot[2] == 0) {
+                                        slot[2] = light;
+                                        entry->count++;
+                                        (index * 20 + flags)[3] = 1;
+                                        break;
+                                    }
+                                } while (i != 14);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        light = func_800C878C(light, 2, 2);
+    }
+}
 
 void func_808004B0_vplight(void *arg0, s32 position[3]) {
     void func_800C8800(void *, f32 *);
