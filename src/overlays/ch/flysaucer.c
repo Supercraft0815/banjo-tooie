@@ -1647,7 +1647,7 @@ void func_808031C8_chflysaucer(Actor *arg0) {
 
 /* extern */
 
-void func_80803224_chflysaucer(Actor *arg0) {
+f32 func_80803224_chflysaucer(Actor *arg0) {
     s32 func_800AE080(s16 arg0);
     f32 func_800F1828(f32*, f32*);
     s32 func_801039E4(s32);
@@ -1666,7 +1666,101 @@ void func_80803224_chflysaucer(Actor *arg0) {
     func_800F1828(sp30, sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080329C_chflysaucer.s")
+typedef union FlySaucerRenderActor {
+    Actor actor;
+    struct {
+        u8 pad0[0x7A];
+        u16 renderMode : 2;
+        u16 remainingFlags : 14;
+    } flags;
+} FlySaucerRenderActor;
+
+void func_8080329C_chflysaucer(FlySaucerRenderActor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
+    void *func_8008AEDC(void *);
+    void func_8008B304(s32);
+    s32 func_8008C27C();
+    struct ImageStruct;
+    struct ImageStruct *func_800D674C(s32);
+    s32 func_800D70F8(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF41C(s32);
+    void func_800DF440(s32);
+    void func_800DF830(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF6A8(f32 *, f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104200(s16);
+    struct {
+        s16 unk0;
+        s16 unk2;
+        u8 pad4[0xC];
+        f32 unk10;
+        u8 pad14[8];
+        f32 unk1C;
+        u8 pad20[4];
+        u8 unk24;
+    } *sp74;
+    struct ImageStruct *sp70;
+    struct ImageStruct *sp6C;
+    f32 sp60[3];
+    f32 sp5C;
+    f32 sp50[3];
+    struct anctrl_s *sp4C;
+    f32 sp40[3];
+    struct anctrl_s *sp3C;
+    f32 sp30[3];
+    struct anctrl_s *sp2C;
+
+    sp74 = func_80100094(&arg0->actor, 0);
+    sp70 = func_800D674C(0x829);
+    sp6C = func_800D674C(0x82A);
+    func_800D70F8(0x829, 1);
+    func_800D70F8(0x82A, 1);
+    sp5C = func_80803224_chflysaucer(&arg0->actor);
+    sp74->unk1C = sp5C;
+    func_800EE7F8(sp60, arg2);
+    sp60[2] += sp5C;
+    switch (sp74->unk24) {
+    case 2:
+        if (sp6C != NULL) {
+            sp4C = func_80104200(sp74->unk0);
+            func_800EF6A8(sp50, arg2, 0.0f, 105.0f, 8.0f);
+            func_800EF04C(sp50, arg1);
+            func_8008B304((s32)sp4C);
+            func_800DF41C(func_8008C27C(func_8008AEDC(sp4C)));
+            func_800DF440(0);
+            func_800DF830(arg0->flags.renderMode);
+            func_800DE448(sp50, sp60, arg0->actor.scale * 0.95f, NULL, (s32)sp6C);
+        }
+        break;
+    case 1:
+    case 3:
+        if (sp6C != NULL) {
+            sp3C = func_80104200(sp74->unk0);
+            func_800EF6A8(sp40, arg2, 0.0f, sp74->unk10 + 35.0f, 15.0f);
+            func_800EF04C(sp40, arg1);
+            func_8008B304((s32)sp3C);
+            func_800DF41C(func_8008C27C(func_8008AEDC(sp3C)));
+            func_800DF440(0);
+            func_800DF830(arg0->flags.renderMode);
+            func_800DE448(sp40, sp60, arg0->actor.scale * 0.95f, NULL, (s32)sp6C);
+        }
+        break;
+    }
+    if (sp74->unk24 == 2 && sp70 != NULL) {
+        sp2C = func_80104200(sp74->unk2);
+        func_800EF6A8(sp30, arg2, 0.0f, 105.0f, 11.0f);
+        func_800EF04C(sp30, arg1);
+        func_8008B304((s32)sp2C);
+        func_800DF41C(func_8008C27C(func_8008AEDC(sp2C)));
+        func_800DF440(0);
+        func_800DF830(arg0->flags.renderMode);
+        func_800DE448(sp30, sp60, arg0->actor.scale * 0.95f, NULL, (s32)sp70);
+    }
+    func_800D70F8(0x829, 0);
+    func_800D70F8(0x82A, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_808035C4_chflysaucer.s")
 
