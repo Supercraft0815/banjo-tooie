@@ -964,7 +964,74 @@ void func_80802B10_chklungo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80802B84_chklungo.s")
+s32 func_80802B84_chklungo(Actor *arg0, s32 arg1) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 func_800DA298(s32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80100120(Actor *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102FDC(Actor *, f32);
+    void func_80103DFC(Actor *, f32 *);
+    Actor *func_801084B0(s32, Actor **);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_8010A800(Actor *, s32);
+    extern f32 D_808038F8_chklungo[][33];
+    extern f32 D_808038FC_chklungo[][33];
+    s16 *data;
+    Actor *spawned;
+    f32 pos0[3];
+    s32 pad;
+    f32 pos1[3];
+    Actor *clone;
+    s16 *cloneData;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0:
+            if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4, pos0) == 0) {
+                func_80103DFC(arg0, pos0);
+            }
+            spawned = func_80108528(0x422, pos0, (s32)arg0->rotation[1], &arg0);
+            spawned->rotation[0] = 180.0f;
+            if (func_800DA298(0x683)) {
+                ((f32 *)spawned->actorData)[3] = D_808038F8_chklungo[data[4]][0];
+            } else {
+                ((f32 *)spawned->actorData)[3] = 0.3f;
+            }
+            if (!func_800DA298(0x684)) {
+                spawned->unk58 = D_808038FC_chklungo[data[4]][0];
+            } else {
+                spawned->unk58 = 0.2f;
+            }
+            func_80102FDC(spawned, arg0->scale);
+            data[3] = 1;
+            break;
+        case 1:
+            func_80103DFC(arg0, pos1);
+            func_80102FDC(func_80108528(0x421, pos1, 0, &arg0), arg0->scale * 1.4f);
+            data[34] = 1;
+            break;
+        case 2:
+            if (arg0->unk70_10 != 0x14) {
+                func_8010A800(arg0, 0);
+                return;
+            }
+            clone = func_801084B0(0x41E, &arg0);
+            if (clone->unk70_25 == 0) {
+                func_800FFAB0(clone);
+                func_80101180(0x41E, 10, 0);
+                return;
+            }
+            cloneData = func_80100094(clone, 0);
+            data[15] ^= 1;
+            cloneData[13] = 1;
+            func_80100120(clone);
+            func_80102FDC(clone, arg0->scale);
+            func_80801964_chklungo(clone, data[15] == 0 ? 0x16 : 0x15);
+            break;
+    }
+}
 
 u8 func_80802DF4_chklungo(Actor *arg0) {
     s32 func_800D395C(void);
