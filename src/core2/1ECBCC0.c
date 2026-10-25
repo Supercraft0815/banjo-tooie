@@ -133,7 +133,54 @@ void func_800F293C(f32 arg0[4][4], f32 arg1[4][4]) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECBCC0/func_800F2984.s")
+void func_800F2984(MtxF *arg0, LookAt *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    s32 i;
+    f32 forward[3];
+    f32 right[3];
+
+    func_800EFB24(forward, arg3, arg2);
+    func_800EF368(forward, -1.0f);
+    func_800EE97C(right, arg4, forward);
+    func_800EF2A0(right);
+    func_800EE97C(arg4, forward, right);
+    func_800EF2A0(arg4);
+    func_800F274C(arg0);
+    for (i = 0; i < 3; i++) {
+        arg0->m[i][0] = right[i];
+        arg0->m[i][1] = arg4[i];
+        arg0->m[i][2] = forward[i];
+    }
+    arg0->m[3][0] = -func_800EEAA4(arg2, right);
+    arg0->m[3][1] = -func_800EEAA4(arg2, arg4);
+    arg0->m[3][2] = -func_800EEAA4(arg2, forward);
+    arg1->l[0].l.dir[0] = (u16)(int)((right[0] * 128.0f) < 127.0f ? (right[0] * 128.0f) : 127.0f);
+    arg1->l[0].l.dir[1] = (u16)(int)((right[1] * 128.0f) < 127.0f ? (right[1] * 128.0f) : 127.0f);
+    arg1->l[0].l.dir[2] = (u16)(int)((right[2] * 128.0f) < 127.0f ? (right[2] * 128.0f) : 127.0f);
+    arg1->l[1].l.dir[0] = (u16)(int)((arg4[0] * 128.0f) < 127.0f ? (arg4[0] * 128.0f) : 127.0f);
+    arg1->l[1].l.dir[1] = (u16)(int)((arg4[1] * 128.0f) < 127.0f ? (arg4[1] * 128.0f) : 127.0f);
+    arg1->l[1].l.dir[2] = (u16)(int)((arg4[2] * 128.0f) < 127.0f ? (arg4[2] * 128.0f) : 127.0f);
+    arg1->l[0].l.col[0] = 0;
+    arg1->l[0].l.col[1] = 0;
+    arg1->l[0].l.col[2] = 0;
+    arg1->l[0].l.pad1 = 0;
+    arg1->l[0].l.colc[0] = 0;
+    arg1->l[0].l.colc[1] = 0;
+    arg1->l[0].l.colc[2] = 0;
+    arg1->l[0].l.pad2 = 0;
+    arg1->l[1].l.col[0] = 0;
+    arg1->l[1].l.col[1] = 128;
+    arg1->l[1].l.col[2] = 0;
+    arg1->l[1].l.pad1 = 0;
+    arg1->l[1].l.colc[0] = 0;
+    arg1->l[1].l.colc[1] = 128;
+    arg1->l[1].l.colc[2] = 0;
+    arg1->l[1].l.pad2 = 0;
+}
 
 void func_800F2C1C(MtxF *arg0, f32 *arg1) {
     f32 func_800138D0(f32);
