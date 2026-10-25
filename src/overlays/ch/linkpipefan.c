@@ -157,7 +157,72 @@ void chlinkpipefan_entrypoint_0(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, Unk80132
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/linkpipefan/func_80800638_chlinkpipefan.s")
+s32 func_80800638_chlinkpipefan(Actor *arg0, u32 arg1, Unk80132ED0 *volatile arg2) {
+    void _chskeletonexplode_entrypoint_3(Actor *, s32, s32);
+    void _chskeletonexplode_entrypoint_4(Actor *, s32);
+    void _chskeletonexplode_entrypoint_5(Actor *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_800DF6BC(s32, s32);
+    void func_800DF744(s32, s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    s32 func_800F79DC(s32, s32, s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_808009AC_chlinkpipefan;
+    extern s32 D_808009B8_chlinkpipefan;
+    Actor *sp2C;
+
+    switch (arg1) {
+        case 0x3E:
+            if (arg0->unk70_10 != 4) {
+                if (15 == (arg0->unk0->unk18 << 11) >> 28) {
+                    func_800F79DC(func_800F54E4(), 6, (s32)arg0->unk0);
+                    return 1;
+                }
+                if (((arg0->unk0->unk18 << 11) >> 28) == 1) {
+                    func_800F79DC(func_800F54E4(), 3, (s32)arg0->unk0);
+                }
+            }
+            return 1;
+        case 0x3F:
+            if (func_80106790(arg2)->unk6C_9 == 0x15C) {
+                func_808003B4_chlinkpipefan((u8 *)arg0, 4);
+            } else if (((arg0->unk0->unk18 << 11) >> 28) == 1 && arg0->unk70_10 != 4) {
+                func_808003B4_chlinkpipefan((u8 *)arg0, 3);
+            }
+            if (!arg0->unk6C_0) {
+                if (arg0->unk70_10 == 4) {
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009B8_chlinkpipefan);
+                } else {
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009AC_chlinkpipefan);
+                }
+            }
+            arg0->unk6C_0 = 8;
+            return 1;
+        case 0x40:
+            if (arg0->unk70_10 == 4 && arg0->unk54 <= 45.0f) {
+                func_808003B4_chlinkpipefan((u8 *)arg0, 1);
+            }
+            return 1;
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF6BC((s32)func_800F10B4(arg0->unk54, 0.0f, 225.0f, 255.0f, 0.0f), 255);
+            func_800DF744(1, 1);
+            return 1;
+        case 0xF:
+            sp2C = func_80106790(func_80101080());
+            _chskeletonexplode_entrypoint_3(sp2C, 1, 0);
+            _chskeletonexplode_entrypoint_4(sp2C, 7);
+            _chskeletonexplode_entrypoint_5(sp2C, (s32)func_800F10B4(arg0->unk54, 0.0f, 225.0f, 255.0f, 0.0f));
+            func_800FFA88(arg0->unk0);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 OSThread *chlinkpipefan_entrypoint_1(void)
 {
