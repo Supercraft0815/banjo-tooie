@@ -263,7 +263,94 @@ void func_80800D28_chnewfreezy(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800E74_chnewfreezy.s")
+void func_80800E74_chnewfreezy(Actor *arg0, u8 *arg1, void *volatile arg2, s32 arg3) {
+    void *func_80100094(Actor *, u32);
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    void func_800EF214(f32 *, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    struct FreezyPart {
+        f32 position[3];
+        f32 rotation[3];
+        f32 pad18[12];
+        f32 size;
+        f32 pad4C[3];
+        f32 unk58;
+        s8 state;
+        s8 unk5D;
+        s8 unk5E;
+        s8 pad5F;
+    } *part;
+    struct FreezyConfig {
+        s32 bone;
+        f32 scale;
+        s8 unk8;
+        s8 unk9;
+        s8 padA[2];
+    } *config;
+    u32 i;
+    u32 j;
+    s32 k;
+    s32 bone;
+    f32 angle;
+
+    part = func_80100094(arg0, 0);
+    if (arg0->unk6C_0) {
+        i = 0;
+        do {
+            bone = _dbskeleton_entrypoint_4(arg1, i);
+            part->state = 3;
+            if (part->unk58 == -1.0f) {
+                part->unk58 = 100.0f;
+            }
+            k = 0;
+            config = arg2;
+            if (arg3 > 0) {
+                do {
+                    if (bone == config->bone) {
+                        part->size *= config->scale;
+                        part->state = 1;
+                        part->unk5D = config->unk8;
+                        part->unk5E = config->unk9;
+                        if (part->unk5E >= 0) {
+                            j = 0;
+                            if (arg0->unk6C_0) {
+                                do {
+                                    if (_dbskeleton_entrypoint_4(arg1, j) == part->unk5E) {
+                                        func_800F18FC(part->position, ((struct FreezyPart *)func_80100094(arg0, 0))[j].position, part->rotation);
+                                        part->rotation[2] = part->rotation[0];
+                                        part->rotation[0] = 0.0f;
+                                        part->rotation[1] -= 90.0f;
+                                    }
+                                    j++;
+                                } while (j < arg0->unk6C_0);
+                            }
+                        } else {
+                            switch (part->unk5E) {
+                                case -4:
+                                    func_800EF214(part->position, part->rotation[0] + 45.0f, arg0->rotation[1], part->size * 25.0f);
+                                    break;
+                                case -5:
+                                    func_800EF214(part->position, part->rotation[0] + 45.0f, part->rotation[1] + 90.0f, part->size * 25.0f);
+                                    break;
+                                case -3:
+                                    func_800EF214(part->position, part->rotation[0] + 90.0f, part->rotation[1] + 90.0f, part->size * 25.0f);
+                                    break;
+                                case -2:
+                                    func_800EF214(part->position, part->rotation[0] - 90.0f, part->rotation[1] + 90.0f, part->size * 25.0f);
+                                    break;
+                            }
+                        }
+                    }
+                    k++;
+                    config++;
+                } while (k != arg3);
+            }
+            part->size *= *(f32 *)&arg0->actorData[7];
+            part++;
+            i++;
+        } while (i < arg0->unk6C_0);
+    }
+}
 
 void func_808011A8_chnewfreezy(f32 arg0, f32 arg1) {
     void func_800D93A0(f32[4], f32[3]);
