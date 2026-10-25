@@ -317,7 +317,68 @@ void func_800C6038(void *ptr) {
     func_800C5FCC(ptr, -19000.0f, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9F060/func_800C6060.s")
+void func_800C6060(u8 *arg0) {
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F0E00(f32, f32);
+    extern f32 D_801258A8;
+    f32 sp64;
+    f32 sp48[7];
+    s32 triangle;
+    f32 sp38[3];
+    const s32 mask = 0x20020;
+    s32 sp30;
+
+    sp30 = 0;
+    func_800EE7F8(sp38, (f32 *)(arg0 + 0x4C));
+    sp64 = *(f32 *)(arg0 + 0x78);
+    if (func_800DA298(0x6B5)) {
+        triangle = func_800C5CC0(sp38, func_800F0E00(*(f32 *)(arg0 + 0x5C) - *(f32 *)(arg0 + 0x50), 150.0f) + 10.0f, -5.0f, *(u32 *)(arg0 + 0x88), sp48);
+        if (triangle != 0 || arg0[0x9C] != 0) {
+            func_800C5FCC(arg0, sp48[3], triangle);
+            sp30 = 1;
+        }
+    }
+    triangle = func_800C5CC0(sp38, sp64, -1300.0f, *(u32 *)(arg0 + 0x84), sp48);
+    if (triangle == 0) {
+        func_800C5F8C(arg0);
+        if (!sp30) {
+            func_800C6038(arg0);
+        } else if (*(f32 *)(arg0 + 0x50) < *(f32 *)(arg0 + 0x74)) {
+            func_800C5A10(arg0, 3);
+        }
+    } else {
+        if (*(s32 *)(triangle + 8) & 0x20020U) {
+            func_800C5FCC(arg0, sp48[3], triangle);
+            if ((*(f32 *)(arg0 + 0x70) < *(f32 *)(arg0 + 0x74)) && (*(f32 *)(arg0 + 0x50) < *(f32 *)(arg0 + 0x74))) {
+                func_800C5A10(arg0, 3);
+            }
+            triangle = func_800C5CC0(sp38, sp64, -450.0f, mask | *(u32 *)(arg0 + 0x84), sp48);
+            if (triangle == 0) {
+                func_800C5F8C(arg0);
+            } else if (sp48[1] >= 0.0f) {
+                func_800C5F40(arg0, sp48, (void *)triangle);
+            }
+        } else {
+            if ((sp48[1] < 0.0f) && !(*(s32 *)(triangle + 8) & 0x10000)) {
+                sp64 = sp48[3] - sp38[1];
+                triangle = func_800C5CC0(sp38, sp64 - 1.0f, sp64 - D_801258A8, *(u32 *)(arg0 + 0x84) | mask, sp48);
+                if (triangle != 0) {
+                    func_800C5F40(arg0, sp48, (void *)triangle);
+                } else {
+                    func_800C5F8C(arg0);
+                }
+            } else {
+                func_800C5F40(arg0, sp48, (void *)triangle);
+                if (sp30) {
+                    func_800C5A10(arg0, 3);
+                } else {
+                    func_800C6038(arg0);
+                }
+            }
+        }
+    }
+}
 
 void func_800C6320(u8 *arg0) {
     void func_800EE7F8();
