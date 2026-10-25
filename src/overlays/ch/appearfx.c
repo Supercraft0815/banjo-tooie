@@ -127,7 +127,65 @@ s32 func_80800360_chappearfx(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/func_808003A0_chappearfx.s")
+void func_808003A0_chappearfx(Actor *arg0, u8 *arg1) {
+    typedef struct {
+        u8 pad[0x8];
+        s16 unk8;
+        s16 unkA;
+    } ImageStruct;
+    typedef struct {
+        s16 unk0, unk2, unk4, unk6, unk8, unkA;
+        f32 unkC, unk10;
+    } Particle;
+    typedef struct {
+        s16 count, capacity;
+        u16 flags;
+        s16 unk6, unk8, unkA;
+        u8 alpha, active;
+        s16 image;
+        u8 pad10[12];
+        Particle particles[1];
+    } AppearData;
+    ImageStruct *func_800D674C(s32);
+    void func_800E24D8(s32);
+    void func_800E2530(f32);
+    void func_800E2588(u32);
+    void func_800E2594(u32, void *);
+    s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80800970_chappearfx[][2];
+    f32 size;
+    ImageStruct *image;
+    s32 i;
+    AppearData *data;
+    f32 position[3];
+    f32 scale[3];
+    Particle *particle;
+
+    data = func_80100094(arg0, 0);
+    particle = data->particles;
+    arg0->unk7C_12 = 1;
+    if (data->count != 0) {
+        image = func_800D674C(D_80800970_chappearfx[data->image][0]);
+        func_800E2588((data->flags & 0x10) ? 0 : 1);
+        func_800E2594((u32)arg1, image);
+        func_800E24D8(1);
+        for (i = 0; i < data->count; i++, particle++) {
+            size = arg0->scale * particle->unk10;
+            func_800EE7F8(position, arg0->position);
+            func_800EF1B8(position, particle->unk6, data->unk6);
+            position[1] += particle->unk8;
+            func_800EFA4C(scale, size, size, size);
+            func_800E2530(particle->unkC);
+            func_800E2720(arg1, 0, particle->unk4, position, scale, data->alpha);
+        }
+        func_800E2A14((s32)arg1);
+    }
+}
 
 void func_80800554_chappearfx(Actor *arg0) {
     s32 func_800DC128(s32, s32);
