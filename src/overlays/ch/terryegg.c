@@ -98,7 +98,99 @@ void func_808000A8_chterryegg(Actor *arg0) {
     _subaddiepalette_entrypoint_1(arg0, func_80100094(arg0, 1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/terryegg/func_8080023C_chterryegg.s")
+s32 func_8080023C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chexploder_entrypoint_6(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_12(Actor *, s32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefind_entrypoint_7(Actor *, s32, s32);
+    s32 _subaddiepalette_entrypoint_0(void *, void *, s32);
+    void _subaddiepalette_entrypoint_3(Actor *, void *, s32);
+    s32 _subaddiepalette_entrypoint_4(void *, void *);
+    s32 func_800DA298(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_800DF6BC(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F77E8(s32, f32 *);
+    void func_800F8300(s32, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void *func_80101080(void);
+    s32 func_801015D0(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80102FDC(Actor *, f32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 func_80801188_chterryegg(Actor *, s32);
+    Actor *other;
+    f32 sp40[3];
+    s32 sp3C;
+    f32 *sp2C;
+
+    switch (arg1) {
+        case 0x18:
+            sp2C = arg0->position;
+            func_800EE7F8(sp40, sp2C);
+            func_800EF1B8(sp40, arg0->rotation[1] - 40.0f, 150.0f);
+            func_800F77E8(func_800F54E4(), sp40);
+            func_800F8300(func_800F54E4(), 2, sp2C);
+            func_80102424(arg0, 6);
+            other = func_80106790(arg0->unk3C);
+            func_80102424(other, 2);
+            func_80102FDC(other, func_80801188_chterryegg(other, 1));
+            break;
+        case 0xA0:
+            sp3C = !func_800DA298(0xE5);
+            if (arg2 && sp3C) {
+                if (!func_800DA9E4(0x39, 1)) {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x180B, 0xE, 0, 0x57);
+                } else {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x180C, 0xF, 0, 0x57);
+                }
+                func_80102424(arg0, 2);
+            }
+            return sp3C;
+        case 0x2E:
+            func_80102424(arg0, 1);
+            break;
+        case 0x90:
+            other = func_80106790(func_80101080());
+            _chexploder_entrypoint_6(other, 600.0f, 800.0f);
+            _chexploder_entrypoint_12(other, 10);
+            _chexploder_entrypoint_9(other, 1, 2);
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            func_800DF6BC((s32)((f32 *)arg0->actorData)[4], 255);
+            _subaddiepalette_entrypoint_3(arg0, func_80100094(arg0, 1), arg2);
+            break;
+        case 0x29:
+            _subaddiepalette_entrypoint_4(arg0, func_80100094(arg0, 1));
+            break;
+        case 0x95:
+            if (_glcutDll_entrypoint_19(0x33)) {
+                _subaddiepalette_entrypoint_0(arg0, func_80100094(arg0, 1), 0x7BD);
+                func_80102424(arg0, 3);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                arg0->unk58 = 3.0f;
+                ((f32 *)arg0->actorData)[4] = 255.0f;
+            } else if (func_800DA298(0xE5)) {
+                func_80102424(arg0, 5);
+                _subaddiepalette_entrypoint_0(arg0, func_80100094(arg0, 1), 0x7BE);
+                ((f32 *)arg0->actorData)[4] = 0.0f;
+            } else {
+                _subaddiepalette_entrypoint_0(arg0, func_80100094(arg0, 1), 0x7BD);
+                ((f32 *)arg0->actorData)[4] = 255.0f;
+            }
+            _subaddiefind_entrypoint_7(arg0, 0x3D6, 0x64);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
