@@ -10,7 +10,68 @@ void func_80800000_chpiranha(Actor *arg0) {
     func_800DA3B8(0x6A8, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080003C_chpiranha.s")
+void func_8080003C_chpiranha(Actor *arg0, u32 arg1) {
+    typedef struct {
+        u8 pad[0x8];
+        s16 unk8;
+        s16 unkA;
+    } ImageStruct;
+    ImageStruct *func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    s32 func_800DF350(void);
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    s32 func_800EFA4C(s32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    struct PiranhaFish {
+        f32 position[3];
+        f32 unkC[7];
+        f32 yaw;
+        f32 unk2C;
+    };
+    struct PiranhaState {
+        u8 unk0;
+        u8 unk1;
+        u8 previousState;
+        u8 unk3;
+        f32 position[3];
+        f32 unk10[2];
+        s32 unk18;
+        struct PiranhaFish fish[1];
+    };
+    u8 *model;
+    ImageStruct *image;
+    s32 i;
+    f32 position[3];
+    f32 rotationStorage[3];
+    f32 *rotation;
+    struct PiranhaState *state;
+    struct PiranhaFish *fish;
+
+    state = func_80100094(arg0, 0);
+    model = func_801039E4(arg0->unk0);
+    rotation = rotationStorage;
+    for (i = 0, fish = state->fish; i < arg0->unk6C_0; i++, fish++) {
+        func_800EFA4C(rotation, 0, fish->yaw - 90.0f, 0.0f);
+        func_800EE780(position, arg0->position, fish->position);
+        func_800DF830(2);
+        func_800DF410(0xFF);
+        func_800DE448(position, rotation, 0.075f, NULL, (s32)model);
+        state->unk1 |= func_800DF350();
+        if (i < 10) {
+            image = func_800D674C(0x637);
+            if (image != NULL) {
+                position[1] = state->unk10[0] + 6.0f;
+                func_800DF410(0xC0);
+                func_800DF830(2);
+                func_800DE448(position, rotation, 0.1f, NULL, (s32)image);
+                state->unk1 |= func_800DF350();
+            }
+        }
+    }
+}
 
 void func_80800218_chpiranha(Actor *arg0, u32 arg1) { if (arg0->unk70_10 == 7) { arg0->unk64_16 = 1; } func_80101FDC(arg0, arg1); if (arg1 == 7) { arg0->unk64_16 = 0; } }
 
