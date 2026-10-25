@@ -465,7 +465,52 @@ f32 func_8080145C_mlspline(f32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(f32, s32, s
     return func_800EEF94(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ml/spline/func_80801488_mlspline.s")
+f32 func_80801488_mlspline(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4, f32 arg5, s32 (*arg6)(f32, s32, s32, f32 *)) {
+    f32 mlAbsF(f32);
+    f32 unused0;
+    f32 unused1;
+    f32 scale;
+    f32 endpoints;
+    f32 step;
+    f32 even;
+    f32 odd;
+    f32 result;
+    f32 previous;
+    f32 first;
+    f32 updated;
+    s32 count;
+    s32 i;
+
+    step = arg3 - arg2;
+    count = 1;
+    scale = step * 0.16666666f;
+    first = func_8080145C_mlspline(arg2, arg1, arg0, arg6);
+    endpoints = func_8080145C_mlspline(arg3, arg1, arg0, arg6) + first;
+    even = 0.0f;
+    step *= 0.5f;
+    odd = func_8080145C_mlspline(arg2 + step, arg1, arg0, arg6);
+    result = (2.0f * even + endpoints + 4.0f * odd) * scale;
+    previous = 2.0f * result;
+    if (count < arg4 && mlAbsF(result) > 0.0f && mlAbsF((result - previous) / result) > arg5) {
+        do {
+            count *= 2;
+            even += odd;
+            scale *= 0.5f;
+            odd = 0.0f;
+            step *= 0.5f;
+            previous = result;
+            for (i = 1; i < count * 2; i += 2) {
+                odd += func_8080145C_mlspline(i * step + arg2, arg1, arg0, arg6);
+            }
+            updated = (2 * even + endpoints + 4 * odd) * scale;
+            result = updated;
+        } while (count < arg4 && mlAbsF(updated) > 0.0f && mlAbsF((updated - previous) / updated) > arg5);
+    }
+    if (arg1 >= 4) {
+        result *= (f32)(arg1 - 1);
+    }
+    return result;
+}
 
 /* extern */
 
