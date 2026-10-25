@@ -260,7 +260,79 @@ void suspline_entrypoint_16(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/spline/suspline_entrypoint_17.s")
+void suspline_entrypoint_17(u8 *arg0) {
+    void _mlspline_entrypoint_0(f32, s16, f32 *, f32 *);
+    void _mlspline_entrypoint_1(f32, s16, f32 *, f32 *);
+    void _mlspline_entrypoint_2(f32, s16, f32 *, f32 *);
+    void _mlspline_entrypoint_3(f32, s16, f32 *, f32 *);
+    void _mlspline_entrypoint_4(f32, s32, f32 *, f32 *);
+    void _mlspline_entrypoint_9(f32, s32, f32 *, f32 *);
+    s32 func_800EE7F8();
+    void func_800F0EF0(s32, f32 *);
+    struct SplineOffsets17 {
+        u8 pad[0x68];
+        s16 vectors[4];
+        s16 scalars[4];
+    };
+    f32 progress;
+    f32 *vectors[4];
+    f32 *scalars[4];
+    f32 t;
+    s32 i;
+    s16 indices[4];
+    f32 values[4];
+    f32 point3[3];
+    f32 point2[3];
+    f32 point1[3];
+    f32 point0[3];
+
+    progress = *(f32 *)(arg0 + 0x58);
+    func_800EE7F8((f32 *)(arg0 + 0x48), (f32 *)(arg0 + 0x3C));
+    for (i = 0; i < arg0[0x88]; i++) {
+        vectors[i] = (f32 *)(((struct SplineOffsets17 *)arg0)->vectors[i] + arg0);
+    }
+    for (i = 0; i < arg0[0x89]; i++) {
+        scalars[i] = (f32 *)(((struct SplineOffsets17 *)arg0)->scalars[i] + arg0);
+    }
+    if (*(s16 *)(arg0 + 0x78) >= 4) {
+        t = func_80800224_suspline(arg0, &progress, indices);
+        for (i = 0; i < arg0[0x88]; i++) {
+            func_800EE7F8(point0, vectors[i] + indices[0] * 3);
+            func_800EE7F8(point1, vectors[i] + indices[1] * 3);
+            func_800EE7F8(point2, vectors[i] + indices[2] * 3);
+            func_800EE7F8(point3, vectors[i] + indices[3] * 3);
+            if (func_808000B4_suspline(arg0, i)) {
+                func_800F0EF0(4, point0);
+            }
+            _mlspline_entrypoint_4(t, 4, point0, (f32 *)(arg0 + i * 12));
+        }
+        for (i = 0; i < arg0[0x89]; i++) {
+            values[0] = scalars[i][indices[0]];
+            values[1] = scalars[i][indices[1]];
+            values[2] = scalars[i][indices[2]];
+            values[3] = scalars[i][indices[3]];
+            _mlspline_entrypoint_9(t, 4, values, (f32 *)(arg0 + 0x30 + i * 4));
+        }
+    } else if (*(s16 *)(arg0 + 0x78) == 3) {
+        for (i = 0; i < arg0[0x88]; i++) {
+            _mlspline_entrypoint_2(progress, *(s16 *)(arg0 + 0x78), vectors[i], (f32 *)(arg0 + i * 12));
+        }
+        for (i = 0; i < arg0[0x89]; i++) {
+            _mlspline_entrypoint_3(progress, *(s16 *)(arg0 + 0x78), scalars[i], (f32 *)(arg0 + 0x30 + i * 4));
+        }
+    } else {
+        for (i = 0; i < arg0[0x88]; i++) {
+            _mlspline_entrypoint_0(progress, *(s16 *)(arg0 + 0x78), vectors[i], (f32 *)(arg0 + i * 12));
+        }
+        for (i = 0; i < arg0[0x89]; i++) {
+            _mlspline_entrypoint_1(progress, *(s16 *)(arg0 + 0x78), scalars[i], (f32 *)(arg0 + 0x30 + i * 4));
+        }
+    }
+    if (progress > 0.9999f) {
+        progress = 0.9999f;
+    }
+    *(f32 *)(arg0 + 0x58) = progress;
+}
 
 void func_80800C8C_suspline(u8 *arg0) {
     s32 var_v0;
