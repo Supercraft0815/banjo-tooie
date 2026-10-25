@@ -17,7 +17,99 @@ void func_8080000C_chnewshovel(Actor *arg0) {
     func_808007F8_chnewshovel(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newshovel/func_8080004C_chnewshovel.s")
+void func_8080004C_chnewshovel(Actor *arg0) {
+    typedef struct {
+        u32 preceding[30];
+        u32 precedingFlags : 29;
+        u32 inactive : 1;
+        u32 remainingFlags : 2;
+    } ShovelFlags;
+    typedef struct {
+        f32 unk18[3];
+        f32 unk24;
+        f32 velocity[3];
+        f32 acceleration;
+    } ShovelMotion;
+    typedef struct {
+        s16 unk0[6];
+        s16 state;
+    } ShovelState;
+    void *func_80100094(Actor *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _suexpression_entrypoint_20();
+    void func_800F5A00(s32, f32 *);
+    s32 func_80101DDC(Actor *);
+    s32 func_8010D290(s32);
+    void func_80800570_chnewshovel(s32);
+    s32 func_80800610_chnewshovel(void *);
+    s32 func_808006B0_chnewshovel(Actor *, s32);
+    s32 func_80800930_chnewshovel(Actor *);
+    s32 func_80800B5C_chnewshovel(s32);
+    s32 func_80800BC0_chnewshovel(Actor *);
+    int func_80800C58_chnewshovel(Actor *);
+    s32 sp24;
+    ShovelState *sp20;
+
+    sp20 = func_80100094(arg0, 0);
+    if (!((ShovelFlags *)arg0)->inactive) {
+        _suexpression_entrypoint_10((u32 *)_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
+        sp24 = func_80800930_chnewshovel(arg0);
+        func_80800570_chnewshovel((s32)arg0);
+        switch (arg0->unk70_10) {
+        case 1:
+            if (func_80800610_chnewshovel(arg0)) {
+                func_808006B0_chnewshovel(arg0, 2);
+            }
+            break;
+        case 2:
+            if (func_80101DDC(arg0)) {
+                func_808006B0_chnewshovel(arg0, func_80800610_chnewshovel(arg0) ? 3 : 1);
+            }
+            break;
+        case 3:
+            func_80800BC0_chnewshovel(arg0);
+            if (func_80800610_chnewshovel(arg0)) {
+                func_800F5A00(func_8010D290(0x10000), ((ShovelMotion *)arg0->actorData)->unk18);
+                if (sp20->state == 2) {
+                    func_808006B0_chnewshovel(arg0, func_80800C58_chnewshovel(arg0) ? 4 : 3);
+                }
+            } else if (sp20->state == 2) {
+                func_808006B0_chnewshovel(arg0, 6);
+            }
+            break;
+        case 4:
+            if (func_80800610_chnewshovel(arg0)) {
+                func_800F5A00(func_8010D290(0x10000), ((ShovelMotion *)arg0->actorData)->unk18);
+            }
+            if (sp24 & 8) {
+                ((ShovelMotion *)arg0->actorData)->unk24 = 0.0f;
+            }
+            if (sp20->state == 2) {
+                func_808006B0_chnewshovel(arg0, 5);
+            }
+            break;
+        case 5:
+            if (func_80101DDC(arg0)) {
+                func_808006B0_chnewshovel(arg0, func_80800610_chnewshovel(arg0) ? 3 : (func_80800B5C_chnewshovel((s32)arg0) ? 1 : 6));
+            }
+            break;
+        case 6:
+            if (func_80800610_chnewshovel(arg0)) {
+                if (sp20->state == 2) {
+                    func_808006B0_chnewshovel(arg0, 3);
+                }
+            } else {
+                if (func_80800B5C_chnewshovel((s32)arg0)) {
+                    ((ShovelMotion *)arg0->actorData)->unk24 *= 0.9f;
+                }
+                if (sp20->state == 2) {
+                    func_808006B0_chnewshovel(arg0, func_80800B5C_chnewshovel((s32)arg0) ? 1 : 6);
+                }
+            }
+            break;
+        }
+    }
+}
 
 void func_80800310_chnewshovel(Actor* arg0) 
 {
