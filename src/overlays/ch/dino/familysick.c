@@ -230,7 +230,80 @@ void func_808005F8_chdinofamilysick(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_80800768_chdinofamilysick.s")
+void func_80800768_chdinofamilysick(Actor *arg0) {
+    s32 _chdinofamilyfx_entrypoint_0(u8 *);
+    void _glcutDll_entrypoint_24(u32, u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void func_800C8E84(s32, u32 *);
+    void func_800DA524(s32);
+    int func_800F3214(void *, void *, void *, f32);
+    void func_800FFA88(Unk80132ED0 *);
+    s32 func_80101180(s32, s32, s32);
+    f32 func_80101F24(Actor *);
+    s32 func_80105998(Actor *, f32);
+    s32 func_80105A5C(Actor *);
+    void func_80800A1C_chdinofamilysick(Actor *);
+    struct StateFlags {
+        u8 pad0[0x74];
+        u32 pad74_4 : 28;
+        u32 unk74_0 : 4;
+    };
+    u32 rgb[3];
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (_subaddiedialog_entrypoint_4(arg0->position, 0x258, 0)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17C8, 0xF, arg0->position, 0x39);
+        }
+        break;
+    case 2: {
+        typedef struct { u32 rgb[3]; } Color;
+        extern Color D_80800F30_chdinofamilysick;
+        extern Color D_80800F3C_chdinofamilysick;
+        Color start = D_80800F30_chdinofamilysick;
+        Color end = D_80800F3C_chdinofamilysick;
+        func_800F3214(rgb, &start, &end, func_80101F24(arg0));
+        func_800C8E84(*(s32 *)&arg0->unk54, rgb);
+        break;
+    }
+    case 3:
+        if (_subaddiedialog_entrypoint_4(arg0->position, 0x258, 0)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17C9, 0xF, arg0->position, 0x39);
+        }
+        _sudeflect_entrypoint_1(arg0->position, arg0->scale * 235.0f, 0.0f, arg0->scale * 179.0f, 0x1E);
+        break;
+    case 4:
+        if (func_80105A5C(arg0)) {
+            _glcutDll_entrypoint_24(0x118, -1, 0x38);
+            func_800FFA88(arg0->unk0);
+        } else {
+            if (func_80105998(arg0, 0.15f)) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x180D, 0xF, arg0->position, 0x39);
+            }
+            func_80800A1C_chdinofamilysick(arg0);
+        }
+        break;
+    case 5:
+        if (func_80105A5C(arg0)) {
+            func_800DA524(0x189);
+            func_80101180(0x290, 0x33, 0);
+            func_80102424(arg0, 6);
+            ((struct StateFlags *)arg0)->unk74_0 = 0;
+        } else {
+            func_80800A1C_chdinofamilysick(arg0);
+        }
+        break;
+    case 6:
+        if (_subaddiedialog_entrypoint_4(arg0->position, 0x258, 0)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17CA, 0xF, arg0->position, 0x39);
+        }
+        break;
+    }
+    _sudeflect_entrypoint_1(arg0->position, arg0->scale * 235.0f, 0.0f, arg0->scale * 179.0f, 0x1E);
+    _chdinofamilyfx_entrypoint_0((u8 *)arg0);
+}
 
 void func_80800A1C_chdinofamilysick(Actor *arg0) {
     f32 func_800F3780(f32, u8 *, s16);
