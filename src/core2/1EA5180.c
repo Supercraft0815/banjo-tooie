@@ -242,7 +242,76 @@ s32 func_800CBDD4(s32 positionAddress, s32 arg1, s32 arg2) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC078.s")
+s32 func_800CC078(s32 positionAddress) {
+    f32 func_800EFC7C(void *, void *);
+    struct Entry {
+        s16 index;
+        u8 flags;
+        u8 pad;
+        f32 position[3];
+        f32 radius;
+        s32 enabledIndex;
+        s32 tail;
+    };
+    struct Item {
+        f32 position[3];
+        s16 pad;
+        s16 extent;
+        f32 radius;
+        u32 unused : 12;
+        u32 flags : 3;
+        u32 rest : 17;
+    };
+    struct Table {
+        s32 pad[4];
+        s32 count;
+        struct Entry *entries;
+    };
+    struct Entry *entry;
+    struct Item *item;
+    struct Item *end;
+    f32 y, extent, positionY;
+    f32 *arg0 = (f32 *)positionAddress;
+
+    for (entry = ((struct Table *)&D_8012AE80)->entries;
+         entry < ((struct Table *)&D_8012AE80)->count + ((struct Table *)&D_8012AE80)->entries;
+         entry++) {
+        if (func_800EFC7C(entry->position, arg0) < entry->radius) {
+            end = (struct Item *)func_800CB910((s16 *)entry);
+            for (item = (struct Item *)func_800CB8F0((s16 *)entry); item < end; item++) {
+                switch (item->flags) {
+                    case 0:
+                        if (func_800EFC7C(item, arg0) < item->radius) {
+                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                        }
+                        break;
+                    case 1:
+                        y = item->position[1];
+                        extent = item->extent;
+                        positionY = arg0[1];
+                        if (y - extent < positionY && positionY < y + extent &&
+                            func_800EFC7C(item, arg0) < item->radius) {
+                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                        }
+                        break;
+                    case 2:
+                        if (item->position[1] - item->extent < arg0[1] &&
+                            func_800EFC7C(item, arg0) < item->radius) {
+                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                        }
+                        break;
+                    case 3:
+                        if (arg0[1] < item->position[1] + item->extent &&
+                            func_800EFC7C(item, arg0) < item->radius) {
+                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                        }
+                        break;
+                }
+            }
+        }
+    }
+    return -1;
+}
 
 s32 func_800CC338(f32 *arg0, s32 arg1, s32 arg2) {
     s32 func_800CC4D4(f32 *, s32);
