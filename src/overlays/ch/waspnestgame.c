@@ -481,7 +481,98 @@ s32 func_80800EB8_chwaspnestgame(void *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80800F98_chwaspnestgame.s")
+void func_80800F98_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void *data;
+    s32 dialog;
+    s32 flags;
+    s32 map;
+    s32 exit;
+
+    data = func_80100094(arg0, 0);
+    flags = 4;
+    dialog = 0;
+    switch (arg1) {
+        case 0x1405:
+        case 0x1406:
+        case 0x1407:
+            _susubgame_entrypoint_5(arg0, (u8 *)data + 0x24, 5, 1, 0);
+            dialog = 0x1408;
+            flags = 0x46;
+            break;
+        case 0x1408:
+            if (arg2 == 1) {
+                dialog = 0x1409;
+                _susubgame_entrypoint_6(arg0, (u8 *)data + 0x24, 0xC, 0x20, 0);
+            } else {
+                dialog = 0xCEC;
+                func_80101180(0x1E4, 0x45, 0);
+            }
+            break;
+        case 0x1409:
+            func_80101180(0x1E4, 0x45, 0);
+            _susubgame_entrypoint_5(arg0, (u8 *)data + 0x24, 5, 1, 0);
+        case 0x1449:
+        case 0x144A:
+        case 0x144B:
+        case 0x144D:
+            dialog = 0xCEC;
+            break;
+        case 0xCEC:
+            func_80800018_chwaspnestgame(arg0, 2);
+            break;
+        case 0xCEB:
+            if (func_800D395C() != 0) {
+                if (arg2 == 1) {
+                    _gcfrontend_entrypoint_11();
+                } else {
+                    _gcfrontend_entrypoint_10();
+                }
+            } else {
+                if (arg2 == 1) {
+                    map = 0x139;
+                    exit = 1;
+                } else {
+                    map = 0x136;
+                    exit = 0x13;
+                }
+                func_80090708(0);
+                func_80800018_chwaspnestgame(arg0, 4);
+                _gcgoto_entrypoint_1(map, exit);
+            }
+            break;
+        case 0x140A:
+            func_800D1000(0x18, 4, arg0->actorData, 1, 0);
+            _susubgame_entrypoint_6(arg0, (u8 *)data + 0x24, 0, 0x20, 0);
+            break;
+        case 0x140B:
+        case 0x140C:
+            func_800D1000(0x4B, 1, NULL, 1, 0);
+            _susubgame_entrypoint_6(arg0, (u8 *)data + 0x24, 4, 0x20, 0);
+            break;
+        case 0x140D:
+        case 0x140E:
+        case 0x140F:
+        case 0x1410:
+        case 0x144C:
+        case 0x144E:
+        case 0x144F:
+        case 0x1450:
+            dialog = 0xCEB;
+            flags = 0x46;
+            break;
+    }
+    if (dialog != 0) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, dialog, flags, NULL, 0x99);
+    }
+}
 
 /* extern */
 
