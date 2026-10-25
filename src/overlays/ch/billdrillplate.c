@@ -165,7 +165,101 @@ void func_80800358_chbilldrillplate(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/billdrillplate/func_80800408_chbilldrillplate.s")
+void func_80800408_chbilldrillplate(Actor *arg0) {
+    void _subaddieDll_entrypoint_7(Actor *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddielink_entrypoint_2(u8 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void func_80018820(s32, f32, f32);
+    s32 func_800B53A4(s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    f32 func_800DC178(f32, f32);
+    s32 func_800E15CC(s32, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103014(u8 *);
+    void func_80103110(void *, s32);
+    void func_80800B9C_chbilldrillplate(Actor *);
+    s32 func_80800C98_chbilldrillplate(Actor *volatile, f32 *, f32);
+    extern s32 D_808011C4_chbilldrillplate[];
+    extern s32 D_808011D4_chbilldrillplate[];
+    extern s32 D_808011E0_chbilldrillplate[];
+    extern s32 D_808011F0_chbilldrillplate[];
+    f32 *link;
+    f32 height;
+    f32 dt;
+    f32 vec[3];
+    s32 i;
+    s32 particles;
+    Actor *other;
+
+    link = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 1:
+        break;
+    case 2:
+        if (!arg0->unk64_20) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808011C4_chbilldrillplate);
+            arg0->unk64_20 = 1;
+        }
+        _subaddieDll_entrypoint_7(arg0, 8);
+        if (_subaddielink_entrypoint_2(link)) {
+            _subaddieDll_entrypoint_7(_subaddielink_entrypoint_4(link), 8);
+        }
+        if (func_800D9078(&arg0->unk58)) {
+            func_80800B9C_chbilldrillplate(arg0);
+            func_80101FDC(arg0, 4);
+        }
+        break;
+    case 3:
+        if (!arg0->unk64_20) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808011C4_chbilldrillplate);
+            arg0->unk64_20 = 1;
+        }
+        if (func_800D9078((f32 *)&arg0->actorData[6])) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808011D4_chbilldrillplate);
+        }
+        _subaddieDll_entrypoint_7(arg0, 8);
+        if (_subaddielink_entrypoint_2(link)) {
+            _subaddieDll_entrypoint_7(_subaddielink_entrypoint_4(link), 8);
+        }
+        if (func_800D9078(&arg0->unk58)) {
+            func_80101FDC(arg0, 1);
+            func_80103110(arg0, 0);
+        }
+        break;
+    case 4:
+        dt = func_800D8FF8();
+        arg0->position[1] -= *(f32 *)&arg0->actorData[7] * dt;
+        *(f32 *)&arg0->actorData[7] += 2500.0f * dt;
+        func_80800C98_chbilldrillplate(arg0, &height, *(f32 *)&arg0->actorData[7] * dt);
+        if (arg0->position[1] < height) {
+            arg0->position[1] = height;
+            *(f32 *)&arg0->actorData[7] = 600.0f;
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808011E0_chbilldrillplate);
+            particles = func_800B53A4(8);
+            for (i = 0; i != 8; i++) {
+                func_800EE7F8(vec, arg0->position);
+                func_800EF1B8(vec, (f32)i * 45.0f, func_800DC178(100.0f, 120.0f));
+                func_800BABB8(particles, vec, arg0->position, 1.5f, D_808011F0_chbilldrillplate);
+            }
+            func_800E15CC(0, 30.0f, 0.9f);
+            func_80018820(0, 2.0f, 0.3f);
+            func_80101FDC(arg0, 5);
+            func_80103110(arg0, 0);
+        }
+        if (_subaddielink_entrypoint_2(link)) {
+            other = _subaddielink_entrypoint_4(link);
+            other->position[1] = link[2] + arg0->position[1];
+            func_80103014(other);
+        }
+        break;
+    }
+}
 
 s32 func_80800738_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2)
 {
