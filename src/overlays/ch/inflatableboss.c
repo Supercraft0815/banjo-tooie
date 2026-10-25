@@ -586,7 +586,92 @@ void func_80801418_chinflatableboss(Actor *arg0, u8 *arg1) {
     arg0->unk64_20 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80801554_chinflatableboss.s")
+void func_80801554_chinflatableboss(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 pad0[0x1C];
+        f32 position1[3];
+        f32 position2[3];
+        f32 position3[3];
+        u8 pad40[0x3F4];
+        void *effect;
+        s32 pad438;
+        void *effects[12];
+    } BossData;
+    typedef struct {
+        u8 pad0[0x10];
+        f32 scale;
+    } BossActorData;
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    s32 func_800AE630(u8 *, u8 *, s32, f32 *);
+    u8 *func_800B27E0(u8 *);
+    void func_800BC358(void *, s32, s32);
+    struct ImageStruct;
+    struct ImageStruct *func_800D674C(s32);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, u8 *);
+    void func_800DF410(s32);
+    void func_800DF830(s32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    void func_800EFD24(f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_801017D0(Actor *);
+    s32 func_80101808(void *, s32 *);
+    void *func_801040A8(Actor *);
+    OSThread *func_80104130(void);
+    BossData *data;
+    s32 i;
+    u8 *model;
+    void *transforms;
+    f32 rotation[3];
+    f32 position[3];
+    u8 *mesh;
+    void *image;
+
+    data = func_80100094(arg0, 0);
+    model = func_80101808(arg0, func_801017D0);
+    if (arg0->unk7C_12) {
+        transforms = func_80104130();
+        func_800DBEFC(transforms, 4, data->position1);
+        func_800DBEFC(transforms, 5, data->position2);
+        func_800DBEFC(transforms, 6, data->position3);
+    }
+    if (model && (s32)arg0->unk70_10 < 16) {
+        mesh = func_800B27E0(model);
+        image = func_800D674C(0x637);
+        func_800EFD24(rotation);
+        if (func_800AE630(func_801040A8(arg0), mesh, 12, position)) {
+            func_800EF334(position, ((BossActorData *)arg0->actorData)->scale);
+            func_800EF5A0(position, arg0->rotation, position[0], position[1], position[2]);
+            func_800EF04C(position, arg0->position);
+            position[1] = arg0->position[1];
+            func_800DF410(_subaddiefade_entrypoint_0(arg0));
+            func_800DF830(3);
+            func_800DE448(position, rotation, ((BossActorData *)arg0->actorData)->scale * 9.0f, 0, image);
+        }
+        if (func_800AE630(func_801040A8(arg0), mesh, 26, position)) {
+            func_800EF334(position, ((BossActorData *)arg0->actorData)->scale);
+            func_800EF5A0(position, arg0->rotation, position[0], position[1], position[2]);
+            func_800EF04C(position, arg0->position);
+            position[1] = arg0->position[1];
+            func_800DF410(_subaddiefade_entrypoint_0(arg0));
+            func_800DF830(3);
+            func_800DE448(position, rotation, ((BossActorData *)arg0->actorData)->scale * 9.0f, 0, image);
+        }
+        func_800DF410(_subaddiefade_entrypoint_0(arg0));
+        func_800DF830(3);
+        func_800DE448(arg0->position, rotation, ((BossActorData *)arg0->actorData)->scale * 1.4f * 9.0f, 0, image);
+    }
+    for (i = 0; i < 12; i++) {
+        if (data->effects[i]) {
+            func_800BC358(data->effects[i], arg1, 0);
+        }
+    }
+    if (data->effect) {
+        func_800BC358(data->effect, arg1, 0);
+    }
+}
 
 void func_8080183C_chinflatableboss(Actor *arg0) {
     typedef struct {
