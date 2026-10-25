@@ -200,7 +200,81 @@ void func_80800408_chalienkids(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80800454_chalienkids.s")
+void func_80800454_chalienkids(Actor *arg0) {
+    void _capod_entrypoint_14(void);
+    s32 _plsu_entrypoint_3(Unk80132ED0 *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 func_800D9078(f32 *);
+    s32 func_800DA298(s32);
+    u32 func_800F54E4(void);
+    void func_800F7BC8(s32, s32, Unk80132ED0 *);
+    void func_800F82D4(s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_8010A624(Actor *);
+    s32 func_80801158_chalienkids(Actor *, s32);
+    void func_80801520_chalienkids(void *, s32);
+    void func_8080158C_chalienkids(Actor *);
+    void func_808016D4_chalienkids(Actor *);
+    void func_8080184C_chalienkids(s32, s32 *, s32);
+    void func_80801884_chalienkids(Actor *);
+    void func_808019C8_chalienkids(Actor *);
+    extern s32 D_80801E98_chalienkids[];
+    extern s32 D_80801EA8_chalienkids[];
+    extern s32 D_808021FC_chalienkids;
+    s32 player;
+
+    func_808019C8_chalienkids(arg0);
+    switch (arg0->unk70_10) {
+        case 2:
+            func_80801884_chalienkids(arg0);
+            break;
+        case 3:
+            if (func_80801158_chalienkids(arg0, 0x9E5)) {
+                func_80102424(arg0, 9);
+                _subaddieDll_entrypoint_4(arg0, 0);
+            }
+            break;
+        case 9:
+            if (!_subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_808021FC_chalienkids, D_80801E98_chalienkids, 2)) {
+                player = _plsu_entrypoint_3(arg0->unk0);
+                if (player != -1) {
+                    if (func_800DA298(0x371)) {
+                        func_800F7BC8(player, 0x53, arg0->unk0);
+                    }
+                }
+            }
+            break;
+        case 11:
+            if (func_800D9078(&arg0->unk58)) {
+                func_800F82D4(func_800F54E4(), 0);
+                func_80102424(arg0, 14);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1286, 6, arg0->position, 0xB7);
+                func_8010A624(arg0);
+            }
+            break;
+        case 12:
+            if (func_80801158_chalienkids(arg0, 0x9E6)) {
+                func_80801520_chalienkids(arg0, 0x374);
+            }
+            break;
+        case 13:
+            if (func_80801158_chalienkids(arg0, 0x9E6)) {
+                _capod_entrypoint_14();
+                _subaddieDll_entrypoint_4(arg0, 0);
+                func_80102424(arg0, 16);
+                func_80101180(0x45A, 0x31, arg0->unk6C_9);
+            }
+            break;
+        case 16:
+            func_8080184C_chalienkids((s32)arg0, D_80801EA8_chalienkids, 3);
+            break;
+    }
+    func_808016D4_chalienkids(arg0);
+    func_8080158C_chalienkids(arg0);
+}
 
 typedef union {
     Actor actor;
