@@ -354,7 +354,60 @@ void func_80800990_chdippy(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801490_chdippy, 0.15f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dippy/func_808009D8_chdippy.s")
+s32 func_808009D8_chdippy(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
+    s32 func_800B53A4(s32);
+    void func_800BA1D0(s32, f32 *, f32 *, s32);
+    void func_800BA4D0(s32, s32);
+    void func_800BA544(s32 *, s32);
+    void func_800BA5A8(s16 *, s32);
+    void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, s32, s32, f32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_80101F24(Actor *);
+    void _chdippy_entrypoint_2(void);
+    extern s32 D_808014B0_chdippy;
+    extern s32 D_808014D8_chdippy;
+    extern u32 D_808016A4_chdippy, D_808016B4_chdippy;
+    extern u32 D_808016C4_chdippy, D_808016DC_chdippy;
+    extern u8 D_808016E8_chdippy[][2];
+    f32 sp8C[3];
+    f32 sp88;
+    f32 sp7C[3];
+    s32 sp78;
+    f32 sp48[4][3];
+    s32 i;
+    s32 emitter;
+
+    sp88 = func_80101F24(arg0);
+    _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp8C);
+    _subaddieaudioquick_entrypoint_4(arg0, sp8C, &D_808016A4_chdippy, &D_808016C4_chdippy);
+    _subaddieaudioquick_entrypoint_4(arg0, sp8C, &D_808016B4_chdippy, &D_808016DC_chdippy);
+    if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp7C) && sp7C[1] < 1500.0f) {
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 5, sp8C);
+        sp8C[1] = 1500.0f;
+        func_800BBCB8(sp8C, NULL, 1.5f, 1, &D_808014B0_chdippy);
+        _subaddieskeleton_entrypoint_2(arg0->unk0, 7, sp8C);
+        sp8C[1] = 1500.0f;
+        func_800BBCB8(sp8C, NULL, 1.5f, 1, &D_808014B0_chdippy);
+    }
+    if (sp88 > 0.3f && arg0->unk7C_12 && sp7C[1] > 1500.0f) {
+        sp78 = func_800DC128(0, 3);
+        for (i = 0; i < 4; i++) {
+            _subaddieskeleton_entrypoint_2(arg0->unk0, i + 5, sp48[i]);
+        }
+        emitter = func_800B53A4(1);
+        func_800BA994((u8 *)emitter, -45, (s32)(arg0->rotation[1] - 25.0f), 25, -25, (s32)(arg0->rotation[1] + 25.0f), 75);
+        func_800BA5A8((s16 *)emitter, 0x1200);
+        func_800BABB8(emitter, sp7C, NULL, 1.0f, &D_808014D8_chdippy);
+        func_800BA4D0(emitter, 1500);
+        func_800BA544((s32 *)emitter, (s32)_chdippy_entrypoint_2);
+        func_800BA1D0(emitter, sp48[D_808016E8_chdippy[sp78][0]], sp48[D_808016E8_chdippy[sp78][1]], 1);
+    }
+}
 
 void chdippy_entrypoint_2(s32 arg0, f32 *arg1) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
