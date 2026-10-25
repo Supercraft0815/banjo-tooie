@@ -41,7 +41,66 @@ void func_808002E8_chjollyroger(s32 arg0) {
     _subaddieitem_entrypoint_1(func_80100094(arg0, 0), 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800370_chjollyroger.s")
+s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800F54E4();
+    s32 func_800F7F98(s32, u32);
+    void func_80102424(Actor *, s32);
+    void func_80800624_chjollyroger(Actor *, s32, s32);
+    s32 func_80800DD8_chjollyroger(void *, s32, s32);
+    void func_80800E30_chjollyroger(void *);
+    void func_80800E6C_chjollyroger(Actor *, s32, s32);
+    extern u32 D_808012A8_chjollyroger;
+    s32 dialog;
+    s32 expression;
+    s32 value;
+
+    switch (arg1) {
+    case 0xB:
+        switch (arg2) {
+        case 1:
+            func_800F7F98(func_800F54E4(), 0);
+            if (func_800DA298(0xC2) == 0 && func_800DA298(0x41) == 0) {
+                func_80800E6C_chjollyroger(arg0, 3, 1);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1002, 0x4E, arg0->position, 0x55);
+                return 4;
+            }
+            func_80800E30_chjollyroger(arg0);
+            func_80102424(arg0, 3);
+            return 4;
+        case 3:
+            dialog = func_800DA298(0xC0) ? 0x1043 : 0x1042;
+            _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0xE, arg0->position, 0x55);
+            break;
+        }
+        return 3;
+    case 0x2E:
+        func_80800624_chjollyroger(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_808012A8_chjollyroger, arg0->scale);
+        break;
+    case 0x57:
+        return func_80800DD8_chjollyroger(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+    case 0x95:
+        expression = _suexpression_entrypoint_7(arg0, 1, 0x55);
+        _suexpression_entrypoint_12(expression, 0x42700000, 0x41A00000);
+        _suexpression_entrypoint_17(expression, 1000);
+        break;
+    case 0x6E:
+        value = arg2;
+        arg0->unk64_16 = value == 0;
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_8080056C_chjollyroger(void *arg0) {
     extern u32 D_80801430_chjollyroger;
