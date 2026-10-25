@@ -218,7 +218,95 @@ s32 func_808008EC_chdodgemcontrol(Actor *arg0) { switch (arg0->unk79_4) { case 0
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80800938_chdodgemcontrol.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80800CA0_chdodgemcontrol.s")
+void func_80800CA0_chdodgemcontrol(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_808019C4_chdodgemcontrol(Actor *, s32);
+    s32 func_800D2054(s32, s32, s32);
+    void func_800FC6B0(u32);
+    s32 _sumultiscore_entrypoint_2(s32 *, s32 *, s32 *, s32, s32);
+    struct DodgemData {
+        u8 pad0[0x10];
+        s32 scores[4];
+        s32 winners[4];
+        u8 pad30[0x91];
+        u8 winner;
+        u8 count;
+    } *data;
+    s16 text;
+    s32 ranks[4];
+    s32 results[4];
+    s32 winner;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk70_10 = 4;
+    func_808019C4_chdodgemcontrol(arg0, 1);
+    if (arg0->unk64_19) {
+        switch (arg0->unk79_4) {
+        case 0:
+            text = func_800D2054(0, 0x8A, data->scores[0]) == 1 ? 0x10EC : 0x10ED;
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            break;
+        case 1:
+            text = func_800D2054(0, 0x8B, data->scores[0]) == 1 ? 0x10EE : 0x10EF;
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            break;
+        case 2:
+            text = func_800D2054(0, 0x8C, data->scores[0]) == 1 ? 0x10F0 : 0x10F1;
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            break;
+        }
+    } else {
+        switch (arg0->unk79_4) {
+        case 0:
+            if (data->scores[0] >= func_808008EC_chdodgemcontrol(arg0)) {
+                text = 0x10D4;
+                func_800D2054(0, 0x8A, data->scores[0]);
+            } else {
+                text = 0x10D7;
+            }
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            break;
+        case 1:
+            if (data->scores[0] >= func_808008EC_chdodgemcontrol(arg0)) {
+                text = 0x10D5;
+                func_800D2054(0, 0x8B, data->scores[0]);
+            } else {
+                text = 0x10D7;
+            }
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            break;
+        case 2:
+            if (data->scores[0] >= func_808008EC_chdodgemcontrol(arg0)) {
+                text = 0x10D6;
+                func_800D2054(0, 0x8C, data->scores[0]);
+            } else {
+                text = 0x10D7;
+            }
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            break;
+        case 3:
+            winner = _sumultiscore_entrypoint_2(data->scores, ranks, results, 0, data->count);
+            for (i = 0; i < data->count; i++) {
+                if (ranks[i] == 1) {
+                    data->winners[i] = 1;
+                } else {
+                    data->winners[i] = 0;
+                }
+            }
+            if (winner != 0) {
+                text = 0x10D9;
+                data->winner = winner;
+                func_800FC6B0(0x16);
+            } else {
+                text = 0x10DA;
+                func_800FC6B0(0x17);
+            }
+            func_8080061C_chdodgemcontrol(arg0, text, 0);
+            break;
+        }
+    }
+}
 
 void func_80800FC4_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
