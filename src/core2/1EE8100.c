@@ -89,7 +89,84 @@ void func_8010EACC(void *arg0, s32 arg1, f32 arg2) {
     mlMtxPop();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8100/func_8010EBE4.s")
+void func_8010EBE4(s32 arg0, s32 arg1, s32 arg2) {
+    u32 func_800B2344(void *);
+    f32 sqrtf(f32);
+    extern u8 D_80137080[];
+    extern s32 D_8013709C;
+    u32 end[2];
+    s32 *light;
+    s32 x, y, z, squared, distance, inner, scale, attenuation;
+    u32 limit;
+    s32 red;
+    s32 vertex;
+    s32 green, blue;
+    s32 color;
+    s32 baseRed, baseGreen, baseBlue;
+
+    limit = func_800B2344((void *)arg0) * 10 + (u32)arg2;
+    vertex = arg0 + 24;
+    end[0] = limit;
+    if (D_80137080[17] != 0) {
+        if ((u32)arg2 < limit) {
+            do {
+                if (!(*(u16 *)(vertex + 6) & 0x1000)) {
+                    light = &D_8013709C;
+                    red = *(s32 *)(D_80137080 + 4);
+                    green = *(s32 *)(D_80137080 + 8);
+                    blue = *(s32 *)(D_80137080 + 12);
+                    if ((u32)light < *(u32 *)(D_80137080 + 20)) {
+                        do {
+                            x = light[0] - *(s16 *)(vertex + 0);
+                            y = light[1] - *(s16 *)(vertex + 2);
+                            z = light[2] - *(s16 *)(vertex + 4);
+                            squared = x*x + y*y + z*z;
+                            if (squared < light[4]) {
+                                distance = (s32)(sqrtf((f32)squared) * 256.0f);
+                                scale = 0x10000;
+                                inner = light[3];
+                                if (inner < distance) {
+                                    attenuation = 0x4000 - ((light[5] * (distance - inner)) >> 8);
+                                    scale = (attenuation << 16) >> 14;
+                                }
+                                red += (light[6] * scale) >> 16;
+                                green += (light[7] * scale) >> 16;
+                                blue += (light[8] * scale) >> 16;
+                            }
+                            light += 10;
+                        } while ((u32)light < *(u32 *)(D_80137080 + 20));
+                    }
+                    color = (*(u8 *)(arg2 + 6) * red) >> 8;
+                    if (color >= 256) color = 255;
+                    *(u8 *)(vertex + 12) = color;
+                    color = (*(u8 *)(arg2 + 7) * green) >> 8;
+                    if (color >= 256) color = 255;
+                    *(u8 *)(vertex + 13) = color;
+                    color = (*(u8 *)(arg2 + 8) * blue) >> 8;
+                    if (color >= 256) color = 255;
+                    *(u8 *)(vertex + 14) = color;
+                }
+                arg2 += 10;
+                vertex += 16;
+            } while ((u32)arg2 < end[0]);
+        }
+    } else {
+        baseRed = *(s32 *)(D_80137080 + 4);
+        baseGreen = *(s32 *)(D_80137080 + 8);
+        baseBlue = *(s32 *)(D_80137080 + 12);
+        if ((u32)arg2 < limit) {
+        do {
+            if (!(*(u16 *)(vertex + 6) & 0x1000)) {
+                *(u8 *)(vertex + 12) = (*(u8 *)(arg2 + 6) * baseRed) >> 8;
+                *(u8 *)(vertex + 13) = (*(u8 *)(arg2 + 7) * baseGreen) >> 8;
+                *(u8 *)(vertex + 14) = (*(u8 *)(arg2 + 8) * baseBlue) >> 8;
+            }
+            arg2 += 10;
+            vertex += 16;
+        } while ((u32)arg2 < end[0]);
+    }
+    }
+}
 
 void func_8010EECC(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     struct state { s32 *actor; s32 data[3]; s8 value; u8 pad[3]; s32 *start; };
