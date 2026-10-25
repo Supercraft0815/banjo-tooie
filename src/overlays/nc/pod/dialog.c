@@ -339,6 +339,8 @@ s32 func_80801504_ncpoddialog(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808015CC_ncpoddialog.s")
 
+void func_808023B4_ncpoddialog(u8 *, s16 *);
+
 void func_808017F4_ncpoddialog(u8 *arg0, s16 *arg1) {
     f32 func_800136E4(f32);
     f32 func_800F1828(f32 *, f32 *);
@@ -618,7 +620,76 @@ void func_8080230C_ncpoddialog(u8 *arg0, void *arg1, void *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808023B4_ncpoddialog.s")
+void func_808023B4_ncpoddialog(u8 *arg0, s16 *arg1) {
+    s32 _cadbfunc_entrypoint_0(u8 *);
+    s32 _cadbfunc_entrypoint_2(f32 *);
+    s32 func_800A5800(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    s32 side = 0;
+    f32 sp68[3];
+    f32 sp5C[3];
+    f32 sp50[3];
+    f32 sp44[3];
+    f32 sp38[3];
+
+    if (arg0[0x214] == 1) {
+        side = 1;
+    }
+    switch (arg0[0x211]) {
+    case 0:
+    case 1:
+        func_800EE7F8((f32 *)(arg0 + 0xC4), (f32 *)(arg0 + 0x158));
+        func_800EEC30((f32 *)(arg0 + 0x148), -*(f32 *)(arg0 + 0x164), *(f32 *)(arg0 + 0x168), 500.0f);
+        func_800EF04C((f32 *)(arg0 + 0x148), (f32 *)(arg0 + 0x158));
+        break;
+    case 4:
+        func_80801F88_ncpoddialog(arg0, side ? -90 : 90);
+        break;
+    case 2:
+        func_80801E78_ncpoddialog(arg0, 0, 1 - side);
+        break;
+    case 6:
+        func_80801E78_ncpoddialog(arg0, 1, side);
+        break;
+    case 5:
+        func_80801DB8_ncpoddialog(arg0, 1, side ? 10 : -10);
+        break;
+    case 3:
+        func_80801DB8_ncpoddialog(arg0, 0, side ? -10 : 10);
+        break;
+    case 8:
+        func_800EE7F8(sp68, (f32 *)(arg0 + 0x158));
+        func_800EE7F8(sp5C, (f32 *)(arg0 + 0x164));
+        func_80800000_ncpoddialog(arg0, 0, sp50);
+        func_80800000_ncpoddialog(arg0, 1, (f32 *)(arg0 + 0x148));
+        func_800EF04C((f32 *)(arg0 + 0x148), sp50);
+        func_800EF334((f32 *)(arg0 + 0x148), 0.5f);
+        func_800EFB24((f32 *)(arg0 + 0xC4), (f32 *)(arg0 + 0x148), sp68);
+        func_800EF368((f32 *)(arg0 + 0xC4), 250.0f);
+        func_800EF04C((f32 *)(arg0 + 0xC4), sp68);
+        func_800EEC30((f32 *)(arg0 + 0x188), -*(f32 *)(arg0 + 0xD0), *(f32 *)(arg0 + 0xD4), -200.0f);
+        func_800EF04C((f32 *)(arg0 + 0x188), (f32 *)(arg0 + 0x58));
+        func_800EE7F8((f32 *)(arg0 + 0x200), (f32 *)(arg0 + 0x188));
+        break;
+    case 9:
+        func_80800000_ncpoddialog(arg0, 0, sp44);
+        func_80800000_ncpoddialog(arg0, 1, (f32 *)(arg0 + 0x148));
+        func_800EF04C((f32 *)(arg0 + 0x148), sp44);
+        func_800EF334((f32 *)(arg0 + 0x148), 0.5f);
+        func_800A5800(arg0[0x218]);
+        _cadbfunc_entrypoint_0((u8 *)(f32 *)(arg0 + 0xC4));
+        _cadbfunc_entrypoint_2(sp38);
+        break;
+    default:
+        break;
+    }
+    func_8080230C_ncpoddialog(arg0, (f32 *)(arg0 + 0x148), (f32 *)(arg0 + 0xC4));
+}
 
 void ncpoddialog_entrypoint_4(u8 *arg0, s32 arg1, f32 *arg2) {
     f32 first;
