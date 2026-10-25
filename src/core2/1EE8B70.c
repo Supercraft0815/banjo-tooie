@@ -38,7 +38,88 @@ void *func_8010F280(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8B70/func_8010F384.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8B70/func_8010F68C.s")
+void func_8010F68C(s32 arg0, s32 arg1) {
+    u32 func_800B2344(void *);
+    f32 sqrtf(f32);
+    extern s32 D_80137244;
+    extern u32 D_80137248;
+    extern s32 D_80137250;
+    struct header { u8 pad[22]; u16 other : 15; u16 active : 1; };
+    struct header *model;
+    u32 end[1];
+    s32 *light;
+    s32 x, y, z, squared, distance, inner, scale, attenuation;
+    u32 limit;
+    s32 red;
+    s32 vertex;
+    s32 green, blue;
+    s32 enabled;
+
+    limit = func_800B2344((void *)arg0) * 10 + (u32)arg1;
+    end[0] = limit;
+    model = (struct header *)arg0;
+    vertex = arg0 + 24;
+    if (D_80137244 != 0) {
+        if ((u32)arg1 < limit) {
+            do {
+                light = &D_80137250;
+                if (!(*(u16 *)(vertex + 6) & 0x1000)) {
+                    red = ((u8 *)arg1)[6];
+                    green = ((u8 *)arg1)[7];
+                    blue = ((u8 *)arg1)[8];
+                    if ((u32)light < D_80137248) {
+                        do {
+                            x = light[0] - ((s16 *)vertex)[0];
+                            y = light[1] - ((s16 *)vertex)[1];
+                            z = light[2] - ((s16 *)vertex)[2];
+                            squared = x*x + y*y + z*z;
+                            distance = squared;
+                            if (squared < light[4]) {
+                                if (squared != 0) {
+                                    distance = (s32)(sqrtf((f32)squared) * 256.0f);
+                                }
+                                inner = light[3];
+                                if (inner < distance) {
+                                    attenuation = 0x4000 - ((light[5] * (distance - inner)) >> 8);
+                                    scale = attenuation * 4;
+                                } else {
+                                    scale = 0x10000;
+                                }
+                                red += (light[6] * scale) >> 16;
+                                green += (light[7] * scale) >> 16;
+                                blue += (light[8] * scale) >> 16;
+                            }
+                            light += 10;
+                        } while ((u32)light < D_80137248);
+                    }
+                    if (red >= 256) red = 255;
+                    ((u8 *)vertex)[12] = red;
+                    green = green < 256 ? green : 255;
+                    ((u8 *)vertex)[13] = green;
+                    if (blue >= 256) blue = 255;
+                    ((u8 *)vertex)[14] = blue;
+                }
+                arg1 += 10;
+                vertex += 16;
+            } while ((u32)arg1 < end[0]);
+        }
+        enabled = 1;
+        model->active = enabled;
+    } else if (model->active) {
+        if ((u32)arg1 < limit) {
+            do {
+                if (!(*(u16 *)(vertex + 6) & 0x1000)) {
+                    ((u8 *)vertex)[12] = ((u8 *)arg1)[6];
+                    ((u8 *)vertex)[13] = ((u8 *)arg1)[7];
+                    ((u8 *)vertex)[14] = ((u8 *)arg1)[8];
+                }
+                arg1 += 10;
+                vertex += 16;
+            } while ((u32)arg1 < end[0]);
+        }
+        model->active = 0;
+    }
+}
 
 void func_8010F950(s32 *arg0, s32 arg1, volatile s32 arg2, s32 arg3) {
     s32 func_800DF8B4(s32 *);
