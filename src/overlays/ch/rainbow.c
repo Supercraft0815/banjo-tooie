@@ -9,7 +9,72 @@ void func_80800000_chrainbow(s32 arg0) {
     func_80800270_chrainbow(arg0, func_800DA298(0x1E1) ? 0xD : 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_8080003C_chrainbow.s")
+void func_8080003C_chrainbow(Actor *arg0) {
+    s32 _glid_entrypoint_0(s32, s32, void (*)(s32, Vtx *, Vtx *, s32, Unk80132ED0 *), s32);
+    int func_800D91EC(f32 *, f32);
+    s32 func_800DA298(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80103110(void *, s32);
+    s32 func_801065A4(void *);
+    s32 func_80800270_chrainbow(s32, s32);
+    void func_80800838_chrainbow(Actor *);
+    void _chrainbow_entrypoint_0(s32, Vtx *, Vtx *, s32, Unk80132ED0 *);
+
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_801065A4(arg0)) {
+            func_80103110(arg0, 0);
+        }
+        break;
+    case 2:
+        if (func_800DA298(0x9DE)) {
+            func_80800270_chrainbow((s32)arg0, 3);
+        }
+        break;
+    case 3:
+        if (func_800D91EC(&arg0->unk58, 5.0f)) {
+            func_80800270_chrainbow((s32)arg0, 4);
+        }
+        break;
+    case 4:
+        if (func_800D91EC(&arg0->unk58, 6.5f)) {
+            func_80800270_chrainbow((s32)arg0, 5);
+        }
+        ((f32 *)arg0->actorData)[7] = func_800F10B4(arg0->unk58, 5.0f, 6.5f, 0.0f, 1.0f);
+        break;
+    case 5:
+        if (func_800D91EC(&arg0->unk58, 10.5f)) {
+            func_80800270_chrainbow((s32)arg0, 6);
+        }
+        break;
+    case 6:
+        if (func_800D91EC(&arg0->unk58, 13.5f)) {
+            func_80800270_chrainbow((s32)arg0, 7);
+        }
+        break;
+    case 8:
+        if (func_800D91EC(&arg0->unk58, 18.5f)) {
+            func_80800270_chrainbow((s32)arg0, 9);
+        }
+        break;
+    case 12:
+        if (func_800D91EC(&arg0->unk58, 20.5f)) {
+            func_80800270_chrainbow((s32)arg0, 13);
+        }
+        ((f32 *)arg0->actorData)[7] = func_800F10B4(arg0->unk58, 18.5f, 20.5f, 1.0f, 0.0f);
+        break;
+    case 13:
+        if (func_801065A4(arg0) && !arg0->unk64_20) {
+            arg0->unk64_20 = 1;
+            _glid_entrypoint_0(func_801065A4(arg0), 1, &_chrainbow_entrypoint_0, (s32)arg0->unk0);
+        }
+        break;
+    }
+    func_80800838_chrainbow(arg0);
+    if (func_801065A4(arg0)) {
+        _glid_entrypoint_0(func_801065A4(arg0), 1, _chrainbow_entrypoint_0, (s32)arg0->unk0);
+    }
+}
 
 s32 func_80800270_chrainbow(s32 actor, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
