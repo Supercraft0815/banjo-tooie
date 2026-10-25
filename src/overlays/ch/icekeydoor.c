@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct Unk800C7A68;
+
 void func_80800000_chicekeydoor(u8 *arg0) {
     s32 _capod_entrypoint_13(s32, s32, s32, s32);
     s32 _subaddieDll_entrypoint_4(u8 *, s32);
@@ -203,4 +205,40 @@ OSThread *chicekeydoor_entrypoint_0(void)
     return (OSThread *) D_80800930_chicekeydoor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/icekeydoor/func_80800640_chicekeydoor.s")
+s32 func_80800640_chicekeydoor(u8 *arg0, u8 *arg1) {
+    s32 func_800C4140(s32, u8 *, s32);
+    s32 func_800D90A4(u8 *);
+    f32 func_800136E4(f32);
+    f32 func_80013970(f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    void *func_800D7520(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    extern s32 D_80800978_chicekeydoor;
+    f32 progress;
+    f32 oldRotation;
+    s32 result;
+
+    oldRotation = ((Actor *)arg1)->rotation[1];
+    result = func_800D90A4(&((Actor *)arg0)->unk58);
+    progress = func_800F10B4(((Actor *)arg0)->unk58, 5.0f, 0.0f, 0.0f, 1.0f);
+    func_800C7A68(func_800D7520((s32)((f32 *)((Actor *)arg0)->actorData)[7]), progress, ((Actor *)arg1)->position);
+    ((Actor *)arg1)->rotation[0] = 0.0f;
+    if (progress < 0.9f) {
+        func_800BBCB8(((Actor *)arg1)->position, ((Actor *)arg1)->position, 1.0f, 1, &D_80800978_chicekeydoor);
+        ((Actor *)arg1)->rotation[1] = func_800136E4(func_800F12D4(progress, 0.0f, 0.9f, 0.0f, 1260.0f));
+    } else {
+        ((Actor *)arg1)->rotation[1] = 180.0f;
+    }
+    if (progress < 0.5f) {
+        ((Actor *)arg1)->scale = func_800F12D4(progress, 0.0f, 0.5f, 0.1f, 1.0f);
+    } else {
+        ((Actor *)arg1)->scale = 1.0f;
+    }
+    if ((oldRotation < 160.0f && ((Actor *)arg1)->rotation[1] >= 160.0f) ||
+        (oldRotation < 340.0f && ((Actor *)arg1)->rotation[1] >= 340.0f)) {
+        func_800C4140(((u16)(func_80013970(progress * 180.0f) * 0.4f + 1227.6001f) << 21) + 0x1B5E64, ((Actor *)arg1)->position, 0x04B000FA);
+    }
+    return result;
+}
