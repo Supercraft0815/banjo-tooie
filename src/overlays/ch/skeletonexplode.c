@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct anctrl_s;
+
 void func_80800000_chskeletonexplode(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     f32 *temp_v0;
@@ -166,7 +168,7 @@ void func_808001BC_chskeletonexplode(Actor *arg0) {
 
 /* extern */
 
-void func_808004DC_chskeletonexplode(Actor *arg0, Actor *arg1, u16 arg2, s32 arg3) {
+void func_808004DC_chskeletonexplode(Actor *arg0, Actor *arg1, u32 arg2, s32 arg3) {
     s32 func_80103140(Actor *, u32, u16);
     struct SkeletonExplodeFlags {
         u8 pad[0x74];
@@ -184,7 +186,7 @@ void func_808004DC_chskeletonexplode(Actor *arg0, Actor *arg1, u16 arg2, s32 arg
     arg0->rotation[2] = arg1->rotation[2];
     arg0->rotation[1] = arg1->rotation[1];
     arg0->scale = arg1->scale;
-    func_80103140(arg0, arg2, arg3);
+    func_80103140(arg0, (u16)arg2, arg3);
     dst->unk74_0 = src->unk74_0;
     dst->unk7A_11 = src->unk7A_11;
     dst->unk7A_13 = src->unk7A_13;
@@ -333,7 +335,83 @@ void func_80800894_chskeletonexplode(Actor *arg0, s32 arg1, f32 *arg2) {
     arg0->rotation[2] = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/chskeletonexplode_entrypoint_0.s")
+void chskeletonexplode_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    s16 func_800AE020(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EF334(f32 *, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101074(void *);
+    s32 func_8010114C(s32, s32, s32);
+    struct anctrl_s *func_80104248(void *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_801084B0(s32, Actor **);
+    struct SkeletonExplodeMarker {
+        u8 pad0[0x10];
+        s16 animation;
+        u8 pad12[6];
+        u16 flags;
+    };
+    struct SkeletonExplodeData {
+        f32 timer;
+        s32 count;
+        u8 pad8[0xEC];
+        u8 sound;
+        u8 state;
+    };
+    struct SkeletonExplodePart {
+        f32 offset[3];
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 unk30[3];
+        u8 active;
+        u8 pad3D[3];
+    };
+    Actor *actor;
+    Actor *source;
+    union {
+        u32 i;
+        Unk80132ED0 *marker;
+    } state;
+    struct SkeletonExplodeData *data;
+    struct SkeletonExplodePart *part;
+    f32 position[3];
+    Unk80132ED0 **markerRef = &arg0;
+    state.marker = *markerRef;
+
+    position[0] = arg1;
+    position[1] = arg2;
+    position[2] = arg3;
+    source = func_80106790(state.marker);
+    actor = func_801084B0(0x304, &source);
+    source = func_80106790(state.marker);
+    data = func_80100094(actor, 1);
+    func_808004DC_chskeletonexplode(actor, source, arg4, arg5);
+    if (((struct SkeletonExplodeMarker *)actor->unk0)->animation == 0) {
+        ((struct SkeletonExplodeMarker *)actor->unk0)->animation = func_800AE020();
+    }
+    source->unk64_16 = 0;
+    func_80800594_chskeletonexplode(actor);
+    if (func_80104248(source)) {
+        func_808005CC_chskeletonexplode(actor, source, position);
+    } else {
+        func_80800894_chskeletonexplode(actor, (s32)source, position);
+    }
+    data->count = 0;
+    data->sound = 0;
+    data->state = 0;
+    if (((struct SkeletonExplodeMarker *)state.marker)->flags & 1) {
+        func_80101074(actor->unk0);
+        func_8010114C((s32)state.marker, 0xF, 0);
+    }
+    part = func_80100094(actor, 0);
+    for (state.i = 0; state.i < actor->unk6C_0; state.i++, part++) {
+        func_800EF334(part->velocity, func_800DC178(((f32 *)actor->actorData)[4], ((f32 *)actor->actorData)[5]) / 1000.0f);
+        part->unk30[0] = func_800DC178(((f32 *)actor->actorData)[6], ((f32 *)actor->actorData)[0]);
+        part->unk30[1] = func_800DC178(((f32 *)actor->actorData)[6], ((f32 *)actor->actorData)[0]);
+        part->unk30[2] = func_800DC178(((f32 *)actor->actorData)[6], ((f32 *)actor->actorData)[0]);
+    }
+}
 
 void chskeletonexplode_entrypoint_1(void *arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)(arg0) + (0x28))) = arg1;
