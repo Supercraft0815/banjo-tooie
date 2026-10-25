@@ -255,7 +255,77 @@ void func_808007E0_chfactorysparkroom(Actor *arg0) {
     } while (var_s1 != 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/sparkroom/func_80800838_chfactorysparkroom.s")
+void func_80800838_chfactorysparkroom(Actor *arg0, void *arg1) {
+    struct SparkRoomEntry {
+        f32 values[6];
+        s32 spline;
+        s32 handle;
+    };
+    f32 func_80013970(f32);
+    void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
+    struct ImageStruct *func_800D674C(s32);
+    void *func_800D7520(s32);
+    f32 func_800DC0C0(void);
+    s32 func_800DC128(s32, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF744(s32, s32);
+    void func_800DF830(s32);
+    void func_800E3980(f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    s32 func_800F1E6C(f32 *, f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A2C(s32, s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010347C(Unk80132ED0 *);
+    struct SparkRoomEntry *entries;
+    struct SparkRoomEntry *entry;
+    f32 pos[3];
+    f32 rot[3];
+    f32 progress;
+    s32 model;
+    f32 point[3];
+    f32 angles[3];
+    f32 scale;
+    s32 i;
+
+    entries = func_80100094(arg0, 0U);
+    for (i = 0, entry = entries; i < arg0->unk6C_0; i++, entry++) {
+        if (entry->values[1] > 0.0f) {
+            progress = func_800F10B4(entry->values[1], entry->values[0], 0.0f, entry->values[2], entry->values[3]);
+            func_800C7A68(func_800D7520(entry->spline), progress, pos);
+            func_800E3980(rot);
+            func_800F1E6C(pos, rot, &arg0->rotation[1]);
+            arg0->scale = func_80013970(progress * 180.0f);
+            if (arg0->scale > 0.5f) {
+                arg0->scale = func_800DC0C0() * 0.2f + 0.8f;
+            } else {
+                arg0->scale = 2.0f * arg0->scale;
+            }
+            rot[0] = -90.0f;
+            rot[1] = arg0->rotation[1] - 90.0f;
+            rot[2] = 0.0f;
+            func_800DF830(1);
+            func_800DF744(1, func_800DC128(1, 5));
+            func_800DE498(arg1, pos, rot, arg0->scale, NULL, func_8010347C(arg0->unk0));
+        }
+    }
+    if ((arg0->unk74_7 / 10.0f) * 0.3f < arg0->unk54) {
+        model = (s32)func_800D674C(0x6B9);
+        for (i = 0; i != 10; i++) {
+            func_800F5A2C(func_800F54E4(), i, point);
+            func_800F1E6C(arg0->position, point, &angles[1]);
+            angles[0] = func_800F1828(point, arg0->position);
+            angles[2] = 0.0f;
+            angles[1] -= 90.0f;
+            scale = func_800EEAD4(arg0->position, point) / 100.0f;
+            func_800DF830(1);
+            func_800DF744(1, func_800DC128(1, 5));
+            func_800DE498(arg1, arg0->position, angles, scale, NULL, model);
+        }
+    }
+}
 
 /* extern */
 
