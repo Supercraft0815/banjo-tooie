@@ -151,7 +151,75 @@ void func_808003A8_chquizremotectrl(Actor *arg0) {
     func_808001BC_chquizremotectrl(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/quizremotectrl/func_80800410_chquizremotectrl.s")
+void func_80800410_chquizremotectrl(Actor *arg0, Gfx **arg1) {
+    typedef struct {
+        f32 unk0[3];
+        f32 distance;
+        f32 unk10[3];
+        f32 timer;
+    } QuizRemoteData;
+    typedef struct {
+        u8 pad[0x8];
+        s16 unk8;
+        s16 unkA;
+    } ImageStruct;
+    ImageStruct *func_800D674C(s32);
+    void _suquiz_entrypoint_13(f32 *);
+    void _suquiz_entrypoint_14(f32 *);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800E39D8(s32, s32);
+    void func_800E3C8C(f32, f32);
+    void func_800E3CE8(void);
+    void func_800E41CC(void);
+    void func_800E4208(void);
+    void func_800E44FC(Gfx **);
+    void func_800E7C28(Gfx **);
+    void func_800E7CF4(Gfx **);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    extern f32 D_80800650_chquizremotectrl[3];
+    extern f32 D_8080065C_chquizremotectrl[];
+    extern f32 D_80800664_chquizremotectrl;
+    f32 sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    _suquiz_entrypoint_13(sp30);
+    _suquiz_entrypoint_14(sp24);
+    func_800EF214(sp30, -sp24[0], sp24[1], arg0->unk54 * ((QuizRemoteData *)arg0->actorData)->distance);
+    switch (arg0->unk70_10) {
+        case 1:
+            sp3C = func_800F10B4(((QuizRemoteData *)arg0->actorData)->timer, 1.0f, 0.0f, 1.0f, 0.0f);
+            D_80800664_chquizremotectrl = sp3C * 360.0f;
+            break;
+        case 2:
+            sp3C = 0.0f;
+            break;
+        case 3:
+            sp3C = func_800F10B4(((QuizRemoteData *)arg0->actorData)->timer, 1.0f, 0.0f, 0.0f, 1.0f);
+            D_80800664_chquizremotectrl = sp3C * 360.0f;
+            break;
+        case 4:
+        case 5:
+            sp3C = 1.0f;
+            D_80800664_chquizremotectrl = 0.0f;
+            break;
+    }
+    func_800E41CC();
+    func_800E3C8C(50.0f, 2000.0f);
+    func_800E39D8((s32)sp30, (s32)sp24);
+    func_800E3CE8();
+    func_800E44FC(arg1);
+    func_800E7C28(arg1);
+    func_800E7CF4(arg1);
+    if (sp3C > 0.0f) {
+        func_800DE498(arg1, D_80800650_chquizremotectrl, D_8080065C_chquizremotectrl, sp3C, NULL, (s32)func_800D674C(0x9A1));
+    }
+    func_80101870(arg0, arg1);
+    func_800E4208();
+    func_800E44FC(arg1);
+}
 
 s32 func_808005E4_chquizremotectrl(s32 arg0, s32 arg1, s32 arg2) {
     if (arg1 == 0xB) {
