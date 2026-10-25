@@ -73,7 +73,104 @@ OSThread *changlerboss_entrypoint_1(void)
     return (OSThread *) D_80802EFC_changlerboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80800018_changlerboss.s")
+void func_80800018_changlerboss(Actor *arg0) {
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _glcutDll_entrypoint_20(void);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, Unk80132ED0 *);
+    void func_800F4AC0(s32, f32 *, f32);
+    s32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void func_800F8294(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    void func_80109F08(void *, s32);
+    void func_8010A590(Actor *);
+    void func_8010A85C(Actor *, s32);
+    void func_808012E0_changlerboss(Actor *, s32);
+    void func_808015F4_changlerboss(Actor *, s32, s32);
+    void func_808021E4_changlerboss(Actor *, u32, u32);
+    extern s32 func_8010D5DC;
+    struct AnglerBossInitData {
+        u8 pad0[0x90];
+        s16 unk90;
+        s16 unk92;
+        s16 unk94;
+        s16 unk96;
+        f32 unk98;
+        Unk80132ED0 *unk9C;
+        Unk80132ED0 *unkA0;
+        f32 unkA4[6];
+        f32 unkBC[6];
+        f32 unkD4[6];
+        f32 unkEC[6];
+        f32 unk104[6];
+        f32 unk11C[3];
+        s16 unk128;
+        s8 unk12A;
+    } *data;
+    s32 i;
+    s32 player;
+
+    data = func_80100094(arg0, 0);
+    arg0->unk70_0 = 1;
+    arg0->pad7A_7 = 3;
+    func_800EE7F8(data->unk11C, arg0->position);
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x32, data->unkA4, 1);
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x33, data->unkBC, 1);
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x34, data->unkD4, 1);
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x35, data->unkEC, 1);
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x36, data->unk104, 1);
+    data->unk90 = 1;
+    data->unk9C = NULL;
+    data->unkA0 = NULL;
+    data->unk92 = 0;
+    data->unk96 = 6;
+    for (i = 0; i != 6; i++) {
+        func_808015F4_changlerboss(arg0, i, 1);
+    }
+    func_80109F08(arg0, 0x40);
+    player = func_800F54E4();
+    if (_glcutDll_entrypoint_20()) {
+        func_800EE7F8(arg0->position, data->unk104);
+        func_80102424(arg0, 0x1D);
+        func_8010A85C(arg0, 1);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802DA0_changlerboss);
+        return;
+    }
+    if (func_800DA298(0x377)) {
+        func_8010A85C(arg0, 1);
+        func_8010A590(arg0);
+        func_808012E0_changlerboss(arg0, 0x1A);
+        func_800EE7F8(arg0->position, data->unkEC);
+        arg0->rotation[1] = data->unkEC[4];
+        _chintrotext_entrypoint_2(1);
+        return;
+    }
+    func_8010A85C(arg0, 2);
+    arg0->unk58 = 2.0f;
+    if (func_800DA298(0x1AF)) {
+        func_800EE7F8(arg0->position, data->unk104);
+        func_808012E0_changlerboss(arg0, 4);
+        func_800F608C(player, 1);
+        func_800F8294(player, data->unkD4);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1028, 0x106, arg0->position, 0xB4);
+        func_808021E4_changlerboss(arg0, 0x12, 0x30);
+        data->unk12A = 1;
+    } else {
+        func_800F608C(player, 1);
+        func_800F497C(player);
+        func_800F49D4(player, &func_8010D5DC, arg0->unk0);
+        func_800F4AC0(player, data->unkD4, 300.0f);
+        func_808021E4_changlerboss(arg0, 0x22, 0x20);
+        _chintrotext_entrypoint_2(1);
+    }
+}
 
 void func_808002E0_changlerboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
