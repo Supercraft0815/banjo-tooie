@@ -443,7 +443,90 @@ void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800CF8_chfpsgame.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800FF4_chfpsgame.s")
+s32 func_80800FF4_chfpsgame(s32 arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    int func_800A4C68(void *);
+    s32 func_800C954C(void);
+    s32 func_800C96CC();
+    f32 func_800D8FF8(void);
+    s32 func_800F1574(f32 *, f32);
+    PlayerState *func_800F53D0(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80800CF8_chfpsgame(Actor *, s32);
+    s32 func_8080121C_chfpsgame(Actor *);
+    s32 func_808012CC_chfpsgame(s32);
+    void func_8080135C_chfpsgame(Actor *);
+    struct Data {
+        s32 count;
+        s32 unk4;
+        s32 unk8;
+        u8 unkC[0x544];
+        u32 state;
+        f32 timer;
+    } *data;
+    s32 pad[2];
+    s32 ready;
+    s32 i;
+
+    data = func_80100094((Actor *)arg0, 0);
+    switch (data->state) {
+    case 0:
+        if (func_800C954C() == 0) {
+            _subaddiedialog_entrypoint_11(((Actor *)arg0)->unk0, 0xCEC, 0x22, NULL, 0x6F);
+            func_80800CF8_chfpsgame((Actor *)arg0, 1);
+        }
+        break;
+    case 2:
+        func_8080135C_chfpsgame((Actor *)arg0);
+        if (func_8080121C_chfpsgame((Actor *)arg0) != 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 4);
+            break;
+        }
+        if (func_808012CC_chfpsgame(arg0) != 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 3);
+        }
+        break;
+    case 3:
+        func_8080135C_chfpsgame((Actor *)arg0);
+        if (func_800F1574(&data->timer, func_800D8FF8()) != 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 4);
+            break;
+        }
+        if (func_8080121C_chfpsgame((Actor *)arg0) != 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 4);
+        }
+        break;
+    case 4:
+        if (data->unk8 == 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 5);
+        }
+        break;
+    case 5:
+        ready = 1;
+        i = 0;
+        if (data->count > 0) {
+            do {
+                if (func_800C96CC(func_800A4C68(func_800F53D0(i))) == 0) {
+                    ready = 0;
+                    break;
+                }
+                i++;
+            } while (i < data->count);
+        }
+        if (ready != 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 6);
+        }
+    case 6:
+        if (func_800F1574(&data->timer, func_800D8FF8()) != 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 7);
+            break;
+        }
+        if (data->timer < 4.5f && func_808000BC_chfpsgame(0xD000) != 0) {
+            func_80800CF8_chfpsgame((Actor *)arg0, 7);
+        }
+        break;
+    }
+}
 
 s32 func_8080121C_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
