@@ -444,7 +444,74 @@ void func_80801138_chalienkids(Actor* arg0)
     func_80801994_chalienkids(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/alienkids/func_80801158_chalienkids.s")
+s32 func_80801158_chalienkids(Actor *arg0, s32 arg1) {
+    s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
+    f32 func_800136E4(f32);
+    f32 func_80013970(f32);
+    s32 func_800B53A4(s32);
+    void func_800BA3FC(s32, s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    void func_800FCAE0(u32, u32, u32);
+    f32 func_80103EAC(Actor *);
+    f32 func_80103EF4(Actor *);
+    extern s32 D_8080223C_chalienkids[];
+    f32 firstHeight;
+    s32 spD0;
+    f32 spC4[3];
+    f32 spB8[3];
+    f32 spAC[3];
+    f32 height;
+    f32 radius;
+    f32 spA0;
+    f32 sp9C;
+    f32 sp90[3];
+    s32 emitter;
+    s32 i;
+    f32 *data;
+
+    data = func_80100094(arg0, 0);
+    spD0 = func_800D9078(&arg0->unk58);
+    if (!_subaddieskeleton_entrypoint_0(arg0, 3, spC4)) {
+        func_800EE7F8(spC4, arg0->position);
+    }
+    sp9C = func_800D8FF8();
+    emitter = func_800B53A4(8);
+    height = func_80103EF4(arg0);
+    radius = func_80103EAC(arg0) * 1.25f;
+    func_800EE7F8(sp90, spC4);
+    sp90[1] += (0.5f * height);
+    firstHeight = func_800F12D4(arg0->unk58, 0.0f, 2.0f, height, (0.5f * height));
+    spA0 = func_800F12D4(arg0->unk58, 0.0f, 2.0f, (0.5f * height), height);
+    radius = func_800F12D4(arg0->unk58, 0.0f, 2.0f, 0.25f * radius, radius);
+    func_800BA3FC(emitter, arg1);
+    for (i = 0, height = 0.0f; i != 4; i++, height += 90.0f) {
+        func_800EEB9C(spAC, data[7] + height, radius);
+        func_800EE780(spB8, spC4, spAC);
+        spB8[1] += firstHeight + 10.0f * func_80013970(data[9] + height);
+        func_800BABB8(emitter, spB8, sp90, 1.0f, D_8080223C_chalienkids);
+        func_800EEB9C(spAC, data[8] + height, radius);
+        func_800EE780(spB8, spC4, spAC);
+        spB8[1] += spA0 + 10.0f * func_80013970(data[10] + height);
+        func_800BABB8(emitter, spB8, sp90, 1.0f, D_8080223C_chalienkids);
+    }
+    height = sp9C * 380.0f;
+    data[7] = func_800136E4(data[7] - height);
+    data[8] = func_800136E4(data[8] + height);
+    data[9] += sp9C * 100.0f;
+    data[10] += sp9C * 150.0f;
+    if (spD0) {
+        func_800FCAE0(0x1C, 0, 500);
+    } else {
+        func_800FCAE0(0x1C, -1, 500);
+    }
+    return spD0;
+}
 
 void *func_80100094(Actor *, u32);
 
