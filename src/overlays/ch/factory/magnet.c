@@ -896,7 +896,52 @@ OSThread *chfactorymagnet_entrypoint_2(void)
     return (OSThread *) D_80802A4C_chfactorymagnet;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80801FB8_chfactorymagnet.s")
+void func_80801FB8_chfactorymagnet(Actor *arg0) {
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void func_80018820(s32, f32, f32);
+    void func_800C31DC(u8, f32);
+    s32 func_800D90A4(f32 *);
+    s32 func_800D91EC(u8 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101FDC(Actor *, u32);
+    extern s32 D_80802A94_chfactorymagnet[];
+    extern s32 D_80802AA4_chfactorymagnet[];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            break;
+        case 2:
+            if (func_800D91EC(&arg0->unk58, 0.5f)) {
+                arg0->alpha = 255;
+                func_80101FDC(arg0, 3);
+            }
+            break;
+        case 3:
+            func_80018820(0, 2.0f, 0.5f);
+            break;
+        case 4:
+            arg0->alpha = (u32)func_800F10B4(arg0->unk58, 0.5f, 0.0f, 0.0f, 255.0f);
+            if (func_800D90A4(&arg0->unk58)) {
+                arg0->unk64_16 = 0;
+                func_80101FDC(arg0, 1);
+            }
+            break;
+    }
+    *(u8 *)&arg0->actorData[4] = _subaddieaudioloop_entrypoint_7(
+        *(u8 *)&arg0->actorData[4], arg0->position, arg0->unk58 != 0.0f,
+        D_80802A94_chfactorymagnet, arg0->unk70_0);
+    *(u8 *)&arg0->actorData[5] = _subaddieaudioloop_entrypoint_7(
+        *(u8 *)&arg0->actorData[5], arg0->position, arg0->unk58 != 0.0f,
+        D_80802AA4_chfactorymagnet, arg0->unk70_0);
+    if (arg0->unk58 == 0.0f) {
+        arg0->unk64_16 = 0;
+    } else {
+        arg0->unk64_16 = 1;
+        arg0->alpha = (u32)func_800F10B4(arg0->unk58, 0.5f, 0.0f, 255.0f, 0.0f);
+        func_800C31DC(*(u8 *)&arg0->actorData[4], func_800F10B4(arg0->unk58, 0.5f, 0.0f, 1.1f, 0.9f));
+        func_800C31DC(*(u8 *)&arg0->actorData[5], func_800F10B4(arg0->unk58, 0.5f, 0.0f, 1.1f, 0.9f));
+    }
+}
 
 s32 func_808022D8_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800187B4(s32, f32, f32, f32);
