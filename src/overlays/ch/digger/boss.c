@@ -1080,7 +1080,121 @@ s32 func_80801A04_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80801DE0_chdiggerboss.s")
+void func_80801DE0_chdiggerboss(Actor *arg0) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void func_800C964C(s32);
+    s32 func_800DA298(s32);
+    s32 func_800EA05C(void);
+    u32 func_800F54E4(void);
+    int func_800F7C58(s32, s32, s32);
+    void func_800F82D4(s32, s32);
+    void func_800F8444(s32, f32 *);
+    u32 func_800FDC28(u32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80109FE8(void **, s32);
+    Actor *func_80802228_chdiggerboss(Actor *);
+    s32 func_80802314_chdiggerboss(void);
+    void func_80802878_chdiggerboss(Actor *, s32, s32);
+    void func_8080290C_chdiggerboss(Actor *, u32, u32);
+    s32 func_80803660_chdiggerboss(Actor *, s32, s32);
+    s32 func_80803BE8_chdiggerboss(s32, s32, s32);
+    void func_808041E4_chdiggerboss(Actor *, s32);
+    void func_80804A50_chdiggerboss(s32, s32);
+    void func_808059A4_chdiggerboss(s32);
+    void func_80806648_chdiggerboss(s32);
+    void func_80807698_chdiggerboss(Actor *, s32);
+    void func_80807B18_chdiggerboss(s32);
+    struct DiggerBossState {
+        s16 unk0;
+        s8 unk2;
+        u8 pad3[3];
+        s8 unk6;
+        u8 pad7[0x99];
+        s16 unkA0;
+    };
+    struct DiggerBossState *sp34;
+    Actor *sp30;
+    struct DiggerBossState *sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    sp34 = func_80100094(arg0, 0);
+    func_80109FE8((void **)arg0, 0);
+    func_80807B18_chdiggerboss((s32)arg0);
+    func_80806648_chdiggerboss((s32)arg0);
+    func_808059A4_chdiggerboss((s32)arg0);
+    if (sp34->unkA0 == 0) {
+        switch (func_800EA05C()) {
+        case 0x15D:
+            if (func_800DA298(0x44) == 0) {
+                func_8080290C_chdiggerboss(arg0, 0x1C, 0x20);
+                func_80803660_chdiggerboss(arg0, 0x171C, 0x144);
+                func_800F82D4(func_800F54E4(), 1);
+                func_800F8444(func_800F54E4(), arg0->rotation);
+                func_80101180(0x4F1, 7, 0);
+            } else {
+                func_800FFAB0(arg0);
+                func_800FFAB0(func_80802228_chdiggerboss(arg0));
+            }
+            break;
+        case 0x19A:
+            if (func_800DA298(0x44) == 0) {
+                func_800F82D4(func_800F54E4(), 1);
+                func_800F8444(func_800F54E4(), arg0->rotation);
+                func_8080290C_chdiggerboss(arg0, 0xD, 0x2020);
+                _chintrotext_entrypoint_1(0x18B9, 0xF, 1, 0);
+                func_800FDC28(1);
+                func_800C964C(0x14);
+            } else {
+                func_80802878_chdiggerboss(arg0, 3, 1);
+                func_80800180_chdiggerboss(arg0, 8);
+                func_80803660_chdiggerboss(arg0, 0x171F, 0x10E);
+                func_800FDC28(1);
+            }
+            break;
+        }
+    } else {
+        sp30 = func_80802228_chdiggerboss(arg0);
+        sp2C = func_80100094(sp30, 0);
+        switch (sp34->unk0) {
+        case 0x2D:
+            sp28 = func_80802314_chdiggerboss() < 2;
+            func_80804A50_chdiggerboss((s32)sp30, 1);
+            func_80807698_chdiggerboss(arg0, sp28);
+            if (sp28 != 0) {
+                sp34->unk2 = 0x32;
+                func_80803BE8_chdiggerboss((s32)arg0, 0x2E, 2);
+                func_80802878_chdiggerboss(arg0, 3, 1);
+                func_808041E4_chdiggerboss(sp30, 2);
+                func_800F82D4(func_800F54E4(), 2);
+                func_800F7C58(func_800F54E4(), 0x8A, 1);
+            } else {
+                func_808041E4_chdiggerboss(sp30, 3);
+            }
+            break;
+        case 0x37:
+            sp24 = func_80802314_chdiggerboss() == 0;
+            func_808041E4_chdiggerboss(sp30, 2);
+            func_80804A50_chdiggerboss((s32)sp30, 1);
+            func_80807698_chdiggerboss(arg0, sp24);
+            if (sp24 != 0) {
+                sp34->unk2 = 0x28;
+                func_80803BE8_chdiggerboss((s32)arg0, 0x38, 2);
+                func_80802878_chdiggerboss(arg0, 3, 1);
+                func_800F82D4(func_800F54E4(), 2);
+                func_800F7C58(func_800F54E4(), 0x8A, 1);
+            } else {
+                func_808041E4_chdiggerboss(sp30, 3);
+            }
+            break;
+        }
+        sp34->unkA0 = 0;
+        arg0->unk74_17 = 0;
+        sp2C->unk6 = 1;
+    }
+}
 
 u16 func_80802158_chdiggerboss(s32 arg0, s32 arg1) {
     extern s32 D_80809EE4_chdiggerboss;
