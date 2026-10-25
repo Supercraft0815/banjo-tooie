@@ -33,7 +33,48 @@ void glidmake_entrypoint_1(s32 *arg0) {
     func_800B274C(func_800D674C(*arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/idmake/glidmake_entrypoint_2.s")
+void glidmake_entrypoint_2(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
+    void *_dbid_entrypoint_2(s32, s32);
+    void *func_800B2190(void *);
+    s32 func_800B274C(s32);
+    s32 func_800D674C(s32);
+    void func_800EFD4C(s16 *);
+    void func_800EF0B4(s16 *, f32 *);
+    u32 index;
+    u32 end;
+    s16 *mesh;
+    u8 *vertices;
+    s16 *vertex;
+    s32 i;
+    f32 *scale;
+    s32 asset;
+
+    func_800EFD4C(arg2);
+    func_800EFD4C(arg3);
+    asset = func_800D674C(*(s32 *)arg0);
+    mesh = _dbid_entrypoint_2(func_800B274C(asset), arg1);
+    if (mesh != NULL) {
+        vertices = func_800B2190(*(void **)((u8 *)arg0 + 0x14));
+        index = (u32)mesh + 4;
+        end = (u32)mesh + mesh[1] * 2 + 4;
+        for (; index < end; index += 2) {
+            vertex = (s16 *)(vertices + *(s16 *)index * 0x10);
+            for (i = 0; i < 3; i++) {
+                if (mesh == (s16 *)(index - 4)) {
+                    arg2[i] = arg3[i] = vertex[i];
+                } else {
+                    arg2[i] = vertex[i] < arg2[i] ? vertex[i] : arg2[i];
+                    arg3[i] = arg3[i] < vertex[i] ? vertex[i] : arg3[i];
+                }
+            }
+        }
+        scale = (f32 *)func_80800000_glidmake((s32)arg0);
+        if (scale != NULL) {
+            func_800EF0B4(arg2, scale);
+            func_800EF0B4(arg3, scale);
+        }
+    }
+}
 
 /* extern */
 
