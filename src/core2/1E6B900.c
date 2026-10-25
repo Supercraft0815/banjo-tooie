@@ -169,7 +169,114 @@ void func_800923A8(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092444.s")
+typedef struct {
+    u32 *unk0;
+    u32 *unk4;
+    u32 *unk8;
+    u32 unkC;
+    u32 unk10;
+    u16 unk14;
+    u16 unk16;
+    u32 unk18;
+    u32 unk1C;
+    u32 unk20;
+    u32 unk24;
+    u32 unk28;
+    u32 unk2C;
+} Unk80132ED0;
+
+struct anctrl_s;
+struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+void func_800A7108(Unk80132ED0 *, f32);
+
+void _babackpack_entrypoint_3(PlayerState *, f32 *, f32 *, f32, f32 *);
+void *func_8008AEDC(void *);
+void func_8008C200(s16, s32, s32);
+void func_8008CA98(PlayerState *);
+void func_80093AB8(void *, Gfx **);
+void func_80094070(u8 *, f32 *);
+void func_800A06E8(s32);
+int func_800A4C68(void *);
+void func_800A7130(Unk80132ED0 *, s32);
+s32 func_800A89F8(void);
+void *func_800AE080(s16);
+void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+void func_800DF440(s32);
+void func_800DF47C(s32, s32);
+void func_800DF4CC(s32);
+void func_800DF720(s32);
+void func_800DF72C(s32);
+void func_800DF818(s32);
+s32 func_800E3E8C(f32 *, f32);
+void func_800EE7F8(f32 *, f32 *);
+void func_800EF04C(f32 *, f32 *);
+void func_800EFA4C(f32 *, f32, f32, f32);
+s32 func_80100A74(s16, s32);
+s32 func_80100AC4(s16);
+
+void func_80092444(PlayerState *arg0, Gfx **arg1) {
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp50;
+    f32 sp44[3];
+    u8 *temp_v0;
+    s32 sp3C;
+
+    if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA2] != 0) {
+        func_80093AB8(arg0, arg1);
+        return;
+    }
+    if ((func_800A89F8() != func_800A4C68(arg0)) || ((*(u8 **)((u8 *)arg0 + 0x50))[0x18] != 0)) {
+        if ((*(u8 **)((u8 *)arg0 + 0x50))[0x17] != 0) {
+            temp_v0 = (*(u8 **)((u8 *)arg0 + 0x50)) + 0x78;
+            if (*(Unk80132ED0 **)((*(u8 **)((u8 *)arg0 + 0x50)) + 0x84) != NULL) {
+                if (temp_v0[4] != 0) {
+                    temp_v0[4] = 0;
+                    func_800A7108(*(Unk80132ED0 **)(temp_v0 + 0xC), *(f32 *)temp_v0);
+                } else if (temp_v0[9] != 0) {
+                    temp_v0[9] = 0;
+                    func_800A7130(*(Unk80132ED0 **)(temp_v0 + 0xC), temp_v0[8]);
+                }
+            }
+            sp50 = *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x1C);
+            func_8009216C(arg0, sp60, sp6C);
+            func_80094070((u8 *)arg0, sp60);
+            func_800EE7F8(sp54, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x2C));
+            func_800EF04C(sp60, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x44));
+            func_800EF04C(sp54, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x44));
+            if (func_800E3E8C(sp60, *(f32 *)((*(u8 **)((u8 *)arg0 + 0x50)) + 0x1C) * *(f32 *)((*(u8 **)((u8 *)arg0 + 0x50)) + 0x74)) &&
+                *(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC) != 0) {
+                sp3C = func_80092B04(arg0, 1);
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+                    func_8008CA98(arg0);
+                    func_8008C200(**(s16 **)((u8 *)arg0 + 0x50), (s32)func_800B27E0((u8 *)sp3C), (s32)func_8008AEDC(baanim_getAnimCtrlPtr(arg0)));
+                    (*(u8 **)((u8 *)arg0 + 0x50))[0x13] ^= 1;
+                }
+                (*(u8 **)((u8 *)arg0 + 0x50))[0x10] = 1;
+                func_800A06E8((s32)arg0);
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0xC4] != 0) {
+                    func_800EFA4C(sp44, 0.0f, sp6C[1], 0.0f);
+                    sp6C[1] = *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC8);
+                    func_800DF4CC((s32)sp44);
+                }
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x12] != 0) {
+                    func_800DF818(func_80100A74((s16)(*(u8 **)((u8 *)arg0 + 0x50))[0x12], 0));
+                }
+                func_800DF72C((s32)func_800AE080(**(s16 **)((u8 *)arg0 + 0x50)));
+                func_800DF47C((s32)func_80092234, (s32)arg0);
+                func_800923A8(arg0, 1);
+                func_800DF720(func_80100AC4((*(u8 **)((u8 *)arg0 + 0x50))[0x12]));
+                func_800DF440(0);
+                func_800DE448(sp60, sp6C, sp50, sp54, sp3C);
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x11] != 0) {
+                    func_800923A8(arg0, 0);
+                    _babackpack_entrypoint_3(arg0, sp60, sp6C, sp50, sp54);
+                }
+            }
+        }
+    }
+}
 
 void func_8009272C(s32 *arg0, s32 arg1) {
     ((u8 *)arg0[20])[17] = arg1;
@@ -208,21 +315,6 @@ void func_80092778(PlayerState *arg0) {
 /* extern */
 
 void func_800927C4(u32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
-    typedef struct {
-        u32 *unk0;
-        u32 *unk4;
-        u32 *unk8;
-        u32 unkC;
-        u32 unk10;
-        u16 unk14;
-        u16 unk16;
-        u32 unk18;
-        u32 unk1C;
-        u32 unk20;
-        u32 unk24;
-        u32 unk28;
-        u32 unk2C;
-    } Unk80132ED0;
     typedef struct Actor {
         Unk80132ED0 *unk0;
     } Actor;
