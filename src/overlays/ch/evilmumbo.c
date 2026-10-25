@@ -1500,7 +1500,71 @@ void func_8080300C_chevilmumbo(Actor *arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808030AC_chevilmumbo.s")
+void func_808030AC_chevilmumbo(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800D0A9C(u32, u32);
+    f32 func_800D8FF8(void);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_8010B990(Actor *, s32);
+    extern u32 D_80804208_chevilmumbo[];
+    f32 dt;
+    Actor *parent;
+    void *volatile data;
+    f32 pos[3];
+    f32 turn;
+
+    dt = func_800D8FF8();
+    parent = func_80106790(arg0->unk3C);
+    data = func_80100094(parent, 0);
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80804208_chevilmumbo);
+    ((f32 *)arg0->actorData)[0] += dt * 500.0f;
+    if (arg0->unk70_10 == 1) {
+        func_800C8E54(arg0->unk6C_0, arg0->scale * 400.0f, arg0->scale * 1000.0f);
+        func_800C8E84(arg0->unk6C_0, D_808044E4_chevilmumbo);
+        func_800C8CB8(arg0->unk6C_0, arg0->position);
+        if (!func_800D0A9C(0x47, 1)) {
+            func_800EE7F8(pos, (f32 *)parent->actorData);
+            pos[1] += 100.0f;
+            arg0->unk54 = func_800F1DF4(arg0->position, pos);
+            arg0->unk50 = func_800F1828(arg0->position, pos);
+            turn = ((f32 *)arg0->actorData)[7] * func_800F1DCC(arg0->unk54, arg0->rotation[1]);
+            arg0->rotation[1] += turn;
+            arg0->rotation[0] += func_800F1DCC(arg0->unk50, arg0->rotation[0]) * ((f32 *)arg0->actorData)[7];
+            if ((*(u16 *)&arg0->unk78 & 3) == 0) {
+                ((f32 *)arg0->actorData)[1] += turn > 0.0f ? turn : -turn;
+                if (((f32 *)arg0->actorData)[1] > 720.0f) {
+                    _subaddiefade_entrypoint_3(arg0);
+                }
+            }
+            if (((f32 *)arg0->actorData)[2] > 0.0f) {
+                ((f32 *)arg0->actorData)[2] -= dt;
+            } else {
+                ((f32 *)arg0->actorData)[7] *= 0.5f;
+            }
+        }
+        func_800EEC30(&((f32 *)arg0->actorData)[4], arg0->rotation[0], arg0->rotation[1], ((f32 *)arg0->actorData)[3]);
+        if (func_8010B990(arg0, 0x400007) & 0x20) {
+            func_8080300C_chevilmumbo(arg0);
+        }
+        ((f32 *)arg0->actorData)[3] -= 200.0f * dt;
+        if (arg0->unk58 > 0.0f) {
+            arg0->unk58 -= dt;
+        } else {
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 void func_80803358_chevilmumbo(u8 *arg0) {
     void func_800C8B84(s32);
