@@ -210,7 +210,40 @@ void func_80800338_chcrusherboulder(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_8080087C_chcrusherboulder.s")
+void func_8080087C_chcrusherboulder(u8 *arg0) {
+    void _chglowbo_entrypoint_6(void);
+    s32 func_8001211C(void);
+    f32 func_800D8FF8(void);
+    s32 func_800DA9E4(s32, s32);
+    f32 func_800DC0C0(void);
+    void func_80800A1C_chcrusherboulder(Actor *, s32);
+    void func_808010EC_chcrusherboulder(void);
+    Actor *actor = (Actor *)arg0;
+
+    switch (actor->unk70_10) {
+        case 1:
+            if (func_800DA9E4(0x9DE, 0)) {
+                func_80800A1C_chcrusherboulder(actor, 8);
+            }
+            break;
+        case 8:
+            func_80800210_chcrusherboulder(actor);
+            func_808001CC_chcrusherboulder(actor);
+            if (actor->unk58 > 0.0f) {
+                actor->unk58 -= func_800D8FF8();
+            } else if (!actor->unk64_19) {
+                _chglowbo_entrypoint_6();
+                actor->unk64_19 = 1;
+            }
+            break;
+        case 11:
+            actor->unk58 -= func_800D8FF8();
+            if (actor->unk58 > 0.0f && !(func_8001211C() & 2) && func_800DC0C0() < 0.3f) {
+                func_808010EC_chcrusherboulder();
+            }
+            break;
+    }
+}
 
 /* extern */
 
