@@ -35,7 +35,73 @@ void func_80800068_chcrusher(Actor *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusher/func_808000D4_chcrusher.s")
+void func_808000D4_chcrusher(Actor *arg0) {
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void func_80018820(s32, f32, f32);
+    f32 func_800D8FF8(void);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800394_chcrusher(u8 *);
+    void func_808003E4_chcrusher(void *);
+    void func_80800508_chcrusher(Actor *);
+    extern u32 D_80800B30_chcrusher[];
+    extern f32 D_80800B48_chcrusher[][4];
+    extern u32 D_80800BE0_chcrusher[];
+
+    switch (arg0->unk70_10) {
+        case 1:
+            if (!func_800DA298(0x4FB)) {
+                func_80101FDC(arg0, 3);
+            }
+            break;
+        case 2:
+            if (arg0->unk7C_12 && func_80101E14(arg0, 0.75f)) {
+                func_80800394_chcrusher((u8 *)arg0);
+            }
+            if (func_80101E14(arg0, 0.9f)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800B30_chcrusher);
+                func_800E1610(2, 80.0f, 0.85f, arg0->position);
+                func_80018820(0, 2.5f, 0.25f);
+            }
+            if (func_80101E14(arg0, 0.48f)) {
+                if (func_800DA298(0x4FB)) {
+                    func_80101FDC(arg0, 1);
+                } else {
+                    func_80101FDC(arg0, 3);
+                    arg0->unk58 = 0.0f;
+                }
+            }
+            break;
+        case 3:
+            arg0->unk64_20 = 0;
+            arg0->unk58 += func_800D8FF8();
+            if (D_80800B48_chcrusher[arg0->unk6C_0][(s32)((f32 *)arg0->actorData)[7]] <= arg0->unk58) {
+                if ((s32)((f32 *)arg0->actorData)[7] < 3) {
+                    ((f32 *)arg0->actorData)[7] += 1.0f;
+                } else {
+                    ((f32 *)arg0->actorData)[7] = 0.0f;
+                }
+                if (func_800DA298(0x4FB)) {
+                    func_80101FDC(arg0, 1);
+                } else {
+                    func_80101FDC(arg0, 2);
+                }
+            }
+            break;
+    }
+    if (arg0->unk7C_12 && !arg0->unk64_20 && arg0->unk70_10 == 2) {
+        func_808003E4_chcrusher(arg0);
+    }
+    if (arg0->unk7C_12) {
+        func_80800508_chcrusher(arg0);
+    }
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, ((f32 *)arg0->actorData)[3] > 0.0f, D_80800BE0_chcrusher);
+    if (((f32 *)arg0->actorData)[3] > 0.0f) {
+        ((f32 *)arg0->actorData)[3] -= func_800D8FF8();
+    }
+}
 
 void func_80800394_chcrusher(u8 *arg0) {
     s32 func_800BABB8(s32, s32, s32, s32, s32 *);
