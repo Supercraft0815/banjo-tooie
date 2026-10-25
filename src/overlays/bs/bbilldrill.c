@@ -274,7 +274,92 @@ void bsbbilldrill_entrypoint_1(void *arg0) {
     func_80800000_bsbbilldrill(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/bsbbilldrill_entrypoint_2.s")
+void bsbbilldrill_entrypoint_2(struct player_state_s *arg0) {
+    s32 _batimer_decrement(void *, s32);
+    f32 _batimer_get(void *, s32);
+    s32 _bswalk_entrypoint_1();
+    void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
+    void baflag_clear(struct player_state_s *, int);
+    void baflag_set(struct player_state_s *, s32);
+    f32 baphysics_get_vertical_velocity(struct player_state_s *);
+    s32 bs_setState(struct player_state_s *, s32);
+    int func_8008DF8C(struct player_state_s *, s32);
+    s32 func_800954E8(void *, s32 *);
+    void func_80096394(struct player_state_s *, f32 *);
+    void func_80098520(void *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 mlAbsF(f32);
+    s32 player_inWater(struct player_state_s *);
+    s32 player_isStable(struct player_state_s *);
+    s32 nextState;
+    f32 timer;
+    f32 velocity[3];
+    s32 surface;
+
+    nextState = 0;
+    switch (((u8 *)arg0)[0x15C]) {
+    case 1:
+        func_80800298_bsbbilldrill(arg0);
+        timer = _batimer_get(arg0, 0);
+        *(f32 *)((u8 *)arg0 + 0x170) = func_800F10B4(timer, 0.0f, 0.3f, 1500.0f, 50.0f);
+        func_808005C0_bsbbilldrill((u8 *)arg0);
+        func_80098520(arg0, func_800F10B4(timer, 0.0f, 0.3f, 1.0f, 0.0f));
+        if (_batimer_decrement(arg0, 0)) {
+            func_808002DC_bsbbilldrill(arg0, 2);
+        }
+        break;
+    case 2:
+        func_80800298_bsbbilldrill(arg0);
+        func_808005C0_bsbbilldrill((u8 *)arg0);
+        if (_batimer_decrement(arg0, 0)) {
+            func_808002DC_bsbbilldrill(arg0, 3);
+        }
+        break;
+    case 3:
+        func_80096394(arg0, velocity);
+        if (mlAbsF(velocity[1]) < 1.0f) {
+            ((u8 *)arg0)[0x15D]++;
+        } else {
+            ((u8 *)arg0)[0x15D] = 0;
+        }
+        func_808005C0_bsbbilldrill((u8 *)arg0);
+        if (baphysics_get_vertical_velocity(arg0) < 0.0f) {
+            baflag_set(arg0, 0x22);
+        }
+        if (player_inWater(arg0)) {
+            nextState = 0x4C;
+        } else if (func_8008DF8C(arg0, 0x50) || ((u8 *)arg0)[0x15D] >= 4) {
+            if (func_800954E8(arg0, &surface)) {
+                nextState = 0x72;
+            } else {
+                func_808002DC_bsbbilldrill(arg0, 4);
+            }
+        }
+        break;
+    case 4:
+        baflag_clear(arg0, 0x26);
+        func_808005C0_bsbbilldrill((u8 *)arg0);
+        func_80800250_bsbbilldrill(arg0);
+        func_80800100_bsbbilldrill(arg0);
+        func_8080019C_bsbbilldrill(arg0);
+        func_80800008_bsbbilldrill(arg0);
+        if (_batimer_decrement(arg0, 0)) {
+            func_808002DC_bsbbilldrill(arg0, 5);
+        }
+        break;
+    case 5:
+        _bswalk_entrypoint_1(arg0);
+        if (player_inWater(arg0)) {
+            nextState = 0x4C;
+        }
+        if (player_isStable(arg0)) {
+            baanim_setEndAndDuration(arg0, 1.0f, 1.9f);
+            nextState = 0x20;
+        }
+        break;
+    }
+    bs_setState(arg0, nextState);
+}
 
 s32 bsbbilldrill_entrypoint_3(s32 arg0) {
     extern s32 D_80800B68_bsbbilldrill[];
