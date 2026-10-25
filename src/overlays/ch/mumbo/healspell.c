@@ -133,7 +133,91 @@ s32 func_808003A8_chmumbohealspell(void *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mumbo/healspell/func_80800450_chmumbohealspell.s")
+void func_80800450_chmumbohealspell(void *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chglowbo_entrypoint_6(void);
+    s16 _chmumbopad_entrypoint_0(s32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _sumumbofx_entrypoint_2(void *);
+    void _sumumbofx_entrypoint_3(void *, f32);
+    void _sumumbofx_entrypoint_4(void *);
+    void _sumumbofx_entrypoint_15(void *, f32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    void _sumumbofx_entrypoint_17(void *, f32);
+    void _sumumbofx_entrypoint_18(void *, f32);
+    void _sumumbofx_entrypoint_24(void *, f32);
+    void _sumumbofx_entrypoint_25(void *, s32, s32 *);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80103110(void *, s32);
+    void func_8010A800(Actor *, s32);
+    extern s32 D_808008D0_chmumbohealspell[3];
+    s32 sp2C[3];
+    Actor *actor = arg0;
+
+    switch (arg1) {
+    case 1:
+        break;
+    case 2:
+        func_80103110(actor, 1);
+        break;
+    case 3:
+        sp2C[0] = 0;
+        sp2C[1] = 0;
+        sp2C[2] = 0;
+        _sumumbofx_entrypoint_0(actor, 0, 0x3C, _chmumbopad_entrypoint_0(0x10));
+        _sumumbofx_entrypoint_2(func_80100094(actor, 0));
+        _sumumbofx_entrypoint_25(func_80100094(actor, 0), 0x7D, sp2C);
+        _sumumbofx_entrypoint_24(func_80100094(actor, 0), 0.65f);
+        _sumumbofx_entrypoint_15(func_80100094(actor, 0), 3.0f);
+        _capod_entrypoint_13(actor->unk0, actor->unk0, 0x10, 0x800);
+        func_8010A800(actor, 2);
+        break;
+    case 4:
+        _sumumbofx_entrypoint_18(func_80100094(actor, 0), 4.0f);
+        _chglowbo_entrypoint_6();
+        break;
+    case 5:
+        _sumumbofx_entrypoint_17(func_80100094(actor, 0), 3.0f);
+        break;
+    case 6:
+        _sumumbofx_entrypoint_16(func_80100094(actor, 0), 3.0f);
+        break;
+    case 7:
+        _glcutDll_entrypoint_6(0x121, 0x71);
+        break;
+    case 8:
+        _sumumbofx_entrypoint_1(actor, 0);
+        break;
+    case 9:
+        func_80103110(actor, 1);
+        _sumumbofx_entrypoint_0(actor, 0, 0x3C, _chmumbopad_entrypoint_0(0x10));
+        _sumumbofx_entrypoint_2(func_80100094(actor, 0));
+        _sumumbofx_entrypoint_25(func_80100094(actor, 0), 0x7D, D_808008D0_chmumbohealspell);
+        _sumumbofx_entrypoint_24(func_80100094(actor, 0), 0.65f);
+        _sumumbofx_entrypoint_17(func_80100094(actor, 0), 3.0f);
+        _sumumbofx_entrypoint_3(func_80100094(actor, 0), 375.0f);
+        _sumumbofx_entrypoint_4(func_80100094(actor, 0));
+        _capod_entrypoint_13(actor->unk0, actor->unk0, 0, 0x2900);
+        break;
+    case 10:
+        _sumumbofx_entrypoint_16(func_80100094(actor, 0), 3.0f);
+        func_80101180(0x52D, 0x33, 0);
+        break;
+    case 11:
+        _sumumbofx_entrypoint_1(actor, 0);
+        func_800DA524(0x9DE);
+        func_800DA544(0x9DF);
+        func_800DA544(0x15E);
+        break;
+    }
+    func_80102424(actor, arg1);
+}
 
 void func_80800740_chmumbohealspell(Actor *arg0) {
     void *func_80100094(Actor *, u32);
