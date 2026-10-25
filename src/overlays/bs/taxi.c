@@ -459,7 +459,99 @@ void bstaxi_entrypoint_12(void *arg0) {
     func_80800A18_bstaxi(arg0, 1U);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/taxi/bstaxi_entrypoint_13.s")
+void bstaxi_entrypoint_13(void *arg0) {
+    typedef struct player_state_s PlayerState;
+    void _babackpack_entrypoint_6(void *, f32 *, s32);
+    void _babackpack_set_state(void *, s32);
+    s32 _bapackctrl_entrypoint_1(void *);
+    void _bapackctrl_entrypoint_4(void *, s32);
+    f32 baanim_getTimer(struct player_state_s *);
+    s32 baanim_isAt(void *, f32);
+    s32 baanim_isStopped(void *);
+    s32 bainput_enable(void *, s32, s32);
+    int bakey_pressed(struct player_state_s *, int);
+    int bakey_released(PlayerState *, int);
+    void func_8009C128(PlayerState *, f32 *);
+    void func_8009D3A8(void *, s32);
+    void func_8009DEC0(PlayerState *, s32, f32, f32, s32, s32);
+    void func_800A0CD0(void *, s32);
+    void *func_800C6C94(f32 *, f32, f32 *, u32);
+    void func_800CB5D4(s32, f32 *, f32);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800FC6B0(u32);
+    f32 yaw_get(struct player_state_s *);
+    s32 bs_setState(void *, s32);
+    s32 sp5C;
+    f32 sp58;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp34[3];
+    s32 sp30;
+
+    sp5C = 0;
+    sp58 = baanim_getTimer(arg0);
+    func_8009D3A8(arg0, 0);
+    switch (*(u8 *)((s8 *)arg0 + 0x15C)) {
+    case 1:
+        bainput_enable(arg0, 0, 1);
+        if (baanim_isAt(arg0, 0.084f)) {
+            _babackpack_set_state(arg0, 3);
+            func_800A0CD0(arg0, 0);
+        }
+        if (bakey_pressed(arg0, 9)) {
+            *(u8 *)((s8 *)arg0 + 0x15D) = 1;
+        }
+        if ((sp58 > 0.3883f && *(u8 *)((s8 *)arg0 + 0x15D)) || baanim_isStopped(arg0)) {
+            func_80800A18_bstaxi(arg0, 2U);
+        }
+        break;
+    case 2:
+        if (bakey_pressed(arg0, 9) || *(u8 *)((s8 *)arg0 + 0x15D)) {
+            *(u8 *)((s8 *)arg0 + 0x15D) = 0;
+            func_8009C128(arg0, sp4C);
+            func_800EF1B8(sp4C, yaw_get(arg0), 45.0f);
+            sp4C[1] += 80.0f;
+            if (func_800C6C94(sp4C, 40.0f, sp40, 0x420020)) {
+                func_800FC6B0(0xF);
+            } else {
+                func_80800A18_bstaxi(arg0, 3U);
+            }
+        }
+        if (bakey_released(arg0, 1)) {
+            func_80800A18_bstaxi(arg0, 4U);
+        }
+        break;
+    case 3:
+        if (baanim_isAt(arg0, 0.16f)) {
+            _babackpack_entrypoint_6(arg0, sp34, 0);
+            sp30 = _bapackctrl_entrypoint_1(arg0);
+            _bapackctrl_entrypoint_4(arg0, 0);
+            func_8009DEC0(arg0, 0x53C, 0.95f, 1.05f, 0x6978, 0x6D60);
+            func_800CB5D4(sp30, sp34, yaw_get(arg0));
+        }
+        if (baanim_isAt(arg0, 0.6511f)) {
+            _babackpack_set_state(arg0, 1);
+            func_800A0CD0(arg0, 1);
+        }
+        if (sp58 > 0.6511f) {
+            sp5C = 0x20;
+        }
+        break;
+    case 4:
+        if (baanim_isAt(arg0, 0.48f)) {
+            func_8009DEC0(arg0, 0x584, 0.95f, 1.05f, 0x55F0, 0x55F0);
+        }
+        if (baanim_isAt(arg0, 0.5053f)) {
+            _babackpack_set_state(arg0, 1);
+            func_800A0CD0(arg0, 1);
+        }
+        if (sp58 > 0.5053f) {
+            sp5C = 0x20;
+        }
+        break;
+    }
+    bs_setState(arg0, sp5C);
+}
 
 s32 bstaxi_entrypoint_14(s32 arg0) {
     extern s32 D_808021A8_bstaxi[];
