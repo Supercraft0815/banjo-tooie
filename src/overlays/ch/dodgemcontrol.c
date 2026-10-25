@@ -649,7 +649,78 @@ void func_80801C18_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801C60_chdodgemcontrol.s")
+void func_80801C60_chdodgemcontrol(Actor *arg0) {
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void _subaddiefade_entrypoint_6(Actor *, s32);
+    void func_800C8E84(s32, u32 *);
+    f32 func_800D8FF8(void);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s16 D_80804ECC_chdodgemcontrol[];
+    struct DodgemRGB { u32 rgb[3]; };
+    extern struct DodgemRGB D_80804EB4_chdodgemcontrol;
+    extern struct DodgemRGB D_80804EC0_chdodgemcontrol;
+    struct DodgemData {
+        u8 pad0[0xAC];
+        u8 states[10];
+        u8 types[14];
+    };
+    Actor *sp4C;
+    struct DodgemData *sp48;
+
+    sp4C = func_80106790(arg0->unk3C);
+    sp48 = func_80100094(sp4C, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+            _subaddiefade_entrypoint_6(arg0, 7);
+            if (_subaddiefade_entrypoint_0(arg0) == 255) {
+                func_80801C18_chdodgemcontrol(arg0, (s32)sp4C, 2);
+            }
+            break;
+        case 2:
+            if (arg0->unk58 > 0.0f) {
+                arg0->unk58 -= func_800D8FF8();
+            } else {
+                func_80801C18_chdodgemcontrol(arg0, (s32)sp4C, 3);
+            }
+            break;
+        case 3:
+            _subaddiefade_entrypoint_6(arg0, -7);
+            break;
+    }
+    switch (arg0->unk70_10) {
+        case 3: {
+            struct DodgemRGB color = D_80804EB4_chdodgemcontrol;
+            color.rgb[sp48->types[arg0->unk6C_0]] = _subaddiefade_entrypoint_0(arg0);
+            func_800C8E84(*(s32 *)&arg0->unk50, color.rgb);
+            if (_subaddiefade_entrypoint_0(arg0) == 0) {
+                sp48->states[arg0->unk6C_0] = 0;
+                func_800FFAB0(arg0);
+            }
+            break;
+        }
+        case 1: {
+            struct DodgemRGB color = D_80804EC0_chdodgemcontrol;
+            color.rgb[sp48->types[arg0->unk6C_0]] = _subaddiefade_entrypoint_0(arg0);
+            func_800C8E84(*(s32 *)&arg0->unk50, color.rgb);
+            break;
+        }
+    }
+    if ((s32)arg0->unk70_10 < 3) {
+        switch (sp48->states[arg0->unk6C_0]) {
+            case 2:
+                func_80801B94_chdodgemcontrol((s32)arg0, D_80804ECC_chdodgemcontrol[sp48->types[arg0->unk6C_0]]);
+                sp48->states[arg0->unk6C_0] = 0;
+                func_800FFAB0(arg0);
+                break;
+            case 3:
+                sp48->states[arg0->unk6C_0] = 0;
+                func_800FFAB0(arg0);
+                break;
+        }
+    }
+}
 
 void func_80801F00_chdodgemcontrol(u8 *arg0) {
     void func_800C8B84(s32);
