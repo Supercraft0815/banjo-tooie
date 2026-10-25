@@ -293,7 +293,77 @@ OSThread *chnastycavemen_entrypoint_1(void)
     return (OSThread *) D_808011BC_chnastycavemen;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_80800BE0_chnastycavemen.s")
+void func_80800BE0_chnastycavemen(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 func_8008FF6C(void);
+    void func_80090708(s32);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F3780(f32, u8 *, s16);
+    void *func_80100094(Actor *, u32);
+    f32 func_80101F24(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 func_80105230(Actor *, f32 *);
+    void func_80105834(Actor *);
+    s32 func_80105A5C(Actor *);
+    void func_80105A9C(Actor *, f32);
+    void func_80105BAC(Actor *);
+    s32 func_8010C9FC(f32 *, s32, s32, s32);
+    extern u8 D_80801204_chnastycavemen[];
+    void *sp44;
+    s32 dialog;
+    s32 sp3C;
+
+    sp44 = func_80100094(arg0, 1);
+    _sudeflect_entrypoint_1(arg0->position, arg0->scale * 300.0f, 0.0f, arg0->scale * 150.0f, 14);
+    _suexpression_entrypoint_10(sp44, arg0->unk0, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_8010C9FC(arg0->position, 400, 400, -200) && !func_80090178(0x10000)) {
+                if (func_80800060_chnastycavemen()) {
+                    dialog = 0x17EF;
+                } else if (func_8008FF6C() == 15) {
+                    dialog = 0x17F0;
+                } else {
+                    dialog = 0x17F1;
+                }
+                _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 10, arg0->position, 150);
+                func_80102424(arg0, 2);
+            }
+            break;
+        case 2:
+            break;
+        case 3:
+            func_80105A9C(arg0, func_800F3780(func_80101F24(arg0), D_80801204_chnastycavemen, 5) * (150.0f * arg0->scale));
+            func_80105BAC(arg0);
+            func_80105834(arg0);
+            func_80105230(arg0, NULL);
+            arg0->rotation[1] = func_800F1DCC(arg0->rotation[1], 180.0f);
+            if (func_80105A5C(arg0)) {
+                func_80090708(0);
+                func_80102424(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_8010C9FC(arg0->position, 600, 400, -200) && !func_80090178(0x10000)) {
+                sp3C = 0;
+                if (func_80800060_chnastycavemen()) {
+                    sp3C = 0x17EF;
+                } else if (func_8008FF6C() == 15) {
+                    sp3C = 0x17F0;
+                } else if (_subaddiedialog_entrypoint_5(arg0->position, 400, 45, 0)) {
+                    sp3C = 0x1804;
+                }
+                if (sp3C) {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, sp3C, 10, arg0->position, 150);
+                    func_80102424(arg0, 2);
+                }
+            }
+            break;
+    }
+}
 
 void func_80800E68_chnastycavemen(u8 *arg0, s32 arg1) {
     extern s32 func_801017D0;
