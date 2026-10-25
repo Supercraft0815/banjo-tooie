@@ -114,7 +114,107 @@ void func_8080005C_chflowerbaddie(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flowerbaddie/func_80800380_chflowerbaddie.s")
+s32 func_80800380_chflowerbaddie(Actor *arg0, s32 arg1, s32 *arg2) {
+    s32 _chexploder_entrypoint_4(void *, s32, s32);
+    void _chexploder_entrypoint_6(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_7(Actor *, f32, f32);
+    void _chexploder_entrypoint_8(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_10(Actor *, s16 *);
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    void _subaddieaudioloop_entrypoint_2(Actor *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800FFAB0(Actor *);
+    void func_80101010(f32 *);
+    void func_80101074(void *);
+    void *func_80101080(void);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80107070(Actor *, u32);
+    void func_808006A0_chflowerbaddie(Actor *);
+    extern u8 D_80800BCC_chflowerbaddie[];
+    extern u8 D_80800CC0_chflowerbaddie[];
+    s16 parts[20];
+    Actor *exploder;
+    s32 i;
+    f32 position[3];
+    union {
+        s32 **args;
+        s32 *event;
+        u32 flags;
+        struct {
+            u32 upper : 29;
+            u32 active : 1;
+            u32 lower : 2;
+        } bits;
+    } data;
+
+    data.args = &arg2;
+
+    switch (arg1) {
+    case 0x3E:
+        arg0->unk58 = 1.0f;
+        break;
+    case 0x3F:
+        if (arg0->unk70_10 != 5 && (data.flags = arg0->pad7A_0, !data.bits.active)) {
+            _subaddieaudioloop_entrypoint_2(arg0);
+            func_80102424(arg0, 5);
+            arg0->unk58 = 1.0f;
+        }
+        break;
+    case 0x40: {
+        data.event = *data.args;
+        _chexploder_entrypoint_4(arg0, *data.event + 4, 4);
+        _subaddieaudioloop_entrypoint_2(arg0);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800CC0_chflowerbaddie);
+        break;
+    }
+    case 0x90: {
+        exploder = func_80106790(func_80101080());
+        for (i = 0x44; i < 0x53; i++) {
+            parts[i - 0x44] = i;
+        }
+        parts[i++ - 0x44] = 0x5B;
+        parts[i++ - 0x44] = 0x5C;
+        parts[i - 0x44] = -1;
+        _chexploder_entrypoint_9(exploder, 2, 0);
+        _chexploder_entrypoint_9(exploder, 3, 0);
+        _chexploder_entrypoint_9(exploder, 4, 1);
+        _chexploder_entrypoint_9(exploder, 5, 2);
+        _chexploder_entrypoint_9(exploder, 6, 1);
+        _chexploder_entrypoint_10(exploder, parts);
+        _chexploder_entrypoint_6(exploder, 600.0f, 800.0f);
+        _chexploder_entrypoint_7(exploder, -800.0f, -600.0f);
+        _chexploder_entrypoint_8(exploder, 80.0f, 160.0f);
+        func_808006A0_chflowerbaddie(arg0);
+        if (!func_80107070(arg0, 3)) {
+            func_800FFAB0(arg0);
+        }
+        break;
+    }
+    case 0x95:
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    case 0x38:
+        func_80101074(D_80800BCC_chflowerbaddie);
+        return 6;
+    case 0x97:
+        func_800EFA4C(position, 0.0f, 300.0f, 0.0f);
+        func_80101010(position);
+        break;
+    case 2:
+        if (!_subaddieDll_entrypoint_3(arg0)) {
+            func_80107070(arg0, 1);
+            arg0->unk64_20 = 0;
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
