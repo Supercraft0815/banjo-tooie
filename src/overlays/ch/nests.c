@@ -152,7 +152,81 @@ void func_808003AC_chnests(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_808003F4_chnests.s")
+s32 func_808003F4_chnests(Actor *arg0, s32 arg1, void *volatile arg2) {
+    s32 func_800F4B4C(s32);
+    s32 func_800F7C0C(s32, s32, f32);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(void *, s32);
+    void func_80109EEC(s16 *, s32);
+    void func_8010DC50(s32);
+    void func_8010DCB4(s32);
+    void func_80800670_chnests(Actor *, struct NestsContact *);
+    s32 func_8080093C_chnests(u8 *, u8 *);
+    void func_808009D4_chnests(s32, s32);
+    int func_80801014_chnests(Actor *);
+    int func_808010A0_chnests(void *);
+    struct NestsContact *contact;
+
+    switch (arg1) {
+    case 0x3E:
+        contact = *(void **)&arg2;
+        if (!func_800F4B4C((u32)contact->playerFlags >> 5)) {
+            return 0;
+        }
+        switch (arg0->unk0->unk24 >> 22) {
+        case 0x1D9:
+        case 0x1DA:
+            func_80800670_chnests(arg0, contact);
+            break;
+        case 0x1D4:
+            func_800F7C0C((u32)contact->playerFlags >> 5, 0x5F, arg0->rotation[1]);
+            if (arg0->unk74_7 == 0x32) {
+                func_808001F0_chnests(arg0, contact);
+            } else {
+                func_80800324_chnests(arg0, contact);
+            }
+            break;
+        default:
+            func_808001F0_chnests(arg0, contact);
+            break;
+        }
+        break;
+    case 0x1F:
+        if (func_80801014_chnests(arg0)) {
+            func_8080093C_chnests((u8 *)arg0, arg2);
+        } else if (func_808010A0_chnests(arg0)) {
+            func_808009D4_chnests((s32)arg0, (s32)arg2);
+        }
+        break;
+    case 0x95:
+        if (arg0->unk6C_9 != 0x1E9 && arg0->unk6C_9 != 0x4A6) {
+            func_80103110(arg0, 0);
+        }
+        func_80109EEC((void *)arg0, 0x44);
+        break;
+    case 0x29:
+        if (func_80801014_chnests(arg0)) {
+            func_8010DC50(0);
+        } else if (func_808010A0_chnests(arg0)) {
+            func_8010DC50(1);
+        }
+        break;
+    case 0x2A:
+        if (func_80801014_chnests(arg0)) {
+            func_8010DCB4(0);
+        } else if (func_808010A0_chnests(arg0)) {
+            func_8010DCB4(1);
+        }
+        break;
+    case 0x76:
+        func_8080034C_chnests(arg0);
+        func_80101FDC(arg0, 1);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800670_chnests(Actor *arg0, struct NestsContact *arg1) {
     s32 _gleeprom_entrypoint_0(void);
