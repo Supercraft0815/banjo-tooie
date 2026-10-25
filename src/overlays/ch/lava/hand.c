@@ -350,11 +350,35 @@ void func_80800E0C_chlavahand(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800FB4_chlavahand.s")
+void func_80800FB4_chlavahand(Actor *arg0, s32 arg1) {
+    struct ImageStruct *func_800D674C(s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_801015D0(Actor *);
+    void func_808011BC_chlavahand(Actor *, s32, s32, s32, f32, s32, s32);
+    union { struct ImageStruct *ptr; s32 bits; } image;
+    struct HandFlags { u8 pad[0x7A]; u16 mode : 2; u16 rest : 14; };
+    Actor *parent;
+
+    image.ptr = func_800D674C(arg0->unk0->unk14);
+    parent = func_80106790(arg0->unk3C);
+    func_801015D0(arg0);
+    if (arg0->unk0->unk14 == 0x927) {
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x2A, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x2C, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x2D, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x2F, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x30, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x32, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+    } else {
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x33, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+        func_808011BC_chlavahand(parent, arg1, image.bits, 0x35, arg0->scale, arg0->alpha, ((struct HandFlags *)arg0)->mode);
+    }
+    arg0->unk7C_12 = 1;
+}
 
 /* extern */
 
-void func_808011BC_chlavahand(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+void func_808011BC_chlavahand(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6) {
     s32 _subaddieskeleton_entrypoint_0(Actor*, s32, f32*);
     void func_800DF410(s32 a0);
     void func_800DF830(s32 arg0);
@@ -364,7 +388,7 @@ void func_808011BC_chlavahand(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
     _subaddieskeleton_entrypoint_0(arg0, arg3, sp24);
     func_800DF410(arg5);
     func_800DF830(2);
-    func_800DE498(arg1, sp24, 0, arg4, 0, arg2);
+    func_800DE498(arg1, sp24, 0, *(s32 *)&arg4, 0, arg2);
 }
 
 OSThread *chlavahand_entrypoint_1(void)
