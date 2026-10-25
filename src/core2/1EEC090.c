@@ -888,7 +888,75 @@ f32 func_80114774(CameraCollisionData *arg0, s32 arg1, s32 arg2, s32 arg3) {
     return value;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_8011490C.s")
+void func_8011490C(CameraCollisionData *arg0, s32 *arg1, s32 arg2) {
+    s32 func_800A940C(s32);
+    void func_800BCC28(s32, s32);
+    int func_800BCC58(void);
+    void func_800BED18(s32 *, s32 *);
+    f32 func_800C5190(s32);
+    void func_800CA8F4(f32 *, f32 *, f32 *);
+    s32 func_800E36D0(s32 *, s32 *, f32 *, f32 *);
+    void func_800EE84C(f32 *, s32 *);
+    f32 func_800F13F0(f32, f32);
+    s32 func_8010FF80(s32 *);
+    f32 position[3];
+    f32 direction[3];
+    s32 minimum[3];
+    s32 maximum[3];
+    s32 camera;
+    s32 i;
+    f32 transformedMin[3];
+    f32 transformedMax[3];
+    f32 scale;
+
+    camera = func_8010FF80(arg1);
+    func_800BED18(minimum, maximum);
+    func_800CA8F4((f32 *)camera, position, direction);
+    if (func_800BCC58()) {
+        func_800EE84C(transformedMin, minimum);
+        func_800EE84C(transformedMax, maximum);
+        func_800BCC28((s32)transformedMin, (s32)transformedMin);
+        func_800BCC28((s32)transformedMax, (s32)transformedMax);
+        for (i = 0; i < 3; i++) {
+            if (transformedMin[i] < minimum[i]) {
+                minimum[i] = transformedMin[i];
+            }
+            if (maximum[i] < transformedMax[i]) {
+                maximum[i] = transformedMax[i];
+            }
+            if (maximum[i] < transformedMin[i]) {
+                maximum[i] = transformedMin[i];
+            }
+            if (transformedMax[i] < minimum[i]) {
+                minimum[i] = transformedMax[i];
+            }
+        }
+    }
+    *(f32 *)((u8 *)arg0 + 0x10) = func_800E36D0(minimum, maximum, position, direction) + 100.0f;
+    if (*(f32 *)((u8 *)arg0 + 0x10) < 1000.0f) {
+        *(f32 *)((u8 *)arg0 + 0x10) = 1000.0f;
+    } else if (*(f32 *)((u8 *)arg0 + 0x10) > 32000.0f) {
+        *(f32 *)((u8 *)arg0 + 0x10) = 32000.0f;
+    }
+    *(f32 *)((u8 *)arg0 + 0xC) = *(f32 *)((u8 *)arg0 + 0x10) * 0.0078125f;
+    if (*(f32 *)((u8 *)arg0 + 8) > 0.0f) {
+        *(f32 *)((u8 *)arg0 + 0xC) = *(f32 *)((u8 *)arg0 + 8);
+    } else if (*(f32 *)((u8 *)arg0 + 0xC) < 10.0f) {
+        *(f32 *)((u8 *)arg0 + 0xC) = 10.0f;
+    } else {
+        *(f32 *)((u8 *)arg0 + 0xC) = func_800F13F0(*(f32 *)((u8 *)arg0 + 0xC), func_80114774(arg0, camera, (s32)arg1, (s32)position));
+    }
+    scale = 1.0f / func_800C5190(func_800A940C(arg2));
+    if (scale != 1.0f) {
+        *(f32 *)((u8 *)arg0 + 0xC) *= scale;
+        *(f32 *)((u8 *)arg0 + 0x10) *= scale;
+    }
+    if (*(f32 *)((u8 *)arg0 + 8) > 0.0f && arg0->pad4[0]) {
+        arg0->pad4[0] = 0;
+        *(f32 *)((u8 *)arg0 + 8) = 0.0f;
+    }
+    arg0->active = 0;
+}
 
 void *func_80114BD4(void) {
     void *heap_alloc(s32);
