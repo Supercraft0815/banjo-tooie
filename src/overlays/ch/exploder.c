@@ -587,7 +587,7 @@ void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void func_800EE7F8(f32 *, f32 *);
     void * func_80100094(Actor *, u32);
     s32 func_80101074(void *);
-    s32 func_8010108C(void *, s32, u16);
+    s32 func_8010108C(void *, s32, s32);
     s32 func_80103140(Actor *, u32, u16);
     u8 * func_801039E4(Unk80132ED0 *);
     s32 func_80104248(void *);
@@ -630,7 +630,83 @@ void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     func_808010E0_chexploder(temp_v0, (s32) sp30, arg4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/exploder/chexploder_entrypoint_2.s")
+void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    struct ExploderFlags {
+        u8 pad0[0x74];
+        u8 pad74_7 : 6;
+        u8 flag74_1 : 1;
+        u8 pad74_0 : 1;
+    };
+    s32 func_8010108C(void *, s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101038(f32 *);
+    s32 func_80101074(void *);
+    s32 func_80103140(Actor *, u32, u16);
+    u8 *func_801039E4(Unk80132ED0 *);
+    s32 func_80104248(void *);
+    void *func_80106790();
+    Actor *func_80108474(u32, f32 *, s32);
+    s32 func_80108944(u8 *, void *);
+    f32 position[3];
+    f32 rotation;
+    Actor *parent;
+    Actor *actor;
+    f32 *origin;
+    s32 id;
+    f32 scale;
+    struct {
+        u8 pad0[0x14];
+        u16 unk14, unk16;
+        u8 pad18[0x3C];
+        s16 unk54;
+    } *data;
+
+    id = ((s16 *)&arg1)[0];
+    position[0] = ((s16 *)&arg1)[1];
+    position[1] = ((s16 *)&arg2)[0];
+    position[2] = ((s16 *)&arg2)[1];
+    rotation = *(f32 *)&arg3;
+    scale = *(f32 *)&arg4;
+    parent = *(Actor **)&arg0;
+    actor = func_80108474(0x1FF, position, (s32)rotation);
+    data = func_80100094(actor, 0);
+    if (parent != NULL) {
+        parent = func_80106790(parent);
+    } else {
+        parent = NULL;
+    }
+    actor->scale = scale;
+    origin = (f32 *)actor->actorData;
+    func_800EE7F8(origin, actor->position);
+    if (parent != NULL) {
+        func_80101074(actor->unk0);
+        if (func_8010108C(parent, 0x8D, id) > 0) {
+            func_80101038(origin);
+        }
+    }
+    data->unk14 = id;
+    data->unk16 = 0;
+    data->unk54 = arg5;
+    if (parent != NULL) {
+        func_80108944((u8 *)actor, parent);
+        ((struct ExploderFlags *)actor)->flag74_1 = 0;
+    }
+    func_80103140(actor, data->unk14, data->unk16);
+    func_80801188_chexploder((u8 *)actor, func_801039E4(actor->unk0), (s32)parent);
+    func_80800A18_chexploder(actor);
+    if (parent != NULL && (arg5 & 0x80) && func_80104248(parent) != 0) {
+        func_80800AC8_chexploder((u8 *)actor, parent, (u8 *)origin, arg5);
+    } else {
+        func_80800D7C_chexploder(actor, 0, origin, arg5);
+    }
+    if (parent != NULL) {
+        func_80101074(actor->unk0);
+        func_8010108C(parent, 0x90, data->unk14);
+    }
+    func_80800F74_chexploder(actor, (s32)parent);
+    func_808010E0_chexploder((u8 *)actor, (s32)parent, arg5);
+}
 
 void chexploder_entrypoint_3(Actor *arg0, f32 *arg1, s32 arg2) {
     void func_800EE7F8(f32 *, f32 *);
