@@ -35,7 +35,97 @@ void func_80800000_chfootwear(Actor *arg0) {
     func_80800424_chfootwear(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/footwear/func_808000B8_chfootwear.s")
+void func_808000B8_chfootwear(Actor *arg0) {
+    typedef struct {
+        f32 unk0[3];
+        f32 unkC;
+        s32 unk10;
+        s32 unk14;
+        s32 unk18;
+        f32 unk1C;
+    } FootwearData;
+    f32 sp3C[3];
+    f32 sp30[3];
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    void func_800E3980(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 func_800F549C(s32, int);
+    u32 func_800F54E4(void);
+    void func_80102BF8(void *, f32, f32, f32);
+    f32 func_80102D78(Actor *, f32 *);
+    s32 func_8010D23C(void);
+    void func_8010D254(f32 *);
+    void func_8010D600(s32);
+    void func_80800424_chfootwear(Actor *, s32);
+    s32 func_80800644_chfootwear(s32, s32);
+    extern s16 D_808006E4_chfootwear[][5];
+    extern u32 D_80800754_chfootwear[];
+    extern u32 D_80800768_chfootwear[];
+    extern u32 D_80800774_chfootwear[];
+
+    switch (((FootwearData *)arg0->actorData)->unk18) {
+        case 1:
+            switch (((FootwearData *)arg0->actorData)->unk14) {
+                case 0:
+                case 4:
+                    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80800754_chfootwear, D_80800768_chfootwear);
+                    func_800EFCD8(sp3C, ((FootwearData *)arg0->actorData)->unk1C, 40.0f);
+                    sp3C[1] = 0.0f;
+                    func_800EE780(arg0->position, ((FootwearData *)arg0->actorData)->unk0, sp3C);
+                    ((FootwearData *)arg0->actorData)->unk1C += 70.0f * func_800D8FF8();
+                    arg0->rotation[1] = func_800136E4(((FootwearData *)arg0->actorData)->unk1C + 90.0f);
+                    break;
+                case 1:
+                    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800774_chfootwear, 0.25f);
+                    break;
+                case 2:
+                case 3:
+                    if (func_8010D23C()) {
+                        func_8010D254(sp30);
+                    } else {
+                        func_800E3980(sp30);
+                    }
+                    func_8010D600((s32)sp30);
+                    arg0->unk54 = func_80102D78(arg0, sp30);
+                    func_80102BF8(arg0, 0.1f, 3.0f, 120.0f);
+                    break;
+            }
+            if (func_80800644_chfootwear((s32)arg0, func_800F54E4()) || _glcutDll_entrypoint_20()) {
+                ((FootwearData *)arg0->actorData)->unk10 = 255;
+            } else {
+                ((FootwearData *)arg0->actorData)->unk10 = 120;
+            }
+            if (arg0->alpha < ((FootwearData *)arg0->actorData)->unk10 - 5) {
+                arg0->alpha += 5;
+            } else if (arg0->alpha > ((FootwearData *)arg0->actorData)->unk10 + 5) {
+                arg0->alpha -= 5;
+            } else {
+                arg0->alpha = ((FootwearData *)arg0->actorData)->unk10;
+            }
+            break;
+        case 2:
+            if (func_800D90A4(&((FootwearData *)arg0->actorData)->unkC)) {
+                func_80800424_chfootwear(arg0, D_808006E4_chfootwear[((FootwearData *)arg0->actorData)->unk14][0] ? 3 : 4);
+            }
+            break;
+        case 3:
+            if (func_800F549C(arg0->unk79_4, D_808006E4_chfootwear[((FootwearData *)arg0->actorData)->unk14][0]) == 0.0f) {
+                func_80800424_chfootwear(arg0, 4);
+            }
+            break;
+        case 4:
+            if (func_800D90A4(&((FootwearData *)arg0->actorData)->unkC)) {
+                func_80800424_chfootwear(arg0, 1);
+            }
+            break;
+    }
+}
 
 s32 func_80800364_chfootwear(Actor *arg0, s32 arg1, void *volatile arg2) {
     typedef struct {
@@ -141,7 +231,7 @@ s32 func_8080050C_chfootwear(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_80800644_chfootwear(s32 arg0, s32 arg1) { func_8080050C_chfootwear(arg0, arg1, 0); }
+s32 func_80800644_chfootwear(s32 arg0, s32 arg1) { func_8080050C_chfootwear(arg0, arg1, 0); }
 
 s32 func_80800664_chfootwear(Actor *arg0,s32 arg1)
 {
