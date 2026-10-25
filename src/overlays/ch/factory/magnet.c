@@ -401,7 +401,62 @@ void func_80800EF0_chfactorymagnet(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800FE8_chfactorymagnet.s")
+void func_80800FE8_chfactorymagnet(Actor *arg0) {
+    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    f32 func_800138D0(f32);
+    f32 func_80013970(f32);
+    s32 func_800B53A4(s32);
+    void func_800BA1D0(s32, f32[3], f32[3], s32);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_80103EF4(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80802934_chfactorymagnet;
+    extern s32 D_80802940_chfactorymagnet;
+    extern s32 D_8080294C_chfactorymagnet;
+    extern s32 D_80802954_chfactorymagnet;
+    s32 sp74;
+    Actor *sp70;
+    f32 sp64[3];
+    f32 sp58[3];
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp3C;
+
+    *(u8 *)&arg0->actorData[3] = _subaddieaudioloop_entrypoint_7(
+        *(u8 *)&arg0->actorData[3], arg0->position,
+        arg0->unk58 > 0.25f && arg0->unk58 < 1.0f,
+        &D_80802940_chfactorymagnet, arg0->unk70_0);
+    *(u8 *)&arg0->unk54 = _subaddieaudioloop_entrypoint_7(
+        *(u8 *)&arg0->unk54, arg0->position,
+        arg0->unk58 > 0.0f && arg0->unk58 < 0.75f,
+        &D_80802940_chfactorymagnet, arg0->unk70_0);
+    if ((arg0->unk58 <= 0.0f && ((f32 *)arg0->actorData)[7] > 0.0f) ||
+        (arg0->unk58 >= 0.75f && ((f32 *)arg0->actorData)[7] < 0.75f)) {
+        sp74 = func_800B53A4(4);
+        sp70 = func_80106790(arg0->unk3C);
+        sp3C = func_80103EF4(sp70);
+        func_800EE7F8(sp4C, sp70->position);
+        func_800EE7F8(sp40, sp4C);
+        sp4C[0] -= sp3C;
+        sp40[0] += sp3C;
+        func_800EE7F8(sp64, sp4C);
+        func_800EE7F8(sp58, sp40);
+        sp64[1] += sp3C * func_800138D0(sp70->rotation[0]);
+        sp58[1] += sp3C * func_800138D0(sp70->rotation[0]);
+        sp64[2] += sp3C * func_80013970(sp70->rotation[0]);
+        sp58[2] += sp3C * func_80013970(sp70->rotation[0]);
+        func_800BABB8(sp74, sp70->position, NULL, sp70->scale, &D_80802954_chfactorymagnet);
+        func_800BA1D0(sp74, sp4C, sp64, 1);
+        func_800BA1D0(sp74, sp64, sp58, 2);
+        func_800BA1D0(sp74, sp58, sp40, 1);
+        _subaddieaudioquick_entrypoint_2(arg0, sp70->position, &D_80802934_chfactorymagnet);
+    }
+    if (arg0->unk58 >= 1.0f && ((f32 *)arg0->actorData)[7] < 1.0f) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080294C_chfactorymagnet);
+    }
+}
 
 /* extern */
 
