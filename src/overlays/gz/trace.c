@@ -84,27 +84,28 @@ u8 *func_80800290_gztrace(s32 arg0, s32 arg1, u8 *arg2) {
     return dest;
 }
 
+struct TraceData {
+    s32 count;
+    u8 *base;
+    u8 *table;
+    s32 tableCount;
+        u8 *data10;
+    u8 *data14;
+    u8 *data18;
+    u8 *data1C;
+    u8 *data20;
+    u8 *data24;
+    u8 *data28;
+    u8 *data2C;
+    u8 *data30;
+};
+
 void func_808003D0_gztrace(u8 *arg0) {
     struct TraceHeader {
         s16 count0, count2, count4, count6, count8, countA, countC;
         u8 countE;
     };
     struct TraceHeader *header = (struct TraceHeader *)arg0;
-    struct TraceData {
-        s32 count;
-        u8 *base;
-        u8 *table;
-        s32 tableCount;
-            u8 *data10;
-        u8 *data14;
-        u8 *data18;
-        u8 *data1C;
-        u8 *data20;
-        u8 *data24;
-        u8 *data28;
-        u8 *data2C;
-        u8 *data30;
-    };
     extern struct TraceData B_80800A70_gztrace;
     struct TraceData *trace;
 
@@ -131,7 +132,72 @@ void func_808003D0_gztrace(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_808004B0_gztrace.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_808005C4_gztrace.s")
+s32 func_808005C4_gztrace(u32 arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4) {
+    extern struct TraceData B_80800A70_gztrace;
+    extern u8 B_80800AA8_gztrace[];
+    extern u8 B_80800ABA_gztrace, B_80800ABD_gztrace, B_80800AC3_gztrace;
+    extern u8 B_80800ACD_gztrace, B_80800AD5_gztrace, B_80800AD6_gztrace;
+    extern s32 overlay_syscalls, overlay_syscalls_end;
+    struct Overlay *func_80081AA4(void *);
+    void func_8001D37C(s32, ...);
+    s32 func_808004B0_gztrace(s32 *, u32 *, s32 *, s32 *, u32);
+    s32 sp5C;
+    s32 sp58;
+    s32 address;
+    s32 first;
+    s32 second;
+    s32 count;
+    u8 *overlay;
+
+    count = 0;
+    if (func_808004B0_gztrace(&arg1, &arg0, &sp5C, &sp58, arg2)) {
+        do {
+            first = sp5C;
+            second = sp58;
+            if (sp5C != 0) {
+                address = sp5C;
+            } else {
+                address = sp58;
+            }
+            overlay = (u8 *)func_80081AA4((void *)address);
+            if (overlay != NULL) {
+                func_808003D0_gztrace(overlay);
+                func_808000E8_gztrace(B_80800AA8_gztrace, B_80800A70_gztrace.data1C, 13, 0x7E, 2);
+                if (arg3 == 0) {
+                    if (first != 0 && (first < (s32)&overlay_syscalls || (s32)&overlay_syscalls_end < first)) {
+                        first -= (s32)B_80800A70_gztrace.data20;
+                    }
+                    second -= (s32)B_80800A70_gztrace.data20;
+                }
+            } else {
+                func_808000E8_gztrace(B_80800AA8_gztrace, "core", 13, 0x7E, 2);
+            }
+            switch (arg3) {
+                case 0:
+                    func_80800068_gztrace(B_80800AA8_gztrace, " (********,********) ");
+                    func_80800290_gztrace(((s32 *)arg1)[0], 4, &B_80800ABA_gztrace);
+                    func_80800290_gztrace(((s32 *)arg1)[1], 4, &B_80800AC3_gztrace);
+                    break;
+                case 1:
+                    func_80800068_gztrace(B_80800AA8_gztrace, " SP: ********    PC: ");
+                    func_80800290_gztrace(arg1, 4, &B_80800ABD_gztrace);
+                    break;
+            }
+            if (sp5C != 0) {
+                func_80800290_gztrace(first, 4, &B_80800ACD_gztrace);
+            } else {
+                func_80800068_gztrace(&B_80800ACD_gztrace, " (*f)() ");
+            }
+            func_80800068_gztrace(&B_80800AD5_gztrace, "-********");
+            func_80800290_gztrace(second, 4, &B_80800AD6_gztrace);
+            B_80800AA8_gztrace[0x36] = 0;
+            if (arg4 == 0) {
+                func_8001D37C("%s\n", B_80800AA8_gztrace);
+            }
+            count++;
+        } while (count < 16 && func_808004B0_gztrace(&arg1, &arg0, &sp5C, &sp58, arg2));
+    }
+}
 
 void gztrace_entrypoint_0(void) {
 }
