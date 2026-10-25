@@ -128,7 +128,66 @@ OSThread *chlavagargoyle_entrypoint_0(void)
     return (OSThread *) D_80800D7C_chlavagargoyle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_808006EC_chlavagargoyle.s")
+void func_808006EC_chlavagargoyle(Actor *arg0) {
+    struct GargoyleData { f32 position[3]; f32 timer; f32 velocity[3]; f32 height; };
+    void _subaddieaudioloop_entrypoint_0(Actor *, f32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 func_8001210C(s32);
+    f32 func_80013970(f32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 *func_800BF340(f32 *, f32 *, f32 *, s32, f32);
+    void func_800C8CB8(s32, f32 *);
+    f32 func_800D8FF8(void);
+    int func_800D91EC(f32 *, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF174(f32 *, f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFDE8(f32 *, u8 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_80103EAC(Actor *);
+    s32 func_8010C754(void);
+    void func_8080099C_chlavagargoyle(Actor *, s32);
+    void func_80800B8C_chlavagargoyle(Actor *, f32 *, s32);
+    extern u32 D_80800DC4_chlavagargoyle[];
+    extern s32 D_80800DD0_chlavagargoyle[], D_80800E08_chlavagargoyle[];
+    s32 sp54;
+    f32 sp48[3];
+    f32 sp3C[3];
+
+    sp54 = func_8010C754();
+    if (func_800D91EC(&((struct GargoyleData *)arg0->actorData)->timer, 3.0f)) {
+        func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)arg0->position);
+        return;
+    }
+    func_800EE7F8(sp48, arg0->position);
+    if (((struct GargoyleData *)arg0->actorData)->timer <= arg0->unk58) {
+        func_800EF174(((struct GargoyleData *)arg0->actorData)->position, ((struct GargoyleData *)arg0->actorData)->velocity, func_800D8FF8());
+        func_800EFA4C(arg0->position, ((struct GargoyleData *)arg0->actorData)->position[0],
+            ((struct GargoyleData *)arg0->actorData)->position[1] + func_80013970(func_800F10B4(((struct GargoyleData *)arg0->actorData)->timer, 0.0f, arg0->unk58, 0.0f, 180.0f)) * ((struct GargoyleData *)arg0->actorData)->height,
+            ((struct GargoyleData *)arg0->actorData)->position[2]);
+    } else {
+        ((struct GargoyleData *)arg0->actorData)->velocity[1] += -2000.0f * func_800D8FF8();
+        func_800EF174(arg0->position, ((struct GargoyleData *)arg0->actorData)->velocity, func_800D8FF8());
+    }
+    func_8080099C_chlavagargoyle(arg0, (s32)arg0->position);
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, sp54 < 1000, D_80800DC4_chlavagargoyle);
+    _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4((f32)sp54, 1000.0f, 0.0f, 0.8f, 1.1f));
+    if (func_8001210C(1)) {
+        func_800BBCB8(arg0->position, NULL, arg0->scale, 1, D_80800DD0_chlavagargoyle);
+        func_800BBCB8(arg0->position, NULL, arg0->scale, 1, D_80800E08_chlavagargoyle);
+    }
+    if (func_800BF340(sp48, arg0->position, sp3C, 0x20020, func_80103EAC(arg0))) {
+        func_800EFA4C(((struct GargoyleData *)arg0->actorData)->position, arg0->position[0], arg0->position[1] + 50.0f, arg0->position[2]);
+        func_800C8CB8(arg0->unk14, ((struct GargoyleData *)arg0->actorData)->position);
+        func_800EFB24(((struct GargoyleData *)arg0->actorData)->position, arg0->position, sp48);
+        func_800EFDE8(((struct GargoyleData *)arg0->actorData)->position, (u8 *)((struct GargoyleData *)arg0->actorData)->position, sp3C);
+        func_800EFB24(((struct GargoyleData *)arg0->actorData)->position, arg0->position, ((struct GargoyleData *)arg0->actorData)->position);
+        func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)((struct GargoyleData *)arg0->actorData)->position);
+    }
+    arg0->rotation[1] += arg0->unk54 * func_800D8FF8();
+    arg0->rotation[0] += arg0->unk50 * func_800D8FF8();
+}
 
 void func_800C8CB8(s32, f32 *);
 
