@@ -8,7 +8,7 @@
 s32 func_800CF87C();
 s32 func_800CFA90();
 void func_800CFBC8(Actor*, u32, s32, s32);
-u32 func_800CFC8C(s16, s32);
+u32 func_800CFC8C(s32, s32);
 s32 func_800D0018(s32, s32);
 s32 func_800D035C(s32 a0);
 void func_800D053C(u32, u32);

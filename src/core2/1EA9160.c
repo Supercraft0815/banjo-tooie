@@ -130,7 +130,69 @@ s32 func_800CFC5C(s32 arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFC8C.s")
+u32 func_800CFC8C(s32 arg0, s32 arg1) {
+    extern u8 D_8011AB40[];
+    extern u8 D_8011ABC8[];
+    extern u8 D_8011AC7C[];
+    extern u8 D_8011ACB0[];
+    extern u8 D_8011ACD4[];
+    extern u8 D_8011AD08[];
+    s32 _chnests_entrypoint_13(s32);
+    s32 i;
+    u32 count = 0;
+
+    switch (arg0) {
+        case 0:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (arg1 == D_8011AB40[i * 3 - 3]) {
+                    count++;
+                }
+            }
+            return count;
+        case 1:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (arg1 == D_8011ABC8[i * 2 - 2]) {
+                    count++;
+                }
+            }
+            return count;
+        case 2:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (arg1 == D_8011AC7C[i * 2 - 2]) {
+                    count++;
+                }
+            }
+            return count;
+        case 3:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (arg1 == D_8011ACB0[i * 2 - 2]) {
+                    count++;
+                }
+            }
+            return count;
+        case 4:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (arg1 == D_8011ACD4[i * 2 - 2]) {
+                    count++;
+                }
+            }
+            return count;
+        case 5:
+            return func_800D0894(arg0) - func_800D0820(arg0) + 1;
+        case 6:
+            for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
+                if (arg1 == D_8011AD08[i * 2 - 2]) {
+                    count += _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                }
+            }
+            return count;
+        case 7:
+            return func_800D0894(arg0) - func_800D0820(arg0) + 1;
+        case 8:
+            return func_800D0894(arg0) - func_800D0820(arg0) + 1;
+    }
+    return -1;
+}
 
 s32 func_800CFFBC(u32 arg0, s32 arg1) {
     if (((s32) arg0 >= func_800D0820(arg1)) && (func_800D0894(arg1) >= (s32) arg0)) {
