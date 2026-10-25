@@ -169,7 +169,78 @@ s32 func_800CBD84(f32 *arg0) {
     return var_a1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CBDD4.s")
+s32 func_800CBDD4(s32 positionAddress, s32 arg1, s32 arg2) {
+    f32 func_800EFC7C(void *, void *);
+    struct Entry {
+        s16 index;
+        u8 flags;
+        u8 pad;
+        f32 position[3];
+        f32 radius;
+        s32 enabledIndex;
+        s32 tail;
+    };
+    struct Item {
+        f32 position[3];
+        s16 pad;
+        s16 extent;
+        f32 radius;
+        u32 unused : 12;
+        u32 flags : 3;
+        u32 rest : 17;
+    };
+    struct Table {
+        s32 pad[2];
+        s32 count;
+        struct Entry *entries;
+        s32 tail[2];
+        u8 enabled[1];
+    };
+    f32 *arg0 = (f32 *)positionAddress;
+    f32 half, upper, lower;
+    f32 y, positionY, extent;
+    struct Item *item, *end;
+    struct Entry *entry;
+
+    half = arg1 * 0.5f;
+    upper = arg0[1] + half;
+    lower = arg0[1] - half;
+    for (entry = ((struct Table *)&D_8012AE80)->entries;
+         entry < ((struct Table *)&D_8012AE80)->count + ((struct Table *)&D_8012AE80)->entries;
+         entry++) {
+        if (!(entry->flags & 1)) {
+            continue;
+        }
+            if (func_800EFC7C(entry->position, arg0) < entry->radius) {
+                end = (struct Item *)func_800CB910((s16 *)entry);
+                if (!((struct Table *)&D_8012AE80)->enabled[entry->enabledIndex]) {
+                    continue;
+                }
+                if (arg2 & 1) {
+                    for (item = (struct Item *)func_800CB8F0((s16 *)entry); item < end; item++) {
+                        if (item->flags & arg2) {
+                            y = item->position[1];
+                            if (y <= upper && lower < y &&
+                                func_800EFC7C(item, arg0) < item->radius) {
+                                return entry - ((struct Table *)&D_8012AE80)->entries;
+                            }
+                        }
+                    }
+                } else {
+                    for (item = (struct Item *)func_800CB8F0((s16 *)entry); item < end; item++) {
+                        if ((item->flags & arg2) &&
+                            ((item->flags & 2) ||
+                             (y = item->position[1], positionY = arg0[1], extent = item->extent,
+                              y - extent <= positionY && positionY < y + extent)) &&
+                            func_800EFC7C(item, arg0) < item->radius) {
+                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                        }
+                    }
+                }
+            }
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA5180/func_800CC078.s")
 
