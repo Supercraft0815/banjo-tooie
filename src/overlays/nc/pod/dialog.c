@@ -535,7 +535,74 @@ void func_80801F88_ncpoddialog(u8 *arg0, f32 arg1) {
     func_800EF04C(vector, midpoint);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80802048_ncpoddialog.s")
+void func_80802048_ncpoddialog(u8 *arg0, void *arg1, void *arg2, f32 *arg3, f32 arg4) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800EFB8C(f32 *, f32 *);
+    s32 func_800F05F8(f32 *, f32 *, f32 *, f32, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 func_800F2094(f32, f32);
+    int func_800F20BC(f32, f32, f32);
+    f32 height;
+    f32 length;
+    f32 distance;
+    f32 angle;
+    f32 minimum;
+    f32 half;
+    f32 difference;
+    f32 opposite[3];
+    f32 side[3];
+    f32 heading;
+    s32 i;
+    f32 intersection[4];
+    s32 hit;
+    f32 delta[3];
+
+    height = ((f32 *)arg2)[1];
+    arg4 *= 0.75f;
+    if (arg4 < 5.0f) {
+        return;
+    }
+    length = func_800EFB8C(arg1, arg2);
+    if (length < func_800EFB8C(arg1, arg3) - arg4) {
+        return;
+    }
+    distance = func_800EFB8C(arg1, arg3);
+    angle = func_800F1DF4(arg1, arg3);
+    heading = func_800F1DF4(arg1, arg2);
+    func_800EEB9C(side, angle + 90.0f, arg4);
+    func_800EE7F8(opposite, side);
+    func_800EF04C(side, arg3);
+    func_800EFB24(opposite, arg3, opposite);
+    difference = func_800F2094(func_800F1DF4(arg1, side), angle);
+    if (func_800F20BC(heading, angle, difference)) {
+        minimum = arg4 * 0.5f + distance;
+        if (length < minimum) {
+            length = minimum;
+        }
+        half = difference * 0.5f;
+        if (func_800F20BC(heading, half + angle, half)) {
+            heading = angle + difference;
+        } else {
+            heading = angle - difference;
+        }
+        func_800EEB9C(arg2, heading, length);
+        func_800EF04C(arg2, arg1);
+        func_800EFB24(delta, arg2, arg1);
+        for (hit = 1, i = 0; hit && i++ < 5;) {
+            hit = func_800F05F8(arg1, delta, arg3, arg4, intersection);
+            if (hit && intersection[0] < 1.0f) {
+                heading += difference < 0.0f ? -5 : 5;
+                func_800EEB9C(delta, heading, length);
+            }
+        }
+        func_800EEB9C(arg2, heading, length);
+        func_800EF04C(arg2, arg1);
+    }
+    ((f32 *)arg2)[1] = height;
+}
 
 void func_8080230C_ncpoddialog(u8 *arg0, void *arg1, void *arg2) {
     void func_80802048_ncpoddialog(u8 *, void *, void *, f32 *, f32);
