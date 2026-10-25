@@ -209,7 +209,96 @@ void func_80800354_chevilmumbo(Actor *arg0, s16 arg1, s32 arg2) {
     arg0->unk74_30 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilmumbo/func_808003DC_chevilmumbo.s")
+void func_808003DC_chevilmumbo(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void func_80090708(s32);
+    s32 _suexpression_entrypoint_12(void *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F4CC0(s32);
+    u32 func_800FDC28(u32);
+    void func_80800ECC_chevilmumbo(Actor *, s32);
+    void func_80090734(s32, f32 *);
+    void func_800F4CEC(s32, u32);
+    void func_800DA544(s32);
+    void func_8010A570(Actor *);
+    s32 func_800D395C(void);
+    s32 func_800D1000(s32, s32, s32 *, s32, Unk80132ED0 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void _chexploder_entrypoint_3(void *, void *, u32);
+    void _gcfrontend_entrypoint_10(void);
+    void func_800FFAB0(Actor *);
+    struct {
+        f32 points[12][3];
+        u8 state;
+        u8 pad91[5];
+        u8 unk96;
+    } *data;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    switch (data->state) {
+        case 1:
+            func_80090708(0);
+            break;
+        case 4:
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 60.0f, 0.0f);
+            break;
+        case 8:
+            func_800F4CC0(func_800F54E4());
+            func_800FDC28(10);
+            func_80800ECC_chevilmumbo(arg0, 1);
+            break;
+    }
+    data->state = arg1;
+    switch (data->state) {
+        case 1:
+            func_80090734(2, arg0->position);
+            func_800F4CEC(func_800F54E4(), 0x3F);
+            func_808001F4_chevilmumbo(arg0, 7, 0x20, NULL);
+            break;
+        case 10:
+            func_80800354_chevilmumbo(arg0, 0x11E0, 0);
+            break;
+        case 6:
+            func_800DA544(0xA33);
+            if (data->unk96 == 0) {
+                func_808001F4_chevilmumbo(arg0, 1, 0x20, NULL);
+            }
+            break;
+        case 8:
+            func_80800354_chevilmumbo(arg0, 0x11E3, 0);
+            break;
+        case 4:
+            func_8010A570(arg0);
+            if (func_800D395C() == 0) {
+                func_800D1000(0x47, 1, NULL, 1, arg0->unk0);
+                func_808001F4_chevilmumbo(arg0, 15, 0x20, NULL);
+                arg0->unk58 = 2.0f;
+            } else {
+                func_808003DC_chevilmumbo(arg0, 9);
+            }
+            break;
+        case 9:
+            func_808001F4_chevilmumbo(arg0, 9, 0x20, NULL);
+            func_800EE7F8(position, arg0->position);
+            position[1] -= 100.0f;
+            _chexploder_entrypoint_3(arg0, position, 3);
+            break;
+        case 5:
+            if (func_800D395C() != 0) {
+                _gcfrontend_entrypoint_10();
+            } else {
+                func_80800290_chevilmumbo(arg0);
+                func_80090708(0);
+            }
+            func_800FFAB0(arg0);
+            break;
+        case 7:
+            func_800DA544(0xA32);
+            func_808001F4_chevilmumbo(arg0, 3, 0x20, NULL);
+            break;
+    }
+}
 
 void func_80800670_chevilmumbo(Actor *arg0) {
     s32 func_800DC128(s32, s32);
