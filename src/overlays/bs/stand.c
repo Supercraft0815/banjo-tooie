@@ -102,7 +102,79 @@ void bsstand_entrypoint_0(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x168))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/stand/func_80800274_bsstand.s")
+struct anctrl_s;
+void func_80800274_bsstand(PlayerState *arg0, struct anctrl_s *anim) {
+    void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
+    int anctrl_isAt(struct anctrl_s *, f32);
+    void func_8009514C(PlayerState *);
+    void func_800951B4();
+    void func_800909EC(PlayerState *);
+    void func_8009DF58(PlayerState *, s32, f32);
+    void func_8009DF94(PlayerState *, s32, f32, s32);
+
+    if (anctrl_isAt(anim, 0.2057f)) {
+        func_8009DF94(arg0, 0x418, 1.8f, 16000);
+        _bamotor_entrypoint_1(arg0, 0.5f, 0.25f, 0.4f);
+    }
+    if (anctrl_isAt(anim, 0.2057f)) {
+        func_8009514C(arg0);
+    }
+    if (anctrl_isAt(anim, 0.2555f)) {
+        func_8009DF94(arg0, 0x418, 1.8f, 16000);
+        _bamotor_entrypoint_1(arg0, 0.5f, 0.25f, 0.4f);
+    }
+    if (anctrl_isAt(anim, 0.2896f)) {
+        func_8009DF94(arg0, 0x418, 1.8f, 16000);
+        _bamotor_entrypoint_1(arg0, 0.5f, 0.25f, 0.4f);
+    }
+    if (anctrl_isAt(anim, 0.3f)) {
+        func_8009DF94(arg0, 0x445, 1.0f, 28000);
+    }
+    if (anctrl_isAt(anim, 0.3607f)) {
+        func_800951B4(arg0);
+    }
+    if (anctrl_isAt(anim, 0.4183f)) {
+        func_8009DF58(arg0, 0x43EF, 1.6f);
+    }
+    if (anctrl_isAt(anim, 0.455f)) {
+        func_8009DF58(arg0, 0x43EF, 1.45f);
+    }
+    if (anctrl_isAt(anim, 0.49f)) {
+        func_8009DF58(arg0, 0x43EF, 1.4f);
+    }
+    if (anctrl_isAt(anim, 0.5397f)) {
+        func_800909EC(arg0);
+    }
+    if (anctrl_isAt(anim, 0.6619f)) {
+        func_8009DF94(arg0, 0x418, 1.8f, 16000);
+        _bamotor_entrypoint_1(arg0, 0.5f, 0.25f, 0.4f);
+    }
+    if (anctrl_isAt(anim, 0.6688f)) {
+        func_8009514C(arg0);
+    }
+    if (anctrl_isAt(anim, 0.6964f)) {
+        func_8009DF94(arg0, 0x418, 1.8f, 16000);
+        _bamotor_entrypoint_1(arg0, 0.5f, 0.25f, 0.4f);
+    }
+    if (anctrl_isAt(anim, 0.7747f)) {
+        func_800951B4(arg0);
+    }
+    if (anctrl_isAt(anim, 0.7822f)) {
+        func_8009DF94(arg0, 0x449, 1.0f, 14000);
+    }
+    if (anctrl_isAt(anim, 0.8322f)) {
+        func_8009DF94(arg0, 0x449, 1.0f, 14000);
+    }
+    if (anctrl_isAt(anim, 0.8669f)) {
+        func_8009DF94(arg0, 0x449, 1.0f, 14000);
+    }
+    if (anctrl_isAt(anim, 0.9048f)) {
+        func_8009DF94(arg0, 0x449, 1.0f, 14000);
+    }
+    if (anctrl_isAt(anim, 0.9649f)) {
+        func_800909EC(arg0);
+    }
+}
 
 struct anctrl_s;
 void bsstand_entrypoint_1(PlayerState *arg0) {
