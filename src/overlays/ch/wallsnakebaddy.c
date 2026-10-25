@@ -59,7 +59,73 @@ void func_80800000_chwallsnakebaddy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/wallsnakebaddy/func_8080027C_chwallsnakebaddy.s")
+void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
+    s32 func_8001211C(void);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    void func_800BAB80(s32, f32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    void func_800DF744(s32, s32);
+    void func_80101870(Actor *, void *);
+    OSThread *func_80104130(void);
+    s32 func_801072A8(void *);
+    extern s32 D_80800720_chwallsnakebaddy[];
+    extern s16 D_80800750_chwallsnakebaddy[];
+    extern s16 D_8080075A_chwallsnakebaddy;
+    extern u8 D_8080075C_chwallsnakebaddy[];
+    extern s32 D_80800764_chwallsnakebaddy[];
+    extern s32 D_8080078C_chwallsnakebaddy[];
+    extern f32 D_80800798_chwallsnakebaddy[];
+    s32 smokeEmitter;
+    s32 active;
+    f32 position[3];
+    u8 *count;
+    s16 *model;
+    s32 emitter;
+    s32 state;
+    s32 visible;
+
+    state = arg0->unk70_10;
+    active = (state == 4 || state == 5) ? 1 : 0;
+    visible = (state == 1 || func_801072A8(arg0)) ? 0 : 1;
+    func_800DF744(3, visible);
+    func_800DF744(4, active ^ 1);
+    func_800DF744(5, active);
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        if (arg0->unk64_20) {
+            arg0->unk64_20 = 0;
+            arg0->unk64_19 = 1;
+            func_800DBEFC(func_80104130(), 4, position);
+            count = D_8080075C_chwallsnakebaddy; model = D_80800750_chwallsnakebaddy;
+            do {
+                emitter = func_800B53A4(*count);
+                func_800BA670(emitter, *model);
+                func_800BABB8(emitter, position, position, arg0->scale, D_80800764_chwallsnakebaddy);
+                func_800BA22C(emitter, *count);
+                count++;
+            } while (++model != &D_8080075A_chwallsnakebaddy);
+            emitter = func_800B53A4(5);
+            func_800BABB8(emitter, position, NULL, arg0->scale, D_80800720_chwallsnakebaddy);
+            func_800BABB8(emitter, position, NULL, arg0->scale, D_8080078C_chwallsnakebaddy);
+            func_800BA22C(emitter, 5);
+        }
+        if (arg0->unk64_19) {
+            if (func_801072A8(arg0)) {
+                arg0->unk64_19 = 0;
+            }
+            func_800DBEFC(func_80104130(), 4, position);
+            if ((func_8001211C() & 1) == 1) {
+                smokeEmitter = func_800B53A4(1);
+                func_800BABB8(smokeEmitter, position, NULL, arg0->scale * 0.35f, D_80800720_chwallsnakebaddy);
+                func_800BAB80(smokeEmitter, D_80800798_chwallsnakebaddy);
+                func_800BA22C(smokeEmitter, 1);
+            }
+        }
+    }
+}
 
 void func_808004FC_chwallsnakebaddy(Actor *arg0, s32 arg1) {
     extern void _chbaddiesetup_entrypoint_10(void);
