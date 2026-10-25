@@ -45,7 +45,93 @@ void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_80800060_chfantasyathlete.s")
+struct AthletePaths {
+        u8 pad0[0x78];
+        s32 unk78[7];
+        f32 unk94[7];
+};
+
+void func_80800060_chfantasyathlete(Actor *arg0) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _glcutDll_entrypoint_20(void);
+    void _gspropctrl_entrypoint_11(Prop *, f32[3]);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800EA090(void);
+    u32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void func_800FFA88(Unk80132ED0 *);
+    void *func_80100094(Actor *, u32);
+    void func_8080094C_chfantasyathlete(Actor *, s32);
+    void func_808015D8_chfantasyathlete(f32 *, f32 *, f32 *, f32 *, f32 *);
+    void func_80801654_chfantasyathlete(s32, struct AthletePaths *);
+    struct AthletePaths *data;
+    Prop *props[2];
+    f32 position[3];
+
+    if (_glcutDll_entrypoint_20() != 0) {
+        func_8080094C_chfantasyathlete(arg0, 0x22);
+        return;
+    }
+    data = func_80100094(arg0, 0);
+    if (func_800D0A9C(0x48, 1) == 0) {
+        func_80801654_chfantasyathlete((s32)arg0, data);
+        _gccubesearch_entrypoint_9(0x47B, props, 2);
+        _gspropctrl_entrypoint_11(props[0], position);
+        _gspropctrl_entrypoint_11(props[1], (f32 *)&data->pad0[0x50]);
+        func_808015D8_chfantasyathlete(position, (f32 *)&data->pad0[0x50], (f32 *)&data->pad0[0x68], (f32 *)&data->pad0[0x5C], (f32 *)&data->pad0[0x74]);
+        if (func_800DA298(0x3DD) != 0) {
+            if (func_800EA090() != 0x18) {
+                func_8080094C_chfantasyathlete(arg0, 0x16);
+            }
+        } else {
+            _gccubesearch_entrypoint_9(0x47A, props, 2);
+            _gspropctrl_entrypoint_11(props[0], (f32 *)&data->pad0[0x28]);
+            _gspropctrl_entrypoint_11(props[1], position);
+            func_808015D8_chfantasyathlete(position, (f32 *)&data->pad0[0x28], (f32 *)&data->pad0[0x40], (f32 *)&data->pad0[0x34], (f32 *)&data->pad0[0x4C]);
+            if (func_800DA298(0x3DC) != 0) {
+                if (func_800EA090() != 0x17) {
+                    func_8080094C_chfantasyathlete(arg0, 8);
+                }
+            } else {
+                _gccubesearch_entrypoint_9(0x478, props, 2);
+                _gspropctrl_entrypoint_11(props[1], (f32 *)data->pad0);
+                _gspropctrl_entrypoint_11(props[0], position);
+                func_808015D8_chfantasyathlete(position, (f32 *)data->pad0, (f32 *)&data->pad0[0x18], (f32 *)&data->pad0[0xC], (f32 *)&data->pad0[0x24]);
+                func_8080094C_chfantasyathlete(arg0, 1);
+            }
+        }
+        if (func_800EA090() == 0x17) {
+            func_800F608C(func_800F54E4(), 3);
+            if (func_800DA298(0x6D6) != 0) {
+                if (func_800DA298(0x6D7) != 0) {
+                    func_8080094C_chfantasyathlete(arg0, 0xF);
+                } else {
+                    func_8080094C_chfantasyathlete(arg0, 0xE);
+                }
+                func_800DA524(0x6D6);
+                return;
+            }
+            func_8080094C_chfantasyathlete(arg0, 0xB);
+            return;
+        }
+        if (func_800EA090() == 0x18) {
+            if (func_800DA298(0x6D6) != 0) {
+                if (func_800DA298(0x6D7) != 0) {
+                    func_8080094C_chfantasyathlete(arg0, 0x1D);
+                } else {
+                    func_8080094C_chfantasyathlete(arg0, 0x1C);
+                }
+                func_800DA524(0x6D6);
+                return;
+            }
+            func_8080094C_chfantasyathlete(arg0, 0x19);
+        }
+    } else {
+        func_800FFA88(arg0->unk0);
+    }
+}
 
 s32 func_80800314_chfantasyathlete(s32 arg0) {
     s32 _gcgoto_entrypoint_1(s32, s32);
@@ -235,12 +321,6 @@ s32 func_80800314_chfantasyathlete(s32 arg0) {
     func_8010C908((s32)arg0, (s32)((Actor *)arg0)->position);
     func_80801974_chfantasyathlete((Actor *)arg0);
 }
-
-struct AthletePaths {
-        u8 pad0[0x78];
-        s32 unk78[7];
-        f32 unk94[7];
-};
 
 void func_8080094C_chfantasyathlete(Actor *arg0, s32 arg1) {
     s32 _gcgoto_entrypoint_1(s32, s32);
@@ -641,7 +721,7 @@ s32 func_808011E4_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_808015D8_chfantasyathlete(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 *arg4) {
+void func_808015D8_chfantasyathlete(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
     s32 func_800EE780(s32, s32, s32);
     f32 func_800EEAD4(s32, s32);
     void func_800EF2A0(f32 vec[3]);
