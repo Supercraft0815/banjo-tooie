@@ -1081,7 +1081,77 @@ void func_8080223C_chtrashcangame(Actor *arg0) {
     func_800F4F34(func_800F54E4(), arg0->position, 2.0f * func_80103EAC(arg0), func_80103EAC(arg0) * 0.4f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080292C_chtrashcangame.s")
+s32 func_8080292C_chtrashcangame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA670(s32, s32);
+    void func_800BAB80(s32, f32 *);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800C4140(u32, f32 *, u32);
+    s32 func_800D3948(void);
+    f32 func_800DC178(f32, f32);
+    s32 func_800FFA88(Unk80132ED0 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern s32 D_80803324_chtrashcangame[], D_80803364_chtrashcangame[];
+    extern f32 D_80803394_chtrashcangame[], D_80803398_chtrashcangame[], D_8080339C_chtrashcangame[];
+    s32 sp3C;
+    s32 sp38;
+    Actor *sp34;
+    s32 sp30;
+    s32 sp2C;
+
+    if (arg1 == 0x40) {
+        sp3C = func_800B53A4(func_800D3948() ? 2 : 6);
+        sp34 = func_80106790(arg0->unk3C);
+        sp2C = 0;
+        func_800BABB8(sp3C, arg0->position, arg0->position, 1.0f, D_80803324_chtrashcangame);
+        if (!func_800D3948()) {
+            sp38 = func_800BABB8(0, arg0->position, arg0->position, 1.0f, D_80803364_chtrashcangame);
+        } else {
+            sp2C = _subaddiemulti_entrypoint_5(arg2);
+        }
+        switch (arg0->unk0->unk14) {
+            case 0x805:
+            case 0x99D:
+                if (!func_800D3948()) {
+                    func_800BAB80(sp38, D_80803394_chtrashcangame);
+                }
+                func_800BA670(sp3C, 0x920);
+                sp30 = 1;
+                break;
+            case 0x804:
+            case 0x99E:
+                if (!func_800D3948()) {
+                    func_800BAB80(sp38, D_80803398_chtrashcangame);
+                }
+                func_800BA670(sp3C, 0x921);
+                sp30 = 2;
+                break;
+            case 0x806:
+            case 0x99F:
+                if (!func_800D3948()) {
+                    func_800BAB80(sp38, D_8080339C_chtrashcangame);
+                }
+                func_800BA670(sp3C, 0x922);
+                sp30 = 3;
+                break;
+        }
+        func_80800144_chtrashcangame((s32)func_80106790(arg0->unk3C), sp2C, sp30);
+        func_800BA22C(sp3C, func_800D3948() ? 2 : 6);
+        if (!func_800D3948()) {
+            func_800BA22C(sp38, 6);
+        }
+        (*(s32 *)&sp34->unk50)--;
+        _chscorepoints_entrypoint_2(sp30, sp2C, arg0->position, 1);
+        func_800FFA88(arg0->unk0);
+        func_800C4140(((u16)(func_800DC178(0.45f, 0.65f) * 1023.0f) << 21) + 0x1FFC1F,
+                     arg0->position, 0x05DC0190);
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chtrashcangame_entrypoint_2(void)
 {
