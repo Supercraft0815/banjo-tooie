@@ -132,7 +132,89 @@ void func_8010E3C4(f32 *arg0, s32 *arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE7960/func_8010E4C4.s")
+void func_8010E4C4(f32 *arg0, s32 *arg1, s32 arg2) {
+    s32 func_800DF8B4(s32 *);
+    s32 func_800DF8BC(s32 *);
+    s32 func_800DF8CC(s32 *);
+    extern s32 D_80137060;
+    typedef struct { s16 light[3]; u8 color[4]; } Color;
+    Color *start, *end, *p;
+    u8 *vertex;
+    s8 *normals, *normal;
+    f32 *light;
+    s32 x, y, z;
+    s32 r, g, b;
+    s32 dot;
+    s32 value, value2;
+    s32 direction[3];
+    s32 value3;
+    s32 base;
+    s32 lr, lg, lb;
+
+    base = func_800DF8B4(*(s32 **)&D_80137060);
+    vertex = (u8 *)(*arg1 * 16 + base + 24);
+    base = func_800DF8CC(*(s32 **)&D_80137060);
+    normals = (s8 *)(*arg1 * 4 + base);
+    start = (Color *)func_800DF8BC(*(s32 **)&D_80137060) + *arg1;
+    end = start + arg2;
+    *arg1 += arg2;
+    if (*((u8 *)&D_80137060 + 0x11)) {
+        r = *((s32 *)&D_80137060 + 1);
+        g = *((s32 *)&D_80137060 + 2);
+        b = *((s32 *)&D_80137060 + 3);
+        for (p = start; p < end; p++) {
+            p->light[0] = r;
+            p->light[1] = g;
+            p->light[2] = b;
+        }
+        for (light = *(f32 **)((u8 *)&D_80137060 + 0x18);
+             light < *(f32 **)((u8 *)&D_80137060 + 0x1C); light += 7) {
+            p = start;
+            normal = normals;
+            if (*((u8 *)&D_80137060 + 0x10)) {
+                func_8010E3C4(arg0, direction, light);
+                x = direction[0];
+                y = direction[1];
+                z = direction[2];
+            } else {
+                x = light[0];
+                y = light[1];
+                z = light[2];
+            }
+            lr = ((s32 *)light)[3];
+            lg = ((s32 *)light)[4];
+            lb = ((s32 *)light)[5];
+            for (; p < end; p++, normal += 4) {
+                dot = x * normal[0] + y * normal[1] + normal[2] * z;
+                if (dot > 0) {
+                    p->light[0] += (dot * lr) >> 15;
+                    p->light[1] += (dot * lg) >> 15;
+                    p->light[2] += (dot * lb) >> 15;
+                }
+            }
+        }
+        for (; start < end; start++, vertex += 16) {
+            value = (start->light[0] * start->color[0]) >> 8;
+            if (value >= 256) value = 255;
+            vertex[12] = value;
+            value = (start->light[1] * start->color[1]) >> 8;
+            if (value >= 256) value = 255;
+            vertex[13] = value;
+            value = (start->light[2] * start->color[2]) >> 8;
+            if (value >= 256) value = 255;
+            vertex[14] = value;
+        }
+    } else {
+        r = *((s32 *)&D_80137060 + 1);
+        g = *((s32 *)&D_80137060 + 2);
+        b = *((s32 *)&D_80137060 + 3);
+        for (; start < end; start++, vertex += 16) {
+            vertex[12] = (start->color[0] * r) >> 8;
+            vertex[13] = (start->color[1] * g) >> 8;
+            vertex[14] = (start->color[2] * b) >> 8;
+        }
+    }
+}
 
 void func_8010E7F4(void) {
     extern s32 D_80137060;
