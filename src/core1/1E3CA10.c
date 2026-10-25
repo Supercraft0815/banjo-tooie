@@ -33,7 +33,7 @@ typedef struct {
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80024EE0.s")
 
 void func_80025084(AudioSeq *seq, ALEvent *evt, s32 arg2) {
-    void func_80025224(AudioSeq *, u32, ALEvent *, s32);
+    s32 func_80025224(AudioSeq *, u32, ALEvent *, s32);
     u32 func_80025DE4(AudioSeq *, u32);
     u32 i;
     u32 firstTime = -1U;
@@ -61,7 +61,87 @@ void func_80025084(AudioSeq *seq, ALEvent *evt, s32 arg2) {
     seq->deltaFlag = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80025224.s")
+s32 func_80025224(AudioSeq *arg0, u32 arg1, ALEvent *arg2, s32 arg3) {
+    u32 func_80025BF0(AudioSeq *, u32);
+    u32 func_80025DE4(AudioSeq *, u32);
+    s32 offset;
+    u8 status;
+    u8 loopCount;
+    u8 currentCount;
+    u8 *ptr;
+    u8 type;
+
+    status = func_80025BF0(arg0, arg1);
+    if (status == 0xFF) {
+        type = func_80025BF0(arg0, arg1);
+        if (type == 0x51) {
+            arg2->type = 3;
+            arg2->msg.tempo.status = status;
+            arg2->msg.tempo.type = type;
+            arg2->msg.tempo.byte1 = func_80025BF0(arg0, arg1);
+            arg2->msg.tempo.byte2 = func_80025BF0(arg0, arg1);
+            arg2->msg.tempo.byte3 = func_80025BF0(arg0, arg1);
+            arg0->lastStatus[arg1] = 0;
+        } else if (type == 0x2F) {
+            s32 mask = 1 << arg1;
+            arg0->validTracks ^= mask;
+            if (arg0->validTracks != 0) {
+                arg2->type = 0x12;
+            } else {
+                arg2->type = 4;
+            }
+        } else if (type == 0x2E) {
+            status = func_80025BF0(arg0, arg1);
+            arg2->msg.midi.duration = status << 8;
+            status = func_80025BF0(arg0, arg1);
+            arg2->msg.midi.duration += status;
+            arg0->lastStatus[arg1] = 0;
+            arg2->type = 0x13;
+        } else if (type == 0x2D) {
+            ptr = arg0->curLoc[arg1];
+            loopCount = *ptr++;
+            currentCount = *ptr;
+            if (currentCount == 0 || arg3 == 0) {
+                *ptr = loopCount;
+                arg0->curLoc[arg1] = ptr + 5;
+            } else {
+                if (currentCount != 0xFF) {
+                    *ptr = currentCount - 1;
+                }
+                ptr++;
+                offset = *ptr++ << 24;
+                offset += *ptr++ << 16;
+                offset += *ptr++ << 8;
+                offset += *ptr++;
+                arg0->curLoc[arg1] = ptr - offset;
+            }
+            arg0->lastStatus[arg1] = 0;
+            arg2->type = 0x14;
+        }
+    } else {
+        arg2->type = 1;
+        if (status & 0x80) {
+            arg2->msg.midi.status = status & 0xF0;
+            arg2->msg.midi.byte1 = arg1;
+            arg2->msg.midi.byte2 = func_80025BF0(arg0, arg1);
+            arg0->lastStatus[arg1] = arg2->msg.midi.status;
+        } else {
+            arg2->msg.midi.status = arg0->lastStatus[arg1];
+            arg2->msg.midi.byte2 = status;
+            arg2->msg.midi.byte1 = arg1;
+        }
+        if ((arg2->msg.midi.status & 0xF0) != 0xC0 &&
+            (arg2->msg.midi.status & 0xF0) != 0xD0) {
+            arg2->msg.tempo.byte1 = func_80025BF0(arg0, arg1);
+            if ((arg2->msg.midi.status & 0xF0) == 0x90) {
+                arg2->msg.midi.duration = func_80025DE4(arg0, arg1);
+            }
+        } else {
+            arg2->msg.tempo.byte1 = 0;
+        }
+    }
+    return 1;
+}
 
 s32 func_80025668(s32 *arg0) {
     return arg0[3];
