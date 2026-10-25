@@ -197,7 +197,38 @@ void func_80800998_chcoderoombits(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/chcoderoombits_entrypoint_1.s")
+void chcoderoombits_entrypoint_1(s32 arg0, Unk80132ED0 *arg1) {
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 *func_800BEC10(void);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    void func_800EC398(Unk80132ED0 *, f32 *);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8080052C_chcoderoombits(Actor *, void *);
+    extern struct { u8 unk0; u8 unk1; } D_808011B8_chcoderoombits[5][6];
+    f32 origin[3];
+    f32 position[3];
+    int x;
+    int y;
+    Actor *found;
+    Actor *actor;
+
+    found = _subaddiefind_entrypoint_2(0x3CE, 0);
+    actor = found;
+    if (actor->unk70_10 == 4) {
+        func_800DBEFC(func_800BEC10(), 4, origin);
+        origin[0] -= 510.0f;
+        origin[1] -= 425.0f;
+        func_800EC398(arg1, position);
+        x = (int)((position[0] - origin[0]) * 0.005882353f);
+        y = (int)((position[1] - origin[1]) * 0.005882353f);
+        if (x >= 0 && x < 6 && y >= 0 && y < 5) {
+          if (D_808011B8_chcoderoombits[y][x].unk0 != 0xFF && func_8080052C_chcoderoombits(actor, &D_808011B8_chcoderoombits[y][x])) {
+            func_80101FDC(actor, 5);
+            func_808004B8_chcoderoombits(actor);
+          }
+        }
+    }
+}
 
 s32 func_80800B40_chcoderoombits(s32 arg0, void *arg1) {
     s32 func_800D3EC8(s32);
