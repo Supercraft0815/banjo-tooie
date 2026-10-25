@@ -77,7 +77,79 @@ void func_800BC8F8(s32 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95F80/func_800BC948.s")
+void func_800BC948(Gfx **arg0) {
+    extern s32 D_801282E0;
+    extern f32 D_80128390[], D_8012839C[];
+    void func_800B21CC(void *, void *, void *);
+    s32 func_800B2840(s32);
+    void func_800BCC90(Gfx **);
+    s32 func_800CAA24(f32 *, f32 *, f32 *);
+    struct ImageStruct;
+    struct ImageStruct *func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF440(s32);
+    void func_800DF830(s32);
+    s32 func_800E42A8(void);
+    s32 func_800E42E4(s32);
+    void func_800E4640(Gfx **);
+    void func_800E46E0(Gfx **, void *);
+    void func_800E7FF8(Gfx **, s32);
+    Gfx *sp5C;
+    Gfx *sp58;
+
+    if (*(u8 *)((u8 *)&D_801282E0 + 0xD)) {
+        *(u8 *)((u8 *)&D_801282E0 + 0x10) = 0;
+        gSPEndDisplayList((*arg0)++);
+        {
+            Gfx *start = ((Gfx **)&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)];
+            osWritebackDCache(start, (*arg0 - start) * sizeof(Gfx));
+        }
+        *arg0 = *(Gfx **)((u8 *)&D_801282E0 + 8);
+        func_800E42E4(0);
+        sp5C = (Gfx *)(((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25);
+        func_800E4640(&sp5C);
+        func_800BCC90(&sp5C);
+        gSPEndDisplayList(sp5C++);
+        sp58 = sp5C;
+        func_800E4640(&sp5C);
+        gSPEndDisplayList(sp5C++);
+        {
+            Gfx *start;
+            osWritebackDCache(((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25,
+                (sp5C - (((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25)) * sizeof(Gfx));
+        }
+        if (!*(u8 *)((u8 *)&D_801282E0 + 0xE) || func_800CAA24((f32 *)func_800E42A8(), D_80128390, D_8012839C)) {
+            func_800E46E0(arg0, ((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25);
+            func_800BCC90(arg0);
+            gSPClearGeometryMode((*arg0)++, 0x600);
+            func_800E7FF8(arg0, 0x200);
+            {
+            struct ImageStruct *model;
+            gSPDisplayList((*arg0)++, (&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 0x80000000);
+            func_800E4640(arg0);
+            gSPClearGeometryMode((*arg0)++, 0x600);
+            func_800E7FF8(arg0, 0x400);
+            if (*(s16 *)((u8 *)&D_801282E0 + 0x12)) {
+                model = func_800D674C(*(s16 *)((u8 *)&D_801282E0 + 0x12));
+                if (!*(u8 *)((u8 *)&D_801282E0 + 0xF)) {
+                    func_800B21CC((void *)func_800B2840((s32)model), D_80128390, D_8012839C);
+                    *(u8 *)((u8 *)&D_801282E0 + 0xE) = 1;
+                    *(u8 *)((u8 *)&D_801282E0 + 0xF) = *(u8 *)((u8 *)&D_801282E0 + 0xE);
+                }
+                func_800DF440(0);
+                func_800DF830(1);
+                func_800DF410(*(u8 *)((u8 *)&D_801282E0 + 0x11));
+                func_800DE498(arg0, NULL, NULL, 1.0f, NULL, (s32)model);
+            }
+            }
+            *(u8 *)((u8 *)&D_801282E0 + 0x10) = 1;
+        }
+        func_800E46E0(arg0, sp58);
+        gSPDisplayList((*arg0)++, (&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 0x80000000);
+        *(u8 *)((u8 *)&D_801282E0 + 0xC) ^= 1;
+    }
+}
 
 void func_800BCC28(s32 arg0, s32 arg1) {
     s32 func_800F23D0(s32 *, s32, s32);
