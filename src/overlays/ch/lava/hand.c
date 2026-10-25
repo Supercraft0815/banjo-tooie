@@ -218,7 +218,63 @@ void func_80800A30_chlavahand(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/hand/func_80800AAC_chlavahand.s")
+s32 func_80800AAC_chlavahand(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800EEB9C(f32[3], f32, f32);
+    void func_80101010(f32 *);
+    void func_80102424(Actor *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    struct MarkerId { u32 pad : 16; u32 id : 15; u32 flag : 1; };
+    struct HandFields { u16 pad; u8 mode : 2; u8 rest : 6; u8 pad3; u16 count; };
+    Actor *child;
+    f32 position[3];
+    f32 distance;
+
+    switch (arg1) {
+        case 0x3D:
+            child = func_80108528(0x400, arg0->position, 0, &arg0);
+            func_80103140(child, 0x927, 0);
+            child->unk3C = arg0->unk0;
+            arg0->unk3C = child->unk0;
+            *(u32 *)&child->unk50 = ((struct MarkerId *)&arg0->unk0->unk10)->id;
+            child = func_80108528(0x400, arg0->position, 0, &arg0);
+            func_80103140(child, 0x926, 0);
+            child->unk3C = arg0->unk0;
+            *(u32 *)&child->unk50 = ((struct MarkerId *)&arg0->unk0->unk10)->id;
+            ((struct HandFields *)&child->unk78)->count = ((struct HandFields *)&arg0->unk78)->count;
+            return 1;
+        case 0x40:
+            if (2 == (s32)arg0->unk70_10) {
+                func_80102424(arg0, 4);
+            } else if ((s32)arg0->unk70_10 == 3) {
+                func_80102424(arg0, 5);
+            }
+            ((struct HandFields *)&arg0->unk78)->mode = 2;
+            func_8010A570(arg0);
+            return 1;
+        case 1:
+            func_80102424(arg0, 1);
+            return 1;
+        case 2:
+            arg0->unk58 = 2.0f;
+            func_80102424(arg0, 1);
+            return 1;
+        case 0x95:
+            func_80108B04(arg0, 0);
+            ((struct HandFields *)&arg0->unk78)->count = (u32)(arg0->unk74_7 * 10.0f * 1.2f);
+            return 1;
+        case 0x97:
+            distance = (1.0f / arg0->scale) * 200.0f;
+            func_800EEB9C(position, arg0->rotation[1], distance);
+            position[1] += distance;
+            func_80101010(position);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 /* extern */
 
