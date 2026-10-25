@@ -422,7 +422,74 @@ void func_80105CD0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDED00/func_80105DFC.s")
+void func_80105DFC(Actor *arg0) {
+    s16 *_glidmake_entrypoint_1();
+    s32 _glidmake_entrypoint_5(u16, s32);
+    void freelist_erase(FreeList *, s32);
+    void *freelist_next(FreeList **, s32 *);
+    s32 vector_new(s32, s32);
+    void *func_80106320();
+    extern FreeList *D_80136ED0;
+    typedef struct {
+        u8 pad[0x90];
+        s16 index;
+    } Owner;
+    s16 *sp44;
+    s16 *var_s1;
+    s16 temp_a1;
+    s32 sp38;
+    s32 var_s2;
+    s32 *entry;
+
+    sp38 = 0;
+    if (((Owner *)arg0)->index == 0) {
+        entry = freelist_next(&D_80136ED0, &sp38);
+        ((Owner *)arg0)->index = sp38;
+        entry[0] = _glidmake_entrypoint_5(arg0->unk0->unk14, 0);
+        if (entry[0] == 0) {
+            freelist_erase(D_80136ED0, sp38);
+            ((Owner *)arg0)->index = 0;
+            return;
+        }
+        entry[1] = vector_new(0xA8, 0);
+        sp44 = _glidmake_entrypoint_1(entry[0]);
+        var_s1 = sp44 + 1;
+        var_s2 = 0;
+        if (*sp44 > 0) {
+            do {
+                temp_a1 = var_s1[0];
+                if ((temp_a1 >= 0x65) && (temp_a1 < 0xC8)) {
+                    func_80106320(arg0, temp_a1, 1, temp_a1 - 0x64, 0);
+                } else if ((temp_a1 >= 0xC8) && (temp_a1 < 0x12C)) {
+                    func_80106320(arg0, temp_a1, 0, temp_a1 - 0xC8, 0);
+                } else if ((temp_a1 >= 0x12C) && (temp_a1 < 0x190)) {
+                    func_80106320(arg0, temp_a1, 3, temp_a1 - 0x12C, 0);
+                } else if ((temp_a1 >= 0x190) && (temp_a1 < 0x1F4)) {
+                    func_80106320(arg0, temp_a1, 2, temp_a1 - 0x190, 0);
+                } else if ((temp_a1 >= 0x1F4) && (temp_a1 < 0x258)) {
+                    func_80106320(arg0, temp_a1, 4, temp_a1 - 0x1F4, 0);
+                } else if ((temp_a1 >= 0x258) && (temp_a1 < 0x2BC)) {
+                    func_80106320(arg0, temp_a1, 2, temp_a1 - 0x258, 0);
+                } else if ((temp_a1 >= 0x2BC) && (temp_a1 < 0x320)) {
+                    func_80106320(arg0, temp_a1, 5, temp_a1 - 0x2BC, 0);
+                } else if ((temp_a1 >= 0x320) && (temp_a1 < 0x384)) {
+                    func_80106320(arg0, temp_a1, 6, temp_a1 - 0x320, 0);
+                } else if ((temp_a1 >= 0x384) && (temp_a1 < 0x3E8)) {
+                    func_80106320(arg0, temp_a1, 7, temp_a1 - 0x384, 0);
+                } else if ((temp_a1 >= 0x4B0) && (temp_a1 < 0x6A4)) {
+                    func_80106320(arg0, temp_a1, 8, temp_a1 - 0x4B0, 0);
+                } else if ((temp_a1 >= 0x6A4) && (temp_a1 < 0x708)) {
+                    func_80106320(arg0, temp_a1, 10, temp_a1 - 0x6A4, 0);
+                } else if ((temp_a1 >= 0x76C) && (temp_a1 < 0x7D0)) {
+                    func_80106320(arg0, temp_a1, 9, temp_a1 - 0x76C, 0);
+                }
+                var_s2++;
+                var_s1 += var_s1[1];
+                var_s1 += 2;
+            } while (var_s2 < *sp44);
+        }
+    }
+}
 
 void func_801060E4(s16 arg0) {
     void *freelist_at(FreeList *, s32);
