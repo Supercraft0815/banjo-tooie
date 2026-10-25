@@ -280,7 +280,88 @@ void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_808007B4_chevilspirit.s")
+void func_808007B4_chevilspirit(Actor *arg0, s32 arg1) {
+    typedef struct {
+        s32 unk0[2];
+        s16 count;
+        s16 unkA;
+        Unk80132ED0 *markers[1];
+    } SpiritData;
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_800A89F8(void);
+    void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
+    void func_800B9990(Gfx **);
+    struct ImageStruct *func_800D674C(s32);
+    int func_800DB9B0(void);
+    void func_800E2434(s32);
+    void func_800E253C(f32);
+    void func_800E257C(s32);
+    void func_800E30E0(s32, void *, s32, void *);
+    s32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5EF8(s32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_801067C4(s32 *);
+    s32 func_8010682C(s32 *);
+    s32 func_801069A4(Unk80132ED0 *);
+    void func_8010FFB0(f32 **, f32 *, f32 *);
+    void func_80800A4C_chevilspirit(Actor *, Gfx **, s32 *, f32 *, Actor *, f32, u8 *);
+    void func_80800E20_chevilspirit(Actor *, Gfx **, s32 *);
+    extern u8 D_808022D4_chevilspirit[];
+    extern u8 D_808022D8_chevilspirit[];
+    extern u8 D_808022DC_chevilspirit[];
+    s32 x, y, width, height;
+    s32 iterator;
+    s32 screen[3];
+    f32 position[3];
+    f32 translation[3];
+    f32 rotation[3];
+    Actor *actor;
+    SpiritData *link;
+    Actor *selected;
+    Unk80132ED0 *marker;
+    s32 player;
+    Gfx **gfx = (Gfx **)arg1;
+
+    link = func_80100094(arg0, 0);
+    if (func_800DB9B0() == 0) {
+        player = func_800F54E4();
+        func_800F5A00(player, position);
+        func_8010FFB0((f32 **)func_800F5EF8(player), translation, rotation);
+        func_800A8A04(func_800A89F8(), &x, &y, &width, &height);
+        screen[0] = (width + x - 25) << 2;
+        screen[1] = (height + y - 21) << 2;
+        func_800E253C(1.5f);
+        func_800E257C((arg0->alpha * 96) >> 8);
+        func_800E2434(1);
+        func_800E30E0(arg1, func_800D674C(0xB81), 0, screen);
+        func_800B9990(gfx);
+        func_80800E20_chevilspirit(arg0, gfx, screen);
+        selected = NULL;
+        if (link->count >= 2) {
+            marker = link->markers[link->unkA];
+            if (marker != NULL && func_801069A4(marker)) {
+                selected = func_80106790(marker);
+            }
+        }
+        actor = (Actor *)func_801067C4(&iterator);
+        while (actor != NULL) {
+            if (actor->unk64_24) {
+                func_80800A4C_chevilspirit(arg0, gfx, screen, position, actor, rotation[1],
+                    selected == actor ? D_808022D8_chevilspirit : D_808022DC_chevilspirit);
+            }
+            actor = (Actor *)func_8010682C(&iterator);
+        }
+        actor = _subaddielink_entrypoint_4((u8 *)link);
+        if (actor != NULL) {
+            func_80800A4C_chevilspirit(arg0, gfx, screen, position, actor, rotation[1], D_808022DC_chevilspirit);
+        }
+        func_80800A4C_chevilspirit(arg0, gfx, screen, position, arg0, rotation[1], D_808022D4_chevilspirit);
+        gDPPipeSync((*gfx)++);
+        gDPSetCycleType((*gfx)++, G_CYC_2CYCLE);
+    }
+}
 
 void func_80800A4C_chevilspirit(Actor *arg0, Gfx **arg1, s32 *arg2, f32 *arg3, Actor *arg4, f32 arg5, u8 *arg6) {
     f32 func_800136E4(f32);
