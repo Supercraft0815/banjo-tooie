@@ -123,7 +123,83 @@ void func_808003E8_chcredits(s32 *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800464_chcredits.s")
+void func_80800464_chcredits(Actor *arg0) {
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    void _gldbstring_entrypoint_2(s32);
+    void func_800E715C(u8 *, u8 *);
+    void *func_80100094(Actor *, u32);
+    extern volatile u8 D_80127610[];
+    extern s8 D_80801204_chcredits[];
+    extern s8 D_808012BC_chcredits[];
+    extern s8 D_808012BD_chcredits[];
+    extern s8 D_808012BE_chcredits[];
+    extern u8 R_808011B0_chcredits[];
+    extern u8 R_808011B4_chcredits[];
+    extern u8 R_808011B8_chcredits[];
+    extern u8 R_808011BC_chcredits[];
+    extern u8 R_808011C0_chcredits[];
+    u8 *buffer;
+    u32 *strings;
+    s32 asset;
+    void *text;
+    s32 i;
+
+    buffer = func_80100094(arg0, 0);
+    if (((u8 *)D_80127610)[1] == 2) {
+        asset = D_808012BC_chcredits[((u8 *)D_80127610)[0] * 8] + 0x1B86;
+        if (D_808012BC_chcredits[((u8 *)D_80127610)[0] * 8] >= 0) {
+            strings = _gldbstring_entrypoint_0(NULL, asset);
+            for (i = 0; i != 2; i++) {
+                text = _gldbstring_entrypoint_1(strings, i);
+                if (text != NULL) {
+                    func_800E715C(buffer + i * 0x80, text);
+                } else {
+                    func_800E715C(buffer + i * 0x80, R_808011B0_chcredits);
+                }
+            }
+            _gldbstring_entrypoint_2(asset);
+        } else {
+            for (i = 0; i != 2; i++) {
+                func_800E715C(buffer + i * 0x80, R_808011B4_chcredits);
+            }
+        }
+        asset = D_808012BD_chcredits[((u8 *)D_80127610)[0] * 8] + 0x1B88;
+        strings = _gldbstring_entrypoint_0(NULL, asset);
+        text = _gldbstring_entrypoint_1(strings, D_808012BE_chcredits[((u8 *)D_80127610)[0] * 8]);
+        func_800E715C(buffer + 0x100, text);
+        _gldbstring_entrypoint_2(asset);
+    } else {
+        asset = D_80801204_chcredits[((u8 *)D_80127610)[0] * 8] + 0x1B68;
+        if (D_80801204_chcredits[((u8 *)D_80127610)[0] * 8] >= 0) {
+            strings = _gldbstring_entrypoint_0(NULL, asset);
+            for (i = 0; i != 2; i++) {
+                text = _gldbstring_entrypoint_1(strings, i);
+                if (text != NULL) {
+                    func_800E715C(buffer + i * 0x80, text);
+                } else {
+                    func_800E715C(buffer + i * 0x80, R_808011B8_chcredits);
+                }
+            }
+            _gldbstring_entrypoint_2(asset);
+        } else {
+            for (i = 0; i != 2; i++) {
+                func_800E715C(buffer + i * 0x80, R_808011BC_chcredits);
+            }
+        }
+        asset = ((u8 *)D_80127610)[0] + 0x1B6F;
+        strings = _gldbstring_entrypoint_0(NULL, asset);
+        for (i = 0; i != 3; i++) {
+            text = _gldbstring_entrypoint_1(strings, i);
+            if (text != NULL) {
+                func_800E715C(buffer + (i + 2) * 0x80, text);
+            } else {
+                func_800E715C(buffer + (i + 2) * 0x80, R_808011C0_chcredits);
+            }
+        }
+        _gldbstring_entrypoint_2(asset);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800710_chcredits.s")
 
