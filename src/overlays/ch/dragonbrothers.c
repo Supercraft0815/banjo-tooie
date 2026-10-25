@@ -104,8 +104,8 @@ u32 D_80805558_chdragonbrothers[] = {
     0x1F402710, 0x00000000,
 };
 
-u32 D_80805570_chdragonbrothers[] = {
-    0x00000000, 0x00000000, 0x4541C000,
+f32 D_80805570_chdragonbrothers[] = {
+    0.0f, 0.0f, 3100.0f,
 };
 
 u32 D_8080557C_chdragonbrothers[] = {
@@ -326,7 +326,102 @@ void func_80800000_chdragonbrothers(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_80800070_chdragonbrothers.s")
+s32 _glcutDll_entrypoint_20(void);
+s32 func_800EA05C(void);
+s32 func_801032B0(Actor *, u16, u16);
+s32 func_800DA298(s32);
+void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+s32 _chintrotext_entrypoint_2(s32);
+void func_800FFAB0(Actor *);
+s32 func_800D395C(void);
+s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+void func_80800070_chdragonbrothers(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void func_808012B4_chdragonbrothers(u8 *, s32);
+    struct {
+        u8 unk0[4];
+        u8 unk4[4];
+        u8 unk8[4];
+        s32 unkC;
+        s32 unk10;
+        u8 pad14[12];
+        s32 unk20;
+        u8 pad24[49];
+        u8 unk55;
+        u8 pad56[2];
+        u8 unk58;
+        u8 unk59;
+        u8 pad5A[2];
+        u8 unk5C;
+        u8 unk5D;
+        u8 unk5E;
+        u8 unk5F;
+        u8 unk60;
+    } *data;
+    s32 cutscene;
+
+    data = func_80100094(arg0, 0);
+    cutscene = _glcutDll_entrypoint_20();
+    data->unk20 = -1;
+    arg0->unk74_7 = arg0->unk74_7 - 50;
+    if (func_800EA05C() == 0x12B) {
+        arg0->unk7A_8 = 0;
+    } else {
+        arg0->unk7A_8 = 1;
+    }
+    if (arg0->unk7A_8) {
+        func_801032B0(arg0, 0x7FD, arg0->unk0->unk16);
+    }
+    data->unk8[1] = data->unk4[1] = data->unk0[1] = 0;
+    data->unk8[2] = data->unk4[2] = data->unk0[2] = 0;
+    data->unk8[3] = data->unk4[3] = data->unk0[3] = 0;
+    data->unk8[0] = data->unk4[0] = data->unk0[0] = 0;
+    data->unk5C = 8;
+    data->unk10 = 4;
+    if (!cutscene) {
+        if (func_800DA298(0x1D5) && func_800DA298(0x1D6) &&
+            ((arg0->unk7A_8 && func_800DA298(0x1D2)) ||
+             (!arg0->unk7A_8 && !func_800DA298(0x1D2)))) {
+            func_800D1000(0x3D, 1, D_80805570_chdragonbrothers, 0, arg0->unk0);
+        }
+        if ((arg0->unk7A_8 && func_800DA298(0x1D5)) ||
+            (!arg0->unk7A_8 && func_800DA298(0x1D6))) {
+            _chintrotext_entrypoint_2(1);
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800D395C()) {
+            if (arg0->unk7A_8) {
+                arg0->unk64_19 = 1;
+            }
+        } else if ((arg0->unk7A_8 && func_800DA298(0x1D6)) ||
+                   (!arg0->unk7A_8 && func_800DA298(0x1D5))) {
+            arg0->unk64_19 = 1;
+        }
+    }
+    if (arg0->unk64_19) {
+        data->unkC = 12;
+    } else {
+        data->unkC = 6;
+    }
+    data->unk58 = 0;
+    data->unk59 = 0;
+    data->unk5D = 0;
+    data->unk5E = 0;
+    data->unk60 = 0;
+    data->unk5F = 0;
+    data->unk55 = 0;
+    _suexpression_entrypoint_7(arg0, 1, (s16)(arg0->unk7A_8 ? 0x75 : 0x76));
+    if (cutscene) {
+        func_808012B4_chdragonbrothers((u8 *)arg0, 1);
+    } else {
+        arg0->unk64_16 = 0;
+        if ((arg0->unk7A_8 && func_800DA298(0x1D3)) ||
+            (!arg0->unk7A_8 && func_800DA298(0x1D4))) {
+            func_808012B4_chdragonbrothers((u8 *)arg0, 4);
+        }
+    }
+}
 
 void func_808003D8_chdragonbrothers(Actor* arg0) 
 {
