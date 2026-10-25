@@ -68,7 +68,86 @@ s32 func_80800128_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 *a
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800338_ncpoddialog.s")
+s32 func_80800338_ncpoddialog(void *arg0, s32 arg1, s32 arg2) {
+    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s8, s32);
+    void *func_80110024(s16 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80800D10_ncpoddialog(void *, f32 *, f32 *);
+    void func_808017F4_ncpoddialog(u8 *, s16 *);
+    void func_80801B98_ncpoddialog(u8 *);
+    s32 func_808013C0_ncpoddialog(u8 *);
+    s32 func_80801504_ncpoddialog(u8 *);
+    s32 ready;
+    u8 *p = arg0;
+    s32 result;
+    s8 state;
+
+    p[0x210] = arg2;
+    if ((arg2 & 0xFF) == 2) {
+        if (p[0x215] == 0) {
+            func_8080008C_ncpoddialog(p);
+        }
+        *(f32 *)(p + 0x154) = 0.0;
+        switch (p[0x213]) {
+        case 1:
+            *(f32 *)(p + 0x20C) = 1.0f;
+            break;
+        case 0:
+        case 2:
+            *(f32 *)(p + 0x20C) = 0.0f;
+            break;
+        }
+        func_808017F4_ncpoddialog(p, (s16 *)arg1);
+        state = *(s8 *)(p + 0x211);
+        if (state != 0 && state != 1) {
+            func_80800D10_ncpoddialog(p, (f32 *)(p + 0xC4), (f32 *)(p + 0x13C));
+        }
+        func_80801B98_ncpoddialog(p);
+        ready = func_808013C0_ncpoddialog(p);
+        result = func_80801504_ncpoddialog(p);
+        state = *(s8 *)(p + 0x211);
+        if (state != 9) {
+            if (p[0x212] != 0 && state == 8 && ready == 0) {
+                if (_ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0xAC, *(s8 *)(p + 0x211), (s32)p) != 5) {
+                    result = _ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0x58, *(s8 *)(p + 0x211), 0);
+                    if (result == 4) {
+                        return result;
+                    }
+                    p[0x212] = 0;
+                    func_80800338_ncpoddialog(p, arg1, 1);
+                } else {
+                    p[0x211] = 9;
+                    p[0x212] = 1;
+                    func_80800338_ncpoddialog(p, arg1, 2);
+                }
+            } else {
+                switch (p[0x213]) {
+                case 0:
+                case 2:
+                    if (result == 0) {
+                        p[0x213] = 1;
+                        func_80800338_ncpoddialog(p, arg1, 2);
+                        break;
+                    }
+                case 1:
+                    if (ready == 0) {
+                        if (state != 2 && state != 6) {
+                            p[0x211] = 8;
+                        } else {
+                            p[0x211] = 4;
+                        }
+                        p[0x212] = 1;
+                        func_80800338_ncpoddialog(p, arg1, 2);
+                    } else {
+                        func_800EE7F8((f32 *)(p + 0x200), (f32 *)(p + 0x1F4));
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    return 3;
+}
 
 s32 func_80800584_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s32 arg5, s32 *arg6, s32 *arg7) {
     f32 point[2];
