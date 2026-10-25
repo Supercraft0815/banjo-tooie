@@ -19,16 +19,80 @@ s32 func_80800000_vpmodule(s32 arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/module/vpmodule_entrypoint_0.s")
-
 typedef struct {
-    s32 unk0;
+    void *(*unk0)(void *, void *);
     void (*update)(void *, void *);
     void (*free)(void *);
     s32 unkC;
     s32 unk10;
 } ModuleEntry;
 extern ModuleEntry D_808008C0_vpmodule[];
+
+void *vpmodule_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x20];
+        s16 count20;
+        s16 count22;
+        u8 pad24[8];
+        s32 count2C;
+        s32 offsets[1];
+    } ModuleInput;
+    void *heap_alloc(s32);
+    void _dbvpl_entrypoint_1(void *, void *, s32, s32);
+    void func_808005C4_vpmodule(void *, void *, s32);
+    u8 *allocation;
+    s32 i;
+    s32 *entry;
+    s32 count;
+    s32 size;
+    s32 type;
+    void *created;
+    u8 *aligned;
+    u8 *output;
+    u8 *input;
+    ModuleEntry *table;
+
+    count = ((ModuleInput *)arg0)->count2C;
+    if (count == 0) {
+        return NULL;
+    }
+    size = count * 8 + 8;
+    if (size & 0xF) {
+        do {
+            size++;
+        } while (size & 0xF);
+    }
+    size += ((ModuleInput *)arg0)->count20 * 16 + ((ModuleInput *)arg0)->count22 * 16;
+    allocation = heap_alloc(size);
+    output = allocation + 8;
+    i = 0;
+    if (count > 0) {
+        table = D_808008C0_vpmodule;
+        input = arg0; do {
+            entry = (s32 *)(arg0 + *(s32 *)(input + 0x30));
+            type = func_80800000_vpmodule(*entry);
+            output[0] = type;
+            output[1] = 1;
+            *(s16 *)(output + 2) = i;
+            created = table[type].unk0(arg0, entry);
+            i++;
+            input += 4;
+            output += 8;
+            *(void **)(output - 4) = created;
+        } while (i != count);
+    }
+    aligned = output;
+    if ((s32)output & 0xF) {
+        do {
+            aligned++;
+        } while ((s32)aligned & 0xF);
+    }
+    *(s32 *)allocation = aligned - allocation;
+    _dbvpl_entrypoint_1(arg0, aligned, arg1, arg2);
+    *(s32 *)(allocation + 4) = *(s32 *)allocation + ((ModuleInput *)arg0)->count20 * 16;
+    func_808005C4_vpmodule(allocation, arg0, arg1);
+    return allocation;
+}
 
 void vpmodule_entrypoint_1(u8 *arg0, void *arg1) {
     void heap_free(void *);
