@@ -234,7 +234,33 @@ void func_80800960_chtoxicroombits(u8 *arg0, s32 arg1) {
     actor->unk79_4 = func_80800410_chtoxicroombits();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_80800A2C_chtoxicroombits.s")
+void func_80800A2C_chtoxicroombits(Actor *arg0, void *arg1) {
+    f32 func_800138D0(f32);
+    struct ImageStruct;
+    struct ImageStruct *func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, u8 *);
+    void func_800DF830(s32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern Vec3f D_80801010_chtoxicroombits;
+    extern Vec3f D_8080101C_chtoxicroombits;
+    Vec3f position = D_80801010_chtoxicroombits;
+    s32 i;
+    f32 t;
+    Vec3f rotation;
+    void *model;
+
+    position.f[2] += func_800F10B4(arg0->unk58, 0.0f, ((f32 *)arg0->actorData)[7] / 16, 250.0f, 0.0f);
+    for (i = 0; i < 16; i++) {
+        t = func_800F10B4(position.f[2], -2000.0f, 2000.0f, 0.0f, 1.0f);
+        rotation = D_8080101C_chtoxicroombits;
+        position.f[1] = func_800138D0(t * 360.0f * 18.0f) * 3.0f + 395.0f;
+        rotation.f[0] = func_800138D0(t * 360.0f * 18.0f);
+        func_800DF830(1);
+        model = func_800D674C(0x882);
+        func_800DE498(arg1, position.f, rotation.f, 1.0f, NULL, model);
+        position.f[2] += 250.0f;
+    }
+}
 
 /* extern */
 
