@@ -146,4 +146,61 @@ void fxleaves_entrypoint_6(s32 arg0)
     func_80800288_fxleaves(arg0,0x2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/leaves/fxleaves_entrypoint_7.s")
+void fxleaves_entrypoint_7(void *arg0) {
+    void func_8008FE68(f32 *);
+    s32 func_800A5490(void);
+    f32 func_800D8FF8(void);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    s32 func_800F1574(f32 *, f32);
+    void *vector_at(s32, s32);
+    s32 vector_clear(s32);
+    void vector_erase(s32, s32);
+    s32 vector_size(s32);
+    f32 player_pos[3];
+    f32 delta = func_800D8FF8();
+    int i;
+    f32 *leaf;
+
+    func_8008FE68(player_pos);
+    func_800EFB24((s8 *)arg0 + 0xC, player_pos, arg0);
+    func_800EE7F8(arg0, player_pos);
+    if (func_800A5490()) {
+        vector_clear(*(s32 *)((s8 *)arg0 + 0x1C));
+    }
+    for (i = 0; i < vector_size(*(s32 *)((s8 *)arg0 + 0x1C)); i++) {
+        leaf = vector_at(*(s32 *)((s8 *)arg0 + 0x1C), i);
+        leaf[1] += leaf[4] * delta;
+        leaf[2] += leaf[5] * delta;
+        leaf[3] += leaf[6] * delta;
+        leaf[4] += func_800DC178(-400.0f, 400.0f) * delta;
+        leaf[6] += func_800DC178(-400.0f, 400.0f) * delta;
+        leaf[7] += leaf[10] * delta;
+        leaf[8] += leaf[11] * delta;
+        leaf[9] += leaf[12] * delta;
+        leaf[10] += func_800DC178(-300.0f, 300.0f) * delta;
+        leaf[11] += func_800DC178(-300.0f, 300.0f) * delta;
+        leaf[12] += func_800DC178(-300.0f, 300.0f) * delta;
+        if (leaf[2] < player_pos[1] - 500.0f && !*((u8 *)leaf + 0x34)) {
+            vector_erase(*(s32 *)((s8 *)arg0 + 0x1C), i);
+            i--;
+        }
+    }
+    (*(s32 *)((s8 *)arg0 + 0x18))++;
+    if (*(s32 *)((s8 *)arg0 + 0x18) < vector_size(*(s32 *)((s8 *)arg0 + 0x1C))) {
+        leaf = vector_at(*(s32 *)((s8 *)arg0 + 0x1C), *(s32 *)((s8 *)arg0 + 0x18));
+        if (1320.0f < func_800EEAD4(leaf + 1, player_pos)) {
+            vector_erase(*(s32 *)((s8 *)arg0 + 0x1C), *(s32 *)((s8 *)arg0 + 0x18));
+        }
+    } else {
+        *(s32 *)((s8 *)arg0 + 0x18) = 0;
+    }
+    if (func_800F1574((f32 *)((s8 *)arg0 + 0x38), delta)) {
+        if (*((u8 *)arg0 + 0x22) == 1 && !func_800A5490()) {
+            func_80800000_fxleaves(arg0);
+        }
+        *(f32 *)((s8 *)arg0 + 0x38) = 0.1f;
+    }
+}
