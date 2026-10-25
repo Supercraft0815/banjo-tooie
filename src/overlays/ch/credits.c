@@ -371,7 +371,61 @@ void func_80800BD4_chcredits(s32 *arg0) {
     func_808002A4_chcredits(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800C84_chcredits.s")
+s32 func_80800C84_chcredits(Actor *arg0, Gfx **arg1) {
+    s32 _glglobalsettings_entrypoint_3();
+    s32 func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32);
+    void func_800E39D8(s32, s32);
+    void func_800E3C8C(f32, f32);
+    void func_800E3CE8(void);
+    void func_800E41CC(void);
+    void func_800E4208(void);
+    void func_800E44FC(Gfx **);
+    void func_800E7C28(Gfx **);
+    void func_800E7CF4(Gfx **);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    extern f32 D_80801548_chcredits[3];
+    extern f32 D_80801554_chcredits[2];
+    extern f32 D_8080155C_chcredits;
+    extern f32 D_80801560_chcredits[][3];
+    extern f32 D_80801578_chcredits[][3];
+    f32 scale = 0.0f;
+    s32 index;
+    s32 offset;
+
+    index = _glglobalsettings_entrypoint_3();
+    func_800E41CC();
+    func_800E3C8C(50.0f, 2000.0f);
+    offset = index * 12;
+    func_800E39D8(offset + (s32)D_80801578_chcredits, offset + (s32)D_80801560_chcredits);
+    func_800E3CE8();
+    func_800E44FC(arg1);
+    func_800E7C28(arg1);
+    func_800E7CF4(arg1);
+    switch (arg0->unk70_10) {
+        case 2:
+            scale = func_800F10B4(*(f32 *)&arg0->actorData[7], 1.0f, 0.0f, 1.0f, 0.0f);
+            D_8080155C_chcredits = scale * 360.0f;
+            break;
+        case 6:
+            scale = func_800F10B4(*(f32 *)&arg0->actorData[7], 1.0f, 0.0f, 0.0f, 1.0f);
+            D_8080155C_chcredits = scale * 360.0f;
+            break;
+        case 7:
+        case 8:
+            scale = 1.0f;
+            break;
+    }
+    if (scale > 0.0f) {
+        func_800DF830(1);
+        func_800DE498(arg1, D_80801548_chcredits, D_80801554_chcredits, scale, NULL, func_800D674C(0x9A1));
+    }
+    func_80101870(arg0, arg1);
+    func_800E4208();
+    func_800E44FC(arg1);
+}
 
 /* extern */
 
