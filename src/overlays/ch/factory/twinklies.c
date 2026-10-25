@@ -172,7 +172,72 @@ void func_808001A0_chfactorytwinklies(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_8080040C_chfactorytwinklies.s")
+s32 func_8080040C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_10(Actor *, s32, s32, s32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80800748_chfactorytwinklies(Actor *, s32, s32);
+    s32 func_808009EC_chfactorytwinklies(Actor *, s32, s32);
+    void func_80800A84_chfactorytwinklies(Actor *, s32);
+    struct {
+        s32 counts[16];
+        s32 values[8][3];
+        s32 unkA0;
+        s32 dialog;
+        s32 duration;
+        u32 game;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        default:
+            return 0;
+        case 0x2E:
+            func_80800748_chfactorytwinklies(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            return 1;
+        case 0x30:
+            return func_808009EC_chfactorytwinklies(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        case 0x3D:
+            func_80800A84_chfactorytwinklies(arg0, arg2);
+            return 1;
+        case 0xB:
+            if (arg2 == 0x15) {
+                func_800F82D4(func_800F54E4(), 0);
+                func_80101FDC(arg0, 7);
+                _susubgame_entrypoint_4(arg0, &data->game);
+                return 4;
+            }
+            return 3;
+        case 0x49:
+            if (_susubgame_entrypoint_10(arg0, 1, 0x320, 0x1C8)) {
+                _susubgame_entrypoint_6(arg0, &data->game, 0, 0x20, 0);
+                _chintrotext_entrypoint_2(1);
+            } else {
+                _chmrtannoy_entrypoint_0();
+                _susubgame_entrypoint_5(arg0, &data->game, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, arg0->position, 0xA3);
+                func_800F82D4(func_800F54E4(), 2);
+            }
+            return 1;
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, &data->game, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x32:
+            _chmrtannoy_entrypoint_0();
+            _subaddiedialog_entrypoint_11(arg0->unk0, func_800D395C() ? 0x1385 : 0x1344, 0x46, arg0->position, 0xA3);
+            func_800F82D4(func_800F54E4(), 2);
+            return 1;
+    }
+}
 
 void func_8080064C_chfactorytwinklies(Actor *arg0) {
     s32 _susubgame_entrypoint_2(void *, s32);
