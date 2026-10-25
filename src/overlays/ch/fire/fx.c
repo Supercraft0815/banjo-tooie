@@ -179,7 +179,71 @@ void chfirefx_entrypoint_3(Actor *arg0) {
     func_80800E9C_chfirefx(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/chfirefx_entrypoint_4.s")
+void chfirefx_entrypoint_4(Actor *arg0, u8 *arg1) {
+    typedef struct {
+        u8 pad[8];
+        s16 unk8;
+        s16 unkA;
+    } ImageStruct;
+    ImageStruct *func_800D674C(s32);
+    struct FireParticle {
+        f32 frame;
+        s16 velocity, unk6;
+        s16 position[3];
+        s16 unkE;
+        f32 scale;
+    };
+    struct FireData {
+        s32 unk0;
+        f32 scale;
+        s16 used, amount, count, active;
+        u16 flags;
+        s16 value;
+        u16 radius, range;
+        u8 link[8];
+        struct FireParticle particles[1];
+    };
+    void func_800E24D8(s32);
+    void func_800E2588(u32);
+    void func_800E2594(u32, void *);
+    s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(s32);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F0E00(f32, f32);
+    void *func_80100094(Actor *, u32);
+    f32 size;
+    ImageStruct *image;
+    f32 *origin;
+    s32 i;
+    f32 position[3];
+    f32 scale[3];
+    register struct FireData *data;
+    register struct FireParticle *particle;
+
+    data = func_80100094(arg0, 0);
+    origin = arg0->position;
+    if (func_800E3E8C(origin, func_800F0E00(75.0f, data->value) * 2.5f * 0.6f)) {
+        arg0->unk7C_12 = 1;
+        if (data->used != 0) {
+            particle = data->particles;
+            image = func_800D674C(0x9CE);
+            func_800E2588(1);
+            func_800E2594(arg1, image);
+            func_800E24D8(1);
+            for (i = 0; i < data->used; i++, particle++) {
+                size = particle->scale * data->scale * 0.5f;
+                func_800EE88C(position, particle->position);
+                func_800EF04C(position, origin);
+                func_800EFA4C(scale, size, size, size);
+                func_800E2720(arg1, (s32)particle->frame, particle->unk6, position, scale, 0xC0);
+            }
+            func_800E2A14(arg1);
+        }
+    }
+}
 
 s32 chfirefx_entrypoint_5(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
