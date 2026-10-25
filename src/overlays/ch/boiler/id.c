@@ -34,7 +34,85 @@ void func_8080000C_chboilerid(Actor *arg0) {
     func_800DA524(0x66F);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/id/func_80800128_chboilerid.s")
+void func_80800128_chboilerid(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    void func_8010D254(f32 *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void func_80101FDC(Actor *, u32);
+    u32 func_800F54E4(void);
+    s32 func_800D9078(f32 *);
+    void chboilerid_entrypoint_5(Actor *);
+    s32 func_800F6C5C(s32);
+    s32 func_800F6478(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F55FC(s32);
+    s32 func_800F7B9C(s32, s32);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C4AF0(f32 *, void *);
+    void func_800DA3B8(s32, s32);
+    s32 func_800CF494(void);
+    void func_80800418_chboilerid(Actor *);
+    void func_80800440_chboilerid(Actor *);
+    void func_80800468_chboilerid(Actor *);
+    void func_80800998_chboilerid(s32);
+    s32 func_800BEA88(s32);
+    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    extern u32 D_80800DA4_chboilerid[];
+    extern s32 D_80800DB0_chboilerid[], D_80800DE8_chboilerid[];
+    extern s32 _chboilerid_entrypoint_1[], _chboilerid_entrypoint_2[];
+    extern s32 _chboilerid_entrypoint_3[], _chboilerid_entrypoint_4[];
+    f32 sp44[3];
+    Actor *data;
+    f32 delta;
+    s32 active;
+    s32 player;
+
+    data = func_80100094(arg0, 0);
+    delta = func_800D8FF8();
+    func_8010D254(sp44);
+    active = arg0->unk70_10 != 1;
+    if (active || (!active && arg0->unk5F)) {
+        _subaddieaudioloop_entrypoint_4(arg0, NULL, active, D_80800DA4_chboilerid);
+    }
+    switch (arg0->unk70_10) {
+    case 2:
+        *(f32 *)&data->actorData[1] += delta;
+        if (*(f32 *)&data->actorData[1] >= 1.5f) {
+            *(f32 *)&data->actorData[1] = 1.5f;
+            func_80101FDC(arg0, 3);
+        }
+        break;
+    case 3:
+        player = func_800F54E4();
+        if (func_800D9078(&arg0->unk58)) {
+            chboilerid_entrypoint_5(arg0);
+        }
+        if (func_800F6C5C(player) && func_800F6478(player) &&
+            func_800F64A4(player, 0x601) && (func_800F55FC(player) & 0x08000000) &&
+            func_800F7B9C(player, 0x51) == 2) {
+            func_800BBCB8(sp44, NULL, 1.0f, 1, D_80800DB0_chboilerid);
+            func_800C4AF0(sp44, D_80800DE8_chboilerid);
+        }
+        break;
+    case 4:
+        if (func_800D9078((f32 *)&data->actorData[1])) {
+            *(f32 *)&data->actorData[1] = 0.0f;
+            func_80101FDC(arg0, 1);
+            func_800DA3B8(0x66F, 0);
+            func_800CF494();
+        }
+        break;
+    }
+    func_80800418_chboilerid(arg0);
+    func_80800440_chboilerid(arg0);
+    func_80800468_chboilerid(arg0);
+    func_80800998_chboilerid((s32)arg0);
+    _glid_entrypoint_0(func_800BEA88(0), 0x3C, _chboilerid_entrypoint_1, (s32)arg0->unk0);
+    _glid_entrypoint_0(func_800BEA88(0), 0x3D, _chboilerid_entrypoint_2, (s32)arg0->unk0);
+    _glid_entrypoint_0(func_800BEA88(0), 0x3E, _chboilerid_entrypoint_3, (s32)arg0->unk0);
+    _glid_entrypoint_0(func_800BEA88(0), 0x3F, _chboilerid_entrypoint_4, (s32)arg0->unk0);
+}
 
 /* extern */
 s32 func_808003AC_chboilerid(Actor *arg0, s32 arg1, s32 arg2) {
