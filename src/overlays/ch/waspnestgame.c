@@ -180,7 +180,78 @@ void func_80800400_chwaspnestgame(Actor *arg0) {
     func_800FDC28(0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_8080047C_chwaspnestgame.s")
+s32 func_800D0B68(u32, u32);
+void func_80108B04(Actor *, u32);
+void func_8080047C_chwaspnestgame(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void func_800C3224(u8, f32, f32, f32);
+    u8 func_800C4350(u8, f32 *, s32 *);
+    s32 func_800CEAD0(s32);
+    s32 func_800D24E8(s32, s32, u32);
+    s32 func_800D90A4(f32 *);
+    f32 func_800DC0C0(void);
+    int func_800DC298(f32);
+    void *func_80100094(Actor *, u32);
+    extern s32 D_80802010_chwaspnestgame[];
+    struct NestData {
+        f32 position[2][3];
+        f32 timer[2];
+        u8 sound[2];
+        u8 pad[2];
+        u32 game[1];
+    } *data, *gameData;
+    u32 i;
+    s32 choice;
+    f32 random;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i != 2; i++) {
+        if (data->timer[i] > 0.0f) {
+            if (data->sound[i] == 0) {
+                data->sound[i] = func_800C4350(0, data->position[i], D_80802010_chwaspnestgame);
+            }
+            if (arg0->unk70_10 == 2) {
+                func_800C3224(data->sound[i], 1.0f, 1.1f, 0.05f);
+            } else {
+                func_800C3224(data->sound[i], 0.8f, 0.9f, 0.05f);
+            }
+            func_800C4350(data->sound[i], data->position[i], NULL);
+            data->timer[i] = -1.0f;
+        }
+    }
+    switch (arg0->unk70_10) {
+        case 1:
+            break;
+        case 2:
+            func_800D24E8(0xF5, arg0->actorData[3], 0);
+            if ((s32)arg0->actorData[7] < 10 && func_800DC298(0.09999084473f)) {
+                choice = 1;
+                random = func_800DC0C0();
+                if (random < 0.1666665971f) {
+                    choice = 3;
+                } else if (random < 0.5f) {
+                    choice = 2;
+                }
+                func_80108B04(arg0, choice);
+            }
+            if (func_800CEAD0(0)) {
+                func_80800018_chwaspnestgame(arg0, 3);
+            }
+            break;
+        case 5:
+            if ((!func_800D0A9C(0x4B, 1) || func_800D0B68(0x4B, 1)) &&
+                (!func_800D0A9C(0x18, 4) || func_800D0B68(0x18, 4)) &&
+                func_800D90A4(&arg0->unk58)) {
+                gameData = func_80100094(arg0, 0);
+                func_80090708(2);
+                _susubgame_entrypoint_5(arg0, gameData->game, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x46, NULL, 0x99);
+                func_80101FDC(arg0, 3);
+            }
+            break;
+    }
+}
 
 s32 func_80800724_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
