@@ -1158,7 +1158,78 @@ void func_80803990_chintrochar(Actor *arg0, Gfx **arg1) {
     func_800B811C(arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80803A78_chintrochar.s")
+void func_80803A78_chintrochar(Actor *arg0, Gfx **arg1) {
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, u8 *);
+    void *func_800DF944(void *, f32 *, f32, f32, f32 *, s32, void *);
+    void func_800DF440(s32);
+    void func_800DF464(f32);
+    void func_800DF47C(s32, s32);
+    void func_800DF4CC(s32);
+    void func_800E39A8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_801017D0(Actor *);
+    int func_80101970(Actor *);
+    s32 func_8010347C(Unk80132ED0 *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    extern u32 func_80804160_chintrochar[][8];
+    extern f32 func_80804168_chintrochar[][8];
+    struct IntroCoords { f32 values[2]; };
+    extern struct IntroCoords D_80805318_chintrochar;
+    u32 flags;
+    f32 orientation[3];
+
+    flags = func_80804160_chintrochar[arg0->unk74_7][0];
+    if (flags & 2) {
+        if (flags & 0x8000) {
+            struct IntroCoords coords = D_80805318_chintrochar;
+            switch (arg0->unk74_7 - 0x32) {
+                case 3:
+                case 4:
+                    coords.values[1] -= 20.0f;
+                    break;
+            }
+            if (!(flags & 4)) {
+                if (arg0->rotation[1] != 0) {
+                    func_800EFA4C(orientation, 0.0f, arg0->rotation[1], 0.0f);
+                    func_800DF4CC(orientation);
+                }
+            }
+            func_800DF47C(func_801017D0, arg0);
+            func_800DF944(arg1, coords.values, 0.0f, arg0->scale * 0.35f, NULL, 1, func_8010347C(arg0->unk0));
+        } else {
+            f32 position[3];
+            f32 rotation[3];
+            f32 offset[3];
+            func_800E39A8(position, rotation);
+            func_800EF5A0(offset, rotation, 0, 0, -1000.0f);
+            func_800EF04C(offset, position);
+            func_800DF47C(func_801017D0, arg0);
+            if (flags & 4) {
+                func_800DE448(offset, rotation, arg0->scale, NULL, func_801039E4(arg0->unk0));
+            } else {
+                func_800DE448(offset, arg0->rotation, arg0->scale, NULL, func_801039E4(arg0->unk0));
+            }
+        }
+    } else {
+        struct IntroRenderFlags { u32 unused : 1; u32 flag : 1; };
+        struct IntroRenderFlags *renderFlags = (void *)&arg0->pad94;
+        if (renderFlags->flag) {
+            func_800DF440(0);
+        } else {
+            func_80101970(arg0);
+        }
+        if (flags & 0x200) {
+            func_800DF464(func_80804168_chintrochar[arg0->unk74_7][0]);
+        }
+        func_800DF47C(func_801017D0, arg0);
+        func_800DE448(arg0->position, arg0->rotation, arg0->scale, NULL, func_801039E4(arg0->unk0));
+    }
+    if (flags & 0x1000) {
+        func_80803990_chintrochar(arg0, arg1);
+    }
+}
 
 s32 func_80803D0C_chintrochar(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
