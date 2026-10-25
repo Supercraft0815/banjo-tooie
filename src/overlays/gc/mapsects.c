@@ -818,7 +818,69 @@ void gcmapsects_entrypoint_17(void *arg0)
   func_800BF4DC(1, *((u8 *) (((s8 *) arg0) + 0x7E)), arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_18.s")
+void gcmapsects_entrypoint_18(u8 *arg0, s32 arg1) {
+    s32 func_800B2840(s32);
+    void func_800BF774(void);
+    s32 func_800D62E4(s32);
+    s32 func_800D674C(s32);
+    s32 func_800D731C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    f32 func_800DF428(f32);
+    void func_800DF440(s32);
+    void func_800DF4B0(s32);
+    void func_800DF7DC(s32);
+    void func_800DF7E8(u8);
+    void func_800DF818(s32);
+    void func_800DF830(s32);
+    struct Section {
+        f32 position[16];
+        u16 asset;
+        u8 pad42[2];
+        s32 textures;
+        u8 pad48[4];
+        u32 flag : 1;
+        u32 rest : 31;
+        u8 pad50[8];
+    };
+    s32 i;
+    s32 asset;
+    s32 vertices;
+    s32 animated;
+    u8 animatedId;
+    s32 assetId;
+    struct Section *section;
+
+    for (i = 0; i < arg0[0x77]; i++) {
+        section = &(*(struct Section **)(arg0 + 0x68))[i];
+        if (!section->flag) {
+            continue;
+        }
+        assetId = section->asset;
+        if (!assetId) {
+            continue;
+        }
+        asset = func_800D674C(assetId);
+        if (!asset) {
+            continue;
+        }
+        vertices = func_800B2840(asset);
+        func_800BF774();
+        func_800DF830(1);
+        animated = func_800D731C(assetId);
+        animatedId = animated;
+        if (animated) {
+            func_800DF7E8(animatedId);
+        }
+        func_800DF7DC((*(struct Section **)(arg0 + 0x68))[i].textures);
+        func_800DF818(vertices);
+        func_800DF440(0);
+        func_800DF428(29999.0f);
+        func_800DF4B0(2);
+        if (!func_800DE448((*(struct Section **)(arg0 + 0x68))[i].position, NULL, 1.0f, NULL, asset)) {
+            func_800D62E4((*(struct Section **)(arg0 + 0x68))[i].asset);
+        }
+    }
+}
 
 void gcmapsects_entrypoint_19(u8 *arg0, s32 arg1) {
     s32 func_800B2840(s32);
