@@ -368,7 +368,126 @@ s32 func_80800AAC_chminisubgame(Actor *arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80800BA8_chminisubgame.s")
+void func_80800BA8_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 _gcfrontend_entrypoint_9(s32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void func_8009055C(s32, s32);
+    void func_80090708(s32);
+    void func_800BF99C(s32, s32, s32);
+    void func_800CE88C(s32, s32);
+    void func_800CE8D8(s32, f32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D2770(s32, s32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010114C(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    u8 *data;
+    s32 dialog;
+    s32 flags;
+    s32 map;
+    s32 exit;
+    Unk80132ED0 *marker;
+
+    data = func_80100094(arg0, 0);
+    flags = 4;
+    dialog = 0;
+    switch (arg1) {
+    case 0x102C:
+    case 0x102D:
+    case 0x1049:
+        _susubgame_entrypoint_5(arg0, data + 0x30C, 5, 1, 0);
+        if (func_800DA298(0x6E5) || func_800D395C()) {
+            dialog = 0xCEC;
+        } else {
+            dialog = 0x102E;
+            flags = 0x46;
+        }
+        break;
+    case 0x102E:
+        if (arg2 == 1) {
+            dialog = 0x102F;
+            flags = 0x46;
+            _susubgame_entrypoint_6(arg0, data + 0x30C, 0xD, 0x20, 0);
+        } else {
+            dialog = 0xCEC;
+        }
+        break;
+    case 0x102F:
+        marker = arg0->unk3C;
+        if (marker != NULL) {
+            func_8010114C((s32)marker, 0x3E, 0);
+            arg0->unk3C = NULL;
+        }
+        dialog = 0xCEC;
+        _susubgame_entrypoint_5(arg0, data + 0x30C, 5, 1, 0);
+        break;
+    case 0xCEC:
+        _susubgame_entrypoint_4(arg0, (s32)(data + 0x30C));
+        arg0->actorData[5] = 0;
+        arg0->actorData[4] = 0;
+        func_800D2770(0xFC, 0);
+        func_800FDC28(0xC);
+        func_8009055C(0x85, 1);
+        func_80090708(0);
+        func_80101FDC(arg0, 2);
+        func_800CE8D8(0, 60.0f, 0x3C);
+        func_800CE88C(0, 1);
+        _gcfrontend_entrypoint_9(0x6A);
+        func_800DA544(0x6E5);
+        func_800DA524(0);
+        func_800BF99C(0, 0x5AA, 0);
+        break;
+    case 0x1030:
+        func_800D1000(0x1F, 1, NULL, 1, 0);
+        _susubgame_entrypoint_6(arg0, data + 0x30C, 1, 0, 0);
+        break;
+    case 0x1031:
+    case 0x1032:
+    case 0x1033:
+    case 0x1034:
+    case 0x104A:
+    case 0x104B:
+    case 0x104C:
+        dialog = 0xCEB;
+        flags = 0x46;
+        break;
+    case 0xCEB:
+        if (func_800D395C()) {
+            if (arg2 == 1) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+        } else {
+            if (arg2 == 1) {
+                map = 0x181;
+                exit = 1;
+            } else {
+                map = 0x1A9;
+                exit = 0x1B;
+            }
+            func_8009055C(0x85, 0);
+            func_80090708(0);
+            func_80101FDC(arg0, 4);
+            _gcgoto_entrypoint_1(map, exit);
+        }
+        break;
+    }
+    if (dialog != 0) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, dialog, flags, NULL, 0x22);
+    }
+}
 
 /* extern */
 
