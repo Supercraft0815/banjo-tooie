@@ -204,7 +204,31 @@ void func_80800A98_ncpoddialog(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg
     func_800EF04C(arg0, sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800B28_ncpoddialog.s")
+s32 func_80800B28_ncpoddialog(void *arg0, f32 *arg1, f32 *arg2, s32 *volatile arg3, s32 arg4, f32 *arg5, f32 *arg6) {
+    extern f32 D_80802A40_ncpoddialog[][3];
+    f32 upper[2];
+    f32 lower[2];
+    s32 *view;
+    s32 type;
+    func_80800A98_ncpoddialog(arg1, arg2, D_80802A40_ncpoddialog[arg4][0], D_80802A40_ncpoddialog[arg4][1], D_80802A40_ncpoddialog[arg4][2]);
+    view = arg3;
+    func_80800710_ncpoddialog(arg0, upper, lower, arg1, arg2, 0, view);
+    view = arg3;
+    type = *(&arg4);
+    arg6[0] = upper[0] - lower[0];
+    arg6[1] = upper[1] - lower[1];
+    arg5[0] = lower[0] + arg6[0] * 0.5f;
+    arg5[1] = lower[1] + arg6[1] * 0.5f;
+    if (type == 5 || type == 6) {
+        if (view[0] + 20 > lower[0] || lower[0] > view[2] - 20 || view[1] + 20 > lower[1] || lower[1] > view[3] - 20) {
+            return 0;
+        }
+        if (view[0] + 20 > upper[0] || upper[0] > view[2] - 20 || view[1] + 20 > upper[1] || upper[1] > view[3] - 20) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800D10_ncpoddialog.s")
 
