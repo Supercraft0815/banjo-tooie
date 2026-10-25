@@ -246,7 +246,82 @@ void func_800D5B24(void) {
     D_8012B7E6 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAED30/func_800D5B34.s")
+void *func_800D5B34(s32 arg0)
+{
+  s32 func_800E4AF0();
+  s32 func_800E4BF4(s32);
+  s32 func_800E6950(s32, s32, u8 *);
+  void *_gldbDll_entrypoint_0(s32, s32 *);
+  void *heap_alloc(s32);
+  void rom_dma_read(u8 *, u8 *, u32);
+  s32 rom_read_word(s32, u32 *);
+  extern s32 D_8011B900;
+  extern u32 D_8012B440;
+  extern u32 D_8012B444;
+  extern s32 D_8012B448;
+  extern void *D_8012B450[];
+  extern u8 D_8012B658[];
+  extern s16 D_8012B6E0[];
+  extern s8 D_8012B7E4;
+  extern s8 D_8012B7E5;
+  extern s8 D_8012B7E6;
+  register s32 size;
+  register s32 index;
+  register void *result;
+  s32 mode;
+  mode = (u8) D_8012B7E6;
+  D_8012B7E6 = 0;
+  index = func_800D5AB4(arg0);
+  if (index < 0)
+  {
+    return NULL;
+  }
+  if (index < ((u8) D_8012B7E4))
+  {
+    D_8012B658[index]++;
+    return D_8012B450[index];
+  }
+  index = arg0 * 4;
+  rom_read_word(D_8011B900 + index, &D_8012B440);
+  if ((!(D_8012B440 & 0xF)) && (mode == 0))
+  {
+    mode = 2;
+  }
+  if (func_800E4AF0(arg0))
+  {
+    result = func_800E4BF4(arg0);
+  }
+  else
+    if ((D_8012B440 & 0xF) == 0xA)
+  {
+    result = _gldbDll_entrypoint_0(arg0, &D_8012B7E8);
+  }
+  else
+    if (((D_8012B440 << 26) >> 30) & 1)
+  {
+    result = (void *) func_800E6950(arg0, mode, NULL);
+  }
+  else
+  {
+    rom_read_word((D_8011B900 + index) + 4, &D_8012B444);
+    rom_read_word(D_8011B900 + index, &D_8012B440);
+    size = (D_8012B444 >> 6) - (D_8012B440 >> 6);
+    D_8012B7E8 = size;
+    if (size & 1)
+    {
+      size++;
+    }
+    result = heap_alloc(size);
+    rom_dma_read(result, (u8 *) (D_8012B448 + (D_8012B440 >> 6)), size);
+  }
+  D_8012B7E5 = (u8) D_8012B7E4;
+  size = (u8) D_8012B7E4;
+  D_8012B658[size] = 1;
+  D_8012B450[size] = result;
+  D_8012B6E0[size] = arg0;
+  D_8012B7E4 = ((u8) D_8012B7E4) + 1;
+  return result;
+}
 
 void func_800D5D70(void) {
     extern s32 D_8012B448;
