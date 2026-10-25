@@ -502,7 +502,37 @@ f32 func_800E2DF0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2E48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E30E0.s")
+void func_800E30E0(s32 arg0, void *arg1, s32 arg2, void *arg3) {
+    TextureFrame *func_800AF5FC(s16 *, s32);
+    void func_800E2E48(s32, void *, s32, s32 *);
+    extern s32 D_8012D470;
+    s32 pos[3];
+    f32 scale;
+    s32 width;
+    s32 height;
+    TextureFrame *frame;
+
+    frame = func_800AF5FC(arg1, arg2);
+    if (frame->unk0[0] == 0 && frame->unk0[1] == 0) {
+        scale = func_800E2DF0();
+        if (*(s16 *)&D_8012D470 != 0) {
+            width = *(s16 *)&D_8012D470;
+        } else {
+            width = ((s16 *)arg1)[4] * 4;
+        }
+        if (*((s16 *)&D_8012D470 + 1) != 0) {
+            height = *((s16 *)&D_8012D470 + 1);
+        } else {
+            height = ((s16 *)arg1)[5] * 4;
+        }
+        pos[0] = (f32)((s32 *)arg3)[0] - scale * (f32)width / 2;
+        pos[1] = (f32)((s32 *)arg3)[1] - *(f32 *)((u8 *)&D_8012D470 + 0x30) * (f32)height / 2;
+    } else {
+        pos[0] = ((s32 *)arg3)[0];
+        pos[1] = ((s32 *)arg3)[1];
+    }
+    func_800E2E48(arg0, arg1, arg2, pos);
+}
 
 void func_800E3220(Gfx **arg0, void *arg1) {
     u8 *func_800AF5D8(s16 *);
