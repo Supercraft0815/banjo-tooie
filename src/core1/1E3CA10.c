@@ -128,7 +128,43 @@ void func_80025820(AudioSeq *seq, AudioSeqMarker *m, u32 ticks) {
     } while (tempSeq.lastTicks < ticks);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_8002597C.s")
+void func_8002597C(AudioSeq *seq, AudioSeqMarker *markers, u32 count, u32 first) {
+    void func_80024EE0(AudioSeq *, AudioSeqHeader *);
+    ALEvent evt;
+    AudioSeq tempSeq;
+    u32 i;
+    s32 remaining;
+    AudioSeqMarker marker;
+
+    func_80024EE0(&tempSeq, seq->base);
+    for (remaining = 0; remaining < count; remaining++) {
+        markers[remaining].lastTicks = 0;
+    }
+    do {
+        marker.validTracks = tempSeq.validTracks;
+        marker.lastTicks = tempSeq.lastTicks;
+        marker.lastDeltaTicks = tempSeq.lastDeltaTicks;
+        for (i = 0; i < seq->base->trackCount; i++) {
+            marker.curLoc[i] = tempSeq.curLoc[i];
+            marker.curBUPtr[i] = tempSeq.curBUPtr[i];
+            marker.curBULen[i] = tempSeq.curBULen[i];
+            marker.lastStatus[i] = tempSeq.lastStatus[i];
+            marker.evtDeltaTicks[i] = tempSeq.evtDeltaTicks[i];
+        }
+        func_80025084(&tempSeq, &evt, 0);
+        if (evt.type == 0x13) {
+            if (((s32)evt.msg.midi.duration >> 8) >= first &&
+                ((s32)evt.msg.midi.duration >> 8) < first + count) {
+                if (markers[((s32)evt.msg.midi.duration >> 8) - first].lastTicks == 0) {
+                markers[((s32)evt.msg.midi.duration >> 8) - first] = marker;
+                if (--remaining <= 0) {
+                    return;
+                }
+            }
+        }
+        }
+    } while (evt.type != AL_SEQ_END_EVT);
+}
 
 u32 func_80025BF0(AudioSeq *arg0, u32 arg1) {
     struct Stream {
