@@ -21,7 +21,101 @@ void func_8080000C_chcoderoombits(Actor *arg0) {
     _susubgame_entrypoint_12(sp1C, &D_80801308_chcoderoombits);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800058_chcoderoombits.s")
+struct player_state_s;
+
+void func_80800058_chcoderoombits(Actor *arg0) {
+    typedef struct player_state_s PlayerState;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void func_800946C4(PlayerState *, s32);
+    s32 func_800C064C(void);
+    int func_800C6E38(s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A00(s32, s32);
+    void func_800F4A8C(s32, f32 *, f32);
+    s32 func_800F52B8(s32, Unk80132ED0 *);
+    PlayerState *func_800F53D0(s32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F5C94(s32);
+    s32 func_800F6478(s32);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6C5C(s32);
+    s32 func_800F7F98(s32, u32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    s32 func_8010C9B0(f32 *, s32);
+    void func_808004B8_chcoderoombits(Actor *);
+    void func_80800BF4_chcoderoombits(Actor *);
+    extern s32 func_8010D5DC;
+    f32 sp34[3];
+    struct { u8 pad[0x18]; u8 flag; } *sp30;
+    s32 sp2C;
+    s32 sp28;
+
+    sp30 = func_80100094(arg0, 0U);
+    sp2C = func_800F54E4();
+    func_800F5A00(sp2C, sp34);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(0x6A) == 0) {
+                if (func_8010C9B0(arg0->position, 0x15E) != 0 && func_800F64A4(sp2C, 0x201) != 0) {
+                    if (func_800C6E38(0x16) != 0) {
+                        sp28 = 0x1140;
+                    } else {
+                        sp28 = 0x115C;
+                    }
+                    _susubgame_entrypoint_5(arg0, sp30, 4, 0, 0);
+                    _subaddiedialog_entrypoint_11(arg0->unk0, sp28, 0xE, arg0->position, 0);
+                    func_800DA544(0x6A);
+                }
+            } else if (func_800C6E38(0x16) != 0 && func_800F6478(sp2C) != 0) {
+                if (func_800EEAD4(arg0->position, sp34) > 100.0f) {
+                    sp30->flag = 0;
+                } else if (sp30->flag == 0 && func_800F6C5C(sp2C) != 0 && func_800F64A4(sp2C, 0x201) != 0 && func_800F52B8(sp2C, NULL) != 6) {
+                    func_800F497C(sp2C);
+                    func_800F49D4(sp2C, &func_8010D5DC, arg0->unk0);
+                    func_800F4A8C(sp2C, arg0->position, 0.6f);
+                    func_800F4A00(sp2C, 0);
+                    func_800F7F98(sp2C, 1);
+                    func_808004B8_chcoderoombits(arg0);
+                    func_80101FDC(arg0, 2);
+                    sp30->flag = 1;
+                }
+            }
+            break;
+        case 2:
+            if (func_800F5C94(sp2C) == 4) {
+                if (func_800DA298(0x6B) == 0) {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x1141, 6, NULL, 0);
+                    func_800DA544(0x6B);
+                    func_80101FDC(arg0, 3);
+                } else {
+                    func_80101FDC(arg0, 4);
+                    func_800F7F98(sp2C, 0);
+                }
+            }
+            break;
+        case 3:
+            break;
+        case 4:
+            if (func_800F5C94(sp2C) != 4) {
+                func_80101FDC(arg0, 1);
+                func_800946C4(func_800F53D0(sp2C), 0);
+            }
+            break;
+        case 5:
+            if (func_800C064C() == -1) {
+                func_80101FDC(arg0, 4);
+            }
+            break;
+    }
+    func_80800BF4_chcoderoombits(arg0);
+}
 
 s32 func_8080033C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct player_state_s PlayerState;
