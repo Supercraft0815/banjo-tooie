@@ -308,7 +308,51 @@ void func_8002A150(register void *arg0, register s32 arg1) {
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E411A0/func_8002A318.s")
+s32 func_8002A318(void *arg0, s32 arg1, s32 arg2) {
+    s16 func_800E9054(s32);
+    void *func_800E9300(s32, s32);
+    void *func_800E93AC(s32);
+    typedef struct {
+        s16 unk0;
+        u8 unk2, unk3, unk4, unk5;
+        u8 pad6[0x12];
+        s32 unk18, unk1C, unk20;
+        u8 unk24, unk25, unk26, unk27;
+        u8 unk28, unk29, unk2A, unk2B, unk2C, unk2D, unk2E, unk2F;
+        u8 unk30, unk31, unk32, unk33;
+        u8 pad34[4];
+    } Channel;
+    typedef struct { u8 pad[0x60]; Channel *channels; } AudioState;
+    u8 *sp1C;
+    u8 *sp18;
+
+    sp1C = func_800E93AC(arg1);
+    ((AudioState *)arg0)->channels[arg2].unk33 = arg1;
+    ((AudioState *)arg0)->channels[arg2].unk3 = sp1C[1];
+    ((AudioState *)arg0)->channels[arg2].unk5 = sp1C[0];
+    ((AudioState *)arg0)->channels[arg2].unk4 = sp1C[2];
+    ((AudioState *)arg0)->channels[arg2].unk0 = *(s16 *)(sp1C + 0xC);
+    if (func_800E9054(arg1) == 0) {
+        return;
+    }
+    sp18 = func_800E9300(arg1, 0);
+    ((AudioState *)arg0)->channels[arg2].unk18 = *(s32 *)(sp18 + 0);
+    ((AudioState *)arg0)->channels[arg2].unk1C = *(s32 *)(sp18 + 4);
+    ((AudioState *)arg0)->channels[arg2].unk20 = *(s32 *)(sp18 + 8);
+    ((AudioState *)arg0)->channels[arg2].unk25 = sp18[0xC];
+    ((AudioState *)arg0)->channels[arg2].unk26 = sp18[0xD];
+    ((AudioState *)arg0)->channels[arg2].unk27 = 0;
+    ((AudioState *)arg0)->channels[arg2].unk28 = sp1C[4];
+    ((AudioState *)arg0)->channels[arg2].unk29 = sp1C[5];
+    ((AudioState *)arg0)->channels[arg2].unk2A = sp1C[6];
+    ((AudioState *)arg0)->channels[arg2].unk2B = sp1C[7];
+    ((AudioState *)arg0)->channels[arg2].unk2C = sp1C[8];
+    ((AudioState *)arg0)->channels[arg2].unk2D = sp1C[9];
+    ((AudioState *)arg0)->channels[arg2].unk2E = sp1C[0xA];
+    ((AudioState *)arg0)->channels[arg2].unk2F = sp1C[0xB];
+    ((AudioState *)arg0)->channels[arg2].unk24 = 0;
+    ((AudioState *)arg0)->channels[arg2].unk31 = 0;
+}
 
 s32 func_8002A6A4(void *arg0, void *arg1) {
     void func_80020E40(ALLink *, ALLink *);
