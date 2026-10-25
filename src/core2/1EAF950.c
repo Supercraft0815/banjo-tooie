@@ -193,7 +193,100 @@ void func_800D66AC(void) {
     D_8012BE62 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D674C.s")
+s32 func_800D58FC();
+
+ImageStruct *func_800D674C(s32 a0) {
+    extern s16 D_8011B910;
+    extern u8 D_8012B800[];
+    extern s16 D_8012BE62;
+    extern s16 D_8012BE64;
+    s32 func_8001211C(void);
+    void *func_800D5B34(s32);
+    u8 func_800DBA84(void);
+    void func_800DBBF8(u8, void *);
+    struct Entry {
+        u32 frame : 27;
+        u32 type : 4;
+        u32 low : 1;
+        ImageStruct *image;
+        u32 id : 14;
+        u32 used : 1;
+        u32 twice : 1;
+        u32 hi : 4;
+        u32 lo : 4;
+        u32 handle : 8;
+    };
+    s32 index;
+    s32 type;
+    struct Entry *entry;
+    ImageStruct *image;
+    void *aux;
+
+    index = func_800D6254(a0);
+    if (index != -1) {
+        D_8011B910 = index;
+        D_8012BE64 = a0;
+        if (((struct Entry *)D_8012B800)[index].type == 2) {
+            if (func_8001211C() == ((struct Entry *)D_8012B800)[index].frame) {
+                if (((struct Entry *)D_8012B800)[index].used) {
+                    ((struct Entry *)D_8012B800)[index].twice = 1;
+                } else {
+                    ((struct Entry *)D_8012B800)[index].used = 1;
+                }
+            } else {
+                if (func_8001211C() == ((struct Entry *)D_8012B800)[index].frame + 1) {
+                    ((struct Entry *)D_8012B800)[index].low = ((struct Entry *)D_8012B800)[index].used || ((struct Entry *)D_8012B800)[index].twice;
+                }
+                ((struct Entry *)D_8012B800)[index].used = 1;
+                ((struct Entry *)D_8012B800)[index].twice = 0;
+            }
+        }
+        ((struct Entry *)D_8012B800)[index].frame = func_8001211C();
+        return ((struct Entry *)D_8012B800)[index].image;
+    }
+    if ((u32)D_8012BE62 >= 135U) {
+        return NULL;
+    }
+    type = func_800D58FC(a0);
+    image = func_800D5B34(a0);
+    if (image == NULL) {
+        D_8012BE64 = 0;
+        return NULL;
+    }
+    index = func_800D6060(a0);
+    entry = &((struct Entry *)D_8012B800)[index];
+    D_8012BE62++;
+    D_8011B910 = index;
+    entry->frame = func_8001211C();
+    entry->image = image;
+    entry->hi = 0;
+    entry->lo = 0;
+    entry->id = a0;
+    D_8012BE64 = a0;
+    switch (type) {
+        case 0:
+            entry->type = 2;
+            entry->used = 1;
+            entry->twice = 0;
+            entry->handle = 0;
+            aux = *(s32 *)((u8 *)entry->image + 0x2C) ? (void *)&entry->image->pad[*(s32 *)((u8 *)entry->image + 0x2C)] : NULL;
+            if (aux != NULL) {
+                entry->handle = func_800DBA84();
+                func_800DBBF8(entry->handle, aux);
+            }
+            break;
+        case 1: entry->type = 1; break;
+        case 3:
+        case 10: entry->type = 4; break;
+        case 5: entry->type = 3; break;
+        case 6: entry->type = 5; break;
+        case 7: entry->type = 6; break;
+        case 8: entry->type = 7; break;
+        case 2: entry->type = 8; break;
+        case 9: entry->type = 9; break;
+    }
+    return image;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6B0C.s")
 
