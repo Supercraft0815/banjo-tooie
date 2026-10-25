@@ -136,7 +136,39 @@ s32 func_808002E8_chcablespark(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablespark/func_8080040C_chcablespark.s")
+void func_8080040C_chcablespark(Actor *arg0, s32 arg1) {
+    void *func_800D674C(s32);
+    s32 func_800DC128(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    s32 func_800DF350(void);
+    void func_800DF47C(s32, s32);
+    void func_800DF744(s32, s32);
+    void func_800DF830(s32);
+    void func_800E3A58(f32 *);
+    s32 func_800E88E4(u8);
+    s32 func_801015D0(Actor *);
+    s32 func_8010347C(Unk80132ED0 *);
+    void func_80800590_chcablespark(Actor *, f32 *);
+    s32 func_80800828_chcablespark(void *);
+    f32 sp34[3];
+
+    arg0->unk64_20 = (s32)arg0->unk64_20 ^ 1;
+    func_800DF830(1);
+    func_800DF744(4, func_80800828_chcablespark(arg0) ? 1 : 2);
+    func_800DE448(arg0->position, arg0->rotation, arg0->scale, 0, func_800D674C(0x6BC));
+    arg0->unk7C_12 = func_800DF350();
+    if (arg0->unk70_10 == 3) {
+        func_80800590_chcablespark(arg0, sp34);
+        func_800DF744(1, func_800DC128(0, 4));
+        func_800DF47C(func_801015D0, arg0);
+        func_800DE448(arg0->position, sp34, arg0->scale, 0, func_8010347C(arg0->unk0));
+        if (func_800E88E4(((u8 *)arg0->actorData)[0]) == 1 && arg0->unk64_20 && arg0->unk7C_12) {
+            func_800E3A58(sp34);
+            func_800DF830(0);
+            func_800DE448(arg0->position, sp34, arg0->scale, 0, func_800D674C(0x6BB));
+        }
+    }
+}
 
 void func_80800590_chcablespark(Actor *arg0, f32 *arg1) {
     f32 func_800136E4(f32);
