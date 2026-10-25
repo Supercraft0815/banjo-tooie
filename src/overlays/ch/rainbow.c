@@ -158,7 +158,66 @@ void func_8080063C_chrainbow(Actor *arg0, f32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/rainbow/func_80800838_chrainbow.s")
+void func_80800838_chrainbow(Actor *arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    f32 (*data)[8];
+    s32 i;
+    f32 offset[3];
+    f32 t;
+    f32 height;
+    f32 angle;
+    f32 offset2[3];
+    f32 t2;
+    f32 height2;
+    f32 distance2;
+    f32 angle2;
+    f32 (*entry)[8];
+    f32 *position;
+
+    data = func_80100094(arg0, 0);
+    switch (arg0->unk70_10) {
+    case 3:
+    case 4:
+    case 5:
+        {
+            t = func_800F10B4(arg0->unk58, 0.0f, 10.5f, 0.0f, 1.0f);
+            height = func_800F10B4(arg0->unk58, 0.0f, 5.0f, 0.0f, 200.0f);
+            angle = func_800F10B4(arg0->unk58, 0.0f, 10.5f, 360.0f, 720.0f);
+            for (i = 0, entry = data, position = &data[0][2]; i != 6; i++, entry++, position += 8) {
+                func_800EE7F8(position, func_80106790(arg0->unk3C)->position);
+                func_800EEB9C(offset, 2.0f * (t * angle) + (f32)i * 60.0f, 100.0f);
+                func_800EF04C(position, offset);
+                (*entry)[3] += height;
+                func_808005E0_chrainbow((s32)position, i);
+            }
+        }
+        break;
+    case 6:
+        {
+            t2 = func_800F10B4(arg0->unk58, 10.5f, 13.5f, 0.0f, 1.0f);
+            height2 = t2 * 1000.0f + 200.0f;
+            distance2 = t2 * 1000.0f + 100.0f;
+            angle2 = 2.0f * (t2 * 720.0f);
+            for (i = 0, entry = data, position = &data[0][2]; i != 6; i++, entry++, position += 8) {
+                func_800EE7F8(position, func_80106790(arg0->unk3C)->position);
+                t2 = (f32)i * 60.0f;
+                func_800EEB9C(offset2, angle2 + t2, distance2);
+                func_800EF04C(position, offset2);
+                (*entry)[3] += height2;
+                func_808005E0_chrainbow((s32)position, i);
+            }
+        }
+        break;
+    case 8:
+        func_8080063C_chrainbow(arg0, 0.0f, 4);
+        break;
+    }
+}
 
 /* extern */
 
