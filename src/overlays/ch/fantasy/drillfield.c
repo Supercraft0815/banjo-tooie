@@ -173,7 +173,109 @@ void func_808004E8_chfantasydrillfield(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/drillfield/func_8080054C_chfantasydrillfield.s")
+s32 func_8080054C_chfantasydrillfield(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
+    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    s32 _subaddiefind_entrypoint_5(s32, Actor **, s32, f32 *, f32, f32 (*)(f32 *, f32 *));
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    void func_800C4140(u32, f32 *, u32);
+    s32 func_800D0B68(u32, u32);
+    s32 func_800D10D4(u32, u32, f32 *, s32, s32);
+    s32 func_800DA298(s32);
+    void func_800DA524();
+    s32 func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_800FFA88(Unk80132ED0 *);
+    void func_80101FDC(Actor *, u32);
+    void func_80103110(Actor *, u32);
+    f32 func_80103EAC(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    void func_8010A624(Actor *);
+    extern s32 D_808008B0_chfantasydrillfield[];
+    extern s32 D_80800950_chfantasydrillfield[];
+    extern s32 D_80800988_chfantasydrillfield[];
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    Actor *spawn;
+    Actor *found;
+
+    switch (arg1) {
+    case 0x40:
+        if (_subaddieDll_entrypoint_5(arg0, arg2)) {
+            func_80103110(arg0, 1);
+            func_80101FDC(arg0, 2);
+        }
+        return 1;
+    case 0x3D:
+        func_800EE7F8(end, arg0->position);
+        func_800EE7F8(start, arg0->position);
+        start[1] += 200.0f;
+        end[1] -= 200.0f;
+        func_800BEF00(start, end, normal, 0);
+        switch (D_808008B0_chfantasydrillfield[arg0->actorData[7]]) {
+        case 0:
+            func_800FFA88(arg0->unk0);
+            break;
+        case 0x1F7:
+            func_80106790(func_800D10D4(0x16, 2, end, 3, 0));
+            break;
+        default:
+            spawn = func_80108528(D_808008B0_chfantasydrillfield[arg0->actorData[7]], end, 0, &arg0);
+            if (spawn->unk6C_9 == 0x3DB) {
+                spawn->rotation[1] = 20.0f;
+            } else if (spawn->unk6C_9 == 0x40D) {
+                spawn->unk74_7 = arg0->actorData[7];
+            }
+            break;
+        }
+        if (arg2) {
+            func_800DA544(arg0->actorData[7] + 0x335);
+            _chskeletonexplode_entrypoint_7(arg0, arg0->position);
+            func_8010A570(arg0);
+            func_8010A624(arg0);
+            func_800FFA88(arg0->unk0);
+        }
+        return 1;
+    case 0xF:
+        func_800C4140(0x59919413, arg0->position, 0x04B000FA);
+        func_800BBCB8(arg0->position, arg0->position, 1.0f, 6, D_80800950_chfantasydrillfield);
+        func_800BBCB8(arg0->position, arg0->position, 1.0f, 3, D_80800988_chfantasydrillfield);
+        return 1;
+    case 0x95:
+        if (func_800DA298(arg0->actorData[7] + 0x335)) {
+            arg0->unk64_16 = 0;
+            func_8010A570(arg0);
+            func_8010A624(arg0);
+            switch (D_808008B0_chfantasydrillfield[arg0->actorData[7]]) {
+            case 0:
+                func_800FFA88(arg0->unk0);
+                break;
+            case 0x1F7:
+                if (func_800D0B68(0x16, 2)) {
+                    func_800FFA88(arg0->unk0);
+                } else {
+                    func_80108B04(arg0, 0);
+                }
+                break;
+            default:
+                if (!_subaddiefind_entrypoint_5(D_808008B0_chfantasydrillfield[arg0->actorData[7]], &found, 1, arg0->position, func_80103EAC(arg0), func_800EEB40)) {
+                    func_80108B04(arg0, 0);
+                }
+                break;
+            }
+        }
+        func_800DA524(0xA0F);
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 OSThread *chfantasydrillfield_entrypoint_0(void)
 {
