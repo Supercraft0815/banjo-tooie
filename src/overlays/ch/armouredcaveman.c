@@ -133,7 +133,119 @@ void func_808000EC_charmouredcaveman(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/armouredcaveman/func_80800370_charmouredcaveman.s")
+typedef struct {
+    u8 pad0[0x18];
+    u32 pad18_21 : 11;
+    u32 state : 4;
+    u32 pad18_16 : 1;
+    u32 index : 11;
+    u32 pad18_0 : 5;
+    u32 unk1C;
+    u32 unk20;
+    u32 id : 10;
+    u32 pad24_0 : 22;
+} ArmouredCavemanMarker;
+
+typedef union {
+    Unk80132ED0 *marker;
+    s16 dialog;
+} ArmouredCavemanEvent;
+
+s32 func_80800370_charmouredcaveman(Actor *arg0, s32 arg1, ArmouredCavemanEvent arg2) {
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    extern void _chbaddiesetup_entrypoint_10(void);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _sueggmisc_entrypoint_0();
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    s32 func_800DA544(s32);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8(s32, s32, s32);
+    s32 func_800DA980(s32, s32);
+    void func_800EC398(Unk80132ED0 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    f32 func_800F2094(f32, f32);
+    s32 func_800F64A4(s32, s32);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    void func_80103DFC(Actor *, f32 *);
+    void func_80109600(void *, void *);
+    void func_8010A570(Actor *);
+    void func_8010A590(Actor *);
+    void func_808009D4_charmouredcaveman(Actor *);
+    extern s32 D_80800B68_charmouredcaveman;
+    Unk80132ED0 *sp5C;
+    f32 sp50[3];
+    s32 sp4C;
+    f32 sp40[3];
+    s32 sp3C;
+    s32 sp38;
+    s32 event;
+
+    switch (arg1) {
+    case 0x40:
+        sp5C = arg2.marker;
+        if (((ArmouredCavemanMarker *)sp5C)->id == 0x270) {
+            if (_sueggmisc_entrypoint_0(sp5C) == 0 && ((ArmouredCavemanMarker *)arg0->unk0)->state == 1) {
+                func_800EC398(sp5C, sp50);
+                if (func_800F2094(func_800F1DF4(arg0->position, sp50), arg0->rotation[1]) > 100.0f) {
+                    func_80109600(arg0, sp5C);
+                    func_8010A570(arg0);
+                    func_80102424(arg0, 5);
+                    _subaddieDll_entrypoint_4(arg0, 1);
+                    func_80103DFC(arg0, sp40);
+                    _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 4, ((s32 *)sp40)[0], ((s32 *)sp40)[1], ((s32 *)sp40)[2], *(s32 *)&arg0->rotation[1]);
+                    sp3C = func_800DA564(0x17A, 5) == 0;
+                    func_800DA544(arg0->actorData[4]);
+                    if (sp3C) {
+                        sp38 = 0x17E3;
+                    } else if (func_800DA564(0x17A, 5) == 0x1F) {
+                        sp38 = 0x1806;
+                        func_800DA544(0x5D);
+                        func_800DA7A8(0x17A, arg0->actorData[5], 5);
+                        func_800D1000(0x31, 1, arg0->position, 1, NULL);
+                    } else {
+                        sp38 = 0x17E4;
+                    }
+                    _subaddiedialog_entrypoint_11(arg0->unk0, sp38, 0x44, arg0->position, 0xA6);
+                    arg0->unk74_17 = 0;
+                    return 1;
+                }
+            }
+        }
+    case 0x3E:
+    case 0x3F: {
+        event = (s32)arg2.marker;
+        if (((ArmouredCavemanMarker *)event)->id == 0 && func_800F64A4(((ArmouredCavemanMarker *)event)->index, 0x10000)) {
+            return 0;
+        }
+        func_808009D4_charmouredcaveman(arg0);
+        func_80109600(arg0, arg2.marker);
+        return 1;
+    }
+    case 0x30:
+        return 5 - func_800DA980(0x17A, 5);
+    case 0x2E: {
+        event = arg2.dialog;
+        if (event == 0x17E2) {
+            func_800DA544(0x66C);
+            arg0->unk64_20 = 0;
+            func_8010A590(arg0);
+            func_80102424(arg0, 1);
+        } else {
+            func_800FFAB0(arg0);
+        }
+        break;
+    }
+    case 0x52:
+        _gcdialogcamera_entrypoint_3(&D_80800B68_charmouredcaveman, arg0->scale);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800640_charmouredcaveman(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
