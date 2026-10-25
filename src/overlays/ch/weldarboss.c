@@ -204,7 +204,120 @@ OSThread *chweldarboss_entrypoint_1(void)
     return (OSThread *) D_8080480C_chweldarboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80800018_chweldarboss.s")
+void func_80800018_chweldarboss(Actor *arg0) {
+    typedef struct {
+        f32 unk0[3];
+        u8 padC[0xC];
+        f32 unk18[3];
+        u8 pad24[0xC];
+        u8 unk30[8];
+        f32 unk38[3];
+        u8 pad44[0x1D];
+        u8 unk61;
+        u8 pad62[6];
+        u8 unk68[6];
+        u8 pad6E;
+        s8 unk6F;
+        u8 pad70[6];
+        s16 unk76;
+        s16 unk78;
+        u8 pad7A[0x32];
+        s16 unkAC;
+        u8 padAE[6];
+        f32 unkB4;
+    } WeldarLocal;
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _glcutDll_entrypoint_20(void);
+    void _plcamera_entrypoint_8(s32);
+    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    void func_800BF744(s32, s32);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800F497C(s32);
+    s32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    s32 func_800F6438(u32);
+    s32 func_800F64A4(s32, s32);
+    void func_800F8294(s32, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    f32 func_80102D78(Actor *, f32 *);
+    void func_80108B04(Actor *, u32);
+    void func_80109EEC(s16 *, s32);
+    void func_80801AA0_chweldarboss(Actor *, s32);
+    void func_80802214_chweldarboss(Actor *, s32, s32);
+    void func_80803CF0_chweldarboss(Actor *, s32, s32);
+    WeldarLocal *local;
+    s32 map;
+    s32 i;
+    s32 map2;
+
+    local = func_80100094(arg0, 0);
+    if (_glcutDll_entrypoint_19(0x8A)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (!_glcutDll_entrypoint_20()) {
+        if (func_800DA298(0x18C)) {
+            _chintrotext_entrypoint_2(1);
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800DA298(0x174)) {
+            map2 = func_800F54E4();
+            if (func_800F6438(map2) && !func_800F64A4(map2, 1)) {
+                func_800FFAB0(arg0);
+                return;
+            }
+        }
+    }
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x32, local->unk0, 1);
+    _subaddiemarker_entrypoint_1(arg0, 0x154, 0x33, local->unk18, 1);
+    arg0->rotation[1] = func_80102D78(arg0, local->unk0);
+    func_800EE7F8(local->unk38, arg0->position);
+    _subaddielink_entrypoint_0(local->unk30);
+    func_80108B04(arg0, 0);
+    func_80109EEC((s16 *)arg0, 0x40);
+    local->unkAC = 1;
+    func_800BF744(3, 0);
+    for (i = 0; i < 6; i++) {
+        local->unk68[i] = 1;
+    }
+    local->unk6F = 6;
+    local->unk76 = -1;
+    local->unk78 = -1;
+    local->unkB4 = 0.25f;
+    map = func_800F54E4();
+    if (_glcutDll_entrypoint_20()) {
+        func_800EE7F8(arg0->position, local->unk0);
+        func_80102424(arg0, 0x33);
+        arg0->pad7A_7 = 1;
+        return;
+    }
+    if (func_800DA298(0x174)) {
+        func_800EE7F8(arg0->position, local->unk0);
+        func_800F608C(map, 1);
+        func_800F8294(map, local->unk18);
+        func_800F497C(map);
+        _plcamera_entrypoint_8(map);
+        func_80801AA0_chweldarboss(arg0, 6);
+        func_80802214_chweldarboss(arg0, 0x1356, 0xF);
+        func_80803CF0_chweldarboss(arg0, 0x11, 0x30);
+        local->unk61 = 1;
+        arg0->pad7A_7 = 1;
+        return;
+    }
+    if (func_800D395C()) {
+        func_80801AA0_chweldarboss(arg0, 2);
+        return;
+    }
+    _chintrotext_entrypoint_2(1);
+    arg0->unk64_16 = 0;
+}
 
 void func_808002BC_chweldarboss(Actor *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
