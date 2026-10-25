@@ -524,7 +524,90 @@ void bsblongleg_entrypoint_16(PlayerState *arg0) {
     arg0->unk15C.word = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/blongleg/bsblongleg_entrypoint_17.s")
+void bsblongleg_entrypoint_17(PlayerState *arg0) {
+    f32 anctrl_getAnimTimer(struct anctrl_s *);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    s32 anctrl_setDuration(s32, s32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    int bakey_pressed(PlayerState *, int);
+    int bakey_released(PlayerState *, int);
+    int baphysics_reset_gravity();
+    void func_8008B10C(struct anctrl_s *, f32);
+    f32 func_80096364(PlayerState *);
+    void func_8009BB24(void *, f32 *);
+    f32 func_8009C150(PlayerState *);
+    void func_8009D2F0(PlayerState *, s32, f32);
+    void func_8009FE58(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 bastatetimer_isDone();
+    void bs_setState(PlayerState *, int);
+    s32 next_state;
+    struct anctrl_s *control;
+    f32 velocity[3];
+    f32 height;
+    f32 position;
+
+    next_state = 0;
+    control = baanim_getAnimCtrlPtr(arg0);
+    func_808000C8_bsblongleg(arg0);
+    func_80800064_bsblongleg(arg0);
+    func_8009BB24(arg0, velocity);
+    if (bakey_released(arg0, 8) && velocity[1] > 0.0f) {
+        baphysics_reset_gravity(arg0);
+    }
+    position = func_8009C150(arg0);
+    height = position - func_80096364(arg0);
+    switch (arg0->unk15C.word) {
+    case 0:
+        if (velocity[1] < 100.0f || height < 10.0f) {
+            anctrl_setDuration(control, 0x3ECCCCCD);
+        }
+        if (anctrl_isStopped(control)) {
+            anctrl_setSubrange(control, 0.0f, 0.5282f);
+            anctrl_setDuration(control, 0x40900000);
+            anctrl_setPlaybackType(control, 1);
+            arg0->unk15C.word = 1;
+        }
+        break;
+    case 1:
+        if (anctrl_getAnimTimer(control) > 0.4f && height < 70.0f) {
+            arg0->unk16C = anctrl_getAnimTimer(control);
+            arg0->unk170 = height;
+            anctrl_setPlaybackType(control, 3);
+            arg0->unk15C.word = 2;
+        }
+        break;
+    case 2:
+        func_8008B10C(control, func_800F10B4(height, arg0->unk170, 1.0f, arg0->unk16C, 0.6703f));
+        func_8009D2F0(arg0, 1, 0.5f);
+        if (player_isStable(arg0)) {
+            func_8009FE58(arg0);
+            anctrl_setSubrange(control, 0.0f, 1.0f);
+            anctrl_setDuration(control, 0x3FA66666);
+            anctrl_setPlaybackType(control, 1);
+            arg0->unk15C.word = 3;
+        }
+        break;
+    case 3:
+        func_8009D2F0(arg0, 1, 0.5f);
+        if (anctrl_isStopped(control)) {
+            next_state = 0x26;
+        }
+        if (bakey_pressed(arg0, 8)) {
+            next_state = 0x28;
+        }
+        if (bastatetimer_isDone(arg0, 2)) {
+            next_state = 0x29;
+        }
+        break;
+    }
+    if (func_80800000_bsblongleg(arg0)) {
+        next_state = 0x4C;
+    }
+    bs_setState(arg0, next_state);
+}
 
 void bsblongleg_entrypoint_18(s32 arg0)
 {
