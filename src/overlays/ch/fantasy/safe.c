@@ -47,7 +47,56 @@ void func_80800000_chfantasysafe(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safe/func_808001A0_chfantasysafe.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/safe/func_80800630_chfantasysafe.s")
+s32 func_80800630_chfantasysafe(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _glcutDll_entrypoint_20();
+    s32 func_800DA298(s32);
+    int func_800DB9B0(void);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_80101FDC(Actor *, u32);
+    extern f32 D_80800998_chfantasysafe[];
+    s32 index;
+    s32 flags;
+
+    switch (arg1) {
+    case 0x49:
+        index = arg2 - 0x51;
+        flags = 0x810 | (func_800DB9B0() ? 0x100 : 0);
+        if (index < 4 && index >= 0) {
+            arg0->unk58 = 2.0f;
+            func_80101FDC(arg0, 2);
+            arg0->unk6C_0 = index;
+            ((f32 *)arg0->actorData)[7] = arg0->unk50 = D_80800998_chfantasysafe[index];
+            ((f32 *)arg0->actorData)[3] = D_80800998_chfantasysafe[index + 1];
+            if ((func_800DA298(0x389) ? 1 : 0) +
+                (func_800DA298(0x38A) ? 1 : 0) +
+                (func_800DA298(0x38B) ? 1 : 0) +
+                (func_800DA298(0x38C) ? 1 : 0) >= 3) {
+                _capod_entrypoint_13(arg0->unk0, NULL, 0, flags);
+            } else {
+                _capod_entrypoint_13(arg0->unk0, NULL, 2, flags);
+            }
+            return 1;
+        }
+        return 0;
+    case 0x1F:
+        func_801015D0(arg0);
+        if (_glcutDll_entrypoint_20()) {
+            func_800DF744(1, (arg0->unk79_4 & 1) ? 1 : 0);
+            func_800DF744(2, (arg0->unk79_4 & 2) ? 1 : 0);
+            func_800DF744(3, (arg0->unk79_4 & 4) ? 1 : 0);
+            func_800DF744(4, (arg0->unk79_4 & 8) ? 1 : 0);
+        } else {
+            func_800DF744(1, func_800DA298(0x389) ? 1 : 0);
+            func_800DF744(2, func_800DA298(0x38A) ? 1 : 0);
+            func_800DF744(3, func_800DA298(0x38B) ? 1 : 0);
+            func_800DF744(4, func_800DA298(0x38C) ? 1 : 0);
+        }
+        return 1;
+    }
+    return 0;
+}
 
 OSThread *chfantasysafe_entrypoint_0(void)
 {
