@@ -69,7 +69,89 @@ void func_80800030_chnicecavemen(Actor *arg0) {
     func_80801200_chnicecavemen(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nicecavemen/func_80800128_chnicecavemen.s")
+void func_80800128_chnicecavemen(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _subaddiepalette_entrypoint_1(Actor *, void *);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 func_800DA298(s32);
+    s32 func_800F4F34(u32, f32 *, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F7B9C(s32, u32);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    void func_80800AB8_chnicecavemen(Actor *, s32);
+    void func_80800CC8_chnicecavemen(Actor *);
+    s32 func_80801178_chnicecavemen(Actor *);
+    s32 func_8080134C_chnicecavemen(Actor *, s32 *, s32 *, s32, s32);
+    extern s32 D_80801810_chnicecavemen;
+    extern s32 D_80801848_chnicecavemen;
+    extern s32 D_80801880_chnicecavemen;
+    extern s32 D_808018B8_chnicecavemen;
+    extern s32 D_80801B7C_chnicecavemen;
+    struct {
+        u8 pad0[0x10];
+        f32 progress;
+        u8 palette[0x810];
+        s32 active;
+    } *data;
+    s32 pad;
+    f32 *volatile position;
+
+    data = func_80100094(arg0, 0);
+    func_800F4F34(func_800F54E4(), position = arg0->position, 60.0f, 50.0f);
+    _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);
+    switch (arg0->unk70_10) {
+        case 1:
+            if (func_800DA298(arg0->actorData[4])) {
+                func_800F7B9C(func_800F54E4(), 0x93);
+                func_80800AB8_chnicecavemen(arg0, 8);
+            } else {
+                func_8080134C_chnicecavemen(arg0, &D_80801B7C_chnicecavemen, &D_80801810_chnicecavemen, 7, 2);
+            }
+            break;
+        case 5:
+        case 6:
+            func_80801178_chnicecavemen(arg0);
+            if (data->progress > 0.75f) {
+                func_80800AB8_chnicecavemen(arg0, 7);
+            }
+            break;
+        case 7:
+            func_80801178_chnicecavemen(arg0);
+            if (func_80101DDC(arg0)) {
+                if (data->active) {
+                    if (data->active) {
+                        func_800F82D4(func_800F54E4(), 0);
+                        data->active = 0;
+                    }
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x17D7, 0xE, position, 0xA2);
+                    func_80800AB8_chnicecavemen(arg0, func_800DA298(arg0->actorData[4]) ? 4 : 2);
+                }
+            }
+            break;
+        case 9:
+            if (func_800DA298(arg0->actorData[4])) {
+                func_80800AB8_chnicecavemen(arg0, 8);
+            } else {
+                func_8080134C_chnicecavemen(arg0, &D_80801B7C_chnicecavemen, &D_80801848_chnicecavemen, 7, 2);
+            }
+            break;
+        case 10:
+            func_8080134C_chnicecavemen(arg0, &D_80801B7C_chnicecavemen, &D_80801880_chnicecavemen, 7, 3);
+            break;
+        case 11:
+            if (func_80101DDC(arg0)) {
+                func_80800AB8_chnicecavemen(arg0, 12);
+            }
+            break;
+        case 12:
+            func_8080134C_chnicecavemen(arg0, &D_80801B7C_chnicecavemen, &D_808018B8_chnicecavemen, 4, 4);
+            break;
+    }
+    func_80800CC8_chnicecavemen(arg0);
+    _subaddiepalette_entrypoint_1(arg0, data->palette);
+}
 
 void func_808003B8_chnicecavemen(Actor* arg0) 
 {
