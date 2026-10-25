@@ -932,7 +932,84 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808019D0_gcnewoption.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80801B5C_gcnewoption.s")
+void func_80801B5C_gcnewoption(void *arg0) {
+    struct Flags {
+        u8 pad[0x1C];
+        u8 moving : 1;
+        u8 rest : 7;
+    };
+    void _gczoombox_entrypoint_28(s32, s16);
+    s32 _gczoombox_entrypoint_29(s32);
+    s32 _gczoombox_entrypoint_38(s32, s32);
+    s32 i;
+    s32 index;
+    s32 next;
+    u8 *entry;
+    f32 target;
+    f32 spacing;
+    f32 limit;
+    f32 delta;
+    s16 height;
+    s32 value;
+
+    i = 0;
+    if (*(s16 *)((u8 *)arg0 + 2) > 0) {
+        do {
+            index = func_80800000_gcnewoption((u8 *)arg0, i);
+            next = i + 1;
+            target = (f32)next;
+            target *= *(f32 *)((u8 *)arg0 + 0x14);
+            limit = *(f32 *)((u8 *)arg0 + 0x14) * 1.9f;
+            delta = target - *(f32 *)(((u8 *)arg0 + index * 4) + 0x80);
+            if (limit < delta) {
+                entry = (u8 *)arg0 + index * 4;
+                *(f32 *)(entry + 0x80) = *(f32 *)((u8 *)arg0 + 0x14) * (f32)(*(s16 *)((u8 *)arg0 + 2) + 1);
+                _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), 0);
+                *(s16 *)((u8 *)arg0 + 0x34) = 255;
+            } else if (delta < -limit) {
+                entry = (u8 *)arg0 + index * 4;
+                *(f32 *)(entry + 0x80) = 0.0f;
+                _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), 0);
+                *(s16 *)((u8 *)arg0 + 0x34) = 255;
+            }
+            entry = (u8 *)arg0 + index * 4;
+            spacing = *(s16 *)((u8 *)arg0 + 0x34);
+            if (spacing >= 20.0f) {
+                *(s16 *)((u8 *)arg0 + 0x34) = spacing - 20.0f;
+            }
+            if ((*(f32 *)((u8 *)arg0 + 0x14)) * 0.66f < (*(f32 *)(entry + 0x80)) && (*(f32 *)(entry + 0x80)) < ((f32)*(s16 *)((u8 *)arg0 + 2) + 0.66f) * (*(f32 *)((u8 *)arg0 + 0x14))) {
+                height = value = _gczoombox_entrypoint_29(*(s32 *)(entry + 0x3C));
+                if (value < 236) {
+                    _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), (s16)height + 20);
+                }
+            } else {
+                height = value = _gczoombox_entrypoint_29(*(s32 *)(entry + 0x3C));
+                if (value >= 20) {
+                    _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), (s16)height - 20);
+                }
+            }
+            if (target != (*(f32 *)(entry + 0x80))) {
+                if (target < (*(f32 *)(entry + 0x80))) {
+                    *(f32 *)(entry + 0x80) = (f32)((*(f32 *)(entry + 0x80)) - 4.0f);
+                    if (*(volatile f32 *)(entry + 0x80) <= target) {
+                        *(f32 *)(entry + 0x80) = target;
+                    } else {
+                        ((struct Flags *)arg0)->moving = 1;
+                    }
+                } else if ((*(f32 *)(entry + 0x80)) < target) {
+                    *(f32 *)(entry + 0x80) = (f32)((*(f32 *)(entry + 0x80)) + 4.0f);
+                    if (target <= *(volatile f32 *)(entry + 0x80)) {
+                        *(f32 *)(entry + 0x80) = target;
+                    } else {
+                        ((struct Flags *)arg0)->moving = 1;
+                    }
+                }
+                    _gczoombox_entrypoint_38(*(s32 *)(entry + 0x3C), (f32)*(s16 *)((u8 *)arg0 + 0x256) + (*(f32 *)(entry + 0x80)));
+            }
+            i = next;
+        } while (next < *(s16 *)((u8 *)arg0 + 2));
+    }
+}
 
 s32 func_80801E68_gcnewoption(void *arg0) {
     int _gczoombox_entrypoint_11();
