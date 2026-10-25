@@ -27,7 +27,109 @@ OSThread *chcablecar_entrypoint_1(void)
     return (OSThread *) D_80800EF8_chcablecar;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/cablecar/func_80800018_chcablecar.s")
+void func_80800018_chcablecar(Actor *arg0) {
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    s32 _susubgame_entrypoint_4(Actor *, u32 *);
+    f32 func_800D8FF8(void);
+    s32 func_800DA298(s32);
+    s32 func_800DA524(s32);
+    s32 func_800DA544(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    void func_80101FDC(Actor *, u32);
+    void func_8010D254(f32 *);
+    void func_80800598_chcablecar(Actor *);
+    void func_808005E0_chcablecar(Actor *);
+    void func_8080069C_chcablecar(Actor *);
+    s32 func_8080070C_chcablecar(Actor *, f32);
+    void func_808007C8_chcablecar(Actor *, u32, u32);
+    void func_80800914_chcablecar(Actor *);
+    void func_80800AF4_chcablecar(Actor *, u32);
+    s32 func_80800BD0_chcablecar(Actor *);
+    void func_80800D14_chcablecar(Actor *, s32);
+    typedef struct {
+        s16 position[3];
+        s16 rotation[3];
+        f32 progress;
+        u8 wave[0x1C];
+        u32 subgame;
+    } CablecarUpdateMemory;
+    typedef struct {
+        u8 pad[0x28];
+        u32 upper : 19;
+        u32 flag : 1;
+        u32 lower : 12;
+    } CablecarUpdateFlags;
+    CablecarUpdateMemory *sp44;
+    f32 sp40;
+    s32 sp3C;
+    f32 sp30[3];
+    f32 sp24[3];
+
+    sp44 = func_80100094(arg0, 0);
+    sp40 = func_800D8FF8();
+    sp3C = 0;
+    func_80800598_chcablecar(arg0);
+    func_8080069C_chcablecar(arg0);
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_800DA298(0xD4)) {
+            func_808007C8_chcablecar(arg0, 1, 4);
+        }
+        func_808005E0_chcablecar(arg0);
+        break;
+    case 2:
+        if (func_80800BD0_chcablecar(arg0)) {
+            func_808007C8_chcablecar(arg0, 2, 5);
+        }
+        func_808005E0_chcablecar(arg0);
+        break;
+    case 3:
+        if (!((CablecarUpdateFlags *)arg0->unk0)->flag) {
+            func_8010D254(sp30);
+            func_800EE7F8(sp24, arg0->position);
+            sp24[1] -= 400.0f;
+            if (func_800EEB40(sp24, sp30) > 3062500.0f) {
+                func_800DA524(0x67E);
+                func_80101FDC(arg0, 6);
+            }
+        } else if (func_80800BD0_chcablecar(arg0)) {
+            func_808007C8_chcablecar(arg0, 4, 4);
+        }
+        func_808005E0_chcablecar(arg0);
+        break;
+    case 4:
+        sp3C = 1;
+        if (func_8080070C_chcablecar(arg0, sp44->progress - sp40 * 0.045f)) {
+            _susubgame_entrypoint_4(arg0, &sp44->subgame);
+            func_800DA524(0x67E);
+            func_80800AF4_chcablecar(arg0, 2);
+        }
+        break;
+    case 5:
+        sp3C = 1;
+        if (func_8080070C_chcablecar(arg0, sp44->progress + sp40 * 0.045f)) {
+            _susubgame_entrypoint_4(arg0, &sp44->subgame);
+            func_800DA544(0x67E);
+            func_80800AF4_chcablecar(arg0, 3);
+            _subaddieDll_entrypoint_4(arg0, 1);
+        }
+        break;
+    case 6:
+        sp3C = 1;
+        if (func_8080070C_chcablecar(arg0, sp44->progress - sp40 * 0.045f)) {
+            _subaddieDll_entrypoint_4(arg0, 0);
+            func_80101FDC(arg0, 2);
+        }
+        break;
+    case 7:
+        func_808005E0_chcablecar(arg0);
+        break;
+    }
+    func_80800D14_chcablecar(arg0, sp3C);
+    func_80800914_chcablecar(arg0);
+    ((CablecarUpdateFlags *)arg0->unk0)->flag = 0;
+}
 
 void func_808002E0_chcablecar(Actor *arg0) {
     void _mlwave_entrypoint_0(void *, f32, f32);
