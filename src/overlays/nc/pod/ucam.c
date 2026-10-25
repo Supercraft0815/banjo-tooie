@@ -526,7 +526,85 @@ void func_80800D28_ncpoducam(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/ucam/func_80800F64_ncpoducam.s")
+void func_80800F64_ncpoducam(u8 *arg0) {
+    s32 _cadbfunc_entrypoint_0(u8 *);
+    s32 _cadbfunc_entrypoint_2(s32);
+    s32 _cadbfunc_entrypoint_10(f32 *);
+    s32 _cadbfunc_entrypoint_12(f32 *);
+    s32 _cadbfunc_entrypoint_16(s16 *);
+    s32 _cadbfunc_entrypoint_18(u8 *);
+    s32 _cadbfunc_entrypoint_29(s32, s32 *);
+    void _suspline_entrypoint_0(void *, s32, s32);
+    void *_suspline_entrypoint_10(void *, s32);
+    f32 *_suspline_entrypoint_11(void *, s32);
+    s32 _suspline_entrypoint_18(s32, s32, s32);
+    void _suspline_entrypoint_19(void *, s32, s32, s32, s32, s32);
+    s16 func_8001B668(s32, s32);
+    void *func_8001B798(s16);
+    s32 func_800A5800(s16);
+    s32 func_800EE7F8();
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
+    void func_800F0EF0(s32, f32 *);
+    u8 *vectors[3];
+    f32 *values[4];
+    s32 count;
+    s16 handle;
+    void *spline;
+    s16 i;
+    s32 data;
+    f32 angle;
+
+    count = func_80800CB8_ncpoducam(*(s16 *)(arg0 + 0x58), arg0[0x60]);
+    *(s16 *)arg0 = func_8001B668(0, _suspline_entrypoint_18(count, 3, 4));
+    spline = func_8001B798(*(s16 *)arg0);
+    _suspline_entrypoint_19(spline, count, 3, 4, 2, 2);
+    for (i = 0; i < 3; i++) {
+        vectors[i] = _suspline_entrypoint_10(spline, i);
+    }
+    for (i = 0; i < 4; i++) {
+        values[i] = _suspline_entrypoint_11(spline, i);
+    }
+    handle = *(s16 *)(arg0 + 0x58);
+    i = 0;
+    while (handle != -1) {
+        func_800A5800(handle);
+        _cadbfunc_entrypoint_0(vectors[0]);
+        _cadbfunc_entrypoint_2((s32)vectors[1]);
+        _cadbfunc_entrypoint_10(values[2]);
+        _cadbfunc_entrypoint_12(values[0]);
+        *values[1] = 1.0f;
+        _cadbfunc_entrypoint_18((u8 *)values[3]);
+        _cadbfunc_entrypoint_29(8, &data);
+        _suspline_entrypoint_0(spline, i, data);
+        vectors[0] += 12;
+        vectors[1] += 12;
+        values[2]++;
+        values[0]++;
+        values[1]++;
+        values[3]++;
+        i++;
+        _cadbfunc_entrypoint_16(&handle);
+    }
+    for (i = 0; i < 3; i++) {
+        vectors[i] = _suspline_entrypoint_10(spline, i);
+    }
+    for (i = 0; i < 4; i++) {
+        values[i] = _suspline_entrypoint_11(spline, i);
+    }
+    func_800F0EF0(count, (f32 *)vectors[1]);
+    for (i = 0; i < count; i++) {
+        angle = *values[3];
+        *values[3] = ((f32 *)vectors[1])[2];
+        func_800EE7F8((f32 *)vectors[2], (f32 *)vectors[1]);
+        func_800EF4E4((f32 *)vectors[2], ((f32 *)vectors[2])[0], ((f32 *)vectors[2])[1], 0.0f, 0.0f, -angle);
+        func_800EF04C((f32 *)vectors[2], (f32 *)vectors[0]);
+        vectors[0] += 12;
+        vectors[1] += 12;
+        vectors[2] += 12;
+        values[3]++;
+    }
+}
 
 void func_80801274_ncpoducam(u8 *arg0) {
     s32 _cadbfunc_entrypoint_0(u8 *);
