@@ -594,7 +594,67 @@ f32 func_80113978(PlayerState *arg0, s32 arg1, s32 arg2) {
     return sp80;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EEC090/func_80113D30.s")
+void func_80113D30(PlayerState *arg0) {
+    s32 func_8001211C(void);
+    void func_80019224(f32 *, f32 *);
+    s32 func_800A940C(s32);
+    void *func_800CA7A4(void *);
+    void func_800CA7E4(s32, f32 *);
+    void func_800E8830(u8, f32 *);
+    s32 func_800E8918(u8, s32, s32, s32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF410(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    s32 func_8010FF80(s32 *);
+    s32 func_80110840(PlayerState *);
+    s32 func_80110898(PlayerState *);
+    void mlMtxSet(void *);
+    f32 spBC[3], spB0[3], spA4[3], sp98[3], sp8C[3], sp80[3], sp74[3];
+    s32 model;
+    s32 object;
+    s32 i;
+    f32 radius;
+    s32 collision;
+
+    object = func_80110840(arg0);
+    model = func_8010FF80((s32 *)func_80110898(arg0));
+    collision = func_800A940C(object);
+    radius = func_80112550(arg0, spA4);
+    func_800CA7E4(model, sp8C);
+    func_800EFB24(spB0, spA4, sp8C);
+    func_800EF410(spBC, spB0);
+    func_800EE7F8(sp98, spA4);
+    mlMtxSet(func_800CA7A4((void *)model));
+    for (i = 0; i < 4; i++) {
+        switch (i) {
+            case 0: func_800EFA4C(sp80, 0.0f, -radius, 0.0f); break;
+            case 1: func_800EFA4C(sp80, radius, 0.0f, 0.0f); break;
+            case 2: func_800EFA4C(sp80, 0.0f, radius, 0.0f); break;
+            case 3: func_800EFA4C(sp80, -radius, 0.0f, 0.0f); break;
+        }
+        func_80019224(sp80, sp80);
+        func_800EE780(sp74, sp80, sp98);
+        func_800E8830(((u8 *)arg0->bounce)[0x34 + i], sp74);
+        ((s8 *)arg0->bounce)[0x38 + i] = func_800E8918(((u8 *)arg0->bounce)[0x34 + i], collision, (s32)((u8 *)arg0->bounce + 0x4C + i * 12), 0);
+        if (((s8 *)arg0->bounce)[0x38 + i] == 0) {
+            if (((s32 *)((u8 *)arg0->bounce + 0x18))[i] == 0) {
+                ((s32 *)((u8 *)arg0->bounce + 0x18))[i] = func_8001211C();
+            }
+            ((s32 *)((u8 *)arg0->bounce + 0x3C))[i]++;
+        } else {
+            ((s32 *)((u8 *)arg0->bounce + 0x18))[i] = 0;
+            ((s32 *)((u8 *)arg0->bounce + 0x3C))[i] = ((s32 *)((u8 *)arg0->bounce + 0x18))[i];
+        }
+    }
+    *(s16 *)((u8 *)arg0->bounce + 0xC) = 0;
+    for (i = *(s16 *)((u8 *)arg0->bounce + 0xC); i < 4; i++) {
+        if (((s32 *)((u8 *)arg0->bounce + 0x3C))[i] >= 4) {
+            (*(s16 *)((u8 *)arg0->bounce + 0xC))++;
+        }
+    }
+}
 
 s32 func_80113FF0(void *arg0) {
     typedef struct {
