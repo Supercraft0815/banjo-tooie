@@ -83,7 +83,84 @@ s32 func_8080038C_chklungophial(s32 arg0, s32 arg1, volatile s32 arg2) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/phial/func_808003C8_chklungophial.s")
+s32 func_808003C8_chklungophial(s32 arg0, s32 arg1) {
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA77C(s32, s16, s16, s16);
+    s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80103DFC(Actor *, f32 *);
+    void func_8010A570(Actor *);
+    s32 func_808006B4_chklungophial(Actor *, f32 *, f32 *);
+    s32 func_80800AEC_chklungophial(Actor *, f32 *, f32);
+    extern s32 D_80800CDC_chklungophial[], D_80800D18_chklungophial[];
+    extern s32 D_80800D28_chklungophial[], D_80800D50_chklungophial[];
+    extern s32 D_80800D6C_chklungophial[], D_80800D90_chklungophial[];
+    extern s32 D_80800DCC_chklungophial[];
+    struct Phial {
+        f32 position[3];
+        s32 effect;
+        f32 scale;
+    };
+    f32 position[3];
+    f32 velocity[3];
+    s32 pad;
+    struct Phial *data;
+    f32 normal[3];
+    s32 emitter;
+    Actor *other;
+    f32 delay;
+    s32 i;
+    f32 point[3];
+    f32 angle;
+    Actor *actor = (Actor *)arg0;
+
+    data = func_80100094(actor, 0);
+    func_80103DFC(actor, position);
+    func_800EE7F8(velocity, position);
+    func_800EF1B8(velocity, func_800F1DF4(actor->position, data->position), actor->scale * 60.0f);
+    velocity[1] -= actor->scale * 40.0f;
+    func_800BBCB8(position, velocity, actor->scale, 10, D_80800CDC_chklungophial);
+    _subaddieaudioquick_entrypoint_2(actor, position, D_80800D18_chklungophial);
+    _subaddieaudioquick_entrypoint_2(actor, position, D_80800D50_chklungophial);
+    if (arg1 == 1) {
+        other = _subaddiefind_entrypoint_2(0x423, 0);
+        if (func_808006B4_chklungophial(actor, position, normal)) {
+            emitter = func_800BABB8(0, position, NULL, actor->scale * 0.25f, D_80800D6C_chklungophial);
+            func_800BA77C(emitter, (s16)(s32)normal[0], (s16)(s32)normal[1], (s16)(s32)normal[2]);
+            func_800BA22C(emitter, 1);
+        }
+        func_800BABB8(0, position, NULL, actor->scale, D_80800D90_chklungophial);
+        _subaddieaudioquick_entrypoint_2(actor, position, D_80800DCC_chklungophial);
+        if (other != NULL) {
+            delay = 0.35f;
+            for (i = 0; i != 6; i++) {
+                angle = func_800DC178(0.0f, 359.0f);
+                func_800EEB9C(point, angle, func_800DC178(5.0f, 80.0f));
+                func_800EF04C(point, position);
+                func_80800AEC_chklungophial(other, point, delay);
+                delay += func_800DC178(0.1f, 0.2f);
+            }
+        }
+    } else {
+        func_800BBCB8(position, position, 1.0f, 2, D_80800D28_chklungophial);
+    }
+    if (data->effect != 0) {
+        data->effect = _chlightfader_entrypoint_1(data->effect, 1.5f, 2);
+    }
+    func_800FFAB0(actor);
+    func_8010A570(actor);
+}
 
 s32 func_808006B4_chklungophial(Actor *arg0, f32 *arg1, f32 *arg2) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
