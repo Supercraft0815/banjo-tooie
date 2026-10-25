@@ -1,6 +1,62 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800000_chtoxicroomprops.s")
+void func_80800000_chtoxicroomprops(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefade_entrypoint_0(Actor *);
+    void _subaddiefade_entrypoint_6(Actor *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 func_800B53A4(s32);
+    void func_800BA22C(s32, s32);
+    void func_800BA450(s32, s16, s16, s16, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    f32 func_800DC0C0(void);
+    f32 func_800F1214(f32, f32, f32);
+    void func_80103110(Actor *, u32);
+    s32 func_80800390_chtoxicroomprops(u8 *, s32);
+    typedef struct { f32 values[3]; } Position;
+    extern Position D_808009A0_chtoxicroomprops;
+    extern s32 D_808009AC_chtoxicroomprops[];
+    Actor *sp4C;
+    Position sp40;
+    s32 sp3C;
+    s32 second;
+    s32 first;
+
+    switch (arg0->unk70_10) {
+    case 1:
+        func_80103110(arg0, 0);
+        break;
+    case 2:
+        sp4C = _subaddiefind_entrypoint_2(0x178, 0);
+        if (!arg0->unk74_30 && arg0->rotation[1] == 193.0f) {
+            arg0->unk74_30 = 1;
+            _chmrtannoy_entrypoint_0();
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x133D, 7, arg0->position, 0xA3);
+        }
+        if (func_800DC0C0() < 0.1f && _subaddiefade_entrypoint_0(sp4C) >= 0x51) {
+            sp40 = D_808009A0_chtoxicroomprops;
+            sp3C = func_800B53A4(1);
+            func_800BABB8(sp3C, sp40.values, 0, 10.0f, D_808009AC_chtoxicroomprops);
+            first = arg0->rotation[1] == 193.0f ? (s32)func_800F1214(((f32 *)arg0->actorData)[3], 0.0f, 450.0f) * 10 : -((s32)func_800F1214(((f32 *)arg0->actorData)[3], 0.0f, 450.0f) * 10);
+            second = arg0->rotation[1] == 193.0f ? (s32)func_800F1214(((f32 *)arg0->actorData)[3], 0.0f, 450.0f) * 10 : -((s32)func_800F1214(((f32 *)arg0->actorData)[3], 0.0f, 450.0f) * 10);
+            func_800BA450(sp3C, 0, 0, first, 0, 0, second);
+            func_800BA22C(sp3C, 1);
+        }
+        if (!func_800DA298(0x1BC) && arg0->rotation[1] == 193.0f) {
+            func_800DA544(0x1BC);
+            _capod_entrypoint_13(arg0->unk0, 0, 0, 0x800);
+        }
+        func_80800390_chtoxicroomprops((u8 *)arg0, 0x40000000);
+        if (((f32 *)arg0->actorData)[3] >= 450.0f && _subaddiefade_entrypoint_0(sp4C) && arg0->rotation[1] == 193.0f) {
+            _subaddiefade_entrypoint_6(sp4C, -1);
+        }
+        break;
+    }
+}
 
 s32 func_8080030C_chtoxicroomprops(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800DA524(s32);
