@@ -122,7 +122,56 @@ s32 func_800B5FE4(u8 arg0, f32 *arg1, f32 *volatile arg2, f32 arg3) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B60C0.s")
+void func_800B60C0(Gfx **arg0, f32 *arg1, f32 *arg2, f32 arg3) {
+    void func_800AF5B0(void *, s32 *, s32 *);
+    struct ImageStruct *func_800D674C(s32);
+    f32 func_800DC178(f32, f32);
+    void func_800E24F8(s32, s32, s32);
+    void func_800E253C(f32);
+    void func_800E2568(s32, s32);
+    void func_800E257C(s32);
+    void func_800E2E48(s32, void *, s32, s32 *);
+    s32 func_800E7988(Gfx **, s32);
+    void func_800E7A2C(Gfx **);
+    extern s32 D_80128180;
+    f32 x;
+    f32 y;
+    s32 width;
+    s32 height;
+    s32 imageWidth;
+    s32 imageHeight;
+    void *image;
+    s32 coords[2];
+
+    image = func_800D674C(*(s16 *)((u8 *)&D_80128180 + 0x28));
+    func_800AF5B0(image, &imageWidth, &imageHeight);
+    width = imageWidth / 4;
+    height = imageHeight / 4;
+    if (((u8 *)&D_80128180)[0x1F] == 0) {
+        *arg1 -= (f32)width * 0.5f * arg3;
+        ((u8 *)&D_80128180)[0x1F] = 1;
+    }
+    x = *arg1;
+    y = *arg2;
+    if (((u8 *)&D_80128180)[0x1E] != 0) {
+        x += func_800DC178(-1.0f, 1.0f) * arg3;
+        y += func_800DC178(-1.0f, 1.0f) * arg3;
+    }
+    y -= (f32)height * 0.5f * arg3;
+    coords[0] = x * 4.0f;
+    coords[1] = y * 4.0f;
+    func_800E257C(((u8 *)&D_80128180)[0x27]);
+    func_800E24F8(((u8 *)&D_80128180)[0x24], ((u8 *)&D_80128180)[0x25], ((u8 *)&D_80128180)[0x26]);
+    func_800E2568(imageWidth, imageHeight);
+    func_800E253C(arg3);
+    func_800E7988(arg0, 0x80000);
+    func_800E2E48((s32)arg0, image, *(s16 *)((u8 *)&D_80128180 + 0x2A) - 1, coords);
+    *arg1 += (f32)width * arg3;
+    func_800E7A2C(arg0);
+    func_800E7988(arg0, 0);
+    *(s16 *)((u8 *)&D_80128180 + 0x2A) = 0;
+    *(s16 *)((u8 *)&D_80128180 + 0x28) = *(s16 *)((u8 *)&D_80128180 + 0x2A);
+}
 
 void func_800B62CC(Gfx **arg0, u8 arg1, f32 *arg2, f32 *arg3, f32 arg4)
 {
