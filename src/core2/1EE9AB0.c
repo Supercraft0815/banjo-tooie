@@ -95,7 +95,62 @@ void func_801104F4(PlayerState *arg0) {
 
 void func_80110528(PlayerState *arg0) { s32 func_801138A0(void *); void func_801138F4(PlayerState *); void func_80112524(PlayerState *, f32 *); void func_80110A68(s32, s32, s32); void func_80110790(s32, f32 *); f32 sp2C[3]; f32 sp20[3]; if (func_801138A0(arg0) != 0) { func_801138F4(arg0); } func_80112524(arg0, sp2C); func_80110A68((s32) arg0, (s32) sp20, (s32) sp2C); func_80110790((s32) arg0, sp20); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80110588.s")
+void func_80110588(PlayerState *arg0) {
+    struct StateCallbacks {
+        void (*enter)(PlayerState *, s32);
+        void (*update)(PlayerState *);
+        void (*exit)();
+        void (*unkC)();
+    };
+    extern s16 D_801247A0[];
+    void func_800EE7F8(f32 *, f32 *);
+    void func_8010FE14(s32 *, f32 *, f32 *);
+    void func_800EFD24(f32 *);
+    void func_801123D4(PlayerState *);
+    void func_80112648(void *);
+    void func_80112A84(PlayerState *);
+    void func_8011347C(PlayerState *);
+    void func_80113D30(PlayerState *);
+    void func_80114DD8(void *);
+    void func_801154A4(PlayerState *);
+    void func_80115A9C(void *);
+    void func_80116024();
+    void func_8011607C(void *, s32);
+    void _ncba1p_entrypoint_3(PlayerState *, f32 *, f32 *);
+    void _ncbawaypoint_entrypoint_1(PlayerState *);
+    f32 sp34[3];
+    f32 sp28[3];
+    void (*update)(PlayerState *);
+
+    if (((u8 *)arg0)[0x70] != 0) {
+        func_8011607C(arg0, 0);
+        if (((u8 *)arg0)[0x72] == 0) {
+            func_8011347C(arg0);
+            func_801123D4(arg0);
+            func_80115A9C(arg0);
+            func_80112A84(arg0);
+            func_801154A4(arg0);
+            func_80112648(arg0);
+            func_80114DD8(arg0);
+            func_80113D30(arg0);
+            update = ((struct StateCallbacks *)D_801247A0)[((s32 *)arg0)[27]].update;
+            if (update != NULL) {
+                update(arg0);
+            }
+        }
+        func_800EFD24((f32 *)((u8 *)arg0 + 0x8C));
+        func_800EE7F8(sp34, (f32 *)((u8 *)arg0 + 0x74));
+        func_800EE7F8(sp28, (f32 *)((u8 *)arg0 + 0x80));
+        if (((u8 *)arg0)[0x71] != 0) {
+            _ncba1p_entrypoint_3(arg0, sp34, sp28);
+        }
+        func_80116024(arg0, sp28);
+        func_8010FE14(((s32 **)arg0)[25], sp34, sp28);
+        if (*((s32 **)arg0)[23] != 0) {
+            _ncbawaypoint_entrypoint_1(arg0);
+        }
+    }
+}
 
 s32 func_801106A0(s32 *arg0) {
     return arg0[27];
