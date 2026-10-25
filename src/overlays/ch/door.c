@@ -563,7 +563,96 @@ void func_80800FC0_chdoor(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/door/chdoor_entrypoint_1.s")
+s32 chdoor_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_808013C0_chdoor(Actor *, s32);
+    void *func_80100094(Actor *, u32);
+    void _chdoormake_entrypoint_5(Actor *, f32);
+    s32 _glcutDll_entrypoint_19(s32);
+    s32 _capod_entrypoint_17(f32);
+    struct DoorData {
+        s32 flags;
+        u8 pad4[4];
+        u8 pad8:6;
+        u8 active:1;
+        u8 pad8_0:1;
+        u8 pad9;
+        s16 speed;
+        u8 padC[0x12];
+        struct {
+            u16 pod;
+            u8 cutscene;
+            u8 action;
+            u16 flag;
+            s16 time;
+        } entries[2];
+    };
+    struct DoorData *data;
+    s32 first;
+    s32 second;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 7:
+        if (arg2 != 0 && 0.0f == (f32)data->speed * 0.00390625f) {
+            _chdoormake_entrypoint_5(arg0, (f32)arg2);
+        }
+        switch (arg0->unk70_10) {
+        case 6:
+            data->active = 1;
+            break;
+        case 1:
+            func_80800754_chdoor((u8 *)arg0);
+            break;
+        }
+        break;
+    case 8:
+        if (!(data->flags & 2)) {
+            return 0;
+        }
+        switch (arg0->unk70_10) {
+        case 3:
+            data->active = 1;
+            break;
+        case 4:
+            func_808008A0_chdoor((u8 *)arg0);
+            break;
+        }
+        break;
+    case 0x49:
+        first = data->entries[0].cutscene;
+        second = data->entries[1].cutscene;
+        if (first != -1 && _glcutDll_entrypoint_19(first)) {
+            func_80800754_chdoor((u8 *)arg0);
+            break;
+        }
+        if (second != -1 && _glcutDll_entrypoint_19(second)) {
+            func_808008A0_chdoor((u8 *)arg0);
+            break;
+        }
+        return 0;
+    case 0x6F:
+        if (!(data->flags & 0x200)) {
+            return 0;
+        }
+        return func_808013C0_chdoor(arg0, arg2);
+    case 0xE:
+        if (!(data->flags & 0x4000)) {
+            return 2;
+        }
+        if (arg2 == data->entries[0].action) {
+            if (_capod_entrypoint_17((f32)data->entries[0].time * 0.00390625f)) {
+                func_80800B14_chdoor((u8 *)arg0, 3);
+            }
+        } else if (arg2 == data->entries[1].action &&
+                   _capod_entrypoint_17((f32)data->entries[1].time * 0.00390625f)) {
+            func_80800B14_chdoor((u8 *)arg0, 6);
+        }
+        return 3;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80801330_chdoor(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
