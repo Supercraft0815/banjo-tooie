@@ -1,5 +1,7 @@
 #include "common.h"
 
+s32 func_800D9078(f32 *);
+
 typedef struct {
     s32 (*init)(Actor *);
     u8 pad4[0x24];
@@ -2835,7 +2837,88 @@ void func_80805498_chgameselect(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080569C_chgameselect.s")
+void func_8080569C_chgameselect(Actor *arg0, s32 arg1) {
+    typedef struct {
+        u8 state[4];
+        f32 timer[4];
+    } SelectControllers;
+    void _gcnewoption_entrypoint_43(s32, s32, s32);
+    s32 _gcnewoption_entrypoint_45(s32);
+    s32 _gcstatusDll_entrypoint_10(void);
+    void func_80015E80(s32, void *);
+    s32 func_80015FA0(s32);
+    void func_80016068(u32, f32 *);
+    s32 func_800D9078(f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80805BA0_chgameselect(s32, s32, s32);
+    void func_808062EC_chgameselect();
+    SelectControllers *data;
+    s32 count;
+    s32 buttons[6];
+    f32 stick[2];
+    s32 i;
+
+    switch (arg0->actorData[0]) {
+    case 0:
+        for (i = 0; i < 3; i++) {
+            func_80805BA0_chgameselect(arg1, i, 1);
+        }
+        break;
+    case 4:
+        count = _gcstatusDll_entrypoint_10();
+        data = func_80100094(arg0, 1);
+        for (i = 0; i < count; i++) {
+            func_80016068(i, stick);
+            func_80015E80(i, buttons);
+            switch (data->state[i]) {
+            case 1:
+                if (func_800D9078(&data->timer[i])) {
+                    data->state[i] = 0;
+                }
+                break;
+            case 0:
+                if (buttons[0] == 1) {
+                    data->state[i] = 2;
+                    _gcnewoption_entrypoint_43(arg1, i, 1);
+                    func_80803CC0_chgameselect();
+                } else if (stick[0] > 0.8f) {
+                    func_808062EC_chgameselect(arg1, i, 1);
+                    data->state[i] = 1;
+                    data->timer[i] = 0.5f;
+                } else if (stick[0] < -0.8f) {
+                    func_808062EC_chgameselect(arg1, i, -1);
+                    data->state[i] = 1;
+                    data->timer[i] = 0.5f;
+                }
+                break;
+            case 2:
+                if (buttons[1] == 1) {
+                    data->state[i] = 0;
+                    _gcnewoption_entrypoint_43(arg1, i, 0);
+                    func_80803CE0_chgameselect();
+                }
+                break;
+            }
+        }
+        for (i = 0; i < count; i++) {
+            if (data->state[i] != 2) {
+                break;
+            }
+        }
+        if (i == count && func_80802F8C_chgameselect((Unk80132ED0 *)arg0->actorData[6])) {
+            arg0->unk64_20 = 1;
+        }
+        break;
+    case 6:
+        func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[3], _gcnewoption_entrypoint_45(arg1) + 30);
+        break;
+    default:
+        if (func_80015FA0(0) && func_80802F8C_chgameselect((Unk80132ED0 *)arg0->actorData[6])) {
+            arg0->unk64_20 = 1;
+        }
+        break;
+    }
+}
 
 s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_19(OptionState *, s32);
