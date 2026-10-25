@@ -1,8 +1,8 @@
 #include "common.h"
 
 void func_800A5DB0(Actor *arg0) {
-    s32 func_800D674C(s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void *func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, void *);
     void func_800DF830(s32);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
@@ -50,10 +50,221 @@ void func_800A61D4(void) {
     func_800DF830(3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6250.s")
+void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
+    typedef struct player_state_s PlayerState;
+    typedef struct { f32 m[4][4]; } MtxF;
+    PlayerState *func_800F53D0(s32);
+    void *func_80092B04(PlayerState *, s32);
+    f32 func_80092BE8(PlayerState *);
+    f32 func_8009BFCC(PlayerState *);
+    void mlMtxGet(MtxF *);
+    void mlMtxRotYaw(f32);
+    void mlMtxRotPitch(f32);
+    void mlMtxRotRoll(f32);
+    void *_babackpack_entrypoint_1(PlayerState *);
+    void _babackpack_entrypoint_2(PlayerState *);
+    f32 _babackpack_get_scale(PlayerState *);
+    s32 _bapreload_entrypoint_1(s32, s32 *);
+    f32 baroll_get(PlayerState *);
+    f32 func_80013A7C(f32);
+    s32 func_8001575C(void);
+    s32 func_80019CD4(void);
+    s32 func_8008CA74(PlayerState *);
+    u32 func_80092738(s32 *);
+    f32 func_80092BDC(PlayerState *);
+    s32 func_80092E80(PlayerState *);
+    void func_800A06E8(s32);
+    void func_800A5EC4(Gfx **, s32, s32, s32, s32, s32, s32);
+    void func_800A61D4(void);
+    Gfx **func_800A7180(void);
+    void func_800AE708(s32, u8 *, s32 *, u8 *);
+    f32 func_800B2354(void *);
+    u8 *func_800B27E0(u8 *);
+    void *func_800B2840(void *);
+    void *func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, void *);
+    void *func_800DF330(void);
+    void func_800DF41C(s32);
+    void func_800DF540(MtxF *);
+    void func_800DF72C(s32);
+    void func_800E4190(f32 *, f32 *, s32 *);
+    void func_800E7CF4(Gfx **);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800F23D0(MtxF *, f32 *, f32 *);
+    void func_800F254C(MtxF *, f32 *, f32);
+    void func_800F274C(MtxF *);
+    void func_800F27D4(f32 [4][4], f32 [4][4], f32 [4][4]);
+    s32 func_800F5410(s32);
+    extern f32 D_801255D4, D_801255D8;
+    MtxF projection;
+    MtxF rotation;
+    PlayerState *player;
+    u8 *model;
+    u8 *originalModel;
+    s32 modelId;
+    s32 cached;
+    register f32 dot;
+
+    player = func_800F53D0(arg0->unk74_7);
+    modelId = func_800F5410(arg0->unk74_7);
+    model = func_800D674C(_bapreload_entrypoint_1(modelId, &cached));
+    originalModel = func_80092B04(player, 0);
+    func_800F274C(&projection);
+    dot = func_800EEAA4(arg3, arg2);
+    if (dot < D_801255D4) {
+        return;
+    }
+    if (dot < D_801255D8) {
+        f32 axis[3];
+        f32 angle;
+        MtxF correction;
+
+        angle = func_80013A7C(D_801255D8);
+        func_800EE97C(axis, arg2, arg3);
+        func_800F254C(&correction, axis, angle);
+        func_800F23D0(&correction, arg3, arg2);
+        dot = func_800EEAA4(arg3, arg2);
+    }
+    dot = 1.0f / dot;
+    projection.m[0][0] = 1.0f - arg2[0] * arg3[0] * dot;
+    projection.m[0][1] = -arg2[0] * arg3[1] * dot;
+    projection.m[0][2] = -arg2[0] * arg3[2] * dot;
+    projection.m[1][0] = -arg2[1] * arg3[0] * dot;
+    projection.m[1][1] = 1.0f - arg2[1] * arg3[1] * dot;
+    projection.m[1][2] = -arg2[1] * arg3[2] * dot;
+    projection.m[2][0] = -arg2[2] * arg3[0] * dot;
+    projection.m[2][1] = -arg2[2] * arg3[1] * dot;
+    projection.m[2][2] = 1.0f - arg2[2] * arg3[2] * dot;
+    func_80019CD4();
+    mlMtxRotYaw(func_80092BE8(player));
+    mlMtxRotPitch(func_8009BFCC(player));
+    mlMtxRotRoll(baroll_get(player));
+    mlMtxGet(&rotation);
+    func_800F27D4(rotation.m, projection.m, projection.m);
+    if (model != originalModel) {
+        if (cached) {
+            func_800DF41C(func_8008CA74(player));
+        } else {
+            s32 *cache;
+            u8 *originalSkeleton;
+            u8 *skeleton;
+
+            cache = func_800DF330();
+            originalSkeleton = func_800B27E0(originalModel);
+            skeleton = func_800B27E0(model);
+            if (*cache) {
+                func_800AE708(func_80092E80(player), originalSkeleton, cache, skeleton);
+                func_800DF72C(*cache);
+            }
+        }
+    } else {
+        func_800DF72C(func_80092E80(player));
+    }
+    func_800A06E8((s32)player);
+    func_800DF540(&projection);
+    func_800A61D4();
+    {
+        Gfx **buffers;
+        s32 x, y, z;
+
+        buffers = func_800A7180();
+        gDPPipeSync((*buffers)++);
+        gDPSetColorImage((*buffers)++, G_IM_FMT_CI, G_IM_SIZ_8b, 304, (u32)func_8001575C() + 0x80000000);
+        gDPPipelineMode((*buffers)++, G_PM_NPRIMITIVE);
+        gDPSetCycleType((*buffers)++, G_CYC_FILL);
+        gDPSetFillColor((*buffers)++, 0xFFFEFFFE);
+        gDPSetRenderMode((*buffers)++, G_RM_NOOP, G_RM_NOOP2);
+        gDPFillRectangle((*buffers)++, 0, 0, 303, 227);
+    func_800DE448(arg1, 0, func_80092BDC(player), 0, model);
+    if (func_80092738((s32 *)player)) {
+
+        _babackpack_entrypoint_2(player);
+        func_800DF540(&projection);
+        func_800A61D4();
+        func_800DE448(arg1, 0, _babackpack_get_scale(player), 0, _babackpack_entrypoint_1(player));
+    }
+    {
+        Gfx **buffers;
+        f32 radius;
+        f32 corners[8][3];
+        f32 screen[8][2];
+        f32 coordinate;
+        f32 minimum[2];
+        f32 maximum[2];
+
+        buffers = func_800A7180();
+        gDPPipeSync((*buffers)++);
+        func_800E7CF4(buffers);
+        radius = func_800B2354(func_800B2840(model)) * func_80092BDC(player);
+        {
+        int index;
+        f32 limit;
+        s32 minimumPixel[2];
+        s32 maximumPixel[2];
+        s32 stackPadding; /* Preserve IDO's original local-stack layout. */
+        s32 visible;
+
+        for (x = 0; x < 2; x++) {
+            for (y = 0; y < 2; y++) {
+                for (z = 0; z < 2; z++) {
+                    index = x * 4 + y * 2 + z;
+                    corners[index][0] = (x ? -1.0f : 1.0f) * radius;
+                    corners[index][1] = (y ? 0.0f : 1.0f) * radius;
+                    corners[index][2] = (z ? -1.0f : 1.0f) * radius;
+                }
+            }
+        }
+        for (y = 0; y < 8; y++) {
+            func_800F23D0(&projection, corners[y], corners[y]);
+            func_800EF04C(corners[y], arg1);
+        }
+        for (y = 0; y < 8; y++) {
+            func_800E4190(corners[y], screen[y], &visible);
+            if (!visible) {
+                return;
+            }
+        }
+        maximum[0] = screen[0][0];
+        minimum[0] = screen[0][0];
+        minimum[1] = maximum[1] = screen[0][1];
+        for (y = 1; y != 8; y++) {
+            coordinate = screen[y][0];
+            if (coordinate < minimum[0]) {
+                minimum[0] = coordinate;
+            } else if (maximum[0] < coordinate) {
+                maximum[0] = coordinate;
+            }
+            coordinate = screen[y][1];
+            if (coordinate < minimum[1]) {
+                minimum[1] = coordinate;
+            } else if (maximum[1] < coordinate) {
+                maximum[1] = coordinate;
+            }
+        }
+        limit = 304.0f;
+        if (minimum[0] < 0) minimum[0] = 0;
+        if (minimum[0] > limit) minimum[0] = limit;
+        if (maximum[0] < 0) maximum[0] = 0;
+        if (maximum[0] > limit) maximum[0] = limit;
+        limit = 228.0f;
+        if (minimum[1] < 0) minimum[1] = 0;
+        if (minimum[1] > limit) minimum[1] = limit;
+        if (maximum[1] < 0) maximum[1] = 0;
+        if (maximum[1] > limit) maximum[1] = limit;
+        minimumPixel[0] = minimum[0];
+        minimumPixel[1] = minimum[1];
+        maximumPixel[0] = maximum[0];
+        maximumPixel[1] = maximum[1];
+        func_800A5EC4(buffers, func_8001575C(), minimumPixel[0], minimumPixel[1], maximumPixel[0] - minimumPixel[0], maximumPixel[1] - minimumPixel[1], arg4);
+        }
+    }
+    }
+}
 
 s32 func_800A69F0(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
-    s32 func_800A6250(Actor *, f32 *, f32 *, f32 *, s32);
+    void func_800A6250(Actor *, f32 *, f32 *, f32 *, s32);
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF174(f32 *, f32 *, f32);
