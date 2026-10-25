@@ -198,7 +198,70 @@ void func_800BDD00()
     _gccubeDll_entrypoint_6(&D_80128410);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BDD24.s")
+s32 *func_800BDD24(s32 *arg0)
+{
+    s32 func_800E9DC4(s16 *);
+    extern s32 D_8012841C;
+    extern f32 D_80128450;
+    extern s32 D_80128458;
+    s32 index;
+    s32 base;
+    s32 count;
+    s32 pos[3];
+    s32 iter[3];
+    int new_var;
+    f32 value;
+
+    for (index = 0; index < 3; index++) {
+        if (arg0[index] >= 0) {
+            value = (f32)arg0[index] * D_80128450;
+        } else {
+            value = (f32)arg0[index] * D_80128450;
+        }
+        pos[index] = (s32)(value - (&D_80128410)[index + 1]);
+    }
+    count = 0;
+    if (pos[0] > 0 && pos[0] < (&D_80128410)[10] - 1 &&
+        pos[1] > 0 && pos[1] < (&D_80128410)[11] - 1 &&
+        pos[2] > 0 && pos[2] < (&D_80128410)[12] - 1) {
+        base = (pos[0] + (pos[1] - 1) * (&D_80128410)[7] +
+            (pos[2] - 1) * (&D_80128410)[8]) - 1;
+        index = base;
+        iter[0] = 0; do {
+            for (iter[1] = 0; iter[1] < 3; iter[1]++) {
+                for (iter[2] = 0; iter[2] < 3; iter[2]++) {
+                    if (func_800E9DC4((s16 *)(D_80128410 + (index << 3)))) {
+                        (&D_80128458)[count++] = D_80128410 + (index << 3);
+                    }
+                    index++;
+                }
+                index = (index + (&D_80128410)[7]) - (new_var = 3);
+            }
+            base += (&D_80128410)[8];
+            index = base;
+        } while (++iter[0] < 3);
+    } else {
+        for (iter[0] = pos[0] - 1; iter[0] < pos[0] + 2; iter[0]++) {
+            if (iter[0] >= 0 && iter[0] < (&D_80128410)[10]) {
+                for (iter[1] = pos[1] - 1; iter[1] < pos[1] + 2; iter[1]++) {
+                    if (iter[1] >= 0 && iter[1] < (&D_80128410)[11]) {
+                        for (iter[2] = pos[2] - 1; iter[2] < pos[2] + 2; iter[2]++) {
+                            if (iter[2] >= 0 && iter[2] < (&D_80128410)[12]) {
+                                index = iter[0] + iter[1] * (&D_80128410)[7] +
+                                    iter[2] * (&D_80128410)[8];
+                                if (func_800E9DC4((s16 *)(D_80128410 + (index << 3)))) {
+                                    (&D_80128458)[count++] = D_80128410 + (index << 3);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    (&D_80128458)[count] = 0;
+    return &D_80128458;
+}
 
 s32 func_800BE09C(s32 *arg0, s32 *arg1)
 {
