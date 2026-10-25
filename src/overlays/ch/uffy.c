@@ -209,7 +209,72 @@ void func_80800524_chchuffy(Actor *arg0) {
     (*(u8 *)((s8 *)(temp_v0) + (0xA))) = (u8) (((*(u8 *)((s8 *)(temp_v0) + (0xA))) & 0xFF07) | 0x18);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080059C_chchuffy.s")
+void func_8080059C_chchuffy(Actor *actor) {
+    struct ParticleData {
+        u8 pad0[0x14];
+        f32 origin[3];
+        u8 pad20[0x18];
+        f32 active;
+        f32 delay;
+        u8 pad40[0x24];
+        f32 position[10][3];
+        f32 destination[10][3];
+        f32 velocity[10][3];
+        f32 rotation[10][3];
+        f32 scale[10];
+        s8 kind[10];
+        u8 pad276[2];
+        f32 remaining;
+        s32 timer[10];
+    };
+    f32 func_800D8FF8(void);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_800EFD24();
+    void *func_80100094(Actor *, u32);
+    struct ParticleData *data;
+    f32 delta;
+    s32 i;
+
+    delta = func_800D8FF8();
+    data = func_80100094(actor, 0);
+    for (i = 0; i < 10; i++) {
+        if (data->timer[i] < 10) {
+            if (data->remaining > 0.0f) {
+                func_80800410_chchuffy(actor, i);
+            } else {
+                data->rotation[i][1] = 0.0f;
+                func_800EFD24(data->velocity[i]);
+                func_800EE7F8(data->position[i], data->origin);
+                data->scale[i] = 0.0f;
+            }
+        }
+        if (data->timer[i] >= 61) {
+            data->scale[i] += 0.12f;
+        } else {
+            data->rotation[i][1] -= 10.0f;
+            data->scale[i] *= 0.9f;
+        }
+        data->timer[i] -= func_800DC128(6, 12);
+        data->velocity[i][0] += data->rotation[i][1] * delta;
+        data->velocity[i][1] *= 1.1f;
+        data->velocity[i][2] *= 1.1f;
+        func_800EE780(data->destination[i], data->position[i], data->velocity[i]);
+    }
+    if (data->active > 0.0f) {
+        func_80800410_chchuffy(actor, actor->unk6C_0);
+        actor->unk6C_0++;
+        if (actor->unk6C_0 == 10) {
+            data->remaining = 0.2f;
+            actor->unk6C_0 = 0;
+        }
+        data->delay = func_800DC178(27000.0f, 30000.0f);
+    } else {
+        data->remaining -= func_800D8FF8();
+    }
+}
 
 void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
