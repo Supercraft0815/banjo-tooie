@@ -38,7 +38,122 @@ OSThread *chklungo_entrypoint_0(void)
     return (OSThread *) D_80803B6C_chklungo;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_8080000C_chklungo.s")
+void func_8080000C_chklungo(Actor *arg0) {
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _glcutDll_entrypoint_20(void);
+    s16 _glsplinefind_entrypoint_0(u32, f32 *);
+    void _plcamera_entrypoint_8(s32);
+    s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
+    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_1(Actor *, u32 *, s32);
+    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    s32 func_800D395C(void);
+    s32 func_800DA298(s32);
+    void func_800F497C(s32);
+    u32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void func_800F8294(s32, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_801032B0(void *, u16, u16);
+    void func_80109FE8(void **, s32);
+    void func_80801964_chklungo(Actor *, s32);
+    void func_808020F0_chklungo(Actor *, s32);
+    s32 func_8080242C_chklungo(void);
+    void func_80802588_chklungo(Actor *, s32, s32);
+    u8 func_80802DF4_chklungo(Actor *);
+    s32 func_80803158_chklungo(Actor *, s32, s32);
+    extern s16 D_808038A2_chklungo;
+    extern f32 D_80803910_chklungo;
+    extern s16 D_80803916_chklungo;
+    extern s32 D_80803A3C_chklungo[];
+    struct KlungoInit {
+        s16 unk0, unk2, unk4, unk6, unk8;
+        u8 padA[6];
+        s16 unk10;
+        u8 pad12[0x10];
+        s16 unk22;
+        u8 pad24[6];
+        s16 unk2A, unk2C;
+        u8 pad2E[2];
+        f32 spline[3];
+        u8 pad3C[6];
+        s16 unk42;
+        u8 pad44[8];
+        f32 marker[3];
+        u8 pad58[12];
+        f32 camera[3];
+        u8 pad70[12];
+        u32 route[3];
+        u32 subgame[1];
+    } *data;
+    struct KlungoActorFlags {
+        u8 pad[0x70];
+        u8 pad70:7;
+        u8 flag70:1;
+    };
+    s32 camera;
+
+    data = func_80100094(arg0, 0);
+    data->unk8 = func_8080242C_chklungo();
+    if (func_800DA298(data->unk8 + 0x318)) {
+        func_800FFAB0(arg0);
+        return;
+    }
+    if (_glcutDll_entrypoint_20()) {
+        func_801032B0(arg0, 0x90C, 0);
+        func_80801964_chklungo(arg0, 0xA);
+        return;
+    }
+    func_80109FE8((void **)arg0, 0);
+    _subaddierouteDll_entrypoint_3(arg0, data->route, arg0->position);
+    _susubgame_entrypoint_0(arg0, data->subgame, 0);
+    _susubgame_entrypoint_12(data->subgame, D_80803A3C_chklungo);
+    _susubgame_entrypoint_1(arg0, data->subgame, 0xC);
+    func_808020F0_chklungo(arg0, 0);
+    ((f32 *)arg0->actorData)[3] = *(f32 *)((u8 *)&D_80803910_chklungo + data->unk8 * 0x84);
+    data->unk2 = 1;
+    data->unk4 = 0;
+    data->unk0 = data->unk2;
+    data->unk10 = func_80802DF4_chklungo(arg0);
+    if (data->unk8 == 0) {
+        data->unk22 = 0;
+    } else {
+        data->unk22 = 1;
+    }
+    if (arg0->unk7A_5) {
+        ((struct KlungoActorFlags *)arg0)->flag70 = 1;
+        data->unk2C = _glsplinefind_entrypoint_0(0x3A1, data->spline);
+        _subaddiemarker_entrypoint_0(arg0, 0x3A1, data->marker, 1);
+        _subaddiemarker_entrypoint_0(arg0, 0x154, data->camera, 1);
+        if (func_800DA298(*(s16 *)((u8 *)&D_808038A2_chklungo + data->unk8 * 0x84))) {
+            camera = func_800F54E4();
+            data->unk2A = 1;
+            func_800F608C(camera, 1);
+            func_800F8294(camera, data->camera);
+            func_800F497C(camera);
+            _plcamera_entrypoint_8(camera);
+            func_80802588_chklungo(arg0, 2, 1);
+            func_80803158_chklungo(arg0, *(s16 *)((u8 *)&D_80803916_chklungo + data->unk8 * 0x84), 0xE);
+            func_80801964_chklungo(arg0, 8);
+            data->unk42 = 1;
+            return;
+        }
+        if (func_800D395C()) {
+            if (data->unk8 == 2) {
+                func_80803158_chklungo(arg0, 0x1633, 0x44);
+                func_80801964_chklungo(arg0, 2);
+            }
+            func_80801964_chklungo(arg0, 5);
+            return;
+        }
+        _chintrotext_entrypoint_2(1);
+        if (data->unk8 == 2) {
+            func_80801964_chklungo(arg0, 2);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_808002D0_chklungo.s")
 
