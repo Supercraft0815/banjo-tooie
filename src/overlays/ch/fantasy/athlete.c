@@ -863,7 +863,60 @@ s32 func_80802950_chfantasyathlete(Actor *arg0) {
     func_80102CCC(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/athlete/func_8080298C_chfantasyathlete.s")
+s32 func_8080298C_chfantasyathlete(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4) {
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    void func_800F7ECC(s32, s32, f32);
+    void func_800FC6B0(u32);
+    s32 func_800FCCD4(s32);
+    u32 func_800FDC28(u32);
+    void func_80105834(Actor *);
+    f32 position[3];
+
+    func_80801718_chfantasyathlete(arg0);
+    func_80105834(arg0);
+    func_800F5A00(func_800F54E4(), position);
+    if (!arg0->unk64_19) {
+        if (position[1] < arg2[1] - 150.0f && !func_800F6C5C(func_800F54E4())) {
+            func_800F7ECC(func_800F54E4(), 3, 0.0f);
+            func_800FDC28(0);
+            if (!arg0->unk64_20) {
+                func_800FC6B0(0x17);
+                arg0->unk64_19 = 1;
+            }
+            return 1;
+        }
+        if (func_80801114_chfantasyathlete((s32)arg0, arg1, arg2, arg3, arg4, position, (f32 *)&arg0->actorData[5])) {
+            func_800FDC28(0);
+            func_800FC6B0(0x16);
+            arg0->unk64_20 = 1;
+        }
+    }
+    if (!arg0->unk64_20) {
+        if (position[1] < arg2[1] - 150.0f && !func_800F6C5C(func_800F54E4())) {
+            func_800F7ECC(func_800F54E4(), 3, 0.0f);
+            func_800FDC28(0);
+            func_800FC6B0(0x17);
+            arg0->unk64_19 = 1;
+            return 1;
+        }
+        if (func_80801114_chfantasyathlete((s32)arg0, arg1, arg2, arg3, arg4, arg0->position, (f32 *)&arg0->actorData[7])) {
+            func_800FDC28(0);
+            func_800FC6B0(0x17);
+            arg0->unk64_19 = 1;
+        }
+    }
+    if (arg0->unk64_20 || arg0->unk64_19) {
+        func_800F7ECC(func_800F54E4(), 3, 0.0f);
+        *(f32 *)&arg0->actorData[3] *= 0.9f;
+        if (!func_800FCCD4(0x16) && !func_800FCCD4(0x17)) {
+            return 1;
+        }
+        return 0;
+    }
+    return 0;
+}
 
 void func_80802C18_chfantasyathlete(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 arg3) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
