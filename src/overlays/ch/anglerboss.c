@@ -575,7 +575,114 @@ void func_80800FEC_changlerboss(Actor *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801070_changlerboss.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_808012E0_changlerboss.s")
+void func_808012E0_changlerboss(Actor *arg0, s32 arg1) {
+    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_800D2770(s32, s32);
+    f32 func_800DC178(f32, f32);
+    f32 func_800EEB40(f32 *, f32 *);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80109FE8(Actor *, s32);
+    void func_808018E8_changlerboss(Actor *);
+    s32 func_80801C50_changlerboss(Actor *);
+    void func_808021E4_changlerboss(Actor *, u32, u32);
+    void func_808027F8_changlerboss(void *);
+    extern u32 D_80802F80_changlerboss;
+    struct {
+        u8 pad0[0x90];
+        s16 unk90;
+        s16 unk92;
+        s16 unk94;
+        s16 unk96;
+        f32 unk98;
+        Unk80132ED0 *unk9C;
+        Unk80132ED0 *unkA0;
+        f32 unkA4[2][6];
+    } *sp2C;
+
+    sp2C = func_80100094(arg0, 0U);
+    func_80102424(arg0, arg1);
+    switch (arg1) {
+    case 2:
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802DA0_changlerboss);
+        func_800FDC28(1);
+        func_808021E4_changlerboss(arg0, 0U, 0x30U);
+        func_80102424(func_80106790(sp2C->unk9C), 2);
+        break;
+    case 3:
+        _chintrotext_entrypoint_1(0x18B9, 5, 1, 0);
+        arg0->unk58 = 4.0f;
+        break;
+    case 5:
+        arg0->unk58 = func_800DC178(4.0f, 6.0f);
+        break;
+    case 6:
+    case 14:
+        if (func_800EEB40(arg0->position, sp2C->unkA4[sp2C->unk90]) < 640000.0f) {
+            sp2C->unk90 ^= 1;
+        }
+        func_80109FE8(arg0, 1);
+        func_808018E8_changlerboss(arg0);
+        break;
+    case 7:
+    case 15:
+        sp2C->unk90 ^= 1;
+        sp2C->unk98 = 0.0f;
+        break;
+    case 13:
+        arg0->unk58 = func_800DC178(2.0f, 3.0f);
+        break;
+    case 8:
+        if (func_80801C50_changlerboss(arg0) < 4) {
+            sp2C->unk94 = 2;
+        } else {
+            sp2C->unk94 = 1;
+        }
+        break;
+    case 11:
+        arg0->unk58 = 2.0f;
+        func_808027F8_changlerboss(arg0);
+        func_808021E4_changlerboss(arg0, 0x1CU, 0x30U);
+        func_800D2770(0xFE, 0);
+        break;
+    case 12:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x102B, 0x106, arg0->position, 0xB4);
+        break;
+    case 17:
+        arg0->unk58 = 2.0f;
+        break;
+    case 19:
+        sp2C->unk94 = 1;
+        break;
+    case 22:
+        func_80109FE8(arg0, 0);
+        break;
+    case 20:
+        arg0->unk58 = func_800DC178(1.5f, 2.5f);
+        break;
+    case 24:
+        func_800FDC28(0);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802F80_changlerboss);
+        func_808027F8_changlerboss(arg0);
+        func_808021E4_changlerboss(arg0, 0x16U, 0x38U);
+        break;
+    case 25:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1029, 0x106, arg0->position, 0xB4);
+        break;
+    case 26:
+        func_80109FE8(arg0, 1);
+        arg0->unk58 = func_800DC178(5.0f, 8.0f);
+        break;
+    case 27:
+    case 28:
+        func_80109FE8(arg0, 0);
+        break;
+    }
+}
 
 void func_808015F4_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
