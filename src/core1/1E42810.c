@@ -274,7 +274,53 @@ s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E42810/func_8002B7C8.s")
+void *func_8002B7C8(void *arg0, s16 *arg1, s16 *arg2, s32 arg3, void *arg4) {
+    s16 func_8002BAAC(f32, f32, s32, u16 *);
+    Acmd *func_8002D030(u8 *, s16 *, s32, Acmd *);
+    extern s16 D_80041290[], D_8004138E[];
+    Acmd *sp34;
+    u8 *sp30;
+    Acmd *sp2C;
+    Acmd *sp28;
+    Acmd *sp24;
+
+    sp34 = arg4;
+    sp30 = arg0;
+    if (*(s32 *)(sp30 + 0x84) != 1 || arg3 == 0) {
+        return sp34;
+    }
+    sp34 = func_8002D030(sp30, arg1, arg3, arg4);
+    if (*(s32 *)(sp30 + 0x78) != 0) {
+        *(s32 *)(sp30 + 0x78) = 0;
+        *(s16 *)(sp30 + 0x68) = (s16)((s32)(*(s16 *)(sp30 + 0x5A) * D_80041290[*(s16 *)(sp30 + 0x58)]) >> 15);
+        *(s16 *)(sp30 + 0x66) = func_8002BAAC((f32)*(s16 *)(sp30 + 0x5C), (f32)*(s16 *)(sp30 + 0x68), *(s32 *)(sp30 + 0x74), (u16 *)(sp30 + 0x64));
+        *(s16 *)(sp30 + 0x6E) = (s16)((s32)(*(s16 *)(sp30 + 0x5A) * D_8004138E[-*(s16 *)(sp30 + 0x58)]) >> 15);
+        *(s16 *)(sp30 + 0x6C) = func_8002BAAC((f32)*(s16 *)(sp30 + 0x5E), (f32)*(s16 *)(sp30 + 0x6E), *(s32 *)(sp30 + 0x74), (u16 *)(sp30 + 0x6A));
+        sp2C = sp34++;
+        sp2C->words.w0 = (*(s16 *)(sp30 + 0x5C) & 0xFFFF) | 0x09060000;
+        sp2C->words.w1 = (*(s16 *)(sp30 + 0x62) & 0xFFFF) | ((*(s16 *)(sp30 + 0x60) & 0xFFFF) << 16);
+        sp28 = sp34++;
+        sp28->words.w0 = (*(s16 *)(sp30 + 0x6E) & 0xFFFF) | 0x09040000;
+        sp28->words.w1 = (*(u16 *)(sp30 + 0x6A) & 0xFFFF) | ((*(s16 *)(sp30 + 0x6C) & 0xFFFF) << 16);
+        sp24 = sp34++;
+        sp24->words.w0 = (*(s16 *)(sp30 + 0x68) & 0xFFFF) | 0x09000000;
+        sp24->words.w1 = (*(u16 *)(sp30 + 0x64) & 0xFFFF) | ((*(s16 *)(sp30 + 0x66) & 0xFFFF) << 16);
+        {
+            Acmd *sp20;
+            sp20 = sp34++;
+            sp20->words.w0 = (*(s16 *)(sp30 + 0x5E) & 0xFFFF) | 0x03010000;
+            sp20->words.w1 = osVirtualToPhysical(*(void **)(sp30 + 0x54));
+        }
+    } else {
+        Acmd *sp1C;
+        sp1C = sp34++;
+        sp1C->words.w0 = 0x03000000;
+        sp1C->words.w1 = osVirtualToPhysical(*(void **)(sp30 + 0x54));
+    }
+    *arg1 += 0x170;
+    *(s32 *)(sp30 + 0x70) += 0xB8;
+    return sp34;
+}
 
 s16 func_8002BAAC(f32 arg0, f32 arg1, s32 arg2, u16 *arg3) {
     s16 spE;
