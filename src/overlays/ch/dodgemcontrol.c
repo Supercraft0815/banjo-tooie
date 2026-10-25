@@ -42,7 +42,93 @@ s32 func_808000B8_chdodgemcontrol(s32 arg0) {
     func_800904C8(sp18.values[arg0]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_8080010C_chdodgemcontrol.s")
+void func_8080010C_chdodgemcontrol(Actor *arg0) {
+    struct DodgemData {
+        u8 pad0[0x34];
+        f32 positions[10][3];
+        u8 states[10];
+        u8 scores[10];
+        u8 padC0[2];
+        u8 carCount;
+        u8 padC3[2];
+        u8 pointCount;
+    };
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 func_800CEAD0(s32);
+    s32 func_800CEB54(s32, f32);
+    f32 func_800EEB40(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_80800CA0_chdodgemcontrol(Actor *);
+    void func_80800FC4_chdodgemcontrol(Actor *, s32, s32);
+    void func_8080160C_chdodgemcontrol(Actor *);
+    void func_80801A8C_chdodgemcontrol(Actor *, s32);
+    struct DodgemData *data;
+    s32 i;
+    s32 missing;
+    s32 car;
+    int mode;
+    s32 kind;
+    s32 count;
+    u8 state;
+    f32 *position;
+
+    data = func_80100094(arg0, 0);
+    mode = arg0->unk70_10;
+    switch (mode) {
+    case 1:
+        func_8080160C_chdodgemcontrol(arg0);
+        break;
+    case 3:
+        func_80801A8C_chdodgemcontrol(arg0, 0);
+        if (!func_800CEB54(0, 6.0f) && func_800CEAD0(0)) {
+            func_80800CA0_chdodgemcontrol(arg0);
+        }
+        missing = 0;
+        for (i = 0; i < data->pointCount; i++) {
+            mode = data->states[i];
+            switch (mode) {
+                case 1:
+                    count = data->carCount;
+                    position = data->positions[i];
+                    for (car = 0; car < count; car++) {
+                        if (func_800EEB40(func_8080000C_chdodgemcontrol(arg0, car)->position, position) < 22500.0f) {
+                            mode = arg0->unk79_4;
+                            switch (mode) {
+                            case 3:
+                                goto score;
+                            case 0:
+                            case 1:
+                            case 2:
+                                if (car != 0) {
+                                    data->states[i] = 3U;
+                                    break;
+                                }
+                            score:
+                                _chscorepoints_entrypoint_2(data->scores[i] + 1, 0, position, 1);
+                                func_80800FC4_chdodgemcontrol(arg0, car, data->scores[i] + 1);
+                                data->states[i] = 2U;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                case 0:
+                    missing = 1;
+                    break;
+            }
+        }
+        if (missing) {
+            func_80108B04(arg0, -1);
+        }
+        break;
+    case 4:
+        func_80801A8C_chdodgemcontrol(arg0, 1);
+        break;
+    case 2:
+        break;
+    }
+}
 
 /* extern */
 
