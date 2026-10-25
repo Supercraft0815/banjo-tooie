@@ -356,7 +356,54 @@ void func_80800A1C_chcrusherboulder(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/crusherboulder/func_80800D3C_chcrusherboulder.s")
+void func_80800D3C_chcrusherboulder(Actor *arg0) {
+    s32 _capod_entrypoint_13();
+    s32 func_800FFAB0();
+    s32 func_800DA298(s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA05C();
+
+    arg0->scale = 0.7f;
+    if (func_800EA05C() == 0xCB) {
+        arg0->unk74_29 = 1;
+    } else {
+        arg0->unk74_29 = 0;
+    }
+    if (arg0->unk74_29) {
+        if (func_800DA298(0x4FF) || !func_800DA298(0x4FC)) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800DA298(0x4FC)) {
+            if (func_800DA298(0x4FD)) {
+                func_80800A1C_chcrusherboulder(arg0, 6);
+                return;
+            }
+            if (func_800DA298(0x4FB)) {
+                _capod_entrypoint_13(arg0->unk0, NULL, 2, 0x2820);
+            } else {
+                _capod_entrypoint_13(arg0->unk0, NULL, 0, 0x2820);
+            }
+            func_80800A1C_chcrusherboulder(arg0, 2);
+        }
+    } else {
+        if (func_800DA298(0x4FF)) {
+            if (!func_800DA9E4(0x500, 1)) {
+                func_80800A1C_chcrusherboulder(arg0, 11);
+                return;
+            }
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800DA298(0x4FC)) {
+            func_800FFAB0(arg0);
+            return;
+        }
+        if (func_800DA298(0x4FD)) {
+            func_800FFAB0(arg0);
+        }
+    }
+}
 
 void func_80800ED0_chcrusherboulder(Actor *arg0) {
     void *func_80100094(Actor *, u32);
