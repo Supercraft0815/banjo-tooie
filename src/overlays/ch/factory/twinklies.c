@@ -219,7 +219,82 @@ void func_808006C0_chfactorytwinklies(Actor *arg0) {
     func_800FDC28(0xC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/twinklies/func_80800748_chfactorytwinklies.s")
+void func_80800748_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 _gcfrontend_entrypoint_9(s32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    u8 *data;
+    Actor *child;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x1344:
+    case 0x1385:
+        if (arg2 > 0) {
+            _susubgame_entrypoint_6(arg0, data + 0xAC, 6, 0x20, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1345, 0x44, 0, 0xA3);
+            func_80108B04(arg0, 0);
+        } else {
+            _susubgame_entrypoint_5(arg0, data + 0xAC, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, 0, 0xA3);
+        }
+        _gcfrontend_entrypoint_9(0x6D);
+        break;
+    case 0x1345:
+        _susubgame_entrypoint_5(arg0, data + 0xAC, 5, 1, 0);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, 0, 0xA3);
+        break;
+    case 0xCEB:
+        func_800F82D4(func_800F54E4(), 0);
+        func_80101FDC(arg0, 6);
+        if (func_800D395C() != 0) {
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+        } else if (arg2 > 0) {
+            _gcgoto_entrypoint_1(0x10A, 1);
+        } else {
+            child = _subaddiefind_entrypoint_2(0x21A, 0);
+            if (child != 0) {
+                _subaddiefade_entrypoint_3(child);
+                func_8010A570(child);
+            }
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0xAC));
+        }
+        break;
+    case 0xCEC:
+        _susubgame_entrypoint_4(arg0, (s32)(data + 0xAC));
+        func_808006C0_chfactorytwinklies(arg0);
+        break;
+    case 0x1346:
+        _susubgame_entrypoint_6(arg0, data + 0xAC, 0x15, 0x10, 0);
+        func_800D1000(0x3B, 1, 0, 1, 0);
+        break;
+    case 0x1347:
+    case 0x1374:
+    case 0x1375:
+    case 0x1376:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x46, 0, 0xA3);
+        break;
+    }
+}
 
 s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); u32 func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
 
