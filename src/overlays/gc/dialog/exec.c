@@ -241,7 +241,99 @@ void func_8080052C_gcdialogexec(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_8080064C_gcdialogexec.s")
+int func_8080064C_gcdialogexec(u8 *arg0) {
+    typedef struct {
+        s16 code;
+        u8 pad[2];
+        u8 *text;
+    } Entry;
+    typedef struct {
+        u8 mode:2;
+        u8 state:2;
+        u8 rest:4;
+    } Flags;
+    typedef struct {
+        u8 pad0[0x104];
+        Entry *entries[2];
+        u8 *text[2];
+        u8 pad114[2];
+        u8 index[2];
+        s16 code[2];
+        Flags flags[2];
+        u8 pad11E[2];
+        s32 box[2];
+        u8 pad128[0x30];
+        u8 value;
+        u8 pad159[5];
+        u16 active:1;
+        u16 changed:1;
+        u16 rest:14;
+    } Dialog;
+    typedef struct { u8 pad[0x116]; u8 index[2]; } Indices;
+    typedef struct { u8 pad[0x11C]; Flags flags[2]; } FlagArray;
+    int _gczoombox_entrypoint_39();
+    s32 i;
+    s32 code;
+
+        ((s16 *)(arg0 + 0x118))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] = ((Entry *)(((s32 *)(arg0 + 0x104))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] + ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] * 8))->code;
+        ((u8 * *)(arg0 + 0x10C))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] = ((Entry *)(((s32 *)(arg0 + 0x104))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] + ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] * 8))->text;
+    switch (code = ((s16 *)(arg0 + 0x118))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]) {
+        case -8:
+            func_80800478_gcdialogexec(arg0, *((u8 * *)(arg0 + 0x10C))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]);
+            ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]++;
+            return 1;
+        case -9:
+            ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]++;
+            return *((u8 * *)(arg0 + 0x10C))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] + 1;
+        case -2:
+            arg0[0x158] = *((u8 * *)(arg0 + 0x10C))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)];
+            ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]++;
+            return 1;
+        case -1:
+            return 1;
+        default:
+            if (!((s32 *)(arg0 + 0x120))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] || _gczoombox_entrypoint_39(((s32 *)(arg0 + 0x120))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)], code) || ((FlagArray *)arg0)->flags[((u32)*(u16 *)(arg0 + 0x15E) >> 15)].state) {
+                ((Dialog *)arg0)->active = ((u32)*(u16 *)(arg0 + 0x15E) >> 15) ^ 1;
+                return 0;
+            }
+            switch (((s16 *)(arg0 + 0x118))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]) {
+                case -10:
+                case -11:
+                    do {
+                        ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]++;
+                                                ((s16 *)(arg0 + 0x118))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] = ((Entry *)(((s32 *)(arg0 + 0x104))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] + ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] * 8))->code;
+                    } while (-10 == ((s16 *)(arg0 + 0x118))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)] || -11 == ((s16 *)(arg0 + 0x118))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]);
+                    return 1;
+                case -4:
+                    ((FlagArray *)arg0)->flags[((u32)*(u16 *)(arg0 + 0x15E) >> 15)].mode = 1;
+                    ((FlagArray *)arg0)->flags[((u32)*(u16 *)(arg0 + 0x15E) >> 15)].state = 1;
+                    ((Dialog *)arg0)->changed = 1;
+                    ((Dialog *)arg0)->active = ((u32)*(u16 *)(arg0 + 0x15E) >> 15) ^ 1;
+                    return 0;
+                case -5:
+                    ((FlagArray *)arg0)->flags[((u32)*(u16 *)(arg0 + 0x15E) >> 15)].mode = 0;
+                    ((FlagArray *)arg0)->flags[((u32)*(u16 *)(arg0 + 0x15E) >> 15)].state = 1;
+                    ((Dialog *)arg0)->changed = 1;
+                    ((Dialog *)arg0)->active = ((u32)*(u16 *)(arg0 + 0x15E) >> 15) ^ 1;
+                    return 0;
+                case -7:
+                    for (i = ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]; ((Entry * *)(arg0 + 0x104))[((u32)*(u16 *)(arg0 + 0x15E) >> 15)][i].code < -5; i++) {}
+                    ((FlagArray *)arg0)->flags[((u32)*(u16 *)(arg0 + 0x15E) >> 15)].mode = 0;
+                    ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]++;
+                    ((Dialog *)arg0)->active = ((u32)*(u16 *)(arg0 + 0x15E) >> 15) ^ 1;
+                    return 1;
+                case -6:
+                    ((FlagArray *)arg0)->flags[((u32)*(u16 *)(arg0 + 0x15E) >> 15)].mode = 0;
+                    ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]++;
+                    ((Dialog *)arg0)->active = ((u32)*(u16 *)(arg0 + 0x15E) >> 15) ^ 1;
+                    ((Dialog *)arg0)->changed = 1;
+                    return 1;
+                default:
+                    ((Indices *)arg0)->index[((u32)*(u16 *)(arg0 + 0x15E) >> 15)]++;
+                    return 1;
+            }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800A50_gcdialogexec.s")
 
