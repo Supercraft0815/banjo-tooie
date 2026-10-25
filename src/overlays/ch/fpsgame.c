@@ -399,7 +399,108 @@ void func_808008D4_chfpsgame(s32 arg0) {
 void func_8080090C_chfpsgame(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800914_chfpsgame.s")
+s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 _gcstatusDll_entrypoint_14();
+    s32 _gcstatusDll_entrypoint_15();
+    u32 _suegg_entrypoint_7(void *);
+    void _sumultiscore_entrypoint_5(u8 *, s32, s32, s32);
+    void _sumultiscore_entrypoint_9(u8 *, s32, s32, s32);
+    s32 func_800F5410(s32);
+    s32 func_800F7C0C(s32, s32, f32);
+    void func_800FC660(u32);
+    void func_80800BCC_chfpsgame(Actor *, s32, s32);
+    s32 func_80800CF8_chfpsgame(Actor *, s32);
+    void func_808013DC_chfpsgame(Actor *, s32, u32);
+    void func_80801D40_chfpsgame(Actor *, s32, Unk80132ED0 *);
+    void func_80802020_chfpsgame(Actor *, s32, s32);
+    struct {
+        s32 count;
+        s32 flags;
+        s32 kills;
+        f32 timer;
+        f32 duration;
+        u8 score[1];
+    } *data;
+    s32 player;
+    s32 victim;
+    s32 mode;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x49:
+        func_8080019C_chfpsgame(&arg0);
+        break;
+    case 0x70:
+        player = arg2 & 0xF;
+        victim = arg2 >> 4;
+        mode = _gcstatusDll_entrypoint_14();
+        switch (mode) {
+        case 5:
+            if (_gcstatusDll_entrypoint_15() == victim) {
+                func_800FC660(0x19);
+                func_80800BCC_chfpsgame(arg0, player, victim);
+                data->timer = data->duration;
+            } else {
+                data->kills++;
+            }
+            break;
+        case 3:
+            func_800FC660(0x19);
+            func_80800BCC_chfpsgame(arg0, player, victim);
+            break;
+        case 6:
+            func_80800BCC_chfpsgame(arg0, player, victim);
+            if (func_800F5410(victim) == 0xC) {
+                data->kills++;
+            }
+            break;
+        default:
+            func_80800BCC_chfpsgame(arg0, player, victim);
+            data->kills++;
+            break;
+        }
+        break;
+    case 0x71:
+        if (_gcstatusDll_entrypoint_14() == 6) {
+            func_800F7C0C(arg2, 0x83, 4.0f);
+        } else {
+            func_808013DC_chfpsgame(arg0, arg2, 1);
+        }
+        data->kills--;
+        break;
+    case 0x72:
+        _sumultiscore_entrypoint_5(data->score, arg2 & 0xF, 3, (arg2 >> 4) & 0xF);
+        break;
+    case 0x73:
+        {
+            s32 owner;
+            Unk80132ED0 *egg = (Unk80132ED0 *)arg2;
+            owner = _suegg_entrypoint_7(egg);
+            func_80801D40_chfpsgame(arg0, owner, egg);
+        }
+        break;
+    case 0x74:
+        {
+            s32 owner;
+            s32 egg = arg2;
+            owner = _suegg_entrypoint_7((void *)egg);
+            func_80802020_chfpsgame(arg0, owner, egg);
+        }
+        break;
+    case 0x75:
+        _sumultiscore_entrypoint_9(data->score, arg2 & 0xFFFF, 4, (arg2 >> 16) & 0xFFFF);
+        break;
+    case 0x2E:
+        if (*(s16 *)&arg2 == 0xCEC) {
+            func_80800CF8_chfpsgame(arg0, 2);
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
