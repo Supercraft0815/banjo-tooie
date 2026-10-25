@@ -818,7 +818,71 @@ void func_808018F8_chchuffy(Actor *arg0) {
     func_800FFAB0(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_808019A4_chchuffy.s")
+void func_808019A4_chchuffy(Actor *arg0, u8 *arg1) {
+    typedef struct { u8 pad[8]; s16 unk8; s16 unkA; } ImageStruct;
+    ImageStruct *func_800D674C(s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_800EFD24();
+    void func_80101870(Actor *, void *);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800E2588(u32);
+    void func_800E2594(u32, void *);
+    s32 _sumumbofx_entrypoint_10(u8 *);
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(s32);
+    s32 color;
+    s32 i;
+    struct ChuffyDrawData {
+        u8 pad0[8];
+        f32 point8[3];
+        f32 point14[3];
+        f32 point20[3];
+        f32 point2C[3];
+        u8 pad38[0x14];
+        f32 position[3];
+        f32 rotation[3];
+        u8 pad64[0x78];
+        f32 points[10][3];
+        u8 pad154[0xF0];
+        f32 scales[10];
+        u8 colors[10];
+        u8 pad276[6];
+        s32 flags[10];
+        u8 pad2A4[4];
+        s32 asset;
+    } *data;
+    f32 scale[3];
+
+    data = func_80100094(arg0, 0);
+    func_800EFD24(arg0->position);
+    if (func_80100094(arg0, 1) != NULL) {
+        color = _sumumbofx_entrypoint_10(func_80100094(arg0, 1));
+        func_800DF5D8(color, 255, color, 255);
+    }
+    func_80101870(arg0, arg1);
+    func_800DBEFC((s32 *)arg0->unk0->unk4, 7, data->point14);
+    func_800DBEFC((s32 *)arg0->unk0->unk4, 5, data->point8);
+    func_800DBEFC((s32 *)arg0->unk0->unk4, 8, data->point20);
+    func_800DBEFC((s32 *)arg0->unk0->unk4, 4, data->point2C);
+    func_800DBEFC((s32 *)arg0->unk0->unk4, 10, data->position);
+    func_800DBEFC((s32 *)arg0->unk0->unk4, 9, data->rotation);
+    if (func_80100094(arg0, 1) != NULL) {
+        _sumumbofx_entrypoint_8(func_80100094(arg0, 1), (s32)arg1);
+    }
+    if ((s32)arg0->unk70_10 >= 6) {
+        func_800E2588(1);
+        func_800E2594((u32)arg1, func_800D674C(data->asset));
+        for (i = 0; i < 10; i++) {
+            scale[0] = data->scales[i];
+            scale[1] = data->scales[i];
+            scale[2] = data->scales[i];
+            func_800E2720(arg1, data->colors[i], 0, data->points[i], scale, data->flags[i]);
+        }
+        func_800E2A14((s32)arg1);
+    }
+}
 
 void func_80801B8C_chchuffy(Actor *arg0) {
     s32 func_800DA298(s32);
