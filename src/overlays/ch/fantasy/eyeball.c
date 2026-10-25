@@ -540,7 +540,61 @@ void func_80801378_chfantasyeyeball(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/eyeball/func_808013F8_chfantasyeyeball.s")
+void func_808013F8_chfantasyeyeball(Actor *arg0) {
+    f32 func_800136E4(f32);
+    f32 func_80013970(f32);
+    f32 func_800D8FF8(void);
+    s32 func_800D90A4(f32 *);
+    void func_800E0ACC(void *);
+    void func_800E0AF0(void *, f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    void func_800E0B8C(void *, u8, f32, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    f32 func_800F1FF0(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    void func_80801740_chfantasyeyeball(Actor *, f32 *);
+    s32 sp6C;
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp4C[2];
+    f32 sp48;
+    f32 sp44;
+
+    sp6C = func_8010262C(arg0->unk0, 3);
+    if (sp6C != 0) {
+        sp48 = func_800D8FF8();
+        if ((s32)arg0->unk70_10 < 7) {
+            func_800F5A00(func_800F54E4(), sp54);
+            func_80801740_chfantasyeyeball(arg0, sp60);
+            func_800F18FC(sp60, sp54, sp4C);
+            if (sp4C[0] < 310.0f && sp4C[0] > 180.0f) {
+                sp4C[0] = 320.0f;
+            }
+            if (arg0->unk70_10 == 1 || arg0->unk70_10 == 4) {
+                sp4C[0] = func_800136E4(80.0f - sp4C[0]);
+            } else {
+                sp4C[0] = func_800136E4(45.0f - sp4C[0]);
+            }
+            sp4C[1] = func_800136E4(sp4C[1] - arg0->rotation[1]);
+            arg0->unk54 = func_800F1FF0(arg0->unk54, sp4C[1], 0.75f, 2.0f * sp48, 90.0f * sp48);
+            arg0->unk50 = func_800F1FF0(arg0->unk50, sp4C[0], 0.75f, 2.0f * sp48, 90.0f * sp48);
+            func_800E0ACC((void *)sp6C);
+            func_800E0AF0((void *)sp6C, 1.0f);
+            func_800E0AFC((void *)sp6C, 0x2C, -1.0f, arg0->unk50, 0.0f, 0.0f);
+            func_800E0AFC((void *)sp6C, 1, -1.0f, 0.0f, arg0->unk54, 0.0f);
+            if (func_800D90A4(&((f32 *)arg0->actorData)[6]) == 0) {
+                sp44 = func_800F10B4(((f32 *)arg0->actorData)[6], 2.0f, 0.0f, 1.0f, 0.0f);
+                func_800E0B8C((void *)sp6C, 1, -1.0f,
+                    func_80013970(1800.0f * sp44) * 0.25f * sp44 + 1.0f,
+                    func_80013970(2520.0f * sp44) * 0.25f * sp44 + 1.0f,
+                    func_80013970(1080.0f * sp44) * 0.25f * sp44 + 1.0f);
+            }
+        }
+    }
+}
 
 f32 func_808016B4_chfantasyeyeball(s32 arg0) {
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
