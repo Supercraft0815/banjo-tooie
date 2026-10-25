@@ -238,7 +238,43 @@ void func_80800750_chworlddoors(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/worlddoors/func_80800798_chworlddoors.s")
+void func_80800798_chworlddoors(Actor *arg0, void *arg1) {
+    void func_800B99CC(Gfx **, s32, s32 *);
+    void *func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, void *);
+    void func_800DF830(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF214(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    f32 func_80103EAC(Actor *);
+    extern s32 D_808009F8_chworlddoors[];
+    f32 sp44[3];
+    f32 sp40;
+    s32 sp3C;
+    f32 *sp2C;
+
+    sp2C = arg0->position;
+    func_800EE7F8(sp44, sp2C);
+    func_800EF214(sp2C, arg0->rotation[0], arg0->rotation[1], func_80103EAC(arg0));
+    switch (arg0->unk70_10) {
+        case 3:
+            sp40 = func_800F10B4(arg0->unk58, 0.8f, 0.0f, 0.0001f, 20.0f);
+            sp3C = (s32)func_800F10B4(arg0->unk58, 0.8f, 0.0f, 0.0f, 255.0f);
+            func_800DF830(0);
+            func_800DE498(arg1, (f32 *)&arg0->actorData[4], arg0->rotation, sp40, NULL, func_800D674C(0x8CB));
+            func_80101870(arg0, arg1);
+            func_800B99CC(arg1, sp3C, D_808009F8_chworlddoors);
+            break;
+        case 2:
+            func_80101870(arg0, arg1);
+            break;
+        case 4:
+            func_800B99CC(arg1, (s32)func_800F10B4(arg0->unk58, 2.0f, 0.0f, 255.0f, 0.0f), D_808009F8_chworlddoors);
+            break;
+    }
+    func_800EE7F8(sp2C, sp44);
+}
 
 OSThread *chworlddoors_entrypoint_0(void)
 {
