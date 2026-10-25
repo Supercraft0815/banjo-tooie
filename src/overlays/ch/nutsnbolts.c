@@ -204,7 +204,133 @@ void func_80800080_chnutsnbolts(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nutsnbolts/func_808005D0_chnutsnbolts.s")
+s32 func_808005D0_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    void func_80103DFC(Actor *, f32 *);
+    s32 func_8010A430(void *);
+    void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    s32 _subaddieDll_entrypoint_3(Actor *);
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    s32 func_80107070(Actor *, u32);
+    void func_80101038(f32 *);
+    void func_80101074(void *);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EF368(f32 *, f32);
+    f32 func_800DC178(f32, f32);
+    s32 func_8080092C_chnutsnbolts(Actor *, s32);
+    extern u8 D_80800E04_chnutsnbolts[];
+    extern u8 D_80800E10_chnutsnbolts[];
+    struct NutsFlags {
+        u8 pad[0x64];
+        u32 enabled : 1;
+        u32 pad64_25 : 6;
+        u32 visible : 1;
+        u32 pad64_0 : 24;
+        u32 pad68;
+        u32 pad6C;
+        u32 pad70_17 : 15;
+        u32 active : 1;
+        u32 pad70_0 : 16;
+        u32 pad74;
+        u32 pad78_3 : 29;
+        u32 blocked : 1;
+        u32 pad78_0 : 2;
+    };
+    struct NutsData {
+        u8 effects[8];
+        u8 route[6];
+        u16 routeEnd;
+        u8 pad10[4];
+        s16 routeTarget;
+        u8 active;
+        u8 pad17;
+        f32 timer;
+        f32 speed;
+    } *data;
+    f32 pos[3];
+    s32 iterator;
+    Actor *other;
+    s32 last;
+    s32 id;
+    f32 point[3];
+    f32 *velocity;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x3E:
+        if (!arg0->unk64_29 && arg0->unk70_10 == 4) {
+            func_8080092C_chnutsnbolts(arg0, 5);
+        }
+        break;
+    case 0x3F:
+        if (((struct NutsFlags *)arg0)->blocked) {
+            return 0;
+        }
+        if (arg0->unk70_10 != 7) {
+            func_8080092C_chnutsnbolts(arg0, 7);
+        }
+        break;
+    case 0x40:
+        func_80103DFC(arg0, pos);
+        if (!data->active) {
+            if (func_8010A430(arg0)) {
+                _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 3, *(s32 *)&pos[0], *(s32 *)&pos[1], *(s32 *)&pos[2], *(s32 *)&arg0->rotation[1]);
+            }
+        } else {
+            last = 1;
+            for (id = 0x43E; id < 0x441; id++) {
+                for (other = _subaddiefind_entrypoint_2(id, &iterator); other != NULL; other = _subaddiefind_entrypoint_3(id, &iterator)) {
+                    if (other != arg0 && (s32)other->unk70_10 < 8) {
+                        last = 0;
+                        goto found;
+                    }
+                }
+            }
+        found:
+            if (last) {
+                _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 3, *(s32 *)&pos[0], *(s32 *)&pos[1], *(s32 *)&pos[2], *(s32 *)&arg0->rotation[1]);
+            }
+        }
+        func_8080092C_chnutsnbolts(arg0, 8);
+        break;
+    case 2:
+        if (!_subaddieDll_entrypoint_3(arg0) && !func_80107070(arg0, 1)) {
+            func_8080092C_chnutsnbolts(arg0, 10);
+            _subaddiefade_entrypoint_3(arg0);
+            ((struct NutsFlags *)arg0)->active = 0;
+            ((struct NutsFlags *)arg0)->enabled = arg0->pad70_16; ((struct NutsFlags *)arg0)->visible = arg0->pad70_16;
+        }
+        break;
+    case 0x8E:
+        func_80101038(point);
+        velocity = (f32 *)&arg0->actorData[4];
+        func_800EFB24(velocity, point, arg0->position);
+        func_800EF368(velocity, func_800DC178(1800.0f, 2000.0f));
+        func_8080092C_chnutsnbolts(arg0, 1);
+        _subaddieDll_entrypoint_4(arg0, 1);
+        data->active = 1;
+        arg0->unk58 = 0.0f;
+        break;
+    case 0x95:
+        _subaddierouteDll_entrypoint_1(arg0);
+        break;
+    case 0x38:
+        if (arg0->unk6C_9 == 0x440) {
+            func_80101074(D_80800E10_chnutsnbolts);
+            return 2;
+        }
+        func_80101074(D_80800E04_chnutsnbolts);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 
