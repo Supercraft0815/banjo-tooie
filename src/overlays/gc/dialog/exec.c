@@ -337,7 +337,67 @@ int func_8080064C_gcdialogexec(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800A50_gcdialogexec.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800D30_gcdialogexec.s")
+int func_80800D30_gcdialogexec(arg0, arg1, arg2) {
+    typedef struct {
+        u8 pad[0x15C];
+        u8 state;
+        u8 count;
+        u32 unused:8;
+        u32 opened:2;
+        u32 closed:2;
+        u32 finished:2;
+        u32 remaining:2;
+    } DialogCallback;
+    int func_80800A50_gcdialogexec();
+    u8 *dialog = (u8 *)arg0;
+    s32 first;
+    s32 second;
+    u8 count;
+    u32 word;
+    u32 finished;
+
+    switch (arg2) {
+        case 1:
+            ((DialogCallback *)dialog)->opened++;
+            break;
+        case 3:
+            func_80800A50_gcdialogexec(dialog, 2);
+            break;
+        case 4:
+            if (((DialogCallback *)dialog)->state == 6) {
+                ((DialogCallback *)dialog)->remaining--;
+                if (((DialogCallback *)dialog)->remaining == 0) {
+                    first = ((u32)dialog[0x11C] >> 6) ? 1 : 0;
+                    second = ((u32)dialog[0x11D] >> 6) ? 1 : 0;
+                    func_80800A50_gcdialogexec(dialog, (second + first) ? 8 : 5);
+                }
+                break;
+            }
+            second = (((u32)dialog[0x11C] >> 6) ? 1 : 0) + (((u32)dialog[0x11D] >> 6) ? 1 : 0);
+            if (second > (s32)((DialogCallback *)dialog)->closed) {
+                ((DialogCallback *)dialog)->closed++;
+                if (((DialogCallback *)dialog)->closed + ((DialogCallback *)dialog)->finished == ((DialogCallback *)dialog)->count) {
+                    func_80800A50_gcdialogexec(dialog, 8);
+                }
+            }
+            break;
+        case 6:
+            ((DialogCallback *)dialog)->finished++;
+            word = *(u32 *)(dialog + 0x15C);
+            first = dialog[0x15D];
+            finished = (word << 28) >> 30;
+            if (first == finished) {
+                func_80800A50_gcdialogexec(dialog, 7);
+                word = *(u32 *)(dialog + 0x15C);
+                first = dialog[0x15D];
+                finished = (word << 28) >> 30;
+            }
+            if (first == ((word << 26) >> 30) + finished) {
+                func_80800A50_gcdialogexec(dialog, 8);
+            }
+            break;
+    }
+}
 
 void func_80800F60_gcdialogexec(u8 *arg0, s32 arg1, s32 arg2) {
     typedef struct {
