@@ -493,7 +493,93 @@ s32 func_80800630_chfactoryempspell(Actor *arg0, s32 arg1, void *arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80800A08_chfactoryempspell.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80800C7C_chfactoryempspell.s")
+void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
+    typedef struct {
+        f32 x;
+        f32 y;
+        u8 pad8[8];
+        u32 first : 7;
+        u32 second : 7;
+        u32 flag : 1;
+        u32 rest : 17;
+    } Effect;
+    typedef struct {
+        Effect effects[3];
+        u8 pad3C[16];
+        s32 current;
+    } SpellData;
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    f32 func_800138D0(f32);
+    struct ImageStruct *func_800D674C(s32);
+    s32 func_800DC128(s32, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF47C(s32, s32);
+    void func_800DF744(s32, s32);
+    void func_800DF830(s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    int func_800EFED0(f32 *, f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_801017D0(Actor *);
+    u8 *func_801039E4(Unk80132ED0 *);
+    f32 camera[3];
+    f32 min[3];
+    f32 max[3];
+    SpellData *data;
+    u8 *fx;
+    f32 pos[3];
+    s32 model;
+    s32 i;
+
+    *(Vec3f *)min = *(Vec3f *)D_80802180_chfactoryempspell;
+    *(Vec3f *)max = *(Vec3f *)D_8080218C_chfactoryempspell;
+    func_800F5A00(func_800F54E4(), camera);
+    if (func_800EFED0(min, max, camera)) {
+        data = func_80100094(arg0, 1);
+        fx = func_80100094(arg0, 0);
+        *(Vec3f *)pos = *(Vec3f *)D_80802198_chfactoryempspell;
+        model = (s32)func_801039E4(arg0->unk0);
+        pos[0] += func_800F10B4(((f32 *)arg0->actorData)[3], 0.0f, 2.6666667f, 0.0f, 793.3333f);
+        for (i = 0; i < 15; i++) {
+            f32 phase;
+            f32 rot[3];
+            phase = func_800F10B4(pos[0], -5950.0f, 5950.0f, 0.0f, 1.5f);
+            *(Vec3f *)rot = *(Vec3f *)D_808021A4_chfactoryempspell;
+            pos[1] = func_800138D0(phase * 360.0f * 15.0f) * 1.5f + -20.0f;
+            rot[0] = func_800138D0(phase * 360.0f * 15.0f);
+            data->current = i;
+            func_800DF830(1);
+            func_800DF47C((s32)func_801017D0, (s32)arg0);
+            func_800DE498(arg1, pos, rot, 1.0f, NULL, model);
+            pos[0] += 793.3333f;
+        }
+        if (fx != NULL) {
+            _sumumbofx_entrypoint_9(fx, (s32)arg1);
+            _sumumbofx_entrypoint_8(fx, (s32)arg1);
+        }
+        if (arg0->unk70_10 == 9) {
+            f32 effectRot[3];
+            f32 effectPos[3];
+            *(Vec3f *)effectRot = *(Vec3f *)D_808021B0_chfactoryempspell;
+            model = (s32)func_800D674C(0x8D3);
+            for (i = 0; i < 3; i++) {
+                func_800EFA4C(effectPos, data->effects[i].x,
+                    func_800F10B4(data->effects[i].first, data->effects[i].second, 0.0f, data->effects[i].y, 1600.0f), 4000.0f);
+                if (data->effects[i].flag) {
+                    effectRot[2] = 180.0f;
+                } else {
+                    effectRot[2] = 0.0f;
+                }
+                func_800DF744(1, func_800DC128(1, 4));
+                func_800DF830(2);
+                func_800DE498(arg1, effectPos, effectRot, 1.5f, NULL, model);
+            }
+        }
+    }
+}
 
 void func_80801038_chfactoryempspell(Actor *arg0) {
     void func_800CE88C(s32, s32);
