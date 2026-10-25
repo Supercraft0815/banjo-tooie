@@ -1,6 +1,30 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E95650/func_800BBD60.s")
+void func_800BBD60(void *arg0, s32 arg1) {
+    s32 func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF5D8(u32, u32, u32, s32);
+    void func_800DF830(s32);
+    s32 image;
+    f32 pos[3];
+    u8 *entry;
+    s32 visible;
+    struct Flags { u8 visible : 1; u8 rest : 7; };
+
+    image = func_800D674C(*(u16 *)((u8 *)arg0 + 2));
+    entry = *(u8 **)((u8 *)arg0 + 0x8C);
+    while (entry < *(u8 **)((u8 *)arg0 + 0x90)) {
+        pos[0] = (f32)(*(s16 *)(entry + 6) + *(s16 *)((u8 *)arg0 + 0xC));
+        pos[1] = (f32)(*(s16 *)(entry + 8) + *(s16 *)((u8 *)arg0 + 0xE));
+        pos[2] = (f32)(*(s16 *)(entry + 0xA) + *(s16 *)((u8 *)arg0 + 0x10));
+        func_800DF5D8(*((u8 *)arg0 + 0x80), *((u8 *)arg0 + 0x81), *((u8 *)arg0 + 0x82),
+            (s32)(*(f32 *)(entry + 0xC) * (f32)(u32)*((u8 *)arg0 + 0x83)));
+        func_800DF830(*((u8 *)arg0 + 0x53));
+        visible = func_800DE448(pos, (f32 *)(entry + 0x10), (f32)*(s16 *)(entry + 0x30) * 0.00390625f, NULL, image) ? 1 : 0;
+        ((struct Flags *)(entry + 0x39))->visible |= visible;
+        entry += 0x3C;
+    }
+}
 
 /* extern */
 
