@@ -394,7 +394,86 @@ s32 func_80800D88_subaddierouteDll(Actor *arg0, RouteResult *arg1, f32 arg2, s32
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800F34_subaddierouteDll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_8.s")
+s32 subaddierouteDll_entrypoint_8(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
+    void *func_8001B798(s16);
+    u8 func_800CC61C(s32);
+    void *func_800CC63C(s32, s32);
+    void *func_800CC684(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    OSThread *func_801015B0(void);
+    struct RouteActor {
+        u8 pad[0x70];
+        u32 route_start : 7;
+        u32 pad70 : 15;
+        u32 route_end : 6;
+        u32 pad73 : 4;
+    };
+    struct Region {
+        f32 position[3];
+        s16 radius;
+        s16 height;
+    } *region;
+    struct RouteHandle { s16 handle; s16 references; } *handles;
+    struct { s32 end; s32 pad[2]; } index;
+    s32 route;
+    s16 *state;
+    s16 *table;
+    u8 *neighbors;
+    s32 count;
+    s32 i;
+    f32 y, height, actorY;
+    f32 *position;
+
+    route = arg0->unk70_25 - 1;
+    index.end = ((struct RouteActor *)arg0)->route_end - 1;
+    state = (s16 *)func_801015B0();
+    count = func_800CC61C(route);
+    for (i = 0; i < count; i++) {
+        region = func_800CC684(route, i);
+        y = region->position[1];
+        height = region->height;
+        actorY = arg0->position[1];
+        if (y - height < actorY && actorY < y + height) {
+            position = arg0->position;
+            if (func_800F0064(region->position, region->radius, position)) {
+                func_800EE7F8(position, arg1);
+                return 1;
+            }
+        }
+    }
+    position = arg0->position;
+    region = func_800CC63C(route, index.end);
+    y = region->position[1];
+    height = region->height;
+    actorY = arg0->position[1];
+    if (y - height < actorY && actorY < y + height &&
+        func_800F0064(region->position, region->radius, position)) {
+        return 0;
+    }
+    handles = func_8001B798(*state);
+    table = func_8001B798(handles[route].handle);
+    neighbors = (u8 *)table + table[index.end];
+    count = *neighbors++;
+    i = 0;
+    if (count > 0) {
+        do {
+            region = func_800CC63C(route, *neighbors);
+            y = region->position[1];
+            height = region->height;
+            actorY = arg0->position[1];
+            if (y - height < actorY && actorY < y + height &&
+                func_800F0064(region->position, region->radius, position)) {
+                ((struct RouteActor *)arg0)->route_end = *neighbors + 1;
+                return 0;
+            }
+            i++;
+            neighbors++;
+        } while (i != count);
+    }
+    func_800EE7F8(position, arg1);
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_9.s")
 
