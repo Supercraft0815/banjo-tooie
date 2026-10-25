@@ -621,7 +621,95 @@ void func_80800D48_chfishshootgame(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_80801110_chfishshootgame.s")
+s32 func_80801110_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_19(f32[3]);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _glcutDll_entrypoint_20();
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    Unk80132ED0 *func_800D0634(u32, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80102424(Actor *, s32);
+    extern s32 D_808018B0_chfishshootgame;
+    struct FishShootData {
+        f32 position[3];
+        f32 target[3];
+        f32 unk18[2];
+        f32 height;
+        f32 unk24;
+        f32 skeleton;
+        f32 distance;
+        s16 unk30;
+        s16 current;
+        s16 count;
+        s16 positions[20][3];
+        s16 unkAE;
+        u32 subgame[1];
+    };
+    Unk80132ED0 *marker;
+    f32 position[3];
+    struct FishShootData *data;
+    struct FishShootData *initial;
+
+    initial = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x95:
+            func_8080000C_chfishshootgame(arg0);
+            if (_glcutDll_entrypoint_20()) {
+                func_80102424(arg0, 8);
+            }
+            break;
+        case 0x3D:
+            switch (arg2) {
+                case 1:
+                    func_80800AF0_chfishshootgame(arg0);
+                    break;
+                case 0:
+                    func_80800B30_chfishshootgame(arg0);
+                    break;
+            }
+            break;
+        case 0x2E:
+            func_8080076C_chfishshootgame(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0xE:
+            if (arg2 == 0) {
+                data = func_80100094(arg0, 0);
+                marker = func_800D0634(0x21, 1);
+                if (marker != NULL) {
+                    func_800EE7F8(position, func_80106790(marker)->position);
+                    if (position[1] < data->distance) {
+                        data->distance = position[1];
+                    }
+                    position[1] = data->distance;
+                } else {
+                    func_800EE7F8(position, arg0->position);
+                }
+                _capod_entrypoint_19(position);
+                return 3;
+            }
+            func_80800A90_chfishshootgame(arg0, position);
+            _capod_entrypoint_19(position);
+            return 3;
+        case 0xB:
+            if (arg2 == 0) {
+                _susubgame_entrypoint_5(arg0, initial->subgame, 3, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xFF0, 0xE, arg0->position, 0x63);
+                return 4;
+            }
+            return 3;
+        case 0x52:
+            _gcdialogcamera_entrypoint_3(&D_808018B0_chfishshootgame, arg0->scale);
+            break;
+        case 0x57:
+            return _susubgame_entrypoint_3(arg0, initial->subgame, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chfishshootgame_entrypoint_1(void)
 {
