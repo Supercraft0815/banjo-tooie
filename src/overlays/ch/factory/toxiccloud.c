@@ -405,7 +405,93 @@ int func_80800BF8_chfactorytoxiccloud(ToxicCloudActor *arg0, f32 *arg1) {
     return func_800EEB40(arg1, (f32 *)arg0->actor.actorData) < (temp_f2 * temp_f2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/toxiccloud/func_80800C7C_chfactorytoxiccloud.s")
+void func_80800C7C_chfactorytoxiccloud(Actor *arg0, u8 *arg1) {
+    void _subaddiedraw25d_entrypoint_0(void *);
+    void _subaddieskeleton_entrypoint_1(Actor *, s32, f32 *);
+    struct ImageStruct *func_800D674C(s32);
+    void func_800E2440(s32, s32, s32);
+    void func_800E24B4(s32);
+    void func_800E24E4(s32, s32);
+    void func_800E24F8(s32, s32, s32);
+    void func_800E257C(s32);
+    void func_800E2588(u32);
+    void func_800E2AA4(u8 *, u8 *, s32, s32, f32 *, f32 *);
+    void func_800E3980(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    void func_80101870(Actor *, void *);
+    typedef struct {
+        f32 duration;
+        f32 time;
+        s32 index;
+        f32 startScale;
+        f32 endScale;
+        u8 pad[0x10];
+    } Particle;
+    typedef struct { f32 angles[9][2]; } Angles;
+    typedef union {
+        Actor actor;
+        struct {
+            u8 pad[0x78];
+            u32 unused : 29;
+            u32 halfAlpha : 1;
+            u32 tail : 2;
+        } flags;
+    } Cloud;
+    f32 offset[3];
+    f32 position[3];
+    f32 angles[2];
+    Particle *data;
+    struct ImageStruct *resource;
+    f32 progress;
+    f32 size;
+    f32 scale[3];
+    s32 i;
+    s32 alpha;
+    Angles table;
+    Particle *particle;
+    f32 radius;
+
+
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        resource = func_800D674C(0x9D0);
+        data = func_80100094(arg0, 0);
+        _subaddieskeleton_entrypoint_1(arg0, 4, (f32 *)arg0->actorData);
+        func_800E3980(offset);
+        func_800F18FC((f32 *)arg0->actorData, offset, angles);
+        for (i = 0, particle = data; i != 9; i++, particle++) {
+            if (particle->duration != 0.0f) {
+                progress = func_800F10B4(particle->time, 0.0f, particle->duration, 0.0f, 1.0f);
+                table = *(Angles *)D_808014D0_chfactorytoxiccloud;
+                func_800EEC30(offset, angles[0] + table.angles[i][0], angles[1] + table.angles[i][1], ((ToxicCloudActor *)arg0)->flags.unk64_29 ? 75.0f : 25.0f);
+                func_800EE780(position, (f32 *)arg0->actorData, offset);
+                size = ((ToxicCloudActor *)arg0)->flags.unk64_29 ? arg0->scale * 3.0f : arg0->scale; scale[0] = scale[1] = scale[2] = func_800F1214(progress, particle->startScale, particle->endScale) * size;
+                if (progress < 0.2f) {
+                    alpha = (s32)func_800F10B4(progress, 0.0f, 0.2f, 0.0f, 140.0f);
+                } else if (progress < 0.9f) {
+                    alpha = 140;
+                } else {
+                    alpha = (s32)func_800F10B4(progress, 0.9f, 1.0f, 140.0f, 0.0f);
+                }
+                if (((Cloud *)arg0)->flags.halfAlpha) {
+                    alpha >>= 1;
+                }
+                func_800E24E4((s32)_subaddiedraw25d_entrypoint_0, (s32)arg0);
+                func_800E24F8(10, 255, 4);
+                func_800E2440(4, 140, 2);
+                func_800E257C(alpha);
+                func_800E24B4(0);
+                func_800E2588(1);
+                func_800E2AA4(arg1, (u8 *)resource, particle->index, 0, position, scale);
+            }
+        }
+    }
+}
 
 /* extern */
 
