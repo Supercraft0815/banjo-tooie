@@ -253,7 +253,96 @@ void func_80800A1C_chdinofamilysick(Actor *arg0) {
     func_80105834(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysick/func_80800AB0_chdinofamilysick.s")
+s32 func_80800AB0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _glcutDll_entrypoint_19(u32);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8F64(s32, s32);
+    void func_800C8FB0(s32, u32, u32, u32);
+    s32 func_800DA298(s32);
+    void func_800DF744(s32, s32);
+    s32 func_800EA05C(void);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_801015D0(Actor *);
+    s32 func_801022E4(Actor *);
+    f32 func_80103EAC(Actor *);
+    void *func_80105494(Actor *);
+    extern s32 D_80800F68_chdinofamilysick[];
+    struct DinoFamilySickFlags {
+        u8 pad0[0x74];
+        u32 pad74_4 : 28;
+        u32 unk74_0 : 4;
+    };
+    f32 sp2C[3];
+
+    switch (arg1) {
+    case 0x49:
+        switch (func_800EA05C()) {
+        case 0x114:
+            if (_glcutDll_entrypoint_19(0x38)) {
+                func_80102424(arg0, 4);
+                _capod_entrypoint_13(arg0->unk0, NULL, 5, 0x2831);
+                ((struct DinoFamilySickFlags *)arg0)->unk74_0 = 0;
+                return 1;
+            }
+            break;
+        case 0x118:
+            if (_glcutDll_entrypoint_19(0x38)) {
+                if (func_80105494(arg0)) {
+                    func_80102424(arg0, 5);
+                    arg2 = (func_800DA298(0x8A) && func_800DA298(0x15F)) ? 0 : 0x100;
+                    _capod_entrypoint_13(arg0->unk0, NULL, 0xC, arg2 | 0x2831);
+                    ((struct DinoFamilySickFlags *)arg0)->unk74_0 = 0;
+                    return 1;
+                }
+                func_800FFAB0(arg0);
+                return 0;
+            }
+            break;
+        case 0x121:
+            if (_glcutDll_entrypoint_19(0x71)) {
+                *(s32 *)&arg0->unk54 = func_800C8A98();
+                func_800C8E54(*(s32 *)&arg0->unk54, func_80103EAC(arg0) * 1.5f, 2.0f * func_80103EAC(arg0));
+                func_800C8FB0(*(s32 *)&arg0->unk54, 0, 0xFF, 0);
+                func_800C8F64(*(s32 *)&arg0->unk54, 3);
+                func_800EEC30(sp2C, 45.0f, arg0->rotation[1], 2.0f * func_80103EAC(arg0));
+                func_800EF04C(sp2C, arg0->position);
+                func_800C8CB8(*(s32 *)&arg0->unk54, sp2C);
+                func_80102424(arg0, 2);
+                return 1;
+            }
+            break;
+        default:
+            break;
+        }
+        return 0;
+    case 0x1F:
+        func_801015D0(arg0);
+        if (func_801022E4(arg0) == 0x3F7) {
+            func_800DF744(3, 1);
+        } else {
+            func_800DF744(1, 0);
+            func_800DF744(2, 1);
+            func_800DF744(3, 2);
+        }
+        return 1;
+    case 0x33:
+        func_80102424(arg0, 3);
+        return 1;
+    case 0x52:
+        _gcdialogcamera_entrypoint_4(arg0->position);
+        _gcdialogcamera_entrypoint_3(D_80800F68_chdinofamilysick, arg0->scale);
+        return 3;
+    default:
+        return 0;
+    }
+}
 
 OSThread *chdinofamilysick_entrypoint_2(void)
 {
