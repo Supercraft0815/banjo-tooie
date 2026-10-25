@@ -314,7 +314,88 @@ void func_80800AA8_chfirefx(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/fx/func_80800C18_chfirefx.s")
+void func_80800C18_chfirefx(Actor *arg0) {
+    struct FireData {
+        s32 light;
+        f32 scale;
+        s16 unk8, unkA, count, active;
+        u16 flags;
+        s16 value;
+    } *data;
+    typedef union {
+        Actor actor;
+        struct {
+            u8 pad[0x74];
+            u32 pad74_6 : 26;
+            u32 fixed : 1;
+            u32 pad74_0 : 5;
+        } flags;
+    } FireActor;
+    s32 _chlightfader_entrypoint_1(s32, f32, s32);
+    s32 _subaddiezone_entrypoint_1(void *);
+    s32 func_800C8A98(void);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    void func_800C8F64(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F0E00(f32, f32);
+    void func_800F2F60(void *, void *, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010CAC0(f32 *, u32);
+    extern u32 D_808012A8_chfirefx[];
+    f32 position[3];
+    s32 created;
+    s32 active;
+    s32 kind;
+    u32 color[3];
+    register s32 visible;
+    f32 radius;
+
+    data = func_80100094(arg0, 0);
+    created = 0;
+    if (data->unk8 == 0) {
+        if (data->light != 0) {
+            data->light = _chlightfader_entrypoint_1(data->light, 1.6f, 1);
+        }
+    } else {
+        if (data->light == 0) {
+            kind = 9;
+            data->light = func_800C8A98();
+            if (!(data->flags & 0x20)) {
+                kind = 11;
+            }
+            func_800C8F64(data->light, kind);
+            radius = func_800F0E00(75.0f, data->value);
+            func_800C8E54(data->light, radius * 2.5f,
+                         func_800F0E00(75.0f, data->value) * 2.5f * 3.0f);
+            func_800EE7F8(position, arg0->position);
+            position[1] += data->value * 0.4f;
+            func_800C8CB8(data->light, position);
+            created = 1;
+        }
+        visible = arg0->unk7C_12 != 0;
+        if (!visible) {
+            visible = func_8010CAC0(arg0->position, (s32)(func_800F0E00(75.0f, data->value) * 2.5f * 3.0f)) != 0;
+        }
+        active = visible;
+        if (arg0->unk78) {
+            if (!_subaddiezone_entrypoint_1(arg0)) {
+                active = 0;
+            }
+        }
+        if (created || active) {
+            if (!((FireActor *)arg0)->flags.fixed) {
+                func_800EE7F8(position, arg0->position);
+                position[1] += data->value * 0.4f;
+                func_800C8CB8(data->light, position);
+            }
+            func_800F2F60(color, D_808012A8_chfirefx, func_800DC178(0.8f, 1.0f));
+            func_800C8E84(data->light, color);
+        }
+    }
+}
 
 /* extern */
 
