@@ -163,7 +163,100 @@ void func_8080032C_chgoldstatue(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gold/statue/func_80800528_chgoldstatue.s")
+void func_80800528_chgoldstatue(Actor *arg0) {
+    void _chglowbo_entrypoint_6(void);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    u8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u32, u32 *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7B9C(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    f32 func_80101F24(Actor *);
+    s32 func_8010C500(Actor *);
+    extern u32 D_80800890_chgoldstatue[];
+    extern u32 D_808008A0_chgoldstatue[];
+    extern u32 D_808008B8_chgoldstatue[];
+    extern f32 D_80800940_chgoldstatue[];
+    extern f32 D_80800954_chgoldstatue[];
+    extern u32 D_80800968_chgoldstatue[];
+    extern u32 D_8080097C_chgoldstatue[];
+    s32 sp34;
+    void *sp30;
+
+    sp34 = 0;
+    if (!arg0->unk64_17) {
+        sp30 = func_80100094(arg0, 1);
+        switch (arg0->unk70_10) {
+        case 1:
+            _sudeflect_entrypoint_1(arg0->position, 240.0f, 0.0f, 100.0f, 14);
+            if (func_800DA298(0x9DE)) {
+                func_80800150_chgoldstatue((s32)arg0, 2);
+            }
+            break;
+        case 2:
+            func_8080032C_chgoldstatue(arg0);
+            break;
+        case 3:
+            if (func_80101E14(arg0, 0.35f)) {
+                _chglowbo_entrypoint_6();
+            }
+            if (func_80101F24(arg0) < 0.38f) {
+                sp34 = 1;
+            }
+            if (func_80101E14(arg0, 0.38f)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800890_chgoldstatue);
+            } else if (func_80101E4C(arg0, D_80800940_chgoldstatue)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808008A0_chgoldstatue);
+            } else if (func_80101E4C(arg0, D_80800954_chgoldstatue)) {
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808008B8_chgoldstatue);
+            }
+            if (func_80101E14(arg0, 0.39f)) {
+                func_800DA544(0x9DF);
+                _sumumbofx_entrypoint_16(sp30, 3.0f);
+            }
+            func_8080032C_chgoldstatue(arg0);
+            if (func_80101DDC(arg0)) {
+                func_80800150_chgoldstatue((s32)arg0, 5);
+            }
+            break;
+        case 4:
+            func_8080032C_chgoldstatue(arg0);
+            if (func_80101F24(arg0) < 0.38f) {
+                sp34 = 1;
+            }
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800890_chgoldstatue, 0.38f);
+            if (func_80101E14(arg0, 0.34f)) {
+                _sumumbofx_entrypoint_16(sp30, 0.25f);
+                func_800DA544(0x9DF);
+            } else if (func_80101E14(arg0, 0.39f)) {
+                func_80800150_chgoldstatue((s32)arg0, 5);
+            }
+            break;
+        case 5:
+            if (!func_8010C500(arg0)) {
+                func_80800150_chgoldstatue((s32)arg0, 6);
+            }
+            break;
+        case 6:
+            if (func_8010C500(arg0)) {
+                func_800F7B9C(func_800F54E4(), 0x82);
+            }
+            break;
+        }
+        if (sp34) {
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800968_chgoldstatue);
+            arg0->unk6C_0 = _subaddieaudioloop_entrypoint_7(arg0->unk6C_0, arg0->position, 1, D_8080097C_chgoldstatue, arg0->unk70_0);
+        }
+    }
+}
 
 OSThread *chgoldstatue_entrypoint_0(void)
 {
