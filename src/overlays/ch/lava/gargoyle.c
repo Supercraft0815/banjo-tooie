@@ -100,7 +100,78 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/gargoyle/func_80800394_chlavagargoyle.s")
+s32 func_80800394_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chskeletonexplode_entrypoint_4(Actor *, s32);
+    void _chskeletonexplode_entrypoint_6(Actor *, f32 *, s32, u16);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800C4140(s32, f32 *, s32);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    void func_800EF04C(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    void func_80101010(f32 *);
+    void *func_80101080(void);
+    s32 func_80102424();
+    f32 func_80103EAC(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80107070(Actor *, u32);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_8010D12C(s32, f32 *, f32, s32);
+    extern s32 D_80800D3C_chlavagargoyle[];
+    Actor *sp64;
+    f32 sp5C[2];
+    f32 sp50[3];
+    f32 distance;
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+
+    switch (arg1) {
+        case 0x3D:
+            sp64 = func_80108528(0x402, arg0->position, 0, &arg0);
+            func_800F5A00(func_800F54E4(), sp50);
+            sp64->unk58 = func_800EEAD4(sp64->position, sp50) / 1100.0f;
+            func_8010D12C(func_800F54E4(), sp50, sp64->unk58, 0);
+            distance = func_800EEAD4(sp64->position, sp50);
+            sp64->unk58 = distance / 1100.0f;
+            ((f32 *)sp64->actorData)[7] = func_800F10B4(distance, 300.0f, 3000.0f, 100.0f, 600.0f);
+            func_800F18FC(sp64->position, sp50, sp5C);
+            func_800EEBF0(&((f32 *)sp64->actorData)[4], sp5C, 1100.0f);
+            return 1;
+        case 0x40:
+            func_800EEB9C(sp40, arg0->rotation[1] - 180.0f, 400.0f);
+            func_800EF04C(sp40, arg0->position);
+            _chskeletonexplode_entrypoint_6(arg0, sp40, 0x902, arg0->unk0->unk16);
+            func_80107070(arg0, 2);
+            func_80102424(arg0, 3);
+            return 1;
+        case 1:
+            arg0->unk58 = 4.0f;
+            func_80102424(arg0, 1);
+            return 1;
+        case 2:
+            func_80102424(arg0, 1);
+            return 1;
+        case 0x97:
+            sp30 = func_80103EAC(arg0);
+            func_800EEB9C(sp34, arg0->rotation[1], sp30);
+            sp34[1] += 2.0f * sp30;
+            func_80101010(sp34);
+            return 1;
+        case 0xF:
+            _chskeletonexplode_entrypoint_4(func_80106790(func_80101080()), 2);
+            func_800BBCB8(arg0->position, (f32 *)arg0->actorData, 1.0f, 2, D_80800D3C_chlavagargoyle);
+            func_800C4140(0x7FFB5C13, arg0->position, 0x04B000FA);
+            func_800C4140(0x7FFB5C17, arg0->position, 0x04B000FA);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 /* extern */
 
