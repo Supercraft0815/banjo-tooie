@@ -108,7 +108,88 @@ void func_80800594_chskeletonexplode(void *arg0) {
     (*(f32 *)((s8 *)(arg0) + (0x34))) = -2000.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808005CC_chskeletonexplode.s")
+void func_808005CC_chskeletonexplode(Actor *arg0, void *arg1, f32 *arg2) {
+    f32 _dbskeleton_entrypoint_1(void *);
+    s32 _dbskeleton_entrypoint_2(u8 *, s32, f32 *);
+    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    void *func_8008AEDC(void *);
+    void func_8008C200(s16, s32, s32);
+    s32 func_8008C27C();
+    u32 func_800ADE50(u8 *, u8 *, s32);
+    void *func_800AE080(s16);
+    s32 func_800AE124(s16);
+    s32 func_800AE630(u8 *, u8 *, s32, f32 *);
+    u8 *func_800B27E0(u8 *);
+    f32 func_800DC178(f32, f32);
+    void func_800DFC20(s32 *, s32, f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF334(f32 *, f32);
+    void func_800EF3DC(f32 *, f32 *);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800F2C1C();
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+    u8 *func_801039E4(Unk80132ED0 *);
+    struct anctrl_s *func_80104248(void *);
+    struct SkeletonExplodeMarker {
+        u8 pad0[0x10];
+        s16 animation;
+    };
+    struct SkeletonExplodePart {
+        f32 offset[3];
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 unk30[3];
+        u8 active;
+        u8 pad3D[3];
+    };
+    f32 angle;
+    f32 pitch;
+    u8 *skeleton;
+    s32 *animation;
+    u32 i;
+    s32 bone;
+    u8 *matrices;
+    struct anctrl_s *control;
+    struct SkeletonExplodePart *part;
+    f32 sp80[3];
+    f32 *position;
+    void *anim;
+    u32 matrix;
+
+    skeleton = func_800B27E0(func_801039E4(arg0->unk0));
+    control = func_80104248(arg1);
+    anim = func_8008AEDC(control);
+    func_8008C200(((struct SkeletonExplodeMarker *)arg0->unk0)->animation, skeleton, anim);
+    animation = func_8008C27C(func_8008AEDC(control));
+    arg0->unk6C_0 = func_800AE124(((struct SkeletonExplodeMarker *)arg0->unk0)->animation);
+    matrices = func_800AE080(((struct SkeletonExplodeMarker *)arg0->unk0)->animation);
+    func_80100074(arg0, 0, arg0->unk6C_0 * sizeof(struct SkeletonExplodePart));
+    part = func_80100094(arg0, 0);
+    for (i = 0; i < arg0->unk6C_0; i++, part++) {
+        bone = _dbskeleton_entrypoint_4(skeleton, i);
+        matrix = func_800ADE50(matrices, skeleton, bone);
+        func_800F2C1C(matrix, part->rotation);
+        func_800AE630(matrices, skeleton, bone, part->offset);
+        func_800EE780(sp80, arg0->position, part->offset);
+        angle = func_800F1DF4(sp80, arg2) - arg0->rotation[1];
+        position = part->position;
+        _dbskeleton_entrypoint_2(skeleton, bone, position);
+        func_800EF3DC(part->offset, position);
+        pitch = func_800DC178(-20.0f, 20.0f);
+        func_800EEC30(part->velocity, pitch + 130.0f, func_800DC178(-65.0f, 65.0f) + angle, 1000.0f);
+        part->active = 1;
+    }
+    for (i = 0; i < arg0->unk6C_0; i++) {
+        part = (struct SkeletonExplodePart *)func_80100094(arg0, 0) + i;
+        if (part->active == 4) {
+            func_800DFC20(animation, _dbskeleton_entrypoint_4(skeleton, i), part->offset);
+            func_800EF334(part->offset, _dbskeleton_entrypoint_1(skeleton));
+        }
+    }
+}
 
 void func_80800894_chskeletonexplode(Actor *arg0, s32 arg1, f32 *arg2) {
     s32 _dbskeleton_entrypoint_0(u8 *);
