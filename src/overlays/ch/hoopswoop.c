@@ -308,7 +308,91 @@ s32 func_808007A4_chhoopswoop(void *arg0, s32 *arg1) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800910_chhoopswoop.s")
+void func_80800910_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 _gcfrontend_entrypoint_9(s32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    void _plcamera_entrypoint_8(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void func_800A16BC(s32);
+    s32 func_800D395C(void);
+    void func_800DA544(s32);
+    s32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_8010A570(Actor *);
+    u8 *data;
+    Actor *other;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x10C1:
+        case 0x1119:
+            if (arg2 > 0) {
+                func_800DA544(0);
+                _susubgame_entrypoint_6(arg0, data + 0x4C4, 7, 0x20, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x10C2, 0x44, 0, 0x22);
+                func_80108B04(arg0, 0);
+            } else {
+                _plcamera_entrypoint_8(func_800F54E4());
+                _susubgame_entrypoint_5(arg0, data + 0x4C4, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, 0, 0x22);
+            }
+            func_800DA544(0x1AD);
+            _gcfrontend_entrypoint_9(0x67);
+            break;
+        case 0x10C2:
+            _plcamera_entrypoint_8(func_800F54E4());
+            _susubgame_entrypoint_5(arg0, data + 0x4C4, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, 0, 0x22);
+            break;
+        case 0x10C3:
+        case 0x10F5:
+        case 0x10F6:
+        case 0x10F7:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x46, 0, 0x22);
+            break;
+        case 0xCEB:
+            func_800F82D4(func_800F54E4(), 0);
+            func_80101FDC(arg0, 6);
+            if (func_800D395C() != 0) {
+                func_800A16BC(0);
+                if (arg2 > 0) {
+                    _gcfrontend_entrypoint_11();
+                } else {
+                    _gcfrontend_entrypoint_10();
+                }
+            } else if (arg2 > 0) {
+                _gcgoto_entrypoint_1(0xE5, 1);
+            } else {
+                other = _subaddiefind_entrypoint_2(0x21A, 0);
+                if (other != NULL) {
+                    _subaddiefade_entrypoint_3(other);
+                    func_8010A570(other);
+                }
+                _susubgame_entrypoint_4(arg0, (s32)(data + 0x4C4));
+            }
+            break;
+        case 0xCEC:
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0x4C4));
+            func_808006A0_chhoopswoop(arg0);
+            break;
+        case 0x10D1:
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0x4C4));
+            func_800F82D4(func_800F54E4(), 0);
+            _glcutDll_entrypoint_6(0xE1, 0x21);
+            break;
+    }
+}
 
 s32 func_80800C04_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
     s16 func_800D211C(s32);
