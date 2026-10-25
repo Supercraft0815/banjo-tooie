@@ -390,7 +390,84 @@ void func_808007E4_chjiggygamenew(s16 arg0[][12], s32 arg1, s32 arg2) {
     arg0[arg2][2] = sp1C[0] & 0xFFFF;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800834_chjiggygamenew.s")
+void func_80800834_chjiggygamenew(Actor *arg0) {
+    struct Entry {
+        s8 direction;
+        s8 piece;
+        u8 order;
+        u8 pad3;
+        s16 image;
+        s16 pad6;
+        f32 scale;
+        u8 padC[12];
+    };
+    struct Data {
+        union {
+            struct Entry entries[20];
+            s16 raw[20][12];
+        } grid;
+        u8 pad1E0[20];
+        s8 positions[20];
+        s8 other[20];
+    };
+    s32 _sujiggy_entrypoint_6(u32);
+    s32 _sujiggy_entrypoint_7(u32);
+    f32 func_800DC1AC(void);
+    s32 func_800DC214(s32, s32);
+    struct Data *data;
+    s32 i;
+    s32 used[20];
+    s32 selected[20];
+    s32 index;
+    s32 selection;
+    s32 directionIndex;
+    s32 orderIndex;
+    s8 direction;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < 20; i++) {
+        data->grid.entries[i].piece = -1;
+        data->grid.entries[i].direction = 0;
+        data->grid.entries[i].order = 0;
+        func_808007E4_chjiggygamenew(data->grid.raw, 0x934, i);
+        used[i] = 0;
+        data->positions[i] = -1;
+        data->other[i] = -1;
+    }
+    for (i = 0; i < 20 - _sujiggy_entrypoint_6(arg0->actorData[5]); i++) {
+        do {
+            selection = func_800DC214(0, 20);
+        } while (used[selection] != 0);
+        selected[i] = selection;
+        used[selection] = -1;
+    }
+    for (i = 0; i < 20 - _sujiggy_entrypoint_6(arg0->actorData[5]); i++) {
+        do {
+            index = func_800DC214(0, 20);
+        } while (data->grid.entries[index].piece != -1);
+        data->grid.entries[index].piece = selected[i];
+        func_808007E4_chjiggygamenew(data->grid.raw, 0xA4, index);
+        data->grid.entries[index].scale = 2.0f;
+        data->positions[selected[i]] = index;
+    }
+    for (i = 0; i < _sujiggy_entrypoint_7(arg0->actorData[5]); i++) {
+        direction = func_800DC214(1, 3);
+        if (!(func_800DC1AC() < 0.5f)) {
+            direction = -direction;
+        }
+        do {
+            directionIndex = func_800DC214(0, 20);
+        } while (data->grid.entries[directionIndex].direction != 0);
+        data->grid.entries[directionIndex].direction = direction;
+    }
+    for (i = 1; i != 21; i++) {
+        do {
+            orderIndex = func_800DC214(0, 20);
+        } while (data->grid.entries[orderIndex].order != 0);
+        data->grid.entries[orderIndex].order = i;
+    }
+    *(s32 *)&arg0->actorData[3] = -1;
+}
 
 /* extern */
 
