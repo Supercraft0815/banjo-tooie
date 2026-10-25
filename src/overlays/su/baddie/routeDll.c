@@ -475,7 +475,94 @@ s32 subaddierouteDll_entrypoint_8(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_9.s")
+s32 subaddierouteDll_entrypoint_9(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
+    void *func_8001B798(s16);
+    u8 func_800CC61C(s32);
+    void *func_800CC63C(s32, s32);
+    void *func_800CC684(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    int func_800F0064(f32 *, f32, f32 *);
+    int func_800F00A4(f32 *, f32, f32, f32, f32 *);
+    OSThread *func_801015B0(void);
+    s32 func_8010BFA4(f32 *, f32 *, f32 *, f32);
+    struct RouteActor {
+        u8 pad[0x70];
+        u32 route_start : 7;
+        u32 pad70 : 15;
+        u32 route_end : 6;
+        u32 pad73 : 4;
+    };
+    struct Region {
+        f32 position[3];
+        s16 radius;
+        s16 height;
+    } *region;
+    struct RouteHandle { s16 handle; s16 references; } *handles;
+    struct { s32 pad[2]; s32 end; } index;
+    s32 route;
+    s16 *table;
+    s16 *state;
+    u8 *neighbors;
+    s32 count;
+    s32 i, j;
+    f32 *position;
+
+    route = ((struct RouteActor *)arg0)->route_start - 1;
+    index.end = ((struct RouteActor *)arg0)->route_end - 1;
+    state = (s16 *)func_801015B0();
+    count = func_800CC61C(route);
+    for (i = 0; i < count; i++) {
+        position = arg0->position;
+        region = func_800CC684(route, i);
+        if (func_800F00A4(region->position, region->radius, region->height,
+                         -region->height, position)) {
+            if (arg3 & 2) {
+                func_800EE7F8(position, arg1);
+                return 1;
+            }
+            if (!func_8010BFA4(position, arg1, region->position, region->radius)) {
+                return 1;
+            }
+            j = 0;
+            if (count > 0) {
+                do {
+                    region = func_800CC684(route, j);
+                    if (j != i && func_800F0064(region->position, region->radius, position)) {
+                        func_800EE7F8(position, arg1);
+                        return 1;
+                    }
+                    j++;
+                } while (j != count);
+            }
+            break;
+        }
+    }
+    position = arg0->position;
+    region = func_800CC63C(route, index.end);
+    if (func_800F00A4(region->position, region->radius, region->height,
+                     -region->height, position)) {
+        return 0;
+    }
+    handles = func_8001B798(*state);
+    table = func_8001B798(handles[route].handle);
+    neighbors = (u8 *)table + table[index.end];
+    count = *neighbors++;
+    i = 0;
+    if (count > 0) {
+        do {
+            region = func_800CC63C(route, *neighbors);
+            if (func_800F00A4(region->position, region->radius, region->height,
+                             -region->height, position)) {
+                ((struct RouteActor *)arg0)->route_end = *neighbors + 1;
+                return 0;
+            }
+            i++;
+            neighbors++;
+        } while (i != count);
+    }
+    func_800EE7F8(position, arg1);
+    return 1;
+}
 
 /* extern */
 
