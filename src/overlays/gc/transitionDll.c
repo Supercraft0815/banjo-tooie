@@ -226,4 +226,79 @@ void gctransitionDll_entrypoint_8(u8 *arg0, s32 arg1) {
     func_808000D8_gctransitionDll((s32) arg0, 1U, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/gctransitionDll_entrypoint_9.s")
+void gctransitionDll_entrypoint_9(u8 *arg0) {
+    struct anctrl_s;
+    f32 _glintrosyncDll_entrypoint_5(void);
+    f32 func_800D8FF8(void);
+    s32 func_8008ADE4(s32);
+    void func_80090684(s32);
+    s32 anctrl_isStopped(struct anctrl_s *);
+    s32 func_800EA170(void);
+    void func_800EA334(s32);
+    void func_800EA34C(s32);
+    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    f32 delta;
+
+    if (arg0[0x1D]) {
+        delta = _glintrosyncDll_entrypoint_5();
+    } else {
+        delta = func_800D8FF8();
+    }
+    if (arg0[8]) {
+        if (*(s32 *)(arg0 + 0x2C)) {
+            func_8008ADE4(*(s32 *)(arg0 + 0x2C));
+            if (arg0[0x1C] == 5) {
+                switch (*(u32 *)(arg0 + 0x30)) {
+                    case 0:
+                    case 3:
+                        break;
+                    case 1:
+                        func_80090684(1);
+                        func_800EA334(0);
+                        break;
+                    case 2:
+                        func_800EA34C(0);
+                        break;
+                    case 4:
+                        osViBlack(0);
+                        break;
+                    default:
+                        *(f32 *)(arg0 + 0x28) += delta;
+                        break;
+                }
+            } else {
+                switch (*(u32 *)(arg0 + 0x30)) {
+                    case 0:
+                    case 1:
+                        break;
+                    default:
+                        *(f32 *)(arg0 + 0x28) += delta;
+                        break;
+                    case 2:
+                        func_800EA34C(0);
+                        break;
+                }
+            }
+        } else {
+            *(f32 *)(arg0 + 0x28) += delta;
+        }
+        if (*(f32 *)(arg0 + 0xC) < *(f32 *)(arg0 + 0x28) ||
+            (*(struct anctrl_s **)(arg0 + 0x2C) && anctrl_isStopped(*(struct anctrl_s **)(arg0 + 0x2C)))) {
+            *(f32 *)(arg0 + 0x28) = *(f32 *)(arg0 + 0xC);
+            if (arg0[0x1C] == 5 || arg0[0x1C] == 6) {
+                *(f32 *)(arg0 + 0x24) -= 90.0f;
+                if (*(f32 *)(arg0 + 0x24) < -360.0f) {
+                    *(f32 *)(arg0 + 0x24) += 360.0f;
+                }
+                if (*(f32 *)(arg0 + 0x24) > 360.0f) {
+                    *(f32 *)(arg0 + 0x24) -= 360.0f;
+                }
+            }
+            func_808000D8_gctransitionDll((s32)arg0, arg0[0xA], NULL);
+            if (*(s32 *)(arg0 + 0x2C)) {
+                func_800EA170();
+            }
+        }
+        *(s32 *)(arg0 + 0x30) += 1;
+    }
+}
