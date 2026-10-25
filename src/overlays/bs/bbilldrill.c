@@ -111,7 +111,87 @@ void func_80800298_bsbbilldrill(struct player_state_s *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, baphysics_get_target_horizontal_velocity(arg0) * 0.1f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbilldrill/func_808002DC_bsbbilldrill.s")
+void func_808002DC_bsbbilldrill(void *arg0, s32 arg1) {
+    typedef struct player_state_s PlayerState;
+    void _badust_entrypoint_10(PlayerState *, f32);
+    void _bamotor_entrypoint_3(PlayerState *, f32, f32, f32, f32, f32, f32);
+    void _bashake_entrypoint_1(PlayerState *, s32, s32);
+    void _batimer_set(PlayerState *, s32, f32);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    void baflag_clear(PlayerState *, int);
+    void baflag_set(PlayerState *, s32);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    void baphysics_set_terminal_velocity(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    s32 func_8009328C(u8 *, f32);
+    f32 func_800962D4(void *);
+    void func_80098520(void *, f32);
+    void func_8009BA9C(PlayerState *, f32 *);
+    void func_8009C1F8(void *, f32 *);
+    s32 func_8009D454(PlayerState *, volatile u8, s32 *);
+    void func_8009DE38(PlayerState *, s32, f32);
+    void func_8009DF18(PlayerState *, s32, f32, s32);
+    void func_8009E53C(PlayerState *, s32, f32);
+    s32 func_8009EA2C(void);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 yaw_get(PlayerState *);
+    extern s32 D_80800B10_bsbbilldrill[];
+    extern s32 D_80800B30_bsbbilldrill[];
+    extern s32 D_80800B50_bsbbilldrill[];
+    f32 sp34[3];
+
+    *((s8 *)arg0 + 0x15C) = arg1;
+    switch (arg1) {
+    case 1:
+        *(f32 *)((u8 *)arg0 + 0x16C) = yaw_get(arg0);
+        *(f32 *)((u8 *)arg0 + 0x170) = 0;
+        func_80098520(arg0, 0);
+        _batimer_set(arg0, 0, 0.3f);
+        if (func_8009EA2C()) {
+            *((s8 *)arg0 + 0x164) = func_8009D454(arg0, 0, D_80800B30_bsbbilldrill);
+        } else {
+            *((s8 *)arg0 + 0x164) = func_8009D454(arg0, 0, D_80800B10_bsbbilldrill);
+        }
+        *((s8 *)arg0 + 0x15D) = 0;
+        break;
+    case 2:
+        *(f32 *)((u8 *)arg0 + 0x170) = 1500.0f;
+        func_80098520(arg0, 1.0f);
+        _batimer_set(arg0, 0, 0.15f);
+        break;
+    case 3:
+        func_8009DF18(arg0, 0x442F, 1.2f, 30000);
+        baphysics_set_terminal_velocity(arg0, -5000.0f);
+        baphysics_set_gravity(arg0, -20000.0f);
+        baphysics_set_vertical_velocity(arg0, 2300.0f);
+        baphysics_set_target_horizontal_velocity(arg0, 0.0f);
+        func_8009E53C(arg0, 1, -100.0f);
+        break;
+    case 4:
+        func_800EFA4C(sp34, 0.0f, 80.0f - func_800962D4(arg0), 0.0f);
+        func_8009C1F8(arg0, sp34);
+        _badust_entrypoint_10(arg0, -func_800962D4(arg0));
+        baflag_set(arg0, 0x26);
+        baphysics_set_gravity(arg0, 0.0f);
+        func_8009BA9C(arg0, 0);
+        _batimer_set(arg0, 0, 0.8f);
+        _bamotor_entrypoint_3(arg0, 1.0f, 0.7, 0.01f, 0.1f, 0.7f, 0.4f);
+        _bashake_entrypoint_1(arg0, 3, 2);
+        *((s8 *)arg0 + 0x160) = func_8009D454(arg0, 0, D_80800B50_bsbbilldrill);
+        func_8009DE38(arg0, 0x40D, 1.0f);
+        break;
+    case 5:
+        func_8009E53C(arg0, 1, 0.0f);
+        baflag_clear(arg0, 0x22);
+        func_8009328C(arg0, yaw_get(arg0));
+        baphysics_set_vertical_velocity(arg0, 730.0f);
+        baphysics_set_gravity(arg0, -2400.0f);
+        baanim_setEndAndDuration(arg0, 0.7299f, 2.1f);
+        func_808000C0_bsbbilldrill(arg0);
+        break;
+    }
+}
 
 /* extern */
 
