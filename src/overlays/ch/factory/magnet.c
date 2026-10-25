@@ -248,7 +248,95 @@ void func_8080083C_chfactorymagnet(s32 arg0) {
     func_800F4EC8(func_800F54E4(), sp24, 500.0f, 0.0f, 200.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800898_chfactorymagnet.s")
+void func_80800898_chfactorymagnet(Actor *arg0, s32 arg1) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _chglowbo_entrypoint_6(void);
+    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _sumumbofx_entrypoint_15(void *, f32);
+    void _sumumbofx_entrypoint_16(void *, f32);
+    void _sumumbofx_entrypoint_17(void *, f32);
+    void _sumumbofx_entrypoint_18(void *, f32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A624(Actor *);
+    void func_8010A63C(Actor *);
+    void func_8010A800(Actor *, s32);
+    void *func_80800E40_chfactorymagnet(Actor *);
+    void func_80801CD8_chfactorymagnet(Actor *);
+    void *sp24;
+
+    switch (arg1) {
+    case 1:
+        arg0->unk58 = 0.0f;
+        func_8010A624(arg0);
+        break;
+    case 2:
+        func_8010A63C(arg0);
+        break;
+    case 4:
+        func_80101180(0x50F, 0xA, 0);
+        arg0->unk58 = 1.0f;
+        ((f32 *)arg0->actorData)[0] = 20.0f;
+        if (func_800DA298(0x19E) == 0) {
+            _capod_entrypoint_13(arg0->unk0, 0, 0, 0x850);
+        }
+        break;
+    case 5:
+        func_80101180(0x50F, 0x4F, 0);
+        arg0->unk6C_0 = 0x3C;
+        if (arg0->unk70_10 == 4) {
+            func_80801CD8_chfactorymagnet(arg0);
+        }
+        break;
+    case 6:
+        if (func_800DA298(0x19E) == 0) {
+            func_800DA544(0x19E);
+        }
+        break;
+    case 8:
+        sp24 = func_80800E40_chfactorymagnet(arg0);
+        _capod_entrypoint_13(arg0->unk0, 0, 2, 0x10);
+        func_800DA544(0xA06);
+        func_80101180(0x2B0, 0xBB, 0xA);
+        _sumumbofx_entrypoint_15(sp24, 3.0f);
+        func_800DA544(0x57E);
+        func_8010A63C(arg0);
+        break;
+    case 9:
+        _sumumbofx_entrypoint_18(func_80100094(arg0, 0), 3.0f);
+        _chglowbo_entrypoint_6();
+        break;
+    case 11:
+        _sumumbofx_entrypoint_17(func_80100094(arg0, 0), 2.0f);
+        func_8010A63C(arg0);
+        break;
+    case 12:
+        _sumumbofx_entrypoint_17(func_80100094(arg0, 0), 2.0f);
+        break;
+    case 13:
+        _sumumbofx_entrypoint_16(func_80100094(arg0, 0), 4.0f);
+        break;
+    case 14:
+        func_80100094(arg0, 0);
+        _sumumbofx_entrypoint_1(arg0, 0);
+        func_8010A800(arg0, 0);
+        break;
+    case 15:
+        ((f32 *)arg0->actorData)[1] = 1.5f;
+        break;
+    case 17:
+        func_8010A63C(arg0);
+        arg0->unk58 = 1.0f;
+        ((f32 *)arg0->actorData)[7] = 1.0f;
+        ((f32 *)arg0->actorData)[0] = func_800DC178(2.0f, 20.0f);
+        break;
+    }
+    func_80101FDC(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/magnet/func_80800B20_chfactorymagnet.s")
 
