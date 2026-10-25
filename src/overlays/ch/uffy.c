@@ -497,7 +497,63 @@ void func_80800F54_chchuffy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_80800FBC_chchuffy.s")
+void func_80800FBC_chchuffy(Actor *arg0) {
+    struct ChuffySoundData {
+        u8 pad0[8];
+        f32 soundPosition[3];
+        u8 pad14[0x18];
+        f32 cameraPosition[3];
+        f32 timer;
+        u8 pad3C[0x10];
+        f32 position[3];
+    };
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    f32 func_800DC0C0(void);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    s32 func_80102320(Actor *, f32, f32);
+    void func_80801CF8_chchuffy(Actor *, s32);
+    void func_80801D3C_chchuffy(Actor *, s32);
+    void func_80801D94_chchuffy(Actor *, s32);
+    void func_80801DDC_chchuffy(Actor *);
+    void func_80801EAC_chchuffy(Actor *);
+    void func_80801F04_chchuffy(Actor *);
+    extern u32 D_8080238C_chchuffy[];
+    extern u32 D_808023A0_chchuffy[];
+    extern u32 D_808023C8_chchuffy[];
+    extern f32 D_808024D0_chchuffy[];
+    extern f32 D_808024E8_chchuffy[];
+    struct ChuffySoundData *data;
+
+    data = func_80100094(arg0, 0);
+    if (func_800DC0C0() < 0.25f) {
+        func_80801D3C_chchuffy(arg0, 1);
+    }
+    func_8080059C_chchuffy(arg0);
+    if (func_80102320(arg0, 0.65f, 0.72f)) {
+        func_80801EAC_chchuffy(arg0);
+    }
+    func_80801F04_chchuffy(arg0);
+    func_80801DDC_chchuffy(arg0);
+    if (func_80101E4C(arg0, D_808024D0_chchuffy)) {
+        _subaddieaudioquick_entrypoint_2(arg0, data->soundPosition, D_8080238C_chchuffy);
+        func_80801D94_chchuffy(arg0, 5);
+        data->timer = 0.3f;
+    }
+    if (func_80101E4C(arg0, D_808024E8_chchuffy)) {
+        _subaddieaudioquick_entrypoint_2(arg0, data->soundPosition, D_8080238C_chchuffy);
+    }
+    if (func_80101E14(arg0, 0.925f) || func_80101E14(arg0, 0.965f)) {
+        _subaddieaudioquick_entrypoint_2(arg0, data->cameraPosition, D_808023A0_chchuffy);
+        func_80801CF8_chchuffy(arg0, 5);
+    }
+    if (func_80101E14(arg0, 0.7f)) {
+        data->timer = 3.0f;
+    }
+    _subaddieaudioquick_entrypoint_3(arg0, data->position, D_808023C8_chchuffy, 0.88f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/uffy/func_8080115C_chchuffy.s")
 
