@@ -50,7 +50,46 @@ void func_80800140_sumultiscore(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_2.s")
+s32 sumultiscore_entrypoint_2(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
+    s32 _gcstatusDll_entrypoint_11();
+    void func_800AA200(s32);
+    void func_800AA20C(s32, s32);
+    s32 func_800D3948(void);
+    s32 indices[4];
+    s32 ranks[4];
+    s32 scores[4];
+    s32 ties[4];
+    s32 i;
+    s32 count;
+
+    for (i = 0; i < arg4; i++) {
+        indices[i] = i;
+        scores[i] = arg0[i];
+        ties[i] = 0;
+    }
+    if (arg3 == 0) {
+        sumultiscore_entrypoint_0(scores, indices, arg4);
+        func_800AA200(0);
+    } else {
+        sumultiscore_entrypoint_1(scores, indices, arg4);
+        func_800AA200(1);
+    }
+    func_80800140_sumultiscore(scores, ties, ranks, arg4);
+    for (i = 0; i < arg4; i++) {
+        arg1[indices[i]] = ranks[i];
+        arg2[indices[i]] = ties[i];
+    }
+    if (func_800D3948() != 0) {
+        count = _gcstatusDll_entrypoint_11();
+        for (i = 0; i < count; i++) {
+            func_800AA20C(i, arg0[i]);
+        }
+    }
+    if (ranks[0] == ranks[1]) {
+        return 0;
+    }
+    return indices[0] + 1;
+}
 
 /* extern */
 
