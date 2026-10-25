@@ -288,7 +288,95 @@ void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_8080076C_chfishshootgame.s")
+void func_8080076C_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA544(s32);
+    s32 _susubgame_entrypoint_2(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    struct FishShootData {
+        f32 position[3];
+        f32 target[3];
+        f32 unk18[2];
+        f32 height;
+        f32 unk24;
+        f32 skeleton;
+        f32 distance;
+        s16 unk30;
+        s16 current;
+        s16 count;
+        s16 positions[20][3];
+        s16 unkAE;
+        u32 subgame[1];
+    };
+    s32 state;
+    s32 dialog;
+    union { s32 value; volatile s32 access; } flags;
+    struct FishShootData *data;
+
+    flags.value = 0xE;
+    state = 0;
+    dialog = 0;
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0xFEC:
+        dialog = 0x105E;
+        flags.value = 0x4E;
+        break;
+    case 0x105E:
+        func_800DA544(0x449);
+    case 0xFED:
+        if (arg2 == 1) { dialog = 0x1025; } else { dialog = 0x1026; }
+        break;
+    case 0xFEE:
+        func_80800320_chfishshootgame(arg0);
+        break;
+    case 0xFEF:
+        _susubgame_entrypoint_5(arg0, data->subgame, 5, 1, 0);
+        dialog = 0x105F;
+        flags.value = 0x4E;
+        break;
+    case 0x105F:
+        if (arg2 == 1) {
+            dialog = 0x1025;
+        } else {
+            dialog = 0x1026;
+        }
+        flags.access = 0xE;
+        break;
+    case 0xFF0:
+        state = 9;
+        break;
+    case 0x1023:
+        state = 4;
+        break;
+    case 0x1024:
+        state = 0xB;
+        break;
+    case 0x1025:
+        if (_susubgame_entrypoint_2(arg0, (s32)data->subgame)) {
+            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+        }
+        state = 3;
+        break;
+    case 0x1026:
+        if (_susubgame_entrypoint_2(arg0, (s32)data->subgame)) {
+            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+        }
+    case 0x1060:
+        state = 1;
+        break;
+    default:
+        break;
+    }
+    if (state != 0) {
+        func_808003B0_chfishshootgame(arg0, state);
+    }
+    if (dialog != 0) {
+        _subaddiedialog_entrypoint_11(arg0->unk0, dialog, flags.value, arg0->position, 0x63);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808009C0_chfishshootgame.s")
 
