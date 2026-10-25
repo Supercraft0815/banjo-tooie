@@ -430,7 +430,70 @@ s32 func_800C1CCC(u16 *arg0, s32 arg1) {
     return arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C1D80.s")
+s32 func_800C1D80(u8 index) {
+    s16 func_800A8184(void);
+    s32 func_800EA05C(void);
+    s32 func_800EA068(s32);
+    s32 result;
+    s32 volume;
+    u16 *source;
+    s32 differentMap;
+
+    result = 0;
+    source = func_800C1414(index);
+    if (((*(u32 *)((s8 *)source + 0x78) << 19) >> 29) == 1 &&
+        *(u8 *)((s8 *)source + 0x79) != 0) {
+        differentMap = func_800EA05C() != *(s16 *)((s8 *)source + 0x5E);
+        if (func_800C13C4(source, 4)) {
+            func_800C1950(*(u8 *)((s8 *)source + 0x79), *(s32 *)((s8 *)source + 0x6C));
+        }
+        if (func_800C13C4(source, 0x10) && !*(u8 *)((s8 *)source + 0x1B)) {
+            func_800C18C8(*(u8 *)((s8 *)source + 0x79), *(u8 *)((s8 *)source + 0x60),
+                *(u8 *)((s8 *)source + 0x1B), *(u8 *)((s8 *)source + 0x1C), func_800C13C4(source, 0x400));
+        }
+        if (func_800C13C4(source, 2)) {
+            if (differentMap) {
+                func_800C1984(*(u8 *)((s8 *)source + 0x79), *(s16 *)((s8 *)source + 0x5C), func_800C13C4(source, 0x200));
+            } else {
+                if (*(u8 *)((s8 *)source + 0x63)) {
+                    volume = func_800C19E4(source, *(s16 *)((s8 *)source + 0x5A));
+                } else {
+                    volume = *(s16 *)((s8 *)source + 0x5A);
+                }
+                if (volume < 100) {
+                    result = 1;
+                }
+                volume = func_800C1CCC(source, volume);
+                *(s16 *)((s8 *)source + 0x5C) = volume;
+                func_800C1984(*(u8 *)((s8 *)source + 0x79), volume, func_800C13C4(source, 0x200));
+                if (!func_800EA068(0x20)) {
+                    func_800C1AA4(source);
+                }
+            }
+        } else {
+            if (func_800C13C4(source, 0x100)) {
+                func_800C191C(*(u8 *)((s8 *)source + 0x79), *(u8 *)((s8 *)source + 0x61));
+            }
+            if (differentMap) {
+                func_800C1984(*(u8 *)((s8 *)source + 0x79), *(s16 *)((s8 *)source + 0x5C), func_800C13C4(source, 0x200));
+            } else if (func_800C13C4(source, 8)) {
+                volume = func_800C1CCC(source, *(s16 *)((s8 *)source + 0x5A));
+                *(s16 *)((s8 *)source + 0x5C) = volume;
+                if (volume < 100) {
+                    result = 1;
+                }
+                func_800C1984(*(u8 *)((s8 *)source + 0x79), volume, func_800C13C4(source, 0x200));
+            }
+        }
+        func_800C13B0(source, 4);
+        func_800C13B0(source, 8);
+        func_800C13B0(source, 0x10);
+    }
+    if (func_800A8184() == 4) {
+        result++;
+    }
+    return result;
+}
 
 void func_800C2000(u8 index) {
     typedef struct {
