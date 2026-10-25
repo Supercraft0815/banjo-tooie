@@ -84,7 +84,72 @@ block_6:
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6B24.s")
+void func_800A6B24(Actor *arg0) {
+    s32 func_800C8760(s32, s32);
+    s32 func_800C878C(s32, s32, s32);
+    void func_800C8800(s32, f32 *);
+    void func_800C8898(s32, f32 *);
+    u8 func_800C89A8(s32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFD24(f32 *);
+    f32 func_800F5BC4(s32, f32 *);
+    f32 sqrtf(f32);
+    s32 light;
+    f32 radius;
+    f32 spBC[3];
+    f32 distance;
+    f32 scale;
+    f32 fade;
+    f32 spA4[3];
+    f32 sp98[3];
+    f32 sp8C[3];
+    s32 alpha;
+    s32 count;
+
+    if (!(arg0->position[1] - *(f32 *)&arg0->actorData[3] > 2000.0f)) {
+    radius = func_800F5BC4(arg0->unk74_7, spBC);
+    func_800EF04C(spBC, arg0->position);
+    count = 0;
+    for (light = func_800C8760(0, 1); light != 0 && count < 2; light = func_800C878C(light, 0, 1)) {
+            alpha = 255;
+            if (!(func_800C89A8(light) & 8)) {
+                func_800C8800(light, sp98);
+                func_800C8898(light, sp8C);
+                func_800EFB24(spA4, sp98, spBC);
+                distance = sqrtf(spA4[0] * spA4[0] + spA4[1] * spA4[1] + spA4[2] * spA4[2]);
+                if (distance == 0.0f) {
+                    continue;
+                }
+                if (sp8C[1] + radius <= distance) {
+                    continue;
+                }
+                {
+                    scale = -1.0f / distance;
+                    distance -= radius;
+                    spA4[0] = -(spA4[0] * scale);
+                    spA4[2] = -(spA4[2] * scale);
+                    spA4[1] *= -scale;
+                    if (sp8C[0] < distance) {
+                        fade = 1.0f - (distance - sp8C[0]) * sp8C[2];
+                        alpha = (s32)(255.0f * fade);
+                    }
+                    func_800A69F0(arg0, sp98, spA4, alpha);
+                    count++;
+                }
+            }
+
+    }
+    if (count == 0) {
+        f32 sp78[3];
+        f32 sp6C[3];
+        func_800EFD24(sp78);
+        func_800EFA4C(sp6C, 0, 1.0f, 0);
+        func_800A69F0(arg0, sp78, sp6C, 255);
+    }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A6DAC.s")
 
