@@ -41,8 +41,8 @@ u32 D_808019E4_chnewmumbo[] = {
     0x001305AF, 0x000D00F3, 0x010C0016, 0x46500000,
 };
 
-u32 D_808019F4_chnewmumbo[] = {
-    0x00000000, 0xC1F00000, 0xC3898000,
+f32 D_808019F4_chnewmumbo[] = {
+    0.0f, -30.0f, -275.0f,
 };
 
 u32 D_80801A00_chnewmumbo[] = {
@@ -182,7 +182,97 @@ void func_80800210_chnewmumbo(s32 *arg0) {
     func_8008F990(&(*(s32 *)D_80801A0C_chnewmumbo), 0x43480000);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_80800264_chnewmumbo.s")
+void func_80800264_chnewmumbo(Actor *arg0, s32 arg1) {
+    struct MumboFlags {
+        u8 pad[0x70];
+        u32 : 9;
+        u32 enabled : 1;
+        u32 : 22;
+        u32 : 28;
+        u32 mode : 4;
+        u16 pad78;
+        u16 : 2;
+        u16 flags : 2;
+        u16 : 12;
+    };
+    s32 func_800DA298(s32);
+    s32 func_800DA9E4(s32, s32);
+    void func_80090590(s32, f32 *);
+    void func_8080073C_chnewmumbo(Actor *, s32);
+    s32 _suexpression_entrypoint_12(void *, f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *data;
+
+    data = func_80100094(arg0, 0);
+    if (arg0->unk70_10 == 6) {
+        ((struct MumboFlags *)arg0)->mode = 1;
+    }
+    if (func_800DA298(0x9C6)) {
+        func_80102424(arg0, arg1);
+        switch (arg0->unk70_10) {
+        case 1:
+            data[1] = 1;
+            data[2] = 0;
+            break;
+        case 2:
+        case 3:
+        case 4:
+            func_80800210_chnewmumbo((s32 *)arg0);
+            break;
+        case 5:
+            func_8080073C_chnewmumbo(arg0, func_80090178(1));
+            func_80800000_chnewmumbo(arg0, 2, 1);
+            break;
+        case 6:
+            ((struct MumboFlags *)arg0)->mode = 1;
+            arg0->unk7A_11 = 3;
+            ((struct MumboFlags *)arg0)->flags = 3;
+            arg0->unk6C_0 = 0;
+            ((struct MumboFlags *)arg0)->enabled = 1;
+            break;
+        case 7:
+            ((struct MumboFlags *)arg0)->mode = 1;
+            if (!func_800DA9E4(0x7D, 1)) {
+                func_808000DC_chnewmumbo(arg0, 0x11D6, 7);
+            } else {
+                func_808000DC_chnewmumbo(arg0, 0x11E4, 7);
+            }
+            _suexpression_entrypoint_12(func_80100094(arg0, 1), 60.0f, 0.0f);
+            break;
+        case 8:
+            if (func_800D1A04(0x48) > 0) {
+                func_808000DC_chnewmumbo(arg0, 0x11D7, 0x46);
+            } else {
+                func_808000DC_chnewmumbo(arg0, 0x11DA, 7);
+            }
+            break;
+        case 18:
+            data[1] = 0;
+            func_800EE7F8(arg0->position, D_808019F4_chnewmumbo);
+            break;
+        case 19:
+            data[2] = 1;
+            data[1] = 0;
+            break;
+        case 14:
+            func_8080009C_chnewmumbo(arg0);
+            func_800904C8(0x8D);
+            func_80090590(0x3C, arg0->position);
+            data[0] = 1;
+            if (!func_800DA9E4(0x429, 1)) {
+                func_80800000_chnewmumbo(arg0, 5, 1);
+                func_808000DC_chnewmumbo(arg0, 0x11E6, 15);
+            }
+            break;
+        case 10:
+        case 11:
+            data[1] = 1;
+            data[2] = 0;
+            func_8080009C_chnewmumbo(arg0);
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808004E8_chnewmumbo.s")
 
