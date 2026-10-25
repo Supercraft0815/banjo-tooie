@@ -3857,7 +3857,107 @@ void *func_80807280_chdiggerboss(s32 arg0, s32 arg1, s16 *arg2) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_80807304_chdiggerboss.s")
+void func_80807304_chdiggerboss(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    s16 func_8080761C_chdiggerboss(s32);
+    f32 func_8010CD50(Actor *, u32);
+    void func_8010D09C(s32, f32 *, f32);
+    f32 func_800DC178(f32, f32);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF368(f32 *, f32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    Actor *func_80108528(s32, f32 *, s32, Actor **);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_80102FDC(void *, f32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    extern u8 D_8080A140_chdiggerboss[];
+    typedef struct {
+        u8 pad0[0x7C];
+        s16 unk7C;
+        s16 unk7E;
+        s16 unk80;
+        s16 unk82;
+        f32 unk84;
+        s16 unk88;
+        s16 unk8A;
+        s16 unk8C;
+        s16 unk8E;
+        f32 unk90;
+        s16 unk94;
+        s16 unk96;
+    } BossData;
+    typedef struct {
+        f32 position[3];
+        f32 speed;
+    } ProjectileData;
+    BossData *data;
+    Actor *sp60;
+    Actor *sp5C;
+    s32 sp58;
+    f32 sp4C[3];
+    f32 sp40[3];
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
+    f32 sp30;
+
+    data = func_80100094(arg0, 0);
+    sp60 = func_80802228_chdiggerboss(arg0);
+    sp58 = func_80802248_chdiggerboss((s32)arg0);
+    if (func_8080761C_chdiggerboss((s32)arg0)) {
+        sp3C = func_8010CD50(arg0, sp58);
+        sp38 = data->unk8A;
+        sp34 = data->unk8C;
+        if (arg1 == 2) {
+            sp30 = -90.0f;
+        } else {
+            sp30 = 90.0f;
+        }
+        func_8010D09C(sp58, sp40, 0.0f);
+        func_800EF1B8(sp40, func_800DC178(-80.0f, 80.0f) + (sp3C + sp30), func_800DC178(sp38, sp34));
+    } else {
+        func_8010D09C(sp58, sp40, 0.0f);
+    }
+    sp40[1] = 0.0f;
+    if (func_800EEFD4(sp40) > 3240000.0f) {
+        func_800EF368(sp40, 1800.0f);
+    }
+    sp40[1] = arg0->position[1];
+    switch (arg1) {
+    case 1:
+        func_808008C0_chdiggerboss((s32)sp60, 3, 0);
+        _subaddieskeleton_entrypoint_2(sp60->unk0, 11, sp4C);
+        sp5C = func_80108528(0x4F3, sp4C, 0, &arg0);
+        func_800EE7F8(((ProjectileData *)sp5C->actorData)->position, sp40);
+        func_80102FDC(sp5C, 0.25f);
+        sp5C->unk54 = 0.0f;
+        ((ProjectileData *)sp5C->actorData)->speed = func_800DC178(data->unk94, data->unk96);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080A140_chdiggerboss);
+        if (data->unk7E > 0) {
+            data->unk7E--;
+        }
+        break;
+    case 2:
+        func_808008C0_chdiggerboss((s32)sp60, 4, 0);
+        _subaddieskeleton_entrypoint_2(sp60->unk0, 10, sp4C);
+        sp5C = func_80108528(0x4F3, sp4C, 0, &arg0);
+        func_800EE7F8(((ProjectileData *)sp5C->actorData)->position, sp40);
+        func_80102FDC(sp5C, 0.25f);
+        sp5C->unk54 = 45.0f;
+        ((ProjectileData *)sp5C->actorData)->speed = func_800DC178(data->unk94, data->unk96);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080A140_chdiggerboss);
+        break;
+    }
+    if (!func_8080761C_chdiggerboss((s32)arg0) || arg1 == 2) {
+        if (data->unk7E == 0) {
+            data->unk7C = 5;
+        } else {
+            data->unk7C = 4;
+            data->unk84 = data->unk90;
+        }
+    }
+}
 
 s16 func_8080761C_chdiggerboss(s32 arg0) {
     void *func_80100094(Actor *, u32);
