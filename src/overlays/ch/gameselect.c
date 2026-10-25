@@ -887,7 +887,34 @@ OSThread *chgameselect_entrypoint_2(void)
     return (OSThread *) D_808080C8_chgameselect;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_8080179C_chgameselect.s")
+void func_8080179C_chgameselect(Actor *arg0) {
+    void func_800C3F48(u32);
+    f32 func_800DC178(f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_80101E4C(Actor *, f32 *);
+    extern f32 D_80808110_chgameselect[][11];
+    extern u16 D_80808270_chgameselect[];
+    extern u8 D_80808280_chgameselect[];
+    extern f32 D_80808288_chgameselect[];
+
+    switch (arg0->unk79_4) {
+        case 4:
+            if (func_80101E4C(arg0, D_80808288_chgameselect)) {
+                func_800C3F48((((u32)(func_800DC178(0.7f, 0.8f) * 1023.0f) & 0x7FF) << 21) + 0xFA4D5);
+            }
+            break;
+        case 6:
+            if (func_80101E14(arg0, 0.77f)) {
+                func_800C3F48((((u32)(func_800DC178(0.9f, 1.1f) * 1023.0f) & 0x7FF) << 21) + 0xDACD5);
+            }
+            break;
+    }
+    if (func_80101E4C(arg0, D_80808110_chgameselect[arg0->unk79_4])) {
+        func_800C3F48((D_80808270_chgameselect[arg0->unk79_4] & 0x7FF)
+            + (((D_80808280_chgameselect[arg0->unk79_4] * 1000 >> 5) & 0x3FF) << 11)
+            + (((u32)(func_800DC178(0.9f, 1.1f) * 1023.0f) & 0x7FF) << 21));
+    }
+}
 
 /* extern */
 
