@@ -60,7 +60,47 @@ s32 func_80800000_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroombits/func_808001D4_chtoxicroombits.s")
+struct ImageStruct;
+void func_808001D4_chtoxicroombits(Actor *arg0, void *arg1) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    f32 func_800138D0(f32);
+    struct ImageStruct *func_800D674C(s32);
+    void func_800E2588(u32);
+    void func_800E2AA4(u8 *, u8 *, s32, s32, f32 *, f32 *);
+    void func_800E3980(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    f32 mlAbsF(f32);
+    f32 phase;
+    f32 position[3];
+    f32 scale[3];
+    f32 amount;
+
+    phase = func_800F10B4(arg0->position[2], 2000.0f, -2000.0f, 0.0f, 1.0f);
+    arg0->position[1] = func_800138D0(phase * 360.0f * 18.0f) * 3.0f + 395.0f;
+    arg0->rotation[0] = func_800138D0(phase * 360.0f * 18.0f);
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12 && arg0->unk0->unk14 == 0x885) {
+        func_800E3980(scale);
+        if (scale[0] < -400.0f) {
+            _subaddieskeleton_entrypoint_2(arg0->unk0, 5, position);
+        } else {
+            _subaddieskeleton_entrypoint_2(arg0->unk0, 4, position);
+        }
+        if (position[2] < 650.0f && position[2] > 550.0f) {
+            amount = mlAbsF(position[2] - 600.0f) / 50.0f;
+        } else if (position[2] < -550.0f && position[2] > -650.0f) {
+            amount = mlAbsF(position[2] + 600.0f) / 100.0f;
+        } else {
+            return;
+        }
+        phase = 1.0f - amount;
+        func_800EFA4C(scale, phase, phase, 1.0f);
+        func_800E2588(1);
+        func_800E2AA4(arg1, (u8 *)func_800D674C(0x9DE), 0, 0, position, scale);
+    }
+}
 
 OSThread *chtoxicroombits_entrypoint_0(void)
 {
@@ -236,7 +276,6 @@ void func_80800960_chtoxicroombits(u8 *arg0, s32 arg1) {
 
 void func_80800A2C_chtoxicroombits(Actor *arg0, void *arg1) {
     f32 func_800138D0(f32);
-    struct ImageStruct;
     struct ImageStruct *func_800D674C(s32);
     void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, u8 *);
     void func_800DF830(s32);
