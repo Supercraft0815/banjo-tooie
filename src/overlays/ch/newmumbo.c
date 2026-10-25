@@ -643,7 +643,73 @@ void func_8080092C_chnewmumbo(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newmumbo/func_808014FC_chnewmumbo.s")
+void func_808014FC_chnewmumbo(Actor *arg0, s32 arg1, s32 arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    u8 *data;
+
+    data = func_80100094(arg0, 0U);
+    arg0->unk74_30 = 0;
+    switch (arg1) {
+    case 0x11D7:
+        if (arg2 > 0) {
+            func_808000DC_chnewmumbo(arg0, 0x11D8, 7);
+        } else {
+            func_808000DC_chnewmumbo(arg0, 0x11D9, 7);
+        }
+        break;
+    case 0x11D9:
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        func_808007B0_chnewmumbo((u8 *)arg0);
+        func_80800264_chnewmumbo(arg0, 10);
+        break;
+    case 0x11DA:
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        func_808007B0_chnewmumbo((u8 *)arg0);
+        func_80800264_chnewmumbo(arg0, 10);
+        break;
+    case 0x11D8:
+        data[3] = 1;
+        break;
+    case 0x11EB:
+        func_8080009C_chnewmumbo(arg0);
+        break;
+    case 0x11DB:
+        switch (arg0->unk70_10) {
+        case 4:
+            if (arg2 > 0) {
+                func_80800878_chnewmumbo(arg0);
+            } else {
+                func_808000DC_chnewmumbo(arg0, 0x11EA, 15);
+            }
+            break;
+        case 3:
+            if (arg2 > 0) {
+                func_80800000_chnewmumbo(arg0, 2, 1);
+                func_80800264_chnewmumbo(arg0, 17);
+            } else {
+                func_808000DC_chnewmumbo(arg0, 0x11EA, 15);
+            }
+            break;
+        }
+        break;
+    case 0x11EA:
+        switch (arg0->unk70_10) {
+        case 3:
+            func_80800264_chnewmumbo(arg0, 11);
+            func_808007B0_chnewmumbo((u8 *)arg0);
+            break;
+        case 4:
+            func_8080009C_chnewmumbo(arg0);
+            func_808007B0_chnewmumbo((u8 *)arg0);
+            func_80800264_chnewmumbo(arg0, 19);
+            break;
+        }
+        break;
+    case 0x11E6:
+        func_8080009C_chnewmumbo(arg0);
+        break;
+    }
+}
 
 void func_800EE7F8(f32 *, f32 *);
 void chnewmumbo_entrypoint_0(Actor *arg0, f32 *arg1) { func_800EE7F8(arg1, (f32 *)((u8 *)func_80100094(arg0, 0U) + 4)); }
