@@ -287,7 +287,84 @@ s32 func_80800218_chdinofamilymother(void *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familymother/func_808005EC_chdinofamilymother.s")
+void func_808005EC_chdinofamilymother(Actor *arg0, s32 arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void func_800D0C78(u32, u32, u32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800DA298(s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80801118_chdinofamilymother(Actor *, Unk80132ED0 *, s32, s32);
+    void func_80801228_chdinofamilymother(void *);
+    s32 dialog;
+
+    switch (arg1) {
+    case 1:
+        func_80801228_chdinofamilymother(arg0);
+        break;
+    case 2:
+        if (_subaddiefind_entrypoint_2(0x52D, 0) || _subaddiefind_entrypoint_2(0x291, 0)) {
+            func_80801118_chdinofamilymother(arg0, arg0->unk0, 0, 0x10);
+            if (func_800F5410(func_800F54E4()) == 10) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1815, 0xC, (f32 *)arg0->actorData, 0x65);
+            } else {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x17BC, 0xC, (f32 *)arg0->actorData, 0x65);
+            }
+            func_80101180(0x291, 0x37, 0);
+            break;
+        }
+    case 3:
+        arg1 = 3;
+        if (!func_800DA298(0x15F)) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17BD, 0xC, (f32 *)arg0->actorData, 0x65);
+            func_80801118_chdinofamilymother(arg0, arg0->unk0, 2, 0x10);
+            break;
+        }
+    case 4:
+        arg1 = 4;
+        if (!func_800DA298(0x8A)) {
+            switch (func_800F5410(func_800F54E4())) {
+            case 1:
+                dialog = 0x17BE;
+                break;
+            case 10:
+                dialog = 0x1816;
+                break;
+            case 11:
+                dialog = 0x1817;
+                break;
+            }
+            _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0xC, (f32 *)arg0->actorData, 0x65);
+            func_80801118_chdinofamilymother(arg0, arg0->unk0, 4, 0x10);
+            break;
+        }
+    case 5:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x17BF, 0xC, (f32 *)arg0->actorData, 0x65);
+        break;
+    case 6:
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x17C1, 0xC, (f32 *)arg0->actorData, 0x65);
+        func_80801118_chdinofamilymother(arg0, arg0->unk0, 0x1D, 0x30);
+        break;
+    case 7:
+        if (func_800F64A4(func_800F54E4(), 0x1000)) {
+            func_800D1000(0x2B, 1, NULL, 1, 0);
+            func_80801118_chdinofamilymother(arg0, arg0->unk0, 9, 0x10);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1818, 0xC, (f32 *)arg0->actorData, 0x65);
+        } else {
+            func_800D0C78(0x2B, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17C2, 0xC, (f32 *)arg0->actorData, 0x65);
+        }
+        break;
+    case 9:
+        func_80801228_chdinofamilymother(arg0);
+        break;
+    }
+    func_80102424(arg0, arg1);
+}
 
 void func_808008E4_chdinofamilymother(s32 arg0) {
     typedef struct { s32 x, y, z; } Vec;
