@@ -131,7 +131,61 @@ s32 func_808006D4_ncpoddialog(void *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_80800710_ncpoddialog.s")
+void func_80800710_ncpoddialog(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s32 arg5, s32 *arg6) {
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    f32 center[3];
+    f32 corner[3];
+    s32 i, j, k;
+    s32 count = 0;
+    f32 size1[3];
+    f32 rotation[3];
+    f32 position[3];
+    f32 size2[3];
+
+    if (func_808006D4_ncpoddialog(arg0)) {
+        size1[1] = (((f32 *)arg0)[0] - ((f32 *)arg0)[3]) * 0.5f;
+        size1[0] = ((f32 *)arg0)[1] * 0.5f;
+        size1[2] = ((f32 *)arg0)[2] * 0.5f;
+        center[0] = 0.0f;
+        center[1] = ((f32 *)arg0)[3] + size1[1];
+        center[2] = 0.0f;
+        func_800EF5A0(center, &((f32 *)arg0)[16], center[0], center[1], center[2]);
+        func_800EF04C(center, &((f32 *)arg0)[10]);
+        for (i = -1; i != 3; i += 2) {
+            for (j = -1; j != 3; j += 2) {
+                for (k = -1; k != 3; k += 2) {
+                    func_800EF5A0(corner, &((f32 *)arg0)[16], size1[0] * i, size1[1] * j, size1[2] * k);
+                    func_800EF04C(corner, center);
+                    func_80800584_ncpoddialog(corner, arg1, arg2, arg3, arg4, arg5, &count, arg6);
+                }
+            }
+        }
+    }
+    if (func_80800698_ncpoddialog(arg0)) {
+        size2[1] = (((f32 *)arg0)[4] - ((f32 *)arg0)[7]) * 0.5f;
+        size2[0] = ((f32 *)arg0)[5] * 0.5f;
+        size2[2] = ((f32 *)arg0)[6] * 0.5f;
+        center[0] = 0.0f;
+        center[1] = ((f32 *)arg0)[7] + size2[1];
+        center[2] = 0.0f;
+        func_800EE7F8(rotation, &((f32 *)arg0)[19]);
+        rotation[0] = 0.0f;
+        func_800EF5A0(center, rotation, center[0], center[1], center[2]);
+        func_800EE7F8(position, &((f32 *)arg0)[13]);
+        func_800EF04C(center, position);
+        for (i = -1; i != 3; i += 2) {
+            for (j = -1; j != 3; j += 2) {
+                for (k = -1; k != 3; k += 2) {
+                    func_800EF5A0(corner, rotation, size2[0] * i, size2[1] * j, size2[2] * k);
+                    func_800EF04C(corner, center);
+                    func_80800584_ncpoddialog(corner, arg1, arg2, arg3, arg4, arg5, &count, arg6);
+                }
+            }
+        }
+    }
+}
 
 /* extern */
 
