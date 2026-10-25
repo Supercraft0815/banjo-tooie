@@ -276,7 +276,62 @@ void sumumbofx_entrypoint_6(u8 *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4, f3
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/mumbofx/sumumbofx_entrypoint_7.s")
+void sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f32 *arg5, f32 *arg6) {
+    f32 sumumbofx_entrypoint_26(void *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
+    void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
+    f32 scale;
+    s32 i;
+    u32 mode;
+    f32 *vec;
+    u8 *p;
+    s32 one = 1;
+    s32 two = 2;
+
+    scale = sumumbofx_entrypoint_26(arg0);
+    p = arg0;
+    p += arg2 * 0x2C;
+    p += 0x64;
+    i = arg2;
+    if (arg2 < arg3) {
+        do {
+            func_8080060C_sumumbofx(arg0, p, scale);
+            vec = (f32 *)(p + 0x10);
+            *(f32 *)(p + 4) += *(f32 *)(p + 8) * 0.15f;
+            if (*(f32 *)(p + 4) > 359.0f) {
+                while (*(f32 *)(p + 4) > 359.0f) {
+                    *(f32 *)(p + 4) -= 360.0f;
+                }
+                mode = *(u32 *)(arg0 + 0x60) >> 25;
+                if (one != mode && two != mode) {
+                    *(f32 *)(p + 0x1C) = 0.25f;
+                }
+            }
+            *(f32 *)p += *(f32 *)(p + 0xC) * 0.3f;
+            if (*(f32 *)p > 359.0f) {
+                *(f32 *)p = 0.0f;
+            }
+            func_800EF4E4(vec, *(f32 *)(p + 4), *(f32 *)p, 0.0f, 0.0f, arg1);
+            func_800EF04C(vec, arg4);
+            if (arg6 != NULL) {
+                func_800EF5A0(vec, arg6, *(f32 *)(p + 0x10), *(f32 *)(p + 0x14), *(f32 *)(p + 0x18));
+            }
+            if (arg5 != NULL) {
+                func_800EF04C(vec, arg5);
+            }
+            if (*(f32 *)(p + 0x28) < 1.0f) {
+                func_808003E4_sumumbofx(p, 125.0f, 40.0f);
+            }
+            i++;
+            p += 0x2C;
+        } while (i != arg3);
+    }
+    if (arg5 != NULL) {
+        func_800EE7F8((f32 *)(arg0 + 0x1C), arg5);
+    }
+}
 
 void sumumbofx_entrypoint_8(u8 *arg0, s32 arg1) {
     s32 func_800D674C(s32);
