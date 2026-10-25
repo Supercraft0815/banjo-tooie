@@ -20,6 +20,8 @@ void *func_800B8148(u8 *ch);
 FontGlyph *func_800B0D6C(void *font, s32 ch);
 u8 *func_800B0D60(void *font);
 f32 func_800DC178(f32, f32);
+struct ImageStruct;
+struct ImageStruct *func_800D674C(s32);
 
 void func_800B7EA0(s32 arg0, s32 arg1) {
     void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, s32 cms, s32 cmt, s32 *width, s32 *height);
@@ -489,7 +491,68 @@ void func_800B9170(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E91790/func_800B956C.s")
+void func_800B956C(void) {
+    typedef struct { f32 position[3]; f32 velocity[3]; } Particle;
+    typedef struct { u8 pad[0x1C]; Particle *particles; } Emitter;
+    typedef struct {
+        Emitter *emitter;
+        s32 count;
+        u8 pad8[0x14];
+        f32 floor;
+        u8 pad20[0x30];
+        f32 radius;
+        Gfx *displayList;
+        void *geometry;
+    } State;
+    typedef struct {
+        s32 unk0;
+        s32 geometry;
+        s16 textures;
+        s16 unkA;
+        s32 displayList;
+        s32 vertices;
+    } Model;
+    extern s32 D_80127128;
+    extern f32 D_80127148[3];
+    extern f32 D_80127154[3];
+    extern Gfx D_8011A690[];
+    extern Gfx D_8011A6B0[];
+    Gfx **func_800A7180(void);
+    void func_800E39A8(f32 *, f32 *);
+    f32 func_800B2354(void *);
+    s32 func_800B97A4(Gfx **, Mtx **, f32 *);
+    Gfx **buffers;
+    Model *model;
+    void *vertices;
+    Gfx *gfx;
+    Particle *particle;
+
+    if (((State *)&D_80127128)->emitter != NULL && ((State *)&D_80127128)->count != 0) {
+        buffers = func_800A7180();
+        model = (void *)func_800D674C(0x9F4);
+        func_800E39A8(D_80127148, D_80127154);
+        ((State *)&D_80127128)->displayList = (Gfx *)((u8 *)model + model->displayList + 8);
+        vertices = (u8 *)model + model->vertices;
+        ((State *)&D_80127128)->radius = func_800B2354(vertices);
+        gfx = *buffers;
+        gSPSegment(gfx++, 1, osVirtualToPhysical((u8 *)vertices + 0x18));
+        gSPSegment(gfx++, 2, osVirtualToPhysical((u8 *)model + model->textures + 0x10));
+        gSPSetGeometryMode(gfx++, G_ZBUFFER);
+        gSPDisplayList(gfx++, (u8 *)D_8011A690 - 0x80000000);
+        gSPSegment(gfx++, 3, osVirtualToPhysical(D_8011A6B0));
+        *buffers = gfx;
+        ((State *)&D_80127128)->geometry = (u8 *)model + model->geometry;
+        for (particle = ((State *)&D_80127128)->emitter->particles;
+             particle < ((State *)&D_80127128)->emitter->particles + ((State *)&D_80127128)->count;
+             particle++) {
+            if (func_800B97A4(buffers, (Mtx **)(buffers + 1), particle->position) == 0 &&
+                particle->position[1] < ((State *)&D_80127128)->floor) {
+                func_800B9108(particle - ((State *)&D_80127128)->emitter->particles);
+                particle--;
+            }
+        }
+    }
+}
 
 s32 func_800B97A4(Gfx **gfx, Mtx **mtx, f32 position[3]) {
     extern const f32 D_801256AC;
