@@ -1,5 +1,6 @@
 #include "common.h"
 void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, s32, s32, s16);
 
 /* extern */
 
@@ -355,7 +356,90 @@ void chjinjo_entrypoint_4(s32 arg0, s32 arg1, s32 arg2) {
     _glcutDll_entrypoint_6(0x142, 0x84);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jinjo/func_80800C10_chjinjo.s")
+s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
+    typedef struct {
+        u8 pad0[0x18];
+        u32 pad18_16 : 16;
+        u32 unk18_5 : 11;
+        u32 pad18_0 : 5;
+    } JinjoEvent;
+    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void _suexpression_entrypoint_12(void *, f32, f32);
+    void *_suexpression_entrypoint_20(Actor *);
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void _suexpression_entrypoint_8(Actor *, u32);
+    void func_800D0BD4(s32, u32);
+    u8 func_800D0CC8(s32);
+    s32 func_800D129C(u32);
+    u32 func_800D1338(u32);
+    s32 func_800D24E8(s32, s32, u32);
+    s32 func_800DA9E4(s32, s32);
+    void func_80102424(Actor *, s32);
+    s32 func_80103140(Actor *, u32, u16);
+    void func_80108A30(s32, void *, f32, s32);
+    void func_8010A570(Actor *);
+    s32 func_8010A6B0(Actor *, s32);
+    u32 func_80801098_chjinjo(Actor *, s32);
+    extern s32 D_80801324_chjinjo;
+    extern void _chjinjo_entrypoint_4(s32, s32, s32);
+    JinjoEvent *sp44;
+    s32 sp40;
+    s32 color;
+
+    switch (arg1) {
+    case 0x29:
+        _suexpression_entrypoint_7(arg0, 1, (s16)func_808000DC_chjinjo(arg0));
+        _suexpression_entrypoint_12(_suexpression_entrypoint_20(arg0), 65.0f, 30.0f);
+        break;
+    case 0x2A:
+        _suexpression_entrypoint_8(arg0, 1);
+        break;
+    case 0x3E:
+        sp44 = arg2;
+        if ((s32)arg0->unk70_10 < 5) {
+            if (func_8010A6B0(arg0, sp44->unk18_5)) {
+                sp40 = func_800D0CC8(arg0->unk6C_0);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801324_chjinjo);
+                func_80102424(arg0, 6);
+                _subaddieDll_entrypoint_4(arg0, 1);
+                func_8010A570(arg0);
+                if (!func_800DA9E4(0x35, 1)) {
+                    func_800C05B8(0xCDA, 0xC, NULL, NULL, (s32)_chjinjo_entrypoint_4, 0, func_808000DC_chjinjo(arg0));
+                }
+                func_800D0BD4(arg0->unk6C_0, 0);
+                func_800D24E8(sp40 + 0xE1, func_800D1338(sp40), func_800D129C(sp40));
+                func_80801098_chjinjo(arg0, sp44->unk18_5);
+            }
+        }
+        break;
+    case 0x13:
+        arg0->unk6C_0 = (s32)arg2;
+        if (arg0->unk6C_0 == 0x1E) {
+            arg0->unk74_29 = 1;
+        }
+        break;
+    case 0x7E:
+        if (arg0->rotation[1] == 0.0f) {
+            func_80108A30(0x4D6, arg0->position, 0, 0x32);
+        }
+        break;
+    case 0x14:
+        arg0->unk64_20 = 1;
+        break;
+    case 0x95:
+        if (arg0->unk6C_9 == 0x48F) {
+            color = chjinjo_entrypoint_2(-1);
+        } else {
+            color = func_800D0CC8(arg0->unk6C_0);
+        }
+        func_80103140(arg0, 0x643, color + 0xC31);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800EE4_chjinjo(Actor *arg0) {
     extern u32 D_80801358_chjinjo;
