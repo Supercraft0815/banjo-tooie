@@ -68,7 +68,91 @@ s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800624_chjollyroger.s")
+void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    void _subaddieitem_entrypoint_2(s32);
+    void func_800C01A8(s16, s32);
+    void func_800C0850(void);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800D1A04(s32);
+    s32 func_800DA298(s32);
+    s32 func_800F54E4(void);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F7F98(s32, u32);
+    s32 func_80100094(s32, s32);
+    s32 func_80101180(s32, s32, s32);
+    void func_80102424(Actor *, s32);
+    void func_80800E30_chjollyroger(void *);
+    void func_80800F3C_chjollyroger(Actor *, s32, s32);
+    void func_80800FBC_chjollyroger(Actor *, s32, s32);
+    extern s32 D_80801200_chjollyroger;
+    extern s32 D_80801238_chjollyroger;
+    s32 temp;
+
+    switch (arg1) {
+    case 0x1002:
+        if (arg2 > 0) {
+            if (func_800D1A04(0x4E) < 2) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1005, 0xE, arg0->position, 0x55);
+                return;
+            }
+            if (func_800F64A4(func_800F54E4(), 0x201)) {
+                func_80800FBC_chjollyroger(arg0, 0xD, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x1041, 0xE, arg0->position, 0x55);
+                return;
+            }
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1225, 0xE, arg0->position, 0x55);
+            return;
+        }
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x1003, 0xE, arg0->position, 0x55);
+        return;
+    case 0x1041:
+        _subaddieitem_entrypoint_2(func_80100094((s32)arg0, 0));
+        func_80102424(arg0, func_800DA298(0xC0) ? 8 : 7);
+        return;
+    case 0x1004:
+        func_80101180(0x36A, 7, 0);
+        func_80800F3C_chjollyroger(arg0, 3, 0x10);
+        return;
+    default:
+        if (func_800DA298(0xC0)) {
+            switch (_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801238_chjollyroger, 7)) {
+            case 1:
+                if (!func_800D0A9C(0x24, 1)) {
+                    func_800F7F98(func_800F54E4(), 1);
+                    func_80800F3C_chjollyroger(arg0, 1, 0x20);
+                    func_800D1000(0x24, 1, 0, 1, 0);
+                    return;
+                }
+            case 2:
+                if (!func_800DA298(0xC2) && !func_800DA298(0x41)) {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x1002, 0x4E, arg0->position, 0x55);
+                    return;
+                }
+                func_800C01A8(0x64, 0);
+                func_800C0850();
+            default:
+                func_80800E30_chjollyroger(arg0);
+                func_80102424(arg0, 3);
+                return;
+            }
+        } else {
+            temp = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801200_chjollyroger, 7);
+            if (temp == 1 || temp == 2) {
+                if (!func_800DA298(0xC2) && !func_800DA298(0x41)) {
+                    _subaddiedialog_entrypoint_11(arg0->unk0, 0x1002, 0x4E, arg0->position, 0x55);
+                    return;
+                }
+                func_800C01A8(0x64, 0);
+                func_800C0850();
+            }
+            func_80800E30_chjollyroger(arg0);
+            func_80102424(arg0, 1);
+        }
+    }
+}
 
 void func_80800930_chjollyroger(Actor *arg0) {
     void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
