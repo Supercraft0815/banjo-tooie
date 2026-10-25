@@ -540,7 +540,243 @@ void func_80800B88_chjiggygamenew(Actor *arg0) {
     } while (i != 20);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_80800CC0_chjiggygamenew.s")
+void func_80800CC0_chjiggygamenew(Actor *arg0) {
+    struct Entry {
+        s8 unk0;
+        s8 unk1;
+        u8 unk2;
+        u8 unk3;
+        u16 unk4;
+        u16 unk6;
+        f32 unk8;
+        f32 position[3];
+    };
+    f32 func_80013970(f32);
+    s32 func_800D90A4(f32 *);
+    int func_800D91EC(f32 *, f32);
+    void func_800E0ACC(void *);
+    void func_800E0AF0(void *, f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    void func_800E0B8C(void *, u8, f32, f32, f32, f32);
+    void func_800E0C20(void *, u8, f32, f32, f32, f32);
+    void func_800EF334(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F1214(f32, f32, f32);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    s32 func_8080363C_chjiggygamenew(Unk80132ED0 *);
+    void func_808035C4_chjiggygamenew(Unk80132ED0 *, f32 *);
+    extern f32 D_80803AE0_chjiggygamenew[][3];
+    extern f32 D_80803BD0_chjiggygamenew[][3];
+    extern s32 D_80803CC0_chjiggygamenew[];
+    struct Entry *data;
+    s32 i;
+    void *model;
+    f32 scale;
+    f32 angle;
+    f32 position[3];
+    f32 blend;
+
+    data = func_80100094(arg0, 0U);
+    model = (void *)func_8010262C(arg0->unk0, 0x3C);
+    if (model != NULL) {
+        func_800E0ACC(model);
+        func_800E0AF0(model, 1.0);
+        for (i = 0; i < 20; i++) {
+            struct Entry *entry = &data[i];
+            f32 previous;
+            switch ((s32)entry->unk4) {
+                case 0x18:
+                    scale = 1.0;
+                    angle = 0.0f;
+                    blend = 0.0f;
+                    func_800EFA4C(position, 0.0f, 0.0f, 0.0f);
+                    break;
+                case 0x3000:
+                    if (func_800D90A4(&entry->unk8)) {
+                        func_808007E4_chjiggygamenew((void *)data, 0x844, i);
+                    }
+                    blend = func_800F12D4(entry->unk8, 2.0f, 0.0f, 0.0f, 1.0);
+                    func_800EFB24(position, D_80803BD0_chjiggygamenew[(*entry).unk1], D_80803AE0_chjiggygamenew[i]);
+                    position[0] -= func_80013970(blend * 180.0f) * (100.0f + 10.0f * entry->unk2);
+                    angle = entry->unk0 * 90.0f;
+                    scale = 0.75f;
+                    break;
+                case 0x6B54:
+                    scale = 0.75f;
+                    if (arg0->actorData[2] == (*entry).unk1 + 1 && func_8080363C_chjiggygamenew(arg0->unk3C)) {
+                        entry->unk8 = 0.0f;
+                        func_808007E4_chjiggygamenew((void *)data, 0x12C, i);
+                    }
+                    func_800EFB24(position, D_80803BD0_chjiggygamenew[(*entry).unk1], D_80803AE0_chjiggygamenew[i]);
+                    angle = entry->unk0 * 90.0f;
+                    blend = 1.0f;
+                    break;
+                case 0x2A1: {
+                    previous = entry->unk8;
+                    if (func_800D90A4(&entry->unk8)) {
+                        func_808007E4_chjiggygamenew((void *)data, 0x934, i);
+                        func_80800B88_chjiggygamenew(arg0);
+                    } else if (previous > 0.75f && entry->unk8 <= 0.75f) {
+                        func_80800B88_chjiggygamenew(arg0);
+                    }
+                    scale = 0.75f;
+                    blend = func_800F12D4(entry->unk8, 1.5f, 0.0f, 1.0, 0.0f);
+                    func_800EFB24(position, entry->position, D_80803AE0_chjiggygamenew[i]);
+                    position[0] -= func_80013970(blend * 180.0f) * 100.0f + func_80013970(blend * 180.0f) * 10.0f * entry->unk2;
+                    angle = entry->unk0 * 90.0f;
+                    break;
+                }
+                case 0xC:
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        entry->unk8 = 0.0f;
+                        if (arg0->actorData[2] != (*entry).unk1 + 1) {
+                            func_808007E4_chjiggygamenew((void *)data, 0x844, i);
+                        }
+                    }
+                    func_800EFB24(position, D_80803BD0_chjiggygamenew[(*entry).unk1], D_80803AE0_chjiggygamenew[i]);
+                    angle = entry->unk0 * 90.0f;
+                    scale = func_80013970(func_800F10B4(entry->unk8, 0.0f, 0.2f, 0.0f, 1.0) * 360.0f) * 0.1f + 0.75f;
+                    blend = 1.0f;
+                    break;
+                case 0xF018: {
+                    f32 target[3];
+                    f32 t;
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        func_808007E4_chjiggygamenew((void *)data, 0x470, i);
+                    }
+                    t = func_800F10B4(entry->unk8, 0.0f, 0.2f, 0.0f, 1.0);
+                    func_800EFB24(position, D_80803BD0_chjiggygamenew[(*entry).unk1], D_80803AE0_chjiggygamenew[i]);
+                    func_808035C4_chjiggygamenew(arg0->unk3C, target);
+                    func_800EFB24(target, target, D_80803AE0_chjiggygamenew[i]);
+                    func_800EFE50(position, position, target, t);
+                    angle = entry->unk0 * 90.0f;
+                    scale = func_800F1214(t, 0.75, 1.1f);
+                    blend = 1.0f;
+                    break;
+                }
+                case 0:
+                    blend = 1.0f;
+                    func_808035C4_chjiggygamenew(arg0->unk3C, position);
+                    func_800EFB24(position, position, D_80803AE0_chjiggygamenew[i]);
+                    angle = entry->unk0 * 90.0f;
+                    scale = 1.1f;
+                    break;
+                case 0x1FFF: {
+                    f32 t;
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        blend = 1.0f;
+                        entry->unk8 = 0.0f;
+                        func_808007E4_chjiggygamenew((void *)data, 0x470, i);
+                        t = 0.0f;
+                        entry->unk0--;
+                        if (entry->unk0 >= 4) {
+                            entry->unk0 -= 4;
+                        }
+                    } else {
+                        blend = 1.0f;
+                        t = func_800F10B4(entry->unk8, 0.0f, 0.2f, 0.0f, 1.0);
+                    }
+                    func_808035C4_chjiggygamenew(arg0->unk3C, position);
+                    func_800EFB24(position, position, D_80803AE0_chjiggygamenew[i]);
+                    angle = entry->unk0 * 90.0f - 90.0f * t;
+                    scale = 1.1f;
+                    break;
+                }
+                case 0x800: {
+                    f32 t;
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        blend = 1.0f;
+                        func_808007E4_chjiggygamenew((void *)data, 0x470, i);
+                        t = 0.0f;
+                        entry->unk0++;
+                        if (entry->unk0 >= 4) {
+                            entry->unk0 -= 4;
+                        }
+                    } else {
+                        blend = 1.0f;
+                        t = func_800F10B4(entry->unk8, 0.0f, 0.2f, 0.0f, 1.0);
+                    }
+                    func_808035C4_chjiggygamenew(arg0->unk3C, position);
+                    func_800EFB24(position, position, D_80803AE0_chjiggygamenew[i]);
+                    angle = entry->unk0 * 90.0f + 90.0f * t;
+                    scale = 1.1f;
+                    break;
+                }
+                case 0x32D4: {
+                    f32 target[3];
+                    f32 t;
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        func_808007E4_chjiggygamenew((void *)data, 0x844, i);
+                    }
+                    t = func_800F10B4(entry->unk8, 0.0f, 0.2f, 1.0, 0.0f);
+                    func_800EFB24(position, D_80803BD0_chjiggygamenew[(*entry).unk1], D_80803AE0_chjiggygamenew[i]);
+                    func_800EFB24(target, entry->position, D_80803AE0_chjiggygamenew[i]);
+                    func_800EFE50(position, position, target, t);
+                    angle = entry->unk0 * 90.0f;
+                    scale = func_800F1214(t, 0.75, 1.1f);
+                    blend = 1.0f;
+                    break;
+                }
+                case 0xB825: {
+                    f32 target[3];
+                    f32 t;
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        func_808007E4_chjiggygamenew((void *)data, 0x19C, i);
+                    }
+                    t = func_800F10B4(entry->unk8, 0.0f, 0.2f, 0.0f, 1.0);
+                    func_800EFB24(target, D_80803AE0_chjiggygamenew[entry->unk3], D_80803AE0_chjiggygamenew[i]);
+                    target[0] -= t * 20.0f;
+                    func_800EFB24(position, entry->position, D_80803AE0_chjiggygamenew[i]);
+                    func_800EFE50(position, position, target, t);
+                    angle = entry->unk0 * 90.0f;
+                    scale = func_800F1214(t, 1.1f, 1.0);
+                    blend = 1.0f;
+                    break;
+                }
+                case 0xA000:
+                    blend = 1.0f;
+                    func_800EFB24(position, D_80803AE0_chjiggygamenew[entry->unk3], D_80803AE0_chjiggygamenew[i]);
+                    position[0] -= 20.0f;
+                    angle = entry->unk0 * 90.0f;
+                    scale = 1.0;
+                    break;
+                case 0xB41D: {
+                    f32 target[3];
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        func_808007E4_chjiggygamenew((void *)data, 0x470, i);
+                    }
+                    previous = func_800F10B4(entry->unk8, 0.0f, 0.2f, 1.0, 0.0f);
+                    func_800EFB24(target, D_80803AE0_chjiggygamenew[entry->unk3], D_80803AE0_chjiggygamenew[i]);
+                    target[0] -= previous * 20.0f;
+                    func_808035C4_chjiggygamenew(arg0->unk3C, position);
+                    func_800EFB24(position, position, D_80803AE0_chjiggygamenew[i]);
+                    func_800EFE50(position, position, target, previous);
+                    angle = entry->unk0 * 90.0f;
+                    scale = func_800F1214(previous, 1.1f, 1.0);
+                    blend = 1.0f;
+                    break;
+                }
+                case 0xE825:
+                    if (func_800D91EC(&entry->unk8, 0.2f)) {
+                        func_808007E4_chjiggygamenew((void *)data, 0x934, i);
+                    }
+                    blend = func_800F10B4(entry->unk8, 0.0f, 0.2f, 1.0, 0.0f);
+                    func_800EFB24(position, entry->position, D_80803AE0_chjiggygamenew[i]);
+                    scale = 1.0;
+                    angle = 0.0f;
+                    break;
+            }
+            func_800EF334(position, 0.01f);
+            func_800E0C20(model, D_80803CC0_chjiggygamenew[i], blend, position[0], position[1], position[2]);
+            func_800E0AFC(model, D_80803CC0_chjiggygamenew[i], blend, angle, 0.0f, 0.0f);
+            func_800E0B8C(model, D_80803CC0_chjiggygamenew[i], blend, scale, scale, scale);
+        }
+    }
+}
 
 s32 func_808019E0_chjiggygamenew(Actor *arg0) {
     s32 _glglobalsettings_entrypoint_3();
@@ -628,7 +864,7 @@ void func_80801CE8_chjiggygamenew(Actor *arg0) {
     struct Data { struct Entry entries[20]; u8 active[20]; };
     void func_800EDE54(void *, s32[4], s32[4], f32);
     void *func_8010649C(void *, s32);
-    s32 func_8080363C_chjiggygamenew();
+    s32 func_8080363C_chjiggygamenew(Unk80132ED0 *);
 
     void *part;
     s32 selected;
@@ -1129,8 +1365,8 @@ void func_808035FC_chjiggygamenew(Actor *arg0, f32 *arg1) {
     arg1[1] = *(f32 *)((u8 *)temp_v0 + 0x1C);
 }
 
-s32 func_8080363C_chjiggygamenew(void) {
-    return ((u32) (*(u16 *)((s8 *)(func_80106790()) + (0x72))) >> 0xA) == 1;
+s32 func_8080363C_chjiggygamenew(Unk80132ED0 *arg0) {
+    return ((u32) (*(u16 *)((s8 *)(func_80106790(arg0)) + (0x72))) >> 0xA) == 1;
 }
 
 void func_80803668_chjiggygamenew(Unk80132ED0 *arg0, void *arg1) {
