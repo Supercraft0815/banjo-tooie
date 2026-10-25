@@ -4834,4 +4834,67 @@ void func_80809310_chdiggerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808093F8_chdiggerboss.s")
+void func_808093F8_chdiggerboss(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 func_800B53A4(s32);
+    void func_800B5450(void *);
+    void func_800BA22C(s32, s32);
+    void func_800BA77C(s32, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    f32 func_800DC178(f32, f32);
+    void func_800E3A58(f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_8010D930(s32, s32, f32 *, s32 *);
+    extern s32 D_8080A22C_chdiggerboss[];
+    extern s32 D_8080A250_chdiggerboss[];
+    extern s32 D_8080A25C_chdiggerboss[];
+    extern s32 D_8080A294_chdiggerboss[];
+    extern s32 D_8080A2B8_chdiggerboss[];
+    f32 position[3];
+    f32 rotation[3];
+    f32 offset[3];
+    s32 i;
+    s32 emitter;
+    struct {
+        u8 pad[0xE8];
+        void *emitters[4];
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    func_800EE7F8(position, arg0->position);
+    position[1] += 300.0f;
+    if (data->emitters[0]) {
+        func_800B5450(data->emitters[0]);
+    }
+    data->emitters[0] = (void *)func_800BBCB8(position, position, 3.0f, 1, D_8080A25C_chdiggerboss);
+    if (data->emitters[1]) {
+        func_800B5450(data->emitters[1]);
+    }
+    emitter = func_800B53A4(8);
+    data->emitters[1] = (void *)emitter;
+    for (i = 0; i != 8; i++) {
+        func_800EEB9C(offset, (f32)i * 45.0f, func_800DC178(120.0f, 160.0f));
+        func_800EF04C(offset, position);
+        offset[1] += func_800DC178(10.0f, 50.0f);
+        func_800BABB8(emitter, offset, position, 1.0f, D_8080A2B8_chdiggerboss);
+    }
+    if (data->emitters[2]) {
+        func_800B5450(data->emitters[2]);
+    }
+    data->emitters[2] = (void *)func_800BBCB8(position, position, 1.0f, 1, D_8080A294_chdiggerboss);
+    if (data->emitters[3]) {
+        func_800B5450(data->emitters[3]);
+    }
+    func_800E3A58(rotation);
+    emitter = func_800B53A4(1);
+    data->emitters[3] = (void *)emitter;
+    func_800BABB8(emitter, position, position, 1.0f, D_8080A294_chdiggerboss);
+    func_800BA77C(emitter, (s16)(s32)(rotation[0] + 90.0f), (s16)(s32)rotation[1], (s16)(s32)rotation[2]);
+    func_800BA22C(emitter, 1);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080A250_chdiggerboss);
+    func_8010D930(7, -1, arg0->position, D_8080A22C_chdiggerboss);
+}
