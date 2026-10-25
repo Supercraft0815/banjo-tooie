@@ -488,7 +488,486 @@ void func_800BABA0(void *arg0, f32 arg1) {
 void func_800BABB0(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E93440/func_800BABB8.s")
+/* extern */
+
+s32 func_800BABB8(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s16 *arg4) {
+
+    s8 func_800AF5A0(s32);
+    s32 func_800B53A4(s32);
+    void func_800B5534(s8 *);
+    s32 func_800D674C(u16);
+    s8 func_800D738C(s32);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    s32 func_800DC298(f32);
+    void func_800EE940(s16 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFA6C(void *, s16, s16, s16);
+    void func_800F31EC(u8 *, s32, s32, s32);
+    void func_800F31FC(u8 *, s32, s32, s32, s32);
+    f32 var_f22;
+    s16 var_v0;
+    s32 sp17C;
+
+    var_f22 = 1.0f;
+    sp17C = 0;
+    if ((arg0 != 0) && (arg1 != NULL)) {
+        func_800EE940((s16 *)(arg0 + 0x12), arg1);
+    }
+    if (arg4 == NULL) return arg0;
+    {
+        var_v0 = *arg4;
+        arg4++;
+        if (var_v0 != 0) {
+            do {
+                switch (var_v0 & 0xFF) {
+                case 0x1: {
+                    s32 i;
+                    for (i = 0; i < 3; i++, arg4 += 1) {
+                        ((s16 *)(arg0 + 52))[i] = (f32)*(s16 *)arg4 * var_f22;
+                        ((s16 *)(arg0 + 58))[i] = (f32)*(s16 *)(arg4 + 3) * var_f22;
+                    }
+                    arg4 += 3;
+                    break;
+                }
+                case 0x2:
+                    (*(u8 *)((u8 *)arg0 + (0x83))) = (u8) ((s32) (var_v0 & 0xFF00) >> 8);
+                    break;
+                case 0x3:
+                    (*(s16 *)((u8 *)arg0 + (0xAA))) = (*(s16 *)((u8 *)arg4 + (0)));
+                    (*(s32 *)((u8 *)arg0 + (0xBC))) = (s32) (*(s16 *)((u8 *)arg4 + (2)));
+                    arg4 += 2;
+                    break;
+                case 0x4: {
+                    f32 x;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    arg4 += 1;
+                    *(f32 *)(arg0 + 0xB0) = x;
+                    break;
+                }
+                case 0x5: {
+                    s32 temp_v0_2;
+                    temp_v0_2 = (*(s16 *)((u8 *)arg4 + (0)));
+                    arg4 += 1;
+                    (*(s16 *)((u8 *)arg0 + (0xAC))) = temp_v0_2;
+                    break;
+                }
+                case 0x6: {
+                    s32 temp_v0_3;
+                    temp_v0_3 = (*(s16 *)((u8 *)arg4 + (0)));
+                    arg4 += 1;
+                    (*(s16 *)((u8 *)arg0 + (0xAC))) = (s16) (s32) (arg1[1] + (f32) temp_v0_3);
+                    break;
+                }
+                case 0x7:
+                    (*(s16 *)((u8 *)arg0 + (0xA8))) = (*(s16 *)((u8 *)arg4 + (0)));
+                    arg4 += 1;
+                    break;
+                case 0x8: {
+                    f32 x, y;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    arg4 += 2;
+                    *(f32 *)(arg0 + 0xB4) = x;
+                    *(f32 *)(arg0 + 0xB8) = y;
+                    break;
+                }
+                case 0x9: {
+                    s32 temp_v0_4;
+                    temp_v0_4 = (*(s16 *)((u8 *)arg4 + (0)));
+                    arg4 += 1;
+                    (*(s16 *)((u8 *)arg0 + (0xAE))) = temp_v0_4;
+                    break;
+                }
+                case 0xA: {
+                    s32 i;
+                    for (i = 0; i < 3; i++, arg4 += 1) {
+                        ((s16 *)(arg0 + 40))[i] = (f32)*(s16 *)arg4 * arg3;
+                        ((s16 *)(arg0 + 46))[i] = (f32)*(s16 *)(arg4 + 3) * arg3;
+                    }
+                    *(u8 *)(arg0 + 5) = 0;
+                    arg4 += 3;
+                    break;
+                }
+                case 0xB:
+                    (*(u8 *)((u8 *)arg0 + (5))) = 2;
+                    (*(s16 *)((u8 *)arg0 + (0x28))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * arg3);
+                    (*(s16 *)((u8 *)arg0 + (0x2A))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * arg3);
+                    (*(s16 *)((u8 *)arg0 + (0x2C))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (4))) * arg3);
+                    (*(s16 *)((u8 *)arg0 + (0x2E))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (6))) * arg3);
+                    arg4 += 4;
+                    break;
+                case 0xC: {
+                    f32 x;
+                    s16 low, high;
+                    x = (f32)arg4[0];
+                    *(u8 *)(arg0 + 5) = 0;
+                    arg4++;
+                    x *= arg3;
+                    low = -x;
+                    func_800EFA6C((void *)(arg0 + 0x28), low, low, low);
+                    high = x;
+                    func_800EFA6C((void *)(arg0 + 0x2E), high, high, high);
+                    break;
+                }
+                case 0xD: {
+                    /* Preserve the original frame slots whose accesses were optimized out. */
+                    s32 stackPadding[8];
+                    s16 x, low;
+                    x = arg4[0];
+                    arg4++;
+                    *(u8 *)(arg0 + 5) = 0;
+                    x = (s32)((f32)x * arg3);
+                    low = -x;
+                    func_800EFA6C((void *)(arg0 + 0x28), low, 0, low);
+                    func_800EFA6C((void *)(arg0 + 0x2E), x, x, x);
+                    break;
+                }
+                case 0xE:
+                    (*(u8 *)((u8 *)arg0 + (5))) = 1;
+                    (*(s16 *)((u8 *)arg0 + (0x28))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * arg3);
+                    (*(s16 *)((u8 *)arg0 + (0x2A))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * arg3);
+                    arg4 += 2;
+                    break;
+                case 0xF:
+                    (*(u8 *)((u8 *)arg0 + (7))) = 1;
+                    (*(f32 *)((u8 *)arg0 + (0x20))) = func_800DC178((*(f32 *)((u8 *)arg0 + (0x54))), (*(f32 *)((u8 *)arg0 + (0x58))));
+                    break;
+                case 0x10: {
+                    s32 temp_v0_6;
+                    temp_v0_6 = func_800B53A4((s32) (var_v0 & 0xFF00) >> 8);
+                    arg0 = temp_v0_6;
+                    if (arg1 != NULL) {
+                        func_800EE940(temp_v0_6 + 0x12, arg1);
+                    }
+                    break;
+                }
+                case 0x11: {
+                    s32 temp_t0;
+                    s32 temp_v0_7;
+                    temp_t0 = (s32) (var_v0 & 0xFF00) >> 8;
+                    sp17C = temp_t0;
+                    temp_v0_7 = func_800B53A4(temp_t0);
+                    arg0 = temp_v0_7;
+                    if (arg1 != NULL) {
+                        func_800EE940(temp_v0_7 + 0x12, arg1);
+                    }
+                    break;
+                }
+                case 0x12: {
+                    s16 x, y, z;
+                    x = arg4[0];
+                    y = arg4[1];
+                    z = arg4[2];
+                    arg4 += 3;
+                    func_800EFA6C((void *)(arg0 + 0xC), x, y, z);
+                    arg4 += 3;
+                    break;
+                }
+                case 0x13:
+                    if (((s32) (var_v0 & 0xFF00) >> 8) != 0) {
+                        var_f22 = arg3;
+                    } else {
+                        var_f22 = 1.0f;
+                    }
+                    break;
+                case 0x14: {
+                    (*(s16 *)((u8 *)arg0 + (0))) = 0x586;
+                    (*(f32 *)((u8 *)arg0 + (0xB0))) = 0.4f;
+                    (*(f32 *)((u8 *)arg0 + (0x18))) = 0.0f;
+                    (*(s16 *)((u8 *)arg0 + (0xA8))) = 4;
+                    (*(s16 *)((u8 *)arg0 + (0xA2))) = 0x300;
+                    (*(s16 *)((u8 *)arg0 + (0xA4))) = 0x400;
+                    (*(f32 *)((u8 *)arg0 + (0x1C))) = 0.8f;
+                    func_800EFA6C(arg0 + 0x40, 0xC8, 0, 0xC8);
+                    func_800EFA6C(arg0 + 0x46, 0x190, 0, 0x190);
+                    func_800EFA6C((void *)(arg0 + 0x34), 0, -0x3E8, 0);
+                    func_800EFA6C(arg0 + 0x3A, 0, -0x320, 0);
+                    break;
+                }
+                case 0x15: {
+                    f32 x, y;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    arg4 += 2;
+                    *(f32 *)(arg0 + 0x18) = x;
+                    *(f32 *)(arg0 + 0x1C) = y;
+                    break;
+                }
+                case 0x16:
+                    (*(s16 *)((u8 *)arg0 + (0))) = (*(s16 *)((u8 *)arg4 + (0)));
+                    arg4 += 1;
+                    break;
+                case 0x17: {
+                    f32 probability;
+                    probability = (f32)*arg4++ * 0.00390625f;
+                    if (func_800DC298(probability) != 0) {
+                        *(s16 *)(arg0 + 0) = (u16)*(s16 *)(arg0 + 0) | 0x800;
+                    }
+                    break;
+                }
+                case 0x18: {
+                    s16 x, y;
+                    f32 z, w;
+                    x = arg4[0];
+                    y = arg4[1];
+                    z = (f32)arg4[2] * 0.00390625f;
+                    w = (f32)arg4[3] * 0.00390625f;
+                    arg4 += 4;
+                    *(s16 *)(arg0 + 0x86) = y;
+                    *(s16 *)(arg0 + 0x84) = x;
+                    *(f32 *)(arg0 + 0x78) = z;
+                    *(f32 *)(arg0 + 0x7C) = w;
+                    break;
+                }
+                case 0x19: {
+                    s16 temp_v0_9;
+                    s16 temp_v1;
+                    temp_v0_9 = (*(s16 *)((u8 *)arg4 + (0)));
+                    temp_v1 = (*(s16 *)((u8 *)arg4 + (2)));
+                    arg4 += 2;
+                    (*(s16 *)((u8 *)arg0 + (0x86))) = temp_v1;
+                    (*(s16 *)((u8 *)arg0 + (0x84))) = temp_v0_9;
+                    break;
+                }
+                case 0x1A:
+                    func_800BA22C(arg0, (s32) (var_v0 & 0xFF00) >> 8);
+                    break;
+                case 0x1B:
+                    func_800EFA6C(arg0 + 0x34, 0, (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * var_f22), 0);
+                    func_800EFA6C(arg0 + 0x3A, 0, (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * var_f22), 0);
+                    arg4 += 2;
+                    break;
+                case 0x1C: {
+                    s32 temp_v0_10;
+                    temp_v0_10 = func_800BA2E8((s32) (var_v0 & 0xFF00) >> 8);
+                    arg0 = temp_v0_10;
+                    if (arg1 != NULL) {
+                        func_800EE940(temp_v0_10 + 0x12, arg1);
+                    }
+                    break;
+                }
+                case 0x1D: {
+                    s32 model, kind;
+                    model = *arg4++;
+                    if (model == *(u16 *)(arg0 + 2)) break;
+                    *(u16 *)(arg0 + 2) = model;
+                    kind = func_800D738C(model & 0xFFFF);
+                    *(u8 *)(arg0 + 0xA) = kind;
+                    if ((kind & 0xFF) == 7) {
+                        *(u8 *)(arg0 + 0xB) = func_800AF5A0(func_800D674C(*(u16 *)(arg0 + 2)));
+                    }
+                    break;
+                }
+                case 0x1E: {
+                    f32 random;
+                    random = func_800DC178((f32)arg4[0], (f32)arg4[1]);
+                    random = arg3 * random;
+                    arg4 += 2;
+                    *(s16 *)(arg0 + 0x14) += (s16)random;
+                    break;
+                }
+                case 0x1F: {
+                    s16 temp_v0_13;
+                    s16 temp_v1_2;
+                    temp_v0_13 = (*(s16 *)((u8 *)arg4 + (0)));
+                    temp_v1_2 = (*(s16 *)((u8 *)arg4 + (2)));
+                    arg4 += 2;
+                    func_800F31EC(arg0 + 0x80, (u32) (temp_v0_13 & 0xFF00) >> 8, temp_v0_13 & 0xFF, (u32) (temp_v1_2 & 0xFF00) >> 8);
+                    break;
+                }
+                case 0x20: {
+                    s16 temp_v0_14;
+                    s16 temp_v1_3;
+                    temp_v0_14 = (*(s16 *)((u8 *)arg4 + (0)));
+                    temp_v1_3 = (*(s16 *)((u8 *)arg4 + (2)));
+                    arg4 += 2;
+                    func_800F31FC(arg0 + 0x80, (u32) (temp_v0_14 & 0xFF00) >> 8, temp_v0_14 & 0xFF, (u32) (temp_v1_3 & 0xFF00) >> 8, temp_v1_3 & 0xFF);
+                    break;
+                }
+                case 0x21: {
+                    s16 temp_a1_2;
+                    s16 temp_a2;
+                    s16 temp_a3;
+                    temp_a1_2 = (*(s16 *)((u8 *)arg4 + (0)));
+                    temp_a2 = (*(s16 *)((u8 *)arg4 + (2)));
+                    temp_a3 = (*(s16 *)((u8 *)arg4 + (4)));
+                    arg4 += 3;
+                    func_800EFA6C(arg0 + 0x4C, temp_a1_2, temp_a2, temp_a3);
+                    break;
+                }
+                case 0x22: {
+                    f32 x, y, z, w;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    z = (f32)arg4[2] * 0.00390625f;
+                    w = (f32)arg4[3] * 0.00390625f;
+                    arg4 += 4;
+                    *(s16 *)(arg0 + 0x9A) = x * arg3 * 256.0f;
+                    *(s16 *)(arg0 + 0x9C) = y * arg3 * 256.0f;
+                    *(s16 *)(arg0 + 0x9E) = z * arg3 * 256.0f;
+                    *(s16 *)(arg0 + 0xA0) = w * arg3 * 256.0f;
+                    break;
+                }
+                case 0x23: {
+                    f32 x;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    arg4++;
+                    x = x * arg3 * 256.0f;
+                    *(s16 *)(arg0 + 0x9A) = (s32)x;
+                    *(s16 *)(arg0 + 0x9C) = (s32)x;
+                    *(s16 *)(arg0 + 0x9E) = (s32)x;
+                    *(s16 *)(arg0 + 0xA0) = (s32)x;
+                    break;
+                }
+                case 0x24: {
+                    f32 x, y;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    arg4 += 2;
+                    *(s16 *)(arg0 + 0x9A) = x * arg3 * 256.0f;
+                    *(s16 *)(arg0 + 0x9C) = y * arg3 * 256.0f;
+                    break;
+                }
+                case 0x25: {
+                    f32 x, y;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    arg4 += 2;
+                    *(s16 *)(arg0 + 0x9E) = x * arg3 * 256.0f;
+                    *(s16 *)(arg0 + 0xA0) = y * arg3 * 256.0f;
+                    break;
+                }
+                case 0x26:
+                    func_800EFA6C(arg0 + 0x40, (*(s16 *)((u8 *)arg4 + (0))), (*(s16 *)((u8 *)arg4 + (2))), (*(s16 *)((u8 *)arg4 + (4))));
+                    func_800EFA6C(arg0 + 0x46, (*(s16 *)((u8 *)arg4 + (6))), (*(s16 *)((u8 *)arg4 + (8))), (*(s16 *)((u8 *)arg4 + (0xA))));
+                    arg4 += 6;
+                    break;
+                case 0x27:
+                    func_800EFA6C(arg0 + 0x40, (*(s16 *)((u8 *)arg4 + (0))), 0, (*(s16 *)((u8 *)arg4 + (2))));
+                    func_800EFA6C(arg0 + 0x46, (*(s16 *)((u8 *)arg4 + (4))), 0, (*(s16 *)((u8 *)arg4 + (6))));
+                    arg4 += 4;
+                    break;
+                case 0x28: {
+                    f32 x;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    arg4++;
+                    func_800BABA0((void *)arg0, x);
+                    break;
+                }
+                case 0x29:
+                    func_800B5534((s16 *) arg0);
+                    break;
+                case 0x2A: {
+                    f32 x, y, z, w;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    z = (f32)arg4[2] * 0.00390625f;
+                    w = (f32)arg4[3] * 0.00390625f;
+                    arg4 += 4;
+                    *(f32 *)(arg0 + 0x54) = x;
+                    *(f32 *)(arg0 + 0x58) = y;
+                    if ((*(f32 *)(arg0 + 0x20) == 0.0f) || (y < *(f32 *)(arg0 + 0x20))) {
+                        *(f32 *)(arg0 + 0x20) = func_800DC178(x, y);
+                    }
+                    *(s16 *)(arg0 + 0xA2) = z * 256.0f;
+                    *(s16 *)(arg0 + 0xA4) = w * 256.0f;
+                    break;
+                }
+                case 0x2B: {
+                    f32 x, y;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    arg4 += 2;
+                    *(s16 *)(arg0 + 0xA2) = x * 256.0f;
+                    *(s16 *)(arg0 + 0xA4) = y * 256.0f;
+                    break;
+                }
+                case 0x2C:
+                    (*(u8 *)((u8 *)arg0 + (4))) = 0;
+                    (*(s16 *)((u8 *)arg0 + (0xC4))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * var_f22);
+                    (*(s16 *)((u8 *)arg0 + (0xC6))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * var_f22);
+                    (*(s16 *)((u8 *)arg0 + (0xC8))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (4))) * var_f22);
+                    (*(s16 *)((u8 *)arg0 + (0xCA))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (6))) * var_f22);
+                    (*(s16 *)((u8 *)arg0 + (0xCC))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (8))) * var_f22);
+                    (*(s16 *)((u8 *)arg0 + (0xCE))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (10))) * var_f22);
+                    arg4 += 6;
+                    break;
+                case 0x2D:
+                    (*(u8 *)((u8 *)arg0 + (4))) = 2;
+                    (*(s16 *)((u8 *)arg0 + (0xC4))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * var_f22);
+                    (*(s16 *)((u8 *)arg0 + (0xC6))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * var_f22);
+                    arg4 += 2;
+                    func_800EE940(arg0 + 0xC8, arg2);
+                    break;
+                case 0x2E:
+                    (*(u8 *)((u8 *)arg0 + (4))) = 1;
+                    (*(s16 *)((u8 *)arg0 + (0xC8))) = (*(s16 *)((u8 *)arg4 + (0)));
+                    (*(s16 *)((u8 *)arg0 + (0xC4))) = (s16) (*(s16 *)((u8 *)arg4 + (2)));
+                    (*(s16 *)((u8 *)arg0 + (0xCC))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (4))) * var_f22);
+                    (*(s16 *)((u8 *)arg0 + (0xCA))) = (s16) (*(s16 *)((u8 *)arg4 + (6)));
+                    (*(s16 *)((u8 *)arg0 + (0xC6))) = (s16) (*(s16 *)((u8 *)arg4 + (8)));
+                    (*(s16 *)((u8 *)arg0 + (0xCE))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (10))) * var_f22);
+                    arg4 += 6;
+                    break;
+                case 0x2F: {
+                    f32 x, y, z, a, b, c, d;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    y = (f32)arg4[1] * 0.00390625f;
+                    z = (f32)arg4[2] * 0.00390625f;
+                    a = (f32)arg4[3] * 0.00390625f;
+                    b = (f32)arg4[4] * 0.00390625f;
+                    c = (f32)arg4[5] * 0.00390625f;
+                    d = (f32)arg4[6] * 0.00390625f;
+                    arg4 += 7;
+                    func_800EFA4C((f32 *)(arg0 + 0x6C), x * arg3, y * arg3, z * arg3);
+                    func_800EFA4C((f32 *)(arg0 + 0x60), a * arg3, b * arg3, c * arg3);
+                    *(f32 *)(arg0 + 0x5C) = d;
+                    break;
+                }
+                case 0x30: {
+                    f32 x;
+                    x = (f32)arg4[0] * 0.00390625f;
+                    arg4 += 1;
+                    *(f32 *)(arg0 + 0xD0) = x;
+                    break;
+                }
+                case 0x31: {
+                    s32 temp_f4_4;
+                    temp_f4_4 = func_800DC128((*(s16 *)((u8 *)arg4 + (0))), (*(s16 *)((u8 *)arg4 + (2))));
+                    arg4 += 2;
+                    (*(s16 *)((u8 *)arg0 + (0xCA))) = (s16) ((*(s16 *)((u8 *)arg0 + (0xCA))) + (s16) (arg3 * (f32) temp_f4_4));
+                    break;
+                }
+                case 0x32:
+                    (*(u8 *)((u8 *)arg0 + (0x52))) = (u8) (*(s16 *)((u8 *)arg4 + (0)));
+                    arg4 += 1;
+                    break;
+                case 0x33:
+                    (*(u8 *)((u8 *)arg0 + (0x53))) = (u8) (*(s16 *)((u8 *)arg4 + (0)));
+                    arg4 += 1;
+                    break;
+                case 0x34: {
+                    s32 i;
+                    for (i = 0; i < 4; i++) {
+                        ((u8 *)(arg0 + 0x80))[i] = 0xFF;
+                    }
+                    func_800BA930(arg0, 0, 0, 0, 0, 0, 0);
+                    func_800BA450(arg0, 0, 0, 0, 0, 0, 0);
+                    func_800BA834(arg0, 0, 0, 0, 0, 0, 0);
+                    break;
+                }
+                }
+                var_v0 = *(s16 *)arg4;
+                arg4 += 1;
+            } while (var_v0 != 0);
+        }
+        if (sp17C != 0) {
+            func_800BA22C(arg0, sp17C);
+        }
+    }
+    return arg0;
+}
 
 s32 func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4) {
     s32 func_800B53A4(s32);
