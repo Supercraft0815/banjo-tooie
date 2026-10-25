@@ -973,7 +973,118 @@ s32 func_80093864(u8 *arg0, Gfx **arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80093AB8.s")
+void func_80093AB8(void *arg0, Gfx **arg1) {
+    void _bsfirstp_entrypoint_1(u8 *, s32);
+    s32 _dbzone_entrypoint_4(s32, f32 *, u8 *);
+    s32 _glzone_entrypoint_6(s32, u8 *, s32);
+    void func_8008CA98(PlayerState *);
+    void func_8008D058(PlayerState *);
+    void func_8009C128(PlayerState *, f32[3]);
+    int func_800A4C68(void *);
+    s32 func_800A89F8(void);
+    s32 func_800BEC1C(void);
+    s32 func_800BEC28(s32);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EF04C(f32 *, f32 *);
+    s32 sp44;
+    s32 sp40;
+    f32 sp34[3];
+    s32 count;
+    struct ZoneCount { u8 pad[0xA4]; unsigned int count : 8; };
+    s32 sp2C;
+
+    if ((*(u8 **)((u8 *)arg0 + 0x50))[0x17] != 0) {
+        sp44 = func_800A89F8();
+        switch ((*(u8 **)((u8 *)arg0 + 0x50))[0xA2]) {
+        case 1:
+            sp40 = 3;
+            break;
+        case 2:
+        case 3:
+            switch ((*(u8 **)((u8 *)arg0 + 0x50))[0x19]) {
+            case 0:
+                sp40 = 3;
+                break;
+            case 1:
+                sp40 = 3;
+                if (func_800A4C68(arg0) == sp44) {
+                    if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA3] != 0) {
+                        sp40 = 1;
+                    } else if ((*(u8 **)((u8 *)arg0 + 0x50))[0x18] == 0) {
+                        sp40 = 0;
+                    }
+                }
+                break;
+            }
+            break;
+        }
+        switch (sp40) {
+        case 0:
+            return;
+        case 1:
+            break;
+        case 3:
+            func_8009C128(arg0, sp34);
+            if (!func_800E3E8C(sp34,
+                *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x1C) *
+                *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x74))) {
+                return;
+            }
+            sp2C = func_800BEC1C();
+            if (sp2C != 0) {
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA5] == 0) {
+                    (*(u8 **)((u8 *)arg0 + 0x50))[0xA5] = 1;
+                    func_800EF04C(sp34, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x64));
+                    (*(u8 **)((u8 *)arg0 + 0x50))[0xA4] = _dbzone_entrypoint_4(
+                        func_800BEC28(0), sp34, *(u8 **)((u8 *)arg0 + 0x50) + 0xA6);
+                }
+                if ((*(struct ZoneCount **)((u8 *)arg0 + 0x50))->count != 0 &&
+                    !_glzone_entrypoint_6(sp2C, *(u8 **)((u8 *)arg0 + 0x50) + 0xA6,
+                        (*(struct ZoneCount **)((u8 *)arg0 + 0x50))->count)) {
+                    return;
+                }
+            }
+        }
+        switch ((*(u8 **)((u8 *)arg0 + 0x50))[0xA2]) {
+        case 1:
+            if ((*(u8 **)((u8 *)arg0 + 0x50))[0x18] != 0 || func_800A4C68(arg0) != sp44) {
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+                    func_8008CA98(arg0);
+                    func_8009375C(arg0, arg1, 0);
+                }
+                func_80093864(arg0, arg1, 0);
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA3] != 0) {
+                    func_8009216C(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xAC),
+                        (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xB8));
+                    if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA1] == 0) {
+                        func_8008D058(arg0);
+                        func_8009375C(arg0, arg1, 1);
+                    }
+                    func_80093864(arg0, arg1, 1);
+                }
+            }
+            break;
+        case 2:
+            if (sp40 == 3) {
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+                    _bsfirstp_entrypoint_1(arg0, 0);
+                    func_8009375C(arg0, arg1, 0);
+                }
+                func_80093864(arg0, arg1, 0);
+            }
+            break;
+        case 3:
+            if (sp40 == 3) {
+                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+                    _bsfirstp_entrypoint_1(arg0, 0);
+                    func_8009375C(arg0, arg1, 0);
+                }
+                func_80093864(arg0, arg1, 0);
+            }
+            break;
+        }
+    }
+}
 
 s32 func_80093DF4(void *arg0, s32 arg1) {
     return arg1 == (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0xA2))) ? 1 : 0;
