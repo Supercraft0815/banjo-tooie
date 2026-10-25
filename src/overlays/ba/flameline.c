@@ -101,4 +101,59 @@ void baflameline_entrypoint_6(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 132) + 24) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/flameline/baflameline_entrypoint_7.s")
+void baflameline_entrypoint_7(void *arg0) {
+    s32 func_8001210C(s32);
+    void func_8008EEC4(void *, f32 *, f32, s32);
+    void func_800C3058(u8, s32);
+    void func_800C35E8(u8, f32 *);
+    void func_800C3BDC(u8);
+    void func_800C8CB8(s32, f32 *);
+    void func_800C8E54(s32, f32, f32);
+    void func_800C8E84(s32, u32 *);
+    s32 func_800C8FE0(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern u32 D_80800798_baflameline[][3];
+    f32 end[3];
+    f32 pos[3];
+    f32 half;
+    s32 i;
+    f32 *state;
+
+    state = *(f32 **)((u8 *)arg0 + 0x84);
+    if (0.0f == state[6]) {
+        if (*(s32 *)(state + 9) != 0) {
+            func_800C8FE0(*(s32 *)(state + 9), 0);
+        }
+    } else {
+        func_800EFA20(end, state + 3, state[6]);
+        func_800EF04C(end, *(f32 **)((u8 *)arg0 + 0x84));
+        func_800C3058(*((u8 *)*(f32 **)((u8 *)arg0 + 0x84) + 0x20),
+            (s32)func_800F10B4((*(f32 **)((u8 *)arg0 + 0x84))[6], 0.0f, 300.0f, 5000.0f, 32000.0f));
+        func_800C35E8(*((u8 *)*(f32 **)((u8 *)arg0 + 0x84) + 0x20), end);
+        func_800C3BDC(*((u8 *)*(f32 **)((u8 *)arg0 + 0x84) + 0x20));
+        state = *(f32 **)((u8 *)arg0 + 0x84);
+        if (*(s32 *)(state + 9) != 0) {
+            half = state[6] * 0.5f;
+            func_800EFE50(pos, state, end, 0.5);
+            func_800C8FE0(*(s32 *)((u8 *)*(f32 **)((u8 *)arg0 + 0x84) + 0x24), 1);
+            func_800C8CB8(*(s32 *)((u8 *)*(f32 **)((u8 *)arg0 + 0x84) + 0x24), pos);
+            state = *(f32 **)((u8 *)arg0 + 0x84);
+            func_800C8E54(*(s32 *)(state + 9), half, state[6]);
+            func_800C8E84(*(s32 *)((u8 *)*(f32 **)((u8 *)arg0 + 0x84) + 0x24), D_80800798_baflameline[func_8001210C(1)]);
+        }
+        for (i = 0; i < 2; i++) {
+            func_800EFE50(pos, *(f32 **)((u8 *)arg0 + 0x84), end, func_800DC178(0.0f, 0.1f));
+            func_80800184_baflameline(arg0, pos);
+            func_800EFE50(pos, *(f32 **)((u8 *)arg0 + 0x84), end, func_800DC178(0.0f, 0.1f));
+            func_80800184_baflameline(arg0, pos);
+        }
+        for (i = 0; i != 3; i++) {
+            func_800EFE50(pos, *(f32 **)((u8 *)arg0 + 0x84), end, ((f32)i + 0.5f) / 3.0f);
+            func_8008EEC4(arg0, pos, 45.0f, 0x26D);
+        }
+    }
+}
