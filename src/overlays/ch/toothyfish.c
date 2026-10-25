@@ -9,7 +9,7 @@ OSThread *func_80108ED0(void);
 void func_80800000_chtoothyfish(Actor *arg0);
 void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3);
 void func_808004A4_chtoothyfish(Actor *arg0);
-void func_80800B68_chtoothyfish();
+s32 func_80800B68_chtoothyfish();
 void func_80800E04_chtoothyfish(Actor *arg0);
 void func_80800EDC_chtoothyfish(s32 arg0);
 void func_8080106C_chtoothyfish(Actor *self);
@@ -435,7 +435,94 @@ void func_8080096C_chtoothyfish(Actor *arg0, Unk80132ED0 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toothyfish/func_80800B68_chtoothyfish.s")
+s32 func_80800B68_chtoothyfish(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void func_800DF744(s32, s32);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800F497C(s32);
+    void func_800F49A8(s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A00(s32, s32);
+    void func_800F4A2C(s32, f32 *);
+    void func_800F4A8C(s32, f32 *, f32);
+    u32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void func_800F8294(s32, f32 *);
+    s32 func_800F832C(s32, f32 *);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    void func_80103014(u8 *);
+    void func_8010573C(Actor *, f32);
+    void func_80801588_chtoothyfish(Actor *, s32);
+    extern s32 func_8010D5DC;
+    struct ToothyfishData {
+        f32 unk0[6];
+        f32 timers[5];
+        s32 unk2C;
+        f32 unk30;
+        u8 flags[5];
+        u8 other[5];
+    } *data;
+    f32 position[3];
+    f32 rotation[3];
+    s32 player;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x49:
+        if (arg0->unk64_20) {
+            player = func_800F54E4();
+            func_8010573C(arg0, 0.73f);
+            func_80103014((u8 *)arg0);
+            func_800EEC30(position, -arg0->rotation[0], arg0->rotation[1], arg0->scale * 150.0f);
+            func_800EF04C(position, arg0->position);
+            func_800EFA4C(rotation, 0.0f, arg0->rotation[1], 0.0f);
+            func_800F8294(player, position);
+            func_800F832C(player, rotation);
+            func_800F608C(player, 5);
+            func_800F497C(player);
+            func_800F4A2C(player, position);
+            func_800F49A8(player, 1);
+            func_800F4A00(player, 1);
+            func_800F49D4(player, &func_8010D5DC, (s32)arg0->unk0);
+            func_800EEC30(position, -arg0->rotation[0], arg0->rotation[1], arg0->scale * 350.0f);
+            func_800EF04C(position, arg0->position);
+            func_800F4A8C(player, position, 2.0f);
+            data->unk30 = 0.0f;
+            arg0->unk79_4 = 15;
+            arg0->unk64_20 = 0;
+            arg0->unk64_19 = 1;
+            arg0->unk58 = 5.0f;
+            _capod_entrypoint_13(arg0->unk0, NULL, 0x2E, 0xA4C);
+        }
+        break;
+    case 0x32:
+        arg0->unk64_19 = 0;
+        break;
+    case 0x3E:
+        func_8080096C_chtoothyfish(arg0, arg2);
+        break;
+    case 0x3D:
+        func_80801588_chtoothyfish(arg0, (s32)arg2);
+        break;
+    case 0x1F:
+        func_801015D0(arg0);
+        for (i = 0; i < 5; i++) {
+            if (data->flags[i]) {
+                func_800DF744(i + 3, 0);
+            } else {
+                func_800DF744(i + 3, 1);
+            }
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chtoothyfish_entrypoint_0(void)
 {
