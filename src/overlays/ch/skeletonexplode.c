@@ -72,7 +72,97 @@ void func_8080007C_chskeletonexplode(Actor *arg0, f32 arg1[3]) {
     data->timer = 0.25f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/skeletonexplode/func_808001BC_chskeletonexplode.s")
+void func_808001BC_chskeletonexplode(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    f32 func_800D8FF8(void);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFDE8(f32 *, u8 *, f32 *);
+    struct SkeletonExplodePart {
+    f32 offset[3];
+    f32 position[3];
+    f32 rotation[3];
+    f32 velocity[3];
+    f32 unk30[3];
+    u8 active;
+    u8 pad3D[3];
+    }
+    *part;
+    f32 spB8[3];
+    f32 spAC[3];
+    f32 spA0[3];
+    u32 i;
+    f32 sp90[3];
+    f32 sp84[3];
+    f32 speed;
+    s32 finished;
+    f32 delta;
+    f32 distance;
+    f32 length;
+    f32 multiplier;
+    part = func_80100094(arg0, 0);
+    finished = 1;
+    delta = func_800D8FF8();
+    if (arg0->unk58 < 5.0f) {
+    arg0->unk58 += delta;
+    }
+    else {
+    _subaddiefade_entrypoint_3(arg0);
+    }
+    for (i = 0; i < arg0->unk6C_0; i++) {
+    if (part->active != 1) {
+    part++;
+    continue;
+    }
+    func_800EFA20(spAC, part->velocity, delta);
+    func_800EE780(spB8, part->position, part->offset);
+    func_800EF04C(spB8, arg0->position);
+    func_800EE7F8(sp90, spB8);
+    func_800EE7F8(sp84, sp90);
+    func_800EF04C(sp84, spAC);
+    func_800EF04C(sp84, spAC);
+    if (arg0->position[1] - sp84[1] > 2000.0f) {
+    part->active = 2;
+    }
+    else if (func_800BEF00(sp90, sp84, spA0, 0x20020)) {
+    speed = func_800EEF94(part->velocity);
+    multiplier = 2.0f;
+    length = func_800EEF94(spAC) * multiplier;
+    distance = func_800EEAD4(sp90, sp84);
+    if (distance < length) {
+    func_800EF334(spAC, (distance / length) * 0.9f);
+    }
+    func_800EFDE8(part->velocity, (void *)part->velocity, spA0);
+    func_800EF368(part->velocity, speed * 0.35f);
+    func_800EF334(part->unk30, 0.35f);
+    if (speed < 250.0f) {
+    part->active = 2;
+    }
+    func_8080007C_chskeletonexplode(arg0, sp84);
+    }
+    else {
+    part->velocity[0] *= 0.95f;
+    part->velocity[2] *= 0.95f;
+    part->velocity[1] += ((f32 *)arg0->actorData)[7] * func_800D8FF8();
+    func_800EF04C(part->rotation, part->unk30);
+    func_800EF334(part->unk30, 0.99f);
+    }
+    func_800EF04C(part->offset, spAC);
+    finished = 0;
+    part++;
+    }
+    if (finished) {
+    _subaddiefade_entrypoint_3(arg0);
+    }
+    }
 
 /* extern */
 
