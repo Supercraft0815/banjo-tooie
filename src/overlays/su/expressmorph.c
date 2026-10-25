@@ -29,7 +29,66 @@ struct MorphEntry;
 s32 func_808000EC_suexpressmorph(f32 *arg0, void *arg1) {
     f32 func_800D8FF8(void); extern struct MorphEntry D_80801320_suexpressmorph[]; f32 *var_s0; f32 *var_s2; u8 *var_v0; s32 var_s3; s32 var_s4; s32 temp_v1;  var_s0 = (f32 *)((u8 *)arg1 + 8); var_s3 = 0; var_s4 = 0; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]; temp_v1 = var_v0[7]; var_s2 = (f32 *)(temp_v1 * 4 + (u8 *)arg1 + 8); if ((s32)temp_v1 > 0) { do { if (*var_s2 <= 0) { *(f32 *)((u8 *)arg0 + var_s3) = *(f32 *)((s32)(*(f32 (**)[9])var_v0)[((u8 *)arg1)[5]] + var_s3 + 4); } else { *var_s2 -= func_800D8FF8(); } if (*(f32 *)((u8 *)arg0 + var_s3) < *var_s0) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 < 0.0f) { *var_s0 = 0.0f; } } else if (*var_s0 < *(f32 *)((u8 *)arg0 + var_s3)) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 > 1.0f) { *var_s0 = 1.0f; } } var_s4++; var_s3 += 4; var_s0++; var_s2++; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]; } while (var_s4 < (s32)var_v0[7]); } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/func_808002BC_suexpressmorph.s")
+s32 func_808002BC_suexpressmorph(f32 *arg0, void *arg1) {
+    u32 func_800D5298(void);
+    u32 func_800D52A4(void);
+    s32 func_800D52F4(void);
+    extern struct MorphEntry D_80801320_suexpressmorph[];
+    s32 pad;
+    f32 *timer;
+    s32 state;
+    s32 offset;
+    s32 i;
+    s32 selected;
+    s16 *row;
+    u8 count;
+    f32 *values;
+
+    selected = -1;
+    timer = (f32 *)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)][7] * 4 + (u8 *)arg1 + 8);
+    if (func_800D52F4() == *(s16 *)arg1) {
+        state = func_800D52A4() + 1;
+        i = 0;
+        if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[6] > 0) {
+            row = *(s16 **)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]);
+            do {
+                if (state == *row) {
+                    selected = i;
+                }
+                i++;
+                row += 18;
+            } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[6]);
+        }
+        i = 0;
+        if (func_800D5298()) {
+            if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7] > 0) {
+                offset = 0;
+                do {
+                i++;
+                if (*(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4) != -1.0f) {
+                    if (*timer < *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 20)) {
+                        *timer = *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 20);
+                        *(f32 *)((u8 *)arg0 + offset) = *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4);
+                                }
+                }
+                offset += 4;
+                timer++;
+                } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7]);
+            }
+        } else {
+            if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7] > 0) {
+                offset = 0;
+                do {
+                i++;
+                if (*(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4) != -1.0f) {
+                    *(f32 *)((u8 *)arg0 + offset) = *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4);
+                        }
+                offset += 4;
+                } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7]);
+            }
+        }
+    }
+}
 
 struct MorphEntry {
     f32 (*data)[9];
