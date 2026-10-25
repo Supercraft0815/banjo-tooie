@@ -58,7 +58,111 @@ OSThread *chboilerboss_entrypoint_3(void)
     return (OSThread *) D_80802CE4_chboilerboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80800030_chboilerboss.s")
+void func_80800030_chboilerboss(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(s32);
+    void func_800DA524(s32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
+    u32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void func_800F8294(s32, f32 *);
+    s32 func_800FFAB0(s32);
+    void func_80102424(Actor *, s32);
+    void func_80105A9C(Actor *, f32);
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _glcutDll_entrypoint_20(void);
+    void func_800F49A8(s32, s32);
+    void func_80105BAC(Actor *);
+    void func_80109FE8(void **, s32);
+    s32 func_80800F34_chboilerboss(Actor *, s32);
+    void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
+    void func_808024B8_chboilerboss(s32);
+    void func_80802730_chboilerboss(Actor *, s32, s32);
+    void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
+    extern f32 D_80802B4C_chboilerboss[];
+    extern s32 func_8010D5DC;
+    struct BoilerData {
+        u8 pad0[0x56];
+        u8 unk56;
+        u8 pad57[9];
+        s32 unk60;
+        s16 unk64;
+        s16 unk66;
+        f32 position[2][3];
+    } *data;
+    Prop *props[2];
+    int i;
+    int j;
+    int count;
+    s32 player;
+    union BoilerFlags {
+        u32 word;
+        struct {
+            u32 pad:18;
+            u32 bit13:1;
+            u32 bit12:1;
+            u32 bit11:1;
+            u32 rest:11;
+        } bits;
+    };
+
+    data = func_80100094(arg0, 0);
+    func_800DA524(0x670);
+    if (func_800DA298(0x86) && !_glcutDll_entrypoint_20()) {
+        _chintrotext_entrypoint_2(1);
+        func_800FFAB0(arg0);
+        return;
+    }
+    ((f32 *)arg0->actorData)[4] = arg0->rotation[1];
+    arg0->pad5E = ((s32 *)arg0->actorData)[5] = 50;
+    ((union BoilerFlags *)&arg0->unk0->unk28)->bits.bit11 = 1;
+    ((union BoilerFlags *)&arg0->unk0->unk28)->bits.bit13 =
+        ((union BoilerFlags *)&arg0->unk0->unk28)->bits.bit12 =
+        ((union BoilerFlags *)&arg0->unk0->unk28)->bits.bit11;
+    func_80105A9C(arg0, D_80802B4C_chboilerboss[0]);
+    func_80105BAC(arg0);
+    func_80109FE8((void **)arg0, 0);
+    _suexpression_entrypoint_7(arg0, 1, 0x42);
+    count = _gccubesearch_entrypoint_9(0x3DA, props, 2);
+    for (i = 0; i < count; i++) {
+        for (j = 0; j < count; j++) {
+            if (i == props[j]->unk6_7 - 50) break;
+        }
+        func_800EE88C(data->position[i], props[j]->position);
+    }
+    player = func_800F54E4();
+    if (_glcutDll_entrypoint_20()) {
+        func_80102424(arg0, 0x11);
+        return;
+    }
+    if (func_800DA298(0x179)) {
+        data->unk60 = 1;
+        data->unk66 = 1;
+        data->unk56 = 1;
+        func_800F608C(player, 1);
+        func_800F8294(player, data->position[1]);
+        func_800F497C(player);
+        func_8080238C_chboilerboss(&arg0->unk0, 0xF9E, 0x10F);
+        func_80800F34_chboilerboss(arg0, 4);
+        func_808024B8_chboilerboss((s32)arg0);
+        func_80802730_chboilerboss(arg0, 2, 1);
+        return;
+    }
+    data->unk60 = 0;
+    func_800F608C(player, 1);
+    func_800F8294(player, data->position[0]);
+    func_800F497C(player);
+    func_800F49A8(player, 1);
+    func_800F49D4(player, &func_8010D5DC, (s32)arg0->unk0);
+    func_800F4A58(player, (s32)data->position[1], 300.0f);
+    _chintrotext_entrypoint_2(1);
+    func_8080238C_chboilerboss(&arg0->unk0, 0xFA8, 0x40);
+    func_808027E4_chboilerboss(arg0, 0x13, 0x20, NULL);
+}
 
 void func_80800304_chboilerboss(Actor* arg0) 
 {
