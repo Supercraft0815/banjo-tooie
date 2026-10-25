@@ -9,7 +9,7 @@ s32 func_8001D340(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_8001D37C(const char *arg0, ...) {
+void func_8001D37C(s32 arg0, ...) {
     void *args;
     extern s32 D_8007D160;
     s32 _Printf(s32 (*)(s32, s32, s32), s32, s32, void *);

@@ -287,7 +287,87 @@ void func_808000CC_gzreg(s8 *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/gzreg_entrypoint_0.s")
+void gzreg_entrypoint_0(void *arg0) {
+    void func_8001D37C(s32 arg0, ...);
+    extern struct GzRegEntry D_80800FF0_gzreg;
+    extern struct GzRegEntry D_80801140_gzreg;
+    extern struct GzRegEntry D_808012B4_gzreg;
+    s8 sp50[24];
+    s8 sp40[16];
+    s8 sp30[16];
+    __OSThreadContext *context;
+
+    context = (__OSThreadContext *)((s32)arg0 + 0x20);
+    func_8001D37C("pc:x%08X\n", *(u32 *)((u8 *)arg0 + 0x11C));
+    func_80800000_gzreg(context->cause,
+        "cause",
+        &D_80800FF0_gzreg);
+    func_8001D37C("\n");
+    func_8001D37C("at:x%08X v0:x%08X v1:x%08X a0:x%08X\n",
+        (u32)context->at,
+        (u32)context->v0,
+        (u32)context->v1,
+        (u32)context->a0);
+    func_8001D37C("a1:x%08X a2:x%08X a3:x%08X t0:x%08X\n",
+        (u32)context->a1,
+        (u32)context->a2,
+        (u32)context->a3,
+        (u32)context->t0);
+    func_8001D37C("t1:x%08X t2:x%08X t3:x%08X t4:x%08X\n",
+        (u32)context->t1,
+        (u32)context->t2,
+        (u32)context->t3,
+        (u32)context->t4);
+    func_8001D37C("t5:x%08X t6:x%08X t7:x%08X s0:x%08X\n",
+        (u32)context->t5,
+        (u32)context->t6,
+        (u32)context->t7,
+        (u32)context->s0);
+    func_8001D37C("s1:x%08X s2:x%08X s3:x%08X s4:x%08X\n",
+        (u32)context->s1,
+        (u32)context->s2,
+        (u32)context->s3,
+        (u32)context->s4);
+    func_8001D37C("s5:x%08X s6:x%08X s7:x%08X t8:x%08X\n",
+        (u32)context->s5,
+        (u32)context->s6,
+        (u32)context->s7,
+        (u32)context->t8);
+    func_8001D37C("t9:x%08X gp:x%08X sp:x%08X s8:x%08X\n",
+        (u32)context->t9,
+        (u32)context->gp,
+        (u32)context->sp,
+        (u32)context->s8);
+    func_8001D37C("ra:x%08X %s          badvaddr:x%08X\n",
+        (u32)context->ra, "          ", context->badvaddr);
+    func_8001D37C("\n");
+    func_80800000_gzreg(context->fpcsr, "fpcsr", &D_808012B4_gzreg);
+    func_8001D37C("\n");
+    func_808000CC_gzreg(sp50, context->fp0.f.f_even);
+    func_808000CC_gzreg(sp40, context->fp2.f.f_even);
+    func_808000CC_gzreg(sp30, context->fp4.f.f_even);
+    func_8001D37C("f0  %-13s f2  %-13s f4  %-13s\n", sp50, sp40, sp30);
+    func_808000CC_gzreg(sp50, context->fp6.f.f_even);
+    func_808000CC_gzreg(sp40, context->fp8.f.f_even);
+    func_808000CC_gzreg(sp30, context->fp10.f.f_even);
+    func_8001D37C("f6  %-13s f8  %-13s f10 %-13s\n", sp50, sp40, sp30);
+    func_808000CC_gzreg(sp50, context->fp12.f.f_even);
+    func_808000CC_gzreg(sp40, context->fp14.f.f_even);
+    func_808000CC_gzreg(sp30, context->fp16.f.f_even);
+    func_8001D37C("f12 %-13s f14 %-13s f16 %-13s\n", sp50, sp40, sp30);
+    func_808000CC_gzreg(sp50, context->fp18.f.f_even);
+    func_808000CC_gzreg(sp40, context->fp20.f.f_even);
+    func_808000CC_gzreg(sp30, context->fp22.f.f_even);
+    func_8001D37C("f18 %-13s f20 %-13s f22 %-13s\n", sp50, sp40, sp30);
+    func_808000CC_gzreg(sp50, context->fp24.f.f_even);
+    func_808000CC_gzreg(sp40, context->fp26.f.f_even);
+    func_808000CC_gzreg(sp30, context->fp28.f.f_even);
+    func_8001D37C("f24 %-13s f26 %-13s f28 %-13s\n", sp50, sp40, sp30);
+    func_808000CC_gzreg(sp50, context->fp30.f.f_even);
+    func_8001D37C("f30 %-13s\n", sp50);
+    func_8001D37C("\n");
+    func_80800000_gzreg(context->sr, "sr", &D_80801140_gzreg);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/gzreg_entrypoint_1.s")
 
