@@ -275,7 +275,62 @@ s32 func_80800AF4_chdinofamilysmall(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/familysmall/func_80800C10_chdinofamilysmall.s")
+void func_80800C10_chdinofamilysmall(Actor *arg0, s32 arg1) {
+    typedef struct {
+        f32 pad[4];
+        f32 scale[3];
+        f32 height;
+    } DinoData;
+    s32 func_80100094();
+    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    struct ImageStruct *func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF410(s32);
+    void func_800DF500(f32, f32, f32);
+    void func_800DF744(s32, s32);
+    void func_800DF830(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s32 func_801015D0(Actor *);
+    void func_801018A4(Actor *, s32);
+    extern f32 B_80800F70_chdinofamilysmall[3];
+    extern f32 B_80800F94_chdinofamilysmall[3];
+    extern f32 B_80800FA0_chdinofamilysmall[3];
+    f32 *dst;
+    f32 *src;
+    s32 i;
+
+    if (func_80100094(arg0, 1)) {
+        _sumumbofx_entrypoint_9(func_80100094(arg0, 1), arg1);
+    }
+    if (arg0->unk70_10 == 6) {
+        func_801015D0(arg0);
+        dst = B_80800FA0_chdinofamilysmall; src = B_80800F94_chdinofamilysmall;
+        for (i = 4; i != 0; i--, dst -= 3, src -= 3) {
+            func_800EE7F8(dst, src);
+            if (dst[0] != 0.0f && dst[1] != 0.0f && dst[2] != 0.0f) {
+                func_800DF744(3, 1);
+                func_800DF500(dst[0], dst[1], dst[2]);
+                func_800DF410(160 - i * 30);
+                func_800DF830(2);
+                func_800DE498(arg1, arg0->position, arg0->rotation, arg0->scale, NULL,
+                    func_800D674C(arg0->unk0->unk14));
+            }
+        }
+        func_800EE7F8(B_80800F70_chdinofamilysmall, ((DinoData *)arg0->actorData)->scale);
+        if (((DinoData *)arg0->actorData)->scale[0] != 0.0f &&
+            ((DinoData *)arg0->actorData)->scale[1] != 0.0f &&
+            ((DinoData *)arg0->actorData)->scale[2] != 0.0f) {
+            func_800DF500(((DinoData *)arg0->actorData)->scale[0],
+                ((DinoData *)arg0->actorData)->scale[1],
+                ((DinoData *)arg0->actorData)->scale[2]);
+        }
+    }
+    func_801018A4(arg0, arg1);
+    if (func_80100094(arg0, 1)) {
+        _sumumbofx_entrypoint_8(func_80100094(arg0, 1), arg1);
+    }
+}
 
 OSThread *chdinofamilysmall_entrypoint_0(void)
 {
