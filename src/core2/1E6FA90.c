@@ -305,6 +305,17 @@ s32 func_800967C0()
     return 0x28;
 }
 
+struct CollisionHits {
+        s32 count;
+        struct {
+            f32 distance;
+            f32 start[3];
+            f32 end[3];
+            f32 normal[3];
+            f32 point[3];
+        } entries[1];
+};
+
 void func_800967C8(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     s32 func_800BEE40(f32 *, f32 *, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
@@ -315,16 +326,7 @@ void func_800967C8(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     void func_800EF2A0(f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
-    extern struct {
-        s32 count;
-        struct {
-            f32 distance;
-            f32 start[3];
-            f32 end[3];
-            f32 normal[3];
-            f32 point[3];
-        } entries[1];
-    } D_80126E30;
+    extern struct CollisionHits D_80126E30;
     f32 dot;
     f32 t;
     f32 origin;
@@ -377,7 +379,63 @@ void func_800967C8(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     D_80126E30.count++;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6FA90/func_80096ACC.s")
+extern s16 D_80126D20[];
+extern struct CollisionHits D_80126E30;
+extern f32 D_80126E38, D_80126E3C, D_80126E40;
+extern f32 D_80126E44, D_80126E48, D_80126E4C;
+extern f32 D_80126E50[3], D_80126E5C[3];
+s32 func_80096ACC(f32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
+    s32 func_800BED70(f32 *, f32 *, s16 (**)[3], s32, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFB24(void *, void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 mlAbsF(f32);
+    s16 (*triangle)[3];
+    s32 j;
+    s16 (*end)[3];
+    s32 pad;
+    f32 low[3];
+    f32 high[3];
+    f32 difference[3];
+    f32 vertices[3][3];
+    s32 i;
+    f32 *out;
+    f32 distance;
+
+    func_800EFB24(difference, arg1, arg0);
+    for (j = 0; j < 3; j++) {
+        if (arg0[j] < arg1[j]) low[j] = arg0[j];
+        else low[j] = arg1[j];
+    }
+    for (j = 0; j < 3; j++) {
+        if (arg0[j] > arg1[j]) high[j] = arg0[j];
+        else high[j] = arg1[j];
+    }
+    end = (s16 (*)[3])D_80126D20;
+    high[1] += 100.0f;
+    if (!func_800BED70(low, high, &end, 15, 0.98f)) return 0;
+    D_80126E30.count = 0;
+    D_80126E30.entries[0].distance = 100000.0f;
+    for (triangle = (s16 (*)[3])D_80126D20; (u32)triangle < (u32)end; triangle += 3) {
+        for (i = 0; i < 3; i++) {
+            func_800EE88C(vertices[i], triangle[i]);
+        }
+        func_800967C8(vertices[0], vertices[1], arg0, difference);
+        func_800967C8(vertices[1], vertices[2], arg0, difference);
+        func_800967C8(vertices[2], vertices[0], arg0, difference);
+    }
+    if (D_80126E30.entries[0].distance == 100000.0f) return 0;
+    func_800EE7F8((f32 *)arg2, D_80126E30.entries[0].point);
+    func_800EE7F8((f32 *)arg3, D_80126E30.entries[0].normal);
+    distance = mlAbsF(D_80126E30.entries[0].start[0] - D_80126E30.entries[0].end[0]);
+    if (mlAbsF(D_80126E30.entries[0].start[2] - D_80126E30.entries[0].end[2]) < distance) {
+        ((f32 *)arg2)[1] = func_800F10B4(((f32 *)arg2)[0], D_80126E30.entries[0].start[0], D_80126E30.entries[0].end[0], D_80126E30.entries[0].start[1], D_80126E30.entries[0].end[1]);
+    } else {
+        ((f32 *)arg2)[1] = func_800F10B4(((f32 *)arg2)[2], D_80126E30.entries[0].start[2], D_80126E30.entries[0].end[2], D_80126E30.entries[0].start[1], D_80126E30.entries[0].end[1]);
+    }
+    return 1;
+}
 
 /* extern */
 
