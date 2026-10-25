@@ -554,8 +554,76 @@ void func_800E3220(Gfx **arg0, void *arg1) {
     func_800E42F0(arg0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E32CC.s")
+s32 func_800E32CC(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
+    void func_800191F8(f32, f32, f32);
+    s32 func_80019CD4(void);
+    void *func_800AF5F0(void *);
+    TextureFrame *func_800AF5FC(s16 *, s32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void mlMtxApply(Mtx *);
+    void mlMtxRotRoll(f32);
+    void mlMtxScale_xyz(f32, f32, f32);
+    extern s32 D_8012D470;
+    TextureFrame *frame;
+    f32 pos[3];
+    f32 sx;
+    f32 sy;
+    s32 width;
+    s32 height;
+    Gfx *ptr;
+    Gfx *ptr2;
+    Gfx *ptr3;
+    void *base;
+    u8 *address;
 
+    frame = func_800AF5FC(*(s16 **)((u8 *)&D_8012D470 + 0x84), arg1);
+    if (arg3 != *(s16 *)((u8 *)&D_8012D470 + 0x1C)) {
+        *(s16 *)((u8 *)&D_8012D470 + 0x1C) = arg3;
+        ptr = (*(Gfx **)arg0)++;
+        ptr->words.w0 = 0xFA000000;
+        ptr->words.w1 = (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
+            | (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x14) & 0xFF) << 16)
+            | ((u32)*(s16 *)((u8 *)&D_8012D470 + 0x1C) & 0xFF)
+            | (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x18) & 0xFF) << 8);
+    }
+    if (*(s16 *)((u8 *)&D_8012D470 + 0)) {
+        width = *(s16 *)((u8 *)&D_8012D470 + 0);
+    } else {
+        width = (*(s16 **)((u8 *)&D_8012D470 + 0x84))[4] * 4;
+    }
+    if (*(s16 *)((u8 *)&D_8012D470 + 2)) {
+        height = *(s16 *)((u8 *)&D_8012D470 + 2);
+    } else {
+        height = (*(s16 **)((u8 *)&D_8012D470 + 0x84))[5] * 4;
+    }
+    sx = *(f32 *)((u8 *)&D_8012D470 + 0x2C) * width / (*(s16 **)((u8 *)&D_8012D470 + 0x84))[4];
+    sy = *(f32 *)((u8 *)&D_8012D470 + 0x30) * height / (*(s16 **)((u8 *)&D_8012D470 + 0x84))[5];
+    func_800EFA4C(pos, (f32)(arg2[0] - 0x260) + (f32)frame->unk0[0] * sx, (f32)(0x1C8 - arg2[1]) - (f32)frame->unk0[1] * sy, -10.0f);
+    func_80019CD4();
+    func_800191F8(pos[0], pos[1], pos[2]);
+    if (*(f32 *)((u8 *)&D_8012D470 + 0x28) != 0.0f) {
+        mlMtxRotRoll(*(f32 *)((u8 *)&D_8012D470 + 0x28));
+    }
+    if (width != (*(s16 **)((u8 *)&D_8012D470 + 0x84))[2]
+        || height != (*(s16 **)((u8 *)&D_8012D470 + 0x84))[3]
+        || *(f32 *)((u8 *)&D_8012D470 + 0x2C) != 1.0f
+        || *(f32 *)((u8 *)&D_8012D470 + 0x30) != 1.0f) {
+        mlMtxScale_xyz(sx * (*(s16 **)((u8 *)&D_8012D470 + 0x84))[4] / (*(s16 **)((u8 *)&D_8012D470 + 0x84))[2],
+            sy * (*(s16 **)((u8 *)&D_8012D470 + 0x84))[5] / (*(s16 **)((u8 *)&D_8012D470 + 0x84))[3], 1.0f);
+    }
+    mlMtxApply(*(Mtx **)(arg0 + 4));
+    ptr2 = (*(Gfx **)arg0)++;
+    ptr2->words.w0 = 0xDA380002;
+    ptr2->words.w1 = *(u32 *)(arg0 + 4);
+    (*(Mtx **)(arg0 + 4))++;
+    base = func_800AF5F0(*(void **)((u8 *)&D_8012D470 + 0x84));
+    address = base;
+    address += frame->unk0[2] * 8;
+    ptr3 = (*(Gfx **)arg0)++;
+    ptr3->words.w0 = 0xDE000000;
+    ptr3->words.w1 = osVirtualToPhysical(address);
+    gSPPopMatrix((*(Gfx **)arg0)++, G_MTX_MODELVIEW);
+}
 void func_800E35E0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
     s32 func_800E32CC(s32, s32, s32 *, s32);
     extern s32 D_8012D470;
