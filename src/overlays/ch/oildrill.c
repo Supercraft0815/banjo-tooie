@@ -385,7 +385,43 @@ void func_80800CF0_choildrill(Actor *arg0, u8 arg1, f32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/oildrill/func_80800F08_choildrill.s")
+void func_80800F08_choildrill(Actor *arg0, void *arg1) {
+    void _fxtwinkle_entrypoint_0(f32 *);
+    f32 func_80013970(f32);
+    void *func_800D674C(s32);
+    f32 func_800DC178(f32, f32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32);
+    void func_800EEC30(f32 *, f32, f32, f32);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFE50(f32 *, f32 *, f32 *, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_80101870(Actor *, void *);
+    extern f32 D_80801490_choildrill[3];
+    extern f32 D_8080149C_choildrill[3];
+    void *sp64;
+    f32 sp60;
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+
+    func_80101870(arg0, arg1);
+    if (arg0->unk70_10 == 5) {
+        sp64 = func_800D674C(0x610);
+        sp60 = func_800F10B4(arg0->unk58, 5.0f, 0.0f, 0.0f, 1.0f);
+        func_800EFE50(sp54, D_80801490_choildrill, D_8080149C_choildrill, sp60);
+        sp48[2] = 0.0f;
+        sp48[0] = sp48[2];
+        sp48[1] = sp60 * 360.0f;
+        sp60 = func_800F10B4(((f32 *)arg0->actorData)[3], ((f32 *)arg0->actorData)[5], 0.0f, 0.0f, 1.0f);
+        sp54[1] += func_80013970(180.0f * sp60) * func_800F10B4(((f32 *)arg0->actorData)[5], 0.5f, 0.4f, 300.0f, 200.0f);
+        func_800EEC30(sp3C, func_800DC178(0.0f, 360.0f), func_800DC178(0.0f, 360.0f), 40.0f);
+        func_800EF04C(sp3C, sp54);
+        _fxtwinkle_entrypoint_0(sp3C);
+        func_800DF830(1);
+        func_800DE498(arg1, sp54, sp48, 1.0f, NULL, (s32)sp64);
+    }
+}
 
 OSThread *choildrill_entrypoint_1(void)
 {
