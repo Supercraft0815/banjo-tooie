@@ -183,7 +183,90 @@ OSThread *chstatueboss_entrypoint_0(void)
     return (OSThread *) D_80802748_chstatueboss;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/statueboss/func_8080000C_chstatueboss.s")
+void func_8080000C_chstatueboss(Actor *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _chintrotext_entrypoint_2(s32);
+    s32 _glcutDll_entrypoint_20(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    void func_800F497C(s32);
+    void func_800F49A8(s32, s32);
+    void func_800F49D4(s32, void *, Unk80132ED0 *);
+    void func_800F4A58(s32, f32 *, f32);
+    u32 func_800F54E4(void);
+    void func_800F608C(s32, s32);
+    void func_800F8294(s32, f32 *);
+    u32 func_800FDC28(u32);
+    void func_800FFAB0(Actor *);
+    s32 func_80102424(Actor *, s32);
+    void func_80108B04(Actor *, u32);
+    void func_80109F08(void *, s32);
+    extern s32 func_8010D5DC;
+    void func_80800BE0_chstatueboss(Actor *);
+    void func_80801640_chstatueboss(Actor *, s32, s32);
+    struct StatueBossData {
+        u8 pad0[0x88];
+        s16 hits;
+        s16 total;
+        u8 pad8C[0x68];
+        f32 origin[6];
+        f32 markers[4][6];
+        f32 end[24];
+        s8 flag1CC;
+        s8 flag1CD;
+    } *data;
+    s32 i;
+    s32 player;
+
+    data = func_80100094(arg0, 0U);
+    if (func_800DA298(0x36F) && !_glcutDll_entrypoint_20()) {
+        _chintrotext_entrypoint_2(1);
+        func_800FFAB0(arg0);
+        return;
+    }
+    func_80800BE0_chstatueboss(arg0);
+    func_80109F08(arg0, 0x41);
+    data->hits = data->total = 0;
+    for (i = 0; i < 4; i++) {
+        _subaddiemarker_entrypoint_1(arg0, 0x154, i + 0x32, data->markers[i], 1);
+    }
+    _subaddiemarker_entrypoint_1(arg0, 0x320, 0x32, data->origin, 1);
+    _subaddiemarker_entrypoint_1(arg0, 0x320, 0x33, data->end, 4);
+    player = func_800F54E4();
+    if (_glcutDll_entrypoint_20()) {
+        for (i = 0; i != 4; i++) {
+            func_80801640_chstatueboss(arg0, i, 1);
+        }
+        func_80102424(arg0, 0x1A);
+        return;
+    }
+    if (!func_800DA298(0x88)) {
+        func_800F608C(player, 1);
+        func_800F497C(player);
+        func_800F49A8(player, 1);
+        func_800F49D4(player, &func_8010D5DC, arg0->unk0);
+        func_800F4A58(player, data->origin, 130.0f);
+        data->flag1CD = 1;
+        _capod_entrypoint_13(arg0->unk0, NULL, 0xC, 0x20);
+        _chintrotext_entrypoint_2(1);
+        return;
+    }
+    for (i = 0; i != 4; i++) {
+        func_80801640_chstatueboss(arg0, i, 1);
+    }
+    func_800F608C(player, 1);
+    func_800F8294(player, data->origin);
+    func_800F497C(player);
+    func_80800DA8_chstatueboss(arg0, 6);
+    _subaddiedialog_entrypoint_11(arg0->unk0, 0xF41, 6, arg0->position, 0xB2);
+    func_80108B04(arg0, 3);
+    func_80108B04(arg0, 4);
+    data->flag1CC = 1;
+    data->flag1CD = 1;
+    _capod_entrypoint_13(arg0->unk0, NULL, 0x12, 0x30);
+    func_800FDC28(1);
+}
 
 void func_80800298_chstatueboss(Actor *arg0) {
     void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
