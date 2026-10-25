@@ -144,7 +144,236 @@ s32 func_808002A0_cheel(u8 *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/eel/func_8080031C_cheel.s")
+void func_8080031C_cheel(Actor *arg0) {
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    f32 func_800136E4(f32);
+    f32 func_800D8FF8(void);
+    f32 func_800DC178(f32, f32);
+    int func_800DC298(f32);
+    void func_800E0AF0(void *, f32);
+    void func_800E0AFC(void *, u8, f32, f32, f32, f32);
+    f32 func_800F1828(f32 *, f32 *);
+    f32 func_800F1DCC(f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101DDC(Actor *);
+    s32 func_8010262C(Unk80132ED0 *, u32);
+    s32 func_80107070(Actor *, s32);
+    s32 func_8010C500(void *);
+    void func_8010CE28(s32, f32 *);
+    void func_80800D60_cheel(Actor *);
+    void func_80801120_cheel(Actor *);
+    void func_80801200_cheel(Actor *, s32);
+    void *model;
+    s32 i;
+    struct { f32 values[55]; } *data;
+    f32 dt;
+    f32 angles3[2];
+    f32 angles5[2];
+    f32 angles6[2];
+    typedef union {
+        Actor actor;
+        EelActor base;
+        struct {
+            u8 pad0[0x18];
+            f32 position[3];
+            f32 speed;
+        } eel;
+    } EelUpdateActor;
+
+    data = func_80100094(arg0, 0);
+    dt = func_800D8FF8();
+    model = (void *)func_8010262C(((EelUpdateActor *)arg0)->actor.unk0, 10);
+    if (model != NULL) {
+        if (((EelUpdateActor *)arg0)->actor.unk64_20) {
+            if (data->values[0] < 1) {
+                data->values[0] += dt;
+                if (data->values[0] > 1) {
+                    data->values[0] = 1;
+                }
+            }
+        } else {
+            if (data->values[0] > 0) {
+                data->values[0] -= dt;
+                if (data->values[0] < 0) {
+                    data->values[0] = 0;
+                }
+            }
+        }
+        func_800E0AF0(model, data->values[0]);
+        /* IDO: this always-true guard preserves AS1's original block weights.
+         * Its unsigned arithmetic and the aligned marker self-copy preserve
+         * scratch-register order; AS1 removes all of their instructions. */
+        if (((u64)(((((u32)arg0->pointerToSyscallEntry + 1U) ^ 1U) + 1U) ^ 1U) & 0xffffffffULL) <= 0xffffffffULL) {
+            /* Markers have four-byte alignment; the mask preserves the pointer. */
+            i = (s32)((u32)arg0->unk0 & ~3U);
+            *(Unk80132ED0 *)i = *(Unk80132ED0 *)i;
+            i = 8;
+            do {
+                data->values[1 + i + 1] += func_800F1DCC(data->values[1 + i], data->values[1 + i + 1]) * 0.25f;
+                data->values[28 + i + 1] += func_800F1DCC(data->values[28 + i], data->values[28 + i + 1]) * 0.25f;
+            } while (--i >= 0);
+            data->values[1 + 0] = func_800136E4(data->values[1 + 0]);
+            data->values[1 + 0] += func_800F1DCC(((EelUpdateActor *)arg0)->actor.rotation[1], data->values[1 + 0]) * 0.25f;
+            data->values[10 + 0] = func_800F1DCC(data->values[1 + 0], ((EelUpdateActor *)arg0)->actor.rotation[1]);
+            data->values[28 + 0] = func_800136E4(data->values[28 + 0]);
+            data->values[28 + 0] += func_800F1DCC(((EelUpdateActor *)arg0)->actor.rotation[0], data->values[28 + 0]) * 0.25f;
+            data->values[37 + 0] = -func_800F1DCC(data->values[28 + 0], ((EelUpdateActor *)arg0)->actor.rotation[0]);
+            for (i = 1; i < 9; i++) {
+                data->values[10 + i] = func_800F1DCC(data->values[1 + i], data->values[1 + i - 1]);
+                data->values[37 + i] = -func_800F1DCC(data->values[28 + i], data->values[28 + i - 1]);
+            }
+            i = 0;
+            do {
+                data->values[19 + i] += func_800F1DCC(data->values[10 + i], data->values[19 + i]) * 0.25f;
+                data->values[46 + i] += func_800F1DCC(data->values[37 + i], data->values[46 + i]) * 0.25f;
+            } while (++i < 9);
+            func_800E0AFC(model, 3, -1, 0.0, 0.0, 0.0);
+            func_800E0AFC(model, 0x2A, 1, data->values[46 + 0], data->values[19 + 0], 0.0);
+            func_800E0AFC(model, 0x2B, 1, data->values[46 + 1], data->values[19 + 1], 0.0);
+            func_800E0AFC(model, 0x2C, 1, data->values[46 + 2], data->values[19 + 2], 0.0);
+            func_800E0AFC(model, 0x2D, 1, data->values[46 + 3], data->values[19 + 3], 0.0);
+            func_800E0AFC(model, 0x2E, 1, data->values[46 + 4], data->values[19 + 4], 0.0);
+            func_800E0AFC(model, 0x2F, 1, data->values[46 + 5], data->values[19 + 5], 0.0);
+            func_800E0AFC(model, 0x30, 1, data->values[46 + 6], data->values[19 + 6], 0.0);
+            func_800E0AFC(model, 0x31, 1, data->values[46 + 7], data->values[19 + 7], 0.0);
+            func_800E0AFC(model, 0x32, 1, data->values[46 + 8], data->values[19 + 8], 0.0);
+        }
+    }
+    switch (((EelUpdateActor *)arg0)->actor.unk70_10) {
+    case 1:
+        func_80800168_cheel(arg0);
+        if (!func_8080020C_cheel(&((EelUpdateActor *)arg0)->base)) {
+            func_80801200_cheel(arg0, 2);
+        } else if (func_8010C500(arg0)) {
+            func_80801200_cheel(arg0, 3);
+        } else if (((EelUpdateActor *)arg0)->eel.speed > 1000.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+            ((EelUpdateActor *)arg0)->eel.speed -= 10.0f * ((EelUpdateActor *)arg0)->actor.scale;
+        }
+        func_80800D60_cheel(arg0);
+        if (((EelUpdateActor *)arg0)->actor.unk64_29) {
+            ((EelUpdateActor *)arg0)->eel.speed = _subaddiejoy_entrypoint_9(arg0, &((EelUpdateActor *)arg0)->actor.unk54, 3) * 1000.0f * ((EelUpdateActor *)arg0)->actor.scale;
+            if (((EelUpdateActor *)arg0)->eel.speed < 250.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+                ((EelUpdateActor *)arg0)->eel.speed = 250.0f * ((EelUpdateActor *)arg0)->actor.scale;
+            }
+        }
+        break;
+    case 2:
+        func_80801120_cheel(arg0);
+        ((EelUpdateActor *)arg0)->actor.unk54 = func_800F1DF4(((EelUpdateActor *)arg0)->actor.position, ((EelUpdateActor *)arg0)->eel.position);
+        ((EelUpdateActor *)arg0)->actor.unk50 = func_800F1828(((EelUpdateActor *)arg0)->actor.position, ((EelUpdateActor *)arg0)->eel.position);
+        func_80800168_cheel(arg0);
+        if (func_808002A0_cheel((u8 *)arg0)) {
+            if (func_8080020C_cheel(&((EelUpdateActor *)arg0)->base)) {
+                func_80801200_cheel(arg0, 1);
+            }
+        } else if (((EelUpdateActor *)arg0)->eel.speed > 800.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+            ((EelUpdateActor *)arg0)->eel.speed -= 30.0f * ((EelUpdateActor *)arg0)->actor.scale;
+        }
+        func_80800D60_cheel(arg0);
+        break;
+    case 3:
+        func_8010CE28((s32)arg0, angles3);
+        ((EelUpdateActor *)arg0)->actor.unk50 = -angles3[0];
+        if (((EelUpdateActor *)arg0)->actor.unk64_29) {
+            ((EelUpdateActor *)arg0)->eel.speed = _subaddiejoy_entrypoint_9(arg0, &((EelUpdateActor *)arg0)->actor.unk54, 3) * 1000.0f * ((EelUpdateActor *)arg0)->actor.scale;
+            if (((EelUpdateActor *)arg0)->eel.speed < 250.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+                ((EelUpdateActor *)arg0)->eel.speed = 250.0f * ((EelUpdateActor *)arg0)->actor.scale;
+            }
+        } else {
+            ((EelUpdateActor *)arg0)->actor.unk54 = angles3[1];
+            if (func_800DC298(0.05f)) {
+                ((EelUpdateActor *)arg0)->actor.unk54 += func_800DC178(-90.0f, 90.0f);
+            }
+        }
+        func_80800168_cheel(arg0);
+        if (!func_8010C500(arg0)) {
+            func_80801200_cheel(arg0, 1);
+        } else if (!func_8080020C_cheel(&((EelUpdateActor *)arg0)->base)) {
+            func_80801200_cheel(arg0, 4);
+        } else if (((EelUpdateActor *)arg0)->eel.speed < 1600.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+            ((EelUpdateActor *)arg0)->eel.speed += 10.0f * ((EelUpdateActor *)arg0)->actor.scale;
+        }
+        func_80800D60_cheel(arg0);
+        break;
+    case 4:
+        func_80801120_cheel(arg0);
+        ((EelUpdateActor *)arg0)->actor.unk54 = func_800F1DF4(((EelUpdateActor *)arg0)->actor.position, ((EelUpdateActor *)arg0)->eel.position);
+        ((EelUpdateActor *)arg0)->actor.unk50 = func_800F1828(((EelUpdateActor *)arg0)->actor.position, ((EelUpdateActor *)arg0)->eel.position);
+        func_80800168_cheel(arg0);
+        if (func_808002A0_cheel((u8 *)arg0)) {
+            if (func_8080020C_cheel(&((EelUpdateActor *)arg0)->base)) {
+                func_80801200_cheel(arg0, 1);
+            }
+        } else if (((EelUpdateActor *)arg0)->eel.speed > 800.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+            ((EelUpdateActor *)arg0)->eel.speed -= 30.0f * ((EelUpdateActor *)arg0)->actor.scale;
+        }
+        func_80800D60_cheel(arg0);
+        break;
+    case 5:
+        func_8010CE28((s32)arg0, angles5);
+        ((EelUpdateActor *)arg0)->actor.unk50 = angles5[0];
+        ((EelUpdateActor *)arg0)->actor.unk54 = -angles5[1];
+        func_80800168_cheel(arg0);
+        if (!func_8010C500(arg0)) {
+            func_80801200_cheel(arg0, 1);
+        } else if (!func_8080020C_cheel(&((EelUpdateActor *)arg0)->base)) {
+            func_80801200_cheel(arg0, 2);
+        } else if (((EelUpdateActor *)arg0)->eel.speed < 1600.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+            ((EelUpdateActor *)arg0)->eel.speed += 10.0f * ((EelUpdateActor *)arg0)->actor.scale;
+        }
+        func_80800D60_cheel(arg0);
+        break;
+    case 6:
+        func_8010CE28((s32)arg0, angles6);
+        ((EelUpdateActor *)arg0)->actor.unk50 = angles6[0];
+        ((EelUpdateActor *)arg0)->actor.unk54 = -angles6[1];
+        func_80800168_cheel(arg0);
+        if (((EelUpdateActor *)arg0)->actor.unk58 > 0.0f) {
+            ((EelUpdateActor *)arg0)->actor.unk58 -= func_800D8FF8();
+            if (!func_8080020C_cheel(&((EelUpdateActor *)arg0)->base)) {
+                func_80801200_cheel(arg0, 7);
+            } else if (((EelUpdateActor *)arg0)->eel.speed < 1600.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+                ((EelUpdateActor *)arg0)->eel.speed += 10.0f * ((EelUpdateActor *)arg0)->actor.scale;
+            }
+        } else {
+            func_80801200_cheel(arg0, 1);
+        }
+        break;
+    case 7:
+        func_80801120_cheel(arg0);
+        ((EelUpdateActor *)arg0)->actor.unk54 = func_800F1DF4(((EelUpdateActor *)arg0)->actor.position, ((EelUpdateActor *)arg0)->eel.position);
+        ((EelUpdateActor *)arg0)->actor.unk50 = func_800F1828(((EelUpdateActor *)arg0)->actor.position, ((EelUpdateActor *)arg0)->eel.position);
+        func_80800168_cheel(arg0);
+        if (((EelUpdateActor *)arg0)->actor.unk58 > 0.0f) {
+            ((EelUpdateActor *)arg0)->actor.unk58 -= func_800D8FF8();
+        } else {
+            func_80801200_cheel(arg0, 1);
+        }
+        if (((EelUpdateActor *)arg0)->eel.speed > 800.0f * ((EelUpdateActor *)arg0)->actor.scale) {
+            ((EelUpdateActor *)arg0)->eel.speed -= 30.0f * ((EelUpdateActor *)arg0)->actor.scale;
+        }
+        if (func_808002A0_cheel((u8 *)arg0)) {
+            if (func_8080020C_cheel(&((EelUpdateActor *)arg0)->base)) {
+                func_80801200_cheel(arg0, 6);
+            }
+        }
+        break;
+    case 8:
+        if (func_80101DDC(arg0)) {
+            func_80801200_cheel(arg0, 2);
+        }
+        break;
+    case 9:
+        if (func_80101DDC(arg0)) {
+            if (!func_80107070(arg0, 2)) {
+                func_800FFAB0(arg0);
+            }
+        }
+        break;
+    }
+}
 
 void func_80800D60_cheel(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
