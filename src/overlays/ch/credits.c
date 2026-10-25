@@ -201,7 +201,40 @@ void func_80800464_chcredits(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/func_80800710_chcredits.s")
+void func_80800710_chcredits(s32 *arg0, s32 arg1) {
+    void func_80102424(Actor *, s32);
+    s32 func_800EA05C(void);
+    Actor *self = (Actor *)arg0;
+
+    func_80102424(self, arg1);
+    switch (self->unk70_10) {
+    case 2:
+        self->unk64_19 = 1;
+        ((f32 *)self->actorData)[7] = 1.0f;
+        break;
+    case 3:
+        func_80800464_chcredits(self);
+        self->unk58 = 0.75f;
+        break;
+    case 4:
+        self->unk64_19 = 0;
+        if (func_800EA05C() == 0x116) {
+            self->unk58 = 10.0f;
+        } else {
+            self->unk58 = 7.0f;
+        }
+        break;
+    case 5:
+        self->unk58 = 0.75f;
+        break;
+    case 8:
+        func_8080038C_chcredits();
+        break;
+    case 6:
+        ((f32 *)self->actorData)[7] = 1.0f;
+        break;
+    }
+}
 
 void func_80800800_chcredits(void *arg0) {
     typedef struct {
