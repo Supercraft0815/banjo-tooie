@@ -192,7 +192,61 @@ void func_808003F4_gcmapsects(void *arg0, s32 arg1)
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_808005D0_gcmapsects.s")
+void func_808005D0_gcmapsects(void *arg0, s32 arg1, s32 arg2) {
+    s32 _glid_entrypoint_5(s32, s32);
+    s32 _glidmake_entrypoint_4(s32);
+    s32 _glidmake_entrypoint_5(u16, s32);
+    s32 _idworldmake_entrypoint_0(s32, s32);
+    s32 _idworldmake_entrypoint_2(s32);
+    u8 *func_800B274C(u8 *);
+    s32 func_800B2840(s32);
+    s32 func_800D674C(s32);
+    struct Section {
+        u8 pad[0x40];
+        u16 assets[2];
+        u8 pad44[0xC];
+        s32 objects[2];
+    };
+    struct Map {
+        u8 pad[0x68];
+        struct Section *sections;
+        u8 pad6C[0x15];
+        u8 flags;
+    };
+    struct Map *map = arg0;
+    s32 i;
+
+    if (arg2 == 0) {
+        for (i = 0; i < 2; i++) {
+            if (map->sections[arg1].objects[i]) {
+                _idworldmake_entrypoint_2(map->sections[arg1].objects[i]);
+                _glidmake_entrypoint_4(map->sections[arg1].objects[i]);
+                map->sections[arg1].objects[i] = 0;
+            }
+        }
+        return;
+    }
+    for (i = 0; i < 2; i++) {
+        if (map->sections[arg1].assets[i] &&
+            (map->flags & (1 << i)) && !map->sections[arg1].objects[i]) {
+            if (func_800B274C(i ? func_800D674C(map->sections[arg1].assets[i]) : arg2)) {
+                struct Section *section = &map->sections[arg1];
+                map->sections[arg1].objects[i] = _glidmake_entrypoint_5(section->assets[i], section);
+            } else {
+                map->sections[arg1].objects[i] = 0;
+            }
+            if (map->sections[arg1].objects[i]) {
+                _idworldmake_entrypoint_0(map->sections[arg1].objects[i], 2);
+            }
+        }
+    }
+    for (i = 0; i < 2; i++) {
+        if (map->sections[arg1].objects[i]) {
+            _glid_entrypoint_5(map->sections[arg1].objects[i],
+                func_800B2840(i ? func_800D674C(map->sections[arg1].assets[1]) : arg2));
+        }
+    }
+}
 
 void gcmapsects_entrypoint_1(s16 arg0, s32 arg1) {
     void *func_800BF704(void);
