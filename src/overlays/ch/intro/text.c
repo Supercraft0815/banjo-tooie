@@ -55,7 +55,97 @@ void func_80800130_chintrotext(s32 arg0)
     func_800DA524(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/text/func_80800154_chintrotext.s")
+void func_80800154_chintrotext(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800D9078(f32 *);
+    s32 func_800C954C(void);
+    f32 func_800F12D4(f32, f32, f32, f32, f32);
+    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void func_800FFAB0(Actor *);
+    void func_8080051C_chintrotext(Actor *, s32);
+    struct IntroTextData {
+        s16 count;
+        s16 y[10];
+        s16 offsets[10];
+        s16 textIds[10];
+        u8 alignment;
+        u8 style;
+    } *data;
+    struct IntroTextStyle {
+        f32 fadeIn;
+        f32 duration;
+        f32 fadeOut;
+        s32 spacing;
+    union {
+        struct IntroTextStyle *style;
+        struct IntroTextData *lines;
+    } work;
+    s32 i;
+    s32 y;
+    };
+    extern f32 D_808007A0_chintrotext[][4];
+    s32 expired;
+    s32 spacing;
+    union {
+        struct IntroTextStyle *style;
+        struct IntroTextData *lines;
+    } work;
+    s32 i;
+    s32 y;
+
+    data = func_80100094(arg0, 1);
+    expired = func_800D9078(&arg0->unk58);
+    work.style = (struct IntroTextStyle *)D_808007A0_chintrotext[data->style];
+    spacing = work.style->spacing;
+    switch (arg0->unk70_10) {
+        case 1: {
+            work.lines = func_80100094(arg0, 1);
+            switch (work.lines->alignment) {
+                case 0:
+                    y = (228 - work.lines->count * spacing) >> 1;
+                    y += 2.5f * spacing;
+                    goto position_lines;
+                case 1:
+                    y = (114 - work.lines->count * spacing) >> 1;
+                    goto position_lines;
+                case 2:
+                    y = (228 - work.lines->count * spacing) >> 1;
+                    goto position_lines;
+            }
+position_lines:
+            for (i = 0; i < work.lines->count; i++) {
+                work.lines->y[i] = i * spacing + y;
+            }
+            func_8080051C_chintrotext(arg0, 2);
+            break;
+        }
+        case 2:
+            func_800DA544(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
+            if (func_800C954C() == 0) {
+                func_8080051C_chintrotext(arg0, 3);
+            }
+            break;
+        case 3:
+            func_800DA544(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
+            _subaddiefade_entrypoint_1(arg0, (s32)func_800F12D4(arg0->unk58, 0, D_808007A0_chintrotext[data->style][0], 255.0f, 0.0f));
+            if (expired) {
+                func_8080051C_chintrotext(arg0, 4);
+            }
+            break;
+        case 4:
+            func_800DA544(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
+            if (expired) {
+                func_8080051C_chintrotext(arg0, 5);
+            }
+            break;
+        case 5:
+            _subaddiefade_entrypoint_1(arg0, (s32)func_800F12D4(arg0->unk58, 0, work.style->fadeOut, 0.0f, 255.0f));
+            if (expired) {
+                func_800FFAB0(arg0);
+            }
+            break;
+    }
+}
 
 void func_808003EC_chintrotext(Actor *arg0, u32 *arg1) {
     void *func_80100094(Actor *, u32);
