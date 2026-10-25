@@ -211,7 +211,45 @@ s32 func_808005AC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_808006D0_chtntmineshoot.s")
+void func_808006D0_chtntmineshoot(Actor *arg0, u8 *arg1) {
+    void *func_800D674C(s32);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    s32 func_800DF5D8(u8, u8, u8, u8);
+    void func_800DF744(s32, s32);
+    void func_800E24D8(s32);
+    void func_800E2588(u32);
+    void func_800E2AA4(u8 *, u8 *, s32, s32, f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void *func_80100094(Actor *, u32);
+    s32 func_80101870(void *, s32);
+    OSThread *func_80104130(void);
+    void func_80800C90_chtntmineshoot(Actor *);
+    struct { u8 pad0; u8 state; u8 pad2[2]; u8 color; } *sp44;
+    void *sp40;
+    struct { f32 *position; s32 pad; f32 scale[3]; } draw;
+
+    sp44 = func_80100094(arg0, 0);
+    func_800DF744(3, sp44->state != 2);
+    if (sp44->color != 0) {
+        func_800DF5D8(arg0->pad98, arg0->pad99, arg0->pad9A, arg0->alpha);
+    }
+    func_80101870(arg0, arg1);
+    if (arg0->unk7C_12) {
+        func_80800C90_chtntmineshoot(arg0);
+        if (sp44->state == 1) {
+            arg0->unk50 += 1.0f;
+            if (arg0->unk50 >= 16.0f) {
+                arg0->unk50 = 0.0f;
+            }
+            func_800DBEFC(func_80104130(), 4, draw.position = (f32 *)arg0->actorData);
+            sp40 = func_800D674C(0x9C6);
+            func_800EFA4C(draw.scale, 0.5f, 0.5f, 0.5f);
+            func_800E2588(1);
+            func_800E24D8(1);
+            func_800E2AA4(arg1, sp40, (s32)arg0->unk50, 0, draw.position, draw.scale);
+        }
+    }
+}
 
 void func_80800830_chtntmineshoot(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
