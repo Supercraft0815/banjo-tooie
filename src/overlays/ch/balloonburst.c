@@ -97,7 +97,88 @@ void func_80800098_chballoonburst(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808001FC_chballoonburst.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/balloonburst/func_808003C4_chballoonburst.s")
+void func_80800970_chballoonburst(Actor *, s32);
+typedef enum flag_e GameFlag;
+s32 _gcstatusDll_entrypoint_11(void);
+
+void func_808003C4_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    s32 _gcfrontend_entrypoint_9(s32);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _glcutDll_entrypoint_6(u32, u32);
+    void _plcamera_entrypoint_8(s32);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 func_800D395C(void);
+    void func_800DA544(GameFlag);
+    void func_800F4CC0(s32);
+    u32 func_800F54E4(void);
+    int func_800F7C58(s32, s32, s32);
+    void func_800F82D4(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    u8 *data;
+    s32 player;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x10BE:
+        case 0x1118:
+            if (arg2 > 0) {
+                func_800DA544(0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x10BF, 0x44, NULL, 0x22);
+                func_80108B04(arg0, 0);
+            } else {
+                _plcamera_entrypoint_8(func_800F54E4());
+                _susubgame_entrypoint_5(arg0, data + 0x18, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0x22);
+            }
+            _gcfrontend_entrypoint_9(0x68);
+            break;
+        case 0x10BF:
+            _susubgame_entrypoint_5(arg0, data + 0x18, 5, 1, 0);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0x22);
+            break;
+        case 0x10C0:
+        case 0x10F8:
+        case 0x10F9:
+        case 0x10FA:
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x46, NULL, 0x22);
+            break;
+        case 0xCEB:
+            player = func_800F54E4();
+            func_800F82D4(player, 0);
+            func_80101FDC(arg0, 6);
+            if (func_800D395C() != 0) {
+                if (arg2 > 0) {
+                    _gcfrontend_entrypoint_11();
+                } else {
+                    _gcfrontend_entrypoint_10();
+                }
+            } else {
+                if (arg2 > 0) {
+                    _gcgoto_entrypoint_1(0xE4, 1);
+                } else {
+                    func_800F4CC0(player);
+                    _susubgame_entrypoint_4(arg0, (s32)(data + 0x18));
+                }
+                func_800F7C58(player, 0x5D, 0);
+            }
+            break;
+        case 0xCEC:
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0x18));
+            func_80800970_chballoonburst(arg0, 0);
+            break;
+        case 0x10D2:
+            _susubgame_entrypoint_4(arg0, (s32)(data + 0x18));
+            func_800F82D4(func_800F54E4(), 0);
+            _glcutDll_entrypoint_6(0xE1, 0x22);
+            break;
+    }
+}
 
 s32 func_8080066C_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
     s16 func_800D211C(s32);
