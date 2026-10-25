@@ -1,5 +1,7 @@
 #include "common.h"
 
+s32 func_800F64A4(s32, s32);
+
 void func_80800000_chtrashcangame(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
     (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
@@ -293,7 +295,70 @@ void func_80800728_chtrashcangame(Actor *arg0) {
     func_808003D0_chtrashcangame(arg0, 0xB);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/trashcangame/func_8080093C_chtrashcangame.s")
+s32 func_8080093C_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _gcdialogcamera_entrypoint_0(s32, s32);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _glcutDll_entrypoint_20();
+    void func_800BF744(s32, s32);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    void func_80108B04(Actor *, u32);
+    void func_8080134C_chtrashcangame(Actor *, s32, s32);
+    s32 func_80801558_chtrashcangame(Actor *, s32, s32);
+    void func_80801740_chtrashcangame(Actor *, s32, s32);
+    void func_808019EC_chtrashcangame(Actor *, s32);
+    extern s32 D_808030AC_chtrashcangame[];
+    s32 low;
+    u32 high;
+
+    switch (arg1) {
+        case 0x2E:
+            func_8080134C_chtrashcangame(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            return 1;
+        case 0x2F:
+            func_80108B04(arg0, ((s16 *)&arg2)[1]);
+            return 1;
+        case 0x30:
+            return func_80801558_chtrashcangame(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        case 0x3D:
+            func_808019EC_chtrashcangame(arg0, arg2);
+            return 1;
+        case 0xB:
+            if (arg2 == 6) {
+                func_808003D0_chtrashcangame(arg0, 0xD);
+            }
+            return 4;
+        case 0x52:
+            _gcdialogcamera_entrypoint_4(arg0->position);
+            _gcdialogcamera_entrypoint_3(D_808030AC_chtrashcangame, arg0->scale);
+            return 3;
+        case 0x57:
+            low = arg2 & 0xFFFF;
+            high = (u32)(arg2 & 0xFFFF0000) >> 16;
+            if (_gcdialogcamera_entrypoint_0(low, high) != 0) {
+                func_80801740_chtrashcangame(arg0, low, high);
+                return 2;
+            }
+            return 1;
+        case 0x95:
+            arg0->unk74_7 = 0;
+            ((f32 *)arg0->actorData)[3] = 0.0f;
+            if (_glcutDll_entrypoint_20() != 0) {
+                func_808003D0_chtrashcangame(arg0, 0x13);
+            } else if (func_800D395C() != 0) {
+                func_808003D0_chtrashcangame(arg0, 0x10);
+            } else if (func_800F64A4(func_800F54E4(), 0x400) == 0) {
+                func_808003D0_chtrashcangame(arg0, 1);
+            } else {
+                func_808003D0_chtrashcangame(arg0, 3);
+            }
+            func_800BF744(1, 1);
+            return 1;
+        default:
+            return 0;
+    }
+}
 
 /* extern */
 
