@@ -9,7 +9,14 @@ void func_80800000_chjadesnake(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jadesnake/func_80800048_chjadesnake.s")
+void func_80800048_chjadesnake(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
+    extern u32 D_80800938_chjadesnake[];
+
+    func_800D1000(0xA, 1, (f32 *)&arg0->actorData[4], 3, arg0->unk0);
+    _subaddieaudioquick_entrypoint_2(arg0, (f32 *)&arg0->actorData[4], D_80800938_chjadesnake);
+}
 
 /* extern */
 
