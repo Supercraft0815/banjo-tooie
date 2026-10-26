@@ -57,7 +57,17 @@ s32 func_80012194(void) { extern u8 *D_8007E994; return (s32)D_8007E994 - (s32)c
 
 s32 func_800121AC(void) { return (s32)core2_VRAM_END - (s32)func_80012030 + (s32)0xFFF21DD0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E29B60/func_800121D0.s")
+void func_800121D0(void) {
+    u32 func_8001E830(void);
+    s32 a = func_80012194();
+    s32 x;
+
+    a = func_8001E830() + a;
+    x = a & 0xFFFFFFFF;
+    while (x & 0xF) {
+        x--;
+    }
+}
 
 // Needs migration
 #if 0
