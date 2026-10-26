@@ -1,6 +1,53 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/_lagoonbot/gcmapsects_lagoonbot_entrypoint_0.s")
+void gcmapsects_lagoonbot_entrypoint_0(void) {
+    void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32);
+    void _gcmapsects_entrypoint_1(s32, s32);
+    void _gcmapsects_entrypoint_2(s32, s32);
+    void _gcmapsects_entrypoint_3(s32, s32);
+    void _gcmapsects_entrypoint_10(s32);
+    void _gcmapsects_entrypoint_12(void (*)(u8 *));
+    void _gcmapsects_entrypoint_14(s32);
+    void _gcmapsects_lagoonbot_entrypoint_1(u8 *);
+    extern s16 D_80800230_gcmapsects_lagoonbot[];
+    extern s16 D_8080023C_gcmapsects_lagoonbot[];
+    extern s16 D_80800248_gcmapsects_lagoonbot[];
+    extern s16 D_808002E0_gcmapsects_lagoonbot[];
+    extern s16 D_808002EC_gcmapsects_lagoonbot[];
+    extern s32 D_808002F4_gcmapsects_lagoonbot;
+    extern s32 D_808002F8_gcmapsects_lagoonbot;
+    s16 *section;
+    u32 limit;
+    s32 i;
+
+    _gcmapsects_entrypoint_10(4);
+    i = 0;
+    do {
+        _gcmapsects_entrypoint_0(D_80800230_gcmapsects_lagoonbot[i * 22 + 19],
+                                 D_80800230_gcmapsects_lagoonbot[i * 22 + 20],
+                                 &D_80800230_gcmapsects_lagoonbot[i * 22],
+                                 &D_8080023C_gcmapsects_lagoonbot[i * 22],
+                                 &D_80800248_gcmapsects_lagoonbot[i * 22],
+                                 D_80800230_gcmapsects_lagoonbot[i * 22 + 18]);
+        i++;
+    } while ((void *)&D_80800248_gcmapsects_lagoonbot[i * 22] < (void *)&D_808002F8_gcmapsects_lagoonbot);
+    section = D_808002E0_gcmapsects_lagoonbot;
+    i = 0;
+    do {
+        _gcmapsects_entrypoint_3(section[0], section[1]);
+        section += 2;
+        i++;
+        limit = (u32)i < 3;
+    } while (limit);
+    /* IDO schedules this initialization differently if the loop starts on a new line. */
+    section = D_808002EC_gcmapsects_lagoonbot; do {
+        _gcmapsects_entrypoint_1(*section, 0);
+        _gcmapsects_entrypoint_2(*section, 0);
+        section++;
+    } while ((void *)section != &D_808002F4_gcmapsects_lagoonbot);
+    _gcmapsects_entrypoint_12(_gcmapsects_lagoonbot_entrypoint_1);
+    _gcmapsects_entrypoint_14(2);
+}
 
 void gcmapsects_lagoonbot_entrypoint_1(u8 *arg0) {
     f32 func_800136E4(f32);
