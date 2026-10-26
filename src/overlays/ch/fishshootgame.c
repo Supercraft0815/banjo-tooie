@@ -378,7 +378,17 @@ void func_8080076C_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fishshootgame/func_808009C0_chfishshootgame.s")
+void func_808009C0_chfishshootgame(Actor *arg0) {
+    s32 func_800DA298(s32);
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    extern s32 D_8080198C_chfishshootgame;
+    extern u16 D_808019A0_chfishshootgame[];
+    s32 i;
+
+    if (func_800DA298(0x449)) { for (i = 0; i < 1; i = 1) { D_808019A0_chfishshootgame[i] |= 0x42; } }
+    else { for (i = 0; i < 1; i = 1) { D_808019A0_chfishshootgame[i] &= ~0x40; } }
+    _subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0 + 4, &D_8080198C_chfishshootgame);
+}
 
 void func_80800A28_chfishshootgame(Actor *arg0) {
     void *func_8008AEDC(void *);
