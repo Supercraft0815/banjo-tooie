@@ -1,9 +1,32 @@
 #include "common.h"
 
+void func_808000B4_chtemplelobbydoor(s32);
+void func_808000BC_chtemplelobbydoor(s32);
+void func_808000E4_chtemplelobbydoor();
+void func_8080000C_chtemplelobbydoor(s32);
+s32 func_80800248_chtemplelobbydoor(Actor *, s32, s32);
+void func_80101870(Actor *, void *);
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+
+u32 D_808003A0_chtemplelobbydoor[] = {
+    0x00AC02B5, 0x08490004, 0x00000000, (u32)func_808000BC_chtemplelobbydoor,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00020800, (u32)func_808000B4_chtemplelobbydoor, 0x00000000,
+    0x00000000, (u32)func_8080000C_chtemplelobbydoor, (u32)func_80107C2C, 0x80002402,
+    (u32)func_80800248_chtemplelobbydoor, 0x00000000,
+};
+
+s32 D_808003E8_chtemplelobbydoor = 0x190;
+
+s16 D_808003EC_chtemplelobbydoor[] = {
+    0x0F37, 0x0F38, 0x0000, 0x0101, 0x120A, 0x0000, 0x00B2, 0x0000,
+    0x000A, 0x4000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+    0x0000, 0x0000,
+};
+
 OSThread *chtemplelobbydoor_entrypoint_0(void)
 {
-    extern u8 D_808003A0_chtemplelobbydoor[];
-
     return (OSThread *) D_808003A0_chtemplelobbydoor;
 }
 
@@ -37,7 +60,20 @@ void func_808000BC_chtemplelobbydoor(s32 arg0)
     func_808000E4_chtemplelobbydoor();
     _chdoor_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/temple/lobbydoor/func_808000E4_chtemplelobbydoor.s")
+
+void func_808000E4_chtemplelobbydoor(s32 arg0) {
+    int func_800C6E38(s32);
+    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 i;
+
+    if (func_800C6E38(0x15)) {
+        for (i = 0; i < 1; i = 1) {
+            D_808003EC_chtemplelobbydoor[i] = 0xF39;
+            D_808003EC_chtemplelobbydoor[i + 1] = 0xF39;
+        }
+    }
+    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_808003E8_chtemplelobbydoor);
+}
 
 void func_80800134_chtemplelobbydoor(Actor *arg0, s32 arg1) {
     void _bsfirstp_entrypoint_18(void);

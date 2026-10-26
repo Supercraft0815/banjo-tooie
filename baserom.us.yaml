@@ -11007,7 +11007,7 @@ segments:
     subsegments: 
       - [0x020A8B70, c, lobbydoor]
       - [0x020A8F00, .rodata, lobbydoor]
-      - [0x020A8F10, data, lobbydoor]
+      - [0x020A8F10, .data, lobbydoor]
       - [0x020A8F80, bss, lobbydoor]
   - name: chminelobbydoor_header
     dir: overlays/chminelobbydoor
