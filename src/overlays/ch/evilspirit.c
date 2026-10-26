@@ -425,7 +425,24 @@ void func_80800E20_chevilspirit(Actor *arg0, Gfx **arg1, s32 *arg2)
   }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80800F8C_chevilspirit.s")
+s32 func_80800F8C_chevilspirit(Actor *arg0) {
+    s32 func_800D3934(void);
+    s32 func_800EA05C(void);
+    extern u16 D_808022E0_chevilspirit[1];
+    s32 i;
+    s32 map;
+
+    map = func_800EA05C();
+    if (func_800D3934() == 0) {
+        return 0;
+    }
+    for (i = 0; i < 1; i++) {
+        if (map == D_808022E0_chevilspirit[i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 int func_80800FF8_chevilspirit(s32 arg0) {
     s32 func_800EA05C();
