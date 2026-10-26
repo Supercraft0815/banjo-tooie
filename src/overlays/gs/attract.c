@@ -12,7 +12,7 @@ void gsattract_entrypoint_2(s32 arg0)
 }
 void gsattract_entrypoint_3(void) {
     int func_800A8264(void);
-    s32 func_808002A4_gsattract(s32);
+    void func_808002A4_gsattract(s32);
     extern s32 D_8013546C;
     extern s32 D_80800493_gsattract;
     s32 var_a0;
@@ -46,7 +46,27 @@ void func_80800274_gsattract(s32 arg0) {
     *(u8 *)(state + 1) = *(u8 *)((s8 *)&D_80800493_gsattract + index * 12);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/func_808002A4_gsattract.s")
+void func_808002A4_gsattract(s32 arg0) {
+    void func_800A791C(s32, s32, s32);
+    void func_800A9BA0(s32, s32, s32);
+    void func_800D3A14(s32);
+    extern s32 D_8013546C;
+    extern s8 *D_80800494_gsattract[];
+    s8 *temp_v0;
+    s32 index;
+    u8 (*state)[2];
+
+    index = 1;
+    state = (u8 (*)[2])(&D_8013546C + index);
+    (*state)[index] = arg0;
+    temp_v0 = *(s8 **)((u8 *)D_80800494_gsattract + (*state)[0] * 12) + arg0 * 6;
+    if (temp_v0[2] < 0) {
+        func_800A791C(*(s16 *)temp_v0, 1, 1);
+        return;
+    }
+    func_800D3A14((u8)temp_v0[4]);
+    func_800A9BA0(2, *(s16 *)temp_v0, temp_v0[2]);
+}
 
 void gsattract_entrypoint_5(s32 arg0) {
     void func_800A9B84(void);
