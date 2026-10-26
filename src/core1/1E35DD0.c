@@ -16,7 +16,7 @@ void func_8001E2C8(void) {
 }
 
 void func_8001E304(void) {
-    s32 _gzreg_entrypoint_1();
+    void _gzreg_entrypoint_1(void);
     s32 func_8001D37C();
     s32 func_8001D96C();
     s32 func_8001D9CC(s32, s32);

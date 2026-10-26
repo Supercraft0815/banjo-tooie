@@ -369,7 +369,25 @@ void gzreg_entrypoint_0(void *arg0) {
     func_80800000_gzreg(context->sr, "sr", &D_80801140_gzreg);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/gzreg_entrypoint_1.s")
+void gzreg_entrypoint_1(void)
+{
+    void func_8001D37C(s32 arg0, ...);
+    s32 heap_bytes_free(void);
+    extern struct GzRegEntry D_80800EA0_gzreg;
+    extern struct GzRegEntry D_80800F30_gzreg;
+    func_8001D37C("RDP current = 0x%08X   (0x%016llx) \n",
+        IO_READ(DPC_CURRENT_REG) + K0BASE,
+        *(u64 *)(IO_READ(DPC_CURRENT_REG) + K0BASE));
+    func_8001D37C("RDP start   = 0x%08X   (0x%016llx) \n",
+        IO_READ(DPC_START_REG) + K0BASE,
+        *(u64 *)(IO_READ(DPC_START_REG) + K0BASE));
+    func_8001D37C("RDP end     = 0x%08X   (0x%016llx) \n",
+        IO_READ(DPC_END_REG) + K0BASE,
+        *(u64 *)(IO_READ(DPC_END_REG) + K0BASE));
+    func_80800000_gzreg(IO_READ(DPC_STATUS_REG), "\nRDP status:", &D_80800EA0_gzreg);
+    func_80800000_gzreg(IO_READ(SP_STATUS_REG), "\nRSP status:", &D_80800F30_gzreg);
+    func_8001D37C("\nFree memory was %d bytes.\n", heap_bytes_free());
+}
 
 s32 gzreg_entrypoint_2(void *arg0) {
     return *(s32 *)((u8 *)arg0 + 0x11C);
