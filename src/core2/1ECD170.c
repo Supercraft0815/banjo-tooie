@@ -14,7 +14,52 @@ int func_800F38A8(struct player_state_s *arg0, s32 arg1) {
            (((arg1 & 1) != 0) && (func_800F3ED0(arg0) == 0xA));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECD170/func_800F3930.s")
+s32 func_800F3930(struct player_state_s *arg0, s32 arg1, s32 arg2) {
+    int baflag_isTrue(struct player_state_s *, s32);
+    s32 bs_getCurrentState(struct player_state_s *);
+    s32 func_8008EF3C(struct player_state_s *, s32);
+    s32 func_8009CA70(struct player_state_s *, s32, s32);
+    s32 func_800A9C98(void);
+    s32 func_800F64A4(s32, s32);
+    int func_800F6774(u32);
+    s32 func_800F6CC8(s32);
+    s32 func_800F9184(void);
+    int player_isStable(struct player_state_s *);
+    s32 sp24;
+    sp24 = func_800F38A8(arg0, arg2);
+    if (func_800F9184() != 0) {
+    return 0;
+    }
+    if (func_800F6774(*(s32 *)((s8 *)arg0 + 0x184)) == 0) {
+    return 0;
+    }
+    if (func_800F6CC8(*(s32 *)((s8 *)arg0 + 0x184)) != 0) {
+    return 0;
+    }
+    if (func_8008EF3C(arg0, 0) == 0x13) {
+    return 0;
+    }
+    if ((player_isStable(arg0) == 0) && (sp24 == 0)) {
+    return 0;
+    }
+    if (func_800F64A4(*(s32 *)((s8 *)arg0 + 0x184), 0x12000) != 0) {
+    return 0;
+    }
+    if (func_800F64A4(*(s32 *)((s8 *)arg0 + 0x184), arg1) == 0) {
+    return 0;
+    }
+    if (baflag_isTrue(arg0, 0x3F) != 0) {
+    return 0;
+    }
+    if (func_8009CA70(arg0, bs_getCurrentState(arg0), 0x20) != 0) {
+    return 0;
+    }
+    if (func_800A9C98() != 0) {
+    return 0;
+    }
+    return 1;
+
+}
 
 /* extern */
 
@@ -25,11 +70,11 @@ s32 func_800F3A78(struct player_state_s *arg0, s32 arg1, s32 arg2) {
     s32 func_8009E674(struct player_state_s *, s32);
     s32 func_800A9C98(void);
     int func_800F38A8(struct player_state_s *, s32);
-    s32 func_800F3930(struct player_state_s *, s32);
+    s32 func_800F3930(struct player_state_s *, s32, s32);
     s32 func_800F5FA8(s32);
     s32 sp24;
 
-    if (func_800F3930(arg0, arg1) == 0) {
+    if (func_800F3930(arg0, arg1, arg2) == 0) {
         return 0;
     }
     if (func_8009E674(arg0, 0x8000) != 0) {

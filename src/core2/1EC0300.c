@@ -118,11 +118,43 @@ void func_800E6CA8(char *dest, f32 val, s32 decPlaces) {
 }
 
 void func_800E6DB4(char *str, s32 num) {
-    void func_800E6DD8(char *, s32, s32, s32);
+    void func_800E6DD8(char *, s32, u8, s32);
     func_800E6DD8(str, num, 0, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E6DD8.s")
+void func_800E6DD8(char *str, s32 num, u8 prefix, s32 arg3) {
+    s32 i;
+
+
+
+    while (*str != 0) {
+        str++;
+    }
+    if (num < 0) {
+        *str = '-';
+        str++;
+        num = -num;
+    } else if (prefix != 0) {
+        *str = prefix;
+        str++;
+    }
+    for (i = 1000000000; num < i; i /= 10) {}
+    if (i == 0) {
+        *str = '0';
+        str++;
+    } else {
+        while (i > 0) {
+            if (arg3 != 0) {
+                *str++ = 0x10 + (num / i);
+            } else {
+                *str++ = '0' + (num / i);
+            }
+            num %= i;
+            i /= 10;
+        }
+    }
+    *str = 0;
+}
 
 void func_800E6F7C(u8 *arg0, u32 arg1) {
     s32 var_v1;

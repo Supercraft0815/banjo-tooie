@@ -179,10 +179,10 @@ f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
 /* extern */
 
 void chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2) {
-    Actor *func_80800664_chbadshad(void *, void *);
+    Actor *func_80800664_chbadshad(void *, void *, f32);
     Actor *temp_v0;
 
-    temp_v0 = func_80800664_chbadshad(arg0, arg1);
+    temp_v0 = func_80800664_chbadshad(arg0, arg1, arg2);
     if (temp_v0 != NULL) {
         temp_v0->scale = arg2;
     }
@@ -242,7 +242,52 @@ void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 ar
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bad/shad/func_80800664_chbadshad.s")
+Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
+    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    extern s32 _chbadshad_entrypoint_4;
+    Actor *func_80106790(Unk80132ED0 *);
+    int func_8080078C_chbadshad(Actor *, s32);
+    void func_8080082C_chbadshad(Actor *);
+    s32 func_8001211C(void);
+    struct ShadowData {
+        s32 frame;
+        f32 reserved[2];
+        f32 height;
+    };
+    Actor *shadow;
+
+    if (((Actor *)arg0)->unk64_17) {
+        Unk80132ED0 *marker = (Unk80132ED0 *)((Actor *)arg0)->pad40;
+        if (marker != NULL) {
+            func_8080082C_chbadshad(func_80106790(marker));
+
+        }
+        return NULL;
+    }
+    else if ((Unk80132ED0 *)((Actor *)arg0)->pad40 == NULL) {
+        _chbaddiesetup_entrypoint_5(&_chbadshad_entrypoint_4,
+            (s32)((Actor *)arg0)->unk0, *(s32 *)&arg2, ((s32 *)arg1)[0],
+            ((s32 *)arg1)[1], ((s32 *)arg1)[2]);
+    }
+    else {
+    shadow = func_80106790((Unk80132ED0 *)((Actor *)arg0)->pad40);
+    if (shadow->unk64_17) {
+        return NULL;
+    } else {
+    if (func_8080078C_chbadshad(shadow, (s32)arg0)) {
+        ((struct ShadowData *)shadow->actorData)->height =
+            func_8080028C_chbadshad(arg0, shadow, arg1);
+    } else {
+        shadow->position[0] = ((f32 *)arg1)[0];
+        shadow->position[2] = ((f32 *)arg1)[2];
+    }
+    shadow->actorData[0] = func_8001211C();
+    shadow->scale = arg2;
+    return shadow;
+    }
+    }
+    return NULL;
+}
 
 /* extern */
 

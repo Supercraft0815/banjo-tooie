@@ -1347,7 +1347,7 @@ OSThread *chgameselect_entrypoint_5(void)
     return (OSThread *) D_80808328_chgameselect;
 }
 
-void func_808027D4_chgameselect(s32 arg0) 
+void func_808027D4_chgameselect(s32 arg0)
 {
 }
 void func_808027DC_chgameselect(Actor *arg0) {
@@ -1428,7 +1428,7 @@ void func_808029D8_chgameselect(Actor *arg0) {
 s32 func_80802A0C_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
     void func_808030EC_chgameselect(Actor *, void *, s32, s32);
-    void func_808034BC_chgameselect(Actor *, void *, s16, s16);
+    void func_808034BC_chgameselect(Actor *, void *, s32, s32);
     void func_80800AEC_chgameselect(Unk80132ED0 *, void *, s32, s32);
 
     if (arg1 == 0x20) {
@@ -1780,7 +1780,7 @@ void func_80803420_chgameselect(Actor *arg0, s32 arg1) {
     _gcnewoption_entrypoint_41(arg1, arg0->actorData[6]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_808034BC_chgameselect.s")
+void func_808034BC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) { s32 _gcnewoption_entrypoint_17(); s32 _gcnewoption_entrypoint_20(); void *func_80100094(Actor *, u32); void func_80803604_chgameselect(s32, s32, s32, s32); u8 *sp28[2]; s32 var_a3; s32 var_s0; u8 *var_s1; var_s0 = arg2; switch (arg3) { case 0: func_80803420_chgameselect(arg0, arg1); return; case 4: func_80803604_chgameselect(arg1, var_s0, _gcnewoption_entrypoint_20(arg1, var_s0), 1); return; case 5: _gcnewoption_entrypoint_37(arg1, 1U); return; case 2: case 3: sp28[0] = func_80100094(arg0, 1); func_80800AEC_chgameselect(arg0->unk3C, arg1, -1, 0xFC); var_s0 = 0; var_s1 = sp28[0]; if ((s32)arg0->actorData[5] > 0) { do { if (_gcnewoption_entrypoint_17(arg1, var_s0) != 0) { var_a3 = 0xFE; } else { var_a3 = 0xFD; } func_80800AEC_chgameselect(arg0->unk3C, arg1, *var_s1, var_a3); var_s0 += 1; var_s1 += 6; } while (var_s0 < (s32)arg0->actorData[5]); } func_80802FE4_chgameselect(arg0); func_80800AEC_chgameselect(arg0->unk3C, NULL, -1, arg3); default: return; } }
 
 void func_80803604_chgameselect(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_8080407C_chgameselect(s32, s32, s32);
@@ -4136,7 +4136,7 @@ void func_80807900_chgameselect(Actor *arg0) {
     }
 }
 
-void func_808079C8_chgameselect(s32 arg0) 
+void func_808079C8_chgameselect(s32 arg0)
 {
 }
 /* extern */

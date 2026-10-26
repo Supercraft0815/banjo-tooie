@@ -595,7 +595,7 @@ void func_8080129C_chwaspnestgame(void) {
     (*(s32 *)((s8 *)(temp_v0) + (0x34))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x34))) - 1);
 }
 
-void func_808012C8_chwaspnestgame(s32 arg0) 
+void func_808012C8_chwaspnestgame(s32 arg0)
 {
 }
 /* extern */
@@ -713,7 +713,58 @@ void func_808014BC_chwaspnestgame(Actor *arg0, f32 *arg1) {
     velocity->z += arg1[2] * dt;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/waspnestgame/func_80801590_chwaspnestgame.s")
+s32 func_80801590_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2) {
+    void func_800BA22C(s32, s32);
+    void func_800BA77C(s32, s16, s16, s16);
+    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 func_800BEF00(f32 *, f32 *, f32 *, s32);
+    void func_800C4AF0(f32 *, void *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EFB24(void *, void *, void *);
+    void func_800F1988(f32 *, f32 *, f32 *);
+    extern s32 D_80802044_chwaspnestgame[];
+    extern s32 D_80802068_chwaspnestgame[];
+    f32 distance;
+    f32 speed;
+    f32 delta[3];
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    f32 angles[3];
+    s32 emitter;
+
+    func_800EFB24(delta, arg0->actorData, arg0->position);
+    distance = func_800EEF94(delta);
+    if (distance < 2.0f * arg1) {
+        func_80801324_chwaspnestgame(delta, distance, 8.0f * arg2);
+    } else {
+        func_80801324_chwaspnestgame(delta, distance, 2.0f * arg2);
+    }
+    func_800EE7F8(start, arg0->position);
+    func_808014BC_chwaspnestgame(arg0, delta);
+    speed = func_800EEF94((f32 *)&arg0->actorData[4]);
+    if (arg2 < speed) {
+        func_80801324_chwaspnestgame((f32 *)&arg0->actorData[4], speed, arg2);
+    }
+    func_800EE7F8(end, arg0->position);
+    if (arg0->unk74_30) {
+        func_800EE7F8(end, arg0->position);
+    } else {
+        func_800EE7F8(end, start);
+        func_800EE7F8(start, arg0->position);
+    }
+    if (func_800BEF00(start, end, normal, 0x20020)) {
+        arg0->unk74_30 = (s32)arg0->unk74_30 ^ 1;
+        func_800F1988(normal, &angles[0], &angles[1]);
+        angles[2] = 0.0f;
+        emitter = func_800BABB8(0, end, NULL, 1.0f, D_80802044_chwaspnestgame);
+        func_800BA77C(emitter, (s16)(s32)angles[0], (s16)(s32)angles[1], (s16)(s32)angles[2]);
+        func_800BA22C(emitter, 1);
+        func_800C4AF0(arg0->position, D_80802068_chwaspnestgame);
+    }
+    return distance < 0.5f * arg1;
+}
 
 /* extern */
 
@@ -798,7 +849,7 @@ void func_80801A10_chwaspnestgame(Actor *arg0) {
     s32 func_800DA298(s32);
     s32 func_800FFA88(Unk80132ED0 *);
     s32 func_80101DDC(Actor *);
-    s32 func_80801590_chwaspnestgame(Actor *, s32, s32);
+    s32 func_80801590_chwaspnestgame(Actor *, f32, f32);
 
     switch (((Actor *)arg0)->unk70_10) {
     case 1:
@@ -809,7 +860,7 @@ void func_80801A10_chwaspnestgame(Actor *arg0) {
     case 2:
         func_80801D28_chwaspnestgame(arg0);
         func_80801CE4_chwaspnestgame(arg0);
-        if (func_80801590_chwaspnestgame(arg0, 0x42C80000, 0x43FA0000) != 0) {
+        if (func_80801590_chwaspnestgame(arg0, 100.0f, 500.0f) != 0) {
             if (func_800DA298(0) == 0) {
                 func_8080129C_chwaspnestgame(arg0->unk3C);
                 func_800FFA88((u8 *)arg0 ->unk0);
@@ -823,7 +874,7 @@ void func_80801A10_chwaspnestgame(Actor *arg0) {
     case 5:
         func_80801D28_chwaspnestgame(arg0);
         func_80801CE4_chwaspnestgame(arg0);
-        if (func_80801590_chwaspnestgame(arg0, 0x43480000, 0x44FA0000) != 0) {
+        if (func_80801590_chwaspnestgame(arg0, 200.0f, 2000.0f) != 0) {
             func_800FFA88((u8 *)arg0 ->unk0);
             return;
         }

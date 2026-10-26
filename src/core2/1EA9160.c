@@ -490,7 +490,27 @@ u8 func_800D0CC8(s32 arg0) {
     return D_8011AB3E[arg0 * 3];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0CE0.s")
+Actor *func_800D0CE0(s32 arg0, f32 *arg1, s32 arg2, s32 *arg3) {
+    Actor *func_80108474(u32, f32 *, s32);
+    *arg3 = 0;
+    switch (arg2) {
+        case 0:
+            return _chbounce_entrypoint_7(0x1C, arg1, arg0);
+        case 1:
+            return _chbounce_entrypoint_7(0x1D, arg1, arg0);
+        case 4:
+            return _chbounce_entrypoint_7(0x1E, arg1, arg0);
+        case 3:
+            *arg3 = 1;
+        case 2:
+            return func_80108474(arg0, arg1, 0);
+        case 5:
+            return _chbounce_entrypoint_7(0x1F, arg1, arg0);
+        case 6:
+            return _chbounce_entrypoint_7(0x20, arg1, arg0);
+    }
+    return NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0DAC.s")
 

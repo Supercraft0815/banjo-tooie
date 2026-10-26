@@ -27,7 +27,106 @@ void func_80800098_gctransitionDll(s32 *arg0, f32 *arg1) {
     *arg1 *= func_800A8AF0(*arg0) * 0.75f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/transitionDll/func_808000D8_gctransitionDll.s")
+void func_808000D8_gctransitionDll(s32 address, s32 arg1, void *arg2) {
+    typedef struct anctrl_s AnimCtrl;
+    struct TransitionData {
+        u8 kind;
+        u8 pad[3];
+        f32 duration;
+        s32 asset;
+        s32 animation;
+        s32 unk10;
+    };
+    struct Transition {
+        s32 unk0;
+        s32 unk4;
+        struct TransitionData data;
+        u8 state;
+        u8 pad1D[3];
+        s32 asset;
+        s32 unk24;
+        f32 timer;
+        AnimCtrl *control;
+        s32 unk30;
+    };
+    int _gcaudiolist_entrypoint_0();
+    AnimCtrl *func_8008AD80(s32);
+    void anctrl_reset(AnimCtrl *);
+    void anctrl_setIndex(AnimCtrl *, int);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_start(AnimCtrl *);
+    void func_8008B10C(AnimCtrl *, f32);
+    void func_8008B188(AnimCtrl *, s32);
+    void aligned4_memcpy(void *, void *, int);
+    void func_8008ADBC(AnimCtrl *);
+    void func_80090684(s32);
+    void func_800C9214(void *);
+    void func_800EA334(s32);
+    void func_800FC6B0(u32);
+    void func_800FCA90(u32);
+    void func_800FC8EC();
+    void func_800FCB54(s32, s32, s32, f32);
+    u32 state = arg1;
+    struct Transition *arg0 = (struct Transition *) address;
+
+    if (arg0->control != NULL) {
+        func_8008ADBC(arg0->control);
+        arg0->control = NULL;
+    }
+    arg0->unk4 = 0;
+    arg0->timer = 0.0f;
+    if (arg2 != NULL) {
+        aligned4_memcpy(&arg0->data, arg2, 0x14);
+    } else {
+        arg0->data.kind = 0;
+    }
+    if (state == 2) {
+        arg0->asset = 0xB45;
+    } else if (state == 7) {
+        arg0->asset = 0xB46;
+    } else if (arg2 != NULL) {
+        if (((struct TransitionData *)arg2)->asset != 0) {
+            arg0->asset = ((struct TransitionData *)arg2)->asset;
+        }
+    }
+    if (arg2 != NULL && ((struct TransitionData *)arg2)->animation != 0) {
+        arg0->control = func_8008AD80(0);
+        anctrl_reset(arg0->control);
+        anctrl_setIndex(arg0->control, ((struct TransitionData *)arg2)->animation);
+        anctrl_setDuration(arg0->control, ((struct TransitionData *)arg2)->duration);
+        anctrl_setPlaybackType(arg0->control, 1);
+        if (state == 6) {
+            func_8008B188(arg0->control, 0);
+            func_80090684(1);
+            func_800EA334(0);
+        } else {
+            osViBlack(1);
+            func_8008B10C(arg0->control, 0.25f);
+        }
+        anctrl_start(arg0->control);
+    }
+    if (state == 5) {
+        func_800FC6B0(0x1D);
+        func_800FCB54(0x1D, 0, 1000, 0.4f);
+        func_800FCA90(0x1D);
+        func_800FC8EC(0x1D);
+    } else if (state == 6) {
+        if (arg0->data.kind == 10) {
+            _gcaudiolist_entrypoint_0(1);
+        } else {
+            func_800FC6B0(0x1E);
+            func_800FCB54(0x1E, 0, 1000, 0.2f);
+            func_800FCA90(0x1E);
+            func_800FC8EC(0x1E);
+        }
+    } else if (state == 1 && arg0->state != 0) {
+        func_800C9214(arg0);
+        return;
+    }
+    arg0->unk30 = 0;
+    arg0->state = state;
+}
 
 void gctransitionDll_entrypoint_0(s32 *arg0, Gfx **arg1) {
     struct TransitionScale {
@@ -163,7 +262,7 @@ void gctransitionDll_entrypoint_1(s32 arg0) {
     s32 func_800EA05C();
     void *func_80800000_gctransitionDll(s32);
     void *func_8080004C_gctransitionDll(s32);
-    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    void func_808000D8_gctransitionDll(s32, s32, void *);
     void *temp_v0;
 
     temp_v0 = func_80800000_gctransitionDll((*(u8 *)((s8 *)(func_8080004C_gctransitionDll(func_800EA05C())) + (2))));
@@ -188,7 +287,7 @@ int gctransitionDll_entrypoint_4(void *arg0) {
 }
 
 void gctransitionDll_entrypoint_5(u8 *arg0) {
-    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    void func_808000D8_gctransitionDll(s32, s32, void *);
     func_808000D8_gctransitionDll(arg0, 0x1, 0);
 }
 
@@ -198,7 +297,7 @@ void gctransitionDll_entrypoint_6(s32 arg0) {
     s32 func_800EA05C();
     void *func_80800000_gctransitionDll(s32);
     void *func_8080004C_gctransitionDll(s32);
-    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    void func_808000D8_gctransitionDll(s32, s32, void *);
     void *temp_v0;
 
     temp_v0 = func_80800000_gctransitionDll((*(u8 *)((s8 *)(func_8080004C_gctransitionDll(func_800EA05C())) + (3))));
@@ -206,7 +305,7 @@ void gctransitionDll_entrypoint_6(s32 arg0) {
 }
 
 void gctransitionDll_entrypoint_7(s32 arg0, s32 arg1) {
-    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    void func_808000D8_gctransitionDll(s32, s32, void *);
     extern s32 D_80800EA4_gctransitionDll;
     u8 *temp_a2;
 
@@ -216,7 +315,7 @@ void gctransitionDll_entrypoint_7(s32 arg0, s32 arg1) {
 
 void gctransitionDll_entrypoint_8(u8 *arg0, s32 arg1) {
     u32 func_800E6A00(void);
-    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    void func_808000D8_gctransitionDll(s32, s32, void *);
     (*(s8 *)((s8 *)(arg0) + (8))) = 0;
     (*(s32 *)((s8 *)(arg0) + (0x20))) = 0;
     (*(s32 *)((s8 *)(arg0) + (0))) = arg1;
@@ -236,7 +335,7 @@ void gctransitionDll_entrypoint_9(u8 *arg0) {
     s32 func_800EA170(void);
     void func_800EA334(s32);
     void func_800EA34C(s32);
-    s32 func_808000D8_gctransitionDll(s32, u8, void *);
+    void func_808000D8_gctransitionDll(s32, s32, void *);
     f32 delta;
 
     if (arg0[0x1D]) {

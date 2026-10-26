@@ -37,7 +37,7 @@ s32 func_808002C0_chdumbwaiterlift(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
     void func_80101FDC(Actor *, u32);
     void func_808003C4_chdumbwaiterlift(Actor *);
-    void func_80800608_chdumbwaiterlift(Actor *, void *, s16, s16);
+    void func_80800608_chdumbwaiterlift(Actor *, void *, s32, s32);
     void func_80800B40_chdumbwaiterlift(Actor *);
     s16 *data = (s16 *)&arg2;
 
@@ -146,7 +146,52 @@ void func_80800560_chdumbwaiterlift(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dumbwaiterlift/func_80800608_chdumbwaiterlift.s")
+void func_80800608_chdumbwaiterlift(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
+    s32 _capod_entrypoint_21(s32, s32, s32, s32);
+    void _subaddieDll_entrypoint_4(Actor *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    u32 func_800F54E4(void);
+    s32 func_800F8418(s32, f32 *);
+    void func_800F8444(s32, f32 *);
+    void func_80101FDC(Actor *, u32);
+    s32 func_808008B4_chdumbwaiterlift(void);
+    s32 func_808009B8_chdumbwaiterlift(s32);
+    void func_80800B40_chdumbwaiterlift(Actor *);
+    extern u8 D_80800BC6_chdumbwaiterlift[][8];
+    s32 sp34;
+    s32 sp30;
+    f32 offset;
+
+    switch (arg3) {
+        case 0:
+            func_80800560_chdumbwaiterlift(arg1);
+            return;
+        case 2:
+            func_80800B40_chdumbwaiterlift(arg0);
+            func_80101FDC(arg0, 5);
+            return;
+        case 3:
+            sp34 = func_808009B8_chdumbwaiterlift(arg2);
+            sp30 = func_808008B4_chdumbwaiterlift();
+            arg0->unk6C_0 = sp34;
+            func_800EE7F8((f32 *)&arg0->actorData[4], arg0->position);
+            func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+            if (sp34 < sp30) {
+                offset = -150.0f;
+            } else {
+                offset = 150.0f;
+            }
+            ((f32 *)arg0->actorData)[1] += offset;
+            arg0->unk58 = 3.0f;
+            func_80101FDC(arg0, 6);
+            func_800F8418(func_800F54E4(), arg0->position);
+            func_800F8444(func_800F54E4(), arg0->rotation);
+            func_80800B40_chdumbwaiterlift(arg0);
+            _capod_entrypoint_21(arg0->unk0, 0, D_80800BC6_chdumbwaiterlift[sp30][0], 0x2010);
+            _subaddieDll_entrypoint_4(arg0, 1);
+            return;
+    }
+}
 
 /* extern */
 

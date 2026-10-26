@@ -429,7 +429,7 @@ f32 func_800F549C(s32 arg0, int arg1) {
 }
 
 //Get Which Character is in Control
-u32 func_800F54E4(void) 
+u32 func_800F54E4(void)
 {
 	return D_801354DC;
 }
@@ -468,9 +468,9 @@ Unk80132ED0 *func_800F55D0(s32 arg0)
     return func_800965D4(D_80135490[arg0]);
 }
 
-void func_800F55FC(s32 arg0)
+s32 func_800F55FC(s32 arg0)
 {
-    func_80096628(D_80135490[arg0]);
+    return func_80096628(D_80135490[arg0]);
 }
 
 void func_800F5628(s32 arg0)
@@ -560,7 +560,7 @@ void func_800F586C(s32 arg0)
     func_80098B5C(D_80135490[arg0]);
 }
 
-s32 func_800F5898(void) 
+s32 func_800F5898(void)
 {
 	return 8;
 }
@@ -705,7 +705,7 @@ void func_800F5D18(s32 arg0)
     func_800F40EC(D_80135490[arg0]);
 }
 
-void func_800F5D44(s32 arg0, f32* arg1) 
+void func_800F5D44(s32 arg0, f32* arg1)
 {
     func_800A33CC(D_80135490[arg0],arg1);
 }
@@ -1012,7 +1012,7 @@ s32 func_800F6604(s32 arg0) {
     return _bacough_entrypoint_1(D_80135490[arg0]) == 2;
 }
 
-s32 func_800F6634(s32 arg0) 
+s32 func_800F6634(s32 arg0)
 {
 	return 0;
 }
@@ -1211,9 +1211,9 @@ s32 func_800F6C1C(s32 arg0) {
     return func_8009CB44(temp_a0, bs_getCurrentState(temp_a0)) != 0;
 }
 
-void func_800F6C5C(s32 arg0)
+s32 func_800F6C5C(s32 arg0)
 {
-    player_isStable(D_80135490[arg0]);
+    return player_isStable(D_80135490[arg0]);
 }
 
 /* extern */
@@ -1307,7 +1307,36 @@ s32 func_800F6EAC(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F6F00.s")
+s32 func_800F6F00(s32 arg0) {
+    s32 _badata_entrypoint_14(PlayerState *);
+    extern void func_800F58CC();
+    extern void func_800F5D70();
+    f32 sp2C[3];
+    f32 sp20[3];
+    s32 pad[2];
+
+    if (_badata_entrypoint_14(D_80135490[arg0]) == 0) {
+        return 1;
+    }
+    func_800F58CC(arg0, sp2C);
+    if ((0.0f != sp2C[0]) || (0.0f != sp2C[2])) {
+        return 0;
+    }
+    if (func_800F6C5C(arg0) == 0) {
+        return 0;
+    }
+    func_800F5D70(arg0, sp20);
+    if (func_800F55FC(arg0) & 0x8000) {
+        if ((sp20[1] < 0.0f) && (sp20[1] >= -1.0f)) {
+            return 1;
+        }
+        return 0;
+    }
+    if (-1.0f != sp20[1]) {
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 

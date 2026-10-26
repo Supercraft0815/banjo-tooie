@@ -44,7 +44,45 @@ void *func_8010E81C(f32 arg0) {
     return (void *)cursor;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE8100/func_8010E924.s")
+void *func_8010E924(s32 arg0, f32 *arg1, f32 arg2, f32 arg3) {
+    struct entry { s32 data[9]; f32 value; };
+    void func_800193C4(f32 *, f32 *);
+    void func_800C8800(s32, f32 *);
+    void func_800C883C(s32, void *);
+    void func_800C8900(s32, s32 *);
+    f32 sqrtf(f32);
+    struct entry *entry;
+    f32 distance;
+    f32 delta[3];
+    f32 position[3];
+    f32 radius[2];
+
+    func_800C8800(arg0, position);
+    func_800C883C(arg0, radius);
+    delta[0] = position[0] - arg1[0];
+    delta[1] = position[1] - arg1[1];
+    delta[2] = position[2] - arg1[2];
+    distance = sqrtf((delta[0] * delta[0] + delta[1] * delta[1]) + delta[2] * delta[2]);
+    if (radius[1] + arg2 <= distance) {
+        return NULL;
+    }
+    entry = func_8010E81C(distance);
+    if (entry == NULL) {
+        return NULL;
+    }
+    entry->value = distance;
+    func_800193C4(delta, position);
+    entry->data[0] = (s32)delta[0];
+    entry->data[1] = (s32)delta[1];
+    entry->data[2] = (s32)delta[2];
+    radius[0] /= arg3;
+    radius[1] /= arg3;
+    entry->data[3] = (s32)(radius[0] * 256.0f);
+    entry->data[4] = (s32)(radius[1] * radius[1]);
+    entry->data[5] = (s32)(16384.0f / (radius[1] - radius[0]));
+    func_800C8900(arg0, &entry->data[6]);
+    return entry;
+}
 
 void func_8010EACC(void *arg0, s32 arg1, f32 arg2) {
     struct entry { s32 data[9]; f32 value; };
@@ -57,7 +95,7 @@ void func_8010EACC(void *arg0, s32 arg1, f32 arg2) {
     s32 func_800DF8B4(s32 *);
     f32 func_800DF8C4(f32 *);
     void func_800DF900(u8 *);
-    void func_8010E924(s32, f32 *, f32, f32);
+    void *func_8010E924(s32, f32 *, f32, f32);
     void mlMtxPop(void);
     s32 current;
     f32 center[3];

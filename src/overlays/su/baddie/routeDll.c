@@ -279,7 +279,36 @@ s32 subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f
     return func_80102D98(arg0, arg3, 0, arg4, (f32) arg5, (f32) arg6);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_808006D0_subaddierouteDll.s")
+s32 func_808006D0_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    u8 func_800CC61C(s32);
+    void *func_800CC684(s32, s32);
+    void func_800EEB9C(f32[3], f32, f32);
+    s32 func_800F05F8(f32 *, f32 *, f32 *, f32, f32 *);
+    f32 func_800F13F0(f32, f32);
+    f32 direction[3];
+    f32 roots[2];
+    s32 route;
+    s32 count;
+    s32 i;
+    struct { f32 position[3]; s16 radius; } *sphere;
+
+    route = arg0->unk70_25 - 1;
+    count = func_800CC61C(route);
+    if (count == 0) {
+        return 1;
+    }
+    func_800EEB9C(direction, arg2, arg3);
+    for (i = count - 1; i >= 0; i--) {
+        sphere = func_800CC684(route, i);
+        if (func_800F05F8(arg0->position, direction, sphere->position, sphere->radius, roots) == 2
+            && roots[0] >= 0.0f && roots[1] >= 0.0f
+            && func_800F13F0(roots[0], roots[1]) < 1.0f) {
+            ((u16 *)arg1)[3] |= 2;
+            return 0;
+        }
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800828_subaddierouteDll.s")
 
@@ -568,10 +597,10 @@ s32 subaddierouteDll_entrypoint_9(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
 
 s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
     s32 func_800DC128(s32, s32);
-    s32 func_808006D0_subaddierouteDll(Actor *, s32, f32, s32, s32);
+    s32 func_808006D0_subaddierouteDll(Actor *, s32, f32, f32, s32);
     s32 func_80800828_subaddierouteDll(void *, s32, f32, s32, s32);
     s32 func_80800A74_subaddierouteDll(void *, s32, f32, s32, s32);
-    if (!(arg4 & 0x200) && (func_808006D0_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
+    if (!(arg4 & 0x200) && (func_808006D0_subaddierouteDll(arg0, arg1, arg2, *(f32 *)&arg3, arg4) == 0)) {
         return 0;
     }
     if (!(arg4 & 0x100) && (func_80800828_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {

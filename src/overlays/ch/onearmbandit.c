@@ -53,7 +53,7 @@ void func_8080007C_chonearmbandit(u8 *arg0) {
     s32 func_8010D278(void);
     void func_80800680_chonearmbandit(u8 *, s32);
     void func_80800740_chonearmbandit(u8 *, f32);
-    void func_808008E0_chonearmbandit(u8 *, f32);
+    s32 func_808008E0_chonearmbandit(u8 *, f32);
     void func_80800A14_chonearmbandit(u8 *, f32);
     extern u32 D_808011F0_chonearmbandit[];
     extern u32 D_8080134C_chonearmbandit[];
@@ -288,7 +288,41 @@ void func_80800740_chonearmbandit(u8 *arg0, f32 arg1) {
     ((Actor *)arg0)->rotation[1] = func_800136E4(((Actor *)arg0)->rotation[1] + difference);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/onearmbandit/func_808008E0_chonearmbandit.s")
+s32 func_808008E0_chonearmbandit(u8 *arg0, f32 arg1) {
+    f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
+    f32 func_800F3780(f32, u8 *, s16);
+    f32 func_80101F24(Actor *);
+    s32 func_8010B990(Actor *, s32);
+    extern u8 D_808011FC_chonearmbandit[];
+    f32 saved;
+    s32 result;
+    f32 speed;
+
+
+    saved = ((f32 *)((Actor *)arg0)->actorData)[3];
+    if (((Actor *)arg0)->unk64_29) {
+        speed = _subaddiejoy_entrypoint_9(arg0, NULL, 0);
+        ((f32 *)((Actor *)arg0)->actorData)[3] =
+            func_800F3780(func_80101F24((Actor *)arg0), D_808011FC_chonearmbandit, 3) *
+            (((Actor *)arg0)->scale * (speed * 400.0f));
+    } else {
+        ((f32 *)((Actor *)arg0)->actorData)[3] =
+            func_800F3780(func_80101F24((Actor *)arg0), D_808011FC_chonearmbandit, 3) *
+            (((Actor *)arg0)->scale * 400.0f);
+    }
+    func_80800740_chonearmbandit(arg0, arg1);
+    if (((Actor *)arg0)->unk64_29) {
+        func_8010B990((Actor *)arg0, 0x205025);
+    } else {
+        func_8010B990((Actor *)arg0, 0x5425);
+    }
+    result = 0;
+    if (((f32 *)((Actor *)arg0)->actorData)[3] > 0.0f) {
+        result = 1;
+    }
+    ((f32 *)((Actor *)arg0)->actorData)[3] = saved;
+    return result;
+}
 
 void func_80800A14_chonearmbandit(u8 *arg0, f32 arg1) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);

@@ -269,7 +269,44 @@ void func_800C16A4(u8 index) {
     D_80128C08[index][0] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9A960/func_800C16F8.s")
+void func_800C16F8(void *arg0, s32 arg1) {
+    s32 func_800CBBE0(s32);
+    s32 func_800CBC00(s32);
+    s32 func_800CCEF4(s32, s32 *, s32 *, s32, s32);
+    void func_800DC3D4(s32, f32, u16, u8, u8, s32);
+    SoundSourceView *source = arg0;
+    u32 parameters;
+    s32 kind;
+    if (arg1) {
+        if (source->unk79) {
+            func_800C1568(source->unk79);
+        }
+        source->unk79 = arg1 & 0xFF;
+        func_800C1210(source, 1);
+        func_800C13A0(source, 4);
+        func_800C13A0(source, 8);
+        func_800C13A0(source, 0x10);
+        *(s32 *)((u8 *)source + 0x20) = -1;
+        *(s32 *)((u8 *)source + 0x24) = -1;
+        if (func_800CCEF4((s32)source, (s32 *)((u8 *)source + 0x20),
+                         (s32 *)((u8 *)source + 0x24), 0, 0)
+            && func_800CBC00(*(s32 *)((u8 *)source + 0x20))) {
+            kind = func_800CBBE0(*(s32 *)((u8 *)source + 0x20));
+            switch (kind) {
+                case 2: source->unk60 = 25; break;
+                case 3: source->unk60 = 20; break;
+                case 4: source->unk60 = 15; break;
+                case 5: source->unk60 = 10; break;
+                case 6: source->unk60 = 5; break;
+            }
+        }
+        parameters = func_800C122C(source->unk60, *((u8 *)source + 0x1B),
+                                   *((u8 *)source + 0x1C), func_800C13C4(arg0, 0x400));
+        func_800DC3D4(*(s16 *)((u8 *)source + 0x58) - 0x3E9,
+                     source->unk6C, *(u16 *)((u8 *)source + 0x5A),
+                     source->unk61, parameters, (s32)func_800C1430(source->unk79));
+    }
+}
 
 /* extern */
 

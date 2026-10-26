@@ -47,7 +47,7 @@ void func_800C725C(s32 arg0)
     func_800C4308(func_800C71B0(arg0, 0.51f), 1.0f);
 }
 
-void func_800C7290(s32 arg0) 
+void func_800C7290(s32 arg0)
 {
     func_800FC9B4(1, func_800C71B0(arg0, 0.2f));
 }
@@ -60,7 +60,7 @@ void func_800C72C0(s32* arg0)
     }
 }
 
-void func_800C72E4(s32 arg0) 
+void func_800C72E4(s32 arg0)
 {
 }
 void func_800C72EC(s32* arg0)
@@ -71,7 +71,7 @@ void func_800C72EC(s32* arg0)
     }
 }
 
-void func_800C7310(s32 arg0) 
+void func_800C7310(s32 arg0)
 {
     _gcgoto_entrypoint_8(0, 0);
 }
@@ -214,7 +214,35 @@ void func_800C775C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0AA0/func_800C77DC.s")
+void func_800C77DC(s32 arg0) {
+    extern s8 D_8012760D;
+
+    switch (D_8012760C.unk0) {
+    case 2: case 3: case 4:
+    case 5: case 6: case 7: case 8:
+        func_800C7618(func_800C75A0(D_8012760C.unk0), 0);
+        break;
+    case 1:
+    default:
+        if (D_8012760C.unk1 == 0) {
+            func_800FEC60(0xAU);
+        }
+        break;
+    }
+    D_8012760C.unk0 = arg0;
+    if (D_8012760C.unk1 == 0) {
+        switch (D_8012760C.unk0) {
+        case 2: case 3: case 4:
+        case 5: case 6: case 7: case 8:
+            func_800C7618(func_800C75A0(D_8012760C.unk0), -1);
+            break;
+        case 1:
+    default:
+            func_800FECB8(0xAU);
+            break;
+        }
+    }
+}
 
 void func_800C78CC(u32 arg0)
 {
@@ -225,7 +253,7 @@ void func_800C78CC(u32 arg0)
     func_800C775C();
 }
 
-void func_800C7900(void) 
+void func_800C7900(void)
 {
     s32 sp1C;
     s32 temp_v0;

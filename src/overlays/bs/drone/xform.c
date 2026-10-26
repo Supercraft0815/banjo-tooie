@@ -186,7 +186,82 @@ void func_80800724_bsdronexform(void *arg0) {
     (*(f32 *)((s8 *)(*(void **)((s8 *)arg0_copy + 0x18C)) + 0x20)) = temp_f0 + (*(f32 *)((s8 *)(*(void **)((s8 *)arg0_copy + 0x18C)) + 0x20));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/xform/func_80800758_bsdronexform.s")
+void func_80800758_bsdronexform(void *arg0, s32 arg1) {
+    struct player_state_s;
+    void _badata_entrypoint_5(struct player_state_s *, s32 *, f32 *);
+    void _batimer_set(struct player_state_s *, s32, f32);
+    s32 baphysics_set_type(void *, s32);
+    void func_80092778(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32 *);
+    f32 func_8009C150(struct player_state_s *);
+    void func_8009DE38(struct player_state_s *, s32, f32);
+    void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    s32 func_800A3274();
+    u32 func_800A33F8(void *);
+    void func_800A3410(struct player_state_s *, s32);
+    f32 *func_800A4C48(struct player_state_s *);
+    void func_800CA3F4(f32 *, f32 *, f32);
+    int func_800D5034(s32, s32);
+    s32 func_800E1610(s32, f32, f32, f32 *);
+    void baanim_playForDuration_loopSmooth(void *, s32, f32);
+    s32 animation;
+    f32 duration;
+    f32 position[3];
+
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x32) = arg1;
+    switch (arg1) {
+    case 1:
+        *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x1C) = 1;
+        *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x2C) = func_8009C150(arg0);
+        func_808003BC_bsdronexform(arg0, 0.28f);
+        func_808003CC_bsdronexform(arg0, 180.0f);
+        func_808003DC_bsdronexform(arg0, 0.04f);
+        func_80800704_bsdronexform(arg0, 0.05f);
+        baphysics_set_type(arg0, 7);
+        _batimer_set(arg0, 0, 2.8f);
+        func_8009DF18(arg0, 0x5D2, 1.0f, 20000);
+        break;
+    case 2:
+        _batimer_set(arg0, 0, 0.5f);
+        baphysics_set_type(arg0, 11);
+        break;
+    case 3:
+        _batimer_set(arg0, 0, 0.05f);
+        break;
+    case 4:
+        _batimer_set(arg0, 0, 0.8f);
+        break;
+    case 5:
+        func_8009C128(arg0, position);
+        position[1] += 30.0f;
+        func_800CA3F4(func_800A4C48(arg0), position, 80.0f);
+        func_808003EC_bsdronexform((s32)arg0, position);
+        _batimer_set(arg0, 0, 0.1f);
+        break;
+    case 6:
+        func_8009C128(arg0, position);
+        func_800E1610(2, 80.0f, 0.85f, position);
+        func_8009DE38(arg0, 0x490, 1.0f);
+        func_800D5034(func_800A3274(arg0), func_800A33F8(arg0));
+        func_800A3410(arg0, func_800A33F8(arg0));
+        func_80092778(arg0);
+        _badata_entrypoint_5(arg0, &animation, &duration);
+        baanim_playForDuration_loopSmooth(arg0, animation, duration);
+        _batimer_set(arg0, 0, 0.1f);
+        break;
+    case 7:
+        _batimer_set(arg0, 0, 0.8f);
+        break;
+    case 8:
+        _batimer_set(arg0, 0, 1.0f);
+        break;
+    case 9:
+        *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x18C) + 0x1C) = 0;
+        _batimer_set(arg0, 0, 0.7f);
+        baphysics_set_type(arg0, 7);
+        break;
+    }
+}
 
 /* extern */
 
@@ -212,7 +287,7 @@ void bsdronexform_entrypoint_2(void *arg0) {
     struct player_state_s;
     void _badata_entrypoint_2(struct player_state_s *, s32 *, f32 *);
     void _badronemem_entrypoint_0(void *, s32);
-    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    void baanim_playForDuration_loopSmooth(void *, s32, f32);
     void baflag_set(struct player_state_s *, s32);
     void baroll_setIdeal(struct player_state_s *, f32);
     void func_800961AC(struct player_state_s *, s32);
@@ -222,7 +297,7 @@ void bsdronexform_entrypoint_2(void *arg0) {
     void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
     s32 func_800A3274(struct player_state_s *);
     u32 func_800A33F8(void *);
-    s32 func_80800758_bsdronexform(void *, s32);
+    void func_80800758_bsdronexform(void *, s32);
     f32 sp2C;
     s32 sp28;
 
@@ -258,7 +333,7 @@ void bsdronexform_entrypoint_3(void *arg0)
   void func_8009C118(void *, f32);
   void func_800C59F0(s32, s32, s32);
   void func_8080051C_bsdronexform(void *);
-  s32 func_80800758_bsdronexform(void *, s32);
+  void func_80800758_bsdronexform(void *, s32);
   f32 func_80800B5C_bsdronexform(void *, s32, f32, f32, f32);
   s32 sp34;
   f32 sp30;

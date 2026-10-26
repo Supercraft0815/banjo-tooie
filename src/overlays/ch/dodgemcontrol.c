@@ -418,7 +418,44 @@ void func_80800FC4_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80801084_chdodgemcontrol.s")
+s32 func_80801084_chdodgemcontrol(f32 *arg0, f32 *arg1, f32 arg2) {
+    f32 func_800DC178(f32, f32);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EF368(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    int func_800F0064(f32 *, f32, f32 *);
+    struct dodgem_vector { f32 v[3]; };
+    extern struct dodgem_vector D_80804E0C_chdodgemcontrol;
+    struct dodgem_vector sp4C;
+    f32 sp40[3];
+    f32 sp34[3];
+    f32 sp30;
+    f32 sp2C;
+
+    if (func_800F0064(arg0, arg2, arg1) != 0) {
+        sp4C = D_80804E0C_chdodgemcontrol;
+        sp30 = arg1[1];
+        sp2C = arg0[1];
+        func_800EE7F8(sp40, arg0);
+        func_800EE7F8(sp34, arg1);
+        if ((arg1[0] == arg0[0]) && (arg1[2] == arg0[2])) {
+            arg1[0] = func_800DC178(-5.0f, 5.0f) + arg1[0];
+            arg1[2] = func_800DC178(-5.0f, 5.0f) + arg1[2];
+        }
+        sp4C.v[0] = arg0[0] - arg1[0];
+        sp4C.v[1] = arg0[1] - arg1[1];
+        sp4C.v[2] = arg0[2] - arg1[2];
+        func_800EF368(sp4C.v, func_800EEF94(sp4C.v) + 5.0f);
+        func_800EFB24(arg1, sp40, sp4C.v);
+        func_800EE780(arg0, sp34, sp4C.v);
+        arg1[1] = sp30;
+        arg0[1] = sp2C;
+        return 1;
+    }
+    return 0;
+}
 
 f32 func_80801214_chdodgemcontrol(s32 arg0) {
     typedef struct { f32 values[4]; } DodgemValues;
@@ -1636,7 +1673,7 @@ void func_808039B8_chdodgemcontrol(Actor *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     Actor *func_8080000C_chdodgemcontrol(Actor *, s32);
-    void func_80801084_chdodgemcontrol(f32 *, f32 *, f32);
+    s32 func_80801084_chdodgemcontrol(f32 *, f32 *, f32);
     void func_80802104_chdodgemcontrol(Actor *);
     void func_80802764_chdodgemcontrol(Actor *);
     void func_80802824_chdodgemcontrol(Actor *);

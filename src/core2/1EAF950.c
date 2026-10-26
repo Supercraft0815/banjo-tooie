@@ -164,7 +164,56 @@ s32 func_800D6378(u8 *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6408.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6550.s")
+s32 func_800D6550(void *arg0) {
+    s32 func_8001211C(void);
+    int func_800D5E94(void *);
+    void *func_800D5804(void *, s32);
+    struct Entry {
+        u32 frame : 27;
+        u32 flags : 4;
+        u32 low : 1;
+        void *value;
+        u32 index : 14;
+        u32 active : 1;
+        u32 other : 1;
+        u32 tail : 16;
+    } *ptr = arg0;
+    switch (ptr->flags) {
+        case 1:
+        case 9:
+            return 0;
+        case 3:
+        case 4:
+        case 5:
+        case 8:
+            if (!func_800D5E94(ptr->value)) {
+                ptr->value = func_800D5804(ptr->value, 1);
+            }
+            return 1;
+        case 6:
+        case 7:
+            if ((s32)ptr->frame + 1 < func_8001211C()) {
+                ptr->value = func_800D5804(ptr->value, 1);
+                return 1;
+            }
+            return 0;
+        case 2:
+            if ((s32)ptr->frame + 1 < func_8001211C()) {
+                if (!func_800D5E94(ptr->value)) {
+                    ptr->value = func_800D5804(ptr->value, 1);
+                }
+            } else if (!ptr->active && !ptr->other && !ptr->low) {
+                if (!func_800D5E94(ptr->value)) {
+                    ptr->value = func_800D5804(ptr->value, 1);
+                }
+                return 1;
+            } else {
+                return 0;
+            }
+            break;
+    }
+    return 0;
+}
 
 void func_800D66AC(void) {
     extern s16 D_8011B910;
@@ -348,7 +397,7 @@ s32 func_800D6CEC(s32 arg0) {
 }
 
 void func_800D6D68(void) {
-    void func_800D6550(void *);
+    s32 func_800D6550(void *);
     extern u8 D_8012B800[];
     extern s16 D_8012BE60;
     extern s16 D_8012BE62;
@@ -714,7 +763,7 @@ void func_800D7754(Actor *arg0, s32 arg1) {
     }
 }
 
-void func_800D7900(s32 arg0) 
+void func_800D7900(s32 arg0)
 {
 }
 void func_800D7908(void *arg0, f32 *arg1) { void func_800A516C(f32 *, f32 *, f32 *); f32 sp1C[3]; func_800A516C(sp1C, arg1, (f32 *)((u8 *)arg0 + 4)); *(f32 *)((u8 *)arg0 + 0x54) = sp1C[1]; *(f32 *)((u8 *)arg0 + 0x50) = sp1C[0]; }
