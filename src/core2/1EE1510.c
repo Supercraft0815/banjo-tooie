@@ -530,7 +530,13 @@ void func_80108A8C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108B04.s")
+void func_80108B04(s32 *arg0, s32 arg1) {
+    void _chbaddiesetup_entrypoint_3(void *, s32, s32, s32);
+    void func_80108B44(u8 *, s32, s32);
+    struct Marker { u8 pad0[0x12]; u16 unk12 : 15; };
+
+    _chbaddiesetup_entrypoint_3(func_80108B44, arg0[0], arg1, (*(struct Marker **) arg0)->unk12);
+}
 
 /* extern */
 
@@ -552,7 +558,12 @@ void func_80108B8C(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE1510/func_80108BD4.s")
+void func_80108BD4(s32 *arg0, s32 arg1) {
+    void _chbaddiesetup_entrypoint_3(void *, s32, s32, s32);
+    struct Marker { u8 pad0[0x12]; u16 unk12 : 15; };
+
+    _chbaddiesetup_entrypoint_3(func_80108B8C, arg0[0], arg1, (*(struct Marker **) arg0)->unk12);
+}
 
 void func_80108C14(void) {
     void func_800819B4(void *);
