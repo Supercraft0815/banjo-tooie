@@ -12,7 +12,69 @@ void func_8080000C_chdingpot(Actor *arg0) {
     func_80102FDC(arg0, arg0->scale * 0.5f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dingpot/func_80800040_chdingpot.s")
+void func_80800040_chdingpot(Actor *arg0) {
+    void _subaddieDll_entrypoint_4(Actor *, s32);
+    void func_800C3F48(s32);
+    void func_800D175C(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    void func_800F4CC0(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7844(u32, f32 *, f32, f32);
+    s32 func_800F82D4(s32, s32);
+    s32 func_80101DDC(Actor *);
+    s32 func_80101E14(Actor *, f32);
+    void func_80102424(Actor *, s32);
+    void func_808002B4_chdingpot(Actor *, f32 *);
+    s32 func_80800350_chdingpot(s32);
+    void func_80800388_chdingpot(Actor *);
+    extern f32 D_80800548_chdingpot;
+    extern f32 D_80800568_chdingpot;
+    f32 sp24[3];
+
+    switch (arg0->unk70_10) {
+    case 1:
+        func_808002B4_chdingpot(arg0, &D_80800548_chdingpot);
+        if (func_80800350_chdingpot((s32)arg0) == 0) {
+            func_80800388_chdingpot(arg0);
+            return;
+        }
+        return;
+    case 2:
+        func_808002B4_chdingpot(arg0, &D_80800548_chdingpot);
+        return;
+    case 3:
+        func_808002B4_chdingpot(arg0, &D_80800568_chdingpot);
+        if (func_80101DDC(arg0) != 0) {
+            func_80102424(arg0, 4);
+            return;
+        }
+        break;
+    case 4:
+        if (func_80101E14(arg0, 0.596f) != 0) {
+            func_800C3F48(0x6CBF441E);
+        }
+        if (func_80101E14(arg0, 0.63f) != 0) {
+            func_800EE7F8(sp24, arg0->position);
+            func_800EF1B8(sp24, arg0->rotation[1], 400.0f);
+            func_800F4CC0(func_800F54E4());
+            func_800F82D4(func_800F54E4(), 0);
+            func_800F7844(func_800F54E4(), sp24, 1620.0f, -4100.0f);
+            func_800D175C(0x40, 0x270F);
+            func_800D175C(0x41, 0x270F);
+            func_800D175C(0x42, 0x270F);
+            func_800D175C(0x43, 0x270F);
+            func_800D175C(0x44, 0x270F);
+            func_800D175C(0x46, 0x270F);
+            func_800D175C(0x47, 0x270F);
+        }
+        if (func_80101DDC(arg0) != 0) {
+            func_80102424(arg0, 1);
+            _subaddieDll_entrypoint_4(arg0, 0);
+        }
+        break;
+    }
+}
 
 s32 func_8080021C_chdingpot(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void func_80102424(Actor *, s32);
@@ -65,17 +127,17 @@ void func_808002B4_chdingpot(Actor *arg0, f32 *arg1) {
     }
 }
 
-void func_80800350_chdingpot(s32 arg0) {
+s32 func_80800350_chdingpot(s32 arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
     extern s32 D_808004B0_chdingpot;
     extern s32 D_808005C8_chdingpot;
-    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_808005C8_chdingpot, &D_808004B0_chdingpot, 5);
+    return _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_808005C8_chdingpot, &D_808004B0_chdingpot, 5);
 }
 
 void func_80800388_chdingpot(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     s32 _plsu_entrypoint_3(Unk80132ED0 *);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(Actor *, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800C9C04(f32, u32, u32);
     s32 func_800DA298(s32);

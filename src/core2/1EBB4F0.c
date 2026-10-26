@@ -54,7 +54,55 @@ s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
   return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E1DF4.s")
+void func_800E1DF4(u8 *arg0, u8 *arg1) {
+    extern s32 D_801231B0;
+    extern s32 D_8012D470;
+    Gfx *gfx;
+
+    gfx = *(Gfx **)arg0;
+    gSPDisplayList(gfx++, (u8 *)&D_801231B0 - 0x80000000);
+    if (*(u8 *)((u8 *)&D_8012D470 + 0x1F) == 0) {
+        gDPSetColorDither(gfx++, G_CD_DISABLE);
+    }
+    gDPSetColor(gfx++, G_SETPRIMCOLOR,
+        ((*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
+        | ((*(s32 *)((u8 *)&D_8012D470 + 0x14) & 0xFF) << 16)
+        | (*(s16 *)((u8 *)&D_8012D470 + 0x1C) & 0xFF)
+        | ((*(s32 *)((u8 *)&D_8012D470 + 0x18) & 0xFF) << 8));
+    gDPSetEnvColor(gfx++,
+        *(s32 *)((u8 *)&D_8012D470 + 4),
+        *(s32 *)((u8 *)&D_8012D470 + 8),
+        *(s32 *)((u8 *)&D_8012D470 + 0xC), 255);
+    if ((s32)*(u8 *)((u8 *)&D_8012D470 + 0x1E) > 0
+        && (s32)*(u8 *)((u8 *)&D_8012D470 + 0x1E) < 5) {
+        gSPSetGeometryMode(gfx++, G_ZBUFFER);
+        switch (*(u8 *)((u8 *)&D_8012D470 + 0x1E)) {
+        case 1:
+            gDPSetRenderMode(gfx++, 0x504A50, 0);
+            break;
+        case 2:
+            gDPSetRenderMode(gfx++, 0x504250, 0);
+            break;
+        case 3:
+            gDPSetRenderMode(gfx++, 0x504A70, 0);
+            *(u8 *)((u8 *)&D_8012D470 + 0x20) = 0x80;
+            break;
+        case 4:
+            gDPSetRenderMode(gfx++, 0x504B70, 0);
+            break;
+        }
+    } else if (*(u8 *)((u8 *)&D_8012D470 + 0x1E) == 5) {
+        gDPSetRenderMode(gfx++, 0x504340, 0);
+    } else {
+        gDPSetRenderMode(gfx++, 0x504240, 0);
+    }
+    if (*(u8 *)((u8 *)&D_8012D470 + 0x20) != 0) {
+        gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
+        gDPSetBlendColor(gfx++, 0, 0, 0,
+            *(u8 *)((u8 *)&D_8012D470 + 0x20));
+    }
+    *(Gfx **)arg0 = gfx;
+}
 
 void func_800E204C(u8 *arg0, u8 *arg1) {
     void func_800F26B0(f32 (*)[4], f32, f32, f32);
@@ -249,7 +297,7 @@ void func_800E2588(u32 arg0) {
     D_8012D48E = (s8) arg0;
 }
 
-void func_800E2594(u32 arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_800AF5E4(void *); void func_800E1DF4(void); extern s32 D_8012D4F0; Gfx *first; Gfx *second; Gfx **gfx = (Gfx **)arg0; arg0 = 0; func_800E1DF4(); first = (*gfx)++; first->words.w0 = 0xDB060008; first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1)); second = (*gfx)++; second->words.w0 = 0xDB060004; second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1)); D_8012D4F0 = (s32)arg1; }
+void func_800E2594(u32 arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_800AF5E4(void *); void func_800E1DF4(u8 *, u8 *); extern s32 D_8012D4F0; Gfx *first; Gfx *second; Gfx **gfx = (Gfx **)arg0; func_800E1DF4((u8 *)gfx, arg1); first = (*gfx)++; first->words.w0 = 0xDB060008; first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1)); second = (*gfx)++; second->words.w0 = 0xDB060004; second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1)); D_8012D4F0 = (s32)arg1; }
 
 void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_800AF5F0(void *);
@@ -382,7 +430,7 @@ void func_800E2A14(s32 arg0) {
 
 /* extern */
 
-void func_800E2A3C(u8 *arg0, u8 *arg1, s32 arg2) { void func_800E1DF4(void); void func_800E2180(u8 *, u8 *, s32); void func_800E2260(u8 *, u8 *); s32 func_800E22F0(s32, s32); u8 *a = arg0; u8 *b = arg1; arg0 = NULL; arg1 = NULL; func_800E1DF4(); func_800E204C(a, b); func_800E2180(a, b, arg2); func_800E2260(a, b); func_800E22F0(a, b); }
+void func_800E2A3C(u8 *arg0, u8 *arg1, s32 arg2) { void func_800E1DF4(u8 *, u8 *); void func_800E2180(u8 *, u8 *, s32); void func_800E2260(u8 *, u8 *); s32 func_800E22F0(s32, s32); u8 *a = arg0; u8 *b = arg1; func_800E1DF4(a, b); func_800E204C(a, b); func_800E2180(a, b, arg2); func_800E2260(a, b); func_800E22F0(a, b); }
 
 void func_800E2AA4(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg, f32 *scale) {
     void func_800191F8(f32, f32, f32);
@@ -392,7 +440,7 @@ void func_800E2AA4(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
     void mlMtxApply(Mtx *);
     void mlMtxScale_xyz(f32, f32, f32);
     extern f32 D_8012D498;
-    void func_800E1DF4();
+    void func_800E1DF4(u8 *, u8 *);
     void func_800E23A4();
     f32 sx;
     f32 sy;
@@ -442,7 +490,7 @@ void func_800E2C54(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
     void mlMtxApply(Mtx *);
     void mlMtxRotatePYR(f32, f32, f32);
     void mlMtxScale_xyz(f32, f32, f32);
-    void func_800E1DF4();
+    void func_800E1DF4(u8 *, u8 *);
     void func_800E23A4();
     f32 sx;
     f32 sy;
@@ -537,13 +585,13 @@ void func_800E30E0(s32 arg0, void *arg1, s32 arg2, void *arg3) {
 void func_800E3220(Gfx **arg0, void *arg1) {
     u8 *func_800AF5D8(s16 *);
     void *func_800AF5E4(void *);
-    void func_800E1DF4(void);
+    void func_800E1DF4(u8 *, u8 *);
     void func_800E42F0();
     extern s32 D_8012D4F4;
     Gfx *first;
     Gfx *second;
 
-    func_800E1DF4();
+    func_800E1DF4((u8 *)arg0, arg1);
     first = (*arg0)++;
     first->words.w0 = 0xDB060008;
     first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1));
