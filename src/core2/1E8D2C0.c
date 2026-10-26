@@ -158,7 +158,47 @@ s16 *func_800B3CDC(u8 **arg0, void *arg1)
   return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8D2C0/func_800B3EDC.s")
+/* extern */
+
+void func_800B3EDC(u8 **arg0, s32 arg1) {
+    s16 *next;
+    s16 *entry;
+    s16 *previous;
+    s32 total;
+    s32 next_index;
+    s32 available;
+    s32 value;
+    u8 *data;
+    u8 *resized;
+
+    data = *arg0;
+    value = 0;
+    previous = NULL;
+    entry = (s16 *)(data + 4);
+    if (*(s16 *)(data + 4) != 0) {
+        do {
+            next_index = *entry;
+            previous = entry;
+            value = next_index;
+            next = func_800B39D0(data, next_index);
+            entry = next;
+        } while (*next != 0);
+    }
+    available = entry[1];
+    total = *(s16 *)(data + 2);
+    if ((total == (available + value)) && (available >= arg1)) {
+        value = total;
+        value -= (arg1 > 0 ? arg1 : available);
+        if ((arg1 == 0) || (arg1 == available)) {
+            *previous = 0;
+        } else {
+            entry[1] = available - arg1;
+        }
+        resized = heap_realloc(data, (*(s16 *)data * value) + 4);
+        *(s16 *)(resized + 2) = value;
+        *arg0 = resized;
+    }
+}
 
 void func_800B3FD0(u8 **arg0, void *arg1, s32 arg2) {
     void aligned4_memcpy(void *, void *, int);
