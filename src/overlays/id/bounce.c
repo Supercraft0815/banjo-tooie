@@ -287,7 +287,15 @@ void idbounce_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_6.s")
+void idbounce_entrypoint_6(void) {
+    extern u8 D_80135480[];
+    s32 value;
+
+    value = func_808008B4_idbounce();
+    D_80135480[2] = 0;
+    D_80135480[0] = !D_80135480[1] && value;
+    D_80135480[1] = value;
+}
 
 void idbounce_entrypoint_7(void) {
     s32 func_800F54E4(void);
