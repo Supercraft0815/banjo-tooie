@@ -152,7 +152,14 @@ void func_800D34A0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC810/func_800D3524.s")
+s16 *func_800D3524(s32 arg0) {
+    s32 func_800D674C(s32);
+
+    if (D_8011B560[arg0].value == 0) {
+        D_8011B560[arg0].value = func_800D674C(D_8011B560[arg0].id);
+    }
+    return (s16 *) D_8011B560[arg0].value;
+}
 
 int func_800D3574(s32 arg0) {
     extern f32 D_80125B10;
