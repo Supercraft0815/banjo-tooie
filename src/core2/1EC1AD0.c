@@ -2,7 +2,23 @@
 
 typedef struct FreeList FreeList;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC1AD0/func_800E81E0.s")
+f32 func_800E81E0(s32 x, s32 y, f32 offset, f32 scale) {
+    u16 func_8001A0C0(s32, s32);
+    f32 mlAbsF(f32);
+    extern s32 D_801234C0[][2];
+    extern f32 D_80125E40;
+    extern f32 D_80125E44;
+    f32 stack_padding[6];
+    f32 difference;
+    u16 sample;
+    s32 *compression;
+
+    sample = func_8001A0C0(x, y);
+    compression = D_801234C0[(sample >> 0xD) & 7];
+    y = (((sample >> 2) & 0x7FF) << compression[0]) + compression[1];
+    difference = ((f32) ((y / 256) - 0x1FF) / D_80125E40) - offset;
+    return mlAbsF(difference) < D_80125E44 ? 0.0f : scale / difference;
+}
 
 void func_800E829C(void) {
     extern FreeList *D_8012D600;
@@ -22,7 +38,7 @@ void func_800E82EC(void) {
     void *freelist_at(FreeList *, s32);
     s16 freelist_capacity(FreeList *);
     s32 freelist_is_element_alive(FreeList *, s32);
-    s32 func_8001A0C0(s32, s32);
+    u16 func_8001A0C0(s32, s32);
     s32 func_800A8984(s32);
     void func_800CA6D4(void *, f32 *, f32 *);
     s32 func_800DA298(s32);
