@@ -54,12 +54,68 @@ void func_800A275C(PlayerState *arg0, s32 arg1) {
     func_800BA22C(sp2C, 5);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2848.s")
+void func_800A2848(s32 arg0, s32 arg1, s32 arg2) {
+    PlayerState *func_800F53D0(s32);
+    s32 player_inWater(PlayerState *);
+    TransformationId func_8008FD48();
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    s32 _bashake_entrypoint_0(PlayerState *, s32, s32);
+    s32 _bashoes_entrypoint_1(PlayerState *);
+    s32 func_8009E674(PlayerState *, s32);
+    void _fxstep_entrypoint_13(s32, s32);
+    s32 shoes;
+    s32 water;
+    s32 splash;
+    PlayerState *player;
+
+    player = func_800F53D0(arg2);
+    splash = arg1 == 4 || arg1 == 11 || (s32)(arg1 == 21);
+    water = player_inWater(player);
+    if (splash) {
+        func_800A275C(player, arg1 == 21);
+    }
+    switch (func_8008FD48()) {
+        default:
+            return;
+        case 15:
+            if (splash || water) {
+                _fxstep_entrypoint_13(arg0, 14);
+            } else {
+                func_8009DB04(player, 0x448, 1.0f, 5000);
+            }
+            break;
+        case 14:
+            _bashake_entrypoint_0(player, 0, 0);
+            _fxstep_entrypoint_13(arg0, 19);
+            if (arg1 == 20) {
+                _fxstep_entrypoint_13(arg0, 20);
+            }
+            break;
+        case 19:
+            _bashake_entrypoint_0(player, 0, 0);
+            _fxstep_entrypoint_13(arg0, 22);
+            break;
+        case 1:
+        case 11:
+            if (func_8009E674(player, 0x80)) {
+                shoes = _bashoes_entrypoint_1(player);
+                switch (shoes) {
+                    case 4:
+                        _fxstep_entrypoint_13(arg0, 23);
+                        break;
+                    case 5:
+                        _fxstep_entrypoint_13(arg0, 26);
+                        break;
+                }
+            }
+            break;
+    }
+}
 
 void func_800A2A00(s32 arg0, s32 arg1, s32 arg2) {
     PlayerState *func_800F53D0(s32);
     s32 player_inWater(PlayerState *);
-    s32 func_8008FD48();
+    TransformationId func_8008FD48();
     f32 _basnowball_entrypoint_5(PlayerState *);
     void _basnowball_entrypoint_10(PlayerState *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -189,7 +245,7 @@ void func_800A2D94(void *arg0) {
     s32 _fxstep_entrypoint_7(s32, s32 *, s32);
     void func_800A2EDC(void *, f32);
     s32 func_800D3948(void);
-    extern s32 func_800A2848;
+    void func_800A2848(s32, s32, s32);
     void func_800A2A00(s32, s32, s32);
 
     **(s32 **)((s8 *)arg0 + 0x124) = _fxstep_entrypoint_1();

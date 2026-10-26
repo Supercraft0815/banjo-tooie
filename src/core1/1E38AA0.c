@@ -244,7 +244,7 @@ void func_80021A00(u8 arg0) {
     extern u8 D_8007EA30;
     extern u8 D_8007EA31;
     extern u8 D_8007EA32;
-    s32 func_80021AD0();
+    void func_80021AD0(s32, s32);
     s32 i;
 
     D_8007EA30 = 0;
@@ -267,4 +267,40 @@ void func_80021A00(u8 arg0) {
     } while (++i <= 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E38AA0/func_80021AD0.s")
+void func_80021AD0(s32 arg0, s32 arg1) {
+    extern u8 D_8007EA30;
+    extern u8 D_8007EA31;
+    extern u8 D_8007EA33;
+    extern u8 D_8007EA34;
+    extern u8 D_8007EA35;
+
+    if (arg1 == 0) {
+        arg1 = (&D_8007EA35)[arg0];
+    }
+    (&D_8007EA33)[arg0] = 0;
+    (&D_8007EA34)[arg0] = 0;
+    switch (arg1) {
+        case 2:
+            if (D_8007EA30 != 0) {
+                (&D_8007EA34)[arg0] = 1;
+            }
+            break;
+        case 3:
+            if (D_8007EA30 != 0) {
+                (&D_8007EA33)[arg0] = 1;
+            }
+            break;
+        case 4:
+            if (D_8007EA31 == 0) {
+                (&D_8007EA33)[arg0] = 1;
+            }
+            break;
+        case 5:
+            if (D_8007EA31 == 0) {
+                (&D_8007EA33)[arg0] = 1;
+                (&D_8007EA34)[arg0] = 1;
+            }
+            break;
+    }
+    (&D_8007EA35)[arg0] = arg1;
+}

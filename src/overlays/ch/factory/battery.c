@@ -61,7 +61,80 @@ void func_8080019C_chfactorybattery(volatile unsigned int arg0, void *arg1, s32 
   _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, *((s32 *) (((s8 *) arg1) + 0)), *((s32 *) (((s8 *) arg1) + 4)), *((s32 *) (((s8 *) arg1) + 8)), arg2, arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/battery/func_808001F8_chfactorybattery.s")
+s32 func_808001F8_chfactorybattery(Actor *arg0) {
+    void func_80102FDC(Actor *, f32);
+    void func_8010A3E8(void *, f32);
+    void func_800FFAB0(Actor *);
+    s32 func_80800678_chfactorybattery(Actor *);
+    s32 func_80800558_chfactorybattery(Actor *);
+    s32 func_80800444_chfactorybattery(void);
+    void func_808006E4_chfactorybattery(Actor *);
+    void func_8080130C_chfactorybattery(Actor *, s32);
+    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
+    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddierouteDll_entrypoint_1(Actor *);
+    extern s32 _chfactorybattery_entrypoint_0;
+
+    struct BatteryCollisionFlags {
+        u8 prefix[0x64];
+        u32 upper : 3;
+        u32 flags : 2;
+        u32 lower : 27;
+    };
+    struct BatteryRouteFlags {
+        u8 prefix[0x70];
+        u32 upper : 22;
+        u32 route : 6;
+        u32 lower : 4;
+    };
+
+    func_80102FDC(arg0, 0.45f);
+    func_8010A3E8(arg0, 0.6f);
+    if (arg0->unk7A_5) {
+        if (func_80800678_chfactorybattery(arg0)) {
+            if (!func_80800558_chfactorybattery(arg0)) {
+                if (_subaddietaxi_entrypoint_13(arg0, func_80800678_chfactorybattery(arg0), &_chfactorybattery_entrypoint_0, 3)) {
+                    arg0->unk64_24 = 1;
+                } else {
+                    func_800FFAB0(arg0);
+                    return 0;
+                }
+            } else {
+                func_800FFAB0(arg0);
+                return 0;
+            }
+        } else {
+            arg0->unk64_24 = 0;
+            ((struct BatteryCollisionFlags *)arg0)->flags = 0;
+            if (func_80800444_chfactorybattery()) {
+                func_8080130C_chfactorybattery(arg0, 13);
+            } else {
+                func_800FFAB0(arg0);
+                return 0;
+            }
+        }
+    } else {
+        if (func_80800678_chfactorybattery(arg0)) {
+            if (func_80800558_chfactorybattery(arg0)) {
+                func_800FFAB0(arg0);
+                return 0;
+            }
+        } else {
+            func_800FFAB0(arg0);
+            return 0;
+        }
+    }
+    func_808006E4_chfactorybattery(arg0);
+    func_8080130C_chfactorybattery(arg0, arg0->unk70_10);
+    if (arg0->unk70_10 != 3 && arg0->unk70_10 != 4 && arg0->unk70_10 != 5 && arg0->unk70_10 != 13) {
+        if (!arg0->unk70_25 || !((struct BatteryRouteFlags *)arg0)->route) {
+            func_8080000C_chfactorybattery(arg0);
+            _subaddieDll_entrypoint_1(arg0);
+        }
+        _subaddierouteDll_entrypoint_1(arg0);
+    }
+    return 1;
+}
 
 s32 func_808003C0_chfactorybattery(s32 arg0, f32 *arg1, f32 *arg2) {
     f32 func_800EEAD4(f32 *, f32 *);
@@ -122,12 +195,10 @@ int func_808004E8_chfactorybattery(void) {
            func_800EA05C() == 0x10B;
 }
 
-/* extern */
-
-void func_80800558_chfactorybattery(void) {
+s32 func_80800558_chfactorybattery(Actor *arg0) {
     s32 func_800DA298(s32);
-    s32 func_80800678_chfactorybattery();
-    func_800DA298(func_80800678_chfactorybattery() + 0x1B1);
+    s32 func_80800678_chfactorybattery(Actor *);
+    return func_800DA298(func_80800678_chfactorybattery(arg0) + 0x1B1);
 }
 
 f32 func_80800580_chfactorybattery(f32 *arg0) {
@@ -454,7 +525,7 @@ s32 func_80801040_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
     f32 func_8010A40C(void *);
     s32 func_8080000C_chfactorybattery(Actor *);
     void func_80800050_chfactorybattery(Actor *, s32);
-    void func_808001F8_chfactorybattery(Actor *);
+    s32 func_808001F8_chfactorybattery(Actor *);
     s32 func_80800678_chfactorybattery();
     void func_8080130C_chfactorybattery(Actor *, s32);
 

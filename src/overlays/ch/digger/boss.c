@@ -948,7 +948,7 @@ s32 func_80801A04_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808029C8_chdiggerboss(Actor *);
     void func_80803078_chdiggerboss(Actor *, s32, s32, u32);
     void func_80803694_chdiggerboss(Actor *, s32, s32);
-    void func_808039C0_chdiggerboss(Actor *, s16, s16);
+    void func_808039C0_chdiggerboss(Actor *, s32, s32);
     s32 func_80803BE8_chdiggerboss(s32, s32, s32);
     void func_80805448_chdiggerboss(Actor *, s32, s32);
     void func_80806CA4_chdiggerboss(Actor *, s32);
@@ -2135,7 +2135,84 @@ void func_80803694_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/digger/boss/func_808039C0_chdiggerboss.s")
+void func_808039C0_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
+    Actor *func_80802228_chdiggerboss(Actor *);
+    void func_8080041C_chdiggerboss(Actor *, s32);
+    void func_808041E4_chdiggerboss(Actor *, s32);
+    void func_80804A50_chdiggerboss(s32, s32);
+    void func_80805448_chdiggerboss(Actor *, s32, s32);
+    void func_80807DC0_chdiggerboss(s32, s32);
+    void func_808080C0_chdiggerboss(Actor *, s32);
+    Actor *boss;
+    s32 i;
+    s32 value;
+
+    value = arg2;
+    boss = func_80802228_chdiggerboss(arg0);
+    switch (arg1) {
+        case 0x1720:
+            func_80805448_chdiggerboss(boss, 0, 1);
+            func_80805448_chdiggerboss(boss, 2, 1);
+            break;
+        case 0x1721:
+            for (i = 0; i != 4; i++) {
+                func_80805448_chdiggerboss(boss, i, 1);
+            }
+            break;
+        case 0x1723:
+            func_8080041C_chdiggerboss(boss, 0xE);
+            break;
+        case 0x1724:
+            func_8080041C_chdiggerboss(boss, 0x10);
+            break;
+        case 0x1725:
+            switch (value) {
+                case 1:
+                    func_8080041C_chdiggerboss(boss, 0x12);
+                    break;
+                case 2:
+                    func_80805448_chdiggerboss(boss, 0, 1);
+                    func_80805448_chdiggerboss(boss, 3, 1);
+                    break;
+            }
+            break;
+        case 0x1726:
+            if (value == 1) {
+                func_80804A50_chdiggerboss((s32)boss, 2);
+            }
+            break;
+        case 0x1734:
+            switch (value) {
+                case 1:
+                    func_80804A50_chdiggerboss((s32)boss, 0);
+                    break;
+                case 2:
+                    for (i = 0; i != 4; i++) {
+                        func_80805448_chdiggerboss(boss, i, 2);
+                    }
+                    break;
+                case 3:
+                    func_808041E4_chdiggerboss(boss, 4);
+                    break;
+            }
+            break;
+        case 0x172A:
+            switch (value) {
+                case 1:
+                    func_8080041C_chdiggerboss(boss, 0x14);
+                    break;
+                case 2:
+                    func_80807DC0_chdiggerboss((s32)arg0, 1);
+                    break;
+            }
+            break;
+        case 0x172B:
+            if (value == 1) {
+                func_808080C0_chdiggerboss(func_80802228_chdiggerboss(arg0), 1);
+            }
+            break;
+    }
+}
 
 s32 func_80803BE8_chdiggerboss(s32 arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);

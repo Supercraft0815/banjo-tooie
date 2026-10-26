@@ -700,7 +700,7 @@ s32 func_80801220_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor *, u32);
     void func_8010A800(Actor *, s32);
     void func_80801680_chklungo(Actor *, s32);
-    s32 func_80801744_chklungo(Actor *, s16, s16);
+    void func_80801744_chklungo(Actor *, s32, s32);
     s32 func_80801848_chklungo(Actor *, s32, s32);
     void func_80801964_chklungo(Actor *, s32);
     s32 func_80802480_chklungo(Actor *, s32);
@@ -872,7 +872,64 @@ void func_80801680_chklungo(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/klungo/func_80801744_chklungo.s")
+void func_80801744_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    void func_80801964_chklungo(Actor *, s32);
+    s32 func_80802558_chklungo(Actor *);
+    void func_808025CC_chklungo(Actor *, s32);
+    s32 func_80803158_chklungo(Actor *, s32, s32);
+
+    switch (arg1) {
+        case 0x1622:
+        case 0x1623:
+        case 0x1628:
+        case 0x1629:
+        case 0x162B:
+        case 0x162C:
+            func_80801964_chklungo(arg0, 6);
+            break;
+        case 0x1627:
+        case 0x162A:
+        case 0x162D:
+            func_80801964_chklungo(arg0, 0x23);
+            break;
+        case 0x162F:
+            func_80802558_chklungo(arg0);
+            func_80801964_chklungo(arg0, 0x1C);
+            break;
+        case 0x1633:
+            func_80803158_chklungo(arg0, 0x1634, 0x4E);
+            func_808025CC_chklungo(arg0, 1);
+            func_80801964_chklungo(arg0, 3);
+            break;
+        case 0x1634:
+            func_80801964_chklungo(arg0, 7);
+            break;
+        case 0xCEB:
+        {
+            if (arg2 > 0) {
+                _gcfrontend_entrypoint_11();
+            } else {
+                _gcfrontend_entrypoint_10();
+            }
+            break;
+        }
+        case 0x1624:
+        case 0x1625:
+        case 0x1626:
+        case 0x1630:
+        case 0x1631:
+        case 0x1632:
+        case 0x1635:
+        case 0x1636:
+        case 0x1637:
+            break;
+        default:
+            func_80801964_chklungo(arg0, 1);
+            break;
+    }
+}
 
 s32 func_80801848_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);

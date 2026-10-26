@@ -30,7 +30,33 @@ typedef struct {
     u32 evtDeltaTicks[32];
 } AudioSeqMarker;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E3CA10/func_80024EE0.s")
+void func_80024EE0(AudioSeq *seq, AudioSeqHeader *header) {
+    u32 func_80025DE4(AudioSeq *, u32);
+    u32 track;
+    u32 offset;
+    u32 mask;
+
+    seq->base = header;
+    seq->validTracks = 0;
+    seq->lastDeltaTicks = 0;
+    seq->lastTicks = 0;
+    seq->deltaFlag = 1;
+    for (track = 0; track < seq->base->trackCount; track++) {
+        seq->lastStatus[track] = 0;
+        seq->curBUPtr[track] = NULL;
+        seq->curBULen[track] = 0;
+        offset = ((u32 *)seq->base)[track + 2];
+        if (offset != 0) {
+            mask = 1 << track;
+            seq->validTracks |= mask;
+            seq->curLoc[track] = (u8 *)header + offset;
+            seq->evtDeltaTicks[track] = func_80025DE4(seq, track);
+        } else {
+            seq->curLoc[track] = NULL;
+        }
+    }
+    seq->qnpt = 1.0f / (f32)seq->base->unk0;
+}
 
 void func_80025084(AudioSeq *seq, ALEvent *evt, s32 arg2) {
     s32 func_80025224(AudioSeq *, u32, ALEvent *, s32);

@@ -20,7 +20,41 @@ f32 func_80021C10(s32 arg0) {
     return sp0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E39740/func_80021C8C.s")
+s32 func_80021C8C(ALLink **arg0, f32 *arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5) {
+    extern ALLink *D_8007EA40;
+    ALLink *sp2C;
+    s32 sp28;
+
+    sp28 = 0;
+    if (arg5 == 0) {
+        return 0;
+    }
+    if (D_8007EA40 != NULL) {
+        sp2C = D_8007EA40;
+        D_8007EA40 = D_8007EA40->next;
+        (*(u8 *)((s8 *)(sp2C) + (4))) = arg2;
+        *arg0 = sp2C;
+        sp28 = arg5 << 0xE;
+        switch (arg2) {
+        case 0x1:
+            (*(s16 *)((s8 *)(sp2C) + (0x24))) = 0;
+            (*(s16 *)((s8 *)(sp2C) + (0x22))) = (s16) (0x103 - arg3);
+            (*(u8 *)((s8 *)(sp2C) + (0x28))) = (s32) arg4 >> 1;
+            (*(u8 *)((s8 *)(sp2C) + (0x29))) = (u8) (0x7F - (*(u8 *)((s8 *)(sp2C) + (0x28))));
+            *arg1 = (f32) (*(u8 *)((s8 *)(sp2C) + (0x29)));
+            break;
+        case 0x80:
+            (*(f32 *)((s8 *)(sp2C) + (0x28))) = func_80021C10((s32) arg4);
+            (*(s16 *)((s8 *)(sp2C) + (0x24))) = 0;
+            (*(s16 *)((s8 *)(sp2C) + (0x22))) = (s16) (0x103 - arg3);
+            *arg1 = 1.0f;
+            break;
+        default:
+            break;
+        }
+    }
+    return sp28;
+}
 
 s32 func_80021E1C(void *arg0, f32 *arg1) {
     f32 func_8001395C(f32);
@@ -70,7 +104,7 @@ void func_80022084(void *arg0, s32 arg1) {
     s32 func_80020EE4(s32, s32, void *, s32, s32);
     extern ALLink *D_8007EA40;
     extern ALLink *D_8007EA44;
-    extern s32 func_80021C8C;
+    s32 func_80021C8C(ALLink **, f32 *, u8, u8, u8, u8);
     extern s32 func_80021E1C(void *, f32 *);
     ALLink *sp24;
     s32 sp20;

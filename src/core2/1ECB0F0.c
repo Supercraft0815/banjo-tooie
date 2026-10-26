@@ -1,11 +1,9 @@
 #include "core2/1ECB0F0.h"
 
-/* extern */
-
-void func_800F1800(void) {
-    f32 func_80013AAC();
+f32 func_800F1800(f32 arg0) {
+    f32 func_80013AAC(f32);
     f32 mlAbsF(f32);
-    mlAbsF(func_80013AAC());
+    return mlAbsF(func_80013AAC(arg0));
 }
 
 /* extern */
@@ -57,7 +55,26 @@ void func_800F18FC(f32 *arg0, f32 *arg1, f32 *arg2) {
     arg2[0] = func_80013B7C(y, length);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECB0F0/func_800F1988.s")
+int func_800F1988(f32 *arg0, f32 *arg1, f32 *arg2) {
+    extern f32 D_80125ED0;
+    f32 length;
+
+    *arg1 = 0.0f;
+    *arg2 = 0.0f;
+    length = sqrtf(arg0[2] * arg0[2] + arg0[0] * arg0[0]);
+    if (length < D_80125ED0) {
+        return 0;
+    }
+    *arg2 = func_800F1800(arg0[0] / length);
+    if (arg0[2] < 0.0f) {
+        *arg2 = 180.0f - *arg2;
+    }
+    if (arg0[0] < 0) {
+        *arg2 = 360.0f - *arg2;
+    }
+    *arg1 = func_800F1800(length);
+    return 1;
+}
 
 void func_800F1A88(f32 *arg0, f32 *arg1) {
     f32 func_80013B70(f32, f32, f32);

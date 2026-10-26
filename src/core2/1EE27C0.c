@@ -647,7 +647,6 @@ Unk80132ED0 *func_8010A01C(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
     s32 func_8010108C(Actor *, s32, s32);
     void func_80103DFC(void *, f32 *);
     void *func_80106790(s32);
-    extern f32 D_801264B0;
     s32 *list;
     s32 mask;
     f32 distance;
@@ -674,7 +673,7 @@ Unk80132ED0 *func_8010A01C(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
     }
     func_800EE7F8(normal, arg1);
     cosine = func_800F0C68(arg0, normal, arg2, arg3);
-    best = D_801264B0;
+    best = 100000000.0f;
     result = NULL;
     while (*list != 0) {
         entry = (struct Entry *)func_800E9E88(*list);
@@ -724,7 +723,6 @@ void func_8010A2FC(Actor *arg0, f32 *arg1, f32 *arg2) {
     f32 func_800EEB40(f32 *, f32 *);
     void *func_80101080(void);
     s32 func_8010108C(Actor *, s32, s32);
-    extern f32 D_801264B4;
     f32 *var_s0;
     f32 temp_f0;
     f32 var_f22;
@@ -734,7 +732,7 @@ void func_8010A2FC(Actor *arg0, f32 *arg1, f32 *arg2) {
     var_s2 = func_8010108C(arg0, 0xA2, 0);
     if (var_s2 > 0) {
         var_s0 = func_80101080();
-        var_f22 = D_801264B4;
+        var_f22 = 100000000.0f;
         while (var_s2--) {
             func_800EE7F8(sp48, var_s0);
             temp_f0 = func_800EEB40(sp48, arg2);
@@ -757,7 +755,27 @@ f32 func_8010A40C(void *arg0) {
     return (f32) (*(s16 *)((s8 *)(arg0) + (0x92))) * 0.00390625f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE27C0/func_8010A430.s")
+s32 func_8010A430(void *arg0) {
+    extern u8 D_8012762C;
+    int func_800DC298(f32);
+    s32 func_80102F74(Unk80132ED0 *, s32);
+
+    if (func_80102F74(arg0, 0x8000)) return 1;
+    switch (D_8012762C) {
+        case 19: return func_800DC298(1.0f);
+        case 16: return func_800DC298(0.899993896484375f);
+        case 15: return func_800DC298(0.79998779296875f);
+        case 18: return func_800DC298(0.6999969482421875f);
+        case 20: return func_800DC298(0.5999908447265625f);
+        case 21: return func_800DC298(0.5f);
+        case 22: return func_800DC298(0.399993896484375f);
+        case 23: return func_800DC298(0.29998779296875f);
+        case 24: return func_800DC298(0.1999969482421875f);
+        case 25: return func_800DC298(0.0999908447265625f);
+        case 26: return func_800DC298(0.899993896484375f);
+    }
+    return 1;
+}
 
 u32 func_8010A5B0(Actor *, s32);
 

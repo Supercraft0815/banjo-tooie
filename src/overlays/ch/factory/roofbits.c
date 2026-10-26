@@ -3,8 +3,8 @@
 /* extern */
 
 void func_80800000_chfactoryroofbits(s32 arg0) {
-    s32 func_800EFA4C(s32, s32, s32, s32);
-    func_800EFA4C(arg0 + 4, 0xC48C8000, 0x460CA800, 0x44C78000);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    func_800EFA4C((f32 *)(arg0 + 4), -1124.0f, 9002.0f, 1596.0f);
 }
 
 /* extern */
@@ -56,14 +56,48 @@ OSThread *chfactoryroofbits_entrypoint_0(void)
 
 s32 func_8080015C_chfactoryroofbits(s32 arg0) { switch (arg0) { case 0x4B: return 0x197; case 0x4C: return 0x198; case 0x4D: return 0x199; case 0x4E: return 0x19A; case 0xE: return 0x19B; default: return 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/roofbits/func_808001C0_chfactoryroofbits.s")
+/* extern */
+
+s32 func_808001C0_chfactoryroofbits(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    switch (arg0) {
+    case 0x4B:
+        func_800EFA4C(arg1, -1397.0f, 8063.0f, -632.0f);
+        func_800EFA4C(arg2, 0.94f, 0.73f, 1.0f);
+        *arg3 = 312.0f;
+        break;
+    case 0x4C:
+        func_800EFA4C(arg1, 174.0f, 8066.0f, -1017.0f);
+        func_800EFA4C(arg2, 0.94f, 0.73f, 1.0f);
+        *arg3 = 312.0f;
+        break;
+    case 0x4D:
+        func_800EFA4C(arg1, -1138.0f, 2148.0f, 2300.0f);
+        func_800EFA4C(arg2, 1.8f, 1.8f, 1.8f);
+        *arg3 = 0.0f;
+        break;
+    case 0x4E:
+        func_800EFA4C(arg1, 2303.0f, 2143.0f, -376.0f);
+        func_800EFA4C(arg2, 1.8f, 1.8f, 1.8f);
+        *arg3 = 0.0f;
+        break;
+    case 0xE:
+        func_800EFA4C(arg1, 2645.0f, 1494.0f, 2645.0f);
+        func_800EFA4C(arg2, 1.14f, 1.0f, 1.0f);
+        *arg3 = 0.0f;
+        break;
+    default:
+        return 1;
+    }
+    return func_800DA298(func_8080015C_chfactoryroofbits(arg0));
+}
 
 /* extern */
 
 void func_808003C4_chfactoryroofbits(u8 *arg0) {
     s32 func_800FFA88(s32);
-    s32 func_808001C0_chfactoryroofbits(u32, u8 *, u8 *, u8 *);
-    if (func_808001C0_chfactoryroofbits((u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15, arg0 + 4, arg0 + 0x28, arg0 + 0x44) != 0) {
+    s32 func_808001C0_chfactoryroofbits(s32, f32 *, f32 *, f32 *);
+    if (func_808001C0_chfactoryroofbits((u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15, (f32 *)(arg0 + 4), (f32 *)(arg0 + 0x28), (f32 *)(arg0 + 0x44)) != 0) {
         func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
     }
 }

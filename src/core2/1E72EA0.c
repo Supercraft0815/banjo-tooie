@@ -193,7 +193,42 @@ s32 func_80099A70(PlayerState *self) {
 
 void func_80099A7C(PlayerState *arg0, f32 *arg1) { void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, arg0->unkC0->pad8); return; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E72EA0/func_80099AA8.s")
+void func_80099AA8(PlayerState *arg0) {
+    s32 func_8009E6EC(PlayerState *);
+    void func_8009E830(PlayerState *, s32);
+    void bs_setState(PlayerState *, s32);
+    s32 state = func_8009E6EC(arg0);
+
+    switch (state) {
+        case 0xF:
+        case 0x13:
+        case 0x26:
+        case 0x2A:
+        case 0x30:
+            func_8009989C(arg0, state);
+            break;
+        case 0x27:
+        case 0x31:
+        case 0x32:
+        case 0x33:
+        case 0x4D:
+        case 0x62:
+        case 0x63:
+        case 0x6B:
+        case 0x6C:
+        case 0x7C:
+        case 0x7D:
+        case 0x81:
+        case 0x89:
+        case 0x91:
+        case 0x98:
+        case 0x9A:
+            func_80099B94(arg0);
+            return;
+    }
+    func_8009E830(arg0, 1);
+    bs_setState(arg0, 0);
+}
 
 /* extern */
 
