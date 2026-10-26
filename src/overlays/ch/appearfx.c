@@ -243,8 +243,72 @@ void chappearfx_entrypoint_1(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 /* extern */
 
 void chappearfx_entrypoint_2(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
-    s32 chappearfx_entrypoint_3(s32, s32, s32);
-    chappearfx_entrypoint_3(*arg0, arg1, arg2);
+    s32 chappearfx_entrypoint_3(s32, s32, s32, s32);
+    chappearfx_entrypoint_3(*arg0, arg1, arg2, *(s32 *)&arg3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/appearfx/chappearfx_entrypoint_3.s")
+s32 chappearfx_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    s32 _subaddiefade_entrypoint_2();
+    void _subaddielink_entrypoint_0(void *);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_800F13F0(f32, f32);
+    void func_800FC660(u32);
+    u32 *func_80100074(Actor *, u32, u32);
+    void func_80102FDC(void *, f32);
+    f32 func_80103EAC(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    extern f32 D_80800974_chappearfx[][2];
+    extern u8 D_808009D8_chappearfx[];
+    typedef struct {
+        s16 count, capacity, flags, radius, upper, lower;
+        u8 alpha, active;
+        s16 kind, radius2, radius3;
+        u8 link[8];
+    } AppearData;
+    Actor *source;
+    Actor *actor;
+    s32 radius;
+    s32 upper;
+    s32 lower;
+    s32 capacity;
+    volatile f32 scale;
+    AppearData *data;
+
+    scale = *(f32 *)&arg3;
+    source = func_80106790((Unk80132ED0 *)arg0);
+    actor = func_80108528(0x3D9, source->position, 0, &source);
+    radius = (s32)((func_80103EAC(source) + 20.0f) * scale);
+    upper = (s32)func_800F0E00(50.0f, (s16)source->pad88 * source->scale);
+    lower = (s32)func_800F13F0(0.0f, ((s16 *)&source->pad88)[0] * source->scale);
+    capacity = (s32)func_800F10B4(upper - lower, 0.0f, 500.0f, 15.0f, 40.0f);
+    data = (AppearData *)func_80100074(actor, 0, capacity * 20 + 28);
+    actor->unk58 = 3.0f;
+    data->capacity = capacity;
+    data->count = 0;
+    data->radius3 = radius + 400;
+    data->radius = radius;
+    data->radius2 = radius;
+    data->upper = upper;
+    data->lower = lower;
+    data->alpha = 255;
+    data->flags = arg1;
+    _subaddielink_entrypoint_0(data->link);
+    data->kind = arg2;
+    func_80102FDC(actor, D_80800974_chappearfx[arg2][0]);
+    if (arg1 & 2) {
+        _subaddieaudioquick_entrypoint_2(actor, actor->position, D_808009D8_chappearfx);
+    }
+    if (arg1 & 4) {
+        func_800FC660(0x10);
+    }
+    if (arg1 & 8) {
+        _subaddielink_entrypoint_1(data->link, source->unk0);
+    }
+    if (arg1 & 0x20) {
+        _subaddiefade_entrypoint_2(source);
+    }
+}

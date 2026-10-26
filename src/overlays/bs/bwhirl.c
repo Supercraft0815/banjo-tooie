@@ -82,7 +82,52 @@ void func_8080017C_bsbwhirl(PlayerState *volatile arg0) {
     func_8008CA4C(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bwhirl/func_80800200_bsbwhirl.s")
+void func_80800200_bsbwhirl(u8 *arg0) {
+    f32 func_800136E4(f32);
+    void func_8009BB24(void *, f32 *);
+    void func_8009C128(PlayerState *, f32[3]);
+    s32 func_800B5BE4(s32);
+    s32 func_800BA22C(s32, s32);
+    s32 func_800BA930(s32, s16, s32, s16, s32, s32, s32);
+    s32 func_800BABB8(s32, f32 *, s32, s32, s32 *);
+    void func_800EF04C(f32 *, f32 *);
+    s32 func_800EFCD8(f32 *, f32, s32);
+    f32 yaw_get(u8 *);
+    extern s32 D_80800F5C_bsbwhirl;
+    f32 temp_f2;
+    f32 sp60[3];
+    f32 sp54[3];
+    f32 sp48[3];
+    f32 sp3C[3];
+    s32 sp38;
+
+    func_8009C128((PlayerState *)arg0, sp3C);
+    func_800EFCD8(sp60, yaw_get(arg0), 0x42400000);
+    sp60[1] = 0.0f;
+    func_800EF04C(sp3C, sp60);
+    sp38 = func_800B5BE4(0xE);
+    func_800BABB8(sp38, sp3C, 0, 0x3F800000, &D_80800F5C_bsbwhirl);
+    func_8009BB24(arg0, sp60);
+    func_800EFCD8(sp54, (*(f32 *)((s8 *)(arg0) + (0x170))), 0x437A0000);
+    func_800EFCD8(sp48, (*(f32 *)((s8 *)(arg0) + (0x170))) + 45.0f, 0x437A0000);
+    sp54[1] = 0.0f;
+    sp48[1] = 0.0f;
+    func_800EF04C(sp54, sp60);
+    func_800EF04C(sp48, sp60);
+    if (sp48[0] < sp54[0]) {
+        temp_f2 = sp48[0];
+        sp48[0] = sp54[0];
+        sp54[0] = temp_f2;
+    }
+    if (sp48[2] < sp54[2]) {
+        temp_f2 = sp48[2];
+        sp48[2] = sp54[2];
+        sp54[2] = temp_f2;
+    }
+    (*(f32 *)((s8 *)(arg0) + (0x170))) = func_800136E4((*(f32 *)((s8 *)(arg0) + (0x170))) + 45.0f);
+    func_800BA930(sp38, (s16) (s32) sp54[0], 0xFA, (s16) (s32) sp54[2], (s32) sp48[0], 0xFA, (s32) sp48[2]);
+    func_800BA22C(sp38, 2);
+}
 
 /* extern */
 
@@ -467,7 +512,7 @@ void bsbwhirl_entrypoint_20()
 
 void bsbwhirl_entrypoint_21(s32 arg0)
 {
-    func_80800200_bsbwhirl();
+    func_80800200_bsbwhirl(arg0);
     func_80800008_bsbwhirl(arg0);
     _bsdrone_entrypoint_1(arg0);
 }
@@ -493,7 +538,7 @@ void bsbwhirl_entrypoint_25()
 }
 
 void bsbwhirl_entrypoint_26(PlayerState *arg0) {
-    int func_80800200_bsbwhirl(PlayerState *);
+    void func_80800200_bsbwhirl(u8 *arg0);
     void func_80800008_bsbwhirl(PlayerState *);
     s32 _bsrest_entrypoint_13(PlayerState *);
     s32 _bsrest_entrypoint_20(PlayerState *);

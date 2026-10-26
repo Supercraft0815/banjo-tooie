@@ -1,5 +1,12 @@
 #include "common.h"
 
+struct FortuneEntry {
+        s16 unk0;
+        s16 ability;
+        f32 unk4;
+        f32 weight;
+    };
+
 OSThread *chmadamegrunty_entrypoint_0(void)
 {
     extern u8 D_80800B50_chmadamegrunty[];
@@ -195,12 +202,6 @@ void func_80800460_chmadamegrunty(Actor *arg0) {
 s32 func_80800564_chmadamegrunty(Actor *arg0) {
     int func_800C6E38(s32);
     f32 func_800DC178(f32, f32);
-    struct FortuneEntry {
-        s16 unk0;
-        s16 ability;
-        f32 unk4;
-        f32 weight;
-    };
     extern struct FortuneEntry D_80800AF0_chmadamegrunty[];
     extern u8 D_80800B50_chmadamegrunty[];
     struct FortuneEntry *entry;
@@ -229,11 +230,56 @@ s32 func_80800564_chmadamegrunty(Actor *arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_80800670_chmadamegrunty.s")
+void func_80800670_chmadamegrunty(Actor *arg0) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D175C(s16, s16);
+    s32 func_800D3EF4(s32);
+    s32 func_800EE7F8(s32 *, u8 *);
+    s32 func_800EF1B8(s32 *, f32, s32);
+    void func_800F4924(s32, s32);
+    u32 func_800F54E4(void);
+    s32 func_800FC660(s32);
+    s32 func_80101FDC(void *, s32);
+
+    extern struct FortuneEntry D_80800AF0_chmadamegrunty[];
+    s32 sp34[3];
+    u32 sp30;
+    u8 *temp_v0;
+
+    sp30 = *(u32 *)&arg0->unk50;
+    func_800EE7F8(sp34, (u8 *)arg0 + 4);
+    func_800EF1B8(sp34, arg0->rotation[1], 0x43C80000);
+    switch (sp30) {
+    case 0:
+        func_800D3EF4(6);
+        func_800FC660(0xE);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x10A9, 0xE, 0, 0x43);
+        return;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        temp_v0 = (sp30 * 0xC) + (u8 *)D_80800AF0_chmadamegrunty;
+        func_800D175C((*(s16 *)((s8 *)(temp_v0) + (0))), (*(s16 *)((s8 *)(temp_v0) + (4))));
+        func_808002BC_chmadamegrunty(arg0);
+        return;
+    case 6:
+        func_800F4924(func_800F54E4(), 1);
+        func_808002BC_chmadamegrunty(arg0);
+        return;
+    case 7:
+        func_80101FDC(arg0, 5);
+        arg0->unk58 = 4.0f;
+        /* fallthrough */
+    default:
+        return;
+    }
+}
 
 void func_80800784_chmadamegrunty(Actor *arg0, s32 arg1, s16 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    void func_80800670_chmadamegrunty(void);
+    void func_80800670_chmadamegrunty();
     s32 dialog;
     switch (arg1) {
         case 0x109F:

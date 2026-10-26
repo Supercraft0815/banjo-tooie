@@ -1,5 +1,14 @@
 #include "common.h"
 
+struct SwitchEntry {
+        u16 unk0;
+        u16 flag;
+        s32 unk4;
+        u8 unk8[8];
+        u16 map;
+        u16 pad12;
+    };
+
 OSThread *chdinoswitches_entrypoint_0(void)
 {
     extern u8 D_80800C30_chdinoswitches[];
@@ -36,24 +45,18 @@ void func_80800030_chdinoswitches(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     void func_80103110(Actor *, u32);
-    s32 func_80800108_chdinoswitches(void);
-    struct SwitchEntry {
-        u16 unk0;
-        u16 flag;
-        s32 unk4;
-        u8 unk8[12];
-    };
-    extern struct SwitchEntry D_80800B20_chdinoswitches;
+    s32 func_80800108_chdinoswitches(u8 *arg0);
+    extern struct SwitchEntry D_80800B20_chdinoswitches[];
     s32 sp24[1];
     struct SwitchEntry *sp20;
 
-    arg0->actorData[0] = sp24[0] = func_80800108_chdinoswitches();
+    arg0->actorData[0] = sp24[0] = func_80800108_chdinoswitches(arg0);
     if (arg0->actorData[0] == 4) {
         if (func_800DA298(0x676U) != 0 || func_800D0B68(0x18, 0) != 0) {
             func_800DA544(0xA10);
         }
     }
-    sp20 = &D_80800B20_chdinoswitches + sp24[0];
+    sp20 = D_80800B20_chdinoswitches + sp24[0];
     _chswitch_entrypoint_7(arg0, sp20->flag);
     _chswitch_entrypoint_8(arg0, sp20->unk4);
     if (arg0->actorData[0] == 4) {
@@ -65,7 +68,20 @@ void func_80800030_chdinoswitches(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/switches/func_80800108_chdinoswitches.s")
+s32 func_80800108_chdinoswitches(u8 *arg0) {
+    s32 func_800EA05C(void);
+    extern struct SwitchEntry D_80800B20_chdinoswitches[];
+    s32 map;
+    s32 index;
+
+    map = func_800EA05C();
+    for (index = 1; index < 12; index++) {
+        if (map == D_80800B20_chdinoswitches[index].map && ((Actor *)arg0)->unk74_7 == D_80800B20_chdinoswitches[index].unk0) {
+            return index;
+        }
+    }
+    return 0;
+}
 
 void func_80800270_chdinoswitches(void *arg0) {
     void func_801032B0(void *, u16, u16);
@@ -87,7 +103,7 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80101074(void *);
     s32 _chswitch_entrypoint_10(s32, s32, s32);
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
-    s32 func_80800108_chdinoswitches(void);
+    s32 func_80800108_chdinoswitches(u8 *arg0);
     extern u8 D_80800B28_chdinoswitches[];
     extern u8 D_8011A270[];
     extern u8 D_8011A248[];
@@ -109,7 +125,7 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
         return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
     case 0x99:
         index = ((ActorFlags *)arg0)->unk74_21
-                    ? arg0->actorData[0] : func_80800108_chdinoswitches();
+                    ? arg0->actorData[0] : func_80800108_chdinoswitches(arg0);
         value = *(u16 *)(D_80800B28_chdinoswitches + index * 0x14);
         if (value == 0x7B8 || value == 0x7B9 || value == 0x942) {
             func_80101074(D_8011A270);
@@ -230,11 +246,11 @@ void func_80800714_chdinoswitches(Actor *arg0) {
     void func_80102424(Actor *, s32);
     void func_80109EEC(s16 *, s32);
     void func_8010A570(Actor *);
-    s32 func_80800108_chdinoswitches(void);
+    s32 func_80800108_chdinoswitches(u8 *arg0);
     extern u16 D_80800B22_chdinoswitches[][10];
     s32 temp_v0;
 
-    temp_v0 = func_80800108_chdinoswitches();
+    temp_v0 = func_80800108_chdinoswitches(arg0);
     arg0->actorData[0] = temp_v0;
     if (func_800DA298(D_80800B22_chdinoswitches[temp_v0][0]) != 0) {
         func_80102424(arg0, 3);
@@ -293,7 +309,7 @@ s32 func_80800848_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808008F0_chdinoswitches(Actor *arg0) {
-    s32 func_80800108_chdinoswitches(void);
+    s32 func_80800108_chdinoswitches(u8 *arg0);
     s32 func_800D0B68(u32, u32);
     void func_800DA544(s32);
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
@@ -319,7 +335,7 @@ void func_808008F0_chdinoswitches(Actor *arg0) {
     s32 index;
 
     entry = (struct DoorEntry *)(D_80800B28_chdinoswitches - 8);
-    index = func_80800108_chdinoswitches();
+    index = func_80800108_chdinoswitches(arg0);
     arg0->actorData[0] = index;
     entry += index;
     if (index == 4 && func_800D0B68(0x18, 0)) {

@@ -944,15 +944,50 @@ void func_80801C10_chtntmineshoot(s32 arg0)
 void func_80801C18_chtntmineshoot(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/tnt/mineshoot/func_80801C20_chtntmineshoot.s")
+void func_80801C20_chtntmineshoot(u8 *arg0) {
+    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 func_800C6E38(s32);
+    s32 func_800C964C(s32);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA090(void);
+    void func_800F49D4(s32, void *, s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_80101FDC(Actor *, u32);
+    extern s32 _bsfirstp_entrypoint_18;
+    typedef struct { u32 pad[29]; u32 pad74_19 : 13; u32 active : 1; u32 pad74_0 : 18; } ActorFlags;
+    s32 temp_v0;
+
+    if (!((ActorFlags *)arg0)->active && (((ActorFlags *)arg0)->active = 1, ((Actor *)arg0)->unk70_10 != 3)) {
+        temp_v0 = func_800EA090();
+        if (temp_v0 != 1) {
+            if (temp_v0 != 2) {
+                if (temp_v0 == 3) {
+                    func_800C964C(6);
+                    func_80801BA0_chtntmineshoot();
+                    func_80800078_chtntmineshoot(NULL, 0.25f);
+                    func_80101FDC(arg0, 4);
+                    _capod_entrypoint_13((*(s32 *)((s8 *)(arg0) + (0))), 0, 7, 0x2000);
+                }
+            } else {
+                func_80101FDC(arg0, 4);
+                _capod_entrypoint_13((*(s32 *)((s8 *)(arg0) + (0))), 0, 2, 0x2000);
+            }
+        } else if ((func_800C6E38(0x15) != 0) && (func_800F5410(0) == 1) && (func_800DA9E4(0x6B9, 1) == 0)) {
+            func_80101FDC(arg0, 2);
+            _capod_entrypoint_13((*(s32 *)((s8 *)(arg0) + (0))), 0, 5, 0x2020);
+            func_800F49D4(func_800F54E4(), &_bsfirstp_entrypoint_18, 0);
+        }
+    }
+}
 
 void func_80801D6C_chtntmineshoot(Actor *arg0) {
-    void func_80801C20_chtntmineshoot(void);
+    void func_80801C20_chtntmineshoot(u8 *arg0);
     s32 func_800D9078(f32 *);
     s32 func_800D1000(s32, s32, s32 *, s32, s32);
     void func_80101FDC(Actor *, u32);
 
-    func_80801C20_chtntmineshoot();
+    func_80801C20_chtntmineshoot(arg0);
     switch (arg0->unk70_10) {
     case 3:
         if (func_800D9078(&arg0->unk58) != 0) {

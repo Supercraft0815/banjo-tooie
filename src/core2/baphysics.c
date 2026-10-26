@@ -390,7 +390,47 @@ void func_8009B7C0(PlayerState *arg0) {
     (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x18)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/baphysics_set_type.s")
+void baphysics_set_type(PlayerState *self, BaPhysicsType type) {
+    void _bamoveledge_entrypoint_1(PlayerState *);
+    void _bamoveledge_entrypoint_2(PlayerState *);
+    void _bamovethrust_entrypoint_0(PlayerState *);
+    void _bamovethrust_entrypoint_1(PlayerState *);
+    void _bamovegoto_entrypoint_5(PlayerState *);
+    void _bamovegoto_entrypoint_6(PlayerState *);
+    void _bamovespline_entrypoint_5(PlayerState *);
+    void _bamovespline_entrypoint_6(PlayerState *);
+    void _bamovehover_entrypoint_0(PlayerState *);
+    void _bamovehover_entrypoint_1(PlayerState *);
+    BaPhysicsType old_type;
+
+    if ((old_type = *(BaPhysicsType *)*(void **)((s8 *)self + 0xC8)) == type) {
+        return;
+    }
+    {
+        switch (old_type) {
+            case 13: _bamoveledge_entrypoint_1(self); break;
+            case 15: _bamovethrust_entrypoint_0(self); break;
+            case 12: _bamovegoto_entrypoint_5(self); break;
+            case 18: _bamovespline_entrypoint_5(self); break;
+            case 19: _bamovehover_entrypoint_0(self); break;
+        }
+        *(s32 *)*(void **)((s8 *)self + 0xC8) = type;
+        switch (type) {
+            case 12: _bamovegoto_entrypoint_6(self); break;
+            case 13: _bamoveledge_entrypoint_2(self); break;
+            case 11:
+                if (old_type != type) {
+                    *(f32 *)((s8 *)*(void **)((s8 *)self + 0xC8) + 0x48) =
+                        *(f32 *)((s8 *)*(void **)((s8 *)self + 0xC8) + 8);
+                    *(f32 *)((s8 *)*(void **)((s8 *)self + 0xC8) + 0x4C) = 0.0f;
+                }
+                break;
+            case 15: _bamovethrust_entrypoint_1(self); break;
+            case 18: _bamovespline_entrypoint_6(self); break;
+            case 19: _bamovehover_entrypoint_1(self); break;
+        }
+    }
+}
 
 void func_8009B94C(u8 *arg0, f32 *arg1) {
     void func_800EE7F8();
