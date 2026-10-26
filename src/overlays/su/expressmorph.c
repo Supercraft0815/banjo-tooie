@@ -22,7 +22,18 @@ s32 func_80800000_suexpressmorph(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/expressmorph/suexpressmorph_entrypoint_0.s")
+s32 suexpressmorph_entrypoint_0(s16 arg0) {
+    extern u8 D_80801327_suexpressmorph[][12];
+    s32 i = func_80800000_suexpressmorph(arg0);
+    s32 t;
+
+    if (i == -1) {
+        return 0;
+    }
+    t = D_80801327_suexpressmorph[i][0] * 4 + 8;
+    t += D_80801327_suexpressmorph[i][0] * 4;
+    return t;
+}
 
 struct MorphEntry;
 
