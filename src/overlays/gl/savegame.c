@@ -146,7 +146,7 @@ void func_808004C4_glsavegame(void) {
 }
 
 s32 glsavegame_entrypoint_7(s32 arg0) {
-    s32 _glgamedata_entrypoint_1(void *);
+    void _glgamedata_entrypoint_1(void *);
     s32 heap_free(s32);
     extern s8 D_80127618[];
     s32 result;
@@ -158,7 +158,7 @@ s32 glsavegame_entrypoint_7(s32 arg0) {
     sp28 = (D_80127618 + arg0)[0xC];
     sp24 = D_80127618[0xF];
     func_808004B8_glsavegame(arg0);
-    _glgamedata_entrypoint_1(sp20);
+    _glgamedata_entrypoint_1((void *)sp20);
     func_808004C4_glsavegame();
     result = func_808002E0_glsavegame(sp24, sp20);
     if (result == 0) {
