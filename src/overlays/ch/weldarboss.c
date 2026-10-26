@@ -362,7 +362,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
     s32 _subaddiefind_entrypoint_9(s32);
     void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
-    void func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800D8FF8(void);
     u8 func_800D9078(f32*);
     s32 func_800D90A4(f32*);
@@ -839,8 +839,8 @@ void func_8080030C_chweldarboss(Actor *arg0)
             sp40[1] += 300.0f;
             sp94->unk6E = 0;
             _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 5, *(s32 *)&sp40[0], *(s32 *)&sp40[1], *(s32 *)&sp40[2], *(s32 *)&arg0->rotation[1]);
-            func_800BBCB8(sp40, sp40, 0x40400000, 1, D_80804880_chweldarboss);
-            func_800BBCB8(sp40, sp40, 0x3F800000, 6, D_808048B4_chweldarboss);
+            func_800BBCB8(sp40, sp40, 3.0f, 1, D_80804880_chweldarboss);
+            func_800BBCB8(sp40, sp40, 1.0f, 6, D_808048B4_chweldarboss);
             _chexploder_entrypoint_5(arg0, 0x86F, arg0->position, arg0->rotation[1], arg0->scale, 3);
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804874_chweldarboss);
         }
@@ -1493,7 +1493,93 @@ void func_8080247C_chweldarboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_808026BC_chweldarboss.s")
+void func_808026BC_chweldarboss(Actor *arg0) {
+    typedef struct {
+        u8 pad0[0x44];
+        f32 unk44[3];
+        u8 pad50[0x16];
+        u8 unk66;
+        u8 pad67[8];
+        u8 unk6F;
+    } WeldarData;
+    void *func_80100094(Actor *, u32);
+    s32 func_801022E4(Actor *);
+    s32 func_80102320(Actor *, f32, f32);
+    s32 func_80101E14(Actor *, f32);
+    s32 func_8001210C(s32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    void _chexploder_entrypoint_5(Actor *, s32, f32 *, f32, f32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EF1B8(f32 *, f32, f32);
+    f32 func_800F1DF4(f32 *, f32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    s32 func_800E1540(s32);
+    void func_800E1378(s32);
+    void func_800E13F0(s32, f32);
+    void func_800E1410(s32, f32, f32);
+    void func_800187B4(s32, f32, f32, f32);
+    void func_80802ABC_chweldarboss(Actor *, f32);
+    WeldarData *sp6C;
+    f32 sp60[3];
+    f32 sp54[3];
+    s32 effect;
+    f32 sp44[3];
+    s32 joint;
+    f32 sp34[3];
+    union { f32 value; s32 word; } sp30;
+
+    sp6C = func_80100094(arg0, 0);
+    switch (func_801022E4(arg0)) {
+    case 0x371:
+        _subaddieaudioquick_entrypoint_3(arg0, sp6C->unk44, D_80804980_chweldarboss, 0.22f);
+        _subaddieaudioquick_entrypoint_3(arg0, sp6C->unk44, D_80804970_chweldarboss, 0.24f);
+        if (func_80102320(arg0, 0.2f, 0.4f) && !func_8001210C(1)) {
+            func_800EE7F8(sp54, sp6C->unk44);
+            sp54[1] = 0.0f;
+            func_800EE7F8(sp60, sp54);
+            func_800EF1B8(sp60, arg0->rotation[1], -100.0f);
+
+            func_800BBCB8(sp54, sp60, arg0->scale * 0.6f, 2, (s32 *)D_80804928_chweldarboss);
+        }
+        if (func_80102320(arg0, 0.24f, 0.64f) && func_8001210C(1)) {
+            func_800BBCB8(arg0->position, sp6C->unk44, arg0->scale, 3, (s32 *)D_80804928_chweldarboss);
+        }
+        if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80804990_chweldarboss, 0.34f)) {
+            effect = func_800E1540(2);
+            func_800E1378(effect);
+            func_800E13F0(effect, 10.0f);
+            func_800E1410(effect, -8.0f, 1.8f);
+            func_800187B4(0, 1.0f, 0.4f, 0.8f);
+        }
+        break;
+    case 0x372:
+        func_80802ABC_chweldarboss(arg0, 0.5f);
+        break;
+    case 0x375:
+        func_80802ABC_chweldarboss(arg0, 0.75f);
+        break;
+    case 0x3E7:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80804918_chweldarboss, 0.15f);
+        break;
+    case 0x373:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80804918_chweldarboss, 0.08f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_808049A4_chweldarboss, 0.5f);
+        if (func_80101E14(arg0, 0.6f)) {
+            sp6C->unk6F--;
+            joint = sp6C->unk66;
+            if (_subaddieskeleton_entrypoint_2(arg0->unk0, joint + 7, sp44)) {
+                sp30.value = func_800F1DF4(arg0->position, sp44);
+                func_800EE7F8(sp34, sp44);
+                func_800EF1B8(sp34, sp30.value, -200.0f);
+                _chexploder_entrypoint_5(arg0, 0x86E, sp44, sp30.value, arg0->scale, 2);
+            }
+        }
+        break;
+    case 0x374:
+        break;
+    }
+}
 
 void func_808029D8_chweldarboss(Actor *arg0) {
     typedef struct {
@@ -1503,7 +1589,7 @@ void func_808029D8_chweldarboss(Actor *arg0) {
         u8 unkB2;
     } WeldarData;
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
-    void func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
+    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
@@ -1520,7 +1606,7 @@ void func_808029D8_chweldarboss(Actor *arg0) {
     sp28 = func_800F10B4(sp2C, 300.0f, 1000.0f, 1.0f, 1.5f);
     func_800EEB9C(sp30, arg0->rotation[1], sp2C);
     func_800EF04C(sp30, sp3C->unk44);
-    func_800BBCB8(sp30, sp3C->unk44, *(s32 *)&sp28, 1, D_808049B4_chweldarboss);
+    func_800BBCB8(sp30, sp3C->unk44, sp28, 1, D_808049B4_chweldarboss);
     sp3C->unkB2 = _subaddieaudioloop_entrypoint_7(sp3C->unkB2, sp3C->unk44, 1, D_808049DC_chweldarboss, arg0->unk70_0);
 }
 

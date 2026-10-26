@@ -41,13 +41,13 @@ void func_80800080_bsdroneslide(struct player_state_s *arg0, s32 arg1) {
 
 typedef struct player_state_s PlayerState;
 
-void func_80800110_bsdroneslide(PlayerState *arg0, s32 *arg1, f32 *arg2) {
+s32 func_80800110_bsdroneslide(PlayerState *arg0, s32 *arg1, f32 *arg2) {
     void func_800963C0(s32 *, f32 *);
-    void func_800F1988(f32 *, s32 *, f32 *);
+    s32 func_800F1988(f32 *, s32 *, f32 *);
     f32 sp1C[3];
 
     func_800963C0((s32 *)arg0, sp1C);
-    func_800F1988(sp1C, arg1, arg2);
+    return func_800F1988(sp1C, arg1, arg2);
 }
 
 /* extern */
@@ -104,7 +104,59 @@ void func_808001F4_bsdroneslide(PlayerState *arg0, f32 arg1) {
     func_800A4DA4(arg0, 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/drone/slide/bsdroneslide_entrypoint_1.s")
+void bsdroneslide_entrypoint_1(PlayerState *arg0) {
+    s32 func_80800110_bsdroneslide(PlayerState *, s32 *, f32 *);
+    s32 _badata_entrypoint_24(PlayerState *);
+    s32 _badata_entrypoint_25(PlayerState *);
+    void _badust_entrypoint_7(PlayerState *);
+    s32 _batimer_decrement(void *, s32);
+    int _batimer_isZero(PlayerState *, s32);
+    int bakey_pressed(PlayerState *, int);
+    void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
+    s32 bs_setState(PlayerState *, s32);
+    int func_8008E148(PlayerState *);
+    void func_8009BF5C(s32, f32);
+    void func_8009D658(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 player_inWater(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    s32 sp34;
+    f32 sp30;
+    union {
+        s32 word;
+        f32 value;
+    } sp2C;
+
+    sp34 = 0;
+    func_8009D658(arg0);
+    _batimer_decrement(arg0, 10);
+    if (func_8008E148(arg0)) {
+        if (func_80800110_bsdroneslide(arg0, &sp2C.word, &sp30)) {
+            if (*((u8 *)arg0 + 0x190) == 1) {
+                yaw_setIdeal(arg0, sp30 + 180.0f);
+                func_8009BF5C(arg0, -sp2C.value);
+            } else {
+                yaw_setIdeal(arg0, sp30);
+                func_8009BF5C(arg0, sp2C.value);
+            }
+            baphysics_set_target_horizontal_velocity(arg0,
+                func_800F10B4(sp2C.value, 20.0f, 60.0f, 550.0f, 700.0f));
+            func_808001F4_bsdroneslide(arg0, sp30);
+        } else {
+            baphysics_set_target_horizontal_velocity(arg0, 500.0f);
+        }
+        _badust_entrypoint_7(arg0);
+    } else {
+        sp34 = _badata_entrypoint_24(arg0);
+    }
+    if (player_inWater(arg0)) {
+        sp34 = _badata_entrypoint_24(arg0);
+    }
+    if (_batimer_isZero(arg0, 10) && bakey_pressed(arg0, 8)) {
+        sp34 = _badata_entrypoint_25(arg0);
+    }
+    bs_setState(arg0, sp34);
+}
 
 /* extern */
 

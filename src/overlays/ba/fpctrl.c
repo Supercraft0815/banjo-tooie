@@ -34,14 +34,40 @@ s32 func_80800008_bafpctrl(void *arg0) {
 
 /* extern */
 
-void func_808000DC_bafpctrl(void *arg0, s32 arg1, f32 arg2) {
+void func_808000DC_bafpctrl(void *arg0, f32 arg1, f32 arg2) {
     s32 func_800A4C68(f32);
-    s32 func_800C51A4(s32, s32);
+    s32 func_800C51A4(s32, f32);
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x90)))) + (0x18))) = arg2;
     func_800C51A4(func_800A4C68(arg2), arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/fpctrl/func_80800114_bafpctrl.s")
+void func_80800114_bafpctrl(void *arg0) {
+    int baflag_isTrue(struct player_state_s *, s32);
+    s32 bakey_held(s32, s32);
+    f32 func_800139F8(f32);
+    int func_800C6E38(s32);
+    f32 angle;
+    f32 scale;
+
+    if (baflag_isTrue(arg0, 0x3A)) {
+        return;
+    }
+    if (baflag_isTrue(arg0, 0x2E)) {
+        return;
+    }
+    if (!func_800C6E38(0x2B)) {
+        return;
+    }
+    angle = *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x18);
+    if (bakey_held((s32)arg0, 0xA) && angle < 40.0f) {
+        angle += 1.5f;
+    }
+    if (bakey_held((s32)arg0, 0xD) && angle > 5.21f) {
+        angle -= 1.5f;
+    }
+    scale = 0.3639702201f / func_800139F8(angle * 0.5f);
+    func_808000DC_bafpctrl(arg0, scale, angle);
+}
 
 /* extern */
 
@@ -66,7 +92,7 @@ void func_8080022C_bafpctrl(PlayerState *arg0) {
 void func_808002A4_bafpctrl(PlayerState *arg0) {
     s32 _ncba1p_entrypoint_10();
     void _ncba1p_entrypoint_8(PlayerState *, f32[3]);
-    int baflag_isTrue(PlayerState *, s32);
+    int baflag_isTrue(struct player_state_s *, s32);
     f32 func_800D8FF8(void);
     f32 bafpctrl_entrypoint_3(u8 *);
     f32 bastick_getY(PlayerState *);
@@ -193,14 +219,14 @@ void func_8080064C_bafpctrl(PlayerState *arg0) {
     baflag_clear(arg0, 0x17);
     baflag_clear(arg0, 0x3A);
     func_80800424_bafpctrl(arg0, 0);
-    func_808000DC_bafpctrl(arg0, 0x3F800000, 40.0f);
+    func_808000DC_bafpctrl(arg0, 1.0f, 40.0f);
 }
 
 void func_80800704_bafpctrl(PlayerState *arg0) {
     s32 _ncba1p_entrypoint_6(void *, f32 *);
     void _badrone_entrypoint_33(PlayerState *, f32 *);
     void _ncba1p_entrypoint_12(PlayerState *, f32);
-    int baflag_isTrue(PlayerState *, s32);
+    int baflag_isTrue(struct player_state_s *, s32);
     void baflag_set(PlayerState *, s32);
     void func_80099A7C(PlayerState *, f32 *);
     s32 func_8009E674(PlayerState *, s32);
@@ -274,7 +300,7 @@ s32 func_80800970_bafpctrl(PlayerState *arg0) {
     u32 _baeggcursor_entrypoint_2(void *);
     s32 _ncba1p_entrypoint_10();
     f32 _ncba1p_entrypoint_11(PlayerState *);
-    int baflag_isTrue(PlayerState *, s32);
+    int baflag_isTrue(struct player_state_s *, s32);
     u32 bafpctrl_entrypoint_6(void *);
     void func_80094AB4(void *);
     s32 result;

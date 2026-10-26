@@ -56,7 +56,85 @@ void func_800A275C(PlayerState *arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2848.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7BFA0/func_800A2A00.s")
+void func_800A2A00(s32 arg0, s32 arg1, s32 arg2) {
+    PlayerState *func_800F53D0(s32);
+    s32 player_inWater(PlayerState *);
+    s32 func_8008FD48();
+    f32 _basnowball_entrypoint_5(PlayerState *);
+    void _basnowball_entrypoint_10(PlayerState *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_8009DB04(PlayerState *, s32, f32, s32);
+    void func_8009DBF0(PlayerState *, s32, f32);
+    void func_8009DC98(PlayerState *, s32, f32, f32);
+    s32 _bashake_entrypoint_0(PlayerState *, s32, s32);
+    void _fxstep_entrypoint_10(s32, s32);
+    void _fxstep_entrypoint_13(s32, s32);
+    void _bsvan_entrypoint_2(PlayerState *);
+    void _bswasher_entrypoint_0(PlayerState *);
+    s32 func_8009E674(PlayerState *, s32);
+    s32 _bashoes_entrypoint_1(PlayerState *);
+    PlayerState *self;
+    s32 inWater;
+    f32 sp34;
+    s32 pad[2];
+    f32 sp30;
+    s32 sp2C;
+
+    self = func_800F53D0(arg2);
+    inWater = arg1 == 4 || arg1 == 11 || player_inWater(self);
+    if (inWater) {
+        func_800A26B8(self);
+    }
+    switch (func_8008FD48()) {
+        case 2:
+            sp34 = _basnowball_entrypoint_5(self);
+            _basnowball_entrypoint_10(self);
+            sp30 = func_800F10B4(sp34, 0.0f, 1.0f, 1.5f, 0.85f);
+            sp2C = func_800F10B4(sp34, 0.0f, 1.0f, 8000.0f, 32767.0f);
+            func_8009DB04(self, 0x56E, sp30, sp2C);
+            if (sp34 == 1.0f) {
+                _bashake_entrypoint_0(self, 1, 2);
+            }
+            break;
+        case 14:
+            _fxstep_entrypoint_10(arg0, 0x13);
+            if (arg1 == 0x14) {
+                _fxstep_entrypoint_13(arg0, 0x14);
+            }
+            _bashake_entrypoint_0(self, 3, 3);
+            break;
+        case 19:
+            _fxstep_entrypoint_10(arg0, 0x16);
+            _bashake_entrypoint_0(self, 3, 3);
+            break;
+        case 18:
+            _bashake_entrypoint_0(self, 1, 2);
+            break;
+        case 16:
+            func_8009DBF0(self, 0x4C7, 1.3f);
+            _bashake_entrypoint_0(self, 1, 2);
+            _bsvan_entrypoint_2(self);
+            break;
+        case 7:
+            func_8009DC98(self, 0x4C1, 0.9f, 0.92f);
+            _bashake_entrypoint_0(self, 1, 2);
+            _bswasher_entrypoint_0(self);
+            break;
+        case 1:
+        case 11:
+            if (func_8009E674(self, 0x80)) {
+                switch (_bashoes_entrypoint_1(self)) {
+                    case 4:
+                        _fxstep_entrypoint_10(arg0, 0x17);
+                        break;
+                    case 5:
+                        _fxstep_entrypoint_10(arg0, 0x1A);
+                        break;
+                }
+            }
+            break;
+    }
+}
 
 s32 func_800A2C84(PlayerState *arg0) {
     f32 func_800964DC(PlayerState *);
@@ -112,7 +190,7 @@ void func_800A2D94(void *arg0) {
     void func_800A2EDC(void *, f32);
     s32 func_800D3948(void);
     extern s32 func_800A2848;
-    extern s32 func_800A2A00;
+    void func_800A2A00(s32, s32, s32);
 
     **(s32 **)((s8 *)arg0 + 0x124) = _fxstep_entrypoint_1();
     func_800A2EDC(arg0, 1.0f);
@@ -204,12 +282,11 @@ f32 func_800A3048(PlayerState *arg0) {
     s32 func_8008E40C(PlayerState *);
     s32 func_800D3E40(s32);
     extern f32 D_801194D0[];
-    extern f32 D_80125560;
     if (func_800D3E40(7) == 0) {
         return 1.0f;
     }
     if (func_8008E40C(arg0) != 0) {
-        return D_80125560;
+        return 1.2f;
     }
     return D_801194D0[*(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x29)];
 }
@@ -448,7 +525,6 @@ s32 func_800A3644(void *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13F0(f32, f32);
     s32 player_inWater(PlayerState *);
-    extern f32 D_80125564;
     f32 sp3C;
     f32 sp38;
     f32 sp34;
@@ -467,7 +543,7 @@ s32 func_800A3644(void *arg0) {
             *(f32 *)((s8 *)temp_v1 + 0x38) = 0.0f;
         }
     } else {
-        sp3C = func_800F10B4(sp38, 20.0f, 60.0f, 0.6f, D_80125564);
+        sp3C = func_800F10B4(sp38, 20.0f, 60.0f, 0.6f, 1.3f);
         if ((func_80096518(arg0) == 0) && !(sp30 & 0x50)) {
             sp2C = func_80096434(arg0);
             if ((func_8009650C(arg0) != 0) && (sp2C & 0x50)) {
@@ -491,8 +567,7 @@ s32 func_800A3644(void *arg0) {
 }
 
 void func_800A380C(void *arg0) {
-    extern f32 D_80125568;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x38))) = (f32) D_80125568;
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x38))) = (f32) 0.98f;
 }
 
 /* extern */

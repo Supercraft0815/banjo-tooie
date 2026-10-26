@@ -145,16 +145,16 @@ void func_808001B0_chbottlesfamily(Actor *arg0) {
 
 /* extern */
 
-s32 func_8080046C_chbottlesfamily(Actor *arg0, s32 arg1) {
+s32 func_8080046C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddierouteDll_entrypoint_1(Actor*);
-    s32 func_80800720_chbottlesfamily(Actor*);
+    s32 func_80800720_chbottlesfamily(Actor*, s32, s32);
     s32 ret;
     if (arg1 == 0x95) {
-        func_80800720_chbottlesfamily(arg0);
+        func_80800720_chbottlesfamily(arg0, arg1, arg2);
         _subaddierouteDll_entrypoint_1(arg0);
         ret = 1;
     } else {
-        return func_80800720_chbottlesfamily(arg0);
+        return func_80800720_chbottlesfamily(arg0, arg1, arg2);
     }
     return ret;
 }
@@ -239,7 +239,45 @@ void func_80800630_chbottlesfamily(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800F58_chbottlesfamily, &D_80800F78_chbottlesfamily);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bottles/family/func_80800720_chbottlesfamily.s")
+s32 func_80800720_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    s32 _suexpression_entrypoint_12(void *, s32, s32);
+    s32 _suexpression_entrypoint_17(void *, s32);
+    void func_800DF744(s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_8080088C_chbottlesfamily(Actor *, s32, s32);
+    void func_8080099C_chbottlesfamily(Actor *, s32, s32);
+    s32 func_80800A44_chbottlesfamily(Actor *);
+    void func_80800A84_chbottlesfamily(Actor *);
+    s32 func_80800B64_chbottlesfamily(void *, s32, s32);
+    void *expression;
+
+    switch (arg1) {
+        case 0x2E:
+            func_8080088C_chbottlesfamily(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x2F:
+            func_8080099C_chbottlesfamily(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x52:
+            func_80800A84_chbottlesfamily(arg0);
+            break;
+        case 0x57:
+            return func_80800B64_chbottlesfamily(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x95:
+            expression = (void *)_suexpression_entrypoint_7(arg0, 1, (s16)func_80800A44_chbottlesfamily(arg0));
+            _suexpression_entrypoint_12(expression, 0x42700000, 0x41A00000);
+            _suexpression_entrypoint_17(expression, 1000);
+            break;
+        case 0x1F:
+            func_800DF744(3, arg0->unk64_20);
+            func_801015D0(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_8080086C_chbottlesfamily(Actor* arg0) 
 {

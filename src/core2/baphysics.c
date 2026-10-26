@@ -36,7 +36,89 @@ s32 func_8009AE00()
     return 0xC4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009AE08.s")
+void func_8009AE08(PlayerState *arg0)
+{
+  int func_8008E1C4(PlayerState *);
+  f32 func_80094E98(PlayerState *);
+  void func_800963C0(PlayerState *, f32 *);
+  u32 func_80096518(PlayerState *);
+  f32 func_800A3378(void *);
+  f32 func_800D8FF8(void);
+  void func_800EE7F8(f32 *, f32 *);
+  f32 func_800EEAA4(f32 *, f32 *);
+  void func_800EEB9C(f32 *, f32, f32);
+  void func_800EF04C(f32 *, f32 *);
+  void func_800EF334(f32 *, f32);
+  void func_800EF3DC(f32 *, f32 *);
+  void func_800EF410(f32 *, f32 *);
+  void func_800EFA20(void *, void *, f32);
+  f32 func_800F10B4(f32, f32, f32, f32, f32);
+  s32 func_800F2168(u8 *, s32);
+  extern f32 D_801252A0;
+  f32 sp7C[3];
+  f32 sp70[3];
+  f32 sp64[3];
+  f32 sp58[3];
+  f32 sp4C[3];
+  f32 sp40[3];
+  f32 sp3C;
+  f32 sp38;
+  u8 *p;
+  f32 new_var;
+  p = *((u8 **) (((u8 *) arg0) + 0xC8));
+  func_800EEB9C((f32 *) (p + 0x1C), *((f32 *) (p + 0x40)), (*((f32 *) (p + 0x50))) * (*((f32 *) (p + 0x3C))));
+  sp64[0] = *((f32 *) ((*((u8 **) (((u8 *) arg0) + 0xC8))) + 0x10));
+  sp64[1] = 0.0f;
+  sp64[2] = *((f32 *) ((*((u8 **) (((u8 *) arg0) + 0xC8))) + 0x18));
+  func_800EE7F8(sp58, (f32 *) ((*((u8 **) (((u8 *) arg0) + 0xC8))) + 0x1C));
+  sp58[1] = 0.0f;
+  if (func_80096518(arg0))
+  {
+    func_800963C0(arg0, sp4C);
+    func_800EF410(sp40, sp58);
+    sp3C = func_800EEAA4(sp40, sp4C);
+    sp38 = func_800A3378(arg0);
+    if (sp3C != 0.0f)
+    {
+      if (sp3C < 0.0f)
+      {
+        if (func_8008E1C4(arg0))
+        {
+          sp38 = func_800F10B4(sp38, 0.0f, 1.0f, sp3C * 0.5f, -1.0f);
+        }
+        else
+        {
+          sp38 = sp3C * 0.5f;
+        }
+        func_800EF334(sp58, 1.0f + sp38);
+      }
+      else
+      {
+        new_var = sp3C * 0.2f;
+        func_800EF334(sp58, 1.0f + new_var);
+      }
+    }
+  }
+  func_800EFA20(sp7C, sp58, func_80094E98(arg0));
+  func_800EFA20(sp70, sp64, func_80094E98(arg0));
+  func_800EF3DC(sp7C, sp70);
+  func_800EF334(sp7C, func_800D8FF8() * 30.0f);
+  func_800EF04C((f32 *) ((*((u8 **) (((u8 *) arg0) + 0xC8))) + 0x10), sp7C);
+  sp38 = func_800D8FF8();
+  p = *((u8 **) (((u8 *) arg0) + 0xC8));
+  *((f32 *) (p + 0x14)) += (*((f32 *) (p + 0x34))) * sp38;
+  p = *((u8 **) (((u8 *) arg0) + 0xC8));
+  if ((*((f32 *) (p + 0x14))) < (*((f32 *) (p + 0x38))))
+  {
+    *((f32 *) (p + 0x14)) = *((f32 *) (p + 0x38));
+  }
+  sp38 = func_800D8FF8();
+  p = *((u8 **) (((u8 *) arg0) + 0xC8));
+  func_800EFA20(p + 0x28, p + 0x10, sp38);
+  p = *((u8 **) (((u8 *) arg0) + 0xC8));
+  func_800EF04C((f32 *) (p + 4), (f32 *) (p + 0x28));
+  func_800F2168((*((u8 **) (((u8 *) arg0) + 0xC8))) + 0x10, 0x38D1B717);
+}
 
 void func_8009B08C(u8 *arg0) {
     f32 func_800D8FF8(void);
@@ -45,7 +127,6 @@ void func_8009B08C(u8 *arg0) {
     void func_800EF334(f32 *, f32);
     void func_800EFA20(void *, void *, f32);
     void func_800EFB24(void *, void *, void *);
-    extern f32 D_801252A4;
     f32 sp2C[3];
     f32 sp28;
     u8 *temp_v0;
@@ -54,7 +135,7 @@ void func_8009B08C(u8 *arg0) {
     temp_v0 = *(u8 **)(arg0 + 0xC8);
     func_800EFB24(sp2C, temp_v0 + 0x1C, temp_v0 + 0x10);
     func_800EF334(sp2C, *(f32 *)(*(u8 **)(arg0 + 0xC8) + 0x44) * sp28);
-    if ((sp2C[0] * sp2C[0] + sp2C[1] * sp2C[1]) + sp2C[2] * sp2C[2] < D_801252A4) {
+    if ((sp2C[0] * sp2C[0] + sp2C[1] * sp2C[1]) + sp2C[2] * sp2C[2] < 0.02f) {
         temp_v0 = *(u8 **)(arg0 + 0xC8);
         func_800EE7F8((f32 *)(temp_v0 + 0x10), (f32 *)(temp_v0 + 0x1C));
     } else {
@@ -179,14 +260,13 @@ void func_8009B450(void *arg0) {
     f32 func_80013970(f32);
     f32 func_800D8FF8(void);
     f32 func_800F0F9C(f32, f32);
-    extern f32 D_801252A8;
     void *temp_v0;
     f32 temp_f0;
 
     temp_f0 = func_800D8FF8();
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
     (*(f32 *)((s8 *)(temp_v0) + (0x4C))) += temp_f0;
-    temp_f0 = func_800F0F9C((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x4C))), D_801252A8);
+    temp_f0 = func_800F0F9C((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x4C))), 1.2f);
     temp_f0 *= 360.0f;
     temp_f0 = func_80013970(temp_f0);
     temp_f0 *= 5.0f;
@@ -214,7 +294,92 @@ void func_8009B4FC(PlayerState *arg0) {
     func_8009BC34(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baphysics/func_8009B590.s")
+void func_8009B590(PlayerState *arg0) {
+    void func_8009C128(PlayerState *, f32[3]);
+    f32 func_800A3048(PlayerState *);
+    f32 func_800136E4(f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009C0F8();
+    void func_8009AE08(PlayerState *);
+    void _bamovegoto_entrypoint_14(PlayerState *);
+    void _bamoveledge_entrypoint_3(PlayerState *);
+    void _bsfirstp_entrypoint_27(PlayerState *);
+    void _bamovethrust_entrypoint_5(PlayerState *);
+    void _bamovespline_entrypoint_10(PlayerState *);
+    void _bamovehover_entrypoint_2(PlayerState *);
+    f32 scale;
+
+    func_8009C128(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4));
+    scale = func_800A3048(arg0);
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x50) *= scale;
+    switch (*(s32 *)(*(u8 **)((u8 *)arg0 + 0xC8))) {
+        case 0:
+            break;
+        case 12:
+            _bamovegoto_entrypoint_14(arg0);
+            break;
+        case 11:
+            func_8009B450(arg0);
+            break;
+        case 8:
+            func_8009B3B8((u8 *)arg0);
+            break;
+        case 1:
+            func_8009B170((u8 *)arg0);
+            break;
+        case 9:
+            func_8009B08C((u8 *)arg0);
+            break;
+        case 2:
+            baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+            func_8009AE08(arg0);
+            break;
+        case 5:
+            baphysics_set_target_yaw(arg0, func_800136E4(yaw_getIdeal(arg0) + 180.0f));
+            func_8009AE08(arg0);
+            break;
+        case 3:
+            func_8009AE08(arg0);
+            break;
+        case 13:
+            _bamoveledge_entrypoint_3(arg0);
+            break;
+        case 6:
+            if (bastick_distance(arg0) > 0.0f) {
+                baphysics_set_target_yaw(arg0, bastick_getAngleRelativeToBanjo(arg0));
+            }
+            func_8009AE08(arg0);
+            break;
+        case 10:
+            func_8009B27C(arg0);
+            break;
+        case 16:
+            _bsfirstp_entrypoint_27(arg0);
+            func_8009AE08(arg0);
+            func_8009B414(arg0);
+            break;
+        case 17:
+            _bsfirstp_entrypoint_27(arg0);
+            func_8009B1FC(arg0);
+            break;
+        case 14:
+            baphysics_set_target_yaw(arg0, yaw_get(arg0));
+            func_8009AE08(arg0);
+            break;
+        case 15:
+            _bamovethrust_entrypoint_5(arg0);
+            break;
+        case 18:
+            _bamovespline_entrypoint_10(arg0);
+            break;
+        case 19:
+            _bamovehover_entrypoint_2(arg0);
+            break;
+    }
+    func_8009C0F8(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4));
+    *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x50) = 1.0f;
+}
 
 void func_8009B7C0(PlayerState *arg0) {
     void *temp_v0;

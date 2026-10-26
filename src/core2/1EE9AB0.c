@@ -733,7 +733,94 @@ s32 func_801115C8(f32 *arg0, f32 arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE9AB0/func_80111680.s")
+void func_80111680(f32 *arg0, f32 *arg1, f32 *arg2, void *arg3, f32 arg4, f32 arg5, void *arg6) {
+    s32 func_800D8FEC();
+    s32 func_800EE780();
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE97C(f32 *, f32 *, f32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    int func_800EEEA8(f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EF174(f32 *, f32 *, f32);
+    void func_800EF2A0(f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFD24(f32 *);
+    f32 spFC[3];
+    f32 spF0[3];
+    f32 spE4[3];
+    f32 spD8[3];
+    f32 spCC[3];
+    f32 spC0[3];
+    f32 spB4[3];
+    f32 distance = 0.0f;
+    s32 spAC;
+    f32 change = 0.0f;
+    s32 i;
+    f32 timestep = 0.0033333334f;
+    f32 sp94[3];
+    f32 sp90;
+    f32 sp8C;
+    f32 sp80[3];
+    f32 sp74[3];
+    s32 sp70 = 0;
+    s32 sp6C = 0;
+    f32 sp68;
+
+    if (func_800EEAD4(arg0, arg1) < 0.01f) {
+        func_800EE7F8(arg1, arg0);
+        func_800EFD24(arg3);
+    }
+    if (func_800EEAD4(arg0, arg6) < 0.01f) {
+        func_800EFB24(sp80, arg2, arg0);
+        if (func_800EEEA8(sp80)) {
+            func_800EFA4C(sp80, 1.0f, 0.0f, 0.0f);
+        }
+        func_800EFA4C(sp74, 0.0f, 1.0f, 0.0f);
+        func_800EE97C(sp94, sp80, sp74);
+        func_800EF2A0(sp94);
+        sp90 = func_800EEAA4(sp94, arg0);
+        func_800EF2A0(sp80);
+        sp8C = func_800EEAA4(sp80, arg0);
+        sp70 = sp6C = 1;
+    }
+    spAC = func_800D8FEC() * 5;
+    i = 0;
+    if (spAC > 0) {
+    do {
+        func_800EFB24(spFC, arg0, arg1);
+        func_800EF334(spFC, arg4);
+        func_800EFB24(spF0, spFC, arg3);
+        func_800EF334(spF0, arg5);
+        func_800EE7F8(spE4, arg3);
+        func_800EE7F8(spD8, spE4);
+        func_800EF174(spD8, spF0, timestep);
+        func_800EE7F8(spCC, arg1);
+        func_800EE780(spB4, spE4, spD8);
+        func_800EF334(spB4, 0.5f * timestep);
+        if (sp70 || sp6C) {
+            func_800EE780(spC0, spCC, spB4);
+            if (sp70 && func_801115C8(sp94, sp90, arg1, spC0, &sp68)) {
+                func_800EF334(spB4, sp68);
+                sp70 = 0;
+                func_800EF174(spD8, sp94, -func_800EEAA4(spD8, sp94));
+            } else if (sp6C && func_801115C8(sp80, sp8C, arg1, spC0, &sp68)) {
+                func_800EF334(spB4, sp68);
+                sp6C = 0;
+                func_800EF174(spD8, sp80, -func_800EEAA4(spD8, sp94));
+            }
+        }
+        func_800EE780(spC0, spCC, spB4);
+        change += func_800EEAD4(arg3, spD8) / spAC;
+        func_800EE7F8(arg1, spC0);
+        func_800EE7F8(arg3, spD8);
+        distance += func_800EEF94(spB4);
+    } while (++i < spAC);
+    }
+    func_800EE7F8(arg6, arg0);
+}
 
 /* extern */
 
@@ -860,7 +947,6 @@ void func_80111DB0(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     void func_800EF174(f32 *, f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
-    extern f32 D_8012655C;
     f32 sp34[3];
     f32 distance;
     f32 step;
@@ -869,7 +955,7 @@ void func_80111DB0(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
 
     func_800EFB24(sp34, arg1, arg2);
     distance = func_800EEF94(sp34);
-    if (D_8012655C < distance) {
+    if (0.01f < distance) {
         delta = func_800D8FF8();
         data = *(u8 **)(arg0 + 0x34);
         step = func_800FF060(distance, arg3, *(f32 *)(data + 0x80), *(f32 *)(data + 0x84), *(f32 *)(data + 0x7C), delta);

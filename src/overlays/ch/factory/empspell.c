@@ -192,7 +192,7 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_80101180(s32, s32, s32);
     void func_80101FDC(Actor *, u32);
-    void func_80800A08_chfactoryempspell(void);
+    void func_80800A08_chfactoryempspell(Actor *);
     void func_80801130_chfactoryempspell(Actor *, void *, f32);
     void func_808012C0_chfactoryempspell(f32, f32);
     void func_808016AC_chfactoryempspell(Actor *);
@@ -203,7 +203,7 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
     void func_80801E9C_chfactoryempspell(Actor *, f32);
     void func_80801F30_chfactoryempspell(Actor *);
 
-    func_80800A08_chfactoryempspell();
+    func_80800A08_chfactoryempspell(arg0);
     switch (arg0->unk70_10) {
     case 1:
         break;
@@ -491,7 +491,51 @@ s32 func_80800630_chfactoryempspell(Actor *arg0, s32 arg1, void *arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/empspell/func_80800A08_chfactoryempspell.s")
+void func_80800A08_chfactoryempspell(Actor *arg0) {
+    void _subaddieaudioloop_entrypoint_0(Actor *, f32);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    f32 func_800138D0(f32);
+    f32 func_800D8FF8(void);
+    int func_800D90F8(f32 *, f32);
+    int func_800D91EC(f32 *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    f32 func_800F0D50(f32, f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F48BC(s32, f32 *);
+    u32 func_800F54E4(void);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6C5C(s32);
+    f32 mlAbsF(f32);
+    f32 position[3];
+    f32 speed;
+    f32 phase;
+
+    if (((f32 *)arg0->actorData)[6] == 0.0f) {
+        func_800F5A00(func_800F54E4(), position);
+        if (arg0->unk64_19) {
+            func_800D91EC(&((f32 *)arg0->actorData)[5], 2.0f);
+        } else {
+            func_800D90F8(&((f32 *)arg0->actorData)[5], -2.0f);
+        }
+        ((f32 *)arg0->actorData)[3] += func_800D8FF8() * ((f32 *)arg0->actorData)[5];
+        phase = ((f32 *)arg0->actorData)[3];
+        if (phase >= 2.6666667f) {
+            ((f32 *)arg0->actorData)[3] = phase - 2.6666667f;
+        } else if (phase < 0.0f) {
+            ((f32 *)arg0->actorData)[3] = phase + 2.6666667f;
+        }
+        if (position[2] >= 3700.0f && position[2] <= 4300.0f && position[1] < 0.0f && func_800F6C5C(func_800F54E4())) {
+            speed = ((f32 *)arg0->actorData)[5] * 297.49997f;
+            func_800EFA4C(position, speed, func_800138D0(func_800F10B4(position[0], -5950.0f, 5950.0f, 0.0f, 1.5f) * 360.0f * 15.0f) * 1.5f * 5.0f, 0.0f);
+            func_800F48BC(func_800F54E4(), position);
+        }
+        position[0] = func_800F0D50(position[0], -5950.0f, 5950.0f);
+        position[1] = -20.0f;
+        position[2] = 4000.0f;
+        _subaddieaudioloop_entrypoint_4(arg0, position, 1, D_80802170_chfactoryempspell);
+        _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4(mlAbsF(((f32 *)arg0->actorData)[5]), 2.0f, 0.0f, 0.55f, 0.4f));
+    }
+}
 
 void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
     typedef struct {

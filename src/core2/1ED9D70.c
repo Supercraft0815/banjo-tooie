@@ -130,7 +130,45 @@ int func_8010072C(s32 *arg0, u8 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED9D70/func_801007B8.s")
+s32 func_801007B8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800D674C(s32);
+    s32 _glpackvtx_entrypoint_0(s32, s32, s32);
+    void *freelist_at(FreeList *, s32);
+    s16 freelist_capacity(FreeList *);
+    s32 freelist_is_element_alive(FreeList *, s32);
+    s32 func_800B2840(s32);
+    void func_800F2F20(void *, void *);
+    void func_800F31EC(u8 *, s32, s32, s32);
+    extern FreeList *D_80135A60[2];
+    struct Entry { s32 data; s16 value; s16 image; u8 count; u8 color[3]; };
+    s32 image;
+    struct Entry *entry;
+    s32 index;
+
+    if (D_80135A60[1] != NULL) {
+        for (index = 1; index < freelist_capacity(D_80135A60[1]); index++) {
+            if (freelist_is_element_alive(D_80135A60[1], index)) {
+                entry = freelist_at(D_80135A60[1], index);
+                if (arg1 == entry->value && arg2 == entry->image && func_8010072C((s32 *)arg3, entry->color)) {
+                    entry->count++;
+                    return index;
+                }
+            }
+        }
+    }
+    entry = func_801006E0(&index);
+    image = arg2 ? func_800D674C(arg2) : 0;
+    entry->data = _glpackvtx_entrypoint_0(func_800B2840(arg0), image, arg3);
+    entry->value = arg1;
+    entry->image = arg2;
+    entry->count = 1;
+    if (arg3 != NULL) {
+        func_800F2F20(entry->color, (void *)arg3);
+    } else {
+        func_800F31EC(entry->color, 0xFF, 0xFF, 0xFF);
+    }
+    return index;
+}
 
 void func_80100938(s32 arg0) {
     s32 _glpackvtx_entrypoint_1(s32);
@@ -281,7 +319,7 @@ s16 func_80100D24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     } VertexListView;
     void *func_800B2400(VertexListView *, s32);
     s32 func_800B2840(s32);
-    s8 func_801007B8(s32, s32, s32, s32);
+    s32 func_801007B8(s32, s32, s32, s32);
     struct Entry { VertexListView *vertices[2]; s8 index; s8 active; s8 age; };
     s32 index[2];
     struct Entry *entry;
