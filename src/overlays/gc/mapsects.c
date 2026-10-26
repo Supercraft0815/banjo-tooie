@@ -451,7 +451,61 @@ u32 gcmapsects_entrypoint_5(s32 arg0) {
     return (u32) ((*(s32 *)((s8 *)(((*(s32 *)((s8 *)(temp_v0) + (0x68))) + (arg0 * 0x58))) + (0x4C))) * 2) >> 0x1F;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/func_80800DC8_gcmapsects.s")
+s32 func_80800DC8_gcmapsects(void *arg0, s32 arg1, f32 *arg2) {
+    int func_800EFED0(f32 *, f32 *, f32 *);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    struct section {
+        u8 pad0[0xC];
+        f32 min[3];
+        f32 max[3];
+        f32 point[3];
+        f32 radius;
+        u8 pad34[4];
+        u8 adjacent[4];
+        u8 pad3C[0x10];
+        u32 visible : 1;
+        u32 flag : 1;
+        u32 tested : 1;
+        u32 unused : 1;
+        u32 special : 1;
+        u32 unused2 : 2;
+        u32 special2 : 1;
+        u32 rest : 24;
+        u8 pad50[8];
+    };
+    struct map {
+        u8 pad0[0x68];
+        struct section *sections;
+        u8 pad6C[0xF];
+        u8 special;
+        u8 pad7C[2];
+        u8 special2;
+    };
+    s32 i;
+
+    if (func_800EFFB4(((struct map *)arg0)->sections[arg1].point, ((struct map *)arg0)->sections[arg1].radius, arg2)) {
+        if (func_800EFED0(((struct map *)arg0)->sections[arg1].min, ((struct map *)arg0)->sections[arg1].max, arg2)) {
+            ((struct map *)arg0)->sections[arg1].visible = 1;
+            ((struct map *)arg0)->sections[arg1].tested = 1;
+            ((struct map *)arg0)->sections[arg1].flag = 1;
+            if (((struct map *)arg0)->sections[arg1].special) {
+                ((struct map *)arg0)->special = 1;
+            }
+            if (((struct map *)arg0)->sections[arg1].special2) {
+                ((struct map *)arg0)->special2 = 1;
+            }
+            for (i = 0; i != 4; i++) {
+                if (((struct map *)arg0)->sections[arg1].adjacent[i] == 0xFF) {
+                    break;
+                }
+                ((struct map *)arg0)->sections[((struct map *)arg0)->sections[arg1].adjacent[i]].visible = 1;
+                ((struct map *)arg0)->sections[((struct map *)arg0)->sections[arg1].adjacent[i]].tested = 1;
+            }
+            return arg1;
+        }
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_6.s")
 
