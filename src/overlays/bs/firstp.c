@@ -4318,7 +4318,81 @@ void func_80808100_bsfirstp(s32 arg0, s16 *arg1) {
     func_808085A8_bsfirstp(sp1C, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80808148_bsfirstp.s")
+s32 func_80808148_bsfirstp(s32 arg0, s32 *arg1) {
+    void func_800965E0(s32, u8 *);
+    void func_80096604(s32, void *);
+    s32 func_80096628(struct player_state_s *);
+    void func_8009C128(struct player_state_s *, f32 *);
+    void func_800EE84C(f32 *, s32 *);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEF94(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    s32 func_800F36D4(s32 *, s32 *);
+    f32 position[3];
+    f32 from0[3];
+    f32 delta[3];
+    f32 *out;
+    f32 distance;
+    f32 ratio;
+    s32 (*rows)[3];
+    f32 scale;
+    f32 perpendicular[3];
+    f32 offset[3];
+    f32 point[3];
+    u8 bytes[3][4];
+    s32 colors[3][3];
+    s32 i;
+    s32 j;
+    f32 vertices[3][3];
+
+    rows = colors;
+    out = (f32 *)arg1;
+    out[2] = out[1] = out[0] = 255.0f;
+    func_8009C128((struct player_state_s *)arg0, position);
+    if (!(func_80096628((struct player_state_s *)arg0) & 0x200000)) {
+        func_80096604(arg0, vertices);
+        func_800965E0(arg0, bytes[0]);
+        for (i = 0; i < 3; i++) {
+            vertices[i][1] = 0.0f;
+            for (j = 0; j != 3; j++) {
+                colors[i][j] = bytes[i][j];
+            }
+        }
+        if (func_800F36D4(rows[0], rows[1]) && func_800F36D4(rows[0], rows[2])) {
+            func_800EE84C(out, rows[0]);
+            return;
+        }
+        position[1] = 0.0f;
+        func_800EFB24(from0, position, vertices);
+        from0[1] = 0.0f;
+        func_800EFB24(offset, vertices, vertices[1]);
+        offset[1] = 0.0f;
+        func_800EFB24(perpendicular, vertices[2], vertices[1]);
+        scale = perpendicular[0];
+        perpendicular[1] = 0.0f;
+        perpendicular[0] = -perpendicular[2];
+        perpendicular[2] = scale;
+        ratio = func_800EEAA4(from0, perpendicular);
+        if (ratio == 0.0f) {
+            ratio = 0.1f;
+        }
+        scale = -(offset[0] * perpendicular[0] + offset[1] * perpendicular[1] + offset[2] * perpendicular[2]) / ratio;
+        func_800EFA4C(point, vertices[0][0] + from0[0] * scale, 0.0, vertices[0][2] + from0[2] * scale);
+        func_800EFB24(delta, point, vertices[1]);
+        distance = func_800EEF94(delta);
+        ratio = distance / (func_800EEF94(perpendicular) + 0.01f);
+        for (i = 0; i < 3; i++) {
+            out[i] = rows[1][i] + (rows[2][i] - rows[1][i]) * ratio;
+        }
+        func_800EFB24(delta, point, vertices);
+        distance = func_800EEF94(from0);
+        ratio = 1.0f - distance / (func_800EEF94(delta) + 0.01f);
+        for (i = 0; i != 3; i++) {
+            out[i] = out[i] + (rows[0][i] - out[i]) * ratio;
+        }
+    }
+}
 
 /* extern */
 
