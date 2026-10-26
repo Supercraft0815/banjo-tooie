@@ -1,6 +1,43 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/silo/func_80800000_chsilo.s")
+typedef struct {
+    s16 unk0[3];
+    s16 icon;
+} SiloOption;
+extern SiloOption D_808012EC_chsilo[];
+
+s32 func_80800000_chsilo(s32 arg0) {
+    s32 rom_read_word(s32, u32 *);
+    s32 result;
+    u32 word;
+    u32 address;
+    s32 offset;
+
+    result = *(s32 *)&D_808012EC_chsilo[arg0];
+    address = (result & 0xFFFF) + 0xB0000000;
+    offset = ((u32)result & 0xFFFF0000) >> 16;
+    if (address & 2) {
+        address = (address >> 2) << 2;
+        rom_read_word(address, &word);
+        result = (word & 0xFFFF0000) >> 16;
+    } else {
+        rom_read_word(address, &word);
+        result = word & 0xFFFF;
+    }
+    if (offset != 0) {
+        offset += 0xB0000000;
+        if (offset & 2) {
+            offset = (u32)offset >> 2;
+            offset *= 4;
+            rom_read_word(offset, &word);
+            result += (word & 0xFFFF0000) >> 16;
+        } else {
+            rom_read_word(offset, &word);
+            result += word & 0xFFFF;
+        }
+    }
+    return result + 0xA0;
+}
 
 void func_80800104_chsilo(Actor *arg0, s32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
@@ -49,11 +86,7 @@ void func_80800210_chsilo(s32 arg0, s32 arg1) {
 void func_80800238_chsilo(void *arg0, s32 arg1) {
     s32 _gcnewoption_entrypoint_12(s32, s32, s16);
     void _gcnewoption_entrypoint_31(s32, s32, s16);
-    typedef struct {
-        s16 unk0[3];
-        s16 icon;
-    } SiloOption;
-    extern SiloOption D_808012EC_chsilo[];
+
     s32 var_s0;
     s32 var_s1;
 

@@ -307,7 +307,7 @@ s32 func_8010B1F4(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 func_800F13F0(f32, f32);
     s32 func_801045AC(Actor *, f32 *, f32 *, s32);
     s32 func_8010C3E8(Actor *);
-    f32 func_8010C460(void);
+    f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
     f32 sp44[3];
     f32 sp38[3];
@@ -315,7 +315,7 @@ s32 func_8010B1F4(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 sp30;
     s32 *sp2C;
 
-    sp34 = func_8010C460();
+    sp34 = func_8010C460(arg0);
     sp30 = func_800D8FF8();
     func_800EE7F8(sp44, arg0->position);
     sp44[1] += sp34;
@@ -342,14 +342,14 @@ s32 func_8010B330(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_801045AC(Actor *, f32 *, f32 *, s32);
-    f32 func_8010C460(void);
+    f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
     f32 sp3C[3];
     f32 sp30[3];
     f32 sp2C;
     s32 *temp_v0;
 
-    sp2C = func_8010C460();
+    sp2C = func_8010C460(arg0);
     func_800EE7F8(sp3C, arg0->position);
     sp3C[1] += sp2C;
     func_800EE7F8(sp30, arg0->position);
@@ -371,14 +371,14 @@ s32 func_8010B410(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800EE7F8(f32 *, f32 *);
     s32 func_801045AC(Actor *, f32 *, f32 *, s32);
     s32 func_8010C3E8(Actor *);
-    f32 func_8010C460(void);
+    f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
     f32 sp3C[3];
     f32 sp30[3];
     f32 sp2C;
     s32 *temp_v0;
 
-    sp2C = func_8010C460();
+    sp2C = func_8010C460(arg0);
     func_800EE7F8(sp3C, arg0->position);
     sp3C[1] += sp2C;
     func_800EE7F8(sp30, arg0->position);
@@ -406,7 +406,7 @@ s32 func_8010B514(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 func_800F13F0(f32, f32);
     s32 func_801045AC(Actor *, f32 *, f32 *, s32);
     s32 func_8010C3E8(Actor *);
-    f32 func_8010C460(void);
+    f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
     f32 sp44[3];
     f32 sp38[3];
@@ -414,7 +414,7 @@ s32 func_8010B514(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 sp30;
     s32 *temp_v0;
 
-    sp34 = func_8010C460();
+    sp34 = func_8010C460(arg0);
     sp30 = func_800D8FF8();
     func_800EE7F8(sp44, arg0->position);
     sp44[1] += sp34;
@@ -455,14 +455,14 @@ s32 func_8010B71C(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
     f32 func_800D8FF8(void);
     s32 func_801045AC(Actor *, f32 *, f32 *, s32);
-    f32 func_8010C460(void);
+    f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
     f32 sp34[3];
     f32 sp30;
     f32 sp2C;
     s32 *temp_v0;
 
-    sp30 = func_8010C460();
+    sp30 = func_8010C460(arg0);
     sp2C = func_800D8FF8();
     sp34[0] = arg0->position[0];
     sp34[1] = arg0->position[1] + sp30;
@@ -890,7 +890,21 @@ s32 func_8010C3E8(Actor *arg0) {
     return var_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE4270/func_8010C460.s")
+f32 func_8010C460(Actor *arg0) {
+    f32 func_80103F38(Actor *, f32 *);
+    extern f32 D_80126524;
+    f32 temp_f2;
+    int index;
+    f32 result[1];
+
+    temp_f2 = func_80103F38(arg0, NULL) * D_80126524;
+    result[0] = temp_f2;
+    index = 0;
+    if (result[index] < 60.0f) {
+        return 60.0f;
+    }
+    return result[index];
+}
 
 /* extern */
 

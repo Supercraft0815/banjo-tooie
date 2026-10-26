@@ -16,7 +16,34 @@ s32 func_800A1240(u32 arg0) {
     func_800D2748(0xCD, value);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7AB30/func_800A1294.s")
+void func_800A1294(s32 arg0) {
+    s32 func_8008FD48();
+    s32 func_800D2498(u32, s32, u32);
+    s32 func_800D24E8(s32, s32, u32);
+    s32 func_800D3948(void);
+    s32 func_800D3E40(s32);
+    s32 func_800D4E7C(s32);
+    u8 func_800D4EB8(s32);
+    s32 func_800DA298(s32);
+    extern u8 D_80127094;
+    extern u8 D_80127097;
+    s32 transformation;
+    s32 value;
+
+    if ((D_80127094 == 0) && (func_800D3948() == 0) &&
+        (func_800DA298(0x6B6) == 0) && (func_800D3E40(9) == 0) &&
+        (D_80127097 == 0)) {
+        transformation = func_8008FD48();
+        value = func_800D4EB8(transformation);
+        if (value != 0) {
+            if (arg0 != 0) {
+                func_800D2498(0xCF, func_800D4E7C(transformation), value);
+            } else {
+                func_800D24E8(0xCF, func_800D4E7C(transformation), value);
+            }
+        }
+    }
+}
 
 /* extern */
 
@@ -63,7 +90,7 @@ void func_800A13B0(s32 arg0) {
 void func_800A1450(void) {
     s32 func_8008FD48();
     s32 func_80090128();
-    s32 func_800A1294(s32);
+    void func_800A1294(s32);
     void func_800A1624(s32);
     s32 func_800C95D4(void);
     void func_800CE864();
@@ -139,7 +166,7 @@ void func_800A1618(s32 arg0) {
 /* extern */
 
 void func_800A1624(s32 arg0) {
-    s32 func_800A1294(s32);
+    void func_800A1294(s32);
     s32 func_800D284C(s32);
     if (arg0 != 0) {
         func_800A1294(0);
@@ -211,7 +238,7 @@ s32 func_800A1760(PlayerState *arg0) {
 
 void func_800A17A8(PlayerState *arg0, s32 arg1) {
     void _batimer_set(PlayerState *, s32, f32);
-    s32 func_800A1294(s32);
+    void func_800A1294(s32);
     s32 func_800A3274(PlayerState *);
     s32 func_800D3E40(s32);
     void func_800D4E18(s32, s32);
@@ -242,7 +269,7 @@ void func_800A17A8(PlayerState *arg0, s32 arg1) {
 /* extern */
 
 void func_800A1870(PlayerState *arg0, s32 arg1) {
-    s32 func_800A1294(s32);
+    void func_800A1294(s32);
     void func_800F9F2C(s32, s32);
     s32 func_800A3274(PlayerState *);
     s32 func_800D4FB8(s32, s32);
