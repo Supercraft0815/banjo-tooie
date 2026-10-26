@@ -145,7 +145,32 @@ void func_808004C4_glsavegame(void) {
     (*(s8 *)((s8 *)(&D_80127614) + (22))) = (-1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_7.s")
+s32 glsavegame_entrypoint_7(s32 arg0) {
+    s32 _glgamedata_entrypoint_1(void *);
+    s32 heap_free(s32);
+    extern s8 D_80127618[];
+    s32 result;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+
+    sp20 = func_80800000_glsavegame();
+    sp28 = (D_80127618 + arg0)[0xC];
+    sp24 = D_80127618[0xF];
+    func_808004B8_glsavegame(arg0);
+    _glgamedata_entrypoint_1(sp20);
+    func_808004C4_glsavegame();
+    result = func_808002E0_glsavegame(sp24, sp20);
+    if (result == 0) {
+        result = func_8080036C_glsavegame(sp28);
+    }
+    if (result == 0) {
+        (D_80127618 + arg0)[0xC] = sp24;
+        D_80127618[0xF] = sp28;
+    }
+    heap_free(sp20);
+    return result;
+}
 
 s32 glsavegame_entrypoint_8(s32 arg0) {
     s32 sp24;
@@ -167,6 +192,24 @@ s32 glsavegame_entrypoint_8(s32 arg0) {
     return sp24;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_9.s")
+s32 glsavegame_entrypoint_9(s32 arg0) {
+    extern s8 D_80127618[];
+    s32 _glgamedata_entrypoint_6(s32);
+    s32 ret;
+    s32 old;
+    s32 current;
+
+    old = D_80127618[arg0 + 12];
+    current = D_80127618[15];
+    ret = func_8080036C_glsavegame(old);
+    if (ret == 0) {
+        D_80127618[arg0 + 12] = current;
+        D_80127618[15] = old;
+        if (((u8 *)D_80127618)[16] != 0) {
+            _glgamedata_entrypoint_6(((s32 *)D_80127618)[arg0]);
+        }
+    }
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_10.s")
