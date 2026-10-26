@@ -486,11 +486,37 @@ void func_800FC348(u32 arg0, u32 arg1, u32 arg2) {
     } while (track != ((MusicTrack *) (&D_80135960)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED4E30/func_800FC3D8.s")
+s32 func_800FC3D8(s32 arg0, s32 arg1, s32 arg2, f32 duration) {
+    u32 func_80017764(s32);
+    s32 step;
+    s32 result;
+
+    if (duration == 0.0f) {
+        return 0x7FFF;
+    }
+    if (arg2 == -1) {
+        arg2 = func_80017764(arg0);
+    }
+    if (arg1 == arg2) {
+        return 1;
+    }
+    if (duration == 0.0f) {
+        result = arg1 - arg2;
+    } else {
+        step = (s32)(((f32)(arg1 - arg2) / (duration * 30.0f)) + 1.0f);
+        result = step;
+        if (step < 0) {
+            result = -step;
+        } else if (step == 0) {
+            result = 1;
+        }
+    }
+    return result;
+}
 
 /* extern */
 
-s32 func_800FC4B0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) { void *func_800FB5F8(s32); s32 func_800FC3D8(s32, s32, s32, s32); void *temp_v0; if (arg1 == -1) { temp_v0 = func_800FB5F8(arg0); if (temp_v0 == NULL) return 0; arg1 = *(s32 *)((s8 *)temp_v0 + 0x20); } return func_800FC3D8(arg0, arg1, arg2, arg3); }
+s32 func_800FC4B0(s32 arg0, s32 arg1, s32 arg2, f32 arg3) { void *func_800FB5F8(s32); s32 func_800FC3D8(s32, s32, s32, f32); void *temp_v0; if (arg1 == -1) { temp_v0 = func_800FB5F8(arg0); if (temp_v0 == NULL) return 0; arg1 = *(s32 *)((s8 *)temp_v0 + 0x20); } return func_800FC3D8(arg0, arg1, arg2, arg3); }
 
 void func_800FC508(s32 arg0, s32 arg1, s32 arg2, s32 arg3) { void func_800172D4(u8, s32); void func_80017404(u8, s16); u32 func_80017764(s32); s32 *track; if (arg1 == -1) { arg1 = func_80017764(arg0); } if (arg3 == -1) { arg3 = arg1; } track = func_800FB5F8(arg0); if (track != NULL) { if (((s16 *)track)[0x28 / 2] < 0 || arg2 != 0) { func_800FB6E0(track, arg2); ((s16 *)track)[0x28 / 2] = arg0; ((s8 *)track)[0x31] = 0; ((s16 *)track)[0x2A / 2] = 0; ((f32 *)track)[1] = 0.0f; func_800FB6C0(track, arg3); func_800172D4(((u8 *)track - (u8 *)D_801357D0) / 80, arg0); } if (((u8 *)track)[0x34] == 0) { func_80017404(((u8 *)track - (u8 *)D_801357D0) / 80, arg1); } track[0x20 / 4] = arg1; func_800FB540(track); } }
 
