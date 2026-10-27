@@ -1,4 +1,5 @@
 #include "bs/firstp.h"
+#include "overlays/ba/playerstate.h"
 
 void func_808061AC_bsfirstp(void *, s32);
 void func_8009E4E0(void *, s32, s32);
@@ -5528,7 +5529,39 @@ void func_80809A7C_bsfirstp(void *arg0) {
         (*(f32 *)((s8 *)temp_v0 + 0x234)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80809AF8_bsfirstp.s")
+/* extern */
+
+void func_80809AF8_bsfirstp(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
+    f32 func_800136E4(f32);
+    f32 yaw_get(struct player_state_s *);
+    void yaw_setIdeal(struct player_state_s *, f32);
+    void yaw_set(struct player_state_s *, f32);
+    struct { u8 pad[0x24C]; f32 values[2]; } *state[1];
+    f32 step;
+    f32 dt;
+    f32 first;
+    f32 rest;
+    f32 total;
+    f32 angle;
+    f32 *value;
+
+    state[0] = (void *)((PlayerState *)arg0)->kazfly;
+    step = 0.033333335f;
+    dt = func_800D9004() - step;
+    value = &state[0]->values[0];
+    first = func_808057C8_bsfirstp(value, arg1, arg3, step, arg2);
+    if (dt != 0.0f) {
+        rest = func_808057C8_bsfirstp(value, arg1, arg3, dt, arg2);
+    } else {
+        rest = 0.0f;
+    }
+    func_808052A4_bsfirstp(&rest, &state[0]->values[1]);
+    total = first + rest;
+    angle = yaw_get(arg0);
+    angle = func_800136E4(angle + total);
+    yaw_setIdeal(arg0, angle);
+    yaw_set(arg0, angle);
+}
 
 void bsfirstp_entrypoint_37(void *arg0) {
     int func_800A4C68(void *);
