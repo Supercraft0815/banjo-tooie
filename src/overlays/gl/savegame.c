@@ -49,7 +49,7 @@ s32 func_80800020_glsavegame(s32 arg0, s32 arg1) {
 s32 func_808002E0_glsavegame(s32 arg0, s32 arg1) {
     s32 _glgamestore_entrypoint_2(s32, s32);
     s32 func_80800020_glsavegame(s32, s32);
-    s32 heap_free(s32);
+    void heap_free(void *);
     s32 count;
     s32 result;
     s32 buffer;
@@ -63,7 +63,7 @@ s32 func_808002E0_glsavegame(s32 arg0, s32 arg1) {
         }
         count--;
     } while (result != 0 && count != 0);
-    heap_free(buffer);
+    heap_free((void *)buffer);
     return result;
 }
 
@@ -89,7 +89,7 @@ loop_1:
 void glsavegame_entrypoint_1(void)
 {
   extern void *D_80127614;
-  s32 heap_free(s32);
+  void heap_free(void *);
   s32 *var_s0;
   s32 *var_s1;
   s32 temp_a0;
@@ -97,7 +97,7 @@ void glsavegame_entrypoint_1(void)
     temp_a0 = *var_s0;
     if (temp_a0 != 0)
     {
-      heap_free(temp_a0);
+      heap_free((void *)temp_a0);
       *var_s0 = 0;
     }
     var_s0++;
@@ -147,7 +147,7 @@ void func_808004C4_glsavegame(void) {
 
 s32 glsavegame_entrypoint_7(s32 arg0) {
     void _glgamedata_entrypoint_1(void *);
-    s32 heap_free(s32);
+    void heap_free(void *);
     extern s8 D_80127618[];
     s32 result;
     s32 sp28;
@@ -168,7 +168,7 @@ s32 glsavegame_entrypoint_7(s32 arg0) {
         (D_80127618 + arg0)[0xC] = sp24;
         D_80127618[0xF] = sp28;
     }
-    heap_free(sp20);
+    heap_free((void *)sp20);
     return result;
 }
 
@@ -178,7 +178,7 @@ s32 glsavegame_entrypoint_8(s32 arg0) {
     s32 sp1C;
     extern void *D_80127614;
     extern s32 func_80800020_glsavegame(s32, s32);
-    extern s32 heap_free(s32);
+    extern void heap_free(void *);
     extern s32 func_80800000_glsavegame(void);
     extern void _glgamedata_entrypoint_2(s32);
 
@@ -188,7 +188,7 @@ s32 glsavegame_entrypoint_8(s32 arg0) {
     if (temp_v0 == 0) {
         _glgamedata_entrypoint_2(sp1C);
     }
-    heap_free(sp1C);
+    heap_free((void *)sp1C);
     return sp24;
 }
 
