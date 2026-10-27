@@ -1118,9 +1118,9 @@ s32 func_800F690C(s32 arg0) {
     return baflag_isTrue(D_80135490[arg0], 0x17);
 }
 
-void func_800F693C(s32 arg0)
-{
-    func_8008DD70(D_80135490[arg0]);
+s32 func_800F693C(s32 arg0) {
+    s32 func_8008DD70(PlayerState *);
+    return func_8008DD70(D_80135490[arg0]);
 }
 
 int func_800F6968(s32 arg0) {

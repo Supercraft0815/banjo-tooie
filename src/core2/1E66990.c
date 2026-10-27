@@ -300,9 +300,9 @@ int func_8008DD04(PlayerState *arg0) {
     return (60.0f < sp1C - func_80096364(arg0)) && !player_isStable(arg0);
 }
 
-void func_8008DD70(s32 arg0)
-{
-    func_8009E71C(arg0,0x5);
+s32 func_8008DD70(PlayerState *arg0) {
+    s32 func_8009E71C(void *, s32);
+    return func_8009E71C(arg0, 5);
 }
 
 s32 func_8008DD90(PlayerState *arg0) {
