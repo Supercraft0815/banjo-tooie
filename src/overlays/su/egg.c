@@ -1,4 +1,5 @@
 #include "common.h"
+#include "gameflags.h"
 
 void *func_80100094(Actor *, u32);
 
@@ -287,7 +288,59 @@ void suegg_entrypoint_10(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/egg/suegg_entrypoint_11.s")
+Actor *suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2) {
+    void _sueggmove_entrypoint_4(Actor *);
+    void _sumissilehome_entrypoint_0(s32, u8 *);
+    void _sumissilehome_entrypoint_1(s32, void *, s32);
+    void _sumissilehome_entrypoint_2(s32, void *, f32);
+    void _sumissilehome_entrypoint_3(s32, s8 *, s32);
+    s32 func_800D3E40(s32);
+    s32 func_800DA298(GameFlag);
+    s32 func_800F690C(s32);
+    s32 func_800F693C(s32);
+    Actor *func_80108474(u32, f32 *, s32);
+    void func_8010A570(Actor *);
+    Actor *actor;
+    struct {
+        u8 pad0[0x14];
+        u8 homing[0x14];
+        f32 unk28;
+        f32 unk2C;
+        f32 unk30;
+        s32 unk34;
+        s8 unk38;
+        u8 unk39;
+        s16 unk3A;
+    } *data;
+    void *homing;
+
+    actor = func_80108474(arg0, arg1, 0);
+    data = func_80100094(actor, 0U);
+    func_8080000C_suegg(actor);
+    data->unk3A = arg2;
+    data->unk34 = 0;
+    data->unk38 = 1;
+    if (1) {} /* Preserve IDO register allocation. */
+    if (1) {}
+    data->unk28 = 0.0f;
+    data->unk30 = 0.0f;
+    if (func_800D3E40(0xC) && (!func_800DA298(0xA31))) {
+        homing = data->homing;
+        _sumissilehome_entrypoint_0((s32)actor, homing);
+        _sumissilehome_entrypoint_3((s32)actor, homing, data->unk3A);
+        _sumissilehome_entrypoint_1((s32)actor, homing, -1);
+        _sumissilehome_entrypoint_2((s32)actor, homing, 6000.0f);
+        data->unk38 = 2;
+    }
+    _sueggmove_entrypoint_4(actor);
+    func_8010A570(actor);
+    if (func_800F693C(arg2) != 0) {
+        *((u8 *) (((u8 *) actor) + 0x75)) &= ~0x10;
+    } else if (func_800F690C(arg2)) {
+        *((u8 *) (((u8 *) actor) + 0x75)) &= ~0x10;
+    }
+    return actor;
+}
 
 int suegg_entrypoint_12(Actor *arg0) {
     s32 func_800D3948(void);
@@ -326,7 +379,7 @@ int suegg_entrypoint_13(Actor *arg0) {
 int suegg_entrypoint_14(Actor *arg0) {
     s32 func_800A940C(s32);
     f32 func_800C5190(s32);
-    s32 func_800DA298(s32);
+    s32 func_800DA298(GameFlag);
     void *sp1C;
     f32 temp_f0;
     f32 var_f2;

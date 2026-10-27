@@ -779,9 +779,8 @@ s32 func_8010A430(void *arg0) {
 
 u32 func_8010A5B0(Actor *, s32);
 
-void func_8010A570(s32 arg0)
-{
-    func_8010A5B0(arg0,0);
+void func_8010A570(Actor *arg0) {
+    func_8010A5B0(arg0, 0);
 }
 
 void func_8010A590(Actor *arg0)
