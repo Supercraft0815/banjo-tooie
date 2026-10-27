@@ -444,9 +444,9 @@ void func_8009B94C(u8 *arg0, f32 *arg1) {
 
 /* extern */
 
-void func_8009B98C(void *arg0) {
-    void func_800EE7F8();
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 4);
+void func_8009B98C(void *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4), arg1);
 }
 
 void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel) {
