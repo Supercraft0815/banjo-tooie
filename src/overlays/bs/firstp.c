@@ -2930,7 +2930,7 @@ f32 func_80805644_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 *arg3, f32 arg4) {
     return scale * arg2 * area;
 }
 
-f32 func_808057C8_bsfirstp(f32 *arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4) {
+f32 func_808057C8_bsfirstp(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     f32 area = 0.0f;
     f32 sign;
     f32 value;
@@ -2938,14 +2938,14 @@ f32 func_808057C8_bsfirstp(f32 *arg0, f32 arg1, s32 arg2, f32 arg3, f32 arg4) {
     f32 *target = &arg1;
 
     if (*arg0 * (*target - *arg0) < 0.0f) {
-        area = func_8080549C_bsfirstp(arg0, *target, *(f32 *)&arg2, &arg3, arg4);
+        area = func_8080549C_bsfirstp(arg0, *target, arg2, &arg3, arg4);
     }
     if (arg3 != 0.0f) {
         sign = *target >= 0.0f ? 1.0f : -1.0f;
         value = *arg0 * sign;
         limit = *target * sign;
         if (value < limit) {
-            area += sign * func_80805644_bsfirstp(&value, limit, *(f32 *)&arg2, &arg3, arg4);
+            area += sign * func_80805644_bsfirstp(&value, limit, arg2, &arg3, arg4);
             *arg0 = sign * value;
         }
     }
@@ -3636,7 +3636,7 @@ f32 func_808069FC_bsfirstp(s32 arg0) {
 
 f32 func_80806AD0_bsfirstp(u8 *arg0, f32 arg1, f32 arg2) {
     f32 func_800D9004();
-    f32 func_808057C8_bsfirstp(f32 *, f32, s32, f32, f32);
+    f32 func_808057C8_bsfirstp(f32 *, f32, f32, f32, f32);
     f32 unused0;
     f32 unused1;
     f32 *temp_s0;
@@ -3646,9 +3646,9 @@ f32 func_80806AD0_bsfirstp(u8 *arg0, f32 arg1, f32 arg2) {
 
     temp_s0 = (*(f32 **)((s8 *)(arg0) + (0x188)));
     temp_f2 = func_800D9004() - 0.033333335f;
-    sp34 = func_808057C8_bsfirstp(temp_s0 + 0x84, arg1, (*(s32 *)((s8 *)(temp_s0) + (0x1F0))), 0.033333335f, arg2);
+    sp34 = func_808057C8_bsfirstp(temp_s0 + 0x84, arg1, temp_s0[0x7C], 0.033333335f, arg2);
     if (temp_f2 != 0.0f) {
-        sp30 = func_808057C8_bsfirstp(temp_s0 + 0x84, arg1, (*(s32 *)((s8 *)(temp_s0) + (0x1F0))), temp_f2, arg2);
+        sp30 = func_808057C8_bsfirstp(temp_s0 + 0x84, arg1, temp_s0[0x7C], temp_f2, arg2);
     } else {
         sp30 = 0.0f;
     }
@@ -5482,7 +5482,7 @@ void func_808099B4_bsfirstp(void *arg0) {
 /* extern */
 
 void func_80809A10_bsfirstp(void *arg0) {
-    s32 func_80809AF8_bsfirstp(void *, f32, f32, f32);
+    void func_80809AF8_bsfirstp(void *, f32, f32, f32);
     f32 temp_f0;
     f32 temp_f12;
     f32 var_f2;
@@ -5515,7 +5515,7 @@ void func_80809A10_bsfirstp(void *arg0) {
 
 void func_80809A7C_bsfirstp(void *arg0) {
     f32 func_800F122C(f32, f32, f32);
-    s32 func_80809AF8_bsfirstp(void *, f32, f32, f32);
+    void func_80809AF8_bsfirstp(void *, f32, f32, f32);
     void *temp_v0;
     f32 temp_a1;
 
