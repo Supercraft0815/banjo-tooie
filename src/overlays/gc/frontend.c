@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/1EB3750.h"
 
 typedef struct {
     u8 start;
@@ -33,7 +34,6 @@ void gcfrontend_entrypoint_0(void) {
 }
 
 s32 gcfrontend_entrypoint_1(s32 arg0) {
-    s32 func_800DA298(s32);
     extern GCFrontendRange D_80800D80_gcfrontend[4];
     s32 var_s0;
     s32 temp_s1;
@@ -62,14 +62,13 @@ int gcfrontend_entrypoint_2(void) {
     return gcfrontend_entrypoint_1(0) || gcfrontend_entrypoint_1(1) || gcfrontend_entrypoint_1(2);
 }
 
-void gcfrontend_entrypoint_3(s32 arg0) {
-    s32 func_800DA298(s32);
+s32 gcfrontend_entrypoint_3(s32 arg0) {
     s32 func_80800450_gcfrontend();
     extern GCFrontendRange D_80800D80_gcfrontend[4];
     void *temp_v1;
 
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
-    func_800DA298(((*(s16 *)((s8 *)(temp_v1) + (2))) + arg0) - (*(u8 *)((s8 *)(temp_v1) + (0))));
+    return func_800DA298(((*(s16 *)((s8 *)(temp_v1) + (2))) + arg0) - (*(u8 *)((s8 *)(temp_v1) + (0))));
 }
 
 u8 gcfrontend_entrypoint_4(s32 arg0) {
@@ -148,7 +147,6 @@ void gcfrontend_entrypoint_8(s32 arg0, s32 arg1) {
 }
 
 void gcfrontend_entrypoint_9(s32 arg0) {
-    s32 func_800DA544(s32);
     s32 func_80800450_gcfrontend();
     extern GCFrontendRange D_80800D80_gcfrontend[4];
     void *temp_v1;
