@@ -130,7 +130,63 @@ void func_808003D0_gztrace(u8 *arg0) {
     trace->data30 = trace->data2C + *(s16 *)(arg0 + 6) * 0x10;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/trace/func_808004B0_gztrace.s")
+s32 func_808004B0_gztrace(s32 *arg0, u32 *arg1, s32 *arg2, s32 *arg3, u32 arg4) {
+    s32 done;
+    u32 stack;
+    u32 ra;
+    u32 cursor;
+    u32 instruction;
+    u32 upper;
+    u32 opcode;
+    u32 address;
+
+    stack = (u32)*arg0;
+    cursor = *arg1;
+    ra = *arg1;
+    *arg3 = ra - 8;
+    done = 0;
+    while (done == 0) {
+        instruction = *(u32 *)cursor; cursor += 4;
+        upper = instruction >> 16;
+        switch (upper) {
+        case 0x8FBF:
+            address = stack;
+            address += (s16)instruction;
+            arg4 = *(u32 *)address;
+            break;
+        case 0x27BD:
+            stack += ((s16)instruction >> 2) * 4;
+            break;
+        case 0x3E0:
+            done = 1;
+            break;
+        }
+    }
+    instruction = *(u32 *)cursor;
+    if ((instruction >> 16) == 0x27BD) {
+        stack += ((s16)instruction >> 2) * 4;
+    }
+    *arg1 = arg4;
+    *arg0 = (s32)stack;
+    if (arg4 != 0) {
+        instruction = *(u32 *)(arg4 - 8);
+        opcode = instruction >> 26;
+        switch (opcode) {
+        case 3:
+            *arg2 = 0x80000000U + ((instruction - 0x0C000000U) << 2);
+            return 1;
+        case 0:
+            if ((instruction & 0x3F) == 9) {
+                *arg2 = 0;
+                return 1;
+            }
+            break;
+        default:
+            return 0;
+        }
+    }
+    return 0;
+}
 
 s32 func_808005C4_gztrace(u32 arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4) {
     extern struct TraceData B_80800A70_gztrace;
