@@ -540,7 +540,109 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
     return cur_processed_tri != (ProcessedTriangle *)((u8 *)D_8012798C + 0x10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AC100.s")
+void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
+    typedef struct {
+        f32 edgeAB[3];
+        f32 edgeAC[3];
+        f32 normal[3];
+        s32 flags;
+        f32 vertex[3][3];
+    } Triangle;
+    void func_800ABC0C(u8 **arg0, u8 **arg1);
+    f32 func_800EEAA4(f32 *, f32 *);
+    f32 func_800EEFD4(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF2A0(f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFD24(f32 *);
+    f32 mlAbsF(f32);
+    extern void *D_8012798C;
+    int i;
+    void *block;
+    Triangle *tri;
+    f32 edges[3][3];
+    f32 deltas[3][3];
+    f32 determinant;
+    f32 edge_length;
+    f32 beta;
+    f32 alpha;
+    f32 theta;
+    f32 projection;
+    f32 row1[3];
+    f32 row2[3];
+    u32 first_axis;
+    s32 second_axis;
+    s32 axis;
+    f32 projected[3];
+    Triangle *collision;
+    f32 *plane_normal;
+
+    collision = NULL;
+    func_800EFD24(normal);
+    /* IDO assigns the cutoff spill slot after first seeing radius squared. */
+    edge_length = radius * radius;
+    block = D_8012798C;
+    for (tri = (Triangle *)((u8 *)block + 0x10); tri != end; func_800ABC0C(&tri, &block)) {
+        func_800EFB24(deltas[0], position, tri->vertex[0]);
+        plane_normal = tri->normal;
+        theta = func_800EEAA4(deltas[0], plane_normal);
+        if ((radius - 0.5f) <= mlAbsF(theta)) {
+            continue;
+        }
+        projected[0] = position[0] - tri->normal[0] * theta;
+        projected[1] = position[1] - tri->normal[1] * theta;
+        projected[2] = position[2] - tri->normal[2] * theta;
+        axis = mlAbsF(tri->normal[0]) > mlAbsF(tri->normal[1]) ? 0 : 1;
+        if (mlAbsF(tri->normal[2]) > mlAbsF(tri->normal[axis])) {
+            axis = 2;
+        }
+        first_axis = (axis + 1) % 3;
+        func_800EFA4C(row1, projected[first_axis] - tri->vertex[0][first_axis], tri->edgeAB[first_axis], tri->edgeAC[first_axis]);
+        second_axis = (axis + 2) % 3;
+        func_800EFA4C(row2, projected[second_axis] - tri->vertex[0][second_axis], tri->edgeAB[second_axis], tri->edgeAC[second_axis]);
+        determinant = row1[1] * row2[2] - row2[1] * row1[2];
+        if (determinant == 0.0f) {
+            continue;
+        }
+        determinant = 1.0f / determinant;
+        alpha = (row1[0] * row2[2] - row2[0] * row1[2]) * determinant;
+        beta = (row1[1] * row2[0] - row2[1] * row1[0]) * determinant;
+        if (0.0f <= alpha && alpha <= 1.0f && 0.0f <= beta && beta <= 1.0f && alpha + beta <= 1.0f) {
+            collision = tri;
+            func_800EF04C(normal, tri->normal);
+            continue;
+        }
+        for (i = 0; i < 3; i++) {
+            func_800EFB24(deltas[i], position, tri->vertex[i]);
+            if (func_800EEFD4(deltas[i]) < radius * radius) {
+                collision = tri;
+                func_800EF04C(normal, tri->normal);
+                break;
+            }
+        }
+        if (i < 3) {
+            continue;
+        }
+        for (i = 0; i < 3; i++) {
+            func_800EFB24(edges[i], tri->vertex[(i + 1) % 3], tri->vertex[i]);
+            edge_length = func_800EEFD4(edges[i]);
+            func_800EF2A0(edges[i]);
+            projection = func_800EEAA4(edges[i], deltas[i]);
+            if (0 <= projection && projection * projection <= edge_length) {
+                projected[0] = deltas[i][0] - edges[i][0] * projection;
+                projected[1] = deltas[i][1] - edges[i][1] * projection;
+                projected[2] = deltas[i][2] - edges[i][2] * projection;
+                if (func_800EEFD4(projected) < radius * radius) {
+                    collision = tri;
+                    func_800EF04C(normal, tri->normal);
+                    break;
+                }
+            }
+        }
+    }
+    return collision;
+}
 
 s32 func_800AC638(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, s32 arg6, s32 arg7) {
     typedef struct {
@@ -551,7 +653,6 @@ s32 func_800AC638(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
         f32 point[3][3];
     } ProcessedTriangle;
     void func_800AA3B4(void *, void *);
-    ProcessedTriangle *func_800AC100(void *, f32 *, f32, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF2A0(f32 *);
     void func_800EFB24(void *, void *, void *);
