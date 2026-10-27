@@ -1,4 +1,5 @@
 #include "core2/1EA9160.h"
+#include "gameflags.h"
 
 extern s32 D_8011AE60;
 
@@ -396,7 +397,7 @@ s32 func_800D0A80(s32 arg0, s32 arg1) {
 s32 func_800D0A9C(u32 arg0, u32 arg1) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800D395C();
-    s32 func_800DA298(s32);
+    s32 func_800DA298(GameFlag);
     s32 temp_v0;
 
     temp_v0 = func_800D0908((s32) arg0, (s32) arg1);
@@ -409,7 +410,7 @@ s32 func_800D0A9C(u32 arg0, u32 arg1) {
 /* extern */
 
 void func_800D0B08(s32 arg0, s32 arg1) {
-    s32 func_800DA544(s32);
+    void func_800DA544(GameFlag);
     s32 temp_v0;
 
     temp_v0 = func_800D0908(arg0, arg1);
@@ -435,7 +436,7 @@ void func_800D0B38(s32 arg0, s32 arg1) {
 s32 func_800D0B68(u32 arg0, u32 arg1) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800D395C();
-    s32 func_800DA298(s32);
+    s32 func_800DA298(GameFlag);
     s32 temp_v0;
 
     temp_v0 = func_800D0A80((s32) arg0, (s32) arg1);
@@ -449,7 +450,7 @@ s32 func_800D0B68(u32 arg0, u32 arg1) {
 
 void func_800D0BD4(s32 arg0, u32 arg1) {
     s32 func_800D24E8(s32, s32, s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(GameFlag);
     s32 func_80101238(s32, s32);
     s32 temp_v0;
 
