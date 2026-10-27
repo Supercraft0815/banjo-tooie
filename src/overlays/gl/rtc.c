@@ -81,7 +81,7 @@ void func_808002C8_glrtc(u16 *arg0, u16 arg1) {
 }
 
 void func_8080031C_glrtc(u8 **arg0, u8 *arg1, s32 arg2) {
-    void func_808005B0_glrtc(u8 *, u8, s32, u8 *, s32);
+    void func_808005B0_glrtc(u8 *, u8, s32, u8 *, u32);
     u16 endpoints[2];
     u8 colors[4][4];
     s32 i;
