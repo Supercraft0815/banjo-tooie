@@ -100,11 +100,11 @@ void func_8008B850(void) {
 }
 
 s16 func_8008B8E0(void) {
-    s16 func_8008BAC0(s32 *);
+    s16 *func_8008BAC0(s32 *);
     s32 sp1C;
     s16 *temp_v0;
 
-    temp_v0 = (s16 *)func_8008BAC0(&sp1C);
+    temp_v0 = func_8008BAC0(&sp1C);
     temp_v0[1] = 0;
     temp_v0[0] = 0;
     return *(s16 *)((s8 *)&sp1C + 2);
