@@ -4,7 +4,7 @@
 
 u8 *dbtex_entrypoint_0(u8 *arg0) {
     s32 func_800D5944();
-    s32 func_800E6950(s32, s32, u8 *);
+    void *func_800E6950(s32, s32, void *);
     void *heap_alloc_sided(s32, s32);
     void rare_memcpy(void *, void *, int);
     s32 *var_s0;

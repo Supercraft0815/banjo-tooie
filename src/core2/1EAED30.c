@@ -250,7 +250,7 @@ void *func_800D5B34(s32 arg0)
 {
   s32 func_800E4AF0();
   s32 func_800E4BF4(s32);
-  s32 func_800E6950(s32, s32, u8 *);
+  void *func_800E6950(s32, s32, void *);
   void *_gldbDll_entrypoint_0(s32, s32 *);
   void *heap_alloc(s32);
   void rom_dma_read(u8 *, u8 *, u32);
@@ -299,7 +299,7 @@ void *func_800D5B34(s32 arg0)
   else
     if (((D_8012B440 << 26) >> 30) & 1)
   {
-    result = (void *) func_800E6950(arg0, mode, NULL);
+    result = func_800E6950(arg0, mode, NULL);
   }
   else
   {
@@ -371,7 +371,7 @@ void func_800D5E94(s32 arg0)
 }
 
 s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
-    s32 func_800E6950(s32, s32, u8 *);
+    void *func_800E6950(s32, s32, void *);
     void rom_dma_read(u8 *, u8 *, u32);
     s32 rom_read_word(s32, u32 *);
     extern s32 D_8011B900;
