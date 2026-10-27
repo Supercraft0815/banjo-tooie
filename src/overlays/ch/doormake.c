@@ -1,4 +1,5 @@
 #include "common.h"
+#include "gameflags.h"
 
 void *func_80800000_chdoormake(Actor *arg0, s32 arg1, u32 arg2, s32 arg3) {
     struct DoorPart {
@@ -82,7 +83,7 @@ s32 chdoormake_entrypoint_0(Actor *arg0, f32 arg1, u32 arg2, s32 arg3) {
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     s32 func_808000B8_chdoormake(Actor *);
-    s32 func_808008C4_chdoormake(Actor *);
+    int func_808008C4_chdoormake(Actor *);
     struct DoorAngles *data;
 
     data = func_80800000_chdoormake(arg0, 1, arg2, arg3);
@@ -114,7 +115,7 @@ s32 chdoormake_entrypoint_1(Actor *arg0, f32 arg1, u32 arg2, s32 arg3) {
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     s32 func_808000B8_chdoormake(Actor *);
-    s32 func_808008C4_chdoormake(Actor *);
+    int func_808008C4_chdoormake(Actor *);
     struct DoorAngles *data;
 
     data = func_80800000_chdoormake(arg0, 3, arg2, arg3);
@@ -149,7 +150,7 @@ s32 chdoormake_entrypoint_2(Actor *arg0, f32 arg1, f32 arg2, f32 arg3, u32 arg4,
     void func_80101FDC(Actor *, u32);
     void func_80103014(u8 *);
     f32 func_80103EAC(Actor *);
-    s32 func_808008C4_chdoormake(Actor *);
+    int func_808008C4_chdoormake(Actor *);
     struct DoorPositions *data;
     f32 position[3];
 
@@ -187,7 +188,7 @@ s32 chdoormake_entrypoint_3(Actor *arg0, f32 arg1, f32 arg2, f32 arg3, u32 arg4,
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     void func_80103014(u8 *);
-    s32 func_808008C4_chdoormake(Actor *);
+    int func_808008C4_chdoormake(Actor *);
     struct DoorPositions *data;
     f32 position[3];
 
@@ -218,7 +219,7 @@ s32 chdoormake_entrypoint_4(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     s32 func_808000B8_chdoormake(Actor *);
-    s32 func_808008C4_chdoormake(Actor *);
+    int func_808008C4_chdoormake(Actor *);
     func_80800000_chdoormake(arg0, 5, arg1, arg2);
     if ((func_808008C4_chdoormake(arg0) != 0) || (arg0->unk70_10 == 4)) {
         if (arg1 & 1) {
@@ -296,7 +297,23 @@ void chdoormake_entrypoint_11(Actor *arg0, s32 arg1, f32 arg2) {
     (*(s16 *)((s8 *)func_80100094(arg0, 0U) + (arg1 * 8) + 0x24)) = (s16) (s32) (256.0f * arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/doormake/func_808008C4_chdoormake.s")
+int func_808008C4_chdoormake(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    s32 func_800DA298(GameFlag);
+    struct DoorState {
+        s32 flags;
+        s16 gameFlag;
+    } *data;
+
+    data = func_80100094(arg0, 0U);
+    if (data->gameFlag == -1) {
+        return 0;
+    }
+    if (data->flags & 0x10) {
+        return func_800DA298(data->gameFlag) == 0;
+    }
+    return (int)func_800DA298(data->gameFlag) && (int)func_800DA298(0x9CC);
+}
 
 void chdoormake_entrypoint_12(Actor *arg0, s32 arg1, u16 arg2) {
     void *func_80100094(Actor *, u32);
