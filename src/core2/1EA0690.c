@@ -3,7 +3,35 @@
 
 s32 D_8012AAD0[4];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA0690/func_800C6DA0.s")
+void func_800C6DA0(s32 arg0) {
+    void func_800FC6B0(u32 track_id);
+    /* Preserve the original IDO stack frame. */
+    s32 scratch;
+    s32 play_music = 1;
+
+    if ((u32)arg0 > 0xFFFFFFFFU) osSyncPrintf(NULL, 0, 0, 0, 0, 0, 0, 0);
+    if (!func_800C6E18(arg0)) {
+        switch (arg0) {
+            case 0x3C:
+            case 0x3D:
+            case 0x3E:
+            case 0x3F:
+            case 0x40:
+            case 0x41:
+            case 0x43:
+            case 0x44:
+            case 0x45:
+                break;
+            case 0x42:
+                play_music = 0;
+                break;
+        }
+        if (play_music) {
+            func_800FC6B0(0xE);
+        }
+        func_800C70D0(arg0, 1);
+    }
+}
 
 s32 func_800C6E18(s32 arg0) {
     return func_800DA298(arg0 + 0xEE);
