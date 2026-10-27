@@ -28,7 +28,10 @@ void func_8080000C_chminelobbydoor(s32 arg0) {
 
 void func_808000A8_chminelobbydoor(s32 arg0)
 {
-    func_808000D0_chminelobbydoor();
+    void func_808000D0_chminelobbydoor(Actor *);
+    void _chdoor_entrypoint_0(s32);
+
+    func_808000D0_chminelobbydoor((Actor *)arg0);
     _chdoor_entrypoint_0(arg0);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/lobbydoor/func_808000D0_chminelobbydoor.s")
