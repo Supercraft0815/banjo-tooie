@@ -119,4 +119,25 @@ void func_8080031C_glrtc(u8 **arg0, u8 *arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/rtc/func_80800474_glrtc.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/rtc/func_808005B0_glrtc.s")
+void func_808005B0_glrtc(u8 *arg0, u8 arg1, s32 arg2, u8 *arg3, u32 arg4)
+{
+    s32 i;
+    s32 j;
+    s32 new_var;
+    s8 step;
+    s32 delta;
+    if (arg4 != 0) {
+        delta = arg3[3] - arg3[0];
+        step = delta / 3;
+        arg3[1] = arg3[0] + step;
+        arg3[2] = arg3[3] - step;
+    }
+    new_var = arg2;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            ((u8 *)((u32 *)arg0 + j))[arg1] = arg3[arg4 & 3];
+            arg4 >>= 2;
+        }
+        arg0 += new_var * 4;
+    }
+}
