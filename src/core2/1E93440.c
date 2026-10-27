@@ -233,7 +233,7 @@ s16 *func_800BA2E8(s32 arg0) {
 void func_800BA3FC(s32 arg0, s32 arg1) {
     s8 func_800AF5A0(s32);
     s32 func_800D674C(u16);
-    s8 func_800D738C(s32);
+    s32 func_800D738C(s32);
     if (arg1 != (*(u16 *)((s8 *)(arg0) + (2)))) {
         (*(u16 *)((s8 *)(arg0) + (2))) = (u16) arg1;
         (*(s8 *)((s8 *)(arg0) + (0xA))) = func_800D738C(arg1 & 0xFFFF);
@@ -344,7 +344,7 @@ void func_800BA660(void *arg0, s32 arg1, s16 arg2) {
 }
 
 void func_800BA670(s32 arg0, s32 arg1) {
-    s8 func_800D738C(s32);
+    s32 func_800D738C(s32);
     if (arg1 != (*(u16 *)((s8 *)(arg0) + (2)))) {
         (*(u16 *)((s8 *)(arg0) + (2))) = (u16) arg1;
         (*(s8 *)((s8 *)(arg0) + (0xA))) = func_800D738C(arg1 & 0xFFFF);
@@ -496,7 +496,7 @@ s32 func_800BABB8(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s16 *arg4) {
     s32 func_800B53A4(s32);
     void func_800B5534(s8 *);
     s32 func_800D674C(u16);
-    s8 func_800D738C(s32);
+    s32 func_800D738C(s32);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     s32 func_800DC298(f32);

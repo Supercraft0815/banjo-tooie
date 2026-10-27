@@ -242,7 +242,7 @@ void func_800D66AC(void) {
     D_8012BE62 = 0;
 }
 
-s32 func_800D58FC();
+s32 func_800D58FC(s32);
 
 ImageStruct *func_800D674C(s32 a0) {
     extern s16 D_8011B910;
@@ -562,9 +562,8 @@ s32 func_800D731C(s32 arg0) {
     return 0;
 }
 
-void func_800D738C()
-{
-    func_800D58FC();
+s32 func_800D738C(s32 arg0) {
+    return func_800D58FC(arg0);
 }
 
 void func_800D73AC()

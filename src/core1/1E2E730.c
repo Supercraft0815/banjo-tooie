@@ -18,7 +18,57 @@ typedef struct {
     u8 pad270[4];
 } MusicSlotView;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2E730/func_80016C00.s")
+typedef struct {
+    MusicSlotView slots[6];
+    ALSeqpConfig config;
+    u8 config_padding[4];
+    u16 sequence_count;
+    u8 padding[6];
+} MusicStorage;
+
+MusicStorage D_80079FA0;
+
+void func_80016C00(void) {
+    void *func_80012EDC(void);
+    void func_80017244(void);
+    void func_80022084(void *, s32);
+    void func_800221B0(void *, ALSeqpConfig *);
+    s32 func_800D738C(s32);
+    void func_800E9574(void);
+    extern s32 D_8007A180;
+    extern ALSeqpConfig D_8007AE58;
+    extern u16 D_8007AE78;
+    extern s32 D_8007B038;
+    u8 *slot;
+    s32 i;
+
+    func_800E9574();
+    for (i = 0x1ED7; i >= 0x1DDE && func_800D738C(i) == 4; i--) {
+    }
+
+    D_8007AE78 = i - 0x1DDC;
+    D_8007AE58.maxVoices = 0x18;
+    D_8007AE58.maxEvents = 0x78;
+    D_8007AE58.maxChannels = 0x20;
+    D_8007AE58.heap = func_80012EDC();
+    D_8007AE58.initOsc = NULL;
+    D_8007AE58.updateOsc = NULL;
+    D_8007AE58.stopOsc = NULL;
+    func_80022084(&D_8007AE58, 0x30);
+    slot = (u8 *)&D_8007A180; i = (s32)&D_8007B038;
+    do {
+        func_800221B0(slot, &D_8007AE58);
+        slot += 0x274;
+    } while (slot < (u8 *)i);
+    for (i = 0; i < 6; i++) {
+        D_80079FA0.slots[i].unk2 = 0;
+        D_80079FA0.slots[i].unk3 = 0;
+        D_80079FA0.slots[i].index_cpy = 0;
+        D_80079FA0.slots[i].pad4 = 0;
+        D_80079FA0.slots[i].pending = 0;
+    }
+    func_80017244();
+}
 
 /* extern */
 
@@ -48,8 +98,7 @@ void func_80016DF8(s32 arg0) {
     s32 func_800D70F8(s32, s32);
     s32 func_800D721C(s32, s32);
     s32 func_800D73CC(s32);
-    extern s32 D_80079FA0;
-    extern s32 D_8007AE58;
+    extern ALSeqpConfig D_8007AE58;
     MusicSlotView *slot;
     MusicSlotView *end;
 
@@ -109,7 +158,6 @@ void func_80016ED0(u8 arg0, s32 arg1) {
     void func_80025F20(u8 *);
     s32 func_800D674C(s32);
     s32 func_800FCDB4();
-    extern s32 D_80079FA0;
     volatile u64 start;
 
     if (arg1 == -1) {
@@ -178,7 +226,6 @@ void func_8001713C(u8 index, s32 track_id) {
         u8 pad26E[6];
     } MusicSlot;
     void func_80016ED0(u8, s32);
-    extern s32 D_80079FA0;
     s32 current_track_id;
     volatile OSTime time;
 
@@ -230,7 +277,6 @@ void func_80017244(void) {
 
 void func_800172D4(u8 index, s32 track_id) {
     extern u16 D_8003F600[];
-    extern s32 D_80079FA0;
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
     slots[index].index_cpy = track_id;
     slots[index].unk2 = 1;
@@ -240,7 +286,6 @@ void func_800172D4(u8 index, s32 track_id) {
 }
 
 void func_80017330(u8 index) {
-    extern s32 D_80079FA0;
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
     s32 track_id = slots[index].track_id;
 
@@ -258,7 +303,6 @@ void func_80017330(u8 index) {
 }
 
 void func_800173B0(u8 index, s16 volume) {
-    extern s32 D_80079FA0;
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
     slots[index].unk3 = 1;
     slots[index].unk2 = 1;
@@ -270,7 +314,6 @@ void func_800173B0(u8 index, s16 volume) {
 void func_80017404(u8 arg0, s16 arg1) {
     int func_80017778(s32);
     void func_80025ED0(u8 *, s16);
-    extern s32 D_80079FA0;
 
     ((MusicSlotView *)&D_80079FA0)[arg0].volume = arg1;
     func_80025ED0(((MusicSlotView *)&D_80079FA0)[arg0].cseqp, arg1);
@@ -298,7 +341,6 @@ void func_800174C0(volatile u8 arg0, s32 arg1) {
 void func_80017534(u8 arg0, s32 arg1, s32 arg2) {
     int func_80017778(s32);
     s32 func_80025FE0(u8 *, s32, s32);
-    extern s32 D_80079FA0;
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
     if (func_80017778(arg0) == 0) {
         func_80025FE0(slots[arg0].cseqp, arg1, arg2);
@@ -307,7 +349,6 @@ void func_80017534(u8 arg0, s32 arg1, s32 arg2) {
 
 s32 func_800175A0(u8 index) {
     s32 func_80025668(void *);
-    extern s32 D_80079FA0;
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
     return func_80025668(slots[index].cseq);
 }
@@ -316,7 +357,6 @@ void func_800175F0(void) {
     void func_80024E90(s32);
     void func_80025F20(u8 *);
     void func_800E96B0(s32);
-    extern s32 D_80079FA0;
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
     s32 i;
 
@@ -366,19 +406,16 @@ u32 func_80017764(s32 arg0) {
 }
 
 int func_80017778(s32 index) {
-    extern s32 D_80079FA0;
     u8 *slot = (u8 *)&D_80079FA0 + index * 0x274;
     return *(s32 *)(slot + 0x20C) == 0 && !slot[3];
 }
 
 int func_800177C4(s32 arg0) {
-    extern s32 D_80079FA0;
     u8 *slot = (u8 *)&D_80079FA0 + arg0 * 0x274;
     return *(s32 *)(slot + 0x20C) == 0 && slot[3] != 0;
 }
 
 u8 *func_80017810(s32 arg0) {
-    extern s32 D_80079FA0;
     return (u8 *)((arg0 * 0x274) + 0x1E0 + (s32)&D_80079FA0);
 }
 

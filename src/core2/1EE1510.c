@@ -132,7 +132,7 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4) {
     };
     void *func_80106668(s32 *);
     u32 *func_80100074(void *, u32, u32);
-    s8 func_800D738C(s32);
+    s32 func_800D738C(s32);
     void *func_800EBED4(s32 *, s32, s32, s32);
     void func_800EC340(void *, s32);
     void func_800EC360(void *, s32);
