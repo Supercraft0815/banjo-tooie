@@ -449,7 +449,37 @@ void func_80801160_sumultiscore(u16 (*arg0)[2], void *arg1, s32 arg2) {
     _fxdialog_entrypoint_4(arg2, (*(u16 *)((s8 *)(arg1) + (2))), (*(u8 *)((s8 *)(arg1) + (4))), 0.0f, 0.0f, (s32) (*(u8 *)((s8 *)(arg1) + (5))), 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/func_808011E0_sumultiscore.s")
+void func_808011E0_sumultiscore(u16 (*positions)[2], u8 *entry, s32 player, Gfx **graphics) {
+    s32 func_8001210C(s32);
+    void func_800B80D0(Gfx **);
+    void func_800B8C8C(s32);
+    void func_800B8C98(s32);
+    s32 func_800B8E28(s32, s32, s32, u8 *);
+    char buf[16];
+    s32 x, y;
+    s32 alpha;
+    u16 *position = positions[entry[1]];
+    x = position[0] + (s8)entry[10];
+    y = position[1] + (s8)entry[11];
+    if (entry[0] == 5) {
+        if (entry[7] && func_8001210C(8)) {
+            alpha = entry[5];
+        } else {
+            alpha = entry[5] >> 1;
+        }
+        func_800B8C98(0);
+        func_800B8C8C(alpha);
+        func_800B80D0(graphics);
+        sprintf(buf, "PLAYER %d", player + 1);
+        func_800B8E28((s32)graphics, x - 0x20, y - 0xC, (u8 *)buf);
+    }
+    alpha = (s32)((f32)(u32)entry[5] * 0.667f);
+    func_800B8C98(3);
+    func_800B8C8C(alpha);
+    func_800B80D0(graphics);
+    sprintf(buf, "%d", *(s16 *)(entry + 8));
+    func_800B8E28((s32)graphics, x, y, (u8 *)buf);
+}
 
 void func_80801340_sumultiscore(void *arg0, s32 arg1) {
     s32 _gcstatusDll_entrypoint_13();
