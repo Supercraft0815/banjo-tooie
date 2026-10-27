@@ -18,7 +18,7 @@ void func_800A5C04(void) {
 
 void func_800A5C28(void) {
     s32 _chbaddieDll_entrypoint_1(s32 *);
-    s32 _cosectionstor_entrypoint_4(s32);
+    void _cosectionstor_entrypoint_4(s32);
     s32 _gccollectDll_entrypoint_4();
     s32 _subaddietaxi_entrypoint_4();
     s32 func_8001E204();

@@ -79,4 +79,26 @@ void cosectionstor_entrypoint_3(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/co/sectionstor/cosectionstor_entrypoint_4.s")
+void cosectionstor_entrypoint_4(s32 arg0) {
+    s32 _gccollectDll_entrypoint_7(void *, void *);
+    void _subaddiestore_entrypoint_1(s32, u8 *);
+    void func_800DAA28(s32);
+    void heap_free(void *);
+    s32 *temp_v0;
+    s32 bits;
+    s32 sp24;
+
+    if (arg0 >= 0xA0) {
+        arg0 -= 0xA0;
+        if (*(s32 *volatile *)&D_80127198[(u32)arg0].ptr != NULL) {
+            temp_v0 = D_80127198[(u32)arg0].ptr;
+            bits = 0;
+            func_800DAA28(*temp_v0);
+            sp24 = (bits += 0x20) >> 5;
+            D_80127198[(u32)arg0].ptr = (s32 *)(uintptr_t)_gccollectDll_entrypoint_7(D_80127198[(u32)arg0].ptr, &sp24);
+            _subaddiestore_entrypoint_1((s32)D_80127198[(u32)arg0].ptr, (u8 *)(D_80127198[(u32)arg0].ptr + (((s32)(((u32)sp24 << 5) + 0x7F) >> 7) * 4)));
+            heap_free(D_80127198[(u32)arg0].ptr);
+            D_80127198[(u32)arg0].ptr = NULL;
+        }
+    }
+}
