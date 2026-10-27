@@ -162,7 +162,60 @@ s32 func_800D6378(u8 *arg0) {
     return result[0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6408.s")
+s32 func_800D6408(void *arg0) {
+    s32 func_8001211C(void);
+    s32 func_800D56C4(void *);
+    void func_800D5E54(void *);
+    void func_800DBB9C(u8);
+    /* Original leaves this result slot untouched for flag 1/default. */
+    s32 result;
+    struct ReleaseEntry {
+        u32 frame : 27;
+        u32 flags : 4;
+        u32 low : 1;
+        void *value;
+        u32 index : 14;
+        u32 active : 1;
+        u32 other : 1;
+        u8 unused;
+        u8 token;
+    } *ptr = arg0;
+    int token;
+
+    switch (ptr->flags) {
+        case 1:
+            break;
+        case 6:
+        case 7:
+            result = (s32)ptr->frame + 1 < func_8001211C()
+                ? func_800D56C4(ptr->value)
+                : (func_800D5E54(ptr->value), -1);
+            break;
+        case 2:
+            if ((s32)ptr->frame + 1 < func_8001211C()) {
+                result = func_800D56C4(ptr->value);
+            } else if (!ptr->active && !ptr->other && !ptr->low) {
+                result = func_800D56C4(ptr->value);
+            } else {
+                func_800D5E54(ptr->value);
+                result = -1;
+            }
+            if ((token = ptr->token) != 0) {
+                func_800DBB9C(token);
+                ptr->token = 0;
+            }
+            break;
+        case 3:
+        case 4:
+        case 5:
+        case 8:
+        case 9:
+            result = func_800D56C4(ptr->value);
+            break;
+    }
+    func_800D61B4(arg0);
+    return result;
+}
 
 s32 func_800D6550(void *arg0) {
     s32 func_8001211C(void);
@@ -387,7 +440,7 @@ s32 func_800D6C34(void) {
 void func_800D6C64(void) {
     extern u8 D_8012B800[];
     extern s16 D_8012BE62;
-    s32 func_800D6408();
+    s32 func_800D6408(void *);
     struct Entry {
         u32 pad[2];
         u32 id : 14;
@@ -412,7 +465,7 @@ void func_800D6C64(void) {
 
 s32 func_800D6CEC(s32 arg0) {
     extern u8 D_8012B800[];
-    s32 func_800D6408(void *, void *);
+    s32 func_800D6408(void *);
     struct Entry {
         u8 pad[10];
         u16 upper : 4;
@@ -426,7 +479,7 @@ s32 func_800D6CEC(s32 arg0) {
         if (((struct Entry *)(D_8012B800 + index * size))->upper != 0) {
             return 1;
         }
-        return func_800D6408(D_8012B800 + index * size, D_8012B800);
+        return func_800D6408(D_8012B800 + index * size);
     }
     return 2;
 }

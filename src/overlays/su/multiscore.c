@@ -429,7 +429,43 @@ void sumultiscore_entrypoint_11(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     *(f32 *)((s8 *)arg0 + offset + (index << 5) + 0x58) = arg3;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/multiscore/sumultiscore_entrypoint_12.s")
+void sumultiscore_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
+    void func_800B7F14(Gfx **);
+    void func_800B811C(Gfx **);
+    void func_800B8C50(void);
+    void func_800B8C98(s32);
+    void func_800B8CBC(u8, u8, u8);
+    void func_80801160_sumultiscore(u16 (*)[2], void *, s32);
+    void func_808011E0_sumultiscore(u16 (*)[2], u8 *, s32, Gfx **);
+    s32 i;
+    s32 j;
+    u8 *base;
+    u8 *entry;
+
+    for (j = 0; j < *(s32 *)(arg0 + 0x518); j++) {
+        base = (u8 *)arg0 + j * 0x13C + 0x28;
+        for (i = 0; i < *(s32 *)arg0; i++) {
+            entry = base + (u32)i * 0x20;
+            if (arg2 == entry[0x1E]) {
+                func_80801160_sumultiscore((u16 (*)[2])base, (void *)((s32)base + (i << 5) + 0x18), arg1);
+            }
+        }
+    }
+    func_800B8C50();
+    func_800B8C98(3);
+    func_800B8CBC(255, 255, 255);
+    func_800B7F14((Gfx **)arg1);
+    for (j = 0; j < *(s32 *)(arg0 + 0x518); j++) {
+        base = (u8 *)arg0 + j * 0x13C + 0x28;
+        for (i = 0; i < *(s32 *)arg0; i++) {
+            entry = base + (u32)i * 0x20;
+            if (arg2 == entry[0x1E]) {
+                func_808011E0_sumultiscore((u16 (*)[2])base, (u8 *)((s32)base + (i << 5) + 0x18), j, (Gfx **)arg1);
+            }
+        }
+    }
+    func_800B811C((Gfx **)arg1);
+}
 
 /* extern */
 

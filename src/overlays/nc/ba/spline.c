@@ -47,10 +47,10 @@ void ncbaspline_entrypoint_3(void *arg0)
 
 /* extern */
 
-void func_80800130_ncbaspline(s32 arg0, s32 arg1) {
+void func_80800130_ncbaspline(s32 arg0, f32 *arg1) {
     s32 func_80112518();
     s32 func_801124D0(s32, s32);
-    s32 func_80112524(s32, s32);
+    s32 func_80112524(s32, f32 *);
     s32 sp1C;
 
     sp1C = func_80112518();
@@ -61,12 +61,12 @@ void func_80800130_ncbaspline(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_8080017C_ncbaspline(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800C7A68(s32, f32, s32 *);
-    s32 func_800C7B28(s32, f32, f32, s32);
+f32 func_8080017C_ncbaspline(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    void func_800C7A68(s32, f32, void *);
+    f32 func_800C7B28(s32, f32, f32, s32);
     f32 func_800C82CC(s32, s32);
     s32 func_800EE780(s32 *, s32 *, s32 *);
-    s32 func_800EEAD4(s32 *, s32);
+    f32 func_800EEAD4(void *, void *);
     s32 func_800EF368(s32 *, s32);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     s32 func_800F018C(s32 *, s32 *, s32 *, s32);
@@ -89,23 +89,75 @@ void func_8080017C_ncbaspline(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
         func_800EF368(sp28, 0x43C80000);
         func_800EE780(sp34, sp28, sp40);
         func_800F018C(sp4C, sp40, sp34, arg2);
-        func_800EEAD4(sp4C, arg3);
-        return;
+        return func_800EEAD4(sp4C, arg3);
     }
     func_800C7A68(arg1, temp_f0, sp4C);
     temp_f0_2 = (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x44)))) + (8)));
     if (temp_f0 < temp_f0_2) {
-        func_800C7B28(arg1, temp_f0, temp_f0_2, 0xF);
-        return;
+        return func_800C7B28(arg1, temp_f0, temp_f0_2, 0xF);
     }
-    func_800C7B28(arg1, temp_f0_2, temp_f0, 0xF);
+    return func_800C7B28(arg1, temp_f0_2, temp_f0, 0xF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/func_80800318_ncbaspline.s")
+s32 func_80800318_ncbaspline(void *arg0, f32 *arg1) {
+    void func_800C7A68(s32, f32, void *);
+    f32 func_800C7FD4(s32, f32, f32);
+    f32 func_800EEAD4(void *, void *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 mlAbsF(f32);
+    f32 forward[3];
+    f32 backward[3];
+    f32 position[3];
+    f32 forwardDistance;
+    f32 backwardDistance;
+    f32 forwardPosition;
+    f32 backwardPosition;
+    f32 velocity;
+    f32 direction;
+    f32 distance;
+    s32 path;
+    struct SplineData { s32 path; f32 velocity; f32 position; u8 pad[0x22]; u8 start; u8 end; };
+    struct SplineOwner { u8 pad[0x44]; struct SplineData *data; };
+
+    path = func_80800008_ncbaspline(arg0);
+    func_80800130_ncbaspline((s32)arg0, position);
+    distance = func_8080017C_ncbaspline(arg0, path, (s32)position, (s32)arg1);
+    forwardPosition = func_800C7FD4(path, ((struct SplineOwner *)arg0)->data->position, 1000.0f);
+    backwardPosition = func_800C7FD4(path, ((struct SplineOwner *)arg0)->data->position, -1000.0f);
+    func_800C7A68(path, forwardPosition, forward);
+    func_800C7A68(path, backwardPosition, backward);
+    forwardDistance = func_800EEAD4(position, forward);
+    backwardDistance = func_800EEAD4(position, backward);
+    velocity = 0.0f;
+    if (mlAbsF(forwardDistance - backwardDistance) > 3.0f) {
+        direction = forwardDistance < backwardDistance ? 1.0f : -1.0f;
+        if (distance > 550.0f) {
+            velocity = func_800F10B4(distance, 550.0f, 650.0f, 0.0f, 1500.0f) * direction;
+        } else if (distance < 500.0f) {
+            velocity = func_800F10B4(distance, 400.0f, 500.0f, 1500.0f, 0.0f) * -direction;
+        }
+        if (mlAbsF(((struct SplineOwner *)arg0)->data->velocity) < mlAbsF(velocity)) {
+            ((struct SplineOwner *)arg0)->data->velocity += (velocity - ((struct SplineOwner *)arg0)->data->velocity) * 0.08f;
+        } else {
+            ((struct SplineOwner *)arg0)->data->velocity = velocity;
+        }
+        ((struct SplineOwner *)arg0)->data->position = func_800C7FD4(path, ((struct SplineOwner *)arg0)->data->position, ((struct SplineOwner *)arg0)->data->velocity);
+        if ((velocity > 0.0f && ((struct SplineOwner *)arg0)->data->position == 1.0f && !((struct SplineOwner *)arg0)->data->end) ||
+            (velocity < 0.0f && ((struct SplineOwner *)arg0)->data->position == 0.0f && !((struct SplineOwner *)arg0)->data->start)) {
+            return 0;
+        }
+    } else {
+        return 1;
+    }
+    if (velocity) {
+        return 1;
+    }
+    return 2;
+}
 
 void ncbaspline_entrypoint_4(void *arg0) {
     s32 func_800D7520(s32);
-    s32 func_800C7A68(s32, f32, s32 *);
+    void func_800C7A68(s32, f32, void *);
     f32 func_800D8FF8(void);
     s32 func_800EE780(s32 *, s32 *, s32 *);
     void func_800EF334(f32 *, f32);
@@ -175,11 +227,101 @@ void ncbaspline_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
 
 void ncbaspline_entrypoint_6(s32 arg0, void *arg1, s32 arg2) {
     s32 func_800D5424(u16);
-    s32 ncbaspline_entrypoint_7(s32, s32);
+    void ncbaspline_entrypoint_7(s32, s32);
     ncbaspline_entrypoint_7(arg0, func_800D5424((*(u16 *)((s8 *)(arg1) + (8)))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/ba/spline/ncbaspline_entrypoint_7.s")
+void ncbaspline_entrypoint_7(s32 arg0, s32 arg1) {
+    void *_gccubesearch_entrypoint_14(s32, s32 *);
+    s32 _glsplinefind_entrypoint_3(f32 *);
+    void _gspropctrl_entrypoint_11(void *, void *);
+    s32 _gspropctrl_entrypoint_13(Prop *);
+    void func_800C7A68(s32, f32, void *);
+    f32 func_800C82CC(s32, s32);
+    s32 func_800D542C(s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EE904(s32 *, f32 *);
+    s32 func_800F5C94(s32);
+    void func_800F7E9C(s32, s32);
+    f32 func_800FB1EC(struct Unk800C7A68 *, f32, f32 *, s32);
+    s32 func_801106A0(s32 *);
+    s32 func_801106A8(void *, s32);
+    void func_801107B0(void *, f32 *);
+    void func_801107F0(void *, f32 *);
+    s32 func_80110840(s32 *);
+    s32 func_80800318_ncbaspline(void *, f32 *);
+    f32 sp4C[3];
+    int sp40[3];
+    f32 sp34[3];
+    int sp30;
+    Prop *saved;
+    register Prop *prop;
+    struct SplineData {
+        int index;
+        f32 unk4;
+        f32 position;
+        f32 origin[3];
+        f32 blend;
+        f32 unk1C[3];
+        int state;
+        u8 flag;
+        u8 mode;
+        u8 flag2E;
+        u8 flag2F;
+    };
+    struct SplineOwner {
+        u8 pad[0x44];
+        struct SplineData *data;
+    };
+
+    if (func_800F5C94(func_80110840((s32 *)arg0)) != 4) {
+        sp30 = func_800D542C(arg1);
+        if (sp30 != ((struct SplineOwner *)arg0)->data->state &&
+            ((struct SplineOwner *)arg0)->data->state != -1) {
+            func_801107B0((void *)arg0, sp4C);
+            func_800EE904(sp40, sp4C);
+            prop = _gccubesearch_entrypoint_14(sp30, sp40);
+            if (prop != NULL) {
+                saved = prop;
+                _gspropctrl_entrypoint_11(prop, sp4C);
+                switch (_gspropctrl_entrypoint_13(saved)) {
+                    default:
+                        ((struct SplineOwner *)arg0)->data->flag2E = 0;
+                        ((struct SplineOwner *)arg0)->data->flag2F = 0;
+                        break;
+                    case 1:
+                        ((struct SplineOwner *)arg0)->data->flag2E = 1;
+                        ((struct SplineOwner *)arg0)->data->flag2F = 0;
+                        break;
+                    case 2:
+                        ((struct SplineOwner *)arg0)->data->flag2E = 0;
+                        ((struct SplineOwner *)arg0)->data->flag2F = 1;
+                        break;
+                    case 3:
+                        ((struct SplineOwner *)arg0)->data->flag2E = 1;
+                        ((struct SplineOwner *)arg0)->data->flag2F = 1;
+                        break;
+                }
+                ((struct SplineOwner *)arg0)->data->mode = func_801106A0((s32 *)arg0);
+                func_801107F0((void *)arg0, sp34);
+                func_800EE7F8(((struct SplineOwner *)arg0)->data->origin, sp34);
+                ((struct SplineOwner *)arg0)->data->blend = 0.0f;
+                ((struct SplineOwner *)arg0)->data->state = sp30;
+                ((struct SplineOwner *)arg0)->data->index = _glsplinefind_entrypoint_3(sp4C);
+                ((struct SplineOwner *)arg0)->data->position = func_800C82CC(func_80800008_ncbaspline((void *)arg0), sp34);
+                ((struct SplineOwner *)arg0)->data->position = func_800FB1EC((struct Unk800C7A68 *)func_80800008_ncbaspline((void *)arg0), ((struct SplineOwner *)arg0)->data->position, sp34, 0x20020);
+                ((struct SplineOwner *)arg0)->data->flag = 1;
+                func_800C7A68(func_80800008_ncbaspline((void *)arg0), ((struct SplineOwner *)arg0)->data->position, ((struct SplineOwner *)arg0)->data->unk1C);
+                if (func_80800318_ncbaspline((void *)arg0, ((struct SplineOwner *)arg0)->data->unk1C) == 1) {
+                    func_801106A8((void *)arg0, 0xE);
+                    func_800F7E9C(func_80110840((s32 *)arg0), 1);
+                } else {
+                    ((struct SplineOwner *)arg0)->data->state = 0;
+                }
+            }
+        }
+    }
+}
 
 s32 ncbaspline_entrypoint_8(void *arg0) {
     return (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x44)))) + (0x28))) < 1;
