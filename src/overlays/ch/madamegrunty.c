@@ -322,7 +322,39 @@ s32 func_80800898_chmadamegrunty(f32 arg0, f32 arg1, f32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/madamegrunty/func_808008D4_chmadamegrunty.s")
+s32 func_808008D4_chmadamegrunty(Actor *arg0) {
+    s32 func_800D9078(f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_808009AC_chmadamegrunty(Actor *, s32, f32);
+    typedef struct {
+        s32 sound;
+        f32 time;
+        f32 pitch;
+    } MadameGruntySound;
+    extern MadameGruntySound D_80800BE0_chmadamegrunty[];
+    s32 timer_result[2]; /* Preserve IDO stack allocation. */
+    MadameGruntySound *sound;
+    f32 previous_time;
+    s32 i;
+
+    previous_time = arg0->unk58;
+    timer_result[0] = func_800D9078(&arg0->unk58);
+    for (i = 0; i < 9; i++) {
+        sound = &D_80800BE0_chmadamegrunty[i];
+        if (func_80800898_chmadamegrunty(
+                arg0->unk58,
+                previous_time,
+                func_800F10B4(
+                    sound->time,
+                    0.0f,
+                    1.0f,
+                    4.0f,
+                    0.0f)) != 0) {
+            func_808009AC_chmadamegrunty(arg0, sound->sound, sound->pitch);
+        }
+    }
+    return timer_result[0] == 0;
+}
 
 void func_808009AC_chmadamegrunty(Actor *arg0, s32 arg1, f32 arg2) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
