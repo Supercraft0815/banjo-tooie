@@ -1,5 +1,8 @@
 #include "common.h"
 
+struct Slot { s32 *ptr; };
+extern struct Slot D_80127198[];
+
 void cosectionstor_entrypoint_0(void) {
     extern f32 D_80127194;
     s32 i;
@@ -46,8 +49,7 @@ void cosectionstor_entrypoint_3(s32 arg0) {
     void func_800FF44C(void);
     void *heap_alloc(s32);
     void heap_free(void *);
-    struct Slot { s32 *ptr; };
-    extern struct Slot D_80127198[];
+
     s32 *temp_v0;
     s32 bits;
     s32 *count;
