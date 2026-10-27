@@ -1897,7 +1897,38 @@ void func_808036EC_chdragonbrothers(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dragonbrothers/func_808037B0_chdragonbrothers.s")
+void func_808037B0_chdragonbrothers(Actor *arg0, u32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern u32 D_8080543C_chdragonbrothers[];
+    struct DragonData {
+        u8 pad0[4];
+        u8 count[4];
+        s8 hits[4];
+        u8 padC[0x50];
+        s8 last;
+    };
+    Actor *actor[1];
+    struct DragonData *data;
+    Actor *parent;
+    u8 *entry;
+
+    parent = func_80106790(arg0->unk3C);
+    if (parent) {} /* Preserve IDO register allocation. */
+    data = func_80100094(actor[0] = parent, 0);
+    entry = (void *)((u8 *)data + arg0->unk74_7);
+    parent = actor[0];
+    if ((entry[4] + ((s8 *)entry)[8] < 3) &&
+        (arg0->unk70_10 == 4 || arg0->unk70_10 == 5) &&
+        func_808003F8_chdragonbrothers(parent)) {
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080543C_chdragonbrothers);
+        arg0->unk79_4 = arg1 - 0x26B;
+        data->last = arg0->unk79_4;
+        func_808036EC_chdragonbrothers(arg0, 5);
+        data->hits[arg0->unk74_7]++;
+    }
+}
 
 void func_808038AC_chdragonbrothers(Actor *arg0) {
     f32 func_800D8FF8(void);
