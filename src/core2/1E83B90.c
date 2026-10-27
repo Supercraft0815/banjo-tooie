@@ -559,8 +559,8 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
     f32 mlAbsF(f32);
     extern void *D_8012798C;
     int i;
-    void *block;
-    Triangle *tri;
+    u8 *block;
+    union { u8 *cursor; Triangle *tri; } current;
     f32 edges[3][3];
     f32 deltas[3][3];
     f32 determinant;
@@ -583,24 +583,24 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
     /* IDO assigns the cutoff spill slot after first seeing radius squared. */
     edge_length = radius * radius;
     block = D_8012798C;
-    for (tri = (Triangle *)((u8 *)block + 0x10); tri != end; func_800ABC0C(&tri, &block)) {
-        func_800EFB24(deltas[0], position, tri->vertex[0]);
-        plane_normal = tri->normal;
+    for (current.cursor = block + 0x10; current.cursor != end; func_800ABC0C(&current.cursor, &block)) {
+        func_800EFB24(deltas[0], position, current.tri->vertex[0]);
+        plane_normal = current.tri->normal;
         theta = func_800EEAA4(deltas[0], plane_normal);
         if ((radius - 0.5f) <= mlAbsF(theta)) {
             continue;
         }
-        projected[0] = position[0] - tri->normal[0] * theta;
-        projected[1] = position[1] - tri->normal[1] * theta;
-        projected[2] = position[2] - tri->normal[2] * theta;
-        axis = mlAbsF(tri->normal[0]) > mlAbsF(tri->normal[1]) ? 0 : 1;
-        if (mlAbsF(tri->normal[2]) > mlAbsF(tri->normal[axis])) {
+        projected[0] = position[0] - current.tri->normal[0] * theta;
+        projected[1] = position[1] - current.tri->normal[1] * theta;
+        projected[2] = position[2] - current.tri->normal[2] * theta;
+        axis = mlAbsF(current.tri->normal[0]) > mlAbsF(current.tri->normal[1]) ? 0 : 1;
+        if (mlAbsF(current.tri->normal[2]) > mlAbsF(current.tri->normal[axis])) {
             axis = 2;
         }
         first_axis = (axis + 1) % 3;
-        func_800EFA4C(row1, projected[first_axis] - tri->vertex[0][first_axis], tri->edgeAB[first_axis], tri->edgeAC[first_axis]);
+        func_800EFA4C(row1, projected[first_axis] - current.tri->vertex[0][first_axis], current.tri->edgeAB[first_axis], current.tri->edgeAC[first_axis]);
         second_axis = (axis + 2) % 3;
-        func_800EFA4C(row2, projected[second_axis] - tri->vertex[0][second_axis], tri->edgeAB[second_axis], tri->edgeAC[second_axis]);
+        func_800EFA4C(row2, projected[second_axis] - current.tri->vertex[0][second_axis], current.tri->edgeAB[second_axis], current.tri->edgeAC[second_axis]);
         determinant = row1[1] * row2[2] - row2[1] * row1[2];
         if (determinant == 0.0f) {
             continue;
@@ -609,15 +609,15 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
         alpha = (row1[0] * row2[2] - row2[0] * row1[2]) * determinant;
         beta = (row1[1] * row2[0] - row2[1] * row1[0]) * determinant;
         if (0.0f <= alpha && alpha <= 1.0f && 0.0f <= beta && beta <= 1.0f && alpha + beta <= 1.0f) {
-            collision = tri;
-            func_800EF04C(normal, tri->normal);
+            collision = current.tri;
+            func_800EF04C(normal, current.tri->normal);
             continue;
         }
         for (i = 0; i < 3; i++) {
-            func_800EFB24(deltas[i], position, tri->vertex[i]);
+            func_800EFB24(deltas[i], position, current.tri->vertex[i]);
             if (func_800EEFD4(deltas[i]) < radius * radius) {
-                collision = tri;
-                func_800EF04C(normal, tri->normal);
+                collision = current.tri;
+                func_800EF04C(normal, current.tri->normal);
                 break;
             }
         }
@@ -625,7 +625,7 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
             continue;
         }
         for (i = 0; i < 3; i++) {
-            func_800EFB24(edges[i], tri->vertex[(i + 1) % 3], tri->vertex[i]);
+            func_800EFB24(edges[i], current.tri->vertex[(i + 1) % 3], current.tri->vertex[i]);
             edge_length = func_800EEFD4(edges[i]);
             func_800EF2A0(edges[i]);
             projection = func_800EEAA4(edges[i], deltas[i]);
@@ -634,8 +634,8 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
                 projected[1] = deltas[i][1] - edges[i][1] * projection;
                 projected[2] = deltas[i][2] - edges[i][2] * projection;
                 if (func_800EEFD4(projected) < radius * radius) {
-                    collision = tri;
-                    func_800EF04C(normal, tri->normal);
+                    collision = current.tri;
+                    func_800EF04C(normal, current.tri->normal);
                     break;
                 }
             }

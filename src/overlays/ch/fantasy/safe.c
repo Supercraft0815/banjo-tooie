@@ -1,8 +1,9 @@
 #include "common.h"
+#include "gameflags.h"
 
 void func_80800000_chfantasysafe(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 func_800DA298(s32);
+    s32 func_800DA298(GameFlag);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_80101FDC(Actor *, u32);
     extern f32 D_80800998_chfantasysafe[];
@@ -52,23 +53,23 @@ void func_808001A0_chfantasysafe(u8 *arg0) {
         u8 sound;
         u8 pad[3];
     } SafeStep;
-    s32 _subaddieaudioloop_entrypoint_2(u8 *);
-    s32 _subaddieaudioloop_entrypoint_4(u8 *, void *, s32, u32 *);
-    s32 _subaddieaudioquick_entrypoint_2(u8 *, void *, u32 *);
-    s32 _subaddiedialog_entrypoint_11(void *, s32, s32, void *, s32);
+    void _subaddieaudioloop_entrypoint_2(void *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _subaddiedialog_entrypoint_8(u8 *, void *, u32 *, u32 *, s32);
     void func_800C3F48(u32);
     s32 func_800D90A4(f32 *);
     f32 func_800D91B8(f32 *);
-    s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    s32 func_800DA298(GameFlag);
+    void func_800DA544(GameFlag);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1214(f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     void func_800FC6B0(u32);
     void func_80101FDC(Actor *, u32);
-    void *func_8010262C(void *, s32);
+    s32 func_8010262C(Unk80132ED0 *, u32);
     void func_80103110(void *, s32);
     extern u32 D_808009AC_chfantasysafe[];
     extern u32 D_808009D4_chfantasysafe[];
@@ -118,7 +119,7 @@ void func_808001A0_chfantasysafe(u8 *arg0) {
                     *(f32 *)(arg0 + 0x58) = 1.0f;
                     func_80101FDC((Actor *)arg0, 3);
                     music = 0x10;
-                    _subaddiedialog_entrypoint_11(*(void **)arg0, 0x13DD, 0, arg0 + 4, 0);
+                    _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x13DD, 0, (f32 *)(arg0 + 4), 0);
                 } else {
                     func_80101FDC((Actor *)arg0, 1);
                     music = 0xE;
@@ -129,7 +130,7 @@ void func_808001A0_chfantasysafe(u8 *arg0) {
                 *(f32 *)(arg0 + 0x34) = *(f32 *)(arg0 + 0x24);
                 *(f32 *)(arg0 + 0x50) = *(f32 *)(arg0 + 0x24);
             } else {
-                _subaddieaudioloop_entrypoint_4(arg0, arg0 + 4, 1, D_808009F4_chfantasysafe);
+                _subaddieaudioloop_entrypoint_4((Actor *)arg0, (f32 *)(arg0 + 4), 1, D_808009F4_chfantasysafe);
                 *(f32 *)(arg0 + 0x50) = func_800F10B4(*(f32 *)(arg0 + 0x58), 2.0f, 0.0f, *(f32 *)(arg0 + 0x34), *(f32 *)(arg0 + 0x24));
             }
             break;
@@ -139,7 +140,7 @@ void func_808001A0_chfantasysafe(u8 *arg0) {
                 *(f32 *)(arg0 + 0x54) = 110.0f;
                 *(f32 *)(arg0 + 0x58) = 3.0f;
                 func_80101FDC((Actor *)arg0, 4);
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_808009D4_chfantasysafe);
+                _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), D_808009D4_chfantasysafe);
             }
             break;
         case 4:
@@ -147,9 +148,9 @@ void func_808001A0_chfantasysafe(u8 *arg0) {
                 func_80101FDC((Actor *)arg0, 5);
                 func_800DA544(0x38D);
                 _subaddieaudioloop_entrypoint_2(arg0);
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_808009D4_chfantasysafe);
+                _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), D_808009D4_chfantasysafe);
             } else {
-                _subaddieaudioloop_entrypoint_4(arg0, arg0 + 4, 1, D_808009FC_chfantasysafe);
+                _subaddieaudioloop_entrypoint_4((Actor *)arg0, (f32 *)(arg0 + 4), 1, D_808009FC_chfantasysafe);
             }
             *(f32 *)(arg0 + 0x48) = func_800F10B4(*(f32 *)(arg0 + 0x58), 3.0f, 0.0f, 228.0f, 360.0f);
             break;
@@ -179,10 +180,10 @@ void func_808001A0_chfantasysafe(u8 *arg0) {
             *(f32 *)(arg0 + 0x48) = func_800F1214(fraction, 228.0f, 360.0f);
             *(f32 *)(arg0 + 0x54) = func_800F1214(fraction, 0.0f, 110.0f);
             *(f32 *)(arg0 + 0x50) = func_800F1214(fraction, 0.0f, 360.0f);
-            _subaddieaudioloop_entrypoint_4(arg0, arg0 + 4, 1, D_80800A98_chfantasysafe);
+            _subaddieaudioloop_entrypoint_4((Actor *)arg0, (f32 *)(arg0 + 4), 1, D_80800A98_chfantasysafe);
             break;
     }
-    model = func_8010262C(*(void **)arg0, 2);
+    model = (void *)func_8010262C(*(Unk80132ED0 **)arg0, 2);
     if (model) {
         func_800E0AFC(model, 0x2A, 1.0f, 0.0f, 0.0f, *(f32 *)(arg0 + 0x54));
         func_800E0AFC(model, 0x2B, 1.0f, 0.0f, 0.0f, *(f32 *)(arg0 + 0x50));
@@ -192,7 +193,7 @@ void func_808001A0_chfantasysafe(u8 *arg0) {
 s32 func_80800630_chfantasysafe(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     s32 _glcutDll_entrypoint_20();
-    s32 func_800DA298(s32);
+    s32 func_800DA298(GameFlag);
     int func_800DB9B0(void);
     void func_800DF744(s32, s32);
     s32 func_801015D0(Actor *);
