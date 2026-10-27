@@ -1,8 +1,10 @@
 #include "common.h"
 
+typedef struct { s16 fields[3]; } SoundListEntry;
+
 typedef struct {
-    s16 *start;
-    s16 *end;
+    SoundListEntry *start;
+    SoundListEntry *end;
     u8 padding[8];
 } SoundListStorage;
 
@@ -22,7 +24,7 @@ void func_8008B610(void) {
     func_8008BBC0(temp_v0, temp_a1);
 }
 
-void func_8008B64C(void) { void func_800DFCC0(s16); void heap_free(void *); s16 *entry; s16 value; entry = D_80126CC0_storage.start; while (entry < D_80126CC0_storage.end) { if (entry[2] != 0) { value = entry[0]; if (value != 0) { func_800DFCC0(value); entry[0] = 0; } entry[2] = 0; } entry += 3; } heap_free(D_80126CC0_storage.start);
+void func_8008B64C(void) { void func_800DFCC0(s16); void heap_free(void *); SoundListEntry *entry; s16 value; entry = D_80126CC0_storage.start; while (entry < D_80126CC0_storage.end) { if (entry->fields[2] != 0) { value = entry->fields[0]; if (value != 0) { func_800DFCC0(value); entry->fields[0] = 0; } entry->fields[2] = 0; } entry++; } heap_free(D_80126CC0_storage.start);
     D_80126CC0_storage.start = D_80126CC0_storage.end = NULL;
 }
 
