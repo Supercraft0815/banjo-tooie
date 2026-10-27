@@ -114,7 +114,44 @@ void func_80800264_chfaircoinbox(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fair/coinbox/func_808002CC_chfaircoinbox.s")
+void func_808002CC_chfaircoinbox(Actor *arg0) {
+    typedef struct {
+        u16 unk0;
+        u16 unk2;
+        u16 unk4;
+        u16 unk6;
+        u32 unk8;
+        u16 unkC;
+        u16 unkE;
+        s16 unk10;
+        u16 unk12;
+        u16 unk14;
+        u8 unk16;
+        u8 unk17;
+        u8 unk18;
+    } DialogRecord;
+    u32 _subaddiedialog_entrypoint_7(Actor *, f32 *, DialogRecord *);
+    void func_80090734(s32, f32 *);
+    s32 func_800DA298(GameFlag);
+    extern DialogRecord D_80800490_chfaircoinbox;
+    extern s32 D_808004AC_chfaircoinbox[];
+    u32 result;
+
+    D_80800490_chfaircoinbox.unk4 = D_808004AC_chfaircoinbox[arg0->unk74_7 - 0x32];
+    result = func_80800000_chfaircoinbox((u8 *)arg0);
+    D_80800490_chfaircoinbox.unk0 = result;
+    if (!func_800DA298((u16)result)) {
+        if ((result = _subaddiedialog_entrypoint_7(arg0, arg0->position, &D_80800490_chfaircoinbox)) != 0) {
+            /* Preserve IDO's redundant comparison; both paths play the sound. */
+            if (result == 0x10B5) {
+            } else {
+                if ((result && result) && result) {
+                }
+            }
+            func_80090734(1, arg0->position);
+        }
+    }
+}
 
 /* extern */
 
