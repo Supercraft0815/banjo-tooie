@@ -50,9 +50,10 @@ s32 func_800BFC34(s32 arg0)
     return func_800D674C(arg0);
 }
 
-void func_800BFC54()
+u8 *func_800BFC54(s32 arg0)
 {
-    func_800D6B0C();
+    void *func_800D6B0C(s32);
+    return func_800D6B0C(arg0);
 }
 
 void func_800BFC74()

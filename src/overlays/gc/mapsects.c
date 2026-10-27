@@ -766,7 +766,7 @@ void func_80801724_gcmapsects(void *arg0, s32 arg1) {
 }
 
 void gcmapsects_entrypoint_9(u8 *ptr) {
-    s32 func_800D6B0C(s32);
+    void *func_800D6B0C(s32);
     s32 func_800DB9B0(void);
     typedef struct {
         u8 pad0[0x40];
@@ -828,7 +828,7 @@ void gcmapsects_entrypoint_9(u8 *ptr) {
     }
     for (i = 0; i < ptr[0x77]; i++) {
         if ((*(Section **)(ptr + 0x68))[i].active) {
-            func_808005D0_gcmapsects(ptr, i, func_800D6B0C((*(Section **)(ptr + 0x68))[i].id));
+            func_808005D0_gcmapsects(ptr, i, (s32)func_800D6B0C((*(Section **)(ptr + 0x68))[i].id));
         }
     }
 }
@@ -1310,7 +1310,7 @@ void *gcmapsects_entrypoint_26(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, u32 arg
 s32 gcmapsects_entrypoint_27(s32 arg0) {
     void *func_800BF704(void);
     s32 func_800D62E4(s32);
-    s32 func_800D6B0C(s32);
+    void *func_800D6B0C(s32);
     void *map;
     s32 temp_t7;
 

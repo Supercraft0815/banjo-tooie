@@ -337,7 +337,42 @@ ImageStruct *func_800D674C(s32 a0) {
     return image;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6B0C.s")
+void *func_800D6B0C(s32 original) {
+    s32 func_8001211C(void);
+    extern u8 D_8012B800[0x660];
+    extern s16 D_8012BE64;
+    struct Entry {
+        u32 frame : 27;
+        u32 flags : 4;
+        u32 low : 1;
+        void *value;
+        u32 index : 14;
+        u32 flag : 1;
+        u32 other : 1;
+        u32 tail : 16;
+    };
+    s32 index;
+
+    index = func_800D6254(original);
+    if (index != -1) {
+        D_8012BE64 = original;
+        if (((struct Entry *)(D_8012B800 + index * 12))->flags == 2) {
+            if (func_8001211C() ==
+                ((struct Entry *)(D_8012B800 + index * 12))->frame) {
+                if (((struct Entry *)(D_8012B800 + index * 12))->flag) {
+                    ((struct Entry *)(D_8012B800 + index * 12))->other = 1;
+                } else {
+                    ((struct Entry *)(D_8012B800 + index * 12))->flag = 1;
+                }
+            } else {
+                ((struct Entry *)(D_8012B800 + index * 12))->flag = 1;
+            }
+        }
+        ((struct Entry *)(D_8012B800 + index * 12))->frame = func_8001211C();
+        return ((struct Entry *)(D_8012B800 + index * 12))->value;
+    }
+    return 0;
+}
 
 /* extern */
 

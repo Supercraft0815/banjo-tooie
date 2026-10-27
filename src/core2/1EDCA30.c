@@ -152,7 +152,7 @@ void func_80103508(u8 *arg0) {
     s32 func_8010108C(Actor *, s32, s32);
     void func_80102424(Actor *, s32);
     s32 func_80102FA0(Actor *, s32);
-    s32 func_801039A4(u8 *);
+    u8 *func_801039A4(u8 *);
     u8 *func_801039E4(Unk80132ED0 *);
     s32 func_80103C94(Actor *);
     s32 func_80103D24(Actor *);
@@ -189,7 +189,7 @@ void func_80103508(u8 *arg0) {
     if (!flags->active) {
         sp58 = ((Actor *)arg0)->unk0;
         sp5C = func_80100368(arg0);
-        sp50 = func_801039A4((u8 *)sp58);
+        sp50 = (s32)func_801039A4((u8 *)sp58);
         if (sp50 == 0) {
             sp50 = (s32)func_801039E4(sp58);
         }
@@ -320,8 +320,8 @@ u8 *func_80103964(u8 *arg0) {
     return func_800D674C(temp_a1);
 }
 
-s32 func_801039A4(u8 *arg0) {
-    s32 func_800D6B0C(s32);
+u8 *func_801039A4(u8 *arg0) {
+    void *func_800D6B0C(s32);
     s32 temp_a1;
 
     temp_a1 = *(u16 *)(arg0 + 0x14);
