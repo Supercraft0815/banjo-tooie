@@ -1,5 +1,7 @@
 #include "common.h"
 
+typedef struct { s16 unk0; s16 id; s16 value; } SelectEntry;
+
 s32 func_800D9078(f32 *);
 
 typedef struct {
@@ -2590,9 +2592,9 @@ void func_80804B90_chgameselect(void *arg0) {
 /* extern */
 
 void func_80804BB4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_80804D30_chgameselect(s32, s32);
+    void func_80804D30_chgameselect(Actor *, s32);
     if (arg2 < 3) {
-        func_80804D30_chgameselect(arg0, arg2);
+        func_80804D30_chgameselect((Actor *)arg0, arg2);
         return;
     }
     func_808038EC_chgameselect(arg0, arg2, 1);
@@ -2614,7 +2616,7 @@ void func_80804C30_chgameselect(void *arg0, s32 arg1) {
     s32 _gcfrontend_entrypoint_1(s32);
     void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
     extern s32 D_80807DB0_chgameselect[];
-    typedef struct { s16 unk0; s16 id; s16 value; } SelectEntry;
+
     extern SelectEntry D_808083E8_chgameselect[];
     s32 i;
     s32 count;
