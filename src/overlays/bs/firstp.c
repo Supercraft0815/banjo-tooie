@@ -2033,7 +2033,69 @@ void bsfirstp_entrypoint_14(register struct player_state_s *self) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80803CD4_bsfirstp.s")
+s32 func_80803CD4_bsfirstp(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 *arg4) {
+    void _bamotor_entrypoint_0(void *, f32, f32);
+    s32 _gcstatusDll_entrypoint_14(void);
+    s32 _gcstatusDll_entrypoint_15(void);
+    s32 _gcstatusDll_entrypoint_20(void);
+    s32 bs_getCurrentState(struct player_state_s *);
+    s32 func_8009BD44(void *);
+    s32 func_8009CA70(void *, s32, s32);
+    s32 func_800A1718(void *);
+    void func_800A17A8(void *, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    s32 func_80101180(s32, s32, s32);
+    u8 *state;
+    s32 emitEvent;
+    s32 pad; /* Preserve the original IDO spill layout. */
+    s32 result;
+
+    state = *(u8 **)((u8 *)arg0 + 0x188);
+    if (func_8009CA70(arg0, bs_getCurrentState(arg0), 4) != 0) {
+        return 0;
+    }
+    if (func_8009BD44(arg0) == 3) {
+        return 0;
+    }
+    if (_gcstatusDll_entrypoint_20() == 1) {
+        if (_gcstatusDll_entrypoint_14() == 5) {
+            if (_gcstatusDll_entrypoint_15() == (*(s32 *)((u8 *)arg0 + 0x184))) {
+                arg3 = 0;
+                emitEvent = 1;
+                result = 1;
+            } else if (arg3 != 0) {
+                emitEvent = 1;
+                result = 2;
+            } else {
+                emitEvent = 0;
+                result = 1;
+            }
+        } else {
+            arg3 = 0;
+            emitEvent = 1;
+            result = 1;
+        }
+    } else {
+        func_800A17A8(arg0, -arg3);
+        if (func_800A1718(arg0) != 0) {
+            emitEvent = 0;
+            result = 1;
+        } else {
+            emitEvent = 1;
+            result = 2;
+        }
+    }
+    if (emitEvent != 0) {
+        func_80101180(0x2C4, 0x70, ((*(s32 *)((u8 *)arg0 + 0x184)) * 0x10) | arg2);
+    }
+    _bamotor_entrypoint_0(arg0, func_800F10B4((f32) arg3, 0, 8.0f, 0.8f, 1.4f), 0.25f);
+    (*(s32 *)((u8 *)state + 0xEC)) = arg1;
+    (*(s32 *)((u8 *)state + 0xF0)) = arg2;
+    (*(s32 *)((u8 *)state + 0xF4)) = arg3;
+    func_800EE7F8((f32 *)(state + 0xF8), arg4);
+    return result;
+}
 
 void func_80803E84_bsfirstp(struct player_state_s *arg0) {
     void _bainvisible_entrypoint_7(Actor *, s32, f32, f32, f32);
@@ -3009,7 +3071,7 @@ void bsfirstp_entrypoint_26(s32 arg0) {
     void func_800F7E64(s32, s32);
     void func_80801A5C_bsfirstp(void *);
     s32 func_80802BE8_bsfirstp(s32, f32);
-    s32 func_80803CD4_bsfirstp(s32, s32, s32, s32, f32 *);
+    s32 func_80803CD4_bsfirstp(void *, s32, s32, s32, f32 *);
     void func_80808678_bsfirstp(Actor *, volatile s32);
     void func_80807EEC_bsfirstp(s32);
     void func_80807F24_bsfirstp(s32);
@@ -4228,7 +4290,7 @@ s32 bsfirstp_entrypoint_33(s32 arg0) {
 
 void func_808078F4_bsfirstp(s32 self) {
     void func_8008CF7C(struct player_state_s *);
-    s32 func_80092EC8(struct player_state_s *, s16);
+    void func_80092EC8(struct player_state_s *, s32);
     void func_8009312C(struct player_state_s *, s32);
     void func_8009316C(struct player_state_s *, s32);
     void func_80093230(struct player_state_s *, f32);
@@ -4428,7 +4490,7 @@ void func_80807D70_bsfirstp(s32 arg0) {
 
 void func_80807DD4_bsfirstp(s32 arg0) {
     s32 _bapreload_entrypoint_0(struct player_state_s *, s32, s16 *, s16 *);
-    s32 func_80092EC8(struct player_state_s *, s16);
+    void func_80092EC8(struct player_state_s *, s32);
     void func_8008CF7C(struct player_state_s *);
     void func_80093370(void *, s32);
     void func_8009337C(void *, s32);

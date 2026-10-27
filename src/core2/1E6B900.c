@@ -301,7 +301,7 @@ void func_80092750(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
 void func_80092778(PlayerState *arg0) {
     s32 _bapreload_entrypoint_0(PlayerState *, s32, s16 *, s16 *);
-    s32 func_80092EC8(PlayerState *, s16);
+    void func_80092EC8(PlayerState *, s32);
     void func_8009312C(PlayerState *, s32);
     s32 func_800A3274();
     s16 sp1E;
@@ -411,7 +411,7 @@ void func_80092898(PlayerState *arg0) {
 }
 
 void func_80092A1C(PlayerState *arg0) {
-    s32 func_80092EC8(PlayerState *, s16);
+    void func_80092EC8(PlayerState *, s32);
     void func_8009359C(void *, s32);
     void func_800ADFE0(s16);
     void func_800DBFD8(void *);
@@ -620,7 +620,69 @@ void func_80092EBC(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 20) = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E6B900/func_80092EC8.s")
+void func_80092EC8(PlayerState *arg0, s32 arg1) {
+    void func_80093FD4(s32, s32);
+    u32 func_800A25D0(void *);
+    void func_800ADD80(s16, u8 *);
+    f32 func_800B2354(void *);
+    void func_800B237C(void *, f32 *, f32 *);
+    u8 *func_800B26F0(u8 *);
+    s32 func_800B2840(s32);
+    s32 func_800D6CEC(s32);
+    s32 func_800D70F8(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    s16 func_80100D24(s32, s32, s32, s32, s32, s32);
+    void func_80100E18(s16);
+    s32 sp2C;
+    s32 flag;
+    f32 scale;
+    s32 old;
+    u8 handle;
+    u8 *data;
+
+    data = *(u8 **)((u8 *)arg0 + 0x50);
+    old = *(s16 *)(data + 0xC);
+    if (arg1 != old) {
+        if (old != 0) {
+            func_800D70F8(old, 0);
+            func_800D6CEC(*(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC));
+            *(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xE) = 0;
+            data = *(u8 **)((u8 *)arg0 + 0x50);
+        }
+        handle = *(u8 *)(data + 0x12);
+        if (handle != 0) {
+            func_80100E18((s16)handle);
+            *(u8 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x12) = 0;
+            data = *(u8 **)((u8 *)arg0 + 0x50);
+        }
+        *(s16 *)(data + 0xC) = arg1;
+        func_80093FD4((s32)arg0, arg1);
+        if (arg1 != 0) {
+            sp2C = func_80092B04(arg0, 0);
+            func_800D70F8(*(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC), 1);
+            func_800ADD80(*(s16 *)*(u8 **)((u8 *)arg0 + 0x50), func_800B27E0((u8 *)sp2C));
+            if (*(u8 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x12) == 0) {
+                if (func_800B26F0((u8 *)sp2C) != 0) {
+                    flag = 1;
+                } else {
+                    flag = 0;
+                }
+                *(u8 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x12) = func_80100D24(sp2C, *(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC), flag, func_800A25D0(arg0), 0, 0);
+            }
+            func_800B237C((void *)func_800B2840(sp2C), (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x50), (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x5C));
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x58) = 0.0f;
+            data = *(u8 **)((u8 *)arg0 + 0x50);
+            *(f32 *)(data + 0x50) = *(f32 *)(data + 0x58);
+            data = *(u8 **)((u8 *)arg0 + 0x50);
+            func_800EE7F8((f32 *)(data + 0x64), (f32 *)(data + 0x50));
+            data = *(u8 **)((u8 *)arg0 + 0x50);
+            *(f32 *)(data + 0x70) = *(f32 *)(data + 0x5C);
+            scale = func_800B2354((void *)func_800B2840(sp2C));
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x74) = scale;
+            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x60) = scale;
+        }
+    }
+}
 
 void func_80093070(PlayerState *arg0, s32 arg1, s32 arg2, u8 *arg3) {
     struct VertexListView;

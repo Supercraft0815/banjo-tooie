@@ -250,7 +250,60 @@ void func_80800714_chmusicmenu(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_8080079C_chmusicmenu.s")
+void func_8080079C_chmusicmenu(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
+    void _gcnewoption_entrypoint_27(s32, s32, s32);
+    s32 _gcnewoption_entrypoint_37(s32, s32);
+    void func_800FC660(u32);
+    s32 func_800FCF50(s32);
+    s32 func_80100094(u8 *, s32);
+    void func_80800930_chmusicmenu(u8 *, s32);
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    Actor *actor = (Actor *)arg0;
+    u32 selected;
+    s32 index = arg2;
+
+    switch (arg3) {
+        case 4:
+            if (func_800FCF50(D_808014F4_chmusicmenu[actor->actorData[6]].unk0[index][0])) {
+                if (!actor->unk64_19 && index != actor->actorData[0]) {
+                    _gcnewoption_entrypoint_27(arg1, index, 1);
+                    selected = actor->actorData[0];
+                    if (selected != -1U) {
+                        _gcnewoption_entrypoint_27(arg1, selected, 0);
+                    }
+                    actor->actorData[2] = index;
+                    actor->actorData[0] = index;
+                    actor->actorData[1] = actor->actorData[6];
+                    func_80800610_chmusicmenu(actor);
+                }
+            } else {
+                func_800FC660(0xF);
+            }
+            break;
+        case 3:
+            actor->actorData[6] = index;
+            func_80800930_chmusicmenu(arg0, 2);
+            break;
+        case 0:
+            func_8080021C_chmusicmenu(actor, arg1);
+            break;
+        case 5:
+            if (!actor->unk64_19) {
+                _gcnewoption_entrypoint_37(func_80100094(arg0, 1), 1);
+            }
+            break;
+        case 2:
+            switch (actor->unk70_10) {
+                case 1:
+                    func_80800930_chmusicmenu(arg0, 3);
+                    break;
+                case 2:
+                    func_80800930_chmusicmenu(arg0, 1);
+                    break;
+            }
+            break;
+    }
+}
 
 void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     s32 _capod_entrypoint_21(s32, s32, s32, s32);
@@ -481,7 +534,7 @@ void func_80800F98_chmusicmenu(Actor *arg0, s32 arg1) {
 
 s32 func_80801040_chmusicmenu(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
-    void func_8080079C_chmusicmenu(u8 *, void *, s16, s16);
+    void func_8080079C_chmusicmenu(u8 *, void *, s32, s32);
 
     switch (arg1) {
         case 0x20:
