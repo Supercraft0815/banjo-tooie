@@ -3108,10 +3108,10 @@ void func_80805BA0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80805BFC_chgameselect(Actor *arg0, s32 arg1) {
-    s32 _gcfrontend_entrypoint_14(s32);
+    s16 _gcfrontend_entrypoint_14(s32);
     s32 _gcfrontend_entrypoint_3(s32);
-    s32 _gcfrontend_entrypoint_4(s32);
-    s32 _gcfrontend_entrypoint_5(s32);
+    u8 _gcfrontend_entrypoint_4(s32);
+    u8 _gcfrontend_entrypoint_5(s32);
     void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
     s32 sp30[2];
     s32 temp_s2;
@@ -3383,10 +3383,10 @@ void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
 /* extern */
 
 void func_80806408_chgameselect(Actor *arg0) {
-    s32 _gcfrontend_entrypoint_14(s32);
+    s16 _gcfrontend_entrypoint_14(s32);
     s32 _gcfrontend_entrypoint_3(s32);
-    s32 _gcfrontend_entrypoint_4(s32);
-    s32 _gcfrontend_entrypoint_5(s32);
+    u8 _gcfrontend_entrypoint_4(s32);
+    u8 _gcfrontend_entrypoint_5(s32);
     s32 func_800AA274(s32);
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     void func_808032CC_chgameselect(Unk80132ED0 *, s32, s32, s32);
@@ -3434,8 +3434,8 @@ void func_808064E8_chgameselect(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 void func_80806540_chgameselect(s32 arg0) {
     s32 _gcfrontend_entrypoint_3(s32);
-    s32 _gcfrontend_entrypoint_4(s32);
-    s32 _gcfrontend_entrypoint_5(s32);
+    u8 _gcfrontend_entrypoint_4(s32);
+    u8 _gcfrontend_entrypoint_5(s32);
     void func_800AA054(s32);
     void func_800AA074();
     void func_80806744_chgameselect(void *);
@@ -3508,8 +3508,8 @@ void func_808065F4_chgameselect(Actor *arg0) {
 
 s32 func_808066CC_chgameselect(void) {
     s32 _gcfrontend_entrypoint_3(s32);
-    s32 _gcfrontend_entrypoint_4(s32);
-    s32 _gcfrontend_entrypoint_5(s32);
+    u8 _gcfrontend_entrypoint_4(s32);
+    u8 _gcfrontend_entrypoint_5(s32);
     s32 temp_s3;
     s32 temp_v0;
     s32 var_s0;
@@ -3534,7 +3534,7 @@ s32 func_808066CC_chgameselect(void) {
 }
 
 void func_80806744_chgameselect(void *arg0) {
-    s32 _gcfrontend_entrypoint_5(s32);
+    u8 _gcfrontend_entrypoint_5(s32);
     s32 func_800AA0C4(void);
     s32 func_800AA0D0(void);
     s32 func_800AA120(void);
@@ -3919,7 +3919,7 @@ void func_808073AC_chgameselect(Actor *arg0) {
         s32 entries[8];
         char *buffer;
     } GameSelectTextData;
-    s32 _gcfrontend_entrypoint_5(s32);
+    u8 _gcfrontend_entrypoint_5(s32);
     s32 func_800AA0D0(void);
     s32 func_800AA148(void);
     s32 func_800AA180(s32);
