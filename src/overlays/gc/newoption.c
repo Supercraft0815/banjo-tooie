@@ -1425,7 +1425,45 @@ void func_808027DC_gcnewoption(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80802998_gcnewoption.s")
+void func_80802998_gcnewoption(void *arg0) {
+    s32 _gczoombox_entrypoint_3(u8 *);
+    int _gczoombox_entrypoint_32(u8 *);
+    int _gczoombox_entrypoint_8(u8 *, char *);
+    u32 *_gldbstring_entrypoint_1(u32 *, s16);
+    f32 func_800D8FF8(void);
+    struct OptionDetails {
+        u8 pad0[0x1D];
+        u8 flagsTop : 5; u8 active : 1; u8 flagsLow : 2;
+        u8 pad1E[2];
+        u8 *box;
+        u8 pad24[2];
+        s16 current;
+        s16 start;
+        s16 end;
+        f32 delay;
+        f32 timer;
+        u8 pad34[0x208];
+        u32 *strings;
+    };
+    s16 next;
+    s16 start;
+
+    if (((struct OptionDetails *)arg0)->box != NULL && ((start = ((struct OptionDetails *)arg0)->start) != 0 || ((struct OptionDetails *)arg0)->end != 0)) {
+        if (((struct OptionDetails *)arg0)->timer <= 0.0f) {
+            next = ((struct OptionDetails *)arg0)->current + 1;
+            if (((struct OptionDetails *)arg0)->end < next) {
+                next = start - 1;
+            }
+            _gczoombox_entrypoint_32(((struct OptionDetails *)arg0)->box);
+            _gczoombox_entrypoint_8(((struct OptionDetails *)arg0)->box, (char *)_gldbstring_entrypoint_1(((struct OptionDetails *)arg0)->strings, next));
+            ((struct OptionDetails *)arg0)->active = 1;
+            ((struct OptionDetails *)arg0)->current = next;
+            ((struct OptionDetails *)arg0)->timer = ((struct OptionDetails *)arg0)->delay;
+        } else if (_gczoombox_entrypoint_3(((struct OptionDetails *)arg0)->box) == 3) {
+            ((struct OptionDetails *)arg0)->timer -= func_800D8FF8();
+        }
+    }
+}
 
 s32 func_80802A9C_gcnewoption(u8 *arg0) {
     s32 i;
