@@ -399,7 +399,7 @@ void ncpod_entrypoint_15(void *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 ncpod_entrypoint_16(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     s32 func_8010FAE4(s16 *);
     void *func_80110024(s16 *);
     void ncpod_entrypoint_19(void *, s32);
@@ -426,7 +426,7 @@ s32 ncpod_entrypoint_17(s32 arg0, s32 arg1) {
     s32 func_800A940C(s32);
     void func_800C5148(s32, f32);
     void func_800C51A4(s32, f32);
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     void func_8010FD88(u8 *);
     s32 func_80110014(s32 *);
     void *func_80110024(s16 *);
@@ -621,7 +621,7 @@ s32 ncpod_entrypoint_26(void *arg0, void *arg1, void *arg2, s32 arg3, s32 arg4) 
 /* extern */
 
 s32 ncpod_entrypoint_27(s32 arg0, s32 arg1) {
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     void *func_80110024();
     s32 ncpod_entrypoint_17(s32, s32);
     s32 sp18;

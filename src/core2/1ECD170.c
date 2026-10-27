@@ -455,7 +455,7 @@ u8 *func_800F43A8(s32 arg0) {
 
 void func_800F44DC(void *arg0, s32 arg1) {
     s32 func_800A4C88();
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     s32 var_a1;
     s32 temp_a0;
 

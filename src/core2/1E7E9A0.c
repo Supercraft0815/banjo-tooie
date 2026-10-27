@@ -2,6 +2,7 @@
 
 void func_800A50B0(s32 arg0)
 {
+    void func_8010F9C0(s32, s32);
     func_8010F9C0(func_8008FFE8(),arg0);
 }
 

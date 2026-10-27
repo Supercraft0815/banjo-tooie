@@ -178,7 +178,7 @@ void func_8080040C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
 struct CodeRoomBit { s32 unk0; u16 unk4; u16 unk6; u16 unk8; u8 flag; };
 extern struct CodeRoomBit D_808011F4_chcoderoombits[];
 void *func_80100094(Actor *, u32);
-s32 func_80800E28_chcoderoombits(Actor *);
+void func_80800E28_chcoderoombits(Actor *);
 
 void func_808004B8_chcoderoombits(Actor *arg0) {
     void *sp1C;
@@ -431,7 +431,28 @@ void func_80800D90_chcoderoombits(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_80800E28_chcoderoombits.s")
+void func_80800E28_chcoderoombits(Actor *actor) {
+    struct Item { s32 value; f32 time; s32 state; };
+    struct CodeData { u8 prefix[0x1C]; struct Item items[26]; };
+    struct CodeData *data;
+    f32 phase;
+    s32 i;
+    data = func_80100094(actor, 0);
+    for (i = 0; i < 26; i++) {
+        switch (data->items[i].state) {
+        case 0: break;
+        case 1:
+            phase = (0.2f - data->items[i].time) / 0.2f;
+            data->items[i].state = (s32)(phase * 0.6f);
+            break;
+        case 2:
+            data->items[i].state = 3;
+            data->items[i].time = 0.0f;
+            break;
+        case 3: break;
+        }
+    }
+}
 
 void chcoderoombits_entrypoint_2(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
     void func_800F2EA0(void *, void *);

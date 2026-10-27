@@ -59,7 +59,7 @@ void ncfixposrot_entrypoint_7(s32 arg0, s32 arg1) {
 }
 
 void ncfixposrot_entrypoint_8(s32 arg0, s32 arg1) {
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     s32 func_8011001C(s32 *arg0);
     func_8010F9C0(arg0, 3);
     ncfixposrot_entrypoint_7(func_8011001C((s32 *) arg0), arg1);
@@ -67,7 +67,7 @@ void ncfixposrot_entrypoint_8(s32 arg0, s32 arg1) {
 
 void ncfixposrot_entrypoint_9(s32 *arg0) {
     s32 func_800C53EC(s32, s32);
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     s32 func_8011001C(s32 *arg0);
     u8 *sp1C[2];
     u8 *temp_v0;
@@ -84,7 +84,7 @@ void ncfixposrot_entrypoint_9(s32 *arg0) {
 
 /* extern */
 void ncfixposrot_entrypoint_10(s32 arg0, f32 *arg1, s32 arg2) {
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     s32 func_8011001C(s32 *);
     u8 *sp1C;
     func_8010F9C0(arg0, 3);
@@ -95,7 +95,7 @@ void ncfixposrot_entrypoint_10(s32 arg0, f32 *arg1, s32 arg2) {
 
 /* extern */
 void ncfixposrot_entrypoint_11(s32 arg0, f32 *arg1, s32 arg2) {
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     s32 func_8011001C(s32 *);
     u8 *sp1C;
 

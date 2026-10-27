@@ -891,7 +891,7 @@ s32 func_808014CC_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
     } HitData;
 
     void *func_80100094(Actor *, u32);
-    void func_80801F30_chweldarboss(Actor *, s16, s16);
+    void func_80801F30_chweldarboss(Actor *, s32, s32);
     s32 func_80802100_chweldarboss(Actor *, s32);
     void func_8080227C_chweldarboss(Actor *, s32);
     void func_80801AA0_chweldarboss(Actor *, s32);
@@ -1289,7 +1289,77 @@ void func_80801AA0_chweldarboss(Actor *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/weldarboss/func_80801F30_chweldarboss.s")
+void func_80801F30_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x63];
+        s8 unk63;
+    } WeldarData;
+    void *func_80100094(Actor *, u32);
+    void func_800DA544(s32);
+    s32 _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_10(void);
+    void _gcfrontend_entrypoint_11(void);
+    u32 func_800FDC28(u32);
+    void func_800BF744(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, s32 *);
+    Actor *_subaddiefind_entrypoint_3(s32, s32 *);
+    void func_800FFAB0(Actor *);
+    void func_80803D64_chweldarboss(Actor *);
+    void func_80802214_chweldarboss(Actor *, s32, s32);
+    void func_80803CF0_chweldarboss(Actor *, s32, s32);
+    void func_808036C8_chweldarboss(Actor *);
+    s32 func_808033D8_chweldarboss(Actor *);
+    WeldarData *data;
+    s32 iterator;
+    Actor *actor;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0x1355:
+    case 0x1356:
+        func_800DA544(0x174);
+        _gcfrontend_entrypoint_9(0x28);
+        func_80803D64_chweldarboss(arg0);
+        func_80801AA0_chweldarboss(arg0, 7);
+        func_800FDC28(7);
+        func_800BF744(1, 0);
+        actor = _subaddiefind_entrypoint_2(0x3A7, &iterator);
+        while (actor != NULL) {
+            if (actor->position[2] < -2600.0f) {
+                func_800FFAB0(actor);
+            }
+            actor = _subaddiefind_entrypoint_3(0x3A7, &iterator);
+        }
+        break;
+    case 0x135D:
+        func_80801AA0_chweldarboss(arg0, 0x2E);
+        break;
+    case 0x135E:
+        func_808036C8_chweldarboss(arg0);
+        func_80802214_chweldarboss(arg0, 0x135F, 6);
+        func_80803CF0_chweldarboss(arg0, 0x1F, 0x30);
+        break;
+    case 0x135F:
+        func_80803D64_chweldarboss(arg0);
+        func_80801AA0_chweldarboss(arg0, 8);
+        data->unk63 = func_808033D8_chweldarboss(arg0);
+        break;
+    case 0x1359:
+        if (arg0->unk70_10 == 0xF) {
+            func_80803D64_chweldarboss(arg0);
+            func_80801AA0_chweldarboss(arg0, 0x12);
+            data->unk63 = 3;
+        }
+        break;
+    case 0xCEB:
+        if (arg2 > 0) {
+            _gcfrontend_entrypoint_11();
+        } else {
+            _gcfrontend_entrypoint_10();
+        }
+        break;
+    }
+}
 
 s32 func_80802100_chweldarboss(Actor *arg0, s32 arg1) {
     typedef struct {

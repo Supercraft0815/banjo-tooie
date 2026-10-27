@@ -1176,12 +1176,12 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
 /* extern */
 
 void func_8080219C_chfactoryrobot(void *arg0) {
-    s32 func_800E8C08(s32, u8, void *);
+    void func_800E8C08(u8);
     u8 temp_a1;
 
     temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x28)));
     if (temp_a1 != 0) {
-        func_800E8C08(temp_a1 & 0xFF, temp_a1, arg0);
+        func_800E8C08(temp_a1);
         (*(u8 *)((s8 *)(arg0) + (0x28))) = 0U;
     }
 }
@@ -1209,7 +1209,59 @@ void func_808021D4_chfactoryrobot(void *arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/robot/func_80802240_chfactoryrobot.s")
+union RobotMessage { void *pointer; s32 value; };
+
+s32 func_80802240_chfactoryrobot(Actor *arg0, s32 arg1, union RobotMessage arg2) {
+    void _capod_entrypoint_14(void);
+    u8 func_800E8B74(u32);
+    void func_800E8C08(u8);
+    void func_800E8D28(u8, f32);
+    void func_800E8D5C(u8, void *, s16);
+    void func_800E8DB0(u8, s32);
+    Actor *func_80108528(s32, f32[3], s32, Actor **);
+    s32 func_808025D4_chfactoryrobot(Actor *);
+    extern s32 D_80802AF4_chfactoryrobot;
+    struct RobotData {
+        Unk80132ED0 *markers[4];
+        u8 sound;
+    };
+    Actor *spawned;
+    u8 sound;
+
+    switch ((int)arg1) {
+    case 0x3D:
+        spawned = func_80108528(0x3BE, arg0->position, 0, &arg0);
+        if (spawned != NULL) {
+            spawned->unk74_7 = arg0->unk74_7;
+        }
+        break;
+    case 0x2E:
+        _capod_entrypoint_14();
+        break;
+    case 0x1F:
+        func_808021D4_chfactoryrobot(arg0, arg2.value);
+        break;
+    case 0x95:
+        func_808025D4_chfactoryrobot(arg0);
+        break;
+    case 0x29:
+        ((struct RobotData *)arg0->actorData)->sound = func_800E8B74(0);
+        func_800E8DB0(((struct RobotData *)arg0->actorData)->sound, 6);
+        func_800E8D28(((struct RobotData *)arg0->actorData)->sound, 1.2f);
+        func_800E8D5C(((struct RobotData *)arg0->actorData)->sound, &D_80802AF4_chfactoryrobot, 3);
+        break;
+    case 0x2A:
+        sound = ((struct RobotData *)arg0->actorData)->sound;
+        if (sound != 0) {
+            func_800E8C08(sound);
+            ((struct RobotData *)arg0->actorData)->sound = 0;
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /* extern */
 

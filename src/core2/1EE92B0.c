@@ -1,6 +1,54 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE92B0/func_8010F9C0.s")
+void func_8010F9C0(s32 arg0, s32 arg1) {
+    s32 _ncfixposrot_entrypoint_0(void);
+    void _ncfixposrot_entrypoint_1(s32);
+    s16 _ncpod_entrypoint_0(s32);
+    void _ncpod_entrypoint_1(s16);
+    s32 func_80110424(void *, s32);
+    void func_80110B68(void *, s32);
+    void *object;
+
+    if (arg1 != *(s16 *)(arg0 + 0x16)) {
+        switch ((int)*(s16 *)(arg0 + 0x16)) {
+        case 1:
+            break;
+        case 3:
+            _ncfixposrot_entrypoint_1(*(s32 *)(arg0 + 8));
+            *(s32 *)(arg0 + 8) = 0;
+            break;
+        case 8:
+            _ncpod_entrypoint_1(*(s16 *)(arg0 + 0x14));
+            *(s16 *)(arg0 + 0x14) = 0;
+            break;
+        case 2:
+            object = *(void **)(arg0 + 4);
+            if (object != NULL) {
+                func_80110B68(object, 0);
+            }
+            break;
+        }
+        *(s16 *)(arg0 + 0x16) = arg1;
+        switch ((int)arg1) {
+        case 1:
+            break;
+        case 3:
+            *(s32 *)(arg0 + 8) = _ncfixposrot_entrypoint_0();
+            break;
+        case 2:
+            object = *(void **)(arg0 + 4);
+            if (object != NULL) {
+                func_80110B68(object, 1);
+            } else {
+                *(s32 *)(arg0 + 4) = func_80110424((void *)arg0, *(s32 *)(arg0 + 0x1C));
+            }
+            break;
+        case 8:
+            *(s16 *)(arg0 + 0x14) = _ncpod_entrypoint_0(*(s32 *)(arg0 + 0x1C));
+            break;
+        }
+    }
+}
 
 s32 func_8010FAE4(s16 *arg0) {
     return arg0[11];
@@ -20,7 +68,7 @@ void func_8010FAEC(s32 arg0, void *arg1) {
 
 void *func_8010FB34(s32 arg0, s32 arg1) {
     s32 func_800DA298(s32);
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     s32 func_80110424(void *, s32);
     void *func_80114BD4(void);
     void *func_80115118(s32);
@@ -51,7 +99,7 @@ void *func_8010FB34(s32 arg0, s32 arg1) {
 
 void func_8010FBD4(void *arg0) {
     struct player_state_s;
-    s32 func_8010F9C0(s32, s32);
+    void func_8010F9C0(s32, s32);
     void func_801104F4(struct player_state_s *);
     void func_80114C7C(void *);
     void func_801150F8(void *);
