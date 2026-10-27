@@ -1809,9 +1809,10 @@ void func_80803678_chgameselect()
     func_800D37C0();
 }
 
-void func_80803698_chgameselect()
+void func_80803698_chgameselect(s32 arg0, s32 arg1)
 {
-    _glsavegame_entrypoint_10();
+    s32 _glsavegame_entrypoint_10(s32, s32);
+    _glsavegame_entrypoint_10(arg0, arg1);
 }
 
 void func_808036B8_chgameselect()
