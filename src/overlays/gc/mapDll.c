@@ -282,7 +282,98 @@ void gcmapDll_entrypoint_2(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapDll/gcmapDll_entrypoint_3.s")
+void gcmapDll_entrypoint_3(u8 *arg0) {
+    s32 func_800D674C(u32);
+    void _gcmapsects_entrypoint_15(s32);
+    s32 _glzone_entrypoint_0(u8 *);
+    u8 *func_800B2720(u8 *);
+    s32 func_800B2840(s32);
+    u8 *func_800B284C(u8 *);
+    s32 func_800BF744(s16, s16);
+    void func_800D70D0(s32);
+    void func_800D71F4(s32);
+    s32 func_800D731C(s32);
+    u8 *func_800DBFF8(void);
+    s32 func_800EA05C(void);
+    s32 func_800EA068(s32);
+    void rare_memcpy(void *, void *, int);
+    s32 i;
+    u16 asset;
+    u16 asset2;
+    u8 *zones;
+
+    for (i = 0; i < 60; i++) {
+        ((s32 *)(arg0 + 0x88))[i] = 0;
+    }
+    func_800BF744(1, 0);
+    gcmapDll_entrypoint_2((s32)arg0);
+    arg0[0x87] = 0xFF;
+    arg0[0x86] = arg0[0x87];
+    arg0[0x85] = 0xFF;
+    *(s32 *)(arg0 + 0x17C) = 0;
+    rare_memcpy(arg0 + 0x58, func_80800000_gcmapDll(func_800EA05C()), 0xE);
+    asset = *(u16 *)(arg0 + 0x5A);
+    arg0[0x55] = 0;
+    arg0[0x29] = arg0[0x55];
+    *(s32 *)(arg0 + 0x40) = 0;
+    *(s32 *)(arg0 + 0x14) = *(s32 *)(arg0 + 0x40);
+    if (asset != 0) {
+        *(s32 *)(arg0 + 0xC) = func_800D674C((s32)asset);
+        func_800D70D0(1);
+        func_800D71F4(1);
+        *(u8 **)arg0 = func_800B2720(*(u8 **)(arg0 + 0xC));
+        *(s32 *)(arg0 + 0x10) = func_800B2840(*(s32 *)(arg0 + 0xC));
+        zones = func_800B284C(*(u8 **)(arg0 + 0xC));
+        *(u8 **)(arg0 + 0x20) = zones;
+        if (zones != 0 && func_800EA068(0x80) != 0) {
+            *(s32 *)(arg0 + 0x17C) = _glzone_entrypoint_0(*(u8 **)(arg0 + 0x20));
+        }
+    } else {
+        *(s32 *)(arg0 + 0xC) = 0;
+        *(s32 *)arg0 = 0;
+        *(s32 *)(arg0 + 0x10) = 0;
+        *(s32 *)(arg0 + 0x20) = 0;
+    }
+    asset2 = *(u16 *)(arg0 + 0x5C);
+    *(s32 *)(arg0 + 0x1B0) = 0;
+    if (asset2 != 0) {
+        *(s32 *)(arg0 + 0x38) = func_800D674C((s32)asset2);
+        func_800D70D0(1);
+        func_800D71F4(1);
+        *(u8 **)(arg0 + 0x2C) = func_800B2720(*(u8 **)(arg0 + 0x38));
+        *(s32 *)(arg0 + 0x3C) = func_800B2840(*(s32 *)(arg0 + 0x38));
+        *(u8 **)(arg0 + 0x4C) = func_800B284C(*(u8 **)(arg0 + 0x38));
+    } else {
+        *(s32 *)(arg0 + 0x38) = 0;
+        *(s32 *)(arg0 + 0x2C) = 0;
+        *(s32 *)(arg0 + 0x3C) = 0;
+        *(s32 *)(arg0 + 0x4C) = 0;
+    }
+    *(u8 **)(arg0 + 0x178) = func_800DBFF8();
+    if (*(s32 *)(arg0 + 0xC) != 0) {
+        arg0[0x28] = func_800D731C(*(u16 *)(arg0 + 0x5A));
+    } else {
+        arg0[0x28] = 0;
+    }
+    if (*(s32 *)(arg0 + 0x38) != 0) {
+        arg0[0x54] = func_800D731C(*(u16 *)(arg0 + 0x5C));
+    } else {
+        arg0[0x54] = 0;
+    }
+    if (*(s32 *)arg0 != 0) {
+        arg0[0x2A] = 1;
+    } else {
+        arg0[0x2A] = 0;
+    }
+    if (*(s32 *)(arg0 + 0x2C) != 0) {
+        arg0[0x56] = 1;
+    } else {
+        arg0[0x56] = 0;
+    }
+    _gcmapsects_entrypoint_15((s32)arg0);
+    func_808005A8_gcmapDll(arg0);
+    arg0[0x2B] = arg0[0x57] = 1;
+}
 
 /* extern */
 
@@ -385,7 +476,7 @@ void gcmapDll_entrypoint_6(void *arg0, s32 arg1) {
     s32 _dbtex_entrypoint_0(s32);
     s32 func_800B27FC(s32);
     s32 func_800D5B24();
-    s32 func_800D674C(u16);
+    s32 func_800D674C(u32);
     s16 *func_80800000_gcmapDll(s32);
     void *sp1C;
     void *temp_v0;

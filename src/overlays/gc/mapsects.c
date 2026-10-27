@@ -1206,7 +1206,64 @@ s32 gcmapsects_entrypoint_21(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_22.s")
+s32 gcmapsects_entrypoint_22(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
+    s32 func_800AB868(s32, s32, f32 *, f32 *, f32, f32 *, f32 *, f32 *, s32);
+    u8 *func_800B2720(u8 *);
+    s32 func_800B2840(s32);
+    void func_800BEB58(s32);
+    s32 func_800D62E4(s32);
+    s32 func_800D674C(s32);
+    struct Section {
+        u8 pad0[0x40];
+        u16 asset;
+        u16 alternate;
+        u8 pad44[8];
+        u32 unused : 1;
+        u32 flag : 1;
+        u32 rest : 30;
+    } *section;
+    s32 result = 0;
+    s32 asset;
+    s32 list;
+    s32 alternate_list;
+    s32 i;
+    s32 alternate;
+
+    if (arg0[0x77] == 0) {
+        return 0;
+    }
+    func_800BEB58(0);
+    for (i = 0; i < arg0[0x77]; i++) {
+        section = (struct Section *)(*(u8 **)(arg0 + 0x68) + i * 0x58);
+        if (section->flag && (asset = func_800D674C(section->asset))) {
+            func_800D62E4(((struct Section *)(*(u8 **)(arg0 + 0x68) + i * 0x58))->asset);
+            if ((arg4 & 0x1F00) == 0x1F00) {
+                result = 0;
+            } else {
+                list = func_800B2720(asset);
+                result = func_800AB868(list, func_800B2840(asset),
+                    (f32 *)(*(u8 **)(arg0 + 0x68) + i * 0x58), 0, 1.0f,
+                    arg1, arg2, arg3, arg4);
+            }
+            if (result != 0) {
+                func_800BEB58(asset);
+                break;
+            }
+            alternate = ((struct Section *)(*(u8 **)(arg0 + 0x68) + i * 0x58))->alternate;
+            if (alternate != 0) {
+                asset = func_800D674C(alternate & 0xFFFFFFFF);
+                func_800D62E4(((struct Section *)(*(u8 **)(arg0 + 0x68) + i * 0x58))->alternate);
+                alternate_list = func_800B2720(asset);
+                if (alternate_list != 0) {
+                    result = func_800AB868(alternate_list, func_800B2840(asset),
+                        (f32 *)(*(u8 **)(arg0 + 0x68) + i * 0x58), 0, 1.0f,
+                        arg1, arg2, arg3, arg4);
+                }
+            }
+        }
+    }
+    return result;
+}
 
 s32 gcmapsects_entrypoint_23(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, s32 arg6) {
     s32 func_800AC848(s32, s32, f32 *, f32 *, f32, f32 *, f32 *, f32, f32 *, s32, s32);
