@@ -41,3 +41,7 @@ D_8007A219 = D_80079FA0 + 0x279;
 D_8007A482 = D_80079FA0 + 0x4E2;
 D_8007AE58 = D_80079FA0 + 0xEB8;
 D_8007AE78 = D_80079FA0 + 0xED8;
+
+/* Aliases within sound list storage. */
+D_80126CC0 = D_80126CC0_storage;
+D_80126CC4 = D_80126CC0_storage + 4;

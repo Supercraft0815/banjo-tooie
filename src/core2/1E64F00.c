@@ -1,5 +1,13 @@
 #include "common.h"
 
+typedef struct {
+    s16 *start;
+    s16 *end;
+    u8 padding[8];
+} SoundListStorage;
+
+SoundListStorage D_80126CC0_storage;
+
 void func_8008B610(void) {
     s32 func_8008BBC0(s32, s32);
     s32 heap_alloc(s32);
@@ -14,7 +22,9 @@ void func_8008B610(void) {
     func_8008BBC0(temp_v0, temp_a1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008B64C.s")
+void func_8008B64C(void) { void func_800DFCC0(s16); void heap_free(void *); s16 *entry; s16 value; entry = D_80126CC0_storage.start; while (entry < D_80126CC0_storage.end) { if (entry[2] != 0) { value = entry[0]; if (value != 0) { func_800DFCC0(value); entry[0] = 0; } entry[2] = 0; } entry += 3; } heap_free(D_80126CC0_storage.start);
+    D_80126CC0_storage.start = D_80126CC0_storage.end = NULL;
+}
 
 void func_8008B6E0(void) {
     void func_800DFCC0(s16);
