@@ -1,4 +1,18 @@
 #include "common.h"
+typedef struct {
+    s16 width, height;
+    s32 position[3];
+    s32 color[3];
+    s16 alpha;
+    u8 unk1E, unk1F, unk20, unk21, unk22, unk23;
+    s32 period;
+    f32 angle, scaleX, scaleY, depth;
+    f32 matrix[4][4];
+    s32 (*callback)(s32);
+    s32 callbackArg;
+    void *sprite;
+    void *frameSprite;
+} SpriteSettings;
 #include "core2/1EBB4F0.h"
 
 s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
@@ -10,7 +24,7 @@ s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
   s32 func_800EE7F8(s32, s32);
   extern f32 D_80125D90;
   extern f32 D_80125D94;
-  extern s32 D_8012D470;
+  extern SpriteSettings D_8012D470;
   extern s16 D_8012D48C;
   f32 sp18;
   f32 temp_f0;
@@ -56,7 +70,7 @@ s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
 
 void func_800E1DF4(u8 *arg0, u8 *arg1) {
     extern s32 D_801231B0;
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     Gfx *gfx;
 
     gfx = *(Gfx **)arg0;
@@ -106,7 +120,7 @@ void func_800E1DF4(u8 *arg0, u8 *arg1) {
 
 void func_800E204C(u8 *arg0, u8 *arg1) {
     void func_800F26B0(f32 (*)[4], f32, f32, f32);
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     extern f32 D_8012D4A8[4];
     s16 width;
     s16 globalWidth;
@@ -163,9 +177,9 @@ void func_800E2180(u8 *arg0, u8 *arg1, s32 arg2) {
     ptr3->words.w1 = osVirtualToPhysical(address);
 }
 
-void func_800E2260(u8 *arg0, u8 *arg1) { extern s32 D_8012D470; Gfx *temp_v1; if ((((*(s16 *)((s8 *)(&D_8012D470) + (0))) != (*(s16 *)((s8 *)(arg1) + (4)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (0))) != 0)) || (((*(s16 *)((s8 *)(&D_8012D470) + (2))) != (*(s16 *)((s8 *)(arg1) + (6)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (2))) != 0)) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) != 1.0f) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x30))) != 1.0f)) { temp_v1 = (*(Gfx **)arg0)++; temp_v1->words.w0 = 0xD8380002; temp_v1->words.w1 = 0x40; } }
+void func_800E2260(u8 *arg0, u8 *arg1) { extern SpriteSettings D_8012D470; Gfx *temp_v1; if ((((*(s16 *)((s8 *)(&D_8012D470) + (0))) != (*(s16 *)((s8 *)(arg1) + (4)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (0))) != 0)) || (((*(s16 *)((s8 *)(&D_8012D470) + (2))) != (*(s16 *)((s8 *)(arg1) + (6)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (2))) != 0)) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) != 1.0f) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x30))) != 1.0f)) { temp_v1 = (*(Gfx **)arg0)++; temp_v1->words.w0 = 0xD8380002; temp_v1->words.w1 = 0x40; } }
 
-s32 func_800E22F0(s32 arg0, s32 arg1) { void func_800E8078(Gfx **); void func_800E23A4(void); extern s32 D_8012D470;
+s32 func_800E22F0(s32 arg0, s32 arg1) { void func_800E8078(Gfx **); void func_800E23A4(void); extern SpriteSettings D_8012D470;
     if (*(u8 *)((u8 *)&D_8012D470 + 0x1F) == 0 || *(u8 *)((u8 *)&D_8012D470 + 0x20) != 0) {
         Gfx *ptr = (*(Gfx **)arg0)++;
         ptr->words.w1 = 0;
@@ -186,7 +200,7 @@ s32 func_800E22F0(s32 arg0, s32 arg1) { void func_800E8078(Gfx **); void func_80
 }
 
 void func_800E23A4(void) {
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     *(s16 *)((u8 *)&D_8012D470 + 2) = 0;
     *(s16 *)((u8 *)&D_8012D470 + 0) = *(s16 *)((u8 *)&D_8012D470 + 2);
     *(s32 *)((u8 *)&D_8012D470 + 0xC) = 0;
@@ -253,7 +267,7 @@ void func_800E24D8(s32 arg0) {
 }
 
 void func_800E24E4(s32 arg0, s32 arg1) {
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     (*(s32 *)((s8 *)(&D_8012D470) + (0x78))) = arg0;
     (*(s32 *)((s8 *)(&D_8012D470) + (0x7C))) = arg1;
 }
@@ -270,19 +284,19 @@ void func_800E2530(f32 arg0) {
 }
 
 void func_800E253C(f32 arg0) {
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     (*(f32 *)((s8 *)(&D_8012D470) + (0x30))) = arg0;
     (*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) = (f32) (*(f32 *)((s8 *)(&D_8012D470) + (0x30)));
 }
 
 void func_800E2554(f32 arg0, f32 arg1) {
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     (*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) = arg0;
     (*(f32 *)((s8 *)(&D_8012D470) + (0x30))) = arg1;
 }
 
 void func_800E2568(s32 arg0, s32 arg1) {
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     (*(s16 *)((s8 *)(&D_8012D470) + (0))) = (s16) arg0;
     (*(s16 *)((s8 *)(&D_8012D470) + (2))) = (s16) arg1;
 }
@@ -302,7 +316,7 @@ void func_800E2594(u32 arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_
 void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_800AF5F0(void *);
     TextureFrame *func_800AF5FC(s16 *, s32);
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     TextureFrame *frame;
     u8 *base;
     Gfx *color;
@@ -538,7 +552,7 @@ f32 func_800E2DF0(void) {
     s32 func_800A89F8();
     f32 func_800A8AF0(s32);
     extern f32 D_80125D98;
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     f32 var_f2;
 
     var_f2 = (*(f32 *)((s8 *)(&D_8012D470) + (0x2C)));
@@ -548,12 +562,65 @@ f32 func_800E2DF0(void) {
     return var_f2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBB4F0/func_800E2E48.s")
+void func_800E2E48(u8 *arg0, u8 *arg1, s32 arg2, int *arg3) {
+    void func_800191F8(f32, f32, f32);
+    s32 func_80019CD4(void);
+    void func_800E1DF4();
+    void func_800E42F0();
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    void mlMtxApply(Mtx *);
+    void mlMtxRotRoll(f32);
+    void mlMtxScale_xyz(f32, f32, f32);
+    extern SpriteSettings D_8012D470;
+    f32 position[3];
+    f32 scaleX;
+    f32 scaleY;
+    s32 width;
+    s32 height;
+    f32 scale;
+    Gfx *list;
+    Gfx *pop;
+
+    func_800E42F0(arg0, 0);
+    func_800E1DF4(arg0, arg1);
+    if (D_8012D470.width != 0) {
+        width = D_8012D470.width;
+    } else {
+        width = *(s16 *)(arg1 + 8) * 4;
+    }
+    if (D_8012D470.height != 0) {
+        height = D_8012D470.height;
+    } else {
+        height = *(s16 *)(arg1 + 10) * 4;
+    }
+    scale = func_800E2DF0();
+    scaleX = (scale * width) / *(s16 *)(arg1 + 8);
+    scaleY = (D_8012D470.scaleY * height) / *(s16 *)(arg1 + 10);
+    func_800EFA4C(position, (f32)(arg3[0] - 0x260), (f32)(0x1C8 - arg3[1]), D_8012D470.depth);
+    func_80019CD4();
+    func_800191F8(position[0], position[1], position[2]);
+    if (D_8012D470.angle != 0.0f) {
+        mlMtxRotRoll(D_8012D470.angle);
+    }
+    if (width != *(s16 *)(arg1 + 4) || height != *(s16 *)(arg1 + 6) || scale != 1.0f || D_8012D470.scaleY != 1.0f) {
+        mlMtxScale_xyz((scaleX * *(s16 *)(arg1 + 8)) / *(s16 *)(arg1 + 4), (scaleY * *(s16 *)(arg1 + 10)) / *(s16 *)(arg1 + 6), 1.0f);
+    }
+    mlMtxApply(*(Mtx **)(arg0 + 4));
+    list = (*(Gfx **)arg0)++;
+    list->words.w0 = 0xDA380002;
+    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    (*(Mtx **)(arg0 + 4))++;
+    func_800E2180(arg0, arg1, arg2);
+    pop = (*(Gfx **)arg0)++;
+    pop->words.w0 = 0xD8380002; pop->words.w1 = 0x40;
+    func_800E22F0((s32)arg0, (s32)arg1);
+    func_800E4640((Gfx **)arg0);
+}
 
 void func_800E30E0(s32 arg0, void *arg1, s32 arg2, void *arg3) {
     TextureFrame *func_800AF5FC(s16 *, s32);
-    void func_800E2E48(s32, void *, s32, s32 *);
-    extern s32 D_8012D470;
+    void func_800E2E48(u8 *, u8 *, s32, int *);
+    extern SpriteSettings D_8012D470;
     s32 pos[3];
     f32 scale;
     s32 width;
@@ -611,7 +678,7 @@ s32 func_800E32CC(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
     void mlMtxApply(Mtx *);
     void mlMtxRotRoll(f32);
     void mlMtxScale_xyz(f32, f32, f32);
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     TextureFrame *frame;
     f32 pos[3];
     f32 sx;
@@ -674,7 +741,7 @@ s32 func_800E32CC(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
 }
 void func_800E35E0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
     s32 func_800E32CC(s32, s32, s32 *, s32);
-    extern s32 D_8012D470;
+    extern SpriteSettings D_8012D470;
     s32 var_t1;
     s32 var_v1;
     s32 sp20[2];

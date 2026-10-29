@@ -1,13 +1,58 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/canarymarycage/func_80800000_chcanarymarycage.s")
+void func_80800000_chcanarymarycage(Actor *arg0, s32 arg1) {
+    void func_800DA3B8(s32, s32);
+    s32 func_800EFFB4(f32 *, f32, f32 *);
+    void func_800F497C(s32);
+    void func_800F49A8(s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A00(s32, s32);
+    void func_800F4AC0(s32, f32 *, f32);
+    void func_800F5A00(s32, f32 *);
+    s32 func_800F6438(u32);
+    void func_80101FDC(Actor *, u32);
+    void func_8010A570(Actor *);
+    extern f32 D_80800610_chcanarymarycage[3];
+    extern f32 D_8080061C_chcanarymarycage[3];
+    void func_8010D5DC(s32, s32);
+    f32 position[3];
+    s32 limit;
+
+    func_80101FDC(arg0, arg1);
+    switch ((int)arg0->unk70_10) {
+    case 2:
+        break;
+    case 3:
+        for (arg1 = 0, limit = 8; arg1 != limit; arg1++) {
+            if (func_800F6438(arg1)) {
+                func_800F5A00(arg1, position);
+                if (func_800EFFB4(position, 420.0f, D_80800610_chcanarymarycage)) {
+                    func_800F497C(arg1);
+                    func_800F49A8(arg1, 1);
+                    func_800F4A00(arg1, 1);
+                    func_800F49D4(arg1, func_8010D5DC, arg0->unk0);
+                    func_800F4AC0(arg1, D_8080061C_chcanarymarycage, 200.0f);
+                    arg0->unk79_4++;
+                }
+            }
+        }
+        if (arg0->unk79_4 == 0) {
+            func_80800000_chcanarymarycage(arg0, 4);
+        }
+        break;
+    case 4:
+        func_800DA3B8(0, 1);
+        func_8010A570(arg0);
+        break;
+    }
+}
 
 void func_8080018C_chcanarymarycage(Actor *arg0) {
     void func_8008FAC8(f32 *, f32, f32, f32);
     s32 func_8008FB10(f32 *, f32, f32, f32);
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    s32 func_80800000_chcanarymarycage(Actor *, s32);
+    void func_80800000_chcanarymarycage(Actor *, s32);
     switch (arg0->unk70_10) {
     case 1: {
         func_800EEB9C((f32 *)arg0->actorData, arg0->rotation[1] + 180.0f, 60.0f);
@@ -33,7 +78,7 @@ void func_80800284_chcanarymarycage(Actor *arg0) {
     s32 _subaddielink_entrypoint_0(u8 *);
     s32 func_800DA298(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80800000_chcanarymarycage(Actor *, s32);
+    void func_80800000_chcanarymarycage(Actor *, s32);
     u8 *sp1C;
 
     sp1C = func_80100094(arg0, 0);
@@ -62,7 +107,7 @@ void func_80800338_chcanarymarycage(Actor *arg0, s32 *arg1) {
     s32 func_800DA544(s32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    s32 func_80800000_chcanarymarycage(Actor *, s32);
+    void func_80800000_chcanarymarycage(Actor *, s32);
     extern s32 D_80800628_chcanarymarycage;
     extern s32 D_80800668_chcanarymarycage;
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800668_chcanarymarycage);

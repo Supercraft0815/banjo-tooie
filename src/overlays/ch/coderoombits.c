@@ -175,7 +175,7 @@ void func_8080040C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-struct CodeRoomBit { s32 unk0; u16 unk4; u16 unk6; u16 unk8; u8 flag; };
+struct CodeRoomBit { u8 * unk0; u16 unk4; u16 unk6; u16 unk8; u8 flag; };
 extern struct CodeRoomBit D_808011F4_chcoderoombits[];
 void *func_80100094(Actor *, u32);
 void func_80800E28_chcoderoombits(Actor *);
@@ -199,7 +199,97 @@ void func_808004B8_chcoderoombits(Actor *arg0) {
     func_80800E28_chcoderoombits(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/func_8080052C_chcoderoombits.s")
+s32 func_8080052C_chcoderoombits(Actor *arg0, u8 *arg1) {
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800DA298(s32);
+    s32 func_800DA544(s32);
+    u32 func_800F54E4(void);
+    s32 func_800F7F98(s32, u32);
+    void func_800FC660(u32);
+    s32 func_8080077C_chcoderoombits(Actor *, struct CodeRoomBit *);
+    s32 func_80800B40_chcoderoombits(s32, void *);
+    void func_8080091C_chcoderoombits(Actor *);
+    void func_80800998_chcoderoombits(Actor *);
+    void func_80800D90_chcoderoombits(Actor *, s32);
+    struct CodeProgress { s16 count; };
+    struct RoomData { u8 pad[0x19]; u8 flag; u8 pad1A[0x13A]; struct CodeProgress progress[23]; };
+    struct CodeProgress *progress;
+    s16 index;
+    s32 played;
+    s32 normal;
+    s32 special;
+    struct CodeRoomBit *bit;
+    s32 oldFlag;
+    struct RoomData *data;
+
+    progress = ((struct RoomData *)func_80100094(arg0, 0))->progress;
+    normal = 0;
+    special = 0;
+    played = 0;
+    data = func_80100094(arg0, 0);
+    bit = D_808011F4_chcoderoombits;
+    if (bit->unk0 != 0) {
+        do {
+            if (func_80800B40_chcoderoombits((s32)arg0, bit) != 0) {
+                goto next;
+            }
+            {
+                index = progress->count;
+                if (arg1[0] != ((u8 *)bit->unk0)[index]) {
+                    progress->count = 0;
+                    goto next;
+                }
+                if (bit->flag != 0 && data->flag == 0) {
+                    progress->count = 0;
+                    goto next;
+                }
+                if (bit->flag == 0 && data->flag != 0) {
+                    progress->count = 0;
+                    goto next;
+                }
+                if (bit->flag != 0) {
+                    special = 1;
+                } else {
+                    normal = 1;
+                }
+                /* Keep the update and test together for IDO scheduling. */
+                progress->count = index + 1; if (*(u8 *)(bit->unk0 + progress->count) == 0) {
+                    func_808004B8_chcoderoombits(arg0);
+                    return func_8080077C_chcoderoombits(arg0, bit);
+                }
+                if (bit->flag == 0 && played == 0) {
+                    played = 1;
+                    func_80800D90_chcoderoombits(arg0, arg1[1] - 1);
+                    func_800FC660(0xE);
+                }
+            }
+    next:
+            bit++;
+            progress++;
+        } while (bit->unk0 != 0);
+    }
+    oldFlag = data->flag;
+    if (special == 0 && normal != 0 && data->flag != 0) {
+        func_8080091C_chcoderoombits(arg0);
+    }
+    if (special != 0 && normal == 0) {
+        func_80800998_chcoderoombits(arg0);
+        func_80800E28_chcoderoombits(arg0);
+    }
+    if (normal == 0 && special == 0) {
+        func_808004B8_chcoderoombits(arg0);
+        if (oldFlag == 0) {
+            func_800FC660(0xF);
+            if (func_800DA298(0x668) == 0) {
+                func_800DA544(0x668);
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0x115A, 6, NULL, 0);
+                func_800F7F98(func_800F54E4(), 1);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 s32 func_8080077C_chcoderoombits(Actor *arg0, struct CodeRoomBit *arg1) {
     s32 _gcfrontend_entrypoint_9(s32);
@@ -297,7 +387,7 @@ void chcoderoombits_entrypoint_1(s32 arg0, Unk80132ED0 *arg1) {
     void func_800DBEFC(s32 *, s32, f32 *);
     void func_800EC398(Unk80132ED0 *, f32 *);
     void func_80101FDC(Actor *, u32);
-    s32 func_8080052C_chcoderoombits(Actor *, void *);
+    s32 func_8080052C_chcoderoombits(Actor *arg0, u8 *arg1);
     extern struct { u8 unk0; u8 unk1; } D_808011B8_chcoderoombits[5][6];
     f32 origin[3];
     f32 position[3];

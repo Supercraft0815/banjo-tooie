@@ -130,7 +130,7 @@ void func_800B60C0(Gfx **arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void func_800E253C(f32);
     void func_800E2568(s32, s32);
     void func_800E257C(s32);
-    void func_800E2E48(s32, void *, s32, s32 *);
+    void func_800E2E48(u8 *, u8 *, s32, s32 *);
     s32 func_800E7988(Gfx **, s32);
     void func_800E7A2C(Gfx **);
     extern s32 D_80128180;
@@ -165,7 +165,7 @@ void func_800B60C0(Gfx **arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     func_800E2568(imageWidth, imageHeight);
     func_800E253C(arg3);
     func_800E7988(arg0, 0x80000);
-    func_800E2E48((s32)arg0, image, *(s16 *)((u8 *)&D_80128180 + 0x2A) - 1, coords);
+    func_800E2E48((u8 *)arg0, image, *(s16 *)((u8 *)&D_80128180 + 0x2A) - 1, coords);
     *arg1 += (f32)width * arg3;
     func_800E7A2C(arg0);
     func_800E7988(arg0, 0);
