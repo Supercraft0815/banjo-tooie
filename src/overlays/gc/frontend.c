@@ -206,7 +206,79 @@ s32 func_80800450_gcfrontend(s32 arg0) {
     return 4;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/frontend/func_80800520_gcfrontend.s")
+void func_80800520_gcfrontend(s32 arg0) {
+    void func_800D3A14(s32);
+    void func_800D3A20(s32);
+    void func_800D3A54(s32, s32);
+    void func_800D3A88(void);
+    void func_800D3AF0(s32);
+    int func_800DC298(f32);
+    extern s32 D_808008FC_gcfrontend[][2];
+    s16 value;
+    s32 offset;
+    u16 *entry;
+    int count;
+    int end;
+
+    count = *(s32 *)arg0;
+    offset = 0;
+    if (count > 0) {
+      do {
+        entry = (u16 *)(*(s32 *)(arg0 + 4) + offset);
+        value = ((s16 *)entry)[1];
+        switch (entry[0]) {
+            case 0:
+                func_800D3A54(value, 1);
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            case 1:
+                func_800D3A88();
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            case 2:
+                func_800D3AF0(value);
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            case 3:
+                func_800D3A14(value);
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            case 4:
+                func_800D3A20(value);
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            case 5:
+                func_80800520_gcfrontend((s32)D_808008FC_gcfrontend[value]);
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            case 6:
+                func_800D3A54(value, 0);
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            case 7:
+                if (func_800DC298(0.5f)) {
+                    func_800D3A20(value);
+                } else {
+                    func_800D3A20(value + 1);
+                }
+                count = *(s32 *)arg0;
+                end = count * 4;
+                break;
+            default:
+                end = count * 4;
+                break;
+        }
+        offset += 4;
+      } while (offset < end);
+    }
+}
 
 void func_8080068C_gcfrontend(s32 *arg0, s32 *arg1) {
     void func_800D3A20(s32);
@@ -246,7 +318,7 @@ void func_80800738_gcfrontend(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 func_800D39DC(s32);
     s32 func_800D3B24();
     s32 func_800EA334(s32);
-    s32 func_80800520_gcfrontend(s32);
+    void func_80800520_gcfrontend(s32);
     void func_8080068C_gcfrontend(s32 *, s32 *);
     s32 sp1C;
     s32 sp18;
