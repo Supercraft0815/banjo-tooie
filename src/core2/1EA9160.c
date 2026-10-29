@@ -106,7 +106,51 @@ void func_800CFA70(s32 arg0, s32 arg1)
     func_800CF918(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800CFA90.s")
+s32 func_800CFA90(void) {
+    s32 func_800DA298(GameFlag);
+    void func_800DA544(GameFlag);
+    s32 func_800DA564(GameFlag, s32);
+    void func_800DA7A8(GameFlag, s32, s32);
+    s32 func_800DA9E4(GameFlag, s32);
+    s32 func_800DC128(s32, s32);
+    void func_800DC324(s32);
+    void func_800DC330(void);
+    void func_800DC354(void);
+    extern u8 D_8011AB40[];
+    s32 counts[9];
+    s32 *ptr;
+    s32 value;
+    s32 idx;
+
+    if (func_800DA9E4(0x6A0, 1) != 0) {
+        return 0;
+    }
+    if (func_800DA298(0x379) == 0) {
+        idx = func_800DC128(0, 0x21);
+        func_800DA7A8(0x37A, idx, 5);
+        func_800DA544(0x379);
+    } else {
+        idx = func_800DA564(0x37A, 5);
+    }
+    func_800DC330();
+    func_800DC324(idx);
+    for (value = 0; &counts[value] < counts + 9; value++) {
+        counts[value] = 0;
+    }
+
+    for (idx = 0; idx < 45; idx++) {
+        value = func_800DC128(0, 9);
+        ptr = &counts[value];
+        while (*ptr > value) {
+            value = func_800DC128(0, 9);
+            ptr = &counts[value];
+        }
+        counts[value]++;
+        ((u8 (*)[3])D_8011AB40)[idx][1] = value;
+    }
+    func_800DC354();
+    return 1;
+}
 
 void func_800CFBC8(Actor *arg0, u32 arg1, s32 arg2, s32 arg3) {
     void _subaddieDll_entrypoint_4(Actor *, u32);

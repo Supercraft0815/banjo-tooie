@@ -376,7 +376,37 @@ void func_80800A00_chnests(void *arg0, s32 arg1) {
 void func_80800A6C_chnests(s32 arg0) 
 {
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nests/func_80800A74_chnests.s")
+
+s32 func_80800A74_chnests(s32 arg0) {
+    int func_800C6E38(s32);
+    s16 temp_a0;
+    s32 temp_s3;
+    s32 var_v0;
+    s16 sentinel;
+    temp_s3 = D_80801118_chnests[arg0].value;
+    arg0++;
+    var_v0 = D_80801118_chnests[arg0].value;
+    sentinel = -1;
+    if (temp_s3 != var_v0) {
+        loop_1: if ((sentinel == var_v0) && (arg0 > 0) && (sentinel != D_80801118_chnests[arg0 - 1].value)) {
+            loop_4: arg0 -= 1;
+            if (arg0 > 0) {
+                if (sentinel != D_80801118_chnests[arg0 - 1].value) {
+                    goto loop_4;
+                }
+            }
+        }
+        temp_a0 = D_80801118_chnests[arg0].rest[0];
+        if ((temp_a0 != 0) && (func_800C6E38(temp_a0) == 0)) {
+            var_v0 = D_80801118_chnests[arg0 + 1].value;
+            arg0 += 1;
+            if (temp_s3 != var_v0) {
+                goto loop_1;
+            }
+        }
+    }
+    return arg0;
+}
 
 /* extern */
 

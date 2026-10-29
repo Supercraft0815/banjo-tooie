@@ -11042,7 +11042,7 @@ segments:
     subsegments: 
       - [0x020A8FF0, c, lobbydoor]
       - [0x020A91E0, .rodata, lobbydoor]
-      - [0x020A91E0, data, lobbydoor]
+      - [0x020A91E0, .data, lobbydoor]
       - [0x020A9250, bss, lobbydoor]
   - name: chtransparencypot_header
     dir: overlays/chtransparencypot

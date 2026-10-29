@@ -1,8 +1,28 @@
 #include "common.h"
 
+void func_808000A8_chminelobbydoor(s32);
+void func_8080000C_chminelobbydoor(s32);
+s32 func_8080018C_chminelobbydoor(Actor *, s32, s32);
+void func_80101870(Actor *, void *);
+void func_80105834(Actor *);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+
+u32 D_808001F0_chminelobbydoor[] = {
+    0x00AC02B9, 0x08500004, 0, (u32)func_808000A8_chminelobbydoor,
+    (u32)func_80105834, (u32)func_80101870, 0, 0,
+    0, 0x40020800, 0, 0,
+    0, (u32)func_8080000C_chminelobbydoor, (u32)func_80107C2C, 0x80082412,
+    (u32)func_8080018C_chminelobbydoor, 0
+};
+s32 D_80800238_chminelobbydoor = 0x190;
+s16 D_8080023C_chminelobbydoor[] = {
+    0x0FAA, 0x0FAA, 0, 0x0101, 0x120A, 0, 0x003F, 0,
+    0x000A, 0x4000, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+
 OSThread *chminelobbydoor_entrypoint_0(void)
 {
-    extern u8 D_808001F0_chminelobbydoor[];
 
     return (OSThread *) D_808001F0_chminelobbydoor;
 }
@@ -34,7 +54,34 @@ void func_808000A8_chminelobbydoor(s32 arg0)
     func_808000D0_chminelobbydoor((Actor *)arg0);
     _chdoor_entrypoint_0(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/lobbydoor/func_808000D0_chminelobbydoor.s")
+
+void func_808000D0_chminelobbydoor(Actor *arg0) {
+    int func_800C6E38(s32);
+    void _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
+    s32 state;
+    s32 i;
+
+    state = func_800C6E38(0x15) ? 1 : 0;
+    state += func_800C6E38(0x1A) ? 2 : 0;
+    switch (state) {
+        case 0:
+        case 2:
+            break;
+        case 1:
+            for (i = 0; i < 1; i = 1) {
+                D_8080023C_chminelobbydoor[i] = 0xF9F;
+                D_8080023C_chminelobbydoor[i + 1] = 0xFA0;
+            }
+            break;
+        case 3:
+            for (i = 0; i < 1; i = 1) {
+                D_8080023C_chminelobbydoor[i] = 0xFA1;
+                D_8080023C_chminelobbydoor[i + 1] = 0xFA1;
+            }
+            break;
+    }
+    _subaddiedialog_entrypoint_7(arg0, arg0->position, &D_80800238_chminelobbydoor);
+}
 
 /* extern */
 

@@ -287,7 +287,34 @@ void func_800184E8(void) {
 void func_8001862C(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2F380/func_80018634.s")
+void func_80018634(void)
+{
+  OSMesgQueue *queue;
+  int mode;
+  void func_80016934(s32);
+  extern OSMesgQueue *D_8007AF0C;
+  OSPfs *pfs;
+  s32 attempt;
+  s32 port;
+  for (port = 0; port != 4; port++)
+  {
+    pfs = &D_8007B2D0[port].pfs;
+    mode = 4;
+    if (D_8007B2D0[port].active != 0)
+    {
+      func_80016934(mode);
+      queue = D_8007AF0C;
+      D_8007B2D0[port].active = !osMotorInit(queue, pfs, port);
+      for (attempt = 0; (attempt < 3) && (D_8007B2D0[port].active != 0); attempt++)
+      {
+        D_8007B2D0[port].active = !__osMotorAccess(pfs, 0);
+      }
+
+      func_80016934(0);
+    }
+  }
+
+}
 
 void func_80018704(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     extern f32 D_80041730;
