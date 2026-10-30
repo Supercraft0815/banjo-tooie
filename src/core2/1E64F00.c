@@ -162,7 +162,38 @@ void func_8008BA5C(void) {
     (*(s32 *)((s8 *)(&D_80126CC0) + (4))) = (sp1C * 6) + D_80126CC0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E64F00/func_8008BAC0.s")
+s16 *func_8008BAC0(s32 *arg0) {
+    extern SoundListEntry *D_80126CC4;
+    void *heap_realloc(void *, s32);
+    s32 func_8008BBC0(s32, s32);
+    SoundListEntry *entry;
+    s32 count;
+
+    entry = D_80126CC0_storage.start;
+    if (entry < D_80126CC0_storage.end) {
+        do {
+            if (entry->fields[2] == 0) {
+                break;
+            }
+            entry++;
+        } while (entry < D_80126CC0_storage.end);
+    }
+    if (entry == D_80126CC0_storage.end) {
+        count = D_80126CC0_storage.end - D_80126CC0_storage.start;
+        D_80126CC0_storage.start = heap_realloc(D_80126CC0_storage.start, count * sizeof(*entry) + 60);
+        {
+            s32 end_size;
+            /* Keep IDO's end-pointer calculation separate from the allocation size. */
+            end_size = count | 0;
+            D_80126CC4 = (SoundListEntry *)(end_size * sizeof(*entry) + (u8 *)D_80126CC0_storage.start + 60);
+        }
+        entry = &D_80126CC0_storage.start[count];
+        func_8008BBC0((s32)entry, (s32)D_80126CC0_storage.end);
+    }
+    entry->fields[2] = 1;
+    *arg0 = entry - D_80126CC0_storage.start + 1;
+    return (s16 *)entry;
+}
 
  s32 func_8008BBC0(s32 arg0, s32 arg1) {
     s32 var_v0;
