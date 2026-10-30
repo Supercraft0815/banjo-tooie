@@ -95,7 +95,72 @@ void func_800D4FB8(s32 arg0, s32 arg1) {
     entry[1] = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAE6C0/func_800D5034.s")
+void func_800D5034(s32 arg0, s32 arg1) {
+    typedef struct { u8 kind, value, maximum; } InventoryEntry;
+    extern u8 D_8011B640[];
+    s32 value;
+    s32 maximum;
+
+    if (arg1 == 9) {
+        arg1 = 1;
+    }
+    value = ((InventoryEntry *)D_8011B640)[arg1].value;
+    maximum = ((InventoryEntry *)D_8011B640)[arg1].maximum;
+    switch (arg1) {
+        case 1:
+            switch (arg0) {
+                case 0:
+                case 2:
+                case 6:
+                case 7:
+                case 8:
+                case 12:
+                case 15:
+                case 16:
+                case 18:
+                case 19:
+                    value = maximum;
+                    break;
+                case 10:
+                case 11:
+                    value = ((InventoryEntry *)D_8011B640)[10].value + ((InventoryEntry *)D_8011B640)[11].value;
+                    break;
+            }
+            break;
+        case 2:
+            value = 1;
+            break;
+        case 6:
+        case 7:
+        case 8:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+            value = maximum;
+            break;
+        case 10:
+        case 11:
+            if ((arg0 == 0) != 0) {
+                value = maximum;
+                func_800D4FB8(arg1 == 10 ? 11 : 10, value);
+            } else {
+                value = ((InventoryEntry *)D_8011B640)[arg0].value / 2;
+                if (arg1 == 10) {
+                    value += ((InventoryEntry *)D_8011B640)[arg0].value % 2;
+                }
+                if (value == 0) {
+                    value = 1;
+                }
+            }
+            break;
+    }
+    func_800D4FB8(arg1, value);
+}
 
 void func_800D517C(void) {
     s32 _gcextra_entrypoint_0();
