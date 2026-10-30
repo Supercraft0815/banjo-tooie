@@ -2638,7 +2638,41 @@ void func_80804C30_chgameselect(void *arg0, s32 arg1) {
     func_808026C8_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[5], 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80804D30_chgameselect.s")
+void func_80804D30_chgameselect(Actor *arg0, s32 arg1) {
+    s16 _gcfrontend_entrypoint_14(s32);
+    s32 _gcfrontend_entrypoint_3(s32);
+    u8 _gcfrontend_entrypoint_4(s32);
+    u8 _gcfrontend_entrypoint_5(s32);
+    void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
+    extern SelectEntry D_808083E8_chgameselect[];
+    s32 var_s1;
+    s32 sp40;
+    s32 var_s0;
+    s32 sp38;
+    s32 temp_s2;
+    /* Keep this stack home and reuse sp40 to preserve IDO's original frame. */
+    SelectEntry *volatile sp30;
+
+    sp38 = (sp30 = &D_808083E8_chgameselect[arg1])->id;
+    temp_s2 = _gcfrontend_entrypoint_4(sp38);
+    sp40 = _gcfrontend_entrypoint_5(sp38);
+    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], temp_s2, 0);
+    var_s1 = 0;
+    if (temp_s2 > 0) {
+        var_s0 = sp40;
+        do {
+            if (_gcfrontend_entrypoint_3(var_s0) != 0) {
+                sp40 = _gcfrontend_entrypoint_14(var_s0);
+                func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], var_s0, var_s1, -1, -1, sp40);
+            }
+            var_s1 += 1;
+            var_s0 += 1;
+        } while (var_s1 != temp_s2);
+    }
+    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], sp30->unk0, 0, 0);
+    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], arg1 + 3);
+    arg0->actorData[0] = sp38;
+}
 
 s32 func_80804E34_chgameselect(u8 *arg0) {
     s32 _gcstatusDll_entrypoint_17();
