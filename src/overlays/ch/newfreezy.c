@@ -90,7 +90,61 @@ void func_808000D4_chnewfreezy(Actor *arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808002C0_chnewfreezy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_80800824_chnewfreezy.s")
+void func_80800824_chnewfreezy(Actor *arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    struct FreezyPart {
+        f32 position[3];
+        u8 pad0C[0x18];
+        f32 unk24[3];
+        u8 pad30[0x24];
+        f32 unk54;
+        f32 unk58;
+        u8 pad5C[4];
+    } *parts;
+    struct FreezyPart *temp_s1;
+    struct FreezyPart *temp_s0;
+    struct FreezyLink {
+        u8 pad00[0xE];
+        s16 parent;
+    } *sp48;
+    struct FreezyLink *temp_fp;
+    struct FreezyLink *temp_v0;
+    s32 var_s2;
+    parts = func_80100094(arg0, 0);
+    var_s2 = 0;
+    if (arg2 > 0) {
+        sp48 = (void *) (arg1 + 8);
+        for (;;) {
+            temp_v0 = &sp48[var_s2];
+            temp_fp = &sp48[arg3];
+            if (temp_v0 == temp_fp) {
+                goto next;
+            }
+            temp_s1 = &parts[var_s2];
+            if (temp_s1->unk58 != (-1.0f)) {
+                goto next;
+            }
+            if ((arg3 != temp_v0->parent) && (var_s2 != temp_fp->parent)) {
+                goto next;
+            }
+            temp_s0 = &parts[arg3];
+            temp_s1->unk54 = temp_s0->unk58;
+            temp_s1->unk58 = func_800EEAD4(temp_s1->position, temp_s0->position) + temp_s0->unk58;
+            func_800EE7F8(temp_s1->unk24, temp_s0->position);
+            /* This redundant condition preserves IDO's parent/child register allocation. */
+            if (temp_s0 || temp_s0) {}
+            func_80800824_chnewfreezy(arg0, arg1, arg2, var_s2);
+            next:
+            if ((++var_s2) == arg2) {
+                break;
+            }
+
+        }
+
+    }
+}
 
 /* extern */
 
@@ -220,7 +274,7 @@ void func_80800BFC_chnewfreezy(Actor *arg0, u8 *arg1) {
 void func_80800D28_chnewfreezy(Actor *arg0, s32 arg1) {
     f32 func_800EEAD4(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    void func_80800824_chnewfreezy(Actor *, s32, u32, u32);
+    void func_80800824_chnewfreezy(Actor *, u8 *, s32, s32);
     struct FreezyPart {
         f32 position[3];
         u8 pad0C[0x48];
@@ -259,7 +313,7 @@ void func_80800D28_chnewfreezy(Actor *arg0, s32 arg1) {
         nearest += nearestIndex;
         nearest->unk58 = 100.0f;
         nearest->unk54 = 0.0f;
-        func_80800824_chnewfreezy(arg0, arg1, arg0->unk6C_0, nearestIndex);
+        func_80800824_chnewfreezy(arg0, (u8 *)arg1, arg0->unk6C_0, nearestIndex);
     }
 }
 
