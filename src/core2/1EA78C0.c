@@ -1,5 +1,17 @@
 #include "core2/1EA78C0.h"
 
+struct CounterState {
+    s16 counters[4];
+    s16 aux;
+    s16 result;
+    u8 flag;
+    u8 pad[3];
+    f32 value;
+    u8 rest[12];
+};
+
+struct CounterState D_8012B160_storage;
+
 void func_800CDFD0(void **arg0) {
     s32 _gspropctrl_entrypoint_0(void *);
     s32 _gspropctrl_entrypoint_1(void *, s32 *);
@@ -480,7 +492,24 @@ void func_800CEF6C(void) {
     D_8012B170 = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA78C0/func_800CEF7C.s")
+void func_800CEF7C(void)
+{
+  extern s32 func_800CF6D0(void);
+  f32 sp1C[3];
+  s32 i;
+  sp1C[0] = func_800CEF00(0);
+  func_800CE8D8(1, sp1C[0], func_800CF6D0());
+  if (D_8012B160_storage.value != 0.0f)
+  {
+    func_800CE980(1, D_8012B160_storage.value, 1);
+  }
+  for(i=0;i<4;i++) {
+    D_8012B160_storage.counters[i]=9;
+  }
+  D_8012B160_storage.aux = 0;
+  D_8012B160_storage.result = func_800CEA84(1);
+  D_8012B160_storage.flag = 0;
+}
 
 s32 func_800CF01C(void) {
     void func_800C3FF0(s32, f32, s32);
