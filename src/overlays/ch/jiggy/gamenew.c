@@ -1129,7 +1129,76 @@ void func_808024C8_chjiggygamenew(s32 arg0)
     func_800E4208();
     func_800E44FC(arg0);
 }
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jiggy/gamenew/func_808024F0_chjiggygamenew.s")
+void func_808024F0_chjiggygamenew(Actor *arg0, void *arg1) {
+    typedef struct { u8 pad[0x21C]; u8 text[3][30]; } JiggyText;
+    typedef struct { f32 timer; unsigned int rest[7]; } JiggyDrawData;
+    void _fxkern_entrypoint_1(Gfx **arg0, s32 arg1, u8 *arg2);
+    void _fxkern_entrypoint_2(void);
+    void _fxkern_entrypoint_3(f32 arg0);
+    u32 func_800A9CD0(void);
+    void func_800B8C8C(s32 Transparency);
+    void func_800B8CE0(s32 color);
+    struct ImageStruct;
+    struct ImageStruct * func_800D674C(s32 a0);
+    void * func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void func_800DF830(s32 arg0);
+    s32 func_800E71B8(s32 arg0);
+    void func_800E7C28(Gfx** gfx);
+    void func_800E7CF4(Gfx** gfx);
+    s32 func_800E81D0(void);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    void func_80101870(Actor* arg0, void* arg1);
+    void func_80102FDC(void *arg0, f32 arg1);
+    void func_80803668_chjiggygamenew(Unk80132ED0 *arg0, void *arg1);
+    void func_80803928_chjiggygamenew(Unk80132ED0 *arg0, Gfx **arg1);
+    f32 scale;
+    f32 position[3];
+    f32 rotation[3];
+    int segment;
+
+    segment = func_800E81D0();
+    if (segment != 0 && func_800A9CD0() == 1) {
+        scale = func_80802464_chjiggygamenew(arg1);
+        func_800EFA4C(position, 0.0, 0.0, 0.0);
+        func_800EFA4C(rotation, 0.0, 0.0, 0.0);
+        func_800DF830(1);
+        func_800DE498(arg1, position, NULL, 1.0f, rotation, (s32)func_800D674C(0x866));
+        func_800DE498(arg1, position, NULL, 1.0f, rotation, (s32)func_800D674C(0x865));
+        gDPSetTextureFilter((*(Gfx **)arg1)++, G_TF_POINT);
+        gDPSetColorDither((*(Gfx **)arg1)++, G_CD_DISABLE);
+        if (arg0->actorData[7] != 0) {
+            func_80803928_chjiggygamenew((Unk80132ED0 *)arg0->actorData[7], arg1);
+        }
+        func_800E7C28(arg1);
+        func_800E7CF4(arg1);
+        gSPSegment((*(Gfx **)arg1)++, 4, osVirtualToPhysical((void *)segment));
+        func_80102FDC(arg0, scale);
+        func_80101870(arg0, arg1);
+        gDPSetTextureFilter((*(Gfx **)arg1)++, G_TF_BILERP);
+        gDPSetColorDither((*(Gfx **)arg1)++, G_CD_MAGICSQ);
+        func_80803668_chjiggygamenew(arg0->unk3C, arg1);
+        arg0->actorData[2] = func_808019E0_chjiggygamenew(arg0);
+        func_808024C8_chjiggygamenew((s32)arg1);
+        if (arg0->actorData[4] == 1 || arg0->actorData[4] == 2) {
+            int i;
+            int count;
+            _fxkern_entrypoint_2();
+            func_800B8C8C(arg0->actorData[4] == 1 ? 255 : (s32)func_800F10B4(((JiggyDrawData *)arg0->actorData)->timer, 2.0f, 0.0f, 255.0f, 0.0f));
+            func_800B8CE0(0xC26);
+            _fxkern_entrypoint_3(1.1f);
+            for (count = 0, i = 0; i < 3; i++) {
+                if (((JiggyText *)func_80100094(arg0, 0))->text[i][0]) {
+                    count++;
+                }
+            }
+            for (i = 0; ((JiggyText *)func_80100094(arg0, 0))->text[i][0] && i != 3; i++) {
+                _fxkern_entrypoint_1(arg1, 120 - (count / 2) * 25 + i * 25,
+                    (u8 *)func_800E71B8((s32)((JiggyText *)func_80100094(arg0, 0))->text[i]));
+            }
+        }
+    }
+}
 
 s32 func_80802858_chjiggygamenew(void *arg0, s32 arg1, s32 arg2) {
     typedef struct { s16 id; s16 response; } DialogEvent;
