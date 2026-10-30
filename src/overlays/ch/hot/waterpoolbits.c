@@ -99,19 +99,73 @@ s32 func_808001A8_chhotwaterpoolbits(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800204_chhotwaterpoolbits(u8 *arg0) {
-    s32 func_800F2E60(s32, s32 *, u8 *);
+    void func_800F2E60(s32 *, s32 *);
     extern s32 D_80800A50_chhotwaterpoolbits;
-    func_800F2E60(arg0 + 0x28, &D_80800A50_chhotwaterpoolbits, arg0);
+    func_800F2E60((s32 *)(arg0 + 0x28), &D_80800A50_chhotwaterpoolbits);
     (*(f32 *)((s8 *)(arg0) + (0x1C))) = 0.0f;
     (*(f32 *)((s8 *)(arg0) + (0x18))) = 127.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hot/waterpoolbits/func_8080024C_chhotwaterpoolbits.s")
+void func_8080024C_chhotwaterpoolbits(Actor *arg0) {
+    s32 func_800D9078(f32 *arg0);
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    f32 func_800F12D4(f32 a, f32 b, f32 c, f32 d, f32 e);
+    void func_800F2E60(s32 arg0[3], s32 arg1[3]);
+    int func_800F3214(void *arg0, void *arg1, void *arg2, f32 arg3);
+    void func_800FFAB0(Actor *arg0);
+    void func_80101FDC(Actor *arg0, u32 arg1);
+    void func_80103110(Actor *arg0, u32 arg1);
+    void func_80800528_chhotwaterpoolbits(s32 *arg0);
+    extern s32 D_80800A50_chhotwaterpoolbits;
+    extern s32 D_80800A5C_chhotwaterpoolbits[3];
+    struct WaterData {
+        f32 alpha;
+        f32 height;
+        int unused[2];
+        int color[3];
+    };
+    f32 height;
+    f32 alpha;
+
+    switch (arg0->unk70_10) {
+    case 2:
+        if (func_800D9078(&arg0->unk58)) {
+            func_80101FDC(arg0, 3);
+            func_80103110(arg0, 0);
+        }
+        func_800F3214(((struct WaterData *)arg0->actorData)->color, &D_80800A50_chhotwaterpoolbits, D_80800A5C_chhotwaterpoolbits, func_800F10B4(arg0->unk58, 0.0f, 4.0f, 1.0f, 0.0f));
+        ((struct WaterData *)arg0->actorData)->height = 0.0;
+        break;
+    case 3:
+        func_800F2E60(((struct WaterData *)arg0->actorData)->color, D_80800A5C_chhotwaterpoolbits);
+        ((struct WaterData *)arg0->actorData)->height = 0.0;
+        ((struct WaterData *)arg0->actorData)->alpha = 100.0f;
+        break;
+    case 4:
+        if (func_800D9078(&arg0->unk58)) {
+            func_80101FDC(arg0, 3);
+            func_80103110(arg0, 0);
+        }
+        height = func_800F12D4(arg0->unk58, 0.0f, 10.0f, -800.0f, 0.0f);
+        ((struct WaterData *)arg0->actorData)->height = height;
+        alpha = func_800F12D4(arg0->unk58, 0.0f, 10.0f, 100.0f, 127.0f);
+        ((struct WaterData *)arg0->actorData)->alpha = alpha;
+        func_800F2E60(((struct WaterData *)arg0->actorData)->color, D_80800A5C_chhotwaterpoolbits);
+        break;
+    case 5:
+        func_800F2E60(((struct WaterData *)arg0->actorData)->color, D_80800A5C_chhotwaterpoolbits);
+        ((struct WaterData *)arg0->actorData)->alpha = 100.0f;
+        ((struct WaterData *)arg0->actorData)->height = -800.0f;
+        func_800FFAB0(arg0);
+        break;
+    }
+    func_80800528_chhotwaterpoolbits((s32 *)arg0);
+}
 
 s32 func_808003E0_chhotwaterpoolbits(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800DA298(s32);
-    s32 func_800F2E60();
+    void func_800F2E60(s32 *, s32 *);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     void func_80103110(Actor *, u32);
