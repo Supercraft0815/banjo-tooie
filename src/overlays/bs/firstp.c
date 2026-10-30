@@ -3539,7 +3539,42 @@ void func_8080633C_bsfirstp(Actor *arg0, f32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_8080649C_bsfirstp.s")
+/* extern */
+
+void func_8080649C_bsfirstp(void *arg0) {
+    void func_8009B98C(void *, f32 *);
+    void func_8009BC08(void *, f32 *);
+    f32 func_800D9004(void);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EFCD8(f32 *, f32, f32);
+    f32 yaw_get(struct player_state_s *);
+    u8 *volatile sp54;
+    /* Keep angle separate to preserve IDO's temporary stack layout. */
+    f32 angle;
+    struct {
+        f32 sp24[3];
+        f32 sp30[3];
+        f32 unused3C;
+        f32 sp40;
+        f32 unused44;
+        f32 sp48;
+        f32 sp4C;
+    } local;
+    register f32 *temp_v0;
+
+    sp54 = *(u8 **)((u8 *)arg0 + 0x188);
+    local.sp40 = func_800D9004() - 0.033333335f;
+    temp_v0 = (f32 *)(sp54 + 0x1CC);
+    local.sp4C = func_808052C8_bsfirstp(temp_v0 + 2, temp_v0[0], temp_v0[1], 0.033333335f);
+    local.sp48 = func_808052C8_bsfirstp(temp_v0 + 2, temp_v0[0], temp_v0[1], local.sp40);
+    func_808052A4_bsfirstp(&local.sp48, temp_v0 + 3);
+    angle = yaw_get(arg0);
+    func_800EFCD8(local.sp30, angle - 90.0f, local.sp4C + local.sp48);
+    local.sp30[1] = 0.0f;
+    func_8009BC08(arg0, local.sp24);
+    func_800EF04C(local.sp24, local.sp30);
+    func_8009B98C(arg0, local.sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806588_bsfirstp.s")
 
