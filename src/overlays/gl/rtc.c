@@ -117,7 +117,43 @@ void func_8080031C_glrtc(u8 **arg0, u8 *arg1, s32 arg2) {
     *arg0 = src;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/rtc/func_80800474_glrtc.s")
+void func_80800474_glrtc(u8 **arg0, u8 *arg1, s32 arg2) {
+    void func_808005B0_glrtc(u8 *, u8, s32, u8 *, u32);
+    u32 values[2];
+    s32 data;
+    u8 colors[4];
+    s32 i;
+    u8 first;
+    /* Initializer and signed word load preserve IDO register allocation. */
+    u8 second = 0;
+    u8 *ptr;
+
+    ptr = *arg0;
+    ((u8 *)values)[3] = ptr[0];
+    ((u8 *)values)[2] = ptr[1];
+    ((u8 *)values)[1] = ptr[2] & 0xF;
+    ptr += 5;
+    ((u8 *)values)[7] = ptr[-3];
+    ((u8 *)values)[6] = ptr[-2];
+    ((u8 *)values)[5] = ptr[-1];
+    values[1] = (u32)*(s32 *)&values[1] >> 4;
+    for (i = 0; i != 4; i++) {
+        first = (values[0] << 3) & 0xFF;
+        values[0] >>= 5;
+        second = (values[1] << 3) & 0xFF;
+        values[1] >>= 5;
+        colors[3] = second;
+        colors[0] = first;
+        if (second == first) {
+            data = 0;
+        } else {
+            bcopy(ptr, &data, 4);
+            ptr += 4;
+        }
+        func_808005B0_glrtc(arg1, (u8)i, arg2, colors, data);
+    }
+    *arg0 = ptr;
+}
 
 void func_808005B0_glrtc(u8 *arg0, u8 arg1, s32 arg2, u8 *arg3, u32 arg4)
 {
