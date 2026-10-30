@@ -421,7 +421,53 @@ s32 func_80800D88_subaddierouteDll(Actor *arg0, RouteResult *arg1, f32 arg2, s32
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800F34_subaddierouteDll.s")
+s32 func_80800F34_subaddierouteDll(f32 *arg0, s32 arg1, s32 arg2, s16 *arg3) {
+    void *func_8001B798(s16);
+    void *func_800CC63C(s32, s32);
+    int func_800F0064(f32 *, f32, f32 *);
+    OSThread *func_801015B0(void);
+    s16 *entries;
+    u8 *data;
+    u8 *point;
+    s32 count;
+    s32 i;
+    s32 length;
+    s32 found;
+    s16 *end;
+    void *region;
+
+    entries = func_8001B798(*(s16 *)func_801015B0());
+    data = func_8001B798(*(s16 *)((u8 *)entries + arg1 * 4));
+    i = 0;
+    point = data + ((s16 *)data)[arg2];
+    count = *point;
+    point++;
+    if (count > 0) {
+        do {
+            found = 0;
+            length = 0;
+            /* Byte offsets preserve IDO's induction-variable allocation. */
+            while (*(s16 *)((u8 *)arg3 + length * 2) != -1) {
+                if (found == 0 && *(s16 *)((u8 *)arg3 + length * 2) == *point) {
+                    found = 1;
+                }
+                length++;
+            }
+            if (found == 0) {
+                region = func_800CC63C(arg1, *point);
+                if (func_800F0064(region, (f32)((s16 *)region)[6], arg0) != 0) {
+                    end = (s16 *)((u8 *)arg3 + length * 2);
+                    end[0] = *point;
+                    end[1] = -1;
+                    return i;
+                }
+            }
+            i++;
+            point++;
+        } while (i != count);
+    }
+    return -1;
+}
 
 s32 subaddierouteDll_entrypoint_8(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
     void *func_8001B798(s16);
