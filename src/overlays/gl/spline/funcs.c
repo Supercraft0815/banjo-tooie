@@ -64,4 +64,60 @@ s32 glsplinefuncs_entrypoint_0(s32 arg0, s32 *arg1, f32 *arg2, f32 *arg3, s32 ar
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/funcs/glsplinefuncs_entrypoint_1.s")
+typedef struct {
+    s32 word;
+} SplineSpawnWord;
+
+void glsplinefuncs_entrypoint_1(s32 arg0, SplineSpawnWord arg1, s32 arg2) {
+    typedef struct {
+        s16 unk0;
+        s16 pad2:5;
+        s16 signedId:10;
+        s16 bit0:1;
+        f32 unk4;
+        f32 unk8;
+        f32 progress;
+    } PathState;
+    typedef struct {
+        u8 unused0[0x44];
+        f32 rotation[3];
+        f32 unk50;
+        u8 unused54[0x20];
+        u32 unused74:27;
+        u32 splineFlag:1;
+        u32 unused77:4;
+    } SplineActor;
+    void func_800D87D4(s32 *, s32);
+    void *func_80105494(Actor *);
+    Actor *func_80108474(u32, f32 *, s32);
+    s32 glsplinefuncs_entrypoint_0(s32, s32 *, f32 *, f32 *, s32, f32 *, f32 *);
+    s32 sp5C;
+    s32 pad[2];
+    s32 sp50;
+    s32 sp4C;
+    f32 sp48;
+    f32 sp3C[3];
+    f32 sp38;
+    f32 sp34;
+    void *sp30;
+    SplineActor *object;
+    PathState *state;
+
+    sp5C = arg0;
+    if (((u8 *)&arg0)[0]) {} /* Preserve IDO's incoming argument home. */
+    state = (void *)*(s32 *)&arg2;
+    sp4C = (arg1.word >> 12) & 0x3F;
+
+    glsplinefuncs_entrypoint_0((arg1.word &= 0xFFF), &sp50, &sp48, sp3C, (s32)state, &sp38, &sp34);
+    sp30 = func_80108474(sp5C, sp3C, (s32) sp38);
+    state = func_80105494(sp30);
+    object = sp30;
+    state->signedId = sp50;
+    state->progress = sp48;
+    object->unk50 = sp34;
+    object->rotation[0] = sp34;
+    object->splineFlag = 1;
+    if (sp4C != 0) {
+        func_800D87D4((s32 *)sp30, sp4C);
+    }
+}
