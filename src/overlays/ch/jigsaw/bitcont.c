@@ -73,7 +73,48 @@ s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_80800214_chjigsawbitcont.s")
+void func_80800214_chjigsawbitcont(Actor *arg0)
+{
+    f32 func_800D8FF8(void);
+    void func_800FCA90(u32);
+    void func_800FCAE0(u32, u32, u32);
+    s32 func_800FCCD4(s32);
+    void *func_80100094(Actor *, u32);
+    extern s16 D_808009AA_chjigsawbitcont[][8];
+    struct BitContData
+    {
+        u8 pad[0x10];
+        f32 timer;
+    };
+    struct JigsawData { f32 positions[3][3]; s16 count; } *data;
+    f32 delta;
+    u32 flags;
+    data = func_80100094(arg0, 0);
+    /* shortcut: IDO emits only the aligned low word; rework this view for other compilers. */
+    flags = (u32)(*(u64 *)((u8 *)arg0 + 0x60) & 0x100000ULL);
+    if (!flags)
+    {
+        return;
+    }
+    /* Keep the manager and actor homes live across the timer call. */
+    if ((data && data) && data) {}
+    delta = func_800D8FF8();
+    if (((arg0 && arg0) && arg0) != 0)
+    {
+    }
+    ((struct BitContData *) arg0->actorData)->timer -= delta;
+    if (!(((struct BitContData *) arg0->actorData)->timer < 0.0f))
+    {
+        return;
+    }
+    ((struct BitContData *) arg0->actorData)->timer = 0.0f;
+    arg0->unk64_20 = 0;
+    if ((data->count < D_808009AA_chjigsawbitcont[arg0->unk74_7][0]) && func_800FCCD4(5))
+    {
+        func_800FCAE0(5, 0, 0x1F40);
+        func_800FCA90(5);
+    }
+}
 
 void func_808002E4_chjigsawbitcont(Actor *arg0) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
