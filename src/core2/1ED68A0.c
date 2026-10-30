@@ -1,5 +1,8 @@
 #include "core2/1ED68A0.h"
 
+/* Fourteen music counters and the adjacent state bytes. */
+u8 D_80135A10[16];
+
 void func_800FCFB0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3, f32 arg4) {
     typedef struct {
         s32 volume[2];
@@ -376,7 +379,49 @@ s32 func_800FE4E4(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE614.s")
+void func_800FE614(void)
+{
+  extern s32 D_80135A20[3];
+  extern f32 D_80135A30[3];
+  extern u8 D_80135A3C[3];
+  extern s32 D_80135A40;
+  struct State
+  {
+    u8 pad[0x34];
+    u8 a[2];
+    s16 b[2];
+    u8 rest[0xA];
+  };
+  extern struct State D_801359C0_storage;
+  struct Bytes
+  {
+    u8 value[3];
+  };
+  struct State *state;
+  unsigned int i;
+  ((u8 *) (&D_801359C0_storage))[0x16] = 1;
+  ((u8 *) (&D_801359C0_storage))[0x17] = 0;
+  state = (struct State *) (&D_801359C0_storage);
+  D_80135A40 = -1;
+  for (i = 0; i < 2; i++)
+  {
+    state->a[i] = 0;
+    state->b[i] = 0;
+  }
+
+  for (i = 0; i < 3; i++)
+  {
+    D_80135A20[i] = 0;
+    D_80135A30[i] = 0.0f;
+    ((struct Bytes *) (&D_80135A3C))->value[i] = 0;
+  }
+
+ for (i = 0; i < 14; i++) {
+    D_80135A10[i] = 0;
+  }
+
+  func_800FDC28(0U);
+}
 
 void func_800FE6F8(s32 arg0) {
     extern u8 D_801359D6;

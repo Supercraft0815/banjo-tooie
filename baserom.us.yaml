@@ -616,6 +616,7 @@ segments:
       - [0x1EF1550, hasm, ../../src/core2/core2bss2_1]
       - [0x1EF1550, hasm, ../../src/core2/core2bss2_1_reset_tail]
       - [0x1EF1550, hasm, ../../src/core2/core2bss2_2]
+      - [0x1EF1550, hasm, ../../src/core2/core2bss2_2_music_tail]
       - [0x1EF1550, .data, overlays]
       - [0x1EF1560, .data, baanim]
       - [0x1EF1590, data]
@@ -711,6 +712,8 @@ segments:
       - [0x1F00020, .bss, ../../src/core2/core2bss2_1_reset_tail]
       - [0x1F00020, .bss, 1EC4CC0]
       - [0x1F00020, .bss, ../../src/core2/core2bss2_2]
+      - [0x1F00020, .bss, 1ED68A0]
+      - [0x1F00020, .bss, ../../src/core2/core2bss2_2_music_tail]
   # Generated from overlay decompression tool
   - name: overlay_table
     type: bin
