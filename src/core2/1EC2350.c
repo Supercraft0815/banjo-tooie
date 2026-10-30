@@ -9,6 +9,9 @@ struct StateView {
     s32 counts[2];
 };
 
+typedef char StateView_size_check[(sizeof(struct StateView) == 0x4ED0) ? 1 : -1];
+struct StateView D_8012D690;
+
 void func_800E8A60(void) {
 }
 
@@ -330,12 +333,26 @@ void func_800E9438(s32 arg0) {
     heap_free(temp_s3);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC2350/func_800E94E4.s")
+void func_800E94E4(void) {
+    extern u8 D_80132650[];
+    struct StateView *data;
+    s32 i;
+    data = &D_8012D690;
+    for (i = 0; i < 79; i++) {
+        data->flags[i] = 0;
+        data->times[i] = 0;
+        data->slots[i] = -1;
+        data->offsets[i] = -1;
+    }
+    for (data->counts[0] = 0, data->counts[1] = 0, i = 0; i < 0x3AC; i++) {
+        D_80132650[i * 2] = 0xFF;
+        D_80132650[i * 2 + 1] = 0xFF;
+    }
+}
 
 void func_800E9574(void) {
     void func_800E93CC(s32);
     void func_800E9438(s32);
-    s32 func_800E94E4();
     extern s32 D_80123510;
     func_800E94E4();
     func_800E93CC(0);
