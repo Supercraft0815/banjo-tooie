@@ -214,7 +214,38 @@ u8 *func_80081A90(u8 *arg0) {
     return ptr + 0x38;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/overlays/func_80081AA4.s")
+struct Overlay *func_80081AA4(void *arg0) {
+    s32 heap_get_allocation_size(void *);
+    extern s32 overlay_syscalls;
+    extern s32 overlay_syscalls_end;
+    volatile s32 *entry;
+    s32 i;
+    struct Overlay **list;
+    s32 ovl;
+    u8 *end;
+
+    ovl = (((u32)arg0 - (u32)&overlay_syscalls) & ~7) + (u32)&overlay_syscalls;
+    if ((u32)arg0 >= (u32)&overlay_syscalls && (u32)arg0 < (u32)&overlay_syscalls_end) {
+        entry = (s32 *)ovl;
+        if ((*entry & 0xFC00003F) == 0xC) {
+            return NULL;
+        }
+        ovl = *entry;
+        ovl &= 0x03FFFFFF;
+        ovl *= 4;
+        ovl |= 0x80000000;
+        return (struct Overlay *)((u32)ovl - 0x10);
+    }
+    list = D_80126738;
+    for (i = 0; i < D_80117C60; i++, list++) {
+        ovl = (s32)*list;
+        end = heap_get_allocation_size((void *)ovl) + (u8 *)ovl;
+        if ((u32)arg0 >= (u32)ovl && (u32)end >= (u32)arg0) {
+            return (struct Overlay *)ovl;
+        }
+    }
+    return NULL;
+}
 
 s32 func_80081BC0(s32 *arg0) {
     if ((*arg0 & 0xFC00003F) == 0xC) {
