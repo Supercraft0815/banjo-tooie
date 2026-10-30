@@ -1225,7 +1225,35 @@ void func_80801E3C_changlerboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/func_80801F54_changlerboss.s")
+void func_80801F54_changlerboss(Actor *arg0) {
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
+    f32 func_800DC178(f32 arg0, f32 arg1);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void func_800EF214(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
+    void func_800EF368(f32 vec[3], f32 target_length);
+    void func_800EFB24(void *arg0, void *arg1, void *arg2);
+    void func_80102FDC(Actor *arg0, f32 arg1);
+    Actor* func_80108528(s32 arg0, f32 arg1[3], s32 arg2, Actor **arg3);
+    f32 sp8C[3];
+    f32 sp80[3];
+    int i;
+    Actor *shot;
+
+    _subaddieskeleton_entrypoint_2(arg0->unk0, 0xA, sp80);
+    i = 0;
+    do {
+        func_800EE7F8(sp8C, sp80);
+        func_800EF214(sp8C, arg0->rotation[0] + func_800DC178(-10.0f, 10.0f), arg0->rotation[1] + func_800DC178(-10.0f, 10.0f), func_800DC178(200.0f, 300.0f));
+        shot = func_80108528(0x460, sp8C, 0, &arg0);
+        if (shot != NULL) {
+            func_800EFB24(&shot->actorData[4], shot->position, sp80);
+            func_800EF368((f32 *)&shot->actorData[4], func_800DC178(1000.0f, 1400.0f));
+            shot->unk3C = arg0->unk0;
+            func_80102FDC(shot, func_800DC178(0.8f, 1.2f));
+        }
+        i++;
+    } while (i != 3);
+}
 
 /* extern */
 

@@ -1,6 +1,53 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/fx/rain/func_80800000_fxrain.s")
+void func_80800000_fxrain(s32 arg0) {
+    f32 func_800DC178(f32 arg0, f32 arg1);
+    void func_800E3958(s32 arg0);
+    void func_800E3980(f32 *arg0);
+    void func_800E3A58(f32 *arg0);
+    s32 func_800E3F8C(f32 arg0, f32 arg1, f32 arg2);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    f32 func_800EEFD4(f32 *arg0);
+    void func_800EF04C(f32 *arg0, f32 *arg1);
+    void func_800EF934(f32 dst[3], f32 src[3], f32 yaw);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
+    void *vector_push_back(void **);
+    s32 vector_size(s32);
+    f32 sp64[3];
+    f32 sp58[3];
+    Vec3f angles;
+    f32 distance;
+    f32 random;
+    f32 *sp40;
+    f32 sp34[3];
+
+    if (vector_size(*(s32 *)((u8 *)arg0 + 0x20)) < *(s32 *)((u8 *)arg0 + 0x24)) {
+        func_800E3980(sp64);
+        func_800E3958((s32)sp58);
+        func_800E3A58(angles.f);
+        sp40 = vector_push_back((void **)((u8 *)arg0 + 0x20));
+        distance = func_800DC178(50.0f, 2000.0f);
+        random = func_800DC178(200.0f, 300.0f);
+        func_800EFA4C(sp34, 0.0f, random, -distance);
+        if (func_800EEFD4((f32 *)((u8 *)arg0 + 0x10)) < 25.0f) {
+            random = func_800DC178(0.0f, 360.0f);
+            func_800EF934(sp34, sp34, random);
+        } else {
+            random = func_800DC178(-70.0f, 70.0f);
+            func_800EF934(sp34, sp34, random + angles.pos.y);
+        }
+        func_800EF04C(sp34, sp64);
+        arg0 = 0; if ((distance < 1000.0f) && func_800E3F8C(sp34[0], sp34[1] - 10.0f, sp34[2])) {
+            do {
+                arg0++;
+                sp34[1] += 100.0f;
+            } while ((arg0 < 10) && func_800E3F8C(sp34[0], sp34[1] - 10.0f, sp34[2]));
+        }
+        func_800EE7F8(sp40, sp34);
+        random = func_800DC178(-1600.0f, -1500.0f);
+        func_800EFA4C(sp40 + 3, 0.0f, random, 0.0f);
+    }
+}
 
 void func_808001E8_fxrain(s32 *arg0, s32 arg1) {
     arg0[10] = arg1;
