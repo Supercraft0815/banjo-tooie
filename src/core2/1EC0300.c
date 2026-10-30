@@ -23,13 +23,12 @@ void func_800E6A58(char *dest, char src) {
 
 void func_800E6A90(char *arg0, u8 *arg1) {
     void func_800E6AFC(char *, u8);
-    extern s32 D_80125DC0;
     u8 var_a2;
     var_a2 = *arg1;
     if (var_a2 != 0) {
         do {
             func_800E6AFC(arg0, *arg1++);
-            func_800E6A10(arg0, (const char *) &D_80125DC0);
+            func_800E6A10(arg0, " ");
             var_a2 = *arg1;
         } while (var_a2 != 0);
     }
@@ -64,9 +63,6 @@ s32 func_800E6B7C(char **arg0, f32 arg1) {
 }
 
 void func_800E6BAC(char *dest, f32 val) {
-    extern char D_80125DC4[];
-    extern char D_80125DC8[];
-    extern char D_80125DCC[];
     void func_800E6DB4(char *, s32);
     s32 decimal;
     char *str;
@@ -76,14 +72,14 @@ void func_800E6BAC(char *dest, f32 val) {
         func_800E6A10(dest, str);
         break;
     case -1:
-        func_800E6A10(dest, D_80125DC4);
+        func_800E6A10(dest, "-");
         val = -val;
     case 1:
         func_800E6DB4(dest, (s32)val);
-        func_800E6A10(dest, D_80125DC8);
+        func_800E6A10(dest, ".");
         decimal = (s32)((val - (f32)(s32)val) * 100.0f);
         if (decimal < 10) {
-            func_800E6A10(dest, D_80125DCC);
+            func_800E6A10(dest, "0");
         }
         func_800E6DB4(dest, decimal);
         break;
@@ -91,8 +87,6 @@ void func_800E6BAC(char *dest, f32 val) {
 }
 
 void func_800E6CA8(char *dest, f32 val, s32 decPlaces) {
-    extern char D_80125DD0[];
-    extern char D_80125DD4[];
     void func_800E6DB4(char *, s32);
     char *str;
     u32 i;
@@ -101,12 +95,12 @@ void func_800E6CA8(char *dest, f32 val, s32 decPlaces) {
         func_800E6A10(dest, str);
         break;
     case -1:
-        func_800E6A10(dest, D_80125DD0);
+        func_800E6A10(dest, "-");
         val = -val;
     case 1:
         func_800E6DB4(dest, (s32)val);
         if (decPlaces != 0) {
-            func_800E6A10(dest, D_80125DD4);
+            func_800E6A10(dest, ".");
             for (i = decPlaces--; i > 0; i = decPlaces--) {
                 val -= (s32)val;
                 val *= 10;
@@ -361,15 +355,15 @@ void func_800E73D4(s8 *arg0) {
 }
 
 void func_800E73DC(s8 *arg0, s32 arg1, ...) {
-    s32 func_800E7480(s8 *, s32, s32);
+    void func_800E7480(s8 *, s32, u8 *);
     u32 args;
     func_800E73D4(arg0);
     args = (u32)&arg1 + sizeof(arg1);
-    func_800E7480(arg0, arg1, (args + 3) & ~3);
+    func_800E7480(arg0, arg1, (u8 *)((args + 3) & ~3));
 }
 
 void func_800E7428(s8 *arg0, s32 arg1, ...) {
-    s32 func_800E7480(s8 *, s32, s32);
+    void func_800E7480(s8 *, s32, u8 *);
     u32 args;
     if ((u8)arg0[0] != 0) {
         do {
@@ -377,7 +371,47 @@ void func_800E7428(s8 *arg0, s32 arg1, ...) {
         } while ((u8)arg0[0] != 0);
     }
     args = (u32)&arg1 + sizeof(arg1);
-    func_800E7480(arg0, arg1, (args + 3) & ~3);
+    func_800E7480(arg0, arg1, (u8 *)((args + 3) & ~3));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC0300/func_800E7480.s")
+void func_800E7480(s8 *arg0, s32 arg1, u8 *arg2) {
+    u8 *format = (u8 *)arg1;
+    f64 value;
+
+    for (; *format; format++) {
+        if (*format != '%') {
+            if (*format >= 0x20) {
+                func_800E6A58((char *)arg0, *format);
+            }
+            continue;
+        }
+        format++;
+        switch (*format) {
+            case 'b':
+                func_800E7368((s32)arg0, *(s32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                break;
+            case 'c':
+                func_800E6A58((char *)arg0, *(u8 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 1));
+                break;
+            case 'd':
+                func_800E6DB4((char *)arg0, *(s32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                break;
+            case 'f':
+                value = *(f64 *)((arg2 = (u8 *)(((u32)arg2 + 15) & ~7)) - 8);
+                func_800E6BAC((char *)arg0, value);
+                break;
+            case 'p':
+                func_800E6F7C((u8 *)arg0, *(u32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                break;
+            case 's':
+                func_800E6A10((char *)arg0, *(char **)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                break;
+            case 'x':
+                func_800E6F7C((u8 *)arg0, *(u32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                break;
+            default:
+                func_800E6A58((char *)arg0, *format);
+                break;
+        }
+    }
+}
