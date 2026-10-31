@@ -4,7 +4,7 @@
 
 void func_80800000_chpiranha(Actor *arg0) {
     u32* func_80100074(Actor*, u32, u32);
-    s32 func_800DA3B8(s32, s32);
+    void func_800DA3B8(s32, s32);
     func_80100074(arg0, 0U, 0U);
     arg0->unk3C = NULL;
     func_800DA3B8(0x6A8, 0);
@@ -86,7 +86,7 @@ void func_808002A0_chpiranha(Actor *arg0) {
     s32 func_800BF0E0(f32 *, f32 *, f32, f32 *, s32, s32);
     s32 func_800C2FDC(u8);
     f32 func_800D8FF8(void);
-    s32 func_800DA3B8(s32, s32);
+    void func_800DA3B8(s32, s32);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEAA4(f32 *, f32 *);
@@ -579,7 +579,75 @@ s32 *func_808016D0_chpiranha(u8 *arg0) {
     return sp28;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/piranha/func_8080182C_chpiranha.s")
+s32 func_8080182C_chpiranha(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    s32 func_800DA298(s32 index);
+    void func_800DA3B8(s32 index, s32 set);
+    s32 func_800DB9B0(void);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void *func_80100094(Actor *, u32);
+    struct PiranhaState {
+        u8 unk0;
+        u8 unk1;
+        u8 previousState;
+        u8 unk3;
+        f32 position[3];
+        f32 floorY;
+        f32 unk14;
+        s32 unk18;
+    };
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    struct PiranhaState *state;
+    void *scratch;
+
+    if (arg1 == 0x95) {
+        func_8080106C_chpiranha(arg0);
+        state = func_80100094(arg0, 0);
+        scratch = func_808016D0_chpiranha((u8 *)arg0);
+        state->floorY = arg0->position[1];
+        if (arg0->unk3C != NULL) {
+            scratch = ((Actor *)scratch)->position;
+        } else {
+            scratch = arg0->position;
+        }
+        func_800EE7F8(state->position, scratch);
+        if ((arg0->unk0->unk24 >> 22) == 0x2C1) {
+            state->position[1] += 250.0f;
+        } else {
+            state->position[1] += 100.0f;
+        }
+        func_800EE7F8(arg0->position, state->position);
+        func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+        func_800EE7F8(start, arg0->position);
+        func_800EE7F8(end, arg0->position);
+        start[1] += 50.0f;
+        end[1] -= 500.0f;
+        if (func_800BEF00(start, end, normal, arg0->unk14)) {
+            state->floorY = end[1];
+        }
+        if (arg0->unk3C != NULL) {
+            state->unk18 = (u32)*(u16 *)((s8 *)arg0->unk3C + 0x12) >> 1;
+        } else {
+            state->unk18 = 0;
+        }
+        state->unk1 = 1;
+        if (arg0->unk3C != NULL) {
+            func_800DA3B8(0x34, 1);
+        }
+        if ((arg0->unk0->unk24 >> 22) == 0x2C1) {
+            func_80800218_chpiranha(arg0, arg0->unk3C != NULL ? 1 : 2);
+        } else {
+            func_80800218_chpiranha(arg0, arg0->unk3C != NULL ? 7 : 2);
+        }
+        arg0->unk58 = 0.0f;
+        arg0->unk64_20 = func_800DB9B0() | func_800DA298(0x650);
+    } else {
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chpiranha_entrypoint_0(void)
 {
