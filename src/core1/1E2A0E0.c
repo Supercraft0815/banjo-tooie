@@ -1,5 +1,26 @@
 #include "common.h"
 
+struct AudioConfig {
+    s32 maxVVoices, maxPVoices, maxUpdates, unkC;
+    s32 *(*dmaproc)(s32 **);
+    ALHeap *heap;
+    s32 outputRate;
+    s8 fxType;
+    s32 *params;
+};
+
+s32 D_8006A150;
+ALGlobals D_8006A158;
+struct AudioConfig D_8006A1A8;
+struct AudioVolume {
+    s16 master;
+    s16 channels[2];
+};
+struct AudioVolume D_8006A1CC;
+s8 D_8006A1D2;
+Acmd D_8006A1D8[2][2500];
+s16 D_80073E18[3][1840];
+
 void func_800125B0(void) {
     extern ALHeap D_80046A78;
     extern u8 D_80046A88[];
@@ -38,14 +59,6 @@ void func_800125B0(void) {
 }
 
 void func_8001268C(void) {
-    struct AudioConfig {
-        s32 maxVVoices, maxPVoices, maxUpdates, unkC;
-        s32 *(*dmaproc)(s32 **);
-        ALHeap *heap;
-        s32 outputRate;
-        s8 fxType;
-        s32 *params;
-    };
     struct DMAState {
         ALLink link;
         s32 unk8, unkC, heap;
@@ -74,10 +87,7 @@ void func_8001268C(void) {
     extern OSMesg D_800694A0[];
     extern s32 D_80069A40;
     extern struct DMAState D_80069A54;
-    extern s32 D_8006A158;
-    extern struct AudioConfig D_8006A1A8;
-    extern s8 D_8006A1D2;
-    extern u8 D_8006A1D8[], D_80073E18[], D_80076938[];
+    extern u8 D_80076938[];
     struct DMAState *dma, *next;
     int i;
     s32 *cmd, *info;
@@ -107,17 +117,17 @@ void func_8001268C(void) {
     ((s32 *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState)))[4] = func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x200);
     i = 0;
     do {
-        D_800459E0[i] = (s32)(D_8006A1D8 + i * 0x4E20);
+        D_800459E0[i] = (s32)((u8 *)D_8006A1D8 + i * 0x4E20);
         i++;
-    } while (D_8006A1D8 + i * 0x4E20 < D_80073E18);
+    } while ((u8 *)D_8006A1D8 + i * 0x4E20 < (u8 *)D_80073E18);
     i = 0;
     do {
         D_800459E0[i + 2] = func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x10);
         ((struct AudioInfo *)D_800459E0[i + 2])->unk8 = 0;
         ((struct AudioInfo *)D_800459E0[i + 2])->self = (struct AudioInfo *)D_800459E0[i + 2];
-        ((struct AudioInfo *)D_800459E0[i + 2])->data = D_80073E18 + i * 0xE60;
+        ((struct AudioInfo *)D_800459E0[i + 2])->data = (u8 *)D_80073E18 + i * 0xE60;
         i++;
-    } while (D_80076938 != D_80073E18 + i * 0xE60);
+    } while (D_80076938 != (u8 *)D_80073E18 + i * 0xE60);
     func_8001DCB0(&D_800459F8, &D_80045BA8, 4, func_800128C0, NULL, &D_80046A78, 50);
 }
 
@@ -149,7 +159,55 @@ void func_800128C0(void *arg) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2A0E0/func_800129FC.s")
+s32 func_800129FC(s32 arg0, s32 arg1) {
+    Acmd *func_80021574(Acmd *, s32 *, s16 *, s32);
+    void func_8001A148(s32, s32, s32, s32);
+    void func_80012D84(void);
+    extern s32 D_800459E0[];
+    extern OSMesgQueue D_80045BF0;
+    static s32 sampleAdjustmentCooldown;
+    struct AudioBuffer {
+        void *data;
+        s16 samples;
+        s32 task;
+    };
+    s16 *outbuffer;
+    Acmd *command_list_end;
+    s32 command_list_len;
+    u32 remaining;
+    s32 ret;
+
+    ret = 0;
+    outbuffer = (s16 *)osVirtualToPhysical(((struct AudioBuffer *)arg0)->data);
+    func_80012D84();
+    remaining = osAiGetLength() >> 2;
+    if (arg1) {
+        ret = osAiSetNextBuffer(((struct AudioBuffer *)arg1)->data, 4 * ((struct AudioBuffer *)arg1)->samples);
+    }
+    if (ret == -1) {
+        return 0;
+    }
+    if (((s32)remaining < 0x5C) && !sampleAdjustmentCooldown) {
+        ((struct AudioBuffer *)arg0)->samples = 0x398;
+        sampleAdjustmentCooldown = 2;
+    } else if (((s32)remaining >= 0x115) && !sampleAdjustmentCooldown) {
+        ((struct AudioBuffer *)arg0)->samples = 0x228;
+        sampleAdjustmentCooldown = 2;
+    } else {
+        ((struct AudioBuffer *)arg0)->samples = 0x2E0;
+        if (sampleAdjustmentCooldown) {
+            sampleAdjustmentCooldown--;
+        }
+    }
+    command_list_end = func_80021574((Acmd *)D_800459E0[D_8006A150], &command_list_len, outbuffer, ((struct AudioBuffer *)arg0)->samples);
+    if (command_list_len == 0) {
+        return 0;
+    } else {
+        func_8001A148(D_800459E0[D_8006A150], (s32)command_list_end, (s32)&D_80045BF0, (s32)&((struct AudioBuffer *)arg0)->task);
+        D_8006A150 ^= 1;
+        return 1;
+    }
+}
 
 void func_80012B74(s32 arg0) {
     extern s32 D_8003CC64[1];
@@ -316,15 +374,13 @@ void *func_80012F00(void) {
 
 void func_80012F0C(s32 arg0) {
     s32 func_80021A00(s32);
-    extern s16 D_8006A1CC;
-    D_8006A1CC = arg0;
+    D_8006A1CC.master = arg0;
     func_80021A00(arg0 & 0xFF);
 }
 
 void func_80012F34(s32 arg0, s32 arg1) {
     s32 func_80021AD0();
-    extern s32 D_8006A1CE;
-    *(((volatile s16 *)&D_8006A1CE) + arg0) = arg1;
+    *(((volatile s16 *)D_8006A1CC.channels) + arg0) = arg1;
     func_80021AD0();
 }
 

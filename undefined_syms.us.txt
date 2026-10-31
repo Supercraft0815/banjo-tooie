@@ -104,3 +104,7 @@ SECTIONS
         func_8080416C_chintrochar = func_80804054_chintrochar + 0x118;
     }
 }
+
+/* Audio channel volumes and the end of the sample buffers. */
+D_8006A1CE = D_8006A1CC + 2;
+D_80076938 = D_80073E18 + 0x2B20;
