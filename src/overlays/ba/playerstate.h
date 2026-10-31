@@ -85,7 +85,7 @@ typedef struct player_state_s {
     f32 unk174;
     u8 pad178[0xC];
     s32 unk184;
-    /* 0x188 */ struct bs_kazfly_s *kazfly;
+    /* 0x188 */ void *state_mem; // per-state memory, see bastatemem_entrypoint_0
 } PlayerState;
 
 #endif

@@ -1,6 +1,50 @@
 #include "bs/firstp.h"
 #include "overlays/ba/playerstate.h"
 
+/* Per-state memory of the first-person state, allocated in player->state_mem. */
+typedef struct bs_firstp_state_s {
+    /* 0x000 */ s32 unk0;
+    u8 pad4[0x14];
+    /* 0x018 */ f32 offset[4];
+    /* 0x028 */ s32 unk28;
+    /* 0x02C */ f32 unk2C[3];
+    /* 0x038 */ f32 smooth_velocity[3];
+    /* 0x044 */ f32 speed_along; // smoothed velocity projected onto unk2C
+    /* 0x048 */ f32 speed_across;
+    /* 0x04C */ f32 unk4C;
+    /* 0x050 */ f32 pitch;
+    /* 0x054 */ f32 sway_phase;
+    /* 0x058 */ f32 sway;
+    /* 0x05C */ f32 bob_phase;
+    /* 0x060 */ f32 bob;
+    u8 pad64[0x28];
+    /* 0x08C */ s32 offset_preset; // index into D_8080A5B0_bsfirstp
+    /* 0x090 */ f32 offset_strength;
+    u8 pad94[0x34];
+    /* 0x0C8 */ f32 yaw_offset;
+    /* 0x0CC */ f32 pitch_offset;
+    u8 padD0[0x13C];
+    /* 0x20C */ f32 yaw;
+    u8 pad210[0x98];
+} FirstpState;
+
+/* Per-mode view/model config, see func_80802484_bsfirstp. */
+typedef struct bs_firstp_config_s {
+    /* 0x00 */ f32 unk0;
+    /* 0x04 */ f32 unk4;
+    /* 0x08 */ f32 unk8;
+    u8 padC[4];
+    /* 0x10 */ f32 position[3];
+    /* 0x1C */ f32 rotation[3];
+    u8 pad28[3];
+    /* 0x2B */ u8 bone1;
+    u8 pad2C[3];
+    /* 0x2F */ u8 bone2;
+    /* 0x30 */ f32 split_ratio; // share of the turn applied to bone1
+    /* 0x34 */ f32 yaw_scale[2];
+    /* 0x3C */ f32 pitch_scale[2];
+} FirstpConfig;
+
 void func_808061AC_bsfirstp(void *, s32);
 void func_8009E4E0(void *, s32, s32);
 
@@ -22,16 +66,16 @@ enum asset_e;
 
 /* extern */
 
-u8 *func_80800000_bsfirstp(u8 *arg0) {
+FirstpState *func_80800000_bsfirstp(PlayerState *player) {
     s32 aligned8_memset(s32 dst, s32 value, s32 size);
     void _bastatemem_entrypoint_0(s32, s32);
-    u8 *sp1C;
+    FirstpState *firstp;
     s32 pad;
 
-    _bastatemem_entrypoint_0((s32)arg0, 0x2A8);
-    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
-    aligned8_memset((s32)sp1C, 0, 0x2A8);
-    return sp1C;
+    _bastatemem_entrypoint_0((s32)player, sizeof(FirstpState));
+    firstp = player->state_mem;
+    aligned8_memset((s32)firstp, 0, sizeof(FirstpState));
+    return firstp;
 }
 
 void func_80800040_bsfirstp()
@@ -39,44 +83,44 @@ void func_80800040_bsfirstp()
     _bastatemem_entrypoint_1();
 }
 
-void bsfirstp_entrypoint_0(u8 *arg0, f32 *arg1, f32 *arg2) {
-    s32 *func_80802484_bsfirstp(void *);
-    u8 *sp1C;
-    s32 *temp_v0;
+void bsfirstp_entrypoint_0(PlayerState *player, f32 *position, f32 *rotation) {
+    FirstpConfig *func_80802484_bsfirstp(void *);
+    FirstpState *firstp;
+    FirstpConfig *config;
 
-    sp1C = *(u8 **)(arg0 + 0x188);
-    temp_v0 = func_80802484_bsfirstp(arg0);
-    arg2[0] = *(f32 *)((u8 *)temp_v0 + 0x1C);
-    arg2[1] = *(f32 *)((u8 *)temp_v0 + 0x20);
-    arg2[2] = *(f32 *)((u8 *)temp_v0 + 0x24);
-    arg1[0] = *(f32 *)((u8 *)temp_v0 + 0x10) + *(f32 *)(sp1C + 0x18);
-    arg1[1] = *(f32 *)((u8 *)temp_v0 + 0x14) + *(f32 *)(sp1C + 0x1C);
-    arg1[2] = *(f32 *)((u8 *)temp_v0 + 0x18);
-    func_8080800C_bsfirstp((s32)arg0);
+    firstp = player->state_mem;
+    config = func_80802484_bsfirstp(player);
+    rotation[0] = config->rotation[0];
+    rotation[1] = config->rotation[1];
+    rotation[2] = config->rotation[2];
+    position[0] = config->position[0] + firstp->offset[0];
+    position[1] = config->position[1] + firstp->offset[1];
+    position[2] = config->position[2];
+    func_8080800C_bsfirstp((s32)player);
 }
 
-void bsfirstp_entrypoint_1(struct player_state_s *arg0, s32 arg1) {
+void bsfirstp_entrypoint_1(struct player_state_s *player, s32 arg1) {
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
     void func_8008B304(struct anctrl_s *);
     s32 func_8008B4D4(struct anctrl_s *);
     void func_800DF41C(s32);
-    s32 func_80800864_bsfirstp(void *);
+    s32 func_80800864_bsfirstp(PlayerState *);
     void func_80800F14_bsfirstp(void *);
     void func_80801000_bsfirstp(void *);
     struct anctrl_s *control;
 
     switch (arg1) {
     case 0:
-        control = baanim_getAnimCtrlPtr(arg0);
-        func_80801000_bsfirstp(arg0);
+        control = baanim_getAnimCtrlPtr(player);
+        func_80801000_bsfirstp(player);
         func_8008B304(control);
         func_800DF41C(func_8008B4D4(control));
         break;
     case 1:
-        control = func_8008D04C(arg0);
-        if (func_80800864_bsfirstp(arg0)) {
-            func_80800F14_bsfirstp(arg0);
+        control = func_8008D04C(player);
+        if (func_80800864_bsfirstp(player)) {
+            func_80800F14_bsfirstp(player);
         }
         func_8008B304(control);
         func_800DF41C(func_8008B4D4(control));
@@ -84,63 +128,63 @@ void bsfirstp_entrypoint_1(struct player_state_s *arg0, s32 arg1) {
     }
 }
 
-void func_80800190_bsfirstp(u8 *arg0) {
+void func_80800190_bsfirstp(PlayerState *player) {
     s32 func_800EFD24(s32);
-    s32 func_80800858_bsfirstp(s32, s32);
-    u8 *sp1C;
+    s32 func_80800858_bsfirstp(PlayerState *, s32);
+    FirstpState *firstp;
 
-    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
-    func_80800858_bsfirstp((s32) arg0, 0);
-    func_800EFD24((s32) (sp1C + 0x2C));
-    (*(f32 *)((s8 *)(sp1C) + (0x50))) = 0.0f;
+    firstp = player->state_mem;
+    func_80800858_bsfirstp(player, 0);
+    func_800EFD24((s32) firstp->unk2C);
+    firstp->pitch = 0.0f;
 }
 
 /* extern */
 
-void func_808001D0_bsfirstp(s32 arg0) {
-    s32 func_80800858_bsfirstp(s32, s32);
+void func_808001D0_bsfirstp(PlayerState *player) {
+    s32 func_80800858_bsfirstp(PlayerState *, s32);
     void func_80808C48_bsfirstp(struct player_state_s *);
-    func_80808C48_bsfirstp(arg0);
-    func_80800858_bsfirstp(arg0, 0);
+    func_80808C48_bsfirstp(player);
+    func_80800858_bsfirstp(player, 0);
 }
 
 /* extern */
 
-void func_808001FC_bsfirstp(struct player_state_s *arg0) {
+void func_808001FC_bsfirstp(struct player_state_s *player) {
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
-    anctrl_setPlaybackType(func_8008D04C(arg0), 3);
+    anctrl_setPlaybackType(func_8008D04C(player), 3);
 }
 
 /* extern */
 
-s32 func_80800228_bsfirstp(struct player_state_s *arg0) {
+s32 func_80800228_bsfirstp(struct player_state_s *player) {
     s32 anctrl_getPlaybackType(s32);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
-    s32 var_v1;
+    s32 result;
 
-    if (anctrl_getPlaybackType(func_8008D04C(arg0)) == 3) {
-        var_v1 = 1;
+    if (anctrl_getPlaybackType(func_8008D04C(player)) == 3) {
+        result = 1;
     } else {
-        var_v1 = 0;
+        result = 0;
     }
-    return var_v1;
+    return result;
 }
 
 /* extern */
 
-void func_80800264_bsfirstp(s32 arg0, s32 arg1) {
+void func_80800264_bsfirstp(s32 player, s32 arg1) {
     s32 func_8008B10C(s32, s32);
     struct anctrl_s *func_8008D04C();
-    func_8008B10C(func_8008D04C(arg0), arg1);
+    func_8008B10C(func_8008D04C(player), arg1);
 }
 
 /* extern */
 
-void func_80800290_bsfirstp(struct player_state_s *arg0, s32 arg1, f32 arg2) {
+void func_80800290_bsfirstp(struct player_state_s *player, s32 anim, f32 duration) {
     f32 baanim_getTimer();
     void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
-    baanim_playForDuration_loopStartingAt(arg0, arg1, arg2, baanim_getTimer());
+    baanim_playForDuration_loopStartingAt(player, anim, duration, baanim_getTimer());
 }
 
 void anctrl_reset(struct anctrl_s *);
@@ -150,22 +194,22 @@ void anctrl_setPlaybackType(struct anctrl_s *, s32);
 void anctrl_setStart(struct anctrl_s *, f32);
 void anctrl_start(struct anctrl_s *);
 
-void func_808002CC_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2, f32 arg3) {
+void func_808002CC_bsfirstp(struct player_state_s *self, s32 anim, f32 duration, f32 start) {
     struct anctrl_s *func_8008D04C(struct player_state_s *);
-    struct anctrl_s *temp_v0;
+    struct anctrl_s *control;
 
-    temp_v0 = func_8008D04C(self);
-    anctrl_reset(temp_v0);
-    anctrl_setIndex(temp_v0, arg1);
-    anctrl_setDuration(temp_v0, arg2);
-    anctrl_setStart(temp_v0, arg3);
-    anctrl_setPlaybackType(temp_v0, 2);
-    anctrl_start(temp_v0);
+    control = func_8008D04C(self);
+    anctrl_reset(control);
+    anctrl_setIndex(control, anim);
+    anctrl_setDuration(control, duration);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
 }
 
 /* extern */
 
-void func_80800340_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2, f32 arg3) {
+void func_80800340_bsfirstp(struct player_state_s *self, s32 anim, f32 duration, f32 start) {
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -173,20 +217,20 @@ void func_80800340_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2, f32
     void anctrl_setStart(struct anctrl_s *, f32);
     void anctrl_start(struct anctrl_s *);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
-    struct anctrl_s *temp_v0;
+    struct anctrl_s *control;
 
-    temp_v0 = func_8008D04C(self);
-    anctrl_reset(temp_v0);
-    anctrl_setIndex(temp_v0, arg1);
-    anctrl_setDuration(temp_v0, arg2);
-    anctrl_setStart(temp_v0, arg3);
-    anctrl_setPlaybackType(temp_v0, 1);
-    anctrl_start(temp_v0);
+    control = func_8008D04C(self);
+    anctrl_reset(control);
+    anctrl_setIndex(control, anim);
+    anctrl_setDuration(control, duration);
+    anctrl_setStart(control, start);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
 }
 
 /* extern */
 
-void func_808003B4_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2) {
+void func_808003B4_bsfirstp(struct player_state_s *self, s32 anim, f32 duration) {
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -194,39 +238,39 @@ void func_808003B4_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2) {
     void anctrl_setSmoothTransition(struct anctrl_s *, s32);
     void anctrl_start(struct anctrl_s *);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
-    struct anctrl_s *temp_v0;
+    struct anctrl_s *control;
 
-    temp_v0 = func_8008D04C(self);
-    anctrl_reset(temp_v0);
-    anctrl_setSmoothTransition(temp_v0, 0);
-    anctrl_setIndex(temp_v0, arg1);
-    anctrl_setDuration(temp_v0, arg2);
-    anctrl_setPlaybackType(temp_v0, 1);
-    anctrl_start(temp_v0);
+    control = func_8008D04C(self);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, anim);
+    anctrl_setDuration(control, duration);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
 }
 
 /* extern */
 
-void func_80800424_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2) {
+void func_80800424_bsfirstp(struct player_state_s *self, s32 anim, f32 duration) {
     struct anctrl_s *func_8008D04C(struct player_state_s *);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void anctrl_start(struct anctrl_s *);
-    struct anctrl_s *temp_v0;
+    struct anctrl_s *control;
 
-    temp_v0 = func_8008D04C(self);
-    anctrl_reset(temp_v0);
-    anctrl_setIndex(temp_v0, arg1);
-    anctrl_setDuration(temp_v0, arg2);
-    anctrl_setPlaybackType(temp_v0, 1);
-    anctrl_start(temp_v0);
+    control = func_8008D04C(self);
+    anctrl_reset(control);
+    anctrl_setIndex(control, anim);
+    anctrl_setDuration(control, duration);
+    anctrl_setPlaybackType(control, 1);
+    anctrl_start(control);
 }
 
 /* extern */
 
-void func_80800488_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2) {
+void func_80800488_bsfirstp(struct player_state_s *self, s32 anim, f32 duration) {
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -234,40 +278,39 @@ void func_80800488_bsfirstp(struct player_state_s *self, s32 arg1, f32 arg2) {
     void anctrl_setSmoothTransition(struct anctrl_s *, s32);
     void anctrl_start(struct anctrl_s *);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
-    struct anctrl_s *temp_v0;
+    struct anctrl_s *control;
 
-    temp_v0 = func_8008D04C(self);
-    anctrl_reset(temp_v0);
-    anctrl_setSmoothTransition(temp_v0, 0);
-    anctrl_setIndex(temp_v0, arg1);
-    anctrl_setDuration(temp_v0, arg2);
-    anctrl_setPlaybackType(temp_v0, 2);
-    anctrl_start(temp_v0);
+    control = func_8008D04C(self);
+    anctrl_reset(control);
+    anctrl_setSmoothTransition(control, 0);
+    anctrl_setIndex(control, anim);
+    anctrl_setDuration(control, duration);
+    anctrl_setPlaybackType(control, 2);
+    anctrl_start(control);
 }
 
-s32 func_808004F8_bsfirstp(u8 *arg0) {
-    s32 func_800EEC70(u8 *, f32, f32, s32);
+s32 func_808004F8_bsfirstp(PlayerState *player) {
+    s32 func_800EEC70(f32 *, f32, f32, s32);
     f32 yaw_get(struct player_state_s *);
-    u8 *sp1C;
-    f32 sp18;
-    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
-    sp18 = (*(f32 *)((s8 *)(sp1C) + (0x20C)));
-    return func_800EEC70(sp1C + 0x2C, sp18, yaw_get(arg0), 0x43160000);
+    FirstpState *firstp;
+    f32 yaw;
+    firstp = player->state_mem;
+    yaw = firstp->yaw;
+    return func_800EEC70(firstp->unk2C, yaw, yaw_get(player), 0x43160000); // 150.0f
 }
 
 /* extern */
 
-void func_8080053C_bsfirstp(void *arg0) {
+void func_8080053C_bsfirstp(PlayerState *player) {
     s32 func_800EFD24(s32);
-    s32 func_808004F8_bsfirstp();
-    s32 sp1C;
+    FirstpState *firstp;
 
-    sp1C = (*(s32 *)((s8 *)(arg0) + (0x188)));
-    func_808004F8_bsfirstp();
-    func_800EFD24(sp1C + 0x38);
+    firstp = player->state_mem;
+    func_808004F8_bsfirstp(player);
+    func_800EFD24((s32) firstp->smooth_velocity);
 }
 
-void func_8080056C_bsfirstp(arg0) {
+void func_8080056C_bsfirstp(PlayerState *player) {
     void func_8009B4D0(void *, s32);
     f32 func_800EEFFC(void *);
     void func_800EF04C(f32 *, f32 *);
@@ -278,261 +321,262 @@ void func_8080056C_bsfirstp(arg0) {
     f32 func_80806170_bsfirstp(void *, f32);
     f32 func_80809938_bsfirstp(void *);
     f32 sqrtf(f32);
-    u8 *state;
-    f32 sp40[3];
-    f32 sp3C;
-    f32 sp38;
-    f32 sp34;
-    f32 sp30;
+    FirstpState *firstp;
+    f32 velocity[3];
+    f32 tmp;
+    f32 speed;
+    f32 cos_angle;
+    f32 sin_angle;
 
-    state = *(u8 **)(arg0 + 0x188);
-    sp3C = func_800D9004();
-    func_8009B4D0(arg0, (s32)sp40);
-    func_800EF3DC(sp40, (f32 *)(state + 0x2C));
-    func_808004F8_bsfirstp(arg0);
-    func_800EF04C(sp40, (f32 *)(state + 0x2C));
-    func_800EF334(sp40, 1.0f / sp3C);
-    *(f32 *)(state + 0x38) += (sp40[0] - *(f32 *)(state + 0x38)) * 0.2f;
-    *(f32 *)(state + 0x40) += (sp40[2] - *(f32 *)(state + 0x40)) * 0.2f;
-    sp38 = func_80806170_bsfirstp(arg0, func_800EEFFC((f32 *)(state + 0x38)));
-    sp34 = func_800F1CF0((f32 *)(state + 0x38), (f32 *)(state + 0x2C));
-    sp30 = sqrtf(1.0f - sp34 * sp34);
-    *(f32 *)(state + 0x44) = func_800F0DC0(sp38 * sp34, 1.0f);
-    *(f32 *)(state + 0x48) = func_800F0DC0(sp38 * sp30, 1.0f);
-    sp3C = func_800F0DC0(func_80809938_bsfirstp(arg0), 1.0f);
-    *(f32 *)(state + 0x4C) += (sp3C - *(f32 *)(state + 0x4C)) * 0.2f;
+    firstp = player->state_mem;
+    tmp = func_800D9004();
+    func_8009B4D0(player, (s32)velocity);
+    func_800EF3DC(velocity, firstp->unk2C);
+    func_808004F8_bsfirstp(player);
+    func_800EF04C(velocity, firstp->unk2C);
+    func_800EF334(velocity, 1.0f / tmp);
+    firstp->smooth_velocity[0] += (velocity[0] - firstp->smooth_velocity[0]) * 0.2f;
+    firstp->smooth_velocity[2] += (velocity[2] - firstp->smooth_velocity[2]) * 0.2f;
+    speed = func_80806170_bsfirstp(player, func_800EEFFC(firstp->smooth_velocity));
+    cos_angle = func_800F1CF0(firstp->smooth_velocity, firstp->unk2C);
+    sin_angle = sqrtf(1.0f - cos_angle * cos_angle);
+    firstp->speed_along = func_800F0DC0(speed * cos_angle, 1.0f);
+    firstp->speed_across = func_800F0DC0(speed * sin_angle, 1.0f);
+    tmp = func_800F0DC0(func_80809938_bsfirstp(player), 1.0f);
+    firstp->unk4C += (tmp - firstp->unk4C) * 0.2f;
 }
 
 /* extern */
 
-void func_808006DC_bsfirstp(void *arg0) {
+void func_808006DC_bsfirstp(PlayerState *player) {
     f32 func_800136E4(f32);
     f32 func_80013970(f32);
     f32 mlAbsF(f32);
-    f32 temp_f0;
-    f32 var_f14;
-    f32 var_f2;
-    f32 var_f20;
-    void *temp_s0;
+    f32 t;
+    f32 along;
+    f32 across;
+    f32 amount;
+    FirstpState *firstp;
 
-    temp_s0 = (*(void **)((s8 *)(arg0) + (0x188)));
-    temp_f0 = mlAbsF((*(f32 *)((s8 *)(temp_s0) + (0x44))));
-    var_f14 = temp_f0;
-    var_f2 = (*(f32 *)((s8 *)(temp_s0) + (0x48)));
-    if ((*(s32 *)((s8 *)(temp_s0) + (0))) == 3) {
-        var_f14 = temp_f0 * 1.333f;
-        var_f2 *= 1.333f;
+    firstp = player->state_mem;
+    t = mlAbsF(firstp->speed_along);
+    along = t;
+    across = firstp->speed_across;
+    if (firstp->unk0 == 3) {
+        along = t * 1.333f;
+        across *= 1.333f;
     }
-    temp_f0 = var_f2 * 0.75f;
-    if (temp_f0 < var_f14) {
-        var_f20 = var_f14;
+    t = across * 0.75f;
+    if (t < along) {
+        amount = along;
     } else {
-        var_f20 = temp_f0;
+        amount = t;
     }
-    if (var_f20 != 0.0f) {
-        temp_f0 = func_800136E4((*(f32 *)((s8 *)(temp_s0) + (0x54))) + (var_f20 * 12.5f));
-        (*(f32 *)((s8 *)(temp_s0) + (0x54))) = temp_f0;
-        (*(f32 *)((s8 *)(temp_s0) + (0x58))) = (f32) (func_80013970(temp_f0) * var_f20);
+    if (amount != 0.0f) {
+        t = func_800136E4(firstp->sway_phase + (amount * 12.5f));
+        firstp->sway_phase = t;
+        firstp->sway = (f32) (func_80013970(t) * amount);
     } else {
-        (*(f32 *)((s8 *)(temp_s0) + (0x54))) = 0.0f;
-        (*(f32 *)((s8 *)(temp_s0) + (0x58))) = 0.0f;
+        firstp->sway_phase = 0.0f;
+        firstp->sway = 0.0f;
     }
-    temp_f0 = var_f14 * 0.75f;
-    if (temp_f0 < var_f2) {
-        var_f20 = var_f2;
+    t = along * 0.75f;
+    if (t < across) {
+        amount = across;
     } else {
-        var_f20 = temp_f0;
+        amount = t;
     }
-    if (var_f20 != 0.0f) {
-        temp_f0 = func_800136E4((*(f32 *)((s8 *)(temp_s0) + (0x5C))) + (var_f20 * 25.0f));
-        (*(f32 *)((s8 *)(temp_s0) + (0x5C))) = temp_f0;
-        (*(f32 *)((s8 *)(temp_s0) + (0x60))) = (f32) (func_80013970(temp_f0) * var_f20);
+    if (amount != 0.0f) {
+        t = func_800136E4(firstp->bob_phase + (amount * 25.0f));
+        firstp->bob_phase = t;
+        firstp->bob = (f32) (func_80013970(t) * amount);
         return;
     }
-    (*(f32 *)((s8 *)(temp_s0) + (0x5C))) = 0.0f;
-    (*(f32 *)((s8 *)(temp_s0) + (0x60))) = 0.0f;
+    firstp->bob_phase = 0.0f;
+    firstp->bob = 0.0f;
 }
 
-void func_80800830_bsfirstp(s32 arg0)
+void func_80800830_bsfirstp(PlayerState *player)
 {
-    func_8080056C_bsfirstp();
-    func_808006DC_bsfirstp(arg0);
+    func_8080056C_bsfirstp(player);
+    func_808006DC_bsfirstp(player);
 }
-s32 func_80800858_bsfirstp(s32 arg0, s32 arg1) {
-    u8 *temp_v0;
+s32 func_80800858_bsfirstp(PlayerState *player, s32 value) {
+    FirstpState *firstp;
 
-    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x188)));
-    (*(s32 *)((s8 *)(temp_v0) + (0x28))) = arg1;
-    return (s32) temp_v0;
+    firstp = player->state_mem;
+    firstp->unk28 = value;
+    return (s32) firstp;
 }
 
-s32 func_80800864_bsfirstp(void *arg0) {
+s32 func_80800864_bsfirstp(PlayerState *player) {
     s32 result;
-    s32 *ptr;
-    ptr = (s32 *)(*(void **)((s8 *)(arg0) + (0x188)));
+    FirstpState *firstp;
+    firstp = player->state_mem;
     result = 0;
-    return *(ptr + 10) != 0 ? 1 : result;
+    return firstp->unk28 != 0 ? 1 : result;
 }
 
 /* extern */
 
-void func_80800888_bsfirstp(u8 *arg0, s32 arg1) {
-    s32 func_80800900_bsfirstp(u8 *, f32);
-    s32 *ptr;
-    ptr = (s32 *)(*(void **)((s8 *)(arg0) + (0x188)));
-    *(ptr + 35) = arg1;
-    func_80800900_bsfirstp(arg0, 1.0f);
+void func_80800888_bsfirstp(PlayerState *player, s32 preset) {
+    s32 func_80800900_bsfirstp(PlayerState *, f32);
+    FirstpState *firstp;
+    firstp = player->state_mem;
+    firstp->offset_preset = preset;
+    func_80800900_bsfirstp(player, 1.0f);
 }
 
 /* extern */
 
-s32 func_808008B0_bsfirstp(u8 *arg0) {
+s32 func_808008B0_bsfirstp(PlayerState *player) {
     f32 func_800D9004();
-    s32 func_80800900_bsfirstp(u8 *, f32);
-    u8 *sp1C;
-    f32 sp18;
-    f32 sp14;
+    s32 func_80800900_bsfirstp(PlayerState *, f32);
+    FirstpState *firstp;
+    f32 decay;
+    f32 strength;
 
-    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
-    sp18 = func_800D9004() * 5.5f;
-    sp14 = (*(f32 *)((s8 *)(sp1C) + (0x90))) - sp18;
-    return func_80800900_bsfirstp(arg0, sp14);
+    firstp = player->state_mem;
+    decay = func_800D9004() * 5.5f;
+    strength = firstp->offset_strength - decay;
+    return func_80800900_bsfirstp(player, strength);
 }
 
-s32 func_80800900_bsfirstp(u8 *arg0, f32 arg1) {
+s32 func_80800900_bsfirstp(PlayerState *player, f32 strength) {
     extern f32 D_8080A5B0_bsfirstp[][4];
-    s32 var_a0;
-    void *temp_a1;
-    void *temp_v1;
+    s32 active;
+    f32 *preset;
+    FirstpState *firstp;
 
-    temp_v1 = (*(void **)((s8 *)(arg0) + (0x188)));
-    if (arg1 <= 0.0f) {
-        var_a0 = 0;
-        arg1 = 0.0f;
+    firstp = player->state_mem;
+    if (strength <= 0.0f) {
+        active = 0;
+        strength = 0.0f;
     } else {
-        var_a0 = 1;
+        active = 1;
     }
-    (*(f32 *)((s8 *)(temp_v1) + (0x90))) = arg1;
-    temp_a1 = D_8080A5B0_bsfirstp[*(s32 *)((s8 *)temp_v1 + 0x8C)];
-    (*(f32 *)((s8 *)(temp_v1) + (0x18))) = (f32) ((*(f32 *)((s8 *)(temp_a1) + (0))) * arg1);
-    (*(f32 *)((s8 *)(temp_v1) + (0x1C))) = (f32) ((*(f32 *)((s8 *)(temp_a1) + (4))) * arg1);
-    (*(f32 *)((s8 *)(temp_v1) + (0x20))) = (f32) ((*(f32 *)((s8 *)(temp_a1) + (8))) * arg1);
-    (*(f32 *)((s8 *)(temp_v1) + (0x24))) = (f32) ((*(f32 *)((s8 *)(temp_a1) + (0xC))) * arg1);
-    return var_a0;
+    firstp->offset_strength = strength;
+    preset = D_8080A5B0_bsfirstp[firstp->offset_preset];
+    firstp->offset[0] = (f32) (preset[0] * strength);
+    firstp->offset[1] = (f32) (preset[1] * strength);
+    firstp->offset[2] = (f32) (preset[2] * strength);
+    firstp->offset[3] = (f32) (preset[3] * strength);
+    return active;
 }
 
-void func_80800978_bsfirstp(void *arg0, void *arg1, void *arg2, void *arg3) {
-    f32 temp_f0;
-    f32 temp_f2;
-    f32 var_f12;
-    void *temp_v0;
+/* Splits the view turn between config->bone1 ([0]) and config->bone2 ([1]). */
+void func_80800978_bsfirstp(PlayerState *player, FirstpConfig *config, f32 *yaw_split, f32 *pitch_split) {
+    f32 yaw;
+    f32 pitch;
+    f32 scale;
+    FirstpState *firstp;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x188)));
-    temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0xC8))) * 0.02712968f;
-    temp_f2 = (*(f32 *)((s8 *)(temp_v0) + (0xCC))) * 0.017686592f;
-    if (temp_f0 > 0.0f) {
-        var_f12 = -(*(f32 *)((s8 *)(arg1) + (0x34)));
+    firstp = player->state_mem;
+    yaw = firstp->yaw_offset * 0.02712968f;
+    pitch = firstp->pitch_offset * 0.017686592f;
+    if (yaw > 0.0f) {
+        scale = -config->yaw_scale[0];
     } else {
-        var_f12 = (*(f32 *)((s8 *)(arg1) + (0x38)));
+        scale = config->yaw_scale[1];
     }
-    temp_f0 *= var_f12;
-    if (temp_f2 > 0.0f) {
-        var_f12 = -(*(f32 *)((s8 *)(arg1) + (0x3C)));
+    yaw *= scale;
+    if (pitch > 0.0f) {
+        scale = -config->pitch_scale[0];
     } else {
-        var_f12 = (*(f32 *)((s8 *)(arg1) + (0x40)));
+        scale = config->pitch_scale[1];
     }
-    temp_f2 *= var_f12;
-    (*(f32 *)((s8 *)(arg2) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0x30))) * temp_f0);
-    (*(f32 *)((s8 *)(arg3) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0x30))) * temp_f2);
-    (*(f32 *)((s8 *)(arg2) + (4))) = (f32) (temp_f0 - (*(f32 *)((s8 *)(arg2) + (0))));
-    (*(f32 *)((s8 *)(arg3) + (4))) = (f32) (temp_f2 - (*(f32 *)((s8 *)(arg3) + (0))));
+    pitch *= scale;
+    yaw_split[0] = (f32) (config->split_ratio * yaw);
+    pitch_split[0] = (f32) (config->split_ratio * pitch);
+    yaw_split[1] = (f32) (yaw - yaw_split[0]);
+    pitch_split[1] = (f32) (pitch - pitch_split[0]);
 }
 
-void func_80800A18_bsfirstp(void *arg0, void *arg1) {
-    s32 *func_80802484_bsfirstp(void *);
+void func_80800A18_bsfirstp(PlayerState *player, void *model) {
+    FirstpConfig *func_80802484_bsfirstp(void *);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    s32 *sp44;
-    f32 sp3C[2];
-    f32 sp34[2];
-    void *temp_v0;
-    f32 sp2C;
-    f32 sp28;
+    FirstpConfig *config;
+    f32 yaw_split[2];
+    f32 pitch_split[2];
+    FirstpState *firstp;
+    f32 lean;
+    f32 bob;
 
-    sp44 = func_80802484_bsfirstp(arg0);
-    func_80800978_bsfirstp(arg0, sp44, sp3C, sp34);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)sp44 + 0x2B), 1.0f, sp3C[0], sp34[0], 0.0f);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)sp44 + 0x2F), 1.0f, 0.0f, sp34[1], -sp3C[1]);
-    temp_v0 = *(void **)((u8 *)arg0 + 0x188);
-    sp2C = *(f32 *)((u8 *)temp_v0 + 0x44) * 20.0f;
-    sp28 = *(f32 *)((u8 *)temp_v0 + 0x60) * -15.0f;
-    func_800E0AFC(arg1, 0x2D, 1.0f, 0.0f, sp2C, sp28);
-    func_800E0AFC(arg1, 0x2E, 1.0f, 0.0f, sp2C, sp28);
-    func_800E0AFC(arg1, 0x2F, 1.0f, 0.0f, sp2C, sp28);
+    config = func_80802484_bsfirstp(player);
+    func_80800978_bsfirstp(player, config, yaw_split, pitch_split);
+    func_800E0AFC(model, config->bone1, 1.0f, yaw_split[0], pitch_split[0], 0.0f);
+    func_800E0AFC(model, config->bone2, 1.0f, 0.0f, pitch_split[1], -yaw_split[1]);
+    firstp = player->state_mem;
+    lean = firstp->speed_along * 20.0f;
+    bob = firstp->bob * -15.0f;
+    func_800E0AFC(model, 0x2D, 1.0f, 0.0f, lean, bob);
+    func_800E0AFC(model, 0x2E, 1.0f, 0.0f, lean, bob);
+    func_800E0AFC(model, 0x2F, 1.0f, 0.0f, lean, bob);
 }
 
-void func_80800B44_bsfirstp(void *arg0, void *arg1) {
-    s32 *func_80802484_bsfirstp(void *);
+void func_80800B44_bsfirstp(PlayerState *player, void *model) {
+    FirstpConfig *func_80802484_bsfirstp(void *);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    s32 *sp5C;
-    f32 sp54[2];
-    f32 sp4C[2];
-    void *temp_v0;
-    f32 temp_f20;
-    f32 temp_f22;
+    FirstpConfig *config;
+    f32 yaw_split[2];
+    f32 pitch_split[2];
+    FirstpState *firstp;
+    f32 lean;
+    f32 bob;
 
-    sp5C = func_80802484_bsfirstp(arg0);
-    func_80800978_bsfirstp(arg0, sp5C, sp54, sp4C);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)sp5C + 0x2B), 1.0f, sp54[0], sp4C[0], 0.0f);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)sp5C + 0x2F), 1.0f, sp54[1], sp4C[1], 0.0f);
-    temp_v0 = *(void **)((u8 *)arg0 + 0x188);
-    temp_f20 = *(f32 *)((u8 *)temp_v0 + 0x44) * 20.0f;
-    temp_f22 = *(f32 *)((u8 *)temp_v0 + 0x60) * -15.0f;
-    func_800E0AFC(arg1, 0x2B, 0.5f, 0.0f, temp_f20, temp_f22);
-    func_800E0AFC(arg1, 0x2C, 0.5f, 0.0f, temp_f20, temp_f22);
-    func_800E0AFC(arg1, 0x2D, 0.5f, 0.0f, temp_f20, temp_f22);
-    func_800E0AFC(arg1, 0x2E, 0.5f, 0.0f, temp_f20, temp_f22);
+    config = func_80802484_bsfirstp(player);
+    func_80800978_bsfirstp(player, config, yaw_split, pitch_split);
+    func_800E0AFC(model, config->bone1, 1.0f, yaw_split[0], pitch_split[0], 0.0f);
+    func_800E0AFC(model, config->bone2, 1.0f, yaw_split[1], pitch_split[1], 0.0f);
+    firstp = player->state_mem;
+    lean = firstp->speed_along * 20.0f;
+    bob = firstp->bob * -15.0f;
+    func_800E0AFC(model, 0x2B, 0.5f, 0.0f, lean, bob);
+    func_800E0AFC(model, 0x2C, 0.5f, 0.0f, lean, bob);
+    func_800E0AFC(model, 0x2D, 0.5f, 0.0f, lean, bob);
+    func_800E0AFC(model, 0x2E, 0.5f, 0.0f, lean, bob);
 }
 
-void func_80800C88_bsfirstp(void *arg0, void *arg1) {
-    s32 *func_80802484_bsfirstp(void *);
+void func_80800C88_bsfirstp(PlayerState *player, void *model) {
+    FirstpConfig *func_80802484_bsfirstp(void *);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    s32 *sp34;
-    f32 sp2C[2];
-    f32 sp24[2];
+    FirstpConfig *config;
+    f32 yaw_split[2];
+    f32 pitch_split[2];
 
-    sp34 = func_80802484_bsfirstp(arg0);
-    func_80800978_bsfirstp(arg0, sp34, sp2C, sp24);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)sp34 + 0x2B), 1.0f, sp2C[0], sp24[0], 0.0f);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)sp34 + 0x2F), 1.0f, 0.0f, sp24[1], -sp2C[1]);
+    config = func_80802484_bsfirstp(player);
+    func_80800978_bsfirstp(player, config, yaw_split, pitch_split);
+    func_800E0AFC(model, config->bone1, 1.0f, yaw_split[0], pitch_split[0], 0.0f);
+    func_800E0AFC(model, config->bone2, 1.0f, 0.0f, pitch_split[1], -yaw_split[1]);
 }
 
-void func_80800D18_bsfirstp(void *arg0, void *arg1) {
-    s32 *func_80802484_bsfirstp(void *);
+void func_80800D18_bsfirstp(PlayerState *player, void *model) {
+    FirstpConfig *func_80802484_bsfirstp(void *);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    s32 *state;
-    f32 pitch[2];
-    f32 yaw[2];
-    void *player;
-    f32 x;
-    f32 y;
-    f32 negative_y;
+    FirstpConfig *config;
+    f32 yaw_split[2];
+    f32 pitch_split[2];
+    FirstpState *firstp;
+    f32 lean;
+    f32 bob;
+    f32 neg_bob;
 
-    state = func_80802484_bsfirstp(arg0);
-    func_80800978_bsfirstp(arg0, state, pitch, yaw);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)state + 0x2B), 1.0f, -pitch[0], yaw[0], 0.0f);
-    func_800E0AFC(arg1, *(u8 *)((u8 *)state + 0x2F), 1.0f, -pitch[1], yaw[1], 0.0f);
-    player = *(void **)((u8 *)arg0 + 0x188);
-    x = *(f32 *)((u8 *)player + 0x44) * -20.0f;
-    y = *(f32 *)((u8 *)player + 0x60) * -15.0f;
-    func_800E0AFC(arg1, 0x3C, 0.5f, 0.0f, x, negative_y = -y);
-    func_800E0AFC(arg1, 0x3E, 0.5f, 0.0f, x, negative_y);
-    func_800E0AFC(arg1, 0x3F, 0.5f, 0.0f, x, y);
-    func_800E0AFC(arg1, 0x40, 0.5f, 0.0f, x, y);
-    func_800E0AFC(arg1, 0x54, 0.5f, y, x, 0.0f);
-    func_800E0AFC(arg1, 0x5A, 0.5f, y, x, 0.0f);
-    func_800E0AFC(arg1, 0x5B, 0.5f, y, x, 0.0f);
-    func_800E0AFC(arg1, 0x5C, 0.5f, y, x, 0.0f);
-    func_800E0AFC(arg1, 0x5D, 0.5f, y, x, 0.0f);
+    config = func_80802484_bsfirstp(player);
+    func_80800978_bsfirstp(player, config, yaw_split, pitch_split);
+    func_800E0AFC(model, config->bone1, 1.0f, -yaw_split[0], pitch_split[0], 0.0f);
+    func_800E0AFC(model, config->bone2, 1.0f, -yaw_split[1], pitch_split[1], 0.0f);
+    firstp = player->state_mem;
+    lean = firstp->speed_along * -20.0f;
+    bob = firstp->bob * -15.0f;
+    func_800E0AFC(model, 0x3C, 0.5f, 0.0f, lean, neg_bob = -bob);
+    func_800E0AFC(model, 0x3E, 0.5f, 0.0f, lean, neg_bob);
+    func_800E0AFC(model, 0x3F, 0.5f, 0.0f, lean, bob);
+    func_800E0AFC(model, 0x40, 0.5f, 0.0f, lean, bob);
+    func_800E0AFC(model, 0x54, 0.5f, bob, lean, 0.0f);
+    func_800E0AFC(model, 0x5A, 0.5f, bob, lean, 0.0f);
+    func_800E0AFC(model, 0x5B, 0.5f, bob, lean, 0.0f);
+    func_800E0AFC(model, 0x5C, 0.5f, bob, lean, 0.0f);
+    func_800E0AFC(model, 0x5D, 0.5f, bob, lean, 0.0f);
 }
 
 void func_80800F14_bsfirstp(void *arg0) {
@@ -540,7 +584,7 @@ void func_80800F14_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
     void func_800E0ACC(void *);
     void func_800E0AF0(void *, f32);
-    void func_80800D18_bsfirstp(void *, void *);
+    void func_80800D18_bsfirstp(PlayerState *, void *);
     u8 *state;
     void *model;
 
@@ -673,9 +717,9 @@ void func_80801000_bsfirstp(void *arg0) {
 
 void func_808015C0_bsfirstp(struct player_state_s *arg0, f32 arg1[3], f32 arg2[3]) {
     void func_8009C128(struct player_state_s *, f32[3]);
-    s32 *func_80802484_bsfirstp(void *);
+    FirstpConfig *func_80802484_bsfirstp(void *);
     f32 yaw_get(struct player_state_s *);
-    s32 *sp1C;
+    FirstpConfig *sp1C;
 
     sp1C = func_80802484_bsfirstp(arg0);
     func_8009C128(arg0, arg1);
@@ -757,8 +801,8 @@ void bsfirstp_entrypoint_2(struct player_state_s *arg0) {
     void func_8010FD60(s32, f32);
     void func_80110730(s32, s32);
     void func_80111590(void *, f32, f32, f32, f32);
-    s32 *func_80802484_bsfirstp(void *);
-    s32 *sp4C;
+    FirstpConfig *func_80802484_bsfirstp(void *);
+    FirstpConfig *sp4C;
     s32 pad;
     f32 sp3C[3];
     f32 sp30[3];
@@ -829,8 +873,8 @@ void func_80801928_bsfirstp(struct player_state_s *arg0) {
 void func_808019B0_bsfirstp(s32 arg0) {
     s16 *func_800A4C88(void *);
     void func_8010FD60(s32, f32);
-    s32 *func_80802484_bsfirstp();
-    s32 *sp1C;
+    FirstpConfig *func_80802484_bsfirstp();
+    FirstpConfig *sp1C;
 
     sp1C = func_80802484_bsfirstp();
     func_8010FD60(func_800A4C88(arg0), *(f32 *)sp1C);
@@ -1239,9 +1283,9 @@ void *func_80802458_bsfirstp(void *arg0) {
     return D_8080ABF0_bsfirstp[func_800A3280(arg0)];
 }
 
-s32 *func_80802484_bsfirstp(void *arg0) {
+FirstpConfig *func_80802484_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
-    extern s32 *D_8080A890_bsfirstp[];
+    extern FirstpConfig *D_8080A890_bsfirstp[];
     return D_8080A890_bsfirstp[func_800A3280(arg0)];
 }
 
@@ -1913,13 +1957,13 @@ void func_808035EC_bsfirstp(void *arg0, f32 *arg1, f32 *arg2) {
     void func_800EF368(f32 *, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
-    s32 *func_80802484_bsfirstp(void *);
+    FirstpConfig *func_80802484_bsfirstp(void *);
     f32 sp5C;
     f32 sp58;
     f32 sp50[2];
     f32 sp44[3];
     f32 sp38[3];
-    s32 *sp34;
+    FirstpConfig *sp34;
 
     sp34 = func_80802484_bsfirstp(arg0);
     _baeggcursor_entrypoint_3(arg0, &sp58, &sp5C);
@@ -4466,7 +4510,7 @@ void func_808078F4_bsfirstp(s32 self) {
     s32 func_800A940C(s32);
     s32 func_800D3948(void);
     f32 *data;
-    s32 *state;
+    FirstpConfig *state;
     s16 anim[2];
     s16 mode[2];
     s16 index;
@@ -5398,7 +5442,7 @@ void func_80809250_bsfirstp(void *arg0) {
     f32 yaw;
     f32 rotation[4];
     f32 position[3];
-    s32 *ptr;
+    FirstpConfig *ptr;
 
     ctrl = baanim_getAnimCtrlPtr(arg0);
     timer = anctrl_getAnimTimer(ctrl);
@@ -5771,7 +5815,7 @@ void func_80809AF8_bsfirstp(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
     f32 angle;
     f32 *value;
 
-    state[0] = (void *)((PlayerState *)arg0)->kazfly;
+    state[0] = (void *)((PlayerState *)arg0)->state_mem;
     step = 0.033333335f;
     dt = func_800D9004() - step;
     value = &state[0]->values[0];
