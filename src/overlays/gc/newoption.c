@@ -49,10 +49,10 @@ void gcnewoption_entrypoint_0(void *arg0) {
         u32 flag08 : 1;
         u32 kind : 3;
         u32 flagsRest : 24;
-        s32 box;
+        u8 *box;
         u8 boxState;
         u8 unk25[0x17];
-        s32 boxes[29];
+        u8 *boxes[29];
         s16 items[202];
         void (*callback)(s32, void *, s32, s32);
         s32 unk248;
@@ -75,7 +75,7 @@ void gcnewoption_entrypoint_0(void *arg0) {
     void func_80802998_gcnewoption(void *);
     s32 func_80802A9C_gcnewoption(u8 *);
     void func_80802B24_gcnewoption(void *, s32);
-    s32 _gczoombox_entrypoint_4();
+    void _gczoombox_entrypoint_4(u8 *);
     void func_80015E80(u32, void *);
     void func_80016068(u32, f32 *);
     f32 func_800D8FF8(void);
@@ -442,7 +442,7 @@ void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132
         s8 controller;
     };
     u32 *_gldbstring_entrypoint_0(u32 *, u32);
-    s16 _gldialog_entrypoint_0();
+    s32 _gldialog_entrypoint_0(void);
     void gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);
     struct OptionInit *option = arg0;
     s32 i;
@@ -766,7 +766,7 @@ void gcnewoption_entrypoint_26(u8 *arg0, s32 arg1) {
 /* extern */
 
 void gcnewoption_entrypoint_27(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _gczoombox_entrypoint_40(s32, s32);
+    void _gczoombox_entrypoint_40(u8 *, s32);
     s32 pad;
     s32 sp20;
     s32 temp_v0;
@@ -779,7 +779,7 @@ void gcnewoption_entrypoint_27(u8 *arg0, s32 arg1, s32 arg2) {
     if (sp20 != -1) {
         temp_v0_2 = func_80800000_gcnewoption(arg0, sp20);
         if (*(s32 *)((s32)arg0 + temp_v0_2 * 4 + 0x3C) != 0) {
-            _gczoombox_entrypoint_40(*(s32 *)((s32)arg0 + temp_v0_2 * 4 + 0x3C), arg2);
+            _gczoombox_entrypoint_40((u8 *)*(s32 *)((s32)arg0 + temp_v0_2 * 4 + 0x3C), arg2);
         }
     }
 }
@@ -930,7 +930,77 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_808019D0_gcnewoption.s")
+void func_808019D0_gcnewoption(void *option) {
+    struct Flags {
+        u8 pad[0x1C];
+        u32 unused : 9;
+        u32 disabled : 1;
+        u32 gap : 2;
+        u32 selected : 1;
+        u32 rest : 19;
+    };
+    struct Boxes {
+        u8 pad[0x3C];
+        u8 *boxes[29];
+    };
+    struct Header {
+        u8 pad[0x20];
+        u8 *box;
+    };
+    void _gczoombox_entrypoint_21(void *, s32);
+    u32 _gczoombox_entrypoint_22(void *);
+    u32 _gczoombox_entrypoint_3(u8 *);
+    void _gczoombox_entrypoint_4(u8 *);
+    void _gczoombox_entrypoint_40(u8 *, s32);
+    s32 _gldialog_entrypoint_0(void);
+    void func_808027DC_gcnewoption(void *, s32);
+    void func_80801B5C_gcnewoption(void *);
+    u8 *box;
+    s32 index;
+    s32 item;
+    s32 selected;
+    s32 i;
+    s32 result;
+    s32 active;
+
+    if (!((struct Flags *)option)->disabled) {
+        selected = func_80800038_gcnewoption(option, *(s16 *)((u8 *)option + 6));
+        for (i = 0; i < *(s16 *)((u8 *)option + 2); i++) {
+            index = func_80800000_gcnewoption(option, i);
+            item = func_80800070_gcnewoption(option, i);
+            func_808027DC_gcnewoption(option, i);
+            if (((struct Flags *)option)->selected) {
+                if (selected == i) {
+                    active = 1;
+                } else {
+                    active = 0;
+                }
+                _gczoombox_entrypoint_40(((struct Boxes *)option)->boxes[index], active);
+            } else {
+                _gczoombox_entrypoint_40(((struct Boxes *)option)->boxes[index], ((u8 *)option)[item + 0x218]);
+            }
+            if (selected == i && _gczoombox_entrypoint_22(((struct Boxes *)option)->boxes[index]) == 0) {
+                func_808010E0_gcnewoption(option, item);
+            }
+            _gczoombox_entrypoint_21(((struct Boxes *)option)->boxes[index], selected == i);
+            _gczoombox_entrypoint_4(((struct Boxes *)option)->boxes[index]);
+        }
+        func_80801B5C_gcnewoption(option);
+    }
+    if (((struct Header *)option)->box != 0) {
+        box = ((struct Header *)option)->box;
+        result = _gczoombox_entrypoint_3(((struct Header *)option)->box);
+        _gczoombox_entrypoint_4(box);
+        switch (*(s16 *)option) {
+        case 3:
+        case 4:
+        case 5:
+            *(s8 *)((u8 *)option + 0x24) = result;
+            break;
+        }
+    }
+    *(s16 *)((u8 *)option + 0xC) = _gldialog_entrypoint_0();
+}
 
 void func_80801B5C_gcnewoption(void *arg0) {
     struct Flags {
@@ -1013,16 +1083,16 @@ void func_80801B5C_gcnewoption(void *arg0) {
 
 s32 func_80801E68_gcnewoption(void *arg0) {
     int _gczoombox_entrypoint_11();
-    s32 _gczoombox_entrypoint_3();
+    u32 _gczoombox_entrypoint_3(u8 *);
     s32 _gczoombox_entrypoint_9(s32);
     s32 func_800D9078(f32 *);
     s32 pad;
     s32 result;
-    s32 state;
+    u32 state;
     s32 box;
     s32 headerBox;
     s32 i;
-    s32 headerState;
+    u32 headerState;
     u8 *ptr;
     u8 *stateptr;
 
@@ -1032,23 +1102,23 @@ s32 func_80801E68_gcnewoption(void *arg0) {
     if (*(s16 *)((u8 *)arg0 + 2) > 0) {
         stateptr = arg0;
         do {
-            state = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            state = _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x3C));
             switch (state) {
             case 0:
                 if (i == 0) {
                     box = *(s32 *)((u8 *)arg0 + 0x20);
-                    if (box == 0 || _gczoombox_entrypoint_3(box) == 1 ||
-                        _gczoombox_entrypoint_3(*(s32 *)((u8 *)arg0 + 0x20)) == 2 ||
-                        _gczoombox_entrypoint_3(*(s32 *)((u8 *)arg0 + 0x20)) == 3 ||
+                    if (box == 0 || _gczoombox_entrypoint_3((u8 *)box) == 1 ||
+                        _gczoombox_entrypoint_3((u8 *)*(s32 *)((u8 *)arg0 + 0x20)) == 2 ||
+                        _gczoombox_entrypoint_3((u8 *)*(s32 *)((u8 *)arg0 + 0x20)) == 3 ||
                         func_800D9078((f32 *)((u8 *)arg0 + 0x38))) {
                         _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
                         if (*(f32 *)(ptr + 0x9C) == 0.0f) {
                             *(f32 *)(ptr + 0x9C) = *(f32 *)((u8 *)arg0 + 0x18);
                         }
                     }
-                } else if (_gczoombox_entrypoint_3(*(s32 *)(ptr + 0x38)) == 1 ||
-                           _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x38)) == 2 ||
-                           _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x38)) == 3 ||
+                } else if (_gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x38)) == 1 ||
+                           _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x38)) == 2 ||
+                           _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x38)) == 3 ||
                            func_800D9078((f32 *)(ptr + 0x98))) {
                     _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
                     if (*(f32 *)(ptr + 0x9C) == 0.0f) {
@@ -1075,7 +1145,7 @@ s32 func_80801E68_gcnewoption(void *arg0) {
     }
     headerBox = *(s32 *)((u8 *)arg0 + 0x20);
     if (headerBox != 0) {
-        headerState = _gczoombox_entrypoint_3(headerBox);
+        headerState = _gczoombox_entrypoint_3((u8 *)headerBox);
         switch (headerState) {
         case 2:
         case 3:
@@ -1098,7 +1168,7 @@ s32 func_80801E68_gcnewoption(void *arg0) {
 
 s32 func_808020C4_gcnewoption(void *arg0) {
     int _gczoombox_entrypoint_10();
-    s32 _gczoombox_entrypoint_3();
+    u32 _gczoombox_entrypoint_3(u8 *);
     s32 _gczoombox_entrypoint_33(s32);
     s32 i;
     s32 busy;
@@ -1117,7 +1187,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
     if (*(s16 *)((u8 *)arg0 + 2) > 0) {
         ptr = arg0;
         do {
-            firstState = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            firstState = _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x3C));
             if (firstState == 0 || firstState == 2 || firstState == 3) {
                 busy = 1;
             }
@@ -1128,7 +1198,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
     }
     box = *(s32 *)((u8 *)arg0 + 0x20);
     if (box != 0) {
-        headerState = _gczoombox_entrypoint_3(box);
+        headerState = _gczoombox_entrypoint_3((u8 *)box);
         switch (headerState) {
             case 0:
             case 2:
@@ -1140,7 +1210,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
     if (*(s16 *)((u8 *)arg0 + 2) > 0) {
         ptr = arg0;
         do {
-            state = _gczoombox_entrypoint_3(*(s32 *)(ptr + 0x3C));
+            state = _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x3C));
             switch (state) {
                 case 0:
                 case 2:
@@ -1175,7 +1245,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
     }
     box = *(s32 *)((u8 *)arg0 + 0x20);
     if (box != 0) {
-        finalState = _gczoombox_entrypoint_3(box);
+        finalState = _gczoombox_entrypoint_3((u8 *)box);
         switch (finalState) {
             case 1:
             case 5:
@@ -1204,7 +1274,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
 s32 func_808022E0_gcnewoption(void *arg0) {
     int _gczoombox_entrypoint_10();
     void _gczoombox_entrypoint_12();
-    s32 _gczoombox_entrypoint_3();
+    u32 _gczoombox_entrypoint_3(u8 *);
     s32 index;
     s32 state;
     s32 i;
@@ -1218,7 +1288,7 @@ s32 func_808022E0_gcnewoption(void *arg0) {
         do {
             if (func_80800070_gcnewoption(arg0, i) != *(s16 *)((u8 *)arg0 + 6)) {
                 index = func_80800000_gcnewoption((u8 *)arg0, i);
-                state = _gczoombox_entrypoint_3(((s32 *)arg0 + index)[15]);
+                state = _gczoombox_entrypoint_3((u8 *)((s32 *)arg0 + index)[15]);
                 stateptr = (s8 *)arg0 + index;
                 switch (state) {
                     case 0:
@@ -1250,7 +1320,7 @@ s32 func_808022E0_gcnewoption(void *arg0) {
 }
 
 s32 func_8080241C_gcnewoption(void *arg0) {
-    s32 _gczoombox_entrypoint_3();
+    u32 _gczoombox_entrypoint_3(u8 *);
     s32 _gczoombox_entrypoint_33(s32);
     s32 index;
     s32 state;
@@ -1263,7 +1333,7 @@ s32 func_8080241C_gcnewoption(void *arg0) {
         do {
             if (func_80800070_gcnewoption(((u8 *)arg0), i) != *(s16 *)(((u8 *)arg0) + 6)) {
                 index = func_80800000_gcnewoption(((u8 *)arg0), i);
-                state = _gczoombox_entrypoint_3(((s32 *)((u8 *)arg0) + index)[15]);
+                state = _gczoombox_entrypoint_3((u8 *)((s32 *)((u8 *)arg0) + index)[15]);
                 switch (state) {
                     case 0:
                     case 2:
@@ -1290,7 +1360,7 @@ s32 func_8080241C_gcnewoption(void *arg0) {
 }
 
 s32 func_80802534_gcnewoption(u8 *arg0) {
-    s32 _gczoombox_entrypoint_3();
+    u32 _gczoombox_entrypoint_3(u8 *);
     s32 _gczoombox_entrypoint_9(s32);
     int _gczoombox_entrypoint_11();
     s32 index;
@@ -1305,7 +1375,7 @@ s32 func_80802534_gcnewoption(u8 *arg0) {
         do {
             if (func_80800070_gcnewoption(arg0, i) != *(s16 *)(arg0 + 6)) {
                 index = func_80800000_gcnewoption(arg0, i);
-                state = _gczoombox_entrypoint_3(((s32 *)arg0 + index)[15]);
+                state = _gczoombox_entrypoint_3((u8 *)((s32 *)arg0 + index)[15]);
                 switch (state) {
                     case 0:
                         result = 0;
@@ -1334,14 +1404,14 @@ s32 func_80802534_gcnewoption(u8 *arg0) {
 
 s32 func_80802674_gcnewoption(void *arg0) {
     int _gczoombox_entrypoint_10();
-    s32 _gczoombox_entrypoint_3();
+    u32 _gczoombox_entrypoint_3(u8 *);
     s32 result;
     s32 index;
     s32 state;
 
     result = 1;
     index = func_80800000_gcnewoption(((u8 *)arg0), func_80800038_gcnewoption(((u8 *)arg0), *(s16 *)(((u8 *)arg0) + 6)));
-    state = _gczoombox_entrypoint_3(((s32 *)((u8 *)arg0) + index)[15]);
+    state = _gczoombox_entrypoint_3((u8 *)((s32 *)((u8 *)arg0) + index)[15]);
     switch (state) {
         case 0:
         case 3:
@@ -1365,8 +1435,8 @@ s32 func_80802674_gcnewoption(void *arg0) {
             break;
     }
     *(s8 *)(((u8 *)arg0) + index + 0x94) = state;
-    if (*(s32 *)(((u8 *)arg0) + 0x20)) {
-        state = _gczoombox_entrypoint_3(*(s32 *)(((u8 *)arg0) + 0x20));
+    if (*(u8 **)(((u8 *)arg0) + 0x20)) {
+        state = _gczoombox_entrypoint_3(*(u8 **)(((u8 *)arg0) + 0x20));
         switch (state) {
             case 0:
             case 2:
@@ -1393,10 +1463,10 @@ void func_808027DC_gcnewoption(void *arg0, s32 arg1) {
     void _gczoombox_entrypoint_27(s32, s16 *);
     int _gczoombox_entrypoint_32();
     int _gczoombox_entrypoint_36();
-    s32 _gczoombox_entrypoint_40(s32, s32);
+    void _gczoombox_entrypoint_40(u8 *, s32);
     int _gczoombox_entrypoint_8();
     u32 *_gldbstring_entrypoint_1(u32 *, s16);
-    s16 _gldialog_entrypoint_0();
+    s32 _gldialog_entrypoint_0(void);
     s32 source;
     s32 dest;
     s32 text;
@@ -1415,7 +1485,7 @@ void func_808027DC_gcnewoption(void *arg0, s32 arg1) {
         _gczoombox_entrypoint_32(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C));
         _gczoombox_entrypoint_27(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), (s16 *)(((u8 *)arg0 + source * 6) + 0x128));
         _gczoombox_entrypoint_8(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), _gldbstring_entrypoint_1(*(u32 **)((u8 *)arg0 + 0x23C), text));
-        _gczoombox_entrypoint_40(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), ((u8 *)arg0)[source + 0x218]);
+        _gczoombox_entrypoint_40((u8 *)*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), ((u8 *)arg0)[source + 0x218]);
         _gczoombox_entrypoint_36(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), *(s16 *)(((u8 *)arg0 + source * 2) + 0x1DC));
         *(s16 *)((u8 *)arg0 + dest * 2 + 0x50) = text;
         *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5A) = *(s16 *)(((u8 *)arg0 + source * 6) + 0x128);
@@ -1426,7 +1496,7 @@ void func_808027DC_gcnewoption(void *arg0, s32 arg1) {
 }
 
 void func_80802998_gcnewoption(void *arg0) {
-    s32 _gczoombox_entrypoint_3(u8 *);
+    u32 _gczoombox_entrypoint_3(u8 *);
     int _gczoombox_entrypoint_32(u8 *);
     int _gczoombox_entrypoint_8(u8 *, char *);
     u32 *_gldbstring_entrypoint_1(u32 *, s16);
@@ -1618,7 +1688,7 @@ void gcnewoption_entrypoint_42(void *arg0, f32 arg1) {
 /* extern */
 
 s32 gcnewoption_entrypoint_43(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _gczoombox_entrypoint_21(s32, s32);
+    void _gczoombox_entrypoint_21(void *, s32);
     s32 func_80800000_gcnewoption(u8 *, s32);
     s32 temp_v0;
     s32 temp_v1;
@@ -1628,7 +1698,7 @@ s32 gcnewoption_entrypoint_43(u8 *arg0, s32 arg1, s32 arg2) {
     if (temp_v0 != -1) {
         temp_v1 = func_80800000_gcnewoption(arg0, temp_v0);
         temp_ptr = (u8 *)((s32 *)arg0 + temp_v1);
-        _gczoombox_entrypoint_21((*(s32 *)((s8 *)temp_ptr + 0x3C)), arg2);
+        _gczoombox_entrypoint_21((u8 *)(*(s32 *)((s8 *)temp_ptr + 0x3C)), arg2);
         return 1;
     }
     return 0;
