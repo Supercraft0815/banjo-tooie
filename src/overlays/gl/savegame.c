@@ -212,4 +212,45 @@ s32 glsavegame_entrypoint_9(s32 arg0) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_10.s")
+s32 glsavegame_entrypoint_10(volatile s32 arg0, volatile s32 arg1) {
+    extern s8 D_80127618[];
+    s32 func_80800020_glsavegame(s32, s32);
+    void _glgamedata_entrypoint_1(void *);
+    void _glgamedata_entrypoint_2(s32);
+    s32 aligned4_memcpy(void *, void *, s32);
+    void heap_free(void *);
+    s32 temp_s2;
+    s8 *temp_s1;
+    s32 saved1;
+    s32 saved0;
+    s32 var_s0;
+    s8 *sp28;
+
+    temp_s2 = func_80800000_glsavegame();
+    temp_s1 = D_80127618;
+    var_s0 = ((s8 *)temp_s1)[arg1 + 0xC];
+    sp28 = &temp_s1[arg0];
+    saved1 = sp28[0xC];
+    saved0 = temp_s1[0xF];
+    var_s0 = func_80800020_glsavegame(var_s0, temp_s2);
+    _glgamedata_entrypoint_2(temp_s2);
+    func_808004B8_glsavegame(arg0);
+    _glgamedata_entrypoint_1((void *)temp_s2);
+    func_808004C4_glsavegame();
+    if (var_s0 == 0) {
+        var_s0 = func_808002E0_glsavegame(saved0, temp_s2);
+    }
+    if (var_s0 == 0) {
+        var_s0 = func_8080036C_glsavegame(saved1);
+    }
+    if (var_s0 == 0) {
+        temp_s1 = D_80127618;
+        sp28[0xC] = saved0;
+        temp_s1[0xF] = saved1;
+        if (*((u8 *)(temp_s1 + 0x10)) != 0) {
+            aligned4_memcpy(((void **)temp_s1)[arg0], ((void **)temp_s1)[arg1], 0x1C0);
+        }
+    }
+    heap_free((void *)temp_s2);
+    return var_s0;
+}
