@@ -998,7 +998,7 @@ void func_80801D30_bsfirstp(void *arg0) {
 /* extern */
 
 void func_80801D70_bsfirstp(u8 *arg0) {
-    s32 _baeggcursor_entrypoint_10(void *, f32, f32);
+    void _baeggcursor_entrypoint_10(void *, f32, f32);
     u8 *temp_v0;
 
     temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x188)));
@@ -1013,7 +1013,7 @@ void func_80801D70_bsfirstp(u8 *arg0) {
 /* extern */
 
 void func_80801DC0_bsfirstp(u8 *arg0) {
-    s32 func_80801E18_bsfirstp(u8 *);
+    void func_80801E18_bsfirstp(u8 *);
     s32 func_80801FD0_bsfirstp(u8 *, s32);
     void func_808023A0_bsfirstp(u8 *);
     u8 *temp_v0;
@@ -1028,7 +1028,75 @@ void func_80801DC0_bsfirstp(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801E18_bsfirstp.s")
+void func_80801E18_bsfirstp(u8 *arg0) {
+    void _baeggcursor_entrypoint_10(void *arg0, f32 arg1, f32 arg2);
+    u32 _baeggcursor_entrypoint_2(void *arg0);
+    s32 _baeggcursor_entrypoint_7(void *arg0, s32 arg1);
+    s32 _baeggcursor_entrypoint_9(void *arg0);
+    s32 func_8010D930(s32 arg0, s32 arg1, f32 *arg2, s32 *arg3);
+    void func_80802438_bsfirstp(void *arg0, s32 arg1);
+    extern s32 D_8080A630_bsfirstp[];
+    extern s32 D_8080A640_bsfirstp[];
+    struct CursorState {
+        u8 pad[0xB0];
+        s32 state;
+        u8 padB4[4];
+        f32 x, y;
+    };
+    struct CursorState *cursor;
+    s32 pressed;
+    s32 held;
+
+    cursor = *(void **)(arg0 + 0x188);
+    func_80801B0C_bsfirstp((s32)arg0, &pressed, &held);
+    /* Separate case exits keep IDO's player pointer in a caller-saved register. */
+    switch (cursor->state) {
+    case 0:
+        if (pressed != 0) {
+            cursor->state = 1U;
+            _baeggcursor_entrypoint_10(arg0, cursor->x, cursor->y);
+            _baeggcursor_entrypoint_7(arg0, 3);
+            func_8010D930(0xC, -1, 0, D_8080A630_bsfirstp);
+            return;
+        } else {
+            return;
+        }
+    case 1:
+        if (_baeggcursor_entrypoint_9(arg0) != 0) {
+            cursor->state = 2U;
+            func_80802438_bsfirstp(arg0, 1);
+        } else if (held == 0) {
+            cursor->state = 3U;
+        }
+        break;
+    case 2:
+        if (held == 0) {
+            cursor->state = 5U;
+            _baeggcursor_entrypoint_7(arg0, 4);
+            func_8010D930(0xC, -1, 0, D_8080A640_bsfirstp);
+            return;
+        } else {
+            return;
+        }
+    case 3:
+        if (_baeggcursor_entrypoint_9(arg0) != 0) {
+            cursor->state = 4U;
+            func_80802438_bsfirstp(arg0, 1);
+        }
+        break;
+    case 4:
+        cursor->state = 5U;
+        _baeggcursor_entrypoint_7(arg0, 4);
+        func_8010D930(0xC, -1, 0, D_8080A640_bsfirstp);
+        break;
+    case 5:
+        if (_baeggcursor_entrypoint_2(arg0) != 4) {
+            cursor->state = 0U;
+            func_80802438_bsfirstp(arg0, 0);
+        }
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801FD0_bsfirstp.s")
 

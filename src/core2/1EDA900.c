@@ -1,4 +1,5 @@
 #include "core2/1EDA900.h"
+Actor *func_80106790(Unk80132ED0 *);
 extern void *D_80135A80;
 extern f32 D_80135A70[3];
 void func_800EE7F8(f32 *, f32 *);
@@ -71,7 +72,7 @@ s32 func_8010108C(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_8010114C(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_8010108C();
-    return func_8010108C(func_80106790(arg0), arg1, arg2);
+    return func_8010108C(func_80106790((Unk80132ED0 *)arg0), arg1, arg2);
 }
 
 s32 func_80101180(s32 arg0, s32 arg1, s32 arg2) {
@@ -144,4 +145,74 @@ s32 func_801012D0(f32 *arg0, f32 arg1, s32 arg2, s32 arg3) {
     return var_s1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EDA900/func_801013A8.s")
+s32 func_801013A8(f32 *arg0, s32 arg1, s32 arg2) {
+    void *func_800BDC44(void);
+    s32 func_800BDC5C(void);
+    s32 *func_800BE3F8(u8 *);
+    s32 func_800E9E88(s32);
+    u32 func_800E9EB4(s16 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    typedef struct {
+        Unk80132ED0 *marker;
+        s32 unk4;
+        u32 flags;
+    } Entry;
+    s32 result;
+    s32 *cubes;
+    Entry *entry;
+    /* The original leaves last undefined when no per-cube entry supplies a result. */
+    s32 last;
+    Entry *end;
+    Entry *globalEnd;
+    s32 marker;
+    void *cube;
+    Actor *actor;
+
+    cubes = func_800BE3F8((u8 *)arg0);
+    result = 0;
+    if (*cubes != 0) {
+        do {
+            entry = (Entry *)func_800E9E88(*cubes);
+            end = (Entry *)func_800E9EB4((s16 *)*cubes);
+            for (; entry < end; entry++) {
+                if (!(entry->flags & 1)) {
+                    continue;
+                }
+                marker = (s32)entry->marker;
+                if (!(((u16 *)&((Unk80132ED0 *)marker)->unk18)[0] & 1)) {
+                    continue;
+                }
+                last = func_8010114C(marker, arg1, arg2);
+                if (last <= 0) {
+                    continue;
+                }
+                if (result == 0) {
+                    result = last;
+                }
+            }
+            cubes++;
+        } while (*cubes != 0);
+    }
+    cube = func_800BDC44();
+    entry = (Entry *)func_800E9E88((s32)cube);
+    globalEnd = (Entry *)func_800E9EB4((s16 *)cube);
+    while (entry < globalEnd) {
+        if (entry->flags & 1) {
+            if (((u16 *)&entry->marker->unk18)[0] & 1) {
+                f32 distance;
+                s32 radius;
+                actor = func_80106790(entry->marker);
+                distance = func_800EEB40(actor->position, arg0);
+                radius = func_800BDC5C();
+                if (distance < (f32)func_800BDC5C() * 1.5f * (1.5f * (f32)radius)) {
+                    func_8010108C(actor, arg1, arg2);
+                    if (last > 0 && result == 0) {
+                        result = last;
+                    }
+                }
+            }
+        }
+        entry++;
+    }
+    return result;
+}
