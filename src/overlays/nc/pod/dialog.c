@@ -540,7 +540,59 @@ s32 func_80801504_ncpoddialog(u8 *arg0) {
     return var_s7;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/nc/pod/dialog/func_808015CC_ncpoddialog.s")
+s32 func_808015CC_ncpoddialog(void *arg0, s32 arg1) {
+    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
+    void _mlspline_entrypoint_4(f32, s32, f32 *, f32 *);
+    extern s32 _mlspline_entrypoint_8;
+    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s8, s32);
+    void _ncpod_entrypoint_8(u8 *arg0, f32 *arg1, f32 *arg2);
+    void _ncpod_entrypoint_9(void *arg0, f32 arg1);
+    void * func_80110024(s16 *arg0);
+    f32 func_800D8FF8();
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    f32 low;
+    f32 high;
+    u8 *points;
+
+    switch (((u8 *)arg0)[0x213]) {
+        case 2:
+            low = 10.0f;
+            high = 20.0f;
+            break;
+        case 0:
+            low = 125.0f;
+            high = 500.0f;
+            break;
+        case 1:
+            high = low = 5000.0f;
+            break;
+    }
+    if (*(f32 *)((u8 *)arg0 + 0x20C) < 0.15f) {
+        *(f32 *)((u8 *)arg0 + 0x154) = func_800F10B4(*(f32 *)((u8 *)arg0 + 0x20C), 0.0f, 0.15f, low, high);
+    } else if (*(f32 *)((u8 *)arg0 + 0x20C) > 0.85f) {
+        *(f32 *)((u8 *)arg0 + 0x154) = func_800F10B4(*(f32 *)((u8 *)arg0 + 0x20C), 0.85f, 1.0, high, low);
+    }
+    if (1.0f > *(f32 *)((u8 *)arg0 + 0x20C)) {
+        if (((u8 *)arg0)[0x213] == 1) {
+            *(f32 *)((u8 *)arg0 + 0x20C) = 1.0f;
+        } else {
+            *(f32 *)((u8 *)arg0 + 0x20C) = _mlspline_entrypoint_13(10, (u8 *)arg0 + 0x58, *(f32 *)((u8 *)arg0 + 0x20C), *(f32 *)((u8 *)arg0 + 0x154) * func_800D8FF8(), 1.0f, &_mlspline_entrypoint_8);
+        }
+    } else {
+        *(f32 *)((u8 *)arg0 + 0x20C) = 1.0f;
+        if (_ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0x58, *(s8 *)((u8 *)arg0 + 0x211), 0) == 4) {
+            return 4;
+        }
+        func_80800338_ncpoddialog(arg0, arg1, 1);
+    }
+    points = (u8 *)arg0 + 0x58;
+    _mlspline_entrypoint_4(*(f32 *)((u8 *)arg0 + 0x20C), 10, (f32 *)points, (f32 *)((u8 *)arg0 + 0x170));
+    points = (u8 *)arg0 + 0x17C;
+    _mlspline_entrypoint_4(*(f32 *)((u8 *)arg0 + 0x20C), 10, (f32 *)((u8 *)arg0 + 0xD0), (f32 *)points);
+    _ncpod_entrypoint_8(func_80110024((s16 *)arg1), (f32 *)((u8 *)arg0 + 0x170), (f32 *)points);
+    _ncpod_entrypoint_9(func_80110024((s16 *)arg1), 40.0f);
+    return 0;
+}
 
 void func_808023B4_ncpoddialog(u8 *, s16 *);
 
