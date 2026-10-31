@@ -76,6 +76,26 @@ D_8012B17C = D_8012B160_storage + 0x1C;
 /* Keep the interior addresses referenced by the intro character code. */
 SECTIONS
 {
+    /* Preserve the original text-command jump-table labels. */
+    .core2 :
+    {
+        .L800B5EB4 = func_800B5E74 + 0x40;
+        .L800B5EC4 = func_800B5E74 + 0x50;
+        .L800B5ED4 = func_800B5E74 + 0x60;
+        .L800B5EDC = func_800B5E74 + 0x68;
+        .L800B5EE4 = func_800B5E74 + 0x70;
+        .L800B5EF4 = func_800B5E74 + 0x80;
+        .L800B5F10 = func_800B5E74 + 0x9C;
+        .L800B5F18 = func_800B5E74 + 0xA4;
+        .L800B5F3C = func_800B5E74 + 0xC8;
+        .L800B5F44 = func_800B5E74 + 0xD0;
+        .L800B5F50 = func_800B5E74 + 0xDC;
+        .L800B5F60 = func_800B5E74 + 0xEC;
+        .L800B5F6C = func_800B5E74 + 0xF8;
+        .L800B5F78 = func_800B5E74 + 0x104;
+        .L800B5F84 = func_800B5E74 + 0x110;
+        .L800B5FD8 = func_800B5E74 + 0x164;
+    }
     .chintrochar :
     {
         func_80804158_chintrochar = func_80804054_chintrochar + 0x104;

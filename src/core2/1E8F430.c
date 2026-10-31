@@ -1,5 +1,23 @@
 #include "core2/1E8F430.h"
 
+typedef struct {
+    s32 vector;
+    u8 unk04[0x18];
+    u8 command;
+    u8 mode;
+    u8 jitter;
+    u8 centered;
+    u8 font;
+    u8 fixedWidth;
+    s16 fadeY;
+    u8 color[4];
+    s16 parameter28;
+    s16 parameter2A;
+} TextCommandState;
+
+extern TextCommandState D_80128180;
+
+
 extern s32 D_801282B4;
 
 void func_800B5B40(void) {
@@ -75,29 +93,101 @@ void func_800B5DFC(void) {
 
 void func_800B5E04(void) {
     s32 vector_free(s32);
-    extern s32 D_80128180;
-    if (D_80128180 != 0) {
-        vector_free(D_80128180);
-        D_80128180 = 0;
+    if (D_80128180.vector != 0) {
+        vector_free(D_80128180.vector);
+        D_80128180.vector = 0;
     }
 }
 
 void func_800B5E3C(void) {
     s32 vector_defrag(s32);
-    extern s32 D_80128180;
-    if (D_80128180 != 0) {
-        D_80128180 = vector_defrag(D_80128180);
+    if (D_80128180.vector != 0) {
+        D_80128180.vector = vector_defrag(D_80128180.vector);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5E74.s")
+s32 func_800B5E74(u8 arg0) {
+    s32 state;
+
+    state = D_80128180.command;
+    D_80128180.command = 0;
+    switch (state) {
+        case 2:
+            D_80128180.color[0] = arg0;
+            D_80128180.command = 3;
+            break;
+        case 3:
+            D_80128180.color[1] = arg0;
+            D_80128180.command = 4;
+            break;
+        case 4:
+            D_80128180.color[2] = arg0;
+            break;
+        case 5:
+            D_80128180.color[3] = arg0;
+            break;
+        case 6:
+            D_80128180.parameter28 = arg0;
+            D_80128180.command = 7;
+            break;
+        case 7:
+            D_80128180.parameter28 |= arg0 << 8;
+            D_80128180.command = 8;
+            break;
+        case 8:
+            D_80128180.parameter2A = arg0;
+            break;
+        case 1:
+            switch (arg0) {
+                case 'l':
+                    D_80128180.jitter = 0;
+                    break;
+                case 'h':
+                    D_80128180.jitter = 1;
+                    break;
+                case 'j':
+                    D_80128180.font = 2;
+                    D_80128180.mode = 0;
+                    break;
+                case 'a':
+                    D_80128180.command = 5;
+                    break;
+                case 'c':
+                    D_80128180.command = 2;
+                    break;
+                case 'i':
+                    D_80128180.command = 6;
+                    break;
+                case 'p':
+                    break;
+                default:
+                    return 0;
+            }
+            break;
+        default:
+            switch (arg0) {
+                case 0xFD:
+                    D_80128180.command = 1;
+                    break;
+                case 0xFE:
+                    D_80128180.mode = 1;
+                    break;
+                case 0xFF:
+                    D_80128180.mode = 2;
+                    break;
+                default:
+                    return 0x21;
+            }
+            break;
+    }
+    return 1;
+}
 
 s32 func_800B5FE4(u8 arg0, f32 *arg1, f32 *volatile arg2, f32 arg3) {
     s32 func_800B5E74(u8);
     int func_800D3574(s32);
     u8 func_800D35BC(s32);
     s32 func_800D35D0();
-    extern s32 D_80128180;
     s32 result;
     s32 var_v0;
 
@@ -133,7 +223,6 @@ void func_800B60C0(Gfx **arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void func_800E2E48(u8 *, u8 *, s32, s32 *);
     s32 func_800E7988(Gfx **, s32);
     void func_800E7A2C(Gfx **);
-    extern s32 D_80128180;
     f32 x;
     f32 y;
     s32 width;
@@ -190,7 +279,6 @@ void func_800B62CC(Gfx **arg0, u8 arg1, f32 *arg2, f32 *arg3, f32 arg4)
     s16 width;
     s16 height2;
   };
-  extern s32 D_80128180;
   extern s32 D_801281A4;
   extern u8 D_801281B0[];
   void func_800B60C0(Gfx **, f32 *, f32 *, f32);
@@ -406,7 +494,6 @@ void func_800B62CC(Gfx **arg0, u8 arg1, f32 *arg2, f32 *arg3, f32 arg4)
 void func_800B7174(u8 *arg0) {
     struct Input { union { struct { s16 value; u16 rest; } halves; struct { unsigned int pad : 16; unsigned int nibble : 4; unsigned int rest : 12; } nib; struct { unsigned int pad : 20; unsigned int flag11 : 1; unsigned int pad2 : 1; unsigned int flag9 : 1; unsigned int rest : 9; } bits; } data; };
     struct Output { u8 pad[0x1C]; s8 f1c, f1d, f1e, f1f, f20, f21; s16 f22; u8 pad24[4]; s16 f28, f2a; };
-    extern s32 D_80128180;
     extern s32 D_801281A4;
     void func_800F2EBC(void *, void *);
     struct Output *out = (struct Output *)&D_80128180;
@@ -480,7 +567,6 @@ void func_800B7448(Gfx **arg0) {
     u32 vector_end(s32);
     s32 vector_size(s32);
     extern s32 D_8011A620;
-    extern s32 D_80128180;
     struct FlagWord { u32 upper : 16; u32 font : 4; u32 bit11 : 1; u32 highlight : 1; u32 lower : 10; };
     s32 var_s0;
     f32 sp88;
@@ -539,7 +625,6 @@ void func_800B7448(Gfx **arg0) {
 void func_800B798C(s32 arg0, s32 arg1, u8 *arg2) {
     s32 vector_new(s32, s32);
     void *vector_push_back(void **);
-    extern s32 D_80128180;
     typedef struct {
         s16 x, y, z;
         u8 upper : 4;
@@ -555,8 +640,8 @@ void func_800B798C(s32 arg0, s32 arg1, u8 *arg2) {
     Entry *entry;
 
     if (arg2 != 0) {
-        if (D_80128180 == 0) {
-            D_80128180 = vector_new(0x14, 8);
+        if (D_80128180.vector == 0) {
+            D_80128180.vector = vector_new(0x14, 8);
         }
         entry = vector_push_back((void **)&D_80128180);
         entry->x = arg0;
@@ -576,7 +661,6 @@ void func_800B798C(s32 arg0, s32 arg1, u8 *arg2) {
 }
 
 void func_800B7A98(void) {
-    extern s32 D_80128180;
     u8 *ptr = (u8 *)&D_80128180;
     ptr[12] = ptr[13] = ptr[14] = ptr[15] = 0xFF;
     ptr[19] = 0;
@@ -634,7 +718,6 @@ void func_800B7B68(s32 arg0) {
 }
 
 void func_800B7B8C(s32 arg0, s32 arg1, s32 arg2) {
-    extern s32 D_80128180;
     *(u8 *)((s8 *)&D_80128180 + 0xC) = arg0;
     *(u8 *)((s8 *)&D_80128180 + 0xD) = arg1;
     *(u8 *)((s8 *)&D_80128180 + 0xE) = arg2;
