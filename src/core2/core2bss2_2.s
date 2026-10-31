@@ -92,7 +92,10 @@ dlabel D_80135530
     /* 80135530 */ .space 0x02
 
 dlabel D_80135532
-    /* 80135532 */ .space 0x27E
+    /* 80135532 */ .space 0x1E
+
+dlabel D_80135550
+    /* 80135550 */ .space 0x260
 
 dlabel D_801357B0
     /* 801357B0 */ .space 0x10

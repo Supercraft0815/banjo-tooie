@@ -1,5 +1,14 @@
 #include "common.h"
 
+typedef struct {
+    u8 lights[15];
+    s8 dirty;
+    s16 min[3];
+    s16 max[3];
+    s16 first;
+    s16 count;
+} Cell;
+
 void func_80800000_rtlight(void *arg0, s32 arg1, void *arg2) {
     (*(s32 *)((s8 *)(arg2) + (8))) = (s32) (arg1 / (s32) (*(u16 *)((s8 *)(arg0) + (0xE))));
     (*(s32 *)((s8 *)(arg2) + (4))) = (s32) ((s32) (arg1 % (s32) (*(u16 *)((s8 *)(arg0) + (0xE)))) / (s32) (*(u16 *)((s8 *)(arg0) + (0xC))));
@@ -98,7 +107,73 @@ void *rtlight_entrypoint_1(void *arg0, void *arg1, s32 arg2) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/rt/light/func_8080036C_rtlight.s")
+void func_8080036C_rtlight(u8 *arg0, f32 *arg1, f32 arg2, Cell ***arg3, Cell ***arg4) {
+    typedef struct {
+        Cell *entries[150];
+        Cell **end;
+    } CellList;
+    extern CellList D_80135550;
+    typedef struct {
+        s16 min[3];
+        s16 max[3];
+        u16 yStride;
+        u16 zStride;
+    } GridSource;
+    typedef struct {
+        GridSource *source;
+        s16 scale;
+        u16 count;
+        f32 inverseScale;
+        Cell cells[1];
+    } Grid;
+    s32 low[3];
+    s32 high[3];
+    f32 lo, hi;
+    GridSource *bounds;
+    s32 l, h;
+    s16 min, max;
+    s32 axis, z, y, x;
+    Cell *cell;
+    Cell **end;
+    Cell **list;
+
+    bounds = ((Grid *)arg0)->source;
+    for (axis = 0; axis < 3; axis++) {
+        lo = arg1[axis] - arg2;
+        hi = arg1[axis] + arg2;
+        l = (s32)(((Grid *)arg0)->inverseScale * lo);
+        h = (s32)(((Grid *)arg0)->inverseScale * hi);
+        if (lo < 0.0f) l--;
+        if (hi < 0.0f) h--;
+        min = bounds->min[axis];
+        max = bounds->max[axis];
+        if (l < min) l = min;
+        if (max < l) l = max;
+        if (h < min) h = min;
+        if (max < h) h = max;
+        low[axis] = l - min;
+        high[axis] = h - min;
+    }
+    D_80135550.end = D_80135550.entries;
+    for (z = low[2]; z <= high[2]; z++) {
+        for (y = low[1]; y <= high[1]; y++) {
+            for (x = low[0]; x <= high[0]; x++) {
+                cell = bounds->zStride * z + ((Grid *)arg0)->cells
+                     + x + y * bounds->yStride;
+                if (cell->dirty >= 0) {
+                    end = D_80135550.end;
+                    if (end < &D_80135550.entries[150]) {
+                        *end = cell;
+                        D_80135550.end++;
+                    }
+                }
+            }
+        }
+    }
+    list = D_80135550.entries;
+    *arg3 = list;
+    *arg4 = D_80135550.end;
+}
 
 void func_80800544_rtlight(void *arg0, s32 position[3]) {
     void func_800C8800(void *, f32 *);
@@ -120,14 +195,6 @@ void func_808005AC_rtlight(s32 arg0, s32 *range) {
 }
 
 void rtlight_entrypoint_2(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
-    typedef struct {
-        u8 lights[15];
-        s8 dirty;
-        s16 min[3];
-        s16 max[3];
-        s16 first;
-        s16 count;
-    } Cell;
     typedef struct {
         s16 r, g, b, index;
         u8 color[3];
