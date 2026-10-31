@@ -3848,7 +3848,78 @@ void func_8080649C_bsfirstp(void *arg0) {
     func_8009B98C(arg0, local.sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80806588_bsfirstp.s")
+void func_80806588_bsfirstp(void *player) {
+    void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel);
+    void baphysics_set_target_yaw(PlayerState *arg0, f32 target_yaw);
+    f32 func_800137AC(f32);
+    f32 func_800137C4(void);
+    f32 func_80013B70(f32, f32, f32);
+    f32 func_800D9004(void);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    f32 func_800EEFFC(void *arg0);
+    void func_800EF04C(f32 *arg0, f32 *arg1);
+    void func_800EF3DC(f32 dst[3], f32 src[3]);
+    void func_800EFA20(void *arg0, void *arg1, f32 arg2);
+    void func_800EFB24(void *arg0, void *arg1, void *arg2);
+    f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
+    void *func_80802458_bsfirstp(void *);
+    f32 mlAbsF(f32);
+    f32 yaw_get(PlayerState *self);
+
+    struct MotionState {
+        u8 unknown0[0x1A0];
+        f32 previous[3];
+        f32 next[3];
+        u8 unknown1B8[0x24];
+        f32 smoothing[3];
+        u8 unknown1E8[0x64];
+        f32 turnRate;
+    } *state;
+    f32 *parameters;
+    f32 targetYaw;
+    f32 targetSpeed;
+    f32 dt;
+    f32 *position;
+    f32 *scratch;
+    f32 *displacement;
+    f32 *velocity;
+    f32 *nextPosition;
+    f32 cosine;
+    f32 sine;
+    f32 radius;
+
+    state = *(struct MotionState **)((u8 *)player + 0x188);
+    nextPosition = state->next;
+    parameters = func_80802458_bsfirstp(player);
+    dt = func_800D9004();
+    scratch = state->previous;
+    position = (f32 *)(*(u8 **)((u8 *)player + 0xC8) + 4);
+    displacement = (f32 *)(*(u8 **)((u8 *)player + 0xC8) + 0x28);
+    velocity = (f32 *)(*(u8 **)((u8 *)player + 0xC8) + 0x10);
+    func_800EF04C(scratch, position);
+    scratch = state->smoothing;
+    func_800EF3DC(state->previous, nextPosition);
+    scratch[1] = parameters[17] * *(f32 *)((u8 *)state + 0x12C);
+    scratch[0] += func_800FF060(scratch[1] - scratch[0], scratch + 2,
+                              parameters[19], parameters[20], parameters[18], dt);
+    radius = scratch[0];
+    targetYaw = yaw_get(player);
+    targetSpeed = 6.283185f * radius * (state->turnRate * 0.0027777778f);
+    cosine = func_800137AC(targetYaw);
+    sine = func_800137C4();
+    state->next[0] = state->previous[0] - radius * cosine;
+    state->next[1] = position[1];
+    state->next[2] = state->previous[2] + radius * sine;
+    func_800EFB24(displacement, nextPosition, position);
+    func_800EE7F8(position, nextPosition);
+    func_800EFA20(velocity, displacement, 1.0f / dt);
+    if (mlAbsF(scratch[2]) > 30.0f) {
+        targetSpeed = func_800EEFFC(velocity);
+        targetYaw = func_80013B70(velocity[0], velocity[2], targetSpeed);
+    }
+    baphysics_set_target_horizontal_velocity(player, targetSpeed);
+    baphysics_set_target_yaw(player, targetYaw);
+}
 
 /* extern */
 
