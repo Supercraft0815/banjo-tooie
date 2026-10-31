@@ -812,7 +812,114 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
   func_808011A4_gcdialogexec(arg0, 5, 2, 0xF, arg2 & 2, arg2 & 0x80);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/gcdialogexec_entrypoint_0.s")
+s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, void *actor,
+                            void *callback, void *callback2, void *callback3, s16 actorArg) {
+    struct Request {
+        s16 text;
+        s16 flags;
+        f32 position[3];
+        void *actor;
+        s16 actorArg;
+        s16 pad16;
+        s32 actorId;
+        void *callback;
+        void *callback2;
+        void *callback3;
+        s32 camera;
+    };
+    typedef struct {
+        u8 pad[0x11A];
+        s16 id;
+        u8 pad11C[0x3E];
+        u16 flags;
+        u32 unused : 20;
+        u32 suppress : 1;
+        u32 rest : 11;
+        u16 speed : 8;
+        u16 count : 4;
+        u16 index : 4;
+        u8 pad162[0x1A];
+        s32 camera;
+        s32 pad180;
+        struct Request requests[4];
+    } Dialog;
+    typedef struct {
+        u8 pad[0x12];
+        u16 id : 15;
+        u16 flag : 1;
+    } Marker;
+    s32 func_800A9C98(void);
+    s32 func_800C0638(void);
+    void func_800C0658(void);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void func_800EFD24(f32 vec[3]);
+    u32 func_800F54E4(void);
+    s32 func_800F5B0C(s32 dialog);
+    void func_800F82D4(s32 dialog, s32 text);
+    void func_800F8300(s32 dialog, s32 mode, f32 *position);
+    void func_800FEC60(u32 dialog);
+    s32 replace;
+
+    if (!func_800C0638()) {
+        ((Dialog *)dialog)->camera = func_800F54E4();
+        func_80801268_gcdialogexec(dialog, text, flags, actor,
+                                  (s32)callback, (s32)callback2, (s32)callback3, actorArg);
+        if ((flags & 8) && (!func_800A9C98() || !((Dialog *)dialog)->suppress)) {
+            if (position) {
+                func_800F8300(((Dialog *)dialog)->camera, ((Dialog *)dialog)->id < 0 ? 1 : 3, position);
+            } else {
+                func_800F82D4(((Dialog *)dialog)->camera, ((Dialog *)dialog)->id < 0 ? 1 : 3);
+            }
+        }
+        func_800FEC60(0);
+        return 1;
+    }
+    replace = flags & 0x20;
+    if (replace) {
+        if (!(((Dialog *)dialog)->flags & 0x40)) {
+            func_800C0658();
+        } else {
+            ((Dialog *)dialog)->count = 0;
+            ((Dialog *)dialog)->index = 0;
+        }
+    }
+    if ((flags & 4) || replace) {
+        replace = ((Dialog *)dialog)->index + ((Dialog *)dialog)->count;
+        if (replace >= 4) {
+            replace -= 4;
+        }
+        ((Dialog *)dialog)->requests[replace].text = text;
+        ((Dialog *)dialog)->requests[replace].flags = flags;
+        if (position) {
+            func_800EE7F8(((Dialog *)dialog)->requests[replace].position, position);
+        } else {
+            func_800EFD24(((Dialog *)dialog)->requests[replace].position);
+        }
+        ((Dialog *)dialog)->requests[replace].actor = actor;
+        ((Dialog *)dialog)->requests[replace].actorArg = actorArg;
+        ((Dialog *)dialog)->requests[replace].actorId =
+            actor ? (((Marker *)actor)->id ? ((Marker *)actor)->id : -1) : -1;
+        ((Dialog *)dialog)->requests[replace].callback = callback;
+        ((Dialog *)dialog)->requests[replace].callback2 = callback2;
+        ((Dialog *)dialog)->requests[replace].callback3 = callback3;
+        ((Dialog *)dialog)->requests[replace].camera = func_800F54E4();
+        ((Dialog *)dialog)->count++;
+        if ((flags & 8) && (!func_800A9C98() || !((Dialog *)dialog)->suppress)) {
+            if (!func_800F5B0C(((Dialog *)dialog)->requests[replace].camera)) {
+                if (position) {
+                    func_800F8300(((Dialog *)dialog)->requests[replace].camera, 2, position);
+                } else {
+                    func_800F82D4(((Dialog *)dialog)->requests[replace].camera, 2);
+                }
+            } else {
+                func_800F82D4(((Dialog *)dialog)->requests[replace].camera,
+                              func_800F5B0C(((Dialog *)dialog)->requests[replace].camera));
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
 
 void gcdialogexec_entrypoint_1(u8 *arg0) {
     typedef struct {
@@ -920,7 +1027,7 @@ void gcdialogexec_entrypoint_2(u8 *arg0) {
 
 s32 gcdialogexec_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, void *arg5) {
     void func_808011A4_gcdialogexec(u8 *, s32, s32, s32, s32, s32);
-    s32 gcdialogexec_entrypoint_0(s32, s32, s32, void *, void *, void *, void *, void *, void *);
+    s32 gcdialogexec_entrypoint_0(void *, s32, s32, f32 *, void *, void *, void *, void *, s16);
     gcdialogexec_entrypoint_0(arg0, arg1 + 0xE06, 0x44, 0, 0, 0, 0, arg5, 0);
     func_808011A4_gcdialogexec(arg0, arg3, arg4, arg2, 0, 0);
     return 1;
