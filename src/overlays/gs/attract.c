@@ -5,7 +5,53 @@ void gsattract_entrypoint_0(void) {
     (*(f32 *)((s8 *)(&D_8013546C) + (8))) = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gs/attract/gsattract_entrypoint_1.s")
+void gsattract_entrypoint_1(void) {
+    void _chattract_entrypoint_1(s32 arg0);
+    s32 func_80015FA0(s32 arg0);
+    u8 func_800167F4(void);
+    void func_800A9C50(void);
+    s32 func_800C95D4(void);
+    f32 func_800D9004(void);
+    extern s32 D_80800490_gsattract;
+    f32 previous;
+    struct AttractState {
+        u8 index;
+        u8 scene;
+        f32 time;
+    };
+    extern struct AttractState D_80135470;
+    u8 *entry;
+    s32 flags;
+    s32 mode;
+
+    previous = D_80135470.time;
+    if (func_800C95D4()) {
+        D_80135470.time += func_800D9004();
+    }
+    entry = (u8 *)&D_80800490_gsattract + D_80135470.index * 12;
+    flags = entry[8];
+    if ((flags & 1) && D_80135470.time >= 6.0f && previous < 6.0f) {
+        if (func_800167F4()) {
+            mode = 3;
+        } else {
+            mode = 1;
+        }
+        _chattract_entrypoint_1(mode);
+        entry = (u8 *)&D_80800490_gsattract + D_80135470.index * 12;
+        flags = entry[8];
+    }
+    if ((flags & 2) && D_80135470.time >= 0.5f && previous < 0.5f) {
+        _chattract_entrypoint_1(2);
+        entry = (u8 *)&D_80800490_gsattract + D_80135470.index * 12;
+    }
+    if (((*(u8 **)(entry + 4))[D_80135470.scene * 6 + 3] & 1) &&
+        D_80135470.time >= 1.0f && previous < 1.0f) {
+        _chattract_entrypoint_1(0);
+    }
+    if (func_800C95D4() && func_80015FA0(0)) {
+        func_800A9C50();
+    }
+}
 
 void gsattract_entrypoint_2(s32 arg0) 
 {

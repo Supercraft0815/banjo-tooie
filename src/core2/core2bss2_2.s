@@ -20,7 +20,10 @@ dlabel D_80135450
     /* 80135450 */ .space 0x1C
 
 dlabel D_8013546C
-    /* 8013546C */ .space 0x14
+    /* 8013546C */ .space 0x04
+
+dlabel D_80135470
+    /* 80135470 */ .space 0x10
 
 dlabel D_80135480
     /* 80135480 */ .space 0x03
