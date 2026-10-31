@@ -482,7 +482,130 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EC3810/func_800EAA2C.s")
+s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, volatile s32 arg5, volatile u32 arg6) {
+    s32 _gsproplookup_entrypoint_0();
+    u8 *func_800AC848(u8 *, s32, f32 *, f32 *, f32, s32, s32, f32, f32 *, s32, u32);
+    u8 *func_800B2720(u8 *);
+    s32 func_800B2840(s32);
+    u8 *func_800BFC54(s32);
+    void func_800BFC74(s32);
+    s16 func_800CB854(s32 *);
+    void func_800D62E4(u16);
+    void *func_800E9E88(s32);
+    void *func_800E9EB4(s32);
+    f32 func_800EEAD4(s32, f32 *);
+    void func_80103328(Actor *);
+    void func_80103508(u8 *);
+    u8 *func_80103AA0(u8 *);
+    s32 func_80103CDC(u8 *, u8 *);
+    Actor *func_80106790(Unk80132ED0 *);
+    extern f32 D_80125E54;
+    extern s32 D_80132DD0;
+    extern s32 D_80132DD4;
+    typedef u8 *(*CollisionFunc)(u8 *, s32, s32, f32, f32 *, s32, u32);
+    typedef struct {
+        s32 unused;
+        CollisionFunc collide;
+    } CollisionMethods;
+    typedef struct {
+        u32 unused:27;
+        u32 collide:1;
+        u32 enabled:1;
+        u32 unused2:1;
+        u32 model:1;
+        u32 actor:1;
+    } PropFlags;
+    typedef struct {
+        u32 unused:14;
+        u32 skip:1;
+        u32 unused2:17;
+    } ActorFlags;
+    u8 *actor;
+    s32 propId;
+    u8 *hit;
+    u8 *end;
+    u8 *model;
+    u8 *collision;
+    s32 marker;
+    f32 position[3];
+    f32 rotation[3];
+    s32 result;
+    u8 *prop;
+    CollisionMethods *methods;
+    u8 *actorHit;
+    f32 distance;
+
+    result = 0;
+    prop = func_800E9E88(arg0);
+    end = func_800E9EB4(arg0);
+    for (; prop < end; prop += 12) {
+        if (((PropFlags *)(prop + 8))->collide) {
+            if (!((PropFlags *)(prop + 8))->actor) {
+                if (((PropFlags *)(prop + 8))->model) {
+                    propId = _gsproplookup_entrypoint_0(prop);
+                    model = func_800BFC54(propId);
+                    collision = func_800B2720(model);
+                    if (collision != NULL) {
+                        position[0] = (f32)*(s16 *)(prop + 4);
+                        position[1] = (f32)*(s16 *)(prop + 6);
+                        position[2] = (f32)*(s16 *)(prop + 8);
+                        rotation[0] = 0.0f;
+                        rotation[1] = (f32)prop[2] + (f32)prop[2];
+                        rotation[2] = (f32)prop[3] + (f32)prop[3];
+                        hit = func_800AC848(collision, func_800B2840((s32)model), position, rotation,
+                            (f32)prop[10] * D_80125E54, arg1, arg2, arg3, arg4, arg5, arg6);
+                        if (hit != 0 && D_80132DD0 != 0) {
+                            ((void (*)(s32, s32))D_80132DD0)(*(s32 *)prop, D_80132DD4);
+                        }
+                        if (hit != 0) {
+                            result = (s32)hit;
+                        }
+                    }
+                    if (model != NULL) {
+                        func_800BFC74(propId);
+                    }
+                }
+            } else {
+                if (1) { } if (1) { } if (1) { }
+                marker = *(s32 *)prop;
+                if (((PropFlags *)(prop + 8))->enabled && (*(u16 *)(marker + 0x18) & 1)) {
+                    actor = (u8 *)func_80106790((Unk80132ED0 *)marker);
+                    if (!((ActorFlags *)(actor + 0x64))->skip) {
+                        if (*(CollisionMethods *(**)(void))(marker + 0xC) != NULL &&
+                            (methods = (*(CollisionMethods *(**)(void))(marker + 0xC))(), methods->collide != NULL)) {
+                            actorHit = methods->collide((u8 *)marker, *(s32 *)&arg1, arg2, arg3, arg4, *(s32 *)&arg5, *(u32 *)&arg6);
+                            if (actorHit != 0) {
+                                result = (s32)actorHit;
+                            }
+                        } else {
+                            func_80103328(actor);
+                            distance = func_800EEAD4((f32 *)arg2, (f32 *)(actor + 4)) - arg3;
+                            if (!(distance >=
+                                *(f32 *)(actor + 0x38) * (f32)*(u16 *)(actor + 0x6A))) {
+                                if (func_800CB854(NULL) == 1) {
+                                    func_80103508(actor);
+                                }
+                                model = func_80103AA0((u8 *)marker);
+                                collision = func_800B2720(model);
+                                if (collision != NULL) {
+                                    actorHit = func_800AC848(collision, func_80103CDC(actor, model), (f32 *)(actor + 4),
+                                        (f32 *)(actor + 0x44), *(f32 *)(actor + 0x38), arg1, arg2, arg3, arg4, arg5, arg6);
+                                    if (actorHit != 0) {
+                                        result = (s32)actorHit;
+                                    }
+                                }
+                                if (model != NULL) {
+                                    func_800D62E4(*(u16 *)(marker + 0x14));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
 
 s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
     typedef struct {
