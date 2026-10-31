@@ -178,7 +178,38 @@ s32 func_8080040C_chdodgemcontrol(Actor *arg0, f32 *arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_808004E4_chdodgemcontrol.s")
+void func_808004E4_chdodgemcontrol(Actor *arg0, s32 arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    void *func_80100094(Actor *, u32);
+    Actor *func_801084B0(s32, Actor **);
+    typedef struct {
+        u8 pad[0x34];
+        f32 positions[10][3];
+        u8 flags[10];
+        u8 choices[10];
+    } DodgemData;
+    DodgemData *data;
+    f32 position[3];
+    f32 *destination;
+    Actor *actor;
+
+    actor = func_801084B0(0x37F, &arg0);
+    data = func_80100094(arg0, 0);
+    actor->unk3C = arg0->unk0;
+    data->flags[arg1] = 1;
+    data->choices[arg1] = func_80800350_chdodgemcontrol();
+    actor->unk6C_0 = arg1;
+    /* Preserve these address expressions for IDO's stack slots and scheduling. */
+    destination = actor->position;
+    do {
+        func_808003B0_chdodgemcontrol((f32 *)((u32)position | 0));
+    } while (!func_8080040C_chdodgemcontrol(arg0, (f32 *)((u32)position | 0), arg1));
+    if (position && destination) {}
+    destination = actor->position;
+    func_800EE7F8(destination, position);
+    if (((f32 *)((u32)position | 0))) {}
+    func_800EE7F8(data->positions[arg1], destination);
+}
 
 s32 func_808005CC_chdodgemcontrol(s32 arg0) { switch (arg0) { case 0: return 0x2D; case 1: return 0x2D; case 2: return 0x2D; case 3: return 0x3C; default: return 0; } }
 
