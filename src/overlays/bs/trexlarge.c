@@ -2,6 +2,8 @@
 
 struct anctrl_s;
 
+void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
+
 void func_80800000_bstrexlarge(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x168))) = 5;
 }
@@ -446,7 +448,68 @@ s32 bstrexlarge_entrypoint_7(PlayerState *arg0, f32 *arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/trexlarge/func_80800BC4_bstrexlarge.s")
+void func_80800BC4_bstrexlarge(PlayerState *arg0, s32 arg1) {
+    void anctrl_reset(struct anctrl_s *);
+    void anctrl_setIndex(struct anctrl_s *, s32);
+    void anctrl_setDuration(struct anctrl_s *, f32);
+    void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    void anctrl_setPlaybackType(struct anctrl_s *, s32);
+    void anctrl_setStart(struct anctrl_s *, f32);
+    void anctrl_start(struct anctrl_s *);
+    struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
+    void baanim_setEndAndDuration(PlayerState *, f32, f32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    void baphysics_set_gravity(PlayerState *, f32);
+    void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
+    void baphysics_set_target_yaw(PlayerState *, f32);
+    void baphysics_set_vertical_velocity(PlayerState *, f32);
+    f32 bastick_distance(PlayerState *);
+    f32 bastick_getAngleRelativeToBanjo(PlayerState *);
+    void func_8009DBB0(PlayerState *, s32, f32, f32, s32);
+    f32 func_800DC0C0(void);
+    f32 yaw_getIdeal(PlayerState *);
+    void yaw_setIdeal(PlayerState *, f32);
+    struct anctrl_s *control;
+    f32 velocity;
+    register f32 chance;
+    f32 yaw;
+
+    control = baanim_getAnimCtrlPtr(arg0);
+    *(s8 *)((u8 *)arg0 + 0x15C) = arg1;
+    switch (arg1) {
+        case 1:
+            anctrl_reset(control);
+            anctrl_setIndex(control, 0x1D1);
+            anctrl_setDuration(control, 2.2f);
+            anctrl_setSubrange(control, 0.0f, 0.715f);
+            anctrl_setPlaybackType(control, 1);
+            anctrl_setStart(control, 0.194f);
+            anctrl_start(control);
+            func_8009FFD8(arg0, 1, 1, 3, 6);
+            if (bastick_distance(arg0) != 0.0f) {
+                yaw_setIdeal(arg0, bastick_getAngleRelativeToBanjo(arg0));
+            }
+            baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
+            yaw = yaw_getIdeal(arg0);
+            velocity = baphysics_get_target_horizontal_velocity(arg0);
+            baphysics_set_horizontal_velocity(arg0, yaw, velocity);
+            baphysics_set_vertical_velocity(arg0, 900.0f);
+            baphysics_set_gravity(arg0, -1350.0f);
+            chance = func_800DC0C0();
+            if (0.5f < chance) {
+                func_8009DBB0(arg0, 0x4D8, 0.5, 0.55f, 0x61A8);
+            } else {
+                func_8009DBB0(arg0, 0x4D9, 0.5, 0.55f, 0x61A8);
+            }
+            break;
+        case 2:
+            baanim_setEndAndDuration(arg0, 1.0f, 0.8f);
+            return;
+        case 0:
+            baphysics_set_gravity(arg0, -3000.0f);
+            return;
+    }
+}
 
 void func_80800DAC_bstrexlarge(s32 arg0)
 {
