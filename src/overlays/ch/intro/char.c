@@ -1330,7 +1330,48 @@ void func_80803F7C_chintrochar(Actor *arg0) {
     *(f32 *)(data + 0x100) = *(f32 *)(data + 0xF0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/intro/char/func_80804054_chintrochar.s")
+void func_80804054_chintrochar(Actor *actor, s32 index, f32 orientation, f32 *offset) {
+    void *func_80100094(Actor *, u32);
+    f32 func_800D8FF8(void);
+    f32 func_800EEAD4(f32 *, f32 *);
+    s32 func_800EECE0(f32 *, f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF934(f32 *, f32 *, f32);
+    f32 func_800F1DCC(f32, f32);
+    u8 *data;
+    f32 dt;
+    f32 current[3];
+    f32 previous[3];
+    f32 distance;
+    f32 direction;
+    f32 phaseDelta;
+    f32 angleDelta;
+    s32 phase;
+
+    data = func_80100094(actor, 2);
+    dt = func_800D8FF8();
+    func_800EF934(current, offset, *(f32 *)(data + 0xF0));
+    func_800EF04C(current, (f32 *)(data + 0xE4));
+    func_800EF934(previous, offset, *(f32 *)(data + 0x100));
+    func_800EF04C(previous, (f32 *)(data + 0xF4));
+    distance = func_800EEAD4(current, previous);
+    if (func_800EECE0((f32 *)((u8 *)actor + 4), (f32 *)(data + 0xF4))) {
+        direction = (func_800F1DCC(*(f32 *)(data + 0x100), *(f32 *)(data + 0xF0)) <= 0.0f ? 1.0f : -1.0f) * orientation;
+    } else {
+        direction = 1.0;
+    }
+    phaseDelta = distance * 12.0f * direction * 64.0f * dt;
+    ((f32 *)(data + 0xD8))[index] += phaseDelta;
+    phase = (s32)((f32 *)(data + 0xD8))[index];
+    if (phase >= 0x2000) {
+        ((f32 *)(data + 0xD8))[index] -= 8192.0f;
+    } else if (phase < 0) {
+        ((f32 *)(data + 0xD8))[index] += 8192.0f;
+    }
+    ((s16 *)(data + 0xE0))[index] = (s32)((f32 *)(data + 0xD8))[index];
+    angleDelta = distance * 0.01333333366f * direction * 57.29578018f;
+    ((f32 *)(data + 0xD0))[index] += angleDelta;
+}
 
 void func_80804238_chintrochar(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
