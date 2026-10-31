@@ -77,7 +77,94 @@ void __baanim_oscillateScale(f32 dst[3], f32 x, f32 min, f32 osc_size) {
 }
 
 #ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/baanim/__baanim_applyBottlesBonus.s")
+void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
+    void func_80098218(PlayerState *, s32 *);
+    s16 *func_800A4C88(void *);
+    f32 func_800A8258(void);
+    void func_800DFC20(s32 *, s32, f32 *);
+    void func_800DFF64(s32 *, s32, f32 *);
+    void func_800DFFA0(s32 *, s32, f32 *);
+    s32 func_8010FFD8(s32);
+    static s32 D_80126CD0;
+    f32 sp2C[3];
+    f32 sp28;
+    PlayerState *sp24;
+
+    sp24 = func_800F53D0(arg1);
+    func_80098218(sp24, (s32 *)arg0);
+    func_800DFC20((s32 *)arg0, sp24->anim->unkE, sp24->anim->unk10);
+    if (sp24->anim->unkC != 0) {
+        func_800EFD24(sp2C);
+        func_800DFFA0((s32 *)arg0, sp24->anim->unkE, sp2C);
+    }
+    sp28 = func_800A8258();
+    /* Separate switches preserve IDO's original stack-based value lifetimes. */
+    switch (D_80126CD0 & 1) {
+        case 0:
+            break;
+        default:
+            __baanim_oscillateScale(sp2C, sp28, 2.0f, 1.0f);
+            func_800DFF64((s32 *)arg0, 0x6, sp2C);
+            func_800DFF64((s32 *)arg0, 0x14, sp2C);
+            break;
+    }
+    switch (D_80126CD0 & 2) {
+        case 0:
+            break;
+        default:
+            __baanim_oscillateScale(sp2C, sp28, 2.0f, 1.0f);
+            func_800DFF64((s32 *)arg0, 0x10, sp2C);
+            func_800DFF64((s32 *)arg0, 0x1e, sp2C);
+            break;
+    }
+    switch (D_80126CD0 & BAANIM_BIGHEAD) {
+        case 0:
+            break;
+        default:
+            __baanim_oscillateScale(sp2C, sp28, 2.0f, 1.0f);
+            func_800DFF64((s32 *)arg0, 0x12, sp2C);
+            break;
+    }
+    switch (D_80126CD0 & BAANIM_SMALLHEAD) {
+        case 0:
+            break;
+        default:
+            __baanim_oscillateScale(sp2C, sp28, 0.2f, 0.5f);
+            func_800DFF64((s32 *)arg0, 0x12, sp2C);
+            break;
+    }
+    switch (D_80126CD0 & BAANIM_LONGBODY) {
+        case 0:
+            break;
+        default:
+            func_800DFFA0((s32 *)arg0, 1, D_80117C70);
+            break;
+    }
+    switch (D_80126CD0 & BAANIM_BIGKAZOOIEHEAD) {
+        case 0:
+            break;
+        default:
+            __baanim_oscillateScale(sp2C, sp28, 2.0f, 1.0f);
+            func_800DFF64((s32 *)arg0, 0x6c, sp2C);
+            break;
+    }
+    switch (D_80126CD0 & BAANIM_BIGWINGS) {
+        case 0:
+            break;
+        default:
+            __baanim_oscillateScale(sp2C, sp28, 2.0f, 1.0f);
+            func_800DFF64((s32 *)arg0, 0x64, sp2C);
+            func_800DFF64((s32 *)arg0, 0x67, sp2C);
+            break;
+    }
+    if (func_8010FFD8((s32)func_800A4C88(sp24)) != 0) {
+        __baanim_oscillateScale(sp2C, sp28, 0.9f, 0.2f);
+        func_800DFF64((s32 *)arg0, sp24->anim->unkE, sp2C);
+    }
+    if (sp24->anim->unk4 != NULL) {
+        sp24->anim->unk4(arg0, arg1);
+    }
+}
 #else
 void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
     PlayerState *self = func_800F53D0(arg1);

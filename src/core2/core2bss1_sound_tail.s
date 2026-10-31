@@ -2,9 +2,6 @@
 
 .section .bss
 
-dlabel D_80126CD0
-    /* 80126CD0 */ .space 0x10
-
 dlabel D_80126CE0
     /* 80126CE0 */ .space 0x28
 
