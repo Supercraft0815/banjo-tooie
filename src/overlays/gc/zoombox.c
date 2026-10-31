@@ -287,7 +287,67 @@ s32 func_808006B4_gczoombox(void *arg0, s32 arg1) {
     return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*(u16 *)((u8 *)arg0 + 0x12) >> 1));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/func_808006E0_gczoombox.s")
+void func_808006E0_gczoombox(void *ptr, s32 arg1) {
+    extern u8 D_80803E80_gczoombox[];
+    f32 func_800DC1AC(void);
+    s32 count;
+    s32 out;
+    s32 j;
+    u8 *dest;
+    u8 *arg0 = ptr;
+
+    count = 0;
+    for (out = 0; out < arg1 && count < 0x20; out++) {
+        if (count) {
+            if (func_800DC1AC() < 0.5f) {
+                if (func_800DC1AC() < 0.8f) {
+                    D_80803E80_gczoombox[count] = 1;
+                } else {
+                    D_80803E80_gczoombox[count] = 0;
+                }
+                count++;
+            }
+        } else {
+            D_80803E80_gczoombox[count] = 1;
+            count++;
+        }
+    }
+    D_80803E80_gczoombox[count++] = 0;
+    out = 0;
+    j = 0;
+    if (j < count) {
+        /* Keep the cursor setup on the loop header's line for IDO scheduling. */
+        dest = arg0; do {
+            if (D_80803E80_gczoombox[j] == 1) {
+                if (D_80803E80_gczoombox[j + 1] == 1) {
+                    if (D_80803E80_gczoombox[j + 2] == 1) {
+                        if (func_800DC1AC() < 0.3f) {
+                            dest[0xF0] = 1;
+                        } else {
+                            dest[0xF0] = 2;
+                        }
+                    } else {
+                        if (func_800DC1AC() < 0.5f) {
+                            dest[0xF0] = 2;
+                        } else {
+                            dest[0xF0] = (arg0[0x1D1] - 4) / 2;
+                        }
+                    }
+                } else {
+                    dest[0xF0] = arg0[0x1D1] - 6;
+                }
+                out++;
+                dest++;
+            }
+            j++;
+            dest[0xF0] = 0;
+            out++;
+            dest++;
+        } while (j < count);
+    }
+    arg0[0x1D2] = out;
+    arg0[0x1D0] = 0;
+}
 
 /* extern */
 
@@ -440,7 +500,7 @@ int func_80800E24_gczoombox(u8 arg0) {
 
 void func_80800E44_gczoombox(u8 *arg0, u8 *arg1, u8 *arg2) {
     s32 _fxfontstring_entrypoint_3(u8 *, s16, s32);
-    extern s16 D_80803E80_gczoombox[];
+    extern u8 D_80803E80_gczoombox[];
     s32 color[5];
     f32 temp_f0;
     f32 var_f10;
@@ -464,7 +524,7 @@ void func_80800E44_gczoombox(u8 *arg0, u8 *arg1, u8 *arg2) {
     while (*var_s1 != 0) {
         if (func_80800E24_gczoombox(*var_s1) != 0) {
             *var_s0 = 0;
-            _fxfontstring_entrypoint_3(arg1, D_80803E80_gczoombox[0x5F - *var_s1], (s32) *(f32 *)(arg0 + 0x1E8));
+            _fxfontstring_entrypoint_3(arg1, ((s16 *)D_80803E80_gczoombox)[0x5F - *var_s1], (s32) *(f32 *)(arg0 + 0x1E8));
             var_s0 = arg1;
             while (*var_s0 != 0) {
                 var_s0++;
@@ -948,7 +1008,7 @@ void gczoombox_entrypoint_4(u8 *box) {
     f32 func_80800364_gczoombox(void *);
     int func_808003D8_gczoombox(void *, f32, f32);
     void func_808004D0_gczoombox(u8 *);
-    void func_808006E0_gczoombox(void *, u8);
+    void func_808006E0_gczoombox(void *, s32);
     void func_80800964_gczoombox(void *);
     s32 func_80801C0C_gczoombox(void *, u8 *);
     void gczoombox_entrypoint_14(u8 *);
