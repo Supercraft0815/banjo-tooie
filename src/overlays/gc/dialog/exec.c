@@ -7,7 +7,7 @@ s32 func_80800000_gcdialogexec(void *arg0, s32 arg1) {
 /* extern */
 
 void func_8080002C_gcdialogexec(u8 *arg0) {
-    s32 _gczoombox_entrypoint_0(s32);
+    void _gczoombox_entrypoint_0(void *);
     s32 temp_a0;
     s32 var_s1;
     u8 *var_s0;
@@ -15,14 +15,14 @@ void func_8080002C_gcdialogexec(u8 *arg0) {
     var_s0 = arg0;
     var_s1 = 0;
     do {
-        _gczoombox_entrypoint_0((*(s32 *)((s8 *)(var_s0) + (0x120))));
+        _gczoombox_entrypoint_0((void *)(*(s32 *)((s8 *)(var_s0) + (0x120))));
         var_s1 += 1;
         var_s0 += 4;
         (*(s32 *)((s8 *)(var_s0) + (0x11C))) = 0;
     } while (var_s1 != 2);
     temp_a0 = (*(s32 *)((s8 *)(arg0) + (0x12C)));
     if (temp_a0 != 0) {
-        _gczoombox_entrypoint_0(temp_a0);
+        _gczoombox_entrypoint_0((void *)temp_a0);
         (*(s32 *)((s8 *)(arg0) + (0x12C))) = 0;
     }
 }
@@ -214,7 +214,7 @@ void func_8080052C_gcdialogexec(u8 *arg0) {
     s32 _gczoombox_entrypoint_26(s32, s32, f32, f32, s32);
     s32 _gczoombox_entrypoint_5(s32, s32, s32, s32, s32);
     int _gczoombox_entrypoint_8();
-    s32 _gczoombox_entrypoint_9(s32);
+    void _gczoombox_entrypoint_9(void *);
     u32 *_gldbstring_entrypoint_0(u32 *, u32);
     u32 *_gldbstring_entrypoint_1(u32 *, s16);
     void _gldbstring_entrypoint_2(s32);
@@ -236,7 +236,7 @@ void func_8080052C_gcdialogexec(u8 *arg0) {
         }
         _gczoombox_entrypoint_20((*(s32 *)((s8 *)(arg0) + (0x12C))), 100.0f, 0, 2, 0.1f, 0, 0);
         _gczoombox_entrypoint_8((*(s32 *)((s8 *)(arg0) + (0x12C))), sp30[0]);
-        _gczoombox_entrypoint_9((*(s32 *)((s8 *)(arg0) + (0x12C))));
+        _gczoombox_entrypoint_9((void *)(*(s32 *)((s8 *)(arg0) + (0x12C))));
         _gczoombox_entrypoint_11((*(s32 *)((s8 *)(arg0) + (0x12C))));
     }
 }
@@ -335,7 +335,121 @@ int func_8080064C_gcdialogexec(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80800A50_gcdialogexec.s")
+void func_80800A50_gcdialogexec(u8 *dialog, s32 state) {
+    void _gcdialogcamera_entrypoint_10(void *, s32, s32);
+    void _gczoombox_entrypoint_0(void *);
+    void _gczoombox_entrypoint_9(void *);
+    void _gczoombox_entrypoint_10(void *);
+    void _gczoombox_entrypoint_12(void *);
+    int _gczoombox_entrypoint_33(u8 *);
+    struct DialogState {
+        u8 pad[0x15C];
+        u32 unused : 30;
+        u32 remaining : 2;
+    };
+    typedef struct {
+        u8 state : 2;
+        u8 rest : 6;
+    } BoxFlags;
+    typedef struct {
+        u8 prefix[0x11C];
+        BoxFlags flags[2];
+        u8 unused11E[2];
+        u8 *boxes[2];
+        u32 unused128;
+        u8 *extraBox;
+    } DialogBoxes;
+    struct DialogActions {
+        u8 prefix[0x15E];
+        u8 unused : 5;
+        u8 finishing : 1;
+        u8 rest : 2;
+    };
+    s32 i;
+    s32 result;
+    s32 last;
+    u8 *box;
+
+    if (dialog[0x15C] != 6 || state != 6) {
+        switch (state) {
+        case 1:
+            for (i = 0; i != 2; i++) {
+                box = ((DialogBoxes *)dialog)->boxes[i];
+                if (box) {
+                    if (((DialogBoxes *)dialog)->flags[i].state == 0) {
+                        _gczoombox_entrypoint_9(box);
+                    }
+                    ((DialogBoxes *)dialog)->flags[i].state = 0;
+                }
+            }
+            *(s8 *)(dialog + 0x158) = -1;
+            break;
+        case 5:
+            for (i = 0; i != 2; i++) {
+                box = ((DialogBoxes *)dialog)->boxes[i];
+                if (box && ((DialogBoxes *)dialog)->flags[i].state == 0) {
+                    _gczoombox_entrypoint_12(box);
+                    _gczoombox_entrypoint_10(((DialogBoxes *)dialog)->boxes[i]);
+                }
+            }
+            if (((DialogBoxes *)dialog)->extraBox) {
+                _gczoombox_entrypoint_12(((DialogBoxes *)dialog)->extraBox);
+                _gczoombox_entrypoint_10(((DialogBoxes *)dialog)->extraBox);
+            }
+            break;
+        case 6:
+            last = -1;
+            ((struct DialogActions *)dialog)->finishing = 1;
+            while ((result = func_8080064C_gcdialogexec(dialog))) {
+                if (result >= 2) {
+                    last = result - 1;
+                }
+            }
+            while ((result = func_8080064C_gcdialogexec(dialog))) {
+                if (result >= 2) {
+                    last = result - 1;
+                }
+            }
+            if (last != -1 && !(*(u16 *)(dialog + 0x15A) & 0x200)) {
+                _gcdialogcamera_entrypoint_10(dialog, last, 0);
+            }
+            ((struct DialogState *)dialog)->remaining = 0;
+            for (i = 0; i != 2; i++) {
+                ((DialogBoxes *)dialog)->flags[i].state = 0;
+                box = ((DialogBoxes *)dialog)->boxes[i];
+                if (box) {
+                    result = _gczoombox_entrypoint_33(box);
+                    ((struct DialogState *)dialog)->remaining = ((struct DialogState *)dialog)->remaining + result;
+                }
+            }
+            ((struct DialogActions *)dialog)->finishing = 0;
+            break;
+        case 7:
+            func_808001DC_gcdialogexec(dialog);
+            state = 0;
+            break;
+        case 8:
+            for (i = 0; i != 2; i++) {
+                if (((DialogBoxes *)dialog)->flags[i].state == 0) {
+                    _gczoombox_entrypoint_0(((DialogBoxes *)dialog)->boxes[i]);
+                    ((DialogBoxes *)dialog)->boxes[i] = 0;
+                }
+            }
+            func_808001DC_gcdialogexec(dialog);
+            break;
+        case 10:
+            if (((DialogBoxes *)dialog)->extraBox) {
+                _gczoombox_entrypoint_12(((DialogBoxes *)dialog)->extraBox);
+                _gczoombox_entrypoint_10(((DialogBoxes *)dialog)->extraBox);
+            }
+            break;
+        case 11:
+            func_8080052C_gcdialogexec(dialog);
+            break;
+        }
+        dialog[0x15C] = state;
+    }
+}
 
 int func_80800D30_gcdialogexec(arg0, arg1, arg2) {
     typedef struct {
@@ -348,7 +462,7 @@ int func_80800D30_gcdialogexec(arg0, arg1, arg2) {
         u32 finished:2;
         u32 remaining:2;
     } DialogCallback;
-    int func_80800A50_gcdialogexec();
+    void func_80800A50_gcdialogexec(u8 *, s32);
     u8 *dialog = (u8 *)arg0;
     s32 first;
     s32 second;
@@ -404,7 +518,7 @@ void func_80800F60_gcdialogexec(u8 *arg0, s32 arg1, s32 arg2) {
         u8 pad[0x11C];
         u8 flags[2];
     } DialogFlags;
-    int func_80800A50_gcdialogexec();
+    void func_80800A50_gcdialogexec(u8 *, s32);
     s32 state;
 
     switch (arg2) {
@@ -575,13 +689,13 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
     s32 callback3;
   } Dialog;
   s32 _gczoombox_entrypoint_5(s32, s32, s32, s32, s32);
-  int _gczoombox_entrypoint_10(s32);
+  void _gczoombox_entrypoint_10(void *);
   int _gczoombox_entrypoint_24(s32, s32);
   int _gczoombox_entrypoint_25(s32, s32);
   int _gczoombox_entrypoint_35(s32, void *, s32, s32);
   s32 func_800A9C98(void);
   int func_80801038_gcdialogexec(void *, s32);
-  int func_80800A50_gcdialogexec();
+  void func_80800A50_gcdialogexec(u8 *, s32);
   void func_808011A4_gcdialogexec(u8 *, s32, s32, s32, s32, s32);
   extern void func_800C01D8(void);
   Text *text;
@@ -658,7 +772,7 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, s32 
     {
       if (((Dialog *) arg0)->boxflags[i].state != 0)
       {
-        _gczoombox_entrypoint_10(((Dialog *) arg0)->box[i]);
+        _gczoombox_entrypoint_10((void *)((Dialog *) arg0)->box[i]);
         ((Dialog *) arg0)->numBoxes++;
       }
       else
@@ -765,7 +879,7 @@ void gcdialogexec_entrypoint_2(u8 *arg0) {
         u8 pad[0x11C];
         BoxFlags boxflags[2];
         u8 pad11E[2];
-        s32 boxes[2];
+        u8 *boxes[2];
         u8 pad128[0x34];
         u32 unused : 30;
         u32 pending : 2;
@@ -773,9 +887,9 @@ void gcdialogexec_entrypoint_2(u8 *arg0) {
         u8 middle : 4;
         u8 low : 4;
     } Dialog;
-    s32 _gczoombox_entrypoint_33(s32);
+    int _gczoombox_entrypoint_33(u8 *);
     s32 func_800C0638(void);
-    int func_80800A50_gcdialogexec();
+    void func_80800A50_gcdialogexec(u8 *, s32);
     s32 i;
     s32 result;
 
@@ -822,9 +936,9 @@ void gcdialogexec_entrypoint_5()
     func_80800D30_gcdialogexec();
 }
 
-void gcdialogexec_entrypoint_6()
+void gcdialogexec_entrypoint_6(u8 *dialog, s32 state)
 {
-    func_80800A50_gcdialogexec();
+    func_80800A50_gcdialogexec(dialog, state);
 }
 
 void gcdialogexec_entrypoint_7(u8 *arg0)
@@ -834,7 +948,7 @@ void gcdialogexec_entrypoint_7(u8 *arg0)
 
 void gcdialogexec_entrypoint_8(s32 arg0)
 {
-    func_80800A50_gcdialogexec(arg0,0x2);
+    func_80800A50_gcdialogexec((u8 *)arg0, 0x2);
 }
 
 void gcdialogexec_entrypoint_9(u8 *arg0, s32 arg1, s32 arg2)
@@ -961,13 +1075,13 @@ void gcdialogexec_entrypoint_10(void *arg0) {
     void func_80015F5C(s32, void *);
     s32 func_80015F0C(s32, s32);
     int _gcaudiolist_entrypoint_0();
-    int _gcdialogcamera_entrypoint_10();
+    void _gcdialogcamera_entrypoint_10(void *, s32, s32);
     int _gczoombox_entrypoint_1();
     int _gczoombox_entrypoint_7();
     int _gczoombox_entrypoint_8();
-    int _gczoombox_entrypoint_10();
+    void _gczoombox_entrypoint_10(void *);
     int _gczoombox_entrypoint_11();
-    void _gczoombox_entrypoint_12();
+    void _gczoombox_entrypoint_12(void *);
     int _gczoombox_entrypoint_18();
     int _gczoombox_entrypoint_32();
     int _gczoombox_entrypoint_35();
@@ -975,7 +1089,7 @@ void gcdialogexec_entrypoint_10(void *arg0) {
     int _gczoombox_entrypoint_39();
     int _subaddiedialog_entrypoint_15();
     int func_80800478_gcdialogexec();
-    int func_80800A50_gcdialogexec();
+    void func_80800A50_gcdialogexec(u8 *, s32);
     int func_80801DB4_gcdialogexec();
     int func_80802020_gcdialogexec();
     s32 scanCode;
@@ -1059,15 +1173,15 @@ void gcdialogexec_entrypoint_10(void *arg0) {
             if (((Dialog *)arg0)->index[((Dialog *)arg0)->current] == 0) {
                 ((Dialog *)arg0)->skipped++;
             }
-            _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 1;
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy = 1;
             ((Dialog *)arg0)->current ^= 1;
             ((Dialog *)arg0)->pending = 1;
             break;
         case -5:
-            _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
-            _gczoombox_entrypoint_10(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_10((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy = 1;
             ((Dialog *)arg0)->current ^= 1;
@@ -1079,10 +1193,10 @@ void gcdialogexec_entrypoint_10(void *arg0) {
                 _gczoombox_entrypoint_37(((Dialog *)arg0)->box[((Dialog *)arg0)->current], scanCode + 12);
             }
             if (((Dialog *)arg0)->index[((Dialog *)arg0)->current]) {
-                _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
             }
             if (((Dialog *)arg0)->index[((Dialog *)arg0)->current] == 0 && ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode == 2) {
-                _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
             }
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
@@ -1090,7 +1204,7 @@ void gcdialogexec_entrypoint_10(void *arg0) {
             ((Dialog *)arg0)->pending = 1;
             break;
         case -6:
-            _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
             ((Dialog *)arg0)->current ^= 1;
@@ -1111,7 +1225,7 @@ void gcdialogexec_entrypoint_10(void *arg0) {
             }
             if (result == -1) {
                 if (_gczoombox_entrypoint_37(((Dialog *)arg0)->box[((Dialog *)arg0)->current], ((Dialog *)arg0)->code[((Dialog *)arg0)->current] + 12)) {
-                    _gczoombox_entrypoint_12(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                    _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
                     ((Dialog *)arg0)->pending = 1;
                 } else {
                     _gczoombox_entrypoint_18(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
