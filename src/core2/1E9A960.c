@@ -1,19 +1,58 @@
 #include "core2/1E9A960.h"
 
-typedef struct {
-    u8 pad0[0xC];
-    f32 fade_inner_radius_sqr;
-    f32 fade_outer_radius_sqr;
-    u8 pad14[0x4C];
-    u8 unk60;
-    u8 unk61;
-    u8 pad62[0xA];
-    f32 unk6C;
-    f32 unk70;
-    f32 unk74;
-    u8 pad78;
-    u8 unk79;
-} SoundSourceView;
+/* One entry of the sound source pool (60 entries at D_80128B90, see func_800C1414). */
+typedef struct sfx_source_s {
+    /* 0x00 */ f32 position[3];
+    /* 0x0C */ f32 near_sqr; // full volume inside this squared distance
+    /* 0x10 */ f32 far_sqr; // far_volume beyond this squared distance
+    /* 0x14 */ f32 pan;
+    /* 0x18 */ s16 far_volume;
+    /* 0x1A */ u8 smooth_pan;
+    /* 0x1B */ u8 positioned;
+    /* 0x1C */ u8 unk1C;
+    /* 0x1D */ u8 unk1D;
+    u8 pad1E[2];
+    /* 0x20 */ s32 unk20;
+    /* 0x24 */ s32 unk24;
+    /* 0x28 */ f32 unk28; // 0x28..0x3C: pitch curve parameters, see pitch_mode
+    /* 0x2C */ f32 unk2C;
+    /* 0x30 */ f32 unk30;
+    /* 0x34 */ f32 unk34;
+    /* 0x38 */ f32 unk38;
+    /* 0x3C */ f32 unk3C;
+    /* 0x40 */ f32 attack;
+    /* 0x44 */ f32 decay;
+    /* 0x48 */ f32 sustain;
+    /* 0x4C */ s16 volume_min;
+    /* 0x4E */ s16 volume_max;
+    /* 0x50 */ f32 variation;
+    /* 0x54 */ f32 elapsed;
+    /* 0x58 */ s16 sfx_id;
+    /* 0x5A */ s16 volume;
+    /* 0x5C */ s16 current_volume;
+    /* 0x5E */ s16 map;
+    /* 0x60 */ u8 unk60;
+    /* 0x61 */ u8 unk61;
+    /* 0x62 */ u8 lifetime; // frames left, 0xFF = unlimited
+    /* 0x63 */ u8 use_falloff;
+    /* 0x64 */ void (*callback)(u8, s32, void *);
+    /* 0x68 */ s32 callback_arg;
+    /* 0x6C */ f32 pitch;
+    /* 0x70 */ f32 unk70;
+    /* 0x74 */ f32 unk74;
+    /* 0x78 */ u32 busy : 8;
+    /* 0x79 */ u32 handle : 8;
+    /* 0x7A */ u32 mode : 3;
+    u32 state : 3;
+    u32 pitch_mode : 4;
+    u32 fading : 1;
+    u32 expiring : 1;
+    u32 envelope : 1;
+    u32 unk7B2 : 1;
+    u32 free_on_end : 1;
+    u32 unk7B0 : 1;
+    /* 0x7C */ u16 flags;
+} SfxSource;
 
 /* extern */
 
@@ -84,23 +123,12 @@ s32 func_800C1104(u16 *arg0) {
     return 0;
 }
 
-void func_800C11F8(void *arg0, s32 arg1) {
-    struct Flags {
-        u8 padding[0x7A];
-        unsigned char value : 3;
-        unsigned char rest : 5;
-    };
-    ((struct Flags *)arg0)->value = arg1;
+void func_800C11F8(SfxSource *arg0, s32 arg1) {
+    arg0->mode = arg1;
 }
 
-void func_800C1210(void *arg0, s32 arg1) {
-    struct Flags {
-        u8 padding[0x7A];
-        unsigned char first : 3;
-        unsigned char value : 3;
-        unsigned char last : 2;
-    };
-    ((struct Flags *)arg0)->value = arg1;
+void func_800C1210(SfxSource *arg0, s32 arg1) {
+    arg0->state = arg1;
 }
 
 s32 func_800C122C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
@@ -158,36 +186,36 @@ s32 func_800C122C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return (s32) (var_f0 + 128.0f);
 }
 
-void func_800C13A0(void *arg0, s32 arg1) {
-    (*(u16 *)((s8 *)(arg0) + (0x7C))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x7C))) | arg1);
+void func_800C13A0(SfxSource *arg0, s32 arg1) {
+    arg0->flags = (u16) (arg0->flags | arg1);
 }
 
-void func_800C13B0(void *arg0, s32 arg1) {
-    (*(u16 *)((s8 *)(arg0) + (0x7C))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x7C))) & ~arg1);
+void func_800C13B0(SfxSource *arg0, s32 arg1) {
+    arg0->flags = (u16) (arg0->flags & ~arg1);
 }
 
-u32 func_800C13C4(u16 *arg0, u32 arg1)
+u32 func_800C13C4(SfxSource *arg0, u32 arg1)
 {
-    return (u32) arg0[0x3E] & arg1;
+    return (u32) arg0->flags & arg1;
 }
 
-s32 func_800C13D0(void *arg0, s32 arg1) {
-    return ((*(u16 *)((s8 *)(arg0) + (0x7C))) & arg1) == 0;
+s32 func_800C13D0(SfxSource *arg0, s32 arg1) {
+    return (arg0->flags & arg1) == 0;
 }
 
 void func_800C13E4(void) {
     extern s32 D_80128B90;
     int i;
     for (i = 0; i < 60; i++) {
-        *((u8 *)&D_80128B90 + i * 0x80 + 0x78) = 0;
+        ((SfxSource *)&D_80128B90)[i].busy = 0;
     }
 }
 
-void *func_800C1414(u8 arg0) {
+SfxSource *func_800C1414(u8 arg0) {
     extern s32 D_80128B90;
     s32 index = arg0;
     s32 *base = &D_80128B90;
-    return (void *)((u8 *)base + (index << 7));
+    return (SfxSource *)((u8 *)base + (index << 7));
 }
 
 u8 *func_800C1430(s32 arg0) {
@@ -204,8 +232,8 @@ u8 func_800C145C(void) {
     extern s32 D_80128B90;
     int i;
     for (i = 1; i < 60; i++) {
-        if (!*((u8 *)&D_80128B90 + i * 0x80 + 0x78)) {
-            *((u8 *)&D_80128B90 + i * 0x80 + 0x78) = 1;
+        if (!((SfxSource *)&D_80128B90)[i].busy) {
+            ((SfxSource *)&D_80128B90)[i].busy = 1;
             return i;
         }
     }
@@ -261,37 +289,37 @@ s32 func_800C15BC(void) {
 
 void func_800C16A4(u8 index) {
     extern u8 D_80128C08[][0x80];
-    SoundSourceView *ptr = func_800C1414(index);
-    if (ptr->unk79) {
-        func_800C1568(ptr->unk79);
-        ptr->unk79 = 0;
+    SfxSource *ptr = func_800C1414(index);
+    if (ptr->handle) {
+        func_800C1568(ptr->handle);
+        ptr->handle = 0;
     }
     D_80128C08[index][0] = 0;
 }
 
-void func_800C16F8(void *arg0, s32 arg1) {
+void func_800C16F8(SfxSource *arg0, s32 arg1) {
     s32 func_800CBBE0(s32);
     s32 func_800CBC00(s32);
     s32 func_800CCEF4(s32, s32 *, s32 *, s32, s32);
     void func_800DC3D4(s32, f32, u16, u8, u8, s32);
-    SoundSourceView *source = arg0;
+    SfxSource *source = arg0;
     u32 parameters;
     s32 kind;
     if (arg1) {
-        if (source->unk79) {
-            func_800C1568(source->unk79);
+        if (source->handle) {
+            func_800C1568(source->handle);
         }
-        source->unk79 = arg1 & 0xFF;
+        source->handle = arg1 & 0xFF;
         func_800C1210(source, 1);
         func_800C13A0(source, 4);
         func_800C13A0(source, 8);
         func_800C13A0(source, 0x10);
-        *(s32 *)((u8 *)source + 0x20) = -1;
-        *(s32 *)((u8 *)source + 0x24) = -1;
-        if (func_800CCEF4((s32)source, (s32 *)((u8 *)source + 0x20),
-                         (s32 *)((u8 *)source + 0x24), 0, 0)
-            && func_800CBC00(*(s32 *)((u8 *)source + 0x20))) {
-            kind = func_800CBBE0(*(s32 *)((u8 *)source + 0x20));
+        source->unk20 = -1;
+        source->unk24 = -1;
+        if (func_800CCEF4((s32)source, &source->unk20,
+                         &source->unk24, 0, 0)
+            && func_800CBC00(source->unk20)) {
+            kind = func_800CBBE0(source->unk20);
             switch (kind) {
                 case 2: source->unk60 = 25; break;
                 case 3: source->unk60 = 20; break;
@@ -300,24 +328,24 @@ void func_800C16F8(void *arg0, s32 arg1) {
                 case 6: source->unk60 = 5; break;
             }
         }
-        parameters = func_800C122C(source->unk60, *((u8 *)source + 0x1B),
-                                   *((u8 *)source + 0x1C), func_800C13C4(arg0, 0x400));
-        func_800DC3D4(*(s16 *)((u8 *)source + 0x58) - 0x3E9,
-                     source->unk6C, *(u16 *)((u8 *)source + 0x5A),
-                     source->unk61, parameters, (s32)func_800C1430(source->unk79));
+        parameters = func_800C122C(source->unk60, *(&source->positioned),
+                                   *(&source->unk1C), func_800C13C4(arg0, 0x400));
+        func_800DC3D4(source->sfx_id - 0x3E9,
+                     source->pitch, *(u16 *)&source->volume,
+                     source->unk61, parameters, (s32)func_800C1430(source->handle));
     }
 }
 
 /* extern */
 
-void func_800C1860(void *arg0) {
+void func_800C1860(SfxSource *arg0) {
     void func_800DC4D4(s32);
 
-    if (((u32) ((*(s32 *)((s8 *)(arg0) + (0x78))) << 0x13) >> 0x1D) == 1) {
+    if (arg0->state == 1) {
         func_800C13B0(arg0, 0x20);
         func_800C1210(arg0, 2);
-        if (*(u8 *)((s8 *)arg0 + 0x79)) {
-            func_800DC4D4(func_800C1448(*(u8 *)((s8 *)arg0 + 0x79)));
+        if (arg0->handle) {
+            func_800DC4D4(func_800C1448(arg0->handle));
         }
     }
 }
@@ -369,7 +397,7 @@ void func_800C1984(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-s32 func_800C19E4(void *arg0, s32 arg1) {
+s32 func_800C19E4(SfxSource *arg0, s32 arg1) {
     f32 func_800EEFD4(f32 *);
     void func_800EFB24(void *, void *, void *);
     f32 sp3C[3];
@@ -381,20 +409,20 @@ s32 func_800C19E4(void *arg0, s32 arg1) {
     func_800C1070(sp3C, arg0);
     func_800EFB24(sp30, arg0, sp3C);
     temp_f0 = func_800EEFD4(sp30);
-    temp_f12 = *(f32 *)((s8 *)arg0 + 0xC);
+    temp_f12 = arg0->near_sqr;
     if (temp_f0 < temp_f12) {
         var_v1 = arg1;
     } else {
-        if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x10)))) {
-            var_v1 = (int)(((*(f32 *)((s8 *)arg0 + 0x10) - temp_f0) / (*(f32 *)((s8 *)arg0 + 0x10) - temp_f12)) * (f32)(int)(arg1 - *(s16 *)((s8 *)arg0 + 0x18)) + (f32)*(s16 *)((s8 *)arg0 + 0x18));
+        if (temp_f0 < arg0->far_sqr) {
+            var_v1 = (int)((f32)arg0->far_volume + ((arg0->far_sqr - temp_f0) / (arg0->far_sqr - temp_f12)) * (f32)(int)(arg1 - arg0->far_volume));
         } else {
-            var_v1 = (s32) (*(s16 *)((s8 *)(arg0) + (0x18)));
+            var_v1 = (s32) arg0->far_volume;
         }
     }
     return var_v1;
 }
 
-void func_800C1AA4(u16 *arg0) {
+void func_800C1AA4(SfxSource *arg0) {
     void func_800E3980(f32 *);
     void func_800E3A58(f32 *);
     void func_800EF7B0(f32 *, f32 *, f32, f32, f32);
@@ -411,10 +439,10 @@ void func_800C1AA4(u16 *arg0) {
     func_800E3980(sp5C);
     func_800EFB24(sp50, arg0, sp5C);
     if (sp50[0] * sp50[0] + sp50[1] * sp50[1] + sp50[2] * sp50[2] < 10.0f) {
-        *(f32 *)((s8 *)arg0 + 0x14) = 64.0f;
+        arg0->pan = 64.0f;
     } else {
-        *(u8 *)((s8 *)arg0 + 0x1C) = *(u8 *)((s8 *)arg0 + 0x1D);
-        if (*(u8 *)((s8 *)arg0 + 0x1C) == 0) {
+        arg0->unk1C = arg0->unk1D;
+        if (arg0->unk1C == 0) {
             func_800E3A58(sp2C);
             sp2C[1] = -sp2C[1];
             sp2C[0] = -sp2C[0];
@@ -424,33 +452,33 @@ void func_800C1AA4(u16 *arg0) {
             sp44 = 180.0f - sp44;
             if (sp44 < -90.0f) {
                 sp44 = -180.0f - sp44;
-                if (*(u8 *)((s8 *)arg0 + 0x1B)) {
-                    *(u8 *)((s8 *)arg0 + 0x1C) = 1;
+                if (arg0->positioned) {
+                    arg0->unk1C = 1;
                 }
             } else {
                 if (sp44 > 90.0f) {
                     sp44 = 180.0f - sp44;
-                    if (*(u8 *)((s8 *)arg0 + 0x1B)) {
-                        *(u8 *)((s8 *)arg0 + 0x1C) = 1;
+                    if (arg0->positioned) {
+                        arg0->unk1C = 1;
                     }
                 }
             }
         }
-        func_800C18C8(*(u8 *)((s8 *)arg0 + 0x79), *(u8 *)((s8 *)arg0 + 0x60), *(u8 *)((s8 *)arg0 + 0x1B), *(u8 *)((s8 *)arg0 + 0x1C), func_800C13C4(arg0, 0x400));
+        func_800C18C8(arg0->handle, arg0->unk60, arg0->positioned, arg0->unk1C, func_800C13C4(arg0, 0x400));
         current = sp44 * 0.7f + 64.0f;
         pan = (s32)current;
-        if (*(u8 *)((s8 *)arg0 + 0x1A)) {
-            *(f32 *)((s8 *)arg0 + 0x14) += 0.07f * ((f32)pan - *(f32 *)((s8 *)arg0 + 0x14));
+        if (arg0->smooth_pan) {
+            arg0->pan += 0.07f * ((f32)pan - arg0->pan);
         } else {
-            *(f32 *)((s8 *)arg0 + 0x14) = (f32)pan;
+            arg0->pan = (f32)pan;
         }
     }
-    func_800C191C(*(u8 *)((s8 *)arg0 + 0x79), (s32)*(f32 *)((s8 *)arg0 + 0x14));
+    func_800C191C(arg0->handle, (s32)arg0->pan);
 }
 
 /* extern */
 
-s32 func_800C1CCC(u16 *arg0, s32 arg1) {
+s32 func_800C1CCC(SfxSource *arg0, s32 arg1) {
     s32 func_800C1104(u16 *);
     s32 sp24;
 
@@ -458,10 +486,10 @@ s32 func_800C1CCC(u16 *arg0, s32 arg1) {
         sp24 = func_800C1104(arg0);
         if (func_800C13C4(arg0, 0x80U) != 0) {
             if (sp24 == 1) {
-                arg1 *= *(f32 *)((s8 *)arg0 + 0x74);
+                arg1 *= arg0->unk74;
             }
         } else if (sp24 == 0) {
-            arg1 *= *(f32 *)((s8 *)arg0 + 0x70);
+            arg1 *= arg0->unk70;
         }
     }
     return arg1;
@@ -473,53 +501,53 @@ s32 func_800C1D80(u8 index) {
     s32 func_800EA068(s32);
     s32 result;
     s32 volume;
-    u16 *source;
+    SfxSource *source;
     s32 differentMap;
 
     result = 0;
     source = func_800C1414(index);
-    if (((*(u32 *)((s8 *)source + 0x78) << 19) >> 29) == 1 &&
-        *(u8 *)((s8 *)source + 0x79) != 0) {
-        differentMap = func_800EA05C() != *(s16 *)((s8 *)source + 0x5E);
+    if (source->state == 1 &&
+        source->handle != 0) {
+        differentMap = func_800EA05C() != source->map;
         if (func_800C13C4(source, 4)) {
-            func_800C1950(*(u8 *)((s8 *)source + 0x79), *(s32 *)((s8 *)source + 0x6C));
+            func_800C1950(source->handle, *(s32 *)&source->pitch);
         }
-        if (func_800C13C4(source, 0x10) && !*(u8 *)((s8 *)source + 0x1B)) {
-            func_800C18C8(*(u8 *)((s8 *)source + 0x79), *(u8 *)((s8 *)source + 0x60),
-                *(u8 *)((s8 *)source + 0x1B), *(u8 *)((s8 *)source + 0x1C), func_800C13C4(source, 0x400));
+        if (func_800C13C4(source, 0x10) && !source->positioned) {
+            func_800C18C8(source->handle, source->unk60,
+                source->positioned, source->unk1C, func_800C13C4(source, 0x400));
         }
         if (func_800C13C4(source, 2)) {
             if (differentMap) {
-                func_800C1984(*(u8 *)((s8 *)source + 0x79), *(s16 *)((s8 *)source + 0x5C), func_800C13C4(source, 0x200));
+                func_800C1984(source->handle, source->current_volume, func_800C13C4(source, 0x200));
             } else {
-                if (*(u8 *)((s8 *)source + 0x63)) {
-                    volume = func_800C19E4(source, *(s16 *)((s8 *)source + 0x5A));
+                if (source->use_falloff) {
+                    volume = func_800C19E4(source, source->volume);
                 } else {
-                    volume = *(s16 *)((s8 *)source + 0x5A);
+                    volume = source->volume;
                 }
                 if (volume < 100) {
                     result = 1;
                 }
                 volume = func_800C1CCC(source, volume);
-                *(s16 *)((s8 *)source + 0x5C) = volume;
-                func_800C1984(*(u8 *)((s8 *)source + 0x79), volume, func_800C13C4(source, 0x200));
+                source->current_volume = volume;
+                func_800C1984(source->handle, volume, func_800C13C4(source, 0x200));
                 if (!func_800EA068(0x20)) {
                     func_800C1AA4(source);
                 }
             }
         } else {
             if (func_800C13C4(source, 0x100)) {
-                func_800C191C(*(u8 *)((s8 *)source + 0x79), *(u8 *)((s8 *)source + 0x61));
+                func_800C191C(source->handle, source->unk61);
             }
             if (differentMap) {
-                func_800C1984(*(u8 *)((s8 *)source + 0x79), *(s16 *)((s8 *)source + 0x5C), func_800C13C4(source, 0x200));
+                func_800C1984(source->handle, source->current_volume, func_800C13C4(source, 0x200));
             } else if (func_800C13C4(source, 8)) {
-                volume = func_800C1CCC(source, *(s16 *)((s8 *)source + 0x5A));
-                *(s16 *)((s8 *)source + 0x5C) = volume;
+                volume = func_800C1CCC(source, source->volume);
+                source->current_volume = volume;
                 if (volume < 100) {
                     result = 1;
                 }
-                func_800C1984(*(u8 *)((s8 *)source + 0x79), volume, func_800C13C4(source, 0x200));
+                func_800C1984(source->handle, volume, func_800C13C4(source, 0x200));
             }
         }
         func_800C13B0(source, 4);
@@ -533,29 +561,6 @@ s32 func_800C1D80(u8 index) {
 }
 
 void func_800C2000(u8 index) {
-    typedef struct {
-        u8 pad0[0x28];
-        f32 unk28, unk2C, unk30, unk34, unk38, unk3C;
-        f32 attack, decay, sustain;
-        s16 minimum, maximum;
-        f32 variation, elapsed;
-        s16 sound, volume, limit, map;
-        u8 pad60[0xC];
-        f32 pitch;
-        u8 pad70[8];
-        u32 unk78:8;
-        u32 handle:8;
-        u32 mode:3;
-        u32 state:3;
-        u32 pitchMode:4;
-        u32 fading:1;
-        u32 expiring:1;
-        u32 envelope:1;
-        u32 unk7B2:1;
-        u32 freeOnEnd:1;
-        u32 unk7B0:1;
-        u16 flags;
-    } Source;
     f32 func_800D8FF8(void);
     s32 func_800EA05C(void);
     s32 func_800F0E28(s32, s32);
@@ -568,13 +573,13 @@ void func_800C2000(u8 index) {
     s32 func_800C1D80(u8);
     s32 func_800C42E0(s32);
     s32 func_800C15BC(void);
-    void func_800C16F8(void *, s32);
-    void func_800C1860(void *);
+    void func_800C16F8(SfxSource *, s32);
+    void func_800C1860(SfxSource *);
     s32 unused;
     s32 playing;
     f32 dt;
     s32 slot;
-    Source *source;
+    SfxSource *source;
     f32 end;
     f32 time[2];
 
@@ -585,10 +590,10 @@ void func_800C2000(u8 index) {
         if (source->decay == 0.0f) {
             source->volume = 0;
         } else {
-            source->volume -= source->maximum / source->decay * dt;
+            source->volume -= source->volume_max / source->decay * dt;
             source->volume = func_800F0E28(0, source->volume);
             if (func_800EA05C() != source->map) {
-                source->limit = func_800F1418(source->limit, source->volume);
+                source->current_volume = func_800F1418(source->current_volume, source->volume);
             }
         }
         if (source->volume <= 0) {
@@ -598,31 +603,31 @@ void func_800C2000(u8 index) {
         func_800C13A0(source, 8);
     } else if (source->envelope) {
         if (source->elapsed < source->attack) {
-            source->volume = source->elapsed / source->attack * (source->minimum + source->maximum) / 2;
+            source->volume = source->elapsed / source->attack * (source->volume_min + source->volume_max) / 2;
         } else if (source->elapsed <= source->attack + source->sustain) {
-            if (source->volume < source->minimum || source->maximum < source->volume) {
-                source->volume = (source->minimum + source->maximum) / 2;
+            if (source->volume < source->volume_min || source->volume_max < source->volume) {
+                source->volume = (source->volume_min + source->volume_max) / 2;
             }
             source->volume += func_800DC264(-1.0f, 1.0f) * source->variation;
-            source->volume = source->volume > source->maximum ? source->maximum : source->volume;
-            source->volume = source->volume < source->minimum ? source->minimum : source->volume;
+            source->volume = source->volume > source->volume_max ? source->volume_max : source->volume;
+            source->volume = source->volume < source->volume_min ? source->volume_min : source->volume;
         } else {
-            source->volume = (1.0f - (source->elapsed - source->attack - source->sustain) / source->decay) * (source->minimum + source->maximum) / 2;
+            source->volume = (1.0f - (source->elapsed - source->attack - source->sustain) / source->decay) * (source->volume_min + source->volume_max) / 2;
         }
         if (func_800EA05C() != source->map) {
-            source->limit = func_800F1418(source->limit, source->volume);
+            source->current_volume = func_800F1418(source->current_volume, source->volume);
         }
         func_800C13A0(source, 8);
     }
     if (source->expiring && source->elapsed >= source->attack + source->sustain + source->decay) {
-        if (source->freeOnEnd) {
+        if (source->free_on_end) {
             func_800C2FDC(index);
             return;
         }
         func_800C1860(source);
     }
     if (source->handle && source->state == 1 && func_800C1448(source->handle)) {
-        switch (source->pitchMode) {
+        switch (source->pitch_mode) {
             case 0:
                 break;
             case 1:
@@ -678,8 +683,8 @@ void func_800C2000(u8 index) {
             break;
     }
     playing = func_800C1D80(index);
-    if (source->state == 1 && func_800C42E0(source->sound)) {
-        if (func_800C13C4((u16 *)source, 0x20)) {
+    if (source->state == 1 && func_800C42E0(source->sfx_id)) {
+        if (func_800C13C4(source, 0x20)) {
             if (!playing) {
                 slot = func_800C15BC();
                 osSetThreadPri(NULL, 0x33);
@@ -701,13 +706,13 @@ void func_800C2000(u8 index) {
 }
 
 s32 func_800C269C(u8 arg0) {
-    u8 *source = func_800C1414(arg0);
+    SfxSource *source = func_800C1414(arg0);
 
-    if ((*(u32 *)(source + 0x78) << 19 >> 29) != 3)
+    if (source->state != 3)
         return 0;
-    if (!source[0x79])
+    if (!source->handle)
         return 1;
-    if (func_800C1448(source[0x79]))
+    if (func_800C1448(source->handle))
         return 0;
     return 1;
 }
@@ -718,7 +723,7 @@ void func_800C2718(void) {
     f32 func_800D8FF8();
     extern f32 D_8011A878;
     extern s32 D_80128C10;
-    u8 *var_s2;
+    SfxSource *var_s2;
     s32 temp_s0;
     s32 var_s1;
 
@@ -733,11 +738,11 @@ void func_800C2718(void) {
             D_8011A878 = 1.0f;
         }
     }
-    var_s2 = (u8 *)&D_80128C10;
+    var_s2 = (SfxSource *)&D_80128C10;
     var_s1 = 1;
     do {
-        if ((*(u8 *)((s8 *)(var_s2) + (0x78))) != 0) {
-            if ((*(u32 *)(var_s2 + 0x78) << 19 >> 29) != 3) {
+        if (var_s2->busy != 0) {
+            if (var_s2->state != 3) {
                 func_800C2000(var_s1);
             }
             temp_s0 = var_s1 & 0xFF;
@@ -746,7 +751,7 @@ void func_800C2718(void) {
             }
         }
         var_s1 += 1;
-        var_s2 += 0x80;
+        var_s2++;
     } while (var_s1 != 0x3C);
 }
 
@@ -786,14 +791,14 @@ void func_800C2900(void) {
     int busy;
 
     for (i = 1; i < 60; i++) {
-        if (((u8 *)&D_80128B90)[i * 0x80 + 0x78])
+        if (((SfxSource *)&D_80128B90)[i].busy)
             func_800C2FDC(i);
     }
     do {
         busy = 0;
         func_800C2718();
         for (i = 1; i < 60; i++) {
-            if (((u8 *)&D_80128B90)[i * 0x80 + 0x78])
+            if (((SfxSource *)&D_80128B90)[i].busy)
                 busy++;
         }
     } while (busy);
@@ -828,20 +833,20 @@ void func_800C2AB8(void) {
     s32 func_800C269C(u8);
     void func_800C2B80(void);
     extern s32 D_80128C10;
-    s8 *var_s1;
+    SfxSource *var_s1;
     s32 temp_s0;
     s32 var_s2;
     s32 var_s3;
 
     func_800C2B80();
     do {
-        var_s1 = (s8 *)&D_80128C10;
+        var_s1 = (SfxSource *)&D_80128C10;
         var_s2 = 1;
         var_s3 = 0;
 loop_2:
-        if ((*(u8 *)((s8 *)(var_s1) + (0x78))) != 0) {
+        if (var_s1->busy != 0) {
             temp_s0 = var_s2 & 0xFF;
-            if ((*(u32 *)(var_s1 + 0x78) << 0x13 >> 0x1D) == 3) {
+            if (var_s1->state == 3) {
                 if (func_800C269C(temp_s0 & 0xFF) != 0) {
                     func_800C16A4(temp_s0 & 0xFF);
                 } else {
@@ -850,7 +855,7 @@ loop_2:
             }
         }
         var_s2 += 1;
-        var_s1 += 0x80;
+        var_s1++;
         if (var_s2 != 0x3C) {
             goto loop_2;
         }
@@ -859,24 +864,24 @@ loop_2:
 
 void func_800C2B80(void) {
     extern s32 D_80128C10;
-    s8 *ptr;
+    SfxSource *ptr;
     u32 index;
     u8 count;
 
-    ptr = (s8 *)&D_80128C10;
-    for (index = 1; index < 0x3C; index++, ptr += 0x80) {
-        if (*(u8 *)(ptr + 0x78) == 0) continue;
-        if ((*(u32 *)(ptr + 0x78) << 19 >> 29) == 3) continue;
-            count = *(u8 *)(ptr + 0x62);
+    ptr = (SfxSource *)&D_80128C10;
+    for (index = 1; index < 0x3C; index++, ptr++) {
+        if (ptr->busy == 0) continue;
+        if (ptr->state == 3) continue;
+            count = ptr->lifetime;
             if (count != 0xFF) {
                 if (count == 0) {
                     func_800C2FDC(index);
                 } else {
                     count--;
-                    *(u8 *)(ptr + 0x62) = count;
+                    ptr->lifetime = count;
                     if (!(count & 0xFF)) {
-                        *(f32 *)(ptr + 0x54) = 0.0f;
-                        ((struct { u32 pad : 26; u32 flag : 1; u32 rest : 5; } *)(ptr + 0x78))->flag = 1;
+                        ptr->elapsed = 0.0f;
+                        ptr->fading = 1;
                     }
                 }
             }
@@ -888,69 +893,44 @@ s32 func_800C2C4C(u8 index) {
     void func_800EFD24(f32 *);
     void func_800C3418(u8, s32);
     void func_800C3798(u8, f32, f32);
-    struct Source {
-        f32 position[3];
-        f32 inner, outer, distance;
-        s16 count;
-        u8 byte1A, byte1B, byte1C, byte1D;
-        u8 padding[0x22];
-        f32 value40, value44, value48;
-        s16 value4C, value4E;
-        f32 value50, value54;
-        s16 sound, rate, value5C, map;
-        u8 byte60, byte61, byte62, byte63;
-        void *callback;
-        f32 value68, value6C;
-        u32 unused[2];
-        u32 high : 8;
-        u32 byte79 : 8;
-        u32 high6 : 6;
-        u32 mode : 4;
-        u32 flag5 : 1;
-        u32 flag4 : 1;
-        u32 flag3 : 1;
-        u32 flag2 : 1;
-        u32 flag1 : 1;
-        u32 low : 1;
-    };
-    struct Source *source;
+    SfxSource *source;
 
     source = func_800C1414(index);
     source->callback = 0;
-    source->sound = -1;
-    source->value5C = 0;
-    source->rate = 22000;
-    source->byte60 = 0;
-    source->byte61 = 0x3F;
-    source->byte79 = 0;
-    source->byte62 = 0xFF;
-    source->value6C = 1.0f;
+    source->sfx_id = -1;
+    source->current_volume = 0;
+    source->volume = 22000;
+    source->unk60 = 0;
+    source->unk61 = 0x3F;
+    source->handle = 0;
+    source->lifetime = 0xFF;
+    source->pitch = 1.0f;
     source->map = func_800EA05C();
-    source->byte63 = 1;
-    source->mode = 0;
-    source->flag4 = 0;
-    source->value48 = 3.0f;
-    source->flag1 = 1;
-    source->flag3 = 0;
-    source->flag5 = 0;
-    source->flag2 = 0;
-    source->value40 = 1.0f;
-    source->value44 = 1.0f;
-    source->value54 = 0.0f;
+    source->use_falloff = 1;
+    source->pitch_mode = 0;
+    source->expiring = 0;
+    source->sustain = 3.0f;
+    source->free_on_end = 1;
+    source->envelope = 0;
+    source->fading = 0;
+    source->unk7B2 = 0;
+    source->attack = 1.0f;
+    source->decay = 1.0f;
+    source->elapsed = 0.0f;
     func_800C1210(source, 0);
     func_800C11F8(source, 0);
     func_800C13A0(source, 1);
     func_800C13A0(source, 4);
     func_800C13A0(source, 8);
     func_800C13A0(source, 0x10);
-    source->inner = 62500.0f;
-    source->outer = 1440000.0f;
-    source->count = 10;
-    source->byte1A = 0;
-    source->byte1B = 0;
-    source->byte1C = 0;
-    source->byte1D = 0;
-    source->distance = 64.0f;
+    source->near_sqr = 62500.0f;
+    source->far_sqr = 1440000.0f;
+    source->far_volume = 10;
+    source->smooth_pan = 0;
+    source->positioned = 0;
+    source->unk1C = 0;
+    source->unk1D = 0;
+    source->pan = 64.0f;
     func_800EFD24(source->position);
     func_800C13B0(source, 2);
     func_800C13B0(source, 0x20);
@@ -974,65 +954,42 @@ void func_800C2E40(u8 index) {
     void func_800EFD24(f32 *);
     void func_800C3418(u8, s32);
     void func_800C3798(u8, f32, f32);
-    struct Source {
-        f32 position[3];
-        f32 inner, outer, distance;
-        s16 count;
-        u8 byte1A, byte1B;
-        u8 padding[0x24];
-        f32 value40, value44, value48;
-        s16 value4C, value4E;
-        f32 value50, value54;
-        s16 sound, rate, value5C, map;
-        u8 byte60, byte61, byte62, byte63;
-        void *callback;
-        f32 value68, value6C;
-        u32 unused[2];
-        u32 high : 22;
-        u32 mode : 4;
-        u32 flag5 : 1;
-        u32 flag4 : 1;
-        u32 flag3 : 1;
-        u32 flag2 : 1;
-        u32 flag1 : 1;
-        u32 low : 1;
-    };
-    struct Source *source;
+    SfxSource *source;
 
     func_800C3CE8(index);
     source = func_800C1414(index);
     source->callback = 0;
-    source->sound = -1;
-    source->value5C = 0;
-    source->rate = 22000;
-    source->byte60 = 0;
-    source->byte61 = 0x3F;
-    source->byte62 = 0xFF;
-    source->value6C = 1.0f;
+    source->sfx_id = -1;
+    source->current_volume = 0;
+    source->volume = 22000;
+    source->unk60 = 0;
+    source->unk61 = 0x3F;
+    source->lifetime = 0xFF;
+    source->pitch = 1.0f;
     source->map = func_800EA05C();
-    source->byte63 = 1;
-    source->mode = 0;
-    source->flag4 = 0;
-    source->value48 = 3.0f;
-    source->flag1 = 1;
-    source->flag3 = 0;
-    source->flag5 = 0;
-    source->flag2 = 0;
-    source->value40 = 1.0f;
-    source->value44 = 1.0f;
-    source->value54 = 0.0f;
+    source->use_falloff = 1;
+    source->pitch_mode = 0;
+    source->expiring = 0;
+    source->sustain = 3.0f;
+    source->free_on_end = 1;
+    source->envelope = 0;
+    source->fading = 0;
+    source->unk7B2 = 0;
+    source->attack = 1.0f;
+    source->decay = 1.0f;
+    source->elapsed = 0.0f;
     func_800C1210(source, 0);
     func_800C11F8(source, 0);
     func_800C13A0(source, 1);
     func_800C13A0(source, 4);
     func_800C13A0(source, 8);
     func_800C13A0(source, 0x10);
-    source->inner = 62500.0f;
-    source->outer = 1440000.0f;
-    source->count = 10;
-    source->byte1A = 0;
-    source->byte1B = 0;
-    source->distance = 64.0f;
+    source->near_sqr = 62500.0f;
+    source->far_sqr = 1440000.0f;
+    source->far_volume = 10;
+    source->smooth_pan = 0;
+    source->positioned = 0;
+    source->pan = 64.0f;
     func_800EFD24(source->position);
     func_800C13B0(source, 2);
     func_800C13B0(source, 0x20);
@@ -1041,7 +998,7 @@ void func_800C2E40(u8 index) {
 }
 
 s32 func_800C2FDC(u8 index) {
-    void *ptr = func_800C1414(index);
+    SfxSource *ptr = func_800C1414(index);
     func_800C3CE8(index);
     func_800C1210(ptr, 3);
     return 0;
@@ -1049,20 +1006,19 @@ s32 func_800C2FDC(u8 index) {
 
 void func_800C301C(u8 id, s32 arg1) {
     if (id != 0) {
-        (*(s16 *)((s8 *)(func_800C1414(id)) + (0x58))) = (s16) arg1;
+        func_800C1414(id)->sfx_id = (s16) arg1;
     }
 }
 
 void func_800C3058(u8 index, s32 sample_rate) {
-    struct Flags { u8 padding[0x78]; u32 high : 28; u32 varying_rate : 1; u32 low : 3; };
-    u8 *source;
+    SfxSource *source;
     if (index) {
         source = func_800C1414(index);
-        *(s16 *)(source + 0x5A) = sample_rate;
-        if (((struct Flags *)source)->varying_rate == 0) {
-            *(s16 *)(source + 0x4C) = sample_rate;
-            *(s16 *)(source + 0x4E) = sample_rate;
-            *(f32 *)(source + 0x50) = 0.0f;
+        source->volume = sample_rate;
+        if (source->envelope == 0) {
+            source->volume_min = sample_rate;
+            source->volume_max = sample_rate;
+            source->variation = 0.0f;
         }
         func_800C13A0(source, 8);
     }
@@ -1087,13 +1043,13 @@ void func_800C30B8(u8 index, s32 arg1, f32 position[3], f32 min_dist, f32 max_di
 
 /* extern */
 
-void func_800C316C(u8 arg0, s32 arg1, s32 arg2, f32 arg3) { struct Flags { u8 pad[0x7B]; unsigned char first : 4; unsigned char flag : 1; unsigned char last : 3; }; void *temp_v0; if (arg0 != 0) { temp_v0 = func_800C1414(arg0); ((struct Flags *)temp_v0)->flag = 1; (*(s16 *)((s8 *)(temp_v0) + (0x4C))) = (s16) arg1; (*(s16 *)((s8 *)(temp_v0) + (0x4E))) = (s16) arg2; (*(f32 *)((s8 *)(temp_v0) + (0x50))) = arg3; (*(s16 *)((s8 *)(temp_v0) + (0x5A))) = 0; func_800C13A0(temp_v0, 8); } }
+void func_800C316C(u8 arg0, s32 arg1, s32 arg2, f32 arg3) {SfxSource *temp_v0; if (arg0 != 0) { temp_v0 = func_800C1414(arg0); temp_v0->envelope = 1; temp_v0->volume_min = (s16) arg1; temp_v0->volume_max = (s16) arg2; temp_v0->variation = arg3; temp_v0->volume = 0; func_800C13A0(temp_v0, 8); } }
 
 void func_800C31DC(u8 index, f32 value) {
-    SoundSourceView *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
-        ptr->unk6C = value;
+        ptr->pitch = value;
         func_800C13A0(ptr, 4);
     }
 }
@@ -1115,7 +1071,7 @@ void func_800C3224(u8 index, f32 lower, f32 upper, f32 step) {
 }
 
 void func_800C32C4(u8 index, s32 value) {
-    SoundSourceView *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
         ptr->unk60 = value;
@@ -1124,8 +1080,8 @@ void func_800C32C4(u8 index, s32 value) {
 }
 
 void func_800C330C(u8 id, s32 arg1) {
-    extern void func_800C11F8(void *, s32);
-    extern void *func_800C1414(u8);
+    extern void func_800C11F8(SfxSource *, s32);
+    extern SfxSource *func_800C1414(u8);
 
     if (id != 0) {
         func_800C11F8(func_800C1414(id), arg1);
@@ -1133,7 +1089,7 @@ void func_800C330C(u8 id, s32 arg1) {
 }
 
 void func_800C334C(u8 index, s32 value) {
-    SoundSourceView *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
         ptr->unk61 = value;
@@ -1141,23 +1097,23 @@ void func_800C334C(u8 index, s32 value) {
     }
 }
 
-void func_800C3394(u8 arg0, s32 arg1, s32 arg2) {
-    void *ptr;
+void func_800C3394(u8 arg0, void (*callback)(u8, s32, void *), s32 arg2) {
+    SfxSource *ptr;
     if (arg0 != 0) {
         ptr = func_800C1414(arg0);
-        (*(s32 *)((s8 *)ptr + 0x64)) = arg1;
-        (*(s32 *)((s8 *)ptr + 0x68)) = arg2;
+        ptr->callback = callback;
+        ptr->callback_arg = arg2;
     }
 }
 void func_800C33DC(u8 arg0, s32 arg1) {
     if (arg0 != 0) {
-        (*(s8 *)((s8 *)(func_800C1414(arg0)) + (0x1B))) = (s8) arg1;
+        func_800C1414(arg0)->positioned = (s8) arg1;
     }
 }
 
 void func_800C3418(u8 indx, s32 arg1){
 
-    void *temp_v0;
+    SfxSource *temp_v0;
     if(indx){
         temp_v0 = func_800C1414(indx);
         switch(arg1){
@@ -1178,7 +1134,7 @@ void func_800C3418(u8 indx, s32 arg1){
 }
 
 void func_800C34CC(u8 index, s32 enabled) {
-    void *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
         if (enabled) { func_800C13B0(ptr, 512); }
@@ -1187,7 +1143,7 @@ void func_800C34CC(u8 index, s32 enabled) {
 }
 
 void func_800C3528(u8 index, s32 enabled) {
-    void *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
         if (enabled) { func_800C13A0(ptr, 1024); }
@@ -1197,11 +1153,11 @@ void func_800C3528(u8 index, s32 enabled) {
 
 void func_800C3584(u8 index, f32 min, f32 max) {
     void func_800C368C(u8, s32);
-    SoundSourceView *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
-        ptr->fade_inner_radius_sqr = min * min;
-        ptr->fade_outer_radius_sqr = max * max;
+        ptr->near_sqr = min * min;
+        ptr->far_sqr = max * max;
         func_800C368C(index, 1);
     }
 }
@@ -1210,28 +1166,28 @@ void func_800C35E8(u8 index, f32 position[3]) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800C368C(u8, s32);
     s32 func_800EA05C(void);
-    u8 *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
         func_800EE7F8((f32 *)ptr, position);
         func_800C368C(index, 1);
-        *(s16 *)(ptr + 0x5E) = func_800EA05C();
+        ptr->map = func_800EA05C();
     }
 }
 
 void func_800C3648(u8 index, s32 arg1) {
     s32 func_800EA05C(void);
-    u8 *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
-        *(s16 *)(ptr + 0x5E) = func_800EA05C();
+        ptr->map = func_800EA05C();
     }
 }
 
 /* extern */
 
 void func_800C368C(u8 arg0, s32 arg1) {
-    void *ptr;
+    SfxSource *ptr;
     if (arg0) {
         ptr = func_800C1414(arg0);
         if (arg1) { func_800C13A0(ptr, 2); }
@@ -1242,23 +1198,23 @@ void func_800C368C(u8 arg0, s32 arg1) {
 
 void func_800C36F4(u8 arg0, s32 arg1) {
     if (arg0 != 0) {
-        (*(s8 *)((s8 *)(func_800C1414(arg0)) + (0x62))) = (s8) arg1;
+        func_800C1414(arg0)->lifetime = (s8) arg1;
     }
 }
 
 void func_800C3730(u8 index, f32 arg1, f32 arg2, f32 arg3) {
-    u8 *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
-        *(u16 *)(ptr + 0x7A) = (*(u16 *)(ptr + 0x7A) & 0xFC3F) | 0x40;
-        *(f32 *)(ptr + 0x28) = arg3;
-        *(f32 *)(ptr + 0x2C) = arg2;
+        ptr->pitch_mode = 1;
+        ptr->unk28 = arg3;
+        ptr->unk2C = arg2;
         func_800C31DC(index, arg1);
     }
 }
 
 void func_800C3798(u8 index, f32 arg1, f32 arg2) {
-    SoundSourceView *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
         ptr->unk70 = arg1;
@@ -1267,26 +1223,26 @@ void func_800C3798(u8 index, f32 arg1, f32 arg2) {
 }
 
 void func_800C37E0(u8 index, f32 arg1, f32 arg2, f32 arg3) {
-    u8 *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
-        *(u16 *)(ptr + 0x7A) = (*(u16 *)(ptr + 0x7A) & 0xFC3F) | 0x80;
-        *(f32 *)(ptr + 0x30) = arg3;
-        *(f32 *)(ptr + 0x2C) = arg1;
-        *(f32 *)(ptr + 0x28) = arg2;
+        ptr->pitch_mode = 2;
+        ptr->unk30 = arg3;
+        ptr->unk2C = arg1;
+        ptr->unk28 = arg2;
         func_800C31DC(index, (arg1 + arg2) * 0.5f);
     }
 }
 
 void func_800C3868(u8 index, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    u8 *ptr;
+    SfxSource *ptr;
     if (index) {
         ptr = func_800C1414(index);
-        *(u16 *)(ptr + 0x7A) = (*(u16 *)(ptr + 0x7A) & 0xFC3F) | 0xC0;
-        *(f32 *)(ptr + 0x28) = arg1;
-        *(f32 *)(ptr + 0x2C) = arg2;
-        *(f32 *)(ptr + 0x30) = arg3;
-        *(f32 *)(ptr + 0x34) = arg4;
+        ptr->pitch_mode = 3;
+        ptr->unk28 = arg1;
+        ptr->unk2C = arg2;
+        ptr->unk30 = arg3;
+        ptr->unk34 = arg4;
         func_800C31DC(index, arg3);
     }
 }
@@ -1295,65 +1251,64 @@ s16 func_800C38E4(u8 arg0) {
     if (arg0 == 0) {
         return 0;
     }
-    return (*(s16 *)((s8 *)(func_800C1414(arg0)) + (0x58)));
+    return func_800C1414(arg0)->sfx_id;
 }
 
 s16 func_800C3920(u8 arg0) {
     if (arg0 == 0) {
         return 0;
     }
-    return (*(s16 *)((s8 *)(func_800C1414(arg0)) + (0x5A)));
+    return func_800C1414(arg0)->volume;
 }
 
 f32 func_800C395C(u8 index) {
-    SoundSourceView *ptr;
+    SfxSource *ptr;
     if (!index) return 1.0f;
     else {
         ptr = func_800C1414(index);
-        return ptr->unk6C;
+        return ptr->pitch;
     }
 }
 
 s32 func_800C39A0(u8 id) {
-    u16 *p = (u16 *) ((u8 *) func_800C1414(id) + 0x7A);
-    return ((u32) *p) >> 13;
+    return func_800C1414(id)->mode;
 }
 
 /* extern */
 
-s32 func_800C39D0(u16 *arg0) {
-    s32 func_800C19E4(void *, s32);
+s32 func_800C39D0(SfxSource *arg0) {
+    s32 func_800C19E4(SfxSource *, s32);
     s32 var_v1;
 
     if (func_800C13C4(arg0, 0x800U) != 0) {
         return 1;
     }
-    if (((*(u8 *)((s8 *)(arg0) + (0x63))) != 0) && (func_800C13C4(arg0, 2U) != 0)) {
-        var_v1 = func_800C19E4(arg0, (*(s16 *)((s8 *)(arg0) + (0x5A))));
+    if ((arg0->use_falloff != 0) && (func_800C13C4(arg0, 2U) != 0)) {
+        var_v1 = func_800C19E4(arg0, arg0->volume);
     } else {
-        var_v1 = (*(s16 *)((s8 *)(arg0) + (0x5A)));
+        var_v1 = arg0->volume;
     }
     return var_v1 >= 0x65;
 }
 
 /* extern */
 
-void func_800C3A40(u8 arg0, f32 arg1, f32 arg2, f32 arg3) { struct Flags { u8 padding[0x78]; u32 high : 28; u32 varying_rate : 1; u32 low : 3; }; struct ByteFlags { u8 padding[0x7B]; unsigned char high : 3; unsigned char flag4 : 1; unsigned char flag3 : 1; unsigned char mid : 1; unsigned char flag1 : 1; unsigned char low : 1; }; struct Source { u8 pad[0x40]; f32 inner, outer, volume; s16 start, end; f32 step, timer; s16 unk58, sample_rate; }; struct Source *ptr; s16 rate;
+void func_800C3A40(u8 arg0, f32 arg1, f32 arg2, f32 arg3) {SfxSource *ptr; s16 rate;
     if (arg0) {
         ptr = func_800C1414(arg0);
-        ((struct ByteFlags *)ptr)->flag4 = 1;
-        ((struct ByteFlags *)ptr)->flag1 = 1;
-        ptr->inner = arg1;
-        ptr->outer = arg3;
-        ptr->volume = arg2;
-        ptr->timer = 0.0f;
-        if (((struct Flags *)ptr)->varying_rate == 0) {
-            rate = ptr->sample_rate;
-            ((struct ByteFlags *)ptr)->flag3 = 1;
-            ptr->sample_rate = 0;
-            ptr->start = rate;
-            ptr->end = rate;
-            ptr->step = 0.0;
+        ptr->expiring = 1;
+        ptr->free_on_end = 1;
+        ptr->attack = arg1;
+        ptr->decay = arg3;
+        ptr->sustain = arg2;
+        ptr->elapsed = 0.0f;
+        if (ptr->envelope == 0) {
+            rate = ptr->volume;
+            ptr->envelope = 1;
+            ptr->volume = 0;
+            ptr->volume_min = rate;
+            ptr->volume_max = rate;
+            ptr->variation = 0.0;
         }
     }
 }
@@ -1361,17 +1316,15 @@ void func_800C3A40(u8 arg0, f32 arg1, f32 arg2, f32 arg3) { struct Flags { u8 pa
 /* extern */
 
 void func_800C3AE0(u8 arg0, f32 arg1) {
-    struct Flags { u8 padding[0x78]; u32 high : 28; u32 varying_rate : 1; u32 low : 3; };
-    struct Source { u8 pad[0x4C]; s16 start, end; f32 step, timer; s16 unk58, sample_rate; };
-    struct Source *ptr;
+    SfxSource *ptr;
 
     if (arg0) {
         ptr = func_800C1414(arg0);
-        if (((struct Flags *)ptr)->varying_rate) {
-            ptr->start = (s32)(ptr->start * arg1);
-            ptr->end = (s32)(ptr->end * arg1);
+        if (ptr->envelope) {
+            ptr->volume_min = (s32)(ptr->volume_min * arg1);
+            ptr->volume_max = (s32)(ptr->volume_max * arg1);
         } else {
-            ptr->sample_rate = (s32)(ptr->sample_rate * arg1);
+            ptr->volume = (s32)(ptr->volume * arg1);
         }
     }
 }
@@ -1379,44 +1332,28 @@ void func_800C3AE0(u8 arg0, f32 arg1) {
 /* extern */
 
 void func_800C3B8C(u8 arg0, s32 arg1) {
-    struct Flags {
-        u8 padding[0x7B];
-        unsigned char first : 6;
-        unsigned char value : 1;
-        unsigned char last : 1;
-    };
-    struct Flags *ptr;
+    SfxSource *ptr;
     if (arg0) {
         ptr = func_800C1414(arg0);
-        ptr->value = arg1;
+        ptr->free_on_end = arg1;
     }
 }
 
 void func_800C3BDC(u8 id) {
-    void func_800C16F8(void *, s32);
+    void func_800C16F8(SfxSource *, s32);
     s32 func_800C1D80(u8);
     s32 func_800C42E0(s32);
     void func_800FEC60(u32);
-    struct Source {
-        u8 pad[0x58];
-        s16 uid;
-        u8 pad5A[0x1E];
-        u32 first : 16;
-        u32 mode : 3;
-        u32 state : 3;
-        u32 middle : 7;
-        u32 flag : 1;
-        u32 last : 2;
-    } *source;
+    SfxSource *source;
     s32 priority;
 
     if (!id)
         return;
     source = func_800C1414(id);
-    if (source->flag) {
+    if (source->unk7B2) {
         func_800FEC60(4);
     }
-    if (func_800C39D0((void *)source) || func_800C42E0(source->uid)) {
+    if (func_800C39D0(source) || func_800C42E0(source->sfx_id)) {
         switch (source->mode) {
             case 2:
                 func_800C13A0(source, 1);
@@ -1441,25 +1378,15 @@ void func_800C3BDC(u8 id) {
 /* extern */
 
 void func_800C3CE8(u8 id) {
-    void func_800C1860(void *);
+    void func_800C1860(SfxSource *);
     void func_800FECB8(u32);
-    struct Source {
-        u8 pad[0x64];
-        void (*callback)(u8, s32, void *);
-        s32 callback_arg;
-        u8 pad6C[0xC];
-        u32 first : 19;
-        u32 state : 3;
-        u32 middle : 7;
-        u32 flag : 1;
-        u32 last : 2;
-    } *source;
+    SfxSource *source;
 
     if (id) {
         source = func_800C1414(id);
         if (source->state == 1) {
             func_800C1860(source);
-            if (source->flag) {
+            if (source->unk7B2) {
                 func_800FECB8(4);
             }
             if (source->callback) {
@@ -1470,35 +1397,30 @@ void func_800C3CE8(u8 id) {
 }
 
 int func_800C3D78(u8 id) {
-    struct Source {
-        u8 pad[0x78];
-        u32 first : 19;
-        u32 state : 3;
-        u32 rest : 10;
-    } *source;
+    SfxSource *source;
 
     if (!id) {
         return 0;
     }
     source = func_800C1414(id);
     return id && source->state == 1
-        && *((u8 *)source + 0x79)
-        && func_800C1448(*((u8 *)source + 0x79));
+        && *(&source->handle)
+        && func_800C1448(*(&source->handle));
 }
 
 s32 func_800C3E00(s32 arg0) {
     int func_800C3D78(u8);
     extern s32 D_80128C10;
     s32 var_s0;
-    s8 *var_s1;
+    SfxSource *var_s1;
 
-    var_s0 = 1; var_s1 = (s8 *)&D_80128C10;
+    var_s0 = 1; var_s1 = (SfxSource *)&D_80128C10;
 loop_1:
-    if (((*(u8 *)((s8 *)(var_s1) + (0x78))) != 0) && (func_800C3D78(var_s0) != 0) && (arg0 == (*(s16 *)((s8 *)(var_s1) + (0x58))))) {
+    if ((var_s1->busy != 0) && (func_800C3D78(var_s0) != 0) && (arg0 == var_s1->sfx_id)) {
         return 1;
     }
     var_s0 += 1;
-    var_s1 += 0x80;
+    var_s1++;
     if (var_s0 == 0x3C) {
         return 0;
     }
@@ -1623,56 +1545,20 @@ void func_800C4308(f32 arg0, f32 arg1) {
 }
 
 void func_800C431C(u8 arg0, s32 arg1) {
-    (*(s8 *)((s8 *)(func_800C1414(arg0)) + (0x63))) = (s8) arg1;
+    func_800C1414(arg0)->use_falloff = (s8) arg1;
 }
 
 u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (s16 *)command_list;
-    struct Source {
-        f32 position[3];
-        f32 near_squared;
-        f32 far_squared;
-        u8 pad14[6];
-        s8 unk1A;
-        s8 positioned;
-        s8 unk1C;
-        s8 unk1D;
-        u8 pad1E[10];
-        f32 unk28;
-        f32 unk2C;
-        f32 unk30;
-        f32 unk34;
-        f32 unk38;
-        f32 unk3C;
-        u8 pad40[24];
-        s16 unk58;
-        u8 pad5A[4];
-        s16 map;
-        s8 unk60;
-        s8 unk61;
-        s8 unk62;
-        s8 unk63;
-        void (*callback)(u8, s32);
-        s32 callback_arg;
-        f32 unk6C;
-        f32 unk70;
-        f32 unk74;
-        unsigned int unused78 : 19;
-        unsigned int state : 3;
-        unsigned int mode : 4;
-        unsigned int unused7B : 3;
-        unsigned int flag : 1;
-        unsigned int unused7B2 : 2;
-    };
     extern f32 D_8012A990;
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800EA05C(void);
-    void func_800C1860(void *);
+    void func_800C1860(SfxSource *);
     void func_800C2E40(u8);
     void func_800C316C(u8, s32, s32, f32);
     void func_800C3A40(u8, f32, f32, f32);
     f32 func_800DC264(f32, f32);
     s32 func_800DC214(s32, s32);
-    void *source;
+    SfxSource *source;
     s32 start = 0;
     s32 command;
     s32 value;
@@ -1691,8 +1577,8 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
     if (position != 0) {
         func_800EE7F8((f32 *)source, position);
         func_800C13A0(source, 2);
-        (*(s8 *)((u8 *)source + 0x1b)) = 1;
-        (*(s16 *)((u8 *)source + 0x5e)) = func_800EA05C();
+        source->positioned = 1;
+        source->map = func_800EA05C();
     }
     if (commands == 0) {
         if ((u8)index != 0) {
@@ -1706,15 +1592,15 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             a = ((s16 *)commands)[0];
             b = ((s16 *)commands)[1];
             if (position != 0) {
-                (*(f32 *)((u8 *)source + 0xc)) = a * a;
-                (*(f32 *)((u8 *)source + 0x10)) = b * b;
-                (*(s8 *)((u8 *)source + 0x1b)) = 1;
+                source->near_sqr = a * a;
+                source->far_sqr = b * b;
+                source->positioned = 1;
                 func_800C13A0(source, 2);
             }
             commands = (s16 *)((s16 *)commands + 2);
             break;
         case 2:
-            (*(s8 *)((u8 *)source + 0x63)) = (command & 0xFF00) >> 8;
+            source->use_falloff = (command & 0xFF00) >> 8;
             break;
         case 32:
             if ((command & 0xFF00) >> 8) {
@@ -1743,30 +1629,30 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             func_800C2FDC(index);
             return 0;
         case 5:
-            (*(s8 *)((u8 *)source + 0x60)) = (command & 0xFF00) >> 8;
+            source->unk60 = (command & 0xFF00) >> 8;
             func_800C13A0(source, 0x10);
             break;
         case 6:
             func_800C11F8(source, (command & 0xFF00) >> 8);
             break;
         case 7:
-            (*(s8 *)((u8 *)source + 0x62)) = (command & 0xFF00) >> 8;
+            source->lifetime = (command & 0xFF00) >> 8;
             break;
         case 8:
-            (*(s8 *)((u8 *)source + 0x61)) = (command & 0xFF00) >> 8;
+            source->unk61 = (command & 0xFF00) >> 8;
             func_800C13A0(source, 0x100);
             break;
         case 9:
             if ((u8)((command & 0xFF00) >> 8)) {
-                (*(s8 *)((u8 *)source + 0x1a)) = 1;
+                source->smooth_pan = 1;
             } else {
-                (*(s8 *)((u8 *)source + 0x1a)) = 0;
+                source->smooth_pan = 0;
             }
             break;
         case 10:
             a = *(s16 *)commands * (1.0f / 256.0f);
             commands = (s16 *)((s16 *)commands + 1);
-            (*(f32 *)((u8 *)source + 0x6c)) = a;
+            source->pitch = a;
             func_800C13A0(source, 4);
             break;
         case 11:
@@ -1776,10 +1662,10 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 1);
             c = *(s16 *)commands * (1.0f / 256.0f);
             commands = (s16 *)((s16 *)commands + 1);
-            (*(f32 *)((u8 *)source + 0x6c)) = a;
-            (*(f32 *)((u8 *)source + 0x2c)) = b;
-            (*(f32 *)((u8 *)source + 0x28)) = c;
-            ((struct Source *)source)->mode = 1;
+            source->pitch = a;
+            source->unk2C = b;
+            source->unk28 = c;
+            source->pitch_mode = 1;
             func_800C13A0(source, 4);
             break;
         case 12:
@@ -1791,11 +1677,11 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 1);
             d = *(s16 *)commands * (1.0f / 256.0f);
             commands = (s16 *)((s16 *)commands + 1);
-            (*(f32 *)((u8 *)source + 0x28)) = a;
-            (*(f32 *)((u8 *)source + 0x2c)) = b;
-            (*(f32 *)((u8 *)source + 0x30)) = c;
-            (*(f32 *)((u8 *)source + 0x34)) = d;
-            ((struct Source *)source)->mode = 3;
+            source->unk28 = a;
+            source->unk2C = b;
+            source->unk30 = c;
+            source->unk34 = d;
+            source->pitch_mode = 3;
             func_800C13A0(source, 4);
             break;
         case 13: {
@@ -1804,13 +1690,13 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 1);
             maximum = *(s16 *)commands * (1.0f / 256.0f);
             commands = (s16 *)((s16 *)commands + 1);
-            (*(f32 *)((u8 *)source + 0x6c)) = func_800DC264(minimum, maximum);
+            source->pitch = func_800DC264(minimum, maximum);
             func_800C13A0(source, 4);
             break;
         }
         case 29:
             a = D_8012A990;
-            (*(f32 *)((u8 *)source + 0x6c)) = a;
+            source->pitch = a;
             func_800C13A0(source, 4);
             break;
         case 14:
@@ -1820,17 +1706,17 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 1);
             c = *(s16 *)commands * (1.0f / 256.0f);
             commands = (s16 *)((s16 *)commands + 1);
-            (*(f32 *)((u8 *)source + 0x2c)) = a;
-            (*(f32 *)((u8 *)source + 0x28)) = b;
-            (*(f32 *)((u8 *)source + 0x30)) = c;
-            (*(f32 *)((u8 *)source + 0x6c)) = (a + b) * 0.5f;
-            ((struct Source *)source)->mode = 2;
+            source->unk2C = a;
+            source->unk28 = b;
+            source->unk30 = c;
+            source->pitch = (a + b) * 0.5f;
+            source->pitch_mode = 2;
             func_800C13A0(source, 4);
             break;
         case 15:
             func_800C11F8(source, 1);
             start = 1;
-            (*(s8 *)((u8 *)source + 0x62)) = 0;
+            source->lifetime = 0;
             break;
         case 16:
             func_800C2E40(index);
@@ -1840,23 +1726,23 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             break;
         case 18:
             start = 0;
-            if (((struct Source *)source)->state == 1) {
+            if (source->state == 1) {
                 func_800C1860(source);
-                if ((*(void (**)(u8, s32))((u8 *)source + 0x64)) != 0) {
-                    (*(void (**)(u8, s32))((u8 *)source + 0x64))(index, (*(s32 *)((u8 *)source + 0x68)));
+                if (source->callback != NULL) {
+                    (*(void (**)(u8, s32))&source->callback)(index, source->callback_arg);
                 }
             }
             break;
         case 19: {
             s32 duration = *(s16 *)commands;
             commands = (s16 *)((s16 *)commands + 1);
-            (*(s16 *)((u8 *)source + 0x58)) = duration;
+            source->sfx_id = duration;
             break;
         }
         case 20:
             value = (command & 0xFF00) >> 8;
             if (position != 0) {
-                (*(s8 *)((u8 *)source + 0x1b)) = value;
+                source->positioned = value;
                 if (value != 0) {
                     func_800C13A0(source, 2);
                 } else {
@@ -1874,7 +1760,7 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             func_800C3A40(index, a, b, c);
             break;
         case 31:
-            (*(s8 *)((u8 *)source + 0x1d)) = 1;
+            *(s8 *)&source->unk1D = 1;
             break;
         case 22:
             func_800C3058(index, *commands++);
@@ -1903,14 +1789,14 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 1);
             b = *(s16 *)commands * (1.0f / 256.0f);
             commands = (s16 *)((s16 *)commands + 1);
-            (*(f32 *)((u8 *)source + 0x70)) = a;
-            (*(f32 *)((u8 *)source + 0x74)) = b;
+            source->unk70 = a;
+            source->unk74 = b;
             break;
         case 27:
             func_800C3418(index, (command & 0xFF00) >> 8);
             break;
         case 28:
-            ((struct Source *)source)->flag = 1;
+            source->unk7B2 = 1;
             break;
         case 33:
             func_800C301C(index, *(s16 *)((u8 *)&D_8012A990 + 6));
@@ -1928,13 +1814,13 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 1);
             f = *(s16 *)commands * (1.0f / 256.0f);
             commands = (s16 *)((s16 *)commands + 1);
-            (*(f32 *)((u8 *)source + 0x28)) = a;
-            (*(f32 *)((u8 *)source + 0x2c)) = b;
-            (*(f32 *)((u8 *)source + 0x30)) = c;
-            (*(f32 *)((u8 *)source + 0x34)) = d;
-            (*(f32 *)((u8 *)source + 0x38)) = e;
-            (*(f32 *)((u8 *)source + 0x3c)) = f;
-            ((struct Source *)source)->mode = 4;
+            source->unk28 = a;
+            source->unk2C = b;
+            source->unk30 = c;
+            source->unk34 = d;
+            source->unk38 = e;
+            source->unk3C = f;
+            source->pitch_mode = 4;
             func_800C13A0(source, 4);
             break;
         }
