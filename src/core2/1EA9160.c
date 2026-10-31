@@ -429,7 +429,54 @@ s32 func_800D0894(s32 itemType) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0908.s")
+s32 func_800D0908(s32 itemIndex, s32 itemType) {
+    extern GameFlag D_8011AF28[];
+    extern u8 D_8011AB3F[];
+    extern u8 D_8011ABC7[];
+    extern u8 D_8011ACD3[];
+    extern u8 D_8011AC7B[];
+    extern u8 D_8011ACAF[];
+    extern u8 D_8011AE3B[];
+    extern u8 D_8011AE5B[];
+    switch (itemType) {
+        case 0:
+            if (D_8011AB3F[itemIndex * 3]) {
+                return D_8011AF28[itemType] + D_8011AB3F[itemIndex * 3] - 1;
+            }
+            break;
+        case 1:
+            if (D_8011ABC7[itemIndex * 2]) {
+                return D_8011AF28[itemType] + D_8011ABC7[itemIndex * 2] - 1;
+            }
+            break;
+        case 4:
+            if (D_8011ACD3[itemIndex * 2]) {
+                return D_8011AF28[itemType] + D_8011ACD3[itemIndex * 2] - 1;
+            }
+            break;
+        case 2:
+            if (D_8011AC7B[itemIndex * 2]) {
+                return D_8011AF28[itemType] + D_8011AC7B[itemIndex * 2] - 1;
+            }
+            break;
+        case 3:
+            if (D_8011ACAF[itemIndex * 2]) {
+                return D_8011AF28[itemType] + D_8011ACAF[itemIndex * 2] - 1;
+            }
+            break;
+        case 7:
+            if (D_8011AE3B[itemIndex]) {
+                return D_8011AF28[itemType] + D_8011AE3B[itemIndex] - 1;
+            }
+            break;
+        case 8:
+            if (D_8011AE5B[itemIndex]) {
+                return D_8011AF28[itemType] + D_8011AE5B[itemIndex] - 1;
+            }
+            break;
+    }
+    return 0;
+}
 
 s32 func_800D0A80(s32 arg0, s32 arg1) {
     extern s32 D_8011AF04[];
