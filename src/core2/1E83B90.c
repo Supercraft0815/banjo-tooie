@@ -22,7 +22,34 @@ void func_800AA2A0(s16 *arg0, s32 *arg1, f32 *arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA3B4.s")
+void func_800AA3B4(void *arg0, void *arg1) {
+    void func_800EE88C(f32 *, s16 *);
+    extern f32 D_80127938[];
+    s32 i;
+    s32 j;
+    u16 *index;
+    f32 *position;
+    Vtx *base;
+    Vtx *vertex;
+    Vtx_t *data;
+
+    if (arg0 != NULL) {
+        /* Keep the address expressions and line grouping for IDO scheduling. */
+        base = (Vtx *)((u8 *)arg1 + 0x18);
+        if (base) {} position = D_80127938; base = (Vtx *)((u8 *)arg1 + 0x18); index = arg0; for (i = 0; i < 3; i++) {
+            if ((index && index) && index) {
+            }
+            vertex = &base[*index];
+            func_800EE88C(position, vertex->v.ob);
+            index++;
+            position += 3;
+            data = &vertex->v;
+            for (j = 0; j < 4; j++) {
+                D_80127938[9 + ((i * 2) * 2) + j] = (f32)data->cn[j];
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA4D4.s")
 
