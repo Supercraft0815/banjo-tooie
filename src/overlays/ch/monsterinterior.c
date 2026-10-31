@@ -10,7 +10,7 @@ void func_808000BC_chmonsterinterior(Actor *arg0);
 s32 func_808002D4_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
 void func_8080060C_chmonsterinterior(Actor *arg0);
 void func_80800DA4_chmonsterinterior(Actor *arg0);
-void func_80800E0C_chmonsterinterior();
+void func_80800E0C_chmonsterinterior(Actor *);
 void func_8080101C_chmonsterinterior(Actor *arg0, s32 arg1);
 s32 func_80801050_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
 void func_808013D0_chmonsterinterior(Actor *arg0);
@@ -602,7 +602,72 @@ void func_80800DA4_chmonsterinterior(Actor *arg0) {
     _sumultiscore_entrypoint_4(sp1C + 0x28, 8, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/monsterinterior/func_80800E0C_chmonsterinterior.s")
+void func_80800E0C_chmonsterinterior(Actor *arg0) {
+    struct Multi;
+    s32 _gcstatusDll_entrypoint_11(void);
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddiefind_entrypoint_9(s32);
+    void _sumultiscore_entrypoint_6(struct Multi *);
+    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_9(void);
+    s32 func_800C954C(void);
+    s32 func_800CEAD0(s32);
+    int func_800D9154(f32 *, f32);
+    s32 func_800DA298(s32);
+    f32 func_800DC0C0(void);
+    f32 func_800DC178(f32, f32);
+    void *func_80100094(Actor *, u32);
+    void func_80101FDC(Actor *, u32);
+    void func_80108B04(Actor *, u32);
+    void func_808011BC_chmonsterinterior(Actor *);
+    s32 *data;
+    f32 random;
+    s32 count;
+    s32 value;
+    s32 activeCount;
+
+    data = func_80100094(arg0, 0);
+    _sumultiscore_entrypoint_6((struct Multi *)(data + 10));
+    /* Reuse disjoint values to preserve IDO's original register allocation. */
+    value = arg0->unk70_10;
+    switch (value) {
+        case 1:
+            if ((!func_800C954C()) && (!func_800DA298(0x6AD))) {
+                _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEC, 7, NULL, 0xB3);
+                func_80101FDC(arg0, 2);
+            }
+            break;
+        case 3:
+            if (func_800CEAD0(arg0->unk6C_0)) {
+                func_808011BC_chmonsterinterior(arg0);
+                break;
+            }
+            activeCount = _subaddiefind_entrypoint_9(0x453);
+            value = _subaddiefind_entrypoint_9(0x452);
+            count = value + _subaddiefind_entrypoint_9(0x454);
+            if ((count + activeCount) < 5) {
+                if (func_800D9154(&arg0->unk58, func_800DC178(0.5f, 1.0f) / _gcstatusDll_entrypoint_11())) {
+                    random = func_800DC0C0();
+                    if (random < 0.25f) {
+                        count = 0;
+                    } else if (random < 0.6f) {
+                        count = 1;
+                    } else {
+                        count = 2;
+                    }
+                    func_80108B04(arg0, count);
+                }
+            }
+            break;
+        case 4:
+            if (_susubgame_entrypoint_9()) {
+                _susubgame_entrypoint_5(arg0, data + 4, 5, 1, 0);
+                _subaddiedialog_entrypoint_11(arg0->unk0, data[2], data[3], NULL, 0xB3);
+                func_80101FDC(arg0, 5);
+            }
+            break;
+    }
+}
 
 void func_8080101C_chmonsterinterior(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
