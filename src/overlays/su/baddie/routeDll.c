@@ -359,7 +359,65 @@ s32 func_80800A74_subaddierouteDll(void *arg0, s32 arg1, f32 arg2, s32 arg3, s32
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/subaddierouteDll_entrypoint_7.s")
+typedef struct {
+    s16 position[3];
+    u16 flags;
+    Unk80132ED0 *actor;
+} RouteResult;
+
+s32 subaddierouteDll_entrypoint_7(Actor *arg0, RouteResult *arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
+    f32 func_800136E4(f32);
+    s32 *func_800BE444(f32 *arg0);
+    f32 func_800F1DCC(f32 arg0, f32 arg1);
+    s32 func_80800D88_subaddierouteDll(Actor *, RouteResult *, f32, s32, s32 *);
+    s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4, s32 *arg5);
+    f32 func_8080183C_subaddierouteDll(u8 *arg0, f32 arg1);
+    f32 temp;
+    f32 leftAngle;
+    f32 right;
+    f32 leftStep;
+    f32 rightStep;
+    s32 *cell;
+    s32 count;
+
+    func_80800564_subaddierouteDll((s32)arg0, arg1);
+    if (arg5 & 0x1000) {
+        arg4 = func_8080183C_subaddierouteDll((u8 *)arg0, arg4);
+    }
+    cell = func_800BE444(arg0->position);
+    if (arg5 & 0x800) {
+        func_80800D88_subaddierouteDll(arg0, arg1, arg2, arg5, cell);
+    }
+    temp = arg2;
+    if (arg5 & 0x4000) {
+        arg2 = arg3;
+        arg3 = temp;
+    }
+    leftAngle = func_800F1DCC(arg3, arg2);
+    if (func_8080160C_subaddierouteDll(arg0, (s32)arg1, arg2, arg4, arg5, cell)) {
+        return 1;
+    }
+    if (leftAngle < 0.0f) {
+        leftStep = -30.0f;
+        rightStep = 30.0f;
+    } else {
+        leftStep = 30.0f;
+        rightStep = -30.0f;
+    }
+    leftAngle = right = arg2;
+    count = 4;
+    do {
+        leftAngle = func_800136E4(leftAngle + leftStep);
+        if (func_8080160C_subaddierouteDll(arg0, (s32)arg1, leftAngle, arg4, arg5, cell)) {
+            return 1;
+        }
+        right = func_800136E4(right + rightStep);
+        if (func_8080160C_subaddierouteDll(arg0, (s32)arg1, right, arg4, arg5, cell)) {
+            return 1;
+        }
+    } while (--count);
+    return 0;
+}
 
 typedef struct {
         Unk80132ED0 *actor;
@@ -367,11 +425,6 @@ typedef struct {
         u32 unused : 31;
         u32 is_actor : 1;
     } RouteEntry;
-    typedef struct {
-        s16 position[3];
-        u16 flags;
-        Unk80132ED0 *actor;
-    } RouteResult;
 
 s32 func_80800D88_subaddierouteDll(Actor *arg0, RouteResult *arg1, f32 arg2, s32 arg3, s32 *arg4) {
     s32 *func_800BE444(f32 *);
@@ -641,18 +694,18 @@ s32 subaddierouteDll_entrypoint_9(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4, s32 *arg5) {
     s32 func_800DC128(s32, s32);
     s32 func_808006D0_subaddierouteDll(Actor *, s32, f32, f32, s32);
     s32 func_80800828_subaddierouteDll(void *, s32, f32, s32, s32);
     s32 func_80800A74_subaddierouteDll(void *, s32, f32, s32, s32);
-    if (!(arg4 & 0x200) && (func_808006D0_subaddierouteDll(arg0, arg1, arg2, *(f32 *)&arg3, arg4) == 0)) {
+    if (!(arg4 & 0x200) && (func_808006D0_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
         return 0;
     }
-    if (!(arg4 & 0x100) && (func_80800828_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
+    if (!(arg4 & 0x100) && (func_80800828_subaddierouteDll(arg0, arg1, arg2, *(s32 *)&arg3, arg4) == 0)) {
         return 0;
     }
-    if (!(arg4 & 0x400) && (func_80800A74_subaddierouteDll(arg0, arg1, (f32) func_800DC128(-0x14, 0x14) + arg2, arg3, arg4) == 0)) {
+    if (!(arg4 & 0x400) && (func_80800A74_subaddierouteDll(arg0, arg1, (f32) func_800DC128(-0x14, 0x14) + arg2, *(s32 *)&arg3, arg4) == 0)) {
         return 0;
     }
     arg0->unk54 = arg2;
