@@ -63,7 +63,32 @@ void glintrosyncDll_entrypoint_0(s32 arg0) {
     (*(s32 *)((s8 *)(&D_80127194) + (0x440))) = func_80800000_glintrosyncDll(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/introsyncDll/glintrosyncDll_entrypoint_1.s")
+void glintrosyncDll_entrypoint_1(void) {
+    struct IntroSyncState {
+        u32 count;
+        s32 index;
+        f32 time;
+    };
+    extern struct IntroSyncState D_801275D0;
+    extern f32 D_808004A4_glintrosyncDll;
+    s32 index;
+    f32 delay;
+    u32 duration;
+
+    index = D_801275D0.index;
+    if (index >= 0) {
+        delay = *(f32 *)((u8 *)&D_808004A4_glintrosyncDll + index * 8) - D_801275D0.time;
+        delay *= 1000000.0f;
+        if (delay < 0.0f) {
+            duration = 0;
+        } else {
+            duration = (u32)delay;
+        }
+        while (func_808000BC_glintrosyncDll(D_801275D0.count) < duration) {
+        }
+        D_801275D0.time += (f32)func_808000BC_glintrosyncDll(D_801275D0.count) / 1000000.0f;
+    }
+}
 
 void glintrosyncDll_entrypoint_2(f32 arg0) {
     extern f32 D_80127194;
