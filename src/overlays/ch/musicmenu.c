@@ -234,7 +234,7 @@ void func_80800610_chmusicmenu(Actor *arg0) {
 /* extern */
 
 void func_80800714_chmusicmenu(Actor *arg0) {
-    s32 func_800DA524(s32);
+    void func_800DA524(s32);
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
     void func_800FE8AC(void);
@@ -327,7 +327,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     s32 func_800F8300(s32, s32, u8 *);
     s32 func_80100094(u8 *, s32);
     s32 func_80101238(s32, s32);
-    s32 func_80102424(u8 *, s32);
+    void func_80102424(Actor *, s32);
     void func_808000D0_chmusicmenu(Actor *, s32);
     void func_80800714_chmusicmenu(Actor *);
     extern u8 D_808014F8_chmusicmenu[];
@@ -562,7 +562,55 @@ OSThread *chmusicmenu_entrypoint_1(void)
     return (OSThread *) D_808015C4_chmusicmenu;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/musicmenu/func_808010C4_chmusicmenu.s")
+s32 func_808010C4_chmusicmenu(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_800D3E40(s32);
+    s32 func_800DA298(s32);
+    void func_800DA524(s32);
+    void func_800DA544(GameFlag);
+    s32 func_800DC128(s32, s32);
+    s32 _glcutDll_entrypoint_20(void);
+    void func_800FFAB0(Actor *);
+    void func_80102424(Actor *, s32);
+    s32 choices[14];
+    s32 enabled;
+    s32 i;
+    s32 count;
+
+    switch (arg1) {
+    case 0x95:
+        if (!func_800D3E40(5) || !func_800DA298(0xC0) || _glcutDll_entrypoint_20()) {
+            func_800FFAB0(arg0);
+        } else {
+            arg0->unk64_16 = 0;
+        }
+        return 1;
+    case 0x6E:
+        enabled = (arg0->unk64_16 = arg2);
+        if (enabled) {
+            count = 0;
+            if (arg0->unk74_7 != 0x33) {
+                for (i = 0; i < 14; i++) {
+                    if (!func_800DA298(i + 1)) {
+                        choices[count++] = i;
+                    }
+                }
+                if (count == 0) {
+                    for (i = 0; i < 14; i++) {
+                        func_800DA524(i + 1);
+                    }
+                    i = func_800DC128(0, 14);
+                } else {
+                    i = choices[func_800DC128(0, count)];
+                }
+                func_800DA544(i + 1);
+                func_80102424(arg0, i + 1);
+            }
+        }
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 OSThread *chmusicmenu_entrypoint_2(void)
 {
