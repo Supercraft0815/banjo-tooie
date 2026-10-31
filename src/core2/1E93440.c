@@ -1,14 +1,97 @@
 #include "core2/1E93440.h"
 
+/* One particle of a ParticleEmitter; positions and ranges are s16, scales and frames 8.8 fixed point. */
+typedef struct particle_s {
+    /* 0x00 */ s16 acceleration[3];
+    /* 0x06 */ s16 position[3];
+    /* 0x0C */ f32 fade;
+    /* 0x10 */ f32 rotation[3];
+    /* 0x1C */ f32 age;
+    /* 0x20 */ s16 angular_velocity[3];
+    /* 0x26 */ s16 velocity[3];
+    /* 0x2C */ s16 frame;
+    /* 0x2E */ s16 framerate;
+    /* 0x30 */ s16 scale;
+    /* 0x32 */ s16 start_scale;
+    /* 0x34 */ s16 scale_delta;
+    /* 0x36 */ s16 lifetime;
+    /* 0x38 */ s8 unk38;
+    /* 0x39 */ u8 active:1;
+    u8 unk39:7;
+} Particle;
+
+/* Particle emitter; the particle array follows the header (see func_800BA2E8). Ranges are {min, max}. */
+typedef struct particle_emitter_s {
+    /* 0x00 */ u16 flags;
+    /* 0x02 */ u16 asset_id;
+    /* 0x04 */ u8 velocity_mode; // which member of velocity is used
+    /* 0x05 */ u8 spawn_mode; // which member of spawn is used
+    u8 pad6;
+    /* 0x07 */ u8 state;
+    u8 pad8[2];
+    /* 0x0A */ s8 asset_kind;
+    /* 0x0B */ s8 unkB;
+    /* 0x0C */ s16 unkC[3];
+    /* 0x12 */ s16 position[3];
+    /* 0x18 */ f32 fade_in;
+    /* 0x1C */ f32 fade_out;
+    /* 0x20 */ f32 spawn_timer;
+    /* 0x24 */ f32 unk24;
+    /* 0x28 */ union {
+        struct { s16 min[3]; s16 max[3]; } box; // spawn_mode 0
+        struct { s16 radius[2]; } sphere; // spawn_mode 1
+        struct { s16 radius[2]; s16 height[2]; } ring; // spawn_mode 2
+    } spawn;
+    /* 0x34 */ s16 acceleration_min[3];
+    /* 0x3A */ s16 acceleration_max[3];
+    /* 0x40 */ s16 angular_velocity_min[3];
+    /* 0x46 */ s16 angular_velocity_max[3];
+    /* 0x4C */ s16 rotation[3];
+    /* 0x52 */ u8 unk52;
+    /* 0x53 */ u8 unk53;
+    /* 0x54 */ f32 spawn_interval[2];
+    /* 0x5C */ f32 unk5C;
+    /* 0x60 */ f32 unk60[3];
+    /* 0x6C */ f32 unk6C[3];
+    /* 0x78 */ f32 framerate[2];
+    /* 0x80 */ u8 color[4];
+    /* 0x84 */ s16 start_frame[2];
+    /* 0x88 */ s32 unk88;
+    /* 0x8C */ Particle *begin;
+    /* 0x90 */ Particle *end;
+    /* 0x94 */ Particle *capacity;
+    /* 0x98 */ s16 unk98;
+    /* 0x9A */ s16 start_scale[2];
+    /* 0x9E */ s16 final_scale[2];
+    /* 0xA2 */ s16 lifetime[2];
+    u8 padA6[2];
+    /* 0xA8 */ s16 unkA8;
+    /* 0xAA */ s16 unkAA;
+    /* 0xAC */ s16 min_y;
+    /* 0xAE */ s16 max_y;
+    /* 0xB0 */ f32 unkB0;
+    /* 0xB4 */ f32 unkB4;
+    /* 0xB8 */ f32 unkB8;
+    /* 0xBC */ s32 unkBC;
+    /* 0xC0 */ s32 unkC0;
+    /* 0xC4 */ union {
+        struct { s16 min[3]; s16 max[3]; } box; // velocity_mode 0
+        struct { s16 pitch[2]; s16 yaw[2]; s16 speed[2]; } sphere; // velocity_mode 1
+        struct { s16 speed[2]; s16 point[3]; } toward; // velocity_mode 2
+    } velocity;
+    /* 0xD0 */ f32 unkD0;
+    /* 0xD4 */ Particle particles[1];
+} ParticleEmitter;
+
 /* extern */
 
-void func_800B9B50(void *arg0, void *arg1) {
+void func_800B9B50(ParticleEmitter *emitter, Particle *particle) {
     f32 func_800DC0C0();
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EE940(s16 *, f32 *);
-    s32 func_800EEDA0(u8 *, u8 *);
+    s32 func_800EEDA0(s16 *, s16 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EF214(f32 *, f32, f32, f32);
     void func_800EF368(f32 *, f32);
@@ -16,7 +99,6 @@ void func_800B9B50(void *arg0, void *arg1) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     s32 func_800F0E44(s32);
-    struct ParticleFlags { u8 pad[0x39]; u8 active:1; u8 rest:7; };
     s32 i;
     f32 spB0[3];
     f32 spA4[3];
@@ -33,140 +115,138 @@ void func_800B9B50(void *arg0, void *arg1) {
     s32 temp_s1;
 
     for (i = 0; i < 3; i++) {
-        ((s16 *)arg1)[i] = func_800DC128(((s16 *)arg0)[0x1A + i], ((s16 *)arg0)[0x1D + i]);
+        particle->acceleration[i] = func_800DC128(emitter->acceleration_min[i], emitter->acceleration_max[i]);
     }
-    (*(s8 *)((s8 *)(arg1) + (0x38))) = (s8) (*(u16 *)((s8 *)(arg0) + (0xA8)));
-    if ((*(f32 *)((s8 *)(arg0) + (0x18))) == 0.0f) {
-        (*(f32 *)((s8 *)(arg1) + (0xC))) = 1.0f;
+    particle->unk38 = (s8) (*(u16 *)&emitter->unkA8);
+    if (emitter->fade_in == 0.0f) {
+        particle->fade = 1.0f;
     } else {
-        (*(f32 *)((s8 *)(arg1) + (0xC))) = 0.0;
+        particle->fade = 0.0;
     }
-    (*(s16 *)((s8 *)(arg1) + (0x2C))) = (s16) (s32) (func_800DC178((f32) (*(s16 *)((s8 *)(arg0) + (0x84))), (f32) (*(s16 *)((s8 *)(arg0) + (0x86)))) * 256.0f);
-    (*(s16 *)((s8 *)(arg1) + (0x2E))) = (s16) (s32) (func_800DC178((*(f32 *)((s8 *)(arg0) + (0x78))), (*(f32 *)((s8 *)(arg0) + (0x7C)))) * 256.0f);
-    switch (*(u8 *)((u8 *)arg0 + 5)) {
+    particle->frame = (s16) (s32) (func_800DC178((f32) emitter->start_frame[0], (f32) emitter->start_frame[1]) * 256.0f);
+    particle->framerate = (s16) (s32) (func_800DC178(emitter->framerate[0], emitter->framerate[1]) * 256.0f);
+    switch (emitter->spawn_mode) {
     case 0:
-        if ((*(u16 *)((s8 *)(arg0) + (0))) & 0x40) {
-            func_800EE88C(spB0, (s16 *)((u8 *)arg0 + 0x28));
-            func_800EE88C(spA4, (s16 *)((u8 *)arg0 + 0x2E));
+        if (emitter->flags & 0x40) {
+            func_800EE88C(spB0, emitter->spawn.box.min);
+            func_800EE88C(spA4, emitter->spawn.box.max);
             func_800EFE50(sp98, spB0, spA4, func_800DC0C0());
-            func_800EE940((s16 *)((u8 *)arg1 + 6), sp98);
+            func_800EE940(particle->position, sp98);
         } else {
             for (i = 0; i < 3; i++) {
-                ((s16 *)arg1)[3 + i] = ((s16 *)arg0)[9 + i] + func_800DC128(((s16 *)arg0)[0x14 + i], ((s16 *)arg0)[0x17 + i]);
+                particle->position[i] = emitter->position[i] + func_800DC128(emitter->spawn.box.min[i], emitter->spawn.box.max[i]);
             }
         }
         break;
     case 1:
-        func_800EE88C(sp8C, (s16 *)((u8 *)arg0 + 0x12));
+        func_800EE88C(sp8C, emitter->position);
         sp60 = (sp5C = func_800DC178(0.0f, 359.0f), func_800DC178(0.0f, 359.0f));
-        func_800EF214(sp8C, sp5C, sp60, (f32) func_800DC128((*(s16 *)((s8 *)(arg0) + (0x28))), (*(s16 *)((s8 *)(arg0) + (0x2A)))));
-        func_800EE940((s16 *)((u8 *)arg1 + 6), sp8C);
+        func_800EF214(sp8C, sp5C, sp60, (f32) func_800DC128(emitter->spawn.sphere.radius[0], emitter->spawn.sphere.radius[1]));
+        func_800EE940(particle->position, sp8C);
         break;
     case 2:
-        func_800EE88C(sp80, (s16 *)((u8 *)arg0 + 0x12));
+        func_800EE88C(sp80, emitter->position);
         sp60 = func_800DC178(0.0f, 359.9f);
-        func_800EF1B8(sp80, sp60, (f32) func_800DC128((*(s16 *)((s8 *)(arg0) + (0x28))), (*(s16 *)((s8 *)(arg0) + (0x2A)))));
-        func_800EE940((s16 *)((u8 *)arg1 + 6), sp80);
-        *(s16 *)((u8 *)arg1 + 8) += func_800DC128(*(s16 *)((u8 *)arg0 + 0x2E), *(s16 *)((u8 *)arg0 + 0x2C));
+        func_800EF1B8(sp80, sp60, (f32) func_800DC128(emitter->spawn.ring.radius[0], emitter->spawn.ring.radius[1]));
+        func_800EE940(particle->position, sp80);
+        particle->position[1] += func_800DC128(emitter->spawn.ring.height[1], emitter->spawn.ring.height[0]);
         break;
     }
-    (*(s16 *)((s8 *)(arg1) + (0x30))) = func_800DC128((*(s16 *)((s8 *)(arg0) + (0x9A))), (*(s16 *)((s8 *)(arg0) + (0x9C))));
-    (*(s16 *)((s8 *)(arg1) + (0x32))) = (s16) (*(s16 *)((s8 *)(arg1) + (0x30)));
-    temp_a0 = (*(s16 *)((s8 *)(arg0) + (0x9E)));
-    if ((temp_a0 == 0) && ((*(s16 *)((s8 *)(arg0) + (0xA0))) == 0)) {
-        (*(s16 *)((s8 *)(arg1) + (0x34))) = 0;
+    particle->scale = func_800DC128(emitter->start_scale[0], emitter->start_scale[1]);
+    particle->start_scale = (s16) particle->scale;
+    temp_a0 = emitter->final_scale[0];
+    if ((temp_a0 == 0) && (emitter->final_scale[1] == 0)) {
+        particle->scale_delta = 0;
     } else {
-        (*(s16 *)((s8 *)(arg1) + (0x34))) = (s16) (func_800DC128(temp_a0, (*(s16 *)((s8 *)(arg0) + (0xA0)))) - (*(s16 *)((s8 *)(arg1) + (0x32))));
+        particle->scale_delta = (s16) (func_800DC128(temp_a0, emitter->final_scale[1]) - particle->start_scale);
     }
-    if ((*(u16 *)arg0) & 0x400) {
+    if (emitter->flags & 0x400) {
         for (i = 0; i < 3; i++) {
-            ((f32 *)arg1)[4 + i] = func_800DC178(0.0f, 360.0f);
+            particle->rotation[i] = func_800DC178(0.0f, 360.0f);
         }
     } else {
-        func_800EFA4C((f32 *)((u8 *)arg1 + 0x10), (f32) (*(s16 *)((s8 *)(arg0) + (0x4C))), (f32) (*(s16 *)((s8 *)(arg0) + (0x4E))), (f32) (*(s16 *)((s8 *)(arg0) + (0x50))));
+        func_800EFA4C(particle->rotation, (f32) emitter->rotation[0], (f32) emitter->rotation[1], (f32) emitter->rotation[2]);
     }
     for (i = 0; i < 3; i++) {
-        ((s16 *)arg1)[0x10 + i] = func_800DC128(((s16 *)arg0)[0x20 + i], ((s16 *)arg0)[0x23 + i]);
+        particle->angular_velocity[i] = func_800DC128(emitter->angular_velocity_min[i], emitter->angular_velocity_max[i]);
     }
-    (*(f32 *)((s8 *)(arg1) + (0x1C))) = 0.0f;
-    (*(s16 *)((s8 *)(arg1) + (0x36))) = (s16) (func_800DC128((*(s16 *)((s8 *)(arg0) + (0xA2))), (*(s16 *)((s8 *)(arg0) + (0xA4)))) + 1);
-    switch (*(u8 *)((u8 *)arg0 + 4)) {
+    particle->age = 0.0f;
+    particle->lifetime = (s16) (func_800DC128(emitter->lifetime[0], emitter->lifetime[1]) + 1);
+    switch (emitter->velocity_mode) {
     case 0:
         for (i = 0; i < 3; i++) {
-            ((s16 *)arg1)[0x13 + i] = func_800DC128(((s16 *)arg0)[0x62 + i], ((s16 *)arg0)[0x65 + i]);
+            particle->velocity[i] = func_800DC128(emitter->velocity.box.min[i], emitter->velocity.box.max[i]);
         }
         break;
     case 1:
-        temp_s0 = func_800F0E44((*(s16 *)((s8 *)(arg0) + (0xC8))) + func_800DC128(0, func_800F0E44((*(s16 *)((s8 *)(arg0) + (0xCA))) - (*(s16 *)((s8 *)(arg0) + (0xC8))))));
-        temp_s1 = func_800F0E44((*(s16 *)((s8 *)(arg0) + (0xC4))) + func_800DC128(0, func_800F0E44((*(s16 *)((s8 *)(arg0) + (0xC6))) - (*(s16 *)((s8 *)(arg0) + (0xC4))))));
+        temp_s0 = func_800F0E44(emitter->velocity.sphere.yaw[0] + func_800DC128(0, func_800F0E44(emitter->velocity.sphere.yaw[1] - emitter->velocity.sphere.yaw[0])));
+        temp_s1 = func_800F0E44(emitter->velocity.sphere.pitch[0] + func_800DC128(0, func_800F0E44(emitter->velocity.sphere.pitch[1] - emitter->velocity.sphere.pitch[0])));
         zero = 0.0;
-        func_800EF4E4(sp74, (f32) temp_s0, (f32) temp_s1, zero, zero, (f32) func_800DC128((*(s16 *)((s8 *)(arg0) + (0xCC))), (*(s16 *)((s8 *)(arg0) + (0xCE)))));
-        func_800EE940((s16 *)((u8 *)arg1 + 0x26), sp74);
+        func_800EF4E4(sp74, (f32) temp_s0, (f32) temp_s1, zero, zero, (f32) func_800DC128(emitter->velocity.sphere.speed[0], emitter->velocity.sphere.speed[1]));
+        func_800EE940(particle->velocity, sp74);
         break;
     case 2:
-        if (func_800EEDA0((u8 *)arg1 + 6, (u8 *)arg0 + 0xC8) == 0) {
-            if ((*(u16 *)((s8 *)(arg0) + (0))) & 0x8000) {
-                sp68[0] = (f32) ((*(s16 *)((s8 *)(arg0) + (0xC8))) - (*(s16 *)((s8 *)(arg1) + (6))));
-                sp68[1] = (f32) ((*(s16 *)((s8 *)(arg0) + (0xCA))) - (*(s16 *)((s8 *)(arg1) + (8))));
-                sp68[2] = (f32) ((*(s16 *)((s8 *)(arg0) + (0xCC))) - (*(s16 *)((s8 *)(arg1) + (0xA))));
+        if (func_800EEDA0(particle->position, emitter->velocity.toward.point) == 0) {
+            if (emitter->flags & 0x8000) {
+                sp68[0] = (f32) (emitter->velocity.toward.point[0] - particle->position[0]);
+                sp68[1] = (f32) (emitter->velocity.toward.point[1] - particle->position[1]);
+                sp68[2] = (f32) (emitter->velocity.toward.point[2] - particle->position[2]);
             } else {
-                sp68[0] = (f32) ((*(s16 *)((s8 *)(arg1) + (6))) - (*(s16 *)((s8 *)(arg0) + (0xC8))));
-                sp68[1] = (f32) ((*(s16 *)((s8 *)(arg1) + (8))) - (*(s16 *)((s8 *)(arg0) + (0xCA))));
-                sp68[2] = (f32) ((*(s16 *)((s8 *)(arg1) + (0xA))) - (*(s16 *)((s8 *)(arg0) + (0xCC))));
+                sp68[0] = (f32) (particle->position[0] - emitter->velocity.toward.point[0]);
+                sp68[1] = (f32) (particle->position[1] - emitter->velocity.toward.point[1]);
+                sp68[2] = (f32) (particle->position[2] - emitter->velocity.toward.point[2]);
             }
-            func_800EF368(sp68, func_800DC178((f32) (*(s16 *)((s8 *)(arg0) + (0xC4))), (f32) (*(s16 *)((s8 *)(arg0) + (0xC6)))));
-            func_800EE940((s16 *)((u8 *)arg1 + 0x26), sp68);
+            func_800EF368(sp68, func_800DC178((f32) emitter->velocity.toward.speed[0], (f32) emitter->velocity.toward.speed[1]));
+            func_800EE940(particle->velocity, sp68);
         } else {
-            (*(s16 *)((s8 *)(arg1) + (0x2A))) = 0;
-            (*(s16 *)((s8 *)(arg1) + (0x26))) = (s16) (*(s16 *)((s8 *)(arg1) + (0x2A)));
-            (*(s16 *)((s8 *)(arg1) + (0x28))) = func_800DC128((*(s16 *)((s8 *)(arg0) + (0xC4))), (*(s16 *)((s8 *)(arg0) + (0xC6))));
+            particle->velocity[2] = 0;
+            particle->velocity[0] = (s16) particle->velocity[2];
+            particle->velocity[1] = func_800DC128(emitter->velocity.toward.speed[0], emitter->velocity.toward.speed[1]);
         }
         break;
     }
-    ((struct ParticleFlags *)arg1)->active = 1;
-    if ((*(u16 *)((s8 *)(arg0) + (0))) & 8) {
-        (*(s8 *)((s8 *)(arg0) + (0x52))) = 0;
+    particle->active = 1;
+    if (emitter->flags & 8) {
+        emitter->unk52 = 0;
     }
-    if ((*(u16 *)((s8 *)(arg0) + (0))) & 0x10) {
-        (*(s8 *)((s8 *)(arg0) + (0x53))) = 0;
+    if (emitter->flags & 0x10) {
+        emitter->unk53 = 0;
     }
 }
 
-s32 func_800BA198(void *arg0) {
+s32 func_800BA198(ParticleEmitter *emitter) {
     s32 temp_v1;
 
-    if (arg0 != NULL) {
-        temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x90)));
+    if (emitter != NULL) {
+        temp_v1 = (s32)emitter->end;
         if (temp_v1 != 0) {
-            return (s32) (temp_v1 - (*(s32 *)((s8 *)(arg0) + (0x8C)))) / 60;
+            return (s32) (temp_v1 - (s32)emitter->begin) / (s32)sizeof(Particle);
         }
     }
     return 0;
 }
 
-void func_800BA1D0(s32 emitter, f32 position[3], f32 velocity[3], s32 count) {
+void func_800BA1D0(ParticleEmitter *emitter, f32 position[3], f32 velocity[3], s32 count) {
     void func_800EE940(s16 *, f32 *);
-    *(u16 *)emitter |= 0x40;
-    func_800EE940((s16 *)(emitter + 0x28), position);
-    func_800EE940((s16 *)(emitter + 0x2E), velocity);
-    *(u8 *)(emitter + 5) = 0;
+    emitter->flags |= 0x40;
+    func_800EE940(emitter->spawn.box.min, position);
+    func_800EE940(emitter->spawn.box.max, velocity);
+    emitter->spawn_mode = 0;
     func_800BA22C(emitter, count);
 }
 
 void func_800BA22C(s32 arg0, s32 n) {
-    typedef u8 Particle[0x3C];
-    typedef struct { u8 pad0[0x90]; Particle *end; Particle *capacity; } EmitterView;
-    void func_800B9B50(void *, void *);
-    EmitterView *this = (EmitterView *)arg0;
+    void func_800B9B50(ParticleEmitter *, Particle *);
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     for (; n > 0; n--) {
-        if (this->end < this->capacity) func_800B9B50(this, this->end++);
+        if (emitter->end < emitter->capacity) func_800B9B50(emitter, emitter->end++);
     }
 }
 
-int func_800BA28C(void *arg0) {
-    return ((*(s32 *)((s8 *)arg0 + 0x90) -
-             *(s32 *)((s8 *)arg0 + 0x8C)) / 60 == 0) &&
-           (*(u8 *)((s8 *)arg0 + 7) == 2);
+int func_800BA28C(ParticleEmitter *emitter) {
+    return (((s32)emitter->end -
+             (s32)emitter->begin) / (s32)sizeof(Particle) == 0) &&
+           (emitter->state == 2);
 }
 
 /* extern */
@@ -179,42 +259,24 @@ s32 func_800BA2C4(void *arg0) {
 
 void *heap_alloc(s32);
 void rare_memset(void *, u8, int);
-void func_800BA4C4(void *, f32);
-void func_800BA4D0(s16 *, s16);
-void func_800BA554(void *, f32, f32);
-void func_800BA568(s16 *, s16);
-void func_800BA7C4(void *, f32, f32);
-void func_800BA894(void *, f32, f32);
-void func_800BA8F8(void *, f32, f32);
+void func_800BA4C4(ParticleEmitter *, f32);
+void func_800BA4D0(ParticleEmitter *, s16);
+void func_800BA554(ParticleEmitter *, f32, f32);
+void func_800BA568(ParticleEmitter *, s16);
+void func_800BA7C4(ParticleEmitter *, f32, f32);
+void func_800BA894(ParticleEmitter *, f32, f32);
+void func_800BA8F8(ParticleEmitter *, f32, f32);
 
 s16 *func_800BA2E8(s32 arg0) {
-    typedef u8 Particle[0x3C];
-    typedef struct {
-        u8 pad0[7];
-        u8 state;
-        u8 pad8[0x14];
-        f32 scale;
-        u8 pad20[0x32];
-        u8 flag52;
-        u8 flag53;
-        u8 pad54[0x2C];
-        u8 color[4];
-        u8 pad84[8];
-        Particle *begin;
-        Particle *end;
-        Particle *capacity;
-        u8 pad98[0x3C];
-        Particle particles[1];
-    } Emitter;
-    Emitter *emitter;
+    ParticleEmitter *emitter;
 
     emitter = heap_alloc(arg0 * sizeof(Particle) + 0xD4);
     rare_memset(emitter, 0, arg0 * sizeof(Particle) + 0xD4);
     emitter->state = 2;
     emitter->color[0] = emitter->color[1] = emitter->color[2] = emitter->color[3] = 0xFF;
-    emitter->scale = 1.0f;
-    func_800BA4D0((s16 *)emitter, -0x8000);
-    func_800BA568((s16 *)emitter, 0x7FFF);
+    emitter->fade_out = 1.0f;
+    func_800BA4D0(emitter, -0x8000);
+    func_800BA568(emitter, 0x7FFF);
     func_800BA894(emitter, 0.0f, 5.0f);
     func_800BA8F8(emitter, 0.0f, 5.0f);
     func_800BA4C4(emitter, 0.9f);
@@ -223,266 +285,267 @@ s16 *func_800BA2E8(s32 arg0) {
     emitter->begin = emitter->particles;
     emitter->end = emitter->begin;
     emitter->capacity = emitter->end + arg0;
-    emitter->flag52 = 1;
-    emitter->flag53 = 1;
+    emitter->unk52 = 1;
+    emitter->unk53 = 1;
     return (s16 *)emitter;
 }
 
 /* extern */
 
-void func_800BA3FC(s32 arg0, s32 arg1) {
+void func_800BA3FC(s32 arg0, s32 asset_id) {
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     s8 func_800AF5A0(s32);
     s32 func_800D674C(u16);
     s32 func_800D738C(s32);
-    if (arg1 != (*(u16 *)((s8 *)(arg0) + (2)))) {
-        (*(u16 *)((s8 *)(arg0) + (2))) = (u16) arg1;
-        (*(s8 *)((s8 *)(arg0) + (0xA))) = func_800D738C(arg1 & 0xFFFF);
-        (*(s8 *)((s8 *)(arg0) + (0xB))) = func_800AF5A0(func_800D674C((*(u16 *)((s8 *)(arg0) + (2)))));
+    if (asset_id != emitter->asset_id) {
+        emitter->asset_id = (u16) asset_id;
+        emitter->asset_kind = func_800D738C(asset_id & 0xFFFF);
+        emitter->unkB = func_800AF5A0(func_800D674C(emitter->asset_id));
     }
 }
 
-void func_800BA450(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+void func_800BA450(s32 arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EFA6C(void *, s16, s16, s16);
-    func_800EFA6C((void *)(arg0 + 0x34), arg1, arg2, arg3);
-    func_800EFA6C((void *)(arg0 + 0x3A), arg4, arg5, arg6);
+    func_800EFA6C(emitter->acceleration_min, min_x, min_y, min_z);
+    func_800EFA6C(emitter->acceleration_max, max_x, max_y, max_z);
 }
 
-void func_800BA4B0(s8 *arg0, s32 arg1) {
-    arg0[131] = arg1;
+void func_800BA4B0(ParticleEmitter *emitter, s32 alpha) {
+    emitter->color[3] = alpha;
 }
 
-void func_800BA4B8(s16 *arg0, s32 arg1, s32 arg2) {
-    arg0[85] = arg1;
-    ((s32 *) arg0)[47] = arg2;
+void func_800BA4B8(ParticleEmitter *emitter, s32 arg1, s32 arg2) {
+    emitter->unkAA = arg1;
+    emitter->unkBC = arg2;
 }
 
-void func_800BA4C4(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 176) = arg1;
+void func_800BA4C4(ParticleEmitter *emitter, f32 arg1) {
+    emitter->unkB0 = arg1;
 }
 
-void func_800BA4D0(s16 *arg0, s16 arg1) {
+void func_800BA4D0(ParticleEmitter *emitter, s16 min_y) {
     s32 func_800B5698(s16 *);
-    void func_800BA54C(s16 *, s32);
+    void func_800BA54C(ParticleEmitter *, s32);
     s16 sp1E;
     if (func_800B5698(&sp1E) != 0) {
-        if (arg1 < sp1E) {
-            arg1 = sp1E;
+        if (min_y < sp1E) {
+            min_y = sp1E;
         }
-        if (arg0[84] == 0) {
-            func_800BA54C(arg0, 2);
+        if (emitter->unkA8 == 0) {
+            func_800BA54C(emitter, 2);
         }
     }
-    arg0[86] = arg1;
+    emitter->min_y = min_y;
 }
 
-void func_800BA544(s32 *arg0, s32 arg1) {
-    arg0[48] = arg1;
+void func_800BA544(ParticleEmitter *emitter, s32 arg1) {
+    emitter->unkC0 = arg1;
 }
 
-void func_800BA54C(s16 *arg0, s32 arg1) {
-    arg0[84] = arg1;
+void func_800BA54C(ParticleEmitter *emitter, s32 arg1) {
+    emitter->unkA8 = arg1;
 }
 
-void func_800BA554(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0xB4))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0xB8))) = arg2;
+void func_800BA554(ParticleEmitter *emitter, f32 arg1, f32 arg2) {
+    emitter->unkB4 = arg1;
+    emitter->unkB8 = arg2;
 }
 
-void func_800BA568(s16 *arg0, s16 arg1) {
-    arg0[87] = arg1;
+void func_800BA568(ParticleEmitter *emitter, s16 max_y) {
+    emitter->max_y = max_y;
 }
 
 /* extern */
 
-void func_800BA574(s32 arg0) {
+void func_800BA574(ParticleEmitter *emitter) {
     s32 func_800EE814(s32);
-    func_800EE814(arg0 + 0xC);
+    func_800EE814(emitter->unkC);
 }
 
-void func_800BA594(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0x18))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0x1C))) = arg2;
+void func_800BA594(ParticleEmitter *emitter, f32 fade_in, f32 fade_out) {
+    emitter->fade_in = fade_in;
+    emitter->fade_out = fade_out;
 }
 
-void func_800BA5A8(s16 *arg0, s32 arg1) {
-    arg0[0] = arg1;
+void func_800BA5A8(ParticleEmitter *emitter, s32 flags) {
+    emitter->flags = flags;
 }
 
-void func_800BA5B0(s16 *arg0, s32 arg1, s32 arg2) {
-    arg0[66] = arg1;
-    arg0[67] = arg2;
+void func_800BA5B0(ParticleEmitter *emitter, s32 min, s32 max) {
+    emitter->start_frame[0] = min;
+    emitter->start_frame[1] = max;
 }
 
-void func_800BA5BC(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0x78))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0x7C))) = arg2;
+void func_800BA5BC(ParticleEmitter *emitter, f32 min, f32 max) {
+    emitter->framerate[0] = min;
+    emitter->framerate[1] = max;
 }
 
-void func_800BA5D0(void *arg0, s16 arg1) {
-    u32 var_v0;
+void func_800BA5D0(ParticleEmitter *emitter, s16 y) {
+    Particle *particle;
 
-    *(s16 *)((s8 *)arg0 + 0x14) = arg1;
-    if (*(u32 *)((s8 *)arg0 + 0x90) > (var_v0 = *(u32 *)((s8 *)arg0 + 0x8C))) {
+    emitter->position[1] = y;
+    if (emitter->end > (particle = emitter->begin)) {
         do {
-            *(s16 *)((s8 *)var_v0 + 8) = arg1;
-            var_v0 += 0x3C;
-        } while (var_v0 < *(u32 *)((s8 *)arg0 + 0x90));
+            particle->position[1] = y;
+            particle++;
+        } while (particle < emitter->end);
     }
 }
 
 /* extern */
 
-void func_800BA610(s32 arg0, s16 arg1, s16 arg2) {
+void func_800BA610(ParticleEmitter *emitter, s16 min_y, s16 max_y) {
     void func_800EFA6C(void *, s16, s16, s16);
-    func_800EFA6C((void *)(arg0 + 0x34), 0, arg1, 0);
-    func_800EFA6C((void *)(arg0 + 0x3A), 0, arg2, 0);
+    func_800EFA6C(emitter->acceleration_min, 0, min_y, 0);
+    func_800EFA6C(emitter->acceleration_max, 0, max_y, 0);
 }
 
-void func_800BA660(void *arg0, s32 arg1, s16 arg2) {
-    (*(s32 *)((s8 *)(arg0) + (0x88))) = arg1;
-    (*(s16 *)((s8 *)(arg0) + (0x98))) = arg2;
+void func_800BA660(ParticleEmitter *emitter, s32 arg1, s16 arg2) {
+    emitter->unk88 = arg1;
+    emitter->unk98 = arg2;
 }
 
-void func_800BA670(s32 arg0, s32 arg1) {
+void func_800BA670(s32 arg0, s32 asset_id) {
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     s32 func_800D738C(s32);
-    if (arg1 != (*(u16 *)((s8 *)(arg0) + (2)))) {
-        (*(u16 *)((s8 *)(arg0) + (2))) = (u16) arg1;
-        (*(s8 *)((s8 *)(arg0) + (0xA))) = func_800D738C(arg1 & 0xFFFF);
+    if (asset_id != emitter->asset_id) {
+        emitter->asset_id = (u16) asset_id;
+        emitter->asset_kind = func_800D738C(asset_id & 0xFFFF);
     }
 }
 
-void func_800BA6B0(u8 *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+void func_800BA6B0(ParticleEmitter *emitter, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
     void func_800EFA6C(void *, s16, s16, s16);
-    (*(s8 *)((s8 *)(arg0) + (5))) = 0;
-    func_800EFA6C(arg0 + 0x28, arg1, arg2, arg3);
-    func_800EFA6C(arg0 + 0x2E, arg4, arg5, arg6);
+    emitter->spawn_mode = 0;
+    func_800EFA6C(emitter->spawn.box.min, min_x, min_y, min_z);
+    func_800EFA6C(emitter->spawn.box.max, max_x, max_y, max_z);
 }
 
-void func_800BA714(void *arg0, s16 arg1, s16 arg2) {
-    (*(s8 *)((s8 *)(arg0) + (5))) = 1;
-    (*(s16 *)((s8 *)(arg0) + (0x28))) = arg1;
-    (*(s16 *)((s8 *)(arg0) + (0x2A))) = arg2;
+void func_800BA714(ParticleEmitter *emitter, s16 min, s16 max) {
+    emitter->spawn_mode = 1;
+    emitter->spawn.sphere.radius[0] = min;
+    emitter->spawn.sphere.radius[1] = max;
 }
 
-void func_800BA730(void *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
-    (*(s8 *)((s8 *)(arg0) + (5))) = 2;
-    (*(s16 *)((s8 *)(arg0) + (0x28))) = arg1;
-    (*(s16 *)((s8 *)(arg0) + (0x2A))) = arg2;
-    (*(s16 *)((s8 *)(arg0) + (0x2C))) = arg3;
-    (*(s16 *)((s8 *)(arg0) + (0x2E))) = arg4;
+void func_800BA730(ParticleEmitter *emitter, s16 radius_min, s16 radius_max, s16 height_min, s16 height_max) {
+    emitter->spawn_mode = 2;
+    emitter->spawn.ring.radius[0] = radius_min;
+    emitter->spawn.ring.radius[1] = radius_max;
+    emitter->spawn.ring.height[0] = height_min;
+    emitter->spawn.ring.height[1] = height_max;
 }
 
 /* extern */
 
-void func_800BA75C(s32 arg0, f32 arg1[3]) {
+void func_800BA75C(s32 arg0, f32 position[3]) {
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EE940(s16 *, f32 *);
-    func_800EE940((s16 *)(arg0 + 0x12), arg1);
+    func_800EE940(emitter->position, position);
 }
 
-void func_800BA77C(s32 arg0, s16 arg1, s16 arg2, s16 arg3) {
+void func_800BA77C(s32 arg0, s16 x, s16 y, s16 z) {
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EFA6C(void *, s16, s16, s16);
-    func_800EFA6C((void *)(arg0 + 0x4C), arg1, arg2, arg3);
+    func_800EFA6C(emitter->rotation, x, y, z);
 }
 
-void func_800BA7C4(void *arg0, f32 arg1, f32 arg2) {
-    (*(s16 *)((s8 *)(arg0) + (0x9A))) = (s16) (s32) (arg1 * 256.0f);
-    (*(s16 *)((s8 *)(arg0) + (0x9C))) = (s16) (s32) (arg2 * 256.0f);
+void func_800BA7C4(ParticleEmitter *emitter, f32 min, f32 max) {
+    emitter->start_scale[0] = (s16) (s32) (min * 256.0f);
+    emitter->start_scale[1] = (s16) (s32) (max * 256.0f);
 }
 
-void func_800BA7FC(void *arg0, f32 arg1, f32 arg2) {
-    (*(s16 *)((s8 *)(arg0) + (0x9E))) = (s16) (s32) (arg1 * 256.0f);
-    (*(s16 *)((s8 *)(arg0) + (0xA0))) = (s16) (s32) (arg2 * 256.0f);
+void func_800BA7FC(ParticleEmitter *emitter, f32 min, f32 max) {
+    emitter->final_scale[0] = (s16) (s32) (min * 256.0f);
+    emitter->final_scale[1] = (s16) (s32) (max * 256.0f);
 }
 
-void func_800BA834(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+void func_800BA834(ParticleEmitter *emitter, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
     void func_800EFA6C(void *, s16, s16, s16);
-    func_800EFA6C((void *)(arg0 + 0x40), arg1, arg2, arg3);
-    func_800EFA6C((void *)(arg0 + 0x46), arg4, arg5, arg6);
+    func_800EFA6C(emitter->angular_velocity_min, min_x, min_y, min_z);
+    func_800EFA6C(emitter->angular_velocity_max, max_x, max_y, max_z);
 }
 
-void func_800BA894(void *arg0, f32 arg1, f32 arg2)
-{
-  f32 *new_var;
-  f32 func_800DC178(f32, f32);
-  f32 temp_f0;
-  s8 *new_var3;
-  f32 *new_var2;
-  new_var2 = (f32 *) (((s8 *) arg0) + 0x58);
-  temp_f0 = *((f32 *) (((s8 *) arg0) + 0x20));
-  *((f32 *) ((new_var3 = (s8 *) arg0) + 0x54)) = arg1;
- *new_var2 = arg2; if (((*((f32 *) (((s8 *) arg0) + 0x20))) == 0.0f) || (arg2 < temp_f0)) {
-    new_var = (f32 *) (((s8 *) arg0) + 0x54);
-    *((f32 *) (((s8 *) arg0) + 0x20)) = func_800DC178(*new_var, *new_var2);
-  }
+void func_800BA894(ParticleEmitter *emitter, f32 min, f32 max) {
+    f32 func_800DC178(f32, f32);
+    f32 timer = emitter->spawn_timer;
+    emitter->spawn_interval[0] = min;
+    emitter->spawn_interval[1] = max;
+    if ((emitter->spawn_timer == 0.0f) || (max < timer)) {
+        emitter->spawn_timer = func_800DC178(emitter->spawn_interval[0], emitter->spawn_interval[1]);
+    }
 }
 
-void func_800BA8F8(void *arg0, f32 arg1, f32 arg2) {
-    (*(s16 *)((s8 *)(arg0) + (0xA2))) = (s16) (s32) (arg1 * 256.0f);
-    (*(s16 *)((s8 *)(arg0) + (0xA4))) = (s16) (s32) (arg2 * 256.0f);
+void func_800BA8F8(ParticleEmitter *emitter, f32 min, f32 max) {
+    emitter->lifetime[0] = (s16) (s32) (min * 256.0f);
+    emitter->lifetime[1] = (s16) (s32) (max * 256.0f);
 }
 
-void func_800BA930(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+void func_800BA930(s32 arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EFA6C(void *, s16, s16, s16);
-    (*(s8 *)((s8 *)(arg0) + (4))) = 0;
-    func_800EFA6C((void *)(arg0 + 0xC4), arg1, arg2, arg3);
-    func_800EFA6C((void *)(arg0 + 0xCA), arg4, arg5, arg6);
+    emitter->velocity_mode = 0;
+    func_800EFA6C(emitter->velocity.box.min, min_x, min_y, min_z);
+    func_800EFA6C(emitter->velocity.box.max, max_x, max_y, max_z);
 }
 
-void func_800BA994(u8 *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6) {
+void func_800BA994(ParticleEmitter *emitter, s16 yaw_min, s16 pitch_min, s16 speed_min, s16 yaw_max, s16 pitch_max, s16 speed_max) {
     f32 func_800136E4(f32);
-    *(s8 *)(arg0 + 4) = 1;
-    *(s16 *)(arg0 + 0xC4) = (s32)func_800136E4((f32)arg2);
-    *(s16 *)(arg0 + 0xC6) = (s32)func_800136E4((f32)arg5);
-    *(s16 *)(arg0 + 0xC8) = (s32)func_800136E4((f32)arg1);
-    *(s16 *)(arg0 + 0xCA) = (s32)func_800136E4((f32)arg4);
-    *(s16 *)(arg0 + 0xCC) = arg3;
-    *(s16 *)(arg0 + 0xCE) = arg6;
+    emitter->velocity_mode = 1;
+    emitter->velocity.sphere.pitch[0] = (s32)func_800136E4((f32)pitch_min);
+    emitter->velocity.sphere.pitch[1] = (s32)func_800136E4((f32)pitch_max);
+    emitter->velocity.sphere.yaw[0] = (s32)func_800136E4((f32)yaw_min);
+    emitter->velocity.sphere.yaw[1] = (s32)func_800136E4((f32)yaw_max);
+    emitter->velocity.sphere.speed[0] = speed_min;
+    emitter->velocity.sphere.speed[1] = speed_max;
 }
 
-void func_800BAA60(u8 *arg0, f32 *arg1, s16 arg2, s16 arg3) {
+void func_800BAA60(ParticleEmitter *emitter, f32 *point, s16 speed_min, s16 speed_max) {
     void func_800EE940(s16 *, f32 *);
-    *(s8 *)(arg0 + 4) = 2;
-    *(s16 *)(arg0 + 0xC4) = arg2;
-    *(s16 *)(arg0 + 0xC6) = arg3;
-    func_800EE940((s16 *)(arg0 + 0xC8), arg1);
+    emitter->velocity_mode = 2;
+    emitter->velocity.toward.speed[0] = speed_min;
+    emitter->velocity.toward.speed[1] = speed_max;
+    func_800EE940(emitter->velocity.toward.point, point);
 }
 
-void func_800BAA9C(void *arg0, f32 arg1) {
-    func_800BA7C4(arg0, arg1, arg1);
-    func_800BA7FC(arg0, arg1, arg1);
+void func_800BAA9C(ParticleEmitter *emitter, f32 scale) {
+    func_800BA7C4(emitter, scale, scale);
+    func_800BA7FC(emitter, scale, scale);
 }
 
-void func_800BAAE4(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+void func_800BAAE4(ParticleEmitter *emitter, f32 arg1, f32 arg2, f32 arg3) {
     void func_800EFA4C(f32[3], f32, f32, f32);
-    func_800EFA4C(arg0 + 0x6C, arg1, arg2, arg3);
+    func_800EFA4C(emitter->unk6C, arg1, arg2, arg3);
 }
 
-void func_800BAB1C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+void func_800BAB1C(ParticleEmitter *emitter, f32 arg1, f32 arg2, f32 arg3) {
     void func_800EFA4C(f32[3], f32, f32, f32);
-    func_800EFA4C(arg0 + 0x60, arg1, arg2, arg3);
+    func_800EFA4C(emitter->unk60, arg1, arg2, arg3);
 }
 
-void func_800BAB54(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 92) = arg1;
+void func_800BAB54(ParticleEmitter *emitter, f32 arg1) {
+    emitter->unk5C = arg1;
 }
 
 /* extern */
 
-void func_800BAB60(s32 arg0) {
+void func_800BAB60(ParticleEmitter *emitter) {
     s32 func_800F2EA0(s32);
-    func_800F2EA0(arg0 + 0x80);
+    func_800F2EA0(emitter->color);
 }
 
 /* extern */
 
 void func_800BAB80(s32 arg0, f32 *arg1) {
+    ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     s32 func_800F2EBC(s32, f32 *);
-    func_800F2EBC(arg0 + 0x80, arg1);
+    func_800F2EBC(emitter->color, arg1);
 }
 
-void func_800BABA0(void *arg0, f32 arg1) {
-    (*(s8 *)((s8 *)(arg0) + (7))) = 0;
-    (*(f32 *)((s8 *)(arg0) + (0x24))) = arg1;
+void func_800BABA0(ParticleEmitter *emitter, f32 arg1) {
+    emitter->state = 0;
+    emitter->unk24 = arg1;
 }
 
 void func_800BABB0(s32 arg0) 
@@ -490,7 +553,7 @@ void func_800BABB0(s32 arg0)
 }
 /* extern */
 
-s32 func_800BABB8(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s16 *arg4) {
+s32 func_800BABB8(s32 arg0, f32 *position, f32 *target, f32 scale, s16 *cmd) {
 
     s8 func_800AF5A0(s32);
     s32 func_800B53A4(s32);
@@ -506,352 +569,352 @@ s32 func_800BABB8(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s16 *arg4) {
     void func_800F31EC(u8 *, s32, s32, s32);
     void func_800F31FC(u8 *, s32, s32, s32, s32);
     f32 var_f22;
-    s16 var_v0;
+    s16 command;
     s32 sp17C;
 
     var_f22 = 1.0f;
     sp17C = 0;
-    if ((arg0 != 0) && (arg1 != NULL)) {
-        func_800EE940((s16 *)(arg0 + 0x12), arg1);
+    if ((arg0 != 0) && (position != NULL)) {
+        func_800EE940(((ParticleEmitter *)arg0)->position, position);
     }
-    if (arg4 == NULL) return arg0;
+    if (cmd == NULL) return arg0;
     {
-        var_v0 = *arg4;
-        arg4++;
-        if (var_v0 != 0) {
+        command = *cmd;
+        cmd++;
+        if (command != 0) {
             do {
-                switch (var_v0 & 0xFF) {
+                switch (command & 0xFF) {
                 case 0x1: {
                     s32 i;
-                    for (i = 0; i < 3; i++, arg4 += 1) {
-                        ((s16 *)(arg0 + 52))[i] = (f32)*(s16 *)arg4 * var_f22;
-                        ((s16 *)(arg0 + 58))[i] = (f32)*(s16 *)(arg4 + 3) * var_f22;
+                    for (i = 0; i < 3; i++, cmd += 1) {
+                        ((ParticleEmitter *)arg0)->acceleration_min[i] = (f32)*cmd * var_f22;
+                        ((ParticleEmitter *)arg0)->acceleration_max[i] = (f32)cmd[3] * var_f22;
                     }
-                    arg4 += 3;
+                    cmd += 3;
                     break;
                 }
                 case 0x2:
-                    (*(u8 *)((u8 *)arg0 + (0x83))) = (u8) ((s32) (var_v0 & 0xFF00) >> 8);
+                    ((ParticleEmitter *)arg0)->color[3] = (u8) ((s32) (command & 0xFF00) >> 8);
                     break;
                 case 0x3:
-                    (*(s16 *)((u8 *)arg0 + (0xAA))) = (*(s16 *)((u8 *)arg4 + (0)));
-                    (*(s32 *)((u8 *)arg0 + (0xBC))) = (s32) (*(s16 *)((u8 *)arg4 + (2)));
-                    arg4 += 2;
+                    ((ParticleEmitter *)arg0)->unkAA = cmd[0];
+                    ((ParticleEmitter *)arg0)->unkBC = (s32) cmd[1];
+                    cmd += 2;
                     break;
                 case 0x4: {
                     f32 x;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    arg4 += 1;
-                    *(f32 *)(arg0 + 0xB0) = x;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    cmd += 1;
+                    ((ParticleEmitter *)arg0)->unkB0 = x;
                     break;
                 }
                 case 0x5: {
                     s32 temp_v0_2;
-                    temp_v0_2 = (*(s16 *)((u8 *)arg4 + (0)));
-                    arg4 += 1;
-                    (*(s16 *)((u8 *)arg0 + (0xAC))) = temp_v0_2;
+                    temp_v0_2 = cmd[0];
+                    cmd += 1;
+                    ((ParticleEmitter *)arg0)->min_y = temp_v0_2;
                     break;
                 }
                 case 0x6: {
                     s32 temp_v0_3;
-                    temp_v0_3 = (*(s16 *)((u8 *)arg4 + (0)));
-                    arg4 += 1;
-                    (*(s16 *)((u8 *)arg0 + (0xAC))) = (s16) (s32) (arg1[1] + (f32) temp_v0_3);
+                    temp_v0_3 = cmd[0];
+                    cmd += 1;
+                    ((ParticleEmitter *)arg0)->min_y = (s16) (s32) (position[1] + (f32) temp_v0_3);
                     break;
                 }
                 case 0x7:
-                    (*(s16 *)((u8 *)arg0 + (0xA8))) = (*(s16 *)((u8 *)arg4 + (0)));
-                    arg4 += 1;
+                    ((ParticleEmitter *)arg0)->unkA8 = cmd[0];
+                    cmd += 1;
                     break;
                 case 0x8: {
                     f32 x, y;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    arg4 += 2;
-                    *(f32 *)(arg0 + 0xB4) = x;
-                    *(f32 *)(arg0 + 0xB8) = y;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->unkB4 = x;
+                    ((ParticleEmitter *)arg0)->unkB8 = y;
                     break;
                 }
                 case 0x9: {
                     s32 temp_v0_4;
-                    temp_v0_4 = (*(s16 *)((u8 *)arg4 + (0)));
-                    arg4 += 1;
-                    (*(s16 *)((u8 *)arg0 + (0xAE))) = temp_v0_4;
+                    temp_v0_4 = cmd[0];
+                    cmd += 1;
+                    ((ParticleEmitter *)arg0)->max_y = temp_v0_4;
                     break;
                 }
                 case 0xA: {
                     s32 i;
-                    for (i = 0; i < 3; i++, arg4 += 1) {
-                        ((s16 *)(arg0 + 40))[i] = (f32)*(s16 *)arg4 * arg3;
-                        ((s16 *)(arg0 + 46))[i] = (f32)*(s16 *)(arg4 + 3) * arg3;
+                    for (i = 0; i < 3; i++, cmd += 1) {
+                        ((ParticleEmitter *)arg0)->spawn.box.min[i] = (f32)*cmd * scale;
+                        ((ParticleEmitter *)arg0)->spawn.box.max[i] = (f32)cmd[3] * scale;
                     }
-                    *(u8 *)(arg0 + 5) = 0;
-                    arg4 += 3;
+                    ((ParticleEmitter *)arg0)->spawn_mode = 0;
+                    cmd += 3;
                     break;
                 }
                 case 0xB:
-                    (*(u8 *)((u8 *)arg0 + (5))) = 2;
-                    (*(s16 *)((u8 *)arg0 + (0x28))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * arg3);
-                    (*(s16 *)((u8 *)arg0 + (0x2A))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * arg3);
-                    (*(s16 *)((u8 *)arg0 + (0x2C))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (4))) * arg3);
-                    (*(s16 *)((u8 *)arg0 + (0x2E))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (6))) * arg3);
-                    arg4 += 4;
+                    ((ParticleEmitter *)arg0)->spawn_mode = 2;
+                    ((ParticleEmitter *)arg0)->spawn.ring.radius[0] = (s16) (s32) ((f32) cmd[0] * scale);
+                    ((ParticleEmitter *)arg0)->spawn.ring.radius[1] = (s16) (s32) ((f32) cmd[1] * scale);
+                    ((ParticleEmitter *)arg0)->spawn.ring.height[0] = (s16) (s32) ((f32) cmd[2] * scale);
+                    ((ParticleEmitter *)arg0)->spawn.ring.height[1] = (s16) (s32) ((f32) cmd[3] * scale);
+                    cmd += 4;
                     break;
                 case 0xC: {
                     f32 x;
                     s16 low, high;
-                    x = (f32)arg4[0];
-                    *(u8 *)(arg0 + 5) = 0;
-                    arg4++;
-                    x *= arg3;
+                    x = (f32)cmd[0];
+                    ((ParticleEmitter *)arg0)->spawn_mode = 0;
+                    cmd++;
+                    x *= scale;
                     low = -x;
-                    func_800EFA6C((void *)(arg0 + 0x28), low, low, low);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->spawn.box.min, low, low, low);
                     high = x;
-                    func_800EFA6C((void *)(arg0 + 0x2E), high, high, high);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->spawn.box.max, high, high, high);
                     break;
                 }
                 case 0xD: {
                     /* Preserve the original frame slots whose accesses were optimized out. */
                     s32 stackPadding[8];
                     s16 x, low;
-                    x = arg4[0];
-                    arg4++;
-                    *(u8 *)(arg0 + 5) = 0;
-                    x = (s32)((f32)x * arg3);
+                    x = cmd[0];
+                    cmd++;
+                    ((ParticleEmitter *)arg0)->spawn_mode = 0;
+                    x = (s32)((f32)x * scale);
                     low = -x;
-                    func_800EFA6C((void *)(arg0 + 0x28), low, 0, low);
-                    func_800EFA6C((void *)(arg0 + 0x2E), x, x, x);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->spawn.box.min, low, 0, low);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->spawn.box.max, x, x, x);
                     break;
                 }
                 case 0xE:
-                    (*(u8 *)((u8 *)arg0 + (5))) = 1;
-                    (*(s16 *)((u8 *)arg0 + (0x28))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * arg3);
-                    (*(s16 *)((u8 *)arg0 + (0x2A))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * arg3);
-                    arg4 += 2;
+                    ((ParticleEmitter *)arg0)->spawn_mode = 1;
+                    ((ParticleEmitter *)arg0)->spawn.sphere.radius[0] = (s16) (s32) ((f32) cmd[0] * scale);
+                    ((ParticleEmitter *)arg0)->spawn.sphere.radius[1] = (s16) (s32) ((f32) cmd[1] * scale);
+                    cmd += 2;
                     break;
                 case 0xF:
-                    (*(u8 *)((u8 *)arg0 + (7))) = 1;
-                    (*(f32 *)((u8 *)arg0 + (0x20))) = func_800DC178((*(f32 *)((u8 *)arg0 + (0x54))), (*(f32 *)((u8 *)arg0 + (0x58))));
+                    ((ParticleEmitter *)arg0)->state = 1;
+                    ((ParticleEmitter *)arg0)->spawn_timer = func_800DC178(((ParticleEmitter *)arg0)->spawn_interval[0], ((ParticleEmitter *)arg0)->spawn_interval[1]);
                     break;
                 case 0x10: {
                     s32 temp_v0_6;
-                    temp_v0_6 = func_800B53A4((s32) (var_v0 & 0xFF00) >> 8);
+                    temp_v0_6 = func_800B53A4((s32) (command & 0xFF00) >> 8);
                     arg0 = temp_v0_6;
-                    if (arg1 != NULL) {
-                        func_800EE940(temp_v0_6 + 0x12, arg1);
+                    if (position != NULL) {
+                        func_800EE940(((ParticleEmitter *)temp_v0_6)->position, position);
                     }
                     break;
                 }
                 case 0x11: {
                     s32 temp_t0;
                     s32 temp_v0_7;
-                    temp_t0 = (s32) (var_v0 & 0xFF00) >> 8;
+                    temp_t0 = (s32) (command & 0xFF00) >> 8;
                     sp17C = temp_t0;
                     temp_v0_7 = func_800B53A4(temp_t0);
                     arg0 = temp_v0_7;
-                    if (arg1 != NULL) {
-                        func_800EE940(temp_v0_7 + 0x12, arg1);
+                    if (position != NULL) {
+                        func_800EE940(((ParticleEmitter *)temp_v0_7)->position, position);
                     }
                     break;
                 }
                 case 0x12: {
                     s16 x, y, z;
-                    x = arg4[0];
-                    y = arg4[1];
-                    z = arg4[2];
-                    arg4 += 3;
-                    func_800EFA6C((void *)(arg0 + 0xC), x, y, z);
-                    arg4 += 3;
+                    x = cmd[0];
+                    y = cmd[1];
+                    z = cmd[2];
+                    cmd += 3;
+                    func_800EFA6C(((ParticleEmitter *)arg0)->unkC, x, y, z);
+                    cmd += 3;
                     break;
                 }
                 case 0x13:
-                    if (((s32) (var_v0 & 0xFF00) >> 8) != 0) {
-                        var_f22 = arg3;
+                    if (((s32) (command & 0xFF00) >> 8) != 0) {
+                        var_f22 = scale;
                     } else {
                         var_f22 = 1.0f;
                     }
                     break;
                 case 0x14: {
-                    (*(s16 *)((u8 *)arg0 + (0))) = 0x586;
-                    (*(f32 *)((u8 *)arg0 + (0xB0))) = 0.4f;
-                    (*(f32 *)((u8 *)arg0 + (0x18))) = 0.0f;
-                    (*(s16 *)((u8 *)arg0 + (0xA8))) = 4;
-                    (*(s16 *)((u8 *)arg0 + (0xA2))) = 0x300;
-                    (*(s16 *)((u8 *)arg0 + (0xA4))) = 0x400;
-                    (*(f32 *)((u8 *)arg0 + (0x1C))) = 0.8f;
-                    func_800EFA6C(arg0 + 0x40, 0xC8, 0, 0xC8);
-                    func_800EFA6C(arg0 + 0x46, 0x190, 0, 0x190);
-                    func_800EFA6C((void *)(arg0 + 0x34), 0, -0x3E8, 0);
-                    func_800EFA6C(arg0 + 0x3A, 0, -0x320, 0);
+                    ((ParticleEmitter *)arg0)->flags = 0x586;
+                    ((ParticleEmitter *)arg0)->unkB0 = 0.4f;
+                    ((ParticleEmitter *)arg0)->fade_in = 0.0f;
+                    ((ParticleEmitter *)arg0)->unkA8 = 4;
+                    ((ParticleEmitter *)arg0)->lifetime[0] = 0x300;
+                    ((ParticleEmitter *)arg0)->lifetime[1] = 0x400;
+                    ((ParticleEmitter *)arg0)->fade_out = 0.8f;
+                    func_800EFA6C(((ParticleEmitter *)arg0)->angular_velocity_min, 0xC8, 0, 0xC8);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->angular_velocity_max, 0x190, 0, 0x190);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->acceleration_min, 0, -0x3E8, 0);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->acceleration_max, 0, -0x320, 0);
                     break;
                 }
                 case 0x15: {
                     f32 x, y;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    arg4 += 2;
-                    *(f32 *)(arg0 + 0x18) = x;
-                    *(f32 *)(arg0 + 0x1C) = y;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->fade_in = x;
+                    ((ParticleEmitter *)arg0)->fade_out = y;
                     break;
                 }
                 case 0x16:
-                    (*(s16 *)((u8 *)arg0 + (0))) = (*(s16 *)((u8 *)arg4 + (0)));
-                    arg4 += 1;
+                    ((ParticleEmitter *)arg0)->flags = cmd[0];
+                    cmd += 1;
                     break;
                 case 0x17: {
                     f32 probability;
-                    probability = (f32)*arg4++ * 0.00390625f;
+                    probability = (f32)*cmd++ * 0.00390625f;
                     if (func_800DC298(probability) != 0) {
-                        *(s16 *)(arg0 + 0) = (u16)*(s16 *)(arg0 + 0) | 0x800;
+                        ((ParticleEmitter *)arg0)->flags = (u16)*(s16 *)&((ParticleEmitter *)arg0)->flags | 0x800;
                     }
                     break;
                 }
                 case 0x18: {
                     s16 x, y;
                     f32 z, w;
-                    x = arg4[0];
-                    y = arg4[1];
-                    z = (f32)arg4[2] * 0.00390625f;
-                    w = (f32)arg4[3] * 0.00390625f;
-                    arg4 += 4;
-                    *(s16 *)(arg0 + 0x86) = y;
-                    *(s16 *)(arg0 + 0x84) = x;
-                    *(f32 *)(arg0 + 0x78) = z;
-                    *(f32 *)(arg0 + 0x7C) = w;
+                    x = cmd[0];
+                    y = cmd[1];
+                    z = (f32)cmd[2] * 0.00390625f;
+                    w = (f32)cmd[3] * 0.00390625f;
+                    cmd += 4;
+                    ((ParticleEmitter *)arg0)->start_frame[1] = y;
+                    ((ParticleEmitter *)arg0)->start_frame[0] = x;
+                    ((ParticleEmitter *)arg0)->framerate[0] = z;
+                    ((ParticleEmitter *)arg0)->framerate[1] = w;
                     break;
                 }
                 case 0x19: {
                     s16 temp_v0_9;
                     s16 temp_v1;
-                    temp_v0_9 = (*(s16 *)((u8 *)arg4 + (0)));
-                    temp_v1 = (*(s16 *)((u8 *)arg4 + (2)));
-                    arg4 += 2;
-                    (*(s16 *)((u8 *)arg0 + (0x86))) = temp_v1;
-                    (*(s16 *)((u8 *)arg0 + (0x84))) = temp_v0_9;
+                    temp_v0_9 = cmd[0];
+                    temp_v1 = cmd[1];
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->start_frame[1] = temp_v1;
+                    ((ParticleEmitter *)arg0)->start_frame[0] = temp_v0_9;
                     break;
                 }
                 case 0x1A:
-                    func_800BA22C(arg0, (s32) (var_v0 & 0xFF00) >> 8);
+                    func_800BA22C(arg0, (s32) (command & 0xFF00) >> 8);
                     break;
                 case 0x1B:
-                    func_800EFA6C(arg0 + 0x34, 0, (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * var_f22), 0);
-                    func_800EFA6C(arg0 + 0x3A, 0, (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * var_f22), 0);
-                    arg4 += 2;
+                    func_800EFA6C(((ParticleEmitter *)arg0)->acceleration_min, 0, (s16) (s32) ((f32) cmd[0] * var_f22), 0);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->acceleration_max, 0, (s16) (s32) ((f32) cmd[1] * var_f22), 0);
+                    cmd += 2;
                     break;
                 case 0x1C: {
                     s32 temp_v0_10;
-                    temp_v0_10 = func_800BA2E8((s32) (var_v0 & 0xFF00) >> 8);
+                    temp_v0_10 = func_800BA2E8((s32) (command & 0xFF00) >> 8);
                     arg0 = temp_v0_10;
-                    if (arg1 != NULL) {
-                        func_800EE940(temp_v0_10 + 0x12, arg1);
+                    if (position != NULL) {
+                        func_800EE940(((ParticleEmitter *)temp_v0_10)->position, position);
                     }
                     break;
                 }
                 case 0x1D: {
                     s32 model, kind;
-                    model = *arg4++;
-                    if (model == *(u16 *)(arg0 + 2)) break;
-                    *(u16 *)(arg0 + 2) = model;
+                    model = *cmd++;
+                    if (model == ((ParticleEmitter *)arg0)->asset_id) break;
+                    ((ParticleEmitter *)arg0)->asset_id = model;
                     kind = func_800D738C(model & 0xFFFF);
-                    *(u8 *)(arg0 + 0xA) = kind;
+                    ((ParticleEmitter *)arg0)->asset_kind = kind;
                     if ((kind & 0xFF) == 7) {
-                        *(u8 *)(arg0 + 0xB) = func_800AF5A0(func_800D674C(*(u16 *)(arg0 + 2)));
+                        ((ParticleEmitter *)arg0)->unkB = func_800AF5A0(func_800D674C(((ParticleEmitter *)arg0)->asset_id));
                     }
                     break;
                 }
                 case 0x1E: {
                     f32 random;
-                    random = func_800DC178((f32)arg4[0], (f32)arg4[1]);
-                    random = arg3 * random;
-                    arg4 += 2;
-                    *(s16 *)(arg0 + 0x14) += (s16)random;
+                    random = func_800DC178((f32)cmd[0], (f32)cmd[1]);
+                    random = scale * random;
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->position[1] += (s16)random;
                     break;
                 }
                 case 0x1F: {
                     s16 temp_v0_13;
                     s16 temp_v1_2;
-                    temp_v0_13 = (*(s16 *)((u8 *)arg4 + (0)));
-                    temp_v1_2 = (*(s16 *)((u8 *)arg4 + (2)));
-                    arg4 += 2;
-                    func_800F31EC(arg0 + 0x80, (u32) (temp_v0_13 & 0xFF00) >> 8, temp_v0_13 & 0xFF, (u32) (temp_v1_2 & 0xFF00) >> 8);
+                    temp_v0_13 = cmd[0];
+                    temp_v1_2 = cmd[1];
+                    cmd += 2;
+                    func_800F31EC(((ParticleEmitter *)arg0)->color, (u32) (temp_v0_13 & 0xFF00) >> 8, temp_v0_13 & 0xFF, (u32) (temp_v1_2 & 0xFF00) >> 8);
                     break;
                 }
                 case 0x20: {
                     s16 temp_v0_14;
                     s16 temp_v1_3;
-                    temp_v0_14 = (*(s16 *)((u8 *)arg4 + (0)));
-                    temp_v1_3 = (*(s16 *)((u8 *)arg4 + (2)));
-                    arg4 += 2;
-                    func_800F31FC(arg0 + 0x80, (u32) (temp_v0_14 & 0xFF00) >> 8, temp_v0_14 & 0xFF, (u32) (temp_v1_3 & 0xFF00) >> 8, temp_v1_3 & 0xFF);
+                    temp_v0_14 = cmd[0];
+                    temp_v1_3 = cmd[1];
+                    cmd += 2;
+                    func_800F31FC(((ParticleEmitter *)arg0)->color, (u32) (temp_v0_14 & 0xFF00) >> 8, temp_v0_14 & 0xFF, (u32) (temp_v1_3 & 0xFF00) >> 8, temp_v1_3 & 0xFF);
                     break;
                 }
                 case 0x21: {
                     s16 temp_a1_2;
                     s16 temp_a2;
                     s16 temp_a3;
-                    temp_a1_2 = (*(s16 *)((u8 *)arg4 + (0)));
-                    temp_a2 = (*(s16 *)((u8 *)arg4 + (2)));
-                    temp_a3 = (*(s16 *)((u8 *)arg4 + (4)));
-                    arg4 += 3;
-                    func_800EFA6C(arg0 + 0x4C, temp_a1_2, temp_a2, temp_a3);
+                    temp_a1_2 = cmd[0];
+                    temp_a2 = cmd[1];
+                    temp_a3 = cmd[2];
+                    cmd += 3;
+                    func_800EFA6C(((ParticleEmitter *)arg0)->rotation, temp_a1_2, temp_a2, temp_a3);
                     break;
                 }
                 case 0x22: {
                     f32 x, y, z, w;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    z = (f32)arg4[2] * 0.00390625f;
-                    w = (f32)arg4[3] * 0.00390625f;
-                    arg4 += 4;
-                    *(s16 *)(arg0 + 0x9A) = x * arg3 * 256.0f;
-                    *(s16 *)(arg0 + 0x9C) = y * arg3 * 256.0f;
-                    *(s16 *)(arg0 + 0x9E) = z * arg3 * 256.0f;
-                    *(s16 *)(arg0 + 0xA0) = w * arg3 * 256.0f;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    z = (f32)cmd[2] * 0.00390625f;
+                    w = (f32)cmd[3] * 0.00390625f;
+                    cmd += 4;
+                    ((ParticleEmitter *)arg0)->start_scale[0] = x * scale * 256.0f;
+                    ((ParticleEmitter *)arg0)->start_scale[1] = y * scale * 256.0f;
+                    ((ParticleEmitter *)arg0)->final_scale[0] = z * scale * 256.0f;
+                    ((ParticleEmitter *)arg0)->final_scale[1] = w * scale * 256.0f;
                     break;
                 }
                 case 0x23: {
                     f32 x;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    arg4++;
-                    x = x * arg3 * 256.0f;
-                    *(s16 *)(arg0 + 0x9A) = (s32)x;
-                    *(s16 *)(arg0 + 0x9C) = (s32)x;
-                    *(s16 *)(arg0 + 0x9E) = (s32)x;
-                    *(s16 *)(arg0 + 0xA0) = (s32)x;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    cmd++;
+                    x = x * scale * 256.0f;
+                    ((ParticleEmitter *)arg0)->start_scale[0] = (s32)x;
+                    ((ParticleEmitter *)arg0)->start_scale[1] = (s32)x;
+                    ((ParticleEmitter *)arg0)->final_scale[0] = (s32)x;
+                    ((ParticleEmitter *)arg0)->final_scale[1] = (s32)x;
                     break;
                 }
                 case 0x24: {
                     f32 x, y;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    arg4 += 2;
-                    *(s16 *)(arg0 + 0x9A) = x * arg3 * 256.0f;
-                    *(s16 *)(arg0 + 0x9C) = y * arg3 * 256.0f;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->start_scale[0] = x * scale * 256.0f;
+                    ((ParticleEmitter *)arg0)->start_scale[1] = y * scale * 256.0f;
                     break;
                 }
                 case 0x25: {
                     f32 x, y;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    arg4 += 2;
-                    *(s16 *)(arg0 + 0x9E) = x * arg3 * 256.0f;
-                    *(s16 *)(arg0 + 0xA0) = y * arg3 * 256.0f;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->final_scale[0] = x * scale * 256.0f;
+                    ((ParticleEmitter *)arg0)->final_scale[1] = y * scale * 256.0f;
                     break;
                 }
                 case 0x26:
-                    func_800EFA6C(arg0 + 0x40, (*(s16 *)((u8 *)arg4 + (0))), (*(s16 *)((u8 *)arg4 + (2))), (*(s16 *)((u8 *)arg4 + (4))));
-                    func_800EFA6C(arg0 + 0x46, (*(s16 *)((u8 *)arg4 + (6))), (*(s16 *)((u8 *)arg4 + (8))), (*(s16 *)((u8 *)arg4 + (0xA))));
-                    arg4 += 6;
+                    func_800EFA6C(((ParticleEmitter *)arg0)->angular_velocity_min, cmd[0], cmd[1], cmd[2]);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->angular_velocity_max, cmd[3], cmd[4], cmd[5]);
+                    cmd += 6;
                     break;
                 case 0x27:
-                    func_800EFA6C(arg0 + 0x40, (*(s16 *)((u8 *)arg4 + (0))), 0, (*(s16 *)((u8 *)arg4 + (2))));
-                    func_800EFA6C(arg0 + 0x46, (*(s16 *)((u8 *)arg4 + (4))), 0, (*(s16 *)((u8 *)arg4 + (6))));
-                    arg4 += 4;
+                    func_800EFA6C(((ParticleEmitter *)arg0)->angular_velocity_min, cmd[0], 0, cmd[1]);
+                    func_800EFA6C(((ParticleEmitter *)arg0)->angular_velocity_max, cmd[2], 0, cmd[3]);
+                    cmd += 4;
                     break;
                 case 0x28: {
                     f32 x;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    arg4++;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    cmd++;
                     func_800BABA0((void *)arg0, x);
                     break;
                 }
@@ -860,97 +923,97 @@ s32 func_800BABB8(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s16 *arg4) {
                     break;
                 case 0x2A: {
                     f32 x, y, z, w;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    z = (f32)arg4[2] * 0.00390625f;
-                    w = (f32)arg4[3] * 0.00390625f;
-                    arg4 += 4;
-                    *(f32 *)(arg0 + 0x54) = x;
-                    *(f32 *)(arg0 + 0x58) = y;
-                    if ((*(f32 *)(arg0 + 0x20) == 0.0f) || (y < *(f32 *)(arg0 + 0x20))) {
-                        *(f32 *)(arg0 + 0x20) = func_800DC178(x, y);
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    z = (f32)cmd[2] * 0.00390625f;
+                    w = (f32)cmd[3] * 0.00390625f;
+                    cmd += 4;
+                    ((ParticleEmitter *)arg0)->spawn_interval[0] = x;
+                    ((ParticleEmitter *)arg0)->spawn_interval[1] = y;
+                    if ((((ParticleEmitter *)arg0)->spawn_timer == 0.0f) || (y < ((ParticleEmitter *)arg0)->spawn_timer)) {
+                        ((ParticleEmitter *)arg0)->spawn_timer = func_800DC178(x, y);
                     }
-                    *(s16 *)(arg0 + 0xA2) = z * 256.0f;
-                    *(s16 *)(arg0 + 0xA4) = w * 256.0f;
+                    ((ParticleEmitter *)arg0)->lifetime[0] = z * 256.0f;
+                    ((ParticleEmitter *)arg0)->lifetime[1] = w * 256.0f;
                     break;
                 }
                 case 0x2B: {
                     f32 x, y;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    arg4 += 2;
-                    *(s16 *)(arg0 + 0xA2) = x * 256.0f;
-                    *(s16 *)(arg0 + 0xA4) = y * 256.0f;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->lifetime[0] = x * 256.0f;
+                    ((ParticleEmitter *)arg0)->lifetime[1] = y * 256.0f;
                     break;
                 }
                 case 0x2C:
-                    (*(u8 *)((u8 *)arg0 + (4))) = 0;
-                    (*(s16 *)((u8 *)arg0 + (0xC4))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * var_f22);
-                    (*(s16 *)((u8 *)arg0 + (0xC6))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * var_f22);
-                    (*(s16 *)((u8 *)arg0 + (0xC8))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (4))) * var_f22);
-                    (*(s16 *)((u8 *)arg0 + (0xCA))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (6))) * var_f22);
-                    (*(s16 *)((u8 *)arg0 + (0xCC))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (8))) * var_f22);
-                    (*(s16 *)((u8 *)arg0 + (0xCE))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (10))) * var_f22);
-                    arg4 += 6;
+                    ((ParticleEmitter *)arg0)->velocity_mode = 0;
+                    ((ParticleEmitter *)arg0)->velocity.box.min[0] = (s16) (s32) ((f32) cmd[0] * var_f22);
+                    ((ParticleEmitter *)arg0)->velocity.box.min[1] = (s16) (s32) ((f32) cmd[1] * var_f22);
+                    ((ParticleEmitter *)arg0)->velocity.box.min[2] = (s16) (s32) ((f32) cmd[2] * var_f22);
+                    ((ParticleEmitter *)arg0)->velocity.box.max[0] = (s16) (s32) ((f32) cmd[3] * var_f22);
+                    ((ParticleEmitter *)arg0)->velocity.box.max[1] = (s16) (s32) ((f32) cmd[4] * var_f22);
+                    ((ParticleEmitter *)arg0)->velocity.box.max[2] = (s16) (s32) ((f32) cmd[5] * var_f22);
+                    cmd += 6;
                     break;
                 case 0x2D:
-                    (*(u8 *)((u8 *)arg0 + (4))) = 2;
-                    (*(s16 *)((u8 *)arg0 + (0xC4))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (0))) * var_f22);
-                    (*(s16 *)((u8 *)arg0 + (0xC6))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (2))) * var_f22);
-                    arg4 += 2;
-                    func_800EE940(arg0 + 0xC8, arg2);
+                    ((ParticleEmitter *)arg0)->velocity_mode = 2;
+                    ((ParticleEmitter *)arg0)->velocity.toward.speed[0] = (s16) (s32) ((f32) cmd[0] * var_f22);
+                    ((ParticleEmitter *)arg0)->velocity.toward.speed[1] = (s16) (s32) ((f32) cmd[1] * var_f22);
+                    cmd += 2;
+                    func_800EE940(((ParticleEmitter *)arg0)->velocity.toward.point, target);
                     break;
                 case 0x2E:
-                    (*(u8 *)((u8 *)arg0 + (4))) = 1;
-                    (*(s16 *)((u8 *)arg0 + (0xC8))) = (*(s16 *)((u8 *)arg4 + (0)));
-                    (*(s16 *)((u8 *)arg0 + (0xC4))) = (s16) (*(s16 *)((u8 *)arg4 + (2)));
-                    (*(s16 *)((u8 *)arg0 + (0xCC))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (4))) * var_f22);
-                    (*(s16 *)((u8 *)arg0 + (0xCA))) = (s16) (*(s16 *)((u8 *)arg4 + (6)));
-                    (*(s16 *)((u8 *)arg0 + (0xC6))) = (s16) (*(s16 *)((u8 *)arg4 + (8)));
-                    (*(s16 *)((u8 *)arg0 + (0xCE))) = (s16) (s32) ((f32) (*(s16 *)((u8 *)arg4 + (10))) * var_f22);
-                    arg4 += 6;
+                    ((ParticleEmitter *)arg0)->velocity_mode = 1;
+                    ((ParticleEmitter *)arg0)->velocity.sphere.yaw[0] = cmd[0];
+                    ((ParticleEmitter *)arg0)->velocity.sphere.pitch[0] = (s16) cmd[1];
+                    ((ParticleEmitter *)arg0)->velocity.sphere.speed[0] = (s16) (s32) ((f32) cmd[2] * var_f22);
+                    ((ParticleEmitter *)arg0)->velocity.sphere.yaw[1] = (s16) cmd[3];
+                    ((ParticleEmitter *)arg0)->velocity.sphere.pitch[1] = (s16) cmd[4];
+                    ((ParticleEmitter *)arg0)->velocity.sphere.speed[1] = (s16) (s32) ((f32) cmd[5] * var_f22);
+                    cmd += 6;
                     break;
                 case 0x2F: {
                     f32 x, y, z, a, b, c, d;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    y = (f32)arg4[1] * 0.00390625f;
-                    z = (f32)arg4[2] * 0.00390625f;
-                    a = (f32)arg4[3] * 0.00390625f;
-                    b = (f32)arg4[4] * 0.00390625f;
-                    c = (f32)arg4[5] * 0.00390625f;
-                    d = (f32)arg4[6] * 0.00390625f;
-                    arg4 += 7;
-                    func_800EFA4C((f32 *)(arg0 + 0x6C), x * arg3, y * arg3, z * arg3);
-                    func_800EFA4C((f32 *)(arg0 + 0x60), a * arg3, b * arg3, c * arg3);
-                    *(f32 *)(arg0 + 0x5C) = d;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    y = (f32)cmd[1] * 0.00390625f;
+                    z = (f32)cmd[2] * 0.00390625f;
+                    a = (f32)cmd[3] * 0.00390625f;
+                    b = (f32)cmd[4] * 0.00390625f;
+                    c = (f32)cmd[5] * 0.00390625f;
+                    d = (f32)cmd[6] * 0.00390625f;
+                    cmd += 7;
+                    func_800EFA4C(((ParticleEmitter *)arg0)->unk6C, x * scale, y * scale, z * scale);
+                    func_800EFA4C(((ParticleEmitter *)arg0)->unk60, a * scale, b * scale, c * scale);
+                    ((ParticleEmitter *)arg0)->unk5C = d;
                     break;
                 }
                 case 0x30: {
                     f32 x;
-                    x = (f32)arg4[0] * 0.00390625f;
-                    arg4 += 1;
-                    *(f32 *)(arg0 + 0xD0) = x;
+                    x = (f32)cmd[0] * 0.00390625f;
+                    cmd += 1;
+                    ((ParticleEmitter *)arg0)->unkD0 = x;
                     break;
                 }
                 case 0x31: {
                     s32 temp_f4_4;
-                    temp_f4_4 = func_800DC128((*(s16 *)((u8 *)arg4 + (0))), (*(s16 *)((u8 *)arg4 + (2))));
-                    arg4 += 2;
-                    (*(s16 *)((u8 *)arg0 + (0xCA))) = (s16) ((*(s16 *)((u8 *)arg0 + (0xCA))) + (s16) (arg3 * (f32) temp_f4_4));
+                    temp_f4_4 = func_800DC128(cmd[0], cmd[1]);
+                    cmd += 2;
+                    ((ParticleEmitter *)arg0)->velocity.box.max[0] = (s16) (((ParticleEmitter *)arg0)->velocity.box.max[0] + (s16) (scale * (f32) temp_f4_4));
                     break;
                 }
                 case 0x32:
-                    (*(u8 *)((u8 *)arg0 + (0x52))) = (u8) (*(s16 *)((u8 *)arg4 + (0)));
-                    arg4 += 1;
+                    ((ParticleEmitter *)arg0)->unk52 = (u8) cmd[0];
+                    cmd += 1;
                     break;
                 case 0x33:
-                    (*(u8 *)((u8 *)arg0 + (0x53))) = (u8) (*(s16 *)((u8 *)arg4 + (0)));
-                    arg4 += 1;
+                    ((ParticleEmitter *)arg0)->unk53 = (u8) cmd[0];
+                    cmd += 1;
                     break;
                 case 0x34: {
                     s32 i;
                     for (i = 0; i < 4; i++) {
-                        ((u8 *)(arg0 + 0x80))[i] = 0xFF;
+                        ((ParticleEmitter *)arg0)->color[i] = 0xFF;
                     }
                     func_800BA930(arg0, 0, 0, 0, 0, 0, 0);
                     func_800BA450(arg0, 0, 0, 0, 0, 0, 0);
@@ -958,9 +1021,9 @@ s32 func_800BABB8(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s16 *arg4) {
                     break;
                 }
                 }
-                var_v0 = *(s16 *)arg4;
-                arg4 += 1;
-            } while (var_v0 != 0);
+                command = *cmd;
+                cmd += 1;
+            } while (command != 0);
         }
         if (sp17C != 0) {
             func_800BA22C(arg0, sp17C);
