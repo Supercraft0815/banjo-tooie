@@ -1092,7 +1092,46 @@ void func_800E692C(void) {
     D_8012D570 = heap_alloc(0x40);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBE020/func_800E6950.s")
+void *func_800E6950(s32 arg0, s32 arg1, void *arg2) {
+    s32 func_800D5950(s32);
+    s32 func_800D5A6C(s32);
+    void func_800D5FDC(s32);
+    void *func_80117248(s32, s32, void *);
+    void *heap_alloc_sided(s32, s32);
+    s32 rom_read_word(uintptr_t, u32 *);
+    s32 size;
+    s32 sp30;
+    u32 padding;
+    u32 word;
+    union {
+        s32 side;
+        void *ptr;
+    } var_s0;
+    var_s0.side = arg1;
+    sp30 = func_800D5A6C(arg0);
+    rom_read_word(sp30, &word);
+    /* Keep the copy/merge/writeback sequence for IDO register allocation. */
+    do { word >>= 0x10; size = word; size = size * 0x10; } while (0);
+    word = size;
+    size = word == (u32)size ? word : size;
+    *(u32 *)&word = size;
+    func_800D5FDC(word);
+    if (arg2 == NULL)
+    {
+        var_s0.ptr = heap_alloc_sided(size, var_s0.side);
+        if (var_s0.ptr == NULL)
+        {
+            return NULL;
+        }
+    }
+    else
+    {
+        var_s0.ptr = arg2;
+    }
+    func_80117248(sp30, func_800D5950(arg0), var_s0.ptr);
+    osWritebackDCache(var_s0.ptr, size);
+    return var_s0.ptr;
+}
 
 u32 func_800E6A00(void) {
     extern u8 D_801275E0;
