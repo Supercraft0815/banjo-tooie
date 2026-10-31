@@ -1,6 +1,42 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/statusDll/gcstatusDll_entrypoint_0.s")
+typedef struct StatusState {
+    s32 value;
+    s8 state;
+    s8 pad5[4];
+    s8 flag;
+    s8 padA[5];
+    s8 fieldF;
+    s8 field10;
+    s8 field11;
+    u8 pad12[14];
+} StatusState;
+
+StatusState D_8012B400;
+
+void gcstatusDll_entrypoint_0(void)
+{
+    void gcstatusDll_entrypoint_3(s32, s32);
+    void gcstatusDll_entrypoint_6(s32, s32);
+    extern u8 D_80800230_gcstatusDll[4][2];
+    s32 var_s0;
+    StatusState *temp_s3;
+    temp_s3 = &D_8012B400;
+    temp_s3->state = 2;
+    for (var_s0 = 0; var_s0 != 4; var_s0++)
+    {
+      gcstatusDll_entrypoint_3(var_s0, D_80800230_gcstatusDll[var_s0][0]);
+      gcstatusDll_entrypoint_6(var_s0, D_80800230_gcstatusDll[var_s0][1]);
+    }
+
+    temp_s3 = &D_8012B400;
+    temp_s3->flag = 1;
+    temp_s3->fieldF = 0;
+    temp_s3->field10 = 0;
+    temp_s3->field11 = 2;
+    temp_s3->value = 0x173;
+}
+
 
 void gcstatusDll_entrypoint_1(s32 arg0) {
     extern s32 D_8012B3FC;
