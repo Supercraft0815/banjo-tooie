@@ -627,6 +627,8 @@ segments:
       - [0x1EF1590, data]
       - [0x1EF4E50, .data, 1EAC810]
       - [0x1EF4E70, data]
+      - [0x1EF5200, .data, 1EAF950]
+      - [0x1EF5210, data]
       - [0x1EF5280, .data, 1EB3750]
       - [0x1EF5290, data]
       - [0x1EFE380, .rodata, anctrl]

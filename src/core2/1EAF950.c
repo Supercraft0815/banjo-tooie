@@ -3,6 +3,8 @@ struct Unk800C7A68;
 
 extern s32 D_8012BE70;
 
+s16 D_8011B910 = -1;
+
 s32 func_800D6060(s32 arg0) {
     void aligned4_memmove(void *, void *, int);
     extern u8 D_8012B800[];
@@ -516,7 +518,58 @@ void func_800D6D68(void) {
     } while (i < 32 && count < 8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAF950/func_800D6E54.s")
+void func_800D6E54(s32 arg0) {
+    static s32 nextEntry = 0;
+    s32 func_8001211C(void);
+    s32 func_800A9F14(s32);
+    s32 func_800A9F30(void);
+    s32 func_800D6378(u8 *);
+    extern u8 D_8012B800[];
+    extern s16 D_8012BE62;
+    struct Entry {
+        u32 frame : 27;
+        u32 flags : 4;
+        u32 low : 1;
+        void *value;
+        u16 index : 14;
+        u16 unused : 2;
+        u16 upper : 4;
+        u16 rest : 12;
+    };
+    s32 i;
+    s32 cutoff;
+    struct Entry *entry;
+    f32 limit;
+
+    limit = (f32)D_8012BE62 * 0.007352941204f;
+    if (0.85f < limit || func_800A9F30() == 0 || arg0 != 1) {
+        i = func_8001211C();
+        cutoff = i - func_800A9F14(arg0);
+        if (arg0 == 1) {
+            i = 8;
+        } else {
+            i = D_8012BE62 - 1;
+        }
+        for (; i >= 0; i--) {
+            entry = (struct Entry *)(D_8012B800 + nextEntry * 12);
+            if (entry->flags != 0 && entry->upper == 0 &&
+                ((s32)entry->frame < cutoff ||
+                 (arg0 == 3 && (entry->flags == 1 || entry->flags == 2 ||
+                                entry->flags == 6 || entry->flags == 7 ||
+                                entry->flags == 5 || entry->flags == 8)))) {
+                func_800D6378((u8 *)entry);
+                if (nextEntry > 0) {
+                    nextEntry--;
+                }
+            }
+            if (nextEntry >= D_8012BE62 - 1) {
+                nextEntry = 0;
+            } else {
+                nextEntry++;
+            }
+        }
+    }
+}
 
 s32 func_800D7050(s32 arg0, s32 arg1) {
     extern u8 D_8012B800[];
@@ -1176,17 +1229,19 @@ s32 func_800D8588(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _glsplinecs_entrypoint_1(s32 *, Actor *);
     void *func_80105494(Actor *);
     extern s32 D_8012BE70;
-    u8 *sp30[2];
+
+s16 D_8011B910 = -1;
+    u8 *state;
     s32 var_s1;
     s32 var_v1;
 
     var_s1 = 0;
-    sp30[0] = func_80105494(arg0);
+    state = func_80105494(arg0);
     do {
         (*(s32 *)((s8 *)(&D_8012BE70) + (0x18C))) = 0;
         var_s1 += func_800D8070(arg0, arg1, arg2, arg3);
     } while ((*(s32 *)((s8 *)(&D_8012BE70) + (0x18C))) != 0);
-    if (*sp30[0] != 0) {
+    if (*state != 0) {
         _glsplinecs_entrypoint_1(&D_8012BE70, arg0);
     }
     if (var_s1 != 0) {
