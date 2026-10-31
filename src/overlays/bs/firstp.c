@@ -1014,7 +1014,7 @@ void func_80801D70_bsfirstp(u8 *arg0) {
 
 void func_80801DC0_bsfirstp(u8 *arg0) {
     void func_80801E18_bsfirstp(u8 *);
-    s32 func_80801FD0_bsfirstp(u8 *, s32);
+    void func_80801FD0_bsfirstp(u8 *, s32);
     void func_808023A0_bsfirstp(u8 *);
     u8 *temp_v0;
     s32 temp_v1;
@@ -1098,7 +1098,68 @@ void func_80801E18_bsfirstp(u8 *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/firstp/func_80801FD0_bsfirstp.s")
+void func_80801FD0_bsfirstp(u8 *player, s32 preset) {
+    void _baeggcursor_entrypoint_10(void *, f32, f32);
+    f32 func_8080222C_bsfirstp(f32, f32, f32);
+    f32 func_80802304_bsfirstp(f32, f32, f32);
+    extern f32 D_8080A5D0_bsfirstp[][12];
+    u8 *state;
+    f32 bound;
+    f32 scale[2];
+    f32 limit[2];
+    f32 speed[2];
+    f32 blend;
+    f32 dt;
+    f32 *cursor;
+    f32 *rotation;
+    f32 target[2];
+    f32 input[2];
+    f32 *parameters;
+
+    state = *(u8 **)(player + 0x188);
+    blend = *(f32 *)(state + 0xB4);
+    cursor = (f32 *)(state + 0xB8);
+    dt = func_800D9004();
+    switch (*(s32 *)(state + 0xA0)) {
+    case 0:
+        bound = 0;
+        blend -= dt * 4.0f;
+        if (blend < bound) {
+            blend = bound;
+        }
+        break;
+    case 1:
+        bound = 1;
+        blend += dt * 4.0f;
+        if (blend >= bound) {
+            blend = bound;
+        }
+        break;
+    }
+    parameters = D_8080A5D0_bsfirstp[preset];
+    *(f32 *)(state + 0xB4) = blend;
+    scale[0] = parameters[0] + (parameters[6] - parameters[0]) * blend;
+    scale[1] = parameters[1] + (parameters[7] - parameters[1]) * blend;
+    limit[0] = parameters[2] + (parameters[8] - parameters[2]) * blend;
+    limit[1] = parameters[3] + (parameters[9] - parameters[3]) * blend;
+    speed[0] = parameters[4] + (parameters[10] - parameters[4]) * blend;
+    speed[1] = parameters[5] + (parameters[11] - parameters[5]) * blend;
+    if (*(s32 *)(state + 0xA8) == 1) {
+        input[0] = *(f32 *)(state + 0x168);
+        input[1] = *(f32 *)(state + 0x184);
+    } else {
+        input[0] = 0.0f;
+        input[1] = 0.0f;
+    }
+    target[0] = input[0] * scale[0] + 152.0f;
+    target[1] = input[1] * scale[1] + 114.0f;
+    cursor[0] = func_8080222C_bsfirstp(cursor[0], target[0], speed[0]);
+    cursor[1] = func_8080222C_bsfirstp(cursor[1], target[1], speed[1]);
+    _baeggcursor_entrypoint_10(player, cursor[0], cursor[1]);
+    rotation = (f32 *)(state + 0xC0);
+    rotation[0] = func_80802304_bsfirstp(cursor[0] - 152.0f, scale[0], limit[0]);
+    rotation[1] = func_80802304_bsfirstp(cursor[1] - 114.0f, scale[1], limit[1]);
+}
 
 /* extern */
 
