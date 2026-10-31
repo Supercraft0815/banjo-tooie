@@ -1,5 +1,8 @@
 #include "common.h"
 
+void func_800907C0(f32 *);
+u32 func_800F54E4(void);
+
 s32 func_80800000_chbanjocurrent(void)
 {
     s32 func_800F4C24(s32);
@@ -176,4 +179,55 @@ f32 func_80800514_chbanjocurrent(f32 *arg0, f32 *arg1, f32 arg2) {
     return sp20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/banjocurrent/func_808005F4_chbanjocurrent.s")
+void func_808005F4_chbanjocurrent(Actor *arg0) {
+    s32 func_8008FF94(void);
+    void func_80090794(f32 *);
+    void func_800907C0(f32 *);
+    f32 func_800D8FF8(void);
+    u32 func_800F54E4(void);
+    void *func_800F5E50(s32);
+    f32 func_800F5E7C(s32);
+    f32 func_800F5F7C(s32);
+    struct CurrentActor {
+        u8 header[0x48];
+        f32 type;
+    };
+    s32 state;
+    s32 current;
+    s32 player;
+    f32 strength;
+    s32 *node;
+    f32 distance;
+    f32 velocity[3];
+    f32 offset[2];
+
+    if (func_80800000_chbanjocurrent()) {
+        player = func_800F54E4();
+        arg0->unk58 += func_800D8FF8() * arg0->unk74_7 * 4.0f;
+        state = func_8008FF94();
+        if (state == 0) {
+            return;
+        }
+        if (state == 2) {
+            distance = func_800F5E7C(player) - func_800F5F7C(player);
+            if (distance >= 2000.0f) {
+                return;
+            }
+            if (distance < 0.0f) {
+                distance = 0.0f;
+            }
+            strength = 1.0f - distance * 0.0005f;
+        } else {
+            strength = 1.0;
+        }
+        node = func_800F5E50(player);
+        current = (u32)(node[2] & 0x78000000) >> 27;
+        if (current != 0 && (f32)current == ((struct CurrentActor *)arg0)->type) {
+            func_80090794(velocity);
+            func_80800514_chbanjocurrent(velocity, offset, arg0->unk58);
+            velocity[0] += offset[0] * 8.0f * strength;
+            velocity[2] += offset[1] * 8.0f * strength;
+            func_800907C0(velocity);
+        }
+    }
+}
