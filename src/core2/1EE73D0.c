@@ -1,6 +1,63 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EE73D0/func_8010DAE0.s")
+typedef struct {
+    f32 duration;
+    u16 unk4_2 : 14;
+    u16 type : 2;
+    u16 unk6;
+} AnimationEntry;
+
+void func_8010DAE0(s32 arg0, s32 arg1) {
+    typedef struct anctrl_s AnimCtrl;
+    typedef enum asset_e AssetId;
+    void anctrl_reset(AnimCtrl *);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setIndex(AnimCtrl *, AssetId);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_start(AnimCtrl *);
+    void func_8008B10C(AnimCtrl *, f32);
+    void func_8008B188(AnimCtrl *, s32);
+    void func_8008B4A8(AnimCtrl *, s32);
+    f32 func_800DC0C0(void);
+    int func_800DC298(f32);
+    typedef AnimationEntry Entry;
+    extern Entry D_80124740[];
+    s32 flags;
+
+    flags = D_80124740[arg1].unk6;
+    anctrl_reset((AnimCtrl *)arg0);
+    anctrl_setIndex((AnimCtrl *)arg0, (*(u32 *)((u8 *)&D_80124740[arg1] + 4) >> 18));
+    anctrl_setDuration((AnimCtrl *)arg0, D_80124740[arg1].duration);
+    if (flags & 1) {
+        anctrl_setPlaybackType((AnimCtrl *)arg0, 2);
+        func_8008B4A8((AnimCtrl *)arg0, (flags & 0x100) ? 0 : 1);
+    }
+    if (flags & 2) {
+        anctrl_setPlaybackType((AnimCtrl *)arg0, 1);
+    }
+    if (flags & 4) {
+        anctrl_setPlaybackType((AnimCtrl *)arg0, 3);
+    }
+    if (flags & 8) {
+        func_8008B188((AnimCtrl *)arg0, 1);
+    }
+    if (flags & 0x10) {
+        func_8008B188((AnimCtrl *)arg0, 0);
+    }
+    if (flags & 0x800) {
+        func_8008B188((AnimCtrl *)arg0, func_800DC298(0.5f) ? 1 : 0);
+    }
+    if (flags & 0x40) {
+        func_8008B10C((AnimCtrl *)arg0, 0.0f);
+    }
+    if (flags & 0x80) {
+        func_8008B10C((AnimCtrl *)arg0, 0.999f);
+    }
+    if (flags & 0x400) {
+        func_8008B10C((AnimCtrl *)arg0, func_800DC0C0());
+    }
+    anctrl_start((AnimCtrl *)arg0);
+}
 
 /* extern */
 
@@ -8,7 +65,7 @@ void func_8010DC50(s32 arg0) {
     void *func_80104148(s32);
     s32 func_80104268(s32);
     s16 func_800AE020();
-    s32 func_8010DAE0(s32, s32);
+    void func_8010DAE0(s32, s32);
     s16 *ptr;
     ptr = func_80104148(arg0);
     if (*((u8 *)ptr + 4) == 0) {
@@ -57,12 +114,7 @@ void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
         s16 unk8;
         s32 unkC, unk10;
     } State;
-    typedef struct {
-        s32 unk0;
-        u16 unk4_2 : 14;
-        u16 type : 2;
-        u16 unk6;
-    } Entry;
+    typedef AnimationEntry Entry;
     extern Entry D_80124740[];
     State *state;
     s32 control;

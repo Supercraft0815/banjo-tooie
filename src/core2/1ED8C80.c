@@ -487,7 +487,42 @@ loop_1:
     func_80107C10();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED8C80/func_800FFECC.s")
+u32 *func_800FFECC(Actor *arg0, s32 arg1, s32 arg2) {
+    s16 func_8001B668(s32, s32);
+    void *func_8001B710(s16, s32);
+    void func_8001B754(s16);
+    void *func_8001B798(s16);
+    s32 func_8001B7B8(s16);
+    s32 size = (arg2 + 3) & 0x7FFFFFFC;
+    s32 i;
+    u32 *buffer;
+    s16 *handle = (s16 *)((u8 *)arg0 + (arg1 << 1));
+    s32 oldSize;
+    if (arg2 != 0) {
+        if (handle[0x41] != 0) {
+            oldSize = func_8001B7B8(handle[0x41]);
+            buffer = func_8001B710(handle[0x41], size);
+            if (oldSize < size) {
+                for (i = (size >> 2) - 1; i >= (oldSize >> 2); i--) {
+                    buffer[i] = 0;
+                }
+            }
+        } else {
+            handle[0x41] = func_8001B668(4, size);
+            buffer = func_8001B798(handle[0x41]);
+            for (i = (size >> 2) - 1; i >= 0; i--) {
+                buffer[i] = 0;
+            }
+        }
+    } else if (handle[0x41] != 0) {
+        func_8001B754(handle[0x41]);
+        handle[0x41] = 0;
+    }
+    if (handle[0x41] != 0) {
+        return func_8001B798(handle[0x41]);
+    }
+    return NULL;
+}
 
 u32* func_80100074(Actor* a0, u32 a1, u32 a2)
 {
@@ -495,7 +530,7 @@ u32* func_80100074(Actor* a0, u32 a1, u32 a2)
 }
 
 void *func_80100094(Actor *arg0, u32 arg1) {
-    s32 func_8001B798(s16);
+    void *func_8001B798(s16);
     s16 temp;
     s32 result;
     temp = *(s16 *)((u8 *)arg0 + 0x82 + arg1 * 2);

@@ -388,7 +388,6 @@ s32 func_800CAF34(s32 arg0) {
     void func_800D965C(f32[4], f32[16]);
     f32 func_800EEAA4(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    void mlMtxSet(void *);
     f32 sp40[4];
     f32 sp30[4];
 
@@ -396,7 +395,7 @@ s32 func_800CAF34(s32 arg0) {
     func_800D965C(sp40, (f32 *)(arg0 + 0x64));
     func_800D9624(sp30, sp40);
     func_800D965C(sp30, (f32 *)(arg0 + 0xA4));
-    mlMtxSet((f32 *)(arg0 + 0x64));
+    mlMtxSet((MtxF *)(arg0 + 0x64));
     func_800EFA4C((f32 *)(arg0 + 0xC), 0.0f, 0.0f, -1.0f);
     func_80019224((f32 *)(arg0 + 0xC), (f32 *)(arg0 + 0xC));
     func_80019224((f32 *)(arg0 + 0x24), (f32 *)(arg0 + 0xF8));
@@ -416,4 +415,51 @@ s32 func_800CAF34(s32 arg0) {
 
 void func_800CB0E8(u8 *arg0, f32 *arg1, s32 arg2) { void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, (f32 *)(arg0 + 0x128 + (arg2 * 12))); }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA3AA0/func_800CB124.s")
+u16 func_800CB124(s32 arg0, MtxF *arg1) {
+    void func_800F274C(MtxF *);
+    extern f32 D_80125974, D_80125978, D_8012597C, D_80125980;
+    s32 i, j;
+    f32 near;
+    f32 far;
+    f32 depth;
+    u16 norm;
+
+    near = *(f32 *)(arg0 + 0xEC);
+    far = *(f32 *)(arg0 + 0xF0);
+    if (near < 1.0f) {
+        near = 1.0f;
+    }
+    if (far < near + 100.0f) {
+        far = near + 100.0f;
+    }
+    depth = (2 * near * far / (near - far)) * 0.5f;
+    if (D_80125974 < depth || depth < D_80125978) {
+        if (D_80125974 < depth) {
+            depth = D_8012597C;
+        } else {
+            depth = D_80125980;
+        }
+        near = (-(depth / 0.5f) * far) / (2 * far - depth / 0.5f);
+    }
+    func_800F274C(arg1);
+    arg1->m[0][0] = *(f32 *)(arg0 + 0xF4) / *(f32 *)(arg0 + 0xE8);
+    arg1->m[1][1] = *(f32 *)(arg0 + 0xF4);
+    arg1->m[2][2] = (near + far) / (near - far);
+    arg1->m[2][3] = -1.0f;
+    arg1->m[3][2] = 2.0f * near * far / (near - far);
+    arg1->m[3][3] = 0.0f;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            arg1->m[i][j] *= 0.5f;
+        }
+    }
+    if (near + far <= 2.0f) {
+        norm = 0xFFFF;
+    } else {
+        norm = (u32)(131072.0f / (near + far));
+        if (norm <= 0) {
+            norm = 1;
+        }
+    }
+    return norm;
+}
