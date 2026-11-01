@@ -1,5 +1,55 @@
 #include "ch/transparentfish.h"
 
+void func_80800348_chtransparentfish(Actor *actor);
+void func_80105834(Actor *);
+void func_80800690_chtransparentfish(Actor *arg0, void *arg1);
+void func_80800B30_chtransparentfish(s32 arg0);
+OSThread *func_80108ED0(void);
+void func_808002B8_chtransparentfish(Actor *arg0);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_8080078C_chtransparentfish(Actor *arg0, s32 arg1, s32 arg2);
+u32 D_80800F80_chtransparentfish[] = {
+    0x00010000, 0x00020000, 0x00020000, 0x00000000,
+    0x00030000
+};
+
+u32 D_80800F94_chtransparentfish[] = {
+    0x00000000, 0x00000000, 0x40200000, 0x01580001,
+    0x40200000, 0x01580001, 0x40200000, 0x01580001
+};
+
+s32 D_80800FB4_chtransparentfish[][3] = {
+    { 0, 0, 100 },
+    { 543, -30, 100 },
+    { 310, -50, 100 },
+    { 456, -50, 100 },
+    { 457, -50, 100 },
+    { 458, -50, 100 },
+    { 459, -50, 100 },
+    { 460, -70, 90 },
+    { 462, -70, 100 },
+    { 463, -70, 100 },
+    { 471, -50, 100 },
+    { 472, -70, 70 },
+    { 544, -50, 90 }
+};
+
+s32 D_80801050_chtransparentfish[] = {
+    0x001D09D9, 0x00161004, 0x001B0096, 0x00960007,
+    0x0001000E, 0x000A000A, 0x00150000, 0x00CC002B,
+    0x03000300, 0x0020FFFF, 0xFEFF0022, 0x000C0017,
+    0x000C0017, 0x002F0040, 0x00400000, 0x00000019,
+    0x00000033, 0x00000000
+};
+
+u32 D_80801098_chtransparentfish[] = {
+    0x012D0295, 0x06D90001, (u32)D_80800F94_chtransparentfish, (u32)func_80800348_chtransparentfish,
+    (u32)func_80105834, (u32)func_80800690_chtransparentfish, 0x13880000, 0x00000000,
+    0x00000000, 0x00220123, (u32)func_80800B30_chtransparentfish, (u32)func_80108ED0,
+    0x00080000, (u32)func_808002B8_chtransparentfish, (u32)func_80107C2C, 0x8040500F,
+    (u32)func_8080078C_chtransparentfish, (u32)D_80800F80_chtransparentfish
+};
+
 void func_80800000_chtransparentfish(Actor *arg0) {
     struct FishNodeIndices {
         u8 prefix[0x70];
@@ -125,7 +175,6 @@ void func_80800348_chtransparentfish(Actor *actor)
     f32 func_800F1DCC(f32, f32);
     f32 func_800F0DC0(f32, f32);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
-    extern s32 D_80801050_chtransparentfish[];
     struct TransparentFishFlags {
         u32 unused : 2;
         u32 active : 1;
@@ -177,8 +226,6 @@ void func_80800690_chtransparentfish(Actor *arg0, void *arg1) {
     void func_80101870(Actor *, void *);
     OSThread *func_80104130(void);
     void func_80800AC4_chtransparentfish(Actor *, f32 *, s32);
-    extern s32 D_80800FB4_chtransparentfish[][3];
-    extern s32 D_80800FB8_chtransparentfish[][3];
     f32 position[3];
     s32 value;
     u32 index;
@@ -191,14 +238,115 @@ void func_80800690_chtransparentfish(Actor *arg0, void *arg1) {
         if (value != 0) {
             func_800DBEFC(func_80104130(), 4, position);
             index = arg0->unk6C_0;
-            value = (index != 0 && index < 13U) ? D_80800FB8_chtransparentfish[index][0] : 0;
+            value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][1] : 0;
             position[1] += (f32)value;
             func_80800AC4_chtransparentfish(arg0, position, 1);
         }
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_8080078C_chtransparentfish.s")
+s32 func_8080078C_chtransparentfish(Actor *arg0, s32 arg1, s32 arg2) {
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
+    s32 _subaddielink_entrypoint_3(s32 *arg0);
+    s32 func_800D0B68(u32 arg0, u32 arg1);
+    s32 func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, s32 arg4);
+    void * func_80100094(Actor *arg0, u32 arg1);
+    void func_80102424(Actor *arg0, s32 arg1);
+    Actor * func_80106790(Unk80132ED0 *arg0);
+    s32 func_80107070(Actor *arg0, u32 arg1);
+    Actor * func_80108474(u32 arg0, f32 *arg1, s32 arg2);
+    void func_80108B04(s32 *arg0, s32 arg1);
+    void func_80800AC4_chtransparentfish(Actor *arg0, f32 *arg1, s32 arg2);
+    struct FishFlags {
+        u8 prefix[0x64];
+        u32 visible : 1;
+        u32 rest64 : 31;
+        u32 word68;
+        u32 word6C;
+        u32 upper70 : 15;
+        u32 flag70_16 : 1;
+        u32 lower70 : 16;
+        u32 upper74 : 11;
+        u32 flag74_20 : 1;
+        u32 middle74 : 14;
+        u32 flag74_5 : 1;
+        u32 lower74 : 5;
+    };
+    Actor *spawned;
+    Unk80132ED0 *marker;
+    u32 index;
+    s32 value;
+    f32 *position;
+    switch ((int)arg1) {
+    case 0x3D:
+        marker = arg0->unk0;
+        index = arg0->unk6C_0;
+        value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][0] : 0;
+        if (value == 0x21F) {
+            if (func_800D0B68(0x26, 1) == 0) {
+                spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0x26, 1, arg0->position, 3, (s32)arg0->unk0));
+            }
+            else {
+                return 0;
+            }
+        }
+        else {
+            value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][0] : 0;
+            if (value == 0x136) {
+                if (func_800D0B68(0xB, 4) == 0) {
+                    spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0xB, 4, arg0->position, 3, (s32)arg0->unk0));
+                }
+                else {
+                    return 0;
+                }
+            }
+            else {
+                value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][0] : 0;
+                position = arg0->position;
+                if (value == 0x220) {
+                    if (func_800D0B68(0xA, 2) == 0) {
+                        spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0xA, 2, arg0->position, 3, (s32)arg0->unk0));
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+                else {
+                    value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][0] : 0;
+                    spawned = func_80108474(value, position, 0);
+                }
+            }
+        }
+        ((struct FishFlags *)spawned)->flag74_5 = 0;
+        ((struct FishFlags *)spawned)->flag74_20 = 0;
+        ((struct FishFlags *)spawned)->flag70_16 = 0;
+        ((struct FishFlags *)spawned)->visible = 0;
+        arg0 = func_80106790(marker);
+        _subaddielink_entrypoint_1(func_80100094(arg0, 0), (u8 *)spawned->unk0);
+        func_80800AC4_chtransparentfish(arg0, arg0->position, 0);
+        index = arg0->unk6C_0;
+        if (index != 0 && index < 13U) {
+            spawned->scale = ((f32)D_80800FB4_chtransparentfish[index][2] / 100.0f) * arg0->scale;
+        }
+        else {
+            spawned->scale = 0.0f;
+        }
+        return 1;
+    case 1:
+        func_80102424(arg0, 1);
+        return 1;
+    case 2:
+        func_80107070(arg0, 1);
+        return 1;
+    case 0x95:
+        if (_subaddielink_entrypoint_3(func_80100094(arg0, 0)) == 0) {
+            func_80108B04((s32 *)arg0, 0);
+        }
+        return 1;
+    default:
+        return 0;
+    }
+}
 
 void func_80800AC4_chtransparentfish(Actor *arg0, f32 *arg1, s32 arg2) {
     Actor *_subaddielink_entrypoint_4(u8 *);
@@ -226,8 +374,6 @@ void func_80800B30_chtransparentfish(s32 arg0)
 
 OSThread *chtransparentfish_entrypoint_0(void)
 {
-    extern u8 D_80801098_chtransparentfish[];
-
     return (OSThread *) D_80801098_chtransparentfish;
 }
 

@@ -11238,7 +11238,7 @@ segments:
     subsegments: 
       - [0x020B2980, c, transparentfish]
       - [0x020B38E0, .rodata, transparentfish]
-      - [0x020B3900, data, transparentfish]
+      - [0x020B3900, .data, transparentfish]
       - [0x020B3A60, bss, transparentfish]
   - name: chdummyjigsaw_header
     dir: overlays/chdummyjigsaw
