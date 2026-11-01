@@ -660,7 +660,131 @@ void bsbtrot_entrypoint_12(PlayerState *arg0) {
     *(s32 *)((u8 *)arg0 + 0x15C) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/btrot/bsbtrot_entrypoint_13.s")
+void bsbtrot_entrypoint_13(void *arg0) {
+    void baphysics_reset_gravity();
+    void func_8009D658(PlayerState *);
+    s32 anctrl_isStopped(AnimCtrl *);
+    void anctrl_setDuration(AnimCtrl *, f32);
+    void anctrl_setPlaybackType(AnimCtrl *, s32);
+    void anctrl_setSubrange(AnimCtrl *, f32, f32);
+    AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+    int bakey_pressed(PlayerState *, int);
+    s32 bakey_released(void *, s32);
+    f32 baphysics_get_target_horizontal_velocity(PlayerState *);
+    s32 func_8008E3E8(PlayerState *);
+    void func_8009BB24(void *, f32 *);
+    s32 nextState;
+    s32 animCtrl;
+    f32 velocity[3];
+    s32 shoes;
+    nextState = 0;
+    animCtrl = baanim_getAnimCtrlPtr(arg0);
+    func_808004B4_bsbtrot(arg0);
+    if (func_8008E3E8((s32)arg0) != 0) {
+        _bashoes_entrypoint_20(arg0);
+    }
+    if (baflag_isTrue(arg0, 0xF) != 0) {
+        func_8009B7C0(arg0);
+    } else {
+        func_80800438_bsbtrot(arg0);
+    }
+    func_8009BB24(arg0, velocity);
+    if (bakey_released(arg0, 8) && (velocity[1] > 0.0f)) {
+        baphysics_reset_gravity(arg0);
+    }
+    switch (*(u32 *)((u8 *)arg0 + 0x15C)) {
+    case 0:
+        if (anctrl_isStopped(animCtrl) != 0) {
+            anctrl_setSubrange(animCtrl, 0.0f, 0.4653f);
+            anctrl_setDuration(animCtrl, 10.0f);
+            anctrl_setPlaybackType((s32)animCtrl, 1);
+            *(u32 *)((u8 *)arg0 + 0x15C) = 1;
+        }
+        break;
+    case 1:
+        if (func_8008DF8C(arg0, 0x8C) != 0) {
+            anctrl_setSubrange(animCtrl, 0.0f, 0.7328f);
+            anctrl_setDuration(animCtrl, 1.4f);
+            anctrl_setPlaybackType((s32)animCtrl, 1);
+            *(u32 *)((u8 *)arg0 + 0x15C) = 2;
+        }
+        break;
+    case 2:
+        func_8009D3A8(arg0, 1);
+        if (player_isStable(arg0) != 0) {
+            func_8009FE58(arg0);
+            anctrl_setSubrange(animCtrl, 0.0f, 0.8798f);
+            anctrl_setDuration(animCtrl, 0.9f);
+            anctrl_setPlaybackType((s32)animCtrl, 1);
+            func_8009D2D8(arg0, 1);
+            *(u32 *)((u8 *)arg0 + 0x15C) = 3;
+            if (baphysics_get_target_horizontal_velocity(arg0) > 220.0f) {
+                func_8009D658(arg0);
+            }
+            _badust_entrypoint_1(arg0);
+        }
+        break;
+    case 3:
+        if (baphysics_get_target_horizontal_velocity(arg0) > 220.0f) {
+            func_8009D658(arg0);
+        }
+        func_8009D3A8(arg0, 1);
+        if (anctrl_isStopped(animCtrl) != 0) {
+            anctrl_setSubrange(animCtrl, 0.0f, 0.8898f);
+            anctrl_setDuration(animCtrl, 2.0f);
+            anctrl_setPlaybackType((s32)animCtrl, 1);
+            *(u32 *)((u8 *)arg0 + 0x15C) = 4;
+        }
+        _badust_entrypoint_1(arg0);
+        break;
+    case 4:
+        if (baphysics_get_target_horizontal_velocity(arg0) > 220.0f) {
+            func_8009D658(arg0);
+        }
+        func_8009D3A8(arg0, 1);
+        if (anctrl_isStopped(animCtrl) != 0) {
+            anctrl_setSubrange(animCtrl, 0.0f, 1.0f);
+            anctrl_setDuration(animCtrl, 1.2f);
+            anctrl_setPlaybackType((s32)animCtrl, 1);
+            *(u32 *)((u8 *)arg0 + 0x15C) = 5;
+        }
+        _badust_entrypoint_1(arg0);
+        break;
+    case 5:
+        if (baphysics_get_target_horizontal_velocity(arg0) > 220.0f) {
+            func_8009D658(arg0);
+        }
+        func_8009D3A8(arg0, 1);
+        if (anctrl_isStopped(animCtrl) != 0) {
+            nextState = 0x15;
+        }
+        break;
+    }
+    shoes = _bashoes_entrypoint_1(arg0);
+    if ((shoes == 1) || (shoes == 2)) {
+        if (bainput_func_80097DF4(arg0) != 0) {
+            nextState = 0x10;
+        }
+        if (bainput_func_80097F08(arg0) != 0) {
+            nextState = 0x11;
+        }
+    }
+    if (player_inWater(arg0) != 0) {
+        nextState = 0x4C;
+    }
+    if (player_isStable(arg0) != 0) {
+        if (bakey_pressed((s32)arg0, 8) != 0) {
+            nextState = func_8080075C_bsbtrot(arg0, nextState);
+        }
+        if (func_8008DF18(arg0) != 0) {
+            nextState = 0x45;
+        }
+    }
+    if (func_8008E260(arg0) != 0) {
+        nextState = 0x3D;
+    }
+    bs_setState((s32)arg0, nextState);
+}
 
 void baphysics_reset_gravity();
 void bsbtrot_entrypoint_14(s32 arg0)
@@ -1493,3 +1617,6 @@ s32 bsbtrot_entrypoint_55(s32 arg0) {
     extern s32 D_80802F20_bsbtrot[];
     return ((s32 *)&D_80802F20_bsbtrot)[arg0];
 }
+
+/* The ROM table holds the syscall stub, so this copy (its .data is not linked) only records the address reference for IDO. */
+static s32 D_bsbtrot_entrypoint_13_ref[] = {(s32)bsbtrot_entrypoint_13};
