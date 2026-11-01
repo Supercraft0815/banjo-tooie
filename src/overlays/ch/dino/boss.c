@@ -1,20 +1,149 @@
 #include "common.h"
 
+void func_80800220_chdinoboss(Actor* arg0);
+void func_80105834(Actor *);
+void func_80101870(Actor *, void *);
+OSThread *func_80108ED0(void);
+void func_80800018_chdinoboss(Actor *arg0);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_80800C50_chdinoboss(Actor *arg0, s32 arg1, s32 arg2);
+void func_80802684_chdinoboss(Actor *arg0);
+void func_8010A730(s32, s32);
+void func_808025E8_chdinoboss(Actor *arg0);
+s32 func_808026D0_chdinoboss(Actor *arg0, s32 arg1, s32 arg2);
+
+f32 D_80802A20_chdinoboss[] = {
+    300.0f, 10.0f, -150.0f
+};
+
+u32 D_80802A2C_chdinoboss[] = {
+    0x00130417, 0x00020000
+};
+
+u32 D_80802A34_chdinoboss[] = {
+    0x00130538, 0x00020016, 0x7530000D, 0x00F3010C,
+    0x00000000
+};
+
+u32 D_80802A48_chdinoboss[] = {
+    0x001303FF, 0x000D0073, 0x008C0002, 0x00000000
+};
+
+u32 D_80802A58_chdinoboss[] = {
+    0x00130539, 0x00020018, 0x000D00F3, 0x010C0000
+};
+
+u32 D_80802A68_chdinoboss[] = {
+    0x00000000, 0x00000000, 0x411CCCCD, 0x01630001,
+    0x411CCCCD, 0x01630001, 0x411CCCCD, 0x01630001,
+    0x411CCCCD, 0x01630001, 0x40000000, 0x01620002,
+    0x408CCCCD, 0x01610301, 0x4099999A, 0x01610001,
+    0x3F800000, 0x015F0042, 0x408CCCCD, 0x01610001,
+    0x3EE66666, 0x01600001, 0x408CCCCD, 0x01610001,
+    0x3F800000, 0x015F0042, 0x408CCCCD, 0x01610001,
+    0x408CCCCD, 0x01610001, 0x408CCCCD, 0x01610001,
+    0x3F666666, 0x015E0001, 0x3F800000, 0x015D0302,
+    0x413BAE14, 0x01C10001, 0x413BAE14, 0x01C10001,
+    0x40E75C29, 0x01F70001, 0x40E75C29, 0x01F70001,
+    0x3F000000, 0x015C0002, 0x3F000000, 0x015C0002,
+    0x411CCCCD, 0x01630001, 0x408CCCCD, 0x01610001,
+    0x411CCCCD, 0x01630001
+};
+
+u32 D_80802B40_chdinoboss[] = {
+    0x02FA036F, 0x06DA0001, (u32)D_80802A68_chdinoboss, (u32)func_80800220_chdinoboss,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00010568, 0x00000000, (u32)func_80108ED0,
+    0x01780000, (u32)func_80800018_chdinoboss, (u32)func_80107C2C, 0x80210420,
+    (u32)func_80800C50_chdinoboss, 0x00000000
+};
+
+u32 D_80802B88_chdinoboss[] = {
+    0x009F03D8, 0x00000001, 0x00000000, (u32)func_80802684_chdinoboss,
+    (u32)func_80105834, (u32)func_8010A730, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, (u32)func_808025E8_chdinoboss, (u32)func_80107C2C, 0x80000602,
+    (u32)func_808026D0_chdinoboss, 0x00000000
+};
+
+u8 D_80802BD0_chdinoboss[] = {
+    0, 0, 9, 196,
+    0, 0, 23, 183,
+    0, 0, 6, 1,
+    18, 11, 0, 0,
+    0, 87, 0, 0,
+    0, 14, 34, 40,
+    21, 0, 0, 0
+};
+
+u32 D_80802BEC_chdinoboss[] = {
+    0x001304AA, 0x00020000
+};
+
+u32 D_80802BF4_chdinoboss[] = {
+    0x00130535, 0x0002000D, 0x00F3010C, 0x00000000
+};
+
+u32 D_80802C04_chdinoboss[] = {
+    0x00130534, 0x00020018, 0x000D00F3, 0x010C0000
+};
+
+u32 D_80802C14_chdinoboss[] = {
+    0x3D3851EC, 0x3DB43958, 0x3E0D4FDF, 0x3E3D70A4,
+    0xBF800000
+};
+
+u32 D_80802C28_chdinoboss[] = {
+    0x3E99999A, 0x3EBD70A4, 0xBF800000
+};
+
+u32 D_80802C34_chdinoboss[] = {
+    0x3F400000, 0x3F6B851F, 0xBF800000
+};
+
+u32 D_80802C40_chdinoboss[] = {
+    0x3E99999A, 0x3F266666, 0xBF800000
+};
+
+u32 D_80802C4C_chdinoboss[] = {
+    0x3C23D70A, 0x3E3851EC, 0x3EB33333, 0x3F051EB8,
+    0x3F2E147B, 0x3F570A3D, 0xBF800000
+};
+
+u32 D_80802C68_chdinoboss[] = {
+    0x00130512, 0x0002000D, 0x00C000D9, 0x00000000
+};
+
+u32 D_80802C78_chdinoboss[] = {
+    0x00130551, 0x0002000D, 0x00F3010C, 0x00000000
+};
+
+u32 D_80802C88_chdinoboss[] = {
+    0x3EE147AE, 0x3F000000, 0x3F0F5C29, 0xBF800000
+};
+
+u32 D_80802C98_chdinoboss[] = {
+    0x00130535, 0x0002000D, 0x009900B3, 0x00000000
+};
+
+f32 D_80802CA8_chdinoboss[] = {
+    -6700.0f, 1300.0f, -4400.0f, 0.0f,
+    0.0f, 0.0f
+};
+
+void _glcutDll_entrypoint_6(u32, u32);
+
 void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
 void _glcutDll_entrypoint_17(void);
 s32 func_800EA05C();
 
 OSThread *chdinoboss_entrypoint_0(void)
 {
-    extern u8 D_80802B40_chdinoboss[];
-
     return (OSThread *) D_80802B40_chdinoboss;
 }
 
 OSThread *chdinoboss_entrypoint_1(void)
 {
-    extern u8 D_80802B88_chdinoboss[];
-
     return (OSThread *) D_80802B88_chdinoboss;
 }
 
@@ -34,7 +163,7 @@ void func_80800018_chdinoboss(Actor *arg0) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
     void func_800DA524(s32);
@@ -106,12 +235,7 @@ void func_80800220_chdinoboss(Actor* arg0) {
         u8 pad0[0xAE];
         u16 flags;
     } DinoBossDefinition;
-    extern f32 D_80802A20_chdinoboss[3];
-    extern u32 D_80802A2C_chdinoboss[];
-    extern u32 D_80802A34_chdinoboss[];
-    extern u32 D_80802A58_chdinoboss[];
-    extern DinoBossDefinition D_80802A68_chdinoboss;
-    extern u8 D_80802BD0_chdinoboss[];
+
     void* func_80100094(Actor*, u32);
     s32 func_800DA298(s32);
     void func_800DA524(s32);
@@ -122,7 +246,7 @@ void func_80800220_chdinoboss(Actor* arg0) {
     u32 func_800F54E4(void);
     s32 func_800F64A4(s32, s32);
     void func_8010D254(f32*);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 func_80101180(s32, s32, s32);
     u8 func_800D9078(f32*);
     s32 func_800D90A4(f32*);
@@ -381,9 +505,9 @@ void func_80800220_chdinoboss(Actor* arg0) {
 
             func_80801860_chdinoboss(arg0);
             if (!func_800C9510()) {
-                D_80802A68_chdinoboss.flags |= 0x200;
+                ((DinoBossDefinition *)D_80802A68_chdinoboss)->flags |= 0x200;
                 func_80800F70_chdinoboss(arg0, 21);
-                D_80802A68_chdinoboss.flags &= ~0x200;
+                ((DinoBossDefinition *)D_80802A68_chdinoboss)->flags &= ~0x200;
                 func_8080248C_chdinoboss(arg0, 0x13, 0x20);
                 _subaddiedialog_entrypoint_11(arg0->unk0, 0x17B6, 0xE, arg0->position, 0x57);
                 func_800EFD24(sp40);
@@ -452,7 +576,64 @@ void func_80800220_chdinoboss(Actor* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dino/boss/func_80800C50_chdinoboss.s")
+s32 func_80800C50_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
+    void _glcutDll_entrypoint_6(u32, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
+    s32 func_800D395C(void);
+    u32 func_800FDC28(u32 arg0);
+    void func_80800E88_chdinoboss(void *arg0, s32 arg1);
+    void func_80800F28_chdinoboss(Actor *arg0, s32 arg1);
+    void func_80800F70_chdinoboss(Actor *arg0, s32 arg1);
+    void func_80801408_chdinoboss(Actor *arg0, s32 arg1, s32 arg2);
+    void func_80801900_chdinoboss(Actor *arg0);
+    void func_8080248C_chdinoboss(Actor *arg0, s32 arg1, s32 arg2);
+    void func_80802500_chdinoboss(Actor *arg0);
+    switch ((int)arg1) {
+    default:
+        return 0;
+    case 0x3F:
+        func_80800E88_chdinoboss(arg0, arg2);
+        break;
+    case 0x40:
+        func_80800F28_chdinoboss(arg0, arg2);
+        break;
+    case 0xB:
+        switch ((int)arg2) {
+        case 11:
+            func_80802500_chdinoboss(arg0);
+            _glcutDll_entrypoint_6(0x112, 0x33);
+            return 4;
+        case 40:
+            func_8080248C_chdinoboss(arg0, 1, 0x30);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x17B3, 6, arg0->position, 0x57);
+            func_80800F70_chdinoboss(arg0, 3);
+            return 4;
+        default:
+            return 3;
+        }
+    case 0x2E:
+        func_80801408_chdinoboss(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 0x31:
+        func_8080248C_chdinoboss(arg0, 0x1B, 0x30);
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0x17DF, 6, arg0->position, 0x57);
+        break;
+    case 0x3D:
+        func_80801900_chdinoboss(arg0);
+        break;
+    case 0x96:
+        if (!func_800D395C()) {
+            return 0;
+        }
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x4E, arg0->position, 0x57);
+        break;
+    case 0x9F:
+        func_800FDC28(0);
+        func_80800F70_chdinoboss(arg0, 0x19);
+        break;
+    }
+    return 1;
+}
 
 /* extern */
 
@@ -537,7 +718,7 @@ void func_80800F70_chdinoboss(Actor *arg0, s32 arg1) {
         f32 unk134;
     } DinoBossData;
     s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     f32 func_800136E4(f32);
     f32 func_80013728(f32);
     s32 func_800C064C(void);
@@ -796,14 +977,7 @@ void func_808016C0_chdinoboss(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     void func_800E15CC(s32, f32, f32);
     void func_80018820(s32, f32, f32);
-    extern u32 D_80802A2C_chdinoboss[];
-    extern u32 D_80802A48_chdinoboss;
-    extern u32 D_80802BEC_chdinoboss;
-    extern u32 D_80802BF4_chdinoboss;
-    extern u32 D_80802C04_chdinoboss;
-    extern u32 D_80802C14_chdinoboss;
-    extern u32 D_80802C28_chdinoboss;
-    extern u32 D_80802C34_chdinoboss;
+
     f32 *temp_s1;
 
     temp_s1 = arg0->position;
@@ -811,54 +985,48 @@ void func_808016C0_chdinoboss(Actor *arg0) {
         func_800E15CC(0, 30.0f, 0.9f);
         func_80018820(0, 1.0f, 0.3f);
     }
-    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80802BEC_chdinoboss, &D_80802C28_chdinoboss);
-    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80802A48_chdinoboss, &D_80802C14_chdinoboss);
-    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80802BF4_chdinoboss, &D_80802C34_chdinoboss);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80802C04_chdinoboss, 0.07f);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, D_80802BEC_chdinoboss, D_80802C28_chdinoboss);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, D_80802A48_chdinoboss, D_80802C14_chdinoboss);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, D_80802BF4_chdinoboss, D_80802C34_chdinoboss);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, D_80802C04_chdinoboss, 0.07f);
 }
 
 void func_808017A0_chdinoboss(Actor *arg0) {
-    extern u32 D_80802A48_chdinoboss;
-    extern u32 D_80802C40_chdinoboss;
-    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80802A48_chdinoboss, &D_80802C40_chdinoboss);
+
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80802A48_chdinoboss, D_80802C40_chdinoboss);
 }
 
 void func_808017D0_chdinoboss(Actor *arg0) {
-    extern u32 D_80802A48_chdinoboss;
-    extern u32 D_80802C4C_chdinoboss;
-    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80802A48_chdinoboss, &D_80802C4C_chdinoboss);
+
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80802A48_chdinoboss, D_80802C4C_chdinoboss);
 }
 
 void func_80801800_chdinoboss(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
-    extern u32 D_80802A48_chdinoboss;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802A48_chdinoboss, 0.23f);
+
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A48_chdinoboss, 0.23f);
 }
 
 void func_80801830_chdinoboss(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
-    extern u32 D_80802A48_chdinoboss;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802A48_chdinoboss, 0.28f);
+
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802A48_chdinoboss, 0.28f);
 }
 
 void func_80801860_chdinoboss(Actor *arg0) {
     f32 *sp1C[1];
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    extern u32 D_80802A2C_chdinoboss[];
-    extern u32 D_80802C68_chdinoboss;
-    extern u32 D_80802C78_chdinoboss;
-    extern u32 D_80802C88_chdinoboss;
 
     sp1C[0] = (f32 *)((u8 *)arg0 + 4);
     _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], D_80802A2C_chdinoboss, 0.8f);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], &D_80802C68_chdinoboss, 0.65f);
-    _subaddieaudioquick_entrypoint_4(arg0, sp1C[0], &D_80802C78_chdinoboss, &D_80802C88_chdinoboss);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], D_80802C68_chdinoboss, 0.65f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp1C[0], D_80802C78_chdinoboss, D_80802C88_chdinoboss);
 }
 
 void func_808018D0_chdinoboss(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
-    extern u32 D_80802C98_chdinoboss;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802C98_chdinoboss, 0.1f);
+
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802C98_chdinoboss, 0.1f);
 }
 
 void func_80801900_chdinoboss(Actor *arg0) {
@@ -1374,7 +1542,7 @@ s32 func_808026D0_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     void _capod_entrypoint_14(void);
     void _glcutDll_entrypoint_24(u32, u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     void func_80802864_chdinoboss(Actor *, s32);
     s32 map;
 
@@ -1429,7 +1597,7 @@ void func_80802864_chdinoboss(Actor *arg0, s32 arg1) {
     void func_800FFAB0(Actor *);
     void func_80102FDC(Actor *, f32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
-    extern f32 D_80802CA8_chdinoboss[3];
+
     Actor *sp1C;
     Actor *temp_v0;
 

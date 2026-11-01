@@ -1,9 +1,29 @@
 #include "ch/factory/workerdirty.h"
 
+void func_80800394_chfactoryworkerdirty(Actor *arg0);
+void func_80105834(Actor *);
+void func_80101870(Actor *, void *);
+void func_80800340_chfactoryworkerdirty(Actor* arg0);
+void func_8080025C_chfactoryworkerdirty(Actor *arg0);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_808008A4_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2);
+
+u32 D_80800ED0_chfactoryworkerdirty[] = {
+    0x00000000, 0x00000000, 0x40BCCCCD, 0x035D0001,
+    0x3FF33333, 0x0123000A, 0x3DF5C28F, 0x014B0001,
+    0x402CCCCD, 0x035E0001
+};
+
+u32 D_80800EF8_chfactoryworkerdirty[] = {
+    0x027E0170, 0x08020001, (u32)D_80800ED0_chfactoryworkerdirty, (u32)func_80800394_chfactoryworkerdirty,
+    (u32)func_80105834, (u32)func_80101870, 0x07D00000, 0x3F800000,
+    0x00000000, 0x40000120, (u32)func_80800340_chfactoryworkerdirty, 0x00000000,
+    0x00140000, (u32)func_8080025C_chfactoryworkerdirty, (u32)func_80107C2C, 0x80002412,
+    (u32)func_808008A4_chfactoryworkerdirty, 0x00000000
+};
+
 OSThread *chfactoryworkerdirty_entrypoint_0(void)
 {
-    extern u8 D_80800EF8_chfactoryworkerdirty[];
-
     return (OSThread *) D_80800EF8_chfactoryworkerdirty;
 }
 
@@ -38,7 +58,7 @@ void func_80800068_chfactoryworkerdirty(s32 *arg0, s32 arg1, s32 arg2) {
 
 int func_808000AC_chfactoryworkerdirty(Actor *arg0, s32 arg1) {
     s32 _glcutDll_entrypoint_20();
-    s32 _subaddieaudioquick_entrypoint_2();
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     void func_80102424(Actor *, s32);
     s32 func_801032B0(Actor *, u16, u16);
     void func_80800AF8_chfactoryworkerdirty();
@@ -139,12 +159,83 @@ void func_80800340_chfactoryworkerdirty(Actor* arg0)
 }
 
 void func_8080036C_chfactoryworkerdirty(s32 arg0) {
-    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     extern s32 D_80800F90_chfactoryworkerdirty;
-    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800F90_chfactoryworkerdirty);
+    _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), &D_80800F90_chfactoryworkerdirty);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/factory/workerdirty/func_80800394_chfactoryworkerdirty.s")
+void func_80800394_chfactoryworkerdirty(Actor *arg0) {
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
+    s32 func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
+    s32 func_800C0638(void);
+    s32 func_800D9078(f32 *arg0);
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    s32 func_80101DDC(Actor *arg0);
+    s32 func_80101E14(Actor *arg0, f32 arg1);
+    void func_80102424(Actor *arg0, s32 arg1);
+    void func_8080061C_chfactoryworkerdirty(Actor *arg0);
+    void func_80800700_chfactoryworkerdirty(Actor *arg0);
+    void func_80800994_chfactoryworkerdirty(u8 *arg0);
+    void func_80800C98_chfactoryworkerdirty(Actor *arg0);
+    extern s32 D_80800F40_chfactoryworkerdirty;
+    extern u32 D_80800FA0_chfactoryworkerdirty;
+    extern u32 D_80800FB0_chfactoryworkerdirty;
+    extern s32 D_80800FC0_chfactoryworkerdirty;
+    struct {
+        int unk0;
+        int unk4;
+        f32 unk8;
+        f32 unkC;
+        u8 unk10;
+    } *data;
+    int count;
+    f32 amount;
+    data = func_80100094(arg0, 0U);
+    func_80800C98_chfactoryworkerdirty(arg0);
+    if (arg0->unk70_10 == 2) {
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800FA0_chfactoryworkerdirty, 0.5f);
+        if (func_80101DDC(arg0) != 0) {
+            func_80102424(arg0, 3);
+        }
+    }
+    switch (data->unk10) {
+    case 1:
+        if (func_800C0638() == 0) {
+            if (func_80101E14(arg0, 0.13f) != 0 || func_80101E14(arg0, 0.215f) != 0 || func_80101E14(arg0, 0.27f) != 0 || func_80101E14(arg0, 0.34f) != 0) {
+                func_8080036C_chfactoryworkerdirty((s32)arg0);
+            }
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800FB0_chfactoryworkerdirty, 0.4f);
+        }
+        _sudeflect_entrypoint_1(arg0->position, 120.0, 0.0f, 70.0f, 10);
+        func_8080061C_chfactoryworkerdirty(arg0);
+        break;
+    case 2:
+        _sudeflect_entrypoint_1(arg0->position, 120.0f, 0.0f, 70.0f, 10);
+        break;
+    case 3:
+        func_808000AC_chfactoryworkerdirty(arg0, 4);
+        break;
+    case 7:
+    case 8:
+        if (func_800C0638() == 0 && func_80101E14(arg0, 0.46f) != 0) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800FC0_chfactoryworkerdirty);
+        }
+        if (data->unk8 > 0) {
+            amount = func_800F10B4(data->unk8, 0, 8.0f, 0, 5.0f);
+            data->unkC += amount;
+            count = (s32)data->unkC;
+            func_800BBCB8(arg0->position, NULL, 1.0f, count, &D_80800F40_chfactoryworkerdirty);
+            data->unkC -= count;
+            func_800D9078(&data->unk8);
+        }
+        _sudeflect_entrypoint_1(arg0->position, 120.0f, 0.0f, 70.0f, 10);
+        func_80800994_chfactoryworkerdirty((u8 *)arg0);
+        func_80800700_chfactoryworkerdirty(arg0);
+        break;
+    }
+}
 
 void func_8080061C_chfactoryworkerdirty(Actor *arg0) {
     s32 func_80090178(AllowedTransformation);

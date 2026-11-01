@@ -1,29 +1,178 @@
 #include "common.h"
 
+void func_80800024_chmineprospector(Actor *arg0);
+void func_80105834(Actor *);
+void func_80800340_chmineprospector(Actor *arg0, u8 *arg1);
+void func_80800E00_chmineprospector(Actor *arg0);
+void func_8080029C_chmineprospector(Actor *arg0);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2);
+void func_80102EC0(s32);
+void func_80101870(Actor *, void *);
+void func_80800DF8_chmineprospector(s32 arg0);
+void func_80800AF0_chmineprospector(Actor *arg0);
+void func_80800BF4_chmineprospector(Actor *arg0);
+s32 func_80800CD4_chmineprospector(Actor *arg0, s32 arg1, s32 arg2);
+
+s32 D_80800F20_chmineprospector[] = {
+    0x00000001, 0x0F8B0100, 0x00000001, 0x0F8D0200,
+    0x00000200, 0x0FB80100, 0x00000200, 0x0FBA0200,
+    0x00000400, 0x0FB90100, 0x00000400, 0x0F8D0200,
+    0xFFFEDFFF, 0x120B0300
+};
+
+s32 D_80800F58_chmineprospector[] = {
+    0x00000001, 0x0F8C0100, 0x00000001, 0x0F8E0200,
+    0x00000200, 0x0FBB0100, 0x00000200, 0x0FBD0200,
+    0x00000400, 0x0FBC0100, 0x00000400, 0x0FBE0200,
+    0xFFFEDFFF, 0x120B0300
+};
+
+s32 D_80800F90_chmineprospector[] = {
+    0x00000001, 0x0F8F0200, 0x00000200, 0x0F8F0200,
+    0x00000400, 0x0F8F0200, 0xFFFEDFFF, 0x120B0300
+};
+
+u32 D_80800FB0_chmineprospector[] = {
+    0x001304E4, 0x000D00C0, 0x00CC0000
+};
+
+s32 D_80800FBC_chmineprospector[] = {
+    0x435C0000, 0x43340000, 0x43340000, 0x43200000
+};
+
+u32 D_80800FCC_chmineprospector[] = {
+    0x00000000, 0x00000000, 0x40000000, 0x02A50009,
+    0x40000000, 0x02A6000A, 0x41280000, 0x02A20009,
+    0x40000000, 0x02A60092, 0x40266666, 0x02A3000A,
+    0x40333333, 0x02A40009, 0x40333333, 0x02A40009,
+    0x40333333, 0x02A40009
+};
+
+u32 D_80801014_chmineprospector[] = {
+    0x00000000, 0x00000000, 0x3E99999A, 0x01DA0001,
+    0x40066666, 0x01DB0001
+};
+
+u32 D_8080102C_chmineprospector[] = {
+    0x01950143, 0x07900001, (u32)D_80800FCC_chmineprospector, (u32)func_80800024_chmineprospector,
+    (u32)func_80105834, (u32)func_80800340_chmineprospector, 0x00000000, 0x00000000,
+    0x00000000, 0x40000122, (u32)func_80800E00_chmineprospector, 0x00000000,
+    0x00140000, (u32)func_8080029C_chmineprospector, (u32)func_80107C2C, 0x82000592,
+    (u32)func_80800398_chmineprospector, 0x00000000
+};
+
+u32 D_80801074_chmineprospector[] = {
+    0x01A60151, 0x07910001, 0x00000000, (u32)func_80102EC0,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x40000800, 0x00000000, 0x00000000,
+    0x00000000, (u32)func_80800DF8_chmineprospector, (u32)func_80107C2C, 0x80080C12,
+    0x00000000, 0x00000000
+};
+
+u32 D_808010BC_chmineprospector[] = {
+    0x01A70152, 0x066D0001, (u32)D_80801014_chmineprospector, (u32)func_80102EC0,
+    (u32)func_80800AF0_chmineprospector, (u32)func_80101870, 0x00000000, 0x3F800000,
+    0x00000000, 0x40040120, (u32)func_80800E00_chmineprospector, 0x00000000,
+    0x00000000, (u32)func_80800BF4_chmineprospector, (u32)func_80107C2C, 0x82000592,
+    (u32)func_80800CD4_chmineprospector, 0x00000000
+};
+
+u32 D_80801104_chmineprospector[] = {
+    0x00130451, 0x00180000
+};
+
+s32 D_8080110C_chmineprospector = 0x00820000;
+
 void *func_80100094(Actor *, u32);
 
 OSThread *chmineprospector_entrypoint_0(void)
 {
-    extern u8 D_8080102C_chmineprospector[];
-
     return (OSThread *) D_8080102C_chmineprospector;
 }
 
 OSThread *chmineprospector_entrypoint_1(void)
 {
-    extern u8 D_80801074_chmineprospector[];
-
     return (OSThread *) D_80801074_chmineprospector;
 }
 
 OSThread *chmineprospector_entrypoint_2(void)
 {
-    extern u8 D_808010BC_chmineprospector[];
-
     return (OSThread *) D_808010BC_chmineprospector;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/mine/prospector/func_80800024_chmineprospector.s")
+void func_80800024_chmineprospector(Actor *arg0) {
+    void _chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
+    void _suexpression_entrypoint_10(void *, Unk80132ED0 *, f32 *);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
+    s32 func_8008FB10(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
+    s32 func_800DA298(s32 index);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    s32 func_80101DDC(Actor *arg0);
+    s32 func_80102320(Actor *arg0, f32 arg1, f32 arg2);
+    void func_80102424(Actor *arg0, s32 arg1);
+    s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3);
+    void func_808005F0_chmineprospector(Actor *arg0);
+    void func_80800638_chmineprospector(Actor *arg0);
+    void func_8080068C_chmineprospector(Actor *arg0);
+    void func_808009B0_chmineprospector(Actor *arg0, s32 arg1, s32 arg2);
+    f32 position[3];
+    _suexpression_entrypoint_10(func_80100094(arg0, 1U), arg0->unk0, 0);
+    func_800EE7F8(position, (f32 *)&arg0->actorData[4]);
+    position[1] = arg0->position[1];
+    func_8008FB10(position, 200.0f, -20.0f, (s32)arg0->unk70_10 < 5 ? 120.0f : 80.0f);
+    if (arg0->unk7C_12) {
+        _chbadshad_entrypoint_1(arg0, position, arg0->scale);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        _suexpression_entrypoint_18(func_80100094(arg0, 1U), 1);
+        func_808005F0_chmineprospector(arg0);
+        if (func_800DA298(0x5C)) {
+            func_80800540_chmineprospector(arg0, D_80800F58_chmineprospector, 7, 2);
+        }
+        else {
+            func_80800540_chmineprospector(arg0, D_80800F20_chmineprospector, 7, 2);
+        }
+        break;
+    case 2:
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 3);
+        }
+        break;
+    case 3:
+        if (!func_80102320(arg0, 0.38f, 0.8f)) {
+            _suexpression_entrypoint_18(func_80100094(arg0, 1U), 1);
+        }
+        func_80800638_chmineprospector(arg0);
+        break;
+    case 4:
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 1);
+        }
+        break;
+    case 5:
+        if (func_80101DDC(arg0)) {
+            func_808009B0_chmineprospector(arg0, 3, 1);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0xF90, 0xE, (f32 *)&arg0->actorData[4], 0x3F);
+            func_80102424(arg0, 7);
+        }
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801104_chmineprospector, 0.8f);
+        break;
+    case 6:
+        func_8080068C_chmineprospector(arg0);
+        func_80800540_chmineprospector(arg0, D_80800F90_chmineprospector, 4, 7);
+        break;
+    case 7:
+        func_8080068C_chmineprospector(arg0);
+        break;
+    case 8:
+        func_8080068C_chmineprospector(arg0);
+        break;
+    }
+}
 
 void func_8080029C_chmineprospector(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
@@ -72,7 +221,7 @@ s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808008A4_chmineprospector(Actor *);
     s32 func_80800910_chmineprospector(Actor *, s32, s32);
     void func_80800970_chmineprospector(Actor *);
-    extern s32 D_80800FBC_chmineprospector;
+
     s32 *data;
 
     switch (arg1) {
@@ -96,7 +245,7 @@ s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
         func_808008A4_chmineprospector(arg0);
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_80800FBC_chmineprospector, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80800FBC_chmineprospector, arg0->scale);
         _gcdialogcamera_entrypoint_4((f32 *)&arg0->actorData[4]);
         break;
     case 0x57:
@@ -117,7 +266,7 @@ s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
     s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
     void func_808009B0_chmineprospector(Actor *, s32, s32);
-    extern s32 D_8080110C_chmineprospector;
+
     extern s8 D_8080111A_chmineprospector;
     s32 temp_v0;
 
@@ -138,27 +287,27 @@ s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
 }
 
 void func_808005F0_chmineprospector(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 func_800DC298(f32);
-    extern u32 D_80800FB0_chmineprospector;
+
     if (func_800DC298(0.2f) != 0) {
-        _subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 0x28), &D_80800FB0_chmineprospector, 0.8f);
+        _subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 0x28), D_80800FB0_chmineprospector, 0.8f);
     }
 }
 
 void func_80800638_chmineprospector(Actor *arg0) {
-    extern u32 D_80800FB0_chmineprospector;
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     extern u32 D_8080111C_chmineprospector;
     f32 *sp1C[2];
 
     sp1C[1] = (f32 *) ((u8 *) arg0 + 0x28);
     _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], &D_8080111C_chmineprospector, 0.03f);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], &D_80800FB0_chmineprospector, 0.65f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], D_80800FB0_chmineprospector, 0.65f);
 }
 
 void func_8080068C_chmineprospector(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
     s32 func_800DC298(f32);
     extern u32 D_80801128_chmineprospector;
@@ -180,9 +329,7 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D1000(s32, s32, s32 *, s32, s32);
     void func_80800970_chmineprospector(Actor *);
     void func_80800A64_chmineprospector(Actor *, s32, s32);
-    extern s32 D_80800F20_chmineprospector;
-    extern s32 D_80800F58_chmineprospector;
-    extern s32 D_80800F90_chmineprospector;
+
     s32 sp34;
     s32 sp30;
     s32 sp2C;
@@ -194,9 +341,9 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
         func_80102424(arg0, 6);
         return;
     }
-    sp34 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F20_chmineprospector, 7);
-    sp30 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F58_chmineprospector, 7);
-    sp2C = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F90_chmineprospector, 4);
+    sp34 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F20_chmineprospector, 7);
+    sp30 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F58_chmineprospector, 7);
+    sp2C = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F90_chmineprospector, 4);
     if (_subaddiedialog_entrypoint_10(sp2C) != 0) {
         func_80800970_chmineprospector(arg0);
         func_80102424(arg0, 6);
@@ -220,8 +367,8 @@ void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
     s32 func_80108B04(s32, s32);
     void func_80800A64_chmineprospector(Actor *, s32, s32);
-    extern s32 D_80800F58_chmineprospector;
-    if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80800F58_chmineprospector, 7)) != 0) {
+
+    if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F58_chmineprospector, 7)) != 0) {
         func_80800A64_chmineprospector(arg0, 1, 0x30);
         func_80108B04(arg0, 0);
     }
@@ -284,7 +431,7 @@ void func_808009B0_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_4(f32 *);
     void _gcdialogcamera_entrypoint_5(f32 *);
     void _gcdialogcamera_entrypoint_8(void);
-    extern s32 D_80800FBC_chmineprospector;
+
     s32 *data;
 
     data = func_80100094(arg0, 0U);
@@ -294,7 +441,7 @@ void func_808009B0_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
         case 1:
             _capod_entrypoint_8(1);
             data[4] = 2;
-            _gcdialogcamera_entrypoint_3(&D_80800FBC_chmineprospector, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80800FBC_chmineprospector, arg0->scale);
             _gcdialogcamera_entrypoint_4((f32 *)&arg0->actorData[4]);
             _gcdialogcamera_entrypoint_5(arg0->rotation);
             _gcdialogcamera_entrypoint_8();
@@ -323,8 +470,8 @@ void func_80800A64_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800AF0_chmineprospector(Actor *arg0) {
-    s32 _suexpression_entrypoint_10(void *, Unk80132ED0 *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _suexpression_entrypoint_10(void *, Unk80132ED0 *, f32 *);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 func_8008FB10(f32 *, f32, f32, f32);
     s32 func_80101180(s32, s32, s32);
     void func_80102424(Actor *, s32);
@@ -402,7 +549,7 @@ s32 func_80800CD4_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800D34_chmineprospector(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, u32 *);
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 func_800DC298(f32);
     extern s32 D_80801168_chmineprospector;
     extern s32 D_80801178_chmineprospector;
@@ -415,7 +562,7 @@ void func_80800D34_chmineprospector(Actor *arg0) {
 }
 
 void func_80800D8C_chmineprospector(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
     extern u32 D_80801184_chmineprospector;
     extern u32 D_80801194_chmineprospector;

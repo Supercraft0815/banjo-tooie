@@ -1,9 +1,67 @@
 #include "common.h"
 
+void func_80800024_chjollyroger(Actor *arg0);
+void func_80105834(Actor *);
+void func_80101870(Actor *, void *);
+void func_80800DB8_chjollyroger(Actor* arg0);
+void func_808002E8_chjollyroger(s32 arg0);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2);
+
+s32 D_80801200_chjollyroger[] = {
+    0x00000001, 0x0FFE0100, 0x00000001, 0x0FFF0200,
+    0x00000200, 0x10500100, 0x00000200, 0x0FFF0200,
+    0x00000400, 0x10510100, 0x00000400, 0x0FFF0200,
+    0xFFFEDFFF, 0x12100300
+};
+
+s32 D_80801238_chjollyroger[] = {
+    0x00000001, 0x10000100, 0x00000001, 0x10010200,
+    0x00000200, 0x10520100, 0x00000200, 0x10010200,
+    0x00000400, 0x10530100, 0x00000400, 0x10010200,
+    0xFFFEDFFF, 0x12100300
+};
+
+s32 D_80801270_chjollyroger[] = {
+    0x00000001, 0x0FFC0100, 0x00000001, 0x0FFD0200,
+    0x00000200, 0x0FFC0100, 0x00000200, 0x10560200,
+    0x00000400, 0x10550100, 0x00000400, 0x0FFD0200,
+    0xFFFEDFFF, 0x12100300
+};
+
+u32 D_808012A8_chjollyroger[] = {
+    0x439D8000, 0x42F00000, 0x42A00000, 0x43200000
+};
+
+u32 D_808012B8_chjollyroger[] = {
+    0x43340000, 0x43480000, 0x42F00000, 0x43160000
+};
+
+u32 D_808012C8_chjollyroger[] = {
+    0x00000000, 0x00000000, 0x41180000, 0x01540001,
+    0x411E6666, 0x01540001, 0x40733333, 0x03E40001,
+    0x40E33333, 0x01550002, 0x40733333, 0x03E40001,
+    0x40E33333, 0x01550001, 0x411E6666, 0x01540001,
+    0x40733333, 0x03E40001, 0x40E33333, 0x01550001
+};
+
+u32 D_80801318_chjollyroger[] = {
+    0x00000000, 0x00000000, 0x41100000, 0x01560001,
+    0x41100000, 0x01560001, 0x41100000, 0x01560001,
+    0x3F4CCCCD, 0x01570001, 0x41100000, 0x01560001,
+    0x41100000, 0x01560001, 0x41100000, 0x01560001
+};
+
+u32 D_80801358_chjollyroger[] = {
+    0x02F30360, 0x06D60001, (u32)D_808012C8_chjollyroger, (u32)func_80800024_chjollyroger,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000520, (u32)func_80800DB8_chjollyroger, 0x00000000,
+    0x00140000, (u32)func_808002E8_chjollyroger, (u32)func_80107C2C, 0x82002502,
+    (u32)func_80800370_chjollyroger, 0x00000000
+};
+
 OSThread *chjollyroger_entrypoint_0(void)
 {
-    extern u8 D_80801358_chjollyroger[];
-
     return (OSThread *) D_80801358_chjollyroger;
 }
 
@@ -21,7 +79,94 @@ OSThread *chjollyroger_entrypoint_2(void)
     return (OSThread *) D_808013E8_chjollyroger;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jollyroger/func_80800024_chjollyroger.s")
+void func_80800024_chjollyroger(Actor *arg0) {
+    s32 _chbadshad_entrypoint_2(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3);
+    s32 _glcutDll_entrypoint_20(void);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _subaddieitem_entrypoint_3(Actor *arg0, void *arg1, u8 *arg2);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
+    void _suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
+    void * _suexpression_entrypoint_20(Actor *arg0);
+    void func_800D1824(s32 arg0);
+    s32 func_800DA298(s32 index);
+    int func_800DC298(f32 arg0);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void * func_80100094(Actor *arg0, u32 arg1);
+    s32 func_80101DDC(Actor *arg0);
+    s32 func_80101E14(Actor *arg0, f32 arg1);
+    s32 func_801022E4(Actor *arg0);
+    void func_80102424(Actor *arg0, s32 arg1);
+    void func_80103DFC(Actor *arg0, f32 *arg1);
+    void func_8080056C_chjollyroger(void *arg0);
+    s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3);
+    struct Flags94 {
+        unsigned int pad : 1;
+        unsigned int enabled : 1;
+        unsigned int rest : 30;
+    };
+    void *sp44;
+    f32 sp38[3];
+    sp44 = _suexpression_entrypoint_20(arg0);
+    if (func_800DA298(0) == 0 && _glcutDll_entrypoint_20() == 0) {
+        func_800D1824(0x4E);
+    }
+    _suexpression_entrypoint_10(sp44, arg0->unk0, 0);
+    if (func_801022E4(arg0) == 0x155) {
+        _suexpression_entrypoint_18(sp44, 1);
+    }
+    func_800EE7F8((f32 *)arg0->actorData, arg0->position);
+    if (arg0->unk7C_12 && _chbadshad_entrypoint_2(arg0, 3, 1.5f, (f32 *)arg0->actorData)) {
+        _sudeflect_entrypoint_1((f32 *)arg0->actorData, 250.0f, 0.0f, 80.0f, 10);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        func_8080059C_chjollyroger(arg0, D_80801200_chjollyroger, 7, 2);
+        break;
+    case 3:
+        if (!func_8080059C_chjollyroger(arg0, D_80801238_chjollyroger, 7, 5) && func_80101E14(arg0, 0.999f)) {
+            if (arg0->unk64_19) {
+                arg0->unk64_19 = 0;
+            }
+            else if (func_800DA298(0xC3) && func_800DC298(0.35f)) {
+                func_80102424(arg0, 4);
+                arg0->unk64_19 = 1;
+            }
+        }
+        break;
+    case 4:
+        if (func_80101DDC(arg0)) {
+            func_80102424(arg0, 3);
+        }
+        else {
+            func_8080059C_chjollyroger(arg0, D_80801238_chjollyroger, 7, 6);
+        }
+        func_8080056C_chjollyroger(arg0);
+        break;
+    case 6:
+        if (func_80101E14(arg0, 0.999)) {
+            func_80102424(arg0, 5);
+        }
+        break;
+    case 7:
+    case 8:
+        func_80103DFC(arg0, sp38);
+        if (_subaddieitem_entrypoint_3(arg0, sp38, func_80100094(arg0, 0))) {
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x1004, 0xE, arg0->position, 0x55);
+            func_80102424(arg0, func_800DA298(0xC0) ? 5 : 2);
+        }
+        break;
+    case 9:
+        func_8080056C_chjollyroger(arg0);
+        break;
+    }
+    if (func_801022E4(arg0) == 0x155) {
+        ((struct Flags94 *)&arg0->pad94)->enabled = 0;
+    }
+    else {
+        ((struct Flags94 *)&arg0->pad94)->enabled = 1;
+    }
+}
 
 /* extern */
 
@@ -30,7 +175,7 @@ void func_808002E8_chjollyroger(s32 arg0) {
     s32 _subaddieitem_entrypoint_0(s32, s32, s32, s32);
     s32 _subaddieitem_entrypoint_1(s32, s32);
     s32 func_800DA298(s32);
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     if (_glcutDll_entrypoint_20() != 0) {
         func_80102424(arg0, 9);
@@ -43,7 +188,7 @@ void func_808002E8_chjollyroger(s32 arg0) {
 
 s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
@@ -55,7 +200,7 @@ s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80800DD8_chjollyroger(void *, s32, s32);
     void func_80800E30_chjollyroger(void *);
     void func_80800E6C_chjollyroger(Actor *, s32, s32);
-    extern u32 D_808012A8_chjollyroger;
+
     s32 dialog;
     s32 expression;
     s32 value;
@@ -83,7 +228,7 @@ s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
         func_80800624_chjollyroger(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_808012A8_chjollyroger, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_808012A8_chjollyroger, arg0->scale);
         break;
     case 0x57:
         return func_80800DD8_chjollyroger(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
@@ -128,7 +273,7 @@ s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
 }
 
 void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
     void _subaddieitem_entrypoint_2(s32);
     void func_800C01A8(s16, s32);
@@ -140,14 +285,13 @@ void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800F54E4(void);
     s32 func_800F64A4(s32, s32);
     s32 func_800F7F98(s32, u32);
-    s32 func_80100094(s32, s32);
+    void *func_80100094(Actor *, u32);
     s32 func_80101180(s32, s32, s32);
     void func_80102424(Actor *, s32);
     void func_80800E30_chjollyroger(void *);
     void func_80800F3C_chjollyroger(Actor *, s32, s32);
     void func_80800FBC_chjollyroger(Actor *, s32, s32);
-    extern s32 D_80801200_chjollyroger;
-    extern s32 D_80801238_chjollyroger;
+
     s32 temp;
 
     switch (arg1) {
@@ -177,7 +321,7 @@ void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
         return;
     default:
         if (func_800DA298(0xC0)) {
-            switch (_subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801238_chjollyroger, 7)) {
+            switch (_subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801238_chjollyroger, 7)) {
             case 1:
                 if (!func_800D0A9C(0x24, 1)) {
                     func_800F7F98(func_800F54E4(), 1);
@@ -198,7 +342,7 @@ void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
                 return;
             }
         } else {
-            temp = _subaddiedialog_entrypoint_9((s32)arg0, arg1, &D_80801200_chjollyroger, 7);
+            temp = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801200_chjollyroger, 7);
             if (temp == 1 || temp == 2) {
                 if (!func_800DA298(0xC2) && !func_800DA298(0x41)) {
                     _subaddiedialog_entrypoint_11(arg0->unk0, 0x1002, 0x4E, arg0->position, 0x55);
@@ -214,9 +358,9 @@ void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800930_chjollyroger(Actor *arg0) {
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
-    s32 _suexpression_entrypoint_20();
+    s32 _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _suexpression_entrypoint_10(void *, Unk80132ED0 *, f32 *);
+    void *_suexpression_entrypoint_20(Actor *);
     void func_8008F8B0();
     void func_8008F8D8(s32);
     void func_8008F904(void *, Unk80132ED0 *);
@@ -238,7 +382,6 @@ void func_80800930_chjollyroger(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
     extern s32 func_8010D5DC;
     extern s32 D_80801458_chjollyroger;
-    extern s32 D_80801270_chjollyroger;
 
     _sudeflect_entrypoint_1(arg0->position, 230.0f, 0.0f, 100.0f, 10);
     _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
@@ -272,7 +415,7 @@ void func_80800930_chjollyroger(Actor *arg0) {
             }
             break;
         case 5:
-            _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_80801458_chjollyroger, &D_80801270_chjollyroger, 7);
+            _subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_80801458_chjollyroger, D_80801270_chjollyroger, 7);
             break;
     }
 }
@@ -303,7 +446,7 @@ void func_80800AEC_chjollyroger(Actor *arg0) {
 }
 
 s32 func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
-    extern u32 D_808012B8_chjollyroger;
+
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
     s32 _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
@@ -325,7 +468,7 @@ s32 func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
         case 0x57:
             return func_80800DD8_chjollyroger(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_808012B8_chjollyroger, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_808012B8_chjollyroger, arg0->scale);
             break;
         case 0x95:
             expression = _suexpression_entrypoint_7(arg0, 1, 0x56);
@@ -341,7 +484,7 @@ s32 func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80800CC4_chjollyroger(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 func_800F54E4();
     s32 func_800F64A4(s32, s32);
     void func_80102424(Actor *, s32);
@@ -408,8 +551,6 @@ void func_80800E6C_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_4(f32 *);
     void _gcdialogcamera_entrypoint_5(f32 *);
     void _gcdialogcamera_entrypoint_8(void);
-    extern u32 D_808012A8_chjollyroger;
-    extern u32 D_808012B8_chjollyroger;
 
     switch (arg0->actorData[4]) {
         case 0:
@@ -418,7 +559,7 @@ void func_80800E6C_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
         case 3:
             _capod_entrypoint_8(1);
             arg0->actorData[4] = 2;
-            _gcdialogcamera_entrypoint_3(arg0->unk6C_9 == 0x360 ? &D_808012A8_chjollyroger : &D_808012B8_chjollyroger, arg0->scale);
+            _gcdialogcamera_entrypoint_3(arg0->unk6C_9 == 0x360 ? D_808012A8_chjollyroger : D_808012B8_chjollyroger, arg0->scale);
             _gcdialogcamera_entrypoint_4(arg0->position);
             _gcdialogcamera_entrypoint_5(arg0->rotation);
             _gcdialogcamera_entrypoint_8();
@@ -479,7 +620,7 @@ void func_8080103C_chjollyroger(Actor *arg0) {
 s32 func_808010A0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chdoor_entrypoint_1(Actor *, s32, s32);
     void _chexploder_entrypoint_3(void *, void *, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     Actor *_subaddiefind_entrypoint_2(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);

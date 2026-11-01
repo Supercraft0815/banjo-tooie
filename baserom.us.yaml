@@ -4858,7 +4858,8 @@ segments:
     subsegments: 
       - [0x01FA2560, c, prospector]
       - [0x01FA33A0, .rodata, prospector]
-      - [0x01FA3480, data, prospector]
+      - [0x01FA3480, .data, prospector]
+      - [0x01FA3670, data, prospector_tail]
       - [0x01FA3720, bss, prospector]
   - name: chonearmbandit_header
     dir: overlays/chonearmbandit
@@ -5544,7 +5545,8 @@ segments:
     subsegments: 
       - [0x01FBF320, c, jollyroger]
       - [0x01FC04F0, .rodata, jollyroger]
-      - [0x01FC0520, data, jollyroger]
+      - [0x01FC0520, .data, jollyroger]
+      - [0x01FC06C0, data, jollyroger_tail]
       - [0x01FC07D0, bss, jollyroger]
   - name: chdinofoot_header
     dir: overlays/chdinofoot
@@ -5658,7 +5660,7 @@ segments:
     subsegments: 
       - [0x01FC3A80, c, boss]
       - [0x01FC6360, .rodata, boss]
-      - [0x01FC64A0, data, boss]
+      - [0x01FC64A0, .data, boss]
       - [0x01FC6740, bss, boss]
   - name: chphlegm_header
     dir: overlays/chphlegm
@@ -10931,7 +10933,8 @@ segments:
     subsegments: 
       - [0x020A6160, c, workerdirty]
       - [0x020A6F50, .rodata, workerdirty]
-      - [0x020A7030, data, workerdirty]
+      - [0x020A7030, .data, workerdirty]
+      - [0x020A70A0, data, workerdirty_tail]
       - [0x020A71B0, bss, workerdirty]
   - name: chfactoryworkerwear_header
     dir: overlays/chfactoryworkerwear
