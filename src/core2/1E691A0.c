@@ -116,9 +116,9 @@ void func_8008FC9C(s32 arg0)
     func_800F521C(func_800F54E4(),arg0);
 }
 
-void func_8008FCC8(s32 arg0)
+s32 func_8008FCC8(Unk80132ED0 *arg0)
 {
-    func_800F52B8(func_800F54E4(),arg0);
+    return func_800F52B8(func_800F54E4(), arg0);
 }
 
 void func_8008FCF4(s32 arg0)

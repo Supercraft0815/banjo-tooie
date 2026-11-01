@@ -100,7 +100,7 @@ void func_80800344_chfantasylakebits(Actor *arg0, s32 arg1) {
     s32 func_800BEA88(s32);
     void func_800BF744(s32, s32);
     s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32);
     s32 func_800EA05C();
     u32 func_800F54E4(void);
     f32 func_800F5628(s32);
@@ -230,13 +230,68 @@ OSThread *chfantasylakebits_entrypoint_1(void)
 
 void func_808006F4_chfantasylakebits(s32 *arg0) {
     s32 func_800DA298(s32);
-    s32 func_800FFA88(s32);
+    void func_800FFA88(Unk80132ED0 *);
     if ((func_800DA298(0x327) != 0) || (func_800DA298(0x9FC) != 0)) {
-        func_800FFA88(*arg0);
+        func_800FFA88((Unk80132ED0 *)*arg0);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fantasy/lakebits/func_8080073C_chfantasylakebits.s")
+s32 func_8080073C_chfantasylakebits(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chskeletonexplode_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2);
+    void _chskeletonexplode_entrypoint_4(Actor *arg0, s32 arg1);
+    void _chskeletonexplode_entrypoint_7(Actor *arg0, f32 *arg1);
+    s32 _fxairbub_entrypoint_1(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3);
+    s32 func_8008FCC8(Unk80132ED0 *arg0);
+    void func_800BA22C(s32 arg0, s32 n);
+    void func_800BA930(s32 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6);
+    s32 func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
+    void func_800C4AF0(f32 *arg0, void *arg1);
+    void func_800DA544(s32 index);
+    void func_800DF744(s32 arg0, s32 arg1);
+    void func_800FFA88(Unk80132ED0* a0);
+    void *func_80101080(void);
+    s32 func_80101180(s32 arg0, s32 arg1, s32 arg2);
+    s32 func_801015D0(Actor *arg0);
+    Actor *func_80106790(Unk80132ED0 *arg0);
+    extern s32 D_80800A78_chfantasylakebits[];
+    extern s32 D_80800AB4_chfantasylakebits[];
+    extern s32 D_80800ADC_chfantasylakebits[];
+    s32 result;
+    Actor *actor;
+
+    switch (arg1) {
+    case 0x40:
+        if (func_8008FCC8(arg0->unk0) == 0x14) {
+            result = _fxairbub_entrypoint_1(arg0->position, 200.0f, arg0->position[1] + 500.0f, 3.0f);
+            func_800BA930(result, -60, -250, -60, 60, 0, 60);
+            func_800BA22C(result, 10);
+            func_800BBCB8(arg0->position, arg0->position, arg0->scale, 3, D_80800A78_chfantasylakebits);
+            func_800BBCB8(arg0->position, arg0->position, arg0->scale, 8, D_80800AB4_chfantasylakebits);
+            func_800C4AF0(arg0->position, D_80800ADC_chfantasylakebits);
+            func_80101180(0x415, 0x36, 0);
+            _chskeletonexplode_entrypoint_7(arg0, arg0->position);
+            func_800DA544(0x9FC);
+            return 1;
+        }
+        return 0;
+    case 0x1F:
+        func_801015D0(arg0);
+        func_800DF744(1, 1);
+        func_800DF744(2, 1);
+        return 1;
+    case 0xF:
+        actor = func_80106790(func_80101080());
+        _chskeletonexplode_entrypoint_3(actor, 1, 2);
+        _chskeletonexplode_entrypoint_3(actor, 2, 1);
+        _chskeletonexplode_entrypoint_4(actor, 1);
+        func_800FFA88(arg0->unk0);
+        return 1;
+    default:
+        result = 0;
+        break;
+    }
+    return result;
+}
 
 OSThread *chfantasylakebits_entrypoint_2(void)
 {
