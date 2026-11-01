@@ -78,7 +78,26 @@ u8 *func_800B5C10(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     return sp18;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8F430/func_800B5C7C.s")
+void func_800B5C7C(s32 height) {
+    extern u8 D_801281B0[];
+    u8 *pixels;
+    s32 row;
+    s32 column;
+    s32 offset;
+
+    ((s32 *)&D_80128180)[2] = height - 1;
+    row = 0;
+    offset = 0;
+    while (row < height) {
+        pixels = offset + D_801281B0;
+        for (column = 0; column < 32; column++) {
+            pixels[column] = row * 255 / ((s32 *)&D_80128180)[2];
+        }
+        row++;
+        offset += 32;
+    }
+    osWritebackDCache(D_801281B0, height << 5);
+}
 
 void func_800B5DD4()
 {
