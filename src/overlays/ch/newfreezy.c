@@ -88,7 +88,164 @@ void func_808000D4_chnewfreezy(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/newfreezy/func_808002C0_chnewfreezy.s")
+void func_808002C0_chnewfreezy(Actor *arg0) {
+    void *func_80100094(Actor *, u32);
+    void _fxtwinkle_entrypoint_1(f32 *, s32);
+    void _subaddiefade_entrypoint_3(Actor *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
+    f32 func_800D8FF8(void);
+    s32 func_800D9078(f32 *);
+    s32 func_800DC128(s32, s32);
+    f32 func_800DC178(f32, f32);
+    void func_800E3980(f32 *);
+    void func_800EE780(f32 *, f32 *, f32 *);
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    void func_800EEBF0(f32 *, f32 *, f32);
+    f32 func_800EEF94(f32 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EF368(f32 *, f32);
+    void func_800EFA20(void *, void *, f32);
+    void func_800EFB24(void *, void *, void *);
+    void func_800EFDE8(f32 *, u8 *, f32 *);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    void func_800F18FC(f32 *, f32 *, f32 *);
+    struct FreezyPart {
+        f32 position[3];
+        f32 rotation[3];
+        f32 velocity[3];
+        f32 origin[3];
+        f32 spin[3];
+        f32 currentPosition[3];
+        f32 baseSize;
+        f32 size;
+        f32 progress;
+        f32 start;
+        f32 end;
+        s8 state;
+        u8 pad5D[3];
+    } *part;
+    struct FreezyLinkFlags {
+        u32 pad : 29;
+        u32 active : 1;
+        u32 pad2 : 2;
+    };
+    Actor *linked;
+    s32 selected[1];
+    s32 active;
+    u32 i;
+    f32 twinkle[3];
+    f32 direction[3];
+    f32 angles[2];
+    f32 *vec;
+    f32 offset[3];
+    f32 delta[3];
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    f32 speed;
+    f32 distance;
+    f32 length;
+    f32 *current;
+    s32 j;
+    part = func_80100094(arg0, 0);
+    active = arg0->unk6C_0;
+    if (arg0->unk64_20) {
+        if (arg0->unk54 < 5.0f) {
+            arg0->unk54 += func_800D8FF8();
+        } else {
+            _subaddiefade_entrypoint_3(arg0);
+        }
+    }
+    linked = _subaddielink_entrypoint_4(func_80100094(arg0, 1));
+    if (linked != 0) {
+        if (!((struct FreezyLinkFlags *) (&linked->unk78))->active) {
+            func_80800068_chnewfreezy(arg0);
+            func_808000AC_chnewfreezy((s32) arg0);
+        } else {
+            _sudeflect_entrypoint_0(arg0->position, 0.0f, arg0->unk74_7 * 0.75f, 2);
+            if (func_800D9078(&arg0->unk58)) {
+                func_80800068_chnewfreezy(arg0);
+                func_808000D4_chnewfreezy(arg0);
+                func_808000AC_chnewfreezy((s32) arg0);
+            }
+        }
+    }
+    selected[0] = func_800DC128(0, arg0->unk6C_0 * 5);
+    for (i = 0; i < arg0->unk6C_0; i++, part++) {
+        switch (part->state) {
+            case 2:
+            if (i == selected[0]) {
+                func_800E3980(direction);
+                func_800F18FC(part->position, direction, angles);
+                for (j = 0; j < 2; j++) {
+                    angles[1] += func_800DC178(0.0f, 160.0f) - 80.0f;
+                }
+                func_800EEBF0(twinkle, angles, part->size * 25.0f);
+                func_800EF04C(twinkle, part->position);
+                _fxtwinkle_entrypoint_1(twinkle, 0x9E5);
+            }
+            break;
+            case 1:
+            if (1) {}
+            part->progress = func_800F10B4(*((f32 *) (&arg0->actorData[3])), part->start, part->end, 0.0, 1.0f);
+            if (part->progress >= 1.0f) {
+                part->state = 2;
+            }
+            part->size = part->baseSize * part->progress;
+            vec = part->origin;
+            func_800EFB24(offset, part->position, vec);
+            func_800EF334(offset, part->progress);
+            func_800EE780(part->currentPosition, vec, offset);
+            break;
+            case 4:
+            vec = part->velocity;
+            func_800EFA20(delta, vec, func_800D8FF8());
+            current = part->currentPosition;
+            func_800EE7F8(start, current);
+            func_800EE780(end, start, delta);
+            func_800EF04C(end, delta);
+            if (func_800BEF00(start, end, normal, 0x20020)) {
+                speed = func_800EEF94(vec);
+                length = func_800EEF94(delta) * (f32)2.0;
+                distance = func_800EEAD4(start, end);
+                if (distance < length) {
+                    func_800EF334(delta, (distance / length) * 0.9f);
+                }
+                func_800EFDE8(vec, (u8 *) vec, normal);
+                func_800EF368(vec, speed * 0.35f);
+                func_800EF334(part->spin, 0.35f);
+                if (speed < 250.0f) {
+                    part->state = 5;
+                }
+            } else {
+                part->velocity[0] *= 0.95f;
+                part->velocity[2] *= 0.95f;
+                part->velocity[1] -= 50.0f;
+                vec = part->spin;
+                func_800EF04C(part->rotation, vec);
+                func_800EF334(vec, 0.99f);
+            }
+            func_800EF04C(current, delta);
+            break;
+            case 3:
+            active--;
+            break;
+            case 5:
+            active--;
+            break;
+        }
+    }
+    if (active == 0) {
+        _subaddiefade_entrypoint_3(arg0);
+    } else {
+        *((f32 *) (&arg0->actorData[3])) += (func_800D8FF8() * 450.0f) * (*((f32 *) (&arg0->actorData[7])));
+    }
+    arg0->unk50 += func_800D8FF8();
+}
 
 void func_80800824_chnewfreezy(Actor *arg0, u8 *arg1, s32 arg2, s32 arg3) {
     void func_800EE7F8(f32 *, f32 *);
