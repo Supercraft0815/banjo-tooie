@@ -1083,7 +1083,7 @@ void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
 void func_80803888_chintrochar(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80103D48(void **);
-    void func_80103D70(void **);
+    s32 func_80103D70(void **);
     void _chanim_entrypoint_8(Actor *);
     void _chblink_entrypoint_4(s16);
     void _suexpression_entrypoint_11(void *, Actor *);

@@ -41,7 +41,7 @@ void chbouncycastle_entrypoint_4(Actor *arg0) {
     s32 func_801039E4(s32);
     s32 func_80103CDC(u8 *, u8 *);
     void func_80103D48(void **);
-    void func_80103D70(void **);
+    s32 func_80103D70(void **);
     struct anctrl_s *func_80104248(void *);
     struct RenderFlags {
         u8 pad0[0x70];

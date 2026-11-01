@@ -1,5 +1,7 @@
 #include "common.h"
 
+struct anctrl_s;
+
 typedef struct { s16 unk0; s16 id; s16 value; } SelectEntry;
 
 s32 func_800D9078(f32 *);
@@ -923,7 +925,7 @@ void func_8080179C_chgameselect(Actor *arg0) {
 s32 func_80101180(s32, s32, s32);
 
 void func_80801AC4_chgameselect(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_0(Actor *);
+    u32 _subaddiefade_entrypoint_0(u8 *);
     s32 _subaddiefade_entrypoint_1(s32, s32);
     void func_800B237C(void *, f32[3], f32 *);
     void func_80101010(s32);
@@ -945,7 +947,7 @@ void func_80801AC4_chgameselect(Actor *arg0) {
             }
         }
     }
-    if (_subaddiefade_entrypoint_0(arg0) < 0x64) {
+    if ((s32)_subaddiefade_entrypoint_0((u8 *)arg0) < 0x64) {
         _subaddiefade_entrypoint_1(arg0, 0x64);
     }
     if ((arg0->unk70_10 != 2) && (arg0->unk70_10 != 3) && (arg0->unk70_10 == 4) && (func_80101DDC(arg0) != 0)) {
@@ -968,7 +970,7 @@ s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_801032B0(Actor *, u16, u16);
     u8 *func_801039E4(Unk80132ED0 *);
     struct anctrl_s *func_80104248(void *);
-    void func_80801D74_chgameselect(Actor *, s32);
+    void func_80801D74_chgameselect(Actor *, u8 *);
     void func_80802070_chgameselect(Actor *, s32);
     void func_808020CC_chgameselect(Actor *, s32);
     s32 func_80803D00_chgameselect(s32, s32);
@@ -1021,7 +1023,104 @@ s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80801D74_chgameselect.s")
+void func_80801D74_chgameselect(Actor *arg0, u8 *arg1) {
+    typedef struct {
+        u32 unk0[4];
+        s16 skeleton;
+        s16 unk12;
+        u16 texture;
+        u16 unk16;
+        u16 radius : 11;
+        u16 flags : 5;
+        s16 unk1A;
+        s16 unk1C;
+        s16 center[3];
+    } GameSelectRenderData;
+    typedef struct {
+        u8 pad[0x7A];
+        u16 renderMode : 2;
+        u16 flags : 14;
+    } GameSelectRenderFlags;
+    u32 _subaddiefade_entrypoint_0(u8 *);
+    u8 * func_800B27E0(u8 *arg0);
+    void func_80103D48(void **arg0);
+    s32 func_80103D70(void **arg0);
+    struct anctrl_s * func_80104248(void *arg0);
+    void func_8008B304(s32 arg0);
+    void * func_8008AEDC(void *arg0);
+    void func_8008C200(s16 arg0, s32 arg1, s32 arg2);
+    void * func_800AE080(s16 arg0);
+    void func_800DF72C(s32 arg0);
+    void func_800DF410(s32 arg0);
+    void func_800DF830(s32 arg0);
+    void * _subaddieskeleton_entrypoint_4(Actor *arg0);
+    void func_800DF738(s32 arg0);
+    s32 func_800B2840(s32 arg0);
+    void func_800B237C(void *list, f32 center[3], f32 *norm);
+    s32 func_800D731C(s32 arg0);
+    void func_800DF7E8(u8 arg0);
+    void func_800DF744(s32 arg0, s32 arg1);
+    u8 func_80016800(s32 arg0);
+    void func_800DF7C4(s32 arg0, s32 arg1);
+    void *control;
+    GameSelectRenderData *data;
+    u8 *animation;
+    f32 center[3];
+    f32 radius;
+    s32 texture;
+    s32 i;
+    s32 mask;
+    u8 cache;
+
+    func_80103D48((void **)arg0);
+    control = func_80104248(arg0);
+    data = (GameSelectRenderData *)arg0->unk0;
+    if (control && !arg0->unk7C_12) {
+        func_8008B304((s32)control);
+    }
+    if (data->skeleton) {
+        animation = func_800B27E0(arg1);
+        if (control && animation && !arg0->unk7C_12) {
+            func_8008C200(data->skeleton, (s32)animation, (s32)func_8008AEDC(control));
+        }
+        func_800DF72C((s32)func_800AE080(data->skeleton));
+    }
+    if ((s32)_subaddiefade_entrypoint_0((u8 *)arg0) < 255) {
+        func_800DF410(_subaddiefade_entrypoint_0((u8 *)arg0));
+    }
+    func_800DF830(((GameSelectRenderFlags *)arg0)->renderMode);
+    func_800DF738((s32)_subaddieskeleton_entrypoint_4(arg0));
+    if (!arg0->unk7C_12) {
+        func_800B237C((void *)func_800B2840((s32)arg1), center, &radius);
+        data->center[0] = center[0] * arg0->scale;
+        data->center[1] = center[1] * arg0->scale;
+        data->center[2] = center[2] * arg0->scale;
+        data->radius = radius;
+    }
+    texture = func_800D731C(arg0->unk0->unk14);
+    cache = texture;
+    if (texture) {
+        func_800DF7E8(cache);
+    }
+    func_80103D70((void **)arg0);
+    arg0->unk7C_12 = 1;
+    switch (arg0->unk79_4) {
+        case 0:
+        case 1:
+        case 2:
+            func_800DF744(arg0->unk79_4 + 1, arg0->unk64_19 ? 2 : 1);
+            break;
+        case 5:
+            mask = 0;
+            for (i = 0; i < 4; i++) {
+                if (func_80016800(i)) {
+                    mask |= 1 << i;
+                }
+            }
+            func_800DF7C4(3, mask);
+            break;
+    }
+}
 
 /* extern */
 
@@ -2096,7 +2195,7 @@ s32 func_80803DCC_chgameselect(s32 arg0) {
 }
 
 s32 func_80803E40_chgameselect(void) {
-    s32 func_80016800(s32);
+    u8 func_80016800(s32);
     s32 i;
     for (i = 0; i < 4; i++) {
         if (!func_80016800(i)) return i;

@@ -334,7 +334,7 @@ u8 *func_801039A4(u8 *arg0) {
 u8 *func_801039E4(Unk80132ED0 *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     void func_80103D48(void **);
-    void func_80103D70(void **);
+    s32 func_80103D70(void **);
     void func_80103508(u8 *);
     u8 *func_800B2824(u8 *);
     void _subaddiecustomhits_entrypoint_0(Actor *, void *);
@@ -492,15 +492,15 @@ s32 func_80103D24(Actor *arg0) {
 /* extern */
 
 void func_80103D48(void **arg0) {
-    s32 func_800D70F8(u16, s32);
+    s32 func_800D70F8(s32, s32);
     func_800D70F8((*(u16 *)((s8 *)(*arg0) + (0x14))), 1);
 }
 
 /* extern */
 
-void func_80103D70(void **arg0) {
-    s32 func_800D70F8(u16, s32);
-    func_800D70F8((*(u16 *)((s8 *)(*arg0) + (0x14))), 0);
+s32 func_80103D70(void **arg0) {
+    s32 func_800D70F8(s32, s32);
+    return func_800D70F8((*(u16 *)((s8 *)(*arg0) + (0x14))), 0);
 }
 
 u8 *func_80103D98(Unk80132ED0 *arg0) {

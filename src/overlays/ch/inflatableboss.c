@@ -558,7 +558,7 @@ void func_80801418_chinflatableboss(Actor *arg0, u8 *arg1) {
     void func_80101934(Actor *);
     s32 func_80103CDC(u8 *, u8 *);
     void func_80103D48(void **);
-    void func_80103D70(void **);
+    s32 func_80103D70(void **);
     void *func_801040A8(Actor *);
     OSThread *func_80104130(void);
     void func_8080267C_chinflatableboss(Actor *);

@@ -424,7 +424,7 @@ void func_80800AF4_chcablecar(Actor *arg0, u32 arg1) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
     void func_80015178(s32);
     void func_80101FDC(Actor *, u32);
-    void func_80103D70(void **);
+    s32 func_80103D70(void **);
     typedef struct {
         u32 upper : 18;
         u32 active : 1;
