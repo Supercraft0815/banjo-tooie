@@ -1,8 +1,15 @@
 #include "common.h"
 
+struct DodgemValues { s32 values[4]; };
+struct dodgem_vector { f32 v[3]; };
+typedef struct { f32 values[4]; } DodgemValues;
+typedef struct { f32 values[4][3]; } DodgemPositions;
+struct DodgemRGB { u32 rgb[3]; };
+struct DodgemPosition { f32 v[3]; };
+
 OSThread *chdodgemcontrol_entrypoint_0(void)
 {
-    extern u8 D_80804DB4_chdodgemcontrol[];
+    extern u32 D_80804DB4_chdodgemcontrol[];
 
     return (OSThread *) D_80804DB4_chdodgemcontrol;
 }
@@ -34,7 +41,6 @@ void func_80800044_chdodgemcontrol(f32 *arg0) {
 }
 
 s32 func_808000B8_chdodgemcontrol(s32 arg0) {
-    struct DodgemValues { s32 values[4]; };
     extern struct DodgemValues D_80804DFC_chdodgemcontrol;
     struct DodgemValues sp18;
     void func_800904C8(s32);
@@ -333,7 +339,134 @@ void func_808006CC_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_808008EC_chdodgemcontrol(Actor *arg0) { switch (arg0->unk79_4) { case 0: return 0x3C; case 1: return 0x32; case 2: return 0x28; default: return 0; } }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/dodgemcontrol/func_80800938_chdodgemcontrol.s")
+s32 func_80800938_chdodgemcontrol(u8 *arg0, s32 arg1, s32 arg2) {
+    struct Control {
+        u8 padding[0x79];
+        u8 state : 4;
+        u8 other : 4;
+    };
+    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_17(f32);
+    void _subaddiemulti_entrypoint_4(s32);
+    void func_800A54F8(s32);
+    s16 func_800D211C(s32);
+    s32 func_800D395C(void);
+    s32 func_800DA9E4(s32, s32);
+    s32 func_800EA05C(void);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80801844_chdodgemcontrol(Actor *);
+    void func_80801A3C_chdodgemcontrol(Actor *, s32, s32);
+    u8 *data;
+    s32 map;
+    s32 i;
+    u8 *p;
+    volatile s16 *params;
+    data = func_80100094((Actor *) arg0, 0);
+    switch (arg1) {
+    case 0xB:
+        data[0xC3] = (0, 1);
+        return 3;
+    case 0xE:
+        switch (((struct Control *) arg0)->state) {
+        case 0:
+            if (_capod_entrypoint_17(0.5f)) {
+                func_80801A3C_chdodgemcontrol(arg0, 1, 2);
+            }
+            break;
+        case 1:
+            if (_capod_entrypoint_17(0.5f)) {
+                func_80801A3C_chdodgemcontrol(arg0, 2, 2);
+            }
+            break;
+        case 2:
+            if (_capod_entrypoint_17(0.5f)) {
+                func_80801A3C_chdodgemcontrol(arg0, 3, 2);
+            }
+            break;
+        }
+        return 3;
+    case 0x49:
+        arg0 = (u8 *) func_80801844_chdodgemcontrol((Actor *) arg0);
+        map = func_800EA05C();
+        switch (map) {
+        case 0xDE:
+            if (!arg2) {
+            }
+            break;
+        case 0xDF:
+            break;
+        default:
+            break;
+        }
+        switch (((struct Control *) arg0)->state) {
+        case 0:
+            goto check_flag;
+        case 1:
+            goto check_flag;
+        case 2:
+        check_flag:
+            if ((!func_800DA9E4(((struct Control *) arg0)->state + 0x419, 1)) && (!func_800D395C())) {
+                _capod_entrypoint_13(*((s32 *) arg0), 0, 1, 0x2020);
+                data[0xC6] = 1;
+            } else {
+                data[0xC4] = 1;
+                data[0xC3] = 1;
+                func_800A54F8(0);
+            }
+            break;
+        case 3:
+            data[0xC4] = 1;
+            data[0xC3] = 1;
+            _subaddiemulti_entrypoint_4(0);
+            break;
+        }
+        break;
+    case 0x2E:
+        params = (s16 *) (&arg2);
+        func_808006CC_chdodgemcontrol(arg0, params[0], params[1]);
+        return 1;
+    case 0x30:
+        params = (s16 *) (&arg2);
+        switch (params[0]) {
+        case 0x10FC:
+            if (params[1] == 0) {
+                return func_808008EC_chdodgemcontrol((Actor *) arg0);
+            }
+            return func_808005CC_chdodgemcontrol(((struct Control *) arg0)->state);
+        case 0x10D9:
+            return data[0xC1];
+        case 0x10D4:
+        case 0x10D5:
+        case 0x10D6:
+        case 0x10EC:
+        case 0x10EE:
+        case 0x10F0:
+            return *((s32 *) (data + 0x10));
+        case 0x10ED:
+            return func_800D211C(0x8A);
+        case 0x10EF:
+            return func_800D211C(0x8B);
+        case 0x10F1:
+            return func_800D211C(0x8C);
+        case 0x10D7:
+            return func_808008EC_chdodgemcontrol((Actor *) arg0);
+        }
+        break;
+    case 0x3D:
+        if (arg2 == (-1)) {
+            for (i = 0, p = data; i < data[0xC5]; i++, p++) {
+                if (p[0xAC] == 0) {
+                    func_808004E4_chdodgemcontrol(arg0, i);
+                    break;
+                }
+            }
+        }
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800CA0_chdodgemcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
@@ -428,8 +561,8 @@ void func_80800CA0_chdodgemcontrol(Actor *arg0) {
 void func_80800FC4_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80804D20_chdodgemcontrol;
-    extern s32 D_80804D34_chdodgemcontrol;
+    extern s32 D_80804D20_chdodgemcontrol[];
+    extern s32 D_80804D34_chdodgemcontrol[];
     s32 temp_a0;
     s32 *temp_v0;
     s32 *temp_v1;
@@ -457,7 +590,6 @@ s32 func_80801084_chdodgemcontrol(f32 *arg0, f32 *arg1, f32 arg2) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     int func_800F0064(f32 *, f32, f32 *);
-    struct dodgem_vector { f32 v[3]; };
     extern struct dodgem_vector D_80804E0C_chdodgemcontrol;
     struct dodgem_vector sp4C;
     f32 sp40[3];
@@ -489,7 +621,6 @@ s32 func_80801084_chdodgemcontrol(f32 *arg0, f32 *arg1, f32 arg2) {
 }
 
 f32 func_80801214_chdodgemcontrol(s32 arg0) {
-    typedef struct { f32 values[4]; } DodgemValues;
     extern DodgemValues D_80804E18_chdodgemcontrol;
     DodgemValues values = D_80804E18_chdodgemcontrol;
     return values.values[arg0];
@@ -497,7 +628,6 @@ f32 func_80801214_chdodgemcontrol(s32 arg0) {
 
 void func_80801258_chdodgemcontrol(s32 arg0, f32 arg1[3]) {
     void func_800EE7F8(f32 *, f32 *);
-    typedef struct { f32 values[4][3]; } DodgemPositions;
     extern DodgemPositions D_80804E28_chdodgemcontrol;
     DodgemPositions values = D_80804E28_chdodgemcontrol;
     func_800EE7F8(arg1, values.values[arg0]);
@@ -870,8 +1000,8 @@ void func_80801B94_chdodgemcontrol(s32 arg0, s32 arg1) {
     s32 func_800BA3FC(s32, s32);
     s32 func_800BABB8(s32, s32 *, s32 *, s32, s32 *);
     s32 func_80103DFC(s32, s32 *);
-    extern s32 D_80804E78_chdodgemcontrol;
-    extern s32 D_80804EA4_chdodgemcontrol;
+    extern s32 D_80804E78_chdodgemcontrol[];
+    extern s32 D_80804EA4_chdodgemcontrol[];
     s32 sp2C;
     s32 sp20[3];
 
@@ -900,7 +1030,6 @@ void func_80801C60_chdodgemcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     extern s16 D_80804ECC_chdodgemcontrol[];
-    struct DodgemRGB { u32 rgb[3]; };
     extern struct DodgemRGB D_80804EB4_chdodgemcontrol;
     extern struct DodgemRGB D_80804EC0_chdodgemcontrol;
     struct DodgemData {
@@ -1026,7 +1155,7 @@ void func_80801F2C_chdodgemcontrol(Actor *arg0)
 
 OSThread *chdodgemcontrol_entrypoint_1(void)
 {
-    extern u8 D_80804EDC_chdodgemcontrol[];
+    extern u32 D_80804EDC_chdodgemcontrol[];
 
     return (OSThread *) D_80804EDC_chdodgemcontrol;
 }
@@ -1406,15 +1535,15 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
     f32 func_8080458C_chdodgemcontrol(Actor *);
     f32 func_8080460C_chdodgemcontrol(Actor *);
     void func_8080476C_chdodgemcontrol(Actor *);
-    extern u32 D_80804D10_chdodgemcontrol;
-    extern s32 D_80804D48_chdodgemcontrol;
-    extern s32 D_80804D5C_chdodgemcontrol;
-    extern s32 D_80804D74_chdodgemcontrol;
-    extern s32 D_80804D8C_chdodgemcontrol;
-    extern s32 D_80804DA4_chdodgemcontrol;
-    extern f32 D_80804F74_chdodgemcontrol;
-    extern f32 D_80804F84_chdodgemcontrol;
-    extern f32 D_80804F94_chdodgemcontrol;
+    extern u32 D_80804D10_chdodgemcontrol[];
+    extern s32 D_80804D48_chdodgemcontrol[];
+    extern s32 D_80804D5C_chdodgemcontrol[];
+    extern s32 D_80804D74_chdodgemcontrol[];
+    extern s32 D_80804D8C_chdodgemcontrol[];
+    extern s32 D_80804DA4_chdodgemcontrol[];
+    extern f32 D_80804F74_chdodgemcontrol[];
+    extern f32 D_80804F84_chdodgemcontrol[];
+    extern f32 D_80804F94_chdodgemcontrol[];
     f32 *data;
     f32 dt;
     f32 sampleRate;
@@ -1658,7 +1787,6 @@ void func_808037C8_chdodgemcontrol(Actor *arg0) {
     f32 func_80102D78(Actor *, f32 *);
     f32 func_8080458C_chdodgemcontrol(Actor *);
     f32 func_8080460C_chdodgemcontrol(Actor *);
-    struct DodgemPosition { f32 v[3]; };
     extern struct DodgemPosition D_80804FA0_chdodgemcontrol;
     f32 *sp4C;
     f32 scale;
@@ -1709,7 +1837,7 @@ void func_808039B8_chdodgemcontrol(Actor *arg0) {
     void func_80802764_chdodgemcontrol(Actor *);
     void func_80802824_chdodgemcontrol(Actor *);
     void func_80802884_chdodgemcontrol(Actor *);
-    extern s32 D_80804D5C_chdodgemcontrol;
+    extern s32 D_80804D5C_chdodgemcontrol[];
     s32 i;
     Actor *controller;
     u8 *control_data;
@@ -2076,7 +2204,124 @@ void func_8080476C_chdodgemcontrol(Actor *arg0) {
 
 OSThread *chdodgemcontrol_entrypoint_2(void)
 {
-    extern u8 D_80804FAC_chdodgemcontrol[];
+    extern u32 D_80804FAC_chdodgemcontrol[];
 
     return (OSThread *) D_80804FAC_chdodgemcontrol;
 }
+
+void func_80105834();
+void func_80101870();
+void func_80107C2C();
+void func_801018A4();
+s32 D_80804D00_chdodgemcontrol[] = {
+    0x00000002, 0x00000003, 0x00000004, 0x00000004,
+};
+u32 D_80804D10_chdodgemcontrol[] = {
+    0x00130516, 0x001601F4, 0x00010DAC, 0x13880000,
+};
+s32 D_80804D20_chdodgemcontrol[] = {
+    0x0013054C, 0x000D00F3, 0x010C0018, 0x00010DAC,
+    0x13880000,
+};
+s32 D_80804D34_chdodgemcontrol[] = {
+    0x0013054B, 0x000D00F3, 0x010C0018, 0x00010DAC,
+    0x13880000,
+};
+s32 D_80804D48_chdodgemcontrol[] = {
+    0x00130661, 0x000A00B8, 0x00164650, 0x00010DAC,
+    0x13880000,
+};
+s32 D_80804D5C_chdodgemcontrol[] = {
+    0x00130519, 0x000D00F3, 0x010C0016, 0x46500001,
+    0x0DAC1388, 0x00000000,
+};
+s32 D_80804D74_chdodgemcontrol[] = {
+    0x0013062B, 0x000D00CC, 0x00E60016, 0x46500001,
+    0x0DAC1388, 0x00000000,
+};
+s32 D_80804D8C_chdodgemcontrol[] = {
+    0x001304B6, 0x000D00CC, 0x00E60016, 0x46500001,
+    0x0DAC1388, 0x00000000,
+};
+s32 D_80804DA4_chdodgemcontrol[] = {
+    0x00130515, 0x001E0001, 0x0DAC1388, 0x00000000,
+};
+u32 D_80804DB4_chdodgemcontrol[] = {
+    0x02CB0306, 0x00000001, 0x00000000, (u32)func_8080010C_chdodgemcontrol,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (u32)func_808015E8_chdodgemcontrol, 0x00000000,
+    0x00C80000, (u32)func_808013D0_chdodgemcontrol, (u32)func_80107C2C, 0x80000602,
+    (u32)func_80800938_chdodgemcontrol, 0x00000000,
+};
+struct DodgemValues D_80804DFC_chdodgemcontrol = {
+    0x00000077, 0x00000078, 0x0000007A, 0x00000079,
+};
+struct dodgem_vector D_80804E0C_chdodgemcontrol = {
+    0.0f, 0.0f, 0.0f,
+};
+DodgemValues D_80804E18_chdodgemcontrol = {
+    270.0f, 90.0f, 180.0f, 0.0f,
+};
+DodgemPositions D_80804E28_chdodgemcontrol = {
+    615.0f, 0.0f, 0.0f, -615.0f, 0.0f, 0.0f, 0.0f, 0.0f, 615.0f, 0.0f, 0.0f, -615.0f,
+};
+u32 D_80804E58_chdodgemcontrol[] = {
+    0x00000000, 0x00000000, 0x3F0A3D71, 0x03600000,
+    0x3F0A3D71, 0x03600000, 0x3F0A3D71, 0x03600000,
+};
+s32 D_80804E78_chdodgemcontrol[] = {
+    0x00161200, 0x00150000, 0x00CC002B, 0x00C00100,
+    0x0022004C, 0x00590026, 0x0033002D, 0x01900258,
+    0x000D0014, 0x001BFCE0, 0xFDA80000,
+};
+s32 D_80804EA4_chdodgemcontrol[] = {
+    0x001304FC, 0x0018000D, 0x00F3010C, 0x00000000,
+};
+struct DodgemRGB D_80804EB4_chdodgemcontrol = {
+    0x00000000, 0x00000000, 0x00000000,
+};
+struct DodgemRGB D_80804EC0_chdodgemcontrol = {
+    0x00000000, 0x00000000, 0x00000000,
+};
+s16 D_80804ECC_chdodgemcontrol[] = {
+    0x09E4, 0x09E8, 0x09E0, 0x0000,
+};
+u16 D_80804ED4_chdodgemcontrol[] = {
+    0x07C7, 0x07C6, 0x07C5, 0x0000,
+};
+u32 D_80804EDC_chdodgemcontrol[] = {
+    0x01FC037F, 0x07C50001, (u32)D_80804E58_chdodgemcontrol, (u32)func_80801C60_chdodgemcontrol,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00020004, (u32)func_80801F00_chdodgemcontrol, 0x00000000,
+    0x00000000, (u32)func_80801F2C_chdodgemcontrol, (u32)func_80107C2C, 0x80000002,
+    0x00000000, 0x00000000,
+};
+u32 D_80804F24_chdodgemcontrol[] = {
+    0x00000000, 0x00000000, 0x4B189680, 0x01050000,
+    0x4B189680, 0x01050000, 0x4B189680, 0x01050000,
+    0x4B189680, 0x01050000, 0x40551EB8, 0x010E0001,
+    0x40800000, 0x010F0001, 0x40800000, 0x01100001,
+};
+s32 D_80804F64_chdodgemcontrol[] = {
+    0x00000004, 0x00000001, 0x00000003, 0x00000002,
+};
+f32 D_80804F74_chdodgemcontrol[] = {
+    0.148300007f, 0.300000012f, 0.467999995f, -1.0f,
+};
+f32 D_80804F84_chdodgemcontrol[] = {
+    0.0700000003f, 0.239999995f, 0.400000006f, -1.0f,
+};
+f32 D_80804F94_chdodgemcontrol[] = {
+    0.0799999982f, 0.879999995f, -1.0f,
+};
+struct DodgemPosition D_80804FA0_chdodgemcontrol = {
+    0.0f, 0.0f, 0.0f,
+};
+u32 D_80804FAC_chdodgemcontrol[] = {
+    0x02CA0305, 0x06BA0004, (u32)D_80804F24_chdodgemcontrol, (u32)func_80802D04_chdodgemcontrol,
+    (u32)func_80105834, (u32)func_801018A4, 0x00000000, 0x3F800000,
+    0x00000000, 0x00000004, (u32)func_8080455C_chdodgemcontrol, 0x00000000,
+    0x00200000, (u32)func_8080440C_chdodgemcontrol, (u32)func_80107C2C, 0x80000002,
+    (u32)func_8080207C_chdodgemcontrol, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000,
+};

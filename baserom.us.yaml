@@ -8957,7 +8957,7 @@ segments:
     subsegments: 
       - [0x0206D490, c, dodgemcontrol]
       - [0x02071E40, .rodata, dodgemcontrol]
-      - [0x02072190, data, dodgemcontrol]
+      - [0x02072190, .data, dodgemcontrol]
       - [0x02072490, bss, dodgemcontrol]
   - name: chdodgemdoors_header
     dir: overlays/chdodgemdoors
