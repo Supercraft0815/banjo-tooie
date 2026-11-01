@@ -813,7 +813,54 @@ void func_80801584_chboilerboss(Actor *arg0, s32 arg1)
   func_80105A9C(arg0, *((f32 *) (((u8 *) D_80802B4C_chboilerboss) + ((((index < 0) ? (index) : (index)) << 1) << 1))));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/boiler/boss/func_80801628_chboilerboss.s")
+void func_80801628_chboilerboss(Actor *arg0) {
+    int func_800DC298(f32 arg0);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    void func_800EF1B8(f32 *arg0, f32 arg1, f32 arg2);
+    void *func_80100094(Actor *arg0, u32 arg1);
+    void func_808019C8_chboilerboss(s32 arg0, f32 *arg1);
+    void func_80801A08_chboilerboss(s32 arg0, f32 *arg1);
+    f32 *data;
+    u32 bit13;
+    u32 bit12;
+    u32 bit11;
+    f32 position[3];
+
+    data = func_80100094(arg0, 0);
+    bit13 = (arg0->unk0->unk28 << 18) >> 31;
+    bit12 = (arg0->unk0->unk28 << 19) >> 31;
+    bit11 = (arg0->unk0->unk28 << 20) >> 31;
+    if ((s32)arg0->unk70_10 >= 11) {
+        return;
+    }
+    if (bit11 && !bit13) {
+        if (arg0->unk70_10 == 5) {
+            if (func_800DC298(0.5f)) {
+                func_80801464_chboilerboss(arg0, position, 75.0f);
+                func_808019C8_chboilerboss((s32)arg0, position);
+            }
+        } else if (func_800DC298(0.15f)) {
+            func_80801464_chboilerboss(arg0, position, 75.0f);
+            func_808019C8_chboilerboss((s32)arg0, position);
+        }
+    }
+    if (bit11 && !bit12) {
+        if (arg0->unk70_10 == 5) {
+            if (func_800DC298(0.5f)) {
+                func_808014F4_chboilerboss(arg0, position, 75.0f);
+                func_808019C8_chboilerboss((s32)arg0, position);
+            }
+        } else if (func_800DC298(0.15f)) {
+            func_808014F4_chboilerboss(arg0, position, 75.0f);
+            func_808019C8_chboilerboss((s32)arg0, position);
+        }
+    }
+    if (!bit11 && arg0->unk70_10 != 9 && func_800DC298(0.4f)) {
+        func_800EE7F8(position, data + 6);
+        func_800EF1B8(position, arg0->rotation[1], 75.0f);
+        func_80801A08_chboilerboss((s32)arg0, position);
+    }
+}
 
 void func_808017F0_chboilerboss(Actor *arg0) {
     int func_800DC298(f32);
