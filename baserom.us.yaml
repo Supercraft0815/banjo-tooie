@@ -4229,7 +4229,7 @@ segments:
     subsegments: 
       - [0x01F7FB60, c, nastycavemen]
       - [0x01F80BC0, .rodata, nastycavemen]
-      - [0x01F80C10, data, nastycavemen]
+      - [0x01F80C10, .data, nastycavemen]
       - [0x01F80D90, bss, nastycavemen]
   - name: chcamwaypoint_header
     dir: overlays/chcamwaypoint
@@ -4839,7 +4839,7 @@ segments:
     subsegments: 
       - [0x01FA1890, c, mrsboggy]
       - [0x01FA2250, .rodata, mrsboggy]
-      - [0x01FA22B0, data, mrsboggy]
+      - [0x01FA22B0, .data, mrsboggy]
       - [0x01FA23D0, bss, mrsboggy]
   - name: chmineprospector_header
     dir: overlays/chmineprospector
@@ -5411,7 +5411,7 @@ segments:
     subsegments: 
       - [0x01FB6350, c, balloonburst]
       - [0x01FB7F30, .rodata, balloonburst]
-      - [0x01FB7F90, data, balloonburst]
+      - [0x01FB7F90, .data, balloonburst]
       - [0x01FB8170, bss, balloonburst]
   - name: chpawnbroker_header
     dir: overlays/chpawnbroker
@@ -5449,7 +5449,7 @@ segments:
     subsegments: 
       - [0x01FB94E0, c, hoopswoop]
       - [0x01FBB340, .rodata, hoopswoop]
-      - [0x01FBB3A0, data, hoopswoop]
+      - [0x01FBB3A0, .data, hoopswoop]
       - [0x01FBB4E0, bss, hoopswoop]
   - name: chtiptup_header
     dir: overlays/chtiptup
@@ -5468,7 +5468,7 @@ segments:
     subsegments: 
       - [0x01FBB610, c, tiptup]
       - [0x01FBC950, .rodata, tiptup]
-      - [0x01FBC970, data, tiptup]
+      - [0x01FBC970, .data, tiptup]
       - [0x01FBCCD0, bss, tiptup]
   - name: chseaweedbaddy_header
     dir: overlays/chseaweedbaddy
@@ -11121,7 +11121,7 @@ segments:
     subsegments: 
       - [0x020AC150, c, clinker]
       - [0x020AD440, .rodata, clinker]
-      - [0x020AD540, data, clinker]
+      - [0x020AD540, .data, clinker]
       - [0x020AD730, bss, clinker]
   - name: chfactorylobbydoor_header
     dir: overlays/chfactorylobbydoor

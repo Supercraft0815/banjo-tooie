@@ -1,24 +1,78 @@
 #include "common.h"
 
+void func_8080016C_chhoopswoop(Actor *arg0);
+void func_80105834(Actor *);
+void func_80101870(Actor *, void *);
+void func_80800620_chhoopswoop(Actor *arg0);
+void func_80800024_chhoopswoop(void *arg0);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_80800320_chhoopswoop(Actor *arg0, int arg1, s32 arg2);
+void func_808011DC_chhoopswoop(Actor *arg0);
+void func_808013C4_chhoopswoop(Actor *arg0, s32 arg1);
+void func_80801130_chhoopswoop(Actor *arg0);
+s32 func_808013F8_chhoopswoop(void *arg0, s32 arg1, s32 arg2);
+void func_80801838_chhoopswoop(Actor *arg0);
+void func_80801A94_chhoopswoop();
+void func_808017C4_chhoopswoop(Actor *arg0);
+s32 func_80801A10_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2);
+
+u32 D_80801EC0_chhoopswoop[] = {
+    0x02B70355, 0x00000001, 0x00000000, (u32)func_8080016C_chhoopswoop,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, (u32)func_80800620_chhoopswoop, 0x00000000,
+    0x09FC0000, (u32)func_80800024_chhoopswoop, (u32)func_80107C2C, 0x80000602,
+    (u32)func_80800320_chhoopswoop, 0x00000000
+};
+
+u32 D_80801F08_chhoopswoop[] = {
+    0x02B7044A, 0xFFFF0001, 0x00000000, (u32)func_808011DC_chhoopswoop,
+    (u32)func_80105834, (u32)func_808013C4_chhoopswoop, 0x00000000, 0x00000000,
+    0x00000000, 0x00400400, (u32)func_80800620_chhoopswoop, 0x00000000,
+    0x09FC0000, (u32)func_80801130_chhoopswoop, (u32)func_80107C2C, 0x80000402,
+    (u32)func_808013F8_chhoopswoop, 0x00000000
+};
+
+u32 D_80801F50_chhoopswoop[] = {
+    0x02B80356, 0x00000001, 0x00000000, (u32)func_80801838_chhoopswoop,
+    (u32)func_80105834, (u32)func_80801A94_chhoopswoop, 0x00000000, 0x00000000,
+    0x00000000, 0x00000804, 0x00000000, 0x00000000,
+    0x00440000, (u32)func_808017C4_chhoopswoop, (u32)func_80107C2C, 0x80000082,
+    (u32)func_80801A10_chhoopswoop, 0x00000000
+};
+
+s32 D_80801F98_chhoopswoop[] = {
+    0x001304EE, 0x000D0119, 0x01330016, 0x46500001,
+    0x03200640, 0x00000000
+};
+
+s32 D_80801FB0_chhoopswoop[] = {
+    0x00161000, 0x00150000, 0x00CC002B, 0x00C00100,
+    0x0022004C, 0x00590026, 0x0033002D, 0x01900258,
+    0x000D0014, 0x001BFCE0, 0xFDA80000
+};
+
+s32 D_80801FDC_chhoopswoop[] = {
+    0x001304ED, 0x000D0119, 0x01330016, 0x46500001,
+    0x03200640, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000
+};
+
 typedef struct player_state_s PlayerState;
 
 OSThread *chhoopswoop_entrypoint_0(void)
 {
-    extern u8 D_80801EC0_chhoopswoop[];
 
     return (OSThread *) D_80801EC0_chhoopswoop;
 }
 
 OSThread *chhoopswoop_entrypoint_1(void)
 {
-    extern u8 D_80801F08_chhoopswoop[];
 
     return (OSThread *) D_80801F08_chhoopswoop;
 }
 
 OSThread *chhoopswoop_entrypoint_2(void)
 {
-    extern u8 D_80801F50_chhoopswoop[];
 
     return (OSThread *) D_80801F50_chhoopswoop;
 }
@@ -30,7 +84,7 @@ void func_80800024_chhoopswoop(void *arg0) {
     void func_800946C4(PlayerState *, s32);
     s32 func_800DA524(s32);
     PlayerState *func_800F53D0(s32);
-    s32 func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_80800094_chhoopswoop(void *);
     func_800946C4(func_800F53D0(func_800F54E4()), 1);
     func_800DA524(0);
@@ -101,7 +155,7 @@ void func_8080016C_chhoopswoop(Actor *arg0) {
         u8 game[0x534];
         f32 timer;
     } UpdateHoopData;
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     s32 _susubgame_entrypoint_9(void);
     s32 func_800CEAD0(s32);
@@ -110,7 +164,7 @@ void func_8080016C_chhoopswoop(Actor *arg0) {
     s32 func_800D90A4(f32 *);
     int func_800D9154(f32 *, f32);
     f32 func_800DC178(f32, f32);
-    s32 func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7ECC(s32, s32, f32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
@@ -154,18 +208,60 @@ void func_8080016C_chhoopswoop(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/hoopswoop/func_80800320_chhoopswoop.s")
+s32 func_80800320_chhoopswoop(Actor *arg0, int arg1, s32 arg2) {
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
+    s32 _susubgame_entrypoint_3(s32 arg0, u8 *arg1, s32 arg2, s32 arg3);
+    s32 func_800D395C(void);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32 arg0,s32 arg1);
+    void * func_80100094(Actor *arg0, u32 arg1);
+    void func_808004BC_chhoopswoop(Actor *arg0);
+    void func_80800910_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2);
+    s32 func_80800C04_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2);
+    void func_80800C9C_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2);
+    void func_80800D28_chhoopswoop(void *arg0, s32 arg1);
+    u8 *data;
+    s32 dialog;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x2E:
+            func_80800910_chhoopswoop(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x2F:
+            func_80800C9C_chhoopswoop(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            break;
+        case 0x30:
+            return func_80800C04_chhoopswoop(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        case 0x3D:
+            func_80800D28_chhoopswoop(arg0, arg2);
+            break;
+        case 0x32:
+            dialog = func_800D395C() ? 0x1119 : 0x10C1;
+            _subaddiedialog_entrypoint_11(arg0->unk0, dialog, 0x46, arg0->position, 0x22);
+            func_800F82D4(func_800F54E4(), 2);
+            break;
+        case 0x57:
+            return _susubgame_entrypoint_3((s32)arg0, data + 0x4C4, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        case 0x95:
+            func_808004BC_chhoopswoop(arg0);
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 void func_808004BC_chhoopswoop(Actor *arg0) {
     s32 _chintrotext_entrypoint_2(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _susubgame_entrypoint_10(Actor *, s32, s32, s32);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
     void func_800A16BC(s32);
     s32 func_800BF744(s32, s32);
     s32 func_800D395C(void);
-    s32 func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(s32, s32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
@@ -315,7 +411,7 @@ void func_80800910_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
     u32 _gcgoto_entrypoint_1(u32, u32);
     void _glcutDll_entrypoint_6(u32, u32);
     void _plcamera_entrypoint_8(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     void _subaddiefade_entrypoint_3(Actor *);
     Actor *_subaddiefind_entrypoint_2(s32, s32);
     s32 _susubgame_entrypoint_4(void *, s32);
@@ -324,7 +420,7 @@ void func_80800910_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800A16BC(s32);
     s32 func_800D395C(void);
     void func_800DA544(s32);
-    s32 func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(s32, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -602,7 +698,7 @@ void func_808011DC_chhoopswoop(Actor *arg0) {
         f32 timer;
     } HoopData;
     s32 _gcstatusDll_entrypoint_11();
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _subaddiefind_entrypoint_9(s32);
     void _sumultiscore_entrypoint_6(u8 *);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
@@ -862,14 +958,14 @@ s32 func_80801A10_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2)
   u8 *new_var;
   void func_80101FDC(Actor *, u32);
   s32 func_8010D930(s32, s32, u8 *, s32 *);
-  extern s32 D_80801F98_chhoopswoop;
+
   if (arg1 == 0x4F)
   {
     if (((((((((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) >> 0xA) != 5)
     {
       if (arg2 != 0)
       {
-        func_8010D930(5, (*((s32 *) (((s8 *) arg0) + 0x70))) & 1, arg0 + 4, &D_80801F98_chhoopswoop);
+        func_8010D930(5, (*((s32 *) (((s8 *) arg0) + 0x70))) & 1, arg0 + 4, D_80801F98_chhoopswoop);
       }
       _subaddiefade_entrypoint_5(arg0);
       func_80101FDC(new_var = arg0, 5);
@@ -879,9 +975,9 @@ s32 func_80801A10_chhoopswoop(u8 *arg0, s32 arg1, s32 arg2)
   return 0;
 }
 
-void func_80801A94_chhoopswoop()
+void func_80801A94_chhoopswoop(Actor *arg0, void *arg1)
 {
-    func_80101870();
+    func_80101870(arg0, arg1);
 }
 
 s32 func_80801AB4_chhoopswoop(Actor *arg0) {
@@ -969,7 +1065,6 @@ void func_80801D20_chhoopswoop(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800BA22C(s32, s32);
     s32 func_800BA3FC(s32, s32);
     s32 func_800BABB8(s32, s32, s32, s32, s32 *);
-    extern s32 D_80801FB0_chhoopswoop;
     s32 sp24;
     s32 temp_a1;
     s32 temp_v0;
@@ -977,15 +1072,14 @@ void func_80801D20_chhoopswoop(s32 arg0, s32 arg1, s32 arg2) {
     temp_v0 = func_800B53A4(arg2);
     temp_a1 = arg0 + 4;
     sp24 = temp_v0;
-    func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3F800000, &D_80801FB0_chhoopswoop);
+    func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3F800000, D_80801FB0_chhoopswoop);
     func_800BA3FC(sp24, arg1);
     func_800BA22C(sp24, arg2);
 }
 
 void func_80801D8C_chhoopswoop(u8 *arg0) {
     s32 func_8010D930(s32, s32, u8 *, s32 *);
-    extern s32 D_80801FDC_chhoopswoop;
-    func_8010D930(4, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1, arg0 + 4, &D_80801FDC_chhoopswoop);
+    func_8010D930(4, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1, arg0 + 4, D_80801FDC_chhoopswoop);
 }
 
 void func_80801DCC_chhoopswoop(Actor *arg0) {

@@ -1,8 +1,88 @@
 #include "common.h"
 
+void func_80102EC0(s32);
+void func_8080067C_chnastycavemen(Actor *arg0);
+void func_80800B10_chnastycavemen(Actor *arg0, void *arg1);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_808009BC_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2);
+void func_80800BE0_chnastycavemen(Actor *arg0);
+void func_80800E68_chnastycavemen(u8 *arg0, s32 arg1);
+void func_8080103C_chnastycavemen(s32 arg0);
+s32 func_80800E90_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2);
+
+u32 D_808010B0_chnastycavemen[] = {
+    0x00000000, 0x00000000, 0x40466666, 0x02F10001,
+    0x4019999A, 0x02F20002, 0x40533333, 0x02F30001,
+    0x40600000, 0x02F40002, 0x3F28F5C3, 0x02F00001,
+    0x40600000, 0x02F40001
+};
+
+u32 D_808010E8_chnastycavemen[] = {
+    0x01DE01DA, 0x07EE0001, (u32)D_808010B0_chnastycavemen, (u32)func_80102EC0,
+    (u32)func_8080067C_chnastycavemen, (u32)func_80800B10_chnastycavemen, 0x00000000, 0x00000000,
+    0x00000000, 0x00040420, 0x00000000, 0x00000000,
+    0x00580000, 0x00000000, (u32)func_80107C2C, 0x84005412,
+    (u32)func_808009BC_chnastycavemen, 0x00000000
+};
+
+s32 D_80801130_chnastycavemen[] = {
+    0x001305B6, 0x00000000
+};
+
+u32 D_80801138_chnastycavemen[] = {
+    0x001305C6, 0x000D00CC, 0x00D90000
+};
+
+u32 D_80801144_chnastycavemen[] = {
+    0x001305C7, 0x000D00CC, 0x00D90000
+};
+
+u32 D_80801150_chnastycavemen[] = {
+    0x001304AA, 0x00000000
+};
+
+u32 D_80801158_chnastycavemen[] = {
+    0x001305CE, 0x000A00E6, 0x00000000
+};
+
+u32 D_80801164_chnastycavemen[] = {
+    0x3F19999A, 0x3F3D70A4, 0x3F6147AE, 0xBF800000
+};
+
+u32 D_80801174_chnastycavemen[] = {
+    0x00130417, 0x00000000
+};
+
+u32 D_8080117C_chnastycavemen[] = {
+    0x3E743958, 0x3EB74BC7, 0x3ECA0903, 0xBF800000
+};
+
+u32 D_8080118C_chnastycavemen[] = {
+    0x00130417, 0x00000000
+};
+
+u32 D_80801194_chnastycavemen[] = {
+    0x00000000, 0x00000000, 0x406CCCCD, 0x02F50000,
+    0x406CCCCD, 0x02F50000, 0x3F222222, 0x02F60000,
+    0x406CCCCD, 0x02F50000
+};
+
+u32 D_808011BC_chnastycavemen[] = {
+    0x015801DB, 0x07EE0001, (u32)D_80801194_chnastycavemen, (u32)func_80102EC0,
+    (u32)func_80800BE0_chnastycavemen, (u32)func_80800E68_chnastycavemen, 0x0BB80000, 0x3F800000,
+    0x00000000, 0x00040020, (u32)func_8080103C_chnastycavemen, 0x00000000,
+    0x00000000, 0x00000000, (u32)func_80107C2C, 0x80004412,
+    (u32)func_80800E90_chnastycavemen, 0x00000000
+};
+
+u32 D_80801204_chnastycavemen[] = {
+    0x00000000, 0x00000000, 0x3E800000, 0x3F800000,
+    0x3F000000, 0x00000000, 0x3F400000, 0x3F800000,
+    0x3F800000, 0x00000000, 0x00000000
+};
+
 OSThread *chnastycavemen_entrypoint_0(void)
 {
-    extern u8 D_808010E8_chnastycavemen[];
 
     return (OSThread *) D_808010E8_chnastycavemen;
 }
@@ -109,7 +189,6 @@ void func_80800268_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
-    extern s32 D_80801130_chnastycavemen;
     s32 dialog;
     f32 *sp30;
 
@@ -123,7 +202,7 @@ void func_80800268_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
             }
             break;
         case 4:
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801130_chnastycavemen);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801130_chnastycavemen);
             _subaddiedialog_entrypoint_11(arg0->unk0, 0x17EE, 8, arg0->position, 0x96);
             break;
         case 3:
@@ -208,7 +287,83 @@ void func_808004C4_chnastycavemen(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/nastycavemen/func_8080067C_chnastycavemen.s")
+void func_8080067C_chnastycavemen(Actor *arg0) {
+    s32 _capod_entrypoint_14(void);
+    void _chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2);
+    u32 _glcutDll_entrypoint_19(s32 arg0);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
+    s32 func_8008FB10(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
+    s32 func_800902E4(f32 *, f32, s32, Actor **);
+    u32 func_800F54E4(void);
+    s32 func_800F55FC(s32 arg0);
+    void * func_80100094(Actor *arg0, u32 arg1);
+    s32 func_80101DDC(Actor *arg0);
+    s32 func_80101E14(Actor *arg0, f32 arg1);
+    extern u32 D_80801138_chnastycavemen[], D_80801144_chnastycavemen[];
+    extern u32 D_80801150_chnastycavemen[], D_80801158_chnastycavemen[];
+    extern u32 D_80801164_chnastycavemen[], D_80801174_chnastycavemen[];
+    extern u32 D_8080117C_chnastycavemen[], D_8080118C_chnastycavemen[];
+    f32 *sp1C;
+    int sp18;
+
+    sp1C = func_80100094(arg0, 0);
+    sp18 = _glcutDll_entrypoint_19(0x34);
+    if (arg0->unk70_10 != 6) {
+        func_8008FB10(arg0->position, 150.0f, 0.0f, 100.0f);
+        if (func_800F55FC(func_800F54E4()) & 0x08000000) {
+            func_800902E4(arg0->position, -1.0f, 0x1D9, &arg0);
+        }
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801138_chnastycavemen, 0.6f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801144_chnastycavemen, 0.05f);
+        if (func_80800194_chnastycavemen((s32)arg0, func_800F54E4())) {
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801150_chnastycavemen);
+            func_80800268_chnastycavemen(arg0, 2, 0);
+        }
+        break;
+    case 2:
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801158_chnastycavemen, 0.01f);
+        if (func_80101DDC(arg0)) {
+            func_80800268_chnastycavemen(arg0, sp18 ? 4 : 3, sp18);
+        }
+        break;
+    case 3:
+        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80801174_chnastycavemen, D_80801164_chnastycavemen);
+        if (arg0->unk74_30 && arg0->unk74_29) {
+            if (!func_8080010C_chnastycavemen((s32)arg0)) {
+                _capod_entrypoint_14();
+            }
+            arg0->unk74_29 = 0;
+            arg0->unk74_30 = arg0->unk74_29;
+        }
+        break;
+    case 4:
+        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_8080118C_chnastycavemen, D_8080117C_chnastycavemen);
+        if (func_80101E14(arg0, 0.0367f)) {
+            arg0->unk64_20 = 1;
+        }
+        if (func_80101DDC(arg0)) {
+            func_80800268_chnastycavemen(arg0, 5, sp18);
+        }
+        break;
+    case 5:
+        func_808003FC_chnastycavemen(arg0);
+        break;
+    case 6:
+        arg0->position[1] = -5000.0f;
+        break;
+    }
+    func_808004C4_chnastycavemen(arg0);
+    if (arg0->unk70_10 == 5) {
+        _chbadshad_entrypoint_1(arg0, sp1C + 6, 1.0f);
+    } else if (arg0->unk70_10 != 6) {
+        _chbadshad_entrypoint_1(arg0, arg0->position, 1.0);
+    }
+}
 
 /* extern */
 
@@ -224,7 +379,7 @@ void func_80800968_chnastycavemen(void) {
 
 s32 func_808009BC_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
     Prop *_gccubesearch_entrypoint_1(u32, f32[3]);
-    s32 _glcutDll_entrypoint_19(s32);
+    u32 _glcutDll_entrypoint_19(s32);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     s32 func_800DA298(s32);
     u32 func_800F54E4(void);
@@ -288,7 +443,6 @@ void func_80800B10_chnastycavemen(Actor *arg0, void *arg1) {
 
 OSThread *chnastycavemen_entrypoint_1(void)
 {
-    extern u8 D_808011BC_chnastycavemen[];
 
     return (OSThread *) D_808011BC_chnastycavemen;
 }
@@ -311,7 +465,6 @@ void func_80800BE0_chnastycavemen(Actor *arg0) {
     void func_80105A9C(Actor *, f32);
     void func_80105BAC(Actor *);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
-    extern u8 D_80801204_chnastycavemen[];
     void *sp44;
     s32 dialog;
     s32 sp3C;

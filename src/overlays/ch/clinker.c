@@ -1,5 +1,89 @@
 #include "common.h"
 
+void func_80800088_chclinker(Actor *arg0);
+void func_80105834(Actor *);
+void func_80800368_chclinker(Actor *arg0, u8 *arg1);
+OSThread *func_80108ED0(void);
+void func_80800000_chclinker(Actor *arg0);
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+s32 func_808002B0_chclinker(Actor *arg0, s32 arg1, s32 arg2);
+void func_808007BC_chclinker(Actor *arg0);
+void func_80101870(Actor *, void *);
+void func_808008C0_chclinker(s32 arg0);
+void func_80800574_chclinker(s32 arg0);
+s32 func_80800E1C_chclinker(Actor *arg0, unsigned int arg1, s32 arg2);
+void func_8080112C_chclinker(Actor *arg0);
+void func_80801004_chclinker(s32 arg0);
+void func_80800FFC_chclinker(s32 arg0);
+s32 func_808011A8_chclinker(Actor *arg0, s32 arg1, u32 arg2);
+
+u32 D_808013F0_chclinker[] = {
+    0x00000000, 0x00000000, 0x3FA66666, 0x031B0000,
+    0x3FA66666, 0x031B0000
+};
+
+s32 D_80801408_chclinker[] = {
+    0x0013063D, 0x0001012C, 0x07D00016, 0x6D600000
+};
+
+s32 D_80801418_chclinker[] = {
+    0x001D09C9, 0x001F8040, 0x00000018, 0x00000000,
+    0x0F000F00, 0x00160010, 0x002501C0, 0x01C0002B,
+    0x01330135, 0x00150000, 0x00660000
+};
+
+s32 D_80801444_chclinker[] = {
+    0x0810001D, 0x084E0001, 0x0000FF6A, 0x00000000,
+    0xFED40000, 0x000B0001, 0x0001001E, 0xFFE20016,
+    0x04000027, 0xFE0CFE0C, 0x01F401F4, 0x00240100,
+    0x02000015, 0x000000C2, 0x002B00C2, 0x01400004,
+    0x00660007, 0x00020000
+};
+
+s32 D_8080148C_chclinker[] = {
+    0x0410001D, 0x084E0001, 0x0000FF38, 0x00000000,
+    0xFE700000, 0x000B0001, 0x0001001E, 0xFFE20016,
+    0x04000027, 0xFF06FF06, 0x00FA00FA, 0x00240080,
+    0x00C00015, 0x000000C2, 0x002B0100, 0x01820004,
+    0x00660007, 0x00020000
+};
+
+u32 D_808014D4_chclinker[] = {
+    0x016C02C1, 0x084D0001, (u32)D_808013F0_chclinker, (u32)func_80800088_chclinker,
+    (u32)func_80105834, (u32)func_80800368_chclinker, 0x05DC0000, 0x00000000,
+    0x00000000, 0x00000100, 0x00000000, (u32)func_80108ED0,
+    0x000C0000, (u32)func_80800000_chclinker, (u32)func_80107C2C, 0x80002400,
+    (u32)func_808002B0_chclinker, 0x00000000
+};
+
+s32 D_8080151C_chclinker[] = {
+    0x0013067B, 0x0001012C, 0x03E8000D, 0x00F3010C,
+    0x00164E20, 0x00000000
+};
+
+s32 D_80801534_chclinker[] = {
+    0x0013067C, 0x0001012C, 0x03E8000D, 0x00F3010C,
+    0x00164E20, 0x00000000
+};
+
+u8 D_8080154C_chclinker[] = { 0x04, 0x05, 0x00, 0x00 };
+
+u32 D_80801550_chclinker[] = {
+    0x015802BF, 0x00000001, 0x00000000, (u32)func_808007BC_chclinker,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, (u32)func_808008C0_chclinker, 0x00000000,
+    0x001C0000, (u32)func_80800574_chclinker, (u32)func_80107C2C, 0x80000602,
+    (u32)func_80800E1C_chclinker, 0x00000000
+};
+
+u32 D_80801598_chclinker[] = {
+    0x015802C0, 0x00000001, 0x00000000, (u32)func_8080112C_chclinker,
+    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, (u32)func_80801004_chclinker, 0x00000000,
+    0x00000000, (u32)func_80800FFC_chclinker, (u32)func_80107C2C, 0x80000202,
+    (u32)func_808011A8_chclinker, 0x00000000
+};
+
 s32 func_800D395C(void);
 s16 func_800D211C(s32);
 
@@ -55,10 +139,6 @@ void func_808000F4_chclinker(Actor *arg0) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800C4AF0(f32 *, void *);
     s32 func_800D9078(f32 *);
-    extern s32 D_80801408_chclinker[];
-    extern s32 D_80801418_chclinker[];
-    extern s32 D_80801444_chclinker[];
-    extern s32 D_8080148C_chclinker[];
     struct {
         s32 unk0;
         s32 disabled;
@@ -153,7 +233,6 @@ void func_808003A8_chclinker(Actor *arg0) {
 
 OSThread *chclinker_entrypoint_0(void)
 {
-    extern u8 D_808014D4_chclinker[];
 
     return (OSThread *) D_808014D4_chclinker;
 }
@@ -249,9 +328,6 @@ void func_808006A4_chclinker(Actor *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80101E14(Actor *, f32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_8080151C_chclinker[];
-    extern s32 D_80801534_chclinker[];
-    extern u8 D_8080154C_chclinker[];
     struct {
         s32 unk0;
         s32 disabled;
@@ -476,11 +552,60 @@ void func_80800D24_chclinker(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/clinker/func_80800E1C_chclinker.s")
+s32 func_80800E1C_chclinker(Actor *arg0, unsigned int arg1, s32 arg2) {
+    s32 func_800D0A9C(u32 arg0, u32 arg1);
+    void func_800FC63C(u32 track_id, u32 volume);
+    void * func_80100094(Actor *arg0, u32 arg1);
+    Actor * func_801084B0(s32 arg0, Actor **arg1);
+    s32 *data;
+    const s16 *payload = (const s16 *)&arg2;
+    data = func_80100094(arg0, 0);
+    switch ((s32)arg1) {
+        case 0x49:
+        if (func_8080045C_chclinker(&arg0)) {
+            func_80100094(arg0, 0);
+            func_80800598_chclinker(arg0);
+            if (func_800D395C()) {
+                func_808008E0_chclinker(arg0, 9);
+            }
+            else if (!func_800D0A9C(0x35, 1)) {
+                func_808008E0_chclinker(arg0, 2);
+            }
+        }
+        break;
+        case 0x4F:
+        if (--*data) {
+            func_800FC63C(0xE, -1);
+        }
+        else {
+            func_808008E0_chclinker(arg0, func_800D395C() ? 7 : 4);
+        }
+        break;
+        case 0x3D:
+        arg0->unk3C = func_801084B0(0x178, &arg0)->unk0;
+        break;
+        case 0x30:
+        return func_80800C9C_chclinker(arg0, payload[0], payload[1]);
+        case 0x2E:
+        func_80800D24_chclinker(arg0, payload[0], payload[1]);
+        break;
+        case 0x9F:
+        func_808008E0_chclinker(arg0, 5);
+        break;
+        case 0x96:
+        if (!func_800D395C()) {
+            return 0;
+        }
+        func_808008E0_chclinker(arg0, 8);
+        break;
+        default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chclinker_entrypoint_1(void)
 {
-    extern u8 D_80801550_chclinker[];
 
     return (OSThread *) D_80801550_chclinker;
 }
@@ -581,7 +706,6 @@ s32 func_808011A8_chclinker(Actor *arg0, s32 arg1, u32 arg2) {
 
 OSThread *chclinker_entrypoint_2(void)
 {
-    extern u8 D_80801598_chclinker[];
 
     return (OSThread *) D_80801598_chclinker;
 }
