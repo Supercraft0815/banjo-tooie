@@ -100,7 +100,10 @@ void func_800E13F0(s32 arg0, f32 arg1) {
 
 typedef struct {
     f32 position[3];
-    s8 padC[0x68];
+    f32 min, max, floor;
+    f32 unk18, unk1C, unk20, unk24;
+    f32 strength, multiplier, unk30;
+    s8 pad34[0x40];
     s8 active;
     s8 unk75;
     s8 updated;
@@ -294,7 +297,7 @@ void func_800E1804(void) {
                 if (*(f32 *)((s8 *)&D_8012CF90[i] + 0x30) < *(f32 *)((s8 *)&D_8012CF90[i] + 0x18)) {
                     value = func_800F13F0(*(f32 *)((s8 *)&D_8012CF90[i] + 0x18), *(f32 *)((s8 *)&D_8012CF90[i] + 0x30) + dt);
                     *(f32 *)((s8 *)&D_8012CF90[i] + 0x30) = value;
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x28) = *(f32 *)((s8 *)&D_8012CF90[i] + 0x20) * func_800F3780(value / *(f32 *)((s8 *)&D_8012CF90[i] + 0x18), (u8 *)&D_8012CF90[i].padC[0x28], *(u8 *)&D_8012CF90[i].pad77[1]);
+                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x28) = *(f32 *)((s8 *)&D_8012CF90[i] + 0x20) * func_800F3780(value / *(f32 *)((s8 *)&D_8012CF90[i] + 0x18), (u8 *)&D_8012CF90[i].pad34[0], *(u8 *)&D_8012CF90[i].pad77[1]);
                     *(f32 *)((s8 *)&D_8012CF90[i] + 0x2C) = -*(f32 *)((s8 *)&D_8012CF90[i] + 0x2C);
                 } else {
                     func_800E1720(i);
@@ -304,4 +307,45 @@ void func_800E1804(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EBAA10/func_800E1A58.s")
+void func_800E1A58(f32 *arg0, f32 *arg1) {
+    void func_800EE7F8(f32 *, f32 *);
+    f32 func_800EEAD4(f32 *, f32 *);
+    f32 func_800F0E00(f32, f32);
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern u8 D_8012D468[];
+    Entry *entry;
+    f32 position[3];
+    f32 scale;
+    f32 distance;
+    s32 type;
+    s32 index;
+
+    func_800EE7F8(position, arg0);
+    index = 0;
+    do {
+        entry = &D_8012CF90[index];
+        scale = 1.0;
+        if ((u8)entry->active != 1) {
+            if ((u8)entry->updated != 0) {
+                distance = func_800EEAD4(position, entry->position);
+                scale = func_800F10B4(distance, entry->min, entry->max, 1.0f, 0.0f);
+                scale = func_800F0E00(scale, entry->floor);
+                if (!scale) {
+                    goto next;
+                }
+            }
+            type = (u8)entry->active;
+            switch (type) {
+                case 2:
+                    func_800E1294((u8)entry->unk75, arg0, arg1, entry->strength * scale);
+                    break;
+                case 3:
+                case 4:
+                    func_800E1294((u8)entry->unk75, arg0, arg1, (entry->strength * entry->multiplier) * scale);
+                    break;
+            }
+        }
+    next:
+        index++;
+    } while ((void *)D_8012D468 != (void *)&D_8012CF90[index]);
+}
