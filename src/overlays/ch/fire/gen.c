@@ -67,7 +67,175 @@ OSThread *chfiregen_entrypoint_5(void)
     return (OSThread *) D_8080171C_chfiregen;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fire/gen/func_808000EC_chfiregen.s")
+void func_808000EC_chfiregen(Actor *arg0) {
+    typedef struct {
+        u8 prefix[0x18];
+        f32 phase;
+        f32 unused1;
+        f32 unused2;
+        f32 cooldown;
+        f32 unused4;
+        f32 extinguish;
+        f32 strength;
+        f32 morph;
+    } FireData;
+    extern f32 func_800D9004(void);
+    extern s32 _sudeflect_entrypoint_1(u8 *, f32, f32, f32, s32);
+    extern s32 _subaddieaudioloop_entrypoint_2(u8 *);
+    extern s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    extern void func_800C31DC(u8, f32);
+    extern u8 func_800C4350(s32, f32 *, s32 *);
+    extern f32 func_800DC0C0(void);
+    extern f32 func_800DC178(f32, f32);
+    extern f32 func_800F10B4(f32, f32, f32, f32, f32);
+    extern void func_80101CDC(Actor *, f32);
+    extern f32 func_80101D0C(Actor *);
+    extern s32 func_80101E14(Actor *, f32);
+    extern s32 func_801039E4(s32);
+    extern s32 func_80103CB8(Actor *, u32);
+    extern u8 *func_800B2768(u8 *);
+    extern s32 func_800B2840(s32);
+    extern void _dbmorph_entrypoint_3(u8 *, s32, s32, s32, f32 *);
+    extern void func_808008F4_chfiregen(Actor *, s32);
+    extern void func_80800B4C_chfiregen(Actor *, s32);
+    extern s32 D_80801570_chfiregen[];
+    extern s32 D_80801580_chfiregen[];
+    f32 timer;
+    f32 dt;
+    u32 model;
+    s32 mesh;
+    dt = func_800D9004();
+    _sudeflect_entrypoint_1((u8 *) arg0->position, 80.0f, 0.0, 75.0f, 10);
+    if (arg0->unk64_19) {
+        ((FireData *) arg0)->phase = ((FireData *) arg0)->phase - dt;
+        if (((FireData *) arg0)->phase < 0.0f) {
+            ((FireData *) arg0)->phase = 0.0;
+            arg0->unk64_19 = 0;
+        }
+    } else {
+        ((FireData *) arg0)->phase = ((FireData *) arg0)->phase + dt;
+        if (((FireData *) arg0)->phase > 0.3f) {
+            ((FireData *) arg0)->phase = 0.3f;
+            arg0->unk64_19 = 1;
+        }
+    }
+    arg0->unk79_4 = (s32) func_800F10B4(((FireData *) arg0)->phase, 0.0, 0.3f, 0.0f, 4.49f);
+    if (dt < arg0->unk58) {
+        arg0->unk58 = arg0->unk58 - dt;
+    } else {
+        ((FireData *) arg0)->extinguish = (arg0->unk58 = 0.0f);
+    }
+    arg0->unk6C_0 += 1;
+    switch (arg0->unk70_10) {
+        case 2:
+        if (((FireData *) arg0)->strength <= 0.95f) {
+            ((FireData *) arg0)->strength = ((FireData *) arg0)->strength + 0.05f;
+        }
+        if (((FireData *) arg0)->morph <= 0.84000003f) {
+            ((FireData *) arg0)->morph = ((FireData *) arg0)->morph + 0.16f;
+        }
+        arg0->unk54 = arg0->unk54 + 0.0075f;
+        if (arg0->unk54 > 1.0f) {
+            arg0->unk54 = 1.0f;
+        }
+        if (arg0->unk54 < 0.6f) {
+            arg0->unk54 = 0.6f;
+        }
+        if (arg0->unk5F == 0) {
+            arg0->unk5F = func_800C4350(0, arg0->position, D_80801580_chfiregen);
+        }
+        func_800C31DC(arg0->unk5F, arg0->unk54);
+        func_800C4350(arg0->unk5F, 0, 0);
+        if (arg0->unk58 <= 0.0f) {
+            _subaddieaudioloop_entrypoint_2((u8 *) arg0);
+            func_808008F4_chfiregen(arg0, 0);
+            arg0->unk70_10 = 1;
+        }
+        if (func_800DC0C0() < 0.005f) {
+            arg0->unk70_10 = 3;
+            arg0->rotation[0] = 1;
+            func_808008F4_chfiregen(arg0, 0);
+            func_80101CDC(arg0, 0.7f);
+        }
+        if ((func_800DC0C0() < 0.08f) && func_80101E14(arg0, 0.1f)) {
+            func_80800B4C_chfiregen(arg0, 3);
+            _subaddieaudioquick_entrypoint_2((s32) arg0, (s32) arg0->position, D_80801570_chfiregen);
+        }
+        if (func_800DC0C0() < 0.25f) {
+            func_80800B4C_chfiregen(arg0, 1);
+        }
+        break;
+        case 1:
+        if (((FireData *) arg0)->strength > 0.02f) {
+            ((FireData *) arg0)->strength = ((FireData *) arg0)->strength - 0.02f;
+        }
+        if (((FireData *) arg0)->morph >= 0.16f) {
+            ((FireData *) arg0)->morph = ((FireData *) arg0)->morph - 0.16f;
+        }
+        if (arg0->unk58 != 0.0f) {
+            func_808008F4_chfiregen(arg0, 1);
+            arg0->unk70_10 = 2;
+            func_80101CDC(arg0, 0.4f);
+            arg0->unk54 = 0.6f;
+        }
+        timer = func_80101D0C(arg0);
+        if (timer != 10000000.0f) {
+            arg0->unk54 = arg0->unk54 - 0.02f;
+            if (arg0->unk54 < 0.6f) {
+                arg0->unk54 = 0.6f;
+            }
+            if (arg0->unk5F == 0) {
+                arg0->unk5F = func_800C4350(0, arg0->position, D_80801580_chfiregen);
+            }
+            func_800C31DC(arg0->unk5F, arg0->unk54);
+            func_800C4350(arg0->unk5F, 0, 0);
+            timer += func_800DC178(0.05f, 0.15f);
+            if (timer > 4.0f) {
+                func_80800B4C_chfiregen(arg0, 3);
+                _subaddieaudioquick_entrypoint_2((s32) arg0, (s32) arg0->position, D_80801570_chfiregen);
+                timer = 10000000.0f;
+                _subaddieaudioloop_entrypoint_2((u8 *) arg0);
+            }
+            func_80101CDC(arg0, timer);
+        }
+        break;
+        case 3:
+        if (((FireData *) arg0)->strength > 0.02f) {
+            ((FireData *) arg0)->strength = ((FireData *) arg0)->strength - 0.02f;
+        }
+        if (((FireData *) arg0)->morph >= 0.16f) {
+            ((FireData *) arg0)->morph = ((FireData *) arg0)->morph - 0.16f;
+        }
+        if ((func_800DC0C0() < 0.03f) && func_80101E14(arg0, 0.1f)) {
+            _subaddieaudioquick_entrypoint_2((s32) arg0, (s32) arg0->position, D_80801570_chfiregen);
+        }
+        if (arg0->unk54 < 0.6f) {
+            arg0->unk54 = 0.6f;
+        }
+        if (arg0->unk5F == 0) {
+            arg0->unk5F = func_800C4350(0, arg0->position, D_80801580_chfiregen);
+        } else {
+            func_800C31DC(arg0->unk5F, arg0->unk54 - 0.2f);
+            func_800C4350(arg0->unk5F, 0, 0);
+        }
+        arg0->unk70_10 = 2;
+        func_808008F4_chfiregen(arg0, 1);
+        break;
+    }
+    if ((arg0->rotation[2] != (*((FireData *) arg0)).strength) && (((s32) arg0->unk50) != (-1))) {
+        if (((FireData *) arg0)->cooldown < 0.0f) {
+            arg0->rotation[2] = ((FireData *) arg0)->strength;
+            ((FireData *) arg0)->cooldown = 0.25f;
+        } else {
+            ((FireData *) arg0)->cooldown = ((FireData *) arg0)->cooldown - dt;
+        }
+    }
+    if (((FireData *) arg0)->morph > 0.02f) {
+        model = func_801039E4((s32) arg0->unk0);
+        mesh = func_80103CB8(arg0, model);
+        _dbmorph_entrypoint_3(func_800B2768((u8 *) model), mesh, func_800B2840(model), 1, &((FireData *) arg0)->morph);
+    }
+}
 
 s32 func_80800824_chfiregen(Actor *arg0) {
     switch (arg0->unk6C_9) {
