@@ -57,7 +57,7 @@ void func_808000B8_chswitch(Unk80132ED0 *arg0, s32 arg1) {
 /* extern */
 
 void func_8080012C_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32);
     s32 func_8008FCC8(Unk80132ED0 *);
     s32 func_800F7F98(s32, u32);
     void func_80102424(Actor *, s32);
@@ -114,7 +114,7 @@ void chswitch_entrypoint_4(Actor *arg0) {
 /* extern */
 
 void func_808002B4_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32);
     s32 func_8008FCF4(Unk80132ED0 *);
     s32 func_800F7F98(s32, u32);
     void func_80102424(Actor *, s32);
@@ -135,7 +135,7 @@ void func_808002B4_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
 }
 
 s32 chswitch_entrypoint_5(Actor *arg0, s32 arg1, u32 arg2) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32);
     s32 func_800DA298(s32);
     s32 func_800F7F98(s32, u32);
     void func_80102424(Actor *, s32);
@@ -173,7 +173,7 @@ s32 chswitch_entrypoint_5(Actor *arg0, s32 arg1, u32 arg2) {
 }
 
 void chswitch_entrypoint_6(Actor *arg0) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32);
     s32 _plsu_entrypoint_1(s32);
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
@@ -290,7 +290,77 @@ void func_80800694_chswitch(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/swit/chswitch_entrypoint_10.s")
+s32 chswitch_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 func_8080093C_chswitch(Actor *arg0);
+    void _gcaudiolist_entrypoint_0(s32 arg0);
+    s32 func_800DA298(s32 index);
+    s32 func_800F5410(s32 arg0);
+    u32 func_800F54E4(void);
+    Unk80132ED0 *func_800F55D0(s32);
+    s32 func_800F55FC(s32 arg0);
+    s32 func_800F6438(u32 arg0);
+    s32 func_800F64A4(s32, s32);
+    s32 func_800F6C5C(s32 arg0);
+    s32 func_800F7874(s32 arg0, s32 arg1, void *arg2);
+    s32 func_800F7F98(s32 arg0, u32 arg1);
+    void func_80102424(Actor *arg0, s32 arg1);
+    void func_80103110(void *arg0, s32 arg1);
+    s32 playerIndex;
+    s32 playerFlags;
+    s32 currentPlayer;
+    Unk80132ED0 *marker;
+    s32 found;
+    s32 result;
+    s32 flags;
+    s32 i;
+
+    switch (arg1) {
+    case 0x29:
+        return func_8080093C_chswitch(arg0);
+    case 0x32:
+        playerIndex = func_800F5410(arg2);
+        *(s32 *)&arg0->unk50 = playerIndex;
+        arg0->unk58 = 0.15f;
+        _gcaudiolist_entrypoint_0(0);
+        arg0->unk54 = 0.375f;
+        func_80102424(arg0, 2);
+        func_80103110(arg0, 1);
+        func_800F7F98(arg2, 1);
+        result = 1;
+        break;
+    case 0x91:
+        playerFlags = func_800F55FC(arg2);
+        flags = playerFlags & 0x08000000;
+        arg0->unk6C_0 = func_800DA298(0x9D4);
+        playerIndex = func_800F5410(arg2);
+        *(s32 *)&arg0->unk50 = playerIndex;
+        if (!flags && arg0->unk70_10 == 1 &&
+            func_800F64A4(arg2, arg0->actorData[5]) && func_800DA298(0x9D4)) {
+            currentPlayer = func_800F54E4();
+            if (currentPlayer == arg2) {
+                found = 0;
+                for (i = 0; i != 8; i++) {
+                    if (func_800F6438(i) && i != arg2 && func_800F6C5C(i) &&
+                        func_800F55D0(i) == arg0->unk0) {
+                        found = 1;
+                        break;
+                    }
+                }
+                if (!found) {
+                    marker = arg0->unk0;
+                    func_800F7874(arg2, (s32)marker, arg0->position);
+                }
+            }
+        }
+        return 1;
+    case 0x95:
+        func_80800694_chswitch(arg0);
+        return 1;
+    default:
+        return 0;
+    }
+    return result;
+}
 
 /* extern */
 
@@ -315,7 +385,7 @@ s32 func_8080093C_chswitch(Actor *arg0) {
 }
 
 void chswitch_entrypoint_11(Actor *arg0) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32);
     s32 func_800DA298(s32);
     void func_800DA524(s32);
     s32 func_800DA544(s32);
@@ -374,7 +444,7 @@ void chswitch_entrypoint_12(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void chswitch_entrypoint_13(Actor *arg0) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32);
     f32 func_800D8FF8(void);
     void func_800DA524(s32);
     s32 func_800DA544(s32);
