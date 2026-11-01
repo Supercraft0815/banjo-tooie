@@ -2,7 +2,7 @@
 
 OSThread *chinflatableboss_entrypoint_0(void)
 {
-    extern u8 D_80802E50_chinflatableboss[];
+    extern u32 D_80802E50_chinflatableboss[];
 
     return (OSThread *) D_80802E50_chinflatableboss;
 }
@@ -66,7 +66,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     void func_8080183C_chinflatableboss(Actor *);
     void func_80802A00_chinflatableboss(Actor *, u32, u32);
     void func_80802AD8_chinflatableboss(Actor *, s32, s32);
-    extern s16 D_80802D8C_chinflatableboss;
+    extern s16 D_80802D8C_chinflatableboss[];
     void func_8010D5DC(s32, s32);
     BossData *data;
     s32 i;
@@ -93,7 +93,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     }
     func_80102FDC(arg0, 1.4f);
     data->unk494 = 1;
-    data->unk495 = D_80802D8C_chinflatableboss;
+    data->unk495 = D_80802D8C_chinflatableboss[0];
     ((f32 *)arg0->actorData)[4] = 0.35f;
     func_80109FE8(arg0, 0);
     func_800EE7F8(data->position1, position = arg0->position);
@@ -389,7 +389,194 @@ void func_808004A0_chinflatableboss(Actor *arg0) {
     func_8080267C_chinflatableboss(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_80800A98_chinflatableboss.s")
+s32 func_80800A98_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+        u8 pad0[0x1C];
+        f32 position1[3];
+        u8 pad28[0x20];
+        f32 positions[3][3];
+        u8 pad6C[0x41B];
+        u8 parts[12];
+        u8 unk493;
+        u8 unk494;
+        u8 unk495;
+        u8 unk496;
+        u8 unk497;
+        u8 unk498;
+        u8 unk499;
+        u8 unk49A;
+        u8 unk49B;
+        u8 unk49C;
+        u8 unk49D;
+    }
+    BossData;
+    typedef union {
+        s32 word;
+        s16 halves[2];
+        u8 *pointer;
+    }
+    BossEvent;
+    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 func_800D395C(void);
+    void func_800F497C(s32);
+    void func_800F49A8(s32, s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
+    u32 func_800F54E4(void);
+    void func_800F8300(s32, s32, f32 *);
+    u32 func_800FDC28(u32);
+    void func_800FFAB0(Actor *);
+    void *func_80100094(Actor *, u32);
+    void func_80101010(f32 *);
+    void func_80101074(void *);
+    s32 func_80101180(s32, s32, s32);
+    void func_80108B04(Actor *, u32);
+    void func_80800F84_chinflatableboss(Actor *, s32);
+    void func_808010BC_chinflatableboss(Actor *, s32);
+    void func_80801164_chinflatableboss(Actor *, s32);
+    void func_80801418_chinflatableboss(Actor *, u8 *);
+    void func_80801958_chinflatableboss(Actor *, s32, s32);
+    void func_80801AD8_chinflatableboss(Actor *, s32, s32);
+    void func_80801D38_chinflatableboss(Actor *);
+    void func_80801DE0_chinflatableboss(Actor *);
+    void func_80801EA0_chinflatableboss(Actor *);
+    void func_80801F4C_chinflatableboss(Actor *);
+    s32 func_80802590_chinflatableboss(Actor *, f32 *, s32);
+    void func_80802A00_chinflatableboss(Actor *, u32, u32);
+    void func_8010D5DC(s32, s32);
+    extern f32 B_80803020_chinflatableboss[12][3];
+    BossData *data;
+    s32 player;
+    s32 i;
+    s32 count;
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0xB:
+        switch (arg2) {
+        case 20:
+            func_80800F84_chinflatableboss(arg0, 0x11);
+            func_80802A00_chinflatableboss(arg0, 0x31, 0x10);
+            func_80101180(0x46E, 7, 0);
+            return 4;
+        case 49:
+            data->unk49D = 0;
+            func_800FFAB0(arg0);
+        default:
+        normal_hit:
+            return 3;
+        case 3:
+            if (data->unk49C == 0) {
+                func_80802A00_chinflatableboss(arg0, 0xC, 0x20);
+                return 4;
+            }
+            goto normal_hit;
+        case 10:
+            data->unk49D = 0;
+            goto normal_hit;
+        case 12:
+        case 25:
+        case 34:
+            data->unk49A = 1;
+            goto normal_hit;
+        case 8:
+            func_80108B04(arg0, 2);
+            func_80802A00_chinflatableboss(arg0, 0xA, 0x10);
+            return 4;
+        }
+        break;
+    case 0x2E:
+        func_80801958_chinflatableboss(arg0, ((BossEvent *)&arg2)->halves[0], ((BossEvent *)&arg2)->halves[1]);
+        break;
+    case 0x2F:
+        func_80801AD8_chinflatableboss(arg0, ((BossEvent *)&arg2)->halves[0], ((BossEvent *)&arg2)->halves[1]);
+        break;
+    case 0x3D:
+        switch (arg2) {
+        case 0:
+            func_80801DE0_chinflatableboss(arg0);
+            break;
+        case 1:
+            func_80801D38_chinflatableboss(arg0);
+            break;
+        case 2:
+            func_80801EA0_chinflatableboss(arg0);
+            break;
+        case 3:
+            func_80801F4C_chinflatableboss(arg0);
+            break;
+        }
+        break;
+    case 0x32:
+        if (data->unk498 == 2) {
+            data->unk498 = 3;
+            data->unk49A = 0;
+            func_800F497C(func_800F54E4());
+            func_800F49D4(func_800F54E4(), &func_8010D5DC, arg0->unk0);
+            func_800F4A58(func_800F54E4(), data->positions[1], 300.0f);
+            func_80802A00_chinflatableboss(arg0, 0x19, 0x20);
+            _subaddiedialog_entrypoint_11(arg0->unk0, 0x10CC, 0x44, arg0->position, 0x3A);
+            func_80101180(0x46E, 8, 0);
+        } else {
+            data->unk499 = 1;
+            func_800F8300(func_800F54E4(), 2, arg0->position);
+        }
+        break;
+    case 0x3F:
+        func_808010BC_chinflatableboss(arg0, ((BossEvent *)&arg2)->word);
+        break;
+    case 0x40:
+        func_80801164_chinflatableboss(arg0, ((BossEvent *)&arg2)->word);
+        break;
+    case 6:
+        func_80101010(data->position1);
+        break;
+    case 10:
+        player = func_800F54E4();
+        arg0->unk64_16 = 1;
+        data->unk498 = 2;
+        func_800F497C(player);
+        func_800F49A8(player, 1);
+        func_800F49D4(player, &func_8010D5DC, arg0->unk0);
+        func_800F4A58(player, data->positions[0], 300.0f);
+        func_80802A00_chinflatableboss(arg0, 0x2F, 0x20);
+        break;
+    case 0x95:
+        if (data->unk496) {
+            data->unk496 = 0;
+            func_800FDC28(1);
+        }
+        break;
+    case 0x96:
+        if (!func_800D395C()) {
+            return 0;
+        }
+        _subaddiedialog_entrypoint_11(arg0->unk0, 0xCEB, 0x146, arg0->position, 0x3A);
+        break;
+    case 0x9F:
+        func_800FDC28(0);
+        func_80800F84_chinflatableboss(arg0, 5);
+        break;
+    case 0x1F:
+        func_80801418_chinflatableboss(arg0, ((BossEvent *)&arg2)->pointer);
+        break;
+    case 0xA2:
+        count = 0;
+        if (!arg0->unk7C_12) {
+            return 0;
+        }
+        for (i = 0; i < 12; i++) {
+            if (data->parts[i] == 1) {
+                func_80802590_chinflatableboss(arg0, B_80803020_chinflatableboss[count], i + 3);
+                count++;
+            }
+        }
+        func_80101074(B_80803020_chinflatableboss);
+        return count;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 struct anctrl_s;
 void func_80800F84_chinflatableboss(Actor *arg0, s32 arg1) {
@@ -401,7 +588,7 @@ void func_80800F84_chinflatableboss(Actor *arg0, s32 arg1) {
     void func_80802A00_chinflatableboss(Actor *, u32, u32);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     void func_8010A570(Actor *);
-    extern s16 D_80802D8C_chinflatableboss;
+    extern s16 D_80802D8C_chinflatableboss[];
     u8 *sp2C;
 
     sp2C = func_80100094(arg0, 0);
@@ -409,7 +596,7 @@ void func_80800F84_chinflatableboss(Actor *arg0, s32 arg1) {
     switch (arg1) {
         case 11:
             func_8008B1C8(func_80104248(arg0), 0.8f);
-            sp2C[0x495] = (&D_80802D8C_chinflatableboss)[func_80801C7C_chinflatableboss(arg0)];
+            sp2C[0x495] = D_80802D8C_chinflatableboss[func_80801C7C_chinflatableboss(arg0)];
             break;
         case 13:
             func_8008B1C8(func_80104248(arg0), 0.8f);
@@ -523,7 +710,7 @@ void func_808012EC_chinflatableboss(Actor *arg0, f32 arg1[3], s32 arg2) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     void func_80801904_chinflatableboss(Actor *, s32, f32 *);
-    extern s16 D_80802F0E_chinflatableboss[];
+    extern s16 D_80802F14_chinflatableboss[];
     extern s32 D_80802F2C_chinflatableboss[];
     f32 sp34[3];
     f32 sp28[3];
@@ -535,7 +722,7 @@ void func_808012EC_chinflatableboss(Actor *arg0, f32 arg1[3], s32 arg2) {
     func_800EF04C(sp34, arg1);
     sp24 = func_800BABB8(0, arg1, sp34, arg0->scale, D_80802F2C_chinflatableboss);
     func_800BA714(sp24, arg2 * 0.4f, arg2 * 0.6f);
-    func_800BA670(sp24, D_80802F0E_chinflatableboss[(arg0->unk0->unk18 << 11) >> 28]);
+    func_800BA670(sp24, D_80802F14_chinflatableboss[((arg0->unk0->unk18 << 11) >> 28) - 3]);
     func_800BA22C(sp24, 8);
 }
 
@@ -938,13 +1125,13 @@ void func_80801F4C_chinflatableboss(Actor *arg0) {
 
 s32 func_80801FC0_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    extern s32 D_80802F90_chinflatableboss;
+    extern s32 D_80802F90_chinflatableboss[];
     func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802F90_chinflatableboss);
 }
 
 s32 func_8080200C_chinflatableboss(Actor *arg0, f32 *arg1, f32 *arg2) {
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    extern s32 D_80802FC4_chinflatableboss;
+    extern s32 D_80802FC4_chinflatableboss[];
     func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802FC4_chinflatableboss);
 }
 
@@ -968,7 +1155,7 @@ void func_80802058_chinflatableboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     f32 func_80101F24(Actor *);
     s32 func_80802590_chinflatableboss(Actor *, f32 *, s32);
-    extern s32 D_80802FF8_chinflatableboss;
+    extern s32 D_80802FF8_chinflatableboss[];
     s32 *effects;
     u8 *sounds;
     s32 i;
@@ -1022,7 +1209,7 @@ void func_80802264_chinflatableboss(Actor *arg0, f32 arg1, f32 arg2, f32 *arg3, 
     u8 func_800C4350(u8, f32[3], s32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_80101E14(Actor *, f32);
-    extern s32 D_80803008_chinflatableboss;
+    extern s32 D_80803008_chinflatableboss[];
     f32 temp_f20;
     f32 *var_s1;
     f32 *temp_s0;
@@ -1318,3 +1505,96 @@ void func_80802AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
         (*(s8 *)((s8 *)(temp_v1) + (0x478))) = (s8) arg2;
     }
 }
+
+void func_80105834();
+void func_80108ED0();
+void func_80107C2C();
+s16 D_80802D80_chinflatableboss[] = {
+    0x0190, 0x01F4, 0x0258, 0x02BC, 0x0320, 0x0384,
+};
+s16 D_80802D8C_chinflatableboss[] = {
+    0x0001, 0x0001, 0x0002, 0x0002, 0x0003, 0x0003,
+};
+f32 D_80802D98_chinflatableboss[] = {
+    3.0f, 2.79999995f, 2.5999999f, 2.4000001f,
+    2.20000005f, 2.0f,
+};
+u32 D_80802DB0_chinflatableboss[] = {
+    0x00000000, 0x00000000, 0x41100000, 0x02040044,
+    0x41100000, 0x02040002, 0x40900000, 0x02080001,
+    0x40F00000, 0x02050002, 0x40900000, 0x02020001,
+    0x40A00000, 0x02030001, 0x40900000, 0x02020001,
+    0x40A00000, 0x02030001, 0x40900000, 0x02020001,
+    0x40900000, 0x02020001, 0x3FE66666, 0x02090001,
+    0x40000000, 0x02060002, 0x40400000, 0x02020002,
+    0x40900000, 0x02020001, 0x40CCCCCD, 0x020A0002,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x40F00000, 0x02050002, 0x40900000, 0x02020001,
+};
+u32 D_80802E50_chinflatableboss[] = {
+    0x018E013C, 0x07940001, (u32)D_80802DB0_chinflatableboss, (u32)func_808004A0_chinflatableboss,
+    (u32)func_80105834, (u32)func_80801554_chinflatableboss, 0x00000000, 0x00000000,
+    0x00000000, 0x3000042A, (u32)func_80800408_chinflatableboss, (u32)func_80108ED0,
+    0x04A00000, (u32)func_8080000C_chinflatableboss, (u32)func_80107C2C, 0x80200402,
+    (u32)func_80800A98_chinflatableboss, 0x00000000,
+};
+f32 D_80802E98_chinflatableboss[] = {
+    0.0500000007f, 0.219999999f,
+};
+f32 D_80802EA0_chinflatableboss[] = {
+    0.349999994f, 0.430000007f, 0.550000012f, 0.639999986f,
+    0.74000001f,
+};
+f32 D_80802EB4_chinflatableboss[] = {
+    0.00999999978f, 0.150000006f, 0.400000006f, 0.699999988f,
+};
+u32 D_80802EC4_chinflatableboss[] = {
+    0x001304FF, 0x0018001D, 0x00020000,
+};
+u32 D_80802ED0_chinflatableboss[] = {
+    0x001304FE, 0x0018001D, 0x00020000,
+};
+u32 D_80802EDC_chinflatableboss[] = {
+    0x001304B1, 0x00180002, 0x00000000,
+};
+u32 D_80802EE8_chinflatableboss[] = {
+    0x001304FD, 0x00176D60, 0x7D0001F4, 0x00150000,
+    0x033300A3, 0x000E0100, 0x014C0180, 0x00020000,
+};
+u8 D_80802F08_chinflatableboss[] = {
+    0x00, 0x13, 0x04, 0xFB, 0x00, 0x18, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
+};
+s16 D_80802F14_chinflatableboss[] = {
+    0x079A, 0x0798, 0x0799, 0x0798, 0x0797,
+    0x0797, 0x0799, 0x0797, 0x0797, 0x0798, 0x0799, 0x079A,
+};
+s32 D_80802F2C_chinflatableboss[] = {
+    0x01130810, 0x002200C0, 0x00D90073, 0x008C0015,
+    0x00000099, 0x0027FE0C, 0xFE0C01F4, 0x01F4002D,
+    0x06A40898, 0x001BFC18, 0xFB500005, 0x00000016,
+    0x0204002B, 0x04000500, 0x00000000,
+};
+u8 D_80802F68_chinflatableboss[] = {
+    0x00, 0x00, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x3E, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+    0x3F, 0x00, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A,
+};
+s32 D_80802F90_chinflatableboss[] = {
+    0x01130A1C, 0x001D09DD, 0x00160200, 0x002D05DC,
+    0x07080022, 0x02800300, 0x07000880, 0x00150000,
+    0x0099002A, 0x00000000, 0x00CC00E6, 0x00280500,
+    0x00000000,
+};
+s32 D_80802FC4_chinflatableboss[] = {
+    0x0113141C, 0x001D09DD, 0x00160200, 0x002D04B0,
+    0x05DC0022, 0x01800200, 0x04000500, 0x00150000,
+    0x0099002A, 0x00000000, 0x00660080, 0x0028051E,
+    0x00000000,
+};
+s32 D_80802FF8_chinflatableboss[] = {
+    0x001304DC, 0x0018000D, 0x01190133, 0x00020000,
+};
+s32 D_80803008_chinflatableboss[] = {
+    0x000F0013, 0x04FA0018, 0x00020011, 0x00000000,
+    0x00000000, 0x00000000,
+};

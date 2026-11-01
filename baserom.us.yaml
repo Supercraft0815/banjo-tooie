@@ -4572,7 +4572,7 @@ segments:
     subsegments: 
       - [0x01F986D0, c, inflatableboss]
       - [0x01F9B210, .rodata, inflatableboss]
-      - [0x01F9B450, data, inflatableboss]
+      - [0x01F9B450, .data, inflatableboss]
       - [0x01F9B6F0, bss, inflatableboss]
   - name: chballoonbomb_header
     dir: overlays/chballoonbomb
