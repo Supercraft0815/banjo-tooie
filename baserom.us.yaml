@@ -2040,7 +2040,7 @@ segments:
     subsegments: 
       - [0x01F2C460, c, torpedo]
       - [0x01F2DB00, .rodata, torpedo]
-      - [0x01F2DB90, data, torpedo]
+      - [0x01F2DB90, .data, torpedo]
       - [0x01F2DD20, bss, torpedo]
   - name: bskazwingwhack_header
     dir: overlays/bskazwingwhack

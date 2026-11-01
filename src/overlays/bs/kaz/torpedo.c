@@ -2,18 +2,84 @@
 
 #include "overlays/bs/kaz/torpedo.h"
 
-extern s32 D_80801730_bskaztorpedo[];
-extern s32 D_80801740_bskaztorpedo[];
-extern s32 D_80801750_bskaztorpedo[];
-extern s32 D_80801760_bskaztorpedo[];
-extern s32 D_80801770_bskaztorpedo[];
-extern s32 D_808017E4_bskaztorpedo[];
-extern s32 D_808017F4_bskaztorpedo[];
-extern s32 D_80801824_bskaztorpedo[];
-extern s32 D_80801854_bskaztorpedo[];
-extern s32 D_80801884_bskaztorpedo[];
-extern s32 D_80801894_bskaztorpedo[];
-extern s32 D_808018A4_bskaztorpedo[];
+void func_80099AA8(PlayerState *);
+
+void func_80800AF0_bskaztorpedo(PlayerState *self);
+void func_80800B34_bskaztorpedo(PlayerState *self);
+void func_80800BA0_bskaztorpedo(PlayerState *self);
+void func_808008D4_bskaztorpedo(PlayerState *self);
+void func_80800BF8_bskaztorpedo(PlayerState *self);
+void func_80800C20_bskaztorpedo(PlayerState *self);
+void func_80800CAC_bskaztorpedo(PlayerState *self);
+void func_80800D48_bskaztorpedo(PlayerState *self);
+void func_80800D70_bskaztorpedo(PlayerState *self);
+void func_80800DA4_bskaztorpedo(PlayerState *self);
+void func_80800E04_bskaztorpedo(PlayerState *self);
+void func_80800E2C_bskaztorpedo(PlayerState *self);
+void func_80800E54_bskaztorpedo(PlayerState *self);
+void func_80800EE8_bskaztorpedo(PlayerState *self);
+void func_80800F08_bskaztorpedo(PlayerState *self);
+void func_80800FB4_bskaztorpedo(PlayerState *self);
+void func_8080123C_bskaztorpedo(PlayerState *self);
+void func_80801268_bskaztorpedo(PlayerState *self);
+void func_808012DC_bskaztorpedo(PlayerState *self);
+void func_80800A34_bskaztorpedo(PlayerState *);
+void func_80801380_bskaztorpedo(PlayerState *self);
+void func_808013B4_bskaztorpedo(PlayerState *self);
+void func_80801400_bskaztorpedo(PlayerState *self);
+void func_80801484_bskaztorpedo(PlayerState *self);
+void func_808014F8_bskaztorpedo(PlayerState *self);
+void func_80801614_bskaztorpedo(PlayerState *self);
+s32 D_80801730_bskaztorpedo[] = {
+    (s32)func_80800AF0_bskaztorpedo, (s32)func_80800B34_bskaztorpedo, (s32)func_80800BA0_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+};
+s32 D_80801740_bskaztorpedo[] = {
+    (s32)func_80800BF8_bskaztorpedo, (s32)func_80800C20_bskaztorpedo, (s32)func_80800CAC_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+};
+s32 D_80801750_bskaztorpedo[] = {
+    (s32)func_80800D48_bskaztorpedo, (s32)func_80800D70_bskaztorpedo, (s32)func_80800DA4_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+};
+s32 D_80801760_bskaztorpedo[] = {
+    (s32)func_80800E04_bskaztorpedo, (s32)func_80800E2C_bskaztorpedo, (s32)func_80800E54_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+};
+s32 D_80801770_bskaztorpedo[] = {
+    0x000C0023, 0x002B0200, 0x0280002D, 0x00140028,
+    0x00220014, 0x001E0023, 0x0030061A, 0x000C002D,
+    0x002B0180, 0x0200002D, 0x00320046, 0x00220021,
+    0x0026002E, 0x003A081A, 0x000C0037, 0x002B0100,
+    0x0180002D, 0x00460050, 0x00220028, 0x00350040,
+    0x004C081A, 0x000C003C, 0x002D0050, 0x005A002B,
+    0x00800100, 0x0022003D, 0x0040004A, 0x0059021A,
+    0x00000000
+};
+s32 D_808017E4_bskaztorpedo[] = {
+    (s32)func_80800EE8_bskaztorpedo, (s32)func_80800F08_bskaztorpedo, (s32)func_80800FB4_bskaztorpedo, (s32)func_80099AA8
+};
+s32 D_808017F4_bskaztorpedo[] = {
+    0x001D09E4, 0x000E0005, 0x000A0015, 0x00190080,
+    0x00220021, 0x0023000C, 0x000C0027, 0x01900190,
+    0x03200320, 0x002B0080, 0x0099031A, 0x00000000
+};
+s32 D_80801824_bskaztorpedo[] = {
+    0x001D09E4, 0x000E000F, 0x00190015, 0x00000099,
+    0x00220019, 0x001E000C, 0x000C0027, 0x01900190,
+    0x03200320, 0x002B004C, 0x0066061A, 0x00000000
+};
+s32 D_80801854_bskaztorpedo[] = {
+    0x001D09E4, 0x000E001E, 0x00280015, 0x00000099,
+    0x0022000C, 0x000F0007, 0x00070027, 0x01900190,
+    0x03200320, 0x002B0019, 0x004C0E1A, 0x00000000
+};
+s32 D_80801884_bskaztorpedo[] = {
+    (s32)func_8080123C_bskaztorpedo, (s32)func_80801268_bskaztorpedo, (s32)func_808012DC_bskaztorpedo, (s32)func_80800A34_bskaztorpedo
+};
+s32 D_80801894_bskaztorpedo[] = {
+    (s32)func_80801380_bskaztorpedo, (s32)func_808013B4_bskaztorpedo, (s32)func_80801400_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+};
+s32 D_808018A4_bskaztorpedo[] = {
+    (s32)func_80801484_bskaztorpedo, (s32)func_808014F8_bskaztorpedo, (s32)func_80801614_bskaztorpedo, (s32)func_808008D4_bskaztorpedo,
+    0x00000000, 0x00000000, 0x00000000
+};
 
 f32 func_80800000_bskaztorpedo(PlayerState *self) {
     return (func_8009BB94(self) * 100.0f) / 1500.0f;
@@ -212,9 +278,69 @@ void func_8080088C_bskaztorpedo(PlayerState *self, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/kaz/torpedo/func_808008D4_bskaztorpedo.s")
+void func_808008D4_bskaztorpedo(PlayerState *self) {
+    void func_800F452C();
+    int event;
+    f32 position[3];
+    event = func_8009E6EC(self);
+    switch (event) {
+    case 0x50:
+        func_800F7B9C(_plsu_entrypoint_1(0xA), 0x71);
+        func_80099A7C(self, position);
+        func_800F452C(self, position);
+        bs_setState(self, 0x158);
+        func_8009E830(self, 2);
+        return;
+    case 0x6F:
+        func_8009E830(self, 1);
+        return;
+    case 0x21:
+        func_8080088C_bskaztorpedo(self, 0);
+        return;
+    case 0x1F:
+    case 0x20:
+    case 0x24:
+    case 0x2D:
+    case 0x2E:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+        func_8080088C_bskaztorpedo(self, 1);
+        return;
+    case 0x88:
+        self->unk15C.word = 1;
+        func_8009E830(self, 2);
+        return;
+    default:
+        func_80099B94(self);
+        return;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/kaz/torpedo/func_80800A34_bskaztorpedo.s")
+void func_80800A34_bskaztorpedo(PlayerState *self) {
+    void func_808008D4_bskaztorpedo(PlayerState *);
+    int state;
+    if (baflag_isFalse(self, 0x35) != 0) {
+        func_808008D4_bskaztorpedo(self);
+    }
+    state = func_8009E6EC(self);
+    switch (state) {
+    case 0x1F:
+    case 0x20:
+    case 0x21:
+    case 0x24:
+    case 0x2D:
+    case 0x2E:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+        func_8009E830(self, 2);
+        break;
+    default:
+        func_808008D4_bskaztorpedo(self);
+        break;
+    }
+}
 
 void func_80800AF0_bskaztorpedo(PlayerState *self) {
     _batranslate_entrypoint_3(self, 1);
