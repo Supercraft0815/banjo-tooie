@@ -6325,7 +6325,7 @@ segments:
     subsegments: 
       - [0x01FE0180, c, dumbwaiterlift]
       - [0x01FE0D20, .rodata, dumbwaiterlift]
-      - [0x01FE0D40, data, dumbwaiterlift]
+      - [0x01FE0D40, .data, dumbwaiterlift]
       - [0x01FE0DD0, bss, dumbwaiterlift]
   - name: chmrsicecube_header
     dir: overlays/chmrsicecube
