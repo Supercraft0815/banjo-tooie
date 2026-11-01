@@ -9,7 +9,7 @@ OSThread *chevilspirit_entrypoint_0(void)
 
 void func_8080000C_chevilspirit(Actor *arg0) {
     s32 _subaddieDll_entrypoint_0(Actor *);
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *);
     s32 func_800DA298(s32);
     f32 func_800DC178(f32, f32);
     s32 func_800EA05C(void);
@@ -75,7 +75,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
     void func_80801398_chevilspirit(Actor *);
     void func_80801534_chevilspirit(Actor *);
     void func_808015A4_chevilspirit(Actor *);
-    void func_80801684_chevilspirit(Actor *);
+    s32 func_80801684_chevilspirit(Actor *);
     s32 func_80801840_chevilspirit(Actor *);
     s32 func_808018DC_chevilspirit(Actor *);
     s32 func_80801A6C_chevilspirit(Actor *, s32);
@@ -287,7 +287,7 @@ void func_808007B4_chevilspirit(Actor *arg0, s32 arg1) {
         s16 unkA;
         Unk80132ED0 *markers[1];
     } SpiritData;
-    Actor *_subaddielink_entrypoint_4(u8 *);
+    Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
     s32 func_800A89F8(void);
     void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
     void func_800B9990(Gfx **);
@@ -353,7 +353,7 @@ void func_808007B4_chevilspirit(Actor *arg0, s32 arg1) {
             }
             actor = (Actor *)func_8010682C(&iterator);
         }
-        actor = _subaddielink_entrypoint_4((u8 *)link);
+        actor = _subaddielink_entrypoint_4((Unk80132ED0 **)link);
         if (actor != NULL) {
             func_80800A4C_chevilspirit(arg0, gfx, screen, position, actor, rotation[1], D_808022DC_chevilspirit);
         }
@@ -585,7 +585,7 @@ void func_80801398_chevilspirit(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     void func_808013DC_chevilspirit(void *);
     s32 func_80801458_chevilspirit();
-    Actor *_subaddielink_entrypoint_4(u8 *);
+    Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
     if (_subaddielink_entrypoint_4(func_80100094(arg0, 0U)) != 0) {
         func_80801458_chevilspirit(arg0);
         func_808013DC_chevilspirit((u8 *) arg0);
@@ -605,7 +605,7 @@ void func_808013DC_chevilspirit(void *arg0) {
 
 s32 func_80801458_chevilspirit(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    Actor *_subaddielink_entrypoint_4(u8 *);
+    Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
@@ -618,7 +618,7 @@ s32 func_80801458_chevilspirit(Actor *arg0) {
     u8 *link;
 
     link = func_80100094(arg0, 0);
-    actor = _subaddielink_entrypoint_4(link);
+    actor = _subaddielink_entrypoint_4((Unk80132ED0 **)link);
     func_8010105C(func_8010CD28(arg0));
     if (func_8010108C(actor, 0x97, 0) <= 0) {
         f32 *data;
@@ -678,13 +678,70 @@ s32 func_808015E0_chevilspirit(Actor *arg0, f32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/evilspirit/func_80801684_chevilspirit.s")
+s32 func_80801684_chevilspirit(Actor *arg0) {
+    typedef struct {
+        Unk80132ED0 *linkedMarker;
+        u32 linkId;
+        s16 count;
+        s16 index;
+        Unk80132ED0 *markers[1];
+    } SpiritData;
+    void *func_80100094(Actor *, u32);
+    Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
+    void _subaddielink_entrypoint_0(void *);
+    s32 func_80016B54(s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    s32 func_80801988_chevilspirit(Actor *, Unk80132ED0 *, s32);
+    void func_80801B00_chevilspirit(s32, Actor *, s32);
+    SpiritData *data;
+    Actor *actor;
+    Unk80132ED0 *marker;
+    s32 index;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    func_8080104C_chevilspirit(arg0, 1);
+    actor = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
+    marker = actor != NULL ? actor->unk0 : NULL;
+    if (actor == NULL) {
+        _subaddielink_entrypoint_0(func_80100094(arg0, 0));
+    }
+    if (data->count >= 2) {
+        index = data->index;
+        while (index >= data->count || marker == data->markers[index]) {
+            if (index >= data->count) {
+                index = 0;
+            }
+            if (marker == data->markers[index]) {
+                index++;
+            }
+        }
+        data->index = index;
+    }
+    if (func_80016B54(1, 2) == 1 && data->count >= 2) {
+        func_80801988_chevilspirit(arg0, data->markers[data->index], 0);
+        data->index++;
+        return 1;
+    }
+    for (i = 0; i < data->count; i++) {
+        Unk80132ED0 *target = data->markers[i];
+
+        if (marker == target) {
+            continue;
+        }
+        if (i != data->index) {
+            continue;
+        }
+        func_80801B00_chevilspirit((s32)arg0, func_80106790(target), 0x9DE);
+    }
+    return 0;
+}
 
 s32 func_80801840_chevilspirit(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *);
     s32 _subaddielink_entrypoint_2(u8 *);
-    Actor *_subaddielink_entrypoint_4(u8 *);
+    Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
     s32 func_8010108C(Actor *, s32, s32);
     Actor *actor;
 
@@ -702,7 +759,7 @@ s32 func_80801840_chevilspirit(Actor *arg0) {
 }
 
 s32 func_808018DC_chevilspirit(Actor *arg0) {
-    Actor *_subaddielink_entrypoint_4(u8 *);
+    Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
     s32 func_800BDC5C(void);
     f32 func_800EEB40(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
@@ -757,8 +814,8 @@ s32 func_80801988_chevilspirit(Actor *arg0, Unk80132ED0 *arg1, s32 arg2) {
 
 s32 func_80801A6C_chevilspirit(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    Actor *_subaddielink_entrypoint_4(u8 *);
-    s32 _subaddielink_entrypoint_0(u8 *);
+    Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
+    void _subaddielink_entrypoint_0(void *);
     s32 func_8010108C(Actor *, s32, s32);
     s32 func_80801840_chevilspirit();
     Actor *sp1C;
