@@ -1,5 +1,20 @@
 #include "common.h"
 
+struct player_state_s;
+
+struct RadarPoint { u8 data[16]; };
+struct Radar {
+    u8 pad[8];
+    u8 alpha;
+    u8 pad9;
+    s16 asset;
+    s16 count;
+    s16 count2;
+    struct RadarPoint points[6];
+    struct RadarPoint points2[8];
+};
+
+
 void func_80800000_scradar(Gfx **arg0, void *arg1, void *arg2) {
     typedef struct {
         f32 offset;
@@ -62,16 +77,15 @@ void func_80800000_scradar(Gfx **arg0, void *arg1, void *arg2) {
     }
 }
 
-void func_8080074C_scradar(void *arg0, s8 arg1, s8 arg2, s8 arg3) {
-    (*(s8 *)((s8 *)(arg0) + (0))) = arg1;
-    (*(s8 *)((s8 *)(arg0) + (1))) = arg2;
-    (*(s8 *)((s8 *)(arg0) + (2))) = arg3;
+void func_8080074C_scradar(void *arg0, u8 arg1, u8 arg2, u8 arg3) {
+    ((u8 *)arg0)[0] = arg1;
+    ((u8 *)arg0)[1] = arg2;
+    ((u8 *)arg0)[2] = arg3;
 }
 
 /* extern */
 
 s32 func_80800768_scradar(s32 arg0) {
-    struct player_state_s;
     s32 func_8009E674(struct player_state_s *, s32);
     struct player_state_s *func_800F53D0(s32);
     s32 func_800F5410(s32);
@@ -131,7 +145,117 @@ void func_808007D4_scradar(void *arg0, f32 *arg1, f32 arg2) {
     *(f32 *)arg0 = angle;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/radar/scradar_entrypoint_0.s")
+void scradar_entrypoint_0(void) {
+    u8 _gcstatusDll_entrypoint_16(s32 arg0);
+    s32 func_80092258(void *arg0);
+    void func_800A8A04(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4);
+    s32 func_800A940C(s32 arg0);
+    s32 func_800A9420(s32 arg0);
+    s32 func_800A946C(void);
+    struct player_state_s *func_800F53D0(s32 arg0);
+    void func_800F5A00(s32, f32 *);
+    f32 func_800F5F24(u32 arg0);
+    s32 func_800F6438(u32 arg0);
+    extern struct Radar B_80800E50_scradar[];
+    extern s16 D_80800E30_scradar[];
+    extern u8 D_80800E3C_scradar[][2];
+    struct Radar *radar;
+    struct Radar *initEntry;
+    struct Radar *listEntry;
+    struct RadarPoint *point;
+    s32 i;
+    s32 j;
+    s32 player;
+    s32 listIndex;
+    s32 buffers;
+    f32 angle;
+    s32 x;
+    s32 y;
+    s32 w;
+    s32 h;
+    f32 pos[3];
+    s32 mode = 0;
+    u32 team;
+    u8 alpha;
+    buffers = func_800A946C();
+    if (func_80800768_scradar(0) == 4) {
+        mode = 1;
+    }
+    i = 0;
+    if (buffers > 0) {
+        do {
+            team = _gcstatusDll_entrypoint_16(i);
+            /* The indexed byte offset preserves IDO alias information for this table. */
+            initEntry = (struct Radar *)((u8 *)B_80800E50_scradar + i * sizeof(struct Radar));
+            initEntry->count = 1;
+            initEntry->asset = D_80800E30_scradar[team];
+            initEntry->count2 = 0;
+            initEntry->alpha = D_80800E3C_scradar[team][mode];
+            i++;
+        } while (i != buffers);
+    }
+    for (player = 0; player < 8; player++) {
+        if (func_800F6438(player)) {
+            i = func_800A940C(player);
+            listIndex = 0;
+            team = _gcstatusDll_entrypoint_16(i);
+            alpha = func_80092258(func_800F53D0(player));
+            if (buffers > 0) {
+                listEntry = B_80800E50_scradar;
+                do {
+                    if ((u32)_gcstatusDll_entrypoint_16(listIndex) == team) {
+                        if ((listIndex == i) && func_800A9420(player)) {
+                            point = &listEntry->points[0];
+                            point->data[11] = 0xC0;
+                        }
+                        else {
+                            point = (struct RadarPoint *) ((((listEntry->count++) << 4) + ((u8 *) listEntry)) + 0x10);
+                            point->data[11] = 0x60;
+                        }
+                    }
+                    else {
+                        point = (struct RadarPoint *) ((((listEntry->count2++) << 4) + ((u8 *) listEntry)) + 0x70);
+                        point->data[11] = alpha;
+                    }
+                    listIndex++;
+                    listEntry++;
+                    point->data[13] = player;
+                } while (listIndex != buffers);
+            }
+        }
+    }
+
+    i = 0;
+    if (buffers > 0) {
+        do {
+            radar = &B_80800E50_scradar[i];
+            func_800A8A04(i, &x, &y, &w, &h);
+            *((s32 *) (&radar->pad[0])) = ((w + x) - 25) << 2;
+            *((s32 *) (&radar->pad[4])) = ((h + y) - 19) << 2;
+            point = &radar->points[0];
+            if (radar->count) {
+                *((s16 *) (&radar->points[0].data[4])) = 0;
+                *((s16 *) (&radar->points[0].data[6])) = 0;
+                radar->points[0].data[12] = 0;
+                func_800F5A00(radar->points[0].data[13], pos);
+                angle = func_800F5F24(point->data[13]) + 180.0f;
+                for (j = 1; j < radar->count; j++) {
+                    point = (struct RadarPoint *) ((((u8 *) radar) + (j << 4)) + 0x10);
+                    func_808007D4_scradar(point, pos, angle);
+                    func_8080074C_scradar(&point->data[8], 255, 255, 255);
+                }
+
+                for (j = 0; j < radar->count2; j++) {
+                    point = (struct RadarPoint *) ((((u8 *) radar) + (j << 4)) + 0x70);
+                    func_8080074C_scradar(&point->data[8], 255, 32, 32);
+                    func_808007D4_scradar(point, pos, angle);
+                }
+
+            }
+            i++;
+        } while (i != buffers);
+    }
+}
 
 void scradar_entrypoint_1(Gfx **arg0) {
     s32 func_800A7180(void);
@@ -142,17 +266,6 @@ void scradar_entrypoint_1(Gfx **arg0) {
     void func_800E253C(f32);
     void func_800E257C(s32);
     s32 func_800E30E0(s32, s32, s32, void *);
-    struct RadarPoint { u8 data[16]; };
-    struct Radar {
-        u8 pad[8];
-        u8 alpha;
-        u8 pad9;
-        s16 asset;
-        s16 count;
-        s16 count2;
-        struct RadarPoint points[6];
-        struct RadarPoint points2[8];
-    };
     extern struct Radar B_80800E50_scradar[];
     Gfx *gfx;
     struct Radar *entry;
