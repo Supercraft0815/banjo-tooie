@@ -65,7 +65,79 @@ void suquiz_entrypoint_0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/quiz/suquiz_entrypoint_1.s")
+void suquiz_entrypoint_1(void) {
+    extern void *D_80127614;
+    u8 _gcstatusDll_entrypoint_17(void);
+    void func_800C3F48(u32 arg0);
+    s32 func_800D2498(u32 itemDisplayUI, s32 value, u32 a2);
+    s32 func_800D3948(void);
+    f32 func_800D9004(void);
+    int func_800DB9B0(void);
+    s32 func_800DC128(s32 arg0, s32 arg1);
+    s32 suquiz_entrypoint_11(s32 arg0);
+    int suquiz_entrypoint_10(s32 arg0);
+    void suquiz_entrypoint_28(s32 arg0, s32 arg1, s32 arg2);
+    f32 dt = func_800D9004();
+    int i;
+    int count;
+    int first;
+    int last;
+    struct QuizChoices {
+        int values[4];
+    } choices;
+    extern struct QuizChoices D_808010E0_suquiz;
+    int running;
+
+    choices = D_808010E0_suquiz;
+    count = 0;
+
+    if (D_80127614 != NULL) {
+        running = ((u8 *)D_80127614)[0x24];
+        if (func_800D3948() != 0) {
+            running = running && (f32)(s32)_gcstatusDll_entrypoint_17() > 0;
+        }
+        if (running) {
+            ((f32 *)D_80127614)[8] -= dt;
+            if (((f32 *)D_80127614)[8] <= 0) {
+                func_800C3F48(0x7FFFFE90);
+                ((u8 *)D_80127614)[0x24] = 0;
+            }
+            func_800D2498(0x117, (s32)((f32 *)D_80127614)[8], 0);
+        }
+        ((f32 *)D_80127614)[7] += dt;
+        if (((s8 *)D_80127614)[0x28] == -1) {
+            if (func_800D3948() != 0) {
+                first = 3;
+                last = 6;
+            } else {
+                first = 0;
+                last = 2;
+            }
+            for (i = first; i <= last; i++) {
+                if (i == ((s8 *)D_80127614)[0x29]) {
+                    continue;
+                }
+                if (suquiz_entrypoint_11(i) &&
+                    func_808000C4_suquiz(suquiz_entrypoint_10(i))) {
+                    choices.values[count] = i;
+                    count++;
+                }
+            }
+            if (count) {
+                ((s8 *)D_80127614)[0x28] = choices.values[func_800DC128(0, count)];
+            }
+            if (((s8 *)D_80127614)[0x28] == -1 &&
+                ((f32 *)D_80127614)[6] <= ((f32 *)D_80127614)[7]) {
+                ((s8 *)D_80127614)[0x28] = ((s8 *)D_80127614)[0x26];
+            }
+            if (func_800DB9B0() != 0) {
+                if (((s8 *)D_80127614)[0x28] != -1) {
+                    suquiz_entrypoint_28(0, ((s8 *)D_80127614)[0x28], 0);
+                }
+            }
+        }
+    }
+}
 
 void suquiz_entrypoint_2(void) {
     extern void *D_80127614;
@@ -343,13 +415,13 @@ void suquiz_entrypoint_22(s32 arg0, s32 arg1) {
 }
 
 void suquiz_entrypoint_23(void) {
-    s32 _gcstatusDll_entrypoint_17();
+    u8 _gcstatusDll_entrypoint_17(void);
     s32 func_800D3948();
     s32 suquiz_entrypoint_4();
     extern void *D_80127614;
     extern f32 D_80800F70_suquiz[][2];
     if (func_800D3948() != 0) {
-        (*(f32 *)((s8 *)(D_80127614) + (0x20))) = (f32) ((f32) _gcstatusDll_entrypoint_17() * 60.0f);
+        (*(f32 *)((s8 *)(D_80127614) + (0x20))) = (f32) ((f32) (s32) _gcstatusDll_entrypoint_17() * 60.0f);
     } else {
         (*(f32 *)((s8 *)(D_80127614) + (0x20))) = D_80800F70_suquiz[suquiz_entrypoint_4()][0];
     }
