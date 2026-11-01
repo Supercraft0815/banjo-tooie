@@ -204,7 +204,94 @@ s32 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5
   return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E8A670/func_800B1508.s")
+s32 func_800B1508(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+    void func_80019480(f32 *, f32, f32, f32);
+    void func_80019994(f32 *, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF2A0(f32 *);
+    void func_800EF334(f32 *, f32);
+    void func_800EFB24(void *, void *, void *);
+    extern s32 D_80127EA0;
+    f32 spEC[3];
+    f32 spE0[3];
+    f32 spD4[3];
+    f32 spC8[3];
+    u8 *entry;
+    u8 *end;
+    union {
+        struct { f32 x, y, z; } n;
+        f32 v[3];
+    } normal;
+    f32 spA8[3];
+    f32 sp9C[3];
+    f32 sp90[3];
+    f32 sp84[3];
+    f32 sp78[3];
+    f32 sp6C[3];
+    f32 sp60[3];
+    f32 sp54[3];
+    s32 index;
+
+    entry = arg0 + 8;
+    end = arg0 + *(s16 *)arg0 * 0x18 + 8;
+    while (entry < end) {
+        index = entry[0x15];
+        index--;
+        if (!((1 << index) & arg8)) {
+            func_800EE88C(spEC, (s16 *)(entry + 0xC));
+            func_800EE88C(spE0, (s16 *)entry);
+            func_800EE88C(spD4, (s16 *)(entry + 6));
+            spC8[0] = (f32)(u32)entry[0x12];
+            spC8[1] = (f32)(u32)entry[0x13];
+            spC8[2] = (f32)(u32)entry[0x14];
+            if (1) {}
+            if (1) {}
+            func_800EF334(spC8, 2.0f);
+            func_80019AA0(&D_80127EA0, func_800ADE2C(arg5, (s8)entry[0x16]));
+            func_80019994(spEC, spC8);
+            func_80019480(spA8, spE0[0], spE0[1], spE0[2]);
+            func_80019480(sp90, spE0[0], spE0[1], spD4[2]);
+            func_800EFB24(normal.v, spA8, sp90);
+            func_800EF2A0(normal.v);
+            func_800EFB24(sp9C, arg6, spA8);
+            if (!(arg7 <= ((*(f32 *)((s8 *)sp9C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp9C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp9C + 8)) * (0, normal.n.z)))) {
+                func_800EFB24(sp84, arg6, sp90);
+                if (!(arg7 <= -((*(f32 *)((s8 *)sp84 + 0)) * normal.n.x + (*(f32 *)((s8 *)sp84 + 4)) * normal.n.y + (*(f32 *)((s8 *)sp84 + 8)) * (0, normal.n.z)))) {
+                    func_80019480(sp78, spD4[0], spE0[1], spE0[2]);
+                    func_800EFB24(normal.v, spA8, sp78);
+                    func_800EF2A0(normal.v);
+                    if (!(arg7 <= ((*(f32 *)((s8 *)sp9C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp9C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp9C + 8)) * (0, normal.n.z)))) {
+                        if (1) {}
+                        (*(f32 *)((s8 *)sp6C + 0)) = (*(f32 *)((s8 *)arg6 + 0)) - (*(f32 *)((s8 *)sp78 + 0));
+                        (*(f32 *)((s8 *)sp6C + 4)) = (*(f32 *)((s8 *)arg6 + 4)) - (*(f32 *)((s8 *)sp78 + 4));
+                        (*(f32 *)((s8 *)sp6C + 8)) = (*(f32 *)((s8 *)arg6 + 8)) - (*(f32 *)((s8 *)sp78 + 8));
+                        if (!(arg7 <= -((*(f32 *)((s8 *)sp6C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp6C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp6C + 8)) * (0, normal.n.z)))) {
+                            func_80019480(sp60, spE0[0], spD4[1], spE0[2]);
+                            normal.n.x = (*(f32 *)((s8 *)spA8 + 0)) - (*(f32 *)((s8 *)sp60 + 0));
+                            normal.n.y = (*(f32 *)((s8 *)spA8 + 4)) - (*(f32 *)((s8 *)sp60 + 4));
+                            normal.n.z = (*(f32 *)((s8 *)spA8 + 8)) - (*(f32 *)((s8 *)sp60 + 8));
+                            func_800EF2A0(normal.v);
+                            if (!(arg7 <= ((*(f32 *)((s8 *)sp9C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp9C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp9C + 8)) * (0, normal.n.z)))) {
+                                if (1) {}
+                                (*(f32 *)((s8 *)sp54 + 0)) = (*(f32 *)((s8 *)arg6 + 0)) - (*(f32 *)((s8 *)sp60 + 0));
+                                (*(f32 *)((s8 *)sp54 + 4)) = (*(f32 *)((s8 *)arg6 + 4)) - (*(f32 *)((s8 *)sp60 + 4));
+                                (*(f32 *)((s8 *)sp54 + 8)) = (*(f32 *)((s8 *)arg6 + 8)) - (*(f32 *)((s8 *)sp60 + 8));
+                                if (!(arg7 <= -((*(f32 *)((s8 *)sp54 + 0)) * normal.n.x + (*(f32 *)((s8 *)sp54 + 4)) * normal.n.y + (*(f32 *)((s8 *)sp54 + 8)) * (0, normal.n.z)))) {
+                                    return entry[0x15];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            mlMtxPop();
+        }
+        entry += 0x18;
+    }
+    return 0;
+}
 
 s32 func_800B196C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
     void func_80019480(f32 *, f32, f32, f32);
