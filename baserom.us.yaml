@@ -911,7 +911,7 @@ segments:
     subsegments: 
       - [0x01F06E30, c, bbarge]
       - [0x01F07430, .rodata, bbarge]
-      - [0x01F07460, data, bbarge]
+      - [0x01F07460, .data, bbarge]
       - [0x01F07470, bss, bbarge]
   - name: bsbbilldrill_header
     dir: overlays/bsbbilldrill

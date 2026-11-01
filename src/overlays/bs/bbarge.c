@@ -1,4 +1,6 @@
 #include "common.h"
+#include "overlays/ba/flag.h"
+#include "overlays/ba/key.h"
 
 #include "core2/anctrl.h"
 #include "overlays/ba/anim.h"
@@ -21,7 +23,7 @@ void bsbbarge_end(PlayerState *self);
 void bsbbarge_init(PlayerState *self);
 void bsbbarge_update(PlayerState *self);
 
-extern BsScript D_80800630_bsbbarge[4]; //= {bsbbarge_end, bsbbarge_init, bsbbarge_update, func_8009AB78};
+BsScript D_80800630_bsbbarge[4] = {bsbbarge_end, bsbbarge_init, bsbbarge_update, func_80099B94};
 
 
 void bsbbarge_setSubstate(PlayerState *self, int substate) {
@@ -96,7 +98,79 @@ void bsbbarge_init(PlayerState *self) {
 }
 
 #ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/bbarge/bsbbarge_update.s")
+/* extern */
+
+void bsbbarge_update(PlayerState *self) {
+    int player_isStable(PlayerState *);
+    s32 player_inWater(PlayerState *);
+    enum bs_state_e sp24;
+    AnimCtrl *sp20;
+
+    sp24 = BS_STATE_0_INVALID;
+    sp20 = baanim_getAnimCtrlPtr(self);
+    if (bakey_released(self, 9) != 0)
+        baflag_set(self, 0xA);
+    switch (self->unk160.word) {
+    case 1:
+        if (anctrl_isAt(sp20, 0.1392f) != 0) {
+            func_8009D874(self);
+        }
+        if (anctrl_isStopped(sp20) != 0) {
+            bsbbarge_setSubstate(self, 2);
+        }
+        break;
+    case 2:
+        _batimer_decrement(self, 1);
+        if ((baflag_isFalse(self, 0xB) != 0) && (_batimer_isLessThan(self, 1, 0.1f) != 0)) {
+            if (baflag_isTrue(self, 0xC) != 0) {
+                func_8009DF94(self, 0x4400, 1.0f, 0x7530);
+            } else {
+                func_8009DF94(self, 0x442D, 1.0f, 0x7530);
+            }
+            baflag_set(self, 0xB);
+        }
+        if (_batimer_isZero(self, 1) != 0) {
+            bsbbarge_setSubstate(self, 3);
+        }
+        break;
+    case 3:
+        baphysics_set_target_horizontal_velocity(self, self->unk16C);
+        if (anctrl_isStopped(sp20) != 0) {
+            bsbbarge_setSubstate(self, 4);
+        }
+        break;
+    case 4:
+        _batimer_decrement(self, 0);
+        if ((baflag_isFalse(self, 0xC) != 0) || (_batimer_isZero(self, 0) != 0)) {
+            self->unk16C -= 80.0f;
+        }
+        baphysics_set_target_horizontal_velocity(self, self->unk16C);
+        if (self->unk16C < 200.0f) {
+            bsbbarge_setSubstate(self, 5);
+        }
+        break;
+    case 5:
+        if (player_isStable(self) == 0) {
+            sp24 = BS_STATE_2F_FALL;
+        }
+        if (anctrl_isAt(sp20, 0.7f) != 0) {
+            self->unk16C = 0.0f;
+            baflag_clear(self, 0x20);
+        }
+        baphysics_set_target_horizontal_velocity(self, self->unk16C);
+        if (anctrl_isAt(sp20, 0.9193f) != 0) {
+            sp24 = BS_STATE_20_LANDING;
+        }
+        break;
+    }
+    if (baflag_isTrue(self, 0x20) != 0) {
+        func_8008EE88(self, 50.0f);
+    }
+    if (player_inWater(self) != 0) {
+        sp24 = BS_STATE_4C_LANDING_IN_WATER;
+    }
+    bs_setState(self, sp24);
+}
 #else
 void bsbbarge_update(PlayerState *self) {
     BanjoStateId next_state = BS_STATE_0_INVALID;
