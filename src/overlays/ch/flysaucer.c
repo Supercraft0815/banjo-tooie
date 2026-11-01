@@ -5,7 +5,7 @@ void func_80101870(Actor *, void *);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
-void func_8080185C_chflysaucer();
+s32 func_8080185C_chflysaucer();
 void func_808024E0_chflysaucer(Actor *arg0);
 void func_80802ED8_chflysaucer(Actor *arg0);
 void func_80803150_chflysaucer(Actor *arg0);
@@ -1088,7 +1088,227 @@ void func_808017D0_chflysaucer(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/flysaucer/func_8080185C_chflysaucer.s")
+union PackedArg { s32 word; struct { s16 a; s16 b; } h; };
+s32 func_8080185C_chflysaucer(Actor *arg0, s32 arg1, union PackedArg arg2) {
+    void _capod_entrypoint_14(void);
+    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcfrontend_entrypoint_10(void);
+    u32 _gcgoto_entrypoint_1(u32, u32);
+    s32 func_800D0A9C(u32, u32);
+    s32 func_800D1000(s32, s32, s32 *, s32, void *);
+    s16 func_800D211C(s32);
+    s32 func_800D395C(void);
+    void *func_80100094(Actor *, u32);
+    Unk80132ED0 *func_80101080(void);
+    void func_80108BD4(Actor *, s32);
+    void func_808001B4_chflysaucer(Actor *, s32);
+    void func_80800424_chflysaucer(Actor *, s32, s32, Unk80132ED0 *);
+    void func_808004B0_chflysaucer(Actor *);
+    void func_808004F0_chflysaucer();
+    void func_808005FC_chflysaucer(Actor *);
+    void func_808009DC_chflysaucer(Actor *, s32);
+    void func_8080105C_chflysaucer(Actor *, s32, s32);
+    void func_808012A4_chflysaucer(Actor *, s32);
+    struct SaucerData { u8 pad[0x24]; u8 camera; u8 state; u8 mode; };
+    struct SaucerData *data;
+    struct PackedDialog { s32 id : 16; s32 choice : 16; };
+    s16 *result;
+    s32 value;
+    data = func_80100094(arg0, 0);
+    value = arg2.word;
+    switch (arg1) {
+        default:
+        return 0;
+        case 0x52:
+        if (data->camera == 0) {
+            _gcdialogcamera_entrypoint_3(D_808045F8_chflysaucer, arg0->scale);
+        } else {
+            _gcdialogcamera_entrypoint_3(D_80804608_chflysaucer, arg0->scale);
+        }
+        break;
+        case 0x2E:
+        switch (arg2.h.a) {
+            case 0xCEB:
+            case 0x10C5:
+            case 0x10C8:
+            case 0x10C9:
+            case 0x10E5:
+            case 0x10E6:
+            case 0x1102:
+            break;
+            case 0x10E2:
+            case 0x10E3:
+            case 0x10E4:
+            if (func_800D395C() != 0) {
+                break;
+            }
+            default:
+            func_808004B0_chflysaucer(arg0);
+            break;
+        }
+        if (data->mode == 6) {
+            switch (arg2.h.a) {
+                case 0x10C8:
+                case 0x10C9:
+                case 0x10E5:
+                case 0x10E6:
+                break;
+                case 0xCEB:
+                if (arg2.h.b == 1) {
+                    func_8080003C_chflysaucer(arg0, 0);
+                    _gcgoto_entrypoint_1(0x124, 8);
+                } else {
+                    _gcfrontend_entrypoint_10();
+                }
+                break;
+                case 0x10E2:
+                case 0x10E3:
+                case 0x10E4:
+                if (func_800D395C() != 0) {
+                    func_8080105C_chflysaucer(arg0, 0xCEB, 0x40);
+                    break;
+                }
+                default:
+                func_808005FC_chflysaucer(arg0);
+                func_808012A4_chflysaucer(arg0, 0);
+                break;
+            }
+        } else if (arg0->unk70_10 == 4) {
+            switch (arg2.h.a) {
+                case 0x10C5:
+                case 0x1102:
+                if (func_800D0A9C(9, 4) == 0) {
+                    func_8080105C_chflysaucer(arg0, 0x1103, 1);
+                } else {
+                    func_8080105C_chflysaucer(arg0, 0x1104, 1);
+                }
+                break;
+                case 0x1103:
+                case 0x1104:
+                func_808004F0_chflysaucer(arg0);
+                break;
+                case 0x10E1:
+                func_808004F0_chflysaucer(arg0);
+                break;
+            }
+            if (1) {}
+        }
+        arg0->unk74_30 = 0;
+        break;
+        case 0x30:
+        result = (s16 *) &arg2;
+        switch (result[0]) {
+            case 0x10C5:
+            case 0x1103:
+            switch (result[1]) {
+                case 0:
+                return 500;
+                case 1:
+                return 400;
+            }
+            break;
+            case 0x1104:
+            return 500;
+            case 0x10E4:
+            return func_800D211C(0x8D);
+            case 0x10E2:
+            case 0x10E3:
+            return func_800D211C(0x8D);
+        }
+        break;
+        case 0x2F:
+        switch (arg2.h.a) {
+            case 0x10C8:
+            case 0x10E6:
+            func_800D1000(0x18, 1, NULL, 1, *(void **)arg0);
+            break;
+            case 0x10C9:
+            case 0x10E5:
+            func_800D1000(9, 4, D_80804618_chflysaucer, 1, *(void **)arg0);
+            break;
+        }
+        break;
+        case 0x56:
+        switch (arg2.word) {
+            case 0x1B:
+            case 0x1D:
+            case 0x66:
+            case 0x68:
+            case 0x6A:
+            case 0x6C:
+            func_808009DC_chflysaucer(arg0, 1);
+            func_808012A4_chflysaucer(arg0, 1);
+            break;
+        }
+        break;
+        case 0xB:
+        switch (value) {
+            case 0x19:
+            case 0x1B:
+            case 0x64:
+            case 0x6A:
+            case 0x6E:
+            func_80108BD4(arg0, arg2.word);
+            return 3;
+            case 0x70:
+            switch (data->state) {
+                case 9:
+                func_8080105C_chflysaucer(arg0, 0x10E6, 1);
+                return 4;
+                case 8:
+                if (func_800D0A9C(0x18, 1) != 0) {
+                    func_8080105C_chflysaucer(arg0, 0x10E8, 1);
+                } else {
+                    func_8080105C_chflysaucer(arg0, 0x10E7, 1);
+                }
+                return 4;
+            }
+            break;
+            case 0x72:
+            switch (data->state) {
+                case 7:
+                if (func_800D0A9C(9, 4) != 0) {
+                    func_8080105C_chflysaucer(arg0, 0x10E8, 1);
+                } else {
+                    func_8080105C_chflysaucer(arg0, 0x10E7, 1);
+                }
+                return 4;
+                case 9:
+                func_8080105C_chflysaucer(arg0, 0x10E8, 1);
+                return 4;
+            }
+            break;
+        }
+        return 3;
+        case 0x59:
+        switch (arg2.word) {
+            case 0x19:
+            case 0x1B:
+            case 0x64:
+            case 0x6A:
+            case 0x6E:
+            _capod_entrypoint_14();
+            func_808012A4_chflysaucer(arg0, 2);
+            func_808009DC_chflysaucer(arg0, 2);
+            return 4;
+        }
+        return 3;
+        case 0x3D:
+        func_808001B4_chflysaucer(arg0, arg2.word);
+        break;
+        case 0xD:
+        switch ((arg2.word >> 16) & 0xFFFF) {
+            case 0x18:
+            func_80800424_chflysaucer(arg0, 0x72, 0x418, func_80101080());
+            break;
+            case 9:
+            func_80800424_chflysaucer(arg0, 0x70, 0x418, func_80101080());
+            break;
+        }
+        break;
+    }
+    return 1;
+}
 
 void func_80801E98_chflysaucer(Actor *arg0) {
     s32 func_80016B30(s32, s32);
