@@ -16,7 +16,7 @@ void func_80800000_chtoxicroomprops(Actor *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800F1214(f32, f32, f32);
     void func_80103110(Actor *, u32);
-    s32 func_80800390_chtoxicroomprops(u8 *, s32);
+    void func_80800390_chtoxicroomprops(u8 *, f32);
     typedef struct { f32 values[3]; } Position;
     extern Position D_808009A0_chtoxicroomprops;
     extern s32 D_808009AC_chtoxicroomprops[];
@@ -50,7 +50,7 @@ void func_80800000_chtoxicroomprops(Actor *arg0) {
             func_800DA544(0x1BC);
             _capod_entrypoint_13(arg0->unk0, 0, 0, 0x800);
         }
-        func_80800390_chtoxicroomprops((u8 *)arg0, 0x40000000);
+        func_80800390_chtoxicroomprops((u8 *)arg0, 2.0f);
         if (((f32 *)arg0->actorData)[3] >= 450.0f && _subaddiefade_entrypoint_0(sp4C) && arg0->rotation[1] == 193.0f) {
             _subaddiefade_entrypoint_6(sp4C, -1);
         }
@@ -82,7 +82,32 @@ s32 func_8080030C_chtoxicroomprops(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/toxicroomprops/func_80800390_chtoxicroomprops.s")
+void func_80800390_chtoxicroomprops(u8 *arg0, f32 arg1) {
+    void _subaddieaudioloop_entrypoint_0(u8 *arg0, f32 arg1);
+    void _subaddieaudioloop_entrypoint_1(u8 *arg0, s32 sample_rate);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *arg0, f32 *arg1, u32 arg2, u32 *arg3);
+    f32 func_800136E4(f32);
+    void func_800C4140(u32 arg0, f32 *arg1, u32 arg2);
+    f32 func_800D8FF8();
+    f32 func_800DC178(f32 arg0, f32 arg1);
+    f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
+    f32 func_800F13C4(f32 arg0, f32 arg1);
+    extern u32 D_808009E0_chtoxicroomprops;
+    ((f32 *)((Actor *)arg0)->actorData)[3] += arg1;
+    if (((f32 *)((Actor *)arg0)->actorData)[3] > 450.0f) {
+        ((f32 *)((Actor *)arg0)->actorData)[3] = 450.0f;
+    }
+    ((Actor *)arg0)->unk54 = ((Actor *)arg0)->rotation[2];
+    ((Actor *)arg0)->rotation[2] = func_800136E4(((Actor *)arg0)->rotation[2] + ((f32 *)((Actor *)arg0)->actorData)[3] * func_800D8FF8());
+    if (((f32 *)((Actor *)arg0)->actorData)[3] > 45.0f) {
+        if (func_800F13C4(((Actor *)arg0)->unk54, 90.0f) > func_800F13C4(((Actor *)arg0)->rotation[2], 90.0f)) {
+            func_800C4140(((((s32)((f32)(s32)func_800F10B4(((f32 *)((Actor *)arg0)->actorData)[3], 45.0f, 450.0f, 18000.0f, 24000.0f) * 0.5f) >> 5) & 0x3FF) << 11) + (((u32)((func_800F10B4(((f32 *)((Actor *)arg0)->actorData)[3], 45.0f, 450.0f, 0.3f, 0.6f) + func_800DC178(-0.02f, 0.02f)) * 1023.0f) & 0x7FF) << 21) + 0x3FF, ((Actor *)arg0)->position, 0x0BB800C8);
+        }
+        _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4(((f32 *)((Actor *)arg0)->actorData)[3], 45.0f, 450.0f, 0.2f, 0.5f));
+        _subaddieaudioloop_entrypoint_1(arg0, (s32)func_800F10B4(((f32 *)((Actor *)arg0)->actorData)[3], 45.0f, 450.0f, 18000.0f, 24000.0f));
+        _subaddieaudioloop_entrypoint_4((Actor *)arg0, ((Actor *)arg0)->position, 1, &D_808009E0_chtoxicroomprops);
+    }
+}
 
 OSThread *chtoxicroomprops_entrypoint_0(void)
 {
@@ -104,16 +129,16 @@ void func_80800670_chtoxicroomprops(u8 *arg0) {
     s32 _subaddieaudioloop_entrypoint_2(u8 *);
     s32 func_800D90A4(s32);
     s32 func_800FFA88(s32);
-    s32 func_80800390_chtoxicroomprops(u8 *, s32);
+    void func_80800390_chtoxicroomprops(u8 *, f32);
     if (func_800D90A4(arg0 + 0x58) != 0) {
-        func_80800390_chtoxicroomprops(arg0, 0xC0000000);
+        func_80800390_chtoxicroomprops(arg0, -2.0f);
         if ((*(f32 *)((s8 *)(arg0) + (0x24))) < 45.0f) {
             _subaddieaudioloop_entrypoint_2(arg0);
             (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
             func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
         }
     } else {
-        func_80800390_chtoxicroomprops(arg0, 0x40800000);
+        func_80800390_chtoxicroomprops(arg0, 4.0f);
     }
 }
 
