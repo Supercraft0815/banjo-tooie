@@ -604,7 +604,66 @@ Actor *func_800D0CE0(s32 arg0, f32 *arg1, s32 arg2, s32 *arg3) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EA9160/func_800D0DAC.s")
+typedef struct {
+    u32 fields[6];
+    u32 reserved : 15;
+    u32 enabled : 1;
+    u32 remaining : 16;
+} SpawnMarker;
+
+s32 func_800D0DAC(s32 arg0, f32 *arg1, s32 arg2, SpawnMarker *arg3) {
+    s32 func_8010108C(Actor *, s32, s32);
+    void func_80101074(void *);
+    s32 func_8010114C(s32, s32, s32);
+    s32 itemType;
+    s32 itemIndex;
+    Actor *actor;
+    s32 existing;
+
+    itemIndex = (u16)(arg0 >> 16);
+    itemType = (u16)arg0;
+    switch (itemType) {
+        case 1:
+            actor = func_800D0CE0(0x21F, arg1, arg2, &existing);
+            if (!existing) {
+                func_8010108C(actor, 0x14, 1);
+            }
+            func_800D05E4(itemIndex, itemType, (s32)actor->unk0);
+            break;
+        case 0:
+            actor = func_800D0CE0(0x1F4, arg1, arg2, &existing);
+            if (!existing) {
+                func_8010108C(actor, 0x14, 1);
+            }
+            break;
+        case 4:
+            actor = func_800D0CE0(0x136, arg1, arg2, &existing);
+            if (!existing) {
+                func_8010108C(actor, 0x14, 1);
+            }
+            break;
+        case 2:
+            actor = func_800D0CE0(0x220, arg1, arg2, &existing);
+            break;
+        case 3:
+            actor = func_800D0CE0(0x21B, arg1, arg2, &existing);
+            break;
+        case 7:
+            actor = func_800D0CE0(0x4E5, arg1, arg2, &existing);
+            break;
+        case 8:
+            actor = func_800D0CE0(0x3C6, arg1, arg2, &existing);
+            break;
+        default:
+            break;
+    }
+    func_800CFBC8(actor, itemIndex, itemType, 0);
+    if (arg3 && arg3->enabled) {
+        func_80101074(actor->unk0);
+        func_8010114C((s32)arg3, 0xD, arg0);
+    }
+    return (s32)actor->unk0;
+}
 
 void func_800D0F9C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5)
 {
@@ -613,7 +672,7 @@ void func_800D0F9C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5)
     sp18[0] = (f32)arg1;
     sp18[1] = (f32)arg2;
     sp18[2] = (f32)arg3;
-    func_800D0DAC(arg0, sp18, arg4, arg5);
+    func_800D0DAC(arg0, sp18, arg4, (SpawnMarker *)arg5);
 }
 
 void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4)
@@ -650,10 +709,10 @@ s32 func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, s32 arg4) {
     func_800D0B08(arg0, arg1);
     func_800D053C(arg0, arg1);
     if (arg2 != NULL) {
-        return func_800D0DAC((arg0 << 16) | (arg1 & 0xFFFF), arg2, arg3, arg4);
+        return func_800D0DAC((arg0 << 16) | (arg1 & 0xFFFF), arg2, arg3, (SpawnMarker *)arg4);
     }
     func_800D07CC(arg0, arg1, sp20);
-    return func_800D0DAC((arg0 << 16) | (arg1 & 0xFFFF), sp20, arg3, arg4);
+    return func_800D0DAC((arg0 << 16) | (arg1 & 0xFFFF), sp20, arg3, (SpawnMarker *)arg4);
 }
 
 /* extern */
