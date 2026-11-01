@@ -2,6 +2,24 @@
 
 void *func_80100094(Actor *, u32);
 
+struct BounceConfig {
+    u16 flags;
+    s16 actorId;
+    s16 count;
+    s16 field6;
+    f32 field8;
+    s16 fieldC;
+    s16 xBase;
+    s16 xRange;
+    s16 speed;
+    s16 speedRange;
+    s16 zBase;
+    s16 zRange;
+    u8 pad1A[2];
+    f32 restitution;
+    f32 unk20;
+};
+
 void chbounce_entrypoint_0(void) {
     extern f32 D_8012716C;
     f32 *temp_v0 = (f32 *)(u32)((u8 *)&D_8012716C + 28);
@@ -79,7 +97,147 @@ block_17:
     return 0x229;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/bounce/func_80800190_chbounce.s")
+u32 *func_80800190_chbounce(Actor *arg0, u32 arg1, u32 arg2) {
+    struct BounceGlobals {
+        f32 angle;
+        f32 scale;
+        f32 yaw;
+    };
+    struct BounceBits {
+        u8 pad[0x24];
+        u8 flag24 : 1;
+        u8 type : 7;
+        u8 flag25 : 1;
+        u8 state : 7;
+        u8 mode : 3;
+        u8 rest26 : 5;
+    };
+    f32 func_800DC178(f32, f32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(void *, f32, f32);
+    void func_800EF934(void *, void *, f32);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80105494(Actor *);
+    Actor *func_80106790(Unk80132ED0 *);
+    Actor *func_80108474(s32, f32 *, s32);
+    extern f32 D_8012716C;
+    extern struct BounceConfig D_80800FE0_chbounce[];
+    extern f32 D_808014A8_chbounce;
+    struct BounceConfig *loopConfig;
+    f32 yRandom;
+    f32 xRandom;
+    f32 zRandom;
+    f32 radialSpeed;
+    s32 actorId;
+    u8 type;
+    s32 i;
+    Unk80132ED0 *marker;
+    struct BounceGlobals *globals;
+    register u8 *data;
+    register u8 *vector;
+    u8 *position;
+    struct BounceConfig *config;
+    Actor *actor;
+    u8 *extra;
+    f32 *base;
+
+    config = &D_80800FE0_chbounce[(s32) arg0];
+    loopConfig = config;
+    actor = 0;
+    if (arg2 != 0) {
+        marker = *(Unk80132ED0 **) arg2;
+    } else {
+        marker = 0;
+    }
+    base = &D_8012716C;
+    i = 0;
+    if (loopConfig->count > 0) {
+        globals = (void *) (base + 7);
+        do {
+            config = loopConfig;
+            (&D_8012716C)[7] = globals->angle + (360.0f / config->count);
+            if (arg1) {
+            }
+            while (globals->angle >= 360.0f) {
+                globals->angle -= 360.0f;
+            }
+
+            if ((i == 0) && (marker != 0)) {
+                actor = func_80106790(marker);
+            } else {
+                actorId = config->actorId;
+                if (actorId != 0x229) {
+                    actor = func_80108474(actorId, (f32 *) arg1, 0);
+                } else {
+                    actorId = func_80800078_chbounce();
+                    actor = func_80108474(actorId, (f32 *) arg1, 0);
+                }
+            }
+            if (actor == 0) {
+                goto next_actor;
+            }
+            {
+                type = (s32) arg0;
+                func_80100074(actor, 2, 0x34);
+                data = func_80100094(actor, 2);
+                position = (u8 *) actor + 4;
+                ((struct { u8 pad[0x7B]; u8 a : 4; u8 f : 1; u8 b : 3; } *) actor)->f = 1;
+                ((struct BounceBits *) data)->type = type;
+                ((struct BounceBits *) data)->mode = 1;
+                ((struct BounceBits *) data)->state = 1;
+                *(s16 *) (data + 0x28) = config->field6;
+                *(f32 *) (data + 0x2C) = config->field8;
+                *(s16 *) (data + 0x2A) = config->fieldC;
+                func_800EE7F8((f32 *) data, (f32 *) position);
+                func_800EE7F8((f32 *) position, (f32 *) data);
+                if (1.0f != globals->scale) {
+                    vector = data + 0xC;
+                    func_800EFA4C((f32 *) vector, config->xBase * globals->scale, func_800DC178(0.0f, config->speedRange) + config->speed, config->zBase * globals->scale);
+                    globals->scale = 1.0f;
+                } else {
+                    xRandom = func_800DC178(0.0f, config->xRange);
+                    yRandom = func_800DC178(0.0f, config->speedRange);
+                    vector = data + 0xC;
+                    func_800EFA4C((f32 *) vector, (xRandom * 1.0f) + config->xBase, (yRandom * 1.0f) + config->speed, func_800DC178(0.0f, config->zRange) + config->zBase);
+                }
+                if (config->flags & 0x400) {
+                    radialSpeed = func_800DC178(0.0f, config->xRange) + config->xBase;
+                    func_800EEB9C(vector, globals->yaw, radialSpeed);
+                    *(f32 *) (data + 0x10) = func_800DC178(0.0f, config->speedRange) + config->speed;
+                } else {
+                    zRandom = D_808014A8_chbounce;
+                    zRandom *= -1.0f;
+                    *(f32 *) (data + 0x1C) = zRandom;
+                    D_808014A8_chbounce = zRandom;
+                    if (config->flags & 0x20) {
+                        yRandom = config->unk20;
+                    } else {
+                        yRandom = func_800DC178(0.0f, 360.0f);
+                        if (!marker) {
+                        }
+                    }
+                    *(f32 *) (data + 0x18) = yRandom;
+                    *(f32 *) ((u8 *) actor + 0x48) = yRandom;
+                    func_800EF934(vector, vector, *(f32 *) ((u8 *) actor + 0x48) + globals->angle);
+                }
+                *(f32 *) (data + 0x20) = 0.0f;
+                ((struct BounceBits *) data)->flag24 = 0;
+                ((struct BounceBits *) data)->flag25 = 1;
+                *(u16 *) (data + 0x32) = config->flags;
+                if (config->flags & 0x200) {
+                    extra = func_80105494(actor);
+                    if (extra != 0) {
+                        *(f32 *) (extra + 0x1C) = *(f32 *) (data + 4);
+                    }
+                }
+            }
+        next_actor:
+            i++;
+        } while (i < loopConfig->count);
+    }
+    return (u32 *) actor;
+}
 
 void chbounce_entrypoint_5(s32 arg0, u8 *arg1) {
     extern s32 D_80801000_chbounce;
@@ -247,15 +405,6 @@ void chbounce_entrypoint_8(Actor *arg0) {
         f32 pitch;
         s16 bounces;
         u16 flags;
-    };
-    struct BounceConfig {
-        u16 flags;
-        u8 pad2[0x10];
-        s16 speed;
-        s16 speedRange;
-        u8 pad16[6];
-        f32 restitution;
-        f32 unk20;
     };
     extern struct BounceConfig D_80800FE0_chbounce[];
     extern s32 D_808014AC_chbounce[];
