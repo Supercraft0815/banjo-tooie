@@ -310,7 +310,70 @@ s32 func_808006D0_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s3
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/baddie/routeDll/func_80800828_subaddierouteDll.s")
+s32 func_80800828_subaddierouteDll(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+    void *func_800CC63C(s32, s32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EEB9C(f32 *, f32, f32);
+    int func_800F0064(f32 *, f32, f32 *);
+    s32 func_800F05F8(f32 *, f32 *, f32 *, f32, f32 *);
+    f32 func_800F0E00(f32, f32);
+    s32 func_80800F34_subaddierouteDll(f32 *, s32, s32, s16 *);
+    extern s16 B_808018E0_subaddierouteDll[32];
+    struct RouteActor {
+        Unk80132ED0 *unk0;
+        f32 position[3];
+        u8 pad10[0x60];
+        u32 route_start : 7;
+        u32 pad70 : 15;
+        u32 route_end : 6;
+        u32 pad73 : 4;
+    };
+    struct RouteNode { f32 position[3]; s16 radius; };
+    struct RouteHit { s16 position[3]; u16 flags; };
+    f32 end[3];
+    f32 start[3];
+    f32 delta[3];
+    f32 roots[2];
+    f32 dx, dz;
+    s32 route;
+    struct RouteNode *node;
+
+    arg4 = ((struct RouteActor *)arg0)->route_end - 1;
+    route = ((struct RouteActor *)arg0)->route_start - 1;
+    func_800EE7F8(start, ((struct RouteActor *)arg0)->position);
+    func_800EEB9C(delta, arg2, arg3);
+    func_800EE7F8(start, ((struct RouteActor *)arg0)->position);
+    end[0] = start[0] + delta[0];
+    end[2] = start[2] + delta[2];
+    B_808018E0_subaddierouteDll[0] = arg4;
+    B_808018E0_subaddierouteDll[1] = -1;
+    do {
+        node = func_800CC63C(route, arg4);
+        if (func_800F0064(node->position, node->radius, end)) {
+            return 1;
+        }
+        switch (func_800F05F8(start, delta, node->position, node->radius, roots)) {
+            case 0:
+                return 1;
+            case 1:
+                if (roots[0] < 0.0f) return 1;
+                break;
+            case 2:
+                roots[0] = func_800F0E00(roots[0], roots[1]);
+                if (roots[0] < 0.0f) return 1;
+                break;
+        }
+        dx = roots[0] * delta[0];
+        dz = roots[0] * delta[2];
+        delta[0] -= dx;
+        delta[2] -= dz;
+        start[0] += dx;
+        start[2] += dz;
+        arg4 = func_80800F34_subaddierouteDll(start, route, arg4, B_808018E0_subaddierouteDll);
+    } while (arg4 != -1);
+    ((struct RouteHit *)arg1)->flags |= 1;
+    return 0;
+}
 
 s32 func_80800A74_subaddierouteDll(void *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
     s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
@@ -697,12 +760,12 @@ s32 subaddierouteDll_entrypoint_9(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
 s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4, s32 *arg5) {
     s32 func_800DC128(s32, s32);
     s32 func_808006D0_subaddierouteDll(Actor *, s32, f32, f32, s32);
-    s32 func_80800828_subaddierouteDll(void *, s32, f32, s32, s32);
+    s32 func_80800828_subaddierouteDll(void *, s32, f32, f32, s32);
     s32 func_80800A74_subaddierouteDll(void *, s32, f32, s32, s32);
     if (!(arg4 & 0x200) && (func_808006D0_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
         return 0;
     }
-    if (!(arg4 & 0x100) && (func_80800828_subaddierouteDll(arg0, arg1, arg2, *(s32 *)&arg3, arg4) == 0)) {
+    if (!(arg4 & 0x100) && (func_80800828_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
         return 0;
     }
     if (!(arg4 & 0x400) && (func_80800A74_subaddierouteDll(arg0, arg1, (f32) func_800DC128(-0x14, 0x14) + arg2, *(s32 *)&arg3, arg4) == 0)) {
