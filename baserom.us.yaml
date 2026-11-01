@@ -6667,7 +6667,7 @@ segments:
     subsegments: 
       - [0x01FF0370, c, nicecavemenguard]
       - [0x01FF0BB0, .rodata, nicecavemenguard]
-      - [0x01FF0C30, data, nicecavemenguard]
+      - [0x01FF0C30, .data, nicecavemenguard]
       - [0x01FF0D80, bss, nicecavemenguard]
   - name: chscorepoints_header
     dir: overlays/chscorepoints
@@ -9658,7 +9658,7 @@ segments:
     subsegments: 
       - [0x020949B0, c, amazonstadiumguard]
       - [0x02095030, .rodata, amazonstadiumguard]
-      - [0x02095060, data, amazonstadiumguard]
+      - [0x02095060, .data, amazonstadiumguard]
       - [0x02095190, bss, amazonstadiumguard]
   - name: chlavatraindoorswitch_header
     dir: overlays/chlavatraindoorswitch
