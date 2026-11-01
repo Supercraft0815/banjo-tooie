@@ -50,8 +50,8 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     void func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800F497C(s32);
-    void func_800F49D4(s32, void *, Unk80132ED0 *);
-    void func_800F4A58(s32, f32 *, f32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
     u32 func_800F54E4(void);
     void func_800F608C(s32, s32);
     s32 func_800F64A4(s32, s32);
@@ -61,13 +61,13 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80102FDC(Actor *, f32);
     void func_80109FE8(Actor *, s32);
-    void func_8010A85C(Actor *, s32);
+    void func_8010A85C(u8 *, s32);
     void func_80800F84_chinflatableboss(Actor *, s32);
     void func_8080183C_chinflatableboss(Actor *);
     void func_80802A00_chinflatableboss(Actor *, u32, u32);
     void func_80802AD8_chinflatableboss(Actor *, s32, s32);
     extern s16 D_80802D8C_chinflatableboss;
-    extern s32 func_8010D5DC;
+    void func_8010D5DC(s32, s32);
     BossData *data;
     s32 i;
     BossMarker markers[3];
@@ -105,7 +105,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     _subaddieDll_entrypoint_10(0x154, data->unk0);
     _subaddieDll_entrypoint_10(0x320, data->unk8);
     func_8080183C_chinflatableboss(arg0);
-    func_8010A85C(arg0, 2);
+    func_8010A85C((u8 *)arg0, 2);
     _suexpression_entrypoint_7(arg0, 1, 0x3A);
     data->count6C = _subaddiemarker_entrypoint_1(arg0, 0x437, 0x32, data->markers70, 20);
     data->count250 = _subaddiemarker_entrypoint_1(arg0, 0x437, 0x35, data->markers254, 20);
@@ -137,7 +137,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
         data->unk498 = 0;
     }
     if (_glcutDll_entrypoint_20()) {
-        func_8010A85C(arg0, 1);
+        func_8010A85C((u8 *)arg0, 1);
         func_80800F84_chinflatableboss(arg0, _chcredits_entrypoint_1() == 0x36 ? 0x12 : 0x13);
         return;
     }
@@ -154,15 +154,15 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
         func_80802A00_chinflatableboss(arg0, 0x22, 0x20);
         _subaddiedialog_entrypoint_11(arg0->unk0, 0x1087, 0x107, position, 0x3A);
         func_80800F84_chinflatableboss(arg0, 3);
-        func_8010A85C(arg0, 1);
+        func_8010A85C((u8 *)arg0, 1);
         return;
     }
     if (func_800D395C()) {
         arg0->unk64_16 = 1;
         data->unk498 = 2;
         func_800F497C(func_800F54E4());
-        func_800F49D4(func_800F54E4(), &func_8010D5DC, arg0->unk0);
-        func_800F4A58(func_800F54E4(), data->positions[0], 300.0f);
+        func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
+        func_800F4A58(func_800F54E4(), (s32)data->positions[0], 300.0f);
         func_80802A00_chinflatableboss(arg0, 0x2F, 0x20);
     } else {
         arg0->unk64_16 = 0;
@@ -245,7 +245,7 @@ void func_808004A0_chinflatableboss(Actor *arg0) {
     void func_80802450_chinflatableboss(Actor *);
     void func_808024BC_chinflatableboss(Actor *);
     void func_8080267C_chinflatableboss(Actor *);
-    void func_8080272C_chinflatableboss(Actor *);
+    s32 func_8080272C_chinflatableboss(Actor *);
     void func_80802910_chinflatableboss(Actor *);
     void func_808029AC_chinflatableboss(Actor *);
     void func_80802A9C_chinflatableboss(Actor *);
@@ -1155,7 +1155,72 @@ void func_8080267C_chinflatableboss(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/inflatableboss/func_8080272C_chinflatableboss.s")
+s32 func_8080272C_chinflatableboss(Actor *arg0) {
+    void func_8008B1C8(struct anctrl_s *, f32);
+    void func_800DA544(s32);
+    void func_800F497C(s32);
+    void func_800F49D4(s32, void *, s32);
+    void func_800F4A58(s32, s32, f32);
+    u32 func_800F54E4(void);
+    void func_800F82D4(s32, s32);
+    u32 func_800FDC28(u32);
+    void *func_80100094(Actor *, u32);
+    struct anctrl_s *func_80104248(void *);
+    void func_8010A85C(u8 *, s32);
+    void func_8010D5DC(s32, s32);
+    void func_80800F84_chinflatableboss(Actor *, s32);
+    void func_80802A00_chinflatableboss(Actor *, u32, u32);
+    struct InflatableSequenceData {
+        u8 prefix[0x60];
+        f32 position[3];
+        u8 unknown6C[0x42C];
+        u8 state;
+        u8 flag499;
+        u8 flag49A;
+        u8 flag49B;
+    } *data;
+
+    data = func_80100094(arg0, 0);
+    switch (data->state) {
+    case 1:
+        break;
+    case 3:
+        if (data->flag49A && data->flag499) {
+            if (!data->flag49B) {
+                func_800DA544(2);
+                func_80800F84_chinflatableboss(arg0, 2);
+                func_8008B1C8(func_80104248(arg0), 0.8f);
+                func_8010A85C((u8 *)arg0, 1);
+                func_80802A00_chinflatableboss(arg0, 1, 0x20);
+                data->flag49B = 1;
+                func_800FDC28(1);
+            }
+            if (arg0->unk70_10 == 4) {
+                data->flag49A = data->flag499 = 0;
+                func_800F82D4(func_800F54E4(), 0);
+                func_800F497C(func_800F54E4());
+                func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
+                func_800F4A58(func_800F54E4(), (s32)data->position, 400.0f);
+                data->state = 4;
+            }
+        }
+        break;
+    case 5:
+        if (arg0->unk70_10 == 4) {
+            data->flag49A = 0;
+            data->flag499 = 1;
+            func_800F82D4(func_800F54E4(), 0);
+            func_800F497C(func_800F54E4());
+            func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
+            func_800F4A58(func_800F54E4(), (s32)data->position, 400.0f);
+            data->state = 4;
+        }
+        break;
+    case 6:
+        break;
+    }
+    return 0;
+}
 
 void func_80802910_chinflatableboss(Actor *arg0) {
     s32 _gcfrontend_entrypoint_9(s32);
