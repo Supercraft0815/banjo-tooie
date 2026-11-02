@@ -284,7 +284,51 @@ void func_80800744_chmasterjiggy(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/masterjiggy/func_808007F0_chmasterjiggy.s")
+s32 func_808007F0_chmasterjiggy(Actor *arg0, s32 arg1, s32 arg2) {
+    s32 _sujiggy_entrypoint_0();
+    s32 _sujiggy_entrypoint_17();
+    s32 _sujiggy_entrypoint_21(void);
+    switch (arg1) {
+    case 46:
+        func_80800744_chmasterjiggy((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 47:
+        func_80800704_chmasterjiggy((s32 *)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        break;
+    case 11:
+        return 3;
+    case 50:
+        if (arg0->unk70_10 == 3) {
+            func_80800220_chmasterjiggy((s32)arg0, 4);
+        } else {
+            func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 0);
+        }
+        break;
+    case 49:
+        func_80800220_chmasterjiggy((s32)arg0, 8);
+        if (_sujiggy_entrypoint_21()) {
+            func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 7);
+        } else {
+            func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, _sujiggy_entrypoint_17(arg0) ? 4 : 5);
+        }
+        break;
+    case 48:
+        switch (((s16 *)&arg2)[0]) {
+        case 0x14F7:
+            if (arg0) {}
+            break;
+        case 0x14F8:
+            if (arg0) {}
+            break;
+        }
+        return _sujiggy_entrypoint_0() + 1;
+    case 149:
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 OSThread *chmasterjiggy_entrypoint_1(void)
 {
