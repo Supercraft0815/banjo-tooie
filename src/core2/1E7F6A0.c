@@ -36,7 +36,42 @@ void func_800A5DB0(Actor *arg0) {
     func_800DE448(arg0->position, sp4C, sp48, NULL, func_800D674C(0x637));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E7F6A0/func_800A5EC4.s")
+void func_800A5EC4(Gfx **arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+    extern Gfx D_8011A2F8[];
+    extern Gfx D_8011A350[];
+    Gfx *gfx = *arg0;
+    s32 rows;
+    s32 end;
+
+    if (arg4 != 0) {
+        arg4 = (arg4 + 15) & 0xFFF0;
+        if (arg5 != 0) {
+            rows = 0x1000 / arg4;
+            gSPDisplayList(gfx++, D_8011A2F8 - 0x10000000);
+            gDPSetBlendColor(gfx++, 0, 0, 0, 1);
+            gDPSetPrimColor(gfx++, 0, 0, 0, 0, 0, (arg6 << 7) / 255);
+if (!arg1) {}
+            end = arg3 + arg5;
+            gDPSetTextureImage(gfx++, G_IM_FMT_CI, G_IM_SIZ_8b, 304, osVirtualToPhysical(arg1));
+            gDPSetTile(gfx++, G_IM_FMT_CI, G_IM_SIZ_8b, (arg4 + 7) >> 3, 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+            gDPSetTile(gfx++, G_IM_FMT_CI, G_IM_SIZ_8b, (arg4 + 7) >> 3, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
+            for (; arg3 < end; arg3 += rows) {
+                if (end - arg3 < rows) {
+                    rows = end - arg3;
+                }
+                gDPLoadSync(gfx++); gDPLoadTile(gfx++, G_TX_LOADTILE, arg2 << 2, arg3 << 2, (arg2 + arg4 - 1) << 2, (arg3 + rows - 1) << 2); gDPSetTileSize(gfx++, G_TX_RENDERTILE, arg2 << 2, arg3 << 2, (arg2 + arg4 - 1) << 2, (arg3 + rows - 1) << 2);
+                {
+                    Gfx *rect = gfx++; rect->words.w0 = _SHIFTL(G_TEXRECT, 24, 8) | _SHIFTL((arg2 + arg4) * 4, 12, 12) | _SHIFTL((arg3 + rows) * 4, 0, 12);
+                    rect->words.w1 = _SHIFTL(G_TX_RENDERTILE, 24, 3) | _SHIFTL(arg2 * 4, 12, 12) | _SHIFTL(arg3 * 4, 0, 12);
+                    gImmp1(gfx++, G_RDPHALF_1, _SHIFTL(arg2 << 5, 16, 16) | _SHIFTL(arg3 << 5, 0, 16));
+                    gImmp1(gfx++, G_RDPHALF_2, _SHIFTL(0x400, 16, 16) | _SHIFTL(0x400, 0, 16));
+                }
+            }
+            gSPDisplayList(gfx++, D_8011A350 - 0x10000000);
+            *arg0 = gfx;
+        }
+    }
+}
 
 void func_800A61D4(void) {
     typedef struct { s32 color[4]; } Color;
@@ -74,7 +109,7 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     f32 func_80092BDC(PlayerState *);
     s32 func_80092E80(PlayerState *);
     void func_800A06E8(s32);
-    void func_800A5EC4(Gfx **, s32, s32, s32, s32, s32, s32);
+    void func_800A5EC4();
     void func_800A61D4(void);
     Gfx **func_800A7180(void);
     void func_800AE708(s32, u8 *, s32 *, u8 *);
