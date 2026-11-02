@@ -51,7 +51,75 @@ void func_800AA3B4(void *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA4D4.s")
+typedef struct {
+    s16 min[3];
+    s16 max[3];
+    u16 y_stride;
+    u16 z_stride;
+    s16 unk10;
+    s16 scale;
+    s32 unk14;
+    s32 data[1];
+} CollList;
+
+extern struct {
+    void *list[100];
+    void **current;
+} D_801277A0;
+
+void func_800AA4D4(CollList *this, f32 min[3], f32 max[3], void ***begin_ptr, void ***end_ptr) {
+    s32 min_scaled[3], max_scaled[3];
+    s32 pad[2];
+    int i;
+    s32 x, y, z;
+
+    if (this->scale == 0) {
+        D_801277A0.current = D_801277A0.list;
+        *D_801277A0.current++ = (void *)this->data;
+
+        *begin_ptr = D_801277A0.list;
+        *end_ptr = D_801277A0.current;
+    } else {
+        for (i = 0; i < 3; i++) {
+            min_scaled[i] = min[i] >= 0.0f ? (s32)min[i] / this->scale : (s32)min[i] / this->scale - 1;
+            max_scaled[i] = max[i] >= 0.0f ? (s32)max[i] / this->scale : (s32)max[i] / this->scale - 1;
+
+            if (min_scaled[i] < this->min[i]) {
+                min_scaled[i] = this->min[i];
+            }
+
+            if (this->max[i] < min_scaled[i]) {
+                min_scaled[i] = this->max[i];
+            }
+
+            if (max_scaled[i] < this->min[i]) {
+                max_scaled[i] = this->min[i];
+            }
+
+            if (this->max[i] < max_scaled[i]) {
+                max_scaled[i] = this->max[i];
+            }
+
+            min_scaled[i] -= this->min[i];
+            max_scaled[i] -= this->min[i];
+        }
+
+        D_801277A0.current = D_801277A0.list;
+
+        for (z = min_scaled[2]; z <= max_scaled[2]; z++) {
+            for (y = min_scaled[1]; y <= max_scaled[1]; y++) {
+                for (x = min_scaled[0]; x <= max_scaled[0]; x++) {
+                    if (D_801277A0.current < &D_801277A0.list[100]) {
+                        *D_801277A0.current++ = this->z_stride * z + this->data + x + y * this->y_stride;
+                    }
+                }
+            }
+        }
+
+        *begin_ptr = D_801277A0.list;
+        *end_ptr = D_801277A0.current;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA7FC.s")
 
@@ -174,7 +242,7 @@ void *func_800AB0BC(u16 *list, u16 *vertices, f32 line_start[3], f32 line_end[3]
     typedef struct { u16 vertices[3]; u16 padding; u32 flags; } CollisionTriangle;
     typedef struct { s16 position[3]; s16 padding[5]; } CollisionVertex;
     void func_800AA3B4(void *, void *);
-    void func_800AA7FC(void *, s32 *, s32 *, u16 ***, u16 ***);
+    void func_800AA7FC();
     void func_800AAFEC(f32 *, f32 *, s32 *, s32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE97C(f32 *, f32 *, f32 *);
@@ -486,7 +554,7 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
         Triangle *triangle;
         f32 point[3][3];
     } ProcessedTriangle;
-    void func_800AA4D4(void *, f32 *, f32 *, Geometry ***, Geometry ***);
+    void func_800AA4D4();
     void func_800ABB34(void *, void **);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
@@ -1024,7 +1092,7 @@ s32 func_800AD2C8(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s16 (
     typedef struct { u16 vertex[3]; u16 pad; u32 flags; } Triangle;
     typedef struct { s16 point[3][3]; s16 pad; } CachedTriangle;
     typedef struct { CachedTriangle triangles[64]; CachedTriangle *end; } TriangleCache;
-    void func_800AA7FC(void *, s32 *, s32 *, u16 ***, u16 ***);
+    void func_800AA7FC();
     void *func_800B2190(void *);
     void func_800EE8CC(s32 *, s16 *);
     void func_800EE9EC(f32 *, s32 *, s32 *);
@@ -1148,7 +1216,7 @@ s32 func_800AD2C8(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s16 (
 
 s32 func_800AD894(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *arg5, f32 arg6) {
     typedef struct { u16 vertex[3]; u16 flags[3]; } Triangle;
-    void func_800AA7FC(void *, s32 *, s32 *, u16 ***, u16 ***);
+    void func_800AA7FC();
     void *func_800B2190(void *);
     void func_800EE8CC(s32 *, s16 *);
     void func_800EE9EC(f32 *, s32 *, s32 *);
