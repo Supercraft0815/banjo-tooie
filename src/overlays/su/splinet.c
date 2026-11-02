@@ -341,12 +341,80 @@ f32 func_808007D0_susplinet(u8 *arg0, f32 arg1, s16 *arg2, u8 *arg3) {
     return func_800F10B4(func_800F10B4(distance, cursor[0], cursor[1], (f32)index * 0.03448276f, (f32)(index + 1) * 0.03448276f), 0.0f, 1.0f, 0.333f, 0.666f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/splinet/func_80800D3C_susplinet.s")
+void func_80800D3C_susplinet(u8 *arg0, f32 time) {
+    void _mlspline_entrypoint_4(f32, s32, u8 *, f32 *);
+    void _mlspline_entrypoint_8(f32, s32, u8 *, f32 *);
+    void _mlspline_entrypoint_9(f32, s32, f32 *, f32 *);
+    s32 func_800EE7F8();
+    s16 *speeds;
+    s16 *times;
+    s32 i;
+    f32 *vectors[3];
+    f32 *scalars[3];
+    s32 b;
+    s16 indices[4];
+    s32 c;
+    f32 values[4];
+    f32 points[4][3];
+    s32 a;
+    f32 *scalar_output;
+    f32 fraction;
+
+    speeds = (s16 *)(*(s16 *)(arg0 + 0x34) + *(u8 (*)[1])arg0);
+    times = (s16 *)(*(s16 *)(arg0 + 0x30) + *(u8 (*)[1])arg0);
+    if (times[*(s16 *)(arg0 + 0x4E) - 1] < time) {
+        time = times[*(s16 *)(arg0 + 0x4E) - 1];
+    } else if (time < times[0]) {
+        time = times[0];
+    }
+    for (i = 0; i < arg0[0x51]; i++) {
+        vectors[i] = (f32 *)&arg0[*(s16 *)(arg0 + 0x36 + i * 2)];
+    }
+    for (i = 0; i < arg0[0x52]; i++) {
+        scalars[i] = (f32 *)&arg0[*(s16 *)(arg0 + 0x3E + i * 2)];
+    }
+    if (*(s16 *)(arg0 + 0x4E) >= 4) {
+        s32 d;
+        fraction = func_80800620_susplinet(arg0, indices, time);
+        if (indices[0] != indices[1] && times[indices[0]] == times[indices[1]] && susplinet_entrypoint_5(arg0, (f32)times[indices[1]])) {
+            arg0[0x53] = 1;
+        } else {
+            arg0[0x53] = 0;
+        }
+        a = indices[0] * 3;
+        b = indices[1] * 3;
+        c = indices[2] * 3;
+        d = indices[3] * 3;
+        for (i = 0; i < arg0[0x51]; i++) {
+            func_800EE7F8(points[0], vectors[i] + a);
+            func_800EE7F8(points[1], vectors[i] + b);
+            func_800EE7F8(points[2], vectors[i] + c);
+            func_800EE7F8(points[3], vectors[i] + d);
+            if (i == 0 && *speeds != -1) {
+                fraction = func_808007D0_susplinet(arg0, time, indices, (u8 *)points);
+            }
+            if (func_808000FC_susplinet(arg0, i)) {
+                func_800F0EF0(4, points[0]);
+            }
+            _mlspline_entrypoint_4(fraction, 4, (u8 *)points, (f32 *)(arg0 + i * 12));
+            if (i == 0) {
+                _mlspline_entrypoint_8(fraction, 4, (u8 *)points, (f32 *)(arg0 + i * 12 + 0x18));
+            }
+        }
+        for (i = 0; i < arg0[0x52]; i++) {
+            values[0] = scalars[i][indices[0]];
+            values[1] = scalars[i][indices[1]];
+            values[2] = scalars[i][indices[2]];
+            values[3] = scalars[i][indices[3]];
+            _mlspline_entrypoint_9(fraction, 4, values, (f32 *)(arg0 + 0x24 + i * 4));
+        }
+    }
+}
 
 void susplinet_entrypoint_17(u8 *spline) {
-    s32 func_80800D3C_susplinet(u8 *, s32);
+    void func_80800D3C_susplinet(u8 *, f32);
     spline[0x58] = 1;
-    func_80800D3C_susplinet(spline, *(s32 *)(spline + 0x44));
+    func_80800D3C_susplinet(spline, *(f32 *)(spline + 0x44));
     spline[0x58] = 0;
 }
 
