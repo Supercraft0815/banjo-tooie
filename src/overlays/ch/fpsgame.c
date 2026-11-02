@@ -542,7 +542,117 @@ void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/fpsgame/func_80800CF8_chfpsgame.s")
+s32 func_80800CF8_chfpsgame(Actor *arg0, s32 arg1) {
+    void *func_80100094(Actor *, u32);
+    void _gcfrontend_entrypoint_10(void);
+    s32 _gcstatusDll_entrypoint_11();
+    s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
+    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
+    void _sumultiscore_entrypoint_9(u8 *, s32, s32, s32);
+    void _sumultiscore_entrypoint_10(void *, s32);
+    void func_800AA20C(s32, s32);
+    s32 func_800F5410(s32);
+    u32 func_800F54E4(void);
+    void func_800FC6B0(u32);
+    u32 func_800FDC28(u32);
+    s32 func_80101238(s32, s32);
+    u32 func_8010A828(Actor *, u32);
+    void func_808013DC_chfpsgame(Actor *, s32, u32);
+    void func_80801814_chfpsgame(Actor *);
+    void func_808018B0_chfpsgame(Actor *);
+    void func_80801C9C_chfpsgame(Actor *);
+    struct {
+        s32 count;
+        u8 unk4[0x10];
+        u8 score[0x53C];
+        s32 state;
+        f32 timer;
+    } *data;
+    s32 j;
+    u8 *score;
+    s32 mode;
+    s32 map;
+    s32 best;
+    s32 i;
+
+    data = func_80100094(arg0, 0);
+    switch (arg1) {
+    case 0:
+        func_80800138_chfpsgame(1U);
+        break;
+    case 1:
+        func_8080000C_chfpsgame(arg0, 0, 0);
+        break;
+    case 2:
+        func_80800138_chfpsgame(0U);
+        func_8010A828(arg0, 0x18);
+        func_80801814_chfpsgame(arg0);
+        map = func_800F5410(func_800F54E4());
+        if (map == 6 || map == 0xC) {
+            func_800FDC28(0xC);
+        }
+        break;
+    case 3:
+        data->timer = 2.0f;
+        func_8080000C_chfpsgame(arg0, 0, 1);
+        break;
+    case 4:
+        func_80800138_chfpsgame(1U);
+        func_8080000C_chfpsgame(arg0, 0, 1);
+        func_808018B0_chfpsgame(arg0);
+        func_80801C9C_chfpsgame(arg0);
+        func_80101238(0x78, 0);
+        break;
+    case 5:
+        for (j = 0; j < data->count; j++) {
+            func_808013DC_chfpsgame(arg0, j, 4U);
+        }
+        func_800FC6B0(0x16);
+        mode = func_800F5410(func_800F54E4());
+        if (mode == 6 || mode == 0xC) {
+            func_800FDC28(0);
+        }
+        break;
+    case 6:
+        score = data->score;
+        best = _sumultiscore_entrypoint_8(score, 0, 2);
+        data->timer = 5.0f;
+        _sumultiscore_entrypoint_4(score, 5, 5, 2);
+        i = 0;
+        if (_gcstatusDll_entrypoint_11() > 0) {
+            do {
+                mode = _sumultiscore_entrypoint_8(score, i, 2);
+                _sumultiscore_entrypoint_9(score, i, 5, mode);
+                if (mode != best) {
+                    best = best >= mode ? best : mode;
+                }
+                i++;
+            } while (i < _gcstatusDll_entrypoint_11());
+        }
+        i = 0;
+        if (_gcstatusDll_entrypoint_11() > 0) {
+            do {
+                if (_sumultiscore_entrypoint_8(score, i, 2) == best) {
+                    _sumultiscore_entrypoint_10(score, i);
+                }
+                i++;
+            } while (i < _gcstatusDll_entrypoint_11());
+        }
+        break;
+    case 7:
+        mode = 0;
+if (!j) {}
+        if (_gcstatusDll_entrypoint_11() > 0) {
+            do {
+                func_800AA20C(mode, _sumultiscore_entrypoint_8(data->score, mode, 2));
+                mode++;
+            } while (mode < _gcstatusDll_entrypoint_11());
+        }
+        _gcfrontend_entrypoint_10();
+        break;
+    }
+    data->state = arg1;
+}
 
 s32 func_80800FF4_chfpsgame(s32 arg0) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
