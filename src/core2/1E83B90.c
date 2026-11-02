@@ -121,7 +121,59 @@ void func_800AA4D4(CollList *this, f32 min[3], f32 max[3], void ***begin_ptr, vo
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E83B90/func_800AA7FC.s")
+void func_800AA7FC(CollList *this, s32 min[3], s32 max[3], void ***begin_ptr, void ***end_ptr) {
+    s32 min_scaled[3], max_scaled[3];
+    s32 pad[2];
+    int i;
+    s32 x, y, z;
+
+    if (this->scale == 0) {
+        D_801277A0.current = D_801277A0.list;
+        *D_801277A0.current++ = (void *)this->data;
+
+        *begin_ptr = D_801277A0.list;
+        *end_ptr = D_801277A0.current;
+    } else {
+        for (i = 0; i < 3; i++) {
+            min_scaled[i] = min[i] >= 0 ? min[i] / this->scale : min[i] / this->scale - 1;
+            max_scaled[i] = max[i] >= 0 ? max[i] / this->scale : max[i] / this->scale - 1;
+
+            if (min_scaled[i] < this->min[i]) {
+                min_scaled[i] = this->min[i];
+            }
+
+            if (this->max[i] < min_scaled[i]) {
+                min_scaled[i] = this->max[i];
+            }
+
+            if (max_scaled[i] < this->min[i]) {
+                max_scaled[i] = this->min[i];
+            }
+
+            if (this->max[i] < max_scaled[i]) {
+                max_scaled[i] = this->max[i];
+            }
+
+            min_scaled[i] -= this->min[i];
+            max_scaled[i] -= this->min[i];
+        }
+
+        D_801277A0.current = D_801277A0.list;
+
+        for (z = min_scaled[2]; z <= max_scaled[2]; z++) {
+            for (y = min_scaled[1]; y <= max_scaled[1]; y++) {
+                for (x = min_scaled[0]; x <= max_scaled[0]; x++) {
+                    if (D_801277A0.current < &D_801277A0.list[100]) {
+                        *D_801277A0.current++ = this->z_stride * z + this->data + x + y * this->y_stride;
+                    }
+                }
+            }
+        }
+
+        *begin_ptr = D_801277A0.list;
+        *end_ptr = D_801277A0.current;
+    }
+}
 
 void func_800AAAE0(u8 *arg0) {
     extern f32 D_80127938[];
