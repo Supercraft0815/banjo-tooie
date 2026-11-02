@@ -155,7 +155,49 @@ void func_808002E4_chjigsawbitcont(Actor *arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/jigsaw/bitcont/func_8080040C_chjigsawbitcont.s")
+s32 func_8080040C_chjigsawbitcont(s32 arg0) {
+    void func_800D0BD4(s32, u32);
+    void func_800DA544();
+    void func_800FC660(u32);
+    void func_800FCAE0(u32, u32, u32);
+    void *func_80100094(Actor *, u32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_80108B04(Actor *, u32);
+    extern f32 D_808009A8_chjigsawbitcont[][4];
+    extern s16 D_808009B6_chjigsawbitcont[][8];
+    s16 *entry;
+    struct {
+        s16 positions[18];
+        s16 count;
+    } *data;
+    Actor *actor;
+    s16 count;
+    f32 ratio;
+if (!entry) {}
+
+    actor = func_80106790(((Actor *)arg0)->unk3C);
+    data = func_80100094(actor, 0);
+    data->count++;
+    func_800DA544(D_808009B6_chjigsawbitcont[actor->unk74_7][0] + ((Actor *)arg0)->unk6C_0);
+    count = data->count;
+    entry = (s16 *)D_808009A8_chjigsawbitcont[actor->unk74_7];
+    if (count == entry[1]) {
+        func_800D0BD4(entry[0], 1);
+        func_800FC660(5);
+        func_80108B04(actor, -1);
+        return;
+    }
+    if (!actor->unk64_20) {
+        ratio = (f32)count / (f32)entry[1];
+        ((f32 *)actor->actorData)[4] = 1.75f * ratio;
+        func_800FC660(5);
+    } else {
+        ratio = 1.0f / (f32)entry[1];
+        ((f32 *)actor->actorData)[4] += 1.75f * ratio;
+        func_800FCAE0(5, 0x7FFF, 0x1F40);
+    }
+    actor->unk64_20 = 1;
+}
 
 OSThread *chjigsawbitcont_entrypoint_0(void)
 {
