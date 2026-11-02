@@ -1,6 +1,7 @@
 #include "common.h"
 
-extern s32 D_80128410;
+typedef struct { s32 unk0; s32 lower[3]; s32 upper[3]; s32 pad[9]; f32 scale; } Bounds;
+extern Bounds D_80128410;
 extern s32 D_80128434;
 
 void func_800BD570()
@@ -57,7 +58,41 @@ void func_800BD64C(s32 *arg0, f32 *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E96E60/func_800BD708.s")
+void func_800BD708(s32 *arg0, s32 *arg1, f32 *arg2, f32 *arg3, f32 arg4) {
+    s32 i;
+    s32 limit;
+    f32 x;
+    f32 y;
+    f32 value;
+    f32 temp;
+
+    for (i = 0; i < 3; i++) {
+        x = arg3[i];
+        y = arg2[i];
+        value = y <= x ? y : x;
+        if ((temp = value - arg4) >= 0.0f) {
+            arg0[i] = (s32)(1.0f * temp * ((Bounds *)&D_80128410)->scale);
+        } else {
+            arg0[i] = (s32)(temp * D_80128410.scale + -1.0f);
+        }
+        limit = D_80128410.lower[i];
+        if (arg0[i] < limit) {
+            arg0[i] = limit;
+        }
+        y = arg2[i];
+        x = arg3[i];
+        value = x <= y ? y : x;
+        if ((temp = value + arg4) >= 0.0f) {
+            arg1[i] = (s32)(temp * D_80128410.scale);
+        } else {
+            arg1[i] = (s32)(temp * D_80128410.scale + -1.0f);
+        }
+        limit = D_80128410.upper[i];
+        if (limit < arg1[i]) {
+            arg1[i] = limit;
+        }
+    }
+}
 
 void func_800BD860(s32 arg0, s32 *arg1) {
     extern s32 D_8012841C;
@@ -65,13 +100,13 @@ void func_800BD860(s32 arg0, s32 *arg1) {
     s32 offset;
     s32 remainder;
 
-    offset = (arg0 - D_80128410) >> 3;
-    arg1[2] = offset / (&D_80128410)[8];
-    remainder = offset - arg1[2] * (&D_80128410)[8];
-    arg1[1] = remainder / (&D_80128410)[7];
-    arg1[0] = remainder - arg1[1] * (&D_80128410)[7];
+    offset = (arg0 - D_80128410.unk0) >> 3;
+    arg1[2] = offset / ((s32 *)&D_80128410)[8];
+    remainder = offset - arg1[2] * ((s32 *)&D_80128410)[8];
+    arg1[1] = remainder / ((s32 *)&D_80128410)[7];
+    arg1[0] = remainder - arg1[1] * ((s32 *)&D_80128410)[7];
     for (i = 0; i < 3; i++) {
-        arg1[i] += (&D_80128410)[i + 1];
+        arg1[i] += ((s32 *)&D_80128410)[i + 1];
     }
 }
 
@@ -102,32 +137,32 @@ s32 func_800BD97C(s32 *arg0) {
             position[i] = (s32)((f32)arg0[i] * scale + -1.0f);
         }
     }
-    if ((position[0] < (&D_80128410)[1]) ||
-        (position[1] < (&D_80128410)[2]) ||
-        (position[2] < (&D_80128410)[3]) ||
-        ((&D_80128410)[4] < position[0]) ||
-        ((&D_80128410)[5] < position[1]) ||
-        ((&D_80128410)[6] < position[2])) {
+    if ((position[0] < ((s32 *)&D_80128410)[1]) ||
+        (position[1] < ((s32 *)&D_80128410)[2]) ||
+        (position[2] < ((s32 *)&D_80128410)[3]) ||
+        (((s32 *)&D_80128410)[4] < position[0]) ||
+        (((s32 *)&D_80128410)[5] < position[1]) ||
+        (((s32 *)&D_80128410)[6] < position[2])) {
         return -1;
     }
     func_800EFB58(relative, position, &D_80128414);
-    return relative[0] + relative[1] * (&D_80128410)[7] +
-        relative[2] * (&D_80128410)[8];
+    return relative[0] + relative[1] * ((s32 *)&D_80128410)[7] +
+        relative[2] * ((s32 *)&D_80128410)[8];
 }
 
 s32 func_800BDAD4(s32 position[3]) {
     extern u8 D_80128444;
-    if ((position[0] < (&D_80128410)[1]) ||
-        (position[1] < (&D_80128410)[2]) ||
-        (position[2] < (&D_80128410)[3]) ||
-        ((&D_80128410)[4] < position[0]) ||
-        ((&D_80128410)[5] < position[1]) ||
-        ((&D_80128410)[6] < position[2])) {
+    if ((position[0] < ((s32 *)&D_80128410)[1]) ||
+        (position[1] < ((s32 *)&D_80128410)[2]) ||
+        (position[2] < ((s32 *)&D_80128410)[3]) ||
+        (((s32 *)&D_80128410)[4] < position[0]) ||
+        (((s32 *)&D_80128410)[5] < position[1]) ||
+        (((s32 *)&D_80128410)[6] < position[2])) {
         return (s32)&D_80128444;
     }
-    return D_80128410 + (position[0] - (&D_80128410)[1]) * 8 +
-        (position[1] - (&D_80128410)[2]) * (&D_80128410)[7] * 8 +
-        (position[2] - (&D_80128410)[3]) * (&D_80128410)[8] * 8;
+    return D_80128410.unk0 + (position[0] - ((s32 *)&D_80128410)[1]) * 8 +
+        (position[1] - ((s32 *)&D_80128410)[2]) * ((s32 *)&D_80128410)[7] * 8 +
+        (position[2] - ((s32 *)&D_80128410)[3]) * ((s32 *)&D_80128410)[8] * 8;
 }
 
 s32 func_800BDB9C(s32 arg0) {
@@ -136,7 +171,7 @@ s32 func_800BDB9C(s32 arg0) {
     if (arg0 < 0) {
         result = (s32)&D_80128444;
     } else {
-        result = arg0 * 8 + D_80128410;
+        result = arg0 * 8 + D_80128410.unk0;
     }
     return result;
 }
@@ -218,39 +253,39 @@ s32 *func_800BDD24(s32 *arg0)
         } else {
             value = (f32)arg0[index] * D_80128450;
         }
-        pos[index] = (s32)(value - (&D_80128410)[index + 1]);
+        pos[index] = (s32)(value - ((s32 *)&D_80128410)[index + 1]);
     }
     count = 0;
-    if (pos[0] > 0 && pos[0] < (&D_80128410)[10] - 1 &&
-        pos[1] > 0 && pos[1] < (&D_80128410)[11] - 1 &&
-        pos[2] > 0 && pos[2] < (&D_80128410)[12] - 1) {
-        base = (pos[0] + (pos[1] - 1) * (&D_80128410)[7] +
-            (pos[2] - 1) * (&D_80128410)[8]) - 1;
+    if (pos[0] > 0 && pos[0] < ((s32 *)&D_80128410)[10] - 1 &&
+        pos[1] > 0 && pos[1] < ((s32 *)&D_80128410)[11] - 1 &&
+        pos[2] > 0 && pos[2] < ((s32 *)&D_80128410)[12] - 1) {
+        base = (pos[0] + (pos[1] - 1) * ((s32 *)&D_80128410)[7] +
+            (pos[2] - 1) * ((s32 *)&D_80128410)[8]) - 1;
         index = base;
         iter[0] = 0; do {
             for (iter[1] = 0; iter[1] < 3; iter[1]++) {
                 for (iter[2] = 0; iter[2] < 3; iter[2]++) {
-                    if (func_800E9DC4((s16 *)(D_80128410 + (index << 3)))) {
-                        (&D_80128458)[count++] = D_80128410 + (index << 3);
+                    if (func_800E9DC4((s16 *)(D_80128410.unk0 + (index << 3)))) {
+                        (&D_80128458)[count++] = D_80128410.unk0 + (index << 3);
                     }
                     index++;
                 }
-                index = (index + (&D_80128410)[7]) - (new_var = 3);
+                index = (index + ((s32 *)&D_80128410)[7]) - (new_var = 3);
             }
-            base += (&D_80128410)[8];
+            base += ((s32 *)&D_80128410)[8];
             index = base;
         } while (++iter[0] < 3);
     } else {
         for (iter[0] = pos[0] - 1; iter[0] < pos[0] + 2; iter[0]++) {
-            if (iter[0] >= 0 && iter[0] < (&D_80128410)[10]) {
+            if (iter[0] >= 0 && iter[0] < ((s32 *)&D_80128410)[10]) {
                 for (iter[1] = pos[1] - 1; iter[1] < pos[1] + 2; iter[1]++) {
-                    if (iter[1] >= 0 && iter[1] < (&D_80128410)[11]) {
+                    if (iter[1] >= 0 && iter[1] < ((s32 *)&D_80128410)[11]) {
                         for (iter[2] = pos[2] - 1; iter[2] < pos[2] + 2; iter[2]++) {
-                            if (iter[2] >= 0 && iter[2] < (&D_80128410)[12]) {
-                                index = iter[0] + iter[1] * (&D_80128410)[7] +
-                                    iter[2] * (&D_80128410)[8];
-                                if (func_800E9DC4((s16 *)(D_80128410 + (index << 3)))) {
-                                    (&D_80128458)[count++] = D_80128410 + (index << 3);
+                            if (iter[2] >= 0 && iter[2] < ((s32 *)&D_80128410)[12]) {
+                                index = iter[0] + iter[1] * ((s32 *)&D_80128410)[7] +
+                                    iter[2] * ((s32 *)&D_80128410)[8];
+                                if (func_800E9DC4((s16 *)(D_80128410.unk0 + (index << 3)))) {
+                                    (&D_80128458)[count++] = D_80128410.unk0 + (index << 3);
                                 }
                             }
                         }
@@ -285,7 +320,7 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
     {
       value = ((f32) arg1[index]) * D_80128450;
     }
-    pos[index] = (s32) (value - (&D_80128410)[index + 1]);
+    pos[index] = (s32) (value - ((s32 *)&D_80128410)[index + 1]);
   }
 
   count = 0;
@@ -300,9 +335,9 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
       {
         for (iter[2] = 0; iter[2] < 3; iter[2]++)
         {
-          if (func_800E9DCC((s16 *) (D_80128410 + (index << 3))))
+          if (func_800E9DCC((s16 *) (D_80128410.unk0 + (index << 3))))
           {
-            arg0[count++] = D_80128410 + (index << 3);
+            arg0[count++] = D_80128410.unk0 + (index << 3);
           }
           index++;
         }
@@ -330,9 +365,9 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
               if ((iter[2] >= 0) && (iter[2] < (*((s32 *) (((s8 *) (&D_80128410)) + 0x30)))))
               {
                 index = (iter[0] + (iter[1] * (*((s32 *) (((s8 *) (&D_80128410)) + 0x1C))))) + (iter[2] * (*((s32 *) (((s8 *) (&D_80128410)) + 0x20))));
-                if (func_800E9DCC((s16 *) (D_80128410 + (index << 3))))
+                if (func_800E9DCC((s16 *) (D_80128410.unk0 + (index << 3))))
                 {
-                  arg0[count++] = D_80128410 + (index << 3);
+                  arg0[count++] = D_80128410.unk0 + (index << 3);
                 }
               }
             }
