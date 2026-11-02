@@ -33,11 +33,100 @@ void func_80800024_chpoolkids(void *arg0) {
     _subaddiesect_entrypoint_2(arg0, temp_v0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/poolkids/func_80800058_chpoolkids.s")
+void func_80800058_chpoolkids(Actor *arg0) {
+    void _glcutDll_entrypoint_17(void);
+    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    f32 func_80013970(f32);
+    s32 func_8008FB58(f32 *, f32, f32);
+    s32 func_800D9078();
+    f32 func_800F10B4(f32, f32, f32, f32, f32);
+    f32 func_80101F24(Actor *);
+    s32 func_801022E4(Actor *);
+    struct anctrl_s *func_80104248(void *);
+    void func_808008DC_chpoolkids(u8 *);
+    void func_80800944_chpoolkids(Actor *, f32);
+    void func_80800AA0_chpoolkids(Actor *);
+    extern s32 D_808012B0_chpoolkids;
+    extern s32 D_808012D8_chpoolkids;
+    extern s32 D_808012F8_chpoolkids;
+    extern s32 D_808014C8_chpoolkids;
+    typedef struct {
+        Unk80132ED0 *unk0;
+        f32 position[3];
+        u32 *pointerToSyscallEntry;
+        u32 unk14;
+        struct {
+            u32 unk[5];
+            f32 amount;
+            u32 rest[2];
+        } actorData;
+        f32 scale;
+        Unk80132ED0 *unk3C;
+        s32 pad40;
+        f32 rotation[3];
+        f32 unk50, unk54, unk58;
+        u8 pad5C, pad5D, pad5E, unk5F;
+        s32 pad60;
+        u32 flags64;
+        s32 pad68;
+        u32 flags6C, flags70;
+        u32 flags74 : 28;
+        u32 mode : 4;
+    } PoolKidsActor;
+    f32 *position;
+
+    if (func_80104248(arg0) != 0) {
+        if (func_801022E4(arg0) == 0x2B9) {
+            f32 progress;
+            progress = func_80101F24(arg0);
+            ((PoolKidsActor *)arg0)->actorData.amount = func_80013970(func_800F10B4(progress, 0.75f, 0.99f, 0.0f, 180.0f));
+            if (progress > 0.33f && progress < 0.52f) {
+                ((PoolKidsActor *)arg0)->mode = 2;
+            } else {
+                ((PoolKidsActor *)arg0)->mode = 1;
+            }
+        } else {
+            ((PoolKidsActor *)arg0)->mode = 1;
+            ((PoolKidsActor *)arg0)->actorData.amount = 0.0f;
+        }
+    }
+    position = arg0->position;
+    func_8008FB58(position, 60.0f, 60.0f);
+    switch (arg0->unk70_10) {
+    case 1:
+        arg0->actorData[4] = arg0->unk70_10;
+        _subaddiedialog_entrypoint_8((s32)arg0, position, &D_808014C8_chpoolkids, &D_808012B0_chpoolkids, 5);
+        func_80800AA0_chpoolkids(arg0);
+        return;
+    case 2:
+        func_80800AA0_chpoolkids(arg0);
+        return;
+    case 3:
+        func_80800AA0_chpoolkids(arg0);
+        if (func_800D9078(&arg0->unk58) != 0) {
+            _glcutDll_entrypoint_17();
+        }
+        return;
+    case 4:
+        arg0->actorData[4] = arg0->unk70_10;
+        _subaddiedialog_entrypoint_8((s32)arg0, position, &D_808014C8_chpoolkids, &D_808012D8_chpoolkids, 4);
+        func_80800AA0_chpoolkids(arg0);
+        return;
+    case 5:
+        arg0->actorData[4] = arg0->unk70_10;
+        _subaddiedialog_entrypoint_8((s32)arg0, position, &D_808014C8_chpoolkids, &D_808012F8_chpoolkids, 4);
+        func_80800AA0_chpoolkids(arg0);
+        return;
+    case 6:
+        func_808008DC_chpoolkids((u8 *)arg0);
+        func_80800944_chpoolkids(arg0, 0.55f);
+        break;
+    }
+}
 
 void func_80800290_chpoolkids(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
-    void func_8008FB58(f32 *, f32, f32);
+    s32 func_8008FB58(f32 *, f32, f32);
     void func_80800884_chpoolkids(void *);
     void func_808008DC_chpoolkids(u8 *);
     void func_80800944_chpoolkids(Actor *, f32);
