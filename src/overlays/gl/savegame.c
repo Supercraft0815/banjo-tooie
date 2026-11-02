@@ -44,7 +44,81 @@ s32 func_80800020_glsavegame(s32 arg0, s32 arg1) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/savegame/glsavegame_entrypoint_0.s")
+extern struct {
+    s32 buffers[3];
+    s8 map[3];
+    s8 unkF;
+    u8 unk10;
+    u8 unk11;
+    s8 unk12;
+} D_80127618;
+
+void glsavegame_entrypoint_0(void)
+{
+  s32 _glgamedata_entrypoint_6(s32);
+  s32 aligned4_memcpy(void *, void *, s32);
+  s32 func_80800020_glsavegame(s32, s32);
+  void heap_free(void *);
+  s32 game_index;
+  s32 file_index;
+  s32 file_state[4];
+  s32 buffer;
+  s32 result;
+  s32 index;
+  D_80127618.unk12 = -1;
+  D_80127618.unkF = -1;
+  file_state[3] = 0;
+  for (file_index = 0; file_index < 3; file_index++)
+  {
+    D_80127618.map[file_index] = -1;
+    file_state[file_index] = 0;
+    D_80127618.buffers[file_index] = func_80800000_glsavegame();
+    _glgamedata_entrypoint_6(D_80127618.buffers[file_index]);
+  }
+
+  buffer = func_80800000_glsavegame();
+  for (file_index = 0; file_index < 4; file_index++)
+  {
+    result = func_80800020_glsavegame(file_index, buffer);
+    if (result == 0)
+    {
+      index = func_808000CC_glsavegame((u8 *) buffer);
+      if (D_80127618.map[index] == (-1))
+      {
+        D_80127618.map[index] = file_index;
+        file_state[file_index] = 1;
+        aligned4_memcpy((void *) D_80127618.buffers[index], (void *) buffer, 0x1C0);
+      }
+      else
+      {
+        result = 2;
+      }
+    }
+    if (result != 0)
+    {
+      D_80127618.unkF = file_index;
+    }
+  }
+
+  heap_free((void *)buffer);
+  file_state[D_80127618.unkF] = 1;
+  for (game_index = 0; game_index < 3; game_index++)
+  {
+    for (file_index = 0; (file_index < 4) && (D_80127618.map[game_index] == (-1)); file_index++)
+    {
+      if (file_state[file_index] == 0)
+      {
+        file_state[file_index] = 1;
+        D_80127618.map[game_index] = file_index;
+      }
+    }
+
+  }
+
+  index = 1;
+  D_80127618.unk10 = index;
+  D_80127618.unk11 = index;
+}
 
 s32 func_808002E0_glsavegame(s32 arg0, s32 arg1) {
     s32 _glgamestore_entrypoint_2(s32, s32);
@@ -148,15 +222,14 @@ void func_808004C4_glsavegame(void) {
 s32 glsavegame_entrypoint_7(s32 arg0) {
     void _glgamedata_entrypoint_1(void *);
     void heap_free(void *);
-    extern s8 D_80127618[];
     s32 result;
     s32 sp28;
     s32 sp24;
     s32 sp20;
 
     sp20 = func_80800000_glsavegame();
-    sp28 = (D_80127618 + arg0)[0xC];
-    sp24 = D_80127618[0xF];
+    sp28 = (((s8 *)&D_80127618) + arg0)[0xC];
+    sp24 = ((s8 *)&D_80127618)[0xF];
     func_808004B8_glsavegame(arg0);
     _glgamedata_entrypoint_1((void *)sp20);
     func_808004C4_glsavegame();
@@ -165,8 +238,8 @@ s32 glsavegame_entrypoint_7(s32 arg0) {
         result = func_8080036C_glsavegame(sp28);
     }
     if (result == 0) {
-        (D_80127618 + arg0)[0xC] = sp24;
-        D_80127618[0xF] = sp28;
+        (((s8 *)&D_80127618) + arg0)[0xC] = sp24;
+        ((s8 *)&D_80127618)[0xF] = sp28;
     }
     heap_free((void *)sp20);
     return result;
@@ -193,27 +266,25 @@ s32 glsavegame_entrypoint_8(s32 arg0) {
 }
 
 s32 glsavegame_entrypoint_9(s32 arg0) {
-    extern s8 D_80127618[];
     s32 _glgamedata_entrypoint_6(s32);
     s32 ret;
     s32 old;
     s32 current;
 
-    old = D_80127618[arg0 + 12];
-    current = D_80127618[15];
+    old = ((s8 *)&D_80127618)[arg0 + 12];
+    current = ((s8 *)&D_80127618)[15];
     ret = func_8080036C_glsavegame(old);
     if (ret == 0) {
-        D_80127618[arg0 + 12] = current;
-        D_80127618[15] = old;
-        if (((u8 *)D_80127618)[16] != 0) {
-            _glgamedata_entrypoint_6(((s32 *)D_80127618)[arg0]);
+        ((s8 *)&D_80127618)[arg0 + 12] = current;
+        ((s8 *)&D_80127618)[15] = old;
+        if (((u8 *)&D_80127618)[16] != 0) {
+            _glgamedata_entrypoint_6(((s32 *)&D_80127618)[arg0]);
         }
     }
     return ret;
 }
 
 s32 glsavegame_entrypoint_10(volatile s32 arg0, volatile s32 arg1) {
-    extern s8 D_80127618[];
     s32 func_80800020_glsavegame(s32, s32);
     void _glgamedata_entrypoint_1(void *);
     void _glgamedata_entrypoint_2(s32);
@@ -227,7 +298,7 @@ s32 glsavegame_entrypoint_10(volatile s32 arg0, volatile s32 arg1) {
     s8 *sp28;
 
     temp_s2 = func_80800000_glsavegame();
-    temp_s1 = D_80127618;
+    temp_s1 = (s8 *)&D_80127618;
     var_s0 = ((s8 *)temp_s1)[arg1 + 0xC];
     sp28 = &temp_s1[arg0];
     saved1 = sp28[0xC];
@@ -244,7 +315,7 @@ s32 glsavegame_entrypoint_10(volatile s32 arg0, volatile s32 arg1) {
         var_s0 = func_8080036C_glsavegame(saved1);
     }
     if (var_s0 == 0) {
-        temp_s1 = D_80127618;
+        temp_s1 = (s8 *)&D_80127618;
         sp28[0xC] = saved0;
         temp_s1[0xF] = saved1;
         if (*((u8 *)(temp_s1 + 0x10)) != 0) {
