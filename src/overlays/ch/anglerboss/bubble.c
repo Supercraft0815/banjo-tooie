@@ -88,7 +88,45 @@ s32 func_80800194_changlerbossbubble(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/anglerboss/bubble/func_80800200_changlerbossbubble.s")
+s32 func_80800200_changlerbossbubble(Actor *arg0, s32 arg1, void *arg2) {
+    typedef struct {
+        u8 pad0[0x18];
+        u16 pad18;
+        u16 id : 11;
+        u16 rest : 5;
+        u8 pad1C[8];
+        u32 busy : 10;
+        u32 rest2 : 22;
+    } Other;
+    s32 func_800F7BC8(s32, s32, Unk80132ED0 *);
+    f32 func_800F5BF0();
+    void func_80800334_changlerbossbubble(Actor *);
+    void func_8010A570(Actor *);
+    void func_80101FDC(Actor *, s32);
+    void func_80102FDC(Actor *, f32);
+    Other *other;
+
+    switch (arg1) {
+    case 0x2C:
+        func_80800334_changlerbossbubble(arg0);
+        break;
+    case 0x3E:
+        other = *(Other **)&arg2;
+        if (other->busy == 0 && func_80800194_changlerbossbubble(other->id) && func_800F7BC8(other->id, 0x6F, arg0->unk0) == 2) {
+            func_8010A570(arg0);
+            func_80101FDC(arg0, 2);
+            *(f32 *)&arg0->actorData[0] = 3.0f;
+            arg0->unk6C_0 = other->id;
+            func_80102FDC(arg0, func_800F5BF0(arg0->unk6C_0, arg0->position) * 0.015f);
+            break;
+        }
+        func_80800334_changlerbossbubble(arg0);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_80800334_changlerbossbubble(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -121,7 +159,7 @@ void func_80800334_changlerbossbubble(Actor *arg0) {
 /* extern */
 
 void func_80800450_changlerbossbubble(u8 *arg0) {
-    s32 func_800F5BF0(s32, u8 *, u8 *);
+    f32 func_800F5BF0();
     func_800F5BF0((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF, arg0 + 4, arg0);
 }
 
