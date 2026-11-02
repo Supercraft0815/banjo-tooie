@@ -1315,7 +1315,60 @@ int gcmapsects_entrypoint_24(void *arg0) {
            ((*(s16 *)((s8 *)arg0 + 0x74) + 1) == 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_25.s")
+s32 gcmapsects_entrypoint_25(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4, s32 arg5) {
+    s32 func_800AB868(s32, s32, f32 *, f32 *, f32, f32 *, f32 *, f32 *, s32);
+    u8 *func_800B2720(u8 *);
+    s32 func_800B2840(s32);
+    void func_800BEB58(s32);
+    s32 func_800D62E4(s32);
+    s32 func_800D674C(s32);
+    struct Section {
+        f32 position[3];
+        u8 pad0C[0x34];
+        u32 asset : 16;
+        u32 secondary : 16;
+        u8 pad44[0x14];
+    };
+    s32 result;
+    f32 unused[3];
+    s32 list;
+    s32 asset;
+    s32 offset;
+    s32 id;
+
+    result = 0;
+    if (arg0[0x77] == 0) {
+        return 0;
+    }
+    func_800BEB58(0);
+    offset = arg1 * 0x58;
+    asset = func_800D674C(((struct Section *)(*(u8 **)(arg0 + 0x68) + offset))->asset);
+    if (asset != 0) {
+        func_800D62E4(((struct Section *)(*(u8 **)(arg0 + 0x68) + offset))->asset);
+        if ((arg5 & 0x1F00) != 0x1F00) {
+            list = func_800B2720(asset);
+            result = func_800AB868(list, func_800B2840(asset),
+                (f32 *)(*(u8 **)(arg0 + 0x68) + offset), 0, 1.0f,
+                arg2, arg3, arg4, arg5);
+        }
+        if (result != 0) {
+            func_800BEB58(asset);
+        } else {
+            if (((struct Section *)(*(u8 **)(arg0 + 0x68) + offset))->secondary != 0) {
+                asset = func_800D674C(((struct Section *)(*(u8 **)(arg0 + 0x68) + offset))->secondary);
+                if (!arg0) {}
+                func_800D62E4(((struct Section *)(*(u8 **)(arg0 + 0x68) + offset))->secondary);
+                if (func_800B2720(asset) != 0) {
+                    list = func_800B2720(asset);
+                    result = func_800AB868(list, func_800B2840(asset),
+                        (f32 *)(*(u8 **)(arg0 + 0x68) + offset), 0, 1.0f,
+                        arg2, arg3, arg4, arg5);
+                }
+            }
+        }
+    }
+    return result;
+}
 
 void *gcmapsects_entrypoint_26(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, u32 arg4) {
     void *func_800AD1AC(u16 *, u16 *, f32 *, f32 *, f32, f32 *, f32, f32 *, u32);
