@@ -507,7 +507,60 @@ s32 func_80800DC8_gcmapsects(void *arg0, s32 arg1, f32 *arg2) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/mapsects/gcmapsects_entrypoint_6.s")
+s32 gcmapsects_entrypoint_6(u8 *arg0, f32 *arg1, f32 *arg2) {
+    int func_800EFED0(f32 min[3], f32 max[3], f32 vec[3]);
+    s32 func_800EFFB4(f32 point[3], f32 radius, f32 center[3]);
+    s32 offset;
+    s32 i;
+    s32 scan;
+    f32 value;
+    f32 height;
+    f32 invalid = -1.0f;
+    u8 *section;
+
+    scan = 1;
+    height = -1.0f;
+    if (*(s16 *)(arg0 + 0x74) != -1) {
+        offset = *(s16 *)(arg0 + 0x74) * 0x58;
+        section = *(u8 **)(arg0 + 0x68) + offset;
+        if (func_800EFED0((f32 *)(section + 0xC), (f32 *)(section + 0x18), arg1)) {
+            scan = 0;
+            value = *(f32 *)(*(u8 **)(arg0 + 0x68) + offset + 0x34);
+            if (height != value && (height < value || height == -1.0f)) {
+                height = value;
+            }
+        }
+    }
+    if (i) {}
+    if (scan) {
+        i = 0;
+        offset = 0;
+        if (*(u8 *)(arg0 + 0x77) > 0) {
+        do {
+            section = *(u8 **)(arg0 + 0x68) + offset;
+            if (func_800EFFB4((f32 *)(section + 0x24), *(f32 *)(section + 0x30), arg1)) {
+                section = *(u8 **)(arg0 + 0x68) + offset;
+                if (func_800EFED0((f32 *)(section + 0xC), (f32 *)(section + 0x18), arg1)) {
+                    value = *(f32 *)(*(u8 **)(arg0 + 0x68) + offset + 0x34);
+                    if (invalid != value && (height < value || height == -1.0f)) {
+                        height = value;
+                    }
+                }
+            }
+            i++;
+            offset += 0x58;
+        } while (i < *(u8 *)(arg0 + 0x77));
+        }
+    }
+    if (height != -1.0f) {
+        if (height - 2000.0f < arg1[1] && arg1[1] < height + 2000.0f) {
+            return 0;
+        }
+        *arg2 = height;
+        return 1;
+    }
+    return 0;
+}
 
 s32 func_80801174_gcmapsects(void *arg0, s32 arg1) {
     s32 func_800E3D0C(f32 *, f32 *);
