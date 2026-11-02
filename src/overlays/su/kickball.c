@@ -12,7 +12,61 @@ void func_80800000_sukickball(s32 arg0, s32 arg1, f32 *arg2, f32 arg3) {
     func_800DE448(arg2, sp24.v, arg3, NULL, func_801039E4(arg0));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/su/kickball/sukickball_entrypoint_0.s")
+void sukickball_entrypoint_0(Actor *arg0, s32 arg1) {
+    f32 func_800138D0(f32);
+    void func_800DBEFC(s32 *, s32, f32 *);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    s32 func_800DF350(void);
+    void func_800DF410(s32);
+    void func_800DF47C(s32, s32);
+    void *func_80100094(Actor *, u32);
+    s32 func_801015D0(Actor *);
+    s32 func_8010347C(Unk80132ED0 *);
+    OSThread *func_80104130(void);
+    struct kickball_vector { f32 v[3]; };
+    struct kickball_render_data { f32 unused[2]; f32 position[3]; f32 angle; };
+    extern struct kickball_vector D_8080120C_sukickball;
+    struct kickball_render_data *sp54;
+    struct kickball_vector sp48;
+    s32 value;
+    f32 sp38[3];
+    f32 wave;
+if (!arg0) {}
+
+    sp54 = func_80100094(arg0, 0);
+    sp48 = D_8080120C_sukickball;
+    sp48.v[0] = arg0->rotation[0];
+    sp48.v[1] = 0.0f;
+    sp48.v[2] = arg0->rotation[2];
+    func_800DF47C((s32)func_801015D0, (s32)arg0);
+    wave = func_800138D0(sp54->angle);
+    value = (s32)((u32)arg0->alpha * wave);
+    if (value < 0) {
+        value = -value;
+    }
+    if (value >= 0x61) {
+        func_800DF744(3, 1);
+        func_800DF410(value);
+        func_800DE448(arg0->position, sp48.v, arg0->scale, NULL, func_8010347C(arg0->unk0));
+        if (func_800DF350()) {
+            func_800DBEFC((s32 *)func_80104130(), 4, sp54->position);
+        }
+    }
+    if (value < 0xA0) {
+        func_800DF744(3, 2);
+        func_800DF410(arg0->alpha - value);
+        func_800DE448(arg0->position, sp48.v, arg0->scale, NULL, func_8010347C(arg0->unk0));
+        if (func_800DF350()) {
+            func_800DBEFC((s32 *)func_80104130(), 5, sp54->position);
+        }
+    }
+    if (func_800DF350()) {
+        sp38[0] = arg0->position[0];
+        sp38[1] = arg0->position[1] - 30.0f;
+        sp38[2] = arg0->position[2];
+        func_80800000_sukickball((s32)arg0->unk3C, arg1, sp38, 0.4f);
+    }
+}
 
 void sukickball_entrypoint_1(Actor *arg0, void *arg1) {
     extern s32 D_80801218_sukickball[];
