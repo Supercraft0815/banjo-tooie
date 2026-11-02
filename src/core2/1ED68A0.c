@@ -922,4 +922,116 @@ void func_800FF038(s32 arg0) {
     _cothemedll_entrypoint_2(&D_801359C0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FF060.s")
+f32 func_800FF060(f32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    f32 sqrtf(f32);
+    f32 initial;
+    f32 velocity;
+    f32 distance1;
+    f32 distance2;
+    f32 distance3;
+    f32 distance4;
+    f32 time1;
+    f32 time2;
+    f32 time3;
+    f32 time4;
+    f32 distance;
+    f32 square;
+    f32 acceleration;
+    f32 braking;
+    f32 limit;
+    f32 pad;
+    f32 direction;
+    
+    s32 sign;
+
+    if (arg0 < 0.0f) {
+        sign = -1;
+    } else {
+        sign = 1;
+    }
+    
+    acceleration = sign;
+    arg0 *= acceleration;
+    initial = *arg1 * acceleration;
+    if (time2) {}
+    if (initial < 0.0f) {
+        braking = -arg3;
+        if (braking) {}
+        direction = acceleration;
+        if (braking < arg2) {
+            acceleration = arg2;
+        } else {
+            acceleration = braking;
+        }
+        time1 = 0.0f - initial / acceleration;
+        if (arg5 < time1) {
+            time1 = arg5;
+        }
+        velocity = acceleration * time1 + initial;
+        distance1 = (initial + velocity) * time1 * 0.5f;
+    } else {
+        distance1 = time1 = 0.f;
+        velocity = initial;
+        direction = acceleration;
+    }
+    arg0 -= distance1;
+    initial = velocity;
+    arg5 -= time1;
+    square = velocity * velocity;
+    distance = (square * 0.5f + arg3 * arg0) / (arg3 - arg2);
+    if (distance > 0.0f) {
+        limit = (f32) 2.0 * arg2 * distance;
+        limit = sqrtf(square + limit);
+        velocity = limit;
+        if (arg4 <= limit) {
+            velocity = arg4;
+        }
+        if (velocity) {}
+        time2 = (velocity - initial) / arg2;
+        if (arg5 < time2) {
+            time2 = arg5;
+        }
+        velocity = arg2 * time2 + initial;
+        distance2 = (initial + velocity) * 0.5f * time2;
+    } else {
+        velocity = initial;
+        distance2 = time2 = 0.0f;
+    }
+    if (velocity == 0.0f) {
+        *arg1 = 0.0f;
+        return direction * distance1;
+    }
+    arg5 -= time2;
+    initial = velocity;
+    arg0 -= distance2;
+    if (arg5 > 0.0f) {
+        acceleration = (0.0f - velocity * velocity) / ((f32) 2.0 * arg3);
+        if (acceleration < arg0) {
+            time3 = (arg0 - acceleration) / velocity;
+            if (arg5 < time3) {
+                time3 = arg5;
+            }
+            distance3 = time3 * velocity;
+        } else {
+            time3 = distance3 = 0.0f;
+        }
+    } else {
+        time3 = distance3 = 0.0f;
+    }
+    arg0 -= distance3;
+    arg5 -= time3;
+    if (arg5 > 0.0f) {
+        velocity = arg3 * arg5 + initial;
+        time4 = arg5;
+        if (velocity < 0.0f) {
+            velocity = 0.0f;
+            time4 = -initial / arg3;
+        }
+        distance4 = (initial + velocity) * 0.5f * time4;
+    } else {
+        distance4 = 0.0f;
+    }
+    arg0 -= distance4;
+    *arg1 = direction * velocity;
+    return (distance1 + distance2 + distance3 + distance4) * direction;
+}
