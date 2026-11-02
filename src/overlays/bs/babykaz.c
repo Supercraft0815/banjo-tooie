@@ -104,7 +104,56 @@ void func_80800214_bsbabykaz(u8 *arg0) {
     func_800F9AFC();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/bs/babykaz/bsbabykaz_entrypoint_1.s")
+void bsbabykaz_entrypoint_1(struct player_state_s *arg0) {
+    void _batimer_set(struct player_state_s *, s32, f32);
+    s32 bs_setState(s32, s32);
+    void func_80099B94(struct player_state_s *);
+    s32 func_8009E6EC(struct player_state_s *);
+    void func_8009E830(struct player_state_s *, s32);
+
+    switch (func_8009E6EC(arg0)) {
+    case 0x1F:
+    case 0x20:
+    case 0x21:
+    case 0x23:
+    case 0x24:
+    case 0x2D:
+    case 0x2E:
+    case 0x45:
+    case 0x4E:
+    case 0x51:
+    case 0x52:
+    case 0x59:
+    case 0x5A:
+    case 0x5B:
+    case 0x5C:
+    case 0x91:
+        bs_setState(arg0, 0x94);
+        func_8009E830(arg0, 2);
+        break;
+    case 0x66:
+        func_8009E830(arg0, 1);
+        break;
+    case 0x87:
+        bs_setState(arg0, 0x94);
+        func_8009E830(arg0, 2);
+        _batimer_set(arg0, 0, 0.0f);
+        break;
+    case 0x86:
+        func_80800214_bsbabykaz(arg0);
+        func_8009E830(arg0, 2);
+        break;
+    case 0x8E:
+        *(s32 *)((u8 *)arg0 + 0x160) = 0;
+        bs_setState(arg0, 0x94);
+        func_8009E830(arg0, 2);
+        _batimer_set(arg0, 0, 0.0f);
+        break;
+    default:
+        func_80099B94(arg0);
+        break;
+    }
+}
 
 void bsbabykaz_entrypoint_3(struct player_state_s *arg0);
 
@@ -797,3 +846,5 @@ s32 bsbabykaz_entrypoint_14(f32 *arg0) {
     }
     return 1;
 }
+
+static s32 D_lever[] = { (s32) bsbabykaz_entrypoint_1 };
