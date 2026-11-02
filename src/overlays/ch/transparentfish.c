@@ -377,26 +377,92 @@ OSThread *chtransparentfish_entrypoint_0(void)
     return (OSThread *) D_80801098_chtransparentfish;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/transparentfish/func_80800B60_chtransparentfish.s")
+typedef struct {
+    s32 id;
+    s32 value;
+    s32 assigned;
+} FishEntry;
+
+extern FishEntry B_808010E0_chtransparentfish[20];
+
+s32 func_80800B60_chtransparentfish(void) {
+    s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
+    s32 _gspropctrl_entrypoint_8(Prop *);
+    s32 func_800DC090(void);
+    s32 func_800DC128(s32, s32);
+    void func_800DC324(s32);
+    s32 func_80800E10_chtransparentfish(s32);
+    typedef struct {
+        s32 header[4];
+        u32 id : 11;
+        u32 flags : 21;
+    } FishProp;
+    s32 count;
+    s32 i;
+    s32 j;
+    s32 rnd;
+    s32 seed;
+    Prop *props[20];
+    s32 temp;
+    s32 k;
+    s32 n;
+
+    for (k = 0; k < 20; k++) {
+        B_808010E0_chtransparentfish[k].id = 0;
+        B_808010E0_chtransparentfish[k].value = -1;
+        B_808010E0_chtransparentfish[k].assigned = -1;
+        k++; k--;
+    }
+    count = _gccubesearch_entrypoint_9(0x295, props, 20);
+    for (i = 0; i < count; i++) {
+        B_808010E0_chtransparentfish[i].id = ((FishProp *)props[i])->id;
+        B_808010E0_chtransparentfish[i].value = _gspropctrl_entrypoint_8(props[i]) - 50;
+    }
+    for (i = 0; i < count; i++) {
+        for (j = 0; j < count; j++) {
+            if (B_808010E0_chtransparentfish[i].id < B_808010E0_chtransparentfish[j].id) {
+                temp = B_808010E0_chtransparentfish[j].id;
+                B_808010E0_chtransparentfish[j].id = B_808010E0_chtransparentfish[i].id;
+                B_808010E0_chtransparentfish[i].id = temp;
+            }
+        }
+    }
+    if (func_800DA298(FLAG2_6C0_UNK)) {
+        rnd = func_800DA564(FLAG2_6C1_UNK, 8);
+    } else {
+        rnd = func_800DC128(0, 256);
+        func_800DA7A8(FLAG2_6C1_UNK, rnd, 8);
+        func_800DA544(FLAG2_6C0_UNK);
+    }
+    n = 0;
+    seed = func_800DC090();
+    func_800DC324(rnd);
+    while (!func_80800E10_chtransparentfish(count)) {
+        k = func_800DC128(0, count);
+        if (B_808010E0_chtransparentfish[k].assigned == -1) {
+            B_808010E0_chtransparentfish[k].assigned = B_808010E0_chtransparentfish[n].value;
+            n++;
+        }
+    }
+    func_800DC324(seed);
+}
 
 s32 func_80800E10_chtransparentfish(s32 arg0) {
-    extern s32 B_808010E0_chtransparentfish[20][3];
     s32 result = 1;
     s32 i;
 
     for (i = 0; i < arg0; i++) {
-        result &= B_808010E0_chtransparentfish[i][2] != -1;
+        result &= B_808010E0_chtransparentfish[i].assigned != -1;
     }
     return result;
 }
 
 s32 func_80800EE0_chtransparentfish(s32 arg0) {
-    extern s32 B_808010E0_chtransparentfish[20][3];
     s32 i;
 
     for (i = 0; i < 20; i++) {
-        if (arg0 == B_808010E0_chtransparentfish[i][0]) {
-            return B_808010E0_chtransparentfish[i][2];
+        if (arg0 == B_808010E0_chtransparentfish[i].id) {
+            return B_808010E0_chtransparentfish[i].assigned;
         }
     }
     return 0;
