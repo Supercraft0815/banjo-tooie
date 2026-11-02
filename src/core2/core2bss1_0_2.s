@@ -354,30 +354,3 @@ dlabel D_8012A994
 
 dlabel D_8012A996
     /* 8012A996 */ .space 0x0A
-
-dlabel D_8012A9A0
-    /* 8012A9A0 */ .space 0x50
-
-dlabel D_8012A9F0
-    /* 8012A9F0 */ .space 0x14
-
-dlabel D_8012AA04
-    /* 8012AA04 */ .space 0x14
-
-dlabel D_8012AA18
-    /* 8012AA18 */ .space 0x04
-
-dlabel D_8012AA1C
-    /* 8012AA1C */ .space 0x04
-
-dlabel D_8012AA20
-    /* 8012AA20 */ .space 0x03
-
-dlabel D_8012AA23
-    /* 8012AA23 */ .space 0x1D
-
-dlabel D_8012AA40
-    /* 8012AA40 */ .space 0x84
-
-dlabel D_8012AAC4
-    /* 8012AAC4 */ .space 0x0C

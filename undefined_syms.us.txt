@@ -108,3 +108,5 @@ SECTIONS
 /* Audio channel volumes and the end of the sample buffers. */
 D_8006A1CE = D_8006A1CC + 2;
 D_80076938 = D_80073E18 + 0x2B20;
+D_8012A9F0 = 0x8012A9F0;
+D_8012AA04 = 0x8012AA04;

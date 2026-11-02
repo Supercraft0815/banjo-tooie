@@ -1,5 +1,7 @@
 #include "common.h"
 
+f32 D_8012A9A0[32];
+
 void func_800C4B90(s32 arg0, f32 arg1, f32 arg2) {
     f32 func_80015D14(void *);
     s32 func_800A8984(s32);
@@ -268,7 +270,63 @@ void func_800C54CC(s32 arg0, f32 arg1, f32 arg2) {
     p[25] = arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E9E480/func_800C54F0.s")
+void func_800C54F0(s32 arg0) {
+    void *func_800A89A0(s32);
+    s32 func_800A8984(s32);
+    f32 func_800A8AD4(s32);
+    void func_80015CE8(void *, void *);
+    void func_800CA6F0(void *, f32);
+    f32 func_800CA6FC(f32 *);
+    void func_800CA558(void *, f32);
+    void func_800CA510(void *, f32);
+    s32 func_800CAF34(s32);
+    extern f32 D_8012AA04[];
+    s32 pad;
+    void *sp38;
+    s8 *entry;
+    s32 camera;
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+    f32 z;
+    f32 y;
+
+    sp38 = func_800A89A0(arg0);
+    camera = func_800A8984(arg0);
+    entry = (s8 *)D_8012A9A0 + arg0 * 0x10;
+    switch (((u8 *)entry)[0xC]) {
+    case 1:
+        *(s32 *)entry += *(s32 *)(entry + 4);
+        if (*(s32 *)entry >= *(s32 *)(entry + 8)) {
+            *(s32 *)entry = *(s32 *)(entry + 8);
+            ((u8 *)entry)[0xC] = 2;
+            func_800C524C(arg0, *(s32 *)(entry + 8));
+        }
+        break;
+    case 3:
+        *(s32 *)entry -= *(s32 *)(entry + 4);
+        if (*(s32 *)entry < 0) {
+            *(s32 *)entry = 0;
+            ((u8 *)entry)[0xC] = 0;
+        }
+        break;
+    }
+    if (sp38 != NULL && camera != 0) {
+        func_80015CE8(sp38, (void *)camera);
+        func_800CA6F0((void *)camera, D_8012AA04[arg0]);
+        sp2C = func_800A8AD4(arg0);
+        sp28 = func_800CA6FC((f32 *)camera);
+        sp24 = sp2C;
+        sp24 += D_8012A9A0[31];
+        sp28 *= sp2C;
+        sp28 += D_8012A9A0[30];
+        func_800CA558((void *)camera, sp24);
+        func_800CA510((void *)camera, sp28 / sp24);
+        func_800CAF34(camera);
+    }
+    D_8012A9A0[31] = 0.0f;
+    D_8012A9A0[30] = D_8012A9A0[31];
+}
 
 void func_800C5668(s32 arg0, Gfx **arg1) {
     void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
