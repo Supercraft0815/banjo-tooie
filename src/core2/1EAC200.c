@@ -1,7 +1,20 @@
 #include "common.h"
 
+extern struct {
+    u8 unk0;
+    u8 pad1[3];
+    struct {
+        u8 active;
+        u8 pad5;
+        s16 r, g, b, a;
+        u8 padE[2];
+        f32 start;
+        f32 end;
+    } entry[2];
+    s16 color[4];
+} D_8012B320;
+
 void func_800D2910(s32 arg0, u8 *arg1) {
-    extern s32 D_8012B320;
     u8 *temp_v0;
 
     temp_v0 = (u8 *)&D_8012B320 + (arg0 * 0x14);
@@ -16,7 +29,6 @@ void func_800D2910(s32 arg0, u8 *arg1) {
 }
 
 void func_800D2970(void) {
-    extern s32 D_8012B320;
     (*(s8 *)((s8 *)(&D_8012B320) + (0x18))) = 0;
     (*(s8 *)((s8 *)(&D_8012B320) + (4))) = 0;
     (*(s8 *)((s8 *)(&D_8012B320) + (1))) = 0;
@@ -26,7 +38,6 @@ void func_800D2970(void) {
 void func_800D298C(void) {
     s32 func_800EA05C();
     extern u8 D_8011B530[][0x10];
-    extern s32 D_8012B320;
     u8 (*var_s0)[0x10];
     int temp_v0;
 
@@ -47,10 +58,71 @@ void func_800D298C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1EAC200/func_800D2A44.s")
+void func_800D2A44(Gfx **arg0) {
+    s32 func_800A89F8();
+    s32 func_800A93E4(s32);
+    s32 func_800A9478(s32);
+    void func_800E3CB8(f32 *, f32 *);
+    s32 func_800F0D90(s32, s32, s32);
+    s32 func_800F6BE4(s32);
+    s32 func_8010FFD8(s32);
+    void func_800D2CC4(void);
+    f32 near;
+    f32 far;
+    f32 first;
+    f32 pad;
+    s32 index;
+    s32 camera;
+    s32 visible;
+    f32 scale;
+    s32 mult;
+    s32 offset;
+    f32 start;
+    f32 end;
+    Gfx *gfx;
+
+    if (D_8012B320.unk0 != 0) {
+        camera = func_800A9478(func_800A89F8());
+        if (func_800F6BE4(camera) != 0) {
+            visible = func_8010FFD8(func_800A93E4(camera));
+        } else {
+            visible = 1;
+        }
+        if (D_8012B320.entry[1].active && visible) {
+            index = 1;
+        } else if (D_8012B320.entry[0].active && !visible) {
+            index = 0;
+        } else {
+            return;
+        }
+        func_800E3CB8(&near, &far);
+        scale = far - near;
+        if (far != near) {
+            D_8012B320.color[0] = D_8012B320.entry[index].r;
+            D_8012B320.color[1] = D_8012B320.entry[index].g;
+            D_8012B320.color[2] = D_8012B320.entry[index].b;
+            D_8012B320.color[3] = D_8012B320.entry[index].a;
+            start = D_8012B320.entry[index].start;
+            end = D_8012B320.entry[index].end;
+            offset = 0;
+            if (far < start) {
+                mult = 0;
+            } else {
+                scale = (2.0f * far) / scale;
+                first = (1.0f - near / start) * scale - 1.0f;
+                scale = 1.0f / ((1.0f - near / end) * scale - 1.0f - first);
+                mult = (s32)(256.0f * scale);
+                offset = (s32)(-256.0f * first * scale);
+            }
+            gfx = (*arg0)++;
+            gfx->words.w0 = 0xDB080000;
+            gfx->words.w1 = ((func_800F0D90(mult, -0x7FFF, 0x7FFF) & 0xFFFF) << 16) | (func_800F0D90(offset, -0x7FFF, 0x7FFF) & 0xFFFF);
+            func_800D2CC4();
+        }
+    }
+}
 
 void func_800D2C54(Gfx **arg0) {
-    extern s32 D_8012B320;
     if (*(u8 *)((s8 *)&D_8012B320 + 1)) return;
     gDPSetFogColor((*arg0)++,
         *(s16 *)((s8 *)&D_8012B320 + 0x2C),
