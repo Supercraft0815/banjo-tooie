@@ -311,10 +311,239 @@ u32 func_800FDC28(u32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FDC58.s")
+void func_800FDC58(s32 arg0) {
+    typedef struct {
+        s32 volume[2];
+        s16 tempo[2];
+    } MusicSettings;
+    typedef struct {
+        f32 volume;
+        f32 tempoScale;
+        s16 track;
+        u8 padA[5];
+        u8 retry;
+        u8 lastMode;
+        u8 pad11[2];
+        u8 audible;
+        u8 volumeChanged;
+        u8 pad15;
+        u8 active;
+        u8 frozen;
+        u8 changed;
+        u8 pad19[7];
+        s16 areaEnabled;
+        s16 settingsIndex;
+        u8 pad24[4];
+        s32 region;
+        f32 distance;
+        u8 pad30[12];
+        f32 timer;
+        u8 pad40;
+        u8 locked;
+    } MusicState;
+    extern s32 D_801359C0;
+    extern s32 D_801359E8;
+    extern f32 D_801359EC;
+    extern s32 D_80123E84, D_80123FC8[], D_80124010, D_801241CC[], *D_80135A04;
+    extern s32 D_80124064, D_80124124, D_8012419C;
+    extern s32 *D_80135A08;
+    extern u8 D_80135A1E;
+    extern s32 D_80135A20[3];
+    extern f32 D_80135A30[3];
+    extern u8 D_80135A3C[3];
+    extern u8 D_80135A3F[];
+    extern s32 D_80135A2C[];
+    extern s32 D_80135A40;
+    extern f32 D_80135A44;
+    void func_8008FE68(f32 *);
+    s32 func_8008FF94(void);
+    s32 func_80090200(void);
+    s32 func_800CBBE0(s32);
+    s32 func_800CBC00(s32);
+    s32 func_800CCEF4(f32 *, s32 *, f32 *, s32, s32);
+    f32 func_800D8FF8(void);
+    void func_800FC934(s32, f32, f32);
+    void func_800FC97C(s32, f32, f32);
+    void func_800FCA90(s32);
+    void func_800FCAE0(s32, u32, u32);
+    s32 func_800FCCD4(s32);
+    s32 func_800FCDE0(s32, s32, f32);
+    s32 func_800FCED0(s32, s32, f32);
+    void func_800FD2A0(f32 *, s32);
+    void func_800FDBB8(s32);
+    void func_800FE914(s32);
+    f32 position[3];
+    s32 oldRetry;
+    s32 i;
+    s32 track;
+    s32 region;
+    f32 fadeTime;
+    s32 fade;
+
+    oldRetry = ((u8 *)&D_801359C0)[15];
+    if (((u8 *)&D_801359C0)[65] || !((u8 *)&D_801359C0)[22]) {
+        return;
+    }
+    if (((f32 *)&D_801359C0)[15] > 0.0f) {
+        ((f32 *)&D_801359C0)[15] -= func_800D8FF8();
+    }
+    if (!func_80090200()) {
+        return;
+    }
+    if (func_8008FF94() == 2) {
+        arg0 = 1;
+    } else {
+        arg0 = 0;
+    }
+    if (!((u8 *)&D_801359C0)[23]) {
+        if (((s16 *)&D_801359C0)[17] != -1) {
+            D_80135A04 = (s32 *)&((MusicSettings *)&D_80123E84)[((s16 *)&D_801359C0)[17]];
+        } else {
+            D_80135A04 = 0;
+        }
+        func_8008FE68(position);
+        for (i = 0; i < 3; i++) {
+            D_80135A3C[i] = 0;
+        }
+        if (func_800CCEF4(position, &D_801359E8, &D_801359EC, 0, 0)) {
+            region = func_800CBBE0(((s32 *)&D_801359C0)[10]);
+            if (!func_800CBC00(((s32 *)&D_801359C0)[10])) {
+                D_80135A04 = (s32 *)&((MusicSettings *)&D_80123E84)[region];
+            } else {
+                switch (func_800CBBE0(((s32 *)&D_801359C0)[10])) {
+                    case 0:
+                        func_800FCFB0(0, 0x47, &D_80123E84, arg0, 1.75f);
+                        D_80135A04 = D_80123FC8;
+                        break;
+                    case 1:
+                        func_800FCFB0(0, 0x4A, &D_80123E84, arg0, 1.75f);
+                        D_80135A04 = D_80123FC8;
+                        break;
+                    case 7:
+                        D_80135A1E = 1;
+                        break;
+                    case 8:
+                        D_80135A1E = 0;
+                        break;
+                    case 9:
+                        func_800FCFB0(0, 0x4A, &D_80123E84, arg0, 1.75f);
+                        D_80135A04 = &D_80124064;
+                        break;
+                    case 12:
+                        if (func_800DA298(0x360)) {
+                            D_80135A04 = D_801241CC;
+                        }
+                        break;
+                    case 13:
+                        D_80135A44 = 0.0f;
+                        break;
+                    case 14:
+                        func_800FCFB0(0, 0x4A, &D_80123E84, arg0, 1.75f);
+                        break;
+                    case 15:
+                        func_800FCFB0(0, 0x8D, &D_80123E84, arg0, 1.75f);
+                        D_80135A04 = &D_8012419C;
+                        break;
+                    case 16:
+                        if (func_800DA298(0x3B) && !func_800DA298(0x43)) {
+                            func_800FCFB0(0, 0x9A, &D_80123E84, arg0, 1.75f);
+                            D_80135A04 = &D_80124010;
+                        } else {
+                            D_80135A04 = &D_80124124;
+                        }
+                        break;
+                    case 17:
+                        if (func_800DA298(0x3B) && !func_800DA298(0x43)) {
+                            func_800FCFB0(0, 0x9A, &D_80123E84, arg0, 1.75f);
+                            D_80135A04 = &D_80124010;
+                        }
+                        break;
+                }
+            }
+        }
+        if (((s16 *)&D_801359C0)[16]) {
+            func_800FD2A0(position, arg0);
+        }
+        func_800FDBB8(arg0);
+        if (D_80135A40 > 0) {
+            for (i = 0; i < 3; i++) {
+                if (D_80135A20[i] && (!D_80135A3C[i] || !func_800FCCD4(D_80135A20[i]))) {
+                    fadeTime = 666.0f;
+                    func_800FCAE0(D_80135A20[i], 0, (s32)fadeTime);
+                    func_800FCA90(D_80135A20[i]);
+                    D_80135A20[i] = 0;
+                    D_80135A3C[i] = 0;
+                    D_80135A30[i] = 0.0f;
+                    D_80135A40--;
+                }
+            }
+        }
+    }
+    func_800FE914(oldRetry);
+    if (!((u8 *)&D_801359C0)[23]) {
+        if (D_80135A04 != D_80135A08 || arg0 != ((u8 *)&D_801359C0)[16] || ((u8 *)&D_801359C0)[15] || ((u8 *)&D_801359C0)[24]) {
+            if (!((u8 *)&D_801359C0)[15]) {
+                fade = 1;
+            } else {
+                ((u8 *)&D_801359C0)[15]--;
+                fade = 0;
+                if (((s16 *)&D_801359C0)[4] != -1) {
+                    func_800FC97C(((s16 *)&D_801359C0)[4], 0.25f, 1.0f);
+                }
+            }
+            D_80135A08 = D_80135A04;
+            ((u8 *)&D_801359C0)[16] = arg0;
+            if (D_80135A04 && ((s16 *)&D_801359C0)[4] != -1) {
+                if (arg0) {
+                    if (!func_800FCDE0(((s16 *)&D_801359C0)[4], ((MusicSettings *)D_80135A04)->volume[1], (f32)fade)) {
+                        ((u8 *)&D_801359C0)[15] = 1;
+                    }
+                    if (((MusicSettings *)D_80135A04)->tempo[1] != -1) {
+                        if (!func_800FCED0(((s16 *)&D_801359C0)[4], (s32)(((f32 *)&D_801359C0)[1] * (60000000 / ((MusicSettings *)D_80135A04)->tempo[1])), (f32)fade)) {
+                            ((u8 *)&D_801359C0)[15] = 1;
+                        }
+                    }
+                } else {
+                    if (!func_800FCDE0(((s16 *)&D_801359C0)[4], ((MusicSettings *)D_80135A04)->volume[0], (f32)fade)) {
+                        ((u8 *)&D_801359C0)[15] = 1;
+                    }
+                    if (((MusicSettings *)D_80135A04)->tempo[0] != -1) {
+                        if (!func_800FCED0(((s16 *)&D_801359C0)[4], (s32)(((f32 *)&D_801359C0)[1] * (60000000 / ((MusicSettings *)D_80135A04)->tempo[0])), (f32)fade)) {
+                            ((u8 *)&D_801359C0)[15] = 1;
+                        }
+                    }
+                }
+            }
+            ((u8 *)&D_801359C0)[24] = ((u8 *)&D_801359C0)[15];
+        }
+        if (((u8 *)&D_801359C0)[20]) {
+            track = ((s16 *)&D_801359C0)[4];
+            if (((u8 *)&D_801359C0)[19]) {
+                if (track != -1) {
+                    func_800FC934(track, ((f32 *)&D_801359C0)[0], 1.0f);
+                }
+                for (i = -3; i != 0; i++) {
+                    if (D_80135A2C[i]) {
+                        func_800FC934(D_80135A2C[i], ((f32 *)&D_801359C0)[0], 1.0f);
+                    }
+                }
+            } else {
+                if (track != -1) {
+                    func_800FC934(track, 0.0f, 1.0f);
+                }
+                for (i = -3; i != 0; i++) {
+                    if (D_80135A2C[i]) {
+                        func_800FC934(D_80135A2C[i], 0.0f, 1.0f);
+                    }
+                }
+            }
+            ((u8 *)&D_801359C0)[20] = 0;
+        }
+    }
+}
 
 void func_800FE3EC(void) {
-    void func_800FCA90(u32);
+    void func_800FCA90(s32);
     extern s16 D_801359C8;
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
@@ -443,7 +672,7 @@ void func_800FE740(void) {
     s32 _cothemedll_entrypoint_3(s32 *, s32);
     s32 func_800EA05C();
     extern s16 D_801359E2;
-    extern s32 D_80135A08;
+    extern s32 *D_80135A08;
     extern f32 D_80135A0C;
     s32 sp1C[2];
     s32 temp_a1;
