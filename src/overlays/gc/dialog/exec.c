@@ -1086,7 +1086,7 @@ int func_80801DB4_gcdialogexec(u8 *arg0) {
         s32 (*callback)(void *, s16, u8);
     } Dialog;
     s32 _gldialog_entrypoint_1();
-    s32 _subaddiedialog_entrypoint_14(void *, s16, u8);
+    s32 _subaddiedialog_entrypoint_14(void *, s16, s32);
     s32 result = -1;
     s32 flag1;
     s32 flag2;
@@ -1133,7 +1133,84 @@ int func_80801DB4_gcdialogexec(u8 *arg0) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/dialog/exec/func_80802020_gcdialogexec.s")
+int func_80802020_gcdialogexec(u8 *arg0) {
+    typedef struct {
+        s16 code;
+        s16 pad;
+        u8 *text;
+    } DialogEntry;
+    typedef struct {
+        u8 pad0[0x104];
+        u8 *entries[2];
+        u8 pad10C[0xA];
+        u8 index[2];
+        u8 pad118[0x46];
+        u16 current : 1;
+        u16 unused : 5;
+        u16 sequence : 2;
+        u16 rest : 8;
+        u8 pad160[2];
+        s16 dialogId;
+        u8 pad164[4];
+        void *caller;
+        s32 callerArg;
+        u8 pad170[8];
+        s32 (*callback)(void *, s16, s32);
+    } Dialog;
+    s32 _gldialog_entrypoint_1();
+    s32 _subaddiedialog_entrypoint_14(void *, s16, s32);
+    void func_800E6DD8(char *, s32, s32, s32);
+    s32 pad;
+    s32 count;
+    u8 buffer[20];
+    s32 format;
+    s32 offset;
+    s32 i;
+    s32 result = -1;
+
+    count = func_808002E4_gcdialogexec(((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text);
+    format = _gldialog_entrypoint_1(((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text);
+    buffer[0] = 0;
+    if (((Dialog *)arg0)->callback != NULL) {
+        offset = 0;
+        i = 0;
+        if (count > 0) {
+            do {
+                if (((Dialog *)arg0)->caller == NULL) {
+                    result = ((Dialog *)arg0)->callback(((Dialog *)arg0)->caller, ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->sequence++);
+                } else if (func_80800000_gcdialogexec(((Dialog *)arg0)->caller, ((Dialog *)arg0)->callerArg)) {
+                    result = ((Dialog *)arg0)->callback(((Dialog *)arg0)->caller, ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->sequence++);
+                }
+                func_800E6DD8((char *)(buffer + offset), result, 0, format);
+                i++;
+                while (buffer[offset]) offset++;
+                offset++;
+                buffer[offset] = 0;
+            } while (i != count);
+        }
+    }
+    if (((Dialog *)arg0)->caller != NULL && func_80800000_gcdialogexec(((Dialog *)arg0)->caller, ((Dialog *)arg0)->callerArg)) {
+        if (*(u16 *)((u8 *)((Dialog *)arg0)->caller + 0x18) & 1) {
+            offset = 0;
+            result = 0;
+            buffer[0] = 0;
+            if (count > 0) {
+                do {
+                    func_800E6DD8((char *)(buffer + offset), _subaddiedialog_entrypoint_14(((Dialog *)arg0)->caller, ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->sequence++), 0, format);
+                    result++;
+                    while (buffer[offset]) offset++;
+                offset++;
+                buffer[offset] = 0;
+                } while (result != count);
+            }
+        }
+    }
+    func_80800350_gcdialogexec(arg0,
+        ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text,
+        buffer,
+        _gldialog_entrypoint_1(((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text), 0);
+    return 0;
+}
 
 void gcdialogexec_entrypoint_10(void *arg0) {
     typedef struct {
