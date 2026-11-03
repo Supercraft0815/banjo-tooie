@@ -2,7 +2,37 @@
 
 struct player_state_s;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ba/shoessuck/bashoessuck_entrypoint_0.s")
+s32 bashoessuck_entrypoint_0(struct player_state_s *arg0, f32 *arg1) {
+    void func_8009C128(s32, f32[3]);
+    void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
+    void func_800EE7F8(f32 *, f32 *);
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    extern f32 D_80800740_bashoessuck[][6];
+    s32 pad;
+    f32 position[3];
+    f32 start[3];
+    f32 end[3];
+    f32 normal[3];
+    s32 i;
+    s32 j;
+
+    func_8009C128((s32)arg0, position);
+    for (j = 0; j < 8; j++) {
+        for (i = 0; i < 3; i++) {
+            start[i] = position[i] + D_80800740_bashoessuck[j][i];
+        }
+        for (i = 0; i < 3; i++) {
+            end[i] = position[i] + D_80800740_bashoessuck[j][i + 3];
+        }
+        if (func_800C6A7C(start, end, normal, 0x20020) != NULL
+            && normal[1] < 0.8f) {
+            func_800EE7F8(arg1, normal);
+            return 1;
+        }
+    }
+    func_800EFA4C(arg1, 0.0f, 1.0f, 0.0f);
+    return 0;
+}
 
 void bashoessuck_entrypoint_1(s32 arg0, f32 arg1[3]) {
     s32 _gccubesearch_entrypoint_1(s32, f32[3]);
