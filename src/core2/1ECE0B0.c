@@ -1481,7 +1481,75 @@ void func_800F739C(s32 arg0, s32 arg1) {
     func_800C7074(arg1, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ECE0B0/func_800F73C4.s")
+void func_800F73C4(s32 arg0) {
+    int func_800DB9B0(void);
+    s32 _glcutDll_entrypoint_1(void);
+    s32 _plsu_entrypoint_1(s32);
+    s32 func_800F5898(void);
+    void func_800F80D8(u32);
+    u8 func_800F8B88(void);
+    s32 func_800F99E8(void);
+    void func_800F8B94(void);
+    void func_800F7E64(s32, s32);
+    void func_800F8128(s32);
+    f32 _basetup_entrypoint_2(PlayerState *);
+    s32 i;
+    s32 count;
+    s32 banjo;
+    s32 kazooie;
+    s32 selected;
+    s32 j;
+
+    D_80135490.unk4A = 0;
+    D_80135490.unk49 = 0;
+    for (i = 0; i < 8; i++) {
+        D_80135490.players[i] = NULL;
+        if (&D_80135490.players[i]) {}
+        D_80135490.active[i] = 0;
+    }
+    D_80135490.unk52 = -1;
+    D_80135490.unk50 = D_80135490.unk52;
+    func_800F80D8(0);
+    if (func_800DB9B0() == 0 && _glcutDll_entrypoint_1() == 0 && func_800F99E8() == 0) {
+        i = 0;
+        if (arg0 > 0) {
+            do {
+                func_800F61E4();
+                i++;
+            } while (i != arg0);
+        }
+    }
+    i = 0;
+    func_800F8B94();
+    count = 0;
+    for (; i < func_800F5898(); i++) {
+        if (func_800F6BE4(i) != 0) {
+            count++;
+        }
+    }
+    if (count == 0) {
+        func_800F7E64(func_800F61E4(), 4);
+    }
+    if (func_800F8B88() == 2) {
+        banjo = _plsu_entrypoint_1(0xA);
+        kazooie = _plsu_entrypoint_1(0xB);
+        if (banjo != -1 && kazooie != -1) {
+            if (func_800F65D0(kazooie) != 0) {
+                selected = kazooie;
+            } else if (func_800F65D0(banjo) != 0) {
+                selected = banjo;
+            } else {
+                selected = _plsu_entrypoint_1(0x11);
+            }
+            func_800F8128(selected);
+        }
+    }
+    for (j = 0; j < 8; j++) {
+        if (D_80135490.players[j] != NULL) {
+            _basetup_entrypoint_2(D_80135490.players[j]);
+        }
+    }
+}
 
 void func_800F759C(s32 arg0) {
     void func_800A91F4(s32);
