@@ -520,7 +520,134 @@ void gcnewoption_entrypoint_11(s16 *arg0) {
     *arg0 = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/newoption/func_80800D28_gcnewoption.s")
+void func_80800D28_gcnewoption(void *data)
+{
+  s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
+  void _gczoombox_entrypoint_21(void *, s32);
+  s32 _gczoombox_entrypoint_23(s32, s32);
+  s32 _gczoombox_entrypoint_26(s32, s32, f32, f32, s32);
+  s32 _gczoombox_entrypoint_41(s32, f32);
+  s32 _gczoombox_entrypoint_42(s32, f32);
+  s32 _gczoombox_entrypoint_44(s32, s32);
+  s32 _gczoombox_entrypoint_5(s32, s32, s32, s32, s32);
+  int _gczoombox_entrypoint_8();
+  u32 *_gldbstring_entrypoint_1(u32 *, s16);
+  s32 func_80802A9C_gcnewoption(u8 *);
+  struct Sc
+  {
+    u8 pad[0x14];
+    f32 f;
+  };
+  struct Fb
+  {
+    u8 pad[0x1C];
+    u8 hi : 2;
+    u8 clr : 1;
+    u8 rest : 5;
+  };
+  struct Flags
+  {
+    u8 pad[0x1C];
+    unsigned int a : 3;
+    unsigned int hide : 1;
+    unsigned int b : 2;
+    unsigned int clear : 1;
+    unsigned int c : 2;
+    unsigned int d : 1;
+    unsigned int fast : 1;
+    unsigned int no_text : 1;
+    unsigned int e : 1;
+    unsigned int text : 1;
+    unsigned int option : 1;
+    unsigned int f : 1;
+    unsigned int g : 16;
+  };
+struct Sc2 { u8 pad[0x256]; s16 w; };
+  u8 *arg0 = data;
+  f32 temp_f20;
+  int temp_s5;
+  int var_v0;
+  int temp_v0;
+  u8 *var_s0;
+  u8 *var_s2;
+  u8 *var_s3;
+  u8 *var_s4;
+  var_s3 = arg0;
+  var_v0 = 0;
+  if ((*((s16 *) (arg0 + 2))) > 0)
+  {
+    var_s0 = arg0;
+    var_s2 = arg0;
+    var_s4 = arg0;
+    do
+    {
+      temp_s5 = var_v0 + 1;
+      if (temp_s5)
+      {
+      }
+      if (1)
+      {
+        temp_f20 = (f32) temp_s5;
+        _gczoombox_entrypoint_41(*((s32 *) (var_s0 + 0x3C)) = _gczoombox_entrypoint_5((s32) (((temp_f20 * 1.0f) * ((struct Sc *) arg0)->f) + ((f32) ((struct Sc2 *) arg0)->w)), *((s16 *) (var_s3 + 0x1DC)), 2, ((struct Flags *) arg0)->option, 0), 45.0f);
+        _gczoombox_entrypoint_42(*((s32 *) (var_s0 + 0x3C)), 0.3f);
+        _gczoombox_entrypoint_26(*((s32 *) (var_s0 + 0x3C)), *((s16 *) (arg0 + 0x254)), *((f32 *) (arg0 + 0x258)), *((f32 *) (arg0 + 0x25C)), 0);
+        _gczoombox_entrypoint_44(*((s32 *) (var_s0 + 0x3C)), ((u32) arg0[0x1D]) >> 7);
+        _gczoombox_entrypoint_23(*((s32 *) (var_s0 + 0x3C)), (*((s16 *) (arg0 + 0x238))) == 0);
+        if (((struct Flags *) arg0)->fast)
+        {
+          _gczoombox_entrypoint_20(*((s32 *) (var_s0 + 0x3C)), 100.0f, 0, 2, 0.1f, 0, 0);
+        }
+        if ((arg0[0x1C] & 7) == 3)
+        {
+          _gczoombox_entrypoint_41(*((s32 *) (var_s0 + 0x3C)), 1000.0f);
+          _gczoombox_entrypoint_21(*((void **) (var_s0 + 0x3C)), 0);
+        }
+        var_s3 += 2;
+        var_s0 += 4;
+        var_s2 += 6;
+        var_s4 += 1;
+      }
+      *((f32 *) (var_s0 + 0x7C)) = (temp_f20 * 1.0f) * ((struct Sc *) arg0)->f;
+      *((s16 *) (var_s2 + 0x58)) = 0xFF;
+      var_v0 = *((s16 *) (var_s2 + 0x58));
+      *((s16 *) (var_s2 + 0x56)) = var_v0;
+      *((s16 *) (var_s2 + 0x54)) = var_v0;
+      *((s16 *) (var_s3 + 0x4E)) = -1;
+      var_v0 = temp_s5;
+      *((s8 *) (var_s4 + 0x77)) = *((s16 *) (var_s3 + 0x1DA));
+    }
+    while (temp_s5 < (*((s16 *) (arg0 + 2))));
+  }
+  if ((arg0[0x1C] & 7) == 3)
+  {
+    *((s16 *) (arg0 + 6)) = -1;
+  }
+  else
+  {
+    *((s16 *) (arg0 + 6)) = 0;
+  }
+  *((s16 *) (arg0 + 8)) = 0;
+  ((struct Fb *) arg0)->clr = 0;
+  if (((struct Flags *) arg0)->hide)
+  {
+    *((s32 *) (arg0 + 0x20)) = 0;
+  }
+  else
+  {
+    *((s32 *) (arg0 + 0x20)) = _gczoombox_entrypoint_5(0x1C, *((s16 *) (arg0 + 0x236)), 0, 0, 0);
+    if (!((struct Flags *) arg0)->no_text)
+    {
+      ((struct Flags *) arg0)->text = 1;
+      _gczoombox_entrypoint_8(*((s32 *) (arg0 + 0x20)), _gldbstring_entrypoint_1(*((u32 **) (arg0 + 0x23C)), *((s16 *) (arg0 + 0x26))));
+    }
+    _gczoombox_entrypoint_23(*((s32 *) (arg0 + 0x20)), (*((s16 *) (arg0 + 0x238))) == 0);
+    if (((struct Flags *) arg0)->fast)
+    {
+      _gczoombox_entrypoint_20(*((s32 *) (arg0 + 0x20)), 30.0f, 0, 2, 0.1f, 0, 0);
+    }
+  }
+  func_80802A9C_gcnewoption(arg0);
+}
 
 void func_8080103C_gcnewoption(u8 *arg0)
 {
@@ -1618,7 +1745,7 @@ u32 gcnewoption_entrypoint_37(OptionState *a0, u32 a1) {
 /* extern */
 
 s32 gcnewoption_entrypoint_38(u8 *arg0, s32 arg1) {
-    s32 _gczoombox_entrypoint_41(s32, s32);
+    s32 _gczoombox_entrypoint_41(s32, f32);
     s32 sp24;
     s16 temp_v0;
 
@@ -1629,7 +1756,7 @@ s32 gcnewoption_entrypoint_38(u8 *arg0, s32 arg1) {
         (*(s16 *)((s8 *)(arg0) + (0))) = 9;
         func_80802B24_gcnewoption(arg0, 1);
         if (arg1 != 0) {
-            _gczoombox_entrypoint_41((*(s32 *)((s8 *)(((0, arg0) + (sp24 * 4))) + (0x3C))), 0x447A0000);
+            _gczoombox_entrypoint_41((*(s32 *)((s8 *)(((0, arg0) + (sp24 * 4))) + (0x3C))), 1000.0f);
         }
         return 1;
     }
@@ -1638,7 +1765,7 @@ s32 gcnewoption_entrypoint_38(u8 *arg0, s32 arg1) {
 
 s32 gcnewoption_entrypoint_39(u8 *arg0)
 {
-  s32 _gczoombox_entrypoint_41(s32, s32);
+  s32 _gczoombox_entrypoint_41(s32, f32);
   s32 func_80800000_gcnewoption(u8 *, s32);
   s32 func_80802A9C_gcnewoption(u8 *);
   s32 sp24;
@@ -1649,7 +1776,7 @@ s32 gcnewoption_entrypoint_39(u8 *arg0)
     sp24 = func_80800000_gcnewoption(arg0, func_80800038_gcnewoption(arg0, (s32) (*((s16 *) (((s8 *) arg0) + 6)))));
     func_80802A9C_gcnewoption(arg0);
     *((s16 *) (((s8 *) arg0) + 0)) = 0xA;
-    _gczoombox_entrypoint_41(*((s32 *) (((s8 *) (((0, arg0)) + (sp24 * 4))) + 0x3C)), 0x42340000);
+    _gczoombox_entrypoint_41(*((s32 *) (((s8 *) (((0, arg0)) + (sp24 * 4))) + 0x3C)), 45.0f);
     return 1;
   }
   return 0;
