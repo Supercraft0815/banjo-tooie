@@ -1,5 +1,12 @@
 #include "common.h"
 
+typedef struct { s16 vtxStart; u8 vtxCount; u8 dirty; s16 a[3]; s16 b[3]; s32 pad10; } VpCell;
+typedef struct { u8 type; u8 pad1; s16 index; s32 data; } VpModule;
+typedef struct { s32 dataOffset; s32 vtxOffset; VpModule modules[1]; } VpHeaderA;
+typedef struct { u8 pad0[0x14]; s32 cellCount; u8 pad18[4]; s32 cellOffset; u8 pad20[0xC]; s32 moduleCount; s32 recordOffsets[1]; } VpHeaderB;
+typedef struct { u8 pad0[0x14]; u16 desc[1][2]; } VpRecord;
+struct VpDst { u8 pad[0x18]; u8 v[1][16]; };
+
 s32 func_80800000_vpmodule(s32 arg0) {
     if (arg0 == 0) {
         return 0;
@@ -126,7 +133,62 @@ void vpmodule_entrypoint_2(u8 *arg0, void *arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/vp/module/vpmodule_entrypoint_3.s")
+void vpmodule_entrypoint_3(VpHeaderA *arg0, VpHeaderB *arg1, struct VpDst *arg2) {
+    s32 func_800E3DC0(s16 *, s16 *);
+    s32 pad;
+    VpModule *modulesEnd;
+    VpCell *start;
+    VpCell *cell;
+    VpCell *end;
+    u8 *p;
+    VpModule *module;
+    u8 *limit;
+    u8 *vertices;
+    s32 index;
+    VpRecord *record;
+    u16 *desc;
+    u8 *vtxEnd;
+    u8 (*dst)[16];
+
+    start = (VpCell *)((u8 *)arg1 + arg1->cellOffset);
+    end = arg1->cellCount + start;
+    modulesEnd = (VpModule *)(arg1->moduleCount * 8 + (u8 *)arg0 + 8);
+    for (cell = start; cell < end; cell++) {
+        if (cell->dirty == 0) {
+            continue;
+        }
+        if (func_800E3DC0(cell->a, cell->b) == 0) {
+            continue;
+        }
+        vertices = (u8 *)arg0 + arg0->vtxOffset;
+        aligned8_memcpy(vertices, (u8 *)arg0 + arg0->dataOffset + cell->vtxStart * 16, cell->vtxCount * 16);
+        module = arg0->modules;
+        if (arg0->modules < modulesEnd) {
+            index = cell - start;
+            do {
+if (!arg1) {}
+                record = (VpRecord *)((u8 *)arg1->recordOffsets[module->index] + (s32)arg1);
+                desc = record->desc[index];
+                if (desc[1] != 0) {
+                    p = &(*(u8 (*)[1])record->desc[arg1->cellCount])[desc[0]];
+                    limit = desc[1] + p;
+                    while (p < limit) {
+                        ((s32 (*)(s32, s32, u8 *, u8))D_808008C0_vpmodule[module->type].unkC)(module->data, index, p[1] * 16 + vertices, p[0]);
+                        p += 2;
+                    }
+                }
+                module++;
+            } while (module < modulesEnd);
+        }
+        dst = arg2->v;
+        vtxEnd = cell->vtxCount * 16 + vertices;
+        while (vertices < vtxEnd) {
+            aligned8_memcpy((u8 *)dst + (*(u16 *)(vertices + 6) & 0x7FFF) * 16, vertices, 16);
+            vertices += 16;
+        }
+        cell->dirty = 0;
+    }
+}
 
 void func_808005C4_vpmodule(u8 *arg0, u8 *arg1, u8 *arg2) {
     typedef struct { s16 index; u8 count; u8 pad[17]; } Chunk;
