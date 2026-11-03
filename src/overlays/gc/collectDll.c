@@ -138,7 +138,63 @@ s32 func_808002C4_gccollectDll(s32 arg0, s32 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/collectDll/func_808003E0_gccollectDll.s")
+s32 func_808003E0_gccollectDll(void *arg0, void *arg1) {
+    s16 func_800D0684(s32, s32);
+    void func_800D07CC(s32, s32, f32 *);
+    s32 func_800EA05C();
+    void *heap_realloc(void *, s32);
+    s32 start;
+    s32 i;
+    s32 *buffer;
+    s32 size;
+    s32 flag;
+    s16 *cursor;
+    s32 count;
+    s32 map;
+    f32 position[3];
+    s32 flag2;
+
+    count = 0;
+    start = func_800CF87C();
+    for (i = start; i < start + 10; i++) {
+        if (func_800D0B68(i, 1) == 0) {
+            flag = func_800D0908(i, 1);
+            if (flag != 0) {
+                map = func_800D0684(i, 1);
+                if (func_800EA05C() == map &&
+                    func_808002C4_gccollectDll(i, 1) == 0 &&
+                    func_800DA298(flag) != 0) {
+                    count++;
+                }
+            }
+        }
+    }
+    size = count * 8 + 2;
+    if (size) { start |= 0; }
+    buffer = heap_realloc(arg0, *(s32 *)arg1 + size);
+    cursor = (s16 *)(buffer + *(s32 *)arg1);
+    *cursor = count;
+    cursor += 2;
+    count = 0;
+    for (i = start; i < start + 10; i++, count++) {
+        if (func_800D0B68(i, 1) == 0) {
+            flag2 = func_800D0908(i, 1);
+            if (flag2 != 0) {
+                map = func_800D0684(i, 1);
+                if (func_800EA05C() == map &&
+                    func_808002C4_gccollectDll(i, 1) == 0 &&
+                    func_800DA298(flag2) != 0) {
+                    *cursor++ = count;
+                    func_800D07CC(i, 1, position);
+                    func_800EE940(cursor, position);
+                    cursor += 3;
+                }
+            }
+        }
+    }
+    *(s32 *)arg1 = (s32 *)cursor - buffer;
+    return (s32)buffer;
+}
 
 void func_808005BC_gccollectDll(u32 arg0, Prop* arg1)
 {
