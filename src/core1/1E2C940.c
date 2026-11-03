@@ -360,9 +360,43 @@ void func_80015878(void) {
     D_8003F5E0 = -1;
 }
 
-void func_800158E4(s32 *arg0) { extern s8 D_80079710[]; extern s8 D_80079718[]; func_80015860(*arg0); D_80079710[(s32) ((s8 *) arg0 - D_80079718) / 12] = 0; }
+void func_800158E4(s32 *arg0) { extern u8 D_80079710[]; extern s8 D_80079718[]; func_80015860(*arg0); D_80079710[(s32) ((s8 *) arg0 - D_80079718) / 12] = 0; }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/1E2C940/func_8001592C.s")
+void *func_8001592C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    extern u8 D_80079710[];
+    extern s8 D_80079718[];
+    extern u8 D_800797B8[];
+    struct Entry { s32 index; s16 x, y, w, h; };
+    struct Vp { s16 d[8]; };
+    s32 i;
+    struct Vp *v;
+    struct Entry *e;
+
+    for (i = 0; i < 8; i++) {
+        if (D_80079710[i] == 0) {
+            break;
+        }
+    }
+    D_80079710[i] = 1;
+    e = (struct Entry *)((s32)D_80079718 + i * 12);
+    e->index = func_80015828();
+    v = (struct Vp *)(D_800797B8 + e->index * 16);
+    e->w = arg2;
+    e->x = arg0;
+    e->h = arg3;
+    e->y = arg1;
+    v->d[0] = arg2 * 2;
+    v->d[1] = arg3 * 2;
+    v->d[2] = 0x1FF;
+    v->d[3] = 0;
+    v->d[6] = 0x1FF;
+    v->d[7] = 0;
+    v->d[4] = (s32)(((f32)arg0 + (f32)arg2 * 0.5f) * 4.0f);
+    v->d[5] = (s32)(((f32)arg1 + (f32)arg3 * 0.5f) * 4.0f);
+    osWritebackDCache(v, 0x200);
+    return e;
+}
+
 
 void func_80015A70(s32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     extern u8 D_800797B8[];
