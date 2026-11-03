@@ -371,4 +371,84 @@ void glsplineDll_entrypoint_1(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x1A0))) = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gl/spline/Dll/glsplineDll_entrypoint_2.s")
+void glsplineDll_entrypoint_2(u8 *arg0)
+{
+  struct ImageStruct *func_800D674C(s32);
+  void *heap_alloc(s32);
+  s16 func_80800C70_glsplineDll(void);
+  s32 *q;
+  s32 *start;
+  s32 *p;
+  s32 state;
+  s32 offset;
+  s32 count;
+  s32 value;
+  s32 asset;
+  asset = func_80800C70_glsplineDll();
+  if (asset != 0)
+  {
+    *((s32 *) (arg0 + 0x198)) = asset;
+    start = (s32 *) func_800D674C(asset);
+    *((s32 *) (arg0 + 0x1A0)) = 0;
+    for (state = 0, q = start; state != 3; q++)
+    {
+      if (state == 2)
+      {
+        state = ((*q) == 3) ? (3) : (0);
+      }
+      asset = *q;
+      if (state == 1)
+      {
+        state = (2 == (asset | 0)) ? (2) : (0);
+      }
+      if (state == 0)
+      {
+        state = (0 == (asset | 0)) ? (1) : (0);
+      }
+      if ((0x10005 == (asset | 0)) || (0x10006 == (asset | 0)))
+      {
+        (*((s32 *) (arg0 + 0x1A0)))++;
+      }
+    }
+
+    *((s32 **) (arg0 + 0x19C)) = heap_alloc((*((s32 *) (arg0 + 0x1A0))) * 4);
+    p = start;
+    state = 4;
+    count = 0;
+    offset = 0;
+    while (state != 3)
+    {
+if (!offset) {}
+      if (!start)
+      {
+      }
+      if (state == 2)
+      {
+        state = ((*p) == 3) ? (3) : ((((*p) == 0x10005) || ((*p) == 0x10006)) ? (4) : (0));
+      }
+      if (state == 1)
+      {
+        state = ((*p) == 2) ? (2) : (0);
+      }
+      if (state == 0)
+      {
+        state = ((*p) == 0) ? (1) : (0);
+      }
+      p++;
+      if (state == 4)
+      {
+        state = 0;
+        (*((s32 **) (arg0 + 0x19C)))[count++] = offset;
+      }
+      offset += 4;
+    }
+
+    while (((value = *p) ^ 0) != 4)
+    {
+      arg0[(value >> 16) & 0x7F] = (u8) (value & 0xFFUL);
+      value = *(p++);
+      arg0[((value >> 16) & 0x7F) + 0x80] = (u8) (value & 0xFFUL);
+    }
+
+  }
+}
