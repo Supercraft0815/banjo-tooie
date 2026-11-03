@@ -17,7 +17,110 @@ f32 func_80800000_idbounce(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/id/bounce/idbounce_entrypoint_1.s")
+void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
+{
+  s32 func_800F54E4(void);
+  void func_800F83E4(s32, f32);
+  f32 sqrtf(f32);
+  extern s32 D_8013546C;
+  f32 unused;
+  f32 sp78;
+  f32 sp74;
+  f32 temp_f26;
+  f32 sp6C;
+  f32 sp68;
+  f32 temp_f28;
+  f32 sp60;
+  f32 *temp_v0;
+  f32 temp_f0;
+  f32 temp_f0_2;
+  f32 temp_f0_3;
+  f32 temp_f2;
+  f32 temp_f2_2;
+  f32 var_f20;
+  f32 var_f20_2;
+  s32 *new_var;
+  u32 temp_s5;
+  u32 var_s1;
+  s32 temp_v0_2;
+  u32 temp_s2;
+  u8 *var_s3;
+  temp_s5 = (arg3 * 0x10) + arg2;
+  sp78 = *((f32 *) (arg4 + 4));
+  var_s1 = arg2;
+  sp74 = *((f32 *) (arg4 + 0xC));
+  temp_f26 = *((f32 *) (arg4 + 0x20));
+  var_s3 = arg1;
+  sp6C = *((f32 *) (arg4 + 0x40));
+  sp68 = *((f32 *) (arg4 + 0x44));
+  temp_f28 = *((f32 *) (arg4 + 0x1C));
+  if (arg2 < temp_s5)
+  {
+    new_var = &D_8013546C;
+    if (!sp60)
+    {
+    }
+    temp_s2 = (u32) (((u8 *) new_var) + 0x14);
+    do
+    {
+      var_f20 = 0.0f;
+      if ((*((u8 *) (temp_s2 + 1))) != 0)
+      {
+        temp_f0 = ((f32) (*((s16 *) var_s1))) - sp78;
+        temp_f2 = ((f32) (*((s16 *) (var_s1 + 4)))) - sp74;
+        temp_f0_2 = sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
+        temp_f2_2 = *((f32 *) (arg4 + 0x34));
+        sp60 = temp_f0_2;
+        if (temp_f0_2 < temp_f2_2)
+        {
+          var_f20 = 0.0f - temp_f26;
+        }
+        else
+          if (temp_f0_2 < (*((f32 *) (arg4 + 0x38))))
+        {
+          var_f20 -= temp_f26 * (1.0f - ((temp_f0_2 - temp_f2_2) * (*((f32 *) (arg4 + 0x3C)))));
+        }
+      }
+      temp_v0 = *((f32 **) (arg4 + 0x28));
+      temp_f0_3 = *temp_v0;
+      var_f20 += (((f32) ((*((s16 *) (var_s3 + 2))) - (*((s16 *) (var_s1 + 2))))) * sp6C) - (temp_f0_3 * sp68);
+      *temp_v0 += var_f20 * temp_f28;
+      *((s16 *) (var_s1 + 2)) = (s32) (((*(*((f32 **) (arg4 + 0x28)))) * temp_f28) + ((f32) (*((s16 *) (var_s1 + 2)))));
+      if ((*((u8 *) (temp_s2 + 1))) != 0)
+      {
+        temp_v0_2 = *((u8 *) (temp_s2 + 2));
+        if ((temp_v0_2 == 0) && (sp60 < (*((f32 *) (arg4 + 0x34)))))
+        {
+          if ((*(*((f32 **) (arg4 + 0x28)))) < 0.0f)
+          {
+            temp_v0_2 = temp_v0_2 * 1;
+          }
+          var_f20_2 = (*(*((f32 **) (arg4 + 0x28)))) / (*((f32 *) (arg4 + 0x50)));
+          if (temp_v0_2 == 0)
+          {
+            if (var_f20_2 > 2000.0f)
+            {
+              var_f20_2 = 2000.0f;
+            }
+            func_800F83E4(func_800F54E4(), var_f20_2);
+            *((u8 *) (temp_s2 + 2)) = 1;
+          }
+        }
+      }
+      var_s3 += 0x10;
+      if ((*((s16 *) (var_s1 + 2))) < 0)
+      {
+        *((s16 *) (var_s1 + 2)) = 0;
+      }
+      var_s1 += 0x10;
+      (*((f32 **) (arg4 + 0x28)))++;
+    }
+    while (var_s1 < temp_s5);
+  }
+  if (!sp60)
+  {
+  }
+}
 
 void idbounce_entrypoint_2(u8 *arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     s32 func_800F54E4(void);
