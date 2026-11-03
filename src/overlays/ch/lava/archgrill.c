@@ -10,7 +10,85 @@ void func_80800000_chlavaarchgrill(void *arg0) {
     func_8010A800(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/lava/archgrill/func_80800044_chlavaarchgrill.s")
+s32 func_80800044_chlavaarchgrill(Actor *arg0, s32 arg1, s32 arg2) {
+    typedef struct {
+    u8 id;
+    u16 event;
+    u8 value;
+    u8 state;
+    u8 nextState;
+    u8 animation;
+    u8 action;
+    u8 flag;
+    }
+    GrillEntry;
+    typedef struct {
+    f32 timer;
+    }
+    GrillData;
+    extern GrillEntry D_80800610_chlavaarchgrill[12];
+    s32 _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _capod_entrypoint_14(void);
+    s32 func_800DA564(s32, s32);
+    s32 func_800DA7A8();
+    s32 func_80101180(s32, s32, s32);
+    s32 func_80101FDC(u8 *, s32);
+    s32 result[3];
+    s32 flag;
+    s32 count;
+    GrillEntry *entry;
+    s16 animation;
+    Actor *x;
+     flag = func_800DA564(0xA1A, 3);
+    count = 12;
+    for (entry = D_80800610_chlavaarchgrill;
+    entry < D_80800610_chlavaarchgrill + count;
+    entry++) {
+    if (entry->id != arg0->unk74_7) {
+    continue;
+    }
+    if (arg1 != entry->event) {
+    continue;
+    }
+    if (entry->state == arg0->unk70_10 && arg2 == entry->value && flag == entry->flag) {
+    result[0] = 1;
+    x = arg0;
+    if (flag) { arg0 = (Actor *)((s32)arg0 * 1); }
+    func_80101FDC(x, entry->nextState);
+    goto apply_animation;
+apply_animation:
+    animation = entry->animation;
+    if (animation != 0) {
+    if (entry->value != 0) {
+    _capod_entrypoint_14();
+    _capod_entrypoint_13(arg0->unk0, NULL, entry->animation, 0x2010);
+    result[0] = 4;
+    }
+    else {
+    _capod_entrypoint_13(arg0->unk0, NULL, animation, 0x10);
+    }
+    }
+    switch (entry->action) {
+    case 1: ((GrillData *)arg0->actorData)->timer = 0.75f;
+    break;
+    case 2: func_800DA7A8(0xA1A, 1, 3);
+    func_80101180(0x288, 0x61, 0);
+    break;
+    case 3: ((GrillData *)arg0->actorData)->timer = 0.75f;
+    func_800DA7A8(0xA1A, 2, 3);
+    break;
+    case 4: func_800DA7A8(0xA1A, 3, 3);
+    func_80101180(0x288, 0x5D, 0);
+    break;
+    case 5: ((GrillData *)arg0->actorData)->timer = 0.75f;
+    func_800DA7A8(0xA1A, 4, 3);
+    break;
+    }
+    return result[0];
+    }
+    }
+    return 0;
+    }
 
 /* extern */
 
