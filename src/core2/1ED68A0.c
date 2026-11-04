@@ -745,7 +745,105 @@ void func_800FE8EC(s32 arg0) {
     _cothemedll_entrypoint_4(&D_801359C0, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1ED68A0/func_800FE914.s")
+void func_800FE914(s32 arg0) {
+    typedef f32 FadeTimes[2];
+    s32 func_80017764(s32);
+    s32 func_800FC4B0(s32, s32, s32, f32);
+    void func_800FC688(s32, s32);
+    void func_800FCB00(s32, s32, s32, s32);
+    s32 func_800FCCD4(s32);
+    extern s32 D_80123E60;
+    extern s32 D_801242DC[];
+    extern FadeTimes D_80124314[];
+    extern s16 D_801359C8, D_801359CA, D_801359E4;
+    extern u8 D_801359D5;
+    extern f32 D_801359F0, D_80135A0C;
+    extern u8 D_80135A10[];
+    extern s32 D_80135A20[3];
+    extern f32 D_80135A30[3];
+    extern u8 D_80135A3C[3];
+    extern s32 D_80135A40;
+    register f32 value;
+    f32 pairDown;
+    f32 pairUp;
+    f32 trackFade;
+    register f32 previous;
+    register f32 duration;
+    register f32 fade;
+    s32 volume;
+    s32 *track;
+    register s32 limit;
+    s32 result;
+    s32 j;
+    s32 k;
+    s32 i;
+    u8 *flag;
+    FadeTimes *pair;
+
+    duration = 1.75f;
+    volume = D_801359CA;
+    for (i = 0; i < 14; i++) {
+        if (D_80135A10[i]) {
+            pair = &D_80124314[i];
+            
+            switch (i) {
+            case 3:
+                value = D_801359CA * D_801359F0;
+                fade = volume;
+                if (value < fade) {
+                    volume = value;
+                }
+                break;
+            default:
+                limit = D_801242DC[i];
+                volume = limit < volume ? limit : volume;
+                break;
+            }
+            pairDown = (*pair)[0];
+            if (pairDown < duration) {
+                duration = pairDown;
+            }
+            pairUp = (*pair)[1];
+            if (D_80135A0C < pairUp) {
+                D_80135A0C = pairUp;
+            }
+        }
+    }
+    if (D_801359E4 < volume) {
+        duration = D_80135A0C;
+    }
+    if (volume != D_801359E4 || D_80123E60) {
+        if (D_801359C8 != -1) {
+            if (!func_800FCCD4(D_801359C8)) {
+                func_800FC688(D_801359C8, func_80017764(D_801359C8));
+            }
+            result = func_800FC4B0(D_801359C8, -1, volume, arg0 ? 0.0f : duration);
+            if (result) {
+                func_800FCB00(D_801359C8, volume, result, 0);
+            }
+        }
+        D_80123E60 = 0;
+    }
+    if (volume != D_801359E4 || D_801359D5 || D_80123E60) {
+        if (D_80135A40 > 0) {
+            for (j = 0; j < 3; j++) {
+                if (D_80135A20[j] && D_80135A3C[j] && func_800FCCD4(D_80135A20[j])) {
+                    duration = arg0 ? 0.0f :
+                        (duration < D_80135A30[j] ? duration : D_80135A30[j]);
+                    result = func_800FC4B0(D_80135A20[j], -1, volume, duration);
+                    if (result) {
+                        func_800FCB00(D_80135A20[j], volume, result, 0);
+                    }
+                }
+            }
+        } else {
+            D_80135A0C = 0.0f;
+        }
+        D_801359D5 = 0;
+    }
+    D_801359E4 = volume;
+    if (&D_801359C8) {}
+}
 
 void func_800FEC1C(f32 arg0) {
     extern f32 D_801359F0;
