@@ -29,7 +29,7 @@ void gcboundDll_entrypoint_1(void *arg0) {
 /* extern */
 
 void func_808000AC_gcboundDll(s32 arg0, s32 *arg1, u32 *arg2) {
-    s32 func_800B422C(s32, s32);
+    void func_800B422C(s32, s32);
     s32 heap_free(u32);
     u32 temp_s1;
     u32 var_a3;
@@ -351,11 +351,20 @@ void func_808008D8_gcboundDll(void *arg0, s32 arg1, s32 arg2) {
     }
 }
 
+struct BoundHeader {
+    u32 count : 23;
+    u32 rest : 9;
+    u32 unused[4];
+    s32 key;
+    s16 start;
+    s16 length;
+};
+
 void gcboundDll_entrypoint_7(s32 arg0) {
-    void func_80800F6C_gcboundDll(s32, s32, s32);
-    func_80800F6C_gcboundDll(arg0, arg0, arg0 + 4);
-    func_80800F6C_gcboundDll(arg0, arg0 + 8, arg0 + 0xC);
-    func_80800F6C_gcboundDll(arg0, arg0 + 0x10, arg0 + 0x14);
+    void func_80800F6C_gcboundDll(s32, s32 *, struct BoundHeader **);
+    func_80800F6C_gcboundDll(arg0, (s32 *)arg0, (struct BoundHeader **)(arg0 + 4));
+    func_80800F6C_gcboundDll(arg0, (s32 *)(arg0 + 8), (struct BoundHeader **)(arg0 + 0xC));
+    func_80800F6C_gcboundDll(arg0, (s32 *)(arg0 + 0x10), (struct BoundHeader **)(arg0 + 0x14));
 }
 
 void *func_80800CA8_gcboundDll(s32 arg0, s32 arg1, s32 arg2, s32 *arg3) {
@@ -431,7 +440,65 @@ void gcboundDll_entrypoint_8(void *arg0) { void func_808008D8_gcboundDll(void *,
 void func_80800E6C_gcboundDll(u8 *arg0, u8 *arg1) { void rare_memcpy(void *, void *, int); u8 sp18[0x18]; rare_memcpy(sp18, arg0, 0x18); rare_memcpy(arg0, arg1, 0x18); rare_memcpy(arg1, sp18, 0x18); }
 
 void func_80800EBC_gcboundDll(u8 *arg0, s16 *arg1) {     struct BoundEntry {         u32 unused[5];         u32 pad : 11;         u32 flag : 1;         u32 rest : 20;     };     s32 start;     struct BoundEntry *end;     int n;     struct BoundEntry *entry;     u32 old;      n = 0;     start = func_80800630_gcboundDll(arg0, arg1);     end = (struct BoundEntry *)func_80800654_gcboundDll(arg0, arg1) - 1;     entry = end;     if ((u32)end >= (u32)start) {         if (end->flag) {         do {             entry--;             n++;         } while ((u32)entry >= (u32)start && entry->flag);         }     }     old = *(u32 *)arg1;     *(u32 *)arg1 = (((((arg1[13] - n) & 0x7FFFFF) ^ (old >> 9)) << 9) ^ old);     ((s8 *)arg1)[3] = n; } 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/boundDll/func_80800F6C_gcboundDll.s")
+void func_80800F6C_gcboundDll(s32 arg0, s32 *pCount, struct BoundHeader **pList) {
+    s32 func_800B3CDC(s32 *, s32);
+    void func_800B422C(s32, s32);
+    void func_800B4290(void *);
+    int func_800F0064(f32 *, f32, f32 *);
+    void *heap_realloc(void *, s32);
+    void rare_memcpy(void *, void *, int);
+    struct BoundHeader *current;
+    struct BoundHeader *other;
+    u32 second;
+    s32 first;
+    s32 searching;
+    s32 end1;
+    s32 end2;
+    u32 copy;
+
+    if (pList == NULL || pCount == NULL) {
+        return;
+    }
+    for (current = *pList; current < *pList + *pCount; current++) {
+        for (other = current + 1; other < *pList + *pCount; other++) {
+            if (current->key == other->key && current->length != 0 && other->length != 0) {
+                end1 = func_80800654_gcboundDll(arg0, (s16 *)current);
+                searching = 1;
+                for (first = func_80800630_gcboundDll(arg0, (s16 *)current); (u32)first < (u32)end1 && searching; first += 0x18) {
+                    end2 = func_80800654_gcboundDll(arg0, (s16 *)other);
+                    for (second = func_80800630_gcboundDll(arg0, (s16 *)other); second < (u32)end2 && searching; second += 0x18) {
+                        if (func_800F0064((f32 *)first, (f32)(*(s16 *)(second + 0xC) + *(s16 *)(first + 0xC)), (f32 *)second)) {
+                            copy = func_80800630_gcboundDll(arg0, (s16 *)other);
+                            for (; copy < (u32)end2; copy += 0x18) {
+                                rare_memcpy(func_800B3CDC((s32 *)(arg0 + 0xE0), (s32)&current->start), (void *)copy, 0x18);
+                            }
+                            func_800B422C(arg0 + 0xE0, (u32)&other->start);
+                            other->count = ((u8 *)other)[3] = 0;
+                            other = current;
+                            searching = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (current = *pList; current < *pList + *pCount; current++) {
+        if (current->length == 0) {
+            searching = 1;
+            for (other = current + 1; other < *pList + *pCount && searching; other++) {
+                if (other->length != 0) {
+                    rare_memcpy(current, other, 0x1C);
+                    searching = 0;
+                    func_800B4290(&other->start);
+                }
+            }
+        }
+    }
+    for (current = *pList; current < *pList + *pCount && current->length != 0; current++) {
+    }
+    *pCount = current - *pList;
+    *pList = heap_realloc(*pList, *pCount * sizeof(struct BoundHeader));
+}
 
 s32 func_8080132C_gcboundDll(s32 arg0) { switch (arg0) { case 1: return 1; case 2: return 2; case 3: return 4; default: return 7; } }
 
