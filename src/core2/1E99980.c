@@ -489,7 +489,70 @@ void func_800C0BC0(Gfx** gfx, void* destination, void* source) {
     *gfx = cur_gfx;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/1E99980/func_800C0BC0.s")
+s32 func_800C0BC0(s32 gfx, s32 destination, s32 source) {
+    s32 func_80014F00(void);
+    s32 row;
+    s32 col;
+    Gfx* cur_gfx = *(Gfx**)gfx;
+    gSPDisplayList(cur_gfx++, OS_K0_TO_PHYSICAL(D_8011A7E0));
+    gDPSetColorImage(cur_gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, OS_K0_TO_PHYSICAL(destination));
+    for (row = 0; row < ROUND_UP_DIVIDE(SCREEN_HEIGHT, 32); row++) {
+        for (col = 0; col < ROUND_UP_DIVIDE(SCREEN_WIDTH, 32); col++) {
+// as1 schedules a block by source line number, so the order of these lines decides the match.
+#line 1000
+            {
+                Gfx* g = cur_gfx++;
+                g->words.w0 = 0xFD100000 | (SCREEN_WIDTH - 1);
+                g->words.w1 = osVirtualToPhysical((void*)source);
+            }
+            {
+                Gfx* g = cur_gfx++;
+                g->words.w0 = 0xF5100000 | _SHIFTL((((((col + 1) * 32 - 1) - col * 32 + 1) * 2 + 7) >> 3), 9, 9);
+                g->words.w1 = 0x07080200;
+            }
+            {
+                Gfx* g = cur_gfx++;
+                g->words.w0 = 0xE6000000;
+                g->words.w1 = 0;
+            }
+            {
+                Gfx* g = cur_gfx++;
+                g->words.w0 = 0xF4000000 | _SHIFTL((col * 32) << 2, 12, 12) | _SHIFTL((row * 32) << 2, 0, 12);
+                g->words.w1 = 0x07000000 | _SHIFTL(((col + 1) * 32 - 1) << 2, 12, 12) | _SHIFTL(((row + 1) * 32 - 1) << 2, 0, 12); } { Gfx* g = cur_gfx++;
+                g->words.w0 = 0xE7000000;
+                g->words.w1 = 0; } { Gfx* g = cur_gfx++;
+                g->words.w1 = 0x00080200;
+            {
+                Gfx* tile = cur_gfx++;
+#line 1019
+                Gfx* rectangle = cur_gfx++;
+#line 1025
+                g->words.w0 = 0xF5100000 | _SHIFTL((((((col + 1) * 32 - 1) - col * 32 + 1) * 2 + 7) >> 3), 9, 9);
+                tile->words.w0 = 0xF2000000 | _SHIFTL((col * 32) << 2, 12, 12) | _SHIFTL((row * 32) << 2, 0, 12);
+                tile->words.w1 = _SHIFTL(((col + 1) * 32 - 1) << 2, 12, 12) | _SHIFTL(((row + 1) * 32 - 1) << 2, 0, 12);
+#line 1020
+                rectangle->words.w0 = 0xE4000000 | _SHIFTL(MAX((s16)(((col + 1) * 32) * 4), 0), 12, 12) | _SHIFTL(MAX((s16)(((row + 1) * 32) * 4), 0), 0, 12);
+#line 1029
+                rectangle->words.w1 = _SHIFTL(MAX((s16)((col * 32) * 4), 0), 12, 12) | _SHIFTL(MAX((s16)((row * 32) * 4), 0), 0, 12);
+            }
+            }
+            {
+                Gfx* g = cur_gfx++;
+                g->words.w0 = 0xE1000000;
+                g->words.w1 = _SHIFTL(((col * 32) << 5) - (((s16)((col * 32) * 4) < 0) ? MIN(((s16)((col * 32) * 4) * (s16)(1 << 10)) >> 7, 0) : 0), 16, 16) |
+                    _SHIFTL(((row * 32) << 5) - ((((row * 32) * 4) < 0) ? MIN(((s16)((row * 32) * 4) * (s16)(1 << 10)) >> 7, 0) : 0), 0, 16);
+            }
+            {
+                Gfx* g = cur_gfx++;
+                g->words.w0 = 0xF1000000; g->words.w1 = 0x04000400;
+            }
+        }
+    }
+    gSPDisplayList(cur_gfx++, OS_K0_TO_PHYSICAL(D_8011A840));
+    gDPSetColorImage(cur_gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, OS_K0_TO_PHYSICAL(func_80014F00()));
+    *(Gfx**)gfx = cur_gfx;
+}
+#line 556
 #endif
 
 void func_800C0F8C(s32 arg0) {
