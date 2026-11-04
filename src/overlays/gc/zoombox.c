@@ -1382,7 +1382,117 @@ void func_80802C80_gczoombox(u8 *arg0, s32 arg1) {
     func_80802BF4_gczoombox(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gc/zoombox/gczoombox_entrypoint_5.s")
+u8 *gczoombox_entrypoint_5(s32 y, s32 portrait_id, s32 arg2, s32 arg3, s32 callback) {
+    void *heap_alloc(s32);
+    u32 func_800E6A00(void);
+    s32 _gczoomboxdata_entrypoint_2(s32, u8 *, u8 *);
+    void gczoombox_entrypoint_20(void *, f32, s32, s32, f32, s32, s32);
+    void gczoombox_entrypoint_30(void *, s32);
+    struct Flags {
+        u32 b31:1; u32 b30:1; u32 b29:1; u32 b28:1;
+        u32 b27:1; u32 b26:1; u32 b25:1; u32 b24:1;
+        u32 b23:1; u32 b22:1; u32 b21:1; u32 b20:1;
+        u32 b19:1; u32 b18:1; u32 b17:1; u32 b16:1;
+        u32 b15:1; u32 b14:1; u32 b13:1; u32 b12:1;
+        u32 b11:1; u32 b10:1; u32 b9:1; u32 b8:1;
+        u32 b7:1; u32 b6:1; u32 b5:1; u32 b4:1;
+        u32 b3:1; u32 b2:1; u32 b1:1; u32 b0:1;
+    };
+    struct Box {
+        u8 pad[0x1C4];
+        f32 c4;
+        u8 padC8[6];
+        s8 ce, cf, d0, d1;
+        u8 d2;
+        u8 padD3[0x11];
+        struct Flags flags;
+    };
+    u8 *box;
+    s32 i;
+
+    box = heap_alloc(0x1F8);
+    *(s32 *)(box + 0x16C) = callback;
+    box[0x171] = 0xB;
+    *(s16 *)(box + 0x172) = portrait_id;
+    box[0x170] = box[0x174] = box[0x175] = 0;
+    box[0x176] = arg2;
+    box[0x177] = 0x20;
+    *(s32 *)(box + 0x130) = 0;
+    *(s16 *)(box + 0x13A) = 0;
+    *(s32 *)(box + 0x13C) = -1;
+    for (i = 0; i < 8; i++) {
+        ((char **)(box + 0x17C))[i] = NULL;
+    }
+    box[0x19E] = 0;
+    box[0x19D] = 0;
+    box[0x19C] = 0;
+    ((struct Box *)box)->flags.b19 = 0;
+    *(s32 *)(box + 0x1A0) = 0;
+    *(s16 *)(box + 0x1AC) = 0xFF;
+    *(s16 *)(box + 0x1BC) = 0xFF;
+    box[0x1B4] = 0xFF;
+    box[0x1B5] = 0xFF;
+    box[0x1B6] = 0xFF;
+    ((struct Box *)box)->flags.b24 = arg3;
+    box[0x179] = 0;
+    ((struct Box *)box)->flags.b9 = 0;
+    ((struct Box *)box)->flags.b8 = 1;
+    ((struct Box *)box)->flags.b7 = 1;
+    *(f32 *)(box + 0x1E8) = 0.0f;
+    if (((struct Box *)box)->flags.b24) {
+        *(s16 *)(box + 0x1B2) = 0x104;
+        *(s16 *)(box + 0x1AE) = 0x190;
+    } else {
+        *(s16 *)(box + 0x1B2) = 0x2C;
+        *(s16 *)(box + 0x1AE) = -0x60;
+    }
+    *(s16 *)(box + 0x1B0) = y;
+    *(f32 *)(box + 0x1A4) = *(f32 *)(box + 0x1A8) = 0.0f;
+    *(s8 *)(box + 0x1CE) = *(f32 *)(box + 0x1C4) =
+        (s8)(box[0x1CF] = box[0x1D0] = box[0x1D2] = 0);
+    *(f32 *)(box + 0x1E0) = 0.0f;
+    *(f32 *)(box + 0x1DC) = 1.0f;
+    *(f32 *)(box + 0x1D4) = 0.0f;
+((struct Box *)box)->flags.b1 = func_800E6A00();
+    ((struct Box *)box)->flags.b31 =
+    ((struct Box *)box)->flags.b30 =
+    ((struct Box *)box)->flags.b29 =
+    ((struct Box *)box)->flags.b28 =
+    ((struct Box *)box)->flags.b27 =
+    ((struct Box *)box)->flags.b26 =
+    ((struct Box *)box)->flags.b25 =
+    ((struct Box *)box)->flags.b23 =
+    ((struct Box *)box)->flags.b22 =
+    ((struct Box *)box)->flags.b21 =
+    ((struct Box *)box)->flags.b20 =
+    ((struct Box *)box)->flags.b17 =
+    ((struct Box *)box)->flags.b16 =
+    ((struct Box *)box)->flags.b15 =
+    ((struct Box *)box)->flags.b14 = (u8)(((struct Box *)box)->flags.b13 = 0);
+    ((struct Box *)box)->flags.b0 = 0;
+    ((struct Box *)box)->flags.b11 =
+    ((struct Box *)box)->flags.b18 = 1;
+    ((struct Box *)box)->flags.b6 = 0;
+    ((struct Box *)box)->flags.b5 = 0;
+    ((struct Box *)box)->flags.b4 = 0;
+    ((struct Box *)box)->flags.b3 = 0;
+    func_80802B94_gczoombox(box, portrait_id);
+    ((struct Box *)box)->flags.b2 = 1;
+    *(f32 *)(box + 0x1EC) = 0.0f;
+    *(f32 *)(box + 0x1F4) = 1.0f;
+    gczoombox_entrypoint_20(box, 15.0f, 5, 2, 0.4f, 0, 0);
+    _gczoomboxdata_entrypoint_2(portrait_id, box + 0x1B7, box + 0x1B8);
+    *(s8 *)(box + 0x1B9) = *(s8 *)(box + 0x1BA) = 0;
+    *(s16 *)(box + 0x142) = 0;
+    *(f32 *)(box + 0x1C0) = 1.0f;
+    func_80802C80_gczoombox(box, portrait_id);
+    gczoombox_entrypoint_30(box, 18000);
+    func_808001D4_gczoombox(box, 0x30);
+    func_808001D4_gczoombox(box + 0x30, 0x30);
+    func_808001D4_gczoombox(box + 0xC0, 0x30);
+    func_808001D4_gczoombox(box + 0xF0, 0x40);
+    return box;
+}
 
 u32 gczoombox_entrypoint_6(u8 *arg0) {
     return arg0[376];
