@@ -539,7 +539,89 @@ block_9:
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/minisubgame/func_80801058_chminisubgame.s")
+s32 func_80801058_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
+    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    s32 _subaddiemulti_entrypoint_5(s32);
+    s32 func_800DA298(s32);
+    int func_800F7A2C(s32, s32, f32 *);
+    void func_800FFAB0(Actor *);
+    s32 func_8010114C(s32, s32, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void func_8010A570(Actor *);
+    s32 func_8010CC10(f32 *, f32);
+    void func_8010CCE0(void);
+    s32 func_8010CCEC(void);
+    void func_80801248_chminisubgame(Actor *);
+    Actor *sp2C;
+    Unk80132ED0 *sp28;
+    s32 sp24;
+    // actorRef keeps arg0 in memory; the empty ifs below give its copy priority over other, which lands in $8.
+    Actor **actorRef = &arg0;
+    f32 *position;
+    Actor *actor;
+    Actor *scoredActor;
+    Actor *nearbyActor;
+    Unk80132ED0 *event;
+    Unk80132ED0 *marker;
+    s32 work;
+    s32 index;
+    s32 slot;
+    s32 points;
+    Actor *other;
+
+    sp2C = NULL;
+    switch (arg1) {
+    case 0x29:
+    case 0x2A:
+        break;
+    case 0x40:
+        sp28 = *(Unk80132ED0 **)&arg2;
+        index = _subaddiemulti_entrypoint_5((s32)sp28);
+        actor = *actorRef;
+        work = actor->unk6C_0 + 1;
+        marker = actor->unk3C;
+        *(s32 *)&sp24 = index;
+        other = func_80106790(marker);
+        scoredActor = *actorRef;
+        sp2C = other;
+        points = sp24;
+        if (scoredActor) {}
+        if (scoredActor) {}
+        other->actorData[4] += work;
+        _chscorepoints_entrypoint_2(work, points, scoredActor->position, 1);
+        event = *(Unk80132ED0 **)&sp28;
+        if (*(u16 *)&event->unk18 & 1) {
+            func_8010114C((s32)event, 0x98, 0);
+        }
+    case 0x3E:
+        if (sp2C == NULL) {
+            sp2C = func_80106790(arg0->unk3C);
+        }
+        func_8010A570(arg0);
+        if (func_800DA298(0) == 0) {
+            nearbyActor = *actorRef;
+            position = nearbyActor->position;
+            if (func_8010CC10(position, *(f32 *)&nearbyActor->actorData[3])) {
+                func_8010CCE0();
+                index = func_8010CCEC();
+                while (index != -1) {
+                    func_800F7A2C(index, 7, position);
+                    index = func_8010CCEC();
+                }
+            }
+        }
+        func_80801248_chminisubgame(arg0);
+        slot = arg0->actorData[7];
+        if (slot >= 0) {
+            func_80800A64_chminisubgame(sp2C, slot);
+        }
+        func_800FFAB0(arg0);
+        return 1;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 void func_808011DC_chminisubgame(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_800B53A4(s32);
