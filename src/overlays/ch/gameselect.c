@@ -1,5 +1,7 @@
 #include "common.h"
 
+s32 _gczoombox_entrypoint_4(s32, void *);
+
 struct anctrl_s;
 
 typedef struct { s16 unk0; s16 id; s16 value; } SelectEntry;
@@ -3922,7 +3924,77 @@ void func_80806C54_chgameselect(Actor *arg0) {
     func_808073AC_chgameselect(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/gameselect/func_80806D98_chgameselect.s")
+void func_808075D0_chgameselect(Actor *, s32);
+s32 func_80807790_chgameselect(Actor *, s32);
+void func_80807824_chgameselect(Actor *);
+
+void func_80806D98_chgameselect(Actor *arg0) {
+    s32 _gczoombox_entrypoint_4();
+    void *func_80100094(Actor *, u32);
+    s32 func_80016B30(s32, s32);
+    s32 func_800AA0D0(void);
+    s32 func_800FFAB0(Actor *);
+    s32 func_8010114C(Unk80132ED0 *, s32, s32);
+    u32 i;
+    s32 *data;
+
+    data = func_80100094(arg0, 0);
+    for (i = 0; i < arg0->unk6C_0; i++) {
+        _gczoombox_entrypoint_4(data[i]);
+    }
+    switch (arg0->unk70_10) {
+    case 1:
+        if (func_80807790_chgameselect(arg0, 3)) {
+            func_80803CA0_chgameselect();
+            func_808075D0_chgameselect(arg0, 2);
+        }
+        break;
+    case 2: {
+        s32 next;
+        func_80807824_chgameselect(arg0);
+        if (func_800D9078(&arg0->unk58) || func_80016B30(0, 0)) {
+            if (func_800AA0D0() >= 2) {
+                next = 3;
+            } else {
+                next = 6;
+            }
+            func_808075D0_chgameselect(arg0, next);
+        }
+        break;
+    }
+    case 3:
+        if (func_80807790_chgameselect(arg0, 4)) {
+            func_808075D0_chgameselect(arg0, 4);
+        }
+        break;
+    case 4: {
+        s32 next;
+        if (func_80807790_chgameselect(arg0, 3)) {
+            if (arg0->unk64_20) {
+                next = 5;
+            } else {
+                next = 2;
+            }
+            func_808075D0_chgameselect(arg0, next);
+        }
+        break;
+    }
+    case 5:
+        func_80807824_chgameselect(arg0);
+        if (func_800D9078(&arg0->unk58) || func_80016B30(0, 0) == 1) {
+            func_808075D0_chgameselect(arg0, 6);
+        } else if (func_80016B30(0, 1) == 1) {
+            func_808075D0_chgameselect(arg0, 3);
+        }
+        break;
+    case 6:
+        if (func_80807790_chgameselect(arg0, 6)) {
+            func_8010114C(arg0->unk3C, 0x23, 0);
+            func_800FFAB0(arg0);
+        }
+        break;
+    }
+}
 
 void func_80806FAC_chgameselect(Actor *arg0, s32 arg1) {
     s32 _gczoombox_entrypoint_2();
@@ -4348,3 +4420,6 @@ s32 func_80807A10_chgameselect(arg0, arg1, arg2) {
         func_80101FDC((Actor *)arg0, 2);
     }
 }
+
+// as1 only keeps the head copy of func_80806D98_chgameselect when its address is taken here; the real table stays in asm data.
+static s32 D_lever[] = { (s32) func_80806D98_chgameselect };
