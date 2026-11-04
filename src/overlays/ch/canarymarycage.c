@@ -121,7 +121,66 @@ void func_80800338_chcanarymarycage(Actor *arg0, s32 *arg1) {
     func_80800000_chcanarymarycage(arg0, 2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/canarymarycage/func_80800410_chcanarymarycage.s")
+s32 func_80800410_chcanarymarycage(Actor *arg0, s32 arg1, s32 *arg2) {
+    s32 _chexploder_entrypoint_6(Actor *, f32, f32);
+    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    Actor *_subaddielink_entrypoint_4(u8 *);
+    s32 func_80090270(void);
+    void func_800DF744(s32, s32);
+    void *func_80100094(Actor *, u32);
+    void *func_80101080(void);
+    s32 func_8010114C(s32, s32, s32);
+    s32 func_801015D0(Actor *);
+    void func_801018A4(Actor *, s32);
+    Actor *func_80106790(Unk80132ED0 *);
+    void *sp24;
+    Actor *sp20;
+    Actor *sp1C;
+
+    sp24 = func_80100094(arg0, 0);
+    switch (arg1) {
+        case 0x90:
+            sp20 = func_80106790(func_80101080());
+            _chexploder_entrypoint_9(sp20, 1, 0);
+            _chexploder_entrypoint_9(sp20, 2, 1);
+            _chexploder_entrypoint_9(sp20, 3, 0);
+            _chexploder_entrypoint_6(sp20, 200.0f, 300.0f);
+            _subaddielink_entrypoint_1(sp24, sp20->unk0);
+            break;
+        case 0xAB:
+            sp1C = _subaddielink_entrypoint_4(sp24);
+            func_801018A4(arg0, (s32)func_80101080());
+            if (sp1C != NULL) {
+                func_8010114C((s32)sp1C->unk0, 0xAB, 0);
+            }
+            break;
+        case 0x1F:
+            func_801015D0(arg0);
+            if (arg0->unk70_10 == 1) {
+                func_800DF744(1, 1);
+            } else {
+                func_800DF744(1, 2);
+            }
+            func_800DF744(2, 0);
+            func_800DF744(3, 1);
+            break;
+        case 0x32:
+            arg0->unk79_4--;
+            if (arg0->unk79_4 == 0) {
+                func_80800000_chcanarymarycage(arg0, 4);
+            }
+            break;
+        case 0x40:
+            if (func_80090270() == 0) {
+                func_80800338_chcanarymarycage(arg0, *(s32 **)&arg2);
+            }
+            break;
+        default:
+            return 0;
+    }
+    return 1;
+}
 
 OSThread *chcanarymarycage_entrypoint_0(void)
 {
