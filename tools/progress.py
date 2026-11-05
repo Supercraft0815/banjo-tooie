@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import mapfile_parser
+import re
 from pathlib import Path
 
 
@@ -15,8 +16,18 @@ ASMPATH = Path("asm")
 NONMATCHINGS = "nonmatchings"
 
 
+def importedAsmPaths() -> set[Path]:
+    # splat writes a nonmatchings file for every function, so only an import in the C source means "not decompiled".
+    imported = set()
+    for cFile in Path("src").rglob("*.c"):
+        for match in re.finditer(r'^\s*#pragma\s+GLOBAL_ASM\("([^"]+)"\)', cFile.read_text(errors="replace"), re.M):
+            imported.add(Path(match[1]))
+    return imported
+
+
 def getProgressFromMapFile(mapFile: mapfile_parser.MapFile, asmPath: Path, nonmatchings: Path, filteredFolders: set[str], pathIndex: int=2) -> tuple[mapfile_parser.ProgressStats, dict[str, mapfile_parser.ProgressStats]]:
     totalStats = mapfile_parser.ProgressStats()
+    imported = importedAsmPaths()
     progressPerFolder: dict[str, mapfile_parser.ProgressStats] = dict()
 
     for segment in mapFile:
@@ -67,7 +78,7 @@ def getProgressFromMapFile(mapFile: mapfile_parser.MapFile, asmPath: Path, nonma
                     decomped = False
                     totalStats.undecompedSize += symSize
                     progressPerFolder[folder].undecompedSize += symSize
-                elif funcAsmPath.exists():
+                elif funcAsmPath in imported:
                     decomped = False
                     totalStats.undecompedSize += symSize
                     progressPerFolder[folder].undecompedSize += symSize

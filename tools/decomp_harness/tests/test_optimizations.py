@@ -14,7 +14,8 @@ from unittest.mock import patch
 import test_harness as fixtures
 from test_harness import ASM, SOURCE, CANDIDATE, DUMP
 from decomp_harness.claude import ClaudeRunner, check_subscription, clean_claude_environment, parse_claude_events
-from decomp_harness.cli import FORK_DECOMPED_BYTES, TOTAL_CODE_BYTES, parser, progress, summary
+from decomp_harness.common import HarnessError
+from decomp_harness.cli import FORK_DECOMPED_BYTES, map_code_bytes, parser, progress, summary
 from decomp_harness.codex import Result
 from decomp_harness.codex import Redactor
 from decomp_harness.common import Control, HarnessError, git, validate_stage
@@ -30,6 +31,20 @@ from decomp_harness.workflow import Loop
 def assembly(*words):
     return 'glabel target\n' + ''.join(f'/* {0x1000+i*4:X} {0x80000400+i*4:08X} {word:08X} */ {op}\n'
                                      for i, (word, op) in enumerate(words)) + 'endlabel target\n'
+
+
+PROGRESS_MAP = """Discarded input sections
+ .text          0x0000000000000000       0x10 build/us/src/core1/gone.c.o
+Linker script and memory map
+ .text          0x0000000080000000       0x30 build/us/src/core1/a.c.o
+                0x0000000080000000                first
+                0x0000000080000020                second
+ .text          0x0000000080000030       0x10 build/us/src/core1/b.c.o
+                0x0000000080000030                open
+ .text          0x0000000080000040       0x20 build/us/asm/data/core1/rspboot.s.o
+                0x0000000080000040                rspbootTextStart
+ .text          0x0000000080000060       0x20 build/us/src/core1/nosymbols.c.o
+"""
 
 
 class PatternTests(fixtures.Fixture):
@@ -185,16 +200,25 @@ class PatternTests(fixtures.Fixture):
         self.assertEqual(groups, {('codex', 'luna', 'worker'): 50, ('codex', 'luna', 'probe'): 10,
                                   ('claude', 'haiku', 'worker'): 30})
 
-    def test_progress_adds_matched_bytes_to_fork_baseline(self):
+    def test_progress_measures_the_linker_map(self):
         with self.state.db:
             self.state.db.execute("UPDATE functions SET status='matched' WHERE id=?", (self.function['id'],))
-        report = progress(self.state)
-        size = self.function['size']
+        with self.assertRaises(HarnessError):
+            progress(self.root, self.state)
+        map_path = self.root/'build/us/banjotooie_decompressed.map'
+        map_path.parent.mkdir(parents=True, exist_ok=True)
+        map_path.write_text(PROGRESS_MAP)
+        (self.root/'src/core1/open.c').write_text('#pragma GLOBAL_ASM("asm/nonmatchings/core1/b/open.s")\n')
+        report = progress(self.root, self.state)
         self.assertEqual(report['matched_functions'], 1)
-        self.assertEqual(report['decomped_code_bytes'], FORK_DECOMPED_BYTES+size)
-        self.assertEqual(report['gained_percent_points'], round(100*size/TOTAL_CODE_BYTES, 3))
-        self.assertEqual(report['segments']['boot'], {'fork_percent': 100.0, 'percent': 100.0})
+        self.assertEqual((report['decomped_code_bytes'], report['total_code_bytes']), (0x50, 0x60))
+        self.assertEqual(report['segments']['core1']['percent'], 83.33)
         self.assertEqual(sum(d['matched'] for d in report['difficulties'].values()), 1)
+
+    def test_map_code_bytes_mirrors_progress_tool_rules(self):
+        measured = map_code_bytes(PROGRESS_MAP, set())
+        self.assertEqual(measured, {'core1': (0x60, 0x60)})
+        self.assertEqual(map_code_bytes(PROGRESS_MAP, {'asm/nonmatchings/core1/b/open.s'}), {'core1': (0x50, 0x60)})
 
     def test_private_worktree_cannot_reference_user_git(self):
         fixtures.GuardTests.setup_git(self)

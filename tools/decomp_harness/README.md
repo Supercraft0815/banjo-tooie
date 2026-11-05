@@ -215,10 +215,10 @@ Weitere Änderungen:
   Prototypen/Externs (ohne funktionslokale Typen). Der Context Pack nennt für Calls und Globals
   die verbindlichste bekannte Deklaration.
 * **Fortschritt in Bytes:** `status` meldet `matched_code_bytes`, `code_bytes` und
-  `matched_code_percent` sowie `solved_shape_groups`. `progress` rechnet das auf das ganze
-  Projekt hoch: Fork-Stand (`tools/progress.py` bei `25033be6`) plus gematchte Bytes, als
-  `project_percent` und `gained_percent_points`. `segments` liefert dieselbe Rechnung je
-  README-Badge (Boot/Core1/Core2/Overlays), `difficulties` die offenen und gematchten
+  `matched_code_percent` sowie `solved_shape_groups`. `progress` misst das ganze
+  Projekt aus der Linker-Map des letzten Builds, nach den Regeln von `tools/progress.py`:
+  `project_percent`, `gained_percent_points` seit dem Fork (`25033be6`) und `segments` je
+  README-Badge (Boot/Core1/Core2/Overlays). Ohne Build meldet es einen Fehler. `difficulties` liefert die offenen und gematchten
   Funktionen je Schwierigkeit.
 
 ```toml

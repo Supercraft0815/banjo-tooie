@@ -4,6 +4,7 @@ import argparse
 from collections import Counter, defaultdict
 import json
 from pathlib import Path
+import re
 import shutil
 import sqlite3
 import sys
@@ -34,8 +35,10 @@ def parser():
     for name in ('init', 'doctor', 'scan', 'status', 'next', 'run', 'retry', 'refresh-repairs', 'inspect', 'verify', 'report', 'patterns', 'stop-after-current', 'knowledge', 'progress'):
         p = sub.add_parser(name)
         p.add_argument('--json', action='store_true')
-        if name in ('retry', 'inspect', 'verify'):
+        if name in ('retry', 'inspect'):
             p.add_argument('function')
+        if name == 'verify':
+            p.add_argument('function', nargs='+')
         if name in ('run', 'next'):
             p.add_argument('--difficulty', choices=('easy', 'medium', 'hard', 'extreme'))
         if name in ('run', 'next', 'doctor'):
@@ -96,33 +99,76 @@ def summary(state):
             'state_schema': 3}
 
 
-# tools/progress.py (mapfile .text) at the fork point 25033be6. The ROM never changes, so the
-# total is fixed; progress.py itself keeps reporting the fork value because matched functions'
-# nonmatching .s files are retained as references.
-TOTAL_CODE_BYTES = 2904832
+# tools/progress.py (mapfile .text) at the fork point 25033be6, kept to report the gain since then.
 FORK_DECOMPED_BYTES = 377848
-# Same run, per src/ folder (the README badges): folder -> (decomped at fork, total).
-FORK_SEGMENT_BYTES = {'boot': (15936, 15936), 'core1': (62860, 153680), 'core2': (97384, 616096),
-                      'overlays': (201668, 2119120)}
+# Same run, per src/ folder (the README badges): folder -> decomped at fork.
+FORK_SEGMENT_BYTES = {'boot': 15936, 'core1': 62860, 'core2': 97384, 'overlays': 201668}
+MAP_SECTION = re.compile(r'^ \.text\s+0x([0-9a-f]+)\s+0x([0-9a-f]+)\s+(\S+)$')
+MAP_SYMBOL = re.compile(r'^\s+0x([0-9a-f]+)\s+([A-Za-z_.$][\w.$]*)$')
+GLOBAL_ASM = re.compile(r'^\s*#pragma\s+GLOBAL_ASM\("([^"]+)"\)', re.M)
 
 
-def progress(state):
+def map_code_bytes(map_text, imported):
+    """Mirror tools/progress.py with the stdlib: folder -> (decompiled, total) .text bytes."""
+    sizes = defaultdict(lambda: [0, 0])
+    section = symbols = None
+
+    def finish():
+        if not section:
+            return
+        start, size, path = section
+        parts = [part for part in path.split('/') if part != 'us']
+        if 'libultra' in parts[1]:
+            folder, stem = ('boot' if '_boot.a' in parts[1] else 'core1'), None
+        else:
+            folder, stem = parts[2], '/'.join(parts[2:]).split('.')[0]
+        if folder == 'data':  # RSP microcode, which tools/progress.py also leaves out.
+            return
+        sizes[folder][0] += size
+        sizes[folder][1] += size
+        for (address, name), following in zip(symbols, [s[0] for s in symbols[1:]]+[start+size]):
+            if f'asm/nonmatchings/{stem}/{name}.s' in imported:
+                sizes[folder][0] -= following-address
+
+    lines = map_text.split('Linker script and memory map', 1)[-1].splitlines()
+    for line in lines:
+        match = MAP_SECTION.match(line)
+        symbol = MAP_SYMBOL.match(line)
+        if match or line.startswith((' .', ' *')):
+            finish()
+            section, symbols = None, None
+            if match and int(match[2], 16):
+                section, symbols = (int(match[1], 16), int(match[2], 16), match[3]), []
+        elif symbol and section:
+            symbols.append((int(symbol[1], 16), symbol[2]))
+    finish()
+    return {folder: tuple(size) for folder, size in sizes.items()}
+
+
+def progress(root, state):
+    map_path = root/'build/us/banjotooie_decompressed.map'
+    if not map_path.exists():
+        raise HarnessError(f'{map_path} is missing; build the ROM first, progress is measured from the linker map.')
+    imported = set()
+    for source in (root/'src').rglob('*.c'):
+        imported.update(GLOBAL_ASM.findall(source.read_text(errors='replace')))
+    measured = map_code_bytes(map_path.read_text(), imported)
+    decomped = sum(done for done, _ in measured.values())
+    total = sum(size for _, size in measured.values())
+    pct = lambda b: round(100*b/total, 3)
     count, matched = state.db.execute(
         "SELECT count(*), coalesce(sum(size),0) FROM functions WHERE status='matched'").fetchone()
-    pct = lambda b: round(100*b/TOTAL_CODE_BYTES, 3)
-    gained = dict(state.db.execute(
-        "SELECT substr(source,5,instr(substr(source,5),'/')-1), sum(size) FROM functions WHERE status='matched' GROUP BY 1"))
-    segments = {name: {'fork_percent': round(100*fork/total, 2), 'percent': round(100*(fork+gained.get(name, 0))/total, 2)}
-                for name, (fork, total) in FORK_SEGMENT_BYTES.items()}
+    segments = {name: {'fork_percent': round(100*fork/measured[name][1], 2), 'percent': round(100*measured[name][0]/measured[name][1], 2)}
+                for name, fork in FORK_SEGMENT_BYTES.items() if name in measured}
     # Open = still present and unmatched, same filter as the scheduler's queue; matched counts harness matches.
     difficulties = {r[0]: {'open': r[1], 'open_code_bytes': r[2], 'matched': r[3]} for r in state.db.execute('''
         SELECT difficulty, coalesce(sum(present=1 AND status!='matched'),0),
                coalesce(sum(CASE WHEN present=1 AND status!='matched' THEN size END),0), coalesce(sum(status='matched'),0)
         FROM functions WHERE json_extract(features,'$.kind')='function' GROUP BY difficulty
         ORDER BY CASE difficulty WHEN 'easy' THEN 1 WHEN 'medium' THEN 2 WHEN 'hard' THEN 3 ELSE 4 END''')}
-    return {'segments': segments, 'difficulties': difficulties, 'fork_percent': pct(FORK_DECOMPED_BYTES), 'project_percent': pct(FORK_DECOMPED_BYTES+matched),
-            'gained_percent_points': pct(matched), 'matched_functions': count, 'matched_code_bytes': matched,
-            'decomped_code_bytes': FORK_DECOMPED_BYTES+matched, 'total_code_bytes': TOTAL_CODE_BYTES}
+    return {'segments': segments, 'difficulties': difficulties, 'fork_percent': pct(FORK_DECOMPED_BYTES), 'project_percent': pct(decomped),
+            'gained_percent_points': round(pct(decomped)-pct(FORK_DECOMPED_BYTES), 3), 'matched_functions': count, 'matched_code_bytes': matched,
+            'decomped_code_bytes': decomped, 'total_code_bytes': total}
 
 
 def doctor(root, state, config, control, args):
@@ -227,17 +273,27 @@ def dry_run(root, state, config, args):
     return {'dry_run': True, 'codex_runs': 0, 'model_runs': 0, 'concurrency': config['concurrency'], 'plan': choices}
 
 
-def verify(root, state, config, control, function):
-    f = state.get(function)
+def verify(root, state, config, control, functions):
+    """One full ROM check for all given functions; a hand match (GLOBAL_ASM gone, ROM exact) is adopted as matched."""
+    found = [state.get(name) for name in functions]
     work = snapshot(root)
     try:
         builder = Builder(work, config, control)
         log = root/'.decomp-agent/logs/verify.log'
         ok = builder.regression(log)
         from .scanner import global_asms
-        implemented = not any(m['symbol'] == f['symbol'] for m in global_asms((work/f['source']).read_text()))
-        return {'function': f['id'], 'full_rom_exact': ok, 'implemented': implemented,
-                'exact_match': ok and implemented, 'status': f['status'], 'log': str(log)}
+        results = []
+        for f in found:
+            source = work/f['source']
+            implemented = source.exists() and not any(m['symbol'] == f['symbol'] for m in global_asms(source.read_text()))
+            adopted = ok and implemented and f['status'] != 'matched'
+            if adopted:
+                # Bypasses TRANSITIONS on purpose: blocked/needs_human have no path to matched.
+                state.update(f['id'], status='matched', last_error='Matched outside harness; adopted by verify (full ROM exact)')
+            results.append({'function': f['id'], 'full_rom_exact': ok, 'implemented': implemented,
+                            'exact_match': ok and implemented, 'status': 'matched' if adopted else f['status'],
+                            'adopted': adopted, 'log': str(log)})
+        return results[0] if len(results) == 1 else {'functions': results}
     finally:
         shutil.rmtree(work)
 
@@ -272,7 +328,7 @@ def dispatch(root, state, config, control, args):
             model['provider'] = args.provider
         return {'next': f['id'], 'difficulty': f['difficulty'], 'size': f['size'], 'stage': stage, **model}
     if args.command == 'progress':
-        return progress(state)
+        return progress(root, state)
     if args.command == 'patterns':
         return pattern_report(root, state)
     if args.command == 'run':

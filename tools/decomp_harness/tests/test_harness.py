@@ -6,6 +6,7 @@ import io
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -529,3 +530,25 @@ class LoopTests(Fixture):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class VerifyAdoptionTests(Fixture):
+    def run_verify(self, rom_ok):
+        from decomp_harness import cli
+        work = Path(tempfile.mkdtemp())
+        shutil.copytree(self.root/'src', work/'src')
+        with patch.object(cli, 'snapshot', return_value=work), patch.object(cli, 'Builder') as builder:
+            builder.return_value.regression.return_value = rom_ok
+            return cli.verify(self.root, self.state, self.cfg, Control(), ['target'])
+
+    def test_hand_match_adopted_only_when_rom_exact(self):
+        self.state.update(self.function['id'], status='blocked')
+        (self.root/'src/core1/a.c').write_text(CANDIDATE)
+        self.assertFalse(self.run_verify(False)['adopted'])
+        self.assertEqual(self.state.get('target')['status'], 'blocked')
+        self.assertTrue(self.run_verify(True)['adopted'])
+        self.assertEqual(self.state.get('target')['status'], 'matched')
+
+    def test_global_asm_still_present_not_adopted(self):
+        self.assertFalse(self.run_verify(True)['adopted'])
+        self.assertEqual(self.state.get('target')['status'], 'pending')
