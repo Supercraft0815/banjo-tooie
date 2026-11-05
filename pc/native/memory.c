@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "memory.h"
+#include "native_rdram.h"
 
-/* Host allocations do not move during defragmentation. Handle zero is reserved. */
+/* Host allocations do not move during defragmentation. Handle zero is reserved.
+   Blocks come from the rdram arena so they have 32-bit physical addresses. */
 static void *handles[250];
 static s32 handle_sizes[250];
 
@@ -14,21 +16,27 @@ static void memory_error(const char *message) {
 void *heap_alloc(s32 size) {
     void *result;
     if (size < 0) memory_error("negative allocation size");
-    result = malloc(size ? (size_t)size : 1);
+    result = bt_alloc(size ? (size_t)size : 1);
     if (!result) memory_error("allocation failed");
     return result;
+}
+
+/* The N64 heap allocates from both ends to limit fragmentation; the arena has one. */
+void *heap_alloc_sided(s32 size, s32 alloc_side) {
+    (void)alloc_side;
+    return heap_alloc(size);
 }
 
 void *heap_realloc(void *memory, s32 size) {
     void *result;
     if (size < 0) memory_error("negative allocation size");
-    result = realloc(memory, size ? (size_t)size : 1);
+    result = bt_realloc(memory, size ? (size_t)size : 1);
     if (!result) memory_error("allocation failed");
     return result;
 }
 
 void heap_free(void *memory) {
-    free(memory);
+    bt_free(memory);
 }
 
 void *defrag(void *memory) {

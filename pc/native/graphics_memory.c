@@ -1,5 +1,6 @@
 #include "native_graphics_memory.h"
 #include "memory.h"
+#include "native_rdram.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,11 +44,14 @@ uint32_t native_graphics_register(NativeGraphicsMemory *memory,const void *host,
 }
 
 const void *native_graphics_resolve(const NativeGraphicsMemory *memory,uint32_t address,size_t size) {
-    if(!memory || !size)return NULL;
+    if(!size)return NULL;
+    if(bt_is_phys(address))return bt_host(address); /* any game memory, see platform/rdram.c */
+    if(!memory)return NULL;
     uint32_t offset=0;
     if(address<GRAPHICS_BASE) {
         offset=address&0xFFFFFFu;address=memory->segments[address>>24];
         if(!address)return NULL;
+        if(bt_is_phys(address))return (const unsigned char *)bt_host(address)+offset;
     }
     for(uint32_t i=0;i<memory->count;++i) {
         const NativeGraphicsRange *range=&memory->ranges[i];
@@ -61,7 +65,7 @@ const void *native_graphics_resolve(const NativeGraphicsMemory *memory,uint32_t 
 }
 
 int native_graphics_segment(NativeGraphicsMemory *memory,unsigned segment,uint32_t base) {
-    if(!memory || segment>=16 || (base && (base<GRAPHICS_BASE || !native_graphics_resolve(memory,base,1))))return 0;
+    if(!memory || segment>=16 || (base && !bt_is_phys(base) && (base<GRAPHICS_BASE || !native_graphics_resolve(memory,base,1))))return 0;
     memory->segments[segment]=base;return 1;
 }
 
@@ -80,14 +84,14 @@ NativeGraphicsMemory *native_graphics_bind(NativeGraphicsMemory *memory) {
 }
 
 static void graphics_address_error(void) {
-    fputs("Banjo-Tooie native graphics: unregistered pointer or invalid numeric address\n",stderr);abort();
+    fputs("Banjo-Tooie native graphics: invalid numeric address\n",stderr);abort();
 }
 
 uint32_t native_graphics_pointer(const void *host) {
     if(!host)return 0;
     uint32_t address=native_graphics_address(bound_memory,host,1);
-    if(!address)graphics_address_error();
-    return address;
+    /* Unregistered game memory gets its fixed physical address (platform/rdram.c). */
+    return address ? address : bt_phys(host);
 }
 
 uint32_t native_graphics_numeric(uintptr_t address) {

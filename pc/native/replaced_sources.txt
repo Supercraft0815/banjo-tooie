@@ -1,0 +1,7 @@
+# Game sources the native build replaces with host code (one path per line).
+# N64 heap; pc/native/memory.c allocates from the rdram arena instead.
+src/core1/heap.c
+# Boot segment: decompresses core1 from ROM; the executable already contains it.
+src/boot/1050.c
+src/boot/1140.c
+src/boot/1270.c

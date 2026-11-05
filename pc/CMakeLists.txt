@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 option(BT_LEGACY_RECOMP "Build the earlier N64Recomp prototype" OFF)
 if(NOT BT_LEGACY_RECOMP)
-    project(BanjoTooieNative LANGUAGES C)
+    project(BanjoTooieNative LANGUAGES C ASM)
     enable_testing()
     add_subdirectory(native)
     return()

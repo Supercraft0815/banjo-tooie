@@ -23,14 +23,16 @@ target_include_directories(bt_native_options INTERFACE
     "${BT_ROOT}/lib/ultralib/include" "${BT_ROOT}/src")
 if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
     target_compile_options(bt_native_options INTERFACE
-        -include "${BT_OVERLAY_ALIASES}"
+        "SHELL:-include \"${BT_OVERLAY_ALIASES}\""
+        "SHELL:-include \"${CMAKE_CURRENT_SOURCE_DIR}/include/native_prototypes.h\""
         -fno-builtin -fno-strict-aliasing -fwrapv
         -Werror=implicit-function-declaration -Werror=pointer-to-int-cast
         -Werror=int-to-pointer-cast -Werror=int-conversion
         -Werror=incompatible-pointer-types)
 endif()
 if(MSVC)
-    target_compile_options(bt_native_options INTERFACE "/FI${BT_OVERLAY_ALIASES}")
+    target_compile_options(bt_native_options INTERFACE "/FI${BT_OVERLAY_ALIASES}"
+        "/FI${CMAKE_CURRENT_SOURCE_DIR}/include/native_prototypes.h")
 endif()
 if(CMAKE_C_COMPILER_ID MATCHES "Clang")
     target_compile_options(bt_native_options INTERFACE -Wno-deprecated-non-prototype)
@@ -159,7 +161,7 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/overlays/gs/propsDll.c"
     "${BT_ROOT}/src/overlays/gs/propmarker.c"
     "${BT_ROOT}/src/overlays/gs/maker.c"
-    memory.c input.c drone_states.c quaternion.c animation_resource.c assets.c cic.c spline.c model.c)
+    platform/rdram.c memory.c input.c drone_states.c quaternion.c animation_resource.c assets.c cic.c spline.c model.c)
 target_link_libraries(bt_native_core PUBLIC bt_native_options ZLIB::ZLIB)
 if(UNIX AND NOT APPLE)
     target_link_libraries(bt_native_core PUBLIC m)
@@ -655,3 +657,19 @@ else()
     target_link_options(bt_native_reflection_test PRIVATE -Wl,--gc-sections)
 endif()
 add_test(NAME native_reflection COMMAND bt_native_reflection_test)
+
+# The game executable: everything that compiles natively, plus generated traps for
+# what is still missing (pc/native/link_game.py builds it and writes the traps).
+file(STRINGS game_sources.txt BT_GAME_PORTED)
+list(TRANSFORM BT_GAME_PORTED PREPEND "${BT_ROOT}/")
+set(BT_GAME_TRAPS "${CMAKE_CURRENT_BINARY_DIR}/generated/unported.c")
+set(BT_GAME_TRAP_DATA "${CMAKE_CURRENT_BINARY_DIR}/generated/unported.s")
+foreach(f "${BT_GAME_TRAPS}" "${BT_GAME_TRAP_DATA}")
+    if(NOT EXISTS "${f}")
+        file(WRITE "${f}" "")
+    endif()
+endforeach()
+add_executable(bt_native_game EXCLUDE_FROM_ALL platform/main.c platform/traps.c
+    platform/ultra_os.c platform/ultra_vi.c platform/ultra_pi.c platform/handwritten.c ${BT_GAME_PORTED}
+    "${BT_GAME_TRAPS}" "${BT_GAME_TRAP_DATA}")
+target_link_libraries(bt_native_game PRIVATE bt_native_core)

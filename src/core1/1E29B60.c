@@ -1,4 +1,10 @@
 #include "core1/1E29B60.h"
+#ifdef BT_NATIVE
+#include <stdint.h>
+#include "threads.h"
+void func_800D5E74(void);
+s32 _cosection_entrypoint_0(void);
+#endif
 
 s32 D_800459D0;
 u64 D_800459D8;
@@ -7,8 +13,10 @@ void func_80012030(void *unused) {
     extern u8 core1_BSS_START[];
     extern u8 core1_BSS_END[];
     void func_80013620(void);
+#ifndef BT_NATIVE // host .bss starts zeroed and caches are coherent
     bzero(core1_BSS_START, core1_BSS_END - core1_BSS_START);
     osWritebackDCacheAll();
+#endif
     osInitialize();
     func_80013620();
 }
@@ -56,9 +64,17 @@ void func_80012134(void) { func_8001253C(_cosection_entrypoint_1()); func_800125
 
 void func_80012164(void) { func_8001253C(_cosection_entrypoint_0()); func_80012520(1); }
 
+#ifdef BT_NATIVE
+// N64 memory-map sizes; the host binary has no core2 end address, so these only
+// keep their callers' arithmetic well defined.
+s32 func_80012194(void) { extern u8 *D_8007E994; return (s32)((uintptr_t)D_8007E994 - (uintptr_t)core2_VRAM_END); }
+
+s32 func_800121AC(void) { return (s32)((uintptr_t)core2_VRAM_END - (uintptr_t)func_80012030) + (s32)0xFFF21DD0; }
+#else
 s32 func_80012194(void) { extern u8 *D_8007E994; return (s32)D_8007E994 - (s32)core2_VRAM_END; }
 
 s32 func_800121AC(void) { return (s32)core2_VRAM_END - (s32)func_80012030 + (s32)0xFFF21DD0; }
+#endif
 
 void func_800121D0(void) {
     u32 func_8001E830(void);
@@ -119,7 +135,9 @@ void func_80012214(void) {
     func_80014FE8(); // start_vi_thread
     func_8001E7E8();
     func_8001C1C0();
+#ifndef BT_NATIVE // core2 is linked into the executable, nothing to load
     func_80019EC0(0, core2_VRAM, core2_VRAM_END, core2_ROM_START, core2_ROM_END, core2_TEXT_START, core2_TEXT_END, core2_DATA_START, core2_RODATA_END, core2_BSS_START, core2_BSS_END);
+#endif
     heap_setup(TRUE);
     func_80014E6C();
     D_80043388.unk400 = 0x01020304;

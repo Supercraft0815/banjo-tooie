@@ -49,6 +49,21 @@ void func_800125B0(void) {
             osViClock = 0x02E6025C;
             break;
     }
+#ifdef BT_NATIVE
+    // Audio is not ported yet: create the queues other modules talk to, but no
+    // synthesizer and no audio thread.
+    {
+        extern u8 D_80045BB8[];
+        extern OSMesg D_80045BD0[];
+        extern OSMesgQueue D_80045BF0;
+        extern OSMesg D_80045C08[];
+        extern u8 D_80069488[];
+        extern OSMesg D_800694A0[];
+        osCreateMesgQueue((OSMesgQueue *)D_80069488, D_800694A0, 50);
+        osCreateMesgQueue(&D_80045BF0, D_80045C08, 8);
+        osCreateMesgQueue((OSMesgQueue *)D_80045BB8, D_80045BD0, 8);
+    }
+#else
     func_8001268C();
     func_800DC380();
     func_80016C00();
@@ -56,7 +71,10 @@ void func_800125B0(void) {
     func_80012F34(0, 4);
     func_80012F34(1, 4);
     func_80012EA0();
+#endif
 }
+
+#ifndef BT_NATIVE // synthesizer setup and audio thread: see the native note in func_800125B0
 
 void func_8001268C(void) {
     struct DMAState {
@@ -340,6 +358,8 @@ void func_80012D84(void) {
     D_8006A148++;
 }
 
+#endif
+
 void func_80012EA0(void) {
     extern s32 D_8003CA40;
     extern OSThread D_800459F8;
@@ -437,11 +457,36 @@ void func_800131C0(void) {
     extern u8 *D_80076958;
     extern u8 *D_80076978;
     extern OSMesgQueue D_800769B8;
-    osCreateMesgQueue((OSMesgQueue *) D_8007695C, &D_80076958, 1);
-    osCreateMesgQueue(&D_800769B8, &D_80076978, 0x10);
-    osCreatePiManager(0x96, &D_800769B8, &D_80076978, 0x10);
+    osCreateMesgQueue((OSMesgQueue *) D_8007695C, (OSMesg *)&D_80076958, 1);
+    osCreateMesgQueue(&D_800769B8, (OSMesg *)&D_80076978, 0x10);
+    osCreatePiManager(0x96, &D_800769B8, (OSMesg *)&D_80076978, 0x10);
 }
 
+#ifdef BT_NATIVE
+// The N64 keeps the destination/length stack in two overlapping s32 arrays.
+static void *native_dma_dst[8];
+static s32 native_dma_len[8];
+
+void func_80013224(u32 arg0, void *arg1, s32 arg2) {
+    extern s32 D_8003CC70;
+    extern u8 D_80076940[];
+    extern u8 D_8007695C[];
+
+    D_8003CC70++;
+    native_dma_dst[D_8003CC70] = arg1;
+    native_dma_len[D_8003CC70] = arg2;
+    osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg0, arg1, arg2, (OSMesgQueue *) D_8007695C);
+}
+
+void func_800132BC(void) {
+    extern u8 D_8007695C[];
+    extern s32 D_8003CC70;
+
+    osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
+    osInvalDCache(native_dma_dst[D_8003CC70], native_dma_len[D_8003CC70]);
+    D_8003CC70 -= 1;
+}
+#else
 void func_80013224(u32 arg0, void *arg1, s32 arg2) {
     extern s32 D_8003CC70;
     extern s32 D_800769CC[];
@@ -466,6 +511,7 @@ void func_800132BC(void) {
     osInvalDCache(D_800769CC[D_8003CC70], D_800769D0[D_8003CC70]);
     D_8003CC70 -= 1;
 }
+#endif
 
 void func_80013324(u32 arg0, void *arg1, s32 arg2)
 {

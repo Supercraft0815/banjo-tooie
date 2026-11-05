@@ -46,7 +46,13 @@ s32 crc_symbol_index;
 s32 crc_good;
 
 void init_crc_check(void) {
+#ifdef BT_NATIVE
+    // The checksums cover N64 machine code, which the host build does not contain:
+    // start past the last entry, so every check reports success.
+    crc_symbol_index = ARRLEN(crc_entries);
+#else
     set_crc_entry(0);
+#endif
     crc_good = TRUE;
 }
 

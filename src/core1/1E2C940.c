@@ -5,6 +5,28 @@ extern s32 D_80078F88;
 extern s32 D_8007913C;
 extern OSMesgQueue D_80079010;
 
+#ifdef BT_NATIVE
+#include "memory.h"
+// D_80078F80/84/88 are three consecutive framebuffer addresses on the N64; the
+// original code indexes them as one array. D_80078F70 keeps the raw allocations.
+static void *native_framebuffers[3];
+static void *native_framebuffer_allocations[3];
+#define FRAMEBUFFER(i) (native_framebuffers[i])
+#endif
+
+#ifdef BT_NATIVE
+void *func_80014E10(s32 arg0, s32 arg1) {
+    u8 *p = heap_alloc_sided(arg1 + 0x40, 1);
+    native_framebuffer_allocations[arg0] = p;
+    return p + ((0x40 - ((uintptr_t)p & 0x3F)) & 0x3F);
+}
+
+void func_80014E6C(void) {
+    native_framebuffers[0] = func_80014E10(0, 0x21D80);
+    native_framebuffers[1] = func_80014E10(1, 0x21D80);
+    native_framebuffers[2] = func_80014E10(2, 0x10EC0);
+}
+#else
 s32 func_80014E10(s32 arg0, s32 arg1) {
     extern s32 D_80078F70[];
     void *temp_ptr;
@@ -31,12 +53,25 @@ void func_80014E6C(void) {
     D_80078F84 = func_80014E10(1, 0x21D80);
     D_80078F88 = func_80014E10(2, 0x10EC0);
 }
+#endif
 
 // get_framebuffer_size_bytes
 u32 func_80014EC8() {
     return FRAMEBUFFER_SIZE_BYTES;
 }
 
+#ifdef BT_NATIVE
+void *func_80014ED4(void) {
+    s32 func_80014F38(void);
+    return FRAMEBUFFER(func_80014F38());
+}
+
+void *func_80014F00(void) {
+    extern s16 D_80078F62;
+    s16 func_80014F58(void);
+    return FRAMEBUFFER(func_80014F58() ^ D_80078F62);
+}
+#else
 s32 func_80014ED4(void) {
     extern s32 func_80014F38(void);
     extern s32 D_80078F80;
@@ -49,6 +84,7 @@ s32 func_80014F00(void) {
     extern s32 D_80078F80;
     return (&D_80078F80)[func_80014F58() ^ D_80078F62];
 }
+#endif
 
 s32 func_80014F38(void) {
     extern s16 D_80078F60;
@@ -88,7 +124,11 @@ void func_80014F64(OSMesgQueue* queue, OSMesg mesg) {
 
 void func_80014FE8(void) {
     extern OSViMode D_8003F4E0, D_8003F530;
+#ifdef BT_NATIVE
+    extern OSViMode *D_80078F68;
+#else
     extern u8 *D_80078F68;
+#endif
     extern s16 D_80078F60, D_80078F64;
     extern OSMesgQueue D_80078FD0, D_80079030;
     extern OSMesg D_80078FE8[10], D_80079028[1], D_80079048[60];
@@ -128,7 +168,11 @@ void func_80014FE8(void) {
     }
     D_80079138 = 0;
     func_80015178(2);
+#ifdef BT_NATIVE
+    func_8001DCB0(&D_80079140, &D_800792F0, 0, (void (*)(void *))func_8001546C, NULL, &D_80079700, 0x50);
+#else
     func_8001DCB0(&D_80079140, &D_800792F0, 0, func_8001546C, NULL, &D_80079700, 0x50);
+#endif
     osStartThread(&D_80079140);
 }
 
@@ -185,7 +229,11 @@ void func_800151BC(s32 arg0) {
             osViBlack(0);
         }
         D_80078F60 = func_80014F38();
+#ifdef BT_NATIVE
+        osViSwapBuffer(FRAMEBUFFER(D_80078F60));
+#else
         osViSwapBuffer(((s32 *) &D_80078F80)[D_80078F60]);
+#endif
         for (*waitCount = 0; !(osDpGetStatus() & 2) && osViGetCurrentFramebuffer() != osViGetNextFramebuffer(); (*waitCount)++) {
             osRecvMesg(&D_80079030, NULL, 1);
         }
@@ -212,7 +260,11 @@ void func_80015430(s32 arg0) {
     extern s16 D_80078F60;
     extern s32 D_80078F80;
     D_80078F60 = arg0;
+#ifdef BT_NATIVE
+    osViSwapBuffer(FRAMEBUFFER(D_80078F60));
+#else
     osViSwapBuffer(((s32 *) &D_80078F80)[D_80078F60]);
+#endif
 }
 
 void func_8001546C(s32 arg0) {
@@ -253,6 +305,17 @@ void func_8001559C(s32 arg0) {
     osViBlack((u8) arg0);
 }
 
+#ifdef BT_NATIVE
+void func_800155BC(void) {
+    static const s32 sizes[3] = {0x21D80, 0x21D80, 0x10EC0};
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        if (FRAMEBUFFER(i) != NULL) {
+            aligned8_memset(FRAMEBUFFER(i), 0x10001, sizes[i]);
+        }
+    }
+}
+#else
 void func_800155BC(void) {
     s32 aligned8_memset(s32 dst, s32 value, s32 size);
     extern s32 D_80078F80;
@@ -271,15 +334,22 @@ void func_800155BC(void) {
         osWritebackDCache(D_80078F88, 0x10EC0);
     }
 }
+#endif
 
 void func_80015670(s32 arg0, s32 arg1) {
+#ifdef BT_NATIVE // OSViMode has no pointers, so the N64 offsets hold on the host
+    extern OSViMode *D_80078F68;
+#define D_80078F68 ((u8 *)D_80078F68)
+#else
     extern u8 *D_80078F68;
+#endif
     s32 *sp2C = (s32 *)(D_80078F68 + 0x30);
     s32 *sp28 = (s32 *)(D_80078F68 + 0x44);
     s16 *sp24 = (s16 *)(D_80078F68 + 0x1C);
     u32 temp_v0;
     s16 *sp1C = (s16 *)(D_80078F68 + 0x30);
     s16 *sp18 = (s16 *)(D_80078F68 + 0x32);
+#undef D_80078F68
 
     if (arg0 < -0x20) {
         arg0 = -0x20;
@@ -300,10 +370,16 @@ void func_80015670(s32 arg0, s32 arg1) {
     osSetIntMask(temp_v0);
 }
 
+#ifdef BT_NATIVE
+void *func_8001575C(void) {
+    return FRAMEBUFFER(2);
+}
+#else
 s32 func_8001575C()
 {
     return D_80078F88;
 }
+#endif
 
 void func_80015768(void) {
     extern s16 D_80078F62;
@@ -327,7 +403,11 @@ void func_800157EC(s32 *arg0, Gfx **arg1) {
 
     dl = (*arg1)++;
     dl->words.w0 = 0xDC080008;
+#ifdef BT_NATIVE
+    dl->words.w1 = osVirtualToPhysical(D_800797B8 + (*arg0 << 4));
+#else
     dl->words.w1 = (u32)(D_800797B8 + ((*arg0 << 4) + 0x80000000));
+#endif
 }
 
 s32 func_80015828(void) {
@@ -378,7 +458,11 @@ void *func_8001592C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         }
     }
     D_80079710[i] = 1;
+#ifdef BT_NATIVE
+    e = (struct Entry *)(D_80079718 + i * 12);
+#else
     e = (struct Entry *)((s32)D_80079718 + i * 12);
+#endif
     e->index = func_80015828();
     v = (struct Vp *)(D_800797B8 + e->index * 16);
     e->w = arg2;
