@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1E8CC00_native.inc"
+#else
 #include "common.h"
 
 void func_800B38C8();
@@ -209,3 +212,5 @@ void *func_800B38E8(u8 *arg0) {
     }
     return arg0;
 }
+
+#endif

@@ -1,0 +1,18 @@
+# Fetched by setup.sh at pinned commits
+lib/N64ModernRuntime/
+lib/RecompFrontend/
+lib/rt64/
+
+# Generated from the decomp ELF; derived from the game, never commit
+RecompiledFuncs/
+rsp/
+build-cmake/
+overlay_sections.txt
+overlay_ids.inc
+*.z64
+*.n64
+tooie.elf
+tooie.try.toml
+
+# Local dependency build output
+build/

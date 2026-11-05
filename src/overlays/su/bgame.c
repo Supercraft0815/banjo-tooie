@@ -243,7 +243,7 @@ s32 susubgame_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800F497C(s32);
     void func_800F49A8(s32, s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F608C(s32, s32);
     void func_800F8294(s32, f32 *);

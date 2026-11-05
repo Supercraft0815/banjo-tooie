@@ -1,4 +1,8 @@
 #include "core2/1EC8070.h"
+#ifdef BT_NATIVE
+#include <math.h>
+#include <limits.h>
+#endif
 
 // TODO rename operations based on whether they output to a new vector or output to an input vector.
 // add vs sum/subtract vs difference? What to do for scalar multiplication? apply_scale vs scale?
@@ -75,9 +79,17 @@ void func_800EE904(s32 dst[3], f32 src[3]) {
 
 // ml_vec3f_to_vec3s
 void func_800EE940(s16 dst[3], f32 src[3]) {
+#ifdef BT_NATIVE
+    /* MIPS truncates to a word, then stores its low halfword. */
+    for(int i=0;i<3;++i) {
+        f32 value=src[i];s32 word=isfinite(value) && value>=-2147483648.0f && value<2147483648.0f ? (s32)value : INT_MIN;
+        dst[i]=(s16)(u16)word;
+    }
+#else
     dst[0] = src[0];
     dst[1] = src[1];
     dst[2] = src[2];
+#endif
 }
 
 // ml_vec3f_cross_product

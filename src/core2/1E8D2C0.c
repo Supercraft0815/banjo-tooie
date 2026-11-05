@@ -1,4 +1,14 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "native_block_pool.h"
+#include "memory.h"
+#include <stdlib.h>
+#define POOL_HEADER ((s32)sizeof(uintptr_t))
+#define POOL_HEAD(data) ((s16 *)((u8 *)(data) + POOL_HEADER))
+#else
+#define POOL_HEADER 4
+#define POOL_HEAD(data) ((s16 *)((u8 *)(data) + 4))
+#endif
 
 s16 *func_800B39D0(u8 *arg0, s32 arg1) {
     struct Record {
@@ -7,17 +17,25 @@ s16 *func_800B39D0(u8 *arg0, s32 arg1) {
         u8 data[1];
     } *record = (struct Record *) arg0;
 
+#ifdef BT_NATIVE
+    return (s16 *)(arg0 + POOL_HEADER + arg1 * record->stride);
+#else
     return (s16 *) (record->data + arg1 * record->stride);
+#endif
 }
 
 /* extern */
 
 void func_800B39E8(void *arg0) {
     s16 *temp_v0;
-    s16 *var_v0 = (s16 *)((u8 *)arg0 + 4);
+    s16 *var_v0 = (s16 *)((u8 *)arg0 + POOL_HEADER);
 
-    *(s16 *)((u8 *)arg0 + 6) = 0;
+    *(s16 *)((u8 *)arg0 + POOL_HEADER + 2) = 0;
+#ifdef BT_NATIVE
+    if (*(s16 *)((u8 *)arg0 + 2) > 1) {
+#else
     if (*(s16 *)((u8 *)arg0 + 2) != 0) {
+#endif
         *var_v0 = 1;
         temp_v0 = func_800B39D0(arg0, *var_v0);
         temp_v0[0] = 0;
@@ -40,7 +58,11 @@ void func_800B3A40(u8 *arg0, s16 *arg1, s32 arg2, s32 arg3) {
         entry[0] = arg1[0];
         entry[1] = arg3;
     }
+#ifdef BT_NATIVE
+    if (arg2 >= arg1[1] && func_800B39D0(arg0, arg2 - arg1[1]) == arg1) {
+#else
     if (func_800B39D0(arg0, arg2 - arg1[1]) == arg1) {
+#endif
         arg1[1] += entry[1];
         arg1[0] = entry[0];
     } else {
@@ -57,8 +79,8 @@ void func_800B3B08(u8 *arg0, s32 arg1, s32 arg2) {
     s16 *var_s0;
     s16 temp_a1;
 
-    var_s0 = arg0 + 4;
-    if ((*(s16 *)((s8 *)(arg0) + (4))) != 0) {
+    var_s0 = (s16 *)(arg0 + POOL_HEADER);
+    if ((*(s16 *)((s8 *)(arg0) + (POOL_HEADER))) != 0) {
 loop_1:
         temp_a1 = *var_s0;
         if (temp_a1 < (arg1 + arg2)) {
@@ -78,7 +100,12 @@ void func_800B3B8C(u8 *arg0, s16 *arg1, s16 *arg2, s32 arg3) { s16 *temp_v0; *ar
 
 s16 *func_800B3BDC(u8 *arg0, s16 *arg1) { s16 *temp_v0; temp_v0 = func_800B39D0(arg0, *arg1); if (temp_v0[1] == 1) { *arg1 = temp_v0[0]; } else { func_800B3B8C(arg0, temp_v0, arg1, 1); } return temp_v0; }
 
-s16 *func_800B3C40(u8 **arg0, s32 arg1, s32 arg2) { u8 *data; s32 old_count; s32 new_count; s16 *entry; s16 *result; data = *arg0; old_count = *(s16 *)(data + 2); new_count = old_count + arg2; data = heap_realloc(data, *(s16 *)data * new_count + 4); *(s16 *)(data + 2) = new_count; *arg0 = data; result = func_800B39D0(data, arg1); *result = old_count; entry = func_800B39D0(data, *result); entry[0] = 0; entry[1] = arg2; return result; }
+s16 *func_800B3C40(u8 **arg0, s32 arg1, s32 arg2) { u8 *data; s32 old_count; s32 new_count; s16 *entry; s16 *result; data = *arg0; old_count = *(s16 *)(data + 2);
+#ifdef BT_NATIVE
+    if (arg2 <= 0 || arg2 > 32767 - old_count) abort();
+#endif
+    new_count = old_count + arg2;
+    data = heap_realloc(data, *(s16 *)data * new_count + POOL_HEADER); *(s16 *)(data + 2) = new_count; *arg0 = data; result = func_800B39D0(data, arg1); *result = old_count; entry = func_800B39D0(data, *result); entry[0] = 0; entry[1] = arg2; return result; }
 
 s16 *func_800B3CDC(u8 **arg0, void *arg1)
 {
@@ -95,8 +122,8 @@ s16 *func_800B3CDC(u8 **arg0, void *arg1)
   u8 *data;
   data = *arg0;
   result = NULL;
-  entry = (s16 *) (data + 4);
-  if ((*((s16 *) (data + 4))) == 0)
+  entry = (s16 *) (data + POOL_HEADER);
+  if ((*((s16 *) (data + POOL_HEADER))) == 0)
   {
     entry = func_800B3C40(arg0, 0, 10);
     data = *arg0;
@@ -127,7 +154,7 @@ s16 *func_800B3CDC(u8 **arg0, void *arg1)
       old_start = *((s16 *) arg1);
       count = ((s16 *) arg1)[1] + 1;
       previous = 0;
-      entry = (s16 *) (data + 4);
+      entry = (s16 *) (data + POOL_HEADER);
       old_start = *((s16 *) arg1);
       while ((*entry) != 0)
       {
@@ -174,8 +201,8 @@ void func_800B3EDC(u8 **arg0, s32 arg1) {
     data = *arg0;
     value = 0;
     previous = NULL;
-    entry = (s16 *)(data + 4);
-    if (*(s16 *)(data + 4) != 0) {
+    entry = (s16 *)(data + POOL_HEADER);
+    if (*(s16 *)(data + POOL_HEADER) != 0) {
         do {
             next_index = *entry;
             previous = entry;
@@ -194,7 +221,7 @@ void func_800B3EDC(u8 **arg0, s32 arg1) {
         } else {
             entry[1] = available - arg1;
         }
-        resized = heap_realloc(data, (*(s16 *)data * value) + 4);
+        resized = heap_realloc(data, (*(s16 *)data * value) + POOL_HEADER);
         *(s16 *)(resized + 2) = value;
         *arg0 = resized;
     }
@@ -213,11 +240,14 @@ void func_800B3FD0(u8 **arg0, void *arg1, s32 arg2) {
     u8 *data;
 
     data = *arg0;
+#ifdef BT_NATIVE
+    if (arg2 < 0 || arg2 >= ((s16 *)arg1)[1]) return;
+#endif
     handled[0] = 0;
     if (arg2 == 0) {
-        entry = (s16 *)(data + 4);
+        entry = (s16 *)(data + POOL_HEADER);
         index = 0;
-        if (*(s16 *)(data + 4) != 0) {
+        if (*(s16 *)(data + POOL_HEADER) != 0) {
 loop:
             first = (*(s16 *)((u8 *)arg1 + 0));
             if (first == entry[1] + index) {
@@ -267,8 +297,8 @@ s32 func_800B4134(u8 **arg0, void *arg1) {
     temp_s2 = *arg0;
     var_s4 = NULL;
     var_s1 = 0;
-    var_s0 = temp_s2 + 4;
-    if ((*(s16 *)((s8 *)(temp_s2) + (4))) != 0) {
+    var_s0 = (s16 *)(temp_s2 + POOL_HEADER);
+    if ((*(s16 *)((s8 *)(temp_s2) + (POOL_HEADER))) != 0) {
 loop_1:
         if ((*(s16 *)((s8 *)(arg1) + (0))) == ((*(s16 *)((s8 *)(var_s0) + (2))) + var_s1)) {
             *var_s4 = (*(s16 *)((s8 *)(var_s0) + (0)));
@@ -299,6 +329,11 @@ void func_800B4290(void *arg0) {
     (*(s16 *)((s8 *)(arg0) + (0))) = (s16) (*(s16 *)((s8 *)(arg0) + (2)));
 }
 
+#ifdef BT_NATIVE
+void *func_800B42A0(u8 *data, s16 *range) {
+    return range[0] ? func_800B39D0(data,range[0]) : NULL;
+}
+#else
 s32 func_800B42A0(u8 *arg0, s16 *arg1) {
     s32 value;
     s32 result;
@@ -311,6 +346,7 @@ s32 func_800B42A0(u8 *arg0, s16 *arg1) {
     }
     return result;
 }
+#endif
 
 void func_800B42DC(void* arg0) 
 {
@@ -319,8 +355,11 @@ void func_800B42DC(void* arg0)
 s16 *func_800B42FC(s32 size, s32 count) {
     void func_800B39E8(void *);
     s16 *ptr;
+#ifdef BT_NATIVE
+    if (size < 4 || size > 32767 || size % 4 || count < 0 || count >= 32767) abort();
+#endif
     count++;
-    ptr = heap_alloc(size * count + 4);
+    ptr = heap_alloc(size * count + POOL_HEADER);
     ptr[0] = size;
     ptr[1] = count;
     func_800B39E8(ptr);
@@ -334,5 +373,9 @@ void func_800B4354(u8 **arg0)
 
 s32 func_800B4374(s16 *arg0)
 {
+#ifdef BT_NATIVE
+    return *POOL_HEAD(arg0);
+#else
     return arg0[2];
+#endif
 }

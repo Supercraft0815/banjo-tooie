@@ -168,7 +168,11 @@ void func_800F0410(f32 dst[3], f32 arg2[3][3], f32 arg1[3]){
 void func_800F0524(f32 dst[3], f32 vec1[9], f32 vec2[3]) {
     void func_800EFB24(f32 *, f32 *, f32 *);
     void func_800EE97C(f32 *, f32 *, f32 *);
+#ifdef BT_NATIVE
+    void func_800EF2A0(f32 *);
+#else
     s32 func_800EF2A0(s32);
+#endif
     void func_800F03AC(f32 *, f32 *, f32 *, f32 *);
     f32 tmp1[3];
     f32 tmp2[3];
@@ -176,7 +180,11 @@ void func_800F0524(f32 dst[3], f32 vec1[9], f32 vec2[3]) {
     func_800EFB24(tmp1, &vec1[3], vec1);
     func_800EFB24(tmp2, &vec1[6], vec1);
     func_800EE97C(tmp3, tmp1, tmp2);
+#ifdef BT_NATIVE
+    func_800EF2A0(tmp3);
+#else
     func_800EF2A0((s32)tmp3);
+#endif
     func_800F03AC(dst, vec1, tmp3, vec2);
 }
 
@@ -343,7 +351,11 @@ int func_800F0BD0(f32 direction[3], f32 normal[3], f32 limit, f32 cosine) {
 /* extern */
 
 f32 func_800F0C68(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3) {
+#ifdef BT_NATIVE
+    void func_800EF2A0(f32 *);
+#else
     s32 func_800EF2A0(s32);
+#endif
     func_800EF2A0(arg1);
     return arg2 / sqrtf((arg2 * arg2) + (arg3 * arg3));
 }

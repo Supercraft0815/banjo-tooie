@@ -1,4 +1,13 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "native_spline.h"
+#include "native_assets.h"
+#include "memory.h"
+#define EVENT_COMMAND_ID(data) (((u32 *)(data))[3] >> 24)
+#else
+#define SPLINE_FIELD(ctx, field, original) (original)
+#define EVENT_COMMAND_ID(data) ((data)[12])
+#endif
 struct ImageStruct;
 
 /* extern */
@@ -10,7 +19,11 @@ s32 func_80800000_glsplineDll(u32 *arg0, s32 *arg1, u32 *arg2, u32 *arg3, u32 *a
     temp_v0 = (*(s32 *)((s8 *)(arg7) + (4)));
     if (!(temp_v0 & 1) && (((u32) (temp_v0 << 0x19) >> 0x1A) == 0xB)) {
         *arg0 = (u32) ((*(s32 *)((s8 *)(arg7) + (8))) << 0x16) >> 0x1F;
+#ifdef BT_NATIVE
+        *arg1 = (*(u32 *)((u8 *)arg7 + 8) >> 8) & 1;
+#else
         *arg1 = (*(u8 *)((s8 *)(arg7) + (0xA))) & 1;
+#endif
         *arg2 = (u32) ((*(u32 *)((s8 *)(arg7) + (0xC))) << 0x12) >> 0x16;
         *arg3 = (u32) ((*(s32 *)((s8 *)(arg7) + (8))) << 0x12) >> 0x1F;
         *arg4 = (u32) (*(u32 *)((s8 *)(arg7) + (0xC))) >> 0x17;
@@ -58,8 +71,12 @@ void glsplineDll_entrypoint_0(void *arg0) {
         s16 ids;
         s16 pad12;
     } Spline;
+#ifdef BT_NATIVE
+    typedef NativeSplineTarget Cache;
+    typedef NativeSplineContext Context;
+#else
     typedef struct {
-        s8 active : 1;
+        s8 used : 1;
         s8 unused : 7;
         u8 data[11];
     } Cache;
@@ -77,6 +94,7 @@ void glsplineDll_entrypoint_0(void *arg0) {
         Cache *cache;
         u8 map;
     } Context;
+#endif
     u32 _gccubeDll_entrypoint_7(void);
     Prop *_gccubesearch_entrypoint_17(s32, s32 *);
     u32 _gccubesearch_entrypoint_18(s32, s32 *, u32 *, s32 *, s32 *, s32 *, Prop **);
@@ -128,7 +146,7 @@ void glsplineDll_entrypoint_0(void *arg0) {
     f32 *coords;
     Spline *spline;
     Event *event;
-    u32 end;
+    uintptr_t end;
     Event *copyEvent;
     Event temp;
     Event *source;
@@ -149,6 +167,9 @@ void glsplineDll_entrypoint_0(void *arg0) {
     count = _gccubeDll_entrypoint_7() + 1;
     if (count >= 2) {
         nodes = heap_alloc(count * sizeof(Node));
+#ifdef BT_NATIVE
+        rare_memset(nodes, 0, count * sizeof(Node));
+#endif
         for (i = 0; i < count; i++) {
             ((Node *)(nodes + (i << 4)))->next = -1;
         }
@@ -220,7 +241,7 @@ void glsplineDll_entrypoint_0(void *arg0) {
                 idIndex = 0;
                 coordIndex = 5;
                 /* Preserve the original IDO register allocation across the count pass. */
-                if ((s32)nodes != 0) {}
+                if ((uintptr_t)nodes != 0) {}
                 current = i;
                 if (root->next != 0 && root->visited == 0) {
                     do {
@@ -255,7 +276,11 @@ void glsplineDll_entrypoint_0(void *arg0) {
                 if (size != 4) do {
                     if (((Node *)(nodes + (scan << 4)))->isEvent == 1) {
                         source = (Event *)_gccubesearch_entrypoint_17(scan, 0);
+#ifdef BT_NATIVE
+                        ((u32 *)source)[2] = (((u32 *)source)[2] & ~255U) | (((Context *)arg0)->count & 255);
+#else
                         source->data[7] = ((Context *)arg0)->count;
+#endif
                         rare_memcpy(copyEvent, source, 20);
                         copyEvent++;
                         remaining--;
@@ -263,10 +288,10 @@ void glsplineDll_entrypoint_0(void *arg0) {
                     scan = ((Node *)(nodes + (scan << 4)))->next;
                 } while (remaining != 0);
                 /* Zero events use an integer bound, not a pointer before the payload. */
-                end = (u32)((events->count - 1) * (s32)sizeof(Event)) + (u32)(events + 1);
+                end = (uintptr_t)((events->count - 1) * (s32)sizeof(Event)) + (uintptr_t)(events + 1);
                 do {
                     remaining = 0;
-                    for (event = ((Event *)(events + 1)); (u32)event < end; event++) {
+                    for (event = ((Event *)(events + 1)); (uintptr_t)event < end; event++) {
                         if (event[1].time < event[0].time) {
                             rare_memcpy(&temp, event, 20);
                             rare_memcpy(event, event + 1, 20);
@@ -303,11 +328,18 @@ void glsplineDll_entrypoint_0(void *arg0) {
     ((Context *)arg0)->value1 = 0.0;
     func_800D87B0();
     if (((Context *)arg0)->offsets != 0) {
+#ifdef BT_NATIVE
+        asset = (u8 *)((Context *)arg0)->commands;
+#else
         asset = (u8 *)func_800D674C(((Context *)arg0)->asset);
+#endif
         for (i = 0; i < ((Context *)arg0)->count; i++) {
             data = func_800D7570(i);
-            if (data != 0 && (*(u32 *)(data + 4) & 1) && (*(u32 *)(data + 12) & 1) && data[12] != 0) {
-                size = data[12] - 1;
+            if (data != 0 && (*(u32 *)(data + 4) & 1) && (*(u32 *)(data + 12) & 1) && EVENT_COMMAND_ID(data) != 0) {
+                size = EVENT_COMMAND_ID(data) - 1;
+#ifdef BT_NATIVE
+                if (size >= ((Context *)arg0)->unk1A0) continue;
+#endif
                 entry = (s32 *)(asset + ((Context *)arg0)->offsets[size]);
                 if (entry[1] == D_80800FC0_glsplineDll[0] && entry[2] == D_80800FC0_glsplineDll[1]) {
                     func_800C84A4(func_800D7520(i), 1);
@@ -317,7 +349,7 @@ void glsplineDll_entrypoint_0(void *arg0) {
     }
     ((Context *)arg0)->cache = heap_alloc(7 * sizeof(Cache));
     for (i = 0; i < 7; i++) {
-        ((Context *)arg0)->cache[i].active = 0;
+        ((Context *)arg0)->cache[i].used = 0;
     }
 }
 
@@ -343,12 +375,17 @@ void glsplineDll_entrypoint_1(void *arg0) {
     s16 *var_s2;
     s32 var_s1;
 
-    sp28 = func_8001B798((*(s16 *)((s8 *)(arg0) + (0x184))));
-    temp_v0 = func_8001B798((*(s16 *)((s8 *)(arg0) + (0x186))));
+#ifdef BT_NATIVE
+    sp28 = ((NativeSplineContext *)arg0)->handle0 ? func_8001B798(((NativeSplineContext *)arg0)->handle0) : NULL;
+    temp_v0 = ((NativeSplineContext *)arg0)->handle1 ? func_8001B798(((NativeSplineContext *)arg0)->handle1) : NULL;
+#else
+    sp28 = func_8001B798(SPLINE_FIELD(arg0, handle0, (*(s16 *)((s8 *)(arg0) + (0x184)))));
+    temp_v0 = func_8001B798(SPLINE_FIELD(arg0, handle1, (*(s16 *)((s8 *)(arg0) + (0x186)))));
+    #endif
     var_s1 = 0;
     var_s0 = sp28;
     var_s2 = temp_v0;
-    if ((*(s32 *)((s8 *)(arg0) + (0x188))) > 0) {
+    if (SPLINE_FIELD(arg0, count, (*(s32 *)((s8 *)(arg0) + (0x188)))) > 0) {
         do {
             func_8001B754((*(s16 *)((s8 *)(func_8001B798(*var_s0)) + (0x10))));
             func_8001B754(*var_s0);
@@ -356,19 +393,23 @@ void glsplineDll_entrypoint_1(void *arg0) {
             var_s1 += 1;
             var_s0++;
             var_s2++;
-        } while (var_s1 < (*(s32 *)((s8 *)(arg0) + (0x188))));
+        } while (var_s1 < SPLINE_FIELD(arg0, count, (*(s32 *)((s8 *)(arg0) + (0x188)))));
     }
-    func_8001B754((*(s16 *)((s8 *)(arg0) + (0x184))));
-    func_8001B754((*(s16 *)((s8 *)(arg0) + (0x186))));
-    (*(s16 *)((s8 *)(arg0) + (0x184))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (0x186))) = 0;
-    heap_free((*(void **)((s8 *)(arg0) + (0x1A4))));
-    (*(s32 *)((s8 *)(arg0) + (0x188))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0x1A4))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0x198))) = 0;
-    heap_free((*(void **)((s8 *)(arg0) + (0x19C))));
-    (*(s32 *)((s8 *)(arg0) + (0x19C))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0x1A0))) = 0;
+    func_8001B754(SPLINE_FIELD(arg0, handle0, (*(s16 *)((s8 *)(arg0) + (0x184)))));
+    func_8001B754(SPLINE_FIELD(arg0, handle1, (*(s16 *)((s8 *)(arg0) + (0x186)))));
+    SPLINE_FIELD(arg0, handle0, (*(s16 *)((s8 *)(arg0) + (0x184)))) = 0;
+    SPLINE_FIELD(arg0, handle1, (*(s16 *)((s8 *)(arg0) + (0x186)))) = 0;
+    heap_free(SPLINE_FIELD(arg0, cache, (*(void **)((s8 *)(arg0) + (0x1A4)))));
+    SPLINE_FIELD(arg0, count, (*(s32 *)((s8 *)(arg0) + (0x188)))) = 0;
+    SPLINE_FIELD(arg0, cache, (*(s32 *)((s8 *)(arg0) + (0x1A4)))) = 0;
+    SPLINE_FIELD(arg0, asset, (*(s32 *)((s8 *)(arg0) + (0x198)))) = 0;
+    heap_free(SPLINE_FIELD(arg0, offsets, (*(void **)((s8 *)(arg0) + (0x19C)))));
+    SPLINE_FIELD(arg0, offsets, (*(s32 *)((s8 *)(arg0) + (0x19C)))) = 0;
+    SPLINE_FIELD(arg0, unk1A0, (*(s32 *)((s8 *)(arg0) + (0x1A0)))) = 0;
+#ifdef BT_NATIVE
+    heap_free(((NativeSplineContext *)arg0)->commands);
+    rare_memset(arg0, 0, sizeof(NativeSplineContext));
+#endif
 }
 
 void glsplineDll_entrypoint_2(u8 *arg0)
@@ -384,14 +425,28 @@ void glsplineDll_entrypoint_2(u8 *arg0)
   s32 count;
   s32 value;
   s32 asset;
+#ifdef BT_NATIVE
+  s32 *end;
+  NativeSplineContext *context = (NativeSplineContext *)arg0;
+  native_spline_clear_commands(context);
+#endif
   asset = func_80800C70_glsplineDll();
   if (asset != 0)
   {
-    *((s32 *) (arg0 + 0x198)) = asset;
+    SPLINE_FIELD(arg0, asset, *((s32 *) (arg0 + 0x198))) = asset;
+#ifdef BT_NATIVE
+    if (!native_spline_load_commands(context, asset)) return;
+    start = (s32 *)context->commands;
+    end = start + context->command_size / 4;
+#else
     start = (s32 *) func_800D674C(asset);
-    *((s32 *) (arg0 + 0x1A0)) = 0;
+#endif
+    SPLINE_FIELD(arg0, unk1A0, *((s32 *) (arg0 + 0x1A0))) = 0;
     for (state = 0, q = start; state != 3; q++)
     {
+#ifdef BT_NATIVE
+      if (q >= end) goto invalid_commands;
+#endif
       if (state == 2)
       {
         state = ((*q) == 3) ? (3) : (0);
@@ -407,17 +462,23 @@ void glsplineDll_entrypoint_2(u8 *arg0)
       }
       if ((0x10005 == (asset | 0)) || (0x10006 == (asset | 0)))
       {
-        (*((s32 *) (arg0 + 0x1A0)))++;
+        (SPLINE_FIELD(arg0, unk1A0, *((s32 *) (arg0 + 0x1A0))))++;
       }
     }
 
-    *((s32 **) (arg0 + 0x19C)) = heap_alloc((*((s32 *) (arg0 + 0x1A0))) * 4);
+#ifdef BT_NATIVE
+    if (!context->unk1A0) goto invalid_commands;
+#endif
+    SPLINE_FIELD(arg0, offsets, *((s32 **) (arg0 + 0x19C))) = heap_alloc((SPLINE_FIELD(arg0, unk1A0, *((s32 *) (arg0 + 0x1A0)))) * 4);
     p = start;
     state = 4;
     count = 0;
     offset = 0;
     while (state != 3)
     {
+#ifdef BT_NATIVE
+      if (p >= end) goto invalid_commands;
+#endif
 if (!offset) {}
       if (!start)
       {
@@ -438,17 +499,33 @@ if (!offset) {}
       if (state == 4)
       {
         state = 0;
-        (*((s32 **) (arg0 + 0x19C)))[count++] = offset;
+#ifdef BT_NATIVE
+        if (count >= context->unk1A0) goto invalid_commands;
+#endif
+        (SPLINE_FIELD(arg0, offsets, *((s32 **) (arg0 + 0x19C))))[count++] = offset;
       }
       offset += 4;
     }
 
+#ifdef BT_NATIVE
+    if (count != context->unk1A0) goto invalid_commands;
+    while (p < end && ((value = *p) ^ 0) != 4)
+#else
     while (((value = *p) ^ 0) != 4)
+#endif
     {
-      arg0[(value >> 16) & 0x7F] = (u8) (value & 0xFFUL);
+      SPLINE_FIELD(arg0, counters[(value >> 16) & 0x7F], arg0[(value >> 16) & 0x7F]) = (u8) (value & 0xFFUL);
       value = *(p++);
-      arg0[((value >> 16) & 0x7F) + 0x80] = (u8) (value & 0xFFUL);
+      SPLINE_FIELD(arg0, initial_counters[(value >> 16) & 0x7F], arg0[((value >> 16) & 0x7F) + 0x80]) = (u8) (value & 0xFFUL);
     }
 
+#ifdef BT_NATIVE
+    if (p == end) goto invalid_commands;
+#endif
   }
+#ifdef BT_NATIVE
+  return;
+invalid_commands:
+  native_spline_clear_commands(context);
+#endif
 }

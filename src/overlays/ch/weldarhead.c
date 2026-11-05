@@ -16,7 +16,7 @@ void func_8080000C_chweldarhead(Actor *arg0) {
     s32 func_800DA9E4(s32, s32);
     void func_800F497C(s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F8294(s32, f32 *);
     void func_800FFAB0(Actor *);

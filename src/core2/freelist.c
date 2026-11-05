@@ -90,6 +90,9 @@ void freelist_free(FreeList *list) {
 
 FreeList* freelist_new(s32 element_size, s32 capacity) {
     FreeList *ret;
+#ifdef BT_NATIVE
+    element_size = (element_size + (s32)_Alignof(void *) - 1) & ~((s32)_Alignof(void *) - 1);
+#endif
     capacity++;
     ret = (FreeList *) heap_alloc(element_size * capacity + sizeof(FreeList));
     ret->element_size = element_size;

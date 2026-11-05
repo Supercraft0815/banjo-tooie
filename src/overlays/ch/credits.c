@@ -134,11 +134,6 @@ void func_80800464_chcredits(Actor *arg0) {
     extern s8 D_808012BC_chcredits[];
     extern s8 D_808012BD_chcredits[];
     extern s8 D_808012BE_chcredits[];
-    extern u8 R_808011B0_chcredits[];
-    extern u8 R_808011B4_chcredits[];
-    extern u8 R_808011B8_chcredits[];
-    extern u8 R_808011BC_chcredits[];
-    extern u8 R_808011C0_chcredits[];
     u8 *buffer;
     u32 *strings;
     s32 asset;
@@ -155,13 +150,13 @@ void func_80800464_chcredits(Actor *arg0) {
                 if (text != NULL) {
                     func_800E715C(buffer + i * 0x80, text);
                 } else {
-                    func_800E715C(buffer + i * 0x80, R_808011B0_chcredits);
+                    func_800E715C(buffer + i * 0x80, "");
                 }
             }
             _gldbstring_entrypoint_2(asset);
         } else {
             for (i = 0; i != 2; i++) {
-                func_800E715C(buffer + i * 0x80, R_808011B4_chcredits);
+                func_800E715C(buffer + i * 0x80, "");
             }
         }
         asset = D_808012BD_chcredits[((u8 *)D_80127610)[0] * 8] + 0x1B88;
@@ -178,13 +173,13 @@ void func_80800464_chcredits(Actor *arg0) {
                 if (text != NULL) {
                     func_800E715C(buffer + i * 0x80, text);
                 } else {
-                    func_800E715C(buffer + i * 0x80, R_808011B8_chcredits);
+                    func_800E715C(buffer + i * 0x80, "");
                 }
             }
             _gldbstring_entrypoint_2(asset);
         } else {
             for (i = 0; i != 2; i++) {
-                func_800E715C(buffer + i * 0x80, R_808011BC_chcredits);
+                func_800E715C(buffer + i * 0x80, "");
             }
         }
         asset = ((u8 *)D_80127610)[0] + 0x1B6F;
@@ -194,7 +189,7 @@ void func_80800464_chcredits(Actor *arg0) {
             if (text != NULL) {
                 func_800E715C(buffer + (i + 2) * 0x80, text);
             } else {
-                func_800E715C(buffer + (i + 2) * 0x80, R_808011C0_chcredits);
+                func_800E715C(buffer + (i + 2) * 0x80, "");
             }
         }
         _gldbstring_entrypoint_2(asset);
@@ -529,13 +524,3 @@ OSThread *chcredits_entrypoint_2(void)
 
     return (OSThread *) D_8080159C_chcredits;
 }
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/R_808011B0_chcredits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/R_808011B4_chcredits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/R_808011B8_chcredits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/R_808011BC_chcredits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/credits/R_808011C0_chcredits.s")

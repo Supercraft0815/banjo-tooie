@@ -50,7 +50,7 @@ ULTRALIB_CORE := $(BUILD_ROOT)/libultra_rom.a
 ULTRALIB_BOOT := $(BUILD_ROOT)/libultra_rom_boot.a 
 
 ALL_OBJS     := $(C_OBJS) $(S_OBJS) $(HS_OBJS) $(BIN_OBJS)
-BUILD_DIRS   := $(sort $(C_BUILD_DIRS) $(S_BUILD_DIRS) $(HS_BUILD_DIRS) $(BIN_BUILD_DIRS))
+BUILD_DIRS   := $(sort $(C_BUILD_DIRS) $(S_BUILD_DIRS) $(HS_BUILD_DIRS) $(BIN_BUILD_DIRS) $(dir $(OVERLAY_SYSCALLS_OBJ)))
 
 CC       := tools/ido/cc
 AS       := mips-linux-gnu-gcc
@@ -68,6 +68,10 @@ Z64OFLAGS := -O binary --gap-fill=0x00
 
 check: $(ROM)
 	@diff $(DECOMPRESSED_BASEROM) $(UNCOMPRESSED_ROM) && printf "OK\n"
+
+# Proves the claim in README.md: byte-identical ROM, no assembly imports, no generated code.
+complete: check
+	$(PYTHON3_BIN) tools/completeness.py
 
 $(UNCOMPRESSED_ROM): $(ELF)
 	$(OBJCOPY) $(Z64OFLAGS) $< $@
@@ -108,7 +112,7 @@ $(OVERLAY_TABLE_OBJ): $(OVERLAY_TABLE_SRC)
 $(OVERLAY_HEADER_SRCS) $(OVERLAY_TABLE_SRC) &: $(PRELIM_ELF)
 	tools/overlay_processor $(PRELIM_ELF) $(BUILD_ROOT)/assets > /dev/null
 
-$(OVERLAY_SYSCALLS_OBJ): $(OVERLAY_SYSCALLS_SRC)
+$(OVERLAY_SYSCALLS_OBJ): $(OVERLAY_SYSCALLS_SRC) | $(dir $(OVERLAY_SYSCALLS_OBJ))
 	$(AS) $(ASFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(OVERLAY_SYSCALLS_SRC): overlays.us.toml
@@ -152,7 +156,7 @@ MAKEFLAGS += -r
 .SUFFIXES:
 
 # Phony targets
-.PHONY: clean check setup distclean
+.PHONY: clean check complete setup distclean
 
 # Keep IDO optimization enabled for the large animation-sequence table.
 $(BUILD_ROOT)/src/overlays/in/antab.c.o: CFLAGS += -Olimit 3000

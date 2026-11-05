@@ -11,6 +11,9 @@ typedef struct {
 typedef struct FreeList {
     s16 element_size;
     s16 capacity;
+#ifdef BT_NATIVE
+    _Alignas(void *)
+#endif
     FreeListElement data[];
 } FreeList;
 

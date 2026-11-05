@@ -1,0 +1,60 @@
+#ifndef BT_NATIVE_MARKER_H
+#define BT_NATIVE_MARKER_H
+#include "common.h"
+typedef struct {
+    union { Unk80132ED0 *marker; void *owner; uintptr_t value; u32 sprite; };
+    s16 position[3];
+    u16 flags;
+} NativeMarkerProp;
+void func_800EB3D0(void *, s32, s16 *);
+void func_800EB51C(s32, s32);
+void func_800EB5E0(void *, s32);
+void func_800EB70C(void);
+void func_800EB750(void);
+void func_800EB7A8(void);
+void func_800EB800(void);
+s32 func_800EB854(void);
+void func_800EB860(s32 (*)(s16 *, uintptr_t), uintptr_t);
+void func_800EB874(void);
+void func_800EB880(s32 *, s32, s32);
+void func_800EB8C0(void *);
+s32 func_800EBB30(void **, void **);
+OSThread *func_800EBB50(void);
+void func_800EBB5C(void);
+void func_800EBB6C(void);
+s32 func_800EBB74(void);
+void func_800EBB94(void);
+void func_800EBC04(void);
+void func_800EBC0C(void *, s32 *, void *, s32);
+void func_800EBCD0(void *, s32 *, void *, void *);
+void func_800EBD2C(void *, s32 *, s32);
+void *func_800EBD78(void);
+void func_800EBE24(void *);
+void func_800EBE74(s32 *, void *, s32);
+void *func_800EBED4(s32 *, s32, s32, s32);
+void *func_800EBF8C(f32 *, s32, u32, s32);
+void *func_800EBFD4(f32 *, s32, u32);
+void func_800EBFF4(void *);
+void func_800EC030(void *, s32 *);
+void func_800EC058(s32 *, void *);
+void func_800EC0EC(f32 *, void *);
+void func_800EC124(f32 *, void *, f32 *);
+void func_800EC340(void *, s32);
+void func_800EC358(void *, struct NativeMarkerCollision *(*)(void));
+void func_800EC360(void *, s32);
+void func_800EC368(void *, s32);
+void func_800EC370(void *, s16 *);
+void func_800EC398(Unk80132ED0 *, f32 *);
+void *func_800EC3C4(void *);
+void *func_800EC3E8(void *);
+void *func_800EC428(void *);
+f32 func_800EC48C(void *);
+f32 func_800EC504(void *);
+f32 func_800EC5C0(void *, f32 (*)(void *));
+f32 func_800EC708(Unk80132ED0 *);
+f32 func_800EC75C(void *, f32 *);
+void func_800EC7D4(Unk80132ED0 *, s32);
+int func_800EC800(void *);
+void func_800EC828(void);
+s32 func_800EC854(void);
+#endif

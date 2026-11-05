@@ -2131,8 +2131,6 @@ void* chhandcart_entrypoint_2(void)
     return &D_80804E6C_chhandcart;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/handcart/R_808043C0_chhandcart.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/handcart/R_808043C8_chhandcart.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/handcart/R_808043D0_chhandcart.s")
+const char R_808043C0_chhandcart[] = "Wait";
+const char R_808043C8_chhandcart[] = "Race";
+const char R_808043D0_chhandcart[] = "Report";

@@ -6,5 +6,6 @@
 #include <ultra64.h>
 
 f32 func_800F3780(f32, u8 *, s16);
+s32 func_800F424C(void *player);
 
 #endif // __CORE2_1ECD170_H__

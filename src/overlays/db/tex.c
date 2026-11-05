@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "tex_native.inc"
+#else
 #include "common.h"
 
 /* extern */
@@ -43,3 +46,5 @@ void dbtex_entrypoint_1(s32 arg0) {
         heap_free();
     }
 }
+
+#endif

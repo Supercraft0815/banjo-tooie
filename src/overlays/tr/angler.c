@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "angler_native.inc"
+#else
 #include "common.h"
 
 void func_80800000_trangler(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
@@ -80,3 +83,5 @@ void trangler_entrypoint_0(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     third = func_800DF8BC(arg0);
     func_8010EBE4(first, second, third);
 }
+
+#endif

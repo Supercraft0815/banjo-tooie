@@ -1,4 +1,7 @@
 #include "core2/1EDB4D0.h"
+#ifdef BT_NATIVE
+#include "1EDB4D0_native.inc"
+#else
 
 struct anctrl_s;
 struct anctrl_s *func_80104248(void *);
@@ -503,3 +506,4 @@ void func_801026CC(Actor *arg0, Vec3s32 arg1, f32 arg2) {
     }
     func_80101CDC(arg0, var_f0);
 }
+#endif

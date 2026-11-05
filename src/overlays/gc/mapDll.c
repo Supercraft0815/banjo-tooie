@@ -1,5 +1,196 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_map.h"
+#include "native_map_sections.h"
+#include "native_assets.h"
+#include "native_lights.h"
+#include "native_zones.h"
+#include "native_texture.h"
+#include "native_vector_table.h"
+#include "native_map_data.inc"
+#include "core2/1EAF950.h"
+#include "memory.h"
+
+NativeMap native_map;
+s32 func_800EA05C(void),func_800EA068(s32),func_800A946C(void),func_800DA298(s32);
+void _dblight_entrypoint_0(void *,void *,s32 *),_dblight_entrypoint_1(void *,void *,void *);
+void *_rtlight_entrypoint_1(void *,void *,void *);
+void _rtlight_entrypoint_0(void *);
+void *_vpmodule_entrypoint_0(void *,void *,s32 *);
+void _vpmodule_entrypoint_1(void *,void *);
+void *_glidmake_entrypoint_5(u16,void *);
+void _glidmake_entrypoint_4(void *),_glid_entrypoint_6(void *,void *),_idworldmake_entrypoint_0(void *,s32);
+
+
+const NativeMapConfig *func_80800000_gcmapDll(s32 id) {
+    const NativeMapConfig *p=native_map_configs;
+    for(;p->id;++p)if(p->id==id)return p;
+    return NULL;
+}
+s32 gcmapDll_entrypoint_0(s32 id) {return func_80800000_gcmapDll(id)!=NULL;}
+
+void gcmapDll_entrypoint_1(NativeMap *map) {
+    s32 color[3];func_800C87DC(color);
+    for(int i=0;i<2;++i) {
+        NativeMapLayer *layer=&map->layers[i];
+        void *light=layer->model && func_800A946C()<3 ? func_800B27BC(layer->model) : NULL;
+        if(light) {
+            _dblight_entrypoint_0(light,layer->vertices[0],color);
+            _dblight_entrypoint_1(light,layer->vertices[0],func_800B27A0(layer->model));
+            layer->light=_rtlight_entrypoint_1(light,layer->vertices[0],func_800B27A0(layer->model));
+        } else layer->light=NULL;
+    }
+    for(int i=0;i<2;++i) {
+        NativeMapLayer *layer=&map->layers[i];
+        layer->vpl=layer->model && func_800A946C()<3 ? func_800B2868(layer->model) : NULL;
+        layer->module=layer->vpl ? _vpmodule_entrypoint_0(layer->vpl,layer->vertices[0],color) : NULL;
+    }
+    for(int i=0;i<2;++i) {
+        NativeMapLayer *layer=&map->layers[i];
+        if(layer->model && !layer->vpl && !layer->light)func_800B2464(layer->vertices[0],color,layer->vertices[0]);
+    }
+    for(int i=0;i<2;++i) {
+        NativeMapLayer *layer=&map->layers[i];
+        layer->instances=layer->model && func_800A946C()<3 && func_800B274C(layer->model) ?
+            _glidmake_entrypoint_5(map->config.assets[i],0) : NULL;
+        if(layer->instances)_idworldmake_entrypoint_0(layer->instances,1);
+    }
+    for(int i=0;i<2;++i) {
+        NativeMapLayer *layer=&map->layers[i];
+        layer->vertices[1]=layer->vertices[0] && map->config.clone[i] ? func_800B2400(layer->vertices[0],1) : NULL;
+    }
+    for(int i=0;i<2;++i) {
+        NativeMapLayer *layer=&map->layers[i];
+        if(layer->instances && layer->vertices[1])_glid_entrypoint_6(layer->instances,layer->vertices[1]);
+    }
+}
+void func_8080045C_gcmapDll(NativeMap *map,s32 layer,s32 *lower,s32 *upper) {
+    if(map->layers[layer].vertices[0]) {
+        func_800B2198(map->layers[layer].vertices[0],lower,upper);return;
+    }
+    static const s32 bounds[][7]={
+        {0x1A7,-18000,-6000,-16000,3000,12000,15000},
+        {0x1A8,-20000,-8000,-3000,7000,2000,15000},
+        {0x1A9,1000,-12000,-13000,17000,0,12000},
+        {0x159,-100,-100,-100,100,100,100}};
+    for(unsigned i=0;i<sizeof(bounds)/sizeof(*bounds);++i)if(bounds[i][0]==map->config.id) {
+        for(int j=0;j<3;++j){lower[j]=bounds[i][1+j];upper[j]=bounds[i][4+j];}return;
+    }
+    for(int i=0;i<3;++i)lower[i]=upper[i]=0;
+}
+void func_808005A8_gcmapDll(NativeMap *map) {
+    s32 lower[3],upper[3];
+    func_8080045C_gcmapDll(map,0,map->minimum,map->maximum);
+    for(int i=0;i<3;++i){map->combined_minimum[i]=map->minimum[i];map->combined_maximum[i]=map->maximum[i];}
+    if(map->layers[1].model) {
+        func_8080045C_gcmapDll(map,1,lower,upper);
+        for(int i=0;i<3;++i) {
+            if(lower[i]<map->combined_minimum[i])map->combined_minimum[i]=lower[i];
+            if(upper[i]>map->combined_maximum[i])map->combined_maximum[i]=upper[i];
+        }
+    }
+}
+void func_80800668_gcmapDll(NativeMap *map,const s16 (*pairs)[2],s32 count) {
+    for(int i=0;i<count;++i) {
+        s32 index=pairs[i][0];
+        if(index<=0 || index>=60)continue;
+        map->switches[index]=pairs[i][1];
+        if(map->switches[0]<index)map->switches[0]=index;
+    }
+}
+void gcmapDll_entrypoint_2(NativeMap *map) {
+    static const s16 a[][2]={{1,0},{2,1}},b[][2]={{1,1},{2,0}};
+    static const s16 c[][2]={{1,1},{2,0},{3,1},{4,0}},d[][2]={{1,0},{2,1},{3,0},{4,1}},e[][2]={{1,0},{2,0},{3,1},{4,0}};
+    switch(func_800EA05C()) {
+        case 0xA1:case 0xA2:case 0xA3:case 0xA4:case 0xA5:case 0xA6:case 0x18B:case 0x134:
+            func_80800668_gcmapDll(map,a,2);break;
+        case 0xA7:case 0xAF:case 0x193:case 0xB7:case 0xD9:case 0xEF:case 0x13E:case 0x13F:case 0x156:case 0x171:case 0x172:case 0x176:
+            func_80800668_gcmapDll(map,b,2);break;
+        case 0x160:func_80800668_gcmapDll(map,func_800DA298(0x360) ? d : c,4);break;
+        case 0x18C:func_80800668_gcmapDll(map,c,4);break;
+        case 0x18D:func_80800668_gcmapDll(map,e,4);break;
+        case 0x194:case 0x195:func_80800668_gcmapDll(map,d,4);break;
+    }
+}
+s32 gcmapDll_entrypoint_3(NativeMap *map) {
+    const NativeMapConfig *config=func_80800000_gcmapDll(func_800EA05C());
+    if(!config || map->layers[0].model || map->layers[1].model || map->vectors || map->zone_state || map->sections)return 0;
+    map->config=*config;
+    rare_memset(map->switches,0,sizeof(map->switches));map->switches[0]=1;
+    gcmapDll_entrypoint_2(map);
+    map->color[0]=map->color[1]=map->color[2]=255;map->collision_model=NULL;
+    for(int i=0;i<2;++i) {
+        NativeMapLayer *layer=&map->layers[i];u16 id=config->assets[i];
+        layer->index=0;layer->vertices[1]=NULL;
+        if(id) {
+            if((native_asset_flags(id)&15)!=0 || !native_asset_can_pin(id))goto failed;
+            layer->model=func_800D674C(id);if(!layer->model)goto failed;
+            func_800D70D0(1);func_800D71F4(1);
+            layer->collision=func_800B2720(layer->model);
+            layer->vertices[0]=func_800B2840(layer->model);
+            layer->zones=func_800B284C(layer->model);
+            if(i==0 && layer->zones && func_800EA068(0x80))map->zone_state=_glzone_entrypoint_0(layer->zones);
+            layer->animation=func_800D731C(id);
+        } else {
+            layer->collision=layer->vertices[0]=layer->zones=NULL;layer->animation=0;
+        }
+        layer->collides=layer->collision!=NULL;layer->enabled=1;
+    }
+    map->vectors=func_800DBFF8();
+    if(!_gcmapsects_entrypoint_15(map))goto failed;
+    func_808005A8_gcmapDll(map);return 1;
+failed:
+    gcmapDll_entrypoint_4(map);return 0;
+}
+void func_80800A94_gcmapDll(NativeMap *map,s32 i) {
+    NativeMapLayer *layer=&map->layers[i];
+    if(layer->texture){_dbtex_entrypoint_1(layer->texture);layer->texture=NULL;}
+    if(layer->vertices[1]){func_800B23E0(layer->vertices[1]);layer->vertices[1]=NULL;}
+    if(layer->instances){_glidmake_entrypoint_4(layer->instances);layer->instances=NULL;}
+    if(layer->light){_rtlight_entrypoint_0(layer->light);layer->light=NULL;}
+    if(layer->module){_vpmodule_entrypoint_1(layer->module,layer->vpl);layer->module=NULL;}
+}
+void gcmapDll_entrypoint_4(NativeMap *map) {
+    for(int i=0;i<2;++i)func_80800A94_gcmapDll(map,i);
+    for(int i=0;i<2;++i)if(map->layers[i].model) {
+        func_800D70F8(map->config.assets[i],0);func_800D721C(map->config.assets[i],0);func_800D6CEC(map->config.assets[i]);
+    }
+    if(map->zone_state)_glzone_entrypoint_1(map->zone_state);
+    if(map->vectors)func_800DBFD8(map->vectors);
+    if(map->section_count || map->section_capacity)_gcmapsects_entrypoint_16(map);
+    rare_memset(map,0,sizeof(*map));
+}
+s16 gcmapDll_entrypoint_5(void) {
+    const s16 (*p)[2]=native_map_cell_sizes;
+    for(;(*p)[0]!=-1 && (*p)[0]!=func_800EA05C();++p){}
+    return (*p)[1];
+}
+s32 gcmapDll_entrypoint_6(NativeMap *map,s32 id) {
+    const NativeMapConfig *config=func_80800000_gcmapDll(id);
+    void *textures[2]={NULL,NULL};
+    if(!config)return 0;
+    for(int i=0;i<2;++i) {
+        void *model;
+        if(!config->assets[i])continue;
+        if((native_asset_flags(config->assets[i])&15)!=0)goto failed;
+        func_800D5B24();model=func_800D674C(config->assets[i]);
+        if(!model)goto failed;
+        NativeModelTextures *block=func_800B27FC(model);
+        textures[i]=dbtex_entrypoint_0(block);
+        if(block && (block->flags&0x100) && !textures[i])goto failed;
+    }
+    for(int i=0;i<2;++i) {
+        if(!config->assets[i])continue;
+        if(map->layers[i].texture)_dbtex_entrypoint_1(map->layers[i].texture);
+        map->layers[i].texture=textures[i];
+    }
+    return 1;
+failed:
+    for(int i=0;i<2;++i)if(textures[i])_dbtex_entrypoint_1(textures[i]);
+    return 0;
+}
+#else
 s16 *func_80800000_gcmapDll(s32 arg0) {
     extern s16 D_80800F10_gcmapDll[];
     s16 *p = D_80800F10_gcmapDll;
@@ -492,3 +683,4 @@ void gcmapDll_entrypoint_6(void *arg0, s32 arg1) {
         (*(s32 *)((s8 *)(arg0) + (0x50))) = _dbtex_entrypoint_0(func_800B27FC(func_800D674C((*(u16 *)((s8 *)(sp1C) + (4))))));
     }
 }
+#endif

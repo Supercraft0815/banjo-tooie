@@ -1,5 +1,46 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_zones.h"
+#include <math.h>
+void func_800EE940(s16 *,f32 *);
+static int zone_point(f32 *position,s16 *out) {
+    for(int i=0;i<3;++i)if(!isfinite(position[i]) || position[i]<-2147483648.0f || position[i]>=2147483648.0f)return 0;
+    func_800EE940(out,position);return 1;
+}
+int func_8080010C_dbzone(s16 *bounds,s16 *point) {
+    for(int i=0;i<3;++i)if(point[i]<bounds[i] || point[i]>bounds[i+3])return 0;
+    return 1;
+}
+static int zone_contains(u8 *entry,s16 *point) {
+    s16 bounds[6];for(int i=0;i<6;++i)bounds[i]=(u16)entry[i*2]<<8|entry[i*2+1];
+    return func_8080010C_dbzone(bounds,point);
+}
+s32 dbzone_entrypoint_0(u8 *zones,u8 *ids,u32 count) {
+    for(u32 i=0;i<count;++i)if(ids[i]<*zones && zones[2+ids[i]*14+12])return 1;
+    return 0;
+}
+void dbzone_entrypoint_1(u8 *zones,f32 *position,f32 scale,f32 *origin) {
+    f32 local[3];s16 point[3];
+    for(int i=0;i<3;++i)local[i]=(position[i]-origin[i])*(1.0f/scale);
+    int valid=zone_point(local,point);
+    for(int i=0;i<*zones;++i)zones[2+i*14+12]=valid && zone_contains(zones+2+i*14,point);
+}
+s32 dbzone_entrypoint_2(u8 *zones,f32 *position,s32 index) {
+    s16 point[3];
+    return index>=0 && index<*zones && zone_point(position,point) && zone_contains(zones+2+index*14,point);
+}
+s32 dbzone_entrypoint_3(u8 *zones,f32 *position) {
+    s16 point[3];if(!zone_point(position,point))return -1;
+    for(int i=0;i<*zones;++i)if(zone_contains(zones+2+i*14,point))return i;
+    return -1;
+}
+s32 dbzone_entrypoint_4(u8 *zones,f32 *position,u8 *out) {
+    s16 point[3];s32 count=0;if(!zone_point(position,point))return 0;
+    for(int i=0;i<*zones;++i)if(zone_contains(zones+2+i*14,point))out[count++]=i;
+    return count;
+}
+#else
 s32 dbzone_entrypoint_0(u8 *arg0, u8 *arg1, u32 arg2) {
     struct {
         s16 bounds[6];
@@ -111,3 +152,4 @@ s32 dbzone_entrypoint_4(u8 *arg0, f32 *arg1, u8 *arg2) {
     }
     return count;
 }
+#endif

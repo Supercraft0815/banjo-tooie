@@ -1,5 +1,5 @@
-#ifndef __BA_KEY_H__
-#define __BA_KEY_H__
+#ifndef __BA_INPUT_H__
+#define __BA_INPUT_H__
 
 #include <ultra64.h>
 
@@ -49,4 +49,4 @@ void bainput_enable(PlayerState *self, BaInputId id, s32 value);
 void bainput_setDiveCooldown(PlayerState *self, s32 arg1, f32 cooldown);
 void bainput_update(PlayerState *self);
 
-#endif // __BA_KEY_H__
+#endif // __BA_INPUT_H__

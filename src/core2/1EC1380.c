@@ -137,19 +137,4 @@ void func_800E7FCC(s32* arg0) {
     arg0[3] = D_8012D5D0.active_scissor.height;
 }
 
-// backface_culling_dl
-extern Gfx D_80123418[];
-// frontface_culling_dl
-extern Gfx D_80123428[];
-
-// set_face_culling_mode
-void func_800E7FF8(Gfx** gfx, u32 geometry_mode) {
-    D_8012D5E0 = geometry_mode;
-    gSPSetGeometryMode((*gfx)++, geometry_mode);
-    gSPSegment((*gfx)++, RSP_SEGMENT_FACE_CULLING, osVirtualToPhysical(geometry_mode == G_CULL_BACK ? D_80123418 : D_80123428));
-}
-
-// restore_face_culling_mode
-void func_800E8078(Gfx** gfx) {
-    gSPDisplayList((*gfx)++, RSP_SEGMENT_FACE_CULLING << 24);
-}
+#include "1EC1380_culling.inc"

@@ -1,4 +1,8 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "native_zones.h"
+#include "memory.h"
+#endif
 
 /* extern */
 
@@ -18,6 +22,10 @@ void glzone_entrypoint_1(void* arg0)
     heap_free(arg0);
 }
 void glzone_entrypoint_2(u8 *arg0) {
+#ifdef BT_NATIVE
+    u8 *end=arg0+*arg0+1;
+    for(++arg0;arg0<end;++arg0)*arg0=0;
+#else
     u32 end;
 
     end = (u32) arg0 + *arg0 + 1;
@@ -26,6 +34,7 @@ void glzone_entrypoint_2(u8 *arg0) {
         arg0++;
         arg0[-1] = 0;
     }
+#endif
 }
 
 void glzone_entrypoint_3(s8 *arg0, s32 arg1) { * (arg0 + arg1) = 1; }
@@ -34,6 +43,12 @@ u8 glzone_entrypoint_4(u8 *arg0, s32 arg1) { return arg0[arg1]; }
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 glzone_entrypoint_5(u8 *arg0,f32 *arg1,s32 arg2) {
+    if(arg2 && _dbzone_entrypoint_2(arg0,arg1,arg2-1))return arg2;
+    return _dbzone_entrypoint_3(arg0,arg1)+1;
+}
+#else
 s32 glzone_entrypoint_5(s32 arg0, s32 arg1, s32 arg2) {
     s32 _dbzone_entrypoint_2(s32, s32, s32, s32);
     s32 _dbzone_entrypoint_3(s32, s32);
@@ -42,6 +57,7 @@ s32 glzone_entrypoint_5(s32 arg0, s32 arg1, s32 arg2) {
     }
     return _dbzone_entrypoint_3(arg0, arg1) + 1;
 }
+#endif
 
 s32 glzone_entrypoint_6(u8 *arg0, u8 *arg1, s32 arg2) {
     s32 i;

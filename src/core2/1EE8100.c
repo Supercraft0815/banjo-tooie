@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1EE8100_native.inc"
+#else
 #include "common.h"
 
 void *func_8010E810(void)
@@ -230,3 +233,5 @@ void func_8010EECC(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     sp28 = func_800DF8CC(arg0);
     func_8010EBE4(sp24, sp28, func_800DF8BC(arg0));
 }
+
+#endif

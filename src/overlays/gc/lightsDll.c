@@ -1,3 +1,84 @@
+#ifdef BT_NATIVE
+#include "native_lights.h"
+#include <math.h>
+
+void func_80800000_gclightsDll(NativeLighting *state) {
+    gclightsDll_entrypoint_1(state);_gclightsDll_entrypoint_0(state);
+}
+void gclightsDll_entrypoint_0(NativeLighting *state) {
+    s32 ambient[3]={0},color[3]={255,255,255};f32 direction[3]={0,1,0};
+    if(state->entries)vector_free(state->entries);
+    state->entries=vector_new(sizeof(NativeLight),1);
+    func_800C8C90(ambient);gclightsDll_entrypoint_5(color);func_800C8F08(color,direction);
+}
+void gclightsDll_entrypoint_1(NativeLighting *state) {
+    if(state->entries)vector_free(state->entries);state->entries=NULL;
+}
+static int native_light_coordinates(f32 *values,s32 count) {
+    for(s32 i=0;i<count;++i)
+        if(!isfinite(values[i]) || values[i]<-2147483648.0f || values[i]>=2147483648.0f)return 0;
+    return 1;
+}
+void gclightsDll_entrypoint_2(NativeLighting *state,GsFile *file) {
+    s32 light,color[3],*queued;
+    f32 position[3],range[2];u8 mask;
+    Vector *pending;
+    if(!file || file->failed)return;
+    pending=vector_new(sizeof(s32),16);func_80800000_gclightsDll(state);
+    while(!file->failed && !_gsmaker_entrypoint_16(file,0)) {
+        if(_gsmaker_entrypoint_16(file,1)) {
+            if(!_gsmaker_entrypoint_20(file,2,position,3) || !_gsmaker_entrypoint_20(file,3,range,2) ||
+               !_gsmaker_entrypoint_22(file,4,color,3) || !native_light_coordinates(position,3) || !native_light_coordinates(range,2)) {
+                file->failed=1;break;
+            }
+            light=gclightsDll_entrypoint_4();func_800C8CB8(light,position);func_800C8D4C(light,range);func_800C8E84(light,(u32 *)color);
+            if(_gsmaker_entrypoint_17(file,7,&mask))func_800C8F64(light,mask);
+        } else if(_gsmaker_entrypoint_16(file,5)) {
+            if(!_gsmaker_entrypoint_22(file,4,color,3)){file->failed=1;break;}
+            func_800C8C90(color);
+        } else if(_gsmaker_entrypoint_16(file,6)) {
+            if(!_gsmaker_entrypoint_22(file,4,color,3)){file->failed=1;break;}
+            gclightsDll_entrypoint_5(color);
+        } else if(_gsmaker_entrypoint_16(file,8)) {
+            light=gclightsDll_entrypoint_4();queued=vector_push_back(&pending);*queued=light;
+        } else if(_gsmaker_entrypoint_16(file,9)) {
+            if(!_gsmaker_entrypoint_20(file,2,position,3) || !_gsmaker_entrypoint_22(file,4,color,3) || !native_light_coordinates(position,3)) {
+                file->failed=1;break;
+            }
+            func_800C8F08(color,position);
+        } else if(_gsmaker_entrypoint_16(file,10)) {
+            _gsmaker_entrypoint_22(file,4,color,3);
+        } else {file->failed=1;break;}
+    }
+    if(!file->failed)for(s32 i=0;i<vector_size(pending);++i)func_800C8B84(*(s32 *)vector_at(pending,i));
+    else gclightsDll_entrypoint_1(state);
+    vector_free(pending);
+}
+s32 gclightsDll_entrypoint_3(NativeLighting *state,f32 *position) {
+    void func_800EE88C(f32 *,s16 *);f32 func_800EEAD4(f32 *,f32 *);
+    s32 closest=0;f32 minimum=-1,point[3],distance;
+    if(!state->entries)return 0;
+    for(s32 i=0;i<vector_size(state->entries);++i) {
+        NativeLight *light=vector_at(state->entries,i);
+        if(light->mask && light->permanent && light->enabled) {
+            func_800EE88C(point,light->position);distance=func_800EEAD4(position,point);
+            if(!closest || distance<minimum){closest=i+1;minimum=distance;}
+        }
+    }
+    return closest;
+}
+s32 gclightsDll_entrypoint_4(void) {
+    NativeLighting *state=func_800C911C();
+    if(state->entries)for(s32 i=0;i<vector_size(state->entries);++i) {
+        NativeLight *light=vector_at(state->entries,i);if(!light->permanent)light->mask=0;
+    }
+    s32 id=func_800C8A98();NativeLight *light=vector_at(state->entries,id-1);
+    light->permanent=1;light->mask=13;return id;
+}
+void gclightsDll_entrypoint_5(s32 *color) {
+    NativeLighting *state=func_800C911C();for(s32 i=0;i<3;++i)state->primary_color[i]=color[i];
+}
+#else
 #include "common.h"
 struct Vector;
 void vector_free(struct Vector *vec);
@@ -172,3 +253,5 @@ void gclightsDll_entrypoint_5(f32 *arg0) {
     lights = func_800C911C();
     func_800EE830(lights + 0x10, arg0);
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "native_camera_frame.h"
+#else
 #ifndef __CORE2_1EBCFC0_H__
 #define __CORE2_1EBCFC0_H__
 
@@ -6,5 +9,7 @@
 
 void func_800E3980(f32*);
 void func_800E42B4(s32);
+
+#endif
 
 #endif

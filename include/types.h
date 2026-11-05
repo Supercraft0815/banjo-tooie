@@ -7,10 +7,15 @@
 
 #define ARRLEN(x) ((s32)(sizeof(x) / sizeof(x[0])))
 
+#ifdef BT_NATIVE
+#include <stdint.h>
+#include <stddef.h>
+#else
 typedef u32 uintptr_t;
 
 #define offsetof(type, member) \
     ((size_t)&((type*)0)->member)
+#endif
 
 #define UNUSED
 

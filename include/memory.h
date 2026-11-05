@@ -3,6 +3,14 @@
 
 #include "types.h"
 
+#ifdef BT_NATIVE
+s16 func_8001B668(s32, s32);
+void *func_8001B710(s16, s32);
+void func_8001B754(s16);
+void *func_8001B798(s16);
+s32 func_8001B7B8(s16);
+#endif
+
 void rare_memcpy(void* dst, void* src, int length);
 void aligned4_memcpy(void* dst, void* src, int length);
 void aligned8_memcpy(void* dst, void* src, int size);

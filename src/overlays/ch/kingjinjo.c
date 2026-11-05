@@ -222,7 +222,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F497C(s32);
     void func_800F49A8(s32, s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     s32 func_800F54E4(void);
     s32 func_801015D0(Actor *);
     void func_80102424(Actor *, s32);
@@ -272,7 +272,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
                 func_800F497C(sp4C);
                 func_800F49A8(sp4C, 1);
                 func_800F49D4(sp4C, &func_8010D5DC, *(s32 *)arg0);
-                func_800F4A58(sp4C, (s32)sp50, 300.0f);
+                func_800F4A58(sp4C, sp50, 300.0f);
                 func_80800CFC_chkingjinjo(arg0, 5, 0x20);
                 func_80102424(arg0, 1);
             }
@@ -284,7 +284,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
             func_800F497C(sp30);
             func_800F49A8(sp30, 1);
             func_800F49D4(sp30, &func_8010D5DC, *(s32 *)arg0);
-            func_800F4A58(sp30, (s32)sp34, 300.0f);
+            func_800F4A58(sp30, sp34, 300.0f);
             func_80800CFC_chkingjinjo(arg0, 0x17, 0x2020);
         }
         expression = func_800DA298(0x360) != 0 ? 0xA5 : 0xAE;

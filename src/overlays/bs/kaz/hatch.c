@@ -32,7 +32,6 @@ void func_808000D4_bskazhatch(PlayerState *self) {
 void func_80800108_bskazhatch(PlayerState *self) {
     s32 func_80099A4C(PlayerState *);
     void func_800FC660(u32);
-    s32 func_8010114C(s32, s32, s32);
     s32 value;
 
     switch (func_8009E6EC(self)) {

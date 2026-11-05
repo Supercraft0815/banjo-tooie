@@ -14,8 +14,16 @@
 
 #include <ultra64.h>
 void func_800F497C(s32);
+#ifdef BT_NATIVE
+void func_800F49D4(s32, BaDroneCallback, uintptr_t);
+#else
 void func_800F49D4(s32 arg0, void* arg1, s32 arg2);
-void func_800F4A58(s32,s32,f32);
+#endif
+void func_800F49A8(s32, s32);
+void func_800F4A00(s32, s32);
+void func_800F4A2C(s32, f32 *);
+void func_800F4A58(s32, f32 *, f32);
+void func_800F4AC0(s32, f32 *, f32);
 s32 func_800F4B4C(s32);
 s32 func_800F4B8C(u32, u32, s32);
 s32 func_800F4BB8(u32, u32, s32);

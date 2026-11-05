@@ -3,8 +3,12 @@
 
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_world_props.h"
+#else
 Prop* func_800E9D68(s16*);
 u32 func_800E9D90(s16*);
 s32 func_800E9DC4(s16*);
+#endif
 
 #endif

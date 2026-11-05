@@ -101,7 +101,7 @@ void func_80800200_chmadamegrunty(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     void func_800F497C(s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4AC0(s32, s32, f32);
+    void func_800F4AC0(s32, f32 *, f32);
     u32 func_800F54E4(void);
     s32 func_800F6438(u32);
     s32 func_800F6478(s32);
@@ -129,7 +129,7 @@ void func_808002BC_chmadamegrunty(Actor *arg0) {
     void func_800EF04C(f32 *, f32 *);
     void func_800F497C(s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4AC0(s32, s32, f32);
+    void func_800F4AC0(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F82D4(s32, s32);
     s32 func_80101180(s32, s32, s32);

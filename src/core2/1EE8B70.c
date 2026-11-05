@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1EE8B70_native.inc"
+#else
 #include "common.h"
 
 typedef struct {
@@ -212,3 +215,5 @@ void func_8010F950(s32 *arg0, s32 arg1, volatile s32 arg2, s32 arg3) {
     sp18 = func_800DF8B4(D_80137240.model); temp = func_800DF8BC(D_80137240.model);
     func_8010F68C(sp18, temp);
 }
+
+#endif

@@ -1,237 +1,214 @@
-#include "common.h"
+#include "overlays/ba/drone.h"
+#include "overlays/ba/data.h"
+#include "overlays/ba/flag.h"
+#include "overlays/ba/move/goto.h"
+#include "core2/1E66990.h"
+#include "player.h"
+#ifdef BT_NATIVE
+#include "core2/1EC8070.h"
+#else
+void func_800EE7F8(f32 *, f32 *);
+void func_800EFD24(f32 *, PlayerState *);
+#endif
 
-s32 badrone_entrypoint_0() 
-{
-    return 0x4C;
+s32 func_8009BAF4(void *);
+f32 func_800EEFFC(void *);
+void func_800EFB24(void *, void *, void *);
+
+#ifndef BT_NATIVE
+typedef char BaDroneSizeCheck[sizeof(BaDrone) == 0x4C ? 1 : -1];
+typedef char BaDroneOffsetCheck[offsetof(PlayerState, drone) == 0x54 ? 1 : -1];
+#endif
+
+s32 badrone_entrypoint_0(void) {
+    return sizeof(BaDrone);
 }
 
-u8 badrone_entrypoint_1(void *arg0) {
+u8 badrone_entrypoint_1(PlayerState *self) {
     extern u8 D_80800630_badrone[];
-    return D_80800630_badrone[*(*(u8 **)((s8 *)arg0 + 0x54))];
+    return D_80800630_badrone[self->drone->type];
 }
 
-void badrone_entrypoint_2(void *arg0, s32 arg1) {
-    void func_800EE7F8();
-    func_800EE7F8(arg1, *(u8 **)((u8 *)arg0 + 0x54) + 0x24);
+void badrone_entrypoint_2(PlayerState *self, f32 output[3]) {
+    func_800EE7F8(output, self->drone->look_at);
 }
 
-u32 badrone_entrypoint_3(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 0);
+s32 badrone_entrypoint_3(PlayerState *self) {
+    return self->drone->type;
 }
 
-void badrone_entrypoint_4(void *arg0) {
-    void *temp_v0;
-
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x54)));
-    (*(u8 *)((s8 *)(temp_v0) + (0))) = (u8) (*(u8 *)((s8 *)(temp_v0) + (1)));
+void badrone_entrypoint_4(PlayerState *self) {
+    BaDrone *drone;
+    drone = self->drone;
+    drone->type = drone->pending_type;
 }
 
-/* extern */
-
-void badrone_entrypoint_5(u8 *arg0) {
-    s32 func_800EFD24(u8 *, u8 *);
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (4))) = 0;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (5))) = 1;
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (8))) = 1.0f;
-    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0x54))) + 0x10, arg0);
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0xC))) = 1.0f;
-    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0x1C))) = 0;
+void badrone_entrypoint_5(PlayerState *self) {
+    self->drone->unk4 = 0;
+    self->drone->unk5 = 1;
+    self->drone->unk8 = 1.0f;
+#ifdef BT_NATIVE
+    func_800EFD24(self->drone->destination);
+#else
+    /* Keep IDO's original unused argument and register allocation. */
+    func_800EFD24(self->drone->destination, self);
+#endif
+    self->drone->unkC = 1.0f;
+    self->drone->callback = NULL;
 }
 
-void badrone_entrypoint_6(void *arg0) {
-    s32 (*temp_v1)(s32, s32, void *);
-    void *temp_v0;
-
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x54)));
-    temp_v1 = (*(s32 (**)(s32, s32, void *))((s8 *)(temp_v0) + (0x1C)));
-    if (temp_v1 != NULL) {
-        temp_v1((*(s32 *)((s8 *)(temp_v0) + (0x20))), (*(s32 *)((s8 *)(arg0) + (0x184))), arg0);
+void badrone_entrypoint_6(PlayerState *self) {
+    BaDroneCallback callback;
+    BaDrone *drone;
+    drone = self->drone;
+    callback = drone->callback;
+    if (callback != NULL) {
+        callback(drone->callback_context, self->unk184, self);
     }
 }
 
-u32 badrone_entrypoint_7(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 4);
+u32 badrone_entrypoint_7(PlayerState *self) {
+    return self->drone->unk4;
 }
 
-void badrone_entrypoint_8(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
-    void func_800EE7F8();
-    func_800EE7F8(arg1, (f32 *)(*(u8 **)(arg0 + 0x54) + 0x10));
-    *arg2 = *(f32 *)(*(u8 **)(arg0 + 0x54) + 8);
-    *arg3 = *(f32 *)(*(u8 **)(arg0 + 0x54) + 0xC);
+void badrone_entrypoint_8(PlayerState *self, f32 destination[3], f32 *arg2, f32 *arg3) {
+    func_800EE7F8(destination, self->drone->destination);
+    *arg2 = self->drone->unk8;
+    *arg3 = self->drone->unkC;
 }
 
-u32 badrone_entrypoint_9(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 5);
+u32 badrone_entrypoint_9(PlayerState *self) {
+    return self->drone->unk5;
 }
 
-void badrone_entrypoint_10(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 4) = arg1;
+void badrone_entrypoint_10(PlayerState *self, s32 value) {
+    self->drone->unk4 = value;
 }
 
-void badrone_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (0x1C))) = arg1;
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (0x20))) = arg2;
+void badrone_entrypoint_11(PlayerState *self, BaDroneCallback callback, uintptr_t context) {
+    self->drone->callback = callback;
+    self->drone->callback_context = context;
 }
 
-void badrone_entrypoint_12(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 84) + 5) = arg1;
+void badrone_entrypoint_12(PlayerState *self, s32 value) {
+    self->drone->unk5 = value;
 }
 
-/* extern */
-
-void badrone_entrypoint_13(void *arg0, s32 arg1) {
-    s32 _bamovegoto_entrypoint_12(void *, s32);
-    s32 func_8009BAF4(void *);
-    void func_800EE7F8();
-    func_800EE7F8((*(u8 **)((s8 *)(arg0) + (0x54))) + 0x10);
-    if ((*(*(u8 **)((s8 *)(arg0) + (0x54))) == 1) && (func_8009BAF4(arg0) == 0xC)) {
-        _bamovegoto_entrypoint_12(arg0, arg1);
+void badrone_entrypoint_13(PlayerState *self, f32 destination[3]) {
+    func_800EE7F8(self->drone->destination, destination);
+    if (self->drone->type == 1 && func_8009BAF4(self) == 0xC) {
+        _bamovegoto_entrypoint_12(self, destination);
     }
 }
 
-/* extern */
-
-void badrone_entrypoint_14(u8 *arg0, f32 *arg1, f32 arg2) {
-    s32 bs_setState(s32, s32);
-    void func_800EE7F8(f32 *, f32 *);
-    s32 _badata_entrypoint_21();
-    func_800EE7F8((f32 *)((*(u8 **)((s8 *)(arg0) + (0x54))) + 0x10), arg1);
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0xC))) = arg2;
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (8))) = 0.0f;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (1))) = 1;
-    bs_setState((s32) arg0, _badata_entrypoint_21(arg0));
+void badrone_entrypoint_14(PlayerState *self, f32 destination[3], f32 arg2) {
+    func_800EE7F8(self->drone->destination, destination);
+    self->drone->unkC = arg2;
+    self->drone->unk8 = 0.0f;
+    self->drone->pending_type = 1;
+    bs_setState(self, _badata_entrypoint_21(self));
 }
 
-/* extern */
-
-void badrone_entrypoint_15(u8 *arg0, f32 *arg1, f32 arg2) { s32 bs_setState(s32, s32); void func_800EE7F8(f32 *, f32 *); s32 _badata_entrypoint_21(); func_800EE7F8((f32 *)((*(u8 **)((s8 *)(arg0) + (0x54))) + 0x10), arg1); (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (8))) = arg2; (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (0xC))) = 0.0f; (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x54)))) + (1))) = 1; bs_setState((s32) arg0, _badata_entrypoint_21(arg0)); }
-/* extern */
-
-void badrone_entrypoint_16(u8 *arg0, f32 *arg1, f32 arg2) {
-    void func_8009C128(void *, f32 *);
-    f32 func_800EEFFC(f32 *);
-    void func_800EFB24(void *, void *, void *);
-    f32 sp2C[3];
-    f32 sp20[3];
-
-    func_8009C128(arg0, sp2C);
-    func_800EFB24(sp20, arg1, sp2C);
-    badrone_entrypoint_15(arg0, arg1, func_800EEFFC(sp20) / arg2);
+void badrone_entrypoint_15(PlayerState *self, f32 destination[3], f32 arg2) {
+    func_800EE7F8(self->drone->destination, destination);
+    self->drone->unk8 = arg2;
+    self->drone->unkC = 0.0f;
+    self->drone->pending_type = 1;
+    bs_setState(self, _badata_entrypoint_21(self));
 }
 
-/* extern */
-
-void func_80800348_badrone(void *arg0, s32 arg1) {
-    s32 _badata_entrypoint_21();
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (1))) = arg1;
-    _badata_entrypoint_21();
+void badrone_entrypoint_16(PlayerState *self, f32 destination[3], f32 speed) {
+    f32 position[3];
+    f32 delta[3];
+    func_8009C128(self, position);
+    func_800EFB24(delta, destination, position);
+    badrone_entrypoint_15(self, destination, func_800EEFFC(delta) / speed);
 }
 
-/* extern */
-
-void badrone_entrypoint_17(void *arg0) {
-    s32 _badata_entrypoint_23();
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (1))) = 7;
-    _badata_entrypoint_23();
+BanjoStateId func_80800348_badrone(PlayerState *self, s32 type) {
+    self->drone->pending_type = type;
+    return _badata_entrypoint_21(self);
 }
 
-void badrone_entrypoint_18(void *arg0, s32 arg1) {
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (0x48))) = arg1;
-    func_80800348_badrone(arg0, 0xC);
+BanjoStateId badrone_entrypoint_17(PlayerState *self) {
+    self->drone->pending_type = 7;
+    return _badata_entrypoint_23(self);
 }
 
-void badrone_entrypoint_19(s32 arg0)
-{
-    func_80800348_badrone(arg0,0xD);
+BanjoStateId badrone_entrypoint_18(PlayerState *self, Unk80132ED0 *marker) {
+    self->drone->marker = marker;
+    return func_80800348_badrone(self, 0xC);
 }
 
-void badrone_entrypoint_20(void *arg0, f32 *arg1, s32 arg2) {
-    void func_800EE7F8(f32 *, f32 *);
-    *(s8 *)((s8 *)*(void **)((s8 *)arg0 + 0x54) + 0x30) = arg2;
-    func_800EE7F8((f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x54) + 0x34), arg1);
-    func_80800348_badrone(arg0, 8);
+BanjoStateId badrone_entrypoint_19(PlayerState *self) {
+    return func_80800348_badrone(self, 0xD);
 }
 
-/* extern */
-
-void badrone_entrypoint_21(void *arg0) {
-    s32 _badata_entrypoint_22();
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (1))) = 15;
-    _badata_entrypoint_22();
+BanjoStateId badrone_entrypoint_20(PlayerState *self, f32 target[3], s32 arg2) {
+    self->drone->unk30 = arg2;
+    func_800EE7F8(self->drone->target, target);
+    return func_80800348_badrone(self, 8);
 }
 
-/* extern */
-
-void badrone_entrypoint_22(void *arg0) {
-    void func_800EE7F8();
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x54))) + 0x34);
-    func_80800348_badrone(arg0, 0xB);
+BanjoStateId badrone_entrypoint_21(PlayerState *self) {
+    self->drone->pending_type = 15;
+    return _badata_entrypoint_22(self);
 }
 
-/* extern */
-
-void badrone_entrypoint_23(void *arg0) {
-    void func_800EE7F8();
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x54))) + 0x34);
-    func_80800348_badrone(arg0, 0xA);
+BanjoStateId badrone_entrypoint_22(PlayerState *self, f32 target[3]) {
+    func_800EE7F8(self->drone->target, target);
+    return func_80800348_badrone(self, 0xB);
 }
 
-void badrone_entrypoint_24(s32 arg0)
-{
-    func_80800348_badrone(arg0,0x2);
+BanjoStateId badrone_entrypoint_23(PlayerState *self, f32 target[3]) {
+    func_800EE7F8(self->drone->target, target);
+    return func_80800348_badrone(self, 0xA);
 }
 
-void badrone_entrypoint_25(s32 arg0)
-{
-    func_80800348_badrone(arg0,0x9);
+BanjoStateId badrone_entrypoint_24(PlayerState *self) {
+    return func_80800348_badrone(self, 2);
 }
 
-/* extern */
-
-void badrone_entrypoint_26(void *arg0) {
-    s32 _badata_entrypoint_23();
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (1))) = 3;
-    _badata_entrypoint_23();
+BanjoStateId badrone_entrypoint_25(PlayerState *self) {
+    return func_80800348_badrone(self, 9);
 }
 
-void badrone_entrypoint_27(s32 arg0)
-{
-    func_80800348_badrone(arg0,0x6);
+BanjoStateId badrone_entrypoint_26(PlayerState *self) {
+    self->drone->pending_type = 3;
+    return _badata_entrypoint_23(self);
 }
 
-/* extern */
-
-void badrone_entrypoint_28(void *arg0) {
-    s32 baflag_clear(s32, s32);
-    baflag_clear(arg0, 0x19);
-    func_80800348_badrone(arg0, 4);
+BanjoStateId badrone_entrypoint_27(PlayerState *self) {
+    return func_80800348_badrone(self, 6);
 }
 
-void badrone_entrypoint_29(s32 arg0)
-{
-    func_80800348_badrone(arg0,0xE);
+BanjoStateId badrone_entrypoint_28(PlayerState *self) {
+    baflag_clear(self, BA_FLAG_19);
+    return func_80800348_badrone(self, 4);
 }
 
-int badrone_entrypoint_30(u8 *arg0) { s32 player_inWater(u8 *); return badrone_entrypoint_3(arg0) == 2 && !player_inWater(arg0); }
+BanjoStateId badrone_entrypoint_29(PlayerState *self) {
+    return func_80800348_badrone(self, 0xE);
+}
 
-s32 badrone_entrypoint_31(void *arg0) {
-    if (*(*(u8 **)((s8 *)(arg0) + (0x54))) == 1) {
+int badrone_entrypoint_30(PlayerState *self) {
+    return badrone_entrypoint_3(self) == 2 && !player_inWater(self);
+}
+
+s32 badrone_entrypoint_31(PlayerState *self) {
+    if (self->drone->type == 1) {
         return 1;
     }
     return 0;
 }
 
-void badrone_entrypoint_32(void *arg0) {
-    void *temp_v0;
-
-    (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x54)))) + (1))) = 0U;
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x54)));
-    (*(u8 *)((s8 *)(temp_v0) + (0))) = (u8) (*(u8 *)((s8 *)(temp_v0) + (1)));
+void badrone_entrypoint_32(PlayerState *self) {
+    BaDrone *drone;
+    self->drone->pending_type = 0;
+    drone = self->drone;
+    drone->type = drone->pending_type;
 }
 
-/* extern */
-
-void badrone_entrypoint_33(void *arg0) {
-    void func_800EE7F8();
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x54))) + 0x24);
+void badrone_entrypoint_33(PlayerState *self, f32 look_at[3]) {
+    func_800EE7F8(self->drone->look_at, look_at);
 }

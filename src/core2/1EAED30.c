@@ -1,4 +1,26 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "memory.h"
+#include "vector.h"
+#include "native_assets.h"
+static Vector *native_asset_refs[2];
+#define ASSET_REFS native_asset_refs
+void *D_8012B450[130];
+u8 D_8012B658[130];
+s16 D_8012B6E0[130];
+s8 D_8012B7E4, D_8012B7E5, D_8012B7E6;
+s32 D_8012B7E8;
+static s32 native_asset_sizes[130];
+
+s32 native_asset_cached_size(s32 id) {
+    s32 i;
+    for (i = 0; i < (u8)D_8012B7E4; ++i)
+        if (D_8012B6E0[i] == id) return native_asset_sizes[i];
+    return 0;
+}
+#else
+#define ASSET_REFS ((void **)&D_8012B7F0)
+#endif
 
 typedef struct { s32 unk0; void *unk1; } AssetReference;
 
@@ -6,18 +28,20 @@ extern s32 D_8012B7E8;
 
 void func_800D5440(void *ptr){
     extern s32 D_8012B7F0;
+#ifndef BT_NATIVE
     void *vector_end(void *);
     void *vector_begin(void *);
     void *vector_push_back(void **);
     void vector_clear(void *);
+#endif
     s32 func_800D56C4(void *);
 
     AssetReference *start_ptr;
     AssetReference *end_ptr;
     AssetReference *iPtr;
 
-    end_ptr = (AssetReference *) vector_end(((void **)&D_8012B7F0)[0]);
-    start_ptr = (AssetReference *) vector_begin(((void **)&D_8012B7F0)[0]);
+    end_ptr = (AssetReference *) vector_end(ASSET_REFS[0]);
+    start_ptr = (AssetReference *) vector_begin(ASSET_REFS[0]);
 
     for (iPtr = start_ptr; iPtr < end_ptr && ptr != iPtr->unk1; iPtr++);
 
@@ -25,7 +49,7 @@ void func_800D5440(void *ptr){
         iPtr->unk0++;
     }
     else {
-        iPtr = (AssetReference *) vector_push_back(&((void **)&D_8012B7F0)[0]);
+        iPtr = (AssetReference *) vector_push_back(&ASSET_REFS[0]);
         iPtr->unk0 = 1;
         iPtr->unk1 = ptr;
     }
@@ -33,10 +57,12 @@ void func_800D5440(void *ptr){
 
 int func_800D54F0(void *arg0) {
     extern s32 D_8012B7F0;
+#ifndef BT_NATIVE
     void *vector_end(void *);
     void *vector_begin(void *);
     void *vector_push_back(void **);
     void vector_clear(void *);
+#endif
     s32 func_800D56C4(void *);
 
     AssetReference *start_ptr;
@@ -45,8 +71,8 @@ int func_800D54F0(void *arg0) {
     s32 j;
 
     for(j = 0; j < 2; j++){
-        end_ptr = (AssetReference *) vector_end(((void **)&D_8012B7F0)[j]);
-        start_ptr = (AssetReference *) vector_begin(((void **)&D_8012B7F0)[j]);
+        end_ptr = (AssetReference *) vector_end(ASSET_REFS[j]);
+        start_ptr = (AssetReference *) vector_begin(ASSET_REFS[j]);
         for(iPtr = start_ptr; iPtr < end_ptr && arg0 != iPtr->unk1; iPtr++){
         }
         if (iPtr < end_ptr){
@@ -57,19 +83,28 @@ int func_800D54F0(void *arg0) {
 }
 
 void func_800D55A0(void) {
+#ifdef BT_NATIVE
+    native_asset_refs[0] = vector_new(sizeof(AssetReference), 0x10);
+    native_asset_refs[1] = vector_new(sizeof(AssetReference), 0x10);
+#else
+#ifndef BT_NATIVE
     s32 vector_new(s32, s32);
+#endif
     extern s32 D_8012B7F0;
     extern s32 D_8012B7F4;
     D_8012B7F0 = vector_new(8, 0x10);
     D_8012B7F4 = vector_new(8, 0x10);
+#endif
 }
 
 void func_800D55DC(void){
     extern s32 D_8012B7F0;
+#ifndef BT_NATIVE
     void *vector_end(void *);
     void *vector_begin(void *);
     void *vector_push_back(void **);
     void vector_clear(void *);
+#endif
     s32 func_800D56C4(void *);
 
     void *tmp_a0;
@@ -78,26 +113,33 @@ void func_800D55DC(void){
     AssetReference *endPtr;
     int i;
 
-    tmp_a0 = ((void **)&D_8012B7F0)[0];
-    ((void **)&D_8012B7F0)[0] = ((void **)&D_8012B7F0)[1];
-    ((void **)&D_8012B7F0)[1] = tmp_a0;
+    tmp_a0 = ASSET_REFS[0];
+    ASSET_REFS[0] = ASSET_REFS[1];
+    ASSET_REFS[1] = tmp_a0;
 
-    endPtr = (AssetReference *) vector_end(((void **)&D_8012B7F0)[0]);
-    start_ptr = (AssetReference *) vector_begin(((void **)&D_8012B7F0)[0]);
+    endPtr = (AssetReference *) vector_end(ASSET_REFS[0]);
+    start_ptr = (AssetReference *) vector_begin(ASSET_REFS[0]);
     for(iPtr = start_ptr; iPtr < endPtr; iPtr++){
         for(i = 0; i < iPtr->unk0; i++)
             func_800D56C4(iPtr->unk1);
     }
 
-    vector_clear(((void **)&D_8012B7F0)[0]);
+    vector_clear(ASSET_REFS[0]);
 }
 
 void func_800D5688(void) {
+#ifdef BT_NATIVE
+    native_asset_refs[0] = vector_defrag(native_asset_refs[0]);
+    native_asset_refs[1] = vector_defrag(native_asset_refs[1]);
+#else
+#ifndef BT_NATIVE
     s32 vector_defrag(s32);
+#endif
     extern s32 D_8012B7F0;
     extern s32 D_8012B7F4;
     (*(s32 *)((s8 *)(&D_8012B7F0) + (0))) = vector_defrag((*(s32 *)((s8 *)(&D_8012B7F0) + (0))));
     D_8012B7F4 = vector_defrag((*(s32 *)((s8 *)(&D_8012B7F0) + (4))));
+#endif
 }
 
 s32 func_800D56C4(void *arg0) {
@@ -122,6 +164,9 @@ s32 func_800D56C4(void *arg0) {
             D_8012B658[i] = D_8012B658[count];
             D_8012B450[i] = D_8012B450[(u8) D_8012B7E4];
             D_8012B6E0[i] = D_8012B6E0[(u8) D_8012B7E4];
+#ifdef BT_NATIVE
+            native_asset_sizes[i] = native_asset_sizes[count];
+#endif
             return 0;
         } else {
             D_8012B658[i] = count - 1;
@@ -156,22 +201,32 @@ void func_800D58AC()
 }
 
 void func_800D58CC(void) {
+#ifndef BT_NATIVE
     func_8001A2B0();
+#endif
     func_800D55DC();
     func_800D55DC();
 }
 
 s32 func_800D58FC(s32 arg0) {
+#ifdef BT_NATIVE
+    return native_asset_flags(arg0) & 15;
+#else
     s32 rom_read_word(s32, u32 *);
     extern s32 D_8011B900;
     extern u32 D_8012B440;
     rom_read_word((s32)((u32 *)D_8011B900 + arg0), &D_8012B440);
     return D_8012B440 & 0xF;
+#endif
 }
 
 s32 func_800D593C() 
 {
+#ifdef BT_NATIVE
+    return native_asset_count();
+#else
     return 0x3666;
+#endif
 }
 
 s32 func_800D5944()
@@ -180,6 +235,9 @@ s32 func_800D5944()
 }
 
 s32 func_800D5950(s32 arg0) {
+#ifdef BT_NATIVE
+    return native_asset_packed_size(arg0);
+#else
     s32 rom_read_word(s32, u32 *);
     extern s32 D_8011B900;
     extern u32 D_8012B440;
@@ -192,9 +250,13 @@ s32 func_800D5950(s32 arg0) {
     offset = temp_v0[1];
     rom_read_word(D_8011B900 + offset + 4, &D_8012B444);
     return ((u32) D_8012B444 >> 6) - ((u32) D_8012B440 >> 6);
+#endif
 }
 
 s32 func_800D59C0(s32 index) {
+#ifdef BT_NATIVE
+    return (native_asset_flags(index) >> 4) & 1;
+#else
     typedef struct {
         u32 reserved : 26;
         u32 encoding : 2;
@@ -205,6 +267,7 @@ s32 func_800D59C0(s32 index) {
     s32 rom_read_word(s32, u32 *);
     rom_read_word((s32)((u32 *)D_8011B900 + index), &D_8012B440);
     return ((AssetEncoding *)&D_8012B440)->encoding & 1;
+#endif
 }
 
 s32 func_800D5A04(s32 arg0) {
@@ -222,7 +285,13 @@ s32 func_800D5A04(s32 arg0) {
     return 0;
 }
 
-s32 func_800D5A6C(s32 arg0) { s32 rom_read_word(s32, u32 *); extern s32 D_8011B900; extern u32 D_8012B440; extern s32 D_8012B448; rom_read_word((s32)((u32 *)D_8011B900 + arg0), &D_8012B440); return D_8012B448 + ((u32) D_8012B440 >> 6); }
+s32 func_800D5A6C(s32 arg0) {
+#ifdef BT_NATIVE
+    return native_asset_rom_offset(arg0);
+#else
+    s32 rom_read_word(s32, u32 *); extern s32 D_8011B900; extern u32 D_8012B440; extern s32 D_8012B448; rom_read_word((s32)((u32 *)D_8011B900 + arg0), &D_8012B440); return D_8012B448 + ((u32) D_8012B440 >> 6);
+#endif
+}
 
 s32 func_800D5AB4(s32 arg0) {
     extern s16 D_8012B6E0[];
@@ -248,6 +317,7 @@ void func_800D5B24(void) {
 
 void *func_800D5B34(s32 arg0)
 {
+#ifndef BT_NATIVE
   s32 func_800E4AF0();
   s32 func_800E4BF4(s32);
   void *func_800E6950(s32, s32, void *);
@@ -259,6 +329,7 @@ void *func_800D5B34(s32 arg0)
   extern u32 D_8012B440;
   extern u32 D_8012B444;
   extern s32 D_8012B448;
+#endif
   extern void *D_8012B450[];
   extern u8 D_8012B658[];
   extern s16 D_8012B6E0[];
@@ -278,9 +349,17 @@ void *func_800D5B34(s32 arg0)
   }
   if (index < ((u8) D_8012B7E4))
   {
+#ifdef BT_NATIVE
+    if (D_8012B658[index] == 255) return NULL;
+    D_8012B7E8 = native_asset_sizes[index];
+#endif
     D_8012B658[index]++;
     return D_8012B450[index];
   }
+#ifdef BT_NATIVE
+  result = native_asset_load(arg0, &D_8012B7E8);
+  if (!result) return NULL;
+#else
   index = arg0 * 4;
   rom_read_word(D_8011B900 + index, &D_8012B440);
   if ((!(D_8012B440 & 0xF)) && (mode == 0))
@@ -314,16 +393,25 @@ void *func_800D5B34(s32 arg0)
     result = heap_alloc(size);
     rom_dma_read(result, (u8 *) (D_8012B448 + (D_8012B440 >> 6)), size);
   }
+#endif
   D_8012B7E5 = (u8) D_8012B7E4;
   size = (u8) D_8012B7E4;
   D_8012B658[size] = 1;
   D_8012B450[size] = result;
   D_8012B6E0[size] = arg0;
+#ifdef BT_NATIVE
+  native_asset_sizes[size] = D_8012B7E8;
+#endif
   D_8012B7E4 = ((u8) D_8012B7E4) + 1;
   return result;
 }
 
 void func_800D5D70(void) {
+#ifdef BT_NATIVE
+    native_assets_shutdown();
+    D_8012B7E6 = 0;
+    func_800D55A0();
+#else
     extern s32 D_8012B448;
     extern s8 D_8012B7E4;
     extern s8 D_8012B7E6;
@@ -333,9 +421,13 @@ void func_800D5D70(void) {
     D_8012B7E4 = 0;
     D_8012B448 = (s32)&assets_ROM_START + 0xD9A4;
     func_800E4CE8();
+#endif
 }
 
 s32 func_800D5DB8(s32 arg0) {
+#ifdef BT_NATIVE
+    return native_asset_packed_size(arg0);
+#else
     s32 rom_read_word(s32, u32 *);
     extern s32 D_8011B900;
     extern u32 D_8012B440;
@@ -348,14 +440,15 @@ s32 func_800D5DB8(s32 arg0) {
     offset = temp_v0[1];
     rom_read_word(D_8011B900 + offset + 4, &D_8012B444);
     return ((u32) D_8012B444 >> 6) - ((u32) D_8012B440 >> 6);
+#endif
 }
 
-void func_800D5E28(s32 *arg0) {
+void func_800D5E28(void **arg0) {
     func_800D5440(*arg0);
     *arg0 = 0;
 }
 
-void func_800D5E54(s32 arg0)
+void func_800D5E54(void *arg0)
 {
     func_800D5440((void *)arg0);
 }
@@ -365,12 +458,15 @@ void func_800D5E74(void)
     func_800D55DC();
 }
 
-void func_800D5E94(s32 arg0)
+int func_800D5E94(void *arg0)
 {
-    func_800D54F0((void *)arg0);
+    return func_800D54F0((void *)arg0);
 }
 
 s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
+#ifdef BT_NATIVE
+    return native_asset_read_into(arg0, arg1, arg2);
+#else
     void *func_800E6950(s32, s32, void *);
     void rom_dma_read(u8 *, u8 *, u32);
     s32 rom_read_word(s32, u32 *);
@@ -407,6 +503,7 @@ s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
     }
     }
     return var_v1;
+#endif
 }
 
 void func_800D5FDC(s32 arg0) {
@@ -428,3 +525,18 @@ void *func_800D5FE8(s32 arg0) {
     }
     return D_8012B450[var_v1];
 }
+
+#ifdef BT_NATIVE
+void native_assets_shutdown(void) {
+    s32 i;
+    if (native_asset_refs[0]) {
+        func_800D55DC();
+        func_800D55DC();
+        vector_free(native_asset_refs[0]);
+        vector_free(native_asset_refs[1]);
+        native_asset_refs[0] = native_asset_refs[1] = NULL;
+    }
+    for (i = 0; i < (u8)D_8012B7E4; ++i) heap_free(D_8012B450[i]);
+    D_8012B7E4 = 0;
+}
+#endif

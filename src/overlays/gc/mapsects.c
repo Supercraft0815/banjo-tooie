@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "mapsects_native.inc"
+#else
 #include "common.h"
 
 void gcmapsects_entrypoint_0(s16 arg0, s16 arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 arg5) {
@@ -1489,3 +1492,5 @@ s32 gcmapsects_entrypoint_27(s32 arg0) {
     }
     return 0;
 }
+
+#endif

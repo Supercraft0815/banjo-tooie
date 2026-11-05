@@ -1,0 +1,138 @@
+# N64Recomp config for Banjo-Tooie NTSC-U. Paths are relative to this file.
+
+[input]
+entrypoint = 0x80000400
+# Built by tools/fix_elf.py from ../build/us/banjotooie_decompressed.elf
+elf_path = "tooie.elf"
+output_func_path = "RecompiledFuncs"
+relocatable_sections_path = "overlay_sections.txt"
+bss_section_suffix = "_bss"
+
+# Jump target in the middle of func_80013B7C, reached from func_80013B70.
+manual_funcs = [
+    { name = "func_80013B90", section = ".core1", vram = 0x80013B90, size = 0xB8 },
+]
+
+
+[patches]
+
+# Implemented natively in src/game/tooie_native.cpp.
+ignored = [
+    "boot___osPiRawStartDma",
+    "boot_osPiGetStatus",
+    "cic_send_challenge",
+    "cic_read_response",
+    "func_8001DDC0",
+    "__osGetSR_2",
+]
+
+# The boot segment carries its own libultra copy. Only inflate and memory helpers run.
+stubs = [
+    "boot_osInitialize", "boot_osStartThread", "boot___osPopThread", "boot___osGetCause",
+    "boot___osException", "boot___osEnqueueAndYield", "boot___osEPiRawStartDma",
+    "boot___osDispatchThread", "boot___osSiDeviceBusy", "boot___osPiGetAccess",
+    "boot___osExceptionPreamble", "boot___osDisableInt", "boot___osDequeueThread",
+    "boot_osCreateThread", "boot_osGetThreadPri", "boot___osSetGlobalIntMask",
+    "boot___osSiRawReadIo", "boot___osGetSR", "boot_send_mesg", "boot___osEPiRawReadIo",
+    "boot_osSetThreadPri", "boot___osEnqueueThread", "boot___osExceptionPreambleDuplicate",
+    "boot_osCreateMesgQueue", "boot_osSetIntMask", "boot_osYieldThread", "boot___osPiRelAccess",
+    "boot___osCleanupThread", "boot___osSetFpcCsr", "boot_osRecvMesg", "boot___osRestoreInt",
+    "boot___osProbeTLB", "boot___osSetSR", "boot_handle_CpU", "boot_osSetEventMesg",
+    "boot_osCreatePiManager", "boot_osUnmapTLBAll", "boot___osResetGlobalIntMask",
+    "boot_osSendMesg", "boot___osDevMgrMain", "boot_osWritebackDCache", "boot___osEPiRawWriteIo",
+    "boot_osMapTLBRdb", "boot___osSiRawWriteIo", "boot_osVirtualToPhysical", "boot_osDestroyThread",
+    "boot___osPiCreateAccessQueue", "boot_osInvalICache",
+    # Templates copied into overlay headers; the syscall handler emulates them.
+    "ovl_entrypoint", "ovl_entrypoint_alternate",
+    "__osExceptionPreambleDuplicate",
+]
+
+# Overlay placement: every load or defrag move ends here, s2 holds the text address.
+[[patches.hook]]
+func = "func_80082088"
+before_vram = 0x800821D4
+text = "tooie_overlay_placed(rdram, ctx);"
+
+[[patches.hook]]
+func = "ovl_reset_syscalls"
+before_vram = 0x80082428
+text = "tooie_overlay_removed(rdram, ctx);"
+
+# These leaf math routines keep ra in a1 or a3 across a jal. Native calls return by themselves.
+[[patches.instruction]]
+func = "func_800137D4"
+vram = 0x800137EC
+value = 0x03E00008
+
+[[patches.instruction]]
+func = "func_800137F4"
+vram = 0x80013810
+value = 0x03E00008
+
+[[patches.instruction]]
+func = "func_80013A5C"
+vram = 0x80013A74
+value = 0x03E00008
+
+[[patches.instruction]]
+func = "func_80013A7C"
+vram = 0x80013A98
+value = 0x03E00008
+
+# The RDP stays frozen on hardware until the next VI, but the HLE renderer finishes at once.
+[[patches.hook]]
+func = "func_800142F0"
+before_vram = 0x800142F0
+text = "tooie_dp_complete(rdram, ctx);"
+
+[[patches.hook]]
+func = "func_80014148"
+before_vram = 0x80014148
+text = "tooie_trace(rdram, ctx, 1);"
+
+[[patches.hook]]
+func = "func_80013EF0"
+before_vram = 0x80013ef0
+text = "tooie_trace(rdram, ctx, 2);"
+
+[[patches.hook]]
+func = "func_800146D8"
+before_vram = 0x800146d8
+text = "tooie_trace(rdram, ctx, 3);"
+
+[[patches.hook]]
+func = "func_80015190"
+before_vram = 0x80015190
+text = "tooie_trace(rdram, ctx, 5);"
+
+[[patches.hook]]
+func = "func_8001443C"
+before_vram = 0x8001443c
+text = "tooie_trace(rdram, ctx, 6);"
+
+[[patches.hook]]
+func = "func_80013E34"
+before_vram = 0x80013e34
+text = "tooie_trace(rdram, ctx, 7);"
+
+[[patches.hook]]
+func = "func_80013D10"
+before_vram = 0x80013d10
+text = "tooie_trace(rdram, ctx, 8);"
+
+[[patches.hook]]
+func = "func_800148C4"
+before_vram = 0x800148c4
+text = "tooie_trace(rdram, ctx, 9);"
+
+# The scheduler pauses the joy thread around starting a controller read. Only one game thread runs at a
+# time here, and the runtime's osStartThread would queue the still blocked thread a second time.
+[[patches.instruction]]
+func = "func_80016810"
+vram = 0x80016834
+value = 0x00000000
+
+[[patches.instruction]]
+func = "func_80016810"
+vram = 0x8001684C
+value = 0x00000000

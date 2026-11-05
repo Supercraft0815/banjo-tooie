@@ -1,4 +1,5 @@
 #include "core2/1ECE0B0.h"
+#include "core2/1EC3810.h"
 
 extern struct {
     PlayerState *players[8];
@@ -89,38 +90,39 @@ void func_800F497C(s32 arg0)
     _badrone_entrypoint_5(D_80135490.players[arg0]);
 }
 
-void func_800F49A8(s32 arg0)
+void func_800F49A8(s32 arg0, s32 arg1)
 {
-    _badrone_entrypoint_10(D_80135490.players[arg0]);
+    _badrone_entrypoint_10(D_80135490.players[arg0], arg1);
 }
 
+#ifdef BT_NATIVE
+void func_800F49D4(s32 arg0, BaDroneCallback arg1, uintptr_t arg2)
+#else
 void func_800F49D4(s32 arg0,void* arg1,s32 arg2)
+#endif
 {
     _badrone_entrypoint_11(D_80135490.players[arg0],arg1,arg2);
 }
 
-void func_800F4A00(s32 arg0)
+void func_800F4A00(s32 arg0, s32 arg1)
 {
-    _badrone_entrypoint_12(D_80135490.players[arg0]);
+    _badrone_entrypoint_12(D_80135490.players[arg0], arg1);
 }
 
-void func_800F4A2C(s32 arg0)
+void func_800F4A2C(s32 arg0, f32 *arg1)
 {
-    _badrone_entrypoint_13(D_80135490.players[arg0]);
+    _badrone_entrypoint_13(D_80135490.players[arg0], arg1);
 }
 
-void func_800F4A58(s32 arg0, s32 arg1, f32 arg2) {
-    s32 _badrone_entrypoint_14(PlayerState *, s32, f32);
+void func_800F4A58(s32 arg0, f32 *arg1, f32 arg2) {
     _badrone_entrypoint_14(D_80135490.players[arg0], arg1, arg2);
 }
 
 void func_800F4A8C(s32 arg0, f32 *arg1, f32 arg2) {
-    s32 _badrone_entrypoint_15(PlayerState *, f32 *, f32);
     _badrone_entrypoint_15(D_80135490.players[arg0], arg1, arg2);
 }
 
-void func_800F4AC0(s32 arg0, s32 arg1, f32 arg2) {
-    s32 _badrone_entrypoint_16(PlayerState *, s32, f32);
+void func_800F4AC0(s32 arg0, f32 *arg1, f32 arg2) {
     _badrone_entrypoint_16(D_80135490.players[arg0], arg1, arg2);
 }
 
@@ -863,7 +865,7 @@ s32 func_800F6140(s32 arg0) {
 }
 
 s32 func_800F61E4(void) {
-    func_800F6140(-1);
+    return func_800F6140(-1);
 }
 
 s32 func_800F6204(s32 arg0)
@@ -2142,7 +2144,6 @@ void *func_800F88A0(s32 arg0) {
 
 s32 func_800F8914(u8 *arg0, s32 arg1) {
     s32 _plcamera_entrypoint_14(s32, s32, s32);
-    s32 func_800EA05C();
     s32 func_800EA090(void);
     s32 func_800F9214();
     s32 result;
@@ -2251,7 +2252,6 @@ void func_800F8B94(void) {
     extern s32 D_80135510;
     u32 vector_begin(s32);
     u32 vector_end(s32);
-    s32 func_800EA05C(void);
     s32 func_800F8D80(s32, u8 *);
     u8 *entry;
     u8 *begin;
@@ -2418,7 +2418,6 @@ void func_800F9070(s32 arg0, s32 arg1) {
 }
 
 void func_800F9098(s32 arg0, f32 *arg1) {
-    s32 func_800EA05C();
     void func_800EE7F8(f32 *, f32 *);
     extern s32 D_80135500;
     extern s32 D_80135510;

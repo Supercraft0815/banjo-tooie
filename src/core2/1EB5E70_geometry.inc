@@ -1,0 +1,1057 @@
+#ifdef BT_NATIVE
+#include "1EB5E70_geometry_native.inc"
+#else
+void func_800DC580(void *arg0, void *arg1) {
+    extern RenderData D_8012C948;
+    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * D_8012C948.scale);
+    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) * D_8012C948.scale);
+    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) * D_8012C948.scale);
+}
+
+void func_800DC5BC(void *arg0, void *arg1) {
+    extern RenderData D_8012C948;
+    ((f32 *)arg0)[0] = ((f32 *)arg1)[0] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[0];
+    ((f32 *)arg0)[1] = ((f32 *)arg1)[1] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[1];
+    ((f32 *)arg0)[2] = ((f32 *)arg1)[2] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[2];
+}
+
+void func_800DC61C(s32 arg0, s32 arg1) {
+}
+void func_800DC628(s32 arg0, s32 arg1) {
+}
+struct GeoCommand800DC634 {
+    u32 header[2];
+    s16 branch_offset;
+    s16 do_pitch_rotate;
+    f32 position[3];
+};
+
+void func_800DC634(s32 model, struct GeoCommand800DC634 *cmd) {
+    void func_800193C4(f32 *, f32 *);
+    void func_800DE2A4(s32, u8 *);
+    void mlMtxApply(Mtx *);
+    void mlMtxPop(void);
+    void mlMtxRotPitch(f32);
+    void mlMtxRotYaw(f32);
+    void mlMtxScale(f32);
+    void mlMtxTranslate(f32, f32, f32);
+    void mlMtx_push_translation(f32, f32, f32);
+    extern RenderData D_8012C948;
+    extern f32 D_8012CEA8;
+    extern f32 D_8012CEAC;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct ModelContext *context = (struct ModelContext *)model;
+    f32 transformed_pos[3];
+    Gfx *gfx;
+
+    if (cmd->branch_offset) {
+        func_800193C4(transformed_pos, cmd->position);
+        mlMtx_push_translation(transformed_pos[0], transformed_pos[1], transformed_pos[2]);
+        mlMtxRotYaw(D_8012CEAC);
+        if (!cmd->do_pitch_rotate) {
+            mlMtxRotPitch(D_8012CEA8);
+        }
+        mlMtxScale(D_8012C948.scale);
+        mlMtxTranslate(-cmd->position[0], -cmd->position[1], -cmd->position[2]);
+        mlMtxApply(context->mtx);
+        gfx = context->gfx++;
+        gfx->words.w0 = 0xDA380002;
+        gfx->words.w1 = (u32)context->mtx;
+        context->mtx++;
+        func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+        mlMtxPop();
+        gSPPopMatrix(context->gfx++, G_MTX_MODELVIEW);
+    }
+}
+
+void func_800DC740(s32 model, struct GeoCommand800DC634 *cmd) {
+    void func_800DE2A4(s32, u8 *);
+    void mlMtxApply(Mtx *);
+    void mlMtxPop(void);
+    void mlMtxRotPitch(f32);
+    void mlMtxRotYaw(f32);
+    void mlMtxScale(f32);
+    void mlMtxTranslate(f32, f32, f32);
+    void mlMtx_push_translation(f32, f32, f32);
+    extern RenderData D_8012C948;
+    extern f32 D_8012CEA8;
+    extern f32 D_8012CEAC;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct ModelContext *context = (struct ModelContext *)model;
+    f32 transformed_pos[3];
+    Gfx *gfx;
+
+    if (cmd->branch_offset) {
+        func_800DC580(transformed_pos, cmd->position);
+        mlMtx_push_translation(transformed_pos[0], transformed_pos[1], transformed_pos[2]);
+        mlMtxRotYaw(D_8012CEAC);
+        if (!cmd->do_pitch_rotate) {
+            mlMtxRotPitch(D_8012CEA8);
+        }
+        mlMtxScale(D_8012C948.scale);
+        mlMtxTranslate(-cmd->position[0], -cmd->position[1], -cmd->position[2]);
+        mlMtxApply(context->mtx);
+        gfx = context->gfx++;
+        gfx->words.w0 = 0xDA380002;
+        gfx->words.w1 = (u32)context->mtx;
+        context->mtx++;
+        func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+        mlMtxPop();
+        gSPPopMatrix(context->gfx++, G_MTX_MODELVIEW);
+    }
+}
+
+void func_800DC84C(s32 model, struct GeoCommand800DC634 *cmd) {
+    void func_800DE2A4(s32, u8 *);
+    void mlMtxApply(Mtx *);
+    void mlMtxPop(void);
+    void mlMtxRotPitch(f32);
+    void mlMtxRotYaw(f32);
+    void mlMtxScale(f32);
+    void mlMtxTranslate(f32, f32, f32);
+    void mlMtx_push_translation(f32, f32, f32);
+    extern RenderData D_8012C948;
+    extern f32 D_8012CEA8;
+    extern f32 D_8012CEAC;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct ModelContext *context = (struct ModelContext *)model;
+    f32 transformed_pos[3];
+    Gfx *gfx;
+
+    if (cmd->branch_offset) {
+        func_800DC5BC(transformed_pos, cmd->position);
+        mlMtx_push_translation(transformed_pos[0], transformed_pos[1], transformed_pos[2]);
+        mlMtxRotYaw(D_8012CEAC);
+        if (!cmd->do_pitch_rotate) {
+            mlMtxRotPitch(D_8012CEA8);
+        }
+        mlMtxScale(D_8012C948.scale);
+        mlMtxTranslate(-cmd->position[0], -cmd->position[1], -cmd->position[2]);
+        mlMtxApply(context->mtx);
+        gfx = context->gfx++;
+        gfx->words.w0 = 0xDA380002;
+        gfx->words.w1 = (u32)context->mtx;
+        context->mtx++;
+        func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+        mlMtxPop();
+        gSPPopMatrix(context->gfx++, G_MTX_MODELVIEW);
+    }
+}
+
+void func_800DC958(s32 arg0, u8 *arg1) {
+    void func_800193C4(f32 *, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800EF3DC(s32 *, s32 *);
+    s32 func_800EFB24(s32 *, s32 *, s32 *);
+    void mlMtxPop(void);
+    extern s32 D_8012C968;
+    extern s32 D_8012CE58;
+    extern s32 D_8012CE98;
+    extern f32 D_8012CEC8;
+    extern s32 D_8012CED0;
+    extern s32 D_8012CEE0;
+    extern s32 D_8012CEF0;
+    f32 *diff;
+    f32 *pos;
+    f32 temp_f0;
+    s32 temp_v0_2;
+    s32 temp_v0_3;
+    s32 temp_v0_6;
+    s32 temp_v0;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+
+    if (arg1[0x21] & 2) {
+        func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, *(s8 *)(arg1 + 0x20)));
+    }
+    func_800193C4((f32 *)&D_8012CEE0, (f32 *)(arg1 + 8));
+    func_800193C4((f32 *)&D_8012CEF0, (f32 *)(arg1 + 0x14));
+    if (arg1[0x21] & 2) {
+        mlMtxPop();
+    }
+    func_800EFB24(&D_8012CED0, &D_8012CEF0, &D_8012CEE0);
+    func_800EF3DC(&D_8012CEE0, &D_8012CE98);
+    goto transformed;
+transformed:
+    diff = (f32 *)&D_8012CED0;
+    pos = (f32 *)&D_8012CEE0;
+    temp_f0 = -(diff[0] * pos[0] + diff[1] * pos[1] + diff[2] * pos[2]);
+    if (arg1[0x21] & 1) {
+        if (temp_f0 >= 0.0f) {
+            temp_v0 = *(s32 *)(arg1 + 0x24);
+            if (temp_v0 != 0) {
+                D_8012CEC8 = temp_f0;
+                func_800DE2A4(arg0, arg1 + temp_v0);
+                return;
+            }
+        }
+        D_8012CEC8 = temp_f0;
+        if (temp_f0 < 0.0f) {
+            temp_v0_2 = *(s16 *)(arg1 + 0x22);
+            if (temp_v0_2 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_2);
+            }
+        }
+    } else {
+        D_8012CEC8 = temp_f0;
+        if (temp_f0 >= 0.0f) {
+            temp_v0_3 = *(s16 *)(arg1 + 0x22);
+            if (temp_v0_3 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_3);
+            }
+            temp_v0_4 = *(s32 *)(arg1 + 0x24);
+            if (temp_v0_4 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_4);
+            }
+        } else {
+            temp_v0_5 = *(s32 *)(arg1 + 0x24);
+            if (temp_v0_5 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_5);
+            }
+            temp_v0_6 = *(s16 *)(arg1 + 0x22);
+            if (temp_v0_6 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_6);
+            }
+        }
+    }
+}
+
+void func_800DCB58(s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800EF3DC(s32 *, s32 *);
+    s32 func_800EFB24(s32 *, s32 *, s32 *);
+    extern s32 D_8012CE98;
+    extern f32 D_8012CEFC;
+    extern s32 D_8012CF00;
+    extern s32 D_8012CF10;
+    extern s32 D_8012CF20;
+    f32 temp_f0;
+    s32 temp_v0_2;
+    s32 temp_v0_3;
+    s32 temp_v0_6;
+    s32 temp_v0;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+
+    func_800DC580(&D_8012CF10, arg1 + 8);
+    func_800DC580(&D_8012CF20, arg1 + 0x14);
+    func_800EFB24(&D_8012CF00, &D_8012CF20, &D_8012CF10);
+    func_800EF3DC(&D_8012CF10, &D_8012CE98);
+    temp_f0 = -(((f32 *)&D_8012CF00)[0] * ((f32 *)&D_8012CF10)[0]
+              + ((f32 *)&D_8012CF00)[1] * ((f32 *)&D_8012CF10)[1]
+              + ((f32 *)&D_8012CF00)[2] * ((f32 *)&D_8012CF10)[2]);
+    if ((*(u8 *)((s8 *)(arg1) + (0x21))) & 1) {
+        if (temp_f0 >= 0.0f) {
+            temp_v0 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0 != 0) {
+                D_8012CEFC = temp_f0;
+                func_800DE2A4(arg0, arg1 + temp_v0);
+                return;
+            }
+        }
+        D_8012CEFC = temp_f0;
+        if (temp_f0 < 0.0f) {
+            temp_v0_2 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_2 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_2);
+            }
+        }
+    } else {
+        D_8012CEFC = temp_f0;
+        if (temp_f0 >= 0.0f) {
+            temp_v0_3 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_3 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_3);
+            }
+            temp_v0_4 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0_4 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_4);
+            }
+        } else {
+            temp_v0_5 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0_5 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_5);
+            }
+            temp_v0_6 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_6 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_6);
+            }
+        }
+    }
+}
+
+void func_800DCD10(s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800EF3DC(s32 *, s32 *);
+    s32 func_800EFB24(s32 *, s32 *, s32 *);
+    extern s32 D_8012CE98;
+    extern f32 D_8012CF2C;
+    extern s32 D_8012CF30;
+    extern s32 D_8012CF40;
+    extern s32 D_8012CF50;
+    f32 temp_f0;
+    s32 temp_v0_2;
+    s32 temp_v0_3;
+    s32 temp_v0_6;
+    s32 temp_v0;
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+
+    func_800DC5BC(&D_8012CF40, arg1 + 8);
+    func_800DC5BC(&D_8012CF50, arg1 + 0x14);
+    func_800EFB24(&D_8012CF30, &D_8012CF50, &D_8012CF40);
+    func_800EF3DC(&D_8012CF40, &D_8012CE98);
+    temp_f0 = -(((f32 *)&D_8012CF30)[0] * ((f32 *)&D_8012CF40)[0]
+              + ((f32 *)&D_8012CF30)[1] * ((f32 *)&D_8012CF40)[1]
+              + ((f32 *)&D_8012CF30)[2] * ((f32 *)&D_8012CF40)[2]);
+    if ((*(u8 *)((s8 *)(arg1) + (0x21))) & 1) {
+        if (temp_f0 >= 0.0f) {
+            temp_v0 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0 != 0) {
+                D_8012CF2C = temp_f0;
+                func_800DE2A4(arg0, arg1 + temp_v0);
+                return;
+            }
+        }
+        D_8012CF2C = temp_f0;
+        if (temp_f0 < 0.0f) {
+            temp_v0_2 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_2 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_2);
+            }
+        }
+    } else {
+        D_8012CF2C = temp_f0;
+        if (temp_f0 >= 0.0f) {
+            temp_v0_3 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_3 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_3);
+            }
+            temp_v0_4 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0_4 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_4);
+            }
+        } else {
+            temp_v0_5 = (*(s32 *)((s8 *)(arg1) + (0x24)));
+            if (temp_v0_5 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_5);
+            }
+            temp_v0_6 = (*(s16 *)((s8 *)(arg1) + (0x22)));
+            if (temp_v0_6 != 0) {
+                func_800DE2A4(arg0, arg1 + temp_v0_6);
+            }
+        }
+    }
+}
+
+void func_800DCEC8(Gfx **gfx, u8 *data) {
+    extern s32 D_8012C820;
+    struct Command { u8 padding[8]; s32 mode; };
+    struct Command *cmd = (struct Command *) data;
+
+    switch (cmd->mode) {
+        case 1:
+            gSPDisplayList((*gfx)++, D_8012C820 + 0x80000068);
+            break;
+        case 2:
+            gSPDisplayList((*gfx)++, D_8012C820 + 0x80000000);
+            break;
+    }
+}
+
+void func_800DCF48(s32 model, u8 *data) {
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800DE2A4(s32, u8 *);
+    void mlMtxApply(Mtx *);
+    void mlMtxPop(void);
+    extern s32 D_8012C968;
+    extern s32 D_8012CE58;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct ModelContext *context = (struct ModelContext *)model;
+    struct Command {
+        u8 padding[8];
+        u8 branch_offset;
+        s8 matrix_id;
+    };
+    struct Command *cmd = (struct Command *)data;
+
+    if (D_8012C968) {
+        func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, cmd->matrix_id));
+        mlMtxApply(context->mtx);
+        gSPMatrix(context->gfx++, context->mtx++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    }
+    if (cmd->branch_offset) {
+        func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+    }
+    if (D_8012C968) {
+        mlMtxPop();
+        gSPPopMatrix(context->gfx++, G_MTX_MODELVIEW);
+    }
+}
+
+void func_800DD024(Gfx **gfx, u8 *data) {
+    struct Command { u8 padding[8]; s16 index; };
+    struct Command *cmd = (struct Command *)data;
+    Gfx *gfx_sub_list;
+
+    gfx_sub_list = &D_8012C960->commands[cmd->index];
+    gSPDisplayList((*gfx)++, osVirtualToPhysical(gfx_sub_list));
+}
+
+void func_800DD07C(void *model, u8 *data) {
+    void mlMtxApply(Mtx *);
+    extern RenderData D_8012C948;
+    struct ModelContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    };
+    struct Command { u8 padding[8]; s16 gfx_index[1]; };
+    struct ModelContext *context = (struct ModelContext *)model;
+    struct Command *cmd = (struct Command *)data;
+    Gfx *gfx = context->gfx;
+    int i;
+    struct RenderState { u8 padding[0x18]; DisplayListView *list; };
+
+    gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[0] + ((struct RenderState *)&D_8012C948)->list->commands));
+    mlMtxApply(context->mtx);
+    for (i = 1; cmd->gfx_index[i] != 0; i++) {
+        gSPMatrix(gfx++, context->mtx, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[i] + ((struct RenderState *)&D_8012C948)->list->commands));
+    }
+    context->gfx = gfx;
+    context->mtx++;
+}
+
+void func_800DD19C(s32 arg0, u8 *commands) {
+    void func_800DE2A4(s32, u8 *);
+    commands += *(s32 *)(commands + 8);
+    func_800DE2A4(arg0, commands);
+}
+
+void func_800DD1C0(Gfx **gfx, u8 *data) {
+    struct Command { u8 padding[0xA]; s16 index; };
+    gSPDisplayList((*gfx)++, osVirtualToPhysical(&D_8012C960->commands[((struct Command *)data)->index]));
+}
+
+void func_800DD214(s32 model, u8 *data) {
+    void func_800193C4(f32 *, f32 *);
+    void func_800DE2A4(s32, u8 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    extern s16 D_8012CA38;
+    extern s32 D_8012CE98;
+    extern f32 D_8012CF60[3];
+    struct Command {
+        u8 padding[8];
+        f32 max;
+        f32 min;
+        f32 position[3];
+        s32 branch_offset;
+    };
+    struct Command *cmd = (struct Command *)data;
+    f32 dist;
+
+    if (cmd->branch_offset) {
+        if (D_8012CA38) {
+            (&D_8012CA38)[1]++;
+            if (D_8012CA38 == (&D_8012CA38)[1]) {
+                func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+            }
+        } else {
+            func_800193C4(D_8012CF60, cmd->position);
+            dist = func_800EEB40(D_8012CF60, (f32 *)&D_8012CE98);
+            if ((cmd->min * cmd->min < dist) && (dist <= cmd->max * cmd->max)) {
+                func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+            }
+        }
+    }
+}
+
+void func_800DD2E8(s32 model, u8 *data) {
+    void func_800DE2A4(s32, u8 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    extern s32 D_8012CE98;
+    extern f32 D_8012CF70[3];
+    struct Command {
+        u8 padding[8];
+        f32 max;
+        f32 min;
+        f32 position[3];
+        s32 branch_offset;
+    };
+    struct Command *cmd = (struct Command *)data;
+    f32 dist;
+
+    if (cmd->branch_offset) {
+        func_800DC580(D_8012CF70, cmd->position);
+        dist = func_800EEB40(D_8012CF70, (f32 *)&D_8012CE98);
+        if ((cmd->min * cmd->min < dist) && (dist <= cmd->max * cmd->max)) {
+            func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+        }
+    }
+}
+
+void func_800DD37C(s32 model, u8 *data) {
+    void func_800DE2A4(s32, u8 *);
+    f32 func_800EEB40(f32 *, f32 *);
+    extern s32 D_8012CE98;
+    extern f32 D_8012CF80[3];
+    struct Command {
+        u8 padding[8];
+        f32 max;
+        f32 min;
+        f32 position[3];
+        s32 branch_offset;
+    };
+    struct Command *cmd = (struct Command *)data;
+    f32 dist;
+
+    if (cmd->branch_offset) {
+        func_800DC5BC(D_8012CF80, cmd->position);
+        dist = func_800EEB40(D_8012CF80, (f32 *)&D_8012CE98);
+        if ((cmd->min * cmd->min < dist) && (dist <= cmd->max * cmd->max)) {
+            func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
+        }
+    }
+}
+
+void func_800DD410(s32 arg0, u8 *arg1) {
+    void func_800193C4(f32 *, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800DC028(s32, s32, s32);
+    void mlMtxPop(void);
+    extern s32 D_8012C844;
+    extern s32 D_8012C968;
+    extern s32 D_8012CE58;
+    struct Command { u8 padding[8]; s16 index; s16 anim_mtx_id; f32 point[3]; };
+    f32 sp20[4];
+
+    if (D_8012C844 != 0) {
+        if (D_8012C968 != 0) {
+            func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, ((struct Command *)arg1)->anim_mtx_id));
+            func_800193C4(sp20, ((struct Command *)arg1)->point);
+            mlMtxPop();
+        } else {
+            func_800193C4(sp20, ((struct Command *)arg1)->point);
+        }
+        func_800DC028(D_8012C844, ((struct Command *)arg1)->index, sp20);
+    }
+}
+
+/* extern */
+
+void func_800DD4AC(s32 arg0, u8 *arg1) {
+    extern s32 D_8012C844;
+    extern RenderData D_8012C948;
+    void func_800EFA20(void *arg0, void *arg1, f32 arg2);
+    void func_800DC028(s32, s32, s32);
+    f32 sp18[4];
+
+    if (D_8012C844 != 0) {
+        func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale);
+        func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18);
+    }
+}
+
+void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern RenderData D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
+void func_800DD56C(s32 model, u8 *data) {
+    struct SelectorCommand {
+        u32 header[2];
+        s16 branch_offset_count;
+        s16 index;
+        s32 branch_offsets[1];
+    };
+    void func_800DE2A4(s32, u8 *);
+    struct SelectorCommand *cmd = (struct SelectorCommand *)data;
+    s32 sub_cmd_addr;
+    s32 selection;
+    int i;
+    s32 s1;
+    s32 *offset;
+
+    selection = D_8012C850[cmd->index];
+    if (cmd->index == 0)
+        return;
+    if (selection == 0)
+        return;
+    if (selection > 0) {
+        if (selection <= cmd->branch_offset_count) {
+            offset = cmd->branch_offsets;
+            sub_cmd_addr = (s32)cmd;
+            sub_cmd_addr += *(s32 *)(data + (((u32)selection - 1) << 2) + 0xC);
+            func_800DE2A4(model, (u8 *)sub_cmd_addr);
+        }
+    } else {
+        s1 = -selection;
+        offset = cmd->branch_offsets;
+        for (i = 0; i < cmd->branch_offset_count; i++) {
+            if (s1 & 1) {
+                sub_cmd_addr = (s32)cmd;
+                sub_cmd_addr += *offset;
+                func_800DE2A4(model, (u8 *)sub_cmd_addr);
+            }
+            s1 >>= 1;
+            offset++;
+        }
+    }
+}
+
+typedef struct { f32 m[4][4]; } MtxF;
+void func_800DD65C(Gfx **arg0, void *arg1) {
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    s32 sp38[2];
+    MtxF *mtx;
+    s32 sp2C[2];
+    Gfx *packet;
+    Gfx *list;
+
+    sp38[0] = *(s16 *)((u8 *)arg1 + 0xA);
+    mtx = mlMtx_get_stack_pointer();
+    if (*(s16 *)((u8 *)arg1 + 0xE)) {
+        sp2C[0] = sp38[0];
+        if (*(s16 *)((u8 *)arg1 + 0xE) & 1) {
+            func_8010F070(mtx, sp2C, *(s16 *)((u8 *)arg1 + 0xC));
+        }
+    }
+    if (D_8012CEC4 != NULL) {
+        D_8012CEC4(mtx, sp38, *(s16 *)((u8 *)arg1 + 0xC));
+    }
+    list = &D_8012C960->commands[*(s16 *)((u8 *)arg1 + 8)];
+    packet = (*arg0)++;
+    packet->words.w0 = 0xDE000000;
+    packet->words.w1 = osVirtualToPhysical(list);
+}
+
+struct GeoContext800DD728 { Gfx *gfx; Mtx *mtx; };
+void func_800DD728(struct GeoContext800DD728 *context, void *arg1) {
+    MtxF *func_80018BB4(void);
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    void mlMtxApply(Mtx *);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    struct DrawCommand {
+        s32 header[2];
+        s16 indices[6];
+        s16 counts1[6];
+        s16 counts2[6];
+        s16 start;
+        s16 flags;
+    } *command = arg1;
+    s32 start[2];
+    s32 start2;
+    MtxF *mtx;
+    MtxF *mtx2;
+    Gfx *packet;
+    Gfx *matrixPacket;
+    Gfx *listPacket;
+    s32 i;
+
+    start[0] = command->start;
+    start2 = start[0];
+    mtx = mlMtx_get_stack_pointer();
+    mtx2 = func_80018BB4();
+    mlMtxApply(context->mtx);
+    if (command->flags && (command->flags & 1)) {
+        if (command->counts2[0]) {
+            func_8010F070(mtx, &start2, command->counts2[0]);
+        }
+        if (command->counts1[0]) {
+            func_8010F070(mtx2, &start2, command->counts1[0]);
+        }
+    }
+    if (D_8012CEC4 != NULL) {
+        if (command->counts2[0]) {
+            D_8012CEC4(mtx, start, command->counts2[0]);
+        }
+        if (command->counts1[0]) {
+            D_8012CEC4(mtx2, start, command->counts1[0]);
+        }
+    }
+    packet = context->gfx++;
+    packet->words.w0 = 0xDE000000;
+    packet->words.w1 = osVirtualToPhysical(command->indices[0] + D_8012C960->commands);
+    for (i = 1; command->indices[i]; i++) {
+            if (command->flags && (command->flags & 1)) {
+                if (command->counts2[i]) {
+                    func_8010F070(mtx, &start2, command->counts2[i]);
+                }
+                if (command->counts1[i]) {
+                    func_8010F070(mtx2, &start2, command->counts1[i]);
+                }
+            }
+            if (D_8012CEC4 != NULL) {
+                if (command->counts2[i]) {
+                    D_8012CEC4(mtx, start, command->counts2[i]);
+                }
+                if (command->counts1[i]) {
+                    D_8012CEC4(mtx2, start, command->counts1[i]);
+                }
+            }
+            matrixPacket = context->gfx++;
+            matrixPacket->words.w0 = 0xDA380002;
+            matrixPacket->words.w1 = (u32)context->mtx;
+            listPacket = context->gfx++;
+            listPacket->words.w0 = 0xDE000000;
+            listPacket->words.w1 = osVirtualToPhysical(command->indices[i] + D_8012C960->commands);
+    }
+    context->mtx++;
+}
+
+struct GeoContext800DD998 {
+    Gfx *gfx;
+    Mtx *mtx;
+};
+
+void func_800DD998(struct GeoContext800DD998 *context, u8 *arg1) {
+    MtxF *func_80018BB4(void);
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    void mlMtxApply(Mtx *);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    Gfx *packet;
+    Gfx *list;
+    s32 sp64;
+    s32 sp60;
+    MtxF *sp5C;
+    MtxF *sp58;
+    struct DrawCommand {
+        s32 header[2];
+        s16 indices[6];
+        s16 counts1[6];
+        s16 counts2[6];
+        s16 start;
+        s16 flags;
+    } *command = (struct DrawCommand *)arg1;
+    s32 i;
+
+    sp64 = command->start;
+    sp60 = sp64;
+    sp5C = mlMtx_get_stack_pointer();
+    sp58 = func_80018BB4();
+    mlMtxApply(context->mtx);
+    i = 0;
+    do {
+        if (*(s16 *)(arg1 + 0x2E) != 0 && (*(s16 *)(arg1 + 0x2E) & 1)) {
+            if (command->counts2[i] != 0) {
+                func_8010F070(sp5C, &sp60, command->counts2[i]);
+            }
+            if (command->counts1[i] != 0) {
+                func_8010F070(sp58, &sp60, command->counts1[i]);
+            }
+        }
+        if (D_8012CEC4 != NULL) {
+            if (command->counts2[i] != 0) {
+                D_8012CEC4(sp5C, &sp64, command->counts2[i]);
+            }
+            if (command->counts1[i] != 0) {
+                D_8012CEC4(sp58, &sp64, command->counts1[i]);
+            }
+        }
+        list = context->gfx++;
+        list->words.w0 = 0xDE000000;
+        list->words.w1 = osVirtualToPhysical(command->indices[i] * 8 + (u8 *)D_8012C960 + 8);
+        packet = context->gfx++;
+        packet->words.w0 = 0xDA380002;
+        i++;
+        packet->words.w1 = (u32)context->mtx;
+    } while (command->indices[i] != 0);
+    context->mtx++;
+}
+
+void func_800DDB38(void *arg0, u8 *arg1) {
+    void mlMtxApply(Mtx *);
+    extern RenderData D_8012C948;
+    struct DrawContext {
+        Gfx *gfx;
+        Mtx *mtx;
+    } *context = arg0;
+    Gfx *packet;
+    Gfx *list;
+    struct DrawCommand {
+        s32 header[2];
+        s16 indices[1];
+    } *command = (struct DrawCommand *)arg1;
+    u8 *cursor = (u8 *)&command->header[0];
+    s32 i;
+
+    mlMtxApply(context->mtx);
+    i = 0;
+    do {
+        list = context->gfx++;
+        list->words.w0 = 0xDE000000;
+        list->words.w1 = osVirtualToPhysical(*(u8 **)((u8 *)&D_8012C948 + 0x18) + command->indices[i] * 8 + 8);
+        packet = context->gfx++;
+        i++;
+        packet->words.w0 = 0xDA380002;
+        packet->words.w1 = (u32)context->mtx;
+    } while (*(s16 *)(cursor + i * 2 + 8) != 0);
+    context->mtx++;
+}
+
+void func_800DDC28(volatile s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3D0C(f32 *, f32 *);
+    extern RenderData D_8012C948;
+    f32 scaled_min[3];
+    f32 scaled_max[3];
+    s32 i;
+    struct DrawDistance {
+        s32 header[2];
+        s16 min[3];
+        s16 max[3];
+        s16 branch_offset;
+    } *cmd = (struct DrawDistance *)arg1;
+
+    if (cmd->branch_offset != 0) {
+        for (i = 0; i < 3; i++) {
+            scaled_min[i] = cmd->min[i] * D_8012C948.scale;
+            scaled_max[i] = cmd->max[i] * D_8012C948.scale;
+        }
+        if (func_800E3D0C(scaled_min, scaled_max) != 0) {
+            func_800DE2A4(arg0, (u8 *)cmd + cmd->branch_offset);
+        }
+    }
+}
+
+void func_800DDD14(volatile s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3D0C(f32 *, f32 *);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    extern RenderData D_8012C948;
+    extern f32 *D_8012C94C;
+    f32 sp34[3];
+    f32 sp28[3];
+    s32 pad[2];
+
+    if (*(s16 *)(arg1 + 0x14) != 0) {
+        func_800EE88C(sp34, (s16 *)(arg1 + 8));
+        func_800EE88C(sp28, (s16 *)(arg1 + 0xE));
+        func_800EF334(sp34, D_8012C948.scale);
+        func_800EF334(sp28, D_8012C948.scale);
+        func_800EF04C(sp34, D_8012C94C);
+        func_800EF04C(sp28, D_8012C94C);
+        if (func_800E3D0C(sp34, sp28) != 0) {
+            arg1 += *(s16 *)(arg1 + 0x14);
+            func_800DE2A4(arg0, arg1);
+        }
+    }
+}
+
+void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
+    void func_80019224(f32 *, f32 *);
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF334(f32 *, f32);
+    void mlMtxPop(void);
+    extern RenderData D_8012C948;
+    extern s32 D_8012CE58;
+    f32 pos[3];
+    f32 radius;
+    s32 offset;
+    s32 model;
+
+    if (*(s16 *)(arg1 + 0x12) == -1) {
+        func_800EE88C(pos, (s16 *)(arg1 + 8));
+        func_800EF334(pos, D_8012C948.scale);
+        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
+        if (func_800E3E8C(pos, radius)) {
+            offset = *(s16 *)(arg1 + 0x10);
+            model = arg0;
+            if (offset) {
+                arg1 += offset; func_800DE2A4(model, arg1);
+            }
+        }
+    } else {
+        func_800EE88C(pos, (s16 *)(arg1 + 8));
+        radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
+        if (*(s32 *)((u8 *)&D_8012C948 + 0x20)) {
+            func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), *(s16 *)(arg1 + 0x12)));
+            func_80019224(pos, pos);
+            mlMtxPop();
+        } else {
+            func_80019224(pos, pos);
+        }
+        if (func_800E3E8C(pos, radius)) {
+            offset = *(s16 *)(arg1 + 0x10);
+            model = arg0;
+            if (offset) {
+                arg1 += offset; func_800DE2A4(model, arg1);
+            }
+        }
+    }
+}
+
+void func_800DDF14(volatile s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF334(f32 *, f32);
+    extern RenderData D_8012C948;
+    f32 sp2C[3];
+    f32 radius;
+    s32 offset;
+    s32 model;
+
+    func_800EE88C(sp2C, (s16 *)(arg1 + 8));
+    func_800EF334(sp2C, D_8012C948.scale);
+    radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
+    if (func_800E3E8C(sp2C, radius) == 0) {
+        return;
+    }
+    offset = *(s16 *)(arg1 + 0x10);
+    model = arg0;
+    if (offset == 0) {
+        return;
+    }
+    arg1 += offset; func_800DE2A4(model, arg1);
+}
+
+void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
+    void func_800DE2A4(s32, u8 *);
+    s32 func_800E3E8C(f32 *, f32);
+    void func_800EE88C(f32 *, s16 *);
+    void func_800EF04C(f32 *, f32 *);
+    void func_800EF334(f32 *, f32);
+    extern RenderData D_8012C948;
+    extern f32 *D_8012C94C;
+    f32 sp2C[3];
+    f32 radius;
+    s32 offset;
+    s32 model;
+
+    func_800EE88C(sp2C, (s16 *)(arg1 + 8));
+    func_800EF334(sp2C, D_8012C948.scale);
+    func_800EF04C(sp2C, D_8012C94C);
+    radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
+    if (func_800E3E8C(sp2C, radius) == 0) {
+        return;
+    }
+    offset = *(s16 *)(arg1 + 0x10);
+    model = arg0;
+    if (offset == 0) {
+        return;
+    }
+    arg1 += offset; func_800DE2A4(model, arg1);
+}
+
+void func_800DE03C(s32 arg0, u8 *arg1) {
+    struct camera_command { u8 pad[12]; unsigned int zone : 8; };
+    void func_800DE2A4(s32, u8 *);
+    s32 _dbzone_entrypoint_0(s32, u8 *, u8, u8 *);
+    s32 _glzone_entrypoint_3(s32, s32);
+    extern s32 D_8012C848;
+    extern s32 D_8012C970;
+    s32 temp_v0;
+
+    temp_v0 = _dbzone_entrypoint_0(D_8012C970, arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA))), arg1);
+    if (((temp_v0 == 0) && ((*(u8 *)((s8 *)(arg1) + (0xB))) & 1)) || ((temp_v0 != 0) && ((*(u8 *)((s8 *)(arg1) + (0xB))) & 2))) {
+        if (D_8012C848 != 0) {
+            if (((struct camera_command *)arg1)->zone != 0) {
+                _glzone_entrypoint_3(D_8012C848, ((struct camera_command *)arg1)->zone);
+            }
+        }
+        arg1 += *(s16 *)(arg1 + 8);
+        func_800DE2A4(arg0, arg1);
+    }
+}
+
+void func_800DE0D8(s32 arg0, u8 *arg1) {
+    void func_80019AA0(void *, s32);
+    s32 func_800ADE2C(s32, s32);
+    MtxF *mlMtx_get_stack_pointer(void);
+    void mlMtxPop(void);
+    extern RenderData D_8012C948;
+    extern s32 D_8012CE58;
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    struct command { s32 header[2]; s16 count; s16 id; struct { s16 bone; s16 tag; } entries[1]; };
+    s32 sp48[2];
+    s32 i;
+    struct command *command = (struct command *)arg1;
+
+    sp48[0] = command->id;
+    if (D_8012CEC4 != NULL) {
+        for (i = 0; i < command->count; i++) {
+                func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), command->entries[i].bone));
+                D_8012CEC4(mlMtx_get_stack_pointer(), sp48, command->entries[i].tag);
+                mlMtxPop();
+        }
+    }
+}
+
+void func_800DE1C4(s32 arg0, u8 *arg1) {
+    MtxF *func_80018BB4(void);
+    s32 func_8010F070(MtxF *, s32 *, s16);
+    MtxF *mlMtx_get_stack_pointer(void);
+    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    s32 sp38[2];
+    MtxF *sp34;
+    MtxF *sp30;
+    s32 sp2C;
+    s16 temp_a2;
+    s16 temp_a2_2;
+    s16 temp_a2_3;
+    s16 temp_a2_4;
+
+    sp38[0] = *(s16 *)(arg1 + 8);
+    sp34 = mlMtx_get_stack_pointer();
+    sp30 = func_80018BB4();
+    if (*(s16 *)(arg1 + 0xE) != 0) {
+        sp2C = sp38[0];
+        if (*(s16 *)(arg1 + 0xE) & 1) {
+            temp_a2 = *(s16 *)(arg1 + 0xA);
+            if (temp_a2 != 0) {
+                func_8010F070(sp34, &sp2C, temp_a2);
+            }
+            temp_a2_2 = *(s16 *)(arg1 + 0xC);
+            if (temp_a2_2 != 0) {
+                func_8010F070(sp30, &sp2C, temp_a2_2);
+            }
+        }
+    }
+    if (D_8012CEC4 != NULL) {
+        temp_a2_3 = *(s16 *)(arg1 + 0xA);
+        if (temp_a2_3 != 0) {
+            D_8012CEC4(sp34, sp38, temp_a2_3);
+        }
+        temp_a2_4 = *(s16 *)(arg1 + 0xC);
+        if (temp_a2_4 != 0) {
+            D_8012CEC4(sp30, sp38, temp_a2_4);
+        }
+    }
+}
+
+void func_800DE2A4(s32 model, u8 *commands) {
+    s32 next;
+    while (1) {
+        D_8012CF8C[*(s32 *)commands](model, commands);
+        next = *(s32 *)(commands + 4);
+        if (next == 0) {
+            return;
+        }
+        commands += next;
+    }
+}
+
+#endif

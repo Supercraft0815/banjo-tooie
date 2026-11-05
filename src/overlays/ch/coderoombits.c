@@ -590,46 +590,25 @@ s32 func_80800FDC_chcoderoombits(void) {
     return var_s1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801040_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801048_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801054_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_8080105C_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801068_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801074_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_8080107C_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801088_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801090_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_8080109C_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010A8_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010B4_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010C0_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010CC_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010D4_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010E0_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010EC_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_808010F4_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801100_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801108_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_8080111C_chcoderoombits.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ch/coderoombits/R_80801128_chcoderoombits.s")
+const char R_80801040_chcoderoombits[] = "IPWNBZ";
+const char R_80801048_chcoderoombits[] = "CWNBPWDQ";
+const char R_80801054_chcoderoombits[] = "WSSQ";
+const char R_8080105C_chcoderoombits[] = "CNYYGDZZC";
+const char R_80801068_chcoderoombits[] = "PZKWFENIH";
+const char R_80801074_chcoderoombits[] = "AXHWEZU";
+const char R_8080107C_chcoderoombits[] = "SWBAOSSF";
+const char R_80801088_chcoderoombits[] = "PZVOKS";
+const char R_80801090_chcoderoombits[] = "QXGWDENKAZ";
+const char R_8080109C_chcoderoombits[] = "QXGWDENTTF";
+const char R_808010A8_chcoderoombits[] = "PZKWFHOKS";
+const char R_808010B4_chcoderoombits[] = "KWQBHOKS";
+const char R_808010C0_chcoderoombits[] = "QDWPBNWC";
+const char R_808010CC_chcoderoombits[] = "QSSW";
+const char R_808010D4_chcoderoombits[] = "CZZDGYYNC";
+const char R_808010E0_chcoderoombits[] = "HINEFWKZP";
+const char R_808010EC_chcoderoombits[] = "UZEWHXA";
+const char R_808010F4_chcoderoombits[] = "FSSOABWS";
+const char R_80801100_chcoderoombits[] = "SKOVZP";
+const char R_80801108_chcoderoombits[] = "AOSSFJOSSFQGWIONY";
+const char R_8080111C_chcoderoombits[] = "INQBYOQB";
+const char R_80801128_chcoderoombits[] = "GYNFOBNSNOKQZK";

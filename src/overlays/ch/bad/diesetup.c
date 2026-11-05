@@ -1,112 +1,188 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "native_spawn_queue.h"
+#include "native_actor.h"
+typedef NativeSpawnQueue SpawnQueue;
+#define QUEUE_FIELD(queue, field, original) (((NativeSpawnQueue *)(queue))->field)
+#define QUEUE_ENTRY(queue) (&((NativeSpawnQueue *)(queue))->callbacks[((NativeSpawnQueue *)(queue))->count])
+#define QUEUE_CALLBACK(queue, n, original) (QUEUE_ENTRY(queue)->callback.f##n)
+#define QUEUE_ARG(queue, n, original) (QUEUE_ENTRY(queue)->args[n])
+#define QUEUE_ARITY(queue, original) (QUEUE_ENTRY(queue)->count)
+#else
+typedef Actor SpawnQueue;
+#define QUEUE_FIELD(queue, field, original) (original)
+#define QUEUE_CALLBACK(queue, n, original) (original)
+#define QUEUE_ARG(queue, n, original) (original)
+#define QUEUE_ARITY(queue, original) (original)
+#endif
 
 s32 func_80800000_chbaddiesetup(void *arg0) {
-    if ((*(s32 *)((s8 *)(arg0) + (0))) == 0) {
+    if (QUEUE_FIELD(arg0, callbacks, (*(s32 *)((s8 *)(arg0) + (0)))) == 0) {
         return 0;
     }
+#ifdef BT_NATIVE
+    if (((NativeSpawnQueue *)arg0)->count >= NATIVE_SPAWN_CAPACITY) {
+#else
     if ((*(u8 *)((s8 *)(arg0) + (4))) == 0x16) {
+#endif
         return 0;
     }
     return 1;
 }
 
-void chbaddiesetup_entrypoint_0(s32 arg0) {
+#ifdef BT_NATIVE
+void chbaddiesetup_entrypoint_0(NativeSpawn0 arg0)
+#else
+void chbaddiesetup_entrypoint_0(s32 arg0)
+#endif
+ {
     void *func_800A5D60(void);
-    Actor *actor;
+    SpawnQueue *actor;
 
+#ifdef BT_NATIVE
+    if (!arg0) return;
+#endif
     actor = func_800A5D60();
     if (func_80800000_chbaddiesetup(actor) != 0) {
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 0;
-        ((u8 *)actor->position)[0]++;
+        QUEUE_CALLBACK(actor, 0, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5))) = arg0;
+        QUEUE_ARITY(actor, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C)) = 0;
+        QUEUE_FIELD(actor, count, ((u8 *)actor->position)[0])++;
     }
 }
 
-void chbaddiesetup_entrypoint_1(s32 arg0, s32 arg1) {
+#ifdef BT_NATIVE
+void chbaddiesetup_entrypoint_1(NativeSpawn1 arg0, uintptr_t arg1)
+#else
+void chbaddiesetup_entrypoint_1(s32 arg0, s32 arg1)
+#endif
+ {
     void *func_800A5D60(void);
-    Actor *actor;
+    SpawnQueue *actor;
 
+#ifdef BT_NATIVE
+    if (!arg0) return;
+#endif
     actor = func_800A5D60();
     if (func_80800000_chbaddiesetup(actor) != 0) {
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 1;
-        ((u8 *)actor->position)[0]++;
+        QUEUE_CALLBACK(actor, 1, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5))) = arg0;
+        QUEUE_ARG(actor, 0, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4)) = arg1;
+        QUEUE_ARITY(actor, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C)) = 1;
+        QUEUE_FIELD(actor, count, ((u8 *)actor->position)[0])++;
     }
 }
 
-void chbaddiesetup_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
+#ifdef BT_NATIVE
+void chbaddiesetup_entrypoint_2(NativeSpawn2 arg0, uintptr_t arg1, uintptr_t arg2)
+#else
+void chbaddiesetup_entrypoint_2(s32 arg0, s32 arg1, s32 arg2)
+#endif
+ {
     void *func_800A5D60(void);
-    Actor *actor;
+    SpawnQueue *actor;
+#ifdef BT_NATIVE
+    if (!arg0) return;
+#endif
     actor = func_800A5D60();
     if (func_80800000_chbaddiesetup(actor) != 0) {
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8) = arg2;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 2;
-        ((u8 *)actor->position)[0]++;
+        QUEUE_CALLBACK(actor, 2, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5))) = arg0;
+        QUEUE_ARG(actor, 0, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4)) = arg1;
+        QUEUE_ARG(actor, 1, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8)) = arg2;
+        QUEUE_ARITY(actor, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C)) = 2;
+        QUEUE_FIELD(actor, count, ((u8 *)actor->position)[0])++;
     }
 }
 
-void chbaddiesetup_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+#ifdef BT_NATIVE
+void chbaddiesetup_entrypoint_3(NativeSpawn3 arg0, uintptr_t arg1, uintptr_t arg2, uintptr_t arg3)
+#else
+void chbaddiesetup_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+#endif
+ {
     void *func_800A5D60(void);
-    Actor *actor;
+    SpawnQueue *actor;
+#ifdef BT_NATIVE
+    if (!arg0) return;
+#endif
     actor = func_800A5D60();
     if (func_80800000_chbaddiesetup(actor) != 0) {
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8) = arg2;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC) = arg3;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 3;
-        ((u8 *)actor->position)[0]++;
+        QUEUE_CALLBACK(actor, 3, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5))) = arg0;
+        QUEUE_ARG(actor, 0, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4)) = arg1;
+        QUEUE_ARG(actor, 1, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8)) = arg2;
+        QUEUE_ARG(actor, 2, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC)) = arg3;
+        QUEUE_ARITY(actor, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C)) = 3;
+        QUEUE_FIELD(actor, count, ((u8 *)actor->position)[0])++;
     }
 }
 
-void chbaddiesetup_entrypoint_4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+#ifdef BT_NATIVE
+void chbaddiesetup_entrypoint_4(NativeSpawn4 arg0, uintptr_t arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4)
+#else
+void chbaddiesetup_entrypoint_4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
+#endif
+ {
     void *func_800A5D60(void);
-    Actor *actor;
+    SpawnQueue *actor;
+#ifdef BT_NATIVE
+    if (!arg0) return;
+#endif
     actor = func_800A5D60();
     if (func_80800000_chbaddiesetup(actor) != 0) {
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8) = arg2;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC) = arg3;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x10) = arg4;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 4;
-        ((u8 *)actor->position)[0]++;
+        QUEUE_CALLBACK(actor, 4, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5))) = arg0;
+        QUEUE_ARG(actor, 0, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4)) = arg1;
+        QUEUE_ARG(actor, 1, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8)) = arg2;
+        QUEUE_ARG(actor, 2, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC)) = arg3;
+        QUEUE_ARG(actor, 3, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x10)) = arg4;
+        QUEUE_ARITY(actor, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C)) = 4;
+        QUEUE_FIELD(actor, count, ((u8 *)actor->position)[0])++;
     }
 }
 
-void chbaddiesetup_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+#ifdef BT_NATIVE
+void chbaddiesetup_entrypoint_5(NativeSpawn5 arg0, uintptr_t arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5)
+#else
+void chbaddiesetup_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5)
+#endif
+ {
     void *func_800A5D60(void);
-    Actor *actor;
+    SpawnQueue *actor;
+#ifdef BT_NATIVE
+    if (!arg0) return;
+#endif
     actor = func_800A5D60();
     if (func_80800000_chbaddiesetup(actor) != 0) {
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8) = arg2;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC) = arg3;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x10) = arg4;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x14) = arg5;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 5;
-        ((u8 *)actor->position)[0]++;
+        QUEUE_CALLBACK(actor, 5, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5))) = arg0;
+        QUEUE_ARG(actor, 0, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4)) = arg1;
+        QUEUE_ARG(actor, 1, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8)) = arg2;
+        QUEUE_ARG(actor, 2, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC)) = arg3;
+        QUEUE_ARG(actor, 3, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x10)) = arg4;
+        QUEUE_ARG(actor, 4, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x14)) = arg5;
+        QUEUE_ARITY(actor, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C)) = 5;
+        QUEUE_FIELD(actor, count, ((u8 *)actor->position)[0])++;
     }
 }
 
-void chbaddiesetup_entrypoint_6(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+#ifdef BT_NATIVE
+void chbaddiesetup_entrypoint_6(NativeSpawn6 arg0, uintptr_t arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5, uintptr_t arg6)
+#else
+void chbaddiesetup_entrypoint_6(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+#endif
+ {
     void *func_800A5D60(void);
-    Actor *actor;
+    SpawnQueue *actor;
+#ifdef BT_NATIVE
+    if (!arg0) return;
+#endif
     actor = func_800A5D60();
     if (func_80800000_chbaddiesetup(actor) != 0) {
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5)) = arg0;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4) = arg1;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8) = arg2;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC) = arg3;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x10) = arg4;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x14) = arg5;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x18) = arg6;
-        *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C) = 6;
-        ((u8 *)actor->position)[0]++;
+        QUEUE_CALLBACK(actor, 6, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5))) = arg0;
+        QUEUE_ARG(actor, 0, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 4)) = arg1;
+        QUEUE_ARG(actor, 1, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 8)) = arg2;
+        QUEUE_ARG(actor, 2, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0xC)) = arg3;
+        QUEUE_ARG(actor, 3, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x10)) = arg4;
+        QUEUE_ARG(actor, 4, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x14)) = arg5;
+        QUEUE_ARG(actor, 5, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x18)) = arg6;
+        QUEUE_ARITY(actor, *(s32 *)((u8 *)actor->unk0 + (((u8 *)actor->position)[0] << 5) + 0x1C)) = 6;
+        QUEUE_FIELD(actor, count, ((u8 *)actor->position)[0])++;
     }
 }
 
@@ -121,7 +197,9 @@ void chbaddiesetup_entrypoint_7(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 /* extern */
 
 void chbaddiesetup_entrypoint_8(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+#ifndef BT_NATIVE
     void func_80108454(s32, s32 *, u32);
+#endif
     s32 pos[3];
 
     pos[0] = *(s32 *)&arg1;

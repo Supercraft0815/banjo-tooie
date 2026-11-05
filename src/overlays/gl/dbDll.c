@@ -1,4 +1,9 @@
 #include "common.h"
+#include "overlays/gl/dbDll.h"
+#ifdef BT_NATIVE
+#include "native_cic.h"
+#include "native_assets.h"
+#endif
 
 void func_80800000_gldbDll(u8 *arg0, s32 arg1) {
     OSMesgQueue *func_80016928();
@@ -11,9 +16,15 @@ void func_80800000_gldbDll(u8 *arg0, s32 arg1) {
     s32 i;
     u16 value;
 
+#ifndef BT_NATIVE
     queue = func_80016928();
+#endif
     for (i = 0; i < 14; i += 2) {
+#ifdef BT_NATIVE
+        value = ((u32)arg1 >> i) | ((u32)arg1 << (16 - i));
+#else
         value = (arg1 >> i) | (arg1 << (16 - i));
+#endif
         challenge[i] = value;
         challenge[i + 1] = value & 0xFF00;
     }
@@ -22,6 +33,9 @@ void func_80800000_gldbDll(u8 *arg0, s32 arg1) {
     for (i = 0; i != 16; i++) {
         arg0[i] = 0;
     }
+#ifdef BT_NATIVE
+    native_cic_response((u8 *)challenge, arg0);
+#else
     func_80016934(5);
     cic_send_challenge(challenge, queue);
     osRecvMesg(queue, NULL, 1);
@@ -29,9 +43,10 @@ void func_80800000_gldbDll(u8 *arg0, s32 arg1) {
     osRecvMesg(queue, NULL, 1);
     func_8001E170(arg0);
     func_80016934(0);
+#endif
 }
 
-s32 func_808000E8_gldbDll(s32 *arg0, s32 arg1, s32 arg2) {
+void func_808000E8_gldbDll(s32 *arg0, s32 arg1, s32 arg2) {
     u8 response[16];
     s32 i;
 
@@ -44,10 +59,13 @@ s32 func_808000E8_gldbDll(s32 *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 *gldbDll_entrypoint_0(s32 arg0, s32 *arg1) {
+#ifdef BT_NATIVE
+    return native_asset_load(arg0, arg1);
+#else
     s32 func_8001C2AC(u8 *, u8 *);
     s32 func_800D5A6C(s32);
     s32 func_800D5DB8(s32);
-    s32 func_808000E8_gldbDll(s32 *, s32, s32);
+    void func_808000E8_gldbDll(s32 *, s32, s32);
     void *heap_alloc(s32);
     void heap_free(void *);
     void rom_dma_read(u8 *, u8 *, u32);
@@ -71,6 +89,7 @@ s32 *gldbDll_entrypoint_0(s32 arg0, s32 *arg1) {
     func_8001C2AC((u8 *)buffer, (u8 *)size);
     heap_free((void *)buffer);
     return (s32 *)size;
+#endif
 }
 
 void gldbDll_entrypoint_1(void) {

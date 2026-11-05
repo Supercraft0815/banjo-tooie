@@ -979,7 +979,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
     void func_800F497C(s32);
     void func_800F49A8(s32, s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     u32 func_800F54E4(void);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -1065,7 +1065,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
             func_800F497C(sp2C);
             func_800F49A8(sp2C, 1);
             func_800F49D4(sp2C, &func_8010D5DC, (s32)arg0->unk0);
-            func_800F4A58(sp2C, (s32)data->unk64, data->unk40 ? 220 : 300);
+            func_800F4A58(sp2C, data->unk64, data->unk40 ? 220 : 300);
             func_800FDC28(1);
             break;
         case 6:

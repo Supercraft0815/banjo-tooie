@@ -1,7 +1,13 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_vertex_cache.h"
+#include "native_palette.h"
+void *glpackvtx_entrypoint_0(void *arg0, const void *arg1, s32 *arg2) {
+#else
 void *glpackvtx_entrypoint_0(void *arg0, s32 arg1, s32 *arg2) {
     s32 _dbpalette_entrypoint_0(s32, s32, s32 *);
+#endif
     void *func_800B2190(void *);
     u32 func_800B2344(void *);
     void *heap_alloc(s32);
@@ -11,7 +17,11 @@ void *glpackvtx_entrypoint_0(void *arg0, s32 arg1, s32 *arg2) {
     u32 count;
     s32 tint;
     u8 *end;
+#ifdef BT_NATIVE
+    s32 color[4];
+#else
     s32 color[3];
+#endif
     u8 *dst;
     u8 *src;
 
@@ -30,6 +40,9 @@ void *glpackvtx_entrypoint_0(void *arg0, s32 arg1, s32 *arg2) {
             dst[7] = src[13];
             dst[8] = src[14];
         }
+#ifdef BT_NATIVE
+        dst[9] = 0;
+#endif
         src += 16;
         if (arg2 != NULL && (arg2[0] != 255 || arg2[1] != 255 || arg2[2] != 255)) {
             dst[6] = (u8)((s32)(dst[6] * arg2[0]) >> 8);
@@ -46,7 +59,15 @@ void *glpackvtx_entrypoint_0(void *arg0, s32 arg1, s32 *arg2) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void glpackvtx_entrypoint_1(void *data) {
+    void heap_free(void *);
+    heap_free(data);
+}
+#else
 void glpackvtx_entrypoint_1(void) {
     s32 heap_free();
     heap_free();
 }
+
+#endif

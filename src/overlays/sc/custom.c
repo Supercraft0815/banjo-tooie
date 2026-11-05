@@ -296,4 +296,4 @@ void sccustom_entrypoint_7(s32 arg0) {
     func_808006C4_sccustom(arg0, func_8080084C_sccustom());
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/sc/custom/R_80800910_sccustom.s")
+const char R_80800910_sccustom[] = "LOTS";

@@ -51,7 +51,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800F497C(s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F608C(s32, s32);
     s32 func_800F64A4(s32, s32);
@@ -162,7 +162,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
         data->unk498 = 2;
         func_800F497C(func_800F54E4());
         func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
-        func_800F4A58(func_800F54E4(), (s32)data->positions[0], 300.0f);
+        func_800F4A58(func_800F54E4(), data->positions[0], 300.0f);
         func_80802A00_chinflatableboss(arg0, 0x2F, 0x20);
     } else {
         arg0->unk64_16 = 0;
@@ -421,7 +421,7 @@ s32 func_80800A98_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F497C(s32);
     void func_800F49A8(s32, s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F8300(s32, s32, f32 *);
     u32 func_800FDC28(u32);
@@ -1347,7 +1347,7 @@ s32 func_8080272C_chinflatableboss(Actor *arg0) {
     void func_800DA544(s32);
     void func_800F497C(s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F82D4(s32, s32);
     u32 func_800FDC28(u32);
@@ -1387,7 +1387,7 @@ s32 func_8080272C_chinflatableboss(Actor *arg0) {
                 func_800F82D4(func_800F54E4(), 0);
                 func_800F497C(func_800F54E4());
                 func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
-                func_800F4A58(func_800F54E4(), (s32)data->position, 400.0f);
+                func_800F4A58(func_800F54E4(), data->position, 400.0f);
                 data->state = 4;
             }
         }
@@ -1399,7 +1399,7 @@ s32 func_8080272C_chinflatableboss(Actor *arg0) {
             func_800F82D4(func_800F54E4(), 0);
             func_800F497C(func_800F54E4());
             func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
-            func_800F4A58(func_800F54E4(), (s32)data->position, 400.0f);
+            func_800F4A58(func_800F54E4(), data->position, 400.0f);
             data->state = 4;
         }
         break;

@@ -5,9 +5,13 @@
 #include "overlays/ba/key.h"
 #include "overlays/ba/flag.h"
 #include "core2/1E66990.h"
+#include "core2/1E6B700.h"
 #include "core2/1EA0690.h"
 #include "core2/1EB2840.h"
 #include "core2/1ECA640.h"
+#include "core2/1ECD170.h"
+#include "core2/1ECE0B0.h"
+#include "su/inv.h"
 
 #define NOT(x) ((x) ^ 1)
 
@@ -92,7 +96,7 @@ int bainput_func_80097C7C(PlayerState *self) {
         return 0;
     }
     
-    if (!func_80091E80(self, 0x40)) {
+    if (!func_80091E80((u8 *)self, 0x40)) {
         return 0;
     }
     

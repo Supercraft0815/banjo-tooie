@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1EE7960_native.inc"
+#else
 #include "common.h"
 
 extern s32 D_80137074;
@@ -222,3 +225,5 @@ void func_8010E7F4(void) {
     (*(s32 *)((s8 *)(&D_80137060) + (0x18))) = 0;
     (*(s32 *)((s8 *)(&D_80137060) + (0x1C))) = 0;
 }
+
+#endif

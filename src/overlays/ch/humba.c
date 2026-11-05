@@ -380,14 +380,14 @@ s32 func_80800B40_chhumba(u8 *arg0) {
     void func_8008F904(void*, s32);
     void func_8008F938(s32);
     extern s32 func_8010D5DC;
-    s32 func_8008F9F8(u8 *, s32);
+    void func_8008F9F8(f32 *, f32);
     void func_8080015C_chhumba(Actor *, s32, s32, Unk80132ED0 *);
     func_8080015C_chhumba(arg0, 0, 0x60, 0);
     func_8008F8B0();
     func_8008F8D8(1);
     func_8008F938(1);
     func_8008F904(&func_8010D5DC, *(s32 *)arg0);
-    func_8008F9F8(arg0 + 0x28, 0x43480000);
+    func_8008F9F8((f32 *)(arg0 + 0x28), 200.0f);
 }
 
 void func_80800BA8_chhumba(Actor *arg0, f32 *arg1) {

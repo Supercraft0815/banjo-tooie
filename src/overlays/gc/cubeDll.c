@@ -1,3 +1,217 @@
+#ifdef BT_NATIVE
+#include "native_world_collision.h"
+#include "native_cube.h"
+#include "memory.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void gccubeDll_entrypoint_0(NativeWorldGrid *grid) {
+    s32 i, capacity = 0, count = 0;
+    Prop **props;
+    for (i = 0; i < grid->count; ++i) capacity += grid->cells[i].models[1];
+    props = heap_alloc(capacity * sizeof(*props));
+    for (i = 0; i < grid->count; ++i) _gspropsDll_entrypoint_0(grid->cells + i, props, &count);
+    _gspropsDll_entrypoint_1(props, count);
+    heap_free(props);
+}
+
+static u32 native_cube_word(const u8 *bytes, s32 width) {
+    u32 result = 0;
+    while (width--) result = (result << 8) | *bytes++;
+    return result;
+}
+
+static void native_cube_records(GsFile *file, s32 count, int models, s32 skip, s32 tag) {
+    s32 i, j, width = models ? 20 : 12;
+    s32 allocated;
+    u8 *data, *record, *current;
+    if (!file || file->failed) return;
+    if (tag >= 0 && !gsmaker_entrypoint_16(file, tag)) {
+        if (count) file->failed = 1;
+        return;
+    }
+    current = file->mode == 2 ? file->asset_current_ptr : file->current_ptr;
+    if (count < 0 || count > INT32_MAX / width || file->mode < 2 || file->mode > 3 ||
+        (count && (!current || count > (file->end_ptr - current) / width))) {
+        file->failed = 1;
+        return;
+    }
+    if (!skip) {
+        allocated = models ? native_world_grid.fallback.models[1] : native_world_grid.fallback.dynamic[1];
+        for (i = 0; i < native_world_grid.count; ++i)
+            allocated += models ? native_world_grid.cells[i].models[1] : native_world_grid.cells[i].dynamic[1];
+        if (count > INT16_MAX - 1 - allocated) { file->failed = 1; return; }
+    }
+    data = heap_alloc(count * width);
+    gsmaker_entrypoint_13(file, data, count * width);
+    for (i = 0; i < count && !skip && !file->failed; ++i) {
+        record = data + i * width;
+        if (models) {
+            Prop prop = {0};
+            NativeWorldCell *cell;
+            s32 position[3];
+            for (j = 0; j < 3; ++j) position[j] = prop.position[j] = native_cube_word(record + j * 2, 2);
+            prop.flags6 = native_cube_word(record + 6, 2);
+            prop.ItemID = native_cube_word(record + 8, 2);
+            prop.unkA = native_cube_word(record + 10, 2);
+            prop.flagsC = native_cube_word(record + 12, 4);
+            prop.unk10 = native_cube_word(record + 16, 2);
+            prop.unk12 = native_cube_word(record + 18, 2);
+            cell = func_800BDBC4(position);
+            if (func_808004E0_gspropsDll(&prop) && *func_800BE5C4(cell) == UINT8_MAX) {
+                file->failed = 1;
+                break;
+            }
+            _gspropsDll_entrypoint_3(&prop);
+        } else {
+            NativeMarkerProp prop = {0};
+            prop.sprite = native_cube_word(record, 4);
+            for (j = 0; j < 3; ++j) prop.position[j] = native_cube_word(record + 4 + j * 2, 2);
+            prop.flags = native_cube_word(record + 10, 2);
+            /* Serialized sprite records cannot contain a live actor pointer. */
+            if (prop.flags & 1) { file->failed = 1; break; }
+            _gspropsDll_entrypoint_4(&prop);
+        }
+    }
+    heap_free(data);
+}
+
+s32 func_808000B8_gccubeDll(GsFile *file, s32 skip) {
+    u8 count;
+    if (!file) return 0;
+    if (_gsmaker_entrypoint_17(file, 10, &count)) native_cube_records(file, count, 1, skip, 11);
+    if (_gsmaker_entrypoint_17(file, 8, &count)) native_cube_records(file, count, 0, skip, 9);
+    return !file->failed;
+}
+
+s32 func_80800230_gccubeDll(GsFile *file, s32 skip) {
+    s32 count;
+    if (!file) return 0;
+    if (_gsmaker_entrypoint_21(file, 10, &count)) native_cube_records(file, count, 1, skip, -1);
+    if (_gsmaker_entrypoint_21(file, 8, &count)) native_cube_records(file, count, 0, skip, -1);
+    return !file->failed;
+}
+
+void func_808003A0_gccubeDll(GsFile *file, s32 skip) {
+    s32 position[3];
+    if (!file) return;
+    while (!file->failed && !_gsmaker_entrypoint_16(file, 1)) {
+        if (_gsmaker_entrypoint_22(file, 0, position, 3)) {
+            _gsmaker_entrypoint_12(file, position, 3);
+        } else if (_gsmaker_entrypoint_22(file, 2, position, 3)) {
+        } else if (_gsmaker_entrypoint_16(file, 3)) {
+            func_808000B8_gccubeDll(file, skip);
+        } else {
+            file->failed = 1;
+        }
+    }
+}
+
+void gccubeDll_entrypoint_1(NativeWorldGrid *grid) {
+    s16 _gcmapDll_entrypoint_5(void);
+    void func_800BEC4C(s32 *, s32 *, s32);
+    void func_800CE2DC(void);
+    s32 func_800EA05C(void);
+    s32 i, count = 1;
+    s64 dimension;
+    grid->cell_size = _gcmapDll_entrypoint_5();
+    if (grid->cell_size <= 0) goto invalid;
+    grid->scale = 1.0f / grid->cell_size;
+    func_800BEC4C(grid->lower, grid->upper, grid->cell_size);
+    for (i = 0; i < 3; ++i) {
+        dimension = (s64)grid->upper[i] - grid->lower[i] + 1;
+        if (dimension <= 0 || dimension > INT16_MAX || count > INT16_MAX / dimension) goto invalid;
+        grid->dimensions[i] = dimension;
+        count *= dimension;
+    }
+    grid->row_stride = grid->dimensions[0];
+    grid->plane_stride = grid->row_stride * grid->dimensions[1];
+    grid->count = count;
+    grid->cells = heap_alloc(count * sizeof(*grid->cells));
+    grid->model_counts = heap_alloc(count);
+    for (i = 0; i < count; ++i) func_800E9E4C(grid->cells + i, 0);
+    func_800E9E4C(&grid->fallback, 0);
+    func_800CD230(func_800EA05C() == 0xD7 ? 1000.0f : 200.0f);
+    if(!func_800C6A08(func_800CD23C, func_800CD3A8, func_800CD544)) {
+        fprintf(stderr,"Banjo-Tooie native world: collision callback table is full\n");abort();
+    }
+    func_800CE2DC();
+    func_800E9708();
+    return;
+invalid:
+    fprintf(stderr, "Banjo-Tooie native world: invalid grid bounds or cell size\n");
+    abort();
+}
+
+void gccubeDll_entrypoint_2(NativeWorldGrid *grid) {
+    s32 i;
+    for (i = 0; i < grid->count; ++i) func_800E9C44(grid->cells + i);
+    func_800E9C44(&grid->fallback);
+    heap_free(grid->cells); heap_free(grid->model_counts);
+    grid->cells = NULL; grid->model_counts = NULL; grid->count = 0;
+}
+
+void gccubeDll_entrypoint_3(NativeWorldGrid *grid, void *stream) {
+    GsFile *file = stream;
+    s32 start[3], end[3], i;
+    s64 cells = 1, dimension;
+    if (!file) return;
+    if (!_gsmaker_entrypoint_22(file, 1, start, 3)) { file->failed = 1; return; }
+    _gsmaker_entrypoint_12(file, end, 3);
+    if (file->failed) return;
+    for (i = 0; i < 3; ++i) {
+        dimension = (s64)end[i] - start[i] + 1;
+        if (dimension <= 0) { cells = 0; break; }
+        if (dimension > INT32_MAX || cells > INT32_MAX / dimension) { file->failed = 1; return; }
+        cells *= dimension;
+    }
+    for (i = 0; i < cells && !file->failed; ++i) func_808003A0_gccubeDll(file, 0);
+    if (!_gsmaker_entrypoint_16(file, 0)) { file->failed = 1; return; }
+    func_80800868_gccubeDll(grid, file);
+}
+
+void gccubeDll_entrypoint_4(NativeWorldGrid *grid, void *stream) {
+    GsFile *file = stream;
+    if (!file) return;
+    func_80800230_gccubeDll(file, 0);
+    if (!_gsmaker_entrypoint_16(file, 1)) { file->failed = 1; return; }
+    func_80800868_gccubeDll(grid, file);
+}
+
+void func_80800868_gccubeDll(NativeWorldGrid *grid, GsFile *file) {
+    void func_800CE308(void);
+    (void)grid; (void)file;
+    func_800CE308();
+}
+
+void gccubeDll_entrypoint_5(NativeWorldGrid *grid) {
+    void _gccollectDll_entrypoint_8(NativeWorldCell *);
+    s32 i;
+    for (i = 0; i < grid->count; ++i) _gccollectDll_entrypoint_8(grid->cells + i);
+}
+
+void gccubeDll_entrypoint_6(NativeWorldGrid *grid) {
+    void func_800CB9FC(void), func_800CBA20(void), func_800CBA44(void);
+    s32 i;
+    for (i = 0; i < grid->count; ++i) _gspropsDll_entrypoint_2(grid->cells + i, 0);
+    func_800CBA20();
+    for (i = 0; i < grid->count; ++i) _gspropsDll_entrypoint_2(grid->cells + i, 1);
+    func_800CB9FC(); func_800CBA44();
+}
+
+u32 gccubeDll_entrypoint_7(void) {
+    NativeWorldCell *cell, *end;
+    Prop *prop, *prop_end;
+    u32 maximum = 0;
+    func_800BE52C(&cell, &end);
+    for (; cell && cell < end; ++cell) {
+        prop = func_800E9D68(cell); prop_end = func_800E9D90(cell);
+        for (; prop && prop < prop_end; ++prop)
+            if (maximum < (prop->unk10 >> 5)) maximum = prop->unk10 >> 5;
+    }
+    return maximum;
+}
+#else
 #include "common.h"
 
 /* extern */
@@ -285,3 +499,5 @@ u32 gccubeDll_entrypoint_7(void) {
     }
     return var_s1;
 }
+
+#endif

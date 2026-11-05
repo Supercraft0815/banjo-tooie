@@ -1,4 +1,12 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/animation_resource.h"
+#define CHANNEL(entry) (*(u16 *)(entry) & 15)
+#define GROUP(entry) (*(u16 *)(entry) >> 4)
+#else
+#define CHANNEL(entry) ((entry)->channel)
+#define GROUP(entry) ((entry)->group)
+#endif
 
 /* extern */
 
@@ -27,8 +35,8 @@ void func_800E0050(s16 *arg0, f32 arg1, s32 arg2, f32 *arg3) {
     var_s2 = 0;
     if ((*(s16 *)((s8 *)(arg0) + (4))) > 0) {
 loop_1:
-        var_s0 = var_s1->channel;
-        if (arg2 != var_s1->group) {
+        var_s0 = CHANNEL(var_s1);
+        if (arg2 != GROUP(var_s1)) {
             if (var_s3 != 0) {
                 return;
             }
@@ -50,10 +58,16 @@ block_7:
     }
 }
 
+#ifdef BT_NATIVE
+void func_800E0170(s16 *arg0, f32 arg1, s32 arg2, BoneTransformList *arg3) {
+#else
 void func_800E0170(s16 *arg0, f32 arg1, s32 arg2, s32 arg3) {
+#endif
     f32 func_800E0414(s16 *, f32);
     f32 func_800E04C0(u8 *, f32, s32);
+#ifndef BT_NATIVE
     void func_800E084C(s32, f32 *, u32);
+#endif
     s32 channel;
     u8 *element;
     u32 group;
@@ -86,7 +100,11 @@ void func_800E0170(s16 *arg0, f32 arg1, s32 arg2, s32 arg3) {
         if (channel >= 9) {
             channel -= 9;
         }
+#ifdef BT_NATIVE
+        transform[channel / 3][channel % 3] = func_800E04C0(element, progress, duration);
+#else
         transform[0][channel] = func_800E04C0(element, progress, duration);
+#endif
         element += *(s16 *)(element + 2) * 4 + 4;
     }
     func_800E084C(arg3, transform[0], group);

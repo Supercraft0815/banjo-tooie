@@ -11,13 +11,18 @@ void func_800D9888(f32[4], f32[4], f32[4], f32);
 void func_800D9AD4(f32[4], f32[4], f32[4], f32);
 
 s16 func_8001B668(s32, s32);
+#ifndef BT_NATIVE
 Unkfunc_800E0960_1* func_8001B798(s16);
+#endif
 void func_8001B754(s16);
 
 void* func_800E0960(s32 arg0) {
     void* sp18;
     Unkfunc_800E0960_1* temp_v0;
 
+#ifdef BT_NATIVE
+    if(arg0<0 || arg0>32767)return NULL;
+#endif
     temp_v0 = (Unkfunc_800E0960_1*)heap_alloc(arg0 * sizeof(Unkfunc_800E0960_2) + sizeof(Unkfunc_800E0960_1));
     sp18 = temp_v0;
     temp_v0->unk0 = (Unkfunc_800E0960_2* )&temp_v0[1];
@@ -31,7 +36,13 @@ s16 func_800E09B8(s32 arg0) {
     Unkfunc_800E0960_1* temp_v0_2;
     s16 temp_v0;
 
+#ifdef BT_NATIVE
+    if(arg0<0 || arg0>32767)return 0;
+#endif
     temp_v0 = func_8001B668(3, arg0 * sizeof(Unkfunc_800E0960_2) + sizeof(Unkfunc_800E0960_1));
+#ifdef BT_NATIVE
+    if(!temp_v0)return 0;
+#endif
     temp_v0_2 = func_800E0A28(temp_v0);
     temp_v0_2->unk0 = (Unkfunc_800E0960_2* )&temp_v0_2[1];
     temp_v0_2->unk6 = (s16) arg0;
@@ -81,6 +92,9 @@ void func_800E0AF0(Unkfunc_800E0960_1* arg0, f32 arg1) {
 void func_800E0AFC(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     Unkfunc_800E0960_2* temp_v1;
 
+#ifdef BT_NATIVE
+    if(arg1>=128)return;
+#endif
     if (arg0->unk4 < arg0->unk6) {
         temp_v1 = &arg0->unk0[arg0->unk4++];
         temp_v1->unk0 = arg2;
@@ -89,7 +103,11 @@ void func_800E0AFC(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 ar
         temp_v1->unk4[2] = arg5;
         temp_v1->unk11 = 0;
         temp_v1->unk10 = arg1;
+#ifdef BT_NATIVE
+        arg0->unk10[arg1 >> 5] |= 1u << (arg1 & 31);
+#else
         arg0->unk10[arg1 >> 5] |= 1 << (arg1 & ((1 << 5) - 1));
+#endif
         arg0->unk8 = 1;
     }
 }
@@ -97,6 +115,9 @@ void func_800E0AFC(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 ar
 void func_800E0B8C(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     Unkfunc_800E0960_2* temp_v1;
 
+#ifdef BT_NATIVE
+    if(arg1>=128)return;
+#endif
     if (arg0->unk4 < arg0->unk6) {
         temp_v1 = &arg0->unk0[arg0->unk4++];
         temp_v1->unk0 = arg2;
@@ -105,7 +126,11 @@ void func_800E0B8C(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 ar
         temp_v1->unk4[2] = arg5;
         temp_v1->unk11 = 3;
         temp_v1->unk10 = arg1;
+#ifdef BT_NATIVE
+        arg0->unk10[arg1 >> 5] |= 1u << (arg1 & 31);
+#else
         arg0->unk10[arg1 >> 5] |= 1 << (arg1 & ((1 << 5) - 1));
+#endif
         arg0->unk9 = 1;
     }
 }
@@ -113,6 +138,9 @@ void func_800E0B8C(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 ar
 void func_800E0C20(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     Unkfunc_800E0960_2* temp_v1;
 
+#ifdef BT_NATIVE
+    if(arg1>=128)return;
+#endif
     if (arg0->unk4 < arg0->unk6) {
         temp_v1 = &arg0->unk0[arg0->unk4++];
         temp_v1->unk0 = arg2;
@@ -121,7 +149,11 @@ void func_800E0C20(Unkfunc_800E0960_1* arg0, u8 arg1, f32 arg2, f32 arg3, f32 ar
         temp_v1->unk4[2] = arg5;
         temp_v1->unk11 = 6;
         temp_v1->unk10 = arg1;
+#ifdef BT_NATIVE
+        arg0->unk10[arg1 >> 5] |= 1u << (arg1 & 31);
+#else
         arg0->unk10[arg1 >> 5] |= 1 << (arg1 & ((1 << 5) - 1));
+#endif
         arg0->unkA = 1;
     }
 }

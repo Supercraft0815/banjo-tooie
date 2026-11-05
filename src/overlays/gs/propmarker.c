@@ -1,3 +1,48 @@
+#ifdef BT_NATIVE
+#include "native_map_props.h"
+
+void *gspropmarker_entrypoint_0(NativeWorldCell *cell, s32 id) {
+    Prop *prop = cell ? func_800E9D68(cell) : NULL;
+    Prop *end = cell ? func_800E9D90(cell) : NULL;
+    for (; prop && prop < end; ++prop)
+        if ((prop->unk6_0 || (prop->unk12 & 0x100)) && prop->unk6_1 == 6 && id == prop->ItemID)
+            return prop;
+    return NULL;
+}
+
+s32 gspropmarker_entrypoint_1(NativeWorldCell *cell, s32 *ids, Prop **output, s32 capacity) {
+    s32 count = 0, *id;
+    Prop *prop = cell ? func_800E9D68(cell) : NULL;
+    Prop *end = cell ? func_800E9D90(cell) : NULL;
+    for (; prop && prop < end && count < capacity; ++prop) {
+        if ((prop->unk6_0 || (prop->unk12 & 0x100)) && prop->unk6_1 == 6) {
+            for (id = ids; *id != -1; ++id) {
+                if (prop->ItemID == *id) { output[count++] = prop; break; }
+            }
+        }
+    }
+    return count;
+}
+
+s32 gspropmarker_entrypoint_2(NativeWorldCell *cell, s32 id, f32 (*positions)[3], s32 capacity) {
+    s32 count = 0, i;
+    Prop *prop = cell ? func_800E9D68(cell) : NULL;
+    Prop *end = cell ? func_800E9D90(cell) : NULL;
+    for (; prop && prop < end && count < capacity; ++prop) {
+        if ((prop->unk6_0 || (prop->unk12 & 0x100)) && prop->unk6_1 == 6 && id == prop->ItemID) {
+            for (i = 0; i < 3; ++i) positions[count][i] = prop->position[i];
+            ++count;
+        }
+    }
+    return count;
+}
+
+f32 gspropmarker_entrypoint_3(void *context) {
+    Prop *prop = context;
+    u32 value = prop->flagsC & 0x7FFFFF;
+    return value ? (f32)value * 0.01f : 1.0f;
+}
+#else
 #include "common.h"
 
 void *gspropmarker_entrypoint_0(s16 *arg0, s32 arg1) { Prop *func_800E9D68(s16 *); u32 func_800E9D90(s16 *); s32 func_800E9DC4(s16 *);
@@ -77,3 +122,5 @@ f32 gspropmarker_entrypoint_3(void *arg0) {
     }
     return result;
 }
+
+#endif

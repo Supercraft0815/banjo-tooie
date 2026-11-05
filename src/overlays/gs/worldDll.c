@@ -1,5 +1,31 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_gsfile.h"
+#include "native_world_load.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+s32 gsworldDll_entrypoint_0(s32 map,s32 mode) {
+    void func_8001A2B0(void);
+    void _cadbio_entrypoint_0(GsFile *);
+    void func_800BDC68(void *),func_800BDC90(void *),func_800C90F4(void *);
+    GsFile *world;
+    s32 success;
+    (void)mode;
+    func_8001A2B0();world=_gsmaker_entrypoint_2(map);
+    if(!world)return 0;
+    while(!world->failed && !_gsmaker_entrypoint_16(world,0)) {
+        if(_gsmaker_entrypoint_16(world,2) || _gsmaker_entrypoint_16(world,5))continue;
+        if(_gsmaker_entrypoint_16(world,1))func_800BDC68(world);
+        else if(_gsmaker_entrypoint_16(world,4))func_800C90F4(world);
+        else if(_gsmaker_entrypoint_16(world,6))_cadbio_entrypoint_0(world);
+        else if(_gsmaker_entrypoint_16(world,7))func_800BDC90(world);
+        else world->failed=1;
+    }
+    success=!world->failed;_gsmaker_entrypoint_0(world);return success;
+}
+#else
 void gsworldDll_entrypoint_0(s32 arg0, s32 arg1) {
     void func_8001A2B0(void);
     s32 _gsmaker_entrypoint_2(s32);
@@ -30,6 +56,8 @@ void gsworldDll_entrypoint_0(s32 arg0, s32 arg1) {
     }
     _gsmaker_entrypoint_0(world);
 }
+
+#endif
 
 /* extern */
 
@@ -239,7 +267,14 @@ void gsworldDll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800BD570();
     func_800FA010();
     if (arg3 != 0xF) {
+#ifdef BT_NATIVE
+        if(!gsworldDll_entrypoint_0(arg1,arg3)) {
+            fprintf(stderr,"Banjo-Tooie native world: loading map %d failed\n",arg1);
+            abort();
+        }
+#else
         gsworldDll_entrypoint_0((s32) arg1, arg3);
+#endif
     }
     func_800BF68C();
     func_800D2CD0();
@@ -280,8 +315,13 @@ void gsworldDll_entrypoint_3(s16 *arg0, s32 arg1) {
     *arg0 = arg1;
 }
 
-void func_8080054C_gsworldDll(s32 arg0, s32 arg1, s32 arg2) {
+#ifdef BT_NATIVE
+#define WORLD_FILENAME const char *
+#else
+#define WORLD_FILENAME s32
+#endif
+void func_8080054C_gsworldDll(s32 arg0, s32 arg1, WORLD_FILENAME arg2) {
 }
 void gsworldDll_entrypoint_4(void *arg0) {
-    func_8080054C_gsworldDll(1, (s32) (*(u16 *)((s8 *)(arg0) + (2))), (s32) "world.gs");
+    func_8080054C_gsworldDll(1, (s32) (*(u16 *)((s8 *)(arg0) + (2))), (WORLD_FILENAME) "world.gs");
 }

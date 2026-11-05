@@ -1,4 +1,7 @@
 #include "core2/1ED8C80.h"
+#ifdef BT_NATIVE
+#include "1ED8C80_native.inc"
+#else
 
 void func_800FF390(void) {
     s32 func_80104170();
@@ -659,9 +662,7 @@ void func_801002C0(void) {
     }
 }
 
-void *func_80100368(void *arg0) {
-    return (*(void *(**)())((s8 *)(arg0) + (0x10)))();
-}
+#include "1ED8C80_metadata.inc"
 
 s32 func_8010038C(Actor *arg0, f32 *arg1) {
     s32 func_80081D34(s32);
@@ -701,3 +702,4 @@ s32 func_8010038C(Actor *arg0, f32 *arg1) {
     }
     return func_800EFFB4(arg0->position, (f32)(s32)range->radius, arg1);
 }
+#endif

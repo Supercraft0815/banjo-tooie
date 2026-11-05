@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1EAC200_native.inc"
+#else
 #include "common.h"
 
 extern struct {
@@ -197,3 +200,4 @@ void func_800D2EE4(void) {
         D_8012B360 = defrag(D_8012B360);
     }
 }
+#endif

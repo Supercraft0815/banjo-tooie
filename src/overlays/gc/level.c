@@ -52,11 +52,11 @@ s32 gclevel_entrypoint_2(s32 arg0)
 
 /* extern */
 
-u32 gclevel_entrypoint_3(void) {
-    void *func_80800314_gclevel();
+u32 gclevel_entrypoint_3(u32 level) {
+    void *func_80800314_gclevel(s32);
     void *temp_v0;
 
-    temp_v0 = func_80800314_gclevel();
+    temp_v0 = func_80800314_gclevel(level);
     if (temp_v0 == NULL) {
         return 1U;
     }

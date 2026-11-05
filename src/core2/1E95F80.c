@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1E95F80_native.inc"
+#else
 #include "common.h"
 
 void func_800BC690(void) {
@@ -172,3 +175,4 @@ void func_800BCC90(Gfx **arg0) {
     gSPMatrix((*arg0)++, &D_80128338 - 0x20000000,
               G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
 }
+#endif

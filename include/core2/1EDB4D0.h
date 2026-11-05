@@ -11,7 +11,11 @@ f32 func_80101F24(Actor *);
 void func_80101FDC(Actor*, u32);
 s32 func_801022E4(Actor*);
 void func_80102424(Actor*, s32);
+#ifdef BT_NATIVE
+void *func_8010262C(Unk80132ED0*, u32);
+#else
 s32 func_8010262C(Unk80132ED0*, u32);
+#endif
 
 typedef struct Vec3s32 {
     f32 x, y, z;

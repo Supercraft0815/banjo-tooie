@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include "overlays/ba/key.h"
+#include "core2/1E6B700.h"
 
 #define AS_BOOL(x) ((x) != 0)
 
@@ -17,8 +18,8 @@ void bakey_func_8009191C(PlayerState *self, ButtonId id, s32 arg2) {
     func_800BCCFC(self->key->unk0, id, arg2);
 }
 
-void bakey_func_80091940(PlayerState *self, ButtonId id, s32 arg2) {
-    func_800BCD78(self->key->unk0, id, arg2);
+s32 bakey_func_80091940(PlayerState *self, ButtonId id, s32 arg2) {
+    return func_800BCD78(self->key->unk0, id, arg2);
 }
 
 s32 bakey_func_80091964(PlayerState *self){
@@ -119,7 +120,7 @@ int bakey_getBitfield(PlayerState *self) {
 void bakey_update(PlayerState *self) {
     ButtonId id;
     func_800BD2D0(self->key->unk0);
-    if (!func_80091E80(self, 0x40) || self->key->unk9 || self->key->unk8) {
+    if (!func_80091E80((u8 *)self, 0x40) || self->key->unk9 || self->key->unk8) {
         self->key->unk8 = 0;
         for(id = 0; id < BUTTON_COUNT; id++){
             bakey_setState(self, id, 2);

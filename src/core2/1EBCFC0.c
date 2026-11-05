@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1EBCFC0_native.inc"
+#else
 #include <ultra64.h>
 #include <PR/gbi.h>
 #include "core1/mlmtx.h"
@@ -570,3 +573,5 @@ void func_800E46E0(Gfx** gfx, void* addr) {
     // TODO figure out what segment 8 is.
     gSPSegment((*gfx)++, 0x08, osVirtualToPhysical(addr));
 }
+
+#endif

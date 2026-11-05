@@ -372,7 +372,7 @@ void func_80110BF0(PlayerState *self) {
     s32 _ncba1p_entrypoint_6(PlayerState *, u8 *);
     s32 _ncba1p_entrypoint_7(PlayerState *, struct ba_flag_s **);
     _ncba1p_entrypoint_5(self, 1);
-    _ncba1p_entrypoint_6(self, &self->pad48[0x2C]);
+    _ncba1p_entrypoint_6(self, &self->pad58[0x1C]);
     _ncba1p_entrypoint_7(self, &self->flag);
 }
 
@@ -386,8 +386,8 @@ void func_80110C2C(PlayerState *self) {
 
     temp_v0 = _ncba1p_entrypoint_10();
     if ((temp_v0 != 0) && (temp_v0 != 3)) {
-        if (self->pad48[0x2A] != 0) {
-            _ncba1p_entrypoint_13(self, &self->pad48[0x2C], &self->flag);
+        if (self->pad58[0x1A] != 0) {
+            _ncba1p_entrypoint_13(self, &self->pad58[0x1C], &self->flag);
         }
         _ncba1p_entrypoint_5(self, 3);
     }

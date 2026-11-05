@@ -1,3 +1,107 @@
+#ifdef BT_NATIVE
+#include "native_map_props.h"
+#include "native_actor.h"
+
+void gspropsDll_entrypoint_0(NativeWorldCell *cell, Prop **output, s32 *count) {
+    Prop *prop = cell ? func_800E9D68(cell) : NULL;
+    Prop *end = cell ? func_800E9D90(cell) : NULL;
+    for (; prop && prop < end; ++prop)
+        if (prop->unk6_1 == 6) output[(*count)++] = prop;
+}
+
+void gspropsDll_entrypoint_1(Prop **props, s32 count) {
+    s32 i, j, position[3];
+    Prop *temp, *prop;
+    Actor *actor;
+    u32 flags;
+    for (i = 0; i < count; ++i) {
+        for (j = 0; j < i; ++j) {
+            if (props[i]->ItemID < props[j]->ItemID) {
+                temp = props[j]; props[j] = props[i]; props[i] = temp;
+            }
+        }
+    }
+    for (i = 0; i < count; ++i) {
+        prop = props[i];
+        for (j = 0; j < 3; ++j) position[j] = prop->position[j];
+        flags = ((u32)prop->unk10 << 16) | prop->unk12;
+        actor = func_80108DC0(prop->ItemID, position, prop->FlagOrRotation,
+                              flags >> 21, (flags << 11) >> 21, prop);
+        if (actor) {
+            actor->unk74_7 = prop->unk6_7;
+            actor->unk7A_5 = 1;
+            func_80102FDC(actor, _gspropmarker_entrypoint_3(prop));
+        }
+    }
+}
+
+void gspropsDll_entrypoint_2(NativeWorldCell *cell, s32 pass) {
+    void func_800CBA68(s32, Prop *, s32, s32, s32, s32, s32);
+    void func_800CBAC8(s32, Prop *, s32, s32, s32);
+    void func_800CBB18(s32, Prop *, s32, s32, s32, s32);
+    Prop *prop = cell ? func_800E9D68(cell) : NULL;
+    Prop *end = cell ? func_800E9D90(cell) : NULL;
+    for (; prop && prop < end; ++prop) {
+        u32 flags = ((u32)prop->unk10 << 16) | prop->unk12;
+        s32 size = prop->unk6_7, duration = prop->FlagOrRotation * 5;
+        s32 selected = (flags >> 6) & 1;
+        if (!duration) duration = 300;
+        if (flags & 32) size *= 5;
+        if (prop->unk6_1 == 7 && selected == (pass != 0)) {
+            func_800CBA68(prop->ItemID, prop, size, duration,
+                         flags >> 21, (flags >> 9) & 1, selected);
+        }
+        if (!pass) {
+            if (prop->unk6_1 == 9)
+                func_800CBAC8(prop->ItemID, prop, size, flags & 3, duration);
+            else if (prop->unk6_1 == 12)
+                func_800CBB18(prop->ItemID, prop, size, duration, flags & 3, (flags >> 9) & 1);
+        }
+    }
+}
+
+s32 func_808004E0_gspropsDll(Prop *prop) {
+    return prop->unk6_1 < 6 || prop->unk6_1 > 12;
+}
+
+s32 func_80800524_gspropsDll(NativeWorldCell *cell) {
+    s32 i, j, movable = 0;
+    Prop *props = func_800E9D68(cell), temp;
+    for (i = 0; i < cell->models[1]; ++i) {
+        if (func_808004E0_gspropsDll(props + i)) {
+            ++movable;
+            for (j = i; j > 0 && func_808004E0_gspropsDll(props + j) &&
+                 !func_808004E0_gspropsDll(props + j - 1); --j) {
+                temp = props[j]; props[j] = props[j - 1]; props[j - 1] = temp;
+            }
+        }
+    }
+    *func_800BE5C4(cell) = movable;
+    return movable;
+}
+
+void gspropsDll_entrypoint_3(Prop *source) {
+    s32 position[3], i;
+    NativeWorldCell *cell;
+    Prop *prop;
+    for (i = 0; i < 3; ++i) position[i] = source->position[i];
+    cell = func_800BDBC4(position);
+    prop = func_800E9A24(cell);
+    *prop = *source;
+    if (!(prop->flags6 & 1)) prop->unk12 |= 0x100;
+    func_80800524_gspropsDll(cell);
+}
+
+void gspropsDll_entrypoint_4(NativeMarkerProp *source) {
+    s32 position[3], i;
+    NativeMarkerProp *prop;
+    for (i = 0; i < 3; ++i) position[i] = source->position[i];
+    prop = func_800E98C0(func_800BDBC4(position));
+    *prop = *source;
+    prop->flags |= 16;
+    if (prop->flags & 2) prop->flags &= ~32;
+}
+#else
 #include "common.h"
 
 void gspropsDll_entrypoint_0(s16 *arg0, Prop **arg1, s32 *arg2) {
@@ -231,3 +335,5 @@ void gspropsDll_entrypoint_4(s16 *arg0) {
         sp1C->flag5 = 0;
     }
 }
+
+#endif

@@ -1,7 +1,12 @@
 #include "core2/1EDA900.h"
 Actor *func_80106790(Unk80132ED0 *);
+#ifdef BT_NATIVE
+void *D_80135A80;
+f32 D_80135A70[3],D_80135A7C;
+#else
 extern void *D_80135A80;
 extern f32 D_80135A70[3];
+#endif
 void func_800EE7F8(f32 *, f32 *);
 
 void func_80101010(f32 *arg0) {
@@ -34,6 +39,9 @@ void *func_80101080()
 
 /* extern */
 
+#ifdef BT_NATIVE
+#include "1EDA900_native.inc"
+#else
 s32 func_8010108C(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u32 pad0[16];
@@ -70,7 +78,11 @@ s32 func_8010108C(Actor *arg0, s32 arg1, s32 arg2) {
     return -1;
 }
 
+#ifdef BT_NATIVE
+s32 func_8010114C(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+#else
 s32 func_8010114C(s32 arg0, s32 arg1, s32 arg2) {
+#endif
     s32 func_8010108C();
     return func_8010108C(func_80106790((Unk80132ED0 *)arg0), arg1, arg2);
 }
@@ -164,7 +176,7 @@ s32 func_801013A8(f32 *arg0, s32 arg1, s32 arg2) {
     s32 last;
     Entry *end;
     Entry *globalEnd;
-    s32 marker;
+    Unk80132ED0 *marker;
     void *cube;
     Actor *actor;
 
@@ -178,8 +190,8 @@ s32 func_801013A8(f32 *arg0, s32 arg1, s32 arg2) {
                 if (!(entry->flags & 1)) {
                     continue;
                 }
-                marker = (s32)entry->marker;
-                if (!(((u16 *)&((Unk80132ED0 *)marker)->unk18)[0] & 1)) {
+                marker = entry->marker;
+                if (!(((u16 *)&marker->unk18)[0] & 1)) {
                     continue;
                 }
                 last = func_8010114C(marker, arg1, arg2);
@@ -216,3 +228,5 @@ s32 func_801013A8(f32 *arg0, s32 arg1, s32 arg2) {
     }
     return result;
 }
+
+#endif

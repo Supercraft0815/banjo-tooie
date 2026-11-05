@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "customhits_native.inc"
+#else
 #include "common.h"
 
 void subaddiecustomhits_entrypoint_0(void **arg0, s32 arg1) {
@@ -133,3 +136,5 @@ f32 subaddiecustomhits_entrypoint_5(Actor *arg0, f32 *arg1) {
     func_800EE7F8(arg1, arg0->position);
     return (f32)(u16)arg0->pad68 * arg0->scale * 1.15f;
 }
+
+#endif

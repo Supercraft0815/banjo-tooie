@@ -154,7 +154,7 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
     void func_800F497C(s32);
     void func_800F49A8(s32, s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     s32 func_800F54E4(void);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
@@ -189,7 +189,7 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
                 func_800F497C(camera);
                 func_800F49A8(camera, 1);
                 func_800F49D4(camera, &func_8010D5DC, (s32)arg0->unk0);
-                func_800F4A58(camera, (s32)position, 200.0f);
+                func_800F4A58(camera, position, 200.0f);
                 _subaddiedialog_entrypoint_11(arg0->unk0, 0x154C, 0x44, 0, 0xAE);
                 func_80101FDC(arg0, 3);
                 _capod_entrypoint_13((s32)arg0->unk0, 0, 0x4C, 0x2030);

@@ -1,4 +1,13 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "native_collision_geometry.h"
+#include "core1/mlmtx.h"
+MtxF *func_80019CD4(void);
+#include "memory.h"
+#include "1E83B90_cache_native.inc"
+#else
+#define COLL_BLOCK_HEADER 0x10
+#endif
 
 void func_800AA2A0(s16 *arg0, s32 *arg1, f32 *arg2) {
     s32 i;
@@ -62,12 +71,22 @@ typedef struct {
     s32 data[1];
 } CollList;
 
-extern struct {
+#ifdef BT_NATIVE
+static
+#else
+extern
+#endif
+struct {
     void *list[100];
     void **current;
 } D_801277A0;
 
+#ifdef BT_NATIVE
+void func_800AA4D4(void *mesh, f32 min[3], f32 max[3], void *begin, void *end) {
+    CollList *this=mesh;void ***begin_ptr=begin,***end_ptr=end;
+#else
 void func_800AA4D4(CollList *this, f32 min[3], f32 max[3], void ***begin_ptr, void ***end_ptr) {
+#endif
     s32 min_scaled[3], max_scaled[3];
     s32 pad[2];
     int i;
@@ -121,7 +140,12 @@ void func_800AA4D4(CollList *this, f32 min[3], f32 max[3], void ***begin_ptr, vo
     }
 }
 
+#ifdef BT_NATIVE
+void func_800AA7FC(void *mesh, s32 min[3], s32 max[3], void *begin, void *end) {
+    CollList *this=mesh;void ***begin_ptr=begin,***end_ptr=end;
+#else
 void func_800AA7FC(CollList *this, s32 min[3], s32 max[3], void ***begin_ptr, void ***end_ptr) {
+#endif
     s32 min_scaled[3], max_scaled[3];
     s32 pad[2];
     int i;
@@ -188,7 +212,9 @@ void func_800AAAE0(u8 *arg0) {
 void func_800AAD28(f32 *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     extern f32 D_80127938[];
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
+#endif
     f32 *var_s0;
     f32 *var_s1;
     f32 *end;
@@ -290,7 +316,12 @@ void func_800AAFEC(f32 *arg0, f32 *arg1, s32 *arg2, s32 *arg3, f32 *arg4) {
     func_800EFB24(arg4, arg1, arg0);
 }
 
+#ifdef BT_NATIVE
+void *func_800AB0BC(void *mesh, void *vertex_data, f32 line_start[3], f32 line_end[3], f32 normal[3], u32 flag_filter) {
+    u16 *list=mesh,*vertices=vertex_data;
+#else
 void *func_800AB0BC(u16 *list, u16 *vertices, f32 line_start[3], f32 line_end[3], f32 normal[3], u32 flag_filter) {
+#endif
     typedef struct { u16 vertices[3]; u16 padding; u32 flags; } CollisionTriangle;
     typedef struct { s16 position[3]; s16 padding[5]; } CollisionVertex;
     void func_800AA3B4(void *, void *);
@@ -422,21 +453,39 @@ void *func_800AB0BC(u16 *list, u16 *vertices, f32 line_start[3], f32 line_end[3]
     return result_collision;
 }
 
+#ifdef BT_NATIVE
+void *func_800AB868(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6, f32 *arg7, s32 arg8) {
+#else
 s32 func_800AB868(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6, f32 *arg7, s32 arg8) {
+#endif
     void func_80019224(f32 *, f32 *);
     void func_800193C4(f32 *, f32 *);
     void func_80019750(f32 *, f32 *, f32, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
+#ifndef BT_NATIVE
     s32 func_80019CD4(void);
+#endif
+#ifndef BT_NATIVE
     void *func_800AB0BC(u16 *, u16 *, f32 *, f32 *, f32 *, u32);
+#endif
     extern f32 D_80127938[];
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
+#endif
     f32 sp44[3];
     f32 sp38[3];
+#ifdef BT_NATIVE
+    void *sp34;
+#else
     s32 sp34;
+#endif
     f32 *var_s0;
     f32 *end;
+#ifdef BT_NATIVE
+    void *temp_v0;
+#else
     s32 temp_v0;
+#endif
 
     func_80019CD4();
     func_8001980C(arg2, arg3, arg4, 0);
@@ -461,6 +510,7 @@ s32 func_800AB868(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     return sp34;
 }
 
+#ifndef BT_NATIVE
 void func_800AB980(void) {
     extern void *D_8012798C;
     void* heap_alloc(s32 size);
@@ -578,6 +628,8 @@ void func_800ABC0C(u8 **arg0, u8 **arg1) {
     }
 }
 
+#endif
+
 void func_800ABC58(f32 start_point[3], f32 end_point[3], f32 margin, f32 min_bounds[3], f32 max_bounds[3]) {
     int i;
 
@@ -606,6 +658,9 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
         Triangle *triangle;
         f32 point[3][3];
     } ProcessedTriangle;
+#ifdef BT_NATIVE
+    _Static_assert(sizeof(ProcessedTriangle)==sizeof(NativeProcessedTriangle),"native collision cache record");
+#endif
     void func_800AA4D4();
     void func_800ABB34(void *, void **);
     void func_800EE7F8(f32 *, f32 *);
@@ -640,7 +695,7 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
     func_800AA4D4(arg0, min_bounds, max_bounds, &start_geo, &end_geo);
     vertex_pool = (Vertex *)((u8 *)arg1 + 0x18);
     buffer = D_8012798C;
-    cur_processed_tri = (ProcessedTriangle *)((u8 *)D_8012798C + 0x10);
+    cur_processed_tri = (ProcessedTriangle *)((u8 *)D_8012798C + COLL_BLOCK_HEADER);
     for (i_geo = start_geo; i_geo < end_geo; i_geo++) {
         start_tri = (Triangle *)((Geometry *)((u8 *)arg0 + 0x18) + *(u16 *)((u8 *)arg0 + 0x10)) + (*i_geo)->start;
         end_tri = start_tri + (*i_geo)->count;
@@ -684,7 +739,7 @@ s32 func_800ABCE0(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 a
         }
     }
     *arg7 = cur_processed_tri;
-    return cur_processed_tri != (ProcessedTriangle *)((u8 *)D_8012798C + 0x10);
+    return cur_processed_tri != (ProcessedTriangle *)((u8 *)D_8012798C + COLL_BLOCK_HEADER);
 }
 
 void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
@@ -692,9 +747,16 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
         f32 edgeAB[3];
         f32 edgeAC[3];
         f32 normal[3];
+#ifdef BT_NATIVE
+        void *flags;
+#else
         s32 flags;
+#endif
         f32 vertex[3][3];
     } Triangle;
+#ifdef BT_NATIVE
+    _Static_assert(sizeof(Triangle)==sizeof(NativeProcessedTriangle),"native collision cache record");
+#endif
     void func_800ABC0C(u8 **arg0, u8 **arg1);
     f32 func_800EEAA4(f32 *, f32 *);
     f32 func_800EEFD4(f32 *);
@@ -730,7 +792,7 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
     /* IDO assigns the cutoff spill slot after first seeing radius squared. */
     edge_length = radius * radius;
     block = D_8012798C;
-    for (current.cursor = block + 0x10; current.cursor != end; func_800ABC0C(&current.cursor, &block)) {
+    for (current.cursor = block + COLL_BLOCK_HEADER; current.cursor != end; func_800ABC0C(&current.cursor, &block)) {
         func_800EFB24(deltas[0], position, current.tri->vertex[0]);
         plane_normal = current.tri->normal;
         theta = func_800EEAA4(deltas[0], plane_normal);
@@ -791,7 +853,11 @@ void *func_800AC100(void *end, f32 position[3], f32 radius, f32 normal[3]) {
     return collision;
 }
 
+#ifdef BT_NATIVE
+void *func_800AC638(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, s32 arg6, u32 arg7) {
+#else
 s32 func_800AC638(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, s32 arg6, s32 arg7) {
+#endif
     typedef struct {
         f32 edgeAB[3];
         f32 edgeAC[3];
@@ -799,6 +865,9 @@ s32 func_800AC638(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
         void *triangle;
         f32 point[3][3];
     } ProcessedTriangle;
+#ifdef BT_NATIVE
+    _Static_assert(sizeof(ProcessedTriangle)==sizeof(NativeProcessedTriangle),"native collision cache record");
+#endif
     void func_800AA3B4(void *, void *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF2A0(f32 *);
@@ -845,23 +914,45 @@ s32 func_800AC638(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     }
     func_800EF2A0(arg5);
     func_800AA3B4(coll_tri->triangle, (void *)arg1);
+#ifdef BT_NATIVE
+    return coll_tri->triangle;
+#else
     return (s32)coll_tri->triangle;
+#endif
 }
 
+#ifdef BT_NATIVE
+void *func_800AC848(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9, s32 arg10) {
+#else
 s32 func_800AC848(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9, s32 arg10) {
+#endif
     void func_80019224(f32 *, f32 *);
     void func_80019750(f32 *, f32 *, f32, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
+#ifndef BT_NATIVE
     s32 func_80019CD4(void);
+#endif
+#ifndef BT_NATIVE
     s32 func_800AC638(s32, s32, f32 *, f32 *, f32, f32 *, s32, s32);
+#endif
     extern f32 D_80127938[];
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
+#endif
     f32 sp4C[3];
     f32 sp40[3];
     f32 *var_s0;
+#ifdef BT_NATIVE
+    void *sp38;
+#else
     s32 sp38;
+#endif
     f32 *end;
+#ifdef BT_NATIVE
+    void *temp_v0;
+#else
     s32 temp_v0;
+#endif
 
     func_80019CD4();
     func_8001980C(arg2, arg3, arg4, 0);
@@ -886,8 +977,14 @@ s32 func_800AC848(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     return sp38;
 }
 
+#ifdef BT_NATIVE
+void *func_800AC978(void *mesh, void *vertex_data, f32 position[3], f32 radius, f32 normal[3], u32 flag_filter)
+{
+    u16 *list=mesh,*vertices=vertex_data;
+#else
 void *func_800AC978(u16 *list, u16 *vertices, f32 position[3], f32 radius, f32 normal[3], u32 flag_filter)
 {
+#endif
   typedef struct 
   {
     u16 vertices[3];
@@ -1105,13 +1202,22 @@ void *func_800AC978(u16 *list, u16 *vertices, f32 position[3], f32 radius, f32 n
   return matched_tri;
 }
 
+#ifdef BT_NATIVE
+void *func_800AD1AC(void *mesh, void *vertex_data, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 arg6, f32 *arg7, u32 arg8) {
+    u16 *arg0=mesh,*arg1=vertex_data;
+#else
 void *func_800AD1AC(u16 *arg0, u16 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 arg6, f32 *arg7, u32 arg8) {
+#endif
     void func_80019224(f32 *, f32 *);
     void func_80019750(f32 *, f32 *, f32, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
+#ifndef BT_NATIVE
     s32 func_80019CD4(void);
+#endif
     extern f32 D_80127938[];
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
+#endif
     f32 sp3C[3];
     f32 *var_s0;
     void *sp34;
@@ -1150,7 +1256,11 @@ s32 func_800AD2C8(void *arg0, void *arg1, f32 *arg2, f32 *arg3, f32 *arg4, s16 (
     void func_800EE9EC(f32 *, s32 *, s32 *);
     void func_800EF2A0(f32 *);
     void func_800EFB58(void *, void *, void *);
+#ifdef BT_NATIVE
+    static TriangleCache D_80127990;
+#else
     extern TriangleCache D_80127990;
+#endif
     s32 i;
     s32 j;
     s32 count = 0;

@@ -3,6 +3,10 @@
 
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_map_runtime.h"
+#else
 s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
+#endif
 
 #endif

@@ -1,21 +1,33 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "native_world_collision.h"
+static f32 D_8012B010;
+#endif
 
 void func_800CD230(f32 arg0) {
     extern f32 D_8012B010;
     *(f32 *)((u8 *)&D_8012B010 + 0) = arg0;
 }
 
+#ifdef BT_NATIVE
+void *func_800CD23C(f32 *arg0, f32 *arg1, f32 *arg2, u32 arg3) {
+#else
 s32 func_800CD23C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800BD708(s32 *, s32 *, s32, s32, f32);
     s32 func_800BDAD4(s32 position[3]);
     void *func_800BDC44(void);
     s32 func_800EA628(s32, s32, s32, s32, s32);
+#endif
     extern f32 D_8012B010;
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
+#ifdef BT_NATIVE
+    void *temp_v0, *var_s5;
+#else
     s32 temp_v0;
     s32 var_s5;
+#endif
 
     var_s5 = 0;
     func_800BD708(min, max, arg0, arg1, D_8012B010);
@@ -37,19 +49,27 @@ s32 func_800CD23C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return var_s5;
 }
 
+#ifdef BT_NATIVE
+void *func_800CD3A8(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4, u32 arg5) {
+#else
 s32 func_800CD3A8(s32 arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5)
 {
   void func_800BD708(s32 *, s32 *, s32, s32, f32);
   s32 func_800BDAD4(s32 position[3]);
   void *func_800BDC44(void);
   s32 func_800EAA2C(s32, s32, s32, f32, s32, s32, s32);
-  extern f32 D_8012B010;
+#endif
+    extern f32 D_8012B010;
   s32 cube_indx[3];
   s32 min[3];
   s32 max[3];
   s32 pad[2];
+#ifdef BT_NATIVE
+  void *temp_v0, *result;
+#else
   s32 temp_v0;
   s32 result;
+#endif
   result = 0;
  func_800BD708(min, max, arg0, arg1, arg2 + D_8012B010); min[1]--;
   cube_indx[0] = min[0];
@@ -81,18 +101,26 @@ s32 func_800CD3A8(s32 arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5)
   return result;
 }
 
+#ifdef BT_NATIVE
+void *func_800CD544(f32 *arg0, f32 arg1, f32 *arg2, u32 arg3) {
+#else
 s32 func_800CD544(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     void func_800BD708(s32 *, s32 *, s32, s32, f32);
     s32 func_800BDAD4(s32 position[3]);
     void *func_800BDC44(void);
     s32 func_800EADFC(s32, s32, f32, s32, s32);
+#endif
     extern f32 D_8012B010;
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
     s32 pad[2];
+#ifdef BT_NATIVE
+    void *temp_v0, *result;
+#else
     s32 temp_v0;
     s32 result;
+#endif
 
     result = 0;
     func_800BD708(min, max, arg0, arg0, arg1 + D_8012B010);
@@ -114,6 +142,9 @@ s32 func_800CD544(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     return result;
 }
 
+#ifdef BT_NATIVE
+#include "1EA6B20_native.inc"
+#else
 s32 func_800CD6B4(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4) {
     typedef struct {
         u32 unused:27;
@@ -482,3 +513,5 @@ s32 func_800CDFA8(s32 arg0, s32 *arg1) {
     *arg1 = D_8012AF70[arg0 + 0x80];
     return *(s32 *)(D_8012AF70 + (arg0 << 2));
 }
+
+#endif

@@ -20,7 +20,7 @@ void func_8008F938(s32 arg0)
     func_800F4A00(func_800F54E4(),arg0);
 }
 
-void func_8008F964(s32 arg0)
+void func_8008F964(f32 *arg0)
 {
     func_800F4A2C(func_800F54E4(),arg0);
 }
@@ -36,7 +36,7 @@ void func_8008F9C4(f32 *arg0, f32 arg1)
     func_800F4A8C(func_800F54E4(),arg0,arg1);
 }
 
-void func_8008F9F8(s32 arg0,s32 arg1)
+void func_8008F9F8(f32 *arg0, f32 arg1)
 {
     func_800F4AC0(func_800F54E4(),arg0,arg1);
 }

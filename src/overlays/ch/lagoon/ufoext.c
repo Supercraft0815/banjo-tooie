@@ -11,7 +11,7 @@ s32 func_80800000_chlagoonufoext(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800EA090(void);
     void func_800F497C(s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4AC0(s32, s32, f32);
+    void func_800F4AC0(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F608C(s32, s32);
     void *func_80100094(Actor *, u32);
@@ -40,7 +40,7 @@ s32 func_80800000_chlagoonufoext(Actor *arg0, s32 arg1, s32 arg2) {
             func_800F608C(sp24, 1);
             func_800F497C(sp24);
             func_800F49D4(sp24, &func_8010D5DC, arg0->unk0);
-            func_800F4AC0(sp24, &arg0->actorData[4], 300.0f);
+            func_800F4AC0(sp24, (f32 *)&arg0->actorData[4], 300.0f);
             _susubgame_entrypoint_6(arg0, func_80100094(arg0, 0), 0x42, 0x60, 0);
             func_80102424(arg0, 2);
         }

@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "anim_native.inc"
+#else
 
 void dbanim_entrypoint_0(u8 *arg0, void *arg1, s32 arg2) {
     s32 func_800ADE2C(s32, s32);
@@ -110,3 +113,4 @@ void dbanim_entrypoint_1(u8 *arg0, void *arg1, s32 arg2, u8 *arg3) {
     osWritebackDCache(vertices, count * 0x10);
     osWritebackDCache(arg3, count * 4);
 }
+#endif

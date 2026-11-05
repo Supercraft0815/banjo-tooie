@@ -1,3 +1,75 @@
+#ifdef BT_NATIVE
+#include "native_camera_db.h"
+
+void func_80800000_cadbio(GsFile *file) {
+    s32 id=-1,type,value,count;
+    s16 half;
+    f32 values[3];
+    u8 tag;
+    int selected=0;
+    if(!file) return;
+    while(!file->failed) {
+        if(file->last_expected>=0) {tag=file->last_expected;file->last_expected=-1;}
+        else gsmaker_entrypoint_7(file,&tag);
+        if(file->failed) return;
+        if(!tag) {if(id>=0 && !selected)file->failed=1;return;}
+        if(tag==1) {
+            gsmaker_entrypoint_11(file,&id);
+            if(file->failed) return;
+            if(id<0 || id>=func_800A58F0()) {file->failed=1;return;}
+            selected=0;
+        } else if(tag==2) {
+            gsmaker_entrypoint_11(file,&type);
+            if(file->failed) return;
+            if(id<0 || !cadbmgrDll_entrypoint_2(D_80119540,type,id)) {file->failed=1;return;}
+            selected=1;
+        } else {
+            if(!selected) {file->failed=1;return;}
+            if((tag>=3 && tag<=9) || tag==11 || tag==12 || tag==17 || tag==18) {
+                count=tag<=5 ? 3 : tag<=7 ? 2 : 1;
+                gsmaker_entrypoint_10(file,values,count);if(file->failed)return;
+                switch(tag) {
+                case 3:_cadbfunc_entrypoint_1(values);break;
+                case 4:_cadbfunc_entrypoint_3(values);break;
+                case 5:_cadbfunc_entrypoint_5(values);break;
+                case 6:_cadbfunc_entrypoint_7(values[0],values[1]);break;
+                case 7:_cadbfunc_entrypoint_9(values[0],values[1]);break;
+                case 8:_cadbfunc_entrypoint_11(values[0]);break;
+                case 9:_cadbfunc_entrypoint_13(values[0]);break;
+                case 11:_cadbfunc_entrypoint_19(values[0]);break;
+                case 12:_cadbfunc_entrypoint_21(values[0]);break;
+                case 17:_cadbfunc_entrypoint_15(values[0]);break;
+                case 18:_cadbfunc_entrypoint_33(values[0]);break;
+                }
+            } else if(tag==10) {
+                gsmaker_entrypoint_14(file,&half);if(file->failed)return;
+                _cadbfunc_entrypoint_17(half);
+            } else if((tag>=13 && tag<=16) || tag==19) {
+                gsmaker_entrypoint_11(file,&value);if(file->failed)return;
+                switch(tag) {
+                case 13:_cadbfunc_entrypoint_31(value);break;
+                case 14:_cadbfunc_entrypoint_23(value);break;
+                case 15:_cadbfunc_entrypoint_25(value);break;
+                case 16:_cadbfunc_entrypoint_27(value);break;
+                case 19:_cadbfunc_entrypoint_35(value);break;
+                }
+            } else {file->failed=1;return;}
+        }
+    }
+}
+
+void cadbio_entrypoint_0(GsFile *file) {
+    s32 maximum=0x7D;
+    if(!file || file->failed) return;
+    func_800A5630();
+    _gsmaker_entrypoint_21(file,0x14,&maximum);
+    if(file->failed) return;
+    func_800A5608(maximum);
+    if(!D_80119540) {file->failed=1;return;}
+    while(!file->failed && !_gsmaker_entrypoint_16(file,0)) func_80800000_cadbio(file);
+    if(file->failed) func_800A5630();
+}
+#else
 #include "common.h"
 
 void func_80800000_cadbio(s32 arg0) {
@@ -112,3 +184,5 @@ void cadbio_entrypoint_0(s32 arg0) {
         } while (_gsmaker_entrypoint_16(arg0, 0) == 0);
     }
 }
+
+#endif

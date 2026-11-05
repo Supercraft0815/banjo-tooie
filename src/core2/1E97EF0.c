@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1E97EF0_native.inc"
+#else
 #include "common.h"
 
 struct Entry { s32 value; u8 padding[40]; };
@@ -236,29 +239,7 @@ s32 func_800BEC28(s32 arg0) {
     return D_801285D0[arg0].value;
 }
 
-void func_800BECE0(s32 *arg0, s32 *arg1);
-void func_800BEC4C(s32 *arg0, s32 *arg1, s32 arg2) { extern s8 D_801285B3; s8 *var_v0; s32 *var_v1; s32 *var_a0; s8 *end; func_800BECE0(arg0, arg1); func_800E37E8(arg0, arg1, arg2); end = &D_801285B3; var_v0 = (s8 *)&D_801285B0; var_v1 = arg0; var_a0 = arg1; do { *var_v1 += var_v0[0x5E]; var_v0++; var_v1++; *var_a0 += var_v0[0x60]; var_a0++; if (var_v0 == end) break; } while (1); }
-
-f32 func_800BECCC(void) {
-    extern s32 D_80128734;
-    return (f32) D_80128734;
-}
-
-void func_800BECE0(s32 *arg0, s32 *arg1) {
-    void func_800EE830(s32 dst[3], s32 src[3]);
-    extern s32 D_80128730;
-    extern s32 D_8012873C;
-    func_800EE830(arg0, &D_80128730);
-    func_800EE830(arg1, &D_8012873C);
-}
-
-void func_800BED18(s32 *arg0, s32 *arg1) {
-    void func_800EE830(s32 dst[3], s32 src[3]);
-    extern s32 D_80128748;
-    extern s32 D_80128754;
-    func_800EE830(arg0, &D_80128748);
-    func_800EE830(arg1, &D_80128754);
-}
+#include "1E97EF0_bounds.inc"
 
 void func_800BED50(s32 arg0)
 {
@@ -692,3 +673,5 @@ s32 func_800BFA1C(f32 *arg0, s32 *var_a1) { extern struct Entry D_801285BC[]; s3
 u8 func_800BFAA4(void) {
     return (*(u8 *)((s8 *)(func_800BF704()) + (0x77)));
 }
+
+#endif

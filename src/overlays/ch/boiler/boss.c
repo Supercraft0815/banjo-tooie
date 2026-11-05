@@ -65,7 +65,7 @@ void func_80800030_chboilerboss(Actor *arg0) {
     void func_800EE88C(f32 *, s16 *);
     void func_800F497C(s32);
     void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, s32, f32);
+    void func_800F4A58(s32, f32 *, f32);
     u32 func_800F54E4(void);
     void func_800F608C(s32, s32);
     void func_800F8294(s32, f32 *);
@@ -158,7 +158,7 @@ void func_80800030_chboilerboss(Actor *arg0) {
     func_800F497C(player);
     func_800F49A8(player, 1);
     func_800F49D4(player, &func_8010D5DC, (s32)arg0->unk0);
-    func_800F4A58(player, (s32)data->position[1], 300.0f);
+    func_800F4A58(player, data->position[1], 300.0f);
     _chintrotext_entrypoint_2(1);
     func_8080238C_chboilerboss(&arg0->unk0, 0xFA8, 0x40);
     func_808027E4_chboilerboss(arg0, 0x13, 0x20, NULL);

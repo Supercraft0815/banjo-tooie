@@ -1,6 +1,22 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_collision.h"
+typedef struct {
+    NativeCollisionLineQuery unk0;
+    NativeCollisionSweepQuery unk4;
+    NativeCollisionSphereQuery unk8;
+    NativeCollisionModelQuery unkC;
+} Struct_1EA0210_0;
+typedef struct {
+    Struct_1EA0210_0 unk0[8], *unk80;
+    void *unk84;
+} Struct_1EA0210_1;
+static Struct_1EA0210_1 native_collision = {.unk80=native_collision.unk0};
+#define D_8012AA40_TABLE native_collision
+#else
 extern s32 D_8012AAC4;
+#endif
 
 f32 func_800C6920(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3) {
     s32 func_800C696C(f32 *, f32, f32, s32, f32 *);
@@ -31,6 +47,20 @@ s32 func_800C696C(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3, f32 *arg4) {
     return 0;
 }
 
+#ifdef BT_NATIVE
+void *func_800C69FC(void) {return native_collision.unk84;}
+s32 func_800C6A08(NativeCollisionLineQuery line,NativeCollisionSweepQuery sweep,NativeCollisionSphereQuery sphere) {
+    return func_800C6A28(line,sweep,sphere,NULL);
+}
+s32 func_800C6A28(NativeCollisionLineQuery line,NativeCollisionSweepQuery sweep,NativeCollisionSphereQuery sphere,NativeCollisionModelQuery model) {
+    if(native_collision.unk80==native_collision.unk0+8)return 0;
+    *native_collision.unk80++=(Struct_1EA0210_0){line,sweep,sphere,model};return 1;
+}
+void func_800C6A60(void) {}
+void func_800C6A68(void) {
+    native_collision.unk80=native_collision.unk0;native_collision.unk84=NULL;
+}
+#else
 s32 func_800C69FC()
 {
     return D_8012AAC4;
@@ -79,6 +109,8 @@ typedef struct {
 } Struct_1EA0210_1;
 
 #define D_8012AA40_TABLE (*(Struct_1EA0210_1 *)&D_8012AA40)
+
+#endif
 
 void *func_800C6A7C(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 flags) {
     Struct_1EA0210_0 *var_s0;

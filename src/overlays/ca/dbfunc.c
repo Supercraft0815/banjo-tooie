@@ -1,26 +1,38 @@
+#ifdef BT_NATIVE
+#include "native_camera_db.h"
+#define CAMERA_FIELD f32 *
+#define CAMERA_BASE u8 *
+#define CAMERA_VECTOR f32 *
+#define CAMERA_PTR(offset) ((void *)(func_800A586C() + (offset)))
+#else
+#define CAMERA_FIELD s32
+#define CAMERA_BASE s32
+#define CAMERA_VECTOR s32
+#define CAMERA_PTR(offset) (func_800A586C() + (offset))
+#endif
 #include "common.h"
 
 /* extern */
 
-s32 func_80800000_cadbfunc(void) {
-    s32 func_800A586C();
+CAMERA_FIELD func_80800000_cadbfunc(void) {
+    CAMERA_BASE func_800A586C();
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
     case 3:
-        return func_800A586C();
+        return CAMERA_PTR(0);
     case 1:
-        return func_800A586C();
+        return CAMERA_PTR(0);
     case 2:
-        return func_800A586C();
+        return CAMERA_PTR(0);
     case 5:
-        return func_800A586C();
+        return CAMERA_PTR(0);
     case 6:
-        return func_800A586C();
+        return CAMERA_PTR(0);
     case 8:
-        return func_800A586C();
+        return CAMERA_PTR(0);
     default:
         return 0;
     }
@@ -28,10 +40,14 @@ s32 func_80800000_cadbfunc(void) {
 
 /* extern */
 
-s32 cadbfunc_entrypoint_0(s32 arg0) {
+s32 cadbfunc_entrypoint_0(CAMERA_VECTOR arg0) {
+#ifdef BT_NATIVE
+    void func_800EE7F8(f32 *, f32 *);
+#else
     s32 func_800EE7F8(s32, s32);
-    s32 func_80800000_cadbfunc();
-    s32 temp_v0;
+#endif
+    CAMERA_FIELD func_80800000_cadbfunc();
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_80800000_cadbfunc();
     if (temp_v0 == 0) {
@@ -43,10 +59,14 @@ s32 cadbfunc_entrypoint_0(s32 arg0) {
 
 /* extern */
 
-s32 cadbfunc_entrypoint_1(s32 arg0) {
+s32 cadbfunc_entrypoint_1(CAMERA_VECTOR arg0) {
+#ifdef BT_NATIVE
+    void func_800EE7F8(f32 *, f32 *);
+#else
     s32 func_800EE7F8(s32, s32);
-    s32 func_80800000_cadbfunc();
-    s32 temp_v0;
+#endif
+    CAMERA_FIELD func_80800000_cadbfunc();
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_80800000_cadbfunc();
     if (temp_v0 == 0) {
@@ -56,21 +76,21 @@ s32 cadbfunc_entrypoint_1(s32 arg0) {
     return 1;
 }
 
-s32 func_80800120_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_80800120_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 2:
-            return func_800A586C() + 0xC;
+            return CAMERA_PTR(0xC);
         case 5:
-            return func_800A586C() + 0xC;
+            return CAMERA_PTR(0xC);
         case 6:
-            return func_800A586C() + 0xC;
+            return CAMERA_PTR(0xC);
         case 8:
-            return func_800A586C() + 0xC;
+            return CAMERA_PTR(0xC);
         default:
             return 0;
     }
@@ -78,10 +98,14 @@ s32 func_80800120_cadbfunc(void) {
 
 /* extern */
 
-s32 cadbfunc_entrypoint_2(s32 arg0) {
+s32 cadbfunc_entrypoint_2(CAMERA_VECTOR arg0) {
+#ifdef BT_NATIVE
+    void func_800EE7F8(f32 *, f32 *);
+#else
     s32 func_800EE7F8(s32, s32);
-    s32 func_80800120_cadbfunc();
-    s32 temp_v0;
+#endif
+    CAMERA_FIELD func_80800120_cadbfunc();
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_80800120_cadbfunc();
     if (temp_v0 == 0) {
@@ -93,10 +117,14 @@ s32 cadbfunc_entrypoint_2(s32 arg0) {
 
 /* extern */
 
-s32 cadbfunc_entrypoint_3(s32 arg0) {
+s32 cadbfunc_entrypoint_3(CAMERA_VECTOR arg0) {
+#ifdef BT_NATIVE
+    void func_800EE7F8(f32 *, f32 *);
+#else
     s32 func_800EE7F8(s32, s32);
-    s32 func_80800120_cadbfunc();
-    s32 temp_v0;
+#endif
+    CAMERA_FIELD func_80800120_cadbfunc();
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_80800120_cadbfunc();
     if (temp_v0 == 0) {
@@ -106,17 +134,17 @@ s32 cadbfunc_entrypoint_3(s32 arg0) {
     return 1;
 }
 
-s32 func_80800224_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_80800224_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 1:
-            return func_800A586C() + 0x1C;
+            return CAMERA_PTR(0x1C);
         case 3:
-            return func_800A586C() + 0x24;
+            return CAMERA_PTR(0x24);
         default:
             return 0;
     }
@@ -124,10 +152,14 @@ s32 func_80800224_cadbfunc(void) {
 
 /* extern */
 
-s32 cadbfunc_entrypoint_4(s32 arg0) {
+s32 cadbfunc_entrypoint_4(CAMERA_VECTOR arg0) {
+#ifdef BT_NATIVE
+    void func_800EE7F8(f32 *, f32 *);
+#else
     s32 func_800EE7F8(s32, s32);
-    s32 func_80800224_cadbfunc();
-    s32 temp_v0;
+#endif
+    CAMERA_FIELD func_80800224_cadbfunc();
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_80800224_cadbfunc();
     if (temp_v0 == 0) {
@@ -139,10 +171,14 @@ s32 cadbfunc_entrypoint_4(s32 arg0) {
 
 /* extern */
 
-s32 cadbfunc_entrypoint_5(s32 arg0) {
+s32 cadbfunc_entrypoint_5(CAMERA_VECTOR arg0) {
+#ifdef BT_NATIVE
+    void func_800EE7F8(f32 *, f32 *);
+#else
     s32 func_800EE7F8(s32, s32);
-    s32 func_80800224_cadbfunc();
-    s32 temp_v0;
+#endif
+    CAMERA_FIELD func_80800224_cadbfunc();
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_80800224_cadbfunc();
     if (temp_v0 == 0) {
@@ -152,17 +188,17 @@ s32 cadbfunc_entrypoint_5(s32 arg0) {
     return 1;
 }
 
-s32 func_808002F8_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_808002F8_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 1:
-            return func_800A586C() + 0xC;
+            return CAMERA_PTR(0xC);
         case 3:
-            return func_800A586C() + 0xC;
+            return CAMERA_PTR(0xC);
         default:
             return 0;
     }
@@ -171,8 +207,8 @@ s32 func_808002F8_cadbfunc(void) {
 /* extern */
 
 s32 cadbfunc_entrypoint_6(f32 *arg0, f32 *arg1) {
-    s32 func_808002F8_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808002F8_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808002F8_cadbfunc();
     if (temp_v0 == 0) {
@@ -186,8 +222,8 @@ s32 cadbfunc_entrypoint_6(f32 *arg0, f32 *arg1) {
 /* extern */
 
 s32 cadbfunc_entrypoint_7(f32 arg0, f32 arg1) {
-    s32 func_808002F8_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808002F8_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808002F8_cadbfunc();
     if (temp_v0 == 0) {
@@ -198,17 +234,17 @@ s32 cadbfunc_entrypoint_7(f32 arg0, f32 arg1) {
     return 1;
 }
 
-s32 func_808003EC_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_808003EC_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 1:
-            return func_800A586C() + 0x14;
+            return CAMERA_PTR(0x14);
         case 3:
-            return func_800A586C() + 0x14;
+            return CAMERA_PTR(0x14);
         default:
             return 0;
     }
@@ -217,8 +253,8 @@ s32 func_808003EC_cadbfunc(void) {
 /* extern */
 
 s32 cadbfunc_entrypoint_8(f32 *arg0, f32 *arg1) {
-    s32 func_808003EC_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808003EC_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808003EC_cadbfunc();
     if (temp_v0 == 0) {
@@ -232,8 +268,8 @@ s32 cadbfunc_entrypoint_8(f32 *arg0, f32 *arg1) {
 /* extern */
 
 s32 cadbfunc_entrypoint_9(f32 arg0, f32 arg1) {
-    s32 func_808003EC_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808003EC_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808003EC_cadbfunc();
     if (temp_v0 == 0) {
@@ -244,17 +280,17 @@ s32 cadbfunc_entrypoint_9(f32 arg0, f32 arg1) {
     return 1;
 }
 
-s32 func_808004E0_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_808004E0_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 5:
-            return func_800A586C() + 0x18;
+            return CAMERA_PTR(0x18);
         case 6:
-            return func_800A586C() + 0x1C;
+            return CAMERA_PTR(0x1C);
         default:
             return 0;
     }
@@ -263,8 +299,8 @@ s32 func_808004E0_cadbfunc(void) {
 /* extern */
 
 s32 cadbfunc_entrypoint_10(f32 *arg0) {
-    s32 func_808004E0_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808004E0_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808004E0_cadbfunc();
     if (temp_v0 == 0) {
@@ -277,8 +313,8 @@ s32 cadbfunc_entrypoint_10(f32 *arg0) {
 /* extern */
 
 s32 cadbfunc_entrypoint_11(f32 arg0) {
-    s32 func_808004E0_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808004E0_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808004E0_cadbfunc();
     if (temp_v0 == 0) {
@@ -288,19 +324,19 @@ s32 cadbfunc_entrypoint_11(f32 arg0) {
     return 1;
 }
 
-s32 func_808005B8_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_808005B8_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 5:
-            return func_800A586C() + 0x1C;
+            return CAMERA_PTR(0x1C);
         case 6:
-            return func_800A586C() + 0x20;
+            return CAMERA_PTR(0x20);
         case 8:
-            return func_800A586C() + 0x1C;
+            return CAMERA_PTR(0x1C);
         default:
             return 0;
     }
@@ -309,8 +345,8 @@ s32 func_808005B8_cadbfunc(void) {
 /* extern */
 
 s32 cadbfunc_entrypoint_12(f32 *arg0) {
-    s32 func_808005B8_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808005B8_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808005B8_cadbfunc();
     if (temp_v0 == 0) {
@@ -323,8 +359,8 @@ s32 cadbfunc_entrypoint_12(f32 *arg0) {
 /* extern */
 
 s32 cadbfunc_entrypoint_13(f32 arg0) {
-    s32 func_808005B8_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808005B8_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808005B8_cadbfunc();
     if (temp_v0 == 0) {
@@ -334,19 +370,19 @@ s32 cadbfunc_entrypoint_13(f32 arg0) {
     return 1;
 }
 
-s32 func_808006A8_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_808006A8_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 5:
-            return func_800A586C() + 0x20;
+            return CAMERA_PTR(0x20);
         case 6:
-            return func_800A586C() + 0x24;
+            return CAMERA_PTR(0x24);
         case 8:
-            return func_800A586C() + 0x20;
+            return CAMERA_PTR(0x20);
         default:
             return 0;
     }
@@ -355,8 +391,8 @@ s32 func_808006A8_cadbfunc(void) {
 /* extern */
 
 s32 cadbfunc_entrypoint_14(f32 *arg0) {
-    s32 func_808006A8_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808006A8_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808006A8_cadbfunc();
     if (temp_v0 == 0) {
@@ -369,8 +405,8 @@ s32 cadbfunc_entrypoint_14(f32 *arg0) {
 /* extern */
 
 s32 cadbfunc_entrypoint_15(f32 arg0) {
-    s32 func_808006A8_cadbfunc(void);
-    s32 temp_v0;
+    CAMERA_FIELD func_808006A8_cadbfunc(void);
+    CAMERA_FIELD temp_v0;
 
     temp_v0 = func_808006A8_cadbfunc();
     if (temp_v0 == 0) {
@@ -381,7 +417,7 @@ s32 cadbfunc_entrypoint_15(f32 arg0) {
 }
 
 s16 *func_80800798_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
@@ -426,17 +462,17 @@ s32 cadbfunc_entrypoint_17(s16 arg0) {
     return 1;
 }
 
-s32 func_80800888_cadbfunc(void) {
-    s32 func_800A586C(void);
+CAMERA_FIELD func_80800888_cadbfunc(void) {
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
         case 3:
-            return func_800A586C() + 0x1C;
+            return CAMERA_PTR(0x1C);
         case 6:
-            return func_800A586C() + 0x18;
+            return CAMERA_PTR(0x18);
         default:
             return 0;
     }
@@ -445,7 +481,7 @@ s32 func_80800888_cadbfunc(void) {
 /* extern */
 
 s32 cadbfunc_entrypoint_18(f32 *arg0) {
-    s32 func_80800888_cadbfunc(void);
+    CAMERA_FIELD func_80800888_cadbfunc(void);
     f32 *temp_v0;
 
     temp_v0 = func_80800888_cadbfunc();
@@ -459,7 +495,7 @@ s32 cadbfunc_entrypoint_18(f32 *arg0) {
 /* extern */
 
 s32 cadbfunc_entrypoint_19(f32 arg0) {
-    s32 func_80800888_cadbfunc(void);
+    CAMERA_FIELD func_80800888_cadbfunc(void);
     f32 *temp_v0;
 
     temp_v0 = func_80800888_cadbfunc();
@@ -473,10 +509,10 @@ s32 cadbfunc_entrypoint_19(f32 arg0) {
 /* extern */
 
 f32 *func_80800960_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     if (func_800A587C() == 3) {
-        return func_800A586C() + 0x20;
+        return CAMERA_PTR(0x20);
     }
     return NULL;
 }
@@ -512,10 +548,10 @@ s32 cadbfunc_entrypoint_21(f32 arg0) {
 /* extern */
 
 s32 *func_80800A1C_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     if (func_800A587C() == 4) {
-        return func_800A586C();
+        return CAMERA_PTR(0);
     }
     return NULL;
 }
@@ -549,7 +585,7 @@ s32 cadbfunc_entrypoint_23(s32 arg0) {
 }
 
 s32 *func_80800AD8_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
@@ -599,10 +635,10 @@ s32 cadbfunc_entrypoint_25(s32 arg0) {
 /* extern */
 
 s32 *func_80800BE0_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     if (func_800A587C() == 4) {
-        return func_800A586C() + 0xC;
+        return CAMERA_PTR(0xC);
     }
     return NULL;
 }
@@ -636,24 +672,24 @@ s32 cadbfunc_entrypoint_27(s32 arg0) {
 }
 
 s32 *func_80800C9C_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     s32 temp_v0;
 
     temp_v0 = func_800A587C();
     switch (temp_v0) {
     case 4:
-        return func_800A586C() + 4;
+        return CAMERA_PTR(4);
     case 3:
-        return func_800A586C() + 0x30;
+        return CAMERA_PTR(0x30);
     case 1:
-        return func_800A586C() + 0x28;
+        return CAMERA_PTR(0x28);
     case 5:
-        return func_800A586C() + 0x24;
+        return CAMERA_PTR(0x24);
     case 6:
-        return func_800A586C() + 0x28;
+        return CAMERA_PTR(0x28);
     case 8:
-        return func_800A586C() + 0x24;
+        return CAMERA_PTR(0x24);
     default:
         return NULL;
     }
@@ -726,10 +762,10 @@ s32 cadbfunc_entrypoint_31(s32 arg0) {
 /* extern */
 
 f32 *func_80800E80_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     if (func_800A587C() == 4) {
-        return func_800A586C() + 0x10;
+        return CAMERA_PTR(0x10);
     }
     return NULL;
 }
@@ -765,10 +801,10 @@ s32 cadbfunc_entrypoint_33(f32 arg0) {
 /* extern */
 
 s32 *func_80800F3C_cadbfunc(void) {
-    s32 func_800A586C(void);
+    CAMERA_BASE func_800A586C(void);
     u8 func_800A587C(void);
     if (func_800A587C() == 4) {
-        return func_800A586C() + 0x14;
+        return CAMERA_PTR(0x14);
     }
     return NULL;
 }

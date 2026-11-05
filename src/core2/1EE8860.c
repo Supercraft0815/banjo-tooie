@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1EE8860_native.inc"
+#else
 #include "common.h"
 
 void func_8010EF70(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
@@ -91,3 +94,5 @@ void func_8010F270(void)
 
     D_80137210 = 0;
 }
+
+#endif

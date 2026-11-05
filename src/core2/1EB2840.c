@@ -1,4 +1,5 @@
 #include "core2/1EB2840.h"
+#include "core2/1ECA640.h"
 
 extern u32 D_8012C764;
 extern f32 D_8012C760;

@@ -19,7 +19,6 @@ extern s32 D_808004D0_bsbanpackwhack;
 extern BsScript D_8080050C_bsbanpackwhack[4];
 
 extern void _babackpack_entrypoint_5(PlayerState *);
-extern void func_800F1574(f32 *, f32);
 
 
 s32 func_80800000_bsbanpackwhack(s32 arg0, f32 arg1) {

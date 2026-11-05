@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1EDCA30_native.inc"
+#else
 #include "common.h"
 
 s32 func_80103140(Actor *arg0, u32 arg1, u16 arg2) {
@@ -609,3 +612,5 @@ void *func_801040A8(Actor *arg0) {
     void *func_800AE080(s16);
     return func_800AE080(*(s16 *)&arg0->unk0->unk10);
 }
+
+#endif

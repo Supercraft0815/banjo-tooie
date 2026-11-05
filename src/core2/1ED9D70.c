@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1ED9D70_native.inc"
+#else
 #include "common.h"
 
 void *func_80100480(s32 arg0, s32 arg1) {
@@ -389,3 +392,5 @@ void func_80100F0C(s16 arg0, s32 arg1) {
         }
     }
 }
+
+#endif

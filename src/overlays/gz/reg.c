@@ -1,224 +1,115 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808005A0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808005BC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808005D0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808005E4_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808005FC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800614_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080062C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800640_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800658_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080066C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800684_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080069C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808006A0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808006B0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808006C0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808006D4_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808006E8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808006FC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080070C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800724_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800734_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800748_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080075C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080076C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080077C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080078C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080079C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007AC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007B0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007B4_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007B8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007BC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007C0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007C4_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007C8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007CC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007D0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007D4_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007E0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808007FC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800828_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800840_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_8080086C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800884_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808008B0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808008D8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808008F0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800908_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800928_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800948_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800968_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800978_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808009A8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808009D0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_808009E8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A18_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A1C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A20_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A24_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A28_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A2C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A30_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A34_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A38_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A3C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A40_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A44_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A48_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A4C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A50_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A54_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A58_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A5C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A60_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A64_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A68_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A6C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A70_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A74_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A78_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A7C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A80_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A84_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A88_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A8C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A90_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A94_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A98_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800A9C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800AA0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800AB8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800ACC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800AE0_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800AEC_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800AF8_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B0C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B10_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B14_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B18_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B1C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B20_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B24_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B28_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B2C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B30_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B34_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B38_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B3C_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B40_gzreg.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/gz/reg/R_80800B44_gzreg.s")
+const char R_808005A0_gzreg[] = "DPC_STATUS_XBUS_DMEM_DMA";
+const char R_808005BC_gzreg[] = "DPC_STATUS_FREEZE";
+const char R_808005D0_gzreg[] = "DPC_STATUS_FLUSH";
+const char R_808005E4_gzreg[] = "DPC_STATUS_START_GCLK";
+const char R_808005FC_gzreg[] = "DPC_STATUS_TMEM_BUSY";
+const char R_80800614_gzreg[] = "DPC_STATUS_PIPE_BUSY";
+const char R_8080062C_gzreg[] = "DPC_STATUS_CMD_BUSY";
+const char R_80800640_gzreg[] = "DPC_STATUS_CBUF_READY";
+const char R_80800658_gzreg[] = "DPC_STATUS_DMA_BUSY";
+const char R_8080066C_gzreg[] = "DPC_STATUS_END_VALID";
+const char R_80800684_gzreg[] = "DPC_STATUS_START_VALID";
+const char R_8080069C_gzreg[] = "";
+const char R_808006A0_gzreg[] = "SP_STATUS_HALT";
+const char R_808006B0_gzreg[] = "SP_STATUS_BROKE";
+const char R_808006C0_gzreg[] = "SP_STATUS_DMA_BUSY";
+const char R_808006D4_gzreg[] = "SP_STATUS_DMA_FULL";
+const char R_808006E8_gzreg[] = "SP_STATUS_IO_FULL";
+const char R_808006FC_gzreg[] = "SP_STATUS_SSTEP";
+const char R_8080070C_gzreg[] = "SP_STATUS_INTR_BREAK";
+const char R_80800724_gzreg[] = "SP_STATUS_YIELD";
+const char R_80800734_gzreg[] = "SP_STATUS_YIELDED";
+const char R_80800748_gzreg[] = "SP_STATUS_TASKDONE";
+const char R_8080075C_gzreg[] = "SP_STATUS_SIG3";
+const char R_8080076C_gzreg[] = "SP_STATUS_SIG4";
+const char R_8080077C_gzreg[] = "SP_STATUS_SIG5";
+const char R_8080078C_gzreg[] = "SP_STATUS_SIG6";
+const char R_8080079C_gzreg[] = "SP_STATUS_SIG7";
+const char R_808007AC_gzreg[] = "";
+const char R_808007B0_gzreg[] = "BD";
+const char R_808007B4_gzreg[] = "IP8";
+const char R_808007B8_gzreg[] = "IP7";
+const char R_808007BC_gzreg[] = "IP6";
+const char R_808007C0_gzreg[] = "IP5";
+const char R_808007C4_gzreg[] = "IP4";
+const char R_808007C8_gzreg[] = "IP3";
+const char R_808007CC_gzreg[] = "IP2";
+const char R_808007D0_gzreg[] = "IP1";
+const char R_808007D4_gzreg[] = "Interrupt";
+const char R_808007E0_gzreg[] = "TLB modification exception";
+const char R_808007FC_gzreg[] = "TLB exception on load or instruction fetch";
+const char R_80800828_gzreg[] = "TLB exception on store";
+const char R_80800840_gzreg[] = "Address error on load or instruction fetch";
+const char R_8080086C_gzreg[] = "Address error on store";
+const char R_80800884_gzreg[] = "Bus error exception on instruction fetch";
+const char R_808008B0_gzreg[] = "Bus error exception on data reference";
+const char R_808008D8_gzreg[] = "System call exception";
+const char R_808008F0_gzreg[] = "Breakpoint exception";
+const char R_80800908_gzreg[] = "Reserved instruction exception";
+const char R_80800928_gzreg[] = "Coprocessor unusable exception";
+const char R_80800948_gzreg[] = "Arithmetic overflow exception";
+const char R_80800968_gzreg[] = "Trap exception";
+const char R_80800978_gzreg[] = "Virtual coherency exception on intruction fetch";
+const char R_808009A8_gzreg[] = "Floating point exception (see fpcsr)";
+const char R_808009D0_gzreg[] = "Watchpoint exception";
+const char R_808009E8_gzreg[] = "Virtual coherency exception on data reference";
+const char R_80800A18_gzreg[] = "";
+const char R_80800A1C_gzreg[] = "CU3";
+const char R_80800A20_gzreg[] = "CU2";
+const char R_80800A24_gzreg[] = "CU1";
+const char R_80800A28_gzreg[] = "CU0";
+const char R_80800A2C_gzreg[] = "RP";
+const char R_80800A30_gzreg[] = "FR";
+const char R_80800A34_gzreg[] = "RE";
+const char R_80800A38_gzreg[] = "BEV";
+const char R_80800A3C_gzreg[] = "TS";
+const char R_80800A40_gzreg[] = "SR";
+const char R_80800A44_gzreg[] = "CH";
+const char R_80800A48_gzreg[] = "CE";
+const char R_80800A4C_gzreg[] = "DE";
+const char R_80800A50_gzreg[] = "IM8";
+const char R_80800A54_gzreg[] = "IM7";
+const char R_80800A58_gzreg[] = "IM6";
+const char R_80800A5C_gzreg[] = "IM5";
+const char R_80800A60_gzreg[] = "IM4";
+const char R_80800A64_gzreg[] = "IM3";
+const char R_80800A68_gzreg[] = "IM2";
+const char R_80800A6C_gzreg[] = "IM1";
+const char R_80800A70_gzreg[] = "KX";
+const char R_80800A74_gzreg[] = "SX";
+const char R_80800A78_gzreg[] = "UX";
+const char R_80800A7C_gzreg[] = "USR";
+const char R_80800A80_gzreg[] = "SUP";
+const char R_80800A84_gzreg[] = "KER";
+const char R_80800A88_gzreg[] = "ERL";
+const char R_80800A8C_gzreg[] = "EXL";
+const char R_80800A90_gzreg[] = "IE";
+const char R_80800A94_gzreg[] = "";
+const char R_80800A98_gzreg[] = "FS";
+const char R_80800A9C_gzreg[] = "C";
+const char R_80800AA0_gzreg[] = "Unimplemented operation";
+const char R_80800AB8_gzreg[] = "Invalid operation";
+const char R_80800ACC_gzreg[] = "Division by zero";
+const char R_80800AE0_gzreg[] = "Overflow";
+const char R_80800AEC_gzreg[] = "Underflow";
+const char R_80800AF8_gzreg[] = "Inexact operation";
+const char R_80800B0C_gzreg[] = "EV";
+const char R_80800B10_gzreg[] = "EZ";
+const char R_80800B14_gzreg[] = "EO";
+const char R_80800B18_gzreg[] = "EU";
+const char R_80800B1C_gzreg[] = "EI";
+const char R_80800B20_gzreg[] = "FV";
+const char R_80800B24_gzreg[] = "FZ";
+const char R_80800B28_gzreg[] = "FO";
+const char R_80800B2C_gzreg[] = "FU";
+const char R_80800B30_gzreg[] = "FI";
+const char R_80800B34_gzreg[] = "RN";
+const char R_80800B38_gzreg[] = "RZ";
+const char R_80800B3C_gzreg[] = "RP";
+const char R_80800B40_gzreg[] = "RM";
+const char R_80800B44_gzreg[] = "";
 
 struct GzRegEntry {
     s32 mask;

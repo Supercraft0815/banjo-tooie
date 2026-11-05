@@ -28,5 +28,17 @@ void func_800E0ACC(Unkfunc_800E0960_1 *);
 void func_800E0AF0(Unkfunc_800E0960_1 *, f32);
 void func_800E0AFC(Unkfunc_800E0960_1 *, u8, f32, f32, f32, f32);
 void func_800E0B8C(Unkfunc_800E0960_1 *, u8, f32, f32, f32, f32);
+#ifdef BT_NATIVE
+void *func_800E0960(s32);
+s16 func_800E09B8(s32);
+void func_800E0A50(void *);
+void func_800E0A70(s16);
+void func_800E0A98(Unkfunc_800E0960_1 *);
+void func_800E0AC0(Unkfunc_800E0960_1 *);
+void func_800E0C20(Unkfunc_800E0960_1 *,u8,f32,f32,f32,f32);
+void func_800E0CB4(Unkfunc_800E0960_1 *,u8,f32[4]);
+void func_800E0E94(Unkfunc_800E0960_1 *,u8,f32[3]);
+void func_800E0FE8(Unkfunc_800E0960_1 *,u8,f32[3]);
+#endif
 
 #endif // __CORE2_1EBA250_H__

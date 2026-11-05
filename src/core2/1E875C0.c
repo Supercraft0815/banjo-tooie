@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "1E875C0_native.inc"
+#else
 #include "common.h"
 
 void func_800ADCD0(u8 **list_ptr, u8 *animation) {
@@ -38,12 +41,7 @@ void func_800ADD80(s16 arg0, u8 *animation) {
     for (matrix = list + 0x50; matrix < end; matrix += 64) mlMtxGet(matrix);
 }
 
-s32 func_800ADE2C(s32 arg0, s32 arg1) {
-    if (arg1 == -1) {
-        return arg0 + 0x10;
-    }
-    return (arg0 + 0x50) + (arg1 << 6);
-}
+#include "1E875C0_matrix.inc"
 
 u32 func_800ADE50(u8 *arg0, u8 *arg1, s32 arg2) {
     s32 temp_v1;
@@ -403,3 +401,5 @@ s32 func_800AE708(s32 *arg0, u8 *arg1, u8 **arg2, u8 *arg3) {
     }
     return 1;
 }
+
+#endif

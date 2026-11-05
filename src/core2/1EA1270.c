@@ -1,12 +1,26 @@
 #include "core2/1EA1270.h"
 
+#ifdef BT_NATIVE
+#include "ml/spline.h"
+f32 D_80125920 = 100000000.0f;
+f32 D_80125924 = 0.009999999776f;
+#else
 typedef void (*SplineDerivativeFunc)(f32, u8, s32 *, f32 *);
+#endif
 
 SplineDerivativeFunc func_800C7980(u8 *arg0) {
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_6(f32, u8, s32 *, f32 *);
+#endif
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_7(f32, u8, s32 *, f32 *);
+#endif
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_8(f32, u8, s32 *, f32 *);
+#endif
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_10(f32, u8, s32 *, f32 *);
+#endif
     s32 temp_v0;
     s32 temp_v1;
 
@@ -29,11 +43,23 @@ SplineDerivativeFunc func_800C7980(u8 *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+SplineDerivativeFunc func_800C79EC(Unk800C7A68 *arg0) {
+#else
 void (*func_800C79EC(Unk800C7A68 *arg0))(f32, u8, s32 *, f32 *) {
+#endif
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_0(f32, u8, s32 *, f32 *);
+#endif
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_2(f32, u8, s32 *, f32 *);
+#endif
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_4(f32, u8, s32 *, f32 *);
+#endif
+#ifndef BT_NATIVE
     void _mlspline_entrypoint_5(f32, u8, s32 *, f32 *);
+#endif
     s32 temp_v0;
     s32 temp_v1;
 
@@ -72,24 +98,44 @@ void func_800C7A68(Unk800C7A68* arg0, f32 arg1, f32 *arg2) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+f32 func_800C7AE4(u8 *arg0, f32 arg1, f32 arg2) {
+#else
 void func_800C7AE4(u8 *arg0, s32 arg1, s32 arg2) {
+#endif
+#ifndef BT_NATIVE
     s32 _mlspline_entrypoint_11(u8, u8 *, s32, s32, void (*)(f32, u8, s32 *, f32 *));
-    SplineDerivativeFunc func_800C7980();
-    _mlspline_entrypoint_11((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, func_800C7980());
+#endif
+    SplineDerivativeFunc func_800C7980(u8 *);
+#ifdef BT_NATIVE
+    return
+#endif
+    _mlspline_entrypoint_11((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, func_800C7980((u8 *)arg0));
 }
 
 /* extern */
 
+#ifdef BT_NATIVE
+f32 func_800C7B28(u8 *arg0, f32 arg1, f32 arg2, s32 arg3) {
+#else
 void func_800C7B28(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+#endif
+#ifndef BT_NATIVE
     s32 _mlspline_entrypoint_12(u8, u8 *, s32, s32, s32, void (*)(f32, u8, s32 *, f32 *));
-    SplineDerivativeFunc func_800C7980();
-    _mlspline_entrypoint_12((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, arg3 * 2, func_800C7980());
+#endif
+    SplineDerivativeFunc func_800C7980(u8 *);
+#ifdef BT_NATIVE
+    return
+#endif
+    _mlspline_entrypoint_12((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, arg3 * 2, func_800C7980((u8 *)arg0));
 }
 
 f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
+#ifndef BT_NATIVE
     f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, void (*)(f32, u8, s32 *, f32 *));
-    SplineDerivativeFunc func_800C7980();
-    return _mlspline_entrypoint_13((s16) arg0->unk2, (u8 *) &arg0->unk14, arg1, arg2, 0.0f, func_800C7980());
+#endif
+    SplineDerivativeFunc func_800C7980(u8 *);
+    return _mlspline_entrypoint_13((s16) arg0->unk2, (u8 *) &arg0->unk14, arg1, arg2, 0.0f, func_800C7980((u8 *)arg0));
 }
 
 f32 func_800C7BCC(u8 *arg0, u8 *arg1) {
@@ -128,8 +174,10 @@ f32 func_800C7E28(void *arg0) {
 
 f32 func_800C7FD4(u8 *arg0, f32 arg1, f32 arg2) {
     f32 _glintrosyncDll_entrypoint_5(void);
+#ifndef BT_NATIVE
     f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, void (*)(f32, u8, s32 *, f32 *));
-    SplineDerivativeFunc func_800C7980();
+#endif
+    SplineDerivativeFunc func_800C7980(u8 *);
     f32 func_800C7E28(void *);
     f32 func_800D8FF8(void);
     f32 sp2C;

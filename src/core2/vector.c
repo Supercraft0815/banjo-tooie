@@ -98,7 +98,11 @@ void* func_800B2C1C(s16 arg0, s32 index) {
 
     vec = func_8001B798(arg0);
     func_800B2A58(arg0);
+#ifdef BT_NATIVE
+    vec = func_8001B798(arg0);
+#else
     //! BUG: Use after free: func_800B2A58 can reallocate the vector, so `vec` may be invalid at this point.
+#endif
     i = ((u8*)vec->end - (u8*)vec->begin) / vec->element_size;
     while(index < --i) {
         aligned4_memcpy((u8*)vec->begin + i *vec->element_size, (u8*)vec->begin + (i - 1) * vec->element_size, vec->element_size);

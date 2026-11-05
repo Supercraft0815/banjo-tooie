@@ -1,11 +1,25 @@
 #include "core2/anctrl.h"
+#include "memory.h"
+#ifdef BT_NATIVE
+#include "core2/animation.h"
+#endif
+
+/* Read logical flag bits on the host; preserve IDO's original bitfield accesses. */
+#ifdef BT_NATIVE
+#define CTRL_BITS(p, byte, shift, mask, original) ((((u8 *)(p))[byte] >> (shift)) & (mask))
+#define CTRL_SET_BITS(p, byte, shift, mask, value, original) \
+    (((u8 *)(p))[byte] = (((u8 *)(p))[byte] & ~((mask) << (shift))) | (((value) & (mask)) << (shift)))
+#else
+#define CTRL_BITS(p, byte, shift, mask, original) (original)
+#define CTRL_SET_BITS(p, byte, shift, mask, value, original) ((original) = (value))
+#endif
 
 f32 func_8008A990(AnimCtrl *this) {
     struct Flags { u8 padding[0x18]; u32 high : 27; u32 mode : 2; u32 low : 3; };
     f32 func_800D8FF8(void);
     f32 _glintrosyncDll_entrypoint_5(void);
 
-    switch (((struct Flags *)this)->mode) {
+    switch (CTRL_BITS(this, 0x1B, 3, 3, ((struct Flags *)this)->mode)) {
         case 0:
             return func_800D8FF8();
         case 1:
@@ -26,7 +40,7 @@ void func_8008AA0C(AnimCtrl *this) {
     void *anim;
     f32 duration;
 
-    if (((struct Flags *)this)->smooth) {
+    if (CTRL_BITS(this, 0x1B, 6, 1, ((struct Flags *)this)->smooth)) {
         anim = func_8008AEDC(this);
         duration = func_8008C0D0(anim);
         if (duration < 1.0f) {
@@ -56,7 +70,7 @@ void func_8008AAC0(AnimCtrl *this) {
     func_8008AA0C(this);
     *(f32 *)this = func_8008C0C8(anim);
     delta = func_8008A990(this) / func_8008B2AC((f32 *)this);
-    if (((struct Flags *)this)->high == 0) {
+    if (CTRL_BITS(this, 0x1B, 7, 1, ((struct Flags *)this)->high) == 0) {
         delta = -delta;
     }
     tmp = *(f32 *)this + delta;
@@ -85,7 +99,7 @@ void func_8008AB84(AnimCtrl *this) {
     func_8008AA0C(this);
     *(f32 *)this = func_8008C0C8(anim);
     delta = func_8008A990(this) / func_8008B2AC((f32 *)this);
-    if (((struct Flags *)this)->high == 0) {
+    if (CTRL_BITS(this, 0x1B, 7, 1, ((struct Flags *)this)->high) == 0) {
         delta = -delta;
     }
     tmp = *(f32 *)this + delta;
@@ -111,7 +125,7 @@ void func_8008AC4C(AnimCtrl *this) {
     func_8008AA0C(this);
     *(f32 *)this = func_8008C0C8(anim);
     delta = func_8008A990(this) / func_8008B2AC((f32 *)this);
-    if (((struct Flags *)this)->high == 0) {
+    if (CTRL_BITS(this, 0x1B, 7, 1, ((struct Flags *)this)->high) == 0) {
         delta = -delta;
     }
     tmp = *(f32 *)this + delta;
@@ -141,7 +155,7 @@ AnimCtrl *func_8008AD80(s32 arg0) {
     AnimCtrl *sp1C;
     AnimCtrl *temp_v0;
 
-    temp_v0 = heap_alloc(func_8008C0B8() + 0x1C);
+    temp_v0 = heap_alloc(func_8008C0B8() + ANCTRL_HEADER_SIZE);
     sp1C = temp_v0;
     func_8008B518(temp_v0, arg0);
     return sp1C;
@@ -157,24 +171,24 @@ void func_8008ADE4(AnimCtrl *this) {
     struct Flags { u8 padding[0x18]; u32 prefix : 16; u32 type : 8; u32 high : 5; u32 flag : 1; u32 low : 2; };
     void func_8008C1CC(s8 *, s32);
 
-    switch (((struct Flags *)this)->type) {
+    switch (CTRL_BITS(this, 0x1A, 0, 255, ((struct Flags *)this)->type)) {
         case 0:
             break;
         case 1:
             func_8008AC4C(this);
-            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            func_8008C1CC((s8 *)this + ANCTRL_HEADER_SIZE, CTRL_BITS(this, 0x1B, 2, 1, ((struct Flags *)this)->flag));
             return;
         case 2:
             func_8008AAC0(this);
-            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            func_8008C1CC((s8 *)this + ANCTRL_HEADER_SIZE, CTRL_BITS(this, 0x1B, 2, 1, ((struct Flags *)this)->flag));
             return;
         case 4:
             func_8008AB84(this);
-            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            func_8008C1CC((s8 *)this + ANCTRL_HEADER_SIZE, CTRL_BITS(this, 0x1B, 2, 1, ((struct Flags *)this)->flag));
             return;
         case 3:
             func_8008AA0C(this);
-            func_8008C1CC((s8 *)this + 0x1C, ((struct Flags *)this)->flag);
+            func_8008C1CC((s8 *)this + ANCTRL_HEADER_SIZE, CTRL_BITS(this, 0x1B, 2, 1, ((struct Flags *)this)->flag));
             return;
     }
 }
@@ -190,21 +204,31 @@ void anctrl_setIndex(AnimCtrl *arg0, AssetId arg1)
 
 void *func_8008AEDC(void *arg0)
 {
-    return (u8 *)arg0 + 0x1C;
+    return (u8 *)arg0 + ANCTRL_HEADER_SIZE;
 }
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_8008AEE4(AnimCtrl *arg0, AnimCallback arg1) {
+    void func_8008C1D4(void *, AnimCallback);
+#else
 void func_8008AEE4(AnimCtrl *arg0, void (*arg1)(s32 *, f32)) {
     void func_8008C1D4(void *, void (*)(s32 *, f32));
-    func_8008C1D4((u8 *)arg0 + 0x1C, arg1);
+#endif
+    func_8008C1D4((u8 *)arg0 + ANCTRL_HEADER_SIZE, arg1);
 }
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_8008AF04(AnimCtrl *arg0, uintptr_t arg1) {
+    void func_8008C1DC(void *, uintptr_t);
+#else
 void func_8008AF04(AnimCtrl *arg0, s32 arg1) {
     void func_8008C1DC(void *, s32);
-    func_8008C1DC((u8 *)arg0 + 0x1C, arg1);
+#endif
+    func_8008C1DC((u8 *)arg0 + ANCTRL_HEADER_SIZE, arg1);
 }
 
 void anctrl_reset(AnimCtrl *control) {
@@ -213,7 +237,7 @@ void anctrl_reset(AnimCtrl *control) {
     ResetState *state = (ResetState *)control;
     s32 mode;
     state->type = 2;
-    state->flag = 1;
+    CTRL_SET_BITS(control, 0x1B, 5, 1, 1, state->flag);
     state->start = 0.0f;
     state->time = 0.0f;
     anctrl_setSmoothTransition(control, 1);
@@ -239,16 +263,16 @@ void func_8008AFCC(AnimCtrl *control) {
     f32 func_8008C0C8(f32 *);
     void func_8008C1C0(f32 *, f32);
 
-    if (state->default_start) {
+    if (CTRL_BITS(control, 0x1B, 5, 1, state->default_start)) {
         if (((u32)*((u8 *)control + 0x1B) >> 7) == 1) {
-            func_8008C1C0(state->animation, 0.0f);
+            func_8008C1C0((f32 *)((u8 *)control + ANCTRL_HEADER_SIZE), 0.0f);
         } else {
-            func_8008C1C0(state->animation, 0.99999899f);
+            func_8008C1C0((f32 *)((u8 *)control + ANCTRL_HEADER_SIZE), 0.99999899f);
         }
     } else {
-        func_8008C1C0(state->animation, state->start);
+        func_8008C1C0((f32 *)((u8 *)control + ANCTRL_HEADER_SIZE), state->start);
     }
-    state->timer = func_8008C0C8(state->animation);
+    state->timer = func_8008C0C8((f32 *)((u8 *)control + ANCTRL_HEADER_SIZE));
 }
 
 void anctrl_start(AnimCtrl *control) {
@@ -267,28 +291,28 @@ void anctrl_start(AnimCtrl *control) {
     void func_8008C1E4(f32 *, f32);
     void func_8008C270(s8 *);
 
-    if (state->smooth && func_8008C0C0((s16 *)state->animation) != 0) {
-        func_8008C0AC(state->animation);
-        func_8008C1B8((s16 *)state->animation, state->index);
+    if (CTRL_BITS(control, 0x1B, 6, 1, state->smooth) && func_8008C0C0((s16 *)((s8 *)control + ANCTRL_HEADER_SIZE)) != 0) {
+        func_8008C0AC(((s8 *)control + ANCTRL_HEADER_SIZE));
+        func_8008C1B8((s16 *)((s8 *)control + ANCTRL_HEADER_SIZE), ((s16 *)control)[12]);
         func_8008AFCC(control);
-        func_8008C1E4((f32 *)state->animation, 0.0f);
+        func_8008C1E4((f32 *)((s8 *)control + ANCTRL_HEADER_SIZE), 0.0f);
     } else {
-        func_8008C270(state->animation);
-        func_8008C1B8((s16 *)state->animation, state->index);
+        func_8008C270(((s8 *)control + ANCTRL_HEADER_SIZE));
+        func_8008C1B8((s16 *)((s8 *)control + ANCTRL_HEADER_SIZE), ((s16 *)control)[12]);
         func_8008AFCC(control);
-        func_8008C1E4((f32 *)state->animation, 1.0f);
+        func_8008C1E4((f32 *)((s8 *)control + ANCTRL_HEADER_SIZE), 1.0f);
     }
 }
 
 void func_8008B10C(AnimCtrl *arg0, f32 arg1) {
     void func_8008C1C0(f32 *arg0, f32 arg1);
-    func_8008C1C0((f32 *) (arg0 + 0x1C), arg1);
+    func_8008C1C0((f32 *) ((u8 *)arg0 + ANCTRL_HEADER_SIZE), arg1);
 }
 
 void anctrl_setPlaybackType(AnimCtrl *arg0, s32 arg1) {
     struct PlaybackFlags { u8 padding[0x18]; u32 prefix : 16; u32 type : 8; u32 high : 5; u32 playback : 1; u32 low : 2; };
     struct PlaybackFlags *flags = (struct PlaybackFlags *)arg0;
-    flags->type = arg1 & 0xFF;
+    CTRL_SET_BITS(arg0, 0x1A, 0, 255, arg1 & 0xFF, flags->type);
     switch (arg1) {
     case 1:
     case 3:
@@ -296,14 +320,14 @@ void anctrl_setPlaybackType(AnimCtrl *arg0, s32 arg1) {
         return;
     case 2:
     case 4:
-        flags->playback = 1;
+        CTRL_SET_BITS(arg0, 0x1B, 2, 1, 1, flags->playback);
         return;
     }
 }
 
 void func_8008B188(AnimCtrl *arg0, s32 arg1) {
     struct Flags { u8 padding[0x1B]; u8 high : 1; u8 smooth : 1; u8 low : 6; };
-    ((struct Flags *)arg0)->high = arg1;
+    CTRL_SET_BITS(arg0, 0x1B, 7, 1, arg1, ((struct Flags *)arg0)->high);
 }
 
 void anctrl_setSmoothTransition(AnimCtrl *arg0, s32 arg1) {
@@ -313,7 +337,7 @@ void anctrl_setSmoothTransition(AnimCtrl *arg0, s32 arg1) {
         u8 smooth : 1;
         u8 low : 6;
     };
-    ((struct Flags *)arg0)->smooth = arg1;
+    CTRL_SET_BITS(arg0, 0x1B, 6, 1, arg1, ((struct Flags *)arg0)->smooth);
 }
 
 void anctrl_setDuration(AnimCtrl *arg0, f32 arg1) {
@@ -345,7 +369,7 @@ void anctrl_setStart(AnimCtrl *arg0, f32 arg1) {
 
 int anctrl_getIndex(AnimCtrl *arg0) {
     s32 func_8008C0C0(s16 *arg0);
-    return func_8008C0C0((s16 *) (arg0 + 0x1C));
+    return func_8008C0C0((s16 *) ((u8 *)arg0 + ANCTRL_HEADER_SIZE));
 }
 
 u32 anctrl_getPlaybackType(u8 *arg0) {
@@ -357,14 +381,14 @@ s32 func_8008B28C(AnimCtrl *arg0) {
 }
 
 u32 func_8008B29C(void *arg0) {
-    return (u32) ((*(s32 *)((s8 *)(arg0) + (0x18))) << 0x19) >> 0x1F;
+    return CTRL_BITS(arg0, 0x1B, 6, 1, (u32) ((*(s32 *)((s8 *)(arg0) + (0x18))) << 0x19) >> 0x1F);
 }
 
 f32 func_8008B2AC(f32 *arg0) {
     return arg0[3];
 }
 
-f32 anctrl_getAnimTimer(AnimCtrl *arg0) { f32 func_8008C0C8(f32 *); return func_8008C0C8((f32 *) ((u8 *) arg0 + 0x1C)); }
+f32 anctrl_getAnimTimer(AnimCtrl *arg0) { f32 func_8008C0C8(f32 *); return func_8008C0C8((f32 *) ((u8 *) arg0 + ANCTRL_HEADER_SIZE)); }
 
 f32 func_8008B2D4(f32 *arg0) {
     return arg0[0];
@@ -381,18 +405,18 @@ void func_8008B2E8(AnimCtrl *arg0, s32 arg1) {
         u8 smooth : 2;
         u8 low : 3;
     };
-    ((struct Flags *)arg0)->smooth = arg1;
+    CTRL_SET_BITS(arg0, 0x1B, 3, 3, arg1, ((struct Flags *)arg0)->smooth);
 }
 
 /* extern */
 
-void func_8008B304(s32 arg0) {
-    s32 func_8008C038(s32);
-    func_8008C038(arg0 + 0x1C);
+void func_8008B304(AnimCtrl *arg0) {
+    void func_8008C038(void *);
+    func_8008C038((u8 *)arg0 + ANCTRL_HEADER_SIZE);
 }
 
 s32 anctrl_isStopped(AnimCtrl *arg0) {
-    return anctrl_getPlaybackType(&arg0->unk0) == 3;
+    return anctrl_getPlaybackType((u8 *)arg0) == 3;
 }
 
 int anctrl_isAt(AnimCtrl *arg0, f32 arg1) {
@@ -400,7 +424,7 @@ int anctrl_isAt(AnimCtrl *arg0, f32 arg1) {
     f32 current;
     f32 previous;
 
-    current = func_8008C0C8((f32 *)((u8 *)arg0 + 0x1C));
+    current = func_8008C0C8((f32 *)((u8 *)arg0 + ANCTRL_HEADER_SIZE));
     previous = *(f32 *)arg0;
     if (current == previous) {
         return 0;
@@ -424,25 +448,30 @@ void func_8008B4A8(AnimCtrl *arg0, s32 arg1) {
         u8 smooth : 1;
         u8 low : 2;
     };
-    ((struct Flags *)arg0)->smooth = arg1;
+    CTRL_SET_BITS(arg0, 0x1B, 2, 1, arg1, ((struct Flags *)arg0)->smooth);
 }
 
 u32 func_8008B4C4(void *arg0) {
-    return (u32) ((*(s32 *)((s8 *)(arg0) + (0x18))) << 0x1D) >> 0x1F;
+    return CTRL_BITS(arg0, 0x1B, 2, 1, (u32) ((*(s32 *)((s8 *)(arg0) + (0x18))) << 0x1D) >> 0x1F);
 }
 
 /* extern */
 
+#ifdef BT_NATIVE
+void *func_8008B4D4(AnimCtrl *arg0) {
+    void *func_8008C27C(void *);
+#else
 s32 func_8008B4D4(AnimCtrl *arg0) {
-    s32 func_8008C27C(AnimCtrl *);
-    return func_8008C27C(arg0 + 0x1C);
+    s32 func_8008C27C(void *);
+#endif
+    return func_8008C27C((u8 *)arg0 + ANCTRL_HEADER_SIZE);
 }
 
 /* extern */
 
 s32 func_8008B4F4(void) {
     s32 func_8008C0B8();
-    return func_8008C0B8() + 0x1C;
+    return func_8008C0B8() + ANCTRL_HEADER_SIZE;
 }
 
 void func_8008B518(AnimCtrl *arg0, s32 arg1) {
@@ -461,18 +490,18 @@ void func_8008B518(AnimCtrl *arg0, s32 arg1) {
     void func_8008C124(s16 *, s32);
     u32 func_800E6A00(void);
 
-    func_8008C124((s16 *)((u8 *)arg0 + 0x1C), 1);
+    func_8008C124((s16 *)((u8 *)arg0 + ANCTRL_HEADER_SIZE), 1);
     ((struct State *)arg0)->unk1A = 0;
     ((struct State *)arg0)->index = 0;
-    ((struct State *)arg0)->bit5 = 1;
+    CTRL_SET_BITS(arg0, 0x1B, 5, 1, 1, ((struct State *)arg0)->bit5);
     ((struct State *)arg0)->timer = 0.0f;
     ((struct State *)arg0)->start = 0.0f;
     if (func_800E6A00()) {
-        ((struct State *)arg0)->mode = 2;
+        CTRL_SET_BITS(arg0, 0x1B, 3, 3, 2, ((struct State *)arg0)->mode);
     } else {
-        ((struct State *)arg0)->mode = 0;
+        CTRL_SET_BITS(arg0, 0x1B, 3, 3, 0, ((struct State *)arg0)->mode);
     }
-    ((struct State *)arg0)->smooth = 1;
+    CTRL_SET_BITS(arg0, 0x1B, 2, 1, 1, ((struct State *)arg0)->smooth);
     anctrl_setSubrange(arg0, 0.0f, 1.0f);
     anctrl_setDuration(arg0, 2.1234f);
     func_8008B1C8(arg0, 0.2f);
@@ -482,5 +511,5 @@ void func_8008B518(AnimCtrl *arg0, s32 arg1) {
 
 void func_8008B5E8(AnimCtrl *arg0) {
     void func_8008C0D8(void *);
-    func_8008C0D8((u8 *)arg0 + 0x1C);
+    func_8008C0D8((u8 *)arg0 + ANCTRL_HEADER_SIZE);
 }

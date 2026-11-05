@@ -716,11 +716,11 @@ void func_808013E8_chlakemonster(s32 *arg0) {
     s32 func_8008F8D8(s32);
     s32 func_8008F904(s32 *, s32);
     s32 func_8008F938(s32);
-    s32 func_8008F964(s32 *);
+    void func_8008F964(f32 *);
     s32 func_8008F9C4(s32 *, s32);
     extern s32 func_8010D5DC;
     func_8008F8B0();
-    func_8008F964(&(*(s32 *)D_808020D4_chlakemonster));
+    func_8008F964((f32 *)D_808020D4_chlakemonster);
     func_8008F8D8(0);
     func_8008F938(1);
     func_8008F904(&func_8010D5DC, *arg0);
