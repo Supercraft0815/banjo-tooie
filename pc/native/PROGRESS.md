@@ -55,7 +55,7 @@ Pipeline (`pc/native/wasm/`):
    name and abort.
 
 Run options (`host/video.c`, `host/input.c`): `BT_HEADLESS=1`, `BT_DUMP=prefix`
-(BMP frames, `BT_DUMP_EVERY=N`), `BT_EXIT_AFTER=secs` (game time), `BT_SPEED=x` (game
+(BMP frames, `BT_DUMP_EVERY=N`, from `BT_DUMP_FROM=secs` on), `BT_EXIT_AFTER=secs` (game time), `BT_SPEED=x` (game
 clock multiplier, e.g. 4 to fast-forward cutscenes), `BT_PRESS=secs:mask,...` (scripted
 controller, up to 2048 entries; mask bits 0-15 buttons (A 8000, B 4000, Z 2000, Start
 1000), 16-23 stick x, 24-31 stick y, e.g. `15:1000,15.3:0` = Start at 15 s,
@@ -106,16 +106,23 @@ of calls in the same file as the definition).
    latency is 35-110 ms (`LATENCY_BYTES` in `ai.c` plus the game's own rate control).
 3. **Gameplay (M6).** Spiral Mountain is reached at ~900 s game time (`BT_SPEED=4`,
    A every 2 s). Next: jumps, moves, level transitions; fix what traps or crashes.
-4. **Cross-symbol data access.** Code that reaches data through another symbol's
+   Seen once (2026-11-07, optimized build): after a jump, frames alternated between a
+   sky view and an above-ground view with a solid green (RGBA5551 0x0781) rectangle;
+   only the two framebuffers and the Z buffer were drawn, and no display list ended
+   early. Not reproduced in two reruns.
+4. **Scripted runs are not deterministic.** Threads, timers and the VI follow the wall
+   clock, so the same `BT_PRESS` script takes different paths. A virtual-clock mode
+   (time advanced by safepoints and idle waits) would make runs repeatable.
+5. **Cross-symbol data access.** Code that reaches data through another symbol's
    address only works when both lie in one asm block (`data.py` joins touching files of a
    module). Data split between C files and asm cannot be joined this way.
-5. Codex's 64-bit `*_native.inc` replacements stay active under ILP32 unless they
+6. Codex's 64-bit `*_native.inc` replacements stay active under ILP32 unless they
    mismatch; then the module switches back to the original code with
    `#if defined(BT_NATIVE) && !defined(BT_ILP32)`. Their little-endian assumptions are
    a risk under the big-endian guest: plain members that share a word now follow
    `BT_NATIVE_LE_MEMORY` (unset under ILP32), bitfields `BT_NATIVE_LITTLE_ENDIAN`.
-6. 12 function traps left (`build/ilp32/traps.txt`).
-7. The 64-bit target (`pc/native/link_game.py`, `platform/ultra_*.c`) is superseded
+7. 12 function traps left (`build/ilp32/traps.txt`).
+8. The 64-bit target (`pc/native/link_game.py`, `platform/ultra_*.c`) is superseded
    by the ILP32 build and can go once nothing depends on it.
 
 ## Log

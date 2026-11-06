@@ -1,7 +1,8 @@
 // Window: shows the framebuffer the VI scans out (16-bit RGBA5551, big-endian bytes).
 // Runs on the main thread, which macOS requires for windows and events.
 //   BT_HEADLESS=1         no window (frames are still produced)
-//   BT_DUMP=prefix        write every BT_DUMP_EVERY-th (default 30) displayed frame as prefix_NNNNN.bmp
+//   BT_DUMP=prefix        write every BT_DUMP_EVERY-th (default 30) displayed frame as prefix_NNNNN.bmp,
+//                         from BT_DUMP_FROM seconds of game time on (default 0)
 //   BT_EXIT_AFTER=secs    quit after that many seconds (game time, like BT_PRESS)
 //   BT_SPEED=x            game clock at x times real time (fast-forward for scripted runs)
 //   BT_PRESS=...          scripted controller input (input.c)
@@ -26,6 +27,7 @@ _Noreturn void bt_video_main(void) {
     int headless = getenv("BT_HEADLESS") != NULL, every = getenv("BT_DUMP_EVERY") ? atoi(getenv("BT_DUMP_EVERY")) : 30;
     const char *dump = getenv("BT_DUMP");
     double quit_after = getenv("BT_EXIT_AFTER") ? atof(getenv("BT_EXIT_AFTER")) : 0;
+    double dump_from = getenv("BT_DUMP_FROM") ? atof(getenv("BT_DUMP_FROM")) : 0;
     SDL_Window *win = NULL;
     SDL_Renderer *ren = NULL;
     SDL_Texture *tex = NULL;
@@ -60,7 +62,7 @@ _Noreturn void bt_video_main(void) {
             last = count;
             if (fb) convert(fb, w, h, pixels); else memset(pixels, 0, sizeof pixels);
             frames++;
-            if (dump && every > 0 && frames % (u32)every == 0) {
+            if (dump && every > 0 && frames % (u32)every == 0 && secs >= dump_from) {
                 char path[512];
                 SDL_Surface *s = SDL_CreateSurfaceFrom(w, h, SDL_PIXELFORMAT_XRGB8888, pixels, w * 4);
                 snprintf(path, sizeof path, "%s_%05u.bmp", dump, frames);
