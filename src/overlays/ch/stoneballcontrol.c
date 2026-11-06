@@ -174,7 +174,11 @@ f32 func_80800070_chstoneballcontrol(void *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+f32 func_8080009C_chstoneballcontrol(s32 bt_a0) {
+#else
 f32 func_8080009C_chstoneballcontrol() {
+#endif
     f32 func_80800040_chstoneballcontrol();
 #ifdef BT_NATIVE
     return ((f32 (*)())func_80800040_chstoneballcontrol)() * 0.33f;
@@ -620,7 +624,11 @@ void func_80800D20_chstoneballcontrol(u8 *arg0) {
     f32 func_800DC178(f32, f32);
     void func_80800B4C_chstoneballcontrol(void *, s32);
     Actor *actor = (Actor *)arg0;
+#ifdef BT_NATIVE
+    ((f32 *)actor->actorData)[3] = ((f32 (*)())func_8080009C_chstoneballcontrol)();
+#else
     ((f32 *)actor->actorData)[3] = func_8080009C_chstoneballcontrol();
+#endif
     ((f32 *)actor->actorData)[7] = func_800DC178(0.9f, 1.1f) * 45.0f;
     if (func_800DC0C0() < 0.5f) {
         ((f32 *)actor->actorData)[7] = -((f32 *)actor->actorData)[7];

@@ -582,7 +582,11 @@ void func_800F58A0(s32 arg0)
     _bswalk_entrypoint_0(D_80135490.players[arg0]);
 }
 
+#ifdef BT_NATIVE
+void func_800F58CC(s32 arg0, s32 bt_a1)
+#else
 void func_800F58CC(s32 arg0)
+#endif
 {
     func_80096394(D_80135490.players[arg0]);
 }
@@ -722,7 +726,11 @@ void func_800F5D44(s32 arg0, f32* arg1)
     func_800A33CC(D_80135490.players[arg0],arg1);
 }
 
+#ifdef BT_NATIVE
+void func_800F5D70(s32 arg0, s32 bt_a1)
+#else
 void func_800F5D70(s32 arg0)
+#endif
 {
     func_8009BB24(D_80135490.players[arg0]);
 }
@@ -2511,7 +2519,11 @@ void func_800F91EC(void) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_800F9214(s32 bt_a0) {
+#else
 s32 func_800F9214(void) {
+#endif
     int func_800F6720();
 #ifdef BT_NATIVE
     if (((int (*)())func_800F6720)() != 0) {

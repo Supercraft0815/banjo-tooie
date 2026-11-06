@@ -1621,7 +1621,11 @@ void func_80802C40_chdiggerboss(s32 arg0) {
     func_80116088(func_80110014(func_800F5EF8(sp24)), sp2C);
 }
 
+#ifdef BT_NATIVE
+void func_80802CB4_chdiggerboss(s32 bt_a0)
+#else
 void func_80802CB4_chdiggerboss()
+#endif
 {
     s32 func_80802248_chdiggerboss();
 #ifdef BT_NATIVE

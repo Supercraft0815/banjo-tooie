@@ -634,7 +634,11 @@ void func_80801740_chfantasyeyeball(Actor *arg0, f32 *arg1) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_808017B4_chfantasyeyeball(s32 bt_a0) {
+#else
 s32 func_808017B4_chfantasyeyeball(void) {
+#endif
     s32 func_8010C754();
     s32 func_8010D248();
     f32 temp_f0;

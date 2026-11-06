@@ -90,7 +90,11 @@ OSThread *chjiggygamenew_entrypoint_0(void)
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_8080000C_chjiggygamenew(s32 bt_a0) {
+#else
 s32 func_8080000C_chjiggygamenew() {
+#endif
     return (*(s32 *)((s8 *)(func_80106790()) + (0x20)));
 }
 
@@ -376,7 +380,11 @@ void func_808006E0_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_808007BC_chjiggygamenew(s32 bt_a0) {
+#else
 s32 func_808007BC_chjiggygamenew(void) {
+#endif
     return (*(s32 *)((s8 *)(func_80106790()) + (0x28))) == 5;
 }
 
@@ -1576,7 +1584,11 @@ void func_8080356C_chjiggygamenew(Unk80132ED0 *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_80803598_chjiggygamenew(s32 bt_a0) {
+#else
 void func_80803598_chjiggygamenew(void) {
+#endif
     s32 func_80102424(s32, s32);
     func_80102424(func_80106790(), 7);
 }

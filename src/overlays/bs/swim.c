@@ -8,7 +8,11 @@ enum asset_e;
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_80800000_bsswim(s32 bt_a0) {
+#else
 s32 func_80800000_bsswim() {
+#endif
     s32 func_8008E23C();
     s32 var_v1;
 

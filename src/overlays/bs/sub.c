@@ -361,7 +361,11 @@ void func_80800AEC_bssub()
     _basub_entrypoint_14();
 }
 
+#ifdef BT_NATIVE
+void func_80800B0C_bssub(s32 bt_a0)
+#else
 void func_80800B0C_bssub()
+#endif
 {
     _baspin_entrypoint_1();
 }

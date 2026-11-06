@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EB5E70_reset_native.inc"
 #else
 void func_800DE318(void) {

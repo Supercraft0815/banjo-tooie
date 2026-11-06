@@ -185,7 +185,11 @@ FirstpState *func_80800000_bsfirstp(PlayerState *player) {
     return firstp;
 }
 
+#ifdef BT_NATIVE
+void func_80800040_bsfirstp(s32 bt_a0)
+#else
 void func_80800040_bsfirstp()
+#endif
 {
     _bastatemem_entrypoint_1();
 }
@@ -6086,7 +6090,11 @@ void func_80809CB4_bsfirstp(u8 *arg0) {
     func_8009ADF0(arg0, 0xB, 0);
 }
 
+#ifdef BT_NATIVE
+void func_80809CD8_bsfirstp(s32 bt_a0)
+#else
 void func_80809CD8_bsfirstp()
+#endif
 {
     void func_80809CF8_bsfirstp();
     func_80809CF8_bsfirstp();

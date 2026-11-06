@@ -1,6 +1,10 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+void func_80800000_chlavaarchgrill3switches(s32 bt_a0, s32 bt_a1)
+#else
 void func_80800000_chlavaarchgrill3switches()
+#endif
 {
     _chswitch_entrypoint_7();
 }

@@ -278,7 +278,11 @@ int func_808005F0_gczoombox(u8 arg0, u8 arg1){
     }
 }
 
+#ifdef BT_NATIVE
+int gczoombox_entrypoint_1(s32 bt_a0)
+#else
 int gczoombox_entrypoint_1()
+#endif
 {
     func_800E7188();
 }

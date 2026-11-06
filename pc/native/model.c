@@ -16,6 +16,58 @@ static u32 model_section_end(const u8 *bytes,u32 size,u32 start) {
     return end;
 }
 
+static void swap16s(u8 *p,u32 n) {for(u32 i=0;i<n;i+=2){u16 v=model_be16(p+i);rare_memcpy(p+i,&v,2);}}
+static void swap32s(u8 *p,u32 n) {for(u32 i=0;i<n;i+=4){u32 v=model_be32(p+i);rare_memcpy(p+i,&v,4);}}
+
+/* Mesh-id list (field 0x24, db/id.c): s16 count, then {s16 id, s16 n, s16 vertex[n]}; all halfwords. */
+static u32 meshes_extent(const u8 *p,u32 size) {
+    if(size<2)return 0;
+    s32 count=(s16)model_be16(p);u32 cursor=2;
+    if(count<0)return 0;
+    for(s32 i=0;i<count;++i) {
+        if(size-cursor<4)return 0;
+        s32 n=(s16)model_be16(p+cursor+2);
+        if(n<0 || (u32)n>(size-cursor-4)/2)return 0;
+        cursor+=4+n*2;
+    }
+    return cursor;
+}
+
+/* Light grid (field 0x30, rt/light.c): 0x14 bytes of halfwords (cell count at 0x10), s32 vertex
+   count, cellCount u16 pairs, vertex-count s16 indices. */
+static u32 lights_extent(const u8 *p,u32 size) {
+    if(size<0x18)return 0;
+    u32 cells=model_be16(p+0x10),vertices=model_be32(p+0x14);
+    if(vertices>size/2 || cells*4>size-0x18 || vertices*2>size-0x18-cells*4)return 0;
+    return 0x18+cells*4+vertices*2;
+}
+
+/* Vertex-effect list (model field 0x34, read by the vp overlays): header, 20-byte cells,
+   records of s32 id + 8 halfwords + cellCount (offset, length) pairs + byte pairs. */
+static int vpl_valid(const u8 *p,u32 size) {
+    if(size<0x30)return 0;
+    u32 cells=model_be32(p+0x14),cell=model_be32(p+0x1C),modules=model_be32(p+0x2C);
+    if(cells>size/20 || cell%2 || cell<0x30 || cell+cells*20>size || modules>(size-0x30)/4)return 0;
+    for(u32 i=0;i<modules;++i) {
+        u32 r=model_be32(p+0x30+i*4);
+        if(r%4 || r<0x30 || r>size || (size-r)/4<cells+5)return 0;
+    }
+    return 1;
+}
+
+static void decode_vpl(u8 *p) {
+    u32 cells=model_be32(p+0x14),cell=model_be32(p+0x1C),modules=model_be32(p+0x2C);
+    for(u32 i=0;i<modules;++i) {
+        u8 *r=p+model_be32(p+0x30+i*4);
+        swap32s(r,4);swap16s(r+4,0x10+cells*4);
+    }
+    for(u32 i=0;i<cells;++i) {
+        u8 *c=p+cell+i*20;
+        swap16s(c,2);swap16s(c+4,12);swap32s(c+16,4);
+    }
+    swap16s(p,0x14);swap32s(p+0x14,0x0C);swap16s(p+0x20,4);swap32s(p+0x24,0x0C+modules*4);
+}
+
 static u32 binding_extent(const u8 *bytes,u32 size,u32 vertices,s32 bones) {
     if(size<4)return 0;
     s32 groups=(s16)model_be16(bytes+2);u32 cursor=4;
@@ -170,6 +222,20 @@ int native_model_decode(void *model,s32 size) {
         if(!native_texture_validate(bytes+texture,texture_size))return 0;
     }
 
+    u32 meshes=model_be32(bytes+36),meshes_end=0,lights=model_be32(bytes+48),lights_end=0;
+    if(meshes) {
+        u32 extent=meshes%2 ? 0 : meshes_extent(bytes+meshes,model_section_end(bytes,size,meshes)-meshes);
+        if(!extent)return 0;
+        meshes_end=meshes+extent;
+    }
+    if(lights) {
+        u32 extent=lights%4 ? 0 : lights_extent(bytes+lights,model_section_end(bytes,size,lights)-lights);
+        if(!extent)return 0;
+        lights_end=lights+extent;
+    }
+    u32 vpl=model_be32(bytes+52);
+    if(vpl && (vpl%4 || vpl<80 || vpl>=(u32)size || !vpl_valid(bytes+vpl,model_section_end(bytes,size,vpl)-vpl)))return 0;
+
     u32 display=model_be32(bytes+12),display_count=0;
     if(display) {
         for(int field=4;field<=64;field+=4)if(field!=8 && field!=12 && model_be32(bytes+field)==display)return 0;
@@ -225,5 +291,8 @@ int native_model_decode(void *model,s32 size) {
         }
     }
     if(binding)decode_binding(bytes+binding);
+    if(vpl)decode_vpl(bytes+vpl);
+    if(meshes)swap16s(bytes+meshes,meshes_end-meshes);
+    if(lights){swap16s(bytes+lights,0x14);swap32s(bytes+lights+0x14,4);swap16s(bytes+lights+0x18,lights_end-lights-0x18);}
     return 1;
 }

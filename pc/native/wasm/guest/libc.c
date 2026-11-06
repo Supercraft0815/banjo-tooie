@@ -375,8 +375,9 @@ float ceilf(float x) { return __builtin_ceilf(x); }
 double ceil(double x) { return __builtin_ceil(x); }
 float truncf(float x) { return __builtin_truncf(x); }
 double trunc(double x) { return __builtin_trunc(x); }
-float fminf(float a, float b) { return __builtin_fminf(a, b); }
-float fmaxf(float a, float b) { return __builtin_fmaxf(a, b); }
+// wasm's f32.min/max propagate NaN, so LLVM lowers __builtin_fminf to a call of fminf (itself).
+float fminf(float a, float b) { return a != a ? b : b != b ? a : __builtin_wasm_min_f32(a, b); }
+float fmaxf(float a, float b) { return a != a ? b : b != b ? a : __builtin_wasm_max_f32(a, b); }
 float copysignf(float a, float b) { return __builtin_copysignf(a, b); }
 float roundf(float x) { return x < 0 ? -__builtin_floorf(-x + 0.5f) : __builtin_floorf(x + 0.5f); }
 double round(double x) { return x < 0 ? -__builtin_floor(-x + 0.5) : __builtin_floor(x + 0.5); }

@@ -45,7 +45,9 @@ EXPORTS = ['bt_guest_start', 'bt_guest_boot_stack_top']
 LIBCALLS = ['memcpy', 'memmove', 'memset', 'memcmp', 'fminf', 'fmaxf', 'fmin', 'fmax']
 
 GUEST_FLAGS = [
-    '--target=wasm32-unknown-unknown', '-O2', '-flto', '-g0',
+    # No LLVM passes per file: inlining before the FixCalls pass would move K&R calls that rely
+    # on register pass-through into another function (with other a0..a3). opt optimizes later.
+    '--target=wasm32-unknown-unknown', '-O2', '-Xclang', '-disable-llvm-passes', '-flto', '-g0',
     '-DBT_NATIVE=1', '-DBT_NATIVE_LITTLE_ENDIAN=1', '-DBT_ILP32=1',
     '-DBUILD_VERSION=VERSION_J', '-DF3DEX_GBI_2', '-D_FINALROM', '-D_LANGUAGE_C',
     '-isystem', str(HERE / 'guest' / 'include'),
@@ -251,10 +253,19 @@ def main():
     # The FixCalls pass points them into the object that holds them, or makes them plain numbers.
     have = sorted((a, n) for n, a in n64_addr.items() if n in defined or n in ddef)
     linker_syms = []
-    for n, expr in re.findall(r'^(\w+)\s*=\s*([^;]+);', (ROOT / 'undefined_syms.us.txt').read_text(), re.M):
+    for n, expr in re.findall(r'^\s*(\w+)\s*=\s*([^;]+);', (ROOT / 'undefined_syms.us.txt').read_text(), re.M):
         m = re.fullmatch(r'([A-Za-z_]\w*)(?:\s*\+\s*(0x[0-9A-Fa-f]+|\d+))?', expr.strip())
         if m:
-            linker_syms.append('%s %s %d' % (n, alias.get(m.group(1), m.group(1)), int(m.group(2) or '0', 0)))
+            base, off = alias.get(m.group(1), m.group(1)), int(m.group(2) or '0', 0)
+            if base not in ddef and base in n64_addr and off:
+                # A table addressed as code + offset (ch/intro/char): natively the bytes are not
+                # behind the code, so anchor it to the overlay's nearest data label instead.
+                v, ovl = n64_addr[base] + off, base.rsplit('_', 1)[-1]
+                near = [(abs(a - v), d, a) for d, a in n64_addr.items() if d in ddef and d.endswith('_' + ovl)]
+                if near:
+                    _, base, a = min(near)
+                    off = v - a
+            linker_syms.append('%s %s %d' % (n, base, off))
             continue
         v = int(expr.strip(), 0)
         i = bisect.bisect_right(have, (v, '\uffff')) - 1
@@ -302,15 +313,18 @@ def main():
     r = run([LLVM_BIN + '/llvm-link', '-o', str(linked)] + [str(o) for o in objs + extra])
     if r.returncode != 0:
         sys.exit('llvm-link failed:\n' + r.stderr[:8000])
+    (OUT / 'widened.txt').unlink(missing_ok=True)
     r = run([LLVM_BIN + '/opt', '--load-pass-plugin=%s' % plugin, 
              # Inlining turns calls through function pointers into direct calls that may mismatch
-             # again, so the fix runs before and after the LTO pipeline.
-             '-passes=bt-fixcalls,internalize,lto<O2>,bt-fixcalls', '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'),
-             '-internalize-public-api-list=' + ','.join(EXPORTS + LIBCALLS), str(linked), '-o', str(fixed)])
+             # again, so the fix runs before and after the optimization pipeline.
+             '-passes=bt-fixcalls,internalize,default<O2>,bt-fixcalls', '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'), '-bt-widened=%s' % (OUT / 'widened.txt'),
+             '-internalize-public-api-list=' + ','.join(EXPORTS + LIBCALLS), str(linked), '-o', str(fixed)]
+            # BT_NOINLINE=1: keeps every function separate, so crash backtraces name the real function.
+            + (['-inline-threshold=-100000'] if os.environ.get('BT_NOINLINE') else []))
     if r.returncode != 0:
         sys.exit('opt failed:\n' + r.stderr[:8000])
     wasm = OUT / 'game.wasm'
-    link = [WASM_LD, '--no-entry', '--lto-O0', '--lto-CGO2', '-o', str(wasm),
+    link = [WASM_LD, '--no-entry', '--lto-O0', '--lto-CGO2', '-o', str(wasm), '-Map=%s' % (OUT / 'game.map'),
             '--global-base=%d' % GLOBAL_BASE, '--initial-memory=%d' % MEMORY_END,
             '--max-memory=%d' % (1 << 32), '--export-table', '--export=__stack_pointer',
             '--export=__heap_base'] + ['--export=' + e for e in EXPORTS] + [

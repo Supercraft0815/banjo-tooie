@@ -1,6 +1,10 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+void basudie_entrypoint_0(s32 bt_a0)
+#else
 void basudie_entrypoint_0()
+#endif
 {
     func_80091EF0();
 }

@@ -77,3 +77,30 @@ extern u64 D_80124A70;
 s32 func_80116850(void) { return rng_step(&D_80124A70); }
 s32 func_80116898(s64 seed) { D_80124A70 = seed + 1; return 0; }
 s32 func_801168AC(u64 *state) { return rng_step(state); }
+
+// asm/nonmatchings/core2/1ED8C80/func_80100368.s: returns what the actor's own getter at +0x10 returns.
+void *func_80100368(void *actor) { return (*(void *(**)(void *))((u8 *)actor + 0x10))(actor); }
+
+// src/core2/1ECB9F0.s: float helpers.
+static u32 f32_bits(f32 x) { u32 b; __builtin_memcpy(&b, &x, 4); return b; }
+static f32 bits_f32(u32 b) { f32 x; __builtin_memcpy(&x, &b, 4); return x; }
+// Sign as +-1.0f; both zeros give +0.
+f32 func_800F2108(f32 x) { u32 b = f32_bits(x), s = b & 0x80000000u; return bits_f32(b == s ? 0 : 0x3F800000u | s); }
+// The argument with the smaller magnitude (b on ties).
+f32 func_800F212C(f32 a, f32 b) { return __builtin_fabsf(a) < __builtin_fabsf(b) ? a : b; }
+// 0 when |a| < limit, else a.
+f32 func_800F214C(f32 a, f32 limit) { return __builtin_fabsf(a) < limit ? 0.0f : a; }
+// Zeroes the components of a 3-vector below the limit in magnitude.
+void func_800F2168(f32 *v, f32 limit) {
+    for (int i = 0; i < 3; i++)
+        if (__builtin_fabsf(v[i]) < limit) v[i] = 0.0f;
+}
+// 1 for NaN.
+s32 func_800F219C(f32 x) { u32 b = f32_bits(x) << 1; return (b >> 24) == 0xFF ? (b << 8) != 0 : 0; }
+// fpclassify: 0 quiet NaN, 1 signaling NaN, 2/3 +-inf, 4/5 +-normal, 6/7 +-denormal, 8/9 +-0.
+u32 func_800F21C4(f32 x) {
+    u32 b = f32_bits(x), exp = (b >> 23) & 0xFF, mant = b & 0x7FFFFF, neg = b >> 31;
+    if (exp == 0xFF) return mant ? !(mant & 0x400000) : 2 + neg;
+    if (exp == 0) return (mant ? 6 : 8) + neg;
+    return 4 + neg;
+}

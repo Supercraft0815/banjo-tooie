@@ -342,7 +342,11 @@ void func_80800820_ch2dbaddy(Actor *arg0) {
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800AF4_ch2dbaddy, 0.1f);
 }
 
+#ifdef BT_NATIVE
+void func_80800850_ch2dbaddy(s32 bt_a0) {
+#else
 void func_80800850_ch2dbaddy(void) {
+#endif
     s32 func_800DC128(s32, s32);
     u8 *_sucoaster_entrypoint_3();
     extern s16 D_80800B00_ch2dbaddy[];

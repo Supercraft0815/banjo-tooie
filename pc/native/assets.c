@@ -148,6 +148,12 @@ void *native_asset_load(s32 id, s32 *size) {
         heap_free(data);
         return NULL;
     }
+    if ((flags & 15) == 9) {
+        /* Music sequence: u32 division, u32 track count, u32 track offsets; the tracks are bytes. */
+        u32 tracks = output_size >= 8 ? read_be32(data + 4) : UINT32_MAX;
+        if (tracks > 32 || (u32)output_size < (2 + tracks) * 4) { heap_free(data); return NULL; }
+        for (u32 i = 0; i < 2 + tracks; ++i) { u32 word = read_be32(data + i * 4); rare_memcpy(data + i * 4, &word, 4); }
+    }
     if ((flags & 15) == 6) {
         s16 *animation = native_animation_decode(data, output_size);
         heap_free(data);

@@ -16,7 +16,11 @@ void func_80800028_chfantasycannon(u8 *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_80800050_chfantasycannon(s32 bt_a0) {
+#else
 s32 func_80800050_chfantasycannon(void) {
+#endif
     u32 func_800F54E4(void);
     s32 func_800F64DC(s32);
     s32 func_8010C500();

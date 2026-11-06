@@ -356,7 +356,11 @@ void func_808004B0_chflysaucer(Actor *arg0) {
     }
 }
 
+#ifdef BT_NATIVE
+void func_808004F0_chflysaucer(s32 bt_a0) {
+#else
 void func_808004F0_chflysaucer(void) {
+#endif
     void func_808017D0_chflysaucer();
     extern s32 D_80127194;
     (*(s16 *)((s8 *)(&D_80127194) + (0x434))) = 0;
@@ -741,7 +745,11 @@ u32 func_80800E48_chflysaucer(s32 arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_80800F98_chflysaucer(s32 bt_a0) {
+#else
 void func_80800F98_chflysaucer() {
+#endif
     s32 func_800FC6B0(s32);
     u32 func_80800E48_chflysaucer();
     u32 temp_v0;

@@ -297,7 +297,11 @@ s32 func_800CE83C(s32 arg0, s32 arg1) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_800CE864(s32 bt_a0) {
+#else
 void func_800CE864() {
+#endif
     void *func_800CE3E0();
 #ifdef BT_NATIVE
     (*(s8 *)((s8 *)(((void * (*)())func_800CE3E0)()) + (0x14))) = 1;

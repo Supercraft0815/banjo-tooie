@@ -229,7 +229,11 @@ f32 func_80800070_chcollballcontrol(void *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+f32 func_8080009C_chcollballcontrol(s32 bt_a0) {
+#else
 f32 func_8080009C_chcollballcontrol() {
+#endif
     f32 func_80800040_chcollballcontrol();
 #ifdef BT_NATIVE
     return ((f32 (*)())func_80800040_chcollballcontrol)() * 0.33f;
@@ -240,7 +244,11 @@ f32 func_8080009C_chcollballcontrol() {
 
 /* extern */
 
+#ifdef BT_NATIVE
+f32 func_808000C8_chcollballcontrol(s32 bt_a0) {
+#else
 f32 func_808000C8_chcollballcontrol() {
+#endif
     f32 func_80800040_chcollballcontrol();
 #ifdef BT_NATIVE
     return ((f32 (*)())func_80800040_chcollballcontrol)() * 0.05f;
@@ -249,9 +257,17 @@ f32 func_808000C8_chcollballcontrol() {
 #endif
 }
 
+#ifdef BT_NATIVE
+f32 func_808000F4_chcollballcontrol(s32 bt_a0)
+#else
 f32 func_808000F4_chcollballcontrol()
+#endif
 {
+#ifdef BT_NATIVE
+    return ((f32 (*)())func_808000C8_chcollballcontrol)();
+#else
     return func_808000C8_chcollballcontrol();
+#endif
 }
 
 s32 func_80800114_chcollballcontrol(s32 arg0, s32 arg1) {
@@ -635,7 +651,11 @@ void func_80800B5C_chcollballcontrol(u8 *arg0) {
     f32 func_800DC178(f32, f32);
     void func_8080324C_chcollballcontrol();
     Actor *actor = (Actor *)arg0;
+#ifdef BT_NATIVE
+    ((f32 *)actor->actorData)[3] = ((f32 (*)())func_8080009C_chcollballcontrol)();
+#else
     ((f32 *)actor->actorData)[3] = func_8080009C_chcollballcontrol();
+#endif
     ((f32 *)actor->actorData)[7] = func_800DC178(0.9f, 1.1f) * 45.0f;
     if (func_800DC0C0() < 0.5f) {
         ((f32 *)actor->actorData)[7] = -((f32 *)actor->actorData)[7];

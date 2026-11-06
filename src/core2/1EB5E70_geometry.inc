@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original interpreter
 #include "1EB5E70_geometry_native.inc"
 #else
 void func_800DC580(void *arg0, void *arg1) {
@@ -150,7 +150,9 @@ void func_800DC84C(s32 model, struct GeoCommand800DC634 *cmd) {
 void func_800DC958(s32 arg0, u8 *arg1) {
     void func_800193C4(f32 *, f32 *);
     void func_80019AA0(void *, s32);
+#ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
+#endif
     void func_800DE2A4(s32, u8 *);
     s32 func_800EF3DC(s32 *, s32 *);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
@@ -372,7 +374,9 @@ void func_800DCEC8(Gfx **gfx, u8 *data) {
 
 void func_800DCF48(s32 model, u8 *data) {
     void func_80019AA0(void *, s32);
+#ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
+#endif
     void func_800DE2A4(s32, u8 *);
     void mlMtxApply(Mtx *);
     void mlMtxPop(void);
@@ -532,7 +536,9 @@ void func_800DD37C(s32 model, u8 *data) {
 void func_800DD410(s32 arg0, u8 *arg1) {
     void func_800193C4(f32 *, f32 *);
     void func_80019AA0(void *, s32);
+#ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
+#endif
     void func_800DC028(s32, s32, s32);
     void mlMtxPop(void);
     extern s32 D_8012C844;
@@ -613,7 +619,9 @@ void func_800DD56C(s32 model, u8 *data) {
 
 typedef struct { f32 m[4][4]; } MtxF;
 void func_800DD65C(Gfx **arg0, void *arg1) {
+#ifndef BT_NATIVE
     s32 func_8010F070(MtxF *, s32 *, s16);
+#endif
     MtxF *mlMtx_get_stack_pointer(void);
     extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
     s32 sp38[2];
@@ -642,7 +650,9 @@ void func_800DD65C(Gfx **arg0, void *arg1) {
 struct GeoContext800DD728 { Gfx *gfx; Mtx *mtx; };
 void func_800DD728(struct GeoContext800DD728 *context, void *arg1) {
     MtxF *func_80018BB4(void);
+#ifndef BT_NATIVE
     s32 func_8010F070(MtxF *, s32 *, s16);
+#endif
     void mlMtxApply(Mtx *);
     MtxF *mlMtx_get_stack_pointer(void);
     extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
@@ -721,7 +731,9 @@ struct GeoContext800DD998 {
 
 void func_800DD998(struct GeoContext800DD998 *context, u8 *arg1) {
     MtxF *func_80018BB4(void);
+#ifndef BT_NATIVE
     s32 func_8010F070(MtxF *, s32 *, s16);
+#endif
     void mlMtxApply(Mtx *);
     MtxF *mlMtx_get_stack_pointer(void);
     extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
@@ -859,7 +871,9 @@ void func_800DDD14(volatile s32 arg0, u8 *arg1) {
 void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
     void func_80019224(f32 *, f32 *);
     void func_80019AA0(void *, s32);
+#ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
+#endif
     void func_800DE2A4(s32, u8 *);
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE88C(f32 *, s16 *);
@@ -979,7 +993,9 @@ void func_800DE03C(s32 arg0, u8 *arg1) {
 
 void func_800DE0D8(s32 arg0, u8 *arg1) {
     void func_80019AA0(void *, s32);
+#ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
+#endif
     MtxF *mlMtx_get_stack_pointer(void);
     void mlMtxPop(void);
     extern RenderData D_8012C948;
@@ -1002,7 +1018,9 @@ void func_800DE0D8(s32 arg0, u8 *arg1) {
 
 void func_800DE1C4(s32 arg0, u8 *arg1) {
     MtxF *func_80018BB4(void);
+#ifndef BT_NATIVE
     s32 func_8010F070(MtxF *, s32 *, s16);
+#endif
     MtxF *mlMtx_get_stack_pointer(void);
     extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
     s32 sp38[2];

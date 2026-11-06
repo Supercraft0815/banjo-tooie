@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EB5E70_state_native.inc"
 #else
 s32 func_800DF324()
@@ -21,7 +21,9 @@ s32 func_800DF350()
 }
 
 void func_800DF35C(void) {
+#ifndef BT_NATIVE
     void func_800ADF5C(void *);
+#endif
     void func_8010E390(void);
     extern u8 D_8012C840;
     func_800ADF5C(*(s32 *)&D_8012C840);
@@ -33,7 +35,9 @@ void func_800DF38C(void) {
     extern LookAtBuffer D_8012CA40;
     extern f32 D_8012CE48[3];
     extern u8 D_8012C840;
+#ifndef BT_NATIVE
     s32 func_800ADF98(void);
+#endif
     s32 func_8010E334(void);
     void func_800EFD24(f32 *);
     LookAtBuffer *buffer;

@@ -6,7 +6,7 @@
 
 void* func_800DE448(f32* position, f32* arg1, f32 scale, f32* arg3, u8* arg4);
 void func_800DF410(s32 a0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original 1EB5E70 code
 #include "native_render.h"
 #else
 void func_800DF41C(s32);

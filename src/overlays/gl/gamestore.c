@@ -79,7 +79,11 @@ s32 glgamestore_entrypoint_1(s32 arg0, s32 arg1) {
     return var_v1;
 }
 
+#ifdef BT_NATIVE
+s32 func_8080013C_glgamestore(s32 bt_a0, s32 bt_a1, s32 bt_a2) {
+#else
 s32 func_8080013C_glgamestore() {
+#endif
     s32 _gleeprom_entrypoint_1();
     extern s32 D_80079D70;
     s32 var_v1;

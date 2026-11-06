@@ -8,7 +8,7 @@
 // the callee's parameter type the way MIPS registers would (truncate, sign-extend,
 // reinterpret), passes the caller's own parameters for missing arguments (register
 // pass-through), drops extra ones, and converts the return value. It runs on the linked
-// module before and after LTO optimization (inlining makes new direct calls).
+// module before and after optimization (inlining makes new direct calls through pointers).
 //
 //   opt --load-pass-plugin=FixCalls.dylib -passes=bt-fixcalls in.bc -o out.bc
 #include "llvm/IR/IRBuilder.h"
@@ -18,6 +18,7 @@
 #include "llvm/Plugins/PassPlugin.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/raw_ostream.h"
 
 using namespace llvm;
 
@@ -25,6 +26,8 @@ using namespace llvm;
 // "NAME BASE OFFSET" (inside the object BASE, which lives elsewhere natively) or
 // "NAME = VALUE" (a ROM offset or other plain number).
 static cl::opt<std::string> AbsSyms("bt-abs-syms", cl::desc("file of fixed-address symbols"));
+// Where to list the functions that got pass-through parameters ("NAME OLD NEW" per line).
+static cl::opt<std::string> Widened("bt-widened", cl::desc("output list of widened functions"));
 
 namespace {
 
@@ -46,8 +49,9 @@ void resolveAbsSyms(Module &M) {
         GlobalValue *GV = M.getNamedValue(F[0]);
         if (!GV || !GV->isDeclaration())
             continue;
-        uint64_t N;
-        F[2].getAsInteger(0, N);
+        int64_t N;
+        if (F[2].getAsInteger(0, N))
+            continue;
         Constant *C;
         if (F[1] == "=") {
             C = ConstantExpr::getIntToPtr(ConstantInt::get(I32, N), GV->getType());
@@ -85,10 +89,57 @@ Value *convert(IRBuilder<> &B, Value *V, Type *To) {
     return Constant::getNullValue(To);
 }
 
+// IDO code defines `void f() { g(); }` and relies on f's a0..a3 reaching g. In IR such an f has
+// no parameters, so there is nothing to pass through. This gives each function as many leading
+// parameters (new ones i32) as its short calls hand on, at most four, until nothing changes.
+void addPassThroughParams(Module &M) {
+    std::string Report;
+    for (bool Changed = true; Changed;) {
+        Changed = false;
+        SmallVector<std::pair<Function *, unsigned>, 16> Grow;
+        for (Function &F : M) {
+            if (F.isDeclaration() || F.isVarArg() || F.getName().starts_with("bt_guest_"))
+                continue;
+            unsigned Want = F.arg_size();
+            for (BasicBlock &BB : F)
+                for (Instruction &I : BB)
+                    if (auto *CI = dyn_cast<CallInst>(&I))
+                        if (auto *Callee = dyn_cast<Function>(CI->getCalledOperand()->stripPointerCasts()))
+                            if (!Callee->isIntrinsic() && CI->arg_size() < Callee->arg_size())
+                                Want = std::max(Want, std::min(4u, (unsigned)Callee->arg_size()));
+            if (Want > F.arg_size())
+                Grow.push_back({&F, Want});
+        }
+        for (auto [F, Want] : Grow) {
+            SmallVector<Type *, 4> Params(F->getFunctionType()->params());
+            while (Params.size() < Want)
+                Params.push_back(Type::getInt32Ty(M.getContext()));
+            Function *NF = Function::Create(FunctionType::get(F->getReturnType(), Params, false), F->getLinkage(),
+                                            F->getAddressSpace(), "", &M);
+            NF->copyAttributesFrom(F);
+            NF->splice(NF->begin(), F);
+            for (unsigned i = 0; i < F->arg_size(); i++) {
+                F->getArg(i)->replaceAllUsesWith(NF->getArg(i));
+                NF->getArg(i)->takeName(F->getArg(i));
+            }
+            Report += (F->getName() + " " + Twine(F->arg_size()) + " " + Twine(Want) + "\n").str();
+            F->replaceAllUsesWith(NF); // calls now disagree with NF's type; the main loop adapts them
+            NF->takeName(F);
+            F->eraseFromParent();
+            Changed = true;
+        }
+    }
+    if (!Widened.empty()) {
+        std::error_code EC;
+        raw_fd_ostream(Widened, EC, sys::fs::OF_Append) << Report; // both runs add to it
+    }
+}
+
 struct FixCalls : PassInfoMixin<FixCalls> {
     PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
         if (!AbsSyms.empty())
             resolveAbsSyms(M);
+        addPassThroughParams(M);
         SmallVector<CallInst *, 64> Work;
         for (Function &F : M)
             for (BasicBlock &BB : F)

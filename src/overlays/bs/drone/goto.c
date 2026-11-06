@@ -29,12 +29,20 @@ s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_8080009C_bsdronegoto(s32 bt_a0) {
+#else
 s32 func_8080009C_bsdronegoto(void) {
+#endif
     s32 func_800A3274();
     return func_800A3274() != 0x12;
 }
 
+#ifdef BT_NATIVE
+void func_808000C0_bsdronegoto(s32 bt_a0)
+#else
 void func_808000C0_bsdronegoto()
+#endif
 {
     void func_8009B7C0();
     func_8009B7C0();

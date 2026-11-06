@@ -638,7 +638,11 @@ void func_808011AC_chsabreman(void *arg0) {
     func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x43160000);
 }
 
+#ifdef BT_NATIVE
+void func_808011F8_chsabreman(s32 bt_a0, s32 bt_a1)
+#else
 void func_808011F8_chsabreman()
+#endif
 {
     void func_80102424();
     func_80102424();

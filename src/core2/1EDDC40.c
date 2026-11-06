@@ -558,7 +558,11 @@ void func_80105390(u8 *arg0, u8 *arg1) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_801053D4(s32 bt_a0) {
+#else
 s32 func_801053D4(void) {
+#endif
     s32 func_800C84B0(s32);
     s32 func_8010518C();
     s32 temp_v0;

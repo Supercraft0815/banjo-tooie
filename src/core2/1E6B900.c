@@ -901,7 +901,11 @@ void func_800934C4(void *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_80093504(void *arg0, s32 bt_a1, s32 bt_a2) {
+#else
 void func_80093504(void *arg0) {
+#endif
     s32 func_800F23D0(s32);
     func_800F23D0((*(s32 *)((s8 *)(arg0) + (0x50))) + 0xCC);
 }

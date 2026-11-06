@@ -425,7 +425,11 @@ int func_80800AB4_chfactoryworkerdirty(s32 arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_80800AF8_chfactoryworkerdirty(s32 bt_a0) {
+#else
 void func_80800AF8_chfactoryworkerdirty(void) {
+#endif
     s32 func_80800A04_chfactoryworkerdirty();
 #ifdef BT_NATIVE
     func_800DA544(((s32 (*)())func_80800A04_chfactoryworkerdirty)() + 0x42D);
@@ -439,7 +443,11 @@ void func_80800AF8_chfactoryworkerdirty(void) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_80800B40_chfactoryworkerdirty(s32 bt_a0) {
+#else
 void func_80800B40_chfactoryworkerdirty(void) {
+#endif
     s32 func_80800A04_chfactoryworkerdirty();
 #ifdef BT_NATIVE
     func_800DA7A8(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, ((s32 (*)())func_80800A04_chfactoryworkerdirty)() + 1, 6);

@@ -425,7 +425,11 @@ s32 sumumbofx_entrypoint_10(u8 *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void sumumbofx_entrypoint_11(void *arg0, s32 bt_a1) {
+#else
 void sumumbofx_entrypoint_11(void *arg0) {
+#endif
     s32 func_800C8CB8(s16);
     func_800C8CB8((*(s16 *)((s8 *)(arg0) + (0x5E))));
 }

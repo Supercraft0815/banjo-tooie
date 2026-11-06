@@ -1916,12 +1916,20 @@ void func_80803638_chgameselect()
     _glsavegame_entrypoint_0();
 }
 
+#ifdef BT_NATIVE
+void func_80803658_chgameselect(s32 bt_a0)
+#else
 void func_80803658_chgameselect()
+#endif
 {
     _glsavegame_entrypoint_9();
 }
 
+#ifdef BT_NATIVE
+void func_80803678_chgameselect(s32 bt_a0)
+#else
 void func_80803678_chgameselect()
+#endif
 {
     func_800D37C0();
 }
@@ -1942,7 +1950,11 @@ void func_808036D8_chgameselect()
     _glsavegame_entrypoint_1();
 }
 
+#ifdef BT_NATIVE
+s32 func_808036F8_chgameselect(s32 bt_a0)
+#else
 s32 func_808036F8_chgameselect()
+#endif
 {
     return _glsavegame_entrypoint_2();
 }
@@ -1958,7 +1970,11 @@ s32 func_80803738_chgameselect(s32 arg0, s32 *arg1, s32 *arg2) {
     s32 func_800D04A0(s32, s32);
     u8 *save;
 
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_808036F8_chgameselect)() != 0) {
+#else
     if (func_808036F8_chgameselect() != 0) {
+#endif
         save = _glsavegame_entrypoint_4(arg0);
         *arg1 = func_800DB7C0(save);
         *arg2 = func_800D04A0(save, 1);
@@ -1977,7 +1993,11 @@ s32 func_808037C0_chgameselect(s32 arg0) {
     s32 flag5A;
     s32 flag360;
 
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_808036F8_chgameselect)() != 0) {
+#else
     if (func_808036F8_chgameselect() != 0) {
+#endif
         save = _glsavegame_entrypoint_4(arg0);
         flag441 = func_800DAC78(save, 0x441);
         flag5A = func_800D046C(save, 0x5A, 1);
@@ -2188,7 +2208,11 @@ s32 func_80803D60_chgameselect(s32 arg0) {
     case 0:
     case 1:
     case 2:
+#ifdef BT_NATIVE
+        ((s32 (*)())func_808036F8_chgameselect)();
+#else
         func_808036F8_chgameselect();
+#endif
         return;
     case 5:
         return _gcfrontend_entrypoint_1(3);
@@ -3491,7 +3515,11 @@ void func_80806218_chgameselect(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_808062A8_chgameselect(s32 bt_a0) {
+#else
 s32 func_808062A8_chgameselect(void) {
+#endif
     s32 _gcstatusDll_entrypoint_13();
     return _gcstatusDll_entrypoint_13() + (-1);
 }
@@ -3843,7 +3871,11 @@ s32 func_80806A30_chgameselect(void) {
     return var_v1;
 }
 
+#ifdef BT_NATIVE
+void func_80806A88_chgameselect(s32 bt_a0)
+#else
 void func_80806A88_chgameselect()
+#endif
 {
     _gcstatusDll_entrypoint_5();
 }

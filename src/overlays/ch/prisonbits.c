@@ -124,7 +124,11 @@ OSThread *chprisonbits_entrypoint_4(void)
     return (OSThread *) ((u8 *)D_808010A8_chprisonbits);
 }
 
+#ifdef BT_NATIVE
+void func_8080003C_chprisonbits(s32 bt_a0, s32 bt_a1)
+#else
 void func_8080003C_chprisonbits()
+#endif
 {
     _chswitch_entrypoint_7();
 }

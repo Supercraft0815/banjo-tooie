@@ -587,7 +587,11 @@ void func_80801260_chwaspnestgame(Unk80132ED0 *arg0, s32 arg1) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_8080129C_chwaspnestgame(s32 bt_a0) {
+#else
 void func_8080129C_chwaspnestgame(void) {
+#endif
     Actor *func_80106790();
     void *temp_v0;
 

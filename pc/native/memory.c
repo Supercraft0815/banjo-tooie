@@ -44,6 +44,19 @@ void heap_free(void *memory) {
     bt_free(memory);
 }
 
+/* Heap statistics (src/core1/heap.c, 1E33860.c) answered from the rdram arena. */
+s32 heap_bytes_allocated(void) {return (s32)bt_heap_size();} /* N64: the heap's total size */
+s32 heap_bytes_free(void) {size_t free_bytes,largest,blocks;bt_heap_stats(&free_bytes,&largest,&blocks);return (s32)free_bytes;}
+s32 heap_largest_free(s32 *size_out) {
+    size_t free_bytes,largest,blocks;bt_heap_stats(&free_bytes,&largest,&blocks);
+    *size_out=(s32)largest;return (s32)blocks;
+}
+s32 has_free_block_after(s32 size) {s32 largest;heap_largest_free(&largest);return largest>=size;}
+/* Fragmented: the largest free block is below the given share of all free memory. */
+int func_8001BD50(f32 share) {s32 largest;heap_largest_free(&largest);return (f32)largest<(f32)heap_bytes_free()*share;}
+/* The n-th free block from the top of the heap and its size. */
+void *func_8001BDAC(s32 *size, s32 n) {size_t bytes=0;void *block=bt_free_block_from_top(n,&bytes);*size=(s32)bytes;return block;}
+
 void *defrag(void *memory) {
     return memory;
 }

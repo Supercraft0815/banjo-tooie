@@ -119,9 +119,10 @@ def declarations(ir_lines):
 
 
 def score(decl):
-    """Prefers the most informative declaration: anything over plain bytes, structs over scalars."""
+    """Prefers the most informative declaration: anything over plain bytes, more distinct widths, structs over scalars."""
     u, size, repeat = decl
-    return (any(s > 1 for _, s in u), len(set(s for _, s in u)) > 1 or size > max(s for _, s in u), size)
+    widths = set(s for _, s in u)
+    return (any(s > 1 for _, s in u), len(widths), size > max(widths), size)
 
 
 def merge(per_module):
@@ -157,4 +158,5 @@ if __name__ == '__main__':
     assert d['D_B'] == (((0, 2), (2, 1), (4, 4), (8, 1), (9, 1)), 12, False), d['D_B']
     assert label_units(d['D_A'], 0x100, 0x10C) == {0x100: 2, 0x102: 2, 0x104: 2, 0x106: 2, 0x108: 2, 0x10A: 2}
     assert merge([{'D_C': d['D_C']}, {'D_C': d['D_A']}])['D_C'] == d['D_A']
+    assert merge([{'D_A': d['D_A']}, {'D_A': d['D_B']}])['D_A'] == d['D_B']  # mixed widths beat u16 rows
     print('ok')

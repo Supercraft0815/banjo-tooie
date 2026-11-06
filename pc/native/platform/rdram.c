@@ -119,6 +119,34 @@ void *bt_alloc(size_t n) {
 }
 
 
+void bt_heap_stats(size_t *free_bytes, size_t *largest, size_t *blocks) {
+    size_t total = 0, most = 0, n = 0;
+    if (!arena_ready) arena_init();
+    for (FreeBlock *f = free_list; f; f = f->next) {
+        size_t size = BLOCK_SIZE(&f->b) - sizeof(Block);
+        total += size;
+        most = size > most ? size : most;
+        n++;
+    }
+    *free_bytes = total;
+    *largest = most;
+    *blocks = n;
+}
+
+void *bt_free_block_from_top(int n, size_t *size) {
+    if (!arena_ready) arena_init();
+    for (Block *b = END; b->prev_size;) {
+        b = PREV(b);
+        if (!USED(b) && --n <= 0) {
+            *size = BLOCK_SIZE(b) - sizeof(Block);
+            return (unsigned char *)b + sizeof(Block);
+        }
+    }
+    return NULL;
+}
+
+size_t bt_heap_size(void) { return ARENA_SIZE; }
+
 void bt_free(void *p) {
     Block *b;
     if (!p) return;

@@ -39,7 +39,11 @@ void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
 
  s32 func_800D4534(f32 arg0[3][3], void *arg1) { if (arg1 == 0) return 0; func_800AAD28(arg0); return 1; }
 
+#ifdef BT_NATIVE
+void func_800D4564(s32 bt_a0)
+#else
 void func_800D4564()
+#endif
 {
     func_800AAD28();
 }

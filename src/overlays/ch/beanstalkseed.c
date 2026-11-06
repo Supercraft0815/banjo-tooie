@@ -64,7 +64,11 @@ OSThread *chbeanstalkseed_entrypoint_0(void)
 
 /* extern */
 
+#ifdef BT_NATIVE
+s32 func_80800328_chbeanstalkseed(s32 bt_a0) {
+#else
 s32 func_80800328_chbeanstalkseed(void) {
+#endif
     s32 func_800D1A04(s32);
     s32 func_800F54E4();
     s32 func_800F64A4(s32, s32);

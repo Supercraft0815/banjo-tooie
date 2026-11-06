@@ -276,7 +276,11 @@ s32 func_80800534_basetup(struct player_state_s *arg0) {
 
 /* extern */
 
+#ifdef BT_NATIVE
+Prop *func_808006F0_basetup(s32 bt_a0) {
+#else
 Prop *func_808006F0_basetup() {
+#endif
     Prop *_gccubesearch_entrypoint_14(s32, s32);
     s32 _gemarkersDll_entrypoint_1();
     _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(), 0);

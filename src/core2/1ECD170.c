@@ -108,7 +108,11 @@ void func_800F3B90(PlayerState *arg0, f32 *arg1) {
     func_800F3B3C(arg0, arg1, 0U);
 }
 
+#ifdef BT_NATIVE
+void func_800F3BB0(s32 bt_a0, s32 bt_a1)
+#else
 void func_800F3BB0()
+#endif
 {
 #ifdef BT_NATIVE
     int func_8009C128(void *, f32[3]);

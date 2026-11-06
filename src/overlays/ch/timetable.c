@@ -105,7 +105,11 @@ void func_8080025C_chtimetable(s32 arg0, s32 arg1, s32 arg2) {
     _glcutDll_entrypoint_16();
 }
 
+#ifdef BT_NATIVE
+s32 func_808002D4_chtimetable(s32 bt_a0) {
+#else
 s32 func_808002D4_chtimetable() {
+#endif
     s32 func_808000B0_chtimetable();
     extern s32 D_80800738_chtimetable;
 #ifdef BT_NATIVE
