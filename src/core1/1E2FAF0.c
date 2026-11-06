@@ -1,4 +1,7 @@
 #include "core2/1E2F380.h"
+#ifdef BT_NATIVE
+u8 func_80016800(s32);
+#endif
 
 typedef struct {
     s32 unk0;

@@ -1,6 +1,7 @@
 // Diagnostics for code and data that is not ported yet. gen_traps.py generates a
 // function per missing symbol that calls bt_unported(), and places missing data in
 // a page-protected area, so the first access reports the symbol instead of using zeros.
+#include <execinfo.h>
 #include <signal.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -10,8 +11,15 @@
 #include <unistd.h>
 #include "native_traps.h"
 
+static void print_backtrace(void) {
+    void *frames[16];
+    int n = backtrace(frames, 16);
+    backtrace_symbols_fd(frames, n, 2);
+}
+
 void bt_unported(const char *name) {
     fprintf(stderr, "bt_native: unported function %s called\n", name);
+    print_backtrace();
     abort();
 }
 
@@ -29,6 +37,7 @@ static void on_fault(int sig, siginfo_t *info, void *ctx) {
     } else {
         fprintf(stderr, "bt_native: signal %d at address %p\n", sig, info->si_addr);
     }
+    print_backtrace();
     signal(SIGABRT, SIG_DFL);
     abort();
 }

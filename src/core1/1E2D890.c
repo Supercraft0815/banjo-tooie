@@ -2,6 +2,12 @@
 #include "types.h"
 #include "core1/1E2D890.h"
 
+#ifdef BT_NATIVE
+void func_80014DC4(void);
+u32 __osDisableInt(void);
+void __osRestoreInt(u32);
+#endif
+
 // .data
 extern s32 D_8003F5F0;
 

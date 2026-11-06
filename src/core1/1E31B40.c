@@ -2,6 +2,199 @@
 
 void func_80013D10(OSMesg);
 
+#ifdef BT_NATIVE
+// Host version: the N64 code keeps buffer addresses in s32 globals that it indexes
+// as arrays across neighbouring symbols, and writes task records through raw
+// offsets. The records match the scheduler's AudioTask/GraphicsTask in 1E2B840.c.
+#include "memory.h"
+#include "native_scheduler.h"
+
+static void *native_depth_allocation; // D_8007BCC0
+static void *native_depth_buffer;     // D_8007BCC4
+static NativeSchedulerTask native_tasks[20]; // D_8007BCF8
+// D_8007BCD0..E4: two gfx, two matrix/vertex and two extra buffers (one per frame);
+// D_8007BCE8/EC and D_8007BCF0/F4: optional larger replacements.
+static void *native_frame_buffers[3][2];
+static void *native_large_buffers[2][2];
+
+void func_8001A010(void) {
+}
+
+void *func_8001A018(s32 arg0) {
+    u8 *p = heap_alloc(arg0 + 0x40);
+    native_depth_allocation = p;
+    return p + ((0x40 - ((uintptr_t)p & 0x3F)) & 0x3F);
+}
+
+void func_8001A080(void) {
+    native_depth_buffer = func_8001A018(0x21D80);
+}
+
+void *func_8001A0A8(void) {
+    return native_depth_buffer;
+}
+
+u32 func_8001A0B4(void) {
+    return 0x00021D80U;
+}
+
+u16 func_8001A0C0(s32 arg0, s32 arg1) {
+    return *(u16 *)((u8 *)native_depth_buffer + ((arg1 * 0x13) << 5) + (arg0 << 1));
+}
+
+void func_8001A0F0(void) {
+    extern OSMesgQueue D_8007BEE0;
+    osRecvMesg(&D_8007BEE0, NULL, 1);
+}
+
+void func_8001A11C(void) {
+    extern OSMesgQueue D_8007BEE0;
+    osSendMesg(&D_8007BEE0, NULL, 1);
+}
+
+static NativeSchedulerTask *next_task(void) {
+    extern s16 D_8007BED8;
+    NativeSchedulerTask *task;
+    func_8001A0F0();
+    task = &native_tasks[D_8007BED8];
+    D_8007BED8 = (s16)((s32)(D_8007BED8 + 1) % 20);
+    func_8001A11C();
+    return task;
+}
+
+void func_8001A148(Acmd *start, Acmd *end, OSMesgQueue *queue, OSMesg msg) {
+    NativeSchedulerTask *task = next_task();
+    task->type = 0;
+    task->start = start;
+    task->end = end;
+    task->queue = queue;
+    task->msg = msg;
+    func_80013D10(task);
+}
+
+void func_8001A1E0(Gfx *arg0, Gfx *arg1, s32 arg2) {
+    NativeSchedulerTask *task = next_task();
+    task->type = 1;
+    task->flags = arg2;
+    task->start = arg0;
+    task->end = arg1;
+    func_80013D10(task);
+}
+
+void func_8001A270(Gfx *start, Gfx *end) {
+    func_8001A1E0(start, end, 0x40000000);
+}
+
+void func_8001A290() {
+    void func_80015190(void);
+    func_80015190();
+}
+
+void func_8001A2B0() {
+    func_80013D10((OSMesg)3);
+}
+
+void func_8001A2D0(void) {
+    s32 func_80014C40();
+    extern s16 D_8007BED8;
+    extern OSMesgQueue D_8007BEE0;
+    extern void *D_8007BEF8;
+    D_8007BED8 = 0;
+    osCreateMesgQueue(&D_8007BEE0, &D_8007BEF8, 1);
+    osSendMesg(&D_8007BEE0, NULL, 1);
+    func_80014C40();
+}
+
+s32 func_8001A63C(void);
+
+void func_8001A324(void) {
+    s32 i;
+    if (native_frame_buffers[0][0] != NULL) {
+        for (i = 0; i < 6; i++) {
+            heap_free(native_frame_buffers[i / 2][i % 2]);
+        }
+        native_frame_buffers[0][0] = NULL;
+    }
+    func_8001A63C();
+}
+
+void func_8001A570(void);
+
+void func_8001A3A0(void) {
+    s32 func_800A9800();
+    extern s16 D_8007BEDA;
+    static const s32 sizes[3] = {0x76C0, 0x12C00, 0x1AE0};
+    s32 i;
+    if (native_frame_buffers[0][0] == NULL) {
+        for (i = 0; i < 6; i++) {
+            native_frame_buffers[i / 2][i % 2] = heap_alloc(sizes[i / 2]);
+        }
+        func_8001A570();
+    }
+    D_8007BEDA = 0;
+    func_800A9800();
+}
+
+void func_8001A440(s32 arg0) {
+    void func_80015430(s32);
+    NativeSchedulerTask *task;
+    func_8001A0F0();
+    func_80015430(arg0);
+    func_8001A11C();
+    task = next_task();
+    task->type = 7;
+    func_80013D10(task);
+}
+
+// Fills the caller's {Gfx *, gfx data, extra} triple with this frame's buffers.
+void func_8001A4B8(void *arg0) {
+    extern s16 D_8007BEDA;
+    void **out = arg0;
+    D_8007BEDA = 1 - D_8007BEDA;
+    out[0] = native_large_buffers[0][0] ? native_large_buffers[0][D_8007BEDA] : native_frame_buffers[0][D_8007BEDA];
+    out[1] = native_large_buffers[1][0] ? native_large_buffers[1][D_8007BEDA] : native_frame_buffers[1][D_8007BEDA];
+    out[2] = native_frame_buffers[2][D_8007BEDA];
+}
+
+void func_8001A570(void) {
+}
+
+void func_8001A578(s32 arg0) {
+    s32 func_800D3948(void);
+    s32 var_v0;
+    s32 var_v1;
+
+    if (func_800D3948() != 0) {
+        var_v0 = 0x1388;
+        if (arg0 != 0) {
+            var_v0 = arg0 * 0xE00;
+            var_v1 = arg0 * 0x1DB;
+        } else {
+            var_v1 = 0;
+        }
+        if (var_v0 != 0) {
+            native_large_buffers[0][0] = heap_alloc(var_v0 * 8);
+            native_large_buffers[0][1] = heap_alloc(var_v0 * 8);
+        }
+        if (var_v1 != 0) {
+            native_large_buffers[1][0] = heap_alloc(var_v1 << 6);
+            native_large_buffers[1][1] = heap_alloc(var_v1 << 6);
+        }
+    }
+}
+
+s32 func_8001A63C(void) {
+    s32 i;
+    for (i = 0; i < 2; i++) {
+        if (native_large_buffers[i][0] != NULL) {
+            heap_free(native_large_buffers[i][0]);
+            heap_free(native_large_buffers[i][1]);
+            native_large_buffers[i][0] = native_large_buffers[i][1] = NULL;
+        }
+    }
+    return 0;
+}
+#else
 extern s32 D_8007BCC4;
 
 void func_8001A010(void) {
@@ -248,3 +441,4 @@ s32 func_8001A63C(void) {
         D_8007BCF0 = 0;
     }
 }
+#endif

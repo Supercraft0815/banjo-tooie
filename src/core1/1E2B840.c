@@ -112,10 +112,27 @@ extern s32 D_80078F5C;
 void func_800140D8(GraphicsTask *arg0);
 void func_800146D8(void);
 
+#ifdef BT_NATIVE
+#include <stdint.h>
+void func_80015190(void);
+void func_8001E5DC(s32);
+void func_800155BC(void);
+void func_80015430(s32);
+u32 __osGetSR_2(void);
+// Messages carry either small event numbers or task pointers.
+#define MSG_VALUE(msg) ((uintptr_t)(msg))
+#else
+#define MSG_VALUE(msg) ((u32)(msg))
+#endif
+
 void func_80013D10(OSMesg arg0){
     static s32 D_8003F430 = 1;
     osSendMesg(&D_800783D0, arg0, 1);
+#ifdef BT_NATIVE
+    if(MSG_VALUE(arg0) == 3 ){
+#else
     if((s32) arg0 == 3 ){
+#endif
         D_80078F0C = 0x1e;
         if(D_8003F430){
             osDpSetStatus(DPC_CLR_FREEZE);
@@ -453,16 +470,20 @@ void func_80014A88(void *arg0){
     while (TRUE) {
         osRecvMesg(&D_800783D0, &msg, OS_MESG_BLOCK);
         func_80014A54();
+#ifdef BT_NATIVE
+        if(MSG_VALUE(msg) == 3){ func_80014258(); }
+#else
         if((s32)msg == 3){ func_80014258(); }
-        else if((u32)msg == SCHEDULER_EVENT_VI)          { func_8001443C(); }
-        else if((u32)msg == SCHEDULER_EVENT_DP)          { func_800142F0(); }
-        else if((u32)msg == SCHEDULER_EVENT_SP)          { func_800146D8(); }
-        else if((u32)msg == SCHEDULER_EVENT_AUDIO_TIMER) { func_800148C4(); }
-        else if((u32)msg == SCHEDULER_EVENT_FAULT)       { func_8001E5DC(0); }
-        else if((u32)msg == SCHEDULER_EVENT_PRENMI)      { func_800149BC(); }
-        else if((u32)msg == 12) { }
-        else if((u32)msg == SCHEDULER_EVENT_CONT_TIMER)  { pfsManager_getStartReadData(); }
-        else if((u32)msg >= 100) {
+#endif
+        else if(MSG_VALUE(msg) == SCHEDULER_EVENT_VI)          { func_8001443C(); }
+        else if(MSG_VALUE(msg) == SCHEDULER_EVENT_DP)          { func_800142F0(); }
+        else if(MSG_VALUE(msg) == SCHEDULER_EVENT_SP)          { func_800146D8(); }
+        else if(MSG_VALUE(msg) == SCHEDULER_EVENT_AUDIO_TIMER) { func_800148C4(); }
+        else if(MSG_VALUE(msg) == SCHEDULER_EVENT_FAULT)       { func_8001E5DC(0); }
+        else if(MSG_VALUE(msg) == SCHEDULER_EVENT_PRENMI)      { func_800149BC(); }
+        else if(MSG_VALUE(msg) == 12) { }
+        else if(MSG_VALUE(msg) == SCHEDULER_EVENT_CONT_TIMER)  { pfsManager_getStartReadData(); }
+        else if(MSG_VALUE(msg) >= 100) {
             if      (((TaskHeader*)msg)->type == TASK_TYPE_AUDIO)       { func_80014128((AudioTask*)msg); }
             else if (((TaskHeader*)msg)->type == TASK_TYPE_GFX_3D)      { func_80014148((GraphicsTask*)msg); }
             else if (((TaskHeader*)msg)->type == TASK_TYPE_GFX_LINE)    { func_800141D0((GraphicsTask*)msg); }
@@ -491,7 +512,11 @@ void func_80014C40(void) {
     D_80078F04 = 0;
     D_80078F00 = 0;
     tmp_v0 = (u8*)D_800777B0;
+#ifdef BT_NATIVE
+    while((uintptr_t)tmp_v0 % 0x10){tmp_v0++;}
+#else
     while((u32)tmp_v0 % 0x10){tmp_v0++;}
+#endif
     D_8003F3F0.t.yield_data_ptr = (u64*)tmp_v0;
     func_8001DCB0(&D_80078C98, &D_80078E48, THREAD_ID_SCHEDULER, func_80014A88, NULL, &D_80078498[SCHEDULER_THREAD_STACK_SIZE64], SCHEDULER_THREAD_PRIORITY);
     osStartThread(&D_80078C98);

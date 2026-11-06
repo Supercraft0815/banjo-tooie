@@ -12,4 +12,8 @@ void *func_80014ED4(void);
 void *func_80014F00(void);
 void *func_8001575C(void);
 
+/* core1/1E31B40.c depth buffer and task records */
+void *func_8001A018(int size);
+void *func_8001A0A8(void);
+
 #endif

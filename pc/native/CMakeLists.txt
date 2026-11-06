@@ -670,6 +670,6 @@ foreach(f "${BT_GAME_TRAPS}" "${BT_GAME_TRAP_DATA}")
     endif()
 endforeach()
 add_executable(bt_native_game EXCLUDE_FROM_ALL platform/main.c platform/traps.c
-    platform/ultra_os.c platform/ultra_vi.c platform/ultra_pi.c platform/handwritten.c ${BT_GAME_PORTED}
+    platform/ultra_os.c platform/ultra_vi.c platform/ultra_pi.c platform/ultra_si.c platform/handwritten.c ${BT_GAME_PORTED}
     "${BT_GAME_TRAPS}" "${BT_GAME_TRAP_DATA}")
 target_link_libraries(bt_native_game PRIVATE bt_native_core)

@@ -16,6 +16,76 @@ void* heap_alloc(s32 size);
 s32 D_80117C60 = 0;
 s32 D_80117C64 = 0;
 
+#ifdef BT_NATIVE
+// Every overlay is linked into the executable and its entrypoints are direct C
+// calls (generated overlay_aliases.h), so the manager never loads, ages, moves or
+// unloads anything: the loaded-overlay list stays empty.
+// shortcut: overlay .data/.bss keep their values for the whole run; on the N64 an
+// unloaded overlay starts from its ROM image again. Reset them on load if a
+// subsystem turns out to rely on that.
+#include <stdio.h>
+#include <stdlib.h>
+
+void func_800815C0(s32 arg0) {
+    D_80126CB8 = arg0;
+}
+
+void func_800815CC(void) {
+    D_80117C60 = 0;
+    D_80117C64 = 0;
+    D_80126CB8 = 0;
+}
+
+void func_8008160C(s32 arg0) {
+    (void)arg0;
+}
+
+void func_80081724() {
+}
+
+int func_80081744(void) {
+    return 0;
+}
+
+struct Overlay *ovl_load(s32 overlay_index, s32 arg1, s32 arg2) {
+    fprintf(stderr, "bt_native: ovl_load(%d) called; overlays are linked statically\n", overlay_index);
+    abort();
+}
+
+void func_800819B4(void *arg0) {
+    (void)arg0;
+}
+
+s32 ovl_unload(struct Overlay *ovl, s32 arg1) {
+    return 0;
+}
+
+struct Overlay *func_80081AA4(void *arg0) {
+    return NULL;
+}
+
+s32 func_80081BC0(s32 *arg0) {
+    return 1; // entrypoint resolved
+}
+
+void defragment_overlays(void) {
+}
+
+s32 func_80081D28() {
+    return D_80126CBC;
+}
+
+// Index of an entrypoint's syscall slot; native entrypoints have none.
+s32 func_80081D34(s32 arg0) {
+    return 0;
+}
+
+// Load state of a syscall slot: 3 = loaded and in use.
+s32 func_80081D80(s32 arg0) {
+    return 3;
+}
+#else
+
 void func_800815C0(s32 arg0)
 {
     extern s32 D_80126CB8;
@@ -326,3 +396,4 @@ s32 func_80081D80(s32 arg0) {
     }
     return 3;
 }
+#endif

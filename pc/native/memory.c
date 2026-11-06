@@ -21,6 +21,11 @@ void *heap_alloc(s32 size) {
     return result;
 }
 
+/* The arena needs no setup; the N64 version carves the heap out of RDRAM. */
+void heap_setup(s32 zero_contents) {
+    (void)zero_contents;
+}
+
 /* The N64 heap allocates from both ends to limit fragmentation; the arena has one. */
 void *heap_alloc_sided(s32 size, s32 alloc_side) {
     (void)alloc_side;

@@ -21,21 +21,29 @@ SIZES = {".word": 4, ".float": 4, ".half": 2, ".short": 2, ".byte": 1, ".double"
 
 
 def asm_labels():
-    """Maps every data label in the splat output and handwritten bss files to (kind, N64 size)."""
+    """Maps every data label in the splat output and handwritten asm to (kind, N64 size).
+
+    kind is "bss" for .bss and for .data whose words are all zero without symbol
+    references (zero is then its real initial value), "data" otherwise.
+    """
     labels = {}
     files = list((ROOT / "asm/data").rglob("*.s")) + list((ROOT / "src").rglob("*.s"))
     for path in files:
-        kind = "bss" if ".bss" in path.name or "bss" in path.name else "data"
-        cur, size, cur_kind = None, 0, kind
+        kind = "bss" if "bss" in path.name else "data"
+        cur, size, cur_kind, nonzero = None, 0, kind, False
+
+        def close():
+            if cur and cur_kind != "func":
+                labels.setdefault(cur, ("data" if cur_kind == "data" and nonzero else "bss", size))
+
         for line in path.read_text(errors="replace").splitlines():
             line = re.sub(r"/\*.*?\*/", "", line).strip()
             m = re.match(r"(?:dlabel|glabel)\s+(\w+)", line)
             if m:
-                if cur and cur_kind != "func": labels.setdefault(cur, (cur_kind, size))
-                cur_kind = kind
-                cur, size = m.group(1), 0
+                close()
+                cur, size, cur_kind, nonzero = m.group(1), 0, kind, False
                 continue
-            if line.startswith(".section") or line in (".text", ".data", ".bss"):
+            if line.startswith(".section") or line in (".text", ".data", ".bss", ".rodata"):
                 kind = "func" if ".text" in line else "bss" if ".bss" in line else "data"
             if not cur:
                 continue
@@ -45,11 +53,19 @@ def asm_labels():
             op, rest = m.groups()
             if op in SIZES:
                 size += SIZES[op] * (rest.count(",") + 1)
+                for v in rest.split(","):
+                    v = v.strip()
+                    try:
+                        nonzero |= float(v) != 0 if op in (".float", ".double") else int(v, 0) != 0
+                    except ValueError:
+                        nonzero = True  # symbol reference
             elif op == ".space":
                 size += int(rest.split(",")[0], 0)
-            elif op in (".asciz", ".ascii"):
-                size += len(bytes(rest.strip()[1:-1], "utf-8").decode("unicode_escape")) + (op == ".asciz")
-        if cur and cur_kind != "func": labels.setdefault(cur, (cur_kind, size))
+            elif op in (".asciz", ".ascii", ".incbin"):
+                nonzero = True
+                if op != ".incbin":
+                    size += len(bytes(rest.strip()[1:-1], "utf-8").decode("unicode_escape")) + (op == ".asciz")
+        close()
     return labels
 
 
