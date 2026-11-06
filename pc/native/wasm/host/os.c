@@ -372,12 +372,18 @@ void w2c_env_safepoint(struct w2c_env *env) {
     leave();
 }
 
+double bt_speed(void) {
+    static double speed;
+    if (!speed) speed = getenv("BT_SPEED") && atof(getenv("BT_SPEED")) > 0 ? atof(getenv("BT_SPEED")) : 1;
+    return speed;
+}
+
 // Time runs at the N64 CPU counter rate (46.875 MHz = 3/64 per nanosecond).
 static u64 now_ticks(void) {
     struct timespec now;
     clock_gettime(CLOCK_MONOTONIC, &now);
     u64 ns = (u64)(now.tv_sec - boot_time.tv_sec) * 1000000000ull + (u64)(now.tv_nsec - boot_time.tv_nsec);
-    return ns * 3 / 64;
+    return (u64)(ns * bt_speed()) * 3 / 64;
 }
 
 // Time queries are safe points for pending preemption, since games poll them in loops.
@@ -451,7 +457,7 @@ static void *timer_main(void *unused) {
         }
         u64 now = now_ticks();
         if (tm_value(next) > now) {
-            u64 ns = (tm_value(next) - now) * 64 / 3;
+            u64 ns = (u64)((tm_value(next) - now) * 64 / 3 / bt_speed());
             struct timespec until;
             clock_gettime(CLOCK_REALTIME, &until);
             until.tv_sec += ns / 1000000000ull;

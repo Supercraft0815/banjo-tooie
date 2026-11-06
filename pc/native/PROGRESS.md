@@ -49,8 +49,11 @@ Pipeline (`pc/native/wasm/`):
    name and abort.
 
 Run options (`host/video.c`, `host/input.c`): `BT_HEADLESS=1`, `BT_DUMP=prefix`
-(BMP frames, `BT_DUMP_EVERY=N`), `BT_EXIT_AFTER=secs`, `BT_PRESS=secs:mask,...`
-(scripted controller, e.g. `15:1000,15.3:0` = Start at 15 s). Keyboard: Return Start,
+(BMP frames, `BT_DUMP_EVERY=N`), `BT_EXIT_AFTER=secs` (game time), `BT_SPEED=x` (game
+clock multiplier, e.g. 4 to fast-forward cutscenes), `BT_PRESS=secs:mask,...` (scripted
+controller, up to 2048 entries; mask bits 0-15 buttons (A 8000, B 4000, Z 2000, Start
+1000), 16-23 stick x, 24-31 stick y, e.g. `15:1000,15.3:0` = Start at 15 s,
+`965:50000000` = stick up). Keyboard: Return Start,
 Space A, Left Shift B, WASD stick. Saves: 16 Kbit EEPROM in `bt_eeprom.bin`.
 
 Debug helpers: guest data starts at `0x80001000` (`--global-base`), but addresses do
@@ -74,7 +77,7 @@ of calls in the same file as the definition).
 | M3 | Platform layer, boot runs to the game loop | done 2026-11-06 |
 | M4 | Renderer: F3DEX2 HLE + software RDP + SDL window | done 2026-11-06: intro, title, attract demos, file select, new-game cutscene render; no AA/dither |
 | M5 | Input (SDL controller), saves (EEPROM), audio (n_audio command lists) | input and EEPROM file done; audio tasks complete unplayed |
-| M6 | Gameplay verification: title, file select, Spiral Mountain, level transitions | in progress: new game reaches the opening cutscene (2026-11-06) |
+| M6 | Gameplay verification: title, file select, Spiral Mountain, level transitions | in progress: new game plays through the opening cutscene into Spiral Mountain; Banjo walks and climbs by stick (2026-11-06) |
 
 ## Working method
 
@@ -91,8 +94,8 @@ of calls in the same file as the definition).
    case that only appears after inlining. Use `BT_NOINLINE=1` builds until fixed.
 2. **Audio (M5).** `host/rcp.c` completes audio tasks without running them. Next: an
    n_audio Acmd interpreter plus SDL audio output.
-3. **Gameplay (M6).** Play on from the opening cutscene to Spiral Mountain; fix what
-   traps or crashes (scripted runs: `BT_PRESS` + `BT_DUMP`).
+3. **Gameplay (M6).** Spiral Mountain is reached at ~900 s game time (`BT_SPEED=4`,
+   A every 2 s). Next: jumps, moves, level transitions; fix what traps or crashes.
 4. **Cross-symbol data access.** Code that reaches data through another symbol's
    address only works when both lie in one asm block (`data.py` joins touching files of a
    module). Data split between C files and asm cannot be joined this way.

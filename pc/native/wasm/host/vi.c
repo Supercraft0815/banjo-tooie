@@ -68,7 +68,7 @@ static void *vi_main(void *unused) {
     clock_gettime(CLOCK_MONOTONIC, &next);
     for (;;) {
         u32 mq = 0, msg = 0;
-        next.tv_nsec += 16683333; // 59.94 Hz
+        next.tv_nsec += (long)(16683333 / bt_speed()); // 59.94 Hz of game time
         if (next.tv_nsec >= 1000000000) { next.tv_sec++; next.tv_nsec -= 1000000000; }
         sleep_until(&next);
         pthread_mutex_lock(&vi_lock);

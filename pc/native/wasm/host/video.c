@@ -2,7 +2,8 @@
 // Runs on the main thread, which macOS requires for windows and events.
 //   BT_HEADLESS=1         no window (frames are still produced)
 //   BT_DUMP=prefix        write every BT_DUMP_EVERY-th (default 30) displayed frame as prefix_NNNNN.bmp
-//   BT_EXIT_AFTER=secs    quit after that many seconds
+//   BT_EXIT_AFTER=secs    quit after that many seconds (game time, like BT_PRESS)
+//   BT_SPEED=x            game clock at x times real time (fast-forward for scripted runs)
 //   BT_PRESS=...          scripted controller input (input.c)
 #include <SDL3/SDL.h>
 #include <stdio.h>
@@ -44,7 +45,7 @@ _Noreturn void bt_video_main(void) {
             if (e.type == SDL_EVENT_QUIT) exit(0);
             bt_input_event(&e);
         }
-        double secs = (SDL_GetTicks() - start) / 1000.0;
+        double secs = (SDL_GetTicks() - start) / 1000.0 * bt_speed();  // game time
         if (quit_after > 0 && secs >= quit_after) exit(0);
         bt_input_update(secs, !headless);
         u32 fb, width, count = bt_vi_frame(&fb, &width);

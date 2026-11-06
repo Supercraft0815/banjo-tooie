@@ -1,5 +1,6 @@
 // Controller 1 for the guest's osContGetReadData: keyboard, the first SDL gamepad, and for
-// headless runs a timed script, BT_PRESS=secs:buttons_hex,... (each mask held until the next entry).
+// headless runs a timed script, BT_PRESS=secs:mask_hex,... (each mask held until the next entry;
+// bits 0-15 buttons, 16-23 stick x, 24-31 stick y as s8, e.g. 50000000 = stick fully up).
 // Keyboard: WASD stick, arrows C buttons, Space A, Left Shift B, Q Z, E R, Tab L, Return Start, IJKL D-pad.
 #include <SDL3/SDL.h>
 #include <stdatomic.h>
@@ -22,7 +23,7 @@ static const struct { SDL_GamepadButton b; u16 button; } PAD[] = {
 
 static _Atomic u32 state;  // buttons << 16 | (u8)stick_x << 8 | (u8)stick_y, read by the game thread
 static SDL_Gamepad *pad;
-static struct { double t; u32 mask; } script[64];
+static struct { double t; u32 mask; } script[2048];
 static int nscript = -1;
 
 void bt_input_event(const SDL_Event *e) {
@@ -42,14 +43,18 @@ void bt_input_update(double t, int keyboard) {
         const char *s = getenv("BT_PRESS");
         char *end;
         nscript = 0;
-        while (s && *s && nscript < 64) {
+        while (s && *s && nscript < 2048) {
             script[nscript].t = strtod(s, &end);
             if (*end != ':') break;
             script[nscript++].mask = (u32)strtoul(end + 1, &end, 16);
             s = *end == ',' ? end + 1 : end;
         }
     }
-    for (int i = 0; i < nscript && t >= script[i].t; i++) buttons = script[i].mask;
+    for (int i = 0; i < nscript && t >= script[i].t; i++) {
+        buttons = script[i].mask & 0xFFFF;
+        x = (s8)(script[i].mask >> 16);
+        y = (s8)(script[i].mask >> 24);
+    }
     if (keyboard) {
         const bool *k = SDL_GetKeyboardState(NULL);
         for (size_t i = 0; i < sizeof KEYS / sizeof *KEYS; i++)
