@@ -525,7 +525,11 @@ void func_80800DF4_bsbtrot(s32 arg0) {
     f32 sp30;
     f32 sp2C;
 
+#ifdef BT_NATIVE
+    sp2C = ((f32 (*)())func_808001B8_bsbtrot)();
+#else
     sp2C = func_808001B8_bsbtrot();
+#endif
     sp30 = func_80800164_bsbtrot(arg0);
     sp34 = func_80800248_bsbtrot(arg0);
     func_8008C9F0(arg0, sp2C, sp30, sp34, func_808001EC_bsbtrot(arg0));

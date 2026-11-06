@@ -106,7 +106,11 @@ void func_80800294_chlagoonufoint(Actor *arg0) {
     f32 func_800D8FF8(void);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     extern u32 D_80801990_chlagoonufoint;
+#ifdef BT_NATIVE
+    void chlagoonufoint_entrypoint_5(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chlagoonufoint_entrypoint_5;
+#endif
     f32 delta;
 
     delta = func_800D8FF8();
@@ -510,7 +514,11 @@ void func_80800FD4_chlagoonufoint(Actor *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     extern u32 D_80801BB0_chlagoonufoint[];
     extern u32 D_80801BBC_chlagoonufoint[];
+#ifdef BT_NATIVE
+    void chlagoonufoint_entrypoint_5(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chlagoonufoint_entrypoint_5;
+#endif
     void _chlagoonufoint_entrypoint_6(s32, u8 *, u8 *, s32, Unk80132ED0 *);
     f32 dt;
     f32 speed;

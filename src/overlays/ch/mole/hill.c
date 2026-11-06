@@ -223,7 +223,9 @@ void chmolehill_entrypoint_1(Actor *arg0, s32 arg1) {
     s32 _chmoley_entrypoint_0(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8080058C_chmolehill(Actor *);
+#ifndef BT_NATIVE
     extern s32 _chmolehill_entrypoint_0;
+#endif
 
     arg0->unk79_4 = arg1;
     switch (arg0->unk79_4) {

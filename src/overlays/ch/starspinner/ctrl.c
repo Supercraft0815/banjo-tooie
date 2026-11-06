@@ -111,7 +111,11 @@ s32 func_80800184_chstarspinnerctrl(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808002B4_chstarspinnerctrl(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_800BEA88(s32);
+#ifdef BT_NATIVE
+    void chstarspinnerctrl_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chstarspinnerctrl_entrypoint_2;
+#endif
     _glid_entrypoint_0(func_800BEA88(0), 1, &_chstarspinnerctrl_entrypoint_2, *arg0);
 }
 

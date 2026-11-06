@@ -108,7 +108,11 @@ void func_8080025C_chtimetable(s32 arg0, s32 arg1, s32 arg2) {
 s32 func_808002D4_chtimetable() {
     s32 func_808000B0_chtimetable();
     extern s32 D_80800738_chtimetable;
+#ifdef BT_NATIVE
+    return *((s32 *)((s8 *)&D_80800738_chtimetable + (((s32 (*)())func_808000B0_chtimetable)() * 20)));
+#else
     return *((s32 *)((s8 *)&D_80800738_chtimetable + (func_808000B0_chtimetable() * 20)));
+#endif
 }
 
 s32 func_80800308_chtimetable(void)

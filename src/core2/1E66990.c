@@ -441,7 +441,11 @@ s32 func_8008E260(PlayerState *arg0) {
     int player_isStable();
     s32 sp1C;
 
+#ifdef BT_NATIVE
+    if (((int (*)())player_isStable)() != 0) {
+#else
     if (player_isStable() != 0) {
+#endif
         return 0;
     }
     if (func_800954E8(arg0, &sp1C) == 0) {

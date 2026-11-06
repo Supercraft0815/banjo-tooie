@@ -475,7 +475,11 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
         D_80807DDC_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
         break;
     case 3:
+#ifdef BT_NATIVE
+        ((void (*)())func_80800998_chgameselect)(actor, arg1, arg2, arg3);
+#else
         func_80800998_chgameselect(actor, arg1, arg2, arg3);
+#endif
         break;
     case 2:
         func_808009EC_chgameselect(actor);
@@ -484,7 +488,11 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
         func_808008D0_chgameselect(actor, arg1, arg2);
         break;
     case 5:
+#ifdef BT_NATIVE
+        ((void (*)())func_80800944_chgameselect)(actor, arg1, arg2, arg3);
+#else
         func_80800944_chgameselect(actor, arg1, arg2, arg3);
+#endif
         break;
     case 6:
         func_80800A9C_chgameselect(actor);
@@ -1284,7 +1292,11 @@ void func_80802248_chgameselect(Actor *arg0) {
         _gczoombox_entrypoint_10(arg0->actorData[4]);
     }
     arg0->actorData[5] = state;
+#ifdef BT_NATIVE
+    ((s32 (*)())_gczoombox_entrypoint_4)(arg0->actorData[4]);
+#else
     _gczoombox_entrypoint_4(arg0->actorData[4]);
+#endif
 }
 
 void func_80802620_chgameselect(void *arg0);
@@ -1332,7 +1344,11 @@ void func_80802530_chgameselect(void *arg0) {
     if (temp_v0 != (*(s32 *)((s8 *)(arg0) + (0x20)))) {
         (*(s32 *)((s8 *)(arg0) + (0x20))) = temp_v0;
         if (temp_v0 == 3) {
+#ifdef BT_NATIVE
+            ((void (*)())func_80800CA0_chgameselect)((*(s32 *)((s8 *)(arg0) + (0x3C))), arg0);
+#else
             func_80800CA0_chgameselect((*(s32 *)((s8 *)(arg0) + (0x3C))), arg0);
+#endif
         }
     }
 }
@@ -2530,7 +2546,11 @@ s32 func_80804750_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
         func_80804A38_chgameselect(arg0);
     } else if (temp_v0 != 0) {
         s32 _gcnewoption_entrypoint_20();
+#ifdef BT_NATIVE
+        sp20 = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2);
+#else
         sp20 = _gcnewoption_entrypoint_20(arg1, arg2);
+#endif
         func_80803C80_chgameselect();
         func_8080499C_chgameselect(arg2, sp20);
         if (arg2 == 1) {
@@ -3170,7 +3190,11 @@ s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
     case 6:
         if (arg2 == 3 || arg2 == 4) {
             if (arg0->actorData[1] != -1) {
+#ifdef BT_NATIVE
+                temp = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2);
+#else
                 temp = _gcnewoption_entrypoint_20(arg1, arg2);
+#endif
                 if (arg2 == 3) {
                     func_808069C8_chgameselect(temp);
                 } else {
@@ -3510,7 +3534,11 @@ void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
     arg0->unk64_20 = 0;
     if (count > 0) {
         do {
+#ifdef BT_NATIVE
+            func_808062CC_chgameselect(i, ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, i));
+#else
             func_808062CC_chgameselect(i, _gcnewoption_entrypoint_20(arg1, i));
+#endif
             i++;
         } while (i < count);
     }
@@ -3710,7 +3738,11 @@ void func_80806744_chgameselect(void *arg0) {
 void func_80806800_chgameselect(void *arg0, s32 arg1) {
     void func_80803B84_chgameselect();
     if ((*(s32 *)((s8 *)(arg0) + (0x18))) == 9) {
+#ifdef BT_NATIVE
+        ((void (*)())func_80803B84_chgameselect)();
+#else
         func_80803B84_chgameselect();
+#endif
     }
 }
 
@@ -3847,7 +3879,11 @@ void func_80806B5C_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     s32 option;
     s32 count;
 
+#ifdef BT_NATIVE
+    option = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2) + 1;
+#else
     option = _gcnewoption_entrypoint_20(arg1, arg2) + 1;
+#endif
     if (arg2 == 3) {
         count = func_80806AA8_chgameselect();
     } else {
@@ -3864,7 +3900,11 @@ void func_80806BD4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     s32 option;
     s32 count;
 
+#ifdef BT_NATIVE
+    option = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2) - 1;
+#else
     option = _gcnewoption_entrypoint_20(arg1, arg2) - 1;
+#endif
     if (arg2 == 3) {
         count = func_80806AA8_chgameselect();
     } else {
@@ -3940,7 +3980,11 @@ void func_80806D98_chgameselect(Actor *arg0) {
 
     data = func_80100094(arg0, 0);
     for (i = 0; i < arg0->unk6C_0; i++) {
+#ifdef BT_NATIVE
+        ((s32 (*)())_gczoombox_entrypoint_4)(data[i]);
+#else
         _gczoombox_entrypoint_4(data[i]);
+#endif
     }
     switch (arg0->unk70_10) {
     case 1:
@@ -4350,7 +4394,11 @@ void func_808079C8_chgameselect(s32 arg0)
 /* extern */
 
 s32 func_808079D0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
+#ifdef BT_NATIVE
+    s32 func_80807A10_chgameselect();
+#else
     s32 func_80807A10_chgameselect(s32, s16, s16);
+#endif
     switch (arg1) {
     case 0x21:
         func_80807A10_chgameselect(arg0, ((s16 *)&arg2)[1], ((s16 *)&arg2)[0]);

@@ -138,7 +138,11 @@ s32 func_808002AC_chattract(Actor *arg0, s32 arg1, s32 arg2) {
 
 void chattract_entrypoint_1(s32 arg0) {
     s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+#ifdef BT_NATIVE
+    void chattract_entrypoint_2(s32 arg0);
+#else
     extern s32 _chattract_entrypoint_2;
+#endif
     _chbaddiesetup_entrypoint_1(&_chattract_entrypoint_2, arg0);
 }
 

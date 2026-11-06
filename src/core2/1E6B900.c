@@ -152,7 +152,11 @@ void func_800923A8(void *arg0, s32 arg1) {
     void *temp_v0_2;
     void *temp_v0_3;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_80092258)();
+#else
     temp_v0 = func_80092258();
+#endif
     sp1F = temp_v0;
     func_800A2540(arg0, temp_v0);
     func_800DF464(2.0f);
@@ -821,7 +825,11 @@ void func_8009332C(void *arg0, f32 arg1) {
 
 void func_8009333C(void *arg0) {
     void func_800EE7F8();
+#ifdef BT_NATIVE
+    ((void (*)())func_800EE7F8)((*(s32 *)((s8 *)(arg0) + (0x50))) + 0x44);
+#else
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x50))) + 0x44);
+#endif
 }
 
 void func_80093360(PlayerState *arg0, f32 arg1) {

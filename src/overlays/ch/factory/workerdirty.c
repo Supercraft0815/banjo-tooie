@@ -5,7 +5,9 @@ void func_80105834(Actor *);
 void func_80101870(Actor *, void *);
 void func_80800340_chfactoryworkerdirty(Actor* arg0);
 void func_8080025C_chfactoryworkerdirty(Actor *arg0);
+#ifndef BT_NATIVE
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
+#endif
 s32 func_808008A4_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2);
 
 u32 D_80800ED0_chfactoryworkerdirty[] = {
@@ -238,7 +240,11 @@ void func_80800394_chfactoryworkerdirty(Actor *arg0) {
 }
 
 void func_8080061C_chfactoryworkerdirty(Actor *arg0) {
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_808009C0_chfactoryworkerdirty(void);
     s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
     void func_80090734(s32, f32 *);
@@ -421,7 +427,11 @@ int func_80800AB4_chfactoryworkerdirty(s32 arg0) {
 
 void func_80800AF8_chfactoryworkerdirty(void) {
     s32 func_80800A04_chfactoryworkerdirty();
+#ifdef BT_NATIVE
+    func_800DA544(((s32 (*)())func_80800A04_chfactoryworkerdirty)() + 0x42D);
+#else
     func_800DA544(func_80800A04_chfactoryworkerdirty() + 0x42D);
+#endif
     if (func_800DA564(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, 6) == 0x3F) {
         func_800DA544(FLAG_433_UNK);
     }
@@ -431,7 +441,11 @@ void func_80800AF8_chfactoryworkerdirty(void) {
 
 void func_80800B40_chfactoryworkerdirty(void) {
     s32 func_80800A04_chfactoryworkerdirty();
+#ifdef BT_NATIVE
+    func_800DA7A8(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, ((s32 (*)())func_80800A04_chfactoryworkerdirty)() + 1, 6);
+#else
     func_800DA7A8(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, func_80800A04_chfactoryworkerdirty() + 1, 6);
+#endif
 }
 
 void chfactoryworkerdirty_entrypoint_1(Unk80132ED0 *arg0, s32 arg1) {

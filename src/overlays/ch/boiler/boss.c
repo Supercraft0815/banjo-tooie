@@ -1212,7 +1212,9 @@ void func_808022BC_chboilerboss(Actor *arg0) {
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
     s32 func_800D395C(void);
+#ifndef BT_NATIVE
     void func_800DA524(GameFlag);
+#endif
     void func_800DA544(GameFlag);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);
@@ -1260,7 +1262,9 @@ u32 func_800FDC28(u32);
 void func_80802414_chboilerboss(Actor *arg0) {
     s32 _gcfrontend_entrypoint_9(s32);
     void func_800A51C0(void);
+#ifndef BT_NATIVE
     void func_800DA544(s32);
+#endif
     void *func_80100094(Actor *, u32);
     void func_80109FE8(void **, s32);
     void func_8010A590(Actor *);

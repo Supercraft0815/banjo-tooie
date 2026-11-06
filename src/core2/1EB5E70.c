@@ -138,22 +138,42 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     void func_80013C80(Mtx *, LookAt *, f32, f32, f32, f32, f32, f32, f32, f32, f32);
     void func_800D2C54(Gfx **);
     u8 *func_800B27E0(u8 *);
+#ifndef BT_NATIVE
     void func_800ADCD0(u8 **, u8 *);
+#endif
+#ifndef BT_NATIVE
     void func_800AE160(u8 **, u8 *, s32);
+#endif
+#ifndef BT_NATIVE
     void _dbzone_entrypoint_1(u8 *, void *, f32, f32 *);
+#endif
+#ifndef BT_NATIVE
     void _glzone_entrypoint_2(s32);
+#endif
+#ifndef BT_NATIVE
     void _dbanim_entrypoint_1(u8 *, u8 *, u8 *, u8 *);
+#endif
+#ifndef BT_NATIVE
     void _dbanim_entrypoint_0(u8 *, u8 *, u8 *);
+#endif
     s32 func_80019CD4(void);
     void func_80019750(f32 *, f32 *, f32, f32 *);
+#ifndef BT_NATIVE
     void func_800AE598(u8 *, Mtx **);
+#endif
+#ifndef BT_NATIVE
     void func_8010EF70(RenderData *, s32, s32, void *);
+#endif
     void func_800E4640(Gfx **);
     void func_8010F270(void);
     void mlMtxRotatePYR(f32, f32, f32);
     void mlMtxScale_xyz(f32, f32, f32);
+#ifndef BT_NATIVE
     void func_80018C50(void *);
+#endif
+#ifndef BT_NATIVE
     void mlMtxGet(void *);
+#endif
     void mlMtxApply(Mtx *);
     f32 camera_focus[3];
     f32 object_position[3];

@@ -76,6 +76,7 @@ void func_8001B518(s32 arg0)
     }
 }
 
+#ifndef BT_NATIVE // the handle table lives in pc/native/memory.c
 s16 func_8001B668(s32 arg0, s32 arg1) {
     s32 func_8001B3A0(void *);
     void *heap_alloc_sided(s32, s32);
@@ -115,6 +116,7 @@ s32 func_8001B7B8(s16 arg0) {
     s32 heap_get_allocation_size(void *);
     heap_get_allocation_size(D_8007BF10[arg0].ptr);
 }
+#endif
 
 /* extern */
 

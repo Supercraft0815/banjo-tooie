@@ -6,8 +6,10 @@
 // within 256 MB of the image start. The physical address is 0x80000000 plus the
 // offset from that start (above the segmented and graphics-registry ranges, see
 // graphics_memory.c); consumers (display lists, audio lists) map it back.
+#ifndef __wasm__
 #include <mach-o/getsect.h>
 #include <mach-o/ldsyms.h>
+#endif
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,12 +65,37 @@ static void arena_init(void) {
     arena_ready = 1;
 }
 
+static int in_arena(const void *p) {
+    return (const unsigned char *)p >= arena && (const unsigned char *)p < arena + ARENA_SIZE;
+}
 static void fail(const char *what) {
     fprintf(stderr, "bt_native rdram: %s\n", what);
     abort();
 }
 
+#ifdef BT_HEAP_CHECK
+// Debug aid: walks every block and the free list; aborts at the first broken header.
+static void heap_check(const char *where) {
+    Block *b = (Block *)arena;
+    size_t prev = 0;
+    if (!arena_ready) return;
+    while (b != END) {
+        if ((unsigned char *)b < arena || (unsigned char *)b >= (unsigned char *)END || b->prev_size != prev || BLOCK_SIZE(b) < MIN_BLOCK) {
+            fprintf(stderr, "bt_native rdram: heap broken at %p (%s), previous block %p\n", (void *)b, where, (void *)((unsigned char *)b - prev));
+            abort();
+        }
+        prev = BLOCK_SIZE(b);
+        b = NEXT(b);
+    }
+    for (FreeBlock *f = free_list; f; f = f->next)
+        if (!in_arena(f) || USED(&f->b)) { fprintf(stderr, "bt_native rdram: free list broken at %p (%s)\n", (void *)f, where); abort(); }
+}
+#else
+#define heap_check(where)
+#endif
+
 void *bt_alloc(size_t n) {
+    heap_check("alloc");
     size_t need = (n + sizeof(Block) + ALIGN - 1) & ~(size_t)(ALIGN - 1);
     if (!arena_ready) arena_init();
     if (need < MIN_BLOCK) need = MIN_BLOCK;
@@ -91,13 +118,11 @@ void *bt_alloc(size_t n) {
     return NULL;
 }
 
-static int in_arena(const void *p) {
-    return (const unsigned char *)p >= arena && (const unsigned char *)p < arena + ARENA_SIZE;
-}
 
 void bt_free(void *p) {
     Block *b;
     if (!p) return;
+    heap_check("free");
     if (!in_arena(p)) { free(p); return; } // host allocations handed over by tests
     b = (Block *)((unsigned char *)p - sizeof(Block));
     if (!USED(b)) fail("double free");
@@ -135,6 +160,18 @@ void *bt_realloc(void *p, size_t n) {
     return q;
 }
 
+#ifdef __wasm__
+// ILP32 build (pc/native/wasm): guest memory starts at 0x80000000, so a pointer is its own address.
+u32 bt_phys(const void *p) { return (u32)(uintptr_t)p; }
+int bt_is_phys(u32 phys) { return phys >= PHYS_BASE && phys - PHYS_BASE < PHYS_SPAN; }
+void *bt_host(u32 phys) {
+    if (!bt_is_phys(phys)) {
+        fprintf(stderr, "bt_native rdram: 0x%08x is not a physical address\n", phys);
+        abort();
+    }
+    return (void *)(uintptr_t)phys;
+}
+#else
 // Physical addresses: offsets from the Mach-O header of the executable.
 static const unsigned char *image_base(void) {
     return (const unsigned char *)&_mh_execute_header;
@@ -161,3 +198,4 @@ void *bt_host(u32 phys) {
     }
     return (void *)(image_base() + (phys - PHYS_BASE));
 }
+#endif

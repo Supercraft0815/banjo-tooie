@@ -29,7 +29,9 @@ void idscroll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 void idscroll_entrypoint_3(ScrollEffect *arg0, void *model, s32 mesh_id) {
     f32 func_800D8FF8(void);
     void _glid_entrypoint_0(void *, s32, void *, s32);
+#ifndef BT_NATIVE
     void _idscroll_entrypoint_0(void);
+#endif
     arg0->unk0 += arg0->unk8 * 64.0f * func_800D8FF8();
     if ((s32)arg0->unk0 >= 0x2001) {
         arg0->unk0 -= 8192.0f;

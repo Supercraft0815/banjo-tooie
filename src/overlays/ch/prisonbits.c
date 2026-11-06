@@ -399,7 +399,9 @@ void func_80800518_chprisonbits(Actor *arg0) {
 
 void func_8080090C_chprisonbits(Actor *arg0) {
     s32 _susubgame_entrypoint_4(void *, s32);
+#ifndef BT_NATIVE
     void func_800DA544(GameFlag);
+#endif
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80105834(Actor *);

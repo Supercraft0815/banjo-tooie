@@ -862,7 +862,11 @@ s32 func_808016E8_chpotogoldgame(f32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
 void func_80801870_chpotogoldgame(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_800BEA88(s32);
+#ifdef BT_NATIVE
+    void chpotogoldgame_entrypoint_1(u8, s16 *, Vtx *, s32, s32);
+#else
     extern s32 _chpotogoldgame_entrypoint_1;
+#endif
     arg1 = ((arg3 & 1) << 4) | arg1;
     _glid_entrypoint_0(func_800BEA88(0), ((arg0 * 5) - arg2) + 5, &_chpotogoldgame_entrypoint_1, arg1);
 }
@@ -939,7 +943,11 @@ s32 func_80801A7C_chpotogoldgame(Actor *arg0) {
     s32 func_800BEA88(s32);
     int func_800D91EC(f32 *, f32);
     s32 func_800DA298(s32);
+#ifdef BT_NATIVE
+    void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 arg4);
+#else
     extern s32 _chpotogoldgame_entrypoint_3;
+#endif
     s32 *volatile sp1C;
     s32 temp_v0;
 

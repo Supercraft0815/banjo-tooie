@@ -176,7 +176,11 @@ f32 func_80800070_chstoneballcontrol(void *arg0) {
 
 f32 func_8080009C_chstoneballcontrol() {
     f32 func_80800040_chstoneballcontrol();
+#ifdef BT_NATIVE
+    return ((f32 (*)())func_80800040_chstoneballcontrol)() * 0.33f;
+#else
     return func_80800040_chstoneballcontrol() * 0.33f;
+#endif
 }
 
 /* extern */
@@ -692,7 +696,11 @@ void func_80800F9C_chstoneballcontrol(Actor *arg0) {
     s32 _gcstatusDll_entrypoint_11(void);
     void _sukickball_entrypoint_18(Actor *);
     u8 _sukickball_entrypoint_3(void);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_800D0A9C(u32, u32);
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
@@ -1668,7 +1676,9 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     typedef struct { u8 pad[0x70]; u32 upper:16; u32 state:6; u32 flags:10; } ActorState;
 
 
+#ifndef BT_NATIVE
     extern void _chstoneballcontrol_entrypoint_1(void);
+#endif
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 _sukickball_entrypoint_6(u8 *, s32);

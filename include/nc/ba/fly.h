@@ -5,6 +5,10 @@
 #include "player.h"
 #include "core2/1EEBA50.h"
 
+#ifdef BT_NATIVE
+void _ncbafly_entrypoint_5(s32 arg0);
+#else
 extern void _ncbafly_entrypoint_5(s32, s32);
+#endif
 
 #endif

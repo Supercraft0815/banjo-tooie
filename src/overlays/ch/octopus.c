@@ -110,7 +110,11 @@ s32 func_80800348_choctopus(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void func_80800428_choctopus(Actor *, s32);
     void func_80800790_choctopus(Actor *);
     void _subaddiecustomhits_entrypoint_0(Actor *, void *);
+#ifdef BT_NATIVE
+    OSThread *choctopus_entrypoint_1(void);
+#else
     extern s32 _choctopus_entrypoint_1;
+#endif
 
     switch (arg1) {
         case 0x40:

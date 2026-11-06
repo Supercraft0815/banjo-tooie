@@ -40,7 +40,11 @@ void func_80800038_chfactorylight(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     s32 func_801065A4(void *);
+#ifdef BT_NATIVE
+    void chfactorylight_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chfactorylight_entrypoint_1;
+#endif
     typedef struct {
         f32 unk18[3];
         f32 timer;

@@ -1217,7 +1217,9 @@ s32 func_80802858_chjiggygamenew(void *arg0, s32 arg1, s32 arg2) {
     void _sujiggy_entrypoint_25(s32);
     void _sujiggy_entrypoint_9(void);
     s32 func_800DA298(s32);
+#ifndef BT_NATIVE
     void func_800DA544(s32);
+#endif
     void func_80800B88_chjiggygamenew(Actor *);
     void func_80801E4C_chjiggygamenew(Actor *arg0, s32 arg1);
 
@@ -1456,7 +1458,11 @@ void func_80802F3C_chjiggygamenew(Actor *arg0) {
     dt = func_800D9004();
     data = func_80100094(arg0, 0);
     if (arg0->unk70_10 != 7 && arg0->unk70_10 != 8 &&
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808007BC_chjiggygamenew)((s32)arg0->unk3C)) {
+#else
     func_808007BC_chjiggygamenew((s32)arg0->unk3C)) {
+#endif
         if (arg0->unk70_10 != 6) {
             x = func_80015D60(pad->stick_x, 7, 0x3B);
             y = func_80015D60(pad->stick_y, 7, 0x3D);

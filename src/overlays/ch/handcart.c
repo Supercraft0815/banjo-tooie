@@ -912,7 +912,11 @@ void func_80801D50_chhandcart(Actor* arg0)
         break;
     case 4:
     {
+#ifdef BT_NATIVE
+        f32 sp28[3]; __builtin_memcpy(sp28, &D_80804DB8_chhandcart, sizeof(sp28));
+#else
         f32 sp28[3] = D_80804DB8_chhandcart;
+#endif
         f32 temp_f0;
         func_800907C0(arg0->position);
         sp28[1] = func_80090010();

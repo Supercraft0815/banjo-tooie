@@ -1281,7 +1281,11 @@ s32 func_80802400_sucoaster(Actor *arg0, void *arg1) {
 s32 func_80802550_sucoaster(Actor *arg0, Actor *arg1) {
     s32 func_8080202C_sucoaster();
     s32 func_80802594_sucoaster(Actor *, Actor *);
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_8080202C_sucoaster)() != 0) {
+#else
     if (func_8080202C_sucoaster() != 0) {
+#endif
         return func_80802594_sucoaster(arg0, arg1) == 0;
     }
     return 1;

@@ -33,7 +33,11 @@ void func_80800014_chkingjinjobits(u8 *arg0) {
     void func_80101FDC(Actor *, u32);
     s32 func_8010C500(u8 *);
     s32 func_8010D23C();
+#ifdef BT_NATIVE
+    void chkingjinjobits_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chkingjinjobits_entrypoint_1;
+#endif
     s32 sp24;
     s32 sp20;
     s32 temp_v0;

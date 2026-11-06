@@ -286,7 +286,11 @@ void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
 
 s32 func_80800864_chchuffy(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     void _gcsectionskip_entrypoint_1(void *, s32, s32, u8, s32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     Actor *func_80106790(Unk80132ED0 *);
     Actor *func_801084B0(s32, Actor **);
     Actor *other;
@@ -1105,7 +1109,11 @@ void func_80802060_chchuffy(Actor *arg0, void *arg1) {
 
 void func_80802164_chchuffy(Actor *arg0) {
     void func_8008FA94(f32 *, f32 *);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_800DA298(s32);
     int func_800DB9B0(void);
     int func_800F0064(f32 *, f32, f32 *);

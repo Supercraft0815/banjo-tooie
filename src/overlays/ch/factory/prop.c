@@ -42,7 +42,11 @@ void func_80800070_chfactoryprop(Actor *arg0) {
     void func_80800324_chfactoryprop(Actor *);
     void func_80800674_chfactoryprop(u8 *);
     void func_80800988_chfactoryprop(Actor *);
+#ifdef BT_NATIVE
+    void chfactoryprop_entrypoint_3(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chfactoryprop_entrypoint_3;
+#endif
     f32 delta;
 
     delta = func_800D8FF8();

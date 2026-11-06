@@ -10,7 +10,11 @@ extern s32 D_8080255C_sumole[];
 extern s32 D_8080256C_sumole[27];
 extern s32 D_808025B4_sumole[];
 
+#ifdef BT_NATIVE
+    void sumole_entrypoint_21(Unk80132ED0* arg0, s32 arg1);
+#else
 extern s32 _sumole_entrypoint_21;
+#endif
 s32 sumole_entrypoint_17(Actor* arg0, s16 arg1, s32 arg2, s32 arg3);
 Unk80132ED0* func_80802178_sumole(Actor* arg0);
 
@@ -226,8 +230,16 @@ typedef union {
     struct { s16 s_0; s16 s_1; };
 } Arg2;
 
+#ifdef BT_NATIVE
+// include/su/mole.h: callers pass the union as the register value it was on the N64.
+s32 sumole_entrypoint_3(Actor* arg0, u32 arg1_u, u32 arg2_bits, MoveData* arg3)
+{
+    s32 arg1 = arg1_u;
+    Arg2 arg2 = { .i = arg2_bits };
+#else
 s32 sumole_entrypoint_3(Actor* arg0, s32 arg1, Arg2 arg2, MoveData* arg3)
 {
+#endif
     s32 a1;
     Actor* temp_v0;
     Actor* sp24;

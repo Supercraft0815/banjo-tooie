@@ -124,7 +124,11 @@ s32 func_808002E8_chdiggerbossdoor(void *arg0, s32 arg1, s32 arg2) {
 void func_80800370_chdiggerbossdoor(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_800BEA88(s32);
+#ifdef BT_NATIVE
+    void chdiggerbossdoor_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chdiggerbossdoor_entrypoint_1;
+#endif
     s32 temp_v0;
 
     temp_v0 = func_800BEA88(0);

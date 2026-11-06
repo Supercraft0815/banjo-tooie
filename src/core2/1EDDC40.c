@@ -101,7 +101,11 @@ void func_80104504(void *arg0) {
 int func_80104544() {
     void *func_801043D8();
     void *temp_v0;
+#ifdef BT_NATIVE
+    temp_v0 = ((void * (*)())func_801043D8)();
+#else
     temp_v0 = func_801043D8();
+#endif
     return temp_v0 != NULL && (*(u8 *)((s8 *)temp_v0 + 3)) != 0;
 }
 
@@ -111,7 +115,11 @@ void func_80104580(void) {
     void *func_801043D8();
     void *temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((void * (*)())func_801043D8)();
+#else
     temp_v0 = func_801043D8();
+#endif
     if (temp_v0 != NULL) {
         (*(s8 *)((s8 *)(temp_v0) + (3))) = 0;
     }
@@ -556,7 +564,11 @@ s32 func_801053D4(void) {
     s32 temp_v0;
     s32 var_v1;
 
+#ifdef BT_NATIVE
+    temp_v0 = func_800C84B0(((s32 (*)())func_8010518C)());
+#else
     temp_v0 = func_800C84B0(func_8010518C());
+#endif
     var_v1 = temp_v0;
     if (temp_v0 == 0) {
         var_v1 = 1;

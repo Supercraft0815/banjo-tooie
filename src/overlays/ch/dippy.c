@@ -368,7 +368,11 @@ s32 func_808009D8_chdippy(Actor *arg0) {
     s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800DC128(s32, s32);
     f32 func_80101F24(Actor *);
+#ifdef BT_NATIVE
+    void chdippy_entrypoint_2(s32 arg0, f32 *arg1);
+#else
     void _chdippy_entrypoint_2(void);
+#endif
     extern s32 D_808014B0_chdippy;
     extern s32 D_808014D8_chdippy;
     extern u32 D_808016A4_chdippy, D_808016B4_chdippy;
@@ -480,8 +484,14 @@ void func_80800D9C_chdippy(void *self) {
     void _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 _idwibble_entrypoint_5(s32, s16);
     s32 _idworld_entrypoint_4(s32, s32);
+#ifndef BT_NATIVE
     void _chdippy_entrypoint_2(void);
+#endif
+#ifdef BT_NATIVE
+    void chdippy_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     void _chdippy_entrypoint_3(void);
+#endif
     s32 func_800B53A4(s32);
     void func_800BA22C(s32, s32);
     void func_800BA4D0(s32, s32);

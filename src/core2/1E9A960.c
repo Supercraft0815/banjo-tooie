@@ -368,7 +368,11 @@ void func_800C191C(s32 arg0, s32 arg1) {
     s32 func_800C1448();
     s32 func_800DC4B0(s32, s32);
     if (arg0 != 0) {
+#ifdef BT_NATIVE
+        func_800DC4B0(((s32 (*)())func_800C1448)(), arg1);
+#else
         func_800DC4B0(func_800C1448(), arg1);
+#endif
     }
 }
 
@@ -378,7 +382,11 @@ void func_800C1950(s32 arg0, s32 arg1) {
     s32 func_800C1448();
     s32 func_800DC42C(s32, s32);
     if (arg0 != 0) {
+#ifdef BT_NATIVE
+        func_800DC42C(((s32 (*)())func_800C1448)(), arg1);
+#else
         func_800DC42C(func_800C1448(), arg1);
+#endif
     }
 }
 
@@ -1403,9 +1411,15 @@ int func_800C3D78(u8 id) {
         return 0;
     }
     source = func_800C1414(id);
+#ifdef BT_NATIVE
+    return id && source->state == 1
+        && source->handle
+        && func_800C1448(source->handle);
+#else
     return id && source->state == 1
         && *(&source->handle)
         && func_800C1448(*(&source->handle));
+#endif
 }
 
 s32 func_800C3E00(s32 arg0) {

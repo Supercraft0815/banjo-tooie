@@ -54,8 +54,16 @@ void func_80800118_chsecreteggs(Actor* arg0)
     {
     case 1:
     {
+#ifdef BT_NATIVE
+        f32 sp3C[5]; __builtin_memcpy(sp3C, &D_808004EC_chsecreteggs, sizeof(sp3C));
+#else
         f32 sp3C[5] = D_808004EC_chsecreteggs;
+#endif
+#ifdef BT_NATIVE
+        f32 sp30[3]; __builtin_memcpy(sp30, &D_80800500_chsecreteggs, sizeof(sp30));
+#else
         f32 sp30[3] = D_80800500_chsecreteggs;
+#endif
         if (func_80101E4C(arg0, sp3C) != 0)
         {
             func_800C4140(0xF2EFA53F, arg0->position, 0x04B000FA);

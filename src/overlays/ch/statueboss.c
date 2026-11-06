@@ -514,7 +514,11 @@ s32 func_80800934_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
     u32 func_800FDC28(u32);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     void _subaddiecustomhits_entrypoint_0(Actor *, void (*)(void));
+#ifdef BT_NATIVE
+    OSThread *chstatueboss_entrypoint_1(void);
+#else
     void _chstatueboss_entrypoint_1(void);
+#endif
     void func_808010A0_chstatueboss(Actor *, s32, s32);
     void func_80801320_chstatueboss(Actor *);
     void func_80801518_chstatueboss(Actor *, Unk80132ED0 *);

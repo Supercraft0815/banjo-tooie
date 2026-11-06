@@ -293,7 +293,11 @@ void func_80800784_chmadamegrunty(Actor *arg0, s32 arg1, s16 arg2) {
             func_808002BC_chmadamegrunty(arg0);
             return;
         default:
+#ifdef BT_NATIVE
+            ((void (*)())func_80800670_chmadamegrunty)();
+#else
             func_80800670_chmadamegrunty();
+#endif
         case 0x10CA:
         case 0x10CB:
             return;

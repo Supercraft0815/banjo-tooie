@@ -1,5 +1,8 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 
 void func_80800000_bsbansnooze(PlayerState *arg0) {
     int _babackpack_get_state();

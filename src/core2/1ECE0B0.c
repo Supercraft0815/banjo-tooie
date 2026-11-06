@@ -1330,14 +1330,22 @@ s32 func_800F6F00(s32 arg0) {
     if (_badata_entrypoint_14(D_80135490.players[arg0]) == 0) {
         return 1;
     }
+#ifdef BT_NATIVE
+    ((void (*)())func_800F58CC)(arg0, sp2C);
+#else
     func_800F58CC(arg0, sp2C);
+#endif
     if ((0.0f != sp2C[0]) || (0.0f != sp2C[2])) {
         return 0;
     }
     if (func_800F6C5C(arg0) == 0) {
         return 0;
     }
+#ifdef BT_NATIVE
+    ((void (*)())func_800F5D70)(arg0, sp20);
+#else
     func_800F5D70(arg0, sp20);
+#endif
     if (func_800F55FC(arg0) & 0x8000) {
         if ((sp20[1] < 0.0f) && (sp20[1] >= -1.0f)) {
             return 1;
@@ -2195,14 +2203,22 @@ f32 func_800F8A50(void)
 
 s16 func_800F8A5C(void) {
     void *func_800F88A0();
+#ifdef BT_NATIVE
+    return (*(s16 *)((s8 *)(((void * (*)())func_800F88A0)()) + (0x22)));
+#else
     return (*(s16 *)((s8 *)(func_800F88A0()) + (0x22)));
+#endif
 }
 
 /* extern */
 
 u8 func_800F8A80(void) {
     void *func_800F88A0();
+#ifdef BT_NATIVE
+    return (*(u8 *)((s8 *)(((void * (*)())func_800F88A0)()) + (0x21)));
+#else
     return (*(u8 *)((s8 *)(func_800F88A0()) + (0x21)));
+#endif
 }
 
 s32 func_800F8AA4(void) {
@@ -2310,7 +2326,11 @@ s32 func_800F8DA8(void) {
     void *func_800F88A0();
     s32 var_v1;
 
+#ifdef BT_NATIVE
+    if (((void * (*)())func_800F88A0)() != 0) {
+#else
     if (func_800F88A0() != 0) {
+#endif
         var_v1 = 1;
     } else {
         var_v1 = 0;
@@ -2493,7 +2513,11 @@ void func_800F91EC(void) {
 
 s32 func_800F9214(void) {
     int func_800F6720();
+#ifdef BT_NATIVE
+    if (((int (*)())func_800F6720)() != 0) {
+#else
     if (func_800F6720() != 0) {
+#endif
         return 2;
     }
     return 1;

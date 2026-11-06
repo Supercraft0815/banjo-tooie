@@ -86,7 +86,11 @@ s32 func_8010C710(s32 arg0) {
 
 s32 func_8010C754(void) {
     s32 func_8010C710();
+#ifdef BT_NATIVE
+    return (s32) sqrtf((f32) ((s32 (*)())func_8010C710)());
+#else
     return (s32) sqrtf((f32) func_8010C710());
+#endif
 }
 
 /* extern */

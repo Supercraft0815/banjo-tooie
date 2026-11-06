@@ -713,7 +713,9 @@ void chexploder_entrypoint_3(Actor *arg0, f32 *arg1, s32 arg2) {
     void func_80103DFC(Actor *, f32 *);
     void func_8010A570(Actor *);
     void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+#ifndef BT_NATIVE
     extern s32 _chexploder_entrypoint_1;
+#endif
     union {
         f32 vec[3];
         s32 words[3];
@@ -745,7 +747,9 @@ void chexploder_entrypoint_4(Actor *arg0, s16 *arg1, s32 arg2) {
 void chexploder_entrypoint_5(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg4, s32 arg5) {
     s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
     void func_8010A570(Actor *);
+#ifndef BT_NATIVE
     extern s32 _chexploder_entrypoint_2;
+#endif
     union {
         struct { s16 first, second; } half;
         s32 word;

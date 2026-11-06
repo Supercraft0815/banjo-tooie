@@ -231,14 +231,22 @@ f32 func_80800070_chcollballcontrol(void *arg0) {
 
 f32 func_8080009C_chcollballcontrol() {
     f32 func_80800040_chcollballcontrol();
+#ifdef BT_NATIVE
+    return ((f32 (*)())func_80800040_chcollballcontrol)() * 0.33f;
+#else
     return func_80800040_chcollballcontrol() * 0.33f;
+#endif
 }
 
 /* extern */
 
 f32 func_808000C8_chcollballcontrol() {
     f32 func_80800040_chcollballcontrol();
+#ifdef BT_NATIVE
+    return ((f32 (*)())func_80800040_chcollballcontrol)() * 0.05f;
+#else
     return func_80800040_chcollballcontrol() * 0.05f;
+#endif
 }
 
 f32 func_808000F4_chcollballcontrol()
@@ -702,7 +710,11 @@ void func_80800D60_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800DD8_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     Actor *func_801084B0(s32, Actor **);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     void func_800FFAB0(Actor *);
     void func_800DA3B8(s32, s32);
     s32 func_800DA298(s32);
@@ -1616,7 +1628,9 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
     typedef struct { u8 pad[0x70]; u32 upper:16; u32 state:6; u32 flags:10; } ActorState;
 
 
+#ifndef BT_NATIVE
     extern void _chcollballcontrol_entrypoint_1(void);
+#endif
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 _sukickball_entrypoint_6(u8 *, s32);

@@ -450,7 +450,11 @@ void sumumbofx_entrypoint_12(u8 *arg0, s32 arg1, f32 *arg2, s32 *arg3) {
     func_800EE830((s32 *) (arg0 + 0x3C), arg3);
     (*(s16 *)((s8 *)(arg0) + (0x5E))) = func_800C8A98();
     func_80800F8C_sumumbofx(arg0);
+#ifdef BT_NATIVE
+    ((void (*)())sumumbofx_entrypoint_11)(arg0, arg1);
+#else
     sumumbofx_entrypoint_11(arg0, arg1);
+#endif
     func_800C8D4C((s32) (*(s16 *)((s8 *)(arg0) + (0x5E))), arg2);
 }
 

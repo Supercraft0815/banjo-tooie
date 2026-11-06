@@ -27,7 +27,11 @@ void func_80800094_chminegrill2switches(s32 arg0) {
 
 void func_808000B8_chminegrill2switches(s32 arg0, s32 arg1, s32 arg2) {
     void func_80800030_chminegrill2switches();
+#ifdef BT_NATIVE
+    ((void (*)())func_80800030_chminegrill2switches)(arg0, arg1, arg2, 0x7A, 0x79);
+#else
     func_80800030_chminegrill2switches(arg0, arg1, arg2, 0x7A, 0x79);
+#endif
 }
 
 OSThread *chminegrill2switches_entrypoint_0(void)
@@ -44,7 +48,11 @@ void func_808000EC_chminegrill2switches(s32 arg0) {
 
 void func_80800110_chminegrill2switches(s32 arg0, s32 arg1, s32 arg2) {
     void func_80800030_chminegrill2switches();
+#ifdef BT_NATIVE
+    ((void (*)())func_80800030_chminegrill2switches)(arg0, arg1, arg2, 0x7C, 0x7B);
+#else
     func_80800030_chminegrill2switches(arg0, arg1, arg2, 0x7C, 0x7B);
+#endif
 }
 
 OSThread *chminegrill2switches_entrypoint_1(void)

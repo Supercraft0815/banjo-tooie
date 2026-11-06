@@ -83,7 +83,11 @@ s32 func_808002E8_chanemone(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void _subaddiecustomhits_entrypoint_0(Actor *, void *);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
     s32 func_8010262C(Unk80132ED0 *, u32);
+#ifdef BT_NATIVE
+    OSThread *chanemone_entrypoint_1(void);
+#else
     extern s32 _chanemone_entrypoint_1;
+#endif
     s32 model;
 
     switch (arg1) {

@@ -184,7 +184,11 @@ void func_808004B4_bsstatue(s32 arg0) {
     s32 _bsdrone_entrypoint_0(s32);
     void func_80800000_bsstatue(s32, s32);
     s32 func_808001FC_bsstatue();
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808001FC_bsstatue)();
+#else
     func_808001FC_bsstatue();
+#endif
     _bsdrone_entrypoint_0(arg0);
     if (_badrone_entrypoint_31(arg0) != 0) {
         func_80800000_bsstatue(arg0, 0);
@@ -323,7 +327,11 @@ void func_808007D4_bsstatue(void *arg0) {
 void func_8080081C_bsstatue(void *arg0) {
     s32 func_808001FC_bsstatue();
     s32 func_8080054C_bsstatue(void *, s32);
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808001FC_bsstatue)();
+#else
     func_808001FC_bsstatue();
+#endif
     (*(s8 *)((s8 *)(arg0) + (0x15C))) = 0;
     func_8080054C_bsstatue(arg0, 1);
 }
@@ -396,7 +404,11 @@ void func_80800A24_bsstatue(PlayerState *arg0) {
     void func_8009E5A4(PlayerState *, s32, s32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     s32 func_808001FC_bsstatue();
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808001FC_bsstatue)();
+#else
     func_808001FC_bsstatue();
+#endif
     func_8009E55C(arg0, 2, 110.0f);
     func_8009E5A4(arg0, 2, 3);
     baanim_playForDuration_onceSmooth(arg0, 0x1F0, 1.3f);
@@ -473,7 +485,11 @@ void func_80800C98_bsstatue(s32 arg0) {
     s32 _bsrest_entrypoint_16(s32);
     void func_80800000_bsstatue(s32, s32);
     s32 func_808001FC_bsstatue();
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808001FC_bsstatue)();
+#else
     func_808001FC_bsstatue();
+#endif
     _bsrest_entrypoint_16(arg0);
     func_80800000_bsstatue(arg0, 0);
 }
@@ -713,7 +729,11 @@ void func_80801238_bsstatue(void *arg0) {
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     s32 func_808001FC_bsstatue();
     s32 yaw_setVelocityBounded(void *, s32, s32);
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808001FC_bsstatue)();
+#else
     func_808001FC_bsstatue();
+#endif
     baanim_playForDuration_loopSmooth(arg0, 0x1E5, 1.38f);
     func_8009FFD8(arg0, 2, 3, 1, 2);
     yaw_setVelocityBounded(arg0, 0x43960000, 0x40600000);

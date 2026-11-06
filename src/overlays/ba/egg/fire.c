@@ -50,8 +50,12 @@ void func_808000B8_baeggfire(void *arg0) {
     s32 _baeggsetup_entrypoint_10(void *);
     s32 _baeggsetup_entrypoint_8(void *, u8);
     s32 func_800C9DE4(f32, s32 *, s32);
+#ifndef BT_NATIVE
     extern s32 _baeggfire_entrypoint_1;
+#endif
+#ifndef BT_NATIVE
     extern s32 _baeggfire_entrypoint_2;
+#endif
     void *temp_v0;
     void *temp_v0_2;
     void *temp_v0_3;

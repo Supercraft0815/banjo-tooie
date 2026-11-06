@@ -395,7 +395,31 @@ s32 gcnewoption_entrypoint_3(u8 *arg0) {
 void gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, s32 arg2, s32 arg3, s32 arg4) {
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
     void gcnewoption_entrypoint_5(void *, s32, s32, s32, Unk80132ED0 *);
+#endif
     func_80100074(arg0, arg1, 0x260);
     gcnewoption_entrypoint_5(func_80100094(arg0, arg1), arg2, arg3, arg4, arg0->unk0);
 }
@@ -443,7 +467,31 @@ void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132
     };
     u32 *_gldbstring_entrypoint_0(u32 *, u32);
     s32 _gldialog_entrypoint_0(void);
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
     void gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);
+#endif
     struct OptionInit *option = arg0;
     s32 i;
 
@@ -912,7 +960,31 @@ void gcnewoption_entrypoint_27(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void gcnewoption_entrypoint_28(void *arg0) {
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    void gcnewoption_entrypoint_42(void *arg0, f32 arg1);
+#else
+    void gcnewoption_entrypoint_42(void *arg0, f32 arg1);
+#endif
+#else
+    void gcnewoption_entrypoint_42(void *arg0, f32 arg1);
+#endif
+#else
+    void gcnewoption_entrypoint_42(void *arg0, f32 arg1);
+#endif
+#else
+    void gcnewoption_entrypoint_42(void *arg0, f32 arg1);
+#endif
+#else
+    void gcnewoption_entrypoint_42(void *arg0, f32 arg1);
+#endif
+#else
     void gcnewoption_entrypoint_42(void *, f32);
+#endif
     s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
     struct Flags28 {
         u8 padding[0x1D];
@@ -958,7 +1030,31 @@ void gcnewoption_entrypoint_30(s32 arg0, s16 *arg1) {
     s32 func_800DC128(s32, s32);
     u16 _gczoomboxdata_entrypoint_5(s32);
     s32 _gczoomboxdata_entrypoint_6(s32);
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    void gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2);
+#else
+    void gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2);
+#endif
+#else
+    void gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2);
+#endif
+#else
+    void gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2);
+#endif
+#else
+    void gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2);
+#endif
+#else
+    void gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2);
+#endif
+#else
     void gcnewoption_entrypoint_31(s32, s32, s16);
+#endif
     s16 chosen[30];
     s32 value;
     u16 key;

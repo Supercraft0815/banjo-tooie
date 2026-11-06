@@ -42,7 +42,11 @@ s32 func_800D3E6C(s32 arg0) {
 
 s32 func_800D3EC8(void) {
     s32 func_800D3E14();
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_800D3E14)() != 0) {
+#else
     if (func_800D3E14() != 0) {
+#endif
         return 0;
     }
     return 1;
@@ -163,7 +167,11 @@ void func_800D4298(s32 arg0, s32 arg1) {
     s32 func_800D41D8();
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800D41D8)();
+#else
     temp_v0 = func_800D41D8();
+#endif
     if ((temp_v0 != 0x3C) && (func_800C6E38(temp_v0) == 0)) {
         arg1 = 0;
     }
@@ -178,7 +186,11 @@ void func_800D42E8(s32 arg0, s32 arg1) {
     s32 func_800D41D8();
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800D41D8)();
+#else
     temp_v0 = func_800D41D8();
+#endif
     if ((temp_v0 != 0x3C) && (func_800C6E38(temp_v0) == 0)) {
         arg1 = 0;
     }
@@ -194,7 +206,11 @@ void func_800D433C(s32 arg0, s32 arg1) {
     s32 func_800D41D8();
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800D41D8)();
+#else
     temp_v0 = func_800D41D8();
+#endif
     if ((temp_v0 != 0x3C) && (func_800C6E38(temp_v0) == 0)) {
         arg1 = 0;
     }
@@ -210,7 +226,11 @@ void func_800D4398(s32 arg0, s32 arg1) {
     s32 func_800D41D8();
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800D41D8)();
+#else
     temp_v0 = func_800D41D8();
+#endif
     if ((temp_v0 != 0x3C) && (func_800C6E38(temp_v0) == 0)) {
         arg1 = 0;
     }

@@ -1,4 +1,12 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/yaw.h" // enums for the prototypes below
+#include "overlays/ba/physics.h"
+#endif
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#include "overlays/ba/anim.h"
+#endif
 
 void func_80800000_bsdronebitten(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
@@ -124,7 +132,9 @@ void bsdronebitten_entrypoint_6(s32 arg0)
 void bsdronebitten_entrypoint_7(PlayerState *arg0) {
     void _badata_entrypoint_4(PlayerState *, AssetId *, f32 *);
     void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);
+#ifndef BT_NATIVE
     void func_8009FFD8();
+#endif
     void func_8009C128(PlayerState *, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
     void _bamovegoto_entrypoint_0(void *);
@@ -190,16 +200,34 @@ s32 func_80800478_bsdronebitten(struct player_state_s *arg0, s32 arg1) {
 /* extern */
 
 void func_808004C4_bsdronebitten(void *arg0, s32 arg1, s32 arg2) {
+#ifndef BT_NATIVE
     s32 anctrl_reset(s32);
+#endif
+#ifndef BT_NATIVE
     s32 anctrl_setDuration(s32, s32);
+#endif
+#ifndef BT_NATIVE
     s32 anctrl_setIndex(s32, s32);
+#endif
+#ifndef BT_NATIVE
     s32 anctrl_setPlaybackType(s32, s32);
+#endif
+#ifndef BT_NATIVE
     s32 anctrl_setSmoothTransition(s32, s32);
+#endif
+#ifndef BT_NATIVE
     s32 anctrl_start(s32);
+#endif
+#ifndef BT_NATIVE
     s32 baanim_getAnimCtrlPtr();
+#endif
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((AnimCtrl* (*)())baanim_getAnimCtrlPtr)();
+#else
     temp_v0 = baanim_getAnimCtrlPtr();
+#endif
     anctrl_reset(temp_v0);
     anctrl_setIndex(temp_v0, arg1);
     anctrl_setDuration(temp_v0, arg2);

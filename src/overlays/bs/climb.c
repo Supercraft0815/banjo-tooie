@@ -296,7 +296,9 @@ void bsclimb_entrypoint_8(s32 arg0) {
 
 struct player_state_s;
 enum bs_state_e;
+#ifndef BT_NATIVE
 void bs_setState(struct player_state_s *, enum bs_state_e);
+#endif
 
 void bsclimb_entrypoint_9(struct player_state_s *arg0) {
     s32 func_8009CC68();

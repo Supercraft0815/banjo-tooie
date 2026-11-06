@@ -342,7 +342,9 @@ void bafly_entrypoint_16(PlayerState *arg0, s32 arg1, f32 arg2) {
     void func_8008E944(PlayerState *);
     void func_8009C128(PlayerState *, f32[3]);
     void func_8009DA40(PlayerState *);
+#ifndef BT_NATIVE
     void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+#endif
     void func_800A32C4(PlayerState *, f32[3]);
     PlayerState *func_800A4CA8(PlayerState *);
     void func_800A4DA4(PlayerState *, s32);

@@ -69,7 +69,9 @@ void chusefeather_entrypoint_0(s32 arg0, s32 arg1) {
 void chusefeather_entrypoint_1(s32 arg0, s32 arg1) {
     s32 _chbaddiesetup_entrypoint_2(s32 *, s32, s32);
     s32 func_800D3948();
+#ifndef BT_NATIVE
     extern s32 _chusefeather_entrypoint_0;
+#endif
     s32 var_a2;
 
     if (func_800D3948() == 0) {

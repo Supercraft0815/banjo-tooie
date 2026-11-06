@@ -59,7 +59,9 @@ void func_80800164_chegggrenade(void *arg0) {
     void _sueggmisc_entrypoint_1(void *);
     s32 _sueggmove_entrypoint_3(void *);
     s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+#ifndef BT_NATIVE
     extern s32 _chegggrenade_entrypoint_0;
+#endif
     struct GrenadeData {
         u8 pad[0x30];
         f32 time;

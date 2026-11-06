@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 
 struct player_state_s;
 void func_80800000_bsvan(struct player_state_s *arg0) {
@@ -921,7 +924,9 @@ void func_80801890_bsvan(struct player_state_s *arg0) {
     s32 func_8080164C_bsvan(void *, s32);
     f32 yaw_get(struct player_state_s *);
     f32 yaw_getIdeal(struct player_state_s *);
+#ifndef BT_NATIVE
     extern s32 _bsvan_entrypoint_15;
+#endif
     s32 sp24;
     f32 sp20;
     s32 *temp_v0;

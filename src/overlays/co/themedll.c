@@ -36,7 +36,11 @@ void cothemedll_entrypoint_0(s32 arg0) {
 s16 cothemedll_entrypoint_1(void) {
     s32 func_80800000_cothemedll();
     extern s16 D_80800734_cothemedll[];
+#ifdef BT_NATIVE
+    return *(s16 *)((s8 *)D_80800734_cothemedll + ((s32 (*)())func_80800000_cothemedll)() * 6);
+#else
     return *(s16 *)((s8 *)D_80800734_cothemedll + func_80800000_cothemedll() * 6);
+#endif
 }
 
 void cothemedll_entrypoint_2(void *arg0, s32 arg1) {

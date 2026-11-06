@@ -1,4 +1,11 @@
 #include "core2/1EC3810.h"
+#ifdef BT_NATIVE
+// Prototypes for 1EC3810_collision_native.inc, before the calls below declare them implicitly.
+#include "native_world_collision.h"
+#include "native_collision_geometry.h"
+#include "native_actor_model.h"
+#include "core2/1EAF950.h"
+#endif
 
 extern u16 D_80132DC2;
 extern s32 D_80132DC0;
@@ -12,7 +19,9 @@ void func_800E9F20(s32 arg0, s32 arg1) {
     s32 func_800B7BB0();
     s32 func_800BC8F8(s32);
     s32 func_800BC948(s32);
+#ifndef BT_NATIVE
     s32 func_800BD594(s32);
+#endif
     s32 func_800BE9B0();
     s32 func_800BE9E4(s32);
     s32 func_800BEA24(s32);
@@ -20,7 +29,9 @@ void func_800E9F20(s32 arg0, s32 arg1) {
     s32 func_800BFD6C(s32, s32);
     s32 func_800D2A44(s32);
     s32 func_800E44FC(s32);
+#ifndef BT_NATIVE
     s32 func_800EB51C(s32, s32);
+#endif
     s32 func_800F5008(s32);
     s32 func_800F50D0(s32);
     s32 func_800F51CC();
@@ -141,7 +152,9 @@ s32 func_800EA170(void) {
     void func_800D154C(void);
     void func_800D2574(void);
     void func_800D5270(void);
+#ifndef BT_NATIVE
     s32 func_800D6E54(s32);
+#endif
     void func_800D8744(void);
     s32 func_800DAE9C();
     s32 func_800DBC68();
@@ -155,8 +168,12 @@ s32 func_800EA170(void) {
     s32 func_800FFBE4();
     s32 func_800FFBEC();
     s32 func_800FFD10(s32);
+#ifndef BT_NATIVE
     s32 func_80100534();
+#endif
+#ifndef BT_NATIVE
     s32 func_80100C74();
+#endif
     s32 func_8010D7EC();
     extern struct Vector *D_80127EF0;
     extern s32 D_80127EF8;
@@ -280,7 +297,9 @@ void func_800EA400(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
 void func_800EA45C(void) {
     void func_800D8B80(s16, s32, f32 *, f32 *, f32, s32, u16 *, u8 *, f32 *);
     void func_800F5A00(s32, f32 *);
+#ifndef BT_NATIVE
     u8 *func_80103C94(Actor *);
+#endif
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80132DD0;
     struct Entry { Unk80132ED0 *marker; u16 *indices; f32 position[3]; };
@@ -301,7 +320,9 @@ void func_800EA51C(void) {
     s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, s32, f32 *, f32 *);
     void func_800F5A00(s32, f32 *);
     s32 func_800F8418(s32, f32 *);
+#ifndef BT_NATIVE
     u8 *func_80103C94(Actor *);
+#endif
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80132DD0;
     s32 *var_s2;
@@ -336,7 +357,9 @@ s32 func_800EB15C(void *arg0) {
     s32 func_800D3948(void);
     u32 func_800F54E4(void);
     s32 func_800F6774(u32);
+#ifndef BT_NATIVE
     s32 func_80102F74(Unk80132ED0 *, s32);
+#endif
     Actor *func_80106790(Unk80132ED0 *);
     Unk80132ED0 *marker = arg0;
     if (marker->unk18 & 1) {

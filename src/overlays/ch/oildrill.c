@@ -229,7 +229,9 @@ void func_808008AC_choildrill(f32 *arg0) {
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     f32 func_800C6920(f32[3], f32, f32, s32);
     extern s32 D_80801404_choildrill;
+#ifndef BT_NATIVE
     extern s32 _choildrill_entrypoint_0;
+#endif
     s32 temp_s1;
     f32 sp28;
 

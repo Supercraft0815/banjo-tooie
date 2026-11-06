@@ -111,7 +111,9 @@ void func_80800344_chfantasylakebits(Actor *arg0, s32 arg1) {
     void func_80103110(void *, s32);
     s32 func_80103140(Actor *, u32, u16);
     void func_8010A800(Actor *, s32);
+#ifndef BT_NATIVE
     extern s32 _chfantasylakebits_entrypoint_0;
+#endif
     s32 sp2C;
     s32 temp_v0;
     s32 sp24;

@@ -66,7 +66,9 @@ void baeggsetup_entrypoint_2(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3) {
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_800F3E84();
+#ifndef BT_NATIVE
     extern s32 _baeggsetup_entrypoint_1;
+#endif
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp34[3];
@@ -155,7 +157,9 @@ void baeggsetup_entrypoint_5(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3) {
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_800F3E84();
+#ifndef BT_NATIVE
     extern s32 _baeggsetup_entrypoint_4;
+#endif
     f32 sp44[3];
     f32 sp38[3];
     f32 sp2C[3];
@@ -181,7 +185,9 @@ void baeggsetup_entrypoint_6(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4
     s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
     void func_80094C0C();
     void func_800EE7F8(f32 *, f32 *);
+#ifndef BT_NATIVE
     extern s32 _baeggsetup_entrypoint_4;
+#endif
     func_80094C0C();
     func_800EE7F8((*(f32 **)((s8 *)(arg0) + (0x70))), arg2);
     func_800EE7F8((*(f32 **)((s8 *)(arg0) + (0x70))) + 3, arg3);

@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 
 void func_80800000_bsbbilldrill(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x168) = 0;

@@ -263,7 +263,9 @@ void func_80800714_chdinoswitches(Actor *arg0) {
 }
 
 void func_808007A0_chdinoswitches(Actor *arg0) {
+#ifndef BT_NATIVE
     void func_800DA544(GameFlag);
+#endif
     s32 func_8010114C(s32, s32, s32);
     s32 func_80101E14(Actor *, f32);
     void func_80101EE4(Actor *, f32);

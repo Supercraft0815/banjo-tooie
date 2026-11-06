@@ -222,7 +222,9 @@ s32 func_8080090C_chfloaty(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102FDC(Actor *, f32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_8010A3E8(void *, f32);
+#ifndef BT_NATIVE
     extern s32 _chfloaty_entrypoint_0;
+#endif
     Actor *sp1C;
     Actor *temp;
 

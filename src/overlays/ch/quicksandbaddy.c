@@ -412,7 +412,9 @@ void func_80800FC8_chquicksandbaddy(f32 *arg0, f32 arg1, s32 arg2) {
     s32 func_808010A0_chquicksandbaddy(void *);
     extern s32 D_80801394_chquicksandbaddy;
     extern s32 D_808013D4_chquicksandbaddy;
+#ifndef BT_NATIVE
     extern s32 _chquicksandbaddy_entrypoint_0;
+#endif
     s32 temp_v0;
 
     if (func_808010A0_chquicksandbaddy(&D_808013D4_chquicksandbaddy) != 0) {

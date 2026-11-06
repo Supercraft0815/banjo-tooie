@@ -26,7 +26,11 @@ s32 dbmorph_entrypoint_1(s16 *arg0) {
 
 u8 dbmorph_entrypoint_2(void) {
     void *func_80800000_dbmorph();
+#ifdef BT_NATIVE
+    return (*(u8 *)((s8 *)(((void * (*)())func_80800000_dbmorph)()) + (3)));
+#else
     return (*(u8 *)((s8 *)(func_80800000_dbmorph()) + (3)));
+#endif
 }
 
 typedef struct {

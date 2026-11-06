@@ -278,7 +278,9 @@ void func_80800988_chmole_training(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_10(s32, s32);
     s32 _gcnewoption_entrypoint_11(s32);
     s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
+#ifndef BT_NATIVE
     extern s32 _chmole_training_entrypoint_0;
+#endif
     s32 option;
 
     _gcnewoption_entrypoint_4(arg0, 0, &_chmole_training_entrypoint_0, 0, 0x184A);

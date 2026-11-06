@@ -78,7 +78,9 @@ void func_80800174_chfaircoinbox(s32 arg0) {
 
 void func_808001C8_chfaircoinbox(Actor *arg0) {
     s32 func_8008FB10(s32, f32, f32, f32);
+#ifndef BT_NATIVE
     s32 func_800DA298(GameFlag);
+#endif
     void func_808002CC_chfaircoinbox(Actor *);
 
     func_8008FB10((s32)arg0->position, 120.0f, 0.0f, 92.0f);
@@ -132,7 +134,9 @@ void func_808002CC_chfaircoinbox(Actor *arg0) {
     } DialogRecord;
     u32 _subaddiedialog_entrypoint_7(Actor *, f32 *, DialogRecord *);
     void func_80090734(s32, f32 *);
+#ifndef BT_NATIVE
     s32 func_800DA298(GameFlag);
+#endif
     extern DialogRecord D_80800490_chfaircoinbox;
     extern s32 D_808004AC_chfaircoinbox[];
     u32 result;

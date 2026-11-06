@@ -151,7 +151,9 @@ void idflame_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 void idflame_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     f32 func_800D8FF8(void);
+#ifndef BT_NATIVE
     extern s32 _idflame_entrypoint_0;
+#endif
     f32 dt;
     s32 i;
     union {

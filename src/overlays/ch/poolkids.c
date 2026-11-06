@@ -410,7 +410,11 @@ void func_80800B68_chpoolkids(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_808011A8_chpoolkids(Actor *);
     extern s32 D_80801594_chpoolkids;
+#ifdef BT_NATIVE
+    void chpoolkids_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chpoolkids_entrypoint_3;
+#endif
     struct PoolKidsData {
         s16 section;
         s16 state;

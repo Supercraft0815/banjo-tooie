@@ -36,7 +36,11 @@ void func_80800080_chlinkpipefan(u8 *arg0) {
     void func_8010A654(u8 *, u32);
     void func_808003B4_chlinkpipefan(u8 *, s32);
     extern u32 D_80800910_chlinkpipefan;
+#ifdef BT_NATIVE
+    void chlinkpipefan_entrypoint_0(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chlinkpipefan_entrypoint_0;
+#endif
     struct counter {
         u32 : 23;
         u32 value : 9;

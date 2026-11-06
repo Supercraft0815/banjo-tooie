@@ -154,7 +154,11 @@ void func_80800414_chmasterjiggy(s32 arg0) {
     s32 func_80800220_chmasterjiggy(s32, s32);
     int func_80800374_chmasterjiggy();
     int func_808003D4_chmasterjiggy(s32);
+#ifdef BT_NATIVE
+    if (((int (*)())func_80800374_chmasterjiggy)() != 0) {
+#else
     if (func_80800374_chmasterjiggy() != 0) {
+#endif
         if ((func_800DA298(0x533) == 0) && (func_808001D0_chmasterjiggy(arg0, 3) != 0)) {
             func_800DA544(0x533);
         }
@@ -644,7 +648,9 @@ void chmasterjiggy_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, Unk80132
 void func_80801448_chmasterjiggy(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_800BEA88(s32);
+#ifndef BT_NATIVE
     extern s32 _chmasterjiggy_entrypoint_2;
+#endif
     _glid_entrypoint_0(func_800BEA88(0), 1, &_chmasterjiggy_entrypoint_2, *arg0);
 }
 

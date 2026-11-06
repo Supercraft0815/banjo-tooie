@@ -414,7 +414,11 @@ void func_800FC124(u32 arg0)
   s32 temp_v0;
   if (arg0 != D_80135988)
   {
+#ifdef BT_NATIVE
+    ((void (*)())func_800FB6E0)(&D_80135960, 0, arg0);
+#else
     func_800FB6E0(&D_80135960, 0, arg0);
+#endif
     func_800172D4(5, arg0);
     D_80135988 = (s16) arg0;
     temp_v0 = func_80017764(arg0) ^ 0;
@@ -606,7 +610,11 @@ void func_800FC8EC(void) {
     void *func_800FB5F8();
     void *temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((void * (*)())func_800FB5F8)();
+#else
     temp_v0 = func_800FB5F8();
+#endif
     if (temp_v0 != NULL) {
         (*(f32 *)((s8 *)(temp_v0) + (0xC))) = 1.0f;
         (*(f32 *)((s8 *)(temp_v0) + (0x14))) = 1.0f;
@@ -755,7 +763,11 @@ s32 func_800FCDB4() {
     void *func_800FB5F8();
     void *temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((void * (*)())func_800FB5F8)();
+#else
     temp_v0 = func_800FB5F8();
+#endif
     if (temp_v0 != NULL) {
         return (*(s32 *)((s8 *)(temp_v0) + (0x2C)));
     }

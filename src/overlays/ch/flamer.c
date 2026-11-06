@@ -242,7 +242,11 @@ void chflamer_entrypoint_1(Actor *arg0, Unk80132ED0 *arg1) {
         u16 flags;
     };
     void _chbaddiesetup_entrypoint_2(s32 *, Unk80132ED0 *, s32);
+#ifdef BT_NATIVE
+    void chflamer_entrypoint_2(Unk80132ED0 *arg0, s32 arg1);
+#else
     extern s32 _chflamer_entrypoint_2;
+#endif
 
     if (!arg0->unk64_17) {
         if (!((struct LinkedActorFlags *)arg0)->unk74_0) {

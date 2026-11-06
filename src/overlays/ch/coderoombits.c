@@ -454,7 +454,11 @@ void func_80800BF4_chcoderoombits(Actor *arg0) {
     int func_800D91EC(f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+#ifdef BT_NATIVE
+    void chcoderoombits_entrypoint_2(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chcoderoombits_entrypoint_2[];
+#endif
     struct {
         u8 pad[0x1C];
         struct { f32 value; f32 fraction; s32 state; } bits[26];

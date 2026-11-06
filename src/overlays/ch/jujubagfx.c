@@ -138,6 +138,8 @@ void chjujubagfx_entrypoint_1(void) {
 
 void chjujubagfx_entrypoint_2(void) {
     s32 _chbaddiesetup_entrypoint_0(s32 *);
+#ifndef BT_NATIVE
     extern s32 _chjujubagfx_entrypoint_1;
+#endif
     _chbaddiesetup_entrypoint_0(&_chjujubagfx_entrypoint_1);
 }

@@ -909,7 +909,9 @@ void chlakemonster_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
     void func_800BA568(s16 *, s16);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     int func_800DC298(f32);
+#ifndef BT_NATIVE
     extern s32 _chlakemonster_entrypoint_1;
+#endif
     s32 sp2C;
     s32 temp_v0;
 

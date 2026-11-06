@@ -1,6 +1,10 @@
 #include "overlays/bs/rest.h"
 
+#ifdef BT_NATIVE
+    enum bs_state_e bsrest_entrypoint_13(PlayerState *self);
+#else
 extern enum bs_state_e bsrest_entrypoint_13(PlayerState *self);
+#endif
 extern void bsrest_entrypoint_17(PlayerState *self, s32);
 
 static void func_80800000_bsrest(PlayerState *self) {

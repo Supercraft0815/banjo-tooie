@@ -84,7 +84,9 @@ void idwave_entrypoint_3(void *arg0, s32 arg1, s32 arg2) {
     f32 func_800138D0(f32);
     f32 func_80013970(f32);
     f32 func_800D8FF8(void);
+#ifndef BT_NATIVE
     extern s32 _idwave_entrypoint_0;
+#endif
     struct Wave { f32 f[10]; s16 a; s16 b; f32 c; };
     f32 pad;
     f32 sp28[1];

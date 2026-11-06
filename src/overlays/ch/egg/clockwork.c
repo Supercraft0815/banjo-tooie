@@ -215,7 +215,9 @@ void cheggclockwork_entrypoint_3(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     extern s32 D_80800950_cheggclockwork;
     extern s32 D_80800998_cheggclockwork;
     extern s32 D_808009E0_cheggclockwork;
+#ifndef BT_NATIVE
     extern s32 _cheggclockwork_entrypoint_2;
+#endif
     func_800C9C70(0.4f, 0x5F3, 0x3F800000, 0x4E20, arg0, 250.0f, 5400.0f);
     func_800BBCB8(arg0, 0, 0x3F800000, 1, &D_80800908_cheggclockwork);
     func_800BBCB8(arg0, 0, 0x3F800000, 6, &D_80800950_cheggclockwork);

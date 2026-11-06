@@ -14,7 +14,9 @@ s32 fxairbub_entrypoint_1(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3) {
     void func_800BA6B0(u8 *, s16, s16, s16, s16, s16, s16);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s16 *);
     extern s16 D_80800100_fxairbub[];
+#ifndef BT_NATIVE
     extern s32 _fxairbub_entrypoint_0;
+#endif
     s32 sp2C;
     s32 temp_f10;
     int temp_f16;

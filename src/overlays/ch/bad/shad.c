@@ -244,7 +244,9 @@ void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 ar
 
 Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
     void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+#ifndef BT_NATIVE
     extern s32 _chbadshad_entrypoint_4;
+#endif
     Actor *func_80106790(Unk80132ED0 *);
     int func_8080078C_chbadshad(Actor *, s32);
     void func_8080082C_chbadshad(Actor *);

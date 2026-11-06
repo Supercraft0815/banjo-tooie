@@ -527,8 +527,16 @@ void func_80800A08_gcnewpause(PauseState* pauseMenu)
 
 	if ((menuVariant != 5) && (menuVariant == 6)) 
 	{
+#ifdef BT_NATIVE
+		unk80802190 sp5C[6]; __builtin_memcpy(sp5C, &D_80802190_gcnewpause, sizeof(sp5C));
+#else
 		unk80802190 sp5C[6] = D_80802190_gcnewpause;
+#endif
+#ifdef BT_NATIVE
+		u8 sp50[12]; __builtin_memcpy(sp50, &D_808021B4_gcnewpause, sizeof(sp50));
+#else
 		u8 sp50[12] = D_808021B4_gcnewpause;
+#endif
 		s32 s1;
 		s32 a0;
 

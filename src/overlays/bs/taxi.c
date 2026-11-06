@@ -1,4 +1,12 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/yaw.h" // enums for the prototypes below
+#include "overlays/ba/physics.h"
+#endif
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#include "overlays/ba/anim.h"
+#endif
 
 struct anctrl_s;
 enum asset_e;
@@ -85,7 +93,9 @@ enum ba_physics_type_e;
 void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
 
 void bstaxi_entrypoint_3(void *arg0) {
+#ifndef BT_NATIVE
     s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+#endif
     s32 bainput_enable(void *, s32, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     bstaxi_entrypoint_1(arg0);
@@ -101,8 +111,12 @@ void bstaxi_entrypoint_4(struct player_state_s *arg0) {
     s32 _bapackctrl_entrypoint_1(void *);
     void _bapackctrl_entrypoint_4(void *, s32);
     f32 baanim_getTimer(struct player_state_s *);
+#ifndef BT_NATIVE
     s32 baanim_isAt(void *, f32);
+#endif
+#ifndef BT_NATIVE
     s32 baanim_isStopped(void *);
+#endif
     s32 bainput_enable(void *, s32, s32);
     s32 bastick_getZone(struct player_state_s *);
     s32 bs_setState(void *, s32);
@@ -266,7 +280,9 @@ void func_808005F0_bstaxi(void *arg0) {
     void _batimer_set(PlayerState *, s32, f32);
     void anctrl_reset(AnimCtrl *);
     void anctrl_setDuration(AnimCtrl *, f32);
+#ifndef BT_NATIVE
     void anctrl_setIndex(AnimCtrl *, enum asset_e);
+#endif
     void anctrl_setPlaybackType(AnimCtrl *, s32);
     void anctrl_start(AnimCtrl *);
     AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
@@ -353,7 +369,9 @@ void bstaxi_entrypoint_7(struct player_state_s *arg0)
 }
 
 void bstaxi_entrypoint_8(void *arg0) {
+#ifndef BT_NATIVE
     s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+#endif
     s32 bainput_enable(void *, s32, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     bstaxi_entrypoint_1(arg0);
@@ -366,8 +384,12 @@ void bstaxi_entrypoint_8(void *arg0) {
 void bstaxi_entrypoint_9(struct player_state_s *arg0) {
     void _babackpack_set_state(void *, s32);
     f32 baanim_getTimer(struct player_state_s *);
+#ifndef BT_NATIVE
     s32 baanim_isAt(void *, f32);
+#endif
+#ifndef BT_NATIVE
     s32 baanim_isStopped(void *);
+#endif
     s32 bainput_enable(void *, s32, s32);
     int bakey_pressed(struct player_state_s *, int);
     int bakey_released(struct player_state_s *, int);
@@ -416,8 +438,12 @@ s32 bstaxi_entrypoint_10(s32 arg0) {
 
 void func_80800A18_bstaxi(void *arg0, u32 arg1) {
     s32 _bapackctrl_entrypoint_5(void *, s32);
+#ifndef BT_NATIVE
     s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+#endif
+#ifndef BT_NATIVE
     s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+#endif
     s32 bainput_enable(void *, s32, s32);
     switch (arg1) {
     case 0:
@@ -466,8 +492,12 @@ void bstaxi_entrypoint_13(void *arg0) {
     s32 _bapackctrl_entrypoint_1(void *);
     void _bapackctrl_entrypoint_4(void *, s32);
     f32 baanim_getTimer(struct player_state_s *);
+#ifndef BT_NATIVE
     s32 baanim_isAt(void *, f32);
+#endif
+#ifndef BT_NATIVE
     s32 baanim_isStopped(void *);
+#endif
     s32 bainput_enable(void *, s32, s32);
     int bakey_pressed(struct player_state_s *, int);
     int bakey_released(PlayerState *, int);
@@ -561,7 +591,9 @@ s32 bstaxi_entrypoint_14(s32 arg0) {
 void bstaxi_entrypoint_15(struct player_state_s *arg0) {
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
+#ifndef BT_NATIVE
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+#endif
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void anctrl_setSmoothTransition(struct anctrl_s *, s32);
     void anctrl_setStart(struct anctrl_s *, f32);
@@ -617,7 +649,9 @@ void bstaxi_entrypoint_16(struct player_state_s *arg0) {
     void func_8009D3A8(void *, s32);
     int player_isStable(struct player_state_s *);
     s32 bs_setState(void *, s32);
+#ifndef BT_NATIVE
     void func_8009BB24(void *, f32 *);
+#endif
     f32 func_8009BB5C(struct player_state_s *);
     void func_8009FE58(void *);
     f32 baphysics_get_vertical_velocity(struct player_state_s *);
@@ -698,7 +732,11 @@ void bstaxi_entrypoint_16(struct player_state_s *arg0) {
 void bstaxi_entrypoint_17(struct player_state_s *arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
     void baroll_setIdeal(struct player_state_s *, f32);
+#ifdef BT_NATIVE
+    ((void (*)())baphysics_reset_gravity)();
+#else
     baphysics_reset_gravity();
+#endif
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     bstaxi_entrypoint_0(arg0);
@@ -715,7 +753,9 @@ void bstaxi_entrypoint_19(struct player_state_s *arg0)
 }
 
 void bstaxi_entrypoint_20(struct player_state_s *arg0) {
+#ifndef BT_NATIVE
     s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+#endif
     void baanim_setDurationRange(struct player_state_s *, f32, f32);
     void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
     void func_8008CA30(struct player_state_s *, f32);
@@ -773,7 +813,9 @@ void bstaxi_entrypoint_23(struct player_state_s *arg0)
 }
 
 void bstaxi_entrypoint_24(void *arg0) {
+#ifndef BT_NATIVE
     s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+#endif
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
 
     bstaxi_entrypoint_1(arg0);
@@ -787,7 +829,9 @@ void bstaxi_entrypoint_24(void *arg0) {
 void bstaxi_entrypoint_25(void *arg0) {
     void _babackpack_set_state(void *, s32);
     f32 baanim_getTimer(struct player_state_s *);
+#ifndef BT_NATIVE
     s32 baanim_isAt(void *, f32);
+#endif
     s32 bs_setState(void *, s32);
     void func_8009D3A8(void *, s32);
     void func_8009DEC0(struct player_state_s *, s32, f32, f32, s32, s32);
@@ -963,8 +1007,12 @@ void bstaxi_entrypoint_30(void *arg0) {
     int _batimer_decrement(struct player_state_s *, s32);
     f32 _batimer_get(struct player_state_s *, s32);
     void _subaddietaxi_entrypoint_8(s32, f32 *, f32, f32, s32);
+#ifndef BT_NATIVE
     s32 baanim_isAt(void *, f32);
+#endif
+#ifndef BT_NATIVE
     s32 baanim_isStopped(void *);
+#endif
     s32 baflag_clear(void *, s32);
     s32 baflag_isTrue(void *, s32);
     s32 baflag_set(void *, s32);

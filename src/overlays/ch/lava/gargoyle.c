@@ -331,7 +331,11 @@ void func_80800B8C_chlavagargoyle(Actor *arg0, f32 *arg1, s32 arg2) {
     void func_800FFA88(Unk80132ED0 *);
     extern s32 D_80800E50_chlavagargoyle;
     extern s32 D_80800E98_chlavagargoyle;
+#ifdef BT_NATIVE
+    void chlavagargoyle_entrypoint_1(s32 arg0, f32 *arg1);
+#else
     extern s32 _chlavagargoyle_entrypoint_1;
+#endif
     s32 sp2C;
 
     sp2C = func_800B53A4(6);

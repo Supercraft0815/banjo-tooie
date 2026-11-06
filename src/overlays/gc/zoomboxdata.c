@@ -149,7 +149,11 @@ s32 gczoomboxdata_entrypoint_6(void) {
     s32 gczoomboxdata_entrypoint_5();
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())gczoomboxdata_entrypoint_5)();
+#else
     temp_v0 = gczoomboxdata_entrypoint_5();
+#endif
     if ((temp_v0 == 0) || (temp_v0 == 0xBAE)) {
         return 0;
     }

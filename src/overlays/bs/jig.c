@@ -88,7 +88,9 @@ void bsjig_entrypoint_3(void *arg0) {
     void func_8009DE38(struct player_state_s *, s32, f32);
     f32 func_8009F308(struct player_state_s *);
     void yaw_setIdeal(struct player_state_s *, f32);
+#ifndef BT_NATIVE
     extern s32 _bsjig_entrypoint_2;
+#endif
     s32 sp24;
     struct anctrl_s *sp20;
 

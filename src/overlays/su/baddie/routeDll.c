@@ -800,7 +800,11 @@ s32 func_80801784_subaddierouteDll(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, f32
     Actor *sp20[2];
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_808016F0_subaddierouteDll)(arg0, arg1, arg2, arg3);
+#else
     temp_v0 = func_808016F0_subaddierouteDll(arg0, arg1, arg2, arg3);
+#endif
     switch (temp_v0) {
     case 0:
         sp20[0] = func_80106790(arg1);

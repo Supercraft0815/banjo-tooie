@@ -35,13 +35,21 @@ typedef struct
 s32 _sujiggy_entrypoint_0();
 
 //Get the required amount of jiggies for the given world
+#ifdef BT_NATIVE
+u8 _sujiggy_entrypoint_2(s32 arg0);
+#else
 s32 _sujiggy_entrypoint_2(s32);
+#endif
 s32 sujiggy_entrypoint_4(s32);
 s32 sujiggy_entrypoint_5(s32);
 s32 sujiggy_entrypoint_19(void);
 
 //Check if world is unlocked
+#ifdef BT_NATIVE
+int _sujiggy_entrypoint_20(s32 arg0);
+#else
 s32 _sujiggy_entrypoint_20(u32);
+#endif
 s32 sujiggy_entrypoint_21(void);
 s32 sujiggy_entrypoint_24(void);
 

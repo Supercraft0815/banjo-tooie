@@ -465,7 +465,9 @@ void func_800A7B24(void) {
     s32 func_800C2A90();
     s32 func_800CA060();
     s32 func_800DF35C();
+#ifndef BT_NATIVE
     s32 func_800E4290();
+#endif
     s32 func_800FB908();
     func_800A759C(2, 0U);
     func_80013430();
@@ -957,7 +959,9 @@ void func_800A8710(void)
     s32 (*var_s0)[3];
     s32 temp_a0;
     void func_800158E4(s32 *);
+#ifndef BT_NATIVE
     s32 func_800CA364(s32);
+#endif
     func_800CA364(D_80127688[4].unk4);
     D_80127688[4].unk4 = 0;
     var_s0 = (s32 (*)[3])((s8 *)&D_801276BC - 0x34); do {
@@ -1084,7 +1088,9 @@ void func_800A8A44(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
 /* extern */
 
 void func_800A8A88(s32 arg0, f32 arg1) {
+#ifndef BT_NATIVE
     s32 func_800CA558(s32, f32);
+#endif
     s32 temp_a2;
     unk_D_80127688 *temp_v0;
 

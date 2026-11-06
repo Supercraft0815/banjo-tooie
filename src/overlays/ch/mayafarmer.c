@@ -166,7 +166,11 @@ void func_80800520_chmayafarmer(Actor* arg0)
     _suexpression_entrypoint_8(arg0, 1);
 }
 void func_80800540_chmayafarmer(Actor *arg0) {
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_800DA9E4(s32, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 _subaddiedialog_entrypoint_3(f32 *, s32, s32, s32, s32);

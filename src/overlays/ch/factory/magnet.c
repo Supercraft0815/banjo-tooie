@@ -356,7 +356,11 @@ s32 func_80800B20_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80801A9C_chfactorymagnet(s32, f32 *, f32 *);
     void func_80801AE8_chfactorymagnet(Actor *);
     extern f32 D_80802910_chfactorymagnet[3];
+#ifdef BT_NATIVE
+    void chfactorymagnet_entrypoint_0(s32 arg0, s32 arg1);
+#else
     extern void _chfactorymagnet_entrypoint_0(void);
+#endif
     Actor *sp4C;
     f32 sp40[3];
     f32 sp34[3];

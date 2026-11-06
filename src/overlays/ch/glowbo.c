@@ -17,12 +17,20 @@ extern u32 D_80801540_chglowbo;
 extern u32 D_80801588_chglowbo;
 extern u32 D_808015D0_chglowbo;
 extern f32 D_80801618_chglowbo;
+#ifdef BT_NATIVE
+    void chglowbo_entrypoint_5(void);
+#else
 extern u32 _chglowbo_entrypoint_5;
+#endif
 
 void func_80800000_chglowbo(Actor* arg0) 
 {
     glowboStruct* temp_v0 = (glowboStruct*)func_80100094(arg0, 0U);
+#ifdef BT_NATIVE
+    s32 sp18[3]; __builtin_memcpy(sp18, &D_80801460_chglowbo, sizeof(sp18));
+#else
     s32 sp18[3] = D_80801460_chglowbo;
+#endif
 
     if (temp_v0->unk16 == 1)
     {

@@ -167,7 +167,9 @@ void basub_entrypoint_5(void *arg0) {
     struct player_state_s;
     s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
     void func_8009DB04(struct player_state_s *, s32, f32, s32);
+#ifndef BT_NATIVE
     extern s32 _basub_entrypoint_4;
+#endif
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x130)));
@@ -212,7 +214,9 @@ void basub_entrypoint_7(s32 arg0, f32 arg1) {
     s32 func_800F3BD0(void *, s32, f32 *);
     struct player_state_s *func_800F53D0(s32);
     f32 yaw_get(struct player_state_s *);
+#ifndef BT_NATIVE
     extern s32 _basub_entrypoint_6;
+#endif
     f32 sp5C[3];
     f32 sp50[3];
     f32 sp44[3];
@@ -258,7 +262,9 @@ void func_8009C128(u8 *, f32 *);
 void func_80800834_basub(u8 *arg0) {
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     extern s32 D_80800C24_basub;
+#ifndef BT_NATIVE
     extern s32 _basub_entrypoint_7;
+#endif
     f32 sp24;
     f32 sp18[3];
 

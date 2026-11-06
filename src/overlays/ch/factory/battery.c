@@ -73,7 +73,9 @@ s32 func_808001F8_chfactorybattery(Actor *arg0) {
     s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
     s32 _subaddieDll_entrypoint_1(Actor *);
     void _subaddierouteDll_entrypoint_1(Actor *);
+#ifndef BT_NATIVE
     extern s32 _chfactorybattery_entrypoint_0;
+#endif
 
     struct BatteryCollisionFlags {
         u8 prefix[0x64];

@@ -8,8 +8,36 @@ void func_80800000_chdoubloon(void *arg0) {
 
 void func_8080000C_chdoubloon(s32 arg0) {
     s32 func_80103110(s32, s32);
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    s32 chdoubloon_entrypoint_1(Actor *arg0);
+#else
+    s32 chdoubloon_entrypoint_1(Actor *arg0);
+#endif
+#else
+    s32 chdoubloon_entrypoint_1(Actor *arg0);
+#endif
+#else
+    s32 chdoubloon_entrypoint_1(Actor *arg0);
+#endif
+#else
+    s32 chdoubloon_entrypoint_1(Actor *arg0);
+#endif
+#else
+    s32 chdoubloon_entrypoint_1(Actor *arg0);
+#endif
+#else
     s32 chdoubloon_entrypoint_1();
+#endif
+#ifdef BT_NATIVE
+    ((s32 (*)())chdoubloon_entrypoint_1)();
+#else
     chdoubloon_entrypoint_1();
+#endif
     func_80103110(arg0, 0);
 }
 

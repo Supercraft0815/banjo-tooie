@@ -678,7 +678,11 @@ s32 func_808011A8_bstrexlarge(PlayerState *arg0) {
 
 void func_80801208_bstrexlarge(void *arg0) {
     s32 func_808011A8_bstrexlarge();
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808011A8_bstrexlarge)();
+#else
     func_808011A8_bstrexlarge();
+#endif
     (*(s8 *)((s8 *)(arg0) + (0x15E))) = 0;
 }
 

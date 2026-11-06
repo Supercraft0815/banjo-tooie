@@ -1370,7 +1370,9 @@ s32 func_80802100_chweldarboss(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     Actor *_subaddielink_entrypoint_4(u8 *);
     void func_800FFAB0(Actor *);
+#ifndef BT_NATIVE
     void func_800DA544(GameFlag);
+#endif
     void _glcutDll_entrypoint_6(u32, u32);
     void func_80801AA0_chweldarboss(Actor *, s32);
     void func_80803CF0_chweldarboss(Actor *, s32, s32);
@@ -2153,7 +2155,11 @@ void func_80803770_chweldarboss(Actor *arg0) {
     s32 func_800BEA88(s32);
     s32 func_808038F8_chweldarboss(Actor *);
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+#ifdef BT_NATIVE
+    void chweldarboss_entrypoint_2(s32 arg0, s32 arg1, u32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chweldarboss_entrypoint_2;
+#endif
     s32 pad;
     s32 update;
     s32 timer2;

@@ -652,7 +652,11 @@ void func_808010AC_bsbabykaz(s32 arg0) {
     s32 sp24;
 
     sp24 = 0;
+#ifdef BT_NATIVE
+    ((void (*)())bsbabykaz_entrypoint_5)();
+#else
     bsbabykaz_entrypoint_5();
+#endif
     if (func_8008E148(arg0) != 0) {
         sp24 = _badrone_entrypoint_25(arg0);
     }

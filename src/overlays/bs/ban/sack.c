@@ -834,7 +834,11 @@ void func_80801680_bsbansack(s32 arg0, s32 arg1) {
         sp4C = baanim_getAnimCtrlPtr(arg0);
         sp3C = player_inWater((PlayerState *)arg0);
         sp30 = player_isStable((PlayerState *)arg0) || sp3C;
+#ifdef BT_NATIVE
+        ((void (*)())func_80800A78_bsbansack)(arg0, sp3C, sp30);
+#else
         func_80800A78_bsbansack(arg0, sp3C, sp30);
+#endif
         func_8009DB04(arg0, 0x3F0, func_800DC178(0.96f, 1.04f), 0x2710);
         func_800A2EEC(arg0, 4);
         func_8009FFD8((PlayerState *)arg0, 1, 1, 1, 2);

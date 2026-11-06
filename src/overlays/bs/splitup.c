@@ -68,7 +68,9 @@ s32 func_8080012C_bssplitup(PlayerState *arg0, s32 arg1) {
     void func_8009BA9C(PlayerState *, f32 *);
     void func_8009C128(PlayerState *, f32 *);
     void func_8009DF18(PlayerState *, s32, f32, s32);
+#ifndef BT_NATIVE
     void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+#endif
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800F9098(s32, f32 *);

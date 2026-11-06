@@ -90,7 +90,11 @@ void func_80800150_chamazongoldhordeofficial(Actor *arg0) {
     void func_80800E64_chamazongoldhordeofficial(Actor *);
     void func_80800E94_chamazongoldhordeofficial(Actor *);
     int func_80800F40_chamazongoldhordeofficial(Actor *, s32, s32);
+#ifdef BT_NATIVE
+    void func_8010D5DC(void);
+#else
     extern s32 func_8010D5DC;
+#endif
     extern u32 D_80801288_chamazongoldhordeofficial;
     extern u32 D_80801294_chamazongoldhordeofficial;
     extern u32 D_808012A0_chamazongoldhordeofficial;
@@ -257,7 +261,11 @@ s32 func_808006F8_chamazongoldhordeofficial(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800E18_chamazongoldhordeofficial(Actor *);
     void func_80801060_chamazongoldhordeofficial(Actor *);
     extern s32 D_808011C0_chamazongoldhordeofficial[];
+#ifdef BT_NATIVE
+    void func_8010D5DC(void);
+#else
     extern s32 func_8010D5DC;
+#endif
     f32 sp3C[3];
     f32 sp30[3];
 

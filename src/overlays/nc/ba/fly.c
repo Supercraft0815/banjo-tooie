@@ -15,7 +15,11 @@ void ncbafly_entrypoint_1(s32 *arg0) {
     void ncbafly_entrypoint_5();
     func_80111590(arg0, 10.0f, 20.0f, 120.0f, 200.0f);
     ncbafly_entrypoint_4((s32) arg0, 0x40000000, 0x44480000, 0x43AF0000);
+#ifdef BT_NATIVE
+    ((void (*)())ncbafly_entrypoint_5)((s32) arg0, 0);
+#else
     ncbafly_entrypoint_5((s32) arg0, 0);
+#endif
     func_80111B8C(arg0, 4.0f, 8.0f);
     func_80115858(arg0, 0);
     func_80115870(arg0, 0.0f);

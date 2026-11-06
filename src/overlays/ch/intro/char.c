@@ -172,7 +172,11 @@ void func_80800484_chintrochar(Actor *arg0) {
     u16 *temp_v0;
 
     temp_s1 = func_80804160_chintrochar[arg0->unk74_7][0];
+#ifdef BT_NATIVE
+    ((s32 (*)())func_808000FC_chintrochar)();
+#else
     func_808000FC_chintrochar();
+#endif
     temp_v0 = D_80804790_chintrochar[arg0->unk74_7];
     func_80103140(arg0, temp_v0[-0x320], temp_v0[-0x31F]);
     if (temp_s1 & 0x40) {
@@ -1376,7 +1380,11 @@ void func_80804054_chintrochar(Actor *actor, s32 index, f32 orientation, f32 *of
 void func_80804238_chintrochar(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_801065A4();
+#ifdef BT_NATIVE
+    void chintrochar_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     s32 _chintrochar_entrypoint_1();
+#endif
     s32 sp1C;
     sp1C = func_801065A4();
     if (sp1C != 0) {

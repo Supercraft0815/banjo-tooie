@@ -862,7 +862,11 @@ void func_80801A10_chwaspnestgame(Actor *arg0) {
         func_80801CE4_chwaspnestgame(arg0);
         if (func_80801590_chwaspnestgame(arg0, 100.0f, 500.0f) != 0) {
             if (func_800DA298(0) == 0) {
+#ifdef BT_NATIVE
+                ((void (*)())func_8080129C_chwaspnestgame)(arg0->unk3C);
+#else
                 func_8080129C_chwaspnestgame(arg0->unk3C);
+#endif
                 func_800FFA88((u8 *)arg0 ->unk0);
                 return;
             }

@@ -76,8 +76,12 @@ void func_80800478_idtwinkle(void *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_2(s32, s32, s32 *, void *);
     s32 func_800DC214(s32, s32);
     f32 func_800DC264(f32, f32);
+#ifndef BT_NATIVE
     extern s32 _idtwinkle_entrypoint_0;
+#endif
+#ifndef BT_NATIVE
     extern s32 _idtwinkle_entrypoint_1;
+#endif
     s32 temp;
     s32 offset;
     s32 i;
@@ -140,7 +144,9 @@ void idtwinkle_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     f32 func_800D8FF8(void);
     f32 func_800DC264(f32, f32);
+#ifndef BT_NATIVE
     extern s32 _idtwinkle_entrypoint_2;
+#endif
     s32 pad[2];
     s32 done;
     f32 dt;

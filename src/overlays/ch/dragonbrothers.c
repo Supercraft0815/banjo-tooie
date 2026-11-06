@@ -1487,7 +1487,11 @@ void func_80802574_chdragonbrothers(Actor *arg0) {
     void _suexpression_entrypoint_9(u32 *);
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
     s32 func_8008FA2C(s32, s32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_800C067C(s32);
     s32 func_800D2498(u32, s32, u32);
     f32 func_800D8FF8(void);

@@ -353,7 +353,9 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808011F8_chsabreman();
     s32 func_8080167C_chsabreman(s32, s32, s32);
     extern s32 D_80801BE8_chsabreman;
+#ifndef BT_NATIVE
     extern s32 _chsabreman_entrypoint_0;
+#endif
     struct SabremanFlags {
         u32 pad : 26;
         u32 active : 1;

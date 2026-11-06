@@ -655,7 +655,11 @@ void func_808015A4_chevilspirit(Actor *arg0) {
     void func_80102424(Actor *, s32);
     s32 func_80801458_chevilspirit();
     s32 func_808015E0_chevilspirit(Actor *, f32);
+#ifdef BT_NATIVE
+    ((s32 (*)())func_80801458_chevilspirit)();
+#else
     func_80801458_chevilspirit();
+#endif
     if (func_808015E0_chevilspirit(arg0, 100.0f) != 0) {
         func_80102424(arg0, 6);
     }
@@ -820,7 +824,11 @@ s32 func_80801A6C_chevilspirit(Actor *arg0, s32 arg1) {
     s32 func_80801840_chevilspirit();
     Actor *sp1C;
 
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_80801840_chevilspirit)() != 0) {
+#else
     if (func_80801840_chevilspirit() != 0) {
+#endif
         sp1C = _subaddielink_entrypoint_4(func_80100094(arg0, 0));
         if (func_8010108C(sp1C, 0x46, arg1) > 0) {
             return 0;

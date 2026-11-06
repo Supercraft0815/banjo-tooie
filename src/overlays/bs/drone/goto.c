@@ -49,7 +49,11 @@ void func_808000E0_bsdronegoto(struct player_state_s *arg0) {
     s32 var_v1;
 
     func_8009B7C0(arg0);
+#ifdef BT_NATIVE
+    var_v1 = ((s32 (*)())func_8080009C_bsdronegoto)(arg0) != 0;
+#else
     var_v1 = func_8080009C_bsdronegoto(arg0) != 0;
+#endif
     if (var_v1 != 0) {
         var_v1 = player_inWater(arg0) != 0;
     }

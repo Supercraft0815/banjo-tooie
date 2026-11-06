@@ -159,7 +159,11 @@ s32 func_800CBD84(f32 *arg0) {
     s32 sp1C;
     s32 var_a1;
 
+#ifdef BT_NATIVE
+    var_a1 = ((s32 (*)())func_800CBC3C)();
+#else
     var_a1 = func_800CBC3C();
+#endif
     if (var_a1 != -1) {
         if (func_800CC4D4(arg0, (sp1C = var_a1)) != -1) {
             return -1;
@@ -408,7 +412,11 @@ void *func_800CC684(s32 arg0, s32 arg1)
 
 s32 func_800CC6CC(void) {
     void *func_800CC63C();
+#ifdef BT_NATIVE
+    return (*(u16 *)((s8 *)(((void * (*)())func_800CC63C)()) + (0x14))) & 1;
+#else
     return (*(u16 *)((s8 *)(func_800CC63C()) + (0x14))) & 1;
+#endif
 }
 
 s32 func_800CC6F4(s32 arg0, s32 arg1, s32 arg2) {

@@ -433,9 +433,15 @@ void idbounce_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
     void func_800EF334(f32 *, f32);
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 _glid_entrypoint_1(s32, s32, s32 *, s32);
+#ifndef BT_NATIVE
     extern s32 _idbounce_entrypoint_0;
+#endif
+#ifndef BT_NATIVE
     extern s32 _idbounce_entrypoint_1;
+#endif
+#ifndef BT_NATIVE
     extern s32 _idbounce_entrypoint_2;
+#endif
     extern s32 D_8013546C;
     f32 sp34[3];
 

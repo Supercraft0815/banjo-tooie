@@ -224,7 +224,11 @@ s32 func_8008F4F0(struct player_state_s *arg0) {
     s32 func_8008EF3C();
     s32 result;
 
+#ifdef BT_NATIVE
+    result = ((s32 (*)())func_8008EF3C)(arg0);
+#else
     result = func_8008EF3C(arg0);
+#endif
     if (result == 0xB) {
         if (baflag_isTrue(arg0, 0x26) != 0) {
             return result;

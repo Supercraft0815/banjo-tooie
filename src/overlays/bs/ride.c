@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 struct player_state_s;
 struct anctrl_s;
 void func_80093230(struct player_state_s *, f32);
@@ -121,7 +124,11 @@ void func_8080011C_bsride(s32 arg0) {
 void func_8080016C_bsride()
 {
     void func_8080008C_bsride();
+#ifdef BT_NATIVE
+    ((void (*)())func_8080008C_bsride)();
+#else
     func_8080008C_bsride();
+#endif
 }
 
 /* extern */
@@ -278,7 +285,11 @@ s32 bsride_entrypoint_1(s32 arg0) {
 void func_808005B8_bsride()
 {
     void func_8080008C_bsride();
+#ifdef BT_NATIVE
+    ((void (*)())func_8080008C_bsride)();
+#else
     func_8080008C_bsride();
+#endif
 }
 
 /* extern */

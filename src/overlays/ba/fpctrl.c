@@ -512,7 +512,11 @@ void bafpctrl_entrypoint_16(void *arg0) {
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x90)));
     if (((*(u8 *)((s8 *)(temp_v0) + (0x13))) != 0) && ((*(u8 *)((s8 *)(temp_v0) + (0x10))) != 3)) {
+#ifdef BT_NATIVE
+        ((void (*)())bafpctrl_entrypoint_14)();
+#else
         bafpctrl_entrypoint_14();
+#endif
     }
 }
 

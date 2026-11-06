@@ -282,7 +282,11 @@ void func_800A2E18(PlayerState *arg0) {
 void func_800A2EAC(void *arg0) {
     s32 _fxstep_entrypoint_9(s32);
     s32 func_800A2C84();
+#ifdef BT_NATIVE
+    ((s32 (*)())func_800A2C84)();
+#else
     func_800A2C84();
+#endif
     _fxstep_entrypoint_9(*(*(s32 **)((s8 *)(arg0) + (0x124))));
 }
 

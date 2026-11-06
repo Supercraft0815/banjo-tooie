@@ -12,7 +12,11 @@ void idtwinklea_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 _idtwinkle_entrypoint_6(s32, s32, s32);
     s32 _idworld_entrypoint_2(s32);
+#ifdef BT_NATIVE
+    void idtwinklea_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, u8 *arg4);
+#else
     extern s32 _idtwinklea_entrypoint_3;
+#endif
     s32 temp_v0;
 
     temp_v0 = _idworld_entrypoint_2(arg2 - 0xC8);

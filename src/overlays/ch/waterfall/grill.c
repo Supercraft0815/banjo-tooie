@@ -32,7 +32,9 @@ void func_8080008C_chwaterfallgrill(Actor *arg0) {
     s32 func_800CEAA8(s32);
     s32 func_800DA298(s32);
     s32 func_800DA524(s32);
+#ifndef BT_NATIVE
     void func_800DA544(s32);
+#endif
     void func_800EE7F8(f32 *, f32 *);
     void func_80103110(Actor *, u32);
 
@@ -64,7 +66,9 @@ s32 func_808001E0_chwaterfallgrill(s32 arg0, s32 arg1, s32 arg2) {
     void func_800CE8D8(s32, f32, s32);
     void func_800CE928(s32, s32, s32);
     s32 func_800CEAA8(s32);
+#ifndef BT_NATIVE
     s32 func_800DA298(GameFlag);
+#endif
     void func_80103110(Actor *, u32);
 
     switch (arg1) {

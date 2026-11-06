@@ -2,12 +2,22 @@
 
 /* extern */
 
+#ifdef BT_NATIVE
+// The N64 code passes its callers' a0/a1 (buffer, size) through to the CRC check.
+s32 func_80800000_glgamestore(s32 arg0, s32 arg1) {
+    s32 _glcrc_entrypoint_1();
+    s32 temp_v0;
+    s32 var_v1;
+
+    temp_v0 = _glcrc_entrypoint_1(arg0, arg1);
+#else
 s32 func_80800000_glgamestore(void) {
     s32 _glcrc_entrypoint_1();
     s32 temp_v0;
     s32 var_v1;
 
     temp_v0 = _glcrc_entrypoint_1();
+#endif
     var_v1 = temp_v0;
     if (temp_v0 != 0) {
         var_v1 = 3;
@@ -35,7 +45,11 @@ s32 func_8080006C_glgamestore(s32 arg0, s32 arg1, s32 arg2) {
         var_v1 = 2;
     }
     if (var_v1 == 0) {
+#ifdef BT_NATIVE
+        var_v1 = ((s32 (*)())func_80800000_glgamestore)(arg1, arg2);
+#else
         var_v1 = func_80800000_glgamestore(arg1, arg2);
+#endif
     }
     return var_v1;
 }
@@ -110,7 +124,11 @@ s32 func_808001E0_glgamestore(s32 arg0) {
 void glgamestore_entrypoint_4()
 {
     s32 func_80800038_glgamestore();
+#ifdef BT_NATIVE
+    func_808001E0_glgamestore(((s32 (*)())func_80800038_glgamestore)());
+#else
     func_808001E0_glgamestore(func_80800038_glgamestore());
+#endif
 }
 
 /* extern */
@@ -118,5 +136,9 @@ void glgamestore_entrypoint_4()
 void glgamestore_entrypoint_5(void) {
     s32 func_80800030_glgamestore();
     s32 func_808001E0_glgamestore(s32);
+#ifdef BT_NATIVE
+    func_808001E0_glgamestore(((s32 (*)())func_80800030_glgamestore)());
+#else
     func_808001E0_glgamestore(func_80800030_glgamestore());
+#endif
 }

@@ -629,7 +629,11 @@ void func_80801038_chfactoryempspell(Actor *arg0) {
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     void func_800CE928(s32, s32, s32);
+#ifdef BT_NATIVE
+    void chfactoryempspell_entrypoint_0(s32 arg0, s32 arg1);
+#else
     extern s32 _chfactoryempspell_entrypoint_0;
+#endif
     if (arg0->unk64_20) {
         func_800CE8D8(0, 45.0f, 0x2D);
         func_800CE928(0, (s32)&_chfactoryempspell_entrypoint_0, (s32)arg0->unk0);

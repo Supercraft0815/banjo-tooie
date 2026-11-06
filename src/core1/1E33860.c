@@ -96,7 +96,11 @@ s32 func_8001C070(void) {
     void *func_8001BF80();
     s32 var_v1;
 
+#ifdef BT_NATIVE
+    if (((void * (*)())func_8001BF80)() != 0) {
+#else
     if (func_8001BF80() != 0) {
+#endif
         var_v1 = 1;
     } else {
         var_v1 = 0;

@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 
 void func_80800000_sukickball(s32 arg0, s32 arg1, f32 *arg2, f32 arg3) {
     void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
@@ -79,7 +82,9 @@ void sukickball_entrypoint_1(Actor *arg0, void *arg1) {
 
 void sukickball_entrypoint_2(Actor *arg0, f32 arg1, f32 arg2) {
     struct anctrl_s;
+#ifndef BT_NATIVE // would hide the complete enum from overlays/ba/assets.h
     enum asset_e;
+#endif
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
     void anctrl_start(struct anctrl_s *);
     void func_800C4140(u32, f32 *, u32);

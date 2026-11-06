@@ -94,8 +94,12 @@ void idtwinklecolour_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *ar
 void func_80800574_idtwinklecolour(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _glid_entrypoint_2(s32, s32, s32 *, void *);
     s16 func_800DC214(s16, s16);
+#ifndef BT_NATIVE
     extern s32 _idtwinklecolour_entrypoint_0;
+#endif
+#ifndef BT_NATIVE
     extern s32 _idtwinklecolour_entrypoint_1;
+#endif
     s16 temp_v0;
 
     (*(s16 *)((s8 *)(arg0) + (0x1E))) = func_800DC214(0, (*(s16 *)((s8 *)(arg0) + (0xC))));
@@ -153,7 +157,9 @@ void idtwinklecolour_entrypoint_5(s16 *arg0, s32 arg1, s32 arg2)
   s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
   f32 func_800D8FF8(void);
   s32 func_800E3DC0(s16 *, s16 *);
+#ifndef BT_NATIVE
   extern s32 _idtwinklecolour_entrypoint_2;
+#endif
   f32 sp34;
   f32 temp_f0;
   s32 var_s0;

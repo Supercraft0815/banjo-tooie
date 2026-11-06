@@ -1014,7 +1014,11 @@ void ncpoddialog_entrypoint_9(void *arg0, s16 *arg1, int arg2, s32 arg3) {
 
     var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
     if (var_v1 == -1) {
+#ifdef BT_NATIVE
+        ((s32 (*)())func_80801310_ncpoddialog)();
+#else
         func_80801310_ncpoddialog();
+#endif
         var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
     }
     if ((var_v1 != arg2) || ((*(u8 *)((s8 *)(arg0) + (0x216))) != 0)) {

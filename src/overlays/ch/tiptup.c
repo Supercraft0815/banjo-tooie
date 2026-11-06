@@ -613,7 +613,9 @@ void func_80800FE8_chtiptup(Actor *arg0) {
     void func_800F7BC8(s32, s32, Unk80132ED0 *);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
+#ifndef BT_NATIVE
     void func_800DA544(GameFlag);
+#endif
     u32 func_800F54E4(void);
     s32 func_800F4F34(u32, f32 *, f32, f32);
     u8 pad[4];
@@ -651,7 +653,9 @@ void func_808010CC_chtiptup(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 _subaddiesect_entrypoint_1(Actor *);
     s32 _subaddiesect_entrypoint_2(void *, s32, s32);
+#ifndef BT_NATIVE
     s32 func_800DA298(GameFlag);
+#endif
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
     void func_8010A63C(void ***);

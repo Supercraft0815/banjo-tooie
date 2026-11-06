@@ -15,7 +15,9 @@ void func_80800000_chjigsawbitcont(Actor *arg0, u32 arg1) {
 
 s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
     void _chjigsawcollect_entrypoint_1(Actor **, s32, s32);
+#ifndef BT_NATIVE
     s32 func_800DA298(s32);
+#endif
     void *func_80100094(Actor *, u32);
     void func_80100120(Actor *);
     void func_80800890_chjigsawbitcont(Actor *, s32, s32);
@@ -119,7 +121,9 @@ void func_80800214_chjigsawbitcont(Actor *arg0)
 void func_808002E4_chjigsawbitcont(Actor *arg0) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     s32 func_800D0B68(u32, u32);
+#ifndef BT_NATIVE
     s32 func_800DA298(s32);
+#endif
     void func_800EE88C(f32 *, s16 *);
     s32 func_800FFAB0(s32);
     void *func_80100094(Actor *, u32);

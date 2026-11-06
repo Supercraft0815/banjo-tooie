@@ -519,7 +519,9 @@ s32 func_80800EF0_chvolcanobits(void *arg0) {
 void func_80801040_chvolcanobits(u8 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_800BEA88(s32);
+#ifndef BT_NATIVE
     extern s32 _chvolcanobits_entrypoint_4;
+#endif
     s32 temp_v0;
 
     temp_v0 = func_800BEA88(0);

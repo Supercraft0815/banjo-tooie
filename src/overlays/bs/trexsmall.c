@@ -1,4 +1,7 @@
 #include "bs/trexsmall.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 void func_8009D3A8(PlayerState *, s32);
 s32 bs_setState(s32, s32);
 

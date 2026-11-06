@@ -241,7 +241,11 @@ void func_800C968C(s32 arg0, s32 arg1) {
     s32 temp_v0;
     s32 var_a0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800C91C8)();
+#else
     temp_v0 = func_800C91C8();
+#endif
     var_a0 = temp_v0;
     if (temp_v0 == 0) {
         var_a0 = func_800C9150(arg0);
@@ -253,7 +257,11 @@ s32 func_800C96CC(void) {
     s32 func_800C91C8();
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800C91C8)();
+#else
     temp_v0 = func_800C91C8();
+#endif
     if (temp_v0 != 0) {
         return (*(u8 *)((s8 *)temp_v0 + 0xA) == *(u8 *)((s8 *)temp_v0 + 0x1C)) ? 1 : 0;
     }
@@ -267,7 +275,11 @@ s32 func_800C9714(void) {
     s32 func_800C91C8();
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800C91C8)();
+#else
     temp_v0 = func_800C91C8();
+#endif
     if (temp_v0 != 0) {
         return _gctransitionDll_entrypoint_3(temp_v0);
     }
@@ -283,10 +295,18 @@ void *func_800C9750(f32 time, s32 cnt, void *funcPtr, s32 arg0, s32 arg1, s32 ar
         u8 rest[0x50];
     } TimedFunction;
     struct Vector;
+#ifndef BT_NATIVE
     u32 vector_begin(s32);
+#endif
+#ifndef BT_NATIVE
     u32 vector_end(s32);
+#endif
+#ifndef BT_NATIVE
     s32 vector_new(s32, s32);
+#endif
+#ifndef BT_NATIVE
     void *vector_insert(struct Vector **, s32);
+#endif
     extern s32 D_8012AB60;
     TimedFunction *startPtr;
     TimedFunction *retVal;
@@ -416,7 +436,9 @@ void func_800C9B30(u8 *arg0, volatile s32 arg1, volatile s32 arg2) {
 }
 
 void func_800C9B84(void) {
+#ifndef BT_NATIVE
     s32 vector_clear(s32);
+#endif
     extern s32 D_8012AB60;
     if (D_8012AB60 != 0) {
         vector_clear(D_8012AB60);
@@ -526,7 +548,9 @@ void func_800C9F48(f32 time, u8 *arg1, s32 arg2) {
 }
 
 int func_800C9F94(void) {
+#ifndef BT_NATIVE
     s32 vector_size(s32);
+#endif
     extern s32 D_8012AB60;
     return D_8012AB60 == 0 || vector_size(D_8012AB60) == 0;
 }
@@ -534,10 +558,18 @@ int func_800C9F94(void) {
 void func_800C9FD0(void) {
     void func_800C986C(void *);
     void rare_memcpy(void *, void *, int);
+#ifndef BT_NATIVE
     u32 vector_begin(s32);
+#endif
+#ifndef BT_NATIVE
     void vector_erase(s32, s32);
+#endif
+#ifndef BT_NATIVE
     s32 vector_free(s32);
+#endif
+#ifndef BT_NATIVE
     s32 vector_size(s32);
+#endif
     extern s32 D_8012AB60;
     void *iPtr;
     u8 iFunc[0x70];
@@ -555,7 +587,9 @@ void func_800C9FD0(void) {
 }
 
 void func_800CA060(void) {
+#ifndef BT_NATIVE
     s32 vector_free(s32);
+#endif
     extern s32 D_8012AB60;
     if (D_8012AB60 != 0) {
         vector_free(D_8012AB60);
@@ -572,10 +606,18 @@ void func_800CA0A8(void) {
     void func_800C986C(void *);
     f32 func_800D8FF8(void);
     void rare_memcpy(void *, void *, int);
+#ifndef BT_NATIVE
     u32 vector_begin(s32);
+#endif
+#ifndef BT_NATIVE
     void vector_erase(s32, s32);
+#endif
+#ifndef BT_NATIVE
     s32 vector_free(s32);
+#endif
+#ifndef BT_NATIVE
     s32 vector_size(s32);
+#endif
     extern s32 D_8012AB60;
     f32 *iPtr;
     u8 iFunc[0x70];
@@ -598,7 +640,9 @@ void func_800CA0A8(void) {
 }
 
 void func_800CA174(void) {
+#ifndef BT_NATIVE
     s32 vector_defrag(s32);
+#endif
     extern s32 D_8012AB60;
     if (D_8012AB60 != 0) {
         D_8012AB60 = vector_defrag(D_8012AB60);

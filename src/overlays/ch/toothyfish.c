@@ -209,12 +209,20 @@ void func_808003D4_chtoothyfish(Actor *arg0, u8 *arg1)
     if (var_a2 != 0)
     {
       sp18 = var_a2;
+#ifdef BT_NATIVE
+      ((void (*)())func_808000E8_chtoothyfish)(arg0, 2, var_a2);
+#else
       func_808000E8_chtoothyfish(arg0, 2, var_a2);
+#endif
     }
     else
     {
       sp18 = var_a2;
+#ifdef BT_NATIVE
+      ((void (*)())func_808000E8_chtoothyfish)(arg0, 3, var_a2);
+#else
       func_808000E8_chtoothyfish(arg0, 3, var_a2);
+#endif
     }
     *((u8 *) (((s8 *) arg1) + 0x3E)) = ((u8) var_a2) & 0xFFFF;
   }
@@ -230,7 +238,11 @@ void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3) {
         } else {
             arg1 = 5;
         }
+#ifdef BT_NATIVE
+        ((void (*)())func_808000E8_chtoothyfish)(arg0, arg1, arg2, arg3);
+#else
         func_808000E8_chtoothyfish(arg0, arg1, arg2, arg3);
+#endif
     }
 }
 

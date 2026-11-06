@@ -445,14 +445,18 @@ void chskeletonexplode_entrypoint_5(Actor *arg0, s32 arg1) {
 }
 
 void chskeletonexplode_entrypoint_6(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
+#ifndef BT_NATIVE
     extern s32 _chskeletonexplode_entrypoint_0;
+#endif
     s32 sp[3];
     func_800EE904(sp, arg1);
     _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, *arg0, sp[0], sp[1], sp[2], arg2, arg3);
 }
 
 void chskeletonexplode_entrypoint_7(Actor *arg0, f32 *arg1) {
+#ifndef BT_NATIVE
     extern s32 _chskeletonexplode_entrypoint_0;
+#endif
     s32 sp[5];
 
     sp[1] = arg0->unk0->unk14;
@@ -462,7 +466,9 @@ void chskeletonexplode_entrypoint_7(Actor *arg0, f32 *arg1) {
 }
 
 void chskeletonexplode_entrypoint_8(Actor **arg0, s16 *arg1) {
+#ifndef BT_NATIVE
     extern s32 _chskeletonexplode_entrypoint_0;
+#endif
     s32 sp[5];
 
     sp[1] = ((u16 *)&(*arg0)->unk14)[0];

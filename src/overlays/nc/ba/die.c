@@ -15,7 +15,31 @@ void func_80800048_ncbadie(PlayerState* arg0, f32* arg1)
 /* extern */
 
 void ncbadie_entrypoint_1(void *arg0) {
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    void ncbadie_entrypoint_3(void *arg0, f32 arg1);
+#else
+    void ncbadie_entrypoint_3(void *arg0, f32 arg1);
+#endif
+#else
+    void ncbadie_entrypoint_3(void *arg0, f32 arg1);
+#endif
+#else
+    void ncbadie_entrypoint_3(void *arg0, f32 arg1);
+#endif
+#else
+    void ncbadie_entrypoint_3(void *arg0, f32 arg1);
+#endif
+#else
+    void ncbadie_entrypoint_3(void *arg0, f32 arg1);
+#endif
+#else
     void ncbadie_entrypoint_3(void *, f32);
+#endif
     void func_80111B8C(s32 *, f32, f32);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);

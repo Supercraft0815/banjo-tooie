@@ -289,7 +289,11 @@ void func_80800770_chdumbwaiterlift(Actor *arg0) {
     s32 _chmrtannoy_entrypoint_0(void);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     void func_80101FDC(Actor *, u32);
     void func_80800A8C_chdumbwaiterlift(Actor *);
     if (_subaddiedialog_entrypoint_4(arg0->position, 0x50, 0) != 0) {

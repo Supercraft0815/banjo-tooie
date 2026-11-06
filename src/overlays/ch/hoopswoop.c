@@ -508,7 +508,9 @@ s32 func_80800C04_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800C9C_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor *, u32);
+#ifndef BT_NATIVE
     void func_800DA544(GameFlag);
+#endif
 
     switch (arg2) {
         case 1:

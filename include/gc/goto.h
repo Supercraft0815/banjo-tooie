@@ -9,7 +9,11 @@
 #include "su/templeboss.h"
 
 void gcgoto_entrypoint_0(s32*, s32*);
+#ifdef BT_NATIVE
+void _gcgoto_entrypoint_1(u32 a0, u32 a1);
+#else
 u32 _gcgoto_entrypoint_1(u32, u32);
+#endif
 void _gcgoto_entrypoint_8(s32, s32);
 void gcgoto_entrypoint_14(s32);
 void func_808003D0_gcgoto(s16 *, s32);

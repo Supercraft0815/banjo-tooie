@@ -594,7 +594,11 @@ void func_80801588_chclockworkmouse(Actor* actor) {
         break;
     case 4:
         {
+#ifdef BT_NATIVE
+            f32 sp28[3]; __builtin_memcpy(sp28, &D_80803E3C_chclockworkmouse, sizeof(sp28));
+#else
             f32 sp28[3] = D_80803E3C_chclockworkmouse;
+#endif
             f32 temp_f0;
             func_800907C0(actor->position);
             sp28[1] = func_80090010();

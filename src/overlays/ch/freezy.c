@@ -106,7 +106,11 @@ void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
     void func_80102190(void *, s32);
     void func_8010A570(Actor *);
     extern s32 D_80800748_chfreezy;
+#ifdef BT_NATIVE
+    void chfreezy_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4);
+#else
     extern s32 _chfreezy_entrypoint_2;
+#endif
     s32 sp34;
     s32 sp30;
     s32 sp2C;

@@ -19,7 +19,11 @@ s32 baboost_entrypoint_1(PlayerState *self) {
     return count;
 }
 
+#ifdef BT_NATIVE
+    s32 baboost_entrypoint_2(PlayerState *self, f32 arg1);
+#else
 s32 baboost_entrypoint_2(PlayerState *self, f32 arg1);
+#endif
 s32 baboost_entrypoint_2(PlayerState *self, f32 arg1) {
     f32 threshold;
     s32 i;

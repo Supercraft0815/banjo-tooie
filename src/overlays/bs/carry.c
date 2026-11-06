@@ -1,5 +1,12 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/yaw.h" // enums for the prototypes below
+#include "overlays/ba/physics.h"
+#endif
 #include "overlays/ba/playerstate.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/anim.h"
+#endif
 
 void func_80800000_bscarry(PlayerState *arg0) {
     int bastatetimer_isDone(PlayerState *, s32);
@@ -102,7 +109,9 @@ void func_8080027C_bscarry(PlayerState *arg0)
 enum baanim_update_type_e;
 enum yaw_type_e;
 enum ba_physics_type_e;
+#ifndef BT_NATIVE
 void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+#endif
 void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
 void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
 

@@ -4,7 +4,9 @@
 #include "core2/1EAF950.h"
 
 s16 _gsproplookup_entrypoint_0(NativeMarkerProp *);
+#ifndef BT_NATIVE
 void func_800EA400(s32,Unk80132ED0 *,f32 *,void *);
+#endif
 f32 func_800EEAD4(f32 *,f32 *);
 static void (*world_hit_callback)(uintptr_t,uintptr_t);
 static uintptr_t world_hit_userdata;

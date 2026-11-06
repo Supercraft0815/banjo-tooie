@@ -150,7 +150,11 @@ void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
     f32 func_800D8FF8(void);
     s32 func_800E3D0C(void *, void *);
     void func_800EE7F8(f32 *, f32 *);
+#ifndef BT_NATIVE
+#ifndef BT_NATIVE
     extern s32 _idwibble_entrypoint_0;
+#endif
+#endif
     arg0[9] += func_800D8FF8() * arg0[11];
     {
     struct { f32 x, y, z; } sp34, sp28;
@@ -164,7 +168,11 @@ void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
+#ifdef BT_NATIVE
+void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); f32 dt = func_800D8FF8(); f32 *velocity = (f32 *) ((s8 *) arg0 + 0x2C); f32 *position = (f32 *) ((s8 *) arg0 + 0x24); *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
+#else
 void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); extern s32 _idwibble_entrypoint_0; f32 dt = func_800D8FF8(); f32 *velocity = (f32 *) ((s8 *) arg0 + 0x2C); f32 *position = (f32 *) ((s8 *) arg0 + 0x24); *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
+#endif
 
 void idwibble_entrypoint_5(void *arg0, s16 arg1) {
     (*(s16 *)((s8 *)(arg0) + (0x34))) = arg1;

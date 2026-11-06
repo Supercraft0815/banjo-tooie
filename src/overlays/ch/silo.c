@@ -344,7 +344,11 @@ void func_808009E8_chsilo(Actor *volatile arg0) {
 /* extern */
 
 void func_80800A40_chsilo(Actor *arg0) {
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     f32 func_800D8FF8(void);
     s32 func_800DA9E4(s32, s32);
     s32 func_8010CAC0(f32 *, u32);
@@ -385,7 +389,11 @@ void func_80800B80_chsilo(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_2(u8 *, f32 *, s32 *);
     s32 func_8008FA2C(s32, s32);
     void func_8008FB58(f32 *, f32, f32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     void func_800904C8(s32);
     void func_800907C0(f32 *);
     void func_800A7AD4(s32, s32);

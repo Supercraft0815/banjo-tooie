@@ -5,7 +5,11 @@ s32 func_80800000_chlagoonufoext(Actor *arg0, s32 arg1, s32 arg2) {
     void _glcutDll_entrypoint_6(u32, u32);
     s32 _susubgame_entrypoint_4(void *, s32);
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_800DA298(s32);
     s32 func_800DA544(s32);
     s32 func_800EA090(void);

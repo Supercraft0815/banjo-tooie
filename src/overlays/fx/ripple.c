@@ -60,7 +60,11 @@ void fxripple_entrypoint_0(s32 arg0, s32 arg1) {
 void fxripple_entrypoint_1(void) {
     s32 func_80800094_fxripple();
     s32 temp_v0;
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_80800094_fxripple)();
+#else
     temp_v0 = func_80800094_fxripple();
+#endif
     if (temp_v0 != 0) {
         func_800BA22C(temp_v0, 1);
     }
@@ -73,7 +77,11 @@ void fxripple_entrypoint_2(s32 arg0, s32 arg1) {
 void fxripple_entrypoint_3()
 {
     s32 func_80800094_fxripple();
+#ifdef BT_NATIVE
+    ((s32 (*)())func_80800094_fxripple)();
+#else
     func_80800094_fxripple();
+#endif
 }
 
 /* extern */

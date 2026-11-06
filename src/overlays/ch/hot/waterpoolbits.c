@@ -215,7 +215,11 @@ s32 func_808003E0_chhotwaterpoolbits(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800528_chhotwaterpoolbits(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_800BEA88(s32);
+#ifdef BT_NATIVE
+    void chhotwaterpoolbits_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chhotwaterpoolbits_entrypoint_4;
+#endif
     s32 temp_v0;
 
     temp_v0 = func_800BEA88(1);

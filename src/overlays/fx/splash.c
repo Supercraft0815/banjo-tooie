@@ -21,7 +21,9 @@ s32 fxsplash_entrypoint_2(f32 arg0[3], f32 arg1) {
     void func_800BA6B0(u8 *, s16, s16, s16, s16, s16, s16);
     s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
     extern s32 D_80800144_fxsplash;
+#ifndef BT_NATIVE
     extern s32 _fxsplash_entrypoint_0;
+#endif
     s32 sp2C;
     s32 temp_f6;
     s32 temp_f8;

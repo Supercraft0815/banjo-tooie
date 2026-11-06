@@ -81,9 +81,15 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
     void func_80098218(PlayerState *, s32 *);
     s16 *func_800A4C88(void *);
     f32 func_800A8258(void);
+#ifndef BT_NATIVE
     void func_800DFC20(s32 *, s32, f32 *);
+#endif
+#ifndef BT_NATIVE
     void func_800DFF64(s32 *, s32, f32 *);
+#endif
+#ifndef BT_NATIVE
     void func_800DFFA0(s32 *, s32, f32 *);
+#endif
     s32 func_8010FFD8(s32);
     static s32 D_80126CD0;
     f32 sp2C[3];

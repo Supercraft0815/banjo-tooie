@@ -155,7 +155,11 @@ s32 func_800E488C(s32 arg0) {
 
 s32 func_800E4AF0(void) {
     s32 func_800E4730();
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_800E4730)() < 0) {
+#else
     if (func_800E4730() < 0) {
+#endif
         return 0;
     }
     return 1;
@@ -186,7 +190,11 @@ s32 func_800E4BB8(void) {
     s32 func_800E4B1C(s32);
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((s32 (*)())func_800E4730)();
+#else
     temp_v0 = func_800E4730();
+#endif
     if (temp_v0 < 0) {
         return 0;
     }
@@ -1088,7 +1096,11 @@ s32 func_800E6728(void *arg0) {
 
 void func_800E692C(void) {
     s32 heap_alloc(s32);
+#ifdef BT_NATIVE
+    extern long D_8012D570; // same type as in func_800E4C7C
+#else
     extern s32 D_8012D570;
+#endif
     D_8012D570 = heap_alloc(0x40);
 }
 

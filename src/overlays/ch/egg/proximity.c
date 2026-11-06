@@ -143,7 +143,9 @@ void func_80800330_cheggproximity(Actor *arg0) {
     void func_808005EC_cheggproximity(s32, s32);
     void func_80800650_cheggproximity(s32, s32);
     void func_808006A4_cheggproximity(Actor *, u8 *);
+#ifndef BT_NATIVE
     extern s32 _cheggproximity_entrypoint_2;
+#endif
     struct ProximityFlags {
         u8 pad[0x38];
         u32 unused31_24:8;

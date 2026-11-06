@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 
 extern u16 D_808045A4_chflysaucer[];
 void func_80101870(Actor *, void *);
@@ -743,7 +746,11 @@ void func_80800F98_chflysaucer() {
     u32 func_80800E48_chflysaucer();
     u32 temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((u32 (*)())func_80800E48_chflysaucer)();
+#else
     temp_v0 = func_80800E48_chflysaucer();
+#endif
     switch (temp_v0) {
     case 0:
     case 5:
@@ -1047,7 +1054,11 @@ void func_80801568_chflysaucer(Actor *arg0, s32 arg1) {
                     func_8080105C_chflysaucer(arg0, 0x10E1, 1);
                     return;
                 }
+#ifdef BT_NATIVE
+                ((void (*)())func_808004F0_chflysaucer)(arg0);
+#else
                 func_808004F0_chflysaucer(arg0);
+#endif
                 func_80801568_chflysaucer(arg0, 5);
             }
             break;
@@ -1185,10 +1196,18 @@ s32 func_8080185C_chflysaucer(Actor *arg0, s32 arg1, union PackedArg arg2) {
                 break;
                 case 0x1103:
                 case 0x1104:
+#ifdef BT_NATIVE
+                ((void (*)())func_808004F0_chflysaucer)(arg0);
+#else
                 func_808004F0_chflysaucer(arg0);
+#endif
                 break;
                 case 0x10E1:
+#ifdef BT_NATIVE
+                ((void (*)())func_808004F0_chflysaucer)(arg0);
+#else
                 func_808004F0_chflysaucer(arg0);
+#endif
                 break;
             }
             if (1) {}
@@ -1314,7 +1333,11 @@ void func_80801E98_chflysaucer(Actor *arg0) {
     s32 func_80016B30(s32, s32);
     s32 func_8008FA2C(s32, s32);
     s32 func_8008FA60(s32, s32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_800DA298(s32);
     void func_800DA544(GameFlag);
     s32 func_800DA9E4(s32, s32);

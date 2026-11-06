@@ -671,7 +671,11 @@ void func_8080138C_chhumba(u8 *arg0) {
     s32 sp1C;
     s32 temp_v0;
 
+#ifdef BT_NATIVE
+    if ((((s32 (*)())func_80800A50_chhumba)() != 0) && (func_80090270() == 0)) {
+#else
     if ((func_80800A50_chhumba() != 0) && (func_80090270() == 0)) {
+#endif
         temp_v0 = func_8008FD48();
         sp1C = temp_v0;
         if ((temp_v0 == 1) && ((func_8009EA2C() == 0) || !((Actor *)arg0)->unk74_29)) {

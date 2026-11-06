@@ -60,7 +60,9 @@ void func_8080012C_sueggmove(Actor *arg0) {
     void func_800F1988(f32 *, f32 *, f32 *);
     void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
     void *func_80100094(Actor *, u32);
+#ifndef BT_NATIVE
     extern s32 _sueggmove_entrypoint_0;
+#endif
     u8 *state;
     f32 sp40[3];
     f32 sp34[3];

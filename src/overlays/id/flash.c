@@ -37,7 +37,9 @@ void idflash_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, f32 *);
     s32 _idflasha_entrypoint_1(s32);
     s32 _idworld_entrypoint_1(s32);
+#ifndef BT_NATIVE
     extern s32 _idflash_entrypoint_0;
+#endif
     s32 temp_v0;
 
     temp_v0 = _idworld_entrypoint_1(arg2 - 0x64);

@@ -299,7 +299,11 @@ s32 func_800CE83C(s32 arg0, s32 arg1) {
 
 void func_800CE864() {
     void *func_800CE3E0();
+#ifdef BT_NATIVE
+    (*(s8 *)((s8 *)(((void * (*)())func_800CE3E0)()) + (0x14))) = 1;
+#else
     (*(s8 *)((s8 *)(func_800CE3E0()) + (0x14))) = 1;
+#endif
 }
 
 void func_800CE88C(s32 arg0, s32 arg1) { void *temp_v0; s8 temp_v1; temp_v0 = func_800CE3E0(arg0); if (arg1 != 0) { *(s8 *)((s8 *)temp_v0 + 0x12) = *(s8 *)((s8 *)temp_v0 + 0x12) + 1; } else { temp_v1 = *(s8 *)((s8 *)temp_v0 + 0x12); if (temp_v1 != 0) *(s8 *)((s8 *)temp_v0 + 0x12) = temp_v1 - 1; } }
@@ -331,7 +335,11 @@ void func_800CE928(s32 arg0, s32 arg1, s32 arg2) {
 
 s32 func_800CE95C() {
     void *func_800CE3E0();
+#ifdef BT_NATIVE
+    return (*(s32 *)((s8 *)(((void * (*)())func_800CE3E0)()) + (0x18)));
+#else
     return (*(s32 *)((s8 *)(func_800CE3E0()) + (0x18)));
+#endif
 }
 
 void func_800CE980(s32 arg0, f32 arg1, s32 arg2) {
@@ -351,13 +359,21 @@ s32 func_800CE9E8(s32 arg0, s32 arg1) {
     s32 func_800CE438();
     u8 *temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((void * (*)())func_800CE3E0)();
+#else
     temp_v0 = func_800CE3E0();
+#endif
     if ((*(s16 *)((s8 *)(temp_v0) + (0x10))) < arg1) {
         (*(s16 *)((s8 *)(temp_v0) + (0x10))) = (s16) arg1;
     }
     (*(s16 *)((s8 *)(temp_v0) + (8))) = (s16) arg1;
     (*(s16 *)((s8 *)(temp_v0) + (0xA))) = (s16) arg1;
+#ifdef BT_NATIVE
+    return ((s32 (*)())func_800CE438)(temp_v0, arg0, arg1);
+#else
     return func_800CE438(temp_v0, arg0, arg1);
+#endif
 }
 
 void func_800CEA38(s32 arg0, s32 arg1) {

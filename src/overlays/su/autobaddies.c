@@ -130,7 +130,9 @@ void suautobaddies_entrypoint_2(void) {
     s32 func_800C9DAC(f32, s32 *);
     void func_800D1864(u32, u32, u32);
     s32 func_800D1A04(s32);
+#ifndef BT_NATIVE
     extern s32 _suautobaddies_entrypoint_2;
+#endif
     if (func_800D1A04(0x4B) != 0) {
         func_800D1864(0x4B, 0, 1);
         if (func_800D1A04(0x4C) != 0) {
@@ -147,7 +149,9 @@ void func_8080036C_suautobaddies(void) {
     s32 func_800DA524(s32);
     s32 func_800DB9B0();
     s32 func_800EA05C();
+#ifndef BT_NATIVE
     extern s32 _suautobaddies_entrypoint_2;
+#endif
     s32 sp1C;
 
     sp1C = func_800EA05C();

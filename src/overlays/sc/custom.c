@@ -239,7 +239,11 @@ s32 func_808006C4_sccustom(s32 arg0, s32 arg1) {
 void sccustom_entrypoint_3(s32 arg0) {
     s32 func_808004C8_sccustom();
     s32 func_808006C4_sccustom(s32, s32);
+#ifdef BT_NATIVE
+    func_808006C4_sccustom(arg0, ((s32 (*)())func_808004C8_sccustom)());
+#else
     func_808006C4_sccustom(arg0, func_808004C8_sccustom());
+#endif
 }
 
 s32 sccustom_entrypoint_4(s32 arg0) {
@@ -293,7 +297,11 @@ void sccustom_entrypoint_6(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 void sccustom_entrypoint_7(s32 arg0) {
     s32 func_8080084C_sccustom();
     s32 func_808006C4_sccustom(s32, s32);
+#ifdef BT_NATIVE
+    func_808006C4_sccustom(arg0, ((s32 (*)())func_8080084C_sccustom)());
+#else
     func_808006C4_sccustom(arg0, func_8080084C_sccustom());
+#endif
 }
 
 const char R_80800910_sccustom[] = "LOTS";

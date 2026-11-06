@@ -283,7 +283,11 @@ s16 glcutDll_entrypoint_18(void)
     return D_801275E8.unk4;
 }
 
+#ifdef BT_NATIVE
+s32 glcutDll_entrypoint_19(u32 arg0) // include/gl/cutDll.h
+#else
 u32 glcutDll_entrypoint_19(s32 arg0)
+#endif
 {
     u32 var_v0;
 

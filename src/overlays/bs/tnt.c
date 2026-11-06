@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 
 struct anctrl_s;
 enum asset_e;
@@ -630,7 +633,9 @@ struct player_state_s;
 enum baanim_update_type_e;
 enum yaw_type_e;
 enum ba_physics_type_e;
+#ifndef BT_NATIVE
 void func_8009FFD8(struct player_state_s *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);
+#endif
 
 void func_80801258_bstnt(void *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);

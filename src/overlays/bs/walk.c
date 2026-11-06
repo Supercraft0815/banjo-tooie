@@ -1,5 +1,13 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/yaw.h" // enums for the prototypes below
+#include "overlays/ba/physics.h"
+#endif
 #include "overlays/bs/walk.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#include "overlays/ba/anim.h"
+#endif
 
 struct anctrl_s;
 enum asset_e;
@@ -362,7 +370,9 @@ s32 bswalk_entrypoint_9(s32 arg0) {
 void bswalk_entrypoint_10(PlayerState *self) {
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void anctrl_reset();
+#ifndef BT_NATIVE
     void anctrl_setIndex();
+#endif
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setStart(struct anctrl_s *, f32);
     void anctrl_setPlaybackType();
@@ -661,7 +671,9 @@ void bswalk_entrypoint_18(s32 arg0)
 /* extern */
 
 void bswalk_entrypoint_19(PlayerState *arg0) {
+#ifndef BT_NATIVE
     void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+#endif
     void baanim_setDurationRange(PlayerState *, f32, f32);
     void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
     void func_8009FFD8(PlayerState *, enum baanim_update_type_e, enum yaw_type_e, s32, enum ba_physics_type_e);

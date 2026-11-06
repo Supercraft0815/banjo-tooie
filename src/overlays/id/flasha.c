@@ -65,7 +65,9 @@ void idflasha_entrypoint_4(void *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     f32 func_800D8FF8(void);
     s32 func_800F1574(f32 *, f32);
+#ifndef BT_NATIVE
     extern s32 _idflasha_entrypoint_0;
+#endif
     struct Flash {
         s16 value;
         s16 peak;

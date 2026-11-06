@@ -60,8 +60,16 @@ void func_80800128_chboilerid(Actor *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     extern u32 D_80800DA4_chboilerid[];
     extern s32 D_80800DB0_chboilerid[], D_80800DE8_chboilerid[];
+#ifdef BT_NATIVE
+    void chboilerid_entrypoint_1(s32 arg0, s16 *arg1, u32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chboilerid_entrypoint_1[], _chboilerid_entrypoint_2[];
+#endif
+#ifdef BT_NATIVE
+    void chboilerid_entrypoint_3(s32 arg0, s16 *arg1, u32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     extern s32 _chboilerid_entrypoint_3[], _chboilerid_entrypoint_4[];
+#endif
     f32 sp44[3];
     Actor *data;
     f32 delta;
@@ -108,6 +116,9 @@ void func_80800128_chboilerid(Actor *arg0) {
     func_80800440_chboilerid(arg0);
     func_80800468_chboilerid(arg0);
     func_80800998_chboilerid((s32)arg0);
+#ifdef BT_NATIVE
+    void chboilerid_entrypoint_2(), chboilerid_entrypoint_4(); // defined below
+#endif
     _glid_entrypoint_0(func_800BEA88(0), 0x3C, _chboilerid_entrypoint_1, (s32)arg0->unk0);
     _glid_entrypoint_0(func_800BEA88(0), 0x3D, _chboilerid_entrypoint_2, (s32)arg0->unk0);
     _glid_entrypoint_0(func_800BEA88(0), 0x3E, _chboilerid_entrypoint_3, (s32)arg0->unk0);

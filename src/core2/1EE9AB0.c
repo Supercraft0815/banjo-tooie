@@ -475,7 +475,11 @@ s32 func_80110EFC(u8 *arg0) {
     s32 index;
     index = *(s32 *)((s8 *)arg0 + 0x6C);
     if (D_801247A0[index * 8 + 6] != 0) {
+#ifdef BT_NATIVE
+        return ((s32 (*)())func_80110E00)();
+#else
         return func_80110E00();
+#endif
     } else {
         return 0;
     }

@@ -339,7 +339,9 @@ s32 func_80800778_basetup(s32 arg0) {
 
 void basetup_entrypoint_2(struct player_state_s *arg0) {
     extern u8 D_8012762C;
+#ifndef BT_NATIVE
     void _basetup_entrypoint_1(s32);
+#endif
     void _bashoes_entrypoint_6(struct player_state_s *, s32);
     s32 _gclevel_entrypoint_4(s32);
     void _gspropctrl_entrypoint_11(Prop *, f32 *);

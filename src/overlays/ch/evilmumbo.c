@@ -713,14 +713,20 @@ void func_8080129C_chevilmumbo(Actor *arg0) {
     s32 func_8001210C(s32);
     s32 func_8008FA60(s32, s32);
     s32 func_8008FB10(f32 *, f32, f32, f32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_80090248(void);
     void func_80090734(s32, f32 *);
     void func_800C4140(u32, f32 *, u32);
     s32 func_800D2498(u32, s32, u32);
     f32 func_800D8FF8(void);
     s32 func_800DA298(s32);
+#ifndef BT_NATIVE
     void func_800DA544(GameFlag);
+#endif
     s32 func_800DA9E4(GameFlag, s32);
     f32 func_800DC178(f32, f32);
     int func_800DC298(f32);
@@ -1673,7 +1679,9 @@ OSThread *chevilmumbo_entrypoint_1(void)
 }
 
 void func_8080362C_chevilmumbo(Actor *arg0, s32 arg1) {
+#ifndef BT_NATIVE
     void func_800DA524(GameFlag);
+#endif
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_80102424(Actor *, s32);

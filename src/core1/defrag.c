@@ -169,6 +169,7 @@ void* defrag_prev(void* mem) {
     return GET_BLOCK_CONTENTS(prev_block);
 }
 
+#ifndef BT_NATIVE // pc/native/memory.c owns the heap
 void* defrag(void* mem) {
     switch (GET_BLOCK_HEADER(mem)->unkC_30) {
         case 0:
@@ -180,6 +181,7 @@ void* defrag(void* mem) {
             return mem;
     }
 }
+#endif
 
 s32 is_prev_free(void* mem) {
     s32 ret;

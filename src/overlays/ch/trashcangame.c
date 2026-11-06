@@ -46,7 +46,11 @@ void func_80800098_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_80800014_chtrashcangame();
     void func_80800098_chtrashcangame(Actor *, s32, s32);
+#ifdef BT_NATIVE
+    func_80800098_chtrashcangame(arg0, arg1, ((s32 (*)())func_80800014_chtrashcangame)() + arg2);
+#else
     func_80800098_chtrashcangame(arg0, arg1, func_80800014_chtrashcangame() + arg2);
+#endif
 }
 
 void func_80800180_chtrashcangame(Actor *arg0) {

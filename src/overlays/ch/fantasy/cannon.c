@@ -120,7 +120,11 @@ void func_80800228_chfantasycannon(Actor *arg0) {
     f32 temp_f0_2;
     switch (arg0->unk70_10) {
     case 1:
+#ifdef BT_NATIVE
+        if (((s32 (*)())func_80800050_chfantasycannon)(arg0) != 0) {
+#else
         if (func_80800050_chfantasycannon(arg0) != 0) {
+#endif
             func_80800544_chfantasycannon(arg0, 3);
             return;
         }

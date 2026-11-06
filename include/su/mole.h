@@ -59,7 +59,11 @@ typedef struct {
 	u8 unkE;
 	u8 TitleToShow;
 } MoveData;
+#ifdef BT_NATIVE
+void _sumole_entrypoint_0(Actor* arg0, s32 arg1);
+#else
 void _sumole_entrypoint_0(Actor*, u32);
+#endif
 void sumole_entrypoint_2(Actor*, s32);
 s32 _sumole_entrypoint_3(Actor*, u32, u32, MoveData*);
 void _sumole_entrypoint_4(Actor*, MoveData*);

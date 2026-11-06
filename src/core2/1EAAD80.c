@@ -1,4 +1,20 @@
 #include "core2/1EAAD80.h"
+#ifdef BT_NATIVE
+// The counters are stored XORed with the code bytes of func_800D1A04 (0x800D1A04..0x800D1AAC);
+// natively the code is not MIPS, so they come from this copy of the N64 halfwords.
+static const s16 func_800D1A04_code[84] = {
+    0x27BD, 0xFFE8, 0xAFBF, 0x0014, 0x0C03, 0x45B1, 0x0000, 0x0000, 0x0002, 0x7080, 0x3C0F, 0x8012,
+    0x01EE, 0x7821, 0x85EF, 0xAF52, 0x2401, 0xFFFE, 0x0040, 0x1825, 0x15E1, 0x0003, 0x8FBF, 0x0014,
+    0x1000, 0x000B, 0x2402, 0x03E7, 0x3C18, 0x8013, 0x8F18, 0xB250, 0x0003, 0xC840, 0x0003, 0x58C0,
+    0x3C0C, 0x800D, 0x018B, 0x6021, 0x0319, 0x4021, 0x8509, 0x0000, 0x858C, 0x1A04, 0x0189, 0x1026,
+    0x03E0, 0x0008, 0x27BD, 0x0018, 0x27BD, 0xFFE8, 0xAFBF, 0x0014, 0x0C03, 0x45B1, 0x0000, 0x0000,
+    0x3C05, 0x8012, 0x24A5, 0xAF50, 0x0002, 0x7080, 0x00AE, 0x7821, 0x85E3, 0x0002, 0x2401, 0xFFFE,
+    0x0040, 0x2025, 0x1061, 0x0006, 0x8FBF, 0x0014, 0x2401, 0xFFFF, 0x1461, 0x0005, 0x0004, 0xC080,
+};
+#define CODE_800D1A04 func_800D1A04_code
+#else
+#define CODE_800D1A04 func_800D1A04
+#endif
 
 extern struct { s16 value; s16 padding; } D_8011AF52[];
 
@@ -7,7 +23,7 @@ void func_800D1490(void) {
     s32 i;
 
     for (i = 0; i < 21; i++) {
-        ((s16 *)D_8012B250)[i] = ((s16 *)&func_800D1A04)[i * 4];
+        ((s16 *)D_8012B250)[i] = ((s16 *)&CODE_800D1A04)[i * 4];
     }
 }
 
@@ -71,7 +87,7 @@ void func_800D162C(void) {
     s32 var_s0;
     s32 var_s2;
 
-    var_s1 = (s16 *)D_8011AF50; var_s0 = 0; var_s2 = 0; do { func_800D2770(*var_s1, *(s16 *)((s8 *)D_8012B250 + var_s0) ^ *(s16 *)((s8 *)&func_800D1A04 + var_s2)); var_s0 += 2; var_s1 += 2; var_s2 += 8; } while (var_s0 != 0x2A);
+    var_s1 = (s16 *)D_8011AF50; var_s0 = 0; var_s2 = 0; do { func_800D2770(*var_s1, *(s16 *)((s8 *)D_8012B250 + var_s0) ^ *(s16 *)((s8 *)&CODE_800D1A04 + var_s2)); var_s0 += 2; var_s1 += 2; var_s2 += 8; } while (var_s0 != 0x2A);
 }
 
 s32 func_800D16C4(s32 arg0)
@@ -87,7 +103,7 @@ void func_800D16CC(s32 arg0, s32 arg1) {
     index = arg0 * 4;
     limit = *(s16 *)((u8 *)D_8011AF52 + index);
     if (limit == -2) {
-        ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&func_800D1A04 + index * 2) ^ 0x3E7;
+        ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ 0x3E7;
         return;
     }
     if (arg1 < 0) {
@@ -96,7 +112,7 @@ void func_800D16CC(s32 arg0, s32 arg1) {
     if ((limit >= 0) && (limit < arg1)) {
         arg1 = limit;
     }
-    ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&func_800D1A04 + index * 2) ^ arg1;
+    ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ arg1;
 }
 
 void func_800D175C(s32 arg0, s32 arg1) {
@@ -106,8 +122,8 @@ void func_800D175C(s32 arg0, s32 arg1) {
     register s32 index;
 
     index = func_800D16C4(arg0);
-    func_800D16CC(index, (((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4]) + arg1);
-    func_800D24E8(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4], 0);
+    func_800D16CC(index, (((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]) + arg1);
+    func_800D24E8(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], 0);
 }
 
 void func_800D1804(s32 arg0) {
@@ -134,9 +150,9 @@ void func_800D1864(u32 arg0, u32 arg1, u32 arg2) {
     index = func_800D16C4(arg0);
     func_800D16CC(index, arg1);
     if (arg2 != 0) {
-        func_800D2498(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4], D_8011AF50[index].value);
+        func_800D2498(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], D_8011AF50[index].value);
     } else {
-        func_800D2770(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4]);
+        func_800D2770(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]);
     }
 }
 
@@ -158,7 +174,7 @@ void func_800D1960(s32 arg0, s32 arg1, s32 arg2) {
     if (arg2 != 0) {
         value = func_800D1A6C(arg0);
     } else {
-        value = ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4];
+        value = ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4];
     }
     func_800D16CC(index, value);
 }
@@ -171,7 +187,7 @@ s32 func_800D1A04(s32 a0) {
     if (D_8011AF52[index].value == -2) {
         return 0x3E7;
     }
-    return ((s16 *)D_8012B250)[index] ^ ((s16 *)&func_800D1A04)[index * 4];
+    return ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4];
 }
 
 u32 func_800D1A6C(u32 arg0) {
@@ -273,7 +289,7 @@ void func_800D1C78(u8 *arg0, u32 arg1) {
     }
     for (i = 0; i < count; i++) {
         value = (arg0[i * 2] << 8) | arg0[i * 2 + 1];
-        ((s16 *)D_8012B250)[i] = ((s16 *)&func_800D1A04)[i * 4] ^ value;
+        ((s16 *)D_8012B250)[i] = ((s16 *)&CODE_800D1A04)[i * 4] ^ value;
     }
 }
 
@@ -282,8 +298,8 @@ void func_800D1DFC(u8 *arg0) {
     s32 i;
 
     for (i = 0; i < 0x15; i++) {
-        arg0[i * 2] = ((((s16 *)D_8012B250)[i] ^ ((s16 *)&func_800D1A04)[i * 4]) >> 8) & 0xFF;
-        arg0[i * 2 + 1] = (((s16 *)D_8012B250)[i] ^ ((s16 *)&func_800D1A04)[i * 4]) & 0xFF;
+        arg0[i * 2] = ((((s16 *)D_8012B250)[i] ^ ((s16 *)&CODE_800D1A04)[i * 4]) >> 8) & 0xFF;
+        arg0[i * 2 + 1] = (((s16 *)D_8012B250)[i] ^ ((s16 *)&CODE_800D1A04)[i * 4]) & 0xFF;
     }
 }
 

@@ -62,7 +62,9 @@ void func_8080015C_chidgoldhorde(Actor *arg0) {
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
+#ifndef BT_NATIVE
     extern s32 _chidgoldhorde_entrypoint_1;
+#endif
     struct {
         s16 unk0;
         s16 unk2;

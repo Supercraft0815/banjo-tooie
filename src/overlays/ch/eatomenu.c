@@ -202,7 +202,11 @@ void func_8080058C_chcheatomenu(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_2(f32 *, u32, u32, u32);
     s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+#ifdef BT_NATIVE
+    s32 func_80090178(s32);
+#else
     s32 func_80090178(AllowedTransformation);
+#endif
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     void func_80101FDC(Actor *, u32);

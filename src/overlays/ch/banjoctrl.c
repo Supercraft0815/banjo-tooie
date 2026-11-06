@@ -33,8 +33,16 @@ void func_80800098_chbanjoctrl(Actor *arg0) {
     s32 _subaddieDll_entrypoint_1(Actor *);
     int func_800F6968(s32);
     int func_800F69E8(s32);
+#ifdef BT_NATIVE
+    s32 chbanjoctrl_entrypoint_1(s32 arg0);
+#else
     void _chbanjoctrl_entrypoint_1(void);
+#endif
+#ifdef BT_NATIVE
+    s32 chbanjoctrl_entrypoint_2(s32 arg0);
+#else
     void _chbanjoctrl_entrypoint_2(void);
+#endif
     void func_80800684_chbanjoctrl(void *, f32, s32, s32);
     struct BanjoCtrlFlags {
         u8 pad0[0x70];
@@ -562,5 +570,9 @@ void func_808010FC_chbanjoctrl(Actor *arg0) {
 
 void func_808011F4_chbanjoctrl(void) {
     void func_8080102C_chbanjoctrl();
+#ifdef BT_NATIVE
+    ((void (*)())func_8080102C_chbanjoctrl)();
+#else
     func_8080102C_chbanjoctrl();
+#endif
 }

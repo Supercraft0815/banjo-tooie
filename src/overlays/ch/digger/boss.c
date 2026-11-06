@@ -1624,7 +1624,11 @@ void func_80802C40_chdiggerboss(s32 arg0) {
 void func_80802CB4_chdiggerboss()
 {
     s32 func_80802248_chdiggerboss();
+#ifdef BT_NATIVE
+    func_800F4B20(((s32 (*)())func_80802248_chdiggerboss)());
+#else
     func_800F4B20(func_80802248_chdiggerboss());
+#endif
 }
 
 void func_80802CDC_chdiggerboss(s32 arg0) {
@@ -1784,7 +1788,11 @@ void func_80803078_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2, u32 arg3) {
     s32 func_800CE928(s32, s32, s32);
     void func_800CEA38(s32, s32);
     void func_800FC660(u32);
+#ifdef BT_NATIVE
+    void chdiggerboss_entrypoint_2(s32 arg0, s32 arg1);
+#else
     extern s32 _chdiggerboss_entrypoint_2;
+#endif
     typedef struct {
         u8 pad0[0x40];
         s8 unk40;
@@ -5069,7 +5077,11 @@ void func_80808D54_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3) {
 void func_80808F44_chdiggerboss(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
     s32 func_801065A4();
+#ifdef BT_NATIVE
+    void chdiggerboss_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     s32 _chdiggerboss_entrypoint_3();
+#endif
     s32 sp1C;
     sp1C = func_801065A4();
     if (sp1C != 0) {

@@ -343,6 +343,10 @@ s16 gcfrontend_entrypoint_14(s32 arg0) {
     extern GCFrontendRange D_80800D80_gcfrontend[4];
     void *temp_v1;
 
+#ifdef BT_NATIVE
+    temp_v1 = (((s32 (*)())func_80800450_gcfrontend)() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
+#else
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
+#endif
     return *(s16 *)((u8 *)((*(u8 *)temp_v1 << 1) * -1) + (*(s32 *)((u8 *)temp_v1 + 8) + arg0 * 2));
 }

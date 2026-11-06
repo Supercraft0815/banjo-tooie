@@ -7,6 +7,16 @@ s32 rom_read_word(u32 address, u32 *value) {
     return 0;
 }
 
+// src/core1/memory_asm.s: 8-byte blocks, n rounded down (callers pass n >= 8).
+void aligned8_memcpy(void *dst, const void *src, u32 n) {
+    __builtin_memcpy(dst, src, n & ~7u);
+}
+
+void aligned8_memset(void *dst, u32 value, u32 n) {
+    u32 *d = dst;
+    for (u32 i = 0; i < (n >> 3) * 2; i++) d[i] = value;
+}
+
 // src/core1/inflate_asm.s: Rare's raw DEFLATE decoder, here through zlib.
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,3 +62,18 @@ s32 func_8001C2F0(u8 *src, u8 *dst, void *scratch) {
 u8 *func_8001D30C(void) { return inflate_input_end; }
 u32 func_8001D31C(void) { return inflate_crc1; }
 u32 func_8001D32C(void) { return inflate_crc2; }
+
+// src/core2/1EF0140.s: 64-bit shift-register random numbers.
+static s32 rng_step(u64 *state) {
+    u64 x = *state;
+    u64 t = ((x & 1) << 32) | ((x >> 1) & 0xFFFFFFFF);
+    t ^= (x & 0xFFFFF) << 12;
+    t ^= (t >> 20) & 0xFFF;
+    *state = t;
+    return (s32)t;
+}
+
+extern u64 D_80124A70;
+s32 func_80116850(void) { return rng_step(&D_80124A70); }
+s32 func_80116898(s64 seed) { D_80124A70 = seed + 1; return 0; }
+s32 func_801168AC(u64 *state) { return rng_step(state); }

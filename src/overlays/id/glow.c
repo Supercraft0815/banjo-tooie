@@ -22,7 +22,9 @@ void idglow_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 void idglow_entrypoint_3(f32 *arg0, void *model, s32 mesh_id) {
     f32 func_800D8FF8(void);
     void _glid_entrypoint_0(void *, s32, void *, s32);
+#ifndef BT_NATIVE
     void _idglow_entrypoint_0(void);
+#endif
     arg0[0] += arg0[1] * func_800D8FF8();
     if (arg0[0] >= 1.0f) {
         arg0[0] = 1.0f;

@@ -319,11 +319,19 @@ s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
                 case 2:
                 case 4:
                 case 6:
+#ifdef BT_NATIVE
+                    ((s32 (*)())func_80800950_chfantasyeyeball)(arg0, 7);
+#else
                     func_80800950_chfantasyeyeball(arg0, 7);
+#endif
                     break;
                 case 3:
                 case 5:
+#ifdef BT_NATIVE
+                    ((s32 (*)())func_80800950_chfantasyeyeball)(arg0, 10);
+#else
                     func_80800950_chfantasyeyeball(arg0, 10);
+#endif
                     break;
             }
             if (func_800D0B68(0x4C, 1) == 0) {

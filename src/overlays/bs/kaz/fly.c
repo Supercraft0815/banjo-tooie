@@ -258,8 +258,16 @@ void func_808009C8_bskazfly(PlayerState *self, s32 arg1) {
             func_8009BA9C(self, self->kazfly->unk10);
             func_800A0CF4(self, 1);
             func_800A4DA4(self, 4);
+#ifdef BT_NATIVE
+            ((void (*)())_ncbadive_entrypoint_4)(func_800A4CA8(self), self->kazfly->unk10);
+#else
             _ncbadive_entrypoint_4(func_800A4CA8(self), self->kazfly->unk10);
+#endif
+#ifdef BT_NATIVE
+            ((void (*)())_ncbafly_entrypoint_5)(func_800A4CA8(self), 1);
+#else
             _ncbafly_entrypoint_5(func_800A4CA8(self), 1);
+#endif
             func_8009DF94(self, 0x442E, 1, 28000);
             baflag_clear(self, BA_FLAG_1C);
             func_8009C128(self, self->kazfly->unk4);
@@ -268,7 +276,11 @@ void func_808009C8_bskazfly(PlayerState *self, s32 arg1) {
         case 2:
             baphysics_set_type(self, 8);
             func_800A4DA4(self, 4);
+#ifdef BT_NATIVE
+            ((void (*)())_ncbadive_entrypoint_4)(func_800A4CA8(self), self->kazfly->unk10);
+#else
             _ncbadive_entrypoint_4(func_800A4CA8(self), self->kazfly->unk10);
+#endif
             anctrl_setDuration(animCtrl, 0.05);
             func_8009DF94(self, 0x4437, 1.3, 0x7FFF);
             baflag_set(self, BA_FLAG_1C);

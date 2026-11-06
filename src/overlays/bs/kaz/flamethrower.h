@@ -15,7 +15,9 @@
 #include "core2/1E76CC0.h"
 #include "core2/1EC8070.h"
 
+#ifndef BT_NATIVE
 extern void _bskazflamethrower_entrypoint_0(PlayerState *self, f32 arg1[3], s32 arg2);
+#endif
 extern void _bskazflamethrower_entrypoint_1(PlayerState *self);
 extern void _bskazflamethrower_entrypoint_2(PlayerState *self);
 extern void _bskazflamethrower_entrypoint_3(PlayerState *self);

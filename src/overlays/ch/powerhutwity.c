@@ -98,7 +98,11 @@ void func_80800168_chpowerhutwitchy(Actor *arg0, s32 arg1, s32 arg2) {
 void func_8080024C_chpowerhutwitchy(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, void (*)(void), s32);
     s32 func_800BEA88(s32);
+#ifdef BT_NATIVE
+    void chpowerhutwitchy_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     void _chpowerhutwitchy_entrypoint_4(void);
+#endif
     s32 temp_v0;
     void (*callback)(void) = _chpowerhutwitchy_entrypoint_4;
 
@@ -231,7 +235,11 @@ s32 func_8080073C_chpowerhutwitchy(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800890_chpowerhutwitchy(s32 *arg0) {
     s32 _glid_entrypoint_0(s32, s32, void (*)(void), s32);
     s32 func_800BEA88(s32);
+#ifdef BT_NATIVE
+    void chpowerhutwitchy_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
     void _chpowerhutwitchy_entrypoint_5(void);
+#endif
     s32 sp24;
     s32 temp_v0;
     s32 temp_v0_2;

@@ -378,7 +378,11 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
 
 u32 *func_80800AD8_subaddiestore(void *arg0, u32 *arg1) {
     s32 func_80800260_subaddiestore();
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_80800260_subaddiestore)() != 2) {
+#else
     if (func_80800260_subaddiestore() != 2) {
+#endif
         return arg1;
     }
     *arg1 = (u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15;

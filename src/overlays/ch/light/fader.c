@@ -96,7 +96,11 @@ s32 chlightfader_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
     void _chbaddiesetup_entrypoint_3(s32 *, s32, s32, s32);
     void func_800C8B84(s32);
     s32 func_800C954C(void);
+#ifdef BT_NATIVE
+    void chlightfader_entrypoint_2(s32 arg0, f32 arg1, s32 arg2);
+#else
     extern s32 _chlightfader_entrypoint_2;
+#endif
     if (func_800C954C() == 0) {
         _chbaddiesetup_entrypoint_3(&_chlightfader_entrypoint_2, arg0, arg1, arg2);
     } else {

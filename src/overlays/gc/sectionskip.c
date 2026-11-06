@@ -441,7 +441,11 @@ final_checks:
         section = _gcsectionDll_entrypoint_4(arg1);
         sameSection = section == level && sp24 == 0xD;
         if (level != section || (level == 0x1A && !sameSection)) {
+#ifdef BT_NATIVE
+            ((void (*)())func_80800374_gcsectionskip)(sp28, arg0, level);
+#else
             func_80800374_gcsectionskip(sp28, arg0, level);
+#endif
             return 0;
         }
     }

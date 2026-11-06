@@ -201,7 +201,11 @@ s32 func_8080055C_chdinofoot(void *arg0) {
     f32 func_800136E4(f32);
     f32 func_8010CD28(void *);
     s32 func_80800408_chdinofoot();
+#ifdef BT_NATIVE
+    if (((s32 (*)())func_80800408_chdinofoot)() != 0) {
+#else
     if (func_80800408_chdinofoot() != 0) {
+#endif
         (*(f32 *)((s8 *)(arg0) + (4))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x18)));
         (*(f32 *)((s8 *)(arg0) + (0xC))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x20)));
         (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800136E4(func_8010CD28(arg0) + 180.0f);

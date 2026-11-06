@@ -1,5 +1,13 @@
 #include "bs/firstp.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/yaw.h" // enums for the prototypes below
+#include "overlays/ba/physics.h"
+#endif
 #include "overlays/ba/playerstate.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#include "overlays/ba/anim.h"
+#endif
 
 /* Per-state memory of the first-person state, allocated in player->state_mem. */
 typedef struct bs_firstp_state_s {
@@ -202,7 +210,9 @@ void bsfirstp_entrypoint_1(struct player_state_s *player, s32 arg1) {
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
     void func_8008B304(struct anctrl_s *);
+#ifndef BT_NATIVE
     s32 func_8008B4D4(struct anctrl_s *);
+#endif
     void func_800DF41C(s32);
     s32 func_80800864_bsfirstp(PlayerState *);
     void func_80800F14_bsfirstp(void *);
@@ -258,7 +268,9 @@ void func_808001FC_bsfirstp(struct player_state_s *player) {
 /* extern */
 
 s32 func_80800228_bsfirstp(struct player_state_s *player) {
+#ifndef BT_NATIVE
     s32 anctrl_getPlaybackType(s32);
+#endif
     struct anctrl_s *func_8008D04C(struct player_state_s *);
     s32 result;
 
@@ -273,7 +285,9 @@ s32 func_80800228_bsfirstp(struct player_state_s *player) {
 /* extern */
 
 void func_80800264_bsfirstp(s32 player, s32 arg1) {
+#ifndef BT_NATIVE
     s32 func_8008B10C(s32, s32);
+#endif
     struct anctrl_s *func_8008D04C();
     func_8008B10C(func_8008D04C(player), arg1);
 }
@@ -283,7 +297,11 @@ void func_80800264_bsfirstp(s32 player, s32 arg1) {
 void func_80800290_bsfirstp(struct player_state_s *player, s32 anim, f32 duration) {
     f32 baanim_getTimer();
     void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
+#ifdef BT_NATIVE
+    baanim_playForDuration_loopStartingAt(player, anim, duration, ((f32 (*)())baanim_getTimer)());
+#else
     baanim_playForDuration_loopStartingAt(player, anim, duration, baanim_getTimer());
+#endif
 }
 
 void anctrl_reset(struct anctrl_s *);
@@ -1866,7 +1884,11 @@ void func_80803134_bsfirstp(void *arg0) {
     void func_8080261C_bsfirstp(void *, void **, void **);
     void func_80807BB8_bsfirstp(void *);
     void func_80808DB0_bsfirstp(void *);
+#ifdef BT_NATIVE
+    void bsfirstp_entrypoint_10(s32 arg0);
+#else
     extern s32 _bsfirstp_entrypoint_10;
+#endif
     FirstpState *firstp;
     void *sp28;
     void *sp24;
@@ -1928,7 +1950,11 @@ void func_808032C0_bsfirstp(struct player_state_s *self) {
     void func_80807BB8_bsfirstp(void *);
     void func_80808DB0_bsfirstp(void *);
     s32 _baeggsetup_entrypoint_7(void *, s32 *);
+#ifdef BT_NATIVE
+    void bsfirstp_entrypoint_10(s32 arg0);
+#else
     extern s32 _bsfirstp_entrypoint_10;
+#endif
     u8 *sp24;
 
     func_80807BB8_bsfirstp(self);
@@ -1957,7 +1983,11 @@ void func_80803340_bsfirstp(u8 *arg0) {
     s32 func_80809540_bsfirstp(s32 arg0, s32 arg1);
     void func_80809684_bsfirstp(struct player_state_s *arg0, s32 arg1);
     void func_80809740_bsfirstp(struct player_state_s *arg0);
+#ifdef BT_NATIVE
+    void bsfirstp_entrypoint_10(s32 arg0);
+#else
     extern s32 _bsfirstp_entrypoint_10;
+#endif
     s32 sp3C;
     s32 sp38;
     void *sp34;
@@ -2083,7 +2113,11 @@ void func_808036F0_bsfirstp(struct player_state_s *arg0) {
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void func_800A38F0(struct player_state_s *, s32, s32);
     void func_80807BB8_bsfirstp(void *);
+#ifdef BT_NATIVE
+    void bsfirstp_entrypoint_12(s32 arg0);
+#else
     extern s32 _bsfirstp_entrypoint_12;
+#endif
     func_80807BB8_bsfirstp(arg0);
     func_800A38F0(arg0, 0, 1);
     func_808061AC_bsfirstp(arg0, 0);
@@ -2223,7 +2257,9 @@ void bsfirstp_entrypoint_13(struct player_state_s *arg0, f32 *arg1, s16 arg2) {
 
 void func_80803A84_bsfirstp(void *arg0) {
     void func_80803B58_bsfirstp(void *, f32);
+#ifndef BT_NATIVE
     extern s32 _bsfirstp_entrypoint_13;
+#endif
     s32 var_s0;
     register s32 *callback;
     register void *self;
@@ -3679,7 +3715,9 @@ f32 func_80806170_bsfirstp(void *arg0, f32 arg1) {
 void func_808061AC_bsfirstp(void *arg0, s32 arg1) {
     void baphysics_set_gravity(struct player_state_s *, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
+#ifndef BT_NATIVE
     s32 baphysics_set_type(void *, s32);
+#endif
     f32 func_80013728(f32);
     f32 func_800138D0(f32);
     f32 func_8009BB5C(struct player_state_s *);
@@ -3931,7 +3969,11 @@ void func_80806774_bsfirstp(void *arg0) {
     } local;
 
     local.data = *(void **)((s8 *)arg0 + 0x188);
+#ifdef BT_NATIVE
+    ((void (*)())func_8009B7C0)();
+#else
     func_8009B7C0();
+#endif
     *(f32 *)((s8 *)local.data + 0x1D8) = 0.0f;
     *(f32 *)((s8 *)local.data + 0x1CC) = 0.0f;
     *(f32 *)((s8 *)local.data + 0x1D4) = 0.0f;
@@ -5172,7 +5214,9 @@ void func_808086B0_bsfirstp(Actor *arg0, s32 arg1) {
     void func_8009E4E0(void *, s32, s32);
     void baflag_set(struct player_state_s *, s32);
     s32 baflag_clear(s32, s32);
+#ifndef BT_NATIVE
     extern s32 _bsfirstp_entrypoint_13;
+#endif
     void *config;
     void *anim1;
     void *anim2;
@@ -5414,7 +5458,11 @@ void func_80808D80_bsfirstp(void *arg0) {
     void *func_80802508_bsfirstp();
     void *temp_v0;
 
+#ifdef BT_NATIVE
+    temp_v0 = ((void * (*)())func_80802508_bsfirstp)();
+#else
     temp_v0 = func_80802508_bsfirstp();
+#endif
     baanim_playForDuration_loopSmooth(arg0, (*(s16 *)((s8 *)(temp_v0) + (0))), (*(f32 *)((s8 *)(temp_v0) + (4))));
 }
 

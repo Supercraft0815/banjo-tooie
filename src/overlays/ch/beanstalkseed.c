@@ -119,7 +119,11 @@ void func_808003D8_chbeanstalkseed(Actor *arg0) {
     switch ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) {
     case 1: {
         s32 item;
+#ifdef BT_NATIVE
+        if (((s32 (*)())func_80800328_chbeanstalkseed)(arg0) != 0) {
+#else
         if (func_80800328_chbeanstalkseed(arg0) != 0) {
+#endif
             item = func_801000D8(arg0, 1, 0x14);
             _subaddieitem_entrypoint_0(item, 0x481, 1000, 0);
             _subaddieitem_entrypoint_2(item);

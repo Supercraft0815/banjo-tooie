@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE // complete the enum forward declarations below
+#include "overlays/ba/assets.h"
+#endif
 
 struct player_state_s;
 s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
@@ -425,7 +428,9 @@ struct anctrl_s;
 void func_808008F4_bswasher(struct player_state_s *arg0) {
     enum asset_e;
     void anctrl_reset(struct anctrl_s *);
+#ifndef BT_NATIVE
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
+#endif
     void anctrl_setStart(struct anctrl_s *, f32);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);

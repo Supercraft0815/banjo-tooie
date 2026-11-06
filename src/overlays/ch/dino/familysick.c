@@ -119,7 +119,9 @@ s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_801022E4(Actor *);
     void func_80102424(Actor *, s32);
     extern s32 D_80800E98_chdinofamilysick;
+#ifndef BT_NATIVE
     extern s32 _chdinofamilysick_entrypoint_0;
+#endif
 
     switch (arg1) {
         case 0x3E:

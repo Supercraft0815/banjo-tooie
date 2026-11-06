@@ -36,7 +36,9 @@ void idglowa_entrypoint_4(GlowEffect *arg0, void *arg1, s32 arg2) {
     f32 func_800D8FF8(void);
     int func_800F1574(f32 *, f32);
     void _glid_entrypoint_0(void *, s32, void *, s32);
+#ifndef BT_NATIVE
     void _idglowa_entrypoint_0(void);
+#endif
     f32 temp_f14;
 
     temp_f14 = func_800D8FF8();

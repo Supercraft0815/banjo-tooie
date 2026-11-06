@@ -82,13 +82,25 @@ void func_80800260_chfactoryworkerwear(Actor *arg0, s32 arg1) {
     *(s8 *)((u8 *)func_80100094(arg0, 0U) + 0x24) = arg1;
     switch (arg1) {
     case 1:
+#ifdef BT_NATIVE
+        ((void (*)())func_8080000C_chfactoryworkerwear)(arg0, 2, arg1);
+#else
         func_8080000C_chfactoryworkerwear(arg0, 2, arg1);
+#endif
         return;
     case 2:
+#ifdef BT_NATIVE
+        ((void (*)())func_8080000C_chfactoryworkerwear)(arg0, 3, arg1);
+#else
         func_8080000C_chfactoryworkerwear(arg0, 3, arg1);
+#endif
         return;
     case 3:
+#ifdef BT_NATIVE
+        ((void (*)())func_8080000C_chfactoryworkerwear)(arg0, 4, arg1);
+#else
         func_8080000C_chfactoryworkerwear(arg0, 4, arg1);
+#endif
         return;
     }
 }
