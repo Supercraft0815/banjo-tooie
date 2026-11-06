@@ -5,6 +5,7 @@
 //   BT_EXIT_AFTER=secs    quit after that many seconds (game time, like BT_PRESS)
 //   BT_SPEED=x            game clock at x times real time (fast-forward for scripted runs)
 //   BT_PRESS=...          scripted controller input (input.c)
+// F11 toggles fullscreen.
 #include <SDL3/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +32,10 @@ _Noreturn void bt_video_main(void) {
     static u32 pixels[640 * 480];
     int tw = 0, th = 0;
     u32 last = 0, frames = 0;
-    if (!SDL_Init(headless ? 0 : SDL_INIT_VIDEO | SDL_INIT_GAMEPAD)) bt_fatal("SDL_Init: %s", SDL_GetError());
+    int audio = !headless && !getenv("BT_MUTE");
+    if (!SDL_Init((headless ? 0 : SDL_INIT_VIDEO | SDL_INIT_GAMEPAD) | (audio ? SDL_INIT_AUDIO : 0)))
+        bt_fatal("SDL_Init: %s", SDL_GetError());
+    if (audio) bt_ai_open();
     if (!headless) {
         win = SDL_CreateWindow("Banjo-Tooie", 960, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
         ren = win ? SDL_CreateRenderer(win, NULL) : NULL;
@@ -43,6 +47,8 @@ _Noreturn void bt_video_main(void) {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_EVENT_QUIT) exit(0);
+            if (e.type == SDL_EVENT_KEY_DOWN && e.key.key == SDLK_F11 && win)
+                SDL_SetWindowFullscreen(win, !(SDL_GetWindowFlags(win) & SDL_WINDOW_FULLSCREEN));
             bt_input_event(&e);
         }
         double secs = (SDL_GetTicks() - start) / 1000.0 * bt_speed();  // game time

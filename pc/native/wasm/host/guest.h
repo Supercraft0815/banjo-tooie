@@ -33,6 +33,8 @@ void bt_vi_init(void);
 u32 bt_vi_frame(u32 *fb, u32 *width);  // retrace count; framebuffer being shown (0 = black) and its width
 _Noreturn void bt_video_main(void);    // main-thread window loop (video.c)
 void gsp_run(u32 dl);                  // runs a graphics task's display list (gsp.c)
+void bt_rsp_audio(u32 task);           // runs an audio task on the RSP interpreter (rsp.c)
+void bt_ai_open(void);                 // opens the audio device (ai.c; main thread, after SDL_Init)
 union SDL_Event;
 void bt_input_event(const union SDL_Event *e);  // input.c: gamepad hotplug
 void bt_input_update(double secs, int keyboard);  // input.c: samples controller 1

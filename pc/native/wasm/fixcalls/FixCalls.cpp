@@ -561,7 +561,8 @@ struct BigEndian : PassInfoMixin<BigEndian> {
 // bt-safepoints: the N64 preempts a game thread anywhere (timer and VI interrupts), and some
 // loops wait for a higher-priority thread (func_800C2AB8 waits for the audio thread to stop
 // sounds). Host threads only switch at OS calls, so every loop latch calls env.safepoint; the
-// build turns that call into a check of the host's preemption flag.
+// build turns that call into a check of the host's preemption flag. The pass runs before the
+// optimizer, so the opaque call also keeps loads of shared data inside wait loops after inlining.
 struct Safepoints : PassInfoMixin<Safepoints> {
     PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
         LLVMContext &Ctx = M.getContext();
@@ -588,6 +589,64 @@ struct Safepoints : PassInfoMixin<Safepoints> {
     }
 };
 
+// bt-stackslots: IDO matches sometimes reach a neighbouring stack slot through a local's
+// address (`func_801067C4((&sp28) - 1)` in suautobaddies_entrypoint_1). On the N64 that is
+// another word of the frame; in LLVM it lies outside the object, and once inlining exposes the
+// accesses SROA drops them (the actor loop then never advanced). Allocas reached at constant
+// offsets outside their size grow to cover them, with room for the access at the far end.
+struct StackSlots : PassInfoMixin<StackSlots> {
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+        const DataLayout &DL = M.getDataLayout();
+        Type *I8 = Type::getInt8Ty(M.getContext());
+        const int64_t Slack = 16;  // bytes an access at the outermost offset may span
+        unsigned N = 0;
+        for (Function &F : M) {
+            SmallVector<AllocaInst *, 16> Allocas;
+            for (BasicBlock &BB : F)
+                for (Instruction &I : BB)
+                    if (auto *A = dyn_cast<AllocaInst>(&I); A && A->isStaticAlloca())
+                        Allocas.push_back(A);
+            for (AllocaInst *A : Allocas) {
+                std::optional<TypeSize> Sz = A->getAllocationSize(DL);
+                if (!Sz || Sz->isScalable())
+                    continue;
+                int64_t Size = (int64_t)Sz->getFixedValue(), Lo = 0, Hi = Size;
+                SmallVector<std::pair<Value *, int64_t>, 16> Work{{A, 0}};
+                while (!Work.empty()) {
+                    auto [V, Off] = Work.pop_back_val();
+                    for (User *U : V->users()) {
+                        auto *G = dyn_cast<GEPOperator>(U);
+                        APInt O(DL.getIndexTypeSizeInBits(A->getType()), 0);
+                        if (!G || !G->accumulateConstantOffset(DL, O))
+                            continue;
+                        int64_t At = Off + O.getSExtValue();
+                        if (At < 0 || At >= Size) {
+                            Lo = std::min(Lo, At);
+                            Hi = std::max(Hi, At + Slack);
+                        }
+                        Work.push_back({G, At});
+                    }
+                }
+                if (Lo == 0 && Hi == Size)
+                    continue;
+                auto *NA = new AllocaInst(ArrayType::get(I8, (uint64_t)(Hi - Lo)), A->getAddressSpace(), nullptr,
+                                          std::max(A->getAlign(), Align(8)), A->getName() + ".frame", A->getIterator());
+                Value *P = IRBuilder<>(A).CreateConstGEP1_64(I8, NA, -Lo, A->getName());
+                for (Use &U : make_early_inc_range(A->uses()))
+                    if (auto *II = dyn_cast<IntrinsicInst>(U.getUser()); II && II->isLifetimeStartOrEnd())
+                        U.set(NA);  // lifetime markers must name an alloca
+                    else
+                        U.set(P);
+                A->eraseFromParent();
+                errs() << "bt-stackslots: " << F.getName() << ": slot reached at " << Lo << ".." << Hi - Slack << "\n";
+                ++N;
+            }
+        }
+        errs() << "bt-stackslots: " << N << " stack slots widened\n";
+        return N ? PreservedAnalyses::none() : PreservedAnalyses::all();
+    }
+};
+
 } // namespace
 
 extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
@@ -600,6 +659,8 @@ extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
                             MPM.addPass(BigEndian());
                         else if (Name == "bt-safepoints")
                             MPM.addPass(Safepoints());
+                        else if (Name == "bt-stackslots")
+                            MPM.addPass(StackSlots());
                         else
                             return false;
                         return true;

@@ -30,7 +30,8 @@ Pipeline (`pc/native/wasm/`):
    the N64 become one block (code reaches a neighbour's table through another label).
    Raw words equal to an overlay syscall stub address become function pointers.
 4. `llvm-link` → `opt` with the pass plugin (`fixcalls/FixCalls.cpp`):
-   `mem2reg, bt-fixcalls, bt-bigendian, internalize, default<O2>, bt-fixcalls, bt-safepoints`.
+   `mem2reg, bt-fixcalls, bt-bigendian, bt-stackslots, internalize, bt-safepoints,
+   default<O2>, bt-fixcalls`.
    - `bt-fixcalls` emulates the IDO calling convention: calls adapted to the callee's
      real signature, pass-through arguments (missing = caller's own a0..a3) and
      results (a void call site reads v0/f0 of the last call), missing `return`s
@@ -38,12 +39,17 @@ Pipeline (`pc/native/wasm/`):
      first two arguments switch FPR/GPR. Resolves `undefined_syms.us.txt`.
    - `bt-bigendian`: guest memory holds the N64 byte order; every load/store wider
      than a byte is swapped. ROM data, assets and display lists need no conversion.
+   - `bt-stackslots`: IDO matches reach neighbouring stack slots through a local's
+     address (`(&sp28) - 1`); such locals grow to cover the slot, because LLVM drops
+     accesses outside an object once inlining exposes them.
    - `bt-safepoints`: every loop latch calls `env.safepoint`, which the build turns into
      a check of the host's preemption flag (the N64 preempts anywhere; e.g.
-     `func_800C2AB8` spins until the audio thread has stopped a sound).
+     `func_800C2AB8` spins until the audio thread has stopped a sound). It runs before
+     the optimizer, so wait loops keep their loads of data other threads write.
 5. `wasm-ld` → `wasm2c` → native clang build with the host layer (`host/`: threads with
    N64 priorities, message queues, timers, VI, PI/ROM, SI, files, F3DEX2 HLE `gsp.c`,
-   software RDP `rdp.c`, SDL3 window `video.c`, controller `input.c`). Indirect calls
+   software RDP `rdp.c`, SDL3 window `video.c`, controller `input.c`, RSP interpreter
+   `rsp.c` running the game's own audio microcode, SDL audio output `ai.c`). Indirect calls
    skip wasm's signature check (the N64 does not have one either).
 6. Missing functions become generated traps (`build/ilp32/traps.txt`) that print their
    name and abort.
@@ -55,6 +61,8 @@ controller, up to 2048 entries; mask bits 0-15 buttons (A 8000, B 4000, Z 2000, 
 1000), 16-23 stick x, 24-31 stick y, e.g. `15:1000,15.3:0` = Start at 15 s,
 `965:50000000` = stick up). Keyboard: Return Start,
 Space A, Left Shift B, WASD stick. Saves: 16 Kbit EEPROM in `bt_eeprom.bin`.
+Audio (`host/ai.c`): plays in windowed runs; `BT_MUTE=1` skips audio tasks,
+`BT_PCM=path` also writes raw s16le stereo at the AI rate (22047 Hz).
 
 Debug helpers: guest data starts at `0x80001000` (`--global-base`), but addresses do
 not equal N64 ones; `build/ilp32/game.map` (wasm-ld map) names every guest address.
@@ -76,7 +84,7 @@ of calls in the same file as the definition).
 | M2 | Game executable links: all code + data, missing pieces trap with their name | done; 26 function + 4 data traps left |
 | M3 | Platform layer, boot runs to the game loop | done 2026-11-06 |
 | M4 | Renderer: F3DEX2 HLE + software RDP + SDL window | done 2026-11-06: intro, title, attract demos, file select, new-game cutscene render; no AA/dither |
-| M5 | Input (SDL controller), saves (EEPROM), audio (n_audio command lists) | input and EEPROM file done; audio tasks complete unplayed |
+| M5 | Input (SDL controller), saves (EEPROM), audio (n_audio command lists) | done 2026-11-06: SDL gamepad/keyboard, EEPROM file, audio (n_aspMain on an RSP interpreter, SDL stream) |
 | M6 | Gameplay verification: title, file select, Spiral Mountain, level transitions | in progress: new game plays through the opening cutscene into Spiral Mountain; Banjo walks and climbs by stick (2026-11-06) |
 
 ## Working method
@@ -89,11 +97,13 @@ of calls in the same file as the definition).
 
 ## Open problems (next steps)
 
-1. **Optimized build hangs** (no `BT_NOINLINE`): black screen, the game thread loops
-   inside the inlined `func_800A5C94` → `func_801002C0` path. Likely an ABI emulation
-   case that only appears after inlining. Use `BT_NOINLINE=1` builds until fixed.
-2. **Audio (M5).** `host/rcp.c` completes audio tasks without running them. Next: an
-   n_audio Acmd interpreter plus SDL audio output.
+1. **Undefined behaviour the optimizer exploits.** IDO matching hacks that are fine
+   on the N64 can break once LTO inlines across files (out-of-object stack slots were
+   one: `bt-stackslots`). When only the optimized build misbehaves, compare with a
+   `BT_NOINLINE=1` build and read the optimized IR (`llvm-extract` on `game.bc`).
+2. **Audio details.** The microcode's MP3 overlay (command 7) is not supported (the
+   interpreter stops with a message; Banjo-Tooie has not used it so far). Output
+   latency is 35-110 ms (`LATENCY_BYTES` in `ai.c` plus the game's own rate control).
 3. **Gameplay (M6).** Spiral Mountain is reached at ~900 s game time (`BT_SPEED=4`,
    A every 2 s). Next: jumps, moves, level transitions; fix what traps or crashes.
 4. **Cross-symbol data access.** Code that reaches data through another symbol's
@@ -109,6 +119,23 @@ of calls in the same file as the definition).
    by the ILP32 build and can go once nothing depends on it.
 
 ## Log
+
+### 2026-11-06 (late night)
+- Spiral Mountain: the new game plays through the opening cutscene; Banjo walks and
+  climbs by stick input (`BT_SPEED`, stick axes in `BT_PRESS`).
+- Optimized build runs (it hung on a black screen): `suautobaddies_entrypoint_1`
+  passes `(&sp28) - 1` as the actor iterator's index slot; after inlining, SROA
+  dropped the stores outside `sp28`, so the loop revisited the last actor forever.
+  `bt-stackslots` widens such locals (10 in the game). Safepoints now go in before the
+  optimizer. Intro: 7.7 s CPU per 40 s of play, audio included.
+- F11 toggles fullscreen.
+- Audio: `host/rsp.c` interprets the RSP (scalar unit, vector unit, DMA) and runs the
+  audio microcode embedded from `assets/core1/n_aspMain.*.bin`, so every n_audio
+  command, including the IIR mode of the pole filter, behaves as on hardware.
+  `host/ai.c` feeds the AI buffers to SDL; `osAiGetLength` reports the queue beyond a
+  latency reserve, which the game's own sample-count control keeps steady. Checked
+  with `BT_PCM` dumps: harmonic music in the spectrogram, no clipping, no clicks at
+  the 184-sample chunk boundaries.
 
 ### 2026-11-06 (night)
 - Big-endian guest memory (`bt-bigendian`), renderer (`gsp.c`, `rdp.c`, `video.c`),

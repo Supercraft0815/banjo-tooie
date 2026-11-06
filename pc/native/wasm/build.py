@@ -351,8 +351,10 @@ def main():
     (OUT / 'widened.txt').unlink(missing_ok=True)
     r = run([LLVM_BIN + '/opt', '--load-pass-plugin=%s' % plugin, 
              # Inlining turns calls through function pointers into direct calls that may mismatch
-             # again, so the fix runs before and after the optimization pipeline.
-             '-passes=function(mem2reg),bt-fixcalls,bt-bigendian,internalize,default<O2>,bt-fixcalls,bt-safepoints', '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'), '-bt-widened=%s' % (OUT / 'widened.txt'),
+             # again, so the fix runs before and after the optimization pipeline. Safepoints go in
+             # before it: an opaque call per loop latch keeps loads of data other threads write
+             # inside wait loops, as preemption anywhere on the N64 does.
+             '-passes=function(mem2reg),bt-fixcalls,bt-bigendian,bt-stackslots,internalize,bt-safepoints,default<O2>,bt-fixcalls', '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'), '-bt-widened=%s' % (OUT / 'widened.txt'),
              '-internalize-public-api-list=' + ','.join(EXPORTS + LIBCALLS), str(linked), '-o', str(fixed)]
             # BT_NOINLINE=1: keeps every function separate, so crash backtraces name the real function.
             + (['-inline-threshold=-100000'] if os.environ.get('BT_NOINLINE') else []))

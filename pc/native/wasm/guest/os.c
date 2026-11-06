@@ -226,10 +226,13 @@ OSYieldResult osSpTaskYielded(OSTask *t) { (void)t; return 0; }
 u32 osDpGetStatus(void) { return 0; } // never busy
 void osDpSetStatus(u32 status) { (void)status; }
 
-// Audio interface. shortcut: no sound output yet; buffers are accepted and dropped.
-s32 osAiSetFrequency(u32 freq) { return (s32)freq; }
-s32 osAiSetNextBuffer(void *buf, u32 size) { (void)buf; (void)size; return 0; }
-u32 osAiGetLength(void) { return 0; }
+// Audio interface: the host plays the buffers (host/ai.c).
+u32 BT_HOST(ai_frequency)(u32);
+void BT_HOST(ai_buffer)(void *, u32);
+u32 BT_HOST(ai_length)(void);
+s32 osAiSetFrequency(u32 freq) { return (s32)host_ai_frequency(freq); }
+s32 osAiSetNextBuffer(void *buf, u32 size) { host_ai_buffer(buf, size); return 0; }
+u32 osAiGetLength(void) { return host_ai_length(); }
 u32 osAiGetStatus(void) { return 0; }
 
 // Entry from the host: the boot context runs on its own guest stack.
