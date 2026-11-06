@@ -16,7 +16,13 @@
 #include <ultra64.h>
 #include "native_rdram.h"
 
-#define ARENA_SIZE (192u << 20)
+#ifdef __wasm__
+// The RSP reads addresses as segment (bits 24-27) plus a 24-bit offset, so all guest data
+// (statics, this arena, stacks) must lie in the first 16 MB, as on the N64.
+#define ARENA_SIZE (12u << 20)
+#else
+#define ARENA_SIZE (12u << 20)
+#endif
 #define PHYS_BASE 0x80000000u
 #define PHYS_SPAN 0x10000000u
 #define ALIGN 16u

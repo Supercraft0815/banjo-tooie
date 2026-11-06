@@ -8,8 +8,14 @@ stored little-endian per element: the C declaration's element width where one
 exists (irtypes.py), else the directive's.
 """
 import re
+from pathlib import Path
 
 import irtypes
+
+# Overlay entry stubs (8 bytes each in core1). splat misses some references to them in data tables
+# and prints the address as a number or a float, which must still become the function pointer.
+STUBS = {int(a, 16): n for n, a in re.findall(r'^(_\w+) = (0x[0-9A-Fa-f]+);', (
+    Path(__file__).resolve().parents[3] / 'syscall_symbol_addrs.us.txt').read_text(), re.M)}
 
 ITEM = re.compile(r'^\s*/\*\s*([0-9A-Fa-f ]+?)\s*\*/\s*\.(word|short|half|byte|float|double|asciz|ascii|space)\s+(.*?)\s*$')
 LABEL = re.compile(r'^\s*(?:dlabel|glabel|jlabel)\s+(\S+)')
@@ -152,6 +158,43 @@ def to_signed(v, bits):
     return v - (1 << bits) if v >> (bits - 1) else v
 
 
+def span(labels, items):
+    starts = [a for a, *_ in items] + list(labels.values())
+    return min(starts), max([a + s for a, s, *_ in items] + list(labels.values()))
+
+
+def merge_neighbours(parsed):
+    """Joins the data, rodata and bss files of one module that touch in the N64 link into one
+    block, so code reaching a neighbouring file's table through another label keeps working
+    (gczoombox reads its .data image table at negative offsets from a .bss label)."""
+    def module(path):
+        p = Path(path)  # overlays share addresses: only one overlay's own files may join
+        return str(p.parent), p.name.split('.')[0] if 'overlays' in p.parts else ''
+    out, groups = [], {}
+    for e in parsed:
+        if e[1] in ('data', 'rodata', 'bss') and (e[2] or e[3]):
+            groups.setdefault(module(e[0]), []).append(e)
+        else:
+            out.append(e)
+    for es in groups.values():
+        es.sort(key=lambda e: span(e[2], e[3]))
+        cur = None
+        for path, section, labels, items in es:
+            base, end = span(labels, items)
+            if cur and cur[4] == base:
+                cur[2].update(labels)
+                cur[3].extend(items)
+                cur[0] += ' + ' + str(path)
+                cur[1] = 'bss' if cur[1] == 'bss' and section == 'bss' else 'data'
+                cur[4] = end
+                continue
+            if cur:
+                out.append(tuple(cur[:4]))
+            cur = [str(path), section, dict(labels), list(items), end]
+        out.append(tuple(cur[:4]))
+    return out
+
+
 def generate(files, skip, is_function, out_path, alias, ctypes):
     """Writes the IR module; returns (defined names, referenced names, unknown words)."""
     lines = ['target datalayout = "e-m:e-p:32:32-p10:8:8-p20:8:8-i64:64-i128:128-n32:64-S128-ni:1:10:20"',
@@ -163,12 +206,11 @@ def generate(files, skip, is_function, out_path, alias, ctypes):
         for section, labels, items in parse_file(path):
             parsed.append((path, section, labels, items))
             labels_all.update(labels)
+    parsed = merge_neighbours(parsed)
     for bi, (path, section, labels, items) in enumerate(parsed):
         if (not items and not labels) or (section == 'text' and not items):
             continue  # code (handwritten asm functions have C versions)
-        starts = [a for a, *_ in items] + list(labels.values())
-        base = min(starts)
-        end = max([a + s for a, s, *_ in items] + list(labels.values()))
+        base, end = span(labels, items)
         blk = '__bt_data_%d' % bi
         if section == 'bss' or all(k == 'space' for _, _, k, _ in items):
             size = max(end - base, 1)
@@ -197,6 +239,12 @@ def generate(files, skip, is_function, out_path, alias, ctypes):
                     if sym:
                         unresolved.append((path, sym))
                     value = int(rawhex if rawhex else arg, 16 if rawhex else 0)
+                    stub = STUBS.get(value & 0xFFFFFFFF) if size == 4 and addr % 4 == 0 else None
+                    if stub:
+                        stub = alias.get(stub, stub)
+                        refs.add(stub)
+                        syms[addr] = q(stub)
+                        continue
                 raw[o:o + size] = (value & ((1 << 8 * size) - 1)).to_bytes(size, 'big')
                 width[o:o + size] = [size] + [0] * (size - 1)
             sym_byte = [False] * n

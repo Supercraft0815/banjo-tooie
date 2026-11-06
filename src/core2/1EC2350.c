@@ -10,6 +10,7 @@ struct StateView {
 };
 
 typedef char StateView_size_check[(sizeof(struct StateView) == 0x4ED0) ? 1 : -1];
+
 struct StateView D_8012D690;
 
 void func_800E8A60(void) {
@@ -273,6 +274,10 @@ u8 *func_800E90D8(s32 arg0, s32 arg1, s32 arg2) {
     return (u8 *)&D_8012D690 + index * 0xD8 + 0x3A8;
 }
 
+#ifdef BT_NATIVE // callers use the v0 that func_800E90D8 leaves behind
+u8 *func_800E9300(s32 arg0, s32 arg1) { return func_800E90D8(arg0, arg1, 0x1); }
+u8 *func_800E9320(s32 arg0, s32 arg1) { return func_800E90D8(arg0, arg1, 0); }
+#else
 void func_800E9300(s32 arg0,s32 arg1)
 {
     func_800E90D8(arg0,arg1,0x1);
@@ -281,6 +286,7 @@ void func_800E9300(s32 arg0,s32 arg1)
 void func_800E9320(s32 arg0, s32 arg1) {
     func_800E90D8(arg0, arg1, 0);
 }
+#endif
 
 void func_800E9340(void *arg0, s32 arg1, s32 arg2) {
     void func_800E8E70(s32, void *, s32, s32);

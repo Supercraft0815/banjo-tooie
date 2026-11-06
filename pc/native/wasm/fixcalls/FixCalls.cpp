@@ -11,7 +11,10 @@
 // module before and after optimization (inlining makes new direct calls through pointers).
 //
 //   opt --load-pass-plugin=FixCalls.dylib -passes=bt-fixcalls in.bc -o out.bc
+#include "llvm/Analysis/LoopInfo.h"
+#include "llvm/IR/Dominators.h"
 #include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/IntrinsicInst.h"
 #include "llvm/IR/Module.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/Passes/PassBuilder.h"
@@ -73,6 +76,8 @@ Value *convert(IRBuilder<> &B, Value *V, Type *To) {
     if (From == To)
         return V;
     const DataLayout &DL = B.GetInsertBlock()->getModule()->getDataLayout();
+    if (From->isFloatingPointTy() && To->isFloatingPointTy()) // K&R promotion: same value
+        return B.CreateFPCast(V, To);
     // Everything goes through an integer of the source's width, like a register would.
     if (From->isPointerTy())
         V = B.CreatePtrToInt(V, DL.getIntPtrType(From));
@@ -135,11 +140,162 @@ void addPassThroughParams(Module &M) {
     }
 }
 
+// IDO code also defines `void f(x) { return_g(x); }` and its callers use f's result: v0 still holds
+// g's. A void function whose result some call uses, and whose returns follow a call that yields a
+// value, returns that value instead (other returns give 0).
+void addPassThroughReturns(Module &M) {
+    std::string Report;
+    SmallPtrSet<Function *, 16> Wanted;
+    std::vector<std::string> Stored;
+    for (Function &F : M)
+        for (BasicBlock &BB : F)
+            for (Instruction &I : BB)
+                if (auto *CI = dyn_cast<CallInst>(&I))
+                    if (auto *Callee = dyn_cast<Function>(CI->getCalledOperand()->stripPointerCasts()))
+                        if (!Callee->isDeclaration() && Callee->getReturnType()->isVoidTy() && !CI->getType()->isVoidTy()) {
+                            Wanted.insert(Callee);
+                            for (User *U : CI->users()) { // a stored result is a moved pointer or a handle: 0 breaks it
+                                Value *V = CI;
+                                if (auto *C = dyn_cast<CastInst>(U); C && C->hasOneUse())
+                                    V = C, U = *C->user_begin();
+                                if (auto *S = dyn_cast<StoreInst>(U); S && S->getValueOperand() == V)
+                                    Stored.push_back(Callee->getName().str() + " in " + F.getName().str());
+                            }
+                        }
+    auto lastCall = [](ReturnInst *R) -> CallInst * {
+        for (Instruction *I = R->getPrevNode(); I; I = I->getPrevNode()) {
+            if (isa<DbgInfoIntrinsic>(I) || isa<LifetimeIntrinsic>(I))
+                continue;
+            auto *CI = dyn_cast<CallInst>(I);
+            return CI && !CI->getType()->isVoidTy() && !CI->getType()->isStructTy() ? CI : nullptr;
+        }
+        return nullptr;
+    };
+    for (Function *F : Wanted) {
+        SmallVector<ReturnInst *, 4> Rets;
+        Type *RT = nullptr;
+        for (BasicBlock &BB : *F)
+            if (auto *R = dyn_cast<ReturnInst>(BB.getTerminator())) {
+                Rets.push_back(R);
+                if (CallInst *CI = lastCall(R))
+                    RT = RT ? RT : CI->getType();
+            }
+        if (!RT) { // a caller reads a result this function never produces: needs a source fix
+            for (const std::string &S : Stored)
+                if (S.compare(0, F->getName().size() + 1, (F->getName() + " ").str()) == 0)
+                    Report += "VOIDSTORE " + S + "\n";
+            continue;
+        }
+        Function *NF = Function::Create(FunctionType::get(RT, F->getFunctionType()->params(), F->isVarArg()),
+                                        F->getLinkage(), F->getAddressSpace(), "", &M);
+        NF->copyAttributesFrom(F);
+        NF->splice(NF->begin(), F);
+        for (unsigned i = 0; i < F->arg_size(); i++) {
+            F->getArg(i)->replaceAllUsesWith(NF->getArg(i));
+            NF->getArg(i)->takeName(F->getArg(i));
+        }
+        for (ReturnInst *R : Rets) {
+            IRBuilder<> B(R);
+            CallInst *CI = lastCall(R);
+            B.CreateRet(CI ? convert(B, CI, RT) : Constant::getNullValue(RT));
+            R->eraseFromParent();
+        }
+        Report += ("RET " + F->getName() + "\n").str();
+        F->replaceAllUsesWith(NF); // the main loop adapts the calls
+        NF->takeName(F);
+        F->eraseFromParent();
+    }
+    if (!Widened.empty()) {
+        std::error_code EC;
+        raw_fd_ostream(Widened, EC, sys::fs::OF_Append) << Report;
+    }
+}
+
+// IDO code also has `T f() { g(); }` (no return statement): v0, or f0 for a float, still holds g's
+// result and callers use it; clang returns undef there. After mem2reg such a return is undef or a phi
+// with undef inputs. Each gets the result of the last call before it with a value of the same register
+// class, looking back through single predecessors (0 when there is none).
+static Value *lastResult(BasicBlock *BB, Instruction *From, Type *RT) {
+    SmallPtrSet<BasicBlock *, 8> Seen;
+    for (Instruction *I = From; BB && Seen.insert(BB).second;) {
+        for (; I; I = I->getPrevNode())
+            if (auto *CI = dyn_cast<CallInst>(I); CI && !isa<IntrinsicInst>(CI)) {
+                Type *T = CI->getType();
+                if (!T->isVoidTy() && !T->isStructTy() && T->isFloatingPointTy() == RT->isFloatingPointTy())
+                    return CI;
+            }
+        BB = BB->getSinglePredecessor();
+        I = BB ? BB->getTerminator() : nullptr;
+    }
+    return nullptr;
+}
+
+void fixUndefReturns(Module &M) {
+    std::string Report;
+    for (Function &F : M) {
+        Type *RT = F.getReturnType();
+        if (F.isDeclaration() || RT->isVoidTy() || RT->isStructTy() || RT->isVectorTy())
+            continue;
+        bool Fixed = false;
+        auto replacement = [&](BasicBlock *BB) {
+            IRBuilder<> B(BB->getTerminator());
+            Value *L = lastResult(BB, BB->getTerminator(), RT);
+            Fixed = true;
+            return L ? convert(B, L, RT) : Constant::getNullValue(RT);
+        };
+        for (BasicBlock &BB : F) {
+            auto *R = dyn_cast<ReturnInst>(BB.getTerminator());
+            Value *V = R ? R->getReturnValue() : nullptr;
+            if (!V)
+                continue;
+            if (isa<UndefValue>(V))
+                R->setOperand(0, replacement(&BB));
+            else if (auto *P = dyn_cast<PHINode>(V))
+                for (unsigned i = 0; i < P->getNumIncomingValues(); i++)
+                    if (isa<UndefValue>(P->getIncomingValue(i)))
+                        P->setIncomingValue(i, replacement(P->getIncomingBlock(i)));
+        }
+        if (Fixed) {
+            F.removeRetAttr(Attribute::NoUndef);
+            Report += ("UNDEFRET " + F.getName() + "\n").str();
+        }
+    }
+    if (!Widened.empty()) {
+        std::error_code EC;
+        raw_fd_ostream(Widened, EC, sys::fs::OF_Append) << Report;
+    }
+}
+
+// MIPS O32: the register (or stack slot) each argument of a prototype travels in. A float or double
+// is in f12/f14 when it is the first argument, or the second after a first float; everything else
+// takes 4-byte slots, a0..a3 then the stack (64-bit values start at an even slot).
+static SmallVector<int, 8> o32Registers(ArrayRef<Type *> Params) {
+    SmallVector<int, 8> R; // 0..3 a0..a3, 12/14 f12/f14, 100+n stack slot n
+    unsigned Slot = 0;
+    bool AllFloat = true;
+    for (unsigned i = 0; i < Params.size(); i++) {
+        Type *T = Params[i];
+        bool F = T->isFloatingPointTy();
+        unsigned Words = T->getPrimitiveSizeInBits() > 32 ? 2 : 1;
+        if (Words == 2)
+            Slot = (Slot + 1) & ~1u;
+        if (F && i < 2 && AllFloat)
+            R.push_back(i ? 14 : 12);
+        else
+            R.push_back(Slot < 4 ? (int)Slot : 100 + (int)Slot);
+        AllFloat &= F;
+        Slot += Words;
+    }
+    return R;
+}
+
 struct FixCalls : PassInfoMixin<FixCalls> {
     PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
         if (!AbsSyms.empty())
             resolveAbsSyms(M);
+        fixUndefReturns(M);
         addPassThroughParams(M);
+        addPassThroughReturns(M);
         SmallVector<CallInst *, 64> Work;
         for (Function &F : M)
             for (BasicBlock &BB : F)
@@ -148,6 +304,7 @@ struct FixCalls : PassInfoMixin<FixCalls> {
                         if (auto *Callee = dyn_cast<Function>(CI->getCalledOperand()->stripPointerCasts()))
                             if (CI->getFunctionType() != Callee->getFunctionType() && !Callee->isIntrinsic())
                                 Work.push_back(CI);
+        std::string RegReport;
         for (CallInst *CI : Work) {
             auto *Callee = cast<Function>(CI->getCalledOperand()->stripPointerCasts());
             FunctionType *FT = Callee->getFunctionType();
@@ -156,13 +313,41 @@ struct FixCalls : PassInfoMixin<FixCalls> {
             unsigned N = FT->getNumParams();
             // A missing argument is what the caller still had in that register on the N64: IDO code
             // often calls f() and lets its own a0..a3 pass through.
+            // Prototypes that put a value in another register class (a float where the callee has
+            // an int, f12 against a0) are matched by register: the callee reads what the caller left
+            // in that register, which may be the caller's own incoming argument.
             Function *Caller = CI->getFunction();
+            SmallVector<Type *, 8> CallTypes, OwnTypes;
+            for (Value *A : CI->args())
+                CallTypes.push_back(A->getType());
+            for (Argument &A : Caller->args())
+                OwnTypes.push_back(A.getType());
+            auto Regs = o32Registers(FT->params()), Have = o32Registers(CallTypes),
+                 Own = o32Registers(OwnTypes);
+            // Only an argument that one side passes in f12/f14 and the other in a0/a1 moves; other
+            // differences (a double for a float shifting the slots) are K&R promotions of the same value.
+            bool ByRegister = false;
+            for (unsigned i = 0; i < 2 && i < N && i < Have.size(); i++)
+                ByRegister |= (Regs[i] >= 12 && Regs[i] < 100) != (Have[i] >= 12 && Have[i] < 100);
             for (unsigned i = 0; i < N; i++) {
                 Type *T = FT->getParamType(i);
-                Args.push_back(i < CI->arg_size()      ? convert(B, CI->getArgOperand(i), T)
-                               : i < Caller->arg_size() ? convert(B, Caller->getArg(i), T)
-                                                        : Constant::getNullValue(T));
+                Value *V = nullptr;
+                if (!ByRegister) {
+                    V = i < CI->arg_size()      ? CI->getArgOperand(i)
+                        : i < Caller->arg_size() ? (Value *)Caller->getArg(i)
+                                                 : nullptr;
+                } else {
+                    for (unsigned k = 0; k < Have.size() && !V; k++)
+                        if (Have[k] == Regs[i])
+                            V = CI->getArgOperand(k);
+                    for (unsigned k = 0; k < Own.size() && !V; k++)
+                        if (Own[k] == Regs[i] && Regs[i] < 100)
+                            V = Caller->getArg(k);
+                }
+                Args.push_back(V ? convert(B, V, T) : Constant::getNullValue(T));
             }
+            if (ByRegister)
+                RegReport += ("REGMAP " + Callee->getName() + " in " + Caller->getName() + "\n").str();
             if (FT->isVarArg())
                 for (unsigned i = N; i < CI->arg_size(); i++)
                     Args.push_back(CI->getArgOperand(i));
@@ -178,6 +363,227 @@ struct FixCalls : PassInfoMixin<FixCalls> {
             }
             CI->eraseFromParent();
         }
+        if (!Widened.empty() && !RegReport.empty()) {
+            std::error_code EC;
+            raw_fd_ostream(Widened, EC, sys::fs::OF_Append) << RegReport;
+        }
+        return PreservedAnalyses::none();
+    }
+};
+
+// bt-bigendian: guest memory holds the N64's byte order. The decomp code reads the same bytes
+// with different widths (a flag byte inside a word, a word through a byte pointer, bitfields
+// in u8 and u32 units); only big-endian memory gives every such pair the N64 result. Each
+// load and store wider than a byte swaps its value, initializers are stored swapped, and
+// relocated words in initializers (pointers) are swapped at startup by bt_be_fixup(), which
+// the host calls before any guest code. ROM data, RDP data and the framebuffer are then
+// byte-for-byte N64 RDRAM. Runs on the linked module before optimization, so that no pass
+// has combined or split accesses yet. Byte reversal of an N-bit value (N = 8k):
+Value *swapValue(IRBuilder<> &B, Value *V) {
+    unsigned N = V->getType()->getIntegerBitWidth();
+    if (N <= 8)
+        return V;
+    unsigned P = PowerOf2Ceil(N);
+    if (P == N)
+        return B.CreateUnaryIntrinsic(Intrinsic::bswap, V);
+    Value *W = B.CreateUnaryIntrinsic(Intrinsic::bswap, B.CreateZExt(V, B.getIntNTy(P)));
+    return B.CreateTrunc(B.CreateLShr(W, P - N), V->getType());
+}
+
+APInt swapBits(const APInt &A) {
+    unsigned N = A.getBitWidth();
+    if (N <= 8)
+        return A;
+    unsigned P = PowerOf2Ceil(N);
+    return A.zext(P).byteSwap().lshr(P - N).trunc(N);
+}
+
+// Integer type of a memory value's bytes; null for a byte (nothing to swap).
+IntegerType *memIntType(Type *T, const DataLayout &DL) {
+    unsigned Bits = T->isPointerTy() ? DL.getPointerSizeInBits(T->getPointerAddressSpace())
+                    : T->isIntegerTy() || T->isFloatingPointTy() ? T->getPrimitiveSizeInBits().getFixedValue()
+                                                                 : 0;
+    if (!Bits) {
+        errs() << "bt-bigendian: unsupported memory type " << *T << "\n";
+        report_fatal_error("bt-bigendian");
+    }
+    if (Bits <= 8)
+        return nullptr;
+    if (Bits % 8) {
+        errs() << "bt-bigendian: memory type " << *T << " is not whole bytes\n";
+        report_fatal_error("bt-bigendian");
+    }
+    return IntegerType::get(T->getContext(), Bits);
+}
+
+Value *toInt(IRBuilder<> &B, Value *V, IntegerType *IT) {
+    Type *T = V->getType();
+    return T->isPointerTy() ? B.CreatePtrToInt(V, IT) : T->isIntegerTy() ? V : B.CreateBitCast(V, IT);
+}
+
+Value *fromInt(IRBuilder<> &B, Value *V, Type *T) {
+    return T->isPointerTy() ? B.CreateIntToPtr(V, T) : T->isIntegerTy() ? V : B.CreateBitCast(V, T);
+}
+
+struct Fixup {
+    GlobalVariable *GV;
+    uint64_t Offset;
+    unsigned Bytes;
+};
+
+// The initializer with every number byte-swapped; relocated leaves stay and become fixups.
+Constant *swapInit(Constant *C, GlobalVariable *GV, uint64_t Off, const DataLayout &DL, std::vector<Fixup> &Fix) {
+    Type *T = C->getType();
+    if (isa<ConstantAggregateZero>(C) || isa<UndefValue>(C) || isa<ConstantPointerNull>(C))
+        return C;
+    if (auto *CI = dyn_cast<ConstantInt>(C))
+        return ConstantInt::get(C->getContext(), swapBits(CI->getValue()));
+    if (auto *CF = dyn_cast<ConstantFP>(C))
+        return ConstantFP::get(C->getContext(), APFloat(CF->getValueAPF().getSemantics(),
+                                                        swapBits(CF->getValueAPF().bitcastToAPInt())));
+    if (auto *CDS = dyn_cast<ConstantDataSequential>(C)) {
+        if (CDS->getElementByteSize() == 1)
+            return C;
+        SmallVector<Constant *, 64> E;
+        for (unsigned i = 0; i < CDS->getNumElements(); i++)
+            E.push_back(swapInit(CDS->getElementAsConstant(i), GV, Off + i * CDS->getElementByteSize(), DL, Fix));
+        return isa<ConstantDataArray>(C) ? ConstantArray::get(cast<ArrayType>(T), E) : ConstantVector::get(E);
+    }
+    if (auto *CS = dyn_cast<ConstantStruct>(C)) {
+        const StructLayout *SL = DL.getStructLayout(CS->getType());
+        SmallVector<Constant *, 16> E;
+        for (unsigned i = 0; i < CS->getNumOperands(); i++)
+            E.push_back(swapInit(CS->getOperand(i), GV, Off + SL->getElementOffset(i), DL, Fix));
+        return ConstantStruct::get(CS->getType(), E);
+    }
+    if (auto *CA = dyn_cast<ConstantArray>(C)) {
+        uint64_t Size = DL.getTypeAllocSize(CA->getType()->getElementType());
+        SmallVector<Constant *, 64> E;
+        for (unsigned i = 0; i < CA->getNumOperands(); i++)
+            E.push_back(swapInit(CA->getOperand(i), GV, Off + i * Size, DL, Fix));
+        return ConstantArray::get(CA->getType(), E);
+    }
+    // A symbol's address (or arithmetic on one): known only after linking.
+    if (IntegerType *IT = memIntType(T, DL))
+        Fix.push_back({GV, Off, IT->getBitWidth() / 8});
+    return C;
+}
+
+struct BigEndian : PassInfoMixin<BigEndian> {
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+        const DataLayout &DL = M.getDataLayout();
+        SmallVector<Instruction *, 0> Work;
+        SmallVector<CallBase *, 0> VarCalls, VaStarts;
+        for (Function &F : M)
+            for (BasicBlock &BB : F)
+                for (Instruction &I : BB)
+                    if (isa<LoadInst>(I) || isa<StoreInst>(I))
+                        Work.push_back(&I);
+                    else if (auto *CB = dyn_cast<CallBase>(&I)) {
+                        if (CB->getIntrinsicID() == Intrinsic::vastart)
+                            VaStarts.push_back(CB);
+                        else if (CB->getFunctionType()->isVarArg() && !CB->getIntrinsicID())
+                            VarCalls.push_back(CB);
+                    }
+                    else if (isa<AtomicRMWInst>(I) || isa<AtomicCmpXchgInst>(I) || isa<VAArgInst>(I)) {
+                        errs() << "bt-bigendian: unsupported " << I << " in " << F.getName() << "\n";
+                        report_fatal_error("bt-bigendian");
+                    }
+        for (Instruction *I : Work) {
+            IRBuilder<> B(I);
+            if (auto *L = dyn_cast<LoadInst>(I)) {
+                IntegerType *IT = memIntType(L->getType(), DL);
+                if (!IT)
+                    continue;
+                LoadInst *Raw = B.CreateAlignedLoad(IT, L->getPointerOperand(), L->getAlign(), L->isVolatile());
+                Raw->copyMetadata(*L);
+                Value *V = fromInt(B, swapValue(B, Raw), L->getType());
+                L->replaceAllUsesWith(V);
+                V->takeName(L);
+                L->eraseFromParent();
+            } else {
+                auto *S = cast<StoreInst>(I);
+                Value *V = S->getValueOperand();
+                IntegerType *IT = memIntType(V->getType(), DL);
+                if (!IT)
+                    continue;
+                StoreInst *Raw = B.CreateAlignedStore(swapValue(B, toInt(B, V, IT)), S->getPointerOperand(),
+                                                      S->getAlign(), S->isVolatile());
+                Raw->copyMetadata(*S);
+                S->eraseFromParent();
+            }
+        }
+        // The backend writes a call's variadic arguments and va_start's pointer with its own
+        // (little-endian) stores, while va_arg reads through swapped loads: pass the arguments
+        // pre-swapped and swap the va_list after va_start.
+        for (CallBase *CB : VarCalls) {
+            IRBuilder<> B(CB);
+            for (unsigned i = CB->getFunctionType()->getNumParams(); i < CB->arg_size(); i++) {
+                Value *V = CB->getArgOperand(i);
+                Type *T = V->getType();
+                if (!T->isIntegerTy() && !T->isFloatingPointTy() && !T->isPointerTy()) {
+                    errs() << "bt-bigendian: variadic argument " << *V << " in " << CB->getFunction()->getName() << "\n";
+                    report_fatal_error("bt-bigendian");
+                }
+                if (IntegerType *IT = memIntType(T, DL))
+                    CB->setArgOperand(i, fromInt(B, swapValue(B, toInt(B, V, IT)), T));
+            }
+        }
+        for (CallBase *CB : VaStarts) {
+            IRBuilder<> B(CB->getNextNode());
+            Value *P = CB->getArgOperand(0);
+            IntegerType *IT = B.getIntNTy(DL.getPointerSizeInBits());
+            B.CreateAlignedStore(swapValue(B, B.CreateAlignedLoad(IT, P, Align(4))), P, Align(4));
+        }
+        std::vector<Fixup> Fix;
+        for (GlobalVariable &GV : M.globals())
+            if (GV.hasInitializer() && !GV.getName().starts_with("llvm.")) {
+                size_t Before = Fix.size();
+                GV.setInitializer(swapInit(GV.getInitializer(), &GV, 0, DL, Fix));
+                if (Fix.size() != Before)
+                    GV.setConstant(false); // swapped at startup, so loads must not fold the initializer
+            }
+        // bt_be_fixup(): byte-swaps the relocated words once their values exist.
+        LLVMContext &Ctx = M.getContext();
+        Function *FF = Function::Create(FunctionType::get(Type::getVoidTy(Ctx), false), GlobalValue::ExternalLinkage,
+                                        "bt_be_fixup", &M);
+        IRBuilder<> B(BasicBlock::Create(Ctx, "", FF));
+        for (const Fixup &X : Fix) {
+            Value *P = B.CreateConstInBoundsGEP1_64(B.getInt8Ty(), X.GV, X.Offset);
+            IntegerType *IT = B.getIntNTy(X.Bytes * 8);
+            B.CreateAlignedStore(swapValue(B, B.CreateAlignedLoad(IT, P, Align(1), true)), P, Align(1), true);
+        }
+        B.CreateRetVoid();
+        return PreservedAnalyses::none();
+    }
+};
+
+// bt-safepoints: the N64 preempts a game thread anywhere (timer and VI interrupts), and some
+// loops wait for a higher-priority thread (func_800C2AB8 waits for the audio thread to stop
+// sounds). Host threads only switch at OS calls, so every loop latch calls env.safepoint; the
+// build turns that call into a check of the host's preemption flag.
+struct Safepoints : PassInfoMixin<Safepoints> {
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+        LLVMContext &Ctx = M.getContext();
+        Function *SP = Function::Create(FunctionType::get(Type::getVoidTy(Ctx), false),
+                                        GlobalValue::ExternalLinkage, "host_safepoint", &M);
+        SP->addFnAttr("wasm-import-module", "env");
+        SP->addFnAttr("wasm-import-name", "safepoint");
+        unsigned N = 0;
+        for (Function &F : M) {
+            if (F.isDeclaration())
+                continue;
+            DominatorTree DT(F);
+            LoopInfo LI(DT);
+            SmallVector<BasicBlock *, 16> Latches;
+            for (Loop *L : LI.getLoopsInPreorder())
+                L->getLoopLatches(Latches);
+            for (BasicBlock *BB : Latches) {
+                IRBuilder<>(BB->getTerminator()).CreateCall(SP);
+                ++N;
+            }
+        }
+        errs() << "bt-safepoints: " << N << " loop latches\n";
         return PreservedAnalyses::none();
     }
 };
@@ -188,9 +594,14 @@ extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
     return {LLVM_PLUGIN_API_VERSION, "bt-fixcalls", "1", [](PassBuilder &PB) {
                 PB.registerPipelineParsingCallback(
                     [](StringRef Name, ModulePassManager &MPM, ArrayRef<PassBuilder::PipelineElement>) {
-                        if (Name != "bt-fixcalls")
+                        if (Name == "bt-fixcalls")
+                            MPM.addPass(FixCalls());
+                        else if (Name == "bt-bigendian")
+                            MPM.addPass(BigEndian());
+                        else if (Name == "bt-safepoints")
+                            MPM.addPass(Safepoints());
+                        else
                             return false;
-                        MPM.addPass(FixCalls());
                         return true;
                     });
             }};

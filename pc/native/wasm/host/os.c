@@ -40,12 +40,19 @@ static pthread_mutex_t big = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t intr; // held while a game thread masks interrupts
 static u32 running, ready;
 static int booted, preempt;
+unsigned bt_preempt_flag;  // preempt, for the loop safepoints in the guest (BT_SAFEPOINT)
 static _Thread_local HostThread *self;
 static struct { u32 mq, msg; } events[OS_NUM_EVENTS];
 static struct timespec boot_time;
 
-static GThread *T(u32 t) { return G(t); }
-static u32 *slot(u32 q) { return q == READY ? &ready : (u32 *)G(q); }
+// ILP32 OSThread: next 0, priority 4, queue 8, tlnext 12, u16 state 16, u16 flags 18, id 20.
+// A thread's next link is at its own address, a queue's head at the queue's (OSThread **).
+static s32 pri(u32 t) { return (s32)gr32(t + 4); }
+static void set_state(u32 t, u32 s) { gw16(t + 16, s); }
+static u32 state(u32 t) { return gr16(t + 16); }
+static u32 queue_of(u32 t) { return gr32(t + 8); }
+static u32 qlink(u32 l) { return l == READY ? ready : gr32(l); }
+static void set_qlink(u32 l, u32 t) { if (l == READY) ready = t; else gw32(l, t); }
 
 static HostThread *host_of(u32 t) {
     for (int i = 0; i < MAX_THREADS; i++) {
@@ -56,30 +63,31 @@ static HostThread *host_of(u32 t) {
 
 // Inserts by priority, after threads of equal priority (libultra __osEnqueueThread).
 static void enqueue(u32 q, u32 t) {
-    u32 *p = slot(q);
-    T(t)->queue = q;
-    while (*p && T(*p)->priority >= T(t)->priority) p = &T(*p)->next;
-    T(t)->next = *p;
-    *p = t;
+    u32 l = q;
+    gw32(t + 8, q);
+    while (qlink(l) && pri(qlink(l)) >= pri(t)) l = qlink(l);
+    gw32(t, qlink(l));
+    set_qlink(l, t);
 }
 
 static void unlink_thread(u32 q, u32 t) {
-    for (u32 *p = slot(q); *p; p = &T(*p)->next) {
-        if (*p == t) { *p = T(t)->next; T(t)->next = 0; return; }
+    for (u32 l = q; qlink(l); l = qlink(l)) {
+        if (qlink(l) == t) { set_qlink(l, gr32(t)); gw32(t, 0); return; }
     }
 }
 
 static u32 pop(u32 q) {
-    u32 *p = slot(q), t = *p;
-    if (t) { *p = T(t)->next; T(t)->next = 0; }
+    u32 t = qlink(q);
+    if (t) { set_qlink(q, gr32(t)); gw32(t, 0); }
     return t;
 }
 
 static void dispatch(void) {
-    running = ready && T(ready)->priority > OS_PRIORITY_IDLE ? pop(READY) : 0;
+    running = ready && pri(ready) > OS_PRIORITY_IDLE ? pop(READY) : 0;
     preempt = 0;
+    __atomic_store_n(&bt_preempt_flag, 0, __ATOMIC_RELAXED);
     if (running) {
-        T(running)->state = OS_STATE_RUNNING;
+        set_state(running, OS_STATE_RUNNING);
         pthread_cond_signal(&host_of(running)->cv);
     }
 }
@@ -93,7 +101,7 @@ static void wait_cpu(void) {
 // The calling game thread gives up the CPU; with q it also waits on that queue.
 static void block_self(u32 q, u16 state) {
     if (q) enqueue(q, self->t);
-    T(self->t)->state = state;
+    set_state(self->t, state);
     if (state == OS_STATE_RUNNABLE) enqueue(READY, self->t);
     dispatch();
     wait_cpu();
@@ -105,7 +113,7 @@ static void enter(void) {
     pthread_mutex_lock(&big);
     if (!self) return; // boot context
     self->sp = BT_SP;
-    if (preempt && ready && T(ready)->priority > T(self->t)->priority) block_self(0, OS_STATE_RUNNABLE);
+    if (preempt && ready && pri(ready) > pri(self->t)) block_self(0, OS_STATE_RUNNABLE);
 }
 
 static void leave(void) {
@@ -115,13 +123,13 @@ static void leave(void) {
 // Makes t ready. From a game thread a higher priority takes the CPU at once; from a
 // host thread it waits for the running thread's next OS call.
 static void make_ready(u32 t) {
-    T(t)->state = OS_STATE_RUNNABLE;
+    set_state(t, OS_STATE_RUNNABLE);
     enqueue(READY, t);
     if (!running) {
         dispatch();
-    } else if (T(t)->priority > T(running)->priority) {
+    } else if (pri(t) > pri(running)) {
         if (self && self->t == running) block_self(0, OS_STATE_RUNNABLE);
-        else preempt = 1;
+        else { preempt = 1; __atomic_store_n(&bt_preempt_flag, 1, __ATOMIC_RELAXED); }
     }
 }
 
@@ -137,7 +145,7 @@ static void *thread_main(void *p) {
     return NULL;
 }
 
-void w2c_env_osCreateThread(struct w2c_env *env, u32 t, u32 id, u32 entry, u32 arg, u32 sp, u32 pri) {
+void w2c_env_osCreateThread(struct w2c_env *env, u32 t, u32 id, u32 entry, u32 arg, u32 sp, u32 pr) {
     HostThread *h;
     (void)env;
     pthread_mutex_lock(&big);
@@ -150,12 +158,12 @@ void w2c_env_osCreateThread(struct w2c_env *env, u32 t, u32 id, u32 entry, u32 a
     h->arg = arg;
     h->sp = sp & ~15u;
     pthread_cond_init(&h->cv, NULL);
-    T(t)->next = 0;
-    T(t)->queue = 0;
-    T(t)->id = (s32)id;
-    T(t)->priority = (s32)pri;
-    T(t)->state = OS_STATE_STOPPED;
-    T(t)->flags = 0;
+    gw32(t, 0);
+    gw32(t + 8, 0);
+    gw32(t + 20, id);
+    gw32(t + 4, pr);
+    set_state(t, OS_STATE_STOPPED);
+    gw16(t + 18, 0);
     pthread_mutex_unlock(&big);
 }
 
@@ -172,17 +180,17 @@ void w2c_env_osStartThread(struct w2c_env *env, u32 t) {
         if (pthread_create(&h->pt, &attr, thread_main, h) != 0) bt_fatal("pthread_create failed");
         pthread_attr_destroy(&attr);
     }
-    if (T(t)->state == OS_STATE_STOPPED || T(t)->state == OS_STATE_WAITING) {
-        if (T(t)->queue && T(t)->queue != READY) unlink_thread(T(t)->queue, t);
+    if (state(t) == OS_STATE_STOPPED || state(t) == OS_STATE_WAITING) {
+        if (queue_of(t) && queue_of(t) != READY) unlink_thread(queue_of(t), t);
         if (!self && !booted) {
             // Boot: the first started thread gets the CPU whatever its priority, and the
             // boot context ends here, as on the N64 (it must not touch the guest stack again).
             booted = 1;
             running = t;
-            T(t)->state = OS_STATE_RUNNING;
+            set_state(t, OS_STATE_RUNNING);
             pthread_cond_signal(&h->cv);
             leave();
-            for (;;) pause();
+            bt_video_main();  // the main thread owns the window from here
         }
         make_ready(t);
     }
@@ -195,9 +203,9 @@ void w2c_env_osStopThread(struct w2c_env *env, u32 t) {
     if (t == 0 || (self && t == self->t)) {
         block_self(0, OS_STATE_STOPPED);
     } else {
-        if (T(t)->state == OS_STATE_RUNNABLE) unlink_thread(READY, t);
-        else if (T(t)->queue) unlink_thread(T(t)->queue, t);
-        T(t)->state = OS_STATE_STOPPED;
+        if (state(t) == OS_STATE_RUNNABLE) unlink_thread(READY, t);
+        else if (queue_of(t)) unlink_thread(queue_of(t), t);
+        set_state(t, OS_STATE_STOPPED);
     }
     leave();
 }
@@ -206,15 +214,15 @@ void w2c_env_osDestroyThread(struct w2c_env *env, u32 t) {
     (void)env;
     enter();
     if (t == 0 || t == self->t) {
-        T(self->t)->state = OS_STATE_STOPPED;
+        set_state(self->t, OS_STATE_STOPPED);
         self->t = 0;
         dispatch();
         leave();
         pthread_exit(NULL);
     }
-    if (T(t)->state == OS_STATE_RUNNABLE) unlink_thread(READY, t);
-    else if (T(t)->queue) unlink_thread(T(t)->queue, t);
-    T(t)->state = OS_STATE_STOPPED;
+    if (state(t) == OS_STATE_RUNNABLE) unlink_thread(READY, t);
+    else if (queue_of(t)) unlink_thread(queue_of(t), t);
+    set_state(t, OS_STATE_STOPPED);
     leave(); // the host thread of t stays parked; ids are not reused
 }
 
@@ -227,25 +235,25 @@ void w2c_env_osYieldThread(struct w2c_env *env) {
 
 u32 w2c_env_osGetThreadId(struct w2c_env *env, u32 t) {
     (void)env;
-    return (u32)T(t ? t : self->t)->id;
+    return gr32((t ? t : self->t) + 20);
 }
 
 u32 w2c_env_osGetThreadPri(struct w2c_env *env, u32 t) {
     (void)env;
-    return (u32)T(t ? t : self->t)->priority;
+    return (u32)pri(t ? t : self->t);
 }
 
-void w2c_env_osSetThreadPri(struct w2c_env *env, u32 t, u32 pri) {
+void w2c_env_osSetThreadPri(struct w2c_env *env, u32 t, u32 pr) {
     (void)env;
     enter();
     if (t == 0) t = self->t;
-    if (T(t)->priority != (s32)pri) {
-        T(t)->priority = (s32)pri;
-        if (t != self->t && T(t)->state == OS_STATE_RUNNABLE) {
+    if (pri(t) != (s32)pr) {
+        gw32(t + 4, pr);
+        if (t != self->t && state(t) == OS_STATE_RUNNABLE) {
             unlink_thread(READY, t);
             enqueue(READY, t);
         }
-        if (ready && T(ready)->priority > T(self->t)->priority) block_self(0, OS_STATE_RUNNABLE);
+        if (ready && pri(ready) > pri(self->t)) block_self(0, OS_STATE_RUNNABLE);
     }
     leave();
 }
@@ -255,21 +263,22 @@ static void wake_one(u32 q) {
     if (t) make_ready(t);
 }
 
-static s32 put(u32 mqa, u32 msg, s32 flag, int jam) {
-    GMesgQueue *mq = G(mqa);
-    while (mq->validCount >= mq->msgCount) {
+// ILP32 OSMesgQueue: mtqueue 0, fullqueue 4, validCount 8, first 12, msgCount 16, msg 20.
+static s32 put(u32 mq, u32 msg, s32 flag, int jam) {
+    while (gr32(mq + 8) >= gr32(mq + 16)) {
         if (flag == OS_MESG_NOBLOCK || !self) return -1;
-        block_self(mqa + 4, OS_STATE_WAITING); // fullqueue
+        block_self(mq + 4, OS_STATE_WAITING); // fullqueue
     }
-    u32 *buf = G(mq->msg);
+    u32 buf = gr32(mq + 20), first = gr32(mq + 12), count = gr32(mq + 16), valid = gr32(mq + 8);
     if (jam) {
-        mq->first = (mq->first + mq->msgCount - 1) % mq->msgCount;
-        buf[mq->first] = msg;
+        first = (first + count - 1) % count;
+        gw32(mq + 12, first);
+        gw32(buf + 4 * first, msg);
     } else {
-        buf[(mq->first + mq->validCount) % mq->msgCount] = msg;
+        gw32(buf + 4 * ((first + valid) % count), msg);
     }
-    mq->validCount++;
-    wake_one(mqa); // mtqueue
+    gw32(mq + 8, valid + 1);
+    wake_one(mq); // mtqueue
     return 0;
 }
 
@@ -291,18 +300,18 @@ u32 w2c_env_osJamMesg(struct w2c_env *env, u32 mq, u32 msg, u32 flag) {
     return (u32)r;
 }
 
-u32 w2c_env_osRecvMesg(struct w2c_env *env, u32 mqa, u32 msg, u32 flag) {
-    GMesgQueue *mq = G(mqa);
+u32 w2c_env_osRecvMesg(struct w2c_env *env, u32 mq, u32 msg, u32 flag) {
     (void)env;
     enter();
-    while (mq->validCount == 0) {
+    while (gr32(mq + 8) == 0) {
         if (flag == OS_MESG_NOBLOCK) { leave(); return (u32)-1; }
-        block_self(mqa, OS_STATE_WAITING); // mtqueue
+        block_self(mq, OS_STATE_WAITING); // mtqueue
     }
-    if (msg) *(u32 *)G(msg) = ((u32 *)G(mq->msg))[mq->first];
-    mq->first = (mq->first + 1) % mq->msgCount;
-    mq->validCount--;
-    wake_one(mqa + 4); // fullqueue
+    u32 first = gr32(mq + 12);
+    if (msg) gw32(msg, gr32(gr32(mq + 20) + 4 * first));
+    gw32(mq + 12, (first + 1) % gr32(mq + 16));
+    gw32(mq + 8, gr32(mq + 8) - 1);
+    wake_one(mq + 4); // fullqueue
     leave();
     return 0;
 }
@@ -355,6 +364,14 @@ u32 w2c_env_osSetIntMask(struct w2c_env *env, u32 mask) {
     return old;
 }
 
+// A loop latch with a preemption pending; with interrupts off the N64 would not switch either.
+void w2c_env_safepoint(struct w2c_env *env) {
+    (void)env;
+    if (current_mask == OS_IM_NONE) return;
+    enter();
+    leave();
+}
+
 // Time runs at the N64 CPU counter rate (46.875 MHz = 3/64 per nanosecond).
 static u64 now_ticks(void) {
     struct timespec now;
@@ -378,24 +395,28 @@ u64 w2c_env_osGetTime(struct w2c_env *env) {
 // Timers: a host thread fires them in expiry order.
 static u32 timers;
 static pthread_cond_t timer_cv = PTHREAD_COND_INITIALIZER;
-static GTimer *TM(u32 t) { return G(t); }
+// ILP32 OSTimer: next 0, prev 4, u64 interval 8, u64 value 16, mq 24, msg 28.
+static u32 tm_next(u32 t) { return gr32(t); }
+static u32 tm_prev(u32 t) { return gr32(t + 4); }
+static u64 tm_value(u32 t) { return gr64(t + 16); }
 
 static void timer_unlink(u32 t) {
-    if (TM(t)->prev) TM(TM(t)->prev)->next = TM(t)->next; else timers = TM(t)->next;
-    if (TM(t)->next) TM(TM(t)->next)->prev = TM(t)->prev;
-    TM(t)->next = TM(t)->prev = 0;
+    if (tm_prev(t)) gw32(tm_prev(t), tm_next(t)); else timers = tm_next(t);
+    if (tm_next(t)) gw32(tm_next(t) + 4, tm_prev(t));
+    gw32(t, 0);
+    gw32(t + 4, 0);
 }
 
 u32 w2c_env_osSetTimer(struct w2c_env *env, u32 t, u64 countdown, u64 interval, u32 mq, u32 msg) {
     (void)env;
     pthread_mutex_lock(&big);
-    TM(t)->interval = interval;
-    TM(t)->value = now_ticks() + (countdown ? countdown : interval);
-    TM(t)->mq = mq;
-    TM(t)->msg = msg;
-    TM(t)->next = timers;
-    TM(t)->prev = 0;
-    if (timers) TM(timers)->prev = t;
+    gw64(t + 8, interval);
+    gw64(t + 16, now_ticks() + (countdown ? countdown : interval));
+    gw32(t + 24, mq);
+    gw32(t + 28, msg);
+    gw32(t, timers);
+    gw32(t + 4, 0);
+    if (timers) gw32(timers + 4, t);
     timers = t;
     pthread_cond_signal(&timer_cv);
     pthread_mutex_unlock(&big);
@@ -405,7 +426,7 @@ u32 w2c_env_osSetTimer(struct w2c_env *env, u32 t, u64 countdown, u64 interval, 
 u32 w2c_env_osStopTimer(struct w2c_env *env, u32 t) {
     (void)env;
     pthread_mutex_lock(&big);
-    for (u32 i = timers; i; i = TM(i)->next) {
+    for (u32 i = timers; i; i = tm_next(i)) {
         if (i == t) {
             timer_unlink(t);
             pthread_mutex_unlock(&big);
@@ -421,16 +442,16 @@ static void *timer_main(void *unused) {
     pthread_mutex_lock(&big);
     for (;;) {
         u32 next = 0;
-        for (u32 i = timers; i; i = TM(i)->next) {
-            if (!next || TM(i)->value < TM(next)->value) next = i;
+        for (u32 i = timers; i; i = tm_next(i)) {
+            if (!next || tm_value(i) < tm_value(next)) next = i;
         }
         if (!next) {
             pthread_cond_wait(&timer_cv, &big);
             continue;
         }
         u64 now = now_ticks();
-        if (TM(next)->value > now) {
-            u64 ns = (TM(next)->value - now) * 64 / 3;
+        if (tm_value(next) > now) {
+            u64 ns = (tm_value(next) - now) * 64 / 3;
             struct timespec until;
             clock_gettime(CLOCK_REALTIME, &until);
             until.tv_sec += ns / 1000000000ull;
@@ -439,8 +460,8 @@ static void *timer_main(void *unused) {
             pthread_cond_timedwait(&timer_cv, &big, &until);
             continue;
         }
-        u32 mq = TM(next)->mq, msg = TM(next)->msg;
-        if (TM(next)->interval) TM(next)->value += TM(next)->interval;
+        u32 mq = gr32(next + 24), msg = gr32(next + 28);
+        if (gr64(next + 8)) gw64(next + 16, tm_value(next) + gr64(next + 8));
         else timer_unlink(next);
         pthread_mutex_unlock(&big);
         bt_os_post(mq, msg);

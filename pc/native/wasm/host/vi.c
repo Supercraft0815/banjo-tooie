@@ -81,6 +81,16 @@ static void *vi_main(void *unused) {
     return NULL;
 }
 
+u32 bt_vi_frame(u32 *fb, u32 *width) {
+    u32 n;
+    pthread_mutex_lock(&vi_lock);
+    *fb = vi_black ? 0 : vi_current;
+    *width = vi_mode ? gr32(vi_mode + 8) : 320;  // OSViMode.comRegs.width
+    n = vi_count;
+    pthread_mutex_unlock(&vi_lock);
+    return n;
+}
+
 void bt_vi_init(void) {
     pthread_t t;
     pthread_create(&t, NULL, vi_main, NULL);

@@ -1,5 +1,5 @@
 #include "core2/1ED8C80.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1ED8C80_native.inc"
 #else
 

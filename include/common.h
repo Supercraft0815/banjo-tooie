@@ -54,6 +54,11 @@ typedef struct {
 } Unk80132ED0;
 
 // size: unknown
+// Plain members sharing a word swap only where memory itself is little-endian; the ILP32 guest keeps
+// N64 byte order, while its bitfields still follow BT_NATIVE_LITTLE_ENDIAN (clang allocates from bit 0).
+#if defined(BT_NATIVE_LITTLE_ENDIAN) && !defined(BT_ILP32)
+#define BT_NATIVE_LE_MEMORY 1
+#endif
 typedef struct Actor {
     /* 0x00 */ Unk80132ED0* unk0;
     /* 0x04 */ f32 position[3];
@@ -87,7 +92,7 @@ typedef struct Actor {
     union {
         s32 pad60;
         struct {
-#ifdef BT_NATIVE_LITTLE_ENDIAN
+#ifdef BT_NATIVE_LE_MEMORY
             s16 horizontal_radius; s16 vertex_handle;
 #else
             s16 vertex_handle; s16 horizontal_radius;
@@ -145,7 +150,7 @@ typedef struct Actor {
     union {
         s32 pad68;
         struct {
-#ifdef BT_NATIVE_LITTLE_ENDIAN
+#ifdef BT_NATIVE_LE_MEMORY
             u16 model_radius; u16 center_radius;
 #else
             u16 center_radius; u16 model_radius;
@@ -296,7 +301,7 @@ typedef struct Actor {
     union {
         u32 pad80;
         struct {
-#ifdef BT_NATIVE_LITTLE_ENDIAN
+#ifdef BT_NATIVE_LE_MEMORY
             u16 buffer_handle0; u16 attachment_handle;
 #else
             u16 attachment_handle; u16 buffer_handle0;
@@ -310,7 +315,7 @@ typedef struct Actor {
     union {
         u32 pad84;
         struct {
-#ifdef BT_NATIVE_LITTLE_ENDIAN
+#ifdef BT_NATIVE_LE_MEMORY
             u16 buffer_handle2, buffer_handle1;
 #else
             u16 buffer_handle1, buffer_handle2;
@@ -324,7 +329,7 @@ typedef struct Actor {
     union {
         u32 pad88;
         struct {
-#ifdef BT_NATIVE_LITTLE_ENDIAN
+#ifdef BT_NATIVE_LE_MEMORY
             s16 model_y_max; s16 model_y_min;
 #else
             s16 model_y_min; s16 model_y_max;
@@ -338,7 +343,7 @@ typedef struct Actor {
     union {
         u32 pad8C;
         struct {
-#ifdef BT_NATIVE_LITTLE_ENDIAN
+#ifdef BT_NATIVE_LE_MEMORY
             s16 expression_handle; s16 animation_handle;
 #else
             s16 animation_handle; s16 expression_handle;

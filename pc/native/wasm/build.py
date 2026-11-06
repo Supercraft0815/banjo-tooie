@@ -28,6 +28,7 @@ OUT = ROOT / 'build' / 'ilp32'
 sys.path.insert(0, str(HERE))
 import data  # noqa: E402
 import irtypes  # noqa: E402
+import bitfields  # noqa: E402
 
 CLANG = 'clang'
 WASM_LD = '/opt/homebrew/bin/wasm-ld'
@@ -40,7 +41,7 @@ WASM2C_INC = pathlib.Path('/opt/homebrew/include')
 GLOBAL_BASE = 0x80001000      # guest pointers look like N64 KSEG0 addresses
 MEMORY_END = 0x90000000       # 256 MB of game memory; physical addresses stay below the graphics tokens
 GEN_OUTPUTS = 16              # wasm2c output files, compiled in parallel
-EXPORTS = ['bt_guest_start', 'bt_guest_boot_stack_top']
+EXPORTS = ['bt_guest_start', 'bt_guest_boot_stack_top', 'bt_be_fixup']
 # Functions the wasm backend may call after optimization (libcalls); internalize must keep them.
 LIBCALLS = ['memcpy', 'memmove', 'memset', 'memcmp', 'fminf', 'fmaxf', 'fmin', 'fmax']
 
@@ -54,12 +55,14 @@ GUEST_FLAGS = [
     '-I', str(NATIVE / 'include'), '-I', str(ROOT / 'include'),
     '-I', str(ROOT / 'lib' / 'ultralib' / 'include'), '-I', str(ROOT / 'src'),
     '-include', str(OUT / 'gen' / 'overlay_aliases.h'),
-    '-fno-builtin', '-fno-strict-aliasing', '-fwrapv', '-w',
+    # -fwrapv-pointer: IDO code adds unsigned "negative" offsets to pointers (p + 0xFFFFFFF1); with
+    # inbounds GEPs the wasm backend folds them into the load offset, past the 4 GiB memory.
+    '-fno-builtin', '-fno-strict-aliasing', '-fwrapv', '-fwrapv-pointer', '-w',
     '-Wno-implicit-function-declaration', '-Wno-int-conversion',
     '-Wno-incompatible-pointer-types', '-Wno-return-mismatch', '-Wno-implicit-int',
 ]
 HOST_FLAGS = ['-O2', '-g', '-I', str(WASM2C_INC), '-I', str(WASM2C_RT), '-I', str(OUT / 'gen'),
-              '-I', str(HERE / 'host'), '-DWASM_RT_MEMCHECK_GUARD_PAGES=1']
+              '-I', str(HERE / 'host'), '-I', '/opt/homebrew/include', '-DWASM_RT_MEMCHECK_GUARD_PAGES=1']
 
 
 def run(cmd, **kw):
@@ -75,8 +78,9 @@ def sources():
     native += ['pc/native/platform/rdram.c', 'pc/native/platform/handwritten.c']
     guest = sorted(str(p.relative_to(ROOT)) for p in (HERE / 'guest').glob('*.c'))
     # libultra's math, bit-exact with the N64 (fixed_matrix.c has the matrix conversions and guOrtho).
+    # sinf/cosf come from the host: their constants are big-endian {hi, lo} double halves.
     gu = ['lib/ultralib/src/gu/%s.c' % n for n in (
-        'cosf', 'sinf', 'coss', 'sins', 'lookat', 'lookathil', 'lookatref', 'perspective', 'rotate',
+        'coss', 'sins', 'lookat', 'lookathil', 'lookatref', 'perspective', 'rotate',
         'rotaterpy', 'scale', 'translate', 'mtxcatf', 'mtxcatl', 'normalize', 'position', 'poslight',
         'poslighthil', 'frustum', 'align', 'random')]
     return game + native + guest + gu
@@ -107,7 +111,23 @@ def compile_one(src, tag):
         return src, obj, True
     obj.parent.mkdir(parents=True, exist_ok=True)
     extra = ['-I', str(ROOT / 'lib' / 'ultralib' / 'include' / 'PR')] if src.startswith('lib/ultralib/') else []
-    r = run([CLANG] + GUEST_FLAGS + extra + ['-MMD', '-MF', str(dep), '-c', str(ROOT / src), '-o', str(obj)])
+    cmd = [CLANG] + GUEST_FLAGS + extra
+    if src.startswith('src/'):
+        # Game code: bitfields get the N64 bit order (bitfields.py) between preprocessing and compiling.
+        pre = obj.with_suffix('.i')
+        r = run(cmd + ['-MMD', '-MF', str(dep), '-MT', str(obj), '-E', str(ROOT / src), '-o', str(pre)])
+        if r.returncode == 0:
+            text = pre.read_text()
+            if re.search(r'\w\s*:\s*\d+\s*[;,]', text):
+                def dump(t):
+                    return run([CLANG, '--target=wasm32-unknown-unknown', '-w', '-fsyntax-only', '-x', 'cpp-output',
+                                '-Xclang', '-fdump-record-layouts-complete', '-'], input=t).stdout
+                text, notes = bitfields.rewrite(text, dump, (str(ROOT / 'src'), str(ROOT / 'include')))
+                pre.write_text(text)
+                obj.with_suffix('.bitfields').write_text(''.join(n + '\n' for n in notes))
+            r = run(cmd + ['-x', 'cpp-output', '-c', str(pre), '-o', str(obj)])
+    else:
+        r = run(cmd + ['-MMD', '-MF', str(dep), '-c', str(ROOT / src), '-o', str(obj)])
     if r.returncode != 0:
         log.write_text(r.stderr)
         if obj.exists():
@@ -133,10 +153,12 @@ def nm(objs):
 
 
 def n64_sections():
-    """Symbol -> 'text' or 'data' from the N64 link map, and symbol -> address."""
-    kinds, addrs, current = {}, {}, None
+    """Symbol -> 'text' or 'data' from the N64 link map, symbol -> address, and the segment
+    ROM addresses (name_ROM_START = __romPos)."""
+    kinds, addrs, roms, current = {}, {}, {}, None
     sec = re.compile(r'^ \.?(\w+)\s+0x[0-9a-f]+\s+0x[0-9a-f]+\s')
     sym = re.compile(r'^\s{16}0x([0-9a-f]+)\s+([A-Za-z_][\w.$]*)\s*$')
+    rom = re.compile(r'^\s{16}0x([0-9a-f]+)\s+(\w+_ROM_(?:START|END))\s*=')
     mp = ROOT / 'build' / 'us' / 'banjotooie_decompressed.map'
     for line in open(mp, errors='replace'):
         m = sec.match(line)
@@ -147,7 +169,10 @@ def n64_sections():
         if m and current:
             kinds.setdefault(m.group(2), current)
             addrs.setdefault(m.group(2), int(m.group(1), 16) & 0xFFFFFFFF)
-    return kinds, addrs
+        m = rom.match(line)
+        if m:
+            roms.setdefault(m.group(2), int(m.group(1), 16))
+    return kinds, addrs, roms
 
 
 def c_types(objs):
@@ -185,6 +210,13 @@ CALL_CHECK = '''#define CHECK_CALL_INDIRECT(table, ft, x)                       
    func_types_eq_slowpath(&(table), ft, x))'''
 # The N64 calls through function pointers whatever their declared signature (the arguments are
 # in registers); the callers here do the same, so only a missing function traps.
+# Loop latches call env.safepoint (bt-safepoints); only a pending preemption takes the call.
+SAFEPOINT_CALL = 'w2c_env_safepoint(instance->w2c_env_instance);'
+SAFEPOINT = '''
+extern unsigned bt_preempt_flag;
+#define BT_SAFEPOINT(env) \\
+  do { if (UNLIKELY(__atomic_load_n(&bt_preempt_flag, __ATOMIC_RELAXED))) w2c_env_safepoint(env); } while (0)
+'''
 CALL_CHECK_N64 = '''#define CHECK_CALL_INDIRECT(table, ft, x) \\
   (LIKELY((x) < table.size && table.data[x].func) || (TRAP(CALL_INDIRECT), 0))'''
 
@@ -211,7 +243,7 @@ def main():
     write_if_changed(gen / 'overlay_aliases.h', (gen / 'overlay_aliases.h.tmp').read_text())
 
     # 1. Guest objects.
-    tag = flags_hash(GUEST_FLAGS)
+    tag = flags_hash(GUEST_FLAGS + [hashlib.sha1((HERE / 'bitfields.py').read_bytes()).hexdigest()])
     srcs = sources()
     with cf.ThreadPoolExecutor(args.j) as ex:
         results = list(ex.map(lambda s: compile_one(s, tag), srcs))
@@ -227,7 +259,7 @@ def main():
 
     # 2. Data and traps.
     defined, undef = nm(objs)
-    n64, n64_addr = n64_sections()
+    n64, n64_addr, n64_rom = n64_sections()
     labels = set()
     files = data_files()
     for f in files:
@@ -273,6 +305,8 @@ def main():
             linker_syms.append('%s %s %d' % (n, have[i][1], v - have[i][0]))
         else:
             linker_syms.append('%s = %d' % (n, v))
+    named = {l.split()[0] for l in linker_syms}
+    linker_syms += ['%s = %d' % (n, v) for n, v in sorted(n64_rom.items()) if n in undef and n not in defined and n not in named]
     write_if_changed(gen / 'linker_syms.txt', '\n'.join(linker_syms) + '\n')
     missing = sorted({alias.get(n, n) for n in undef | data_refs} - set(defined) - ddef - imports
                      - {l.split()[0] for l in linker_syms})
@@ -302,7 +336,8 @@ def main():
         cxxflags = run([LLVM_BIN + '/llvm-config', '--cxxflags']).stdout.split()
         libdir = run([LLVM_BIN + '/llvm-config', '--libdir']).stdout.strip()
         tmp = plugin.with_suffix('.tmp')
-        r = run([LLVM_BIN + '/clang++', '-shared', '-fPIC'] + cxxflags + [str(cpp), '-o', str(tmp),
+        # lld: ld64's output fails to load in opt on newer macOS (mis-aligned LINKEDIT string pool)
+        r = run([LLVM_BIN + '/clang++', '-shared', '-fPIC', '-fuse-ld=lld'] + cxxflags + [str(cpp), '-o', str(tmp),
                  '-L' + libdir, '-lLLVM', '-Wl,-rpath,' + libdir])
         if r.returncode != 0:
             sys.exit('FixCalls plugin failed:\n' + r.stderr[:4000])
@@ -317,7 +352,7 @@ def main():
     r = run([LLVM_BIN + '/opt', '--load-pass-plugin=%s' % plugin, 
              # Inlining turns calls through function pointers into direct calls that may mismatch
              # again, so the fix runs before and after the optimization pipeline.
-             '-passes=bt-fixcalls,internalize,default<O2>,bt-fixcalls', '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'), '-bt-widened=%s' % (OUT / 'widened.txt'),
+             '-passes=function(mem2reg),bt-fixcalls,bt-bigendian,internalize,default<O2>,bt-fixcalls,bt-safepoints', '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'), '-bt-widened=%s' % (OUT / 'widened.txt'),
              '-internalize-public-api-list=' + ','.join(EXPORTS + LIBCALLS), str(linked), '-o', str(fixed)]
             # BT_NOINLINE=1: keeps every function separate, so crash backtraces name the real function.
             + (['-inline-threshold=-100000'] if os.environ.get('BT_NOINLINE') else []))
@@ -345,7 +380,8 @@ def main():
         text = p.read_text()
         if p.name == 'game-impl.h':
             assert CALL_CHECK in text, 'wasm2c changed its CALL_INDIRECT check'
-            text = text.replace(CALL_CHECK, CALL_CHECK_N64)
+            text = text.replace(CALL_CHECK, CALL_CHECK_N64) + SAFEPOINT
+        text = text.replace(SAFEPOINT_CALL, 'BT_SAFEPOINT(instance->w2c_env_instance);')
         write_if_changed(gen / p.name, text)
 
     # 4. Host executable.
@@ -368,9 +404,14 @@ def main():
     if errors:
         sys.exit('host compile failed:\n' + '\n'.join(errors)[:8000])
     exe = OUT / 'bt_game'
-    r = run([CLANG, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread'])
+    r = run([CLANG, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread', '-L/opt/homebrew/lib', '-lSDL3'])
     if r.returncode != 0:
         sys.exit('host link failed:\n' + r.stderr[:8000])
+    # Display lists address memory as segment + 24-bit offset (see platform/rdram.c).
+    top = max(int(l.split()[0], 16) + int(l.split()[2], 16) for l in (OUT / 'game.map').read_text().splitlines()
+              if re.match(r'[0-9a-f]{8} +[0-9a-f]+ +[0-9a-f]+ ', l))
+    if top > 0x81000000 and not os.environ.get('BT_BIG'):
+        sys.exit('guest data ends at 0x%x, above the 16 MB the RSP can address' % top)
     print('built %s' % exe)
     if args.run:
         os.execv(str(exe), [str(exe)] + (args.rest or [str(ROOT / 'baserom.us.z64')]))

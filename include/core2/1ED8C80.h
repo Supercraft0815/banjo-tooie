@@ -9,7 +9,7 @@ void func_800FFAB0(Actor*);
 void func_800FFC14();
 u32* func_80100074(Actor*, u32, u32);
 void* func_80100094(Actor*, u32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 void *func_801000D8(Actor*, s32, s32);
 void func_800FF390(void),func_800FF3EC(Actor *),func_800FF44C(void),func_800FF4A4(Actor *);
 s32 func_800FF564(void);

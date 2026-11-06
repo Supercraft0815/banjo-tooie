@@ -49,7 +49,7 @@ void func_800125B0(void) {
             osViClock = 0x02E6025C;
             break;
     }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     // Audio is not ported yet: create the queues other modules talk to, but no
     // synthesizer and no audio thread.
     {
@@ -74,7 +74,7 @@ void func_800125B0(void) {
 #endif
 }
 
-#ifndef BT_NATIVE // synthesizer setup and audio thread: see the native note in func_800125B0
+#if !defined(BT_NATIVE) || defined(BT_ILP32) // synthesizer setup and audio thread: see the native note in func_800125B0
 
 void func_8001268C(void) {
     struct DMAState {

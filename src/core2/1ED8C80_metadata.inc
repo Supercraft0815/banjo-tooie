@@ -1,5 +1,6 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_ILP32) // defined in pc/native/platform/handwritten.c
+#elif defined(BT_NATIVE)
 void *func_80100368(void *data) {
     Actor *actor=data;
     return actor && actor->factory ? actor->factory() : NULL;

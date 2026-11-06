@@ -16,10 +16,17 @@ import re
 DECL = re.compile(r'^@("?[\w.$]+"?) = external (?:\w+ )*?(?:global|constant) (.+?)(?:, align \d+)?$')
 TYPEDEF = re.compile(r'^(%[\w.$"]+) = type (.+)$')
 SCALARS = {'i8': 1, 'i16': 2, 'i32': 4, 'i64': 8, 'float': 4, 'double': 8, 'ptr': 4, 'half': 2}
+# GBI unions carry a `long long force_structure_alignment` member, which clang picks as the
+# IR type ({ i64 }). Their data is the other member: display-list words, vertex fields,
+# matrix words, light bytes, viewport halfwords. Alignment stays 8.
+GBI_UNIONS = {'Gfx': '{ i32, i32 }', 'Acmd': '{ i32, i32 }', 'Vtx': '{ [3 x i16], i16, [2 x i16], [4 x i8] }',
+              'Mtx': '[16 x i32]', 'Light': '[16 x i8]', 'Ambient': '[8 x i8]', 'Vp': '[8 x i16]'}
+GBI_UNION = re.compile(r'^%union\.(' + '|'.join(GBI_UNIONS) + r')(\.\d+)?$')
 
 
 def parse_type(s, i=0):
-    """(type tree, next index). Trees: ('s', size) | ('a', n, T) | ('t', packed, [T]) | ('n', name)."""
+    """(type tree, next index). Trees: ('s', size) | ('a', n, T) | ('t', packed, [T]) | ('n', name)
+    | ('al', align, T) (T with a larger alignment)."""
     while s[i] == ' ':
         i += 1
     if s[i] == '[':
@@ -61,6 +68,9 @@ def layout(t, named):
         return size * t[1], align
     if t[0] == 'n':
         return layout(named[t[1]], named)
+    if t[0] == 'al':
+        size, align = layout(t[2], named)
+        return (size + t[1] - 1) // t[1] * t[1], max(align, t[1])
     off, align = 0, 1
     for f in t[2]:
         size, a = layout(f, named)
@@ -77,6 +87,8 @@ def units(t, named, base, out):
         out.append((base, t[1]))
     elif t[0] == 'n':
         units(named[t[1]], named, base, out)
+    elif t[0] == 'al':
+        units(t[2], named, base, out)
     elif t[0] == 'a':
         size, _ = layout(t[2], named)
         for k in range(t[1]):
@@ -97,7 +109,10 @@ def declarations(ir_lines):
     for line in ir_lines:
         m = TYPEDEF.match(line)
         if m:
-            if m.group(2) != 'opaque':
+            g = GBI_UNION.match(m.group(1))
+            if g:
+                named[m.group(1)] = ('al', 8, parse_type(GBI_UNIONS[g.group(1)])[0])
+            elif m.group(2) != 'opaque':
                 named[m.group(1)] = parse_type(m.group(2))[0]
             continue
         m = DECL.match(line)
@@ -159,4 +174,8 @@ if __name__ == '__main__':
     assert label_units(d['D_A'], 0x100, 0x10C) == {0x100: 2, 0x102: 2, 0x104: 2, 0x106: 2, 0x108: 2, 0x10A: 2}
     assert merge([{'D_C': d['D_C']}, {'D_C': d['D_A']}])['D_C'] == d['D_A']
     assert merge([{'D_A': d['D_A']}, {'D_A': d['D_B']}])['D_A'] == d['D_B']  # mixed widths beat u16 rows
+    g = declarations(['%union.Vtx = type { i64, [8 x i8] }', '%struct.T = type { i32, %union.Vtx }',
+                      '@D_V = external global [0 x %union.Vtx], align 8', '@D_T = external global %struct.T, align 8'])
+    assert g['D_V'] == (((0, 2), (2, 2), (4, 2), (6, 2), (8, 2), (10, 2), (12, 1), (13, 1), (14, 1), (15, 1)), 16, True)
+    assert g['D_T'][0][1] == (8, 2) and g['D_T'][1] == 24, g['D_T']  # the union keeps its 8-byte alignment
     print('ok')

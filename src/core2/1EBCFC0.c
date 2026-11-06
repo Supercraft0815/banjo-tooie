@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EBCFC0_native.inc"
 #else
 #include <ultra64.h>

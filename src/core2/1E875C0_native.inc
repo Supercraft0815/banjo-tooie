@@ -89,7 +89,14 @@ void func_800AE598(NativeBoneMatrices *list,Mtx **output) {
     func_80116684(&list->base,*output,1);
     func_80116684(list->matrices,*output+1,list->count);*output+=list->count+1;
 }
-void func_800AE5F0(NativeBoneMatrices *list) {if(list->expression)func_800E0A98(list->expression);}
+// defrag can move both blocks (the N64 heap in the ILP32 build); the caller stores the moved list.
+NativeBoneMatrices *func_800AE5F0(NativeBoneMatrices *list) {
+    if(list->expression) {
+        Unkfunc_800E0960_1 *e=defrag(list->expression);  // func_800E0A98, keeping the moved address
+        e->unk0=(Unkfunc_800E0960_2 *)&e[1];list->expression=e;
+    }
+    return defrag(list);
+}
 s32 func_800AE630(NativeBoneMatrices *list,NativeSkeleton *skeleton,s32 index,f32 *output) {
     if(list->count==skeleton->count)for(int i=0;i<list->count;++i)if(skeleton->bones[i].pose_index==index) {
         func_800F23D0(&list->matrices[i],output,skeleton->bones[i].pivot);return 1;

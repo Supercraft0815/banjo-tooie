@@ -33,7 +33,7 @@ void func_800AE1E8(s16,NativeSkeleton *,BoneTransformList *);
 void func_800AE290(s16,NativeSkeleton *,BoneTransformList *);
 void func_800AE40C(s16,NativeSkeleton *,BoneTransformList *);
 void func_800AE598(NativeBoneMatrices *,Mtx **);
-void func_800AE5F0(NativeBoneMatrices *);
+NativeBoneMatrices *func_800AE5F0(NativeBoneMatrices *);
 s32 func_800AE630(NativeBoneMatrices *,NativeSkeleton *,s32,f32 *);
 Unkfunc_800E0960_1 *func_800AE6BC(NativeBoneMatrices *);
 void func_800AE6FC(NativeBoneMatrices *,s16);

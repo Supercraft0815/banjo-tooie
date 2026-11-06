@@ -379,16 +379,15 @@ double trunc(double x) { return __builtin_trunc(x); }
 float fminf(float a, float b) { return a != a ? b : b != b ? a : __builtin_wasm_min_f32(a, b); }
 float fmaxf(float a, float b) { return a != a ? b : b != b ? a : __builtin_wasm_max_f32(a, b); }
 float copysignf(float a, float b) { return __builtin_copysignf(a, b); }
+float nearbyintf(float x) { return __builtin_rintf(x); }  // f32.nearest: round to even
 float roundf(float x) { return x < 0 ? -__builtin_floorf(-x + 0.5f) : __builtin_floorf(x + 0.5f); }
 double round(double x) { return x < 0 ? -__builtin_floor(-x + 0.5) : __builtin_floor(x + 0.5); }
 
 #define LIBM1(name, T) T BT_HOST(name)(T); T name(T x) { return host_##name(x); }
 #define LIBM2(name, T) T BT_HOST(name)(T, T); T name(T x, T y) { return host_##name(x, y); }
-LIBM1(tanf, float) LIBM1(asinf, float) LIBM1(acosf, float) LIBM1(atanf, float)
+LIBM1(sinf, float) LIBM1(cosf, float) LIBM1(tanf, float) LIBM1(asinf, float) LIBM1(acosf, float) LIBM1(atanf, float)
 LIBM2(atan2f, float) LIBM2(powf, float) LIBM1(expf, float) LIBM1(logf, float) LIBM2(fmodf, float)
 LIBM1(sin, double) LIBM1(cos, double) LIBM1(tan, double) LIBM1(asin, double) LIBM1(acos, double)
 LIBM1(atan, double) LIBM2(atan2, double) LIBM2(pow, double) LIBM1(exp, double) LIBM1(log, double)
 LIBM2(fmod, double)
 
-// libultra's sinf/cosf use this quiet NaN (libm_vals.s).
-const unsigned int __libm_qnan_f = 0x7F810000;

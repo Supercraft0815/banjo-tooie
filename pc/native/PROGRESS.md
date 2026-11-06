@@ -21,20 +21,37 @@ Pipeline (`pc/native/wasm/`):
    pointers, so every struct keeps its N64 layout. `BT_NATIVE` and `BT_ILP32` are set.
    Per-file LLVM passes are off (`-Xclang -disable-llvm-passes`), so FixCalls sees the
    calls as written before anything is inlined.
-2. `data.py` turns the asm data (`asm/data`, bss files) into one LLVM IR module.
-   Each element is stored with the width the C declarations give it (`irtypes.py`
-   reads the external declarations from the bitcode), else the directive's width.
-3. `llvm-link` → `opt` with the `FixCalls` pass plugin (`fixcalls/FixCalls.cpp`):
-   adapts direct calls to the callee's real signature (IDO register semantics,
-   missing arguments = caller's own a0..a3) and resolves `undefined_syms.us.txt`
-   (fixed addresses, `A = B + off`; code-relative ones are re-anchored to the nearest
-   data label of the same overlay). Functions whose short calls pass a0..a3 through
-   get those parameters (`build/ilp32/widened.txt`). Runs before and after `default<O2>`.
-4. `wasm-ld` → `wasm2c` → native clang build with the host layer (`host/`: threads,
-   message queues, timers, VI, PI/ROM, SI, files). Indirect calls skip wasm's
-   signature check (the N64 does not have one either).
-5. Missing functions become generated traps (`build/ilp32/traps.txt`) that print their
+2. `bitfields.py` rewrites the preprocessed files: IDO allocates bitfields from the most
+   significant bit, clang from the least, so each field is mirrored inside its unit, and
+   neighbouring units are fenced with `char : 0;` (clang would merge two `u8` units into
+   one `i16` access, which the byte swap below breaks).
+3. `data.py` turns the asm data (`asm/data`, bss files) into one LLVM IR module, one
+   block per file with N64 offsets; data/rodata/bss files of one module that touch on
+   the N64 become one block (code reaches a neighbour's table through another label).
+   Raw words equal to an overlay syscall stub address become function pointers.
+4. `llvm-link` → `opt` with the pass plugin (`fixcalls/FixCalls.cpp`):
+   `mem2reg, bt-fixcalls, bt-bigendian, internalize, default<O2>, bt-fixcalls, bt-safepoints`.
+   - `bt-fixcalls` emulates the IDO calling convention: calls adapted to the callee's
+     real signature, pass-through arguments (missing = caller's own a0..a3) and
+     results (a void call site reads v0/f0 of the last call), missing `return`s
+     (the last call result of the same register class), O32 register mapping when the
+     first two arguments switch FPR/GPR. Resolves `undefined_syms.us.txt`.
+   - `bt-bigendian`: guest memory holds the N64 byte order; every load/store wider
+     than a byte is swapped. ROM data, assets and display lists need no conversion.
+   - `bt-safepoints`: every loop latch calls `env.safepoint`, which the build turns into
+     a check of the host's preemption flag (the N64 preempts anywhere; e.g.
+     `func_800C2AB8` spins until the audio thread has stopped a sound).
+5. `wasm-ld` → `wasm2c` → native clang build with the host layer (`host/`: threads with
+   N64 priorities, message queues, timers, VI, PI/ROM, SI, files, F3DEX2 HLE `gsp.c`,
+   software RDP `rdp.c`, SDL3 window `video.c`, controller `input.c`). Indirect calls
+   skip wasm's signature check (the N64 does not have one either).
+6. Missing functions become generated traps (`build/ilp32/traps.txt`) that print their
    name and abort.
+
+Run options (`host/video.c`, `host/input.c`): `BT_HEADLESS=1`, `BT_DUMP=prefix`
+(BMP frames, `BT_DUMP_EVERY=N`), `BT_EXIT_AFTER=secs`, `BT_PRESS=secs:mask,...`
+(scripted controller, e.g. `15:1000,15.3:0` = Start at 15 s). Keyboard: Return Start,
+Space A, Left Shift B, WASD stick. Saves: 16 Kbit EEPROM in `bt_eeprom.bin`.
 
 Debug helpers: guest data starts at `0x80001000` (`--global-base`), but addresses do
 not equal N64 ones; `build/ilp32/game.map` (wasm-ld map) names every guest address.
@@ -54,10 +71,10 @@ of calls in the same file as the definition).
 | M0 | Native core library + 53 module tests (Codex, up to 2026-11-05) | done |
 | M1 | Every game C file compiles natively | 1,110 / 1,110 (ILP32, 2026-11-06) |
 | M2 | Game executable links: all code + data, missing pieces trap with their name | done; 26 function + 4 data traps left |
-| M3 | Platform layer, boot runs to the game loop | done 2026-11-06: frame loop runs (~30 gfx tasks/s, no crash) |
-| M4 | Renderer: F3DEX2 display-list interpreter + SDL window → first visible frame | – |
-| M5 | Input (SDL controller), saves (EEPROM), audio (n_audio command lists) | – |
-| M6 | Gameplay verification: title, file select, Spiral Mountain, level transitions | – |
+| M3 | Platform layer, boot runs to the game loop | done 2026-11-06 |
+| M4 | Renderer: F3DEX2 HLE + software RDP + SDL window | done 2026-11-06: intro, title, attract demos, file select, new-game cutscene render; no AA/dither |
+| M5 | Input (SDL controller), saves (EEPROM), audio (n_audio command lists) | input and EEPROM file done; audio tasks complete unplayed |
+| M6 | Gameplay verification: title, file select, Spiral Mountain, level transitions | in progress: new game reaches the opening cutscene (2026-11-06) |
 
 ## Working method
 
@@ -69,29 +86,45 @@ of calls in the same file as the definition).
 
 ## Open problems (next steps)
 
-1. **Renderer (M4).** `host/rcp.c` completes tasks without running them. Next: an
-   F3DEX2 display-list interpreter (HLE) plus an SDL window.
-2. **Big-endian assets.** Guest memory is little-endian; ROM assets are big-endian.
-   Converted on load in `native_asset_load` (`assets.c`, `model.c`): models (header,
-   vertices, collision, skeleton, binding, VPL 0x34, mesh list 0x24, lights 0x30),
-   animations, music sequence headers (type 9). Model fields 0x14, 0x2C, 0x38–0x40 and
-   other asset types are still raw; convert each when its consumer shows up.
-3. **Asm data widths.** Data without a matching C declaration keeps its directive
-   widths, so a `.byte` table of records with `f32`/`s32` fields (or `.short` pairs read
-   as bytes) reads wrong in little-endian memory. Type such tables in
-   `guest/data_types.c` (done: `chintrochar` rows, `gctransitionDll` tables).
-   Bitfields keep their N64 bit order only where all accesses share one declaration.
-4. 26 function traps (`build/ilp32/traps.txt`): handwritten asm (`1E2B200.s`,
-   `1EB2BF0.s` matrix code, `1EF0820.s`), `nearbyintf`, libultra SI/motor.
+1. **Optimized build hangs** (no `BT_NOINLINE`): black screen, the game thread loops
+   inside the inlined `func_800A5C94` → `func_801002C0` path. Likely an ABI emulation
+   case that only appears after inlining. Use `BT_NOINLINE=1` builds until fixed.
+2. **Audio (M5).** `host/rcp.c` completes audio tasks without running them. Next: an
+   n_audio Acmd interpreter plus SDL audio output.
+3. **Gameplay (M6).** Play on from the opening cutscene to Spiral Mountain; fix what
+   traps or crashes (scripted runs: `BT_PRESS` + `BT_DUMP`).
+4. **Cross-symbol data access.** Code that reaches data through another symbol's
+   address only works when both lie in one asm block (`data.py` joins touching files of a
+   module). Data split between C files and asm cannot be joined this way.
 5. Codex's 64-bit `*_native.inc` replacements stay active under ILP32 unless they
    mismatch; then the module switches back to the original code with
-   `#if defined(BT_NATIVE) && !defined(BT_ILP32)` (done for `1EB5E70` geometry,
-   reset and state). Switching all of them at once cascades; do it per module.
-6. Audio (no audio tasks yet), input, saves.
+   `#if defined(BT_NATIVE) && !defined(BT_ILP32)`. Their little-endian assumptions are
+   a risk under the big-endian guest: plain members that share a word now follow
+   `BT_NATIVE_LE_MEMORY` (unset under ILP32), bitfields `BT_NATIVE_LITTLE_ENDIAN`.
+6. 12 function traps left (`build/ilp32/traps.txt`).
 7. The 64-bit target (`pc/native/link_game.py`, `platform/ultra_*.c`) is superseded
    by the ILP32 build and can go once nothing depends on it.
 
 ## Log
+
+### 2026-11-06 (night)
+- Big-endian guest memory (`bt-bigendian`), renderer (`gsp.c`, `rdp.c`, `video.c`),
+  controller input, EEPROM file. Intro, title, attract demos, file select and the
+  new-game opening cutscene run in the `BT_NOINLINE` build.
+- Fixes on the way:
+  - `bitfields.py` mirrored native-port records twice (intro scripts never started);
+    now also fences bitfield units (a `u8` flag pair was read as one `i16`, which
+    toggled bit 31 of an actor's route number).
+  - `Actor` handle pairs at 0x80–0x8C used the little-endian order under ILP32
+    (`animation_handle` overwrote the prop freelist index): `BT_NATIVE_LE_MEMORY`.
+  - IDO ABI: pass-through and missing returns, O32 FPR/GPR register mapping.
+  - Overlay stub addresses in data tables (`scinfobar`), loads past 4 GB
+    (`-fwrapv-pointer`), `1E2B200.s` trig routines and `nearbyintf` in C,
+    `func_8001B7F0`, `func_800AE5F0` (defrag moves the bone list).
+  - Loop safepoints for preemption (sound stop wait in `func_800C2AB8`).
+  - `gczoombox` reads its button-image table before a `.bss` label: touching asm
+    data files of one module form one block.
+  - `gsp.c` ignores `G_VTX` with a negative buffer index instead of writing outside.
 
 ### 2026-11-06 (evening)
 - Boot reaches the game loop: map 395 load, camera and player init, actor spawn

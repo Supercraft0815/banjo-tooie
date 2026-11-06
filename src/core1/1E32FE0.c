@@ -116,10 +116,10 @@ s32 func_8001B7B8(s16 arg0) {
     s32 heap_get_allocation_size(void *);
     heap_get_allocation_size(D_8007BF10[arg0].ptr);
 }
-#endif
 
 /* extern */
 
 void func_8001B7F0(s16 arg0, u8 arg1, int arg2) { u32 value = arg1;
     rare_memset(D_8007BF10[arg0].ptr, value, arg2);
 }
+#endif

@@ -44,9 +44,6 @@ u32 w2c_env_rom_read(struct w2c_env *env, u32 dev, u32 dst, u32 n) {
     return 0;
 }
 
-// shortcut: no controller yet (SDL input comes with the window).
-u32 w2c_env_pad_read(struct w2c_env *env) { (void)env; return 0; }
-
 void w2c_env_write(struct w2c_env *env, u32 fd, u32 buf, u32 n) {
     (void)env;
     if (write(fd == 1 ? 1 : 2, G(buf), n) < 0) {}
@@ -106,15 +103,15 @@ u32 w2c_env_inflate_raw(struct w2c_env *env, u32 src, u32 src_len, u32 dst, u32 
     z.next_out = G(dst);
     z.avail_out = dst_len;
     r = inflate(&z, Z_FINISH);
-    *(u32 *)G(in_used) = (u32)z.total_in;
-    *(u32 *)G(out_used) = (u32)z.total_out;
+    gw32(in_used, (u32)z.total_in);
+    gw32(out_used, (u32)z.total_out);
     inflateEnd(&z);
     return (u32)r;
 }
 
 #define LIBM1(name, T) T w2c_env_##name(struct w2c_env *env, T x) { (void)env; return name(x); }
 #define LIBM2(name, T) T w2c_env_##name(struct w2c_env *env, T x, T y) { (void)env; return name(x, y); }
-LIBM1(tanf, f32) LIBM1(asinf, f32) LIBM1(acosf, f32) LIBM1(atanf, f32)
+LIBM1(sinf, f32) LIBM1(cosf, f32) LIBM1(tanf, f32) LIBM1(asinf, f32) LIBM1(acosf, f32) LIBM1(atanf, f32)
 LIBM2(atan2f, f32) LIBM2(powf, f32) LIBM1(expf, f32) LIBM1(logf, f32) LIBM2(fmodf, f32)
 LIBM1(sin, f64) LIBM1(cos, f64) LIBM1(tan, f64) LIBM1(asin, f64) LIBM1(acos, f64)
 LIBM1(atan, f64) LIBM2(atan2, f64) LIBM2(pow, f64) LIBM1(exp, f64) LIBM1(log, f64)

@@ -75,8 +75,10 @@ s16 func_8001B668(s32 type, s32 size) {
 }
 
 void *func_8001B798(s16 handle) {
-    if (handle <= 0 || handle >= 250 || !handles[handle])
+    if (handle <= 0 || handle >= 250 || !handles[handle]) {
+        fprintf(stderr, "Banjo-Tooie native memory: handle %d\n", handle);
         memory_error("invalid allocation handle");
+    }
     return handles[handle];
 }
 
@@ -93,6 +95,10 @@ void func_8001B754(s16 handle) {
     heap_free(func_8001B798(handle));
     handles[handle] = NULL;
     handle_sizes[handle] = 0;
+}
+
+void func_8001B7F0(s16 handle, u8 value, int size) {
+    rare_memset(func_8001B798(handle), value, size);
 }
 
 s32 func_8001B7B8(s16 handle) {

@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
     // Guest pointers start at 0x80000000; anything lower is a stray pointer.
     if (mprotect(bt_mem, 0x80000000u, PROT_NONE) != 0) perror("bt_native: protecting low guest memory");
     BT_SP = w2c_bt_bt_guest_boot_stack_top(&bt_inst);
+    w2c_bt_bt_be_fixup(&bt_inst); // relocated words in the data, into big-endian order
     w2c_bt_bt_guest_start(&bt_inst); // never returns: the boot context ends in osStartThread
     return 0;
 }
