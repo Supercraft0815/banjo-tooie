@@ -200,3 +200,53 @@ of calls in the same file as the definition).
 - Baseline: native core builds, 53/53 tests pass; N64 `make check` OK.
 - First (64-bit) game executable with traps and a libultra platform layer; boot
   reached `func_8001D1E0`. Details of that layer: `pc/native/platform/`.
+
+### Phase 8: frame oracle (2026-11-09)
+
+`python3 pc/native/wasm/frame_compare.py compare SOFT_DIR GPU_DIR` compares
+BT_DUMP BMPs by retrace, including dimensions and missing frames. Default tolerance:
+8/255 per RGB channel, at most 0.5% failing pixels **in each frame**; both limits
+are explicit CLI arguments and appear in the result. No reference is updated.
+`frame_compare.py replay NEW_OUTPUT --renderer gl|metal [--case intro]` uses the
+existing corpus inputs, isolated saves and a frozen executable, dumping every
+retrace. `--seconds N` is a partial diagnostic, never corpus acceptance.
+ROM-free checks: `python3 pc/native/wasm/tests/frame_compare_test.py`.
+The tool is ready; GPU corpus and individual framebuffer-effect acceptance remain open.
+
+### Phase 8: OpenGL prototype stopped after two attempts (2026-11-09)
+
+`BT_RENDERER=gl` uses hardware OpenGL triangles through macOS CGL, sharing the
+existing F3DEX2/L3DEX2 guest-memory decoder (big-endian reads) and RDP command/TMEM
+state. `BT_RENDERER=soft` remains the default/reference. Unsupported backends fail
+explicitly; Metal is not implemented. This is an unaccepted prototype, native
+resolution only (`BT_SCALE=1`), with synchronous readback on texture loads, image
+switches and DP completion. Its coordinate noise differs from the software LCG.
+
+The 8-second intro comparison, every retrace, retained the same limits: 8/255 RGB
+channel tolerance, at most 0.5% bad pixels **per frame**:
+
+- Attempt 1: 93/470 failed frames; worst 74.332006%; first failure retrace 13.
+- Attempt 2: 12/470 failed frames; worst 0.601627%; first failure retrace 367.
+- Evidence: `build/gpu-intro-attempt1/summary.json` and
+  `build/gpu-intro-attempt2/summary.json` (frozen executables, saves and dumps retained).
+  Attempt 2 used a host-only diagnostic relink; this never substitutes for the gate.
+
+The large intro-mask error is reproducible in the ROM-free fixture: a clipped,
+untextured, two-cycle black triangle was discarded by the original GPU shader.
+Replacing mutable global combiner inputs with explicit function arguments fixes
+that regression. `tests/gpu_render_test.py` passes on Apple M4 Pro: 65,536 identical
+fixture bytes, CPU writes/copies, RTT, borrowed RGBA16 depth and the clipped mask
+assertion. These synthetic checks do **not** accept real pause, transition,
+`gczoombox`, camera/photo or depth-read effects. All five remain separate unchecked
+items. Full intro/full corpus, high-resolution GPU rendering and Metal remain open.
+
+Stopped renderer implementation per the two-attempt rule. No tolerance or stored
+reference changed; GPU is not the default. The GPU integration is left uncommitted
+as an incomplete step, preserving the pre-existing working-tree changes. The
+completed image-oracle tooling is committed separately. `frame_compare.py replay
+... --probe` diagnoses the first draw outside the same color tolerance and writes
+`probe.json`; it is a diagnostic, not frame acceptance. `build/gpu-relink.py` and
+`build/gpu-shader-probe.py` retain the repeatable host-only/shader-stage diagnostics.
+No `src/` or `include/` change was made for this GPU work, so no new N64 `make check`
+was required. Normal `port.py gate`: PASS, 5 test groups and 2,698 identical intro
+retraces (software default); a final rerun follows the checkpoint documentation.
