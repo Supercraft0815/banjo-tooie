@@ -1744,3 +1744,29 @@ Stereo-Samples. Die gemessene sichtbare Warteschlange passte bei jeder
 Einstellung zur gewählten Reserve. Unter `build/acceptance/a8-2026-11-17/`
 liegen die Gates der beiden Binärdateien, der Opcode-Zensus, der PCM-Vergleich
 und die Messung mit SDL.
+
+## 2026-11-17 — Q2, fünf wiederholbare Bossbegegnungen
+
+Targitzan (0x17A), Old King Coal (0xD1), Mr. Patch (0xF9) und Terry (0x113)
+laufen jeweils 64 Spielsekunden. Lord Woo Fak Fak (0xFC) braucht 120 Sekunden,
+damit nach seinem Dialog auch der Kampf im Bild ist. In jedem Fall zeigen
+zwei unabhängige Starts denselben vollständigen Trace und identische Bilder.
+Die fünf neuen Referenzen entsprechen den gesichteten regulären Läufen. Die
+24 bisherigen Referenzen wurden vorher gesichert und bleiben bytegleich.
+Das volle Gate bestand neun Testprogramme und 29 Fälle mit insgesamt
+162.276 identischen Retraces. Das Debug-Audio bestand alle fünf zusätzlichen
+Fälle. Bildbogen, Einzelfälle,
+Sicherung und Prüfprotokolle stehen unter `build/acceptance/q2-bosses-2026-11-17/`.
+
+Weldar blieb bei zwei Einstiegen hinter Wand bzw. Decke. Bei den beiden
+Hailfire-Drachen löste der Warp in den Stationsraum den Kampf nicht aus.
+Bei Mingy Jongo fehlt die sichere Identifikation des sichtbaren Actors. Für
+Hag 1 fehlt eine geprüfte Eingabefolge. Diese Begegnungen sind offen.
+
+Kickball, Saucer of Peril und das Rennen in Cloud Cuckooland zeigten jeweils
+die Karte, aber keinen bestätigten Spielstart. In der Ordnance Range erschien
+das Ego-HUD mit null Eiern. Die Bilder mit und ohne Feuertaste waren
+pixelgleich. Zwei Versuche mit Wumbas Bezahlflag zeigten Banjo bzw. den
+Dialog in ihrer Hütte. Eine steuerbare verwandelte Figur ist offen. Die
+Belege liegen unter `build/acceptance/q2-minigames-2026-11-17/` und
+`build/acceptance/q2-transform-mp-2026-11-17/`.

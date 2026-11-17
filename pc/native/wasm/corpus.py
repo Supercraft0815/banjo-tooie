@@ -13,6 +13,7 @@ import sys
 import save_editor
 import trace_tools
 import corpus_worlds
+import corpus_bosses
 
 HERE = Path(__file__).resolve().parent
 
@@ -53,6 +54,7 @@ CASES = {
                'flags': list(range(0x392, 0x39B)) + save_editor.START_ABILITIES,
                'warp': ','.join(f'{36 + 20 * i}:{m:X}:1' for i, m in enumerate(WORLDS))},
     **corpus_worlds.CASES,
+    **corpus_bosses.CASES,
 }
 
 
