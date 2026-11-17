@@ -73,3 +73,6 @@ tools/decomp_harness/*.egg-info/
 tools/decomp_harness/src/*.egg-info/
 .DS_Store
 /Banjo-Tooie (USA).zip
+
+# Local native-port save; acceptance runs use isolated copies under build/.
+/bt_eeprom.bin

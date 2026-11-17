@@ -572,6 +572,28 @@ die gesamte `reported_usage` ist kein gemeinsames Kontingent verschiedener Anbie
 Für die offizielle verbleibende Usage Codex interaktiv starten und `/status` verwenden.
 Kein Scraping von UI-Ausgaben.
 
+## PC-Port: FixCalls-Stellen (`port-calls`)
+
+```sh
+decomp-agent port-calls --dry-run                 # Arbeitsliste aus build/ilp32/widened.txt
+decomp-agent port-calls --max-files 8             # Codex-Worker, Prüfung, Übernahme
+decomp-agent port-calls --file src/core1/1E33CF0.c --batch 1
+```
+
+FixCalls (`pc/native/wasm/fixcalls`) gleicht im ILP32-Build IDO-Aufrufgewohnheiten aus
+(Durchreichungen, fehlende `return`s, Registerklassen) und listet jede Stelle. Ein Worker
+bekommt eine Quelldatei mit ihren Stellen und schreibt die native Form zeilenneutral mit den
+`BT_*`-Makros (`port-instructions.md`); `./port-check [--build]` in seiner Kopie prüft Zeilen,
+die N64-Tokenansicht, das native Kompilieren und mit `--build` die verbliebenen Stellen.
+Der Elternprozess prüft seriell in `.decomp-agent/port-calls/lane` (APFS-Klon des Checkouts,
+zu Beginn per rsync abgeglichen): Zeilenzahl, N64-Tokenansicht jeder betroffenen Einheit,
+`make check`, ILP32-Build, die Stellen der Datei verschwunden und keine neuen, keine neuen
+Traps, `port.py gate` (Standard `--full`, ~5 min) identisch zu `build/reference`. Ein Batch,
+der scheitert, wird halbiert. Übernommene Dateien landen im Checkout, **ohne Commit**.
+Eigene Sperre (`.decomp-agent/port-calls/lock`), läuft also neben `run`. Zustand und
+Ablehnungsgründe: `.decomp-agent/port-calls/state.json`, Läufe unter `runs/`. VOIDSTORE-Stellen
+bleiben ausgenommen (FixCalls liefert dort heute keinen Wert, eine Korrektur ändert Verhalten).
+
 ## Tests
 
 ```sh
