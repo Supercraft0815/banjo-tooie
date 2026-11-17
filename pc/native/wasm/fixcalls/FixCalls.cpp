@@ -22,6 +22,9 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/MemoryBuffer.h"
 #include "llvm/Support/raw_ostream.h"
+#include "llvm/Transforms/Utils/BasicBlockUtils.h"
+#include <map>
+#include <set>
 
 using namespace llvm;
 
@@ -31,8 +34,38 @@ using namespace llvm;
 static cl::opt<std::string> AbsSyms("bt-abs-syms", cl::desc("file of fixed-address symbols"));
 // Where to list the functions that got pass-through parameters ("NAME OLD NEW" per line).
 static cl::opt<std::string> Widened("bt-widened", cl::desc("output list of widened functions"));
+// bt-xsym: where to list the checked access sites ("ID FUNCTION SYMBOL WIDTH load|store" per line).
+static cl::opt<std::string> XsymSites("bt-xsym-sites", cl::desc("output list of checked access sites"));
 
 namespace {
+
+// data.py bridges a gap between two asm data files that holds variables defined in C and marks
+// each one's N64 place with an alias "__bt_place_<name>". A zero-initialized variable moves there,
+// so code that reaches it from a neighbouring label (`&D_80127040 + 0x10` is D_80127050) hits it
+// as on the N64. Variables with an initializer stay where clang put them.
+void placeCData(Module &M) {
+    const DataLayout &DL = M.getDataLayout();
+    SmallVector<GlobalAlias *, 32> Places;
+    for (GlobalAlias &GA : M.aliases())
+        if (GA.getName().starts_with("__bt_place_"))
+            Places.push_back(&GA);
+    for (GlobalAlias *GA : Places) {
+        StringRef Name = GA->getName().substr(strlen("__bt_place_"));
+        auto *GV = M.getGlobalVariable(Name, true);
+        APInt Off(32, 0);
+        auto *Block = dyn_cast<GlobalVariable>(GA->getAliasee()->stripAndAccumulateConstantOffsets(DL, Off, true));
+        if (!GV || GV->isDeclaration() || !GV->getInitializer()->isNullValue() || !Block ||
+            Off.getZExtValue() + DL.getTypeAllocSize(GV->getValueType()) > DL.getTypeAllocSize(Block->getValueType())) {
+            if (GV && !GV->isDeclaration())
+                errs() << "bt-fixcalls: " << Name << " stays outside its asm block (initializer or size)\n";
+            GA->eraseFromParent();
+            continue;
+        }
+        GV->replaceAllUsesWith(GA);
+        GV->eraseFromParent();
+        GA->setName(Name);
+    }
+}
 
 void resolveAbsSyms(Module &M) {
     auto Buf = MemoryBuffer::getFile(AbsSyms);
@@ -92,6 +125,79 @@ Value *convert(IRBuilder<> &B, Value *V, Type *To) {
     if (To->isIntegerTy())
         return B.CreateSExtOrTrunc(V, To);
     return Constant::getNullValue(To);
+}
+
+// IDO passes a struct by value as its words, in a0..a3 and then on the stack, and the game relies on
+// that: callers hand over the words one by one, through a queue of raw words (chbaddiesetup), or pass
+// a single value for a one-word struct. clang's wasm ABI passes a pointer to a copy (byval), so the
+// callee read the first word as an address. Each byval parameter becomes one i32 per word, stored
+// into a local copy; each byval argument becomes its words. Runs before bt-bigendian, which swaps
+// these loads and stores like any other.
+void flattenByVal(Module &M) {
+    LLVMContext &Ctx = M.getContext();
+    const DataLayout &DL = M.getDataLayout();
+    Type *I8 = Type::getInt8Ty(Ctx), *I32 = Type::getInt32Ty(Ctx);
+    auto Words = [&](Type *T) { return (unsigned)((DL.getTypeAllocSize(T) + 3) / 4); };
+    SmallVector<CallInst *, 16> Calls;
+    SmallVector<Function *, 8> Defs;
+    for (Function &F : M) {
+        if (!F.isDeclaration() && F.getAttributes().hasAttrSomewhere(Attribute::ByVal))
+            Defs.push_back(&F);
+        for (BasicBlock &BB : F)
+            for (Instruction &I : BB)
+                if (auto *CI = dyn_cast<CallInst>(&I))
+                    if (CI->getAttributes().hasAttrSomewhere(Attribute::ByVal))
+                        Calls.push_back(CI);
+    }
+    for (CallInst *CI : Calls) {
+        IRBuilder<> B(CI);
+        SmallVector<Value *, 8> Args;
+        SmallVector<Type *, 8> Types;
+        for (unsigned i = 0; i < CI->arg_size(); i++) {
+            Value *A = CI->getArgOperand(i);
+            if (Type *T = CI->getParamByValType(i)) {
+                for (unsigned w = 0; w < Words(T); w++)
+                    Args.push_back(B.CreateAlignedLoad(I32, B.CreateConstGEP1_32(I8, A, w * 4), Align(1)));
+            } else {
+                Args.push_back(A);
+            }
+        }
+        for (Value *A : Args)
+            Types.push_back(A->getType());
+        CallInst *New = B.CreateCall(FunctionType::get(CI->getType(), Types, false), CI->getCalledOperand(), Args);
+        New->setCallingConv(CI->getCallingConv());
+        CI->replaceAllUsesWith(New);
+        CI->eraseFromParent();
+    }
+    for (Function *F : Defs) {
+        SmallVector<Type *, 8> Params;
+        for (Argument &A : F->args())
+            if (Type *T = A.getParamByValType())
+                Params.append(Words(T), I32);
+            else
+                Params.push_back(A.getType());
+        Function *NF = Function::Create(FunctionType::get(F->getReturnType(), Params, false), F->getLinkage(),
+                                        F->getAddressSpace(), "", &M);
+        NF->copyAttributesFrom(F);
+        NF->setAttributes(AttributeList().addFnAttributes(Ctx, AttrBuilder(Ctx, F->getAttributes().getFnAttrs())));
+        NF->splice(NF->begin(), F);
+        IRBuilder<> B(&*NF->getEntryBlock().getFirstInsertionPt());
+        unsigned n = 0;
+        for (Argument &A : F->args()) {
+            if (Type *T = A.getParamByValType()) {
+                AllocaInst *Copy = B.CreateAlloca(ArrayType::get(I32, Words(T)));
+                for (unsigned w = 0; w < Words(T); w++)
+                    B.CreateAlignedStore(NF->getArg(n++), B.CreateConstGEP1_32(I8, Copy, w * 4), Align(4));
+                A.replaceAllUsesWith(Copy);
+            } else {
+                A.replaceAllUsesWith(NF->getArg(n));
+                NF->getArg(n++)->takeName(&A);
+            }
+        }
+        F->replaceAllUsesWith(NF); // calls that disagree with NF's type are adapted by the main loop
+        NF->takeName(F);
+        F->eraseFromParent();
+    }
 }
 
 // IDO code defines `void f() { g(); }` and relies on f's a0..a3 reaching g. In IR such an f has
@@ -289,12 +395,65 @@ static SmallVector<int, 8> o32Registers(ArrayRef<Type *> Params) {
     return R;
 }
 
+// IDO code also calls through a pointer with fewer arguments than the target takes
+// (`(*(s32 (**)())(arg0 + 0x24))()` in chbanjoctrl): the caller's own a0..a3 are still in the
+// registers. The target is unknown here, so every indirect call with fewer than four integer
+// arguments also passes the caller's parameters of the missing slots. A target that takes fewer
+// ignores them, natively (the build casts the pointer to the call's type) as on the N64. Only in
+// the first run: after inlining the enclosing function is no longer the N64 caller.
+static void passThroughIndirect(Module &M) {
+    if (M.getNamedMetadata("bt.indirect.passthrough"))
+        return;
+    M.getOrInsertNamedMetadata("bt.indirect.passthrough");
+    Type *I32 = Type::getInt32Ty(M.getContext());
+    auto Word = [](Type *T) { return T->isPointerTy() || (T->isIntegerTy() && T->getIntegerBitWidth() <= 32); };
+    SmallVector<CallInst *, 64> Work;
+    for (Function &F : M)
+        for (BasicBlock &BB : F)
+            for (Instruction &I : BB)
+                if (auto *CI = dyn_cast<CallInst>(&I))
+                    if (!isa<Function>(CI->getCalledOperand()->stripPointerCasts()) && !CI->isInlineAsm() &&
+                        !CI->getFunctionType()->isVarArg() && CI->arg_size() < 4 &&
+                        all_of(CI->args(), [&](Value *A) { return Word(A->getType()); }))
+                        Work.push_back(CI);
+    for (CallInst *CI : Work) {
+        Function *Caller = CI->getFunction();
+        SmallVector<Type *, 4> OwnTypes;
+        for (Argument &A : Caller->args())
+            OwnTypes.push_back(A.getType());
+        auto Own = o32Registers(OwnTypes);
+        SmallVector<Value *, 4> Args(CI->args());
+        for (unsigned Slot = CI->arg_size(); Slot < 4; Slot++) {
+            Value *V = nullptr;
+            for (unsigned k = 0; k < Own.size(); k++)
+                if (Own[k] == (int)Slot && Word(OwnTypes[k]))
+                    V = Caller->getArg(k);
+            Args.push_back(V ? V : ConstantInt::get(I32, 0));
+        }
+        while (Args.size() > CI->arg_size() && isa<ConstantInt>(Args.back()))
+            Args.pop_back(); // nothing of the caller's to hand on in the last slots
+        if (Args.size() == CI->arg_size())
+            continue;
+        SmallVector<Type *, 4> Types;
+        for (Value *A : Args)
+            Types.push_back(A->getType());
+        IRBuilder<> B(CI);
+        CallInst *New = B.CreateCall(FunctionType::get(CI->getType(), Types, false), CI->getCalledOperand(), Args);
+        New->setCallingConv(CI->getCallingConv());
+        CI->replaceAllUsesWith(New);
+        CI->eraseFromParent();
+    }
+}
+
 struct FixCalls : PassInfoMixin<FixCalls> {
     PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+        placeCData(M);
         if (!AbsSyms.empty())
             resolveAbsSyms(M);
+        flattenByVal(M);
         fixUndefReturns(M);
         addPassThroughParams(M);
+        passThroughIndirect(M);
         addPassThroughReturns(M);
         SmallVector<CallInst *, 64> Work;
         for (Function &F : M)
@@ -357,6 +516,12 @@ struct FixCalls : PassInfoMixin<FixCalls> {
             New->setTailCallKind(CI->getTailCallKind() == CallInst::TCK_MustTail ? CallInst::TCK_None
                                                                                   : CI->getTailCallKind());
             Type *Want = CI->getType();
+            // A used result that changes register class (f0 against v0) is a wrong declaration, not an
+            // IDO idiom: on the N64 the caller would read a stale register. Reported, e.g. an
+            // undeclared nearbyintf() gave the float's bits as an int (stretched HUD icon bone).
+            if (!Want->isVoidTy() && !FT->getReturnType()->isVoidTy() && !CI->use_empty() &&
+                Want->isFloatingPointTy() != FT->getReturnType()->isFloatingPointTy())
+                RegReport += ("RETCLASS " + Callee->getName() + " in " + Caller->getName() + "\n").str();
             if (!Want->isVoidTy()) {
                 Value *R = FT->getReturnType()->isVoidTy() ? Constant::getNullValue(Want) : convert(B, New, Want);
                 CI->replaceAllUsesWith(R);
@@ -647,6 +812,191 @@ struct StackSlots : PassInfoMixin<StackSlots> {
     }
 };
 
+// bt-xsym (diagnostic builds, BT_XSYM=1): finds code that reaches one data symbol through the
+// address of another (IDO matches do this; data.py keeps neighbours together so it works, but
+// typed C data and 64-bit layouts break it). Each load and store whose address is a data label
+// plus arithmetic gets a range check against that label's extent (up to the next label of its
+// asm block, or the C variable's size); a miss calls env.xsym(site, address). Runs before
+// inlining, so the label is still visible in the function that computes the address.
+struct Xsym : PassInfoMixin<Xsym> {
+    static GlobalValue *label(Value *V, unsigned Depth = 0) {
+        while (Depth++ < 32) {
+            if (isa<GlobalAlias>(V) || isa<GlobalVariable>(V))
+                return cast<GlobalValue>(V);
+            auto *O = dyn_cast<Operator>(V);
+            if (!O)
+                return nullptr;
+            switch (O->getOpcode()) {
+            case Instruction::GetElementPtr:
+            case Instruction::BitCast:
+            case Instruction::IntToPtr:
+            case Instruction::PtrToInt:
+            case Instruction::Sub:  // label - x: only the first operand is the address
+                V = O->getOperand(0);
+                break;
+            case Instruction::Add:
+                if (GlobalValue *G = label(O->getOperand(0), Depth))
+                    return G;
+                V = O->getOperand(1);
+                break;
+            default:
+                return nullptr;
+            }
+        }
+        return nullptr;
+    }
+
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+        const DataLayout &DL = M.getDataLayout();
+        LLVMContext &Ctx = M.getContext();
+        Type *IP = DL.getIntPtrType(Ctx), *I64 = Type::getInt64Ty(Ctx);
+        // Extent of each label: up to the next label of the same block, else the object's end.
+        std::map<const GlobalObject *, std::set<uint64_t>> Starts;
+        std::map<const GlobalValue *, std::pair<uint64_t, const GlobalObject *>> At;
+        for (GlobalAlias &GA : M.aliases()) {
+            APInt Off(DL.getIndexTypeSizeInBits(GA.getType()), 0);
+            const Value *Base = GA.getAliasee()->stripAndAccumulateConstantOffsets(DL, Off, true);
+            auto *Obj = dyn_cast<GlobalVariable>(Base);
+            if (!Obj || Off.isNegative())
+                continue;
+            At[&GA] = {Off.getZExtValue(), Obj};
+            Starts[Obj].insert(Off.getZExtValue());
+        }
+        auto extent = [&](GlobalValue *G) -> uint64_t {
+            if (auto *GV = dyn_cast<GlobalVariable>(G)) {
+                if (GV->isDeclaration() || Starts.count(GV))  // whole asm blocks are not labels
+                    return 0;
+                return DL.getTypeAllocSize(GV->getValueType());
+            }
+            auto It = At.find(G);
+            if (It == At.end())
+                return 0;
+            auto [Off, Obj] = It->second;
+            uint64_t End = DL.getTypeAllocSize(Obj->getValueType());
+            auto Next = Starts[Obj].upper_bound(Off);
+            return (Next == Starts[Obj].end() ? End : *Next) - Off;
+        };
+        Function *Hit = Function::Create(FunctionType::get(Type::getVoidTy(Ctx), {IP, IP}, false),
+                                         GlobalValue::ExternalLinkage, "host_xsym", &M);
+        Hit->addFnAttr("wasm-import-module", "env");
+        Hit->addFnAttr("wasm-import-name", "xsym");
+        std::error_code EC;
+        raw_fd_ostream Out(XsymSites.empty() ? std::string("xsym_sites.txt") : std::string(XsymSites), EC);
+        unsigned N = 0;
+        for (Function &F : M) {
+            if (F.isDeclaration() || &F == Hit)
+                continue;
+            SmallVector<std::tuple<Instruction *, Value *, GlobalValue *, uint64_t, uint64_t>, 32> Work;
+            for (BasicBlock &BB : F)
+                for (Instruction &I : BB) {
+                    Value *Ptr;
+                    Type *Ty;
+                    if (auto *L = dyn_cast<LoadInst>(&I))
+                        Ptr = L->getPointerOperand(), Ty = L->getType();
+                    else if (auto *S = dyn_cast<StoreInst>(&I))
+                        Ptr = S->getPointerOperand(), Ty = S->getValueOperand()->getType();
+                    else
+                        continue;
+                    GlobalValue *G = label(Ptr);
+                    uint64_t Size = G ? extent(G) : 0, Width = DL.getTypeStoreSize(Ty);
+                    if (Size && (Ptr != G || Width > Size))
+                        Work.push_back({&I, Ptr, G, Size, Width});
+                }
+            for (auto [I, Ptr, G, Size, Width] : Work) {
+                IRBuilder<> B(I);
+                Value *Addr = B.CreatePtrToInt(Ptr, IP);
+                Value *Off = B.CreateZExt(B.CreateSub(Addr, B.CreatePtrToInt(G, IP)), I64);
+                Value *Bad = B.CreateICmpUGT(B.CreateAdd(Off, ConstantInt::get(I64, Width)), ConstantInt::get(I64, Size));
+                IRBuilder<> T(SplitBlockAndInsertIfThen(Bad, I->getIterator(), false));
+                T.CreateCall(Hit, {ConstantInt::get(IP, N), Addr});
+                Out << N++ << ' ' << F.getName() << ' ' << G->getName() << ' ' << Width << ' '
+                    << (isa<LoadInst>(I) ? "load" : "store") << '\n';
+            }
+        }
+        errs() << "bt-xsym: " << N << " checked accesses\n";
+        return PreservedAnalyses::none();
+    }
+};
+
+// bt-datagroup: data_to_c.py definitions carry section ".btgroup.<module>.<N64 offset>". clang emits
+// globals in order of first mention and the linker places each one apart, so code that reaches a
+// table through its neighbour's label (IDO matched C does) would read other data. Each module's
+// definitions become one packed block at their N64 offsets, the labels aliases into it, as data.py
+// builds the asm modules. Runs after bt-bigendian (its fixups follow the aliases).
+struct DataGroup : PassInfoMixin<DataGroup> {
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+        const DataLayout &DL = M.getDataLayout();
+        std::map<std::string, std::map<uint64_t, GlobalVariable *>> Groups;
+        for (GlobalVariable &GV : M.globals()) {
+            StringRef S = GV.getSection();
+            if (!GV.hasInitializer() || !S.consume_front(".btgroup."))
+                continue;
+            auto [Mod, Off] = S.rsplit('.');
+            uint64_t O;
+            if (Off.getAsInteger(0, O) || !Groups[Mod.str()].emplace(O, &GV).second)
+                report_fatal_error(Twine("bt-datagroup: bad section ") + GV.getSection());
+        }
+        LLVMContext &Ctx = M.getContext();
+        Type *I8 = Type::getInt8Ty(Ctx);
+        for (auto &[Mod, Members] : Groups) {
+            SmallVector<Type *, 0> Types;
+            SmallVector<Constant *, 0> Inits;
+            std::vector<std::pair<GlobalVariable *, unsigned>> Fields;
+            std::vector<std::pair<GlobalVariable *, uint64_t>> Inner;
+            uint64_t Cur = 0;
+            Align A(4);
+            for (auto &[O, GV] : Members) {
+                if (O < Cur) {
+                    // bss_to_c.py: the previous label's declared type runs over this label, which
+                    // then names bytes inside it. Only zero data can share storage.
+                    if (!GV->getInitializer()->isNullValue())
+                        report_fatal_error(Twine("bt-datagroup: overlap in ") + Mod);
+                    uint64_t End = O + DL.getTypeAllocSize(GV->getValueType());
+                    if (End > Cur) {
+                        ArrayType *Pad = ArrayType::get(I8, End - Cur);
+                        Types.push_back(Pad);
+                        Inits.push_back(ConstantAggregateZero::get(Pad));
+                        Cur = End;
+                    }
+                    Inner.push_back({GV, O});
+                    continue;
+                }
+                if (O > Cur) {
+                    ArrayType *Pad = ArrayType::get(I8, O - Cur);
+                    Types.push_back(Pad);
+                    Inits.push_back(ConstantAggregateZero::get(Pad));
+                }
+                Fields.push_back({GV, (unsigned)Types.size()});
+                Types.push_back(GV->getValueType());
+                Inits.push_back(GV->getInitializer());
+                Cur = O + DL.getTypeAllocSize(GV->getValueType());
+                A = std::max(A, GV->getAlign().valueOrOne());
+            }
+            StructType *ST = StructType::get(Ctx, Types, /*isPacked=*/true);
+            auto *Block = new GlobalVariable(M, ST, false, GlobalValue::InternalLinkage,
+                                             ConstantStruct::get(ST, Inits), "bt_group." + Mod);
+            Block->setAlignment(A);
+            auto Rename = [&](GlobalVariable *GV, Constant *At) {
+                std::string Name = GV->getName().str();
+                GV->setName("");
+                auto *GA = GlobalAlias::create(GV->getValueType(), 0, GV->getLinkage(), Name, At, &M);
+                GA->setVisibility(GV->getVisibility());
+                GV->replaceAllUsesWith(GA);
+                GV->eraseFromParent();
+            };
+            for (auto &[GV, Idx] : Fields) {
+                Constant *Idxs[] = {ConstantInt::get(Type::getInt32Ty(Ctx), 0),
+                                    ConstantInt::get(Type::getInt32Ty(Ctx), Idx)};
+                Rename(GV, ConstantExpr::getInBoundsGetElementPtr(ST, Block, Idxs));
+            }
+            for (auto &[GV, O] : Inner)
+                Rename(GV, ConstantExpr::getInBoundsGetElementPtr(
+                               I8, Block, ConstantInt::get(Type::getInt32Ty(Ctx), O)));
+        }
+        return PreservedAnalyses::none();
+    }
+};
+
 } // namespace
 
 extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
@@ -661,6 +1011,10 @@ extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
                             MPM.addPass(Safepoints());
                         else if (Name == "bt-stackslots")
                             MPM.addPass(StackSlots());
+                        else if (Name == "bt-datagroup")
+                            MPM.addPass(DataGroup());
+                        else if (Name == "bt-xsym")
+                            MPM.addPass(Xsym());
                         else
                             return false;
                         return true;

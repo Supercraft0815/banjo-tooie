@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Compare BT_DUMP directories, or replay the corpus with soft and gl/metal.
+"""Compare BT_DUMP directories, or replay the corpus with the soft and gpu renderers.
 
 Examples:
   frame_compare.py compare SOFT_DIR GPU_DIR
-  frame_compare.py replay NEW_OUTPUT --renderer gl [--case intro]
+  frame_compare.py replay NEW_OUTPUT [--case intro]
 Every retrace is dumped. Tolerance is per RGB channel, in 8-bit units; a pixel
-fails if any channel exceeds it. No registration, cropping or reference updates.
+fails if any channel exceeds it. The default 9 is one step of the game's RGBA5551
+framebuffer (5-bit steps expand to 8 or 9), so a filtering difference of one 8-bit
+unit that crosses a 5-bit boundary passes. No registration, cropping or reference updates.
 """
 import argparse
 import json
@@ -50,7 +52,7 @@ def read_bmp(path):
     return w, abs(h), bytes(rgb)
 
 
-def compare(soft, gpu, tolerance=8, max_bad_fraction=0.005):
+def compare(soft, gpu, tolerance=9, max_bad_fraction=0.005):
     a, b = {p.name: p for p in soft.glob('frame_*.bmp')}, {p.name: p for p in gpu.glob('frame_*.bmp')}
     if not a or a.keys() != b.keys():
         raise ValueError(f'missing frames: soft={len(a)}, gpu={len(b)}, unmatched={len(a.keys() ^ b.keys())}')
@@ -105,18 +107,12 @@ def replay(args):
                     bytes(2048), 0, [(f, True) for f in case['flags']], create=True))
             env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
             env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_RENDERER=renderer,
-                       BT_EXIT_AFTER=str(seconds), BT_PRESS=case['press'],
+                       BT_EXIT_AFTER=str(seconds), **corpus.run_env(case),
                        BT_DUMP=str(work / 'frame'), BT_DUMP_EVERY='1')
-            if args.probe and renderer != 'soft':
-                env['BT_GPU_PROBE'] = str(work / 'probe.json')
-                env['BT_GPU_PROBE_TOLERANCE'] = str(args.tolerance)
-                env['BT_GPU_PROBE_FRACTION'] = str(args.max_bad_fraction)
             with (work / 'run.log').open('w') as log:
                 run = subprocess.run([str(exe), str(args.rom.resolve())], cwd=work, env=env,
                                      stdout=log, stderr=log, timeout=3600)
             if run.returncode:
-                if (work / 'probe.json').exists():
-                    print('draw oracle: ' + (work / 'probe.json').read_text().strip())
                 raise ValueError(f'{name}/{renderer}: exit {run.returncode} (log retained)')
             marker = 'renderer: soft' if renderer == 'soft' else f'renderer: {renderer} ('
             if not any(line.startswith(marker) for line in (work / 'run.log').read_text().splitlines()):
@@ -138,19 +134,18 @@ def main():
     sub = ap.add_subparsers(dest='cmd', required=True)
     for command in ('compare', 'replay'):
         p = sub.add_parser(command)
-        p.add_argument('--tolerance', type=int, default=8)
+        p.add_argument('--tolerance', type=int, default=9)
         p.add_argument('--max-bad-fraction', type=float, default=0.005)
         if command == 'compare':
             p.add_argument('soft', type=Path)
             p.add_argument('gpu', type=Path)
         else:
             p.add_argument('output', type=Path)
-            p.add_argument('--renderer', choices=('gl', 'metal'), default='gl')
+            p.add_argument('--renderer', choices=('gpu',), default='gpu')
             p.add_argument('--exe', type=Path, default=ROOT / 'build/ilp32/bt_game')
             p.add_argument('--rom', type=Path, default=ROOT / 'baserom.us.z64')
-            p.add_argument('--case', choices=('intro', 'new-game', 'edited-save'), action='append')
+            p.add_argument('--case', choices=('intro', 'new-game', 'edited-save', 'worlds'), action='append')
             p.add_argument('--seconds', type=float, help='partial diagnostic replay only')
-            p.add_argument('--probe', action='store_true', help='stop at first GPU draw outside the image tolerance; write probe.json')
     args = ap.parse_args()
     if not 0 <= args.tolerance <= 255 or not 0 <= args.max_bad_fraction <= 1:
         ap.error('tolerance must be 0..255; max-bad-fraction must be 0..1')

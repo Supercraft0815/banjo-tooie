@@ -1,0 +1,32 @@
+# data_to_c.py constants: words equal to an overlay stub address that the C type
+# says are integers (actor descriptor flags); data.py keeps them raw
+asm/data/overlays/ch/LagoonInnBlockedWall.data.s 0x808005AC _bsbtrot_entrypoint_8
+asm/data/overlays/ch/billdrillboulder.data.s 0x8080057C _bsbtrot_entrypoint_10
+asm/data/overlays/ch/billdrillboulder.data.s 0x808005C4 _bsbtrot_entrypoint_10
+asm/data/overlays/ch/billdrillboulder.data.s 0x8080060C _bsbtrot_entrypoint_10
+asm/data/overlays/ch/burgerstand.data.s 0x80800C64 boot_thread_stack+0x1F32
+asm/data/overlays/ch/cablespark.data.s 0x80800BC4 boot_thread_stack+0x1F23
+asm/data/overlays/ch/caveofhorrorsdoors.data.s 0x808001FC _bsbtrot_entrypoint_10
+asm/data/overlays/ch/crate.data.s 0x8080044C _bsbtrot_entrypoint_10
+asm/data/overlays/ch/crate.data.s 0x80800494 _bsbtrot_entrypoint_10
+asm/data/overlays/ch/crate.data.s 0x808004DC _bsbtrot_entrypoint_10
+asm/data/overlays/ch/dino/familysick.data.s 0x80800EE4 boot_thread_stack+0xF24
+asm/data/overlays/ch/dino/familysick.data.s 0x80800FB4 boot_thread_stack+0xF26
+asm/data/overlays/ch/dino/familysmall.data.s 0x80800F5C boot_thread_stack+0xF26
+asm/data/overlays/ch/dino/switches.data.s 0x80800CFC _bsbtrot_entrypoint_8
+asm/data/overlays/ch/factory/battery.data.s 0x80801BE4 boot_thread_stack+0xF25
+asm/data/overlays/ch/factory/liftdoor.data.s 0x808001C4 _bsbtrot_entrypoint_10
+asm/data/overlays/ch/factory/linkgrill.data.s 0x8080028C _bsbtrot_entrypoint_10
+asm/data/overlays/ch/fantasy/cannon.data.s 0x80800D6C boot_thread_stack+0x1F20
+asm/data/overlays/ch/fire/fx.data.s 0x8080123C boot_thread_stack+0x1F22
+asm/data/overlays/ch/footwear.data.s 0x808007C4 func_80104410
+asm/data/overlays/ch/footwear.data.s 0x808008E4 func_80104410
+asm/data/overlays/ch/friesstand.data.s 0x80800F04 boot_thread_stack+0x1F32
+asm/data/overlays/ch/jollyroger_tail.data.s 0x80801424 _bsbtrot_entrypoint_8
+asm/data/overlays/ch/loggo.data.s 0x808006CC _bsbabykaz_entrypoint_11
+asm/data/overlays/ch/mumbo/skullfakearchpanellava.data.s 0x8080021C _bsbtrot_entrypoint_8
+asm/data/overlays/ch/nicecavemen.data.s 0x80801B70 boot_thread_stack+0x1F20
+asm/data/overlays/ch/pumproomgrill.data.s 0x8080011C _bsbtrot_entrypoint_10
+asm/data/overlays/ch/quicksandbaddy.data.s 0x80801414 boot_thread_stack+0x1F22
+asm/data/overlays/ch/smalltrexdoor.data.s 0x8080031C boot_thread_stack+0x1F22
+asm/data/overlays/ch/transparencypot.data.s 0x808001EC boot_thread_stack+0x1F20
