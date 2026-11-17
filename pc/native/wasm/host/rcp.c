@@ -15,7 +15,7 @@ void w2c_env_rcp_task(struct w2c_env *env, u32 task) {
     u32 type = gr32(task);
     (void)env;
     if (type == M_GFXTASK && !getenv("BT_NO_GFX")) gsp_run(gr32(task + 48));
-    if (type == M_AUDTASK && !getenv("BT_MUTE")) bt_rsp_audio(task);
+    if (type == M_AUDTASK && !getenv("BT_MUTE")) bt_audio_task(task);
     bt_os_event(OS_EVENT_SP);
     if (type == M_GFXTASK && !rdp_done_later(OS_EVENT_DP)) bt_os_event(OS_EVENT_DP);
 }

@@ -47,7 +47,7 @@ int bt_vi_interval(void);               // retraces between the last two picture
 int bt_widescreen(void);                // the game's anamorphic 16:9 option is on (vi.c)
 _Noreturn void bt_video_main(void);    // main-thread window loop (video.c)
 void gsp_run(u32 dl);                  // runs a graphics task's display list (gsp.c)
-void bt_rsp_audio(u32 task);           // runs an audio task on the RSP interpreter (rsp.c)
+void bt_audio_task(u32 task);          // execute an n_audio command list (mixer.c)
 void bt_ai_open(void);                 // opens the audio device (ai.c; main thread, after SDL_Init)
 void bt_ai_volume(float gain);         // ai.c: 0..1, the device only (BT_PCM stays as synthesized)
 union SDL_Event;
@@ -57,7 +57,7 @@ void bt_input_open_pads(void);  // input.c: main thread, after SDL_Init, before 
 void bt_video_init(void);       // video.c: SDL_Init on the main thread, before the game starts
 void bt_video_window(void);     // video.c: the window and its OpenGL context; main thread, before the game starts
 // settings.c: persistent options and the F2 menu
-enum { BT_SET_SCALE, BT_SET_WIDESCREEN, BT_SET_FULLSCREEN, BT_SET_FILTER, BT_SET_RUMBLE, BT_SET_VOLUME, BT_SET_FPS, BT_SET_INTERP, BT_SET_CAMERA, BT_SET_CAM_INVERT, BT_SET_RENDERER, BT_SET_SHOW_FPS, BT_SET_SMOOTH, BT_SET_LANGUAGE, BT_SET_COUNT };
+enum { BT_SET_SCALE, BT_SET_WIDESCREEN, BT_SET_FULLSCREEN, BT_SET_FILTER, BT_SET_RUMBLE, BT_SET_VOLUME, BT_SET_FPS, BT_SET_INTERP, BT_SET_CAMERA, BT_SET_CAM_INVERT, BT_SET_RENDERER, BT_SET_SHOW_FPS, BT_SET_SMOOTH, BT_SET_LANGUAGE, BT_SET_AUDIO_LATENCY, BT_SET_COUNT };
 void bt_settings_load(void);     // first thing in main(); fills unset BT_* variables from settings.ini
 int bt_setting(int id);          // current value; any thread
 void bt_setting_set(int id, int value);  // main thread; saves settings.ini

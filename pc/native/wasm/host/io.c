@@ -12,6 +12,7 @@
 #include <zlib.h>
 #include <SDL3/SDL.h>
 #include "guest.h"
+#include "mixer.h"
 
 static unsigned char *rom;
 static u32 rom_size, us_size;  // the US dump; rom_size also counts the language assets after it
@@ -316,23 +317,40 @@ u32 w2c_env_inflate_raw(struct w2c_env *env, u32 src, u32 src_len, u32 dst, u32 
     return (u32)r;
 }
 
-// src/core2/1EF0820.s: a raw DEFLATE asset straight from the ROM image. The stream follows a
-// big-endian 2-byte header (output size / 16), which also bounds the output here.
-u32 w2c_env_rom_inflate(struct w2c_env *env, u32 dev, u32 n, u32 dst) {
+// US assets have a big-endian size in 16-byte units followed by raw DEFLATE.
+static u32 inflate_rom_block(u32 dev, u32 n, u8 *dst, u64 capacity) {
     z_stream z = {0};
-    int r;
-    (void)env;
-    dev &= 0x0FFFFFFF;
     if (n < 2 || dev > rom_size || n > rom_size - dev) bt_fatal("ROM inflate 0x%x+0x%x beyond the image", dev, n);
+    u32 size = ((u32)rom[dev] << 8 | rom[dev + 1]) * 16;
+    if (size > capacity) bt_fatal("ROM inflate at 0x%x exceeds destination", dev);
     if (inflateInit2(&z, -15) != Z_OK) bt_fatal("inflateInit2 failed");
-    z.next_in = (Bytef *)rom + dev + 2;
+    z.next_in = rom + dev + 2;
     z.avail_in = n - 2;
-    z.next_out = G(dst);
-    z.avail_out = ((u32)rom[dev] << 8 | rom[dev + 1]) * 16;
-    r = inflate(&z, Z_FINISH);
+    z.next_out = dst;
+    z.avail_out = size;
+    int result = inflate(&z, Z_FINISH);
     inflateEnd(&z);
-    if (r != Z_STREAM_END) bt_fatal("ROM inflate at 0x%x failed (%d)", dev, r);
+    if (result != Z_STREAM_END) bt_fatal("ROM inflate at 0x%x failed (%d)", dev, result);
     return (u32)z.total_out;
+}
+
+// src/core2/1EF0820.s: decompress one asset to guest memory.
+u32 w2c_env_rom_inflate(struct w2c_env *env, u32 dev, u32 n, u32 dst) {
+    (void)env;
+    if (dst > bt_inst.w2c_memory.size) bt_fatal("ROM inflate destination outside guest memory");
+    return inflate_rom_block(dev & 0x0fffffff, n, G(dst), bt_inst.w2c_memory.size - dst);
+}
+
+// US core1 blocks (tools/tooie_utils.h); split positions from baserom.us.yaml relative to each block.
+void bt_rom_audio(int text, u8 *out) {
+    u32 at = text ? 0x1e29b60 : 0x1e3f718, end = text ? 0x1e3f718 : 0x1e42550;
+    u32 offset = text ? 0x25850 : 0x5640, size = text ? BT_AUDIO_TEXT_BYTES : BT_AUDIO_DATA_BYTES;
+    u32 capacity = text ? 0x2a9a0 : 0x69b0;
+    u8 *block = malloc(capacity);
+    if (!block) bt_fatal("out of memory loading n_audio");
+    if (inflate_rom_block(at, end - at, block, capacity) < offset + size) bt_fatal("truncated n_audio in core1");
+    memcpy(out, block + offset, size);
+    free(block);
 }
 
 #define LIBM1(name, T) T w2c_env_##name(struct w2c_env *env, T x) { (void)env; return name(x); }

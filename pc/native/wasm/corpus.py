@@ -61,7 +61,8 @@ def record(exe, rom, directory, case, *, dump, timeout):
     if case['flags'] is not None:
         image = save_editor.edit(bytes(2048), 0, [(flag, True) for flag in case['flags']], create=True)
         (directory / 'bt_eeprom.bin').write_bytes(image)
-    env = {key: value for key, value in os.environ.items() if not key.startswith('BT_')}
+    env = {key: value for key, value in os.environ.items()
+           if not key.startswith('BT_') or key in ('BT_AUDIO', 'BT_AUDIO_CHECK')}
     env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']),
                **run_env(case), BT_TRACE=str(directory / 'trace.jsonl'), BT_SAVE=str(directory / 'bt_eeprom.bin'))
     if dump:

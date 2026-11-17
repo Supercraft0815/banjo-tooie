@@ -16,6 +16,8 @@ static Setting S[BT_SET_COUNT] = {
     [BT_SET_FULLSCREEN] = {"fullscreen", NULL, "Vollbild", 0, 1, 0, {"aus", "an"}},
     [BT_SET_FILTER] = {"filter", NULL, "Bildfilter", 0, 1, 0, {"scharf", "weich"}},
     [BT_SET_RUMBLE] = {"rumble", "BT_RUMBLE", "Vibration", 0, 1, 1, {"aus", "an"}},
+    [BT_SET_AUDIO_LATENCY] = {"audio_latency", "BT_AUDIO_LATENCY", "Audiopuffer", 0, 3, 1,
+                              {"512 Samples", "1024 Samples", "2048 Samples", "4096 Samples"}},
     [BT_SET_VOLUME] = {"volume", NULL, "Lautstaerke", 0, 10, 10, {NULL}},  // tenths
     [BT_SET_FPS] = {"fps60", "BT_FPS60", "Spieltakt", 0, 1, 0, {"original", "60 Hz (experimentell)"}},
     [BT_SET_INTERP] = {"interp", "BT_INTERP", "Bildinterpolation", 0, 1, 0, {"aus", "an (60 FPS)"}},

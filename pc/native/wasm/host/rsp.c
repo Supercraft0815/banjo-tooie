@@ -1,22 +1,19 @@
-// RSP interpreter for audio tasks: runs the game's own audio microcode (n_aspMain, embedded from
-// the extracted ROM assets) instead of reimplementing its commands. It covers the scalar and
+// RSP interpreter for audio tasks: runs the game's own audio microcode (n_aspMain, read from
+// the loaded cartridge) instead of reimplementing its commands. It covers the scalar and
 // vector instructions that microcode uses; anything else stops with its encoding.
 #include <string.h>
+#include "mixer.h"
 #include "guest.h"
 
-static const u8 ucode_text[] = {
-#embed "n_aspMain.textbin.bin"
-};
-static const u8 ucode_data[] = {
-#embed "n_aspMain.rodatabin.bin"
-};
-
+static u8 ucode_text[BT_AUDIO_TEXT_BYTES];
 static u8 dmem[0x1000], imem[0x1000];
 static u32 r[32];
 static u16 vr[32][8];          // lane i = DMEM bytes 2i, 2i+1 of a vector load (big-endian)
 static s64 acc[8];             // 48-bit accumulator, sign-extended
 static u16 vco, vcc;           // carry (low 8) / not-equal (high 8); compare (low 8) / clip (high 8)
 static u8 vce;
+static u32 checked_addr, checked_size;
+static int checking;
 static u32 sp_mem, sp_dram;    // DMA registers
 static u8 esel[16][8];         // element selection: lane i of vt[e] reads vt[esel[e][i]]
 
@@ -36,6 +33,11 @@ static void dma(u32 len, int to_dram) {
     u32 n = ((len & 0xFFF) | 7) + 1, count = (len >> 12 & 0xFF) + 1, skip = len >> 20 & 0xFF8;
     u32 mem = sp_mem & 0xFF8, dram = sp_dram & 0xFFFFF8;
     u8 *sp = sp_mem & 0x1000 ? imem : dmem;
+    if (checking && to_dram) {
+        if (checked_size || count != 1) bt_fatal("unexpected additional RSP audio DMA write");
+        checked_addr = dram;
+        checked_size = n;
+    }
     if (sp == imem) bt_fatal("audio microcode loads an IMEM overlay (MP3 decoding), not supported");
     for (u32 c = 0; c < count; c++, dram += n + skip) {
         for (u32 i = 0; i < n; i++, mem = (mem + 1) & 0xFFF) {
@@ -165,8 +167,9 @@ static void cop0_write(int reg, u32 v) {
     }
 }
 
-static void run(void) {
-    u32 pc = 0x080, npc = 0x084;
+typedef struct { u32 pc, next; } RspPC;
+static int run(RspPC *cursor, int one_command) {
+    u32 pc = cursor->pc, npc = cursor->next;
     for (u64 steps = 0;; steps++) {
         u32 w = (u32)imem[pc] << 24 | imem[pc + 1] << 16 | imem[pc + 2] << 8 | imem[pc + 3];
         u32 next = (npc + 4) & 0xFFC;
@@ -185,7 +188,7 @@ static void run(void) {
             case 0x07: r[rd] = (u32)((s32)r[rt] >> (r[rs] & 31)); break;
             case 0x08: next = r[rs] & 0xFFC; break;
             case 0x09: next = r[rs] & 0xFFC; r[rd] = (pc + 8) & 0xFFC; break;
-            case 0x0D: return;  // break: task done
+            case 0x0D: return 0;  // break: task done
             case 0x20: case 0x21: r[rd] = r[rs] + r[rt]; break;
             case 0x22: case 0x23: r[rd] = r[rs] - r[rt]; break;
             case 0x24: r[rd] = r[rs] & r[rt]; break;
@@ -243,6 +246,10 @@ static void run(void) {
         r[0] = 0;
         pc = npc;
         npc = next;
+        if (one_command && pc == 0x10c) { // n_aspMain returns here after each command
+            *cursor = (RspPC){pc, npc};
+            return 1;
+        }
     }
 }
 
@@ -264,21 +271,46 @@ static void selfcheck(void) {
 #undef VOP
 }
 
+static RspPC cursor;
+static void compare_command(unsigned index, u32 cmd, u32 arg, const u8 *mix, const BtMixerWrite *write) {
+    checked_size = 0;
+    if (!run(&cursor, 1)) bt_fatal("RSP audio ended before mixer command %u", index);
+    if (memcmp(mix, dmem, sizeof dmem)) {
+        unsigned i = 0;
+        while (mix[i] == dmem[i]) i++;
+        bt_fatal("audio check command %u (%08x %08x), DMEM %03x: mixer %02x, RSP %02x",
+                 index, cmd, arg, i, mix[i], dmem[i]);
+    }
+    if (checked_size != write->size || (checked_size && checked_addr != write->address))
+        bt_fatal("audio check command %u (%08x %08x), DMA mixer %06x/%u, RSP %06x/%u",
+                 index, cmd, arg, write->size ? write->address : 0, write->size, checked_addr, checked_size);
+    for (unsigned i = 0; i < checked_size; i++) {
+        unsigned addr = 0x80000000u | ((checked_addr+i) & 0xffffff);
+        if (bt_mem[addr] != write->bytes[i])
+            bt_fatal("audio check command %u (%08x %08x), RDRAM %08x: mixer %02x, RSP %02x",
+                     index, cmd, arg, addr, write->bytes[i], bt_mem[addr]);
+    }
+}
+
 // What rspboot does before jumping to the microcode: text to IMEM 0x080, data to DMEM 0, the
 // OSTask to DMEM 0xFC0 with $at pointing at it. DMEM above the data persists between tasks.
-void bt_rsp_audio(u32 task) {
+void bt_audio_oracle(u32 task, int check, const u8 *boot_data) {
     static int ready;
     if (!ready) {
         for (int e = 0; e < 16; e++)
             for (int i = 0; i < 8; i++)
                 esel[e][i] = (u8)(e < 2 ? i : e < 4 ? (i & ~1) | (e & 1) : e < 8 ? (i & ~3) | (e & 3) : e & 7);
+        bt_rom_audio(1, ucode_text);
         selfcheck();
         ready = 1;
     }
-    memcpy(imem + 0x080, ucode_text, sizeof ucode_text < 0xF80 ? sizeof ucode_text : 0xF80);
-    memcpy(dmem, ucode_data, sizeof ucode_data);
+    checking = check;
+    memcpy(imem + 0x080, ucode_text, sizeof ucode_text);
+    memcpy(dmem, boot_data, BT_AUDIO_DATA_BYTES);
     for (u32 i = 0; i < 64; i += 4) st32(0xFC0 + i, gr32(task + i));
     memset(r, 0, sizeof r);
     r[1] = 0xFC0;
-    run();
+    cursor = (RspPC){0x80, 0x84};
+    if (checking) bt_mixer_audio(task, boot_data, BT_AUDIO_DATA_BYTES, compare_command);
+    if (run(&cursor, checking)) bt_fatal("RSP audio has additional commands after the mixer");
 }

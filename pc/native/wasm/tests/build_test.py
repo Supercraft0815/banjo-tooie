@@ -4,6 +4,7 @@ import contextlib
 import io
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -54,7 +55,6 @@ class BuildTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)
             for name in ('gen/game.h', 'gen/game-impl.h', 'gen/o32.c', 'gen/trace_symbols.h',
-                         'gen/n_aspMain.textbin.bin', 'gen/n_aspMain.rodatabin.bin',
                          'include/wasm-rt.h', 'runtime/wasm-rt-impl.c', 'runtime/wasm-rt-mem-impl.c'):
                 path = out / name
                 path.parent.mkdir(exist_ok=True)
@@ -68,6 +68,15 @@ class BuildTest(unittest.TestCase):
                 build.main()
                 guest.assert_not_called()
                 host.assert_called_once()
+
+    def test_host_bundle_imports_without_guest_modules_or_symbol_tables(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            here = Path(tmp) / 'pc/native/wasm'
+            here.mkdir(parents=True)
+            for name in ('build.py', 'trace_tools.py'):
+                shutil.copy2(build.HERE / name, here / name)
+            subprocess.run([sys.executable, '-I', str(here / 'build.py'), '--help'],
+                           cwd=tmp, check=True, capture_output=True)
 
     def test_old_clang_fails_before_building(self):
         with patch.object(build.sys, 'argv', ['build.py', 'host']), \
@@ -90,10 +99,27 @@ class BuildTest(unittest.TestCase):
             source.write_text('int guest;')
             first = trace_tools.trace_header(out, build.HERE, ['-O2'], from_gen=True)
             header.write_text(first)
+            (gen / 'n_aspMain.textbin.bin').write_bytes(b'legacy unused audio input')
             self.assertEqual(first, trace_tools.trace_header(out, build.HERE, ['-O2'], from_gen=True))
             self.assertNotEqual(first, trace_tools.trace_header(out, build.HERE, ['-O0'], from_gen=True))
             source.write_text('int changed_guest;')
             self.assertNotEqual(first, trace_tools.trace_header(out, build.HERE, ['-O2'], from_gen=True))
+
+    def test_only_debug_hosts_fingerprint_the_interpreter(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            here = Path(tmp)
+            (here / 'gen').mkdir()
+            (here / 'gen/trace_symbols.h').write_text('#define TRACE_MAP 0x1234\n')
+            (here / 'host').mkdir()
+            (here / 'build.py').touch()
+            rsp = here / 'host/rsp.c'
+            rsp.write_text('int rsp;')
+            debug = ['-DBT_AUDIO_DEBUG=1']
+            release_id = trace_tools.trace_header(here, here, [], from_gen=True)
+            debug_id = trace_tools.trace_header(here, here, debug, from_gen=True)
+            rsp.write_text('int changed_rsp;')
+            self.assertEqual(release_id, trace_tools.trace_header(here, here, [], from_gen=True))
+            self.assertNotEqual(debug_id, trace_tools.trace_header(here, here, debug, from_gen=True))
 
 
 if __name__ == '__main__':

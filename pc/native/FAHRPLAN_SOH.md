@@ -19,6 +19,9 @@ offen (17.11.2026); Q1 insgesamt ist deshalb nicht abgenommen.
 A2 läuft auf dem Mac über SDL3. GPU-Fixture und Intro-Bildvergleich sind grün.
 Die 75-s-Messung ergab zuletzt zwei ausgelassene Retraces bei höchstens einer
 erlaubten. Zahlen und Laufbedingungen stehen im A2-Eintrag in `PROGRESS.md`.
+A8 ist auf macOS abgenommen. Der C-Mixer ist Standard. Der befehlsweise
+Vergleich mit dem Original-Microcode bestand alle 24 registrierten Fälle.
+Bei `new-game` stimmen 83.772.256 PCM-Bytes überein.
 
 ---
 

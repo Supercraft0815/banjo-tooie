@@ -31,6 +31,7 @@ from somewhere else.
 | `BT_WABT` | Installation prefix containing `bin/wasm2c`, `include/wasm-rt.h`, `share/wabt/wasm2c/` |
 | `BT_SDL3` | Installation prefix containing `include/SDL3/` and `lib/`; otherwise `pkg-config sdl3`, Homebrew or the system search paths |
 | `BT_OUT` | Output directory, default `build/ilp32` |
+| `BT_AUDIO_DEBUG` | Set to `1` to include the RSP interpreter and command-by-command audio checks |
 | `BT_HOST_FLAGS` | Additional compiler/linker flags, e.g. `-fsanitize=address,undefined` |
 
 Use a matching LLVM installation for `opt` and the plugin's headers/libraries.
@@ -46,14 +47,10 @@ cp -R build/ilp32/gen build/host-only/gen
 BT_OUT="$PWD/build/host-only" python3 pc/native/wasm/build.py host
 ```
 
-Transfer the complete `gen/` directory, including headers and the two audio
-microcode `.bin` files. The host stage does not invoke guest compilers, `opt`,
-`wasm-ld` or `wasm2c`, and needs neither `game.map` nor `game.wasm`. Its trace build
-ID includes the generated inputs, host sources and compiler/flags. Clang's
-`--embed-dir` resolves the audio files within `gen/`.
-
-Generated files contain ROM-derived data and microcode. Keep these private; A4
-requires a separate review before public release artifacts are produced.
+Transfer the generated C sources and headers in `gen/`. The host uses these with WABT's C runtime.
+The game reads the audio coefficients from the player's US ROM at startup. A debug audio build
+also reads the original RSP instructions from the ROM. Generated guest sources contain
+ROM-derived data and remain private pending the A4 distribution review.
 
 Windows pass plugins are toolchain-dependent: LLVM's build supports explicit
 symbol exports for plugins when using MSVC, and plugins must link to the tool.
@@ -73,3 +70,17 @@ python3 pc/native/wasm/port.py gate --case intro --exe build/host-only/bt_game
 The gate uses isolated saves and frozen executable copies. Do not accept new
 reference traces to hide a build regression. See `../PROGRESS.md` for evidence
 and remaining gameplay issues.
+
+## Audio verification
+
+The native n_audio mixer is the default (`BT_AUDIO=mixer`). A host built with `BT_AUDIO_DEBUG=1` also
+accepts `BT_AUDIO=rsp` and `BT_AUDIO_CHECK=1`. The check compares all 4 KiB of DMEM and each
+RDRAM DMA write after every command. `BT_PCM=/path/to/file` writes the submitted stereo s16le
+samples. The settings menu's **Audiopuffer** controls the device queue reserve in stereo frames
+(512, 1024, 2048 or 4096, default 1024).
+
+```sh
+BT_AUDIO_DEBUG=1 python3 pc/native/wasm/build.py host
+BT_AUDIO_CHECK=1 python3 pc/native/wasm/port.py gate --full --exe build/ilp32/bt_game
+python3 pc/native/wasm/tests/audio_mixer_test.py
+```

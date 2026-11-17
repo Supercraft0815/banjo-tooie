@@ -7,7 +7,6 @@
 #include "guest.h"
 
 #define VI_NTSC_CLOCK 48681812
-#define LATENCY_BYTES (1024 * 4)        // kept queued beyond what the game sees, against device bursts
 static SDL_AudioStream *_Atomic stream;
 static _Atomic u32 rate = 22050;
 static FILE *pcm;
@@ -67,6 +66,7 @@ u32 w2c_env_ai_length(struct w2c_env *env) {
         return vclock_end > now ? (u32)((vclock_end - now) * rate / 46875000u) * 4 : 0;
     }
     if (!stream) return 0;
-    int q = SDL_GetAudioStreamQueued(stream) - LATENCY_BYTES;
+    int reserve = (512 << bt_setting(BT_SET_AUDIO_LATENCY)) * 4;  // stereo s16 frames beyond the visible queue
+    int q = SDL_GetAudioStreamQueued(stream) - reserve;
     return q > 0 ? (u32)q & ~3u : 0;
 }

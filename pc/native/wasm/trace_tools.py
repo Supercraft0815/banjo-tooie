@@ -32,7 +32,7 @@ def trace_header(out, here, host_flags, from_gen=False):
         header = out / 'gen' / 'trace_symbols.h'
         lines = [line for line in header.read_text().splitlines() if not line.startswith('#define BT_TRACE_BUILD ')]
         digest = hashlib.sha256('\n'.join(lines).encode())
-        for path in sorted([*(out / 'gen').glob('*.[ch]'), *(out / 'gen').glob('*.bin')]):
+        for path in sorted((out / 'gen').glob('*.[ch]')):
             if path != header:
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
@@ -41,6 +41,8 @@ def trace_header(out, here, host_flags, from_gen=False):
         digest = hashlib.sha256((out / 'game.wasm').read_bytes())
     digest.update(json.dumps(host_flags).encode())
     for path in [here / 'build.py', Path(__file__), *sorted((here / 'host').rglob('*.[ch]'))]:
+        if path == here / 'host/rsp.c' and '-DBT_AUDIO_DEBUG=1' not in host_flags:
+            continue
         digest.update(path.name.encode())
         digest.update(path.read_bytes())
     lines.append(f'#define BT_TRACE_BUILD "{digest.hexdigest()}"')

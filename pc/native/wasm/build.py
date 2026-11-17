@@ -33,10 +33,6 @@ NATIVE = HERE.parent
 # BT_OUT: separate output tree for diagnostic builds (BT_XSYM=1), so the reference build stays.
 OUT = pathlib.Path(os.environ.get('BT_OUT', ROOT / 'build' / 'ilp32')).resolve()
 sys.path.insert(0, str(HERE))
-import data  # noqa: E402
-import o32_thunks  # noqa: E402
-import irtypes  # noqa: E402
-import bitfields  # noqa: E402
 import trace_tools  # noqa: E402
 
 def tool(name):
@@ -112,8 +108,12 @@ GUEST_FLAGS = [
 if os.environ.get('BT_HEAPCHECK'):  # diagnostic build: the arena checks every header on each alloc/free
     GUEST_FLAGS.append('-DBT_HEAP_CHECK=1')
 HOST_FLAGS = ['-O2', '-g', '-I', str(WASM2C_INC), '-I', str(WASM2C_RT), '-I', str(OUT / 'gen'),
-              '--embed-dir=' + str(OUT / 'gen'), '-I', str(HERE / 'host')] + SDL_CFLAGS + ['-DWASM_RT_MEMCHECK_GUARD_PAGES=1',
+              '-I', str(HERE / 'host')] + SDL_CFLAGS + ['-DWASM_RT_MEMCHECK_GUARD_PAGES=1',
               '-DBT_GPU_OPENGL=1', '-DWASM_RT_TRAP_HANDLER=bt_trap'] + shlex.split(os.environ.get('BT_HOST_FLAGS', ''))
+
+AUDIO_DEBUG = os.environ.get('BT_AUDIO_DEBUG') == '1'
+if AUDIO_DEBUG:
+    HOST_FLAGS.append('-DBT_AUDIO_DEBUG=1')
 
 
 def run(cmd, **kw):
@@ -158,6 +158,8 @@ def up_to_date(obj, dep):
 
 
 def compile_one(src, tag):
+    import bitfields
+
     obj = OUT / 'obj' / tag / (src.replace('/', '__') + '.o')
     dep, log = obj.with_suffix('.d'), obj.with_suffix('.log')
     if up_to_date(obj, dep):
@@ -230,6 +232,7 @@ def n64_sections():
 
 def c_types(objs):
     """C declarations of the asm data labels (irtypes.py), cached next to each object."""
+    import irtypes
     def one(o):
         o = pathlib.Path(o)
         t = o.with_suffix('.types')
@@ -282,6 +285,9 @@ def write_if_changed(path, text):
 
 
 def build_guest(jobs, compiler_version):
+    import data
+    import o32_thunks
+
     gen = OUT / 'gen'
     gen.mkdir(parents=True, exist_ok=True)
     aliases = run([sys.executable, str(NATIVE / 'generate_overlay_aliases.py'),
@@ -446,13 +452,6 @@ def build_guest(jobs, compiler_version):
     write_if_changed(gen / 'o32_thunks.h', header)
     write_if_changed(gen / 'o32.c', thunks)
 
-    # Keep embedded audio with the generated guest so host builds need no extracted ROM tree.
-    for name in ('n_aspMain.textbin.bin', 'n_aspMain.rodatabin.bin'):
-        content = (ROOT / 'assets/core1' / name).read_bytes()
-        target = gen / name
-        if not target.exists() or target.read_bytes() != content:
-            target.write_bytes(content)
-
     write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, HOST_FLAGS))
     # Display lists address memory as segment + 24-bit offset (see platform/rdram.c).
     top = max(int(l.split()[0], 16) + int(l.split()[2], 16) for l in (OUT / 'game.map').read_text().splitlines()
@@ -467,6 +466,8 @@ def build_host(jobs, gen, compiler_version):
     write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, compiler_version] + HOST_FLAGS, from_gen=True))
     tag = flags_hash([CLANG, compiler_version] + HOST_FLAGS)
     host_srcs = sorted((HERE / 'host').glob('*.c')) + [HERE / 'host/glad/gl.c']
+    if not AUDIO_DEBUG:
+        host_srcs.remove(HERE / 'host/rsp.c')
     gen_srcs = (sorted(gen.glob('game_*.c')) or [gen / 'game.c']) + [gen / 'o32.c']
     rt_srcs = [WASM2C_RT / 'wasm-rt-impl.c', WASM2C_RT / 'wasm-rt-mem-impl.c']
 
@@ -517,13 +518,12 @@ def main():
     version = run([CLANG, '--version'])
     match = re.search(r'clang version (\d+)', version.stdout)
     if version.returncode or not match or int(match[1]) < 19:
-        ap.error('clang >= 19 is required for audio #embed; got ' + (version.stdout + version.stderr).strip())
+        ap.error('clang >= 19 is required; got ' + (version.stdout + version.stderr).strip())
     gen = build_guest(args.j, version.stdout.strip()) if stage != 'host' else OUT / 'gen'
     if stage == 'guest':
         print('generated %s (host stage ready)' % gen)
         return
-    needed = [gen / name for name in ('game.h', 'game-impl.h', 'o32.c', 'trace_symbols.h',
-                                      'n_aspMain.textbin.bin', 'n_aspMain.rodatabin.bin')] + [
+    needed = [gen / name for name in ('game.h', 'game-impl.h', 'o32.c', 'trace_symbols.h')] + [
               WASM2C_INC / 'wasm-rt.h', WASM2C_RT / 'wasm-rt-impl.c', WASM2C_RT / 'wasm-rt-mem-impl.c']
     missing = [str(path) for path in needed if not path.is_file()]
     if missing:

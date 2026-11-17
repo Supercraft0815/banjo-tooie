@@ -1721,3 +1721,26 @@ Der isolierte Build mit genau diesen beiden Korrekturen bestand das volle
 Gate mit 24 Fällen und 139.735 identischen Retraces. Nachweise unter
 `build/acceptance/q3-2026-11-17/` in den ersten beiden
 `sanitizer-corpus*`-Laufprotokollen und `staged-gate-24.log`.
+
+## 2026-11-17 — A8, nativer C-Mixer und Audiovergleich
+
+Der Release-Host mischt n_audio in C. Er lädt die Koeffizienten aus der US-ROM
+des Spielers. Der Debug-Build (`BT_AUDIO_DEBUG=1`) lädt zusätzlich die
+RSP-Instruktionen aus der ROM und unterstützt `BT_AUDIO=rsp` sowie
+`BT_AUDIO_CHECK=1`. Nach jedem Befehl prüft das Orakel alle 4.096 Bytes DMEM
+und Adresse, Länge und Inhalt des Schreibzugriffs ins RDRAM. Der Release-Build
+enthält den Interpreter und die eingebetteten Audio-Binärdateien nicht mehr.
+
+Der Vergleich bestand alle 24 registrierten Fälle mit 69.820 Audio-Tasks und
+27.429.644 Befehlen. Mit fünf separat geprüften Bossbegegnungen waren es
+81.083 Tasks und 31.825.785 Befehle. MP3-Opcode 7 trat dabei keinmal auf und
+bleibt ausdrücklich unimplementiert. Synthetische Eingaben prüfen auch die
+Pole- und IIR-Filter. Bei `new-game` lieferten Release-Mixer und Debug-RSP
+je 83.772.256 bytegleiche PCM-Bytes (SHA-256
+`a2afd2121432f0d92701cc49f654a378b0d1efac3a0dfa133602a3d886ad08ac`).
+
+Der Audiopuffer im Einstellungsmenü unterstützt 512, 1.024, 2.048 und 4.096
+Stereo-Samples. Die gemessene sichtbare Warteschlange passte bei jeder
+Einstellung zur gewählten Reserve. Unter `build/acceptance/a8-2026-11-17/`
+liegen die Gates der beiden Binärdateien, der Opcode-Zensus, der PCM-Vergleich
+und die Messung mit SDL.
