@@ -172,7 +172,7 @@ static void run(void) {
         u32 next = (npc + 4) & 0xFFC;
         u32 op = w >> 26, rs = w >> 21 & 31, rt = w >> 16 & 31, rd = w >> 11 & 31, sa = w >> 6 & 31;
         s32 si = (s16)w;
-        u32 br = (pc + 4 + (u32)(si << 2)) & 0xFFC;
+        u32 br = (pc + 4 + ((u32)si << 2)) & 0xFFC;
         if (steps > 100000000) bt_fatal("audio microcode runs away at IMEM %03x", pc);
         switch (op) {
         case 0x00:

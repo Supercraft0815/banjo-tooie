@@ -171,7 +171,7 @@ static void *thread_main(void *p) {
     pthread_mutex_lock(&big);
     wait_cpu();
     pthread_mutex_unlock(&big);
-    bt_call_guest(h->entry, h->arg);
+    bt_call_guest(h->entry, h->arg, h->t);
     w2c_env_osDestroyThread(NULL, 0);
     return NULL;
 }

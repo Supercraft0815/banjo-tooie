@@ -18,8 +18,8 @@ static inline void gw16(u32 a, u32 v) { u8 *p = G(a); p[0] = (u8)(v >> 8); p[1] 
 static inline void gw32(u32 a, u32 v) { v = __builtin_bswap32(v); __builtin_memcpy(G(a), &v, 4); }
 static inline void gw64(u32 a, u64 v) { gw32(a, (u32)(v >> 32)); gw32(a + 4, (u32)v); }
 
-// Calls the guest function at table index fn with one argument.
-void bt_call_guest(u32 fn, u32 arg);
+// Calls an OSThread entry with its initial guest registers.
+void bt_call_guest(u32 fn, u32 arg, u32 thread);
 // The guest stack pointer of the instance; the running game thread owns it.
 #define BT_SP (*w2c_bt_0x5F_stack_pointer(&bt_inst))
 

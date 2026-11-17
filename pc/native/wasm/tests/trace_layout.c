@@ -6,6 +6,8 @@
 #include "overlays/bs/state.h"
 
 _Static_assert(sizeof(void *) == 4, "trace requires ILP32 guest pointers");
+_Static_assert(offsetof(OSThread, context.a1) + 4 == 0x44, "guest thread entry a1 low word");
+_Static_assert(offsetof(OSThread, context.a2) + 4 == 0x4c, "guest thread entry a2 low word");
 _Static_assert(sizeof(Actor) == 0x9C, "trace actor stride");
 _Static_assert(offsetof(Actor, unk0) == 0, "trace actor marker");
 _Static_assert(offsetof(Actor, position) == 4, "trace actor position");

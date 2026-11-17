@@ -20,7 +20,7 @@ static void gw16(u32 a, u32 v) { u8 *p = G(a); p[0] = v >> 8; p[1] = v; }
 static void gw64(u32 a, u64 v) { gw32(a, v >> 32); gw32(a + 4, v); }
 static _Noreturn void bt_fatal(const char *fmt, ...) { (void)fmt; abort(); }
 static void wasm_rt_init_thread(void) {}
-static void bt_call_guest(u32 fn, u32 arg) { (void)fn; (void)arg; abort(); }
+static void bt_call_guest(u32 fn, u32 arg, u32 thread) { (void)fn; (void)arg; (void)thread; abort(); }
 static _Noreturn void bt_video_main(void) { abort(); }
 static void bt_vi_init(void) { abort(); }
 static void bt_vi_retrace(u32 *mq, u32 *msg) { *mq = *msg = 0; }

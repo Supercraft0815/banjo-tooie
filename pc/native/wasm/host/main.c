@@ -9,10 +9,18 @@ w2c_bt bt_inst;
 u8 *bt_mem;
 static struct w2c_env { int unused; } env;
 
-void bt_call_guest(u32 fn, u32 arg) {
+void bt_call_guest(u32 fn, u32 arg, u32 thread) {
     wasm_rt_funcref_table_t *table = w2c_bt_0x5F_indirect_function_table(&bt_inst);
     if (fn >= table->size || !table->data[fn].func) bt_fatal("call to guest function %u outside the table", fn);
-    ((void (*)(void *, u32))table->data[fn].func)(table->data[fn].module_instance, arg);
+    wasm_rt_funcref_t entry = table->data[fn];
+    if (entry.func_type == wasm2c_bt_get_func_type(1, 0, WASM_RT_I32)) {
+        ((void (*)(void *, u32))entry.func)(entry.module_instance, arg);
+    } else if (entry.func_type == wasm2c_bt_get_func_type(3, 0, WASM_RT_I32, WASM_RT_I32, WASM_RT_I32)) {
+        // BT_PASS2 thread entries receive the low words of OSThread.context.a1/a2.
+        ((void (*)(void *, u32, u32, u32))entry.func)(entry.module_instance, arg, gr32(thread + 0x44), gr32(thread + 0x4c));
+    } else {
+        bt_fatal("unexpected signature for guest thread entry %u", fn);
+    }
 }
 
 // A stray guest pointer faults in the protected memory. Replaces the wasm2c handler, which

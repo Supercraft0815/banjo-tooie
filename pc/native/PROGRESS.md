@@ -1702,3 +1702,22 @@ bytegleich. Läufe, Bilder, Sicherung und Prüfprotokolle liegen unter
 `build/acceptance/q2-worlds-2026-11-17/`. Die Liste der 206 unbesuchten
 benannten Karten im dortigen Teilkorpus bezieht sich nur auf die 20 neuen
 Fälle. Die übrigen Q2-Szenarien sind offen.
+
+## 2026-11-17 — Q3, zwei Fehler im instrumentierten Host
+
+Der ASan-/UBSan-Host stoppte zuerst beim Start von `func_800124EC`.
+Die wasm2c-Funktion erwartet neben der Instanz drei Registerwerte. Der Host
+rief sie über einen Zeiger für ein Argument auf. Der Threadstart wählt jetzt
+die tatsächliche Wasm-Signatur. Für die beiden mit `BT_PASS2` erweiterten
+Einstiege liest er die unteren Wörter von `OSThread.context.a1` und `.a2`.
+Zwei statische Prüfungen sichern die Offsets 0x44 und 0x4c im ILP32-Layout.
+
+Beim nächsten Lauf meldete UBSan einen Links-Shift des negativen
+RSP-Branch-Offsets −320. Der Interpreter berechnet den Versatz jetzt mit
+vorzeichenloser Arithmetik. Die Ausgabe von `new-game` war vor und nach
+dieser Änderung über 83.772.256 PCM-Bytes identisch (SHA-256
+`a2afd2121432f0d92701cc49f654a378b0d1efac3a0dfa133602a3d886ad08ac`).
+Der isolierte Build mit genau diesen beiden Korrekturen bestand das volle
+Gate mit 24 Fällen und 139.735 identischen Retraces. Nachweise unter
+`build/acceptance/q3-2026-11-17/` in den ersten beiden
+`sanitizer-corpus*`-Laufprotokollen und `staged-gate-24.log`.
