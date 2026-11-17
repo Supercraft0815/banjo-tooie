@@ -27,13 +27,14 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import corpus
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 OUT = ROOT / 'build' / 'ilp32'
 REF = ROOT / 'build' / 'reference'
 CHECKLIST = HERE.parent / 'VARIANTE_A_CHECKLISTE.md'
-TESTS = ['build_test.py', 'play_test.py', 'trace_test.py', 'save_test.py', 'inventory_test.py', 'printf_test.py', 'render_test.py']
+TESTS = ['build_test.py', 'play_test.py', 'trace_test.py', 'gate_test.py', 'save_test.py', 'inventory_test.py', 'printf_test.py', 'render_test.py']
 DEF = re.compile(r'^[A-Za-z_][^;\n{}()=]*?\b(\w+)\s*\([^;{}]*\)\s*\{', re.M)
 NOISE = re.compile(r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\'|^\s*#[^\n]*', re.S | re.M)
 
@@ -168,20 +169,7 @@ def status():
 
 
 def run_case(exe, name, work):
-    sys.path.insert(0, str(HERE))
-    import corpus
-    case = corpus.CASES[name]
-    work.mkdir(parents=True)
-    if case['flags'] is not None:
-        (work / 'bt_eeprom.bin').write_bytes(
-            corpus.save_editor.edit(bytes(2048), 0, [(f, True) for f in case['flags']], create=True))
-    env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
-    env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']), **corpus.run_env(case),
-               BT_TRACE=str(work / 'trace.jsonl'))
-    with (work / 'run.log').open('w') as log:
-        r = subprocess.run([str(exe), str(ROOT / 'baserom.us.z64')], cwd=work, env=env, stdout=log, stderr=log,
-                           timeout=3600)
-    return r.returncode
+    return corpus.record(exe, ROOT / 'baserom.us.z64', work, corpus.CASES[name], dump=False, timeout=3600)
 
 
 def gate(cases, accept, exe=None):
@@ -201,37 +189,54 @@ def gate(cases, accept, exe=None):
     return replay(cases, accept, OUT / 'bt_game')
 
 
-def replay(cases, accept, built):
-    sys.path.insert(0, str(HERE))
+def check_result(name, directory, code, accept):
+    import contextlib
+    import io
     import trace_tools
+    if code:
+        raise ValueError(f'exit {code}, see {directory / "run.log"}')
+    if accept:
+        corpus.trace_summary(directory, corpus.CASES[name])
+        return
+    ref = REF / (name + '.jsonl')
+    if not ref.exists():
+        raise ValueError(f'missing reference {ref}; review the repeated run before --accept')
+    output = io.StringIO()
+    with ref.open() as left, (directory / 'trace.jsonl').open() as right, contextlib.redirect_stdout(output):
+        code = trace_tools.compare(left, right, cross_build=True)
+    if code:
+        raise ValueError(output.getvalue().strip())
+    print(f'PASS {name}: {output.getvalue().strip()}')
+
+
+def store_reference(directory, name):
+    ref = REF / (name + '.jsonl')
+    with tempfile.TemporaryDirectory(dir=REF) as staging:
+        temp = Path(staging) / ref.name
+        shutil.copyfile(directory / 'trace.jsonl', temp)
+        temp.replace(ref)
+    print(f'{name}: reference stored ({ref})')
+
+
+def replay(cases, accept, built):
     work = Path(tempfile.mkdtemp(prefix='gate-', dir=ROOT / 'build'))
     exe = work / 'bt_game'
     shutil.copy2(built, exe)  # a rebuild during the run must not change the binary
     failed = 0
     import concurrent.futures  # cases are separate processes and dirs on the virtual clock
-    with concurrent.futures.ThreadPoolExecutor(len(cases)) as pool:
+    with concurrent.futures.ThreadPoolExecutor(min(len(cases), 4)) as pool:
         codes = list(pool.map(lambda name: run_case(exe, name, work / name), cases))
     for name, rc in zip(cases, codes):
-        trace = work / name / 'trace.jsonl'
-        if rc:
-            print('FAIL %s: exit %d, log %s' % (name, rc, work / name / 'run.log'))
+        try:
+            check_result(name, work / name, rc, accept)
+        except (OSError, ValueError, StopIteration) as error:
+            print(f'FAIL {name}: {error}')
             failed = 1
-            continue
-        ref = REF / (name + '.jsonl')
-        if accept or not ref.exists():
-            REF.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(trace, ref)
-            print('%s: reference stored (%s)' % (name, ref))
-            continue
-        with ref.open() as a, trace.open() as b:
-            import contextlib
-            import io
-            buf = io.StringIO()
-            with contextlib.redirect_stdout(buf):
-                rc = trace_tools.compare(a, b, cross_build=True)
-        print('%s %s: %s' % ('PASS' if rc == 0 else 'FAIL', name, buf.getvalue().strip()))
-        failed |= rc
     if not failed:
+        if accept:
+            REF.mkdir(parents=True, exist_ok=True)
+            for name in cases:
+                store_reference(work / name, name)
         shutil.rmtree(work)
     return failed
 
@@ -241,7 +246,7 @@ def main():
     sub = ap.add_subparsers(dest='cmd', required=True)
     sub.add_parser('status')
     g = sub.add_parser('gate')
-    g.add_argument('--case', action='append', choices=['intro', 'new-game', 'edited-save', 'worlds'])
+    g.add_argument('--case', action='append', choices=corpus.CASES)
     g.add_argument('--full', action='store_true', help='all cases (about 7 minutes)')
     g.add_argument('--accept', action='store_true')
     g.add_argument('--exe', type=Path, help='replay this executable instead of building (e.g. build/ilp32-shift/bt_game)')
@@ -252,7 +257,7 @@ def main():
     if args.cmd == 'status':
         status()
     elif args.cmd == 'gate':
-        cases = ['intro', 'new-game', 'edited-save', 'worlds'] if args.full else (args.case or ['intro'])
+        cases = list(corpus.CASES) if args.full else list(dict.fromkeys(args.case or ['intro']))
         return gate(cases, args.accept, args.exe and args.exe.resolve())
     else:
         by_file = collections.defaultdict(list)

@@ -1635,3 +1635,21 @@ fest. `play.py --dir DIR COMMAND` richtet Folgebefehle einschließlich `stop`
 an dieselbe Session. Bestehende Zielordner und ungültige Optionen werden
 abgewiesen; bisherige Aufrufe bleiben gültig. Neun ROM-freie Tests prüfen
 Argumente, Pfade, Save-Kopie und Prozessstart; `play_test.py` gehört nun zum Gate.
+
+## 2026-11-17 — Q2, Referenzen und Spielstände
+
+Spiel und Trace lösen den EEPROM-Pfad über dieselbe Funktion auf. Eine
+Spielprobe mit zwei unterschiedlichen synthetischen EEPROMs meldet im
+Trace-Kopf den FNV-Hash `a5b850efc0f5877c` des mit `BT_SAVE` gewählten
+Spielstands. Sie schließt den unter P0.2 protokollierten Werkzeugfehler.
+Nachweis unter `build/acceptance/q2-gate-2026-11-17/selected-save/`.
+
+`port.py gate --full` liest die Fälle aus `corpus.CASES`. Fehlende
+Referenzen führen zum Fehler. Mit ausdrücklichem `--accept` prüft das Gate
+alle angeforderten Läufe auf Traceschema, Endkarte und Spieldauer, bevor es
+die jeweilige Referenz atomar ersetzt. Korpus und Gate benutzen denselben
+Recorder mit eigenem Laufverzeichnis und explizitem Spielstandpfad.
+Der Regressionstest prüft fehlende Referenz, Annahme, falsche Karte und
+vorzeitiges Ende. Das volle Gate bestand mit acht Testprogrammen und 86.975
+identischen Retraces. Alle vier Referenzen haben weiterhin die P0-Prüfsummen.
+Laufprotokoll unter `build/acceptance/q2-gate-2026-11-17/gate-final.log`.

@@ -48,9 +48,13 @@ class TraceTest(unittest.TestCase):
             rom = out / 'rom'; rom.write_bytes(b'fixture ROM')
             path = out / 'trace.jsonl'
             env = {**os.environ, 'BT_TRACE': str(path), 'BT_HEADLESS': '1', 'BT_VCLOCK': '1'}
+            (out / 'bt_eeprom.bin').write_bytes(b'different default')
+            (out / 'selected.eep').write_bytes(b'hello')
+            env['BT_SAVE'] = str(out / 'selected.eep')
             subprocess.run([str(exe), str(rom)], cwd=tmp, env=env, check=True)
             rows = [json.loads(line) for line in path.read_text().splitlines()]
             self.assertEqual(len(rows), 4)
+            self.assertEqual(rows[0]['eeprom'], 'a430d84680aabd0b')
             self.assertEqual(rows[1]['actors'], [])
             self.assertEqual(rows[1]['players'][0], {'present': 0})
             self.assertEqual(rows[2]['map'], 395)

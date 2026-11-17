@@ -15,6 +15,7 @@ static u32 gr32(u32 a) { const u8 *p = G(a); return (u32)p[0] << 24 | p[1] << 16
 static uint16_t gr16(u32 a) { const u8 *p = G(a); return p[0] << 8 | p[1]; }
 static void gw32(u32 a, u32 w) { u8 *p = G(a); p[0] = w >> 24; p[1] = w >> 16; p[2] = w >> 8; p[3] = w; }
 static u64 bt_vclock_ticks(void) { return 781250; }
+static const char *bt_host_path(const char *path) { return getenv("BT_SAVE") ? getenv("BT_SAVE") : path; }
 static _Noreturn void bt_fatal(const char *fmt, ...) {
     va_list ap; va_start(ap, fmt); vfprintf(stderr, fmt, ap); va_end(ap); exit(3);
 }

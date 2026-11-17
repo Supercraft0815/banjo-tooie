@@ -54,18 +54,29 @@ CASES = {
 }
 
 
-def replay(exe, rom, directory, case):
-    directory.mkdir()
+def record(exe, rom, directory, case, *, dump, timeout):
+    directory.mkdir(parents=True)
     if case['flags'] is not None:
         image = save_editor.edit(bytes(2048), 0, [(flag, True) for flag in case['flags']], create=True)
         (directory / 'bt_eeprom.bin').write_bytes(image)
     env = {key: value for key, value in os.environ.items() if not key.startswith('BT_')}
     env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']),
-               **run_env(case), BT_TRACE=str(directory / 'trace.jsonl'),
-               BT_DUMP=str(directory / 'frame'), BT_DUMP_EVERY='1800')
+               **run_env(case), BT_TRACE=str(directory / 'trace.jsonl'), BT_SAVE=str(directory / 'bt_eeprom.bin'))
+    if dump:
+        env.update(BT_DUMP=str(directory / 'frame'), BT_DUMP_EVERY='1800')
     with (directory / 'run.log').open('w') as log:
-        subprocess.run([str(exe), str(rom)], cwd=directory, env=env, stdout=log, stderr=log,
-                       check=True, timeout=1800)
+        return subprocess.run([str(exe), str(rom)], cwd=directory, env=env, stdout=log, stderr=log,
+                              timeout=timeout).returncode
+
+
+def replay(exe, rom, directory, case):
+    code = record(exe, rom, directory, case, dump=True, timeout=1800)
+    if code:
+        raise ValueError(f'{directory.name}: exit {code}, see {directory / "run.log"}')
+    return trace_summary(directory, case)
+
+
+def trace_summary(directory, case):
     maps, last = {}, None
     with (directory / 'trace.jsonl').open() as stream:
         header = trace_tools.read_trace(stream)

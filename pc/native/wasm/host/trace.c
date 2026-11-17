@@ -131,7 +131,7 @@ void bt_trace_init(const char *rom) {
     if (!getenv("BT_VCLOCK") || !getenv("BT_HEADLESS"))
         bt_fatal("BT_TRACE requires BT_VCLOCK=1 and BT_HEADLESS=1 (scripted, build-local comparisons)");
     // Read inputs before opening the output, including when a path accidentally names an input file.
-    u64 rom_hash = file_hash(rom, 0), eeprom_hash = file_hash("bt_eeprom.bin", 1);
+    u64 rom_hash = file_hash(rom, 0), eeprom_hash = file_hash(bt_host_path("bt_eeprom.bin"), 1);
     trace = fopen(path, "wx");
     if (!trace) bt_fatal("BT_TRACE: cannot create %s: %s", path, strerror(errno));
     setvbuf(trace, NULL, _IOLBF, 0);

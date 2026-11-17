@@ -69,6 +69,7 @@ void bt_rom_open(const char *path);
 const char *bt_rom_find(void);
 int bt_input_bind(const char *button, const char *names);  // input.c: settings.ini key.X=...  // io.c: no ROM argument (may show a file dialog)
 void bt_trace_init(const char *rom);
+const char *bt_host_path(const char *path);
 void bt_trace_retrace(u32 retrace, u32 fb, u32 width);
 
 #endif

@@ -251,7 +251,7 @@ static FILE *files[32];
 // The game's save file (guest/os.c opens "bt_eeprom.bin"): BT_SAVE=path if set; the working
 // directory for scripted runs (BT_HEADLESS, BT_VCLOCK) or when a save is already there; otherwise
 // the user's data directory (macOS: ~/Library/Application Support/BanjoTooie).
-static const char *host_path(const char *path) {
+const char *bt_host_path(const char *path) {
     static char save[1024];
     if (strcmp(path, "bt_eeprom.bin")) return path;
     if (!save[0]) {
@@ -275,7 +275,7 @@ u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
                 if (start > end || end > rom_size) bt_fatal("ROM file %s beyond the image", (char *)G(path));
                 files[i] = fmemopen(rom + start, end - start, "rb");
             } else {
-                files[i] = fopen(host_path(G(path)), G(mode));
+                files[i] = fopen(bt_host_path(G(path)), G(mode));
             }
             return files[i] ? (u32)i : (u32)-1;
         }
