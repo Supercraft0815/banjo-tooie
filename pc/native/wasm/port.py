@@ -33,7 +33,7 @@ ROOT = HERE.parents[2]
 OUT = ROOT / 'build' / 'ilp32'
 REF = ROOT / 'build' / 'reference'
 CHECKLIST = HERE.parent / 'VARIANTE_A_CHECKLISTE.md'
-TESTS = ['trace_test.py', 'save_test.py', 'inventory_test.py', 'printf_test.py', 'render_test.py']
+TESTS = ['build_test.py', 'trace_test.py', 'save_test.py', 'inventory_test.py', 'printf_test.py', 'render_test.py']
 DEF = re.compile(r'^[A-Za-z_][^;\n{}()=]*?\b(\w+)\s*\([^;{}]*\)\s*\{', re.M)
 NOISE = re.compile(r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\'|^\s*#[^\n]*', re.S | re.M)
 

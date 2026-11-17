@@ -6,7 +6,11 @@ compiled for wasm32 (32-bit pointers, N64 struct layouts) as LTO bitcode, linked
 with the converted asm data and generated traps, translated to C by wasm2c and
 built with the host platform layer into one native executable:
 
-    python3 pc/native/wasm/build.py [-j N] [--run] [-- ROM args]
+    python3 pc/native/wasm/build.py [all|guest|host] [-j N] [--run] [-- ROM args]
+
+BT_LLVM_BIN selects the LLVM bin directory; BT_WABT and BT_SDL3 select installation
+prefixes. Otherwise tools come from PATH, with Homebrew as a macOS fallback.
+The host stage needs gen/, clang >= 19, WABT's C runtime and SDL3.
 
 Files that do not compile are left out; their functions become traps that name
 themselves (see build/ilp32/compile_failures.txt).
@@ -18,6 +22,8 @@ import hashlib
 import os
 import pathlib
 import re
+import shlex
+import shutil
 import subprocess
 import sys
 
@@ -33,13 +39,52 @@ import irtypes  # noqa: E402
 import bitfields  # noqa: E402
 import trace_tools  # noqa: E402
 
-CLANG = 'clang'
-WASM_LD = '/opt/homebrew/bin/wasm-ld'
-LLVM_BIN = '/opt/homebrew/opt/llvm/bin'
-LLVM_NM = LLVM_BIN + '/llvm-nm'
-WASM2C = 'wasm2c'
-WASM2C_RT = pathlib.Path('/opt/homebrew/share/wabt/wasm2c')
-WASM2C_INC = pathlib.Path('/opt/homebrew/include')
+def tool(name):
+    prefix = os.environ.get('BT_WABT') if name == 'wasm2c' else os.environ.get('BT_LLVM_BIN')
+    if prefix:
+        directory = pathlib.Path(prefix) / 'bin' if name == 'wasm2c' else pathlib.Path(prefix)
+        return str(directory / (name + ('.exe' if sys.platform == 'win32' else '')))
+    found = shutil.which(name)
+    if found:
+        return found
+    if sys.platform == 'darwin':
+        for directory in ('/opt/homebrew/opt/llvm/bin', '/opt/homebrew/bin',
+                          '/usr/local/opt/llvm/bin', '/usr/local/bin'):
+            candidate = pathlib.Path(directory) / name
+            if candidate.is_file():
+                return str(candidate)
+    return name  # Only the selected stage validates its tools; host builds need no opt/wasm2c.
+
+
+def sdl_flags():
+    prefix = os.environ.get('BT_SDL3')
+    if prefix:
+        return ['-I', str(pathlib.Path(prefix) / 'include')], ['-L' + str(pathlib.Path(prefix) / 'lib'), '-lSDL3']
+    pkg = shutil.which('pkg-config')
+    if pkg:
+        cflags = subprocess.run([pkg, '--cflags', 'sdl3'], capture_output=True, text=True)
+        libs = subprocess.run([pkg, '--libs', 'sdl3'], capture_output=True, text=True)
+        if cflags.returncode == libs.returncode == 0:
+            return shlex.split(cflags.stdout), shlex.split(libs.stdout)
+    if sys.platform == 'darwin':
+        for prefix in ('/opt/homebrew', '/usr/local'):
+            if (pathlib.Path(prefix) / 'include/SDL3/SDL.h').is_file():
+                return ['-I', prefix + '/include'], ['-L' + prefix + '/lib', '-lSDL3']
+    return [], ['-lSDL3']
+
+
+CLANG = tool('clang')
+WASM_LD = tool('wasm-ld')
+LLVM_BIN = str(pathlib.Path(tool('llvm-config')).parent)
+LLVM_NM = tool('llvm-nm')
+WASM2C = tool('wasm2c')
+WABT_PREFIX = pathlib.Path(os.environ.get('BT_WABT', pathlib.Path(WASM2C).parent.parent))
+WASM2C_RT = WABT_PREFIX / 'share/wabt/wasm2c'
+WASM2C_INC = WABT_PREFIX / 'include'
+SDL_CFLAGS, SDL_LIBS = sdl_flags()
+PLATFORM_LIBS = {'darwin': ['-framework', 'OpenGL'], 'linux': ['-lGL', '-ldl'],
+                 'win32': ['-lopengl32', '-lws2_32']}
+PLUGIN_NAME = 'FixCalls' + ('.dylib' if sys.platform == 'darwin' else '.dll' if sys.platform == 'win32' else '.so')
 
 GLOBAL_BASE = 0x80001000      # guest pointers look like N64 KSEG0 addresses
 MEMORY_END = 0x90000000       # 256 MB of game memory; physical addresses stay below the graphics tokens
@@ -67,8 +112,8 @@ GUEST_FLAGS = [
 if os.environ.get('BT_HEAPCHECK'):  # diagnostic build: the arena checks every header on each alloc/free
     GUEST_FLAGS.append('-DBT_HEAP_CHECK=1')
 HOST_FLAGS = ['-O2', '-g', '-I', str(WASM2C_INC), '-I', str(WASM2C_RT), '-I', str(OUT / 'gen'),
-              '-I', str(HERE / 'host'), '-I', '/opt/homebrew/include', '-DWASM_RT_MEMCHECK_GUARD_PAGES=1',
-              '-DBT_GPU_OPENGL=1', '-DWASM_RT_TRAP_HANDLER=bt_trap']
+              '--embed-dir=' + str(OUT / 'gen'), '-I', str(HERE / 'host')] + SDL_CFLAGS + ['-DWASM_RT_MEMCHECK_GUARD_PAGES=1',
+              '-DBT_GPU_OPENGL=1', '-DWASM_RT_TRAP_HANDLER=bt_trap'] + shlex.split(os.environ.get('BT_HOST_FLAGS', ''))
 
 
 def run(cmd, **kw):
@@ -103,7 +148,7 @@ def up_to_date(obj, dep):
         return False
     t = obj.stat().st_mtime
     text = dep.read_text().replace('\\\n', ' ')
-    for path in text.split(':', 1)[1].split():
+    for path in shlex.split(text.split(': ', 1)[1]):
         try:
             if os.stat(path).st_mtime > t:
                 return False
@@ -189,7 +234,7 @@ def c_types(objs):
         o = pathlib.Path(o)
         t = o.with_suffix('.types')
         if not t.exists() or t.stat().st_mtime < o.stat().st_mtime:
-            r = run([LLVM_BIN + '/llvm-dis', str(o), '-o', '-'])
+            r = run([tool('llvm-dis'), str(o), '-o', '-'])
             t.write_text('\n'.join(l for l in r.stdout.splitlines() if l[:1] in '@%'))
         return irtypes.declarations(t.read_text().splitlines())
     with cf.ThreadPoolExecutor(os.cpu_count()) as ex:
@@ -236,12 +281,7 @@ def write_if_changed(path, text):
     return True
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('-j', type=int, default=os.cpu_count())
-    ap.add_argument('--run', action='store_true', help='run the game after building')
-    ap.add_argument('rest', nargs='*')
-    args = ap.parse_args()
+def build_guest(jobs, compiler_version):
     gen = OUT / 'gen'
     gen.mkdir(parents=True, exist_ok=True)
     aliases = run([sys.executable, str(NATIVE / 'generate_overlay_aliases.py'),
@@ -251,9 +291,9 @@ def main():
     write_if_changed(gen / 'overlay_aliases.h', (gen / 'overlay_aliases.h.tmp').read_text())
 
     # 1. Guest objects.
-    tag = flags_hash(GUEST_FLAGS + [hashlib.sha1((HERE / 'bitfields.py').read_bytes()).hexdigest()])
+    tag = flags_hash([CLANG, compiler_version] + GUEST_FLAGS + [hashlib.sha1((HERE / 'bitfields.py').read_bytes()).hexdigest()])
     srcs = sources()
-    with cf.ThreadPoolExecutor(args.j) as ex:
+    with cf.ThreadPoolExecutor(jobs) as ex:
         results = list(ex.map(lambda s: compile_one(s, tag), srcs))
     objs = [o for _, o, ok in results if ok]
     failed = [s for s, _, ok in results if not ok]
@@ -331,7 +371,7 @@ def main():
     print('data: %d asm files, %d symbols; traps: %d functions, %d data' % (len(files), len(ddef), len(funcs), len(datas)))
     extra = []
     for src in (gen / 'data.ll', gen / 'traps.c'):
-        obj = OUT / 'obj' / (src.name + '.o')
+        obj = OUT / 'obj' / tag / (src.name + '.o')
         if not obj.exists() or obj.stat().st_mtime < src.stat().st_mtime:
             r = run([CLANG] + GUEST_FLAGS + ['-c', str(src), '-o', str(obj)])
             if r.returncode != 0:
@@ -339,26 +379,33 @@ def main():
         extra.append(obj)
 
     # 3. Link, fix call signatures, optimize, translate.
-    plugin = OUT / 'FixCalls.dylib'
+    plugin = OUT / PLUGIN_NAME
     cpp = HERE / 'fixcalls' / 'FixCalls.cpp'
-    if not plugin.exists() or plugin.stat().st_mtime < cpp.stat().st_mtime:
-        cxxflags = run([LLVM_BIN + '/llvm-config', '--cxxflags']).stdout.split()
-        libdir = run([LLVM_BIN + '/llvm-config', '--libdir']).stdout.strip()
+    llvm_version = run([tool('llvm-config'), '--version'])
+    if llvm_version.returncode:
+        sys.exit('llvm-config failed: ' + llvm_version.stderr)
+    plugin_tag = flags_hash([tool('clang++'), tool('llvm-config'), llvm_version.stdout, compiler_version])
+    stamp = plugin.with_suffix(plugin.suffix + '.flags')
+    if (not plugin.exists() or not stamp.exists() or stamp.read_text() != plugin_tag or
+            plugin.stat().st_mtime < max(cpp.stat().st_mtime, pathlib.Path(__file__).stat().st_mtime)):
+        cxxflags = shlex.split(run([tool('llvm-config'), '--cxxflags']).stdout)
+        libdir = run([tool('llvm-config'), '--libdir']).stdout.strip()
         tmp = plugin.with_suffix('.tmp')
         # lld: ld64's output fails to load in opt on newer macOS (mis-aligned LINKEDIT string pool)
-        r = run([LLVM_BIN + '/clang++', '-shared', '-fPIC', '-fuse-ld=lld'] + cxxflags + [str(cpp), '-o', str(tmp),
+        r = run([tool('clang++'), '-shared', '-fPIC', '-fuse-ld=lld'] + cxxflags + [str(cpp), '-o', str(tmp),
                  '-L' + libdir, '-lLLVM', '-Wl,-rpath,' + libdir])
         if r.returncode != 0:
             sys.exit('FixCalls plugin failed:\n' + r.stderr[:4000])
         if sys.platform == 'darwin':  # opt only loads signed libraries; this linker leaves it unsigned
             run(['codesign', '-s', '-', '-f', str(tmp)])
         os.replace(tmp, plugin)
+        stamp.write_text(plugin_tag)
     linked, fixed = OUT / 'game.linked.bc', OUT / 'game.bc'
-    r = run([LLVM_BIN + '/llvm-link', '-o', str(linked)] + [str(o) for o in objs + extra])
+    r = run([tool('llvm-link'), '-o', str(linked)] + [str(o) for o in objs + extra])
     if r.returncode != 0:
         sys.exit('llvm-link failed:\n' + r.stderr[:8000])
     (OUT / 'widened.txt').unlink(missing_ok=True)
-    r = run([LLVM_BIN + '/opt', '--load-pass-plugin=%s' % plugin, 
+    r = run([tool('opt'), '--load-pass-plugin=%s' % plugin,
              # Inlining turns calls through function pointers into direct calls that may mismatch
              # again, so the fix runs before and after the optimization pipeline. Safepoints go in
              # before it: an opaque call per loop latch keeps loads of data other threads write
@@ -399,36 +446,89 @@ def main():
     write_if_changed(gen / 'o32_thunks.h', header)
     write_if_changed(gen / 'o32.c', thunks)
 
-    # 4. Host executable.
+    # Keep embedded audio with the generated guest so host builds need no extracted ROM tree.
+    for name in ('n_aspMain.textbin.bin', 'n_aspMain.rodatabin.bin'):
+        content = (ROOT / 'assets/core1' / name).read_bytes()
+        target = gen / name
+        if not target.exists() or target.read_bytes() != content:
+            target.write_bytes(content)
+
     write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, HOST_FLAGS))
-    host_srcs = sorted((HERE / 'host').glob('*.c'))
-    gen_srcs = (sorted(gen.glob('game_*.c')) or [gen / 'game.c']) + [gen / 'o32.c']
-    rt_srcs = [WASM2C_RT / 'wasm-rt-impl.c', WASM2C_RT / 'wasm-rt-mem-impl.c']
-
-    def host_obj(src):
-        obj = OUT / 'host' / (src.name + '.o')
-        dep = obj.with_suffix('.d')
-        if up_to_date(obj, dep):
-            return obj, None
-        obj.parent.mkdir(exist_ok=True)
-        r = run([CLANG] + HOST_FLAGS + ['-MMD', '-MF', str(dep), '-c', str(src), '-o', str(obj)])
-        return obj, (r.stderr if r.returncode else None)
-
-    with cf.ThreadPoolExecutor(args.j) as ex:
-        built = list(ex.map(host_obj, host_srcs + gen_srcs + rt_srcs))
-    errors = [e for _, e in built if e]
-    if errors:
-        sys.exit('host compile failed:\n' + '\n'.join(errors)[:8000])
-    exe = OUT / 'bt_game'
-    r = run([CLANG, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread', '-L/opt/homebrew/lib', '-lSDL3', '-framework', 'OpenGL'])
-    if r.returncode != 0:
-        sys.exit('host link failed:\n' + r.stderr[:8000])
     # Display lists address memory as segment + 24-bit offset (see platform/rdram.c).
     top = max(int(l.split()[0], 16) + int(l.split()[2], 16) for l in (OUT / 'game.map').read_text().splitlines()
               if re.match(r'[0-9a-f]{8} +[0-9a-f]+ +[0-9a-f]+ ', l))
     if top > 0x81000000 and not os.environ.get('BT_BIG'):
         sys.exit('guest data ends at 0x%x, above the 16 MB the RSP can address' % top)
+    return gen
+
+
+def build_host(jobs, gen, compiler_version):
+    # 4. Host executable.
+    write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, compiler_version] + HOST_FLAGS, from_gen=True))
+    tag = flags_hash([CLANG, compiler_version] + HOST_FLAGS)
+    host_srcs = sorted((HERE / 'host').glob('*.c'))
+    gen_srcs = (sorted(gen.glob('game_*.c')) or [gen / 'game.c']) + [gen / 'o32.c']
+    rt_srcs = [WASM2C_RT / 'wasm-rt-impl.c', WASM2C_RT / 'wasm-rt-mem-impl.c']
+
+    def host_obj(src):
+        obj = OUT / 'host' / tag / (src.name + '.o')
+        dep = obj.with_suffix('.d')
+        if up_to_date(obj, dep):
+            return obj, None
+        obj.parent.mkdir(parents=True, exist_ok=True)
+        r = run([CLANG] + HOST_FLAGS + ['-MMD', '-MF', str(dep), '-c', str(src), '-o', str(obj)])
+        return obj, (r.stderr if r.returncode else None)
+
+    with cf.ThreadPoolExecutor(jobs) as ex:
+        built = list(ex.map(host_obj, host_srcs + gen_srcs + rt_srcs))
+    errors = [e for _, e in built if e]
+    if errors:
+        sys.exit('host compile failed:\n' + '\n'.join(errors)[:8000])
+    exe = OUT / ('bt_game.exe' if sys.platform == 'win32' else 'bt_game')
+    r = run([CLANG, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread'] + SDL_LIBS + PLATFORM_LIBS[sys.platform] + shlex.split(os.environ.get('BT_HOST_FLAGS', '')))
+    if r.returncode != 0:
+        sys.exit('host link failed:\n' + r.stderr[:8000])
     print('built %s' % exe)
+    return exe
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('-j', type=int, default=os.cpu_count())
+    ap.add_argument('--run', action='store_true', help='run the game after building')
+    ap.add_argument('rest', nargs='*', help='optional stage (all, guest, host), then ROM and game arguments')
+    args = ap.parse_args()
+    stage = args.rest.pop(0) if args.rest and args.rest[0] in ('all', 'guest', 'host') else 'all'
+    if args.j < 1:
+        ap.error('-j must be positive')
+    if stage == 'guest' and args.run:
+        ap.error('--run requires the host stage')
+    if args.rest and not args.run:
+        ap.error('unexpected arguments: ' + ' '.join(args.rest))
+    if sys.platform not in PLATFORM_LIBS:
+        ap.error('unsupported host platform: ' + sys.platform)
+    required = [CLANG]
+    if stage != 'host':
+        required += [tool(name) for name in ('clang++', 'llvm-config', 'llvm-nm', 'llvm-dis', 'llvm-link', 'opt')]
+        required += [WASM_LD, WASM2C]
+    for name in required:
+        if not shutil.which(name):
+            ap.error('tool not found: %s (set BT_LLVM_BIN or BT_WABT)' % name)
+    version = run([CLANG, '--version'])
+    match = re.search(r'clang version (\d+)', version.stdout)
+    if version.returncode or not match or int(match[1]) < 19:
+        ap.error('clang >= 19 is required for audio #embed; got ' + (version.stdout + version.stderr).strip())
+    gen = build_guest(args.j, version.stdout.strip()) if stage != 'host' else OUT / 'gen'
+    if stage == 'guest':
+        print('generated %s (host stage ready)' % gen)
+        return
+    needed = [gen / name for name in ('game.h', 'game-impl.h', 'o32.c', 'trace_symbols.h',
+                                      'n_aspMain.textbin.bin', 'n_aspMain.rodatabin.bin')] + [
+              WASM2C_INC / 'wasm-rt.h', WASM2C_RT / 'wasm-rt-impl.c', WASM2C_RT / 'wasm-rt-mem-impl.c']
+    missing = [str(path) for path in needed if not path.is_file()]
+    if missing:
+        ap.error('host inputs missing (run guest or set BT_WABT): ' + ', '.join(missing))
+    exe = build_host(args.j, gen, version.stdout.strip())
     if args.run:
         os.execv(str(exe), [str(exe)] + (args.rest or [str(ROOT / 'baserom.us.z64')]))
 

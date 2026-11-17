@@ -50,8 +50,8 @@ int run_tests(void) {
                             '-c', str(file), '-o', str(obj)], check=True)
             objects.append(str(obj))
         linked, fixed = directory / 'linked.bc', directory / 'fixed.bc'
-        subprocess.run([build.LLVM_BIN + '/llvm-link', *objects, '-o', str(linked)], check=True)
-        subprocess.run([build.LLVM_BIN + '/opt', '--load-pass-plugin=' + str(build.OUT / 'FixCalls.dylib'),
+        subprocess.run([build.tool('llvm-link'), *objects, '-o', str(linked)], check=True)
+        subprocess.run([build.tool('opt'), '--load-pass-plugin=' + str(build.OUT / build.PLUGIN_NAME),
                         '-passes=function(mem2reg),bt-bigendian,internalize,default<O2>',
                         '-internalize-public-api-list=run_tests,bt_be_fixup', str(linked), '-o', str(fixed)], check=True)
         wasm = directory / 'fmt.wasm'

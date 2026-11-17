@@ -1536,7 +1536,41 @@ u. a. echte Codeänderungen, fehlende Funktionen und Werkzeugfehler.
 die vorhandenen Quelländerungen enthalten auch Whitespace-Warnungen. Sie werden beim
 Sichern nicht kosmetisch umgeschrieben. Das Port-Gate ist kein Emulatorvergleich.
 
-### Bekannte Fehler (P0.2, frische Nachweise vom 2026-11-17)
+## 2026-11-17 — A1: Werkzeugsuche und getrennte Build-Stufen
+
+`build.py [all|guest|host]` sucht Werkzeuge über `BT_LLVM_BIN`/`BT_WABT`, `PATH`
+und macOS-Homebrew-Fallbacks. SDL3 kommt aus `BT_SDL3`, `pkg-config` oder den
+Systempfaden. Plattformabhängige Link-Flags und Plugin-Endungen sind getrennt;
+clang < 19 wird vor dem Build wegen `#embed` abgewiesen. Anleitung:
+`pc/native/wasm/README.md` (die alte native README ist als historischer Versuch markiert).
+
+Die Host-Stufe benötigt nur die vollständige `gen/`-Übergabe und Host-Abhängigkeiten.
+Auch die zwei bisher aus `assets/` eingebetteten Audio-Dateien werden im Gast-Schritt
+nach `gen/` kopiert und via `--embed-dir` gefunden. Sie bleiben private Build-Artefakte.
+Trace-Build-IDs berücksichtigen auch bei reinem Host-Build die generierten Dateien,
+Host-Quellen und Compiler/Flags, ohne einen Gast-Linkerplan vorauszusetzen.
+
+Gast-/Host-Objekte werden nach Compiler, Version und Flags getrennt; der Plugin-Stamp
+berücksichtigt die LLVM-Konfiguration. `BT_HOST_FLAGS` erlaubt z. B. Sanitizer ohne
+alte Host-Objekte wiederzuverwenden. Der Dependency-Parser versteht jetzt die
+escaped Leerzeichen dieses Projektpfads und Windows-Laufwerkspräfixe.
+
+**Abnahme:** Gast-Stufe: 1.109/1.109 Spieldateien, 45 native/Runtime-Dateien, 9 Traps,
+0 fehlende Datensymbole. Ein frisches `host-only/` enthielt ausschließlich `gen/`;
+Toolpfad nur Clang, WABT-Präfix nur C-Runtime (kein `bin/wasm2c`), kein `game.map`,
+`game.wasm`, Pass-Plugin oder Gast-Objektbaum. Host-Build und Intro-Gate PASS
+(2.698 identische Retraces). Endgültiger Standard-Build: `gate --full` PASS,
+sechs Testgruppen und alle 86.975 Retraces identisch. `build_test.py`: sechs Tests,
+zusätzlich drei Trace-Tests. `ripwire --quality-delta` ohne größere Verschlechterung,
+`git diff --check` sauber. Artefakte: `build/acceptance/a1-2026-11-17/`, maßgeblicher
+voller Lauf `gate-acceptance.log`.
+
+Keine Spielquellen/Headers geändert; N64-Abnahme bleibt der bytegleiche P0-Stand.
+Windows-Plugin-Ausführung wurde hier nicht getestet: LLVM unterstützt konfigurierbare
+Plugin-Symbolexporte, die konkrete Windows-Distribution muss A3 prüfen. Der getrennte
+Host-Schritt ist unabhängig davon benutzbar. CGL im Host bleibt bis A2 bestehen.
+
+## Bekannte Fehler (P0.2, frische Nachweise vom 2026-11-17)
 
 Alle folgenden Repros verwenden ein frisch erzeugtes EEPROM (2.048 Bytes), Flags
 `0x392..0x39A` plus `save_editor.START_ABILITIES`, `BT_VCLOCK=1`, Software-Renderer,

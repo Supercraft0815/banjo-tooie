@@ -1,5 +1,11 @@
 # Native C source port
 
+The current playable port and its build instructions are in
+[`wasm/README.md`](wasm/README.md). The notes below describe the earlier direct-host
+prototype and its isolated core tests; they are retained for the N4/N5 migration.
+
+## Earlier direct-host prototype
+
 The default PC build compiles selected files from `src/` directly with the host
 C compiler. It does not consume a MIPS ELF, invoke N64Recomp, or use
 `RecompiledFuncs`. No ROM is needed for the core tests.

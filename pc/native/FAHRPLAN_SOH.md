@@ -8,6 +8,13 @@ vom selben Tag.
 Kennzeichen wie in der Checkliste: **[Skript]**, **[Agent]**, **[Mensch]**.
 Aufwand: S = Tage, M = 1–2 Wochen, L = Wochen, XL = Monate (Agent-Zeit, grob).
 
+Umsetzung seit 2026-11-17 (Details/Nachweise in `PROGRESS.md`): P0.1 und P0.2
+abgeschlossen. Sechs lokale Themen-Commits `1565fcf78` bis `103b20ef1`, volles Gate
+PASS, N64-ROM bytegleich; offene Fehler mit zehn isolierten Proben dokumentiert.
+A1 ist unter macOS abgenommen (separate Gast-/Host-Stufen, Host nur aus `gen/`,
+volles Gate PASS); Linux-/Windows-Laufzeitabnahme bleibt A2/A3. Q1-Bildbögen werden
+parallel erzeugt, der Vergleich/Abzeichnung durch einen Menschen bleibt offen.
+
 ---
 
 ## 1. Wo der Port steht

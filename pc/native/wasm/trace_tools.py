@@ -9,8 +9,7 @@ import re
 import sys
 
 
-def trace_header(out, here, host_flags):
-    """Resolve this build's globals, including arrays split by LLVM's global optimizer."""
+def map_defines(out):
     symbols = {}
     for line in (out / 'game.map').read_text().splitlines():
         match = re.fullmatch(r'([0-9a-f]{8})\s+[0-9a-f]+\s+[0-9a-f]+\s+(\S+)', line)
@@ -24,7 +23,22 @@ def trace_header(out, here, host_flags):
         if address is None:
             address = symbols['D_8012C770'] + i * 4
         lines.append(f'#define TRACE_FLAGS_{i} 0x{address:08x}u')
-    digest = hashlib.sha256((out / 'game.wasm').read_bytes())
+    return lines
+
+
+def trace_header(out, here, host_flags, from_gen=False):
+    """Resolve this build's globals, including arrays split by LLVM's global optimizer."""
+    if from_gen:
+        header = out / 'gen' / 'trace_symbols.h'
+        lines = [line for line in header.read_text().splitlines() if not line.startswith('#define BT_TRACE_BUILD ')]
+        digest = hashlib.sha256('\n'.join(lines).encode())
+        for path in sorted([*(out / 'gen').glob('*.[ch]'), *(out / 'gen').glob('*.bin')]):
+            if path != header:
+                digest.update(path.name.encode())
+                digest.update(path.read_bytes())
+    else:
+        lines = map_defines(out)
+        digest = hashlib.sha256((out / 'game.wasm').read_bytes())
     digest.update(json.dumps(host_flags).encode())
     for path in [here / 'build.py', Path(__file__), *sorted((here / 'host').glob('*.[ch]'))]:
         digest.update(path.name.encode())

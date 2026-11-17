@@ -5,10 +5,10 @@
 #include "guest.h"
 
 static const u8 ucode_text[] = {
-#embed "../../../../assets/core1/n_aspMain.textbin.bin"
+#embed "n_aspMain.textbin.bin"
 };
 static const u8 ucode_data[] = {
-#embed "../../../../assets/core1/n_aspMain.rodatabin.bin"
+#embed "n_aspMain.rodatabin.bin"
 };
 
 static u8 dmem[0x1000], imem[0x1000];
