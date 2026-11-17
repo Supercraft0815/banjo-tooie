@@ -24,6 +24,8 @@ static Setting S[BT_SET_COUNT] = {
     [BT_SET_RENDERER] = {"renderer", NULL, "Renderer (Neustart)", 0, 1, 1, {"Software", "GPU (OpenGL)"}},
     [BT_SET_SHOW_FPS] = {"show_fps", "BT_SHOW_FPS", "FPS-Anzeige", 0, 1, 0, {"aus", "an"}},
     [BT_SET_SMOOTH] = {"smooth", "BT_SMOOTH", "Textglaettung (GPU, ab 2x)", 0, 1, 1, {"aus", "an"}},
+    // Indexes into the dialog assets of the European ROM (io.c rom_add_language)
+    [BT_SET_LANGUAGE] = {"language", "BT_LANG", "Sprache (Neustart, EU-ROM)", 0, 3, 0, {"Englisch", "Franzoesisch", "Deutsch", "Spanisch"}},
 };
 static _Atomic int values[BT_SET_COUNT];
 static int menu_open, cursor;

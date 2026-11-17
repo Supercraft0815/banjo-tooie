@@ -14,7 +14,7 @@
 #include "guest.h"
 
 static unsigned char *rom;
-static u32 rom_size;
+static u32 rom_size, us_size;  // the US dump; rom_size also counts the language assets after it
 
 _Noreturn void bt_fatal(const char *fmt, ...) {
     va_list ap;
@@ -60,31 +60,42 @@ static _Noreturn void rom_error(const char *path, const char *what) {
     bt_fatal("%s: %s", path, what);
 }
 
-// Reads a .z64 (big-endian), .v64 (byte-swapped) or .n64 (little-endian) image of the US version
-// into big-endian order. Returns 0 if the file cannot be read.
-static int rom_load(const char *path) {
+// Reads a .z64 (big-endian), .v64 (byte-swapped) or .n64 (little-endian) image into big-endian
+// order. Returns NULL if the file cannot be opened.
+static unsigned char *image_read(const char *path, u32 *size) {
     FILE *f = fopen(path, "rb");
     long n;
-    if (!f) return 0;
+    if (!f) return NULL;
     fseek(f, 0, SEEK_END);
     n = ftell(f);
     fseek(f, 0, SEEK_SET);
-    rom = n >= 0x1000 ? malloc((size_t)n) : NULL;
-    if (!rom || fread(rom, 1, (size_t)n, f) != (size_t)n) rom_error(path, "Die Datei ist zu kurz oder nicht lesbar.");
+    unsigned char *image = n >= 0x1000 ? malloc((size_t)n) : NULL;
+    if (!image || fread(image, 1, (size_t)n, f) != (size_t)n) rom_error(path, "Die Datei ist zu kurz oder nicht lesbar.");
     fclose(f);
-    rom_size = (u32)n;
-    int v64 = rom[0] == 0x37 && rom[1] == 0x80, n64 = rom[0] == 0x40 && rom[1] == 0x12;
+    *size = (u32)n;
+    int v64 = image[0] == 0x37 && image[1] == 0x80, n64 = image[0] == 0x40 && image[1] == 0x12;
     for (long i = 0; (v64 || n64) && i + 3 < n; i += 4) {
-        unsigned char a = rom[i], b = rom[i + 1], c = rom[i + 2], d = rom[i + 3];
-        if (v64) { rom[i] = b; rom[i + 1] = a; rom[i + 2] = d; rom[i + 3] = c; }
-        else { rom[i] = d; rom[i + 1] = c; rom[i + 2] = b; rom[i + 3] = a; }
+        unsigned char a = image[i], b = image[i + 1], c = image[i + 2], d = image[i + 3];
+        if (v64) { image[i] = b; image[i + 1] = a; image[i + 2] = d; image[i + 3] = c; }
+        else { image[i] = d; image[i + 1] = c; image[i + 2] = b; image[i + 3] = a; }
     }
-    if (rom[0] != 0x80 || rom[1] != 0x37) rom_error(path, "Das ist keine N64-ROM (.z64, .v64 oder .n64).");
+    if (image[0] != 0x80 || image[1] != 0x37) rom_error(path, "Das ist keine N64-ROM (.z64, .v64 oder .n64).");
+    return image;
+}
+
+static void rom_add_language(void);
+
+// The US version; returns 0 if the file cannot be opened.
+static int rom_load(const char *path) {
+    rom = image_read(path, &rom_size);
+    if (!rom) return 0;
+    us_size = rom_size;
     if (memcmp(rom + 0x3B, "NB7E", 4)) rom_error(path, "Das ist nicht Banjo-Tooie in der US-Version (Spielcode NB7E).");
     u64 hash = UINT64_C(14695981039346656037);  // FNV-1a over the .z64 bytes, as in the trace header
     for (u32 i = 0; i < rom_size; i++) hash = (hash ^ rom[i]) * UINT64_C(1099511628211);
     if (hash != UINT64_C(0xe04fb9f40c35687f))
         rom_error(path, "Diese Banjo-Tooie-ROM (US) ist veraendert oder beschaedigt; erwartet wird der unveraenderte Dump.");
+    rom_add_language();
     return 1;
 }
 
@@ -100,6 +111,101 @@ static void SDLCALL on_pick(void *data, const char *const *files, int filter) {
     picking = 0;
 }
 
+// Windowed runs ask once with a file dialog; returns NULL if the player cancels.
+static const char *pick_rom(const char *message) {
+    static const SDL_DialogFileFilter filter[] = {{"N64-ROM", "z64;v64;n64"}};
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Banjo-Tooie", message, NULL);
+    picked[0] = 0;
+    picking = 1;
+    SDL_ShowOpenFileDialog(on_pick, NULL, NULL, filter, 1, NULL, false);
+    while (picking) SDL_WaitEventTimeout(NULL, 50);
+    return picked[0] ? picked : NULL;
+}
+
+static u32 be32(const unsigned char *p) { return (u32)p[0] << 24 | p[1] << 16 | p[2] << 8 | p[3]; }
+
+// First bytes of a compressed asset (2-byte length, then raw DEFLATE).
+static int asset_peek(const unsigned char *packed, u32 n, unsigned char out[3]) {
+    z_stream z = {0};
+    if (n < 3 || inflateInit2(&z, -15) != Z_OK) return 0;
+    z.next_in = (Bytef *)packed + 2;
+    z.avail_in = n - 2;
+    z.next_out = out;
+    z.avail_out = 3;
+    inflate(&z, Z_SYNC_FLUSH);
+    inflateEnd(&z);
+    return z.avail_out == 0;
+}
+
+// Dialog texts in French, German and Spanish come from the European ROM (NB7P, En/Fr/De/Es). Its
+// asset table has the same ids; a dialog asset there starts with 4 (languages) instead of 1, then
+// one offset per language, which gldialog_entrypoint_0 picks. A copy of the US asset region with
+// those dialogs swapped in goes after the US image; the guest moves its asset base there
+// (bt_asset_shift). Other EU assets (textures, level setups) stay US. Language 0 changes nothing.
+static u32 asset_shift, language;
+static void rom_add_language(void) {
+    enum { US = 0x5180, EU = 0x5140, COUNT = 0x3667, BASE = 8 + COUNT * 4 };
+    if (!bt_setting(BT_SET_LANGUAGE)) return;
+    char saved[1024];
+    char *dir = SDL_GetPrefPath("", "BanjoTooie");
+    snprintf(saved, sizeof saved, "%sbaserom.eu.z64", dir ? dir : "");
+    SDL_free(dir);
+    const char *path = getenv("BT_PAL_ROM");
+    u32 n = 0;
+    unsigned char *eu = path ? image_read(path, &n) : NULL;
+    if (!path && !(eu = image_read(path = "baserom.eu.z64", &n)) && !(eu = image_read(path = saved, &n)) &&
+        SDL_WasInit(SDL_INIT_VIDEO) &&
+        (path = pick_rom("Fuer die gewaehlte Sprache brauche ich die europaeische Banjo-Tooie-ROM (En,Fr,De,Es).\n"
+                         "Eine Kopie wird fuer die naechsten Starts im Benutzerordner abgelegt."))) {
+        eu = image_read(path, &n);
+        FILE *f = eu ? fopen(saved, "wb") : NULL;
+        if (!f || fwrite(eu, 1, n, f) != n) fprintf(stderr, "bt_native: cannot keep a ROM copy in %s\n", saved);
+        if (f) fclose(f);
+    }
+    if (!eu || n < EU + BASE || memcmp(eu + 0x3B, "NB7P", 4) || be32(eu + EU) != COUNT || be32(rom + US) != COUNT) {
+        fprintf(stderr, "bt_native: no European ROM (BT_PAL_ROM, baserom.eu.z64): dialog stays English\n");
+        free(eu);
+        return;
+    }
+    u32 at = (us_size + 15) & ~15u, out = BASE, swapped = 0;
+    u32 eu_end = be32(eu + EU + 8 + (COUNT - 1) * 4) >> 6, us_end = be32(rom + US + 8 + (COUNT - 1) * 4) >> 6;
+    if (EU + BASE + eu_end > n) bt_fatal("%s: asset table beyond the image", path);
+    unsigned char *image = realloc(rom, at + BASE + us_end + eu_end);  // bound: all of both regions
+    if (!image) bt_fatal("out of memory for the language assets");
+    rom = image;
+    unsigned char *table = rom + at;
+    memcpy(table, rom + US, 8);
+    for (u32 i = 0; i + 1 < COUNT; i++) {
+        const unsigned char *u = rom + US + 8 + i * 4, *e = eu + EU + 8 + i * 4;
+        const unsigned char *src = rom + US + BASE + (be32(u) >> 6);
+        u32 size = (be32(u + 4) >> 6) - (be32(u) >> 6), flags = be32(u) & 63;
+        unsigned char head[3], eu_head[3];
+        u32 eu_size = (be32(e + 4) >> 6) - (be32(e) >> 6);
+        if ((flags & 31) == 19 && (be32(e) & 63) == flags && asset_peek(src, size, head) &&
+            !memcmp(head, "\1\3\0", 3) && asset_peek(eu + EU + BASE + (be32(e) >> 6), eu_size, eu_head) &&
+            eu_head[0] == 4) {
+            src = eu + EU + BASE + (be32(e) >> 6);
+            size = eu_size;
+            swapped++;
+        }
+        memmove(table + out, src, size);
+        u32 word = (out - BASE) << 6 | flags;
+        table[8 + i * 4] = word >> 24; table[9 + i * 4] = word >> 16; table[10 + i * 4] = word >> 8; table[11 + i * 4] = word;
+        out += size;
+    }
+    u32 last = (out - BASE) << 6 | (be32(rom + US + 8 + (COUNT - 1) * 4) & 63);
+    table[8 + (COUNT - 1) * 4] = last >> 24; table[9 + (COUNT - 1) * 4] = last >> 16;
+    table[10 + (COUNT - 1) * 4] = last >> 8; table[11 + (COUNT - 1) * 4] = last;
+    free(eu);
+    rom_size = at + out;
+    asset_shift = at - US;
+    language = (u32)bt_setting(BT_SET_LANGUAGE);
+    fprintf(stderr, "bt_native: language %u, %u dialog assets from %s\n", language, swapped, path);
+}
+
+u32 w2c_env_language(struct w2c_env *env) { (void)env; return language; }
+u32 w2c_env_asset_shift(struct w2c_env *env) { (void)env; return asset_shift; }
+
 // No ROM argument: baserom.us.z64 here, else the copy in the user data directory, else ask once
 // with a file dialog and keep a .z64 copy there for the next start. Returns the path for traces.
 const char *bt_rom_find(void) {
@@ -110,17 +216,11 @@ const char *bt_rom_find(void) {
     SDL_free(dir);
     if (rom_load(saved)) return saved;
     if (!SDL_WasInit(SDL_INIT_VIDEO)) bt_fatal("no ROM: pass the path of Banjo-Tooie (US) as first argument");
-    static const SDL_DialogFileFilter filter[] = {{"N64-ROM", "z64;v64;n64"}};
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Banjo-Tooie",
-                             "Bitte waehle deine Banjo-Tooie-ROM (US-Version) aus.\n"
-                             "Eine Kopie wird fuer die naechsten Starts im Benutzerordner abgelegt.", NULL);
-    picking = 1;
-    SDL_ShowOpenFileDialog(on_pick, NULL, NULL, filter, 1, NULL, false);
-    while (picking) SDL_WaitEventTimeout(NULL, 50);
-    if (!picked[0]) exit(0);
+    if (!pick_rom("Bitte waehle deine Banjo-Tooie-ROM (US-Version) aus.\n"
+                  "Eine Kopie wird fuer die naechsten Starts im Benutzerordner abgelegt.")) exit(0);
     bt_rom_open(picked);
     FILE *f = fopen(saved, "wb");
-    if (!f || fwrite(rom, 1, rom_size, f) != rom_size) fprintf(stderr, "bt_native: cannot keep a ROM copy in %s\n", saved);
+    if (!f || fwrite(rom, 1, us_size, f) != us_size) fprintf(stderr, "bt_native: cannot keep a ROM copy in %s\n", saved);
     if (f) fclose(f);
     return saved;
 }

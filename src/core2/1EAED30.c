@@ -419,7 +419,7 @@ void func_800D5D70(void) {
     D_8012B7E6 = 0;
     func_800D55A0();
     D_8012B7E4 = 0;
-    D_8012B448 = (s32)&assets_ROM_START + 0xD9A4;
+    D_8012B448 = (s32)&assets_ROM_START + 0xD9A4; BT_NATIVE_ONLY({ extern s32 D_8011B900; D_8011B900 = (s32)&assets_ROM_START + 8 + bt_asset_shift(); D_8012B448 += bt_asset_shift(); })
     func_800E4CE8();
 #endif
 }

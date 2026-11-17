@@ -1570,6 +1570,26 @@ Windows-Plugin-Ausführung wurde hier nicht getestet: LLVM unterstützt konfigur
 Plugin-Symbolexporte, die konkrete Windows-Distribution muss A3 prüfen. Der getrennte
 Host-Schritt ist unabhängig davon benutzbar. CGL im Host bleibt bis A2 bestehen.
 
+## 2026-11-17 — Dialogsprachen aus der EU-ROM (Deutsch, Französisch, Spanisch)
+
+- Einstellung „Sprache“ (`settings.ini language=`, `BT_LANG=0..3`: Englisch, Französisch,
+  Deutsch, Spanisch; wirkt nach Neustart). Bei Sprache ≠ 0 lädt `io.c rom_add_language` die
+  europäische ROM (`NB7P`, En/Fr/De/Es): `BT_PAL_ROM`, sonst `baserom.eu.z64` im
+  Arbeitsverzeichnis oder im Benutzerordner, sonst Dateidialog (Kopie in den Benutzerordner).
+  Ohne EU-ROM bleibt es Englisch.
+- Die EU-Asset-Tabelle (ROM 0x5140) hat dieselben 0x3667 Einträge wie US (0x5180). Nur
+  Dialog-Assets (Typ 3, komprimiert, entpackt `01 03 00` in US, `04 …` in EU; 2251 Stück) tragen
+  Text. Der Host baut eine Kopie der US-Asset-Region mit diesen EU-Dialogen hinter das 32-MB-Image.
+  `func_800D5D70` verschiebt `D_8011B900`/`D_8012B448` nativ um `bt_asset_shift()`, und
+  `gldialog_entrypoint_0` (US: immer 0) gibt `bt_language()` zurück. Andere EU-Unterschiede
+  (Texturen, Level-Setups, Modelle) bleiben US.
+- Die US-Schrift kann die Umlaute schon (geprüft: „DRÜCKE“, „KÖRPER“ in Dateiauswahl und Intro).
+  Nicht geprüft: Menütexte außerhalb der Dialog-Assets, Texturen mit Schrift, Französisch und
+  Spanisch.
+- `BT_LANG` zählt in die `BT_PRESS`-Identität des Trace-Kopfs. Ohne `BT_LANG` gibt es keine
+  Verschiebung: Gate intro 2698 und edited-save 10.790 Retraces identisch. IDO-Objekte von
+  `1EAED30.c` und `gl/dialog.c` sind vorher/nachher gleich (Docker, objdump mit Relokationen).
+
 ## Bekannte Fehler (P0.2, frische Nachweise vom 2026-11-17)
 
 Alle folgenden Repros verwenden ein frisch erzeugtes EEPROM (2.048 Bytes), Flags

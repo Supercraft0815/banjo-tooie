@@ -1,7 +1,7 @@
 #include "common.h"
 
 s32 gldialog_entrypoint_0(void) {
-    return 0;
+    return BT_NATIVE_ONLY(bt_language() +) 0;
 }
 
 int gldialog_entrypoint_1(u8 *arg0) {

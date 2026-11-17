@@ -24,6 +24,9 @@ typedef u32 uintptr_t;
 #ifdef BT_NATIVE
 s32 bt_frame_interval(s32 game);
 #define BT_FRAME_INTERVAL(n) bt_frame_interval(n)
+// Other dialog languages from the European ROM (host io.c rom_add_language).
+s32 bt_language(void);
+s32 bt_asset_shift(void);
 #else
 #define BT_FRAME_INTERVAL(n) (n)
 #endif

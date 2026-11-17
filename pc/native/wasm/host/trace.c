@@ -145,8 +145,8 @@ void bt_trace_init(const char *rom) {
         // Settings that change the run like scripted input does count into the BT_PRESS identity
         // (only when set, so older traces keep theirs).
         if (i == 0 && getenv("BT_WARP")) h = hash_bytes(h, getenv("BT_WARP"), strlen(getenv("BT_WARP")));
-        const char *more[] = {"BT_FPS60", "BT_WIDESCREEN"};
-        for (u32 j = 0; i == 0 && j < 2; j++)
+        const char *more[] = {"BT_FPS60", "BT_WIDESCREEN", "BT_LANG"};
+        for (u32 j = 0; i == 0 && j < 3; j++)
             if (getenv(more[j])) h = hash_bytes(hash_bytes(h, more[j], strlen(more[j])), getenv(more[j]), strlen(getenv(more[j])));
         fprintf(trace, ",\"%s\":\"%016" PRIx64 "\"", names[i], h);
     }

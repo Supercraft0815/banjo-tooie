@@ -110,6 +110,10 @@ u32 BT_HOST(frame_interval)(u32 game);
 s32 bt_frame_interval(s32 game) { return (s32)host_frame_interval((u32)game); }
 u32 BT_HOST(camera_stick)(void);
 s32 bt_camera_stick(void) { return (s32)host_camera_stick(); }  // free camera stick: (u8)x | (u8)y << 8 (0: off)
+u32 BT_HOST(language)(void);
+s32 bt_language(void) { return (s32)host_language(); }  // dialog language index (0: English)
+u32 BT_HOST(asset_shift)(void);
+s32 bt_asset_shift(void) { return (s32)host_asset_shift(); }  // ROM offset of the asset region with those dialogs
 void _gcgoto_entrypoint_1(u32 map, u32 exit);
 void set_widescreen(s32 enabled);
 extern s16 widescreen_enabled;
