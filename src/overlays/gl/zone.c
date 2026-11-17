@@ -22,7 +22,7 @@ void glzone_entrypoint_1(void* arg0)
     heap_free(arg0);
 }
 void glzone_entrypoint_2(u8 *arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     u8 *end=arg0+*arg0+1;
     for(++arg0;arg0<end;++arg0)*arg0=0;
 #else

@@ -1770,3 +1770,23 @@ pixelgleich. Zwei Versuche mit Wumbas Bezahlflag zeigten Banjo bzw. den
 Dialog in ihrer Hütte. Eine steuerbare verwandelte Figur ist offen. Die
 Belege liegen unter `build/acceptance/q2-minigames-2026-11-17/` und
 `build/acceptance/q2-transform-mp-2026-11-17/`.
+
+## 2026-11-17 — Q5, Originalcode für Zonen unter ILP32
+
+Die Präprozessorprüfung aller 1.109 Spielquellen zeigt, dass keiner der 27
+`*_native.inc`-Ersatztexte unter ILP32 ausgewählt wird. In
+`glzone_entrypoint_2` läuft jetzt auch die originale Löschschleife. Der
+IR-Vergleich fand ausschließlich die in `wasm/reference-ir/accepted.txt`
+beschriebene Adressrechnung. Original-IDO, Funktionsvergleich und das
+vollständige Cartridge-ROM stimmen. Alle 29 Referenzen passen.
+
+Der Sweep lief mit 180 Spielsekunden pro Warp über 229 benannte Karten.
+123 blieben in der Zielkarte, 87 wechselten die Karte, 14 blieben zuletzt
+im selben Bild. Fünf bekannte ungültige Warps endeten wie erwartet.
+Kein neuer Absturz, Hänger oder Aufruf einer unportierten Funktion.
+Protokolle und Zuordnung der Guards liegen in
+`build/acceptance/q5-inventory-2026-11-17/`. Weitere aktive
+`BT_NATIVE`-Zweige und die ABI-Sonderfälle werden einzeln geprüft.
+
+Die menschlichen Abnahmen Q1 und Q4, die externe 4K/60-Hz-Messung für
+A7 und die Wunschliste A10 sind auf Nutzerwunsch vorläufig offen.
