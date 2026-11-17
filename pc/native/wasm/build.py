@@ -143,6 +143,13 @@ def flags_hash(flags):
     return hashlib.sha1('\0'.join(flags).encode()).hexdigest()[:12]
 
 
+def guest_object_tag(compiler_version=None):
+    if compiler_version is None:
+        compiler_version = run([CLANG, '--version'], check=True).stdout.strip()
+    bitfields = hashlib.sha1((HERE / 'bitfields.py').read_bytes()).hexdigest()
+    return flags_hash([CLANG, compiler_version, *GUEST_FLAGS, bitfields])
+
+
 def up_to_date(obj, dep):
     if not obj.exists() or not dep.exists():
         return False
@@ -297,7 +304,7 @@ def build_guest(jobs, compiler_version):
     write_if_changed(gen / 'overlay_aliases.h', (gen / 'overlay_aliases.h.tmp').read_text())
 
     # 1. Guest objects.
-    tag = flags_hash([CLANG, compiler_version] + GUEST_FLAGS + [hashlib.sha1((HERE / 'bitfields.py').read_bytes()).hexdigest()])
+    tag = guest_object_tag(compiler_version)
     srcs = sources()
     with cf.ThreadPoolExecutor(jobs) as ex:
         results = list(ex.map(lambda s: compile_one(s, tag), srcs))
@@ -316,11 +323,14 @@ def build_guest(jobs, compiler_version):
     n64, n64_addr, n64_rom = n64_sections()
     labels = set()
     files = data_files()
+    c_data = {n for n, k in defined.items() if k.upper() in 'DBRCV'}
+    if os.environ.get('BT_NO_ASMDATA') == '1':
+        files = data.strict_inputs(files, c_data, ROOT, (ROOT / 'baserom.us.yaml').read_text(),
+                                   OUT / 'remaining_asm_data.tsv')
     for f in files:
         for sec, lab, _ in data.parse_file(f):
             if sec.lstrip('.') != 'text':
                 labels |= set(lab)
-    c_data = {n for n, k in defined.items() if k.upper() in 'DBRCV'}
 
     def is_function(name):
         if name in labels or name in c_data:

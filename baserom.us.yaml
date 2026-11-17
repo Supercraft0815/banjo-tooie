@@ -3780,7 +3780,7 @@ segments:
     subsegments: 
       - [0x01F704E0, c, dbmgrDll]
       - [0x01F70B10, .rodata, dbmgrDll]
-      - [0x01F70B10, data, dbmgrDll]
+      - [0x01F70B10, .data, dbmgrDll]
       - [0x01F70B20, bss, dbmgrDll]
   - name: cadbio_header
     dir: overlays/cadbio
@@ -3856,7 +3856,7 @@ segments:
     subsegments: 
       - [0x01F72840, c, climbbase]
       - [0x01F72BF0, .rodata, climbbase]
-      - [0x01F72BF0, data, climbbase]
+      - [0x01F72BF0, .data, climbbase]
       - [0x01F72CA0, bss, climbbase]
   - name: chbadshad_header
     dir: overlays/chbadshad

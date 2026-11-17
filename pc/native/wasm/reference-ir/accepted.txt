@@ -4,3 +4,15 @@ place of a byte GEP and tests the same unsigned addresses in reverse operand
 order (a < b versus b > a). The byte stores and loop bounds are identical.
 ir_equiv found no other changed function. Evidence: zone-ir.log,
 zone-gate-29.log and sweep-180/summary.json in build/acceptance/q5-inventory-2026-11-17/.
+
+2026-11-17  bt_be_fixup  (ca/dbmgrDll, ch/climbbase data ownership)
+Removing the dbmgr assembler block renumbers generated data symbols. Mapping
+each block to its source and offset leaves all 29,238 canonical IR lines equal.
+The two typed climbbase ActorData descriptors move ten startup byte swaps to
+the point where LLVM enumerates their C definitions. Their byte offsets in the
+original block are 44, 48, 52, 84, 88, 116, 120, 124, 156 and 160. The 9,745
+volatile load/bswap/store triples still address exactly the same words; all
+other triples retain their order. No guest game function changed. The IDO
+objects retain the original data and relocations and both full ROM comparisons
+pass. Proof: climbbase-fixup-provenance.log and climbbase-rom.json in
+build/acceptance/n1-2026-11-17/.

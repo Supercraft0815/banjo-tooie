@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Audit Phase-1 data ownership. Run after build.py; output contains metadata, not ROM bytes."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
 import re
@@ -40,7 +39,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('output', type=Path)
     args = parser.parse_args()
-    tag = build.flags_hash(build.GUEST_FLAGS + [hashlib.sha1((build.HERE / 'bitfields.py').read_bytes()).hexdigest()])
+    tag = build.guest_object_tag()
     objects = [build.OUT / 'obj' / tag / (source.replace('/', '__') + '.o') for source in build.sources()]
     missing = [str(obj) for obj in objects if not obj.exists()]
     if missing:

@@ -44,16 +44,16 @@ s32 func_808000FC_chclimbbase(void) {
     }
     return 1;
 }
-
+struct ClimbEntry { s32 id; f32 scale; };
 void func_80800128_chclimbbase(Actor *arg0) {
     f32 func_800EEAD4(f32 *, f32 *);
-    struct ClimbEntry { s32 id; f32 scale; };
+
     struct ClimbFields { u8 pad[0x7C]; s16 distance; };
-    extern struct ClimbEntry D_808003B0_chclimbbase;
+    extern struct ClimbEntry D_808003B0_chclimbbase[4];
     struct ClimbEntry *entry;
 
     func_80800000_chclimbbase(arg0, (f32 *)arg0->actorData);
-    entry = &D_808003B0_chclimbbase;
+    entry = D_808003B0_chclimbbase;
     if (1.0f == arg0->scale) {
         arg0->actorData[3] = func_808000FC_chclimbbase();
     } else {
@@ -93,17 +93,17 @@ void func_80800200_chclimbbase(Actor *arg0) {
         }
     }
 }
-
+#include "climbbase_data.inc"
 OSThread *chclimbbase_entrypoint_0(void)
 {
-    extern u8 D_808003D0_chclimbbase[];
+    extern ActorData D_808003D0_chclimbbase[];
 
     return (OSThread *) D_808003D0_chclimbbase;
 }
 
 OSThread *chclimbbase_entrypoint_1(void)
 {
-    extern u8 D_80800418_chclimbbase[];
+    extern ActorData D_80800418_chclimbbase[];
 
     return (OSThread *) D_80800418_chclimbbase;
 }

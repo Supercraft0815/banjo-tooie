@@ -225,6 +225,28 @@ def merge_neighbours(parsed, c_addr=None):
     return out
 
 
+def strict_inputs(files, c_data, root, yaml_text, report):
+    """Keep only hand-written assembly explicitly identified as hasm in the cartridge layout."""
+    hasm = {root / (name + '.s') for name in
+            re.findall(r',\s*hasm,\s*(?:\.\./)+(src/[^\]\s]+)\s*\]', yaml_text)}
+    keep, missing = [], []
+    for path in files:
+        if Path(path) in hasm:
+            keep.append(path)
+            continue
+        for section, labels, items in parse_file(path):
+            if section == 'text':
+                continue
+            source = Path(path).relative_to(root)
+            missing.extend(f'{source}\t{section}\t{name}' for name in sorted(labels.keys() - c_data))
+            if items and not labels:
+                missing.append(f'{source}\t{section}\t<unlabelled data>')
+    report.write_text(''.join(line + '\n' for line in missing))
+    if missing:
+        raise SystemExit(f'BT_NO_ASMDATA: {len(missing)} assembler data entries remain; see {report}')
+    return keep
+
+
 def generate(files, skip, is_function, out_path, alias, ctypes, c_addr=None):
     """Writes the IR module; returns (defined names, referenced names, unknown words)."""
     lines = ['target datalayout = "e-m:e-p:32:32-p10:8:8-p20:8:8-i64:64-i128:128-n32:64-S128-ni:1:10:20"',

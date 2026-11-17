@@ -133,7 +133,7 @@ s32 func_808000F4_cadbmgrDll(s32 arg0) {
 
 #else
 #include "common.h"
-
+struct CadbmgrVector { f32 v[3]; };
 /* extern */
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) cadbmgrDll_entrypoint_0(u8 **arg0, s32 arg1) {
@@ -183,7 +183,7 @@ s32 func_808000F4_cadbmgrDll(s32 arg0) {
     s32 func_800A5854(s32);
     void func_800E3980(f32 *);
     void func_800E3A58(f32 *);
-    struct CadbmgrVector { f32 v[3]; } sp24;
+    struct CadbmgrVector sp24;
     extern struct CadbmgrVector D_80800630_cadbmgrDll;
     s32 sp20;
 
@@ -348,5 +348,5 @@ void func_808005AC_cadbmgrDll(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     temp_v0 = func_8001B798(*(s16 *)((s8 *)arg0 + (arg1 << 1) + 0x1E));
     rare_memcpy((void *)((s8 *)temp_v0 + arg3 * sp1C), (void *)((s8 *)temp_v0 + arg2 * sp1C), sp1C);
 }
-
+struct CadbmgrVector D_80800630_cadbmgrDll BT_DATA(4, overlays_ca_dbmgrDll, 0x0) = { { 0.0f, 0.0f, 0.0f } };
 #endif

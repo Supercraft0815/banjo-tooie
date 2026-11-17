@@ -1790,3 +1790,25 @@ Protokolle und Zuordnung der Guards liegen in
 
 Die menschlichen Abnahmen Q1 und Q4, die externe 4K/60-Hz-Messung für
 A7 und die Wunschliste A10 sind auf Nutzerwunsch vorläufig offen.
+
+## 2026-11-17 — N1, zwei Datenmodule und ein strikter Build
+
+Der Distanzvektor von `ca/dbmgrDll` sowie die vier Kletterparameter und
+zwei Actor-Deskriptoren von `ch/climbbase` liegen jetzt in C. Beide
+Spielquelldateien behalten ihre ursprüngliche Zeilenzahl. Die IDO-Prüfung
+bestätigt alle Funktionen sowie Daten und Relokationen beider Module.
+Das dekomprimierte ROM stimmt in allen 35.098.224 Bytes. Mit den 112.032
+originalen Füllbytes stimmt auch das vollständige Cartridge-ROM.
+Der Port verwendet jetzt 1.216 Assemblerdateien und 2.425 Symbole
+(vorher 1.218 und 2.430). Die neun Testprogramme und 29 Referenzen
+mit 162.276 Retraces bestehen.
+
+`BT_NO_ASMDATA=1 python3 pc/native/wasm/build.py guest` meldet die
+2.375 noch aus Assembler stammenden Dateneinträge einzeln in
+`remaining_asm_data.tsv` im Build-Verzeichnis. Der aktuelle Scanner
+führt 113 weitere `.data`-Module auf. Die Diagnose über alle 29 Fälle
+beobachtete erstmals 1.711 von 6.100 instrumentierten Zugriffsstellen
+in 413 Funktionen. Fünf Stellen trafen je nach Fall verschiedene
+Zielsymbole. Der Bericht erfasst alle 1.716 beobachteten Kombinationen.
+Prüfprotokolle liegen unter `build/acceptance/n1-2026-11-17/` und
+`build/acceptance/q2-xsym-2026-11-17/`.

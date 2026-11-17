@@ -5,7 +5,7 @@ Builds a diagnostic copy with the bt-xsym pass (BT_XSYM=1, separate BT_OUT tree)
 corpus cases with it and names each access that left its label: function, label used,
 symbol actually hit. Output: <out>/xsym_report.tsv plus a short summary on stdout.
 
-  python3 pc/native/wasm/xsym_report.py                 # build + intro + new-game
+  python3 pc/native/wasm/xsym_report.py                 # build + all registered cases
   python3 pc/native/wasm/xsym_report.py --no-build --case intro
 """
 import argparse
@@ -14,7 +14,6 @@ import collections
 import os
 import re
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 
@@ -40,7 +39,8 @@ def symbols(out):
     for m in ALIAS.finditer((out / 'gen' / 'data.ll').read_text()):
         block = blocks.get(m.group(2))
         if block:
-            table[m.group(1)] = (block[0] + int(m.group(3) or 0), 0, m.group(1), m.group(2))
+            offset = int(m.group(3) or 0)
+            table[m.group(1)] = (block[0] + offset, block[1] - offset, m.group(1), m.group(2))
     return sorted(table.values())
 
 
@@ -48,11 +48,11 @@ def resolve(table, starts, address):
     """(label, offset) containing address: the last asm label at or below it inside its block,
     else a C variable that spans it."""
     i = bisect.bisect_right(starts, address) - 1
-    for j in range(i, max(-1, i - 64), -1):
+    for j in range(i, -1, -1):
         start, size, name, block = table[j]
         if name.startswith('__bt_data_'):
             continue
-        if block or start <= address < start + max(size, 1):
+        if address < start + size:
             return name, address - start
     return '?%08x' % address, 0
 
@@ -69,11 +69,11 @@ def run_case(exe, rom, work, name):
         (work / 'bt_eeprom.bin').unlink(missing_ok=True)
     env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
     env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']),
-               **corpus.run_env(case), BT_XSYM=str(hits))
+               **corpus.run_env(case), BT_SAVE=str(work / 'bt_eeprom.bin'), BT_XSYM=str(hits))
     with (work / 'run.log').open('w') as log:
         r = subprocess.run([str(exe), str(rom)], cwd=work, env=env, stdout=log, stderr=log, timeout=7200)
     if r.returncode:
-        print('%s: exit %d, see %s' % (name, r.returncode, work / 'run.log'))
+        sys.exit('%s: exit %d, see %s' % (name, r.returncode, work / 'run.log'))
     return [l.split() for l in hits.read_text().splitlines()] if hits.exists() else []
 
 
@@ -81,7 +81,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--out', type=Path, default=ROOT / 'build' / 'ilp32-xsym')
     ap.add_argument('--rom', type=Path, default=ROOT / 'baserom.us.z64')
-    ap.add_argument('--case', action='append', choices=corpus.CASES, help='default: intro, new-game')
+    ap.add_argument('--case', action='append', choices=corpus.CASES, help='default: all registered cases')
     ap.add_argument('--no-build', action='store_true')
     args = ap.parse_args()
     out = args.out.resolve()
@@ -98,18 +98,18 @@ def main():
     starts = [t[0] for t in table]
     by_name = {t[2]: t for t in table}
     rows = {}
-    for name in args.case or ['intro', 'new-game']:
+    for name in args.case or corpus.CASES:
         for sid, addr in run_case(out / 'bt_game', args.rom.resolve(), out / 'runs' / name, name):
-            if sid not in rows:
+            a = int(addr, 16)
+            hit, off = resolve(table, starts, a)
+            if (sid, hit) not in rows:
                 func, via, width, kind = sites[sid]
-                a = int(addr, 16)
-                hit, off = resolve(table, starts, a)
                 delta = '%+d' % (a - by_name[via][0]) if via in by_name else '?'
-                rows[sid] = (func, via, delta, hit if not off else '%s+0x%x' % (hit, off), width, kind, name)
+                rows[sid, hit] = (func, via, delta, hit if not off else '%s+0x%x' % (hit, off), width, kind, name)
     report = out / 'xsym_report.tsv'
     with report.open('w') as f:
         f.write('site\tfunction\tvia\toffset\thit\twidth\tkind\tfirst_case\n')
-        for sid, row in sorted(rows.items(), key=lambda r: (r[1][0], int(r[0]))):
+        for (sid, _), row in sorted(rows.items(), key=lambda r: (r[1][0], int(r[0][0]), r[0][1])):
             f.write(sid + '\t' + '\t'.join(row) + '\n')
     # Labels joined by an access must become one C object (struct or array): union-find groups.
     parent = {}
@@ -132,8 +132,8 @@ def main():
         for labels, funcs in sorted(groups.values(), key=lambda g: min(order.get(l, 0) for l in g[0])):
             f.write(' '.join(sorted(labels, key=lambda l: order.get(l, 0))) + '\t' + ' '.join(sorted(funcs)) + '\n')
     funcs = {r[0] for r in rows.values()}
-    print('xsym: %d checked sites, %d hit in %d functions; %d label groups must become one C object -> %s, %s'
-          % (len(sites), len(rows), len(funcs), len(groups), report, out / 'xsym_groups.tsv'))
+    print('xsym: %d checked sites, %d hit in %d functions, %d site/target pairs; %d label groups -> %s, %s'
+          % (len(sites), len({sid for sid, _ in rows}), len(funcs), len(rows), len(groups), report, out / 'xsym_groups.tsv'))
 
 
 if __name__ == '__main__':

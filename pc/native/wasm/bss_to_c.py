@@ -21,7 +21,6 @@ asm .data/.rodata of their module still built from asm (same block in data.py).
 then build.py, port.py gate, make check.
 """
 import collections
-import hashlib
 from multiprocessing import Pool
 import os
 from pathlib import Path
@@ -47,7 +46,7 @@ NAMES = set()
 def remaining():
     """{label: (group, offset, extent, block alignment, block size)} of asm .bss labels that no C
     object defines. data.py aligns a file's block like its N64 address (up to 16) and reserves all of it."""
-    tag = build.flags_hash(build.GUEST_FLAGS + [hashlib.sha1((build.HERE / 'bitfields.py').read_bytes()).hexdigest()])
+    tag = build.guest_object_tag()
     defs, _ = build.nm([build.OUT / 'obj' / tag / (s.replace('/', '__') + '.o') for s in build.sources()])
     defs = {n for n, k in defs.items() if k.upper() in 'DBRCV'} - set(OWN.read_text().split() if OWN.exists() else [])
     parsed = [(p, s, l, i) for p in build.data_files() for s, l, i in data.parse_file(p)
