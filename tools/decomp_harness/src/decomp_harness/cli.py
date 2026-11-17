@@ -67,6 +67,20 @@ def parser():
         if name == 'knowledge':
             p.add_argument('--add', help='Persist a concise human-reviewed finding')
             p.add_argument('--tags', default='IDO')
+    p = sub.add_parser('port-calls', help='Native port: Codex workers replace FixCalls adaptations (widened.txt) with source fixes')
+    p.add_argument('--file', help='Only this source file')
+    p.add_argument('--max-files', type=positive, help='Files to work on in this run')
+    p.add_argument('--batch', type=positive, default=4, help='Files validated together (bisected on failure)')
+    p.add_argument('--attempts', type=positive, default=2, help='Worker attempts per file before it is skipped')
+    p.add_argument('--retry', action='store_true', help='Also files that used up their attempts')
+    p.add_argument('--gate', default='full', choices=('full', 'intro', 'new-game', 'edited-save', 'worlds'), help='Replay corpus for the behaviour check')
+    p.add_argument('--model', help='Explicit model override')
+    p.add_argument('--effort', choices=['low', 'medium', 'high', 'xhigh'], help='Explicit reasoning effort override')
+    p.add_argument('--worker-timeout', type=positive, help='Seconds per worker (default: config worker_timeout)')
+    p.add_argument('--max-items', type=positive, default=24, help='Items per worker attempt; a big file continues after acceptance')
+    p.add_argument('--concurrency', type=positive, help='Parallel workers per batch')
+    p.add_argument('--max-runtime', type=positive, help='Wall clock limit in seconds')
+    p.add_argument('--dry-run', action='store_true', help='Work list from build/ilp32/widened.txt only; no lane, no models')
     return cli
 
 
@@ -375,6 +389,11 @@ def main(argv=None):
             raise HarnessError('--provider requires an explicit --model')
         if args.command == 'run' and args.local_only and not config['local_patterns']:
             raise HarnessError('--local-only requires local_patterns=true')
+        if args.command == 'port-calls':  # own lock and lane; never touches the matching state
+            from .port_calls import Port
+            result = Port(root, config, control, args).run()
+            print(json.dumps(result, indent=2, ensure_ascii=False))
+            return 130 if control.stopped() else 0
         state_dir = root/'.decomp-agent'
         if args.command == 'stop-after-current':
             atomic_write(state_dir/'stop-after-current', 'stop\n')

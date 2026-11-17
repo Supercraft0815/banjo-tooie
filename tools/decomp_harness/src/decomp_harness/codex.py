@@ -112,6 +112,7 @@ def parse_events(text: str, exit_code: int, last_message='', interrupted=False, 
 class CodexRunner:
     provider = 'codex'
     authentication_label = 'stored ChatGPT only'
+    instructions = Path(__file__).with_name('worker-instructions.md')  # port-calls swaps in its own
     def __init__(self):
         self.env = clean_environment(provider=self.provider)
         self.executable = shutil.which(self.provider, path=self.env.get('PATH'))
@@ -172,7 +173,7 @@ class CodexRunner:
                 '-c', shell_env,
                 '-c', f'model_reasoning_effort={json.dumps(effort)}']
         if not read_only:
-            args += ['-c', 'model_instructions_file='+json.dumps(str(Path(__file__).with_name('worker-instructions.md')))]
+            args += ['-c', 'model_instructions_file='+json.dumps(str(self.instructions))]
         if schema:
             args += ['--output-schema', str(schema)]
         return args + ['-']
