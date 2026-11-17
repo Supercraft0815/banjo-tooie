@@ -1,4 +1,8 @@
 // Host services for the guest: ROM image, controller, files, console, zlib and libm.
+#include <execinfo.h>
+#ifdef __APPLE__
+#include <mach-o/dyld.h>
+#endif
 #include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -6,6 +10,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <zlib.h>
+#include <SDL3/SDL.h>
 #include "guest.h"
 
 static unsigned char *rom;
@@ -18,21 +23,106 @@ _Noreturn void bt_fatal(const char *fmt, ...) {
     vfprintf(stderr, fmt, ap);
     fputc('\n', stderr);
     va_end(ap);
+    bt_backtrace();
     abort();
 }
 
-void bt_rom_open(const char *path) {
+// Guest functions keep their names (w2c_bt_<name>), so this names the failing game code.
+void bt_backtrace(void) {
+    void *frames[48];
+    // BT_PEEK=80d27bc2:2,... dumps guest bytes (big-endian, as stored) when the run dies
+    for (const char *p = getenv("BT_PEEK"); p && *p;) {
+        char *end;
+        unsigned long addr = strtoul(p, &end, 16), size = *end == ':' ? strtoul(end + 1, &end, 0) : 4;
+        fprintf(stderr, "bt_native: peek %08lx:", addr);
+        for (unsigned long i = 0; i < size && i < 256; i++) fprintf(stderr, " %02x", bt_mem[addr + i]);
+        fputc('\n', stderr);
+        p = *end == ',' ? end + 1 : end + strlen(end);
+    }
+#ifdef __APPLE__  // sweep.py feeds slide and addresses to atos, which also names inlined functions
+    fprintf(stderr, "bt_native: image slide 0x%lx\n", (long)_dyld_get_image_vmaddr_slide(0));
+#endif
+    backtrace_symbols_fd(frames, backtrace(frames, 48), 2);
+}
+
+// wasm2c runtime trap (WASM_RT_TRAP_HANDLER): out-of-bounds access, NULL call, division by zero...
+void bt_trap(wasm_rt_trap_t code) {
+    fprintf(stderr, "bt_native: guest trap: %s\n", wasm_rt_strerror(code));
+    bt_backtrace();
+    abort();
+}
+
+// Windowed runs report ROM problems in a message box too; the player may have no terminal.
+static _Noreturn void rom_error(const char *path, const char *what) {
+    char text[1200];
+    snprintf(text, sizeof text, "%s:\n%s", path, what);
+    if (SDL_WasInit(SDL_INIT_VIDEO)) SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Banjo-Tooie", text, NULL);
+    bt_fatal("%s: %s", path, what);
+}
+
+// Reads a .z64 (big-endian), .v64 (byte-swapped) or .n64 (little-endian) image of the US version
+// into big-endian order. Returns 0 if the file cannot be read.
+static int rom_load(const char *path) {
     FILE *f = fopen(path, "rb");
     long n;
-    if (!f) bt_fatal("cannot open ROM %s (pass the .z64 path as first argument)", path);
+    if (!f) return 0;
     fseek(f, 0, SEEK_END);
     n = ftell(f);
     fseek(f, 0, SEEK_SET);
-    rom = malloc((size_t)n);
-    if (!rom || fread(rom, 1, (size_t)n, f) != (size_t)n) bt_fatal("cannot read ROM %s", path);
+    rom = n >= 0x1000 ? malloc((size_t)n) : NULL;
+    if (!rom || fread(rom, 1, (size_t)n, f) != (size_t)n) rom_error(path, "Die Datei ist zu kurz oder nicht lesbar.");
     fclose(f);
     rom_size = (u32)n;
-    if (rom[0] != 0x80 || rom[1] != 0x37) bt_fatal("%s is not a big-endian .z64 ROM", path);
+    int v64 = rom[0] == 0x37 && rom[1] == 0x80, n64 = rom[0] == 0x40 && rom[1] == 0x12;
+    for (long i = 0; (v64 || n64) && i + 3 < n; i += 4) {
+        unsigned char a = rom[i], b = rom[i + 1], c = rom[i + 2], d = rom[i + 3];
+        if (v64) { rom[i] = b; rom[i + 1] = a; rom[i + 2] = d; rom[i + 3] = c; }
+        else { rom[i] = d; rom[i + 1] = c; rom[i + 2] = b; rom[i + 3] = a; }
+    }
+    if (rom[0] != 0x80 || rom[1] != 0x37) rom_error(path, "Das ist keine N64-ROM (.z64, .v64 oder .n64).");
+    if (memcmp(rom + 0x3B, "NB7E", 4)) rom_error(path, "Das ist nicht Banjo-Tooie in der US-Version (Spielcode NB7E).");
+    u64 hash = UINT64_C(14695981039346656037);  // FNV-1a over the .z64 bytes, as in the trace header
+    for (u32 i = 0; i < rom_size; i++) hash = (hash ^ rom[i]) * UINT64_C(1099511628211);
+    if (hash != UINT64_C(0xe04fb9f40c35687f))
+        rom_error(path, "Diese Banjo-Tooie-ROM (US) ist veraendert oder beschaedigt; erwartet wird der unveraenderte Dump.");
+    return 1;
+}
+
+void bt_rom_open(const char *path) {
+    if (!rom_load(path)) rom_error(path, "Die ROM wurde nicht gefunden (Pfad als erstes Argument angeben).");
+}
+
+static char picked[1024];
+static _Atomic int picking;
+static void SDLCALL on_pick(void *data, const char *const *files, int filter) {
+    (void)data; (void)filter;
+    if (files && files[0]) snprintf(picked, sizeof picked, "%s", files[0]);
+    picking = 0;
+}
+
+// No ROM argument: baserom.us.z64 here, else the copy in the user data directory, else ask once
+// with a file dialog and keep a .z64 copy there for the next start. Returns the path for traces.
+const char *bt_rom_find(void) {
+    static char saved[1024];
+    char *dir = SDL_GetPrefPath("", "BanjoTooie");
+    if (rom_load("baserom.us.z64")) return "baserom.us.z64";
+    snprintf(saved, sizeof saved, "%sbaserom.us.z64", dir ? dir : "");
+    SDL_free(dir);
+    if (rom_load(saved)) return saved;
+    if (!SDL_WasInit(SDL_INIT_VIDEO)) bt_fatal("no ROM: pass the path of Banjo-Tooie (US) as first argument");
+    static const SDL_DialogFileFilter filter[] = {{"N64-ROM", "z64;v64;n64"}};
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Banjo-Tooie",
+                             "Bitte waehle deine Banjo-Tooie-ROM (US-Version) aus.\n"
+                             "Eine Kopie wird fuer die naechsten Starts im Benutzerordner abgelegt.", NULL);
+    picking = 1;
+    SDL_ShowOpenFileDialog(on_pick, NULL, NULL, filter, 1, NULL, false);
+    while (picking) SDL_WaitEventTimeout(NULL, 50);
+    if (!picked[0]) exit(0);
+    bt_rom_open(picked);
+    FILE *f = fopen(saved, "wb");
+    if (!f || fwrite(rom, 1, rom_size, f) != rom_size) fprintf(stderr, "bt_native: cannot keep a ROM copy in %s\n", saved);
+    if (f) fclose(f);
+    return saved;
 }
 
 // Cartridge domain addresses (0x10000000 + offset) or plain offsets.
@@ -58,6 +148,23 @@ _Noreturn void w2c_env_unported(struct w2c_env *env, u32 name) {
 // Guest files: host FILE pointers in a small table, numbered from 3.
 static FILE *files[32];
 
+// The game's save file (guest/os.c opens "bt_eeprom.bin"): BT_SAVE=path if set; the working
+// directory for scripted runs (BT_HEADLESS, BT_VCLOCK) or when a save is already there; otherwise
+// the user's data directory (macOS: ~/Library/Application Support/BanjoTooie).
+static const char *host_path(const char *path) {
+    static char save[1024];
+    if (strcmp(path, "bt_eeprom.bin")) return path;
+    if (!save[0]) {
+        char *dir;
+        if (getenv("BT_SAVE")) snprintf(save, sizeof save, "%s", getenv("BT_SAVE"));
+        else if (getenv("BT_HEADLESS") || getenv("BT_VCLOCK") || !access(path, F_OK) ||
+                 !(dir = SDL_GetPrefPath("", "BanjoTooie"))) snprintf(save, sizeof save, "%s", path);
+        else { snprintf(save, sizeof save, "%s%s", dir, path); SDL_free(dir); }
+        fprintf(stderr, "bt_native: save file %s\n", save);
+    }
+    return save;
+}
+
 u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
     (void)env;
     for (int i = 3; i < 32; i++) {
@@ -68,7 +175,7 @@ u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
                 if (start > end || end > rom_size) bt_fatal("ROM file %s beyond the image", (char *)G(path));
                 files[i] = fmemopen(rom + start, end - start, "rb");
             } else {
-                files[i] = fopen(G(path), G(mode));
+                files[i] = fopen(host_path(G(path)), G(mode));
             }
             return files[i] ? (u32)i : (u32)-1;
         }
@@ -107,6 +214,25 @@ u32 w2c_env_inflate_raw(struct w2c_env *env, u32 src, u32 src_len, u32 dst, u32 
     gw32(out_used, (u32)z.total_out);
     inflateEnd(&z);
     return (u32)r;
+}
+
+// src/core2/1EF0820.s: a raw DEFLATE asset straight from the ROM image. The stream follows a
+// big-endian 2-byte header (output size / 16), which also bounds the output here.
+u32 w2c_env_rom_inflate(struct w2c_env *env, u32 dev, u32 n, u32 dst) {
+    z_stream z = {0};
+    int r;
+    (void)env;
+    dev &= 0x0FFFFFFF;
+    if (n < 2 || dev > rom_size || n > rom_size - dev) bt_fatal("ROM inflate 0x%x+0x%x beyond the image", dev, n);
+    if (inflateInit2(&z, -15) != Z_OK) bt_fatal("inflateInit2 failed");
+    z.next_in = (Bytef *)rom + dev + 2;
+    z.avail_in = n - 2;
+    z.next_out = G(dst);
+    z.avail_out = ((u32)rom[dev] << 8 | rom[dev + 1]) * 16;
+    r = inflate(&z, Z_FINISH);
+    inflateEnd(&z);
+    if (r != Z_STREAM_END) bt_fatal("ROM inflate at 0x%x failed (%d)", dev, r);
+    return (u32)z.total_out;
 }
 
 #define LIBM1(name, T) T w2c_env_##name(struct w2c_env *env, T x) { (void)env; return name(x); }

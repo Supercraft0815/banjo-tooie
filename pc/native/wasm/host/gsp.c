@@ -3,9 +3,11 @@
 // Guest structs written by game C code (Gfx words, Vtx, Mtx, Vp) are read natively;
 // the RDP side reads image data as big-endian bytes.
 #include <math.h>
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "rdp.h"
 
 #define MAX_VTX 64
@@ -42,6 +44,9 @@ static struct {
 static int trace_left = -1;
 static u32 trace_ops[256];
 
+static int ip_mode_now(void);
+static int tracing(void) { return trace_left > 0 && ip_mode_now() != 2; }  // never in the in-between worker
+
 static void trace_end(u32 dl) {
     if (trace_left <= 0) return;
     trace_left--;
@@ -52,9 +57,7 @@ static void trace_end(u32 dl) {
     memset(trace_ops, 0, sizeof trace_ops);
 }
 
-static const u8 *gmem(u32 addr, u32 n) {
-    return addr >= 0x80000000u && (u64)addr + n <= bt_inst.w2c_memory.size ? bt_mem + addr : NULL;
-}
+static const u8 *gmem(u32 addr, u32 n) { return rdp_mem(addr, n); }
 // RDRAM is big-endian (guest.h).
 static u32 be32(const u8 *p) { return (u32)p[0] << 24 | p[1] << 16 | p[2] << 8 | p[3]; }
 static s16 be16(const u8 *p) { return (s16)(p[0] << 8 | p[1]); }
@@ -202,6 +205,11 @@ static void draw_poly(Vert *in, int n, int flat_from) {
     if ((S.geom & G_CULL_BACK) && area > 0) return;
     if ((S.geom & G_CULL_FRONT) && area < 0) return;
     int flags = (S.geom & G_SHADE ? RDP_SHADE : 0) | (S.tex_on ? RDP_TEX : 0) | (S.geom & G_ZBUFFER ? RDP_Z : 0);
+    if (tracing() && getenv("BT_GFX_DUMP")) {
+        fprintf(stderr, "      poly");
+        for (int i = 0; i < n; i++) fprintf(stderr, " (%.2f,%.2f z%.0f c%02x%02x%02x%02x st%.2f,%.2f)", r[i].x, r[i].y, r[i].z / 256, (int)r[i].c[0], (int)r[i].c[1], (int)r[i].c[2], (int)r[i].c[3], r[i].s / 32, r[i].t / 32);
+        fprintf(stderr, "\n");
+    }
     for (int i = 1; i + 1 < n; i++) rdp_triangle(&r[0], &r[i], &r[i + 1], flags);
 }
 
@@ -218,6 +226,7 @@ static void line3d(int a, int b, int wd) {
     if (p->w < 1e-3f || q->w < 1e-3f) return;
     float ax = p->x / p->w * S.vscale[0] + S.vtrans[0], ay = -p->y / p->w * S.vscale[1] + S.vtrans[1];
     float bx = q->x / q->w * S.vscale[0] + S.vtrans[0], by = -q->y / q->w * S.vscale[1] + S.vtrans[1];
+    // rdp_triangle scales the expanded quad, including this line width, exactly once.
     float dx = bx - ax, dy = by - ay, l = sqrtf(dx * dx + dy * dy), h = (1.0f + wd * 0.5f) * 0.5f;
     if (l < 1e-6f) return;
     float nx = -dy / l * h, ny = dx / l * h;
@@ -249,7 +258,7 @@ static void movemem(u32 w0, u32 w1) {
         for (int i = 0; i < 8; i++) vp[i] = be16(vb + 2 * i);
         S.vscale[0] = vp[0] / 4.0f; S.vscale[1] = vp[1] / 4.0f; S.vscale[2] = vp[2];
         S.vtrans[0] = vp[4] / 4.0f; S.vtrans[1] = vp[5] / 4.0f; S.vtrans[2] = vp[6];
-        if (trace_left > 0) fprintf(stderr, "      viewport %d %d %d / %d %d %d\n", vp[0], vp[1], vp[2], vp[4], vp[5], vp[6]);
+        if (tracing()) fprintf(stderr, "      viewport %d %d %d / %d %d %d\n", vp[0], vp[1], vp[2], vp[4], vp[5], vp[6]);
     } else if (idx == 10) {  // lights: slot 0/1 look-at, then lights from slot 2
         const u8 *l = gmem(a, 16);
         int slot = ofs / 24;
@@ -273,11 +282,127 @@ static void moveword(u32 w0, u32 w1) {
     }
 }
 
-static void matrix(u32 w0, u32 w1) {
+// ---- Frame interpolation (presentation only; rdp_interp_* keeps it out of guest memory).
+// A task that draws a picture records every G_MTX with a key from the geometry drawn after it:
+// the first G_DL/G_VTX address as written (segment-relative where the game uses segments, so it
+// is the same in every frame). Direct-address matrices are object roots, matched to the nearest
+// previous one with the same key; segment-relative ones (bones in static model lists) are matched
+// inside their root. In-between passes re-run the display list with each matched matrix mixed
+// between the previous frame and this one. Culling/branch decisions are replayed from the real
+// pass, so every pass walks the same commands.
+#define IP_EVENTS 8192
+#define IP_DECISIONS 8192
+#define IP_JUMP 500.0f  // translation per frame beyond which a pair is a cut or a teleport
+typedef struct { Mat m; u64 sig; int root, proj_load, parent, match; } IpEvent;
+static struct {
+    IpEvent ev[2][IP_EVENTS];  // ev[cur]: this frame; ev[cur ^ 1]: the previous picture
+    int n[2], cur, pending, last_root;
+    int mode, at, desync;  // mode 0 off, 1 recording (real pass), 2 replaying (in-between pass)
+    float t;
+    u8 decision[IP_DECISIONS];
+    int ndecision, dat;
+    u32 dl;  // the display list of the posted picture
+    unsigned frames, events, matched, desyncs;  // BT_RENDER_STATS
+} IP;
+
+static int ip_mode_now(void) { return IP.mode; }
+static u64 ip_hash(u64 h, u64 v) { h = (h ^ v) * 0x9E3779B97F4A7C15ull; return h ^ h >> 31; }
+
+static void ip_record(Mat m, u32 p, u32 w1, u32 pc) {
+    int n = IP.n[IP.cur];
+    if (n >= IP_EVENTS) return;
+    IpEvent *e = &IP.ev[IP.cur][n];
+    u32 seg = w1 >> 24;
+    memcpy(e->m, m, sizeof(Mat));
+    e->root = seg == 0 || seg == 0x80;
+    e->proj_load = (p & 6) == 6;
+    e->sig = e->root ? ip_hash(1, p) : ip_hash(ip_hash(2, p), (u64)w1 << 32 | pc);
+    e->parent = e->root ? -1 : IP.last_root;
+    if (e->root) IP.last_root = n;
+    e->match = -1;
+    IP.n[IP.cur] = n + 1;
+}
+
+// The geometry a G_DL or G_VTX draws keys the matrices recorded since the previous one.
+static void ip_anchor(u32 w1) {
+    if (IP.mode != 1) return;
+    for (int i = IP.pending; i < IP.n[IP.cur]; i++) IP.ev[IP.cur][i].sig = ip_hash(IP.ev[IP.cur][i].sig, w1);
+    IP.pending = IP.n[IP.cur];
+}
+
+static int ip_decide(int taken) {
+    if (IP.mode == 1 && IP.ndecision < IP_DECISIONS) IP.decision[IP.ndecision++] = (u8)taken;
+    if (IP.mode == 2 && IP.dat < IP.ndecision) return IP.decision[IP.dat++];
+    return taken;
+}
+
+static float ip_dist(Mat a, Mat b) {
+    float d = 0;
+    for (int c = 0; c < 3; c++) d += (a[3][c] - b[3][c]) * (a[3][c] - b[3][c]);
+    return d;
+}
+
+static void ip_match(void) {
+    static int head[1024], link[IP_EVENTS], projs[IP_EVENTS];
+    static u8 used[IP_EVENTS];
+    IpEvent *cur = IP.ev[IP.cur], *prev = IP.ev[IP.cur ^ 1];
+    int nc = IP.n[IP.cur], np = IP.n[IP.cur ^ 1], nproj = 0, kproj = 0;
+    memset(head, -1, sizeof head);
+    for (int j = np - 1; j >= 0; j--) {
+        used[j] = 0;
+        if (prev[j].root) { link[j] = head[prev[j].sig & 1023]; head[prev[j].sig & 1023] = j; }
+    }
+    for (int j = 0; j < np; j++) if (prev[j].proj_load) projs[nproj++] = j;
+    for (int i = 0; i < nc; i++) {
+        IpEvent *e = &cur[i];
+        e->match = -1;
+        if (e->root) {
+            float best = INFINITY;
+            for (int j = head[e->sig & 1023]; j >= 0; j = link[j]) {
+                float d = used[j] || prev[j].sig != e->sig ? INFINITY : ip_dist(e->m, prev[j].m);
+                if (d < best) { best = d; e->match = j; }
+            }
+            // A camera matrix keyed by a per-frame list: the same projection load of the previous frame.
+            if (e->match < 0 && e->proj_load && kproj < nproj && !used[projs[kproj]]) e->match = projs[kproj];
+            kproj += e->proj_load;
+            if (e->match >= 0) used[e->match] = 1;
+        } else if (e->parent >= 0 && cur[e->parent].match >= 0) {
+            int ord = 0;
+            for (int k = e->parent + 1; k < i; k++) ord += cur[k].sig == e->sig;
+            for (int j = cur[e->parent].match + 1; j < np && !prev[j].root; j++)
+                if (prev[j].sig == e->sig && !ord--) { e->match = j; break; }
+        }
+    }
+}
+
+// m becomes the mix of the previous frame's matrix and m, unless the pair looks like a cut.
+static void ip_replay(Mat m) {
+    IpEvent *e = !IP.desync && IP.at < IP.n[IP.cur] ? &IP.ev[IP.cur][IP.at] : NULL;
+    IP.at++;
+    if (!e || memcmp(e->m, m, sizeof(Mat))) { IP.desync = 1; return; }
+    if (e->match < 0) return;
+    float(*a)[4] = IP.ev[IP.cur ^ 1][e->match].m, d = 0, mag = 0;
+    for (int r = 0; r < 3; r++)
+        for (int c = 0; c < 3; c++) { d = fmaxf(d, fabsf(a[r][c] - m[r][c])); mag = fmaxf(mag, fabsf(m[r][c])); }
+    if (d > 0.5f * mag || ip_dist(a, m) > IP_JUMP * IP_JUMP) return;
+    for (int r = 0; r < 4; r++)
+        for (int c = 0; c < 4; c++) m[r][c] = a[r][c] + (m[r][c] - a[r][c]) * IP.t;
+}
+
+// In-between pictures per game frame: the VI interval minus one, when the option is on.
+static int ip_images(void) {
+    if (!bt_setting(BT_SET_INTERP) || bt_setting(BT_SET_FPS)) return 0;
+    int k = bt_vi_interval();
+    return k < 2 ? 0 : k > 4 ? 3 : k - 1;
+}
+
+static void matrix(u32 w0, u32 w1, u32 pc) {
     u32 p = (w0 & 0xFF) ^ 1;  // G_MTX_PUSH is inverted in the command
     Mat m;
     if (!read_mtx(seg_addr(w1), m)) return;
-    if (trace_left > 0 && getenv("BT_GFX_DUMP"))
+    if (IP.mode == 1) ip_record(m, p, w1, pc);
+    if (IP.mode == 2) ip_replay(m);
+    if (tracing() && getenv("BT_GFX_DUMP"))
         for (int i = 0; i < 4; i++) fprintf(stderr, "      mtx p%x %10.3f %10.3f %10.3f %10.3f\n", p, m[i][0], m[i][1], m[i][2], m[i][3]);
     if (p & 4) {
         if (p & 2) memcpy(S.proj, m, sizeof m); else mat_mul(S.proj, m, S.proj);
@@ -297,10 +422,84 @@ static int culled(int a, int b) {
 }
 
 static void run(u32 dl);
+static void ip_passes(int images) {
+    for (int i = 0; i < images && rdp_interp_begin(); i++) {
+        IP.mode = 2; IP.at = IP.dat = IP.desync = 0;
+        IP.t = (i + 1.0f) / (images + 1);
+        run(IP.dl);
+        rdp_interp_end(i);
+    }
+    IP.frames++; IP.events += (unsigned)IP.n[IP.cur]; IP.desyncs += (unsigned)IP.desync;
+    for (int i = 0; i < IP.n[IP.cur]; i++) IP.matched += IP.ev[IP.cur][i].match >= 0;
+    IP.mode = 0;
+    IP.cur ^= 1;  // this picture is the previous one for the next
+}
+static void *ip_worker(void *unused) {
+    (void)unused;
+    for (;;) {
+        ip_passes(rdp_interp_next());
+        rdp_interp_done();
+    }
+    return NULL;
+}
+static void ip_start(void) {
+    pthread_t t;
+    if (pthread_create(&t, NULL, ip_worker, NULL)) bt_fatal("starting the in-between worker");
+    pthread_detach(t);
+}
+
 void gsp_run(u32 dl) {
-    if (trace_left < 0) trace_left = getenv("BT_GFX_TRACE") ? atoi(getenv("BT_GFX_TRACE")) : 0;
+    static int stats = -1;
+    static pthread_once_t worker_once = PTHREAD_ONCE_INIT;
+    int images = ip_images();
+    rdp_begin();  // waits for the previous picture's in-between passes
+    static double window, total, peak;
+    static unsigned tasks;
+    struct timespec start, end;
+    if (stats < 0) stats = getenv("BT_RENDER_STATS") != NULL;
+    if (stats) clock_gettime(CLOCK_MONOTONIC, &start);
+    static int trace_skip = -2, trace_n;  // BT_GFX_TRACE=N or N@K: trace N tasks after skipping K
+    if (trace_skip == -2) {
+        const char *t = getenv("BT_GFX_TRACE"), *at = t ? strchr(t, '@') : NULL;
+        trace_n = t ? atoi(t) : 0;
+        trace_skip = at ? atoi(at + 1) : 0;
+        trace_left = 0;
+    }
+    if (trace_skip == 0) trace_left = trace_n;
+    if (trace_skip >= 0) trace_skip--;  // -1: armed or done
+    rdp_interp_arm(images);
+    IP.mode = images ? 1 : 0;
+    IP.n[IP.cur] = IP.pending = IP.ndecision = 0;
+    IP.last_root = -1;
+    if (!images) IP.n[IP.cur ^ 1] = 0;  // no stale previous frame once the option comes back
     run(dl);
+    IP.mode = 0;
+    if (images) { ip_match(); IP.dl = dl; }
+    rdp_end();
     trace_end(dl);
+    if (stats) {
+        clock_gettime(CLOCK_MONOTONIC, &end);
+        double now = end.tv_sec + end.tv_nsec * 1e-9;
+        double ms = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) * 1e-6;
+        if (!window) window = start.tv_sec + start.tv_nsec * 1e-9;
+        total += ms; tasks++;
+        if (ms > peak) peak = ms;
+        if (now - window >= 5) {
+            fprintf(stderr, "render: scale=%d tasks/s=%.1f mean=%.2fms max=%.2fms\n",
+                    rdp_scale(), tasks / (now - window), total / tasks, peak);
+            if (IP.frames)
+                fprintf(stderr, "interp: frames=%u matrices/frame=%.0f matched=%.1f%% desyncs=%u\n", IP.frames,
+                        (double)IP.events / IP.frames, IP.events ? 100.0 * IP.matched / IP.events : 0.0, IP.desyncs);
+            IP.frames = IP.events = IP.matched = IP.desyncs = 0;
+            window = now; tasks = 0; total = peak = 0;
+        }
+    }
+    if (images && rdp_gpu()) {  // GPU passes are quick: in the task, on the thread that owns the context
+        if (rdp_interp_post(images)) ip_passes(images);
+    } else if (images) {
+        pthread_once(&worker_once, ip_start);
+        rdp_interp_post(images);  // nothing when the task drew no VI image: its record is dropped
+    }
 }
 
 static void run(u32 dl) {
@@ -318,11 +517,11 @@ static void run(u32 dl) {
         if (!g) { fprintf(stderr, "bt_native gsp: display list at 0x%08x outside memory\n", pc); return; }
         u32 w0 = be32(g), w1 = be32(g + 4), op = w0 >> 24;
         pc += 8;
-        if (trace_left > 0) trace_ops[op]++;
-        if (trace_left > 0 && getenv("BT_GFX_DUMP")) fprintf(stderr, "    %08x [%d]: %08x %08x\n", pc - 8, sp, w0, w1);
+        if (tracing()) trace_ops[op]++;
+        if (tracing() && getenv("BT_GFX_DUMP")) fprintf(stderr, "    %08x [%d]: %08x %08x\n", pc - 8, sp, w0, w1);
         switch (op) {
         case 0x00: case 0xE0: case 0xD3: case 0xD4: case 0xD5: case 0xD6: case 0xDD: break;
-        case 0x01: { int n = w0 >> 12 & 0xFF; load_vertices(seg_addr(w1), n, (int)(w0 >> 1 & 0x7F) - n); break; }
+        case 0x01: { int n = w0 >> 12 & 0xFF; ip_anchor(w1); load_vertices(seg_addr(w1), n, (int)(w0 >> 1 & 0x7F) - n); break; }
         case 0x02: {  // modify vertex
             int i = (w0 & 0xFFFF) / 2, where = w0 >> 16 & 0xFF;
             if (i >= MAX_VTX) break;
@@ -330,13 +529,15 @@ static void run(u32 dl) {
             else if (where == 0x14) { S.v[i].s = (s16)(w1 >> 16); S.v[i].t = (s16)w1; }
             break;
         }
-        case 0x03: if (culled((w0 & 0xFFFF) / 2, (w1 & 0xFFFF) / 2)) goto end_dl; break;
+        case 0x03: if (ip_decide(culled((w0 & 0xFFFF) / 2, (w1 & 0xFFFF) / 2))) goto end_dl; break;
         case 0x04: {  // branch if the vertex is nearer than w1
             int i = (w0 & 0xFFF) / 2;
+            int near = 0;
             if (i < MAX_VTX && S.v[i].w > 1e-6f) {
                 float z = (S.v[i].z / S.v[i].w * S.vscale[2] + S.vtrans[2]) * 32.0f;
-                if (z <= (float)(s32)w1 || S.v[i].clip & CLIP_W) pc = seg_addr(S.half1);
+                near = z <= (float)(s32)w1 || S.v[i].clip & CLIP_W;
             }
+            if (ip_decide(near)) pc = seg_addr(S.half1);
             break;
         }
         case 0x05: triangle((w0 >> 16 & 0xFF) / 2, (w0 >> 8 & 0xFF) / 2, (w0 & 0xFF) / 2); break;
@@ -358,10 +559,11 @@ static void run(u32 dl) {
             break;
         }
         case 0xD9: S.geom = (S.geom & (w0 | 0xFF000000)) | w1; break;
-        case 0xDA: matrix(w0, w1); break;
+        case 0xDA: matrix(w0, w1, pc - 8); break;
         case 0xDB: moveword(w0, w1); break;
         case 0xDC: movemem(w0, w1); break;
         case 0xDE:
+            ip_anchor(w1);
             if (!(w0 >> 16 & 0xFF)) {
                 if (sp >= DL_DEPTH) { fprintf(stderr, "bt_native gsp: display list stack overflow\n"); return; }
                 stack[sp++] = pc;
@@ -389,7 +591,7 @@ static void run(u32 dl) {
             break;
         }
         case 0xFD: case 0xFE: case 0xFF:
-            if (trace_left > 0 && op != 0xFD) fprintf(stderr, "  %s %08x width %u\n", op == 0xFF ? "cimg" : "zimg", seg_addr(w1), (w0 & 0xFFF) + 1);
+            if (tracing() && op != 0xFD) fprintf(stderr, "  %s %08x width %u\n", op == 0xFF ? "cimg" : "zimg", seg_addr(w1), (w0 & 0xFFF) + 1);
             rdp_command(w0, seg_addr(w1));
             break;
         default:

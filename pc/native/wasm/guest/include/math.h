@@ -23,6 +23,7 @@ double round(double);
 float fminf(float, float);
 float fmaxf(float, float);
 float copysignf(float, float);
+float nearbyintf(float);
 float sinf(float);
 float cosf(float);
 float tanf(float);

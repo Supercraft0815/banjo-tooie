@@ -3,10 +3,24 @@
 // shortcut: no coverage/anti-aliasing, dithering or chroma key; the blender treats
 // memory coverage as full. Upgrade when an effect visibly depends on them.
 #include <math.h>
+#include <pthread.h>
+#include <stdatomic.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include <unistd.h>
 #include "rdp.h"
+
+static int gpu_enabled(void);
+static void gpu_begin(void), gpu_end(void), gpu_resolve_address(u32 address);
+static void gpu_register(u32 address, int width, int widescreen);
+static void pool_task(int on);
+static int gpu_mask_load(void);
+static void gpu_mask_touch(u32 address);
+static void gpu_finish(void);  // the last task's GPU output is in RDRAM and scanout
+static int gpu_done_later(u32 event);
+static int load_tile_tile;  // the tile of the load_tile in progress, for gpu_mask_load
 
 typedef struct {
     int fmt, siz, line, tmem, pal, cms, cmt, masks, maskt, shifts, shiftt;
@@ -38,20 +52,41 @@ static struct {
     u8 tmem[4096];
     int tex_tile, tex_levels;
     u8 rgb[2][4], alpha[2][4];  // combiner source indices per cycle: a, b, c, d
+    // GPU renderer: TMEM bytes a load took from the GPU's CI8 image (gpu_mask_load) hold record + 1
+    // here and stale bytes in tmem until the record is replayed from RDRAM (gpu_mask_materialize).
+    u8 tsrc[4096];
+    struct { u32 timg; int width, x0, y0, w, h, tmem, line, bytes; u32 uid; } trec[8];
+    int tsrc_live;  // owned bytes of all records
 } R = {.sc_x1 = 320 << 2, .sc_y1 = 240 << 2, .cimg_width = 320, .cimg_siz = 2};
 
+// The in-between worker reads a snapshot of game memory taken after the real pass (rdp_interp_post),
+// so the game can run on meanwhile; game memory is the first 16 MB (statics, heap arena, stacks).
+#define SNAP_LIMIT (16u << 20)
+static _Thread_local const u8 *snap_mem;
 static u8 *gptr(u32 addr, u32 n) {
+    if (snap_mem) return addr >= 0x80000000u && (u64)addr - 0x80000000u + n <= SNAP_LIMIT ? (u8 *)snap_mem + (addr - 0x80000000u) : NULL;
     return addr >= 0x80000000u && (u64)addr + n <= bt_inst.w2c_memory.size ? bt_mem + addr : NULL;
 }
+const u8 *rdp_mem(u32 addr, u32 n) { return gptr(addr, n); }
 static inline u16 rd16(const u8 *p) { return (u16)(p[0] << 8 | p[1]); }
 static inline void wr16(u8 *p, u32 v) { p[0] = (u8)(v >> 8); p[1] = (u8)v; }
 static inline int clamp8(int v) { return v < 0 ? 0 : v > 255 ? 255 : v; }
+// Every TMEM write of a load: the byte is valid in R.tmem from now on.
+static inline void tmem_put(u32 a, u8 v) {
+    a &= 0xFFF;
+    R.tmem[a] = v;
+    if (R.tsrc[a]) { R.trec[R.tsrc[a] - 1].bytes--; R.tsrc_live--; R.tsrc[a] = 0; }
+}
+static u64 texture_epoch = 1;
+static u64 tmem_gen = 1, state_gen = 1;  // GPU renderer: TMEM loads; any RDP state change
 
-void rdp_set_texture(int tile, int levels) { R.tex_tile = tile & 7; R.tex_levels = levels & 7; }
+void rdp_set_texture(int tile, int levels) { R.tex_tile = tile & 7; R.tex_levels = levels & 7; state_gen++; }
 
 void rdp_othermode(int high, u32 mask, u32 value) {
     u32 *m = high ? &R.om_h : &R.om_l;
+    state_gen++;
     *m = (*m & ~mask) | (value & mask);
+    if (high && (mask & 0xC000)) texture_epoch++;
 }
 
 // ---- Depth: 18-bit values stored as 3-bit exponent + 11-bit mantissa (+ 2 bits dz).
@@ -69,13 +104,284 @@ static void rgba16(u32 v, int *o) {
     int r = v >> 11 & 31, g = v >> 6 & 31, b = v >> 1 & 31;
     o[0] = r << 3 | r >> 2; o[1] = g << 3 | g >> 2; o[2] = b << 3 | b >> 2; o[3] = v & 1 ? 255 : 0;
 }
+
+// Only VI-registered color images are enlarged. Offscreen images stay in RDRAM.
+// Depth is keyed by its own RDRAM address: BT shares one Z image between color images.
+typedef struct {
+    u32 address;
+    int width, height, sx, sy, dirty, changed;  // sx, sy: the scale the data was allocated for
+    u8 *data, *resolved;
+} Frame;
+static Frame frames[3], depth;
+static int scaled_depth_row;
+static pthread_mutex_t frame_lock = PTHREAD_MUTEX_INITIALIZER;
+static pthread_mutex_t scanout_lock = PTHREAD_MUTEX_INITIALIZER;
+static struct { u32 address, *pixels; int width, height, sx, sy; unsigned tex; } scanout[3];  // tex: rdp_frame_texture
+// Frame interpolation: in-between pictures of a task's scanout image, rasterized from its display
+// list into host buffers (ip.color, ip.z). Guest memory, the RDP state and the noise sequence stay
+// as the real pass left them, so the game never sees these passes.
+static u32 vi_fbs[3];  // the color images the VI showed last, at every scale
+static struct {
+    int armed, on;      // in-between images wanted this task; a pass is rasterizing
+    u32 address;        // the task's scanout image (0: none drawn)
+    u8 *pre;            // its content before the task drew into it
+    size_t bytes;
+    u32 noise;          // the real pass's noise state, restored after an in-between pass
+    Frame color, z;     // targets at the render scale; color.address = address
+} ip;
+static struct { u32 address, *pixels; int width, height, sx, sy, valid; unsigned tex; } ip_out[3];
+static void interp_target(void);
+void rdp_interp_wait(void);
+static pthread_once_t scale_once = PTHREAD_ONCE_INIT;
+// render_scale is the vertical factor; render_sx the horizontal one. They differ in the game's
+// anamorphic widescreen mode, where 304 guest columns stand for a 16:9 picture.
+static int render_scale = 1, render_sx = 1;
+static _Atomic int requested_scale;  // from the settings menu; applied between tasks
+
+static void scale_init(void) {
+    const char *s = getenv("BT_SCALE");
+    if (s && (strlen(s) != 1 || s[0] < '1' || s[0] > '0' + RDP_MAX_SCALE))
+        bt_fatal("BT_SCALE must be 1 to %d", RDP_MAX_SCALE);
+    if (s) render_scale = render_sx = atoi(s);
+}
+
+int rdp_scale(void) { pthread_once(&scale_once, scale_init); return render_scale; }
+void rdp_request_scale(int scale) { if (scale >= 1 && scale <= RDP_MAX_SCALE) atomic_store(&requested_scale, scale); }
+
+static void frame_init(Frame *f, u32 address, int width) {
+    int height = width * 3 / 4, sx = render_sx, sy = rdp_scale();
+    if (f->address == address && f->width == width && f->sx == sx && f->sy == sy) return;
+    free(f->data); free(f->resolved);
+    *f = (Frame){.address = address, .width = width, .height = height, .sx = sx, .sy = sy, .changed = 1};
+    f->data = calloc((size_t)width * height * sx * sy, 2);
+    f->resolved = calloc((size_t)width * height, 2);
+    if (!f->data || !f->resolved) bt_fatal("allocating scaled framebuffer");
+}
+
+// Import CPU writes (clears, pause/transition copies), retaining untouched subpixels.
+static void frame_import(Frame *f) {
+    int sx = render_sx, sy = render_scale;
+    u8 *src = gptr(f->address, f->width * f->height * 2);
+    if (!src) return;
+    if (!memcmp(src, f->resolved, (size_t)f->width * f->height * 2)) return;
+    for (int y = 0; y < f->height; y++) for (int x = 0; x < f->width; x++) {
+        int i = (y * f->width + x) * 2;
+        if (rd16(src + i) == rd16(f->resolved + i)) continue;
+        f->changed = 1;
+        for (int ry = 0; ry < sy; ry++) for (int rx = 0; rx < sx; rx++)
+            wr16(f->data + ((y * sy + ry) * f->width * sx + x * sx + rx) * 2, rd16(src + i));
+    }
+    memcpy(f->resolved, src, (size_t)f->width * f->height * 2);
+}
+
+static void frame_publish(Frame *f) {
+    int slot = (int)(f - frames), n = f->width * f->height * render_sx * render_scale;
+    pthread_mutex_lock(&scanout_lock);
+    if (scanout[slot].width != f->width || scanout[slot].height != f->height || scanout[slot].sx != render_sx ||
+        scanout[slot].sy != render_scale) {
+        free(scanout[slot].pixels);
+        scanout[slot].pixels = malloc((size_t)n * sizeof(u32));
+        if (!scanout[slot].pixels) bt_fatal("allocating scanout image");
+    }
+    scanout[slot].address = f->address;
+    scanout[slot].width = f->width; scanout[slot].height = f->height;
+    scanout[slot].sx = render_sx; scanout[slot].sy = render_scale;
+    for (int p = 0; p < n; p++) {
+        int c[4]; rgba16(rd16(f->data + p * 2), c);
+        scanout[slot].pixels[p] = 0xFF000000u | c[0] << 16 | c[1] << 8 | c[2];
+    }
+    pthread_mutex_unlock(&scanout_lock);
+    f->changed = 0;
+}
+
+static void frame_resolve(Frame *f);
+
+// A new scale from the menu: hi-res content goes down to RDRAM, then frames start over from it.
+static void rescale(int scale) {
+    for (int i = 0; i < 4; i++) frame_resolve(i == 3 ? &depth : &frames[i]);
+    for (int i = 0; i < 4; i++) {
+        Frame *f = i == 3 ? &depth : &frames[i];
+        free(f->data); free(f->resolved);
+        *f = (Frame){0};
+    }
+    pthread_mutex_lock(&scanout_lock);
+    for (int i = 0; i < 3; i++) scanout[i].address = 0;  // scale 1 shows RDRAM directly
+    pthread_mutex_unlock(&scanout_lock);
+    render_scale = render_sx = scale;
+}
+
+void rdp_register_framebuffer(u32 address, int width, int widescreen) {
+    static unsigned replace_slot;
+    int want = atomic_exchange(&requested_scale, 0);
+    if (want && want != rdp_scale()) {
+        rdp_interp_wait();
+        pthread_mutex_lock(&frame_lock);  // no task runs while it is held
+        rescale(want);
+        pthread_mutex_unlock(&frame_lock);
+    }
+    pthread_mutex_lock(&frame_lock);
+    if (vi_fbs[0] != address && vi_fbs[1] != address && vi_fbs[2] != address) {
+        vi_fbs[2] = vi_fbs[1]; vi_fbs[1] = vi_fbs[0]; vi_fbs[0] = address;
+    }
+    if (gpu_enabled()) gpu_register(address, width, widescreen);
+    pthread_mutex_unlock(&frame_lock);
+    if (gpu_enabled() || rdp_scale() == 1 || width < 16 || width > 640 || !gptr(address, width * (width * 3 / 4) * 2)) return;
+    int sx = widescreen ? (render_scale * 4 + 1) / 3 : render_scale;  // nearest to 4:3 more columns
+    if (sx != render_sx) rdp_interp_wait();
+    pthread_mutex_lock(&frame_lock);  // no task runs while it is held
+    if (sx != render_sx) {
+        for (int i = 0; i < 3; i++) frame_resolve(&frames[i]);
+        frame_resolve(&depth);
+        render_sx = sx;
+        for (int i = 0; i < 3; i++) if (frames[i].address) frame_init(&frames[i], frames[i].address, frames[i].width);
+        if (depth.address) frame_init(&depth, depth.address, depth.width);
+        for (int i = 0; i < 3; i++) if (frames[i].address) frame_import(&frames[i]);
+        if (depth.address) frame_import(&depth);
+    }
+    int slot = -1;
+    for (int i = 0; i < 3; i++) {
+        if (frames[i].address == address) { slot = i; break; }
+        if (!frames[i].address) slot = i;
+    }
+    if (slot < 0) slot = (int)(replace_slot++ % 3);
+    frame_init(&frames[slot], address, width);
+    frame_import(&frames[slot]);
+    if (frames[slot].changed) frame_publish(&frames[slot]);
+    pthread_mutex_unlock(&frame_lock);
+}
+
+static Frame *color_frame(void) {
+    if (ip.on) {  // only the scanout image and the depth clear; other images are not drawn
+        if (R.cimg_siz == 2 && R.cimg == ip.address && R.cimg_width == ip.color.width) return &ip.color;
+        if (R.cimg == R.zimg && R.cimg_width == ip.z.width && (R.om_h >> 20 & 3) == 3 && R.fill == 0xFFFCFFFC) return &ip.z;
+        return NULL;
+    }
+    if (render_scale == 1 || R.cimg_siz != 2) return NULL;
+    for (int i = 0; i < 3; i++) {
+        Frame *f = &frames[i];
+        if (f->address == R.cimg && f->width == R.cimg_width) return f;
+    }
+    // BT also borrows Z memory as a color-copy target. Only its depth clear is enlarged;
+    // color copies into that address must retain their RGBA16 bytes in RDRAM.
+    if (R.cimg == R.zimg && depth.address == R.cimg && depth.width == R.cimg_width &&
+        (R.om_h >> 20 & 3) == 3 && R.fill == 0xFFFCFFFC) return &depth;
+    return NULL;
+}
+
+static int target_sx(void) { Frame *f = color_frame(); return f ? f->sx : 1; }
+static int target_sy(void) { Frame *f = color_frame(); return f ? f->sy : 1; }
+
+typedef struct { Frame *f; u8 *dst; int rows; } ResolveJob;
+static void resolve_band(const void *job, int band, u32 *noise);
+static void pool_for(void (*fn)(const void *, int, u32 *), const void *job, int bands);
+
+static void frame_resolve(Frame *f) {
+    if (!f->dirty) return;
+    u8 *dst = gptr(f->address, f->width * f->height * 2);
+    if (!dst) return;
+    ResolveJob job = {f, dst, 8};
+    pool_for(resolve_band, &job, (f->height + job.rows - 1) / job.rows);
+    memcpy(f->resolved, dst, (size_t)f->width * f->height * 2);
+    f->dirty = 0;
+}
+
+static void resolve_band(const void *job, int band, u32 *noise) {
+    const ResolveJob *j = job;
+    Frame *f = j->f;
+    u8 *dst = j->dst;
+    int sx = render_sx, sy = render_scale, n = sx * sy, y1 = (band + 1) * j->rows < f->height ? (band + 1) * j->rows : f->height;
+    (void)noise;
+    for (int y = band * j->rows; y < y1; y++) for (int x = 0; x < f->width; x++) {
+        u32 sum[4] = {0}, z = 0;
+        for (int ry = 0; ry < sy; ry++) for (int rx = 0; rx < sx; rx++) {
+            u32 v = rd16(f->data + ((y * sy + ry) * f->width * sx + x * sx + rx) * 2);
+            if (f == &depth) z += z_decompress(v >> 2);
+            else { sum[0] += v >> 11; sum[1] += v >> 6 & 31; sum[2] += v >> 1 & 31; sum[3] += v & 1; }
+        }
+        u32 v = f == &depth ? z_compress(z / n) << 2 :
+            (sum[0] / n) << 11 | (sum[1] / n) << 6 | (sum[2] / n) << 1 | (sum[3] * 2 >= (u32)n);
+        wr16(dst + (y * f->width + x) * 2, v);
+    }
+}
+
+static void resolve_all(void) {
+    for (int i = 0; i < 3; i++) frame_resolve(&frames[i]);
+    frame_resolve(&depth);
+}
+
+static void resolve_texture(u32 address) {
+    if (ip.on) return;  // RDRAM holds the real pass, resolved before the in-between passes
+    if (gpu_enabled()) { gpu_resolve_address(address); return; }
+    for (int i = 0; i < 4; i++) {
+        Frame *f = i == 3 ? &depth : &frames[i];
+        if (f->address && address >= f->address && (u64)address < (u64)f->address + f->width * f->height * 2)
+            frame_resolve(f);
+    }
+}
+
+static typeof(R) task_state, real_state;
+void rdp_begin(void) {
+    rdp_scale();
+    rdp_interp_wait();  // the previous picture's in-between passes use the same RDP state
+    pthread_mutex_lock(&frame_lock);
+    ip.armed = 0;
+    ip.address = 0;
+    gpu_begin();
+    pool_task(1);
+    for (int i = 0; i < 3; i++) if (frames[i].address) frame_import(&frames[i]);
+    if (depth.address) frame_import(&depth);
+}
+
+void rdp_end(void) {
+    gpu_end();
+    if (ip.armed) gpu_finish();  // in-between passes start from the state the task leaves
+    // Publish only complete tasks; the window never waits for a full raster pass.
+    for (int i = 0; i < 3; i++) if (frames[i].changed) { gpu_finish(); frame_publish(&frames[i]); }
+    resolve_all();  // still on the pool
+    pool_task(0);
+    pthread_mutex_unlock(&frame_lock);
+}
+
+int rdp_done_later(u32 event) { return gpu_done_later(event); }
+
+int rdp_frame(u32 address, int width, int height, u32 *pixels, int *sx) {
+    int scale = 0;
+    pthread_mutex_lock(&scanout_lock);
+    for (int i = 0; i < 3; i++) {
+        if (!address || scanout[i].address != address || width != scanout[i].width || height != scanout[i].height) continue;
+        if (!scanout[i].pixels) continue;  // the picture is a texture only (rdp_frame_texture)
+        scale = scanout[i].sy;
+        *sx = scanout[i].sx;
+        memcpy(pixels, scanout[i].pixels, (size_t)width * height * *sx * scale * sizeof(u32));
+        break;
+    }
+    pthread_mutex_unlock(&scanout_lock);
+    return scale;
+}
+
+unsigned rdp_frame_texture(u32 address, int width, int height, int index, int *sx, int *sy) {
+    unsigned tex = 0;
+    if (!address) return 0;
+    pthread_mutex_lock(&scanout_lock);
+    if (index >= 0 && index < 3 && ip_out[index].valid && ip_out[index].tex && ip_out[index].address == address &&
+        ip_out[index].width == width && ip_out[index].height == height) {
+        tex = ip_out[index].tex; *sx = ip_out[index].sx; *sy = ip_out[index].sy;
+    }
+    for (int i = 0; i < 3 && !tex; i++) {
+        if (scanout[i].address != address || !scanout[i].tex || width != scanout[i].width || height != scanout[i].height) continue;
+        tex = scanout[i].tex; *sx = scanout[i].sx; *sy = scanout[i].sy;
+    }
+    pthread_mutex_unlock(&scanout_lock);
+    return tex;
+}
 static void palette(int index, int *o) {
     const u8 *p = R.tmem + 0x800 + (index & 255) * 8;
     u32 v = rd16(p);
     if ((R.om_h >> 14 & 3) == 3) { o[0] = o[1] = o[2] = v >> 8; o[3] = v & 255; }  // IA16 lookup table
     else rgba16(v, o);
 }
-static void texel(const Tile *tl, int s, int t, int *o) {
+// Keep the decode slow path out of the inlined per-pixel cache lookup.
+static __attribute__((noinline)) void decode_texel(const Tile *tl, int s, int t, int *o) {
     const u8 *m = R.tmem;
     int base = tl->tmem * 8 + t * tl->line * 8, x = t & 1 ? 4 : 0, tlut = R.om_h >> 15 & 1;
     switch (tl->siz) {
@@ -108,6 +414,17 @@ static void texel(const Tile *tl, int s, int t, int *o) {
     }
     }
 }
+static inline __attribute__((always_inline)) void texel(const Tile *tl, int s, int t, int *o) {
+    // Adjacent high-resolution fragments repeatedly filter the same four N64 texels.
+    static _Thread_local struct { u64 epoch; int s, t, color[4]; } cache[8][1024];  // per raster thread
+    unsigned slot = ((unsigned)s + (unsigned)t * 32) & 1023;
+    __typeof__(cache[0][0]) *c = &cache[tl - R.tile][slot];
+    if (c->epoch != texture_epoch || c->s != s || c->t != t) {
+        decode_texel(tl, s, t, c->color);
+        c->s = s; c->t = t; c->epoch = texture_epoch;
+    }
+    memcpy(o, c->color, sizeof c->color);
+}
 static int wrap(int c, int cm, int mask, int max) {
     if ((cm & 2) || !mask) c = c < 0 ? 0 : c > max ? max : c;
     if (mask) {
@@ -119,7 +436,7 @@ static int wrap(int c, int cm, int mask, int max) {
 static float shifted(float v, int sh) { return sh == 0 ? v : sh < 11 ? v / (float)(1 << sh) : v * (float)(1 << (16 - sh)); }
 
 // s, t in texels before the tile's shift.
-static void sample(int index, float s, float t, int filter, int *o) {
+static void sample(int index, float s, float t, int filter, int *restrict o) {
     const Tile *tl = &R.tile[index & 7];
     int ms = (tl->lrs - tl->uls) >> 2, mt = (tl->lrt - tl->ult) >> 2;
     s = shifted(s, tl->shifts) - tl->uls * 0.25f;
@@ -154,22 +471,58 @@ static void write_pixel(u8 *p, const int *c) {
 static int pixel_bytes(void) { return R.cimg_siz == 3 ? 4 : R.cimg_siz == 2 ? 2 : 1; }
 
 // ---- Pixel pipeline
+static u32 noise_state = 1;
+
+// GPU renderer, 8-bit images (the player shadow's mask, rdp_gl.h gpu_mask_defer): while `on`, pixels
+// whose depth test needs Z memory are not tested here but kept as fragments in draw order (with any
+// pixel drawn after them); the GPU tests them against its depth (gpu_mask_compose) or the CPU does after
+// a readback (gpu_mask_finalize). Raster, depth values and shading stay exactly these of rdp.c.
+typedef struct { u32 off, z, zdz; u16 value; u8 ztest, decal; } MaskFrag;  // ztest: 0 no, 1 yes, 2 yes but no write
+static struct {
+    int on;  // the current draw
+    u32 base; int width, height; u8 *bp;
+    MaskFrag *f; int n, cap;
+    u32 noise;  // noise steps of fragments that pass, owed to noise_state
+} mdefer;
+static void mask_frag(u8 *cp, u32 z, u32 zdz, int ztest, int value) {
+    if (mdefer.n == mdefer.cap && !(mdefer.f = realloc(mdefer.f, (size_t)(mdefer.cap = mdefer.cap * 2 + 1024) * sizeof *mdefer.f)))
+        bt_fatal("allocating mask fragments");
+    mdefer.f[mdefer.n++] = (MaskFrag){(u32)(cp - mdefer.bp), z, zdz, (u16)value, (u8)ztest, (u8)((R.om_l >> 10 & 3) == 3)};
+}
 typedef struct {
     int src[C_N][4];
     int cycles;  // 1 or 2
+    int texture0, texture1;
+    u32 *noise;  // the combiner's noise generator: the global one, or a band's own (worker threads)
 } Pipe;
 
 static void pipe_begin(Pipe *p) {
     memset(p->src, 0, sizeof p->src);
+    p->noise = &noise_state;
     for (int i = 0; i < 4; i++) {
         p->src[C_PRIM][i] = R.prim[i]; p->src[C_ENV][i] = R.env[i]; p->src[C_ONE][i] = 256;
         p->src[C_PRIM_A][i] = R.prim[3]; p->src[C_ENV_A][i] = R.env[3]; p->src[C_PLOD][i] = R.prim_lod;
         p->src[C_K4][i] = R.k4; p->src[C_K5][i] = R.k5;
     }
     p->cycles = (R.om_h >> 20 & 3) == 1 ? 2 : 1;
+    p->texture0 = p->texture1 = 0;
+    for (int cycle = p->cycles == 2 ? 0 : 1; cycle < 2; cycle++) for (int i = 0; i < 4; i++) {
+        int rgb = R.rgb[cycle][i], alpha = R.alpha[cycle][i];
+        p->texture0 |= rgb == C_T0 || rgb == C_T0_A || alpha == C_T0 || alpha == C_T0_A;
+        p->texture1 |= rgb == C_T1 || rgb == C_T1_A || alpha == C_T1 || alpha == C_T1_A;
+    }
 }
 
-static void combine(Pipe *p, int cycle, int *out) {
+static int depth_pass(const u8 *zp, u32 z, u32 zdz) {
+    u32 cz = z_compress(z), oz = z_decompress(rd16(zp) >> 2), zq = z_decompress(cz);
+    if ((R.om_l >> 10 & 3) == 3) {
+        u32 tol = zdz + (1u << Z_SHIFT[cz >> 11]) * 2;
+        return zq <= oz + tol && zq + tol >= oz;
+    }
+    return zq <= oz;
+}
+
+static void combine(Pipe *restrict p, int cycle, int *restrict out) {
     const u8 *c = R.rgb[cycle], *a = R.alpha[cycle];
     for (int i = 0; i < 3; i++)
         out[i] = clamp8((((p->src[c[0]][i] - p->src[c[1]][i]) * p->src[c[2]][i] + 0x80) >> 8) + p->src[c[3]][i]);
@@ -177,7 +530,7 @@ static void combine(Pipe *p, int cycle, int *out) {
 }
 
 // Blends color in (alpha in[3]) with memory for one blender cycle (0 or 1).
-static void blend(int cycle, const int *in, int shade_a, const int *mem, int *out) {
+static inline __attribute__((always_inline)) void blend(int cycle, const int *in, int shade_a, const int *mem, int *out) {
     u32 bl = R.om_l >> 16;
     int ps = bl >> (cycle ? 12 : 14) & 3, as = bl >> (cycle ? 8 : 10) & 3;
     int ms = bl >> (cycle ? 4 : 6) & 3, bs = bl >> (cycle ? 0 : 2) & 3;
@@ -190,10 +543,12 @@ static void blend(int cycle, const int *in, int shade_a, const int *mem, int *ou
 }
 
 // Shades and writes one pixel. z is in 18-bit units, zdz its tolerance; zon = depth test allowed.
-static void pixel(Pipe *p, u8 *cp, u8 *zp, u32 z, u32 zdz, int zon) {
+static inline __attribute__((always_inline)) void pixel(Pipe *restrict p, u8 *cp, u8 *zp, u32 z, u32 zdz, int zon) {
     u32 oml = R.om_l;
     u32 cz = 0;
-    if (zon && zp && (oml & 0x10)) {  // Z_CMP
+    int defer = 0;
+    if (zon && zp && (oml & 0x10) && mdefer.on) defer = 1;  // tested later (mask_frag)
+    else if (zon && zp && (oml & 0x10)) {  // Z_CMP
         cz = z_compress(z);
         u32 oz = z_decompress(rd16(zp) >> 2), zq = z_decompress(cz);
         if ((oml >> 10 & 3) == 3) {  // decal: equal within the slope
@@ -202,8 +557,7 @@ static void pixel(Pipe *p, u8 *cp, u8 *zp, u32 z, u32 zdz, int zon) {
         } else if (zq > oz) return;
     }
     int *comb = p->src[C_COMB], out[4];
-    static u32 noise = 1;
-    noise = noise * 1664525u + 1013904223u;
+    u32 noise = defer ? *p->noise : (*p->noise = *p->noise * 1664525u + 1013904223u);  // defer: no noise in the combiner
     for (int i = 0; i < 4; i++) p->src[C_NOISE][i] = noise >> 24;
     combine(p, p->cycles == 2 ? 0 : 1, out);
     if (p->cycles == 2) {
@@ -211,8 +565,11 @@ static void pixel(Pipe *p, u8 *cp, u8 *zp, u32 z, u32 zdz, int zon) {
         for (int i = 0; i < 4; i++) p->src[C_COMB_A][i] = out[3];
         combine(p, 1, out);
     }
-    if ((oml & 3) == 1 && out[3] < R.blend[3]) return;  // alpha compare against the blend alpha
-    if ((oml & 0x2000) && !(oml & 0x4000) && out[3] < ((oml & 0x1000) ? 128 : 8)) return;  // alpha as coverage
+    if (((oml & 3) == 1 && out[3] < R.blend[3]) ||  // alpha compare against the blend alpha
+        ((oml & 0x2000) && !(oml & 0x4000) && out[3] < ((oml & 0x1000) ? 128 : 8))) {  // alpha as coverage
+        if (defer) mask_frag(cp, z, zdz, 2, 0);  // no write, but its noise step if it passes
+        return;
+    }
     int mem[4] = {0, 0, 0, 255}, res[4];
     read_pixel(cp, mem);
     if (p->cycles == 2) {
@@ -228,8 +585,12 @@ static void pixel(Pipe *p, u8 *cp, u8 *zp, u32 z, u32 zdz, int zon) {
         memcpy(res, P, sizeof res);
         res[3] = out[3];
     }
+    if (mdefer.on && (defer || mdefer.n)) { mask_frag(cp, z, zdz, defer, res[0]); return; }  // 8-bit image, no Z update
     write_pixel(cp, res);
-    if (zon && zp && (oml & 0x20)) wr16(zp, (cz ? cz : z_compress(z)) << 2);  // Z_UPD
+    if (zon && zp && (oml & 0x20)) {  // Z_UPD
+        wr16(zp, (cz ? cz : z_compress(z)) << 2);
+        if (scaled_depth_row) depth.dirty = 1;
+    }
 }
 
 static void set_inputs(Pipe *p, const int *shade, const int *t0, const int *t1, int lod) {
@@ -242,6 +603,25 @@ static void set_inputs(Pipe *p, const int *shade, const int *t0, const int *t1, 
 }
 
 static int row_ptrs(int y, u8 **cp, u8 **zp) {
+    scaled_depth_row = 0;
+    Frame *f = color_frame();
+    if (ip.on) {
+        if (!f) return 0;
+        *cp = f->data + (size_t)y * f->width * f->sx * 2;
+        *zp = f == &ip.z ? NULL : ip.z.data + (size_t)y * f->width * f->sx * 2;
+        return 1;
+    }
+    if (f) {
+        f->dirty = f->changed = 1;
+        *cp = f->data + (size_t)y * f->width * render_sx * 2;
+        *zp = NULL;
+        if (f != &depth && depth.address == R.zimg && depth.width == f->width && depth.sx == render_sx) {
+            *zp = depth.data + (size_t)y * f->width * render_sx * 2;
+            scaled_depth_row = 1;
+        }
+        return 1;
+    }
+    if (R.cimg == depth.address) frame_resolve(&depth);
     int bpp = pixel_bytes();
     *cp = gptr(R.cimg + (u32)(y * R.cimg_width) * bpp, (u32)R.cimg_width * bpp);
     *zp = R.zimg ? gptr(R.zimg + (u32)(y * R.cimg_width) * 2, (u32)R.cimg_width * 2) : NULL;
@@ -249,8 +629,12 @@ static int row_ptrs(int y, u8 **cp, u8 **zp) {
 }
 
 static void clip_rect(int *x0, int *y0, int *x1, int *y1) {
-    int sx0 = R.sc_x0 >> 2, sy0 = R.sc_y0 >> 2, sx1 = R.sc_x1 >> 2, sy1 = R.sc_y1 >> 2;
-    if (sx1 > R.cimg_width) sx1 = R.cimg_width;
+    int kx = target_sx(), ky = target_sy();
+    int sx0 = R.sc_x0 * kx >> 2, sy0 = R.sc_y0 * ky >> 2;
+    int sx1 = R.sc_x1 * kx >> 2, sy1 = R.sc_y1 * ky >> 2;
+    if (sx1 > R.cimg_width * kx) sx1 = R.cimg_width * kx;
+    Frame *f = color_frame();
+    if (f && sy1 > f->height * ky) sy1 = f->height * ky;
     if (*x0 < sx0) *x0 = sx0;
     if (*y0 < sy0) *y0 = sy0;
     if (*x1 > sx1) *x1 = sx1;
@@ -258,23 +642,42 @@ static void clip_rect(int *x0, int *y0, int *x1, int *y1) {
 }
 
 // ---- Rectangles
+#include "rdp_gl.h"
+
+typedef struct { int x0, x1, y0, y1, kx, bpp, rows; } FillJob;
+static void fill_band(const void *job, int band, u32 *noise) {
+    const FillJob *j = job;
+    int ya = j->y0 + band * j->rows, yb = ya + j->rows < j->y1 ? ya + j->rows : j->y1, bpp = j->bpp;
+    (void)noise;
+    for (int y = ya; y < yb; y++) {
+        u8 *cp, *zp;
+        if (!row_ptrs(y, &cp, &zp)) continue;
+        for (int x = j->x0; x < j->x1; x++) {
+            u8 *d = cp + x * bpp;
+            if (bpp == 4) { d[0] = (u8)(R.fill >> 24); d[1] = (u8)(R.fill >> 16); d[2] = (u8)(R.fill >> 8); d[3] = (u8)R.fill; }
+            else if (bpp == 2) wr16(d, (x / j->kx) & 1 ? R.fill & 0xFFFF : R.fill >> 16);
+            else d[0] = (u8)(R.fill >> (24 - 8 * (x & 3)));
+        }
+    }
+}
+
 static void fill_rect(int ulx, int uly, int lrx, int lry) {
+    if (gpu_fill(ulx, uly, lrx, lry)) return;
+    int kx = target_sx(), ky = target_sy();
     int cyc = R.om_h >> 20 & 3, bpp = pixel_bytes();
-    int x0 = ulx >> 2, y0 = uly >> 2, x1, y1;
-    if (cyc >= 2) { x1 = (lrx >> 2) + 1; y1 = (lry >> 2) + 1; }  // fill/copy: inclusive
-    else { x1 = (lrx + 3) >> 2; y1 = (lry + 3) >> 2; }
+    int x0 = ulx * kx >> 2, y0 = uly * ky >> 2, x1, y1;
+    if (cyc >= 2) { x1 = ((lrx >> 2) + 1) * kx; y1 = ((lry >> 2) + 1) * ky; }  // fill/copy: inclusive
+    else { x1 = (lrx * kx + 3) >> 2; y1 = (lry * ky + 3) >> 2; }
     clip_rect(&x0, &y0, &x1, &y1);
+    if (cyc == 3) {  // fill mode: plain stores, in bands on the pool
+        FillJob job = {x0, x1, y0, y1, kx, bpp, 8};
+        if (y1 > y0) pool_for(fill_band, &job, (y1 - y0 + job.rows - 1) / job.rows);
+        return;
+    }
     for (int y = y0; y < y1; y++) {
         u8 *cp, *zp;
         if (!row_ptrs(y, &cp, &zp)) continue;
-        if (cyc == 3) {
-            for (int x = x0; x < x1; x++) {
-                u8 *d = cp + x * bpp;
-                if (bpp == 4) { d[0] = (u8)(R.fill >> 24); d[1] = (u8)(R.fill >> 16); d[2] = (u8)(R.fill >> 8); d[3] = (u8)R.fill; }
-                else if (bpp == 2) wr16(d, x & 1 ? R.fill & 0xFFFF : R.fill >> 16);
-                else d[0] = (u8)(R.fill >> (24 - 8 * (x & 3)));
-            }
-        } else {
+        {
             Pipe p;
             int zero[4] = {0};
             pipe_begin(&p);
@@ -286,13 +689,16 @@ static void fill_rect(int ulx, int uly, int lrx, int lry) {
 }
 
 void rdp_texrect(u32 w0, u32 w1, u32 st, u32 dsdt, int flip) {
+    if (gpu_texrect(w0, w1, st, dsdt, flip)) return;
+    int kx = target_sx(), ky = target_sy();
     int xh = w0 >> 12 & 0xFFF, yh = w0 & 0xFFF, tile = w1 >> 24 & 7, xl = w1 >> 12 & 0xFFF, yl = w1 & 0xFFF;
     int cyc = R.om_h >> 20 & 3, bpp = pixel_bytes();
     float s0 = (s16)(st >> 16) / 32.0f, t0 = (s16)st / 32.0f;
     float dsdx = (s16)(dsdt >> 16) / 1024.0f, dtdy = (s16)dsdt / 1024.0f;
-    int x0 = xl >> 2, y0 = yl >> 2, x1, y1;
-    if (cyc >= 2) { x1 = (xh >> 2) + 1; y1 = (yh >> 2) + 1; dsdx /= 4; }
-    else { x1 = (xh + 3) >> 2; y1 = (yh + 3) >> 2; }
+    int x0 = xl * kx >> 2, y0 = yl * ky >> 2, x1, y1;
+    if (cyc >= 2) { x1 = ((xh >> 2) + 1) * kx; y1 = ((yh >> 2) + 1) * ky; dsdx /= 4; }
+    else { x1 = (xh * kx + 3) >> 2; y1 = (yh * ky + 3) >> 2; }
+    dsdx /= kx; dtdy /= ky;
     int cx0 = x0, cy0 = y0;
     clip_rect(&x0, &y0, &x1, &y1);
     int filter = cyc < 2 && (R.om_h >> 12 & 3) != 0;
@@ -323,11 +729,206 @@ void rdp_texrect(u32 w0, u32 w1, u32 st, u32 dsdt, int flip) {
 // ---- Triangles
 enum { A_Z, A_W, A_S, A_T, A_R, A_G, A_B, A_A, NA };
 
+// One triangle after setup: everything its row loop reads, so bands of rows can run on several
+// threads.
+typedef struct {
+    int bx0, bx1, by0, by1, bpp, persp, tex, lod_on, filter, zon, dbg;
+    float x0, y0, ea[3], eb[3], ec[3], f0[NA], dx[NA], dy[NA];
+    u32 zdz;
+    u8 *cp0, *zp0;  // row by0 of a scaled frame, rows are stride bytes apart; NULL: row_ptrs per row
+    size_t stride;
+} Tri;
+
+static void tri_rows(const Tri *tr, int ya, int yb, u32 *noise) {
+    const float *ea = tr->ea, *eb = tr->eb, *ec = tr->ec, *dx = tr->dx, *dy = tr->dy;
+    const float (*f)[NA] = (const float (*)[NA])tr->f0;
+    float x0 = tr->x0, y0 = tr->y0;
+    int bx0 = tr->bx0, bx1 = tr->bx1, bpp = tr->bpp, persp = tr->persp, tex = tr->tex, lod_on = tr->lod_on;
+    int filter = tr->filter, zon = tr->zon, dbg = tr->dbg;
+    u32 zdz = tr->zdz;
+    Pipe p;
+    pipe_begin(&p);
+    if (noise) p.noise = noise;
+    for (int y = ya; y < yb; y++) {
+        u8 *cp, *zp;
+        if (tr->cp0) {
+            cp = tr->cp0 + (size_t)(y - tr->by0) * tr->stride;
+            zp = tr->zp0 ? tr->zp0 + (size_t)(y - tr->by0) * tr->stride : NULL;
+        } else if (!row_ptrs(y, &cp, &zp)) continue;
+        float py = y + 0.5f;
+        for (int x = bx0; x < bx1; x++) {
+            float px = x + 0.5f;
+            int in = 1;
+            for (int i = 0; i < 3 && in; i++) {
+                float e = ea[i] * px + eb[i] * py + ec[i];
+                in = e > 0 || (e == 0 && (ea[i] > 0 || (ea[i] == 0 && eb[i] > 0)));
+            }
+            if (!in) continue;
+            float ox = px - x0, oy = py - y0, a[NA];
+            for (int k = 0; k < NA; k++) a[k] = f[0][k] + dx[k] * ox + dy[k] * oy;
+            u32 z = (R.om_l >> 2 & 1) ? R.prim_z : a[A_Z] <= 0 ? 0 : a[A_Z] >= 0x3FFFF ? 0x3FFFF : (u32)a[A_Z];
+            // Reject hidden fragments before perspective division, filtering and shading.
+            if (dbg != 2 && zon && zp && (R.om_l & 0x10) && !mdefer.on && !depth_pass(zp + x * 2, z, zdz)) continue;
+            int shade[4], t0[4] = {0}, t1[4] = {0}, lod = 0;
+            for (int k = 0; k < 4; k++) shade[k] = clamp8((int)a[A_R + k]);
+            if (tex && (p.texture0 || p.texture1 || lod_on || dbg)) {
+                float w = a[A_W] > 1e-9f ? 1.0f / a[A_W] : 1e9f;
+                float s = (persp ? a[A_S] * w : a[A_S]) / 32.0f, t = (persp ? a[A_T] * w : a[A_T]) / 32.0f;
+                int t0i = R.tex_tile, t1i = R.tex_tile + 1;
+                if (lod_on) {
+                    float dsx = persp ? (dx[A_S] - s * 32 * dx[A_W]) * w : dx[A_S];
+                    float dtx = persp ? (dx[A_T] - t * 32 * dx[A_W]) * w : dx[A_T];
+                    float dsy = persp ? (dy[A_S] - s * 32 * dy[A_W]) * w : dy[A_S];
+                    float dty = persp ? (dy[A_T] - t * 32 * dy[A_W]) * w : dy[A_T];
+                    float l = fmaxf(fmaxf(fabsf(dsx), fabsf(dtx)), fmaxf(fabsf(dsy), fabsf(dty))) / 32.0f;
+                    if (l >= 1.0f) {
+                        int lv = (int)log2f(l);
+                        if (lv >= R.tex_levels) { lv = R.tex_levels; lod = 255; }
+                        else lod = clamp8((int)((l / (float)(1 << lv) - 1.0f) * 256));
+                        t0i = R.tex_tile + lv;
+                        t1i = R.tex_tile + (lv < R.tex_levels ? lv + 1 : lv);
+                    }
+                }
+                if (p.texture0 || (p.texture1 && p.cycles == 1) || dbg) sample(t0i, s, t, filter, t0);
+                if (p.texture1 || dbg) {
+                    if (p.cycles == 2) sample(t1i, s, t, filter, t1); else memcpy(t1, t0, sizeof t0);
+                }
+            }
+            {
+              if (dbg == 1) { for (int k = 0; k < 4; k++) t0[k] = t1[k] = 255; }
+              if (dbg == 2) { memcpy(shade, t0, sizeof t0); shade[3] = 255; for (int k = 0; k < 4; k++) t1[k] = 255; R.rgb[0][0]=R.rgb[1][0]=C_SHADE; R.rgb[0][1]=R.rgb[1][1]=C_ZERO; R.rgb[0][2]=R.rgb[1][2]=C_ONE; R.rgb[0][3]=R.rgb[1][3]=C_ZERO; }
+            }
+            set_inputs(&p, shade, t0, t1, lod);
+            pixel(&p, cp + x * bpp, zp ? zp + x * 2 : NULL, z, zdz, zon);
+        }
+    }
+}
+
+// ---- Raster threads (BT_SCALE > 1): the rows of a large triangle are shaded on several cores.
+// The workers spin between triangles while a task runs (waking a sleeping thread costs more than
+// most triangles) and sleep between tasks. BT_THREADS=n sets their number including the caller;
+// 1 turns them off. BT_SCALE=1 always rasterizes on the caller: it is the bit-exact reference.
+#if defined(__aarch64__)
+#define cpu_relax() __asm__ volatile("yield")
+#elif defined(__x86_64__) || defined(__i386__)
+#define cpu_relax() __builtin_ia32_pause()
+#else
+#define cpu_relax() ((void)0)
+#endif
+static struct {
+    pthread_mutex_t lock;
+    pthread_cond_t wake;
+    int nthreads, started;
+    _Atomic int active, left;  // a task is running; bands of the current triangle not finished
+    _Atomic int sleepers;      // workers waiting on wake for a job
+    _Atomic u64 state;         // job number << 32 | next band << 16 | bands: claimed with one CAS
+    void (*fn)(const void *job, int band, u32 *noise);
+    const void *job;
+    u32 seed;
+} pool = {.lock = PTHREAD_MUTEX_INITIALIZER, .wake = PTHREAD_COND_INITIALIZER};
+
+static void pool_bands(void) {
+    for (;;) {
+        u64 st = atomic_load(&pool.state);
+        int band = (int)(st >> 16 & 0xFFFF), bands = (int)(st & 0xFFFF);
+        if (band >= bands) return;
+        if (!atomic_compare_exchange_weak(&pool.state, &st, st + 0x10000)) continue;
+        u32 noise = pool.seed + (u32)band * 0x9E3779B9u;
+        pool.fn(pool.job, band, &noise);  // published before the state that let this band be claimed
+        atomic_fetch_sub(&pool.left, 1);
+    }
+}
+
+static int pool_pending(void) {
+    u64 st = atomic_load(&pool.state);
+    return (int)(st >> 16 & 0xFFFF) < (int)(st & 0xFFFF);
+}
+
+// Workers spin up to 200 us for the next job (triangles of one task come in quick succession), then
+// sleep, so idle raster threads leave the cores to the game, audio and in-between threads.
+static void *pool_worker(void *unused) {
+    (void)unused;
+    for (;;) {
+        struct timespec t0, t;
+        clock_gettime(CLOCK_MONOTONIC, &t0);
+        for (int spin = 1; !pool_pending(); spin++) {
+            cpu_relax();
+            if (spin % 256) continue;
+            clock_gettime(CLOCK_MONOTONIC, &t);
+            if ((t.tv_sec - t0.tv_sec) * 1000000000L + (t.tv_nsec - t0.tv_nsec) > 200000) break;
+        }
+        if (!pool_pending()) {
+            pthread_mutex_lock(&pool.lock);
+            atomic_fetch_add(&pool.sleepers, 1);
+            while (!pool_pending()) pthread_cond_wait(&pool.wake, &pool.lock);
+            atomic_fetch_sub(&pool.sleepers, 1);
+            pthread_mutex_unlock(&pool.lock);
+        }
+        pool_bands();
+    }
+}
+
+static void pool_task(int on) {
+    if (on && !pool.started && render_scale > 1 && !gpu_enabled()) {  // scale 1 rasterizes on the caller
+        const char *e = getenv("BT_THREADS");
+        long n = e ? atol(e) : sysconf(_SC_NPROCESSORS_ONLN) - 2;
+        pool.nthreads = render_scale == 1 || n < 2 ? 1 : n > 8 ? 8 : (int)n;
+        pool.started = 1;
+        for (int i = 1; i < pool.nthreads; i++) {
+            pthread_t t;
+            if (pthread_create(&t, NULL, pool_worker, NULL) != 0) { pool.nthreads = i; break; }
+            pthread_detach(t);
+        }
+    }
+    if (pool.nthreads < 2) return;
+    atomic_store(&pool.active, on);
+}
+
+// Runs fn for bands 0..bands-1 on the pool, the caller included; serially outside a task.
+static void pool_for(void (*fn)(const void *, int, u32 *), const void *job, int bands) {
+    if (pool.nthreads < 2 || !atomic_load(&pool.active) || bands < 2) {
+        for (int b = 0; b < bands; b++) fn(job, b, NULL);
+        return;
+    }
+    pool.fn = fn;
+    pool.job = job;
+    pool.seed = noise_state;
+    atomic_store(&pool.left, bands);
+    atomic_store(&pool.state, ((atomic_load(&pool.state) >> 32) + 1) << 32 | (u64)bands);
+    if (atomic_load(&pool.sleepers)) {  // seq_cst: a worker counted after this load sees the new state
+        pthread_mutex_lock(&pool.lock);
+        pthread_cond_broadcast(&pool.wake);
+        pthread_mutex_unlock(&pool.lock);
+    }
+    pool_bands();  // the caller takes bands too
+    while (atomic_load(&pool.left)) cpu_relax();
+}
+
+typedef struct { const Tri *tr; int rows; } TriJob;
+static void tri_band(const void *job, int band, u32 *noise) {
+    const TriJob *j = job;
+    int ya = j->tr->by0 + band * j->rows, yb = ya + j->rows < j->tr->by1 ? ya + j->rows : j->tr->by1;
+    tri_rows(j->tr, ya, yb, noise);
+}
+
+static void pool_run(const Tri *tr) {
+    int rows = tr->by1 - tr->by0, bands = pool.nthreads * 4;
+    if (bands > rows / 4) bands = rows / 4;
+    TriJob job = {tr, (rows + bands - 1) / bands};
+    pool_for(tri_band, &job, (rows + job.rows - 1) / job.rows);
+    noise_state = noise_state * 1664525u + 1013904223u;
+}
+
 void rdp_triangle(const RdpVtx *va, const RdpVtx *vb, const RdpVtx *vc, int flags) {
+    if (gpu_triangle(va, vb, vc, flags)) return;
+    static int dbg = -1;
+    if (dbg < 0) dbg = getenv("BT_RDP_DEBUG") ? atoi(getenv("BT_RDP_DEBUG")) : 0;
     const RdpVtx *v[3] = {va, vb, vc};
     int cyc = R.om_h >> 20 & 3;
     if (cyc >= 2) return;
-    float x0 = va->x, y0 = va->y, x1 = vb->x, y1 = vb->y, x2 = vc->x, y2 = vc->y;
+    float kx = (float)target_sx(), ky = (float)target_sy();
+    float x0 = va->x * kx, y0 = va->y * ky, x1 = vb->x * kx, y1 = vb->y * ky;
+    float x2 = vc->x * kx, y2 = vc->y * ky;
     float area = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
     if (!(fabsf(area) > 1e-6f)) return;
     int persp = R.om_h >> 19 & 1, tex = flags & RDP_TEX, bpp = pixel_bytes();
@@ -361,57 +962,21 @@ void rdp_triangle(const RdpVtx *va, const RdpVtx *vb, const RdpVtx *vc, int flag
     }
     int lod_on = tex && (R.om_h >> 16 & 1), filter = (R.om_h >> 12 & 3) != 0, zon = (flags & RDP_Z) != 0;
     u32 zdz = (u32)(fabsf(dx[A_Z]) + fabsf(dy[A_Z]));
-    Pipe p;
-    pipe_begin(&p);
-    for (int y = by0; y < by1; y++) {
-        u8 *cp, *zp;
-        if (!row_ptrs(y, &cp, &zp)) continue;
-        float py = y + 0.5f;
-        for (int x = bx0; x < bx1; x++) {
-            float px = x + 0.5f;
-            int in = 1;
-            for (int i = 0; i < 3 && in; i++) {
-                float e = ea[i] * px + eb[i] * py + ec[i];
-                in = e > 0 || (e == 0 && (ea[i] > 0 || (ea[i] == 0 && eb[i] > 0)));
-            }
-            if (!in) continue;
-            float ox = px - x0, oy = py - y0, a[NA];
-            for (int k = 0; k < NA; k++) a[k] = f[0][k] + dx[k] * ox + dy[k] * oy;
-            int shade[4], t0[4] = {0}, t1[4] = {0}, lod = 0;
-            for (int k = 0; k < 4; k++) shade[k] = clamp8((int)a[A_R + k]);
-            if (tex) {
-                float w = a[A_W] > 1e-9f ? 1.0f / a[A_W] : 1e9f;
-                float s = (persp ? a[A_S] * w : a[A_S]) / 32.0f, t = (persp ? a[A_T] * w : a[A_T]) / 32.0f;
-                int t0i = R.tex_tile, t1i = R.tex_tile + 1;
-                if (lod_on) {
-                    float dsx = persp ? (dx[A_S] - s * 32 * dx[A_W]) * w : dx[A_S];
-                    float dtx = persp ? (dx[A_T] - t * 32 * dx[A_W]) * w : dx[A_T];
-                    float dsy = persp ? (dy[A_S] - s * 32 * dy[A_W]) * w : dy[A_S];
-                    float dty = persp ? (dy[A_T] - t * 32 * dy[A_W]) * w : dy[A_T];
-                    float l = fmaxf(fmaxf(fabsf(dsx), fabsf(dtx)), fmaxf(fabsf(dsy), fabsf(dty))) / 32.0f;
-                    if (l >= 1.0f) {
-                        int lv = (int)log2f(l);
-                        if (lv >= R.tex_levels) { lv = R.tex_levels; lod = 255; }
-                        else lod = clamp8((int)((l / (float)(1 << lv) - 1.0f) * 256));
-                        t0i = R.tex_tile + lv;
-                        t1i = R.tex_tile + (lv < R.tex_levels ? lv + 1 : lv);
-                    }
-                }
-                sample(t0i, s, t, filter, t0);
-                if (p.cycles == 2) sample(t1i, s, t, filter, t1); else memcpy(t1, t0, sizeof t0);
-            }
-            { static int dbg = -1; if (dbg < 0) dbg = getenv("BT_RDP_DEBUG") ? atoi(getenv("BT_RDP_DEBUG")) : 0;
-              if (dbg == 1) { for (int k = 0; k < 4; k++) t0[k] = t1[k] = 255; }
-              if (dbg == 2) { memcpy(shade, t0, sizeof t0); shade[3] = 255; for (int k = 0; k < 4; k++) t1[k] = 255; R.rgb[0][0]=R.rgb[1][0]=C_SHADE; R.rgb[0][1]=R.rgb[1][1]=C_ZERO; R.rgb[0][2]=R.rgb[1][2]=C_ONE; R.rgb[0][3]=R.rgb[1][3]=C_ZERO; }
-            }
-            set_inputs(&p, shade, t0, t1, lod);
-            u32 z = (R.om_l >> 2 & 1) ? R.prim_z : a[A_Z] <= 0 ? 0 : a[A_Z] >= 0x3FFFF ? 0x3FFFF : (u32)a[A_Z];
-            pixel(&p, cp + x * bpp, zp ? zp + x * 2 : NULL, z, zdz, zon);
-        }
+    Tri tr = {.bx0 = bx0, .bx1 = bx1, .by0 = by0, .by1 = by1, .bpp = bpp, .persp = persp, .tex = tex,
+              .lod_on = lod_on, .filter = filter, .zon = zon, .dbg = dbg, .x0 = x0, .y0 = y0, .zdz = zdz};
+    memcpy(tr.ea, ea, sizeof ea); memcpy(tr.eb, eb, sizeof eb); memcpy(tr.ec, ec, sizeof ec);
+    memcpy(tr.f0, f[0], sizeof tr.f0); memcpy(tr.dx, dx, sizeof dx); memcpy(tr.dy, dy, sizeof dy);
+    Frame *fr = color_frame();
+    if (pool.nthreads > 1 && fr && !dbg && by1 - by0 >= 8 && (long)(bx1 - bx0) * (by1 - by0) >= 2048 &&
+        row_ptrs(by0, &tr.cp0, &tr.zp0)) {
+        tr.stride = (size_t)fr->width * fr->sx * 2;
+        pool_run(&tr);
+        return;
     }
+    tr.cp0 = tr.zp0 = NULL;
+    tri_rows(&tr, by0, by1, NULL);
 }
 
-// ---- Commands
 static void set_combine(u32 w0, u32 w1) {
     R.rgb[0][0] = SEL_A[w0 >> 20 & 15]; R.rgb[0][2] = SEL_C[w0 >> 15 & 31];
     R.alpha[0][0] = SEL_AA[w0 >> 12 & 7]; R.alpha[0][2] = SEL_AC[w0 >> 9 & 7];
@@ -425,6 +990,10 @@ static void set_combine(u32 w0, u32 w1) {
 static void color(int *c, u32 w) { c[0] = w >> 24; c[1] = w >> 16 & 255; c[2] = w >> 8 & 255; c[3] = w & 255; }
 
 static void load_block(u32 w0, u32 w1) {
+    texture_epoch++;
+    tmem_gen++;
+    resolve_texture(R.timg);
+    gpu_mask_touch(R.timg);
     Tile *tl = &R.tile[w1 >> 24 & 7];
     int uls = w0 >> 12 & 0xFFF, ult = w0 & 0xFFF, lrs = w1 >> 12 & 0xFFF, dxt = w1 & 0xFFF, siz = R.timg_siz;
     tl->uls = uls << 2; tl->ult = ult << 2; tl->lrs = lrs << 2; tl->lrt = dxt << 2;
@@ -436,17 +1005,23 @@ static void load_block(u32 w0, u32 w1) {
         if (!s) break;
         if (siz == 3) {
             u32 a = ((tm + w * 4) ^ x) & 0x7FF;
-            R.tmem[a] = s[0]; R.tmem[a + 1] = s[1]; R.tmem[a + 2] = s[4]; R.tmem[a + 3] = s[5];
-            R.tmem[a | 0x800] = s[2]; R.tmem[(a + 1) | 0x800] = s[3]; R.tmem[(a + 2) | 0x800] = s[6]; R.tmem[(a + 3) | 0x800] = s[7];
+            tmem_put(a, s[0]); tmem_put(a + 1, s[1]); tmem_put(a + 2, s[4]); tmem_put(a + 3, s[5]);
+            tmem_put(a | 0x800, s[2]); tmem_put((a + 1) | 0x800, s[3]); tmem_put((a + 2) | 0x800, s[6]); tmem_put((a + 3) | 0x800, s[7]);
         } else {
-            for (int i = 0; i < 8; i++) R.tmem[((tm + w * 8 + i) ^ x) & 0xFFF] = s[i];
+            for (int i = 0; i < 8; i++) tmem_put((tm + w * 8 + i) ^ x, s[i]);
         }
     }
 }
 
 static void load_tile(u32 w0, u32 w1) {
+    texture_epoch++;
+    tmem_gen++;
     Tile *tl = &R.tile[w1 >> 24 & 7];
     tl->uls = w0 >> 12 & 0xFFF; tl->ult = w0 & 0xFFF; tl->lrs = w1 >> 12 & 0xFFF; tl->lrt = w1 & 0xFFF;
+    load_tile_tile = w1 >> 24 & 7;
+    if (gpu_mask_load()) return;  // from the GPU's CI8 image: no RDRAM read, no sync
+    resolve_texture(R.timg);
+    gpu_mask_touch(R.timg);
     int sl = tl->uls >> 2, tt = tl->ult >> 2, sh = tl->lrs >> 2, th = tl->lrt >> 2, siz = R.timg_siz;
     int bpp = siz == 3 ? 4 : siz == 2 ? 2 : 1;
     for (int t = tt; t <= th; t++) {
@@ -457,35 +1032,40 @@ static void load_tile(u32 w0, u32 w1) {
         for (int i = 0; i <= sh - sl; i++) {
             if (siz == 3) {
                 u32 a = ((rb + i * 2) ^ x) & 0x7FF;
-                R.tmem[a] = s[i * 4]; R.tmem[a + 1] = s[i * 4 + 1];
-                R.tmem[a | 0x800] = s[i * 4 + 2]; R.tmem[(a + 1) | 0x800] = s[i * 4 + 3];
+                tmem_put(a, s[i * 4]); tmem_put(a + 1, s[i * 4 + 1]);
+                tmem_put(a | 0x800, s[i * 4 + 2]); tmem_put((a + 1) | 0x800, s[i * 4 + 3]);
             } else if (siz == 0) {
-                if (!(i & 1)) R.tmem[((rb + i / 2) ^ x) & 0xFFF] = s[i / 2];
+                if (!(i & 1)) tmem_put((rb + i / 2) ^ x, s[i / 2]);
             } else {
-                for (int b = 0; b < bpp; b++) R.tmem[((rb + i * bpp + b) ^ x) & 0xFFF] = s[i * bpp + b];
+                for (int b = 0; b < bpp; b++) tmem_put((rb + i * bpp + b) ^ x, s[i * bpp + b]);
             }
         }
     }
 }
 
 static void load_tlut(u32 w0, u32 w1) {
+    texture_epoch++;
+    tmem_gen++;
+    resolve_texture(R.timg);
+    gpu_mask_touch(R.timg);
     Tile *tl = &R.tile[w1 >> 24 & 7];
     int uls = w0 >> 12 & 0xFFF, lrs = w1 >> 12 & 0xFFF, n = (lrs >> 2) - (uls >> 2) + 1;
     u32 tm = (u32)tl->tmem * 8;
     const u8 *s = gptr(R.timg + (u32)(uls >> 2) * 2, (u32)(n > 0 ? n : 0) * 2);
     if (!s || n <= 0 || n > 256) return;
     for (int i = 0; i < n; i++)
-        for (int c = 0; c < 4; c++) { R.tmem[(tm + i * 8 + c * 2) & 0xFFF] = s[i * 2]; R.tmem[(tm + i * 8 + c * 2 + 1) & 0xFFF] = s[i * 2 + 1]; }
+        for (int c = 0; c < 4; c++) { tmem_put(tm + i * 8 + c * 2, s[i * 2]); tmem_put(tm + i * 8 + c * 2 + 1, s[i * 2 + 1]); }
 }
 
 void rdp_command(u32 w0, u32 w1) {
+    state_gen++;
     switch (w0 >> 24) {
     case 0xE6: case 0xE7: case 0xE8: case 0xE9: case 0x00: break;  // syncs, no-op
     case 0xEA: case 0xEB: break;  // chroma key
     case 0xEC: R.k4 = w1 >> 9 & 0x1FF; R.k5 = w1 & 0x1FF; break;
     case 0xED: R.sc_x0 = w0 >> 12 & 0xFFF; R.sc_y0 = w0 & 0xFFF; R.sc_x1 = w1 >> 12 & 0xFFF; R.sc_y1 = w1 & 0xFFF; break;
     case 0xEE: R.prim_z = (w1 >> 16 & 0x7FFF) << 3; break;
-    case 0xEF: R.om_h = w0 & 0x00FFFFFF; R.om_l = w1; break;
+    case 0xEF: R.om_h = w0 & 0x00FFFFFF; R.om_l = w1; texture_epoch++; break;
     case 0xF0: load_tlut(w0, w1); break;
     case 0xF2: {
         Tile *tl = &R.tile[w1 >> 24 & 7];
@@ -495,6 +1075,7 @@ void rdp_command(u32 w0, u32 w1) {
     case 0xF3: load_block(w0, w1); break;
     case 0xF4: load_tile(w0, w1); break;
     case 0xF5: {
+        texture_epoch++;
         Tile *tl = &R.tile[w1 >> 24 & 7];
         tl->fmt = w0 >> 21 & 7; tl->siz = w0 >> 19 & 3; tl->line = w0 >> 9 & 0x1FF; tl->tmem = w0 & 0x1FF;
         tl->pal = w1 >> 20 & 15; tl->cmt = w1 >> 18 & 3; tl->maskt = w1 >> 14 & 15; tl->shiftt = w1 >> 10 & 15;
@@ -508,12 +1089,178 @@ void rdp_command(u32 w0, u32 w1) {
     case 0xFA: color(R.prim, w1); R.prim_lod = w0 & 255; break;
     case 0xFB: color(R.env, w1); break;
     case 0xFC: set_combine(w0, w1); break;
-    case 0xFD: R.timg_fmt = w0 >> 21 & 7; R.timg_siz = w0 >> 19 & 3; R.timg_width = (w0 & 0xFFF) + 1; R.timg = w1; break;
-    case 0xFE: R.zimg = w1; break;
-    case 0xFF: R.cimg_siz = w0 >> 19 & 3; R.cimg_width = (w0 & 0xFFF) + 1; R.cimg = w1; break;
+    case 0xFD: resolve_texture(w1); R.timg_fmt = w0 >> 21 & 7; R.timg_siz = w0 >> 19 & 3; R.timg_width = (w0 & 0xFFF) + 1; R.timg = w1; break;
+    case 0xFE:
+        R.zimg = w1;
+        if (ip.on) break;
+        if (render_scale > 1) for (int i = 0; i < 3; i++) if (frames[i].address) {
+            frame_resolve(&depth);
+            frame_init(&depth, w1, frames[i].width);
+            frame_import(&depth);
+            break;
+        }
+        break;
+    case 0xFF:
+        if (!ip.on) {
+            resolve_all();
+            for (int i = 0; i < 3; i++) if (frames[i].address) frame_import(&frames[i]);
+            if (depth.address) frame_import(&depth);
+        }
+        R.cimg_siz = w0 >> 19 & 3; R.cimg_width = (w0 & 0xFFF) + 1; R.cimg = w1;
+        if (ip.armed && !ip.on && !ip.address) interp_target();
+        break;
     default: {
         static u8 seen[256];
         if (!seen[w0 >> 24]++) fprintf(stderr, "bt_native rdp: command %02x not handled\n", w0 >> 24);
     }
     }
+}
+
+// ---- Frame interpolation (see ip above). gsp.c arms a task, re-runs its display list once per
+// in-between image between rdp_interp_begin and rdp_interp_end, and video.c shows the results.
+void rdp_interp_arm(int images) {
+    ip.armed = images > 0;
+    if (ip.armed) { task_state = R; return; }
+    // No in-betweens this task (60 Hz, interval 1): older ones must not be shown for this framebuffer.
+    pthread_mutex_lock(&scanout_lock);
+    for (int i = 0; i < 3; i++) ip_out[i].valid = 0;
+    pthread_mutex_unlock(&scanout_lock);
+}
+
+static void interp_invalidate(void) {
+    pthread_mutex_lock(&scanout_lock);
+    for (int i = 0; i < 3; i++) if (ip_out[i].address == ip.address) ip_out[i].valid = 0;
+    pthread_mutex_unlock(&scanout_lock);
+}
+
+// The first VI image the task draws into: keep its content from before the task.
+static void interp_target(void) {
+    int w = R.cimg_width, h = w * 3 / 4;
+    if (R.cimg_siz != 2 || (R.cimg != vi_fbs[0] && R.cimg != vi_fbs[1] && R.cimg != vi_fbs[2])) return;
+    if (gpu_enabled()) {
+        gpu_interp_target();  // sets ip.address when the image is on the GPU
+        if (ip.address) interp_invalidate();
+        return;
+    }
+    Frame *f = color_frame();
+    u8 *src = f ? f->data : render_scale == 1 ? gptr(R.cimg, (u32)(w * h * 2)) : NULL;
+    if (!src) return;  // scaled but not yet registered: no picture to pair with
+    size_t bytes = (size_t)w * h * render_sx * render_scale * 2;
+    if (bytes != ip.bytes || ip.color.sx != render_sx || ip.color.sy != render_scale) {
+        free(ip.pre); free(ip.color.data); free(ip.z.data);
+        ip.pre = malloc(bytes); ip.color.data = malloc(bytes); ip.z.data = malloc(bytes);
+        if (!ip.pre || !ip.color.data || !ip.z.data) bt_fatal("allocating in-between images");
+        ip.bytes = bytes;
+    }
+    ip.color = (Frame){.address = R.cimg, .width = w, .height = h, .sx = render_sx, .sy = render_scale, .data = ip.color.data};
+    ip.z = (Frame){.width = w, .height = h, .sx = render_sx, .sy = render_scale, .data = ip.z.data};
+    memcpy(ip.pre, src, bytes);
+    ip.address = R.cimg;
+    interp_invalidate();
+}
+
+int rdp_interp_begin(void) {
+    if (!ip.armed || !ip.address) return 0;
+    real_state = R;
+    R = task_state;
+    state_gen++;
+    ip.noise = noise_state;
+    texture_epoch++;
+    if (gpu_enabled()) gpu_interp_begin();
+    else {
+        memcpy(ip.color.data, ip.pre, ip.bytes);
+        for (size_t i = 0; i < ip.bytes; i += 2) wr16(ip.z.data + i, 0xFFFC);
+    }
+    ip.on = 1;
+    return 1;
+}
+
+void rdp_interp_end(int index) {
+    if (index < 0 || index >= 3) bt_fatal("rdp_interp_end: index %d", index);
+    int w = ip.color.width, h = ip.color.height, sx = ip.color.sx, sy = ip.color.sy;
+    unsigned tex = 0;  // GPU with a window: the image is a texture, and picture stays NULL unless dumps need it
+    const u32 *picture = gpu_enabled() ? gpu_interp_end(index, &tex, &w, &h, &sx, &sy) : NULL;
+    ip.on = 0;
+    R = real_state;
+    state_gen++;
+    noise_state = ip.noise;
+    texture_epoch++;
+    int n = w * h * sx * sy;
+    pthread_mutex_lock(&scanout_lock);
+    if (tex && !picture) { free(ip_out[index].pixels); ip_out[index].pixels = NULL; }
+    else if (!ip_out[index].pixels || ip_out[index].width * ip_out[index].height * ip_out[index].sx * ip_out[index].sy != n) {
+        free(ip_out[index].pixels);
+        ip_out[index].pixels = malloc((size_t)n * sizeof(u32));
+        if (!ip_out[index].pixels) bt_fatal("allocating in-between image");
+    }
+    ip_out[index].address = ip.address;
+    ip_out[index].width = w; ip_out[index].height = h;
+    ip_out[index].sx = sx; ip_out[index].sy = sy;
+    ip_out[index].tex = tex;
+    if (picture) memcpy(ip_out[index].pixels, picture, (size_t)n * sizeof(u32));
+    else if (!tex) for (int i = 0; i < n; i++) {
+        int c[4]; rgba16(rd16(ip.color.data + i * 2), c);
+        ip_out[index].pixels[i] = 0xFF000000u | c[0] << 16 | c[1] << 8 | c[2];
+    }
+    ip_out[index].valid = 1;
+    pthread_mutex_unlock(&scanout_lock);
+}
+
+int rdp_interp_frame(u32 address, int width, int height, int index, u32 *pixels, int *sx) {
+    int scale = 0;
+    if (index < 0 || index >= 3) return 0;
+    pthread_mutex_lock(&scanout_lock);
+    if (address && ip_out[index].valid && ip_out[index].pixels && ip_out[index].address == address &&
+        ip_out[index].width == width && ip_out[index].height == height) {
+        scale = ip_out[index].sy;
+        *sx = ip_out[index].sx;
+        memcpy(pixels, ip_out[index].pixels, (size_t)width * height * *sx * scale * sizeof(u32));
+    }
+    pthread_mutex_unlock(&scanout_lock);
+    return scale;
+}
+
+// The in-between passes run on gsp.c's worker thread, one job per picture: posted by the game's
+// task after rdp_end, waited for by the next task (and by rescaling) before the RDP state is touched.
+static pthread_mutex_t job_lock = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t job_cond = PTHREAD_COND_INITIALIZER;
+static int job;  // in-between images posted and not finished
+static u8 *snap;
+
+void rdp_interp_wait(void) {
+    pthread_mutex_lock(&job_lock);
+    while (job) pthread_cond_wait(&job_cond, &job_lock);
+    pthread_mutex_unlock(&job_lock);
+}
+
+int rdp_interp_post(int images) {
+    if (!ip.armed || !ip.address || images <= 0) return 0;
+    if (gpu_enabled()) return 1;  // the task runs the passes itself (gsp.c)
+    u64 have = bt_inst.w2c_memory.size - 0x80000000u;
+    if (!snap && !(snap = calloc(1, SNAP_LIMIT))) bt_fatal("allocating the in-between snapshot");
+    memcpy(snap, bt_mem + 0x80000000u, have < SNAP_LIMIT ? (size_t)have : SNAP_LIMIT);
+    pthread_mutex_lock(&job_lock);
+    job = images;
+    pthread_cond_broadcast(&job_cond);
+    pthread_mutex_unlock(&job_lock);
+    return 1;
+}
+
+int rdp_interp_next(void) {
+    pthread_mutex_lock(&job_lock);
+    while (!job) pthread_cond_wait(&job_cond, &job_lock);
+    int images = job;
+    pthread_mutex_unlock(&job_lock);
+    snap_mem = snap;
+    pool_task(1);
+    return images;
+}
+
+void rdp_interp_done(void) {
+    pool_task(0);
+    snap_mem = NULL;
+    pthread_mutex_lock(&job_lock);
+    job = 0;
+    pthread_cond_broadcast(&job_cond);
+    pthread_mutex_unlock(&job_lock);
 }

@@ -11,6 +11,7 @@
 static SDL_AudioStream *_Atomic stream;
 static _Atomic u32 rate = 22050;
 static FILE *pcm;
+static u64 vclock_end;  // virtual clock: tick at which the audio handed over so far has played
 
 static SDL_AudioSpec spec(void) { return (SDL_AudioSpec){ SDL_AUDIO_S16, 2, (int)rate }; }
 
@@ -21,6 +22,11 @@ void bt_ai_open(void) {
     if (!st) { fprintf(stderr, "bt_native: no audio: %s\n", SDL_GetError()); return; }
     SDL_ResumeAudioStreamDevice(st);
     stream = st;
+    bt_ai_volume(bt_setting(BT_SET_VOLUME) / 10.0f);
+}
+
+void bt_ai_volume(float gain) {
+    if (stream) SDL_SetAudioStreamGain(stream, gain);
 }
 
 // The N64 rounds the rate to a whole divider of the video clock; the game synthesizes at the result.
@@ -43,6 +49,11 @@ void w2c_env_ai_buffer(struct w2c_env *env, u32 buf, u32 size) {
         fprintf(stderr, "bt_native: PCM s16le stereo %u Hz to %s\n", rate, getenv("BT_PCM"));
     }
     if (pcm) fwrite(out, 1, size, pcm);
+    if (bt_vclock_on) {
+        u64 now = bt_vclock_ticks();
+        if (vclock_end < now) vclock_end = now;
+        vclock_end += (u64)size / 4 * 46875000u / rate;
+    }
     // Faster than real time (BT_SPEED) the queue would only grow: drop beyond a quarter second
     // (rate frames * 4 bytes / 4).
     if (stream && SDL_GetAudioStreamQueued(stream) < (int)rate) SDL_PutAudioStreamData(stream, out, (int)size);
@@ -51,6 +62,10 @@ void w2c_env_ai_buffer(struct w2c_env *env, u32 buf, u32 size) {
 // Bytes left in the current AI buffer: what is queued beyond the device latency reserve.
 u32 w2c_env_ai_length(struct w2c_env *env) {
     (void)env;
+    if (bt_vclock_on) {  // playback follows the virtual clock, not the device
+        u64 now = bt_vclock_ticks();
+        return vclock_end > now ? (u32)((vclock_end - now) * rate / 46875000u) * 4 : 0;
+    }
     if (!stream) return 0;
     int q = SDL_GetAudioStreamQueued(stream) - LATENCY_BYTES;
     return q > 0 ? (u32)q & ~3u : 0;

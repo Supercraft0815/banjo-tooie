@@ -23,7 +23,7 @@ OSIntMask BT_HOST(osSetIntMask)(OSIntMask);
 u64 BT_HOST(osGetTime)(void);
 int BT_HOST(osSetTimer)(OSTimer *, u64, u64, OSMesgQueue *, OSMesg);
 int BT_HOST(osStopTimer)(OSTimer *);
-void BT_HOST(osInitialize)(void);
+void BT_HOST(osInitialize)(OSThread **);
 void BT_HOST(osViSetEvent)(OSMesgQueue *, OSMesg, u32);
 void BT_HOST(osViSetMode)(OSViMode *);
 void BT_HOST(osViBlack)(u32);
@@ -32,7 +32,10 @@ void *BT_HOST(osViGetCurrentFramebuffer)(void);
 void *BT_HOST(osViGetNextFramebuffer)(void);
 u32 BT_HOST(osViGetCurrentLine)(void);
 s32 BT_HOST(rom_read)(u32 dev, void *dst, u32 n);
-u32 BT_HOST(pad_read)(void); // buttons << 16 | (u8)stick_x << 8 | (u8)stick_y
+u32 BT_HOST(rom_inflate)(u32 dev, u32 n, void *dst); // used by func_80117248 (handwritten.c)
+u32 BT_HOST(pad_read)(u32 port); // buttons << 16 | (u8)stick_x << 8 | (u8)stick_y
+u32 BT_HOST(pad_mask)(void);      // bit n: controller n+1 is plugged in (bit 0 always)
+u32 BT_HOST(rumble)(u32 port, u32 on); // 1 when that controller can rumble; on = 2 only asks
 
 // Values libultra keeps in low memory (0x80000300..) on the N64.
 s32 osTvType = OS_TV_NTSC;
@@ -42,6 +45,9 @@ void *osRomBase = (void *)0xB0000000;
 u32 osMemSize = 0x800000;
 u32 osViClock = VI_NTSC_CLOCK;
 s32 osAppNMIBuffer[16];
+OSTime osClockRate = OS_CLOCK_RATE;
+OSThread *__osRunningThread, *__osFaultedThread;
+u8 __osContLastCmd;
 
 void osCreateThread(OSThread *t, OSId id, void (*entry)(void *), void *arg, void *sp, OSPri pri) { host_osCreateThread(t, id, entry, arg, sp, pri); }
 void osStartThread(OSThread *t) { host_osStartThread(t); }
@@ -76,7 +82,10 @@ u32 osGetCount(void) { return (u32)host_osGetTime(); }
 int osSetTimer(OSTimer *t, OSTime countdown, OSTime interval, OSMesgQueue *mq, OSMesg msg) { return host_osSetTimer(t, countdown, interval, mq, msg); }
 int osStopTimer(OSTimer *t) { return host_osStopTimer(t); }
 
-void osInitialize(void) { host_osInitialize(); }
+void osInitialize(void) {
+    osClockRate = OS_CPU_COUNTER;
+    host_osInitialize(&__osRunningThread);
+}
 u32 osGetMemSize(void) { return osMemSize; }
 
 // The host has coherent caches and no TLB.
@@ -95,7 +104,22 @@ void osViBlack(u8 black) { host_osViBlack(black); }
 void osViSetSpecialFeatures(u32 f) { (void)f; }
 void osViSetXScale(f32 s) { (void)s; }
 void osViSetYScale(f32 s) { (void)s; }
-void osViSwapBuffer(void *fb) { host_osViSwapBuffer(fb); }
+u32 BT_HOST(warp_poll)(void);
+u32 BT_HOST(widescreen_forced)(void);
+u32 BT_HOST(frame_interval)(u32 game);
+s32 bt_frame_interval(s32 game) { return (s32)host_frame_interval((u32)game); }
+u32 BT_HOST(camera_stick)(void);
+s32 bt_camera_stick(void) { return (s32)host_camera_stick(); }  // free camera stick: (u8)x | (u8)y << 8 (0: off)
+void _gcgoto_entrypoint_1(u32 map, u32 exit);
+void set_widescreen(s32 enabled);
+extern s16 widescreen_enabled;
+void osViSwapBuffer(void *fb) {
+    u32 w = host_warp_poll();  // BT_WARP: the game's own map change, asked for on the game thread
+    if (w) _gcgoto_entrypoint_1(w >> 8, w & 0xFF);
+    // BT_WIDESCREEN=1: the game's 16:9 mode without touching the saved option
+    if (!widescreen_enabled && host_widescreen_forced()) set_widescreen(1);
+    host_osViSwapBuffer(fb);
+}
 void *osViGetCurrentFramebuffer(void) { return host_osViGetCurrentFramebuffer(); }
 void *osViGetNextFramebuffer(void) { return host_osViGetNextFramebuffer(); }
 u32 osViGetCurrentLine(void) { return host_osViGetCurrentLine(); }
@@ -137,14 +161,16 @@ s32 osPiReadIo(u32 devAddr, u32 *data) {
     return 0;
 }
 
-// Serial interface: controller 1 from the host, the 16 Kbit EEPROM in a file.
+// Serial interface: up to four controllers from the host, the 16 Kbit EEPROM in a file.
 s32 osContInit(OSMesgQueue *mq, u8 *bitpattern, OSContStatus *status) {
+    u32 mask = host_pad_mask();
     (void)mq;
-    *bitpattern = 1;
+    *bitpattern = (u8)mask;
     for (int i = 0; i < MAXCONTROLLERS; i++) {
-        status[i].type = i == 0 ? CONT_TYPE_NORMAL : 0;
-        status[i].status = 0;
-        status[i].errno = i == 0 ? 0 : CONT_NO_RESPONSE_ERROR;
+        int on = mask >> i & 1;
+        status[i].type = on ? CONT_TYPE_NORMAL : 0;
+        status[i].status = on && host_rumble(i, 2) ? CONT_CARD_ON : 0;
+        status[i].errno = on ? 0 : CONT_NO_RESPONSE_ERROR;
     }
     return 0;
 }
@@ -153,29 +179,44 @@ s32 osContSetCh(u8 ch) { (void)ch; return 0; }
 
 s32 osContStartReadData(OSMesgQueue *mq) {
     (void)mq;
+    __osContLastCmd = 1; // CONT_CMD_READ_BUTTON
     host_event(OS_EVENT_SI); // the read completes at once, like the SI interrupt
     return 0;
 }
 
 void osContGetReadData(OSContPad *data) {
-    u32 pad = host_pad_read();
-    data[0].button = pad >> 16;
-    data[0].stick_x = (s8)(pad >> 8);
-    data[0].stick_y = (s8)pad;
-    data[0].errno = 0;
-    for (int i = 1; i < MAXCONTROLLERS; i++) {
-        data[i].button = 0;
-        data[i].stick_x = data[i].stick_y = 0;
-        data[i].errno = CONT_NO_RESPONSE_ERROR;
+    u32 mask = host_pad_mask();
+    for (int i = 0; i < MAXCONTROLLERS; i++) {
+        u32 pad = mask >> i & 1 ? host_pad_read(i) : 0;
+        data[i].button = pad >> 16;
+        data[i].stick_x = (s8)(pad >> 8);
+        data[i].stick_y = (s8)pad;
+        data[i].errno = mask >> i & 1 ? 0 : CONT_NO_RESPONSE_ERROR;
     }
 }
 
-s32 osPfsInit(OSMesgQueue *mq, OSPfs *pfs, int channel) { (void)mq; (void)pfs; (void)channel; return PFS_ERR_NOPACK; }
-s32 osMotorInit(OSMesgQueue *mq, OSPfs *pfs, int channel) { (void)mq; (void)pfs; (void)channel; return PFS_ERR_NOPACK; }
+// A gamepad that can rumble looks like a Rumble Pak: osPfsInit reports "wrong device type",
+// which makes the game try osMotorInit (src/core1/1E2FAF0.c).
+s32 osPfsInit(OSMesgQueue *mq, OSPfs *pfs, int channel) {
+    (void)mq; (void)pfs;
+    return host_rumble(channel, 2) ? PFS_ERR_DEVICE : PFS_ERR_NOPACK;
+}
+s32 osMotorInit(OSMesgQueue *mq, OSPfs *pfs, int channel) {
+    if (!host_rumble(channel, 2)) return PFS_ERR_NOPACK;
+    pfs->queue = mq;
+    pfs->channel = channel;
+    pfs->status = PFS_MOTOR_INITIALIZED;
+    return 0;
+}
+s32 __osMotorAccess(OSPfs *pfs, s32 flag) {
+    // Without an initialized pak libultra returns 5 (motor.c).
+    if (!(pfs->status & PFS_MOTOR_INITIALIZED)) return PFS_ERR_INVALID;
+    return host_rumble(pfs->channel, flag != 0) ? 0 : PFS_ERR_NOPACK;
+}
 
 #include "stdio.h"
 #define EEPROM_SIZE (EEP16K_MAXBLOCKS * EEPROM_BLOCK_SIZE)
-#define EEPROM_PATH "bt_eeprom.bin" // shortcut: save file in the working directory, move to a user data dir with the SDL frontend
+#define EEPROM_PATH "bt_eeprom.bin" // host/io.c maps it to the save location
 static u8 eeprom[EEPROM_SIZE];
 static int eeprom_loaded;
 

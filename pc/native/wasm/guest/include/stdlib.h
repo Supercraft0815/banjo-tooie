@@ -3,6 +3,10 @@
 #include <stddef.h>
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
+typedef struct { long quot, rem; } ldiv_t;
+typedef struct { long long quot, rem; } lldiv_t;
+ldiv_t ldiv(long, long);
+lldiv_t lldiv(long long, long long);
 void *malloc(size_t);
 void *calloc(size_t, size_t);
 void *realloc(void *, size_t);

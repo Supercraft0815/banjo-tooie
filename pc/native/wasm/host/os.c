@@ -33,17 +33,36 @@ typedef struct {
     pthread_t pt;
     pthread_cond_t cv;
     int started;
+    u32 spin_jumps;  // clock jumps its loop latches caused since its last OS call (hang watchdog)
 } HostThread;
 
 static HostThread threads[MAX_THREADS];
 static pthread_mutex_t big = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t intr; // held while a game thread masks interrupts
-static u32 running, ready;
+static u32 running, ready, running_global;
 static int booted, preempt;
 unsigned bt_preempt_flag;  // preempt, for the loop safepoints in the guest (BT_SAFEPOINT)
 static _Thread_local HostThread *self;
 static struct { u32 mq, msg; } events[OS_NUM_EVENTS];
 static struct timespec boot_time;
+static _Thread_local u32 current_mask = OS_IM_ALL;
+
+// BT_VCLOCK=1: virtual clock, so a BT_PRESS run repeats exactly. Time stands still while
+// guest code runs and jumps to the next VI retrace or timer once every thread waits; events
+// are then delivered by the thread that went idle, never by host threads. osGetTime advances
+// it by VCLOCK_POLL; VCLOCK_SPINS loop latches without an OS call count as a busy wait and
+// jump it to the next event. Windowed runs are paced to BT_SPEED x real time, headless ones
+// run as fast as the host allows.
+int bt_vclock_on;
+static u64 vnow, vi_due;
+static u32 spins;  // loop latches of the running thread since its last OS call
+static int in_isr, vclock_paced;
+#define VI_TICKS 782031ull  // 46.875 MHz / 59.94 Hz
+#define VCLOCK_POLL 47      // 1 us per time query
+#define VCLOCK_SPINS 100000
+static void vclock_idle(void);
+static void vclock_fire(void);
+static u64 next_event(void);
 
 // ILP32 OSThread: next 0, priority 4, queue 8, tlnext 12, u16 state 16, u16 flags 18, id 20.
 // A thread's next link is at its own address, a queue's head at the queue's (OSThread **).
@@ -82,10 +101,14 @@ static u32 pop(u32 q) {
     return t;
 }
 
+static int cpu_wanted(void) { return ready && pri(ready) > OS_PRIORITY_IDLE; }
+
 static void dispatch(void) {
-    running = ready && pri(ready) > OS_PRIORITY_IDLE ? pop(READY) : 0;
+    if (bt_vclock_on) vclock_idle();
+    running = cpu_wanted() ? pop(READY) : 0;
+    if (running_global) gw32(running_global, running);
     preempt = 0;
-    __atomic_store_n(&bt_preempt_flag, 0, __ATOMIC_RELAXED);
+    __atomic_store_n(&bt_preempt_flag, (unsigned)bt_vclock_on, __ATOMIC_RELAXED); // vclock counts every latch
     if (running) {
         set_state(running, OS_STATE_RUNNING);
         pthread_cond_signal(&host_of(running)->cv);
@@ -109,11 +132,18 @@ static void block_self(u32 q, u16 state) {
 
 // Every OS call from the guest starts here. The caller owns the CPU; a pending
 // preemption hands it to the higher-priority thread first.
+static void preempt_point(void) {
+    if (bt_vclock_on && current_mask != OS_IM_NONE && next_event() <= vnow) vclock_fire();
+    if ((preempt || bt_vclock_on) && ready && pri(ready) > pri(self->t)) block_self(0, OS_STATE_RUNNABLE);
+}
+
 static void enter(void) {
     pthread_mutex_lock(&big);
     if (!self) return; // boot context
     self->sp = BT_SP;
-    if (preempt && ready && pri(ready) > pri(self->t)) block_self(0, OS_STATE_RUNNABLE);
+    spins = 0;
+    self->spin_jumps = 0;
+    preempt_point();
 }
 
 static void leave(void) {
@@ -125,6 +155,7 @@ static void leave(void) {
 static void make_ready(u32 t) {
     set_state(t, OS_STATE_RUNNABLE);
     enqueue(READY, t);
+    if (in_isr) return; // vclock event delivery: the caller dispatches afterwards
     if (!running) {
         dispatch();
     } else if (pri(t) > pri(running)) {
@@ -187,6 +218,7 @@ void w2c_env_osStartThread(struct w2c_env *env, u32 t) {
             // boot context ends here, as on the N64 (it must not touch the guest stack again).
             booted = 1;
             running = t;
+            if (running_global) gw32(running_global, running);
             set_state(t, OS_STATE_RUNNING);
             pthread_cond_signal(&h->cv);
             leave();
@@ -352,8 +384,6 @@ void w2c_env_event(struct w2c_env *env, u32 e) {
 
 // Interrupt masking: a game thread that disables interrupts holds `intr`, so host
 // events wait until it restores them. The mutex is recursive for nested sections.
-static _Thread_local u32 current_mask = OS_IM_ALL;
-
 u32 w2c_env_osSetIntMask(struct w2c_env *env, u32 mask) {
     u32 old = current_mask;
     int was_off = old == OS_IM_NONE, off = mask == OS_IM_NONE;
@@ -368,7 +398,21 @@ u32 w2c_env_osSetIntMask(struct w2c_env *env, u32 mask) {
 void w2c_env_safepoint(struct w2c_env *env) {
     (void)env;
     if (current_mask == OS_IM_NONE) return;
-    enter();
+    if (bt_vclock_on && ++spins < VCLOCK_SPINS) return; // only the running thread counts
+    u32 jumps = self ? self->spin_jumps + 1 : 0;
+    enter();  // counts as an OS call: restore the count of clock jumps
+    if (bt_vclock_on && self) {
+        u64 d = next_event();
+        if (d > vnow) vnow = d;
+        // A thread that keeps looping across this many events without an OS call hangs; the
+        // virtual clock would otherwise run on to BT_EXIT_AFTER and the run would look fine.
+        if ((self->spin_jumps = jumps) > 1200 && pri(self->t) > 0) {  // priority 0: the idle thread
+            fprintf(stderr, "bt_native: guest thread (priority %d) loops without an OS call (hang)\n", (int)pri(self->t));
+            bt_backtrace();
+            abort();
+        }
+        preempt_point();
+    }
     leave();
 }
 
@@ -381,6 +425,7 @@ double bt_speed(void) {
 // Time runs at the N64 CPU counter rate (46.875 MHz = 3/64 per nanosecond).
 static u64 now_ticks(void) {
     struct timespec now;
+    if (bt_vclock_on) return vnow;
     clock_gettime(CLOCK_MONOTONIC, &now);
     u64 ns = (u64)(now.tv_sec - boot_time.tv_sec) * 1000000000ull + (u64)(now.tv_nsec - boot_time.tv_nsec);
     return (u64)(ns * bt_speed()) * 3 / 64;
@@ -388,10 +433,18 @@ static u64 now_ticks(void) {
 
 // Time queries are safe points for pending preemption, since games poll them in loops.
 u64 bt_os_time(void) {
+    u64 t;
     enter();
+    if (bt_vclock_on && self) {
+        vnow += VCLOCK_POLL;
+        preempt_point();
+    }
+    t = now_ticks();
     leave();
-    return now_ticks();
+    return t;
 }
+
+u64 bt_vclock_ticks(void) { return vnow; }  // read by the running guest thread
 
 u64 w2c_env_osGetTime(struct w2c_env *env) {
     (void)env;
@@ -443,14 +496,70 @@ u32 w2c_env_osStopTimer(struct w2c_env *env, u32 t) {
     return (u32)-1;
 }
 
+static u32 earliest_timer(void) {
+    u32 next = 0;
+    for (u32 i = timers; i; i = tm_next(i)) {
+        if (!next || tm_value(i) < tm_value(next)) next = i;
+    }
+    return next;
+}
+
+// Takes the timer's event and rearms or removes it.
+static void timer_expire(u32 t, u32 *mq, u32 *msg) {
+    *mq = gr32(t + 24);
+    *msg = gr32(t + 28);
+    if (gr64(t + 8)) gw64(t + 16, tm_value(t) + gr64(t + 8));
+    else timer_unlink(t);
+}
+
+static u64 next_event(void) {
+    u32 t = earliest_timer();
+    return t && tm_value(t) < vi_due ? tm_value(t) : vi_due;
+}
+
+// Delivers every event due at vnow in time order, as interrupts: woken threads only become ready.
+static void vclock_fire(void) {
+    in_isr = 1;
+    for (u64 d; (d = next_event()) <= vnow;) {
+        u32 mq, msg, t = earliest_timer();
+        if (t && tm_value(t) == d) {
+            timer_expire(t, &mq, &msg);
+        } else {
+            vi_due += VI_TICKS;
+            bt_vi_retrace(&mq, &msg);
+        }
+        if (mq) put(mq, msg, OS_MESG_NOBLOCK, 0);
+    }
+    in_isr = 0;
+}
+
+static void vclock_pace(void) {
+    struct timespec now, d;
+    if (!vclock_paced) return;
+    u64 ns = (u64)(vnow * 64 / 3 / bt_speed());
+    clock_gettime(CLOCK_MONOTONIC, &now);
+    int64_t left = (int64_t)ns - ((int64_t)(now.tv_sec - boot_time.tv_sec) * 1000000000 + (now.tv_nsec - boot_time.tv_nsec));
+    if (left <= 0) return;
+    d.tv_sec = left / 1000000000;
+    d.tv_nsec = left % 1000000000;
+    nanosleep(&d, NULL);
+}
+
+// No thread wants the CPU: time jumps to the next event.
+static void vclock_idle(void) {
+    while (!cpu_wanted()) {
+        u64 d = next_event();
+        if (d > vnow) vnow = d;
+        vclock_pace();
+        vclock_fire();
+    }
+}
+
 static void *timer_main(void *unused) {
     (void)unused;
     pthread_mutex_lock(&big);
     for (;;) {
-        u32 next = 0;
-        for (u32 i = timers; i; i = tm_next(i)) {
-            if (!next || tm_value(i) < tm_value(next)) next = i;
-        }
+        u32 next = earliest_timer();
         if (!next) {
             pthread_cond_wait(&timer_cv, &big);
             continue;
@@ -466,9 +575,8 @@ static void *timer_main(void *unused) {
             pthread_cond_timedwait(&timer_cv, &big, &until);
             continue;
         }
-        u32 mq = gr32(next + 24), msg = gr32(next + 28);
-        if (gr64(next + 8)) gw64(next + 16, tm_value(next) + gr64(next + 8));
-        else timer_unlink(next);
+        u32 mq, msg;
+        timer_expire(next, &mq, &msg);
         pthread_mutex_unlock(&big);
         bt_os_post(mq, msg);
         pthread_mutex_lock(&big);
@@ -476,18 +584,27 @@ static void *timer_main(void *unused) {
     return NULL;
 }
 
-void w2c_env_osInitialize(struct w2c_env *env) {
+void w2c_env_osInitialize(struct w2c_env *env, u32 running_address) {
     static int done;
     pthread_mutexattr_t attr;
     pthread_t timer;
     (void)env;
     if (done) return;
     done = 1;
+    running_global = running_address;
+    gw32(running_global, running);
     clock_gettime(CLOCK_MONOTONIC, &boot_time);
     pthread_mutexattr_init(&attr);
     pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
     pthread_mutex_init(&intr, &attr);
     pthread_mutexattr_destroy(&attr);
+    bt_vclock_on = getenv("BT_VCLOCK") != NULL;
+    if (bt_vclock_on) {
+        vi_due = VI_TICKS;
+        vclock_paced = !getenv("BT_HEADLESS");
+        bt_preempt_flag = 1;
+        return; // no host threads: vclock_fire delivers timers and retraces
+    }
     pthread_create(&timer, NULL, timer_main, NULL);
     pthread_detach(timer);
     bt_vi_init();
