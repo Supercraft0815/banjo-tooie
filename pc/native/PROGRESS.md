@@ -1653,3 +1653,31 @@ Der Regressionstest prüft fehlende Referenz, Annahme, falsche Karte und
 vorzeitiges Ende. Das volle Gate bestand mit acht Testprogrammen und 86.975
 identischen Retraces. Alle vier Referenzen haben weiterhin die P0-Prüfsummen.
 Laufprotokoll unter `build/acceptance/q2-gate-2026-11-17/gate-final.log`.
+
+## 2026-11-17 — A2, SDL-OpenGL auf macOS
+
+Fenster-, Spiel- und Completion-Kontexte werden vor den Spielthreads über
+SDL3 angelegt. Jeder Renderer-Thread aktiviert seinen geteilten Kontext
+selbst. Headless-GPU-Läufe erhalten ein verborgenes Fenster. Der eingecheckte
+glad-2-Lader unterstützt OpenGL 4.1 core und beide Texture-Barrier-Erweiterungen.
+Fehlt die Barriere, verwendet der exakte 1×-Modus den Software-Renderer.
+
+Auf dem M4 Pro lief der GPU-Fixturetest mit 65.536 identischen Bytes durch,
+einschließlich eigener Prüfungen des Fallbacks und unbekannter Backends.
+Der vollständige Intro-Bildvergleich am endgültigen Releaseprogramm ergab
+2.694 Bilder ohne fehlgeschlagenes Bild, schlechtestes Bild 0,056267 %
+bei 0,5 % erlaubter Abweichung. Belege in
+`build/acceptance/a2-2026-11-17/intro-release/summary.json` und
+`gpu-render-test-final.log` im übergeordneten Ordner.
+
+**Die Leistungsabnahme bleibt offen.** In der 75-s-Messung am internen
+120-Hz-Display (GPU 4×, 16:9, 60 FPS, Warp nach AF bei 36 s) lagen die
+anfänglichen Auslassungen bei 5–6, auch der alte CGL-Build zeigte 6.
+Die Audioöffnung dauerte in einer Zeitmessung 66 ms. Ein Vorziehen allein
+ergab im normalen Release noch 2 Auslassungen beim Start. Zusätzlich benötigte
+die erste SDL-Ereignisabfrage 25–36 ms. Beide Schritte laufen nun vor dem
+VI-Timer. Vier abschließende Messungen meldeten jeweils 2 ausgelassene
+Retraces. Die letzte ergab 0 beim Start, 2 zwischen 35 und 40 s und 0 im
+Restfenster. Der Grenzwert liegt bei 1. Alle neun Messungen mit Binärhash
+und getrennten Fensterwerten stehen in
+`build/acceptance/a2-2026-11-17/startup/results.tsv`.

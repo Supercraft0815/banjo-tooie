@@ -16,6 +16,9 @@ volles Gate PASS); Linux-/Windows-Laufzeitabnahme bleibt A2/A3. Der Agententeil 
 Q1 ist fertig: 14 geprüfte Bildbögen mit Startpunkt, Pause-Menü und Ego-Sicht.
 Der Nutzer lässt den menschlichen Emulatorvergleich und die Abzeichnung vorläufig
 offen (17.11.2026); Q1 insgesamt ist deshalb nicht abgenommen.
+A2 läuft auf dem Mac über SDL3. GPU-Fixture und Intro-Bildvergleich sind grün.
+Die 75-s-Messung ergab zuletzt zwei ausgelassene Retraces bei höchstens einer
+erlaubten. Zahlen und Laufbedingungen stehen im A2-Eintrag in `PROGRESS.md`.
 
 ---
 

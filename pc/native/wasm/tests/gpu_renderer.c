@@ -7,6 +7,8 @@
 static void snapshot(void) { assert(fwrite(bt_mem+FB, 1, 4*4096, stdout) == 4*4096); }
 
 int main(void) {
+    rdp_gpu_share(NULL);
+    if (getenv("BT_TEST_NO_BARRIER")) gpu_barrier_available = 0;
     bt_inst.w2c_memory.size = 0x80010000ull;
     bt_mem = mmap(NULL, bt_inst.w2c_memory.size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANON, -1, 0);
     assert(bt_mem != MAP_FAILED);

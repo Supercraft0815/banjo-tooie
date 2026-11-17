@@ -20,6 +20,7 @@
 // shortcut: depth written by the software path or the CPU is not imported into GPU depth (the game
 // clears depth before drawing); import it if a scene draws against such depth.
 static int gpu_on = -1;
+static int gpu_barrier_available = -1;
 static int gpu_enabled(void) {
     if (gpu_on < 0) {
         const char *name = getenv("BT_RENDERER");
@@ -30,18 +31,21 @@ static int gpu_enabled(void) {
 #endif
         if (!gpu_on) fprintf(stderr, "renderer: soft\n");
     }
+    if (gpu_on && gpu_barrier_available == 0 && rdp_scale() == 1) {
+        fprintf(stderr, "renderer: soft (exact 1x GPU rendering needs a texture barrier)\n");
+        gpu_on = 0;
+    }
     return gpu_on;
 }
 int rdp_gpu(void) { return gpu_enabled(); }
-static void *gpu_share;  // the window's context (rdp_gpu_share): pictures are shown as textures
-void rdp_gpu_share(void *context) { gpu_share = context; }
+static void *gpu_share;  // visible window: pictures are shown as textures
 
 #ifdef BT_GPU_OPENGL
-#define GL_SILENCE_DEPRECATION
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/gl3.h>
-#include <OpenGL/gl3ext.h>  // glTextureBarrierNV
+#include <SDL3/SDL.h>
+#include "glad/gl.h"
 #include "rdp_glsl.h"
+static SDL_Window *gpu_window;
+static PFNGLTEXTUREBARRIERPROC gpu_barrier;
 
 enum { GPU_TRI, GPU_RECT, GPU_TEXRECT, GPU_COPY, GPU_FILL };  // material modes, as in the shader
 #define GPU_ATLAS 4096      // texels per side of the texture atlas (RGBA8UI)
@@ -68,7 +72,7 @@ typedef struct { u64 gen; u32 tlut, agen; Tile desc; u16 x, y, w, h; int slot; }
 typedef struct { int slot; u16 w, h; float v[3][4]; } GpuPiece;
 
 static struct {
-    CGLContextObj context;
+    SDL_GLContext context;
     GLuint draw, import, resolve, zresolve, maskcopy, maskfrag;  // programs
     GLint u_scale, u_frame, u_color16, u_rmw, u_soften, i_scale, i_every, r_scale, z_scale, mc_off, mc_ia, mf_size;
     GLuint vao, vbo, empty_vao, mat_buffer, mat_texture, atlas, depth, import_tex[2], resolve_tex, resolve_fbo;
@@ -177,7 +181,7 @@ static void gpu_readback(int w, int h, GLenum format, GLenum type, int bpp, void
 
 // The task end's completion (gpu_finish, gpu_done_main).
 static struct {
-    CGLContextObj context;  // the completion thread's, in the share group of gpu.context
+    SDL_GLContext context;  // the completion thread's, in the share group of gpu.context
     pthread_mutex_t lock; pthread_cond_t cond;
     int state;    // 0 nothing pending, 1 queued, 2 being completed (here by gpu_finish, or on the thread)
     int handoff;  // the thread's turn; it raises event when done
@@ -185,20 +189,50 @@ static struct {
 } done = {.lock = PTHREAD_MUTEX_INITIALIZER, .cond = PTHREAD_COND_INITIALIZER};
 static void *gpu_done_main(void *arg);
 
+static void gpu_offscreen(void) {
+    if (!SDL_InitSubSystem(SDL_INIT_VIDEO)) bt_fatal("SDL video: %s", SDL_GetError());
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);
+    gpu_window = SDL_CreateWindow("Banjo-Tooie offscreen", 32, 32, SDL_WINDOW_HIDDEN | SDL_WINDOW_OPENGL);
+    if (!gpu_window || !SDL_GL_CreateContext(gpu_window)) bt_fatal("SDL offscreen context: %s", SDL_GetError());
+}
+
+static void gpu_load_gl(void) {
+    int version = gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
+    if (!version) bt_fatal("loading OpenGL functions: %s", SDL_GetError());
+    int core_barrier = GLAD_VERSION_MAJOR(version) > 4 ||
+                      (GLAD_VERSION_MAJOR(version) == 4 && GLAD_VERSION_MINOR(version) >= 5);
+    if (core_barrier || GLAD_GL_ARB_texture_barrier)
+        gpu_barrier = (PFNGLTEXTUREBARRIERPROC)SDL_GL_GetProcAddress("glTextureBarrier");
+    if (!gpu_barrier && GLAD_GL_NV_texture_barrier) gpu_barrier = glTextureBarrierNV;
+    gpu_barrier_available = gpu_barrier != NULL;
+}
+
+// Main thread only; NULL creates a hidden surface for headless games and renderer tests.
+void rdp_gpu_share(void *window) {
+    gpu_share = window;
+    gpu_window = window;
+    if (!gpu_window) {
+        if (!gpu_enabled()) return;
+        gpu_offscreen();
+    }
+    SDL_GLContext display = SDL_GL_GetCurrentContext();
+    gpu_load_gl();
+    if (!gpu_enabled()) return;
+    if (!SDL_GL_SetAttribute(SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 1)) bt_fatal("SDL GL sharing: %s", SDL_GetError());
+    gpu.context = SDL_GL_CreateContext(gpu_window);
+    if (!gpu.context || !SDL_GL_MakeCurrent(gpu_window, display)) bt_fatal("SDL render context: %s", SDL_GetError());
+    done.context = SDL_GL_CreateContext(gpu_window);
+    if (!done.context || !SDL_GL_MakeCurrent(gpu_window, display)) bt_fatal("SDL completion context: %s", SDL_GetError());
+    SDL_GL_SetAttribute(SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 0);
+}
+
 // The calling thread owns the context: tasks and buffer swaps come from one game thread at a time.
 static void gpu_init(void) {
-    if (gpu.context) { CGLSetCurrentContext(gpu.context); return; }
-    CGLPixelFormatAttribute attributes[] = {kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL4_Core,
-                                            kCGLPFAAccelerated, kCGLPFAAllowOfflineRenderers, 0};
-    // With a window, its pixel format: contexts of one share group need the same renderer.
-    CGLPixelFormatObj format = gpu_share ? CGLRetainPixelFormat(CGLGetPixelFormat(gpu_share)) : NULL;
-    GLint count;
-    CGLError error = format ? kCGLNoError : CGLChoosePixelFormat(attributes, &format, &count);
-    if (error || !format) bt_fatal("OpenGL pixel format: %d", error);
-    error = CGLCreateContext(format, gpu_share, &gpu.context);
-    if (!error) error = CGLCreateContext(format, gpu.context, &done.context);
-    CGLDestroyPixelFormat(format);
-    if (error || CGLSetCurrentContext(gpu.context)) bt_fatal("OpenGL context: %d", error);
+    if (!gpu.context || !SDL_GL_MakeCurrent(gpu_window, gpu.context)) bt_fatal("SDL render context: %s", SDL_GetError());
+    if (gpu.draw) return;
     pthread_t completion;
     if (pthread_create(&completion, NULL, gpu_done_main, NULL)) bt_fatal("starting the GPU completion thread");
     pthread_detach(completion);
@@ -814,7 +848,7 @@ static void gpu_flush(void) {
         if (!b->rmw) { glDrawArrays(GL_TRIANGLES, b->first, b->count); continue; }
         glActiveTexture(GL_TEXTURE4); glBindTexture(GL_TEXTURE_2D, b->t->color);
         glUniform1i(gpu.u_rmw, 1);
-        for (int k = 0; k < b->count; k += 3) { glTextureBarrierNV(); glDrawArrays(GL_TRIANGLES, b->first + k, 3); }
+        for (int k = 0; k < b->count; k += 3) { gpu_barrier(); glDrawArrays(GL_TRIANGLES, b->first + k, 3); }
         glUniform1i(gpu.u_rmw, 0);
         glBindTexture(GL_TEXTURE_2D, gpu.blank);
         glActiveTexture(GL_TEXTURE0);
@@ -1285,7 +1319,7 @@ static void gpu_finish(void) {
 
 static void *gpu_done_main(void *arg) {
     (void)arg;
-    CGLSetCurrentContext(done.context);
+    if (!SDL_GL_MakeCurrent(gpu_window, done.context)) bt_fatal("SDL completion context: %s", SDL_GetError());
     pthread_mutex_lock(&done.lock);
     for (;;) {
         while (!done.handoff) pthread_cond_wait(&done.cond, &done.lock);
@@ -1401,6 +1435,7 @@ static u32 *gpu_interp_end(int index, unsigned *tex, int *w, int *h, int *sx, in
     return gpu_pictures() ? gpu_read_picture(&gpu.ipt) : NULL;
 }
 #else
+void rdp_gpu_share(void *window) { (void)window; }
 static void gpu_begin(void) { gpu_enabled(); }
 static void gpu_end(void) {}
 static int gpu_triangle(const RdpVtx *a, const RdpVtx *b, const RdpVtx *c, int flags) { (void)a; (void)b; (void)c; (void)flags; return 0; }

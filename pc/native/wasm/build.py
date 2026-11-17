@@ -466,7 +466,7 @@ def build_host(jobs, gen, compiler_version):
     # 4. Host executable.
     write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, compiler_version] + HOST_FLAGS, from_gen=True))
     tag = flags_hash([CLANG, compiler_version] + HOST_FLAGS)
-    host_srcs = sorted((HERE / 'host').glob('*.c'))
+    host_srcs = sorted((HERE / 'host').glob('*.c')) + [HERE / 'host/glad/gl.c']
     gen_srcs = (sorted(gen.glob('game_*.c')) or [gen / 'game.c']) + [gen / 'o32.c']
     rt_srcs = [WASM2C_RT / 'wasm-rt-impl.c', WASM2C_RT / 'wasm-rt-mem-impl.c']
 

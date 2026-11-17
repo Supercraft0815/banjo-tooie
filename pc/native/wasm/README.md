@@ -2,13 +2,19 @@
 
 The current game build compiles the decompiled C to wasm32, applies the LLVM
 passes, translates it with wasm2c and links it with the SDL3 host. The supported
-runtime is currently macOS; Linux/Windows runtime work is tracked as A2/A3 in
+runtime is currently macOS; Linux/Windows runtime work is tracked as A3 in
 `../FAHRPLAN_SOH.md`. Platform link flags alone do not complete those ports.
 
 Run commands from the repository root. The guest stage requires the existing N64
 build/extracted assets and your local ROM, clang >= 19, the LLVM tools/libraries
 for the pass plugin, WABT, and Python 3. The host stage requires clang >= 19,
 WABT's C runtime, SDL3, zlib and platform graphics libraries.
+
+OpenGL uses SDL3 contexts and the vendored glad 2 loader on every platform.
+Headless GPU tests create a hidden SDL window. Exact 1x GPU rendering requires
+OpenGL 4.5, `GL_ARB_texture_barrier`, or `GL_NV_texture_barrier`; without a usable
+barrier it reports the reason once and falls back to the software renderer.
+Loader generation and licensing are recorded in `host/glad/README.md`.
 
 ```sh
 python3 pc/native/wasm/build.py

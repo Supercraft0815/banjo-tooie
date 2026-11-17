@@ -18,9 +18,7 @@
 //   BT_INTERP=1           frame interpolation: in-between pictures from the display list (gsp.c),
 //                         shown one retrace before each game frame; game state is unaffected
 // F11 toggles fullscreen, F2 opens the settings menu (settings.c), F12 saves a screenshot.
-#define GL_SILENCE_DEPRECATION
-#include <OpenGL/OpenGL.h>  // shortcut: macOS headers and CGL, as rdp_gl.h; other systems need a GL loader
-#include <OpenGL/gl3.h>
+#include "glad/gl.h"
 #include <SDL3/SDL.h>
 #include <stdatomic.h>
 #include <stdio.h>
@@ -121,7 +119,7 @@ static struct { GLuint program, vao, sampler, picture, ui; } gl;
 
 // Main thread, before the game starts (the GPU renderer's contexts join this one's share group).
 void bt_video_window(void) {
-    if (getenv("BT_HEADLESS")) return;
+    if (getenv("BT_HEADLESS")) { rdp_gpu_share(NULL); return; }
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
@@ -130,7 +128,7 @@ void bt_video_window(void) {
                            SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
     if (!win || !SDL_GL_CreateContext(win)) bt_fatal("SDL window: %s", SDL_GetError());
     vsync = SDL_GL_SetSwapInterval(1);
-    rdp_gpu_share(CGLGetCurrentContext());
+    rdp_gpu_share(win);
     // One triangle over the viewport; texture row 0 is the top of the picture.
     static const char *vs = "#version 330 core\nout vec2 uv;void main(){vec2 p=vec2((gl_VertexID<<1)&2,gl_VertexID&2);"
                             "uv=vec2(p.x,1.0-p.y);gl_Position=vec4(p*2.0-1.0,0.0,1.0);}";
@@ -153,6 +151,9 @@ void bt_video_window(void) {
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glPixelStorei(GL_PACK_ALIGNMENT, 1);
     glDisable(GL_DEPTH_TEST);
+    // Start the native event loop and audio device before the guest starts its VI timer.
+    SDL_PollEvent(NULL);  // leave pending input queued for the first frame
+    if (!getenv("BT_MUTE")) bt_ai_open();
 }
 
 // XRGB8888/ARGB8888 rows (top first) into tex.
@@ -199,8 +200,6 @@ _Noreturn void bt_video_main(void) {
     u32 previous_fb = 0, swaps = 0, fps_swaps = 0, repeated = 0, skipped = 0;
     u64 stats_start = 0, fps_start = 0;
     char fps_text[16] = "";
-    int audio = !headless && !getenv("BT_MUTE");
-    if (audio) bt_ai_open();
     if (!headless) upload(shown = gl.picture, 1, 1, &(u32){0});
     u64 start = SDL_GetTicks();
     for (;;) {

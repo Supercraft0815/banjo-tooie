@@ -40,7 +40,7 @@ def trace_header(out, here, host_flags, from_gen=False):
         lines = map_defines(out)
         digest = hashlib.sha256((out / 'game.wasm').read_bytes())
     digest.update(json.dumps(host_flags).encode())
-    for path in [here / 'build.py', Path(__file__), *sorted((here / 'host').glob('*.[ch]'))]:
+    for path in [here / 'build.py', Path(__file__), *sorted((here / 'host').rglob('*.[ch]'))]:
         digest.update(path.name.encode())
         digest.update(path.read_bytes())
     lines.append(f'#define BT_TRACE_BUILD "{digest.hexdigest()}"')

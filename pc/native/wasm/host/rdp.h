@@ -31,10 +31,9 @@ void rdp_end(void);  // resolve color and depth before the DP completion event
 int rdp_done_later(u32 event);
 // copy XRGB8888; returns the vertical scale (0 if absent) and the horizontal one in *sx
 int rdp_frame(u32 address, int width, int height, u32 *pixels, int *sx);
-// Direct presentation (GPU renderer with a window): the window's OpenGL context (a CGLContextObj),
-// handed over before the game starts. The renderer's contexts join its share group, and pictures
-// reach the window as textures instead of through a readback and an upload.
-void rdp_gpu_share(void *context);
+// Main thread, before the game starts: an SDL_Window with its GL context current, or NULL for
+// headless rendering. Load GL and create shared render/completion contexts on this thread.
+void rdp_gpu_share(void *window);
 // The texture (rows top first) holding the picture rdp_frame would copy, or with index 0..2 the one
 // rdp_interp_frame would; 0 when there is none (software renderer, no window).
 unsigned rdp_frame_texture(u32 address, int width, int height, int index, int *sx, int *sy);
