@@ -12,6 +12,7 @@ import sys
 
 import save_editor
 import trace_tools
+import corpus_worlds
 
 HERE = Path(__file__).resolve().parent
 
@@ -51,6 +52,7 @@ CASES = {
     'worlds': {'seconds': 36 + 20 * len(WORLDS), 'press': worlds_script(), 'expected_map': WORLDS[-1],
                'flags': list(range(0x392, 0x39B)) + save_editor.START_ABILITIES,
                'warp': ','.join(f'{36 + 20 * i}:{m:X}:1' for i, m in enumerate(WORLDS))},
+    **corpus_worlds.CASES,
 }
 
 
@@ -63,7 +65,7 @@ def record(exe, rom, directory, case, *, dump, timeout):
     env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']),
                **run_env(case), BT_TRACE=str(directory / 'trace.jsonl'), BT_SAVE=str(directory / 'bt_eeprom.bin'))
     if dump:
-        env.update(BT_DUMP=str(directory / 'frame'), BT_DUMP_EVERY='1800')
+        env.update(BT_DUMP=str(directory / 'frame'), BT_DUMP_EVERY=str(case.get('dump_every', 1800)))
     with (directory / 'run.log').open('w') as log:
         return subprocess.run([str(exe), str(rom)], cwd=directory, env=env, stdout=log, stderr=log,
                               timeout=timeout).returncode

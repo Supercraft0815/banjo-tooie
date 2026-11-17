@@ -1681,3 +1681,24 @@ Retraces. Die letzte ergab 0 beim Start, 2 zwischen 35 und 40 s und 0 im
 Restfenster. Der Grenzwert liegt bei 1. Alle neun Messungen mit Binärhash
 und getrennten Fensterwerten stehen in
 `build/acceptance/a2-2026-11-17/startup/results.tsv`.
+
+## 2026-11-17 — Q2, zwanzig Kartenaufnahmen im regulären Korpus
+
+Je ein Eingang und ein Innenraum der acht Hauptwelten sowie der Isle o' Hags
+und von Cauldron Keep haben einen eigenen Fall mit synthetischem EEPROM,
+Eingabe, Warp bei 34 s, erwarteter Endkarte und Ende bei 44 s. Die ersten
+40 interaktiven Läufe endeten auf der Sollkarte. Alle 20 Bildpaare wurden
+gesichtet. Sie belegen die Szenen nach einem Warp. Natürliche Übergänge von
+der Nachbarkarte, Bosskämpfe und Verwandlungen erfordern eigene Eingaben.
+
+Im regulären Korpus lief jede Szene nochmals zweimal. Beide Läufe hatten
+jeweils identische 2.638 Retraces und zwei identische Bilddateien. Die
+letzten Bilder bei Retrace 2.636 wurden gesichtet. Nach Sicherung der vier
+P0-Referenzen entstanden ausschließlich die 20 neuen Referenzen. Jede
+stimmt byteweise mit dem gesichteten Wiederholungslauf überein. Das
+anschließende volle Gate mit dem eingefrorenen Programm bestand alle
+24 Fälle (139.735 Retraces). Die ursprünglichen vier Referenzen blieben
+bytegleich. Läufe, Bilder, Sicherung und Prüfprotokolle liegen unter
+`build/acceptance/q2-worlds-2026-11-17/`. Die Liste der 206 unbesuchten
+benannten Karten im dortigen Teilkorpus bezieht sich nur auf die 20 neuen
+Fälle. Die übrigen Q2-Szenarien sind offen.
