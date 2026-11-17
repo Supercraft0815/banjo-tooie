@@ -40,7 +40,12 @@ def trace_header(out, here, host_flags, from_gen=False):
         lines = map_defines(out)
         digest = hashlib.sha256((out / 'game.wasm').read_bytes())
     digest.update(json.dumps(host_flags).encode())
-    for path in [here / 'build.py', Path(__file__), *sorted((here / 'host').rglob('*.[ch]'))]:
+    sources = [here / 'build.py', Path(__file__), *sorted((here / 'host').rglob('*.[ch]')),
+               *sorted((here / 'host').glob('*.cpp'))]
+    imgui = here.parent / 'third_party/imgui'
+    for ext in ('*.cpp', '*.h'):
+        sources += sorted(imgui.rglob(ext))
+    for path in sources:
         if path == here / 'host/rsp.c' and '-DBT_AUDIO_DEBUG=1' not in host_flags:
             continue
         digest.update(path.name.encode())

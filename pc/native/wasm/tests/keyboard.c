@@ -8,9 +8,8 @@ typedef uint32_t u32;
 struct w2c_env;
 typedef uint64_t u64;
 static int bt_vclock_on;
-enum { BT_SET_SCALE, BT_SET_WIDESCREEN, BT_SET_FULLSCREEN, BT_SET_FILTER, BT_SET_RUMBLE, BT_SET_VOLUME, BT_SET_FPS, BT_SET_CAMERA, BT_SET_CAM_INVERT, BT_SET_COUNT };
-static int bt_setting(int id) { return id == BT_SET_RUMBLE; }
-static int bt_menu_open(void) { return 0; }
+#include "../host/menu.h"
+int bt_setting(int id) { return id == BT_SET_RUMBLE; }
 static u64 bt_vclock_ticks(void) { return 0; }
 static int bt_control_on;
 static u32 bt_control_mask, bt_control_warp;
@@ -71,13 +70,36 @@ int main(void) {
     unsetenv("BT_TRACE"); unsetenv("BT_PRESS");
     // Stick: round deadzone, axes reach 80, a round stick's full diagonal reaches the N64's 65/65.
     int sx = 0, sy = 0;
-    gate(4000, -4000, &sx, &sy); assert(sx == 0 && sy == 0);
-    gate(32767, 0, &sx, &sy); assert(sx == 80 && sy == 0);
-    sx = sy = 0; gate(23170, -23170, &sx, &sy); assert(sx == 65 && sy == 65);
-    sx = sy = 0; gate(-32768, 32767, &sx, &sy); assert(sx == -65 && sy == -65);  // square-gated pad
-    sx = sy = 0; gate(0, 16384, &sx, &sy); assert(sx == 0 && sy == -30);
+    gate(4000, -4000, &sx, &sy, 0); assert(sx == 0 && sy == 0);
+    gate(32767, 0, &sx, &sy, 0); assert(sx == 80 && sy == 0);
+    sx = sy = 0; gate(23170, -23170, &sx, &sy, 0); assert(sx == 65 && sy == 65);
+    sx = sy = 0; gate(-32768, 32767, &sx, &sy, 0); assert(sx == -65 && sy == -65);  // square-gated pad
+    sx = sy = 0; gate(0, 16384, &sx, &sy, 0); assert(sx == 0 && sy == -30);
     // Without gamepads only port 1 exists, nothing rumbles and the other ports read zero.
     assert(w2c_env_pad_mask(NULL) == 1 && w2c_env_rumble(NULL, 0, 2) == 0 && w2c_env_pad_read(NULL, 1) == 0);
+    // A keyboard binding on port 2 also exposes that N64 port without a physical pad.
+    bt_vclock_on = 0; nscript = -1;
+    assert(SDL_PushEvent(&lost)); poll_keys();
+    assert(bt_input_option("pad2.A", "key:H"));
+    assert(!bt_input_option("pad2.A", "not-a-real-button"));
+    assert(w2c_env_pad_mask(NULL) == 3);
+    key(SDL_SCANCODE_H, true); key(SDL_SCANCODE_H, false); poll_keys();
+    assert(w2c_env_pad_read(NULL, 1) >> 16 == A && w2c_env_pad_read(NULL, 1) == 0);
+    assert(bt_input_option("pad2.A", "y") && w2c_env_pad_mask(NULL) == 1);
+    assert(bt_input_option("pad2.A", "default") && w2c_env_pad_mask(NULL) == 1);
+    assert(bt_input_option("pad2.deadzone", "40") && bt_input_option("pad2.sensitivity", "150"));
+    sx = sy = 0; gate(10000, 0, &sx, &sy, 1); assert(sx == 0);
+    gate(24575, 0, &sx, &sy, 1); assert(sx == 70);
+    assert(bt_input_option("pad2.deadzone", "0"));
+    sx = sy = 0; gate(0, 0, &sx, &sy, 1); assert(sx == 0 && sy == 0);
+    assert(!bt_input_option("pad0.A", "south") && !bt_input_option("pad5.A", "south"));
+    // A tap already held for the guest must not leak across opening or closing the menu.
+    key(SDL_SCANCODE_G, true); poll_keys(); bt_input_capture(1);
+    for (unsigned port = 0; port < 4; port++) assert(w2c_env_pad_read(NULL, port) == 0);
+    bt_input_capture(0); poll_keys();
+    assert(w2c_env_pad_read(NULL, 0) == 0);
+    bt_input_warp(0xb8, 1);
+    assert(w2c_env_warp_poll(NULL) == 0xb801 && w2c_env_warp_poll(NULL) == 0);
     SDL_Quit();
     puts("Keyboard events, aliases, combinations, short taps, slow walk, focus loss and stick gate: PASS");
 }

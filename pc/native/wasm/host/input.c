@@ -56,9 +56,11 @@ static const struct { SDL_GamepadButton b; u16 button; } PAD[] = {
     {SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER, R}, {SDL_GAMEPAD_BUTTON_DPAD_UP, DU},
     {SDL_GAMEPAD_BUTTON_DPAD_DOWN, DD}, {SDL_GAMEPAD_BUTTON_DPAD_LEFT, DL}, {SDL_GAMEPAD_BUTTON_DPAD_RIGHT, DR}};
 
-enum { PORTS = 4 };
+enum { PORTS = BT_PORTS };
 static _Atomic u32 state[PORTS];  // buttons << 16 | (u8)stick_x << 8 | (u8)stick_y, read by the game thread
-static _Atomic u32 presses;
+static _Atomic u32 presses[PORTS];
+static _Atomic int captured;
+static int wait_for_release[PORTS];
 static _Atomic u32 camera_xy;    // port 1 right stick for the free camera: (u8)x | (u8)y << 8, up positive
 static _Atomic u32 last_buttons; // port 1 buttons as the game last read them
 static bool keys[SDL_SCANCODE_COUNT];
@@ -66,11 +68,99 @@ static bool keys[SDL_SCANCODE_COUNT];
 static bool tilt_key(SDL_Scancode k) {
     return (k == SDL_SCANCODE_UP || k == SDL_SCANCODE_DOWN) && bt_setting(BT_SET_CAMERA);
 }
+typedef struct { int set; SDL_GamepadButton button; SDL_Scancode key; } PadBind;
+static PadBind bindings[PORTS][BT_BUTTONS];
+static int deadzone[PORTS] = {20, 20, 20, 20}, sensitivity[PORTS] = {100, 100, 100, 100};
+static _Atomic unsigned keyboard_ports;
+static _Atomic u32 menu_warp;
+
+const char *bt_input_button(int index) { return BUTTONS[index].name; }
+int bt_input_stick_option(int port, int sens) { return sens ? sensitivity[port] : deadzone[port]; }
+
+int bt_input_option(const char *key, const char *value) {
+    if (!strncmp(key, "key.", 4)) return bt_input_bind(key + 4, value);
+    if (strncmp(key, "pad", 3) || key[3] < '1' || key[3] > '4' || key[4] != '.') return 0;
+    int port = key[3] - '1';
+    const char *name = key + 5;
+    int sens = !strcmp(name, "sensitivity");
+    if (sens || !strcmp(name, "deadzone")) {
+        char *end;
+        long v = strtol(value, &end, 10);
+        if (end == value || *end) return 0;
+        int min = sens ? 25 : 0, max = sens ? 200 : 90;
+        (sens ? sensitivity : deadzone)[port] = (int)(v < min ? min : v > max ? max : v);
+        return 1;
+    }
+    for (int i = 0; i < BT_BUTTONS; i++) {
+        if (SDL_strcasecmp(name, BUTTONS[i].name)) continue;
+        PadBind b = {.set = 1, .button = SDL_GAMEPAD_BUTTON_INVALID};
+        if (!strcmp(value, "default")) b.set = 0;
+        else if (!strncmp(value, "key:", 4)) {
+            b.key = SDL_GetScancodeFromName(value + 4);
+            if (b.key == SDL_SCANCODE_UNKNOWN) return 0;
+        } else {
+            b.button = SDL_GetGamepadButtonFromString(value);
+            if (b.button == SDL_GAMEPAD_BUTTON_INVALID) return 0;
+        }
+        bindings[port][i] = b;
+        unsigned mask = 0;
+        for (int j = 0; j < PORTS; j++)
+            for (int n = 0; n < BT_BUTTONS; n++)
+                if (bindings[j][n].key) mask |= 1u << j;
+        atomic_store(&keyboard_ports, mask);
+        return 1;
+    }
+    return 0;
+}
+
+void bt_input_binding_text(int port, int index, char *out, size_t cap) {
+    char pad[100] = "";
+    u16 mask = BUTTONS[index].button;
+    PadBind b = bindings[port][index];
+    if (b.set) snprintf(pad, sizeof pad, "%s", b.key ? SDL_GetScancodeName(b.key) : SDL_GetGamepadStringForButton(b.button));
+    else {
+        for (size_t n = 0; n < sizeof PAD / sizeof *PAD; n++)
+            if (PAD[n].button == mask) {
+                if (pad[0]) SDL_strlcat(pad, "/", sizeof pad);
+                SDL_strlcat(pad, SDL_GetGamepadStringForButton(PAD[n].b), sizeof pad);
+            }
+        const char *axis_name = mask == Z ? "LT" : mask == R ? "RT" : mask == CU ? "RS oben" :
+                                mask == CD ? "RS unten" : mask == CL ? "RS links" : mask == CR ? "RS rechts" : NULL;
+        if (axis_name) { if (pad[0]) SDL_strlcat(pad, "/", sizeof pad); SDL_strlcat(pad, axis_name, sizeof pad); }
+    }
+    out[0] = '\0';
+    if (!port) {
+        for (size_t n = 0; n < nkeys; n++) if (KEYS[n].button == mask) {
+            if (out[0]) SDL_strlcat(out, "/", cap);
+            SDL_strlcat(out, SDL_GetScancodeName(KEYS[n].key), cap);
+        }
+        if (out[0] && pad[0]) SDL_strlcat(out, "  ·  ", cap);
+    }
+    SDL_strlcat(out, pad, cap);
+}
+
+void bt_input_capture(int opened) {
+    memset(keys, 0, sizeof keys);
+    for (int i = 0; i < PORTS; i++) {
+        atomic_store(&presses[i], 0);
+        atomic_store(&state[i], 0);
+        wait_for_release[i] = 1;
+    }
+    atomic_store(&camera_xy, 0);
+    atomic_store(&last_buttons, 0);
+    atomic_store(&captured, opened);
+}
+void bt_input_warp(int map, int exit_id) {
+    if (map > 0 && map <= 0x1ff && exit_id >= 0 && exit_id <= 255)
+        atomic_store(&menu_warp, (unsigned)map << 8 | (unsigned)exit_id);
+}
+
 static SDL_Gamepad *pads[PORTS];  // written on the main thread under pad_lock
 static pthread_mutex_t pad_lock = PTHREAD_MUTEX_INITIALIZER;
 
 static void pad_open(SDL_JoystickID id) {
-    if (SDL_GetGamepadFromID(id)) return;  // already on a port
+    for (int i = 0; i < PORTS; i++)
+        if (pads[i] && SDL_GetGamepadID(pads[i]) == id) return;
     pthread_mutex_lock(&pad_lock);
     for (int i = 0; i < PORTS; i++)
         if (!pads[i]) { pads[i] = SDL_OpenGamepad(id); break; }
@@ -91,7 +181,7 @@ static int nscript = -1;
 void bt_input_event(const SDL_Event *e) {
     if (e->type == SDL_EVENT_WINDOW_FOCUS_LOST) {
         memset(keys, 0, sizeof keys);
-        atomic_store(&presses, 0);
+        for (int i = 0; i < PORTS; i++) atomic_store(&presses[i], 0);
         atomic_store(&state[0], 0);
         return;
     }
@@ -102,7 +192,10 @@ void bt_input_event(const SDL_Event *e) {
         if (!keys[key] || e->key.repeat) return;
         // Keep taps between two polls until the guest has read them once.
         for (size_t i = 0; i < nkeys; i++)
-            if (key == KEYS[i].key && !tilt_key(key)) atomic_fetch_or(&presses, KEYS[i].button);
+            if (key == KEYS[i].key && !tilt_key(key)) atomic_fetch_or(&presses[0], KEYS[i].button);
+        for (int p = 0; p < PORTS; p++)
+            for (int i = 0; i < BT_BUTTONS; i++)
+                if (bindings[p][i].key == key) atomic_fetch_or(&presses[p], BUTTONS[i].button);
         return;
     }
     if (e->type == SDL_EVENT_GAMEPAD_ADDED) pad_open(e->gdevice.which);
@@ -122,12 +215,12 @@ static int axis(int v) { return abs(v) < 7000 ? 0 : v * 80 / 32767; }  // right 
 
 // Left stick: round deadzone, then the N64's octagonal gate (80 on the axes, 65 on the
 // diagonals), so a round modern stick reaches the same diagonals as the original controller.
-static void gate(int raw_x, int raw_y, int *x, int *y) {
+static void gate(int raw_x, int raw_y, int *x, int *y, int port) {
     float fx = raw_x / 32767.0f, fy = -raw_y / 32767.0f;  // SDL y grows downwards
-    float m = sqrtf(fx * fx + fy * fy), dz = 0.2f;
-    if (m < dz) return;
+    float m = sqrtf(fx * fx + fy * fy), dz = deadzone[port] / 100.0f;
+    if (m <= dz) return;
     float ax = fabsf(fx) / m, ay = fabsf(fy) / m, edge = 5200 / (15 * fminf(ax, ay) + 65 * fmaxf(ax, ay));
-    float r = fminf(1, (m - dz) / (1 - dz)) * edge / m;
+    float r = fminf(1, (m - dz) / (1 - dz) * (sensitivity[port] / 100.0f)) * edge / m;
     *x += (int)lroundf(fx * r);
     *y += (int)lroundf(fy * r);
 }
@@ -149,19 +242,33 @@ static u32 script_at(double t) {
     return m;
 }
 
-static void read_pad(SDL_Gamepad *pad, u32 *buttons, int *x, int *y) {
-    for (size_t i = 0; i < sizeof PAD / sizeof *PAD; i++)
-        if (SDL_GetGamepadButton(pad, PAD[i].b)) *buttons |= PAD[i].button;
-    if (SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_LEFT_TRIGGER) > 16000) *buttons |= Z;
-    if (SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER) > 16000) *buttons |= R;
-    int cx = axis(SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_RIGHTX));
-    int cy = axis(SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_RIGHTY));
-    if (pad == pads[0] && bt_setting(BT_SET_CAMERA)) {  // free camera: the stick is the camera, its click first person
-        if (SDL_GetGamepadButton(pad, SDL_GAMEPAD_BUTTON_RIGHT_STICK)) *buttons |= CU;
-    } else {
-        *buttons |= (cx > 40 ? CR : 0) | (cx < -40 ? CL : 0) | (cy > 40 ? CD : 0) | (cy < -40 ? CU : 0);
+static void read_pad(int port, u32 *buttons, int *x, int *y) {
+    SDL_Gamepad *pad = pads[port];
+    if (pad) {
+        for (size_t i = 0; i < sizeof PAD / sizeof *PAD; i++)
+            if (SDL_GetGamepadButton(pad, PAD[i].b)) *buttons |= PAD[i].button;
+        if (SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_LEFT_TRIGGER) > 16000) *buttons |= Z;
+        if (SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER) > 16000) *buttons |= R;
+        int cx = axis(SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_RIGHTX));
+        int cy = axis(SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_RIGHTY));
+        if (pad == pads[0] && bt_setting(BT_SET_CAMERA)) {  // free camera: the stick is the camera, its click first person
+            if (SDL_GetGamepadButton(pad, SDL_GAMEPAD_BUTTON_RIGHT_STICK)) *buttons |= CU;
+        } else {
+            *buttons |= (cx > 40 ? CR : 0) | (cx < -40 ? CL : 0) | (cy > 40 ? CD : 0) | (cy < -40 ? CU : 0);
+        }
+        gate(SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_LEFTX), SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_LEFTY), x, y, port);
     }
-    gate(SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_LEFTX), SDL_GetGamepadAxis(pad, SDL_GAMEPAD_AXIS_LEFTY), x, y);
+    for (int i = 0; i < BT_BUTTONS; i++) {
+        PadBind b = bindings[port][i];
+        if (!b.set) continue;
+        *buttons &= ~BUTTONS[i].button;
+        if ((b.key && keys[b.key]) || (pad && b.button != SDL_GAMEPAD_BUTTON_INVALID && SDL_GetGamepadButton(pad, b.button)))
+            *buttons |= BUTTONS[i].button;
+    }
+    if (wait_for_release[port]) {
+        if (!*buttons && !*x && !*y) wait_for_release[port] = 0;
+        *buttons = 0; *x = 0; *y = 0;
+    }
 }
 
 static u32 pack(u32 buttons, int x, int y) {
@@ -175,11 +282,11 @@ void bt_input_update(double t, int keyboard) {
     last_t = t;
     u32 buttons = 0;
     int x = 0, y = 0;
-    if (bt_menu_open()) keyboard = 0;  // the settings menu takes keys and gamepad 1
+    if (atomic_load(&captured)) return;
     for (int i = 1; i < PORTS; i++) {
         u32 b = 0;
         int px = 0, py = 0;
-        if (pads[i]) read_pad(pads[i], &b, &px, &py);
+        if (keyboard) read_pad(i, &b, &px, &py);
         atomic_store(&state[i], pack(b, px, py));
     }
     if (!bt_vclock_on) {  // with the virtual clock pad_read applies the script
@@ -196,7 +303,10 @@ void bt_input_update(double t, int keyboard) {
         x += (k[SDL_SCANCODE_D] - k[SDL_SCANCODE_A]) * speed;
         y += (k[SDL_SCANCODE_W] - k[SDL_SCANCODE_S]) * speed;
     }
-    if (pads[0] && keyboard) read_pad(pads[0], &buttons, &x, &y);
+    if (keyboard) {
+        u32 pad_buttons = 0; int px = 0, py = 0;
+        read_pad(0, &pad_buttons, &px, &py); buttons |= pad_buttons; x += px; y += py;
+    }
     int cx = 0, cy = 0;
     if (pads[0] && keyboard) {
         cx = axis(SDL_GetGamepadAxis(pads[0], SDL_GAMEPAD_AXIS_RIGHTX));
@@ -208,7 +318,7 @@ void bt_input_update(double t, int keyboard) {
 }
 
 u32 w2c_env_pad_mask(struct w2c_env *env) {
-    u32 mask = 1;  // port 1 always: keyboard and BT_PRESS
+    u32 mask = 1 | atomic_load(&keyboard_ports);  // port 1 always: keyboard and BT_PRESS
     (void)env;
     pthread_mutex_lock(&pad_lock);
     for (int i = 1; i < PORTS; i++) mask |= (u32)(pads[i] != NULL) << i;
@@ -237,11 +347,14 @@ u32 w2c_env_warp_poll(struct w2c_env *env) {
     static const char *next;
     static double due = -1;
     (void)env;
-    if (bt_control_warp) {
-        u32 w = bt_control_warp;
+    u32 requested = atomic_exchange(&menu_warp, 0);
+    if (!requested && bt_control_warp) {
+        requested = bt_control_warp;
         bt_control_warp = 0;
-        fprintf(stderr, "bt_native: warp to map %X exit %u\n", w >> 8, w & 0xFF);
-        return w;
+    }
+    if (requested) {
+        fprintf(stderr, "bt_native: warp to map %X exit %u\n", requested >> 8, requested & 0xff);
+        return requested;
     }
     if (due < 0) {
         if (!next && !(next = getenv("BT_WARP"))) return 0;
@@ -272,8 +385,9 @@ u32 w2c_env_widescreen_forced(struct w2c_env *env) {
 
 u32 w2c_env_pad_read(struct w2c_env *env, u32 port) {
     (void)env;
-    if (port) return port < PORTS && !getenv("BT_TRACE") ? atomic_load(&state[port]) : 0;
-    u32 s = atomic_load(&state[0]) | atomic_exchange(&presses, 0) << 16;
+    if (port >= PORTS || atomic_load(&captured)) return 0;
+    u32 s = atomic_load(&state[port]) | atomic_exchange(&presses[port], 0) << 16;
+    if (port) return getenv("BT_TRACE") ? 0 : s;
     if (getenv("BT_TRACE")) s = 0; // The trace oracle accepts scripted input only.
     if (bt_vclock_on) {  // script at virtual time, buttons combined, its stick wins when set
         u32 m = bt_control_on > 0 && bt_control_mask ? bt_control_mask : script_at(bt_vclock_ticks() / 46875000.0);  // BT_PRESS runs under BT_CONTROL too
@@ -289,7 +403,7 @@ u32 w2c_env_pad_read(struct w2c_env *env, u32 port) {
 // skips its 45 degree steps meanwhile).
 u32 w2c_env_camera_stick(struct w2c_env *env) {
     (void)env;
-    if (!bt_setting(BT_SET_CAMERA)) return 0;
+    if (atomic_load(&captured) || !bt_setting(BT_SET_CAMERA)) return 0;
     u32 xy = atomic_load(&camera_xy), b = atomic_load(&last_buttons);
     if (!(xy & 0xFF)) xy |= (u8)((b & CR ? 80 : 0) - (b & CL ? 80 : 0));
     int inv = bt_setting(BT_SET_CAM_INVERT), x = (s8)xy, y = (s8)(xy >> 8);  // bit 0 horizontal, bit 1 vertical

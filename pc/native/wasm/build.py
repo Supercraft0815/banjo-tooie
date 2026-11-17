@@ -111,6 +111,9 @@ HOST_FLAGS = ['-O2', '-g', '-I', str(WASM2C_INC), '-I', str(WASM2C_RT), '-I', st
               '-I', str(HERE / 'host')] + SDL_CFLAGS + ['-DWASM_RT_MEMCHECK_GUARD_PAGES=1',
               '-DBT_GPU_OPENGL=1', '-DWASM_RT_TRAP_HANDLER=bt_trap'] + shlex.split(os.environ.get('BT_HOST_FLAGS', ''))
 
+IMGUI = NATIVE / "third_party/imgui"
+CXX = tool("clang++")
+
 AUDIO_DEBUG = os.environ.get('BT_AUDIO_DEBUG') == '1'
 if AUDIO_DEBUG:
     HOST_FLAGS.append('-DBT_AUDIO_DEBUG=1')
@@ -473,11 +476,14 @@ def build_guest(jobs, compiler_version):
 
 def build_host(jobs, gen, compiler_version):
     # 4. Host executable.
-    write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, compiler_version] + HOST_FLAGS, from_gen=True))
+    write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, CXX, compiler_version] + HOST_FLAGS, from_gen=True))
     tag = flags_hash([CLANG, compiler_version] + HOST_FLAGS)
     host_srcs = sorted((HERE / 'host').glob('*.c')) + [HERE / 'host/glad/gl.c']
     if not AUDIO_DEBUG:
         host_srcs.remove(HERE / 'host/rsp.c')
+    ui_srcs = [HERE / 'host/menu.cpp', *(IMGUI / f for f in (
+        'imgui.cpp', 'imgui_draw.cpp', 'imgui_widgets.cpp', 'imgui_tables.cpp',
+        'backends/imgui_impl_sdl3.cpp', 'backends/imgui_impl_opengl3.cpp'))]
     gen_srcs = (sorted(gen.glob('game_*.c')) or [gen / 'game.c']) + [gen / 'o32.c']
     rt_srcs = [WASM2C_RT / 'wasm-rt-impl.c', WASM2C_RT / 'wasm-rt-mem-impl.c']
 
@@ -487,16 +493,17 @@ def build_host(jobs, gen, compiler_version):
         if up_to_date(obj, dep):
             return obj, None
         obj.parent.mkdir(parents=True, exist_ok=True)
-        r = run([CLANG] + HOST_FLAGS + ['-MMD', '-MF', str(dep), '-c', str(src), '-o', str(obj)])
+        compiler = [CXX, '-std=c++11', '-I', str(IMGUI)] if src.suffix == '.cpp' else [CLANG]
+        r = run(compiler + HOST_FLAGS + ['-MMD', '-MF', str(dep), '-c', str(src), '-o', str(obj)])
         return obj, (r.stderr if r.returncode else None)
 
     with cf.ThreadPoolExecutor(jobs) as ex:
-        built = list(ex.map(host_obj, host_srcs + gen_srcs + rt_srcs))
+        built = list(ex.map(host_obj, host_srcs + ui_srcs + gen_srcs + rt_srcs))
     errors = [e for _, e in built if e]
     if errors:
         sys.exit('host compile failed:\n' + '\n'.join(errors)[:8000])
     exe = OUT / ('bt_game.exe' if sys.platform == 'win32' else 'bt_game')
-    r = run([CLANG, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread'] + SDL_LIBS + PLATFORM_LIBS[sys.platform] + shlex.split(os.environ.get('BT_HOST_FLAGS', '')))
+    r = run([CXX, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread'] + SDL_LIBS + PLATFORM_LIBS[sys.platform] + shlex.split(os.environ.get('BT_HOST_FLAGS', '')))
     if r.returncode != 0:
         sys.exit('host link failed:\n' + r.stderr[:8000])
     print('built %s' % exe)
@@ -518,7 +525,7 @@ def main():
         ap.error('unexpected arguments: ' + ' '.join(args.rest))
     if sys.platform not in PLATFORM_LIBS:
         ap.error('unsupported host platform: ' + sys.platform)
-    required = [CLANG]
+    required = [CLANG] + ([CXX] if stage != 'guest' else [])
     if stage != 'host':
         required += [tool(name) for name in ('clang++', 'llvm-config', 'llvm-nm', 'llvm-dis', 'llvm-link', 'opt')]
         required += [WASM_LD, WASM2C]

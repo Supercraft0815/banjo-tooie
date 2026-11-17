@@ -1365,9 +1365,8 @@ static void gpu_end(void) {
     done.state = 1;
     if (bt_vclock_on) gpu_finish();
 
-    static int stats = -1;
+    int stats = bt_setting(BT_SET_RENDER_STATS);
     static unsigned tasks;
-    if (stats < 0) stats = getenv("BT_RENDER_STATS") != NULL;
     if (stats && ++tasks % 300 == 0) {
         fprintf(stderr, "gpu: per task draws=%u batches=%u texture uploads=%u resolves=%u imports=%u mask copies=%u\n",
                 gpu.draws / 300, gpu.batches / 300, gpu.uploads / 300, gpu.resolves / 300, gpu.imports / 300, gpu.mask_copies / 300);

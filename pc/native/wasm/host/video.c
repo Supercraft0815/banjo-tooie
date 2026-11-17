@@ -2,8 +2,8 @@
 // Runs on the main thread, which macOS requires for windows and events.
 // The window has an OpenGL context. With the GPU renderer the picture is a texture of the renderer's
 // share group (rdp_frame_texture) and never passes through the CPU; other pictures (software
-// renderer, scale 1 from RDRAM) are uploaded once per retrace. Menu, key help and the FPS display are
-// drawn by SDL's software renderer into a surface that is shown as a texture while one is visible.
+// renderer, scale 1 from RDRAM) are uploaded once per retrace. ImGui draws over the window; key help
+// and the FPS display use an SDL surface shown as a texture while visible.
 //   BT_HEADLESS=1         no window (frames are still produced)
 //   BT_DUMP=prefix        write every BT_DUMP_EVERY-th (default 30) displayed frame as prefix_NNNNN.bmp,
 //                         from BT_DUMP_FROM seconds of game time on (default 0)
@@ -17,7 +17,7 @@
 //   BT_RENDER_STATS=1     report raster time/tasks and observed framebuffer changes
 //   BT_INTERP=1           frame interpolation: in-between pictures from the display list (gsp.c),
 //                         shown one retrace before each game frame; game state is unaffected
-// F11 toggles fullscreen, F2 opens the settings menu (settings.c), F12 saves a screenshot.
+// F11 toggles fullscreen, F2 opens the settings menu (menu.cpp), F12 saves a screenshot.
 #include "glad/gl.h"
 #include <SDL3/SDL.h>
 #include <stdatomic.h>
@@ -114,7 +114,13 @@ void bt_video_init(void) {
 }
 
 static SDL_Window *win;
-static int vsync;
+static int vsync, wanted_vsync;
+static void apply_vsync(void) {
+    wanted_vsync = bt_setting(BT_SET_VSYNC);
+    int actual = 0;
+    if (!SDL_GL_SetSwapInterval(wanted_vsync)) SDL_Log("VSync: %s", SDL_GetError());
+    vsync = SDL_GL_GetSwapInterval(&actual) && actual != 0;
+}
 static struct { GLuint program, vao, sampler, picture, ui; } gl;
 
 // Main thread, before the game starts (the GPU renderer's contexts join this one's share group).
@@ -127,7 +133,8 @@ void bt_video_window(void) {
     win = SDL_CreateWindow("Banjo-Tooie | WASD: Bewegen | Leertaste: A | Enter: Start | F1: Tastenhilfe", 960, 720,
                            SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
     if (!win || !SDL_GL_CreateContext(win)) bt_fatal("SDL window: %s", SDL_GetError());
-    vsync = SDL_GL_SetSwapInterval(1);
+    apply_vsync();
+    bt_menu_init(win, SDL_GL_GetCurrentContext());
     rdp_gpu_share(win);
     // One triangle over the viewport; texture row 0 is the top of the picture.
     static const char *vs = "#version 330 core\nout vec2 uv;void main(){vec2 p=vec2((gl_VertexID<<1)&2,gl_VertexID&2);"
@@ -187,7 +194,7 @@ _Noreturn void bt_video_main(void) {
     const char *dump = getenv("BT_DUMP");
     double quit_after = getenv("BT_EXIT_AFTER") ? atof(getenv("BT_EXIT_AFTER")) : 0;
     double dump_from = getenv("BT_DUMP_FROM") ? atof(getenv("BT_DUMP_FROM")) : 0;
-    SDL_Surface *ui = NULL;    // menu, key help, FPS: SDL's software renderer draws them
+    SDL_Surface *ui = NULL;    // key help and FPS use SDL's software renderer
     SDL_Renderer *ren = NULL;
     char ui_key[64] = "";      // what the ui texture shows
     static u32 pixels[640 * 480 * RDP_MAX_SX * RDP_MAX_SCALE], dump_pixels[640 * 480];
@@ -206,12 +213,12 @@ _Noreturn void bt_video_main(void) {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_EVENT_QUIT) exit(0);
+            if (!headless && bt_menu_event(&e)) continue;
             if (e.type == SDL_EVENT_KEY_DOWN && !e.key.repeat && e.key.key == SDLK_F1)
                 show_controls = !show_controls;
             if (e.type == SDL_EVENT_KEY_DOWN && !e.key.repeat && e.key.key == SDLK_F12) shot = 1;
             if (e.type == SDL_EVENT_KEY_DOWN && !e.key.repeat && e.key.key == SDLK_F11 && win)
                 bt_setting_set(BT_SET_FULLSCREEN, !bt_setting(BT_SET_FULLSCREEN));
-            if (!headless && bt_settings_event(&e)) continue;
             bt_input_event(&e);
         }
         double secs = (SDL_GetTicks() - start) / 1000.0 * bt_speed();  // game time
@@ -228,7 +235,7 @@ _Noreturn void bt_video_main(void) {
                 fps_swaps = 0; fps_start = now;
             }
             previous_fb = fb;
-            if (getenv("BT_RENDER_STATS") && SDL_GetTicks() - stats_start >= 5000) {
+            if (bt_setting(BT_SET_RENDER_STATS) && SDL_GetTicks() - stats_start >= 5000) {
                 u64 now = SDL_GetTicks();
                 fprintf(stderr, "video: observed framebuffer changes/s=%.1f presents repeated=%u retraces skipped=%u\n",
                         swaps * 1000.0 / (now - stats_start), repeated, skipped);
@@ -296,11 +303,11 @@ _Noreturn void bt_video_main(void) {
         glDisable(GL_BLEND);
         draw(shown, bt_setting(BT_SET_FILTER));
         // Overlays in a 960- or 1280-wide logical space over the picture; redrawn when they change.
-        int menu = bt_menu_open(), fps = bt_setting(BT_SET_SHOW_FPS) && fps_text[0];
-        if (menu || show_controls || fps) {
+        int fps = bt_setting(BT_SET_SHOW_FPS) && fps_text[0];
+        if (show_controls || fps) {
             char key[64];
             int uw = wide ? 1280 : 960;
-            snprintf(key, sizeof key, "%d %d %d %s", uw, menu, show_controls, fps ? fps_text : "");
+            snprintf(key, sizeof key, "%d %d %s", uw, show_controls, fps ? fps_text : "");
             if (!ui || ui->w != uw) {
                 if (ren) SDL_DestroyRenderer(ren);
                 if (ui) SDL_DestroySurface(ui);
@@ -308,7 +315,7 @@ _Noreturn void bt_video_main(void) {
                 ren = ui ? SDL_CreateSoftwareRenderer(ui) : NULL;
                 if (!ren) bt_fatal("SDL overlay: %s", SDL_GetError());
             }
-            if (menu || strcmp(key, ui_key)) {
+            if (strcmp(key, ui_key)) {
                 snprintf(ui_key, sizeof ui_key, "%s", key);
                 SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
                 SDL_RenderClear(ren);
@@ -324,7 +331,6 @@ _Noreturn void bt_video_main(void) {
                     SDL_RenderDebugText(ren, x, 8, fps_text);
                     SDL_SetRenderScale(ren, 1, 1);
                 }
-                bt_settings_draw(ren);
                 SDL_RenderPresent(ren);
                 upload(gl.ui, ui->w, ui->h, ui->pixels);
             }
@@ -332,6 +338,8 @@ _Noreturn void bt_video_main(void) {
             glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);  // the surface holds colour times alpha
             draw(gl.ui, 1);
         }
+        if (bt_menu_open()) bt_menu_draw(fps_text, repeated, skipped);
+        if (wanted_vsync != bt_setting(BT_SET_VSYNC)) apply_vsync();
         SDL_GL_SwapWindow(win);
         retrace_clock();
     }

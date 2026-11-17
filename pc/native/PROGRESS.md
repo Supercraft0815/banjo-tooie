@@ -1812,3 +1812,17 @@ in 413 Funktionen. Fünf Stellen trafen je nach Fall verschiedene
 Zielsymbole. Der Bericht erfasst alle 1.716 beobachteten Kombinationen.
 Prüfprotokolle liegen unter `build/acceptance/n1-2026-11-17/` und
 `build/acceptance/q2-xsym-2026-11-17/`.
+
+## 2026-11-17 — A5, Menü und Eingabe
+
+F2 oder Back am Controller öffnet das Dear-ImGui-Menü. Grafik, Audio,
+Eingabe, Spiel und Entwicklerwerkzeuge sind im GPU- und im Softwarefenster
+bedienbar. Ein Fenstertest auf Controllerport 2 band Y an A und H an B.
+Während der Eingabe im Menü erhielt der Gast keine Tastendrücke. Nach dem
+Schließen lieferte Y die erwartete A-Maske 0x8000. Lautstärke und
+Tastenbelegung überstanden den Neustart. Der separate Einstellungs-Test
+prüfte alle 17 Werte, ältere Tastaturnamen und unbekannte Einträge.
+
+Die fünf Menüseiten wurden in beiden Renderern mit 1.920 × 1.440 Pixeln
+aufgenommen. Die ursprünglichen 29 Spieltraces bestehen auch im integrierten
+Build. Belege und Aufnahmen stehen in `build/acceptance/a5-2026-11-17/`.

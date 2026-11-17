@@ -449,14 +449,13 @@ static void ip_start(void) {
 }
 
 void gsp_run(u32 dl) {
-    static int stats = -1;
+    int stats = bt_setting(BT_SET_RENDER_STATS);
     static pthread_once_t worker_once = PTHREAD_ONCE_INIT;
     int images = ip_images();
     rdp_begin();  // waits for the previous picture's in-between passes
     static double window, total, peak;
     static unsigned tasks;
     struct timespec start, end;
-    if (stats < 0) stats = getenv("BT_RENDER_STATS") != NULL;
     if (stats) clock_gettime(CLOCK_MONOTONIC, &start);
     static int trace_skip = -2, trace_n;  // BT_GFX_TRACE=N or N@K: trace N tasks after skipping K
     if (trace_skip == -2) {

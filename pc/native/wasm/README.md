@@ -7,7 +7,7 @@ runtime is currently macOS; Linux/Windows runtime work is tracked as A3 in
 
 Run commands from the repository root. The guest stage requires the existing N64
 build/extracted assets and your local ROM, clang >= 19, the LLVM tools/libraries
-for the pass plugin, WABT, and Python 3. The host stage requires clang >= 19,
+for the pass plugin, WABT, and Python 3. The host stage requires clang and clang++ >= 19,
 WABT's C runtime, SDL3, zlib and platform graphics libraries.
 
 OpenGL uses SDL3 contexts and the vendored glad 2 loader on every platform.
@@ -84,3 +84,23 @@ BT_AUDIO_DEBUG=1 python3 pc/native/wasm/build.py host
 BT_AUDIO_CHECK=1 python3 pc/native/wasm/port.py gate --full --exe build/ilp32/bt_game
 python3 pc/native/wasm/tests/audio_mixer_test.py
 ```
+
+
+## Settings and controls
+
+F2 or the controller’s Back button opens the settings menu. Use the D-pad to choose a page.
+Right enters its settings. A selects an item, B returns to the page list and Back closes the menu.
+Graphics, audio, controls, enhancements and debug settings use the same values as `settings.ini`.
+The renderer and language take effect after the next launch.
+
+Choose a controller port and an N64 button under **Steuerung**, then press the new key or gamepad
+button. Existing port-one keyboard aliases such as `key.A=Space,G` work as before. Examples of
+per-port bindings are `pad2.A=a` and `pad3.B=key:H`. Use `default` to restore a pad binding.
+Stick dead zone and sensitivity are percentages, for example `pad2.deadzone=20` and
+`pad2.sensitivity=100`. The menu captures input from all four ports while it is open.
+
+The game loads and saves `settings.ini` in the existing SDL preferences directory. `BT_SETTINGS`
+selects another INI file for isolated windowed runs. Headless runs skip the settings file and
+ImGui. Host-only source bundles must include `pc/native/third_party/imgui` alongside the host.
+The included core and SDL3/OpenGL3 backends come from [Dear ImGui v1.93.0](https://github.com/ocornut/imgui/releases/tag/v1.93.0)
+under the [MIT license](../third_party/imgui/LICENSE.txt).

@@ -62,7 +62,7 @@ class BuildTest(unittest.TestCase):
             with patch.object(build, 'OUT', out), patch.object(build, 'WASM2C_INC', out / 'include'), \
                  patch.object(build, 'WASM2C_RT', out / 'runtime'), \
                  patch.object(build.sys, 'argv', ['build.py', 'host']), \
-                 patch.object(build.shutil, 'which', side_effect=lambda name: name if name == build.CLANG else None), \
+                 patch.object(build.shutil, 'which', side_effect=lambda name: name if name in (build.CLANG, build.CXX) else None), \
                  patch.object(build, 'run', return_value=subprocess.CompletedProcess([], 0, 'clang version 19.1.0', '')), \
                  patch.object(build, 'build_guest') as guest, patch.object(build, 'build_host') as host:
                 build.main()
