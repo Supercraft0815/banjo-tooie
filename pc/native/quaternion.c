@@ -5,55 +5,21 @@ f32 D_80125D20 = 0.00001f;
 
 f32 mlAbsF(f32 value) { return fabsf(value); }
 
-/* Host angle helpers use libm rather than the N64 lookup-table quantization. */
-f32 func_800136E4(f32 degrees) {
-    f32 result = fmodf(degrees, 360.0f);
-    return result < 0.0f ? result + 360.0f : result;
-}
-
-f32 func_80013728(f32 degrees) {
-    f32 result = fmodf(degrees, 360.0f);
-    if (result >= 180.0f) result -= 360.0f;
-    if (result < -180.0f) result += 360.0f;
-    return result;
-}
-
-f32 func_80013B70(f32 y, f32 x, f32 radius) {
-    f32 angle;
-    if (y == 0.0f) return x < 0.0f ? 180.0f : 0.0f;
-    if (x == 0.0f) return y > 0.0f ? 90.0f : 270.0f;
-    angle = asinf(fmaxf(-1.0f, fminf(1.0f, y / radius))) * 57.29577951308232f;
-    if (x < 0.0f) angle = 180.0f - angle;
-    return angle < 0.0f ? angle + 360.0f : angle;
-}
-
-f32 func_80013B7C(f32 y, f32 x) {
-    return func_80013B70(y, x, sqrtf(x * x + y * y));
-}
-
-/* Host libm uses degrees here but does not reproduce N64 table quantization. */
-f32 func_80013970(f32 degrees) {
-    return sinf(degrees * 0.017453292519943295f);
-}
-f32 func_800139F8(f32 degrees) {return tanf(degrees*0.017453292519943295f);}
-
-f32 func_80013A7C(f32 cosine) {
-    return acosf(cosine) * 57.29577951308232f;
+/* 1EB2C90.s: half angles through the game's sine table (func_800137AC: cos, then 800137C4: sin). */
+f32 func_800137AC(f32), func_800137C4(void);
+static void half_angles(const f32 angles[3], f32 c[3], f32 s[3]) {
+    for (int i = 0; i < 3; i++) { c[i] = func_800137AC(angles[i] * 0.5f); s[i] = func_800137C4(); }
 }
 
 void func_800D93A0(f32 quaternion[4], f32 angles[3]) {
-    f32 x = angles[0] * 0.008726646259971648f;
-    f32 y = angles[1] * 0.008726646259971648f;
-    f32 z = angles[2] * 0.008726646259971648f;
-    f32 cx = cosf(x), sx = sinf(x);
-    f32 cy = cosf(y), sy = sinf(y);
-    f32 cz = cosf(z), sz = sinf(z);
-    f32 a = cx * cy, b = cx * sy, c = sx * cy, d = sx * sy;
+    f32 c[3], s[3];
+    half_angles(angles, c, s);
+    f32 a = c[0] * c[1], b = c[0] * s[1], cc = s[0] * c[1], d = s[0] * s[1];
 
-    quaternion[0] = c * cz + b * sz;
-    quaternion[1] = b * cz - c * sz;
-    quaternion[2] = a * sz - d * cz;
-    quaternion[3] = a * cz + d * sz;
+    quaternion[0] = cc * c[2] + b * s[2];
+    quaternion[1] = b * c[2] - cc * s[2];
+    quaternion[2] = a * s[2] - d * c[2];
+    quaternion[3] = a * c[2] + d * s[2];
 }
 
 void func_800D9470(f32 out[4],f32 a[4],f32 b[4]) {
@@ -66,9 +32,9 @@ void func_800D9470(f32 out[4],f32 a[4],f32 b[4]) {
 }
 
 void func_800D952C(f32 out[4],f32 angles[3]) {
-    f32 x=angles[0]*0.008726646259971648f,y=angles[1]*0.008726646259971648f,z=angles[2]*0.008726646259971648f;
-    f32 cx=cosf(x),sx=sinf(x),cy=cosf(y),sy=sinf(y),cz=cosf(z),sz=sinf(z);
-    f32 a=cx*cy,b=cx*sy,c=sx*cy,d=sx*sy;
-    out[0]=c*cz-b*sz;out[1]=b*cz+c*sz;
-    out[2]=a*sz-d*cz;out[3]=a*cz+d*sz;
+    f32 c[3], s[3];
+    half_angles(angles, c, s);
+    f32 a = c[0] * c[1], b = c[0] * s[1], cc = s[0] * c[1], d = s[0] * s[1];
+    out[0] = cc * c[2] - b * s[2]; out[1] = b * c[2] + cc * s[2];
+    out[2] = a * s[2] - d * c[2]; out[3] = a * c[2] + d * s[2];
 }

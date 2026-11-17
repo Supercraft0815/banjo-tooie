@@ -27,7 +27,7 @@ s32 func_800C8760(s32,s32);
 s32 func_800C878C(s32,s32,s32);
 void func_800C87B8(s32 *);
 void func_800C87DC(s32 *);
-void func_800C8800(s32,f32 *);
+void func_800C8800(BtIntPtr,f32 *);
 void func_800C883C(s32,void *);
 void func_800C8898(s32,f32 *);
 void func_800C8900(s32,s32 *);

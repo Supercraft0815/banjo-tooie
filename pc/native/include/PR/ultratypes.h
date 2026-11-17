@@ -1,5 +1,6 @@
 #ifndef _ULTRATYPES_H_
 #define _ULTRATYPES_H_
+#include "bt_native.h"
 
 #include <stdint.h>
 #include <stddef.h>
@@ -13,6 +14,9 @@ typedef int8_t s8;
 typedef int16_t s16;
 typedef int32_t s32;
 typedef long long s64;
+/* an integer that carries a pointer (lp64_words.py): s32/u32 under IDO, pointer-sized here */
+typedef intptr_t BtIntPtr;
+typedef uintptr_t BtUIntPtr;
 typedef volatile u8 vu8;
 typedef volatile u16 vu16;
 typedef volatile u32 vu32;

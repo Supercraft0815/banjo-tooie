@@ -4,7 +4,7 @@
 #include "native_collision.h"
 f32 func_800BE600(f32 *,s32);
 void func_800BE7F8(s32,s32);
-void func_800BE9B0(void),func_800BE9E4(s32),func_800BEA24(s32);
+void func_800BE9B0(void),func_800BE9E4(BtIntPtr),func_800BEA24(BtIntPtr);
 f32 func_800BEA64(f32 *);
 void *func_800BEA88(s32);
 s32 func_800BEAAC(f32 *,f32 *);

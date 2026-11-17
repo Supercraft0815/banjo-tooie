@@ -14,7 +14,7 @@ typedef struct {
 } NativeWorldGrid;
 extern NativeWorldGrid native_world_grid;
 void func_800BD570(void);
-void func_800BD594(s32);
+void func_800BD594(BtIntPtr);
 void func_800BD5DC(void);
 void func_800BD600(void);
 void func_800BD64C(s32 *,f32 *);

@@ -49,7 +49,8 @@ f32 func_800E04C0(u8 *channel, f32 time, s32 period) {
     u32 frame = (u32)(s32)time;
     u32 flags;
     f32 t = 1.0f, value;
-    if (last == 0) return keys[1] * (1.0f / 128.0f);
+    /* Keys are value * 64 (BK animationfile.c divides by 64); cubic adds the Catmull-Rom 1/2. */
+    if (last == 0) return keys[1] * (1.0f / 64.0f);
     if (frame < (u32)(keys[0] & 0x3FFF)) {
         right = 0;
         left = period ? last : right;
@@ -97,10 +98,10 @@ f32 func_800E04C0(u8 *channel, f32 time, s32 period) {
         f32 a = (p3 - p0) - 3 * (p2 - p1);
         f32 b = 2 * p0 + 4 * (p2 - p1) - p1 - p3;
         f32 c = p2 - p0;
-        value = (((a * t + b) * t + c) * t + 2 * p1) * (1.0f / 256.0f);
+        value = (((a * t + b) * t + c) * t + 2 * p1) * (1.0f / 128.0f);
     } else {
-        f32 first = p1 * (1.0f / 128.0f);
-        f32 second = p2 * (1.0f / 128.0f);
+        f32 first = p1 * (1.0f / 64.0f);
+        f32 second = p2 * (1.0f / 64.0f);
         value = first + (second - first) * t;
     }
     if ((words[0] & 15) >= 9) {
@@ -112,12 +113,12 @@ f32 func_800E04C0(u8 *channel, f32 time, s32 period) {
 }
 
 void func_800E084C(BoneTransformList *poses, f32 *transform, u32 group) {
-    void func_800D93A0(f32[4], f32[3]);
+    void func_800D952C(f32[4], f32[3]);
     BoneTransform *bone = &poses->ptr[group];
     s32 i;
     for (i = 0; i < 3; ++i) {
         bone->scale[i] = transform[i + 3];
         bone->unk1C[i] = transform[i + 6];
     }
-    func_800D93A0(bone->unk0, transform);
+    func_800D952C(bone->unk0, transform);  /* 1EB9DB0.s inlines this variant, not 800D93A0 */
 }

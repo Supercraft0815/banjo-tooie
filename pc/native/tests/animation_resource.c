@@ -20,26 +20,27 @@ static void test_channels(void) {
     u16 cubic[] = {0x16, 4, 0, 0, 0x4002, 256, 0x8006, 1024, 8, 1280};
     u16 angle[] = {0x19, 2, 0, 21760, 10, (u16)-21760};
     u16 single[] = {0x19, 1, 0, (u16)-11520};
-    near(sample(linear, 0, 0), 2);
-    near(sample(linear, 2, 0), 2);
-    near(sample(linear, 4, 0), 6);
-    near(sample(linear, 6, 0), 10);
-    near(sample(linear, 9, 0), 10);
-    near(sample(linear, 0, 10), 14.0f / 3.0f);
-    near(sample(linear, 9, 10), 6);
-    near(sample(cubic, 3, 0), 3.3125f);
+    /* Expected values follow 1EB9DB0.s: keys / 64, cubic keys / 128. */
+    near(sample(linear, 0, 0), 4);
+    near(sample(linear, 2, 0), 4);
+    near(sample(linear, 4, 0), 12);
+    near(sample(linear, 6, 0), 20);
+    near(sample(linear, 9, 0), 20);
+    near(sample(linear, 0, 10), 28.0f / 3.0f);
+    near(sample(linear, 9, 10), 12);
+    near(sample(cubic, 3, 0), 6.625f);
     cubic[6] = 6;
-    near(sample(cubic, 3, 0), 3.359375f);
+    near(sample(cubic, 3, 0), 6.71875f);
     cubic[4] = 2; cubic[6] = 0x8006;
-    near(sample(cubic, 3, 0), 3.171875f);
+    near(sample(cubic, 3, 0), 6.34375f);
     cubic[6] = 6;
-    near(sample(cubic, 3, 0), 3.5f);
-    near(sample(angle, 5, 0), 180);
-    near(sample(angle, 10, 0), 190);
+    near(sample(cubic, 3, 0), 7.0f);
+    near(sample(angle, 5, 0), 0);    /* 340 -> -340 unwraps to 380; midpoint 360 wraps to 0 */
+    near(sample(angle, 10, 0), 20);
     angle[0] = 0x10;
     near(sample(angle, 5, 0), 0);
-    near(sample(single, 4, 0), -90);
-    near(sample(single, 40, 10), -90);
+    near(sample(single, 4, 0), -180);
+    near(sample(single, 40, 10), -180);
 }
 
 static const u16 resource_words[] = {
@@ -73,21 +74,21 @@ static void test_decode_and_pose(void) {
     near(func_800E046C(resource, 10), 0.9999989867f);
     near(func_800E046C(resource, 3), 0.3f);
     func_800E0050(resource, 0.5f, 1, transform);
-    near(transform[0], 45);
-    near(transform[3], 2);
+    near(transform[0], 90);
+    near(transform[3], 4);
     near(transform[4], 1);
-    near(transform[6], 5);
-    near(transform[7], 4);
+    near(transform[6], 10);
+    near(transform[7], 8);
     func_800E02F8(resource, 0.5f, 0, 1, 108, positions);
-    near(positions[0], 4);
+    near(positions[0], 8);
     near(positions[1], -1);
     func_800E0170(resource, 0.5f, 0, poses);
-    near(poses->ptr[1].unk0[0], 0.382683432f);
-    near(poses->ptr[1].unk0[3], 0.923879533f);
-    near(poses->ptr[1].scale[0], 2);
-    near(poses->ptr[1].unk1C[0], 5);
-    near(poses->ptr[1].unk1C[1], 4);
-    near(poses->ptr[108].unk1C[2], -2);
+    near(poses->ptr[1].unk0[0], 0.707106781f);
+    near(poses->ptr[1].unk0[3], 0.707106781f);
+    near(poses->ptr[1].scale[0], 4);
+    near(poses->ptr[1].unk1C[0], 10);
+    near(poses->ptr[1].unk1C[1], 8);
+    near(poses->ptr[108].unk1C[2], -4);
     near(poses->ptr[0].unk0[3], 1);
     func_800E04AC(resource);
     heap_free(resource);

@@ -13,10 +13,14 @@ static void memory_error(const char *message) {
     abort();
 }
 
+// Like heap_alloc_sided (func_8001BD30): at least 1 byte, rounded up to 16. Game code writes a few
+// bytes past some tables (subaddierouteDll route slots); on the N64 that lands in this padding.
+static size_t n64_size(s32 size) { return ((size_t)(size > 0 ? size : 1) + 15) & ~(size_t)15; }
+
 void *heap_alloc(s32 size) {
     void *result;
     if (size < 0) memory_error("negative allocation size");
-    result = bt_alloc(size ? (size_t)size : 1);
+    result = bt_alloc(n64_size(size));
     if (!result) memory_error("allocation failed");
     return result;
 }
@@ -32,10 +36,10 @@ void *heap_alloc_sided(s32 size, s32 alloc_side) {
     return heap_alloc(size);
 }
 
-void *heap_realloc(void *memory, s32 size) {
+void *heap_realloc(void *memory, BtIntPtr size) {
     void *result;
     if (size < 0) memory_error("negative allocation size");
-    result = bt_realloc(memory, size ? (size_t)size : 1);
+    result = bt_realloc(memory, n64_size(size));
     if (!result) memory_error("allocation failed");
     return result;
 }

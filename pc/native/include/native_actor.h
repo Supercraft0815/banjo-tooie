@@ -226,7 +226,7 @@ OSThread *func_80107C20(void);
 Actor *func_80107C2C(s32 *, s32, ActorData *, NativeActorFactory, Prop *);
 Actor *func_80108454(s32, s32 *, u32);
 Actor *func_80108474(u32, f32 *, s32);
-Actor *func_801084B0(s32, Actor **);
+Actor *func_801084B0(BtIntPtr, Actor **);
 Actor *func_80108528(s32, f32 [3], s32, Actor **);
 Actor *func_8010856C(s32, f32 *, f32 *);
 Actor *func_801085CC(s32, s16 *, u32);

@@ -92,7 +92,7 @@ void native_assets_close(void) {
 
 s32 native_asset_count(void) { return asset_count; }
 
-u32 native_asset_flags(s32 id) {
+u32 native_asset_flags(BtIntPtr id) {
     return id >= 0 && id < asset_count ? entries[id] & 63 : UINT32_MAX;
 }
 
