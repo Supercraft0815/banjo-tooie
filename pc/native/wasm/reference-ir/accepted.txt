@@ -16,3 +16,12 @@ other triples retain their order. No guest game function changed. The IDO
 objects retain the original data and relocations and both full ROM comparisons
 pass. Proof: climbbase-fixup-provenance.log and climbbase-rom.json in
 build/acceptance/n1-2026-11-17/.
+
+2026-11-17  func_800B27FC, func_800B2840, func_80800250_gcmapsects, func_808005D0_gcmapsects
+The original ILP32 model accessors add the same offset to the same base as the
+native byte GEPs. Their callers compare a 32-bit address with zero. In the
+last function LLVM also contracts an empty block: the same PHI selects the
+same two inputs on the same edges. Applying that single CFG contraction made
+the complete canonical function identical. The 229-map sweep, all 29 traces,
+original IDO functions and data and both ROMs match. See model-cfg-full.diff
+and model-verification.json in build/acceptance/q5-inventory-2026-11-17/.

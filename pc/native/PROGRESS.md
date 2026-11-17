@@ -1853,3 +1853,14 @@ bei Funktionen und Objektdaten. Die dekomprimierte ROM und das vollständige
 Cartridge-Abbild stimmen byteweise. Belege liegen in
 `build/acceptance/n2-2026-11-17/`, darunter `sections-validation.json`,
 `sections-ir.log` und `sections-full-gate.log`.
+
+## 2026-11-17 — Q5, drei originale Modellzugriffe
+
+Der ILP32-Build liest die Modellfelder in `1E8BFE0.c` mit den drei
+Originalfunktionen. Der Modelltest verglich auch die indirekt betroffenen
+Kartensektionsfunktionen vollständig auf LLVM-IR-Ebene. Der 180-s-Sweep
+über alle 229 Ziele ergab dieselben 123 erreichten Ziele, 87 Kartenwechsel,
+14 statischen Szenen und fünf bereits bekannten ungültigen Einstiege.
+Alle 29 Referenzen und die Original-IDO-Prüfung bestanden. Quellen,
+IR-Vergleich und vollständige ROM-Prüfsummen stehen im Modellnachweis
+unter `build/acceptance/q5-inventory-2026-11-17/`.

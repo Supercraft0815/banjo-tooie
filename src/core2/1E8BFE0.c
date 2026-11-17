@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_model.h"
 #endif
 
@@ -17,7 +17,7 @@ s32 func_800B270C(s16 *arg0) {
     return arg0[5];
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800B2714(void *arg0) {
     return (u8 *)arg0 + ((u32 *)arg0)[3];
 }
@@ -106,7 +106,7 @@ u8 *func_800B27E0(u8 *arg0) {
     return arg0 + temp_v1;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800B27FC(void *arg0) {
     return (u8 *)arg0 + ((s16 *)arg0)[4];
 }
@@ -137,7 +137,7 @@ u8 *func_800B2824(u8 *arg0) {
     return arg0 + temp_v1;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800B2840(void *arg0) {
     return (u8 *)arg0 + ((u32 *)arg0)[4];
 }
