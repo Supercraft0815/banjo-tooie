@@ -8,7 +8,7 @@ OSThread *chevilspirit_entrypoint_0(void)
 }
 
 void func_8080000C_chevilspirit(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_0(Actor *);
+    void _subaddieDll_entrypoint_0(void *arg0);
     void _subaddielink_entrypoint_0(void *);
     s32 func_800DA298(s32);
     f32 func_800DC178(f32, f32);
@@ -68,8 +68,8 @@ void func_80800104_chevilspirit(Actor *arg0) {
     s32 func_8010CAC0(f32 *, u32);
     f32 func_8010CD28(Actor *);
     s32 func_8010D23C(void);
-    s32 func_80110014(s32);
-    void func_80116088(s32, f32 *);
+    BtIntPtr func_80110014(s32);
+    void func_80116088(BtIntPtr, f32 *);
     void func_808012CC_chevilspirit(Actor *);
     void func_80801344_chevilspirit(u8 *);
     void func_80801398_chevilspirit(Actor *);
@@ -80,7 +80,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
     s32 func_808018DC_chevilspirit(Actor *);
     s32 func_80801A6C_chevilspirit(Actor *, s32);
     void func_80801E18_chevilspirit(void *);
-    s32 func_80801EC4_chevilspirit(s32);
+    s32 func_80801EC4_chevilspirit(BtIntPtr);
     void func_80802090_chevilspirit(Actor *, s32 *);
     void func_80802118_chevilspirit(void *);
     extern s32 D_808021EC_chevilspirit;
@@ -124,7 +124,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
         case 5:
             if (func_800C9510()) {
                 func_80801A6C_chevilspirit(arg0, 0);
-            } else if (!func_80801840_chevilspirit(arg0) || !func_80801EC4_chevilspirit((s32)arg0)) {
+            } else if (!func_80801840_chevilspirit(arg0) || !func_80801EC4_chevilspirit((BtIntPtr)arg0)) {
                 func_80102424(arg0, 8);
             } else {
                 func_808015A4_chevilspirit(arg0);
@@ -137,7 +137,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
             } else if (!func_80801840_chevilspirit(arg0)) {
                 func_80102424(arg0, 7);
                 ((f32 *)arg0->actorData)[4] = 1.5f;
-            } else if (!func_80801EC4_chevilspirit((s32)arg0) && func_80801A6C_chevilspirit(arg0, 3)) {
+            } else if (!func_80801EC4_chevilspirit((BtIntPtr)arg0) && func_80801A6C_chevilspirit(arg0, 3)) {
                 func_80802090_chevilspirit(arg0, &D_808021EC_chevilspirit);
                 func_80102424(arg0, 8);
                 ((f32 *)arg0->actorData)[4] = 1.5f;
@@ -201,16 +201,16 @@ void func_80800104_chevilspirit(Actor *arg0) {
     }
     func_80801E18_chevilspirit(arg0);
     func_80802118_chevilspirit(arg0);
-}
+}    typedef struct { u8 pad0[0x24]; s32 unk24; } Objevilspirit_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_808005B4_chevilspirit(u8 *arg0) {
     void func_800C8B84(s32);
     s32 temp_a1;
 
-    temp_a1 = (*(s32 *)((s8 *)(arg0) + (0x24)));
+    temp_a1 = (((Objevilspirit_arg0 *)arg0)->unk24);
     if (temp_a1 != 0) {
         func_800C8B84(temp_a1);
-        (*(s32 *)((s8 *)(arg0) + (0x24))) = 0;
+        (((Objevilspirit_arg0 *)arg0)->unk24) = 0;
     }
 }
 
@@ -221,7 +221,7 @@ s32 func_808005EC_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80801F1C_chevilspirit(Actor *, s32, s32);
     void func_80802024_chevilspirit(Actor *, s32, s32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     extern s32 D_808021D0_chevilspirit[];
     void *data;
 
@@ -254,7 +254,7 @@ void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
     s32 func_800EB854(void);
     void func_801017D0(Actor *);
     s32 func_80101808(Actor *, void (*)(Actor *));
-    void func_808007B4_chevilspirit(Actor *, s32);
+    void func_808007B4_chevilspirit(Actor *, BtIntPtr);
     s32 saved;
     s32 state;
     Unk80132ED0 *marker;
@@ -280,7 +280,7 @@ void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
     }
 }
 
-void func_808007B4_chevilspirit(Actor *arg0, s32 arg1) {
+void func_808007B4_chevilspirit(Actor *arg0, BtIntPtr arg1) {
     typedef struct {
         s32 unk0[2];
         s16 count;
@@ -296,14 +296,14 @@ void func_808007B4_chevilspirit(Actor *arg0, s32 arg1) {
     void func_800E2434(s32);
     void func_800E253C(f32);
     void func_800E257C(s32);
-    void func_800E30E0(s32, void *, s32, void *);
-    s32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F5EF8(s32);
+    void func_800E30E0(BtIntPtr, void *, s32, void *);
+    BtIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 func_801069A4(Unk80132ED0 *);
     void func_8010FFB0(f32 **, f32 *, f32 *);
     void func_80800A4C_chevilspirit(Actor *, Gfx **, s32 *, f32 *, Actor *, f32, u8 *);
@@ -321,7 +321,7 @@ void func_808007B4_chevilspirit(Actor *arg0, s32 arg1) {
     SpiritData *link;
     Actor *selected;
     Unk80132ED0 *marker;
-    s32 player;
+    BtIntPtr player;
     Gfx **gfx = (Gfx **)arg1;
 
     link = func_80100094(arg0, 0);
@@ -444,7 +444,7 @@ s32 func_80800F8C_chevilspirit(Actor *arg0) {
     return 1;
 }
 
-int func_80800FF8_chevilspirit(s32 arg0) {
+int func_80800FF8_chevilspirit(BtIntPtr arg0) {
     s32 func_800EA05C();
     extern u16 D_808022E4_chevilspirit;
     extern u16 D_808022E8_chevilspirit;
@@ -482,8 +482,8 @@ s32 func_8080104C_chevilspirit(Actor *arg0, s32 arg1) {
     } SpiritData;
     s32 func_800BDC5C(void);
     s32 *func_800BE444(f32 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     f32 func_800EEB40(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
@@ -547,7 +547,7 @@ s32 func_8080104C_chevilspirit(Actor *arg0, s32 arg1) {
             }
         }
     }
-    return nearest != NULL ? (s32)nearest->unk0 : 0;
+    return nearest != NULL ? (BtIntPtr)nearest->unk0 : 0;
 }
 
 void func_808012CC_chevilspirit(Actor *arg0) {
@@ -556,7 +556,7 @@ void func_808012CC_chevilspirit(Actor *arg0) {
     void func_80102424(Actor *, s32);
     s32 func_8080104C_chevilspirit();
     s32 func_80801988_chevilspirit();
-    s32 func_80801EC4_chevilspirit(s32);
+    s32 func_80801EC4_chevilspirit(BtIntPtr);
     s32 temp_v0;
 
     if ((func_8001210C(3) == 0) && (func_800C954C() == 0) && (func_80801EC4_chevilspirit(arg0) != 0)) {
@@ -575,7 +575,7 @@ void func_80801344_chevilspirit(u8 *arg0) {
     void func_808013DC_chevilspirit(void *);
     func_8008FE94(5, arg0 + 0x18, arg0);
     (*(f32 *)((s8 *)(arg0) + (0x1C))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x1C))) + 100.0f);
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80090010();
+    (((Actor *)arg0)->unk54) = func_80090010();
     func_808013DC_chevilspirit(arg0);
 }
 
@@ -612,7 +612,7 @@ s32 func_80801458_chevilspirit(Actor *arg0) {
     void func_80101038(f32 *);
     void func_8010105C(f32);
     f32 func_80101068(void);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     f32 func_8010CD28(Actor *);
     Actor *actor;
     u8 *link;
@@ -631,7 +631,7 @@ s32 func_80801458_chevilspirit(Actor *arg0) {
         func_800EF334(position, actor->scale);
         func_800EF04C(position, actor->position);
     }
-    arg0->unk54 = func_80101068();
+    arg0->unk54 = func_80101068(); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80801534_chevilspirit(Actor *arg0) {
@@ -696,7 +696,7 @@ s32 func_80801684_chevilspirit(Actor *arg0) {
     s32 func_80016B54(s32, s32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80801988_chevilspirit(Actor *, Unk80132ED0 *, s32);
-    void func_80801B00_chevilspirit(s32, Actor *, s32);
+    void func_80801B00_chevilspirit(BtIntPtr, Actor *, s32);
     SpiritData *data;
     Actor *actor;
     Unk80132ED0 *marker;
@@ -736,7 +736,7 @@ s32 func_80801684_chevilspirit(Actor *arg0) {
         if (i != data->index) {
             continue;
         }
-        func_80801B00_chevilspirit((s32)arg0, func_80106790(target), 0x9DE);
+        func_80801B00_chevilspirit((BtIntPtr)arg0, func_80106790(target), 0x9DE);
     }
     return 0;
 }
@@ -746,7 +746,7 @@ s32 func_80801840_chevilspirit(Actor *arg0) {
     void _subaddielink_entrypoint_0(void *);
     s32 _subaddielink_entrypoint_2(u8 *);
     Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *actor;
 
     if (_subaddielink_entrypoint_2(func_80100094(arg0, 0)) == 0) {
@@ -781,9 +781,9 @@ s32 func_808018DC_chevilspirit(Actor *arg0) {
 }
 
 s32 func_80801988_chevilspirit(Actor *arg0, Unk80132ED0 *arg1, s32 arg2) {
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     void *func_80100094(Actor *, u32);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80801A6C_chevilspirit(Actor *, s32);
     void func_80802090_chevilspirit(Actor *, s32 *);
@@ -820,7 +820,7 @@ s32 func_80801A6C_chevilspirit(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     Actor *_subaddielink_entrypoint_4(Unk80132ED0 **);
     void _subaddielink_entrypoint_0(void *);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     s32 func_80801840_chevilspirit();
     Actor *sp1C;
 
@@ -840,19 +840,19 @@ s32 func_80801A6C_chevilspirit(Actor *arg0, s32 arg1) {
     return 1;
 }
 
-void func_80801B00_chevilspirit(s32 arg0, Actor *arg1, s32 arg2) {
-    s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32);
+void func_80801B00_chevilspirit(BtIntPtr arg0, Actor *arg1, s32 arg2) {
+    s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, BtIntPtr);
     s32 func_8001210C(s32);
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_808022F4_chevilspirit;
     f32 sp4C[15][3];
     f32 *var_s1;
     s32 temp_s0;
     s32 temp_v0;
-    s32 temp_v0_2;
+    BtIntPtr temp_v0_2;
     s32 var_s0;
 
     temp_s0 = ((u32)(u16)arg1->unk0->unk10 >> 1) & 3;
@@ -880,9 +880,9 @@ void func_80801C04_chevilspirit(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _subaddielink_entrypoint_3(u8 *);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_12(u32 *, s32 *);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_12(void *arg0, void *arg1);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s8 func_800BF8E4(void);
     s32 func_800C8A98(void);
     void func_800C8E54(s32, f32, f32);
@@ -890,8 +890,8 @@ void func_80801C04_chevilspirit(Actor *arg0) {
     s32 func_800DA298(s32);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
@@ -932,7 +932,7 @@ void func_80801C04_chevilspirit(Actor *arg0) {
             _subaddiedialog_entrypoint_11(arg0->unk0, 0x15C5, 6, arg0->position, 0xBB);
         }
     }
-    if (func_800BF8E4() != 0 && func_80800FF8_chevilspirit((s32)arg0) == 0) {
+    if (func_800BF8E4() != 0 && func_80800FF8_chevilspirit((BtIntPtr)arg0) == 0) {
         ((f32 *)arg0->actorData)[7] = 0.0f;
         arg0->actorData[3] = func_800C8A98();
         func_800C8E54(arg0->actorData[3], 150.0f, 450.0f);
@@ -971,12 +971,12 @@ void func_80801E18_chevilspirit(void *arg0) {
 
 /* extern */
 
-s32 func_80801EC4_chevilspirit(s32 arg0) {
-    s32 func_800F54E4();
-    s32 func_800F6D24(s32);
-    s32 func_800F8004(s32);
-    s32 sp1C;
-    s32 temp_v0;
+s32 func_80801EC4_chevilspirit(BtIntPtr arg0) {
+    BtIntPtr func_800F54E4();
+    s32 func_800F6D24(BtIntPtr);
+    s32 func_800F8004(BtIntPtr);
+    BtIntPtr sp1C;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800F54E4();
     sp1C = temp_v0;
@@ -990,13 +990,13 @@ s32 func_80801EC4_chevilspirit(s32 arg0) {
 }
 
 void func_80801F1C_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
-    void _plcamera_entrypoint_8(s32);
-    s32 _subaddiefade_entrypoint_5();
+    void _plcamera_entrypoint_8(s32 *arg0);
+    void _subaddiefade_entrypoint_5(void *arg0);
     s32 _susubgame_entrypoint_4(void *, void *);
     s32 func_800DA544(s32);
     f32 func_800DC178(f32, f32);
-    s32 func_800F54E4();
-    void func_800F82D4(s32, s32);
+    BtIntPtr func_800F54E4();
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80802090_chevilspirit(Actor *, s32 *);
@@ -1030,7 +1030,7 @@ void func_80801F1C_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80802024_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     u32 func_800C07F4(void);
     void *func_80100094(Actor *, u32);
     u8 *sp24;
@@ -1049,7 +1049,7 @@ void func_80802090_chevilspirit(Actor *arg0, s32 *arg1) {
     void func_800C31DC(u8, f32);
     void func_800C330C(u8, s32);
     void func_800C3BDC(u8);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     f32 *sp20 = arg0->position;
     if (arg0->unk5F == 0) {
         arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
@@ -1068,9 +1068,9 @@ void func_80802118_chevilspirit(void *arg0) {
     s32 func_800C3D78(s32, u8);
     u8 temp_a1;
 
-    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x5F)));
+    temp_a1 = (((Actor *)arg0)->unk5F);
     if ((temp_a1 != 0) && (func_800C3D78(temp_a1 & 0xFF, temp_a1) == 0)) {
-        func_800C2FDC((*(u8 *)((s8 *)(arg0) + (0x5F))));
-        (*(u8 *)((s8 *)(arg0) + (0x5F))) = 0U;
+        func_800C2FDC((((Actor *)arg0)->unk5F));
+        (((Actor *)arg0)->unk5F) = 0U;
     }
 }

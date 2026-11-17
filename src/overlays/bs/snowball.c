@@ -4,9 +4,9 @@ struct anctrl_s;
 
 /* extern */
 
-f32 func_80800000_bssnowball(s32 arg0) {
+f32 func_80800000_bssnowball(BtIntPtr arg0) {
     f32 _basnowball_entrypoint_3();
-    s32 func_8008C990(s32, f32);
+    void func_8008C990(void *self, f32 arg1);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13C4(f32, f32);
     f32 sp20;
@@ -43,10 +43,10 @@ void func_80800064_bssnowball(struct player_state_s *arg0, s32 arg1) {
 
 /* extern */
 
-s32 func_8080010C_bssnowball(s32 arg0, s32 arg1) {
-    s32 _badrone_entrypoint_24(s32);
+s32 func_8080010C_bssnowball(BtIntPtr arg0, s32 arg1) {
+    s32 _badrone_entrypoint_24(BtIntPtr);
     s32 bainput_should_enter_first_person();
-    s32 bakey_pressed(s32, s32);
+    s32 bakey_pressed(BtIntPtr, s32);
     if (bainput_should_enter_first_person() != 0) {
         arg1 = _badrone_entrypoint_24(arg0);
     }
@@ -58,9 +58,9 @@ s32 func_8080010C_bssnowball(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800164_bssnowball(s32 arg0) {
-    s32 yaw_setUpdateType(s32, s32);
-    s32 yaw_setVelocityBounded(s32, s32, s32);
+void func_80800164_bssnowball(BtIntPtr arg0) {
+    s32 yaw_setUpdateType(BtIntPtr, s32);
+    s32 yaw_setVelocityBounded(BtIntPtr, s32, s32);
     yaw_setUpdateType(arg0, 3);
     yaw_setVelocityBounded(arg0, 0x43960000, 0x40C00000);
 }
@@ -120,9 +120,9 @@ void bssnowball_entrypoint_1(PlayerState *arg0) {
 /* extern */
 
 void bssnowball_entrypoint_2(void *arg0) {
-    s32 _basnowball_entrypoint_12(void *);
-    s32 _basnowball_entrypoint_8(void *, s32);
-    s32 _basnowball_entrypoint_9(void *, f32);
+    void _basnowball_entrypoint_12(void *arg0);
+    void _basnowball_entrypoint_8(BtIntPtr arg0, s32 arg1);
+    void _basnowball_entrypoint_9(void *arg0, f32 arg1);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     f32 func_8009BB5C(void *);
     s32 func_800A3274();
@@ -141,23 +141,23 @@ void bssnowball_entrypoint_2(void *arg0) {
     }
 }
 
-void func_808003B0_bssnowball(s32 arg0)
+void func_808003B0_bssnowball(BtIntPtr arg0)
 {
     _basudie_entrypoint_8();
     bssnowball_entrypoint_0(arg0);
 }
 void func_808003D8_bssnowball(PlayerState *arg0) {
-    s32 _basudie_entrypoint_9(PlayerState *, f32);
+    void _basudie_entrypoint_9(struct player_state_s *arg0, f32 arg1);
     void func_8009C128(PlayerState *, f32[3]);
     void func_8009DB04(PlayerState *, s32, f32, s32);
-    s32 func_800B53A4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80800F30_bssnowball[];
     extern s32 D_80800F84_bssnowball[];
     extern s32 D_80801028_bssnowball[];
     f32 sp2C[3];
-    s32 sp28;
+    BtIntPtr sp28;
 
     sp28 = func_800B53A4(0x32);
     bssnowball_entrypoint_1(arg0);
@@ -171,39 +171,39 @@ void func_808003D8_bssnowball(PlayerState *arg0) {
     _basnowball_entrypoint_10(arg0);
 }
 
-void func_808004AC_bssnowball()
+void func_808004AC_bssnowball(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    _basudie_entrypoint_10();
+    _basudie_entrypoint_10(BT_NATIVE_ONLY(bt_a0));
 }
 
 s32 bssnowball_entrypoint_3(s32 arg0) {
-    extern s32 D_80801054_bssnowball[];
+    extern BtIntPtr D_80801054_bssnowball[];
     return ((s32 *)&D_80801054_bssnowball)[arg0];
 }
 
-void func_808004E0_bssnowball(s32 arg0)
+void func_808004E0_bssnowball(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     bssnowball_entrypoint_0(arg0);
 }
-void func_80800508_bssnowball(s32 arg0)
+void func_80800508_bssnowball(BtIntPtr arg0)
 {
     bssnowball_entrypoint_1(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
-void func_80800530_bssnowball(s32 arg0)
+void func_80800530_bssnowball(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_1();
     bssnowball_entrypoint_2(arg0);
 }
 s32 bssnowball_entrypoint_4(s32 arg0) {
-    extern s32 D_80801064_bssnowball[];
+    extern BtIntPtr D_80801064_bssnowball[];
     return ((s32 *)&D_80801064_bssnowball)[arg0];
 }
 
 /* extern */
 
-void func_8080056C_bssnowball(s32 arg0) {
+void func_8080056C_bssnowball(BtIntPtr arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
     void baroll_setIdeal(struct player_state_s *, f32);
     func_8009BF5C(arg0, 0.0f);
@@ -211,7 +211,7 @@ void func_8080056C_bssnowball(s32 arg0) {
     bssnowball_entrypoint_0(arg0);
 }
 
-void func_808005A4_bssnowball(s32 arg0) {
+void func_808005A4_bssnowball(BtIntPtr arg0) {
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
@@ -225,7 +225,7 @@ void func_808005A4_bssnowball(s32 arg0) {
 
 void func_80800614_bssnowball(PlayerState *arg0) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     int func_8008DF8C(PlayerState *, s32);
     void func_8009D3A8(PlayerState *, s32);
     void func_800A2EAC(void *);
@@ -248,7 +248,7 @@ void func_80800614_bssnowball(PlayerState *arg0) {
 }
 
 s32 bssnowball_entrypoint_5(s32 arg0) {
-    extern s32 D_80801074_bssnowball[];
+    extern BtIntPtr D_80801074_bssnowball[];
     return ((s32 *)&D_80801074_bssnowball)[arg0];
 }
 
@@ -289,7 +289,7 @@ void func_808006BC_bssnowball(PlayerState *arg0) {
 void func_808007D8_bssnowball(PlayerState *arg0) {
     int bakey_released(PlayerState *, int);
     f32 baphysics_get_vertical_velocity(PlayerState *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     int func_8008DF8C(PlayerState *, s32);
     void func_8009D3A8(PlayerState *, s32);
     void func_800A2EAC(void *);
@@ -313,7 +313,7 @@ void func_808007D8_bssnowball(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-void func_8080089C_bssnowball(s32 arg0) {
+void func_8080089C_bssnowball(BtIntPtr arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
     void baroll_setIdeal(struct player_state_s *, f32);
     baphysics_reset_gravity();
@@ -323,13 +323,13 @@ void func_8080089C_bssnowball(s32 arg0) {
 }
 
 s32 bssnowball_entrypoint_6(s32 arg0) {
-    extern s32 D_80801084_bssnowball[];
+    extern BtIntPtr D_80801084_bssnowball[];
     return ((s32 *)&D_80801084_bssnowball)[arg0];
 }
 
-void func_808008F0_bssnowball()
+void func_808008F0_bssnowball(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    func_80099B94();
+    func_80099B94(BT_NATIVE_ONLY(bt_a0));
 }
 
 void func_80800910_bssnowball(struct player_state_s *arg0)
@@ -353,9 +353,9 @@ void func_80800930_bssnowball(PlayerState *arg0) {
 
 void func_808009B0_bssnowball(PlayerState *arg0) {
     f32 _basnowball_entrypoint_3();
-    s32 bakey_pressed(s32, s32);
+    s32 bakey_pressed(BtIntPtr, s32);
     s32 bastick_getZone(PlayerState *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     int func_8008DD04(PlayerState *);
     f32 func_8009BB5C(void *);
     void func_8009D3A8(PlayerState *, s32);
@@ -369,7 +369,7 @@ void func_808009B0_bssnowball(PlayerState *arg0) {
     sp2C = 0;
     func_8009D3A8(arg0, 0);
     func_80800064_bssnowball(arg0, 1);
-    sp28 = func_80800000_bssnowball((s32)arg0);
+    sp28 = func_80800000_bssnowball((BtIntPtr)arg0);
     if (sp28 > 0.67f && *(f32 *)((u8 *)arg0 + 0x174) < 0.67f) {
         temp = func_800F10B4(func_8009BB5C(arg0), 0.0f, 700.0f, 0.9f, 1.1f);
         if (*(u8 *)((u8 *)arg0 + 0x164)) {
@@ -391,23 +391,23 @@ void func_808009B0_bssnowball(PlayerState *arg0) {
         sp2C = 0x17F;
     }
     bssnowball_entrypoint_2(arg0);
-    bs_setState((s32)arg0, sp2C);
+    bs_setState((BtIntPtr)arg0, sp2C);
 }
 
 s32 bssnowball_entrypoint_7(s32 arg0) {
-    extern s32 D_80801094_bssnowball[];
+    extern BtIntPtr D_80801094_bssnowball[];
     return ((s32 *)&D_80801094_bssnowball)[arg0];
 }
 
-void func_80800B44_bssnowball(s32 arg0) { _baspin_entrypoint_1(); *(u8 *)(arg0 + 0x165) = 0; bssnowball_entrypoint_0(arg0); }
+void func_80800B44_bssnowball(BtIntPtr arg0) { _baspin_entrypoint_1(); *(u8 *)(arg0 + 0x165) = 0; bssnowball_entrypoint_0(arg0); }
 
-void func_80800B70_bssnowball(s32 arg0) { bssnowball_entrypoint_1(arg0); *(u8 *)(arg0 + 0x165) = 1; _basnowball_entrypoint_10(arg0); _baspin_entrypoint_2(arg0, 0x5E, 0x3FE66666, 3, 0); }
+void func_80800B70_bssnowball(BtIntPtr arg0) { bssnowball_entrypoint_1(arg0); *(u8 *)(arg0 + 0x165) = 1; _basnowball_entrypoint_10(arg0); _baspin_entrypoint_2(arg0, 0x5E, 0x3FE66666, 3, 0); }
 
 /* extern */
 
-void func_80800BBC_bssnowball(s32 arg0) {
-    s32 _baspin_entrypoint_3(s32);
-    s32 bs_setState(s32, s32);
+void func_80800BBC_bssnowball(BtIntPtr arg0) {
+    s32 _baspin_entrypoint_3(BtIntPtr);
+    s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -419,11 +419,11 @@ void func_80800BBC_bssnowball(s32 arg0) {
 }
 
 s32 bssnowball_entrypoint_8(s32 arg0) {
-    extern s32 D_808010A4_bssnowball[];
+    extern BtIntPtr D_808010A4_bssnowball[];
     return ((s32 *)&D_808010A4_bssnowball)[arg0];
 }
 
-void func_80800C18_bssnowball(s32 arg0)
+void func_80800C18_bssnowball(BtIntPtr arg0)
 {
     _babounce_entrypoint_3();
     bssnowball_entrypoint_0(arg0);
@@ -443,10 +443,10 @@ void func_80800C40_bssnowball(struct player_state_s *arg0) {
 
 /* extern */
 
-void func_80800C98_bssnowball(s32 arg0) {
+void func_80800C98_bssnowball(BtIntPtr arg0) {
     s32 _babounce_entrypoint_2();
-    s32 _babounce_entrypoint_9(s32);
-    s32 bs_setState(s32, s32);
+    s32 _babounce_entrypoint_9(BtIntPtr);
+    s32 bs_setState(BtIntPtr, s32);
     void func_80800064_bssnowball(struct player_state_s *, s32);
     s32 sp1C;
 
@@ -461,26 +461,26 @@ void func_80800C98_bssnowball(s32 arg0) {
 }
 
 s32 bssnowball_entrypoint_9(s32 arg0) {
-    extern s32 D_808010B4_bssnowball[];
+    extern BtIntPtr D_808010B4_bssnowball[];
     return ((s32 *)&D_808010B4_bssnowball)[arg0];
 }
 
-void func_80800D00_bssnowball(s32 arg0)
+void func_80800D00_bssnowball(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     bssnowball_entrypoint_0(arg0);
 }
-void func_80800D28_bssnowball(s32 arg0)
+void func_80800D28_bssnowball(BtIntPtr arg0)
 {
     bssnowball_entrypoint_1(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
 
-void func_80800D50_bssnowball(s32 arg0) {
-    s32 _bsrest_entrypoint_13(s32);
+void func_80800D50_bssnowball(BtIntPtr arg0) {
+    s32 _bsrest_entrypoint_13(BtIntPtr);
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -492,16 +492,16 @@ void func_80800D50_bssnowball(s32 arg0) {
 }
 
 s32 bssnowball_entrypoint_10(s32 arg0) {
-    extern s32 D_808010C4_bssnowball[];
+    extern BtIntPtr D_808010C4_bssnowball[];
     return ((s32 *)&D_808010C4_bssnowball)[arg0];
 }
 
-void func_80800DB0_bssnowball(s32 arg0)
+void func_80800DB0_bssnowball(BtIntPtr arg0)
 {
     func_80090A2C();
     bssnowball_entrypoint_0(arg0);
 }
-void func_80800DD8_bssnowball(s32 arg0) {
+void func_80800DD8_bssnowball(BtIntPtr arg0) {
     void func_8009FFD8();
     void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
@@ -516,7 +516,7 @@ void func_80800DD8_bssnowball(s32 arg0) {
 
 void func_80800E4C_bssnowball(PlayerState *arg0) {
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     int func_8008DD04(PlayerState *);
     void func_8009D3A8(PlayerState *, s32);
     s32 func_800A02DC(PlayerState *, s32);
@@ -538,6 +538,22 @@ void func_80800E4C_bssnowball(PlayerState *arg0) {
 }
 
 s32 bssnowball_entrypoint_11(s32 arg0) {
-    extern s32 D_808010D4_bssnowball[];
+    extern BtIntPtr D_808010D4_bssnowball[];
     return ((s32 *)&D_808010D4_bssnowball)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/snowball.data.s */
+void _basudie_entrypoint_11();
+void _bsdrone_entrypoint_3();
+void func_80099AA8();
+s32 D_80800F30_bssnowball [21] BT_DATA(4, overlays_bs_snowball, 0x0) = { 1902947, 1441794, 1376256, 16580638, 1966110, 3080100, 800, -6028953, 52428827, -98239964, 197655, 917504008, 15073561, 262323, 458767, 2819328, 83886118, 58982600, 900, 13107200, 0 };
+s32 D_80800F84_bssnowball [41] BT_DATA(4, overlays_bs_snowball, 0x54) = { 1902944, 1441794, 720926, 3276880, 1966101, 179, 1833508, -98303996, 10027015, 393259, 58721228, 2555404, -32702964, 32768500, 32768046, -3932160, 13172696, 23527824, 2228864, 45286016, 41944090, 3080122, 400, -3931801, 29491234, 25166259, 25166208, 102367278, -5570560, 45940661, 23528274, 2228480, 20119808, 16781338, 3080107, 800, -1310361, 72089634, 10027264, 13369548, 404357120 };
+s32 D_80801028_bssnowball [11] BT_DATA(4, overlays_bs_snowball, 0xF8) = { 1903062, 1376256, 4980758, 268435486, 1966110, 1638400, 34, 16777472, 67109888, 2818176, 8388608 };
+BtIntPtr D_80801054_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x124) = { (BtIntPtr)func_808003B0_bssnowball, (BtIntPtr)func_808003D8_bssnowball, (BtIntPtr)func_808004AC_bssnowball, (BtIntPtr)_basudie_entrypoint_11 };
+BtIntPtr D_80801064_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x134) = { (BtIntPtr)func_808004E0_bssnowball, (BtIntPtr)func_80800508_bssnowball, (BtIntPtr)func_80800530_bssnowball, (BtIntPtr)_bsdrone_entrypoint_3 };
+BtIntPtr D_80801074_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x144) = { (BtIntPtr)func_8080056C_bssnowball, (BtIntPtr)func_808005A4_bssnowball, (BtIntPtr)func_80800614_bssnowball, (BtIntPtr)func_808008F0_bssnowball };
+BtIntPtr D_80801084_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x154) = { (BtIntPtr)func_8080089C_bssnowball, (BtIntPtr)func_808006BC_bssnowball, (BtIntPtr)func_808007D8_bssnowball, (BtIntPtr)func_808008F0_bssnowball };
+BtIntPtr D_80801094_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x164) = { (BtIntPtr)func_80800910_bssnowball, (BtIntPtr)func_80800930_bssnowball, (BtIntPtr)func_808009B0_bssnowball, (BtIntPtr)func_808008F0_bssnowball };
+BtIntPtr D_808010A4_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x174) = { (BtIntPtr)func_80800B44_bssnowball, (BtIntPtr)func_80800B70_bssnowball, (BtIntPtr)func_80800BBC_bssnowball, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_808010B4_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x184) = { (BtIntPtr)func_80800C18_bssnowball, (BtIntPtr)func_80800C40_bssnowball, (BtIntPtr)func_80800C98_bssnowball, (BtIntPtr)func_808008F0_bssnowball };
+BtIntPtr D_808010C4_bssnowball [4] BT_DATA(4, overlays_bs_snowball, 0x194) = { (BtIntPtr)func_80800D00_bssnowball, (BtIntPtr)func_80800D28_bssnowball, (BtIntPtr)func_80800D50_bssnowball, (BtIntPtr)func_808008F0_bssnowball };
+BtIntPtr D_808010D4_bssnowball [7] BT_DATA(4, overlays_bs_snowball, 0x1A4) = { (BtIntPtr)func_80800DB0_bssnowball, (BtIntPtr)func_80800DD8_bssnowball, (BtIntPtr)func_80800E4C_bssnowball, (BtIntPtr)func_808008F0_bssnowball, 0, 0, 0 };

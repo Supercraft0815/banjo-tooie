@@ -28,7 +28,7 @@ void func_80800000_chscreenadjust(Actor *arg0) {
     }
     _glglobalsettings_entrypoint_6((s32)((f32 *)arg0->actorData)[0],
                                   (s32)((f32 *)arg0->actorData)[1]);
-}
+}                typedef struct { u8 pad0[0x18]; f32 unk18; f32 unk1C; } Objscreenadjust_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -39,8 +39,8 @@ s32 func_8080016C_chscreenadjust(void *arg0, s32 arg1, s32 arg2) {
 
     if (arg1 == 0x95) {
         _glglobalsettings_entrypoint_5(&sp1C, &sp18, arg0);
-        (*(f32 *)((s8 *)(arg0) + (0x18))) = (f32) sp1C;
-        (*(f32 *)((s8 *)(arg0) + (0x1C))) = (f32) sp18;
+        (((Objscreenadjust_arg0 *)arg0)->unk18) = (f32) sp1C;
+        (((Objscreenadjust_arg0 *)arg0)->unk1C) = (f32) sp18;
         return 1;
     }
     return 0;
@@ -70,7 +70,11 @@ void func_8080037C_chscreenadjust(s32 arg0, Gfx **arg1) {
 
 OSThread *chscreenadjust_entrypoint_0(void)
 {
-    extern u8 D_80800430_chscreenadjust[];
+    extern ActorData D_80800430_chscreenadjust[];
 
     return (OSThread *) D_80800430_chscreenadjust;
 }
+/* data_to_c.py: from asm/data/overlays/ch/screenadjust.data.s */
+void func_80102EC0();
+void func_80107C2C();
+ActorData D_80800430_chscreenadjust [1] BT_DATA(4, overlays_ch_screenadjust, 0x0) = { { 344, 488, -1, 1, 0, (void (*)(struct Actor *))func_80800000_chscreenadjust, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8080037C_chscreenadjust, 0, 0, 0, 0, 64, 4, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8194, (void (*)(struct Actor *, long, long))func_8080016C_chscreenadjust, 0 } };

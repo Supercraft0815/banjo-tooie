@@ -138,3 +138,9 @@ void func_800E7FCC(s32* arg0) {
 }
 
 #include "1EC1380_culling.inc"
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+ScissorState D_8012D5D0 BT_DATA(4, bss_core2bss2_1, 0xC90);
+#endif

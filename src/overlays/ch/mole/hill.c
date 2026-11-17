@@ -11,7 +11,7 @@ s32 func_80800000_chmolehill(u8 *arg0) {
     if (func_8010CAC0(arg0 + 4, 0x87) != 0) {
         return 0;
     }
-    if (mlAbsF(func_800F1DCC(func_8010CD28(arg0), (*(f32 *)((s8 *)(arg0) + (0x48))) + 15.0f)) > 5.0f) {
+    if (mlAbsF(func_800F1DCC(func_8010CD28(arg0), (((Actor *)arg0)->rotation[1]) + 15.0f)) > 5.0f) {
         return 0;
     }
     return 1;
@@ -30,7 +30,7 @@ void func_80800088_chmolehill(u8 *arg0) {
     f32 sp34[3];
     f32 sp28[3];
     f32 sp24;
-    f32 var_f2;
+    f32 var_f2; BT_NATIVE_ONLY(s32 native_ret = 0;)
 
     if (((Actor *)arg0)->unk64_20) {
         func_8010D254(sp28);
@@ -47,25 +47,25 @@ void func_80800088_chmolehill(u8 *arg0) {
         func_800EF1B8(sp34, sp24, 150.0f);
         func_8008F964(sp34);
     }
-}
-
+}                    typedef struct { u8 pad0[0x3C]; s32 unk3C; u8 pad40[0x4C]; s16 unk8C; } Objhill_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+typedef struct { s32 values[5]; } AnimationTimes;
 void func_80800160_chmolehill(u8 *arg0) {
-    typedef struct { s32 values[5]; } AnimationTimes;
+
     typedef struct { u8 high : 4; u8 enabled : 1; u8 low : 3; } ActorFlags;
-    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
-    s32 anctrl_getPlaybackType(s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
+    s32 anctrl_getPlaybackType(BtIntPtr);
     void chmolehill_entrypoint_1(Actor *, s32);
     void chmolehill_entrypoint_2(Actor *, s32);
     s32 func_8008F8B0();
     s32 func_80101E14(u8 *, s32);
     s32 func_80101E4C(u8 *, s32 *);
     s32 func_801022E4(u8 *);
-    s32 func_80104248(u8 *);
+    void * func_80104248(void *data);
     s32 func_80800000_chmolehill(u8 *);
     void func_80800088_chmolehill(u8 *);
-    extern s32 D_80800AC0_chmolehill;
-    extern s32 D_80800ACC_chmolehill;
-    extern s32 D_80800ADC_chmolehill;
+    extern s32 D_80800AC0_chmolehill[3];
+    extern s32 D_80800ACC_chmolehill[4];
+    extern s32 D_80800ADC_chmolehill[4];
     extern AnimationTimes D_80800B5C_chmolehill;
     s32 sp3C;
     s32 temp_v0;
@@ -84,7 +84,7 @@ void func_80800160_chmolehill(u8 *arg0) {
         break;
     case 1:                                         /* switch 1 */
         func_80800088_chmolehill(arg0);
-        if (((*(s32 *)((s8 *)(arg0) + (0x3C))) != 0) && (func_80800000_chmolehill(arg0) != 0)) {
+        if (((((Objhill_arg0 *)arg0)->unk3C) != 0) && (func_80800000_chmolehill(arg0) != 0)) {
             func_8008F8B0();
             chmolehill_entrypoint_1(arg0, 0);
             chmolehill_entrypoint_2(arg0, 2);
@@ -92,7 +92,7 @@ void func_80800160_chmolehill(u8 *arg0) {
         break;
     case 3:                                         /* switch 1 */
         func_80800088_chmolehill(arg0);
-        if (((*(s32 *)((s8 *)(arg0) + (0x3C))) != 0) && (func_80800000_chmolehill(arg0) != 0)) {
+        if (((((Objhill_arg0 *)arg0)->unk3C) != 0) && (func_80800000_chmolehill(arg0) != 0)) {
             func_8008F8B0();
             chmolehill_entrypoint_1(arg0, 0);
             chmolehill_entrypoint_2(arg0, 7);
@@ -114,31 +114,31 @@ void func_80800160_chmolehill(u8 *arg0) {
         ((ActorFlags *)(arg0 + 0x65))->enabled = 1;
         break;
     }
-    if (((*(s16 *)((s8 *)(arg0) + (0x8C))) != 0) && (anctrl_getPlaybackType(func_80104248(arg0)) != 3)) {
+    if (((((Objhill_arg0 *)arg0)->unk8C) != 0) && (anctrl_getPlaybackType(func_80104248(arg0)) != 3)) {
         temp_v0 = func_801022E4(arg0);
         switch (temp_v0) {                          /* switch 2 */
         case 0x229:                                 /* switch 2 */
             if (func_80101E14(arg0, 0x3E9374BC) != 0) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800AC0_chmolehill);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800AC0_chmolehill);
             } else if ((func_80101E14(arg0, 0x3F30A3D7) != 0) || (func_80101E14(arg0, 0x3F428F5C) != 0)) {
                 sp3C = 1;
             }
             break;
         case 0x22A:                                 /* switch 2 */
             if (func_80101E14(arg0, 0x3E23D70A) != 0) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800AC0_chmolehill);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800AC0_chmolehill);
             } else if ((func_80101E14(arg0, 0x3F5C28F6) != 0) || (func_80101E14(arg0, 0x3F7AE148) != 0)) {
                 sp3C = 1;
             }
             break;
         case 0x22B:                                 /* switch 2 */
             if (func_80101E14(arg0, 0x3E4CCCCD) != 0) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800ACC_chmolehill);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800ACC_chmolehill);
             }
             break;
         case 0x22C:                                 /* switch 2 */
             if (func_80101E14(arg0, 0x3EF5C28F) != 0) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800AC0_chmolehill);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800AC0_chmolehill);
             } else if ((func_80101E14(arg0, 0x3F36AE7D) != 0) || (func_80101E14(arg0, 0x3F6F0069) != 0)) {
                 sp3C = 1;
             }
@@ -147,7 +147,7 @@ void func_80800160_chmolehill(u8 *arg0) {
             AnimationTimes sp24;
             sp24 = D_80800B5C_chmolehill;
             if (func_80101E14(arg0, 0x3D23D70A) != 0) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800AC0_chmolehill);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800AC0_chmolehill);
             } else if (func_80101E4C(arg0, sp24.values) != 0) {
                 sp3C = 1;
             }
@@ -156,26 +156,26 @@ void func_80800160_chmolehill(u8 *arg0) {
         }
     }
     if (sp3C != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800ADC_chmolehill);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800ADC_chmolehill);
     }
-}
+}    typedef struct { s32 unk0; u8 pad4[0x38]; s32 unk3C; u8 pad40[0x32]; u16 unk72; } Objhill_chmolehill_entrypoint_0_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x38]; s32 unk3C; } Objhill_chmolehill_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chmolehill_entrypoint_0(s32 arg0)
 {
-  s32 _chmoley_entrypoint_1(void *, u32);
+  void _chmoley_entrypoint_1(Actor *arg0, s32 arg1);
   Actor *func_80106790();
-  void *func_801084B0(s32, void **);
-  s32 func_80108944(void *, void *);
+  void *func_801084B0(BtIntPtr, void **);
+  void func_80108944(Actor *arg0, Actor *arg1);
   void *sp24;
   void *sp20;
   void *temp_v0;
   sp24 = func_80106790();
   temp_v0 = func_801084B0(0x18F, &sp24);
   sp20 = temp_v0;
-  *((s32 *) (((s8 *) sp24) + 0x3C)) = (s32) (*((s32 *) (((s8 *) temp_v0) + 0)));
-  *((s32 *) (((s8 *) temp_v0) + 0x3C)) = (s32) (*((s32 *) (((s8 *) sp24) + 0)));
+  ((Objhill_chmolehill_entrypoint_0_sp24 *)sp24)->unk3C = (s32) (((Objhill_chmolehill_entrypoint_0_temp_v0 *)temp_v0)->unk0);
+  ((Objhill_chmolehill_entrypoint_0_temp_v0 *)temp_v0)->unk3C = (s32) (((Objhill_chmolehill_entrypoint_0_sp24 *)sp24)->unk0);
   func_80108944(temp_v0, sp24);
-  _chmoley_entrypoint_1(sp20, ((unsigned long) ((u16) (*((u16 *) (((s8 *) sp24) + 0x72))))) >> 0xA);
+  _chmoley_entrypoint_1(sp20, ((unsigned long) ((u16) (((Objhill_chmolehill_entrypoint_0_sp24 *)sp24)->unk72))) >> 0xA);
 }
 
 s32 func_8080058C_chmolehill(Actor *arg0) {
@@ -194,7 +194,7 @@ s32 func_8080058C_chmolehill(Actor *arg0) {
     f32 sp3C[3];
     f32 sp30[3];
     f32 sp2C;
-    f32 var_f2;
+    f32 var_f2; BT_NATIVE_ONLY(s32 native_ret = 0;)
 
     if (func_80800000_chmolehill((u8 *)arg0) == 0) {
         func_8010D254(sp30);
@@ -209,18 +209,18 @@ s32 func_8080058C_chmolehill(Actor *arg0) {
         sp2C -= var_f2;
         func_800EE7F8(sp3C, arg0->position);
         func_800EF1B8(sp3C, sp2C, 150.0f);
-        func_8008F8B0();
+        BT_IDO_ONLY(func_8008F8B0();) BT_NATIVE_ONLY(native_ret = func_8008F8B0();)
         func_8008F8D8(1);
         func_8008F938(1);
         func_8008F904(&func_8010D5DC, arg0->unk0);
         func_8008F990(sp3C, 300.0f);
         arg0->unk64_20 = 1;
     }
-}
+    BT_NATIVE_ONLY(return native_ret;) }
 
 void chmolehill_entrypoint_1(Actor *arg0, s32 arg1) {
-    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
-    s32 _chmoley_entrypoint_0(Actor *, s32);
+    s32 _chbaddiesetup_entrypoint_1(s32 *, BtIntPtr);
+    void _chmoley_entrypoint_0(void *arg0, s32 arg1);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8080058C_chmolehill(Actor *);
 #ifndef BT_NATIVE
@@ -247,7 +247,7 @@ void chmolehill_entrypoint_1(Actor *arg0, s32 arg1) {
 /* extern */
 
 void chmolehill_entrypoint_2(Actor *arg0, s32 arg1) {
-    s32 _chmoley_entrypoint_1(void *, u32);
+    void _chmoley_entrypoint_1(Actor *arg0, s32 arg1);
     void func_800FFA88(Unk80132ED0 *);
     void func_80102424(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);
@@ -291,7 +291,7 @@ s32 chmolehill_entrypoint_3(Actor *arg0) {
 
 void *func_80100094(Actor *, u32);
 
-void chmolehill_entrypoint_4(Actor *arg0, s32 arg1) { *(s32 *)func_80100094(arg0, 0U) = arg1; }
+void chmolehill_entrypoint_4(Actor *arg0, BtIntPtr arg1) { *(s32 *)func_80100094(arg0, 0U) = arg1; }
 
 /* extern */
 
@@ -301,9 +301,9 @@ s32 chmolehill_entrypoint_5(Actor *arg0) {
 }
 
 s32 func_80800884_chmolehill(Actor *arg0) {
-    u8 func_800D731C(s32);
+    s32 func_800D731C(s32 arg0);
     f32 func_800D8FF8(void);
-    s32 func_800DBE60(u8, s32, s32);
+    void func_800DBE60(u8 arg0, s32 arg1, s32 arg2);
     u8 sp27;
 
     sp27 = func_800D731C(arg0->unk0->unk14);
@@ -324,7 +324,7 @@ s32 func_80800884_chmolehill(Actor *arg0) {
         func_800DBE60(sp27, 0, (s32)((f32 *)arg0->actorData)[4]);
         func_800DBE60(sp27, 1, (s32)((f32 *)arg0->actorData)[4]);
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
@@ -358,7 +358,18 @@ s32 func_808009A0_chmolehill(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chmolehill_entrypoint_6(void)
 {
-    extern u8 D_80800B70_chmolehill[];
+    extern ActorData D_80800B70_chmolehill[];
 
     return (OSThread *) D_80800B70_chmolehill;
 }
+/* data_to_c.py: from asm/data/overlays/ch/mole/hill.data.s */
+extern u8 D_80800AEC_chmolehill[];
+void func_80105834(Actor*);
+void func_801018A4();
+void func_80107C2C();
+s32 D_80800AC0_chmolehill[3] BT_DATA(4, overlays_ch_mole_hill, 0x0) = { 1246550, 1463792, 0 };
+s32 D_80800ACC_chmolehill[4] BT_DATA(4, overlays_ch_mole_hill, 0xC) = { 1246369, 852211, 16777238, 786432000 };
+s32 D_80800ADC_chmolehill[4] BT_DATA(4, overlays_ch_mole_hill, 0x1C) = { 1246368, 852211, 17563670, 786432000 };
+u8 D_80800AEC_chmolehill[112] BT_DATA(4, overlays_ch_mole_hill, 0x2C) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x29, 0x00, 0x44, 0x3F, 0xD9, 0x99, 0x9A, 0x02, 0x29, 0x00, 0x02, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0x2A, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x02, 0x29, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x02, 0x29, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x02, 0x29, 0x00, 0x04, 0x3F, 0x4C, 0xCC, 0xCD, 0x02, 0x2B, 0x00, 0x02, 0x3F, 0x66, 0x66, 0x66, 0x02, 0x2C, 0x00, 0x02, 0x40, 0x80, 0x00, 0x00, 0x02, 0x2D, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x02, 0x29, 0x00, 0x04, 0x40, 0xC0, 0x00, 0x00, 0x02, 0x2E, 0x00, 0x02, 0x40, 0x80, 0x00, 0x00, 0x02, 0x2D, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x02, 0x29, 0x00, 0x04 };
+AnimationTimes D_80800B5C_chmolehill BT_DATA(4, overlays_ch_mole_hill, 0x9C) = { { 1040241079, 1042254345, 1061326684, 1064682127, -1082130432 } };
+ActorData D_80800B70_chmolehill [1] BT_DATA(4, overlays_ch_mole_hill, 0xB0) = { { 184, 583, 2007, 1, (void *)D_80800AEC_chmolehill, (void (*)(struct Actor *))func_80800160_chmolehill, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 32768000, 0, 0, 0, 0, 2132, 0, 0, 4, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8194, (void (*)(struct Actor *, long, long))func_808009A0_chmolehill, 0 } };

@@ -234,9 +234,9 @@ f32 func_800F1434(f32 arg0) {
 
 /* extern */
 
-void func_800F1480(f32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_800F1480(f32 arg0) {
     f32 func_80013970(f32);
-    func_80013970(arg0 * 90.0f);
+    BT_NATIVE_ONLY(return) func_80013970(arg0 * 90.0f);
 }
 
 f32 func_800F14AC(f32 arg0) {

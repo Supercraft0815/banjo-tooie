@@ -20,7 +20,7 @@ struct SfxState {
     s16 volume, envelopeVolume;
     s32 endTime;
     u8 priority, pan, fxMix, fxBus, flags, phase, pad46[2];
-};
+};     
 
 void func_800205D0(void *arg0) {
     void func_80020E74(ALLink *);
@@ -61,23 +61,23 @@ void func_800205D0(void *arg0) {
     }
     func_800E90A4(*(s32 *)((u8 *)arg0 + 8), 0);
     osSetIntMask(mask);
-}
+}                   typedef struct { u8 pad0[0x40]; u8 unk40; u8 pad41[0x4]; u8 unk45; } Obj1E38100_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80020738(void *arg0, u8 arg1) {
     if (arg0 != NULL) {
-        *(u8 *)((u8 *)arg0 + 0x40) = (s16)arg1;
+        ((Obj1E38100_arg0 *)arg0)->unk40 = (s16)arg1;
     }
 }
 
 s32 func_80020760(void *arg0) {
     if (arg0 != NULL) {
-        return *(u8 *)((u8 *)arg0 + 0x45);
+        return *&((Obj1E38100_arg0 *)arg0)->unk45;
     } else {
         return 0;
     }
 }
 
-struct SfxState *func_80020790(s16 arg0, u16 arg1, u8 arg2, f32 arg3, u8 arg4, u8 arg5, s32 arg6) {
+struct SfxState *func_80020790(s16 arg0, u16 arg1, u8 arg2, f32 arg3, u8 arg4, u8 arg5, BtIntPtr arg6) {
     struct SfxState *func_8002039C(struct SfxSound *);
     void func_80026500(void *, void *, s32, s32);
     u8 *func_800E9320(s32, s32);
@@ -160,7 +160,7 @@ void func_80020A60(void *arg0) {
         *(u8 *)((u8 *)evt.state + 0x44) &= ~0x10;
         func_80026500(D_800411DC + 0x14, &evt, 0, 0);
     }
-}
+}    typedef struct { u8 pad0[0x44]; u8 unk44; } Obj1E38100_func_80020AD0_state; /* offsets.py genstruct: fields from raw offsets on state; rename once understood */
 
 void func_80020AD0(u8 arg0) {
     extern struct SfxState *D_800411D0;
@@ -176,7 +176,7 @@ void func_80020AD0(u8 arg0) {
         do {
             evt.type = 0x400;
             evt.state = state;
-            if ((*(u8 *)((u8 *)state + 0x44) & arg0) == arg0) {
+            if ((((Obj1E38100_func_80020AD0_state *)state)->unk44 & arg0) == arg0) {
                 *(u8 *)((u8 *)evt.state + 0x44) &= ~0x10;
                 func_80026500(D_800411DC + 0x14, &evt, 0, 0);
             }
@@ -226,7 +226,7 @@ s32 func_80020C74(u8 arg0) {
     extern u16 *D_8007EA24;
 
     return D_8007EA24[arg0];
-}
+}    typedef struct { u8 pad0[0x8]; void * unk8; } Obj1E38100_func_80020CA0_state; /* offsets.py genstruct: fields from raw offsets on state; rename once understood */
 
 void func_80020CA0(u8 arg0, u16 arg1) {
     extern struct SfxState *D_800411D0;
@@ -242,7 +242,7 @@ void func_80020CA0(u8 arg0, u16 arg1) {
     state = D_800411D0;
     D_8007EA24[arg0] = arg1;
     for (count = 0; state != NULL; count++, state = *(void **)state) {
-            if ((*(u8 *)((u8 *)*(void **)((u8 *)state + 8) + 0x12) & 0x1F) == arg0) {
+            if ((*(u8 *)((u8 *)*&((Obj1E38100_func_80020CA0_state *)state)->unk8 + 0x12) & 0x1F) == arg0) {
                 event.type = 0x800;
                 event.state = state;
                 func_80026500(D_800411DC + 0x14, &event, 0, 0);
@@ -252,7 +252,7 @@ void func_80020CA0(u8 arg0, u16 arg1) {
 }
 
 void func_80020D80(s32 arg0, s32 arg1) {
-    s32 func_80020F70(s32);
+    s32 func_80020F70(BtIntPtr);
     extern s32 D_800411F0;
     extern s32 D_800411F4;
     if (D_800411F0 == 0) {
@@ -265,7 +265,7 @@ void func_80020D80(s32 arg0, s32 arg1) {
 }
 
 void func_80020DEC(s32 arg0) {
-    s32 func_80027200();
+    void func_80027200(void);
     extern s32 D_800411F0;
     extern s32 D_800411F4;
     if (D_800411F0 != 0) {

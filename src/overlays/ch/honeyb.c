@@ -4,27 +4,27 @@ void func_80102424(Actor *, s32);
 
 OSThread *chhoneyb_entrypoint_0(void)
 {
-    extern u8 D_80801020_chhoneyb[];
+    extern ActorData D_80801020_chhoneyb[];
 
     return (OSThread *) D_80801020_chhoneyb;
 }
 
 OSThread *chhoneyb_entrypoint_1(void)
 {
-    extern u8 D_80801068_chhoneyb[];
+    extern ActorData D_80801068_chhoneyb[];
 
     return (OSThread *) D_80801068_chhoneyb;
 }
 
 void func_80800018_chhoneyb(Actor *arg0, u32 arg1, u32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x9BU);
     func_80102424(arg0, 2);
 }
 
 void func_80800058_chhoneyb(void *arg0) {
     s32 _gcextra_entrypoint_1();
-    s32 _subaddieitem_entrypoint_1(s32, s32);
+    void _subaddieitem_entrypoint_1(s8 *arg0, s32 arg1);
     void *func_80100094(Actor *, u32);
     s32 func_80800B58_chhoneyb();
     s32 func_80800B78_chhoneyb();
@@ -45,21 +45,21 @@ void func_80800058_chhoneyb(void *arg0) {
             i++;
         } while (_gcextra_entrypoint_1() >= i);
     }
-    _subaddieitem_entrypoint_1((s32)func_80100094(arg0, 1) + 0x18, *(s32 *)((u8 *)arg0 + 0x2C));
+    _subaddieitem_entrypoint_1((BtIntPtr)func_80100094(arg0, 1) + 0x18, *(s32 *)((u8 *)arg0 + 0x2C));
 }
 
 /* extern */
 
 void func_8080011C_chhoneyb(void *arg0) {
     s32 func_8008FC28();
-    s32 func_80090708(s32);
-    s32 func_800FC6B0(s32);
+    void func_80090708(s32 arg0);
+    void func_800FC6B0(u32 track_id);
     s32 temp_v0;
 
     func_80090708(2);
     func_80102424(arg0, 3);
     (*(f32 *)((s8 *)(arg0) + (0x34))) = 1.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = 0.25f;
+    (((Actor *)arg0)->unk58) = 0.25f;
     temp_v0 = func_8008FC28();
     (*(s32 *)((s8 *)(arg0) + (0x30))) = temp_v0;
     (*(s32 *)((s8 *)(arg0) + (0x24))) = (s32) ((*(s32 *)((s8 *)(arg0) + (0x28))) + temp_v0);
@@ -68,15 +68,15 @@ void func_8080011C_chhoneyb(void *arg0) {
 }
 
 void func_80800194_chhoneyb(Actor *arg0) {
-    void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
+    void _subaddieitem_entrypoint_0(BtIntPtr, BtUIntPtr, s32, s32);
     s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_12(void *arg0, void *arg1);
     void func_800A16BC(s32);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80800058_chhoneyb(void *);
-    extern s32 D_808010B0_chhoneyb;
+    extern s32 D_808010B0_chhoneyb[4];
     f32 sp28[6];
 
     if (_subaddiemarker_entrypoint_0(arg0, 0x1C1, sp28, 1) != 0) {
@@ -85,17 +85,17 @@ void func_80800194_chhoneyb(Actor *arg0) {
     _subaddieitem_entrypoint_0((s8 *)func_80100094(arg0, 1) + 0x18, 0x4B7, 0x258, 3);
     func_80800058_chhoneyb(arg0);
     _susubgame_entrypoint_0(arg0, func_80100094(arg0, 1), 0);
-    _susubgame_entrypoint_12(func_80100094(arg0, 1), &D_808010B0_chhoneyb);
+    _susubgame_entrypoint_12(func_80100094(arg0, 1), D_808010B0_chhoneyb);
     func_800A16BC(1);
 }
 
 /* extern */
 
-void func_80800240_chhoneyb(s32 arg0) {
-    s32 _suexpression_entrypoint_20();
-    s32 _suexpression_entrypoint_8(s32, s32);
-    s32 _susubgame_entrypoint_2(s32, s32);
-    s32 _susubgame_entrypoint_4(s32, s32);
+void func_80800240_chhoneyb(BtIntPtr arg0) {
+    BtIntPtr _suexpression_entrypoint_20();
+    void _suexpression_entrypoint_8(void *arg0, s32 arg1);
+    u8 _susubgame_entrypoint_2(BtIntPtr arg0, u8 *arg1);
+    s32 _susubgame_entrypoint_4(BtIntPtr, BtIntPtr);
     void *func_80100094(Actor *, u32);
     if (_suexpression_entrypoint_20() != 0) {
         _suexpression_entrypoint_8(arg0, 0);
@@ -110,9 +110,9 @@ void func_808002AC_chhoneyb(Actor *arg0) {
     s32 _glcutDll_entrypoint_20(void);
     s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
     s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    s32 func_80090708(s32);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    void func_80090708(s32 arg0);
     void func_8008FBE0(u32);
     void func_800C3FC0(s32, f32, s32);
     void func_800D1824(s32);
@@ -217,7 +217,7 @@ void func_8080062C_chhoneyb(void *arg0) {
     void _gcextra_entrypoint_2(s32);
     s32 func_8008FD48();
     void func_800A1658(s32);
-    void func_80101180(s32, s32, s32);
+    void func_80101180(s32, s32, BtIntPtr);
     void func_80800058_chhoneyb(void *);
     _gcextra_entrypoint_2(*(s32 *)((s8 *)arg0 + 0x28));
     func_800A1658(func_8008FD48());
@@ -228,16 +228,16 @@ void func_8080062C_chhoneyb(void *arg0) {
 /* extern */
 
 void func_80800680_chhoneyb(s32 *arg0) {
-    s32 _suexpression_entrypoint_10(s32, s32, s32);
-    s32 _suexpression_entrypoint_18(s32, s32);
-    s32 _suexpression_entrypoint_20();
+    void _suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
+    BtIntPtr _suexpression_entrypoint_20();
     f32 func_80101F24(s32 *);
     s32 func_801022E4(s32 *);
     s32 func_80102320(s32 *, s32, s32);
-    s32 sp1C;
+    BtIntPtr sp1C;
     s32 sp18;
     f32 temp_f0;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = _suexpression_entrypoint_20();
     sp1C = temp_v0;
@@ -255,9 +255,9 @@ void func_80800680_chhoneyb(s32 *arg0) {
 
 void func_80800744_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800DA544(GameFlag);
-    void _subaddieitem_entrypoint_2(s32);
-    s32 _susubgame_entrypoint_4(s32, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    void _subaddieitem_entrypoint_2(BtIntPtr);
+    s32 _susubgame_entrypoint_4(BtIntPtr, BtIntPtr);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     void *func_80100094(Actor *, u32);
     s32 func_80800BD8_chhoneyb(void);
     u32 sp2C;
@@ -298,16 +298,16 @@ void func_80800744_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
         sp28 = 0x4E;
         break;
     case 0x151D:
-        _subaddieitem_entrypoint_2((s32)func_80100094(arg0, 1) + 0x18);
+        _subaddieitem_entrypoint_2((BtIntPtr)func_80100094(arg0, 1) + 0x18);
         _susubgame_entrypoint_5(arg0, func_80100094(arg0, 1), 2, 1, 0);
         func_80102424(arg0, 5);
         break;
     case 0x1553:
-        _susubgame_entrypoint_4((s32)arg0, (s32)func_80100094(arg0, 1));
+        _susubgame_entrypoint_4((BtIntPtr)arg0, (BtIntPtr)func_80100094(arg0, 1));
         func_8080011C_chhoneyb(arg0);
         break;
     default:
-        _susubgame_entrypoint_4((s32)arg0, (s32)func_80100094(arg0, 1));
+        _susubgame_entrypoint_4((BtIntPtr)arg0, (BtIntPtr)func_80100094(arg0, 1));
         func_80102424(arg0, 1);
         break;
     }
@@ -335,10 +335,10 @@ s32 func_80800920_chhoneyb(u8 *arg0, s32 arg1, s32 arg2) {
 s32 func_80800968_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
     s32 _glcutDll_entrypoint_20(void);
-    void *_suexpression_entrypoint_7(Actor *, u32, u32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     void _suexpression_entrypoint_12(void *, f32, f32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_8008F8B0(void);
     void func_8008F8D8(s32);
     void func_8008F904(void *, Unk80132ED0 *);
@@ -347,7 +347,7 @@ s32 func_80800968_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800DA298(s32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
-    extern u32 D_808010C0_chhoneyb;
+    extern u32 D_808010C0_chhoneyb[4];
     extern s32 func_8010D5DC;
 
     switch (arg1) {
@@ -361,7 +361,7 @@ s32 func_80800968_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
         arg0->unk74_29 = 1;
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_808010C0_chhoneyb, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_808010C0_chhoneyb, arg0->scale);
         break;
     case 0xB:
         return 3;
@@ -386,8 +386,8 @@ s32 func_80800968_chhoneyb(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800B2C_chhoneyb(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
-    extern u32 D_808010D0_chhoneyb;
-    _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_808010D0_chhoneyb);
+    extern u32 D_808010D0_chhoneyb[8];
+    _subaddieaudioloop_entrypoint_4(arg0, &arg0->position[0], 1U, D_808010D0_chhoneyb);
 }
 
 s32 func_80800B58_chhoneyb()
@@ -419,7 +419,7 @@ s32 func_80800BD8_chhoneyb(void) {
 }
 
 s32 func_80800C0C_chhoneyb(void) {
-    func_80800B98_chhoneyb(func_80800B78_chhoneyb() + 1);
+    BT_NATIVE_ONLY(return) func_80800B98_chhoneyb(func_80800B78_chhoneyb() + 1);
 }
 
 void func_80800C34_chhoneyb(u8 *arg0) {
@@ -427,7 +427,7 @@ void func_80800C34_chhoneyb(u8 *arg0) {
     func_8010A3E8(arg0, 0.7f);
 }
 
-void func_80800C58_chhoneyb()
+void func_80800C58_chhoneyb(BT_NATIVE_ONLY(s32 bt_a0))
 {
     func_8010C964();
 }
@@ -441,7 +441,7 @@ s32 func_80800C78_chhoneyb(void *arg0, s32 arg1, void *volatile arg2) {
     void func_800FFAB0(Actor *);
     void func_8010DC50(s32);
     void func_8010DCB4(s32);
-    int func_8010DD20(u8 *, s32, u8 *);
+    void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2);
     Actor *actor = arg0;
 
     switch (arg1) {
@@ -462,7 +462,7 @@ s32 func_80800C78_chhoneyb(void *arg0, s32 arg1, void *volatile arg2) {
         func_800DF744(3, 0);
         break;
     case 0x23:
-        if ((s32)arg2 >= (s32)actor->unk74_7 - 0x32) {
+        if ((BtIntPtr)arg2 >= (s32)actor->unk74_7 - 0x32) {
             _subaddiefade_entrypoint_3(actor);
         }
         break;
@@ -472,18 +472,18 @@ s32 func_80800C78_chhoneyb(void *arg0, s32 arg1, void *volatile arg2) {
     return 1;
 }
 
-void chhoneyb_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+void chhoneyb_entrypoint_2(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3)
 {
-  s32 _scinfobar_entrypoint_11(s32);
-  s32 _scinfobar_entrypoint_14(s32);
-  f32 _scinfobar_entrypoint_18(s32);
-  s32 _scinfobar_entrypoint_19(s32);
-  s32 _scinfobar_entrypoint_20(s32);
-  s32 func_800D674C(s32);
+  s32 _scinfobar_entrypoint_11(void *arg0);
+  s32 _scinfobar_entrypoint_14(s32 *arg0);
+  f32 _scinfobar_entrypoint_18(f32 *arg0);
+  s32 _scinfobar_entrypoint_19(s32 *arg0);
+  s32 _scinfobar_entrypoint_20(s32 *arg0);
+  BtIntPtr func_800D674C(s32);
   void func_800E253C(f32);
   void func_800E257C(s32);
-  s32 func_800E30E0(s32, s32, s32, s32 *);
-  s32 image;
+  void func_800E30E0(BtIntPtr arg0, void *arg1, s32 arg2, void *arg3);
+  BtIntPtr image;
   s32 limit;
   f32 scale;
   f32 fraction;
@@ -545,3 +545,15 @@ void chhoneyb_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
   }
 
 }
+/* data_to_c.py: from asm/data/overlays/ch/honeyb.data.s */
+extern u8 D_80800FF0_chhoneyb[];
+void func_80102EC0();
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+void func_801018A4();
+u8 D_80800FF0_chhoneyb[48] BT_DATA(4, overlays_ch_honeyb, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xD5, 0x70, 0xA4, 0x04, 0xAD, 0x00, 0x00, 0x40, 0xD5, 0x70, 0xA4, 0x04, 0xAD, 0x00, 0x00, 0x40, 0xD5, 0x70, 0xA4, 0x04, 0xAD, 0x00, 0x00, 0x40, 0xD5, 0x70, 0xA4, 0x04, 0xAD, 0x00, 0x00, 0x40, 0xD5, 0x70, 0xA4, 0x04, 0xAD, 0x00, 0x00 };
+ActorData D_80801020_chhoneyb [1] BT_DATA(4, overlays_ch_honeyb, 0x30) = { { 344, 1200, 2328, 1, (void *)D_80800FF0_chhoneyb, (void (*)(struct Actor *))func_808002AC_chhoneyb, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 0, 1068708659, 0, 0, 0, 288, (void (*)(struct Actor *))func_80800240_chhoneyb, 0, 0, 44, (void (*)(struct Actor *))func_80800194_chhoneyb, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80800968_chhoneyb, 0 } };
+ActorData D_80801068_chhoneyb [1] BT_DATA(4, overlays_ch_honeyb, 0x78) = { { 344, 1208, 1797, 1, 0, (void (*)(struct Actor *))func_80800C58_chhoneyb, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_801018A4, 0, 1070386381, 0, 0, 128, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800C34_chhoneyb, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9346, (void (*)(struct Actor *, long, long))func_80800C78_chhoneyb, 0 } };
+s32 D_808010B0_chhoneyb[4] BT_DATA(4, overlays_ch_honeyb, 0xC0) = { 1138819072, 1132068864, 1128792064, 1128792064 };
+u32 D_808010C0_chhoneyb[4] BT_DATA(4, overlays_ch_honeyb, 0xD0) = { 0x43E10000, 0x437A0000, 0x43480000, 0x43480000 };
+u32 D_808010D0_chhoneyb[8] BT_DATA(4, overlays_ch_honeyb, 0xE0) = { 0x13049B, 0x161388, 0xE00E6, 0x1190180, 0, 0, 0, 0 };

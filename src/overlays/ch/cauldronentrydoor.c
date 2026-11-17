@@ -31,7 +31,7 @@ void func_80800000_chcauldronentrydoor(Actor *arg0) {
 }
 
 void func_808000C8_chcauldronentrydoor(Actor *arg0) {
-    s32 _chdoor_entrypoint_0();
+    void _chdoor_entrypoint_0(BtIntPtr arg0);
     s32 _chelectricfence_entrypoint_2(Actor *, u8 *, u8 *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 func_800D9078(f32 *);
@@ -54,7 +54,7 @@ void func_808000C8_chcauldronentrydoor(Actor *arg0) {
 }
 
 s32 func_80800168_chcauldronentrydoor(Actor *arg0, s32 arg1, void *arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     void _chelectricfence_entrypoint_1(Actor *, f32 *);
     f32 func_800EC75C(void *, f32 *);
     void func_800FC6B0(u32);
@@ -75,27 +75,27 @@ s32 func_80800168_chcauldronentrydoor(Actor *arg0, s32 arg1, void *arg2) {
         default:
             return 0;
     }
-}
+}                typedef struct { u8 pad0[0x18]; f32 unk18; f32 unk1C; f32 unk20; u8 pad24[0x20]; f32 unk44; u8 pad48[0x26]; u16 unk6E; } Objcauldronentrydoor_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_808001FC_chcauldronentrydoor(void *arg0) {
     s32 func_800DA298(s32);
-    (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00);
-    (*(f32 *)((s8 *)(arg0) + (0x18))) = 0.0f;
+    (((Objcauldronentrydoor_arg0 *)arg0)->unk6E) = (u16) ((((Objcauldronentrydoor_arg0 *)arg0)->unk6E) & 0xFE00);
+    (((Objcauldronentrydoor_arg0 *)arg0)->unk18) = 0.0f;
     if (func_800DA298(0x436) != 0) {
-        (*(f32 *)((s8 *)(arg0) + (0x1C))) = 360.0f;
+        (((Objcauldronentrydoor_arg0 *)arg0)->unk1C) = 360.0f;
     } else {
-        (*(f32 *)((s8 *)(arg0) + (0x1C))) = 270.0f;
+        (((Objcauldronentrydoor_arg0 *)arg0)->unk1C) = 270.0f;
     }
-    (*(f32 *)((s8 *)(arg0) + (0x20))) = 0.5f;
-    (*(f32 *)((s8 *)(arg0) + (0x44))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x1C)));
+    (((Objcauldronentrydoor_arg0 *)arg0)->unk20) = 0.5f;
+    (((Objcauldronentrydoor_arg0 *)arg0)->unk44) = (f32) (((Objcauldronentrydoor_arg0 *)arg0)->unk1C);
 }
 
 int func_80800274_chcauldronentrydoor(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800FC6B0(u32);
     s32 temp_v1;
     s32 var_v0;
@@ -132,7 +132,7 @@ int func_80800274_chcauldronentrydoor(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800370_chcauldronentrydoor(s32 arg0) 
 {
 }
-void chcauldronentrydoor_entrypoint_0()
+void chcauldronentrydoor_entrypoint_0(BT_NATIVE_ONLY(s32 bt_a0))
 {
     func_800E1720();
 }
@@ -143,7 +143,7 @@ void func_80800398_chcauldronentrydoor(Actor *arg0) {
     void func_800C9DE4(f32, void *, s32);
     s32 func_800E15CC(s32, f32, f32);
     void func_80101FDC(Actor *, u32);
-    void _chcauldronentrydoor_entrypoint_0(void);
+    void _chcauldronentrydoor_entrypoint_0(BT_PARAM_OR_VOID(s32 bt_a0));
     extern u32 D_80800534_chcauldronentrydoor[];
     extern u32 D_80800540_chcauldronentrydoor[];
 
@@ -176,14 +176,24 @@ void func_80800398_chcauldronentrydoor(Actor *arg0) {
 
 OSThread *chcauldronentrydoor_entrypoint_1(void)
 {
-    extern u8 D_80800550_chcauldronentrydoor[];
+    extern ActorData D_80800550_chcauldronentrydoor[];
 
     return (OSThread *) D_80800550_chcauldronentrydoor;
 }
 
 OSThread *chcauldronentrydoor_entrypoint_2(void)
 {
-    extern u8 D_80800598_chcauldronentrydoor[];
+    extern ActorData D_80800598_chcauldronentrydoor[];
 
     return (OSThread *) D_80800598_chcauldronentrydoor;
 }
+/* data_to_c.py: from asm/data/overlays/ch/cauldronentrydoor.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u32 D_80800520_chcauldronentrydoor [5] BT_DATA(4, overlays_ch_cauldronentrydoor, 0x0) = { 0x1305B7, 0xE00F3, 0x10C0019, 0x167FBC, 0 };
+u32 D_80800534_chcauldronentrydoor [3] BT_DATA(4, overlays_ch_cauldronentrydoor, 0x14) = { 0x1304C7, 0x180002, 0 };
+u32 D_80800540_chcauldronentrydoor [4] BT_DATA(4, overlays_ch_cauldronentrydoor, 0x20) = { 0x130507, 0x180002, 0xA008C, 0 };
+ActorData D_80800550_chcauldronentrydoor [1] BT_DATA(4, overlays_ch_cauldronentrydoor, 0x30) = { { 817, 917, 2285, 1, 0, (void (*)(struct Actor *))func_808000C8_chcauldronentrydoor, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 1422, 0, 0, 7168, (void (*)(struct Actor *))func_80800370_chcauldronentrydoor, (BtIntPtr)func_80108ED0, 0, 24, (void (*)(struct Actor *))func_80800000_chcauldronentrydoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1024, (void (*)(struct Actor *, long, long))func_80800168_chcauldronentrydoor, 0 } };
+ActorData D_80800598_chcauldronentrydoor [1] BT_DATA(4, overlays_ch_cauldronentrydoor, 0x78) = { { 172, 1183, 2286, 1, 0, (void (*)(struct Actor *))func_80800398_chcauldronentrydoor, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, (void (*)(struct Actor *))func_80800370_chcauldronentrydoor, 0, 0, 0, (void (*)(struct Actor *))func_808001FC_chcauldronentrydoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800274_chcauldronentrydoor, 0 } };

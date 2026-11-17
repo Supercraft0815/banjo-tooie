@@ -20,7 +20,7 @@ void func_80800008_ncbatarget(PlayerState *arg0, f32 *arg1) {
 void func_80800058_ncbatarget(PlayerState* arg0, f32* arg1)
 {
     func_80112524(arg0,arg1);
-}
+}    typedef struct { u8 pad0[0x58]; void * unk58; } Objtarget_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -28,17 +28,17 @@ void ncbatarget_entrypoint_1(void *arg0) {
     void func_800EFD24(f32 *);
     void func_80111B8C(s32 *, f32, f32);
     void func_801120CC(s32 *, f32, f32, f32);
-    void func_801124D0(s32, s32);
+    void func_801124D0(BtIntPtr, s32);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);
     void func_8011607C(void *, s32);
     func_801120CC(arg0, 2000.0f, 4000.0f, -4000.0f);
     func_80111B8C(arg0, 4.0f, 8.0f);
-    func_801124D0((s32) arg0, 1);
+    func_801124D0((BtIntPtr) arg0, 1);
     func_80115858(arg0, 1);
     func_80115870(arg0, 5.0f);
-    func_800EFD24((*(void **)((s8 *)(arg0) + (0x58))));
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x58)))) + (0xC))) = 0.5f;
+    func_800EFD24((((Objtarget_arg0 *)arg0)->unk58));
+    (*(f32 *)((s8 *)((((Objtarget_arg0 *)arg0)->unk58)) + (0xC))) = 0.5f;
     func_8011607C(arg0, 1);
 }
 
@@ -52,9 +52,9 @@ void ncbatarget_entrypoint_3(PlayerState *arg0) {
     s32 func_800EFB24(s32 *, void *, f32 *);
     void func_800F1A88(f32 *, f32 *);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     s32 func_80111FD4(void *, f32 *);
     f32 func_80112C3C(void *, f32);
@@ -95,12 +95,12 @@ void ncbatarget_entrypoint_3(PlayerState *arg0) {
 }
 
 void ncbatarget_entrypoint_4(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 88) + 12) = arg1;
+    *(f32 *)((u8 *)*&((Objtarget_arg0 *)arg0)->unk58 + 12) = arg1;
 }
 
 /* extern */
 
-void ncbatarget_entrypoint_5(void *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) ncbatarget_entrypoint_5(void *arg0 BT_PASS2(, s32 bt_a1)) {
     s32 func_800EE7F8(s32);
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x58))));
+    BT_NATIVE_ONLY(return) func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x58))));
 }

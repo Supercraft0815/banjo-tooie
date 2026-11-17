@@ -4,7 +4,7 @@
 
 void func_80800000_chmole_training(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 _gcnewoption_entrypoint_6(Actor *, s32);
+    void _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
     if (func_80100094(arg0, 0U) != NULL) {
         _gcnewoption_entrypoint_6(arg0, 0);
     }
@@ -13,7 +13,7 @@ void func_80800000_chmole_training(Actor *arg0) {
 void func_80800034_chmole_training(Actor *arg0, s32 arg1)
 {
   void *func_80100094(Actor *, u32);
-  s32 _gcnewoption_entrypoint_1(u8 *, s32);
+  void _gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1);
   u32 temp_t6;
   temp_t6 = (u16) (*((u16 *) (((s8 *) arg0) + 0x72)));
   temp_t6 = temp_t6 >> 0xA;
@@ -24,9 +24,9 @@ void func_80800034_chmole_training(Actor *arg0, s32 arg1)
 }
 
 void func_80800088_chmole_training(Actor *arg0) {
-    s32 _gcnewoption_entrypoint_0(s32);
-    s32 _gcnewoption_entrypoint_6(Actor *, s32);
-    s32 _sumole_entrypoint_17(Actor *, s32, s32, s32);
+    void _gcnewoption_entrypoint_0(void *arg0);
+    void _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
+    s32 _sumole_entrypoint_17(Actor* arg0, s16 message, s32 arg2, s32 arg3);
     void _sumole_entrypoint_19(void *, s32);
     int func_800C6E38(s32);
     void *func_80100094(Actor *, u32);
@@ -139,7 +139,7 @@ void func_808003D4_chmole_training(void *arg0) {
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
 
-    switch ((u32) (*(f32 *)((s8 *)(arg0) + (0x54)))) {
+    switch ((u32) (((Actor *)arg0)->unk54)) {
     case 6:
         if (func_800DA298(0x53) == 0) {
             func_800DA3B8(0x53, 1);
@@ -162,8 +162,8 @@ void func_808003D4_chmole_training(void *arg0) {
 
 /* extern */
 
-void func_808004D0_chmole_training(Actor *arg0, s32 arg1) {
-    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
+void func_808004D0_chmole_training(Actor *arg0, BtIntPtr arg1) {
+    void _gcnewoption_entrypoint_12(void *a0, u32 optionIndex, s16 textIndex);
 
     switch ((u32)arg0->unk54) {
     case 1:
@@ -253,9 +253,9 @@ void chmole_training_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg
 
 /* extern */
 
-void func_808008E4_chmole_training(s32 arg0, s32 arg1, s32 arg2) {
-    void _gcnewoption_entrypoint_31(s32, s32, s16);
-    s32 _gcnewoption_entrypoint_32(s32, s32);
+void func_808008E4_chmole_training(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
+    void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
+    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     s32 func_800DA298(s32);
     s32 var_s0;
 
@@ -272,16 +272,16 @@ void func_808008E4_chmole_training(s32 arg0, s32 arg1, s32 arg2) {
 void func_80800988_chmole_training(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    s32 _gcnewoption_entrypoint_4(Actor *, s32, s32 *, s32, s32);
-    s32 _gcnewoption_entrypoint_8(s32, s32);
-    s32 _gcnewoption_entrypoint_9(s32, s32);
-    s32 _gcnewoption_entrypoint_10(s32, s32);
-    s32 _gcnewoption_entrypoint_11(s32);
-    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
+    void _gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
+    void _gcnewoption_entrypoint_8(s16 *arg0, s32 arg1);
+    void _gcnewoption_entrypoint_9(s16 *arg0, s32 arg1);
+    void _gcnewoption_entrypoint_10(void *arg0, s32 arg1);
+    void _gcnewoption_entrypoint_11(s16 *arg0);
+    void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
 #ifndef BT_NATIVE
     extern s32 _chmole_training_entrypoint_0;
 #endif
-    s32 option;
+    BtIntPtr option;
 
     _gcnewoption_entrypoint_4(arg0, 0, &_chmole_training_entrypoint_0, 0, 0x184A);
     option = func_80100094(arg0, 0);
@@ -378,7 +378,7 @@ void func_80800C28_chmole_training(void *arg0) {
 }
 
 void func_80800C3C_chmole_training(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = (s32) (*(f32 *)((s8 *)(arg0) + (0x48)));
+    (((Actor *)arg0)->unk54) = (s32) (((Actor *)arg0)->rotation[1]);
     (*(u8 *)((s8 *)(arg0) + (0x72))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x72))) & 0xFF03) | 4);
 }
 

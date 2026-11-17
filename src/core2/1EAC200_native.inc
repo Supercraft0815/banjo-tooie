@@ -55,8 +55,8 @@ void native_fog_apply(Gfx **output,s32 visible) {
     func_800D2CC4();
 }
 void func_800D2A44(Gfx **output) {
-    s32 func_800A89F8(void),func_800A9478(s32),func_800F6BE4(s32),func_8010FFD8(s16 *);
-    s16 *func_800A93E4(s32);
+    s32 func_800A89F8(void),func_800A9478(s32),func_800F6BE4(BtIntPtr),func_8010FFD8(s16 *);
+    s16 *func_800A93E4(BtIntPtr);
     if(!fog.count)return;
     s32 camera=func_800A9478(func_800A89F8());
     native_fog_apply(output,func_800F6BE4(camera) ? func_8010FFD8(func_800A93E4(camera)) : 1);

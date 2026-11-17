@@ -23,8 +23,8 @@ void *func_80800084_glglobalsettings()
 /* extern */
 
 s32 func_808000A4_glglobalsettings(s32 arg0, void *arg1) {
-    s32 _glgamestore_entrypoint_1(s32, void *);
-    s32 _glglobaldata_entrypoint_4(void *);
+    s32 _glgamestore_entrypoint_1(s32 arg0, BtIntPtr arg1);
+    void _glglobaldata_entrypoint_4(u8 *arg0);
     s32 sp28;
     s32 temp_v0;
     s32 var_s0;
@@ -91,7 +91,7 @@ s32 func_80800168_glglobalsettings(void **arg0) {
 /* extern */
 
 void glglobalsettings_entrypoint_1(void) {
-    s32 _glglobaldata_entrypoint_2(void *);
+    void _glglobaldata_entrypoint_2(u8 *arg0);
     void *sp18[2];
 
     sp18[0] = func_80800084_glglobalsettings();
@@ -104,8 +104,8 @@ void glglobalsettings_entrypoint_1(void) {
     heap_free(sp18[0]);
 }
 
-s32 func_80800278_glglobalsettings(s32 arg0, s32 arg1) {
-    s32 _glgamestore_entrypoint_3(s32, s32);
+s32 func_80800278_glglobalsettings(s32 arg0, BtIntPtr arg1) {
+    s32 _glgamestore_entrypoint_3(s32, BtIntPtr);
     s32 count;
     s32 result;
     void *buffer;
@@ -126,7 +126,7 @@ s32 func_80800278_glglobalsettings(s32 arg0, s32 arg1) {
 /* extern */
 
 s32 glglobalsettings_entrypoint_2(void) {
-    s32 _glglobaldata_entrypoint_3(void *);
+    void _glglobaldata_entrypoint_3(u8 *arg0);
     s32 sp24;
     s32 sp20;
     s32 var_a0;
@@ -146,7 +146,7 @@ loop_3:
             goto loop_3;
         }
     }
-    sp24 = func_80800278_glglobalsettings(var_a0, (s32) sp18);
+    sp24 = func_80800278_glglobalsettings(var_a0, (BtIntPtr) sp18);
     if (sp24 == 0) {
         func_80800114_glglobalsettings(var_a0);
         func_800DA524(FLAG5_D54_IF_GLOBALFLAGS_CHANGED);
@@ -170,7 +170,7 @@ s32 glglobalsettings_entrypoint_4(s32 arg0) {
     } else {
         var_a1 = 0;
     }
-    func_800DA3B8(GFLAG_BB9_WIDESCREEN_ENABLED, var_a1);
+    func_800DA3B8(GFLAG_BB9_WIDESCREEN_ENABLED, var_a1); BT_NATIVE_ONLY(return 0;)
 }
 
 void glglobalsettings_entrypoint_5(s32 *arg0, s32 *arg1) {
@@ -198,12 +198,14 @@ s32 glglobalsettings_entrypoint_8(s32 arg0) {
     extern s8 D_80800560_glglobalsettings[];
     s16 *sp18[2];
     s16 *temp;
-    s32 value;
+    s32 value; BT_NATIVE_ONLY(s32 func_80012F34(s32, s32);)
     temp = (s16 *)&D_80800560_glglobalsettings[arg0 * 4];
     value = *temp;
     sp18[1] = temp;
     func_80012F0C(value);
     func_80012F34(0, sp18[1][1]);
-    func_80012F34(1, sp18[1][1]);
-    func_800DA7A8(GFLAG_BC6_SPEAKER_MODE_1, arg0, 2);
+    BT_NATIVE_ONLY(value = ) func_80012F34(1, sp18[1][1]);
+    func_800DA7A8(GFLAG_BC6_SPEAKER_MODE_1, arg0, 2); BT_NATIVE_ONLY(return value;)
 }
+/* data_to_c.py: from asm/data/overlays/gl/obalsettings.data.s */
+s8 D_80800560_glglobalsettings [16] BT_DATA(4, overlays_gl_obalsettings, 0x0) = { 0, 1, 0, 4, 0, 2, 0, 4, 0, 3, 0, 4, 0, 4, 0, 4 };

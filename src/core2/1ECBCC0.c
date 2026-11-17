@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "core1/mlmtx.h"
 
-void func_800F274C(MtxF *);
+void func_800F274C(MtxF *);     
 
 void func_800F23D0(MtxF *arg0, f32 *arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
@@ -251,38 +251,38 @@ void func_800F2EBC(void *arg0, void *arg1) {
     (*(u8 *)((s8 *)(arg0) + (1))) = (u8) (*(u8 *)((s8 *)(arg1) + (1)));
     (*(u8 *)((s8 *)(arg0) + (2))) = (u8) (*(u8 *)((s8 *)(arg1) + (2)));
     (*(u8 *)((s8 *)(arg0) + (3))) = (u8) (*(u8 *)((s8 *)(arg1) + (3)));
-}
+}    typedef struct { s8 unk0; s8 unk1; s8 unk2; s8 unk3; s32 unk4; s32 unk8; s32 unkC; } Obj1ECBCC0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_800F2EE0(void *arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg0) + (0))) = (s32) (*(u8 *)((s8 *)(arg1) + (0)));
-    (*(s32 *)((s8 *)(arg0) + (4))) = (s32) (*(u8 *)((s8 *)(arg1) + (1)));
-    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) (*(u8 *)((s8 *)(arg1) + (2)));
+    (((Obj1ECBCC0_arg0 *)arg0)->unk4) = (s32) (*(u8 *)((s8 *)(arg1) + (1)));
+    (((Obj1ECBCC0_arg0 *)arg0)->unk8) = (s32) (*(u8 *)((s8 *)(arg1) + (2)));
 }
 
 void func_800F2EFC(void *arg0, void *arg1) {
     (*(s32 *)((s8 *)(arg0) + (0))) = (s32) (*(u8 *)((s8 *)(arg1) + (0)));
-    (*(s32 *)((s8 *)(arg0) + (4))) = (s32) (*(u8 *)((s8 *)(arg1) + (1)));
-    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) (*(u8 *)((s8 *)(arg1) + (2)));
-    (*(s32 *)((s8 *)(arg0) + (0xC))) = (s32) (*(u8 *)((s8 *)(arg1) + (3)));
-}
+    (((Obj1ECBCC0_arg0 *)arg0)->unk4) = (s32) (*(u8 *)((s8 *)(arg1) + (1)));
+    (((Obj1ECBCC0_arg0 *)arg0)->unk8) = (s32) (*(u8 *)((s8 *)(arg1) + (2)));
+    (((Obj1ECBCC0_arg0 *)arg0)->unkC) = (s32) (*(u8 *)((s8 *)(arg1) + (3)));
+}    typedef struct { s32 unk0; s32 unk4; s32 unk8; s32 unkC; } Obj1ECBCC0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_800F2F20(void *arg0, void *arg1) {
-    (*(s8 *)((s8 *)(arg0) + (0))) = (s8) (*(s32 *)((s8 *)(arg1) + (0)));
-    (*(s8 *)((s8 *)(arg0) + (1))) = (s8) (*(s32 *)((s8 *)(arg1) + (4)));
-    (*(s8 *)((s8 *)(arg0) + (2))) = (s8) (*(s32 *)((s8 *)(arg1) + (8)));
+    (((Obj1ECBCC0_arg0 *)arg0)->unk0) = (s8) (((Obj1ECBCC0_arg1 *)arg1)->unk0);
+    (((Obj1ECBCC0_arg0 *)arg0)->unk1) = (s8) (((Obj1ECBCC0_arg1 *)arg1)->unk4);
+    (((Obj1ECBCC0_arg0 *)arg0)->unk2) = (s8) (((Obj1ECBCC0_arg1 *)arg1)->unk8);
 }
 
 void func_800F2F3C(void *arg0, void *arg1) {
-    (*(s8 *)((s8 *)(arg0) + (0))) = (s8) (*(s32 *)((s8 *)(arg1) + (0)));
-    (*(s8 *)((s8 *)(arg0) + (1))) = (s8) (*(s32 *)((s8 *)(arg1) + (4)));
-    (*(s8 *)((s8 *)(arg0) + (2))) = (s8) (*(s32 *)((s8 *)(arg1) + (8)));
-    (*(s8 *)((s8 *)(arg0) + (3))) = (s8) (*(s32 *)((s8 *)(arg1) + (0xC)));
+    (((Obj1ECBCC0_arg0 *)arg0)->unk0) = (s8) (((Obj1ECBCC0_arg1 *)arg1)->unk0);
+    (((Obj1ECBCC0_arg0 *)arg0)->unk1) = (s8) (((Obj1ECBCC0_arg1 *)arg1)->unk4);
+    (((Obj1ECBCC0_arg0 *)arg0)->unk2) = (s8) (((Obj1ECBCC0_arg1 *)arg1)->unk8);
+    (((Obj1ECBCC0_arg0 *)arg0)->unk3) = (s8) (((Obj1ECBCC0_arg1 *)arg1)->unkC);
 }
 
 void func_800F2F60(void *arg0, void *arg1, f32 arg2) {
-    (*(s32 *)((s8 *)(arg0) + (0))) = (s32) ((f32) (*(s32 *)((s8 *)(arg1) + (0))) * arg2);
-    (*(s32 *)((s8 *)(arg0) + (4))) = (s32) ((f32) (*(s32 *)((s8 *)(arg1) + (4))) * arg2);
-    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) ((f32) (*(s32 *)((s8 *)(arg1) + (8))) * arg2);
+    (*(s32 *)((s8 *)(arg0) + (0))) = (s32) ((f32) (((Obj1ECBCC0_arg1 *)arg1)->unk0) * arg2);
+    (((Obj1ECBCC0_arg0 *)arg0)->unk4) = (s32) ((f32) (((Obj1ECBCC0_arg1 *)arg1)->unk4) * arg2);
+    (((Obj1ECBCC0_arg0 *)arg0)->unk8) = (s32) ((f32) (((Obj1ECBCC0_arg1 *)arg1)->unk8) * arg2);
 }
 
 void func_800F2FD0(u8 *arg0, u8 *arg1, f32 scale) {
@@ -293,22 +293,22 @@ void func_800F2FD0(u8 *arg0, u8 *arg1, f32 scale) {
 
 void func_800F31DC(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     (*(s32 *)((s8 *)(arg0) + (0))) = arg1;
-    (*(s32 *)((s8 *)(arg0) + (4))) = arg2;
-    (*(s32 *)((s8 *)(arg0) + (8))) = arg3;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk4) = arg2;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk8) = arg3;
 }
 
 void func_800F31EC(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    (*(s8 *)((s8 *)(arg0) + (0))) = arg1;
-    (*(s8 *)((s8 *)(arg0) + (1))) = arg2;
-    (*(s8 *)((s8 *)(arg0) + (2))) = arg3;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk0) = arg1;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk1) = arg2;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk2) = arg3;
 }
 
 void func_800F31FC(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    (*(s8 *)((s8 *)(arg0) + (0))) = arg1;
-    (*(s8 *)((s8 *)(arg0) + (1))) = arg2;
-    (*(s8 *)((s8 *)(arg0) + (2))) = arg3;
-    (*(s8 *)((s8 *)(arg0) + (3))) = arg4;
-}
+    (((Obj1ECBCC0_arg0 *)arg0)->unk0) = arg1;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk1) = arg2;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk2) = arg3;
+    (((Obj1ECBCC0_arg0 *)arg0)->unk3) = arg4;
+}                
 
 int func_800F3214(void *arg0, void *arg1, void *arg2, f32 arg3) {
     (*(s32 *)((s8 *)arg0 + 0)) = (s32) ((f32) (*(s32 *)((s8 *)arg1 + 0)) + (f32) (*(s32 *)((s8 *)arg2 + 0) - *(s32 *)((s8 *)arg1 + 0)) * arg3);

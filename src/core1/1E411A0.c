@@ -75,7 +75,7 @@ void func_8002976C(u8 *arg0, ALVoice *arg1, s32 arg2) {
 
 /* extern */
 
-u8 func_800298E4(u8 *arg0, s32 arg1, s32 arg2) {
+u8 func_800298E4(u8 *arg0, BtIntPtr arg1, s32 arg2) {
     void func_80020E40(ALLink *, ALLink *);
     void func_80020E74(ALLink *);
     ALLink *sp2C;
@@ -107,12 +107,12 @@ u8 func_800298E4(u8 *arg0, s32 arg1, s32 arg2) {
         sp2C = sp28;
     }
     return sp1F;
-}
+}      typedef struct { s32 * unk0; u8 pad4[0x10]; s32 * unk14; u8 pad18[0x10]; s32 unk28; u8 pad2C[0x9]; u8 unk35; u8 unk36; u8 unk37; } Obj1E411A0_func_80029A04_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
-s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
-    void func_800E9070(s32, s32);
+s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, BtIntPtr arg4) {
+    void func_800E9070(BtIntPtr, s32);
     s32 *sp1C;
 
     sp1C = (*(s32 **)((s8 *)(arg0) + (0x6C)));
@@ -120,19 +120,19 @@ s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
         return NULL;
     }
     if (sp1C != NULL) {
-        (*(s32 **)((s8 *)(arg0) + (0x6C))) = (s32 *) (*(s32 **)((s8 *)(sp1C) + (0)));
-        (*(s32 **)((s8 *)(sp1C) + (0))) = NULL;
+        (*(s32 **)((s8 *)(arg0) + (0x6C))) = (s32 *) (((Obj1E411A0_func_80029A04_sp1C *)sp1C)->unk0);
+        (((Obj1E411A0_func_80029A04_sp1C *)sp1C)->unk0) = NULL;
         if ((*(s32 **)((s8 *)(arg0) + (0x64))) == NULL) {
             (*(s32 **)((s8 *)(arg0) + (0x64))) = sp1C;
         } else {
             *(*(s32 **)((s8 *)(arg0) + (0x68))) = sp1C;
         }
         (*(s32 **)((s8 *)(arg0) + (0x68))) = sp1C;
-        (*(u8 *)((s8 *)(sp1C) + (0x35))) = arg3;
-        (*(u8 *)((s8 *)(sp1C) + (0x36))) = arg1;
-        (*(u8 *)((s8 *)(sp1C) + (0x37))) = arg2;
-        (*(s32 **)((s8 *)(sp1C) + (0x14))) = sp1C;
-        (*(s32 *)((s8 *)(sp1C) + (0x28))) = 0;
+        (((Obj1E411A0_func_80029A04_sp1C *)sp1C)->unk35) = arg3;
+        (((Obj1E411A0_func_80029A04_sp1C *)sp1C)->unk36) = arg1;
+        (((Obj1E411A0_func_80029A04_sp1C *)sp1C)->unk37) = arg2;
+        (((Obj1E411A0_func_80029A04_sp1C *)sp1C)->unk14) = sp1C;
+        (((Obj1E411A0_func_80029A04_sp1C *)sp1C)->unk28) = 0;
         (*(u8 *)((s8 *)(arg0) + (0x89))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x89))) + 1);
         func_800E9070(arg4, 1);
     }
@@ -246,7 +246,7 @@ u8 func_80029FA0(void *arg0, void *arg1) {
 
 /* extern */
 
-void func_8002A024(void *arg0, s32 arg1) {
+void func_8002A024(void *arg0, BtIntPtr arg1) {
     void func_8002A150(void *, s32);
     s32 func_8002A318(void *, s32, s32);
     s16 func_800E9054(s32);
@@ -351,7 +351,7 @@ s32 func_8002A318(void *arg0, s32 arg1, s32 arg2) {
     ((AudioState *)arg0)->channels[arg2].unk2E = sp1C[0xA];
     ((AudioState *)arg0)->channels[arg2].unk2F = sp1C[0xB];
     ((AudioState *)arg0)->channels[arg2].unk24 = 0;
-    ((AudioState *)arg0)->channels[arg2].unk31 = 0;
+    ((AudioState *)arg0)->channels[arg2].unk31 = 0; BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_8002A6A4(void *arg0, void *arg1) {
@@ -380,15 +380,15 @@ s32 func_8002A6A4(void *arg0, void *arg1) {
                     ((u8 *)arg1)[0x3B] &= 0xFD;
                 }
                 if (((u8 *)arg1)[0x3B] == 0) {
-                    return;
+                    BT_NATIVE_ONLY(return 0;) return;
                 }
             }
             sp24 = sp20;
         } while (sp24 != NULL);
     }
-}
+BT_NATIVE_ONLY(return 0;)}
 
-typedef struct { ALPlayer *players; ALLink list; u8 padC[8]; ALLink *head; u8 pad18[8]; s32 curSamples; u8 pad24[8]; ALLink *free; u8 pad30[0x10]; s32 unk40; } PoolFreeList;
+typedef struct { ALPlayer *players; ALLink list; u8 padC[8]; ALLink *head; u8 pad18[0x4]; s32 unk1C; s32 curSamples; u8 pad24[8]; ALLink *free; void * unk30; void * unk34; u8 pad38[0x8]; s32 unk40; } PoolFreeList;   
 void func_8002A7E0(void *arg0, f32 arg1) {
     s32 *func_80021794(void);
     s32 func_8002B684(void *, s32, void *);
@@ -425,49 +425,49 @@ void func_8002A890(void *arg0, u8 arg1) {
         (*(s32 *)((s8 *)(sp1C) + (0))) = 0;
         func_8002B684((*(void **)((s8 *)(arg0) + (8))), 3, sp1C);
     }
-}
+}      typedef struct { u8 pad0[0x4]; void (*unk4)(void); } Obj1E411A0_func_8002A940_sp4; /* offsets.py genstruct: fields from raw offsets on sp4; rename once understood */
 
 s32 func_8002A940(s16 arg0) {
     extern PoolFreeList *D_800411F4;
     void func_800272B0(void);
     void *sp4;
 
-    sp4 = *(void **)((s8 *)D_800411F4 + 0x30);
-    if (*(void (**)(void))((s8 *)sp4 + 4) == func_800272B0) {
-        return *(s32 *)((s8 *)*(void **)((s8 *)D_800411F4 + 0x34) + arg0 * 0x48 + 0x20);
+    sp4 = D_800411F4->unk30;
+    if (((Obj1E411A0_func_8002A940_sp4 *)sp4)->unk4 == func_800272B0) {
+        return *(s32 *)((s8 *)*&D_800411F4->unk34 + arg0 * 0x48 + 0x20);
     } else {
         return 0;
     }
-}
+}      typedef struct { u8 pad0[0x4]; void (*unk4)(void); } Obj1E411A0_func_8002A9B8_sp4; /* offsets.py genstruct: fields from raw offsets on sp4; rename once understood */
 
 s32 func_8002A9B8(s16 arg0) {
     extern PoolFreeList *D_800411F4;
     void func_800272B0(void);
     void *sp4;
 
-    sp4 = *(void **)((s8 *)D_800411F4 + 0x30);
-    if (*(void (**)(void))((s8 *)sp4 + 4) == func_800272B0) {
-        return *(s32 *)((s8 *)*(void **)((s8 *)D_800411F4 + 0x34) + arg0 * 0x48 + 0x44);
+    sp4 = D_800411F4->unk30;
+    if (((Obj1E411A0_func_8002A9B8_sp4 *)sp4)->unk4 == func_800272B0) {
+        return *(s32 *)((s8 *)*&D_800411F4->unk34 + arg0 * 0x48 + 0x44);
     } else {
         return 0;
     }
 }
 
-void func_8002AA30(void *arg0, s16 arg1, s32 arg2) {
-    void func_80027AF0(void *, s16, s32);
+void func_8002AA30(void *arg0, s16 arg1, BtIntPtr arg2) {
+    s32 func_80027AF0(void *arg0, s32 arg1, void *arg2);
     void *saved;
     saved = arg0;
     func_80027AF0(saved, arg1, arg2);
-}
+}                      typedef struct { s16 unk0; s16 unk2; } Obj1E411A0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8002AA74(void * volatile arg0, volatile s16 arg1, s32 * volatile arg2) {
-    s32 func_80028C04(void *, f32);
+    void func_80028C04(void *arg0, f32 arg1);
     extern PoolFreeList *D_800411F4;
-    extern f32 D_80041D30;
+    extern f32 D_80041D30;       
     if (arg1 == 8) {
-        (*(s16 *)((s8 *)arg0 + 2)) = (s16)(s32)((f32)*arg2 * D_80041D30);
+        (((Obj1E411A0_arg0 *)arg0)->unk2) = (s16)(s32)((f32)*arg2 * D_80041D30);
     } else if (arg1 == 9) {
-        (*(s16 *)((s8 *)arg0 + 0)) = (s16)*arg2;
+        (((Obj1E411A0_arg0 *)arg0)->unk0) = (s16)*arg2;
     }
-    func_80028C04(arg0, (f32)(*(s32 *)((s8 *)D_800411F4 + 0x40)));
+    func_80028C04(arg0, (f32)(D_800411F4->unk40));
 }

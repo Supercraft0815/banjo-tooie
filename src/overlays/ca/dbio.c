@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_camera_db.h"
 
 void func_80800000_cadbio(GsFile *file) {

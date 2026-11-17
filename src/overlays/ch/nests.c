@@ -35,11 +35,11 @@ void func_80800000_chnests(Actor *arg0) {
 }
 
 /* extern */
-void func_808002E0_chnests(void *);
+void func_808002E0_chnests(void *);     
 void func_80800098_chnests(void *arg0) {
     s32 func_800D3948(void);
-    u32 func_800F54E4(void);
-    s32 func_800F7150(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7150(BtIntPtr);
     func_80800000_chnests(arg0);
     if ((func_800D3948() == 0) && (func_800F7150(func_800F54E4()) != 0)) {
         func_808002E0_chnests(arg0);
@@ -80,7 +80,7 @@ void func_80800144_chnests(Actor *arg0, struct NestsContact *arg1) {
 }
 
 void func_808001F0_chnests(Actor *arg0, struct NestsContact *arg1) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     f32 func_800DC178(f32, f32);
     void func_800FFA88(Unk80132ED0 *);
     void func_80101FDC(Actor *, u32);
@@ -118,7 +118,7 @@ void func_808002E0_chnests(void *arg0) {
     void func_8010A570();
     (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
     func_8010A570();
-    (*(u32 *)((s8 *)(arg0) + (0x18))) = ((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA;
+    (((Actor *)arg0)->actorData[0]) = ((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA;
     func_80101FDC(arg0, 4);
 }
 
@@ -131,11 +131,11 @@ void func_80800324_chnests(Actor *arg0, struct NestsContact *arg1)
 /* extern */
 
 void func_8080034C_chnests(void *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 _subaddiefade_entrypoint_2();
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
-    s32 func_8010A590(void *);
+    void func_8010A590(Actor *arg0);
     _subaddiefade_entrypoint_2();
     func_80103110(arg0, 0);
     _subaddieDll_entrypoint_4(arg0, 0);
@@ -154,7 +154,7 @@ void func_808003AC_chnests(Actor *arg0) {
 
 s32 func_808003F4_chnests(Actor *arg0, s32 arg1, void *volatile arg2) {
     s32 func_800F4B4C(s32);
-    s32 func_800F7C0C(s32, s32, f32);
+    s32 func_800F7C0C(BtIntPtr, s32, f32);
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
     void func_80109EEC(s16 *, s32);
@@ -162,7 +162,7 @@ s32 func_808003F4_chnests(Actor *arg0, s32 arg1, void *volatile arg2) {
     void func_8010DCB4(s32);
     void func_80800670_chnests(Actor *, struct NestsContact *);
     s32 func_8080093C_chnests(u8 *, u8 *);
-    void func_808009D4_chnests(s32, s32);
+    void func_808009D4_chnests(BtIntPtr, BtIntPtr);
     int func_80801014_chnests(Actor *);
     int func_808010A0_chnests(void *);
     struct NestsContact *contact;
@@ -195,7 +195,7 @@ s32 func_808003F4_chnests(Actor *arg0, s32 arg1, void *volatile arg2) {
         if (func_80801014_chnests(arg0)) {
             func_8080093C_chnests((u8 *)arg0, arg2);
         } else if (func_808010A0_chnests(arg0)) {
-            func_808009D4_chnests((s32)arg0, (s32)arg2);
+            func_808009D4_chnests((BtIntPtr)arg0, (BtIntPtr)arg2);
         }
         break;
     case 0x95:
@@ -295,12 +295,12 @@ void func_808007C8_chnests(Actor *arg0) {
 
 /* extern */
 
-void func_8080082C_chnests(Actor *arg0, s32 arg1) {
-    s32 func_80101870(s32, s32);
+void func_8080082C_chnests(Actor *arg0, BtIntPtr arg1) {
+    void func_80101870(Actor* arg0, void* arg1);
     void func_80103110(void *, s32);
-    void *func_80800898_chnests(Actor *, s32, f32);
+    void *func_80800898_chnests(Actor *, BtIntPtr, f32);
     if (func_80800898_chnests(arg0, arg1, *(f32 *)&arg0->actorData[4]) != 0) {
-        func_80101870((s32)arg0, arg1);
+        func_80101870((BtIntPtr)arg0, arg1);
         if (arg0->unk7C_12 && arg0->unk70_10 == 2) {
             func_80103110(arg0, 1);
         }
@@ -309,18 +309,18 @@ void func_8080082C_chnests(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-void *func_80800898_chnests(Actor *arg0, s32 arg1, f32 arg2) {
+void *func_80800898_chnests(Actor *arg0, BtIntPtr arg1, f32 arg2) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    s32 func_800D674C(s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    BtIntPtr func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF410(s32);
     void func_800DF830(s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 *func_801018D8(Actor *);
     s32 func_80101970();
-    s32 func_80106A98(Actor *, s32);
+    void func_80106A98(Actor *actor, BtIntPtr arg1);
     f32 sp34[3];
-    s32 sp30;
+    BtIntPtr sp30;
 
     sp30 = func_800D674C(0x85C);
     func_80101970(arg0);
@@ -338,21 +338,21 @@ s32 func_8080093C_chnests(u8 *arg0, u8 *arg1) {
 
 void func_80800960_chnests(s32 arg0) 
 {
-}
+}                typedef struct { u8 pad0[0x1C]; s32 unk1C; u8 pad20[0x28]; f32 unk48; } Objnests_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void func_80800968_chnests(void *arg0, s32 arg1) {
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
-    void func_801018A4(Actor *, s32);
-    void *func_80800898_chnests(Actor *, s32, f32);
+    void func_801018A4(Actor *, BtIntPtr);
+    void *func_80800898_chnests(Actor *, BtIntPtr, f32);
     extern s32 D_80801124_chnests;
-    if (func_80800898_chnests(arg0, arg1, *(f32 *)((s8 *)arg0 + 0x48)) != 0) {
+    if (func_80800898_chnests(arg0, arg1, ((Objnests_arg0 *)arg0)->unk48) != 0) {
         func_800DF3E0();
-        func_800DF744(((u8 *)&D_80801124_chnests)[(*(s32 *)((s8 *)arg0 + 0x1C)) * 14], 1);
-        func_801018A4((s32)arg0, arg1);
+        func_800DF744(((u8 *)&D_80801124_chnests)[(((Objnests_arg0 *)arg0)->unk1C) * 14], 1);
+        func_801018A4((BtIntPtr)arg0, arg1);
     }
 }
 
-void func_808009D4_chnests(s32 arg0,s32 arg1)
+void func_808009D4_chnests(BtIntPtr arg0,BtIntPtr arg1)
 {
     func_8010DD20(arg0,0x1,arg1);
 }
@@ -363,13 +363,13 @@ void func_808009F8_chnests(s32 arg0)
 void func_80800A00_chnests(void *arg0, s32 arg1) {
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
-    void func_801018A4(Actor *, s32);
-    void *func_80800898_chnests(Actor *, s32, f32);
+    void func_801018A4(Actor *, BtIntPtr);
+    void *func_80800898_chnests(Actor *, BtIntPtr, f32);
     extern s32 D_80801124_chnests;
-    if (func_80800898_chnests(arg0, arg1, *(f32 *)((s8 *)arg0 + 0x48)) != 0) {
+    if (func_80800898_chnests(arg0, arg1, ((Objnests_arg0 *)arg0)->unk48) != 0) {
         func_800DF3E0();
-        func_800DF744(((u8 *)&D_80801124_chnests)[(*(s32 *)((s8 *)arg0 + 0x1C)) * 14], 1);
-        func_801018A4((s32)arg0, arg1);
+        func_800DF744(((u8 *)&D_80801124_chnests)[(((Objnests_arg0 *)arg0)->unk1C) * 14], 1);
+        func_801018A4((BtIntPtr)arg0, arg1);
     }
 }
 
@@ -412,7 +412,7 @@ s32 func_80800A74_chnests(s32 arg0) {
 
 void func_80800B4C_chnests(void *arg0) {
     f32 func_800DC178(f32, f32);
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = func_800DC178((*(f32 *)((s8 *)(arg0) + (0x28))), (*(f32 *)((s8 *)(arg0) + (0x2C))));
+    (((Actor *)arg0)->unk58) = func_800DC178((*(f32 *)((s8 *)(arg0) + (0x28))), (*(f32 *)((s8 *)(arg0) + (0x2C))));
     (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
 }
 
@@ -439,10 +439,10 @@ void func_80800BD8_chnests(Actor *arg0, s32 arg1, f32 arg2, f32 arg3) { struct F
 void func_80800C3C_chnests(Actor *arg0) {
     struct Flags { u16 rest : 14; u16 mode : 2; };
     s32 _subaddiefade_entrypoint_2();
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 func_8010A590(void *);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    void func_8010A590(Actor *arg0);
     void func_80101FDC(Actor *, u32);
-    u32 func_8010A828(Actor *, u32);
+    void func_8010A828(void **arg0, s32 arg1);
 
     switch (arg0->actorData[6]) {
         case 0:
@@ -478,11 +478,11 @@ void func_80800C3C_chnests(Actor *arg0) {
 
 void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
     struct Flags { u8 pad[0x7A]; u16 mode : 2; u16 rest : 14; };
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
-    void func_801018A4(Actor *, s32);
-    void *func_80800898_chnests(Actor *, s32, f32);
+    void func_801018A4(Actor *, BtIntPtr);
+    void *func_80800898_chnests(Actor *, BtIntPtr, f32);
     extern s32 D_80801124_chnests;
     s32 sp24;
 
@@ -492,15 +492,15 @@ void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
         if (arg0->actorData[6] == 1) {
             sp24 = (s32)((arg0->unk58 / 0.25f) * 255.0f);
             ((struct Flags *)arg0)->mode = 2;
-            _subaddiefade_entrypoint_1((s32)arg0, sp24);
+            _subaddiefade_entrypoint_1((BtIntPtr)arg0, sp24);
             func_801018A4(arg0, arg1);
             func_800DF3E0();
             func_800DF744(((u8 *)&D_80801124_chnests)[arg0->unk6C_0 * 14], 1);
             ((struct Flags *)arg0)->mode = 1;
-            _subaddiefade_entrypoint_1((s32)arg0, 255 - sp24);
+            _subaddiefade_entrypoint_1((BtIntPtr)arg0, 255 - sp24);
             func_801018A4(arg0, arg1);
             ((struct Flags *)arg0)->mode = 1;
-            _subaddiefade_entrypoint_1((s32)arg0, 255);
+            _subaddiefade_entrypoint_1((BtIntPtr)arg0, 255);
             return;
         }
         func_801018A4(arg0, arg1);
@@ -509,13 +509,13 @@ void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800ED8_chnests(s32 arg0) {
+void func_80800ED8_chnests(BtIntPtr arg0) {
     func_80800BD8_chnests(arg0, 0x1CE, 1.0f, 1.0f);
 }
 
 /* extern */
 
-void func_80800F08_chnests(s32 arg0) {
+void func_80800F08_chnests(BtIntPtr arg0) {
     func_80800BD8_chnests(arg0, 0x1D5, 1.0f, 1.0f);
 }
 

@@ -1,14 +1,32 @@
 #include "common.h"
 
 void gcaudiolist_entrypoint_0(s32 arg0) {
-    s32 func_800C4AF0(s32, s32 *);
+    void func_800C4AF0(f32 *arg0, void *arg1);
     extern s32 *D_808000F0_gcaudiolist[];
     func_800C4AF0(0, D_808000F0_gcaudiolist[arg0]);
 }
 
 void gcaudiolist_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 func_800C4AF0(s32, s32 *);
+    void func_800C4AF0(f32 *arg0, void *arg1);
     extern s32 *D_808000F0_gcaudiolist[];
     func_800C4B70(arg1);
     func_800C4AF0(0, D_808000F0_gcaudiolist[arg0]);
 }
+/* data_to_c.py: from asm/data/overlays/gc/audiolist.data.s */
+extern u8 D_80800080_gcaudiolist[];
+extern u8 D_8080008C_gcaudiolist[];
+extern u8 D_80800098_gcaudiolist[];
+extern u8 D_808000A8_gcaudiolist[];
+extern u8 D_808000B8_gcaudiolist[];
+extern u8 D_808000C4_gcaudiolist[];
+extern u8 D_808000D0_gcaudiolist[];
+extern u8 D_808000E0_gcaudiolist[];
+u8 D_80800080_gcaudiolist[12] BT_DATA(4, overlays_gc_audiolist, 0x0) = { 0x00, 0x13, 0x04, 0x56, 0x00, 0x18, 0x00, 0x1B, 0x00, 0x00, 0x00, 0x00 };
+u8 D_8080008C_gcaudiolist[12] BT_DATA(4, overlays_gc_audiolist, 0xC) = { 0x00, 0x13, 0x04, 0x77, 0x00, 0x18, 0x00, 0x1B, 0x00, 0x00, 0x00, 0x00 };
+u8 D_80800098_gcaudiolist[16] BT_DATA(4, overlays_gc_audiolist, 0x18) = { 0x00, 0x13, 0x04, 0x69, 0x00, 0x0A, 0x01, 0x19, 0x00, 0x1E, 0x00, 0x1B, 0x00, 0x20, 0x00, 0x00 };
+u8 D_808000A8_gcaudiolist[16] BT_DATA(4, overlays_gc_audiolist, 0x28) = { 0x00, 0x13, 0x04, 0x6A, 0x00, 0x0A, 0x01, 0x19, 0x00, 0x1E, 0x00, 0x1B, 0x00, 0x20, 0x00, 0x00 };
+u8 D_808000B8_gcaudiolist[12] BT_DATA(4, overlays_gc_audiolist, 0x38) = { 0x00, 0x13, 0x04, 0x6C, 0x00, 0x1E, 0x00, 0x1B, 0x00, 0x20, 0x00, 0x00 };
+u8 D_808000C4_gcaudiolist[12] BT_DATA(4, overlays_gc_audiolist, 0x44) = { 0x00, 0x13, 0x04, 0x6B, 0x00, 0x1E, 0x00, 0x1B, 0x00, 0x20, 0x00, 0x00 };
+u8 D_808000D0_gcaudiolist[16] BT_DATA(4, overlays_gc_audiolist, 0x50) = { 0x00, 0x13, 0x06, 0x9E, 0x00, 0x16, 0x52, 0x08, 0x00, 0x1B, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00 };
+u8 D_808000E0_gcaudiolist[16] BT_DATA(4, overlays_gc_audiolist, 0x60) = { 0x00, 0x13, 0x06, 0x9E, 0x00, 0x16, 0x52, 0x08, 0x00, 0x1B, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00 };
+s32 * D_808000F0_gcaudiolist [8] BT_DATA(4, overlays_gc_audiolist, 0x70) = { (long *)D_80800080_gcaudiolist, (long *)D_8080008C_gcaudiolist, (long *)D_80800098_gcaudiolist, (long *)D_808000A8_gcaudiolist, (long *)D_808000B8_gcaudiolist, (long *)D_808000C4_gcaudiolist, (long *)D_808000D0_gcaudiolist, (long *)D_808000E0_gcaudiolist };

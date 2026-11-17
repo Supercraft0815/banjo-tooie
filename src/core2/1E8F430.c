@@ -53,11 +53,11 @@ void func_800B5B88(void) {
     } while (var_s0 != var_s2);
 }
 
-s32 func_800B5BE4(s32 arg0) {
+BtIntPtr func_800B5BE4(s32 arg0) {
     void *func_800B56D0(u8);
     extern u8 D_80128150[];
-    return (s32) func_800B56D0(D_80128150[arg0]);
-}
+    return (BtIntPtr) func_800B56D0(D_80128150[arg0]);
+}    typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1E8F430_func_800B5C10_sp18; /* offsets.py genstruct: fields from raw offsets on sp18; rename once understood */
 
 /* extern */
 
@@ -74,7 +74,7 @@ u8 *func_800B5C10(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3) {
     sp1C = temp_v0;
     sp18 = func_800B0D6C(temp_v0, arg1);
     *arg2 = func_800B0D58(sp1C);
-    *arg3 = (*(s32 *)((s8 *)(sp18) + (4))) + (s32) func_800B0D60(sp1C);
+    *arg3 = (((Obj1E8F430_func_800B5C10_sp18 *)sp18)->unk4) + (BtIntPtr) func_800B0D60(sp1C);
     return sp18;
 }
 
@@ -251,7 +251,7 @@ void func_800B60C0(Gfx **arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void *image;
     s32 coords[2];
 
-    image = func_800D674C(*(s16 *)((u8 *)&D_80128180 + 0x28));
+    image = func_800D674C(D_80128180.parameter28);
     func_800AF5B0(image, &imageWidth, &imageHeight);
     width = imageWidth / 4;
     height = imageHeight / 4;
@@ -273,12 +273,12 @@ void func_800B60C0(Gfx **arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     func_800E2568(imageWidth, imageHeight);
     func_800E253C(arg3);
     func_800E7988(arg0, 0x80000);
-    func_800E2E48((u8 *)arg0, image, *(s16 *)((u8 *)&D_80128180 + 0x2A) - 1, coords);
+    func_800E2E48((u8 *)arg0, image, D_80128180.parameter2A - 1, coords);
     *arg1 += (f32)width * arg3;
     func_800E7A2C(arg0);
     func_800E7988(arg0, 0);
-    *(s16 *)((u8 *)&D_80128180 + 0x2A) = 0;
-    *(s16 *)((u8 *)&D_80128180 + 0x28) = *(s16 *)((u8 *)&D_80128180 + 0x2A);
+    D_80128180.parameter2A = 0;
+    D_80128180.parameter28 = D_80128180.parameter2A;
 }
 
 void func_800B62CC(Gfx **arg0, u8 arg1, f32 *arg2, f32 *arg3, f32 arg4)
@@ -540,7 +540,7 @@ s32 func_800B71F4(Gfx **arg0, u8 *arg1) {
     void func_800E7928(Gfx **, s32);
     s16 *font;
     s32 flags;
-    void *palette;
+    void *palette; BT_NATIVE_ONLY(s32 result;)
 
     func_800E78C8(arg0, ((u32)*(u16 *)(arg1 + 6) >> 12) == 1 ? 0x2000 : 0);
     if (*(s16 *)(arg1 + 4) != -0x7FFF) {
@@ -550,7 +550,7 @@ s32 func_800B71F4(Gfx **arg0, u8 *arg1) {
         func_800E7778(arg0, 0);
         func_800E76A4(arg0, 0);
     }
-    func_800E7828(arg0, (s32 *)(arg1 + 0x10));
+    BT_NATIVE_ONLY(result =) func_800E7828(arg0, (s32 *)(arg1 + 0x10));
     font = func_800D3524((u32)*(u16 *)(arg1 + 6) >> 12);
     flags = func_800B0D58(font);
     if (flags & 5) {
@@ -563,8 +563,8 @@ s32 func_800B71F4(Gfx **arg0, u8 *arg1) {
         }
     } else {
         func_800E7928(arg0, 0);
-    }
-}
+    } BT_NATIVE_ONLY(return result;)
+}    typedef struct { s16 unk0; s16 unk2; u8 pad4[0x4]; f32 unk8; u8 * unkC; } Obj1E8F430_func_800B7448_var_s1; /* offsets.py genstruct: fields from raw offsets on var_s1; rename once understood */
 
 void func_800B7448(Gfx **arg0) {
     void func_800B62CC(Gfx **, u8, f32 *, f32 *, f32);
@@ -581,37 +581,37 @@ void func_800B7448(Gfx **arg0) {
     s32 func_800E7988(Gfx **, s32);
     s32 func_800E79E8(Gfx **);
     s32 func_800E7A4C(Gfx **);
-    u32 vector_begin(s32);
+    BtUIntPtr vector_begin(s32);
     s32 vector_clear(s32);
-    u32 vector_end(s32);
+    BtUIntPtr vector_end(s32);
     s32 vector_size(s32);
     extern s32 D_8011A620;
     struct FlagWord { u32 upper : 16; u32 font : 4; u32 bit11 : 1; u32 highlight : 1; u32 lower : 10; };
     s32 var_s0;
     f32 sp88;
     f32 sp84;
-    u32 temp_s0;
+    BtUIntPtr temp_s0;
     s32 temp_s3;
-    u32 sp78;
+    BtUIntPtr sp78;
     f32 temp_f14;
     f32 temp_f20;
-    u32 var_s1;
+    BtUIntPtr var_s1;
 
-    if (((*(s32 *)((s8 *)(&D_80128180) + (0))) != 0) && (vector_size((*(s32 *)((s8 *)(&D_80128180) + (0)))) > 0)) {
+    if (((D_80128180.vector) != 0) && (vector_size((D_80128180.vector)) > 0)) {
         func_800E79E8(arg0);
         func_800E7988(arg0, 0);
-        temp_s0 = vector_begin((*(s32 *)((s8 *)(&D_80128180) + (0))));
-        sp78 = vector_end((*(s32 *)((s8 *)(&D_80128180) + (0))));
+        temp_s0 = vector_begin((D_80128180.vector));
+        sp78 = vector_end((D_80128180.vector));
         var_s1 = temp_s0;
         if (temp_s0 < sp78) {
             do {
                 (*(s32 *)((s8 *)(&D_80128180) + (4))) = func_800D3724(((struct FlagWord *)(var_s1 + 4))->font);
                 if ((*(s32 *)((s8 *)(&D_80128180) + (4))) != 0) {
-                    sp88 = (f32) (*(s16 *)((s8 *)(var_s1) + (0)));
-                    sp84 = (f32) (*(s16 *)((s8 *)(var_s1) + (2)));
+                    sp88 = (f32) (((Obj1E8F430_func_800B7448_var_s1 *)var_s1)->unk0);
+                    sp84 = (f32) (((Obj1E8F430_func_800B7448_var_s1 *)var_s1)->unk2);
                     if (((struct FlagWord *)(var_s1 + 4))->highlight) {
                         temp_s3 = func_800D35BC(((struct FlagWord *)(var_s1 + 4))->font);
-                        temp_f20 = (f32) ((func_800E7188((*(u8 **)((s8 *)(var_s1) + (0xC)))) - 1) * temp_s3);
+                        temp_f20 = (f32) ((func_800E7188((((Obj1E8F430_func_800B7448_var_s1 *)var_s1)->unkC)) - 1) * temp_s3);
                         func_800E7828(arg0, &D_8011A620);
                         func_800E7778(arg0, 0);
                         func_800E76A4(arg0, 2);
@@ -625,8 +625,8 @@ void func_800B7448(Gfx **arg0) {
                     }
                     func_800B71F4(arg0, (u8 *) var_s1);
                     func_800B7174((u8 *) var_s1);
-                    for (var_s0 = 0; ((*(u8 **)((s8 *)var_s1 + 0xC))[var_s0] != 0) || (*(u8 *)((s8 *)&D_80128180 + 0x1D) != 0) || (*(u8 *)((s8 *)&D_80128180 + 0x1C) != 0); var_s0++) {
-                        func_800B62CC(arg0, (*(u8 **)((s8 *)var_s1 + 0xC))[var_s0], &sp88, &sp84, *(f32 *)((s8 *)var_s1 + 8));
+                    for (var_s0 = 0; ((((Obj1E8F430_func_800B7448_var_s1 *)var_s1)->unkC)[var_s0] != 0) || (D_80128180.mode != 0) || (D_80128180.command != 0); var_s0++) {
+                        func_800B62CC(arg0, (((Obj1E8F430_func_800B7448_var_s1 *)var_s1)->unkC)[var_s0], &sp88, &sp84, ((Obj1E8F430_func_800B7448_var_s1 *)var_s1)->unk8);
                         if (*(s32 *)((s8 *)&D_80128180 + 4) == 0) {
                             break;
                         }
@@ -636,13 +636,13 @@ void func_800B7448(Gfx **arg0) {
             } while (var_s1 < sp78);
         }
         func_800E7A4C(arg0);
-        vector_clear((*(s32 *)((s8 *)(&D_80128180) + (0))));
+        vector_clear((D_80128180.vector));
     }
     func_800B7A98();
 }
 
 void func_800B798C(s32 arg0, s32 arg1, u8 *arg2) {
-    s32 vector_new(s32, s32);
+    void * vector_new(u32 element_size, u32 count);
     void *vector_push_back(void **);
     typedef struct {
         s16 x, y, z;
@@ -688,11 +688,11 @@ void func_800B7A98(void) {
     ptr[17] = 0;
     *(s16 *)(ptr + 20) = -0x7FFF;
     *(f32 *)(ptr + 24) = 1.0f;
-}
+}    typedef struct { s8 unk0; } Obj1E8F430_D_8012818F; /* offsets.py genstruct: fields from raw offsets on &D_8012818F; rename once understood */
 
 void func_800B7ADC(s32 arg0) {
     extern s8 D_8012818F;
-    *(s8 *)((u8 *)&D_8012818F + 0) = arg0;
+    ((Obj1E8F430_D_8012818F *)&D_8012818F)->unk0 = arg0;
 }
 
 void func_800B7AE8(s32 arg0) {
@@ -706,16 +706,16 @@ void func_800B7AE8(s32 arg0) {
     if (arg0 != 0) {
         func_800B7B68(1);
     }
-}
+}    typedef struct { s16 unk0; } Obj1E8F430_D_80128194; /* offsets.py genstruct: fields from raw offsets on &D_80128194; rename once understood */
 
 void func_800B7B2C(s32 arg0) {
     extern s16 D_80128194;
-    *(s16 *)((u8 *)&D_80128194 + 0) = arg0;
-}
+    ((Obj1E8F430_D_80128194 *)&D_80128194)->unk0 = arg0;
+}    typedef struct { s8 unk0; } Obj1E8F430_D_80128191; /* offsets.py genstruct: fields from raw offsets on &D_80128191; rename once understood */
 
 void func_800B7B38(s32 arg0) {
     extern s8 D_80128191;
-    *(s8 *)((u8 *)&D_80128191 + 0) = arg0;
+    ((Obj1E8F430_D_80128191 *)&D_80128191)->unk0 = arg0;
 }
 
 void func_800B7B44(s32 arg0) {
@@ -737,14 +737,14 @@ void func_800B7B68(s32 arg0) {
 }
 
 void func_800B7B8C(s32 arg0, s32 arg1, s32 arg2) {
-    *(u8 *)((s8 *)&D_80128180 + 0xC) = arg0;
-    *(u8 *)((s8 *)&D_80128180 + 0xD) = arg1;
-    *(u8 *)((s8 *)&D_80128180 + 0xE) = arg2;
-}
+    D_80128180.unk04[8] = arg0;
+    D_80128180.unk04[9] = arg1;
+    D_80128180.unk04[10] = arg2;
+}    typedef struct { f32 unk0; } Obj1E8F430_D_80128198; /* offsets.py genstruct: fields from raw offsets on &D_80128198; rename once understood */
 
 void func_800B7BA4(f32 arg0) {
     extern f32 D_80128198;
-    *(f32 *)((u8 *)&D_80128198 + 0) = arg0;
+    ((Obj1E8F430_D_80128198 *)&D_80128198)->unk0 = arg0;
 }
 
 void func_800B7BB0(void) {
@@ -766,7 +766,7 @@ void func_800B7BB0(void) {
 
 s32 func_800B7C10(void) {
     extern s32 D_801282B0;
-    s32 _fxleaves_entrypoint_4(s32);
+    void *_fxleaves_entrypoint_4(s32 arg0);
 
     if (D_801282B0 == 0) {
         D_801282B0 = _fxleaves_entrypoint_4(0x32);
@@ -774,9 +774,9 @@ s32 func_800B7C10(void) {
     return D_801282B0;
 }
 
-s32 func_800B7C54(void) {
+BtIntPtr func_800B7C54(void) {
     extern s32 D_801282B4;
-    s32 _fxrain_entrypoint_5(s32);
+    u8 *_fxrain_entrypoint_5(s32 arg0);
 
     if (D_801282B4 == 0) {
         D_801282B4 = _fxrain_entrypoint_5(0x1E);
@@ -806,18 +806,18 @@ void func_800B7CC4(void) {
         _fxrain_entrypoint_4(D_801282B4);
     }
     func_800B8FEC();
-}
+}    typedef struct { s32 unk0; s32 unk4; } Obj1E8F430_D_801282B0; /* offsets.py genstruct: fields from raw offsets on &D_801282B0; rename once understood */
 
 void func_800B7D14(void) {
     extern s32 D_801282B0;
-    (*(s32 *)((s8 *)(&D_801282B0) + (0))) = 0;
-    (*(s32 *)((s8 *)(&D_801282B0) + (4))) = 0;
+    (((Obj1E8F430_D_801282B0 *)&D_801282B0)->unk0) = 0;
+    (((Obj1E8F430_D_801282B0 *)&D_801282B0)->unk4) = 0;
 }
 
 void func_800B7D28(void) {
-    s32 _fxleaves_entrypoint_5(s32);
-    s32 _fxrain_entrypoint_7(s32);
-    s32 func_800B90C8();
+    void _fxleaves_entrypoint_5(BtIntPtr arg0);
+    void _fxrain_entrypoint_7(BtIntPtr arg0);
+    void func_800B90C8(void);
     extern s32 D_801282B0;
     if (D_801282B0 != 0) {
         _fxleaves_entrypoint_5(D_801282B0);
@@ -829,7 +829,7 @@ void func_800B7D28(void) {
 }
 
 void func_800B7D78(void) {
-    s32 _fxleaves_entrypoint_6(s32);
+    s32 _fxleaves_entrypoint_6(BtIntPtr);
     s32 _fxrain_entrypoint_8(s32);
     s32 func_800B90E8();
     extern s32 D_801282B0;
@@ -844,7 +844,7 @@ void func_800B7D78(void) {
 
 void func_800B7DC8(void) {
     s32 _fxleaves_entrypoint_0(s32);
-    s32 _fxleaves_entrypoint_6(s32);
+    s32 _fxleaves_entrypoint_6(BtIntPtr);
     s32 _fxrain_entrypoint_0(s32);
     s32 _fxrain_entrypoint_8(s32);
     s32 func_800B8FE0();
@@ -878,3 +878,24 @@ void func_800B7E38(void) {
         func_800B9170();
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80127128 BT_DATA(4, bss_core2bss1_0_1, 0xC8);
+u8 D_80128150 [ 1 ] BT_DATA(4, bss_core2bss1_0_2, 0x9B0);
+s32 D_80128151 BT_DATA(4, bss_core2bss1_0_2, 0x9B1);
+s32 D_80128179 BT_DATA(4, bss_core2bss1_0_2, 0x9D9);
+TextCommandState D_80128180 BT_DATA(4, bss_core2bss1_0_2, 0x9E0);
+s8 D_8012818F BT_DATA(4, bss_core2bss1_0_2, 0x9EF);
+s8 D_80128190 BT_DATA(4, bss_core2bss1_0_2, 0x9F0);
+s8 D_80128191 BT_DATA(4, bss_core2bss1_0_2, 0x9F1);
+s8 D_80128192 BT_DATA(4, bss_core2bss1_0_2, 0x9F2);
+s8 D_80128193 BT_DATA(4, bss_core2bss1_0_2, 0x9F3);
+s16 D_80128194 BT_DATA(4, bss_core2bss1_0_2, 0x9F4);
+f32 D_80128198 BT_DATA(4, bss_core2bss1_0_2, 0x9F8);
+s32 D_801281A4 BT_DATA(4, bss_core2bss1_0_2, 0xA04);
+u8 D_801281B0 [ 256 ] BT_DATA(4, bss_core2bss1_0_2, 0xA10);
+s32 D_801282B0 BT_DATA(4, bss_core2bss1_0_2, 0xB10);
+s32 D_801282B4 BT_DATA(4, bss_core2bss1_0_2, 0xB14);
+#endif

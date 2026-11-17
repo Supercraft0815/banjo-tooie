@@ -5,14 +5,14 @@ struct PrisonBitsChoices { u8 values[15]; };
 extern u8 D_8011A270[];
 extern u32 D_80800F20_chprisonbits[];
 void _chdoor_entrypoint_0();
-void _chdoor_entrypoint_1();
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
 void _chswitch_entrypoint_6();
 void func_80101870(Actor *, void *);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 void func_808000C0_chprisonbits(Actor *arg0);
 void func_808001E0_chprisonbits(s32 arg0);
-void func_80800200_chprisonbits(s32 arg0);
+void func_80800200_chprisonbits(BtIntPtr arg0);
 void func_80800224_chprisonbits(Actor *arg0);
 s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2);
 void func_8080044C_chprisonbits(Actor *arg0);
@@ -30,48 +30,48 @@ u32 D_80800F20_chprisonbits[] = {
     0x40A66666, 0x01D90001,
 };
 
-u32 D_80800F78_chprisonbits[] = {
-    0x000E011E, 0x06470001, 0x00000000, (u32)_chdoor_entrypoint_0,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+BtFnWord D_80800F78_chprisonbits[] = {
+    0x000E011E, 0x06470001, 0x00000000, (BtFnWord)_chdoor_entrypoint_0,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
     0x00000000, 0x00000800, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_80800224_chprisonbits, (u32)func_80107C2C, 0x80002C02,
-    (u32)_chdoor_entrypoint_1, 0x00000000,
+    0x00000000, (BtFnWord)func_80800224_chprisonbits, (BtFnWord)func_80107C2C, 0x80002C02,
+    (BtFnWord)_chdoor_entrypoint_1, 0x00000000,
 };
 
-u32 D_80800FC0_chprisonbits[] = {
-    0x000F011F, 0x06440001, (u32)D_8011A270, (u32)_chswitch_entrypoint_6,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+BtFnWord D_80800FC0_chprisonbits[] = {
+    0x000F011F, 0x06440001, (BtFnWord)D_8011A270, (BtFnWord)_chswitch_entrypoint_6,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
     0x00000000, 0x00000808, 0x00000000, 0x00000000,
-    0x00000007, (u32)func_808000C0_chprisonbits, (u32)func_80107C2C, 0x80002C02,
-    (u32)func_808002A0_chprisonbits, 0x00000000,
+    0x00000007, (BtFnWord)func_808000C0_chprisonbits, (BtFnWord)func_80107C2C, 0x80002C02,
+    (BtFnWord)func_808002A0_chprisonbits, 0x00000000,
 };
 
-u32 D_80801008_chprisonbits[] = {
-    0x00130120, 0x06450001, (u32)D_8011A270, (u32)_chswitch_entrypoint_6,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+BtFnWord D_80801008_chprisonbits[] = {
+    0x00130120, 0x06450001, (BtFnWord)D_8011A270, (BtFnWord)_chswitch_entrypoint_6,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
     0x00000000, 0x00000808, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_808001E0_chprisonbits, (u32)func_80107C2C, 0x80002C02,
-    (u32)func_808002A0_chprisonbits, 0x00000000,
+    0x00000000, (BtFnWord)func_808001E0_chprisonbits, (BtFnWord)func_80107C2C, 0x80002C02,
+    (BtFnWord)func_808002A0_chprisonbits, 0x00000000,
 };
 
-u32 D_80801050_chprisonbits[] = {
-    0x00150121, 0x06460001, (u32)D_8011A270, (u32)_chswitch_entrypoint_6,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+BtFnWord D_80801050_chprisonbits[] = {
+    0x00150121, 0x06460001, (BtFnWord)D_8011A270, (BtFnWord)_chswitch_entrypoint_6,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
     0x00000000, 0x00000808, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_80800200_chprisonbits, (u32)func_80107C2C, 0x80002C02,
-    (u32)func_808002A0_chprisonbits, 0x00000000,
+    0x00000000, (BtFnWord)func_80800200_chprisonbits, (BtFnWord)func_80107C2C, 0x80002C02,
+    (BtFnWord)func_808002A0_chprisonbits, 0x00000000,
 };
 
 u32 D_80801098_chprisonbits[] = {
     0x42A00000, 0x42A00000, 0x42A00000, 0x41200000,
 };
 
-u32 D_808010A8_chprisonbits[] = {
-    0x00360117, 0x066D0003, (u32)D_80800F20_chprisonbits, (u32)func_80800518_chprisonbits,
-    (u32)func_8080090C_chprisonbits, (u32)func_80101870, 0x09C40000, 0x3F800000,
-    0x00000000, 0x00000121, (u32)func_80800970_chprisonbits, 0x00000000,
-    0x00340000, (u32)func_8080044C_chprisonbits, (u32)func_80107C2C, 0x80004482,
-    (u32)func_808009C4_chprisonbits, 0x00000000,
+BtFnWord D_808010A8_chprisonbits[] = {
+    0x00360117, 0x066D0003, (BtFnWord)D_80800F20_chprisonbits, (BtFnWord)func_80800518_chprisonbits,
+    (BtFnWord)func_8080090C_chprisonbits, (BtFnWord)func_80101870, 0x09C40000, 0x3F800000,
+    0x00000000, 0x00000121, (BtFnWord)func_80800970_chprisonbits, 0x00000000,
+    0x00340000, (BtFnWord)func_8080044C_chprisonbits, (BtFnWord)func_80107C2C, 0x80004482,
+    (BtFnWord)func_808009C4_chprisonbits, 0x00000000,
 };
 
 struct PrisonBitsChoices D_808010F0_chprisonbits = {
@@ -125,7 +125,7 @@ OSThread *chprisonbits_entrypoint_4(void)
 }
 
 #ifdef BT_NATIVE
-void func_8080003C_chprisonbits(s32 bt_a0, s32 bt_a1)
+void func_8080003C_chprisonbits(BtIntPtr bt_a0, s32 bt_a1)
 #else
 void func_8080003C_chprisonbits()
 #endif
@@ -133,7 +133,7 @@ void func_8080003C_chprisonbits()
     _chswitch_entrypoint_7();
 }
 
-Actor *_subaddiefind_entrypoint_2(s32, s32);
+Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
 
 void func_8080005C_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *temp_v0;
@@ -147,7 +147,7 @@ void func_8080005C_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808000C0_chprisonbits(Actor *arg0) {
     s32 func_800DA298();
     s32 func_800DA564(s32, s32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
     struct PrisonBitsChoices choices = D_808010F0_chprisonbits;
@@ -175,7 +175,7 @@ void func_808001E0_chprisonbits(s32 arg0)
     func_8080003C_chprisonbits(arg0,1);
 }
 
-void func_80800200_chprisonbits(s32 arg0) {
+void func_80800200_chprisonbits(BtIntPtr arg0) {
     func_8080005C_chprisonbits(arg0, 0x2, 175);
 }
 
@@ -185,7 +185,7 @@ void func_80800224_chprisonbits(Actor *arg0) {
     s32 _chdoormake_entrypoint_0(void*, f32, u32, s32);
     void _chdoormake_entrypoint_5(Actor*, f32);
     void _chdoormake_entrypoint_8(void*, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    void _chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3);
     if (_chdoormake_entrypoint_0(arg0, 90.0f, 0x60U, 0xD5) != 0) {
         _chdoormake_entrypoint_8(arg0, 5);
         _chdoormake_entrypoint_5(arg0, 3.0f);
@@ -201,9 +201,9 @@ s32 func_80800280_chprisonbits(s32 arg0)
 }
 
 s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _chswitch_entrypoint_10(s32, s32, s32);
-    s32 func_80101180(s32, s32, s32);
-    void func_80800344_chprisonbits(s32);
+    s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
+    void func_80800344_chprisonbits(BtIntPtr);
 
     switch (arg1) {
         case 7:
@@ -222,10 +222,10 @@ s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_80800344_chprisonbits(s32 arg0) {
+void func_80800344_chprisonbits(BtIntPtr arg0) {
     void *func_80100094(Actor *, u32);
     void func_800DA544(s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     struct {
         u8 flags[6];
         u8 index;
@@ -268,8 +268,8 @@ void func_8080044C_chprisonbits(Actor *arg0) {
     Prop *_gccubesearch_entrypoint_0(u32, Actor *);
     s32 _glcutDll_entrypoint_20();
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_12(void *arg0, void *arg1);
     s32 func_800EA05C();
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
@@ -300,12 +300,12 @@ void func_80800518_chprisonbits(Actor *arg0) {
     s32 _capod_entrypoint_22(void);
     s32 _glsplinefind_entrypoint_1(s32);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     f32 func_800D8FF8(void);
     int func_800F0064(f32 *, f32, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     s32 func_80102128(Actor *, s32, s32, f32, s32);
     void func_80102424(Actor *, s32);
@@ -402,7 +402,7 @@ void func_80800518_chprisonbits(Actor *arg0) {
 /* extern */
 
 void func_8080090C_chprisonbits(Actor *arg0) {
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
 #ifndef BT_NATIVE
     void func_800DA544(GameFlag);
 #endif
@@ -416,14 +416,14 @@ void func_8080090C_chprisonbits(Actor *arg0) {
     if (func_80105A5C(arg0) != 0) {
         sp24 = func_80100094(arg0, 0);
         func_800DA544(0x5C);
-        _susubgame_entrypoint_4(arg0, (s32)(sp24 + 0x1C));
+        _susubgame_entrypoint_4(arg0, (BtIntPtr)(sp24 + 0x1C));
         func_800FFAB0(arg0);
     }
 }
 
 void func_80800970_chprisonbits(Actor *arg0) {
     void _suexpression_entrypoint_8(Actor*, u32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void* func_80100094(Actor*, u32);
     u8 *sp1C;
 
@@ -431,16 +431,16 @@ void func_80800970_chprisonbits(Actor *arg0) {
     if (func_80100094(arg0, 1U) != NULL) {
         _suexpression_entrypoint_8(arg0, 1U);
     }
-    _susubgame_entrypoint_4(arg0, (s32) (sp1C + 0x1C));
+    _susubgame_entrypoint_4(arg0, (BtIntPtr) (sp1C + 0x1C));
 }
 
 s32 func_808009C4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80800CC4_chprisonbits(Actor *, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     void func_80102424(Actor *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     void _suexpression_entrypoint_14(void *, f32, f32);
     void _suexpression_entrypoint_8(Actor *, u32);
@@ -487,12 +487,12 @@ s32 func_808009C4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 int func_80800BB4_chprisonbits(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     void *func_80100094(Actor *, u32);
     s32 result;
 
-    result = _subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0 + 4, &(*(s32 *)D_80801100_chprisonbits));
+    result = _subaddiedialog_entrypoint_7((BtIntPtr)arg0, (BtIntPtr)arg0 + 4, &(*(s32 *)D_80801100_chprisonbits));
     if ((result != 0) && (result != 0x1208)) {
         _susubgame_entrypoint_5(arg0, (u8 *)func_80100094(arg0, 0U) + 0x1C, 4, 0, 0);
     }
@@ -500,11 +500,11 @@ int func_80800BB4_chprisonbits(Actor *arg0) {
 }
 
 void func_80800C18_chprisonbits(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     f32 * volatile temp_a1;
 
-    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = (f32 *) ((s8 *) arg0 + 4), &(*(u32 *)D_8080111C_chprisonbits), &(*(u32 *)D_80801144_chprisonbits));
+    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = &arg0->position[0], &(*(u32 *)D_8080111C_chprisonbits), &(*(u32 *)D_80801144_chprisonbits));
     _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &(*(u32 *)D_8080112C_chprisonbits), 0.75f);
     _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &(*(u32 *)D_80801138_chprisonbits), 0.6f);
 }
@@ -523,8 +523,8 @@ s32 func_80800C84_chprisonbits(Actor *arg0) {
 void func_80800CC4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void _glcutDll_entrypoint_17(void);
     u8 *data;
 
@@ -535,32 +535,32 @@ void func_80800CC4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
             _susubgame_entrypoint_6(arg0, data + 0x1C, 0xE, 0x2030, 0);
             break;
         case 0xF42:
-            _susubgame_entrypoint_4(arg0, (s32)(data + 0x1C));
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x1C));
             _glcutDll_entrypoint_17();
             break;
         case 0xF4F:
-            _susubgame_entrypoint_4(arg0, (s32)(data + 0x1C));
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x1C));
             func_80102424(arg0, 3);
             break;
         default:
-            _susubgame_entrypoint_4(arg0, (s32)(data + 0x1C));
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x1C));
             func_80102424(arg0, 3);
             break;
     }
-}
+}    typedef struct { u8 pad0[0x4]; f32 unk4; } Objprisonbits_func_80800DAC_chprisonbits_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
 void func_80800DAC_chprisonbits(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 func_800CD08C(s32, u8 *);
+    void func_800CD08C(s32 arg0, f32 *arg1);
     u8 *sp1C;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
     func_800CD08C(((u32) (*(u32 *)((s8 *)(arg0) + (0x70))) >> 0x19) - 1, temp_v0);
-    (*(f32 *)((s8 *)(sp1C) + (4))) = (f32) arg0->position[1];
+    (((Objprisonbits_func_80800DAC_chprisonbits_sp1C *)sp1C)->unk4) = (f32) arg0->position[1];
 }
 
 int func_80800DFC_chprisonbits(Actor *arg0) {
@@ -569,7 +569,7 @@ int func_80800DFC_chprisonbits(Actor *arg0) {
 
 void chprisonbits_entrypoint_5(s32 arg0, s32 arg1) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     void *func_80100094(Actor *, u32);

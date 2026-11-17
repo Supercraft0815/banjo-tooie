@@ -1,11 +1,11 @@
 #include "common.h"
+
 struct Vector;
 struct Vector *vector_new(u32 element_size, u32 count);
 void *vector_begin(struct Vector *vec);
 void *vector_end(struct Vector *vec);
 void *vector_push_back(struct Vector **vec_ptr);
-void vector_free(struct Vector *vec);
-
+void vector_free(struct Vector *vec);     
 u8 *func_80800000_sulights(s32 arg0, s32 arg1) {
     extern struct Vector *D_80127EF0;
     u8 *begin;
@@ -91,7 +91,7 @@ void func_8080021C_sulights(u8 *arg0) {
         }
         var_v0++;
         var_v1 += 4;
-    } while (var_v0 != &sp4C);
+    } while (var_v0 != BT_NATIVE_ONLY(sp40 + 3) BT_IDO_ONLY(&sp4C)); // IDO keeps sp4C right after sp40[3]
     func_800C8E84(arg0[1], sp40);
     *(f32 *)(arg0 + 0x34) = 0.0f;
 }
@@ -112,7 +112,7 @@ void func_80800340_sulights(u8 *arg0) {
     } while (i != 3);
 }
 
-void func_8080038C_sulights(u8 *arg0) { s32 i; f32 *p; f32 value; i = 0; p = (f32 *)arg0; *(f32 *)(arg0 + 0x34) = 0.0f; do { value = p[10]; i++; p++; p[6] += value; p[9] = value * -1.0f; } while (i != 2); }
+void func_8080038C_sulights(u8 *arg0) { s32 i; f32 *p; f32 value; i = 0; p = (f32 *)arg0; *(f32 *)(arg0 + 0x34) = 0.0f; do { value = p[10]; i++; p++; p[6] += value; p[9] = value * -1.0f; } while (i != 2); }    typedef struct { u8 pad0[0x38]; f32 unk38; } Objlights_sulights_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -125,9 +125,9 @@ void sulights_entrypoint_0(s32 arg0, s32 *arg1, s32 *arg2, f32 arg3) {
 
     temp_v0 = func_80800000_sulights(1, arg0);
     if (arg3 < 0.001f) {
-        (*(f32 *)((s8 *)(temp_v0) + (0x38))) = 0.001f;
+        (((Objlights_sulights_entrypoint_0_temp_v0 *)temp_v0)->unk38) = 0.001f;
     } else {
-        (*(f32 *)((s8 *)(temp_v0) + (0x38))) = arg3;
+        (((Objlights_sulights_entrypoint_0_temp_v0 *)temp_v0)->unk38) = arg3;
     }
     func_800EE830((s32 *)(temp_v0 + 4), arg1);
     for (i = 0; i < 3; i++) {
@@ -175,7 +175,7 @@ void sulights_entrypoint_3(s32 arg0, f32 *arg1, f32 arg2) {
 
     func_800C883C(arg0, &sp18);
     sulights_entrypoint_2(arg0, sp18, arg1, arg2);
-}
+}                        typedef struct { u8 pad0[0x4]; s32 unk4; s32 unk8; s32 unkC; s32 unk10; s32 unk14; s32 unk18; u8 pad1C[0x1C]; f32 unk38; } Objlights_sulights_entrypoint_4_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */ typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objlights_arg2; /* offsets.py genstruct: fields from raw offsets on arg2; rename once understood */ typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objlights_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
@@ -191,15 +191,15 @@ void sulights_entrypoint_4(s32 arg0, void *arg1, void *arg2, f32 arg3) {
     } else {
         var_f0 = arg3;
     }
-    (*(f32 *)((s8 *)(temp_v1) + (0x38))) = (f32) (4.0f / var_f0);
-    (*(s32 *)((s8 *)(temp_v1) + (4))) = (s32) (*(s32 *)((s8 *)(arg1) + (0)));
-    (*(s32 *)((s8 *)(temp_v1) + (8))) = (s32) (*(s32 *)((s8 *)(arg1) + (4)));
-    (*(s32 *)((s8 *)(temp_v1) + (0xC))) = (s32) (*(s32 *)((s8 *)(arg1) + (8)));
-    (*(s32 *)((s8 *)(temp_v1) + (0x10))) = (s32) (*(s32 *)((s8 *)(arg2) + (0)));
-    (*(s32 *)((s8 *)(temp_v1) + (0x14))) = (s32) (*(s32 *)((s8 *)(arg2) + (4)));
-    (*(s32 *)((s8 *)(temp_v1) + (0x18))) = (s32) (*(s32 *)((s8 *)(arg2) + (8)));
+    (((Objlights_sulights_entrypoint_4_temp_v1 *)temp_v1)->unk38) = (f32) (4.0f / var_f0);
+    (((Objlights_sulights_entrypoint_4_temp_v1 *)temp_v1)->unk4) = (s32) (((Objlights_arg1 *)arg1)->unk0);
+    (((Objlights_sulights_entrypoint_4_temp_v1 *)temp_v1)->unk8) = (s32) (((Objlights_arg1 *)arg1)->unk4);
+    (((Objlights_sulights_entrypoint_4_temp_v1 *)temp_v1)->unkC) = (s32) (((Objlights_arg1 *)arg1)->unk8);
+    (((Objlights_sulights_entrypoint_4_temp_v1 *)temp_v1)->unk10) = (s32) (((Objlights_arg2 *)arg2)->unk0);
+    (((Objlights_sulights_entrypoint_4_temp_v1 *)temp_v1)->unk14) = (s32) (((Objlights_arg2 *)arg2)->unk4);
+    (((Objlights_sulights_entrypoint_4_temp_v1 *)temp_v1)->unk18) = (s32) (((Objlights_arg2 *)arg2)->unk8);
     func_800C8E84(arg0, arg1);
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; s32 unk8; s32 unkC; u8 pad10[0x28]; f32 unk38; } Objlights_sulights_entrypoint_5_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -211,13 +211,13 @@ void sulights_entrypoint_5(s32 arg0, s32 *arg1, s32 *arg2, f32 arg3) {
 
     temp_v0 = func_80800000_sulights(4, arg0);
     if (arg3 < 0.001f) {
-        (*(f32 *)((s8 *)(temp_v0) + (0x38))) = 0.001f;
+        (((Objlights_sulights_entrypoint_5_temp_v0 *)temp_v0)->unk38) = 0.001f;
     } else {
-        (*(f32 *)((s8 *)(temp_v0) + (0x38))) = (f32) (arg3 * 0.5f);
+        (((Objlights_sulights_entrypoint_5_temp_v0 *)temp_v0)->unk38) = (f32) (arg3 * 0.5f);
     }
-    (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) (*(s32 *)((s8 *)(arg1) + (0)));
-    (*(s32 *)((s8 *)(temp_v0) + (8))) = (s32) (*(s32 *)((s8 *)(arg1) + (4)));
-    (*(s32 *)((s8 *)(temp_v0) + (0xC))) = (s32) (*(s32 *)((s8 *)(arg1) + (8)));
+    (((Objlights_sulights_entrypoint_5_temp_v0 *)temp_v0)->unk4) = (s32) (((Objlights_arg1 *)arg1)->unk0);
+    (((Objlights_sulights_entrypoint_5_temp_v0 *)temp_v0)->unk8) = (s32) (((Objlights_arg1 *)arg1)->unk4);
+    (((Objlights_sulights_entrypoint_5_temp_v0 *)temp_v0)->unkC) = (s32) (((Objlights_arg1 *)arg1)->unk8);
     for (i = 0; i < 3; i++) {
         ((s32 *)temp_v0)[i + 4] = arg2[i] - arg1[i];
     }
@@ -246,9 +246,9 @@ void sulights_entrypoint_6(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 
 void sulights_entrypoint_7(s32 arg0) {
     extern struct Vector *D_80127EF0;
-    u32 end;
-    u32 begin;
-    u32 ptr;
+    BtUIntPtr end;
+    BtUIntPtr begin;
+    BtUIntPtr ptr;
 
     if (D_80127EF0 != 0) {
         end = vector_end(D_80127EF0);
@@ -271,22 +271,22 @@ void sulights_entrypoint_8(void) {
         vector_free(D_80127EF0);
         D_80127EF0 = 0;
     }
-}
-
+}    typedef struct { u8 unk0; u8 pad1[0x33]; f32 unk34; f32 unk38; } Objlights_sulights_entrypoint_9_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
+typedef struct { s32 (*update)(u32); s32 (*finish)(u32); } LightCallbacks;
 void sulights_entrypoint_9(void) {
     f32 func_800D8FF8();
     extern struct Vector *D_80127EF0;
-    typedef struct {
-        s32 (*update)(u32);
-        s32 (*finish)(u32);
-    } LightCallbacks;
+
+
+
+
     extern LightCallbacks D_80800A00_sulights[];
     s32 (*temp_v0_2)(u32);
     f32 temp_f0;
     f32 temp_f20;
-    u32 temp_s2;
-    u32 temp_v0;
-    u32 var_s0;
+    BtUIntPtr temp_s2;
+    BtUIntPtr temp_v0;
+    BtUIntPtr var_s0;
 
     temp_f20 = func_800D8FF8();
     temp_s2 = vector_end(D_80127EF0);
@@ -294,14 +294,14 @@ void sulights_entrypoint_9(void) {
     var_s0 = temp_v0;
     if (temp_v0 < temp_s2) {
         do {
-            if ((*(u8 *)((s8 *)(var_s0) + (0))) != 0) {
-                temp_f0 = (*(f32 *)((s8 *)(var_s0) + (0x38)));
-                (*(f32 *)((s8 *)(var_s0) + (0x34))) = (f32) ((*(f32 *)((s8 *)(var_s0) + (0x34))) + temp_f20);
-                if (temp_f0 < (*(f32 *)((s8 *)(var_s0) + (0x34)))) {
-                    (*(f32 *)((s8 *)(var_s0) + (0x34))) = temp_f0;
+            if ((((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk0) != 0) {
+                temp_f0 = (((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk38);
+                (((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk34) = (f32) ((((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk34) + temp_f20);
+                if (temp_f0 < (((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk34)) {
+                    (((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk34) = temp_f0;
                 }
                 D_80800A00_sulights[*(u8 *)var_s0 - 1].update(var_s0);
-                if ((*(f32 *)((s8 *)(var_s0) + (0x38))) <= (*(f32 *)((s8 *)(var_s0) + (0x34)))) {
+                if ((((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk38) <= (((Objlights_sulights_entrypoint_9_var_s0 *)var_s0)->unk34)) {
                     temp_v0_2 = D_80800A00_sulights[*(u8 *)var_s0 - 1].finish;
                     if (temp_v0_2 != NULL) {
                         temp_v0_2(var_s0);
@@ -312,3 +312,5 @@ void sulights_entrypoint_9(void) {
         } while (var_s0 < temp_s2);
     }
 }
+/* data_to_c.py: from asm/data/overlays/su/lights.data.s */
+LightCallbacks D_80800A00_sulights [6] BT_DATA(4, overlays_su_lights, 0x0) = { { (long (*)(unsigned long))func_808000D8_sulights, (long (*)(unsigned long))func_808000D0_sulights }, { (long (*)(unsigned long))func_80800194_sulights, (long (*)(unsigned long))func_808000D0_sulights }, { (long (*)(unsigned long))func_8080021C_sulights, 0 }, { (long (*)(unsigned long))func_808000D8_sulights, (long (*)(unsigned long))func_80800340_sulights }, { (long (*)(unsigned long))func_80800194_sulights, (long (*)(unsigned long))func_8080038C_sulights }, { 0, 0 } };

@@ -14,7 +14,7 @@ void func_80800008_bsbbilldrill(void *arg0) {
     s32 func_800C8A98();
     void func_800C8CB8(s32, f32[3]);
     void func_800C8E54(s32, f32, f32);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void func_800C8F64(s32, s32);
     extern s32 D_80800AB0_bsbbilldrill[][3];
     f32 sp24[3];
@@ -30,15 +30,15 @@ void func_80800008_bsbbilldrill(void *arg0) {
         func_800C8CB8((*(s32 *)((s8 *)(arg0) + (0x168))), sp24);
         func_800C8E84((*(s32 *)((s8 *)(arg0) + (0x168))), D_80800AB0_bsbbilldrill[func_8001210C(1)]);
     }
-}
+}    typedef struct { u8 pad0[0x168]; s32 unk168; } Objbbilldrill_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_808000C0_bsbbilldrill(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
     s32 temp_a3;
 
-    temp_a3 = (*(s32 *)((s8 *)(arg0) + (0x168)));
+    temp_a3 = (((Objbbilldrill_arg0 *)arg0)->unk168);
     if (temp_a3 != 0) {
-        (*(s32 *)((s8 *)(arg0) + (0x168))) = _chlightfader_entrypoint_1(temp_a3, 0.6f, 2);
+        (((Objbbilldrill_arg0 *)arg0)->unk168) = _chlightfader_entrypoint_1(temp_a3, 0.6f, 2);
     }
 }
 
@@ -59,22 +59,22 @@ void func_80800100_bsbbilldrill(void *arg0) {
     func_80093300(arg0, var_f2);
 }
 
-s32 func_80800158_bsbbilldrill(f32 arg0[3]) {
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    extern s32 D_80800AC8_bsbbilldrill;
-    return func_800BABB8(func_800B5BE4(9), arg0, NULL, 1.0f, &D_80800AC8_bsbbilldrill);
+BtIntPtr func_80800158_bsbbilldrill(f32 arg0[3]) {
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    extern s32 D_80800AC8_bsbbilldrill[18];
+    return func_800BABB8(func_800B5BE4(9), arg0, NULL, 1.0f, D_80800AC8_bsbbilldrill);
 }
 
 void func_8080019C_bsbbilldrill(void *arg0) {
     void func_8009C128(void *, f32[3]);
-    void func_800BA22C(s32, s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
     f32 func_800DC0C0(void);
     f32 position[3];
     f32 scale;
-    s32 emitter;
+    BtIntPtr emitter;
 
     if (func_800DC0C0() <= 0.2f) {
         scale = 0.15f;
@@ -92,7 +92,7 @@ void func_8080019C_bsbbilldrill(void *arg0) {
 /* extern */
 
 void func_80800250_bsbbilldrill(void *arg0) {
-    void func_800BA22C(s32, s32);
+    void func_800BA22C(BtIntPtr, s32);
     s32 _fxdlsmoke_entrypoint_0(f32 *);
     void func_8009C128(void *, f32[3]);
     f32 sp1C[3];
@@ -365,6 +365,17 @@ void bsbbilldrill_entrypoint_2(struct player_state_s *arg0) {
 }
 
 s32 bsbbilldrill_entrypoint_3(s32 arg0) {
-    extern s32 D_80800B68_bsbbilldrill[];
+    extern BtIntPtr D_80800B68_bsbbilldrill[];
     return ((s32 *)&D_80800B68_bsbbilldrill)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/bbilldrill.data.s */
+void _bsbbilldrill_entrypoint_0();
+void _bsbbilldrill_entrypoint_1();
+void _bsbbilldrill_entrypoint_2();
+void func_80099B94();
+s32 D_80800AB0_bsbbilldrill [2] [ 3 ] BT_DATA(4, overlays_bs_bbilldrill, 0x0) = { { 224, 224, 170 }, { 224, 224, 224 } };
+s32 D_80800AC8_bsbbilldrill[18] BT_DATA(4, overlays_bs_bbilldrill, 0x18) = { 1903074, 2228262, 2490393, 1638439, 200, 240, 1445888, 262297, 458754, 1376256, 13369387, 21758387, 2948870, 26279686, 16384800, 16384027, -131007664, 0 };
+s32 D_80800B10_bsbbilldrill [8] BT_DATA(4, overlays_bs_bbilldrill, 0x60) = { 50724883, 70713365, 115, 3342358, 1441792012, 76, 15925516, 1114112 };
+s32 D_80800B30_bsbbilldrill [8] BT_DATA(4, overlays_bs_bbilldrill, 0x80) = { 50724883, 70713365, 115, 3342358, 1441792012, 76, 14221555, 1114112 };
+s32 D_80800B50_bsbbilldrill [6] BT_DATA(4, overlays_bs_bbilldrill, 0xA0) = { 50724883, 80281621, 204, 3342358, 1441792017, 0 };
+BtIntPtr D_80800B68_bsbbilldrill [6] BT_DATA(4, overlays_bs_bbilldrill, 0xB8) = { (BtIntPtr)_bsbbilldrill_entrypoint_0, (BtIntPtr)_bsbbilldrill_entrypoint_1, (BtIntPtr)_bsbbilldrill_entrypoint_2, (BtIntPtr)func_80099B94, 0, 0 };

@@ -2,7 +2,7 @@
 
 OSThread *chexplodingchainlinks_entrypoint_0(void)
 {
-    extern u8 D_80800170_chexplodingchainlinks[];
+    extern ActorData D_80800170_chexplodingchainlinks[];
 
     return (OSThread *) D_80800170_chexplodingchainlinks;
 }
@@ -25,11 +25,11 @@ void func_80800034_chexplodingchainlinks(Actor *arg0, void *arg1) {
     func_80101870(arg0, arg1);
 }
 
-int func_80800070_chexplodingchainlinks(s32 arg0, s32 arg1, volatile s32 arg2) {
+int func_80800070_chexplodingchainlinks(BtIntPtr arg0, s32 arg1, volatile s32 arg2) {
     void func_80101038(f32 *);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);
-    void func_8080010C_chexplodingchainlinks(s32, f32 *);
+    void func_8080010C_chexplodingchainlinks(BtIntPtr, f32 *);
     void _chexploder_entrypoint_3(void *, void *, u32);
     void _chexploder_entrypoint_6(Actor *, f32, f32);
     f32 sp24[3];
@@ -53,13 +53,18 @@ int func_80800070_chexplodingchainlinks(s32 arg0, s32 arg1, volatile s32 arg2) {
     return result;
 }
 
-void func_8080010C_chexplodingchainlinks(s32 arg0, f32 *arg1) {
-    void func_800BBCB8(f32[3], f32[3], f32, s32, s32 *);
+void func_8080010C_chexplodingchainlinks(BtIntPtr arg0, f32 *arg1) {
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
     void func_800EE7F8(f32 *, f32 *);
-    extern s32 D_808001B8_chexplodingchainlinks;
+    extern s32 D_808001B8_chexplodingchainlinks[14];
     f32 sp24[3];
 
     func_800EE7F8(sp24, (f32 *)(arg0 + 4));
     sp24[1] = arg1[1];
-    func_800BBCB8(sp24, sp24, 0.8f, 4, &D_808001B8_chexplodingchainlinks);
+    func_800BBCB8(sp24, sp24, 0.8f, 4, D_808001B8_chexplodingchainlinks);
 }
+/* data_to_c.py: from asm/data/overlays/ch/explodingainlinks.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800170_chexplodingchainlinks [1] BT_DATA(4, overlays_ch_explodingainlinks, 0x0) = { { 344, 1139, 1980, 1, 0, (void (*)(struct Actor *))func_80800014_chexplodingchainlinks, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800034_chexplodingchainlinks, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chexplodingchainlinks, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_80800070_chexplodingchainlinks, 0 } };
+s32 D_808001B8_chexplodingchainlinks[14] BT_DATA(4, overlays_ch_explodingainlinks, 0x48) = { 1903074, 2228262, 2490393, 1638439, 200, 240, 1376256, 13369387, 21758387, 2949370, 26214414, 655380, 1834008, -52428800 };

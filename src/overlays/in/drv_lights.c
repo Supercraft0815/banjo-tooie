@@ -1,6 +1,6 @@
 #include "common.h"
 
-void indrv_lights_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
+void indrv_lights_entrypoint_0(s32 arg0, BtIntPtr arg1, s32 arg2) {
     void _sulights_entrypoint_1(s32, s32 *, f32);
     void _sulights_entrypoint_3(s32, f32 *, f32);
     void func_800C8CB8(s32, f32 *);

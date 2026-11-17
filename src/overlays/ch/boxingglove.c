@@ -2,14 +2,14 @@
 
 OSThread *chboxingglove_entrypoint_0(void)
 {
-    extern u8 D_80800708_chboxingglove[];
+    extern ActorData D_80800708_chboxingglove[];
 
     return (OSThread *) D_80800708_chboxingglove;
 }
 
 OSThread *chboxingglove_entrypoint_1(void)
 {
-    extern u8 D_80800750_chboxingglove[];
+    extern ActorData D_80800750_chboxingglove[];
 
     return (OSThread *) D_80800750_chboxingglove;
 }
@@ -51,7 +51,7 @@ void func_80800018_chboxingglove(Actor *arg0) {
             }
             break;
     }
-}
+}                   typedef struct { s32 unk0; u8 pad4[0x38]; s32 unk3C; } Objboxingglove_func_80800168_chboxingglove_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x1C]; f32 unk28; u8 pad2C[0x10]; s32 unk3C; u8 pad40[0x18]; f32 unk58; u8 pad5C[0x9]; u8 unk65; } Objboxingglove_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -61,12 +61,12 @@ void func_80800168_chboxingglove(void *arg0) {
     s32 sp18[1];
     void *temp_v0;
 
-    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+    (((Objboxingglove_arg0 *)arg0)->unk65) = (u8) ((((Objboxingglove_arg0 *)arg0)->unk65) & 0xFFFE);
+    (((Objboxingglove_arg0 *)arg0)->unk58) = 1.0f;
+    (((Objboxingglove_arg0 *)arg0)->unk28) = (f32) (((Objboxingglove_arg0 *)arg0)->unk8);
     temp_v0 = _subaddiefind_entrypoint_2(0x36E, ((s32 *)&sp18) - 1, arg0);
-    (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) (*(s32 *)((s8 *)(temp_v0) + (0)));
-    (*(s32 *)((s8 *)(temp_v0) + (0x3C))) = (s32) (*(s32 *)((s8 *)(arg0) + (0)));
+    (((Objboxingglove_arg0 *)arg0)->unk3C) = (s32) (((Objboxingglove_func_80800168_chboxingglove_temp_v0 *)temp_v0)->unk0);
+    (((Objboxingglove_func_80800168_chboxingglove_temp_v0 *)temp_v0)->unk3C) = (s32) (((Objboxingglove_arg0 *)arg0)->unk0);
     func_80800630_chboxingglove(arg0);
 }
 
@@ -97,24 +97,24 @@ void func_808001CC_chboxingglove(Actor *arg0) {
 void func_808002AC_chboxingglove(void *arg0) {
     f32 temp_f0;
 
-    temp_f0 = (*(f32 *)((s8 *)(arg0) + (8)));
-    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
-    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) (temp_f0 - 70.0f);
-    (*(f32 *)((s8 *)(arg0) + (0x28))) = temp_f0;
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.0f;
+    temp_f0 = (((Objboxingglove_arg0 *)arg0)->unk8);
+    (((Objboxingglove_arg0 *)arg0)->unk65) = (u8) ((((Objboxingglove_arg0 *)arg0)->unk65) & 0xFFFE);
+    (((Objboxingglove_arg0 *)arg0)->unk8) = (f32) (temp_f0 - 70.0f);
+    (((Objboxingglove_arg0 *)arg0)->unk28) = temp_f0;
+    (((Objboxingglove_arg0 *)arg0)->unk58) = 1.0f;
 }
 
 void func_808002E0_chboxingglove(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     f32 func_800DC178(f32, f32);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void func_80101FDC(Actor *, u32);
     void func_80102424(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_8010A570(Actor *);
     void func_8010A590(Actor *);
-    void func_8010D09C(s32, f32 *, f32);
+    void func_8010D09C(BtIntPtr, f32 *, f32);
     void func_8010D254(f32 *);
     s32 func_808004F8_chboxingglove(void *);
     s32 func_80800544_chboxingglove(Actor *, f32 *);
@@ -175,8 +175,8 @@ void func_808002E0_chboxingglove(Actor *arg0, s32 arg1) {
 
 s32 func_808004F8_chboxingglove(void *arg0) {
     s32 func_800DA298(s32);
-    s32 func_800FFA88(s32);
-    s32 func_800FFAB0(void *);
+    void func_800FFA88(Unk80132ED0 *marker);
+    void func_800FFAB0(Actor *actor);
     if (func_800DA298(0) != 0) {
         func_800FFAB0(arg0);
         func_800FFA88((*(s32 *)((s8 *)(arg0) + (0x3C))));
@@ -186,7 +186,7 @@ s32 func_808004F8_chboxingglove(void *arg0) {
 }
 
 s32 func_80800544_chboxingglove(Actor *arg0, f32 *arg1) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE7F8(f32 *, f32 *);
     int func_800F0064(f32 *, f32, f32 *);
     void *func_80100094(Actor *, u32);
@@ -230,3 +230,14 @@ void func_80800630_chboxingglove(Actor *arg0) {
         dst++;
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/boxingglove.data.s */
+extern u8 D_808006E0_chboxingglove[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+u8 D_808006E0_chboxingglove[40] BT_DATA(4, overlays_ch_boxingglove, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x0B, 0x00, 0x44, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x0B, 0x00, 0x44, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x0B, 0x00, 0x02, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x0B, 0x00, 0x44 };
+ActorData D_80800708_chboxingglove [1] BT_DATA(4, overlays_ch_boxingglove, 0x28) = { { 436, 318, 1910, 1, (void *)D_808006E0_chboxingglove, (void (*)(struct Actor *))func_80800018_chboxingglove, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 769, 36, 0, 0, 64, 0, (void (*)(struct Actor *))func_80800168_chboxingglove, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };
+ActorData D_80800750_chboxingglove [1] BT_DATA(4, overlays_ch_boxingglove, 0x70) = { { 429, 878, 1577, 1, 0, (void (*)(struct Actor *))func_808001CC_chboxingglove, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2052, 0, 0, 0, 0, (void (*)(struct Actor *))func_808002AC_chboxingglove, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };
+u32 D_80800798_chboxingglove BT_DATA(4, overlays_ch_boxingglove, 0xB8) = 0x1304D2;
+u8 D_80800798_chboxingglove__gap[4] BT_DATA(4, overlays_ch_boxingglove, 0xBC) = { 0 };
+u8 D_808007A0_chboxingglove [16] BT_DATA(4, overlays_ch_boxingglove, 0xC0) = { 0, 0x13, 5, 8, 0, 0x18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

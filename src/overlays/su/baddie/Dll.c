@@ -24,9 +24,9 @@ void subaddieDll_entrypoint_0(void *arg0) {
 
 /* extern */
 
-void subaddieDll_entrypoint_1(Actor *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) subaddieDll_entrypoint_1(Actor *arg0) {
     s32 subaddieDll_entrypoint_2(Actor *, f32 (*)[3]);
-    subaddieDll_entrypoint_2(arg0, &arg0->position);
+    BT_IDO_ONLY(subaddieDll_entrypoint_2(arg0, &arg0->position);) BT_NATIVE_ONLY(return subaddieDll_entrypoint_2(arg0, &arg0->position);)
 }
 
 /* extern */
@@ -73,24 +73,24 @@ s32 subaddieDll_entrypoint_3(Actor *arg0) {
         return 1;
     }
     return 0;
-}
+}                typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; u8 pad8[0x74]; u16 unk7C; } ObjDll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void subaddieDll_entrypoint_4(void *arg0, s32 arg1) {
     void *func_80100368();
     if (arg1 != 0) {
-        (*(u16 *)((s8 *)(arg0) + (0x7C))) = 0U;
+        (((ObjDll_arg0 *)arg0)->unk7C) = 0U;
         return;
     }
-    (*(u16 *)((s8 *)(arg0) + (0x7C))) = (u16) (*(u16 *)((s8 *)(func_80100368()) + (0x18)));
+    (((ObjDll_arg0 *)arg0)->unk7C) = (u16) (*(u16 *)((s8 *)(func_80100368()) + (0x18)));
 }
 
 /* extern */
 
 s32 subaddieDll_entrypoint_5(Actor *arg0, Unk80132ED0 *arg1) {
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    Unk80132ED0 *func_800F55D0(s32);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    Unk80132ED0 *func_800F55D0(BtIntPtr);
     u32 temp_t8;
     s32 sp1C;
 
@@ -125,8 +125,8 @@ void func_80800260_subaddieDll(Actor *arg0, s32 arg1) {
 /* extern */
 
 s32 subaddieDll_entrypoint_6(Actor *arg0, s32 arg1) {
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    s32 func_800F54E4();
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    BtIntPtr func_800F54E4();
     if (func_800F52B8(func_800F54E4(), arg0->unk0) != 0xB) {
         return 1;
     }
@@ -139,7 +139,7 @@ void subaddieDll_entrypoint_7(Actor *arg0, s32 arg1)
     func_80800260_subaddieDll(arg0, arg1);
 }
 
-s32 subaddieDll_entrypoint_8(s32 arg0) {
+BtIntPtr subaddieDll_entrypoint_8(BtIntPtr arg0) {
     Actor* func_80106790(Unk80132ED0 *);
     void func_8010A570(Actor*);
     Actor *volatile sp1C;
@@ -148,20 +148,20 @@ s32 subaddieDll_entrypoint_8(s32 arg0) {
     temp_v0 = func_80106790((Unk80132ED0 *) arg0);
     sp1C = temp_v0;
     func_8010A570(temp_v0);
-    return (s32) sp1C;
+    return (BtIntPtr) sp1C;
 }
 
 /* extern */
 
 void subaddieDll_entrypoint_9(s32 arg0, s32 arg1) {
-    s32 func_800DA544(s32);
-    s32 subaddieDll_entrypoint_8(s32);
+    void func_800DA544(s32 index);
+    BtIntPtr subaddieDll_entrypoint_8(BtIntPtr);
     func_800DA544(arg1);
     subaddieDll_entrypoint_8(arg0);
 }
 
 void subaddieDll_entrypoint_10(s32 arg0, s16 *arg1) {
-    void _gccubesearch_entrypoint_7(s32 *, s16 **, s32);
+    s32 _gccubesearch_entrypoint_7(s32 *arg0, Actor **arg1, s32 arg2);
     s32 query[2];
     s16 *results[3];
     s32 first;
@@ -217,12 +217,12 @@ s32 subaddieDll_entrypoint_11(Actor *arg0, s32 arg1, s32 arg2) {
         return 0;
     }
     return 1;
-}
+}                typedef struct { s16 unk0; s16 unk2; } ObjDll_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
 void subaddieDll_entrypoint_12(void *arg0, void *arg1) {
     s16 func_800DC128(s16, s16, void *);
-    (*(s16 *)((s8 *)(arg1) + (0))) = func_800DC128((*(s16 *)((s8 *)(arg0) + (0))), (*(s16 *)((s8 *)(arg0) + (4))), arg0);
-    (*(s16 *)((s8 *)(arg1) + (2))) = func_800DC128((*(s16 *)((s8 *)(arg0) + (2))), (*(s16 *)((s8 *)(arg0) + (6))), arg0);
+    (((ObjDll_arg1 *)arg1)->unk0) = func_800DC128((((ObjDll_arg0 *)arg0)->unk0), (((ObjDll_arg0 *)arg0)->unk4), arg0);
+    (((ObjDll_arg1 *)arg1)->unk2) = func_800DC128((((ObjDll_arg0 *)arg0)->unk2), (((ObjDll_arg0 *)arg0)->unk6), arg0);
 }

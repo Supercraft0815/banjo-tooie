@@ -18,12 +18,12 @@ void func_80800000_chdodgemdoors(Actor *arg0) {
 
 s32 func_808000A0_chdodgemdoors(Actor *arg0, s32 arg1, s32 arg2)
 {
-  void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-  s32 _gcfrontend_entrypoint_9(s32);
+  s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+  void _gcfrontend_entrypoint_9(s32 arg0);
   s32 func_800D0A9C(u32, u32);
-  s32 func_800D10D4(u32, u32, f32 *, s32, s32);
+  BtIntPtr func_800D10D4(u32, u32, f32 *, s32, BtIntPtr);
   s32 func_800DA298(s32);
-  s32 func_800DA544(s32);
+  void func_800DA544(s32 index);
   void func_80101FDC(Actor *, u32);
   switch (arg1)
   {
@@ -76,7 +76,7 @@ s32 func_808000A0_chdodgemdoors(Actor *arg0, s32 arg1, s32 arg2)
 void func_8080026C_chdodgemdoors(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     f32 func_800D8FF8(void);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_80101FDC(Actor *, u32);
     extern u8 D_80800360_chdodgemdoors[];
 
@@ -101,7 +101,13 @@ void func_8080026C_chdodgemdoors(Actor *arg0) {
 
 OSThread *chdodgemdoors_entrypoint_0(void)
 {
-    extern u8 D_80800374_chdodgemdoors[];
+    extern ActorData D_80800374_chdodgemdoors[];
 
     return (OSThread *) D_80800374_chdodgemdoors;
 }
+/* data_to_c.py: from asm/data/overlays/ch/dodgemdoors.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+u8 D_80800360_chdodgemdoors [20] BT_DATA(4, overlays_ch_dodgemdoors, 0x0) = { 0, 0x13, 5, 0x1C, 0, 0xA, 1, 0, 0, 0x16, 0x6D, 0x60, 0, 1, 1, 0xF4, 0x13, 0x88, 0, 0 };
+ActorData D_80800374_chdodgemdoors [1] BT_DATA(4, overlays_ch_dodgemdoors, 0x14) = { { 172, 775, 1895, 1, 0, (void (*)(struct Actor *))func_8080026C_chdodgemdoors, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 8, 4100, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chdodgemdoors, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 18, (void (*)(struct Actor *, long, long))func_808000A0_chdodgemdoors, 0 } };

@@ -35,6 +35,9 @@ void func_808000EC_bsrebound(PlayerState *self) {
     _babounce_entrypoint_3(self);
 }
 
-s32 bsrebound_entrypoint_0(s32 idx) {
+BtIntPtr bsrebound_entrypoint_0(s32 idx) {
     return D_80800120_bsrebound[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/rebound.data.s */
+void func_80099AA8();
+BtIntPtr D_80800120_bsrebound [4] BT_DATA(4, overlays_bs_rebound, 0x0) = { (BtIntPtr)func_808000EC_bsrebound, (BtIntPtr)func_80800000_bsrebound, (BtIntPtr)func_80800038_bsrebound, (BtIntPtr)func_80099AA8 };

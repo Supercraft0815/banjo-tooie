@@ -1,12 +1,12 @@
 #include "common.h"
 
-void func_80800000_gczoombox(void *arg0) {
+typedef struct { u8 pad0[0x12]; u16 unk12; u8 pad14[0x11C]; BtIntPtr unk130; u8 pad134[0x6]; s16 unk13A; s32 unk13C; u16 unk140; u16 unk142; u8 pad144[0x8]; f32 unk14C; u8 pad150[0x1A]; s16 unk16A; u8 pad16C[0x4]; u8 unk170; u8 unk171; s16 unk172; u8 unk174; s8 unk175; u8 pad176[0x1]; u8 unk177; u8 pad178[0x4]; void * unk17C; u8 pad180[0x24]; f32 unk1A4; f32 unk1A8; s16 unk1AC; s16 unk1AE; s16 unk1B0; s16 unk1B2; s8 unk1B4; s8 unk1B5; s8 unk1B6; u8 pad1B7[0x5]; s16 unk1BC; u8 pad1BE[0xE]; s8 unk1CC; s8 unk1CD; u8 pad1CE[0x1]; s8 unk1CF; u8 pad1D0[0x1]; s8 unk1D1; u8 pad1D2[0x6]; f32 unk1D8; f32 unk1DC; u8 pad1E0[0x4]; u8 unk1E4; u8 pad1E5[0x7]; f32 unk1EC; f32 unk1F0; f32 unk1F4; } Objzoombox_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_gczoombox(void *arg0) {
     s32 func_800C2FDC(u8 index);
     void func_800FC74C(u32 track_id);
     s32 func_800FCCD4(s32 track_id);
     s32 i = 0;
 
-    if (-1.0f == *(f32 *)((u8 *)arg0 + 0x14C)) {
+    if (-1.0f == ((Objzoombox_arg0 *)arg0)->unk14C) {
         if (func_800FCCD4(((u8 *)arg0)[0x144])) {
             func_800FC74C(((u8 *)arg0)[0x144]);
         }
@@ -24,14 +24,14 @@ void func_80800000_gczoombox(void *arg0) {
 }
 
 void func_808000C4_gczoombox(void *arg0) {
-    if ((*(u16 *)((s8 *)(arg0) + (0x142))) != 0) {
-        (*(u16 *)((s8 *)(arg0) + (0x142))) = 0U;
+    if ((((Objzoombox_arg0 *)arg0)->unk142) != 0) {
+        (((Objzoombox_arg0 *)arg0)->unk142) = 0U;
     }
 }
 
 void func_808000DC_gczoombox(void *arg0) {
-    if ((*(u16 *)((s8 *)(arg0) + (0x140))) != 0) {
-        (*(u16 *)((s8 *)(arg0) + (0x140))) = 0U;
+    if ((((Objzoombox_arg0 *)arg0)->unk140) != 0) {
+        (((Objzoombox_arg0 *)arg0)->unk140) = 0U;
     }
     func_808000C4_gczoombox(arg0);
 }
@@ -41,7 +41,7 @@ void func_808000DC_gczoombox(void *arg0) {
 void gczoombox_entrypoint_0(void *arg0) {
     int func_800D52B0(void);
     void func_80800000_gczoombox(void *);
-    s32 heap_free(void *);
+    void heap_free(void *memory);
     if (arg0 != NULL) {
         func_800D52B0();
         func_80800000_gczoombox(arg0);
@@ -71,10 +71,10 @@ void func_80800228_gczoombox(void *arg0) {
 
     flag = (*(u32 *)((u8 *)arg0 + 0x1E4) << 12) >> 31;
     height = flag ? 15 : 12;
-    *(f32 *)((u8 *)arg0 + 0x1A4) = *(s16 *)((u8 *)arg0 + 0x1B0) - height / 2;
+    ((Objzoombox_arg0 *)arg0)->unk1A4 = ((Objzoombox_arg0 *)arg0)->unk1B0 - height / 2;
     height = flag ? 15 : 12;
-    *(f32 *)((u8 *)arg0 + 0x1A8) = height;
-    *(f32 *)((u8 *)arg0 + 0x1A8) += *(f32 *)((u8 *)arg0 + 0x1A4);
+    ((Objzoombox_arg0 *)arg0)->unk1A8 = height;
+    ((Objzoombox_arg0 *)arg0)->unk1A8 += ((Objzoombox_arg0 *)arg0)->unk1A4;
 }
 
 void func_80800228_gczoombox(void *);
@@ -85,7 +85,7 @@ void func_80800294_gczoombox(void *arg0) {
     u32 temp_v0 = *(u32 *)((u8 *)arg0 + 0x1E4);
 
     if ((temp_v0 >> 31) && !((temp_v0 << 5) >> 31)) {
-        (*(f32 *)((s8 *)(arg0) + (0x1A4))) = (f32) (*(s16 *)((s8 *)(arg0) + (0x1B0)));
+        (((Objzoombox_arg0 *)arg0)->unk1A4) = (f32) (((Objzoombox_arg0 *)arg0)->unk1B0);
         return;
     }
     func_80800228_gczoombox(arg0);
@@ -123,7 +123,7 @@ void func_808002E4_gczoombox(void *arg0) {
 }
 
 void func_80800358_gczoombox(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 496) = arg1;
+    ((Objzoombox_arg0 *)arg0)->unk1F0 = arg1;
 }
 
 /* extern */
@@ -145,17 +145,17 @@ f32 func_80800364_gczoombox(void *arg0) {
         f32 duration;
     } *this = arg0;
 
-    sp1C = (*(f32 *)((s8 *)(arg0) + (0x1EC)));
+    sp1C = (((Objzoombox_arg0 *)arg0)->unk1EC);
     if (this->sync) {
         var_f0 = _glintrosyncDll_entrypoint_5();
     } else {
         var_f0 = func_800D8FF8();
     }
-    var_f2 = var_f0 / (*(f32 *)((s8 *)(arg0) + (0x1F0)));
+    var_f2 = var_f0 / (((Objzoombox_arg0 *)arg0)->unk1F0);
     if (!this->direction) {
         var_f2 = -var_f2;
     }
-    (*(f32 *)((s8 *)(arg0) + (0x1EC))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x1EC))) + var_f2);
+    (((Objzoombox_arg0 *)arg0)->unk1EC) = (f32) ((((Objzoombox_arg0 *)arg0)->unk1EC) + var_f2);
     return sp1C;
 }
 
@@ -198,7 +198,7 @@ void func_80800470_gczoombox(void *arg0) {
     if (this->test) {
         func_80800358_gczoombox(arg0, 0.2f);
     }
-    (*(u8 *)((u8 *)arg0 + 0x170)) = 0;
+    (((Objzoombox_arg0 *)arg0)->unk170) = 0;
     gczoombox_entrypoint_17(arg0);
 }
 
@@ -279,16 +279,16 @@ int func_808005F0_gczoombox(u8 arg0, u8 arg1){
 }
 
 #ifdef BT_NATIVE
-int gczoombox_entrypoint_1(s32 bt_a0)
+int gczoombox_entrypoint_1(BtIntPtr bt_a0)
 #else
 int gczoombox_entrypoint_1()
 #endif
 {
-    func_800E7188();
+    BT_NATIVE_ONLY(return) func_800E7188();
 }
 
 s32 func_808006B4_gczoombox(void *arg0, s32 arg1) {
-    return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*(u16 *)((u8 *)arg0 + 0x12) >> 1));
+    return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*&((Objzoombox_arg0 *)arg0)->unk12 >> 1));
 }
 
 void func_808006E0_gczoombox(void *ptr, s32 arg1) {
@@ -366,7 +366,7 @@ u8 func_808008F4_gczoombox(void *arg0, s32 arg1, s32 arg2) {
     sp1F = func_800C429C(arg1, arg2) & 0xFF;
     func_800C3418(sp1F, 0);
     func_800C34CC(sp1F, 0);
-    temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0x172)));
+    temp_v0_2 = (((Objzoombox_arg0 *)arg0)->unk172);
     if ((temp_v0_2 == 0x80) || (temp_v0_2 == 0xBB)) {
         func_800C32C4(sp1F, 0x40);
     }
@@ -386,10 +386,10 @@ void func_80800964_gczoombox(void *arg0) {
     func_80800000_gczoombox(arg0);
     func_808000DC_gczoombox(arg0);
     for (i = 0; i < 8; i++) {
-        ((void **)((u8 *)arg0 + 0x17C))[i] = NULL;
+        (&((Objzoombox_arg0 *)arg0)->unk17C)[i] = NULL;
     }
-    *(u8 *)((u8 *)arg0 + 0x171) = 0;
-    *(u8 *)((u8 *)arg0 + 0x174) =
+    ((Objzoombox_arg0 *)arg0)->unk171 = 0;
+    ((Objzoombox_arg0 *)arg0)->unk174 =
         ((Flags *)((u8 *)arg0 + 0x1E4))->enabled = 0;
 }
 
@@ -410,7 +410,7 @@ void func_808009E4_gczoombox(u8 *this, s32 arg1) {
     void func_800D52CC(s32);
     s32 func_800DC214(s32, s32);
     f32 func_800DC264(f32, f32);
-    s32 func_800EC370(s32, u8 *);
+    void func_800EC370(void *data, s16 *position);
     void func_800FC6B0(u32);
     s32 func_800FCCD4(s32);
     s32 i;
@@ -503,7 +503,7 @@ int func_80800E24_gczoombox(u8 arg0) {
 }
 
 void func_80800E44_gczoombox(u8 *arg0, u8 *arg1, u8 *arg2) {
-    s32 _fxfontstring_entrypoint_3(u8 *, s16, s32);
+    void _fxfontstring_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2);
     extern u8 D_80803E80_gczoombox[];
     s32 color[5];
     f32 temp_f0;
@@ -588,7 +588,7 @@ void func_80800FE0_gczoombox(u8 *arg0)
     f32 width;
   } Box;
   f32 _glintrosyncDll_entrypoint_5(void);
-  s32 func_800A8184(void);
+  s16 func_800A8184(void);
   void func_800B798C(s32, s32, u8 *);
   void func_800B7A98(void);
   void func_800B7ADC(s32);
@@ -675,11 +675,11 @@ void func_80800FE0_gczoombox(u8 *arg0)
 
 /* extern */
 
-void func_80801424_gczoombox(void *arg0, s32 arg1) {
+void func_80801424_gczoombox(void *arg0, BtIntPtr arg1) {
     s32 _fxdialog_entrypoint_0();
     void _fxdialog_entrypoint_1(s32, s32);
     void _fxdialog_entrypoint_2(f32);
-    s32 _fxdialog_entrypoint_3(s32, f32, u8, s32);
+    s32 _fxdialog_entrypoint_3(BtIntPtr, f32, u8, s32);
     u8 direction;
 
     _fxdialog_entrypoint_0();
@@ -695,8 +695,8 @@ void func_80801424_gczoombox(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_808014A8_gczoombox(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
-    void _fxdialog_entrypoint_4(s32, s32, s32, f32, f32, s32, s32);
+void func_808014A8_gczoombox(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
+    void _fxdialog_entrypoint_4(BtIntPtr, s32, s32, f32, f32, s32, s32);
     struct {
         u8 pad[0x1DC];
         f32 scale;
@@ -833,7 +833,7 @@ void func_8080156C_gczoombox(void *this, s32 arg1) {
 
 /* extern */
 
-void gczoombox_entrypoint_2(u8 *arg0, s32 arg1) {
+void gczoombox_entrypoint_2(u8 *arg0, BtIntPtr arg1) {
     int func_800A819C(void);
     s32 func_800DA298(s32);
     typedef struct {
@@ -1308,18 +1308,18 @@ void gczoombox_entrypoint_4(u8 *box) {
 void func_80802B94_gczoombox(u8 *arg0, s32 arg1) {
     s32 func_800AF5A0(s16 *arg0);
     s16 _gczoomboxdata_entrypoint_1(s32);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     s16 temp_v0;
 
     if (arg1 != 0x44) {
         temp_v0 = _gczoomboxdata_entrypoint_1(arg1);
         (*(s16 *)((s8 *)arg0 + (0x140))) = temp_v0;
-        (*(s8 *)((s8 *)arg0 + (0x1D1))) = func_800AF5A0(func_800D674C(temp_v0 & 0xFFFF));
-        (*(s8 *)((s8 *)arg0 + (0x1CF))) = 0;
+        (((Objzoombox_arg0 *)arg0)->unk1D1) = func_800AF5A0(func_800D674C(temp_v0 & 0xFFFF));
+        (((Objzoombox_arg0 *)arg0)->unk1CF) = 0;
         return;
     }
     (*(s16 *)((s8 *)arg0 + (0x140))) = 0;
-    (*(s8 *)((s8 *)arg0 + (0x1D1))) = 0;
+    (((Objzoombox_arg0 *)arg0)->unk1D1) = 0;
 }
 
 void func_80802BF4_gczoombox(u8 *arg0) {
@@ -1386,7 +1386,7 @@ void func_80802C80_gczoombox(u8 *arg0, s32 arg1) {
     func_80802BF4_gczoombox(arg0);
 }
 
-u8 *gczoombox_entrypoint_5(s32 y, s32 portrait_id, s32 arg2, s32 arg3, s32 callback) {
+u8 *gczoombox_entrypoint_5(s32 y, s32 portrait_id, s32 arg2, s32 arg3, BtIntPtr callback) {
     void *heap_alloc(s32);
     u32 func_800E6A00(void);
     s32 _gczoomboxdata_entrypoint_2(s32, u8 *, u8 *);
@@ -1529,24 +1529,24 @@ int gczoombox_entrypoint_8(u8 *box, char *text) {
 }
 
 void gczoombox_entrypoint_9(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) | 0x1);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) | 0x1);
 }
 
 void gczoombox_entrypoint_10(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) | 0x10);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) | 0x10);
 }
 
 void gczoombox_entrypoint_11(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) | 0x2);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) | 0x2);
 }
 
 void gczoombox_entrypoint_12(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) | 0x8);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) | 0x8);
 }
 
 void gczoombox_entrypoint_13(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) | 0x20);
-}
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) | 0x20);
+}    typedef struct { u8 pad0[0x16C]; s32 unk16C; u8 pad170[0x10]; s32 unk180; s32 unk184; s32 unk188; } Objzoombox_gczoombox_entrypoint_14_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 void gczoombox_entrypoint_14(u8 *arg0) {
     s32 var_v0;
@@ -1556,35 +1556,35 @@ void gczoombox_entrypoint_14(u8 *arg0) {
     var_v1 = arg0;
     do {
         var_v0 += 4;
-        (*(s32 *)((s8 *)(var_v1) + (0x180))) = 0;
-        (*(s32 *)((s8 *)(var_v1) + (0x184))) = 0;
-        (*(s32 *)((s8 *)(var_v1) + (0x188))) = 0;
+        (((Objzoombox_gczoombox_entrypoint_14_var_v1 *)var_v1)->unk180) = 0;
+        (((Objzoombox_gczoombox_entrypoint_14_var_v1 *)var_v1)->unk184) = 0;
+        (((Objzoombox_gczoombox_entrypoint_14_var_v1 *)var_v1)->unk188) = 0;
         var_v1 += 0x10;
-        (*(s32 *)((s8 *)(var_v1) + (0x16C))) = 0;
+        (((Objzoombox_gczoombox_entrypoint_14_var_v1 *)var_v1)->unk16C) = 0;
     } while (var_v0 != 8);
     (*(s8 *)((s8 *)(arg0) + (0x174))) = 0;
-    (*(s8 *)((s8 *)(arg0) + (0x175))) = 0;
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xFB);
+    (((Objzoombox_arg0 *)arg0)->unk175) = 0;
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) & 0xFB);
 }
 
 void gczoombox_entrypoint_15(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xFE);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) & 0xFE);
 }
 
 void gczoombox_entrypoint_16(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xEF);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) & 0xEF);
 }
 
 void gczoombox_entrypoint_17(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xFD);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) & 0xFD);
 }
 
 void gczoombox_entrypoint_18(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xF7);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) & 0xF7);
 }
 
 void gczoombox_entrypoint_19(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x177))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x177))) & 0xDF);
+    (((Objzoombox_arg0 *)arg0)->unk177) = (u8) ((((Objzoombox_arg0 *)arg0)->unk177) & 0xDF);
 }
 
 void gczoombox_entrypoint_20(void *arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6) {
@@ -1597,9 +1597,9 @@ void gczoombox_entrypoint_20(void *arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4,
         u8 low : 2;
     };
     if (arg0 != NULL) {
-        (*(s8 *)((s8 *)(arg0) + (0x1CC))) = arg2;
-        (*(s8 *)((s8 *)(arg0) + (0x1CD))) = arg3;
-        (*(f32 *)((s8 *)(arg0) + (0x1D8))) = (f32) (1.0f / arg1);
+        (((Objzoombox_arg0 *)arg0)->unk1CC) = arg2;
+        (((Objzoombox_arg0 *)arg0)->unk1CD) = arg3;
+        (((Objzoombox_arg0 *)arg0)->unk1D8) = (f32) (1.0f / arg1);
         func_80800358_gczoombox(arg0, arg4);
         if (arg5 != 0) {
             ((struct Flags *)arg0)->flag10 = 1;
@@ -1677,15 +1677,15 @@ void gczoombox_entrypoint_25(u8 *arg0, s32 arg1) {
 void gczoombox_entrypoint_26(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     struct Flags { u8 flag : 1; u8 rest : 7; };
     if (arg0 != NULL) {
-        if ((*(u8 *)((s8 *)(arg0) + (0x1E4))) & 1) {
-            (*(s16 *)((s8 *)(arg0) + (0x1B2))) = (s16) (0x130 - arg1);
-            (*(s16 *)((s8 *)(arg0) + (0x1AE))) = (s16) (0x1BC - arg1);
+        if ((((Objzoombox_arg0 *)arg0)->unk1E4) & 1) {
+            (((Objzoombox_arg0 *)arg0)->unk1B2) = (s16) (0x130 - arg1);
+            (((Objzoombox_arg0 *)arg0)->unk1AE) = (s16) (0x1BC - arg1);
         } else {
-            (*(s16 *)((s8 *)(arg0) + (0x1B2))) = arg1;
-            (*(s16 *)((s8 *)(arg0) + (0x1AE))) = (s16) (arg1 - 0x8C);
+            (((Objzoombox_arg0 *)arg0)->unk1B2) = arg1;
+            (((Objzoombox_arg0 *)arg0)->unk1AE) = (s16) (arg1 - 0x8C);
         }
-        (*(f32 *)((s8 *)(arg0) + (0x1DC))) = arg2;
-        (*(f32 *)((s8 *)(arg0) + (0x1F4))) = arg3;
+        (((Objzoombox_arg0 *)arg0)->unk1DC) = arg2;
+        (((Objzoombox_arg0 *)arg0)->unk1F4) = arg3;
         if (arg4 != 0) {
             ((struct Flags *)((s8 *)arg0 + 0x1E6))->flag = 1;
             return;
@@ -1696,15 +1696,15 @@ void gczoombox_entrypoint_26(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
 
 void gczoombox_entrypoint_27(void *arg0, void *arg1) {
     if (arg0 != NULL) {
-        (*(s8 *)((s8 *)(arg0) + (0x1B4))) = (s8) (*(s16 *)((s8 *)(arg1) + (0)));
-        (*(s8 *)((s8 *)(arg0) + (0x1B5))) = (s8) (*(s16 *)((s8 *)(arg1) + (2)));
-        (*(s8 *)((s8 *)(arg0) + (0x1B6))) = (s8) (*(s16 *)((s8 *)(arg1) + (4)));
+        (((Objzoombox_arg0 *)arg0)->unk1B4) = (s8) (((Prop *)arg1)->position[0]);
+        (((Objzoombox_arg0 *)arg0)->unk1B5) = (s8) (((Prop *)arg1)->position[1]);
+        (((Objzoombox_arg0 *)arg0)->unk1B6) = (s8) (((Prop *)arg1)->position[2]);
     }
 }
 
 void gczoombox_entrypoint_28(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
-        (*(s16 *)((s8 *)(arg0) + (0x1BC))) = arg1;
+        (((Objzoombox_arg0 *)arg0)->unk1BC) = arg1;
     }
 }
 
@@ -1712,12 +1712,12 @@ s16 gczoombox_entrypoint_29(void *arg0) {
     if (arg0 == NULL) {
         return 0xFF;
     }
-    return (*(s16 *)((s8 *)(arg0) + (0x1BC)));
+    return (((Objzoombox_arg0 *)arg0)->unk1BC);
 }
 
 void gczoombox_entrypoint_30(void *arg0, s32 arg1) {
     if (arg0 != NULL) {
-        (*(s16 *)((s8 *)(arg0) + (0x16A))) = arg1;
+        (((Objzoombox_arg0 *)arg0)->unk16A) = arg1;
     }
 }
 
@@ -1786,7 +1786,7 @@ s32 gczoombox_entrypoint_34(void *arg0) {
     void func_808004D0_gczoombox(u8 *);
     u8 temp_v0;
 
-    if ((arg0 == NULL) || (temp_v0 = (*(u8 *)((s8 *)(arg0) + (0x171))), (temp_v0 == 0)) || (temp_v0 == 7) || (temp_v0 == 9)) {
+    if ((arg0 == NULL) || (temp_v0 = (((Objzoombox_arg0 *)arg0)->unk171), (temp_v0 == 0)) || (temp_v0 == 7) || (temp_v0 == 9)) {
         return 0;
     }
     gczoombox_entrypoint_10(arg0);
@@ -1797,11 +1797,11 @@ s32 gczoombox_entrypoint_34(void *arg0) {
 
 /* extern */
 
-void gczoombox_entrypoint_35(u8 *arg0, s32 arg1, s16 arg2, s32 arg3) {
-    s32 func_800EC370(s32, u8 *);
-    (*(s32 *)((s8 *)(arg0) + (0x130))) = arg1;
-    (*(s16 *)((s8 *)(arg0) + (0x13A))) = arg2;
-    (*(s32 *)((s8 *)(arg0) + (0x13C))) = arg3;
+void gczoombox_entrypoint_35(u8 *arg0, BtIntPtr arg1, s16 arg2, s32 arg3) {
+    void func_800EC370(void *data, s16 *position);
+    (((Objzoombox_arg0 *)arg0)->unk130) = arg1;
+    (((Objzoombox_arg0 *)arg0)->unk13A) = arg2;
+    (((Objzoombox_arg0 *)arg0)->unk13C) = arg3;
     func_800EC370(arg1, arg0 + 0x134);
 }
 
@@ -1865,13 +1865,13 @@ int gczoombox_entrypoint_37(u8 *arg0, s16 arg1) {
 void gczoombox_entrypoint_38(u8 *arg0, s32 arg1) {
     void func_80800294_gczoombox(void *);
     if (arg0 != NULL) {
-        (*(s16 *)((s8 *)(arg0) + (0x1B0))) = arg1;
+        (((Objzoombox_arg0 *)arg0)->unk1B0) = arg1;
         func_80800294_gczoombox(arg0);
     }
 }
 
 int gczoombox_entrypoint_39(void *arg0) {
-    return arg0 != NULL && *(u8 *)((s8 *)arg0 + 0x171) == 0;
+    return arg0 != NULL && ((Objzoombox_arg0 *)arg0)->unk171 == 0;
 }
 
 void gczoombox_entrypoint_40(u8 *arg0, s32 arg1) {
@@ -1927,7 +1927,7 @@ void gczoombox_entrypoint_40(u8 *arg0, s32 arg1) {
 }
 
 void gczoombox_entrypoint_41(void *arg0, f32 arg1) {
-    (*(f32 *)((s8 *)(arg0) + (0x1D8))) = (f32) (1.0f / arg1);
+    (((Objzoombox_arg0 *)arg0)->unk1D8) = (f32) (1.0f / arg1);
 }
 
 void gczoombox_entrypoint_42(void *arg0, f32 arg1) {

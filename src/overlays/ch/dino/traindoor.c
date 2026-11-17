@@ -37,7 +37,7 @@ void func_80800000_chdinotraindoor(Actor *arg0) {
 }
 
 void func_80800120_chdinotraindoor(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     void func_800FFAB0(Actor *);
     s32 func_80103140(Actor *, u32, u16);
 
@@ -49,12 +49,18 @@ void func_80800120_chdinotraindoor(Actor *arg0, s32 arg1, s32 arg2) {
             func_800FFAB0(arg0);
             break;
     }
-    _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+    _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
 }
 
 OSThread *chdinotraindoor_entrypoint_0(void)
 {
-    extern u8 D_808001D0_chdinotraindoor[];
+    extern ActorData D_808001D0_chdinotraindoor[];
 
     return (OSThread *) D_808001D0_chdinotraindoor;
 }
+/* data_to_c.py: from asm/data/overlays/ch/dino/traindoor.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_808001D0_chdinotraindoor [1] BT_DATA(4, overlays_ch_dino_traindoor, 0x0) = { { 172, 1179, -1, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chdinotraindoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11266, (void (*)(struct Actor *, long, long))func_80800120_chdinotraindoor, 0 } };

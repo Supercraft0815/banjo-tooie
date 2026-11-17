@@ -1,8 +1,8 @@
 #include "common.h"
 
-void bsdronefired_entrypoint_0()
+void bsdronefired_entrypoint_0(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY(bt_a0));
 }
 
 void bsdronefired_entrypoint_1(struct player_state_s *self) {
@@ -40,17 +40,17 @@ void bsdronefired_entrypoint_1(struct player_state_s *self) {
     func_8009DF18(self, sfx_id, _badata_entrypoint_18(self) + 1.0f, 0x6D60);
 }
 
-void bsdronefired_entrypoint_2()
+void bsdronefired_entrypoint_2(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    func_80099AA8();
+    func_80099AA8(BT_NATIVE_ONLY(bt_a0));
 }
 
 /* extern */
 
-void bsdronefired_entrypoint_3(s32 arg0) {
+void bsdronefired_entrypoint_3(BtIntPtr arg0) {
     s32 _babounce_entrypoint_10();
-    s32 _badata_entrypoint_24(s32);
-    s32 bs_setState(s32, s32);
+    s32 _badata_entrypoint_24(void *self);
+    void bs_setState(void *self, s32 nextState);
     if (_babounce_entrypoint_10() != 0) {
         bs_setState(arg0, _badata_entrypoint_24(arg0));
     }

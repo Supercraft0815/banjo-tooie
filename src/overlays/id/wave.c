@@ -2,7 +2,7 @@
 
 /* extern */
 
-void idwave_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
+typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk14; u8 pad18[0x8]; f32 unk20; f32 unk24; s16 unk28; s16 unk2A; } Objwave_arg4; /* offsets.py genstruct: fields from raw offsets on arg4; rename once understood */ typedef struct { s16 unk0; u8 pad2[0x2]; s16 unk4; } Objwave_idwave_entrypoint_0_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */ void idwave_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     s32 pad[3];
     f32 func_800136D0(f32);
     f32 func_800138BC(f32);
@@ -20,30 +20,30 @@ void idwave_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     s16 temp_s5;
     s32 temp_f16;
     u32 temp_s6;
-    u32 var_s1;
+    BtUIntPtr var_s1;
     u8 *var_s0;
 
-    temp_f26 = (*(f32 *)((s8 *)(arg4) + (4)));
-    temp_f28 = (*(f32 *)((s8 *)(arg4) + (8)));
-    temp_f30 = (*(f32 *)((s8 *)(arg4) + (0x10)));
-    sp70 = (*(f32 *)((s8 *)(arg4) + (0x14)));
-    sp6C = (*(f32 *)((s8 *)(arg4) + (0xC)));
+    temp_f26 = (((Objwave_arg4 *)arg4)->unk4);
+    temp_f28 = (((Objwave_arg4 *)arg4)->unk8);
+    temp_f30 = (((Objwave_arg4 *)arg4)->unk10);
+    sp70 = (((Objwave_arg4 *)arg4)->unk14);
+    sp6C = (((Objwave_arg4 *)arg4)->unkC);
     var_s0 = arg2;
     var_s1 = arg1;
-    temp_s4 = (*(s16 *)((s8 *)(arg4) + (0x28)));
-    temp_s5 = (*(s16 *)((s8 *)(arg4) + (0x2A)));
+    temp_s4 = (((Objwave_arg4 *)arg4)->unk28);
+    temp_s5 = (((Objwave_arg4 *)arg4)->unk2A);
     temp_s6 = (arg3 * 0x10) + arg1;
     if (arg1 < temp_s6) {
         do {
-            temp_f20 = func_800136D0((((f32) (*(s16 *)((s8 *)(var_s0) + (0))) - temp_f30) * 200.0f) + temp_f26);
-            temp_f22 = func_800136D0((((f32) (*(s16 *)((s8 *)(var_s0) + (4))) - sp70) * 200.0f) + temp_f28);
+            temp_f20 = func_800136D0((((f32) (((Objwave_idwave_entrypoint_0_var_s0 *)var_s0)->unk0) - temp_f30) * 200.0f) + temp_f26);
+            temp_f22 = func_800136D0((((f32) (((Objwave_idwave_entrypoint_0_var_s0 *)var_s0)->unk4) - sp70) * 200.0f) + temp_f28);
             temp_f20_2 = func_8001395C(temp_f20);
             temp_f2 = func_800138BC(temp_f22) + temp_f20_2;
-            temp_f2 *= (*(f32 *)((s8 *)(arg4) + (0x20)));
+            temp_f2 *= (((Objwave_arg4 *)arg4)->unk20);
             var_s1 += 0x10;
             var_s0 += 0x10;
             (*(s16 *)((s8 *)(var_s0) + (-0xE))) = (s16) (s32) (sp6C + temp_f2);
-            temp_f16 = (s32) (((temp_f2 / (*(f32 *)((s8 *)(arg4) + (0x24)))) * 50.0f) + 205.0f);
+            temp_f16 = (s32) (((temp_f2 / (((Objwave_arg4 *)arg4)->unk24)) * 50.0f) + 205.0f);
             (*(s8 *)((s8 *)(var_s0) + (-4))) = (s8) ((s32) ((*(u8 *)((s8 *)(var_s1) + (-4))) * temp_f16) / 255);
             (*(s8 *)((s8 *)(var_s0) + (-3))) = (s8) ((s32) ((*(u8 *)((s8 *)(var_s1) + (-3))) * temp_f16) / 255);
             (*(s8 *)((s8 *)(var_s0) + (-2))) = (s8) ((s32) ((*(u8 *)((s8 *)(var_s1) + (-2))) * temp_f16) / 255);
@@ -57,7 +57,7 @@ void idwave_entrypoint_1(s32 arg0)
 {
 }
 void idwave_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     struct Wave { f32 f[10]; s16 a; s16 b; f32 c; };
     s16 sp28[3];
     s16 sp20[3];
@@ -79,8 +79,8 @@ void idwave_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-void idwave_entrypoint_3(void *arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+void idwave_entrypoint_3(void *arg0, BtIntPtr arg1, s32 arg2) {
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800138D0(f32);
     f32 func_80013970(f32);
     f32 func_800D8FF8(void);
@@ -114,5 +114,5 @@ void idwave_entrypoint_3(void *arg0, s32 arg1, s32 arg2) {
     } else {
         ((struct Wave *)arg0)->b = (s32)(sp28[0] - 0.5f);
     }
-    _glid_entrypoint_0(arg1, arg2, &_idwave_entrypoint_0, (s32)arg0);
+    _glid_entrypoint_0(arg1, arg2, &_idwave_entrypoint_0, (BtIntPtr)arg0);
 }

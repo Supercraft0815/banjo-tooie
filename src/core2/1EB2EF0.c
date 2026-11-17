@@ -139,13 +139,13 @@ void func_800D9AD4(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3) {
     sp20[3] = -arg2[3];
     func_800D9888(arg0, arg1, sp20, arg3);
 
-}
+}               typedef struct { s32 unk0; s32 unk4; s32 unk8; s32 unkC; } Obj1EB2EF0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_800D9C34(void *arg0) {
-    (*(s32 *)((s8 *)(arg0) + (0))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (4))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (8))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0xC))) = 0x3F800000;
+    (((Obj1EB2EF0_arg0 *)arg0)->unk0) = 0;
+    (((Obj1EB2EF0_arg0 *)arg0)->unk4) = 0;
+    (((Obj1EB2EF0_arg0 *)arg0)->unk8) = 0;
+    (((Obj1EB2EF0_arg0 *)arg0)->unkC) = 0x3F800000;
 }
 
 int func_800D9C4C(f32 arg0[4]){

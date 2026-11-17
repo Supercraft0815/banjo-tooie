@@ -3,14 +3,14 @@
 void func_80800000_bsclimb(void *arg0, s32 arg1) {
     u32 func_80098634(void *arg0);
     void func_8009DF94(void *, s32, f32, s32);
-    extern s32 D_808008C0_bsclimb;
+    extern s32 D_808008C0_bsclimb[15];
     u8 *temp_t0;
     u8 *temp_v1;
     u32 offset;
 
     offset = func_80098634(arg0) * 5;
     offset *= 4;
-    temp_v1 = offset + (u8 *)&D_808008C0_bsclimb;
+    temp_v1 = offset + (u8 *)D_808008C0_bsclimb;
     temp_t0 = (u8 *)temp_v1 + (arg1 * 8);
     func_8009DF94(arg0, *(s16 *)((u8 *)temp_v1 - 0x12), *(f32 *)(temp_t0 - 0x10), *(s32 *)(temp_t0 - 0xC));
 }
@@ -42,7 +42,7 @@ void func_8080005C_bsclimb(void *arg0) {
 }
 
 struct player_state_s;
-s32 func_808000E8_bsclimb(s32 arg0) {
+s32 func_808000E8_bsclimb(BtIntPtr arg0) {
     void _bapackctrl_entrypoint_5(struct player_state_s *, s32);
     s32 baphysics_set_type(void *, s32);
     void bastick_setZoneMax(struct player_state_s *, s32, f32);
@@ -53,7 +53,7 @@ s32 func_808000E8_bsclimb(s32 arg0) {
     void func_8009BC5C(struct player_state_s *, f32);
     void func_8009D2D8(struct player_state_s *, s32);
     void func_800A4DA4(struct player_state_s *, s32);
-    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setUpdateType(void *self, s32 type);
     void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
 
     if (func_8009861C(arg0) == 2) {
@@ -72,7 +72,7 @@ s32 func_808000E8_bsclimb(s32 arg0) {
     func_800A4DA4(arg0, 12);
     if (func_8008E0E8(arg0) != 0) {
         _bapackctrl_entrypoint_5(arg0, 4);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 struct player_state_s;
@@ -121,8 +121,8 @@ int func_80800298_bsclimb(struct player_state_s *arg0) {
         || yaw_get(arg0) != yaw_getIdeal(arg0);
 }
 
-void bsclimb_entrypoint_0(s32 arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+void bsclimb_entrypoint_0(BtIntPtr arg0) {
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     s32 func_8008CA4C(void *, s32);
     void func_8008FE68(f32 *);
     void func_80098590(f32 **, f32 *);
@@ -155,7 +155,7 @@ void bsclimb_entrypoint_1(struct player_state_s *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 anctrl_isStopped(struct anctrl_s *);
     void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     void func_800956B8(struct player_state_s *);
     f32 func_800D8FF8(void);
     int bakey_pressed(struct player_state_s *, int);
@@ -202,12 +202,12 @@ void bsclimb_entrypoint_2(struct player_state_s *arg0)
 }
 
 s32 bsclimb_entrypoint_3(s32 arg0) {
-    extern s32 D_808008FC_bsclimb[];
+    extern BtIntPtr D_808008FC_bsclimb[];
     return ((s32 *)&D_808008FC_bsclimb)[arg0];
 }
 
-void bsclimb_entrypoint_4(s32 arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+void bsclimb_entrypoint_4(BtIntPtr arg0) {
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     void baanim_setDurationRange(struct player_state_s *, f32, f32);
     void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
     s32 func_8008CA4C(void *, s32);
@@ -275,17 +275,17 @@ void bsclimb_entrypoint_6(struct player_state_s *arg0)
 }
 
 s32 bsclimb_entrypoint_7(s32 arg0) {
-    extern s32 D_8080090C_bsclimb[];
+    extern BtIntPtr D_8080090C_bsclimb[];
     return ((s32 *)&D_8080090C_bsclimb)[arg0];
 }
 
 /* extern */
 
-void bsclimb_entrypoint_8(s32 arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+void bsclimb_entrypoint_8(BtIntPtr arg0) {
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     s32 baphysics_set_type(void *, s32);
     s32 func_8008CA4C(void *, s32);
-    s32 func_808000E8_bsclimb(s32);
+    s32 func_808000E8_bsclimb(BtIntPtr);
     baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
     func_8008CA4C(arg0, 1);
     func_808000E8_bsclimb(arg0);
@@ -317,7 +317,7 @@ void bsclimb_entrypoint_10(struct player_state_s *arg0)
 }
 
 s32 bsclimb_entrypoint_11(s32 arg0) {
-    extern s32 D_8080091C_bsclimb[];
+    extern BtIntPtr D_8080091C_bsclimb[];
     return ((s32 *)&D_8080091C_bsclimb)[arg0];
 }
 
@@ -336,3 +336,18 @@ void bsclimb_entrypoint_12(struct player_state_s *arg0) {
     func_8009E830(arg0, 1);
     bs_setState(arg0, 0);
 }
+/* data_to_c.py: from asm/data/overlays/bs/climb.data.s */
+void _bsclimb_entrypoint_2();
+void _bsclimb_entrypoint_0();
+void _bsclimb_entrypoint_1();
+void _bsclimb_entrypoint_12();
+void _bsclimb_entrypoint_6();
+void _bsclimb_entrypoint_4();
+void _bsclimb_entrypoint_5();
+void _bsclimb_entrypoint_10();
+void _bsclimb_entrypoint_8();
+void _bsclimb_entrypoint_9();
+s32 D_808008C0_bsclimb[15] BT_DATA(4, overlays_bs_climb, 0x0) = { 16778350, 1061494456, 16000, 1063172178, 16000, 33555565, 1066192077, 32000, 1067030938, 32000, 50332699, 1065353216, 10000, 1066192077, 10000 };
+BtIntPtr D_808008FC_bsclimb [4] BT_DATA(4, overlays_bs_climb, 0x3C) = { (BtIntPtr)_bsclimb_entrypoint_2, (BtIntPtr)_bsclimb_entrypoint_0, (BtIntPtr)_bsclimb_entrypoint_1, (BtIntPtr)_bsclimb_entrypoint_12 };
+BtIntPtr D_8080090C_bsclimb [4] BT_DATA(4, overlays_bs_climb, 0x4C) = { (BtIntPtr)_bsclimb_entrypoint_6, (BtIntPtr)_bsclimb_entrypoint_4, (BtIntPtr)_bsclimb_entrypoint_5, (BtIntPtr)_bsclimb_entrypoint_12 };
+BtIntPtr D_8080091C_bsclimb [5] BT_DATA(4, overlays_bs_climb, 0x5C) = { (BtIntPtr)_bsclimb_entrypoint_10, (BtIntPtr)_bsclimb_entrypoint_8, (BtIntPtr)_bsclimb_entrypoint_9, (BtIntPtr)_bsclimb_entrypoint_12, 0 };

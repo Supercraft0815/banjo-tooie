@@ -1,18 +1,18 @@
 #include "common.h"
 
-s32 func_80800000_sccustom_big(s32 arg0) {
-    s32 _scinfobar_entrypoint_19(s32);
+BtIntPtr func_80800000_sccustom_big(BtIntPtr arg0) {
+    s32 _scinfobar_entrypoint_19(s32 *arg0);
     void func_800E6DB4(char *, s32);
     void func_800E73D4(s8 *);
     extern char B_808003F0_sccustom_big[];
     func_800E73D4(B_808003F0_sccustom_big);
     func_800E6DB4(B_808003F0_sccustom_big, _scinfobar_entrypoint_19(arg0));
-    return (s32) &B_808003F0_sccustom_big;
+    return (BtIntPtr) &B_808003F0_sccustom_big;
 }
 
-s32 func_80800044_sccustom_big(s32 arg0, u8 arg1) {
-    s32 _scinfobar_entrypoint_19(s32);
-    s32 _scinfobar_entrypoint_20(s32);
+BtIntPtr func_80800044_sccustom_big(BtIntPtr arg0, u8 arg1) {
+    s32 _scinfobar_entrypoint_19(s32 *arg0);
+    s32 _scinfobar_entrypoint_20(s32 *arg0);
     void func_800E6A58(char *, char);
     void func_800E6DB4(char *, s32);
     void func_800E73D4(s8 *);
@@ -21,13 +21,13 @@ s32 func_80800044_sccustom_big(s32 arg0, u8 arg1) {
     func_800E6DB4(B_80800400_sccustom_big, _scinfobar_entrypoint_19(arg0));
     func_800E6A58(B_80800400_sccustom_big, arg1);
     func_800E6DB4(B_80800400_sccustom_big, _scinfobar_entrypoint_20(arg0));
-    return (s32) B_80800400_sccustom_big;
+    return (BtIntPtr) B_80800400_sccustom_big;
 }
 
-s32 func_808000B4_sccustom_big(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 _scinfobar_entrypoint_11(s32);
-    s32 _scinfobar_entrypoint_15(s32);
-    f32 _scinfobar_entrypoint_18(s32);
+s32 func_808000B4_sccustom_big(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3, BtIntPtr arg4) {
+    s32 _scinfobar_entrypoint_11(void *arg0);
+    u32 _scinfobar_entrypoint_15(u8 *arg0);
+    f32 _scinfobar_entrypoint_18(f32 *arg0);
     void func_800B7F14(Gfx **);
     void func_800B811C(Gfx **);
     void func_800B8C50(void);
@@ -82,29 +82,29 @@ s32 func_808000B4_sccustom_big(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
             var_s0_2 -= 1;
         } while (var_s0_2 >= 0);
     }
-    func_800B811C((Gfx **) arg0);
+    func_800B811C((Gfx **) arg0); BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
 
 void sccustom_big_entrypoint_0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_80800000_sccustom_big(s32);
-    s32 func_808000B4_sccustom_big(s32, s32, s32, s32, s32);
+    BtIntPtr func_80800000_sccustom_big(BtIntPtr);
+    s32 func_808000B4_sccustom_big(BtIntPtr, BtIntPtr, s32, s32, BtIntPtr);
     func_808000B4_sccustom_big(arg0, arg1, arg2, arg3, func_80800000_sccustom_big(arg1));
 }
 
 /* extern */
 
 void sccustom_big_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_80800044_sccustom_big(s32, u8);
-    s32 func_808000B4_sccustom_big(s32, s32, s32, s32, s32);
+    BtIntPtr func_80800044_sccustom_big(BtIntPtr, u8);
+    s32 func_808000B4_sccustom_big(BtIntPtr, BtIntPtr, s32, s32, BtIntPtr);
     func_808000B4_sccustom_big(arg0, arg1, arg2, arg3, func_80800044_sccustom_big(arg1, 0x2F));
 }
 
 /* extern */
 
-s32 func_80800314_sccustom_big(s32 arg0, s32 arg1) {
-    f32 _scinfobar_entrypoint_18(s32);
+s32 func_80800314_sccustom_big(BtIntPtr arg0, BtIntPtr arg1) {
+    f32 _scinfobar_entrypoint_18(f32 *arg0);
     s32 func_800E7188(u8 *);
     int sp1C;
     f32 temp_f0;
@@ -123,8 +123,8 @@ s32 func_80800314_sccustom_big(s32 arg0, s32 arg1) {
 /* extern */
 
 void sccustom_big_entrypoint_2(s32 arg0) {
-    s32 func_80800000_sccustom_big();
-    s32 func_80800314_sccustom_big(s32, s32);
+    BtIntPtr func_80800000_sccustom_big();
+    s32 func_80800314_sccustom_big(BtIntPtr, BtIntPtr);
 #ifdef BT_NATIVE
     func_80800314_sccustom_big(arg0, ((s32 (*)())func_80800000_sccustom_big)());
 #else
@@ -133,7 +133,14 @@ void sccustom_big_entrypoint_2(s32 arg0) {
 }
 
 void sccustom_big_entrypoint_3(s32 arg0) {
-    s32 func_80800044_sccustom_big(s32, u8);
-    s32 func_80800314_sccustom_big(s32, s32);
+    BtIntPtr func_80800044_sccustom_big(BtIntPtr, u8);
+    s32 func_80800314_sccustom_big(BtIntPtr, BtIntPtr);
     func_80800314_sccustom_big(arg0, func_80800044_sccustom_big(arg0, 0x2F));
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+char B_808003F0_sccustom_big [ 16 ] BT_DATA(16, bss_sc_custom_big, 0x0);
+char B_80800400_sccustom_big [ 16 ] BT_DATA(4, bss_sc_custom_big, 0x10);
+#endif

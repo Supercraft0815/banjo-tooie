@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1E875C0_native.inc"
 #else
 #include "common.h"
@@ -61,7 +61,7 @@ u32 func_800ADE50(u8 *arg0, u8 *arg1, s32 arg2) {
         var_v0 += 0x10;
     }
     return 0U;
-}
+}    typedef struct { u8 pad0[0xC]; s16 unkC; } Obj1E875C0_func_800ADEC4_var_s1; /* offsets.py genstruct: fields from raw offsets on var_s1; rename once understood */
 
 /* extern */
 
@@ -75,28 +75,28 @@ void func_800ADEC4(u8 *arg0, u8 *arg1, s32 arg2, f32 arg3[4][4]) {
     if (*(s16 *)(arg1 + 4) == (temp_v1 = *(s32 *)arg0)) {
         var_s0 = arg0 + 0x50;
         while (var_s0 < (temp_v1 << 6) + arg0 + 0x50) {
-            if (arg2 == (*(s16 *)((s8 *)(var_s1) + (0xC)))) {
+            if (arg2 == (((Obj1E875C0_func_800ADEC4_var_s1 *)var_s1)->unkC)) {
                 func_800F293C((f32 (*)[4])var_s0, arg3);
             }
             var_s0 += 0x40;
             var_s1 += 0x10;
         }
     }
-}
+}    typedef struct { u8 pad0[0x8]; s32 unk8; } Obj1E875C0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void func_800ADF5C(void *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800ADF5C(void *arg0) {
     s32 func_800E0A50(s32, s32, void *);
     s32 heap_free(void *);
     s32 value;
 
-    value = *(s32 *)((s8 *)arg0 + 8);
+    value = ((Obj1E875C0_arg0 *)arg0)->unk8;
     if (value != 0) {
-        func_800E0A50(value, *(s32 *)((s8 *)arg0 + 8), arg0);
+        func_800E0A50(value, ((Obj1E875C0_arg0 *)arg0)->unk8, arg0);
     }
-    heap_free(arg0);
-}
+    BT_NATIVE_ONLY(return) heap_free(arg0);
+}    typedef struct { s32 unk0; s32 unk4; s32 unk8; s16 unkC; } Obj1E875C0_func_800ADF98_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -107,16 +107,16 @@ u8 *func_800ADF98(void) {
     u8 *temp_v0;
 
     temp_v0 = heap_alloc(0x50);
-    (*(s32 *)((s8 *)(temp_v0) + (0))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (4))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (8))) = 0;
-    (*(s16 *)((s8 *)(temp_v0) + (0xC))) = 0;
+    (((Obj1E875C0_func_800ADF98_temp_v0 *)temp_v0)->unk0) = 0;
+    (((Obj1E875C0_func_800ADF98_temp_v0 *)temp_v0)->unk4) = 0;
+    (((Obj1E875C0_func_800ADF98_temp_v0 *)temp_v0)->unk8) = 0;
+    (((Obj1E875C0_func_800ADF98_temp_v0 *)temp_v0)->unkC) = 0;
     func_80019CD4();
     mlMtxGet(temp_v0 + 0x10);
     return temp_v0;
-}
+}    typedef struct { u8 pad0[0xC]; s16 unkC; } Obj1E875C0_func_800ADFE0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-void func_800ADFE0(s16 arg0) { void *func_800AE080(s16); s32 func_8001B754(s16); s32 func_800E0A70(s16); void *temp_v0; temp_v0 = func_800AE080(arg0); if ((*(s16 *)((s8 *)temp_v0 + 0xC)) != 0) { func_800E0A70(*(s16 *)((s8 *)temp_v0 + 0xC)); } func_8001B754(arg0); }
+void func_800ADFE0(s16 arg0) { void *func_800AE080(s16); s32 func_8001B754(s16); s32 func_800E0A70(s16); void *temp_v0; temp_v0 = func_800AE080(arg0); if ((((Obj1E875C0_func_800ADFE0_temp_v0 *)temp_v0)->unkC) != 0) { func_800E0A70(((Obj1E875C0_func_800ADFE0_temp_v0 *)temp_v0)->unkC); } func_8001B754(arg0); }
 
 s16 func_800AE020(void) {
     s32 func_80019CD4(void);
@@ -163,11 +163,11 @@ s32 func_800AE0D0(s32 *arg0) {
 
 s32 func_800AE0E8(s16 arg0) { if (arg0 != 0) { return *(s32 *)func_800AE080(arg0); } return 1; }
 
-s32 func_800AE124(s16 arg0) { if (arg0 != 0) { return *(s32 *)func_800AE080(arg0); } return 0; }
+s32 func_800AE124(s16 arg0) { if (arg0 != 0) { return *(s32 *)func_800AE080(arg0); } return 0; }    typedef struct { s32 unk0; s32 unk4; s32 unk8; } Obj1E875C0_func_800AE160_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */ typedef struct { u8 pad0[0x4]; s16 unk4; } Obj1E875C0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */ typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1E875C0_func_800AE160_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-void func_800AE160(u8 **arg0, u8 *arg1, s32 arg2) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800AE160(u8 **arg0, u8 *arg1, s32 arg2) {
     void* heap_realloc(void* mem, s32 size);
     s32 func_800AE820(s32, u8 *, u8 *, s32);
     s16 var_v1;
@@ -175,19 +175,19 @@ void func_800AE160(u8 **arg0, u8 *arg1, s32 arg2) {
     u8 *var_s0;
 
     var_s0 = *arg0;
-    var_v1 = (*(s16 *)((s8 *)(arg1) + (4)));
-    if ((*(s32 *)((s8 *)(var_s0) + (4))) < var_v1) {
+    var_v1 = (((Obj1E875C0_arg1 *)arg1)->unk4);
+    if ((((Obj1E875C0_func_800AE160_var_s0 *)var_s0)->unk4) < var_v1) {
         temp_v0 = heap_realloc(var_s0, (var_v1 << 6) + 0x50);
         var_s0 = temp_v0;
-        (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) (*(s16 *)((s8 *)(arg1) + (4)));
+        (((Obj1E875C0_func_800AE160_temp_v0 *)temp_v0)->unk4) = (s32) (((Obj1E875C0_arg1 *)arg1)->unk4);
         *arg0 = temp_v0;
-        var_v1 = (*(s16 *)((s8 *)(arg1) + (4)));
+        var_v1 = (((Obj1E875C0_arg1 *)arg1)->unk4);
     }
-    (*(s32 *)((s8 *)(var_s0) + (0))) = (s32) var_v1;
-    func_800AE820(arg2, arg1, var_s0 + 0x50, (*(s32 *)((s8 *)(var_s0) + (8))));
+    (((Obj1E875C0_func_800AE160_var_s0 *)var_s0)->unk0) = (s32) var_v1;
+    BT_NATIVE_ONLY(return) func_800AE820(arg2, arg1, var_s0 + 0x50, (((Obj1E875C0_func_800AE160_var_s0 *)var_s0)->unk8));
 }
 
-void func_800AE1E8(s16 arg0, u8 *arg1, s32 arg2) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800AE1E8(s16 arg0, u8 *arg1, s32 arg2) {
     void *func_8001B710(s16, s32);
     s32 func_800AE820(s32, u8 *, u8 *, s32);
     s32 func_800E0A28(s16);
@@ -202,7 +202,7 @@ void func_800AE1E8(s16 arg0, u8 *arg1, s32 arg2) {
         var_v1 = *(s16 *)(arg1 + 4);
     }
     *(s32 *)var_t0 = var_v1;
-    func_800AE820(arg2, arg1, (u8 *)var_t0 + 0x50,
+    BT_NATIVE_ONLY(return) func_800AE820(arg2, arg1, (u8 *)var_t0 + 0x50,
         *(s16 *)(var_t0 + 0xC) != 0
         ? func_800E0A28(*(s16 *)(var_t0 + 0xC)) : 0);
 }
@@ -317,7 +317,7 @@ void func_800AE598(s32 *arg0, s32 *arg1) {
 
 /* extern */
 
-void func_800AE5F0(u8 *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) func_800AE5F0(u8 *arg0) {
     void *defrag(void *);
     s32 func_800E0A98(s32, u8 *);
     s32 temp_a2;
@@ -326,8 +326,8 @@ void func_800AE5F0(u8 *arg0) {
     if (temp_a2 != 0) {
         ((s32 *) arg0)[2] = func_800E0A98(temp_a2, arg0);
     }
-    defrag(arg0);
-}
+    BT_NATIVE_ONLY(return) defrag(arg0);
+}    typedef struct { u8 pad0[0xC]; s16 unkC; } Obj1E875C0_func_800AE630_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 /* extern */
 
@@ -343,7 +343,7 @@ s32 func_800AE630(u8 *arg0, u8 *arg1, s32 arg2, f32 *arg3) {
     }
     var_a0 = arg0 + 0x50;
     while (var_a0 < (temp_t0 << 6) + arg0 + 0x50) {
-        if (arg2 == (*(s16 *)((s8 *)(var_s0) + (0xC)))) {
+        if (arg2 == (((Obj1E875C0_func_800AE630_var_s0 *)var_s0)->unkC)) {
             func_800F23D0((s32 *)var_a0, arg3, (s32) var_s0);
             return 1;
         }

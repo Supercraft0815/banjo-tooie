@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "mapsects_native.inc"
 #else
 #include "common.h"
@@ -73,7 +73,7 @@ void gcmapsects_entrypoint_0(s16 arg0, s16 arg1, f32 *arg2, f32 *arg3, f32 *arg4
     map->sections[index].unk50 = 0;
     map->sections[index].unk54 = 0;
     map->count++;
-}
+}    typedef struct { u8 pad0[0x68]; s32 unk68; s32 unk6C; f32 unk70; s16 unk74; u8 unk76; u8 unk77; s8 unk78; u8 pad79[0x1]; u8 unk7A; u8 unk7B; s8 unk7C; u8 pad7D[0x1]; s8 unk7E; s8 unk7F; u8 unk80; u8 pad81[0x1]; s8 unk82; } Objmapsects_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x40]; u16 unk40; u16 unk42; s32 unk44; s32 unk48; } Objmapsects_func_80800250_gcmapsects_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 /* extern */
 
@@ -91,28 +91,28 @@ void func_80800250_gcmapsects(void *arg0, s32 arg1) {
     void *var_v1;
 
     temp_s0 = arg1 * 0x58;
-    var_v1 = (*(s32 *)((s8 *)(arg0) + (0x68))) + temp_s0;
-    if ((*(s32 *)((s8 *)(var_v1) + (0x44))) == 0) {
-        temp_v0 = (*(u16 *)((s8 *)(var_v1) + (0x40)));
+    var_v1 = (((Objmapsects_arg0 *)arg0)->unk68) + temp_s0;
+    if ((((Objmapsects_func_80800250_gcmapsects_var_v1 *)var_v1)->unk44) == 0) {
+        temp_v0 = (((Objmapsects_func_80800250_gcmapsects_var_v1 *)var_v1)->unk40);
         if (temp_v0 != 0) {
             temp_v0_2 = func_800D674C(temp_v0 & 0xFFFFFFFF);
             sp24 = temp_v0_2;
             if (func_800B27FC(temp_v0_2) != 0) {
-                (*(s32 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + temp_s0)) + (0x44))) = _dbtex_entrypoint_0(func_800B27FC(sp24));
+                (*(s32 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + temp_s0)) + (0x44))) = _dbtex_entrypoint_0(func_800B27FC(sp24));
             }
-            func_800D6CEC((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + temp_s0)) + (0x40))));
-            var_v1 = (*(s32 *)((s8 *)(arg0) + (0x68))) + temp_s0;
+            func_800D6CEC((*(u16 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + temp_s0)) + (0x40))));
+            var_v1 = (((Objmapsects_arg0 *)arg0)->unk68) + temp_s0;
         }
     }
-    if ((*(s32 *)((s8 *)(var_v1) + (0x48))) == 0) {
-        temp_v0_3 = (*(u16 *)((s8 *)(var_v1) + (0x42)));
+    if ((((Objmapsects_func_80800250_gcmapsects_var_v1 *)var_v1)->unk48) == 0) {
+        temp_v0_3 = (((Objmapsects_func_80800250_gcmapsects_var_v1 *)var_v1)->unk42);
         if (temp_v0_3 != 0) {
             temp_v0_4 = func_800D674C(temp_v0_3 & 0xFFFFFFFF);
             sp24 = temp_v0_4;
             if (func_800B27FC(temp_v0_4) != 0) {
-                (*(s32 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + temp_s0)) + (0x48))) = _dbtex_entrypoint_0(func_800B27FC(sp24));
+                (*(s32 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + temp_s0)) + (0x48))) = _dbtex_entrypoint_0(func_800B27FC(sp24));
             }
-            func_800D6CEC((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + temp_s0)) + (0x42))));
+            func_800D6CEC((*(u16 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + temp_s0)) + (0x42))));
         }
     }
 }
@@ -312,33 +312,33 @@ void func_80800A08_gcmapsects(void *arg0, s32 arg1) {
     } *temp_v1, *temp_v1_2;
 
     var_s2 = 0;
-    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x77))) > 0) {
+    if ((s32) (((Objmapsects_arg0 *)arg0)->unk77) > 0) {
         var_s0 = 0;
         do {
-            temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0;
+            temp_v1 = (((Objmapsects_arg0 *)arg0)->unk68) + var_s0;
             if (temp_v1->active || (arg1 != 0)) {
                 temp_v0 = *(u16 *)((s8 *)temp_v1 + 0x40);
                 if ((temp_v0 != 0) && (func_800D73CC(temp_v0 & 0xFFFFFFFFU) == 0)) {
                     func_800D5B24();
-                    func_800D674C((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x40))));
-                    func_800D70F8((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x40))), 1);
-                    temp_v1_2 = (*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0;
+                    func_800D674C((*(u16 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + var_s0)) + (0x40))));
+                    func_800D70F8((*(u16 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + var_s0)) + (0x40))), 1);
+                    temp_v1_2 = (((Objmapsects_arg0 *)arg0)->unk68) + var_s0;
                     temp_v1_2->loaded = 1;
                 }
-                temp_v0_2 = *(u16 *)((s8 *)(*(s32 *)((s8 *)arg0 + 0x68) + var_s0) + 0x42);
+                temp_v0_2 = *(u16 *)((s8 *)(((Objmapsects_arg0 *)arg0)->unk68 + var_s0) + 0x42);
                 if ((temp_v0_2 != 0) && (func_800D73CC(temp_v0_2 & 0xFFFFFFFFU) == 0)) {
                     func_800D5B24();
-                    func_800D674C((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x42))));
-                    func_800D70F8((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x68))) + var_s0)) + (0x42))), 1);
+                    func_800D674C((*(u16 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + var_s0)) + (0x42))));
+                    func_800D70F8((*(u16 *)((s8 *)(((((Objmapsects_arg0 *)arg0)->unk68) + var_s0)) + (0x42))), 1);
                 }
             }
             func_80800250_gcmapsects(arg0, var_s2);
             var_s2 += 1;
             var_s0 += 0x58;
-        } while (var_s2 < (s32) (*(u8 *)((s8 *)(arg0) + (0x77))));
+        } while (var_s2 < (s32) (((Objmapsects_arg0 *)arg0)->unk77));
     }
     if (func_800DB9B0() == 0) {
-        (*(s8 *)((s8 *)(arg0) + (0x78))) = 1;
+        (((Objmapsects_arg0 *)arg0)->unk78) = 1;
     }
 }
 
@@ -364,7 +364,7 @@ void func_80800B58_gcmapsects(void *arg0) {
 
     var_s0 = 0;
     var_s2 = 0;
-    if (*(u8 *)((u8 *)arg0 + 0x77) > 0) {
+    if (((Objmapsects_arg0 *)arg0)->unk77 > 0) {
         do {
             section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
             if (section->active && func_800D73CC(section->id) == 0) {
@@ -382,7 +382,7 @@ void func_80800B58_gcmapsects(void *arg0) {
             }
             var_s2 += 1;
             var_s0 += 0x58;
-        } while (var_s2 < *(u8 *)((u8 *)arg0 + 0x77));
+        } while (var_s2 < ((Objmapsects_arg0 *)arg0)->unk77);
     }
 }
 
@@ -394,14 +394,14 @@ void func_80800C54_gcmapsects(void *arg0) {
     s32 var_s0;
 
     var_s0 = 0;
-    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x77))) > 0) {
+    if ((s32) (((Objmapsects_arg0 *)arg0)->unk77) > 0) {
         do {
             func_808003F4_gcmapsects(arg0, var_s0);
             func_8080035C_gcmapsects(arg0, var_s0);
             var_s0 += 1;
-        } while (var_s0 < (s32) (*(u8 *)((s8 *)(arg0) + (0x77))));
+        } while (var_s0 < (s32) (((Objmapsects_arg0 *)arg0)->unk77));
     }
-}
+}    typedef struct { u8 pad0[0x68]; u8 * unk68; u8 pad6C[0xB]; u8 unk77; } Objmapsects_gcmapsects_entrypoint_4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -415,7 +415,7 @@ s32 gcmapsects_entrypoint_4(f32 arg0[3]) {
     void *temp_v0;
 
     temp_v0 = func_800BF704();
-    temp_v1 = (*(u8 *)((s8 *)(temp_v0) + (0x77)));
+    temp_v1 = (((Objmapsects_gcmapsects_entrypoint_4_temp_v0 *)temp_v0)->unk77);
     if (temp_v1 == 0) {
         return -1;
     }
@@ -423,20 +423,20 @@ s32 gcmapsects_entrypoint_4(f32 arg0[3]) {
     if ((s32) temp_v1 > 0) {
         var_s0 = 0;
 loop_4:
-        temp_v0_2 = (*(u8 **)((s8 *)(temp_v0) + (0x68))) + var_s0;
+        temp_v0_2 = (((Objmapsects_gcmapsects_entrypoint_4_temp_v0 *)temp_v0)->unk68) + var_s0;
         if (func_800EFED0((f32 *)(temp_v0_2 + 0xC), (f32 *)(temp_v0_2 + 0x18), arg0) != 0) {
             return var_s1;
         }
         var_s1 += 1;
         var_s0 += 0x58;
-        if (var_s1 >= (s32) (*(u8 *)((s8 *)(temp_v0) + (0x77)))) {
+        if (var_s1 >= (s32) (((Objmapsects_gcmapsects_entrypoint_4_temp_v0 *)temp_v0)->unk77)) {
             goto block_7;
         }
         goto loop_4;
     }
 block_7:
     return -1;
-}
+}    typedef struct { u8 pad0[0x68]; s32 unk68; u8 pad6C[0xB]; u8 unk77; } Objmapsects_gcmapsects_entrypoint_5_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -448,10 +448,10 @@ u32 gcmapsects_entrypoint_5(s32 arg0) {
         return 1U;
     }
     temp_v0 = func_800BF704();
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x77))) == 0) {
+    if ((((Objmapsects_gcmapsects_entrypoint_5_temp_v0 *)temp_v0)->unk77) == 0) {
         return 1U;
     }
-    return (u32) ((*(s32 *)((s8 *)(((*(s32 *)((s8 *)(temp_v0) + (0x68))) + (arg0 * 0x58))) + (0x4C))) * 2) >> 0x1F;
+    return (u32) ((*(s32 *)((s8 *)(((((Objmapsects_gcmapsects_entrypoint_5_temp_v0 *)temp_v0)->unk68) + (arg0 * 0x58))) + (0x4C))) * 2) >> 0x1F;
 }
 
 s32 func_80800DC8_gcmapsects(void *arg0, s32 arg1, f32 *arg2) {
@@ -749,28 +749,28 @@ void func_80801554_gcmapsects(void *arg0) {
 
     func_8008FE68(sp38);
     if (func_80090128() != 0) {
-        if ((*(u8 *)((s8 *)(arg0) + (0x80))) == 0) {
+        if ((((Objmapsects_arg0 *)arg0)->unk80) == 0) {
             var_s3 = -1;
             var_s0 = 0;
-            if ((s32) (*(u8 *)((s8 *)(arg0) + (0x77))) > 0) {
+            if ((s32) (((Objmapsects_arg0 *)arg0)->unk77) > 0) {
                 do {
                     temp_v0 = func_80800DC8_gcmapsects(arg0, var_s0, sp38);
                     if (temp_v0 != -1) {
                         var_s3 = temp_v0;
                     }
                     var_s0 += 1;
-                } while (var_s0 < (s32) (*(u8 *)((s8 *)(arg0) + (0x77))));
+                } while (var_s0 < (s32) (((Objmapsects_arg0 *)arg0)->unk77));
             }
-            (*(s16 *)((s8 *)(arg0) + (0x74))) = var_s3;
-            (*(s8 *)((s8 *)(arg0) + (0x82))) = 1;
+            (((Objmapsects_arg0 *)arg0)->unk74) = var_s3;
+            (((Objmapsects_arg0 *)arg0)->unk82) = 1;
             return;
         }
         var_s0 = 0;
-        if ((s32) (*(u8 *)((s8 *)(arg0) + (0x77))) > 0) {
+        if ((s32) (((Objmapsects_arg0 *)arg0)->unk77) > 0) {
             do {
                 func_80801320_gcmapsects(arg0, var_s0, sp38);
                 var_s0 += 1;
-            } while (var_s0 < (s32) (*(u8 *)((s8 *)(arg0) + (0x77))));
+            } while (var_s0 < (s32) (((Objmapsects_arg0 *)arg0)->unk77));
         }
     }
 }
@@ -783,16 +783,16 @@ void func_80801640_gcmapsects(void *arg0) {
     s32 i;
 
     func_800E3980(sp30);
-    if ((*(u8 *)((s8 *)arg0 + 0x80)) == 0) {
-        for (i = 0; i < (s32)(*(u8 *)((s8 *)arg0 + 0x77)); i++) {
+    if ((((Objmapsects_arg0 *)arg0)->unk80) == 0) {
+        for (i = 0; i < (s32)(((Objmapsects_arg0 *)arg0)->unk77); i++) {
             func_80800DC8_gcmapsects(arg0, i, sp30);
         }
     } else {
-        for (i = 0; i < (s32)(*(u8 *)((s8 *)arg0 + 0x77)); i++) {
+        for (i = 0; i < (s32)(((Objmapsects_arg0 *)arg0)->unk77); i++) {
             func_80801174_gcmapsects(arg0, i);
             func_80801320_gcmapsects(arg0, i, sp30);
         }
-        for (i = 0; i < (s32)(*(u8 *)((s8 *)arg0 + 0x77)); i++) {
+        for (i = 0; i < (s32)(((Objmapsects_arg0 *)arg0)->unk77); i++) {
             func_808013C0_gcmapsects(arg0, i);
         }
     }
@@ -887,7 +887,7 @@ void gcmapsects_entrypoint_9(u8 *ptr) {
             func_808005D0_gcmapsects(ptr, i, (s32)func_800D6B0C((*(Section **)(ptr + 0x68))[i].id));
         }
     }
-}
+}    typedef struct { u8 pad0[0x68]; u8 * unk68; } Objmapsects_gcmapsects_entrypoint_10_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x76]; s8 unk76; } Objmapsects_gcmapsects_entrypoint_10_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void gcmapsects_entrypoint_10(s32 arg0) {
     void *func_800BF704();
@@ -897,11 +897,11 @@ void gcmapsects_entrypoint_10(s32 arg0) {
 
     temp_v0 = func_800BF704();
     if (arg0 != 0) {
-        (*(s8 *)((s8 *)(temp_v0) + (0x76))) = (s8) arg0;
+        (((Objmapsects_gcmapsects_entrypoint_10_temp_v0 *)temp_v0)->unk76) = (s8) arg0;
         sp1C = temp_v0;
-        (*(u8 **)((s8 *)(sp1C) + (0x68))) = heap_alloc((arg0 & 0xFF) * 0x58);
+        (((Objmapsects_gcmapsects_entrypoint_10_sp1C *)sp1C)->unk68) = heap_alloc((arg0 & 0xFF) * 0x58);
     }
-}
+}    typedef struct { u8 pad0[0x79]; s8 unk79; u8 pad7A[0x3]; s8 unk7D; } Objmapsects_gcmapsects_entrypoint_11_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -910,8 +910,8 @@ void gcmapsects_entrypoint_11(s32 arg0, s32 arg1) {
     void *temp_v0;
 
     temp_v0 = func_800BF704();
-    (*(s8 *)((s8 *)(temp_v0) + (0x79))) = (s8) arg0;
-    (*(s8 *)((s8 *)(temp_v0) + (0x7D))) = (s8) arg1;
+    (((Objmapsects_gcmapsects_entrypoint_11_temp_v0 *)temp_v0)->unk79) = (s8) arg0;
+    (((Objmapsects_gcmapsects_entrypoint_11_temp_v0 *)temp_v0)->unk7D) = (s8) arg1;
 }
 
 /* extern */
@@ -948,7 +948,7 @@ void gcmapsects_entrypoint_15(void *arg0) {
         u32 saved : 1;
     } *entry;
 
-    *(s32 *)((u8 *)arg0 + 0x68) = 0;
+    ((Objmapsects_arg0 *)arg0)->unk68 = 0;
     *((u8 *)arg0 + 0x77) = 0;
     *((u8 *)arg0 + 0x76) = 0;
     *((u8 *)arg0 + 0x78) = 0;
@@ -957,14 +957,14 @@ void gcmapsects_entrypoint_15(void *arg0) {
     *((u8 *)arg0 + 0x7E) = 1;
     *((u8 *)arg0 + 0x7A) = 1;
     *((u8 *)arg0 + 0x7F) = 3;
-    *(s16 *)((u8 *)arg0 + 0x74) = -1;
+    ((Objmapsects_arg0 *)arg0)->unk74 = -1;
     *((u8 *)arg0 + 0x82) = 0;
-    *(s32 *)((u8 *)arg0 + 0x6C) = 0;
+    ((Objmapsects_arg0 *)arg0)->unk6C = 0;
     *((u8 *)arg0 + 0x79) = 0;
     *((u8 *)arg0 + 0x7D) = 0;
     *((u8 *)arg0 + 0x80) = 0;
     *((u8 *)arg0 + 0x81) = 0;
-    *(f32 *)((u8 *)arg0 + 0x70) = 0.0f;
+    ((Objmapsects_arg0 *)arg0)->unk70 = 0.0f;
     switch (func_800EA05C()) {
         case 0x1A7:
             _gcmapsects_lagoontop_entrypoint_0();
@@ -1005,22 +1005,22 @@ void gcmapsects_entrypoint_15(void *arg0) {
 
 void gcmapsects_entrypoint_16(void *arg0) {
     s32 heap_free(s32, void *);
-    if (((*(u8 *)((s8 *)(arg0) + (0x77))) != 0) || ((*(u8 *)((s8 *)(arg0) + (0x76))) != 0)) {
+    if (((((Objmapsects_arg0 *)arg0)->unk77) != 0) || ((((Objmapsects_arg0 *)arg0)->unk76) != 0)) {
         func_80800C54_gcmapsects(arg0);
-        heap_free((*(s32 *)((s8 *)(arg0) + (0x68))), arg0);
-        (*(s32 *)((s8 *)(arg0) + (0x68))) = 0;
-        (*(u8 *)((s8 *)(arg0) + (0x77))) = 0U;
-        (*(u8 *)((s8 *)(arg0) + (0x76))) = 0U;
-        (*(s8 *)((s8 *)(arg0) + (0x78))) = 0;
+        heap_free((((Objmapsects_arg0 *)arg0)->unk68), arg0);
+        (((Objmapsects_arg0 *)arg0)->unk68) = 0;
+        (((Objmapsects_arg0 *)arg0)->unk77) = 0U;
+        (((Objmapsects_arg0 *)arg0)->unk76) = 0U;
+        (((Objmapsects_arg0 *)arg0)->unk78) = 0;
         (*(s8 *)((s8 *)(arg0) + (0x7B))) = 1;
-        (*(s8 *)((s8 *)(arg0) + (0x7E))) = 1;
-        (*(s8 *)((s8 *)(arg0) + (0x7C))) = 0;
-        (*(s8 *)((s8 *)(arg0) + (0x7F))) = 3;
-        (*(f32 *)((s8 *)(arg0) + (0x70))) = 0.0f;
+        (((Objmapsects_arg0 *)arg0)->unk7E) = 1;
+        (((Objmapsects_arg0 *)arg0)->unk7C) = 0;
+        (((Objmapsects_arg0 *)arg0)->unk7F) = 3;
+        (((Objmapsects_arg0 *)arg0)->unk70) = 0.0f;
     }
 }
 
-void gcmapsects_entrypoint_17(void *arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gcmapsects_entrypoint_17(void *arg0)
 {
   s32 func_800BF4DC(s32, u8, void *);
   s32 func_800BFF28();
@@ -1045,7 +1045,7 @@ void gcmapsects_entrypoint_17(void *arg0)
     }
     *((u8 *) (((s8 *) arg0) + 0x7A)) = (u8) (*(new_var = (u8 *) (((s8 *) arg0) + 0x7B)));
   }
-  func_800BF4DC(1, *((u8 *) (((s8 *) arg0) + 0x7E)), arg0);
+  BT_NATIVE_ONLY(return) func_800BF4DC(1, *((u8 *) (((s8 *) arg0) + 0x7E)), arg0);
 }
 
 void gcmapsects_entrypoint_18(u8 *arg0, s32 arg1) {
@@ -1368,7 +1368,7 @@ s32 gcmapsects_entrypoint_23(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4
 
 int gcmapsects_entrypoint_24(void *arg0) {
     return (*(u8 *)((s8 *)arg0 + 0x82) != 0) &&
-           ((*(s16 *)((s8 *)arg0 + 0x74) + 1) == 0);
+           ((((Objmapsects_arg0 *)arg0)->unk74 + 1) == 0);
 }
 
 s32 gcmapsects_entrypoint_25(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4, s32 arg5) {
@@ -1469,7 +1469,7 @@ void *gcmapsects_entrypoint_26(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, u32 arg
         }
     }
     return result;
-}
+}    typedef struct { u8 pad0[0x68]; s32 unk68; } Objmapsects_gcmapsects_entrypoint_27_map; /* offsets.py genstruct: fields from raw offsets on map; rename once understood */
 
 /* extern */
 
@@ -1484,9 +1484,9 @@ s32 gcmapsects_entrypoint_27(s32 arg0) {
         return 0;
     }
     temp_t7 = arg0 * 0x58;
-    if (((u32) (*(u32 *)((s8 *)(((*(s32 *)((s8 *)(map) + (0x68))) + temp_t7)) + (0x4C))) >> 0x1F) != 0) {
-        if (func_800D6B0C((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(map) + (0x68))) + temp_t7)) + (0x40)))) != 0) {
-            func_800D62E4((*(u16 *)((s8 *)(((*(s32 *)((s8 *)(map) + (0x68))) + temp_t7)) + (0x40))));
+    if (((u32) (*(u32 *)((s8 *)(((((Objmapsects_gcmapsects_entrypoint_27_map *)map)->unk68) + temp_t7)) + (0x4C))) >> 0x1F) != 0) {
+        if (func_800D6B0C((*(u16 *)((s8 *)(((((Objmapsects_gcmapsects_entrypoint_27_map *)map)->unk68) + temp_t7)) + (0x40)))) != 0) {
+            func_800D62E4((*(u16 *)((s8 *)(((((Objmapsects_gcmapsects_entrypoint_27_map *)map)->unk68) + temp_t7)) + (0x40))));
             return 1;
         }
     }
@@ -1494,3 +1494,5 @@ s32 gcmapsects_entrypoint_27(s32 arg0) {
 }
 
 #endif
+/* data_to_c.py: from asm/data/overlays/gc/mapsects.data.s */
+f32 D_808029B0_gcmapsects [ 3 ] BT_DATA(4, overlays_gc_mapsects, 0x0) = { 50.0f, 50.0f, 50.0f };

@@ -2,7 +2,7 @@
 
 OSThread *chspotlight_entrypoint_0(void)
 {
-    extern u8 D_808009B0_chspotlight[];
+    extern ActorData D_808009B0_chspotlight[];
 
     return (OSThread *) D_808009B0_chspotlight;
 }
@@ -161,15 +161,15 @@ void func_80800210_chspotlight(Actor *arg0)
 
 void func_8080047C_chspotlight(Actor *arg0) {
     void func_800D93A0(f32[4], f32[3]);
-    void func_800DF41C(s32);
+    void func_800DF41C(BtIntPtr);
     void func_800DF744(s32, s32);
     void func_800DFF2C(u8 **, s32, f32[4]);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
     s32 func_801015D0(Actor *);
-    s32 func_801040D0(void);
+    BtIntPtr func_801040D0(void);
     s32 *sp3C;
-    s32 sp38;
+    BtIntPtr sp38;
     f32 sp2C[3];
     f32 sp1C[4];
 
@@ -181,23 +181,23 @@ void func_8080047C_chspotlight(Actor *arg0) {
     func_800D93A0(sp1C, sp2C);
     func_800DFF2C((u8 **)sp38, 1, sp1C);
     func_800DF744(1, sp3C[9]);
-}
+}                 typedef struct { BtIntPtr unk0; u8 pad4[0x34]; f32 unk38; } Objspotlight_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800518_chspotlight(u8 *arg0, s32 arg1) {
     s32 pad[2];
-    void* func_800DE448(f32* position, f32* arg1, f32 scale, f32* arg3, s32 arg4);
-    void func_800DF47C(s32 arg0, s32 arg1);
+    void* func_800DE448(f32* position, f32* arg1, f32 scale, f32* arg3, BtIntPtr arg4);
+    void func_800DF47C(s32 arg0, BtIntPtr arg1);
     extern s32 func_801017D0;
     void func_80102780(void *arg0, void *arg1);
-    s32 func_8010347C(s32);
+    BtIntPtr func_8010347C(Unk80132ED0 *marker);
     f32 sp2C;
 
     func_80102780(arg0, &sp2C);
     sp2C = 0.0f;
-    func_800DF47C((s32) &func_801017D0, (s32) arg0);
-    func_800DE448(arg0 + 4, &sp2C, (*(f32 *)((s8 *)(arg0) + (0x38))), NULL, func_8010347C((*(s32 *)((s8 *)(arg0) + (0)))));
+    func_800DF47C((BtIntPtr) &func_801017D0, (BtIntPtr) arg0);
+    func_800DE448(arg0 + 4, &sp2C, (((Objspotlight_arg0 *)arg0)->unk38), NULL, func_8010347C((((Objspotlight_arg0 *)arg0)->unk0)));
 }
 
 /* extern */
@@ -272,7 +272,7 @@ void func_80800730_chspotlight(Actor *arg0) {
     void func_800F18FC(f32 *, f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80101038(f32 *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80102B2C(Actor *, f32);
     void func_80102B6C(u8 *, f32);
     f32 angles[2];
@@ -280,7 +280,7 @@ void func_80800730_chspotlight(Actor *arg0) {
 
     data = func_80100094(arg0, 0);
     if (func_800DA298(0) == 0) {
-        if (func_8010114C((s32)arg0->unk3C, 6, 4) != 0) {
+        if (func_8010114C((BtIntPtr)arg0->unk3C, 6, 4) != 0) {
             func_80101038(data + 1);
         }
         if (func_800DA298(4) != 0) {
@@ -337,7 +337,7 @@ s32 func_808008A4_chspotlight(void *arg0) {
 /* extern */
 
 s32 *func_808008EC_chspotlight(u8 *arg0) {
-    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
+    Actor *_subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3);
     s32 *temp_v0;
 
     temp_v0 = _subaddiefind_entrypoint_0(arg0 + 4, 0x13C, -1, 0);
@@ -347,7 +347,7 @@ s32 *func_808008EC_chspotlight(u8 *arg0) {
     return temp_v0;
 }
 
-u32 func_80800934_chspotlight(s32 unused, s32 arg1, s32 arg2) {
+u32 func_80800934_chspotlight(BtIntPtr unused, s32 arg1, s32 arg2) {
     void func_8080047C_chspotlight(Actor *);
 
     if (arg1 == 0x1F) {
@@ -356,3 +356,10 @@ u32 func_80800934_chspotlight(s32 unused, s32 arg1, s32 arg2) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/spotlight.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+f32 D_80800990_chspotlight [2] BT_DATA(4, overlays_ch_spotlight, 0x0) = { 800.0f, 1600.0f };
+u32 D_80800998_chspotlight [ 3 ] BT_DATA(4, overlays_ch_spotlight, 0x8) = { 0, 0, 0 };
+u32 D_808009A4_chspotlight [ 3 ] BT_DATA(4, overlays_ch_spotlight, 0x14) = { 0xC0, 0xC0, 0xC0 };
+ActorData D_808009B0_chspotlight [1] BT_DATA(4, overlays_ch_spotlight, 0x20) = { { 687, 845, 1877, 1, 0, (void (*)(struct Actor *))func_80800210_chspotlight, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800518_chspotlight, 0, 0, 0, 0, 2, 5120, 0, 0, 60, 0, (void (*)(struct Actor *))func_8080000C_chspotlight, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800934_chspotlight, 0 } };

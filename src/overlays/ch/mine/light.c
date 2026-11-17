@@ -1,16 +1,16 @@
 #include "common.h"
 
 s32 func_80800000_chminelight(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(s32);
-    s32 _idworld_entrypoint_3(s32);
-    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
-    s32 func_800BEA88(s32);
+    BtIntPtr _idworld_entrypoint_3(s32);
+    void _idworldmake_entrypoint_1(BtIntPtr arg0, s32 arg1, volatile unsigned int arg2, s32 arg3);
+    void *func_800BEA88(s32 i);
     s32 func_800DA298(s32);
-    void func_800EDDDC(s32, f32 *, f32 *, f32);
-    s32 world;
+    void func_800EDDDC(BtIntPtr, f32 *, f32 *, f32);
+    BtIntPtr world;
     f32 rgba[4];
-    s32 player;
+    BtIntPtr player;
 
     if (arg1 == 0x95) {
         world = _idworld_entrypoint_3(0x1AA);
@@ -44,20 +44,20 @@ s32 func_80800000_chminelight(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080011C_chminelight(Actor *arg0) {
-    s32 _idworld_entrypoint_3(s32);
-    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    BtIntPtr _idworld_entrypoint_3(s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 func_8001210C(s32);
-    void func_800C8800(s32, f32 *);
+    void func_800C8800(BtIntPtr, f32 *);
     void func_800C8E84(s32, s32 *);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    void func_800EDDDC(s32, f32 *, f32 *, f32);
+    void func_800EDDDC(BtIntPtr, f32 *, f32 *, f32);
     void *func_80100094(Actor *, u32);
     extern s32 D_80800660_chminelight[];
     extern s32 D_80800674_chminelight[];
     extern s32 D_80800688_chminelight[];
     u8 (*colors)[3];
-    s32 world;
+    BtIntPtr world;
     s32 rgb[3];
     s32 i;
     f32 intensity;
@@ -91,10 +91,10 @@ void func_8080011C_chminelight(Actor *arg0) {
             func_800C8800(D_80800688_chminelight[arg0->unk6C_0], (f32 *)arg0->actorData);
             if ((s32)arg0->unk70_10 == 2) {
                 if (func_800DC0C0() < 0.3f) {
-                    _subaddieaudioquick_entrypoint_2((s32)arg0, (s32)arg0->position, D_80800660_chminelight);
+                    _subaddieaudioquick_entrypoint_2((BtIntPtr)arg0, (BtIntPtr)arg0->position, D_80800660_chminelight);
                 }
             } else if (func_800DC0C0() < 0.15f) {
-                _subaddieaudioquick_entrypoint_2((s32)arg0, (s32)arg0->position, D_80800674_chminelight);
+                _subaddieaudioquick_entrypoint_2((BtIntPtr)arg0, (BtIntPtr)arg0->position, D_80800674_chminelight);
             }
         }
         for (i = 0; i < 2; i++) {

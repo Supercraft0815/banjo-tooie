@@ -3,7 +3,7 @@
 /* extern */
 
 void func_80800000_chfog(s32 arg0) {
-    s32 func_800CF494();
+    void func_800CF494(void);
     func_800CF494();
 }
 
@@ -13,11 +13,11 @@ void func_80800020_chfog(Actor *arg0) {
     void func_800E3980(f32 *);
     s32 func_800EA05C(void);
     void func_800EFD24(f32 *);
-    s32 func_800F54E4(void);
-    s32 func_800F6438(u32);
+    BtIntPtr func_800F54E4(void);
+    s32 func_800F6438(BtUIntPtr);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
-    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_2(void *arg0);
     struct FogData {
         f32 unk18;
         f32 unk1C;
@@ -65,8 +65,8 @@ void func_80800020_chfog(Actor *arg0) {
 
 void func_80800174_chfog(Actor *arg0, Gfx **arg1) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF410(s32);
     void func_800DF744(s32, s32);
     void func_800DF830(s32);
@@ -75,14 +75,14 @@ void func_80800174_chfog(Actor *arg0, Gfx **arg1) {
     void func_800E3CE8(void);
     void func_800E41CC(void);
     void func_800E4208(void);
-    void func_800E44FC(Gfx **);
+    int func_800E44FC(void *frame);
     s32 func_800EA05C(void);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFD24(f32 *);
     void func_80101074(void *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80101870(Actor *, void *);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     f32 position[3];
     f32 rotation[3];
     s32 map;
@@ -102,7 +102,7 @@ void func_80800174_chfog(Actor *arg0, Gfx **arg1) {
             actor = _subaddiefind_entrypoint_2(0x176, 0);
             if (actor != NULL) {
                 func_80101074(arg1);
-                func_8010114C((s32)actor->unk0, 0xAB, 0);
+                func_8010114C((BtIntPtr)actor->unk0, 0xAB, 0);
             }
             func_800DF744(3, 1);
             break;
@@ -132,19 +132,19 @@ void func_80800174_chfog(Actor *arg0, Gfx **arg1) {
     func_800DE448(arg0->position, rotation, 0.2f, NULL, func_8010347C(arg0->unk0));
     func_800E4208();
     func_800E44FC(arg1);
-}
+}    typedef struct { u8 pad0[0x72]; u16 unk72; } Objfog_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080032C_chfog(f32 *arg0) {
     f32 func_800DC0C0(void);
     void func_800E3B50(f32 *, f32 *, f32 *);
     void func_800E3980(f32 *);
     void func_800EFB24(void *, void *, void *);
-    s32 func_800F54E4(void);
-    s32 func_800F690C(s32);
+    BtIntPtr func_800F54E4(void);
+    s32 func_800F690C(BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800D90A4(f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     struct FogFlags {
         u32 unused : 12;
         u32 fading : 1;
@@ -267,11 +267,11 @@ void func_8080032C_chfog(f32 *arg0) {
     } else if (arg0[10] > 0.15f || arg0[10] < 0.15f) {
         arg0[10] *= 0.3f;
     }
-    switch ((s32)((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10)) {
+    switch ((s32)((u32)*&((Objfog_arg0 *)arg0)->unk72 >> 10)) {
         case 1:
             if (((struct FogFlags *)((u8 *)arg0 + 0x64))->fading) {
                 if (!func_800D90A4(&arg0[13])) {
-                    _subaddiefade_entrypoint_1((s32)arg0,
+                    _subaddiefade_entrypoint_1((BtIntPtr)arg0,
                         (s32)func_800F10B4(arg0[13], 0.0f, 8.0f, 255.0f, 0.0f));
                 }
             }
@@ -283,7 +283,7 @@ void func_8080032C_chfog(f32 *arg0) {
 
 s32 func_808009F0_chfog(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddiefade_entrypoint_3(Actor*);
-    s32 func_800CF494();
+    void func_800CF494(void);
     switch (arg1) {
     case 0x4F:
         _subaddiefade_entrypoint_3(arg0);
@@ -297,7 +297,11 @@ s32 func_808009F0_chfog(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfog_entrypoint_0(void)
 {
-    extern u8 D_80800A90_chfog[];
+    extern ActorData D_80800A90_chfog[];
 
     return (OSThread *) D_80800A90_chfog;
 }
+/* data_to_c.py: from asm/data/overlays/ch/fog.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800A90_chfog [1] BT_DATA(4, overlays_ch_fog, 0x0) = { { 604, 376, 1676, 1, 0, (void (*)(struct Actor *))func_8080032C_chfog, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800174_chfog, 0, 0, 0, 0, 2, 5124, (void (*)(struct Actor *))func_80800000_chfog, 0, 0, 0, (void (*)(struct Actor *))func_80800020_chfog, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_808009F0_chfog, 0 } };

@@ -1,13 +1,13 @@
 #include "common.h"
 
 extern u32 D_80801FF0_chlakemonster[];
-void _chswitch_entrypoint_0();
+OSThread *_chswitch_entrypoint_0(void);
 void _chswitch_entrypoint_13();
 void func_80101870(Actor *, void *);
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
-void func_80800000_chlakemonster(s32 arg0);
+void func_80800000_chlakemonster(BtIntPtr arg0);
 void func_80800064_chlakemonster(Actor *arg0);
 void func_80800C88_chlakemonster(Actor *arg0);
 s32 func_808016B0_chlakemonster(Actor *arg0, s32 arg1, s32 arg2);
@@ -126,12 +126,12 @@ u32 D_808021F8_chlakemonster[] = {
     0x00000000, 0xC4ED8000, 0x00000000,
 };
 
-u32 D_80802204_chlakemonster[] = {
-    0x02E50300, 0x06D50001, (u32)D_80801FF0_chlakemonster, (u32)func_80800C88_chlakemonster,
-    (u32)func_80105834, (u32)func_801018A4, 0x00000000, 0x00000000,
-    0x00000000, 0x0008046C, (u32)func_80800064_chlakemonster, 0x00000000,
-    0x00000000, (u32)func_80800000_chlakemonster, (u32)func_80107C2C, 0x80800002,
-    (u32)func_808016B0_chlakemonster, 0x00000000,
+BtFnWord D_80802204_chlakemonster[] = {
+    0x02E50300, 0x06D50001, (BtFnWord)D_80801FF0_chlakemonster, (BtFnWord)func_80800C88_chlakemonster,
+    (BtFnWord)func_80105834, (BtFnWord)func_801018A4, 0x00000000, 0x00000000,
+    0x00000000, 0x0008046C, (BtFnWord)func_80800064_chlakemonster, 0x00000000,
+    0x00000000, (BtFnWord)func_80800000_chlakemonster, (BtFnWord)func_80107C2C, 0x80800002,
+    (BtFnWord)func_808016B0_chlakemonster, 0x00000000,
 };
 
 u32 D_8080224C_chlakemonster[] = {
@@ -153,28 +153,28 @@ u32 D_808022C8_chlakemonster[] = {
     0x09C41388, 0x00000000,
 };
 
-u32 D_808022E0_chlakemonster[] = {
-    0x02E60301, 0x074B0001, 0x00000000, (u32)func_80801A60_chlakemonster,
-    (u32)func_80105834, (u32)func_80101870, 0x17700000, 0x00000000,
-    0x00000000, 0x00000C00, (u32)func_808018AC_chlakemonster, 0x00000000,
-    0x00000000, (u32)func_80801834_chlakemonster, (u32)func_80107C2C, 0x80080402,
-    (u32)func_80801E60_chlakemonster, 0x00000000,
+BtFnWord D_808022E0_chlakemonster[] = {
+    0x02E60301, 0x074B0001, 0x00000000, (BtFnWord)func_80801A60_chlakemonster,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x17700000, 0x00000000,
+    0x00000000, 0x00000C00, (BtFnWord)func_808018AC_chlakemonster, 0x00000000,
+    0x00000000, (BtFnWord)func_80801834_chlakemonster, (BtFnWord)func_80107C2C, 0x80080402,
+    (BtFnWord)func_80801E60_chlakemonster, 0x00000000,
 };
 
-u32 D_80802328_chlakemonster[] = {
-    0x02E70370, 0x094B0001, 0x8011A298, (u32)_chswitch_entrypoint_13,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x00000808, (u32)func_80801EE4_chlakemonster, (u32)_chswitch_entrypoint_0,
-    0x00000000, (u32)func_80801EA8_chlakemonster, (u32)func_80107C2C, 0x80080C00,
-    (u32)func_80801EEC_chlakemonster, 0x00000000,
+extern u8 D_8011A270[]; BtFnWord D_80802328_chlakemonster[] = { /* animation table: D_8011A270 + 0x28 */
+    0x02E70370, 0x094B0001, (BtFnWord)(D_8011A270 + 0x28), (BtFnWord)_chswitch_entrypoint_13,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000808, (BtFnWord)func_80801EE4_chlakemonster, (BtFnWord)_chswitch_entrypoint_0,
+    0x00000000, (BtFnWord)func_80801EA8_chlakemonster, (BtFnWord)func_80107C2C, 0x80080C00,
+    (BtFnWord)func_80801EEC_chlakemonster, 0x00000000,
 };
 
 /* extern */
 
-void func_80800000_chlakemonster(s32 arg0) {
+void func_80800000_chlakemonster(BtIntPtr arg0) {
     s32 _glcutDll_entrypoint_20();
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_80801494_chlakemonster(s32, s32);
+    s32 func_80801494_chlakemonster(BtIntPtr, s32);
     func_800EFA4C((f32 *)(arg0 + 4), 0.0f, -3050.0f, 0.0f);
     if (_glcutDll_entrypoint_20() != 0) {
         func_80801494_chlakemonster(arg0, 7);
@@ -191,15 +191,15 @@ void func_80800064_chlakemonster(Actor *arg0) {
 }
 
 void func_80800090_chlakemonster(Actor *arg0, f32 arg1[3], f32 arg2[3], s32 arg3) {
-    s32 func_800B53A4(s32);
-    void func_800BA1D0(s32, f32[3], f32[3], s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA1D0(BtIntPtr, f32[3], f32[3], s32);
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 scale;
     f32 rotation;
-    s32 emitter;
+    BtIntPtr emitter;
 
     emitter = func_800B53A4(arg3);
     scale = arg0->scale;
@@ -213,10 +213,10 @@ void func_80800090_chlakemonster(Actor *arg0, f32 arg1[3], f32 arg2[3], s32 arg3
 }
 
 void func_808001C0_chlakemonster(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF214(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
@@ -225,7 +225,7 @@ void func_808001C0_chlakemonster(Actor *arg0) {
         f32 unk1C;
         f32 unk20;
     } *data;
-    s32 emitter;
+    BtIntPtr emitter;
     f32 position[3];
 
     data = func_80100094(arg0, 0);
@@ -238,12 +238,12 @@ void func_808001C0_chlakemonster(Actor *arg0) {
 }
 
 void func_808002FC_chlakemonster(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void *func_80100094(Actor *, u32);
-    s32 emitter;
+    BtIntPtr emitter;
     struct {
         u8 pad[0x1C];
         f32 unk1C;
@@ -258,14 +258,14 @@ void func_808002FC_chlakemonster(Actor *arg0) {
 }
 
 void func_80800404_chlakemonster(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800DBEFC(void *, s32, f32 *);
     void *func_80100094(Actor *, u32);
     f32 position[3];
-    s32 emitter;
+    BtIntPtr emitter;
     struct {
         u8 pad[0x1C];
         f32 unk1C;
@@ -315,16 +315,16 @@ void func_8080064C_chlakemonster(Actor *arg0) {
 }
 
 s32 func_80800724_chlakemonster(Actor *arg0) {
-    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
+    void _dbmorph_entrypoint_3(void *arg0, void *arg1, void *arg2, s32 arg3, f32 *weights);
     u8 *func_800B2768(u8 *);
-    s32 func_800B2840(s32);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800B2840(BtIntPtr);
+    BtIntPtr func_800D674C(s32);
     void func_800E02F8(s16 *, f32, s32, s32, s32, f32 *);
     void *func_80100094(Actor *, u32);
     f32 func_80101F24(Actor *);
     u8 *func_801039E4(Unk80132ED0 *);
-    s32 func_80103CB8(Actor *, u32);
-    u8 *sp44;
+    BtIntPtr func_80103CB8(Actor *, BtUIntPtr);
+    u8 *sp44; BT_NATIVE_ONLY(BtIntPtr nativeResult;)
     s16 sp42;
     struct {
         u8 pad[0x2C];
@@ -342,29 +342,29 @@ s32 func_80800724_chlakemonster(Actor *arg0) {
     if (sp42 != 0) {
         func_800E02F8(func_800D674C(sp42), func_80101F24(arg0), 0, 0x2A, 0x2D, sp3C->morph);
     }
-    _dbmorph_entrypoint_3(func_800B2768(sp44), func_80103CB8(arg0, sp44), func_800B2840(sp44), 1, sp3C->morph);
+    _dbmorph_entrypoint_3(func_800B2768(sp44), func_80103CB8(arg0, sp44), BT_NATIVE_ONLY(nativeResult =) func_800B2840(sp44), 1, sp3C->morph); BT_NATIVE_ONLY(return nativeResult;)
 }
 
 /* extern */
 
 void func_80800838_chlakemonster(Actor *arg0) {
-    s32 _dbmorph_entrypoint_4(u8 *, u8 *, s32, u8, s32);
-    s32 func_800AE080(s16);
+    void _dbmorph_entrypoint_4(s16 *arg0, u8 *arg1, u8 *arg2, s32 arg3, BtIntPtr arg4);
+    void * func_800AE080(s16 handle);
     s32 func_800AE0E8(s16);
     u8 *func_800B2768(u8 *);
-    s32 func_800B2840(s32);
+    BtIntPtr func_800B2840(BtIntPtr);
     s32 func_801015D0(Actor *);
     u8 *func_801039E4(Unk80132ED0 *);
-    s32 func_80103CB8(Actor *, u32);
+    BtIntPtr func_80103CB8(Actor *, BtUIntPtr);
     s32 func_80800724_chlakemonster(Actor *);
-    s32 sp34;
+    BtIntPtr sp34;
     u8 *sp30;
     struct {
         u8 pad[0x17];
         u8 unused : 7;
         u8 active : 1;
     } *sp2C;
-    s32 sp28;
+    BtIntPtr sp28;
 
     sp34 = func_801039E4(arg0->unk0);
     sp30 = func_800B2768(sp34);
@@ -377,7 +377,7 @@ void func_80800838_chlakemonster(Actor *arg0) {
     if (func_800AE0E8(*(s16 *)&arg0->unk0->unk10) != 0) {
         _dbmorph_entrypoint_4(sp30, sp2C, sp28, 1, func_800AE080(*(s16 *)&arg0->unk0->unk10));
     }
-}
+}    typedef struct { u8 pad0[0x24]; f32 unk24; } Objlakemonster_func_808008E8_chlakemonster_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_808008E8_chlakemonster(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -386,13 +386,13 @@ void func_808008E8_chlakemonster(Actor *arg0) {
     void *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if (*(f32 *)((s8 *)temp_v0 + 0x24) <= 0.0f) {
+    if (((Objlakemonster_func_808008E8_chlakemonster_temp_v0 *)temp_v0)->unk24 <= 0.0f) {
         _subaddieaudioquick_entrypoint_2(arg0, (f32 *)&arg0->actorData[4], &(*(s32 *)D_80802030_chlakemonster));
-        *(f32 *)((s8 *)temp_v0 + 0x24) = 2.5f;
+        ((Objlakemonster_func_808008E8_chlakemonster_temp_v0 *)temp_v0)->unk24 = 2.5f;
     } else {
-        *(f32 *)((s8 *)temp_v0 + 0x24) -= func_800D8FF8();
+        ((Objlakemonster_func_808008E8_chlakemonster_temp_v0 *)temp_v0)->unk24 -= func_800D8FF8();
     }
-}
+}    typedef struct { u8 pad0[0x28]; f32 unk28; } Objlakemonster_func_80800968_chlakemonster_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80800968_chlakemonster(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -400,19 +400,19 @@ void func_80800968_chlakemonster(Actor *arg0) {
     void *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if (*(f32 *)((s8 *)temp_v0 + 0x28) <= 0.0f) {
+    if (((Objlakemonster_func_80800968_chlakemonster_temp_v0 *)temp_v0)->unk28 <= 0.0f) {
         _subaddieaudioquick_entrypoint_2(arg0, (f32 *)&arg0->actorData[4], &(*(s32 *)D_80802044_chlakemonster));
-        *(f32 *)((s8 *)temp_v0 + 0x28) = 1.5f;
+        ((Objlakemonster_func_80800968_chlakemonster_temp_v0 *)temp_v0)->unk28 = 1.5f;
     }
 }
 
 /* extern */
 
 void func_808009CC_chlakemonster(void) {
-    s32 _gcgoto_entrypoint_1(s32, s32);
-    s32 func_800DA544(s32);
-    s32 func_800F54E4();
-    s32 func_800F7C9C(s32, s32, s32, s32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
+    void func_800DA544(s32 index);
+    BtIntPtr func_800F54E4();
+    void func_800F7C9C(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3);
     func_800F7C9C(func_800F54E4(), 0x95, 0x116, 0xA);
     _gcgoto_entrypoint_1(0x123, 1);
     func_800DA544(0x6E8);
@@ -425,7 +425,7 @@ void func_80800A14_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80018820(s32, f32, f32);
     void func_8009086C(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
@@ -480,21 +480,21 @@ void func_80800A14_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800C88_chlakemonster(Actor *arg0) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_8008FD70(void);
     s32 func_80090248(void);
     s32 func_80090298(void);
-    void func_80090590(s32, f32 *);
+    void func_80090590(s32 arg0,BtIntPtr arg1);
     void func_800906B0(f32 *);
     void func_80090708(s32);
     void func_800907C0(f32 *);
-    void func_80090840(f32 *);
+    void func_80090840(BtIntPtr arg0);
     void func_8009086C(s32);
     int func_800C6E38(s32);
     f32 func_800D8FF8(void);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800DBEFC(void *, s32, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
@@ -511,7 +511,7 @@ void func_80800C88_chlakemonster(Actor *arg0) {
     s32 func_801022E4(Actor *);
     s32 func_8010CAC0(s32 *, s32);
     s32 func_8010CB84(s32 *, s32);
-    s32 func_80801494_chlakemonster(s32, s32);
+    s32 func_80801494_chlakemonster(BtIntPtr, s32);
     struct {
         f32 position[3];
         f32 velocity[3];
@@ -590,7 +590,7 @@ void func_80800C88_chlakemonster(Actor *arg0) {
                         sp5C = 4;
                     }
                 }
-                func_80801494_chlakemonster((s32)arg0, sp5C);
+                func_80801494_chlakemonster((BtIntPtr)arg0, sp5C);
             }
             break;
         case 2:
@@ -616,7 +616,7 @@ void func_80800C88_chlakemonster(Actor *arg0) {
                 func_808001C0_chlakemonster(arg0);
             }
             if (func_80101DDC(arg0) != 0) {
-                func_80801494_chlakemonster((s32)arg0, 5);
+                func_80801494_chlakemonster((BtIntPtr)arg0, 5);
             }
             if (arg0->unk7C_12 && (sp94->unk3D != 0)) {
                 func_800EE7F8(sp3C, (f32 *)&arg0->actorData[4]);
@@ -655,7 +655,7 @@ void func_80800C88_chlakemonster(Actor *arg0) {
             break;
         case 5:
             if (func_8010CB84(&(*(s32 *)D_808020D4_chlakemonster), 0xC8) == 0) {
-                func_80801494_chlakemonster((s32)arg0, 1);
+                func_80801494_chlakemonster((BtIntPtr)arg0, 1);
             }
             break;
         case 7:
@@ -714,7 +714,7 @@ void func_80800C88_chlakemonster(Actor *arg0) {
 void func_808013E8_chlakemonster(s32 *arg0) {
     s32 func_8008F8B0();
     s32 func_8008F8D8(s32);
-    s32 func_8008F904(s32 *, s32);
+    s32 func_8008F904(s32 *, BtIntPtr);
     s32 func_8008F938(s32);
     void func_8008F964(f32 *);
     s32 func_8008F9C4(s32 *, s32);
@@ -729,20 +729,20 @@ void func_808013E8_chlakemonster(s32 *arg0) {
 
 void func_80801448_chlakemonster(u8 *arg0, u32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 7;
-    _subaddiedialog_entrypoint_11((*(Unk80132ED0 **)((s8 *)(arg0) + (0))), arg1, arg2, (f32 *)(arg0 + 4), 0xB3U);
+    _subaddiedialog_entrypoint_11((((Actor *)arg0)->unk0), arg1, arg2, (f32 *)(arg0 + 4), 0xB3U);
     ((struct Flags *)arg0)->flag = 1;
 }
 
-s32 func_80801494_chlakemonster(s32 arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+s32 func_80801494_chlakemonster(BtIntPtr arg0, s32 arg1) {
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_80090658(s32);
     void func_80090708(s32);
     void func_8009086C(s32);
     int func_800C6E38(s32);
-    s32 func_800F54E4(void);
-    s32 func_800F7B9C(s32, s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
     u32 func_800FDC28(u32);
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
@@ -815,13 +815,13 @@ s32 func_80801494_chlakemonster(s32 arg0, s32 arg1) {
                 func_80801448_chlakemonster((u8 *)actor, 0x180E, 0);
             }
             break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_808016B0_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80090708(s32);
     s32 func_800DA9E4(s32, s32);
-    s32 func_80801494_chlakemonster(s32, s32);
+    s32 func_80801494_chlakemonster(BtIntPtr, s32);
 
     switch (arg1) {
         case 0x32:
@@ -856,7 +856,7 @@ void func_80801790_chlakemonster();
 void func_80801790_chlakemonster(Actor *arg0, u32 arg1) {
     struct Flags { u8 pad[0x7E]; u8 high : 1; u8 flag : 1; u8 low : 6; };
     void func_80101FDC(Actor *, u32);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
 
     func_80101FDC(arg0, arg1);
     switch (arg0->unk70_10) {
@@ -897,23 +897,23 @@ void func_808018AC_chlakemonster(s32 arg0)
 }
 /* extern */
 
-void chlakemonster_entrypoint_1(s32 arg0) {
-    s32 _fxripple_entrypoint_0(s32);
-    _fxripple_entrypoint_0(0);
+void chlakemonster_entrypoint_1(s32 arg0 BT_PASS2(, s32 bt_a1)) {
+    s32 _fxripple_entrypoint_0(s32 BT_PASS2(, s32));
+    _fxripple_entrypoint_0(BT_PASS2(0, bt_a1) BT_IDO_ONLY(0));
 }
 
 void chlakemonster_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
-    s32 func_800B53A4(s32);
-    void func_800BA1D0(s32, f32 *, f32 *, s32);
-    void func_800BA544(s32 *, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA1D0(BtIntPtr, f32 *, f32 *, s32);
+    void func_800BA544(s32 *, BtIntPtr);
     void func_800BA568(s16 *, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     int func_800DC298(f32);
 #ifndef BT_NATIVE
     extern s32 _chlakemonster_entrypoint_1;
 #endif
-    s32 sp2C;
-    s32 temp_v0;
+    BtIntPtr sp2C;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(6);
     sp2C = temp_v0;
@@ -928,19 +928,19 @@ void chlakemonster_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2, s32 arg3) {
     }
     func_800BABB8(sp2C, arg1, 0, 1.0f, &(*(s32 *)D_8080224C_chlakemonster));
     func_800BA1D0(sp2C, arg0, arg1, 6);
-}
+}                      typedef struct { u8 pad0[0x4]; f32 unk4; } Objlakemonster_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */ typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; u8 padC[0x28]; f32 unk34; u8 pad38[0x18]; f32 unk50; f32 unk54; f32 unk58; u8 pad5C[0x16]; u16 unk72; } Objlakemonster_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void chlakemonster_entrypoint_3(void *arg0, void *arg1, s32 arg2, s32 arg3) {
-    s32 func_800B53A4(s32);
-    void func_800BA1D0(s32, f32[3], f32[3], s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 sp24;
-    s32 temp_v0;
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA1D0(BtIntPtr, f32[3], f32[3], s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(3);
     sp24 = temp_v0;
-    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) + 200.0f);
-    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg0) + (4))) + 200.0f);
+    (((Objlakemonster_arg1 *)arg1)->unk4) = (f32) ((((Objlakemonster_arg1 *)arg1)->unk4) + 200.0f);
+    (((Objlakemonster_arg0 *)arg0)->unk4) = (f32) ((((Objlakemonster_arg0 *)arg0)->unk4) + 200.0f);
     func_800BABB8(temp_v0, arg1, NULL, 1.0f, &(*(s32 *)D_8080229C_chlakemonster));
     func_800BA1D0(sp24, arg0, arg1, 3);
 }
@@ -951,7 +951,7 @@ void func_80801A60_chlakemonster(void *arg0) {
     s32 func_800C2FDC(u8);
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
-    u8 func_800C4350(s32, s32, s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     f32 func_800D8FF8(void);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
@@ -959,18 +959,18 @@ void func_80801A60_chlakemonster(void *arg0) {
     f32 start[3];
     f32 end[3];
 
-    switch ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) {
+    switch ((u32)*&((Objlakemonster_arg0 *)arg0)->unk72 >> 10) {
     case 1:
         break;
     case 2:
-        if (*(f32 *)((u8 *)arg0 + 8) >= 0.0f) {
+        if (((Objlakemonster_arg0 *)arg0)->unk8 >= 0.0f) {
             func_80801790_chlakemonster(arg0, 3);
             return;
         }
-        *(f32 *)((u8 *)arg0 + 8) += func_800D8FF8() * *(f32 *)((u8 *)arg0 + 0x50);
-        *(f32 *)((u8 *)arg0 + 0x50) += 5.0f;
+        ((Objlakemonster_arg0 *)arg0)->unk8 += func_800D8FF8() * ((Objlakemonster_arg0 *)arg0)->unk50;
+        ((Objlakemonster_arg0 *)arg0)->unk50 += 5.0f;
         if (func_8001210C(1)) {
-            start[1] = *(f32 *)((u8 *)arg0 + 8) + -3050.0f;
+            start[1] = ((Objlakemonster_arg0 *)arg0)->unk8 + -3050.0f;
             end[1] = start[1];
             switch (func_800DC128(0, 3)) {
             case 0:
@@ -998,35 +998,35 @@ void func_80801A60_chlakemonster(void *arg0) {
                 chlakemonster_entrypoint_3(start, end, 0x42480000, 0xC53EA000);
                 break;
             }
-            if (*(f32 *)((u8 *)arg0 + 0x58) <= 0.0f) {
+            if (((Objlakemonster_arg0 *)arg0)->unk58 <= 0.0f) {
                 _subaddieaudioquick_entrypoint_2(arg0, end, &(*(s32 *)D_808020BC_chlakemonster));
-                *(f32 *)((u8 *)arg0 + 0x58) = func_800DC178(1.0f, 2.0f) * 0.15f;
+                ((Objlakemonster_arg0 *)arg0)->unk58 = func_800DC178(1.0f, 2.0f) * 0.15f;
             } else {
-                *(f32 *)((u8 *)arg0 + 0x58) -= func_800D8FF8();
+                ((Objlakemonster_arg0 *)arg0)->unk58 -= func_800D8FF8();
             }
         }
         if (*((u8 *)arg0 + 0x5F) == 0) {
-            *((u8 *)arg0 + 0x5F) = func_800C4350(0, (s32)((u8 *)arg0 + 4), &(*(s32 *)D_808022C8_chlakemonster));
+            *((u8 *)arg0 + 0x5F) = func_800C4350(0, (BtIntPtr)((u8 *)arg0 + 4), &(*(s32 *)D_808022C8_chlakemonster));
         } else {
-            if (*(f32 *)((u8 *)arg0 + 8) < -750.0f) {
-                *(f32 *)((u8 *)arg0 + 0x34) = func_800F10B4(*(f32 *)((u8 *)arg0 + 8), -1000.0f, -850.0f, 0.0f, 32000.0f);
+            if (((Objlakemonster_arg0 *)arg0)->unk8 < -750.0f) {
+                ((Objlakemonster_arg0 *)arg0)->unk34 = func_800F10B4(((Objlakemonster_arg0 *)arg0)->unk8, -1000.0f, -850.0f, 0.0f, 32000.0f);
             }
-            *(f32 *)((u8 *)arg0 + 0x54) = func_800F10B4(*(f32 *)((u8 *)arg0 + 8), -1000.0f, 0.0f, 0.05f, 1.0f);
-            func_800C3058(*((u8 *)arg0 + 0x5F), (s32)*(f32 *)((u8 *)arg0 + 0x34));
-            func_800C31DC(*((u8 *)arg0 + 0x5F), *(f32 *)((u8 *)arg0 + 0x54));
-            func_800C4350(*((u8 *)arg0 + 0x5F), (s32)((u8 *)arg0 + 0x18), NULL);
+            ((Objlakemonster_arg0 *)arg0)->unk54 = func_800F10B4(((Objlakemonster_arg0 *)arg0)->unk8, -1000.0f, 0.0f, 0.05f, 1.0f);
+            func_800C3058(*((u8 *)arg0 + 0x5F), (s32)*&((Objlakemonster_arg0 *)arg0)->unk34);
+            func_800C31DC(*((u8 *)arg0 + 0x5F), ((Objlakemonster_arg0 *)arg0)->unk54);
+            func_800C4350(*((u8 *)arg0 + 0x5F), (BtIntPtr)((u8 *)arg0 + 0x18), NULL);
         }
         break;
     case 3:
         if (*((u8 *)arg0 + 0x5F) != 0) {
-            if (*(f32 *)((u8 *)arg0 + 0x34) > 500.0f) {
-                *(f32 *)((u8 *)arg0 + 0x34) *= 0.7f;
-                if (*(f32 *)((u8 *)arg0 + 0x54) > 0.05f) {
-                    *(f32 *)((u8 *)arg0 + 0x54) *= 0.7f;
+            if (((Objlakemonster_arg0 *)arg0)->unk34 > 500.0f) {
+                ((Objlakemonster_arg0 *)arg0)->unk34 *= 0.7f;
+                if (((Objlakemonster_arg0 *)arg0)->unk54 > 0.05f) {
+                    ((Objlakemonster_arg0 *)arg0)->unk54 *= 0.7f;
                 }
-                func_800C3058(*((u8 *)arg0 + 0x5F), (s32)*(f32 *)((u8 *)arg0 + 0x34));
-                func_800C31DC(*((u8 *)arg0 + 0x5F), *(f32 *)((u8 *)arg0 + 0x54));
-                func_800C4350(*((u8 *)arg0 + 0x5F), (s32)((u8 *)arg0 + 0x18), NULL);
+                func_800C3058(*((u8 *)arg0 + 0x5F), (s32)*&((Objlakemonster_arg0 *)arg0)->unk34);
+                func_800C31DC(*((u8 *)arg0 + 0x5F), ((Objlakemonster_arg0 *)arg0)->unk54);
+                func_800C4350(*((u8 *)arg0 + 0x5F), (BtIntPtr)((u8 *)arg0 + 0x18), NULL);
             } else {
                 func_800C2FDC(*((u8 *)arg0 + 0x5F));
                 *((u8 *)arg0 + 0x5F) = 0;
@@ -1055,7 +1055,7 @@ OSThread *chlakemonster_entrypoint_4(void)
 /* extern */
 
 void func_80801EA8_chlakemonster(s32 arg0) {
-    s32 _chswitch_entrypoint_14(s32, s32);
+    s32 _chswitch_entrypoint_14(BtIntPtr, s32);
     s32 func_800DA298(s32);
     _chswitch_entrypoint_14(arg0, 0x187);
     if (func_800DA298(0x187) != 0) {
@@ -1067,7 +1067,7 @@ void func_80801EE4_chlakemonster(s32 arg0)
 {
 }
 s32 func_80801EEC_chlakemonster(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     if (arg1 == 7) {
         func_80101180(0x301, 7, 0);
         func_8010A570(arg0);

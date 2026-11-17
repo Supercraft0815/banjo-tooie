@@ -2,14 +2,14 @@
 
 OSThread *chdiggerbossshell_entrypoint_0(void)
 {
-    extern u8 D_80800560_chdiggerbossshell[];
+    extern ActorData D_80800560_chdiggerbossshell[];
 
     return (OSThread *) D_80800560_chdiggerbossshell;
 }
 
 OSThread *chdiggerbossshell_entrypoint_1(void)
 {
-    extern u8 D_808005A8_chdiggerbossshell[];
+    extern ActorData D_808005A8_chdiggerbossshell[];
 
     return (OSThread *) D_808005A8_chdiggerbossshell;
 }
@@ -37,7 +37,7 @@ void func_80800018_chdiggerbossshell(Actor *arg0) {
 /* extern */
 
 void func_808000B4_chdiggerbossshell(Actor *arg0) {
-    void _fxegg_entrypoint_5(f32 *, f32 *, f32);
+    s32 _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
     f32 func_800D8FF8(void);
     void func_800EF174(f32 *, f32 *, f32);
     void func_800F1A88(f32 *, f32 *);
@@ -81,20 +81,20 @@ void func_808001EC_chdiggerbossshell(Actor *arg0) {
     s32 *_fxgenlist_entrypoint_2(void);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80018820(s32, f32, f32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800E1610(s32, f32, f32, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
     void func_8010A570(Actor *);
     void func_808002CC_chdiggerbossshell(f32 *);
-    extern s32 D_808005F0_chdiggerbossshell;
+    extern s32 D_808005F0_chdiggerbossshell[4];
     f32 position[3];
 
     func_800EE7F8(position, arg0->position);
     position[1] += 50.0f;
     func_800BBCB8(position, NULL, 1.4f, 1, _fxgenlist_entrypoint_2());
-    _subaddieaudioquick_entrypoint_2(arg0, position, &D_808005F0_chdiggerbossshell);
+    _subaddieaudioquick_entrypoint_2(arg0, position, D_808005F0_chdiggerbossshell);
     func_800E1610(0, 20.0f, 0.9f, arg0->position);
     func_80018820(0, 2.0f, 0.25f);
     position[1] += 50.0f;
@@ -110,14 +110,14 @@ void func_808002CC_chdiggerbossshell(f32 *arg0) {
     s32 func_800C8CB8(s32, f32 *);
     s32 func_800C8E54(s32, s32, s32);
     s32 func_800C8E84(s32, s32 *);
-    extern s32 D_80800600_chdiggerbossshell;
+    extern s32 D_80800600_chdiggerbossshell[3];
     s32 sp1C;
     s32 temp_v0;
 
     temp_v0 = func_800C8A98();
     sp1C = temp_v0;
     func_800C8CB8(temp_v0, arg0);
-    func_800C8E84(sp1C, &D_80800600_chdiggerbossshell);
+    func_800C8E84(sp1C, D_80800600_chdiggerbossshell);
     func_800C8E54(sp1C, 0x44160000, 0x447A0000);
     _chlightfader_entrypoint_1(sp1C, 0x3FB33333, 5);
 }
@@ -150,20 +150,20 @@ Actor *func_80800330_chdiggerbossshell(Actor *arg0) {
         var_f20 = func_800136E4(var_f20 + 90.0f);
     }
     return arg0;
-}
+}    typedef struct { u8 pad0[0x58]; f32 unk58; } Objbossshell_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080044C_chdiggerbossshell(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.75f;
+    (((Objbossshell_arg0 *)arg0)->unk58) = 1.75f;
 }
 
 void func_8080045C_chdiggerbossshell(Actor *arg0) {
     void _subaddiefade_entrypoint_3(Actor *);
     s32 func_800D9078(f32 *);
     s32 func_8010B990(Actor *, s32);
-    void func_80800504_chdiggerbossshell(s32);
+    void func_80800504_chdiggerbossshell(BtIntPtr);
     if (arg0->unk70_10 == 1) {
         if (func_8010B990(arg0, 0x400005) & 0x20) {
-            func_80800504_chdiggerbossshell((s32)arg0);
+            func_80800504_chdiggerbossshell((BtIntPtr)arg0);
         }
         if (func_800D9078(&arg0->unk58) != 0) {
             _subaddiefade_entrypoint_3(arg0);
@@ -174,7 +174,7 @@ void func_8080045C_chdiggerbossshell(Actor *arg0) {
 /* extern */
 
 s32 func_808004C8_chdiggerbossshell(s32 arg0, s32 arg1, s32 arg2) {
-    void func_80800504_chdiggerbossshell(s32 arg0);
+    void func_80800504_chdiggerbossshell(BtIntPtr arg0);
     switch (arg1) {
     case 0x40:
         func_80800504_chdiggerbossshell(arg0);
@@ -185,15 +185,25 @@ s32 func_808004C8_chdiggerbossshell(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_80800504_chdiggerbossshell(s32 arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+void func_80800504_chdiggerbossshell(BtIntPtr arg0) {
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800FFAB0(Actor *);
     void func_8010A570(Actor *);
-    extern s32 D_8080060C_chdiggerbossshell;
-    s32 temp_a0;
+    extern s32 D_8080060C_chdiggerbossshell[13];
+    BtIntPtr temp_a0;
 
     temp_a0 = arg0 + 4;
-    func_800BBCB8(temp_a0, temp_a0, 1.0f, 3, &D_8080060C_chdiggerbossshell);
+    func_800BBCB8(temp_a0, temp_a0, 1.0f, 3, D_8080060C_chdiggerbossshell);
     func_8010A570(arg0);
     func_800FFAB0(arg0);
 }
+/* data_to_c.py: from asm/data/overlays/ch/digger/bossshell.data.s */
+void func_80102EC0();
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800560_chdiggerbossshell [1] BT_DATA(4, overlays_ch_digger_bossshell, 0x0) = { { 445, 1267, 2308, 1, 0, (void (*)(struct Actor *))func_808000B4_chdiggerbossshell, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 0, 1090519040, 0, 0, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800018_chdiggerbossshell, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32640, 0, (void (*)(struct Actor *, long, long))func_80800188_chdiggerbossshell, 0 } };
+ActorData D_808005A8_chdiggerbossshell [1] BT_DATA(4, overlays_ch_digger_bossshell, 0x48) = { { 684, 1268, -1, 1, 0, (void (*)(struct Actor *))func_8080045C_chdiggerbossshell, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 0, 1077936128, 0, 0, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_8080044C_chdiggerbossshell, (void (*)(void *, long, void *, long, void *))func_80107C2C, 0, 0, (void (*)(struct Actor *, long, long))func_808004C8_chdiggerbossshell, 0 } };
+s32 D_808005F0_chdiggerbossshell[4] BT_DATA(4, overlays_ch_digger_bossshell, 0x90) = { 1246227, 852211, 17563672, 0 };
+s32 D_80800600_chdiggerbossshell[3] BT_DATA(4, overlays_ch_digger_bossshell, 0xA0) = { 255, 192, 96 };
+s32 D_8080060C_chdiggerbossshell[13] BT_DATA(4, overlays_ch_digger_bossshell, 0xAC) = { 1441796, 1903049, 2153692, -593493982, 3342438, 10027212, 2818124, 8388629, 1638553, 2949180, 5242894, 983060, 0 };

@@ -84,22 +84,22 @@ Actor *gccubesearch_entrypoint_4(s32 *arg0, f32 *arg1, s32 arg2) {
     return closest;
 }
 
-void gccubesearch_entrypoint_5(s32 arg0, s32 arg1) {
-    gccubesearch_entrypoint_4(arg0, arg1, 0);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(Actor *) gccubesearch_entrypoint_5(BtIntPtr arg0, BtIntPtr arg1) {
+    BT_NATIVE_ONLY(return (gccubesearch_entrypoint_4(arg0, arg1, 0));) gccubesearch_entrypoint_4(arg0, arg1, 0);
 }
 
-void gccubesearch_entrypoint_6(s32 arg0,s32 arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(Actor *) gccubesearch_entrypoint_6(BtIntPtr arg0,BtIntPtr arg1)
 {
-    gccubesearch_entrypoint_4(arg0,arg1,0x1);
+    BT_NATIVE_ONLY(return (gccubesearch_entrypoint_4(arg0,arg1,0x1));) gccubesearch_entrypoint_4(arg0,arg1,0x1);
 }
 
 /* extern */
 
 s32 gccubesearch_entrypoint_7(s32 *arg0, Actor **arg1, s32 arg2) {
-    s32 _gspropmarker_entrypoint_1(s32, s32 *, Actor **, s32);
+    s32 _gspropmarker_entrypoint_1(void *cell, s32 *ids, void *output, s32 capacity);
     void func_800BE52C(s32 *, s32 *);
     s32 var_s0;
-    s32 sp30;
+    BtIntPtr sp30;
     s32 sp2C;
 
     var_s0 = 0;
@@ -116,7 +116,7 @@ s32 gccubesearch_entrypoint_7(s32 *arg0, Actor **arg1, s32 arg2) {
 /* extern */
 
 s32 gccubesearch_entrypoint_8(s32 *arg0, Actor **arg1, s32 arg2, f32 *arg3) {
-    s32 _gspropmarker_entrypoint_1(s32, s32 *, Actor **, s32);
+    s32 _gspropmarker_entrypoint_1(void *cell, s32 *ids, void *output, s32 capacity);
     s32 *func_800BDD24(s32 *);
     void func_800EE904(s32 dst[3], f32 src[3]);
     s32 *var_s0;
@@ -153,7 +153,7 @@ s32 gccubesearch_entrypoint_10(s32 arg0, u32 arg1) {
     arg0 = gccubesearch_entrypoint_9(arg0, B_80800EB0_gccubesearch, 0x28) - 1;
     var_v1 = 0;
     while (arg0 >= 0) {
-        if (((u32)B_80800EB0_gccubesearch[arg0]->pointerToSyscallEntry >> 0x15) < arg1) {
+        if (((BtUIntPtr)B_80800EB0_gccubesearch[arg0]->pointerToSyscallEntry >> 0x15) < arg1) {
             var_v1 += 1;
         }
         arg0--;
@@ -163,11 +163,11 @@ s32 gccubesearch_entrypoint_10(s32 arg0, u32 arg1) {
 
 /* extern */
 
-s32 gccubesearch_entrypoint_11(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _gspropmarker_entrypoint_2(s32, s32, s32, s32);
+s32 gccubesearch_entrypoint_11(s32 arg0, BtIntPtr arg1, s32 arg2) {
+    s32 _gspropmarker_entrypoint_2(void *cell, s32 id, void *positions, s32 capacity);
     void func_800BE52C(s32 *, s32 *);
     s32 var_s0;
-    s32 sp38;
+    BtIntPtr sp38;
     s32 sp34;
 
     var_s0 = 0;
@@ -209,23 +209,23 @@ s32 func_80800590_gccubesearch(f32 arg0[3], s32 arg1, f32 arg2[3], f32 (*arg3)(f
     return 1;
 }
 
-void gccubesearch_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gccubesearch_entrypoint_12(BtIntPtr arg0, s32 arg1, BtIntPtr arg2) {
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_80800590_gccubesearch();
 
-    func_80800590_gccubesearch(arg0, arg1, arg2, func_800EEB40);
+    BT_NATIVE_ONLY(return (func_80800590_gccubesearch(arg0, arg1, arg2, func_800EEB40));) func_80800590_gccubesearch(arg0, arg1, arg2, func_800EEB40);
 }
 
-s32 gccubesearch_entrypoint_13(s32 arg0, s32 arg1, s32 arg2) {
+s32 gccubesearch_entrypoint_13(BtIntPtr arg0, s32 arg1, BtIntPtr arg2) {
     f32 func_800EFC7C(f32 *, f32 *);
     s32 func_80800590_gccubesearch();
     return func_80800590_gccubesearch(arg0, arg1, arg2, func_800EFC7C);
 }
 
 void *gccubesearch_entrypoint_14(s32 actor_id, s32 *position) {
-    Prop *_gspropmarker_entrypoint_0(s32, u32);
+    void * _gspropmarker_entrypoint_0(void *cell, s32 id);
     void func_800BD64C(s32 *, f32 *);
-    s32 func_800BDAD4(s32 *);
+    void * func_800BDAD4(s32 *position);
     void func_800BE554(s32 *, s32 *);
     s32 func_800D2E90(s32);
     s32 cube_indices[3];
@@ -281,9 +281,9 @@ void *gccubesearch_entrypoint_14(s32 actor_id, s32 *position) {
 }
 
 Prop *gccubesearch_entrypoint_15(u32 arg0, u32 arg1, f32 *arg2) {
-    Prop *_gspropmarker_entrypoint_0(s32, u32);
+    void * _gspropmarker_entrypoint_0(void *cell, s32 id);
     void func_800BD64C(s32 *, f32 *);
-    s32 func_800BDAD4(s32 position[3]);
+    void * func_800BDAD4(s32 *position);
     void func_800BE554(s32 *, s32 *);
     s32 position[3];
     s32 i;
@@ -323,9 +323,9 @@ Prop *gccubesearch_entrypoint_15(u32 arg0, u32 arg1, f32 *arg2) {
 s32 gccubesearch_entrypoint_16(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
     void func_800BE52C(s32 *, s32 *);
     void func_800EB880(s32 *, s32, s32);
-    s32 func_800EB8C0(s32);
+    void func_800EB8C0(void *cube);
     s32 func_800EBB30(s32 *, s32 *);
-    s32 sp1C;
+    BtIntPtr sp1C;
     s32 sp18;
 
     func_800EB880(arg0, arg3, arg4);
@@ -340,17 +340,17 @@ s32 gccubesearch_entrypoint_16(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 ar
 }
 
 Prop *gccubesearch_entrypoint_17(s32 arg0, s32 *arg1) {
-    s32 func_800BDAD4(s32 position[3]);
+    void * func_800BDAD4(s32 *position);
     void func_800BE554(s32 *, s32 *);
     s32 func_800D2E90(s32);
     Prop *func_800E9D68(s16 *);
-    u32 func_800E9D90(s16 *);
+    void * func_800E9D90(void *cube);
     s32 position[3];
-    s32 cube;
+    BtIntPtr cube;
     s32 min[3];
     s32 max[3];
     Prop *prop;
-    u32 end;
+    BtUIntPtr end;
 
     func_800BE554(min, max);
     for (position[1] = min[1]; position[1] <= max[1]; position[1]++) {
@@ -361,7 +361,7 @@ Prop *gccubesearch_entrypoint_17(s32 arg0, s32 *arg1) {
                     if (cube) {
                         prop = func_800E9D68((s16 *)cube);
                         end = func_800E9D90((s16 *)cube);
-                        for (; (u32)prop < end; prop++) {
+                        for (; (BtUIntPtr)prop < end; prop++) {
                             if (arg0 == (((u32 *)prop)[4] >> 21)) {
                                 if (arg1 != NULL) {
                                     *arg1 = cube;
@@ -381,11 +381,11 @@ Prop *gccubesearch_entrypoint_17(s32 arg0, s32 *arg1) {
 }
 
 u32 gccubesearch_entrypoint_18(s32 arg0, s32 *arg1, u32 *arg2, s32 *arg3, s32 *arg4, s32 *arg5, Prop **arg6) {
-    s32 func_800BDAD4(s32 position[3]);
+    void * func_800BDAD4(s32 *position);
     void func_800BE554(s32 *, s32 *);
-    s32 func_800E9BF4(s16 *, s32);
+    BtIntPtr func_800E9BF4(s16 *, s32);
     s32 func_800E9DC4(s16 *);
-    s32 cube;
+    BtIntPtr cube;
     u32 word;
     s32 min[3];
     s32 max[3];
@@ -433,3 +433,9 @@ u32 gccubesearch_entrypoint_18(s32 arg0, s32 *arg1, u32 *arg2, s32 *arg3, s32 *a
     } while (!result);
     return result;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+Actor * B_80800EB0_gccubesearch [ 40 ] BT_DATA(16, bss_gc_cubesearch, 0x0);
+#endif

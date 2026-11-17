@@ -11,7 +11,7 @@
 #include "overlays/bs/kaz/move.h"
 #include "player.h"
 
-extern s32 _bskazow_entrypoint_0(s32 idx);
-extern s32 _bskazow_entrypoint_1(s32 idx);
+extern BtIntPtr _bskazow_entrypoint_0(s32 idx);
+extern BtIntPtr _bskazow_entrypoint_1(s32 idx);
 
 #endif // __BS_KAZ_OW_H__

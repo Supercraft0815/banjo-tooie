@@ -1,33 +1,33 @@
 #include "common.h"
 
-struct Unk800C7A68;
+struct Unk800C7A68;                        typedef struct { u8 pad0[0x44]; f32 unk44; } Objicekeydoor_func_80800000_chicekeydoor_sp38; /* offsets.py genstruct: fields from raw offsets on sp38; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x44]; f32 unk48; u8 pad4C[0xC]; f32 unk58; } Objicekeydoor_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800000_chicekeydoor(u8 *arg0) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    s32 _subaddieDll_entrypoint_4(u8 *, s32);
-    s32 _subaddieaudioloop_entrypoint_2(u8 *);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    void _subaddieaudioloop_entrypoint_2(void *arg0);
     s32 _subaddieaudioloop_entrypoint_4(u8 *, u8 *, s32, s32 *);
     s32 func_8008F8B0();
     s32 func_8008F8D8(s32);
-    s32 func_8008F904(s32 *, s32);
+    s32 func_8008F904(s32 *, BtIntPtr);
     s32 func_8008F938(s32);
     s32 func_8008F990(u8 *, s32);
     s32 func_800C4140(s32, u8 *, s32);
     s32 func_800D1804(s32);
     s32 func_800D1824(s32);
     s32 func_800D90A4(u8 *);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    s32 func_800F54E4();
-    s32 func_800F82D4(s32, s32);
+    BtIntPtr func_800F54E4();
+    s32 func_800F82D4(BtIntPtr, s32);
     s32 func_800FC660(s32);
     s32 func_80101FDC(u8 *, s32);
     u8 *func_80106790();
     s32 func_80108B04(u8 *, s32);
     s32 func_8010C500(u8 *);
     s32 func_80800640_chicekeydoor(u8 *, u8 *);
-    extern s32 D_80800920_chicekeydoor;
+    extern s32 D_80800920_chicekeydoor[4];
     extern s32 func_8010D5DC;
     s32 marker;
     u8 *sp38;
@@ -41,7 +41,7 @@ void func_80800000_chicekeydoor(u8 *arg0) {
         if (func_8010C500(arg0) != 0) {
             func_8008F8B0();
             func_8008F8D8(1);
-            func_8008F904(&func_8010D5DC, (*(s32 *)((s8 *)(arg0) + (0))));
+            func_8008F904(&func_8010D5DC, (((Objicekeydoor_arg0 *)arg0)->unk0));
             func_8008F938(1);
             func_8008F990(arg0 + 0x18, 0x43FA0000);
             func_80101FDC(arg0, 3);
@@ -55,7 +55,7 @@ void func_80800000_chicekeydoor(u8 *arg0) {
     case 4:
         if (func_800D90A4(arg0 + 0x58) != 0) {
             func_80108B04(arg0, 0);
-            (*(f32 *)((s8 *)(arg0) + (0x58))) = 5.0f;
+            (((Objicekeydoor_arg0 *)arg0)->unk58) = 5.0f;
             _capod_entrypoint_13(*(s32 *)arg0, *(s32 *)arg0, 0x1F, 0x10);
             func_800FC660(0xE);
             func_800D1804(0x53);
@@ -66,7 +66,7 @@ void func_80800000_chicekeydoor(u8 *arg0) {
     case 5:
         if ((*(s32 *)(arg0 + 0x3C) != 0) && (func_80800640_chicekeydoor(arg0, func_80106790(*(s32 *)(arg0 + 0x3C))) != 0)) {
             func_800C4140(0x7FFB5D6D, arg0 + 4, 0x04B000FA);
-            (*(f32 *)((s8 *)(arg0) + (0x58))) = 1.0f;
+            (((Objicekeydoor_arg0 *)arg0)->unk58) = 1.0f;
             func_80101FDC(arg0, 6);
         }
         func_800D1824(0x53);
@@ -77,19 +77,19 @@ void func_80800000_chicekeydoor(u8 *arg0) {
             sp38 = func_80106790(marker);
             if (func_800D90A4(arg0 + 0x58) != 0) {
                 func_800EFB24(sp38 + 0x28, sp38 + 4, arg0 + 4);
-                (*(f32 *)((s8 *)(arg0) + (0x58))) = 4.0f;
-                (*(f32 *)((s8 *)(sp38) + (0x44))) = 90.0f;
+                (((Objicekeydoor_arg0 *)arg0)->unk58) = 4.0f;
+                (((Objicekeydoor_func_80800000_chicekeydoor_sp38 *)sp38)->unk44) = 90.0f;
                 func_800C4140(0x7FFB5C56, arg0 + 4, 0x04B000FA);
                 func_80101FDC(arg0, 7);
             } else {
-                (*(f32 *)((s8 *)(sp38) + (0x44))) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x58))), 1.0f, 0.0f, 0.0f, 90.0f);
+                (((Objicekeydoor_func_80800000_chicekeydoor_sp38 *)sp38)->unk44) = func_800F12D4((((Objicekeydoor_arg0 *)arg0)->unk58), 1.0f, 0.0f, 0.0f, 90.0f);
             }
         }
         func_800D1824(0x53);
         return;
     case 7:
         if (func_800D90A4(arg0 + 0x58) != 0) {
-            (*(f32 *)((s8 *)(arg0) + (0x48))) = -90.0f;
+            (((Objicekeydoor_arg0 *)arg0)->unk48) = -90.0f;
             func_800F82D4(func_800F54E4(), 0);
             func_800DA544(0x3E2);
             _subaddieaudioloop_entrypoint_2(arg0);
@@ -97,9 +97,9 @@ void func_80800000_chicekeydoor(u8 *arg0) {
             _subaddieDll_entrypoint_4(arg0, 0);
             func_80101FDC(arg0, 8);
         } else {
-            sp34 = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x58))), 4.0f, 0.0f, 0.0f, 1.0f);
-            _subaddieaudioloop_entrypoint_4(arg0, arg0 + 4, 1, &D_80800920_chicekeydoor);
-            (*(f32 *)((s8 *)(arg0) + (0x48))) = (f32) (sp34 * -90.0f);
+            sp34 = func_800F12D4((((Objicekeydoor_arg0 *)arg0)->unk58), 4.0f, 0.0f, 0.0f, 1.0f);
+            _subaddieaudioloop_entrypoint_4(arg0, arg0 + 4, 1, D_80800920_chicekeydoor);
+            (((Objicekeydoor_arg0 *)arg0)->unk48) = (f32) (sp34 * -90.0f);
         }
         func_800D1824(0x53);
         break;
@@ -113,14 +113,14 @@ s32 func_80800318_chicekeydoor(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _glsplinefind_entrypoint_3(f32 *);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     s32 _gspropctrl_entrypoint_12(Prop *);
-    s32 _subaddieDll_entrypoint_4(u8 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     s32 func_800D1A04(s32);
     void *func_800D7520(s32);
     s32 func_800DA298(s32);
     void func_800EF1B8(f32 *, f32, f32);
-    s32 func_800F54E4();
-    void func_800F5A00(s32, f32 *);
+    BtIntPtr func_800F54E4();
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_800F8300();
     s32 func_80101FDC(u8 *, s32);
     void func_80103110(void *, s32);
@@ -200,7 +200,7 @@ void func_8080057C_chicekeydoor(Actor *arg0, void *arg1) {
 
 OSThread *chicekeydoor_entrypoint_0(void)
 {
-    extern u8 D_80800930_chicekeydoor[];
+    extern ActorData D_80800930_chicekeydoor[];
 
     return (OSThread *) D_80800930_chicekeydoor;
 }
@@ -210,12 +210,12 @@ s32 func_80800640_chicekeydoor(u8 *arg0, u8 *arg1) {
     s32 func_800D90A4(u8 *);
     f32 func_800136E4(f32);
     f32 func_80013970(f32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     void *func_800D7520(s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    extern s32 D_80800978_chicekeydoor;
+    extern s32 D_80800978_chicekeydoor[22];
     f32 progress;
     f32 oldRotation;
     s32 result;
@@ -226,7 +226,7 @@ s32 func_80800640_chicekeydoor(u8 *arg0, u8 *arg1) {
     func_800C7A68(func_800D7520((s32)((f32 *)((Actor *)arg0)->actorData)[7]), progress, ((Actor *)arg1)->position);
     ((Actor *)arg1)->rotation[0] = 0.0f;
     if (progress < 0.9f) {
-        func_800BBCB8(((Actor *)arg1)->position, ((Actor *)arg1)->position, 1.0f, 1, &D_80800978_chicekeydoor);
+        func_800BBCB8(((Actor *)arg1)->position, ((Actor *)arg1)->position, 1.0f, 1, D_80800978_chicekeydoor);
         ((Actor *)arg1)->rotation[1] = func_800136E4(func_800F12D4(progress, 0.0f, 0.9f, 0.0f, 1260.0f));
     } else {
         ((Actor *)arg1)->rotation[1] = 180.0f;
@@ -242,3 +242,10 @@ s32 func_80800640_chicekeydoor(u8 *arg0, u8 *arg1) {
     }
     return result;
 }
+/* data_to_c.py: from asm/data/overlays/ch/icekeydoor.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+s32 D_80800920_chicekeydoor[4] BT_DATA(4, overlays_ch_icekeydoor, 0x0) = { 1246381, 655616, 1469792, 0 };
+ActorData D_80800930_chicekeydoor [1] BT_DATA(4, overlays_ch_icekeydoor, 0x10) = { { 344, 1298, 2405, 2, 0, (void (*)(struct Actor *))func_80800000_chicekeydoor, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080057C_chicekeydoor, 131072000, 0, 0, 0, 0, 2113, 0, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80800318_chicekeydoor, 0 } };
+s32 D_80800978_chicekeydoor[22] BT_DATA(4, overlays_ch_icekeydoor, 0x58) = { 1903072, 1834208, -39321555, 13107550, 917504, 5242902, 268566567, 300, 500, 2228300, 4980825, 8388629, 204, 2818432, 50331652, 10027015, 262193, -4849714, 0, 0, 0, 0 };

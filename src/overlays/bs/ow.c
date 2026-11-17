@@ -33,6 +33,9 @@ void bsow_entrypoint_2(PlayerState *self) {
     _babounce_entrypoint_3(self);
 }
 
-s32 bsow_entrypoint_3(s32 idx) {
+BtIntPtr bsow_entrypoint_3(s32 idx) {
     return D_80800150_bsow[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/ow.data.s */
+void func_80099AA8();
+BtIntPtr D_80800150_bsow [4] BT_DATA(4, overlays_bs_ow, 0x0) = { (BtIntPtr)_bsow_entrypoint_2, (BtIntPtr)_bsow_entrypoint_0, (BtIntPtr)_bsow_entrypoint_1, (BtIntPtr)func_80099AA8 };

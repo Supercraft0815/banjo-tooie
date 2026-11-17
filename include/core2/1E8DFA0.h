@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-s32 func_800B53A4(s32);
+BtIntPtr func_800B53A4(s32);
 
 #endif

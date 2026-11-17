@@ -2,28 +2,28 @@
 
 u32 subaddiefade_entrypoint_0(u8 *arg0) {
     return arg0[155];
-}
+}    typedef struct { u8 pad0[0x79]; u8 unk79; u8 pad7A[0x21]; s8 unk9B; } Objfade_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void subaddiefade_entrypoint_1(void *arg0, s32 arg1) {
-    (*(u8 *)((s8 *)arg0 + 0x79)) = (u8)((*(u8 *)((s8 *)arg0 + 0x79)) & 0xFFFC);
-    (*(s8 *)((s8 *)arg0 + 0x9B)) = arg1;
+    (((Objfade_arg0 *)arg0)->unk79) = (u8)((((Objfade_arg0 *)arg0)->unk79) & 0xFFFC);
+    (((Objfade_arg0 *)arg0)->unk9B) = arg1;
 }
 
 void subaddiefade_entrypoint_2(void *arg0) {
-    (*(s8 *)((s8 *)(arg0) + (0x9B))) = 0;
-    (*(u8 *)((s8 *)(arg0) + (0x79))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x79))) & 0xFFFC) | 1);
+    (((Objfade_arg0 *)arg0)->unk9B) = 0;
+    (((Objfade_arg0 *)arg0)->unk79) = (u8) (((((Objfade_arg0 *)arg0)->unk79) & 0xFFFC) | 1);
 }
 
 void subaddiefade_entrypoint_3(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x79))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x79))) & 0xFFFC) | 2);
+    (((Objfade_arg0 *)arg0)->unk79) = (u8) (((((Objfade_arg0 *)arg0)->unk79) & 0xFFFC) | 2);
 }
 
 void subaddiefade_entrypoint_4(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x79))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x79))) & 0xFFFC) | 1);
+    (((Objfade_arg0 *)arg0)->unk79) = (u8) (((((Objfade_arg0 *)arg0)->unk79) & 0xFFFC) | 1);
 }
 
 void subaddiefade_entrypoint_5(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x79))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x79))) & 0xFFFC) | 3);
+    (((Objfade_arg0 *)arg0)->unk79) = (u8) (((((Objfade_arg0 *)arg0)->unk79) & 0xFFFC) | 3);
 }
 
 void subaddiefade_entrypoint_6(u8 *arg0, s32 arg1) {
@@ -132,17 +132,17 @@ void subaddiefade_entrypoint_7(Actor *arg0) {
 /* extern */
 
 void subaddiefade_entrypoint_8(void *arg0, s32 arg1) {
-    s8 func_800F0D90(s32, s32, s32);
-    (*(s8 *)((s8 *)(arg0) + (0x9B))) = func_800F0D90(arg1, 0, 0xFF);
+    s32 func_800F0D90(s32 arg0, s32 arg1, s32 arg2);
+    (((Objfade_arg0 *)arg0)->unk9B) = func_800F0D90(arg1, 0, 0xFF);
 }
 
 void subaddiefade_entrypoint_9(void *arg0, f32 *arg1) {
-    s32 func_800F2EE0();
+    void func_800F2EE0(void *arg0, void *arg1);
     func_800F2EE0(arg1, (u8 *)arg0 + 0x98);
 }
 
 void subaddiefade_entrypoint_10(void *arg0, f32 *arg1) {
-    s32 func_800F2EFC();
+    void func_800F2EFC(void *arg0, void *arg1);
     func_800F2EFC(arg1, (u8 *)arg0 + 0x98);
 }
 
@@ -197,7 +197,7 @@ void subaddiefade_entrypoint_13(u8 *arg0, u8 *arg1) {
         return;
     }
     func_800F2F3C(arg0 + 0x98, arg1);
-}
+} 
 
 void func_80800450_subaddiefade(s32 *arg0, u8 *arg1) {
     s32 temp_f16;

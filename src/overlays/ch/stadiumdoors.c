@@ -2,7 +2,7 @@
 
 void func_80800000_chstadiumdoors(Actor *arg0) {
     s32 func_800DA298(s32);
-    s32 _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
 
     switch (arg0->unk74_7) {
         case 0x33:
@@ -35,7 +35,7 @@ void func_808000FC_chstadiumdoors(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_80102B2C(Actor *, f32);
     s32 func_80102CF4(Actor *, s32);
-    extern u32 D_80800270_chstadiumdoors;
+    extern u32 D_80800270_chstadiumdoors[4];
 
     switch (arg0->unk70_10) {
         case 1:
@@ -61,7 +61,7 @@ void func_808000FC_chstadiumdoors(Actor *arg0) {
             }
             break;
         case 2:
-            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80800270_chstadiumdoors);
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800270_chstadiumdoors);
             if (func_80102CF4(arg0, 0x3F800000) == 0) {
                 func_80102B2C(arg0, 1.0f);
             } else {
@@ -74,7 +74,13 @@ void func_808000FC_chstadiumdoors(Actor *arg0) {
 
 OSThread *chstadiumdoors_entrypoint_0(void)
 {
-    extern u8 D_80800280_chstadiumdoors[];
+    extern ActorData D_80800280_chstadiumdoors[];
 
     return (OSThread *) D_80800280_chstadiumdoors;
 }
+/* data_to_c.py: from asm/data/overlays/ch/stadiumdoors.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+u32 D_80800270_chstadiumdoors[4] BT_DATA(4, overlays_ch_stadiumdoors, 0x0) = { 0x1304AD, 0x1661A8, 0x100FA, 0xA8C0000 };
+ActorData D_80800280_chstadiumdoors [1] BT_DATA(4, overlays_ch_stadiumdoors, 0x10) = { { 597, 370, 1629, 1, 0, (void (*)(struct Actor *))func_808000FC_chstadiumdoors, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 327680000, 0, 0, 0, 8, 2052, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chstadiumdoors, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 2, 0, 0 } };

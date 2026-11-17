@@ -2,35 +2,35 @@
 
 /* extern */
 
-void func_80800000_bamovethrust(s32 arg0, f32 *arg1, f32 arg2) {
+void func_80800000_bamovethrust(BtIntPtr arg0, f32 *arg1, f32 arg2) {
     void func_800EF4E4(f32[3], f32, f32, f32, f32, f32);
     f32 func_8009BFCC();
-    f32 yaw_get(s32);
+    f32 yaw_get(BtIntPtr);
     f32 sp24;
 
     sp24 = func_8009BFCC();
     func_800EF4E4(arg1, sp24, yaw_get(arg0), 0.0f, 0.0f, arg2);
 }
 
-void bamovethrust_entrypoint_0(s32 arg0) 
+void bamovethrust_entrypoint_0(BtIntPtr arg0) 
 {
-}
+}    typedef struct { u8 pad0[0xC8]; void * unkC8; } Objthrust_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void bamovethrust_entrypoint_1(void *arg0) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x8C))) = 1.0f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x84))) = 1.0f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x88))) = 1.0f;
+    (*(f32 *)((s8 *)((((Objthrust_arg0 *)arg0)->unkC8)) + (0x8C))) = 1.0f;
+    (*(f32 *)((s8 *)((((Objthrust_arg0 *)arg0)->unkC8)) + (0x84))) = 1.0f;
+    (*(f32 *)((s8 *)((((Objthrust_arg0 *)arg0)->unkC8)) + (0x88))) = 1.0f;
 }
 
 void bamovethrust_entrypoint_2(void *arg0, f32 arg1) {
-    func_80800000_bamovethrust((s32) arg0, (*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10, arg1);
+    func_80800000_bamovethrust((BtIntPtr) arg0, (*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10, arg1);
 }
 
 void bamovethrust_entrypoint_3(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 140) = arg1;
+    *(f32 *)((u8 *)*&((Objthrust_arg0 *)arg0)->unkC8 + 140) = arg1;
 }
 
 void bamovethrust_entrypoint_4(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 132) = arg1;
+    *(f32 *)((u8 *)*&((Objthrust_arg0 *)arg0)->unkC8 + 132) = arg1;
 }
 
 /* extern */
@@ -46,7 +46,7 @@ void bamovethrust_entrypoint_5(u8 *arg0) {
     f32 sp38[3];
     f32 sp2C[3];
 
-    func_80800000_bamovethrust((s32) arg0, sp38, (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x8C))));
+    func_80800000_bamovethrust((BtIntPtr) arg0, sp38, (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x8C))));
     func_800EE7F8(sp2C, (f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10));
     func_800EF334(sp2C, (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x84))));
     func_800EE780((f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10), sp2C, sp38);
@@ -60,5 +60,5 @@ void bamovethrust_entrypoint_5(u8 *arg0) {
 }
 
 f32 bamovethrust_entrypoint_6(void *arg0) {
-    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 140);
+    return *(f32 *)((u8 *)*&((Objthrust_arg0 *)arg0)->unkC8 + 140);
 }

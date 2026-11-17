@@ -20,3 +20,5 @@ s32 chboggykids_entrypoint_0(Actor *arg0) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/boggy/kids.data.s */
+u16 D_808000E0_chboggykids [8] BT_DATA(4, overlays_ch_boggy_kids, 0x0) = { 0x59D, 0x59F, 0x5A1, 0, 0, 0, 0, 0 };

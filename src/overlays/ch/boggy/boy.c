@@ -46,16 +46,16 @@ u32 D_80800C30_chboggyboy[] = {
     0x00000000, 0x00000000,
 };
 
-u32 D_80800CB8_chboggyboy[] = {
+BtFnWord D_80800CB8_chboggyboy[] = {
     0x01920140, 0x07590001,
-    (u32)D_80800C30_chboggyboy, (u32)func_808000B8_chboggyboy,
-    (u32)func_8080086C_chboggyboy, (u32)func_80101870,
+    (BtFnWord)D_80800C30_chboggyboy, (BtFnWord)func_808000B8_chboggyboy,
+    (BtFnWord)func_8080086C_chboggyboy, (BtFnWord)func_80101870,
     0x09C40000, 0x3F800000,
     0x008C0000, 0x40040120,
-    (u32)func_808007F4_chboggyboy, (u32)func_80108ED0,
-    0x00240000, (u32)func_8080000C_chboggyboy,
-    (u32)func_80107C2C, 0x80105014,
-    (u32)func_80800570_chboggyboy, 0x00000000,
+    (BtFnWord)func_808007F4_chboggyboy, (BtFnWord)func_80108ED0,
+    0x00240000, (BtFnWord)func_8080000C_chboggyboy,
+    (BtFnWord)func_80107C2C, 0x80105014,
+    (BtFnWord)func_80800570_chboggyboy, 0x00000000,
 };
 
 u16 D_80800D00_chboggyboy[] = {
@@ -83,8 +83,8 @@ OSThread *chboggyboy_entrypoint_0(void)
 
 void func_8080000C_chboggyboy(Actor *arg0) {
     s32 _chboggykids_entrypoint_0(Actor *);
-    s32 _subaddieDll_entrypoint_1(Actor *);
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void _subaddieDll_entrypoint_1(Actor *arg0);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);
     void func_8080082C_chboggyboy(Actor *);
@@ -118,12 +118,12 @@ void func_808000B8_chboggyboy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, u16 *, s32 *, s32);
     void _subaddiefx_entrypoint_0(Actor *, s32, u8 *);
-    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    void _subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_800D90A4(f32 *);
     int func_800D9154(f32 *, f32);
     s32 func_800DA298(s32);
@@ -302,10 +302,10 @@ s32 func_80800570_chboggyboy(Actor *arg0, s32 arg1, BoggyBoyMessage arg2) {
 }
 
 void func_808006C4_chboggyboy(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u8 _subaddiedialog_entrypoint_9(void *arg0, s32 arg1, void *arg2, s32 arg3);
     void func_800DA544(GameFlag);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80102924(void *, f32);
     void func_8010A590(Actor *);
@@ -351,14 +351,14 @@ void func_808006C4_chboggyboy(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808007F4_chboggyboy(Actor *arg0) {
-    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    void _subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1);
     void func_80800AD0_chboggyboy(Actor *);
     _subaddiefx_entrypoint_1(arg0, (u8 *)func_80100094(arg0, 0U) + 0x18);
     func_80800AD0_chboggyboy(arg0);
 }
 
 void func_8080082C_chboggyboy(Actor *arg0) {
-    s16 _glsplinefind_entrypoint_0(u32, f32 *);
+    s32 _glsplinefind_entrypoint_0(s32 arg0, f32 arg1[3]);
     void func_800EE940(void *, f32 *);
     void *sp24;
     f32 sp18[3];
@@ -370,7 +370,7 @@ void func_8080082C_chboggyboy(Actor *arg0) {
 
 void func_8080086C_chboggyboy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     int func_800D9154(f32 *, f32);
     void func_800FFAB0(Actor *);
     void func_80102424(Actor *, s32);
@@ -413,13 +413,13 @@ void func_8080086C_chboggyboy(Actor *arg0) {
 }
 
 void func_80800978_chboggyboy(Actor *arg0, s32 arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80102424(Actor *, s32);
     void *sp2C;
     struct Flags { u8 pad[0x16]; u8 high : 1; u8 flag : 1; u8 low : 6; };
 
     sp2C = func_80100094(arg0, 0);
-    _subaddiedialog_entrypoint_11(arg0->unk0, 0x108A, 0xE, (f32 *)((s8 *)arg0 + 4), 0x3B);
+    _subaddiedialog_entrypoint_11(arg0->unk0, 0x108A, 0xE, &arg0->position[0], 0x3B);
     func_80102424(arg0, 0xE);
     func_8010A570(arg0);
     ((struct Flags *)sp2C)->high = 1;
@@ -427,7 +427,7 @@ void func_80800978_chboggyboy(Actor *arg0, s32 arg1) {
 }
 
 void func_808009F4_chboggyboy(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA980(s32, s32);
     struct Flags { u8 pad[0x16]; u8 high : 2; u8 flag : 1; u8 low : 5; };
     struct Flags *data;
@@ -444,7 +444,7 @@ void func_808009F4_chboggyboy(Actor *arg0) {
 void func_80800A64_chboggyboy(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1, 0x3B);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42700000, 0x41A00000);

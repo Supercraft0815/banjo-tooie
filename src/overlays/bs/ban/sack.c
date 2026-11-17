@@ -18,7 +18,7 @@ s32 func_80800000_bsbansack(PlayerState *arg0, s32 arg1, s32 arg2) {
     if (func_8008E148(arg0) != 0) {
         arg1 = 1;
     }
-    if ((*(u8 *)((s8 *)(arg0) + (0x15F))) == 0) {
+    if ((arg0->unk15C.bytes[3]) == 0) {
         if (bakey_released(arg0, 1) != 0) {
             arg1 = 0x164;
         }
@@ -39,7 +39,7 @@ s32 func_80800084_bsbansack(PlayerState *arg0, s32 arg1) {
     if (func_8008E148(arg0) != 0) {
         arg1 = 1;
     }
-    if ((*(u8 *)((s8 *)(arg0) + (0x15F))) == 0) {
+    if ((arg0->unk15C.bytes[3]) == 0) {
         if (bakey_released(arg0, 1) != 0) {
             arg1 = 0x164;
         }
@@ -62,13 +62,13 @@ s32 func_80800100_bsbansack(PlayerState *arg0, void (*arg1)(PlayerState *)) {
             break;
         case 0xC:
             break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
-s32 func_80800168_bsbansack(s32 arg0) {
+s32 func_80800168_bsbansack(BtIntPtr arg0) {
     s32 func_80800100_bsbansack();
-    s32 func_80099B94(s32);
-    func_80800100_bsbansack(arg0, &func_80099B94);
+    void func_80099B94(PlayerState *arg0);
+    BT_NATIVE_ONLY(return) func_80800100_bsbansack(arg0, &func_80099B94);
 }
 
 void func_8080018C_bsbansack(s32 *arg0) {
@@ -143,7 +143,7 @@ void func_808002D4_bsbansack(PlayerState *arg0) {
 }
 
 void func_80800368_bsbansack(PlayerState *arg0) {
-    s32 baroll_setIdeal(s32, f32);
+    void baroll_setIdeal(PlayerState *self, f32 arg1);
     s32 func_8008DF8C(PlayerState *, s32);
     void func_8009BF5C(PlayerState *, f32);
     void func_8009D2F0(PlayerState *, s32, f32);
@@ -152,7 +152,7 @@ void func_80800368_bsbansack(PlayerState *arg0) {
         return;
     }
     func_8009BF5C(arg0, 0.0f);
-    baroll_setIdeal((s32) arg0, 0.0f);
+    baroll_setIdeal((BtIntPtr) arg0, 0.0f);
 }
 
 void func_808003C0_bsbansack(PlayerState *arg0) {
@@ -173,7 +173,7 @@ void func_80800400_bsbansack(PlayerState *arg0) {
     func_800961AC(arg0, 1);
 }
 
-void func_80800434_bsbansack(s32 arg0)
+void func_80800434_bsbansack(BtIntPtr arg0)
 {
     func_80800400_bsbansack(arg0);
     func_80800238_bsbansack(arg0);
@@ -205,11 +205,11 @@ void func_808004B0_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_0(s32 arg0) {
-    extern s32 D_80801E10_bsbansack[];
+    extern BtIntPtr D_80801E10_bsbansack[];
     return ((s32 *)&D_80801E10_bsbansack)[arg0];
 }
 
-void func_80800508_bsbansack(PlayerState *arg0) { if (*(u8 *)((u8 *)arg0 + 0x15E) == 0) func_808002D4_bsbansack(arg0); func_80800238_bsbansack(arg0); }
+void func_80800508_bsbansack(PlayerState *arg0) { if (arg0->unk15C.bytes[2] == 0) func_808002D4_bsbansack(arg0); func_80800238_bsbansack(arg0); }
 
 /* extern */
 
@@ -271,18 +271,18 @@ void func_808005BC_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_1(s32 arg0) {
-    extern s32 D_80801E20_bsbansack[];
+    extern BtIntPtr D_80801E20_bsbansack[];
     return ((s32 *)&D_80801E20_bsbansack)[arg0];
 }
 
 /* extern */
 
-void func_80800710_bsbansack(s32 arg0) {
-    f32 anctrl_getAnimTimer(s32);
+void func_80800710_bsbansack(BtIntPtr arg0) {
+    f32 anctrl_getAnimTimer(BtIntPtr);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
-    s32 func_80099B94(s32);
+    void func_80099B94(PlayerState *arg0);
     s32 func_8009E6EC();
-    s32 func_80800168_bsbansack(s32);
+    s32 func_80800168_bsbansack(BtIntPtr);
     if (func_8009E6EC() == 0xC) {
         if (anctrl_getAnimTimer(baanim_getAnimCtrlPtr(arg0)) > 0.42f) {
             func_80099B94(arg0);
@@ -292,7 +292,7 @@ void func_80800710_bsbansack(s32 arg0) {
     }
 }
 
-void func_8080077C_bsbansack(s32 arg0)
+void func_8080077C_bsbansack(BtIntPtr arg0)
 {
     void baphysics_reset_gravity(PlayerState *);
     baphysics_reset_gravity(arg0);
@@ -311,7 +311,7 @@ void func_808007A4_bsbansack(PlayerState *arg0) {
 
 void func_80800810_bsbansack(PlayerState *arg0) {
     void _babackpack_set_state(void *, s32);
-    f32 anctrl_getAnimTimer(s32);
+    f32 anctrl_getAnimTimer(BtIntPtr);
     int anctrl_isAt(struct anctrl_s *, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     int baanim_isStopped(PlayerState *);
@@ -369,7 +369,7 @@ void func_80800810_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_2(s32 arg0) {
-    extern s32 D_80801E30_bsbansack[];
+    extern BtIntPtr D_80801E30_bsbansack[];
     return ((s32 *)&D_80801E30_bsbansack)[arg0];
 }
 
@@ -378,8 +378,8 @@ s32 bsbansack_entrypoint_2(s32 arg0) {
 void func_80800A14_bsbansack(PlayerState *arg0) {
     f32 baphysics_get_vertical_velocity(PlayerState *);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
-    if ((*(u8 *)((s8 *)(arg0) + (0x15D))) == 0) {
-        (*(u8 *)((s8 *)(arg0) + (0x15D))) = 1U;
+    if ((arg0->unk15C.bytes[1]) == 0) {
+        (arg0->unk15C.bytes[1]) = 1U;
         if (baphysics_get_vertical_velocity(arg0) < 0.0f) {
             baphysics_set_vertical_velocity(arg0, 0.0f);
         }
@@ -387,7 +387,7 @@ void func_80800A14_bsbansack(PlayerState *arg0) {
     }
 }
 
-void func_80800A78_bsbansack(s32 arg0) {
+void func_80800A78_bsbansack(BtIntPtr arg0) {
     if (*((u8 *)arg0 + 0x15D) != 0) {
         *((u8 *)arg0 + 0x15D) = 0;
         func_80800400_bsbansack(arg0);
@@ -401,12 +401,12 @@ int func_80800AA4_bsbansack(PlayerState *arg0) {
 }
 
 void func_80800AF4_bsbansack(PlayerState *arg0, s32 arg1) {
-    void anctrl_reset(s32);
-    void anctrl_setDuration(s32, f32);
-    void anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    void anctrl_setSubrange(s32, f32, f32);
-    s32 anctrl_start(s32);
+    void anctrl_reset(BtIntPtr);
+    void anctrl_setDuration(BtIntPtr, f32);
+    void anctrl_setIndex(BtIntPtr, s32);
+    void anctrl_setPlaybackType(void *arg0, s32 arg1);
+    void anctrl_setSubrange(BtIntPtr, f32, f32);
+    void anctrl_start(void *control);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void baanim_setEndAndDuration(void *, f32, f32);
     void baphysics_reset_gravity(PlayerState *);
@@ -415,15 +415,15 @@ void func_80800AF4_bsbansack(PlayerState *arg0, s32 arg1) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void baphysics_set_target_yaw(PlayerState *, f32);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
-    s32 baroll_setIdeal(s32, f32);
+    void baroll_setIdeal(PlayerState *self, f32 arg1);
     f32 bastick_distance(PlayerState *);
     f32 bastick_getAngleRelativeToBanjo(PlayerState *);
     f32 func_8009BB5C(PlayerState *);
     void func_8009BF5C(PlayerState *, f32);
     void func_8009D2D8(PlayerState *, s32);
-    void func_8009DB04(s32, s32, f32, s32);
+    void func_8009DB04(BtIntPtr, s32, f32, s32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
-    void func_800A2FCC(s32, s32);
+    s32 func_800A2FCC(PlayerState *arg0, s32 arg1);
     f32 func_800DC178(f32, f32);
     s32 player_inWater(PlayerState *);
     f32 yaw_getIdeal(PlayerState *);
@@ -431,11 +431,11 @@ void func_80800AF4_bsbansack(PlayerState *arg0, s32 arg1) {
     struct anctrl_s *control;
     f32 velocity;
 
-    *(u8 *)((u8 *)arg0 + 0x15C) = arg1;
+    arg0->unk15C.bytes[0] = arg1;
     switch (arg1) {
     case 1:
         control = baanim_getAnimCtrlPtr(arg0);
-        func_80800A78_bsbansack((s32)arg0);
+        func_80800A78_bsbansack((BtIntPtr)arg0);
         func_8009DB04(arg0, 0x3F0, func_800DC178(0.96f, 1.04f), 0x2710);
         func_8009FFD8(arg0, 1, 1, 1, 2);
         baphysics_set_gravity(arg0, -1350.0f);
@@ -472,7 +472,7 @@ void func_80800AF4_bsbansack(PlayerState *arg0, s32 arg1) {
         baanim_setEndAndDuration(arg0, 0.98f, 0.7f);
         break;
     case 0:
-        func_80800A78_bsbansack((s32)arg0);
+        func_80800A78_bsbansack((BtIntPtr)arg0);
         baphysics_reset_gravity(arg0);
         func_8009BF5C(arg0, 0.0f);
         baroll_setIdeal(arg0, 0.0f);
@@ -480,13 +480,13 @@ void func_80800AF4_bsbansack(PlayerState *arg0, s32 arg1) {
     }
 }
 
-void func_80800D4C_bsbansack(s32 arg0)
+void func_80800D4C_bsbansack(BtIntPtr arg0)
 {
     func_80800AF4_bsbansack(arg0,0);
     func_80800238_bsbansack(arg0);
 }
 
-void func_80800D78_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80800AF4_bsbansack(arg0, 1); }
+void func_80800D78_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); arg0->unk15C.bytes[1] = 0; arg0->unk15C.bytes[0] = 0; func_80800AF4_bsbansack(arg0, 1); }
 
 void func_80800DAC_bsbansack(PlayerState *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
@@ -512,7 +512,7 @@ void func_80800DAC_bsbansack(PlayerState *arg0) {
         baphysics_reset_gravity(arg0);
     }
     func_808001D4_bsbansack(arg0);
-    switch (*(u8 *)((u8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.bytes[0]) {
     case 1:
         if (baanim_isAt(arg0, 0.1f)) {
             func_8009D7A4(arg0, 0.95f, 1.05f);
@@ -560,7 +560,7 @@ void func_80800DAC_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_3(s32 arg0) {
-    extern s32 D_80801E40_bsbansack[];
+    extern BtIntPtr D_80801E40_bsbansack[];
     return ((s32 *)&D_80801E40_bsbansack)[arg0];
 }
 
@@ -578,21 +578,21 @@ void func_8080101C_bsbansack(PlayerState *arg0, s32 arg1) {
 
     switch (arg1) {
     case 0:
-        yaw_setIdeal(arg0, *(f32 *)((u8 *)arg0 + 0x174));
+        yaw_setIdeal(arg0, arg0->unk174);
         yaw_applyIdeal(arg0);
         func_800931AC(arg0, 1);
         break;
     case 1:
         angle = yaw_get(arg0);
-        *(f32 *)((u8 *)arg0 + 0x174) = angle;
+        arg0->unk174 = angle;
         func_8009328C(arg0, angle);
         func_800931AC(arg0, 3);
         _batimer_set(arg0, 0, 1.2f);
         break;
     case 2:
         angle = func_80092BE8(arg0);
-        *(f32 *)((u8 *)arg0 + 0x170) = angle;
-        angle = func_800F1DCC(*(f32 *)((u8 *)arg0 + 0x174), angle);
+        arg0->unk170 = angle;
+        angle = func_800F1DCC(arg0->unk174, angle);
         difference = angle;
         if (angle < 0.0f) {
             difference = 360.0f + angle;
@@ -600,19 +600,19 @@ void func_8080101C_bsbansack(PlayerState *arg0, s32 arg1) {
         if (difference < 180.0f) {
             difference += 360.0f;
         }
-        *(f32 *)((u8 *)arg0 + 0x174) = *(f32 *)((u8 *)arg0 + 0x170) + difference;
+        arg0->unk174 = arg0->unk170 + difference;
         _batimer_set(arg0, 0, 0.5f);
         break;
     }
     *(s8 *)((u8 *)arg0 + 0x15C) = arg1;
 }
 
-void func_80801158_bsbansack(s32 arg0)
+void func_80801158_bsbansack(BtIntPtr arg0)
 {
     func_8080101C_bsbansack(arg0,0);
 }
 
-void func_80801178_bsbansack(PlayerState *arg0) { *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_8080101C_bsbansack(arg0, 1); }
+void func_80801178_bsbansack(PlayerState *arg0) { arg0->unk15C.bytes[0] = 0; func_8080101C_bsbansack(arg0, 1); }
 
 s32 func_8080119C_bsbansack(PlayerState *arg0) {
     int _batimer_decrement(PlayerState *, s32);
@@ -632,21 +632,21 @@ s32 func_8080119C_bsbansack(PlayerState *arg0) {
     angle = func_80092BE8(arg0);
     delta = func_800D8FF8();
     _batimer_decrement(arg0, 0);
-    switch (*(u8 *)((u8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.bytes[0]) {
     case 1:
         speed = func_800F10B4(_batimer_get(arg0, 0), 0.0f, 1.2f, 700.0f, 1400.0f);
         angle += speed * delta;
         func_8009328C(arg0, angle);
         if (func_8008DF8C(arg0, 1) != 0) {
-            *(f32 *)((u8 *)arg0 + 0x16C) = speed;
+            arg0->unk16C = speed;
             func_8080101C_bsbansack(arg0, 2);
         }
         return 0;
     case 2:
         phase = func_800F10B4(_batimer_get(arg0, 0), 0.0f, 0.5f, 1.0f, 0.0f) * 90.0f;
-        difference = *(f32 *)((u8 *)arg0 + 0x174) - *(f32 *)((u8 *)arg0 + 0x170);
+        difference = arg0->unk174 - arg0->unk170;
         angle = func_80013970(phase) * difference;
-        angle += *(f32 *)((u8 *)arg0 + 0x170);
+        angle += arg0->unk170;
         func_8009328C(arg0, angle);
         if (_batimer_get(arg0, 0) != 0.0f) {
             return 0;
@@ -657,7 +657,7 @@ s32 func_8080119C_bsbansack(PlayerState *arg0) {
     }
 }
 
-void func_80801318_bsbansack(s32 arg0)
+void func_80801318_bsbansack(BtIntPtr arg0)
 {
     func_80801158_bsbansack(arg0);
     _babounce_entrypoint_3(arg0);
@@ -695,11 +695,11 @@ void func_80801390_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_4(s32 arg0) {
-    extern s32 D_80801E50_bsbansack[];
+    extern BtIntPtr D_80801E50_bsbansack[];
     return ((s32 *)&D_80801E50_bsbansack)[arg0];
 }
 
-void func_8080143C_bsbansack(s32 arg0)
+void func_8080143C_bsbansack(BtIntPtr arg0)
 {
     func_80801158_bsbansack(arg0);
     _babounce_entrypoint_3(arg0);
@@ -737,11 +737,11 @@ void func_808014B4_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_5(s32 arg0) {
-    extern s32 D_80801E60_bsbansack[];
+    extern BtIntPtr D_80801E60_bsbansack[];
     return ((s32 *)&D_80801E60_bsbansack)[arg0];
 }
 
-void func_80801560_bsbansack(s32 arg0)
+void func_80801560_bsbansack(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     func_80800238_bsbansack(arg0);
@@ -756,11 +756,11 @@ void func_808015B0_bsbansack(PlayerState* self)
     _bsdrone_entrypoint_1(self);
 }
 s32 bsbansack_entrypoint_6(s32 arg0) {
-    extern s32 D_80801E70_bsbansack[];
+    extern BtIntPtr D_80801E70_bsbansack[];
     return ((s32 *)&D_80801E70_bsbansack)[arg0];
 }
 
-void func_808015E4_bsbansack(s32 arg0)
+void func_808015E4_bsbansack(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     func_80800238_bsbansack(arg0);
@@ -772,7 +772,7 @@ void func_8080160C_bsbansack(PlayerState *arg0)
 }
 /* extern */
 
-void func_80801634_bsbansack(s32 arg0) {
+void func_80801634_bsbansack(BtIntPtr arg0) {
     void bs_setState(PlayerState *, int);
     s32 _bsrest_entrypoint_20();
     s32 sp1C;
@@ -785,17 +785,17 @@ void func_80801634_bsbansack(s32 arg0) {
 }
 
 s32 bsbansack_entrypoint_7(s32 arg0) {
-    extern s32 D_80801E80_bsbansack[];
+    extern BtIntPtr D_80801E80_bsbansack[];
     return ((s32 *)&D_80801E80_bsbansack)[arg0];
 }
 
-void func_80801680_bsbansack(s32 arg0, s32 arg1) {
-    void anctrl_reset(s32);
-    void anctrl_setDuration(s32, f32);
-    void anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    void anctrl_setSubrange(s32, f32, f32);
-    s32 anctrl_start(s32);
+void func_80801680_bsbansack(BtIntPtr arg0, s32 arg1) {
+    void anctrl_reset(BtIntPtr);
+    void anctrl_setDuration(BtIntPtr, f32);
+    void anctrl_setIndex(BtIntPtr, s32);
+    void anctrl_setPlaybackType(void *arg0, s32 arg1);
+    void anctrl_setSubrange(BtIntPtr, f32, f32);
+    void anctrl_start(void *control);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void baanim_setEndAndDuration(void *, f32, f32);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
@@ -803,24 +803,24 @@ void func_80801680_bsbansack(s32 arg0, s32 arg1) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void baphysics_set_target_yaw(PlayerState *, f32);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
-    s32 baroll_setIdeal(s32, f32);
+    void baroll_setIdeal(PlayerState *self, f32 arg1);
     f32 bastick_distance(PlayerState *);
     f32 bastick_getAngleRelativeToBanjo(PlayerState *);
     f32 func_8009BB5C(PlayerState *);
     void func_8009BF5C(PlayerState *, f32);
     void func_8009D2D8(PlayerState *, s32);
-    void func_8009DB04(s32, s32, f32, s32);
+    void func_8009DB04(BtIntPtr, s32, f32, s32);
     void func_80800A78_bsbansack();
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
-    void func_800A2EEC(s32, s32);
-    void func_800A2FCC(s32, s32);
+    void func_800A2EEC(BtIntPtr, s32);
+    s32 func_800A2FCC(PlayerState *arg0, s32 arg1);
     f32 func_800DC178(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 player_inWater(PlayerState *);
     s32 player_isStable(PlayerState *);
     f32 yaw_getIdeal(PlayerState *);
     void yaw_setIdeal(PlayerState *, f32);
-    s32 sp4C;
+    BtIntPtr sp4C;
     f32 sp48;
     f32 sp44;
     f32 sp40;
@@ -860,8 +860,8 @@ void func_80801680_bsbansack(s32 arg0, s32 arg1) {
         anctrl_setIndex(sp4C, 0x144);
         anctrl_setSubrange(sp4C, 0.0f, 0.6466f);
         anctrl_setDuration(sp4C, sp44);
-        anctrl_setPlaybackType((s32)sp4C, 1);
-        anctrl_start((s32)sp4C);
+        anctrl_setPlaybackType((BtIntPtr)sp4C, 1);
+        anctrl_start((BtIntPtr)sp4C);
         if (sp30 != 0) {
             baphysics_set_vertical_velocity((PlayerState *)arg0, sp40);
         }
@@ -895,13 +895,13 @@ void func_80801680_bsbansack(s32 arg0, s32 arg1) {
     }
 }
 
-void func_80801A04_bsbansack(s32 arg0)
+void func_80801A04_bsbansack(BtIntPtr arg0)
 {
     func_80801680_bsbansack(arg0,0);
     func_80800238_bsbansack(arg0);
 }
 
-void func_80801A30_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); *(u8 *)((u8 *)arg0 + 0x15D) = 0; *(u8 *)((u8 *)arg0 + 0x15C) = 0; func_80801680_bsbansack(arg0, 1); }
+void func_80801A30_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0); arg0->unk15C.bytes[1] = 0; arg0->unk15C.bytes[0] = 0; func_80801680_bsbansack(arg0, 1); }
 
 void func_80801A64_bsbansack(PlayerState *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
@@ -927,22 +927,22 @@ void func_80801A64_bsbansack(PlayerState *arg0) {
             func_8009DEC0(arg0, 0x58A, 0.95f, 1.05f, 0x2328, 0x2AF8);
         }
         if (func_8008DF8C(arg0, 0x82) || func_80800AA4_bsbansack(arg0)) {
-            func_80801680_bsbansack((s32)arg0, 3);
+            func_80801680_bsbansack((BtIntPtr)arg0, 3);
         } else if (anctrl_isStopped(sp28)) {
-            func_80801680_bsbansack((s32)arg0, 2);
+            func_80801680_bsbansack((BtIntPtr)arg0, 2);
         }
         sp2C = func_80800000_bsbansack(arg0, 0, 1);
         break;
     case 2:
         if (func_8008DF8C(arg0, 0x82) || func_80800AA4_bsbansack(arg0)) {
-            func_80801680_bsbansack((s32)arg0, 3);
+            func_80801680_bsbansack((BtIntPtr)arg0, 3);
         }
         sp2C = func_80800000_bsbansack(arg0, 0, 1);
         break;
     case 3:
         func_80800368_bsbansack(arg0);
         if (player_isStable(arg0) || player_inWater(arg0)) {
-            func_80801680_bsbansack((s32)arg0, 4);
+            func_80801680_bsbansack((BtIntPtr)arg0, 4);
         }
         sp2C = func_80800000_bsbansack(arg0, 0, 1);
         break;
@@ -950,7 +950,7 @@ void func_80801A64_bsbansack(PlayerState *arg0) {
         func_80800368_bsbansack(arg0);
         if (anctrl_isStopped(sp28)) {
             if (baphysics_get_target_horizontal_velocity(arg0) > 0.0f) {
-                func_80801680_bsbansack((s32)arg0, 1);
+                func_80801680_bsbansack((BtIntPtr)arg0, 1);
             } else if (player_inWater(arg0)) {
                 sp2C = 0x167;
             } else {
@@ -969,7 +969,7 @@ void func_80801A64_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_8(s32 arg0) {
-    extern s32 D_80801E90_bsbansack[];
+    extern BtIntPtr D_80801E90_bsbansack[];
     return ((s32 *)&D_80801E90_bsbansack)[arg0];
 }
 
@@ -1010,6 +1010,17 @@ void func_80801D20_bsbansack(PlayerState *arg0) {
 }
 
 s32 bsbansack_entrypoint_9(s32 arg0) {
-    extern s32 D_80801EA0_bsbansack[];
+    extern BtIntPtr D_80801EA0_bsbansack[];
     return ((s32 *)&D_80801EA0_bsbansack)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/ban/sack.data.s */
+BtIntPtr D_80801E10_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x0) = { (BtIntPtr)func_80800434_bsbansack, (BtIntPtr)func_8080045C_bsbansack, (BtIntPtr)func_808004B0_bsbansack, (BtIntPtr)func_80800168_bsbansack };
+BtIntPtr D_80801E20_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x10) = { (BtIntPtr)func_80800508_bsbansack, (BtIntPtr)func_80800540_bsbansack, (BtIntPtr)func_808005BC_bsbansack, (BtIntPtr)func_80800168_bsbansack };
+BtIntPtr D_80801E30_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x20) = { (BtIntPtr)func_8080077C_bsbansack, (BtIntPtr)func_808007A4_bsbansack, (BtIntPtr)func_80800810_bsbansack, (BtIntPtr)func_80800710_bsbansack };
+BtIntPtr D_80801E40_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x30) = { (BtIntPtr)func_80800D4C_bsbansack, (BtIntPtr)func_80800D78_bsbansack, (BtIntPtr)func_80800DAC_bsbansack, (BtIntPtr)func_80800168_bsbansack };
+BtIntPtr D_80801E50_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x40) = { (BtIntPtr)func_80801318_bsbansack, (BtIntPtr)func_80801348_bsbansack, (BtIntPtr)func_80801390_bsbansack, (BtIntPtr)func_808001B0_bsbansack };
+BtIntPtr D_80801E60_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x50) = { (BtIntPtr)func_8080143C_bsbansack, (BtIntPtr)func_8080146C_bsbansack, (BtIntPtr)func_808014B4_bsbansack, (BtIntPtr)func_808001B0_bsbansack };
+BtIntPtr D_80801E70_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x60) = { (BtIntPtr)func_80801560_bsbansack, (BtIntPtr)func_80801588_bsbansack, (BtIntPtr)func_808015B0_bsbansack, (BtIntPtr)func_8080018C_bsbansack };
+BtIntPtr D_80801E80_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x70) = { (BtIntPtr)func_808015E4_bsbansack, (BtIntPtr)func_8080160C_bsbansack, (BtIntPtr)func_80801634_bsbansack, (BtIntPtr)func_80800168_bsbansack };
+BtIntPtr D_80801E90_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x80) = { (BtIntPtr)func_80801A04_bsbansack, (BtIntPtr)func_80801A30_bsbansack, (BtIntPtr)func_80801A64_bsbansack, (BtIntPtr)func_80800168_bsbansack };
+BtIntPtr D_80801EA0_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x90) = { (BtIntPtr)func_80801CB4_bsbansack, (BtIntPtr)func_80801CD4_bsbansack, (BtIntPtr)func_80801D20_bsbansack, (BtIntPtr)func_80800168_bsbansack };

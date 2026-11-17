@@ -4,35 +4,35 @@ typedef struct player_state_s PlayerState;
 void func_8009C128(PlayerState *, f32[3]);
 
 void func_80800000_bsbeefly(PlayerState *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
-    extern s32 D_80800DC0_bsbeefly;
+    extern s32 D_80800DC0_bsbeefly[10];
     f32 sp24[3];
 
     func_8009C128(arg0, sp24);
     sp24[0] += func_800DC178(-30.0f, 30.0f);
     sp24[1] += 30.0f + func_800DC178(0.0f, 30.0f);
     sp24[2] += func_800DC178(-30.0f, 30.0f);
-    func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80800DC0_bsbeefly);
-}
+    func_800BBCB8(sp24, NULL, 1.0f, 1, D_80800DC0_bsbeefly);
+}    typedef struct { u8 pad0[0x4]; f32 unk4; } Objbeefly_func_808000A4_bsbeefly_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
-void func_808000A4_bsbeefly(s32 arg0) {
-    s32 func_800BABB8(s32, f32 *, s32, s32, s32 *);
-    extern s32 D_80800DE8_bsbeefly;
+void func_808000A4_bsbeefly(BtIntPtr arg0) {
+    BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);
+    extern s32 D_80800DE8_bsbeefly[12];
     f32 sp24[3];
     s32 sp20;
 
     sp20 = func_800B5BE4(0x22);
     func_8009C128(arg0, sp24);
-    *(f32 *)((s8 *)sp24 + 4) += 45.0f;
-    func_800BABB8(sp20, sp24, 0, 0x3F800000, &D_80800DE8_bsbeefly);
+    ((Objbeefly_func_808000A4_bsbeefly_sp24 *)sp24)->unk4 += 45.0f;
+    func_800BABB8(sp20, sp24, 0, 0x3F800000, D_80800DE8_bsbeefly);
 }
 
 /* extern */
 
 void func_8080010C_bsbeefly(PlayerState *arg0) {
     s32 _bsbee_entrypoint_1();
-    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void baphysics_set_gravity(PlayerState *, f32);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void baphysics_set_target_yaw(PlayerState *, f32);
@@ -92,13 +92,13 @@ void func_808001C4_bsbeefly(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-void func_808002B0_bsbeefly()
+void func_808002B0_bsbeefly(BT_NATIVE_ONLY(PlayerState *bt_a0))
 {
-    _bsbee_entrypoint_0();
+    _bsbee_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
 }
 
 s32 bsbeefly_entrypoint_0(s32 arg0) {
-    extern s32 D_80800E18_bsbeefly[];
+    extern BtIntPtr D_80800E18_bsbeefly[];
     return ((s32 *)&D_80800E18_bsbeefly)[arg0];
 }
 
@@ -107,7 +107,7 @@ void func_808002E4_bsbeefly(PlayerState *arg0) {
     void _baboost_entrypoint_4(PlayerState *, s32);
     void _babuzz_entrypoint_1(PlayerState *);
     void _bafly_entrypoint_4(PlayerState *);
-    s32 _bafpctrl_entrypoint_18(PlayerState *, s32);
+    void _bafpctrl_entrypoint_18(void *arg0, s32 arg1);
     void baphysics_reset_gravity(PlayerState *);
     void baphysics_reset_terminal_velocity(PlayerState *);
     void baroll_setIdeal(PlayerState *, f32);
@@ -141,14 +141,14 @@ void func_8080039C_bsbeefly(PlayerState *arg0) {
     void _babuzz_entrypoint_2(PlayerState *);
     void _bafly_entrypoint_20(void *);
     void _bafly_entrypoint_5(PlayerState *);
-    s32 _bafpctrl_entrypoint_18(PlayerState *, s32);
+    void _bafpctrl_entrypoint_18(void *arg0, s32 arg1);
     void baphysics_set_gravity(PlayerState *, f32);
     void baphysics_set_terminal_velocity(PlayerState *, f32);
     void baroll_setAngularVelocity(PlayerState *, f32, f32);
     s32 bs_getPreviousState(PlayerState *);
     void func_80093360(PlayerState *, f32);
     s32 func_8009CA70(PlayerState *, s32, s32);
-    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setUpdateType(void *self, s32 type);
     if (func_8009CA70(arg0, bs_getPreviousState(arg0), 0x4000) == 0) {
         _bafly_entrypoint_5(arg0);
         _babee_entrypoint_6(arg0);
@@ -201,11 +201,11 @@ void func_80800480_bsbeefly(PlayerState *arg0) {
 
 /* extern */
 
-void func_808005B0_bsbeefly(s32 arg0) {
-    void _baboost_entrypoint_2(PlayerState *, f32);
-    s32 func_80099B94(s32);
+void func_808005B0_bsbeefly(BtIntPtr arg0) {
+    s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
+    void func_80099B94(PlayerState *arg0);
     s32 func_8009E6EC();
-    s32 func_8009E830(s32, s32);
+    void func_8009E830(PlayerState *arg0, s32 arg1);
     if (func_8009E6EC() == 0x18) {
         _baboost_entrypoint_2(arg0, 1.0f);
         func_8009E830(arg0, 2);
@@ -215,7 +215,7 @@ void func_808005B0_bsbeefly(s32 arg0) {
 }
 
 void func_80800600_bsbeefly(PlayerState *arg0) {
-    void _baboost_entrypoint_2(PlayerState *, f32);
+    s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
     s32 _bsbee_entrypoint_1();
     void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     int baflag_isTrue(PlayerState *, s32);
@@ -251,7 +251,7 @@ void func_80800600_bsbeefly(PlayerState *arg0) {
     } else {
         *(s32 *)((s8 *)arg0 + 0x15C) = 1;
     }
-}
+}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objbeefly_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800708_bsbeefly(void *arg0) {
     extern f32 D_80800E28_bsbeefly[];
@@ -259,7 +259,7 @@ void func_80800708_bsbeefly(void *arg0) {
     void _bsbee_entrypoint_2();
     void bs_setState(PlayerState *, s32);
     s32 _baboost_entrypoint_1(void *);
-    void _baboost_entrypoint_2(PlayerState *, f32);
+    s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
     void _baboost_entrypoint_5(void *);
     void _babuzz_entrypoint_3(void *);
     void _babuzz_entrypoint_4(void *, f32);
@@ -270,7 +270,7 @@ void func_80800708_bsbeefly(void *arg0) {
     void _bafly_entrypoint_20(void *);
     void _bafly_entrypoint_21(void *);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
-    void anctrl_setDuration(s32, f32);
+    void anctrl_setDuration(BtIntPtr, f32);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     f32 baphysics_get_vertical_velocity(PlayerState *);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
@@ -282,7 +282,7 @@ void func_80800708_bsbeefly(void *arg0) {
     f32 func_800136E4(f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 next_state;
-    s32 anctrl;
+    BtIntPtr anctrl;
     s32 boost;
     f32 buzz;
     f32 pitch;
@@ -325,10 +325,10 @@ void func_80800708_bsbeefly(void *arg0) {
     }
     _babuzz_entrypoint_4(arg0, buzz);
     _babuzz_entrypoint_3(arg0);
-    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    switch (((Objbeefly_arg0 *)arg0)->unk15C) {
     case 0:
         if (boost != 0) {
-            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            ((Objbeefly_arg0 *)arg0)->unk15C = 1;
         }
         break;
     case 1:
@@ -344,7 +344,7 @@ void func_80800708_bsbeefly(void *arg0) {
         }
         if (boost == 0) {
             _bafly_entrypoint_20(arg0);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+            ((Objbeefly_arg0 *)arg0)->unk15C = 0;
         }
         break;
     }
@@ -367,7 +367,7 @@ void func_80800708_bsbeefly(void *arg0) {
         next_state = 0x85;
     }
     _baboost_entrypoint_5(arg0);
-    bs_setState((s32)arg0, next_state);
+    bs_setState((BtIntPtr)arg0, next_state);
 }
 
 void func_80800B18_bsbeefly(PlayerState *arg0)
@@ -376,7 +376,7 @@ void func_80800B18_bsbeefly(PlayerState *arg0)
     _bsbee_entrypoint_0(arg0);
 }
 s32 bsbeefly_entrypoint_1(s32 arg0) {
-    extern s32 D_80800E50_bsbeefly[];
+    extern BtIntPtr D_80800E50_bsbeefly[];
     return ((s32 *)&D_80800E50_bsbeefly)[arg0];
 }
 
@@ -384,7 +384,7 @@ s32 bsbeefly_entrypoint_1(s32 arg0) {
 
 void func_80800B54_bsbeefly(void *arg0) {
     extern s32 _bsbee_entrypoint_1();
-    extern s32 _bsrest_entrypoint_16(void *);
+    extern void _bsrest_entrypoint_16(PlayerState *self);
     extern void baphysics_set_gravity(PlayerState *, f32);
     extern void func_8009BA9C(void *, f32 *);
     extern void func_8080039C_bsbeefly(PlayerState *);
@@ -398,9 +398,9 @@ void func_80800B54_bsbeefly(void *arg0) {
 
 /* extern */
 
-void func_80800BA4_bsbeefly(s32 arg0) {
+void func_80800BA4_bsbeefly(BtIntPtr arg0) {
     void _bsbee_entrypoint_2();
-    s32 _bsrest_entrypoint_20(s32);
+    s32 _bsrest_entrypoint_20(BtIntPtr);
     void bs_setState(PlayerState *, s32);
     s32 sp1C;
 
@@ -412,7 +412,7 @@ void func_80800BA4_bsbeefly(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-void func_80800BE8_bsbeefly(s32 arg0)
+void func_80800BE8_bsbeefly(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     func_808002E4_bsbeefly(arg0);
@@ -420,11 +420,11 @@ void func_80800BE8_bsbeefly(s32 arg0)
 }
 
 s32 bsbeefly_entrypoint_2(s32 arg0) {
-    extern s32 D_80800E60_bsbeefly[];
+    extern BtIntPtr D_80800E60_bsbeefly[];
     return ((s32 *)&D_80800E60_bsbeefly)[arg0];
 }
 
-void func_80800C2C_bsbeefly(s32 arg0)
+void func_80800C2C_bsbeefly(BtIntPtr arg0)
 {
     _bafly_entrypoint_18();
     func_808002E4_bsbeefly(arg0);
@@ -433,8 +433,8 @@ void func_80800C2C_bsbeefly(s32 arg0)
 
 /* extern */
 
-void func_80800C5C_bsbeefly(s32 arg0) {
-    s32 _bafly_entrypoint_16(s32, s32, s32);
+void func_80800C5C_bsbeefly(BtIntPtr arg0) {
+    s32 _bafly_entrypoint_16(BtIntPtr, s32, s32);
     s32 _bsbee_entrypoint_1();
     void func_8080039C_bsbeefly(PlayerState *);
     _bsbee_entrypoint_1();
@@ -444,8 +444,8 @@ void func_80800C5C_bsbeefly(s32 arg0) {
 
 /* extern */
 
-void func_80800C94_bsbeefly(s32 arg0) {
-    s32 _bafly_entrypoint_17(s32, s32, s32, s32 *);
+void func_80800C94_bsbeefly(BtIntPtr arg0) {
+    void _bafly_entrypoint_17(PlayerState *arg0, s32 arg1, s32 arg2, s32 *arg3);
     void _bsbee_entrypoint_2();
     s32 sp1C;
 
@@ -455,11 +455,11 @@ void func_80800C94_bsbeefly(s32 arg0) {
 }
 
 s32 bsbeefly_entrypoint_3(s32 arg0) {
-    extern s32 D_80800E70_bsbeefly[];
+    extern BtIntPtr D_80800E70_bsbeefly[];
     return ((s32 *)&D_80800E70_bsbeefly)[arg0];
 }
 
-void func_80800CE0_bsbeefly(s32 arg0)
+void func_80800CE0_bsbeefly(BtIntPtr arg0)
 {
     _bafly_entrypoint_15();
     func_808002E4_bsbeefly(arg0);
@@ -468,8 +468,8 @@ void func_80800CE0_bsbeefly(s32 arg0)
 
 /* extern */
 
-void func_80800D10_bsbeefly(s32 arg0) {
-    s32 _bafly_entrypoint_13(s32, s32, s32, s32);
+void func_80800D10_bsbeefly(BtIntPtr arg0) {
+    s32 _bafly_entrypoint_13(BtIntPtr, s32, s32, s32);
     s32 _bsbee_entrypoint_1();
     void func_8080039C_bsbeefly(PlayerState *);
     _bsbee_entrypoint_1();
@@ -479,14 +479,26 @@ void func_80800D10_bsbeefly(s32 arg0) {
 
 /* extern */
 
-void func_80800D50_bsbeefly(s32 arg0) {
-    s32 _bafly_entrypoint_14(s32, s32, s32);
+void func_80800D50_bsbeefly(BtIntPtr arg0) {
+    void _bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2);
     void _bsbee_entrypoint_2();
     _bsbee_entrypoint_2();
     _bafly_entrypoint_14(arg0, 0x8C, 0x85);
 }
 
 s32 bsbeefly_entrypoint_4(s32 arg0) {
-    extern s32 D_80800E80_bsbeefly[];
+    extern BtIntPtr D_80800E80_bsbeefly[];
     return ((s32 *)&D_80800E80_bsbeefly)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/beefly.data.s */
+void func_80099B94(PlayerState *arg0);
+void func_80099AA8();
+s32 D_80800DC0_bsbeefly[10] BT_DATA(4, overlays_bs_beefly, 0x0) = { 1903074, 1376281, 10027042, 6684761, 1638425, 2556304, 26215200, 52428843, 8388736, 0 };
+s32 D_80800DE8_bsbeefly[12] BT_DATA(4, overlays_bs_beefly, 0x28) = { 1903072, 917524, 2949141, 1638553, 2228326, 8388628, 1310759, 26214800, 52429600, 2818163, 7537178, 0 };
+BtIntPtr D_80800E18_bsbeefly [4] BT_DATA(4, overlays_bs_beefly, 0x58) = { (BtIntPtr)func_808002B0_bsbeefly, (BtIntPtr)func_8080010C_bsbeefly, (BtIntPtr)func_808001C4_bsbeefly, (BtIntPtr)func_80099B94 };
+f32 D_80800E28_bsbeefly [5] BT_DATA(4, overlays_bs_beefly, 0x68) = { 0.38f, 0.3f, 0.24f, 0.18f, 0.14f };
+f32 D_80800E3C_bsbeefly [5] BT_DATA(4, overlays_bs_beefly, 0x7C) = { 0.0f, 0.2f, 0.3f, 0.4f, 0.5f };
+BtIntPtr D_80800E50_bsbeefly [4] BT_DATA(4, overlays_bs_beefly, 0x90) = { (BtIntPtr)func_80800B18_bsbeefly, (BtIntPtr)func_80800600_bsbeefly, (BtIntPtr)func_80800708_bsbeefly, (BtIntPtr)func_808005B0_bsbeefly };
+BtIntPtr D_80800E60_bsbeefly [4] BT_DATA(4, overlays_bs_beefly, 0xA0) = { (BtIntPtr)func_80800BE8_bsbeefly, (BtIntPtr)func_80800B54_bsbeefly, (BtIntPtr)func_80800BA4_bsbeefly, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800E70_bsbeefly [4] BT_DATA(4, overlays_bs_beefly, 0xB0) = { (BtIntPtr)func_80800C2C_bsbeefly, (BtIntPtr)func_80800C5C_bsbeefly, (BtIntPtr)func_80800C94_bsbeefly, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80800E80_bsbeefly [4] BT_DATA(4, overlays_bs_beefly, 0xC0) = { (BtIntPtr)func_80800CE0_bsbeefly, (BtIntPtr)func_80800D10_bsbeefly, (BtIntPtr)func_80800D50_bsbeefly, (BtIntPtr)func_80099AA8 };

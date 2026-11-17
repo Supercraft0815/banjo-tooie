@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_camera_db.h"
 #include "player.h"
 #include "memory.h"
@@ -6,15 +6,15 @@ NativeCameraDatabase *D_80119540;
 static const s32 camera_sizes[9]={0,0x2C,0x18,0x34,0x18,0x2C,0x34,4,0x30};
 
 void func_800A5550(void *event,void *data) {
-    s16 *func_800A93E4(s32);
+    s16 *func_800A93E4(BtIntPtr);
     PlayerState *func_80110014(s16 *);
-    void _ncbaspline_entrypoint_5(PlayerState *,void *,void *);
+    void _ncbaspline_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2);
     _ncbaspline_entrypoint_5(func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),event,data);
 }
 void func_800A5598(void *event,void *data) {
-    s16 *func_800A93E4(s32);
+    s16 *func_800A93E4(BtIntPtr);
     PlayerState *func_80110014(s16 *);
-    void _ncbaspline_entrypoint_6(PlayerState *,void *,void *);
+    void _ncbaspline_entrypoint_6(BtIntPtr arg0, void *arg1, BtIntPtr arg2);
     _ncbaspline_entrypoint_6(func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),event,data);
 }
 void func_800A55E0(void) { _cadbmgrDll_entrypoint_0(&D_80119540,0x7D); }
@@ -211,9 +211,9 @@ s32 func_800A58F0(void) {
 
 /* extern */
 
-s32 func_800A5904(void) {
+s32 func_800A5904(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 func_800A5854();
-    return func_800A5854() != 0;
+    return func_800A5854(BT_NATIVE_ONLY(bt_a0)) != 0;
 }
 
 #endif

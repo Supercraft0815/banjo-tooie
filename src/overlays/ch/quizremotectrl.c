@@ -40,9 +40,9 @@ void func_80800068_chquizremotectrl(Actor *arg0) {
 /* extern */
 
 void func_8080012C_chquizremotectrl(s32 *arg0) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    s32 _capod_entrypoint_21(s32, s32, s32, s32);
-    s32 _suquiz_entrypoint_26();
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
+    s32 _capod_entrypoint_21(BtIntPtr, BtIntPtr, s32, s32);
+    s16 _suquiz_entrypoint_26(void);
     s32 func_800A5854(s32);
     void func_80800000_chquizremotectrl(Actor *, s32);
     s32 sp1C;
@@ -103,7 +103,7 @@ void func_808001BC_chquizremotectrl(Actor *arg0, s32 arg1) {
 /* extern */
 
 void func_808002C8_chquizremotectrl(Actor *arg0) {
-    s32 _suquiz_entrypoint_1();
+    void _suquiz_entrypoint_1(void);
     s32 _suquiz_entrypoint_5();
     s32 func_800D90A4(f32 *);
     void func_808001BC_chquizremotectrl(Actor *, s32);
@@ -166,13 +166,13 @@ void func_80800410_chquizremotectrl(Actor *arg0, Gfx **arg1) {
     ImageStruct *func_800D674C(s32);
     void _suquiz_entrypoint_13(f32 *);
     void _suquiz_entrypoint_14(f32 *);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
-    void func_800E39D8(s32, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void func_800E39D8(BtIntPtr, BtIntPtr);
     void func_800E3C8C(f32, f32);
     void func_800E3CE8(void);
     void func_800E41CC(void);
     void func_800E4208(void);
-    void func_800E44FC(Gfx **);
+    int func_800E44FC(void *frame);
     void func_800E7C28(Gfx **);
     void func_800E7CF4(Gfx **);
     void func_800EF214(f32 *, f32, f32, f32);
@@ -208,13 +208,13 @@ void func_80800410_chquizremotectrl(Actor *arg0, Gfx **arg1) {
     }
     func_800E41CC();
     func_800E3C8C(50.0f, 2000.0f);
-    func_800E39D8((s32)sp30, (s32)sp24);
+    func_800E39D8((BtIntPtr)sp30, (BtIntPtr)sp24);
     func_800E3CE8();
     func_800E44FC(arg1);
     func_800E7C28(arg1);
     func_800E7CF4(arg1);
     if (sp3C > 0.0f) {
-        func_800DE498(arg1, D_80800650_chquizremotectrl, D_8080065C_chquizremotectrl, sp3C, NULL, (s32)func_800D674C(0x9A1));
+        func_800DE498(arg1, D_80800650_chquizremotectrl, D_8080065C_chquizremotectrl, sp3C, NULL, (BtIntPtr)func_800D674C(0x9A1));
     }
     func_80101870(arg0, arg1);
     func_800E4208();
@@ -230,7 +230,14 @@ s32 func_808005E4_chquizremotectrl(s32 arg0, s32 arg1, s32 arg2) {
 
 OSThread *chquizremotectrl_entrypoint_0(void)
 {
-    extern u8 D_80800668_chquizremotectrl[];
+    extern ActorData D_80800668_chquizremotectrl[];
 
     return (OSThread *) D_80800668_chquizremotectrl;
 }
+/* data_to_c.py: from asm/data/overlays/ch/quizremotectrl.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+f32 D_80800650_chquizremotectrl [ 3 ] BT_DATA(4, overlays_ch_quizremotectrl, 0x0) = { 0.0f, 562.5f, -1125.0f };
+f32 D_8080065C_chquizremotectrl [2] BT_DATA(4, overlays_ch_quizremotectrl, 0xC) = { 0.0f, 0.0f };
+f32 D_80800664_chquizremotectrl BT_DATA(4, overlays_ch_quizremotectrl, 0x14) = 0.0f;
+ActorData D_80800668_chquizremotectrl [1] BT_DATA(4, overlays_ch_quizremotectrl, 0x18) = { { 344, 535, 2464, 1, 0, (void (*)(struct Actor *))func_808002C8_chquizremotectrl, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800410_chquizremotectrl, 0, 0, 0, 0, 64, 1028, (void (*)(struct Actor *))func_808003A0_chquizremotectrl, 0, 0, 0, (void (*)(struct Actor *))func_808003A8_chquizremotectrl, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_808005E4_chquizremotectrl, 0 } };

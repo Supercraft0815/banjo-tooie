@@ -2,23 +2,23 @@
 
 /* extern */
 
-void bastatemem_entrypoint_0(void *arg0, s32 arg1) {
-    s32 heap_alloc(s32);
-    (*(s32 *)((s8 *)(arg0) + (0x188))) = heap_alloc(arg1);
+typedef struct { u8 pad0[0x188]; BtIntPtr unk188; } Objstatemem_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void bastatemem_entrypoint_0(void *arg0, s32 arg1) {
+    BtIntPtr heap_alloc(s32);
+    (((Objstatemem_arg0 *)arg0)->unk188) = heap_alloc(arg1);
 }
 
 /* extern */
 
 void bastatemem_entrypoint_1(void *arg0) {
-    s32 heap_free(s32);
-    heap_free((*(s32 *)((s8 *)(arg0) + (0x188))));
-    (*(s32 *)((s8 *)(arg0) + (0x188))) = 0;
+    void heap_free(void *memory);
+    heap_free((((Objstatemem_arg0 *)arg0)->unk188));
+    (((Objstatemem_arg0 *)arg0)->unk188) = 0;
 }
 
-void bastatemem_entrypoint_2(s32 arg0) 
+void bastatemem_entrypoint_2(BtIntPtr arg0) 
 {
 }
 void bastatemem_entrypoint_3(void* arg0)
 {
-    *(s32*)((u8*)arg0 + 0x188) = 0;
+    ((Objstatemem_arg0 *)arg0)->unk188 = 0;
 }

@@ -35,9 +35,9 @@ void bsdronesuckunder_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsdronesuckunder_entrypoint_2(s32 arg0) {
-    s32 func_80099AA8(s32);
-    s32 func_80099B94(s32);
+void bsdronesuckunder_entrypoint_2(BtIntPtr arg0) {
+    void func_80099AA8(void *arg0);
+    void func_80099B94(void *arg0);
     s32 func_8009E6EC();
     s32 temp_v0;
 

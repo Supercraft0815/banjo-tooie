@@ -1,15 +1,15 @@
 #include "common.h"
 
-void func_80800000_bscrouch(s32 arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+typedef struct { u8 pad0[0x15C]; s32 unk15C; u8 pad160[0xC]; f32 unk16C; } Objcrouch_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_bscrouch(BtIntPtr arg0) {
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     baanim_playForDuration_loopSmooth(arg0, 0x10C, 0x3F000000);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 4;
+    (((Objcrouch_arg0 *)arg0)->unk15C) = 4;
 }
 
-void func_80800034_bscrouch(s32 arg0) {
-    s32 baanim_playForDuration_onceSmooth(s32, s32, s32);
+void func_80800034_bscrouch(BtIntPtr arg0) {
+    s32 baanim_playForDuration_onceSmooth(BtIntPtr, s32, s32);
     baanim_playForDuration_onceSmooth(arg0, 0x116, 0x40000000);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 2;
+    (((Objcrouch_arg0 *)arg0)->unk15C) = 2;
 }
 
 /* extern */
@@ -19,18 +19,18 @@ void func_80800068_bscrouch(void *arg0) {
     void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
     baanim_playForDuration_onceSmoothStartingAt(arg0, 0x10C, 0.5f, 0.9999f);
     _batimer_set(arg0, 2, 2.0f);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 1;
+    (((Objcrouch_arg0 *)arg0)->unk15C) = 1;
 }
 
 /* extern */
 
-void func_808000B4_bscrouch(s32 arg0, f32 arg1) {
+void func_808000B4_bscrouch(BtIntPtr arg0, f32 arg1) {
     f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
-    s32 anctrl_setDuration(s32, f32);
+    void anctrl_setDuration(void *arg0, f32 arg1);
     anctrl_setDuration(arg0, func_800F10B4(arg1, 0.0f, 180.0f, 0.5f, 0.2f));
 }
 
-void func_808000FC_bscrouch(void *arg0, s32 arg1) {
+void func_808000FC_bscrouch(void *arg0, BtIntPtr arg1) {
     struct player_state_s;
     void func_800A2CE8(struct player_state_s *, f32, s32);
     func_800A2CE8(arg0, 0.41f, 4);
@@ -42,25 +42,25 @@ void func_8009D658(struct player_state_s *);
 
 void bscrouch_entrypoint_0(void *arg0) {
     void _batimer_set(void *, s32, f32);
-    void anctrl_reset(s32);
-    s32 anctrl_setDuration(s32, f32);
-    void anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    void anctrl_setStart(s32, f32);
-    void anctrl_start(s32);
-    s32 baanim_getAnimCtrlPtr();
+    void anctrl_reset(BtIntPtr);
+    void anctrl_setDuration(void *arg0, f32 arg1);
+    void anctrl_setIndex(BtIntPtr, s32);
+    void anctrl_setPlaybackType(void *arg0, s32 arg1);
+    void anctrl_setStart(void *arg0, f32 arg1);
+    void anctrl_start(BtIntPtr);
+    void * baanim_getAnimCtrlPtr(void *self);
     void baphysics_set_target_yaw(void *, f32);
-    s32 baphysics_set_type(void *, s32);
+    void baphysics_set_type(void *self, s32 type);
     s32 bs_getPreviousState(void *);
-    s32 func_8008CA4C(void *, s32);
+    void func_8008CA4C(void *self, s32 arg1);
     void func_8009BB24(void *, f32 *);
     void func_8009CFD8(void *, f32);
     void func_8009D2D8(void *, s32);
     int func_800F1EA4(f32 *, f32 *);
-    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setUpdateType(void *self, s32 type);
     void yaw_setVelocityBounded(void *, f32, f32);
     f32 sqrtf(f32);
-    s32 anim;
+    BtIntPtr anim;
     f32 velocity[3];
     f32 start;
     f32 yaw;
@@ -90,14 +90,14 @@ void bscrouch_entrypoint_0(void *arg0) {
     _batimer_set(arg0, 1, 0.2f);
     func_8009BB24(arg0, velocity);
     speed = sqrtf(velocity[0] * velocity[0] + velocity[2] * velocity[2]);
-    *(f32 *)((u8 *)arg0 + 0x16C) = speed;
+    ((Objcrouch_arg0 *)arg0)->unk16C = speed;
     if (speed > 140.0f) {
         func_8009D658(arg0);
     }
     if (func_800F1EA4(velocity, &yaw)) {
         baphysics_set_target_yaw(arg0, yaw);
     }
-    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    ((Objcrouch_arg0 *)arg0)->unk15C = 0;
 }
 
 void bscrouch_entrypoint_1(void *arg0) {
@@ -108,26 +108,26 @@ void bscrouch_entrypoint_1(void *arg0) {
     s32 _batimer_isNonzero(void *, s32);
     s32 _batimer_isZero(void *, s32);
     void _batimer_set(void *, s32, f32);
-    f32 anctrl_getAnimTimer(s32);
-    s32 anctrl_isStopped(s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    void anctrl_setSubrange(s32, f32, f32);
-    s32 baanim_getAnimCtrlPtr();
+    f32 anctrl_getAnimTimer(BtIntPtr);
+    s32 anctrl_isStopped(BtIntPtr);
+    void anctrl_setPlaybackType(void *arg0, s32 arg1);
+    void anctrl_setSubrange(BtIntPtr, f32, f32);
+    void * baanim_getAnimCtrlPtr(void *self);
     void baphysics_set_target_horizontal_velocity(void *, f32);
     f32 bastick_distance(void *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 bscrouch_entrypoint_4(void *, s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DCC(f32, f32);
     void func_80800068_bscrouch(void *);
-    void func_808000FC_bscrouch(void *, s32);
+    void func_808000FC_bscrouch(void *, BtIntPtr);
     f32 mlAbsF(f32);
     f32 yaw_get(void *);
     f32 yaw_getIdeal(void *);
     void yaw_setIdeal(void *, f32);
     s32 next_state;
     f32 speed;
-    s32 anim;
+    BtIntPtr anim;
     f32 angle;
 
     next_state = 0;
@@ -135,7 +135,7 @@ void bscrouch_entrypoint_1(void *arg0) {
     _batimer_decrement(arg0, 0);
     _batimer_decrement(arg0, 1);
     speed = func_800F10B4(_batimer_get(arg0, 0), 0.0f, 0.3f, 0.0f,
-                        *(f32 *)((u8 *)arg0 + 0x16C));
+                        ((Objcrouch_arg0 *)arg0)->unk16C);
     baphysics_set_target_horizontal_velocity(arg0, speed);
     if (speed > 220.0f) {
         _badust_entrypoint_9(arg0);
@@ -157,17 +157,17 @@ void bscrouch_entrypoint_1(void *arg0) {
         break;
     case 1:
         if (angle != 0.0f) {
-            func_80800000_bscrouch((s32)arg0);
+            func_80800000_bscrouch((BtIntPtr)arg0);
         } else {
             _batimer_decrement(arg0, 2);
             if (_batimer_isZero(arg0, 2)) {
-                func_80800034_bscrouch((s32)arg0);
+                func_80800034_bscrouch((BtIntPtr)arg0);
             }
         }
         break;
     case 2:
         if (angle != 0.0f) {
-            func_80800000_bscrouch((s32)arg0);
+            func_80800000_bscrouch((BtIntPtr)arg0);
         } else if (anctrl_isStopped(anim)) {
             func_80800068_bscrouch(arg0);
         }
@@ -211,14 +211,14 @@ void bscrouch_entrypoint_1(void *arg0) {
     if (player_inWater(arg0)) {
         next_state = 0x2D;
     }
-    bs_setState((s32)arg0, next_state);
+    bs_setState((BtIntPtr)arg0, next_state);
 }
 
 void bscrouch_entrypoint_2(s32 arg0) 
 {
 }
 s32 bscrouch_entrypoint_3(s32 arg0) {
-    extern s32 D_80800990_bscrouch[];
+    extern BtIntPtr D_80800990_bscrouch[];
     return ((s32 *)&D_80800990_bscrouch)[arg0];
 }
 
@@ -249,7 +249,7 @@ s32 func_808006A4_bscrouch(void *arg0) {
 s32 bscrouch_entrypoint_4(void *arg0, s32 arg1) {
     struct player_state_s;
     int bs_getTypeOfJump(struct player_state_s *);
-    s32 _suinv_entrypoint_0(s32 *, s32, s32, s32, s32);
+    void _suinv_entrypoint_0(s32* arg0, s32 failure, s32 success, s32 itemType, s32 amountToRemove);
     int bakey_pressed(struct player_state_s *, int);
     int bakey_released(struct player_state_s *, int);
     int bainput_should_wonderwing(struct player_state_s *);
@@ -324,3 +324,9 @@ s32 bscrouch_entrypoint_4(void *arg0, s32 arg1) {
     }
     return arg1;
 }
+/* data_to_c.py: from asm/data/overlays/bs/crouch.data.s */
+void _bscrouch_entrypoint_2();
+void _bscrouch_entrypoint_0();
+void _bscrouch_entrypoint_1();
+void func_8009AB78();
+BtIntPtr D_80800990_bscrouch [4] BT_DATA(4, overlays_bs_crouch, 0x0) = { (BtIntPtr)_bscrouch_entrypoint_2, (BtIntPtr)_bscrouch_entrypoint_0, (BtIntPtr)_bscrouch_entrypoint_1, (BtIntPtr)func_8009AB78 };

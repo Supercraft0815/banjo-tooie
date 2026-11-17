@@ -4,7 +4,7 @@ void func_80800000_chpotogoldgame(Actor *arg0) {
     s32 func_800D0A9C(u32, u32);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
-    s32 func_80800434_chpotogoldgame(s32, s32);
+    s32 func_80800434_chpotogoldgame(BtIntPtr, s32);
     void func_808011DC_chpotogoldgame(Actor *);
     void func_80801494_chpotogoldgame(Actor *, s32);
     void func_80801558_chpotogoldgame(Actor *);
@@ -13,7 +13,7 @@ void func_80800000_chpotogoldgame(Actor *arg0) {
     func_808011DC_chpotogoldgame(arg0);
     arg0->unk64_20 = 0;
     if (func_800DA298(0x6B6) != 0) {
-        func_80800434_chpotogoldgame((s32)arg0, 0xF);
+        func_80800434_chpotogoldgame((BtIntPtr)arg0, 0xF);
     } else if (func_800D0A9C(0x49, 1) != 0 || func_800D0A9C(0x17, 4) != 0 || func_800DA298(0x1DB) != 0 || func_800D395C() != 0) {
         ((f32 *)arg0->actorData)[0] = 2.0f;
         ((f32 *)arg0->actorData)[5] = 2.0f;
@@ -21,9 +21,9 @@ void func_80800000_chpotogoldgame(Actor *arg0) {
         ((f32 *)arg0->actorData)[6] = 2.0f;
         ((f32 *)arg0->actorData)[1] = 2.0f;
         if (func_800D395C() != 0) {
-            func_80800434_chpotogoldgame((s32)arg0, 0xD);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 0xD);
         } else {
-            func_80800434_chpotogoldgame((s32)arg0, 4);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 4);
         }
     } else {
         ((f32 *)arg0->actorData)[0] = 0.0f;
@@ -40,18 +40,18 @@ void func_80800000_chpotogoldgame(Actor *arg0) {
 }
 
 void func_80800124_chpotogoldgame(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void func_800CE88C(s32, s32);
     s16 func_800CEA84(s32);
     s32 func_800D2498(u32, s32, u32);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80108B04(Actor *, u32);
     s32 func_8010CB84(f32 *, s32);
-    s32 func_80800434_chpotogoldgame(s32, s32);
+    s32 func_80800434_chpotogoldgame(BtIntPtr, s32);
     void func_808011DC_chpotogoldgame(Actor *);
     void func_80801244_chpotogoldgame(Actor *);
     void func_808013BC_chpotogoldgame(Actor *, s32, s32, s32, s32, f32 *);
@@ -73,7 +73,7 @@ void func_80800124_chpotogoldgame(Actor *arg0) {
         func_80801A7C_chpotogoldgame(arg0);
         if (func_800DA298(0x9F6) && func_800DA298(0x9F7) &&
             func_800DA298(0x9F8) && func_800DA298(0x9F9)) {
-            func_80800434_chpotogoldgame((s32)arg0, 2);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 2);
         }
         break;
     case 2:
@@ -84,7 +84,7 @@ void func_80800124_chpotogoldgame(Actor *arg0) {
                 if (++data->unk66 == 5) {
                     data->unk66 = 0;
                     if (++data->unk64 == 5) {
-                        func_80800434_chpotogoldgame((s32)arg0, 4);
+                        func_80800434_chpotogoldgame((BtIntPtr)arg0, 4);
                     }
                 }
             }
@@ -94,9 +94,9 @@ void func_80800124_chpotogoldgame(Actor *arg0) {
         if (arg0->unk64_20 && !_subaddiefind_entrypoint_2(0x1CD, 0)) {
             arg0->unk64_20 = 0;
             if (func_800F64A4(func_800F54E4(), 0x10220)) {
-                func_80800434_chpotogoldgame((s32)arg0, 12);
+                func_80800434_chpotogoldgame((BtIntPtr)arg0, 12);
             } else {
-                func_80800434_chpotogoldgame((s32)arg0, 5);
+                func_80800434_chpotogoldgame((BtIntPtr)arg0, 5);
             }
         }
         break;
@@ -119,9 +119,9 @@ void func_80800124_chpotogoldgame(Actor *arg0) {
         if (score == 100) {
             arg0->actorData[2] = (s32)(45.0f - (f32)func_800CEA84(0));
             if (func_800D395C()) {
-                func_80800434_chpotogoldgame((s32)arg0, 14);
+                func_80800434_chpotogoldgame((BtIntPtr)arg0, 14);
             } else {
-                func_80800434_chpotogoldgame((s32)arg0, 8);
+                func_80800434_chpotogoldgame((BtIntPtr)arg0, 8);
             }
             func_800CE88C(0, 0);
         }
@@ -130,34 +130,34 @@ void func_80800124_chpotogoldgame(Actor *arg0) {
         if (!func_8010CB84(arg0->position, 500) &&
             !func_800F64A4(func_800F54E4(), 0x10220)) {
             func_80108B04(arg0, 0);
-            func_80800434_chpotogoldgame((s32)arg0, 4);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 4);
         }
         break;
     }
     func_80801558_chpotogoldgame(arg0);
 }
 
-s32 func_80800434_chpotogoldgame(s32 arg0, s32 arg1) {
-    s32 _gcfrontend_entrypoint_9(s32);
+s32 func_80800434_chpotogoldgame(BtIntPtr arg0, s32 arg1) {
+    void _gcfrontend_entrypoint_9(s32 arg0);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
-    void func_800CE928(s32, s32, s32);
+    void func_800CE928(s32, BtIntPtr, BtIntPtr);
     s32 func_800D0A9C(u32, u32);
     s32 func_800D211C(s32);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F7C0C(s32, s32, f32);
-    s32 func_800F7CF4(s32, s32, void *);
-    void func_800F8294(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F7C0C(BtIntPtr, s32, f32);
+    s32 func_800F7CF4(BtIntPtr, s32, void *);
+    void func_800F8294(BtIntPtr, f32 *);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
-    void func_8080111C_chpotogoldgame(s32);
-    void func_8080117C_chpotogoldgame(s32);
+    void func_8080111C_chpotogoldgame(BtIntPtr);
+    void func_8080117C_chpotogoldgame(BtIntPtr);
     void func_808011DC_chpotogoldgame(Actor *);
     void func_808013BC_chpotogoldgame(Actor *, s32, s32, s32, s32, f32 *);
     s32 func_8080206C_chpotogoldgame(Actor *);
@@ -165,7 +165,7 @@ s32 func_80800434_chpotogoldgame(s32 arg0, s32 arg1) {
     void func_8080219C_chpotogoldgame(Actor *, s32, s32);
     void func_8080227C_chpotogoldgame(void *);
     extern Vec3f D_808024F0_chpotogoldgame;
-    extern void _chpotogoldgame_entrypoint_0(s32, s32);
+    extern void _chpotogoldgame_entrypoint_0(s32, BtIntPtr);
     struct GameState {
         u8 cells[5][4][5];
         u8 unk64;
@@ -214,7 +214,7 @@ s32 func_80800434_chpotogoldgame(s32 arg0, s32 arg1) {
     case 6:
         func_8080219C_chpotogoldgame(actor, 0xCEC, 0xE);
         func_800CE8D8(0, 45.0f, 0x2D);
-        func_800CE928(0, (s32)_chpotogoldgame_entrypoint_0, (s32)actor->unk0);
+        func_800CE928(0, (BtIntPtr)_chpotogoldgame_entrypoint_0, (BtIntPtr)actor->unk0);
         _gcfrontend_entrypoint_9(0x71);
         break;
     case 7:
@@ -351,7 +351,7 @@ s32 func_80800434_chpotogoldgame(s32 arg0, s32 arg1) {
         func_800FDC28(0);
         break;
     }
-    func_80101FDC(actor, arg1);
+    func_80101FDC(actor, arg1); BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_80800A94_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
@@ -359,13 +359,13 @@ s32 func_80800A94_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void func_800C0850(void);
     s32 func_800D211C(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7B9C(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7B9C(BtIntPtr, s32);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
     void func_80108B04(Actor *, u32);
-    s32 func_80800434_chpotogoldgame(s32, s32);
+    s32 func_80800434_chpotogoldgame(BtIntPtr, s32);
     void func_808010A0_chpotogoldgame(void *);
-    void func_8080111C_chpotogoldgame(s32);
+    void func_8080111C_chpotogoldgame(BtIntPtr);
     s32 func_8080206C_chpotogoldgame();
     void func_8080219C_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2);
     void func_8080227C_chpotogoldgame(void *);
@@ -537,37 +537,37 @@ small_messages:
         if (message != 0xCEC) {
             goto message_default;
         }
-            func_80800434_chpotogoldgame((s32)arg0, 7);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 7);
             return 1;
 message_1:
             if (((s16 *)&arg2)[1] != 0) {
-                func_80800434_chpotogoldgame((s32)arg0, 6);
+                func_80800434_chpotogoldgame((BtIntPtr)arg0, 6);
             } else {
-                func_80800434_chpotogoldgame((s32)arg0, 0xC);
+                func_80800434_chpotogoldgame((BtIntPtr)arg0, 0xC);
             }
             return 1;
 message_2:
             func_808010A0_chpotogoldgame(arg0);
-            func_80800434_chpotogoldgame((s32)arg0, 9);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 9);
             return 1;
 message_3:
             func_808010A0_chpotogoldgame(arg0);
-            func_80800434_chpotogoldgame((s32)arg0, 0xA);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 0xA);
             return 1;
 message_4:
             func_808010A0_chpotogoldgame(arg0);
-            func_80800434_chpotogoldgame((s32)arg0, 0xB);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 0xB);
             return 1;
 message_5:
             func_808010A0_chpotogoldgame(arg0);
-            func_80800434_chpotogoldgame((s32)arg0, 5);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 5);
             return 1;
 message_6:
             func_8080227C_chpotogoldgame(arg0);
             func_800F7B9C(func_800F54E4(), 0x93);
             return 1;
 message_7:
-            func_80800434_chpotogoldgame((s32)arg0, 6);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 6);
             return 1;
 message_8:
             func_808010A0_chpotogoldgame(arg0);
@@ -575,7 +575,7 @@ message_8:
             return 1;
 message_9:
             if (((s16 *)&arg2)[1] != 0) {
-                func_80800434_chpotogoldgame((s32)arg0, 6);
+                func_80800434_chpotogoldgame((BtIntPtr)arg0, 6);
                 return 1;
             }
             func_8080227C_chpotogoldgame(arg0);
@@ -586,13 +586,13 @@ message_default:
         return 1;
     case 0xB:
         if (arg2 == 5 && (s32)arg0->unk70_10 == 0xB) {
-            func_8080111C_chpotogoldgame((s32)arg0);
+            func_8080111C_chpotogoldgame((BtIntPtr)arg0);
         } else if (arg2 == 0) {
-            func_80800434_chpotogoldgame((s32)arg0, 4);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 4);
         } else if (arg2 == 3 || arg2 == 5) {
-            func_80800434_chpotogoldgame((s32)arg0, 5);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 5);
         } else {
-            func_80800434_chpotogoldgame((s32)arg0, 5);
+            func_80800434_chpotogoldgame((BtIntPtr)arg0, 5);
         }
         return 4;
     case 0x95:
@@ -607,10 +607,10 @@ message_default:
 
 /* extern */
 
-void chpotogoldgame_entrypoint_0(s32 arg0, s32 arg1) {
+void chpotogoldgame_entrypoint_0(s32 arg0, BtIntPtr arg1) {
     s32 func_800D395C();
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_80800434_chpotogoldgame(s32, s32);
+    s32 func_80800434_chpotogoldgame(BtIntPtr, s32);
     if (func_800D395C() != 0) {
         func_80800434_chpotogoldgame(func_80106790(arg1), 0xE);
         return;
@@ -639,10 +639,10 @@ void func_808010A0_chpotogoldgame(void *arg0) {
 
 /* extern */
 
-void func_8080111C_chpotogoldgame(s32 arg0) {
-    s32 _gccubesearch_entrypoint_1(s32, s32);
-    s32 _gspropctrl_entrypoint_11(s32, s32 *);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+void func_8080111C_chpotogoldgame(BtIntPtr arg0) {
+    void *_gccubesearch_entrypoint_1(s32 actor_id, f32 *position);
+    void _gspropctrl_entrypoint_11(void *arg0, void *arg1);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     void func_80802124_chpotogoldgame(Actor *, s32, s32);
     s32 pad[2];
     s32 sp24;
@@ -654,10 +654,10 @@ void func_8080111C_chpotogoldgame(s32 arg0) {
 
 /* extern */
 
-void func_8080117C_chpotogoldgame(s32 arg0) {
-    s32 _gccubesearch_entrypoint_1(s32, s32);
-    s32 _gspropctrl_entrypoint_11(s32, s32 *);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+void func_8080117C_chpotogoldgame(BtIntPtr arg0) {
+    void *_gccubesearch_entrypoint_1(s32 actor_id, f32 *position);
+    void _gspropctrl_entrypoint_11(void *arg0, void *arg1);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     void func_80802124_chpotogoldgame(Actor *, s32, s32);
     s32 sp24[3];
 
@@ -669,7 +669,7 @@ void func_8080117C_chpotogoldgame(s32 arg0) {
 /* extern */
 
 void func_808011DC_chpotogoldgame(Actor *arg0) {
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *arg0);
     void *func_80100094(Actor *, u32);
     s32 var_s1;
     u8 *temp_v0;
@@ -688,7 +688,7 @@ void func_808011DC_chpotogoldgame(Actor *arg0) {
 void func_80801244_chpotogoldgame(Actor *arg0)
 {
   s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
-  s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+  void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
   Actor *_subaddielink_entrypoint_4(u8 *);
   void func_800EE7F8(f32 *, f32 *);
   void *func_80100094(Actor *, u32);
@@ -742,17 +742,17 @@ void func_80801244_chpotogoldgame(Actor *arg0)
 }
 
 void func_808013BC_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 *arg5) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800FC660(u32);
     void *func_80100094(Actor *, u32);
     void func_80801870_chpotogoldgame(s32, s32, s32, s32);
-    extern s32 D_808024FC_chpotogoldgame;
+    extern s32 D_808024FC_chpotogoldgame[17];
     u8 (*data)[4][5];
 
     data = func_80100094(arg0, 0);
     if (arg4 != 0 && data[arg1][arg2][arg3] == 0) {
         if (arg5 != NULL) {
-            func_800BBCB8(arg5, arg5, 1.0f, 0x1E, &D_808024FC_chpotogoldgame);
+            func_800BBCB8(arg5, arg5, 1.0f, 0x1E, D_808024FC_chpotogoldgame);
         }
         func_800FC660(0xE);
     }
@@ -799,14 +799,14 @@ loop_3:
         var_fp += 0x14;
     } while (var_s4 != 5);
 }
-
+struct Color { s32 values[3]; };
 void func_80801558_chpotogoldgame(Actor *arg0) {
     void func_800BF48C(s32, s32, s32);
-    void func_800C8C90(s32);
+    void func_800C8C90(BtIntPtr);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     int func_800F3214(void *, void *, void *, f32);
     s32 func_8080206C_chpotogoldgame();
-    struct Color { s32 values[3]; };
+
     struct GameData { f32 values[8]; };
     extern struct Color D_80802540_chpotogoldgame;
     extern struct Color D_8080254C_chpotogoldgame;
@@ -823,14 +823,14 @@ void func_80801558_chpotogoldgame(Actor *arg0) {
     ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[1], 0.0f, 2.0f, 0.0f, 0.1f);
     func_800F3214(&color, &start, &end, ratio);
     func_800BF48C(color.values[0], color.values[1], color.values[2]);
-    func_800C8C90((s32)&color);
+    func_800C8C90((BtIntPtr)&color);
 }
-
+struct Bounds { f32 values[8]; };
 s32 func_808016E8_chpotogoldgame(f32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
     f32 func_800136E4(f32);
     f32 func_800F13C4(f32, f32);
     s32 func_800F1EA4(f32 *, f32 *);
-    struct Bounds { f32 values[8]; };
+
     extern struct Bounds D_80802558_chpotogoldgame;
     f32 angle;
     struct Bounds bounds = D_80802558_chpotogoldgame;
@@ -860,8 +860,8 @@ s32 func_808016E8_chpotogoldgame(f32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
 }
 
 void func_80801870_chpotogoldgame(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 func_800BEA88(s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void *func_800BEA88(s32 i);
 #ifdef BT_NATIVE
     void chpotogoldgame_entrypoint_1(u8, s16 *, Vtx *, s32, s32);
 #else
@@ -938,18 +938,18 @@ void chpotogoldgame_entrypoint_2(s32 arg0, Unk80132ED0 *arg1) {
 
 s32 func_80801A7C_chpotogoldgame(Actor *arg0) {
     s32 sp24;
-    s32 marker;
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 func_800BEA88(s32);
+    BtIntPtr marker;
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void *func_800BEA88(s32 i);
     int func_800D91EC(f32 *, f32);
     s32 func_800DA298(s32);
 #ifdef BT_NATIVE
-    void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 arg4);
+    void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, BtIntPtr arg4);
 #else
     extern s32 _chpotogoldgame_entrypoint_3;
 #endif
     s32 *volatile sp1C;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     sp24 = 1;
     if ((func_800DA298(0x9F6) != 0) || (func_800DA298(0x1DB) != 0)) {
@@ -978,7 +978,7 @@ s32 func_80801A7C_chpotogoldgame(Actor *arg0) {
     return sp24;
 }
 
-void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, s32 arg4) {
+void chpotogoldgame_entrypoint_3(s32 arg0, s32 arg1, Vtx *arg2, s32 arg3, BtIntPtr arg4) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 pad;
@@ -1035,8 +1035,8 @@ s32 func_8080206C_chpotogoldgame(Actor *arg0) {
 }
 
 void func_80802124_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     switch (arg0->actorData[7]) {
         case 0:
@@ -1050,17 +1050,17 @@ void func_80802124_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080219C_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    void _capod_entrypoint_8(s32 arg0);
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    f32 func_800F5F24(u32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    f32 func_800F5F24(BtUIntPtr);
     f32 sp3C[3];
     f32 sp30[3];
 
@@ -1095,7 +1095,18 @@ void func_8080227C_chpotogoldgame(void *arg0) {
 
 OSThread *chpotogoldgame_entrypoint_4(void)
 {
-    extern u8 D_80802578_chpotogoldgame[];
+    extern ActorData D_80802578_chpotogoldgame[];
 
     return (OSThread *) D_80802578_chpotogoldgame;
 }
+/* data_to_c.py: from asm/data/overlays/ch/potogoldgame.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80108ED0();
+void func_80107C2C();
+Vec3f D_808024F0_chpotogoldgame BT_DATA(4, overlays_ch_potogoldgame, 0x0) = { { 0.0f, 1075.0f, -2700.0f } };
+s32 D_808024FC_chpotogoldgame[17] BT_DATA(4, overlays_ch_potogoldgame, 0xC) = { 1903074, 1834408, -52428755, 13107500, 917514, 2621474, 2490444, 1638425, 1376281, 15073323, 16777600, 3080294, 6029393, 1638420, 1966272, 3276750, -6553600 };
+struct Color D_80802540_chpotogoldgame BT_DATA(4, overlays_ch_potogoldgame, 0x50) = { { 80, 80, 80 } };
+struct Color D_8080254C_chpotogoldgame BT_DATA(4, overlays_ch_potogoldgame, 0x5C) = { { 220, 220, 220 } };
+struct Bounds D_80802558_chpotogoldgame BT_DATA(4, overlays_ch_potogoldgame, 0x68) = { { 1825.0f, 1570.0f, 1475.0f, 1125.0f, 1025.0f, 650.0f, 575.0f, 250.0f } };
+ActorData D_80802578_chpotogoldgame [1] BT_DATA(4, overlays_ch_potogoldgame, 0x88) = { { 355, 1029, 0, 1, 0, (void (*)(struct Actor *))func_80800124_chpotogoldgame, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 0, 0, (BtIntPtr)func_80108ED0, 103, 240, (void (*)(struct Actor *))func_80800000_chpotogoldgame, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9216, (void (*)(struct Actor *, long, long))func_80800A94_chpotogoldgame, 0 } };

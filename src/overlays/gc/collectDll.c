@@ -138,11 +138,11 @@ s32 func_808002C4_gccollectDll(s32 arg0, s32 arg1) {
     return 0;
 }
 
-s32 func_808003E0_gccollectDll(void *arg0, void *arg1) {
+BtIntPtr func_808003E0_gccollectDll(void *arg0, void *arg1) {
     s16 func_800D0684(s32, s32);
     void func_800D07CC(s32, s32, f32 *);
     s32 func_800EA05C();
-    void *heap_realloc(void *, s32);
+    void *heap_realloc(void *, BtIntPtr);
     s32 start;
     s32 i;
     s32 *buffer;
@@ -193,7 +193,7 @@ s32 func_808003E0_gccollectDll(void *arg0, void *arg1) {
         }
     }
     *(s32 *)arg1 = (s32 *)cursor - buffer;
-    return (s32)buffer;
+    return (BtIntPtr)buffer;
 }
 
 void func_808005BC_gccollectDll(u32 arg0, Prop* arg1)
@@ -206,7 +206,7 @@ void func_808005BC_gccollectDll(u32 arg0, Prop* arg1)
     sp18[2] = (s32)arg1->position[2];
     sp24 = func_80108C90(0x21F, sp18, 0U, NULL);
     func_800D053C(arg0, 1);
-    func_800D05E4((s32)arg0, 1, (s32)sp24->unk0);
+    func_800D05E4((s32)arg0, 1, (BtIntPtr)sp24->unk0);
     func_800CFBC8(sp24, arg0, 1, 0);
     if ((_glreflight_entrypoint_0() & 0xFF) != 0xFE) 
     {
@@ -214,7 +214,7 @@ void func_808005BC_gccollectDll(u32 arg0, Prop* arg1)
     }
 }
 
-s32 func_80800660_gccollectDll(void* arg0, void* arg1) {
+BtIntPtr func_80800660_gccollectDll(void* arg0, void* arg1) {
     s16* cursor;
     s16 entry;
     s32 count;
@@ -237,10 +237,10 @@ s32 func_80800660_gccollectDll(void* arg0, void* arg1) {
         } while (i != count);
     }
     *(s32*)arg1 = ((u8*)cursor - (u8*)arg0) >> 2;
-    return (s32)arg0;
+    return (BtIntPtr)arg0;
 }
 
-s32 gccollectDll_entrypoint_6(void* arg0, void* arg1)
+BtIntPtr gccollectDll_entrypoint_6(void* arg0, void* arg1)
 {
     if (func_800CF87C() == -1)
     {
@@ -253,7 +253,7 @@ s32 gccollectDll_entrypoint_6(void* arg0, void* arg1)
     return func_808003E0_gccollectDll(arg0, arg1);
 }
 
-s32 gccollectDll_entrypoint_7(void* arg0, void* arg1) {
+BtIntPtr gccollectDll_entrypoint_7(void* arg0, void* arg1) {
     if (func_800CF87C() == -1) 
     {
         return arg0;
@@ -281,7 +281,7 @@ void func_808007D8_gccollectDll(Prop* arg0)
 Actor* func_80800890_gccollectDll(Prop* arg0, u32 arg1)
 {
     s32 sp1C[3];
-    s32 sp18;
+    BtIntPtr sp18;
     //If Item is spawned but not collected
     if ((func_800D0A9C(arg0->FlagOrRotation, arg1) != 0) && (func_800D0B68(arg0->FlagOrRotation, arg1) == 0))
     {
@@ -379,3 +379,7 @@ void gccollectDll_entrypoint_8(s16* arg0)
         }
     }
 }
+/* data_to_c.py: from asm/data/overlays/gc/collectDll.data.s */
+s16 D_80800BE0_gccollectDll [ 0x16 ] BT_DATA(4, overlays_gc_collectDll, 0x0) = { 49, 1, 38, 1, 11, 4, 10, 1, 22, 2, 61, 1, 76, 1, 10, 2, 20, 0, 54, 1, 6, 2 };
+s32 D_80800C0C_gccollectDll [ 3 ] BT_DATA(4, overlays_gc_collectDll, 0x2C) = { 0, 0, 0 };
+u32 D_80800C18_gccollectDll [ 10 ] BT_DATA(4, overlays_gc_collectDll, 0x38) = { 0x1F4, 0x21F, 0x220, 0x21B, 0x136, 0, 0, 0x4E5, 0x3C6, 0 };

@@ -2,7 +2,7 @@
 
 OSThread *chbanjoctrl_entrypoint_0(void)
 {
-    extern u8 D_80801270_chbanjoctrl[];
+    extern ActorData D_80801270_chbanjoctrl[];
 
     return (OSThread *) D_80801270_chbanjoctrl;
 }
@@ -30,7 +30,7 @@ void func_8080000C_chbanjoctrl(Actor *arg0) {
 }
 
 void func_80800098_chbanjoctrl(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddieDll_entrypoint_1(Actor *arg0);
     int func_800F6968(s32);
     int func_800F69E8(s32);
 #ifdef BT_NATIVE
@@ -43,7 +43,7 @@ void func_80800098_chbanjoctrl(Actor *arg0) {
 #else
     void _chbanjoctrl_entrypoint_2(void);
 #endif
-    void func_80800684_chbanjoctrl(void *, f32, s32, s32);
+    void func_80800684_chbanjoctrl(void *, f32, BtIntPtr, BtIntPtr);
     struct BanjoCtrlFlags {
         u8 pad0[0x70];
         u8 unk70_1 : 7;
@@ -56,16 +56,16 @@ void func_80800098_chbanjoctrl(Actor *arg0) {
             _subaddieDll_entrypoint_1(arg0);
             break;
         case 4:
-            func_80800684_chbanjoctrl(arg0, 3.0f, (s32) func_800F69E8, (s32) _chbanjoctrl_entrypoint_1);
+            func_80800684_chbanjoctrl(arg0, 3.0f, (BtIntPtr) func_800F69E8, (BtIntPtr) _chbanjoctrl_entrypoint_1);
             break;
         case 5:
-            func_80800684_chbanjoctrl(arg0, 3.0f, (s32) func_800F6968, (s32) _chbanjoctrl_entrypoint_2);
+            func_80800684_chbanjoctrl(arg0, 3.0f, (BtIntPtr) func_800F6968, (BtIntPtr) _chbanjoctrl_entrypoint_2);
             break;
     }
 }
 
-void func_808011F4_chbanjoctrl(void);
-void func_8080012C_chbanjoctrl(Actor *arg0) { if ((u32) arg0->unk70_10 == 0xB) { func_808011F4_chbanjoctrl(); } }
+void func_808011F4_chbanjoctrl(BT_PARAM_OR_VOID(s32 bt_a0));
+void func_8080012C_chbanjoctrl(Actor *arg0) { if ((u32) arg0->unk70_10 == 0xB) { func_808011F4_chbanjoctrl(BT_NATIVE_ONLY(arg0)); } }
 
 void func_80800160_chbanjoctrl(Actor *arg0) {
     void func_8008FE68(f32 *);
@@ -73,7 +73,7 @@ void func_80800160_chbanjoctrl(Actor *arg0) {
     void func_8080025C_chbanjoctrl(u8 *);
     void func_808003F8_chbanjoctrl(Actor *);
     void func_80800728_chbanjoctrl(void *);
-    void func_80800ADC_chbanjoctrl(s32);
+    void func_80800ADC_chbanjoctrl(BtIntPtr);
     void func_80800B18_chbanjoctrl(Actor *);
     void func_80800D04_chbanjoctrl(u8 *);
     void func_80800D50_chbanjoctrl(u8 *);
@@ -89,7 +89,7 @@ void func_80800160_chbanjoctrl(Actor *arg0) {
             case 3: func_808003F8_chbanjoctrl(arg0); break;
             case 4:
             case 5: func_80800728_chbanjoctrl(arg0); break;
-            case 6: func_80800ADC_chbanjoctrl((s32) arg0); break;
+            case 6: func_80800ADC_chbanjoctrl((BtIntPtr) arg0); break;
             case 7: func_80800B18_chbanjoctrl(arg0); break;
             case 8: func_80800D04_chbanjoctrl((u8 *) arg0); break;
             case 9: func_80800D50_chbanjoctrl((u8 *) arg0); break;
@@ -148,17 +148,17 @@ f32 func_80800360_chbanjoctrl(f32 arg0) {
 }
 
 void func_808003F8_chbanjoctrl(Actor *arg0) {
-    s32 _chhotwaterpoolbits_entrypoint_5(s32, s32);
+    s32 _chhotwaterpoolbits_entrypoint_5(BtIntPtr, s32);
     void func_800EFCD8(f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F6478(s32);
-    s32 func_800F6C5C(s32);
-    s32 func_800F7D90(s32, s32, void *, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
+    s32 func_800F7D90(BtIntPtr, s32, void *, s32);
     s32 func_8010CB0C(f32 *, s32, s32, s32);
     f32 func_8010CD28(Actor *);
-    void func_80800544_chbanjoctrl(s32);
+    void func_80800544_chbanjoctrl(BtIntPtr);
     extern f32 D_808012B8_chbanjoctrl[];
-    s32 player;
+    BtIntPtr player;
     f32 position[3];
     f32 angle;
 
@@ -172,10 +172,10 @@ void func_808003F8_chbanjoctrl(Actor *arg0) {
         position[1] = 0.0f;
         if (func_800F7D90(func_800F54E4(), 0x52, position, 1) == 2) {
             if (arg0->unk64_20) {
-                func_80800544_chbanjoctrl((s32)arg0);
+                func_80800544_chbanjoctrl((BtIntPtr)arg0);
                 return;
             }
-            _chhotwaterpoolbits_entrypoint_5((s32)arg0, 0x3F800000);
+            _chhotwaterpoolbits_entrypoint_5((BtIntPtr)arg0, 0x3F800000);
         }
     }
 }
@@ -183,9 +183,9 @@ void func_808003F8_chbanjoctrl(Actor *arg0) {
 /* extern */
 
 s32 chbanjoctrl_entrypoint_1(s32 arg0) {
-    s32 _chhotwaterpoolbits_entrypoint_5(s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7B9C(s32, s32);
+    s32 _chhotwaterpoolbits_entrypoint_5(BtIntPtr, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7B9C(BtIntPtr, s32);
     if (func_800F7B9C(func_800F54E4(), 0x51) == 2) {
         _chhotwaterpoolbits_entrypoint_5(arg0, 0x3F800000);
         return 1;
@@ -193,11 +193,11 @@ s32 chbanjoctrl_entrypoint_1(s32 arg0) {
     return 0;
 }
 
-void func_80800544_chbanjoctrl(s32 arg0) {
+void func_80800544_chbanjoctrl(BtIntPtr arg0) {
     void func_800C4AF0(f32 *, void *);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    void func_800F7620(s32, f32, f32, f32);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7620(BtIntPtr, f32, f32, f32);
     extern f32 D_808012C4_chbanjoctrl[];
     extern f32 D_808012D4_chbanjoctrl[];
     extern f32 D_808012E4_chbanjoctrl[];
@@ -219,24 +219,24 @@ void func_80800544_chbanjoctrl(s32 arg0) {
 /* extern */
 
 s32 chbanjoctrl_entrypoint_2(s32 arg0) {
-    u32 func_800F54E4(void);
-    s32 func_800F798C(s32, s32, s32);
-    void func_80800544_chbanjoctrl(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F798C(BtIntPtr, s32, s32);
+    void func_80800544_chbanjoctrl(BtIntPtr);
     if (func_800F798C(func_800F54E4(), 0xD, 3) != 0) {
         func_80800544_chbanjoctrl(arg0);
         return 1;
     }
     return 0;
-}
+}    typedef struct { f32 unk0; u8 pad4[0x24]; f32 unk28; f32 unk2C; s8 unk30; u8 pad31[0x3F]; u32 unk70; } Objbanjoctrl_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800638_chbanjoctrl(void *arg0, s32 arg1) {
     if ((arg1 == 2) && ((*(s32 (**)())((s8 *)(arg0) + (0x24)))() != 0)) {
-        (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x2C)));
+        (((Objbanjoctrl_arg0 *)arg0)->unk28) = (f32) (((Objbanjoctrl_arg0 *)arg0)->unk2C);
     }
-    (*(s8 *)((s8 *)(arg0) + (0x30))) = (s8) arg1;
+    (((Objbanjoctrl_arg0 *)arg0)->unk30) = (s8) arg1;
 }
 
-void func_80800684_chbanjoctrl(void *arg0, f32 arg1, s32 arg2, s32 arg3) {
+void func_80800684_chbanjoctrl(void *arg0, f32 arg1, BtIntPtr arg2, BtIntPtr arg3) {
     (*(s32 *)((s8 *)(arg0) + (0x24))) = arg3;
     (*(s32 *)((s8 *)(arg0) + (0x50))) = arg2;
     (*(s8 *)((s8 *)(arg0) + (0x30))) = 1;
@@ -247,15 +247,15 @@ void func_80800684_chbanjoctrl(void *arg0, f32 arg1, s32 arg2, s32 arg3) {
 /* extern */
 
 int func_808006A8_chbanjoctrl(void *arg0) {
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F6DA0(s32);
-    s32 func_800F6E40(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F6DA0(BtIntPtr);
+    s32 func_800F6E40(BtIntPtr);
     struct BanjoCtrl {
         u8 pad[0x50];
         s32 (*callback)(s32);
     };
-    s32 player;
+    BtIntPtr player;
 
     player = func_800F54E4();
     return !func_800F6DA0(player) && !func_800F6E40(player)
@@ -293,18 +293,18 @@ s32 func_808007D8_chbanjoctrl(u8 *arg0) {
     s32 func_800CC338(u8 *, s32, s32, u8 *);
     u32 temp_t6;
 
-    temp_t6 = (u32) (*(u32 *)((s8 *)(arg0) + (0x70))) >> 0x19;
+    temp_t6 = (u32) (((Objbanjoctrl_arg0 *)arg0)->unk70) >> 0x19;
     if (temp_t6 == 0) {
         return 1;
     }
     return (func_800CC338(arg0 + 0x18, temp_t6 - 1, 0, arg0) + 1) != 0;
 }
 
-s32 func_80800824_chbanjoctrl(s32 arg0, s32 arg1) {
-    u32 func_800F54E4(void);
-    void func_800F5D70(s32, f32 *);
-    int func_800F6720(s32);
-    s32 func_800F7B9C(s32, s32);
+s32 func_80800824_chbanjoctrl(BtIntPtr arg0, BtIntPtr arg1) {
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5D70(BtIntPtr, f32 *);
+    int func_800F6720(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
     f32 sp24[3];
     f32 temp_f0;
     f32 temp_f2;
@@ -316,29 +316,29 @@ s32 func_80800824_chbanjoctrl(s32 arg0, s32 arg1) {
         if (temp_f2 <= temp_f0 + 200.0f) {
             if (temp_f2 <= temp_f0) {
                 func_8080025C_chbanjoctrl(arg0);
-                return;
+                return BT_NATIVE_ONLY(0);
             }
             if (func_800F6720(arg1) != 0) {
                 func_800F7B9C(func_800F54E4(), 0x18);
             }
         }
     }
-}
+BT_NATIVE_ONLY(return 0;) }
 
 void func_808008D8_chbanjoctrl(f32 *arg0, f32 arg1, f32 arg2) {
     void func_800EFA4C(f32[3], f32, f32, f32);
-    func_800EFA4C(arg0, (*(f32 *)((s8 *)(arg0) + (0))) + arg1, arg0[1], arg0[2] + arg2);
+    func_800EFA4C(arg0, (((Objbanjoctrl_arg0 *)arg0)->unk0) + arg1, arg0[1], arg0[2] + arg2);
 }
 
-s32 func_8080091C_chbanjoctrl(s32 arg0, s32 arg1) {
+s32 func_8080091C_chbanjoctrl(BtIntPtr arg0, BtIntPtr arg1) {
     int func_800EEF24(f32[3]);
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     void func_800EFD24(f32 *);
-    u32 func_800F54E4(void);
-    void func_800F586C(s32, f32 *, f32 *);
-    int func_800F6720(s32);
-    int func_800F7700(s32, s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F586C(BtIntPtr, f32 *, f32 *);
+    int func_800F6720(BtIntPtr);
+    int func_800F7700(BtIntPtr, s32, f32 *);
     s32 func_800F8418();
     f32 direction[3];
     f32 minimum[3];
@@ -383,16 +383,16 @@ s32 func_8080091C_chbanjoctrl(s32 arg0, s32 arg1) {
     if (changed) {
         func_800F8418(arg1, actor->actorData);
     }
-}
+BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
-void func_80800ADC_chbanjoctrl(s32 arg0) {
-    u32 func_800F54E4(void);
-    s32 func_80800824_chbanjoctrl(s32, s32);
-    s32 func_8080091C_chbanjoctrl(s32, s32);
-    s32 sp1C;
-    s32 temp_v0;
+void func_80800ADC_chbanjoctrl(BtIntPtr arg0) {
+    BtUIntPtr func_800F54E4(void);
+    s32 func_80800824_chbanjoctrl(BtIntPtr, BtIntPtr);
+    s32 func_8080091C_chbanjoctrl(BtIntPtr, BtIntPtr);
+    BtIntPtr sp1C;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800F54E4();
     sp1C = temp_v0;
@@ -402,13 +402,13 @@ void func_80800ADC_chbanjoctrl(s32 arg0) {
 
 void func_80800B18_chbanjoctrl(Actor *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    void func_800F7814(s32, f32 *);
-    s32 func_800F7E3C(s32, s32);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7814(BtIntPtr, f32 *);
+    s32 func_800F7E3C(BtIntPtr, s32);
     f32 mlAbsF(f32);
     f32 radius;
-    s32 player;
+    BtIntPtr player;
     f32 position[3];
     s32 pad;
     f32 dx;
@@ -436,19 +436,19 @@ void func_80800B18_chbanjoctrl(Actor *arg0) {
     func_800F7814(player, position);
 }
 
-/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { u32 func_800F54E4(void); s32 func_800F8418(s32, u8 *, u8 *); f32 temp_f0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (8))); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; func_800F8418(func_800F54E4(), arg0 + 0x18, arg0); } }
+/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { BtUIntPtr func_800F54E4(void); s32 func_800F8418(BtIntPtr, u8 *, u8 *); f32 temp_f0; temp_f0 = (((Actor *)arg0)->position[1]); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; func_800F8418(func_800F54E4(), arg0 + 0x18, arg0); } }
 
 /* extern */
 
 void func_80800D50_chbanjoctrl(u8 *arg0) {
-    s32 func_800D90A4(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F56AC(s32);
-    s32 func_800F6C5C(s32);
-    s32 func_800F6DA0(s32);
-    s32 func_800F7B9C(s32, s32);
+    s32 func_800D90A4(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F56AC(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
+    s32 func_800F6DA0(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
     if ((func_800D90A4(arg0 + 0x58) != 0) && (func_800F56AC(func_800F54E4()) == 0x19) && (func_800F6DA0(func_800F54E4()) == 0) && (func_800F6C5C(func_800F54E4()) != 0) && (func_800F7B9C(func_800F54E4(), 0x51) == 2)) {
-        (*(f32 *)((s8 *)(arg0) + (0x58))) = 3.0f;
+        (((Actor *)arg0)->unk58) = 3.0f;
     }
 }
 
@@ -457,26 +457,26 @@ void func_80800DF8_chbanjoctrl(u8 *arg0) {
     s32 func_800C696C(f32 *, f32, f32, s32, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    Unk80132ED0 *func_800F55D0(s32);
-    s32 func_800F56AC(s32);
-    s32 func_800F6438(u32);
-    s32 func_800F6478(s32);
-    s32 func_800F6590(s32);
-    int func_800F6AA4(s32);
-    s32 func_800F6C5C(s32);
-    s32 func_800F6DA0(s32);
-    s32 func_800F6E40(s32);
-    s32 func_800F7018(s32);
-    s32 func_800F7058(s32);
-    s32 func_800F7D90(s32, s32, void *, s32);
+    BtUIntPtr func_800F54E4(void);
+    Unk80132ED0 *func_800F55D0(BtIntPtr);
+    s32 func_800F56AC(BtIntPtr);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F6590(BtIntPtr);
+    int func_800F6AA4(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
+    s32 func_800F6DA0(BtIntPtr);
+    s32 func_800F6E40(BtIntPtr);
+    s32 func_800F7018(BtIntPtr);
+    s32 func_800F7058(BtIntPtr);
+    s32 func_800F7D90(BtIntPtr, s32, void *, s32);
     extern f32 D_808012F4_chbanjoctrl[3];
     f32 distance;
     f32 position[3];
     f32 first;
     f32 last;
     f32 angle;
-    s32 player;
+    BtIntPtr player;
     s32 i;
     if (func_8001210C(4) == 0) return;
     player = func_800F54E4();
@@ -525,10 +525,10 @@ void func_8080102C_chbanjoctrl(Actor *arg0) {
 /* extern */
 
 void func_80801088_chbanjoctrl(Actor *arg0) {
-    s32 func_800F4F34(u32, f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    int func_800F6720(s32);
-    s32 sp1C;
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
+    BtUIntPtr func_800F54E4(void);
+    int func_800F6720(BtIntPtr);
+    BtIntPtr sp1C;
 
     sp1C = func_800F54E4();
     if (func_800F6720(sp1C) != 0) {
@@ -568,11 +568,21 @@ void func_808010FC_chbanjoctrl(Actor *arg0) {
 
 /* extern */
 
-void func_808011F4_chbanjoctrl(void) {
+void func_808011F4_chbanjoctrl(BT_PARAM_OR_VOID(s32 bt_a0)) {
     void func_8080102C_chbanjoctrl();
 #ifdef BT_NATIVE
-    ((void (*)())func_8080102C_chbanjoctrl)();
+    ((void (*)(s32))func_8080102C_chbanjoctrl)(bt_a0);
 #else
     func_8080102C_chbanjoctrl();
 #endif
 }
+/* data_to_c.py: from asm/data/overlays/ch/banjoctrl.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80801270_chbanjoctrl [1] BT_DATA(4, overlays_ch_banjoctrl, 0x0) = { { 178, 333, 0, 14, 0, (void (*)(struct Actor *))func_80800160_chbanjoctrl, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 4, (void (*)(struct Actor *))func_8080012C_chbanjoctrl, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chbanjoctrl, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, 0, 0 } };
+f32 D_808012B8_chbanjoctrl [3] BT_DATA(4, overlays_ch_banjoctrl, 0x48) = { 0.0f, 0.0f, 0.0f };
+f32 D_808012C4_chbanjoctrl [4] BT_DATA(4, overlays_ch_banjoctrl, 0x54) = { 1.746874e-39f, 1.194202e-39f, 2.5713995e-38f, 0.0f };
+f32 D_808012D4_chbanjoctrl [4] BT_DATA(4, overlays_ch_banjoctrl, 0x64) = { 1.74669e-39f, 1.194202e-39f, 2.5713995e-38f, 0.0f };
+f32 D_808012E4_chbanjoctrl [4] BT_DATA(4, overlays_ch_banjoctrl, 0x74) = { 1.746517e-39f, 2.20407e-39f, 3.1959627e-38f, 1.83671e-39f };
+f32 D_808012F4_chbanjoctrl [ 3 ] BT_DATA(4, overlays_ch_banjoctrl, 0x84) = { 0.0f, 0.0f, 0.0f };

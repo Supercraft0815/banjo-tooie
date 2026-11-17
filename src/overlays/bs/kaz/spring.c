@@ -2,7 +2,7 @@
 
 #include "overlays/bs/kaz/spring.h"
 
-extern s32 D_80800430_bskazspring[];
+extern BtIntPtr D_80800430_bskazspring[];
 
 void func_80800000_bskazspring(PlayerState *self) {
     f32 sp1C;
@@ -58,7 +58,7 @@ void func_80800064_bskazspring(PlayerState *self, s32 arg1) {
     self->unk15C.bytes[0] = (s8) arg1;
 }
 
-void func_80800244_bskazspring(s32 self) {
+void func_80800244_bskazspring(BtIntPtr self) {
     func_80800064_bskazspring(self,(s8) 0);
     _bskaz_entrypoint_2(self);
 }
@@ -107,6 +107,9 @@ void func_808002A0_bskazspring(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazspring_entrypoint_0(s32 idx) {
+BtIntPtr bskazspring_entrypoint_0(s32 idx) {
     return D_80800430_bskazspring[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/spring.data.s */
+void func_80099B94(PlayerState *);
+BtIntPtr D_80800430_bskazspring [4] BT_DATA(4, overlays_bs_kaz_spring, 0x0) = { (BtIntPtr)func_80800244_bskazspring, (BtIntPtr)func_80800270_bskazspring, (BtIntPtr)func_808002A0_bskazspring, (BtIntPtr)func_80099B94 };

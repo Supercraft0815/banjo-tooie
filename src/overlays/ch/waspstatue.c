@@ -4,7 +4,7 @@
 
 void func_80800000_chwaspstatue(s32 arg0) {
     s32 func_800DA298(s32);
-    s32 func_80800134_chwaspstatue(s32, s32);
+    s32 func_80800134_chwaspstatue(BtIntPtr, s32);
 
     func_80800134_chwaspstatue(arg0, func_800DA298(0x35A) ? 0x6 : 1);
 }
@@ -14,8 +14,8 @@ void func_8080003C_chwaspstatue(Actor *actor) {
     s32 func_800D90A4(f32 *);
     int func_800D91EC(f32 *, f32);
     s32 func_800DA298(s32);
-    void func_8010C93C(s32, s32, f32);
-    s32 func_80800134_chwaspstatue(s32, s32);
+    void func_8010C93C(BtIntPtr, BtIntPtr, f32);
+    s32 func_80800134_chwaspstatue(BtIntPtr, s32);
 
     switch (actor->unk70_10) {
     case 1:
@@ -23,7 +23,7 @@ void func_8080003C_chwaspstatue(Actor *actor) {
         break;
     case 2:
         if (func_800D91EC(&actor->unk58, 2.0f) && func_800DA298(0x6D8)) {
-            func_80800134_chwaspstatue((s32)actor, 3);
+            func_80800134_chwaspstatue((BtIntPtr)actor, 3);
         }
         func_800D2498(0xFF, actor->unk6C_0, 0);
         break;
@@ -32,28 +32,28 @@ void func_8080003C_chwaspstatue(Actor *actor) {
         break;
     case 4:
         if (func_800D90A4(&actor->unk58)) {
-            func_80800134_chwaspstatue((s32)actor, 1);
+            func_80800134_chwaspstatue((BtIntPtr)actor, 1);
         }
         break;
     case 5:
-        func_80800134_chwaspstatue((s32)actor, 6);
+        func_80800134_chwaspstatue((BtIntPtr)actor, 6);
         break;
     }
-    func_8010C93C((s32)actor, (s32)actor->position, 0.75f);
+    func_8010C93C((BtIntPtr)actor, (BtIntPtr)actor->position, 0.75f);
 }
 
-s32 func_80800134_chwaspstatue(s32 arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+s32 func_80800134_chwaspstatue(BtIntPtr arg0, s32 arg1) {
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
-    void func_800CE928(s32, s32, s32);
+    void func_800CE928(s32, BtIntPtr, BtIntPtr);
     s32 func_800D2498(u32, s32, u32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800FC6B0(u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void _chwaspstatue_entrypoint_0(s32, s32);
     Actor *actor = (Actor *)arg0;
@@ -65,7 +65,7 @@ s32 func_80800134_chwaspstatue(s32 arg0, s32 arg1) {
     case 2:
         _subaddieDll_entrypoint_4(actor, 1);
         func_800CE8D8(0, 10.0f, 10);
-        func_800CE928(0, (s32)_chwaspstatue_entrypoint_0, (s32)actor->unk0);
+        func_800CE928(0, (BtIntPtr)_chwaspstatue_entrypoint_0, (BtIntPtr)actor->unk0);
         actor->unk6C_0 = 20;
         actor->unk58 = 0.0f;
         if (func_800DA298(0x6D8) == 0) {
@@ -105,12 +105,12 @@ s32 func_80800134_chwaspstatue(s32 arg0, s32 arg1) {
         break;
     }
     func_80101FDC(actor, arg1);
-}
+    BT_NATIVE_ONLY(return 0;)}
 
 s32 func_80800350_chwaspstatue(Actor *actor, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800DF6BC(s32, s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800FC660(u32);
@@ -128,21 +128,21 @@ s32 func_80800350_chwaspstatue(Actor *actor, s32 arg1, s32 arg2) {
     case 0x40:
         state = actor->unk70_10;
         if (state == 1) {
-            func_80800134_chwaspstatue((s32)actor, 2);
+            func_80800134_chwaspstatue((BtIntPtr)actor, 2);
             func_800FC660(0xE);
             return 1;
         }
         if (state == 3) {
             actor->unk6C_0--;
             if (actor->unk6C_0 == 0) {
-                func_80800134_chwaspstatue((s32)actor, 5);
+                func_80800134_chwaspstatue((BtIntPtr)actor, 5);
             }
             func_800FC660(0xE);
         }
         return 1;
     case 0xB:
         if (arg2 == 0x15) {
-            func_80800134_chwaspstatue((s32)actor, 3);
+            func_80800134_chwaspstatue((BtIntPtr)actor, 3);
             func_800DA544(0x6D8);
         }
         return 3;
@@ -167,14 +167,14 @@ s32 func_80800350_chwaspstatue(Actor *actor, s32 arg1, s32 arg2) {
 /* extern */
 
 void chwaspstatue_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 func_80106790(s32);
-    s32 func_80800134_chwaspstatue(s32, s32);
+    BtIntPtr func_80106790(BtIntPtr);
+    s32 func_80800134_chwaspstatue(BtIntPtr, s32);
     func_80800134_chwaspstatue(func_80106790(arg1), 4);
 }
 
 OSThread *chwaspstatue_entrypoint_1(void)
 {
-    extern u8 D_80800740_chwaspstatue[];
+    extern ActorData D_80800740_chwaspstatue[];
 
     return (OSThread *) D_80800740_chwaspstatue;
 }
@@ -190,8 +190,8 @@ void func_80800544_chwaspstatue(Actor *arg0) {
     s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     s32 var_a1;
 
     var_a1 = func_800F64A4(func_800F54E4(), 0x20) != 0;
@@ -209,7 +209,17 @@ void func_80800544_chwaspstatue(Actor *arg0) {
 
 OSThread *chwaspstatue_entrypoint_2(void)
 {
-    extern u8 D_80800788_chwaspstatue[];
+    extern ActorData D_80800788_chwaspstatue[];
 
     return (OSThread *) D_80800788_chwaspstatue;
 }
+/* data_to_c.py: from asm/data/overlays/ch/waspstatue.data.s */
+void func_80105834(Actor*);
+void func_801018A4();
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+void _chdoor_entrypoint_0();
+void func_80101870(Actor* arg0, void* arg1);
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+ActorData D_80800740_chwaspstatue [1] BT_DATA(4, overlays_ch_waspstatue, 0x0) = { { 850, 1039, 2256, 1, 0, (void (*)(struct Actor *))func_8080003C_chwaspstatue, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 65550000, 0, 0, 0, 0, 1024, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chwaspstatue, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9216, (void (*)(struct Actor *, long, long))func_80800350_chwaspstatue, 0 } };
+ActorData D_80800788_chwaspstatue [1] BT_DATA(4, overlays_ch_waspstatue, 0x48) = { { 853, 1041, 2257, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800544_chwaspstatue, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

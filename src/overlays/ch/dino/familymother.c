@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 void func_80800000_chdinofamilymother(Actor *arg0);
@@ -72,13 +72,13 @@ s32 D_80801440_chdinofamilymother[] = {
     0x00320000,
 };
 
-u32 D_80801474_chdinofamilymother[] = {
-    0x01280290, 0x08990001, (u32)D_80801340_chdinofamilymother, (u32)func_808000A0_chdinofamilymother,
-    (u32)func_80105834, (u32)func_801018A4, 0x13880000, 0x40000000,
+BtFnWord D_80801474_chdinofamilymother[] = {
+    0x01280290, 0x08990001, (BtFnWord)D_80801340_chdinofamilymother, (BtFnWord)func_808000A0_chdinofamilymother,
+    (BtFnWord)func_80105834, (BtFnWord)func_801018A4, 0x13880000, 0x40000000,
     0x00000000, 0x00000528, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_80800000_chdinofamilymother, (u32)func_80107C2C, 0x80007406,
-    (u32)func_80800218_chdinofamilymother, 0x00000000, 0x00000000,
-};
+    0x00000000, (BtFnWord)func_80800000_chdinofamilymother, (BtFnWord)func_80107C2C, 0x80007406,
+    (BtFnWord)func_80800218_chdinofamilymother, 0x00000000, 0x00000000,
+};     
 
 void func_80800000_chdinofamilymother(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
@@ -100,13 +100,13 @@ void func_80800000_chdinofamilymother(Actor *arg0) {
 }
 
 void func_808000A0_chdinofamilymother(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     s32 func_800DA298(s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    void func_808008E4_chdinofamilymother(s32);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_808008E4_chdinofamilymother(BtIntPtr);
     void func_8080096C_chdinofamilymother(Actor *);
     void func_8080119C_chdinofamilymother(Actor *, s32, s32, s32);
 
@@ -128,7 +128,7 @@ void func_808000A0_chdinofamilymother(Actor *arg0) {
             if (func_800F5410(func_800F54E4()) == 0xB) {
                 D_808013B8_chdinofamilymother[0] = 0x1814;
             }
-            if (_subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0->actorData, &D_808013B4_chdinofamilymother) != 0) {
+            if (_subaddiedialog_entrypoint_7((BtIntPtr)arg0, (BtIntPtr)arg0->actorData, &D_808013B4_chdinofamilymother) != 0) {
                 func_8080119C_chdinofamilymother(arg0, 2, 0, 0);
             }
         } else {
@@ -140,7 +140,7 @@ void func_808000A0_chdinofamilymother(Actor *arg0) {
                 D_8080139C_chdinofamilymother[0] = 0x1813;
                 break;
             }
-            if (_subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0->actorData, &D_80801398_chdinofamilymother) != 0) {
+            if (_subaddiedialog_entrypoint_7((BtIntPtr)arg0, (BtIntPtr)arg0->actorData, &D_80801398_chdinofamilymother) != 0) {
                 func_8080119C_chdinofamilymother(arg0, 2, 0, 0);
             }
         }
@@ -151,17 +151,17 @@ void func_808000A0_chdinofamilymother(Actor *arg0) {
         }
         break;
     }
-    func_808008E4_chdinofamilymother((s32)arg0);
+    func_808008E4_chdinofamilymother((BtIntPtr)arg0);
     func_8080096C_chdinofamilymother(arg0);
-}
+}                typedef struct { u8 pad0[0x18]; f32 unk18; u8 pad1C[0x1C]; f32 unk38; u8 pad3C[0x36]; u16 unk72; } Objfamilymother_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_80800218_chdinofamilymother(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    s32 _gcdialogcamera_entrypoint_4(s32 *);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_23(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
     void func_800DF744(s32, s32);
     s32 func_801015D0(Actor *);
@@ -182,7 +182,7 @@ s32 func_80800218_chdinofamilymother(void *arg0, s32 arg1, s32 arg2) {
     switch (arg1) {
     case 0x1F:
         func_801015D0(arg0);
-        if (((u16 (*)[4])D_80801344_chdinofamilymother)[(u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10][0] != 0x3AC) {
+        if (((u16 (*)[4])D_80801344_chdinofamilymother)[(u32)*&((Objfamilymother_arg0 *)arg0)->unk72 >> 10][0] != 0x3AC) {
             func_800DF744(2, 1);
             func_800DF744(3, 2);
             return 1;
@@ -254,7 +254,7 @@ s32 func_80800218_chdinofamilymother(void *arg0, s32 arg1, s32 arg2) {
         return 4;
     case 0x52:
         _gcdialogcamera_entrypoint_4(D_808013D0_chdinofamilymother);
-        _gcdialogcamera_entrypoint_3(D_808013DC_chdinofamilymother, *(f32 *)((u8 *)arg0 + 0x38));
+        _gcdialogcamera_entrypoint_3(D_808013DC_chdinofamilymother, ((Objfamilymother_arg0 *)arg0)->unk38);
         return 3;
     case 0x57:
         low = arg2 & 0xFFFF;
@@ -272,14 +272,14 @@ s32 func_80800218_chdinofamilymother(void *arg0, s32 arg1, s32 arg2) {
         func_808005EC_chdinofamilymother(arg0, 8);
         switch (arg2) {
         case 0:
-            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x17C3, 0xC, (f32 *)((u8 *)arg0 + 0x18), 0x65);
+            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x17C3, 0xC, &((Objfamilymother_arg0 *)arg0)->unk18, 0x65);
             break;
         case 1:
-            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x17C4, 0xC, (f32 *)((u8 *)arg0 + 0x18), 0x65);
+            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x17C4, 0xC, &((Objfamilymother_arg0 *)arg0)->unk18, 0x65);
             func_8080119C_chdinofamilymother(arg0, 3, 1, 0x2000);
             break;
         case 2:
-            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x17C5, 0xC, (f32 *)((u8 *)arg0 + 0x18), 0x65);
+            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x17C5, 0xC, &((Objfamilymother_arg0 *)arg0)->unk18, 0x65);
             break;
         }
         return 1;
@@ -288,15 +288,15 @@ s32 func_80800218_chdinofamilymother(void *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808005EC_chdinofamilymother(Actor *arg0, s32 arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void func_800D0C78(u32, u32, u32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800DA298(s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80801118_chdinofamilymother(Actor *, Unk80132ED0 *, s32, s32);
     void func_80801228_chdinofamilymother(void *);
@@ -366,9 +366,9 @@ void func_808005EC_chdinofamilymother(Actor *arg0, s32 arg1) {
     func_80102424(arg0, arg1);
 }
 
-void func_808008E4_chdinofamilymother(s32 arg0) {
+void func_808008E4_chdinofamilymother(BtIntPtr arg0) {
     typedef struct { s32 x, y, z; } Vec;
-    s32 func_8010C93C(s32, s32 *, s32);
+    s32 func_8010C93C(BtIntPtr, s32 *, s32);
 
 
     Vec sp24 = (*(Vec *)D_808013EC_chdinofamilymother);
@@ -381,15 +381,15 @@ void func_8080096C_chdinofamilymother(Actor *arg0) {
 
 
 
-    void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    void func_800BA1D0(s32, f32 *, f32 *, s32);
-    void func_800BA450(s32, s32, s32, s32, s32, s32, s32);
-    void func_800BA670(s32, s32);
-    void func_800BA930(s32, s32, s32, s32, s32, s32, s32);
-    void func_800BAA60(u8 *, s32, s16, s16);
-    s32 func_800BABB8(s32, f32 *, s32, f32, s32 *);
-    s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
-    s32 func_800BEF00(f32 *, f32 *, f32 *, s32);
+    s32 _subaddieskeleton_entrypoint_0(Actor *arg0, s32 arg1, f32 *arg2);
+    void func_800BA1D0(BtIntPtr, f32 *, f32 *, s32);
+    void func_800BA450(BtIntPtr arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z);
+    void func_800BA670(BtIntPtr, s32);
+    void func_800BA930(BtIntPtr arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z);
+    void func_800BAA60(u8 *, BtIntPtr, s16, s16);
+    BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, f32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, BtIntPtr, f32, s32, s32 *);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800C4140(s32, f32 *, s32);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
@@ -403,7 +403,7 @@ void func_8080096C_chdinofamilymother(Actor *arg0) {
             f32 position[3];
             f32 velocity[3];
             s32 emitter;
-            s32 debris;
+            BtIntPtr debris;
 
             emitter = func_800B53A4(2);
             debris = func_800B53A4(3);
@@ -413,7 +413,7 @@ void func_8080096C_chdinofamilymother(Actor *arg0) {
             func_800BA1D0(emitter, position, velocity, 2);
             velocity[1] -= 50.0f;
             func_800BA670(debris, func_800DC0C0() < 0.5f ? 0x8A2 : 0x8A3);
-            func_800BAA60((u8 *)debris, (s32)velocity, 100, 200);
+            func_800BAA60((u8 *)debris, (BtIntPtr)velocity, 100, 200);
             velocity[1] += 50.0f;
             func_800BABB8(debris, velocity, 0, 1.0f, D_80801440_chdinofamilymother);
             func_800BA22C(debris, 3);
@@ -496,8 +496,8 @@ void func_8080096C_chdinofamilymother(Actor *arg0) {
 }
 
 void func_80801118_chdinofamilymother(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 arg3) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     switch (arg0->actorData[7]) {
         case 0:
@@ -511,9 +511,9 @@ void func_80801118_chdinofamilymother(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, 
 }
 
 void func_8080119C_chdinofamilymother(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    void _capod_entrypoint_8(s32 arg0);
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
 

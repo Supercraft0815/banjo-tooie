@@ -2,7 +2,7 @@
 
 OSThread *chfactoryworkerwear_entrypoint_0(void)
 {
-    extern u8 D_80800438_chfactoryworkerwear[];
+    extern ActorData D_80800438_chfactoryworkerwear[];
 
     return (OSThread *) D_80800438_chfactoryworkerwear;
 }
@@ -47,12 +47,12 @@ void func_80800124_chfactoryworkerwear(s32 arg0)
 }
 void func_8080012C_chfactoryworkerwear(Actor *arg0) {
     f32 func_80013970(f32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800D8FF8(void);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F1214(f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80800480_chfactoryworkerwear;
+    extern s32 D_80800480_chfactoryworkerwear[12];
     f32 *data;
 
     data = func_80100094(arg0, 0);
@@ -67,7 +67,7 @@ void func_8080012C_chfactoryworkerwear(Actor *arg0) {
         arg0->rotation[2] += data[8] * func_800D8FF8();
         break;
     case 4:
-        func_800BBCB8(arg0->position, NULL, 1.0f, 5, &D_80800480_chfactoryworkerwear);
+        func_800BBCB8(arg0->position, NULL, 1.0f, 5, D_80800480_chfactoryworkerwear);
         func_800EFE50(arg0->position, data + 1, data + 4, data[7]);
         arg0->position[1] += func_80013970(data[7] * 180.0f) * 30.0f;
         arg0->scale = func_800F1214(data[7], data[0], 0.4f);
@@ -103,22 +103,22 @@ void func_80800260_chfactoryworkerwear(Actor *arg0, s32 arg1) {
 #endif
         return;
     }
-}
+}    typedef struct { u8 pad0[0x1C]; f32 unk1C; } Objworkerwear_func_808002E4_chfactoryworkerwear_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
 void func_808002E4_chfactoryworkerwear(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     f32 func_80101068(void);
-    s32 func_80101038(u8 *);
+    void func_80101038(f32 *arg0);
     u8 *sp1C;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
     func_80101038(temp_v0 + 0x10);
-    (*(f32 *)((s8 *)(sp1C) + (0x1C))) = func_80101068();
-}
+    (((Objworkerwear_func_808002E4_chfactoryworkerwear_sp1C *)sp1C)->unk1C) = func_80101068();
+}    typedef struct { u8 pad0[0x20]; f32 unk20; } Objworkerwear_func_80800320_chfactoryworkerwear_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_80800320_chfactoryworkerwear(Actor *arg0) {
     void* func_80100094(Actor*, u32);
@@ -126,7 +126,7 @@ void func_80800320_chfactoryworkerwear(Actor *arg0) {
     u8 *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
-    (*(f32 *)((s8 *)(sp1C) + (0x20))) = func_80101068();
+    (((Objworkerwear_func_80800320_chfactoryworkerwear_sp1C *)sp1C)->unk20) = func_80101068();
 }
 
 /* extern */
@@ -154,3 +154,11 @@ s32 func_80800350_chfactoryworkerwear(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/workerwear.data.s */
+extern u8 D_80800410_chfactoryworkerwear[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+u8 D_80800410_chfactoryworkerwear[40] BT_DATA(4, overlays_ch_factory_workerwear, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0xCC, 0xCC, 0xCD, 0x03, 0x5D, 0x00, 0x01, 0x3E, 0xCC, 0xCC, 0xCD, 0x02, 0xA0, 0x00, 0x01, 0x3F, 0x19, 0x99, 0x9A, 0x02, 0xA1, 0x00, 0x01, 0x3E, 0xCC, 0xCC, 0xCD, 0x02, 0xA0, 0x00, 0x01 };
+ActorData D_80800438_chfactoryworkerwear [1] BT_DATA(4, overlays_ch_factory_workerwear, 0x28) = { { 638, 569, 2109, 1, (void *)D_80800410_chfactoryworkerwear, (void (*)(struct Actor *))func_8080012C_chfactoryworkerwear, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 1065353216, 0, 0, 16384, 288, (void (*)(struct Actor *))func_80800124_chfactoryworkerwear, 0, 40, 0, (void (*)(struct Actor *))func_80800100_chfactoryworkerwear, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9234, (void (*)(struct Actor *, long, long))func_80800350_chfactoryworkerwear, 0 } };
+s32 D_80800480_chfactoryworkerwear[12] BT_DATA(4, overlays_ch_factory_workerwear, 0x70) = { 1903082, 1376307, 8388622, 3276860, 2555904, 13107200, 16384036, 2293795, 2424842, 655403, 4980812, 0 };

@@ -1,6 +1,6 @@
 #include "common.h"
 
-void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
+typedef struct { u8 pad0[0xE]; s16 unkE; } Objfx_subaddiefx_entrypoint_0_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
     typedef struct {
         s32 angle0 : 15;
         s32 angle1 : 15;
@@ -14,12 +14,12 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
         u32 rest : 12;
     } FxFlags;
     u8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
-    s32 _subaddieskeleton_entrypoint_2(s32, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
     f32 func_800136E4(f32);
     f32 func_80013970(f32);
-    s32 func_800B5BE4(s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32 *, s32, f32, s32 *);
+    BtIntPtr func_800B5BE4(s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, f32, s32 *);
     f32 func_800D8FF8(void);
     void func_800E3980(f32 *);
     void func_800EE780(f32 *, f32 *, f32 *);
@@ -30,8 +30,8 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
     f32 func_80103EF4(u8 *);
     OSThread *func_80104118(void);
     f32 func_8010A40C(u8 *);
-    extern s32 D_808004E0_subaddiefx;
-    extern s32 D_80800500_subaddiefx;
+    extern s32 D_808004E0_subaddiefx[8];
+    extern s32 D_80800500_subaddiefx[4];
     f32 spBC[3];
     f32 spB8;
     f32 spAC[3];
@@ -42,8 +42,8 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
     f32 phase1;
     f32 phase0[1];
     s32 var_s2;
-    s32 sp84;
-    s32 sp80;
+    BtIntPtr sp84;
+    BtIntPtr sp80;
 
     spB8 = func_80103EAC(arg0) * func_8010A40C(arg0);
     if ((arg1 == -1) || (_subaddieskeleton_entrypoint_2(*(s32 *)arg0, arg1, spBC) == 0)) {
@@ -63,11 +63,11 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
             func_800EEB9C(spA0, ((FxState *)arg2)->angle0 + var_f20, spB8 + var_f28);
             func_800EE780(spAC, spBC, spA0);
             spAC[1] += 30.0f * func_80013970(phase0[0] + var_f20);
-            func_800BABB8(sp84, spAC, 0, 1.0f, &D_808004E0_subaddiefx);
+            func_800BABB8(sp84, spAC, 0, 1.0f, D_808004E0_subaddiefx);
             func_800EEB9C(spA0, ((FxState *)arg2)->angle1 + var_f20, spB8 + var_f28);
             func_800EE780(spAC, spBC, spA0);
             spAC[1] += 30.0f * func_80013970(phase1 + var_f20);
-            func_800BABB8(sp80, spAC, 0, 1.0f, &D_808004E0_subaddiefx);
+            func_800BABB8(sp80, spAC, 0, 1.0f, D_808004E0_subaddiefx);
             var_f28 = 40.0f;
             var_f20 += 90.0f;
         }
@@ -81,7 +81,7 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
     void *temp_v0_2;
     f32 sp70[3];
     temp_v0_2 = func_80104118();
-    if ((*(s16 *)((u8 *)temp_v0_2 + 0xE) == 0) || (*((u8 *)temp_v0_2 + 0xD) == 0)) {
+    if ((((Objfx_subaddiefx_entrypoint_0_temp_v0_2 *)temp_v0_2)->unkE == 0) || (*((u8 *)temp_v0_2 + 0xD) == 0)) {
         func_800EE7F8(temp_v0_2, spBC);
         *((u8 *)temp_v0_2 + 0xD) = 1;
     } else {
@@ -90,17 +90,17 @@ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
             func_800EE7F8(temp_v0_2, spBC);
         }
     }
-    *((u8 *)temp_v0_2 + 0xC) = _subaddieaudioloop_entrypoint_7(*((u8 *)temp_v0_2 + 0xC), temp_v0_2, 1, &D_80800500_subaddiefx, *(s32 *)(arg0 + 0x70) & 1);
+    *((u8 *)temp_v0_2 + 0xC) = _subaddieaudioloop_entrypoint_7(*((u8 *)temp_v0_2 + 0xC), temp_v0_2, 1, D_80800500_subaddiefx, *(s32 *)(arg0 + 0x70) & 1);
     if (!((FxState *)arg2)->active) {
         ((FxState *)arg2)->active = 1;
-        *(s16 *)((u8 *)temp_v0_2 + 0xE) += 1;
+        ((Objfx_subaddiefx_entrypoint_0_temp_v0_2 *)temp_v0_2)->unkE += 1;
     }
     }
-}
+}    typedef struct { u8 pad0[0xC]; u8 unkC; } Objfx_subaddiefx_entrypoint_1_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0xC]; u8 unkC; s8 unkD; s16 unkE; } Objfx_subaddiefx_entrypoint_1_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-void subaddiefx_entrypoint_1(s32 arg0, void *arg1) {
+void subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1) {
     typedef struct {
         s32 angle0 : 15;
         s32 angle1 : 15;
@@ -118,11 +118,14 @@ void subaddiefx_entrypoint_1(s32 arg0, void *arg1) {
         ((FxState *)arg1)->phase0 = 0;
         ((FxState *)arg1)->phase1 = 0;
         ((FxState *)arg1)->active = 0;
-        (*(s8 *)((s8 *)(temp_v0) + (0xD))) = 0;
-        (*(s16 *)((s8 *)(temp_v0) + (0xE))) = (s16) ((*(s16 *)((s8 *)(temp_v0) + (0xE))) - 1);
-        if ((*(s16 *)((s8 *)(temp_v0) + (0xE))) == 0) {
+        (((Objfx_subaddiefx_entrypoint_1_temp_v0 *)temp_v0)->unkD) = 0;
+        (((Objfx_subaddiefx_entrypoint_1_temp_v0 *)temp_v0)->unkE) = (s16) ((((Objfx_subaddiefx_entrypoint_1_temp_v0 *)temp_v0)->unkE) - 1);
+        if ((((Objfx_subaddiefx_entrypoint_1_temp_v0 *)temp_v0)->unkE) == 0) {
             sp1C = temp_v0;
-            (*(u8 *)((s8 *)(sp1C) + (0xC))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xC))));
+            (((Objfx_subaddiefx_entrypoint_1_sp1C *)sp1C)->unkC) = _subaddieaudioloop_entrypoint_3((((Objfx_subaddiefx_entrypoint_1_temp_v0 *)temp_v0)->unkC));
         }
     }
 }
+/* data_to_c.py: from asm/data/overlays/su/baddie/fx.data.s */
+s32 D_808004E0_subaddiefx[8] BT_DATA(4, overlays_su_baddie_fx, 0x0) = { 1446144, 2228288, 4980736, 21, 0, 2818086, 2490650, 0 };
+s32 D_80800500_subaddiefx[4] BT_DATA(4, overlays_su_baddie_fx, 0x20) = { 1246659, 852211, 17563648, 0 };

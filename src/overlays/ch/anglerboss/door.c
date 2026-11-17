@@ -2,7 +2,7 @@
 
 OSThread *changlerbossdoor_entrypoint_0(void)
 {
-    extern u8 D_80800110_changlerbossdoor[];
+    extern ActorData D_80800110_changlerbossdoor[];
 
     return (OSThread *) D_80800110_changlerbossdoor;
 }
@@ -47,3 +47,10 @@ void func_8080000C_changlerbossdoor(Actor *arg0) {
         _chdoormake_entrypoint_8(arg0, 5);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/anglerboss/door.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+ActorData D_80800110_changlerbossdoor [1] BT_DATA(4, overlays_ch_anglerboss_door, 0x0) = { { 172, 1132, 2372, 4, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 887, 0, 0, 1040, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_changlerbossdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

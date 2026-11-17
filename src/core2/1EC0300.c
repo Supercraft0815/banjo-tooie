@@ -267,7 +267,7 @@ s32 func_800E7188(u8 *arg0) {
 
 /* extern */
 
-s32 func_800E71B8(s32 arg0) {
+BtIntPtr func_800E71B8(BtIntPtr arg0) {
     s32 _gldialog_entrypoint_1();
     if (_gldialog_entrypoint_1() != 0) {
         return arg0 += 2;
@@ -333,7 +333,7 @@ void func_800E7324(char *str) {
 
 /* extern */
 
-void func_800E7368(s32 arg0, s32 arg1) {
+void func_800E7368(BtIntPtr arg0, s32 arg1) {
     void func_800E6A58(char *, char);
     s32 var_s0;
     s32 var_v0;
@@ -355,26 +355,26 @@ void func_800E73D4(s8 *arg0) {
 }
 
 void func_800E73DC(s8 *arg0, s32 arg1, ...) {
-    void func_800E7480(s8 *, s32, u8 *);
-    u32 args;
+    void func_800E7480(s8 *, BtIntPtr, u8 *);
+    BtUIntPtr args;
     func_800E73D4(arg0);
-    args = (u32)&arg1 + sizeof(arg1);
+    args = (BtUIntPtr)&arg1 + sizeof(arg1);
     func_800E7480(arg0, arg1, (u8 *)((args + 3) & ~3));
 }
 
 void func_800E7428(s8 *arg0, s32 arg1, ...) {
-    void func_800E7480(s8 *, s32, u8 *);
-    u32 args;
+    void func_800E7480(s8 *, BtIntPtr, u8 *);
+    BtUIntPtr args;
     if ((u8)arg0[0] != 0) {
         do {
             arg0 += 1;
         } while ((u8)arg0[0] != 0);
     }
-    args = (u32)&arg1 + sizeof(arg1);
+    args = (BtUIntPtr)&arg1 + sizeof(arg1);
     func_800E7480(arg0, arg1, (u8 *)((args + 3) & ~3));
 }
 
-void func_800E7480(s8 *arg0, s32 arg1, u8 *arg2) {
+void func_800E7480(s8 *arg0, BtIntPtr arg1, u8 *arg2) {
     u8 *format = (u8 *)arg1;
     f64 value;
 
@@ -388,26 +388,26 @@ void func_800E7480(s8 *arg0, s32 arg1, u8 *arg2) {
         format++;
         switch (*format) {
             case 'b':
-                func_800E7368((s32)arg0, *(s32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                func_800E7368((BtIntPtr)arg0, *(s32 *)((arg2 = (u8 *)(((BtUIntPtr)arg2 + 7) & ~3)) - 4));
                 break;
             case 'c':
-                func_800E6A58((char *)arg0, *(u8 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 1));
+                func_800E6A58((char *)arg0, *(u8 *)((arg2 = (u8 *)(((BtUIntPtr)arg2 + 7) & ~3)) - 1));
                 break;
             case 'd':
-                func_800E6DB4((char *)arg0, *(s32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                func_800E6DB4((char *)arg0, *(s32 *)((arg2 = (u8 *)(((BtUIntPtr)arg2 + 7) & ~3)) - 4));
                 break;
             case 'f':
-                value = *(f64 *)((arg2 = (u8 *)(((u32)arg2 + 15) & ~7)) - 8);
+                value = *(f64 *)((arg2 = (u8 *)(((BtUIntPtr)arg2 + 15) & ~7)) - 8);
                 func_800E6BAC((char *)arg0, value);
                 break;
             case 'p':
-                func_800E6F7C((u8 *)arg0, *(u32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                func_800E6F7C((u8 *)arg0, *(u32 *)((arg2 = (u8 *)(((BtUIntPtr)arg2 + 7) & ~3)) - 4));
                 break;
             case 's':
-                func_800E6A10((char *)arg0, *(char **)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                func_800E6A10((char *)arg0, *(char **)((arg2 = (u8 *)(((BtUIntPtr)arg2 + 7) & ~3)) - 4));
                 break;
             case 'x':
-                func_800E6F7C((u8 *)arg0, *(u32 *)((arg2 = (u8 *)(((u32)arg2 + 7) & ~3)) - 4));
+                func_800E6F7C((u8 *)arg0, *(u32 *)((arg2 = (u8 *)(((BtUIntPtr)arg2 + 7) & ~3)) - 4));
                 break;
             default:
                 func_800E6A58((char *)arg0, *format);

@@ -312,7 +312,7 @@ typedef struct {
 
 BitFieldBuffer* func_800DAA34(s32 num_bits) {
     BitFieldBuffer* ret = heap_alloc(((num_bits + 31) >> 5) * sizeof(u32) + sizeof(BitFieldBuffer));
-    ret->num_bits = num_bits;
+    ret->num_bits = num_bits; BT_NATIVE_ONLY(return ret;)
 }
 
 void func_800DAA6C(BitFieldBuffer* bitfield) {

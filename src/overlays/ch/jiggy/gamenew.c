@@ -25,12 +25,12 @@ u32 D_80803D34_chjiggygamenew[] = {
     0x00000000, 0x00000000, 0x40000000, 0x03D70044,
 };
 
-u32 D_80803D44_chjiggygamenew[] = {
-    0x015801DF, 0x08630001, (u32)D_80803D34_chjiggygamenew, (u32)func_80802030_chjiggygamenew,
-    (u32)func_80102EC0, (u32)func_808024F0_chjiggygamenew, 0x00000000, 0x00000000,
-    0x00000000, 0x00401424, (u32)func_8080245C_chjiggygamenew, 0x00000000,
-    0x02780000, (u32)func_80801EE8_chjiggygamenew, (u32)func_80107C2C, 0x80002002,
-    (u32)func_80802858_chjiggygamenew, 0x00000000,
+BtFnWord D_80803D44_chjiggygamenew[] = {
+    0x015801DF, 0x08630001, (BtFnWord)D_80803D34_chjiggygamenew, (BtFnWord)func_80802030_chjiggygamenew,
+    (BtFnWord)func_80102EC0, (BtFnWord)func_808024F0_chjiggygamenew, 0x00000000, 0x00000000,
+    0x00000000, 0x00401424, (BtFnWord)func_8080245C_chjiggygamenew, 0x00000000,
+    0x02780000, (BtFnWord)func_80801EE8_chjiggygamenew, (BtFnWord)func_80107C2C, 0x80002002,
+    (BtFnWord)func_80802858_chjiggygamenew, 0x00000000,
 };
 
 f32 D_80803D8C_chjiggygamenew[][4] = {
@@ -91,7 +91,7 @@ OSThread *chjiggygamenew_entrypoint_0(void)
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_8080000C_chjiggygamenew(s32 bt_a0) {
+s32 func_8080000C_chjiggygamenew(BtIntPtr bt_a0) {
 #else
 s32 func_8080000C_chjiggygamenew() {
 #endif
@@ -298,7 +298,7 @@ void func_80800424_chjiggygamenew(Unk80132ED0 *arg0) {
 }
 
 void func_808004E0_chjiggygamenew(Unk80132ED0 *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _sujiggy_entrypoint_21(void);
     s32 _sujiggy_entrypoint_24(void);
     void func_800C082C(s32);
@@ -349,7 +349,7 @@ void func_808004E0_chjiggygamenew(Unk80132ED0 *arg0) {
 }
 
 void func_808006E0_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _sujiggy_entrypoint_21(void);
     void func_800C082C(s32);
     void func_800C9C34(f32, s32, s32, s32);
@@ -418,8 +418,8 @@ void func_80800834_chjiggygamenew(Actor *arg0) {
         s8 positions[20];
         s8 other[20];
     };
-    s32 _sujiggy_entrypoint_6(u32);
-    s32 _sujiggy_entrypoint_7(u32);
+    u8 _sujiggy_entrypoint_6(s32 arg0);
+    u8 _sujiggy_entrypoint_7(s32 arg0);
     f32 func_800DC1AC(void);
     s32 func_800DC214(s32, s32);
     struct Data *data;
@@ -574,7 +574,7 @@ void func_80800CC0_chjiggygamenew(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1214(f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     s32 func_8080363C_chjiggygamenew(Unk80132ED0 *);
     void func_808035C4_chjiggygamenew(Unk80132ED0 *, f32 *);
     extern f32 D_80803AE0_chjiggygamenew[][3];
@@ -789,7 +789,7 @@ void func_80800CC0_chjiggygamenew(Actor *arg0) {
 s32 func_808019E0_chjiggygamenew(Actor *arg0) {
     s32 _glglobalsettings_entrypoint_3();
     void func_808035FC_chjiggygamenew(Actor *, f32 *);
-    void func_800E4140(f32 *, f32 *);
+    int func_800E4140(f32 *arg0, f32 *arg1);
     extern f32 D_80803AE0_chjiggygamenew[][3];
     extern f32 D_80803BD0_chjiggygamenew[][3];
 
@@ -986,7 +986,7 @@ void func_80801EE8_chjiggygamenew(Actor *arg0) {
 void func_80802030_chjiggygamenew(u8 *arg0) {
     s32 func_800C0638(void);
     s32 _sujiggy_entrypoint_18(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     f32 func_800D8FF8(void);
     s32 _sujiggy_entrypoint_21(void);
     s32 _sujiggy_entrypoint_24(void);
@@ -1000,7 +1000,7 @@ void func_80802030_chjiggygamenew(u8 *arg0) {
     s32 func_800FCCD4(s32);
     void func_800FCD14(s32, s32);
     void func_800CE980(s32, f32, s32);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *actor,s32 state);
     void func_80801CE8_chjiggygamenew(Actor *arg0);
     struct GameFlags {
         u32 unused : 11;
@@ -1074,7 +1074,7 @@ void func_80802030_chjiggygamenew(u8 *arg0) {
         case 5:
             if (func_80801C20_chjiggygamenew(arg0) != 0) {
                 func_808004E0_chjiggygamenew(*(s32 *)arg0);
-                func_80102424((s32)func_80106790(*(Unk80132ED0 **)(arg0 + 0x3C)), 7);
+                func_80102424((BtIntPtr)func_80106790(*(Unk80132ED0 **)(arg0 + 0x3C)), 7);
             } else if (!((struct GameFlags *)(arg0 + 0x64))->paused) {
                 now = osGetCount();
                 previous = *(s32 *)(arg0 + 0x1C);
@@ -1113,7 +1113,7 @@ void func_80802030_chjiggygamenew(u8 *arg0) {
 void func_8080245C_chjiggygamenew(s32 arg0) 
 {
 }
-void func_800E44FC(Gfx **);
+int func_800E44FC(void *frame);
 
 f32 func_80802464_chjiggygamenew(Gfx **arg0) {
     void func_800E3BAC(f32 *);
@@ -1132,7 +1132,7 @@ f32 func_80802464_chjiggygamenew(Gfx **arg0) {
     return D_80803D28_chjiggygamenew.value;
 }
 
-void func_808024C8_chjiggygamenew(s32 arg0)
+void func_808024C8_chjiggygamenew(BtIntPtr arg0)
 {
     func_800E4208();
     func_800E44FC(arg0);
@@ -1148,9 +1148,9 @@ void func_808024F0_chjiggygamenew(Actor *arg0, void *arg1) {
     void func_800B8CE0(s32 color);
     struct ImageStruct;
     struct ImageStruct * func_800D674C(s32 a0);
-    void * func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void * func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF830(s32 arg0);
-    s32 func_800E71B8(s32 arg0);
+    BtIntPtr func_800E71B8(BtIntPtr arg0);
     void func_800E7C28(Gfx** gfx);
     void func_800E7CF4(Gfx** gfx);
     s32 func_800E81D0(void);
@@ -1171,8 +1171,8 @@ void func_808024F0_chjiggygamenew(Actor *arg0, void *arg1) {
         func_800EFA4C(position, 0.0, 0.0, 0.0);
         func_800EFA4C(rotation, 0.0, 0.0, 0.0);
         func_800DF830(1);
-        func_800DE498(arg1, position, NULL, 1.0f, rotation, (s32)func_800D674C(0x866));
-        func_800DE498(arg1, position, NULL, 1.0f, rotation, (s32)func_800D674C(0x865));
+        func_800DE498(arg1, position, NULL, 1.0f, rotation, (BtIntPtr)func_800D674C(0x866));
+        func_800DE498(arg1, position, NULL, 1.0f, rotation, (BtIntPtr)func_800D674C(0x865));
         gDPSetTextureFilter((*(Gfx **)arg1)++, G_TF_POINT);
         gDPSetColorDither((*(Gfx **)arg1)++, G_CD_DISABLE);
         if (arg0->actorData[7] != 0) {
@@ -1187,7 +1187,7 @@ void func_808024F0_chjiggygamenew(Actor *arg0, void *arg1) {
         gDPSetColorDither((*(Gfx **)arg1)++, G_CD_MAGICSQ);
         func_80803668_chjiggygamenew(arg0->unk3C, arg1);
         arg0->actorData[2] = func_808019E0_chjiggygamenew(arg0);
-        func_808024C8_chjiggygamenew((s32)arg1);
+        func_808024C8_chjiggygamenew((BtIntPtr)arg1);
         if (arg0->actorData[4] == 1 || arg0->actorData[4] == 2) {
             int i;
             int count;
@@ -1202,7 +1202,7 @@ void func_808024F0_chjiggygamenew(Actor *arg0, void *arg1) {
             }
             for (i = 0; ((JiggyText *)func_80100094(arg0, 0))->text[i][0] && i != 3; i++) {
                 _fxkern_entrypoint_1(arg1, 120 - (count / 2) * 25 + i * 25,
-                    (u8 *)func_800E71B8((s32)((JiggyText *)func_80100094(arg0, 0))->text[i]));
+                    (u8 *)func_800E71B8((BtIntPtr)((JiggyText *)func_80100094(arg0, 0))->text[i]));
             }
         }
     }
@@ -1219,10 +1219,10 @@ s32 func_80802858_chjiggygamenew(void *arg0, s32 arg1, s32 arg2) {
         u32 unused : 23;
         u32 jiggy : 9;
     } JiggyGame;
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _sujiggy_entrypoint_19(void);
     s32 _sujiggy_entrypoint_24(void);
-    void _sujiggy_entrypoint_25(s32);
+    s32 _sujiggy_entrypoint_25(s32 arg0);
     void _sujiggy_entrypoint_9(void);
     s32 func_800DA298(s32);
 #ifndef BT_NATIVE
@@ -1332,7 +1332,7 @@ void chjiggygamenew_entrypoint_1(void) {
     sp24->unk3C = sp1C->unk0;
     sp1C->unk3C = sp24->unk0;
     third = func_80108528(0x1DE, sp24->position, 0, &sp24);
-    sp24->actorData[7] = (u32)third->unk0;
+    sp24->actorData[7] = (BtUIntPtr)third->unk0;
     third->unk3C = sp24->unk0;
     ((struct JiggyGameMarker *)sp24->unk0)->flags = (((struct JiggyGameMarker *)sp24->unk0)->flags & 1) | 2;
     ((struct JiggyGameMarker *)sp1C->unk0)->flags = (((struct JiggyGameMarker *)sp1C->unk0)->flags & 1) | 2;
@@ -1343,7 +1343,7 @@ void chjiggygamenew_entrypoint_1(void) {
 }
 
 void chjiggygamenew_entrypoint_2(void) {
-    s32 func_80014F00(void);
+    BtIntPtr func_80014F00(void);
     s32 _glglobalsettings_entrypoint_3(void);
 
     u16 *buffer;
@@ -1367,7 +1367,7 @@ void chjiggygamenew_entrypoint_2(void) {
 
 OSThread *chjiggygamenew_entrypoint_3(void)
 {
-    extern u32 D_80803E50_chjiggygamenew[];
+    extern BtFnWord D_80803E50_chjiggygamenew[];
 
     return (OSThread *) D_80803E50_chjiggygamenew;
 }
@@ -1386,7 +1386,7 @@ void func_80802E80_chjiggygamenew(Actor *arg0) {
         f32 unk3C;
         f32 unk40;
     };
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     OSContPad *func_800169A8(void);
     void func_800EE7F8(f32 *, f32 *);
     OSContPad *sp24;
@@ -1412,7 +1412,7 @@ void func_80802E80_chjiggygamenew(Actor *arg0) {
 }
 
 void func_80802F3C_chjiggygamenew(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     s32 _sujiggy_entrypoint_21(void);
     s32 func_808007BC_chjiggygamenew();
     s32 func_8080000C_chjiggygamenew();
@@ -1427,7 +1427,7 @@ void func_80802F3C_chjiggygamenew(Actor *arg0) {
     void func_800FC660(u32);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *actor,s32 state);
     f32 mlAbsF(f32);
     extern u32 D_80803E98_chjiggygamenew[];
     OSContPad *pad;
@@ -1467,7 +1467,7 @@ void func_80802F3C_chjiggygamenew(Actor *arg0) {
     data = func_80100094(arg0, 0);
     if (arg0->unk70_10 != 7 && arg0->unk70_10 != 8 &&
 #ifdef BT_NATIVE
-    ((s32 (*)())func_808007BC_chjiggygamenew)((s32)arg0->unk3C)) {
+    ((s32 (*)())func_808007BC_chjiggygamenew)((BtIntPtr)arg0->unk3C)) {
 #else
     func_808007BC_chjiggygamenew((s32)arg0->unk3C)) {
 #endif
@@ -1497,16 +1497,16 @@ void func_80802F3C_chjiggygamenew(Actor *arg0) {
         if ((s32)arg0->unk70_10 >= 2 && (s32)arg0->unk70_10 < 5 && _sujiggy_entrypoint_21()) {
             if ((pad->button & 2) && !(data->buttons & 2)) {
                 func_800C3F14(0x487, 0.9f);
-                func_80102424((s32)arg0, 3);
+                func_80102424((BtIntPtr)arg0, 3);
                 func_80800368_chjiggygamenew((Unk80132ED0 *)arg0->unk3C);
             }
             if ((pad->button & 1) && !(data->buttons & 1)) {
                 func_800C3F14(0x487, 1.0f);
-                func_80102424((s32)arg0, 4);
+                func_80102424((BtIntPtr)arg0, 4);
                 func_80800424_chjiggygamenew((Unk80132ED0 *)arg0->unk3C);
             }
         }
-        data->hovered = func_8080000C_chjiggygamenew((s32)arg0->unk3C);
+        data->hovered = func_8080000C_chjiggygamenew((BtIntPtr)arg0->unk3C);
         switch (arg0->unk70_10) {
         case 1:
             if (data->hovered > 0 && data->hovered < 0x29 &&
@@ -1519,14 +1519,14 @@ void func_80802F3C_chjiggygamenew(Actor *arg0) {
                     } else {
                         func_800C3E88(0x47F);
                     }
-                    func_80102424((s32)arg0, 2);
+                    func_80102424((BtIntPtr)arg0, 2);
                     func_80800030_chjiggygamenew((Unk80132ED0 *)arg0->unk3C, data->hovered - 1);
                 }
             }
             break;
         case 2:
             if ((pad->button & 0x4000) && !(data->buttons & 0x4000)) {
-                func_80102424((s32)arg0, 5);
+                func_80102424((BtIntPtr)arg0, 5);
                 func_80800158_chjiggygamenew((Unk80132ED0 *)arg0->unk3C);
                 func_800FC660(0x30);
                 data->selected = -1;
@@ -1536,11 +1536,11 @@ void func_80802F3C_chjiggygamenew(Actor *arg0) {
                 if (result == 1) {
                     track = 0xE;
                     data->selected = -1;
-                    func_80102424((s32)arg0, 6);
+                    func_80102424((BtIntPtr)arg0, 6);
                 } else if (result == 0) {
                     track = 0xF;
                     data->selected = -1;
-                    func_80102424((s32)arg0, 1);
+                    func_80102424((BtIntPtr)arg0, 1);
                 } else {
                     track = 0xF;
                 }
@@ -1550,17 +1550,17 @@ void func_80802F3C_chjiggygamenew(Actor *arg0) {
         case 3:
         case 4:
             if (func_80101DDC(arg0)) {
-                func_80102424((s32)arg0, 2);
+                func_80102424((BtIntPtr)arg0, 2);
             }
             break;
         case 5:
-            func_80102424((s32)arg0, 1);
+            func_80102424((BtIntPtr)arg0, 1);
             if (pad->button) {}
             break;
         case 6:
             _subaddieaudioquick_entrypoint_3(arg0, NULL, D_80803E98_chjiggygamenew, 0.5f);
             if (func_80101DDC(arg0)) {
-                func_80102424((s32)arg0, 1);
+                func_80102424((BtIntPtr)arg0, 1);
             }
             break;
         case 7:
@@ -1578,7 +1578,7 @@ void func_80803564_chjiggygamenew(s32 arg0)
 /* extern */
 
 void func_8080356C_chjiggygamenew(Unk80132ED0 *arg0) {
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *actor,s32 state);
     func_80102424(func_80106790(arg0), 8);
 }
 
@@ -1589,7 +1589,7 @@ void func_80803598_chjiggygamenew(s32 bt_a0) {
 #else
 void func_80803598_chjiggygamenew(void) {
 #endif
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *actor,s32 state);
     func_80102424(func_80106790(), 7);
 }
 
@@ -1597,14 +1597,14 @@ void func_808035C4_chjiggygamenew(Unk80132ED0 *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     func_800EE7F8(arg1, (f32 *)((u8 *)func_80100094(func_80106790(arg0), 0U) + 0xC));
-}
+}    typedef struct { u8 pad0[0x18]; f32 unk18; f32 unk1C; } Objgamenew_func_808035FC_chjiggygamenew_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_808035FC_chjiggygamenew(Actor *arg0, f32 *arg1) {
     u8 *temp_v0;
 
     temp_v0 = func_80100094(func_80106790((Unk80132ED0 *)arg0), 0U);
-    arg1[0] = *(f32 *)((u8 *)temp_v0 + 0x18);
-    arg1[1] = *(f32 *)((u8 *)temp_v0 + 0x1C);
+    arg1[0] = ((Objgamenew_func_808035FC_chjiggygamenew_temp_v0 *)temp_v0)->unk18;
+    arg1[1] = ((Objgamenew_func_808035FC_chjiggygamenew_temp_v0 *)temp_v0)->unk1C;
 }
 
 s32 func_8080363C_chjiggygamenew(Unk80132ED0 *arg0) {
@@ -1612,7 +1612,7 @@ s32 func_8080363C_chjiggygamenew(Unk80132ED0 *arg0) {
 }
 
 void func_80803668_chjiggygamenew(Unk80132ED0 *arg0, void *arg1) {
-    void func_800E4140(f32 *, f32 *);
+    int func_800E4140(f32 *arg0, f32 *arg1);
     void func_800E7DE4(void *, s32, s32, s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
@@ -1640,7 +1640,7 @@ void func_80803668_chjiggygamenew(Unk80132ED0 *arg0, void *arg1) {
 
 OSThread *chjiggygamenew_entrypoint_4(void)
 {
-    extern u32 D_80803EBC_chjiggygamenew[];
+    extern BtFnWord D_80803EBC_chjiggygamenew[];
 
     return (OSThread *) D_80803EBC_chjiggygamenew;
 }
@@ -1693,7 +1693,7 @@ void func_80803928_chjiggygamenew(Unk80132ED0 *arg0, Gfx **arg1) {
     void func_80101870(Actor* arg0, void* arg1);
     Gfx *sp18;
     Gfx *temp_v0_2;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800E81D0();
     if (temp_v0 != 0) {
@@ -1706,11 +1706,11 @@ void func_80803928_chjiggygamenew(Unk80132ED0 *arg0, Gfx **arg1) {
 }
 
 void func_8010A730();
-u32 D_80803E50_chjiggygamenew[] = {
-    0x015801E2, 0x08620001, (u32)D_80803E08_chjiggygamenew, (u32)func_80802F3C_chjiggygamenew,
-    (u32)func_80102EC0, (u32)func_8010A730, 0x00000000, 0x00000000,
-    0x00000000, 0x00400444, (u32)func_80803564_chjiggygamenew, 0x00000000,
-    0x00440000, (u32)func_80802E80_chjiggygamenew, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_80803E50_chjiggygamenew[] = {
+    0x015801E2, 0x08620001, (BtFnWord)D_80803E08_chjiggygamenew, (BtFnWord)func_80802F3C_chjiggygamenew,
+    (BtFnWord)func_80102EC0, (BtFnWord)func_8010A730, 0x00000000, 0x00000000,
+    0x00000000, 0x00400444, (BtFnWord)func_80803564_chjiggygamenew, 0x00000000,
+    0x00440000, (BtFnWord)func_80802E80_chjiggygamenew, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 u32 D_80803E98_chjiggygamenew[] = {
@@ -1722,11 +1722,11 @@ f32 D_80803EA4_chjiggygamenew[] = {
 f32 D_80803EB0_chjiggygamenew[] = {
     -10.0f, 5.0f, -50.0f,
 };
-u32 D_80803EBC_chjiggygamenew[] = {
-    0x015801DE, 0x08640001, 0x00000000, (u32)func_8080377C_chjiggygamenew,
-    (u32)func_80102EC0, (u32)func_8010A730, 0x00000000, 0x00000000,
+BtFnWord D_80803EBC_chjiggygamenew[] = {
+    0x015801DE, 0x08640001, 0x00000000, (BtFnWord)func_8080377C_chjiggygamenew,
+    (BtFnWord)func_80102EC0, (BtFnWord)func_8010A730, 0x00000000, 0x00000000,
     0x00000000, 0x00401404, 0x00000000, 0x00000000,
-    0x00140000, 0x00000000, (u32)func_80107C2C, 0x80002002,
+    0x00140000, 0x00000000, (BtFnWord)func_80107C2C, 0x80002002,
     0x00000000, 0x00000000,
 };
 s32 D_80803F04_chjiggygamenew[4] = {

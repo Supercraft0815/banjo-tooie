@@ -81,7 +81,7 @@ void func_8080024C_bsmumstill(PlayerState *self) {
     bs_setState(self, func_80800000_bsmumstill(self, current_state));
 }
 
-s32 bsmumstill_entrypoint_0(s32 idx) {
+BtIntPtr bsmumstill_entrypoint_0(s32 idx) {
     return D_80800404_bsmumstill[idx];
 }
 
@@ -114,6 +114,10 @@ void func_80800300_bsmumstill(PlayerState *self) {
     bs_setState(self, func_80800000_bsmumstill(self, BS_STATE_0_INVALID));
 }
 
-s32 bsmumstill_entrypoint_1(s32 idx) {
+BtIntPtr bsmumstill_entrypoint_1(s32 idx) {
     return D_80800414_bsmumstill[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/mum/still.data.s */
+u8 D_80800400_bsmumstill [4] BT_DATA(4, overlays_bs_mum_still, 0x0) = { 1, 2, 0, 0 };
+BtIntPtr D_80800404_bsmumstill [4] BT_DATA(4, overlays_bs_mum_still, 0x4) = { (BtIntPtr)func_808001F0_bsmumstill, (BtIntPtr)func_80800210_bsmumstill, (BtIntPtr)func_8080024C_bsmumstill, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_80800414_bsmumstill [7] BT_DATA(4, overlays_bs_mum_still, 0x14) = { (BtIntPtr)func_808002A4_bsmumstill, (BtIntPtr)func_808002D0_bsmumstill, (BtIntPtr)func_80800300_bsmumstill, (BtIntPtr)_bsmum_entrypoint_0, 0, 0, 0 };

@@ -2,7 +2,7 @@
 
 #include "overlays/bs/kaz/shoesspringjump.h"
 
-extern s32 D_80800270_bskazshoesspringjump[];
+extern BtIntPtr D_80800270_bskazshoesspringjump[];
 
 void func_80800000_bskazshoesspringjump(PlayerState *self, s32 arg1) {
     switch (arg1) {
@@ -62,6 +62,9 @@ void bskazshoesspringjump_entrypoint_2(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazshoesspringjump_entrypoint_3(s32 idx) {
+BtIntPtr bskazshoesspringjump_entrypoint_3(s32 idx) {
     return D_80800270_bskazshoesspringjump[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/shoesspringjump.data.s */
+void func_80099B94(PlayerState *);
+BtIntPtr D_80800270_bskazshoesspringjump [4] BT_DATA(4, overlays_bs_kaz_shoesspringjump, 0x0) = { (BtIntPtr)_bskazshoesspringjump_entrypoint_0, (BtIntPtr)_bskazshoesspringjump_entrypoint_1, (BtIntPtr)_bskazshoesspringjump_entrypoint_2, (BtIntPtr)func_80099B94 };

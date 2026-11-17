@@ -17,7 +17,7 @@ loop:
     return 0;
 }
 
-void dbvpl_entrypoint_1(s32 arg0, u8 *arg1, u8 *arg2, s32 *arg3) {
+void dbvpl_entrypoint_1(BtIntPtr arg0, u8 *arg1, u8 *arg2, s32 *arg3) {
     u8 *func_800B2324(u8 *, u8 **, u8 **);
     u8 *begin;
     u8 *end[2];

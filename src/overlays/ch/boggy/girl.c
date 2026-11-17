@@ -35,16 +35,16 @@ u32 D_80800C68_chboggygirl[] = {
     0x00000000, 0x00000000,
 };
 
-u32 D_80800CF0_chboggygirl[] = {
+BtFnWord D_80800CF0_chboggygirl[] = {
     0x01930141, 0x075A0002,
-    (u32)D_80800C68_chboggygirl, (u32)func_808000A8_chboggygirl,
-    (u32)func_8080097C_chboggygirl, (u32)func_80101870,
+    (BtFnWord)D_80800C68_chboggygirl, (BtFnWord)func_808000A8_chboggygirl,
+    (BtFnWord)func_8080097C_chboggygirl, (BtFnWord)func_80101870,
     0x09C40000, 0x3F800000,
     0x008D0000, 0x40040128,
-    (u32)func_8080091C_chboggygirl, 0x00000000,
-    0x00300000, (u32)func_8080000C_chboggygirl,
-    (u32)func_80107C2C, 0x80105016,
-    (u32)func_80800508_chboggygirl, 0x00000000,
+    (BtFnWord)func_8080091C_chboggygirl, 0x00000000,
+    0x00300000, (BtFnWord)func_8080000C_chboggygirl,
+    (BtFnWord)func_80107C2C, 0x80105016,
+    (BtFnWord)func_80800508_chboggygirl, 0x00000000,
 };
 
 s32 D_80800D38_chboggygirl[] = {
@@ -86,9 +86,9 @@ void func_8080000C_chboggygirl(Actor *arg0) {
     } GirlActorData;
     s32 _chboggykids_entrypoint_0(Actor *);
     void func_800FFAB0(Actor *);
-    s32 _subaddieDll_entrypoint_1(Actor *);
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
-    void _subaddieitem_entrypoint_0(void *, u32, s32, s32);
+    void _subaddieDll_entrypoint_1(Actor *arg0);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
+    void _subaddieitem_entrypoint_0(void *, BtUIntPtr, s32, s32);
     void func_8080093C_chboggygirl(Actor *);
     GirlData *sp24;
 
@@ -118,14 +118,14 @@ void func_808000A8_chboggygirl(Actor *arg0) {
         f32 unk18[3];
         f32 unk24;
     } GirlActorData;
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, s32 *, s32 *, s32);
     s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_800D90A4(f32 *);
     s32 func_800DA298(s32);
     f32 func_800DC178(f32, f32);
@@ -228,7 +228,7 @@ void func_808000A8_chboggygirl(Actor *arg0) {
 }
 
 s32 func_80800508_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _subaddierouteDll_entrypoint_1(Actor *);
     void func_800C9C70(f32, u32, f32, u32, f32[3], f32, f32);
@@ -294,14 +294,14 @@ void func_80800708_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
         u8 unk17;
         u8 item[1];
     } GirlData;
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    u8 _subaddiedialog_entrypoint_9(void *arg0, s32 arg1, void *arg2, s32 arg3);
     void _subaddieitem_entrypoint_2(void *);
     void func_800C01A8(s16, s32);
     void func_800C0850(void);
     void func_800DA544(s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80102924(void *, f32);
     void func_80800A4C_chboggygirl(Actor *);
@@ -367,7 +367,7 @@ void func_8080091C_chboggygirl(Actor* arg0)
 }
 
 void func_8080093C_chboggygirl(Actor *arg0) {
-    s16 _glsplinefind_entrypoint_0(u32, f32 *);
+    s32 _glsplinefind_entrypoint_0(s32 arg0, f32 arg1[3]);
     void func_800EE940(void *, f32 *);
     void *sp24;
     f32 sp18[3];
@@ -378,7 +378,7 @@ void func_8080093C_chboggygirl(Actor *arg0) {
 }
 
 void func_8080097C_chboggygirl(Actor *arg0) {
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void func_800FFAB0(Actor *);
     void func_80102424(Actor *, s32);
     s32 func_80105230();
@@ -415,7 +415,7 @@ void func_8080097C_chboggygirl(Actor *arg0) {
 }
 
 void func_80800A4C_chboggygirl(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA980(s32, s32);
     struct Flags { u8 pad[0x16]; u8 high : 1; u8 flag : 1; u8 low : 6; };
     struct Flags *data;
@@ -432,7 +432,7 @@ void func_80800A4C_chboggygirl(Actor *arg0) {
 void func_80800ABC_chboggygirl(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1, 0x3C);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42700000, 0x41A00000);
@@ -450,11 +450,11 @@ void func_80800B28_chboggygirl(Actor* arg0)
 /* extern */
 
 s32 func_80800B5C_chboggygirl(s32 arg0) {
-    s32 func_800F54E4();
-    s32 func_800F640C(s32, s32);
-    s32 func_800F64A4(s32, s32);
-    s32 sp1C;
-    s32 temp_v0;
+    BtIntPtr func_800F54E4();
+    s32 func_800F640C(BtIntPtr, s32);
+    s32 func_800F64A4(BtIntPtr, s32);
+    BtIntPtr sp1C;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800F54E4();
     sp1C = temp_v0;

@@ -2,7 +2,7 @@
 
 OSThread *chjigsawcollect_entrypoint_0(void)
 {
-    extern u8 D_80800670_chjigsawcollect[];
+    extern ActorData D_80800670_chjigsawcollect[];
 
     return (OSThread *) D_80800670_chjigsawcollect;
 }
@@ -17,7 +17,7 @@ void func_8080000C_chjigsawcollect(Actor *arg0) {
     } CollectData;
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32[3]);
-    s32 func_800CF9E4(s32, s32, s32);
+    void func_800CF9E4(s32 arg0, s32 arg1, s32 arg2);
     s32 func_800CFA70(s32, s32);
     void func_800FC660(u32);
     void *func_80100094(Actor *, u32);
@@ -63,9 +63,9 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
         s32 light;
     } CollectData;
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
-    s32 _fxsparkle_entrypoint_1(s32, s32);
+    s32 _fxsparkle_entrypoint_1(BtIntPtr, s32);
     void _fxtwinkle_entrypoint_0(f32 *);
-    s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    s32 _subaddieaudioquick_entrypoint_2(BtIntPtr, s32, s32 *);
     f32 func_800136E4(f32);
     f32 func_80013728(f32);
     void func_800C4B64(f32);
@@ -78,16 +78,16 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800FFAB0(s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800FFAB0(BtIntPtr);
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     s32 func_80103DFC(u8 *, f32 *);
-    void func_808005B8_chjigsawcollect(s32, s32);
-    extern s32 D_808006B8_chjigsawcollect;
-    extern s32 D_808006C4_chjigsawcollect;
+    void func_808005B8_chjigsawcollect(BtIntPtr, BtIntPtr);
+    extern s32 D_808006B8_chjigsawcollect[3];
+    extern s32 D_808006C4_chjigsawcollect[3];
     f32 dt;
     f32 player[3];
     f32 position[3];
@@ -116,12 +116,12 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
                     func_800FCA90(0x1C);
                     actor->music = 0;
                 }
-                _subaddieaudioquick_entrypoint_2((s32)arg0, (s32)actor->position, &D_808006B8_chjigsawcollect);
+                _subaddieaudioquick_entrypoint_2((BtIntPtr)arg0, (BtIntPtr)actor->position, D_808006B8_chjigsawcollect);
             } else if (func_80013728(oldRotation) <= 0.0f &&
                        func_80013728(data->rotation) > 0.0f &&
                        func_80013728(data->angle) < 70.0f) {
                 func_800C4B64(func_800F10B4(func_80013728(data->angle), -70.0f, 70.0f, 1.0f, 1.2f));
-                _subaddieaudioquick_entrypoint_2((s32)arg0, (s32)actor->position, &D_808006C4_chjigsawcollect);
+                _subaddieaudioquick_entrypoint_2((BtIntPtr)arg0, (BtIntPtr)actor->position, D_808006C4_chjigsawcollect);
             }
             data->angle = func_80013728(data->angle);
             data->rotation = func_80013728(data->rotation);
@@ -129,7 +129,7 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
             func_80103DFC((u8 *)arg0, position);
             randomAngle = func_800DC178(0.0f, 360.0f);
             func_800EF214(position, randomAngle, func_800DC178(0.0f, 360.0f), 20.0f);
-            func_808005B8_chjigsawcollect((s32)arg0, (s32)position);
+            func_808005B8_chjigsawcollect((BtIntPtr)arg0, (BtIntPtr)position);
             break;
         case 2:
             speed = func_800F15F8(data->speed, 1600.0f, dt * 1000.0f);
@@ -145,14 +145,14 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
             }
             if (func_8001210C(3) == 0) {
                 func_80103DFC((u8 *)arg0, position);
-                func_808005B8_chjigsawcollect((s32)arg0, (s32)position);
+                func_808005B8_chjigsawcollect((BtIntPtr)arg0, (BtIntPtr)position);
             }
             if (data->speed == 1600.0f) {
-                _fxsparkle_entrypoint_1((s32)actor->position, 10);
+                _fxsparkle_entrypoint_1((BtIntPtr)actor->position, 10);
                 if (data->light != 0) {
                     data->light = _chlightfader_entrypoint_1(data->light, 2.2f, 2);
                 }
-                func_800FFAB0((s32)arg0);
+                func_800FFAB0((BtIntPtr)arg0);
             }
             break;
     }
@@ -198,10 +198,10 @@ s32 func_808005A4_chjigsawcollect(s32 arg0, s32 arg1, s32 arg2)
 {
     return 0;
 }
-void func_808005B8_chjigsawcollect(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
-    extern s32 D_808006D0_chjigsawcollect;
-    func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_808006D0_chjigsawcollect);
+void func_808005B8_chjigsawcollect(BtIntPtr arg0, BtIntPtr arg1) {
+    BtIntPtr func_800BBCB8(BtIntPtr, BtIntPtr, s32, s32, s32 *);
+    extern s32 D_808006D0_chjigsawcollect[12];
+    func_800BBCB8(arg1, 0, 0x3F800000, 1, D_808006D0_chjigsawcollect);
 }
 
 void chjigsawcollect_entrypoint_1(Actor **arg0, s32 arg1, s32 arg2) {
@@ -222,3 +222,11 @@ void chjigsawcollect_entrypoint_1(Actor **arg0, s32 arg1, s32 arg2) {
     ((CollectActor *)actor)->unk73_0 = arg2;
     ((CollectData *)func_80100094(actor, 0))->unkC = arg1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/jigsaw/collect.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_80800670_chjigsawcollect [1] BT_DATA(4, overlays_ch_jigsaw_collect, 0x0) = { { 344, 1263, 1552, 1, 0, (void (*)(struct Actor *))func_808000CC_chjigsawcollect, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 4, (void (*)(struct Actor *))func_80800524_chjigsawcollect, 0, 20, 0, (void (*)(struct Actor *))func_8080000C_chjigsawcollect, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_808005A4_chjigsawcollect, 0 } };
+s32 D_808006B8_chjigsawcollect[3] BT_DATA(4, overlays_ch_jigsaw_collect, 0x48) = { 1246821, 1467792, 1769472 };
+s32 D_808006C4_chjigsawcollect[3] BT_DATA(4, overlays_ch_jigsaw_collect, 0x54) = { 1246820, 1900571, 0 };
+s32 D_808006D0_chjigsawcollect[12] BT_DATA(4, overlays_ch_jigsaw_collect, 0x60) = { 1903074, 1834608, -19660757, 13369651, 2228326, 6684679, 458791, 270, 270, 0, 0, 0 };

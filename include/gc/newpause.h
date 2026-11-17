@@ -106,8 +106,8 @@ void gcnewpause_entrypoint_1(PauseState* a0);
 void _gcnewpause_entrypoint_1(PauseState* a0);
 u32 gcnewpause_entrypoint_2(PauseState* a0);
 u32 _gcnewpause_entrypoint_2(PauseState* a0);
-void gcnewpause_entrypoint_3(u32 arg0, PauseState* pauseMenu);
-void _gcnewpause_entrypoint_3(u32 arg0, PauseState* pauseMenu);
+void gcnewpause_entrypoint_3(BtUIntPtr arg0, PauseState* pauseMenu);
+void _gcnewpause_entrypoint_3(BtUIntPtr arg0, PauseState* pauseMenu);
 void gcnewpause_entrypoint_4(u32 arg0, OptionState* arg1, u32 arg2, u32 arg3);
 void _gcnewpause_entrypoint_4(u32 arg0, OptionState* arg1, u32 arg2, u32 arg3);
 
@@ -145,12 +145,12 @@ u32 func_80801BF0_gcnewpause(u32 a0);
 s32 func_80801C3C_gcnewpause(s32 a0);
 void func_80801CCC_gcnewpause(PauseState* a0);
 void func_80801CDC_gcnewpause(PauseState* a0);
-void func_80801DA0_gcnewpause(PauseState* pauseMenu, u32 a1);
+void func_80801DA0_gcnewpause(PauseState* pauseMenu, BtUIntPtr a1);
 void func_80801E08_gcnewpause(PauseState* a0, OptionState* a1);
 s32 func_80801E80_gcnewpause(s32 a0, s32 a1);
-s32 func_80801EF0_gcnewpause(s32 a0);
+s32 func_80801EF0_gcnewpause(BtIntPtr a0);
 
-u32 func_80801F18_gcnewpause(u32 a0);
+u32 func_80801F18_gcnewpause(BtUIntPtr a0);
 
 
 

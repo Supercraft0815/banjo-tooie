@@ -207,7 +207,7 @@ void func_808005E0_bsledge(PlayerState *self) {
     bs_setState(self, sp2C);
 }
 
-s32 bsledge_entrypoint_0(s32 idx) {
+BtIntPtr bsledge_entrypoint_0(s32 idx) {
     return D_80801348_bsledge[idx];
 }
 
@@ -244,7 +244,7 @@ void func_808007F4_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsledge_entrypoint_1(s32 idx) {
+BtIntPtr bsledge_entrypoint_1(s32 idx) {
     return D_80801358_bsledge[idx];
 }
 
@@ -290,7 +290,7 @@ void func_808009C8_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsledge_entrypoint_2(s32 idx) {
+BtIntPtr bsledge_entrypoint_2(s32 idx) {
     return D_80801368_bsledge[idx];
 }
 
@@ -351,7 +351,7 @@ void func_80800B70_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsledge_entrypoint_3(s32 idx) {
+BtIntPtr bsledge_entrypoint_3(s32 idx) {
     return D_80801378_bsledge[idx];
 }
 
@@ -509,7 +509,7 @@ void func_80800F70_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsledge_entrypoint_4(s32 idx) {
+BtIntPtr bsledge_entrypoint_4(s32 idx) {
     return D_80801398_bsledge[idx];
 }
 
@@ -534,6 +534,17 @@ void bsledge_entrypoint_7(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsledge_entrypoint_8(s32 idx) {
+BtIntPtr bsledge_entrypoint_8(s32 idx) {
     return D_808013A8_bsledge[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/ledge.data.s */
+void func_80099B94(PlayerState *);
+s16 D_80801340_bsledge [4] BT_DATA(4, overlays_bs_ledge, 0x0) = { 1408, 1409, 1410, 0 };
+BtIntPtr D_80801348_bsledge [4] BT_DATA(4, overlays_bs_ledge, 0x8) = { (BtIntPtr)func_80800504_bsledge, (BtIntPtr)func_80800540_bsledge, (BtIntPtr)func_808005E0_bsledge, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801358_bsledge [4] BT_DATA(4, overlays_bs_ledge, 0x18) = { (BtIntPtr)func_8080072C_bsledge, (BtIntPtr)func_80800764_bsledge, (BtIntPtr)func_808007F4_bsledge, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801368_bsledge [4] BT_DATA(4, overlays_bs_ledge, 0x28) = { (BtIntPtr)func_808008D4_bsledge, (BtIntPtr)func_808008F4_bsledge, (BtIntPtr)func_808009C8_bsledge, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801378_bsledge [4] BT_DATA(4, overlays_bs_ledge, 0x38) = { (BtIntPtr)func_80800AC0_bsledge, (BtIntPtr)func_80800AE0_bsledge, (BtIntPtr)func_80800B70_bsledge, (BtIntPtr)func_80099B94 };
+u8 D_80801388_bsledge [8] BT_DATA(4, overlays_bs_ledge, 0x48) = { 1, 2, 4, 1, 2, 2, 4, 3 };
+u8 D_80801390_bsledge [8] BT_DATA(4, overlays_bs_ledge, 0x50) = { 1, 2, 1, 2, 2, 0, 0, 0 };
+BtIntPtr D_80801398_bsledge [4] BT_DATA(4, overlays_bs_ledge, 0x58) = { (BtIntPtr)func_80800EE0_bsledge, (BtIntPtr)func_80800F0C_bsledge, (BtIntPtr)func_80800F70_bsledge, (BtIntPtr)func_80099B94 };
+BtIntPtr D_808013A8_bsledge [6] BT_DATA(4, overlays_bs_ledge, 0x68) = { (BtIntPtr)_bsledge_entrypoint_5, (BtIntPtr)_bsledge_entrypoint_6, (BtIntPtr)_bsledge_entrypoint_7, (BtIntPtr)func_80099B94, 0, 0 };

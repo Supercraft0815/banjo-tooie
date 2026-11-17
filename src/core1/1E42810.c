@@ -2,7 +2,7 @@
 
 /* extern */
 
-void func_8002ACE0(s32 arg0, s32 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5) {
+void func_8002ACE0(BtIntPtr arg0, s32 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5) {
     void func_80026500(void *, void *, s32, s32);
     struct { s16 type; s32 value; u8 b0; u8 b1; u8 b2; u8 b3; s32 tail; } event;
     s32 delay;
@@ -64,7 +64,7 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
     };
     extern s16 D_80041290[], D_8004138E[];
     extern u8 D_8007EA30, D_8007EA31, D_8007EA32;
-    extern void func_8002CC9C(void *, s32, void *);
+    extern s32 func_8002CC9C(BtIntPtr arg0, s32 arg1, BtIntPtr arg2);
     extern void *func_8002B7C8(void *, s16 *, s16 *, s32, void *);
     extern s16 func_8002BCBC(s16, s32, s16, u16);
     extern s32 func_8002B684(void *, s32, void *);
@@ -238,34 +238,34 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
         voice->elapsed = voice->duration;
     }
     return output;
-}
+}    typedef struct { u8 pad0[0x48]; s32 unk48; f32 unk4C; s32 unk50; u8 pad54[0x6]; s16 unk5A; u8 pad5C[0x18]; s32 unk74; s32 unk78; void * unk7C; void * unk80; s32 unk84; } Obj1E42810_func_8002B684_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
-    void func_8002D328(void *, s32, void *);
+    s32 func_8002D328(u8 *arg0, s32 arg1, BtIntPtr arg2);
     void *sp24;
 
     sp24 = arg0;
     switch (arg1) {
         case 3:
-            if (*(void **)((s8 *)sp24 + 0x80) != NULL) {
+            if (((Obj1E42810_func_8002B684_sp24 *)sp24)->unk80 != NULL) {
                 **(void ***)((s8 *)sp24 + 0x80) = arg2;
             } else {
-                *(void **)((s8 *)sp24 + 0x7C) = arg2;
+                ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk7C = arg2;
             }
-            *(void **)((s8 *)sp24 + 0x80) = arg2;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk80 = arg2;
             break;
         case 4:
-            *(s32 *)((s8 *)sp24 + 0x78) = 1;
-            *(s32 *)((s8 *)sp24 + 0x84) = 0;
-            *(s16 *)((s8 *)sp24 + 0x5A) = 1;
-            *(s32 *)((s8 *)sp24 + 0x74) = 0;
-            *(f32 *)((s8 *)sp24 + 0x4C) = 0.0f;
-            *(s32 *)((s8 *)sp24 + 0x50) = 1;
-            *(s32 *)((s8 *)sp24 + 0x48) = 0;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk78 = 1;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk84 = 0;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk5A = 1;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk74 = 0;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk4C = 0.0f;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk50 = 1;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk48 = 0;
             func_8002D328(sp24, 4, arg2);
             break;
         case 9:
-            *(s32 *)((s8 *)sp24 + 0x84) = 1;
+            ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk84 = 1;
             break;
         default:
             func_8002D328(sp24, arg1, arg2);

@@ -530,3 +530,38 @@ void func_80014DD4(Gfx **gfx){
     gDPPipeSync((*gfx)++);
     gSPEndDisplayList((*gfx)++);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u64 D_800777B0 [ OS_YIELD_DATA_SIZE / sizeof ( u64 ) ] BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0xE70);
+OSMesgQueue D_800783D0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1A90);
+OSMesg D_800783E8 [ 20 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1AA8);
+OSMesgQueue D_80078438 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1AF8);
+OSMesg D_80078450 [ 10 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B10);
+AudioTask * D_80078478 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B38);
+s32 D_8007847C BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B3C);
+int D_80078480 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B40);
+s32 D_80078484 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B44);
+s32 D_80078488 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B48);
+s32 D_8007848C BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B4C);
+s32 D_80078490 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B50);
+s32 D_80078494 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1B54);
+u64 D_80078498 [ SCHEDULER_THREAD_STACK_SIZE64 ] BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x1B58);
+OSThread D_80078C98 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x2358);
+__OSThreadOddFpStorage D_80078E48 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x2508);
+GraphicsTask * D_80078E58 [ 20 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2518);
+volatile s32 D_80078EA8 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2568);
+volatile s32 D_80078EAC BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x256C);
+AudioTask * D_80078EB0 [ 20 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2570);
+volatile s32 D_80078F00 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x25C0);
+volatile s32 D_80078F04 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x25C4);
+void * D_80078F08 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x25C8);
+s32 D_80078F0C BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x25CC);
+s32 D_80078F10 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x25D0);
+s32 D_80078F14 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x25D4);
+OSTimer D_80078F18 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x25D8);
+OSTimer D_80078F38 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x25F8);
+s32 D_80078F58 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2618);
+s32 D_80078F5C BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x261C);
+#endif

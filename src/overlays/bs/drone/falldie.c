@@ -12,9 +12,9 @@ void func_80800000_bsdronefalldie(void *arg0, s32 arg1) {
 
 /* extern */
 
-void bsdronefalldie_entrypoint_0(s32 arg0) {
-    s32 func_800961AC(s32, s32);
-    s32 func_80092880(s32, s32);
+void bsdronefalldie_entrypoint_0(BtIntPtr arg0) {
+    void func_800961AC(void *arg0, s32 arg1);
+    void func_80092880(void *arg0, s32 arg1);
     func_800961AC(arg0, 0x1);
     func_80092880(arg0, 0x1);
 }
@@ -37,8 +37,8 @@ void bsdronefalldie_entrypoint_1(struct player_state_s *arg0) {
     void func_800A0180(struct player_state_s *);
     void func_800A4DFC(struct player_state_s *, s32);
     void func_80098B4C(void *, s32);
-    s32 func_800961AC();
-    s32 func_80092880();
+    void func_800961AC(void *arg0, s32 arg1);
+    void func_80092880(void *arg0, s32 arg1);
     struct anctrl_s *control;
     f32 end;
     f32 start;
@@ -76,19 +76,19 @@ void bsdronefalldie_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsdronefalldie_entrypoint_2(s32 arg0) {
-    s32 func_80099AA8(s32);
+void bsdronefalldie_entrypoint_2(BtIntPtr arg0) {
+    void func_80099AA8(void *arg0);
     s32 func_8009E6EC();
     if (func_8009E6EC() != 0x91) {
         func_80099AA8(arg0);
     }
-}
+}    typedef struct { u8 pad0[0x190]; s32 unk190; } Objfalldie_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void bsdronefalldie_entrypoint_3(void *arg0) {
     s32 _badata_entrypoint_16(void);
     s32 func_800FCCD4(s32);
 
-    switch (*(s32 *)((s8 *)arg0 + 0x190)) {
+    switch (((Objfalldie_arg0 *)arg0)->unk190) {
         case 1:
             if (func_800FCCD4(_badata_entrypoint_16()) == 0) {
                 func_80800000_bsdronefalldie(arg0, 2);

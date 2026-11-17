@@ -14,13 +14,13 @@ void func_80800008_ncbapivot(PlayerState* arg0, f32* arg1)
 
 void ncbapivot_entrypoint_1(u8 *arg0) {
     s32 func_801120CC(void *, s32, s32, s32);
-    s32 func_801124D0(s32, s32);
+    s32 func_801124D0(BtIntPtr, s32);
     void func_80115858(void *arg0, s32 arg1);
     void func_80115870(void *arg0, f32 arg1);
     s32 func_80111B8C(u8 *, s32, s32);
     func_801120CC(arg0, 0x44FA0000, 0x457A0000, -0x3A860000);
     func_80111B8C(arg0, 0x40800000, 0x41000000);
-    func_801124D0((s32) arg0, 1);
+    func_801124D0((BtIntPtr) arg0, 1);
     func_80115858(arg0, 1);
     func_80115870(arg0, 5.0f);
 }
@@ -38,9 +38,9 @@ void ncbapivot_entrypoint_3(PlayerState *arg0) {
     f32 func_800EEF94(f32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     void func_80111310(s32 *);
     s32 func_80111FD4(void *, f32 *);

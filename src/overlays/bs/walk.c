@@ -74,17 +74,17 @@ void func_8080016C_bswalk(PlayerState *self) {
 }
 
 void func_808001D8_bswalk(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 364) = arg1;
+    ((PlayerState *)arg0)->unk16C = arg1;
 }
 
 void func_808001E4_bswalk(u8 *arg0) {
     f32 func_800D8FF8(void);
     f32 func_800F0E00(f32, f32);
-    (*(f32 *)((s8 *)(arg0) + (0x16C))) = func_800F0E00(0.0f, (*(f32 *)((s8 *)(arg0) + (0x16C))) - func_800D8FF8());
+    (((PlayerState *)arg0)->unk16C) = func_800F0E00(0.0f, (((PlayerState *)arg0)->unk16C) - func_800D8FF8());
 }
 
 s32 func_80800220_bswalk(void *arg0) {
-    return 0.0f == *(f32 *)((s8 *)arg0 + 0x16C);
+    return 0.0f == ((PlayerState *)arg0)->unk16C;
 }
 s32 func_80800248_bswalk(PlayerState *self, s32 state) {
     int bakey_pressed(PlayerState *, ButtonId);
@@ -106,9 +106,9 @@ f32 bswalk_entrypoint_0(s32 arg0) {
     return 500.0f;
 }
 
-void bswalk_entrypoint_1()
+void bswalk_entrypoint_1(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    func_80800000_bswalk();
+    func_80800000_bswalk(BT_NATIVE_ONLY(bt_a0));
 }
 
 void bswalk_entrypoint_2(PlayerState *arg0) {
@@ -236,7 +236,7 @@ void bswalk_entrypoint_4(PlayerState *self) {
 }
 
 s32 bswalk_entrypoint_5(s32 arg0) {
-    extern s32 D_80801520_bswalk[];
+    extern BtIntPtr D_80801520_bswalk[];
     return ((s32 *)&D_80801520_bswalk)[arg0];
 }
 
@@ -363,7 +363,7 @@ void bswalk_entrypoint_8(PlayerState *arg0) {
 }
 
 s32 bswalk_entrypoint_9(s32 arg0) {
-    extern s32 D_80801530_bswalk[];
+    extern BtIntPtr D_80801530_bswalk[];
     return ((s32 *)&D_80801530_bswalk)[arg0];
 }
 
@@ -496,7 +496,7 @@ void bswalk_entrypoint_12(PlayerState *arg0) {
 }
 
 s32 bswalk_entrypoint_13(s32 arg0) {
-    extern s32 D_80801540_bswalk[];
+    extern BtIntPtr D_80801540_bswalk[];
     return ((s32 *)&D_80801540_bswalk)[arg0];
 }
 
@@ -650,18 +650,18 @@ void bswalk_entrypoint_15(PlayerState *self) {
 
 void bswalk_entrypoint_16(PlayerState *arg0) {
     void _bapackctrl_entrypoint_5(PlayerState *, s32);
-    s32 baroll_setIdeal(s32, f32);
+    void baroll_setIdeal(PlayerState *self, f32 arg1);
     int func_8008E0E8(PlayerState *);
     void func_8009BF5C(PlayerState *, f32);
     func_8009BF5C(arg0, 0.0f);
-    baroll_setIdeal((s32) arg0, 0.0f);
+    baroll_setIdeal((BtIntPtr) arg0, 0.0f);
     if (func_8008E0E8(arg0) != 0) {
         _bapackctrl_entrypoint_5(arg0, 3);
     }
 }
 
 s32 bswalk_entrypoint_17(s32 arg0) {
-    extern s32 D_80801550_bswalk[];
+    extern BtIntPtr D_80801550_bswalk[];
     return ((s32 *)&D_80801550_bswalk)[arg0];
 }
 
@@ -724,7 +724,7 @@ void bswalk_entrypoint_20(PlayerState *self) {
 }
 
 s32 bswalk_entrypoint_21(s32 arg0) {
-    extern s32 D_80801560_bswalk[];
+    extern BtIntPtr D_80801560_bswalk[];
     return ((s32 *)&D_80801560_bswalk)[arg0];
 }
 
@@ -738,3 +738,26 @@ void bswalk_entrypoint_22(PlayerState *arg0, f32 arg1) {
     }
     func_8009FF44(arg0, 0xC, 225.0f, 500.0f, 0.54f, 0.44f);
 }
+/* data_to_c.py: from asm/data/overlays/bs/walk.data.s */
+void _bswalk_entrypoint_2();
+void _bswalk_entrypoint_3();
+void _bswalk_entrypoint_4();
+void func_8009AB78(PlayerState *);
+void _bswalk_entrypoint_8();
+void _bswalk_entrypoint_6();
+void _bswalk_entrypoint_7();
+void _bswalk_entrypoint_12();
+void _bswalk_entrypoint_10();
+void _bswalk_entrypoint_11();
+void _bswalk_entrypoint_16();
+void _bswalk_entrypoint_14();
+void _bswalk_entrypoint_15();
+void _bswalk_entrypoint_18();
+void _bswalk_entrypoint_19();
+void _bswalk_entrypoint_20();
+void func_80099B94(PlayerState *);
+BtIntPtr D_80801520_bswalk [4] BT_DATA(4, overlays_bs_walk, 0x0) = { (BtIntPtr)_bswalk_entrypoint_2, (BtIntPtr)_bswalk_entrypoint_3, (BtIntPtr)_bswalk_entrypoint_4, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_80801530_bswalk [4] BT_DATA(4, overlays_bs_walk, 0x10) = { (BtIntPtr)_bswalk_entrypoint_8, (BtIntPtr)_bswalk_entrypoint_6, (BtIntPtr)_bswalk_entrypoint_7, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_80801540_bswalk [4] BT_DATA(4, overlays_bs_walk, 0x20) = { (BtIntPtr)_bswalk_entrypoint_12, (BtIntPtr)_bswalk_entrypoint_10, (BtIntPtr)_bswalk_entrypoint_11, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_80801550_bswalk [4] BT_DATA(4, overlays_bs_walk, 0x30) = { (BtIntPtr)_bswalk_entrypoint_16, (BtIntPtr)_bswalk_entrypoint_14, (BtIntPtr)_bswalk_entrypoint_15, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_80801560_bswalk [4] BT_DATA(4, overlays_bs_walk, 0x40) = { (BtIntPtr)_bswalk_entrypoint_18, (BtIntPtr)_bswalk_entrypoint_19, (BtIntPtr)_bswalk_entrypoint_20, (BtIntPtr)func_80099B94 };

@@ -37,7 +37,7 @@ void bstimeout_entrypoint_1(struct player_state_s *arg0) {
     void func_8009514C(struct player_state_s *);
     void func_8009518C(struct player_state_s *, s32, f32);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
-    s32 func_800A05DC();
+    void func_800A05DC(void *arg0);
     struct anctrl_s *sp24;
 
     sp24 = baanim_getAnimCtrlPtr(arg0);
@@ -62,7 +62,7 @@ void bstimeout_entrypoint_2(s32 arg0)
     func_800A4E30(arg0);
 }
 s32 bstimeout_entrypoint_3(s32 arg0) {
-    extern s32 D_80800330_bstimeout[];
+    extern BtIntPtr D_80800330_bstimeout[];
     return ((s32 *)&D_80800330_bstimeout)[arg0];
 }
 
@@ -105,7 +105,7 @@ void bstimeout_entrypoint_4(struct player_state_s *arg0) {
 
 void bstimeout_entrypoint_5(u8 *arg0) {
     s32 _batimer_decrement(void *, s32);
-    s32 func_800A05DC();
+    void func_800A05DC(void *arg0);
     if (_batimer_decrement(arg0, 0) != 0) {
         func_800A05DC(arg0);
     }
@@ -114,6 +114,16 @@ void bstimeout_entrypoint_5(u8 *arg0) {
 void bstimeout_entrypoint_6(void *arg0) { func_800A0CF4(arg0, 0); func_800A4E30(arg0); func_800FC7C4(); }
 
 s32 bstimeout_entrypoint_7(s32 arg0) {
-    extern s32 D_80800340_bstimeout[];
+    extern BtIntPtr D_80800340_bstimeout[];
     return ((s32 *)&D_80800340_bstimeout)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/timeout.data.s */
+void _bstimeout_entrypoint_2();
+void _bstimeout_entrypoint_0();
+void _bstimeout_entrypoint_1();
+void func_80099AA8();
+void _bstimeout_entrypoint_6();
+void _bstimeout_entrypoint_4();
+void _bstimeout_entrypoint_5();
+BtIntPtr D_80800330_bstimeout [4] BT_DATA(4, overlays_bs_timeout, 0x0) = { (BtIntPtr)_bstimeout_entrypoint_2, (BtIntPtr)_bstimeout_entrypoint_0, (BtIntPtr)_bstimeout_entrypoint_1, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80800340_bstimeout [4] BT_DATA(4, overlays_bs_timeout, 0x10) = { (BtIntPtr)_bstimeout_entrypoint_6, (BtIntPtr)_bstimeout_entrypoint_4, (BtIntPtr)_bstimeout_entrypoint_5, (BtIntPtr)func_80099AA8 };

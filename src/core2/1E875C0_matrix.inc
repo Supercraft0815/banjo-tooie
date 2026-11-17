@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "native_skinning.h"
 MtxF *func_800ADE2C(NativeBoneMatrices *list,s32 index) {
     if(!list || index < -1 || index>=list->count)return NULL;

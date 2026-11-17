@@ -19,7 +19,7 @@ void func_80800000_chlinkpipefan(Actor *arg0) {
 }
 
 void func_80800080_chlinkpipefan(u8 *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     f32 func_800136E4(f32);
@@ -32,10 +32,10 @@ void func_80800080_chlinkpipefan(u8 *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13C4(f32, f32);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
-    s32 func_801065A4();
-    void func_8010A654(u8 *, u32);
+    BtIntPtr func_801065A4();
+    u32 func_8010A654(void ***arg0, s32 arg1);
     void func_808003B4_chlinkpipefan(u8 *, s32);
-    extern u32 D_80800910_chlinkpipefan;
+    extern u32 D_80800910_chlinkpipefan[3];
 #ifdef BT_NATIVE
     void chlinkpipefan_entrypoint_0(s32 arg0, s32 arg1, u8 *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
@@ -85,7 +85,7 @@ void func_80800080_chlinkpipefan(u8 *arg0) {
         }
     }
     if (*(f32 *)(arg0 + 0x54) != 0.0f) {
-        _subaddieaudioloop_entrypoint_4((Actor *)arg0, (f32 *)(arg0 + 4), 1, &D_80800910_chlinkpipefan);
+        _subaddieaudioloop_entrypoint_4((Actor *)arg0, (f32 *)(arg0 + 4), 1, D_80800910_chlinkpipefan);
         _subaddieaudioloop_entrypoint_0((Actor *)arg0, func_800F10B4(*(f32 *)(arg0 + 0x54), 225.0f, 450.0f, 0.4f, 0.8f));
     }
     if (((struct counter *)(arg0 + 0x6C))->value != 0) {
@@ -100,14 +100,14 @@ void func_80800080_chlinkpipefan(u8 *arg0) {
 void func_808003B4_chlinkpipefan(u8 *arg0, s32 arg1) {
     void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800DA544(GameFlag);
     f32 func_800F13C4(f32, f32);
     void func_80101FDC(Actor *, u32);
-    extern s32 D_8080091C_chlinkpipefan;
-    extern s32 D_80800960_chlinkpipefan;
-    extern s32 D_80800994_chlinkpipefan;
-    extern s32 D_808009A0_chlinkpipefan;
+    extern s32 D_8080091C_chlinkpipefan[17];
+    extern s32 D_80800960_chlinkpipefan[13];
+    extern s32 D_80800994_chlinkpipefan[3];
+    extern s32 D_808009A0_chlinkpipefan[3];
     Actor *actor = (Actor *)arg0;
     f32 *position;
 
@@ -119,9 +119,9 @@ void func_808003B4_chlinkpipefan(u8 *arg0, s32 arg1) {
             }
             func_800DA544(actor->unk74_7 + 0x15C);
             position = actor->position;
-            func_800BBCB8(position, position, 1.0f, 4, &D_8080091C_chlinkpipefan);
-            func_800BBCB8(position, position, 1.0f, 10, &D_80800960_chlinkpipefan);
-            _subaddieaudioquick_entrypoint_2(actor, position, &D_80800994_chlinkpipefan);
+            func_800BBCB8(position, position, 1.0f, 4, D_8080091C_chlinkpipefan);
+            func_800BBCB8(position, position, 1.0f, 10, D_80800960_chlinkpipefan);
+            _subaddieaudioquick_entrypoint_2(actor, position, D_80800994_chlinkpipefan);
             _chskeletonexplode_entrypoint_7(actor, position);
             break;
         case 2:
@@ -134,7 +134,7 @@ void func_808003B4_chlinkpipefan(u8 *arg0, s32 arg1) {
         case 4:
             actor->unk58 = 5.0f;
             if (actor->unk70_10 != 4) {
-                _subaddieaudioquick_entrypoint_2(actor, actor->position, &D_808009A0_chlinkpipefan);
+                _subaddieaudioquick_entrypoint_2(actor, actor->position, D_808009A0_chlinkpipefan);
                 func_80101FDC(actor, arg1);
             }
             break;
@@ -169,25 +169,25 @@ s32 func_80800638_chlinkpipefan(Actor *arg0, u32 arg1, Unk80132ED0 *volatile arg
     void func_800DF6BC(s32, s32);
     void func_800DF744(s32, s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F79DC(s32, s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80101080(void);
     s32 func_801015D0(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_808009AC_chlinkpipefan;
-    extern s32 D_808009B8_chlinkpipefan;
+    extern s32 D_808009AC_chlinkpipefan[3];
+    extern s32 D_808009B8_chlinkpipefan[4];
     Actor *sp2C;
 
     switch (arg1) {
         case 0x3E:
             if (arg0->unk70_10 != 4) {
                 if (15 == (arg0->unk0->unk18 << 11) >> 28) {
-                    func_800F79DC(func_800F54E4(), 6, (s32)arg0->unk0);
+                    func_800F79DC(func_800F54E4(), 6, (BtIntPtr)arg0->unk0);
                     return 1;
                 }
                 if (((arg0->unk0->unk18 << 11) >> 28) == 1) {
-                    func_800F79DC(func_800F54E4(), 3, (s32)arg0->unk0);
+                    func_800F79DC(func_800F54E4(), 3, (BtIntPtr)arg0->unk0);
                 }
             }
             return 1;
@@ -199,9 +199,9 @@ s32 func_80800638_chlinkpipefan(Actor *arg0, u32 arg1, Unk80132ED0 *volatile arg
             }
             if (!arg0->unk6C_0) {
                 if (arg0->unk70_10 == 4) {
-                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009B8_chlinkpipefan);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808009B8_chlinkpipefan);
                 } else {
-                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009AC_chlinkpipefan);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808009AC_chlinkpipefan);
                 }
             }
             arg0->unk6C_0 = 8;
@@ -230,7 +230,20 @@ s32 func_80800638_chlinkpipefan(Actor *arg0, u32 arg1, Unk80132ED0 *volatile arg
 
 OSThread *chlinkpipefan_entrypoint_1(void)
 {
-    extern u8 D_808009C8_chlinkpipefan[];
+    extern ActorData D_808009C8_chlinkpipefan[];
 
     return (OSThread *) D_808009C8_chlinkpipefan;
 }
+/* data_to_c.py: from asm/data/overlays/ch/linkpipefan.data.s */
+void func_80105834(Actor*);
+void func_801018A4();
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u32 D_80800910_chlinkpipefan[3] BT_DATA(4, overlays_ch_linkpipefan, 0x0) = { 0x1304A9, 0x165DC0, 0x1B0000 };
+s32 D_8080091C_chlinkpipefan[17] BT_DATA(4, overlays_ch_linkpipefan, 0xC) = { 1903069, 2819072, 100663330, 33555072, 100665344, 1376256, 2490393, 7, 2949100, 1376236, 1310760, 1310752, 1616928896, 720876, -3211284, 1310770, 1310720 };
+s32 D_80800960_chlinkpipefan[13] BT_DATA(4, overlays_ch_linkpipefan, 0x50) = { 1903065, 1769672, 26214414, 3276950, 1376256, 16580651, 67110400, 2154206, -2228190, 786457, 1638438, 2949320, 26214400 };
+s32 D_80800994_chlinkpipefan[3] BT_DATA(4, overlays_ch_linkpipefan, 0x84) = { 1246408, 1469792, 1769472 };
+s32 D_808009A0_chlinkpipefan[3] BT_DATA(4, overlays_ch_linkpipefan, 0x90) = { 1246507, 1461792, 1769472 };
+s32 D_808009AC_chlinkpipefan[3] BT_DATA(4, overlays_ch_linkpipefan, 0x9C) = { 1246368, 1469792, 1769472 };
+s32 D_808009B8_chlinkpipefan[4] BT_DATA(4, overlays_ch_linkpipefan, 0xA8) = { 1246534, 655488, 1469792, 1769472 };
+ActorData D_808009C8_chlinkpipefan [1] BT_DATA(4, overlays_ch_linkpipefan, 0xB8) = { { 307, 668, 1777, 2, 0, (void (*)(struct Actor *))func_80800080_chlinkpipefan, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 393216000, 0, 0, 0, 130, 4096, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chlinkpipefan, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1024, (void (*)(struct Actor *, long, long))func_80800638_chlinkpipefan, 0 } };

@@ -27,7 +27,7 @@ void func_8008E530(PlayerState *self, Unk80132ED0 *marker) {
     s32 _chbounce_entrypoint_10(Actor *);
     s32 _glhittableDll_entrypoint_2(s32);
     s32 _glhittableDll_entrypoint_3(void *, Unk80132ED0 *, s32);
-    s32 _glhittableDll_entrypoint_4(void *, Unk80132ED0 *);
+    s32 _glhittableDll_entrypoint_4(BtIntPtr arg0, u32 *arg1);
     s32 _glhittableDll_entrypoint_8();
     s32 func_800F424C();
     void func_800EB210(void *, void *, s32);
@@ -70,15 +70,15 @@ void func_8008E618(PlayerState *self) {
     (*(struct Entry **)self->unkC)->callback = func_8008ED70;
     (*(struct Entry **)self->unkC)->player = self->unk184;
     baflag_clear(self, 8);
-    *(s32 *)((u8 *)self->unkC + 0x18) = -1;
-}
+    self->unkC->unk18 = -1;
+}                 typedef struct { u8 pad0[0xC]; s32 * unkC; u8 pad10[0xA]; u16 unk1A; } Obj1E67DA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_8008E6BC(void *arg0) {
-    s32 func_800EBFF4(s32);
-    func_800EBFF4(*(*(s32 **)((s8 *)(arg0) + (0xC))));
-    *(*(s32 **)((s8 *)(arg0) + (0xC))) = 0;
+    void func_800EBFF4(void *data);
+    func_800EBFF4(*(((Obj1E67DA0_arg0 *)arg0)->unkC));
+    *(((Obj1E67DA0_arg0 *)arg0)->unkC) = 0;
 }
 
 void func_8008E6F0(PlayerState *arg0) {
@@ -95,19 +95,19 @@ void func_8008E6F0(PlayerState *arg0) {
     s32 func_80091E80(u8 *, s32);
     s32 func_8008DAA8(void *);
     s32 func_800EA068(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F5410(s32);
-    s32 func_800F6D24(s32);
-    s32 func_800F8B88(void);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5410(BtIntPtr);
+    s32 func_800F6D24(BtIntPtr);
+    u8 func_800F8B88(void);
     void _bsfirstp_entrypoint_14(PlayerState *);
-    void func_800CB840(s32, s32);
+    void func_800CB840(s32, BtIntPtr);
     void func_800CB870(void);
     s32 func_800CDBA8(void *, f32 (*)[3], f32 *, s32);
-    s32 func_800CDFA8(s32, s32 *);
+    BtIntPtr func_800CDFA8(s32, s32 *);
     extern f32 D_80126CE0[][3];
     extern f32 D_80126D08[];
     f32 position[3];
-    s32 map;
+    BtIntPtr map;
     s32 mode;
     s32 enabled;
     s32 other;
@@ -155,11 +155,11 @@ void func_8008E6F0(PlayerState *arg0) {
         count = func_800CDBA8(*(void **)arg0->unkC, D_80126CE0, D_80126D08, i);
         for (j = 0; j < count; j++) {
             marker = (Unk80132ED0 *)func_800CDFA8(j, &index);
-            *(s32 *)((u8 *)arg0->unkC + 0x18) = index;
+            arg0->unkC->unk18 = index;
             func_8008E530(arg0, marker);
         }
         func_800CB870();
-        *(s32 *)((u8 *)arg0->unkC + 0x18) = -1;
+        arg0->unkC->unk18 = -1;
     }
 }
 
@@ -168,16 +168,16 @@ s32 func_8008E92C(void *arg0)
     return *(s32 *) ((u8 *) *(void **) ((u8 *) arg0 + 0xC) + 0x18);
 }
 
-s32 func_8008E938(void *arg0)
+BtIntPtr func_8008E938(void *arg0)
 {
     return *(s32 *) *(void **) ((u8 *) arg0 + 0xC);
-}
+}    typedef struct { u8 pad0[0x2A]; u8 unk2A; } Obj1E67DA0_func_8008E944_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8008E944(PlayerState *arg0) {
     void *temp_v0;
 
     temp_v0 = *(void **) *(void **)((u8 *)arg0 + 0xC);
-    (*(u8 *)((s8 *)(temp_v0) + (0x2A))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x2A))) & 0xFFFD);
+    (((Obj1E67DA0_func_8008E944_temp_v0 *)temp_v0)->unk2A) = (u8) ((((Obj1E67DA0_func_8008E944_temp_v0 *)temp_v0)->unk2A) & 0xFFFD);
 }
 
 void func_8008E95C(PlayerState *arg0) {
@@ -212,29 +212,29 @@ s32 func_8008E9B8(PlayerState *arg0, s32 **arg1) {
     return 3;
 }
 
-void func_8008E9E4(void *arg0, s32 arg1, s32 arg2) {
+void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
     s32 _glhittableDll_entrypoint_5(s32);
     s32 _glhittableDll_entrypoint_6(s32);
     s32 _glhittableDll_entrypoint_8();
     s32 _glhittableDll_entrypoint_9(s32);
     void _bamotor_entrypoint_1(PlayerState *, f32, f32, f32);
-    s32 baflag_set(PlayerState *, s32);
-    void func_8009AD14(void *, s32);
+    void baflag_set(void *self, s32 id);
+    void func_8009AD14(void *, BtIntPtr);
     u32 func_8009BD44(void *);
-    void func_8009E7C8(PlayerState *, s32);
+    s32 func_8009E7C8(PlayerState *arg0, s32 arg1);
     s32 func_800A1718(PlayerState *);
     void func_800A17A8(PlayerState *, s32);
     s32 func_800D3948(void);
     s32 func_800F0D90(s32, s32, s32);
-    PlayerState *func_800F53D0(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F6774(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6774(BtIntPtr);
     s32 func_800F6C1C(s32);
-    void func_800F76B0(s32, s32, s32);
-    void func_800F79DC(s32, s32, s32);
+    s32 func_800F76B0(BtIntPtr arg0, s32 arg1, BtIntPtr arg2);
+    s32 func_800F79DC(BtIntPtr arg0, s32 arg1, BtIntPtr arg2);
     s32 func_800F9184(void);
     void *func_80100368(void *);
-    s32 func_8010108C(void *, s32, s32);
+    s32 func_8010108C(void *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     void func_801096C8(void *, s32);
     extern f32 D_80124B70;
@@ -256,7 +256,7 @@ void func_8008E9E4(void *arg0, s32 arg1, s32 arg2) {
     sp30 = _glhittableDll_entrypoint_8(arg2);
     sp2C = 0;
     sp24 = func_80106790((Unk80132ED0 *)arg1);
-    sp28 = (u32)*(u16 *)((u8 *)arg0 + 0x1A) >> 5;
+    sp28 = (u32)*&((Obj1E67DA0_arg0 *)arg0)->unk1A >> 5;
     sp20 = func_800F53D0(sp28);
     if (_glhittableDll_entrypoint_9(arg2) != 0) {
         baflag_set(sp20, 8);
@@ -319,3 +319,10 @@ u8 *func_8008ED70(void)
 {
     return D_80117CAC;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_80126CE0 [ 3 ] [ 3 ] BT_DATA(16, bss_core2bss1_sound_tail, 0x0);
+f32 D_80126D08 [ 6 ] BT_DATA(4, bss_core2bss1_sound_tail, 0x28);
+#endif

@@ -10,7 +10,7 @@ void chanim_entrypoint_0(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void chanim_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
+void chanim_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790();
     (*(s32 *)((s8 *)(((s8 *)func_80100094(func_80106790(), 0) + (arg1 * 4))) + (4))) = arg2;
@@ -56,7 +56,7 @@ void chanim_entrypoint_5(s16 *arg0, f32 arg1, volatile s32 arg2, s32 arg3, s32 a
 
 void chanim_entrypoint_6(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    void _anseq_entrypoint_5(s32);
+    void _anseq_entrypoint_5(s16 arg0);
     s16 *data;
 
     data = func_80100094(arg0, 0);

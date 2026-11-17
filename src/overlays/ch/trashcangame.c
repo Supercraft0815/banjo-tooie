@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 func_800F64A4(s32, s32);
+s32 func_800F64A4(BtIntPtr, s32);
 
 void func_80800000_chtrashcangame(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
@@ -25,7 +25,7 @@ s32 func_80800014_chtrashcangame(Actor *arg0, s32 arg1) {
     }
 }
 
-void func_80800098_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
+void func_80800098_chtrashcangame(Actor *arg0, BtIntPtr arg1, s32 arg2) {
     s32 func_800D3948(void);
     if (func_800D3948() != 0) {
         if ((s32)arg0->unk70_10 == 3) {
@@ -43,9 +43,9 @@ void func_80800098_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
+void func_80800144_chtrashcangame(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
     s32 func_80800014_chtrashcangame();
-    void func_80800098_chtrashcangame(Actor *, s32, s32);
+    void func_80800098_chtrashcangame(Actor *, BtIntPtr, s32);
 #ifdef BT_NATIVE
     func_80800098_chtrashcangame(arg0, arg1, ((s32 (*)())func_80800014_chtrashcangame)() + arg2);
 #else
@@ -54,11 +54,11 @@ void func_80800144_chtrashcangame(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800180_chtrashcangame(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     s32 func_800CEAD0(s32);
     s32 func_800D0A9C(s32, s32);
     s32 func_800D2498(u32, s32, u32);
@@ -133,25 +133,25 @@ void func_80800180_chtrashcangame(Actor *arg0) {
 
 void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     typedef struct { u8 padding[0x79]; u8 variant : 4; u8 other : 4; } TrashFlags;
-    s32 _gcfrontend_entrypoint_9(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
-    s32 func_800946C4(s32, s32);
-    s32 func_800CE88C(s32, s32);
-    s32 func_800CE8D8(s32, f32, s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    void func_800946C4(void *arg0, s32 arg1);
+    void func_800CE88C(s32 arg0, s32 arg1);
+    void func_800CE8D8(s32 arg0, f32 arg1, s32 arg2);
     s32 func_800D0A9C(s32, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800D2054(s32, s32, s32);
     s32 func_800D395C(void);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
-    s32 func_800F53D0(s32);
-    u32 func_800F54E4(void);
+    void * func_800F53D0(BtIntPtr arg0);
+    BtUIntPtr func_800F54E4(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(void *, s32);
     s32 func_80800014_chtrashcangame();
-    void func_80800098_chtrashcangame(Actor *, s32, s32);
+    void func_80800098_chtrashcangame(Actor *, BtIntPtr, s32);
     void func_808016B4_chtrashcangame(Actor *, Unk80132ED0 *, s32, s32);
     void func_808017F0_chtrashcangame(Actor *, s32, s32);
     void func_8080189C_chtrashcangame(void *);
@@ -159,11 +159,11 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
 
     switch (arg1) {
         case 1:
-            *(f32 *)((u8 *)arg0 + 0x58) = func_800DC178(15.0f, 25.0f);
+            ((Actor *)arg0)->unk58 = func_800DC178(15.0f, 25.0f);
             break;
         case 2:
             _subaddiedialog_entrypoint_11(*(s32 *)arg0,
-                func_800DC128(0x13FE, 0x1401), 4, (f32 *)((u8 *)arg0 + 4), 0x6A);
+                func_800DC128(0x13FE, 0x1401), 4, &((Actor *)arg0)->position[0], 0x6A);
             break;
         case 3:
             *(s32 *)((u8 *)arg0 + 0x50) = 0;
@@ -200,8 +200,8 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
             func_8080189C_chtrashcangame(arg0);
             func_800CE8D8(0, 60.0f, 0x3C);
             func_800CE88C(0, 1);
-            *(f32 *)((u8 *)arg0 + 0x58) = 0.2999878f;
-            func_80800098_chtrashcangame((s32)arg0, 0, 0);
+            ((Actor *)arg0)->unk58 = 0.2999878f;
+            func_80800098_chtrashcangame((BtIntPtr)arg0, 0, 0);
             *(s32 *)((u8 *)arg0 + 0x50) = 0;
             func_800FDC28(0xC);
             break;
@@ -224,7 +224,7 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
             func_8080189C_chtrashcangame(arg0);
             break;
         case 14:
-            *(f32 *)((u8 *)arg0 + 0x58) = 0.5f;
+            ((Actor *)arg0)->unk58 = 0.5f;
             break;
         case 15:
             func_808017F0_chtrashcangame(arg0, 0x13FC, 0x4E);
@@ -249,7 +249,7 @@ void func_80800728_chtrashcangame(Actor *arg0) {
     s32 func_800D395C(void);
     void func_800FC660(u32);
     u32 func_800FDC28(u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_808017F0_chtrashcangame(Actor *, s32, s32);
     s32 sp24;
 
@@ -301,12 +301,12 @@ void func_80800728_chtrashcangame(Actor *arg0) {
 
 s32 func_8080093C_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     s32 _glcutDll_entrypoint_20();
     void func_800BF744(s32, s32);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void func_80108B04(Actor *, u32);
     void func_8080134C_chtrashcangame(Actor *, s32, s32);
     s32 func_80801558_chtrashcangame(Actor *, s32, s32);
@@ -368,10 +368,10 @@ s32 func_8080093C_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_80800B64_chtrashcangame(f32 *arg0) {
     f32 func_800EFC7C(f32 *, f32 *);
-    s32 _subaddiefind_entrypoint_5(s32, s32 *, s32, s32, f32, f32 (*)(f32 *, f32 *));
+    s32 _subaddiefind_entrypoint_5(s32, s32 *, s32, BtIntPtr, f32, f32 (*)(f32 *, f32 *));
     struct { s32 before[2]; s32 output; s32 rest[49]; } sp;
 
-    _subaddiefind_entrypoint_5(0x476, &sp.output, 0x32, arg0, 300.0f, func_800EFC7C);
+    BT_NATIVE_ONLY(return) _subaddiefind_entrypoint_5(0x476, &sp.output, 0x32, arg0, 300.0f, func_800EFC7C);
 }
 
 void func_80800BA8_chtrashcangame(Actor *arg0) {
@@ -408,12 +408,12 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
             }
             if (func_80101E4C(arg0, third.values)) {
                 func_800C4140((((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21) + 0x157C04,
-                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+                             &arg0->position[0], 0x04B000FA);
             }
             if (volume) {
                 func_800C4140((((u32)(func_800DC178(1.05f, 1.15f) * 1023.0f) & 0x7FF) << 21) +
                              (((volume >> 5) & 0x3FF) << 11) + 0x4C1,
-                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+                             &arg0->position[0], 0x04B000FA);
             }
             break;
         }
@@ -433,7 +433,7 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
             if (volume) {
                 func_800C4140((((u32)(func_800DC178(1.05f, 1.15f) * 1023.0f) & 0x7FF) << 21) +
                              (((volume >> 5) & 0x3FF) << 11) + 0x4C1,
-                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+                             &arg0->position[0], 0x04B000FA);
             }
             break;
         }
@@ -452,12 +452,12 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
             }
             if (func_80101E4C(arg0, third.values)) {
                 func_800C4140((((u32)(func_800DC178(0.95f, 1.05f) * 1023.0f) & 0x7FF) << 21) + 0x157C04,
-                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+                             &arg0->position[0], 0x04B000FA);
             }
             if (volume) {
                 func_800C4140((((u32)(func_800DC178(1.05f, 1.15f) * 1023.0f) & 0x7FF) << 21) +
                              (((volume >> 5) & 0x3FF) << 11) + 0x4C1,
-                             (f32 *)((u8 *)arg0 + 4), 0x04B000FA);
+                             &arg0->position[0], 0x04B000FA);
             }
             break;
         }
@@ -608,8 +608,8 @@ s32 func_80801558_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808016B4_chtrashcangame(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 arg3) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     switch (arg0->unk74_7) {
         case 0:
@@ -623,9 +623,9 @@ void func_808016B4_chtrashcangame(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 
 }
 
 void func_80801740_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    void _capod_entrypoint_8(s32 arg0);
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
 
@@ -646,12 +646,12 @@ void func_80801740_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808017F0_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    void _capod_entrypoint_8(s32 arg0);
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
 
     switch (arg0->unk74_7) {
         case 0:
@@ -665,14 +665,14 @@ void func_808017F0_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
             break;
     }
     _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2,
-                                 (f32 *)((u8 *)arg0 + 4), 0x6A);
-}
+                                 &arg0->position[0], 0x6A);
+}    typedef struct { u8 pad0[0x76]; u16 unk76; } Objtrashcangame_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080189C_chtrashcangame(void *arg0) {
     s32 _capod_entrypoint_3(s32, void *);
-    if (((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) != 0) {
+    if (((u32) (((Objtrashcangame_arg0 *)arg0)->unk76) >> 7) != 0) {
         _capod_entrypoint_3(0, arg0);
-        (*(u16 *)((s8 *)(arg0) + (0x76))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x76))) & 0x7F);
+        (((Objtrashcangame_arg0 *)arg0)->unk76) = (u16) ((((Objtrashcangame_arg0 *)arg0)->unk76) & 0x7F);
     }
 }
 
@@ -688,9 +688,9 @@ typedef struct {
 } ChTrashcanParticleActor;
 
 void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
-    void func_800BA22C(s32, s32);
-    void func_800BAB80(s32, f32 *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BAB80(BtIntPtr, f32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800C6920(f32[3], f32, f32, s32);
     void func_800CD08C(s32, f32 *);
     s32 func_800D90A4(f32 *);
@@ -700,7 +700,7 @@ void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
     extern struct ColorTable D_80803164_chtrashcangame;
     extern s32 D_80803174_chtrashcangame[];
     f32 position[3];
-    s32 emitter;
+    BtIntPtr emitter;
     struct ColorTable colors;
 
     if (arg0->state != 8 && func_800D90A4(&arg0->particleTimer)) {
@@ -798,10 +798,10 @@ OSThread *chtrashcangame_entrypoint_0(void)
 /* extern */
 
 void func_80801CF0_chtrashcangame(s32 arg0) {
-    s32 _gcstatusDll_entrypoint_11();
-    s32 _subaddiemulti_entrypoint_3(s32);
-    s32 func_800946C4(s32, s32);
-    s32 func_800F53D0(s32);
+    u8 _gcstatusDll_entrypoint_11(void);
+    void _subaddiemulti_entrypoint_3(s32 arg0);
+    void func_800946C4(void *arg0, s32 arg1);
+    void * func_800F53D0(BtIntPtr arg0);
     s32 var_s0;
 
     _subaddiemulti_entrypoint_3(1);
@@ -815,7 +815,7 @@ void func_80801CF0_chtrashcangame(s32 arg0) {
 }
 
 void func_80801D54_chtrashcangame(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    u8 _gcstatusDll_entrypoint_11(void);
     void _subaddiemulti_entrypoint_6(f32 *, f32);
     s32 func_800C954C(void);
     void *func_800CC63C(s32, s32);
@@ -863,13 +863,13 @@ void func_80801D54_chtrashcangame(Actor *arg0) {
 }
 
 void func_80801EE8_chtrashcangame(Actor *arg0, s32 arg1) {
-    s32 _gcstatusDll_entrypoint_11();
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
-    s32 _subaddiemulti_entrypoint_0(s32);
-    s32 _subaddiemulti_entrypoint_2();
+    u8 _gcstatusDll_entrypoint_11(void);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    void _subaddiemulti_entrypoint_0(s32 arg0);
+    void _subaddiemulti_entrypoint_2(void);
     void func_800AA20C(s32, s32);
-    s32 func_800CE88C(s32, s32);
-    s32 func_800CE8D8(s32, f32, s32);
+    void func_800CE88C(s32 arg0, s32 arg1);
+    void func_800CE8D8(s32 arg0, f32 arg1, s32 arg2);
     void func_800D2748(s32, s32);
     void func_800FC660(u32);
     u32 func_800FDC28(u32);
@@ -928,8 +928,8 @@ void func_80801EE8_chtrashcangame(Actor *arg0, s32 arg1) {
 
 s32 func_808020D8_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
-    s32 _subaddiemulti_entrypoint_0(s32);
-    s32 _subaddiemulti_entrypoint_4(s32);
+    void _subaddiemulti_entrypoint_0(s32 arg0);
+    void _subaddiemulti_entrypoint_4(s32 arg0);
     void func_808019EC_chtrashcangame(Actor *, s32);
     void func_80801EE8_chtrashcangame(Actor *, s32);
 
@@ -975,8 +975,8 @@ void func_808021BC_chtrashcangame(Actor *arg0) {
     f32 func_800C6920(f32 *, f32, f32, s32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_80102424(void *, s32);
     f32 sp2C[3];
 
@@ -990,18 +990,18 @@ void func_808021BC_chtrashcangame(Actor *arg0) {
 
 void func_8080223C_chtrashcangame(Actor *arg0) {
     f32 func_80013970(f32);
-    void func_800BA22C(s32, s32);
-    s32 func_800BA994(s32, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
-    s32 func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA994(void *emitter, s16 yaw_min, s16 pitch_min, s16 speed_min, s16 yaw_max, s16 pitch_max, s16 speed_max);
+    BtIntPtr func_800BABB8(BtIntPtr, f32 *, f32 *, f32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, s32, s32, s32 *);
     void func_800C4140(u32, f32 *, u32);
     s32 func_800D3948(void);
     s32 func_800D90A4(f32 *);
     s32 func_800DB9B0(void);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    s32 func_800F4F34(u32, f32 *, f32, f32);
-    u32 func_800F54E4(void);
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
+    BtUIntPtr func_800F54E4(void);
     s32 func_800FFA88(Unk80132ED0 *);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -1015,7 +1015,7 @@ void func_8080223C_chtrashcangame(Actor *arg0) {
     extern s32 D_8080326C_chtrashcangame[];
     extern s32 D_808032C0_chtrashcangame[];
     extern f32 D_80803300_chtrashcangame[];
-    s32 emitter;
+    BtIntPtr emitter;
 
     switch (arg0->unk70_10) {
         case 1:
@@ -1086,13 +1086,13 @@ void func_8080223C_chtrashcangame(Actor *arg0) {
 }
 
 s32 func_8080292C_chtrashcangame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
-    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
-    void func_800BAB80(s32, f32 *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
+    BtIntPtr _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
+    void func_800BAB80(BtIntPtr, f32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800C4140(u32, f32 *, u32);
     s32 func_800D3948(void);
     f32 func_800DC178(f32, f32);
@@ -1100,11 +1100,11 @@ s32 func_8080292C_chtrashcangame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80803324_chtrashcangame[], D_80803364_chtrashcangame[];
     extern f32 D_80803394_chtrashcangame[], D_80803398_chtrashcangame[], D_8080339C_chtrashcangame[];
-    s32 sp3C;
-    s32 sp38;
+    BtIntPtr sp3C;
+    BtIntPtr sp38;
     Actor *sp34;
     s32 sp30;
-    s32 sp2C;
+    BtIntPtr sp2C;
 
     if (arg1 == 0x40) {
         sp3C = func_800B53A4(func_800D3948() ? 2 : 6);
@@ -1142,7 +1142,7 @@ s32 func_8080292C_chtrashcangame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
                 sp30 = 3;
                 break;
         }
-        func_80800144_chtrashcangame((s32)func_80106790(arg0->unk3C), sp2C, sp30);
+        func_80800144_chtrashcangame((BtIntPtr)func_80106790(arg0->unk3C), sp2C, sp30);
         func_800BA22C(sp3C, func_800D3948() ? 2 : 6);
         if (!func_800D3948()) {
             func_800BA22C(sp38, 6);
@@ -1167,9 +1167,9 @@ OSThread *chtrashcangame_entrypoint_2(void)
 /* extern */
 
 void func_80802C40_chtrashcangame(Actor *arg0) {
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     f32 sp1C[3];
 
     if (func_800F64A4(func_800F54E4(), 0x400) != 0) {

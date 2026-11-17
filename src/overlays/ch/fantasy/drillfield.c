@@ -21,11 +21,11 @@ void func_80800000_chfantasydrillfield(Actor *arg0) {
     func_80103014((u8 *)arg0);
 }
 
-s32 func_808000C4_chfantasydrillfield(void *arg0) {
+s32 func_808000C4_chfantasydrillfield(void *arg0 BT_PASS2(, s32 bt_a1)) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800DC090(void);
     s32 func_800DC128(s32, s32);
     void func_800DC324(s32);
@@ -51,7 +51,7 @@ s32 func_808000C4_chfantasydrillfield(void *arg0) {
     s32 readBits;
     s32 k;
     s32 writeBits;
-    s32 choice;
+    s32 choice; BT_NATIVE_ONLY(s32 bt_result;)
 
     count = _gccubesearch_entrypoint_9(0x40A, props, 8);
     for (i = 0; i < count; i++) {
@@ -85,14 +85,14 @@ s32 func_808000C4_chfantasydrillfield(void *arg0) {
     }
     oldSeed = func_800DC090();
     func_800DC324(seed);
-    while (!func_80800360_chfantasydrillfield()) {
+    while (BT_IDO_ONLY(!func_80800360_chfantasydrillfield()) BT_NATIVE_ONLY(!(bt_result = func_80800360_chfantasydrillfield()))) {
         choice = func_800DC128(0, 8);
         entry = ((s32 (*)[2])B_80800A10_chfantasydrillfield)[choice];
         if (entry[1] == -1) {
             entry[1] = i++;
         }
     }
-    func_800DC324(oldSeed);
+    func_800DC324(oldSeed); BT_NATIVE_ONLY(return bt_result;)
 }
 
 s32 func_80800360_chfantasydrillfield(s32 *entry, s32 *end) {
@@ -138,22 +138,22 @@ s32 func_808003C8_chfantasydrillfield(u32 arg0) {
         func_800DA524(0xA0F);
     }
     return value;
-}
+}                typedef struct { u8 pad0[0x34]; s32 unk34; u8 pad38[0x34]; u32 unk6C; } Objdrillfield_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void func_8080048C_chfantasydrillfield(void *arg0) {
+void func_8080048C_chfantasydrillfield(void *arg0 BT_PASS2(, s32 bt_a1)) {
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_80800000_chfantasydrillfield(Actor *);
-    s32 func_808000C4_chfantasydrillfield(void *);
+    s32 func_808000C4_chfantasydrillfield(void * BT_PASS2(, s32));
     s32 func_808003C8_chfantasydrillfield(u32);
     func_80800000_chfantasydrillfield(arg0);
     if (func_800DA298(0xA0F) == 0) {
         func_800DA544(0xA0F);
-        func_808000C4_chfantasydrillfield(arg0);
+        func_808000C4_chfantasydrillfield(arg0 BT_PASS2(, bt_a1));
     }
-    (*(s32 *)((s8 *)(arg0) + (0x34))) = func_808003C8_chfantasydrillfield((u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15);
+    (((Objdrillfield_arg0 *)arg0)->unk34) = func_808003C8_chfantasydrillfield((u32) (((Objdrillfield_arg0 *)arg0)->unk6C) >> 0x15);
 }
 
 void func_808004E8_chfantasydrillfield(Actor *arg0) {
@@ -173,18 +173,18 @@ void func_808004E8_chfantasydrillfield(Actor *arg0) {
     }
 }
 
-s32 func_8080054C_chfantasydrillfield(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_8080054C_chfantasydrillfield(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
-    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    s32 _subaddieDll_entrypoint_5(Actor *arg0, Unk80132ED0 *arg1);
     s32 _subaddiefind_entrypoint_5(s32, Actor **, s32, f32 *, f32, f32 (*)(f32 *, f32 *));
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
     void func_800C4140(u32, f32 *, u32);
     s32 func_800D0B68(u32, u32);
-    s32 func_800D10D4(u32, u32, f32 *, s32, s32);
+    BtIntPtr func_800D10D4(u32, u32, f32 *, s32, BtIntPtr);
     s32 func_800DA298(s32);
     void func_800DA524();
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800FFA88(Unk80132ED0 *);
@@ -279,7 +279,24 @@ s32 func_8080054C_chfantasydrillfield(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfantasydrillfield_entrypoint_0(void)
 {
-    extern u8 D_808009C4_chfantasydrillfield[];
+    extern ActorData D_808009C4_chfantasydrillfield[];
 
     return (OSThread *) D_808009C4_chfantasydrillfield;
 }
+/* data_to_c.py: from asm/data/overlays/ch/fantasy/drillfield.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+s32 D_808008B0_chfantasydrillfield [8] BT_DATA(4, overlays_ch_fantasy_drillfield, 0x0) = { 1037, 1037, 553, 987, 503, 489, 1190, 0 };
+f32 D_808008D0_chfantasydrillfield [8] [ 4 ] BT_DATA(4, overlays_ch_fantasy_drillfield, 0x20) = { { 4845.53f, 2540.0f, -5329.37f, 0.0f }, { 3727.57f, 2540.0f, -5898.67f, 45.0f }, { 3982.39f, 2540.0f, -6356.72f, 335.0f }, { 4253.13f, 2540.0f, -5679.16f, 345.0f }, { 4760.04f, 2540.0f, -5970.08f, 0.0f }, { 5161.16f, 2540.0f, -5691.5f, 25.0f }, { 4477.09f, 2540.0f, -6476.48f, 60.0f }, { 5202.73f, 2540.0f, -6440.36f, -20.0f } };
+s32 D_80800950_chfantasydrillfield [14] BT_DATA(4, overlays_ch_fantasy_drillfield, 0xA0) = { 1902889, 1310742, 268828717, 39322400, 2818304, 33554459, -65471264, 2228480, 13369536, 12582919, 131085, 6553649, -3211289, 0 };
+s32 D_80800988_chfantasydrillfield [15] BT_DATA(4, overlays_ch_fantasy_drillfield, 0xD8) = { 1903069, 2819072, 83886102, 268435490, 25166336, 75499008, 1376256, 2490393, 7, 2949170, 6553632, -559451712, 852068, 3276750, -1638400 };
+ActorData D_808009C4_chfantasydrillfield [1] BT_DATA(4, overlays_ch_fantasy_drillfield, 0x114) = { { 852, 1034, 2092, 1, 0, (void (*)(struct Actor *))func_808004E8_chfantasydrillfield, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 131072000, 0, 0, 0, 0, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_8080048C_chfantasydrillfield, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9216, (void (*)(struct Actor *, long, long))func_8080054C_chfantasydrillfield, 0 } };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 B_80800A10_chfantasydrillfield [ 2 ] BT_DATA(16, bss_fantasy_drillfield, 0x0);
+s32 B_80800A18_chfantasydrillfield [ 14 ] BT_DATA(4, bss_fantasy_drillfield, 0x8);
+#endif

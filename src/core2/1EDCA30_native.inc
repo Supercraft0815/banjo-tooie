@@ -51,7 +51,7 @@ void func_80103328(Actor *actor) {
     func_800B237C(list,center,&radius);func_800EE940(actor->unk0->model_center,center);
     actor->unk0->unk18=(actor->unk0->unk18&0x1FFFFF)|(((u32)radius&0x7FF)<<21);
 }
-s32 func_8010347C(Unk80132ED0 *marker) {
+BtIntPtr func_8010347C(Unk80132ED0 *marker) {
     Actor *actor=func_80106790(marker);func_80103328(actor);
     func_800DF7F8(marker->unk14,actor->center_radius,actor->model_radius);return 0;
 }

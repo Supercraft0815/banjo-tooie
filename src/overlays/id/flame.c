@@ -24,7 +24,7 @@ loop:
     }
 end:
     return var_v1;
-}
+}    typedef struct { s16 unk0; u8 pad2[0x8]; s16 unkA; } Objflame_idflame_entrypoint_0_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */ typedef struct { u8 pad0[0x8]; s16 unk8; } Objflame_arg4; /* offsets.py genstruct: fields from raw offsets on arg4; rename once understood */ typedef struct { u8 pad0[0xA]; s16 unkA; } Objflame_idflame_entrypoint_0_var_s1; /* offsets.py genstruct: fields from raw offsets on var_s1; rename once understood */
 
 /* extern */
 
@@ -34,18 +34,18 @@ void idflame_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     s16 temp_s4;
     s32 temp_v0;
     u32 temp_s5;
-    u32 var_s0;
+    BtUIntPtr var_s0;
     u8 *temp_v1;
     u8 *var_s1;
 
-    temp_s4 = (*(s16 *)((s8 *)(arg4) + (8)));
+    temp_s4 = (((Objflame_arg4 *)arg4)->unk8);
     temp_s5 = (arg3 * 0x10) + arg1;
     var_s0 = arg1;
     var_s1 = arg2;
     if (arg1 < temp_s5) {
         do {
-            (*(s16 *)((s8 *)(var_s1) + (0xA))) = (s16) ((*(s16 *)((s8 *)(var_s0) + (0xA))) + temp_s4);
-            temp_v0 = func_80800000_idflame(arg4, (*(s16 *)((s8 *)(var_s0) + (0))));
+            (((Objflame_idflame_entrypoint_0_var_s1 *)var_s1)->unkA) = (s16) ((((Objflame_idflame_entrypoint_0_var_s0 *)var_s0)->unkA) + temp_s4);
+            temp_v0 = func_80800000_idflame(arg4, (((Objflame_idflame_entrypoint_0_var_s0 *)var_s0)->unk0));
             temp_v1 = (u8 *)((f32 *)arg4 + temp_v0);
             *(s16 *)var_s1 = (s16)(s32)((f32)*(s16 *)var_s0 + ((f32 *)arg4)[temp_v0 + 0x1F] * func_8001395C((*(f32 *)(temp_v1 + 0x1C) - (f32)*(s16 *)(var_s0 + 2)) * *(f32 *)(temp_v1 + 0x3C)));
             var_s0 += 0x10;
@@ -85,8 +85,8 @@ void idflame_entrypoint_1(s32 arg0, s16 *arg1, s32 arg2, s32 arg3) {
 void idflame_entrypoint_2(s32 arg0) 
 {
 }
-void idflame_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void _glid_entrypoint_2(u8 *, s32, void (*)(s32, s16 *, s32, s32), void *);
+void idflame_entrypoint_3(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
+    void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
     void _glidmake_entrypoint_2(void *arg0, s32 arg1, s16 *arg2, s16 *arg3);
     s16 _glidmake_entrypoint_3(s32 *arg0, s32 arg1);
     f32 func_800DC264(f32 arg0, f32 arg1);
@@ -148,8 +148,8 @@ void idflame_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-void idflame_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+void idflame_entrypoint_4(u8 *arg0, BtIntPtr arg1, s32 arg2) {
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800D8FF8(void);
 #ifndef BT_NATIVE
     extern s32 _idflame_entrypoint_0;
@@ -178,5 +178,5 @@ void idflame_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2) {
             cursor.ptr += 4;
         } while ((s32)arg0[0xA] >= i);
     }
-    _glid_entrypoint_0(arg1, arg2, &_idflame_entrypoint_0, (s32)arg0);
+    _glid_entrypoint_0(arg1, arg2, &_idflame_entrypoint_0, (BtIntPtr)arg0);
 }

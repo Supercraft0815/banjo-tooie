@@ -30,7 +30,7 @@ s32 func_800C4C34(s32 arg0, f32 *arg1, f32 *arg2, s32 *arg3) {
     f32 func_800CA6FC(f32 *);
     f32 func_800CA79C(f32 *);
     void *func_800CA7AC(void *);
-    void func_800CA7E4(s32, s32 *);
+    void func_800CA7E4(BtIntPtr, s32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F23D0();
     extern f32 D_80125894;
@@ -43,7 +43,7 @@ s32 func_800C4C34(s32 arg0, f32 *arg1, f32 *arg2, s32 *arg3) {
     s32 sp44;
     s32 sp40;
     s32 sp3C;
-    s32 camera;
+    BtIntPtr camera;
 
     camera = func_800A8984(arg0);
     func_800CA7E4(camera, sp58);
@@ -77,7 +77,7 @@ void func_800C4E58(s32 arg0, f32 *arg1, f32 *arg2) {
     f32 func_800CA79C(f32 *);
     void *func_800CA7A4(void *);
     f32 func_800CA7B4(f32 *);
-    void func_800CA7E4(s32, s32 *);
+    void func_800CA7E4(BtIntPtr, s32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFD24(f32 *);
     f32 func_800F214C(f32, f32);
@@ -91,7 +91,7 @@ void func_800C4E58(s32 arg0, f32 *arg1, f32 *arg2) {
     s32 sp40;
     s32 sp3C;
     s32 sp38;
-    s32 camera;
+    BtIntPtr camera;
 
     camera = func_800A8984(arg0);
     func_800A8A04(arg0, &sp44, &sp40, &sp3C, &sp38);
@@ -188,7 +188,7 @@ void func_800C524C(s32 arg0, s32 arg1) {
     s32 sp38;
     s32 pad[2];
     void *sp2C;
-    s32 sp28;
+    BtIntPtr sp28;
 
     sp2C = func_800A89A0(arg0);
     sp28 = func_800A8984(arg0);
@@ -196,7 +196,7 @@ void func_800C524C(s32 arg0, s32 arg1) {
     func_80015B34(sp2C, sp44, sp40 + arg1, sp3C, sp38 - arg1 * 2);
     func_80015CE8(sp2C, sp28);
     func_800C5148(arg0, D_8012A9F0[arg0]);
-}
+}    typedef struct { s32 unk0; s32 unk4; s32 unk8; u8 unkC; } Obj1E9E480_func_800C52F4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 s32 func_800C52F4(s32 arg0, s32 arg1) {
     void func_800A8A44(s32, s32 *, s32 *, s32 *, s32 *);
@@ -210,26 +210,26 @@ s32 func_800C52F4(s32 arg0, s32 arg1) {
     s32 temp_f16;
 
     temp_v0 = (s8 *)D_8012A9A0 + arg0 * 0x10;
-    if ((*(u8 *)((s8 *)temp_v0 + 0xC) == 1) ||
-        (*(u8 *)((s8 *)temp_v0 + 0xC) == 2)) {
+    if ((((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unkC == 1) ||
+        (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unkC == 2)) {
         return 0;
     }
-    (*(u8 *)((s8 *)(temp_v0) + (0xC))) = 1U;
-    (*(s32 *)((s8 *)(temp_v0) + (0))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unkC) = 1U;
+    (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unk0) = 0;
+    (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unk4) = arg1;
     func_800A8A44(arg0, &sp38, &sp34, &sp30, &sp2C);
     temp_f16 = (s32) ((f32) sp30 * 0.5625f);
     if (temp_f16 & 1) {
         temp_f16++;
     }
-    (*(s32 *)((s8 *)(temp_v0) + (8))) = (sp2C - temp_f16) / 2;
+    (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unk8) = (sp2C - temp_f16) / 2;
     if (arg1 == 0) {
-        (*(s32 *)((s8 *)(temp_v0) + (0))) = (*(s32 *)((s8 *)temp_v0 + 8));
+        (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unk0) = (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unk8);
         (*(s8 *)((s8 *)(temp_v0) + (0xC))) = 2;
-        func_800C524C(arg0, (*(s32 *)((s8 *)temp_v0 + 8)));
+        func_800C524C(arg0, (((Obj1E9E480_func_800C52F4_temp_v0 *)temp_v0)->unk8));
     }
     return 1;
-}
+}    typedef struct { s32 unk0; s32 unk4; u8 pad8[0x4]; u8 unkC; } Obj1E9E480_func_800C53EC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 s32 func_800C53EC(s32 arg0, s32 arg1) {
     void func_800C524C(s32, s32);
@@ -237,15 +237,15 @@ s32 func_800C53EC(s32 arg0, s32 arg1) {
     void *temp_v0;
 
     temp_v0 = (s8 *)D_8012A9A0 + arg0 * 0x10;
-    if ((*(u8 *)((s8 *)temp_v0 + 0xC) == 0) ||
-        (*(u8 *)((s8 *)temp_v0 + 0xC) == 3)) {
+    if ((((Obj1E9E480_func_800C53EC_temp_v0 *)temp_v0)->unkC == 0) ||
+        (((Obj1E9E480_func_800C53EC_temp_v0 *)temp_v0)->unkC == 3)) {
         return 0;
     }
-    (*(u8 *)((s8 *)(temp_v0) + (0xC))) = 3U;
-    (*(s32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    (((Obj1E9E480_func_800C53EC_temp_v0 *)temp_v0)->unkC) = 3U;
+    (((Obj1E9E480_func_800C53EC_temp_v0 *)temp_v0)->unk4) = arg1;
     func_800C524C(arg0, 0);
     if (arg1 == 0) {
-        (*(s32 *)((s8 *)(temp_v0) + (0))) = 0;
+        (((Obj1E9E480_func_800C53EC_temp_v0 *)temp_v0)->unk0) = 0;
     }
     return 1;
 }
@@ -279,12 +279,12 @@ void func_800C54F0(s32 arg0) {
     f32 func_800CA6FC(f32 *);
     void func_800CA558(void *, f32);
     void func_800CA510(void *, f32);
-    s32 func_800CAF34(s32);
+    void func_800CAF34(void *camera);
     extern f32 D_8012AA04[];
     s32 pad;
     void *sp38;
     s8 *entry;
-    s32 camera;
+    BtIntPtr camera;
     f32 sp2C;
     f32 sp28;
     f32 sp24;

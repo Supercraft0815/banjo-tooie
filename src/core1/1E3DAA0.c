@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_80025F70(s32 arg0, u8 arg1, u8 arg2) {
+void func_80025F70(BtIntPtr arg0, u8 arg1, u8 arg2) {
     struct Event {
         s16 type;
         union {
@@ -62,5 +62,5 @@ s32 func_8002603C(u8 * arg0, u8 arg1, u8 arg2) {
     event.key = arg1;
     event.velocity = 0x5C;
     event.channel = arg2;
-    func_80026500(arg0 + 0x48, &event, 0, 0);
+    func_80026500(arg0 + 0x48, &event, 0, 0); BT_NATIVE_ONLY(return 0;)
 }

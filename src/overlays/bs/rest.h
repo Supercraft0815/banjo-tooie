@@ -28,23 +28,23 @@
 #include "common.h"
 #include "player.h"
 
-extern s32 D_80800910_bsrest[];
-extern s32 D_80800920_bsrest[];
-extern s32 D_80800930_bsrest[];
+extern BtIntPtr D_80800910_bsrest[];
+extern BtIntPtr D_80800920_bsrest[];
+extern BtIntPtr D_80800930_bsrest[];
 
 extern void _bsrest_entrypoint_0(PlayerState *self);
 extern void _bsrest_entrypoint_1(PlayerState *self);
 extern void _bsrest_entrypoint_2(PlayerState *self);
 extern void _bsrest_entrypoint_3(PlayerState *self);
-extern s32 _bsrest_entrypoint_4(s32 idx);
+extern BtIntPtr _bsrest_entrypoint_4(s32 idx);
 extern void _bsrest_entrypoint_5(PlayerState *self);
 extern void _bsrest_entrypoint_6(PlayerState *self);
 extern void _bsrest_entrypoint_7(PlayerState *self);
-extern s32 _bsrest_entrypoint_8(s32 idx);
+extern BtIntPtr _bsrest_entrypoint_8(s32 idx);
 extern void _bsrest_entrypoint_9(PlayerState *self);
 extern void _bsrest_entrypoint_10(PlayerState *self);
 extern void _bsrest_entrypoint_11(PlayerState *self);
-extern s32 _bsrest_entrypoint_12(s32 idx);
+extern BtIntPtr _bsrest_entrypoint_12(s32 idx);
 #ifndef BT_NATIVE
 extern AssetId _bsrest_entrypoint_13(PlayerState *self);
 #endif
@@ -53,7 +53,7 @@ extern void _bsrest_entrypoint_15(PlayerState *self, s32 arg1);
 extern void _bsrest_entrypoint_16(PlayerState *self);
 extern void _bsrest_entrypoint_17(PlayerState *self, s32 arg1);
 extern void _bsrest_entrypoint_18(PlayerState *self);
-extern s32 _bsrest_entrypoint_19(PlayerState *self, s32 arg1);
+extern s32 _bsrest_entrypoint_19(PlayerState *self, BtIntPtr arg1);
 extern s32 _bsrest_entrypoint_20(PlayerState *self);
 
 #endif // __BS_REST_H__

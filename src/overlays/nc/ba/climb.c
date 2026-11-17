@@ -17,9 +17,9 @@ void func_80800028_ncbaclimb(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbaclimb_entrypoint_1(s32 arg0) {
+void ncbaclimb_entrypoint_1(BtIntPtr arg0) {
     void func_80111B8C(s32 *, f32, f32);
-    s32 func_801124D0(s32, s32);
+    void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);
     func_80111B8C((s32 *) arg0, 4.0f, 8.0f);
@@ -41,11 +41,11 @@ void ncbaclimb_entrypoint_3(PlayerState *arg0) {
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
     f32 func_800F1DCC(f32, f32);
-    PlayerState *func_800F53D0(s32);
-    void func_80110790(s32, f32 *);
+    PlayerState *func_800F53D0(BtIntPtr);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
     s32 func_80110840(s32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     f32 func_801112B0(void *);
     s32 func_80111CC8(void *, f32 *);
@@ -57,7 +57,7 @@ void ncbaclimb_entrypoint_3(PlayerState *arg0) {
     f32 func_80115358(PlayerState *, f32);
     int func_80115580(void *, f32 *);
     f32 func_80115750(PlayerState *, f32);
-    s32 func_80115828(PlayerState *, f32, f32);
+    void func_80115828(void *arg0, f32 arg1, f32 arg2);
     f32 sp6C[3];
     f32 sp60[3];
     f32 sp54[3];

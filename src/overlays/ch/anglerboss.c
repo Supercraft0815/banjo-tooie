@@ -2,7 +2,7 @@
 
 void func_808002E0_changlerboss(Actor *);
 void func_80105834(Actor *);
-void func_80800FEC_changlerboss(Actor *, s32);
+void func_80800FEC_changlerboss(Actor *, BtIntPtr);
 OSThread *func_80108ED0(void);
 void func_80800018_changlerboss(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
@@ -39,20 +39,20 @@ u32 D_80802DBC_changlerboss[] = {
     0x40000000, 0x03300001,
 };
 
-u32 D_80802EB4_changlerboss[] = {
-    0x0002045D, 0x07F90001, (u32)D_80802DBC_changlerboss, (u32)func_808002E0_changlerboss,
-    (u32)func_80105834, (u32)func_80800FEC_changlerboss, 0x0000752F, 0x00000000,
-    0x00000000, 0x00000468, 0x00000000, (u32)func_80108ED0,
-    0x01300000, (u32)func_80800018_changlerboss, (u32)func_80107C2C, 0x80E10402,
-    (u32)func_80800B7C_changlerboss, 0x00000000,
+BtFnWord D_80802EB4_changlerboss[] = {
+    0x0002045D, 0x07F90001, (BtFnWord)D_80802DBC_changlerboss, (BtFnWord)func_808002E0_changlerboss,
+    (BtFnWord)func_80105834, (BtFnWord)func_80800FEC_changlerboss, 0x0000752F, 0x00000000,
+    0x00000000, 0x00000468, 0x00000000, (BtFnWord)func_80108ED0,
+    0x01300000, (BtFnWord)func_80800018_changlerboss, (BtFnWord)func_80107C2C, 0x80E10402,
+    (BtFnWord)func_80800B7C_changlerboss, 0x00000000,
 };
 
-u32 D_80802EFC_changlerboss[] = {
-    0x0158045E, 0x07FB0001, 0x00000000, (u32)func_80802888_changlerboss,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+BtFnWord D_80802EFC_changlerboss[] = {
+    0x0158045E, 0x07FB0001, 0x00000000, (BtFnWord)func_80802888_changlerboss,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
     0x00000000, 0x00021404, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_80802844_changlerboss, (u32)func_80107C2C, 0x80000002,
-    (u32)func_80802A90_changlerboss, 0x00000000,
+    0x00000000, (BtFnWord)func_80802844_changlerboss, (BtFnWord)func_80107C2C, 0x80000002,
+    (BtFnWord)func_80802A90_changlerboss, 0x00000000,
 };
 
 u32 D_80802F44_changlerboss[] = {
@@ -77,23 +77,23 @@ void func_80800018_changlerboss(Actor *arg0) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, Unk80132ED0 *);
-    void func_800F4AC0(s32, f32 *, f32);
-    s32 func_800F54E4(void);
-    void func_800F608C(s32, s32);
-    void func_800F8294(s32, f32 *);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, Unk80132ED0 *);
+    void func_800F4AC0(BtIntPtr, f32 *, f32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F608C(BtIntPtr, s32);
+    void func_800F8294(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80109F08(void *, s32);
     void func_8010A590(Actor *);
     void func_8010A85C(Actor *, s32);
     void func_808012E0_changlerboss(Actor *, s32);
-    void func_808015F4_changlerboss(Actor *, s32, s32);
+    void func_808015F4_changlerboss(Actor *, BtIntPtr, s32);
     void func_808021E4_changlerboss(Actor *, u32, u32);
     extern s32 func_8010D5DC;
     struct AnglerBossInitData {
@@ -115,7 +115,7 @@ void func_80800018_changlerboss(Actor *arg0) {
         s8 unk12A;
     } *data;
     s32 i;
-    s32 player;
+    BtIntPtr player;
 
     data = func_80100094(arg0, 0);
     arg0->unk70_0 = 1;
@@ -174,9 +174,9 @@ void func_80800018_changlerboss(Actor *arg0) {
 
 void func_808002E0_changlerboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
@@ -185,20 +185,20 @@ void func_808002E0_changlerboss(Actor *arg0) {
     f32 func_800EEB40(f32 *, f32 *);
     void func_800EFE50(f32 *, void *, void *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    s32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
-    void func_800F82D4(s32, s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
     void func_80102424(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_80108B04(s32, s32);
+    void func_80108B04(Actor *arg0, u32 arg1);
     void func_80109FE8(Actor *, s32);
-    void func_8010A5B0(Actor *, u32);
+    u32 func_8010A5B0(Actor *arg0, s32 arg1);
     void func_8010A85C(Actor *, s32);
     void func_8010D640(f32 *);
     void func_808012E0_changlerboss(Actor *, s32);
@@ -208,11 +208,11 @@ void func_808002E0_changlerboss(Actor *arg0) {
     s32 func_80801AF0_changlerboss(Actor *);
     void func_80801BC8_changlerboss(Actor *);
     s32 func_80801C50_changlerboss(Actor *);
-    void func_80801CD8_changlerboss(s32);
+    void func_80801CD8_changlerboss(BtIntPtr);
     void func_808021E4_changlerboss(Actor *, u32, u32);
     void func_808022C4_changlerboss(Actor *);
     void func_80802340_changlerboss(Actor *);
-    s32 func_808025AC_changlerboss(s32);
+    BtIntPtr func_808025AC_changlerboss(BtIntPtr);
     void func_808025EC_changlerboss(Actor *);
     void func_80802680_changlerboss(Actor *);
 
@@ -470,17 +470,17 @@ void func_808002E0_changlerboss(Actor *arg0) {
 
 s32 func_80800B7C_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
     void func_80101074(void *);
-    s32 func_80101180(s32, s32, s32);
-    s32 func_80108B04();
+    s32 func_80101180(s32, s32, BtIntPtr);
+    void func_80108B04(Actor *arg0, u32 arg1);
     void func_80800F14_changlerboss(Actor *, s32);
     void func_80801070_changlerboss(Actor *, s32);
     void func_808012E0_changlerboss(Actor *, s32);
@@ -602,11 +602,11 @@ s32 func_80800B7C_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80800F14_changlerboss(Actor *arg0, s32 arg1) {
-    void func_800DF660(s32, s32, s32, s32);
-    void func_800DF720(s32);
+    void func_800DF660(s32 type,uintptr_t a,uintptr_t b,s32 alpha);
+    void func_800DF720(BtIntPtr);
     void func_800DF744(s32, s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80100AC4(s16);
+    BtIntPtr func_80100AC4(s16);
     s32 func_801015D0(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     struct AnglerBossRenderData {
@@ -643,11 +643,11 @@ void func_80800F14_changlerboss(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800FEC_changlerboss(Actor *arg0, s32 arg1) {
+void func_80800FEC_changlerboss(Actor *arg0, BtIntPtr arg1) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80101870(Actor *, void *);
-    void func_801018A4(Actor *, s32);
+    void func_801018A4(Actor *, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     struct AnglerBossData {
         u8 pad0[0x9C];
@@ -672,13 +672,13 @@ void func_80800FEC_changlerboss(Actor *arg0, s32 arg1) {
 
 void func_80801070_changlerboss(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
     void func_80109FE8(Actor *, s32);
     void func_808012E0_changlerboss(Actor *, s32);
-    void func_808015F4_changlerboss(Actor *, s32, s32);
+    void func_808015F4_changlerboss(Actor *, BtIntPtr, s32);
     s32 func_80801C50_changlerboss(Actor *);
     void func_808021E4_changlerboss(Actor *, u32, u32);
     void func_808027F8_changlerboss(void *);
@@ -742,9 +742,9 @@ void func_80801070_changlerboss(Actor *arg0, s32 arg1) {
 }
 
 void func_808012E0_changlerboss(Actor *arg0, s32 arg1) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800D2770(s32, s32);
     f32 func_800DC178(f32, f32);
     f32 func_800EEB40(f32 *, f32 *);
@@ -850,7 +850,7 @@ void func_808012E0_changlerboss(Actor *arg0, s32 arg1) {
     }
 }
 
-void func_808015F4_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
+void func_808015F4_changlerboss(Actor *arg0, BtIntPtr arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     extern s16 D_80802F8C_changlerboss[][3][3];
     struct {
@@ -883,28 +883,28 @@ void func_808015F4_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808016A8_changlerboss(Actor *arg0) {
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
-    void func_808015F4_changlerboss(Actor *, s32, s32);
+    void func_808015F4_changlerboss(Actor *, BtIntPtr, s32);
     u8 *temp_s0;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_s0 = func_80100094(arg0, 0U);
     do {
         temp_v0 = func_800DC128(0, 6);
-    } while (*(u8 *)((s32)temp_s0 + temp_v0 + 0x1B) != 1);
+    } while (*(u8 *)((BtIntPtr)temp_s0 + temp_v0 + 0x1B) != 1);
     func_808015F4_changlerboss(arg0, temp_v0, 0);
 }
 
 void func_8080170C_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 _gcfrontend_entrypoint_9(s32);
-    void _plcamera_entrypoint_8(s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    void _plcamera_entrypoint_8(s32 *arg0);
     s32 func_800D395C(void);
-    s32 func_800DA544(s32);
-    s32 func_800F54E4(void);
+    void func_800DA544(s32 index);
+    BtIntPtr func_800F54E4(void);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80108B04(s32, s32);
+    void func_80108B04(Actor *arg0, u32 arg1);
     void func_80109FE8(Actor *, s32);
     void func_80802288_changlerboss(Actor *);
     struct {
@@ -1054,14 +1054,14 @@ void func_80801A10_changlerboss(Actor *arg0) {
     arg0->unk54 = angles[1];
     arg0->rotation[1] = func_800F1FF0(arg0->rotation[1], arg0->unk54, 0.1f, 2.0f * delta, delta * 60.0f);
     arg0->rotation[0] = func_800F1FF0(arg0->rotation[0], arg0->unk50, 0.1f, 2.0f * delta, delta * 60.0f);
-    func_80102CF4(arg0, 0x41000000);
+    BT_NATIVE_ONLY(return) func_80102CF4(arg0, 0x41000000);
 }
 
 s32 func_80801AF0_changlerboss(Actor *arg0) {
     f32 func_800D8FF8(void);
     void func_800F18FC(f32 *, f32 *, f32 *);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80102CF4(Actor *, s32);
     struct {
@@ -1080,8 +1080,8 @@ s32 func_80801AF0_changlerboss(Actor *arg0) {
     arg0->unk54 = angles[1];
     arg0->rotation[1] = func_800F1FF0(arg0->rotation[1], arg0->unk54, 0.1f, 2.0f * delta, delta * 60.0f);
     arg0->rotation[0] = func_800F1FF0(arg0->rotation[0], arg0->unk50, 0.1f, 2.0f * delta, delta * 60.0f);
-    func_80102CF4(arg0, 0x41000000);
-}
+    BT_NATIVE_ONLY(return) func_80102CF4(arg0, 0x41000000);
+}    typedef struct { u8 pad0[0xF0]; f32 unkF0; } Objanglerboss_func_80801BC8_changlerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -1092,11 +1092,11 @@ void func_80801BC8_changlerboss(Actor *arg0) {
     f32 temp_f2;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(f32 *)((s8 *)(arg0) + (8))) < (*(f32 *)((s8 *)(temp_v0) + (0xF0)))) {
-        (*(f32 *)((s8 *)(arg0) + (8))) += func_800D8FF8() * 120.0f;
-        temp_f2 = (*(f32 *)((s8 *)(temp_v0) + (0xF0)));
-        if (temp_f2 < (*(f32 *)((s8 *)(arg0) + (8)))) {
-            (*(f32 *)((s8 *)(arg0) + (8))) = temp_f2;
+    if ((arg0->position[1]) < (((Objanglerboss_func_80801BC8_changlerboss_temp_v0 *)temp_v0)->unkF0)) {
+        (arg0->position[1]) += func_800D8FF8() * 120.0f;
+        temp_f2 = (((Objanglerboss_func_80801BC8_changlerboss_temp_v0 *)temp_v0)->unkF0);
+        if (temp_f2 < (arg0->position[1])) {
+            (arg0->position[1]) = temp_f2;
         }
     }
 }
@@ -1121,9 +1121,9 @@ s32 func_80801C50_changlerboss(Actor *arg0) {
 
 /* extern */
 
-void func_80801CD8_changlerboss(s32 arg0) {
+void func_80801CD8_changlerboss(BtIntPtr arg0) {
     s32 func_8001210C(s32);
-    s32 func_80108B04(s32, s32);
+    void func_80108B04(Actor *arg0, u32 arg1);
     if (func_8001210C(3) == 0) {
         func_80108B04(arg0, 2);
     }
@@ -1132,10 +1132,10 @@ void func_80801CD8_changlerboss(s32 arg0) {
 /* extern */
 
 void func_80801D0C_changlerboss(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_0(Actor *);
+    void _subaddieDll_entrypoint_0(void *arg0);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void *func_80100094(Actor *, u32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     void func_8010A570(Actor *);
     void func_8010A800(Actor *, s32);
     struct AnglerBossData {
@@ -1164,7 +1164,7 @@ Actor *func_80801DA0_changlerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80102FDC(Actor *, f32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     struct AnglerBossData {
         u8 pad0[0x9C];
         Unk80132ED0 *unk9C;
@@ -1189,7 +1189,7 @@ void func_80801E3C_changlerboss(Actor *arg0) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     f32 sp4C[3];
@@ -1259,10 +1259,10 @@ void func_80801F54_changlerboss(Actor *arg0) {
 
 void func_80802108_changlerboss(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
-    Unk80132ED0 *func_800D10D4(s32, s32, f32 *, s32, s32);
+    Unk80132ED0 *func_800D10D4(s32, s32, f32 *, s32, BtIntPtr);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80802210_changlerboss(Actor *, Unk80132ED0 *, u32, u32);
     struct AnglerBossCleanupData {
@@ -1304,43 +1304,43 @@ void func_808021E4_changlerboss(Actor *arg0, u32 arg1, u32 arg2) {
     void func_80802210_changlerboss(Actor *, Unk80132ED0 *, u32, u32);
 
     func_80802210_changlerboss(arg0, arg0->unk0, arg1, arg2);
-}
+}    typedef struct { u8 pad0[0x12B]; s8 unk12B; } Objanglerboss_func_80802210_changlerboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x12B]; u8 unk12B; } Objanglerboss_func_80802210_changlerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80802210_changlerboss(Actor *arg0, Unk80132ED0 *arg1, u32 arg2, u32 arg3)
 {
-  void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-  void _capod_entrypoint_14(void);
+  s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+  s32 _capod_entrypoint_14(void);
   void *func_80100094(Actor *, u32);
   u8 *sp1C;
   u8 *temp_v0;
   temp_v0 = func_80100094(arg0, 0U);
   sp1C = temp_v0;
   arg3 = arg3;
-  if ((*((u8 *) (((s8 *) temp_v0) + 0x12B))) != 0)
+  if ((((Objanglerboss_func_80802210_changlerboss_temp_v0 *)temp_v0)->unk12B) != 0)
   {
     _capod_entrypoint_14();
     arg3 = arg3 | 0x2000;
   }
   _capod_entrypoint_13(arg1, arg0->unk0, arg2, arg3);
-  *((s8 *) (((s8 *) sp1C) + 0x12B)) = 1;
-}
+  ((Objanglerboss_func_80802210_changlerboss_sp1C *)sp1C)->unk12B = 1;
+}    typedef struct { u8 pad0[0x12B]; u8 unk12B; } Objanglerboss_func_80802288_changlerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80802288_changlerboss(Actor *arg0) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x12B))) != 0) {
+    if ((((Objanglerboss_func_80802288_changlerboss_temp_v0 *)temp_v0)->unk12B) != 0) {
         _capod_entrypoint_14();
         (*(s8 *)((s8 *)(temp_v0) + (0x12B))) = 0;
     }
-}
+}    typedef struct { u8 pad0[0x92]; s16 unk92; u8 pad94[0x2]; s16 unk96; } Objanglerboss_func_808022C4_changlerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
 void func_808022C4_changlerboss(Actor *arg0) {
-    void func_800D2498(u32, s32, u32);
+    s32 func_800D2498(u32 itemDisplayUI, s32 value, u32 a2);
     void *func_80100094(Actor *, u32);
     s32 var_a1;
     s32 temp_t6;
@@ -1349,17 +1349,17 @@ void func_808022C4_changlerboss(Actor *arg0) {
     temp_t6 = arg0->unk70_10;
     if ((temp_t6 != 0xB) && (temp_t6 != 0xC) && (temp_t6 >= 5) && (temp_t6 < 0x19)) {
         temp_v0 = func_80100094(arg0, 0U);
-        if ((*(s16 *)((s8 *)(temp_v0) + (0x92))) == 0) {
+        if ((((Objanglerboss_func_808022C4_changlerboss_temp_v0 *)temp_v0)->unk92) == 0) {
             var_a1 = func_80801C50_changlerboss(arg0);
         } else {
-            var_a1 = (*(s16 *)((s8 *)(temp_v0) + (0x96)));
+            var_a1 = (((Objanglerboss_func_808022C4_changlerboss_temp_v0 *)temp_v0)->unk96);
         }
         func_800D2498(0xFE, var_a1, 0);
     }
 }
 
 void func_80802340_changlerboss(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     int func_800DC298(f32);
     s32 func_80101E14(Actor *, f32);
     s32 func_801022E4(Actor *);
@@ -1389,19 +1389,19 @@ void func_80802340_changlerboss(Actor *arg0) {
 
 s32 func_80802430_changlerboss(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA568(s16 *, s16);
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
     extern s32 D_80803008_changlerboss;
     f32 sp44[3];
     s32 sp40;
     f32 temp_f20;
-    s32 temp_v0_2;
+    BtIntPtr temp_v0_2;
 
     if (arg0->unk7C_12) {
         _subaddieskeleton_entrypoint_2(arg0->unk0, 0xA, sp44);
@@ -1415,15 +1415,15 @@ s32 func_80802430_changlerboss(Actor *arg0) {
         func_800BA994(temp_v0_2, -75, (s16) (s32) (arg0->rotation[1] - 75.0f), 800, -35, (s32) (arg0->rotation[1] + 75.0f), 1000);
         func_800BA22C(temp_v0_2, sp40);
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
-s32 func_808025AC_changlerboss(s32 arg0) {
-    s32 func_800F54E4();
-    s32 func_8010D290(s32);
-    s32 temp_v0;
-    s32 var_v1;
+BtIntPtr func_808025AC_changlerboss(BtIntPtr arg0) {
+    BtIntPtr func_800F54E4();
+    BtIntPtr func_8010D290(s32);
+    BtIntPtr temp_v0;
+    BtIntPtr var_v1;
 
     temp_v0 = func_8010D290(0x400);
     var_v1 = temp_v0;
@@ -1452,9 +1452,9 @@ void func_808025EC_changlerboss(Actor *arg0) {
 }
 
 void func_80802680_changlerboss(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800D8FF8(void);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
@@ -1463,7 +1463,7 @@ void func_80802680_changlerboss(Actor *arg0) {
     f32 position[3];
     f32 delta;
     f32 scale;
-    s32 emitter;
+    BtIntPtr emitter;
     s32 i;
     struct {
         f32 pad0[9];
@@ -1496,10 +1496,10 @@ void func_808027F8_changlerboss(void *arg0) {
 
     func_800EFD24((f32 *)sp1C);
     temp_f0 = func_80102D78(arg0, sp1C);
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = temp_f0;
-    (*(f32 *)((s8 *)(arg0) + (0x48))) = temp_f0;
-    (*(f32 *)((s8 *)(arg0) + (0x50))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x44))) = 0.0f;
+    (((Actor *)arg0)->unk54) = temp_f0;
+    (((Actor *)arg0)->rotation[1]) = temp_f0;
+    (((Actor *)arg0)->unk50) = 0.0f;
+    (((Actor *)arg0)->rotation[0]) = 0.0f;
 }
 
 /* extern */
@@ -1520,7 +1520,7 @@ void func_80802844_changlerboss(void *arg0) {
 }
 
 void func_80802888_changlerboss(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_800C8CB8(s32, f32 *);
     void func_800C8E54(s32, f32, f32);
     void func_800C8E84(s32, u32 *);
@@ -1557,7 +1557,7 @@ void func_80802888_changlerboss(Actor *arg0) {
         func_800F2F60(sp44, D_80803098_changlerboss, sp3C);
         func_800C8E54(self->unk54, sp38 * 400.0f, sp38 * 1000.0f);
         func_800C8E84(self->unk54, sp44);
-        _subaddiefade_entrypoint_1((s32)arg0, (s32)(sp3C * 255.0f));
+        _subaddiefade_entrypoint_1((BtIntPtr)arg0, (s32)(sp3C * 255.0f));
         if (sp40 != 0) {
             func_80101FDC(arg0, 3);
         }
@@ -1600,3 +1600,9 @@ s32 func_80802A90_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return result;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 B_808030B0_changlerboss [ 3 ] BT_DATA(16, bss_ch_anglerboss, 0x0);
+#endif

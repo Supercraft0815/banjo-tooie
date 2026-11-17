@@ -2,7 +2,7 @@
 
 OSThread *chlightfader_entrypoint_0(void)
 {
-    extern u8 D_808003A0_chlightfader[];
+    extern ActorData D_808003A0_chlightfader[];
 
     return (OSThread *) D_808003A0_chlightfader;
 }
@@ -12,7 +12,7 @@ void func_8080000C_chlightfader(s32 arg0)
 }
 void func_80800014_chlightfader(Actor *arg0) {
     s32 func_8001210C(s32);
-    f32 *func_800A93F8(s32);
+    BtIntPtr func_800A93F8(s32 arg0);
     s32 func_800A9420(s32);
     s32 func_800A946C(void);
     void func_800C8B84(s32);
@@ -22,9 +22,9 @@ void func_80800014_chlightfader(Actor *arg0) {
     s32 func_800D9078(f32 *);
     s32 func_800E3E8C(f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 func_800F2E60();
+    void func_800F2E60(s32 arg0[3], s32 arg1[3]);
     void func_800F2F60(void *, void *, f32);
-    s32 func_800F6438(u32);
+    s32 func_800F6438(BtUIntPtr);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
     s32 finished;
@@ -112,7 +112,7 @@ s32 chlightfader_entrypoint_1(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void chlightfader_entrypoint_2(s32 arg0, f32 arg1, s32 arg2) {
-    void func_800C8800(s32, f32 *);
+    void func_800C8800(BtIntPtr, f32 *);
     void func_800C883C(s32, void *);
     void func_800C8900(s32, u8 *);
     u8 func_800C89A8(s32);
@@ -165,3 +165,8 @@ void chlightfader_entrypoint_2(s32 arg0, f32 arg1, s32 arg2) {
     temp_s5->value = temp_s5->lights[1].unk4;
     sp5C->unk58 = duration;
 }
+/* data_to_c.py: from asm/data/overlays/ch/light/fader.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_808003A0_chlightfader [1] BT_DATA(4, overlays_ch_light_fader, 0x0) = { { 820, 828, 0, 1, 0, (void (*)(struct Actor *))func_80800014_chlightfader, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 4, 0, 0, 60, 0, (void (*)(struct Actor *))func_8080000C_chlightfader, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8706, 0, 0 } };

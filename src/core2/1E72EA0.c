@@ -41,7 +41,7 @@ void func_800995B8(PlayerState *arg0, s32 arg1) {
 
 /* extern */
 
-s32 func_800996E0(s32 arg0) {
+s32 func_800996E0(BtIntPtr arg0) {
     s32 func_800A1718();
     void func_800A17A8(PlayerState *, s32);
     s32 temp_v0;
@@ -129,7 +129,7 @@ void func_8009989C(PlayerState *arg0, s32 arg1) {
             ((struct Saved *)arg0->unkC0)[i + 1].x = arg0->unkC0->unk0;
             ((struct Saved *)arg0->unkC0)[i + 1].y = arg0->unkC0->unk4;
             ((struct Saved *)arg0->unkC0)[i + 1].a = arg0->unkC0->unk14;
-            func_800EE7F8(((struct Saved *)arg0->unkC0)[i + 1].vec, (f32 *)((u8 *)arg0->unkC0 + 8));
+            func_800EE7F8(((struct Saved *)arg0->unkC0)[i + 1].vec, &arg0->unkC0->pad8[0]);
             return;
         }
     }
@@ -138,7 +138,7 @@ void func_8009989C(PlayerState *arg0, s32 arg1) {
 void func_80099970(PlayerState *arg0) {
     void func_8009ACF4(void *, f32);
     void func_8009AD04(void *, f32);
-    void func_8009AD14(void *, s32);
+    void func_8009AD14(void *, BtIntPtr);
     void func_8009AD20(void *, s32);
     void func_8009AD44(PlayerState *, f32 *);
     s32 func_8009E7C8(PlayerState *, s32);
@@ -174,7 +174,7 @@ f32 func_80099A40(PlayerState *self) {
     return self->unkC0->unk4;
 }
 
-s32 func_80099A4C(PlayerState *self) {
+BtIntPtr func_80099A4C(PlayerState *self) {
     return self->unkC0->unk14;
 }
 
@@ -234,8 +234,8 @@ void func_80099AA8(PlayerState *arg0) {
 
 s32 func_80099B54(PlayerState *arg0) {
     s32 _badata_entrypoint_33(PlayerState *);
-    s32 func_8009EAE8(u32);
-    void *func_80106790(s32);
+    void func_8009EAE8(s32 arg0);
+    void *func_80106790(BtIntPtr);
     func_8009EAE8((u32) ((*(s32 *)((s8 *)(func_80106790(func_80099A4C(arg0))) + (0x6C))) << 0xB) >> 0x14);
     return _badata_entrypoint_33(arg0);
 }
@@ -245,7 +245,7 @@ s32 func_80099B54(PlayerState *arg0) {
 void func_80099B94(PlayerState *arg0) {
     void func_8009AD20(void *, s32);
     void _bababykaz_entrypoint_14(PlayerState *);
-    void _babounce_entrypoint_7(PlayerState *, Unk80132ED0 *);
+    void _babounce_entrypoint_7(PlayerState *self, BtIntPtr arg1);
     void _bacough_entrypoint_4(PlayerState *, s32);
     s32 _badata_entrypoint_24(PlayerState *);
     s32 _badata_entrypoint_26(PlayerState *);
@@ -255,7 +255,7 @@ void func_80099B94(PlayerState *arg0) {
     s32 _badata_entrypoint_32(PlayerState *);
     s32 _badata_entrypoint_34(PlayerState *);
     s32 _badeathmatch_entrypoint_4(s32);
-    void _badeathmatch_entrypoint_5(PlayerState *, s32, s32);
+    s32 _badeathmatch_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2);
     s32 _badrone_entrypoint_17(PlayerState *);
     s32 _badrone_entrypoint_18(PlayerState *, Unk80132ED0 *);
     s32 _badrone_entrypoint_19(PlayerState *);
@@ -269,10 +269,10 @@ void func_80099B94(PlayerState *arg0) {
     void _baduo_entrypoint_10(PlayerState *, s32);
     void _baduo_entrypoint_11(PlayerState *, s32);
     void _baduo_entrypoint_15(PlayerState *, f32 *);
-    void _baduo_entrypoint_17(PlayerState *, f32 *);
-    void _baduo_entrypoint_18(PlayerState *, f32 *);
+    void _baduo_entrypoint_17(void *arg0, BtIntPtr arg1);
+    void _baduo_entrypoint_18(PlayerState *arg0, BtIntPtr arg1);
     void _baduo_entrypoint_19(PlayerState *);
-    void _baduo_entrypoint_20(PlayerState *, f32 *, f32);
+    void _baduo_entrypoint_20(PlayerState *arg0, BtIntPtr arg1, f32 arg2);
     void _baduo_entrypoint_7(PlayerState *, s32);
     void _baduo_entrypoint_8(PlayerState *, f32 *);
     void _baduo_entrypoint_9(PlayerState *, f32);
@@ -302,16 +302,16 @@ void func_80099B94(PlayerState *arg0) {
     s32 func_8008E124(PlayerState *);
     s32 func_8008E23C(PlayerState *);
     s32 func_8008E974(PlayerState *);
-    void func_8008ED88(PlayerState *, f32 *, Unk80132ED0 *);
+    void func_8008ED88(void *arg0, BtIntPtr arg1, Unk80132ED0 *arg2);
     s32 func_8008FD48();
     void func_8009337C(PlayerState *, s32);
     void func_80094430(PlayerState *, f32);
-    void func_80094574(PlayerState *, s32);
+    s32 func_80094574(void *arg0, s32 arg1);
     void func_800956B8(PlayerState *);
     void func_8009BA9C(PlayerState *, f32 *);
     s32 func_8009BD44(PlayerState *);
     s32 func_8009CA70(PlayerState *, s32, s32);
-    s32 func_8009CBDC(PlayerState *, s32);
+    s16 func_8009CBDC(PlayerState *arg0, s32 arg1);
     s32 func_8009CC68(PlayerState *);
     s32 func_8009E674(PlayerState *, s32);
     s32 func_8009E6EC(PlayerState *);
@@ -335,11 +335,11 @@ void func_80099B94(PlayerState *arg0) {
     s32 func_800A9420(s32);
     void func_800D175C(s32, s32);
     s32 func_800F40EC(PlayerState *);
-    s32 func_800F64A4(s32, s32);
-    void func_800F7B9C(s32, s32);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F7B9C(BtIntPtr, s32);
     void func_800F911C(s32);
-    s32 func_8010114C(s32, s32, s32);
-    void func_80101180(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
+    void func_80101180(s32, s32, BtIntPtr);
     s32 player_inWater(PlayerState *);
     s32 player_isStable(PlayerState *);
     s32 var_s1;
@@ -351,7 +351,7 @@ void func_80099B94(PlayerState *arg0) {
     s32 temp_v0;
     f32 sp48[3];
     s32 sp44;
-    s32 sp40;
+    BtIntPtr sp40;
     s16 sp3C[2];
     s16 sp38[2];
     s32 var_a1;
@@ -630,7 +630,7 @@ void func_80099B94(PlayerState *arg0) {
         if ((func_8009BD44(arg0) != 3) && (func_8008DD90(arg0) == 0)) {
         case 0x33:                                  /* switch 1 */
             func_800995B8(arg0, 0);
-            if (func_8010114C((s32) arg0->unkC0->unk14, 0x1C, arg0->unk184) != 1) {
+            if (func_8010114C((BtIntPtr) arg0->unkC0->unk14, 0x1C, arg0->unk184) != 1) {
                 func_800A17A8(arg0, -1);
             }
             var_s2 = func_80099840(arg0, 0);
@@ -641,7 +641,7 @@ void func_80099B94(PlayerState *arg0) {
         if (func_8009BD44(arg0) != 3) {
             func_800995B8(arg0, 1);
             func_800A17A8(arg0, -func_80099A58(arg0));
-            if ((*(s32 *)((s8 *)(arg0) + (0x158))) != 0) {
+            if ((arg0->unk158) != 0) {
                 if (func_800A1718(arg0) == 0) {
                     func_80101180(0x2C4, 0x70, func_80099A70(arg0) | (arg0->unk184 * 0x10));
                 }
@@ -900,7 +900,7 @@ void func_80099B94(PlayerState *arg0) {
         var_s1 = 2;
         goto block_180;
     case 0x7D:                                      /* switch 1 */
-        if ((*(s32 *)((s8 *)(arg0) + (0x158))) != 0) {
+        if ((arg0->unk158) != 0) {
             _badeathmatch_entrypoint_5(arg0, _badeathmatch_entrypoint_4(arg0->unkC0->unk18), arg0->unkC0->unk1C);
             var_s1 = 2;
         } else {
@@ -922,7 +922,7 @@ block_180:
 /* extern */
 
 void func_8009AB78(PlayerState *arg0) {
-    s32 _bahold_entrypoint_4(PlayerState *);
+    void _bahold_entrypoint_4(BtIntPtr arg0);
     int baflag_isFalse(PlayerState *, s32);
     s32 bastatetimer_isDone(PlayerState *, s32);
     void bs_setState(PlayerState *, s32);
@@ -973,26 +973,26 @@ void func_8009AC6C(u8 *arg0) {
             *(s32 *)(*(u8 **)(arg0 + 0xC0) + 0x4C + i * 0x28) = 0;
         }
     }
-}
+}    typedef struct { u8 pad0[0xC0]; void * unkC0; } Obj1E72EA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8009ACF4(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 0) = arg1;
+    *(f32 *)((u8 *)*&((Obj1E72EA0_arg0 *)arg0)->unkC0 + 0) = arg1;
 }
 
 void func_8009AD04(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 4) = arg1;
 }
 
-void func_8009AD14(void *arg0, s32 arg1) {
-    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 20) = arg1;
+void func_8009AD14(void *arg0, BtIntPtr arg1) {
+    *(s32 *)((u8 *)*&((Obj1E72EA0_arg0 *)arg0)->unkC0 + 20) = arg1;
 }
 
 void func_8009AD20(void *arg0, s32 arg1) {
-    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 24) = arg1;
+    *(s32 *)((u8 *)*&((Obj1E72EA0_arg0 *)arg0)->unkC0 + 24) = arg1;
 }
 
 void func_8009AD2C(void *arg0, s32 arg1) {
-    *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 192) + 28) = arg1;
+    *(s32 *)((u8 *)*&((Obj1E72EA0_arg0 *)arg0)->unkC0 + 28) = arg1;
 }
 
 void func_8009AD38(void *arg0, s32 arg1) {

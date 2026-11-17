@@ -121,7 +121,7 @@ void func_80026780(s32 *arg0) {
     mask = osSetIntMask(1U);
     arg0[4] = D_800411F4[8];
     arg0[0] = D_800411F4[0];
-    D_800411F4[0] = (s32)arg0;
+    D_800411F4[0] = (BtIntPtr)arg0;
     osSetIntMask(mask);
 }
 
@@ -131,7 +131,7 @@ void func_800267F0(s32 *arg0) {
     mask = osSetIntMask(1U);
     arg0[4] = D_800411F4[8];
     arg0[0] = D_800411F4[0];
-    D_800411F4[0] = (s32)arg0;
+    D_800411F4[0] = (BtIntPtr)arg0;
     osSetIntMask(mask);
 }
 
@@ -141,7 +141,7 @@ void func_80026860(s32 *arg0) {
     mask = osSetIntMask(1U);
     arg0[4] = D_800411F4[8];
     arg0[0] = D_800411F4[0];
-    D_800411F4[0] = (s32)arg0;
+    D_800411F4[0] = (BtIntPtr)arg0;
     osSetIntMask(mask);
 }
 

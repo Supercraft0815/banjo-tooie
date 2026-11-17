@@ -4,12 +4,12 @@
 
 void gcsectionDll_entrypoint_0(s32 arg0, s32 arg1) {
     s32 _gclevel_entrypoint_2();
-    s32 _gcstatusDll_entrypoint_11();
-    s32 func_8001A578(s32);
-    s32 func_800A13B0(s32);
-    s32 func_800F9178();
-    s32 gcsectionDll_entrypoint_2(s32);
-    s32 gcsectionDll_entrypoint_3(s32, s32);
+    u8 _gcstatusDll_entrypoint_11(void);
+    void func_8001A578(s32 arg0);
+    void func_800A13B0(s32 arg0);
+    void func_800F9178(void);
+    BtIntPtr gcsectionDll_entrypoint_2(s32);
+    s32 gcsectionDll_entrypoint_3(BtIntPtr, s32);
     s32 temp_v0;
 
     temp_v0 = _gclevel_entrypoint_2();
@@ -56,12 +56,12 @@ s16 *func_808000F0_gcsectionDll(s32 arg0, s32 arg1) {
     return NULL;
 }
 
- s32 gcsectionDll_entrypoint_2(s32 arg0) {
+ BtIntPtr gcsectionDll_entrypoint_2(s32 arg0) {
     extern s16 D_80800210_gcsectionDll[];
-    return ((s32) func_808000F0_gcsectionDll(arg0, 0) - (s32) &D_80800210_gcsectionDll) / 6;
+    return ((BtIntPtr) func_808000F0_gcsectionDll(arg0, 0) - (BtIntPtr) &D_80800210_gcsectionDll) / 6;
 }
 
-s32 gcsectionDll_entrypoint_3(s32 arg0, s32 arg1) {
+s32 gcsectionDll_entrypoint_3(BtIntPtr arg0, s32 arg1) {
     extern s16 D_80800212_gcsectionDll[][3];
     return (D_80800212_gcsectionDll[arg0][0] & arg1) ? 1 : 0;
 }

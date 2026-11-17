@@ -18,7 +18,7 @@ void func_8080000C_chmasterjiggy(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     s32 func_808001D0_chmasterjiggy(Unk80132ED0 **, s32);
-    s32 func_80800220_chmasterjiggy(s32, s32);
+    s32 func_80800220_chmasterjiggy(BtIntPtr, s32);
     Prop *prop;
 
     prop = _gccubesearch_entrypoint_0(3, arg0);
@@ -34,26 +34,26 @@ void func_8080000C_chmasterjiggy(Actor *arg0) {
         func_800EFA4C((f32 *)((u8 *)arg0 + 0x28), 0.0f, 150.0f, 0.0f);
     }
     if (_glcutDll_entrypoint_20() || func_800A9C98()) {
-        func_80800220_chmasterjiggy((s32)arg0, 9);
+        func_80800220_chmasterjiggy((BtIntPtr)arg0, 9);
     } else if (_sujiggy_entrypoint_13()) {
         switch (_sujiggy_entrypoint_14()) {
         case 0:
             func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 3);
             break;
         case 1:
-            func_80800220_chmasterjiggy((s32)arg0, 5);
+            func_80800220_chmasterjiggy((BtIntPtr)arg0, 5);
             break;
         case 2:
             func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 9);
             break;
         case 3:
-            func_80800220_chmasterjiggy((s32)arg0, 1);
+            func_80800220_chmasterjiggy((BtIntPtr)arg0, 1);
             break;
         }
     } else if (!func_800DA298(0x35B)) {
-        func_80800220_chmasterjiggy((s32)arg0, 2);
+        func_80800220_chmasterjiggy((BtIntPtr)arg0, 2);
     } else if (!_sujiggy_entrypoint_17()) {
-        func_80800220_chmasterjiggy((s32)arg0, 8);
+        func_80800220_chmasterjiggy((BtIntPtr)arg0, 8);
     }
     func_800FE734(0);
 }
@@ -63,20 +63,20 @@ void func_808001A8_chmasterjiggy(s32 arg0)
 }
 /* extern */
 
-void func_808001B0_chmasterjiggy(s32 arg0) {
-    s32 _sujiggy_entrypoint_8();
+void func_808001B0_chmasterjiggy(BtIntPtr arg0) {
+    void _sujiggy_entrypoint_8(void);
     _sujiggy_entrypoint_8();
 }
 
 s32 func_808001D0_chmasterjiggy(Unk80132ED0 **arg0, s32 arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     extern s16 D_80801620_chmasterjiggy[];
     s16 *entry = (s16 *)((s8 *)D_80801620_chmasterjiggy + arg1 * 4);
-    return _subaddiedialog_entrypoint_11(*arg0, entry[0], entry[1], (f32 *)((s8 *)arg0 + 4), 0x97);
+    return _subaddiedialog_entrypoint_11(*arg0, entry[0], entry[1], &((Actor *)arg0)->position[0], 0x97);
 }
 
-s32 func_80800220_chmasterjiggy(s32 arg0, s32 arg1) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+s32 func_80800220_chmasterjiggy(BtIntPtr arg0, s32 arg1) {
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void func_8008F8B0(void);
     void func_8008F8D8(s32);
     void func_8008F904(void *, Unk80132ED0 *);
@@ -125,12 +125,12 @@ s32 func_80800220_chmasterjiggy(s32 arg0, s32 arg1) {
     case 9:
         func_80101EE4((Actor *)arg0, 0.8f);
         break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
 
-int func_80800374_chmasterjiggy(s32 arg0) {
+int func_80800374_chmasterjiggy(BtIntPtr arg0) {
     s32 func_8008FD48();
     void func_8008FE68(f32 *);
     f32 sp1C[3];
@@ -139,7 +139,7 @@ int func_80800374_chmasterjiggy(s32 arg0) {
     return sp1C[0] >= 1576.0f && func_8008FD48() == 1;
 }
 
-int func_808003D4_chmasterjiggy(s32 arg0) {
+int func_808003D4_chmasterjiggy(BtIntPtr arg0) {
     s32 func_80016B30(s32, s32);
     s32 func_80090080();
     return func_80090080() && (func_80016B30(0, 1) == 1);
@@ -147,13 +147,13 @@ int func_808003D4_chmasterjiggy(s32 arg0) {
 
 /* extern */
 
-void func_80800414_chmasterjiggy(s32 arg0) {
+void func_80800414_chmasterjiggy(BtIntPtr arg0) {
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_808001D0_chmasterjiggy(Unk80132ED0 **, s32);
-    s32 func_80800220_chmasterjiggy(s32, s32);
+    s32 func_80800220_chmasterjiggy(BtIntPtr, s32);
     int func_80800374_chmasterjiggy();
-    int func_808003D4_chmasterjiggy(s32);
+    int func_808003D4_chmasterjiggy(BtIntPtr);
 #ifdef BT_NATIVE
     if (((int (*)())func_80800374_chmasterjiggy)() != 0) {
 #else
@@ -170,10 +170,10 @@ void func_80800414_chmasterjiggy(s32 arg0) {
 
 /* extern */
 
-void func_8080047C_chmasterjiggy(s32 arg0) {
+void func_8080047C_chmasterjiggy(BtIntPtr arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 _sujiggy_entrypoint_0();
-    s32 _sujiggy_entrypoint_2(s32);
+    u8 _sujiggy_entrypoint_2(s32 arg0);
     s32 func_800C0638();
     s32 func_800D035C(s32);
     s32 func_800D2498(s32, s32, s32);
@@ -214,42 +214,42 @@ void func_808004FC_chmasterjiggy(Actor *arg0) {
                 func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 1);
             }
         } else {
-            func_80800414_chmasterjiggy((s32)arg0);
+            func_80800414_chmasterjiggy((BtIntPtr)arg0);
         }
-        func_8080047C_chmasterjiggy((s32)arg0);
+        func_8080047C_chmasterjiggy((BtIntPtr)arg0);
         break;
     case 2:
     case 3:
-        func_8080047C_chmasterjiggy((s32)arg0);
+        func_8080047C_chmasterjiggy((BtIntPtr)arg0);
         break;
     case 4:
         if (!func_800C0638() && func_800D9078(&arg0->unk58)) {
-            func_808001B0_chmasterjiggy((s32)arg0);
+            func_808001B0_chmasterjiggy((BtIntPtr)arg0);
         }
-        func_8080047C_chmasterjiggy((s32)arg0);
+        func_8080047C_chmasterjiggy((BtIntPtr)arg0);
         break;
     case 5:
         if (func_800D90A4(&((MasterJiggyData *)arg0->actorData)->timer)) {
-            func_80800220_chmasterjiggy((s32)arg0, 6);
+            func_80800220_chmasterjiggy((BtIntPtr)arg0, 6);
         }
         break;
     case 6:
         if (func_80101DDC(arg0)) {
-            func_80800220_chmasterjiggy((s32)arg0, 7);
+            func_80800220_chmasterjiggy((BtIntPtr)arg0, 7);
         }
         break;
     case 8:
-        if (func_80800374_chmasterjiggy((s32)arg0) && func_808003D4_chmasterjiggy((s32)arg0)) {
+        if (func_80800374_chmasterjiggy((BtIntPtr)arg0) && func_808003D4_chmasterjiggy((BtIntPtr)arg0)) {
             func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 5);
         } else if (_subaddiedialog_entrypoint_6(position[0], (s32)arg0->rotation[1], 0x190, 0x3C, 6)) {
             func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 2);
         }
-        func_8080047C_chmasterjiggy((s32)arg0);
+        func_8080047C_chmasterjiggy((BtIntPtr)arg0);
         break;
     case 9:
     case 10:
         if (func_80101DDC(arg0)) {
-            func_80800220_chmasterjiggy((s32)arg0, arg0->unk70_10 + 1);
+            func_80800220_chmasterjiggy((BtIntPtr)arg0, arg0->unk70_10 + 1);
         }
         break;
     }
@@ -258,16 +258,16 @@ void func_808004FC_chmasterjiggy(Actor *arg0) {
 /* extern */
 
 void func_80800704_chmasterjiggy(s32 *arg0, s32 arg1, s32 arg2) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
+    s32 _capod_entrypoint_14(void);
     _capod_entrypoint_14();
     _capod_entrypoint_13(*arg0, 0, arg2, 0x2030);
 }
 
-void func_80800744_chmasterjiggy(s32 arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_14(void);
-    s32 func_800DA544(s32);
-    s32 func_80800220_chmasterjiggy(s32, s32);
+void func_80800744_chmasterjiggy(BtIntPtr arg0, s32 arg1, s32 arg2) {
+    s32 _capod_entrypoint_14(void);
+    void func_800DA544(s32 index);
+    s32 func_80800220_chmasterjiggy(BtIntPtr, s32);
 
     switch (arg1) {
     case 0x14F6:
@@ -294,7 +294,7 @@ s32 func_808007F0_chmasterjiggy(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _sujiggy_entrypoint_21(void);
     switch (arg1) {
     case 46:
-        func_80800744_chmasterjiggy((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        func_80800744_chmasterjiggy((BtIntPtr)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
         break;
     case 47:
         func_80800704_chmasterjiggy((s32 *)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
@@ -303,13 +303,13 @@ s32 func_808007F0_chmasterjiggy(Actor *arg0, s32 arg1, s32 arg2) {
         return 3;
     case 50:
         if (arg0->unk70_10 == 3) {
-            func_80800220_chmasterjiggy((s32)arg0, 4);
+            func_80800220_chmasterjiggy((BtIntPtr)arg0, 4);
         } else {
             func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 0);
         }
         break;
     case 49:
-        func_80800220_chmasterjiggy((s32)arg0, 8);
+        func_80800220_chmasterjiggy((BtIntPtr)arg0, 8);
         if (_sujiggy_entrypoint_21()) {
             func_808001D0_chmasterjiggy((Unk80132ED0 **)arg0, 7);
         } else {
@@ -339,10 +339,10 @@ OSThread *chmasterjiggy_entrypoint_1(void)
     extern u8 D_808016F8_chmasterjiggy[];
 
     return (OSThread *) D_808016F8_chmasterjiggy;
-}
+}    typedef struct { u8 pad0[0x38]; f32 unk38; } Objmasterjiggy_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080095C_chmasterjiggy(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x38))) = 1.0f;
+    (((Objmasterjiggy_arg0 *)arg0)->unk38) = 1.0f;
 }
 
 void func_8080096C_chmasterjiggy(Actor *arg0) {
@@ -375,7 +375,7 @@ void func_80800A40_chmasterjiggy(Actor *arg0) {
         s32 pad14[2];
         f32 timer;
     } MasterJiggyData;
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     s32 _sujiggy_entrypoint_0();
     void _sujiggy_entrypoint_15(s32, s32);
     void func_80018820(s32, f32, f32);
@@ -484,7 +484,7 @@ void func_80800C08_chmasterjiggy(Actor *arg0, void *arg1) {
 void func_80800DDC_chmasterjiggy(Actor *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
     void func_800B5450(void *);
-    s32 func_800E1720(s32);
+    BtIntPtr func_800E1720(s32);
     void *temp_a2;
     s32 temp_v0;
     u8 temp_a0;
@@ -517,14 +517,14 @@ void func_80800E58_chmasterjiggy(Actor *arg0, s32 arg1) {
         u32 handle;
         f32 timer;
     } MasterJiggyData;
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void _subaddieaudioloop_entrypoint_2(Actor *);
     void func_800189A8(s32, f32[][2], s16, f32, f32);
     void func_800FC660(u32);
     void func_800FC74C(u32);
     void func_800FCAE0(u32, u32, u32);
     void func_800FFAB0(Actor *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     extern f32 D_80801690_chmasterjiggy[];
     extern f32 D_808016B0_chmasterjiggy[][2];
@@ -576,7 +576,7 @@ void func_80800E58_chmasterjiggy(Actor *arg0, s32 arg1) {
 }
 
 s32 func_80801030_chmasterjiggy(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void func_80800E58_chmasterjiggy(Actor *, s32);
 
     switch (arg1) {
@@ -609,10 +609,10 @@ void func_808010E4_chmasterjiggy(Actor *arg0) {
         s32 unused[4];
         s32 emitter;
     } MasterJiggyData;
-    s32 func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32);
     void func_800B5534(s8 *);
-    void func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE780(f32 *, f32 *, f32 *);
     extern s32 D_8080179C_chmasterjiggy[];
     extern f32 D_808017E0_chmasterjiggy[3];
@@ -646,8 +646,8 @@ void chmasterjiggy_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, Unk80132
 }
 
 void func_80801448_chmasterjiggy(s32 *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 func_800BEA88(s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void *func_800BEA88(s32 i);
 #ifndef BT_NATIVE
     extern s32 _chmasterjiggy_entrypoint_2;
 #endif
@@ -664,7 +664,7 @@ void func_80801488_chmasterjiggy(Actor *arg0) {
     } MasterJiggyData;
     void func_800E13F0(s32, f32);
     s32 func_800E15CC(s32, f32, f32);
-    s32 func_800E1720(s32);
+    BtIntPtr func_800E1720(s32);
     f32 var_f0;
     s32 var_v1;
 

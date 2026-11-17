@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "native_map.h"
 #include "native_map_sections.h"
 #include "native_assets.h"
@@ -15,11 +15,11 @@
 NativeMap native_map;
 s32 func_800EA05C(void),func_800EA068(s32),func_800A946C(void),func_800DA298(s32);
 void _dblight_entrypoint_0(void *,void *,s32 *),_dblight_entrypoint_1(void *,void *,void *);
-void *_rtlight_entrypoint_1(void *,void *,void *);
+void *_rtlight_entrypoint_1(void *arg0, void *arg1, BtIntPtr arg2);
 void _rtlight_entrypoint_0(void *);
-void *_vpmodule_entrypoint_0(void *,void *,s32 *);
+void *_vpmodule_entrypoint_0(u8 *arg0, BtIntPtr arg1, BtIntPtr arg2);
 void _vpmodule_entrypoint_1(void *,void *);
-void *_glidmake_entrypoint_5(u16,void *);
+void *_glidmake_entrypoint_5(s32 arg0, f32 *arg1);
 void _glidmake_entrypoint_4(void *),_glid_entrypoint_6(void *,void *),_idworldmake_entrypoint_0(void *,s32);
 
 

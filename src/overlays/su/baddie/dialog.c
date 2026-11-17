@@ -284,7 +284,7 @@ s32 subaddiedialog_entrypoint_8(Actor* arg0, f32* arg1, subaddiedialog_UnkStruct
     s32 sp40;
     s32 sp3C;
     s32 pad;
-    u32 sp34;
+    BtUIntPtr sp34;
     s32 temp_v0;
     s32 var_s1;
     u32 var_v0;
@@ -469,7 +469,7 @@ s32 subaddiedialog_entrypoint_8(Actor* arg0, f32* arg1, subaddiedialog_UnkStruct
 
 u8 subaddiedialog_entrypoint_9(Actor* arg0, s32 arg1, subaddiedialog_UnkStruct1* arg2, s32 arg3) {
     s32 var_s1;
-    u32 temp_s2;
+    BtUIntPtr temp_s2;
     temp_s2 = func_800F54E4();
     var_s1 = 0;
     if (arg3 > 0)
@@ -486,7 +486,7 @@ u8 subaddiedialog_entrypoint_9(Actor* arg0, s32 arg1, subaddiedialog_UnkStruct1*
     return 0U;
 }
 
-s32 subaddiedialog_entrypoint_10(s32 arg0)
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) subaddiedialog_entrypoint_10(s32 arg0)
 {
     s32 var_v0;
     var_v0 = arg0 != 0;
@@ -498,7 +498,7 @@ s32 subaddiedialog_entrypoint_10(s32 arg0)
         var_v0 = arg0 != 3;
         return var_v0;
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 s32 func_808010C8_subaddiedialog(Actor* a0, s32 arg1, s32 arg2)
 {
@@ -559,7 +559,7 @@ u32 subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32*
     return func_800C0534(DialogId, arg2, CameraTarget, arg0, 0, 0, 0, arg4);
 }
 
-void subaddiedialog_entrypoint_12(s32 arg1, s32 arg2, s32 arg3)
+void subaddiedialog_entrypoint_12(BtIntPtr arg1, s32 arg2, s32 arg3)
 {
     s16 combined[2];
     combined[0] = arg2;
@@ -567,7 +567,7 @@ void subaddiedialog_entrypoint_12(s32 arg1, s32 arg2, s32 arg3)
     func_8010114C(arg1, 0x2E, ((s32*)combined)[0]);
 }
 
-void subaddiedialog_entrypoint_13(s32 arg1, s32 arg2, s32 arg3)
+void subaddiedialog_entrypoint_13(BtIntPtr arg1, s32 arg2, s32 arg3)
 {
     s16 combined[2];
     combined[0] = arg2;
@@ -575,24 +575,24 @@ void subaddiedialog_entrypoint_13(s32 arg1, s32 arg2, s32 arg3)
     func_8010114C(arg1, 0x2F, ((s32*)combined)[0]);
 }
 
-void subaddiedialog_entrypoint_14(s32 arg1, s32 arg2, s32 arg3)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) subaddiedialog_entrypoint_14(BtIntPtr arg1, s32 arg2, s32 arg3)
 {
     s16 combined[2];
     combined[0] = arg2;
     combined[1] = arg3;
-    func_8010114C(arg1, 0x30, ((s32*)combined)[0]);
+    BT_IDO_ONLY(func_8010114C(arg1, 0x30, ((s32*)combined)[0])) BT_NATIVE_ONLY(return func_8010114C(arg1, 0x30, ((s32*)combined)[0]));
 }
 
-void subaddiedialog_entrypoint_15(s32 arg1, s32 arg2, s32 arg3)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) subaddiedialog_entrypoint_15(BtIntPtr arg1, s32 arg2, s32 arg3)
 {
     s16 combined[2];
     combined[0] = arg2;
     combined[1] = arg3;
-    func_8010114C(arg1, 0x3a, ((s32*)combined)[0]);
+    BT_IDO_ONLY(func_8010114C(arg1, 0x3a, ((s32*)combined)[0])) BT_NATIVE_ONLY(return func_8010114C(arg1, 0x3a, ((s32*)combined)[0]));
 }
 
 /// Get the value of dialog flag
-s32 func_80801394_subaddiedialog(Actor* arg0, s32 arg1, s32 Flag)
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_80801394_subaddiedialog(Actor* arg0, s32 arg1, s32 Flag)
 {
     s32 var_v0;
 
@@ -609,7 +609,7 @@ s32 func_80801394_subaddiedialog(Actor* arg0, s32 arg1, s32 Flag)
         var_v0 = func_800DA298(Flag) == 0;
         return var_v0;
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 /// Set Dialog Flag True
 void func_808013E4_subaddiedialog(Actor* actor, s32 arg1, u32 Flag) {
@@ -629,7 +629,7 @@ s32 func_8080141C_subaddiedialog(void)
 
 s32 subaddiedialog_entrypoint_16(void)
 {
-    u32 temp_v0;
+    BtUIntPtr temp_v0;
 
     if (func_800DB9B0() != 0)
     {

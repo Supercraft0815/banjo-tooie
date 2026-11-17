@@ -45,9 +45,9 @@ int baswim_entrypoint_3(struct player_state_s *arg0) {
     return 0;
 }
 
-void baswim_entrypoint_4()
+void baswim_entrypoint_4(BT_NATIVE_ONLY(struct player_state_s *bt_a0))
 {
-    bastick_resetZones();
+    bastick_resetZones(BT_NATIVE_ONLY(bt_a0));
 }
 
 void baswim_entrypoint_5(struct player_state_s *arg0) {
@@ -172,7 +172,7 @@ void baswim_entrypoint_12(struct player_state_s *arg0) {
         return;
     }
     func_8009BF5C(arg0, func_800F10B4(temp_f0_2, 0.0f, 1.0f, 0.0f, 85.0f));
-}
+}    typedef struct { u8 pad0[0x134]; void * unk134; } Objswim_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -188,12 +188,12 @@ void baswim_entrypoint_13(void *arg0) {
     f32 sp34[4];
 
     sp44 = func_8009BFCC(arg0);
-    func_800EF4E4(sp34, sp44, yaw_get(arg0), 0.0f, 0.0f, *(f32 *)*(void **)((u8 *)arg0 + 0x134));
-    *(f32 *)*(void **)((u8 *)arg0 + 0x134) = func_800F0E00(*(f32 *)*(void **)((u8 *)arg0 + 0x134) - ((f32 *)*(void **)((u8 *)arg0 + 0x134))[1] * func_800D8FF8(), 0.0f);
+    func_800EF4E4(sp34, sp44, yaw_get(arg0), 0.0f, 0.0f, *(f32 *)*&((Objswim_arg0 *)arg0)->unk134);
+    *(f32 *)*&((Objswim_arg0 *)arg0)->unk134 = func_800F0E00(*(f32 *)*&((Objswim_arg0 *)arg0)->unk134 - ((f32 *)*&((Objswim_arg0 *)arg0)->unk134)[1] * func_800D8FF8(), 0.0f);
     func_8009B94C(arg0, sp34);
     func_8009BA9C(arg0, sp34);
 }
 
 f32 baswim_entrypoint_14(void *arg0) {
-    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 308) + 0);
+    return *(f32 *)((u8 *)*&((Objswim_arg0 *)arg0)->unk134 + 0);
 }

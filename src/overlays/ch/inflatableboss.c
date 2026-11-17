@@ -2,7 +2,7 @@
 
 OSThread *chinflatableboss_entrypoint_0(void)
 {
-    extern u32 D_80802E50_chinflatableboss[];
+    extern BtFnWord D_80802E50_chinflatableboss[];
 
     return (OSThread *) D_80802E50_chinflatableboss;
 }
@@ -38,25 +38,25 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     s32 _chcredits_entrypoint_1(void);
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
-    void _plcamera_entrypoint_8(s32);
+    void _plcamera_entrypoint_8(s32 *arg0);
     void _subaddieDll_entrypoint_10(s32, void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiemarker_entrypoint_0(Actor *, s32, BossMarker *, s32);
     s32 _subaddiemarker_entrypoint_1(Actor *, s32, s32, BossMarker *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
     void func_800DA524(s32);
     void func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F608C(s32, s32);
-    s32 func_800F64A4(s32, s32);
-    void func_800F8294(s32, f32 *);
-    void func_800F8300(s32, s32, f32 *);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F608C(BtIntPtr, s32);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F8294(BtIntPtr, f32 *);
+    void func_800F8300(BtIntPtr, s32, f32 *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80102FDC(Actor *, f32);
@@ -75,7 +75,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     s32 k;
     s32 count;
     BossMarker *marker;
-    s32 player;
+    BtIntPtr player;
     s32 pad;
     f32 *volatile position;
 
@@ -161,7 +161,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
         arg0->unk64_16 = 1;
         data->unk498 = 2;
         func_800F497C(func_800F54E4());
-        func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
+        func_800F49D4(func_800F54E4(), func_8010D5DC, (BtIntPtr)arg0->unk0);
         func_800F4A58(func_800F54E4(), data->positions[0], 300.0f);
         func_80802A00_chinflatableboss(arg0, 0x2F, 0x20);
     } else {
@@ -215,9 +215,9 @@ void func_808004A0_chinflatableboss(Actor *arg0) {
     void _gcfrontend_entrypoint_10(void);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     struct anctrl_s *func_80104248(void *);
     void func_8008B1C8(struct anctrl_s *, f32);
     void func_800C4AF0(f32 *, void *);
@@ -416,20 +416,20 @@ s32 func_80800A98_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
         u8 *pointer;
     }
     BossEvent;
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D395C(void);
-    void func_800F497C(s32);
-    void func_800F49A8(s32, s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F8300(s32, s32, f32 *);
+    void func_800F497C(BtIntPtr);
+    void func_800F49A8(BtIntPtr, s32);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F8300(BtIntPtr, s32, f32 *);
     u32 func_800FDC28(u32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80101010(f32 *);
     void func_80101074(void *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80108B04(Actor *, u32);
     void func_80800F84_chinflatableboss(Actor *, s32);
     void func_808010BC_chinflatableboss(Actor *, s32);
@@ -446,7 +446,7 @@ s32 func_80800A98_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_8010D5DC(s32, s32);
     extern f32 B_80803020_chinflatableboss[12][3];
     BossData *data;
-    s32 player;
+    BtIntPtr player;
     s32 i;
     s32 count;
     data = func_80100094(arg0, 0);
@@ -586,7 +586,7 @@ void func_80800F84_chinflatableboss(Actor *arg0, s32 arg1) {
     void func_8008B1C8(struct anctrl_s *, f32);
     s32 func_80801C7C_chinflatableboss(Actor *);
     void func_80802A00_chinflatableboss(Actor *, u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_8010A570(Actor *);
     extern s16 D_80802D8C_chinflatableboss[];
     u8 *sp2C;
@@ -615,7 +615,7 @@ void func_80800F84_chinflatableboss(Actor *arg0, s32 arg1) {
 }
 
 void func_808010BC_chinflatableboss(Actor *arg0, s32 arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     void *func_80100094(Actor *, u32);
@@ -659,7 +659,7 @@ void func_80801164_chinflatableboss(Actor *arg0, s32 arg1) {
     void func_8008B1C8(struct anctrl_s *, f32);
     s32 func_80801CB4_chinflatableboss(Actor *);
     void func_800DA544(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80802A00_chinflatableboss(Actor *, u32, u32);
     extern u8 D_80802F08_chinflatableboss[];
     BossData *sp54;
@@ -702,10 +702,10 @@ void func_80801164_chinflatableboss(Actor *arg0, s32 arg1) {
 }
 
 void func_808012EC_chinflatableboss(Actor *arg0, f32 arg1[3], s32 arg2) {
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
     void func_800BA714(void *, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
@@ -714,7 +714,7 @@ void func_808012EC_chinflatableboss(Actor *arg0, f32 arg1[3], s32 arg2) {
     extern s32 D_80802F2C_chinflatableboss[];
     f32 sp34[3];
     f32 sp28[3];
-    s32 sp24;
+    BtIntPtr sp24;
 
     func_80801904_chinflatableboss(arg0, ((arg0->unk0->unk18 << 11) >> 28) - 3, sp28);
     func_800EFB24(sp34, arg1, sp28);
@@ -733,17 +733,17 @@ void func_80801418_chinflatableboss(Actor *arg0, u8 *arg1) {
     } BossRenderData;
     s32 _subaddiefade_entrypoint_0(Actor *);
     void _suexpression_entrypoint_19(void *, Actor *);
-    void func_800DF660(s32, s32, s32, s32);
-    void func_800DF720(s32);
-    void func_800DF72C(s32);
-    void func_800DF738(s32);
+    void func_800DF660(s32 type,uintptr_t a,uintptr_t b,s32 alpha);
+    void func_800DF720(BtIntPtr);
+    void func_800DF72C(BtIntPtr);
+    void func_800DF738(BtIntPtr);
     void func_800DF744(s32, s32);
-    void func_800DF818(s32);
+    void func_800DF818(BtIntPtr);
     void func_800DF830(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80100AC4(s16);
+    BtIntPtr func_80100AC4(s16);
     void func_80101934(Actor *);
-    s32 func_80103CDC(u8 *, u8 *);
+    BtIntPtr func_80103CDC(u8 *, u8 *);
     void func_80103D48(void **);
     s32 func_80103D70(void **);
     void *func_801040A8(Actor *);
@@ -791,7 +791,7 @@ void func_80801554_chinflatableboss(Actor *arg0, s32 arg1) {
     s32 _subaddiefade_entrypoint_0(Actor *);
     s32 func_800AE630(u8 *, u8 *, s32, f32 *);
     u8 *func_800B27E0(u8 *);
-    void func_800BC358(void *, s32, s32);
+    void func_800BC358(void *, BtIntPtr, s32);
     struct ImageStruct;
     struct ImageStruct *func_800D674C(s32);
     void func_800DBEFC(s32 *, s32, f32 *);
@@ -912,7 +912,7 @@ void func_80801904_chinflatableboss(Actor *arg0, s32 arg1, f32 *arg2) {
 }
 
 void func_80801958_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
     void func_8008B1C8(struct anctrl_s *, f32);
@@ -1110,10 +1110,10 @@ void func_80801EA0_chinflatableboss(Actor *arg0) {
 void func_80801F4C_chinflatableboss(Actor *arg0) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     Actor* func_80106790(Unk80132ED0 *);
-    s32 func_800D10D4(s32, s32, f32 *, s32, s32);
+    BtIntPtr func_800D10D4(s32, s32, f32 *, s32, BtIntPtr);
     void func_80802A2C_chinflatableboss(Actor *, Unk80132ED0 *, u32, u32);
     f32 sp2C[3];
-    s32 sp28;
+    BtIntPtr sp28;
     Unk80132ED0 *sp24;
 
     sp24 = arg0->unk0;
@@ -1124,15 +1124,15 @@ void func_80801F4C_chinflatableboss(Actor *arg0) {
 }
 
 s32 func_80801FC0_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_80802F90_chinflatableboss[];
-    func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802F90_chinflatableboss);
+    BT_NATIVE_ONLY(return) func_800BABB8(0, arg1, arg2, (((Actor *)arg0)->scale) * 0.75f, &D_80802F90_chinflatableboss);
 }
 
 s32 func_8080200C_chinflatableboss(Actor *arg0, f32 *arg1, f32 *arg2) {
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_80802FC4_chinflatableboss[];
-    func_800BABB8(0, arg1, arg2, (*(f32 *)((s8 *)(arg0) + (0x38))) * 0.75f, &D_80802FC4_chinflatableboss);
+    BT_NATIVE_ONLY(return) func_800BABB8(0, arg1, arg2, (arg0->scale) * 0.75f, &D_80802FC4_chinflatableboss);
 }
 
 void func_80802058_chinflatableboss(Actor *arg0) {
@@ -1289,7 +1289,7 @@ void func_808024BC_chinflatableboss(Actor *arg0) {
 
 s32 func_80802590_chinflatableboss(Actor *arg0, f32 *arg1, s32 arg2) {
     s32 func_800AE0B8(s32 *);
-    s32 func_800B0D80(u8 *, s32, f32 *, f32 *, f32, s32, void *, f32 *, f32 *);
+    s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, BtIntPtr arg6, f32 *arg7, f32 *arg8);
     u8 *func_800B2824(u8 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -1317,8 +1317,8 @@ s32 func_80802590_chinflatableboss(Actor *arg0, f32 *arg1, s32 arg2) {
 void func_8080267C_chinflatableboss(Actor *arg0) {
     struct Marker { u8 pad0[0x10]; s16 animIndex; };
     void *func_8008AEDC(void *);
-    void func_8008B304(s32);
-    void func_8008C200(s16, s32, s32);
+    void func_8008B304(BtIntPtr);
+    void func_8008C200(s16, BtIntPtr, BtIntPtr);
     s32 *func_8008C27C(void *);
     u8 *func_800B27E0(u8 *);
     void func_800DFBE0(s32 *, s32, f32 *);
@@ -1345,11 +1345,11 @@ void func_8080267C_chinflatableboss(Actor *arg0) {
 s32 func_8080272C_chinflatableboss(Actor *arg0) {
     void func_8008B1C8(struct anctrl_s *, f32);
     void func_800DA544(s32);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
     struct anctrl_s *func_80104248(void *);
@@ -1386,7 +1386,7 @@ s32 func_8080272C_chinflatableboss(Actor *arg0) {
                 data->flag49A = data->flag499 = 0;
                 func_800F82D4(func_800F54E4(), 0);
                 func_800F497C(func_800F54E4());
-                func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
+                func_800F49D4(func_800F54E4(), func_8010D5DC, (BtIntPtr)arg0->unk0);
                 func_800F4A58(func_800F54E4(), data->position, 400.0f);
                 data->state = 4;
             }
@@ -1398,7 +1398,7 @@ s32 func_8080272C_chinflatableboss(Actor *arg0) {
             data->flag499 = 1;
             func_800F82D4(func_800F54E4(), 0);
             func_800F497C(func_800F54E4());
-            func_800F49D4(func_800F54E4(), func_8010D5DC, (s32)arg0->unk0);
+            func_800F49D4(func_800F54E4(), func_8010D5DC, (BtIntPtr)arg0->unk0);
             func_800F4A58(func_800F54E4(), data->position, 400.0f);
             data->state = 4;
         }
@@ -1410,11 +1410,11 @@ s32 func_8080272C_chinflatableboss(Actor *arg0) {
 }
 
 void func_80802910_chinflatableboss(Actor *arg0) {
-    s32 _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
     void func_800A51C0(void);
     void func_800DA544(s32);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
     void func_80109FE8(Actor *, s32);
@@ -1452,39 +1452,39 @@ void func_80802A00_chinflatableboss(Actor *arg0, u32 arg1, u32 arg2) {
     void func_80802A2C_chinflatableboss(Actor *, Unk80132ED0 *, u32, u32);
 
     func_80802A2C_chinflatableboss(arg0, arg0->unk0, arg1, arg2);
-}
+}    typedef struct { u8 pad0[0x49D]; u8 unk49D; } Objinflatableboss_func_80802A2C_chinflatableboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x49D]; s8 unk49D; } Objinflatableboss_func_80802A2C_chinflatableboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_80802A2C_chinflatableboss(Actor *arg0, Unk80132ED0 *arg1, u32 arg2, u32 arg3) {
-    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     void* func_80100094(Actor*, u32);
     u8 *sp1C;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x49D))) != 0) {
+    if ((((Objinflatableboss_func_80802A2C_chinflatableboss_temp_v0 *)temp_v0)->unk49D) != 0) {
         arg3 |= 0x2000;
         _capod_entrypoint_14();
     }
     _capod_entrypoint_13(arg1, arg0->unk0, arg2, arg3);
-    (*(s8 *)((s8 *)(sp1C) + (0x49D))) = 1;
-}
+    (((Objinflatableboss_func_80802A2C_chinflatableboss_sp1C *)sp1C)->unk49D) = 1;
+}    typedef struct { u8 pad0[0x49D]; u8 unk49D; } Objinflatableboss_func_80802A9C_chinflatableboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80802A9C_chinflatableboss(Actor *arg0) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void* func_80100094(Actor*, u32);
     u8 *sp1C[1];
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x49D))) != 0) {
+    if ((((Objinflatableboss_func_80802A9C_chinflatableboss_temp_v0 *)temp_v0)->unk49D) != 0) {
         sp1C[0] = temp_v0;
         _capod_entrypoint_14();
         temp_v0 = sp1C[0];
         (*(s8 *)((s8 *)(temp_v0) + (0x49D))) = 0;
     }
-}
+}    typedef struct { u8 pad0[0x478]; s8 unk478; u8 pad479[0xE]; s8 unk487; } Objinflatableboss_func_80802AD8_chinflatableboss_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */ typedef struct { u8 pad0[0x478]; s8 unk478; s8 unk479; } Objinflatableboss_func_80802AD8_chinflatableboss_temp_v1_2; /* offsets.py genstruct: fields from raw offsets on temp_v1_2; rename once understood */
 
 void func_80802AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
     void* func_80100094(Actor*, u32);
@@ -1494,20 +1494,20 @@ void func_80802AD8_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
 
     temp_v0 = func_80100094(arg0, 0U);
     temp_v1 = temp_v0 + arg1;
-    (*(s8 *)((s8 *)(temp_v1) + (0x487))) = (s8) arg2;
+    (((Objinflatableboss_func_80802AD8_chinflatableboss_temp_v1 *)temp_v1)->unk487) = (s8) arg2;
     if (arg1 >= 9) {
         arg1 = arg1 + arg1;
         arg1 -= 9;
         temp_v1_2 = temp_v0 + arg1;
-        (*(s8 *)((s8 *)(temp_v1_2) + (0x478))) = (s8) arg2;
-        (*(s8 *)((s8 *)(temp_v1_2) + (0x479))) = (s8) arg2;
+        (((Objinflatableboss_func_80802AD8_chinflatableboss_temp_v1_2 *)temp_v1_2)->unk478) = (s8) arg2;
+        (((Objinflatableboss_func_80802AD8_chinflatableboss_temp_v1_2 *)temp_v1_2)->unk479) = (s8) arg2;
     } else {
-        (*(s8 *)((s8 *)(temp_v1) + (0x478))) = (s8) arg2;
+        (((Objinflatableboss_func_80802AD8_chinflatableboss_temp_v1 *)temp_v1)->unk478) = (s8) arg2;
     }
 }
 
 void func_80105834();
-void func_80108ED0();
+OSThread *func_80108ED0(void);
 void func_80107C2C();
 s16 D_80802D80_chinflatableboss[] = {
     0x0190, 0x01F4, 0x0258, 0x02BC, 0x0320, 0x0384,
@@ -1531,12 +1531,12 @@ u32 D_80802DB0_chinflatableboss[] = {
     0x00000000, 0x00000000, 0x00000000, 0x00000000,
     0x40F00000, 0x02050002, 0x40900000, 0x02020001,
 };
-u32 D_80802E50_chinflatableboss[] = {
-    0x018E013C, 0x07940001, (u32)D_80802DB0_chinflatableboss, (u32)func_808004A0_chinflatableboss,
-    (u32)func_80105834, (u32)func_80801554_chinflatableboss, 0x00000000, 0x00000000,
-    0x00000000, 0x3000042A, (u32)func_80800408_chinflatableboss, (u32)func_80108ED0,
-    0x04A00000, (u32)func_8080000C_chinflatableboss, (u32)func_80107C2C, 0x80200402,
-    (u32)func_80800A98_chinflatableboss, 0x00000000,
+BtFnWord D_80802E50_chinflatableboss[] = {
+    0x018E013C, 0x07940001, (BtFnWord)D_80802DB0_chinflatableboss, (BtFnWord)func_808004A0_chinflatableboss,
+    (BtFnWord)func_80105834, (BtFnWord)func_80801554_chinflatableboss, 0x00000000, 0x00000000,
+    0x00000000, 0x3000042A, (BtFnWord)func_80800408_chinflatableboss, (BtFnWord)func_80108ED0,
+    0x04A00000, (BtFnWord)func_8080000C_chinflatableboss, (BtFnWord)func_80107C2C, 0x80200402,
+    (BtFnWord)func_80800A98_chinflatableboss, 0x00000000,
 };
 f32 D_80802E98_chinflatableboss[] = {
     0.0500000007f, 0.219999999f,
@@ -1598,3 +1598,9 @@ s32 D_80803008_chinflatableboss[] = {
     0x000F0013, 0x04FA0018, 0x00020011, 0x00000000,
     0x00000000, 0x00000000,
 };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 B_80803020_chinflatableboss [ 12 ] [ 3 ] BT_DATA(16, bss_ch_inflatableboss, 0x0);
+#endif

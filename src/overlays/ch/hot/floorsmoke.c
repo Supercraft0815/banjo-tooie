@@ -2,7 +2,7 @@
 
 OSThread *chhotfloorsmoke_entrypoint_0(void)
 {
-    extern u8 D_808002D0_chhotfloorsmoke[];
+    extern ActorData D_808002D0_chhotfloorsmoke[];
 
     return (OSThread *) D_808002D0_chhotfloorsmoke;
 }
@@ -76,7 +76,7 @@ void func_808000FC_chhotfloorsmoke(Actor *arg0) {
 
 void func_808001E8_chhotfloorsmoke(Actor *arg0, f32 arg1[3]) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DA298(s32);
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
@@ -103,3 +103,11 @@ void func_808001E8_chhotfloorsmoke(Actor *arg0, f32 arg1[3]) {
         _subaddieaudioquick_entrypoint_2(arg0, arg1, D_80800388_chhotfloorsmoke);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/hot/floorsmoke.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_808002D0_chhotfloorsmoke [1] BT_DATA(4, overlays_ch_hot_floorsmoke, 0x0) = { { 435, 806, 0, 1, 0, (void (*)(struct Actor *))func_80800090_chhotfloorsmoke, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 131072000, 0, 0, 0, 0, 1, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chhotfloorsmoke, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, 0, 0 } };
+s32 D_80800318_chhotfloorsmoke [14] BT_DATA(4, overlays_ch_hot_floorsmoke, 0x48) = { 202375197, 165478445, 65537200, 720896, 1310720, 24578, 2228377, 16777984, 58720277, 153, 2752512, 655616, 25165839, 0 };
+s32 D_80800350_chhotfloorsmoke [14] BT_DATA(4, overlays_ch_hot_floorsmoke, 0x80) = { 68157469, 165478445, 6553800, 720896, 1310720, 32770, 2228377, 16777984, 58720277, 153, 2752512, 655616, 25165839, 0 };
+s32 D_80800388_chhotfloorsmoke [10] BT_DATA(4, overlays_ch_hot_floorsmoke, 0xB8) = { 1246428, 852224, 21757973, 128, 6684673, 32770500, 0, 0, 0, 0 };

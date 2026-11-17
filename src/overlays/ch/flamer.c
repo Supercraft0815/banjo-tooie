@@ -5,10 +5,10 @@ s8 func_800BF8E4(void);
 
 OSThread *chflamer_entrypoint_0(void)
 {
-    extern u8 D_80800B20_chflamer[];
+    extern ActorData D_80800B20_chflamer[];
 
     return (OSThread *) D_80800B20_chflamer;
-}
+}    typedef struct { u8 pad0[0x4]; s16 unk4; } Objflamer_func_8080000C_chflamer_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x16]; s16 unk16; s16 unk18; u8 pad1A[0x192]; s32 unk1AC; } Objflamer_func_8080000C_chflamer_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -18,11 +18,11 @@ void func_8080000C_chflamer(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    (*(s16 *)((s8 *)(temp_v0) + (0x16))) = 0;
-    (*(s16 *)((s8 *)(temp_v0) + (0x18))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x1AC))) = 0;
+    (((Objflamer_func_8080000C_chflamer_temp_v0 *)temp_v0)->unk16) = 0;
+    (((Objflamer_func_8080000C_chflamer_temp_v0 *)temp_v0)->unk18) = 0;
+    (((Objflamer_func_8080000C_chflamer_temp_v0 *)temp_v0)->unk1AC) = 0;
     if (func_800BF8E4() > 0) {
-        (*(s16 *)((s8 *)(sp1C) + (4))) = 0x190;
+        (((Objflamer_func_8080000C_chflamer_sp1C *)sp1C)->unk4) = 0x190;
     }
 }
 
@@ -66,7 +66,7 @@ void func_80800050_chflamer(Actor *arg0) {
     s32 func_801072A8(void *);
     Actor *func_80800738_chflamer(Actor *);
     s32 func_808007A8_chflamer(Actor *, Actor *);
-    void func_8080098C_chflamer(s32);
+    void func_8080098C_chflamer(BtIntPtr);
     void func_808009C0_chflamer(Actor *, Actor *);
     void rare_memcpy(void *, void *, int);
     struct FlamerData *data;
@@ -87,7 +87,7 @@ void func_80800050_chflamer(Actor *arg0) {
         func_800EE7F8(arg0->rotation, linked->rotation);
         arg0->scale = linked->scale;
     }
-    func_8080098C_chflamer((s32)arg0);
+    func_8080098C_chflamer((BtIntPtr)arg0);
     switch (arg0->unk70_10) {
         case 1:
             if (linked == NULL || !((struct FlamerActorFlags *)linked)->active) {
@@ -154,24 +154,24 @@ void func_80800050_chflamer(Actor *arg0) {
     if (func_800BF8E4() > 0) {
         func_808009C0_chflamer(arg0, linked);
     }
-}
+}    typedef struct { u8 pad0[0x16]; s16 unk16; u8 pad18[0x198]; f32 unk1B0; } Objflamer_func_80800434_chflamer_temp_s5; /* offsets.py genstruct: fields from raw offsets on temp_s5; rename once understood */ typedef struct { f32 unk0; u8 pad4[0x2]; s16 unk6; u8 pad8[0x8]; f32 unk10; } Objflamer_func_80800434_chflamer_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 /* extern */
 
 void func_80800434_chflamer(Actor *arg0, s32 arg1) {
     void * func_80100094(Actor *, u32);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     s32 func_800E2588(s32);
-    s32 func_800E2594(s32, s32);
-    s32 func_800E2720(s32, s32, s16, s32 *, s32 *, s32);
-    s32 func_800E2A14(s32);
+    s32 func_800E2594(BtIntPtr, BtIntPtr);
+    s32 func_800E2720(BtIntPtr, s32, s16, s32 *, s32 *, s32);
+    s32 func_800E2A14(BtIntPtr);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
     s32 func_800EFA4C(s32 *, f32, f32, f32);
     f32 func_800F10B4(f32, f32, f32, s32, f32);
     f32 temp_f20;
     f32 temp_f22;
-    s32 temp_s0;
+    BtIntPtr temp_s0;
     s32 var_s2;
     void *temp_s5;
     s32 sp68[3];
@@ -182,19 +182,19 @@ void func_80800434_chflamer(Actor *arg0, s32 arg1) {
     temp_s0 = func_800D674C(0x9CE);
     func_800E2588(1);
     func_800E2594(arg1, temp_s0);
-    temp_f22 = func_800F10B4((*(f32 *)((s8 *)(temp_s5) + (0x1B0))), 50.0f, 200.0f, 0x3F19999A, 1.6f) * 0.5f;
+    temp_f22 = func_800F10B4((((Objflamer_func_80800434_chflamer_temp_s5 *)temp_s5)->unk1B0), 50.0f, 200.0f, 0x3F19999A, 1.6f) * 0.5f;
     var_s0 = (u8 *)(u8 *)temp_s5 + 0x1C;
     var_s2 = 0;
-    if ((*(s16 *)((s8 *)(temp_s5) + (0x16))) > 0) {
+    if ((((Objflamer_func_80800434_chflamer_temp_s5 *)temp_s5)->unk16) > 0) {
         do {
-            temp_f20 = (*(f32 *)((s8 *)(var_s0) + (0x10))) * temp_f22;
+            temp_f20 = (((Objflamer_func_80800434_chflamer_var_s0 *)var_s0)->unk10) * temp_f22;
             func_800EE88C(sp68, (u8 *)(u8 *)var_s0 + 8);
             func_800EF04C(sp68, arg0->position);
             func_800EFA4C(sp5C, temp_f20, temp_f20, temp_f20);
-            func_800E2720(arg1, (s32) (*(f32 *)((s8 *)(var_s0) + (0))), (*(s16 *)((s8 *)(var_s0) + (6))), sp68, sp5C, 0xC0);
+            func_800E2720(arg1, (s32) (((Objflamer_func_80800434_chflamer_var_s0 *)var_s0)->unk0), (((Objflamer_func_80800434_chflamer_var_s0 *)var_s0)->unk6), sp68, sp5C, 0xC0);
             var_s2 += 1;
             var_s0 = (u8 *)(u8 *)var_s0 + (0x14);
-        } while (var_s2 < (*(s16 *)((s8 *)(temp_s5) + (0x16))));
+        } while (var_s2 < (((Objflamer_func_80800434_chflamer_temp_s5 *)temp_s5)->unk16));
     }
     func_800E2A14(arg1);
 }
@@ -229,7 +229,7 @@ s32 func_80800594_chflamer(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_8010108C();
-s32 func_8010114C(s32, s32, s32);
+s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
 
 void chflamer_entrypoint_1(Actor *arg0, Unk80132ED0 *arg1) {
     struct LinkedActorFlags {
@@ -261,10 +261,10 @@ void chflamer_entrypoint_1(Actor *arg0, Unk80132ED0 *arg1) {
 }
 
 void chflamer_entrypoint_2(Unk80132ED0 *arg0, s32 arg1) {
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     f32 func_800DC178(f32, f32);
     Actor *func_80106790(Unk80132ED0 *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     Actor *sp24;
     Actor *sp20;
     u8 *data;
@@ -287,7 +287,7 @@ Actor *func_80800738_chflamer(Actor *arg0) {
         u8 pad74_1 : 7;
         u8 unk74_0 : 1;
     };
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *arg0);
     Actor *_subaddielink_entrypoint_4(u8 *);
     u8 *sp1C;
     Actor *data;
@@ -383,10 +383,10 @@ void func_808008C0_chflamer(Actor *arg0, f32 *arg1) {
     }
 }
 
-void func_8080098C_chflamer(s32 arg0) {
-    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
-    extern s32 D_80800B68_chflamer;
-    _subaddieaudioloop_entrypoint_5(arg0, arg0 + 4, 1, -1, &D_80800B68_chflamer);
+void func_8080098C_chflamer(BtIntPtr arg0) {
+    void _subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4);
+    extern s32 D_80800B68_chflamer[5];
+    _subaddieaudioloop_entrypoint_5(arg0, arg0 + 4, 1, -1, D_80800B68_chflamer);
 }
 
 struct FlamerLight {
@@ -405,7 +405,7 @@ void func_808009C0_chflamer(Actor *arg0, Actor *arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800F2F60(void *, void *, f32);
     f32 func_80103F38(Actor *, f32 *);
-    extern u32 D_80800B7C_chflamer;
+    extern u32 D_80800B7C_chflamer[5];
     f32 temp_f2;
     f32 sp40[3];
     f32 sp3C;
@@ -424,7 +424,7 @@ void func_808009C0_chflamer(Actor *arg0, Actor *arg1) {
         func_800E3E8C(arg0->position, 3.0f * sp3C) ||
         func_800E3E8C(data->position, 3.0f * sp3C)) {
         u32 sp2C[3];
-        func_800F2F60(sp2C, &D_80800B7C_chflamer, func_800DC178(0.8f, 1.0f));
+        func_800F2F60(sp2C, D_80800B7C_chflamer, func_800DC178(0.8f, 1.0f));
         func_800EE7F8(data->position, sp40);
         func_800C8CB8(data->light, sp40);
         func_800C8E84(data->light, sp2C);
@@ -432,3 +432,9 @@ void func_808009C0_chflamer(Actor *arg0, Actor *arg1) {
     }
     data->initialized = 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/flamer.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800B20_chflamer [1] BT_DATA(4, overlays_ch_flamer, 0x0) = { { 779, 930, -1, 1, 0, (void (*)(struct Actor *))func_80800050_chflamer, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800434_chflamer, 0, 0, 0, 0, 2, 0, 0, 0, 444, 0, (void (*)(struct Actor *))func_8080000C_chflamer, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_80800594_chflamer, 0 } };
+s32 D_80800B68_chflamer[5] BT_DATA(4, overlays_ch_flamer, 0x48) = { 1246339, 1455792, 917811, 24117632, 0 };
+u32 D_80800B7C_chflamer[5] BT_DATA(4, overlays_ch_flamer, 0x5C) = { 0xE0, 0xE0, 0x80, 0, 0 };

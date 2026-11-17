@@ -15,16 +15,16 @@ void func_80101010(f32 *arg0) {
 
 void func_80101038(f32 *arg0) {
     func_800EE7F8(arg0, D_80135A70);
-}
+}    typedef struct { f32 unk0; } Obj1EDA900_D_80135A7C; /* offsets.py genstruct: fields from raw offsets on &D_80135A7C; rename once understood */
 
 void func_8010105C(f32 arg0) {
     extern f32 D_80135A7C;
-    *(f32 *)((u8 *)&D_80135A7C + 0) = arg0;
+    ((Obj1EDA900_D_80135A7C *)&D_80135A7C)->unk0 = arg0;
 }
 
 f32 func_80101068(void) {
     extern f32 D_80135A7C;
-    return *(f32 *)((u8 *)&D_80135A7C + 0);
+    return *&((Obj1EDA900_D_80135A7C *)&D_80135A7C)->unk0;
 }
 
 void func_80101074(void *arg0)
@@ -39,7 +39,7 @@ void *func_80101080()
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EDA900_native.inc"
 #else
 s32 func_8010108C(Actor *arg0, s32 arg1, s32 arg2) {

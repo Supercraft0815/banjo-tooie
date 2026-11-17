@@ -1,9 +1,9 @@
 #include "core2/1ECD170.h"
 
-void func_800F3880(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F3880(s32 arg0)
 {
     func_80098E64();
-    heap_free(arg0);
+    heap_free(arg0); BT_NATIVE_ONLY(return 0;)
 }
 struct player_state_s;
 int func_800F38A8(struct player_state_s *arg0, s32 arg1) {
@@ -17,12 +17,12 @@ int func_800F38A8(struct player_state_s *arg0, s32 arg1) {
 s32 func_800F3930(struct player_state_s *arg0, s32 arg1, s32 arg2) {
     int baflag_isTrue(struct player_state_s *, s32);
     s32 bs_getCurrentState(struct player_state_s *);
-    s32 func_8008EF3C(struct player_state_s *, s32);
+    s32 func_8008EF3C(struct player_state_s *arg0, Unk80132ED0 *arg1);
     s32 func_8009CA70(struct player_state_s *, s32, s32);
     s32 func_800A9C98(void);
-    s32 func_800F64A4(s32, s32);
-    int func_800F6774(u32);
-    s32 func_800F6CC8(s32);
+    s32 func_800F64A4(BtIntPtr, s32);
+    int func_800F6774(BtUIntPtr);
+    s32 func_800F6CC8(BtIntPtr);
     s32 func_800F9184(void);
     int player_isStable(struct player_state_s *);
     s32 sp24;
@@ -95,7 +95,7 @@ s32 func_800F3A78(struct player_state_s *arg0, s32 arg1, s32 arg2) {
 
 typedef struct player_state_s PlayerState;
 f32 func_800F3B3C(PlayerState *arg0, f32 *arg1, s32 arg2) {
-    void func_8009E154(PlayerState *, s32, f32 *);
+    void func_8009E154(PlayerState *, BtIntPtr, f32 *);
     s32 func_8008E9B8(PlayerState *, s32 **);
     s32 *sp1C;
 
@@ -104,23 +104,23 @@ f32 func_800F3B3C(PlayerState *arg0, f32 *arg1, s32 arg2) {
     return (f32)sp1C[arg2];
 }
 
-void func_800F3B90(PlayerState *arg0, f32 *arg1) {
-    func_800F3B3C(arg0, arg1, 0U);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_800F3B90(PlayerState *arg0, f32 *arg1) {
+    BT_NATIVE_ONLY(return) func_800F3B3C(arg0, arg1, 0U);
 }
 
 #ifdef BT_NATIVE
-void func_800F3BB0(s32 bt_a0, s32 bt_a1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F3BB0(BtIntPtr bt_a0, BtIntPtr bt_a1)
 #else
 void func_800F3BB0()
 #endif
 {
 #ifdef BT_NATIVE
     int func_8009C128(void *, f32[3]);
-    ((int (*)())func_8009C128)();
+    BT_NATIVE_ONLY(return func_8009C128((void *)bt_a0, (f32 *)bt_a1);)
 #else
     func_8009C128();
 #endif
-}
+}    typedef struct { u8 pad0[0x184]; s32 unk184; } Obj1ECD170_func_800F3BD0_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
 
 void func_800F3BD0(void *self, s32 arg1, f32 dst[3]) {
     void func_80092D44(void *, f32 *);
@@ -132,7 +132,7 @@ void func_800F3BD0(void *self, s32 arg1, f32 dst[3]) {
     s32 func_800F40EC(struct player_state_s *);
     s32 func_800F6720();
     void func_80092DC0(void *, f32 *);
-    void func_8009C188(u8 *, s32);
+    void func_8009C188(u8 *, BtIntPtr);
     void func_80092D9C(void *, f32 *);
 
 
@@ -189,7 +189,7 @@ void func_800F3BD0(void *self, s32 arg1, f32 dst[3]) {
                     dst[1] += 55.0f;
                     break;
                 case 0x1:
-                    if (func_800F40EC(self) == 2 || func_800F6720(*(s32 *)((u8 *)self + 0x184))) {
+                    if (func_800F40EC(self) == 2 || func_800F6720(((Obj1ECD170_func_800F3BD0_self *)self)->unk184)) {
                         dst[1] += 70.0f;
                     } else {
                         dst[1] += 100.0f;
@@ -204,7 +204,7 @@ void func_800F3BD0(void *self, s32 arg1, f32 dst[3]) {
             func_80092DC0(self, dst);
             break;
         case 8:
-            func_8009C188((u8 *)self, (s32)dst);
+            func_8009C188((u8 *)self, (BtIntPtr)dst);
             break;
         case 9:
             func_80092D9C(self, dst);
@@ -218,13 +218,13 @@ void func_800F3BD0(void *self, s32 arg1, f32 dst[3]) {
 
 /* extern */
 
-void func_800F3E84(s32 arg0, void *arg1) {
-    f32 baroll_get(s32);
+void func_800F3E84(BtIntPtr arg0, void *arg1) {
+    f32 baroll_get(BtIntPtr);
     f32 func_8009BFCC();
-    f32 yaw_get(s32);
-    (*(f32 *)((s8 *)(arg1) + (0))) = func_8009BFCC();
-    (*(f32 *)((s8 *)(arg1) + (4))) = yaw_get(arg0);
-    (*(f32 *)((s8 *)(arg1) + (8))) = baroll_get(arg0);
+    f32 yaw_get(BtIntPtr);
+    (((Vec3f *)arg1)->pos.x) = func_8009BFCC();
+    (((Vec3f *)arg1)->pos.y) = yaw_get(arg0);
+    (((Vec3f *)arg1)->pos.z) = baroll_get(arg0);
 }
 
 s32 func_800F3ED0(void *arg0) {
@@ -232,7 +232,7 @@ s32 func_800F3ED0(void *arg0) {
     int baflag_isTrue(PlayerState *, s32);
     s32 bastatetimer_isActive(PlayerState *, s32);
     s32 bs_getCurrentState(PlayerState *);
-    s32 func_8008EF3C(PlayerState *, s32);
+    s32 func_8008EF3C(struct player_state_s *arg0, Unk80132ED0 *arg1);
     s16 func_8009CBDC(PlayerState *, s32);
     s32 func_8009E674(PlayerState *, s32);
     s32 state;
@@ -342,7 +342,7 @@ s32 func_800F40EC(PlayerState *arg0) {
 
 void func_800F4200(u8 *arg0, f32 *arg1) {
     int func_8009C128(void *, f32[3]);
-    void func_8009C1CC(u8 *, f32[3]);
+    void func_8009C1CC(u8 *arg0, BtIntPtr arg1);
     void func_800EE780(f32 *, f32 *, f32 *);
     f32 sp24[3];
     f32 sp18[3];
@@ -361,12 +361,12 @@ s32 func_800F424C(void *arg0) {
     s32 func_8008E124(struct player_state_s *);
     s32 func_8008E974(u8 *);
     s32 func_8009E674(struct player_state_s *, s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F6D24(s32);
-    int func_800F8004(s32);
-    s32 temp_v0;
-    s32 sp24;
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6D24(BtIntPtr);
+    int func_800F8004(BtIntPtr);
+    BtIntPtr temp_v0;
+    BtIntPtr sp24;
     s32 sp1C;
     s32 temp_v0_2;
 
@@ -414,16 +414,16 @@ s32 func_800F4354(s32 arg0) {
     }
     D_801235D0[arg0].value = D_801235D0[arg0].callback(arg0);
     return D_801235D0[arg0].value;
-}
+}    typedef struct { u8 pad0[0x180]; s32 unk180; s32 unk184; } Obj1ECD170_func_800F43A8_var_s2; /* offsets.py genstruct: fields from raw offsets on var_s2; rename once understood */
 
 /* extern */
 
 u8 *func_800F43A8(s32 arg0) {
     void func_800F44DC(void *, s32);
-    s32 func_80098C48(u8 *);
+    void func_80098C48(void *arg0);
     s32 func_800F4354(s32);
     void *heap_alloc(s32);
-    void *heap_realloc(void *, s32);
+    void *heap_realloc(void *, BtIntPtr);
     s32 temp_v0;
     s32 temp_v0_3;
     s32 temp_v1;
@@ -448,13 +448,13 @@ u8 *func_800F43A8(s32 arg0) {
     var_s1_2 = 0x19C;
     var_s0 = 0;
     do {
-        *(u8 **)((u32)var_s2 + (var_s0 << 2)) = var_s2 + var_s1_2;
+        *(u8 **)((BtUIntPtr)var_s2 + (var_s0 << 2)) = var_s2 + var_s1_2;
         temp_v0_3 = func_800F4354(var_s0);
         var_s1_2 += temp_v0_3 + (temp_v0_3 % 4 ? 4 - temp_v0_3 % 4 : 0L);
         var_s0 += 1;
     } while (var_s0 <= 0x55U);
-    (*(s32 *)((s8 *)(var_s2) + (0x180))) = 0;
-    (*(s32 *)((s8 *)(var_s2) + (0x184))) = arg0;
+    (((Obj1ECD170_func_800F43A8_var_s2 *)var_s2)->unk180) = 0;
+    (((Obj1ECD170_func_800F43A8_var_s2 *)var_s2)->unk184) = arg0;
     func_80098C48(var_s2);
     func_800F44DC(var_s2, 1);
     return var_s2;
@@ -464,7 +464,7 @@ u8 *func_800F43A8(s32 arg0) {
 
 void func_800F44DC(void *arg0, s32 arg1) {
     s32 func_800A4C88();
-    void func_8010F9C0(s32, s32);
+    void func_8010F9C0(BtIntPtr, s32);
     s32 var_a1;
     s32 temp_a0;
 
@@ -484,14 +484,14 @@ void func_800F4524(s32 *arg0, s32 arg1) {
 
 /* extern */
 
-void func_800F452C(s32 arg0) {
-    s32 func_80095C94(s32);
+void func_800F452C(BT_IDO_ONLY(BtIntPtr arg0) BT_PASS2(BtIntPtr arg0, s32 bt_a1)) {
+    void func_80095C94(PlayerState *self);
     s32 func_8009C0BC();
-    s32 func_800A10A0(s32);
-    s32 func_800A380C(s32);
-    s32 func_800A4030(s32);
-    s32 func_800A4B08(s32);
-    func_8009C0BC();
+    void func_800A10A0(PlayerState *arg0);
+    void func_800A380C(void *arg0);
+    void func_800A4030(void *arg0);
+    void func_800A4B08(PlayerState *arg0);
+    func_8009C0BC(BT_PASS2(arg0, bt_a1));
     func_80095C94(arg0);
     func_800A10A0(arg0);
     func_800A4030(arg0);
@@ -512,11 +512,11 @@ void func_800F457C(void *arg0, s32 arg1) {
     func_8009CCFC(arg0, arg1);
 }
 
-s32 func_800F45B0(s32 arg0, s32 arg1, s32 arg2) {
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_800F45B0(BtIntPtr arg0, s32 arg1, BtIntPtr arg2) {
     void func_8009CCFC(s32 *, s32);
-    s32 func_8009CD70(s32, s32);
+    void func_8009CD70(u8 *arg0, f32 *arg1);
     func_8009CCFC(arg0, arg1);
-    func_8009CD70(arg0, arg2);
+    func_8009CD70(arg0, arg2); BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -537,19 +537,19 @@ void func_800F45E0(struct player_state_s *arg0, f32 *arg1) {
     baroll_applyIdeal(arg0);
 }
 
-void func_800F4648(void *arg0, f32 arg1[3]) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F4648(void *arg0, f32 arg1[3]) {
     f32 sp24[3];
     f32 sp18[3];
 
     func_8009C128(arg0, sp24);
     func_800EFB24(sp18, arg1, sp24);
-    func_8009C1F8(arg0, sp18);
+    BT_NATIVE_ONLY(return) func_8009C1F8(arg0, sp18);
 }
 
 /* extern */
 
 void func_800F468C(void *arg0) {
-    s32 func_800991B0(void *);
+    void func_800991B0(void *arg0);
     s32 func_800EA09C();
     if (((*(s32 *)((s8 *)(arg0) + (0x17C))) != 0) && ((*(s32 *)((s8 *)(arg0) + (0x180))) == 0) && (func_800EA09C() == 2)) {
         func_800991B0(arg0);
@@ -573,7 +573,7 @@ void *func_800F46D8(void *arg0) {
     } else {
         relocation.offset = (u8 *)arg0 - (u8 *)relocation.old;
         for (relocation.i = 0; relocation.i < 0x56; relocation.i++) {
-            *(s32 *)((s32)arg0 + (relocation.i << 2)) += relocation.offset;
+            *(s32 *)((BtIntPtr)arg0 + (relocation.i << 2)) += relocation.offset;
         }
     }
     return arg0;

@@ -16,12 +16,12 @@ u32 D_80800ED0_chfactoryworkerdirty[] = {
     0x402CCCCD, 0x035E0001
 };
 
-u32 D_80800EF8_chfactoryworkerdirty[] = {
-    0x027E0170, 0x08020001, (u32)D_80800ED0_chfactoryworkerdirty, (u32)func_80800394_chfactoryworkerdirty,
-    (u32)func_80105834, (u32)func_80101870, 0x07D00000, 0x3F800000,
-    0x00000000, 0x40000120, (u32)func_80800340_chfactoryworkerdirty, 0x00000000,
-    0x00140000, (u32)func_8080025C_chfactoryworkerdirty, (u32)func_80107C2C, 0x80002412,
-    (u32)func_808008A4_chfactoryworkerdirty, 0x00000000
+BtFnWord D_80800EF8_chfactoryworkerdirty[] = {
+    0x027E0170, 0x08020001, (BtFnWord)D_80800ED0_chfactoryworkerdirty, (BtFnWord)func_80800394_chfactoryworkerdirty,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x07D00000, 0x3F800000,
+    0x00000000, 0x40000120, (BtFnWord)func_80800340_chfactoryworkerdirty, 0x00000000,
+    0x00140000, (BtFnWord)func_8080025C_chfactoryworkerdirty, (BtFnWord)func_80107C2C, 0x80002412,
+    (BtFnWord)func_808008A4_chfactoryworkerdirty, 0x00000000
 };
 
 OSThread *chfactoryworkerdirty_entrypoint_0(void)
@@ -37,7 +37,7 @@ void func_8080000C_chfactoryworkerdirty(Actor* arg0)
 /* extern */
 
 void func_8080002C_chfactoryworkerdirty(Actor *arg0) {
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s32 *sp1C;
     s32 *temp_v0;
 
@@ -48,7 +48,7 @@ void func_8080002C_chfactoryworkerdirty(Actor *arg0) {
 }
 
 void func_80800068_chfactoryworkerdirty(s32 *arg0, s32 arg1, s32 arg2) {
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s16 packed[2];
 
     if (*arg0 != 0) {
@@ -116,7 +116,7 @@ int func_808000AC_chfactoryworkerdirty(Actor *arg0, s32 arg1) {
         }
         break;
     }
-    data->unk10 = arg1;
+    data->unk10 = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8080025C_chfactoryworkerdirty(Actor *arg0) {
@@ -127,8 +127,8 @@ void func_8080025C_chfactoryworkerdirty(Actor *arg0) {
     void func_800EF04C(f32 *, f32 *);
     int func_808000AC_chfactoryworkerdirty(Actor *, s32);
     s32 func_808009E4_chfactoryworkerdirty(void);
-    s32 func_80800A14_chfactoryworkerdirty(s32);
-    int func_80800AB4_chfactoryworkerdirty(s32);
+    s32 func_80800A14_chfactoryworkerdirty(BtIntPtr);
+    int func_80800AB4_chfactoryworkerdirty(BtIntPtr);
     struct {
         s32 unk0;
         u8 pad4[0xC];
@@ -140,7 +140,7 @@ void func_8080025C_chfactoryworkerdirty(Actor *arg0) {
     data->unk10 = 1;
     data->unk0 = 0;
     if (func_808009E4_chfactoryworkerdirty() != 0 &&
-        func_80800A14_chfactoryworkerdirty((s32)arg0) != 0 &&
+        func_80800A14_chfactoryworkerdirty((BtIntPtr)arg0) != 0 &&
         _glcutDll_entrypoint_20() == 0 && func_800D0B68(0x36, 1) == 0) {
         func_800EEB9C(sp28, arg0->rotation[1], 100.0f);
         func_800EF04C(sp28, arg0->position);
@@ -148,7 +148,7 @@ void func_8080025C_chfactoryworkerdirty(Actor *arg0) {
     }
     if (_glcutDll_entrypoint_20() != 0) {
         func_808000AC_chfactoryworkerdirty(arg0, 8);
-    } else if (func_80800AB4_chfactoryworkerdirty((s32)arg0) != 0) {
+    } else if (func_80800AB4_chfactoryworkerdirty((BtIntPtr)arg0) != 0) {
         func_808000AC_chfactoryworkerdirty(arg0, 7);
     }
     arg0->unk54 = arg0->rotation[1];
@@ -160,7 +160,7 @@ void func_80800340_chfactoryworkerdirty(Actor* arg0)
     func_80800DB4_chfactoryworkerdirty(arg0);
 }
 
-void func_8080036C_chfactoryworkerdirty(s32 arg0) {
+void func_8080036C_chfactoryworkerdirty(BtIntPtr arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     extern s32 D_80800F90_chfactoryworkerdirty;
     _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), &D_80800F90_chfactoryworkerdirty);
@@ -170,7 +170,7 @@ void func_80800394_chfactoryworkerdirty(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
-    s32 func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
     s32 func_800C0638(void);
     s32 func_800D9078(f32 *arg0);
     f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
@@ -206,7 +206,7 @@ void func_80800394_chfactoryworkerdirty(Actor *arg0) {
     case 1:
         if (func_800C0638() == 0) {
             if (func_80101E14(arg0, 0.13f) != 0 || func_80101E14(arg0, 0.215f) != 0 || func_80101E14(arg0, 0.27f) != 0 || func_80101E14(arg0, 0.34f) != 0) {
-                func_8080036C_chfactoryworkerdirty((s32)arg0);
+                func_8080036C_chfactoryworkerdirty((BtIntPtr)arg0);
             }
             _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800FB0_chfactoryworkerdirty, 0.4f);
         }
@@ -326,7 +326,7 @@ void func_80800788_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-s32 func_80800828_chfactoryworkerdirty(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_80800828_chfactoryworkerdirty(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 func_80800A54_chfactoryworkerdirty();
     if (arg1 == 0x134E) {
         return func_80800A54_chfactoryworkerdirty();
@@ -337,7 +337,7 @@ s32 func_80800828_chfactoryworkerdirty(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80800864_chfactoryworkerdirty(Actor *arg0) {
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     void *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
@@ -366,7 +366,7 @@ s32 func_808008A4_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2) {
         func_80800788_chfactoryworkerdirty(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
         return 1;
     case 0x30:
-        return func_80800828_chfactoryworkerdirty((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        return func_80800828_chfactoryworkerdirty((BtIntPtr)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
     case 0x29:
         func_80800D48_chfactoryworkerdirty(arg0);
         return 1;
@@ -390,16 +390,16 @@ s32 func_808009C0_chfactoryworkerdirty(void) {
 s32 func_808009E4_chfactoryworkerdirty()
 {
     return func_800DA298(FLAG_433_UNK);
-}
+}    typedef struct { u8 pad0[0x76]; u16 unk76; } Objworkerdirty_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-s32 func_80800A04_chfactoryworkerdirty(s32 arg0) {
-    return ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + (-50);
+s32 func_80800A04_chfactoryworkerdirty(BtIntPtr arg0) {
+    return ((u32) (((Objworkerdirty_arg0 *)arg0)->unk76) >> 7) + (-50);
 }
 
 /* extern */
 
-s32 func_80800A14_chfactoryworkerdirty(s32 arg0) {
-    s32 func_80800A04_chfactoryworkerdirty(s32);
+s32 func_80800A14_chfactoryworkerdirty(BtIntPtr arg0) {
+    s32 func_80800A04_chfactoryworkerdirty(BtIntPtr);
     s32 sp1C;
 
     sp1C = func_800DA564(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, 6);
@@ -417,7 +417,7 @@ s32 func_80800A54_chfactoryworkerdirty(void) {
     return count;
 }
 
-int func_80800AB4_chfactoryworkerdirty(s32 arg0) {
+int func_80800AB4_chfactoryworkerdirty(BtIntPtr arg0) {
     s32 func_80800A04_chfactoryworkerdirty();
     return (func_808009E4_chfactoryworkerdirty() != 0) ||
            (func_800DA298(func_80800A04_chfactoryworkerdirty(arg0) + 0x42D) != 0);
@@ -478,8 +478,8 @@ void chfactoryworkerdirty_entrypoint_1(Unk80132ED0 *arg0, s32 arg1) {
 
 /* extern */
 
-void chfactoryworkerdirty_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 arg2) {
-    void func_80101010(s32 arg0);
+void chfactoryworkerdirty_entrypoint_2(Unk80132ED0 *arg0, BtIntPtr arg1, f32 arg2) {
+    void func_80101010(BtIntPtr arg0);
     void func_8010105C(f32 arg0);
     s32 *sp18[2];
 
@@ -503,8 +503,8 @@ void chfactoryworkerdirty_entrypoint_3(Unk80132ED0 *arg0, f32 arg1) {
 /* extern */
 
 void func_80800C98_chfactoryworkerdirty(Actor *arg0) {
-    s32 _suexpression_entrypoint_10(void *, Unk80132ED0 *, s32);
-    s32 _suexpression_entrypoint_18(void *, s32);
+    void _suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
     s32 func_801022E4(Actor *);
     s32 func_80102320(Actor *, s32, s32);
     if (func_80100094(arg0, 1U) != NULL) {
@@ -524,7 +524,7 @@ void func_80800C98_chfactoryworkerdirty(Actor *arg0) {
 void func_80800D48_chfactoryworkerdirty(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1, 0x8F);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42700000, 0x41700000);

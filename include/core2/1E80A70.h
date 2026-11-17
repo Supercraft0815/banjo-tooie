@@ -17,7 +17,7 @@
 #include "core2/1ED8C80.h"
 
 void func_800A759C(s32, s32);
-void func_800A76F4(s32);
+void func_800A76F4(BT_IDO_ONLY(s32));
 void func_800A7990(s32, s32, s32);
 void func_800A79D4(s32, s32);
 void func_800A7A90(s32);
@@ -28,5 +28,5 @@ s16 func_800A824C(void);
 f32 func_800A8258(void);
 void func_800A8278();
 void func_800A89BC(s32);
-void func_800A8B24(s32, s32);
+void func_800A8B24(BtIntPtr, s32);
 #endif // __CORE2_1E80A70_H__

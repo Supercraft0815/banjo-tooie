@@ -2,13 +2,13 @@
 
 OSThread *chstarspinnerstar_entrypoint_0(void)
 {
-    extern u8 D_808006B0_chstarspinnerstar[];
+    extern ActorData D_808006B0_chstarspinnerstar[];
 
     return (OSThread *) D_808006B0_chstarspinnerstar;
 }
 
 void func_8080000C_chstarspinnerstar(Actor *arg0) {
-    s32 _chstarspinnerctrl_entrypoint_4(Actor *, f32 *, s32);
+    s32 _chstarspinnerctrl_entrypoint_4(Actor *arg0, BtIntPtr arg1, s32 arg2);
     s32 _glcutDll_entrypoint_20(void);
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
@@ -80,8 +80,8 @@ void func_8080000C_chstarspinnerstar(Actor *arg0) {
 /* extern */
 
 void func_80800320_chstarspinnerstar(Actor *arg0) {
-    s32 _chstarspinnerctrl_entrypoint_3(Actor *, f32 *);
-    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    s32 _chstarspinnerctrl_entrypoint_3(BtIntPtr arg0, BtIntPtr arg1);
+    Actor *_subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
     void func_8010A624(Actor *);
@@ -194,3 +194,15 @@ f32 *func_80800660_chstarspinnerstar(Actor * arg0) {
     position[1] = position[1];
     return position;
 }
+/* data_to_c.py: from asm/data/overlays/ch/starspinner/star.data.s */
+void func_80105834(Actor*);
+void func_801018A4();
+void func_80107C2C();
+ActorData D_808006B0_chstarspinnerstar [1] BT_DATA(4, overlays_ch_starspinner_star, 0x0) = { { 447, 822, 1913, 1, 0, (void (*)(struct Actor *))func_8080000C_chstarspinnerstar, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 0, 0, 0, 0, 0, 19456, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800320_chstarspinnerstar, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1042, (void (*)(struct Actor *, long, long))func_808003F8_chstarspinnerstar, 0 } };
+u32 D_808006F8_chstarspinnerstar [6] BT_DATA(4, overlays_ch_starspinner_star, 0x48) = { 0x1304E0, 0xA00CC, 0x161B58, 0, 0, 0 };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 B_80800710_chstarspinnerstar BT_DATA(16, bss_starspinner_star, 0x0);
+#endif

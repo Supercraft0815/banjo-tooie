@@ -2,14 +2,14 @@
 
 OSThread *chfactorycrusher_entrypoint_0(void)
 {
-    extern u8 D_80800A50_chfactorycrusher[];
+    extern ActorData D_80800A50_chfactorycrusher[];
 
     return (OSThread *) D_80800A50_chfactorycrusher;
 }
 
 OSThread *chfactorycrusher_entrypoint_1(void)
 {
-    extern u8 D_80800A98_chfactorycrusher[];
+    extern ActorData D_80800A98_chfactorycrusher[];
 
     return (OSThread *) D_80800A98_chfactorycrusher;
 }
@@ -53,7 +53,7 @@ void func_80800018_chfactorycrusher(Actor *arg0) {
 }
 
 void func_80800150_chfactorycrusher(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80018820(s32, f32, f32);
     s32 func_800D9078(f32 *);
@@ -63,22 +63,22 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
     s32 func_800E1610(s32, f32, f32, f32 *);
     f32 func_800F0E00(f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F5578(s32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5578(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_8010A624(Actor *);
     u32 func_8010A654(void ***, s32);
-    void func_8010D640(s32);
+    void func_8010D640(BtIntPtr);
     f32 mlAbsF(f32);
     void func_808006CC_chfactorycrusher(Actor *);
-    int func_80800738_chfactorycrusher(s32, f32 *);
+    int func_80800738_chfactorycrusher(BtIntPtr, f32 *);
     int func_80800800_chfactorycrusher(Actor *);
     Actor *func_80800898_chfactorycrusher(Actor *);
-    void func_808008B8_chfactorycrusher(s32, f32);
+    void func_808008B8_chfactorycrusher(BtIntPtr, f32);
     void func_808008F0_chfactorycrusher(Actor *);
     extern u8 D_80800AE0_chfactorycrusher[];
     struct {
@@ -97,7 +97,7 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
             if (func_800DA298(0x329) == 0 && !arg0->unk64_19 && data->unk18 == 0
                 && func_800D90A4(&arg0->unk58) != 0) {
                 arg0->unk64_20 = 0;
-                if (func_80800738_chfactorycrusher((s32)arg0, position) != 0) {
+                if (func_80800738_chfactorycrusher((BtIntPtr)arg0, position) != 0) {
                     if (func_800F64A4(func_800F54E4(), 0x10000) != 0
                         || func_800F5578(func_800F54E4()) >= 2) {
                         animation = ((f32 *)arg0->actorData)[0] < position[0] ? 0x22 : 0x1E;
@@ -125,15 +125,15 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
             finished = func_800D9078(&arg0->unk58);
             progress = func_800F12D4(arg0->unk58, 0.0f, 0.25f, 1.0f, 0.0f);
             ((f32 *)arg0->actorData)[7] = progress;
-            func_808008B8_chfactorycrusher((s32)arg0, ((f32 *)arg0->actorData)[7]);
-            func_808008B8_chfactorycrusher((s32)other, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((BtIntPtr)arg0, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((BtIntPtr)other, ((f32 *)arg0->actorData)[7]);
             if (arg0->unk64_20) {
                 func_808008F0_chfactorycrusher(arg0);
             }
             if (finished != 0) {
                 if (arg0->unk74_7 == 0x32) {
                     func_800E148C(func_800E1610(2, 80.0f, 0.85f, (f32 *)&arg0->actorData[4]), 2000.0f, 8000.0f);
-                    func_8010D640((s32)position);
+                    func_8010D640((BtIntPtr)position);
                     shake = (800.0f / func_800F0E00(800.0f, mlAbsF(position[2] - 4000.0f))) * 2.75f;
                     if (shake > 0.25f) {
                         func_80018820(0, shake, 0.35f);
@@ -160,8 +160,8 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
             finished = func_800D9078(&arg0->unk58);
             progress = func_800F12D4(arg0->unk58, 0.0f, 1.5f, 0.0f, 1.0f);
             ((f32 *)arg0->actorData)[7] = progress;
-            func_808008B8_chfactorycrusher((s32)arg0, ((f32 *)arg0->actorData)[7]);
-            func_808008B8_chfactorycrusher((s32)other, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((BtIntPtr)arg0, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((BtIntPtr)other, ((f32 *)arg0->actorData)[7]);
             if (finished != 0) {
                 func_80101FDC(arg0, 1);
                 if (arg0->unk64_20) {
@@ -174,8 +174,8 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
             break;
         }
         case 5:
-            func_808008B8_chfactorycrusher((s32)arg0, ((f32 *)arg0->actorData)[7]);
-            func_808008B8_chfactorycrusher((s32)other, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((BtIntPtr)arg0, ((f32 *)arg0->actorData)[7]);
+            func_808008B8_chfactorycrusher((BtIntPtr)other, ((f32 *)arg0->actorData)[7]);
             break;
     }
     if (!arg0->unk64_19) {
@@ -189,11 +189,11 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
 }
 
 s32 func_80800580_chfactorycrusher(Actor *arg0, s32 arg1, s32 arg2) {
-    Unk80132ED0 **_subaddiefind_entrypoint_1(Actor *, s32, s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    Actor *_subaddiefind_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2, f32 *arg3);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     Actor *func_80800898_chfactorycrusher(Actor *);
     struct {
         f32 bounds[6];
@@ -241,9 +241,9 @@ void func_8080067C_chfactorycrusher(s32 arg0, s32 arg1) {
 
 void func_808006CC_chfactorycrusher(Actor *arg0) {
     void func_800EE780(f32 dst[3], f32 a[3], f32 b[3]);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void* func_80100094(Actor*, u32);
-    s32 func_800F4D18(u32, f32 *, f32 *);
+    s32 func_800F4D18(BtUIntPtr, f32 *, f32 *);
     f32 *sp3C;
     f32 sp30[3];
     f32 sp24[3];
@@ -256,10 +256,10 @@ void func_808006CC_chfactorycrusher(Actor *arg0) {
 
 /* extern */
 
-int func_80800738_chfactorycrusher(s32 arg0, f32 *arg1) {
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6478(s32);
+int func_80800738_chfactorycrusher(BtIntPtr arg0, f32 *arg1) {
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6478(BtIntPtr);
     f32 temp_f0;
     f32 temp_f0_2;
 
@@ -277,19 +277,19 @@ int func_80800738_chfactorycrusher(s32 arg0, f32 *arg1) {
 /* extern */
 
 int func_80800800_chfactorycrusher(Actor *arg0) {
-    u32 func_800F54E4(void);
-    s32 func_800F5578(s32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F7B9C(s32, s32);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5578(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     struct {
         f32 position[3];
         f32 position2[3];
         s32 unk18;
     } *sp1C;
-    s32 sp18;
-    s32 temp_v0;
+    BtIntPtr sp18;
+    BtIntPtr temp_v0;
     int var_v0;
 
     sp1C = func_80100094(arg0, 0);
@@ -314,19 +314,19 @@ Actor *func_80800898_chfactorycrusher(Actor *arg0) {
     return func_80106790(arg0->unk3C);
 }
 
-void func_808008B8_chfactorycrusher(s32 arg0, f32 arg1) {
+void func_808008B8_chfactorycrusher(BtIntPtr arg0, f32 arg1) {
     void func_800EFE50(f32*, void*, void*, f32);
     func_800EFE50(arg0 + 4, arg0 + 0x18, arg0 + 0x28, arg1);
 }
 
 void func_808008F0_chfactorycrusher(Actor *arg0) {
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F8418(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F8418(BtIntPtr, f32 *);
     f32 lower;
     f32 upper;
     f32 position[3];
-    s32 player;
+    BtIntPtr player;
     Actor *crusher;
 
     player = func_800F54E4();
@@ -345,10 +345,10 @@ void func_808008F0_chfactorycrusher(Actor *arg0) {
 
 /* extern */
 
-void func_80800984_chfactorycrusher(s32 arg0) {
-    s32 _chswitch_entrypoint_7(s32, s32);
-    s32 _chswitch_entrypoint_8(s32, s32);
-    s32 _chswitch_entrypoint_9(s32);
+void func_80800984_chfactorycrusher(BtIntPtr arg0) {
+    s32 _chswitch_entrypoint_7(BtIntPtr, s32);
+    void _chswitch_entrypoint_8(s32 *arg0, s32 arg1);
+    void _chswitch_entrypoint_9(void *arg0);
     _chswitch_entrypoint_7(arg0, 0x329);
     _chswitch_entrypoint_8(arg0, 1);
     _chswitch_entrypoint_9(arg0);
@@ -357,13 +357,22 @@ void func_80800984_chfactorycrusher(s32 arg0) {
 /* extern */
 
 s32 func_808009BC_chfactorycrusher(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chswitch_entrypoint_10(s32, s32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _chmrtannoy_entrypoint_0(void);
     if (arg1 == 7) {
         _chmrtannoy_entrypoint_0();
         _subaddiedialog_entrypoint_11(arg0->unk0, 0x1340U, 4U, arg0->position, 0xA3U);
         return 1;
     }
-    return _chswitch_entrypoint_10((s32) arg0, arg1, arg2);
+    return _chswitch_entrypoint_10((BtIntPtr) arg0, arg1, arg2);
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/crusher.data.s */
+void func_80105834();
+void func_80107C2C();
+extern u8 D_8011A270[];
+void _chswitch_entrypoint_6();
+int func_80101870();
+ActorData D_80800A50_chfactorycrusher [1] BT_DATA(4, overlays_ch_factory_crusher, 0x0) = { { 799, 954, 1866, 1, 0, (void (*)(struct Actor *))func_80800150_chfactorycrusher, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080067C_chfactorycrusher, 0, 0, 0, 0, 8192, 1024, 0, 0, 28, 0, (void (*)(struct Actor *))func_80800018_chfactorycrusher, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 1026, (void (*)(struct Actor *, long, long))func_80800580_chfactorycrusher, 0 } };
+ActorData D_80800A98_chfactorycrusher [1] BT_DATA(4, overlays_ch_factory_crusher, 0x48) = { { 835, 955, 2370, 1, (void *)D_8011A270, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800984_chfactorycrusher, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808009BC_chfactorycrusher, 0 } };
+u8 D_80800AE0_chfactorycrusher [32] BT_DATA(4, overlays_ch_factory_crusher, 0x90) = { 0, 0x13, 4, 0xCE, 0, 0xD, 0, 0xC0, 0, 0xD9, 0, 0x18, 0, 1, 7, 0xD0, 0x1F, 0x40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

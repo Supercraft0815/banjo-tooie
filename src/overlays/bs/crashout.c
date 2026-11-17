@@ -20,7 +20,7 @@ void func_80800000_bscrashout(struct player_state_s *self) {
     }
 }
 
-void func_800951B4(struct player_state_s *);
+void func_800951B4(struct player_state_s *);     
 void func_808000B0_bscrashout(struct player_state_s *self, s32 state) {
     void _basudie_entrypoint_1(struct player_state_s *);
     void _batimer_set(struct player_state_s *, s32, f32);
@@ -59,32 +59,32 @@ void func_808000B0_bscrashout(struct player_state_s *self, s32 state) {
     }
 }
 
-void bscrashout_entrypoint_0(s32 arg0)
+void bscrashout_entrypoint_0(BtIntPtr arg0)
 {
     func_8009BD88();
     func_8008E95C(arg0);
     func_800951B4(arg0);
-}
+}                typedef struct { u8 pad0[0x15C]; s32 unk15C; u8 pad160[0xC]; f32 unk16C; } Objcrashout_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void bscrashout_entrypoint_1(void *arg0) {
-    s32 _bamotor_entrypoint_1(void *, f32, f32, f32);
-    s32 func_8008E944(void *);
-    s32 func_8009514C(void *);
+    void _bamotor_entrypoint_1(void *arg0, f32 arg1, f32 arg2, f32 arg3);
+    void func_8008E944(void *arg0);
+    void func_8009514C(void *player);
     f32 func_80099A34();
-    s32 func_8009D89C(void *, f32);
+    void func_8009D89C(void *arg0, f32 arg1);
     void func_808000B0_bscrashout(struct player_state_s *, s32);
-    s32 yaw_applyIdeal(void *);
-    s32 yaw_setIdeal(void *, f32);
+    void yaw_applyIdeal(void *self);
+    void yaw_setIdeal(void *self, f32 arg1);
     yaw_setIdeal(arg0, func_80099A34());
     yaw_applyIdeal(arg0);
     func_8009D89C(arg0, 1.0f);
     _bamotor_entrypoint_1(arg0, 1.0f, 0.5f, 0.5f);
     func_8008E944(arg0);
     func_8009514C(arg0);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
-    (*(f32 *)((s8 *)(arg0) + (0x16C))) = 600.0f;
+    (((Objcrashout_arg0 *)arg0)->unk15C) = 0;
+    (((Objcrashout_arg0 *)arg0)->unk16C) = 600.0f;
     func_808000B0_bscrashout(arg0, 1);
 }
 
@@ -94,7 +94,7 @@ void bscrashout_entrypoint_2(struct player_state_s *arg0) {
     int baanim_isAt(struct player_state_s *, f32);
     int baanim_isStopped(struct player_state_s *);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
-    s32 bs_setState(void *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 func_800A1718(struct player_state_s *);
     f32 func_800D8FF8(void);
     s32 func_800F1574(f32 *, f32);
@@ -129,6 +129,12 @@ void bscrashout_entrypoint_2(struct player_state_s *arg0) {
 }
 
 s32 bscrashout_entrypoint_3(s32 arg0) {
-    extern s32 D_808003D0_bscrashout[];
+    extern BtIntPtr D_808003D0_bscrashout[];
     return ((s32 *)&D_808003D0_bscrashout)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/crashout.data.s */
+void _bscrashout_entrypoint_0();
+void _bscrashout_entrypoint_1();
+void _bscrashout_entrypoint_2();
+void func_80099AA8();
+BtIntPtr D_808003D0_bscrashout [4] BT_DATA(4, overlays_bs_crashout, 0x0) = { (BtIntPtr)_bscrashout_entrypoint_0, (BtIntPtr)_bscrashout_entrypoint_1, (BtIntPtr)_bscrashout_entrypoint_2, (BtIntPtr)func_80099AA8 };

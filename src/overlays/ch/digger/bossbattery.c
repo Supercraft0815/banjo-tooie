@@ -28,7 +28,7 @@ void func_8080000C_chdiggerbossbattery(Actor *arg0) {
 void func_80800090_chdiggerbossbattery(Actor *arg0) {
     void _chelectricfence_entrypoint_1(Actor *, f32 *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     f32 func_800DC178(f32, f32);
     int func_800DC298(f32);
     void func_800EE7F8(f32 *, f32 *);
@@ -49,11 +49,11 @@ void func_80800090_chdiggerbossbattery(Actor *arg0) {
 
 s32 func_80800170_chdiggerbossbattery(Actor *arg0, s32 arg1, s32 arg2) {
     void _chexploder_entrypoint_3(void *, void *, u32);
-    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2);
     void _chexploder_entrypoint_13(Actor *, u32);
     void _chexploder_entrypoint_15(Actor *, u32, f32);
-    Actor *_subaddiefind_entrypoint_1(Actor *, s32, s32, s32);
-    s32 func_800DA544(s32);
+    Actor *_subaddiefind_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2, f32 *arg3);
+    void func_800DA544(s32 index);
     void func_800DF744(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);

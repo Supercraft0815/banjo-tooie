@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80800000_indrv_fx(Unk80132ED0 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 *arg4) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800DBEFC(s32 *, s32, f32 *);
     void func_800EE88C(f32 *, s16 *);
     Actor *func_80106790(Unk80132ED0 *);
@@ -23,132 +23,164 @@ void func_80800000_indrv_fx(Unk80132ED0 *arg0, s32 arg1, f32 arg2, s32 arg3, s32
 
 void indrv_fx_entrypoint_0(Unk80132ED0 *arg0, u32 arg1, s32 arg2) {
     void func_80800000_indrv_fx(Unk80132ED0 *, s32, f32, s32, s32 *);
-    extern s32 D_808005B0_indrv_fx;
-    extern s32 D_80800608_indrv_fx;
-    extern s32 D_80800648_indrv_fx;
-    extern s32 D_80800684_indrv_fx;
-    extern s32 D_808006E4_indrv_fx;
-    extern s32 D_80800720_indrv_fx;
-    extern s32 D_80800780_indrv_fx;
-    extern s32 D_808007E0_indrv_fx;
-    extern s32 D_80800818_indrv_fx;
-    extern s32 D_80800870_indrv_fx;
-    extern s32 D_808008C0_indrv_fx;
-    extern s32 D_80800920_indrv_fx;
-    extern s32 D_80800964_indrv_fx;
-    extern s32 D_808009A8_indrv_fx;
-    extern s32 D_808009F4_indrv_fx;
-    extern s32 D_80800A4C_indrv_fx;
-    extern s32 D_80800AA4_indrv_fx;
-    extern s32 D_80800AFC_indrv_fx;
-    extern s32 D_80800B2C_indrv_fx;
-    extern s32 D_80800B5C_indrv_fx;
-    extern s32 D_80800BA0_indrv_fx;
-    extern s32 D_80800BE8_indrv_fx;
-    extern s32 D_80800C3C_indrv_fx;
-    extern s32 D_80800CA4_indrv_fx;
-    extern s32 D_80800CF0_indrv_fx;
-    extern s32 D_80800D30_indrv_fx;
-    extern s32 D_80800D6C_indrv_fx;
-    extern s32 D_80800DBC_indrv_fx;
-    extern s32 D_80800E0C_indrv_fx;
-    extern s32 D_80800E5C_indrv_fx;
-    extern s32 D_80800EAC_indrv_fx;
+    extern s32 D_808005B0_indrv_fx[22];
+    extern s32 D_80800608_indrv_fx[16];
+    extern s32 D_80800648_indrv_fx[15];
+    extern s32 D_80800684_indrv_fx[24];
+    extern s32 D_808006E4_indrv_fx[15];
+    extern s32 D_80800720_indrv_fx[24];
+    extern s32 D_80800780_indrv_fx[24];
+    extern s32 D_808007E0_indrv_fx[14];
+    extern s32 D_80800818_indrv_fx[22];
+    extern s32 D_80800870_indrv_fx[20];
+    extern s32 D_808008C0_indrv_fx[24];
+    extern s32 D_80800920_indrv_fx[17];
+    extern s32 D_80800964_indrv_fx[17];
+    extern s32 D_808009A8_indrv_fx[19];
+    extern s32 D_808009F4_indrv_fx[22];
+    extern s32 D_80800A4C_indrv_fx[22];
+    extern s32 D_80800AA4_indrv_fx[22];
+    extern s32 D_80800AFC_indrv_fx[12];
+    extern s32 D_80800B2C_indrv_fx[12];
+    extern s32 D_80800B5C_indrv_fx[17];
+    extern s32 D_80800BA0_indrv_fx[18];
+    extern s32 D_80800BE8_indrv_fx[21];
+    extern s32 D_80800C3C_indrv_fx[26];
+    extern s32 D_80800CA4_indrv_fx[19];
+    extern s32 D_80800CF0_indrv_fx[16];
+    extern s32 D_80800D30_indrv_fx[15];
+    extern s32 D_80800D6C_indrv_fx[20];
+    extern s32 D_80800DBC_indrv_fx[20];
+    extern s32 D_80800E0C_indrv_fx[20];
+    extern s32 D_80800E5C_indrv_fx[20];
+    extern s32 D_80800EAC_indrv_fx[21];
     switch (arg1) {
     case 0:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 2, &D_808005B0_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 2, D_808005B0_indrv_fx);
         return;
     case 1:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 5, &D_80800608_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 5, D_80800608_indrv_fx);
         return;
     case 2:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 5, &D_80800648_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 5, D_80800648_indrv_fx);
         return;
     case 3:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800684_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800684_indrv_fx);
         return;
     case 4:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 4, &D_808006E4_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 4, D_808006E4_indrv_fx);
         return;
     case 5:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800720_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800720_indrv_fx);
         return;
     case 10:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800780_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800780_indrv_fx);
         return;
     case 6:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 3, &D_808007E0_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 3, D_808007E0_indrv_fx);
         return;
     case 7:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 6, &D_80800818_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 6, D_80800818_indrv_fx);
         return;
     case 8:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, &D_80800870_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, D_80800870_indrv_fx);
         return;
     case 9:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_808008C0_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_808008C0_indrv_fx);
         return;
     case 11:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800920_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800920_indrv_fx);
         return;
     case 12:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800964_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800964_indrv_fx);
         return;
     case 13:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_808009A8_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_808009A8_indrv_fx);
         return;
     case 14:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 2, &D_808009F4_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 2, D_808009F4_indrv_fx);
         return;
     case 15:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 2, &D_80800A4C_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 2, D_80800A4C_indrv_fx);
         return;
     case 16:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 3, &D_80800AA4_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 3, D_80800AA4_indrv_fx);
         return;
     case 17:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800AFC_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800AFC_indrv_fx);
         return;
     case 18:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800B2C_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800B2C_indrv_fx);
         return;
     case 19:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800B5C_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800B5C_indrv_fx);
         return;
     case 20:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x1E, &D_80800BA0_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x1E, D_80800BA0_indrv_fx);
         return;
     case 21:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 6, &D_80800BE8_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 6, D_80800BE8_indrv_fx);
         return;
     case 22:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800C3C_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800C3C_indrv_fx);
         return;
     case 23:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800CA4_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800CA4_indrv_fx);
         return;
     case 24:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, &D_80800CF0_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, D_80800CF0_indrv_fx);
         return;
     case 25:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, &D_80800D30_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 1, D_80800D30_indrv_fx);
         return;
     case 26:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, &D_80800D6C_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, D_80800D6C_indrv_fx);
         return;
     case 27:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, &D_80800DBC_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, D_80800DBC_indrv_fx);
         return;
     case 28:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, &D_80800E0C_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, D_80800E0C_indrv_fx);
         return;
     case 29:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, &D_80800E5C_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, D_80800E5C_indrv_fx);
         return;
     case 30:
-        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, &D_80800EAC_indrv_fx);
+        func_80800000_indrv_fx(arg0, arg2, 1.0f, 0x20, D_80800EAC_indrv_fx);
         /* fallthrough */
     default:
         return;
     }
 }
+/* data_to_c.py: from asm/data/overlays/in/drv_fx.data.s */
+s32 D_808005B0_indrv_fx[22] BT_DATA(4, overlays_in_drv_fx, 0x0) = { 1903032, 1638404, 589851, -262149, 2949139, 2162702, 10, 1442832, 2555336, -27328929, 27984277, 22741026, 0, 55837524, 1376296, 3014699, 13697246, 3080215, 1638425, 0, 238, 0 };
+s32 D_80800608_indrv_fx[16] BT_DATA(4, overlays_in_drv_fx, 0x58) = { 1903050, 1638405, 524315, -45875173, 2949173, 8126478, 589843, 2120028, 1181351972, 13238525, 2752512, 16908567, 30998550, 33554453, 179, 0 };
+s32 D_80800648_indrv_fx[15] BT_DATA(4, overlays_in_drv_fx, 0x98) = { 1903050, 1638405, 524315, -1310700, 2949193, 11403278, 8, 2120028, 1181351972, 13238525, 2752512, 3473587, 15073301, 179, 0 };
+s32 D_80800684_indrv_fx[24] BT_DATA(4, overlays_in_drv_fx, 0xD4) = { 1903049, 1638403, 851995, 2097272, 2883584, 5832704, 83, 14, 1245310, 2099711, 20774950, -2097197, -1507328, 51, 2359605, 33357845, 174, 2752512, 5505379, 28311599, 655380, 46, 4194304, 15597568 };
+s32 D_808006E4_indrv_fx[15] BT_DATA(4, overlays_in_drv_fx, 0x134) = { 1903050, 1638405, 524315, -19660693, 2949173, 8126478, 589843, 2120028, 1181351972, 24969725, 2752512, 16908823, 39387157, 179, 0 };
+s32 D_80800720_indrv_fx[24] BT_DATA(4, overlays_in_drv_fx, 0x170) = { 1903049, 1638403, 851995, 3276980, 2883584, 5832704, 83, 14, 1245310, 2099711, 20774950, -2097197, -1507328, 51, 2359987, 62062613, 174, 2752512, 5505891, 61866031, 655380, 46, 4194304, 15597568 };
+s32 D_80800780_indrv_fx[24] BT_DATA(4, overlays_in_drv_fx, 0x1D0) = { 1903049, 1638403, 851995, 327710, 2883584, 655360, 20, 14, 1245310, 2130549, 1733296166, -2097197, -1507328, 51, 2359987, 62062613, 174, 2752512, 5505891, 61866031, 655380, 46, 4194304, 15597568 };
+s32 D_808007E0_indrv_fx[14] BT_DATA(4, overlays_in_drv_fx, 0x230) = { 1903036, 1638406, 589838, 10354892, 2360412, 75300885, 3342394, 2752512, 1638784, 36896815, 5177413, 4522124, 6357102, 11534336 };
+s32 D_80800818_indrv_fx[22] BT_DATA(4, overlays_in_drv_fx, 0x268) = { 1903036, 1638401, 327707, 6881558, 2949219, 9371662, 10, 1442832, 2555336, -27328929, 27984277, 22741026, 0, 324277076, 1376296, 3014699, 13697246, 3080215, 1638425, 0, 238, 0 };
+s32 D_80800870_indrv_fx[20] BT_DATA(4, overlays_in_drv_fx, 0x2C0) = { 1903035, 1572865, 662279, 475463707, -13107299, 2949367, 24182798, 458762, 2097151, -16777194, -2080374746, -20644113, -18415386, 14418100, 2359313, 1310741, 194, 2752512, 13239708, 103809024 };
+s32 D_808008C0_indrv_fx[24] BT_DATA(4, overlays_in_drv_fx, 0x310) = { 1903049, 1638403, 851995, 1966230, 2883584, 5832704, 83, 14, 1245310, 2162441, -10158042, -2097197, -1507328, 51, 2359987, 62062613, 3342510, 2752512, 5505891, 61866031, 655380, 46, 4194304, 15597568 };
+s32 D_80800920_indrv_fx[17] BT_DATA(4, overlays_in_drv_fx, 0x370) = { 1903068, 1638403, 720940, 116, 0, 8847360, 2162687, -13500377, -6946896, 56, 2228334, 8847738, 26148885, 3801282, 2818616, 46268438, 33554432 };
+s32 D_80800964_indrv_fx[17] BT_DATA(4, overlays_in_drv_fx, 0x3B4) = { 1903068, 1638403, 720940, 106, 0, 8192000, 2158832, -265158617, -6946896, 56, 2228846, 47449210, 76480533, 3801282, 2818872, 79822870, 33554432 };
+s32 D_808009A8_indrv_fx[19] BT_DATA(4, overlays_in_drv_fx, 0x3F8) = { 1903068, 1638403, 720910, 1245310, 2883584, 6946816, 125, 32, 842150480, 2621333, -5242880, 3670050, 10551457, 19792194, 1376314, 12714027, 10354882, 1442304, 0 };
+s32 D_808009F4_indrv_fx[22] BT_DATA(4, overlays_in_drv_fx, 0x444) = { 1903033, 1638401, 327707, 19989058, 2949129, 983054, 2, 1442816, 2555636, -14221529, 14876877, 16187426, 0, 55837524, 1376296, 3014699, 12058821, 3080215, 1638425, 0, 238, 0 };
+s32 D_80800A4C_indrv_fx[22] BT_DATA(4, overlays_in_drv_fx, 0x49C) = { 1903033, 1638401, 327707, 19989058, 2949129, 983054, 2, 1442816, 2555636, -14221529, 14876877, 16187426, 22282580, 0, 1376281, 6357035, 10354859, 3080215, 1638425, 0, 238, 0 };
+s32 D_80800AA4_indrv_fx[22] BT_DATA(4, overlays_in_drv_fx, 0x4F4) = { 1903033, 1638401, 327707, 6881558, 2949219, 9371662, 10, 1442832, 2555336, -27328929, 27984277, 22741026, 0, 324277076, 1376296, 3014699, 13697246, 3080215, 1638425, 0, 238, 0 };
+s32 D_80800AFC_indrv_fx[12] BT_DATA(4, overlays_in_drv_fx, 0x54C) = { 1902795, 2555875, 0, 23003511, 27328546, 655377, 1105281507, 1376256, 7536683, 8519815, 1441808, 0 };
+s32 D_80800B2C_indrv_fx[12] BT_DATA(4, overlays_in_drv_fx, 0x57C) = { 1902904, 2555875, 0, 23003511, 27328546, 655377, 1105281507, 1376256, 7536683, 8519815, 1441808, 0 };
+s32 D_80800B5C_indrv_fx[17] BT_DATA(4, overlays_in_drv_fx, 0x5AC) = { 1903068, 1638403, 720940, 145, 0, 12124160, 2162687, -15007705, -6946896, 56, 2228462, 20579194, 59703317, 3801282, 2818616, 43581462, 33554432 };
+s32 D_80800BA0_indrv_fx[18] BT_DATA(4, overlays_in_drv_fx, 0x5F0) = { 1903075, 131067, -85786624, 457776, 44, -24838400, -19660418, 32440620, 2097126, 1828716566, -2147483612, 1507356, 1376256, 9175083, 15728926, 262389, 1442304, 0 };
+s32 D_80800BE8_indrv_fx[21] BT_DATA(4, overlays_in_drv_fx, 0x638) = { 1903070, 2948989, -9961604, 8913049, 8781825, 300, 0, 26214400, 2621056, -19660537, 41680930, 41943751, 70452316, 1376289, 14221355, 14549278, 3080286, 7012474, 7012464, 8519784, 0 };
+s32 D_80800C3C_indrv_fx[26] BT_DATA(4, overlays_in_drv_fx, 0x68C) = { 1903049, 1638400, 524315, 327685, 2883584, 2228224, 41, 32, 1684366673, 1442816, 2162688, 0, 2555904, -786432, 786466, 4325457, 6488179, 1376307, 11730987, 25166307, 3080192, 3014699, 51, 4194554, 1442304, 0 };
+s32 D_80800CA4_indrv_fx[19] BT_DATA(4, overlays_in_drv_fx, 0x6F4) = { 1903077, 1638402, 393260, -3211314, 50, 3276800, 2555904, -4587520, 4587554, 4980904, 19268006, 1376340, 6357035, 7536785, 3080256, 3997747, 0, 97, 0 };
+s32 D_80800CF0_indrv_fx[16] BT_DATA(4, overlays_in_drv_fx, 0x740) = { 1903026, 1638400, 589851, -32965246, 2949395, 37027854, 458762, 1441808, 2555904, -59310080, 54919204, 1966149, 1376266, 15204395, 25166261, 0 };
+s32 D_80800D30_indrv_fx[15] BT_DATA(4, overlays_in_drv_fx, 0x780) = { 1903024, 2883632, 5898240, 2752612, 38402, 2228277, 3997772, 6684693, 8519869, 2819105, 69271599, 2293793, 2490403, 20, 7995392 };
+s32 D_80800D6C_indrv_fx[20] BT_DATA(4, overlays_in_drv_fx, 0x7BC) = { 1903076, 1834214, -56688595, 42271407, 917509, 393238, -2147483610, -8716692, -16056117, 21954799, 2359336, 2621461, 131315, 2818519, 30998575, 7209031, 7536640, 0, 22, 33554432 };
+s32 D_80800DBC_indrv_fx[20] BT_DATA(4, overlays_in_drv_fx, 0x80C) = { 1903080, 1834214, -56688595, 42271407, 917509, 393238, -2147483610, -8716692, -16056117, 21954799, 2359336, 2621461, 131315, 2818519, 30998575, 7209031, 7536640, 0, 22, 33554432 };
+s32 D_80800E0C_indrv_fx[20] BT_DATA(4, overlays_in_drv_fx, 0x85C) = { 1903081, 1834214, -56688595, 42271407, 917509, 393238, -2147483610, -8716692, -16056117, 21954799, 2359336, 2621461, 131315, 2818519, 30998575, 7209031, 7536640, 0, 22, 33554432 };
+s32 D_80800E5C_indrv_fx[20] BT_DATA(4, overlays_in_drv_fx, 0x8AC) = { 1903083, 1834214, -56688595, 42271407, 917509, 393238, -2147483610, -8716692, -16056117, 21954799, 2359336, 2621461, 131315, 2818519, 30998575, 7209031, 7536640, 0, 22, 33554432 };
+s32 D_80800EAC_indrv_fx[21] BT_DATA(4, overlays_in_drv_fx, 0x8FC) = { 1903072, 1834214, -56688595, 42271407, 917509, 393238, -2147483610, -8716692, -16056117, 21954799, 2359336, 2621461, 131315, 2818519, 30998575, 7209031, 7536640, 0, 22, 33554432, 0 };

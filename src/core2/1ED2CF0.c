@@ -16,7 +16,7 @@ extern u8 D_801354FD;
 extern f32 D_8013550C;
 
 void func_800F9400(s32 arg0) {
-    s32 func_800C964C(s32);
+    void func_800C964C(s32 arg0);
     if ((arg0 == 0xA) || (arg0 == 1)) {
         func_800C964C(0xC);
         return;
@@ -27,7 +27,7 @@ void func_800F9400(s32 arg0) {
 /* extern */
 
 void func_800F9444(s32 arg0) {
-    s32 func_800C964C(s32);
+    void func_800C964C(s32 arg0);
     if ((arg0 == 0xA) || (arg0 == 1)) {
         func_800C964C(0xD);
         return;
@@ -35,7 +35,7 @@ void func_800F9444(s32 arg0) {
     func_800C964C(0xF);
 }
 
-void func_800F9488(s32 arg0) {
+void func_800F9488(BtIntPtr arg0) {
     extern u8 D_80135520;
     extern u8 D_80135521;
     extern u8 D_80135522;
@@ -46,7 +46,7 @@ void func_800F9488(s32 arg0) {
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_800F6224(s32);
     void func_800F759C(s32);
-    s32 func_800F7CF4(s32 arg0, s32 arg1, void *arg2);
+    s32 func_800F7CF4(BtIntPtr arg0, s32 arg1, void *arg2);
     void func_800F7E64(s32 arg0, s32 arg1);
     s16 func_800F8A5C();
     void func_800F9240(f32 *, s32);
@@ -260,7 +260,7 @@ void func_800F9AFC(void) {
 
 void func_800F9B54(void) {
     s32 _plsu_entrypoint_1(s32);
-    u32 sp1C;
+    BtUIntPtr sp1C;
     s32 sp18;
 
     sp1C = func_800F54E4();
@@ -396,3 +396,12 @@ void func_800F9C6C(void) {
         break;
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+PlayerState * D_80135490 [ 2 ] BT_DATA(4, bss_core2bss2_2, 0x25F0);
+u8 D_80135520 BT_DATA(4, bss_core2bss2_2, 0x2680);
+u8 D_80135521 BT_DATA(4, bss_core2bss2_2, 0x2681);
+u8 D_80135522 BT_DATA(4, bss_core2bss2_2, 0x2682);
+#endif

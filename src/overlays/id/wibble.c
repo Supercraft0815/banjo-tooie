@@ -1,7 +1,7 @@
 #include "common.h"
 
-/* extern */
 
+/* extern */
 f32 func_80800000_idwibble(void *arg0, void *arg1, void *arg2) {
     f32 func_800136D0(f32);
     f32 func_80013788(f32);
@@ -33,9 +33,9 @@ f32 func_80800000_idwibble(void *arg0, void *arg1, void *arg2) {
         }
     }
     return temp_f12;
-}
+}      
 
-void idwibble_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, void *arg4) {
+void idwibble_entrypoint_0(s32 arg0, BtUIntPtr arg1, u8 *arg2, BtIntPtr arg3, void *arg4) {
     f32 height;
     s32 shade;
     f32 offsets[2];
@@ -86,10 +86,10 @@ s32 *func_80800324_idwibble(s32 arg0) {
         }
     }
     return D_80800770_idwibble[0].words;
-}
+}               typedef struct { u8 pad0[0x18]; s16 unk18; s16 unk1A; u8 pad1C[0x8]; f32 unk24; f32 unk28; f32 unk2C; u8 pad30[0x3]; u8 unk33; s16 unk34; u8 pad36[0x1]; u8 unk37; } Objwibble_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     void func_800EE88C(f32 *, s16 *);
     s32 *entry;
     s16 first[3];
@@ -99,7 +99,7 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     entry = func_80800324_idwibble(arg1);
     arg1 %= 100;
     _glidmake_entrypoint_2(arg2, arg3, (u8 *)first, (u8 *)second);
-    *(s16 *)((u8 *)arg0 + 0x18) = (first[1] + second[1]) / 2;
+    ((Objwibble_arg0 *)arg0)->unk18 = (first[1] + second[1]) / 2;
     func_800EE88C(arg0, first);
     func_800EE88C(arg0 + 3, second);
     arg0[7] = *((u8 *)entry + 0xD) << 6;
@@ -110,19 +110,19 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     }
     value = ((f32 *)entry)[1];
     if (value < 0.0f) {
-        *(s16 *)((u8 *)arg0 + 0x1A) = (s32)-value;
+        ((Objwibble_arg0 *)arg0)->unk1A = (s32)-value;
         *((u8 *)arg0 + 0x31) = 2;
     } else if (value > 0.0f) {
-        *(s16 *)((u8 *)arg0 + 0x1A) = (s32)value;
+        ((Objwibble_arg0 *)arg0)->unk1A = (s32)value;
         *((u8 *)arg0 + 0x31) = 0;
     } else {
-        *(s16 *)((u8 *)arg0 + 0x1A) = (s32)((arg0[4] - arg0[1]) * 0.5f);
+        ((Objwibble_arg0 *)arg0)->unk1A = (s32)((arg0[4] - arg0[1]) * 0.5f);
         *((u8 *)arg0 + 0x31) = 1;
     }
-    if (0.0f == *(s16 *)((u8 *)arg0 + 0x1A)) {
-        *(s16 *)((u8 *)arg0 + 0x1A) = 1;
+    if (0.0f == ((Objwibble_arg0 *)arg0)->unk1A) {
+        ((Objwibble_arg0 *)arg0)->unk1A = 1;
     }
-    arg0[8] = (f32)(u32)*((u8 *)entry + 0xC) / *(s16 *)((u8 *)arg0 + 0x1A);
+    arg0[8] = (f32)(u32)*((u8 *)entry + 0xC) / ((Objwibble_arg0 *)arg0)->unk1A;
     *((u8 *)arg0 + 0x30) = 0xFF - *((u8 *)entry + 0xC);
     if (*((u8 *)entry + 0xC)) {
         *((u8 *)arg0 + 0x32) = 1;
@@ -137,7 +137,7 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     } else {
         arg0[11] = (f32)arg1 * value;
     }
-    *(s16 *)((u8 *)arg0 + 0x34) = 0;
+    ((Objwibble_arg0 *)arg0)->unk34 = 0;
     if (arg4 != 1 && arg4 != 2) {
         *((u8 *)arg0 + 0x37) = 1;
     } else {
@@ -146,7 +146,7 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 }
 
 void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, void *);
+    s32 _glid_entrypoint_0(BtIntPtr, s32, s32 *, void *);
     f32 func_800D8FF8(void);
     s32 func_800E3D0C(void *, void *);
     void func_800EE7F8(f32 *, f32 *);
@@ -160,20 +160,20 @@ void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
     struct { f32 x, y, z; } sp34, sp28;
     func_800EE7F8(&sp34.x, arg0);
     func_800EE7F8(&sp28.x, arg0 + 3);
-    sp34.y += *(s16 *)((s8 *)arg0 + 0x34);
-    sp28.y += *(s16 *)((s8 *)arg0 + 0x34);
-    if (*(u8 *)((s8 *)arg0 + 0x37) || func_800E3D0C(arg0, arg0 + 3)) {
+    sp34.y += ((Objwibble_arg0 *)arg0)->unk34;
+    sp28.y += ((Objwibble_arg0 *)arg0)->unk34;
+    if (((Objwibble_arg0 *)arg0)->unk37 || func_800E3D0C(arg0, arg0 + 3)) {
         _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0);
     }
     }
 }
 
 #ifdef BT_NATIVE
-void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); f32 dt = func_800D8FF8(); f32 *velocity = (f32 *) ((s8 *) arg0 + 0x2C); f32 *position = (f32 *) ((s8 *) arg0 + 0x24); *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
+void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(BtIntPtr, s32, s32 *, void *); f32 func_800D8FF8(void); f32 dt = func_800D8FF8(); f32 *velocity = (f32 *) ((s8 *) arg0 + 0x2C); f32 *position = (f32 *) ((s8 *) arg0 + 0x24); *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
 #else
-void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); extern s32 _idwibble_entrypoint_0; f32 dt = func_800D8FF8(); f32 *velocity = (f32 *) ((s8 *) arg0 + 0x2C); f32 *position = (f32 *) ((s8 *) arg0 + 0x24); *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
+void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); extern s32 _idwibble_entrypoint_0; f32 dt = func_800D8FF8(); f32 *velocity = &((Objwibble_arg0 *)arg0)->unk2C; f32 *position = &((Objwibble_arg0 *)arg0)->unk24; *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
 #endif
 
 void idwibble_entrypoint_5(void *arg0, s16 arg1) {
-    (*(s16 *)((s8 *)(arg0) + (0x34))) = arg1;
+    (((Objwibble_arg0 *)arg0)->unk34) = arg1;
 }

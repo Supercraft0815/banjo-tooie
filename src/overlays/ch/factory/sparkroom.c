@@ -5,9 +5,9 @@ void func_80800000_chfactorysparkroom(Actor *arg0) {
     s32 _glsplinefind_entrypoint_3(f32 *);
     void _gspropctrl_entrypoint_11(Prop *, f32 *);
     s32 _gspropctrl_entrypoint_8(Prop *);
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    u8 _subaddieaudioloop_entrypoint_7(u8 arg0, f32 *arg1, u32 arg2, u32 *arg3, s32 arg4);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80801070_chfactorysparkroom;
+    extern s32 D_80801070_chfactorysparkroom[3];
     Prop *sp68[16];
     Prop **var_s0;
     u32 var_s2;
@@ -43,20 +43,20 @@ void func_80800000_chfactorysparkroom(Actor *arg0) {
             var_s1++;
         } while (var_s2 < arg0->unk6C_0);
     }
-    ((struct SparkRoomActorData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomActorData *)arg0->actorData)->audio, arg0->position, 0, &D_80801070_chfactorysparkroom, ((struct SparkRoomActorData *)arg0->actorData)->active);
+    ((struct SparkRoomActorData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomActorData *)arg0->actorData)->audio, arg0->position, 0, D_80801070_chfactorysparkroom, ((struct SparkRoomActorData *)arg0->actorData)->active);
 }
 
-struct Unk800C7A68;
-
+struct Unk800C7A68;     
+struct SparkRoomUpdateColor { s32 values[3]; };
 void func_8080013C_chfactorysparkroom(Actor *arg0) {
     void _chelectricfence_entrypoint_1(Actor *, f32 *);
     void _subaddieaudioloop_entrypoint_2(Actor *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    u8 _subaddieaudioloop_entrypoint_7(u8 arg0, f32 *arg1, u32 arg2, u32 *arg3, s32 arg4);
     void func_80018820(s32, f32, f32);
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     void func_800C8CB8(s32, f32 *);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void *func_800D7520(s32);
     s32 func_800D90A4(f32 *);
     f32 func_800DC0C0(void);
@@ -64,12 +64,12 @@ void func_8080013C_chfactorysparkroom(Actor *arg0) {
     f32 func_800EFC7C(void *, void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     int func_800F3214(void *, void *, void *, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F55FC(s32);
-    s32 func_800F581C(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
-    s32 func_800F796C(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F55FC(BtIntPtr);
+    s32 func_800F581C(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
+    void func_800F796C(BtIntPtr arg0,s32 arg1);
     void *func_80100094(Actor *, u32);
     void func_808005E0_chfactorysparkroom(Actor *, f32 *);
     void func_808006D0_chfactorysparkroom(Actor *, f32);
@@ -89,9 +89,9 @@ void func_8080013C_chfactorysparkroom(Actor *arg0) {
         s32 unk18;
         s32 unk1C;
     };
-    struct SparkRoomUpdateColor { s32 values[3]; };
-    extern s32 D_80801060_chfactorysparkroom;
-    extern s32 D_80801070_chfactorysparkroom;
+
+    extern s32 D_80801060_chfactorysparkroom[4];
+    extern s32 D_80801070_chfactorysparkroom[3];
     extern struct SparkRoomUpdateColor D_8080107C_chfactorysparkroom;
     extern struct SparkRoomUpdateColor D_80801088_chfactorysparkroom;
     f32 spCC[3];
@@ -141,9 +141,9 @@ void func_8080013C_chfactorysparkroom(Actor *arg0) {
         } while (i < arg0->unk6C_0);
     }
     if (minDistance < 10000000.0f) {
-        ((struct SparkRoomUpdateData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomUpdateData *)arg0->actorData)->audio, spCC, 1, &D_80801060_chfactorysparkroom, arg0->unk70_0);
+        ((struct SparkRoomUpdateData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomUpdateData *)arg0->actorData)->audio, spCC, 1, D_80801060_chfactorysparkroom, arg0->unk70_0);
     } else {
-        ((struct SparkRoomUpdateData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomUpdateData *)arg0->actorData)->audio, spCC, 0, &D_80801060_chfactorysparkroom, arg0->unk70_0);
+        ((struct SparkRoomUpdateData *)arg0->actorData)->audio = _subaddieaudioloop_entrypoint_7(((struct SparkRoomUpdateData *)arg0->actorData)->audio, spCC, 0, D_80801060_chfactorysparkroom, arg0->unk70_0);
     }
     if (arg0->unk54 == 0.0f) {
         if (((func_800F581C(func_800F54E4()) & 0x08000000) ||
@@ -164,24 +164,24 @@ void func_8080013C_chfactorysparkroom(Actor *arg0) {
             _subaddieaudioloop_entrypoint_2(arg0);
             return;
         }
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80801070_chfactorysparkroom);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80801070_chfactorysparkroom);
         distance = arg0->unk54;
         if (distance < ((f32)arg0->unk74_7 / 10.0f) * 0.3f) {
             func_808006D0_chfactorysparkroom(arg0, func_800F10B4(distance, 0.0f, ((f32)arg0->unk74_7 / 10.0f) * 0.3f, 0.0f, 1.0f));
         }
     }
 }
-
+struct SparkRoomInitColor { s32 values[3]; };
 void func_808005E0_chfactorysparkroom(Actor *arg0, f32 *arg1) {
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32[3]);
     void func_800C8D4C(s32, f32 *);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void func_800C8F64(s32, s32);
     void func_800C8FE0(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    struct SparkRoomInitColor { s32 values[3]; };
+
     struct SparkRoomLight { u8 pad[0x200]; s32 light; };
     extern struct SparkRoomInitColor D_80801094_chfactorysparkroom;
     extern f32 D_808010A0_chfactorysparkroom[];
@@ -209,13 +209,13 @@ void func_808005E0_chfactorysparkroom(Actor *arg0, f32 *arg1) {
         var_s0 = (struct SparkRoomLight *)((u8 *)var_s0 + 4);
     } while (var_s1 != &D_808010D8_chfactorysparkroom);
 }
-
+struct SparkRoomColor { s32 values[3]; };
 void func_808006D0_chfactorysparkroom(Actor *arg0, f32 arg1) {
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     f32 func_800DC0C0(void);
     int func_800F3214(void *, void *, void *, f32);
     void *func_80100094(Actor *, u32);
-    struct SparkRoomColor { s32 values[3]; };
+
     extern struct SparkRoomColor D_808010E4_chfactorysparkroom;
     extern struct SparkRoomColor D_808010F0_chfactorysparkroom;
     struct SparkRoomColor sp54 = D_808010E4_chfactorysparkroom;
@@ -235,7 +235,7 @@ void func_808006D0_chfactorysparkroom(Actor *arg0, f32 arg1) {
     for (var_s0 = 0, var_s1 = temp_s3; var_s0 != 0x10; var_s0 += 4, var_s1 += 4) {
         func_800C8E84(*(s32 *)(var_s1 + 0x200), sp38);
     }
-}
+}    typedef struct { u8 pad0[0x1FC]; s32 unk1FC; s32 unk200; } Objsparkroom_func_808007E0_chfactorysparkroom_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 void func_808007E0_chfactorysparkroom(Actor *arg0) {
     void func_800C8B84(volatile s32);
@@ -248,10 +248,10 @@ void func_808007E0_chfactorysparkroom(Actor *arg0) {
     var_s1 = 0;
     var_s0 = temp_v0;
     do {
-        func_800C8B84((*(s32 *)((s8 *)(var_s0) + (0x200))));
+        func_800C8B84((((Objsparkroom_func_808007E0_chfactorysparkroom_var_s0 *)var_s0)->unk200));
         var_s1 += 1;
         var_s0 += 4;
-        (*(s32 *)((s8 *)(var_s0) + (0x1FC))) = 0;
+        (((Objsparkroom_func_808007E0_chfactorysparkroom_var_s0 *)var_s0)->unk1FC) = 0;
     } while (var_s1 != 4);
 }
 
@@ -267,7 +267,7 @@ void func_80800838_chfactorysparkroom(Actor *arg0, void *arg1) {
     void *func_800D7520(s32);
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF744(s32, s32);
     void func_800DF830(s32);
     void func_800E3980(f32 *);
@@ -275,16 +275,16 @@ void func_80800838_chfactorysparkroom(Actor *arg0, void *arg1) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1828(f32 *, f32 *);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A2C(s32, s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A2C(BtIntPtr, s32, f32 *);
     void *func_80100094(Actor *, u32);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     struct SparkRoomEntry *entries;
     struct SparkRoomEntry *entry;
     f32 pos[3];
     f32 rot[3];
     f32 progress;
-    s32 model;
+    BtIntPtr model;
     f32 point[3];
     f32 angles[3];
     f32 scale;
@@ -312,7 +312,7 @@ void func_80800838_chfactorysparkroom(Actor *arg0, void *arg1) {
         }
     }
     if ((arg0->unk74_7 / 10.0f) * 0.3f < arg0->unk54) {
-        model = (s32)func_800D674C(0x6B9);
+        model = (BtIntPtr)func_800D674C(0x6B9);
         for (i = 0; i != 10; i++) {
             func_800F5A2C(func_800F54E4(), i, point);
             func_800F1E6C(arg0->position, point, &angles[1]);
@@ -346,20 +346,20 @@ void func_80800B60_chfactorysparkroom(Actor *arg0, s32 arg1) {
     ((struct Spark *)(sp1C + (arg1 << 5)))->handle = 0;
     arg0->actorData[7]--;
 }
-
+struct SparkColor { s32 values[3]; };
 void func_80800BE0_chfactorysparkroom(Actor *arg0, s32 arg1) {
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32 *);
     void func_800C8D4C(s32, f32 *);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void func_800C8F64(s32, s32);
     void func_800C8FE0(s32, s32);
     void *func_800D7520(s32);
     s32 func_800DC090(void);
     f32 func_800DC178(f32, f32);
     void *func_80100094(Actor *, u32);
-    struct SparkColor { s32 values[3]; };
+
     struct Spark {
         f32 timer;
         f32 duration;
@@ -396,25 +396,25 @@ void func_80800BE0_chfactorysparkroom(Actor *arg0, s32 arg1) {
     func_800C8CB8(data[arg1].handle, position);
     func_800C8D4C(data[arg1].handle, data[arg1].values);
     arg0->actorData[7]++;
-}
+}                  typedef struct { u8 pad0[0x50]; u8 unk50; u8 pad51[0x1B]; s32 unk6C; } Objsparkroom_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800D30_chfactorysparkroom(void *arg0) {
-    s32 _subaddieaudioloop_entrypoint_3(u8);
+    u8 _subaddieaudioloop_entrypoint_3(u8 arg0);
     u32 var_s0;
 
     var_s0 = 0;
-    if ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) {
+    if ((((Objsparkroom_arg0 *)arg0)->unk6C) & 0x1FF) {
         do {
-            _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x50))));
+            _subaddieaudioloop_entrypoint_3((((Objsparkroom_arg0 *)arg0)->unk50));
             var_s0 += 1;
-            (*(u8 *)((s8 *)(arg0) + (0x50))) = 0U;
-        } while (var_s0 < (u32) ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF));
+            (((Objsparkroom_arg0 *)arg0)->unk50) = 0U;
+        } while (var_s0 < (u32) ((((Objsparkroom_arg0 *)arg0)->unk6C) & 0x1FF));
     }
 }
 
-u32 func_80800D90_chfactorysparkroom(s32 unused, s32 arg1, s32 arg2) {
+u32 func_80800D90_chfactorysparkroom(BtIntPtr unused, s32 arg1, s32 arg2) {
     void func_80800DC8_chfactorysparkroom(Actor *);
 
     if (arg1 == 0x95) {
@@ -465,33 +465,33 @@ void func_80800DC8_chfactorysparkroom(Actor *arg0) {
 
 OSThread *chfactorysparkroom_entrypoint_0(void)
 {
-    extern u8 D_80801108_chfactorysparkroom[];
+    extern ActorData D_80801108_chfactorysparkroom[];
 
     return (OSThread *) D_80801108_chfactorysparkroom;
 }
 
 /* extern */
 
-void func_80800E94_chfactorysparkroom(s32 arg0) {
-    s32 _chswitch_entrypoint_7(s32, s32);
+void func_80800E94_chfactorysparkroom(BtIntPtr arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
+    s32 _chswitch_entrypoint_7(BtIntPtr, s32);
     s32 _subaddiefade_entrypoint_14();
-    s32 func_8010A63C(s32);
+    void func_8010A63C(Actor *arg0);
     _subaddiefade_entrypoint_14();
     func_8010A63C(arg0);
     _chswitch_entrypoint_7(arg0, 0xA2F);
 }
-
+struct SparkRoomPosition { f32 position[3]; };
 s32 func_80800EC8_chfactorysparkroom(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chmrtannoy_entrypoint_0(void);
+    void _chmrtannoy_entrypoint_0(void);
     s32 _chswitch_entrypoint_10(Actor *, s32, s32);
     void _glcutDll_entrypoint_6(u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80108B04(Actor *, u32);
-    struct SparkRoomPosition { f32 position[3]; } sp24;
+    struct SparkRoomPosition sp24;
     extern struct SparkRoomPosition D_80801150_chfactorysparkroom;
 
     switch (arg1) {
@@ -525,7 +525,28 @@ s32 func_80800EC8_chfactorysparkroom(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfactorysparkroom_entrypoint_1(void)
 {
-    extern u8 D_8080115C_chfactorysparkroom[];
+    extern ActorData D_8080115C_chfactorysparkroom[];
 
     return (OSThread *) D_8080115C_chfactorysparkroom;
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/sparkroom.data.s */
+void func_80105834(Actor*);
+void func_80108ED0();
+void func_80107C2C();
+extern u8 D_8011A1BC[];
+void _chswitch_entrypoint_6();
+void func_80101870(Actor* arg0, void* arg1);
+s32 D_80801060_chfactorysparkroom[4] BT_DATA(4, overlays_ch_factory_sparkroom, 0x0) = { 1246510, 1461792, 852198, 18415616 };
+s32 D_80801070_chfactorysparkroom[3] BT_DATA(4, overlays_ch_factory_sparkroom, 0x10) = { 1246510, 1469792, 0 };
+struct SparkRoomUpdateColor D_8080107C_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0x1C) = { { 0, 0, 0 } };
+struct SparkRoomUpdateColor D_80801088_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0x28) = { { 255, 255, 255 } };
+struct SparkRoomInitColor D_80801094_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0x34) = { { 255, 255, 255 } };
+f32 D_808010A0_chfactorysparkroom [2] BT_DATA(4, overlays_ch_factory_sparkroom, 0x40) = { 875.0f, 1700.0f };
+f32 D_808010A8_chfactorysparkroom [ 4 ] [ 3 ] BT_DATA(4, overlays_ch_factory_sparkroom, 0x48) = { { 875.0f, 500.0f, 875.0f }, { 875.0f, 500.0f, -875.0f }, { -875.0f, 500.0f, 875.0f }, { -875.0f, 500.0f, -875.0f } };
+f32 D_808010D8_chfactorysparkroom [ 3 ] BT_DATA(4, overlays_ch_factory_sparkroom, 0x78) = { 0.0f, 0.0f, 0.0f };
+struct SparkRoomColor D_808010E4_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0x84) = { { 0, 0, 0 } };
+struct SparkRoomColor D_808010F0_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0x90) = { { 255, 255, 255 } };
+struct SparkColor D_808010FC_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0x9C) = { { 255, 255, 255 } };
+ActorData D_80801108_chfactorysparkroom [1] BT_DATA(4, overlays_ch_factory_sparkroom, 0xA8) = { { 344, 1043, 1721, 1, 0, (void (*)(struct Actor *))func_8080013C_chfactorysparkroom, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800838_chfactorysparkroom, 0, 0, 0, 0, 2, 1024, (void (*)(struct Actor *))func_80800D30_chfactorysparkroom, (BtIntPtr)func_80108ED0, 528, 0, (void (*)(struct Actor *))func_80800000_chfactorysparkroom, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1024, (void (*)(struct Actor *, long, long))func_80800D90_chfactorysparkroom, 0 } };
+struct SparkRoomPosition D_80801150_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0xF0) = { { -2500.0f, 0.0f, 0.0f } };
+ActorData D_8080115C_chfactorysparkroom [1] BT_DATA(4, overlays_ch_factory_sparkroom, 0xFC) = { { 835, 1005, 2179, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800E94_chfactorysparkroom, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_80800EC8_chfactorysparkroom, 0 } };

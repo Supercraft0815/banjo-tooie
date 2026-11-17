@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_grid.h"
 #include "core2/1EC8070.h"
 #include "memory.h"
@@ -13,12 +13,12 @@ void _gccubeDll_entrypoint_1(NativeWorldGrid *);
 void _gccubeDll_entrypoint_2(NativeWorldGrid *);
 void _gccubeDll_entrypoint_3(NativeWorldGrid *,void *);
 void _gccubeDll_entrypoint_4(NativeWorldGrid *,void *);
-void _gccubeDll_entrypoint_5(NativeWorldGrid *);
+s32 _gccubeDll_entrypoint_5(NativeWorldGrid *);
 void _gccubeDll_entrypoint_6(NativeWorldGrid *);
-s32 func_800D3104(s32,void *);
+s32 func_800D3104(BtIntPtr,void *);
 void func_800D2EE4(void);
 s32 func_800EA068(s32);
-void func_8010A874(s32);
+void func_8010A874(BtIntPtr);
 #else
 typedef struct { s32 unk0; s32 lower[3]; s32 upper[3]; s32 pad[9]; f32 scale; } Bounds;
 extern Bounds D_80128410;
@@ -33,8 +33,8 @@ void func_800BD570()
 
 /* extern */
 
-#ifdef BT_NATIVE
-void func_800BD594(s32 mode) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_800BD594(BtIntPtr mode) {
     if (func_800EA068(0x200)) func_8010A874(mode);
     else func_800D3104(mode,&native_world_grid);
 }
@@ -56,7 +56,7 @@ void func_800BD5DC()
     _gccubeDll_entrypoint_2(&D_80128410);
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BD600(void) {
     native_world_grid.cells=defrag(native_world_grid.cells);
     native_world_grid.model_counts=defrag(native_world_grid.model_counts);
@@ -68,14 +68,14 @@ void func_800BD600(void) {
     s32 func_800D2EE4();
     s32 func_800E9DF8();
     extern s32 D_80128454;
-    (*(s32 *)((s8 *)(&D_80128410) + (0))) = defrag((*(s32 *)((s8 *)(&D_80128410) + (0))));
+    (D_80128410.unk0) = defrag((D_80128410.unk0));
     D_80128454 = defrag((*(s32 *)((s8 *)(&D_80128410) + (0x44))));
     func_800E9DF8();
     func_800D2EE4();
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BD64C(s32 *out,f32 *position) {
     for(s32 i=0;i<3;++i) {
         out[i]=(s32)(position[i]*native_world_grid.scale+(position[i]<0 ? -1.0f : 0.0f));
@@ -141,7 +141,7 @@ void func_800BD708(s32 *arg0, s32 *arg1, f32 *arg2, f32 *arg3, f32 arg4) {
     }
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BD860(NativeWorldCell *cell,s32 *out) {
     s32 index=func_800BD948(cell), remainder;
     if(index<0 || !native_world_grid.row_stride || !native_world_grid.plane_stride) {
@@ -171,7 +171,7 @@ void func_800BD860(s32 arg0, s32 *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800BD948(void *cell) {
     uintptr_t offset=(uintptr_t)cell-(uintptr_t)native_world_grid.cells;
     if(cell==&native_world_grid.fallback || !native_world_grid.cells ||
@@ -191,7 +191,7 @@ s32 func_800BD948(s32 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800BD97C(s32 *position) {
     s32 relative[3];
     if(!native_world_grid.cells || native_world_grid.count<=0) return -1;
@@ -233,7 +233,7 @@ s32 func_800BD97C(s32 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell *func_800BDAD4(s32 *position) {
     s32 relative[3];
     for(s32 i=0;i<3;++i) {
@@ -259,7 +259,7 @@ s32 func_800BDAD4(s32 position[3]) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell *func_800BDB9C(s32 index) {
     return index<0 || index>=native_world_grid.count || !native_world_grid.cells ? &native_world_grid.fallback : native_world_grid.cells+index;
 }
@@ -276,7 +276,7 @@ s32 func_800BDB9C(s32 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell *func_800BDBC4(s32 *position) { return func_800BDB9C(func_800BD97C(position)); }
 #else
 s32 func_800BDBC4(s32 arg0)
@@ -285,7 +285,7 @@ s32 func_800BDBC4(s32 arg0)
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell *func_800BDBEC(f32 *position) {
     s32 out[3];func_800EE904(out,position);return func_800BDBC4(out);
 }
@@ -299,7 +299,7 @@ void func_800BDBEC(f32 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell *func_800BDC44(void) { return &native_world_grid.fallback; }
 #else
 void * func_800BDC44(void) {
@@ -308,7 +308,7 @@ void * func_800BDC44(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800BDC50(void) { return native_world_grid.count; }
 #else
 s32 func_800BDC50()
@@ -317,7 +317,7 @@ s32 func_800BDC50()
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800BDC5C(void) { return native_world_grid.cell_size; }
 #else
 s32 func_800BDC5C(void) {
@@ -328,7 +328,7 @@ s32 func_800BDC5C(void) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BDC68(void *stream) { _gccubeDll_entrypoint_3(&native_world_grid,stream); }
 #else
 void func_800BDC68(s32 arg0) {
@@ -339,7 +339,7 @@ void func_800BDC68(s32 arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BDC90(void *stream) { _gccubeDll_entrypoint_4(&native_world_grid,stream); }
 #else
 void func_800BDC90(s32 arg0) {
@@ -353,9 +353,9 @@ void func_800BDCB8()
     _gccubeDll_entrypoint_0(&D_80128410);
 }
 
-void func_800BDCDC()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800BDCDC()
 {
-    _gccubeDll_entrypoint_5(&D_80128410);
+    BT_NATIVE_ONLY(return) _gccubeDll_entrypoint_5(&D_80128410);
 }
 
 void func_800BDD00()
@@ -363,7 +363,7 @@ void func_800BDD00()
     _gccubeDll_entrypoint_6(&D_80128410);
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 static s32 native_world_neighbors(NativeWorldCell **out,s32 *position,s32 models) {
     s32 pos[3],iter[3],index,count=0;
     for(s32 i=0;i<3;++i) pos[i]=(s32)((f32)position[i]*native_world_grid.scale-native_world_grid.lower[i]);
@@ -397,7 +397,7 @@ static s32 native_world_neighbors(NativeWorldCell **out,s32 *position,s32 models
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell **func_800BDD24(s32 *position) {
     model_neighbors[native_world_neighbors(model_neighbors,position,1)]=NULL;
     return model_neighbors;
@@ -469,7 +469,7 @@ s32 *func_800BDD24(s32 *arg0)
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800BE09C(NativeWorldCell **out,s32 *position) { return native_world_neighbors(out,position,0); }
 #else
 s32 func_800BE09C(s32 *arg0, s32 *arg1)
@@ -498,9 +498,9 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
   }
 
   count = 0;
-  if ((((((pos[0] > 0) && (pos[0] < ((*((s32 *) (((s8 *) (&D_80128410)) + 0x28))) - 1))) && (pos[1] > 0)) && (pos[1] < ((*((s32 *) (((s8 *) (&D_80128410)) + 0x2C))) - 1))) && (pos[2] > 0)) && (pos[2] < ((*((s32 *) (((s8 *) (&D_80128410)) + 0x30))) - 1)))
+  if ((((((pos[0] > 0) && (pos[0] < ((D_80128410.pad[3]) - 1))) && (pos[1] > 0)) && (pos[1] < ((D_80128410.pad[4]) - 1))) && (pos[2] > 0)) && (pos[2] < ((D_80128410.pad[5]) - 1)))
   {
-    base = ((pos[0] + ((pos[1] - 1) * (*((s32 *) (((s8 *) (&D_80128410)) + 0x1C))))) + ((pos[2] - 1) * (*((s32 *) (((s8 *) (&D_80128410)) + 0x20))))) - 1;
+    base = ((pos[0] + ((pos[1] - 1) * (D_80128410.pad[0]))) + ((pos[2] - 1) * (D_80128410.pad[1]))) - 1;
     index = base;
     iter[0] = 0;
     do
@@ -516,10 +516,10 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
           index++;
         }
 
-        index = (index + (*((s32 *) (((s8 *) (&D_80128410)) + 0x1C)))) - (new_var = 3);
+        index = (index + (D_80128410.pad[0])) - (new_var = 3);
       }
 
-      base += *((s32 *) (((s8 *) (&D_80128410)) + 0x20));
+      base += D_80128410.pad[1];
       index = base;
     } while (++iter[0] < 3);
 
@@ -528,17 +528,17 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
   {
     for (iter[0] = pos[0] - 1; iter[0] < (pos[0] + 2); iter[0]++)
     {
-      if ((iter[0] >= 0) && (iter[0] < (*((s32 *) (((s8 *) (&D_80128410)) + 0x28)))))
+      if ((iter[0] >= 0) && (iter[0] < (D_80128410.pad[3])))
       {
         for (iter[1] = pos[1] - 1; iter[1] < (pos[1] + 2); iter[1]++)
         {
-          if ((iter[1] >= 0) && (iter[1] < (*((s32 *) (((s8 *) (&D_80128410)) + 0x2C)))))
+          if ((iter[1] >= 0) && (iter[1] < (D_80128410.pad[4])))
           {
             for (iter[2] = pos[2] - 1; iter[2] < (pos[2] + 2); iter[2]++)
             {
-              if ((iter[2] >= 0) && (iter[2] < (*((s32 *) (((s8 *) (&D_80128410)) + 0x30)))))
+              if ((iter[2] >= 0) && (iter[2] < (D_80128410.pad[5])))
               {
-                index = (iter[0] + (iter[1] * (*((s32 *) (((s8 *) (&D_80128410)) + 0x1C))))) + (iter[2] * (*((s32 *) (((s8 *) (&D_80128410)) + 0x20))));
+                index = (iter[0] + (iter[1] * (D_80128410.pad[0]))) + (iter[2] * (D_80128410.pad[1]));
                 if (func_800E9DCC((s16 *) (D_80128410.unk0 + (index << 3))))
                 {
                   arg0[count++] = D_80128410.unk0 + (index << 3);
@@ -557,7 +557,7 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell **func_800BE3F8(f32 *position) {
     s32 pos[3];func_800EE904(pos,position);
     dynamic_neighbors[func_800BE09C(dynamic_neighbors,pos)]=NULL;
@@ -576,7 +576,7 @@ s32 *func_800BE3F8(u8 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeWorldCell **func_800BE444(f32 *position) {
     s32 pos[3],count;func_800EE904(pos,position);
     count=func_800BE09C(all_neighbors,pos);
@@ -606,7 +606,7 @@ s32 *func_800BE444(f32 *arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800BE4C4(void) {
     for(s32 i=0;i<native_world_grid.count;++i) func_800E9CF4(native_world_grid.cells+i);
     func_800E9CF4(&native_world_grid.fallback);return 0;
@@ -618,7 +618,7 @@ s32 func_800BE4C4(void) {
     u8 *var_s0;
     u8 *temp_s1;
 
-    temp_s1 = *(u8 **)&D_80128410 + (*(s32 *)((s8 *)&D_80128410 + 0x24)) * 8;
+    temp_s1 = *(u8 **)&D_80128410 + (D_80128410.pad[2]) * 8;
     var_s0 = *(u8 **)&D_80128410;
     for (; var_s0 < temp_s1; var_s0 += 8) {
         func_800E9CF4(var_s0);
@@ -627,19 +627,19 @@ s32 func_800BE4C4(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BE52C(NativeWorldCell **begin,NativeWorldCell **end) {
     *begin=native_world_grid.cells;
     *end=*begin ? *begin+native_world_grid.count : NULL;
 }
 #else
 void func_800BE52C(s32 *arg0, s32 *arg1) {
-    *arg0 = (*(s32 *)((s8 *)(&D_80128410) + (0)));
-    *arg1 = (*(s32 *)((s8 *)(&D_80128410) + (0))) + ((*(s32 *)((s8 *)(&D_80128410) + (0x24))) << 3);
+    *arg0 = (D_80128410.unk0);
+    *arg1 = (D_80128410.unk0) + ((D_80128410.pad[2]) << 3);
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BE554(s32 *lower,s32 *upper) {
     func_800EE830(lower,native_world_grid.lower);func_800EE830(upper,native_world_grid.upper);
 }
@@ -653,7 +653,7 @@ void func_800BE554(s32 *arg0, s32 *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800BE58C(s32 *dimensions,s32 *strides) {
     func_800EE830(dimensions,native_world_grid.dimensions);
     strides[0]=native_world_grid.row_stride;strides[1]=native_world_grid.plane_stride;strides[2]=native_world_grid.count;
@@ -668,7 +668,7 @@ void func_800BE58C(s32 *arg0, s32 *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 u8 *func_800BE5C4(void *cell) {
     s32 index=func_800BD948(cell);
     return index<0 ? &native_world_grid.fallback_models : native_world_grid.model_counts+index;

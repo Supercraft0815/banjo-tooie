@@ -27,7 +27,7 @@ void func_8001E170(u8 *response);
 
 void func_8001DDF0(void) {
     osCreateMesgQueue(&D_8007D898, D_8007D890, 1);
-    func_8001DCB0(&D_8007D8B0, D_8007DA60, 3, func_8001DE64, NULL, D_8007DB70, 0x1E);
+    func_8001DCB0(&D_8007D8B0, D_8007DA60, 3, func_8001DE64, NULL, BT_NATIVE_ONLY(D_8007DA60 + 0xD8) BT_IDO_ONLY(D_8007DB70), 0x1E);
     osStartThread(&D_8007D8B0);
 }
 
@@ -35,8 +35,8 @@ void func_8001DDF0(void) {
 #include "native_cic.h"
 
 void func_8001DE64(void *arg) {
-    // The two IPL3 words read on the N64 hold their expected values; the host has no IPL3.
-    D_8007DB79 = 0;
+    // Console state of this never-returning N64 frame (sp = stack + 0xD8, native frames go below): IPL3 words, read as anti-piracy checks (gleeprom, reflight, func_80015D60).
+    ((u32 *)D_8007DA60)[0xF0 / 4] = 0xAD170014; ((u32 *)D_8007DA60)[0xF4 / 4] = 0xAD090010; D_8007DB79 = 0;
     func_8001DEE8();
 }
 

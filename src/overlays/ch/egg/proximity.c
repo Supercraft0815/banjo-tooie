@@ -2,20 +2,20 @@
 
 OSThread *cheggproximity_entrypoint_0(void)
 {
-    extern u8 D_80800CE0_cheggproximity[];
+    extern ActorData D_80800CE0_cheggproximity[];
 
     return (OSThread *) D_80800CE0_cheggproximity;
 }
 
 /* extern */
 
-void *cheggproximity_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _suegg_entrypoint_1(void *, f32);
-    void *_suegg_entrypoint_11(s32, s32, s32);
-    s32 _sueggmove_entrypoint_10(s32);
-    s32 _sueggmove_entrypoint_5(void *, s32);
-    s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 _sueggmove_entrypoint_7(void *, s32);
+void *cheggproximity_entrypoint_1(s32 arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3) {
+    void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
+    Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
+    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
+    void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
+    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
     f32 func_80013B7C(f32, f32);
     Actor *temp_v0;
     f32 *position = (f32 *)arg2;
@@ -34,7 +34,7 @@ void *cheggproximity_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 s32 func_808000A8_cheggproximity(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    s32 func_80800718_cheggproximity(s32, s32);
+    s32 func_80800718_cheggproximity(BtIntPtr, s32);
     struct ProximityData {
         u8 pad0[0x39];
         u8 active : 1;
@@ -73,7 +73,7 @@ typedef union {
     } proximity;
 } ProximityActor;
 
-void func_80800164_cheggproximity(ProximityActor *arg0) {
+void func_80800164_cheggproximity(ProximityActor *arg0 BT_PASS2(, s32 bt_a1)) {
     s32 _subaddiedraw25d_entrypoint_1();
     s32 sp1C;
 
@@ -86,7 +86,7 @@ void func_80800164_cheggproximity(ProximityActor *arg0) {
 }
 
 void func_808001CC_cheggproximity(Actor *arg0) {
-    void _fxegg_entrypoint_5(f32 *, f32 *, f32);
+    s32 _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
     void _suegg_entrypoint_20(Actor *, f32 *);
     f32 func_800D8FF8(void);
     void func_800EE7F8(f32 *, f32 *);
@@ -110,38 +110,38 @@ void func_808001CC_cheggproximity(Actor *arg0) {
             _fxegg_entrypoint_5(temp_s0, sp58, arg0->scale);
         } while (temp_s1[10] <= 0.0f);
     }
-}
+}    typedef struct { u8 pad0[0x24]; u32 unk24; } Objproximity_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void cheggproximity_entrypoint_2(void *arg0) {
-    s32 _cheggsplode_entrypoint_1(s32 *, s32, s32);
+    void _cheggsplode_entrypoint_1(Actor **arg0, s32 arg1, s32 arg2);
     s32 _gcegg_entrypoint_0(u32);
-    s32 _suegg_entrypoint_4(s32, s32);
+    void _suegg_entrypoint_4(Actor *arg0, s32 arg1);
     void *func_80100094(Actor *, u32);
-    s32 func_80106790();
-    s32 sp24;
-    s32 temp_v0;
+    BtIntPtr func_80106790();
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
     s32 sp1C;
 
     temp_v0 = func_80106790();
     sp24 = temp_v0;
     sp1C = (s32) (*(s16 *)((s8 *)(func_80100094((Actor *)temp_v0, 0)) + (0x3A)));
-    _cheggsplode_entrypoint_1(&sp24, sp1C, _gcegg_entrypoint_0((u32) (*(u32 *)((s8 *)(arg0) + (0x24))) >> 0x16));
+    _cheggsplode_entrypoint_1(&sp24, sp1C, _gcegg_entrypoint_0((u32) (((Objproximity_arg0 *)arg0)->unk24) >> 0x16));
     _suegg_entrypoint_4(sp24, 0);
 }
 
 void func_80800330_cheggproximity(Actor *arg0) {
-    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    s32 _chbaddiesetup_entrypoint_1(s32 *, BtIntPtr);
     s32 _suegg_entrypoint_8(void *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
-    void func_8080048C_cheggproximity(s32, void *);
-    void func_80800510_cheggproximity(s32, void *);
-    void func_80800588_cheggproximity(s32, s32);
-    void func_808005EC_cheggproximity(s32, s32);
-    void func_80800650_cheggproximity(s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
+    void func_8080048C_cheggproximity(BtIntPtr, void *);
+    void func_80800510_cheggproximity(BtIntPtr, void *);
+    void func_80800588_cheggproximity(BtIntPtr, BtIntPtr);
+    void func_808005EC_cheggproximity(BtIntPtr, BtIntPtr);
+    void func_80800650_cheggproximity(BtIntPtr, BtIntPtr);
     void func_808006A4_cheggproximity(Actor *, u8 *);
 #ifndef BT_NATIVE
     extern s32 _cheggproximity_entrypoint_2;
@@ -159,22 +159,22 @@ void func_80800330_cheggproximity(Actor *arg0) {
     switch (arg0->unk70_10) {
     case 1:
         if (_suegg_entrypoint_8(arg0) == 0) {
-            func_8080048C_cheggproximity((s32)arg0, data);
+            func_8080048C_cheggproximity((BtIntPtr)arg0, data);
         }
         break;
     case 2:
         if (_suegg_entrypoint_8(arg0) == 0) {
-            func_80800510_cheggproximity((s32)arg0, data);
+            func_80800510_cheggproximity((BtIntPtr)arg0, data);
         }
         break;
     case 3:
-        func_80800588_cheggproximity((s32)arg0, (s32)data);
+        func_80800588_cheggproximity((BtIntPtr)arg0, (BtIntPtr)data);
         break;
     case 4:
-        func_808005EC_cheggproximity((s32)arg0, (s32)data);
+        func_808005EC_cheggproximity((BtIntPtr)arg0, (BtIntPtr)data);
         break;
     case 5:
-        func_80800650_cheggproximity((s32)arg0, (s32)data);
+        func_80800650_cheggproximity((BtIntPtr)arg0, (BtIntPtr)data);
         break;
     case 6:
         func_808006A4_cheggproximity(arg0, data);
@@ -182,42 +182,42 @@ void func_80800330_cheggproximity(Actor *arg0) {
     }
     if (((struct ProximityFlags *)data)->flag23 && !((struct ProximityFlags *)data)->flag22) {
         if (*(s32 *)((u8 *)func_80100094(arg0, 1) + 0xA8) != 0) {
-            func_80101180(0x2C4, 0x74, (s32)arg0->unk0);
+            func_80101180(0x2C4, 0x74, (BtIntPtr)arg0->unk0);
         }
         if (arg0->unk70_10 == 6) {
-            _chbaddiesetup_entrypoint_1(&_cheggproximity_entrypoint_2, (s32)arg0->unk0);
+            _chbaddiesetup_entrypoint_1(&_cheggproximity_entrypoint_2, (BtIntPtr)arg0->unk0);
             return;
         }
         func_800FFAB0(arg0);
     }
-}
+}    typedef struct { u8 pad0[0x30]; f32 unk30; } Objproximity_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
-void func_8080048C_cheggproximity(s32 arg0, void *arg1) {
-    s32 _suegg_entrypoint_16(s32);
-    s32 func_800EEEA8(s32);
+void func_8080048C_cheggproximity(BtIntPtr arg0, void *arg1) {
+    void _suegg_entrypoint_16(Actor *arg0);
+    int func_800EEEA8(f32 vec[3]);
     void func_808001CC_cheggproximity(Actor *);
-    s32 func_80800718_cheggproximity(s32, s32);
+    s32 func_80800718_cheggproximity(BtIntPtr, s32);
     if (func_800EEEA8(arg0 + 0x28) != 0) {
         func_80800718_cheggproximity(arg0, 3);
         return;
     }
     func_808001CC_cheggproximity(arg0);
     _suegg_entrypoint_16(arg0);
-    if ((*(f32 *)((s8 *)(arg1) + (0x30))) > 0.19999695f) {
+    if ((((Objproximity_arg1 *)arg1)->unk30) > 0.19999695f) {
         func_80800718_cheggproximity(arg0, 2);
     }
 }
 
 /* extern */
 
-void func_80800510_cheggproximity(s32 arg0, void *arg1) {
-    s32 _suegg_entrypoint_14(s32);
-    s32 _suegg_entrypoint_16(s32);
-    s32 func_800EEEA8(s32);
+void func_80800510_cheggproximity(BtIntPtr arg0, void *arg1) {
+    s32 _suegg_entrypoint_14(BtIntPtr);
+    void _suegg_entrypoint_16(Actor *arg0);
+    int func_800EEEA8(f32 vec[3]);
     void func_808001CC_cheggproximity(Actor *);
-    s32 func_80800718_cheggproximity(s32, s32);
+    s32 func_80800718_cheggproximity(BtIntPtr, s32);
     if (func_800EEEA8(arg0 + 0x28) != 0) {
         func_80800718_cheggproximity(arg0, 3);
         return;
@@ -231,11 +231,11 @@ void func_80800510_cheggproximity(s32 arg0, void *arg1) {
 
 /* extern */
 
-void func_80800588_cheggproximity(s32 arg0, s32 arg1) {
+void func_80800588_cheggproximity(BtIntPtr arg0, BtIntPtr arg1) {
     s32 func_800D9078(f32 *);
     void *func_80100094(Actor *, u32);
-    s32 func_80800718_cheggproximity(s32, s32);
-    s32 func_80800874_cheggproximity(s32);
+    s32 func_80800718_cheggproximity(BtIntPtr, s32);
+    s32 func_80800874_cheggproximity(BtIntPtr);
     s32 func_80800BF4_cheggproximity(Actor *);
     if ((*(s32 *)((s8 *)(func_80100094((Actor *)arg0, 1)) + (0xA4))) == 0) {
         func_80800874_cheggproximity(arg0);
@@ -247,11 +247,11 @@ void func_80800588_cheggproximity(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_808005EC_cheggproximity(s32 arg0, s32 arg1) {
+void func_808005EC_cheggproximity(BtIntPtr arg0, BtIntPtr arg1) {
     s32 func_800D9078(f32 *);
     void *func_80100094(Actor *, u32);
-    s32 func_80800718_cheggproximity(s32, s32);
-    s32 func_80800874_cheggproximity(s32);
+    s32 func_80800718_cheggproximity(BtIntPtr, s32);
+    s32 func_80800874_cheggproximity(BtIntPtr);
     s32 func_80800BF4_cheggproximity(Actor *);
     if ((*(s32 *)((s8 *)(func_80100094((Actor *)arg0, 1)) + (0xA4))) == 0) {
         func_80800874_cheggproximity(arg0);
@@ -263,16 +263,16 @@ void func_808005EC_cheggproximity(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800650_cheggproximity(s32 arg0, s32 arg1) {
-    s32 func_80800718_cheggproximity(s32, s32);
-    s32 func_80800874_cheggproximity(s32);
+void func_80800650_cheggproximity(BtIntPtr arg0, BtIntPtr arg1) {
+    s32 func_80800718_cheggproximity(BtIntPtr, s32);
+    s32 func_80800874_cheggproximity(BtIntPtr);
     void func_80800AFC_cheggproximity(Actor *);
     func_80800874_cheggproximity(arg0); func_80800AFC_cheggproximity((Actor *)arg0); if (((Actor *)arg0)->alpha < 0x79) {
         func_80800718_cheggproximity(arg0, 6);
         return;
     }
     ((Actor *)arg0)->alpha -= 8;
-}
+}    typedef struct { u8 pad0[0xA0]; s32 unkA0; } Objproximity_func_808006A4_cheggproximity_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -283,7 +283,7 @@ void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
         u8 other : 7;
     };
     void* func_80100094(Actor*, u32);
-    s32 func_80800874_cheggproximity(s32);
+    s32 func_80800874_cheggproximity(BtIntPtr);
     void func_80800AFC_cheggproximity(Actor *);
     s32 *sp1C;
     s32 sp18;
@@ -291,15 +291,15 @@ void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
 
     temp_v0 = func_80100094(arg0, 1U);
     sp1C = temp_v0;
-    sp18 = (*(s32 *)((s8 *)(temp_v0) + (0xA0)));
-    func_80800874_cheggproximity((s32)arg0);
+    sp18 = (((Objproximity_func_808006A4_cheggproximity_temp_v0 *)temp_v0)->unkA0);
+    func_80800874_cheggproximity((BtIntPtr)arg0);
     func_80800AFC_cheggproximity(arg0);
-    if (((Actor *)((s32)sp1C + (sp18 << 2)))->pad40 == 1) {
+    if (((Actor *)((BtIntPtr)sp1C + (sp18 << 2)))->pad40 == 1) {
         ((struct ProximityFlags *)arg1)->triggered = 1;
     }
 }
 
-s32 func_80800718_cheggproximity(s32 arg0, s32 arg1) {
+s32 func_80800718_cheggproximity(BtIntPtr arg0, s32 arg1) {
     struct EggData {
         u8 pad[0x30];
         f32 timer;
@@ -317,10 +317,10 @@ s32 func_80800718_cheggproximity(s32 arg0, s32 arg1) {
     void func_80101FDC(Actor *, u32);
     void func_8010A590(Actor *);
     void _suegg_entrypoint_23(void *);
-    s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 func_80101180(s32, s32, s32);
+    void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80800D28_cheggproximity;
+    extern s32 D_80800D28_cheggproximity[6];
     struct EggData *egg;
     struct ProximityData *data;
     s32 i;
@@ -341,7 +341,7 @@ s32 func_80800718_cheggproximity(s32 arg0, s32 arg1) {
         data->active = 1;
         _suegg_entrypoint_23(actor);
         egg->timer = 1.0f;
-        func_80101180(0x2C4, 0x73, (s32)actor->unk0);
+        func_80101180(0x2C4, 0x73, (BtIntPtr)actor->unk0);
         break;
     case 4:
         egg->timer = 3.5f;
@@ -350,14 +350,14 @@ s32 func_80800718_cheggproximity(s32 arg0, s32 arg1) {
         for (i = 0; i < 8; i++) {
             data->states[i] = data->players[i] = -1;
         }
-        func_8010D930(4, actor->unk70_0, actor->position, &D_80800D28_cheggproximity);
+        func_8010D930(4, actor->unk70_0, actor->position, D_80800D28_cheggproximity);
         break;
     case 6:
         break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
-s32 func_80800874_cheggproximity(s32 arg0) {
+s32 func_80800874_cheggproximity(BtIntPtr arg0) {
     struct EggData {
         u8 pad[0x3A];
         s16 owner;
@@ -373,9 +373,9 @@ s32 func_80800874_cheggproximity(s32 arg0) {
     };
     f32 func_800EFC7C(void *, void *);
     s32 func_800F5898(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
-    s32 func_800F6CC8(s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F6CC8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     struct EggData *egg;
     f32 distance;
@@ -383,13 +383,13 @@ s32 func_80800874_cheggproximity(s32 arg0) {
     s32 state;
     s32 i;
     f32 position[3];
-    s32 nearest;
+    s32 nearest; BT_NATIVE_ONLY(s32 player_count;)
     struct ProximityData *data;
 
     egg = func_80100094((Actor *)arg0, 0);
     data = func_80100094((Actor *)arg0, 1);
     nearest = -1;
-    for (i = 0; i < func_800F5898(); i++) {
+    for (i = 0; i < BT_NATIVE_ONLY((player_count = func_800F5898())) BT_IDO_ONLY(func_800F5898()); i++) {
         state = -1;
         if ((((Actor *)arg0)->unk70_10 != 3 || i != egg->owner) && data->disabled == 0) {
             if (func_800F6438(i) && !func_800F6CC8(i)) {
@@ -430,7 +430,7 @@ s32 func_80800874_cheggproximity(s32 arg0) {
             data->states[i] = state;
         }
     }
-    data->index = nearest;
+    data->index = nearest; BT_NATIVE_ONLY(return player_count;)
 }
 
 void func_80800AFC_cheggproximity(Actor *arg0) {
@@ -445,7 +445,7 @@ void func_80800AFC_cheggproximity(Actor *arg0) {
     };
     void _bamotor_entrypoint_0(PlayerState *, f32, f32);
     s32 func_800D9078(f32 *);
-    PlayerState *func_800F53D0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F5898(void);
     void *func_80100094(Actor *, u32);
     struct ProximityData *data;
@@ -476,7 +476,7 @@ s32 func_80800BF4_cheggproximity(Actor *arg0) {
         s32 active;
     };
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_800F7664(s32, s32, s32);
     s32 _sueggmisc_entrypoint_2(f32 *, s32);
     void func_800FFAB0(Actor *);
@@ -487,7 +487,7 @@ s32 func_80800BF4_cheggproximity(Actor *arg0) {
     index = data->index;
     if (index >= 0 && data->states[index] == 2) {
         if (((struct ProximityData *)func_80100094(arg0, 1))->active != 0) {
-            func_80101180(0x2C4, 0x74, (s32)arg0->unk0);
+            func_80101180(0x2C4, 0x74, (BtIntPtr)arg0->unk0);
         }
         func_800F7664(index, 0x45, 1);
         _sueggmisc_entrypoint_2(arg0->position, 6);
@@ -496,3 +496,11 @@ s32 func_80800BF4_cheggproximity(Actor *arg0) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/egg/proximity.data.s */
+void func_80105834(Actor*);
+void _suegg_entrypoint_2();
+OSThread *func_80108ED0(void);
+void _suegg_entrypoint_5();
+void func_80107C2C();
+ActorData D_80800CE0_cheggproximity [1] BT_DATA(4, overlays_ch_egg_proximity, 0x0) = { { 365, 352, 2501, 1, 0, (void (*)(struct Actor *))func_80800330_cheggproximity, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800164_cheggproximity, 0, 1065353216, 0, 0, 0, 4, (void (*)(struct Actor *))_suegg_entrypoint_2, (BtIntPtr)func_80108ED0, 76, 172, (void (*)(struct Actor *))_suegg_entrypoint_5, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 16, (void (*)(struct Actor *, long, long))func_808000A8_cheggproximity, 0 } };
+s32 D_80800D28_cheggproximity[6] BT_DATA(4, overlays_ch_egg_proximity, 0x48) = { 1246814, 1455792, 65836, 131072000, 0, 0 };

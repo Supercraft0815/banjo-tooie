@@ -43,19 +43,19 @@ void ncbadie_entrypoint_1(void *arg0) {
     void func_80111B8C(s32 *, f32, f32);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);
-    void func_801124D0(s32, s32);
+    void func_801124D0(BtIntPtr, s32);
     ncbadie_entrypoint_3(arg0, 30.0f);
     func_80111B8C(arg0, 1.4f, 14.0f);
     func_80115858(arg0, 0);
     func_80115870(arg0, 5.0f);
-    func_801124D0((s32) arg0, 4);
+    func_801124D0((BtIntPtr) arg0, 4);
 }
 
 void ncbadie_entrypoint_2(s32 arg0) 
 {
-}
+}    typedef struct { u8 pad0[0x10]; void * unk10; } Objdie_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void ncbadie_entrypoint_3(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 16) + 0) = arg1;
+    *(f32 *)((u8 *)*&((Objdie_arg0 *)arg0)->unk10 + 0) = arg1;
 }
 
 void ncbadie_entrypoint_4(PlayerState *arg0) {
@@ -65,9 +65,9 @@ void ncbadie_entrypoint_4(PlayerState *arg0) {
     f32 func_800EEF94(f32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     s32 func_80111CC8(void *, f32 *);
     f32 func_80112C3C(void *, f32);

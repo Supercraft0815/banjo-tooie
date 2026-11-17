@@ -2,13 +2,13 @@
 
 /* extern */
 
-void func_80800000_chgoldfish(u8 *arg0) {
+typedef struct { BtIntPtr unk0; u8 pad4[0x20]; f32 unk24; u8 pad28[0x10]; f32 unk38; u8 pad3C[0x10]; f32 unk4C; } Objfish_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chgoldfish(u8 *arg0) {
     s32 func_800DA298(s32);
-    s32 func_800FFA88(s32);
+    void func_800FFA88(Unk80132ED0 *marker);
     void func_808005F0_chgoldfish(u8 *, s32);
     s32 func_80800BA8_chgoldfish(u8 *, f32 *);
     if (func_800DA298(0x1BF) != 0) {
-        func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
+        func_800FFA88((((Objfish_arg0 *)arg0)->unk0));
         return;
     }
     if (func_800DA298(0x1DA) != 0) {
@@ -16,28 +16,28 @@ void func_80800000_chgoldfish(u8 *arg0) {
     } else if (func_800DA298(0x51E) != 0) {
         func_808005F0_chgoldfish(arg0, 3);
     }
-    (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
-    (*(f32 *)((s8 *)(arg0) + (0x4C))) = 90.0f;
+    (((Objfish_arg0 *)arg0)->unk24) = (f32) (((Objfish_arg0 *)arg0)->unk38);
+    (((Objfish_arg0 *)arg0)->unk4C) = 90.0f;
     func_80800BA8_chgoldfish(arg0, arg0 + 4);
 }
 
 void func_8080009C_chgoldfish(u8 *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_7(u8 *, u8 *, s32 *);
     f32 func_80013970(f32);
     void func_8008FE68(f32 *);
     void func_8008FE94(s32, f32 *);
     void func_80090708(s32);
-    s32 func_800CD08C(s32, u8 *);
+    void func_800CD08C(s32 arg0, f32 *arg1);
     s32 func_800D90A4(f32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F1214(f32, f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F71D4(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F71D4(BtIntPtr);
     void func_8010C964(Actor *);
     s32 func_8010CE70(u8 *, s32, s32);
     void func_808005F0_chgoldfish(u8 *, s32);
@@ -45,7 +45,7 @@ void func_8080009C_chgoldfish(u8 *arg0) {
     void func_80800964_chgoldfish(u8 *);
     f32 func_80800AB4_chgoldfish(Actor *, f32 *, f32 *, f32 *, f32, f32);
     s32 func_80800BA8_chgoldfish(u8 *, f32 *);
-    extern s32 D_80800D20_chgoldfish;
+    extern s32 D_80800D20_chgoldfish[7];
     f32 sp3C;
     f32 sp38;
     f32 sp34;
@@ -65,7 +65,7 @@ void func_8080009C_chgoldfish(u8 *arg0) {
             if (func_800DA298(0x51E)) {
                 func_808005F0_chgoldfish(arg0, 2);
             } else {
-                _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80800D20_chgoldfish);
+                _subaddiedialog_entrypoint_7(arg0, arg0 + 4, D_80800D20_chgoldfish);
             }
             break;
         case 2:
@@ -140,14 +140,14 @@ void func_8080009C_chgoldfish(u8 *arg0) {
 }
 
 s32 func_808004AC_chgoldfish(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    s32 func_800C7074(s32, s32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void func_800C7074(s32 arg0, s32 arg1);
     void func_800CF700(void);
     s32 func_800DA298(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     void func_808005F0_chgoldfish(u8 *, s32);
-    extern s32 D_80800D3C_chgoldfish;
+    extern s32 D_80800D3C_chgoldfish[4];
 
     switch (arg1) {
         case 0x2E:
@@ -167,7 +167,7 @@ s32 func_808004AC_chgoldfish(u8 *arg0, s32 arg1, s32 arg2) {
             }
             return 1;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_80800D3C_chgoldfish, ((Actor *)arg0)->scale);
+            _gcdialogcamera_entrypoint_3(D_80800D3C_chgoldfish, ((Actor *)arg0)->scale);
             return 1;
         case 0x3E:
             if ((((Actor *)arg0)->unk70_10 == 3 || ((Actor *)arg0)->unk70_10 == 4) && func_800F64A4(func_800F54E4(), 1)) {
@@ -180,7 +180,7 @@ s32 func_808004AC_chgoldfish(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808005F0_chgoldfish(u8 *arg0, s32 arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _subaddiefade_entrypoint_3(u8 *);
     void func_8008FE94(s32, f32 *);
     f32 func_80090010(void);
@@ -190,9 +190,9 @@ void func_808005F0_chgoldfish(u8 *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFCD8(f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
-    void func_800F8300(s32, s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
+    void func_800F8300(BtIntPtr, s32, f32 *);
     void func_800FC6B0(u32);
     void func_80102424(u8 *, s32);
     f32 func_80103EF4(Actor *);
@@ -278,26 +278,26 @@ void func_808005F0_chgoldfish(u8 *arg0, s32 arg1) {
 }
 
 void func_80800924_chgoldfish(u8 *arg0) {
-    s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
-    extern s32 D_80800D4C_chgoldfish;
-    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_80800D4C_chgoldfish);
+    BtIntPtr func_800BBCB8(u8 *, BtIntPtr, s32, s32, s32 *);
+    extern s32 D_80800D4C_chgoldfish[18];
+    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, D_80800D4C_chgoldfish);
 }
 
 /* extern */
 
 void func_80800964_chgoldfish(u8 *arg0) {
-    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, s32);
+    BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, s32);
     s32 _fxripple_entrypoint_0(s32, f32 *);
     s32 _fxsplash25d_entrypoint_0(f32 *);
-    s32 _fxsplash_entrypoint_2(f32[3], f32);
-    void func_800BA22C(s32, s32);
-    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    BtIntPtr _fxsplash_entrypoint_2(f32[3], f32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
     f32 func_800BED50();
     void func_800C4140(s32, f32 *, s32);
     f32 sp3C[3];
     f32 sp38;
-    s32 temp_s0;
-    s32 temp_v0;
+    BtIntPtr temp_s0;
+    BtIntPtr temp_v0;
 
     sp38 = func_800BED50();
     sp3C[0] = ((f32 *)arg0)[0];
@@ -355,7 +355,18 @@ s32 func_80800BA8_chgoldfish(u8 *arg0, f32 *arg1) {
 
 OSThread *chgoldfish_entrypoint_0(void)
 {
-    extern u8 D_80800D94_chgoldfish[];
+    extern ActorData D_80800D94_chgoldfish[];
 
     return (OSThread *) D_80800D94_chgoldfish;
 }
+/* data_to_c.py: from asm/data/overlays/ch/gold/fish.data.s */
+extern u8 D_80800CC0_chgoldfish[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u8 D_80800CC0_chgoldfish[96] BT_DATA(4, overlays_ch_gold_fish, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x40, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x3F, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x3F, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x40, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x40, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x40, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49, 0x40, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x49 };
+s32 D_80800D20_chgoldfish[7] BT_DATA(4, overlays_ch_gold_fish, 0x60) = { 54460816, 364778945, 513, 302514176, 6750208, 918076, 0 };
+s32 D_80800D3C_chgoldfish[4] BT_DATA(4, overlays_ch_gold_fish, 0x7C) = { 1112014848, 1112014848, 1112014848, 0 };
+s32 D_80800D4C_chgoldfish[18] BT_DATA(4, overlays_ch_gold_fish, 0x8C) = { 1903070, 1376281, 1835018, -786432, -786420, 131084, 1834608, -52428766, 3342400, 786444, 2949100, 3342316, 1310970, 1310759, 26214800, 52429600, 2818150, 8388608 };
+ActorData D_80800D94_chgoldfish [1] BT_DATA(4, overlays_ch_gold_fish, 0xD4) = { { 268, 1007, 1786, 1, (void *)D_80800CC0_chgoldfish, (void (*)(struct Actor *))func_8080009C_chgoldfish, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 32, 257, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chgoldfish, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1024, (void (*)(struct Actor *, long, long))func_808004AC_chgoldfish, 0 } };

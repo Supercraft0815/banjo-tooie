@@ -10,29 +10,29 @@ void func_800D5270(void)
     extern u8 D_8012B431;
 
     D_8012B431 = 0;
-}
+}    typedef struct { u8 unk0; s8 unk1; s16 unk2; } Obj1EAEB40_D_8012B430; /* offsets.py genstruct: fields from raw offsets on &D_8012B430; rename once understood */
 
 void func_800D527C(s32 arg0) {
     extern u8 D_8012B430;
-    (*(u8 *)((s8 *)(&D_8012B430) + (0))) = arg0 + 1;
-    (*(s8 *)((s8 *)(&D_8012B430) + (1))) = 1;
-}
+    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk0) = arg0 + 1;
+    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk1) = 1;
+}    typedef struct { u8 unk0; } Obj1EAEB40_D_8012B431; /* offsets.py genstruct: fields from raw offsets on &D_8012B431; rename once understood */
 
 u32 func_800D5298(void) {
     extern u8 D_8012B431;
-    return *(u8 *)((u8 *)&D_8012B431 + 0);
+    return *&((Obj1EAEB40_D_8012B431 *)&D_8012B431)->unk0;
 }
 
 u32 func_800D52A4(void) {
     extern u8 D_8012B430;
-    return *(u8 *)((u8 *)&D_8012B430 + 0);
+    return *&((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk0;
 }
 
 int func_800D52B0(void) {
     extern u8 D_8012B430;
-    (*(s8 *)((s8 *)(&D_8012B430) + (1))) = 0;
-    (*(s16 *)((s8 *)(&D_8012B430) + (2))) = -1;
-    (*(s8 *)((s8 *)(&D_8012B430) + (0))) = 0;
+    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk1) = 0;
+    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk2) = -1;
+    (*(s8 *)((s8 *)(&D_8012B430) + (0))) = 0; BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800D52CC(s32 arg0) {
@@ -40,24 +40,24 @@ void func_800D52CC(s32 arg0) {
     extern s16 D_8012B432;
     func_800D52B0();
     D_8012B432 = (s16) arg0;
-}
+}    typedef struct { s16 unk0; } Obj1EAEB40_D_8012B432; /* offsets.py genstruct: fields from raw offsets on &D_8012B432; rename once understood */
 
 s32 func_800D52F4(void) {
     extern s16 D_8012B432;
-    return *(s16 *)((u8 *)&D_8012B432 + 0);
+    return *&((Obj1EAEB40_D_8012B432 *)&D_8012B432)->unk0;
 }
 
 void func_800D5300(s32 arg0, s32 arg1) {
 }
 void func_800D530C(s32 arg0, s32 arg1) {
-}
-void func_800D5318(void *arg0, s32 arg1) {
+}                     typedef struct { u8 pad0[0x8]; u16 unk8; u8 padA[0x2]; s32 unkC; } Obj1EAEB40_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+void func_800D5318(void *arg0, BtIntPtr arg1) {
     extern s32 _gspropctrl_entrypoint_2(void *);
     extern s32 _gspropctrl_entrypoint_3(void *);
     extern s32 _gspropctrl_entrypoint_4(void *);
     extern void _gspropctrl_entrypoint_5(void *, s32);
     extern s32 func_8001211C(void);
-    extern void _gcsectionskip_entrypoint_1(void *, s32, s32, u8, s32);
+    extern s32 _gcsectionskip_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4);
     extern void (*D_8011B680[])(void *, s32);
     extern void (*D_8011B7C0[])(void *, s32);
     s32 frame;
@@ -71,8 +71,8 @@ void func_800D5318(void *arg0, s32 arg1) {
             _gspropctrl_entrypoint_5(arg0, frame);
             break;
         case 5:
-            _gcsectionskip_entrypoint_1(arg0, *(u16 *)((u8 *)arg0 + 8) + 0xA0,
-                *(s32 *)((u8 *)arg0 + 0xC) & 0x7FFFFF,
+            _gcsectionskip_entrypoint_1(arg0, ((Obj1EAEB40_arg0 *)arg0)->unk8 + 0xA0,
+                ((Obj1EAEB40_arg0 *)arg0)->unkC & 0x7FFFFF,
                 *((u8 *)arg0 + 0xB), arg1);
             break;
         case 4:
@@ -88,3 +88,11 @@ s32 func_800D5424(s32 arg0) {
 s32 func_800D542C(s32 arg0) {
     return arg0 + 0x9A;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_8012B430 BT_DATA(4, bss_core2bss1_2_status_tail, 0x10);
+u8 D_8012B431 BT_DATA(4, bss_core2bss1_2_status_tail, 0x11);
+s16 D_8012B432 BT_DATA(4, bss_core2bss1_2_status_tail, 0x12);
+#endif

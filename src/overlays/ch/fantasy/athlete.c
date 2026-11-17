@@ -1,11 +1,11 @@
 #include "common.h"
 
 extern u8 D_80803030_chfantasyathlete[];
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
 void func_80800060_chfantasyathlete();
-s32 func_80800314_chfantasyathlete(s32 arg0);
+s32 func_80800314_chfantasyathlete(BtIntPtr arg0);
 s32 func_808011E4_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2);
 void func_80802DA8_chfantasyathlete(s32 arg0);
 
@@ -13,16 +13,16 @@ u32 D_808031B0_chfantasyathlete[] = {
     0x00000000,
 };
 
-u32 D_808031B4_chfantasyathlete[] = {
+BtFnWord D_808031B4_chfantasyathlete[] = {
     0x01580477, 0x089E0001,
-    (u32)D_80803030_chfantasyathlete, (u32)func_80802DA8_chfantasyathlete,
-    (u32)func_80800314_chfantasyathlete, (u32)func_801018A4,
+    (BtFnWord)D_80803030_chfantasyathlete, (BtFnWord)func_80802DA8_chfantasyathlete,
+    (BtFnWord)func_80800314_chfantasyathlete, (BtFnWord)func_801018A4,
     0x0BB80000, 0x3FC00000,
     0x00000000, 0x00840100,
-    0x00000000, (u32)func_80108ED0,
-    0x00B00000, (u32)func_80800060_chfantasyathlete,
-    (u32)func_80107C2C, 0x84004402,
-    (u32)func_808011E4_chfantasyathlete, 0x00000000,
+    0x00000000, (BtFnWord)func_80108ED0,
+    0x00B00000, (BtFnWord)func_80800060_chfantasyathlete,
+    (BtFnWord)func_80107C2C, 0x84004402,
+    (BtFnWord)func_808011E4_chfantasyathlete, 0x00000000,
     0x00000000,
 };
 #include "core2/1E9A960.h"
@@ -33,8 +33,8 @@ extern u16 D_80803034_chfantasyathlete[][4];
 
 /* extern */
 
-void func_80800000_chfantasyathlete(s32 arg0, s32 arg1) {
-    s32 func_800C78CC(s32);
+void func_80800000_chfantasyathlete(BtIntPtr arg0, s32 arg1) {
+    void func_800C78CC(u32 arg0);
     s32 func_800DA9E4(s32, s32);
     if (arg1 != 0) {
         if (func_800DA9E4(0xA51, 1) == 0) {
@@ -57,15 +57,15 @@ void func_80800060_chfantasyathlete(Actor *arg0) {
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     s32 func_800D0A9C(u32, u32);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
+    void func_800DA524(s32 index);
     s32 func_800EA090(void);
-    u32 func_800F54E4(void);
-    void func_800F608C(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F608C(BtIntPtr, s32);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
     void func_8080094C_chfantasyathlete(Actor *, s32);
     void func_808015D8_chfantasyathlete(f32 *, f32 *, f32 *, f32 *, f32 *);
-    void func_80801654_chfantasyathlete(s32, struct AthletePaths *);
+    void func_80801654_chfantasyathlete(BtIntPtr, struct AthletePaths *);
     struct AthletePaths *data;
     Prop *props[2];
     f32 position[3];
@@ -76,7 +76,7 @@ void func_80800060_chfantasyathlete(Actor *arg0) {
     }
     data = func_80100094(arg0, 0);
     if (func_800D0A9C(0x48, 1) == 0) {
-        func_80801654_chfantasyathlete((s32)arg0, data);
+        func_80801654_chfantasyathlete((BtIntPtr)arg0, data);
         _gccubesearch_entrypoint_9(0x47B, props, 2);
         _gspropctrl_entrypoint_11(props[0], position);
         _gspropctrl_entrypoint_11(props[1], (f32 *)&data->pad0[0x50]);
@@ -133,31 +133,31 @@ void func_80800060_chfantasyathlete(Actor *arg0) {
     }
 }
 
-s32 func_80800314_chfantasyathlete(s32 arg0) {
-    s32 _gcgoto_entrypoint_1(s32, s32);
+s32 func_80800314_chfantasyathlete(BtIntPtr arg0) {
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     s32 func_80016B30(s32, s32);
     s32 func_800D90A4(f32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800EA05C(void);
-    s32 func_800F5410(s32);
-    f32 func_800F549C(s32, int);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F5C94(s32);
-    s32 func_800F64A4(s32, s32);
-    int func_800F6720(s32);
-    s32 func_800F6C5C(s32);
+    s32 func_800F5410(BtIntPtr);
+    f32 func_800F549C(BtIntPtr, int);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F5C94(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    int func_800F6720(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
     s32 func_800FCCD4(s32);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
     void func_80105834(Actor *);
     s32 func_80105A5C(Actor *);
     f32 func_80105B0C(Actor *, f32);
-    void func_8010C908(s32, s32);
+    void func_8010C908(BtIntPtr, BtIntPtr);
     s32 func_8010C9B0(f32 *, s32);
     void func_8080094C_chfantasyathlete(Actor *, s32);
-    s32 func_80801114_chfantasyathlete(s32, f32 *, f32 *, f32 *, f32, f32 *, f32 *);
+    s32 func_80801114_chfantasyathlete(BtIntPtr, f32 *, f32 *, f32 *, f32, f32 *, f32 *);
     void func_80801718_chfantasyathlete(Actor *);
     void func_80801974_chfantasyathlete(Actor *);
     s32 func_80802730_chfantasyathlete(Actor *, s32, s32, s16, s16, s32);
@@ -318,26 +318,26 @@ s32 func_80800314_chfantasyathlete(s32 arg0) {
             }
             break;
     }
-    func_8010C908((s32)arg0, (s32)((Actor *)arg0)->position);
-    func_80801974_chfantasyathlete((Actor *)arg0);
+    func_8010C908((s32)arg0, (BtIntPtr)((Actor *)arg0)->position);
+    func_80801974_chfantasyathlete((Actor *)arg0); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8080094C_chfantasyathlete(Actor *arg0, s32 arg1) {
-    s32 _gcgoto_entrypoint_1(s32, s32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 func_800D1000(s32, s32, f32 *, s32, s32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     void func_800DA3B8(s32, s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F7B9C(s32, s32);
-    void func_800F82D4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -358,7 +358,7 @@ void func_8080094C_chfantasyathlete(Actor *arg0, s32 arg1) {
 
     sp64 = func_80100094(arg0, 0);
     if (arg0->unk70_10 == 22) {
-        func_80800000_chfantasyathlete((s32)arg0, 1);
+        func_80800000_chfantasyathlete((BtIntPtr)arg0, 1);
     }
     switch (arg1) {
     case 1:
@@ -481,7 +481,7 @@ void func_8080094C_chfantasyathlete(Actor *arg0, s32 arg1) {
         }
         ((f32 *)arg0->actorData)[6] = 0.0f;
         ((f32 *)arg0->actorData)[3] = 0.0f;
-        func_80800000_chfantasyathlete((s32)arg0, 0);
+        func_80800000_chfantasyathlete((BtIntPtr)arg0, 0);
         func_80802D38_chfantasyathlete(arg0);
         break;
     case 23:
@@ -550,7 +550,7 @@ void func_8080094C_chfantasyathlete(Actor *arg0, s32 arg1) {
     func_80102424(arg0, arg1);
 }
 
-s32 func_80801114_chfantasyathlete(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6) {
+s32 func_80801114_chfantasyathlete(BtIntPtr arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, f32 *arg6) {
     void func_800EF2A0(f32 vec[3]);
     void func_800EFB24(void *, void *, void *);
     int func_800F00A4(f32 point[3], f32 radius, f32 upper, f32 lower, f32 center[3]);
@@ -734,7 +734,7 @@ void func_808015D8_chfantasyathlete(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, 
     *arg4 = func_800EEAD4(arg1, arg0) * 0.5f;
 }
 
-void func_80801654_chfantasyathlete(s32 arg0, struct AthletePaths *data) {
+void func_80801654_chfantasyathlete(BtIntPtr arg0, struct AthletePaths *data) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     s32 _gspropctrl_entrypoint_8(Prop *);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
@@ -872,12 +872,12 @@ void func_80801974_chfantasyathlete(Actor *arg0) {
 
 
 s32 func_80802730_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2, s16 arg3, s16 arg4, s32 arg5) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_80016B30(s32, s32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F6C5C(s32);
+    void func_800DA544(s32 index);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6C5C(BtIntPtr);
     s32 func_8010C9B0(f32 *, s32);
     f32 func_8010CD28(Actor *);
     s32 func_80802950_chfantasyathlete(Actor *);
@@ -940,14 +940,14 @@ s32 func_80802950_chfantasyathlete(Actor *arg0) {
     void func_80102BAC(Actor*, f32, f32, f32);
     void func_80102CCC(void *arg0);
     func_80102BAC(arg0, 0.2f, 0.1f, 10.0f);
-    func_80102CCC(arg0);
+    func_80102CCC(arg0); BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_8080298C_chfantasyathlete(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4) {
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
-    void func_800F7ECC(s32, s32, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
+    void func_800F7ECC(BtIntPtr, s32, f32);
     void func_800FC6B0(u32);
     s32 func_800FCCD4(s32);
     u32 func_800FDC28(u32);
@@ -967,7 +967,7 @@ s32 func_8080298C_chfantasyathlete(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3,
             }
             return 1;
         }
-        if (func_80801114_chfantasyathlete((s32)arg0, arg1, arg2, arg3, arg4, position, (f32 *)&arg0->actorData[5])) {
+        if (func_80801114_chfantasyathlete((BtIntPtr)arg0, arg1, arg2, arg3, arg4, position, (f32 *)&arg0->actorData[5])) {
             func_800FDC28(0);
             func_800FC6B0(0x16);
             arg0->unk64_20 = 1;
@@ -981,7 +981,7 @@ s32 func_8080298C_chfantasyathlete(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3,
             arg0->unk64_19 = 1;
             return 1;
         }
-        if (func_80801114_chfantasyathlete((s32)arg0, arg1, arg2, arg3, arg4, arg0->position, (f32 *)&arg0->actorData[7])) {
+        if (func_80801114_chfantasyathlete((BtIntPtr)arg0, arg1, arg2, arg3, arg4, arg0->position, (f32 *)&arg0->actorData[7])) {
             func_800FDC28(0);
             func_800FC6B0(0x17);
             arg0->unk64_19 = 1;
@@ -999,8 +999,8 @@ s32 func_8080298C_chfantasyathlete(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3,
 }
 
 void func_80802C18_chfantasyathlete(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s32 arg3) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     switch (arg0->actorData[0]) {
         case 0:
@@ -1014,9 +1014,9 @@ void func_80802C18_chfantasyathlete(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, s3
 }
 
 void func_80802C94_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    void _capod_entrypoint_8(s32 arg0);
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
 
@@ -1059,7 +1059,7 @@ void func_80802D74_chfantasyathlete(u8 *arg0) {
 
 void func_80802DA8_chfantasyathlete(s32 arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 func_80800314_chfantasyathlete(s32);
+    s32 func_80800314_chfantasyathlete(BtIntPtr);
     if (_glcutDll_entrypoint_20() != 0) {
         func_80800314_chfantasyathlete(arg0);
     }

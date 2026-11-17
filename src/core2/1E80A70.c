@@ -95,12 +95,12 @@ void func_800A71E0(void) {
 }
 
 void func_800A72A4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _gcgame_entrypoint_0(s32);
-    s32 _gcgame_entrypoint_1();
-    s32 _gclevel_entrypoint_0(s32, s32);
-    s32 _gclevel_entrypoint_1();
-    s32 _gcsectionDll_entrypoint_0(s32, s32);
-    s32 _gcsectionDll_entrypoint_1(s32);
+    void _gcgame_entrypoint_0(s32 arg0);
+    void _gcgame_entrypoint_1(void);
+    void _gclevel_entrypoint_0(s32 arg0, s32 arg1);
+    void _gclevel_entrypoint_1(void);
+    void _gcsectionDll_entrypoint_0(s32 arg0, s32 arg1);
+    void _gcsectionDll_entrypoint_1(s32 arg0);
     s32 func_80081724();
     void func_800A8D70(s32, s32);
     void func_800E96E0(void);
@@ -132,17 +132,17 @@ void func_800A72A4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-void func_800A7380(s32 arg0) {
+void func_800A7380(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1)) {
     s32 func_8001A2B0();
     s32 func_80081724();
-    s32 func_8008B768();
+    void func_8008B768(void);
     void func_800A71E0(void);
-    s32 func_800A8F68();
-    s32 func_800C2AB8();
+    void func_800A8F68(void);
+    void func_800C2AB8(void);
     void func_800D58CC(void);
-    s32 func_800D6C64();
-    s32 func_800EA0A8();
-    func_800EA0A8();
+    void func_800D6C64(void);
+    void func_800EA0A8();
+    func_800EA0A8(BT_PASS2(arg0, bt_a1));
     func_800A8F68();
     func_800C2AB8();
     func_800FB968();
@@ -162,21 +162,21 @@ void func_800A73F4(s32 arg0, s32 arg1) {
     void func_800A9AA4();
     void func_800A8BA8(Gfx **, s32);
     s32 func_800A8BD4(Gfx **, s32, s32);
-    void func_800A8CCC(s32, s32);
+    void func_800A8CCC(BtIntPtr, s32);
     s32 func_800A89F8(void);
     void func_800B7448(Gfx **);
-    void func_800C0130(s32);
-    void func_800C0984(s32);
+    void func_800C0130(BtIntPtr);
+    void func_800C0984(BtIntPtr);
     void func_800C9358(Gfx **, s32);
-    s32 func_800C940C(s32, s32);
+    s32 func_800C940C(BtIntPtr, s32);
     void func_800D36A8(void);
     void func_800E7EF4(Gfx **);
     void func_800E9F20(s32, s32);
     s32 func_800EA358(void);
-    void func_800EB51C(s32, s32);
+    void func_800EB51C(s32, BtIntPtr);
     void func_800F5184(void);
     void func_800F51A8(void);
-    void func_800FA508(s32);
+    void func_800FA508(BtIntPtr);
     void func_800FFC90(void);
     extern s16 D_80127632;
     Mtx *sp24;
@@ -198,22 +198,22 @@ render_view:
         goto render_view;
     }
 views_done:
-    func_800A8CCC((s32)gfx, arg1);
+    func_800A8CCC((BtIntPtr)gfx, arg1);
     if (D_80127632 == 5) {
         func_800A9AA4(gfx);
     }
     if (func_800EA358()) {
-        func_800EB51C(3, (s32)gfx);
+        func_800EB51C(3, (BtIntPtr)gfx);
     }
-    func_800C0984((s32)gfx);
+    func_800C0984((BtIntPtr)gfx);
     func_800C9358(gfx, arg1);
-    func_800C0130((s32)gfx);
+    func_800C0130((BtIntPtr)gfx);
     if (func_800EA358()) {
-        func_800EB51C(4, (s32)gfx);
+        func_800EB51C(4, (BtIntPtr)gfx);
     }
-    func_800FA508((s32)gfx);
+    func_800FA508((BtIntPtr)gfx);
     func_800B7448(gfx);
-    func_800C940C((s32)gfx, arg1);
+    func_800C940C((BtIntPtr)gfx, arg1);
     func_800E7EF4(gfx);
     osWritebackDCache(sp24, ((Mtx *)((Gfx *volatile *)gfx)[1] - sp24) * sizeof(Mtx));
     osWritebackDCache(sp20, ((Vtx *)((Gfx *volatile *)gfx)[2] - sp20) * sizeof(Vtx));
@@ -276,7 +276,7 @@ void func_800A759C(s32 arg0, s32 arg1) {
     }
 }
 
-void func_800A76F4(s32 arg0) {
+void func_800A76F4(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1)) {
     s32 _cosectionstor_entrypoint_3(enum map_e);
     s32 _glintrosyncDll_entrypoint_0(s16);
     s32 _glintrosyncDll_entrypoint_1();
@@ -295,15 +295,15 @@ void func_800A76F4(s32 arg0) {
     func_800FB968();
     _glintrosyncDll_entrypoint_0(D_80127630.mapValue);
     func_8001A2B0();
-    sp34 = *(u8 *)((s8 *)&D_80127630 + 0x16);
-    sp30 = *(u8 *)((s8 *)&D_80127630 + 0x15);
-    sp2C = *(u8 *)((s8 *)&D_80127630 + 0x14);
+    sp34 = D_80127630.unk16;
+    sp30 = D_80127630.unk15;
+    sp2C = D_80127630.unk14;
     sp28 = D_80127630.mapValue;
     sp24 = (u8)D_80127630.entranceIndex;
     sp20 = D_80127630.unk0;
-    *(u8 *)((s8 *)&D_80127630 + 0x16) = 0;
-    *(u8 *)((s8 *)&D_80127630 + 0x15) = 0;
-    *(u8 *)((s8 *)&D_80127630 + 0x14) = 0;
+    D_80127630.unk16 = 0;
+    D_80127630.unk15 = 0;
+    D_80127630.unk14 = 0;
     D_80127630.mapValue = 0;
     D_80127630.entranceIndex = 0;
     func_800A759C(2, 0U);
@@ -312,7 +312,7 @@ void func_800A76F4(s32 arg0) {
     if (((func_800DA9E4(FLAG2_647_UNK, 0) == 0) || (_gcsectionDll_entrypoint_4((s32) D_80127630.mapValue) == D_8012762C)) && (func_800DA298(FLAG2_650_UNK) == 0)) {
         _cosectionstor_entrypoint_3(func_800EA05C());
     }
-    func_800A7380(1);
+    func_800A7380(BT_IDO_ONLY(1) BT_PASS2(1, bt_a1));
     func_800A72A4(sp28, sp24, sp30, sp34);
     func_800A5CF0(1);
     func_800A5C94();
@@ -324,7 +324,7 @@ void func_800A76F4(s32 arg0) {
     func_80015768();
 }
 
-void func_800A7840(s32 arg0) {
+void func_800A7840(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1) BT_PASS2(, s32 bt_a2)) {
     s16 func_80014F58(void);
     void func_80015410(void);
     void func_80015878(void);
@@ -332,7 +332,7 @@ void func_800A7840(s32 arg0) {
     void func_8001A4B8(void *);
     int func_8001BD50(f32);
     void func_800A73F4(s32, s32);
-    void func_800A7FD4(void);
+    void func_800A7FD4(BT_IDO_ONLY(void) BT_PASS2(s32, s32) BT_PASS2(, s32));
     void func_800E4628(void);
     void func_800E82EC(void);
     extern f32 D_801255F4;
@@ -351,7 +351,7 @@ void func_800A7840(s32 arg0) {
         sp18 = D_80127658;
         func_80015410();
         if ((D_80127650 == 0) && (func_8001BD50(D_801255F4) != 0)) {
-            func_800A7FD4();
+            func_800A7FD4(BT_PASS2(arg0, bt_a1) BT_PASS2(, bt_a2));
         }
         func_800E82EC();
         func_8001A270(sp1C, sp18);
@@ -421,13 +421,13 @@ s32 func_800A7A6C(s32 arg0, s32 arg1)
     state->mapValue = (s16)arg0;
     state->entranceIndex = (s8)arg1;
     *((u8 *)state + 0x15) = *((u8 *)state + 0x18);
-    state->unk18 = 0;
+    state->unk18 = 0; BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
 
 void func_800A7A90(s32 arg0) {
-    s32 func_800C9610();
+    void func_800C9610(void);
     (*(s8 *)((s8 *)(&D_80127630) + (0x14))) = (s8) arg0;
     (*(s8 *)((s8 *)(&D_80127630) + (0x17))) = 0;
     if ((arg0 != 0) && (func_800C9510() == 0)) {
@@ -453,28 +453,28 @@ void func_800A7B18(u32 warpVal)
 
 /* extern */
 
-void func_800A7B24(void) {
-    s32 _gcgame_entrypoint_1();
-    s32 _gclevel_entrypoint_1();
-    s32 _gcsectionDll_entrypoint_1(s32);
-    s32 _glcutDll_entrypoint_2();
-    s32 func_80013430();
-    s32 func_8008B64C();
+void func_800A7B24(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1)) {
+    void _gcgame_entrypoint_1(void);
+    void _gclevel_entrypoint_1(void);
+    void _gcsectionDll_entrypoint_1(s32 arg0);
+    void _glcutDll_entrypoint_2(void);
+    void func_80013430(void);
+    void func_8008B64C(void);
     void func_800A8710(void);
-    s32 func_800B5DF4();
-    s32 func_800C2A90();
-    s32 func_800CA060();
-    s32 func_800DF35C();
-#ifndef BT_NATIVE
+    void func_800B5DF4(void);
+    void func_800C2A90();
+    void func_800CA060(void);
+    void func_800DF35C(void);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800E4290();
 #endif
-    s32 func_800FB908();
+    void func_800FB908(void);
     func_800A759C(2, 0U);
     func_80013430();
     func_800B5DF4();
     func_800CA060();
     func_800DF35C();
-    func_800A7380(0);
+    func_800A7380(BT_IDO_ONLY(0) BT_PASS2(0, bt_a1));
     _gcsectionDll_entrypoint_1(0);
     _gclevel_entrypoint_1();
     _gcgame_entrypoint_1();
@@ -487,9 +487,9 @@ void func_800A7B24(void) {
 }
 
 void func_800A7BB8(s32 arg0) {
-    s32 _gcgame_entrypoint_0(s32);
-    s32 _gclevel_entrypoint_0(s32, s32);
-    s32 _gcsectionDll_entrypoint_0(s32, s32);
+    void _gcgame_entrypoint_0(s32 arg0);
+    void _gclevel_entrypoint_0(s32 arg0, s32 arg1);
+    void _gcsectionDll_entrypoint_0(s32 arg0, s32 arg1);
     void func_800A5CF0(s32);
     void func_800A861C(void);
     void func_8008B610(void);
@@ -499,7 +499,7 @@ void func_800A7BB8(s32 arg0) {
     void func_800D34A0(void);
     void func_800D3970(void);
     void func_800D8F84(void);
-    s32 func_800D8FA0(s32);
+    void func_800D8FA0(s32 arg0);
     void func_800DC310(void);
     void func_800DF38C(void);
     void func_800EBB5C(void);
@@ -550,7 +550,7 @@ void func_800A7BB8(s32 arg0) {
 
 void func_800A7D30(void) {
     s32 func_80014F4C();
-    s32 func_800D8FA0(s32);
+    void func_800D8FA0(s32 arg0);
     extern f32 D_80127638;
     if (D_80127638 == 0.0f) {
         func_800D8FA0(0);
@@ -559,7 +559,7 @@ void func_800A7D30(void) {
     func_800D8FA0(func_80014F4C());
 }
 
-s32 func_800A7D84(void)
+s32 func_800A7D84(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1))
 {
     s32 sp1C;
     s32 temp_v0;
@@ -577,14 +577,14 @@ s32 func_800A7D84(void)
             switch (temp_v0)
             {
             case 1:
-                func_800A76F4(3);
+                func_800A76F4(BT_IDO_ONLY(3) BT_PASS2(3, bt_a1));
                 return 0;
             case 2:
-                func_800A76F4(D_80127630.unk2);
+                func_800A76F4(BT_IDO_ONLY(D_80127630.unk2) BT_PASS2(D_80127630.unk2, bt_a1));
                 return 0;
             case 3:
                 func_800A9924(D_80127630.mapValue, D_80127630.entranceIndex);
-                func_800A76F4(5);
+                func_800A76F4(BT_IDO_ONLY(5) BT_PASS2(5, bt_a1));
                 return 0;
             }
         }
@@ -659,7 +659,7 @@ void func_8008BA5C(void);
 void func_800B5A6C(void);
 void func_800A5654(void);
 void func_800DF874(void);
-void func_800A95C4(void);
+void func_800A95C4(BT_IDO_ONLY(void) BT_PASS2(s32, s32) BT_PASS2(, s32));
 void func_800F86D8(void);
 void func_800F91EC(void);
 void func_800B562C(void);
@@ -691,10 +691,10 @@ void func_800B4380(void);
 void func_800EB7A8(void);
 void func_800D88C0(void);
 void func_800FFE08(void);
-void func_8001B858(void);
+s32 func_8001B858(void);
 
 // do_tidy
-void func_800A7FD4(void) {
+void func_800A7FD4(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1) BT_PASS2(, s32 bt_a2)) {
     D_80127650 = 1;
     func_8001B84C();
     func_8001B840();
@@ -707,7 +707,7 @@ void func_800A7FD4(void) {
     func_800B5A6C();
     func_800A5654();
     func_800DF874();
-    func_800A95C4();
+    func_800A95C4(BT_PASS2(bt_a0, bt_a1) BT_PASS2(, bt_a2));
     func_800F86D8();
     func_800F91EC();
     func_800B562C();
@@ -823,13 +823,13 @@ void func_800A8278(void) {
     if (D_8011A3F8[D_8011A418] == -1) {
         D_8011A3F0 = 1;
     }
-}
+}    typedef struct { u8 pad0[0x8]; s32 unk8; s32 unkC; s32 unk10; } Obj1E80A70_D_80127670; /* offsets.py genstruct: fields from raw offsets on &D_80127670; rename once understood */
 
 s32 func_800A8380(s32 arg0) {
     extern s32 D_80127670;
     s32 base;
 
-    if (*(s32 *)((s8 *)&D_80127670 + 8) == 0) {
+    if (((Obj1E80A70_D_80127670 *)&D_80127670)->unk8 == 0) {
         base = 1;
     } else {
         base = 7;
@@ -847,35 +847,35 @@ s32 func_800A8380(s32 arg0) {
         default:
             return 0;
     }
-}
+}    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; } Obj1E80A70_func_800A8424_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-void func_800A8424(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
+void func_800A8424(BtIntPtr arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
     extern s16 D_8011A420[][4];
     extern s32 D_80127670;
     s16 *temp_v0;
 
     temp_v0 = D_8011A420[arg0];
-    *arg1 = (*(s32 *)((s8 *)(&D_80127670) + 0xC)) * temp_v0[0];
-    if ((*(s16 *)((s8 *)(temp_v0) + (0))) == 1) {
+    *arg1 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) * temp_v0[0];
+    if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk0) == 1) {
         *arg1 += 1;
     }
-    *arg2 = (*(s32 *)((s8 *)(&D_80127670) + 0x10)) * temp_v0[1];
-    if ((*(s16 *)((s8 *)(temp_v0) + (2))) != 0) {
+    *arg2 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) * temp_v0[1];
+    if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk2) != 0) {
         *arg2 += 1;
     }
-    *arg3 = (*(s32 *)((s8 *)(&D_80127670) + 0xC)) * temp_v0[2];
-    if ((*(s16 *)((s8 *)(temp_v0) + (4))) == 1) {
+    *arg3 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) * temp_v0[2];
+    if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk4) == 1) {
         *arg3 -= 1;
     }
-    *arg4 = (*(s32 *)((s8 *)(&D_80127670) + 0x10)) * temp_v0[3];
-    if ((*(s16 *)((s8 *)(temp_v0) + (6))) == 1) {
+    *arg4 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) * temp_v0[3];
+    if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk6) == 1) {
         *arg4 -= 1;
     }
 }
 
 /* extern */
 
-s32 func_800A84EC(s32 arg0, s32 arg1) {
+s32 func_800A84EC(s32 arg0, BtIntPtr arg1) {
     void func_800158E4(s32 *);
     void *func_8001592C(s32, s32, s32, s32);
     void func_80015CE8(void *, void *);
@@ -894,12 +894,12 @@ s32 func_800A84EC(s32 arg0, s32 arg1) {
     if (arg1 != 0) {
         func_80015CE8(D_80127688[arg0].unk0, arg1);
     }
-    func_800C54CC(arg0, 40.0f, 1.0f);
+    func_800C54CC(arg0, 40.0f, 1.0f); BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_800A85A8(void) {
     s32 func_800A8380(s32);
-    s32 func_800A84EC(s32, s32);
+    s32 func_800A84EC(s32, BtIntPtr);
     s32 var_s0;
     unk_D_80127688 *var_s1;
 
@@ -916,11 +916,11 @@ s32 func_800A85A8(void) {
 }
 
 void func_800A861C(void) {
-    s32 func_800A84EC(s32, s32);
+    s32 func_800A84EC(s32, BtIntPtr);
     extern s32 D_80127678;
 
     D_80127678 = 0;
-    D_80127688[4].unk4 = (s32) func_800CA334();
+    D_80127688[4].unk4 = (BtIntPtr) func_800CA334();
     func_800E42B4(D_80127688[4].unk4);
     func_800A84EC(4, 0);
     func_800C5464();
@@ -929,7 +929,7 @@ void func_800A861C(void) {
 
 void func_800A8670(void)
 {
-  s32 func_800C54F0(s32);
+  void func_800C54F0(s32 arg0);
   s32 var_s0;
   unk_D_80127688 *var_s1;
   s32 *new_var;
@@ -957,9 +957,9 @@ void func_800A8710(void)
 {
     extern s32 D_801276C4;
     s32 (*var_s0)[3];
-    s32 temp_a0;
+    BtIntPtr temp_a0;
     void func_800158E4(s32 *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800CA364(s32);
 #endif
     func_800CA364(D_80127688[4].unk4);
@@ -976,7 +976,7 @@ void func_800A8710(void)
 
 s32 func_800A877C(s32 arg0) {
     s32 func_800A8380(s32);
-    s32 func_800A84EC(s32, s32);
+    s32 func_800A84EC(s32, BtIntPtr);
     s32 func_800A85A8();
     extern s32 D_80127670;
     if (D_80127688[arg0].unk0 != 0) {
@@ -1014,14 +1014,14 @@ s32 func_800A87FC(s32 arg0) {
         func_800A85A8();
     }
     if (D_80127670 == 0) {
-        func_800E42B4((s32)D_801276BC);
+        func_800E42B4((BtIntPtr)D_801276BC);
     }
     return 1;
 }
 
 /* extern */
 
-s32 func_800A88C4(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_800A88C4(s32 arg0, BtIntPtr arg1, BtIntPtr arg2) {
     void func_80015CE8(void *, void *);
     s32 sp1C;
 
@@ -1081,17 +1081,17 @@ void func_800A8A04(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4)
 
 void func_800A8A44(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
     s32 func_800A8380(s32);
-    void func_800A8424(s32, s32 *, s32 *, s32 *, s32 *);
+    void func_800A8424(BtIntPtr, s32 *, s32 *, s32 *, s32 *);
     func_800A8424(func_800A8380(arg0), arg1, arg2, arg3, arg4);
 }
 
 /* extern */
 
 void func_800A8A88(s32 arg0, f32 arg1) {
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800CA558(s32, f32);
 #endif
-    s32 temp_a2;
+    BtIntPtr temp_a2;
     unk_D_80127688 *temp_v0;
 
     temp_v0 = &D_80127688[arg0];
@@ -1107,25 +1107,25 @@ f32 func_800A8AD4(s32 arg0)
     return D_80127688[arg0].unk8;
 }
 
-void func_800A8AF0(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_800A8AF0(s32 arg0)
 {
-    func_80015D14(D_80127688[arg0].unk0);
+    BT_NATIVE_ONLY(return) func_80015D14(D_80127688[arg0].unk0);
 }
 
 /* extern */
 
-void func_800A8B24(s32 arg0, s32 arg1) {
-    s32 func_800157EC(s32, s32);
-    s32 func_800E7EC0(s32);
-    s32 func_800E7FB0(s32, s32, s32, s32);
+void func_800A8B24(BtIntPtr arg0, s32 arg1) {
+    void func_800157EC(s32 *arg0, Gfx **arg1);
+    void func_800E7EC0(Gfx** gfx);
+    void func_800E7FB0(s32 x, s32 y, s32 width, s32 height);
     s32 sp34;
     s32 sp30;
     s32 sp2C;
     s32 sp28;
-    s32 sp24;
+    BtIntPtr sp24;
 
     sp24 = D_80127688[D_80127674].unk0;
-    func_80015CC0(sp24, (s32) &sp34, (s32) &sp30, (s32) &sp2C, (s32) &sp28);
+    func_80015CC0(sp24, (BtIntPtr) &sp34, (BtIntPtr) &sp30, (BtIntPtr) &sp2C, (BtIntPtr) &sp28);
     func_800E7FB0(sp34, sp30, sp2C, sp28);
     func_800E7EC0(arg0);
     func_800157EC(sp24, arg0);
@@ -1162,7 +1162,7 @@ s32 func_800A8BD4(Gfx **arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_800A8CCC(s32 arg0, s32 arg1)
+void func_800A8CCC(BtIntPtr arg0, s32 arg1)
 {
     func_800A89BC(4);
     func_800A8B24(arg0, arg1);
@@ -1171,9 +1171,30 @@ void func_800A8CCC(s32 arg0, s32 arg1)
 void func_800A8D00(s32 arg0, s32 arg1) {
     s32 func_800A85A8();
     extern s32 D_80127670;
-    if ((arg0 != ((*(s32 *)((s8 *)(&D_80127670) + (0xC))) * 2)) || (arg1 != ((*(s32 *)((s8 *)(&D_80127670) + (0x10))) * 2))) {
-        (*(s32 *)((s8 *)(&D_80127670) + (0xC))) = (s32) (arg0 / 2);
-        (*(s32 *)((s8 *)(&D_80127670) + (0x10))) = (s32) (arg1 / 2);
+    if ((arg0 != ((((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) * 2)) || (arg1 != ((((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) * 2))) {
+        (((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) = (s32) (arg0 / 2);
+        (((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) = (s32) (arg1 / 2);
         func_800A85A8();
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+D_80127630_unk D_80127630 BT_DATA(4, bss_core2bss1_0_1, 0x5D0);
+s16 D_80127632 BT_DATA(4, bss_core2bss1_0_1, 0x5D2);
+s16 D_80127634 BT_DATA(4, bss_core2bss1_0_1, 0x5D4);
+f32 D_80127638 BT_DATA(4, bss_core2bss1_0_1, 0x5D8);
+f32 D_8012763C BT_DATA(4, bss_core2bss1_0_1, 0x5DC);
+u8 D_80127647 BT_DATA(4, bss_core2bss1_0_1, 0x5E7);
+s32 D_80127650 BT_DATA(4, bss_core2bss1_0_1, 0x5F0);
+Gfx * D_80127658 BT_DATA(4, bss_core2bss1_0_1, 0x5F8);
+s32 D_80127670 BT_DATA(4, bss_core2bss1_0_1, 0x610);
+s32 D_80127674 BT_DATA(4, bss_core2bss1_0_1, 0x614);
+s32 D_80127678 BT_DATA(4, bss_core2bss1_0_1, 0x618);
+void * D_801276BC BT_DATA(4, bss_core2bss1_0_1, 0x65C);
+s32 D_801276C4 BT_DATA(4, bss_core2bss1_0_1, 0x664);
+u8 D_8012AB54 BT_DATA(4, bss_core2bss1_1, 0x74);
+MtxF D_8012D510 BT_DATA(4, bss_core2bss2_1, 0xBD0);
+u16 D_8012D550 BT_DATA(4, bss_core2bss2_1, 0xC10);
+#endif

@@ -1,8 +1,8 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 static s16 collision_kind;
 static s32 collision_context;
-void func_800CB840(s32 kind, s32 context) { collision_kind=kind; collision_context=context; }
+void func_800CB840(s32 kind, BtIntPtr context) { collision_kind=kind; collision_context=context; }
 s16 func_800CB854(s32 *context) { if(context) *context=collision_context; return collision_kind; }
 void func_800CB870(void) { collision_kind=0; collision_context=0; }
 #else

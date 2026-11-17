@@ -26,18 +26,18 @@ s32 func_80800008_basquash(void *arg0, s32 arg1) {
             ((struct SquashOwner *)arg0)->data->unk4 = 1.7f;
             break;
     }
-    ((struct SquashOwner *)arg0)->data->unk1 = arg1;
+    ((struct SquashOwner *)arg0)->data->unk1 = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
-void basquash_entrypoint_1(s32 arg0) 
+void basquash_entrypoint_1(BtIntPtr arg0) 
 {
-}
+}    typedef struct { u8 pad0[0x11C]; void * unk11C; } Objsquash_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 /* extern */
 
 void basquash_entrypoint_2(void *arg0) {
     s32 func_80800008_basquash(void *, s32);
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x11C)))) + (2))) = 0;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x11C)))) + (1))) = 0;
+    (*(s8 *)((s8 *)((((Objsquash_arg0 *)arg0)->unk11C)) + (2))) = 0;
+    (*(s8 *)((s8 *)((((Objsquash_arg0 *)arg0)->unk11C)) + (1))) = 0;
     func_80800008_basquash(arg0, 1);
 }
 
@@ -45,7 +45,7 @@ void basquash_entrypoint_2(void *arg0) {
 
 void basquash_entrypoint_3(void *arg0, s32 arg1) {
     s32 func_80800008_basquash(void *, s32);
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x11C)))) + (2))) = arg1;
+    (*(s8 *)((s8 *)((((Objsquash_arg0 *)arg0)->unk11C)) + (2))) = arg1;
     func_80800008_basquash(arg0, 2);
 }
 
@@ -102,7 +102,7 @@ void func_80800260_basquash(void *arg0) {
     sp38 = 0;
     temp_v0 = func_80092AD8(arg0);
     func_800E0AF0(temp_v0, 1);
-    sp44 = func_800F0E00(func_800F1198(*(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x11C) + 8), 0.0f, 1.0f, 1, 0.08f), 0.08f);
+    sp44 = func_800F0E00(func_800F1198(*(f32 *)((u8 *)*&((Objsquash_arg0 *)arg0)->unk11C + 8), 0.0f, 1.0f, 1, 0.08f), 0.08f);
     sp40 = 1 / sp44;
     temp_v0_2 = func_80092B80(arg0);
     switch (temp_v0_2) {                            
@@ -119,7 +119,7 @@ void func_80800260_basquash(void *arg0) {
         sp30 = 1;
         break;
     }
-    temp_v0_3 = *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0x11C) + 2);
+    temp_v0_3 = *(u8 *)((u8 *)*&((Objsquash_arg0 *)arg0)->unk11C + 2);
     switch (temp_v0_3) {                            
     case 1:                                         
         if (sp30 != 0) {
@@ -178,3 +178,6 @@ void basquash_entrypoint_4(void *arg0) {
             break;
     }
 }
+/* data_to_c.py: from asm/data/overlays/ba/squash.data.s */
+s32 D_808006B0_basquash [5] BT_DATA(4, overlays_ba_squash, 0x0) = { 1246237, 1769494, 2147418113, 19666300, 0 };
+s32 D_808006C4_basquash [3] [ 3 ] BT_DATA(4, overlays_ba_squash, 0x14) = { { 721152, 25166336, 1114112 }, { 721088, 20972032, 1114112 }, { 721024, 16777728, 1114112 } };

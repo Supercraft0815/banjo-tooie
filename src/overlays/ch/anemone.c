@@ -8,14 +8,14 @@ OSThread *chanemone_entrypoint_0(void)
 }
 
 void func_8080000C_chanemone(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    void _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    void _subaddieaudioloop_entrypoint_5(BtIntPtr, BtIntPtr, s32, s32, s32 *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     s32 func_800D9078(f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
     void func_8010A590(Actor *);
@@ -42,7 +42,7 @@ void func_8080000C_chanemone(Actor *arg0) {
     } else {
         _sudeflect_entrypoint_0(arg0->position, arg0->scale * 250.0f, arg0->scale * 700.0f, flags);
     }
-    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, arg0->unk70_10 == 1, 2000, D_80800920_chanemone);
+    _subaddieaudioloop_entrypoint_5((BtIntPtr)arg0, (BtIntPtr)arg0->position, arg0->unk70_10 == 1, 2000, D_80800920_chanemone);
     switch (arg0->unk70_10) {
         case 2:
             _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800934_chanemone, 0.2f);
@@ -82,13 +82,13 @@ s32 func_808002E8_chanemone(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void func_808005A0_chanemone(Actor *, s32);
     void _subaddiecustomhits_entrypoint_0(Actor *, void *);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
 #ifdef BT_NATIVE
     OSThread *chanemone_entrypoint_1(void);
 #else
     extern s32 _chanemone_entrypoint_1;
 #endif
-    s32 model;
+    BtIntPtr model;
 
     switch (arg1) {
         case 0x3F:
@@ -155,7 +155,7 @@ void func_808003A8_chanemone(Actor *arg0) {
 }
 
 void func_808005A0_chanemone(Actor *arg0, s32 arg1) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
@@ -185,10 +185,10 @@ extend:
 done:;
 }
 
-s32 func_80800648_chanemone(Unk80132ED0 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4)
+s32 func_80800648_chanemone(Unk80132ED0 *arg0, BtIntPtr arg1, f32 arg2, BtIntPtr arg3, s32 arg4)
 {
     f32 func_800136E4(f32);
-    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);
+    s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9);
     s16 func_800CB854(s32 *);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);

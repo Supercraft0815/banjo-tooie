@@ -4,8 +4,8 @@ void func_80800000_chintrochar(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void *_suexpression_entrypoint_7(Actor *, s32, s16);
     void _suexpression_entrypoint_12(void *, f32, f32);
-    void _suexpression_entrypoint_3(s32, s32 *, s32 *, s32 *);
-    void _suexpression_entrypoint_6(void *, s32, s32, s32, s32);
+    void _suexpression_entrypoint_3(s16 arg0, s32 *arg1, s32 *arg2, s32 *arg3);
+    void _suexpression_entrypoint_6(u8 *arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4);
     void _suexpression_entrypoint_5(void *, s32);
     s16 func_8001B668(s32, s32);
     void *func_8001B798(s16);
@@ -42,7 +42,7 @@ void func_80800000_chintrochar(Actor *arg0) {
 }
 
 s32 func_808000FC_chintrochar(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_0(Actor *);
+    void _subaddieDll_entrypoint_0(void *arg0);
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
     void func_80108658(void *, s32, s32, void *);
     void func_8010A63C(Actor *);
@@ -111,13 +111,13 @@ s32 func_808000FC_chintrochar(Actor *arg0) {
     }
     if (flags & 0x800) {
         func_8010A63C(arg0);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_808002FC_chintrochar(Actor *arg0) {
     s16 func_800AE020(void);
     u8 *func_800DBFF8(void);
-    s32 func_80105DFC(Actor *);
+    void func_80105DFC(Actor *arg0);
     extern u32 func_80804158_chintrochar[][8];
     u32 flags;
 
@@ -160,7 +160,7 @@ void func_80800398_chintrochar(Actor *arg0) {
 }
 
 void func_80800484_chintrochar(Actor *arg0) {
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_80103140(Actor *, u32, u16);
     void func_80800000_chintrochar(Actor *);
     s32 func_808000FC_chintrochar();
@@ -195,7 +195,7 @@ void func_80800484_chintrochar(Actor *arg0) {
 
 void func_80800540_chintrochar(Actor *arg0) {
     s16 _anseq_entrypoint_6(void);
-    void _chanim_entrypoint_7(Actor *, s16);
+    void _chanim_entrypoint_7(Actor *arg0, s32 arg1);
     s16 _chblink_entrypoint_1(s32);
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
@@ -235,9 +235,9 @@ void func_80800540_chintrochar(Actor *arg0) {
 
 void func_80800648_chintrochar(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    void _anseq_entrypoint_5(s32);
+    void _anseq_entrypoint_5(s16 arg0);
     void _chanim_entrypoint_6(Actor *);
-    s32 _chblink_entrypoint_3(s16);
+    void _chblink_entrypoint_3(s16 arg0);
     void func_8001B754(s16);
     void func_800ADFE0(s16);
     extern u32 func_80804158_chintrochar[][8];
@@ -271,7 +271,7 @@ void func_80800648_chintrochar(Actor *arg0) {
     if (handle != 0) {
         func_8001B754(handle);
     }
-}
+}    typedef struct { u8 pad0[0xC0]; s16 unkC0; } Objchar_func_8080071C_chintrochar_intro_data; /* offsets.py genstruct: fields from raw offsets on intro_data; rename once understood */
 
 void func_8080071C_chintrochar(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
@@ -295,11 +295,11 @@ void func_8080071C_chintrochar(Actor *arg0, s32 arg1) {
     void *intro_data;
     s16 *sequence;
     /* Callbacks reload this addressable 32-bit marker from the stack. */
-    s32 marker;
+    BtIntPtr marker;
 
     intro_data = func_80100094(arg0, 2);
-    sequence = _anseq_entrypoint_9(*(s16 *)((u8 *)intro_data + 0xC0));
-    marker = (s32)arg0->unk0;
+    sequence = _anseq_entrypoint_9(((Objchar_func_8080071C_chintrochar_intro_data *)intro_data)->unkC0);
+    marker = (BtIntPtr)arg0->unk0;
     _anseq_entrypoint_0(sequence);
     /* Empty cases preserve the original IDO jump-table partitioning. */
     switch (arg1) {
@@ -967,14 +967,14 @@ void func_808034C4_chintrochar(Actor *arg0) {
     struct anctrl_s *func_80104248(void *);
     void _chblink_entrypoint_2(s16);
     void _chanim_entrypoint_9(Actor *);
-    void _chanim_entrypoint_1(Unk80132ED0 *, s32, s32);
+    void _chanim_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2);
     s32 func_800DA298(s32);
     s32 func_8008FFE8();
     void func_8010FFB0(f32 **, f32 *, f32 *);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     void *func_8001B798(s16);
     s32 _subaddiefade_entrypoint_0(Actor *);
-    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    void _chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2);
     extern u32 func_80804160_chintrochar[][8];
     extern f32 func_8080416C_chintrochar[][8];
     struct IntroUpdateData {
@@ -1053,7 +1053,7 @@ void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void *func_8001B798(s16);
     void _suexpression_entrypoint_19(void *, Actor *);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
     extern u32 func_80804160_chintrochar[][8];
     extern s16 D_80805308_chintrochar[];
@@ -1062,7 +1062,7 @@ void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
     extern s16 D_80805316_chintrochar[];
     s16 *data;
     f32 *values;
-    s32 model;
+    BtIntPtr model;
     s16 *entry;
     s32 i;
 
@@ -1137,7 +1137,7 @@ void func_80803990_chintrochar(Actor *arg0, Gfx **arg1) {
     void func_800B8C8C(s32);
     void func_800B8C98(s32);
     void func_800B8CB0(s32);
-    void func_800B8F88(s32, s32, u8 *);
+    void func_800B8F88(BtIntPtr, s32, u8 *);
     u8 *data[1];
     u8 *text;
 
@@ -1167,15 +1167,15 @@ void func_80803A78_chintrochar(Actor *arg0, Gfx **arg1) {
     void *func_800DF944(void *, f32 *, f32, f32, f32 *, s32, void *);
     void func_800DF440(s32);
     void func_800DF464(f32);
-    void func_800DF47C(s32, s32);
-    void func_800DF4CC(s32);
+    void func_800DF47C(s32, BtIntPtr);
+    void func_800DF4CC(BtIntPtr);
     void func_800E39A8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_801017D0(Actor *);
     int func_80101970(Actor *);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     u8 *func_801039E4(Unk80132ED0 *);
     extern u32 func_80804160_chintrochar[][8];
     extern f32 func_80804168_chintrochar[][8];
@@ -1301,10 +1301,10 @@ void func_80803E98_chintrochar(Actor *arg0) {
     for (i = 0; i < 2; i++) {
         ((f32 *)(data + 0xD0))[i] = 0.0f;
     }
-    func_800EE7F8((f32 *)(data + 0xF4), (f32 *)((u8 *)arg0 + 4));
-    func_800EE7F8((f32 *)(data + 0xE4), (f32 *)((u8 *)arg0 + 4));
-    *(f32 *)(data + 0x100) = *(f32 *)((u8 *)arg0 + 0x48);
-    *(f32 *)(data + 0xF0) = *(f32 *)((u8 *)arg0 + 0x48);
+    func_800EE7F8((f32 *)(data + 0xF4), &arg0->position[0]);
+    func_800EE7F8((f32 *)(data + 0xE4), &arg0->position[0]);
+    *(f32 *)(data + 0x100) = arg0->rotation[1];
+    *(f32 *)(data + 0xF0) = arg0->rotation[1];
 }
 
 void func_80803F24_chintrochar(Actor *arg0, u8 *arg1, s32 arg2) { void func_800DBEFC(s32 *, s32, f32 *); void func_80103014(u8 *); extern s32 D_80805374_chintrochar[]; if (arg0->unk7C_12) { func_800DBEFC(*(s32 **)((u8 *)arg0->unk0 + 4), D_80805374_chintrochar[arg2], (f32 *)(arg1 + 4)); } func_80103014(arg1); }
@@ -1359,7 +1359,7 @@ void func_80804054_chintrochar(Actor *actor, s32 index, f32 orientation, f32 *of
     func_800EF934(previous, offset, *(f32 *)(data + 0x100));
     func_800EF04C(previous, (f32 *)(data + 0xF4));
     distance = func_800EEAD4(current, previous);
-    if (func_800EECE0((f32 *)((u8 *)actor + 4), (f32 *)(data + 0xF4))) {
+    if (func_800EECE0(&actor->position[0], (f32 *)(data + 0xF4))) {
         direction = (func_800F1DCC(*(f32 *)(data + 0x100), *(f32 *)(data + 0xF0)) <= 0.0f ? 1.0f : -1.0f) * orientation;
     } else {
         direction = 1.0;
@@ -1378,14 +1378,14 @@ void func_80804054_chintrochar(Actor *actor, s32 index, f32 orientation, f32 *of
 }
 
 void func_80804238_chintrochar(s32 *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 func_801065A4();
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    BtIntPtr func_801065A4();
 #ifdef BT_NATIVE
     void chintrochar_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
     s32 _chintrochar_entrypoint_1();
 #endif
-    s32 sp1C;
+    BtIntPtr sp1C;
     sp1C = func_801065A4();
     if (sp1C != 0) {
         _glid_entrypoint_0(sp1C, 1, (s32 *)_chintrochar_entrypoint_1, *arg0);

@@ -12,9 +12,9 @@ void func_80800020_ncbaledge(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbaledge_entrypoint_0(s32 arg0) {
+void ncbaledge_entrypoint_0(BtIntPtr arg0) {
     void func_80111B8C(s32 *, f32, f32);
-    s32 func_801124D0(s32, s32);
+    void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);
     func_80111B8C((s32 *) arg0, 4.0f, 8.0f);
@@ -35,9 +35,9 @@ void ncbaledge_entrypoint_2(PlayerState *arg0) {
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
     f32 func_800F1DCC(f32, f32);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     f32 func_801112B0(void *);
     s32 func_80111CC8(void *, f32 *);

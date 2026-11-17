@@ -9,7 +9,7 @@ struct DodgemPosition { f32 v[3]; };
 
 OSThread *chdodgemcontrol_entrypoint_0(void)
 {
-    extern u32 D_80804DB4_chdodgemcontrol[];
+    extern BtFnWord D_80804DB4_chdodgemcontrol[];
 
     return (OSThread *) D_80804DB4_chdodgemcontrol;
 }
@@ -45,7 +45,7 @@ s32 func_808000B8_chdodgemcontrol(s32 arg0) {
     struct DodgemValues sp18;
     void func_800904C8(s32);
     sp18 = D_80804DFC_chdodgemcontrol;
-    func_800904C8(sp18.values[arg0]);
+    func_800904C8(sp18.values[arg0]); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8080010C_chdodgemcontrol(Actor *arg0) {
@@ -59,7 +59,7 @@ void func_8080010C_chdodgemcontrol(Actor *arg0) {
         u8 padC3[2];
         u8 pointCount;
     };
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
     s32 func_800CEAD0(s32);
     s32 func_800CEB54(s32, f32);
     f32 func_800EEB40(f32 *, f32 *);
@@ -156,9 +156,9 @@ int func_80800350_chdodgemcontrol(void) {
 
 void func_808003B0_chdodgemcontrol(void *arg0) {
     f32 func_800DC178(f32, f32);
-    (*(f32 *)((s8 *)(arg0) + (0))) = func_800DC178(-645.0f, 645.0f);
-    (*(f32 *)((s8 *)(arg0) + (4))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (8))) = func_800DC178(-645.0f, 645.0f);
+    (((Vec3f *)arg0)->pos.x) = func_800DC178(-645.0f, 645.0f);
+    (((Vec3f *)arg0)->pos.y) = 0.0f;
+    (((Vec3f *)arg0)->pos.z) = func_800DC178(-645.0f, 645.0f);
 }
 
 /* extern */
@@ -187,7 +187,7 @@ s32 func_8080040C_chdodgemcontrol(Actor *arg0, f32 *arg1, s32 arg2) {
 void func_808004E4_chdodgemcontrol(Actor *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     typedef struct {
         u8 pad[0x34];
         f32 positions[10][3];
@@ -208,12 +208,12 @@ void func_808004E4_chdodgemcontrol(Actor *arg0, s32 arg1) {
     /* Preserve these address expressions for IDO's stack slots and scheduling. */
     destination = actor->position;
     do {
-        func_808003B0_chdodgemcontrol((f32 *)((u32)position | 0));
-    } while (!func_8080040C_chdodgemcontrol(arg0, (f32 *)((u32)position | 0), arg1));
+        func_808003B0_chdodgemcontrol((f32 *)((BtUIntPtr)position | 0));
+    } while (!func_8080040C_chdodgemcontrol(arg0, (f32 *)((BtUIntPtr)position | 0), arg1));
     if (position && destination) {}
     destination = actor->position;
     func_800EE7F8(destination, position);
-    if (((f32 *)((u32)position | 0))) {}
+    if (((f32 *)((BtUIntPtr)position | 0))) {}
     func_800EE7F8(data->positions[arg1], destination);
 }
 
@@ -222,7 +222,7 @@ s32 func_808005CC_chdodgemcontrol(s32 arg0) { switch (arg0) { case 0: return 0x2
 /* extern */
 
 void func_8080061C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     arg2 |= 6;
@@ -255,7 +255,7 @@ void func_8080061C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808006CC_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 _gcgoto_entrypoint_1(s32, s32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     s32 func_800D395C(void);
@@ -345,7 +345,7 @@ s32 func_80800938_chdodgemcontrol(u8 *arg0, s32 arg1, s32 arg2) {
         u8 state : 4;
         u8 other : 4;
     };
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     s32 _capod_entrypoint_17(f32);
     void _subaddiemulti_entrypoint_4(s32);
     void func_800A54F8(s32);
@@ -636,7 +636,7 @@ void func_80801258_chdodgemcontrol(s32 arg0, f32 arg1[3]) {
 /* extern */
 
 void func_808012C8_chdodgemcontrol(Actor *arg0, s32 arg1) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     s32 _chintrotext_entrypoint_2(s32);
     s32 func_800D395C(void);
     if ((arg1 != 0) || (func_800D395C() != 0)) {
@@ -673,9 +673,9 @@ void func_808013D0_chdodgemcontrol(Actor *arg0) {
     s32 func_800EA05C(void);
     s32 func_800DA298(s32);
     s32 func_800D0A9C(u32, u32);
-    s32 func_800F6438(u32);
-    void func_800F4CEC(s32, u32);
-    s32 _gcstatusDll_entrypoint_11(void);
+    s32 func_800F6438(BtUIntPtr);
+    void func_800F4CEC(BtIntPtr, u32);
+    u8 _gcstatusDll_entrypoint_11(void);
     void func_808017F0_chdodgemcontrol(Actor *);
     void func_800BF744(s32, s32);
     extern s32 D_80804D00_chdodgemcontrol[];
@@ -750,7 +750,7 @@ void func_808015E8_chdodgemcontrol(Actor *arg0) {
 void func_8080160C_chdodgemcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_800DA298(s32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void func_800A54F8(s32);
     void func_800BF744(s32, s32);
     typedef struct {
@@ -855,7 +855,7 @@ void func_808017F0_chdodgemcontrol(Actor *arg0) {
 
 Actor *func_80801844_chdodgemcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     void func_80108944(Actor *, Actor *);
     s32 func_80801928_chdodgemcontrol(Actor *, s32);
     struct {
@@ -909,8 +909,8 @@ s32 func_80801928_chdodgemcontrol(Actor *arg0, s32 arg1) {
     actor->unk54 = actor->rotation[1];
     actor->unk6C_0 = arg1;
     data->state[arg1] = 0;
-    data->active[arg1] = 1;
-}
+    data->active[arg1] = 1; BT_NATIVE_ONLY(return (BtIntPtr) actor;)
+}    typedef struct { u8 pad0[0xC2]; u8 unkC2; } Objdodgemcontrol_func_808019C4_chdodgemcontrol_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -922,11 +922,11 @@ void func_808019C4_chdodgemcontrol(Actor *arg0, s32 arg1) {
 
     temp_v0 = func_80100094(arg0, 0U);
     var_s0 = 0;
-    if ((s32) (*(u8 *)((s8 *)(temp_v0) + (0xC2))) > 0) {
+    if ((s32) (((Objdodgemcontrol_func_808019C4_chdodgemcontrol_temp_v0 *)temp_v0)->unkC2) > 0) {
         do {
             func_80801A3C_chdodgemcontrol(arg0, var_s0, arg1);
             var_s0 += 1;
-        } while (var_s0 < (s32) (*(u8 *)((s8 *)(temp_v0) + (0xC2))));
+        } while (var_s0 < (s32) (((Objdodgemcontrol_func_808019C4_chdodgemcontrol_temp_v0 *)temp_v0)->unkC2));
     }
 }
 
@@ -934,7 +934,7 @@ void func_808019C4_chdodgemcontrol(Actor *arg0, s32 arg1) {
 
 void func_80801A3C_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     void* func_80100094(Actor*, u32);
-    s32 func_808042A4_chdodgemcontrol(s32, s32);
+    s32 func_808042A4_chdodgemcontrol(BtIntPtr, s32);
     s32 temp_t6;
     u8 *temp_v0;
 
@@ -993,16 +993,16 @@ void func_80801A8C_chdodgemcontrol(Actor *arg0, s32 arg1) {
     data->initialized = 1;
 }
 
-void func_80801B94_chdodgemcontrol(s32 arg0, s32 arg1) {
-    s32 _subaddieaudioquick_entrypoint_2(s32, s32 *, s32 *);
-    s32 func_800B53A4(s32);
-    s32 func_800BA22C(s32, s32);
-    s32 func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, s32 *, s32 *, s32, s32 *);
-    s32 func_80103DFC(s32, s32 *);
+void func_80801B94_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
+    BtIntPtr func_800B53A4(s32);
+    s32 func_800BA22C(BtIntPtr, s32);
+    s32 func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);
+    s32 func_80103DFC(BtIntPtr, s32 *);
     extern s32 D_80804E78_chdodgemcontrol[];
     extern s32 D_80804EA4_chdodgemcontrol[];
-    s32 sp2C;
+    BtIntPtr sp2C;
     s32 sp20[3];
 
     sp2C = func_800B53A4(0xC);
@@ -1013,8 +1013,8 @@ void func_80801B94_chdodgemcontrol(s32 arg0, s32 arg1) {
     _subaddieaudioquick_entrypoint_2(arg0, sp20, &D_80804EA4_chdodgemcontrol);
 }
 
-void func_80801C18_chdodgemcontrol(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiefade_entrypoint_5();
+void func_80801C18_chdodgemcontrol(Actor *arg0, BtIntPtr arg1, s32 arg2) {
+    void _subaddiefade_entrypoint_5(void *arg0);
     func_80102424(arg0, arg2);
     if ((arg0->unk70_10) == 3) {
         _subaddiefade_entrypoint_5(arg0);
@@ -1046,14 +1046,14 @@ void func_80801C60_chdodgemcontrol(Actor *arg0) {
         case 1:
             _subaddiefade_entrypoint_6(arg0, 7);
             if (_subaddiefade_entrypoint_0(arg0) == 255) {
-                func_80801C18_chdodgemcontrol(arg0, (s32)sp4C, 2);
+                func_80801C18_chdodgemcontrol(arg0, (BtIntPtr)sp4C, 2);
             }
             break;
         case 2:
             if (arg0->unk58 > 0.0f) {
                 arg0->unk58 -= func_800D8FF8();
             } else {
-                func_80801C18_chdodgemcontrol(arg0, (s32)sp4C, 3);
+                func_80801C18_chdodgemcontrol(arg0, (BtIntPtr)sp4C, 3);
             }
             break;
         case 3:
@@ -1081,7 +1081,7 @@ void func_80801C60_chdodgemcontrol(Actor *arg0) {
     if ((s32)arg0->unk70_10 < 3) {
         switch (sp48->states[arg0->unk6C_0]) {
             case 2:
-                func_80801B94_chdodgemcontrol((s32)arg0, D_80804ECC_chdodgemcontrol[sp48->types[arg0->unk6C_0]]);
+                func_80801B94_chdodgemcontrol((BtIntPtr)arg0, D_80804ECC_chdodgemcontrol[sp48->types[arg0->unk6C_0]]);
                 sp48->states[arg0->unk6C_0] = 0;
                 func_800FFAB0(arg0);
                 break;
@@ -1091,13 +1091,13 @@ void func_80801C60_chdodgemcontrol(Actor *arg0) {
                 break;
         }
     }
-}
+}    typedef struct { u8 pad0[0x50]; s32 unk50; } Objdodgemcontrol_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80801F00_chdodgemcontrol(u8 *arg0) {
     void func_800C8B84(s32);
     s32 temp_a1;
 
-    temp_a1 = (*(s32 *)((s8 *)(arg0) + (0x50)));
+    temp_a1 = (((Objdodgemcontrol_arg0 *)arg0)->unk50);
     if (temp_a1 != 0) {
         func_800C8B84(temp_a1);
     }
@@ -1105,7 +1105,7 @@ void func_80801F00_chdodgemcontrol(u8 *arg0) {
 
 void func_80801F2C_chdodgemcontrol(Actor *arg0)
 {
-  s32 _subaddiefade_entrypoint_2();
+  void _subaddiefade_entrypoint_2(void *arg0);
   s32 func_800C8A98(void);
   void func_800C8CB8(s32, f32 *);
   void func_800C8E54(s32, f32, f32);
@@ -1155,7 +1155,7 @@ void func_80801F2C_chdodgemcontrol(Actor *arg0)
 
 OSThread *chdodgemcontrol_entrypoint_1(void)
 {
-    extern u32 D_80804EDC_chdodgemcontrol[];
+    extern BtFnWord D_80804EDC_chdodgemcontrol[];
 
     return (OSThread *) D_80804EDC_chdodgemcontrol;
 }
@@ -1218,22 +1218,22 @@ void func_80802180_chdodgemcontrol(Actor *arg0) {
 
     sp8C = func_80100094(arg0, 0);
     sp88 = func_800D8FF8();
-    sp84 = func_800F1DCC(*(f32 *)((u8 *)arg0 + 0x48), *(f32 *)((u8 *)arg0 + 0x54));
+    sp84 = func_800F1DCC(arg0->rotation[1], arg0->unk54);
     *(f32 *)((u8 *)arg0 + 0x24) *= 0.95f;
     sp84 = mlAbsF(func_800138D0(sp84));
     sp80 = func_808046EC_chdodgemcontrol(arg0) * (1.1f - sp84) * sp88;
     sp8C[3] *= 0.8f;
-    func_800EEB9C(sp74, *(f32 *)((u8 *)arg0 + 0x48), -40.0f);
-    func_800EF04C((f32 *)((u8 *)arg0 + 4), sp74);
+    func_800EEB9C(sp74, arg0->rotation[1], -40.0f);
+    func_800EF04C(&arg0->position[0], sp74);
     if (func_80102CF4(arg0, sp80) == 0) {
         func_80102B2C(arg0, sp80);
     }
-    *(f32 *)((u8 *)arg0 + 0x48) += sp8C[3];
-    func_800EEB9C(sp74, *(f32 *)((u8 *)arg0 + 0x48), 40.0f);
-    func_800EF04C((f32 *)((u8 *)arg0 + 4), sp74);
-    func_800EEB9C(sp5C, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
-    func_800EF04C(sp5C, (f32 *)((u8 *)arg0 + 4));
-    func_800EEB9C(sp68, *(f32 *)((u8 *)arg0 + 0x48), *(f32 *)((u8 *)arg0 + 0x24));
+    arg0->rotation[1] += sp8C[3];
+    func_800EEB9C(sp74, arg0->rotation[1], 40.0f);
+    func_800EF04C(&arg0->position[0], sp74);
+    func_800EEB9C(sp5C, arg0->rotation[1], 48.75f);
+    func_800EF04C(sp5C, &arg0->position[0]);
+    func_800EEB9C(sp68, arg0->rotation[1], *(f32 *)((u8 *)arg0 + 0x24));
     func_800EF04C(sp68, sp8C);
     if (sp68[0] < 0.0f) {
         sp68[0] = -sp68[0];
@@ -1241,66 +1241,66 @@ void func_80802180_chdodgemcontrol(Actor *arg0) {
     if (sp68[2] < 0.0f) {
         sp68[2] = -sp68[2];
     }
-    if (*(f32 *)((u8 *)arg0 + 4) < -629.0f) {
-        *(f32 *)((u8 *)arg0 + 4) = -629.0f;
+    if (arg0->position[0] < -629.0f) {
+        arg0->position[0] = -629.0f;
         func_800EEB9C(sp8C, 90.0f, sp68[0] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
     if (sp5C[0] < -655.0f) {
         sp5C[0] = -655.0f;
-        func_800EEB9C(sp50, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
-        *(f32 *)((u8 *)arg0 + 4) = sp5C[0] - sp50[0];
+        func_800EEB9C(sp50, arg0->rotation[1], 48.75f);
+        arg0->position[0] = sp5C[0] - sp50[0];
         func_800EEB9C(sp8C, 90.0f, sp68[0] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
-    if (*(f32 *)((u8 *)arg0 + 4) > 629.0f) {
-        *(f32 *)((u8 *)arg0 + 4) = 629.0f;
+    if (arg0->position[0] > 629.0f) {
+        arg0->position[0] = 629.0f;
         func_800EEB9C(sp8C, 270.0f, sp68[0] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
     if (sp5C[0] > 655.0f) {
         sp5C[0] = 655.0f;
-        func_800EEB9C(sp44, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
-        *(f32 *)((u8 *)arg0 + 4) = sp5C[0] - sp44[0];
+        func_800EEB9C(sp44, arg0->rotation[1], 48.75f);
+        arg0->position[0] = sp5C[0] - sp44[0];
         func_800EEB9C(sp8C, 270.0f, sp68[0] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
-    if (*(f32 *)((u8 *)arg0 + 0xC) > 629.0f) {
-        *(f32 *)((u8 *)arg0 + 0xC) = 629.0f;
+    if (arg0->position[2] > 629.0f) {
+        arg0->position[2] = 629.0f;
         func_800EEB9C(sp8C, 180.0f, sp68[2] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
     if (sp5C[2] > 655.0f) {
         sp5C[2] = 655.0f;
-        func_800EEB9C(sp38, *(f32 *)((u8 *)arg0 + 0x48), 75.0f);
-        *(f32 *)((u8 *)arg0 + 0xC) = sp5C[2] - sp38[2];
+        func_800EEB9C(sp38, arg0->rotation[1], 75.0f);
+        arg0->position[2] = sp5C[2] - sp38[2];
         func_800EEB9C(sp8C, 180.0f, sp68[2] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
-    if (*(f32 *)((u8 *)arg0 + 0xC) < -629.0f) {
-        *(f32 *)((u8 *)arg0 + 0xC) = -629.0f;
+    if (arg0->position[2] < -629.0f) {
+        arg0->position[2] = -629.0f;
         func_800EEB9C(sp8C, 0.0f, sp68[2] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
     if (sp5C[2] < -655.0f) {
         sp5C[2] = -655.0f;
-        func_800EEB9C(sp2C, *(f32 *)((u8 *)arg0 + 0x48), 48.75f);
-        *(f32 *)((u8 *)arg0 + 0xC) = sp5C[2] - sp2C[2];
+        func_800EEB9C(sp2C, arg0->rotation[1], 48.75f);
+        arg0->position[2] = sp5C[2] - sp2C[2];
         func_800EEB9C(sp8C, 0.0f, sp68[2] * 1.25f);
         *(f32 *)((u8 *)arg0 + 0x24) = 0.0f;
         func_80802104_chdodgemcontrol(arg0);
     }
-    func_800EEB9C((f32 *)((u8 *)arg0 + 0x28), *(f32 *)((u8 *)arg0 + 0x48), *(f32 *)((u8 *)arg0 + 0x24));
+    func_800EEB9C((f32 *)((u8 *)arg0 + 0x28), arg0->rotation[1], *(f32 *)((u8 *)arg0 + 0x24));
     func_800EF04C((f32 *)((u8 *)arg0 + 0x28), sp8C);
     func_800EF334((f32 *)((u8 *)arg0 + 0x28), sp88);
-    func_800EF04C((f32 *)((u8 *)arg0 + 4), (f32 *)((u8 *)arg0 + 0x28));
+    func_800EF04C(&arg0->position[0], (f32 *)((u8 *)arg0 + 0x28));
     func_800EF334(sp8C, 0.7f);
     if (sp8C[6] != 0.0f) {
         sp8C[6] = sp8C[6] - sp88;
@@ -1308,11 +1308,11 @@ void func_80802180_chdodgemcontrol(Actor *arg0) {
     func_808039B8_chdodgemcontrol(arg0);
 }
 
-s32 func_808026D0_chdodgemcontrol(s32 arg0) {
-    s32 func_80104248();
-    s32 anctrl_setPlaybackType(s32, s32);
-    s32 anctrl_start(s32);
-    s32 func_8008B188(s32, s32);
+s32 func_808026D0_chdodgemcontrol(BtIntPtr arg0) {
+    BtIntPtr func_80104248();
+    s32 anctrl_setPlaybackType(BtIntPtr, s32);
+    s32 anctrl_start(BtIntPtr);
+    void func_8008B188(void *arg0, s32 arg1);
     anctrl_setPlaybackType(func_80104248(), 1);
     func_8008B188(func_80104248(arg0), 1);
     return anctrl_start(func_80104248(arg0));
@@ -1320,11 +1320,11 @@ s32 func_808026D0_chdodgemcontrol(s32 arg0) {
 
 /* extern */
 
-void func_80802720_chdodgemcontrol(s32 arg0) {
-    s32 anctrl_setIndex(s32, s32);
-    s32 func_80101CDC(s32, s32);
-    s32 func_80104248();
-    s32 func_808026D0_chdodgemcontrol(s32);
+void func_80802720_chdodgemcontrol(BtIntPtr arg0) {
+    s32 anctrl_setIndex(BtIntPtr, s32);
+    s32 func_80101CDC(BtIntPtr, s32);
+    BtIntPtr func_80104248();
+    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
     anctrl_setIndex(func_80104248(), 0x105);
     func_80101CDC(arg0, 0x4B189680);
     func_808026D0_chdodgemcontrol(arg0);
@@ -1333,14 +1333,14 @@ void func_80802720_chdodgemcontrol(s32 arg0) {
 /* extern */
 
 void func_80802764_chdodgemcontrol(Actor *arg0) {
-    s32 anctrl_setIndex(s32, s32);
-    s32 func_80101CDC(s32, s32);
-    s32 func_80104248();
-    s32 func_808026D0_chdodgemcontrol(s32);
+    s32 anctrl_setIndex(BtIntPtr, s32);
+    s32 func_80101CDC(BtIntPtr, s32);
+    BtIntPtr func_80104248();
+    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
     s32 func_808000B8_chdodgemcontrol(s32);
     anctrl_setIndex(func_80104248(), 0x10B);
-    func_80101CDC((s32)arg0, 0x3F666666);
-    func_808026D0_chdodgemcontrol((s32)arg0);
+    func_80101CDC((BtIntPtr)arg0, 0x3F666666);
+    func_808026D0_chdodgemcontrol((BtIntPtr)arg0);
     if (arg0->unk64_20) {
         func_808000B8_chdodgemcontrol(0);
     }
@@ -1348,16 +1348,16 @@ void func_80802764_chdodgemcontrol(Actor *arg0) {
 
 /* extern */
 
-void func_808027C4_chdodgemcontrol(s32 arg0) {
+void func_808027C4_chdodgemcontrol(BtIntPtr arg0) {
     struct Flags {
         u8 pad[0x64];
         u32 : 11;
         u32 active : 1;
         u32 : 20;
     };
-    s32 anctrl_setIndex(s32, s32);
-    s32 func_80101CDC(s32, s32);
-    s32 func_80104248();
+    s32 anctrl_setIndex(BtIntPtr, s32);
+    s32 func_80101CDC(BtIntPtr, s32);
+    BtIntPtr func_80104248();
     s32 func_808000B8_chdodgemcontrol(s32);
     anctrl_setIndex(func_80104248(), 0x108);
     func_80101CDC(arg0, 0x3F666666);
@@ -1370,14 +1370,14 @@ void func_808027C4_chdodgemcontrol(s32 arg0) {
 /* extern */
 
 void func_80802824_chdodgemcontrol(Actor *arg0) {
-    s32 anctrl_setIndex(s32, s32);
-    s32 func_80101CDC(s32, s32);
-    s32 func_80104248();
-    s32 func_808026D0_chdodgemcontrol(s32);
+    s32 anctrl_setIndex(BtIntPtr, s32);
+    s32 func_80101CDC(BtIntPtr, s32);
+    BtIntPtr func_80104248();
+    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
     s32 func_808000B8_chdodgemcontrol(s32);
     anctrl_setIndex(func_80104248(), 0x109);
-    func_80101CDC((s32)arg0, 0x3F666666);
-    func_808026D0_chdodgemcontrol((s32)arg0);
+    func_80101CDC((BtIntPtr)arg0, 0x3F666666);
+    func_808026D0_chdodgemcontrol((BtIntPtr)arg0);
     if (arg0->unk64_20) {
         func_808000B8_chdodgemcontrol(2);
     }
@@ -1386,37 +1386,37 @@ void func_80802824_chdodgemcontrol(Actor *arg0) {
 /* extern */
 
 void func_80802884_chdodgemcontrol(Actor *arg0) {
-    s32 anctrl_setIndex(s32, s32);
-    s32 func_80101CDC(s32, s32);
-    s32 func_80104248();
-    s32 func_808026D0_chdodgemcontrol(s32);
+    s32 anctrl_setIndex(BtIntPtr, s32);
+    s32 func_80101CDC(BtIntPtr, s32);
+    BtIntPtr func_80104248();
+    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
     s32 func_808000B8_chdodgemcontrol(s32);
     anctrl_setIndex(func_80104248(), 0x10A);
-    func_80101CDC((s32)arg0, 0x3F666666);
-    func_808026D0_chdodgemcontrol((s32)arg0);
+    func_80101CDC((BtIntPtr)arg0, 0x3F666666);
+    func_808026D0_chdodgemcontrol((BtIntPtr)arg0);
     if (arg0->unk64_20) {
         func_808000B8_chdodgemcontrol(3);
     }
 }
 
-void func_808028E4_chdodgemcontrol(s32 arg0) {
+void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
     struct Flags {
         u8 pad[0x64];
         u32 : 11;
         u32 active : 1;
         u32 : 20;
     };
-    s32 anctrl_isStopped(s32);
-    s32 anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    s32 anctrl_start(s32);
-    s32 func_8008B188(s32, s32);
-    s32 func_8008B28C(s32);
+    s32 anctrl_isStopped(BtIntPtr);
+    s32 anctrl_setIndex(BtIntPtr, s32);
+    s32 anctrl_setPlaybackType(BtIntPtr, s32);
+    s32 anctrl_start(BtIntPtr);
+    void func_8008B188(void *arg0, s32 arg1);
+    s32 func_8008B28C(void *arg0);
     void func_800904C8(s32);
     f32 func_800F1DCC(f32, f32);
-    s32 func_80101CDC(s32, s32);
-    s32 func_801022E4(s32);
-    s32 func_80104248();
+    s32 func_80101CDC(BtIntPtr, s32);
+    s32 func_801022E4(BtIntPtr);
+    BtIntPtr func_80104248();
     f32 difference;
 
     difference = func_800F1DCC(*(f32 *)(arg0 + 0x48), *(f32 *)(arg0 + 0x54));
@@ -1514,9 +1514,9 @@ void func_808028E4_chdodgemcontrol(s32 arg0) {
 
 void func_80802D04_chdodgemcontrol(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    s32 _subaddieaudioquick_entrypoint_2();
-    s32 _subaddiejoy_entrypoint_2(Actor *, s32, f32 *);
-    s32 anctrl_isStopped(s32);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
+    s32 _subaddiejoy_entrypoint_2(void *arg0, s32 arg1, BtIntPtr arg2);
+    s32 anctrl_isStopped(BtIntPtr);
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
     void func_800C4B70(s32);
@@ -1526,12 +1526,12 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
-    s32 func_80104248();
+    BtIntPtr func_80104248();
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     void func_80803200_chdodgemcontrol(Actor *);
     void func_8080349C_chdodgemcontrol(Actor *);
     void func_808037C8_chdodgemcontrol(Actor *);
-    void func_8080422C_chdodgemcontrol(s32, s32);
+    void func_8080422C_chdodgemcontrol(BtIntPtr, s32);
     f32 func_8080458C_chdodgemcontrol(Actor *);
     f32 func_8080460C_chdodgemcontrol(Actor *);
     void func_8080476C_chdodgemcontrol(Actor *);
@@ -1584,7 +1584,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
         if (!arg0->unk64_29) {
             arg0->unk70_10 = 2;
         }
-        func_808028E4_chdodgemcontrol((s32)arg0);
+        func_808028E4_chdodgemcontrol((BtIntPtr)arg0);
         break;
     case 2:
         if (arg0->unk64_29) {
@@ -1614,7 +1614,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
             }
         }
         func_80802180_chdodgemcontrol(arg0);
-        func_808028E4_chdodgemcontrol((s32)arg0);
+        func_808028E4_chdodgemcontrol((BtIntPtr)arg0);
         break;
     case 5:
         if (func_80101E14(arg0, 0.7283f)) {
@@ -1624,7 +1624,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D5C_chdodgemcontrol);
         }
         if (anctrl_isStopped(func_80104248(arg0))) {
-            func_8080422C_chdodgemcontrol((s32)arg0, 4);
+            func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 4);
         }
         break;
     case 6:
@@ -1632,7 +1632,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D74_chdodgemcontrol);
         }
         if (anctrl_isStopped(func_80104248(arg0))) {
-            func_8080422C_chdodgemcontrol((s32)arg0, 4);
+            func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 4);
         }
         break;
     case 7:
@@ -1643,7 +1643,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D48_chdodgemcontrol);
         }
         if (anctrl_isStopped(func_80104248(arg0))) {
-            func_8080422C_chdodgemcontrol((s32)arg0, 4);
+            func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 4);
         }
         break;
     }
@@ -1857,7 +1857,7 @@ void func_808039B8_chdodgemcontrol(Actor *arg0) {
     f32 other_offset[3];
 
     data = func_80100094(arg0, 0);
-    controller = func_80106790(*(Unk80132ED0 **)((u8 *)arg0 + 0x3C));
+    controller = func_80106790(arg0->unk3C);
     control_data = func_80100094(controller, 0);
     for (i = 0; i < control_data[0xC2]; i++) {
         if (i != (*(u32 *)((u8 *)arg0 + 0x6C) & 0x1FF)) {
@@ -1895,7 +1895,7 @@ void func_808039B8_chdodgemcontrol(Actor *arg0) {
                         func_80802884_chdodgemcontrol(other);
                     }
                     if (difference < -135.0f || difference > 135.0f) {
-                        func_808027C4_chdodgemcontrol((s32)other);
+                        func_808027C4_chdodgemcontrol((BtIntPtr)other);
                     }
                     if (((f32 *)arg0)[9] < 150.0f) {
                         ((f32 *)arg0)[9] = 150.0f;
@@ -1978,10 +1978,10 @@ void func_808039B8_chdodgemcontrol(Actor *arg0) {
 
 /* extern */
 
-void func_8080422C_chdodgemcontrol(s32 arg0, s32 arg1) {
-    s32 anctrl_setPlaybackType(s32, s32);
+void func_8080422C_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
+    s32 anctrl_setPlaybackType(BtIntPtr, s32);
     s32 func_80101FDC();
-    s32 func_80104248(s32, s32);
+    BtIntPtr func_80104248(BtIntPtr, s32);
     func_80101FDC();
     if ((arg1 == 5) || (arg1 == 6) || (arg1 == 7)) {
         anctrl_setPlaybackType(func_80104248(arg0, arg1), 2);
@@ -1990,9 +1990,9 @@ void func_8080422C_chdodgemcontrol(s32 arg0, s32 arg1) {
     anctrl_setPlaybackType(func_80104248(arg0, arg1), 1);
 }
 
-s32 func_808042A4_chdodgemcontrol(s32 arg0, s32 arg1) {
+s32 func_808042A4_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     Actor *actor = func_80106790((Unk80132ED0 *)arg0);
 
     switch (arg1) {
@@ -2011,23 +2011,23 @@ s32 func_808042A4_chdodgemcontrol(s32 arg0, s32 arg1) {
         case 3:
             switch (actor->unk6C_0) {
                 case 1:
-                    func_8080422C_chdodgemcontrol((s32)actor, 5);
+                    func_8080422C_chdodgemcontrol((BtIntPtr)actor, 5);
                     break;
                 case 2:
-                    func_8080422C_chdodgemcontrol((s32)actor, 7);
+                    func_8080422C_chdodgemcontrol((BtIntPtr)actor, 7);
                     break;
                 case 3:
-                    func_8080422C_chdodgemcontrol((s32)actor, 6);
+                    func_8080422C_chdodgemcontrol((BtIntPtr)actor, 6);
                     break;
             }
             break;
         case 0:
-            func_8080422C_chdodgemcontrol((s32)actor, 2);
+            func_8080422C_chdodgemcontrol((BtIntPtr)actor, 2);
             break;
         case 1:
-            func_8080422C_chdodgemcontrol((s32)actor, 4);
+            func_8080422C_chdodgemcontrol((BtIntPtr)actor, 4);
             break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8080440C_chdodgemcontrol(Actor *arg0) {
@@ -2036,7 +2036,7 @@ void func_8080440C_chdodgemcontrol(Actor *arg0) {
     s32 func_80103140(Actor *, u32, u16);
     void func_800904F4(s32, Unk80132ED0 *);
     void func_800904C8(s32);
-    s32 _gcstatusDll_entrypoint_11(void);
+    u8 _gcstatusDll_entrypoint_11(void);
     f32 *sp24;
 
     sp24 = func_80100094(arg0, 0);
@@ -2055,13 +2055,13 @@ void func_8080440C_chdodgemcontrol(Actor *arg0) {
                     arg0->unk64_20 = 1;
                     break;
                 case 1:
-                    func_8080422C_chdodgemcontrol((s32)arg0, 5);
+                    func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 5);
                     break;
                 case 2:
-                    func_8080422C_chdodgemcontrol((s32)arg0, 7);
+                    func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 7);
                     break;
                 case 3:
-                    func_8080422C_chdodgemcontrol((s32)arg0, 6);
+                    func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 6);
                     break;
             }
             break;
@@ -2204,7 +2204,7 @@ void func_8080476C_chdodgemcontrol(Actor *arg0) {
 
 OSThread *chdodgemcontrol_entrypoint_2(void)
 {
-    extern u32 D_80804FAC_chdodgemcontrol[];
+    extern BtFnWord D_80804FAC_chdodgemcontrol[];
 
     return (OSThread *) D_80804FAC_chdodgemcontrol;
 }
@@ -2246,12 +2246,12 @@ s32 D_80804D8C_chdodgemcontrol[] = {
 s32 D_80804DA4_chdodgemcontrol[] = {
     0x00130515, 0x001E0001, 0x0DAC1388, 0x00000000,
 };
-u32 D_80804DB4_chdodgemcontrol[] = {
-    0x02CB0306, 0x00000001, 0x00000000, (u32)func_8080010C_chdodgemcontrol,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x00000004, (u32)func_808015E8_chdodgemcontrol, 0x00000000,
-    0x00C80000, (u32)func_808013D0_chdodgemcontrol, (u32)func_80107C2C, 0x80000602,
-    (u32)func_80800938_chdodgemcontrol, 0x00000000,
+BtFnWord D_80804DB4_chdodgemcontrol[] = {
+    0x02CB0306, 0x00000001, 0x00000000, (BtFnWord)func_8080010C_chdodgemcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (BtFnWord)func_808015E8_chdodgemcontrol, 0x00000000,
+    0x00C80000, (BtFnWord)func_808013D0_chdodgemcontrol, (BtFnWord)func_80107C2C, 0x80000602,
+    (BtFnWord)func_80800938_chdodgemcontrol, 0x00000000,
 };
 struct DodgemValues D_80804DFC_chdodgemcontrol = {
     0x00000077, 0x00000078, 0x0000007A, 0x00000079,
@@ -2289,11 +2289,11 @@ s16 D_80804ECC_chdodgemcontrol[] = {
 u16 D_80804ED4_chdodgemcontrol[] = {
     0x07C7, 0x07C6, 0x07C5, 0x0000,
 };
-u32 D_80804EDC_chdodgemcontrol[] = {
-    0x01FC037F, 0x07C50001, (u32)D_80804E58_chdodgemcontrol, (u32)func_80801C60_chdodgemcontrol,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x00020004, (u32)func_80801F00_chdodgemcontrol, 0x00000000,
-    0x00000000, (u32)func_80801F2C_chdodgemcontrol, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_80804EDC_chdodgemcontrol[] = {
+    0x01FC037F, 0x07C50001, (BtFnWord)D_80804E58_chdodgemcontrol, (BtFnWord)func_80801C60_chdodgemcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00020004, (BtFnWord)func_80801F00_chdodgemcontrol, 0x00000000,
+    0x00000000, (BtFnWord)func_80801F2C_chdodgemcontrol, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 u32 D_80804F24_chdodgemcontrol[] = {
@@ -2317,11 +2317,11 @@ f32 D_80804F94_chdodgemcontrol[] = {
 struct DodgemPosition D_80804FA0_chdodgemcontrol = {
     0.0f, 0.0f, 0.0f,
 };
-u32 D_80804FAC_chdodgemcontrol[] = {
-    0x02CA0305, 0x06BA0004, (u32)D_80804F24_chdodgemcontrol, (u32)func_80802D04_chdodgemcontrol,
-    (u32)func_80105834, (u32)func_801018A4, 0x00000000, 0x3F800000,
-    0x00000000, 0x00000004, (u32)func_8080455C_chdodgemcontrol, 0x00000000,
-    0x00200000, (u32)func_8080440C_chdodgemcontrol, (u32)func_80107C2C, 0x80000002,
-    (u32)func_8080207C_chdodgemcontrol, 0x00000000, 0x00000000, 0x00000000,
+BtFnWord D_80804FAC_chdodgemcontrol[] = {
+    0x02CA0305, 0x06BA0004, (BtFnWord)D_80804F24_chdodgemcontrol, (BtFnWord)func_80802D04_chdodgemcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)func_801018A4, 0x00000000, 0x3F800000,
+    0x00000000, 0x00000004, (BtFnWord)func_8080455C_chdodgemcontrol, 0x00000000,
+    0x00200000, (BtFnWord)func_8080440C_chdodgemcontrol, (BtFnWord)func_80107C2C, 0x80000002,
+    (BtFnWord)func_8080207C_chdodgemcontrol, 0x00000000, 0x00000000, 0x00000000,
     0x00000000,
 };

@@ -40,3 +40,6 @@ void surestart_entrypoint_0(s32 arg0)
         }
     }
 }
+/* data_to_c.py: from asm/data/overlays/su/restart.data.s */
+RestartData D_808000D0_surestart [20] BT_DATA(4, overlays_su_restart, 0x0) = { { 184, 183, 0xD, 5 }, { 199, 217, 0xD, 8 }, { 231, 374, 0xD, 2 }, { 423, 239, 0xD, 0xE }, { 274, 369, 0xD, 4 }, { 264, 370, 0xD, 0xA }, { 295, 308, 0xD, 3 }, { 310, 318, 0xD, 0x16 }, { 310, 319, 0xD, 0x16 }, { 341, 342, 0xD, 8 }, { 296, 0, 2, 8 }, { 310, 0, 6, 0x19 }, { 262, 0, 7, 0xA }, { 196, 0, 8, 4 }, { 424, 0, 0xC, 0x12 }, { 199, 0, 0xF, 0xE }, { 214, 0, 0x10, 0xA }, { 274, 0, 0x12, 6 }, { 274, 0, 0x13, 0x16 }, { 184, 0, 0xE, 9 } };
+u8 D_80800148_surestart[8] BT_DATA(4, overlays_su_restart, 0x78) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };

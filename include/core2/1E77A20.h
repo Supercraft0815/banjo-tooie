@@ -9,7 +9,7 @@
 #include "overlays/bs/state.h"
 
 f32 func_8009E138(PlayerState *, s32);
-void func_8009E154(PlayerState *, s32, f32 *);
+void func_8009E154(PlayerState *, BtIntPtr, f32 *);
 void func_8009E474(PlayerState *);
 void func_8009E4AC(PlayerState *);
 void func_8009E53C(PlayerState *, s32, f32);

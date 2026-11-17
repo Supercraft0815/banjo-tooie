@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "native_map_sections.h"
 #include "native_lagoonbot_data.inc"
 void gcmapsects_lagoonbot_entrypoint_0(void) {
@@ -55,7 +55,7 @@ void gcmapsects_lagoonbot_entrypoint_0(void) {
     extern s16 D_808002E0_gcmapsects_lagoonbot[];
     extern s16 D_808002EC_gcmapsects_lagoonbot[];
     extern s32 D_808002F4_gcmapsects_lagoonbot;
-    extern s32 D_808002F8_gcmapsects_lagoonbot;
+    extern s32 D_808002F8_gcmapsects_lagoonbot[2];
     s16 *section;
     u32 limit;
     s32 i;
@@ -70,7 +70,7 @@ void gcmapsects_lagoonbot_entrypoint_0(void) {
                                  &D_80800248_gcmapsects_lagoonbot[i * 22],
                                  D_80800230_gcmapsects_lagoonbot[i * 22 + 18]);
         i++;
-    } while ((void *)&D_80800248_gcmapsects_lagoonbot[i * 22] < (void *)&D_808002F8_gcmapsects_lagoonbot);
+    } while ((void *)&D_80800248_gcmapsects_lagoonbot[i * 22] < (void *)D_808002F8_gcmapsects_lagoonbot);
     section = D_808002E0_gcmapsects_lagoonbot;
     i = 0;
     do {
@@ -113,3 +113,11 @@ void gcmapsects_lagoonbot_entrypoint_1(u8 *arg0) {
 }
 
 #endif
+/* data_to_c.py: from asm/data/overlays/gc/mapsects/_lagoonbot.data.s */
+s16 D_80800230_gcmapsects_lagoonbot [6] BT_DATA(4, overlays_gc_mapsects__lagoonbot, 0x0) = { 17914, 0, -14895, 24576, 17302, 0 };
+s16 D_8080023C_gcmapsects_lagoonbot [6] BT_DATA(4, overlays_gc_mapsects__lagoonbot, 0xC) = { 17827, 20480, -14884, -26624, -14991, 16384 };
+s16 D_80800248_gcmapsects_lagoonbot [76] BT_DATA(4, overlays_gc_mapsects__lagoonbot, 0x18) = { 17938, -25600, -14938, 30720, 17719, 0, 7500, 1838, 0, 0, 18015, 28672, -14908, -8192, -14961, -16384, 17981, -29696, -14861, 2048, -14852, -24576, 18023, -7168, -14944, 30720, -15498, 0, 7500, 1839, 0, 0, 17924, -12288, -14854, 0, -14848, 8192, 17696, -24576, -14797, -20480, -14775, 22528, 17981, -29696, -14947, -18432, -14991, 16384, 7500, 1841, 0, 0, 17982, -24576, -14995, -32768, 17835, -8192, 17853, 28672, -14921, -22528, -15498, 0, 18051, -4608, -15452, -32768, 17966, -4096, -1425, 1842, 1848, 0 };
+s16 D_808002E0_gcmapsects_lagoonbot [6] BT_DATA(4, overlays_gc_mapsects__lagoonbot, 0xB0) = { 0, 2, 2, 1, 1, 3 };
+s16 D_808002EC_gcmapsects_lagoonbot [4] BT_DATA(4, overlays_gc_mapsects__lagoonbot, 0xBC) = { 2, 3, 0, 1 };
+s32 D_808002F4_gcmapsects_lagoonbot BT_DATA(4, overlays_gc_mapsects__lagoonbot, 0xC4) = -972206080;
+s32 D_808002F8_gcmapsects_lagoonbot[2] BT_DATA(4, overlays_gc_mapsects__lagoonbot, 0xC8) = { 1169879040, -984838144 };

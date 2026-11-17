@@ -24,17 +24,17 @@ f32 func_800CB45C(volatile s32 arg0, f32 *arg1, s32 *arg2, s32 *arg3) {
     *arg2 = *(s16 *)(temp_v0 + 0x18);
     *arg3 = *(s16 *)(temp_v0 + 0x1A);
     return *(f32 *)(temp_v0 + 0x14);
-}
+}    typedef struct { u8 pad0[0x1]; u8 unk1; s16 unk2; BtIntPtr unk4; } Obj1EA4CD0_func_800CB4D0_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
-s32 func_800CB4D0(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_800CB4D0(s32 arg0, BtIntPtr arg1, s32 arg2) {
     extern u8 D_8012AB70[];
     void *temp_v1;
 
     temp_v1 = D_8012AB70 + arg0 * 0x30;
-    if ((*(u8 *)((s8 *)(temp_v1) + (1))) == 0) {
-        (*(u8 *)((s8 *)(temp_v1) + (1))) = 1U;
-        (*(s32 *)((s8 *)(temp_v1) + (4))) = arg1;
-        (*(s16 *)((s8 *)(temp_v1) + (2))) = arg2;
+    if ((((Obj1EA4CD0_func_800CB4D0_temp_v1 *)temp_v1)->unk1) == 0) {
+        (((Obj1EA4CD0_func_800CB4D0_temp_v1 *)temp_v1)->unk1) = 1U;
+        (((Obj1EA4CD0_func_800CB4D0_temp_v1 *)temp_v1)->unk4) = arg1;
+        (((Obj1EA4CD0_func_800CB4D0_temp_v1 *)temp_v1)->unk2) = arg2;
         return 1;
     }
     return 0;
@@ -96,7 +96,7 @@ void func_800CB618(void)
 
 s32 func_800CB698(s32 arg0, s32 arg1) {
     extern u8 D_8012AB71[];
-    D_8012AB71[(arg0 * 3) * 16] = arg1;
+    D_8012AB71[(arg0 * 3) * 16] = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800CB6B4(s32 arg0, f32 *arg1, f32 arg2, s32 arg3) {
@@ -141,3 +141,11 @@ s32 func_800CB7C4(s32 arg0, f32 *arg1, f32 *arg2) {
     }
     return result;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_8012AB70 [ 1 ] BT_DATA(4, bss_core2bss1_1, 0x90);
+u8 D_8012AB71 [ 1 ] BT_DATA(4, bss_core2bss1_1, 0x91);
+u8 D_8012AB78 [ 760 ] BT_DATA(4, bss_core2bss1_1, 0x98);
+#endif

@@ -49,3 +49,9 @@ s32 subaddiemarker_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2, BossMarker *arg
     }
     return result;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+Prop * B_808001E0_subaddiemarker [ 40 ] BT_DATA(16, bss_baddie_marker, 0x0);
+#endif

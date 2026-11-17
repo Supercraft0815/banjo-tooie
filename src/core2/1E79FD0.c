@@ -7,13 +7,13 @@ s32 func_800A06E0()
 
 /* extern */
 
-void func_800A06E8(s32 arg0) {
+void func_800A06E8(BtIntPtr arg0) {
     s32 func_80092B80();
-    void func_800A0714(s32, s32);
+    void func_800A0714(BtIntPtr, s32);
     func_800A0714(arg0, func_80092B80());
 }
 
-void func_800A0714(s32 arg0, s32 arg1) {
+void func_800A0714(BtIntPtr arg0, s32 arg1) {
     s32 func_800A940C(s32);
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
@@ -97,13 +97,13 @@ void func_800A0714(s32 arg0, s32 arg1) {
         func_800DF744(0x32, (s32) func_800F1214((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x138)))) + (4))), 1.0f, 5.0f));
         return;
     case 0x988:
-        value = *(D_80119250 + func_800A940C((*(s32 *)((s8 *)(arg0) + (0x184)))));
+        value = *(D_80119250 + func_800A940C((((PlayerState *)arg0)->unk184)));
         func_800DF744(5, value);
         func_800DF744(4, value);
         func_800DF744(3, (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x138)))) + (0x16))));
         return;
     case 0x98D:
-        func_800DF744(4, *(D_80119254 + func_800A940C((*(s32 *)((s8 *)(arg0) + (0x184))))));
+        func_800DF744(4, *(D_80119254 + func_800A940C((((PlayerState *)arg0)->unk184))));
         return;
     case 0x984:
     case 0x986:
@@ -114,7 +114,7 @@ void func_800A0714(s32 arg0, s32 arg1) {
 
 s32 func_800A0C20(PlayerState *self)
 {
-    return (*(u8 **)((u8 *)self + 0x138))[0x10];
+    return (self->unk138)[0x10];
 }
 
 f32 func_800A0C2C(void *arg0) {
@@ -184,14 +184,14 @@ void func_800A0D74(void *arg0, f32 arg1) {
 
 void func_800A0D84(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 4) = arg1;
-}
+}                     typedef struct { u8 pad0[0x138]; void * unk138; u8 pad13C[0x14]; void * unk150; } Obj1E79FD0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_800A0D94(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 22) = arg1;
+    *(s8 *)((u8 *)*&((Obj1E79FD0_arg0 *)arg0)->unk138 + 22) = arg1;
 }
 
 s32 func_800A0DA0(PlayerState *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 20) = arg1;
+    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 20) = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800A0DAC(PlayerState *arg0, s32 arg1) {
@@ -208,7 +208,7 @@ void func_800A0DC4(PlayerState *arg0, s32 arg1) {
 
 void func_800A0DD0(PlayerState *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 312) + 17) = arg1;
-}
+}    typedef struct { u8 pad0[0x8]; f32 unk8; u8 unkC; u8 padD[0x3]; u8 unk10; } Obj1E79FD0_func_800A0DDC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -217,13 +217,13 @@ void func_800A0DDC(void *arg0) {
     f32 delta;
     void *temp_v0;
 
-    if ((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x138)))) + (8))) != 0.0f) {
+    if ((*(f32 *)((s8 *)((((Obj1E79FD0_arg0 *)arg0)->unk138)) + (8))) != 0.0f) {
         delta = func_800D8FF8();
-        temp_v0 = (*(void **)((s8 *)(arg0) + (0x138)));
-        (*(f32 *)((s8 *)(temp_v0) + (8))) -= delta;
-        temp_v0 = (*(void **)((s8 *)(arg0) + (0x138)));
-        if ((*(f32 *)((s8 *)(temp_v0) + (8))) <= 0.0f) {
-            (*(u8 *)((s8 *)(temp_v0) + (0x10))) = (u8) (*(u8 *)((s8 *)(temp_v0) + (0xC)));
+        temp_v0 = (((Obj1E79FD0_arg0 *)arg0)->unk138);
+        (((Obj1E79FD0_func_800A0DDC_temp_v0 *)temp_v0)->unk8) -= delta;
+        temp_v0 = (((Obj1E79FD0_arg0 *)arg0)->unk138);
+        if ((((Obj1E79FD0_func_800A0DDC_temp_v0 *)temp_v0)->unk8) <= 0.0f) {
+            (((Obj1E79FD0_func_800A0DDC_temp_v0 *)temp_v0)->unk10) = (u8) (((Obj1E79FD0_func_800A0DDC_temp_v0 *)temp_v0)->unkC);
         }
     }
 }
@@ -238,20 +238,20 @@ f32 func_800A0E58(void *arg0) {
 }
 
 void func_800A0E64(PlayerState *arg0) {
-    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
-    s32 _fxripple_entrypoint_0(s32, f32 *);
+    BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    void _fxripple_entrypoint_0(s32 arg0, BtIntPtr arg1);
     s32 _fxsplash25d_entrypoint_0(f32 *);
-    s32 _fxsplash_entrypoint_2(f32 *, f32);
+    BtIntPtr _fxsplash_entrypoint_2(f32 *, f32);
     f32 func_800964DC(PlayerState *);
     s32 func_80096544(PlayerState *);
     void func_8009C128(PlayerState *, f32[3]);
-    s32 func_8009DBF0(PlayerState *, s32, f32);
-    void func_800BA22C(s32, s32);
-    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    void func_8009DBF0(PlayerState *arg0, s32 arg1, f32 arg2);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
     f32 func_800DC178(f32, f32);
     extern f32 D_80125490;
     f32 sp3C[3];
-    s32 temp_s0;
+    BtIntPtr temp_s0;
     f32 sp34;
 
     if (func_80096544(arg0) != 0) {
@@ -282,37 +282,37 @@ u32 func_800A0FD8(void *arg0) {
 }
 
 u32 func_800A0FE4(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 336) + 1);
+    return *(u8 *)((u8 *)*&((Obj1E79FD0_arg0 *)arg0)->unk150 + 1);
 }
 
 void func_800A0FF0(void *arg0) {
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (2))) = 1;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (0))) = 0;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (1))) = 0;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (4))) = 50.0f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (8))) = 70.0f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (0xC))) = -1.0f;
-}
+    (*(s8 *)((s8 *)((((Obj1E79FD0_arg0 *)arg0)->unk150)) + (2))) = 1;
+    (*(s8 *)((s8 *)((((Obj1E79FD0_arg0 *)arg0)->unk150)) + (0))) = 0;
+    (*(s8 *)((s8 *)((((Obj1E79FD0_arg0 *)arg0)->unk150)) + (1))) = 0;
+    (*(f32 *)((s8 *)((((Obj1E79FD0_arg0 *)arg0)->unk150)) + (4))) = 50.0f;
+    (*(f32 *)((s8 *)((((Obj1E79FD0_arg0 *)arg0)->unk150)) + (8))) = 70.0f;
+    (*(f32 *)((s8 *)((((Obj1E79FD0_arg0 *)arg0)->unk150)) + (0xC))) = -1.0f;
+}    typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0x4]; f32 unkC; } Obj1E79FD0_func_800A1040_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_800A1040(PlayerState *arg0) {
     u8 *temp_v0;
     u8 *temp_v0_2;
     f32 *temp_f0;
 
-    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x150)));
-    (*(f32 *)((s8 *)(temp_v0) + (4))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0xC)));
-    temp_v0 = (u8 *)(*(u8 **)((s8 *)(arg0) + (0x150)));
+    temp_v0 = (arg0->unk150);
+    (((Obj1E79FD0_func_800A1040_temp_v0 *)temp_v0)->unk4) = (f32) (((Obj1E79FD0_func_800A1040_temp_v0 *)temp_v0)->unkC);
+    temp_v0 = (u8 *)(arg0->unk150);
     temp_f0 = (f32 *)temp_v0;
     temp_f0[2] = temp_f0[4];
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x150)))) + (0xC))) = -1.0f;
-}
+    (*(f32 *)((s8 *)((arg0->unk150)) + (0xC))) = -1.0f;
+}    typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; f32 unk10; } Obj1E79FD0_func_800A106C_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_800A106C(PlayerState *arg0, f32 arg1, f32 arg2) {
     void *temp_v0;
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x150)));
-    (*(f32 *)((s8 *)(temp_v0) + (0xC))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (4)));
+    (((Obj1E79FD0_func_800A106C_temp_v0 *)temp_v0)->unkC) = (f32) (((Obj1E79FD0_func_800A106C_temp_v0 *)temp_v0)->unk4);
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x150)));
-    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (8)));
+    (((Obj1E79FD0_func_800A106C_temp_v0 *)temp_v0)->unk10) = (f32) (((Obj1E79FD0_func_800A106C_temp_v0 *)temp_v0)->unk8);
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (4))) = arg1;
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x150)))) + (8))) = arg2;
 }
@@ -331,21 +331,21 @@ void func_800A10A0(PlayerState *arg0) {
     s32 sp28;
     s32 sp24;
 
-    sp28 = (s32) *(*(u8 **)((s8 *)(arg0) + (0x150)));
-    sp2C = func_800964DC(arg0) - (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x150)))) + (4)));
+    sp28 = (s32) *(arg0->unk150);
+    sp2C = func_800964DC(arg0) - (*(f32 *)((s8 *)((arg0->unk150)) + (4)));
     if (sp28 != 0) {
-        *(*(u8 **)((s8 *)arg0 + 0x150)) = func_80096524(arg0) && func_8009C150(arg0) < sp2C + 2.0f;
+        *(arg0->unk150) = func_80096524(arg0) && func_8009C150(arg0) < sp2C + 2.0f;
     } else {
-        *(*(u8 **)((s8 *)arg0 + 0x150)) = func_80096524(arg0) && func_8009C150(arg0) < sp2C - 2.0f;
+        *(arg0->unk150) = func_80096524(arg0) && func_8009C150(arg0) < sp2C - 2.0f;
     }
-    if ((sp28 == 0) && ((*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x150)))) + (0))) != 0) && (baphysics_get_vertical_velocity(arg0) < -40.0f)) {
+    if ((sp28 == 0) && ((*(u8 *)((s8 *)((arg0->unk150)) + (0))) != 0) && (baphysics_get_vertical_velocity(arg0) < -40.0f)) {
         func_800A0E64(arg0);
     }
     sp24 = func_800F3ED0(arg0);
     if (func_800A0FD8(arg0) != 0) {
-        (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x150)))) + (1))) = 1;
+        (*(s8 *)((s8 *)((arg0->unk150)) + (1))) = 1;
     } else if ((player_isStable(arg0) != 0) || (sp24 == 0xA) || (sp24 == 5)) {
-        (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x150)))) + (1))) = 0;
+        (*(s8 *)((s8 *)((arg0->unk150)) + (1))) = 0;
     }
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x150)))) + (2))) = func_80096518(arg0);
+    (*(s8 *)((s8 *)((arg0->unk150)) + (2))) = func_80096518(arg0);
 }

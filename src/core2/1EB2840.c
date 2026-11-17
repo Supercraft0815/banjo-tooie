@@ -101,3 +101,10 @@ int func_800D91EC(f32 *arg0, f32 arg1) {
     }
     return 0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_8012C760 BT_DATA(4, bss_core2bss1_2_status_tail, 0x1340);
+u32 D_8012C764 BT_DATA(4, bss_core2bss1_2_status_tail, 0x1344);
+#endif

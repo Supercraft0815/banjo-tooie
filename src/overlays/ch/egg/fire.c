@@ -27,7 +27,7 @@ void func_80800000_cheggfire(void *arg0) {
         return;
     }
     _fxegg_entrypoint_3(((Actor *)arg0)->position, ((Actor *)arg0)->scale);
-}
+}                typedef struct { u8 pad0[0x38]; f32 unk38; u8 pad3C[0x36]; u16 unk72; } Objfire_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_808000B8_cheggfire(void *arg0) {
     void *func_80100094(Actor *, u32);
@@ -50,10 +50,10 @@ void func_808000B8_cheggfire(void *arg0) {
     } *data;
 
     data = func_80100094(arg0, 0);
-    switch ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) {
+    switch ((u32)*&((Objfire_arg0 *)arg0)->unk72 >> 10) {
     case 1:
         if (_suegg_entrypoint_8(arg0) == 0) {
-            if (func_800EEEA8((s32)((u8 *)arg0 + 0x28)) != 0) {
+            if (func_800EEEA8((BtIntPtr)((u8 *)arg0 + 0x28)) != 0) {
                 data->flag = 1;
             } else {
                 func_80800000_cheggfire(arg0);
@@ -66,7 +66,7 @@ void func_808000B8_cheggfire(void *arg0) {
         break;
     case 2:
         if (_suegg_entrypoint_8(arg0) == 0) {
-            *(f32 *)((u8 *)arg0 + 0x38) = func_800F10B4(*(f32 *)((u8 *)data + 0x30), 0.0f, 0.134f, 0.1f, 0.25f);
+            ((Objfire_arg0 *)arg0)->unk38 = func_800F10B4(*(f32 *)((u8 *)data + 0x30), 0.0f, 0.134f, 0.1f, 0.25f);
             if (_sueggmove_entrypoint_3(arg0) != 0) {
                 _suegg_entrypoint_23(arg0);
             }
@@ -86,17 +86,17 @@ void func_808000B8_cheggfire(void *arg0) {
     }
 }
 
-void func_80800228_cheggfire(s32 arg0) {
-    s32 _suegg_entrypoint_21(s32, s32 *);
+void func_80800228_cheggfire(BtIntPtr arg0) {
+    void _suegg_entrypoint_21(Actor *arg0, u32 *arg1);
     s32 _suegg_entrypoint_5();
-    extern s32 D_808003B0_cheggfire;
+    extern s32 D_808003B0_cheggfire[3];
     _suegg_entrypoint_5();
-    _suegg_entrypoint_21(arg0, &D_808003B0_cheggfire);
+    _suegg_entrypoint_21(arg0, D_808003B0_cheggfire);
 }
 
 OSThread *cheggfire_entrypoint_0(void)
 {
-    extern u8 D_808003BC_cheggfire[];
+    extern ActorData D_808003BC_cheggfire[];
 
     return (OSThread *) D_808003BC_cheggfire;
 }
@@ -106,10 +106,10 @@ OSThread *cheggfire_entrypoint_0(void)
 void *cheggfire_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _suegg_entrypoint_1(void *, f32);
     void *_suegg_entrypoint_11(s32, s32, s32);
-    s32 _sueggmove_entrypoint_10(s32);
+    s32 _sueggmove_entrypoint_10(BtIntPtr);
     s32 _sueggmove_entrypoint_5(void *, s32);
     s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 _sueggmove_entrypoint_7(void *, s32);
+    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
     Actor *temp_v0;
 
     _sueggmove_entrypoint_10(arg0);
@@ -128,10 +128,10 @@ void *cheggfire_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 void *cheggfire_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _suegg_entrypoint_1(void *, f32);
     void *_suegg_entrypoint_11(s32, s32, s32);
-    s32 _sueggmove_entrypoint_10(s32);
+    s32 _sueggmove_entrypoint_10(BtIntPtr);
     s32 _sueggmove_entrypoint_5(void *, s32);
     s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 _sueggmove_entrypoint_7(void *, s32);
+    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
     Actor *temp_v0;
 
     _sueggmove_entrypoint_10(arg0);
@@ -144,3 +144,12 @@ void *cheggfire_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     temp_v0->unk70_10 = 1;
     return temp_v0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/egg/fire.data.s */
+void func_80105834(Actor*);
+void _subaddiedraw25d_entrypoint_2();
+void _suegg_entrypoint_2();
+OSThread *_suegg_entrypoint_0(void);
+void func_80107C2C();
+s32 _suegg_entrypoint_17(Actor *arg0, s32 arg1, s32 arg2);
+s32 D_808003B0_cheggfire[3] BT_DATA(4, overlays_ch_egg_fire, 0x0) = { 224, 192, 100 };
+ActorData D_808003BC_cheggfire [1] BT_DATA(4, overlays_ch_egg_fire, 0xC) = { { 621, 347, 2497, 1, 0, (void (*)(struct Actor *))func_808000B8_cheggfire, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_subaddiedraw25d_entrypoint_2, 0, 1065353216, 0, 0, 0, 4, (void (*)(struct Actor *))_suegg_entrypoint_2, (BtIntPtr)_suegg_entrypoint_0, 76, 0, (void (*)(struct Actor *))func_80800228_cheggfire, (void (*)(void *, long, void *, long, void *))func_80107C2C, -30720, 0, (void (*)(struct Actor *, long, long))_suegg_entrypoint_17, 0 } };

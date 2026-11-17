@@ -1,10 +1,10 @@
 #include "core2/1EA9160.h"
 #include "gameflags.h"
 
-extern s32 D_8011AE60;
+extern s32 D_8011AE60;    typedef struct { s32 unk0; } Obj1EA9160_D_8011AE60; /* offsets.py genstruct: fields from raw offsets on &D_8011AE60; rename once understood */
 
 void func_800CF870(s32 arg0) {
-    *(s32 *)((u8 *)&D_8011AE60 + 0) = arg0;
+    ((Obj1EA9160_D_8011AE60 *)&D_8011AE60)->unk0 = arg0;
 }
 
 s32 func_800CF87C()
@@ -101,9 +101,9 @@ void func_800CF9E4(s32 arg0, s32 arg1, s32 arg2) {
     func_800C8F64(arg2, entry->flags);
 }
 
-void func_800CFA70(s32 arg0, s32 arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CFA70(s32 arg0, s32 arg1)
 {
-    func_800CF918(arg0, arg1);
+    BT_NATIVE_ONLY(return) func_800CF918(arg0, arg1);
 }
 
 s32 func_800CFA90(void) {
@@ -154,7 +154,7 @@ s32 func_800CFA90(void) {
 
 void func_800CFBC8(Actor *arg0, u32 arg1, s32 arg2, s32 arg3) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
 
     func_8010108C(arg0, 0x13, arg1);
     if (func_800CF888(arg1, arg2) != 0) {
@@ -349,7 +349,7 @@ s32 func_800D046C(u8 *arg0, s32 arg1, s32 arg2) {
     return func_800DAC78(arg0, func_800D0A80(arg1, arg2));
 }
 
-s32 func_800D04A0(s32 arg0, s32 arg1) {
+s32 func_800D04A0(BtIntPtr arg0, s32 arg1) {
     s32 var_s0;
     s32 var_s2;
 
@@ -370,7 +370,7 @@ void func_800D053C(u32 arg0, u32 arg1) { s32 func_800CFC5C(s32); s32 func_800EA0
 
 void func_800D0594(s32 arg0, s32 arg1, s32 arg2) { s32 func_800CFC5C(s32); extern s16 D_8012B190[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14) = *(s16 *)((u8 *)&arg2 + 2); } } }
 
-void func_800D05E4(s32 arg0, s32 arg1, s32 arg2) { s32 func_800CFC5C(s32); extern s32 D_8012B18C[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { *(s32 *)((u8 *)D_8012B18C + temp_v0 * 0x14) = arg2; } } }
+void func_800D05E4(s32 arg0, s32 arg1, BtIntPtr arg2) { s32 func_800CFC5C(s32); extern s32 D_8012B18C[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { *(s32 *)((u8 *)D_8012B18C + temp_v0 * 0x14) = arg2; } } }
 
  Unk80132ED0 *func_800D0634(u32 arg0, u32 arg1) { extern s32 D_8012B18C[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return *(Unk80132ED0 **)((u8 *)D_8012B18C + temp_v0 * 0x14); } } return 0; }
 
@@ -611,10 +611,10 @@ typedef struct {
     u32 remaining : 16;
 } SpawnMarker;
 
-s32 func_800D0DAC(s32 arg0, f32 *arg1, s32 arg2, SpawnMarker *arg3) {
-    s32 func_8010108C(Actor *, s32, s32);
+BtIntPtr func_800D0DAC(s32 arg0, f32 *arg1, s32 arg2, SpawnMarker *arg3) {
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     void func_80101074(void *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s32 itemType;
     s32 itemIndex;
     Actor *actor;
@@ -628,7 +628,7 @@ s32 func_800D0DAC(s32 arg0, f32 *arg1, s32 arg2, SpawnMarker *arg3) {
             if (!existing) {
                 func_8010108C(actor, 0x14, 1);
             }
-            func_800D05E4(itemIndex, itemType, (s32)actor->unk0);
+            func_800D05E4(itemIndex, itemType, (BtIntPtr)actor->unk0);
             break;
         case 0:
             actor = func_800D0CE0(0x1F4, arg1, arg2, &existing);
@@ -660,12 +660,12 @@ s32 func_800D0DAC(s32 arg0, f32 *arg1, s32 arg2, SpawnMarker *arg3) {
     func_800CFBC8(actor, itemIndex, itemType, 0);
     if (arg3 && arg3->enabled) {
         func_80101074(actor->unk0);
-        func_8010114C((s32)arg3, 0xD, arg0);
+        func_8010114C((BtIntPtr)arg3, 0xD, arg0);
     }
-    return (s32)actor->unk0;
+    return (BtIntPtr)actor->unk0;
 }
 
-void func_800D0F9C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5)
+void func_800D0F9C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, BtIntPtr arg5)
 {
     f32 temp;
     f32 sp18[3];
@@ -697,7 +697,7 @@ void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4)
     }
 }
 
-s32 func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, s32 arg4) {
+BtIntPtr func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, BtIntPtr arg4) {
     f32 sp20[4];
 
     if (func_800D0A9C(arg0, arg1) != 0) {
@@ -718,7 +718,7 @@ s32 func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, s32 arg4) {
 /* extern */
 
 void func_800D119C(u32 arg0, u32 arg1) {
-    s32 func_800FFA88(s32);
+    s32 func_800FFA88(BtIntPtr);
     if ((func_800D0B68(arg0, arg1) == 0) && (func_800D0A9C(arg0, arg1) != 0)) {
         if (arg1 == 1) {
             func_800FFA88(func_800D0634(arg0, 1U));
@@ -731,8 +731,8 @@ void func_800D119C(u32 arg0, u32 arg1) {
 /* extern */
 
 void func_800D1218(u32 arg0, u32 arg1, f32 *arg2) {
-    s32 func_80106790(s32);
-    s32 temp_v0;
+    BtIntPtr func_80106790(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800D0634(arg0, arg1);
     if (temp_v0 != 0) {
@@ -741,11 +741,11 @@ void func_800D1218(u32 arg0, u32 arg1, f32 *arg2) {
 }
 
 void func_800D1254(u32 arg0, u32 arg1, f32 *arg2) {
-    s32 func_80103014(s32);
-    s32 func_80106790(s32);
+    s32 func_80103014(BtIntPtr);
+    BtIntPtr func_80106790(BtIntPtr);
     s32 sp18[2];
-    s32 temp_v0;
-    s32 temp_v0_2;
+    BtIntPtr temp_v0;
+    BtIntPtr temp_v0_2;
 
     temp_v0 = func_800D0634(arg0, arg1);
     if (temp_v0 != 0) {
@@ -822,3 +822,10 @@ loop_3:
 block_6:
     return 0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012B18C [ 1 ] BT_DATA(4, bss_core2bss1_1_counter_tail, 0xC);
+s16 D_8012B190 [ 96 ] BT_DATA(4, bss_core2bss1_1_counter_tail, 0x10);
+#endif

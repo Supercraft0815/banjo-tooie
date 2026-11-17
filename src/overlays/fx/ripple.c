@@ -22,16 +22,16 @@ s32 func_80800000_fxripple(f32 arg0[3], s32 *arg1, void *arg2) {
     return 1;
 }
 
-s32 func_80800094_fxripple(s32 arg0, f32 *arg1, void *arg2) {
-    s32 func_800B5BE4(s32);
+BtIntPtr func_80800094_fxripple(s32 arg0, f32 *arg1, void *arg2) {
+    BtIntPtr func_800B5BE4(s32);
     void func_800BA660(void *, s32, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE7F8(f32 *, f32 *);
     extern s32 *D_80800320_fxripple[];
     extern s32 D_80800334_fxripple[];
     s32 sp3C;
     f32 sp30[3];
-    s32 emitter;
+    BtIntPtr emitter;
 
     func_800EE7F8(sp30, arg1);
     if (func_80800000_fxripple(sp30, &sp3C, arg2) == 0) {
@@ -49,19 +49,19 @@ s32 func_80800094_fxripple(s32 arg0, f32 *arg1, void *arg2) {
     return emitter;
 }
 
-void fxripple_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 temp_v0;
+void fxripple_entrypoint_0(s32 arg0, BtIntPtr arg1) {
+    BtIntPtr temp_v0;
     temp_v0 = func_80800094_fxripple(arg0, arg1, 0);
     if (temp_v0 != 0) {
         func_800BA22C(temp_v0, 1);
     }
 }
 
-void fxripple_entrypoint_1(void) {
-    s32 func_80800094_fxripple();
+void fxripple_entrypoint_1(BT_PARAM_OR_VOID(s32 bt_a0 BT_PASS2(, BtIntPtr bt_a1) BT_PASS2(, void *bt_a2))) {
+    BtIntPtr func_80800094_fxripple();
     s32 temp_v0;
 #ifdef BT_NATIVE
-    temp_v0 = ((s32 (*)())func_80800094_fxripple)();
+    temp_v0 = ((s32 (*)(s32, BtIntPtr, void *))func_80800094_fxripple)(bt_a0, bt_a1, bt_a2);
 #else
     temp_v0 = func_80800094_fxripple();
 #endif
@@ -70,15 +70,15 @@ void fxripple_entrypoint_1(void) {
     }
 }
 
-void fxripple_entrypoint_2(s32 arg0, s32 arg1) {
+void fxripple_entrypoint_2(s32 arg0, BtIntPtr arg1) {
     func_80800094_fxripple(arg0, arg1, 0);
 }
 
-void fxripple_entrypoint_3()
+void fxripple_entrypoint_3(BT_NATIVE_ONLY(s32 bt_a0 BT_PASS2(, BtIntPtr bt_a1) BT_PASS2(, void *bt_a2)))
 {
-    s32 func_80800094_fxripple();
+    BtIntPtr func_80800094_fxripple();
 #ifdef BT_NATIVE
-    ((s32 (*)())func_80800094_fxripple)();
+    ((s32 (*)(s32, BtIntPtr, void *))func_80800094_fxripple)(bt_a0, bt_a1, bt_a2);
 #else
     func_80800094_fxripple();
 #endif
@@ -87,7 +87,20 @@ void fxripple_entrypoint_3()
 /* extern */
 
 void fxripple_entrypoint_4(f32 arg0) {
-    s32 func_800B5BE4(s32);
-    s32 func_800BA5D0(s32, s16);
+    BtIntPtr func_800B5BE4(s32);
+    void func_800BA5D0(void *emitter, s16 y);
     func_800BA5D0(func_800B5BE4(3), (s16) (s32) arg0);
 }
+/* data_to_c.py: from asm/data/overlays/fx/ripple.data.s */
+extern u8 D_80800280_fxripple[];
+extern u8 D_808002A0_fxripple[];
+extern u8 D_808002C0_fxripple[];
+extern u8 D_808002E0_fxripple[];
+extern u8 D_80800300_fxripple[];
+u8 D_80800280_fxripple[32] BT_DATA(4, overlays_fx_ripple, 0x0) = { 0x00, 0x2B, 0x00, 0xB3, 0x00, 0xE6, 0x00, 0x15, 0x00, 0x00, 0x00, 0x80, 0x00, 0x22, 0x00, 0x19, 0x00, 0x19, 0x00, 0x66, 0x00, 0x99, 0x00, 0x1F, 0xFF, 0xFF, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00 };
+u8 D_808002A0_fxripple[32] BT_DATA(4, overlays_fx_ripple, 0x20) = { 0x00, 0x2B, 0x00, 0xCC, 0x01, 0x33, 0x00, 0x15, 0x00, 0x00, 0x00, 0x80, 0x00, 0x22, 0x00, 0x19, 0x00, 0x19, 0x00, 0xE6, 0x01, 0xCC, 0x00, 0x1F, 0xFF, 0xFF, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00 };
+u8 D_808002C0_fxripple[32] BT_DATA(4, overlays_fx_ripple, 0x40) = { 0x00, 0x2B, 0x00, 0xCC, 0x01, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x80, 0x00, 0x22, 0x00, 0x19, 0x00, 0x19, 0x00, 0x99, 0x01, 0x00, 0x00, 0x1F, 0xFF, 0xFF, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00 };
+u8 D_808002E0_fxripple[32] BT_DATA(4, overlays_fx_ripple, 0x60) = { 0x00, 0x2B, 0x00, 0xB3, 0x00, 0xB3, 0x00, 0x15, 0x00, 0x00, 0x00, 0x80, 0x00, 0x22, 0x00, 0x66, 0x00, 0x66, 0x01, 0xCC, 0x01, 0xE6, 0x00, 0x1F, 0xFF, 0xFF, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00 };
+u8 D_80800300_fxripple[32] BT_DATA(4, overlays_fx_ripple, 0x80) = { 0x00, 0x2B, 0x01, 0x80, 0x01, 0x80, 0x00, 0x15, 0x00, 0x00, 0x00, 0x80, 0x00, 0x22, 0x00, 0x19, 0x00, 0x19, 0x0C, 0x00, 0x0C, 0x00, 0x00, 0x1F, 0xFF, 0xFF, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00 };
+s32 * D_80800320_fxripple [5] BT_DATA(4, overlays_fx_ripple, 0xA0) = { (long *)D_80800280_fxripple, (long *)D_808002A0_fxripple, (long *)D_808002C0_fxripple, (long *)D_808002E0_fxripple, (long *)D_80800300_fxripple };
+s32 D_80800334_fxripple [3] BT_DATA(4, overlays_fx_ripple, 0xB4) = { 1903067, 1445889, 0 };

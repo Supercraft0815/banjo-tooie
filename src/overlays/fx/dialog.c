@@ -25,20 +25,20 @@ void fxdialog_entrypoint_2(f32 arg0) {
     }
 }
 
-void fxdialog_entrypoint_3(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800D674C(s32);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) fxdialog_entrypoint_3(BtIntPtr arg0, f32 arg1, s32 arg2, s32 arg3) {
+    BtIntPtr func_800D674C(s32);
     void func_800DF410(s32);
-    void func_800DF41C(s32);
-    void func_800DF944(u32, f32 *, f32, f32, f32 *, u8, s32);
+    void func_800DF41C(BtIntPtr);
+    void * func_800DF944(void *a0, f32 *coords, f32 a2, f32 a3, f32 *a4, s32 a5, void *a6);
     void func_800DFFA0(s32 *, s32, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_801040D0(void);
+    BtIntPtr func_801040D0(void);
     extern s32 B_80800290_fxdialog;
     extern f32 B_808002A4_fxdialog;
     f32 sp40[2];
     f32 sp34[3];
-    s32 sp30;
-    s32 temp_v0;
+    BtIntPtr sp30;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_801040D0();
     sp40[1] = -24.0f;
@@ -48,14 +48,14 @@ void fxdialog_entrypoint_3(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     func_800DFFA0(sp30, 0x2A, sp34);
     func_800DF41C(sp30);
     func_800DF410(arg3);
-    func_800DF944(arg0, &B_80800290_fxdialog, (f32) arg2 * 90.0f, (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (0x10))), sp40, 0, func_800D674C(0x9F1));
+    BT_NATIVE_ONLY(return) func_800DF944(arg0, &B_80800290_fxdialog, (f32) arg2 * 90.0f, (*(f32 *)((s8 *)(&B_80800290_fxdialog) + (0x10))), sp40, 0, func_800D674C(0x9F1));
 }
 
-void fxdialog_entrypoint_4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, s32 arg5, s32 arg6) {
-    s32 func_800D674C(s32);
+void fxdialog_entrypoint_4(BtIntPtr arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, s32 arg5, s32 arg6) {
+    BtIntPtr func_800D674C(s32);
     void func_800E2554(f32, f32);
     void func_800E257C(s32);
-    s32 func_800E30E0(s32, s32, s32, s32 *);
+    void func_800E30E0(BtIntPtr arg0, void *arg1, s32 arg2, void *arg3);
     extern s32 B_80800290_fxdialog;
     extern f32 B_808002A0_fxdialog;
     s32 sp28[2];
@@ -70,3 +70,11 @@ void fxdialog_entrypoint_4(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, s32
     sp28[1] = (s32) ((f32) (*(s32 *)((s8 *)(&B_80800290_fxdialog) + (0xC))) + (arg4 * 4.0f * sp20));
     func_800E30E0(arg0, func_800D674C(arg1), arg2, sp28);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 B_80800290_fxdialog BT_DATA(16, bss_fx_dialog, 0x0);
+f32 B_808002A0_fxdialog BT_DATA(4, bss_fx_dialog, 0x10);
+f32 B_808002A4_fxdialog BT_DATA(4, bss_fx_dialog, 0x14);
+#endif

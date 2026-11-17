@@ -26,7 +26,7 @@ s32 func_8001C1E0(u8** arg0, u8** arg1) {
 }
 
 u32 func_8001C26C() {
-    func_8001D31C();
+    BT_NATIVE_ONLY(return) func_8001D31C();
 }
 
 u32 func_8001C28C() {
@@ -41,3 +41,9 @@ s32 func_8001C2AC(u8* arg0, u8* arg1) {
 s32 func_8001C2D8() {
     return D_8007C700;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8007C700 BT_DATA(16, bss_core1bss1_2, 0x0);
+#endif

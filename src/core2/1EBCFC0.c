@@ -330,9 +330,9 @@ s32 func_800E3F8C(f32 arg0, f32 arg1, f32 arg2) {
 
 /* extern */
 
-void func_800E401C(void) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) func_800E401C(void) {
     s32 func_800CA7A4(s32);
-    func_800CA7A4(D_8012D500);
+    BT_NATIVE_ONLY(return) func_800CA7A4(D_8012D500);
 }
 
 void func_800E4040(void) {
@@ -574,4 +574,13 @@ void func_800E46E0(Gfx** gfx, void* addr) {
     gSPSegment((*gfx)++, 0x08, osVirtualToPhysical(addr));
 }
 
+#endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012D500 BT_DATA(4, bss_core2bss2_1, 0xBC0);
+s32 D_8012D504 BT_DATA(4, bss_core2bss2_1, 0xBC4);
+s32 D_8012D508 BT_DATA(4, bss_core2bss2_1, 0xBC8);
+Mtx * D_8012D554 BT_DATA(4, bss_core2bss2_1, 0xC14);
 #endif

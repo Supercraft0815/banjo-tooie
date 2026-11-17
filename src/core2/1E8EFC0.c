@@ -13,7 +13,7 @@ void func_800B58D4(u8);
 void *func_800B56D0(u8 index) {
     extern EmitterData D_80127F28[];
     extern u8 D_80127F20;
-    void *func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32 arg0);
     void func_800B5534(void *);
     void func_800B5450(void *);
     void *func_800B5548(void *);
@@ -49,7 +49,7 @@ u8 func_800B5758(s32 count) {
 void func_800B5824(void) {
     extern EmitterData D_80127F28[];
     extern u8 D_80127F20;
-    void *func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32 arg0);
     void func_800B5534(void *);
     void func_800B5450(void *);
     void *func_800B5548(void *);
@@ -76,7 +76,7 @@ void func_800B5884(void) {
 void func_800B58D4(u8 index) {
     extern EmitterData D_80127F28[];
     extern u8 D_80127F20;
-    void *func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32 arg0);
     void func_800B5534(void *);
     void func_800B5450(void *);
     void *func_800B5548(void *);
@@ -111,7 +111,7 @@ void func_800B592C(void) {
 void func_800B59E0(void) {
     extern EmitterData D_80127F28[];
     extern u8 D_80127F20;
-    void *func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32 arg0);
     void func_800B5534(void *);
     void func_800B5450(void *);
     void *func_800B5548(void *);
@@ -134,7 +134,7 @@ void func_800B59E0(void) {
 void func_800B5A6C(void) {
     extern EmitterData D_80127F28[];
     extern u8 D_80127F20;
-    void *func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32 arg0);
     void func_800B5534(void *);
     void func_800B5450(void *);
     void *func_800B5548(void *);
@@ -155,9 +155,9 @@ void func_800B5A6C(void) {
 /* extern */
 
 void func_800B5AD4(void) {
-    s32 _fxsparkle_entrypoint_2();
-    s32 func_800B4428();
-    s32 func_800B5B40();
+    void _fxsparkle_entrypoint_2();
+    void func_800B4428(void);
+    void func_800B5B40(void);
     _fxsparkle_entrypoint_2();
     func_800B4428();
     func_800B5B40();
@@ -166,10 +166,17 @@ void func_800B5AD4(void) {
 /* extern */
 
 void func_800B5B04(void) {
-    s32 func_800B5B88();
-    s32 _fxsparkle_entrypoint_3();
-    s32 func_800B43E0();
+    void func_800B5B88(void);
+    void _fxsparkle_entrypoint_3(void);
+    void func_800B43E0(void);
     func_800B5B88();
     _fxsparkle_entrypoint_3();
     func_800B43E0();
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_80127F20 BT_DATA(4, bss_core2bss1_0_2, 0x780);
+EmitterData D_80127F28 [ 1 ] BT_DATA(4, bss_core2bss1_0_2, 0x788);
+#endif

@@ -9,7 +9,7 @@ enum asset_e;
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_80800000_bsswim(s32 bt_a0) {
+s32 func_80800000_bsswim(BtIntPtr bt_a0) {
 #else
 s32 func_80800000_bsswim() {
 #endif
@@ -30,12 +30,12 @@ void func_80800030_bsswim(void *arg0) {
     void func_80092C00(void *, f32 *);
     void func_80092C24(void *, f32 *);
     s32 func_80096544(void *);
-    s32 func_8009FBB0(void *, f32 *, f32);
-    void func_800BA22C(s32, s32);
-    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    BtIntPtr func_8009FBB0(void *, f32 *, f32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
     f32 func_800DC0C0(void);
     f32 sp2C[3];
-    s32 sp28;
+    BtIntPtr sp28;
 
     if (func_80096544(arg0) != 0) {
         if (func_800DC0C0() > 0.5f) {
@@ -186,7 +186,7 @@ void func_808002E0_bsswim(struct player_state_s *arg0) {
 }
 
 void func_808004C4_bsswim(struct player_state_s *arg0) {
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     int anctrl_isAt(struct anctrl_s *, f32);
     int bakey_pressed(struct player_state_s *, int);
@@ -240,7 +240,7 @@ void func_80800688_bsswim(struct player_state_s *arg0)
     func_800A4E30(arg0);
 }
 s32 bsswim_entrypoint_0(s32 arg0) {
-    extern s32 D_80800BA4_bsswim[];
+    extern BtIntPtr D_80800BA4_bsswim[];
     return ((s32 *)&D_80800BA4_bsswim)[arg0];
 }
 
@@ -253,13 +253,13 @@ void func_808006C4_bsswim(struct player_state_s *arg0) {
     void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void baanim_setDurationRange(struct player_state_s *, f32, f32);
-    s32 baphysics_set_type(void *, s32);
+    void baphysics_set_type(void *self, s32 type);
     s32 bs_getPreviousState(struct player_state_s *);
     void func_8008B1C8(struct anctrl_s *, f32);
     void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
-    s32 func_8008CA4C(void *, s32);
+    void func_8008CA4C(void *self, s32 arg1);
     void func_8009D2D8(struct player_state_s *, s32);
-    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setUpdateType(void *self, s32 type);
     void yaw_setVelocityBounded(struct player_state_s *, f32, f32);
     struct anctrl_s *control;
     f32 transition;
@@ -289,7 +289,7 @@ void func_808006C4_bsswim(struct player_state_s *arg0) {
 }
 
 void func_808007F8_bsswim(struct player_state_s *arg0) {
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     int baflag_isTrue(struct player_state_s *, s32);
     int bakey_pressed(struct player_state_s *, int);
     s32 bastick_getZone(struct player_state_s *);
@@ -356,7 +356,7 @@ void func_808009F0_bsswim(struct player_state_s *arg0)
 }
 
 s32 bsswim_entrypoint_1(s32 arg0) {
-    extern s32 D_80800BB4_bsswim[];
+    extern BtIntPtr D_80800BB4_bsswim[];
     return ((s32 *)&D_80800BB4_bsswim)[arg0];
 }
 
@@ -372,9 +372,9 @@ void func_80800A4C_bsswim(struct player_state_s *arg0)
 }
 /* extern */
 
-void func_80800A74_bsswim(s32 arg0) {
-    s32 _bsrest_entrypoint_13(s32);
-    s32 bs_setState(s32, s32);
+void func_80800A74_bsswim(BtIntPtr arg0) {
+    s32 _bsrest_entrypoint_13(BtIntPtr);
+    void bs_setState(void *self, s32 nextState);
     s32 _bsrest_entrypoint_20();
     s32 var_a1;
     s32 sp1C;
@@ -388,7 +388,7 @@ void func_80800A74_bsswim(s32 arg0) {
 }
 
 s32 bsswim_entrypoint_2(s32 arg0) {
-    extern s32 D_80800BC4_bsswim[];
+    extern BtIntPtr D_80800BC4_bsswim[];
     return ((s32 *)&D_80800BC4_bsswim)[arg0];
 }
 
@@ -399,10 +399,10 @@ void func_80800AC8_bsswim(struct player_state_s *arg0)
 }
 /* extern */
 
-void func_80800AF0_bsswim(s32 arg0) {
+void func_80800AF0_bsswim(BtIntPtr arg0) {
     s32 _badrone_entrypoint_30();
-    s32 _bsdrone_entrypoint_1(s32);
-    s32 bs_setState(s32, s32);
+    void _bsdrone_entrypoint_1(struct player_state_s *arg0);
+    void bs_setState(void *self, s32 nextState);
     s32 sp1C;
 
     sp1C = 0;
@@ -413,12 +413,20 @@ void func_80800AF0_bsswim(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-void func_80800B34_bsswim(s32 arg0)
+void func_80800B34_bsswim(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     func_80800270_bsswim(arg0);
 }
 s32 bsswim_entrypoint_3(s32 arg0) {
-    extern s32 D_80800BD4_bsswim[];
+    extern BtIntPtr D_80800BD4_bsswim[];
     return ((s32 *)&D_80800BD4_bsswim)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/swim.data.s */
+void func_80099B94();
+void _bsdrone_entrypoint_3();
+s16 D_80800B90_bsswim [10] BT_DATA(4, overlays_bs_swim, 0x0) = { 87, 87, 87, 88, 87, 88, 87, 87, 88, 88 };
+BtIntPtr D_80800BA4_bsswim [4] BT_DATA(4, overlays_bs_swim, 0x14) = { (BtIntPtr)func_80800688_bsswim, (BtIntPtr)func_808002E0_bsswim, (BtIntPtr)func_808004C4_bsswim, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800BB4_bsswim [4] BT_DATA(4, overlays_bs_swim, 0x24) = { (BtIntPtr)func_808009F0_bsswim, (BtIntPtr)func_808006C4_bsswim, (BtIntPtr)func_808007F8_bsswim, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800BC4_bsswim [4] BT_DATA(4, overlays_bs_swim, 0x34) = { (BtIntPtr)func_80800A24_bsswim, (BtIntPtr)func_80800A4C_bsswim, (BtIntPtr)func_80800A74_bsswim, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800BD4_bsswim [7] BT_DATA(4, overlays_bs_swim, 0x44) = { (BtIntPtr)func_80800B34_bsswim, (BtIntPtr)func_80800AC8_bsswim, (BtIntPtr)func_80800AF0_bsswim, (BtIntPtr)_bsdrone_entrypoint_3, 0, 0, 0 };

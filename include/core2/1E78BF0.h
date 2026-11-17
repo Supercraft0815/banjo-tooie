@@ -9,7 +9,7 @@
 
 f32 func_8009F308(PlayerState *);
 f32 func_8009F3BC(PlayerState *, f32, f32, f32, f32);
-s32 func_8009FBB0(PlayerState *, f32[3], f32);
+BtIntPtr func_8009FBB0(PlayerState *, f32[3], f32);
 void func_8009FC34(PlayerState *, s32);
 void func_8009FD24(PlayerState *, s32);
 void func_8009FE58(PlayerState *);

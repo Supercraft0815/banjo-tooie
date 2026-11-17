@@ -22,7 +22,7 @@ OSThread *chfactorytoxicpools_entrypoint_2(void)
 }
 
 void func_80800024_chfactorytoxicpools(Actor *arg0) {
-    s32 _chswitch_entrypoint_7(s32, s32);
+    s32 _chswitch_entrypoint_7(BtIntPtr, s32);
     s32 func_800DA298(s32);
     void *func_80100094(Actor *, u32);
     void func_80103110(Actor *, u32);
@@ -90,10 +90,10 @@ s32 func_80800190_chfactorytoxicpools(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80103110(Actor *, u32);
     void func_8010A570(Actor *);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_800C4AF0(f32 *, void *);
-    s32 func_800BEA88(s32);
-    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
+    void *func_800BEA88(s32 i);
+    void _idworldmake_entrypoint_1(BtIntPtr arg0, s32 arg1, volatile unsigned int arg2, s32 arg3);
     void func_80800270_chfactorytoxicpools(Actor *);
     s32 _chswitch_entrypoint_10(Actor *, s32, s32);
     extern f32 D_80800A18_chfactorytoxicpools[3];
@@ -122,9 +122,9 @@ s32 func_80800190_chfactorytoxicpools(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800270_chfactorytoxicpools(Actor *arg0) {
-    s32 _idwibble_entrypoint_5(s32, s16);
-    s32 _idworld_entrypoint_4(s32, s32);
-    s32 func_800BEA88(s32);
+    void _idwibble_entrypoint_5(void *arg0, s16 arg1);
+    BtIntPtr _idworld_entrypoint_4(BtIntPtr, s32);
+    void *func_800BEA88(s32 i);
     void* func_80100094(Actor*, u32);
     s16 *sp1C;
 
@@ -165,9 +165,9 @@ void func_80800338_chfactorytoxicpools(Actor *arg0) {
     void _chswitch_entrypoint_13(Actor *);
     s32 func_800D9078(f32 *);
     void func_80103110(Actor *, u32);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     struct ToxicPoolData {
         s16 unk0;
         s16 state;
@@ -192,9 +192,9 @@ void func_80800338_chfactorytoxicpools(Actor *arg0) {
 }
 
 s32 func_808003DC_chfactorytoxicpools(Actor *arg0, s32 arg1, void * volatile arg2) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void _glcutDll_entrypoint_6(u32, u32);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
     void func_80103110(Actor *, u32);
@@ -229,16 +229,16 @@ s32 func_808003DC_chfactorytoxicpools(Actor *arg0, s32 arg1, void * volatile arg
 }
 
 void func_808004A4_chfactorytoxicpools(s32 *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
-    s32 func_800BEA88(s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void _idworldmake_entrypoint_1(BtIntPtr arg0, s32 arg1, volatile unsigned int arg2, s32 arg3);
+    void *func_800BEA88(s32 i);
 #ifdef BT_NATIVE
     void chfactorytoxicpools_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3);
 #else
     extern s32 _chfactorytoxicpools_entrypoint_3;
 #endif
-    s32 temp_v0;
-    s32 sp1C;
+    BtIntPtr temp_v0;
+    BtIntPtr sp1C;
 
     temp_v0 = func_800BEA88(1);
     if (temp_v0 != 0) {
@@ -307,14 +307,14 @@ void func_80800670_chfactorytoxicpools(Actor *arg0) {
     s32 func_800CC338(f32 *, s32, s32);
     s32 func_800D9078(f32 *);
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F5578(s32);
-    f32 func_800F5628(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F5C94(s32);
-    s32 func_800F5D18(s32);
-    s32 func_800F6A38(s32);
-    void func_800F7D90(s32, s32, void *, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5578(BtIntPtr);
+    BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5628(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F5C94(BtIntPtr);
+    s32 func_800F5D18(BtIntPtr);
+    s32 func_800F6A38(BtIntPtr);
+    void func_800F7D90(BtIntPtr, s32, void *, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80800898_chfactorytoxicpools(Actor *);
@@ -328,7 +328,7 @@ void func_80800670_chfactorytoxicpools(Actor *arg0) {
             f32 velocity[3];
         } entries[8];
     } *data;
-    s32 player;
+    BtIntPtr player;
     s32 state;
     s32 active;
     f32 position[3];
@@ -352,7 +352,7 @@ void func_80800670_chfactorytoxicpools(Actor *arg0) {
             } else {
                 func_800F5A00(player, position);
                 for (i = 0; i < data->count; i++) {
-                    height = func_800F5628(player);
+                    height = BT_IDO_ONLY(func_800F5628(player)) BT_NATIVE_ONLY(((f32 __attribute__((vector_size(4))))func_800F5628(player))[0]);
                     valid = height != -18000.0f;
                     if (valid) {
                         position[1] = height;
@@ -382,10 +382,10 @@ void func_80800670_chfactorytoxicpools(Actor *arg0) {
 
 void func_80800898_chfactorytoxicpools(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE780(f32 *, f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     extern s32 D_80800A38_chfactorytoxicpools;
     extern s32 D_80800A74_chfactorytoxicpools;
     extern s32 D_80800AB0_chfactorytoxicpools;

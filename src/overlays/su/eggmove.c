@@ -25,39 +25,39 @@ void func_80800000_sueggmove(Actor *arg0, f32 *arg1, f32 *arg2) {
 /* extern */
 
 void sueggmove_entrypoint_0(s32 arg0, volatile s32 arg1) {
-    void *func_80106790(s32);
+    void *func_80106790(BtIntPtr);
     (*(s32 *)((s8 *)(func_80106790(*(s32 *)&arg1)) + (0x3C))) = arg0;
 }
 
 /* extern */
 
-s32 sueggmove_entrypoint_1(void) {
+s32 sueggmove_entrypoint_1(BT_PARAM_OR_VOID(s32 bt_a0)) {
     void *func_80106790();
-    return (*(s32 *)((s8 *)(func_80106790()) + (0x3C)));
+    return (*(s32 *)((s8 *)(func_80106790(BT_NATIVE_ONLY(bt_a0))) + (0x3C)));
 }
 
-s32 sueggmove_entrypoint_2(void) {
+s32 sueggmove_entrypoint_2(BT_PARAM_OR_VOID(s32 bt_a0)) {
     void* func_80100094(Actor*, u32);
     void *func_80106790();
-    return (*(s32 *)((s8 *)(func_80100094(func_80106790(), 0U)) + (0x34)));
-}
+    return (*(s32 *)((s8 *)(func_80100094(func_80106790(BT_NATIVE_ONLY(bt_a0)), 0U)) + (0x34)));
+}                typedef struct { u8 pad0[0xC]; s8 unkC; u8 unkD; u8 padE[0x26]; f32 unk34; u8 pad38[0x1C]; f32 unk54; } Objeggmove_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800108_sueggmove(void *arg0) {
-    if ((*(u8 *)((s8 *)(arg0) + (0xD))) == 0) {
-        (*(s8 *)((s8 *)(arg0) + (0xC))) = 1;
-        (*(u8 *)((s8 *)(arg0) + (0xD))) = 8U;
+    if ((((Objeggmove_arg0 *)arg0)->unkD) == 0) {
+        (((Objeggmove_arg0 *)arg0)->unkC) = 1;
+        (((Objeggmove_arg0 *)arg0)->unkD) = 8U;
     }
 }
 
 void func_8080012C_sueggmove(Actor *arg0) {
     f32 func_800136E4(f32);
-    void func_800EA600(s32, s32);
+    void func_800EA600(void (*callback)(uintptr_t,uintptr_t),uintptr_t userdata);
     void func_800EA614(void);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFD24(f32 *);
     void func_800F059C(f32 *, f32 *, f32 *);
     f32 func_800F0E00(f32, f32);
-    void func_800F1988(f32 *, f32 *, f32 *);
+    int func_800F1988(f32 *arg0, f32 *arg1, f32 *arg2);
     void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
     void *func_80100094(Actor *, u32);
 #ifndef BT_NATIVE
@@ -71,7 +71,7 @@ void func_8080012C_sueggmove(Actor *arg0) {
     state = func_80100094(arg0, 0U);
     state[0xC] = 0;
     func_80800000_sueggmove(arg0, arg0->position, sp34);
-    func_800EA600((s32)&_sueggmove_entrypoint_0, (s32)arg0->unk0);
+    func_800EA600((BtIntPtr)&_sueggmove_entrypoint_0, (BtIntPtr)arg0->unk0);
     sp30 = func_800FAB50(arg0->position, sp34, sp40, 0x024200A0, 15.0f);
     func_800EA614();
     if (sp30 != NULL) {
@@ -118,15 +118,15 @@ void sueggmove_entrypoint_5(Actor *arg0, s32 arg1) {
 }
 
 void sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0x34))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = arg2;
+    (((Objeggmove_arg0 *)arg0)->unk34) = arg1;
+    (((Objeggmove_arg0 *)arg0)->unk54) = arg2;
 }
 
 /* extern */
 
-void sueggmove_entrypoint_7(s32 arg0) {
+void sueggmove_entrypoint_7(s32 arg0 BT_PASS2(, s32 bt_a1)) {
     void func_800EE7F8();
-    func_800EE7F8(arg0 + 0x28);
+    func_800EE7F8(arg0 + 0x28 BT_PASS2(, bt_a1));
 }
 
 void sueggmove_entrypoint_8(Actor *arg0, s32 arg1) {
@@ -154,4 +154,4 @@ void sueggmove_entrypoint_9(Actor *arg0) {
 
 /* extern */
 
-void sueggmove_entrypoint_10(f32 *arg0, f32 *arg1) { void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32); f32 sp24[3]; func_800FAB50(arg0, arg1, sp24, 0x024200A0, 15.0f); }
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) sueggmove_entrypoint_10(f32 *arg0, f32 *arg1) { void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32); f32 sp24[3]; BT_NATIVE_ONLY(return) func_800FAB50(arg0, arg1, sp24, 0x024200A0, 15.0f); }

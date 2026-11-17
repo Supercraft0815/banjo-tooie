@@ -158,24 +158,24 @@ u32 D_80802408_chfactoryempspell[] = {
     0x001304C0, 0x00020016, 0x59D80000,
 };
 
-u32 D_80802414_chfactoryempspell[] = {
-    0x015803EE, 0x088A0001, 0x00000000, (u32)func_80800000_chfactoryempspell,
-    (u32)func_80105834, (u32)func_80800C7C_chfactoryempspell, 0x1F400000, 0x00000000,
-    0x00000000, 0x08020400, (u32)func_80801FE0_chfactoryempspell, 0x00000000,
-    0x00000070, 0x00000000, (u32)func_80107C2C, 0x80000402,
-    (u32)func_80800630_chfactoryempspell, 0x00000000, 0x00000000,
+BtFnWord D_80802414_chfactoryempspell[] = {
+    0x015803EE, 0x088A0001, 0x00000000, (BtFnWord)func_80800000_chfactoryempspell,
+    (BtFnWord)func_80105834, (BtFnWord)func_80800C7C_chfactoryempspell, 0x1F400000, 0x00000000,
+    0x00000000, 0x08020400, (BtFnWord)func_80801FE0_chfactoryempspell, 0x00000000,
+    0x00000070, 0x00000000, (BtFnWord)func_80107C2C, 0x80000402,
+    (BtFnWord)func_80800630_chfactoryempspell, 0x00000000, 0x00000000,
 };
 
 void func_80800000_chfactoryempspell(Actor *arg0) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void _chglowbo_entrypoint_6(void);
-    s32 _chmrtannoy_entrypoint_0(void);
+    void _chmrtannoy_entrypoint_0(void);
     void _subaddieDll_entrypoint_4(Actor *, u32);
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
     Actor *_subaddiefind_entrypoint_3(s32, s32 *);
-    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
     void _sumumbofx_entrypoint_15(void *, f32);
     void _sumumbofx_entrypoint_16(void *, f32);
     void _sumumbofx_entrypoint_17(void *, f32);
@@ -183,14 +183,14 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
     void _sumumbofx_entrypoint_20(void *, f32);
     f32 _sumumbofx_entrypoint_26(void *);
     s32 _sumumbofx_entrypoint_27(void *);
-    void _sumumbofx_entrypoint_5(void *, f32);
+    s32 _sumumbofx_entrypoint_5(u8 *arg0, f32 arg1);
     s16 func_800CEA84(s32);
     s32 func_800CEAA8();
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_80800A08_chfactoryempspell(Actor *);
     void func_80801130_chfactoryempspell(Actor *, void *, f32);
@@ -287,7 +287,7 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
         func_80801C00_chfactoryempspell(arg0, 1.0f);
         if (_sumumbofx_entrypoint_27(fx)) {
             _chmrtannoy_entrypoint_0();
-            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x1339, 4, (f32 *)((u8 *)arg0 + 4), 0);
+            _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x1339, 4, &arg0->position[0], 0);
             func_800DA544(0x9DF);
             _chglowbo_entrypoint_6();
             func_808016AC_chfactoryempspell(arg0);
@@ -348,8 +348,8 @@ void func_80800000_chfactoryempspell(Actor *arg0) {
         _sumumbofx_entrypoint_1(arg0, 0);
         func_80101FDC(first, 1);
         func_80101FDC(second, 1);
-        *(f32 *)((u8 *)first + 0x58) = 1.2f;
-        *(f32 *)((u8 *)second + 0x58) = 1.2f;
+        first->unk58 = 1.2f;
+        second->unk58 = 1.2f;
         _subaddieDll_entrypoint_4(arg0, 0);
         func_800DA524(0x9DE);
         func_80101FDC(arg0, 1);
@@ -383,14 +383,14 @@ s32 func_80800630_chfactoryempspell(Actor *arg0, s32 arg1, void *arg2) {
     void _sumumbofx_entrypoint_3(void *, f32);
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
-    void func_800DF660(s32, s32, s32, s32);
-    void func_800DF720(s32);
-    void func_800DF818(s32);
+    void func_800DF660(s32 type,uintptr_t a,uintptr_t b,s32 alpha);
+    void func_800DF720(BtIntPtr);
+    void func_800DF818(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    s32 func_80100A74(s16, s32);
-    s32 func_80100AC4(s16);
-    s16 func_80100D24(void *, u16, s32, s32, s32, s32);
+    BtIntPtr func_80100A74(s16, s32);
+    BtIntPtr func_80100AC4(s16);
+    s16 func_80100D24(void *model,s32 asset,s32 buffers,s32 packed,s32 palette,s32 *color);
     void func_80100E18(s16);
     void func_80801038_chfactoryempspell(Actor *);
     void func_80801F30_chfactoryempspell(Actor *);
@@ -501,10 +501,10 @@ void func_80800A08_chfactoryempspell(Actor *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F0D50(f32, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    void func_800F48BC(s32, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
+    void func_800F48BC(BtIntPtr, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
     f32 mlAbsF(f32);
     f32 position[3];
     f32 speed;
@@ -552,20 +552,20 @@ void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
         u8 pad3C[16];
         s32 current;
     } SpellData;
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
-    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1);
+    void _sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1);
     f32 func_800138D0(f32);
     struct ImageStruct *func_800D674C(s32);
     s32 func_800DC128(s32, s32);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
-    void func_800DF47C(s32, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void func_800DF47C(s32, BtIntPtr);
     void func_800DF744(s32, s32);
     void func_800DF830(s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     int func_800EFED0(f32 *, f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     void func_801017D0(Actor *);
     u8 *func_801039E4(Unk80132ED0 *);
@@ -575,7 +575,7 @@ void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
     SpellData *data;
     u8 *fx;
     f32 pos[3];
-    s32 model;
+    BtIntPtr model;
     s32 i;
 
     *(Vec3f *)min = *(Vec3f *)D_80802180_chfactoryempspell;
@@ -585,7 +585,7 @@ void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
         data = func_80100094(arg0, 1);
         fx = func_80100094(arg0, 0);
         *(Vec3f *)pos = *(Vec3f *)D_80802198_chfactoryempspell;
-        model = (s32)func_801039E4(arg0->unk0);
+        model = (BtIntPtr)func_801039E4(arg0->unk0);
         pos[0] += func_800F10B4(((f32 *)arg0->actorData)[3], 0.0f, 2.6666667f, 0.0f, 793.3333f);
         for (i = 0; i < 15; i++) {
             f32 phase;
@@ -596,19 +596,19 @@ void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
             rot[0] = func_800138D0(phase * 360.0f * 15.0f);
             data->current = i;
             func_800DF830(1);
-            func_800DF47C((s32)func_801017D0, (s32)arg0);
+            func_800DF47C((BtIntPtr)func_801017D0, (BtIntPtr)arg0);
             func_800DE498(arg1, pos, rot, 1.0f, NULL, model);
             pos[0] += 793.3333f;
         }
         if (fx != NULL) {
-            _sumumbofx_entrypoint_9(fx, (s32)arg1);
-            _sumumbofx_entrypoint_8(fx, (s32)arg1);
+            _sumumbofx_entrypoint_9(fx, (BtIntPtr)arg1);
+            _sumumbofx_entrypoint_8(fx, (BtIntPtr)arg1);
         }
         if (arg0->unk70_10 == 9) {
             f32 effectRot[3];
             f32 effectPos[3];
             *(Vec3f *)effectRot = *(Vec3f *)D_808021B0_chfactoryempspell;
-            model = (s32)func_800D674C(0x8D3);
+            model = (BtIntPtr)func_800D674C(0x8D3);
             for (i = 0; i < 3; i++) {
                 func_800EFA4C(effectPos, data->effects[i].x,
                     func_800F10B4(data->effects[i].first, data->effects[i].second, 0.0f, data->effects[i].y, 1600.0f), 4000.0f);
@@ -628,7 +628,7 @@ void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
 void func_80801038_chfactoryempspell(Actor *arg0) {
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
-    void func_800CE928(s32, s32, s32);
+    void func_800CE928(s32, BtIntPtr, BtIntPtr);
 #ifdef BT_NATIVE
     void chfactoryempspell_entrypoint_0(s32 arg0, s32 arg1);
 #else
@@ -636,7 +636,7 @@ void func_80801038_chfactoryempspell(Actor *arg0) {
 #endif
     if (arg0->unk64_20) {
         func_800CE8D8(0, 45.0f, 0x2D);
-        func_800CE928(0, (s32)&_chfactoryempspell_entrypoint_0, (s32)arg0->unk0);
+        func_800CE928(0, (BtIntPtr)&_chfactoryempspell_entrypoint_0, (BtIntPtr)arg0->unk0);
         func_800CE88C(0, 1);
         return;
     }
@@ -646,10 +646,10 @@ void func_80801038_chfactoryempspell(Actor *arg0) {
 /* extern */
 
 void chfactoryempspell_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 _chmrtannoy_entrypoint_0();
-    s32 func_800C0534(s32, s32, s32, s32, s32, s32, s32, s32);
+    void _chmrtannoy_entrypoint_0(void);
+    u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, BtIntPtr arg4, BtIntPtr arg5, BtIntPtr arg6, s32 arg7);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
+    void func_800DA524(s32 index);
     s32 func_800EA05C();
     if (func_800DA298(0x329) == 0) {
         _chmrtannoy_entrypoint_0();
@@ -662,8 +662,8 @@ void chfactoryempspell_entrypoint_0(s32 arg0, s32 arg1) {
 }
 
 void func_80801130_chfactoryempspell(Actor *arg0, void *arg1, f32 arg2) {
-    s32 _sumumbofx_entrypoint_14(void *);
-    s32 _sumumbofx_entrypoint_6(void *, f32, f32, s32, s32, u8 *, f32 *, f32 *);
+    void _sumumbofx_entrypoint_14(u8 *arg0);
+    void _sumumbofx_entrypoint_6(u8 *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4, f32 *arg5, f32 *arg6, f32 *arg7);
     void func_800E3980(f32 *);
     f32 position[3];
     s32 side;
@@ -682,7 +682,7 @@ void func_80801130_chfactoryempspell(Actor *arg0, void *arg1, f32 arg2) {
 }
 
 void func_808012C0_chfactoryempspell(f32 arg0, f32 arg1) {
-    void func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
     f32 func_800DC0C0(void);
     void func_800E3980(f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -782,8 +782,8 @@ void func_808016AC_chfactoryempspell(Actor *arg0) {
 
 void func_80801844_chfactoryempspell(Actor *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
-    void func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    u8 _subaddieaudioloop_entrypoint_7(u8 arg0, f32 *arg1, u32 arg2, u32 *arg3, s32 arg4);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
     void func_800C8CB8(s32, f32 *);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
@@ -867,8 +867,8 @@ void func_80801B2C_chfactoryempspell(Actor *arg0) {
     void func_800C8E54(s32, f32, f32);
     void func_800C8F64(s32, s32);
     void func_800C8FB0(s32, u32, u32, u32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 var_s1;
     struct {
@@ -897,8 +897,8 @@ void func_80801C00_chfactoryempspell(Actor *arg0, f32 arg1) {
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F1214(f32, f32, f32);
     int func_800F3214(void *, void *, void *, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     struct {
         u8 pad[0x3C];
@@ -950,7 +950,7 @@ void func_80801C00_chfactoryempspell(Actor *arg0, f32 arg1) {
     case 11:
         break;
     }
-}
+}    typedef struct { u8 pad0[0x3C]; s32 unk3C; } Objempspell_func_80801E48_chfactoryempspell_var_s1; /* offsets.py genstruct: fields from raw offsets on var_s1; rename once understood */
 
 void func_80801E48_chfactoryempspell(Actor *arg0) {
     void func_800C8B84(volatile s32);
@@ -963,14 +963,14 @@ void func_80801E48_chfactoryempspell(Actor *arg0) {
     var_s0 = 0;
     var_s1 = temp_v0;
     do {
-        func_800C8B84((*(s32 *)((s8 *)(var_s1) + (0x3C))));
+        func_800C8B84((((Objempspell_func_80801E48_chfactoryempspell_var_s1 *)var_s1)->unk3C));
         var_s0 += 4;
         var_s1 += 4;
     } while (var_s0 != 0x10);
 }
 
 void func_80801E9C_chfactoryempspell(Actor *arg0, f32 arg1) {
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    u8 _subaddieaudioloop_entrypoint_7(u8 arg0, f32 *arg1, u32 arg2, u32 *arg3, s32 arg4);
     void func_800C31DC(u8, f32);
     f32 func_800DC0C0(void);
     f32 func_800F1214(f32, f32, f32);
@@ -993,9 +993,9 @@ void func_80801E9C_chfactoryempspell(Actor *arg0, f32 arg1) {
 
 void func_80801F30_chfactoryempspell(Actor *arg0) {
     s16 _chmumbopad_entrypoint_0(s32);
-    s32 _sumumbofx_entrypoint_0(s32, s32, s32, s16);
-    s32 _sumumbofx_entrypoint_2(s32);
-    s32 _sumumbofx_entrypoint_24(s32, s32);
+    s32 _sumumbofx_entrypoint_0(BtIntPtr, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_2(BtIntPtr);
+    s32 _sumumbofx_entrypoint_24(BtIntPtr, s32);
     void _sumumbofx_entrypoint_25(void *, s32, s32 *);
     s32 _sumumbofx_entrypoint_28(void *, f32 *, f32, f32);
     void *func_80100094(Actor *, u32);
@@ -1016,19 +1016,19 @@ void func_80801F30_chfactoryempspell(Actor *arg0) {
     func_80801B2C_chfactoryempspell(arg0);
     func_808016AC_chfactoryempspell(arg0);
     _sumumbofx_entrypoint_28(sp24, arg0->position, 4000.0f, 5000.0f);
-}
+}                  typedef struct { u8 pad0[0x28]; u8 unk28; u8 pad29[0x59]; s16 unk82; } Objempspell_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80801FE0_chfactoryempspell(void *arg0) {
     s32 _subaddieaudioloop_entrypoint_2();
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
     void func_80801AB4_chfactoryempspell(Actor *);
     _subaddieaudioloop_entrypoint_2();
-    (*(u8 *)((s8 *)(arg0) + (0x28))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x28))));
+    (((Objempspell_arg0 *)arg0)->unk28) = _subaddieaudioloop_entrypoint_3((((Objempspell_arg0 *)arg0)->unk28));
     func_80801AB4_chfactoryempspell(arg0);
-    if ((*(s16 *)((s8 *)(arg0) + (0x82))) != 0) {
+    if ((((Objempspell_arg0 *)arg0)->unk82) != 0) {
         _sumumbofx_entrypoint_1(arg0, 0);
     }
 }

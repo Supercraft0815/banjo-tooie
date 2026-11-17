@@ -171,7 +171,7 @@ void bskazmove_entrypoint_3(PlayerState *self) {
     bs_setState(self, func_800A02DC(self, next_state));
 }
 
-s32 bskazmove_entrypoint_4(s32 idx) {
+BtIntPtr bskazmove_entrypoint_4(s32 idx) {
     return D_80800C70_bskazmove[idx];
 }
 
@@ -343,7 +343,7 @@ void bskazmove_entrypoint_9(PlayerState *self) {
     bs_setState(self, func_800A02DC(self, next_state));
 }
 
-s32 bskazmove_entrypoint_10(s32 idx) {
+BtIntPtr bskazmove_entrypoint_10(s32 idx) {
     return D_80800C80_bskazmove[idx];
 }
 
@@ -354,3 +354,7 @@ void bskazmove_entrypoint_11(PlayerState *self, s32 arg1) {
     }
     func_800962B0(self, 0);
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/move.data.s */
+void _bskazshoessuckspline_entrypoint_0();
+BtIntPtr D_80800C70_bskazmove [4] BT_DATA(4, overlays_bs_kaz_move, 0x0) = { (BtIntPtr)_bskazmove_entrypoint_1, (BtIntPtr)_bskazmove_entrypoint_2, (BtIntPtr)_bskazmove_entrypoint_3, (BtIntPtr)_bskazshoessuckspline_entrypoint_0 };
+BtIntPtr D_80800C80_bskazmove [4] BT_DATA(4, overlays_bs_kaz_move, 0x10) = { (BtIntPtr)_bskazmove_entrypoint_7, (BtIntPtr)_bskazmove_entrypoint_8, (BtIntPtr)_bskazmove_entrypoint_9, (BtIntPtr)_bskazshoessuckspline_entrypoint_0 };

@@ -5,11 +5,11 @@ s32 func_8008ED80(void)
 	return 0x1;
 }
 
-void func_8008ED88(void *arg0, s32 arg1, Unk80132ED0 *arg2) {
-    void func_800F497C(s32);
-    void func_800F49A8(s32, s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
+void func_8008ED88(void *arg0, BtIntPtr arg1, Unk80132ED0 *arg2) {
+    void func_800F497C(BtIntPtr);
+    void func_800F49A8(BtIntPtr, s32);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 func_8010D5DC;
     Actor *sp1C;
@@ -17,7 +17,7 @@ void func_8008ED88(void *arg0, s32 arg1, Unk80132ED0 *arg2) {
     sp1C = func_80106790(arg2);
     func_800F497C(*(s32 *)((s8 *)arg0 + 0x184));
     func_800F49A8(*(s32 *)((s8 *)arg0 + 0x184), 1);
-    func_800F49D4(*(s32 *)((s8 *)arg0 + 0x184), &func_8010D5DC, (s32)sp1C->unk0);
+    func_800F49D4(*(s32 *)((s8 *)arg0 + 0x184), &func_8010D5DC, (BtIntPtr)sp1C->unk0);
     func_800F4A58(*(s32 *)((s8 *)arg0 + 0x184), sp1C->position, 500.0f);
 }
 
@@ -40,7 +40,7 @@ typedef struct {
 
 s32 func_8008EE1C(Unk8008EE1C *arg0, s32 arg1) {
     s32 bs_getCurrentState(struct player_state_s *);
-    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
 
     switch (bs_getCurrentState(func_800F53D0(arg1))) {
         case 15:
@@ -62,10 +62,10 @@ void func_8008EE88(void *arg0, f32 arg1) {
 }
 
 void func_8008EEC4(void *arg0, f32 *arg1, f32 arg2, s32 arg3) {
-    s32 func_8008E938(void *);
-    s32 func_800CB840(s32, s32);
-    s32 func_800CB870();
-    s32 func_80109C4C(f32 *, f32, s32, s32 (*)(Unk8008EE1C *, s32), s32, s32, s32);
+    BtIntPtr func_8008E938(void *);
+    void func_800CB840(s32 kind, BtIntPtr context);
+    void func_800CB870(void);
+    void func_80109C4C(BtIntPtr arg0, f32 arg1, s32 arg2, BtIntPtr arg3, s32 arg4, BtIntPtr arg5, s32 arg6);
     func_800CB840(1, (*(s32 *)((s8 *)(arg0) + (0x184))));
     func_80109C4C(arg1, arg2, 2, &func_8008EE1C, (*(s32 *)((s8 *)(arg0) + (0x184))), func_8008E938(arg0), arg3);
     func_800CB870();
@@ -219,13 +219,13 @@ s32 func_8008EF3C(struct player_state_s *arg0, Unk80132ED0 *arg1) {
 
 /* extern */
 
-s32 func_8008F4F0(struct player_state_s *arg0) {
+s32 func_8008F4F0(struct player_state_s *arg0 BT_PASS2(, s32 bt_a1)) {
     int baflag_isTrue(struct player_state_s *, s32);
     s32 func_8008EF3C();
     s32 result;
 
 #ifdef BT_NATIVE
-    result = ((s32 (*)())func_8008EF3C)(arg0);
+    result = ((s32 (*)())func_8008EF3C)(arg0 BT_PASS2(, bt_a1));
 #else
     result = func_8008EF3C(arg0);
 #endif
@@ -244,8 +244,8 @@ s32 func_8008F4F0(struct player_state_s *arg0) {
 
 /* extern */
 
-s32 func_8008F568(s32 arg0, s32 arg1, Actor **arg2) {
-    Unk80132ED0 *_bahold_entrypoint_5(s32);
+s32 func_8008F568(BtIntPtr arg0, s32 arg1, Actor **arg2) {
+    Unk80132ED0 *_bahold_entrypoint_5(BtIntPtr);
     void func_8008E9A0(void *, s32);
     void func_800904C8(s32);
     s32 func_800D1B34(s32);
@@ -276,11 +276,11 @@ s32 func_8008F568(s32 arg0, s32 arg1, Actor **arg2) {
 /* extern */
 
 void func_8008F62C(s32 arg0, u32 arg1) {
-    s32 _bahold_entrypoint_6(struct player_state_s *, Unk80132ED0 *);
+    void _bahold_entrypoint_6(void *arg0, BtIntPtr arg1);
     void bs_setState();
     void func_80092D44(struct player_state_s *, f32[3]);
     s32 func_8009E674(struct player_state_s *, s32);
-    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
     Actor *func_80108474(u32, f32 *, s32);
     f32 yaw_get(struct player_state_s *);
     struct player_state_s *temp_v0;
@@ -304,7 +304,7 @@ struct player_state_s {
 
 void func_8008F6B8(struct player_state_s *player, s32 actor_id) {
     Unk80132ED0 *_bahold_entrypoint_5();
-    s32 _bahold_entrypoint_6(struct player_state_s *, Unk80132ED0 *);
+    void _bahold_entrypoint_6(void *arg0, BtIntPtr arg1);
     s32 _chbaddiesetup_entrypoint_2(void (*)(s32, u32), s32, s32);
     s32 func_8008E9AC(void *);
     Actor *func_80106790(Unk80132ED0 *);
@@ -322,30 +322,30 @@ void func_8008F6B8(struct player_state_s *player, s32 actor_id) {
 
 /* extern */
 
-void func_8008F748(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _gccubesearch_entrypoint_0(s32, s32);
-    s32 _gspropctrl_entrypoint_11(s32, s32 *);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008F748(s32 arg0, s32 arg1, BtIntPtr arg2) {
+    void *_gccubesearch_entrypoint_0(s32 actor_id, Actor *actor);
+    void _gspropctrl_entrypoint_11(void *arg0, void *arg1);
     s32 func_800A3514(s32, s32 *);
     s32 sp1C[3];
 
     _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_0(arg1, arg2), sp1C);
-    func_800A3514(arg0, sp1C);
+    BT_NATIVE_ONLY(return) func_800A3514(arg0, sp1C);
 }
 
 /* extern */
 
 void func_8008F788(s32 arg0, s32 arg1) {
-    s32 func_800D1844(s32);
+    void func_800D1844(s32 arg0);
     s32 func_800D1B34(s32);
     func_800D1844(func_800D1B34(arg1));
 }
 
 void func_8008F7B4(s32 player, s32 actor_id) {
-    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    Unk80132ED0 *_bahold_entrypoint_5(BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _bahold_entrypoint_4(s32);
+    void _bahold_entrypoint_4(BtIntPtr arg0);
     s32 func_800D1B34(s32);
-    s32 func_800D1804(s32);
+    void func_800D1804(s32 arg0);
     Unk80132ED0 *marker;
     Actor *actor;
     marker = _bahold_entrypoint_5(player);
@@ -356,16 +356,16 @@ void func_8008F7B4(s32 player, s32 actor_id) {
 
 /* extern */
 
-void func_8008F828(s32 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008F828(s32 arg0, s32 arg1) {
     s32 func_800D1A04(s32);
     s32 func_800D1B34(s32);
-    func_800D1A04(func_800D1B34(arg1));
+    BT_NATIVE_ONLY(return) func_800D1A04(func_800D1B34(arg1));
 }
 
 /* extern */
 
 void func_8008F854(s32 arg0, s32 arg1) {
-    s32 func_800D1824(s32);
+    void func_800D1824(s32 arg0);
     s32 func_800D1B34(s32);
     func_800D1824(func_800D1B34(arg1));
 }
@@ -373,5 +373,5 @@ void func_8008F854(s32 arg0, s32 arg1) {
 void func_8008F880(Unk80132ED0 *arg0, f32 *arg1) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     Actor* func_80106790(Unk80132ED0 *);
-    func_800EE7F8(arg1, (f32 *)((u8 *)func_80106790(arg0) + 4));
+    func_800EE7F8(arg1, &(func_80106790(arg0))->position[0]);
 }

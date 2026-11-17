@@ -62,7 +62,7 @@ void func_808000E8_gztrace(u8 *arg0, u8 *arg1, s32 arg2, u8 arg3, s32 arg4) {
     arg0[size] = 0;
 }
 
-u8 *func_80800290_gztrace(s32 arg0, s32 arg1, u8 *arg2) {
+u8 *func_80800290_gztrace(BtIntPtr arg0, s32 arg1, u8 *arg2) {
     s32 i;
     u8 *dest;
     u8 *bytes;
@@ -116,8 +116,8 @@ void func_808003D0_gztrace(u8 *arg0) {
     trace->base = arg0;
     trace->data18 = trace->base + 0x34;
     trace->table = trace->base + 0x38;
-    trace->data1C = (u8 *)((s32)arg0 + header->count8 * 4 + 0x38);
-    trace->data10 = (u8 *)((((s32)trace->data1C + header->countE) + 3) & ~3);
+    trace->data1C = (u8 *)((BtIntPtr)arg0 + header->count8 * 4 + 0x38);
+    trace->data10 = (u8 *)((((BtIntPtr)trace->data1C + header->countE) + 3) & ~3);
     trace->data14 = trace->data10 + *(s16 *)(arg0 + 0xA) * 2;
     *(s32 *)&trace->data14 += 3;
     *(s32 *)&trace->data14 &= ~3;
@@ -130,15 +130,15 @@ void func_808003D0_gztrace(u8 *arg0) {
     trace->data30 = trace->data2C + *(s16 *)(arg0 + 6) * 0x10;
 }
 
-s32 func_808004B0_gztrace(s32 *arg0, u32 *arg1, s32 *arg2, s32 *arg3, u32 arg4) {
+s32 func_808004B0_gztrace(s32 *arg0, u32 *arg1, s32 *arg2, s32 *arg3, BtUIntPtr arg4) {
     s32 done;
     u32 stack;
     u32 ra;
-    u32 cursor;
+    BtUIntPtr cursor;
     u32 instruction;
     u32 upper;
     u32 opcode;
-    u32 address;
+    BtUIntPtr address;
 
     stack = (u32)*arg0;
     cursor = *arg1;
@@ -188,15 +188,15 @@ s32 func_808004B0_gztrace(s32 *arg0, u32 *arg1, s32 *arg2, s32 *arg3, u32 arg4) 
     return 0;
 }
 
-s32 func_808005C4_gztrace(u32 arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4) {
+s32 func_808005C4_gztrace(u32 arg0, BtIntPtr arg1, u32 arg2, s32 arg3, s32 arg4) {
     extern struct TraceData B_80800A70_gztrace;
     extern u8 B_80800AA8_gztrace[];
     extern u8 B_80800ABA_gztrace, B_80800ABD_gztrace, B_80800AC3_gztrace;
     extern u8 B_80800ACD_gztrace, B_80800AD5_gztrace, B_80800AD6_gztrace;
     extern s32 overlay_syscalls, overlay_syscalls_end;
     struct Overlay *func_80081AA4(void *);
-    void func_8001D37C(s32, ...);
-    s32 func_808004B0_gztrace(s32 *, u32 *, s32 *, s32 *, u32);
+    void func_8001D37C(BtIntPtr, ...);
+    s32 func_808004B0_gztrace(s32 *, u32 *, s32 *, s32 *, BtUIntPtr);
     s32 sp5C;
     s32 sp58;
     s32 address;
@@ -220,10 +220,10 @@ s32 func_808005C4_gztrace(u32 arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4) {
                 func_808003D0_gztrace(overlay);
                 func_808000E8_gztrace(B_80800AA8_gztrace, B_80800A70_gztrace.data1C, 13, 0x7E, 2);
                 if (arg3 == 0) {
-                    if (first != 0 && (first < (s32)&overlay_syscalls || (s32)&overlay_syscalls_end < first)) {
-                        first -= (s32)B_80800A70_gztrace.data20;
+                    if (first != 0 && (first < (BtIntPtr)&overlay_syscalls || (BtIntPtr)&overlay_syscalls_end < first)) {
+                        first -= (BtIntPtr)B_80800A70_gztrace.data20;
                     }
-                    second -= (s32)B_80800A70_gztrace.data20;
+                    second -= (BtIntPtr)B_80800A70_gztrace.data20;
                 }
             } else {
                 func_808000E8_gztrace(B_80800AA8_gztrace, "core", 13, 0x7E, 2);
@@ -251,7 +251,7 @@ s32 func_808005C4_gztrace(u32 arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4) {
                 func_8001D37C("%s\n", B_80800AA8_gztrace);
             }
             count++;
-        } while (count < 16 && func_808004B0_gztrace(&arg1, &arg0, &sp5C, &sp58, arg2));
+        } while (count < 16 && func_808004B0_gztrace(&arg1, &arg0, &sp5C, &sp58, arg2)); BT_NATIVE_ONLY(return 0;)
     }
 }
 
@@ -259,9 +259,9 @@ void gztrace_entrypoint_0(void) {
 }
 
 void gztrace_entrypoint_1(OSThread *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void func_8001D37C(s32 arg0, ...);
-    s32 func_808004B0_gztrace(s32 *, u32 *, s32 *, s32 *, u32);
-    s32 func_808005C4_gztrace(u32, s32, u32, s32, s32);
+    void func_8001D37C(BtIntPtr arg0, ...);
+    s32 func_808004B0_gztrace(s32 *, u32 *, s32 *, s32 *, BtUIntPtr);
+    s32 func_808005C4_gztrace(u32, BtIntPtr, u32, s32, s32);
     u32 ra;
     u32 pc;
     s32 sp;
@@ -287,3 +287,14 @@ void gztrace_entrypoint_1(OSThread *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     func_808005C4_gztrace(pc, sp, ra, arg2, arg3);
 }
+/* data_to_c.py: from asm/data/overlays/gz/trace.data.s */
+u8 D_80800A30_gztrace[62] BT_DATA(4, overlays_gz_trace, 0x0) = { 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x2D, 0x00 };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+struct TraceData B_80800A70_gztrace BT_DATA(16, bss_gz_trace, 0x0);
+u8 B_80800AA8_gztrace [ 18 ] BT_DATA(4, bss_gz_trace, 0x38);
+u8 B_80800ABA_gztrace BT_DATA(4, bss_gz_trace, 0x4A);
+u8 B_80800ACD_gztrace BT_DATA(4, bss_gz_trace, 0x5D);
+#endif

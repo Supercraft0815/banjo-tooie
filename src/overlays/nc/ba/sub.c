@@ -3,8 +3,8 @@
 void ncbasub_entrypoint_0(s32 arg0) 
 {
 }
-void ncbasub_entrypoint_1(s32 arg0) {
-    s32 func_801124D0(s32, s32);
+void ncbasub_entrypoint_1(BtIntPtr arg0) {
+    void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *arg0, s32 arg1);
     void func_80115870(void *arg0, f32 arg1);
     func_801124D0(arg0, 1);
@@ -16,7 +16,7 @@ void ncbasub_entrypoint_2(void *arg0) {
     typedef struct player_state_s PlayerState;
     f32 func_8009BFCC(PlayerState *);
     f32 yaw_get(PlayerState *);
-    PlayerState *func_800F53D0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EEBF0(f32 *, f32 *, f32);
     f32 func_800EEF94(f32 *);
@@ -25,8 +25,8 @@ void ncbasub_entrypoint_2(void *arg0) {
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
     f32 func_80013728(f32);
-    f32 func_800F5E7C(s32);
-    f32 func_800F5F7C(u32);
+    f32 func_800F5E7C(BtIntPtr);
+    f32 func_800F5F7C(BtUIntPtr);
     void func_80110790(void *, f32 *);
     void func_801107F0(void *, f32 *);
     void func_80110818(void *, f32 *);

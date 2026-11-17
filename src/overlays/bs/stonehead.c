@@ -146,7 +146,7 @@ f32 func_800F1214(f32, f32, f32);
 s32 func_800DA298(s32);
 s32 _badrone_entrypoint_24(PlayerState *);
 int bainput_should_enter_first_person(PlayerState *);
-void _basudie_entrypoint_2(PlayerState *, f32, f32, f32);
+void _basudie_entrypoint_2(BtIntPtr arg0, f32 arg1, f32 arg2, f32 arg3);
 struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
 void baanim_setEnd(PlayerState *, f32);
 void anctrl_reset(struct anctrl_s *);
@@ -185,17 +185,17 @@ int func_8008DD04(PlayerState *);
 int func_8008E148(PlayerState *);
 s32 func_8009BCD4(PlayerState *, f32);
 void func_800A2CE8(PlayerState *, f32, s32);
-s32 _baspin_entrypoint_3(s32);
+s32 _baspin_entrypoint_3(BtIntPtr);
 void _babounce_entrypoint_4(PlayerState *, s32);
 void _babounce_entrypoint_5(PlayerState *, s32, f32);
-s32 _babounce_entrypoint_9(s32);
-s32 _bsrest_entrypoint_13(s32);
+s32 _babounce_entrypoint_9(BtIntPtr);
+s32 _bsrest_entrypoint_13(BtIntPtr);
 void _batimer_set(PlayerState *, s32, f32);
 s32 _batimer_decrement(void *, s32);
 f32 _batimer_get(void *, s32);
 f32 func_800D8FF8(void);
 f32 func_800F10B4(f32, f32, f32, f32, f32);
-s32 yaw_applyIdeal(void *);
+void yaw_applyIdeal(PlayerState *self);
 s32 func_800A02DC(PlayerState *, s32);
 
 int baanim_isStopped(PlayerState *);
@@ -205,7 +205,7 @@ void baphysics_reset_gravity(PlayerState *);
 int func_8008DF8C(PlayerState *, s32);
 void func_8009D3A8(PlayerState *, s32);
 int player_isStable(PlayerState *);
-s32 bs_setState(s32, s32);
+void bs_setState(void *self, s32 nextState);
 void func_80800000_bsstonehead(PlayerState *);
 void func_80800060_bsstonehead(PlayerState *);
 void func_808000CC_bsstonehead(PlayerState *);
@@ -348,7 +348,7 @@ s32 func_808003F4_bsstonehead(PlayerState *arg0, s32 arg1) {
     return arg1;
 }
 
-void bsstonehead_entrypoint_0(s32 arg0)
+void bsstonehead_entrypoint_0(BtIntPtr arg0)
 {
     func_80800194_bsstonehead(arg0,0);
 }
@@ -361,7 +361,7 @@ void bsstonehead_entrypoint_2(PlayerState *arg0) {
     int baanim_isStopped(PlayerState *);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 func_800F1574(f32 *, f32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 next_state = 0;
 
     switch (arg0->unk15C.word) {
@@ -390,11 +390,11 @@ void bsstonehead_entrypoint_2(PlayerState *arg0) {
             }
             break;
     }
-    bs_setState((s32)arg0, next_state);
+    bs_setState((BtIntPtr)arg0, next_state);
 }
 
 s32 bsstonehead_entrypoint_3(s32 arg0) {
-    extern s32 D_80801630_bsstonehead[];
+    extern BtIntPtr D_80801630_bsstonehead[];
     return ((s32 *)&D_80801630_bsstonehead)[arg0];
 }
 
@@ -402,7 +402,7 @@ struct anctrl_s;
 enum asset_e;
 
 void func_808005F0_bsstonehead(PlayerState *arg0, s32 arg1) {
-    void _basudie_entrypoint_2(PlayerState *, f32, f32, f32);
+    void _basudie_entrypoint_2(BtIntPtr arg0, f32 arg1, f32 arg2, f32 arg3);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void baanim_setEnd(PlayerState *, f32);
     void anctrl_reset(struct anctrl_s *);
@@ -440,14 +440,14 @@ void func_808005F0_bsstonehead(PlayerState *arg0, s32 arg1) {
             break;
     }
     arg0->unk15C.word = arg1;
-}
+}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objstonehead_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void bsstonehead_entrypoint_4(s32 arg0) {
+void bsstonehead_entrypoint_4(BtIntPtr arg0) {
     void func_808005F0_bsstonehead(PlayerState *, s32);
     func_80800060_bsstonehead(arg0);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (((Objstonehead_arg0 *)arg0)->unk15C) = 0;
     func_808005F0_bsstonehead(arg0, 1);
 }
 
@@ -456,7 +456,7 @@ void bsstonehead_entrypoint_5(PlayerState *arg0) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     int player_isStable(PlayerState *);
     f32 func_800F0E00(f32, f32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     f32 velocity;
 
     _basudie_entrypoint_5(arg0);
@@ -480,13 +480,13 @@ void bsstonehead_entrypoint_5(PlayerState *arg0) {
     bs_setState(arg0, 0);
 }
 
-void bsstonehead_entrypoint_6()
+void bsstonehead_entrypoint_6(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    _basudie_entrypoint_6();
+    _basudie_entrypoint_6(BT_NATIVE_ONLY(bt_a0));
 }
 
 s32 bsstonehead_entrypoint_7(s32 arg0) {
-    extern s32 D_80801640_bsstonehead[];
+    extern BtIntPtr D_80801640_bsstonehead[];
     return ((s32 *)&D_80801640_bsstonehead)[arg0];
 }
 
@@ -505,7 +505,7 @@ void bsstonehead_entrypoint_10(PlayerState *arg0)
     _bsdrone_entrypoint_2(arg0);
 }
 s32 bsstonehead_entrypoint_11(s32 arg0) {
-    extern s32 D_80801650_bsstonehead[];
+    extern BtIntPtr D_80801650_bsstonehead[];
     return ((s32 *)&D_80801650_bsstonehead)[arg0];
 }
 
@@ -553,7 +553,7 @@ void func_808008CC_bsstonehead(PlayerState *arg0, s32 arg1)
             baphysics_set_target_horizontal_velocity(arg0, 0.0f);
             break;
     }
-    (*(s32 *)((s8 *)arg0 + 0x15C)) = arg1;
+    (arg0->unk15C.word) = arg1;
 }
 
 void bsstonehead_entrypoint_12(PlayerState *arg0)
@@ -562,20 +562,20 @@ void bsstonehead_entrypoint_12(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
 }
 
-void bsstonehead_entrypoint_13(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 1; func_808008CC_bsstonehead(arg0, 1); }
+void bsstonehead_entrypoint_13(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (arg0->unk15C.word) = 1; func_808008CC_bsstonehead(arg0, 1); }
 
 void bsstonehead_entrypoint_14(PlayerState *arg0) {
     int baanim_isStopped(PlayerState *);
     int player_isStable(PlayerState *);
     int func_8008DF8C(PlayerState *, s32);
     void func_8009D3A8(PlayerState *, s32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 sp24;
 
     sp24 = 0;
     func_808000CC_bsstonehead(arg0);
     func_8009D3A8(arg0, 0);
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
         case 1:
             if (func_8008DF8C(arg0, 0x82)) {
                 func_808008CC_bsstonehead(arg0, 2);
@@ -599,7 +599,7 @@ void bsstonehead_entrypoint_14(PlayerState *arg0) {
 }
 
 s32 bsstonehead_entrypoint_15(s32 arg0) {
-    extern s32 D_80801660_bsstonehead[];
+    extern BtIntPtr D_80801660_bsstonehead[];
     return ((s32 *)&D_80801660_bsstonehead)[arg0];
 }
 
@@ -677,7 +677,7 @@ void bsstonehead_entrypoint_16(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
 }
 
-void bsstonehead_entrypoint_17(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (*(s32 *)((s8 *)(arg0) + 0x15C)) = 0; func_80800B38_bsstonehead(arg0, 1); }
+void bsstonehead_entrypoint_17(PlayerState *arg0) { func_80800060_bsstonehead(arg0); (arg0->unk15C.word) = 0; func_80800B38_bsstonehead(arg0, 1); }
 
 void bsstonehead_entrypoint_18(PlayerState *arg0) {
     s32 next_state;
@@ -720,7 +720,7 @@ void bsstonehead_entrypoint_18(PlayerState *arg0) {
 }
 
 s32 bsstonehead_entrypoint_19(s32 arg0) {
-    extern s32 D_80801670_bsstonehead[];
+    extern BtIntPtr D_80801670_bsstonehead[];
     return ((s32 *)&D_80801670_bsstonehead)[arg0];
 }
 
@@ -749,7 +749,7 @@ void bsstonehead_entrypoint_21(PlayerState *arg0) {
     int bakey_newlyReleased(PlayerState *, s32);
     int bakey_pressed(PlayerState *, s32);
     s32 bastick_getZone(PlayerState *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     int func_8008DD04(PlayerState *);
     int func_8008E148(PlayerState *);
     s32 func_8009BCD4(PlayerState *, f32);
@@ -791,7 +791,7 @@ void bsstonehead_entrypoint_22(PlayerState *arg0)
     func_80090A2C(arg0);
 }
 s32 bsstonehead_entrypoint_23(s32 arg0) {
-    extern s32 D_80801680_bsstonehead[];
+    extern BtIntPtr D_80801680_bsstonehead[];
     return ((s32 *)&D_80801680_bsstonehead)[arg0];
 }
 
@@ -802,9 +802,9 @@ void bsstonehead_entrypoint_24(PlayerState *arg0)
 }
 void bsstonehead_entrypoint_25(PlayerState *arg0) { void _baattach_entrypoint_6(PlayerState *, s32, s32, s32); void _baspin_entrypoint_2(PlayerState *, s32, f32, s32, s32); func_80800060_bsstonehead(arg0); _baattach_entrypoint_6(arg0, 3, 0, 0); _baspin_entrypoint_2(arg0, 0x63, 1.8f, 2, 0); }
 
-void bsstonehead_entrypoint_26(s32 arg0) {
-    s32 _baspin_entrypoint_3(s32);
-    s32 bs_setState(s32, s32);
+void bsstonehead_entrypoint_26(BtIntPtr arg0) {
+    s32 _baspin_entrypoint_3(BtIntPtr);
+    void bs_setState(void *self, s32 nextState);
     s32 var_a1;
     s32 sp1C;
 
@@ -817,7 +817,7 @@ void bsstonehead_entrypoint_26(s32 arg0) {
 }
 
 s32 bsstonehead_entrypoint_27(s32 arg0) {
-    extern s32 D_80801690_bsstonehead[];
+    extern BtIntPtr D_80801690_bsstonehead[];
     return ((s32 *)&D_80801690_bsstonehead)[arg0];
 }
 
@@ -838,10 +838,10 @@ void bsstonehead_entrypoint_29(PlayerState *arg0) {
 
 /* extern */
 
-void bsstonehead_entrypoint_30(s32 arg0) {
+void bsstonehead_entrypoint_30(BtIntPtr arg0) {
     s32 _babounce_entrypoint_2();
-    s32 _babounce_entrypoint_9(s32);
-    s32 bs_setState(s32, s32);
+    s32 _babounce_entrypoint_9(BtIntPtr);
+    void bs_setState(void *self, s32 nextState);
     void func_808000CC_bsstonehead(PlayerState *);
     s32 sp1C;
 
@@ -856,7 +856,7 @@ void bsstonehead_entrypoint_30(s32 arg0) {
 }
 
 s32 bsstonehead_entrypoint_31(s32 arg0) {
-    extern s32 D_808016A0_bsstonehead[];
+    extern BtIntPtr D_808016A0_bsstonehead[];
     return ((s32 *)&D_808016A0_bsstonehead)[arg0];
 }
 
@@ -872,9 +872,9 @@ void bsstonehead_entrypoint_33(PlayerState *arg0)
 }
 /* extern */
 
-void bsstonehead_entrypoint_34(s32 arg0) {
-    s32 _bsrest_entrypoint_13(s32);
-    s32 bs_setState(s32, s32);
+void bsstonehead_entrypoint_34(BtIntPtr arg0) {
+    s32 _bsrest_entrypoint_13(BtIntPtr);
+    void bs_setState(void *self, s32 nextState);
     s32 _bsrest_entrypoint_20();
     s32 var_a1;
     s32 sp1C;
@@ -888,7 +888,7 @@ void bsstonehead_entrypoint_34(s32 arg0) {
 }
 
 s32 bsstonehead_entrypoint_35(s32 arg0) {
-    extern s32 D_808016B0_bsstonehead[];
+    extern BtIntPtr D_808016B0_bsstonehead[];
     return ((s32 *)&D_808016B0_bsstonehead)[arg0];
 }
 
@@ -912,10 +912,10 @@ void bsstonehead_entrypoint_37(PlayerState *arg0) {
 void bsstonehead_entrypoint_38(PlayerState *arg0) {
     s32 _batimer_decrement(void *, s32);
     f32 _batimer_get(void *, s32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     f32 func_800D8FF8(void);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 yaw_applyIdeal(void *);
+    void yaw_applyIdeal(PlayerState *self);
     f32 yaw_getIdeal(PlayerState *);
     void yaw_setIdeal(PlayerState *, f32);
     s32 sp34;
@@ -934,7 +934,7 @@ void bsstonehead_entrypoint_38(PlayerState *arg0) {
 }
 
 s32 bsstonehead_entrypoint_39(s32 arg0) {
-    extern s32 D_808016C0_bsstonehead[];
+    extern BtIntPtr D_808016C0_bsstonehead[];
     return ((s32 *)&D_808016C0_bsstonehead)[arg0];
 }
 
@@ -962,7 +962,7 @@ void bsstonehead_entrypoint_42(PlayerState *arg0) {
     s32 bakey_func_80091940(PlayerState *, s32, s32);
     int bakey_newlyReleased(PlayerState *, s32);
     int bakey_pressed(PlayerState *, s32);
-    s32 bs_setState();
+    void bs_setState(void *self, s32 nextState);
     int func_8008DD04(PlayerState *);
     int func_8008E148(PlayerState *);
     s32 func_800A02DC(PlayerState *, s32);
@@ -989,6 +989,55 @@ void bsstonehead_entrypoint_42(PlayerState *arg0) {
 }
 
 s32 bsstonehead_entrypoint_43(s32 arg0) {
-    extern s32 D_808016D0_bsstonehead[];
+    extern BtIntPtr D_808016D0_bsstonehead[];
     return ((s32 *)&D_808016D0_bsstonehead)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/stonehead.data.s */
+void _bsstonehead_entrypoint_0();
+void _bsstonehead_entrypoint_1();
+void _bsstonehead_entrypoint_2();
+void func_80099B94(PlayerState *);
+void _bsstonehead_entrypoint_6();
+void _bsstonehead_entrypoint_4();
+void _bsstonehead_entrypoint_5();
+void _basudie_entrypoint_11();
+void _bsstonehead_entrypoint_10();
+void _bsstonehead_entrypoint_8();
+void _bsstonehead_entrypoint_9();
+void _bsdrone_entrypoint_3();
+void _bsstonehead_entrypoint_12();
+void _bsstonehead_entrypoint_13();
+void _bsstonehead_entrypoint_14();
+void _bsstonehead_entrypoint_16();
+void _bsstonehead_entrypoint_17();
+void _bsstonehead_entrypoint_18();
+void _bsstonehead_entrypoint_22();
+void _bsstonehead_entrypoint_20();
+void _bsstonehead_entrypoint_21();
+void _bsstonehead_entrypoint_24();
+void _bsstonehead_entrypoint_25();
+void _bsstonehead_entrypoint_26();
+void func_80099AA8();
+void _bsstonehead_entrypoint_28();
+void _bsstonehead_entrypoint_29();
+void _bsstonehead_entrypoint_30();
+void _bsstonehead_entrypoint_32();
+void _bsstonehead_entrypoint_33();
+void _bsstonehead_entrypoint_34();
+void _bsstonehead_entrypoint_36();
+void _bsstonehead_entrypoint_37();
+void _bsstonehead_entrypoint_38();
+void _bsstonehead_entrypoint_40();
+void _bsstonehead_entrypoint_41();
+void _bsstonehead_entrypoint_42();
+BtIntPtr D_80801630_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x0) = { (BtIntPtr)_bsstonehead_entrypoint_0, (BtIntPtr)_bsstonehead_entrypoint_1, (BtIntPtr)_bsstonehead_entrypoint_2, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801640_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x10) = { (BtIntPtr)_bsstonehead_entrypoint_6, (BtIntPtr)_bsstonehead_entrypoint_4, (BtIntPtr)_bsstonehead_entrypoint_5, (BtIntPtr)_basudie_entrypoint_11 };
+BtIntPtr D_80801650_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x20) = { (BtIntPtr)_bsstonehead_entrypoint_10, (BtIntPtr)_bsstonehead_entrypoint_8, (BtIntPtr)_bsstonehead_entrypoint_9, (BtIntPtr)_bsdrone_entrypoint_3 };
+BtIntPtr D_80801660_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x30) = { (BtIntPtr)_bsstonehead_entrypoint_12, (BtIntPtr)_bsstonehead_entrypoint_13, (BtIntPtr)_bsstonehead_entrypoint_14, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801670_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x40) = { (BtIntPtr)_bsstonehead_entrypoint_16, (BtIntPtr)_bsstonehead_entrypoint_17, (BtIntPtr)_bsstonehead_entrypoint_18, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801680_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x50) = { (BtIntPtr)_bsstonehead_entrypoint_22, (BtIntPtr)_bsstonehead_entrypoint_20, (BtIntPtr)_bsstonehead_entrypoint_21, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801690_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x60) = { (BtIntPtr)_bsstonehead_entrypoint_24, (BtIntPtr)_bsstonehead_entrypoint_25, (BtIntPtr)_bsstonehead_entrypoint_26, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_808016A0_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x70) = { (BtIntPtr)_bsstonehead_entrypoint_28, (BtIntPtr)_bsstonehead_entrypoint_29, (BtIntPtr)_bsstonehead_entrypoint_30, (BtIntPtr)func_80099B94 };
+BtIntPtr D_808016B0_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x80) = { (BtIntPtr)_bsstonehead_entrypoint_32, (BtIntPtr)_bsstonehead_entrypoint_33, (BtIntPtr)_bsstonehead_entrypoint_34, (BtIntPtr)func_80099B94 };
+BtIntPtr D_808016C0_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0x90) = { (BtIntPtr)_bsstonehead_entrypoint_36, (BtIntPtr)_bsstonehead_entrypoint_37, (BtIntPtr)_bsstonehead_entrypoint_38, (BtIntPtr)func_80099B94 };
+BtIntPtr D_808016D0_bsstonehead [4] BT_DATA(4, overlays_bs_stonehead, 0xA0) = { (BtIntPtr)_bsstonehead_entrypoint_40, (BtIntPtr)_bsstonehead_entrypoint_41, (BtIntPtr)_bsstonehead_entrypoint_42, (BtIntPtr)func_80099B94 };

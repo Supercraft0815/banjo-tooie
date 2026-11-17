@@ -51,9 +51,9 @@ void *func_800272B0(s32 arg0, void *arg1, s32 arg2) {
     extern u8 D_8007EA34;
 
     extern s32 *func_8002BD40(s32, s32 *, s32, s32 *);
-    extern Gfx *func_80028520(s32 *, s32, u32, s32, Gfx *);
-    extern void *func_80028328(void *, u32, s16 *, s16, s32, void *);
-    extern void *func_80028010(void *, void *, u32, s16, void *);
+    extern Gfx *func_80028520(s32 *, s32, BtUIntPtr, s32, Gfx *);
+    extern Gfx *func_80028328(s32 *arg0, s32 arg1, BtUIntPtr arg2, s32 arg3, s32 arg4, Gfx *arg5);
+    extern Gfx *func_80028010(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3, Gfx *arg4);
     extern Gfx *func_800286FC(AudioPoleFilter *, s32, s32, Gfx *);
     Command *sp7C;
     Effect *sp78;

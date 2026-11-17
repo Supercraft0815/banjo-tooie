@@ -69,7 +69,7 @@ void bsdie_entrypoint_1(struct player_state_s *arg0) {
     void func_8009E058(struct player_state_s *);
     void func_8009E084(struct player_state_s *);
     f32 func_800F0E00(f32, f32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     struct anctrl_s *sp24;
     s32 sp20;
 
@@ -122,10 +122,10 @@ void bsdie_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsdie_entrypoint_2(s32 arg0) {
-    s32 baroll_setIdeal(s32, f32);
+void bsdie_entrypoint_2(BtIntPtr arg0) {
+    void baroll_setIdeal(void *self, f32 arg1);
     s32 _basudie_entrypoint_6();
-    void func_8009BF5C(s32, f32);
+    void func_8009BF5C(BtIntPtr, f32);
     void func_800A0CF4(struct player_state_s *, s32);
     _basudie_entrypoint_6();
     func_800A0CF4(arg0, 0);
@@ -134,7 +134,7 @@ void bsdie_entrypoint_2(s32 arg0) {
 }
 
 s32 bsdie_entrypoint_3(s32 arg0) {
-    extern s32 D_80800960_bsdie[];
+    extern BtIntPtr D_80800960_bsdie[];
     return ((s32 *)&D_80800960_bsdie)[arg0];
 }
 
@@ -182,7 +182,7 @@ void bsdie_entrypoint_5(struct player_state_s *arg0) {
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
     void func_8009E058(struct player_state_s *);
     f32 func_800F0E00(f32, f32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     int func_8008DF8C(struct player_state_s *, s32);
     int player_isStable(struct player_state_s *);
     s32 anctrl_isStopped(struct anctrl_s *);
@@ -234,10 +234,10 @@ void bsdie_entrypoint_5(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsdie_entrypoint_6(s32 arg0) {
-    s32 baroll_setIdeal(s32, f32);
+void bsdie_entrypoint_6(BtIntPtr arg0) {
+    void baroll_setIdeal(void *self, f32 arg1);
     s32 _basudie_entrypoint_6();
-    void func_8009BF5C(s32, f32);
+    void func_8009BF5C(BtIntPtr, f32);
     void func_800A0CF4(struct player_state_s *, s32);
     _basudie_entrypoint_6();
     func_8009BF5C(arg0, 0.0f);
@@ -246,7 +246,7 @@ void bsdie_entrypoint_6(s32 arg0) {
 }
 
 s32 bsdie_entrypoint_7(s32 arg0) {
-    extern s32 D_80800970_bsdie[];
+    extern BtIntPtr D_80800970_bsdie[];
     return ((s32 *)&D_80800970_bsdie)[arg0];
 }
 
@@ -295,7 +295,7 @@ void bsdie_entrypoint_9(struct player_state_s *arg0) {
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
     void func_8009E058(struct player_state_s *);
     f32 func_800F0E00(f32, f32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     int func_8008DF8C(struct player_state_s *, s32);
     int player_isStable(struct player_state_s *);
     s32 anctrl_isStopped(struct anctrl_s *);
@@ -342,21 +342,35 @@ void bsdie_entrypoint_9(struct player_state_s *arg0) {
     if (_basudie_entrypoint_7(arg0)) {
         next_state = 0x54;
     }
-    bs_setState((s32)arg0, next_state);
+    bs_setState((BtIntPtr)arg0, next_state);
 }
 
 /* extern */
 
-void bsdie_entrypoint_10(s32 arg0) {
-    s32 baroll_setIdeal(s32, f32);
+void bsdie_entrypoint_10(BtIntPtr arg0) {
+    void baroll_setIdeal(void *self, f32 arg1);
     s32 _basudie_entrypoint_6();
-    void func_8009BF5C(s32, f32);
+    void func_8009BF5C(BtIntPtr, f32);
     _basudie_entrypoint_6();
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
 }
 
 s32 bsdie_entrypoint_11(s32 arg0) {
-    extern s32 D_80800980_bsdie[];
+    extern BtIntPtr D_80800980_bsdie[];
     return ((s32 *)&D_80800980_bsdie)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/die.data.s */
+void _bsdie_entrypoint_2();
+void _bsdie_entrypoint_0();
+void _bsdie_entrypoint_1();
+void _basudie_entrypoint_11();
+void _bsdie_entrypoint_6();
+void _bsdie_entrypoint_4();
+void _bsdie_entrypoint_5();
+void _bsdie_entrypoint_10();
+void _bsdie_entrypoint_8();
+void _bsdie_entrypoint_9();
+BtIntPtr D_80800960_bsdie [4] BT_DATA(4, overlays_bs_die, 0x0) = { (BtIntPtr)_bsdie_entrypoint_2, (BtIntPtr)_bsdie_entrypoint_0, (BtIntPtr)_bsdie_entrypoint_1, (BtIntPtr)_basudie_entrypoint_11 };
+BtIntPtr D_80800970_bsdie [4] BT_DATA(4, overlays_bs_die, 0x10) = { (BtIntPtr)_bsdie_entrypoint_6, (BtIntPtr)_bsdie_entrypoint_4, (BtIntPtr)_bsdie_entrypoint_5, (BtIntPtr)_basudie_entrypoint_11 };
+BtIntPtr D_80800980_bsdie [4] BT_DATA(4, overlays_bs_die, 0x20) = { (BtIntPtr)_bsdie_entrypoint_10, (BtIntPtr)_bsdie_entrypoint_8, (BtIntPtr)_bsdie_entrypoint_9, (BtIntPtr)_basudie_entrypoint_11 };

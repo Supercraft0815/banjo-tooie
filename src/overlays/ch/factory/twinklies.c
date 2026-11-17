@@ -2,42 +2,42 @@
 
 OSThread *chfactorytwinklies_entrypoint_0(void)
 {
-    extern u8 D_80802218_chfactorytwinklies[];
+    extern ActorData D_80802218_chfactorytwinklies[];
 
     return (OSThread *) D_80802218_chfactorytwinklies;
 }
 
 OSThread *chfactorytwinklies_entrypoint_1(void)
 {
-    extern u8 D_80802260_chfactorytwinklies[];
+    extern ActorData D_80802260_chfactorytwinklies[];
 
     return (OSThread *) D_80802260_chfactorytwinklies;
 }
 
 OSThread *chfactorytwinklies_entrypoint_2(void)
 {
-    extern u8 D_808022A8_chfactorytwinklies[];
+    extern ActorData D_808022A8_chfactorytwinklies[];
 
     return (OSThread *) D_808022A8_chfactorytwinklies;
 }
 
 OSThread *chfactorytwinklies_entrypoint_3(void)
 {
-    extern u8 D_808022F0_chfactorytwinklies[];
+    extern ActorData D_808022F0_chfactorytwinklies[];
 
     return (OSThread *) D_808022F0_chfactorytwinklies;
 }
 
 OSThread *chfactorytwinklies_entrypoint_4(void)
 {
-    extern u8 D_80802338_chfactorytwinklies[];
+    extern ActorData D_80802338_chfactorytwinklies[];
 
     return (OSThread *) D_80802338_chfactorytwinklies;
 }
 
 OSThread *chfactorytwinklies_entrypoint_5(void)
 {
-    extern u8 D_80802380_chfactorytwinklies[];
+    extern ActorData D_80802380_chfactorytwinklies[];
 
     return (OSThread *) D_80802380_chfactorytwinklies;
 }
@@ -47,14 +47,14 @@ struct player_state_s;
 void func_80800048_chfactorytwinklies(Actor *arg0) {
     typedef struct player_state_s PlayerState;
     s32 _gcstatusDll_entrypoint_11(void);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_11(s32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_11(s32 arg0);
     void func_800946C4(PlayerState *, s32);
     void func_800A16BC(s32);
     void func_800D2748(s32, s32);
-    PlayerState *func_800F53D0(s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
+    PlayerState *func_800F53D0(BtIntPtr);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     struct {
         s32 counts[16];
@@ -62,7 +62,7 @@ void func_80800048_chfactorytwinklies(Actor *arg0) {
         u32 game;
     } *data;
     s32 i;
-    s32 player;
+    BtIntPtr player;
 
     data = func_80100094(arg0, 0);
     player = func_800F54E4();
@@ -105,8 +105,8 @@ void func_808001A0_chfactorytwinklies(Actor *arg0) {
     int func_800D9154(f32 *, f32);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F7ECC(s32, s32, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7ECC(BtIntPtr, s32, f32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -122,7 +122,7 @@ void func_808001A0_chfactorytwinklies(Actor *arg0) {
         u32 game;
     } *data;
     s32 i;
-    s32 player;
+    BtIntPtr player;
     f32 random;
     s32 animation;
 
@@ -178,12 +178,12 @@ s32 func_8080040C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _susubgame_entrypoint_10(Actor *, s32, s32, s32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80800748_chfactorytwinklies(Actor *, s32, s32);
@@ -240,8 +240,8 @@ s32 func_8080040C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080064C_chfactorytwinklies(Actor *arg0) {
-    s32 _susubgame_entrypoint_2(void *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void func_800A16BC(s32);
     void func_800CE88C(s32, s32);
     s32 func_800CEAA8(s32);
@@ -287,18 +287,18 @@ void func_808006C0_chfactorytwinklies(Actor *arg0) {
 void func_80800748_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 _gcfrontend_entrypoint_9(s32);
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     void _subaddiefade_entrypoint_3(Actor *);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
@@ -341,11 +341,11 @@ void func_80800748_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
                 _subaddiefade_entrypoint_3(child);
                 func_8010A570(child);
             }
-            _susubgame_entrypoint_4(arg0, (s32)(data + 0xAC));
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0xAC));
         }
         break;
     case 0xCEC:
-        _susubgame_entrypoint_4(arg0, (s32)(data + 0xAC));
+        _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0xAC));
         func_808006C0_chfactorytwinklies(arg0);
         break;
     case 0x1346:
@@ -361,10 +361,10 @@ void func_80800748_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); u32 func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
+s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); BtUIntPtr func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
 
 void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) { 
-    s32 _susubgame_entrypoint_2(void *, s32);
+    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
     void func_800CD08C(s32, f32 *);
     s32 func_800DC128(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
@@ -387,7 +387,7 @@ void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) {
 
     if (arg1 == 0 || arg1 == 1 || arg1 == 2) {
         data = func_80100094(arg0, 0);
-        if (_susubgame_entrypoint_2(arg0, (s32)(data + 0xAC))) {
+        if (_susubgame_entrypoint_2(arg0, (BtIntPtr)(data + 0xAC))) {
             func_800EE7F8(position, arg0->position);
         } else {
             func_800CD08C((((ActorFlags *)arg0)->flags70 >> 25) - 1, position);
@@ -396,7 +396,7 @@ void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) {
         child = func_80108528(arg1 + 0x443, position, func_800DC128(0, 0x167), &arg0);
         child->unk3C = arg0->unk0;
         child->actorData[5] = arg1;
-        flag = _susubgame_entrypoint_2(arg0, (s32)(data + 0xAC));
+        flag = _susubgame_entrypoint_2(arg0, (BtIntPtr)(data + 0xAC));
         marker = (void *)child->unk0;
         marker->flag = flag;
     }
@@ -406,7 +406,7 @@ s32 func_80800B80_chfactorytwinklies(Actor *arg0, s32 *arg1) {
     s32 func_800D0A9C(u32, u32);
     s32 func_800D2054(s32, s32, s32);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -474,11 +474,11 @@ void func_80800D00_chfactorytwinklies(Actor *arg0) {
 void func_80800DE0_chfactorytwinklies(Actor *arg0) {
     typedef struct player_state_s PlayerState;
     s32 _gcstatusDll_entrypoint_11(void);
-    s32 _subaddiemulti_entrypoint_3(s32);
+    void _subaddiemulti_entrypoint_3(s32 arg0);
     void func_800946C4(PlayerState *, s32);
     void func_800A16BC(s32);
     void func_800D2748(s32, s32);
-    PlayerState *func_800F53D0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
     void *func_80100094(Actor *, u32);
     struct {
         s32 unk0[16];
@@ -694,13 +694,13 @@ void func_8080145C_chfactorytwinklies(Actor *arg0) {
 }
 
 void func_808014B0_chfactorytwinklies(Actor *arg0) {
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
     s32 _gcstatusDll_entrypoint_11(void);
     s32 func_800CEAA8(s32);
     s32 func_800CEAD0(s32);
-    s32 func_800F55FC(s32);
-    void func_800F5A2C(s32, s32, f32 *);
-    s32 func_800F6C5C(s32);
+    s32 func_800F55FC(BtIntPtr);
+    void func_800F5A2C(BtIntPtr, s32, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80108B04(Actor *, u32);
@@ -736,7 +736,7 @@ void func_808014B0_chfactorytwinklies(Actor *arg0) {
 }
 
 s32 func_80801608_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
-    void func_800F5A2C(s32, s32, f32 *);
+    void func_800F5A2C(BtIntPtr, s32, f32 *);
     s32 func_800DC128(s32, s32);
     s32 func_800EA05C();
     void func_800EE7F8(f32 *, f32 *);
@@ -744,7 +744,7 @@ s32 func_80801608_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80101FDC(Actor *, u32);
     void func_80102FDC(Actor *, f32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     f32 *sp34;
     Actor *sp30;
     f32 sp24[3];
@@ -981,15 +981,15 @@ void func_808018A0_chfactorytwinklies(Actor *arg0) {
         sp38[1] += 100.0f;
         func_800C8CB8(((Twinklie *)arg0)->light, sp38);
     }
-}
+}    typedef struct { u8 pad0[0x50]; s32 unk50; } Objtwinklies_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80801D58_chfactorytwinklies(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
     s32 temp_a3;
 
-    temp_a3 = (*(s32 *)((s8 *)(arg0) + (0x50)));
+    temp_a3 = (((Objtwinklies_arg0 *)arg0)->unk50);
     if (temp_a3 != 0) {
-        (*(s32 *)((s8 *)(arg0) + (0x50))) = _chlightfader_entrypoint_1(temp_a3, 1.0f, 2);
+        (((Objtwinklies_arg0 *)arg0)->unk50) = _chlightfader_entrypoint_1(temp_a3, 1.0f, 2);
     }
 }
 
@@ -1009,10 +1009,10 @@ s32 func_80801D94_chfactorytwinklies(Actor *arg0, s32 arg1, u8 *arg2) {
 }
 
 void func_80801DD8_chfactorytwinklies(Actor *arg0, s32 arg1) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80103DFC(Actor *, f32 *);
@@ -1032,7 +1032,7 @@ void func_80801DD8_chfactorytwinklies(Actor *arg0, s32 arg1) {
     };
     Actor *parent;
     struct CounterData *data;
-    s32 emitter;
+    BtIntPtr emitter;
     f32 position[3];
 
     parent = func_80106790(arg0->unk3C);
@@ -1082,7 +1082,7 @@ s32 func_80802020_chfactorytwinklies(u8 *arg0) {
 
     temp_v0 = func_800D9078((f32 *) (arg0 + 0x28));
     sp24 = temp_v0;
-    (*(f32 *)((s8 *)(arg0) + (8))) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, 0.0f, -250.0f);
+    (((Actor *)arg0)->position[1]) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, 0.0f, -250.0f);
     return sp24;
 }
 
@@ -1094,6 +1094,28 @@ s32 func_8080207C_chfactorytwinklies(u8 *arg0) {
     s32 sp28;
 
     sp28 = func_800D9078((f32 *) (arg0 + 0x28));
-    (*(f32 *)((s8 *)(arg0) + (8))) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, -250.0f, 0.0f);
+    (((Actor *)arg0)->position[1]) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, -250.0f, 0.0f);
     return sp28;
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/twinklies.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+extern u8 D_808021E8_chfactorytwinklies[];
+OSThread *func_80108ED0(void);
+u8 D_808021C0_chfactorytwinklies [40] BT_DATA(4, overlays_ch_factory_twinklies, 0x0) = { 0, 0, 0, 0, 0x3F, 0, 0, 0, 0x3E, 0x80, 0, 0, 0, 0, 0, 0, 0x3F, 0, 0, 0, 0x3F, 0, 0, 0, 0x3F, 0x40, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0, 0, 0 };
+u8 D_808021E8_chfactorytwinklies[48] BT_DATA(4, overlays_ch_factory_twinklies, 0x28) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x0A, 0x3D, 0x71, 0x03, 0x60, 0x00, 0x00, 0x3F, 0x0A, 0x3D, 0x71, 0x03, 0x60, 0x00, 0x00, 0x3F, 0x0A, 0x3D, 0x71, 0x03, 0x60, 0x00, 0x00, 0x3F, 0x0A, 0x3D, 0x71, 0x03, 0x60, 0x00, 0x00, 0x3F, 0x0A, 0x3D, 0x71, 0x03, 0x60, 0x00, 0x00 };
+ActorData D_80802218_chfactorytwinklies [1] BT_DATA(4, overlays_ch_factory_twinklies, 0x58) = { { 344, 1090, 0, 1, 0, (void (*)(struct Actor *))func_808001A0_chfactorytwinklies, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 1, (void (*)(struct Actor *))func_8080064C_chfactorytwinklies, 0, 196, 0, (void (*)(struct Actor *))func_80800048_chfactorytwinklies, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_8080040C_chfactorytwinklies, 0 } };
+ActorData D_80802260_chfactorytwinklies [1] BT_DATA(4, overlays_ch_factory_twinklies, 0xA0) = { { 344, 1101, 0, 1, 0, (void (*)(struct Actor *))func_80800E9C_chfactorytwinklies, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 1, (void (*)(struct Actor *))func_8080064C_chfactorytwinklies, 0, 196, 0, (void (*)(struct Actor *))func_80800DE0_chfactorytwinklies, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_8080105C_chfactorytwinklies, 0 } };
+ActorData D_808022A8_chfactorytwinklies [1] BT_DATA(4, overlays_ch_factory_twinklies, 0xE8) = { { 344, 1094, 0, 1, 0, (void (*)(struct Actor *))func_808014B0_chfactorytwinklies, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080145C_chfactorytwinklies, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80801608_chfactorytwinklies, 0 } };
+ActorData D_808022F0_chfactorytwinklies [1] BT_DATA(4, overlays_ch_factory_twinklies, 0x130) = { { 427, 1091, 1989, 1, (void *)D_808021E8_chfactorytwinklies, (void (*)(struct Actor *))func_808018A0_chfactorytwinklies, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 1065353216, 0, 0, 6, 300, (void (*)(struct Actor *))func_80801D58_chfactorytwinklies, (BtIntPtr)func_80108ED0, 40, 0, (void (*)(struct Actor *))func_8080171C_chfactorytwinklies, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 4097, (void (*)(struct Actor *, long, long))func_80801D94_chfactorytwinklies, 0 } };
+ActorData D_80802338_chfactorytwinklies [1] BT_DATA(4, overlays_ch_factory_twinklies, 0x178) = { { 427, 1092, 1990, 1, (void *)D_808021E8_chfactorytwinklies, (void (*)(struct Actor *))func_808018A0_chfactorytwinklies, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 1065353216, 0, 0, 6, 300, (void (*)(struct Actor *))func_80801D58_chfactorytwinklies, (BtIntPtr)func_80108ED0, 40, 0, (void (*)(struct Actor *))func_8080171C_chfactorytwinklies, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 4097, (void (*)(struct Actor *, long, long))func_80801D94_chfactorytwinklies, 0 } };
+ActorData D_80802380_chfactorytwinklies [1] BT_DATA(4, overlays_ch_factory_twinklies, 0x1C0) = { { 427, 1093, 1991, 1, (void *)D_808021E8_chfactorytwinklies, (void (*)(struct Actor *))func_808018A0_chfactorytwinklies, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 1065353216, 0, 0, 6, 300, (void (*)(struct Actor *))func_80801D58_chfactorytwinklies, (BtIntPtr)func_80108ED0, 40, 0, (void (*)(struct Actor *))func_8080171C_chfactorytwinklies, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 4097, (void (*)(struct Actor *, long, long))func_80801D94_chfactorytwinklies, 0 } };
+u32 D_808023C8_chfactorytwinklies [3] [ 3 ] BT_DATA(4, overlays_ch_factory_twinklies, 0x208) = { { 0, 0, 0xFF }, { 0, 0xFF, 0 }, { 0xFF, 0, 0 } };
+s32 D_808023EC_chfactorytwinklies [5] BT_DATA(4, overlays_ch_factory_twinklies, 0x22C) = { 1246749, 852326, 25165825, 32770000, 0 };
+s32 D_80802400_chfactorytwinklies [5] BT_DATA(4, overlays_ch_factory_twinklies, 0x240) = { 1246266, 852211, 17563649, 32770000, 0 };
+s32 D_80802414_chfactorytwinklies [5] BT_DATA(4, overlays_ch_factory_twinklies, 0x254) = { 1246192, 852275, 21757953, 32770000, 0 };
+s32 D_80802428_chfactorytwinklies [5] BT_DATA(4, overlays_ch_factory_twinklies, 0x268) = { 1246750, 852211, 17563649, 32770000, 0 };
+s32 D_8080243C_chfactorytwinklies [11] BT_DATA(4, overlays_ch_factory_twinklies, 0x27C) = { 1446400, 1376256, 13369387, 12583168, 2228300, 5832742, 3342381, 26215000, 851988, 1834208, -39321600 };
+s32 D_80802468_chfactorytwinklies [4] BT_DATA(4, overlays_ch_factory_twinklies, 0x2A8) = { 1246460, 131096, 852211, 17563648 };
+s16 D_80802478_chfactorytwinklies [4] BT_DATA(4, overlays_ch_factory_twinklies, 0x2B8) = { 2528, 2536, 2532, 0 };

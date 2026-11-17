@@ -32,7 +32,7 @@ void func_8008F990(f32* arg0,f32 arg1)
 
 void func_8008F9C4(f32 *arg0, f32 arg1)
 {
-    void func_800F4A8C(s32, f32 *, f32);
+    void func_800F4A8C(BtIntPtr, f32 *, f32);
     func_800F4A8C(func_800F54E4(),arg0,arg1);
 }
 
@@ -41,17 +41,17 @@ void func_8008F9F8(f32 *arg0, f32 arg1)
     func_800F4AC0(func_800F54E4(),arg0,arg1);
 }
 
-void func_8008FA2C(s32 arg0,s32 arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FA2C(s32 arg0,s32 arg1)
 {
-    func_800F4B8C(func_800F54E4(),arg0,arg1);
+    BT_NATIVE_ONLY(return) func_800F4B8C(func_800F54E4(),arg0,arg1);
 }
 
-void func_8008FA60(s32 arg0,s32 arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FA60(s32 arg0,s32 arg1)
 {
-    func_800F4BB8(func_800F54E4(),arg0,arg1);
+    BT_NATIVE_ONLY(return) func_800F4BB8(func_800F54E4(),arg0,arg1);
 }
 
-void func_8008FA94(s32 arg0,s32 arg1)
+void func_8008FA94(BtIntPtr arg0,BtIntPtr arg1)
 {
     func_800F4D18(func_800F54E4(),arg0,arg1);
 }
@@ -59,22 +59,22 @@ void func_8008FA94(s32 arg0,s32 arg1)
 /* extern */
 
 void func_8008FAC8(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    s32 func_800F4D74(u32, f32 *, f32, f32, f32);
+    void func_800F4D74(BtIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4);
     func_800F4D74(func_800F54E4(), arg0, arg1, arg2, arg3);
 }
 
 /* extern */
 
 s32 func_8008FB10(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    s32 func_800F4EC8(u32, f32 *, f32, f32, f32);
+    s32 func_800F4EC8(BtUIntPtr, f32 *, f32, f32, f32);
     return func_800F4EC8(func_800F54E4(), arg0, arg1, arg2, arg3);
 }
 
 /* extern */
 
-void func_8008FB58(f32 *arg0, f32 arg1, f32 arg2) {
-    s32 func_800F4F34(u32, f32 *, f32, f32);
-    func_800F4F34(func_800F54E4(), arg0, arg1, arg2);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FB58(f32 *arg0, f32 arg1, f32 arg2) {
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
+    BT_NATIVE_ONLY(return) func_800F4F34(func_800F54E4(), arg0, arg1, arg2);
 }
 
 void func_8008FB94(s32 arg0)
@@ -121,14 +121,14 @@ s32 func_8008FCC8(Unk80132ED0 *arg0)
     return func_800F52B8(func_800F54E4(), arg0);
 }
 
-void func_8008FCF4(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FCF4(s32 arg0)
 {
-    func_800F52E4(func_800F54E4(),arg0);
+    BT_NATIVE_ONLY(return) func_800F52E4(func_800F54E4(),arg0);
 }
 
-void func_8008FD20()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(AnimCtrl *) func_8008FD20()
 {
-    func_800F5378(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F5378(func_800F54E4());
 }
 
 TransformationId func_8008FD48()
@@ -136,9 +136,9 @@ TransformationId func_8008FD48()
     return func_800F5410(func_800F54E4());
 }
 
-void func_8008FD70()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FD70()
 {
-    func_800F543C(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F543C(func_800F54E4());
 }
 
 void func_8008FD98(s32 arg0)
@@ -146,9 +146,9 @@ void func_8008FD98(s32 arg0)
     func_800F549C(func_800F54E4(),arg0);
 }
 
-void func_8008FDC4()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FDC4()
 {
-    func_800F55FC(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F55FC(func_800F54E4());
 }
 
 Unk80132ED0* func_8008FDEC()
@@ -156,17 +156,17 @@ Unk80132ED0* func_8008FDEC()
     return func_800F56D8(func_800F54E4());
 }
 
-void func_8008FE14()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FE14()
 {
-    func_800F5704(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F5704(func_800F54E4());
 }
 
-void func_8008FE3C(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FE3C(s32 arg0)
 {
-    func_800F57F0(func_800F54E4(),arg0);
+    BT_NATIVE_ONLY(return) func_800F57F0(func_800F54E4(),arg0);
 }
 
-void func_8008FE68(s32 arg0)
+void func_8008FE68(BtIntPtr arg0)
 {
     func_800F5A00(func_800F54E4(),arg0);
 }
@@ -181,9 +181,9 @@ void func_8008FEC8()
     func_800F58A0(func_800F54E4());
 }
 
-void func_8008FEF0()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FEF0()
 {
-    func_800F5AE0(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F5AE0(func_800F54E4());
 }
 
 s32 func_8008FF18()
@@ -196,41 +196,41 @@ void func_8008FF40(f32 arg0[3])
     func_800F5B38(func_800F54E4(),arg0);
 }
 
-void func_8008FF6C()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FF6C()
 {
-    func_800F5C94(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F5C94(func_800F54E4());
 }
 
-void func_8008FF94()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FF94()
 {
-    func_800F5D18(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F5D18(func_800F54E4());
 }
 
-void func_8008FFBC(s32 arg0)
+void func_8008FFBC(BtIntPtr arg0)
 {
     func_800F5D70(func_800F54E4(),arg0);
 }
 
-void func_8008FFE8()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FFE8()
 {
-    func_800F5EF8(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F5EF8(func_800F54E4());
 }
 
 f32 func_80090010()
 {
     return func_800F5F24(func_800F54E4());
-}
+}    typedef struct { u8 pad0[0x1A]; u16 unk1A; } Obj1E691A0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
-void func_80090038(s32 arg0, void *arg1) {
+void func_80090038(BtIntPtr arg0, void *arg1) {
     f32 sp1C[3];
 
     func_800EE88C(sp1C, (s16 *) arg0);
-    func_800F7CF4((u32) ((u16 *) ((u8 *) arg1 + 0x1A))[0] >> 5, 0x58, sp1C);
+    func_800F7CF4((u32) (&((Obj1E691A0_arg1 *)arg1)->unk1A)[0] >> 5, 0x58, sp1C);
 }
 
-void func_80090080()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090080()
 {
-    func_800F5FA8(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F5FA8(func_800F54E4());
 }
 
 void func_800900A8()
@@ -248,14 +248,14 @@ void func_800900FC(s32 arg0)
     func_800F640C(func_800F54E4(),arg0);
 }
 
-s32 func_80090128()
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_80090128()
 {
-    func_800F6438(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F6438(func_800F54E4());
 }
 
-void func_80090150()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090150()
 {
-    func_800F6478(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F6478(func_800F54E4());
 }
 
 s32 func_80090178(AllowedTransformation arg0)
@@ -268,14 +268,14 @@ void func_800901A4()
     func_800F6634(func_800F54E4());
 }
 
-void func_800901CC(s32 arg0,s32 arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800901CC(s32 arg0,s32 arg1)
 {
-    func_800F66BC(func_800F54E4(),arg0,arg1);
+    BT_NATIVE_ONLY(return) func_800F66BC(func_800F54E4(),arg0,arg1);
 }
 
-void func_80090200()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090200()
 {
-    func_800F5310();
+    BT_NATIVE_ONLY(return) func_800F5310();
 }
 
 void func_80090220()
@@ -285,12 +285,12 @@ void func_80090220()
 
 s32 func_80090248()
 {
-    func_800F6C5C(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F6C5C(func_800F54E4());
 }
 
 s32 func_80090270()
 {
-    func_800F6CC8(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F6CC8(func_800F54E4());
 }
 
 s32 func_80090298(void) {
@@ -304,9 +304,9 @@ void func_800902BC()
 
 /* extern */
 
-void func_800902E4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800F7200(u32, s32, s32, s32, s32);
-    func_800F7200(func_800F54E4(), arg0, arg1, arg2, arg3);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800902E4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 func_800F7200(BtUIntPtr, s32, s32, s32, s32);
+    BT_NATIVE_ONLY(return) func_800F7200(func_800F54E4(), arg0, arg1, arg2, arg3);
 }
 
 void func_8009032C(s32 arg0)
@@ -314,13 +314,13 @@ void func_8009032C(s32 arg0)
     func_800F739C(func_800F54E4(),arg0);
 }
 
-void func_80090358(f32 *arg0, f32 arg1, void *arg2, s32 arg3) {
+void func_80090358(f32 *arg0, f32 arg1, void *arg2, BtIntPtr arg3) {
     func_8008F8B0();
     func_8008F904(arg2, arg3);
     func_8008F9C4(arg0, arg1);
 }
 
-void func_8009039C(s32 arg0,s32 arg1)
+void func_8009039C(s32 arg0,BtIntPtr arg1)
 {
     func_800F7700(func_800F54E4(),arg0,arg1);
 }
@@ -330,7 +330,7 @@ void func_800903D0(f32 *arg0) { void func_800903F8(f32 *, f32, f32); func_800903
 /* extern */
 
 void func_800903F8(f32 *arg0, f32 arg1, f32 arg2) {
-    s32 func_800F7844(u32, f32 *, f32, f32);
+    s32 func_800F7844(BtUIntPtr, f32 *, f32, f32);
     func_800F7844(func_800F54E4(), arg0, arg1, arg2);
 }
 
@@ -339,7 +339,7 @@ void func_80090434(s32 arg0)
     func_800F796C(func_800F54E4(),arg0);
 }
 
-void func_80090460(s32 arg0,s32 arg1)
+void func_80090460(s32 arg0,BtIntPtr arg1)
 {
     func_800F79DC(func_800F54E4(),arg0,arg1);
 }
@@ -369,14 +369,14 @@ void func_8009055C(s32 arg0,s32 arg1)
     func_800F7C58(func_800F54E4(),arg0,arg1);
 }
 
-void func_80090590(s32 arg0,s32 arg1)
+void func_80090590(s32 arg0,BtIntPtr arg1)
 {
     func_800F7CF4(func_800F54E4(),arg0,arg1);
 }
 
-void func_800905C4(s32 arg0,s32 arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800905C4(s32 arg0,s32 arg1)
 {
-    func_800F7DE8(func_800F54E4(),arg0,arg1);
+    BT_NATIVE_ONLY(return) func_800F7DE8(func_800F54E4(),arg0,arg1);
 }
 
 void func_800905F8(s32 arg0)
@@ -389,9 +389,9 @@ void func_80090624(s32 arg0,s32 arg1)
     func_800F7ECC(func_800F54E4(),arg0,arg1);
 }
 
-void func_80090658(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090658(s32 arg0)
 {
-    func_800F7F98(func_800F54E4(),arg0);
+    BT_NATIVE_ONLY(return) func_800F7F98(func_800F54E4(),arg0);
 }
 
 void func_80090684(s32 arg0)
@@ -414,17 +414,17 @@ void func_80090708(s32 arg0)
     func_800F82D4(func_800F54E4(),arg0);
 }
 
-void func_80090734(s32 arg0,f32* arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090734(s32 arg0,f32* arg1)
 {
-    func_800F8300(func_800F54E4(),arg0,arg1);
+    BT_NATIVE_ONLY(return) func_800F8300(func_800F54E4(),arg0,arg1);
 }
 
-void func_80090768(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090768(s32 arg0)
 {
-    func_800F83B8(func_800F54E4(),arg0);
+    BT_NATIVE_ONLY(return) func_800F83B8(func_800F54E4(),arg0);
 }
 
-void func_80090794(s32 arg0)
+void func_80090794(BtIntPtr arg0)
 {
     func_800F5D9C(func_800F54E4(),arg0);
 }
@@ -434,17 +434,17 @@ void func_800907C0(f32* arg0)
     func_800F8418(func_800F54E4(),arg0);
 }
 
-void func_800907EC(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800907EC(s32 arg0)
 {
-    func_800F8730(func_800F54E4(),arg0);
+    BT_NATIVE_ONLY(return) func_800F8730(func_800F54E4(),arg0);
 }
 
-void func_80090818()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090818()
 {
-    func_800F87A4(func_800F54E4());
+    BT_NATIVE_ONLY(return) func_800F87A4(func_800F54E4());
 }
 
-void func_80090840(s32 arg0)
+void func_80090840(BtIntPtr arg0)
 {
     func_800F8804(func_800F54E4(),arg0);
 }
@@ -452,6 +452,6 @@ void func_80090840(s32 arg0)
 /* extern */
 
 void func_8009086C(s32 arg0) {
-    s32 func_800F8150(u32, s32);
+    s32 func_800F8150(BtUIntPtr, s32);
     func_800F8150(func_800F54E4(), arg0);
 }

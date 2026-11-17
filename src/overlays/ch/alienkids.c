@@ -5,28 +5,28 @@ Actor *func_80106790(Unk80132ED0 *);
 
 OSThread *chalienkids_entrypoint_0(void)
 {
-    extern u8 D_808020DC_chalienkids[];
+    extern ActorData D_808020DC_chalienkids[];
 
     return (OSThread *) D_808020DC_chalienkids;
 }
 
 OSThread *chalienkids_entrypoint_1(void)
 {
-    extern u8 D_80802124_chalienkids[];
+    extern ActorData D_80802124_chalienkids[];
 
     return (OSThread *) D_80802124_chalienkids;
 }
 
 OSThread *chalienkids_entrypoint_2(void)
 {
-    extern u8 D_8080216C_chalienkids[];
+    extern ActorData D_8080216C_chalienkids[];
 
     return (OSThread *) D_8080216C_chalienkids;
 }
 
 OSThread *chalienkids_entrypoint_3(void)
 {
-    extern u8 D_808021B4_chalienkids[];
+    extern ActorData D_808021B4_chalienkids[];
 
     return (OSThread *) D_808021B4_chalienkids;
 }
@@ -34,13 +34,13 @@ OSThread *chalienkids_entrypoint_3(void)
 /* extern */
 
 void func_80800030_chalienkids(s32 arg0) {
-    void func_80800FA4_chalienkids(s32, s32, s32, s32);
+    void func_80800FA4_chalienkids(BtIntPtr, s32, s32, s32);
     func_80800FA4_chalienkids(arg0, 0x32, 0x372, 4);
 }
 
 void func_80800058_chalienkids(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
@@ -49,7 +49,7 @@ void func_80800058_chalienkids(Actor *arg0) {
     void func_8080158C_chalienkids(Actor *);
     void func_80801628_chalienkids(Actor *);
     void func_808016D4_chalienkids(Actor *);
-    void func_8080184C_chalienkids(s32, s32 *, s32);
+    void func_8080184C_chalienkids(BtIntPtr, s32 *, s32);
     void func_80801884_chalienkids(Actor *);
     void func_808019C8_chalienkids(Actor *);
     extern s32 D_80801E60_chalienkids[];
@@ -76,7 +76,7 @@ void func_80800058_chalienkids(Actor *arg0) {
         func_8010B990(arg0, 0x1005);
         break;
     case 16:
-        func_8080184C_chalienkids((s32) arg0, D_80801E60_chalienkids, 4);
+        func_8080184C_chalienkids((BtIntPtr) arg0, D_80801E60_chalienkids, 4);
         break;
     }
     func_808016D4_chalienkids(arg0);
@@ -86,19 +86,19 @@ void func_80800058_chalienkids(Actor *arg0) {
 
 /* extern */
 
-void func_8080017C_chalienkids(s32 arg0) {
+void func_8080017C_chalienkids(BtIntPtr arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
     void func_8010A85C(u8 *, s32);
-    void func_80800FA4_chalienkids(s32, s32, s32, s32);
+    void func_80800FA4_chalienkids(BtIntPtr, s32, s32, s32);
     func_80800FA4_chalienkids(arg0, 0x33, 0x373, 6);
     if ((func_800DA298(0x373) == 0) && (_glcutDll_entrypoint_20() == 0)) {
         func_8010A85C((u8 *) arg0, 2);
     }
 }
 void func_808001D0_chalienkids(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 func_800D9078(f32 *);
     s32 func_80101DDC(Actor *);
@@ -110,7 +110,7 @@ void func_808001D0_chalienkids(Actor *arg0) {
     void func_8080158C_chalienkids(Actor *);
     void func_80801628_chalienkids(Actor *);
     void func_808016D4_chalienkids(Actor *);
-    void func_8080184C_chalienkids(s32, s32 *, s32);
+    void func_8080184C_chalienkids(BtIntPtr, s32 *, s32);
     void func_80801884_chalienkids(Actor *);
     void func_808019C8_chalienkids(Actor *);
     extern s32 D_80801E80_chalienkids[];
@@ -159,7 +159,7 @@ void func_808001D0_chalienkids(Actor *arg0) {
         func_8010B990(arg0, flags);
         break;
     case 16:
-        func_8080184C_chalienkids((s32) arg0, D_80801E80_chalienkids, 3);
+        func_8080184C_chalienkids((BtIntPtr) arg0, D_80801E80_chalienkids, 3);
         break;
     }
     func_808016D4_chalienkids(arg0);
@@ -171,8 +171,8 @@ void func_80800370_chalienkids(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void _subaddiefade_entrypoint_9(Actor *, s32 *);
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
-    void _chlifeforcespell_entrypoint_2(Actor *, s32, s32 *);
-    void func_80800D58_chalienkids(Actor *, s32);
+    s32 _chlifeforcespell_entrypoint_2(Actor *arg0, Unk80132ED0 *arg1, s32 *arg2);
+    void func_80800D58_chalienkids(Actor *, BtIntPtr);
     s32 *sp3C;
     s32 sp30[3];
     s32 sp24[3];
@@ -193,7 +193,7 @@ void func_80800370_chalienkids(Actor *arg0, s32 arg1) {
 
 void func_80800408_chalienkids(u8 *arg0) {
     void func_8010A63C(void ***);
-    void func_80800FA4_chalienkids(s32, s32, s32, s32);
+    void func_80800FA4_chalienkids(BtIntPtr, s32, s32, s32);
     func_80800FA4_chalienkids(arg0, 0x34, 0x374, 9);
     if (((Actor *) arg0)->unk70_10 == 9) {
         func_8010A63C((void ***) arg0);
@@ -201,29 +201,29 @@ void func_80800408_chalienkids(u8 *arg0) {
 }
 
 void func_80800454_chalienkids(Actor *arg0) {
-    void _capod_entrypoint_14(void);
-    s32 _plsu_entrypoint_3(Unk80132ED0 *);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _capod_entrypoint_14(void);
+    s32 _plsu_entrypoint_3(BtIntPtr arg0);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
     s32 func_800D9078(f32 *);
     s32 func_800DA298(s32);
-    u32 func_800F54E4(void);
-    void func_800F7BC8(s32, s32, Unk80132ED0 *);
-    void func_800F82D4(s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7BC8(BtIntPtr, s32, Unk80132ED0 *);
+    void func_800F82D4(BtIntPtr, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_8010A624(Actor *);
     s32 func_80801158_chalienkids(Actor *, s32);
     void func_80801520_chalienkids(void *, s32);
     void func_8080158C_chalienkids(Actor *);
     void func_808016D4_chalienkids(Actor *);
-    void func_8080184C_chalienkids(s32, s32 *, s32);
+    void func_8080184C_chalienkids(BtIntPtr, s32 *, s32);
     void func_80801884_chalienkids(Actor *);
     void func_808019C8_chalienkids(Actor *);
     extern s32 D_80801E98_chalienkids[];
     extern s32 D_80801EA8_chalienkids[];
-    extern s32 D_808021FC_chalienkids;
+    extern s32 D_808021FC_chalienkids[4];
     s32 player;
 
     func_808019C8_chalienkids(arg0);
@@ -238,7 +238,7 @@ void func_80800454_chalienkids(Actor *arg0) {
             }
             break;
         case 9:
-            if (!_subaddiedialog_entrypoint_8((s32)arg0, arg0->position, &D_808021FC_chalienkids, D_80801E98_chalienkids, 2)) {
+            if (!_subaddiedialog_entrypoint_8((BtIntPtr)arg0, arg0->position, D_808021FC_chalienkids, D_80801E98_chalienkids, 2)) {
                 player = _plsu_entrypoint_3(arg0->unk0);
                 if (player != -1) {
                     if (func_800DA298(0x371)) {
@@ -269,7 +269,7 @@ void func_80800454_chalienkids(Actor *arg0) {
             }
             break;
         case 16:
-            func_8080184C_chalienkids((s32)arg0, D_80801EA8_chalienkids, 3);
+            func_8080184C_chalienkids((BtIntPtr)arg0, D_80801EA8_chalienkids, 3);
             break;
     }
     func_808016D4_chalienkids(arg0);
@@ -289,25 +289,25 @@ typedef union {
         s32 dialogFlag;
     } dialog;
 } AlienKidsActor;
-
+typedef struct { f32 v[3]; } KidPosition;
 s32 func_80800648_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
-    s32 _chlifeforcespell_entrypoint_1(Actor **, void *, s32, f32, s32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
+    Unk80132ED0 *_chlifeforcespell_entrypoint_1(Actor **arg0, f32 arg1[3], s32 arg2, f32 arg3, s32 arg4);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F77E8(s32, f32 *);
-    void func_800F8300(s32, s32, f32 *);
-    s32 func_80101180(s32, s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F77E8(BtIntPtr, f32 *);
+    void func_800F8300(BtIntPtr, s32, f32 *);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80103110(void *, s32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80108B04(Actor *, u32);
     void func_8010A570(Actor *);
@@ -315,9 +315,9 @@ s32 func_80800648_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800DB8_chalienkids(Actor *, s32, s32);
     void func_808014B0_chalienkids(AlienKidsActor *, s32);
     void func_8080193C_chalienkids(Actor *);
-    typedef struct {
-        f32 v[3];
-    } KidPosition;
+
+
+
     typedef struct {
         u8 pad0[0x2C];
         s32 spell;
@@ -489,9 +489,9 @@ s32 func_80800648_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 
-void func_80800D58_chalienkids(Actor *arg0, s32 arg1) {
-    s32 func_80101870(s32, s32);
-    void func_8010A764(s32, s32);
+void func_80800D58_chalienkids(Actor *arg0, BtIntPtr arg1) {
+    void func_80101870(Actor* arg0, void* arg1);
+    void func_8010A764(BtIntPtr, BtIntPtr);
     struct {
         u8 pad0[0x30];
         Unk80132ED0 *unk30;
@@ -507,12 +507,12 @@ void func_80800D58_chalienkids(Actor *arg0, s32 arg1) {
 }
 
 void func_80800DB8_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
-    s32 _subaddiefade_entrypoint_5();
+    u8 _subaddiedialog_entrypoint_9(void *arg0, s32 arg1, void *arg2, s32 arg3);
+    void _subaddiefade_entrypoint_5(void *arg0);
     void func_80102424(Actor *, s32);
     extern s32 D_80801E60_chalienkids[];
     extern s32 D_80801E80_chalienkids[];
@@ -548,24 +548,24 @@ void func_80800DB8_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
         _capod_entrypoint_14();
         return;
     default:
-        first = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801E60_chalienkids, 4) != 0;
-        second = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801E80_chalienkids, 3) != 0;
+        first = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801E60_chalienkids, 4) != 0;
+        second = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801E80_chalienkids, 3) != 0;
         if (first || second) {
             func_80102424(arg0, 0x10);
             return;
         }
-        if (_subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801EA8_chalienkids, 3)) {
+        if (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801EA8_chalienkids, 3)) {
             func_80102424(arg0, 0x10);
             return;
         }
-        if (_subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80801E98_chalienkids, 2)) {
+        if (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801E98_chalienkids, 2)) {
             func_80102424(arg0, 9);
         }
         return;
     }
 }
 
-void func_80800FA4_chalienkids(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_80800FA4_chalienkids(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _glcutDll_entrypoint_20();
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     s32 func_800DA298(s32);
@@ -635,9 +635,9 @@ s32 func_80801158_chalienkids(Actor *arg0, s32 arg1) {
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
     f32 func_800136E4(f32);
     f32 func_80013970(f32);
-    s32 func_800B53A4(s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     void func_800EE780(f32 *, f32 *, f32 *);
@@ -658,7 +658,7 @@ s32 func_80801158_chalienkids(Actor *arg0, s32 arg1) {
     f32 spA0;
     f32 sp9C;
     f32 sp90[3];
-    s32 emitter;
+    BtIntPtr emitter;
     s32 i;
     f32 *data;
 
@@ -721,12 +721,12 @@ void func_808014B0_chalienkids(AlienKidsActor *arg0, s32 arg1) {
 /* extern */
 
 void func_80801520_chalienkids(void *arg0, s32 arg1) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 _subaddiefade_entrypoint_2();
     void func_80102424(Actor *, s32);
     s32 func_8010A3E8(void *, s32);
     void func_808014B0_chalienkids(AlienKidsActor *, s32);
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = 2.0f;
+    (((Actor *)arg0)->unk58) = 2.0f;
     _subaddiefade_entrypoint_2();
     _subaddieDll_entrypoint_4(arg0, 1);
     func_8010A3E8(arg0, 0x3F19999A);
@@ -760,7 +760,7 @@ void func_8080158C_chalienkids(Actor *arg0) {
 /* extern */
 
 void func_80801628_chalienkids(Actor *arg0) {
-    s32 _chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+    s32 _chbadshad_entrypoint_2(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3);
     Actor *func_80106790(Unk80132ED0 *);
     u32 func_8010A654(void ***, s32);
     Unk80132ED0 **temp_v0;
@@ -785,11 +785,11 @@ void func_808016D4_chalienkids(Actor *arg0) {
     s32 func_800FFAB0();
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern s32 D_80802260_chalienkids;
+    extern s32 D_80802260_chalienkids[3];
     f32 delta;
     s32 sp20;
 
@@ -819,20 +819,20 @@ void func_808016D4_chalienkids(Actor *arg0) {
             delta = ((f32 *)arg0->actorData)[7] * func_800D8FF8();
             arg0->position[1] += delta;
             if (func_800D9078(&((f32 *)arg0->actorData)[4])) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802260_chalienkids);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802260_chalienkids);
             }
             if (sp20) {
-                func_8010114C((s32)arg0->unk3C, 0x4F, 0);
+                func_8010114C((BtIntPtr)arg0->unk3C, 0x4F, 0);
                 func_800FFAB0(arg0);
             }
             break;
     }
 }
 
-void func_8080184C_chalienkids(s32 arg0, s32 *arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
-    extern s32 D_8080226C_chalienkids;
-    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_8080226C_chalienkids, arg1, arg2);
+void func_8080184C_chalienkids(BtIntPtr arg0, s32 *arg1, s32 arg2) {
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    extern s32 D_8080226C_chalienkids[4];
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, D_8080226C_chalienkids, arg1, arg2);
 }
 void func_80801884_chalienkids(Actor *arg0) {
     s32 func_800D9078(f32 *);
@@ -842,7 +842,7 @@ void func_80801884_chalienkids(Actor *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     void func_8010A590(Actor *);
     void func_8010A800(Actor *, s32);
-    extern s32 D_8080227C_chalienkids;
+    extern s32 D_8080227C_chalienkids[2];
     Unk80132ED0 **sp24;
     Unk80132ED0 *temp_a0;
     Actor *temp_v0;
@@ -850,7 +850,7 @@ void func_80801884_chalienkids(Actor *arg0) {
     if (func_800D9078(&arg0->unk58) != 0) {
         sp24 = func_80100094(arg0, 0U);
         func_80102424(arg0, 3);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080227C_chalienkids);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080227C_chalienkids);
         arg0->unk64_16 = 1;
         arg0->unk58 = 2.0f;
         _subaddiefade_entrypoint_2(arg0);
@@ -869,8 +869,8 @@ void func_80801884_chalienkids(Actor *arg0) {
 void func_8080193C_chalienkids(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
-    s32 temp_v0;
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr temp_v0;
 
     if (func_80100094(arg0, 1U) == NULL) {
         temp_v0 = _suexpression_entrypoint_7(arg0, 1, 0xB7);
@@ -889,7 +889,7 @@ void func_80801994_chalienkids(Actor* arg0)
 /* extern */
 
 void func_808019C8_chalienkids(Actor *arg0) {
-    s32 _suexpression_entrypoint_10(void *, Unk80132ED0 *, s32);
+    s32 _suexpression_entrypoint_10(void *, Unk80132ED0 *, BtIntPtr);
     s32 _suexpression_entrypoint_18(void *, s32);
     s32 func_801022E4(Actor *);
     void *sp1C;
@@ -920,12 +920,12 @@ void func_808019C8_chalienkids(Actor *arg0) {
             _suexpression_entrypoint_10(sp1C, arg0->unk0, 0);
         }
     }
-}
+}    typedef struct { u8 pad0[0x7A]; u8 unk7A; } Objalienkids_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80801A50_chalienkids(u8 *arg0) {
     void func_80109F08(void *arg0, s32 arg1);
     func_80109F08(arg0, 0x44);
-    (*(u8 *)((s8 *)(arg0) + (0x7A))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x7A))) & 0xFF3F) | 0x80);
+    (((Objalienkids_arg0 *)arg0)->unk7A) = (u8) (((((Objalienkids_arg0 *)arg0)->unk7A) & 0xFF3F) | 0x80);
 }
 
 /* extern */
@@ -947,9 +947,9 @@ void func_80801A88_chalienkids(Actor *arg0) {
 
 /* extern */
 
-void func_80801B08_chalienkids(s32 arg0, s32 arg1) {
-    s32 func_800DF744(s32, s32);
-    s32 func_80101870(s32, s32);
+void func_80801B08_chalienkids(BtIntPtr arg0, BtIntPtr arg1) {
+    void func_800DF744(s32 index,s32 value);
+    void func_80101870(Actor* arg0, void* arg1);
     func_800DF744(3, 1);
     func_80101870(arg0, arg1);
 }
@@ -978,22 +978,50 @@ s32 func_80801B40_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80801BC4_chalienkids(u8 *arg0) {
-    s32 _chexploder_entrypoint_9(s32, s32, s32);
+    s32 _chexploder_entrypoint_9(BtIntPtr, s32, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800DA544(s32);
     s32 func_800FFAB0(u8 *);
-    s32 func_80101080();
-    s32 func_8010114C(s32, s32, s32);
+    BtIntPtr func_80101080();
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_80802284_chalienkids;
+    extern s32 D_80802284_chalienkids[7];
     s32 temp_a0;
 
     _chexploder_entrypoint_9(func_80106790(func_80101080()), 3, 2);
     func_8010114C((*(s32 *)((s8 *)(arg0) + (0x3C))), 0xA, 0);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80802284_chalienkids);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80802284_chalienkids);
     temp_a0 = (*(s32 *)((s8 *)(arg0) + (0x50)));
     if (temp_a0 != 0) {
         func_800DA544(temp_a0);
     }
     func_800FFAB0(arg0);
 }
+/* data_to_c.py: from asm/data/overlays/ch/alienkids.data.s */
+extern u8 D_80801ECC_chalienkids[];
+void func_80105834(Actor*);
+void func_80107C2C();
+extern u8 D_80801F7C_chalienkids[];
+extern u8 D_8080202C_chalienkids[];
+void func_80108ED0();
+s32 D_80801E60_chalienkids [8] BT_DATA(4, overlays_ch_alienkids, 0x0) = { 513, 313197056, 1024, 316015104, 4096, 316080640, -73729, 302973696 };
+s32 D_80801E80_chalienkids [6] BT_DATA(4, overlays_ch_alienkids, 0x20) = { 1537, 316015104, 4096, 313262592, -73729, 302973696 };
+s32 D_80801E98_chalienkids [4] BT_DATA(4, overlays_ch_alienkids, 0x38) = { 1024, 310509824, 1024, 310575616 };
+s32 D_80801EA8_chalienkids [9] BT_DATA(4, overlays_ch_alienkids, 0x48) = { 1537, 313328128, 4096, 316080640, -73729, 302973696, 1065353216, 1061997773, 1067030938 };
+u8 D_80801ECC_chalienkids[176] BT_DATA(4, overlays_ch_alienkids, 0x6C) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xE9, 0x47, 0xAE, 0x03, 0x2A, 0x00, 0x01, 0x40, 0xE9, 0x47, 0xAE, 0x03, 0x2A, 0x00, 0x01, 0x3F, 0xE0, 0x00, 0x00, 0x03, 0x2B, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x2C, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x2C, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x2C, 0x02, 0x01, 0x3F, 0x00, 0x00, 0x00, 0x03, 0x29, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x2C, 0x04, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x2C, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x2C, 0x00, 0x01, 0x40, 0x56, 0x66, 0x66, 0x03, 0x28, 0x00, 0x42, 0x40, 0x56, 0x66, 0x66, 0x03, 0x28, 0x00, 0x84, 0x40, 0x56, 0x66, 0x66, 0x03, 0x28, 0x00, 0x84 };
+u8 D_80801F7C_chalienkids[176] BT_DATA(4, overlays_ch_alienkids, 0x11C) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x03, 0x23, 0x00, 0x44, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x03, 0x23, 0x00, 0x44, 0x41, 0x20, 0x00, 0x00, 0x03, 0x23, 0x00, 0x44, 0x41, 0x20, 0x00, 0x00, 0x03, 0x24, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x25, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x25, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x25, 0x02, 0x01, 0x3F, 0x00, 0x00, 0x00, 0x03, 0x26, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x25, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x25, 0x00, 0x01, 0x40, 0xD8, 0xA3, 0xD7, 0x03, 0x25, 0x00, 0x01, 0x40, 0x56, 0x66, 0x66, 0x03, 0x27, 0x00, 0x42, 0x40, 0x56, 0x66, 0x66, 0x03, 0x27, 0x00, 0x84, 0x40, 0x56, 0x66, 0x66, 0x03, 0x27, 0x00, 0x84 };
+u8 D_8080202C_chalienkids[176] BT_DATA(4, overlays_ch_alienkids, 0x1CC) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00, 0x03, 0x2E, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00, 0x03, 0x2E, 0x00, 0x01, 0x40, 0xC0, 0x00, 0x00, 0x03, 0x2E, 0x00, 0x01, 0x40, 0x18, 0xF5, 0xC3, 0x03, 0x2F, 0x00, 0x01, 0x40, 0x18, 0xF5, 0xC3, 0x03, 0x2F, 0x00, 0x01, 0x40, 0xAA, 0x8F, 0x5C, 0x03, 0x2C, 0x00, 0x01, 0x40, 0x18, 0xF5, 0xC3, 0x03, 0x2F, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xAA, 0x8F, 0x5C, 0x03, 0x2C, 0x04, 0x01, 0x40, 0xAA, 0x8F, 0x5C, 0x03, 0x2C, 0x00, 0x01, 0x40, 0xAA, 0x8F, 0x5C, 0x03, 0x2C, 0x00, 0x01, 0x40, 0x56, 0x66, 0x66, 0x03, 0x27, 0x00, 0x42, 0x40, 0x56, 0x66, 0x66, 0x03, 0x27, 0x00, 0x84, 0x40, 0x56, 0x66, 0x66, 0x03, 0x27, 0x00, 0x84 };
+ActorData D_808020DC_chalienkids [1] BT_DATA(4, overlays_ch_alienkids, 0x27C) = { { 344, 1110, 2038, 1, (void *)D_80801ECC_chalienkids, (void (*)(struct Actor *))func_80800058_chalienkids, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800D58_chalienkids, 131072000, 0, 0, 0, 16388, 352, (void (*)(struct Actor *))func_80801138_chalienkids, 0, 52, 0, (void (*)(struct Actor *))func_80800030_chalienkids, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 29714, (void (*)(struct Actor *, long, long))func_80800648_chalienkids, 0 } };
+ActorData D_80802124_chalienkids [1] BT_DATA(4, overlays_ch_alienkids, 0x2C4) = { { 344, 1111, 2037, 1, (void *)D_80801F7C_chalienkids, (void (*)(struct Actor *))func_808001D0_chalienkids, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800370_chalienkids, 131072000, 0, 0, 0, 16388, 352, (void (*)(struct Actor *))func_80801138_chalienkids, 0, 52, 0, (void (*)(struct Actor *))func_8080017C_chalienkids, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 29714, (void (*)(struct Actor *, long, long))func_80800648_chalienkids, 0 } };
+ActorData D_8080216C_chalienkids [1] BT_DATA(4, overlays_ch_alienkids, 0x30C) = { { 344, 1112, 2039, 1, (void *)D_8080202C_chalienkids, (void (*)(struct Actor *))func_80800454_chalienkids, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800D58_chalienkids, 131072000, 1068708659, 0, 0, 16388, 288, (void (*)(struct Actor *))func_80801138_chalienkids, 0, 52, 0, (void (*)(struct Actor *))func_80800408_chalienkids, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 29714, (void (*)(struct Actor *, long, long))func_80800648_chalienkids, 0 } };
+ActorData D_808021B4_chalienkids [1] BT_DATA(4, overlays_ch_alienkids, 0x354) = { { 168, 1113, 2040, 1, 0, (void (*)(struct Actor *))func_80801A88_chalienkids, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80801B08_chalienkids, 0, 0, 0, 0, 0, 2052, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80801A50_chalienkids, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 10240, (void (*)(struct Actor *, long, long))func_80801B40_chalienkids, 0 } };
+s32 D_808021FC_chalienkids[4] BT_DATA(4, overlays_ch_alienkids, 0x39C) = { 57737216, 16384183, 12, 104598016 };
+KidPosition D_8080220C_chalienkids BT_DATA(4, overlays_ch_alienkids, 0x3AC) = { { -6300.0f, -180.0f, -4800.0f } };
+KidPosition D_80802218_chalienkids BT_DATA(4, overlays_ch_alienkids, 0x3B8) = { { -3350.0f, -340.0f, -150.0f } };
+s32 D_80802224_chalienkids [4] BT_DATA(4, overlays_ch_alienkids, 0x3C4) = { 1122369536, 1122369536, 1122369536, 1113980928 };
+u8 D_80802234_chalienkids [8] BT_DATA(4, overlays_ch_alienkids, 0x3D4) = { 0, 0x13, 4, 0xEE, 0, 2, 0, 0 };
+s32 D_8080223C_chalienkids [9] BT_DATA(4, overlays_ch_alienkids, 0x3DC) = { 1446148, 2228288, 5832714, 983061, 153, 2818086, 3342381, 3276900, 18481152 };
+s32 D_80802260_chalienkids[3] BT_DATA(4, overlays_ch_alienkids, 0x400) = { 1246705, 852211, 17563648 };
+s32 D_8080226C_chalienkids[4] BT_DATA(4, overlays_ch_alienkids, 0x40C) = { 0, 22937783, 12, 104599808 };
+s32 D_8080227C_chalienkids[2] BT_DATA(4, overlays_ch_alienkids, 0x41C) = { 1246445, 131072 };
+s32 D_80802284_chalienkids[7] BT_DATA(4, overlays_ch_alienkids, 0x424) = { 1246349, 1572877, 20119884, 0, 0, 0, 0 };

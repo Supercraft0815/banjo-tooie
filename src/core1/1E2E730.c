@@ -33,14 +33,14 @@ void func_80016C00(void) {
     void func_80017244(void);
     void func_80022084(void *, s32);
     void func_800221B0(void *, ALSeqpConfig *);
-    s32 func_800D738C(s32);
+    s32 func_800D738C(BtIntPtr);
     void func_800E9574(void);
     extern s32 D_8007A180;
     extern ALSeqpConfig D_8007AE58;
     extern u16 D_8007AE78;
     extern s32 D_8007B038;
     u8 *slot;
-    s32 i;
+    BtIntPtr i;
 
     func_800E9574();
     for (i = 0x1ED7; i >= 0x1DDE && func_800D738C(i) == 4; i--) {
@@ -55,7 +55,7 @@ void func_80016C00(void) {
     D_8007AE58.updateOsc = NULL;
     D_8007AE58.stopOsc = NULL;
     func_80022084(&D_8007AE58, 0x30);
-    slot = (u8 *)&D_8007A180; i = (s32)&D_8007B038;
+    slot = (u8 *)&D_8007A180; i = (BtIntPtr)&D_8007B038;
     do {
         func_800221B0(slot, &D_8007AE58);
         slot += 0x274;
@@ -73,10 +73,10 @@ void func_80016C00(void) {
 /* extern */
 
 void func_80016DA0(s32 arg0, s32 arg1) {
-    s32 func_800D5B24();
-    s32 func_800D674C(s32);
-    s32 func_800D70D0(s32);
-    s32 func_800D71F4(s32);
+    void func_800D5B24(void);
+    BtIntPtr func_800D674C(s32);
+    void func_800D70D0(s32 arg0);
+    void func_800D71F4(s32 arg0);
     s32 func_800D73CC(s32);
     s32 sp1C;
     s32 temp_a0;
@@ -149,20 +149,20 @@ void func_80016ED0(u8 arg0, s32 arg1) {
         u32 evtDeltaTicks[32];
     } AudioSeq;
     void func_80017850(s32);
-    s32 func_800178C4(s32, s32, f32);
-    s32 func_80017D74(s32, s32, f32);
-    void func_80024E90(s32);
+    s32 func_800178C4(BtIntPtr, s32, f32);
+    s32 func_80017D74(BtIntPtr, s32, f32);
+    void func_80024E90(BtIntPtr);
     void func_80024EE0(AudioSeq *, AudioSeqHeader *);
     void func_80025E80(u8 *, void *);
     void func_80025ED0(u8 *, s16);
     void func_80025F20(u8 *);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     s32 func_800FCDB4();
     volatile u64 start;
 
     if (arg1 == -1) {
         if (arg1 != ((MusicSlotView *)&D_80079FA0)[arg0].track_id) {
-            func_80024E90((s32)((MusicSlotView *)&D_80079FA0)[arg0].cseqp);
+            func_80024E90((BtIntPtr)((MusicSlotView *)&D_80079FA0)[arg0].cseqp);
         }
         ((MusicSlotView *)&D_80079FA0)[arg0].track_id = arg1;
         return;
@@ -328,7 +328,7 @@ void func_80017404(u8 arg0, s16 arg1) {
 
 void func_800174C0(volatile u8 arg0, s32 arg1) {
     int func_80017778(s32);
-    s32 func_80017D74(s32, s32, f32);
+    s32 func_80017D74(BtIntPtr, s32, f32);
     extern s32 D_80079FA2;
     s32 index = arg0;
     if (!func_80017778(index)) {
@@ -354,7 +354,7 @@ s32 func_800175A0(u8 index) {
 }
 
 void func_800175F0(void) {
-    void func_80024E90(s32);
+    void func_80024E90(BtIntPtr);
     void func_80025F20(u8 *);
     void func_800E96B0(s32);
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
@@ -365,7 +365,7 @@ void func_800175F0(void) {
         switch (slots[i].state) {
             case 1:
                 if (slots[i].unk2 && !slots[i].pending && !slots[i].pad4) {
-                    func_80024E90((s32)slots[i].cseqp);
+                    func_80024E90((BtIntPtr)slots[i].cseqp);
                     if (slots[i].unk3) {
                         slots[i].unk2 = 0;
                     }
@@ -410,13 +410,13 @@ int func_80017778(s32 index) {
     return *(s32 *)(slot + 0x20C) == 0 && !slot[3];
 }
 
-int func_800177C4(s32 arg0) {
+int func_800177C4(BtIntPtr arg0) {
     u8 *slot = (u8 *)&D_80079FA0 + arg0 * 0x274;
     return *(s32 *)(slot + 0x20C) == 0 && slot[3] != 0;
 }
 
-u8 *func_80017810(s32 arg0) {
-    return (u8 *)((arg0 * 0x274) + 0x1E0 + (s32)&D_80079FA0);
+u8 *func_80017810(BtIntPtr arg0) {
+    return (u8 *)((arg0 * 0x274) + 0x1E0 + (BtIntPtr)&D_80079FA0);
 }
 
 void func_80017840(void) {

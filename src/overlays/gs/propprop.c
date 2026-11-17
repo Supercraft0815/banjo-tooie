@@ -1,26 +1,26 @@
 #include "common.h"
 
-void gspropprop_entrypoint_0(void *arg0, void *arg1) {
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) (*(s16 *)((s8 *)(arg0) + (4)));
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) (*(s16 *)((s8 *)(arg0) + (6)));
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) (*(s16 *)((s8 *)(arg0) + (8)));
+typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objpropprop_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */ typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; s16 unk8; } Objpropprop_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void gspropprop_entrypoint_0(void *arg0, void *arg1) {
+    (((Objpropprop_arg1 *)arg1)->unk0) = (s32) (((Objpropprop_arg0 *)arg0)->unk4);
+    (((Objpropprop_arg1 *)arg1)->unk4) = (s32) (((Objpropprop_arg0 *)arg0)->unk6);
+    (((Objpropprop_arg1 *)arg1)->unk8) = (s32) (((Objpropprop_arg0 *)arg0)->unk8);
 }
 
 /* extern */
 
-f32 func_8080001C_gspropprop(void) {
+f32 func_8080001C_gspropprop(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 _gsproplookup_entrypoint_1();
-    s32 func_800B0CFC(s32);
-    s32 func_800BFC94(s32);
+    s32 func_800B0CFC(BtIntPtr);
+    BtIntPtr func_800BFC94(s32);
     return (f32) func_800B0CFC(func_800BFC94(_gsproplookup_entrypoint_1()));
 }
 
 /* extern */
 
-f32 func_80800050_gspropprop(void) {
+f32 func_80800050_gspropprop(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 _gsproplookup_entrypoint_0();
-    f32 func_800B2354(s32);
-    s32 func_800B2840(s32);
+    f32 func_800B2354(BtIntPtr);
+    BtIntPtr func_800B2840(BtIntPtr);
     s32 func_800BFC34(s32);
     return func_800B2354(func_800B2840(func_800BFC34(_gsproplookup_entrypoint_0())));
 }
@@ -40,9 +40,9 @@ f32 gspropprop_entrypoint_1(void *arg0) {
     Prop *prop = arg0;
 
     if (prop->flag) {
-        return func_80800050_gspropprop() * 0.5f * prop->scale2 * 0.01f;
+        return func_80800050_gspropprop(BT_NATIVE_ONLY(arg0)) * 0.5f * prop->scale2 * 0.01f;
     } else {
-        return func_8080001C_gspropprop() * 0.5f * prop->scale * 0.01f;
+        return func_8080001C_gspropprop(BT_NATIVE_ONLY(arg0)) * 0.5f * prop->scale * 0.01f;
     }
 }
 
@@ -72,8 +72,8 @@ void gspropprop_entrypoint_2(void *prop) {
     } SpriteProp;
     s32 _gsproplookup_entrypoint_1();
     s32 func_8001211C();
-    s32 func_800BFC94(s32);
-    s32 func_800EC3E8(s32);
+    BtIntPtr func_800BFC94(s32);
+    void *func_800EC3E8(void *data);
     Sprite *var_v0;
     s32 sp48;
     s32 sp44;
@@ -156,7 +156,7 @@ void gspropprop_entrypoint_2(void *prop) {
 
 /* extern */
 
-void gspropprop_entrypoint_3(void *arg0, s32 arg1) {
+void gspropprop_entrypoint_3(void *arg0, BtIntPtr arg1) {
     typedef struct {
         u32 pad0[2];
         u32 pad8 : 30;
@@ -165,8 +165,8 @@ void gspropprop_entrypoint_3(void *arg0, s32 arg1) {
     } Prop;
     s32 _gsproplookup_entrypoint_0();
     s32 _gsproplookup_entrypoint_1();
-    void func_800BFAD0(s32, f32 *, f32 *, f32, s32);
-    void func_800BFB58(s32, void *, f32, s32, s32, s32, s32, s32, s32);
+    void func_800BFAD0(BtIntPtr, f32 *, f32 *, f32, s32);
+    void func_800BFB58(BtIntPtr, void *, f32, s32, s32, s32, s32, s32, s32);
     void func_800EE88C(f32 *, s16 *);
     f32 sp54[3];
     f32 sp48[3];

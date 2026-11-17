@@ -225,26 +225,26 @@ void func_800E8870(u8 arg0, f32 arg1) {
 
 /* extern */
 
-void func_800E88AC(u8 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800E88AC(u8 arg0, s32 arg1) {
     s32 func_800A89F8();
-    s32 func_800E8918(u8, s32, s32, s32);
-    func_800E8918(arg0, func_800A89F8(), 0, arg1);
+    s32 func_800E8918(u8, s32, BtIntPtr, BtIntPtr);
+    BT_NATIVE_ONLY(return) func_800E8918(arg0, func_800A89F8(), 0, arg1);
 }
 
 /* extern */
 
-void func_800E88E4(u8 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800E88E4(u8 arg0) {
     s32 func_800A89F8();
-    s32 func_800E8918(u8, s32, s32, s32);
-    func_800E8918(arg0, func_800A89F8(), 0, 0);
+    s32 func_800E8918(u8, s32, BtIntPtr, BtIntPtr);
+    BT_NATIVE_ONLY(return) func_800E8918(arg0, func_800A89F8(), 0, 0);
 }
 
-s32 func_800E8918(u8 arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 func_800E8918(u8 arg0, s32 arg1, BtIntPtr arg2, BtIntPtr arg3) {
     extern FreeList *D_8012D600;
     void *freelist_at(FreeList *, s32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800C4C34(s32, s32, s32, s32 *);
-    f32 func_800E3928(s32, s32);
+    s32 func_800C4C34(s32, BtIntPtr, BtIntPtr, s32 *);
+    f32 func_800E3928(BtIntPtr, BtIntPtr);
     void func_800E3980(f32 *);
     extern s32 D_8012D67C;
     f32 sp34[3];
@@ -254,14 +254,14 @@ s32 func_800E8918(u8 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 sp24;
 
     base = freelist_at(D_8012D600, arg0);
-    entry = (u8 *)((s32)base + D_8012D67C * 0x118) + arg1 * 0x38;
+    entry = (u8 *)((BtIntPtr)base + D_8012D67C * 0x118) + arg1 * 0x38;
     entry += 0x10;
     if (*(s16 *)(entry + 0x36) != 0) {
         *(s16 *)(entry + 0x36) = 0;
     }
-    result = func_800C4C34(arg1, (s32)base, (s32)entry, &sp24);
+    result = func_800C4C34(arg1, (BtIntPtr)base, (BtIntPtr)entry, &sp24);
     if (sp24 != 0 && result != 0) {
-        *(f32 *)(entry + 8) = func_800E3928((s32)base, (s32)sp34);
+        *(f32 *)(entry + 8) = func_800E3928((BtIntPtr)base, (BtIntPtr)sp34);
         func_800E3980((f32 *)(entry + 0x10));
         func_800EE7F8((f32 *)(entry + 0x1C), (f32 *)base);
         *(s16 *)(entry + 0x36) = 1;
@@ -283,3 +283,11 @@ void func_800E8A20(void) {
         D_8012D600 = freelist_defrag(D_8012D600);
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+FreeList * D_8012D600 BT_DATA(4, bss_core2bss2_1, 0xCC0);
+s32 D_8012D678 BT_DATA(4, bss_core2bss2_1, 0xD38);
+s32 D_8012D67C BT_DATA(4, bss_core2bss2_1, 0xD3C);
+#endif

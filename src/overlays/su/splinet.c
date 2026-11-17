@@ -1,13 +1,13 @@
 #include "common.h"
 
-void susplinet_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+typedef struct { u8 pad0[0x30]; s16 unk30; s16 unk32; s16 unk34; u8 pad36[0xE]; f32 unk44; f32 unk48; u8 pad4C[0x2]; s16 unk4E; u8 pad50[0x1]; u8 unk51; u8 unk52; u8 pad53[0x1]; s32 unk54; } Objsplinet_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void susplinet_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s16 *temp_v1;
     s16 *temp_v1_2;
     s16 temp_a0;
     u8 *temp_v0;
 
     temp_v0 = arg0;
-    temp_v0 += *(s16 *)((s8 *)arg0 + 0x32);
+    temp_v0 += ((Objsplinet_arg0 *)arg0)->unk32;
     if (arg3 != 0) {
         temp_v1 = (s16 *)((s8 *)temp_v0 + (arg1 * 2));
         *temp_v1 |= arg2;
@@ -52,15 +52,15 @@ int func_808000FC_susplinet(u8 *array, s32 index) {
 }
 
 int susplinet_entrypoint_2(u8 *arg0) {
-    s32 base = (s32)arg0;
+    BtIntPtr base = (BtIntPtr)arg0;
     s16 *ptr;
-    base += *(s16 *)((s8 *)arg0 + 0x30);
+    base += ((Objsplinet_arg0 *)arg0)->unk30;
     ptr = (s16 *)base;
-    return (f32)ptr[*(s16 *)((s8 *)arg0 + 0x4E) - 1] <= *(f32 *)((s8 *)arg0 + 0x44);
+    return (f32)ptr[((Objsplinet_arg0 *)arg0)->unk4E - 1] <= ((Objsplinet_arg0 *)arg0)->unk44;
 }
 
 s16 susplinet_entrypoint_3(s8 *arg0) {
-    s32 base = (s32)arg0;
+    BtIntPtr base = (BtIntPtr)arg0;
     base += *(s16 *)(arg0 + 0x30);
     return ((s16 *)base)[*(s16 *)(arg0 + 0x4E) - 1];
 }
@@ -69,15 +69,15 @@ s16 susplinet_entrypoint_3(s8 *arg0) {
 
 s32 susplinet_entrypoint_4(void *arg0, f32 arg1) {
     f32 func_800D8FF8(void);
-    if ((*(f32 *)((s8 *)arg0 + 0x48) <= arg1) &&
-        (arg1 < *(f32 *)((s8 *)arg0 + 0x44) + func_800D8FF8() * 100.0f)) {
+    if ((((Objsplinet_arg0 *)arg0)->unk48 <= arg1) &&
+        (arg1 < ((Objsplinet_arg0 *)arg0)->unk44 + func_800D8FF8() * 100.0f)) {
         return 1;
     }
     return 0;
 }
 
 s32 susplinet_entrypoint_5(void *arg0, f32 arg1) {
-    if (((*(f32 *)((s8 *)(arg0) + (0x48))) <= arg1) && (arg1 < (*(f32 *)((s8 *)(arg0) + (0x44))))) {
+    if (((((Objsplinet_arg0 *)arg0)->unk48) <= arg1) && (arg1 < (((Objsplinet_arg0 *)arg0)->unk44))) {
         return 1;
     }
     return 0;
@@ -88,7 +88,7 @@ u32 susplinet_entrypoint_6(u8 *arg0) {
 }
 
 void susplinet_entrypoint_7(f32 arg0[][3], s32 arg1, f32 *arg2) {
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     func_800EE7F8(arg2, arg0[arg1]);
 }
 
@@ -110,7 +110,7 @@ void susplinet_entrypoint_10(void *arg0, f32 arg1) {
     if (arg1 < 0.0f) {
         arg1 = 0.0f;
     }
-    if ((*(s32 *)((s8 *)(arg0) + (0x54))) & 2) {
+    if ((((Objsplinet_arg0 *)arg0)->unk54) & 2) {
         temp_f0 = (f32) temp_v0;
         if (temp_f0 < arg1) {
             do {
@@ -118,11 +118,11 @@ void susplinet_entrypoint_10(void *arg0, f32 arg1) {
             } while (temp_f0 < arg1);
         }
     }
-    (*(f32 *)((s8 *)(arg0) + (0x44))) = arg1;
+    (((Objsplinet_arg0 *)arg0)->unk44) = arg1;
 }
 
 void susplinet_entrypoint_11(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 72) = arg1;
+    ((Objsplinet_arg0 *)arg0)->unk48 = arg1;
 }
 
 u8 *susplinet_entrypoint_12(u8 *arg0) {
@@ -139,7 +139,7 @@ u8 *susplinet_entrypoint_14(u8 *arg0, s32 arg1) {
     return ((s16 *)(arg0 + 0x36))[arg1] + arg0;
 }
 
-s32 susplinet_entrypoint_15(s32 arg0, s32 arg1) {
+BtIntPtr susplinet_entrypoint_15(BtIntPtr arg0, s32 arg1) {
     s16 *ptr = (s16 *)((s8 *)arg0 + (arg1 * 2) + 0x3E);
     return arg0 + *ptr;
 }
@@ -155,10 +155,10 @@ s16 func_80800384_susplinet(u8 *arg0, s16 arg1) {
     bytes += *(s16 *)(arg0 + 0x30);
     base = (s16 *)bytes;
     index = *(s16 *)(arg0 + 0x4C);
-    cursor = (s16 *)((s32)base + index * 2);
+    cursor = (s16 *)((BtIntPtr)base + index * 2);
     while (arg1 < *cursor && index > 0) {
         index--;
-        cursor = (s16 *)((s32)base + index * 2);
+        cursor = (s16 *)((BtIntPtr)base + index * 2);
     }
     if (cursor[1] < arg1) {
         limit = *(s16 *)(arg0 + 0x4E) - 1;
@@ -262,7 +262,7 @@ f32 func_80800620_susplinet(u8 *arg0, s16 *arg1, f32 arg2) {
 
 f32 func_808007D0_susplinet(u8 *arg0, f32 arg1, s16 *arg2, u8 *arg3) {
     void _mlspline_entrypoint_4(f32, s32, u8 *, f32 *);
-    s32 func_800EE7F8(f32 *, f32 *);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     f32 func_800EEAD4(f32 *, f32 *);
     s32 func_800EEDE8(u8 *, u8 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -345,7 +345,7 @@ void func_80800D3C_susplinet(u8 *arg0, f32 time) {
     void _mlspline_entrypoint_4(f32, s32, u8 *, f32 *);
     void _mlspline_entrypoint_8(f32, s32, u8 *, f32 *);
     void _mlspline_entrypoint_9(f32, s32, f32 *, f32 *);
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     s16 *speeds;
     s16 *times;
     s32 i;
@@ -416,7 +416,7 @@ void susplinet_entrypoint_17(u8 *spline) {
     spline[0x58] = 1;
     func_80800D3C_susplinet(spline, *(f32 *)(spline + 0x44));
     spline[0x58] = 0;
-}
+}    typedef struct { u8 pad0[0x36]; s16 unk36; } Objsplinet_func_8080111C_susplinet_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */ typedef struct { u8 pad0[0x3E]; s16 unk3E; } Objsplinet_func_8080111C_susplinet_var_v1_2; /* offsets.py genstruct: fields from raw offsets on var_v1_2; rename once understood */
 
 void func_8080111C_susplinet(u8 *arg0) {
     s32 var_v0;
@@ -424,31 +424,31 @@ void func_8080111C_susplinet(u8 *arg0) {
     u8 *var_v1;
     u8 *var_v1_2;
 
-    (*(s16 *)((s8 *)(arg0) + (0x30))) = 0x5C;
-    var_v0 = (*(s16 *)((s8 *)(arg0) + (0x4E))) * 2 + 0x5C;
-    (*(s16 *)((s8 *)(arg0) + (0x32))) = var_v0;
-    var_v0 += (*(s16 *)((s8 *)(arg0) + (0x4E))) * 2;
+    (((Objsplinet_arg0 *)arg0)->unk30) = 0x5C;
+    var_v0 = (((Objsplinet_arg0 *)arg0)->unk4E) * 2 + 0x5C;
+    (((Objsplinet_arg0 *)arg0)->unk32) = var_v0;
+    var_v0 += (((Objsplinet_arg0 *)arg0)->unk4E) * 2;
     var_a1 = 0;
-    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x51))) > 0) {
+    if ((s32) (((Objsplinet_arg0 *)arg0)->unk51) > 0) {
         var_v1 = arg0;
         do {
-            (*(s16 *)((s8 *)(var_v1) + (0x36))) = var_v0;
+            (((Objsplinet_func_8080111C_susplinet_var_v1 *)var_v1)->unk36) = var_v0;
             var_a1 += 1;
             var_v1 += 2;
-            var_v0 += (*(s16 *)((s8 *)(arg0) + (0x4E))) * 0xC;
-        } while (var_a1 < (s32) (*(u8 *)((s8 *)(arg0) + (0x51))));
+            var_v0 += (((Objsplinet_arg0 *)arg0)->unk4E) * 0xC;
+        } while (var_a1 < (s32) (((Objsplinet_arg0 *)arg0)->unk51));
         var_a1 = 0;
     }
     var_v1_2 = arg0;
-    if ((s32) (*(u8 *)((s8 *)(arg0) + (0x52))) > 0) {
+    if ((s32) (((Objsplinet_arg0 *)arg0)->unk52) > 0) {
         do {
-            (*(s16 *)((s8 *)(var_v1_2) + (0x3E))) = var_v0;
+            (((Objsplinet_func_8080111C_susplinet_var_v1_2 *)var_v1_2)->unk3E) = var_v0;
             var_a1 += 1;
             var_v1_2 += 2;
-            var_v0 += (*(s16 *)((s8 *)(arg0) + (0x4E))) * 4;
-        } while (var_a1 < (s32) (*(u8 *)((s8 *)(arg0) + (0x52))));
+            var_v0 += (((Objsplinet_arg0 *)arg0)->unk4E) * 4;
+        } while (var_a1 < (s32) (((Objsplinet_arg0 *)arg0)->unk52));
     }
-    (*(s16 *)((s8 *)(arg0) + (0x34))) = var_v0;
+    (((Objsplinet_arg0 *)arg0)->unk34) = var_v0;
 }
 
 s32 func_808011B8_susplinet(s32 arg0, s32 arg1) {

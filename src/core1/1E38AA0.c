@@ -51,13 +51,13 @@ typedef struct {
     s32 unk4C;
 } PoolFreeList;
 
-s32 func_80020F70(s32 arg0) {
+s32 func_80020F70(BtIntPtr arg0) {
     extern PoolFreeList *D_800411F4;
-    void func_800272B0(void);
+    void *func_800272B0(s32 arg0, void *arg1, s32 arg2);
     void func_80020E40(ALLink *, ALLink *);
-    s32 func_80020EE4(s32, s32, void *, s32, s32);
-    s32 func_80027220(s16, s32, s32);
-    void func_800293B4(void *, s32, void *);
+    BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
+    s32 func_80027220(s16, BtIntPtr, BtIntPtr);
+    void func_800293B4(u8 *arg0, s32 (*arg1)(u8 *), BtIntPtr arg2);
     s32 i;
     s32 j;
     SynthVoice *voice;
@@ -89,7 +89,7 @@ s32 func_80020F70(s32 arg0) {
         D_800411F4->busses[i].capacity = ((s32 *)arg0)[1];
         D_800411F4->busses[i].voices = (SynthVoice **)func_80020EE4(0, 0, heap, ((s32 *)arg0)[1], sizeof(SynthVoice *));
         if (((u8 *)arg0)[0x1C + i] != 0) {
-            D_800411F4->busses[i].effect = func_80027220(i, arg0, (s32)heap);
+            D_800411F4->busses[i].effect = func_80027220(i, arg0, (BtIntPtr)heap);
         } else {
             D_800411F4->busses[i].effect = 0;
         }
@@ -123,7 +123,7 @@ s32 func_80020F70(s32 arg0) {
         item->link.next = D_800411F4->free;
         D_800411F4->free = &item->link;
     }
-    D_800411F4->heap = heap;
+    D_800411F4->heap = heap; BT_NATIVE_ONLY(return 0;)
 }
 
 Acmd *func_80021574(Acmd *arg0, s32 *arg1, s16 *arg2, s32 arg3) {

@@ -7,7 +7,7 @@ void func_80800000_chlavagargoyle(Actor *arg0) {
     flags->flag = 1;
     arg0->unk58 = func_800DC178(5.0f, 8.0f);
     func_80105010(arg0);
-    arg0->unk54 = *(f32 *)((s8 *)arg0 + 0x48);
+    arg0->unk54 = arg0->rotation[1];
 }
 
 void func_80800054_chlavagargoyle(Actor *arg0) {
@@ -23,7 +23,7 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
     };
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     void _subaddieaudioloop_entrypoint_2(Actor *);
-    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    void _subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4);
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     f32 func_800136E4(f32);
     f32 func_80013728(f32);
@@ -35,22 +35,22 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
-    s32 func_80102424(s32, s32);
+    void func_80102424(Actor *actor,s32 state);
     void *func_8010262C(Unk80132ED0 *, s32);
     void func_80108B04(Actor *, u32);
-    void func_8010C908(s32, s32);
+    void func_8010C908(BtIntPtr, BtIntPtr);
     s32 func_8080064C_chlavagargoyle(Actor *);
-    extern s32 D_80800D2C_chlavagargoyle;
+    extern s32 D_80800D2C_chlavagargoyle[4];
     void *joint;
     f32 progress;
     f32 position[3];
 
-    func_8010C908((s32)arg0, (s32)arg0->position);
+    func_8010C908((BtIntPtr)arg0, (BtIntPtr)arg0->position);
     if (!((struct GargoyleFlags *)arg0)->flag78) {
         switch (arg0->unk70_10) {
             case 3:
@@ -58,10 +58,10 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
             case 1:
                 if (((struct GargoyleFlags *)arg0)->flag64) {
                     if (func_8080064C_chlavagargoyle(arg0) && _subaddiejoy_entrypoint_6((u8 *)arg0, 1)) {
-                        func_80102424((s32)arg0, 2);
+                        func_80102424((BtIntPtr)arg0, 2);
                     }
                 } else if (func_800D90A4(&arg0->unk58) && func_8080064C_chlavagargoyle(arg0)) {
-                    func_80102424((s32)arg0, 2);
+                    func_80102424((BtIntPtr)arg0, 2);
                 }
                 break;
             case 2:
@@ -72,13 +72,13 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
                     } else {
                         arg0->unk58 = func_800DC178(5.0f, 8.0f);
                     }
-                    func_80102424((s32)arg0, 1);
+                    func_80102424((BtIntPtr)arg0, 1);
                     _subaddieaudioloop_entrypoint_2(arg0);
                 } else if (progress <= 0.35f) {
-                    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, 1, 2500, &D_80800D2C_chlavagargoyle);
+                    _subaddieaudioloop_entrypoint_5((BtIntPtr)arg0, (BtIntPtr)arg0->position, 1, 2500, D_80800D2C_chlavagargoyle);
                     _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4(progress, 0.0f, 0.35f, 0.8f, 0.9f));
                 } else if (progress >= 0.65f) {
-                    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, 1, 2500, &D_80800D2C_chlavagargoyle);
+                    _subaddieaudioloop_entrypoint_5((BtIntPtr)arg0, (BtIntPtr)arg0->position, 1, 2500, D_80800D2C_chlavagargoyle);
                     _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4(progress, 0.65f, 1.0f, 0.9f, 0.8f));
                 } else {
                     _subaddieaudioloop_entrypoint_2(arg0);
@@ -102,8 +102,8 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
 
 s32 func_80800394_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
     void _chskeletonexplode_entrypoint_4(Actor *, s32);
-    void _chskeletonexplode_entrypoint_6(Actor *, f32 *, s32, u16);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void _chskeletonexplode_entrypoint_6(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800C4140(s32, f32 *, s32);
     f32 func_800EEAD4(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
@@ -111,16 +111,16 @@ s32 func_80800394_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EF04C(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_80101010(f32 *);
     void *func_80101080(void);
-    s32 func_80102424();
+    void func_80102424(Actor *actor,s32 state);
     f32 func_80103EAC(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80107070(Actor *, u32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
-    void func_8010D12C(s32, f32 *, f32, s32);
+    void func_8010D12C(BtIntPtr, f32 *, f32, s32);
     extern s32 D_80800D3C_chlavagargoyle[];
     Actor *sp64;
     f32 sp5C[2];
@@ -176,8 +176,8 @@ s32 func_80800394_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 func_8080064C_chlavagargoyle(Actor *arg0) {
-    u32 func_800F54E4(void);
-    s32 func_800F6478(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6478(BtIntPtr);
     s32 func_8010C710(Actor *);
     s32 func_8010CD88(Actor *, f32, f32);
     f32 sp1C;
@@ -194,7 +194,7 @@ s32 func_8080064C_chlavagargoyle(Actor *arg0) {
 
 OSThread *chlavagargoyle_entrypoint_0(void)
 {
-    extern u8 D_80800D7C_chlavagargoyle[];
+    extern ActorData D_80800D7C_chlavagargoyle[];
 
     return (OSThread *) D_80800D7C_chlavagargoyle;
 }
@@ -205,7 +205,7 @@ void func_808006EC_chlavagargoyle(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 func_8001210C(s32);
     f32 func_80013970(f32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 *func_800BF340(f32 *, f32 *, f32 *, s32, f32);
     void func_800C8CB8(s32, f32 *);
     f32 func_800D8FF8(void);
@@ -218,8 +218,8 @@ void func_808006EC_chlavagargoyle(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_80103EAC(Actor *);
     s32 func_8010C754(void);
-    void func_8080099C_chlavagargoyle(Actor *, s32);
-    void func_80800B8C_chlavagargoyle(Actor *, f32 *, s32);
+    void func_8080099C_chlavagargoyle(Actor *, BtIntPtr);
+    void func_80800B8C_chlavagargoyle(Actor *, f32 *, BtIntPtr);
     extern u32 D_80800DC4_chlavagargoyle[];
     extern s32 D_80800DD0_chlavagargoyle[], D_80800E08_chlavagargoyle[];
     s32 sp54;
@@ -228,7 +228,7 @@ void func_808006EC_chlavagargoyle(Actor *arg0) {
 
     sp54 = func_8010C754();
     if (func_800D91EC(&((struct GargoyleData *)arg0->actorData)->timer, 3.0f)) {
-        func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)arg0->position);
+        func_80800B8C_chlavagargoyle(arg0, arg0->position, (BtIntPtr)arg0->position);
         return;
     }
     func_800EE7F8(sp48, arg0->position);
@@ -241,7 +241,7 @@ void func_808006EC_chlavagargoyle(Actor *arg0) {
         ((struct GargoyleData *)arg0->actorData)->velocity[1] += -2000.0f * func_800D8FF8();
         func_800EF174(arg0->position, ((struct GargoyleData *)arg0->actorData)->velocity, func_800D8FF8());
     }
-    func_8080099C_chlavagargoyle(arg0, (s32)arg0->position);
+    func_8080099C_chlavagargoyle(arg0, (BtIntPtr)arg0->position);
     _subaddieaudioloop_entrypoint_4(arg0, arg0->position, sp54 < 1000, D_80800DC4_chlavagargoyle);
     _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4((f32)sp54, 1000.0f, 0.0f, 0.8f, 1.1f));
     if (func_8001210C(1)) {
@@ -254,16 +254,16 @@ void func_808006EC_chlavagargoyle(Actor *arg0) {
         func_800EFB24(((struct GargoyleData *)arg0->actorData)->position, arg0->position, sp48);
         func_800EFDE8(((struct GargoyleData *)arg0->actorData)->position, (u8 *)((struct GargoyleData *)arg0->actorData)->position, sp3C);
         func_800EFB24(((struct GargoyleData *)arg0->actorData)->position, arg0->position, ((struct GargoyleData *)arg0->actorData)->position);
-        func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)((struct GargoyleData *)arg0->actorData)->position);
+        func_80800B8C_chlavagargoyle(arg0, arg0->position, (BtIntPtr)((struct GargoyleData *)arg0->actorData)->position);
     }
     arg0->rotation[1] += arg0->unk54 * func_800D8FF8();
     arg0->rotation[0] += arg0->unk50 * func_800D8FF8();
 }
 
 void func_800C8CB8(s32, f32 *);
+struct Color { s32 values[3]; };
+void func_8080099C_chlavagargoyle(Actor *arg0, BtIntPtr arg1) {
 
-void func_8080099C_chlavagargoyle(Actor *arg0, s32 arg1) {
-    struct Color { s32 values[3]; };
     extern struct Color D_80800E44_chlavagargoyle;
     s32 sp24;
     struct Color sp18;
@@ -284,20 +284,20 @@ s32 func_80800A2C_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800C8FE0(s32, s32);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     f32 func_80103EAC(Actor *);
-    void func_80800B8C_chlavagargoyle(Actor *, f32 *, s32);
+    void func_80800B8C_chlavagargoyle(Actor *, f32 *, BtIntPtr);
     f32 bounds[2];
 
     switch (arg1) {
         case 0x3E: {
             func_800F5A00(func_800F54E4(), (f32 *)arg0->actorData);
-            func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)arg0->actorData);
+            func_80800B8C_chlavagargoyle(arg0, arg0->position, (BtIntPtr)arg0->actorData);
             return 1;
         }
         case 0x40:
-            func_80800B8C_chlavagargoyle(arg0, arg0->position, (s32)arg0->actorData);
+            func_80800B8C_chlavagargoyle(arg0, arg0->position, (BtIntPtr)arg0->actorData);
             return 1;
         case 0x95: {
             arg0->scale = 0.5f;
@@ -319,30 +319,30 @@ s32 func_80800A2C_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_80800B8C_chlavagargoyle(Actor *arg0, f32 *arg1, s32 arg2) {
+void func_80800B8C_chlavagargoyle(Actor *arg0, f32 *arg1, BtIntPtr arg2) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
     void _subaddieaudioloop_entrypoint_2(Actor *);
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA544(s32 *, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA544(s32 *, BtIntPtr);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800C4140(s32, f32 *, s32);
     void func_800FFA88(Unk80132ED0 *);
-    extern s32 D_80800E50_chlavagargoyle;
-    extern s32 D_80800E98_chlavagargoyle;
+    extern s32 D_80800E50_chlavagargoyle[18];
+    extern s32 D_80800E98_chlavagargoyle[16];
 #ifdef BT_NATIVE
     void chlavagargoyle_entrypoint_1(s32 arg0, f32 *arg1);
 #else
     extern s32 _chlavagargoyle_entrypoint_1;
 #endif
-    s32 sp2C;
+    BtIntPtr sp2C;
 
     sp2C = func_800B53A4(6);
     func_800BA544(sp2C, &_chlavagargoyle_entrypoint_1);
-    func_800BABB8(sp2C, arg1, arg1, arg0->scale, &D_80800E50_chlavagargoyle);
+    func_800BABB8(sp2C, arg1, arg1, arg0->scale, D_80800E50_chlavagargoyle);
     func_800BA22C(sp2C, 6);
-    func_800BBCB8(arg1, arg1, arg0->scale, 2, &D_80800E98_chlavagargoyle);
+    func_800BBCB8(arg1, arg1, arg0->scale, 2, D_80800E98_chlavagargoyle);
     func_800C4140(0x7FFB5C13, arg0->position, 0x04B000FA);
     func_800C4140(0x7FFB5C17, arg0->position, 0x04B000FA);
     _subaddieaudioloop_entrypoint_2(arg0);
@@ -351,14 +351,34 @@ void func_80800B8C_chlavagargoyle(Actor *arg0, f32 *arg1, s32 arg2) {
 }
 
 void chlavagargoyle_entrypoint_1(s32 arg0, f32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_80800ED8_chlavagargoyle;
-    func_800BBCB8(arg1, 0, 1.0f, 1, &D_80800ED8_chlavagargoyle);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_80800ED8_chlavagargoyle[18];
+    func_800BBCB8(arg1, 0, 1.0f, 1, D_80800ED8_chlavagargoyle);
 }
 
 OSThread *chlavagargoyle_entrypoint_2(void)
 {
-    extern u8 D_80800F20_chlavagargoyle[];
+    extern ActorData D_80800F20_chlavagargoyle[];
 
     return (OSThread *) D_80800F20_chlavagargoyle;
 }
+/* data_to_c.py: from asm/data/overlays/ch/lava/gargoyle.data.s */
+extern u8 D_80800CF0_chlavagargoyle[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80108ED0();
+void func_80107C2C();
+extern u8 D_80800D18_chlavagargoyle[];
+u8 D_80800CF0_chlavagargoyle[40] BT_DATA(4, overlays_ch_lava_gargoyle, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x34, 0x00, 0x44, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x34, 0x00, 0x0A, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x34, 0x00, 0x44, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x34, 0x00, 0x44 };
+u8 D_80800D18_chlavagargoyle[20] BT_DATA(4, overlays_ch_lava_gargoyle, 0x28) = { 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03, 0x00, 0x03, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00 };
+s32 D_80800D2C_chlavagargoyle[4] BT_DATA(4, overlays_ch_lava_gargoyle, 0x3C) = { 1246193, 1466792, 655616, 0 };
+s32 D_80800D3C_chlavagargoyle [16] BT_DATA(4, overlays_ch_lava_gargoyle, 0x4C) = { 1903069, 2818304, 41943062, 268435490, 25166336, 75499008, 1376256, 2490393, 7, 2949170, 6553632, -2021161056, 720796, 1703836, 6553675, 6553600 };
+ActorData D_80800D7C_chlavagargoyle [1] BT_DATA(4, overlays_ch_lava_gargoyle, 0x8C) = { { 269, 1025, 2304, 1, (void *)D_80800CF0_chlavagargoyle, (void (*)(struct Actor *))func_80800054_chlavagargoyle, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 524288000, 0, 0, 0, 128, 544, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chlavagargoyle, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32734, 17425, (void (*)(struct Actor *, long, long))func_80800394_chlavagargoyle, (BtIntPtr)D_80800D18_chlavagargoyle } };
+u32 D_80800DC4_chlavagargoyle [3] BT_DATA(4, overlays_ch_lava_gargoyle, 0xD4) = { 0x130483, 0xA0100, 0 };
+s32 D_80800DD0_chlavagargoyle [14] BT_DATA(4, overlays_ch_lava_gargoyle, 0xE0) = { 1903054, 1446400, 3276802, 1376256, 10027042, 26804736, 20119961, 2818214, 10879003, 19661100, 1572864, 6400, 419430423, 8388608 };
+s32 D_80800E08_chlavagargoyle [15] BT_DATA(4, overlays_ch_lava_gargoyle, 0x118) = { 1903050, 1445888, 3276802, 1376281, 15925282, 8388864, 0, 2818304, 16777243, 32768500, 1572864, 724736, 251658271, -1600086016, 0 };
+struct Color D_80800E44_chlavagargoyle BT_DATA(4, overlays_ch_lava_gargoyle, 0x154) = { { 255, 120, 50 } };
+s32 D_80800E50_chlavagargoyle[18] BT_DATA(4, overlays_ch_lava_gargoyle, 0x160) = { 1902736, 458754, 262272, 1447302, 2818560, 41943085, 16384500, 1834008, -52428765, 7536679, -26149264, 26214800, 1376256, 13369358, 65546, 3276790, 51, 65536 };
+s32 D_80800E98_chlavagargoyle[16] BT_DATA(4, overlays_ch_lava_gargoyle, 0x1A8) = { 1903069, 2818560, 41943062, 268435490, 8388864, 75499008, 1376345, 5832729, 7, 2949020, 6619036, 6553800, 6553632, -1854053206, 917505, 655360 };
+s32 D_80800ED8_chlavagargoyle[18] BT_DATA(4, overlays_ch_lava_gargoyle, 0x1E8) = { 1903054, 1446400, 3276802, 1376332, 15073314, 6684774, 1638425, 2818240, 12582939, 26214800, 1572864, 3840, 251658263, 8388652, 100, 0, 13107200, 0 };
+ActorData D_80800F20_chlavagargoyle [1] BT_DATA(4, overlays_ch_lava_gargoyle, 0x230) = { { 266, 1026, 2192, 1, 0, (void (*)(struct Actor *))func_808006EC_chlavagargoyle, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, 0, 0, (void (*)(struct Actor *, long, long))func_80800A2C_chlavagargoyle, 0 } };

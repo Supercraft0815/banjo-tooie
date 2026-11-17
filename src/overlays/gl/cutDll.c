@@ -296,7 +296,7 @@ u32 glcutDll_entrypoint_19(s32 arg0)
     {
         return func_800DB9B0() != 0;
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 s32 glcutDll_entrypoint_20(void)
 {
@@ -372,3 +372,9 @@ void glcutDll_entrypoint_24(u32 arg0, u32 arg1, u32 arg2)
     glcutDll_entrypoint_16();
     func_80800000_glcutDll(1U);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+CutsceneInformation D_801275E8 BT_DATA(4, bss_core2bss1_0_1, 0x588);
+#endif

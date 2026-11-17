@@ -7,8 +7,8 @@
 
 #include "core2/1EB5E70.h"
 
-s32 func_8008CA74(PlayerState *self);
-void func_800A0714(s32, s32);
+BtIntPtr func_8008CA74(PlayerState *self);
+void func_800A0714(BtIntPtr, s32);
 
 s32 babackpack_get_size(void) {
     return sizeof(BaBackpack);
@@ -30,7 +30,7 @@ void func_8080003C_babackpack(PlayerState *self) {
     func_8008B304(self->backpack->anctrl);
 }
 
-s32 babackpack_entrypoint_1(PlayerState *self) {
+BtIntPtr babackpack_entrypoint_1(PlayerState *self) {
     if(self->backpack->unk0 != 0) {
         return func_800D674C(self->backpack->unk0);
     } else {
@@ -41,7 +41,7 @@ s32 babackpack_entrypoint_1(PlayerState *self) {
 void func_8080011C_babackpack(PlayerState *self, s32 arg1, f32 scale) {
     s32 sp34;
     s32 sp30;
-    s32 sp2C;
+    BtIntPtr sp2C;
     
     self->backpack->scale = scale;
     func_8009272C(self, 1);
@@ -66,7 +66,7 @@ void func_8080011C_babackpack(PlayerState *self, s32 arg1, f32 scale) {
     }
 }
 
-s32 func_8080021C_babackpack(PlayerState *self) {
+BtIntPtr func_8080021C_babackpack(PlayerState *self) {
     s32 tmp_v1 = self->backpack->unk8;
     if (tmp_v1) {
         tmp_v1 = func_80100A74((s16)tmp_v1, self->backpack->unk9);
@@ -81,7 +81,7 @@ void babackpack_entrypoint_2(PlayerState *self) {
         func_8008B10C(self->backpack->anctrl, baanim_getTimer(self));
         func_8008B304(self->backpack->anctrl);
         func_800DF41C(func_8008B4D4(self->backpack->anctrl));
-        func_800A0714((s32)self, self->backpack->unk0);
+        func_800A0714((BtIntPtr)self, self->backpack->unk0);
     } else if (self->backpack->unkA) {
         func_800DF818(func_8080021C_babackpack(self));
     } else {
@@ -97,7 +97,7 @@ void babackpack_entrypoint_3(PlayerState *self, f32 *position, f32 *arg2, s32 ar
         func_8008B10C(self->backpack->anctrl, baanim_getTimer(self));
         func_8008B304(self->backpack->anctrl);
         func_800DF41C(func_8008B4D4(self->backpack->anctrl));
-        func_800A0714((s32)self, self->backpack->unk0);
+        func_800A0714((BtIntPtr)self, self->backpack->unk0);
     } else {
         func_800DF41C(func_8008CA74(self));
     }
@@ -111,12 +111,12 @@ s32 babackpack_get_state(PlayerState *self) {
     return self->backpack->state;
 }
 
-void babackpack_entrypoint_5(PlayerState *self, s32 arg1, s32 arg2) {
+void babackpack_entrypoint_5(PlayerState *self, BtIntPtr arg1, s32 arg2) {
     func_800DBEFC(self->backpack->unk4, (s16) arg2, arg1);
 }
 
-void babackpack_entrypoint_6(PlayerState *self, s32 arg1, s32 arg2) {
-    func_800DBEFC(self->backpack->unk4, 4, arg1);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) babackpack_entrypoint_6(PlayerState *self, BtIntPtr arg1, s32 arg2) {
+    BT_NATIVE_ONLY(return) func_800DBEFC(self->backpack->unk4, 4, arg1);
 }
 
 

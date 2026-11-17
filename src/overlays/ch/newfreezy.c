@@ -1,14 +1,14 @@
 #include "common.h"
 
-void func_80800000_chnewfreezy()
+void func_80800000_chnewfreezy(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    _sufreezy_entrypoint_1();
+    _sufreezy_entrypoint_1(BT_NATIVE_ONLY(bt_a0));
 }
 
 /* extern */
 
 void func_80800020_chnewfreezy(void **arg0) {
-    s32 func_800ADFE0(s16);
+    void func_800ADFE0(s16 handle);
     s16 temp_a1;
 
     temp_a1 = (*(s16 *)((s8 *)(*arg0) + (0x10)));
@@ -22,12 +22,12 @@ void func_80800020_chnewfreezy(void **arg0) {
 
 void func_80800068_chnewfreezy(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    u32 func_8010A828(Actor*, u32);
+    void func_8010A828(void **arg0, s32 arg1);
     Actor *_subaddielink_entrypoint_4(u8 *);
     func_8010A828(_subaddielink_entrypoint_4(func_80100094(arg0, 1U)), (u32) (*(u8 *)((s8 *)(arg0) + (0x79))) >> 4);
 }
 
-void func_808000AC_chnewfreezy(s32 arg0)
+void func_808000AC_chnewfreezy(BtIntPtr arg0)
 {
     _sufreezy_entrypoint_2();
     func_8010A570(arg0);
@@ -93,7 +93,7 @@ void func_808002C0_chnewfreezy(Actor *arg0) {
     void _fxtwinkle_entrypoint_1(f32 *, s32);
     void _subaddiefade_entrypoint_3(Actor *);
     Actor *_subaddielink_entrypoint_4(u8 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
@@ -164,13 +164,13 @@ void func_808002C0_chnewfreezy(Actor *arg0) {
     if (linked != 0) {
         if (!((struct FreezyLinkFlags *) (&linked->unk78))->active) {
             func_80800068_chnewfreezy(arg0);
-            func_808000AC_chnewfreezy((s32) arg0);
+            func_808000AC_chnewfreezy((BtIntPtr) arg0);
         } else {
             _sudeflect_entrypoint_0(arg0->position, 0.0f, arg0->unk74_7 * 0.75f, 2);
             if (func_800D9078(&arg0->unk58)) {
                 func_80800068_chnewfreezy(arg0);
                 func_808000D4_chnewfreezy(arg0);
-                func_808000AC_chnewfreezy((s32) arg0);
+                func_808000AC_chnewfreezy((BtIntPtr) arg0);
             }
         }
     }
@@ -307,18 +307,18 @@ void func_80800824_chnewfreezy(Actor *arg0, u8 *arg1, s32 arg2, s32 arg3) {
 
 void func_80800974_chnewfreezy(Actor *arg0, u8 *arg1) {
     typedef struct { f32 m[4][4]; } MtxF;
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
-    u32 func_800ADE50(u8 *, u8 *, s32);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
+    BtUIntPtr func_800ADE50(u8 *, u8 *, s32);
     void *func_800AE080(s16);
-    s32 func_800AE290(s16, s32, s32);
-    s32 func_800DF324(void);
+    void func_800AE290(s16 handle, void *skeleton, void *pose);
+    void * func_800DF324(void);
     void func_800F2C1C(MtxF *, f32 *);
     void mlMtxGet(void *);
     void mlMtxSet(void *);
     void mlMtxRotatePYR(f32, f32, f32);
     void *func_80100094(Actor *, u32);
     f32 temp_f8;
-    s32 temp_s5;
+    BtIntPtr temp_s5;
     u32 var_s1;
     struct FreezyPartTransform {
         f32 position[3];
@@ -345,15 +345,15 @@ void func_80800974_chnewfreezy(Actor *arg0, u8 *arg1) {
         } while (var_s1 < arg0->unk6C_0);
     }
 }
-
+typedef struct { f32 v[3]; } FreezyVector;
 void func_80800AA4_chnewfreezy(Actor *arg0, u8 *arg1) {
     typedef struct { f32 m[4][4]; } MtxF;
-    typedef struct { f32 v[3]; } FreezyVector;
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
-    u32 func_800ADE50(u8 *, u8 *, s32);
+
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
+    BtUIntPtr func_800ADE50(u8 *, u8 *, s32);
     void *func_800AE080(s16);
-    void func_800AE40C(s16, u8 *, s32);
-    s32 func_800DF324(void);
+    void func_800AE40C(s16 handle, void *skeleton, void *pose);
+    void * func_800DF324(void);
     void func_800F23D0(MtxF *, f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void mlMtxGet(void *);
@@ -389,17 +389,17 @@ void func_80800AA4_chnewfreezy(Actor *arg0, u8 *arg1) {
 /* extern */
 
 void func_80800BFC_chnewfreezy(Actor *arg0, u8 *arg1) {
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
     void *func_800AE080(s16);
-    s32 func_800AE1E8(s16, s32, s32);
-    s32 func_800AE630(u8 *, u8 *, s32, s32);
-    s32 func_800DF324(void);
+    void func_800AE1E8(s16 handle, void *skeleton, void *pose);
+    s32 func_800AE630(u8 *, u8 *, s32, BtIntPtr);
+    void * func_800DF324(void);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
     void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 temp_s4;
+    BtIntPtr temp_s4;
     u32 var_s1;
     struct FreezyPartPosition {
         f32 position[3];
@@ -428,7 +428,7 @@ void func_80800BFC_chnewfreezy(Actor *arg0, u8 *arg1) {
     }
 }
 
-void func_80800D28_chnewfreezy(Actor *arg0, s32 arg1) {
+void func_80800D28_chnewfreezy(Actor *arg0, BtIntPtr arg1) {
     f32 func_800EEAD4(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80800824_chnewfreezy(Actor *, u8 *, s32, s32);
@@ -476,7 +476,7 @@ void func_80800D28_chnewfreezy(Actor *arg0, s32 arg1) {
 
 void func_80800E74_chnewfreezy(Actor *arg0, u8 *arg1, void *volatile arg2, s32 arg3) {
     void *func_80100094(Actor *, u32);
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
     void func_800EF214(f32 *, f32, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
     struct FreezyPart {
@@ -562,22 +562,22 @@ void func_80800E74_chnewfreezy(Actor *arg0, u8 *arg1, void *volatile arg2, s32 a
         } while (i < arg0->unk6C_0);
     }
 }
-
+struct Quaternion { f32 v[4]; }; struct Vector { f32 v[3]; };
 void func_808011A8_chnewfreezy(f32 arg0, f32 arg1) {
     void func_800D93A0(f32[4], f32[3]);
     void func_800D9470(f32[4], f32[4], f32[4]);
-    s32 func_800DF324(void);
+    void * func_800DF324(void);
     void func_800DFB40(s32 *, s32, u8 *);
     void func_800DFF2C(u8 **, s32, f32[4]);
-    struct Quaternion { f32 v[4]; };
-    struct Vector { f32 v[3]; };
+
+
     extern struct Quaternion D_8080195C_chnewfreezy;
     extern struct Vector D_8080196C_chnewfreezy;
     struct Quaternion sp58;
     struct Vector sp4C;
     f32 sp3C[4];
     f32 sp2C[4];
-    s32 sp28;
+    BtIntPtr sp28;
 
 
     sp58 = D_8080195C_chnewfreezy;
@@ -638,7 +638,7 @@ Actor *chnewfreezy_entrypoint_0(Unk80132ED0 *marker, s32 x, s32 y, s32 z) {
     s16 func_800AE020(void);
     f32 func_800EC708(Unk80132ED0 *);
     void func_80101038(f32 *);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     u8 *func_801039E4(Unk80132ED0 *);
     struct anctrl_s *func_80104248(void *arg0);
     Actor *sp54;
@@ -687,7 +687,7 @@ Actor *chnewfreezy_entrypoint_0(Unk80132ED0 *marker, s32 x, s32 y, s32 z) {
     func_80800974_chnewfreezy(actor, sp4C);
     func_80800AA4_chnewfreezy(actor, sp4C);
     func_80800BFC_chnewfreezy(actor, sp4C);
-    func_80800D28_chnewfreezy(actor, (s32)sp4C);
+    func_80800D28_chnewfreezy(actor, (BtIntPtr)sp4C);
     func_80800E74_chnewfreezy(actor, sp4C, sp48, sp44);
     actor->unk74_7 = func_808012F8_chnewfreezy(actor);
     actor->scale = actor->unk74_7 / func_800EC708(actor->unk0);
@@ -699,8 +699,8 @@ Actor *chnewfreezy_entrypoint_0(Unk80132ED0 *marker, s32 x, s32 y, s32 z) {
 
 void func_808016B4_chnewfreezy(Actor *arg0, s32 arg1) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    s32 func_800D674C(s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    BtIntPtr func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF410(s32);
     void func_800DF830(s32);
     s32 func_800E3E8C(f32 *, f32);
@@ -744,7 +744,7 @@ void func_808016B4_chnewfreezy(Actor *arg0, s32 arg1) {
 
 s32 func_808017FC_chnewfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
     s32 _subaddielink_entrypoint_3(u8 *);
-    void _sufreezy_entrypoint_5(Unk80132ED0 *, s32);
+    void _sufreezy_entrypoint_5(Unk80132ED0 *, BtIntPtr);
     void _sufreezy_entrypoint_6(Unk80132ED0 *, s32);
     void _sufreezy_entrypoint_7(Unk80132ED0 *, s32);
     void func_800FFAB0(Actor *);
@@ -756,7 +756,7 @@ s32 func_808017FC_chnewfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
                 func_80800068_chnewfreezy(arg0);
                 _sufreezy_entrypoint_5(arg0->unk0, arg2);
                 func_808000D4_chnewfreezy(arg0);
-                func_808000AC_chnewfreezy((s32)arg0);
+                func_808000AC_chnewfreezy((BtIntPtr)arg0);
             }
             break;
         case 0x3F:
@@ -766,7 +766,7 @@ s32 func_808017FC_chnewfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
             func_80800068_chnewfreezy(arg0);
             _sufreezy_entrypoint_7(arg0->unk0, arg2);
             func_808000D4_chnewfreezy(arg0);
-            func_808000AC_chnewfreezy((s32)arg0);
+            func_808000AC_chnewfreezy((BtIntPtr)arg0);
             break;
         case 0x95:
             if (_subaddielink_entrypoint_3(func_80100094(arg0, 1)) == 0) {
@@ -781,7 +781,15 @@ s32 func_808017FC_chnewfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
 
 OSThread *chnewfreezy_entrypoint_1(void)
 {
-    extern u8 D_80801978_chnewfreezy[];
+    extern ActorData D_80801978_chnewfreezy[];
 
     return (OSThread *) D_80801978_chnewfreezy;
 }
+/* data_to_c.py: from asm/data/overlays/ch/newfreezy.data.s */
+void func_80105834(Actor*);
+void func_80108ED0();
+void func_80107C2C();
+FreezyVector D_80801950_chnewfreezy BT_DATA(4, overlays_ch_newfreezy, 0x0) = { { 0.577f, 0.577f, 0.577f } };
+struct Quaternion D_8080195C_chnewfreezy BT_DATA(4, overlays_ch_newfreezy, 0xC) = { { 0.0f, 0.0f, 0.0f, 0.0f } };
+struct Vector D_8080196C_chnewfreezy BT_DATA(4, overlays_ch_newfreezy, 0x1C) = { { 0.0f, 0.0f, 0.0f } };
+ActorData D_80801978_chnewfreezy [1] BT_DATA(4, overlays_ch_newfreezy, 0x28) = { { 758, 767, 1885, 1, 0, (void (*)(struct Actor *))func_808002C0_chnewfreezy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808016B4_chnewfreezy, 0, 0, 0, 0, 18, 32, (void (*)(struct Actor *))func_80800020_chnewfreezy, (BtIntPtr)func_80108ED0, 0, 8, (void (*)(struct Actor *))func_80800000_chnewfreezy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8192, (void (*)(struct Actor *, long, long))func_808017FC_chnewfreezy, 0 } };

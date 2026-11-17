@@ -3,24 +3,24 @@
 #include "overlays/ba/assets.h"
 #endif
 
-struct player_state_s;
+struct player_state_s; 
 struct anctrl_s;
 enum asset_e;
 
 void func_8009FE58(struct player_state_s *);
 int player_isStable(struct player_state_s *);
 int func_8008DA24(struct player_state_s *);
-int func_8008DF8C(struct player_state_s *, s32);
+int func_8008DF8C(struct player_state_s *, s32);     
 
 /* extern */
 
-void func_80800000_bsjump(s32 arg0) {
-    s32 func_8009D7A4(s32, f32, f32);
+void func_80800000_bsjump(BtIntPtr arg0) {
+    void func_8009D7A4(void *arg0, f32 arg1, f32 arg2);
     func_8009D7A4(arg0, 0.91f, 1.09f);
-}
+}                typedef struct { u8 pad0[0x15C]; s32 unk15C; s32 unk160; s32 unk164; } Objjump_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void bsjump_entrypoint_0(void *arg0) {
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -51,7 +51,7 @@ void bsjump_entrypoint_0(void *arg0) {
     s32 previous_state;
 
     anim_ctrl = baanim_getAnimCtrlPtr(arg0);
-    *(s32 *)((u8 *)arg0 + 0x164) = baflag_isTrue(arg0, 2) && !func_8008E23C(arg0);
+    ((Objjump_arg0 *)arg0)->unk164 = baflag_isTrue(arg0, 2) && !func_8008E23C(arg0);
     previous_state = bs_getPreviousState(arg0);
     if (func_8009CBDC(arg0, previous_state) == 0xA) {
         func_80098840(arg0);
@@ -61,10 +61,10 @@ void bsjump_entrypoint_0(void *arg0) {
         anctrl_setStart(anim_ctrl, 0.5042f);
         anctrl_setDuration(anim_ctrl, 8.0f);
         anctrl_setPlaybackType(anim_ctrl, 1);
-        *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+        ((Objjump_arg0 *)arg0)->unk15C = 1;
         return;
     }
-    *(s32 *)((u8 *)arg0 + 0x160) = func_8009CA70(arg0, previous_state, 1);
+    ((Objjump_arg0 *)arg0)->unk160 = func_8009CA70(arg0, previous_state, 1);
     anctrl_reset(anim_ctrl);
     anctrl_setIndex(anim_ctrl, 8);
     anctrl_setDuration(anim_ctrl, 1.9f);
@@ -80,27 +80,27 @@ void bsjump_entrypoint_0(void *arg0) {
     baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
     _bswalk_entrypoint_1(arg0);
     baphysics_set_horizontal_velocity(arg0, yaw_getIdeal(arg0), baphysics_get_target_horizontal_velocity(arg0));
-    if (*(s32 *)((u8 *)arg0 + 0x160) != 0) {
+    if (((Objjump_arg0 *)arg0)->unk160 != 0) {
         baphysics_set_vertical_velocity(arg0, 610.0f);
     } else {
         baphysics_set_vertical_velocity(arg0, 710.0f);
     }
     baphysics_set_gravity(arg0, -1350.0f);
-    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
-    if (*(s32 *)((u8 *)arg0 + 0x164) != 0) {
+    ((Objjump_arg0 *)arg0)->unk15C = 0;
+    if (((Objjump_arg0 *)arg0)->unk164 != 0) {
         func_8009DE38(arg0, 0x422, 1.0f);
     } else {
-        func_80800000_bsjump((s32)arg0);
+        func_80800000_bsjump((BtIntPtr)arg0);
     }
 }
 
 void bsjump_entrypoint_1(void *arg0) {
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     void baanim_setEndAndDuration(void *, f32, f32);
     s32 baflag_isTrue(void *, s32);
     s32 bakey_released(void *, s32);
     f32 baphysics_get_target_horizontal_velocity(void *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     void func_8009B7C0(void *);
     void func_8009BB24(void *, f32 *);
     f32 func_8009C150(void *);
@@ -110,7 +110,7 @@ void bsjump_entrypoint_1(void *arg0) {
     f32 height_difference;
 
     next_state = 0;
-    if (*(s32 *)((u8 *)arg0 + 0x164) != 0) {
+    if (((Objjump_arg0 *)arg0)->unk164 != 0) {
         func_8009FC80(arg0);
     }
     if (baflag_isTrue(arg0, 0xF) != 0) {
@@ -120,33 +120,33 @@ void bsjump_entrypoint_1(void *arg0) {
     }
     func_8009BB24(arg0, velocity);
     if (((bakey_released(arg0, 8) != 0) && (velocity[1] > 0.0f) &&
-         (*(s32 *)((u8 *)arg0 + 0x164) == 0)) || (func_8008D544(arg0) == 0)) {
+         (((Objjump_arg0 *)arg0)->unk164 == 0)) || (func_8008D544(arg0) == 0)) {
         baphysics_reset_gravity(arg0);
     }
-    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    switch (((Objjump_arg0 *)arg0)->unk15C) {
     case 2:
         break;
     case 0:
         if (baanim_isStopped(arg0) != 0) {
             baanim_setEndAndDuration(arg0, 0.6667f, 4.0f);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            ((Objjump_arg0 *)arg0)->unk15C = 1;
         }
         if (func_8008DF8C(arg0, 0x82) != 0) {
             baanim_setEndAndDuration(arg0, 1.0f, 1.4f);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            ((Objjump_arg0 *)arg0)->unk15C = 2;
         }
         break;
     case 1:
         if (baanim_isStopped(arg0) != 0) {
             next_state = 0x2F;
         }
-        if (*(s32 *)((u8 *)arg0 + 0x164) != 0) {
-            *(s32 *)((u8 *)arg0 + 0x164) = 0;
+        if (((Objjump_arg0 *)arg0)->unk164 != 0) {
+            ((Objjump_arg0 *)arg0)->unk164 = 0;
             next_state = 0x21;
         }
         if (func_8008DF8C(arg0, 0x5A) != 0) {
             baanim_setEndAndDuration(arg0, 1.0f, 2.0f);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            ((Objjump_arg0 *)arg0)->unk15C = 2;
         }
         break;
     }
@@ -154,7 +154,7 @@ void bsjump_entrypoint_1(void *arg0) {
         next_state = 0x3D;
     }
     if (bakey_released(arg0, 8) != 0) {
-        *(s32 *)((u8 *)arg0 + 0x164) = 0;
+        ((Objjump_arg0 *)arg0)->unk164 = 0;
     }
     switch (func_800A3274(arg0)) {
     case 1:
@@ -163,8 +163,8 @@ void bsjump_entrypoint_1(void *arg0) {
         }
         if (bainput_func_80097F08(arg0) != 0) {
             height_difference = func_8009C150(arg0) - func_800964DC(arg0);
-            if ((*(s32 *)((u8 *)arg0 + 0x160) != 0 && ((height_difference > 2.0f) != 0)) ||
-                *(s32 *)((u8 *)arg0 + 0x160) == 0) {
+            if ((((Objjump_arg0 *)arg0)->unk160 != 0 && ((height_difference > 2.0f) != 0)) ||
+                ((Objjump_arg0 *)arg0)->unk160 == 0) {
                 next_state = 0x11;
             }
         }
@@ -192,13 +192,13 @@ void bsjump_entrypoint_1(void *arg0) {
     if (velocity[1] < 0.0f && player_inWater(arg0) != 0) {
         next_state = 0x4C;
     }
-    bs_setState((s32)arg0, next_state);
+    bs_setState((BtIntPtr)arg0, next_state);
 }
 
-void bsjump_entrypoint_2(s32 arg0) { s32 bs_getNextState(struct player_state_s *); if (func_800C6E38(0xA) != 0) { func_800C6DA0(0x3C); } if (bs_getNextState(arg0) != 0x11) { baphysics_reset_gravity(arg0); } }
+void bsjump_entrypoint_2(BtIntPtr arg0) { s32 bs_getNextState(struct player_state_s *); if (func_800C6E38(0xA) != 0) { func_800C6DA0(0x3C); } if (bs_getNextState(arg0) != 0x11) { baphysics_reset_gravity(arg0); } }
 
 s32 bsjump_entrypoint_3(s32 arg0) {
-    extern s32 D_80801110_bsjump[];
+    extern BtIntPtr D_80801110_bsjump[];
     return ((s32 *)&D_80801110_bsjump)[arg0];
 }
 
@@ -227,11 +227,11 @@ void bsjump_entrypoint_4(void *arg0) {
     anctrl_setDuration(temp_s0, 0.38f);
     anctrl_start(temp_s0);
     func_8009FFD8(arg0, 1, 1, 3, 6);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (((Objjump_arg0 *)arg0)->unk15C) = 0;
 }
 
 void bsjump_entrypoint_5(void *arg0) {
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -240,7 +240,7 @@ void bsjump_entrypoint_5(void *arg0) {
     void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 baflag_isTrue(void *, s32);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     void func_8009B7C0(void *);
     void func_8009BB24(void *, f32 *);
     s32 next_state;
@@ -255,7 +255,7 @@ void bsjump_entrypoint_5(void *arg0) {
         _bswalk_entrypoint_1(arg0);
     }
     func_8009BB24(arg0, velocity);
-    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    switch (((Objjump_arg0 *)arg0)->unk15C) {
     case 0:
         if (func_8008DF8C(arg0, 0x5A)) {
             anctrl_reset(anim_ctrl);
@@ -264,7 +264,7 @@ void bsjump_entrypoint_5(void *arg0) {
             anctrl_setDuration(anim_ctrl, 2.0f);
             anctrl_setPlaybackType(anim_ctrl, 1);
             anctrl_start(anim_ctrl);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            ((Objjump_arg0 *)arg0)->unk15C = 1;
         }
         break;
     case 1:
@@ -315,7 +315,7 @@ void bsjump_entrypoint_6(s32 arg0)
 {
 }
 s32 bsjump_entrypoint_7(s32 arg0) {
-    extern s32 D_80801120_bsjump[];
+    extern BtIntPtr D_80801120_bsjump[];
     return ((s32 *)&D_80801120_bsjump)[arg0];
 }
 
@@ -335,15 +335,15 @@ void bsjump_entrypoint_8(struct player_state_s *arg0) {
     void baphysics_set_horizontal_velocity(struct player_state_s *, f32, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void baphysics_set_target_yaw(struct player_state_s *, f32);
-    s32 baphysics_set_type(void *, s32);
+    void baphysics_set_type(void *self, s32 type);
     void baphysics_set_vertical_velocity(struct player_state_s *, f32);
     void func_8008B1C8(struct anctrl_s *, f32);
-    s32 func_8008CA4C(void *, s32);
+    void func_8008CA4C(void *self, s32 arg1);
     void func_800961AC(struct player_state_s *, s32);
     void func_80098840(u8 *);
     void func_8009D2D8(struct player_state_s *, s32);
     f32 yaw_getIdeal(struct player_state_s *);
-    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setUpdateType(void *self, s32 type);
     s32 pad[2];
     f32 yaw;
     struct anctrl_s *control;
@@ -370,7 +370,7 @@ void bsjump_entrypoint_8(struct player_state_s *arg0) {
     baphysics_set_gravity(arg0, -1350.0f);
     func_800961AC(arg0, 6);
     *(s32 *)((u8 *)arg0 + 0x15C) = 0;
-    func_80800000_bsjump((s32)arg0);
+    func_80800000_bsjump((BtIntPtr)arg0);
 }
 
 void bsjump_entrypoint_9(struct player_state_s *arg0) {
@@ -379,7 +379,7 @@ void bsjump_entrypoint_9(struct player_state_s *arg0) {
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void anctrl_setSubrange(struct anctrl_s *, f32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     int func_8008DA24(struct player_state_s *);
     int func_8008DF8C(struct player_state_s *, s32);
     void func_800961AC(struct player_state_s *, s32);
@@ -429,17 +429,17 @@ void bsjump_entrypoint_9(struct player_state_s *arg0) {
         func_8009FE58(arg0);
         next_state = 0x20;
     }
-    bs_setState((s32)arg0, next_state);
+    bs_setState((BtIntPtr)arg0, next_state);
 }
 
-void bsjump_entrypoint_10(s32 arg0)
+void bsjump_entrypoint_10(BtIntPtr arg0)
 {
     func_800961AC(arg0,0x1);
     baphysics_reset_gravity(arg0);
 }
 
 s32 bsjump_entrypoint_11(s32 arg0) {
-    extern s32 D_80801130_bsjump[];
+    extern BtIntPtr D_80801130_bsjump[];
     return ((s32 *)&D_80801130_bsjump)[arg0];
 }
 
@@ -456,15 +456,15 @@ void bsjump_entrypoint_12(struct player_state_s *arg0) {
     void func_8008B1C8(struct anctrl_s *, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
-    s32 baphysics_set_type(void *, s32);
+    void baphysics_set_type(void *self, s32 type);
     s32 bs_getPreviousState(struct player_state_s *);
-    s32 func_8008CA4C(void *, s32);
+    void func_8008CA4C(void *self, s32 arg1);
     void func_8008E944(struct player_state_s *);
     void func_8009BA9C(struct player_state_s *, f32 *);
     void func_8009D2D8(struct player_state_s *, s32);
     f32 func_8009F308(struct player_state_s *);
     void yaw_setIdeal(struct player_state_s *, f32);
-    s32 yaw_setUpdateType(void *, s32);
+    void yaw_setUpdateType(void *self, s32 type);
     struct anctrl_s *temp_s0;
     s32 sp20;
 
@@ -493,7 +493,7 @@ void bsjump_entrypoint_12(struct player_state_s *arg0) {
 }
 
 void bsjump_entrypoint_13(struct player_state_s *arg0) {
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     int func_8008DF8C(struct player_state_s *, s32);
     int player_isStable(struct player_state_s *);
@@ -526,13 +526,13 @@ void bsjump_entrypoint_13(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-void bsjump_entrypoint_14()
+void bsjump_entrypoint_14(BT_NATIVE_ONLY(void *arg0))
 {
-    func_8008E95C();
+    func_8008E95C(BT_NATIVE_ONLY(arg0));
 }
 
 s32 bsjump_entrypoint_15(s32 arg0) {
-    extern s32 D_80801140_bsjump[];
+    extern BtIntPtr D_80801140_bsjump[];
     return ((s32 *)&D_80801140_bsjump)[arg0];
 }
 
@@ -569,12 +569,12 @@ void bsjump_entrypoint_18(struct player_state_s *arg0) {
     int _batimer_decrement(void *, s32);
     int _batimer_isZero(struct player_state_s *, s32);
     int _batimer_isNonzero(struct player_state_s *, s32);
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     int bainput_func_80097DF4(struct player_state_s *);
     int bainput_func_80097F08(struct player_state_s *);
     int bainput_func_80097EC8(struct player_state_s *);
     int bainput_should_beak_bust(void *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
     void func_8009BF5C(struct player_state_s *, f32);
     f32 func_8009BFD8(struct player_state_s *);
@@ -620,7 +620,7 @@ void bsjump_entrypoint_18(struct player_state_s *arg0) {
     if (player_isStable(arg0)) {
         nextState = 0x72;
     }
-    bs_setState((s32)arg0, nextState);
+    bs_setState((BtIntPtr)arg0, nextState);
 }
 
 /* extern */
@@ -643,6 +643,29 @@ void bsjump_entrypoint_19(struct player_state_s *arg0) {
 }
 
 s32 bsjump_entrypoint_20(s32 arg0) {
-    extern s32 D_80801150_bsjump[];
+    extern BtIntPtr D_80801150_bsjump[];
     return ((s32 *)&D_80801150_bsjump)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/jump.data.s */
+void _bsjump_entrypoint_2();
+void _bsjump_entrypoint_0();
+void _bsjump_entrypoint_1();
+void func_80099B94();
+void _bsjump_entrypoint_6();
+void _bsjump_entrypoint_4();
+void _bsjump_entrypoint_5();
+void _bsjump_entrypoint_10();
+void _bsjump_entrypoint_8();
+void _bsjump_entrypoint_9();
+void _bsjump_entrypoint_14();
+void _bsjump_entrypoint_12();
+void _bsjump_entrypoint_13();
+void func_80099AA8();
+void _bsjump_entrypoint_19();
+void _bsjump_entrypoint_17();
+void _bsjump_entrypoint_18();
+BtIntPtr D_80801110_bsjump [4] BT_DATA(4, overlays_bs_jump, 0x0) = { (BtIntPtr)_bsjump_entrypoint_2, (BtIntPtr)_bsjump_entrypoint_0, (BtIntPtr)_bsjump_entrypoint_1, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801120_bsjump [4] BT_DATA(4, overlays_bs_jump, 0x10) = { (BtIntPtr)_bsjump_entrypoint_6, (BtIntPtr)_bsjump_entrypoint_4, (BtIntPtr)_bsjump_entrypoint_5, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801130_bsjump [4] BT_DATA(4, overlays_bs_jump, 0x20) = { (BtIntPtr)_bsjump_entrypoint_10, (BtIntPtr)_bsjump_entrypoint_8, (BtIntPtr)_bsjump_entrypoint_9, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801140_bsjump [4] BT_DATA(4, overlays_bs_jump, 0x30) = { (BtIntPtr)_bsjump_entrypoint_14, (BtIntPtr)_bsjump_entrypoint_12, (BtIntPtr)_bsjump_entrypoint_13, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80801150_bsjump [4] BT_DATA(4, overlays_bs_jump, 0x40) = { (BtIntPtr)_bsjump_entrypoint_19, (BtIntPtr)_bsjump_entrypoint_17, (BtIntPtr)_bsjump_entrypoint_18, (BtIntPtr)func_80099B94 };

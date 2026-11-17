@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80106DF0(void) {
-    s32 freelist_new(s32, s32);
+    void * freelist_new(s32 element_size, s32 capacity);
     extern s32 D_80136F00;
     D_80136F00 = freelist_new(0x18, 12);
 }
@@ -16,7 +16,7 @@ void func_80106E18(void) {
 }
 
 void func_80106E50(void) {
-    s32 freelist_defrag(s32);
+    BtIntPtr freelist_defrag(BtIntPtr);
     extern s32 D_80136F00;
     if (D_80136F00 != 0) {
         D_80136F00 = freelist_defrag(D_80136F00);
@@ -25,10 +25,10 @@ void func_80106E50(void) {
 
 /* extern */
 
-s32 func_80106E88(Actor *arg0) {
+BtIntPtr func_80106E88(Actor *arg0) {
     void *func_80100368(void *);
-    s32 func_80107320(Actor *);
-    s32 var_v1;
+    BtIntPtr func_80107320(Actor *);
+    BtIntPtr var_v1;
     s32 sp1C;
 
     sp1C = 0;
@@ -40,7 +40,7 @@ s32 func_80106E88(Actor *arg0) {
 }
 
 void func_80106EE0(void *arg0) {
-    s32 freelist_erase(s32, s32);
+    void freelist_erase(void *list, s32 index);
     extern s32 D_80136F00;
     struct {
         u8 pad[0x94];
@@ -59,7 +59,7 @@ void func_80106EE0(void *arg0) {
 
 void *func_80106F30(void *arg0) {
     extern s32 D_80136F00;
-    void *freelist_at(s32, s32);
+    void * freelist_at(void *list, s32 index);
     struct {
         u8 pad[0x94];
         u32 unk94_0 : 2;
@@ -70,13 +70,13 @@ void *func_80106F30(void *arg0) {
         return NULL;
     }
     return freelist_at(D_80136F00, entry->index);
-}
+}    typedef struct { u8 pad0[0x4]; s16 unk4; u8 pad6[0x4]; s16 unkA; } Obj1EE06E0_func_80106F70_entry; /* offsets.py genstruct: fields from raw offsets on entry; rename once understood */
 
 void func_80106F70(Actor *arg0) {
     s32 func_80107070(Actor *, u32);
     s32 func_80107784(void *, void *);
     s32 func_80107858(Actor *, u8 *);
-    s32 func_801078AC(s32, f32 *);
+    s32 func_801078AC(BtIntPtr, f32 *);
     s32 _subaddiefade_entrypoint_0(Actor *);
     void func_800EE88C(f32 *, s16 *);
     s32 func_8010CAC0(f32 *, u32);
@@ -84,7 +84,7 @@ void func_80106F70(Actor *arg0) {
     f32 position[3];
 
     entry = func_80106F30(arg0);
-    switch (*(s16 *)((u8 *)entry + 0xA)) {
+    switch (((Obj1EE06E0_func_80106F70_entry *)entry)->unkA) {
     case 1:
         if (func_80107858(arg0, entry)) {
             func_80107070(arg0, 4);
@@ -96,8 +96,8 @@ void func_80106F70(Actor *arg0) {
         }
         break;
     case 3:
-        if (func_801078AC((s32)arg0, entry)) {
-            func_800EE88C(position, (s16 *)((u8 *)entry + 4));
+        if (func_801078AC((BtIntPtr)arg0, entry)) {
+            func_800EE88C(position, &((Obj1EE06E0_func_80106F70_entry *)entry)->unk4);
             if (!func_8010CAC0(position, 200)) {
                 func_80107070(arg0, 4);
             }
@@ -109,18 +109,18 @@ void func_80106F70(Actor *arg0) {
         }
         break;
     }
-}
+}    typedef struct { u8 pad0[0xA]; s16 unkA; } Obj1EE06E0_func_80107070_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */ typedef struct { u8 pad0[0xA]; s16 unkA; } Obj1EE06E0_func_80107070_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 s32 func_80107070(Actor *arg0, u32 arg1) {
     void * func_80106F30(void *arg0);
-    void func_801073AC(s32 arg0, s32 arg1);
-    s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2);
+    void func_801073AC(BtIntPtr arg0, s32 arg1);
+    s32 func_801073F8(BtIntPtr arg0, s32 arg1, s32 arg2);
     void func_80107448(void *arg0, f32 *arg1);
     void func_8010754C(void *arg0, void *arg1);
     void func_801075E4(Actor *arg0, void *arg1);
-    void func_80107750(s32 arg0, s32 arg1);
+    void func_80107750(BtIntPtr arg0, BtIntPtr arg1);
     void _subaddieaudioquick_entrypoint_2();
-    s32 func_80103110(Actor *, s32);
+    void func_80103110(void *arg0, s32 arg1);
     extern s32 D_801244F0;
     f32 *sp24;
     f32 *temp_v0;
@@ -130,7 +130,7 @@ s32 func_80107070(Actor *arg0, u32 arg1) {
     if (temp_v0 == NULL) {
         return 0;
     }
-    if (arg1 == (*(s16 *)((s8 *)(temp_v0) + (0xA)))) {
+    if (arg1 == (((Obj1EE06E0_func_80107070_temp_v0 *)temp_v0)->unkA)) {
         return 1;
     }
     switch (arg1) {
@@ -139,33 +139,33 @@ s32 func_80107070(Actor *arg0, u32 arg1) {
         break;
     case 1:
         _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 ->position, &D_801244F0, arg1);
-        if (func_801073F8((s32) arg0, 1, 1) == 0) {
+        if (func_801073F8((BtIntPtr) arg0, 1, 1) == 0) {
             func_80103110(arg0, 0);
         }
-        func_80107750((s32) arg0, (s32) sp24);
+        func_80107750((BtIntPtr) arg0, (BtIntPtr) sp24);
         break;
     case 2:
-        if (func_801073F8((s32) arg0, 2, 1) == 0) {
+        if (func_801073F8((BtIntPtr) arg0, 2, 1) == 0) {
             func_80103110(arg0, 0);
         }
-        func_80107750((s32) arg0, (s32) sp24);
+        func_80107750((BtIntPtr) arg0, (BtIntPtr) sp24);
         break;
     case 3:
-        if (func_801073F8((s32) arg0, 3, 1) == 0) {
+        if (func_801073F8((BtIntPtr) arg0, 3, 1) == 0) {
             func_80103110(arg0, 0);
         }
         func_80107448(arg0, sp24);
         break;
     case 4:
-        if (func_801073F8((s32) arg0, 4, 1) == 0) {
+        if (func_801073F8((BtIntPtr) arg0, 4, 1) == 0) {
             func_80103110(arg0, 0);
         }
         func_8010754C(arg0, sp24);
         func_801075E4(arg0, sp24);
         break;
     }
-    func_801073AC((s32) arg0, (s32) arg1);
-    (*(s16 *)((s8 *)(sp24) + (0xA))) = (s16) arg1;
+    func_801073AC((BtIntPtr) arg0, (s32) arg1);
+    (((Obj1EE06E0_func_80107070_sp24 *)sp24)->unkA) = (s16) arg1;
     return 1;
 }
 
@@ -204,7 +204,7 @@ void func_80107200(void *arg0) {
         entry->state = 0;
         entry->timer = 0.0f;
     }
-}
+}    typedef struct { u8 pad0[0xA]; s16 unkA; } Obj1EE06E0_func_801072A8_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -215,8 +215,8 @@ s32 func_801072A8(void *arg0) {
     if (temp_v0 == NULL) {
         return 0;
     }
-    return (*(s16 *)((s8 *)(temp_v0) + (0xA))) != 0;
-}
+    return (((Obj1EE06E0_func_801072A8_temp_v0 *)temp_v0)->unkA) != 0;
+}    typedef struct { u8 pad0[0xA]; s16 unkA; } Obj1EE06E0_func_801072E4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -227,10 +227,10 @@ s32 func_801072E4(void *arg0) {
     if (temp_v0 == NULL) {
         return 0;
     }
-    return (*(s16 *)((s8 *)(temp_v0) + (0xA))) == 4;
+    return (((Obj1EE06E0_func_801072E4_temp_v0 *)temp_v0)->unkA) == 4;
 }
 
-s32 func_80107320(Actor *arg0) {
+BtIntPtr func_80107320(Actor *arg0) {
     struct IndexField {
         u8 pad[0x94];
         u16 upper : 2;
@@ -245,13 +245,13 @@ s32 func_80107320(Actor *arg0) {
     bzero(sp18, 0x18);
     ((struct IndexField *)arg0)->index = sp1C;
     func_80107200(arg0);
-    return (s32) sp18;
+    return (BtIntPtr) sp18;
 }
 
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_80107388(s32 bt_a0) {
+BtIntPtr func_80107388(BtIntPtr bt_a0) {
 #else
 s32 func_80107388(void) {
 #endif
@@ -262,13 +262,13 @@ s32 func_80107388(void) {
 /* extern */
 
 #ifdef BT_NATIVE
-void func_801073AC(s32 arg0, s32 arg1) { s32 func_8010108C(); s32 func_80102424(s32, s32); s32 func_80107388(s32); func_80102424(arg0, *(s16 *)(func_80107388(arg0) + arg1 * 4)); /* a0 passes through */ func_8010108C(arg0, 0x8F, arg1); }
+void func_801073AC(BtIntPtr arg0, s32 arg1) { intptr_t func_8010108C(Actor *actor,s32 message,uintptr_t data); void func_80102424(Actor *actor,s32 state); BtIntPtr func_80107388(BtIntPtr); func_80102424(arg0, *(s16 *)(func_80107388(arg0) + arg1 * 4)); /* a0 passes through */ func_8010108C(arg0, 0x8F, arg1); }
 #else
 void func_801073AC(s32 arg0, s32 arg1) { s32 func_8010108C(); s32 func_80102424(s32, s32); s32 func_80107388(void); func_80102424(arg0, *(s16 *)(func_80107388() + arg1 * 4)); func_8010108C(arg0, 0x8F, arg1); }
 #endif
 
 #ifdef BT_NATIVE
-s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2) { s32 func_80107388(); s32 var_v1; if ((*(s16 *)((s8 *)(((s32 (*)())func_80107388)(arg0) + (arg1 * 4)) + 2)) & arg2) { var_v1 = 1; } else { var_v1 = 0; } return var_v1; }
+s32 func_801073F8(BtIntPtr arg0, s32 arg1, s32 arg2) { BtIntPtr func_80107388(); s32 var_v1; if ((*(s16 *)((s8 *)(((s32 (*)())func_80107388)(arg0) + (arg1 * 4)) + 2)) & arg2) { var_v1 = 1; } else { var_v1 = 0; } return var_v1; }
 #else
 s32 func_801073F8(s32 arg0, s32 arg1, s32 arg2) { s32 func_80107388(); s32 var_v1; if ((*(s16 *)((s8 *)(func_80107388(arg0) + (arg1 * 4)) + 2)) & arg2) { var_v1 = 1; } else { var_v1 = 0; } return var_v1; }
 #endif
@@ -388,7 +388,7 @@ void func_801075E4(Actor *arg0, void *arg1) {
     };
     void *func_80100368(void *);
     s32 func_80102FA0(Actor *, s32);
-    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_2(void *arg0);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     extern s32 D_801244FC;
     void *settings;
@@ -397,7 +397,7 @@ void func_801075E4(Actor *arg0, void *arg1) {
 
     settings = func_80100368(arg0);
     func_8010754C(arg0, arg1);
-    if (func_801073F8((s32)arg0, 3, 4) == 0) {
+    if (func_801073F8((BtIntPtr)arg0, 3, 4) == 0) {
         _subaddiefade_entrypoint_2(arg0);
         arg0->unk64_16 = 1;
         if (((struct Settings *)settings)->unk1C != 0.0f) {
@@ -414,14 +414,14 @@ void func_801075E4(Actor *arg0, void *arg1) {
     arg0->unk14 |= 0x80000;
     flags->flag16 = func_80102FA0(settings, 0x80001000);
     entry->unk14 = 0;
-    if (func_801073F8((s32)arg0, 4, 2) == 0) {
+    if (func_801073F8((BtIntPtr)arg0, 4, 2) == 0) {
         _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_801244FC);
     }
 }
 
 /* extern */
 
-void func_80107750(s32 arg0, s32 arg1) {
+void func_80107750(BtIntPtr arg0, BtIntPtr arg1) {
     s32 _subaddiefade_entrypoint_5();
     void func_8010A570(Actor *);
     void func_8010A624(void ***);
@@ -448,7 +448,7 @@ s32 func_80107784(void *arg0, void *arg1) {
     struct Entry *entry = arg1;
     Actor *actor = arg0;
 
-    if (func_801073F8((s32)arg0, entry->unkA, 2) == 0) {
+    if (func_801073F8((BtIntPtr)arg0, entry->unkA, 2) == 0) {
         func_801078DC(arg0, entry->unk14);
     }
     if (_subaddiefade_entrypoint_0(arg0) == 0xFF && func_800D90A4(&entry->timer) != 0) {
@@ -462,14 +462,14 @@ s32 func_80107784(void *arg0, void *arg1) {
         return 1;
     }
     return 0;
-}
+}    typedef struct { u8 pad0[0xA]; s16 unkA; } Obj1EE06E0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
 s32 func_80107858(Actor *arg0, u8 *arg1) {
-    s32 func_801073F8(s32, s32, s32);
+    s32 func_801073F8(BtIntPtr, s32, s32);
     s32 func_801078DC(Actor *, u8 *);
-    if (func_801073F8((s32)arg0, (*(s16 *)((s8 *)(arg1) + (0xA))), 2) == 0) {
+    if (func_801073F8((BtIntPtr)arg0, (((Obj1EE06E0_arg1 *)arg1)->unkA), 2) == 0) {
         func_801078DC(arg0, arg1 + 0x14);
     }
     if (_subaddiefade_entrypoint_0(arg0) == 0) {
@@ -480,7 +480,7 @@ s32 func_80107858(Actor *arg0, u8 *arg1) {
 
 /* extern */
 
-s32 func_801078AC(s32 arg0, f32 *arg1) {
+s32 func_801078AC(BtIntPtr arg0, f32 *arg1) {
     s32 func_800D90A4(f32 *);
     if (func_800D90A4(arg1) != 0) {
         return 1;
@@ -490,8 +490,8 @@ s32 func_801078AC(s32 arg0, f32 *arg1) {
 
 s32 func_801078DC(Actor *arg0, u8 *arg1) {
     s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32 *);
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
@@ -504,7 +504,7 @@ s32 func_801078DC(Actor *arg0, u8 *arg1) {
     f32 position[3];
     s32 count;
     s32 i;
-    s32 effect;
+    BtIntPtr effect;
     s32 index;
     f32 delta[3];
     f32 end[3];
@@ -559,7 +559,7 @@ f32 func_80107A80(void) {
     }
 }
 
-s32 func_80107B70(s32 arg0, f32 *arg1) {
+s32 func_80107B70(BtIntPtr arg0, f32 *arg1) {
     void func_800EE88C(f32 dst[3], s16 src[3]);
     void *func_80106F30();
     u8 *temp_v0;
@@ -574,7 +574,7 @@ s32 func_80107B70(s32 arg0, f32 *arg1) {
 
 void func_80107BB0(void) {
     s32 _gccubesearch_entrypoint_9(s32, s32 *, s32);
-    f32 _gspropmarker_entrypoint_3(s32);
+    f32 _gspropmarker_entrypoint_3(void *context);
     extern f32 D_80136F10;
     s32 sp20[4];
     s32 pad[2];
@@ -584,9 +584,16 @@ void func_80107BB0(void) {
         return;
     }
     D_80136F10 = 1.0f;
-}
+}    typedef struct { f32 unk0; } Obj1EE06E0_D_80136F10; /* offsets.py genstruct: fields from raw offsets on &D_80136F10; rename once understood */
 
 f32 func_80107C00(void) {
     extern f32 D_80136F10;
-    return *(f32 *)((u8 *)&D_80136F10 + 0);
+    return *&((Obj1EE06E0_D_80136F10 *)&D_80136F10)->unk0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80136F00 BT_DATA(4, bss_core2bss2_2_music_tail, 0x14E0);
+f32 D_80136F10 BT_DATA(4, bss_core2bss2_2_music_tail, 0x14F0);
+#endif

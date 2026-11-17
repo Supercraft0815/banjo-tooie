@@ -2,14 +2,14 @@
 
 OSThread *chmineproplight_entrypoint_0(void)
 {
-    extern u8 D_80800240_chmineproplight[];
+    extern ActorData D_80800240_chmineproplight[];
 
     return (OSThread *) D_80800240_chmineproplight;
 }
 
 void func_8080000C_chmineproplight(Actor *arg0) {
     s32 _gccubesearch_entrypoint_16(s32 *, s32 *, s16 **, s32, s32);
-    s32 _gsproplookup_entrypoint_0();
+    s16 _gsproplookup_entrypoint_0(void *prop);
     f32 func_800136E4(f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EE904(s32 *, f32 *);
@@ -18,7 +18,7 @@ void func_8080000C_chmineproplight(Actor *arg0) {
     void func_80103014(u8 *);
     s32 func_80103140(Actor *, u32, u16);
     void func_80108944(Actor *, Actor *);
-    u32 func_8010A828(Actor *, u32);
+    void func_8010A828(void **arg0, s32 arg1);
     struct LightProp {
         u16 id;
         u8 yaw;
@@ -54,9 +54,9 @@ void func_8080000C_chmineproplight(Actor *arg0) {
 }
 
 void func_80800168_chmineproplight(Actor *arg0, void *arg1) {
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     u8 func_800D731C(u16);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF7E8(u8);
     void func_800DF830(s32);
     s32 func_800EB854(void);
@@ -78,3 +78,7 @@ void func_80800168_chmineproplight(Actor *arg0, void *arg1) {
 void func_80800228_chmineproplight(s32 arg0) 
 {
 }
+/* data_to_c.py: from asm/data/overlays/ch/mine/proplight.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800240_chmineproplight [1] BT_DATA(4, overlays_ch_mine_proplight, 0x0) = { { 344, 588, -1, 1, 0, (void (*)(struct Actor *))func_80800228_chmineproplight, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800168_chmineproplight, 0, 0, 0, 0, 10, 2052, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chmineproplight, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10258, 0, 0 } };

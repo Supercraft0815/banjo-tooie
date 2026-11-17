@@ -42,10 +42,10 @@ void func_800D1510(void) {
 void func_800D154C(void) {
     s32 func_8001210C(s32);
     void *heap_alloc_sided(s32, s32);
-    s32 heap_free(s32);
+    void heap_free(void *memory);
     void rare_memcpy(void *, void *, int);
     extern s32 D_8012B250;
-    s32 sp1C;
+    BtIntPtr sp1C;
     void *temp_v0;
     s32 var_a1;
 
@@ -57,14 +57,14 @@ void func_800D154C(void) {
             var_a1 = 0;
         }
         temp_v0 = heap_alloc_sided(0x2A, var_a1);
-        (*(s32 *)((s8 *)(&D_8012B250) + (0))) = (s32)temp_v0;
+        (*(s32 *)((s8 *)(&D_8012B250) + (0))) = (BtIntPtr)temp_v0;
         rare_memcpy(temp_v0, (void *)sp1C, 0x2A);
         heap_free(sp1C);
     }
 }
 
 void func_800D15CC(void) {
-    s32 defrag(s32);
+    BtIntPtr defrag(BtIntPtr);
     extern s32 D_8012B250;
     if (D_8012B250 != 0) {
         D_8012B250 = defrag(D_8012B250);
@@ -72,7 +72,7 @@ void func_800D15CC(void) {
 }
 
 void func_800D1604(void) {
-    s32 heap_free(s32);
+    void heap_free(void *memory);
     extern s32 D_8012B250;
     heap_free(D_8012B250);
     D_8012B250 = 0;
@@ -115,7 +115,7 @@ void func_800D16CC(s32 arg0, s32 arg1) {
     ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ arg1;
 }
 
-void func_800D175C(s32 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800D175C(s32 arg0, s32 arg1) {
     void func_800D16CC(s32, s32);
     s32 func_800D24E8(s32, s32, u32);
     extern s32 D_8012B250;
@@ -123,16 +123,16 @@ void func_800D175C(s32 arg0, s32 arg1) {
 
     index = func_800D16C4(arg0);
     func_800D16CC(index, (((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]) + arg1);
-    func_800D24E8(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], 0);
+    BT_NATIVE_ONLY(return) func_800D24E8(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], 0);
 }
 
-void func_800D1804(s32 arg0) {
-    func_800D175C(arg0, -1);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800D1804(s32 arg0) {
+    func_800D175C(arg0, -1); BT_NATIVE_ONLY(return 0;)
 }
 
-void func_800D1824(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800D1824(s32 arg0)
 {
-    func_800D175C(arg0,0);
+    func_800D175C(arg0,0); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800D1844(s32 arg0)
@@ -323,3 +323,9 @@ s32 func_800D1F34(u8 *arg0, register s32 arg1) {
     }
     return -1;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012B250 BT_DATA(4, bss_core2bss1_1_counter_tail, 0xD0);
+#endif

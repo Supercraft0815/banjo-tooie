@@ -95,7 +95,7 @@ void func_8001A2B0() {
 }
 
 void func_8001A2D0(void) {
-    s32 func_80014C40();
+    void func_80014C40(void);
     extern s16 D_8007BED8;
     extern OSMesgQueue D_8007BEE0;
     extern void *D_8007BEF8;
@@ -121,7 +121,7 @@ void func_8001A324(void) {
 void func_8001A570(void);
 
 void func_8001A3A0(void) {
-    s32 func_800A9800();
+    void func_800A9800(void);
     extern s16 D_8007BEDA;
     static const s32 sizes[3] = {0x76C0, 0x12C00, 0x1AE0};
     s32 i;
@@ -195,7 +195,7 @@ s32 func_8001A63C(void) {
     return 0;
 }
 #else
-extern s32 D_8007BCC4;
+extern s32 D_8007BCC4;     
 
 void func_8001A010(void) {
 }
@@ -240,7 +240,7 @@ void func_8001A0F0(void) {
 void func_8001A11C(void) {
     extern OSMesgQueue D_8007BEE0;
     osSendMesg(&D_8007BEE0, NULL, 1);
-}
+}    typedef struct { s32 unk0; u8 pad4[0x4]; s32 unk8; s32 unkC; s32 unk10; s32 unk14; } Obj1E31B40_func_8001A148_temp_a0; /* offsets.py genstruct: fields from raw offsets on temp_a0; rename once understood */
 
 void func_8001A148(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     extern u8 D_8007BCF8;
@@ -251,13 +251,13 @@ void func_8001A148(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     temp_a0 = (D_8007BED8 * 0x18) + &D_8007BCF8;
     D_8007BED8 = (s16) ((s32) (D_8007BED8 + 1) % 20);
     func_8001A11C();
-    (*(s32 *)((s8 *)(temp_a0) + (0))) = 0;
-    (*(s32 *)((s8 *)(temp_a0) + (8))) = arg0;
-    (*(s32 *)((s8 *)(temp_a0) + (0xC))) = arg1;
-    (*(s32 *)((s8 *)(temp_a0) + (0x10))) = arg2;
-    (*(s32 *)((s8 *)(temp_a0) + (0x14))) = arg3;
+    (((Obj1E31B40_func_8001A148_temp_a0 *)temp_a0)->unk0) = 0;
+    (((Obj1E31B40_func_8001A148_temp_a0 *)temp_a0)->unk8) = arg0;
+    (((Obj1E31B40_func_8001A148_temp_a0 *)temp_a0)->unkC) = arg1;
+    (((Obj1E31B40_func_8001A148_temp_a0 *)temp_a0)->unk10) = arg2;
+    (((Obj1E31B40_func_8001A148_temp_a0 *)temp_a0)->unk14) = arg3;
     func_80013D10(temp_a0);
-}
+}    typedef struct { s32 unk0; s32 unk4; s32 unk8; s32 unkC; } Obj1E31B40_func_8001A1E0_temp_a0; /* offsets.py genstruct: fields from raw offsets on temp_a0; rename once understood */
 
 void func_8001A1E0(Gfx *arg0, Gfx *arg1, s32 arg2) {
     extern u8 D_8007BCF8;
@@ -268,10 +268,10 @@ void func_8001A1E0(Gfx *arg0, Gfx *arg1, s32 arg2) {
     temp_a0 = (D_8007BED8 * 0x18) + &D_8007BCF8;
     D_8007BED8 = (s16) ((s32) (D_8007BED8 + 1) % 20);
     func_8001A11C();
-    (*(s32 *)((s8 *)(temp_a0) + (0))) = 1;
-    (*(s32 *)((s8 *)(temp_a0) + (4))) = arg2;
-    (*(s32 *)((s8 *)(temp_a0) + (8))) = arg0;
-    (*(s32 *)((s8 *)(temp_a0) + (0xC))) = arg1;
+    (((Obj1E31B40_func_8001A1E0_temp_a0 *)temp_a0)->unk0) = 1;
+    (((Obj1E31B40_func_8001A1E0_temp_a0 *)temp_a0)->unk4) = arg2;
+    (((Obj1E31B40_func_8001A1E0_temp_a0 *)temp_a0)->unk8) = arg0;
+    (((Obj1E31B40_func_8001A1E0_temp_a0 *)temp_a0)->unkC) = arg1;
     func_80013D10(temp_a0);
 }
 
@@ -360,7 +360,7 @@ void func_8001A440(s32 arg0) {
     func_8001A11C();
     *temp_a0 = 7;
     func_80013D10(temp_a0);
-}
+}                       typedef struct { s32 unk0; s32 unk4; s32 unk8; } Obj1E31B40_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8001A4B8(void *arg0) {
     extern s32 D_8007BCD0;
@@ -371,20 +371,20 @@ void func_8001A4B8(void *arg0) {
     extern s16 D_8007BEDA;
     D_8007BEDA = 1 - D_8007BEDA;
     if (D_8007BCE8 != 0) {
-        (*(s32 *)((s8 *)(arg0) + (0))) = (s32) (&D_8007BCE8)[D_8007BEDA];
+        (((Obj1E31B40_arg0 *)arg0)->unk0) = (s32) (&D_8007BCE8)[D_8007BEDA];
     } else {
-        (*(s32 *)((s8 *)(arg0) + (0))) = (&D_8007BCD0)[D_8007BEDA];
+        (((Obj1E31B40_arg0 *)arg0)->unk0) = (&D_8007BCD0)[D_8007BEDA];
     }
     if (D_8007BCF0 != 0) {
-        (*(s32 *)((s8 *)(arg0) + (4))) = (s32) (&D_8007BCF0)[D_8007BEDA];
+        (((Obj1E31B40_arg0 *)arg0)->unk4) = (s32) (&D_8007BCF0)[D_8007BEDA];
     } else {
-        (*(s32 *)((s8 *)(arg0) + (4))) = (&D_8007BCD8)[D_8007BEDA];
+        (((Obj1E31B40_arg0 *)arg0)->unk4) = (&D_8007BCD8)[D_8007BEDA];
     }
-    (*(s32 *)((s8 *)(arg0) + (8))) = (&D_8007BCE0)[D_8007BEDA];
+    (((Obj1E31B40_arg0 *)arg0)->unk8) = (&D_8007BCE0)[D_8007BEDA];
 }
 
 void func_8001A570(void) {
-}
+}    typedef struct { s32 unk0; s32 unk4; } Obj1E31B40_D_8007BCE8; /* offsets.py genstruct: fields from raw offsets on &D_8007BCE8; rename once understood */ typedef struct { s32 unk0; s32 unk4; } Obj1E31B40_D_8007BCF0; /* offsets.py genstruct: fields from raw offsets on &D_8007BCF0; rename once understood */
 
 void func_8001A578(s32 arg0) {
     s32 func_800D3948(void);
@@ -409,14 +409,14 @@ void func_8001A578(s32 arg0) {
         if (var_v0 != 0) {
             sp34 = heap_alloc(var_v0 * 8);
             sp30 = heap_alloc(var_v0 * 8);
-            (*(s32 *)((s8 *)(&D_8007BCE8) + (4))) = sp30;
-            (*(s32 *)((s8 *)(&D_8007BCE8) + (0))) = sp34;
+            (((Obj1E31B40_D_8007BCE8 *)&D_8007BCE8)->unk4) = sp30;
+            (((Obj1E31B40_D_8007BCE8 *)&D_8007BCE8)->unk0) = sp34;
         }
         if (var_v1 != 0) {
             sp2C = heap_alloc(var_v1 << 6);
             sp28 = heap_alloc(var_v1 << 6);
-            (*(s32 *)((s8 *)(&D_8007BCF0) + (4))) = sp28;
-            (*(s32 *)((s8 *)(&D_8007BCF0) + (0))) = sp2C;
+            (((Obj1E31B40_D_8007BCF0 *)&D_8007BCF0)->unk4) = sp28;
+            (((Obj1E31B40_D_8007BCF0 *)&D_8007BCF0)->unk0) = sp2C;
         }
     }
 }
@@ -441,4 +441,13 @@ s32 func_8001A63C(void) {
         D_8007BCF0 = 0;
     }
 }
+#endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s16 D_8007BED8 BT_DATA(4, bss_core1bss1_1, 0x218);
+s16 D_8007BEDA BT_DATA(4, bss_core1bss1_1, 0x21A);
+OSMesgQueue D_8007BEE0 BT_DATA(4, bss_core1bss1_1, 0x220);
+void * D_8007BEF8 BT_DATA(4, bss_core1bss1_1, 0x238);
 #endif

@@ -2,7 +2,7 @@
 
 OSThread *chhotwatersteam_entrypoint_0(void)
 {
-    extern u8 D_80800240_chhotwatersteam[];
+    extern ActorData D_80800240_chhotwatersteam[];
 
     return (OSThread *) D_80800240_chhotwatersteam;
 }
@@ -52,7 +52,7 @@ void func_808000D8_chhotwatersteam(Actor *arg0) {
         u32 index : 7;
         u32 pad70 : 25;
     };
-    s32 func_800CD08C(s32, u8 *);
+    void func_800CD08C(s32 arg0, f32 *arg1);
     f32 func_800DC178(f32, f32);
     void func_80101FDC(Actor *, u32);
     s32 func_8080014C_chhotwatersteam(Actor *, f32 *);
@@ -67,10 +67,10 @@ void func_808000D8_chhotwatersteam(Actor *arg0) {
 }
 
 s32 func_8080014C_chhotwatersteam(Actor *arg0, f32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
-    extern s32 D_80800288_chhotwatersteam;
+    extern s32 D_80800288_chhotwatersteam[14];
     f32 sp2C[3];
     f32 sp20[3];
 
@@ -79,7 +79,7 @@ s32 func_8080014C_chhotwatersteam(Actor *arg0, f32 *arg1) {
         sp2C[1] -= 400.0f;
         func_800EE7F8(sp20, arg1);
         sp20[1] -= 20.0f;
-        func_800BBCB8(sp20, sp2C, 1.0f, 1, &D_80800288_chhotwatersteam);
+        func_800BBCB8(sp20, sp2C, 1.0f, 1, D_80800288_chhotwatersteam);
         return 1;
     }
     return 0;
@@ -95,3 +95,9 @@ s32 func_808001E8_chhotwatersteam(void *arg0) {
         return 1;
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/hot/watersteam.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80800240_chhotwatersteam [1] BT_DATA(4, overlays_ch_hot_watersteam, 0x0) = { { 344, 1135, 0, 1, 0, (void (*)(struct Actor *))func_8080003C_chhotwatersteam, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 163840000, 0, 0, 0, 0, 5, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chhotwatersteam, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_808000C4_chhotwatersteam, 0 } };
+s32 D_80800288_chhotwatersteam[14] BT_DATA(4, overlays_ch_hot_watersteam, 0x48) = { 1903069, 1446400, 2949140, 2621467, 16384350, 1610743842, 10027264, 50332544, 1376256, 10027051, 16777600, 0, 0, 0 };

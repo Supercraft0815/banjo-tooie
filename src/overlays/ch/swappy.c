@@ -3,8 +3,8 @@
 /* extern */
 
 void func_80800000_chswappy(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
-    s32 func_800F8B88();
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
+    u8 func_800F8B88(void);
     void func_80102FDC(Actor *, f32);
     void func_80103110(Actor *, u32);
     void func_8010A570(Actor *);
@@ -26,7 +26,7 @@ void func_80800000_chswappy(Actor *arg0) {
 
 s32 func_808000B0_chswappy(void *arg0, s32 arg1) {
     void func_80101FDC(Actor *, u32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
 
     func_80101FDC(arg0, arg1);
     switch (arg1) {
@@ -35,7 +35,7 @@ s32 func_808000B0_chswappy(void *arg0, s32 arg1) {
     case 2:
     case 3:
         return;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80800108_chswappy(Actor *arg0) {
@@ -46,12 +46,12 @@ void func_80800108_chswappy(Actor *arg0) {
         u8 pad7E_0 : 6;
     };
     s32 _plsu_entrypoint_1(s32);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     s32 func_800EFFB4(f32 *, f32, f32 *);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6BE4(s32);
-    s32 func_800F7B9C(s32, s32);
-    s32 func_800F8B88(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6BE4(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
+    u8 func_800F8B88(void);
     void chswappy_entrypoint_0(Actor *, s32);
     s32 sp44;
     f32 sp38[3];
@@ -94,9 +94,9 @@ void func_80800234_chswappy(Actor *arg0, void *arg1) {
         u32 flags : 10;
         u32 pad24 : 22;
     };
-    Unk80132ED0 *func_800F55D0(s32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F7CF4(s32, s32, void *);
+    Unk80132ED0 *func_800F55D0(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F7CF4(BtIntPtr, s32, void *);
     s32 func_808000B0_chswappy(void *, s32);
     struct SwappyContact *contact = arg1;
     s32 temp_a0;
@@ -111,8 +111,8 @@ void func_80800234_chswappy(Actor *arg0, void *arg1) {
 }
 
 s32 func_80800300_chswappy(Actor *arg0, s32 arg1, void * volatile arg2) {
-    s32 _subaddiefade_entrypoint_2();
-    s32 _subaddiefade_entrypoint_5();
+    void _subaddiefade_entrypoint_2(void *arg0);
+    void _subaddiefade_entrypoint_5(void *arg0);
     void func_80103110(Actor *, u32);
     void func_8010A570(Actor *);
     void func_8010A590(Actor *);
@@ -158,7 +158,7 @@ void func_808003DC_chswappy(Actor *arg0, s32 arg1) {
     void func_800E3980(f32 *);
     s32 func_800E3E8C(f32 *, f32);
     f32 func_800EEB40(f32 *, f32 *);
-    s32 func_800F8B88();
+    u8 func_800F8B88(void);
     void func_8010A73C(Actor *, s32);
     s32 sp34;
     f32 sp28[3];
@@ -177,9 +177,9 @@ void func_808003DC_chswappy(Actor *arg0, s32 arg1) {
 }
 
 void chswappy_entrypoint_0(Actor *arg0, s32 arg1) {
-    s32 func_800B5BE4(s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     void func_800E3980(f32 *);
@@ -192,7 +192,7 @@ void chswappy_entrypoint_0(Actor *arg0, s32 arg1) {
     f32 spA4[3];
     f32 sp98[3];
     f32 sp8C[3];
-    s32 particles;
+    BtIntPtr particles;
     f32 sp7C[3];
     s32 i;
 
@@ -220,7 +220,14 @@ void chswappy_entrypoint_0(Actor *arg0, s32 arg1) {
 
 OSThread *chswappy_entrypoint_1(void)
 {
-    extern u8 D_808006D4_chswappy[];
+    extern ActorData D_808006D4_chswappy[];
 
     return (OSThread *) D_808006D4_chswappy;
 }
+/* data_to_c.py: from asm/data/overlays/ch/swappy.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+s32 D_80800690_chswappy [15] BT_DATA(4, overlays_ch_swappy, 0x0) = { 2818150, 8388652, 50, 0, 6553600, 2621240, -13107000, 13107234, 4980838, 2490419, 1376307, 11730966, 262195, 131354, 0 };
+u16 D_808006CC_chswappy [4] BT_DATA(4, overlays_ch_swappy, 0x3C) = { 0x9E4, 0x9E0, 0x9E2, 0 };
+ActorData D_808006D4_chswappy [1] BT_DATA(4, overlays_ch_swappy, 0x44) = { { 618, 344, 1787, 1, 0, (void (*)(struct Actor *))func_80800108_chswappy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808003DC_chswappy, 0, 0, 0, 0, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chswappy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 17408, (void (*)(struct Actor *, long, long))func_80800300_chswappy, 0 } };

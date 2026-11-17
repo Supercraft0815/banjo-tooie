@@ -2,16 +2,16 @@
 
 OSThread *chicywind_entrypoint_0(void)
 {
-    extern u8 D_80800300_chicywind[];
+    extern ActorData D_80800300_chicywind[];
 
     return (OSThread *) D_80800300_chicywind;
 }
 
 /* extern */
 
-void func_8080000C_chicywind(s32 arg0) {
+void func_8080000C_chicywind(BtIntPtr arg0) {
     s32 func_800D0B68(s32, s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *actor);
     if (func_800D0B68(0x21, 0) != 0) {
         func_800FFAB0(arg0);
     }
@@ -19,9 +19,9 @@ void func_8080000C_chicywind(s32 arg0) {
 
 void func_80800044_chicywind(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800D0B68(s32, s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *actor);
     s32 func_800D9078(f32 *);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
@@ -69,18 +69,18 @@ void func_808001AC_chicywind(f32 *arg0) {
     void func_800EEB9C(f32 *, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    void func_800F48BC(s32, f32 *);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F5578(s32);
-    s32 func_800F55A4(s32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F48BC(BtIntPtr, f32 *);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5578(BtIntPtr);
+    s32 func_800F55A4(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
     f32 sp4C[3];
     f32 sp40[3];
     f32 pad;
     f32 sp38;
     f32 scale;
-    s32 sp30;
+    BtIntPtr sp30;
 
     sp30 = func_800F54E4();
     switch (func_800F5410(sp30)) {
@@ -100,3 +100,10 @@ void func_808001AC_chicywind(f32 *arg0) {
     func_800EEB9C(sp4C, func_800F1DF4(arg0 + 1, sp40), sp38);
     func_800F48BC(sp30, sp4C);
 }
+/* data_to_c.py: from asm/data/overlays/ch/icywind.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80800300_chicywind [1] BT_DATA(4, overlays_ch_icywind, 0x0) = { { 830, 943, 0, 1, 0, (void (*)(struct Actor *))func_80800044_chicywind, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 131072000, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chicywind, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, 0, 0 } };
+u32 D_80800348_chicywind [4] BT_DATA(4, overlays_ch_icywind, 0x48) = { 0x1304A3, 0xE0166, 0x1CC0033, 0x180000 };
+s32 D_80800358_chicywind [14] BT_DATA(4, overlays_ch_icywind, 0x58) = { 1903069, 2950720, 117964814, 983060, 2228531, 23462912, 83886101, 153, 2818304, 25165863, -13041864, 13107400, 3276800, 0 };

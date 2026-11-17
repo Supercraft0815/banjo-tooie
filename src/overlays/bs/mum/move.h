@@ -27,8 +27,8 @@ void func_8008CA30(PlayerState *self, f32 scale);
 extern void func_8009D2F0(PlayerState *self, s32, f32);
 int func_8008E148(PlayerState *self);
 
-extern s32 D_808005B0_bsmummove[];
-extern s32 D_808005C0_bsmummove[];
+extern BtIntPtr D_808005B0_bsmummove[];
+extern BtIntPtr D_808005C0_bsmummove[];
 
 f32 _bsmummove_entrypoint_0(PlayerState *self);
 f32 _bsmummove_entrypoint_1(PlayerState *self);

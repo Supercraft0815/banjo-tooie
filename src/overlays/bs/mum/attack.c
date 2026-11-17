@@ -176,6 +176,9 @@ void func_808003DC_bsmumattack(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmumattack_entrypoint_0(s32 idx) {
+BtIntPtr bsmumattack_entrypoint_0(s32 idx) {
     return D_80800700_bsmumattack[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/mum/attack.data.s */
+s32 D_808006F0_bsmumattack [4] BT_DATA(4, overlays_bs_mum_attack, 0x0) = { 50724883, 84672534, 1966080017, 0 };
+BtIntPtr D_80800700_bsmumattack [4] BT_DATA(4, overlays_bs_mum_attack, 0x10) = { (BtIntPtr)func_808002E8_bsmumattack, (BtIntPtr)func_80800344_bsmumattack, (BtIntPtr)func_808003DC_bsmumattack, (BtIntPtr)_bsmum_entrypoint_0 };

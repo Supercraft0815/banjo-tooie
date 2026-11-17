@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_map_props.h"
 #include "native_actor.h"
 
@@ -36,9 +36,9 @@ void gspropsDll_entrypoint_1(Prop **props, s32 count) {
 }
 
 void gspropsDll_entrypoint_2(NativeWorldCell *cell, s32 pass) {
-    void func_800CBA68(s32, Prop *, s32, s32, s32, s32, s32);
-    void func_800CBAC8(s32, Prop *, s32, s32, s32);
-    void func_800CBB18(s32, Prop *, s32, s32, s32, s32);
+    void func_800CBA68(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
+    void func_800CBAC8(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4);
+    void func_800CBB18(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
     Prop *prop = cell ? func_800E9D68(cell) : NULL;
     Prop *end = cell ? func_800E9D90(cell) : NULL;
     for (; prop && prop < end; ++prop) {
@@ -276,12 +276,12 @@ s32 func_80800524_gspropsDll(s32 arg0) {
             i++;
         } while (i != count);
     }
-    *func_800BE5C4((u8 *)arg0) = movable;
+    BT_IDO_ONLY(*func_800BE5C4((u8 *)arg0) = movable;) BT_NATIVE_ONLY({ u8 *result = func_800BE5C4((u8 *)arg0); *result = movable; return (s32)result; })
 }
 
 /* extern */
 
-void gspropsDll_entrypoint_3(s16 *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gspropsDll_entrypoint_3(s16 *arg0) {
     void aligned4_memcpy(void *, void *, int);
     s32 func_800BDBC4(s32);
     void *func_800E9A24(s32);
@@ -303,7 +303,7 @@ void gspropsDll_entrypoint_3(s16 *arg0) {
     if (!((*(s32 *)((s8 *)(sp1C) + (4))) & 1)) {
         sp1C->enabled = 1;
     }
-    func_80800524_gspropsDll(sp2C);
+    BT_NATIVE_ONLY(return) func_80800524_gspropsDll(sp2C);
 }
 
 /* extern */

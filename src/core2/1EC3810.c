@@ -1,43 +1,43 @@
 #include "core2/1EC3810.h"
 #ifdef BT_NATIVE
-// Prototypes for 1EC3810_collision_native.inc, before the calls below declare them implicitly.
-#include "native_world_collision.h"
-#include "native_collision_geometry.h"
-#include "native_actor_model.h"
-#include "core2/1EAF950.h"
+#include "vector.h" // prototypes for 1EC3810_collision_native.inc follow (LP64 only)
+#include BT_LP64_HEADER("native_world_collision.h")
+#include BT_LP64_HEADER("native_collision_geometry.h")
+#include BT_LP64_HEADER("native_actor_model.h")
+#include BT_LP64_HEADER("core2/1EAF950.h")
 #endif
 
 extern u16 D_80132DC2;
 extern s32 D_80132DC0;
 
 void func_800E9F20(s32 arg0, s32 arg1) {
-    s32 _sufade_entrypoint_1(s32);
-    s32 func_800A7180();
-    s32 func_800A8EF0(s32, s32);
-    s32 func_800B525C(s32);
-    s32 func_800B52EC(s32);
-    s32 func_800B7BB0();
-    s32 func_800BC8F8(s32);
-    s32 func_800BC948(s32);
-#ifndef BT_NATIVE
+    void _sufade_entrypoint_1(BtIntPtr arg0);
+    Gfx **func_800A7180(void);
+    void func_800A8EF0(BtIntPtr arg0, s32 arg1);
+    void func_800B525C(BtIntPtr arg0);
+    void func_800B52EC(BtIntPtr arg0);
+    void func_800B7BB0(void);
+    int func_800BC8F8(void *frame);
+    int func_800BC948(void *frame);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800BD594(s32);
 #endif
-    s32 func_800BE9B0();
-    s32 func_800BE9E4(s32);
-    s32 func_800BEA24(s32);
+    void func_800BE9B0(void);
+    void func_800BE9E4(BtIntPtr mode);
+    void func_800BEA24(BtIntPtr mode);
     s32 func_800BF3E4();
-    s32 func_800BFD6C(s32, s32);
-    s32 func_800D2A44(s32);
-    s32 func_800E44FC(s32);
-#ifndef BT_NATIVE
+    void func_800BFD6C(BtIntPtr arg0, s32 arg1);
+    void func_800D2A44(Gfx **output);
+    int func_800E44FC(void *frame);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800EB51C(s32, s32);
 #endif
-    s32 func_800F5008(s32);
-    s32 func_800F50D0(s32);
-    s32 func_800F51CC();
+    void func_800F5008(BtIntPtr arg0);
+    void func_800F50D0(BtIntPtr arg0);
+    void func_800F51CC(void);
     extern s32 D_80127EF4;
     extern s16 D_80132DCC;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800A7180();
     if (D_80132DCC == 0) {
@@ -79,7 +79,7 @@ MapId func_800EA05C(void)
 }
 
 s32 func_800EA068(s32 arg0) {
-    s32 _gcsectionDll_entrypoint_3(s32, s32);
+    s32 _gcsectionDll_entrypoint_3(BtIntPtr, s32);
     extern s32 D_80132DC4;
     return _gcsectionDll_entrypoint_3(D_80132DC4, arg0);
 }
@@ -88,13 +88,13 @@ s32 func_800EA090(void) {
     extern s16 D_80132DC8;
 
     return D_80132DC8;
-}
+}    typedef struct { s16 unk0; } Obj1EC3810_D_80132DC0; /* offsets.py genstruct: fields from raw offsets on &D_80132DC0; rename once understood */
 
 s32 func_800EA09C(void) {
-    return *(s16 *)((u8 *)&D_80132DC0 + 0);
+    return *&((Obj1EC3810_D_80132DC0 *)&D_80132DC0)->unk0;
 }
 
-void func_800EA0A8()
+void func_800EA0A8(BT_PASS2(s32 bt_a0, s32 bt_a1))
 {
     _gsworldDll_entrypoint_1(&D_80132DC0);
 }
@@ -103,10 +103,10 @@ void func_800EA0A8()
 
 void func_800EA0CC(s32 arg0, s32 arg1, s32 arg2) {
     s32 _cothemedll_entrypoint_0();
-    s32 _gsworldDll_entrypoint_2(s32 *, s32, s32, s32);
+    void _gsworldDll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3);
     s32 func_800BF8BC(s32);
-    s32 func_800C0064(s32);
-    s32 func_800DBB5C();
+    void func_800C0064(s32 arg0);
+    void func_800DBB5C(void);
     _cothemedll_entrypoint_0();
     func_800DBB5C();
     func_800BF8BC(arg0);
@@ -122,13 +122,13 @@ void func_800EA124()
 /* extern */
 
 void func_800EA148(s32 arg0) {
-    s32 _gsworldDll_entrypoint_3(s32 *, s32);
+    void _gsworldDll_entrypoint_3(s16 *arg0, s32 arg1);
     _gsworldDll_entrypoint_3(&D_80132DC0, arg0);
 }
 
 s32 func_800EA170(void) {
-    s32 _idworld_entrypoint_5();
-    s32 _sulights_entrypoint_9();
+    void _idworld_entrypoint_5(void);
+    void _sulights_entrypoint_9(void);
     void func_8001B50C(void);
     void func_8008B850(void);
     void func_800A1450(void);
@@ -152,29 +152,29 @@ s32 func_800EA170(void) {
     void func_800D154C(void);
     void func_800D2574(void);
     void func_800D5270(void);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800D6E54(s32);
 #endif
     void func_800D8744(void);
-    s32 func_800DAE9C();
-    s32 func_800DBC68();
-    s32 func_800E1804();
+    void func_800DAE9C(void);
+    void func_800DBC68(void);
+    void func_800E1804(void);
     void func_800E8A68(void);
     void func_800E97C0(void);
-    s32 func_800EE718();
-    s32 func_800EE748();
-    s32 func_800F84FC();
-    s32 func_800FA2C0();
-    s32 func_800FFBE4();
-    s32 func_800FFBEC();
-    s32 func_800FFD10(s32);
-#ifndef BT_NATIVE
+    void func_800EE718(void);
+    void func_800EE748(void);
+    void func_800F84FC(void);
+    void func_800FA2C0(void);
+    void func_800FFBE4(void);
+    void func_800FFBEC(void);
+    void func_800FFD10(s32 mode);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_80100534();
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_80100C74();
 #endif
-    s32 func_8010D7EC();
+    void func_8010D7EC(void);
     extern struct Vector *D_80127EF0;
     extern s32 D_80127EF8;
     extern s16 D_80132DCA;
@@ -232,38 +232,38 @@ s32 func_800EA170(void) {
         func_800D154C();
     }
     return 1;
-}
+}    typedef struct { s16 unk0; } Obj1EC3810_D_80132DCA; /* offsets.py genstruct: fields from raw offsets on &D_80132DCA; rename once understood */
 
 void func_800EA334(s32 arg0) {
     extern s16 D_80132DCA;
-    *(s16 *)((u8 *)&D_80132DCA + 0) = arg0;
+    ((Obj1EC3810_D_80132DCA *)&D_80132DCA)->unk0 = arg0;
 }
 
 s32 func_800EA340(void) {
     extern s16 D_80132DCA;
 
     return D_80132DCA;
-}
+}    typedef struct { s16 unk0; } Obj1EC3810_D_80132DCC; /* offsets.py genstruct: fields from raw offsets on &D_80132DCC; rename once understood */
 
 void func_800EA34C(s32 arg0) {
     extern s16 D_80132DCC;
-    *(s16 *)((u8 *)&D_80132DCC + 0) = arg0;
+    ((Obj1EC3810_D_80132DCC *)&D_80132DCC)->unk0 = arg0;
 }
 
 s32 func_800EA358(void) {
     extern s16 D_80132DCC;
 
     return D_80132DCC;
-}
+}    typedef struct { u16 unk0; } Obj1EC3810_D_80132DCE; /* offsets.py genstruct: fields from raw offsets on &D_80132DCE; rename once understood */
 
 u32 func_800EA364(void) {
     extern u16 D_80132DCE;
-    return *(u16 *)((u8 *)&D_80132DCE + 0);
+    return *&((Obj1EC3810_D_80132DCE *)&D_80132DCE)->unk0;
 }
 
-void func_800EA370()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) func_800EA370()
 {
-    func_800EA3A0();
+    BT_NATIVE_ONLY(return) func_800EA3A0();
 }
 
 #include "1EC3810_prop_hooks.inc"
@@ -273,7 +273,7 @@ int func_800EA3A0(void) {
     extern f32 D_80132DD8;
     extern f32 D_80132E78;
     void func_800EFD24(f32 *);
-    f32 *var_s1;
+    BT_NATIVE_ONLY(s32 result = 0;) f32 *var_s1;
     s32 *var_s0;
     f32 *end;
 
@@ -284,10 +284,10 @@ int func_800EA3A0(void) {
         var_s0 += 5;
         var_s0[0] = 0;
         var_s0[1] = 0;
-    } while (var_s1 != end);
+    } while (var_s1 != end); BT_NATIVE_ONLY(return result;)
 }
 
-void func_800EA400(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
+void func_800EA400(s32 arg0, u8 *arg1, BtIntPtr arg2, s32 arg3) {
     extern s32 D_80132DD0;
     func_800EE7F8((f32 *)((u8 *)&D_80132DD0 + arg0 * 0x14 + 8), (f32 *)arg2);
     *(u8 **)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x14) = arg1;
@@ -296,8 +296,8 @@ void func_800EA400(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
 
 void func_800EA45C(void) {
     void func_800D8B80(s16, s32, f32 *, f32 *, f32, s32, u16 *, u8 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-#ifndef BT_NATIVE
+    void func_800F5A00(BtIntPtr, f32 *);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u8 *func_80103C94(Actor *);
 #endif
     Actor *func_80106790(Unk80132ED0 *);
@@ -314,13 +314,13 @@ void func_800EA45C(void) {
             func_800D8B80(((s16 *)&temp_s0->pad80)[0], var_s1, temp_s0->position, temp_s0->rotation, temp_s0->scale, 0, ((struct Entry *)&D_80132DD0)[var_s1 + 1].indices, func_80103C94(temp_s0), ((struct Entry *)&D_80132DD0)[var_s1].position);
         }
     }
-}
+}    typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1EC3810_func_800EA51C_var_s2; /* offsets.py genstruct: fields from raw offsets on var_s2; rename once understood */
 
 void func_800EA51C(void) {
-    s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, s32, f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F8418(s32, f32 *);
-#ifndef BT_NATIVE
+    s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, BtIntPtr, f32 *, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F8418(BtIntPtr, f32 *);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u8 *func_80103C94(Actor *);
 #endif
     Actor *func_80106790(Unk80132ED0 *);
@@ -342,7 +342,7 @@ void func_800EA51C(void) {
                 sp60[1] -= 10.0f;
                 func_800F8418(var_s1, sp60);
             }
-            (*(s32 *)((s8 *)(var_s2) + (0x14))) = 0;
+            (((Obj1EC3810_func_800EA51C_var_s2 *)var_s2)->unk14) = 0;
         }
         var_s1 += 1;
         var_s2 += 5;
@@ -355,9 +355,9 @@ void func_800EA51C(void) {
 
 s32 func_800EB15C(void *arg0) {
     s32 func_800D3948(void);
-    u32 func_800F54E4(void);
-    s32 func_800F6774(u32);
-#ifndef BT_NATIVE
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6774(BtUIntPtr);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_80102F74(Unk80132ED0 *, s32);
 #endif
     Actor *func_80106790(Unk80132ED0 *);
@@ -406,11 +406,11 @@ void func_800EB210(void *arg0, void *arg1, s32 arg2) {
                 break;
         }
     }
-}
+}    typedef struct { u8 pad0[0xC]; s32 (*unkC)(void *, s32, s32); } Obj1EC3810_func_800EB2DC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-void func_800EB2DC(void *arg0, s32 arg1, s32 arg2) {
+void func_800EB2DC(void *arg0, BtIntPtr arg1, s32 arg2) {
     struct Flags { u32 pad[10]; unsigned int :22; unsigned int enabled:1; unsigned int :9; };
     s32 func_800EB15C(void *);
     void *func_800EC3C4(void *);
@@ -418,8 +418,8 @@ void func_800EB2DC(void *arg0, s32 arg1, s32 arg2) {
 
     if ((func_800EB15C(arg0) != 0) && ((struct Flags *)arg0)->enabled) {
         temp_v0 = func_800EC3C4(arg0);
-        if ((arg0 != NULL) && ((*(s32 (**)(void *, s32, s32))((s8 *)(temp_v0) + (0xC))) != NULL)) {
-            (*(s32 (**)(void *, s32, s32))((s8 *)(temp_v0) + (0xC)))(arg0, arg1, arg2);
+        if ((arg0 != NULL) && ((((Obj1EC3810_func_800EB2DC_temp_v0 *)temp_v0)->unkC) != NULL)) {
+            (((Obj1EC3810_func_800EB2DC_temp_v0 *)temp_v0)->unkC)(arg0, arg1, arg2);
         }
     }
 }
@@ -432,3 +432,21 @@ s32 func_800EB350(Actor *arg0, f32 *arg1, f32 *arg2) {
     func_80103328(arg0);
     return func_800AAEF4(arg0->position, (f32)(u16)arg0->pad68 * arg0->scale * D_80125E5C, arg1, arg2) == 0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+struct Vector * D_80127EF0 BT_DATA(4, bss_core2bss1_0_2, 0x750);
+s32 D_80127EF4 BT_DATA(4, bss_core2bss1_0_2, 0x754);
+s32 D_80127EF8 BT_DATA(4, bss_core2bss1_0_2, 0x758);
+s32 D_80132DC0 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x860);
+u16 D_80132DC2 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x862);
+s32 D_80132DC4 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x864);
+s16 D_80132DC8 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x868);
+s16 D_80132DCA BT_DATA(4, bss_core2bss2_1_reset_tail, 0x86A);
+s16 D_80132DCC BT_DATA(4, bss_core2bss2_1_reset_tail, 0x86C);
+u16 D_80132DCE BT_DATA(4, bss_core2bss2_1_reset_tail, 0x86E);
+s32 D_80132DD0 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x870);
+f32 D_80132DD8 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x878);
+f32 D_80132E78 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x918);
+#endif

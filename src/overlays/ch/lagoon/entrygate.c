@@ -3,7 +3,7 @@
 /* extern */
 
 void func_80800000_chlagoonentrygate(Actor *arg0) {
-    void _chdoormake_entrypoint_0(void *, f32, u32, s32);
+    s32 _chdoormake_entrypoint_0(Actor *arg0, f32 arg1, u32 arg2, s32 arg3);
     void _chdoormake_entrypoint_5(Actor *, f32);
     s32 _glcutDll_entrypoint_19(u32);
     s32 _sujiggy_entrypoint_20(u32);
@@ -26,7 +26,7 @@ void func_80800000_chlagoonentrygate(Actor *arg0) {
 }
 
 void func_8080008C_chlagoonentrygate(Actor *arg0) {
-    s32 _chdoor_entrypoint_0();
+    void _chdoor_entrypoint_0(BtIntPtr arg0);
     void func_800C3F48(u32);
     s32 func_800D90A4(f32 *);
     if (arg0->unk70_10 == 3) {
@@ -44,7 +44,13 @@ void func_8080008C_chlagoonentrygate(Actor *arg0) {
 
 OSThread *chlagoonentrygate_entrypoint_0(void)
 {
-    extern u8 D_80800150_chlagoonentrygate[];
+    extern ActorData D_80800150_chlagoonentrygate[];
 
     return (OSThread *) D_80800150_chlagoonentrygate;
 }
+/* data_to_c.py: from asm/data/overlays/ch/lagoon/entrygate.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+ActorData D_80800150_chlagoonentrygate [1] BT_DATA(4, overlays_ch_lagoon_entrygate, 0x0) = { { 172, 914, 2414, 1, 0, (void (*)(struct Actor *))func_8080008C_chlagoonentrygate, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chlagoonentrygate, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

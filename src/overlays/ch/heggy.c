@@ -1,13 +1,13 @@
 #include "ch/heggy.h"
 
-extern s32 D_80801E08_chheggy;
-extern s32 D_80801E38_chheggy;
-extern s32 D_80801E60_chheggy;
-extern u32 D_80801E8C_chheggy;
-extern s32 D_80801E9C_chheggy;
+extern s32 D_80801E08_chheggy[12];
+extern s32 D_80801E38_chheggy[10];
+extern s32 D_80801E60_chheggy[11];
+extern u32 D_80801E8C_chheggy[4];
+extern BtIntPtr D_80801E9C_chheggy[18];
 extern s32 D_80801EE4_chheggy[14];
 extern s32 D_80801F1C_chheggy[15];
-extern s32 D_80801F58_chheggy;
+extern BtIntPtr D_80801F58_chheggy[18];
 
 extern void* func_8010D5DC;
 
@@ -43,7 +43,7 @@ s32 func_808000C0_chheggy(Actor* arg0)
     f32 sp24;
 
     sp24 = arg0->rotation[1];
-    func_80105A9C(arg0, func_800F3780(func_80101F24(arg0), &D_80801E08_chheggy, 6) * 500.0f);
+    func_80105A9C(arg0, func_800F3780(func_80101F24(arg0), D_80801E08_chheggy, 6) * 500.0f);
     func_80105834(arg0);
     arg0->unk54 = arg0->rotation[1];
     arg0->rotation[1] = sp24;
@@ -58,8 +58,8 @@ void func_8080015C_chheggy(Actor* arg0)
     s32 sp64;
     s32 sp60;
     s32 sp5C;
-    s32 sp58;
-    s32 sp54;
+    BtIntPtr sp58;
+    BtIntPtr sp54;
     f32 sp48[3];
     f32 sp3C[3];
 
@@ -115,9 +115,9 @@ void func_8080015C_chheggy(Actor* arg0)
         func_800EF334(sp3C, -0.5f);
         func_800BA450(sp58, (s16)sp48[0], -0xC8, (s16)sp48[2], sp3C[0], -0x190, sp3C[2]);
         func_800BA450(sp54, (s16)sp48[0], -0xC8, (s16)sp48[2], sp3C[0], -0x190, sp3C[2]);
-        func_800BABB8(sp58, sp6C, NULL, 1.0f, &D_80801E38_chheggy);
+        func_800BABB8(sp58, sp6C, NULL, 1.0f, D_80801E38_chheggy);
         func_800BA22C(sp58, 2);
-        func_800BABB8(sp54, sp6C, NULL, 1.0f, &D_80801E60_chheggy);
+        func_800BABB8(sp54, sp6C, NULL, 1.0f, D_80801E60_chheggy);
         func_800BA22C(sp54, 3);
         func_800C4140(0xA62FA404, arg0->position, 0x0FA00064);
     }
@@ -396,7 +396,7 @@ void func_80800ECC_chheggy(Actor* arg0, s32 arg1)
     Unk80100094* sp34;
     Unk80132ED0** temp_v0;
 
-    s32 sp2C;
+    BtIntPtr sp2C;
     s32 var_a2;
     s32 var_a2_2;
     s32 var_a2_3;
@@ -674,7 +674,7 @@ s32 func_80801570_chheggy(Actor* arg0, s32 arg1, s32 arg2)
         return 1;
     case 0x52:
         _gcdialogcamera_entrypoint_4(arg0->position);
-        _gcdialogcamera_entrypoint_3(&D_80801E8C_chheggy, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80801E8C_chheggy, arg0->scale);
         return 3;
     case 0x57:
         temp_a0 = arg2 & 0xFFFF;
@@ -692,7 +692,7 @@ s32 func_80801570_chheggy(Actor* arg0, s32 arg1, s32 arg2)
 
 s32* chheggy_entrypoint_0(void) 
 {
-    return &D_80801E9C_chheggy;
+    return D_80801E9C_chheggy;
 }
 
 void func_808019CC_chheggy(Actor* arg0)
@@ -744,5 +744,20 @@ s32 func_80801A00_chheggy(Actor* arg0, s32 arg1, s32 arg2)
 
 s32* chheggy_entrypoint_1(void) 
 {
-    return &D_80801F58_chheggy;
+    return D_80801F58_chheggy;
 }
+/* data_to_c.py: from asm/data/overlays/ch/heggy.data.s */
+extern u8 D_80801D60_chheggy[];
+OSThread *func_80108ED0(void);
+#ifndef BT_NATIVE
+void func_80107C2C();
+#endif
+u8 D_80801D60_chheggy[168] BT_DATA(4, overlays_ch_heggy, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x3F, 0x40, 0x00, 0x00, 0x04, 0xA7, 0x00, 0x09, 0x40, 0xB0, 0x00, 0x00, 0x04, 0xA6, 0x00, 0x0A, 0x40, 0xB0, 0x00, 0x00, 0x04, 0xA6, 0x00, 0x0A, 0x40, 0xB0, 0x00, 0x00, 0x04, 0xA6, 0x00, 0x0A, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x3F, 0x40, 0x00, 0x00, 0x04, 0xA7, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09, 0x40, 0x80, 0x00, 0x00, 0x04, 0xA5, 0x00, 0x09 };
+s32 D_80801E08_chheggy[12] BT_DATA(4, overlays_ch_heggy, 0xA8) = { 0, 1045220557, 1045220557, 1056964608, 1055286886, 1065353216, 1056964608, 1045220557, 1060320051, 1056964608, 1064514355, 1065353216 };
+s32 D_80801E38_chheggy[10] BT_DATA(4, overlays_ch_heggy, 0xD8) = { 1903049, 2818304, 25165858, 8388864, 25166208, 1376307, 3342361, 7, 2133112, 680263680 };
+s32 D_80801E60_chheggy[11] BT_DATA(4, overlays_ch_heggy, 0x100) = { 1902754, 1446916, 2818432, 33554466, 33554816, 16777472, 1376281, 15073319, 6553700, 13107400, 0 };
+u32 D_80801E8C_chheggy[4] BT_DATA(4, overlays_ch_heggy, 0x12C) = { 0x437A0000, 0x42F00000, 0x42F00000, 0x42C80000 };
+BtIntPtr D_80801E9C_chheggy[18] BT_DATA(4, overlays_ch_heggy, 0x13C) = { 22545684, 152305665, (BtIntPtr)D_80801D60_chheggy, (BtIntPtr)func_808009DC_chheggy, (BtIntPtr)func_808009DC_chheggy, (BtIntPtr)func_80101870, 0, 1073741824, 0, 8651008, 0, (BtIntPtr)func_80108ED0, 8126464, (BtIntPtr)func_808008C4_chheggy, (BtIntPtr)func_80107C2C, -2147482606, (BtIntPtr)func_80801570_chheggy, 0 };
+s32 D_80801EE4_chheggy [ 14 ] BT_DATA(4, overlays_ch_heggy, 0x184) = { 1902097, 1310742, 268828717, 39322400, 2818304, 33554459, -65471264, 2228992, 67109120, 16777223, 196621, 6553649, -3211289, 0 };
+s32 D_80801F1C_chheggy [ 15 ] BT_DATA(4, overlays_ch_heggy, 0x1BC) = { 1903069, 2819072, 83886102, 268435490, 25166336, 75499008, 1376256, 2490393, 7, 2949170, 6553632, -559451712, 852068, 3276750, -1638400 };
+BtIntPtr D_80801F58_chheggy[18] BT_DATA(4, overlays_ch_heggy, 0x1F8) = { 17958186, 161021953, 0, (BtIntPtr)func_808019CC_chheggy, (BtIntPtr)func_80105834, (BtIntPtr)func_801018A4, 0, 0, 92340224, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, -2146956288, (BtIntPtr)func_80801A00_chheggy, 0 };

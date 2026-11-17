@@ -8,17 +8,17 @@ OSThread *suegg_entrypoint_0(void)
     extern u8 D_80800E40_suegg[];
 
     return (OSThread *) D_80800E40_suegg;
-}
+}    typedef struct { f32 unk0; f32 unk4; s32 unk8; } Objegg_func_8080000C_suegg_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_8080000C_suegg(Actor *arg0) {
     s32 func_800AF5A0(s16 *);
-    s32 func_800EC3E8(u8 *);
+    BtIntPtr func_800EC3E8(u8 *);
     void *sp1C;
 
     sp1C = func_80100094(arg0, 0);
-    *(f32 *)((s8 *)sp1C + 4) = 0.0f;
-    *(s32 *)((s8 *)sp1C + 8) = func_800AF5A0((s16 *)func_800EC3E8((u8 *)arg0->unk0));
-    *(f32 *)((s8 *)sp1C + 0) = 1.0f;
+    ((Objegg_func_8080000C_suegg_sp1C *)sp1C)->unk4 = 0.0f;
+    ((Objegg_func_8080000C_suegg_sp1C *)sp1C)->unk8 = func_800AF5A0((s16 *)func_800EC3E8((u8 *)arg0->unk0));
+    ((Objegg_func_8080000C_suegg_sp1C *)sp1C)->unk0 = 1.0f;
 }
 
 /* extern */
@@ -54,7 +54,7 @@ void suegg_entrypoint_2(Actor *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
     void func_800C8B84(volatile s32);
     void func_800C8CB8(s32, f32 *);
-    void suegg_entrypoint_15(s32);
+    void suegg_entrypoint_15(BtIntPtr);
     struct {
         u32 pad[14];
         u32 unk38_0 : 10;
@@ -73,7 +73,7 @@ void suegg_entrypoint_2(Actor *arg0) {
         }
         data->unk3C = 0;
     }
-    suegg_entrypoint_15((s32)arg0);
+    suegg_entrypoint_15((BtIntPtr)arg0);
 }
 
 void suegg_entrypoint_4(Actor *, s32);
@@ -84,7 +84,7 @@ void suegg_entrypoint_3(Actor *arg0)
 }
 
 void suegg_entrypoint_4(Actor *arg0, s32 arg1) {
-    s32 _fxegg_entrypoint_0(u32, f32 *, f32);
+    void _fxegg_entrypoint_0(s32 arg0, f32 arg1[3], f32 arg2);
     s32 _gcegg_entrypoint_1(u32);
     void func_800FFAB0(Actor *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
@@ -123,7 +123,7 @@ void suegg_entrypoint_5(Actor *arg0) {
         temp_v0 = arg0->unk0;
         (*(u8 *)((s8 *)(temp_v0) + (0x2A))) = (u8) (((*(u8 *)((s8 *)(temp_v0) + (0x2A))) & ~4) | 4);
     }
-}
+}    typedef struct { u8 pad0[0x3A]; s16 unk3A; } Objegg_suegg_entrypoint_6_sp18; /* offsets.py genstruct: fields from raw offsets on sp18; rename once understood */
 
 s16 suegg_entrypoint_6(Unk80132ED0 *arg0, f32 *arg1, s32 *arg2) {
     s32 _gcegg_entrypoint_0(u32);
@@ -136,14 +136,14 @@ s16 suegg_entrypoint_6(Unk80132ED0 *arg0, f32 *arg1, s32 *arg2) {
     sp18 = func_80100094(sp1C, 0);
     func_800EFB24(arg1, sp1C->position, sp1C->actorData);
     *arg2 = _gcegg_entrypoint_0(arg0->unk24 >> 22);
-    return *(s16 *)((u8 *)sp18 + 0x3A);
+    return *&((Objegg_suegg_entrypoint_6_sp18 *)sp18)->unk3A;
 }
 
 /* extern */
 
-s16 suegg_entrypoint_7(void) {
-    Actor *func_80106790();
-    return (*(s16 *)((s8 *)(func_80100094(func_80106790(), 0)) + (0x3A)));
+s16 suegg_entrypoint_7(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(Unk80132ED0 *bt_a0))) {
+    Actor *func_80106790(BT_NATIVE_ONLY(Unk80132ED0 *));
+    return (*(s16 *)((s8 *)(func_80100094(func_80106790(BT_NATIVE_ONLY(bt_a0)), 0)) + (0x3A)));
 }
 
 s32 func_80800390_suegg(Actor *arg0) {
@@ -153,12 +153,12 @@ s32 func_80800390_suegg(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_800F0734(f32 *, f32 *, f32 *, f32, f32, f32 *, f32 *);
-    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
     void func_800F551C(s32, f32 *, f32 *, f32 *);
     s32 func_800F5898(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
-    void suegg_entrypoint_18(s32, s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
+    void suegg_entrypoint_18(BtIntPtr, BtIntPtr);
     struct EggData {
         u8 pad[0x3A];
         s16 player;
@@ -179,7 +179,7 @@ s32 func_80800390_suegg(Actor *arg0) {
     data = func_80100094(arg0, 0);
     best = -1;
     if (func_800EA068(0x4000)) {
-        suegg_entrypoint_18((s32)arg0, (s32)origin);
+        suegg_entrypoint_18((BtIntPtr)arg0, (BtIntPtr)origin);
         func_800EE7F8(position, arg0->position);
         bestDistance = 0.0f;
         firstPerson = func_800EA068(8);
@@ -204,9 +204,9 @@ s32 func_80800390_suegg(Actor *arg0) {
     return best;
 }
 
-void suegg_entrypoint_8(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) suegg_entrypoint_8(s32 arg0)
 {
-    suegg_entrypoint_9(arg0,1);
+    BT_NATIVE_ONLY(return) suegg_entrypoint_9(arg0,1);
 }
 
 int suegg_entrypoint_9(Actor *arg0, s32 arg1) {
@@ -215,17 +215,17 @@ int suegg_entrypoint_9(Actor *arg0, s32 arg1) {
         u8 active : 1;
         u8 rest : 7;
     };
-    void _glhittableDll_entrypoint_1(Unk80132ED0 *, void *);
-    void func_800CB840(s32, s32);
+    s32 _glhittableDll_entrypoint_1(BtIntPtr arg0, BtIntPtr arg1);
+    void func_800CB840(s32, BtIntPtr);
     void func_800CB870(void);
     u8 *func_800CD820(u8 *, f32 *, f32 *, f32);
     f32 func_800EEB40(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    void func_800F7BC8(s32, s32, Unk80132ED0 *);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F7BC8(BtIntPtr, s32, Unk80132ED0 *);
     Actor *func_80106790(Unk80132ED0 *);
     void func_8010A570(Actor *);
     void func_8010A590(Actor *);
-    void suegg_entrypoint_18(s32, s32);
+    void suegg_entrypoint_18(BtIntPtr, BtIntPtr);
     struct Flags *sp4C;
     void *sp48;
     Unk80132ED0 *sp44;
@@ -238,9 +238,9 @@ int suegg_entrypoint_9(Actor *arg0, s32 arg1) {
     sp4C = func_80100094(arg0, 0);
     sp44 = arg0->unk0;
     sp34 = func_80800390_suegg(arg0);
-    func_800CB840(3, (s32)arg0);
+    func_800CB840(3, (BtIntPtr)arg0);
     *(s16 *)&sp44->unk20 = 0;
-    suegg_entrypoint_18((s32)arg0, (s32)sp38);
+    suegg_entrypoint_18((BtIntPtr)arg0, (BtIntPtr)sp38);
     func_8010A590(arg0);
     sp48 = func_800CD820((u8 *)sp44, sp38, arg0->position, 38.0f);
     if (sp48 != NULL && sp34 >= 0) {
@@ -290,14 +290,14 @@ void suegg_entrypoint_10(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
 
 Actor *suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2) {
     void _sueggmove_entrypoint_4(Actor *);
-    void _sumissilehome_entrypoint_0(s32, u8 *);
-    void _sumissilehome_entrypoint_1(s32, void *, s32);
-    void _sumissilehome_entrypoint_2(s32, void *, f32);
-    void _sumissilehome_entrypoint_3(s32, s8 *, s32);
+    void _sumissilehome_entrypoint_0(BtIntPtr, u8 *);
+    void _sumissilehome_entrypoint_1(BtIntPtr, void *, s32);
+    void _sumissilehome_entrypoint_2(BtIntPtr, void *, f32);
+    void _sumissilehome_entrypoint_3(BtIntPtr, s8 *, s32);
     s32 func_800D3E40(s32);
     s32 func_800DA298(GameFlag);
-    s32 func_800F690C(s32);
-    s32 func_800F693C(s32);
+    s32 func_800F690C(BtIntPtr);
+    s32 func_800F693C(BtIntPtr);
     Actor *func_80108474(u32, f32 *, s32);
     void func_8010A570(Actor *);
     Actor *actor;
@@ -326,10 +326,10 @@ Actor *suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2) {
     data->unk30 = 0.0f;
     if (func_800D3E40(0xC) && (!func_800DA298(0xA31))) {
         homing = data->homing;
-        _sumissilehome_entrypoint_0((s32)actor, homing);
-        _sumissilehome_entrypoint_3((s32)actor, homing, data->unk3A);
-        _sumissilehome_entrypoint_1((s32)actor, homing, -1);
-        _sumissilehome_entrypoint_2((s32)actor, homing, 6000.0f);
+        _sumissilehome_entrypoint_0((BtIntPtr)actor, homing);
+        _sumissilehome_entrypoint_3((BtIntPtr)actor, homing, data->unk3A);
+        _sumissilehome_entrypoint_1((BtIntPtr)actor, homing, -1);
+        _sumissilehome_entrypoint_2((BtIntPtr)actor, homing, 6000.0f);
         data->unk38 = 2;
     }
     _sueggmove_entrypoint_4(actor);
@@ -340,7 +340,7 @@ Actor *suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2) {
         *((u8 *) (((u8 *) actor) + 0x75)) &= ~0x10;
     }
     return actor;
-}
+}    typedef struct { u8 pad0[0x30]; f32 unk30; } Objegg_suegg_entrypoint_12_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
 int suegg_entrypoint_12(Actor *arg0) {
     s32 func_800D3948(void);
@@ -354,7 +354,7 @@ int suegg_entrypoint_12(Actor *arg0) {
     if (func_800D3948() != 0) {
         return 0;
     }
-    if (*(f32 *)((u8 *)data + 0x30) < 0.6f) {
+    if (((Objegg_suegg_entrypoint_12_data *)data)->unk30 < 0.6f) {
         return 0;
     }
     func_8010D254(position);
@@ -362,17 +362,17 @@ int suegg_entrypoint_12(Actor *arg0) {
     return position[1] < arg0->position[1] &&
         arg0->position[1] < position[1] + 100.0f &&
         delta[0] * delta[0] + delta[2] * delta[2] < 4900.0f;
-}
+}    typedef struct { u8 pad0[0x30]; f32 unk30; } Objegg_suegg_entrypoint_13_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
 /* extern */
 int suegg_entrypoint_13(Actor *arg0) {
-    s32 _sueggmove_entrypoint_3(void *);
+    u8 _sueggmove_entrypoint_3(Actor *arg0);
     void *data;
 
     data = func_80100094(arg0, 0U);
-    return (*(f32 *)((u8 *)data + 0x30) > 2.8f) &&
-        (_sueggmove_entrypoint_3(arg0) || *(f32 *)((u8 *)data + 0x30) > 3.5f);
-}
+    return (((Objegg_suegg_entrypoint_13_data *)data)->unk30 > 2.8f) &&
+        (_sueggmove_entrypoint_3(arg0) || ((Objegg_suegg_entrypoint_13_data *)data)->unk30 > 3.5f);
+}    typedef struct { u8 pad0[0x3A]; s16 unk3A; } Objegg_suegg_entrypoint_14_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x30]; f32 unk30; } Objegg_suegg_entrypoint_14_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
@@ -387,16 +387,16 @@ int suegg_entrypoint_14(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    temp_f0 = func_800C5190(func_800A940C((*(s16 *)((s8 *)(temp_v0) + (0x3A)))));
+    temp_f0 = func_800C5190(func_800A940C((((Objegg_suegg_entrypoint_14_temp_v0 *)temp_v0)->unk3A)));
     var_f2 = temp_f0;
     if (temp_f0 > 2.0f) {
         var_f2 = 2.0f;
     }
-    return (2.0f * var_f2) < (*(f32 *)((s8 *)(sp1C) + (0x30))) ||
+    return (2.0f * var_f2) < (((Objegg_suegg_entrypoint_14_sp1C *)sp1C)->unk30) ||
         func_800DA298(0x662) == 0;
 }
 
-void suegg_entrypoint_15(s32 arg0) 
+void suegg_entrypoint_15(BtIntPtr arg0) 
 {
 }
 void suegg_entrypoint_16(Actor *arg0) {
@@ -463,7 +463,7 @@ s32 suegg_entrypoint_17(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void suegg_entrypoint_18(s32 arg0, s32 arg1) {
+void suegg_entrypoint_18(BtIntPtr arg0, BtIntPtr arg1) {
     void func_800EFB24();
     func_800EFB24(arg1, arg0 + 0x4, arg0 + 0x18, arg0);
 }
@@ -529,7 +529,7 @@ void suegg_entrypoint_23(Actor *arg0) {
 
 s32 func_80800DC0_suegg(Actor *arg0, s32 arg1) {
     s32 func_800D3948(void);
-    s32 func_800F6CC8(s32);
+    s32 func_800F6CC8(BtIntPtr);
     struct {
         u8 pad[0x39];
         u8 : 1;

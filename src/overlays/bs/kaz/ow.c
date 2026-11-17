@@ -2,8 +2,8 @@
 
 #include "overlays/bs/kaz/ow.h"
 
-extern s32 D_808002D0_bskazow[];
-extern s32 D_808002E0_bskazow[];
+extern BtIntPtr D_808002D0_bskazow[];
+extern BtIntPtr D_808002E0_bskazow[];
 
 void func_80800000_bskazow(PlayerState *self) {
     _babounce_entrypoint_3(self);
@@ -39,7 +39,7 @@ void func_80800098_bskazow(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazow_entrypoint_0(s32 idx) {
+BtIntPtr bskazow_entrypoint_0(s32 idx) {
     return D_808002D0_bskazow[idx];
 }
 
@@ -77,7 +77,11 @@ void func_808001F0_bskazow(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazow_entrypoint_1(s32 idx) {
+BtIntPtr bskazow_entrypoint_1(s32 idx) {
     return D_808002E0_bskazow[idx];
 }
 
+/* data_to_c.py: from asm/data/overlays/bs/kaz/ow.data.s */
+void func_80099AA8();
+BtIntPtr D_808002D0_bskazow [4] BT_DATA(4, overlays_bs_kaz_ow, 0x0) = { (BtIntPtr)func_80800000_bskazow, (BtIntPtr)func_80800028_bskazow, (BtIntPtr)func_80800098_bskazow, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_808002E0_bskazow [4] BT_DATA(4, overlays_bs_kaz_ow, 0x10) = { (BtIntPtr)func_8080015C_bskazow, (BtIntPtr)func_80800184_bskazow, (BtIntPtr)func_808001F0_bskazow, (BtIntPtr)func_80099AA8 };

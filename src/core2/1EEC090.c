@@ -175,7 +175,7 @@ void func_80112D2C(PlayerState *arg0) {
     func_800EFB24(sp28, sp34, sp1C);
     func_800F1EA4(sp28, (*(u8 **)((s8 *)(arg0) + (0x60))) + 0x14);
     (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x60)))) + (0x18))) = 0.0f;
-}
+}    typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; f32 unk10; f32 unk14; } Obj1EEC090_func_80112D90_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
 
 void func_80112D90(PlayerState *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4) {
     f32 func_800F1DCC(f32, f32);
@@ -183,26 +183,26 @@ void func_80112D90(PlayerState *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4) {
     void *var_v0;
 
     var_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
-    if (arg4 >= (*(s16 *)((s8 *)(var_v0) + (0xE)))) {
-        if (arg3 != (*(s16 *)((s8 *)(var_v0) + (0xC)))) {
+    if (arg4 >= (((Obj1EEC090_func_80112D90_var_v0 *)var_v0)->unkE)) {
+        if (arg3 != (((Obj1EEC090_func_80112D90_var_v0 *)var_v0)->unkC)) {
             func_80112D2C(arg0);
             var_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
         }
-        (*(f32 *)((s8 *)(var_v0) + (0x10))) = arg1;
+        (((Obj1EEC090_func_80112D90_var_v0 *)var_v0)->unk10) = arg1;
         (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0x1C))) = 0.0f;
         var_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
-        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0x20))) = (f32) ((mlAbsF(func_800F1DCC((*(f32 *)((s8 *)(var_v0) + (0x10))), (*(f32 *)((s8 *)(var_v0) + (0x14))))) * 1.2f) / arg2);
+        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0x20))) = (f32) ((mlAbsF(func_800F1DCC((((Obj1EEC090_func_80112D90_var_v0 *)var_v0)->unk10), (((Obj1EEC090_func_80112D90_var_v0 *)var_v0)->unk14))) * 1.2f) / arg2);
         (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0xC))) = (s16) arg3;
         (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x60)))) + (0xE))) = (s16) arg4;
     }
-}
+}    typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; f32 unk10; f32 unk14; } Obj1EEC090_func_80112E50_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80112E50(void *arg0, f32 arg1, s32 arg2) {
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x60)));
-    if (((*(s16 *)((s8 *)(temp_v0) + (0xC))) != 0) && (arg2 == (*(s16 *)((s8 *)(temp_v0) + (0xE))))) {
-        (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x14))) + arg1);
+    if (((((Obj1EEC090_func_80112E50_temp_v0 *)temp_v0)->unkC) != 0) && (arg2 == (((Obj1EEC090_func_80112E50_temp_v0 *)temp_v0)->unkE))) {
+        (((Obj1EEC090_func_80112E50_temp_v0 *)temp_v0)->unk10) = (f32) ((((Obj1EEC090_func_80112E50_temp_v0 *)temp_v0)->unk14) + arg1);
     }
 }
 

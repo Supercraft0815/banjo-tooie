@@ -35,15 +35,15 @@ s32 func_80800008_bafpctrl(void *arg0) {
 /* extern */
 
 void func_808000DC_bafpctrl(void *arg0, f32 arg1, f32 arg2) {
-    s32 func_800A4C68(f32);
+    s32 func_800A4C68(BT_IDO_ONLY(f32) BT_NATIVE_ONLY(void *));
     s32 func_800C51A4(s32, f32);
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x90)))) + (0x18))) = arg2;
-    func_800C51A4(func_800A4C68(arg2), arg1);
+    func_800C51A4(func_800A4C68(BT_IDO_ONLY(arg2) BT_NATIVE_ONLY(arg0)), arg1);
 }
 
 void func_80800114_bafpctrl(void *arg0) {
     int baflag_isTrue(struct player_state_s *, s32);
-    s32 bakey_held(s32, s32);
+    s32 bakey_held(BtIntPtr, s32);
     f32 func_800139F8(f32);
     int func_800C6E38(s32);
     f32 angle;
@@ -59,10 +59,10 @@ void func_80800114_bafpctrl(void *arg0) {
         return;
     }
     angle = *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x18);
-    if (bakey_held((s32)arg0, 0xA) && angle < 40.0f) {
+    if (bakey_held((BtIntPtr)arg0, 0xA) && angle < 40.0f) {
         angle += 1.5f;
     }
-    if (bakey_held((s32)arg0, 0xD) && angle > 5.21f) {
+    if (bakey_held((BtIntPtr)arg0, 0xD) && angle > 5.21f) {
         angle -= 1.5f;
     }
     scale = 0.3639702201f / func_800139F8(angle * 0.5f);
@@ -78,7 +78,7 @@ void _ncba1p_entrypoint_7(PlayerState *, f32[3]);
 void func_8080022C_bafpctrl(PlayerState *arg0) {
     f32 baroll_get(PlayerState *);
     f32 func_8009BFCC(PlayerState *);
-    void func_800F3E84(s32, void *);
+    void func_800F3E84(BtIntPtr, void *);
     f32 yaw_getIdeal(PlayerState *);
     f32 sp24[3];
 
@@ -135,10 +135,10 @@ s32 func_80800424_bafpctrl(PlayerState *arg0, s32 arg1) {
     s32 func_8009E71C(void *, s32);
     int func_800C6E38(s32);
     s32 func_8010D930();
-    void _baeggaim_entrypoint_1(PlayerState *);
-    void _baeggaim_entrypoint_2(PlayerState *);
-    extern s32 D_808010C0_bafpctrl;
-    extern s32 D_808010D0_bafpctrl;
+    void _baeggaim_entrypoint_1(BtIntPtr arg0);
+    void _baeggaim_entrypoint_2(BtIntPtr arg0);
+    extern s32 D_808010C0_bafpctrl[4];
+    extern s32 D_808010D0_bafpctrl[4];
     s32 old;
     s32 first;
     s32 second;
@@ -155,7 +155,7 @@ s32 func_80800424_bafpctrl(PlayerState *arg0, s32 arg1) {
             break;
         case 2:
             if (arg1 == 1) {
-                func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010D0_bafpctrl);
+                func_8010D930(0xC, func_8009E674(arg0, 2), 0, D_808010D0_bafpctrl);
             }
             _baeggaim_entrypoint_1(arg0);
             break;
@@ -164,7 +164,7 @@ s32 func_80800424_bafpctrl(PlayerState *arg0, s32 arg1) {
     switch (arg1) {
         case 2:
             if ((*(u8 **)((u8 *)arg0 + 0x90))[0x16]) {
-                func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010C0_bafpctrl);
+                func_8010D930(0xC, func_8009E674(arg0, 2), 0, D_808010C0_bafpctrl);
             } else {
                 (*(u8 **)((u8 *)arg0 + 0x90))[0x16]++;
             }
@@ -185,15 +185,15 @@ s32 func_80800424_bafpctrl(PlayerState *arg0, s32 arg1) {
             }
             break;
     }
-}
+BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
-void func_808005FC_bafpctrl(s32 arg0, f32 *arg1) {
+void func_808005FC_bafpctrl(BtIntPtr arg0, f32 *arg1) {
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32[3], f32[3]);
-    s32 func_800F3BD0(void *, s32, f32 *);
-    f32 yaw_get(s32);
+    void func_800F3BD0(void *self, s32 arg1, f32 dst[3]);
+    f32 yaw_get(BtIntPtr);
     f32 sp1C[3];
 
     func_800F3BD0((void *) arg0, 5, arg1);
@@ -202,15 +202,15 @@ void func_808005FC_bafpctrl(s32 arg0, f32 *arg1) {
 }
 
 void func_8080064C_bafpctrl(PlayerState *arg0) {
-    s32 baflag_clear(PlayerState *, s32);
+    void baflag_clear(void *self, s32 id);
     s32 func_8009CC68();
     s32 func_8009E674(PlayerState *, s32);
-    s32 func_8010D930(s32, s32, s32, s32 *);
-    s32 func_80110C2C(PlayerState *);
+    s32 func_8010D930(s32, s32, BtIntPtr, s32 *);
+    void func_80110C2C(PlayerState *self);
     s32 func_80800424_bafpctrl(PlayerState *, s32);
-    extern s32 D_808010B0_bafpctrl;
+    extern s32 D_808010B0_bafpctrl[4];
     if (func_8009CC68() == 0) {
-        func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010B0_bafpctrl);
+        func_8010D930(0xC, func_8009E674(arg0, 2), 0, D_808010B0_bafpctrl);
     }
     func_80110C2C(func_800A4CA8(arg0));
     baflag_clear(arg0, 0x24);
@@ -223,7 +223,7 @@ void func_8080064C_bafpctrl(PlayerState *arg0) {
 }
 
 void func_80800704_bafpctrl(PlayerState *arg0) {
-    s32 _ncba1p_entrypoint_6(void *, f32 *);
+    void _ncba1p_entrypoint_6(f32 **arg0, f32 *arg1);
     void _badrone_entrypoint_33(PlayerState *, f32 *);
     void _ncba1p_entrypoint_12(PlayerState *, f32);
     int baflag_isTrue(struct player_state_s *, s32);
@@ -231,28 +231,28 @@ void func_80800704_bafpctrl(PlayerState *arg0) {
     void func_80099A7C(PlayerState *, f32 *);
     s32 func_8009E674(PlayerState *, s32);
     void func_800A516C(f32 *, f32 *, f32 *);
-    void func_800F3E84(s32, void *);
-    s32 func_8010D930(s32, s32, s32, s32 *);
+    void func_800F3E84(BtIntPtr, void *);
+    s32 func_8010D930(s32, s32, BtIntPtr, s32 *);
     void func_80110BF0(PlayerState *);
     void yaw_applyIdeal(PlayerState *);
     void yaw_setIdeal(PlayerState *, f32);
-    extern s32 D_808010A0_bafpctrl;
+    extern s32 D_808010A0_bafpctrl[4];
     f32 position[3];
     f32 rotation[3];
     f32 drone[3];
 
     if (!(*(*(s32 **)((s8 *)arg0 + 0x90)) & 8)) {
-        func_8010D930(0xC, func_8009E674(arg0, 2), 0, &D_808010A0_bafpctrl);
+        func_8010D930(0xC, func_8009E674(arg0, 2), 0, D_808010A0_bafpctrl);
     }
     func_80110BF0(func_800A4CA8(arg0));
-    func_808005FC_bafpctrl((s32)arg0, position);
+    func_808005FC_bafpctrl((BtIntPtr)arg0, position);
     _ncba1p_entrypoint_6(func_800A4CA8(arg0), position);
     if (baflag_isTrue(arg0, 0x25)) {
         func_80099A7C(arg0, drone);
         _badrone_entrypoint_33(arg0, drone);
         func_800A516C(rotation, drone, position);
     } else {
-        func_800F3E84((s32)arg0, rotation);
+        func_800F3E84((BtIntPtr)arg0, rotation);
         rotation[0] = 0.0f;
         rotation[2] = 0.0f;
         rotation[1] += 180.0f;
@@ -278,9 +278,9 @@ void func_80800880_bafpctrl(u8 *arg0) {
 
 /* extern */
 
-void func_808008CC_bafpctrl(s32 arg0) {
-    void func_808005FC_bafpctrl(s32, f32 *);
-    s32 _ncba1p_entrypoint_6(void *, f32 *);
+void func_808008CC_bafpctrl(BtIntPtr arg0) {
+    void func_808005FC_bafpctrl(BtIntPtr, f32 *);
+    void _ncba1p_entrypoint_6(f32 **arg0, f32 *arg1);
     f32 sp1C[3];
 
     func_808005FC_bafpctrl(arg0, sp1C);
@@ -325,7 +325,7 @@ s32 func_80800970_bafpctrl(PlayerState *arg0) {
                 func_808002A4_bafpctrl(arg0);
             }
             func_80800880_bafpctrl((u8 *)arg0);
-            func_808008CC_bafpctrl((s32)arg0);
+            func_808008CC_bafpctrl((BtIntPtr)arg0);
         }
         break;
     case 2:
@@ -344,7 +344,7 @@ s32 func_80800970_bafpctrl(PlayerState *arg0) {
             } else {
                 func_808003BC_bafpctrl(arg0);
             }
-            func_808008CC_bafpctrl((s32)arg0);
+            func_808008CC_bafpctrl((BtIntPtr)arg0);
             func_80800880_bafpctrl((u8 *)arg0);
             _baeggaim_entrypoint_3(arg0);
         }
@@ -352,34 +352,34 @@ s32 func_80800970_bafpctrl(PlayerState *arg0) {
     }
     func_80800114_bafpctrl(arg0);
     return result;
-}
+}    typedef struct { u8 pad0[0x90]; void * unk90; u8 pad94[0xF0]; BtIntPtr unk184; } Objfpctrl_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 u32 bafpctrl_entrypoint_1(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 17);
+    return *(u8 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 17);
 }
 
 u32 bafpctrl_entrypoint_2(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 18);
+    return *(u8 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 18);
 }
 
 f32 bafpctrl_entrypoint_3(u8 *arg0) {
     f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
-    func_800F10B4((*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x90)))) + (0x18))), 10.0f, 40.0f, 0.2f, 1.0f);
+    BT_NATIVE_ONLY(return) func_800F10B4((*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x90)))) + (0x18))), 10.0f, 40.0f, 0.2f, 1.0f);
 }
 
 u32 bafpctrl_entrypoint_4(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 16);
+    return *(u8 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 16);
 }
 
 s32 bafpctrl_entrypoint_5(void *arg0) {
-    return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x90)))) + (0x14))) == 2;
+    return (*(u8 *)((s8 *)((((Objfpctrl_arg0 *)arg0)->unk90)) + (0x14))) == 2;
 }
 
 u32 bafpctrl_entrypoint_6(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 19);
 }
 
-void bafpctrl_entrypoint_7(s32 arg0) 
+void bafpctrl_entrypoint_7(BtIntPtr arg0) 
 {
 }
 void bafpctrl_entrypoint_8(void *arg0) {
@@ -389,22 +389,22 @@ void bafpctrl_entrypoint_8(void *arg0) {
     void bafpctrl_entrypoint_14(void *, s32);
     void func_800EFD24(f32 *);
 
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x10) = 0;
+    *(s8 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 0x10) = 0;
     bafpctrl_entrypoint_14(arg0, 1);
-    func_800EFD24((f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 4));
-    *(s32 *)*(void **)((u8 *)arg0 + 0x90) = 0;
+    func_800EFD24((f32 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 4));
+    *(s32 *)*&((Objfpctrl_arg0 *)arg0)->unk90 = 0;
     bafpctrl_entrypoint_9(arg0, 0);
     bafpctrl_entrypoint_10(arg0, 0);
     bafpctrl_entrypoint_13(arg0, 1);
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 0x18) = 40.0f;
+    *(f32 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 0x18) = 40.0f;
 }
 
 void bafpctrl_entrypoint_9(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 17) = arg1;
+    *(s8 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 17) = arg1;
 }
 
 void bafpctrl_entrypoint_10(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 144) + 18) = arg1;
+    *(s8 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 18) = arg1;
 }
 
 void bafpctrl_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
@@ -422,18 +422,18 @@ void bafpctrl_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void bafpctrl_entrypoint_12(void *arg0) {
-    s32 func_800EE7F8(s32);
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x90))) + 4);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bafpctrl_entrypoint_12(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, f32 *bt_a1)) {
+    BT_IDO_ONLY(s32 func_800EE7F8(s32);) BT_NATIVE_ONLY(void func_800EE7F8(f32 *, f32 *);)
+    BT_IDO_ONLY(func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x90))) + 4);) BT_NATIVE_ONLY(func_800EE7F8((f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x90) + 4), bt_a1); return 0;)
 }
 
 /* extern */
 
 void bafpctrl_entrypoint_13(void *arg0, s32 arg1) {
     s32 _baeggcursor_entrypoint_6();
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x90)))) + (0x13))) = arg1;
+    (*(s8 *)((s8 *)((((Objfpctrl_arg0 *)arg0)->unk90)) + (0x13))) = arg1;
     _baeggcursor_entrypoint_6();
-}
+}    typedef struct { u8 pad0[0x10]; u8 unk10; } Objfpctrl_bafpctrl_entrypoint_14_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 void bafpctrl_entrypoint_14(void *arg0, s32 arg1) {
     void func_8009ADF0(void *, s32, s32);
@@ -441,7 +441,7 @@ void bafpctrl_entrypoint_14(void *arg0, s32 arg1) {
     s32 *var_v1;
 
     var_v1 = *(s32 **)((s8 *)arg0 + 0x90);
-    switch (*(u8 *)((s8 *)var_v1 + 0x10)) {
+    switch (((Objfpctrl_bafpctrl_entrypoint_14_var_v1 *)var_v1)->unk10) {
     case 1:
         if (arg1 == 1) {
             return;
@@ -477,7 +477,7 @@ block_6:
 int func_80800E30_bafpctrl(PlayerState *arg0) {
     s32 _ncba1p_entrypoint_10();
     int bakey_pressed(PlayerState *, int);
-    s32 func_800F6774(u32);
+    s32 func_800F6774(BtUIntPtr);
 
     return bakey_pressed(arg0, 0xC) && bafpctrl_entrypoint_6(arg0)
         && func_800F6774(*(u32 *)((s8 *)arg0 + 0x184))
@@ -502,18 +502,18 @@ void bafpctrl_entrypoint_15(PlayerState *arg0) {
         }
         break;
     }
-}
+}    typedef struct { u8 pad0[0x10]; u8 unk10; u8 pad11[0x2]; u8 unk13; } Objfpctrl_bafpctrl_entrypoint_16_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-void bafpctrl_entrypoint_16(void *arg0) {
+void bafpctrl_entrypoint_16(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32 bt_a1)) {
     void bafpctrl_entrypoint_14();
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x90)));
-    if (((*(u8 *)((s8 *)(temp_v0) + (0x13))) != 0) && ((*(u8 *)((s8 *)(temp_v0) + (0x10))) != 3)) {
+    temp_v0 = (((Objfpctrl_arg0 *)arg0)->unk90);
+    if (((((Objfpctrl_bafpctrl_entrypoint_16_temp_v0 *)temp_v0)->unk13) != 0) && ((((Objfpctrl_bafpctrl_entrypoint_16_temp_v0 *)temp_v0)->unk10) != 3)) {
 #ifdef BT_NATIVE
-        ((void (*)())bafpctrl_entrypoint_14)();
+        bafpctrl_entrypoint_14(arg0, bt_a1);
 #else
         bafpctrl_entrypoint_14();
 #endif
@@ -546,16 +546,21 @@ void bafpctrl_entrypoint_18(void *arg0, s32 arg1) {
 /* extern */
 
 void bafpctrl_entrypoint_19(void *arg0) {
-    s32 _plcamera_entrypoint_0(s32);
+    void _plcamera_entrypoint_0(s32 *arg0);
     void bafpctrl_entrypoint_14(void *, s32);
-    s32 func_8009337C(void *, s32);
-    s32 func_800A3544(void *, s32);
+    void func_8009337C(void *arg0, s32 arg1);
+    void func_800A3544(void *arg0, s32 arg1);
     s32 func_800A4EC8(void *);
     if (bafpctrl_entrypoint_4(arg0) == 3) {
         bafpctrl_entrypoint_14(arg0, 1);
         func_800A3544(arg0, 0);
         func_8009337C(arg0, 1);
         func_800A4EC8(arg0);
-        _plcamera_entrypoint_0((*(s32 *)((s8 *)(arg0) + (0x184))));
+        _plcamera_entrypoint_0((((Objfpctrl_arg0 *)arg0)->unk184));
     }
 }
+/* data_to_c.py: from asm/data/overlays/ba/fpctrl.data.s */
+s32 D_808010A0_bafpctrl[4] BT_DATA(4, overlays_ba_fpctrl, 0x0) = { 1246343, 655667, 1453792, 0 };
+s32 D_808010B0_bafpctrl[4] BT_DATA(4, overlays_ba_fpctrl, 0x10) = { 1246344, 655667, 1453792, 0 };
+s32 D_808010C0_bafpctrl[4] BT_DATA(4, overlays_ba_fpctrl, 0x20) = { 1246315, 655718, 1451792, 0 };
+s32 D_808010D0_bafpctrl[4] BT_DATA(4, overlays_ba_fpctrl, 0x30) = { 1246316, 655718, 1451792, 0 };

@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_lights.h"
 #include <math.h>
 
@@ -85,7 +85,7 @@ void vector_free(struct Vector *vec);
 struct Vector *vector_new(u32, u32);
 void func_800C8C90(s32);
 void func_800C8F08(s32, f32 *);
-void gclightsDll_entrypoint_1();
+void gclightsDll_entrypoint_1(); BT_NATIVE_ONLY(void gclightsDll_entrypoint_0(struct Vector **);)
 
 void func_80800000_gclightsDll(s32 arg0)
 {
@@ -255,3 +255,7 @@ void gclightsDll_entrypoint_5(f32 *arg0) {
 }
 
 #endif
+/* data_to_c.py: from asm/data/overlays/gc/lightsDll.data.s */
+f32 D_80800560_gclightsDll [ 3 ] BT_DATA(4, overlays_gc_lightsDll, 0x0) = { 0.0f, 0.0f, 0.0f };
+f32 D_8080056C_gclightsDll [ 3 ] BT_DATA(4, overlays_gc_lightsDll, 0xC) = { 3.57331e-43f, 3.57331e-43f, 3.57331e-43f };
+f32 D_80800578_gclightsDll [ 3 ] BT_DATA(4, overlays_gc_lightsDll, 0x18) = { 0.0f, 1.0f, 0.0f };

@@ -3,7 +3,7 @@
 /* extern */
 
 s32 subaddie3d_entrypoint_0(f32 arg0[3], f32 arg1, f32 arg2, f32 *arg3) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp34[3];
     f32 sp28[3];
@@ -23,7 +23,7 @@ s32 subaddie3d_entrypoint_0(f32 arg0[3], f32 arg1, f32 arg2, f32 *arg3) {
 /* extern */
 
 s32 subaddie3d_entrypoint_1(f32 arg0[3], f32 arg1, f32 arg2, f32 *arg3) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp34[3];
     f32 sp28[3];

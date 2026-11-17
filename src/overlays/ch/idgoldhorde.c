@@ -2,7 +2,7 @@
 
 OSThread *chidgoldhorde_entrypoint_0(void)
 {
-    extern u8 D_808001F0_chidgoldhorde[];
+    extern ActorData D_808001F0_chidgoldhorde[];
 
     return (OSThread *) D_808001F0_chidgoldhorde;
 }
@@ -10,8 +10,8 @@ OSThread *chidgoldhorde_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_chidgoldhorde(Actor *arg0) {
-    s16 _glidmake_entrypoint_3(s32, s16);
-    s32 func_800BEA88(s32);
+    s16 _glidmake_entrypoint_3(s32 *arg0, s32 arg1);
+    void *func_800BEA88(s32 i);
     void *func_80100094(Actor *, u32);
     struct {
         s16 unk0;
@@ -57,8 +57,8 @@ void chidgoldhorde_entrypoint_1(s16 *arg0, s32 arg1, Unk80132ED0 *arg2, s8 *arg3
 }
 
 void func_8080015C_chidgoldhorde(Actor *arg0) {
-    s32 _glid_entrypoint_3(s32, s16, s32 *, Unk80132ED0 *);
-    s32 func_800BEA88(s32);
+    void _glid_entrypoint_3(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, s32, s32), BtIntPtr arg3);
+    void *func_800BEA88(s32 i);
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
@@ -72,7 +72,7 @@ void func_8080015C_chidgoldhorde(Actor *arg0) {
         s16 unk6;
         f32 unk8;
     } *temp_s0;
-    s32 sp20;
+    BtIntPtr sp20;
 
     temp_s0 = func_80100094(arg0, 0);
     if (func_800DC0C0() < temp_s0->unk8) {
@@ -82,3 +82,8 @@ void func_8080015C_chidgoldhorde(Actor *arg0) {
         _glid_entrypoint_3(sp20, temp_s0->unk0, &_chidgoldhorde_entrypoint_1, arg0->unk0);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/idgoldhorde.data.s */
+void func_80102EC0();
+void func_8010A730();
+void func_80107C2C();
+ActorData D_808001F0_chidgoldhorde [1] BT_DATA(4, overlays_ch_idgoldhorde, 0x0) = { { 344, 445, 0, 1, 0, (void (*)(struct Actor *))func_8080015C_chidgoldhorde, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 4, 0, 0, 12, 0, (void (*)(struct Actor *))func_8080000C_chidgoldhorde, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8706, 0, 0 } };

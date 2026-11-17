@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_vector_table.h"
 #include "memory.h"
 void func_800EE7F8(f32 *,f32 *),func_800EE904(s32 *,f32 *),func_800EF2A0(f32 *),func_800EFB24(void *,void *,void *);
@@ -42,9 +42,9 @@ void func_800DBEB0(s32 arg0) {
     }
 }
 
-void func_800DBEFC(s32 *arg0, s32 arg1, f32 *arg2) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800DBEFC(s32 *arg0, s32 arg1, f32 *arg2) {
     s32 func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8(arg2, (f32 *)((u8 *)arg0 + (arg1 * 12) + 4));
+    BT_NATIVE_ONLY(return) func_800EE7F8(arg2, (f32 *)((u8 *)arg0 + (arg1 * 12) + 4));
 }
 
 void func_800DBF38(void *arg0, s32 arg1, s32 *arg2) {
@@ -62,9 +62,9 @@ void func_800DBF74(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800EF2A0((f32 *)arg3);
 }
 
-void func_800DBFD8(void* arg0) 
-{
-    heap_free(arg0);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800DBFD8(void* arg0) 
+{ BT_NATIVE_ONLY(s32 heap_free(void *);)
+    BT_NATIVE_ONLY(return) heap_free(arg0);
 }
 u8 *func_800DBFF8(void) {
     void* heap_alloc(s32 size);

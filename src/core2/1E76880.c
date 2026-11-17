@@ -34,7 +34,7 @@ void func_8009CFE8(PlayerState *self) {
         change = 0.0f;
     }
     yaw_setIdeal(self, yaw_getIdeal(self) + change);
-}
+}    typedef struct { u8 pad0[0xFC]; s32 * unkFC; } Obj1E76880_func_8009D088_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
 
 s32 func_8009D088(void *self) {
     f32 bastick_distance(PlayerState *);
@@ -48,7 +48,7 @@ s32 func_8009D088(void *self) {
     void yaw_update(PlayerState *);
     f32 angle;
 
-    switch (**(s32 **)((u8 *)self + 0xFC)) {
+    switch (*((Obj1E76880_func_8009D088_self *)self)->unkFC) {
         case 0:
         case 2:
             break;
@@ -99,11 +99,11 @@ s32 func_8009D088(void *self) {
         case 9:
             yaw_update(self);
             break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8009D2D8(PlayerState *arg0, s32 arg1) {
-    **(s32 **)((u8 *)arg0 + 0xFC) = arg1;
+    *arg0->unkFC = arg1;
 }
 
 s32 func_8009D2E4(void *arg0) {

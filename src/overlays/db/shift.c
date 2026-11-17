@@ -2,16 +2,16 @@
 
 /* extern */
 
-void func_80800000_dbshift(s32 arg0, s32 *arg1, s32 arg2, s32 *arg3, void *arg4) {
+typedef struct { f32 unk0; f32 unk4; } Objshift_arg4; /* offsets.py genstruct: fields from raw offsets on arg4; rename once understood */ void func_80800000_dbshift(BtIntPtr arg0, s32 *arg1, BtIntPtr arg2, s32 *arg3, void *arg4) {
     f32 func_800F2290(s32 *, s32 *);
-    s32 func_800F2388(s32 *, s32, s32);
+    void func_800F2388(void *arg0, void *arg1, void *arg2);
     f32 sp24;
     s32 sp1C[2];
 
     sp24 = func_800F2290(arg1, arg3);
     func_800F2388(sp1C, arg2, arg0);
-    (*(f32 *)((s8 *)(arg4) + (0))) = (f32) (func_800F2290(sp1C, arg3) / sp24);
-    (*(f32 *)((s8 *)(arg4) + (4))) = (f32) (func_800F2290(sp1C, arg1) / sp24);
+    (((Objshift_arg4 *)arg4)->unk0) = (f32) (func_800F2290(sp1C, arg3) / sp24);
+    (((Objshift_arg4 *)arg4)->unk4) = (f32) (func_800F2290(sp1C, arg1) / sp24);
 }
 
 s32 dbshift_entrypoint_0(s32 *arg0) {
@@ -36,7 +36,7 @@ void dbshift_entrypoint_1(s32 *arg0, void *arg1, s32 arg2, s32 arg3) {
             point = record + 0x1C;
             vertices += *(s16 *)(record + 0x18) * 0x10;
             for (i = 0; i < *(s16 *)(record + 0x1A); i++) {
-                func_80800000_dbshift((s32)point, (s32 *)record, arg3, (s32 *)(record + 8), coords);
+                func_80800000_dbshift((BtIntPtr)point, (s32 *)record, arg3, (s32 *)(record + 8), coords);
                 *(s16 *)(vertices + 8) = (s32)((-coords[0] * *(f32 *)(record + 0x10) - 0.5f) * 64.0f);
                 *(s16 *)(vertices + 0xA) = (s32)((coords[1] * *(f32 *)(record + 0x14) - 0.5f) * 64.0f);
                 point += 8;

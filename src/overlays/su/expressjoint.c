@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 func_80800000_suexpressjoint(s32 arg0) {
+typedef struct { u8 pad0[0x8]; s16 unk8; u8 padA[0xE]; s16 unk18; u8 pad1A[0xE]; s16 unk28; u8 pad2A[0xE]; s16 unk38; } Objexpressjoint_func_80800000_suexpressjoint_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */ s32 func_80800000_suexpressjoint(s32 arg0) {
     extern s16 D_80801820_suexpressjoint;
     extern s16 D_80801830_suexpressjoint;
     extern s32 D_80801838_suexpressjoint;
@@ -16,16 +16,16 @@ s32 func_80800000_suexpressjoint(s32 arg0) {
         return 1;
     }
 loop_5:
-    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (8)))) {
+    if (arg0 == (((Objexpressjoint_func_80800000_suexpressjoint_var_v0 *)var_v0)->unk8)) {
         return var_v1;
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (0x18)))) {
+    if (arg0 == (((Objexpressjoint_func_80800000_suexpressjoint_var_v0 *)var_v0)->unk18)) {
         return var_v1 + 1;
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (0x28)))) {
+    if (arg0 == (((Objexpressjoint_func_80800000_suexpressjoint_var_v0 *)var_v0)->unk28)) {
         return var_v1 + 2;
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v0) + (0x38)))) {
+    if (arg0 == (((Objexpressjoint_func_80800000_suexpressjoint_var_v0 *)var_v0)->unk38)) {
         return var_v1 + 3;
     }
     var_v1 += 4;
@@ -48,13 +48,13 @@ s32 suexpressjoint_entrypoint_0(s16 arg0) {
     }
     value = D_80801824_suexpressjoint[temp_v0][0];
     return value + 0x20;
-}
+}                  typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; s8 unk8; } Objexpressjoint_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void suexpressjoint_entrypoint_1(void *arg0, s16 arg1) {
     s32 func_80800000_suexpressjoint(s32);
-    (*(s16 *)((s8 *)(arg0) + (4))) = arg1; (*(s16 *)((s8 *)(arg0) + (6))) = func_80800000_suexpressjoint((*(s16 *)((s8 *)(arg0) + (4))));
+    (((Objexpressjoint_arg0 *)arg0)->unk4) = arg1; (((Objexpressjoint_arg0 *)arg0)->unk6) = func_80800000_suexpressjoint((((Objexpressjoint_arg0 *)arg0)->unk4));
 }
 
 typedef struct {
@@ -75,18 +75,18 @@ void suexpressjoint_entrypoint_2(void *arg0, s16 arg1) {
 
     dest = (u8 *)arg0 + 0x20;
     suexpressjoint_entrypoint_1(arg0, arg1);
-    *(s8 *)((u8 *)arg0 + 8) = 0;
-    info = &D_80801818_suexpressjoint[*(s16 *)((u8 *)arg0 + 6)];
+    ((Objexpressjoint_arg0 *)arg0)->unk8 = 0;
+    info = &D_80801818_suexpressjoint[((Objexpressjoint_arg0 *)arg0)->unk6];
     i = 0;
     if (info->count > 0) {
         do {
             *dest++ = info->values[info->defaultValue][i++];
-            info = &D_80801818_suexpressjoint[*(s16 *)((u8 *)arg0 + 6)];
+            info = &D_80801818_suexpressjoint[((Objexpressjoint_arg0 *)arg0)->unk6];
         } while (i < info->count);
     }
 }
 
-void suexpressjoint_entrypoint_3(s32 arg0, void *arg1, s32 arg2) {
+void suexpressjoint_entrypoint_3(BtIntPtr arg0, void *arg1, s32 arg2) {
     typedef struct {
         f32 timer;
         s16 id;
@@ -172,7 +172,7 @@ void suexpressjoint_entrypoint_4(ExpressJoint *joint, Actor *actor) {
         JointTransform *transforms;
     } JointPart;
     extern JointInfo D_80801818_suexpressjoint[];
-    s32 func_800AE6BC(s32 *);
+    void * func_800AE6BC(void *list);
     void *func_801040A8(Actor *);
     struct func_800E0960_1_s;
     void func_800E0AFC(struct func_800E0960_1_s *, u8, f32, f32, f32, f32);
@@ -183,7 +183,7 @@ void suexpressjoint_entrypoint_4(ExpressJoint *joint, Actor *actor) {
     f32 rotation[3];
     f32 scale[3];
     f32 amount;
-    s32 model;
+    BtIntPtr model;
 
     amount = joint->amount * 0.01f;
     model = func_800AE6BC(func_801040A8(actor));

@@ -1,6 +1,6 @@
 #include "overlays/bs/kaz/eggass.h"
 
-s32 D_808002C0_bskazeggass[];
+BtIntPtr D_808002C0_bskazeggass[];
 
 void bskazeggass_entrypoint_0(PlayerState *self) {
     _bskaz_entrypoint_1(self);
@@ -62,6 +62,8 @@ void bskazeggass_entrypoint_2(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-s32 bskazeggass_entrypoint_3(s32 idx) {
+BtIntPtr bskazeggass_entrypoint_3(s32 idx) {
     return D_808002C0_bskazeggass[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/eggass.data.s */
+BtIntPtr D_808002C0_bskazeggass [4] BT_DATA(4, overlays_bs_kaz_eggass, 0x0) = { (BtIntPtr)_bskazeggass_entrypoint_2, (BtIntPtr)_bskazeggass_entrypoint_0, (BtIntPtr)_bskazeggass_entrypoint_1, (BtIntPtr)func_80099B94 };

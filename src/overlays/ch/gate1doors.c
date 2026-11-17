@@ -3,7 +3,7 @@
 /* extern */
 
 s32 func_80800000_chgate1doors(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_80103110(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_8010A570(Actor *);
@@ -31,7 +31,7 @@ s32 func_80800000_chgate1doors(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_808000A4_chgate1doors(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    Actor *_subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3);
     s32 func_800DA298(s32);
     void func_80101FDC(Actor *, u32);
     void func_8010A570(Actor *);
@@ -63,7 +63,7 @@ void func_80800128_chgate1doors(Actor *arg0) {
     extern u8 D_80800494_chgate1doors[];
     extern u8 D_808004A8_chgate1doors[];
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    void _subaddieaudioloop_entrypoint_4(Actor *, f32 *, s32, void *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *arg0, f32 *arg1, u32 arg2, u32 *arg3);
     void _subaddieaudioloop_entrypoint_2(Actor *);
     void _subaddieDll_entrypoint_4(Actor *, s32);
     f32 sp34[3];
@@ -101,7 +101,7 @@ void func_80800128_chgate1doors(Actor *arg0) {
 /* extern */
 
 void func_808002B0_chgate1doors(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
+    Actor *_subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3);
     s32 func_800DA298(s32);
     void func_80101FDC(Actor *, u32);
     void func_8010A570(Actor *);
@@ -157,14 +157,24 @@ void func_80800334_chgate1doors(Actor *arg0) {
 
 OSThread *chgate1doors_entrypoint_0(void)
 {
-    extern u8 D_808004B8_chgate1doors[];
+    extern ActorData D_808004B8_chgate1doors[];
 
     return (OSThread *) D_808004B8_chgate1doors;
 }
 
 OSThread *chgate1doors_entrypoint_1(void)
 {
-    extern u8 D_80800500_chgate1doors[];
+    extern ActorData D_80800500_chgate1doors[];
 
     return (OSThread *) D_80800500_chgate1doors;
 }
+/* data_to_c.py: from asm/data/overlays/ch/gate1doors.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u8 D_80800480_chgate1doors [20] BT_DATA(4, overlays_ch_gate1doors, 0x0) = { 0, 0x13, 4, 0x13, 0, 0xA, 0, 0xE6, 0, 0x16, 0x6D, 0x60, 0, 1, 4, 0xE2, 0x13, 0x88, 0, 0 };
+u8 D_80800494_chgate1doors [20] BT_DATA(4, overlays_ch_gate1doors, 0x14) = { 0, 0x13, 3, 0xF1, 0, 0xA, 1, 0, 0, 0x16, 0x6D, 0x60, 0, 1, 4, 0xE2, 0x13, 0x88, 0, 0 };
+u8 D_808004A8_chgate1doors [16] BT_DATA(4, overlays_ch_gate1doors, 0x28) = { 0, 0x13, 4, 0xAD, 0, 0x16, 0x61, 0xA8, 0, 1, 0, 0xFA, 0x13, 0x88, 0, 0 };
+ActorData D_808004B8_chgate1doors [1] BT_DATA(4, overlays_ch_gate1doors, 0x38) = { { 86, 296, 1620, 1, 0, (void (*)(struct Actor *))func_80800128_chgate1doors, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3076, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808000A4_chgate1doors, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11264, (void (*)(struct Actor *, long, long))func_80800000_chgate1doors, 0 } };
+ActorData D_80800500_chgate1doors [1] BT_DATA(4, overlays_ch_gate1doors, 0x80) = { { 87, 297, 1621, 1, 0, (void (*)(struct Actor *))func_80800334_chgate1doors, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3076, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808002B0_chgate1doors, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11264, (void (*)(struct Actor *, long, long))func_80800000_chgate1doors, 0 } };

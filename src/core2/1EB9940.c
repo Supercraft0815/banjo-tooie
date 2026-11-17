@@ -10,7 +10,7 @@
 
 /* extern */
 
-void func_800E0050(s16 *arg0, f32 arg1, s32 arg2, f32 *arg3) {
+typedef struct { f32 unk0; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk14; f32 unk18; f32 unk1C; f32 unk20; } Obj1EB9940_arg3; /* offsets.py genstruct: fields from raw offsets on arg3; rename once understood */ typedef struct { s16 unk0; s16 unk2; s16 unk4; } Obj1EB9940_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_800E0050(s16 *arg0, f32 arg1, s32 arg2, f32 *arg3) {
     struct Entry { u16 group : 12; u16 channel : 4; s16 count; };
     f32 func_800E0414(s16 *, f32);
     f32 func_800E04C0(u8 *, f32, s32);
@@ -21,19 +21,19 @@ void func_800E0050(s16 *arg0, f32 arg1, s32 arg2, f32 *arg3) {
     struct Entry *var_s1;
 
     temp_f0 = func_800E0414(arg0, arg1);
-    (*(f32 *)((s8 *)(arg3) + (8))) = 0.0f;
-    (*(f32 *)((s8 *)(arg3) + (4))) = 0.0f;
-    (*(f32 *)((s8 *)(arg3) + (0))) = 0.0f;
-    (*(f32 *)((s8 *)(arg3) + (0x20))) = 0.0f;
-    (*(f32 *)((s8 *)(arg3) + (0x1C))) = 0.0f;
-    (*(f32 *)((s8 *)(arg3) + (0x18))) = 0.0f;
-    (*(f32 *)((s8 *)(arg3) + (0x14))) = 1.0f;
-    (*(f32 *)((s8 *)(arg3) + (0x10))) = 1.0f;
-    (*(f32 *)((s8 *)(arg3) + (0xC))) = 1.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk8) = 0.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk4) = 0.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk0) = 0.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk20) = 0.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk1C) = 0.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk18) = 0.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk14) = 1.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unk10) = 1.0f;
+    (((Obj1EB9940_arg3 *)arg3)->unkC) = 1.0f;
     var_s3 = 0;
     var_s1 = (struct Entry *)((u8 *)arg0 + 8);
     var_s2 = 0;
-    if ((*(s16 *)((s8 *)(arg0) + (4))) > 0) {
+    if ((((Obj1EB9940_arg0 *)arg0)->unk4) > 0) {
 loop_1:
         var_s0 = CHANNEL(var_s1);
         if (arg2 != GROUP(var_s1)) {
@@ -50,7 +50,7 @@ loop_1:
 block_7:
         var_s2 += 1;
         var_s1 = (struct Entry *)((u8 *)var_s1 + var_s1->count * 4 + 4);
-        if (var_s2 >= (*(s16 *)((s8 *)(arg0) + (4)))) {
+        if (var_s2 >= (((Obj1EB9940_arg0 *)arg0)->unk4)) {
 
         } else {
             goto loop_1;
@@ -157,7 +157,7 @@ s32 func_800E0448(s16 *arg0) {
 }
 
 s32 func_800E0450(void *arg0) {
-    return ((*(s16 *)((s8 *)(arg0) + (2))) - (*(s16 *)((s8 *)(arg0) + (0)))) + 1;
+    return ((((Obj1EB9940_arg0 *)arg0)->unk2) - (((Obj1EB9940_arg0 *)arg0)->unk0)) + 1;
 }
 
 s32 func_800E0464(s16 *arg0) {
@@ -169,11 +169,11 @@ f32 func_800E046C(void *arg0, s32 arg1) {
     s32 temp_v0;
     s16 temp_v1;
 
-    temp_v0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    temp_v0 = (((Obj1EB9940_arg0 *)arg0)->unk2);
     if (!(arg1 != temp_v0)) {
         return D_80125D70;
     }
-    temp_v1 = (*(s16 *)((s8 *)(arg0) + (0)));
+    temp_v1 = (((Obj1EB9940_arg0 *)arg0)->unk0);
     return (f32) (arg1 - temp_v1) / (f32) (temp_v0 - temp_v1);
 }
 

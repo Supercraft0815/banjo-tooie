@@ -1,14 +1,14 @@
 #include "common.h"
 
-void ncbadeflect_entrypoint_0(s32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+void ncbadeflect_entrypoint_0(BtIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF368(f32 *, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F13F0(f32, f32);
-    void func_80111094(s32, s32);
-    void func_801110C4(s32, u8 *);
+    void func_80111094(BtIntPtr, BtIntPtr);
+    void func_801110C4(BtIntPtr, u8 *);
     f32 sqrtf(f32);
     f32 pad[2];
     f32 radius;
@@ -18,7 +18,7 @@ void ncbadeflect_entrypoint_0(s32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4,
     f32 direction[3];
     f32 distance;
 
-    func_80111094(arg0, (s32)position);
+    func_80111094(arg0, (BtIntPtr)position);
     if ((position[1] + 40.0f) < (arg1[1] + arg3)) {
         return;
     }
@@ -40,7 +40,7 @@ void ncbadeflect_entrypoint_0(s32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4,
     }
 }
 
-void ncbadeflect_entrypoint_1(s32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
+void ncbadeflect_entrypoint_1(BtIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     void func_800EF04C(f32 *, f32 *);
@@ -48,8 +48,8 @@ void ncbadeflect_entrypoint_1(s32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4)
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F13F0(f32, f32);
-    void func_80111094(s32, s32);
-    void func_801110C4(s32, u8 *);
+    void func_80111094(BtIntPtr, BtIntPtr);
+    void func_801110C4(BtIntPtr, u8 *);
     f32 sqrtf(f32);
     f32 pad[2];
     f32 radius;
@@ -61,7 +61,7 @@ void ncbadeflect_entrypoint_1(s32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4)
     f32 randomY;
 
     func_800EFA4C(origin, arg1[0], arg1[1] + arg2, arg1[2]);
-    func_80111094(arg0, (s32)position);
+    func_80111094(arg0, (BtIntPtr)position);
     func_800EFB24(direction, position, origin);
     radius = arg3 + 80.0f;
     distance = direction[0] * direction[0] + direction[1] * direction[1] + direction[2] * direction[2];

@@ -2,13 +2,13 @@
 
 OSThread *chlavafall_entrypoint_0(void)
 {
-    extern u8 D_808000B0_chlavafall[];
+    extern ActorData D_808000B0_chlavafall[];
 
     return (OSThread *) D_808000B0_chlavafall;
-}
+}    typedef struct { u8 pad0[0x7A]; u8 unk7A; } Objfall_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080000C_chlavafall(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x7A))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x7A))) & 0xFF3F) | 0x80);
+    (((Objfall_arg0 *)arg0)->unk7A) = (u8) (((((Objfall_arg0 *)arg0)->unk7A) & 0xFF3F) | 0x80);
 }
 
 typedef struct {
@@ -26,8 +26,8 @@ typedef union {
 } LavaFallEvent;
 
 s32 func_80800020_chlavafall(Actor *arg0, s32 arg1, LavaFallEvent arg2) {
-    s32 func_800F6AA4(s32);
-    s32 func_800F79DC(s32, s32, s32);
+    s32 func_800F6AA4(BtIntPtr);
+    s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);
     LavaFallContact *sp1C;
 
     sp1C = arg2.contact;
@@ -36,7 +36,7 @@ s32 func_80800020_chlavafall(Actor *arg0, s32 arg1, LavaFallEvent arg2) {
         if (sp1C->flags == 0) {
             arg2.value = func_800F6AA4(sp1C->playerIndex);
             if (arg2.value == 0) {
-                func_800F79DC(sp1C->playerIndex, 4, (s32)arg0->unk0);
+                func_800F79DC(sp1C->playerIndex, 4, (BtIntPtr)arg0->unk0);
             }
         }
         break;
@@ -45,3 +45,9 @@ s32 func_80800020_chlavafall(Actor *arg0, s32 arg1, LavaFallEvent arg2) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/lava/fall.data.s */
+void func_80102EC0();
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_808000B0_chlavafall [1] BT_DATA(4, overlays_ch_lava_fall, 0x0) = { { 777, 1282, 2374, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 7000, 0, 0, 0, 2, 5120, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_8080000C_chlavafall, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 3072, (void (*)(struct Actor *, long, long))func_80800020_chlavafall, 0 } };

@@ -15,13 +15,13 @@ void subaddieaudioloop_entrypoint_1(u8 *arg0, s32 sample_rate) {
     if (arg0[0x5F] != 0) {
         func_800C3058(arg0[0x5F], sample_rate);
     }
-}
+}    typedef struct { u8 pad0[0x5F]; u8 unk5F; } Objaudioloop_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void subaddieaudioloop_entrypoint_2(void *arg0) {
     u8 subaddieaudioloop_entrypoint_3(u8);
-    (*(u8 *)((s8 *)(arg0) + (0x5F))) = subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x5F))));
+    (((Objaudioloop_arg0 *)arg0)->unk5F) = subaddieaudioloop_entrypoint_3((((Objaudioloop_arg0 *)arg0)->unk5F));
 }
 
 u8 subaddieaudioloop_entrypoint_3(u8 arg0) {
@@ -50,7 +50,7 @@ s32 subaddieaudioloop_entrypoint_4(Actor *arg0, f32 *arg1, u32 arg2, u32 *arg3) 
 
 void subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4) {
     f32 func_800EEB40(f32 *, f32 *);
-    void func_8010D640(s32);
+    void func_8010D640(BtIntPtr);
     f32 sp1C[3];
 
     if (arg2 != 0) {
@@ -67,9 +67,9 @@ void subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, 
 
 /* extern */
 
-void subaddieaudioloop_entrypoint_6(u8 arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4, s32 arg5) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(u8) subaddieaudioloop_entrypoint_6(u8 arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4, s32 arg5) {
     f32 func_800EEB40(f32 *, f32 *);
-    void func_8010D640(s32);
+    void func_8010D640(BtIntPtr);
     u8 subaddieaudioloop_entrypoint_7(u8, f32 *, u32, u32 *, s32);
     f32 sp24[3];
 
@@ -82,19 +82,19 @@ void subaddieaudioloop_entrypoint_6(u8 arg0, f32 *arg1, u32 arg2, s32 arg3, u32 
             arg2 = 0;
         }
     }
-    subaddieaudioloop_entrypoint_7(arg0, arg1, arg2, arg4, arg5);
+    BT_NATIVE_ONLY(return) subaddieaudioloop_entrypoint_7(arg0, arg1, arg2, arg4, arg5);
 }
 
 u8 subaddieaudioloop_entrypoint_7(u8 arg0, f32 *arg1, u32 arg2, u32 *arg3, s32 arg4) {
-    s32 _subaddieaudioquick_entrypoint_0(u8, s32);
+    void _subaddieaudioquick_entrypoint_0(u8 arg0, s32 arg1);
     s32 func_800C2FDC(u8);
     void func_800C3BDC(u8);
     u8 func_800C4350(u8, f32[3], s32 *);
-    extern s32 D_808003C0_subaddieaudioloop;
+    extern s32 D_808003C0_subaddieaudioloop[3];
 
     if (arg2 != 0) {
         if (!arg0) {
-            arg0 = func_800C4350(arg0, arg1, &D_808003C0_subaddieaudioloop);
+            arg0 = func_800C4350(arg0, arg1, D_808003C0_subaddieaudioloop);
             func_800C4350(arg0, arg1, arg3);
         }
         if (arg0) {
@@ -109,18 +109,18 @@ u8 subaddieaudioloop_entrypoint_7(u8 arg0, f32 *arg1, u32 arg2, u32 *arg3, s32 a
     return arg0;
 }
 
-f32 subaddieaudioloop_entrypoint_8(Actor *arg0, s32 arg1, s32 arg2, f32 arg3) {
+f32 subaddieaudioloop_entrypoint_8(Actor *arg0, BtIntPtr arg1, s32 arg2, f32 arg3) {
     s32 func_800C2FDC(u8);
     void func_800C3BDC(u8);
     u8 func_800C4350(u8, f32[3], s32 *);
     int func_800D9154(f32 *, f32);
-    extern s32 D_808003CC_subaddieaudioloop;
+    extern s32 D_808003CC_subaddieaudioloop[9];
     u8 temp_a0;
     u8 temp_a0_2;
 
     if (arg2 != 0) {
         if (arg0->unk5F == 0) {
-            arg0->unk5F = func_800C4350(0, arg0->position, &D_808003CC_subaddieaudioloop);
+            arg0->unk5F = func_800C4350(0, arg0->position, D_808003CC_subaddieaudioloop);
             arg3 = 0.7f;
         } else if (func_800D9154(&arg3, 0.7f) != 0) {
             temp_a0 = arg0->unk5F;
@@ -137,3 +137,6 @@ f32 subaddieaudioloop_entrypoint_8(Actor *arg0, s32 arg1, s32 arg2, f32 arg3) {
     }
     return arg3;
 }
+/* data_to_c.py: from asm/data/overlays/su/baddie/audioloop.data.s */
+s32 D_808003C0_subaddieaudioloop[3] BT_DATA(4, overlays_su_baddie_audioloop, 0x0) = { 33947649, 13110200, 458752 };
+s32 D_808003CC_subaddieaudioloop[9] BT_DATA(4, overlays_su_baddie_audioloop, 0xC) = { 50724871, 1246560, 66536, 262144022, 1638400017, 0, 0, 0, 0 };

@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-s32 _chbounce_entrypoint_7(s32, f32*, s32);
+BtIntPtr _chbounce_entrypoint_7(BtIntPtr, f32*, s32);
 
 #endif

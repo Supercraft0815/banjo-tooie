@@ -26,7 +26,7 @@ void func_80115618(Actor *arg0, f32 arg1, f32 arg2) {
     void func_800EF3DC(f32 *, f32 *);
     f32 func_800F1DCC(f32, f32);
     void func_800F5680(s32, f32 *);
-    s32 func_800F6C5C(s32);
+    s32 func_800F6C5C(BtIntPtr);
     void func_801107B0(void *, f32 *);
     void func_801107F0(void *, f32 *);
     s32 func_80110840(s32 *);
@@ -117,10 +117,10 @@ void func_80115828(void *arg0, f32 arg1, f32 arg2) {
 
 void func_80115858(void *arg0, s32 arg1) {
     *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 60) + 12) = arg1;
-}
+}    typedef struct { u8 pad0[0x3C]; void * unk3C; } Obj1EEEF00_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80115864(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 60) + 28) = arg1;
+    *(s8 *)((u8 *)*&((Obj1EEEF00_arg0 *)arg0)->unk3C + 28) = arg1;
 }
 
 void func_80115870(void *arg0, f32 arg1) {
@@ -133,8 +133,8 @@ void func_80115870(void *arg0, f32 arg1) {
 }
 
 void func_801158B0(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x14))) = arg1;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x18))) = arg2;
+    (*(f32 *)((s8 *)((((Obj1EEEF00_arg0 *)arg0)->unk3C)) + (0x14))) = arg1;
+    (*(f32 *)((s8 *)((((Obj1EEEF00_arg0 *)arg0)->unk3C)) + (0x18))) = arg2;
 }
 
 void func_801158CC(PlayerState* arg0, f32* arg1)
@@ -227,39 +227,39 @@ void func_80115A9C(void *arg0) {
             *((u8 *)(*(void **)((u8 *)arg0 + 0x3C)) + 0x1D) = 0;
         }
     }
-}
+}    typedef struct { f32 unk0; f32 unk4; u8 pad8[0x9]; u8 unk11; u8 unk12; } Obj1EEEF00_func_80115C40_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80115C40(void *arg0, f32 arg1) {
     f32 temp_f0;
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
-    if (((*(u8 *)((s8 *)(temp_v0) + (0x11))) == 0) || !(arg1 < (*(f32 *)((s8 *)(temp_v0) + (0))))) {
-        if ((*(u8 *)((s8 *)(temp_v0) + (0x12))) != 0) {
-            temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (4)));
+    temp_v0 = (((Obj1EEEF00_arg0 *)arg0)->unk3C);
+    if (((((Obj1EEEF00_func_80115C40_temp_v0 *)temp_v0)->unk11) == 0) || !(arg1 < (((Obj1EEEF00_func_80115C40_temp_v0 *)temp_v0)->unk0))) {
+        if ((((Obj1EEEF00_func_80115C40_temp_v0 *)temp_v0)->unk12) != 0) {
+            temp_f0 = (((Obj1EEEF00_func_80115C40_temp_v0 *)temp_v0)->unk4);
             if (temp_f0 < arg1) {
                 arg1 = temp_f0;
             }
         }
-        (*(f32 *)((s8 *)(temp_v0) + (0))) = arg1;
-        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x11))) = 1U;
+        (((Obj1EEEF00_func_80115C40_temp_v0 *)temp_v0)->unk0) = arg1;
+        (*(u8 *)((s8 *)((((Obj1EEEF00_arg0 *)arg0)->unk3C)) + (0x11))) = 1U;
     }
-}
+}    typedef struct { f32 unk0; f32 unk4; u8 pad8[0x9]; u8 unk11; u8 unk12; } Obj1EEEF00_func_80115CA4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80115CA4(void *arg0, f32 arg1) {
     f32 temp_f0;
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
-    if (((*(u8 *)((s8 *)(temp_v0) + (0x12))) == 0) || !((*(f32 *)((s8 *)(temp_v0) + (4))) < arg1)) {
-        if ((*(u8 *)((s8 *)(temp_v0) + (0x11))) != 0) {
-            temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0)));
+    temp_v0 = (((Obj1EEEF00_arg0 *)arg0)->unk3C);
+    if (((((Obj1EEEF00_func_80115CA4_temp_v0 *)temp_v0)->unk12) == 0) || !((((Obj1EEEF00_func_80115CA4_temp_v0 *)temp_v0)->unk4) < arg1)) {
+        if ((((Obj1EEEF00_func_80115CA4_temp_v0 *)temp_v0)->unk11) != 0) {
+            temp_f0 = (((Obj1EEEF00_func_80115CA4_temp_v0 *)temp_v0)->unk0);
             if (arg1 < temp_f0) {
                 arg1 = temp_f0;
             }
         }
-        (*(f32 *)((s8 *)(temp_v0) + (4))) = arg1;
-        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x12))) = 1U;
+        (((Obj1EEEF00_func_80115CA4_temp_v0 *)temp_v0)->unk4) = arg1;
+        (*(u8 *)((s8 *)((((Obj1EEEF00_arg0 *)arg0)->unk3C)) + (0x12))) = 1U;
     }
 }
 
@@ -285,7 +285,7 @@ void func_80115D08(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     func_801158B0(arg0, sp1C, func_800136E4(sp24));
 }
 
-void func_80115D88(PlayerState *arg0) { void func_801107F0(void *, f32 *); void func_800EFB24(void *, void *, void *); f32 sp34[3]; f32 sp28[3]; f32 sp1C[3]; func_801107F0(arg0, sp34); func_801158CC(arg0, sp1C); func_800EFB24(sp28, sp34, sp1C); func_800F1884(sp28, (u8 *)arg0->state_timer + 0x24); (*(f32 *)((s8 *)(arg0->state_timer) + 0x28)) = 0.0f; }
+void func_80115D88(PlayerState *arg0) { void func_801107F0(void *, f32 *); void func_800EFB24(void *, void *, void *); f32 sp34[3]; f32 sp28[3]; f32 sp1C[3]; func_801107F0(arg0, sp34); func_801158CC(arg0, sp1C); func_800EFB24(sp28, sp34, sp1C); func_800F1884(sp28, (u8 *)arg0->state_timer + 0x24); (*(f32 *)((s8 *)(arg0->state_timer) + 0x28)) = 0.0f; }    typedef struct { u8 pad0[0x1D]; u8 unk1D; u8 pad1E[0x2]; f32 unk20; f32 unk24; } Obj1EEEF00_func_80115DEC_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
 
 void func_80115DEC(PlayerState *arg0, f32 arg1, f32 arg2) {
     f32 func_800F1DCC(f32, f32);
@@ -294,14 +294,14 @@ void func_80115DEC(PlayerState *arg0, f32 arg1, f32 arg2) {
     void *var_v0;
 
     var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
-    if ((*(u8 *)((s8 *)(var_v0) + (0x1D))) == 0) {
+    if ((((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk1D) == 0) {
         func_80115D88(arg0);
         var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
     }
-    (*(f32 *)((s8 *)(var_v0) + (0x20))) = arg1;
+    (((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk20) = arg1;
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x2C))) = 0.0f;
     var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x30))) = (f32) ((mlAbsF(func_800F1DCC((*(f32 *)((s8 *)(var_v0) + (0x20))), (*(f32 *)((s8 *)(var_v0) + (0x24))))) * D_80126614) / arg2);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x30))) = (f32) ((mlAbsF(func_800F1DCC((((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk20), (((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk24))) * D_80126614) / arg2);
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x1D))) = 1;
 }
 

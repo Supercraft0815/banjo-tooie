@@ -6,7 +6,7 @@ s32 func_80098210()
 }
 
 struct player_state_s;
-s32 func_800EFD24();
+s32 func_800EFD24();     
 void func_80098218(struct player_state_s *arg0, s32 *arg1) {
     s32 func_80092B80(struct player_state_s *);
     void func_800DFC20(s32 *, s32, f32 *);
@@ -73,20 +73,20 @@ void func_80098408(u8 *arg0) {
 void func_80098480(u8 *arg0, s32 arg1, s32 arg2) {
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x28))) = arg1;
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x2A))) = arg2;
-}
+}               typedef struct { u8 pad0[0xAC]; void * unkAC; u8 padB0[0x30]; void * unkE0; } Obj1E71B00_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80098494(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xAC)))) + (0))) = arg1;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xAC)))) + (4))) = arg2;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xAC)))) + (8))) = arg3;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xAC)))) + (0xC))) = arg4;
+    (*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC)) + (0))) = arg1;
+    (*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC)) + (4))) = arg2;
+    (*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC)) + (8))) = arg3;
+    (*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC)) + (0xC))) = arg4;
 }
 
 /* extern */
 
 void func_800984CC(void *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8((f32 *)((u8 *)*(void **)((u8 *)arg0 + 0xAC) + 0x1C), arg1);
+    func_800EE7F8((f32 *)((u8 *)*&((Obj1E71B00_arg0 *)arg0)->unkAC + 0x1C), arg1);
 }
 
 void func_800984F0(u8 *arg0, f32 *arg1) {
@@ -151,11 +151,11 @@ u32 func_8009861C(void *arg0) {
 }
 
 f32 func_80098628(void *arg0) {
-    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 224) + 24);
+    return *(f32 *)((u8 *)*&((Obj1E71B00_arg0 *)arg0)->unkE0 + 24);
 }
 
 u32 func_80098634(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 224) + 47);
+    return *(u8 *)((u8 *)*&((Obj1E71B00_arg0 *)arg0)->unkE0 + 47);
 }
 
 u32 func_80098640(void *arg0) {
@@ -205,11 +205,11 @@ void func_800987CC(void *arg0) {
     s32 func_800C6E38(s32);
     f32 func_800D8FF8();
     f32 func_800F0E00(f32, f32);
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE0)))) + (0x28))) = func_800F0E00((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE0)))) + (0x28))) - func_800D8FF8(), 0.0f);
-    if (((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE0)))) + (0x2C))) != 0) && (func_800C6E38(5) != 0)) {
+    (*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkE0)) + (0x28))) = func_800F0E00((*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkE0)) + (0x28))) - func_800D8FF8(), 0.0f);
+    if (((*(u8 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkE0)) + (0x2C))) != 0) && (func_800C6E38(5) != 0)) {
         func_8009E7C8(arg0, 0xC);
     }
-    (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xE0)))) + (0x2C))) = 0U;
+    (*(u8 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkE0)) + (0x2C))) = 0U;
 }
 
 void func_80098840(u8 *arg0) {

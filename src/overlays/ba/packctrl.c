@@ -1,6 +1,6 @@
 #include "common.h"
 
-void bapackctrl_entrypoint_5(s32 arg0, s32 arg1);
+void bapackctrl_entrypoint_5(BtIntPtr arg0, s32 arg1);
 void func_800EFD24(f32 *);
 
 s32 bapackctrl_entrypoint_0() 
@@ -29,15 +29,15 @@ s32 bapackctrl_entrypoint_1(u8 *arg0) {
     return func_8009EA58();
 }
 
-void bapackctrl_entrypoint_2(s32 arg0)
+void bapackctrl_entrypoint_2(BtIntPtr arg0)
 {
     bapackctrl_entrypoint_5(arg0,0);
 }
 
-void bapackctrl_entrypoint_3(s32 arg0) {
+void bapackctrl_entrypoint_3(BtIntPtr arg0) {
     void func_80800008_bapackctrl(u8 *);
     f32 temp_f0;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = *(s32 *) (arg0 + 0xD8);
     temp_f0 = *(f32 *) (temp_v0 + 0xC);
@@ -52,14 +52,14 @@ void bapackctrl_entrypoint_3(s32 arg0) {
 
 /* extern */
 
-void bapackctrl_entrypoint_4(s32 arg0, s32 arg1) {
-    s32 func_8009EADC(s32);
+void bapackctrl_entrypoint_4(BtIntPtr arg0, s32 arg1) {
+    void func_8009EADC(s32 arg0);
     void func_80800008_bapackctrl(u8 *);
     func_8009EADC(arg1);
     func_80800008_bapackctrl(arg0);
 }
 
-void bapackctrl_entrypoint_5(s32 arg0, s32 arg1) {
+void bapackctrl_entrypoint_5(BtIntPtr arg0, s32 arg1) {
     void func_80098480(u8 *, s32, s32);
     void func_80098494(void *, f32, f32, f32, f32);
     void func_800984CC(void *, f32 *);

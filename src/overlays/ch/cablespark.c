@@ -2,17 +2,17 @@
 
 OSThread *chcablespark_entrypoint_0(void)
 {
-    extern u8 D_80800B88_chcablespark[];
+    extern ActorData D_80800B88_chcablespark[];
 
     return (OSThread *) D_80800B88_chcablespark;
 }
 
 void func_8080000C_chcablespark(Actor *arg0) {
-    extern s32 D_80800B70_chcablespark;
-    extern u32 D_80800BD0_chcablespark;
+    extern s32 D_80800B70_chcablespark[6];
+    extern u32 D_80800BD0_chcablespark[3];
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void func_800C8FE0(s32, s32);
     s32 func_800D90A4(f32 *);
     f32 func_800DC178(f32, f32);
@@ -29,7 +29,7 @@ void func_8080000C_chcablespark(Actor *arg0) {
     arg0->unk64_24 = 0;
     if (func_80800828_chcablespark(arg0)) {
         arg0->unk64_24 = 1;
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, arg0->unk70_10 == 3, &D_80800BD0_chcablespark);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, arg0->unk70_10 == 3, D_80800BD0_chcablespark);
         sp2C = func_800D90A4(&arg0->unk58);
         switch (arg0->unk70_10) {
         case 1:
@@ -60,7 +60,7 @@ void func_8080000C_chcablespark(Actor *arg0) {
                 sp28 = func_808007B8_chcablespark(arg0);
             }
             sp24 = func_80800970_chcablespark(arg0);
-            func_800C8E84(arg0->actorData[6], (s32 *)((u8 *)&D_80800B70_chcablespark + func_800DC298(0.35f) * 12));
+            func_800C8E84(arg0->actorData[6], (s32 *)((u8 *)D_80800B70_chcablespark + func_800DC298(0.35f) * 12));
             if (sp2C || sp28 || sp24) {
                 func_80101FDC(arg0, 1);
                 if (arg0->unk64_29) {
@@ -88,7 +88,7 @@ void func_8080024C_chcablespark(Actor *arg0) {
         _subaddieDll_entrypoint_4(arg0, 1);
     }
     func_808008BC_chcablespark(arg0);
-}
+}    typedef struct { u8 pad0[0x18]; u8 unk18; } Objcablespark_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -96,7 +96,7 @@ void func_808002BC_chcablespark(void *arg0) {
     s32 func_800E87E0(s32, u8);
     u8 temp_a1;
 
-    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x18)));
+    temp_a1 = (((Objcablespark_arg0 *)arg0)->unk18);
     if (temp_a1 != 0) {
         func_800E87E0(temp_a1 & 0xFF, temp_a1);
     }
@@ -139,15 +139,15 @@ s32 func_808002E8_chcablespark(Actor *arg0, s32 arg1, s32 arg2) {
 void func_8080040C_chcablespark(Actor *arg0, s32 arg1) {
     void *func_800D674C(s32);
     s32 func_800DC128(s32, s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     s32 func_800DF350(void);
-    void func_800DF47C(s32, s32);
+    void func_800DF47C(s32, BtIntPtr);
     void func_800DF744(s32, s32);
     void func_800DF830(s32);
     void func_800E3A58(f32 *);
     s32 func_800E88E4(u8);
     s32 func_801015D0(Actor *);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     void func_80800590_chcablespark(Actor *, f32 *);
     s32 func_80800828_chcablespark(void *);
     f32 sp34[3];
@@ -261,7 +261,7 @@ s32 func_80800828_chcablespark(void *arg0) {
 /* extern */
 
 void func_808008BC_chcablespark(void *arg0) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_80103014(u8 *);
@@ -287,23 +287,23 @@ s32 func_80800970_chcablespark(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     s32 func_800F0008(f32[3], f32, f32[3], f32);
-    u32 func_800F54E4(void);
-    f32 func_800F57F0(s32, f32 *);
-    s32 func_800F6478(s32);
-    s32 func_800F7B9C(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F57F0(BtIntPtr, f32 *);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
     f32 sp3C[3];
     f32 temp_f0;
     f32 sp2C[3];
     f32 sp28;
-    s32 sp24;
-    s32 temp_v0;
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800F54E4();
     sp24 = temp_v0;
     if (func_800F6478(temp_v0) == 0) {
         return 0;
     }
-    sp28 = func_800F57F0(sp24, sp2C);
+    sp28 = BT_IDO_ONLY(func_800F57F0(sp24, sp2C)) BT_NATIVE_ONLY(((union { s32 i; f32 f; }){ .i = func_800F57F0(sp24, sp2C) }).f);
     func_800EE7F8(sp3C, arg0->position);
     func_800EF1B8(sp3C, arg0->rotation[1], arg0->scale * 40.0f);
     temp_f0 = arg0->scale * 50.0f;
@@ -313,19 +313,19 @@ s32 func_80800970_chcablespark(Actor *arg0) {
     }
     return 0;
 }
-
+struct SparkRange { f32 values[2]; };
 void func_80800A48_chcablespark(Actor *arg0) {
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32[3]);
     void func_800C8D4C(s32, f32 *);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void func_800C8F64(s32, s32);
     void func_800C8FE0(s32, s32);
     s8 func_800E8714(s32);
     void func_800E8830(u8, f32[3]);
     s32 func_80800828_chcablespark(void *);
-    extern s32 D_80800B70_chcablespark;
-    struct SparkRange { f32 values[2]; };
+    extern s32 D_80800B70_chcablespark[6];
+
     extern struct SparkRange D_80800BDC_chcablespark;
     f32 sp28[2];
 
@@ -333,7 +333,7 @@ void func_80800A48_chcablespark(Actor *arg0) {
     sp28[0] *= arg0->scale;
     sp28[1] *= arg0->scale;
     arg0->actorData[6] = func_800C8A98();
-    func_800C8E84(arg0->actorData[6], &D_80800B70_chcablespark);
+    func_800C8E84(arg0->actorData[6], D_80800B70_chcablespark);
     func_800C8CB8(arg0->actorData[6], arg0->position);
     func_800C8F64(arg0->actorData[6], 0xB);
     func_800C8D4C(arg0->actorData[6], sp28);
@@ -345,3 +345,10 @@ void func_80800A48_chcablespark(Actor *arg0) {
         arg0->unk64_24 = 0;
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/cablespark.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+s32 D_80800B70_chcablespark[6] BT_DATA(4, overlays_ch_cablespark, 0x0) = { 192, 192, 255, 128, 128, 160 };
+ActorData D_80800B88_chcablespark [1] BT_DATA(4, overlays_ch_cablespark, 0x18) = { { 676, 829, 1721, 1, 0, (void (*)(struct Actor *))func_8080000C_chcablespark, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080040C_chcablespark, 117964800, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_808002BC_chcablespark, 0, 0, 0, (void (*)(struct Actor *))func_8080024C_chcablespark, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 25603, (void (*)(struct Actor *, long, long))func_808002E8_chcablespark, 0 } };
+u32 D_80800BD0_chcablespark[3] BT_DATA(4, overlays_ch_cablespark, 0x60) = { 0x13050C, 0xD010C, 0x1190000 };
+struct SparkRange D_80800BDC_chcablespark BT_DATA(4, overlays_ch_cablespark, 0x6C) = { { 250.0f, 400.0f } };

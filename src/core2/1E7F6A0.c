@@ -9,7 +9,7 @@ void func_800A5DB0(Actor *arg0) {
     void func_800EF334(f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F1988(f32 *, f32 *, f32 *);
-    f32 func_800F554C(s32);
+    BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F554C(s32);
     void func_800F5680(s32, f32 *);
     extern f32 D_801255D0;
     f32 pad;
@@ -23,7 +23,7 @@ void func_800A5DB0(Actor *arg0) {
     func_800EE7F8(sp58, arg0->position);
     sp44 = ((f32 *)arg0->actorData)[3];
     sp34 = func_800F10B4(sp58[1] - sp44, 0.0f, 300.0f, 0.43f, D_801255D0);
-    sp48 = func_800F554C(arg0->unk74_7) * (sp34 * arg0->unk58);
+    sp48 = BT_IDO_ONLY(func_800F554C(arg0->unk74_7)) BT_NATIVE_ONLY(((union { s32 i; f32 f; }){ .i = func_800F554C(arg0->unk74_7) }).f) * (sp34 * arg0->unk58);
     sp58[1] = sp44;
     func_800F5680(arg0->unk74_7, sp38);
     func_800F1988(sp38, &arg0->rotation[0], &arg0->rotation[1]);
@@ -88,7 +88,7 @@ void func_800A61D4(void) {
 void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     typedef struct player_state_s PlayerState;
     typedef struct { f32 m[4][4]; } MtxF;
-    PlayerState *func_800F53D0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
     void *func_80092B04(PlayerState *, s32);
     f32 func_80092BE8(PlayerState *);
     f32 func_8009BFCC(PlayerState *);
@@ -102,13 +102,13 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     s32 _bapreload_entrypoint_1(s32, s32 *);
     f32 baroll_get(PlayerState *);
     f32 func_80013A7C(f32);
-    s32 func_8001575C(void);
+    BtIntPtr func_8001575C(void);
     s32 func_80019CD4(void);
-    s32 func_8008CA74(PlayerState *);
+    BtIntPtr func_8008CA74(PlayerState *);
     u32 func_80092738(s32 *);
     f32 func_80092BDC(PlayerState *);
     s32 func_80092E80(PlayerState *);
-    void func_800A06E8(s32);
+    void func_800A06E8(BtIntPtr);
     void func_800A5EC4();
     void func_800A61D4(void);
     Gfx **func_800A7180(void);
@@ -119,9 +119,9 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     void *func_800D674C(s32);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, void *);
     void *func_800DF330(void);
-    void func_800DF41C(s32);
+    void func_800DF41C(BtIntPtr);
     void func_800DF540(MtxF *);
-    void func_800DF72C(s32);
+    void func_800DF72C(BtIntPtr);
     void func_800E4190(f32 *, f32 *, s32 *);
     void func_800E7CF4(Gfx **);
     void func_800EE97C(f32 *, f32 *, f32 *);
@@ -131,7 +131,7 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     void func_800F254C(MtxF *, f32 *, f32);
     void func_800F274C(MtxF *);
     void func_800F27D4(f32 [4][4], f32 [4][4], f32 [4][4]);
-    s32 func_800F5410(s32);
+    s32 func_800F5410(BtIntPtr);
     extern f32 D_801255D4, D_801255D8;
     MtxF projection;
     MtxF rotation;
@@ -197,7 +197,7 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     } else {
         func_800DF72C(func_80092E80(player));
     }
-    func_800A06E8((s32)player);
+    func_800A06E8((BtIntPtr)player);
     func_800DF540(&projection);
     func_800A61D4();
     {
@@ -333,14 +333,14 @@ block_6:
 void func_800A6B24(Actor *arg0) {
     s32 func_800C8760(s32, s32);
     s32 func_800C878C(s32, s32, s32);
-    void func_800C8800(s32, f32 *);
+    void func_800C8800(BtIntPtr, f32 *);
     void func_800C8898(s32, f32 *);
     u8 func_800C89A8(s32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
     void func_800EFD24(f32 *);
-    f32 func_800F5BC4(s32, f32 *);
+    f32 func_800F5BC4(BtIntPtr, f32 *);
     f32 sqrtf(f32);
     s32 light;
     f32 radius;
@@ -399,12 +399,12 @@ void func_800A6B24(Actor *arg0) {
 
 void func_800A6DAC(Actor *arg0, s32 arg1) {
     s32 _plsu_entrypoint_1(s32);
-    s32 func_800F5410(s32);
-    s32 func_800F55FC(s32);
-    f32 func_800F5628(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
-    s32 func_800F65D0(s32);
+    s32 func_800F5410(BtIntPtr);
+    s32 func_800F55FC(BtIntPtr);
+    BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5628(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F65D0(BtIntPtr);
     int func_800F6640(s32);
     s32 func_800F6E80(s32);
     s32 func_800F8B88(void);
@@ -419,7 +419,7 @@ void func_800A6DAC(Actor *arg0, s32 arg1) {
            (func_800F5410(arg0->unk74_7) == 0xB &&
             _plsu_entrypoint_1(0x11) != -1))))) {
         func_800F5A00(arg0->unk74_7, arg0->position);
-        *(f32 *)&arg0->actorData[3] = func_800F5628(arg0->unk74_7);
+        *(BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) *)&arg0->actorData[3] = func_800F5628(arg0->unk74_7);
         if (arg0->unk64_20) {
             func_800A5DB0(arg0);
             return;
@@ -458,25 +458,25 @@ void func_800A6EF4(Actor *arg0) {
 /* extern */
 
 void func_800A6FF0(Actor *arg0) {
-    f32 func_800F5628(s32);
-    void func_800F5A00(s32, f32 *);
+    BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5628(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F8874(s32);
     func_800F5A00(arg0->unk74_7, arg0->position);
-    *(f32 *)&arg0->actorData[3] = func_800F5628(arg0->unk74_7);
+    *(BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) *)&arg0->actorData[3] = func_800F5628(arg0->unk74_7);
     arg0->unk64_20 = arg0->unk74_29;
     arg0->unk74_30 = func_800F8874(arg0->unk74_7);
-}
+}    typedef struct { u8 pad0[0x76]; u16 unk76; } Obj1E7F6A0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_800A7088(void *arg0) {
     s32 func_800F7364(u32);
-    func_800F7364((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7);
+    func_800F7364((u32) (((Obj1E7F6A0_arg0 *)arg0)->unk76) >> 7);
 }
 
-void func_800A70B0()
+void func_800A70B0(BT_NATIVE_ONLY(Unk80132ED0 *bt_a0))
 {
-    func_800FFA88();
+    func_800FFA88(BT_NATIVE_ONLY(bt_a0));
 }
 
 void func_800A70D0(Unk80132ED0 *arg0, s32 arg1) {

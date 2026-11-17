@@ -1,18 +1,18 @@
 #include "common.h"
 
-void subaddieitem_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+typedef struct { s8 unk0; s8 unk1; s8 unk2; s8 unk3; s16 unk4; s16 unk6; u8 pad8[0x8]; f32 unk10; } Objitem_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) subaddieitem_entrypoint_0(u8 *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     s32 _subaddielink_entrypoint_0(u8 *, u8 *);
     u8 *temp_a0;
 
-    (*(s8 *)((s8 *)(arg0) + (0))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (4))) = arg1;
-    (*(s16 *)((s8 *)(arg0) + (6))) = arg2;
-    (*(s8 *)((s8 *)(arg0) + (1))) = arg3;
-    (*(s8 *)((s8 *)(arg0) + (2))) = 0;
-    (*(s8 *)((s8 *)(arg0) + (3))) = 0;
+    (((Objitem_arg0 *)arg0)->unk0) = 0;
+    (((Objitem_arg0 *)arg0)->unk4) = arg1;
+    (((Objitem_arg0 *)arg0)->unk6) = arg2;
+    (((Objitem_arg0 *)arg0)->unk1) = arg3;
+    (((Objitem_arg0 *)arg0)->unk2) = 0;
+    (((Objitem_arg0 *)arg0)->unk3) = 0;
     temp_a0 = arg0 + 8;
     (*(f32 *)(temp_a0 + 8)) = 0.0f;
-    _subaddielink_entrypoint_0(temp_a0, (u8 *) arg1);
+    BT_NATIVE_ONLY(return) _subaddielink_entrypoint_0(temp_a0, (u8 *) arg1);
 }
 
 void subaddieitem_entrypoint_1(s8 *arg0, s32 arg1) {
@@ -25,9 +25,9 @@ void subaddieitem_entrypoint_2(u8 *arg0) {
     s32 _subaddielink_entrypoint_0(u8 *, u8 *);
     s32 func_80090658(s32, u8 *);
     func_80090658(1, arg0);
-    (*(s8 *)((s8 *)(arg0) + (3))) = 1;
-    (*(s8 *)((s8 *)(arg0) + (0))) = 1;
-    (*(f32 *)((s8 *)(arg0) + (0x10))) = 0.0f;
+    (((Objitem_arg0 *)arg0)->unk3) = 1;
+    (((Objitem_arg0 *)arg0)->unk0) = 1;
+    (((Objitem_arg0 *)arg0)->unk10) = 0.0f;
     _subaddielink_entrypoint_0(arg0 + 8, arg0);
 }
 
@@ -94,7 +94,7 @@ void func_80800224_subaddieitem(Actor *arg0, u8 *arg1, Actor *arg2) {
     s32 func_800D1B34(s32);
     void func_800FC660(u32);
     void func_800FFAB0(Actor *);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     u32 flags;
 
     flags = arg1[1];

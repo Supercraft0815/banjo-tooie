@@ -13,39 +13,39 @@
 #include "ba/hold.h"
 
 #include <ultra64.h>
-void func_800F497C(s32);
+void func_800F497C(BtIntPtr);
 #ifdef BT_NATIVE
-void func_800F49D4(s32, BaDroneCallback, uintptr_t);
+void func_800F49D4(BtIntPtr, BaDroneCallback, uintptr_t);
 #else
 void func_800F49D4(s32 arg0, void* arg1, s32 arg2);
 #endif
-void func_800F49A8(s32, s32);
-void func_800F4A00(s32, s32);
-void func_800F4A2C(s32, f32 *);
-void func_800F4A58(s32, f32 *, f32);
-void func_800F4AC0(s32, f32 *, f32);
+void func_800F49A8(BtIntPtr, s32);
+void func_800F4A00(BtIntPtr, s32);
+void func_800F4A2C(BtIntPtr, f32 *);
+void func_800F4A58(BtIntPtr, f32 *, f32);
+void func_800F4AC0(BtIntPtr, f32 *, f32);
 s32 func_800F4B4C(s32);
-s32 func_800F4B8C(u32, u32, s32);
-s32 func_800F4BB8(u32, u32, s32);
-void func_800F4CC0(s32);
-void func_800F4CEC(s32, u32);
-s32 func_800F4E5C(s32, s32, s32, s32, s32);
-s32 func_800F52B8(s32, Unk80132ED0 *);
-PlayerState* func_800F53D0(s32 arg0);
+s32 func_800F4B8C(BtUIntPtr, u32, s32);
+s32 func_800F4BB8(BtUIntPtr, u32, s32);
+void func_800F4CC0(BtIntPtr);
+void func_800F4CEC(BtIntPtr, u32);
+s32 func_800F4E5C(s32, BtIntPtr, BtIntPtr, BtIntPtr, BtIntPtr);
+s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+PlayerState* func_800F53D0(BtIntPtr arg0);
 PlayerState* func_800F53E4(s32 arg0);
 //Get the character control index
-u32 func_800F54E4(void);
-s32 func_800F5578(s32);
-Unk80132ED0* func_800F56D8(s32 arg0);
-void func_800F5A00(s32, f32[3]);
-void func_800F5D44(s32, f32*);
-f32 func_800F5F24(u32);
-s32 func_800F5FE0(s32);
-void func_800F608C(s32, s32);
-void func_800F6388(s32, s32);
-void func_800F63E0(s32, u32);
-s32 func_800F6438(u32);
-int func_800F6774(u32);
+BtUIntPtr func_800F54E4(void);
+s32 func_800F5578(BtIntPtr);
+Unk80132ED0* func_800F56D8(BtIntPtr arg0);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32[3]);
+void func_800F5D44(BtIntPtr, f32*);
+f32 func_800F5F24(BtUIntPtr);
+s32 func_800F5FE0(BtIntPtr);
+void func_800F608C(BtIntPtr, s32);
+void func_800F6388(BtIntPtr, s32);
+void func_800F63E0(BtIntPtr, u32);
+s32 func_800F6438(BtUIntPtr);
+int func_800F6774(BtUIntPtr);
 
 #ifdef BT_NATIVE
 #define ALLOW_SHIFT(t) (1 << (((t) + 0x1F) & 0x1F)) // IDO folds the shift mod 32
@@ -73,19 +73,19 @@ typedef enum
 }AllowedTransformation;
 
 //Does the character match the given transformation type
-s32 func_800F64A4(s32 characterIndex, AllowedTransformation transformationType);
-int func_800F7700(s32, s32, f32*);
+s32 func_800F64A4(BtIntPtr characterIndex, AllowedTransformation transformationType);
+int func_800F7700(BtIntPtr, s32, f32*);
 //The moving object is moved towards/away from the target
-int func_800F78EC(s32 moving, f32* target, f32 verticalSpeed, f32 horizontalSpeed);
-void func_800F7B9C(s32, u32);
-void func_800F7BC8(s32, s32, Unk80132ED0*);
-int func_800F8004(s32);
-void func_800F80E4(s32, u32);
-void func_800F822C(s32, f32, f32);
-void func_800F8294(s32, f32*);
+int func_800F78EC(BtIntPtr moving, f32* target, f32 verticalSpeed, f32 horizontalSpeed);
+void func_800F7B9C(BtIntPtr, u32);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F7BC8(BtIntPtr, s32, Unk80132ED0*);
+int func_800F8004(BtIntPtr);
+void func_800F80E4(BtIntPtr, u32);
+void func_800F822C(BtIntPtr, f32, f32);
+void func_800F8294(BtIntPtr, f32*);
 void func_800F82C0(s32);
-void func_800F82D4(s32, s32);
-void func_800F832C(s32, f32*);
+void func_800F82D4(BtIntPtr, s32);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F832C(BtIntPtr, f32*);
 s32 func_800F8B64(void);
 void func_800F8850();
 void func_800F8DD8();

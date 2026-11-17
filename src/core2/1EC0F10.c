@@ -153,3 +153,9 @@ void func_800E7A4C(Gfx** gfx) {
     func_800E78C8(gfx, G_TF_BILERP);
     D_8012D580.unk25 = 0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+RenderState D_8012D580 BT_DATA(4, bss_core2bss2_1, 0xC40);
+#endif

@@ -2,29 +2,29 @@
 
 OSThread *chdrips_entrypoint_0(void)
 {
-    extern u8 D_80800610_chdrips[];
+    extern ActorData D_80800610_chdrips[];
 
     return (OSThread *) D_80800610_chdrips;
 }
 
-void chdrips_entrypoint_1(s32 arg0, s32 arg1)
+void chdrips_entrypoint_1(s32 arg0, BtIntPtr arg1)
 {
-  s32 _fxripple_entrypoint_0(s32, s32);
-  s32 func_800C4140(s32, s32, s32);
+  void _fxripple_entrypoint_0(s32 arg0, BtIntPtr arg1);
+  void func_800C4140(u32 arg0, f32 *arg1, u32 arg2);
   f32 func_800DC178(f32, f32);
   func_800C4140(((((u32) (func_800DC178(1.0f, 1.4f) * 1023.0f)) << 13) << 8) + 0xBBD53, arg1, 0x05DC012C);
   _fxripple_entrypoint_0(0, arg1);
 }
 
 void chdrips_entrypoint_2(s32 arg0, f32 arg1[3]) {
-    s32 func_800B53A4(s32);
-    s32 func_800BA4D0(s32, s16);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA4D0(void *emitter, s16 min_y);
     void func_800BA6B0(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_800C4140(s32, s32, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    void func_800C4140(u32 arg0, f32 *arg1, u32 arg2);
     f32 func_800DC178(f32, f32);
     extern s32 D_80800658_chdrips[];
-    s32 emitter;
+    BtIntPtr emitter;
 
     emitter = func_800B53A4(5);
     func_800BA6B0(emitter, -50, 0, -50, 50, 0, 50);
@@ -34,11 +34,11 @@ void chdrips_entrypoint_2(s32 arg0, f32 arg1[3]) {
 }
 
 void func_80800260_chdrips(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    s32 func_800BA4D0(s32, s16);
-    void func_800BA544(s32 *, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA4D0(void *emitter, s16 min_y);
+    void func_800BA544(s32 *, BtIntPtr);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
     int func_800DC298(f32);
     void *func_80100094(Actor *, u32);
@@ -49,7 +49,7 @@ void func_80800260_chdrips(Actor *arg0) {
 #ifndef BT_NATIVE
     extern s32 _chdrips_entrypoint_2;
 #endif
-    s32 temp_v0;
+    BtIntPtr temp_v0;
     struct {
         f32 position[3];
         f32 size;
@@ -135,3 +135,10 @@ void func_808005CC_chdrips(Actor *arg0) {
     u32* func_80100074(Actor*, u32, u32);
     func_80100074(arg0, 0U, 0U);
 }
+/* data_to_c.py: from asm/data/overlays/ch/drips.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80800610_chdrips [1] BT_DATA(4, overlays_ch_drips, 0x0) = { { 744, 881, 0, 1, 0, (void (*)(struct Actor *))func_80800260_chdrips, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 8, 5, (void (*)(struct Actor *))func_808005CC_chdrips, 0, 0, 0, (void (*)(struct Actor *))func_80800394_chdrips, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 514, 0, 0 } };
+s32 D_80800658_chdrips [16] BT_DATA(4, overlays_ch_drips, 0x48) = { 1903066, 2162687, -21757925, -85132564, 458753, 1376256, 13369378, 327690, 327685, 2818560, 33554454, 268435500, -5898040, -5898150, 22937690, 85590016 };
+s32 D_80800698_chdrips [10] BT_DATA(4, overlays_ch_drips, 0x88) = { 1903091, 2162687, -21757925, -45810364, 458753, 2228229, 655380, 1638400, 0, 0 };

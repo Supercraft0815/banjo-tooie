@@ -14,7 +14,7 @@ s32 func_80800000_sudialog(DialogMap *map, s32 key) {
 }
 
 s32 sudialog_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, s32, s32, s16);
+    s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, s32, s16);
     s32 func_800DA298(GameFlag);
     void func_800DA544(GameFlag);
     extern DialogMap D_808000E0_sudialog;

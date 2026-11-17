@@ -1,17 +1,17 @@
 #include "common.h"
 
 void func_80800000_chworlddoors(u8 *arg0) {
-    void func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF214(f32 *, f32, f32, f32);
-    extern s32 D_80800990_chworlddoors;
+    extern s32 D_80800990_chworlddoors[18];
     f32 *sp20;
     f32 sp24[2];
 
     sp20 = (f32 *)(arg0 + 0x28);
     func_800EE7F8(sp24, sp20);
     func_800EF214(sp24, *(f32 *)(arg0 + 0x44), *(f32 *)(arg0 + 0x48), -50.0f);
-    func_800BBCB8(sp20, sp24, 1.0f, 6, &D_80800990_chworlddoors);
+    func_800BBCB8(sp20, sp24, 1.0f, 6, D_80800990_chworlddoors);
 }
 
 s32 func_80800068_chworlddoors(Actor *arg0) {
@@ -20,7 +20,7 @@ s32 func_80800068_chworlddoors(Actor *arg0) {
     s32 _gspropctrl_entrypoint_12(Prop *);
     s32 _gspropctrl_entrypoint_13(Prop *);
     s32 _gspropctrl_entrypoint_8(Prop *);
-    s32 _sujiggy_entrypoint_22(u32);
+    u8 _sujiggy_entrypoint_22(s32 arg0);
     void func_800EEBF0(f32 *, f32 *, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_800F18FC(f32 *, f32 *, f32 *);
@@ -35,7 +35,7 @@ s32 func_80800068_chworlddoors(Actor *arg0) {
     world = _sujiggy_entrypoint_22(arg0->unk79_4);
     count = _gccubesearch_entrypoint_9(0x4DC, props, 2);
     i = 0;
-    if (count > 0) {
+    BT_IDO_ONLY(if (count > 0)) BT_NATIVE_ONLY(if (!(count > 0)) { result = count; } else) {
         prop = props;
         do {
         if (_gspropctrl_entrypoint_8(*prop) == world + 0x32) {
@@ -70,15 +70,15 @@ s32 func_80800068_chworlddoors(Actor *arg0) {
 }
 
 void func_80800214_chworlddoors(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _subaddieaudioloop_entrypoint_2(Actor *);
-    s32 _sujiggy_entrypoint_23(u32);
+    u16 _sujiggy_entrypoint_23(s32 arg0);
     void func_80018820(s32, f32, f32);
     void func_800C3F48(u32);
     s32 func_800E15CC(s32, f32, f32);
-    s32 func_800E1720(s32);
+    BtIntPtr func_800E1720(s32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_8010A800(Actor *, s32);
     s32 sp24;
@@ -137,8 +137,8 @@ void func_80800388_chworlddoors(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    extern s32 D_808009D8_chworlddoors;
-    extern u32 D_808009E8_chworlddoors;
+    extern s32 D_808009D8_chworlddoors[4];
+    extern u32 D_808009E8_chworlddoors[4];
     f32 sp34;
 
     switch (arg0->unk70_10) {
@@ -151,12 +151,12 @@ void func_80800388_chworlddoors(Actor *arg0) {
                 arg0->actorData[3] = func_800E15CC(0, 0.0f, 1.0f) + 1;
             }
             func_800E13F0(arg0->actorData[3] - 1, sp34 * 10.0f);
-            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808009E8_chworlddoors);
             func_800C4B70((s32)(24000.0f * sp34));
             func_80018820(0, sp34, 0.1f);
             break;
         case 2:
-            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808009E8_chworlddoors);
             func_800C4B70(24000);
             func_80018820(0, 1.0f, 0.1f);
             if (func_800D90A4(&arg0->unk58)) {
@@ -165,7 +165,7 @@ void func_80800388_chworlddoors(Actor *arg0) {
             } else {
                 func_800EFE50(arg0->position, (f32 *)arg0->actorData, (f32 *)&arg0->actorData[4], func_800F10B4(arg0->unk58, 1.0f, 0.0f, 0.0f, 1.0f));
             }
-            *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[7], arg0->position, 1, &D_808009D8_chworlddoors, 0);
+            *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[7], arg0->position, 1, D_808009D8_chworlddoors, 0);
             break;
         case 3:
             if (func_800D90A4(&arg0->unk58)) {
@@ -173,13 +173,13 @@ void func_80800388_chworlddoors(Actor *arg0) {
                 *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_3(*(u8 *)&arg0->actorData[7]);
                 _subaddieaudioloop_entrypoint_2(arg0);
             } else {
-                    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+                    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808009E8_chworlddoors);
                 func_800C4B70(24000);
                 func_80018820(0, 1.0f, 0.1f);
                 func_80800000_chworlddoors((u8 *)arg0);
                 arg0->scale = func_800F10B4(arg0->unk58, 0.8f, 0.0f, 1.0f, 0.001f);
-                *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[7], arg0->position, 1, &D_808009D8_chworlddoors, 0);
-                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808009E8_chworlddoors);
+                *(u8 *)&arg0->actorData[7] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[7], arg0->position, 1, D_808009D8_chworlddoors, 0);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808009E8_chworlddoors);
                 func_800C4B70(24000);
             }
             break;
@@ -226,7 +226,7 @@ s32 func_808006A8_chworlddoors(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800750_chworlddoors(Actor *arg0) {
     void _subaddieaudioloop_entrypoint_2(Actor*);
-    s32 func_800E1720(s32);
+    BtIntPtr func_800E1720(s32);
     u32 temp_v0;
 
     temp_v0 = arg0->actorData[3];
@@ -278,7 +278,16 @@ void func_80800798_chworlddoors(Actor *arg0, void *arg1) {
 
 OSThread *chworlddoors_entrypoint_0(void)
 {
-    extern u8 D_80800A04_chworlddoors[];
+    extern ActorData D_80800A04_chworlddoors[];
 
     return (OSThread *) D_80800A04_chworlddoors;
 }
+/* data_to_c.py: from asm/data/overlays/ch/worlddoors.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+s32 D_80800990_chworlddoors[18] BT_DATA(4, overlays_ch_worlddoors, 0x0) = { 1903077, 1834208, -39321555, 52429800, 917504, 2621462, 268566562, 3342412, 10027238, 1376256, 13369387, 12583296, 262220, 458754, 0, -1019936768, -1022361600, -1022689280 };
+s32 D_808009D8_chworlddoors[4] BT_DATA(4, overlays_ch_worlddoors, 0x48) = { 1246835, 2097154, 655577, 0 };
+u32 D_808009E8_chworlddoors[4] BT_DATA(4, overlays_ch_worlddoors, 0x58) = { 0x1304A9, 0x2001E, 0xA0100, 0 };
+s32 D_808009F8_chworlddoors [3] BT_DATA(4, overlays_ch_worlddoors, 0x68) = { 255, 255, 255 };
+ActorData D_80800A04_chworlddoors [1] BT_DATA(4, overlays_ch_worlddoors, 0x74) = { { 344, 1307, 2406, 1, 0, (void (*)(struct Actor *))func_80800388_chworlddoors, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800798_chworlddoors, 0, 0, 0, 0, 2, 4096, (void (*)(struct Actor *))func_80800750_chworlddoors, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32704, 1026, (void (*)(struct Actor *, long, long))func_808006A8_chworlddoors, 0 } };

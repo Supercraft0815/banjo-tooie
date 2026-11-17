@@ -16,7 +16,7 @@ u32* chwarppad_entrypoint_0(void) {
     return &D_808012FC_chwarppad;
 }
 
-void func_8080000C_chwarppad(Actor* arg0, u32 arg1)
+void func_8080000C_chwarppad(Actor* arg0, BtUIntPtr arg1)
 {
     OptionState* temp_v0;
 
@@ -199,7 +199,7 @@ void func_80800418_chwarppad(Actor* arg0, u32 arg1)
     }
 }
 
-s16 func_808006C0_chwarppad(s32 arg0)
+s16 func_808006C0_chwarppad(BtIntPtr arg0)
 {
     TransformationId temp_v0;
     u32 temp_a2;
@@ -222,7 +222,7 @@ void func_80800748_chwarppad(Actor* arg0)
 {
 
     s32 numUnlockedWarppads;
-    s32 controlledCharacter;
+    BtIntPtr controlledCharacter;
     s32 sp34;
 
     func_800DA524(FLAG3_9FE_WARPING_VIA_WARPPAD);
@@ -250,7 +250,7 @@ void func_80800748_chwarppad(Actor* arg0)
                 {
                     if (func_800F64A4(controlledCharacter, *(s32*)&(D_80801080_chwarppad - 0x220)[(WARPPAD_DATA(arg0)->unk10) * 0xC + ((arg0->unk74_7)) * 0xC]) != 0) 
                     {
-                        sp34 = func_808006C0_chwarppad((s32)arg0);
+                        sp34 = func_808006C0_chwarppad((BtIntPtr)arg0);
                     }
                     else
                     {
@@ -319,7 +319,7 @@ void func_80800AB8_chwarppad(Actor* arg0, s32 arg1, s32 arg2)
     func_80801018_chwarppad(arg0);
 }
 
-u8 func_80800ADC_chwarppad(s32 arg0)
+u8 func_80800ADC_chwarppad(BtIntPtr arg0)
 {
     s32 temp_v0;
     u8 var_a0;
@@ -347,7 +347,7 @@ void func_80800B34_chwarppad(Actor* arg0, OptionState* arg1, s32 arg2, s32 arg3)
         sp24 = func_808002F4_chwarppad(arg0, arg2);
         if (_gcnewoption_entrypoint_19(arg1, arg2) != 0)
         {
-            temp_v0 = func_80800ADC_chwarppad((s32)arg0);
+            temp_v0 = func_80800ADC_chwarppad((BtIntPtr)arg0);
             if (temp_v0 != 0)
             {
                 _gcnewoption_entrypoint_34(arg1, temp_v0);
@@ -375,7 +375,7 @@ void func_80800C00_chwarppad(Actor* arg0)
 {
     s32 var_a2;
     u32 levelIndex;
-    s32 sp3C;
+    BtIntPtr sp3C;
     f32 sp30[3];
 
     levelIndex = D_8012762C;

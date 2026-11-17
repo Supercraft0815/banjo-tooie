@@ -2,7 +2,7 @@
 
 #include "overlays/bs/kaz/die.h"
 
-s32 D_80800460_bskazdie[];
+BtIntPtr D_80800460_bskazdie[];
 
 void func_80800000_bskazdie(PlayerState *self) {
     f32 sp30 = 0.0f;
@@ -108,6 +108,9 @@ void bskazdie_entrypoint_2(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-s32 bskazdie_entrypoint_3(s32 idx) {
+BtIntPtr bskazdie_entrypoint_3(s32 idx) {
     return D_80800460_bskazdie[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/die.data.s */
+void _basudie_entrypoint_11();
+BtIntPtr D_80800460_bskazdie [4] BT_DATA(4, overlays_bs_kaz_die, 0x0) = { (BtIntPtr)_bskazdie_entrypoint_2, (BtIntPtr)_bskazdie_entrypoint_0, (BtIntPtr)_bskazdie_entrypoint_1, (BtIntPtr)_basudie_entrypoint_11 };

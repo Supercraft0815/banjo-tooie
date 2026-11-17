@@ -29,8 +29,8 @@ void func_800125B0(void) {
     void func_8001268C(void);
     void func_800DC380(void);
     void func_80016C00(void);
-    void func_80012F0C(s32);
-    void func_80012F34(s32, s32);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80012F0C(s32);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80012F34(s32, s32);
     void func_80012EA0(void);
     ALHeap *heap;
 
@@ -72,7 +72,7 @@ void func_800125B0(void) {
     func_80012F34(1, 4);
     func_80012EA0();
 #endif
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1E2A0E0_D_80069A40; /* offsets.py genstruct: fields from raw offsets on &D_80069A40; rename once understood */
 
 #if !defined(BT_NATIVE) || defined(BT_ILP32) // synthesizer setup and audio thread: see the native note in func_800125B0
 
@@ -125,7 +125,7 @@ void func_8001268C(void) {
     D_8006A1A8.heap = &D_80046A78;
     D_8006A1A8.outputRate = osAiSetFrequency(22050);
     func_80020D80((s32)&D_8006A158, (s32)&D_8006A1A8);
-    *(s32 *)((u8 *)&D_80069A40 + 4) = 0;
+    ((Obj1E2A0E0_D_80069A40 *)&D_80069A40)->unk4 = 0;
     D_80069A40 = 0;
     for (i = 0; i < 89; i++) {
         dma = (struct DMAState *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState));
@@ -235,7 +235,7 @@ void func_80012B74(s32 arg0) {
             D_8003CC64[i] = 0;
         }
     }
-}
+}    typedef struct { u8 unk0; u8 pad1[0x3]; struct dma_node * unk4; void * unk8; } Obj1E2A0E0_D_80069A30; /* offsets.py genstruct: fields from raw offsets on &D_80069A30; rename once understood */
 
 s32 func_80012BB4(s32 addr, s32 len, void *state) {
     void func_80020E40(ALLink *, ALLink *);
@@ -256,7 +256,7 @@ s32 func_80012BB4(s32 addr, s32 len, void *state) {
     s32 addr_end;
     struct dma_node *node, *head, *prev;
 
-    head = *(struct dma_node **)((u8 *)&D_80069A30 + 4);
+    head = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4;
     prev = NULL;
     for (node = head; node != NULL; node = (struct dma_node *)node->link.next) {
         addr_end = node->addr + 0x200;
@@ -279,14 +279,14 @@ s32 func_80012BB4(s32 addr, s32 len, void *state) {
     if (prev != NULL) {
         func_80020E40(&node->link, &prev->link);
     } else {
-        head = *(struct dma_node **)((u8 *)&D_80069A30 + 4);
+        head = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4;
         if (head != NULL) {
-            *(struct dma_node **)((u8 *)&D_80069A30 + 4) = node;
+            ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4 = node;
             node->link.next = (ALLink *)head;
             node->link.prev = NULL;
             head->link.prev = (ALLink *)node;
         } else {
-            *(struct dma_node **)((u8 *)&D_80069A30 + 4) = node;
+            ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4 = node;
             node->link.next = NULL;
             node->link.prev = NULL;
         }
@@ -305,14 +305,14 @@ s32 *func_80012D4C(s32 **arg0) {
     extern s32 D_80069A30;
     extern s32 D_80069A40;
     extern s32 func_80012BB4(s32, s32, void *);
-    if ((*(u8 *)((s8 *)(&D_80069A30) + (0))) == 0) {
+    if ((((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk0) == 0) {
         (*(s32 *)((s8 *)(&D_80069A30) + (4))) = 0;
         (*(s32 **)((s8 *)(&D_80069A30) + (8))) = &D_80069A40;
-        (*(u8 *)((s8 *)(&D_80069A30) + (0))) = 1U;
+        (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk0) = 1U;
     }
     *arg0 = &D_80069A30;
     return &func_80012BB4;
-}
+}    typedef struct { u8 pad0[0x4]; void * unk4; u8 pad8[0x4]; s32 unkC; } Obj1E2A0E0_func_80012D84_node; /* offsets.py genstruct: fields from raw offsets on node; rename once understood */
 
 void func_80012D84(void) {
     void func_80020E40(ALLink *, ALLink *);
@@ -338,17 +338,17 @@ void func_80012D84(void) {
     if (node != NULL) {
         do {
             next = *(void **)node;
-            if ((u32)(*(s32 *)((u8 *)node + 0xC) + 1) < D_8006A148) {
+            if ((u32)(((Obj1E2A0E0_func_80012D84_node *)node)->unkC + 1) < D_8006A148) {
                 if (node == *(void **)((u8 *)&D_80069A30 + 4)) {
                     *(void **)((u8 *)&D_80069A30 + 4) = *(void **)node;
                 }
                 func_80020E74(node);
-                if (*(void **)((u8 *)&D_80069A30 + 8) != NULL) {
-                    func_80020E40(node, *(void **)((u8 *)&D_80069A30 + 8));
+                if (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8 != NULL) {
+                    func_80020E40(node, ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8);
                 } else {
-                    *(void **)((u8 *)&D_80069A30 + 8) = node;
+                    ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8 = node;
                     *(void **)node = NULL;
-                    *(void **)((u8 *)node + 4) = NULL;
+                    ((Obj1E2A0E0_func_80012D84_node *)node)->unk4 = NULL;
                 }
             }
             node = next;
@@ -392,16 +392,16 @@ void *func_80012F00(void) {
     return D_80045BB8;
 }
 
-void func_80012F0C(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80012F0C(s32 arg0) {
     s32 func_80021A00(s32);
     D_8006A1CC.master = arg0;
-    func_80021A00(arg0 & 0xFF);
+    BT_NATIVE_ONLY(return) func_80021A00(arg0 & 0xFF);
 }
 
-void func_80012F34(s32 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80012F34(s32 arg0, s32 arg1) {
     s32 func_80021AD0();
     *(((volatile s16 *)D_8006A1CC.channels) + arg0) = arg1;
-    func_80021AD0();
+    BT_NATIVE_ONLY(return) func_80021AD0();
 }
 
 void *func_80012F60(void) {
@@ -414,7 +414,7 @@ void *func_80012F6C(void) {
     return D_80076940;
 }
 
-void rom_dma_read(u8 *arg0, s32 arg1, s32 arg2) {
+void rom_dma_read(u8 *arg0, BtIntPtr arg1, s32 arg2) {
     extern s32 D_8003CC70;
     extern u8 D_80076940[];
     extern u8 D_8007695C[];
@@ -527,3 +527,30 @@ void func_8001334C(void) {
         } while (D_8003CC70 > 0);
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_80076940 [ 24 ] BT_DATA(16, bss_core1bss1_0_audio_frame_tail, 0x0);
+u8 * D_80076958 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x18);
+u8 D_8007695C [ 28 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x1C);
+u8 * D_80076978 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x38);
+OSMesgQueue D_800769B8 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x78);
+s32 D_800459E0 [ 6 ] BT_DATA(16, bss_core1bss1_0_startup_tail, 0x0);
+OSThread D_800459F8 BT_DATA(8, bss_core1bss1_0_startup_tail, 0x18);
+__OSThreadOddFpStorage D_80045BA8 BT_DATA(8, bss_core1bss1_0_startup_tail, 0x1C8);
+u8 D_80045BB8 [ 24 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x1D8);
+OSMesg D_80045BD0 [ 8 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x1F0);
+OSMesgQueue D_80045BF0 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x210);
+OSMesg D_80045C08 [ 924 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x228);
+ALHeap D_80046A78 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x1098);
+u8 D_80046A88 [ 141824 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x10A8);
+u8 D_80069488 [ 24 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23AA8);
+OSMesg D_800694A0 [ 50 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23AC0);
+u8 D_80069568 [ 24 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23B88);
+OSIoMesg D_80069580 [ 50 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23BA0);
+s32 D_80069A30 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24050);
+s32 D_80069A40 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24060);
+u32 D_8006A148 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24768);
+u32 D_8006A14C BT_DATA(4, bss_core1bss1_0_startup_tail, 0x2476C);
+#endif

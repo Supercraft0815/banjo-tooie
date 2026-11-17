@@ -1,6 +1,6 @@
 #include "common.h"
 
-void idtwinkle_entrypoint_0(s32 arg0, s16 *arg1, u8 *arg2, void *arg3) {
+typedef struct { u8 pad0[0xE]; s16 unkE; s16 unk10; s16 unk12; s32 unk14; u8 pad18[0xC]; s16 unk24; s16 unk26; s16 unk28; u8 pad2A[0x2]; u8 * unk2C; } Objtwinkle_arg3; /* offsets.py genstruct: fields from raw offsets on arg3; rename once understood */ void idtwinkle_entrypoint_0(s32 arg0, s16 *arg1, u8 *arg2, void *arg3) {
     s32 i;
     s32 distance;
     s32 delta[3];
@@ -9,10 +9,10 @@ void idtwinkle_entrypoint_0(s32 arg0, s16 *arg1, u8 *arg2, void *arg3) {
         delta[i] = arg1[i] - ((s16 *)arg3)[i + 7];
     }
     distance = delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2];
-    if (*(s32 *)((u8 *)arg3 + 0x14) >= distance) {
+    if (((Objtwinkle_arg3 *)arg3)->unk14 >= distance) {
         arg0 = 0;
-        if (*(s16 *)((u8 *)arg3 + 0x28) > 0) {
-            arg2 = *(u8 **)((u8 *)arg3 + 0x2C);
+        if (((Objtwinkle_arg3 *)arg3)->unk28 > 0) {
+            arg2 = ((Objtwinkle_arg3 *)arg3)->unk2C;
             do {
                 if (*(s16 *)(arg2 + 8) == arg1[0] &&
                     *(s16 *)(arg2 + 0xA) == arg1[1] &&
@@ -21,13 +21,13 @@ void idtwinkle_entrypoint_0(s32 arg0, s16 *arg1, u8 *arg2, void *arg3) {
                 }
                 arg0++;
                 arg2 += 0x10;
-            } while (arg0 < *(s16 *)((u8 *)arg3 + 0x28));
+            } while (arg0 < ((Objtwinkle_arg3 *)arg3)->unk28);
         }
-        if (arg0 == *(s16 *)((u8 *)arg3 + 0x28) && *(s16 *)((u8 *)arg3 + 0x28) < 10) {
-            *(s16 *)(*(u8 **)((u8 *)arg3 + 0x2C) + *(s16 *)((u8 *)arg3 + 0x28) * 0x10 + 8) = arg1[0];
-            *(s16 *)(*(u8 **)((u8 *)arg3 + 0x2C) + *(s16 *)((u8 *)arg3 + 0x28) * 0x10 + 0xA) = arg1[1];
-            *(s16 *)(*(u8 **)((u8 *)arg3 + 0x2C) + *(s16 *)((u8 *)arg3 + 0x28) * 0x10 + 0xC) = arg1[2];
-            (*(s16 *)((u8 *)arg3 + 0x28))++;
+        if (arg0 == ((Objtwinkle_arg3 *)arg3)->unk28 && ((Objtwinkle_arg3 *)arg3)->unk28 < 10) {
+            *(s16 *)(((Objtwinkle_arg3 *)arg3)->unk2C + ((Objtwinkle_arg3 *)arg3)->unk28 * 0x10 + 8) = arg1[0];
+            *(s16 *)(((Objtwinkle_arg3 *)arg3)->unk2C + ((Objtwinkle_arg3 *)arg3)->unk28 * 0x10 + 0xA) = arg1[1];
+            *(s16 *)(((Objtwinkle_arg3 *)arg3)->unk2C + ((Objtwinkle_arg3 *)arg3)->unk28 * 0x10 + 0xC) = arg1[2];
+            (((Objtwinkle_arg3 *)arg3)->unk28)++;
         }
     }
 }
@@ -70,10 +70,10 @@ void idtwinkle_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *arg4) {
             arg2[14] = (u32)((f32)arg1[14] + (f32)(255 - arg1[14]) * scale);
         }
     }
-}
+}     typedef struct { u8 pad0[0xC]; s16 unkC; u8 padE[0x6]; s32 unk14; s16 unk18; s16 unk1A; u8 pad1C[0x8]; s16 unk24; s16 unk26; s16 unk28; u8 pad2A[0x2]; u8 * unk2C; } Objtwinkle_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void func_80800478_idtwinkle(void *arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_2(s32, s32, s32 *, void *);
+void func_80800478_idtwinkle(void *arg0, BtIntPtr arg1, s32 arg2) {
+    void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
     s32 func_800DC214(s32, s32);
     f32 func_800DC264(f32, f32);
 #ifndef BT_NATIVE
@@ -86,20 +86,20 @@ void func_80800478_idtwinkle(void *arg0, s32 arg1, s32 arg2) {
     s32 offset;
     s32 i;
 
-    *(s16 *)((u8 *)arg0 + 0x26) = func_800DC214(0, *(s16 *)((u8 *)arg0 + 0xC));
-    *(s16 *)((u8 *)arg0 + 0x24) = 0;
+    ((Objtwinkle_arg0 *)arg0)->unk26 = func_800DC214(0, ((Objtwinkle_arg0 *)arg0)->unkC);
+    ((Objtwinkle_arg0 *)arg0)->unk24 = 0;
     _glid_entrypoint_2(arg1, arg2, &_idtwinkle_entrypoint_1, arg0);
-    temp = func_800DC214(*(s16 *)((u8 *)arg0 + 0x18), *(s16 *)((u8 *)arg0 + 0x1A));
-    *(s32 *)((u8 *)arg0 + 0x14) = temp * temp;
-    *(s16 *)((u8 *)arg0 + 0x28) = 0;
+    temp = func_800DC214(((Objtwinkle_arg0 *)arg0)->unk18, ((Objtwinkle_arg0 *)arg0)->unk1A);
+    ((Objtwinkle_arg0 *)arg0)->unk14 = temp * temp;
+    ((Objtwinkle_arg0 *)arg0)->unk28 = 0;
     _glid_entrypoint_2(arg1, arg2, &_idtwinkle_entrypoint_0, arg0);
     i = 0;
     offset = 0;
-    while (i < *(s16 *)((u8 *)arg0 + 0x28)) {
-        *(f32 *)(*(u8 **)((u8 *)arg0 + 0x2C) + offset) = 0.0f;
-        *(*(u8 **)((u8 *)arg0 + 0x2C) + offset + 0xF) = 0xA;
-        *(*(u8 **)((u8 *)arg0 + 0x2C) + offset + 0xE) = 0;
-        *(f32 *)(*(u8 **)((u8 *)arg0 + 0x2C) + offset + 4) = func_800DC264(0.0f, 1.0f);
+    while (i < ((Objtwinkle_arg0 *)arg0)->unk28) {
+        *(f32 *)(((Objtwinkle_arg0 *)arg0)->unk2C + offset) = 0.0f;
+        *(((Objtwinkle_arg0 *)arg0)->unk2C + offset + 0xF) = 0xA;
+        *(((Objtwinkle_arg0 *)arg0)->unk2C + offset + 0xE) = 0;
+        *(f32 *)(((Objtwinkle_arg0 *)arg0)->unk2C + offset + 4) = func_800DC264(0.0f, 1.0f);
         i++;
         offset += 0x10;
     }
@@ -108,13 +108,13 @@ void func_80800478_idtwinkle(void *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void idtwinkle_entrypoint_3(void *arg0) {
-    s32 heap_free(s32);
+    void heap_free(void *memory);
     heap_free((*(s32 *)((s8 *)(arg0) + (0x2C))));
 }
 
-void idtwinkle_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
-    s16 _glidmake_entrypoint_3(s32, s32);
+void idtwinkle_entrypoint_4(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
+    void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
+    s16 _glidmake_entrypoint_3(s32 *arg0, s32 arg1);
     f32 func_800DC264(f32, f32);
     void *heap_alloc(s32);
     f32 sqrtf(f32);
@@ -140,8 +140,8 @@ void idtwinkle_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     *(s16 *)(arg0 + 0x28) = 0;
 }
 
-void idtwinkle_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+void idtwinkle_entrypoint_5(u8 *arg0, BtIntPtr arg1, s32 arg2) {
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800D8FF8(void);
     f32 func_800DC264(f32, f32);
 #ifndef BT_NATIVE
@@ -184,7 +184,7 @@ void idtwinkle_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
             offset += 0x10;
         } while (offset < *(s16 *)(arg0 + 0x28) * 0x10);
         }
-        _glid_entrypoint_0(arg1, arg2, &_idtwinkle_entrypoint_2, (s32)arg0);
+        _glid_entrypoint_0(arg1, arg2, &_idtwinkle_entrypoint_2, (BtIntPtr)arg0);
         if (done == *(s16 *)(arg0 + 0x28)) {
             *(f32 *)(arg0 + 0x1C) = func_800DC264(0.0f, *(f32 *)(arg0 + 0x20));
         }

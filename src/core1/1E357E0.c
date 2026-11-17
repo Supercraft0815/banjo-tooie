@@ -25,3 +25,9 @@ void func_8001DD28(OSThread* t, __OSThreadOddFpStorage* fp_storage, s32 id, void
 OSThread* func_8001DDA4(s32 id) {
     return D_8007D820[id];
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+OSThread * D_8007D820 [ 12 ] BT_DATA(4, bss_core1bss1_2, 0x1120);
+#endif

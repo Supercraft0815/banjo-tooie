@@ -5,7 +5,7 @@
 struct player_state_s;
 
 void bsdronelook_entrypoint_0(struct player_state_s *arg0) {
-    s32 _bafpctrl_entrypoint_13(struct player_state_s *, s32);
+    void _bafpctrl_entrypoint_13(void *arg0, s32 arg1);
     void _bafpctrl_entrypoint_17(struct player_state_s *);
     s32 _bafpctrl_entrypoint_4(struct player_state_s *);
     s32 _bafpctrl_entrypoint_6(struct player_state_s *);
@@ -60,27 +60,27 @@ void bsdronelook_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsdronelook_entrypoint_2(f32 arg0) {
-    s32 func_800F0E00(f32, f32);
-    s32 func_800F13F0(f32, f32);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) bsdronelook_entrypoint_2(f32 arg0) {
+    f32 func_800F0E00(f32 arg0, f32 arg1);
+    f32 func_800F13F0(f32 arg0, f32 arg1);
     if (arg0 > 180.0f) {
-        func_800F0E00(292.0f, arg0);
-        return;
+        BT_NATIVE_ONLY(return) func_800F0E00(292.0f, arg0);
+        BT_IDO_ONLY(return;)
     }
     if (arg0 < -65.0f) {
-        func_800F0E00(-65.0f, arg0);
-        return;
+        BT_NATIVE_ONLY(return) func_800F0E00(-65.0f, arg0);
+        BT_IDO_ONLY(return;)
     }
-    func_800F13F0(70.0f, arg0);
+    BT_NATIVE_ONLY(return) func_800F13F0(70.0f, arg0);
 }
 
 /* extern */
 
-void bsdronelook_entrypoint_3(s32 arg0) {
-    s32 _badata_entrypoint_34(s32);
+void bsdronelook_entrypoint_3(BtIntPtr arg0) {
+    s32 _badata_entrypoint_34(BtIntPtr);
     s32 _bafpctrl_entrypoint_4();
-    s32 bs_setState(s32, s32);
-    s32 func_800A3404(s32);
+    void bs_setState(void *self, s32 nextState);
+    u32 func_800A3404(void *arg0);
     s32 sp1C;
 
     sp1C = 0;
@@ -92,7 +92,7 @@ void bsdronelook_entrypoint_3(s32 arg0) {
 
 /* extern */
 
-void bsdronelook_entrypoint_4(void) {
+void bsdronelook_entrypoint_4(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 func_80099B94();
-    func_80099B94();
+    func_80099B94(BT_NATIVE_ONLY(bt_a0));
 }

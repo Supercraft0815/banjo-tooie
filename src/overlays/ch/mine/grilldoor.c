@@ -1,6 +1,6 @@
 #include "ch/minegrilldoor.h"
 
-extern u32 D_80800190_chminegrilldoor;
+extern BtUIntPtr D_80800190_chminegrilldoor[20];
 
 void func_80800000_chminegrilldoor(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor*, f32, f32, f32, s32, s32);
@@ -14,8 +14,8 @@ void func_80800000_chminegrilldoor(Actor *arg0) {
 /* extern */
 
 s32 func_80800068_chminegrilldoor(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
-    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     s32 temp_v1;
@@ -38,18 +38,23 @@ s32 func_80800068_chminegrilldoor(Actor *arg0, s32 arg1, s32 arg2) {
         }
     }
     return _chdoor_entrypoint_1(arg0, arg1, arg2);
-}
+}    typedef struct { u8 pad0[0x6C]; s32 unk6C; } Objgrilldoor_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800144_chminegrilldoor(void *arg0) {
     s32 _chdoor_entrypoint_0();
-    if (((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) == 3) {
+    if (((((Objgrilldoor_arg0 *)arg0)->unk6C) & 0x1FF) == 3) {
         _chdoor_entrypoint_0();
     }
 }
 
 void* chminegrilldoor_entrypoint_0(void) {
-    return &D_80800190_chminegrilldoor;
+    return D_80800190_chminegrilldoor;
 }
 
+/* data_to_c.py: from asm/data/overlays/ch/mine/grilldoor.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+BtUIntPtr D_80800190_chminegrilldoor[20] BT_DATA(4, overlays_ch_mine_grilldoor, 0x0) = { 0xAC04C2, 0x96B0001, 0, (BtUIntPtr)func_80800144_chminegrilldoor, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80101870, 0x7D00000, 0, 0x43B0000, 0xC00, 0, 0, 0, (BtUIntPtr)func_80800000_chminegrilldoor, (BtUIntPtr)func_80107C2C, 0x80002402, (BtUIntPtr)func_80800068_chminegrilldoor, 0, 0, 0 };

@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_camera_frame.h"
 #else
 #ifndef __CORE2_1EBCFC0_H__

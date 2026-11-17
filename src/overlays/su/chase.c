@@ -46,8 +46,8 @@ void func_808000A8_suchase(s32 *arg0, s32 *arg1) {
         u32 rest:29;
     } ChaseActorFlags;
     s32 *func_800BE444(f32 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     f32 func_800EEB40(f32 *, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     f32 distance;
@@ -70,7 +70,7 @@ void func_808000A8_suchase(s32 *arg0, s32 *arg1) {
                     if (!((ChaseActorFlags *)actor)->unk64_29 && ((ChaseActorFlags *)actor)->unk64_30) {
                         distance = func_800EEB40(actor->position, (f32 *)arg1);
                         if (distance < best) {
-                            arg0[1] = (s32)marker;
+                            arg0[1] = (BtIntPtr)marker;
                             best = distance;
                         }
                     }
@@ -81,3 +81,5 @@ void func_808000A8_suchase(s32 *arg0, s32 *arg1) {
         cell++;
     }
 }
+/* data_to_c.py: from asm/data/overlays/su/chase.data.s */
+s32 D_808001D0_suchase [ 2 ] BT_DATA(4, overlays_su_chase, 0x0) = { -1, 0 };

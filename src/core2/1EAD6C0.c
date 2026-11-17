@@ -40,10 +40,10 @@ s32 func_800D3E6C(s32 arg0) {
 
 /* extern */
 
-s32 func_800D3EC8(void) {
-    s32 func_800D3E14();
+s32 func_800D3EC8(BT_PARAM_OR_VOID(s32 bt_a0)) {
+    s32 func_800D3E14(BT_NATIVE_ONLY(s32 bt_a0));
 #ifdef BT_NATIVE
-    if (((s32 (*)())func_800D3E14)() != 0) {
+    if (((s32 (*)(s32))func_800D3E14)(bt_a0) != 0) {
 #else
     if (func_800D3E14() != 0) {
 #endif
@@ -69,10 +69,10 @@ s32 func_800D3F2C(s32 arg0) {
     return func_800DA544(D_8011B5BA[arg0][0]);
 }
 
-void func_800D3F58(s32 arg0, s32 arg1) {
+void func_800D3F58(BtIntPtr arg0, s32 arg1) {
     void func_800DA3B8(GameFlag, s32);
-    u32 func_800F54E4(void);
-    void func_800F4924(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F4924(BtIntPtr, s32);
     extern u16 D_8011B5C0[][4];
     extern u16 D_8011B608[][4];
     u16 (*sp18)[4];
@@ -163,7 +163,7 @@ s32 func_800D41D8(s32 arg0) {
 
 void func_800D4298(s32 arg0, s32 arg1) {
     s32 func_800C6E38(s32);
-    s32 func_800D192C(s32, s32);
+    void func_800D192C(s32 arg0, u32 arg1);
     s32 func_800D41D8();
     s32 temp_v0;
 
@@ -182,7 +182,7 @@ void func_800D4298(s32 arg0, s32 arg1) {
 
 void func_800D42E8(s32 arg0, s32 arg1) {
     s32 func_800C6E38(s32);
-    s32 func_800D1960(s32, s32, s32);
+    void func_800D1960(s32 arg0, s32 arg1, s32 arg2);
     s32 func_800D41D8();
     s32 temp_v0;
 
@@ -201,7 +201,7 @@ void func_800D42E8(s32 arg0, s32 arg1) {
 
 void func_800D433C(s32 arg0, s32 arg1) {
     s32 func_800C6E38(s32);
-    s32 func_800D1960(s32, s32, s32);
+    void func_800D1960(s32 arg0, s32 arg1, s32 arg2);
     s32 func_800D1ACC(s32);
     s32 func_800D41D8();
     s32 temp_v0;
@@ -221,7 +221,7 @@ void func_800D433C(s32 arg0, s32 arg1) {
 
 void func_800D4398(s32 arg0, s32 arg1) {
     s32 func_800C6E38(s32);
-    s32 func_800D1960(s32, s32, s32);
+    void func_800D1960(s32 arg0, s32 arg1, s32 arg2);
     s32 func_800D1ACC(s32);
     s32 func_800D41D8();
     s32 temp_v0;

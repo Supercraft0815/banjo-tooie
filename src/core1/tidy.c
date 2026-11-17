@@ -2,7 +2,7 @@
 #include "threads.h"
 
 // tidy_thread_entry
-void func_80013544(void*);
+void func_80013544(void* BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2));
 
 // do_tidy
 void func_800A7FD4(void);
@@ -68,7 +68,7 @@ s32 func_80013538(void) {
 }
 
 // tidy_thread_entry
-void func_80013544(void *arg) {
+void func_80013544(void *arg BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2)) {
     s32 i;
     while (TRUE) {
         osRecvMesg(&D_800769E0, NULL, OS_MESG_BLOCK);
@@ -80,3 +80,16 @@ void func_80013544(void *arg) {
         osRecvMesg(&D_80076A00, NULL, OS_MESG_BLOCK);
     }
 } 
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+OSMesgQueue D_800769E0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0xA0);
+OSMesg D_800769F8 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0xB8);
+OSMesgQueue D_80076A00 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0xC0);
+OSMesg D_80076A18 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0xD8);
+OSThread D_80076A20 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0xE0);
+__OSThreadOddFpStorage D_80076BD0 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x290);
+u64 D_80076BE0 [ TIDY_THREAD_STACK_SIZE64 ] BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x2A0);
+s32 D_800773E0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0xAA0);
+#endif

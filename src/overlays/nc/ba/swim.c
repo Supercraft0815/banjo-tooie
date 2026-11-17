@@ -8,14 +8,14 @@ s32 ncbaswim_entrypoint_0()
 void ncbaswim_entrypoint_1(s32 arg0) 
 {
 }
-void ncbaswim_entrypoint_2(s32 arg0) {
-    s32 func_801124D0(s32, s32);
+void ncbaswim_entrypoint_2(BtIntPtr arg0) {
+    void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *arg0, s32 arg1);
     void func_80115870(void *arg0, f32 arg1);
     func_801124D0(arg0, 1);
     func_80115858((u8 *) arg0, 2);
     func_80115870((u8 *) arg0, 0.0f);
-}
+}    typedef struct { u8 pad0[0x5C]; s32 * unk5C; } Objswim_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void ncbaswim_entrypoint_3(void *arg0) {
     f32 _baswim_entrypoint_14(void *);
@@ -24,7 +24,7 @@ void ncbaswim_entrypoint_3(void *arg0) {
     f32 func_8009BFCC(void *);
     void func_800EEBF0(f32 *, f32 *, f32);
     f32 func_800F1DCC(f32, f32);
-    void *func_800F53D0(s32);
+    void *func_800F53D0(BtIntPtr);
     void func_80112524(void *, f32 *);
     f32 yaw_get(void *);
     void func_800EE780(f32 *, f32 *, f32 *);
@@ -64,7 +64,7 @@ void ncbaswim_entrypoint_3(void *arg0) {
 
     func_80112524(arg0, sp8C);
     func_801107F0(arg0, sp74);
-    if (**(s32 **)((u8 *)arg0 + 0x5C) != 0) {
+    if (*((Objswim_arg0 *)arg0)->unk5C != 0) {
         sp60 = _ncbawaypoint_entrypoint_3(arg0, sp8C, sp74);
     } else {
         sp60 = 0.0f;

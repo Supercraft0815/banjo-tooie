@@ -148,7 +148,7 @@ s32 func_8011329C(PlayerState *arg0) {
     u32 func_8010FFD0(u8 *);
     void func_80110770(void *, f32 *);
     void func_801107F0(void *, f32 *);
-    s32 func_80110898(PlayerState *);
+    BtIntPtr func_80110898(PlayerState *);
     void func_80113688(PlayerState *, struct ba_bounce_s *, f32 *);
     f32 sp34[3];
     f32 sp28[3];
@@ -173,7 +173,7 @@ void func_8011337C(PlayerState *arg0) {
     s32 i;
 
     func_801107F0(arg0, arg0->bounce);
-    *(s32 *)((u8 *)arg0->bounce + 0x10) = 0;
+    arg0->bounce->unk10 = 0;
     i = 0;
     *((u8 *)arg0->bounce + 0x14) = 0;
     do {
@@ -186,8 +186,8 @@ void func_8011337C(PlayerState *arg0) {
 /* extern */
 
 void func_80113410(void *arg0) {
-    s32 func_800E87E0(u8);
-    s32 var_s0;
+    void func_800E87E0(u8 arg0);
+    BtIntPtr var_s0;
     u8 temp_a0;
 
     var_s0 = 0;
@@ -254,7 +254,7 @@ void func_801135D0(u8 *arg0, u8 *arg1, u8 *arg2, u8 *arg3, f32 *arg4) {
     func_800EF174((f32 *)arg3, arg4, -func_800EEAA4(arg4, &sp1C));
 }
 
-void func_80113640(s32 unused, f32 *start, f32 *end) {
+void func_80113640(BtIntPtr unused, f32 *start, f32 *end) {
     void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
     f32 normal[3];
     func_800FAB50(start, end, normal, 0x820020, 45.0f);
@@ -266,8 +266,8 @@ void func_80113688(PlayerState *arg0, struct ba_bounce_s *arg1, f32 *arg2) {
     f32 func_800EEB40(f32 *, f32 *);
     void *func_800FAB50(f32 *, f32 *, f32 *, u32, f32);
     void *func_800FB3C0(f32 *, f32 *, f32, f32 *, s32, u32);
-    s32 func_80110060(s32 *);
-    s32 func_80110898(PlayerState *);
+    BtIntPtr func_80110060(s32 *);
+    BtIntPtr func_80110898(PlayerState *);
     void func_801134F0(f32 *, f32);
     void func_80114CF4(u8 *, f32 *, s32, f32 *);
     f32 sp74[3];
@@ -316,19 +316,19 @@ s32 func_801137E4(PlayerState *arg0, f32 *arg1, f32 *arg2, void *arg3, f32 *arg4
         return 1;
     }
     return 0;
-}
+}    typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; u8 pad10[0x4]; u8 unk14; } Obj1EEC780_func_801138A0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 s32 func_801138A0(void *arg0) {
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x28)));
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x14))) != 0) {
+    if ((((Obj1EEC780_func_801138A0_temp_v0 *)temp_v0)->unk14) != 0) {
         return 0;
     }
-    if ((*(s16 *)((s8 *)(temp_v0) + (0xC))) >= 4) {
-        (*(s16 *)((s8 *)(temp_v0) + (0xE))) = (s16) ((*(s16 *)((s8 *)(temp_v0) + (0xE))) + 1);
+    if ((((Obj1EEC780_func_801138A0_temp_v0 *)temp_v0)->unkC) >= 4) {
+        (((Obj1EEC780_func_801138A0_temp_v0 *)temp_v0)->unkE) = (s16) ((((Obj1EEC780_func_801138A0_temp_v0 *)temp_v0)->unkE) + 1);
     } else {
-        (*(s16 *)((s8 *)(temp_v0) + (0xE))) = 0;
+        (((Obj1EEC780_func_801138A0_temp_v0 *)temp_v0)->unkE) = 0;
     }
     return (*(s16 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x28)))) + (0xE))) >= 5;
 }
@@ -348,32 +348,32 @@ s32 func_801138F4(PlayerState *arg0) {
     func_801107F0(arg0, sp40);
     func_800EFB24(sp34, sp4C, sp40);
     func_800EF410(sp28, sp34);
-    func_80112E98(arg0, sp4C, sp28, func_800EEF94(sp34), 0, 0x20020);
-}
+    BT_NATIVE_ONLY(return) func_80112E98(arg0, sp4C, sp28, func_800EEF94(sp34), 0, 0x20020);
+}    typedef struct { u8 pad0[0x28]; void * unk28; } Obj1EEC780_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8011396C(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 40) + 20) = arg1;
+    *(s8 *)((u8 *)*&((Obj1EEC780_arg0 *)arg0)->unk28 + 20) = arg1;
 }
 
 f32 func_80113978(PlayerState *arg0, s32 arg1, s32 arg2) {
     f32 func_800136E4(f32);
-    void func_800CA7E4(s32, f32 *);
+    void func_800CA7E4(BtIntPtr, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF934(f32 *, f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F0DC0(f32, f32);
     void func_800F1A88(f32 *, f32 *);
     s32 func_800F711C(s32);
-    s32 func_8010FF80(s32 *);
+    BtIntPtr func_8010FF80(s32 *);
     s32 func_80110840(PlayerState *);
-    s32 func_80110898(PlayerState *);
+    BtIntPtr func_80110898(PlayerState *);
     void func_80112D90(PlayerState *, f32, f32, s32, s32);
     s32 func_801137E4(PlayerState *, f32 *, f32 *, void *, f32 *);
     f32 sp94[3];
     f32 sp88[3];
     s32 sp84;
     f32 sp80;
-    s32 sp7C;
+    BtIntPtr sp7C;
 
     sp84 = func_80110840(arg0);
     sp80 = 0.0f;
@@ -488,20 +488,20 @@ void func_80113D30(PlayerState *arg0) {
     void func_80019224(f32 *, f32 *);
     s32 func_800A940C(s32);
     void *func_800CA7A4(void *);
-    void func_800CA7E4(s32, f32 *);
+    void func_800CA7E4(BtIntPtr, f32 *);
     void func_800E8830(u8, f32 *);
-    s32 func_800E8918(u8, s32, s32, s32);
+    s32 func_800E8918(u8, s32, BtIntPtr, BtIntPtr);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF410(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
-    s32 func_8010FF80(s32 *);
+    BtIntPtr func_8010FF80(s32 *);
     s32 func_80110840(PlayerState *);
-    s32 func_80110898(PlayerState *);
+    BtIntPtr func_80110898(PlayerState *);
     void mlMtxSet(void *);
     f32 spBC[3], spB0[3], spA4[3], sp98[3], sp8C[3], sp80[3], sp74[3];
-    s32 model;
+    BtIntPtr model;
     s32 object;
     s32 i;
     f32 radius;
@@ -526,7 +526,7 @@ void func_80113D30(PlayerState *arg0) {
         func_80019224(sp80, sp80);
         func_800EE780(sp74, sp80, sp98);
         func_800E8830(((u8 *)arg0->bounce)[0x34 + i], sp74);
-        ((s8 *)arg0->bounce)[0x38 + i] = func_800E8918(((u8 *)arg0->bounce)[0x34 + i], collision, (s32)((u8 *)arg0->bounce + 0x4C + i * 12), 0);
+        ((s8 *)arg0->bounce)[0x38 + i] = func_800E8918(((u8 *)arg0->bounce)[0x34 + i], collision, (BtIntPtr)((u8 *)arg0->bounce + 0x4C + i * 12), 0);
         if (((s8 *)arg0->bounce)[0x38 + i] == 0) {
             if (((s32 *)((u8 *)arg0->bounce + 0x18))[i] == 0) {
                 ((s32 *)((u8 *)arg0->bounce + 0x18))[i] = func_8001211C();

@@ -47,7 +47,7 @@ extern unk80802190 D_80802190_gcnewpause[6];
 extern u8 D_808021B4_gcnewpause[12];
 extern void* D_808021C0_gcnewpause;
 extern u8 D_8012762D;
-extern s8 D_80802072_gcnewpause;
+
 
 //Setup Pause Menu
 PauseState* gcnewpause_entrypoint_0(u32 arg0)
@@ -85,7 +85,7 @@ void gcnewpause_entrypoint_1(PauseState* a0)
 
 #ifndef NON_MATCHING
 u32 gcnewpause_entrypoint_2(PauseState *pauseMenu) {
-    s32 _gcfrontend_entrypoint_13();
+    void _gcfrontend_entrypoint_13(void);
     void func_800A7AD4(s32, s32);
     u32 sp34;
     u32 sp30;
@@ -311,7 +311,7 @@ u32 gcnewpause_entrypoint_2(PauseState* pauseMenu) {
 }
 #endif
 //Draw UI
-void gcnewpause_entrypoint_3(u32 arg0, PauseState* pauseMenu) 
+void gcnewpause_entrypoint_3(BtUIntPtr arg0, PauseState* pauseMenu) 
 {
 	u8 temp_v0;
 
@@ -373,11 +373,11 @@ void func_80800534_gcnewpause(PauseState* pauseMenu, u32 targetPage)
 			else
 			{
 				pauseMenu->ActivePauseMenuVariant = 0;
-				if (func_80801EF0_gcnewpause((s32)pauseMenu) != 0)
+				if (func_80801EF0_gcnewpause((BtIntPtr)pauseMenu) != 0)
 				{
 					pauseMenu->ActivePauseMenuVariant += 1;
 				}
-				if (func_80801F18_gcnewpause((u32)pauseMenu) != 0)
+				if (func_80801F18_gcnewpause((BtUIntPtr)pauseMenu) != 0)
 				{
 					pauseMenu->ActivePauseMenuVariant += 2;
 				}
@@ -385,7 +385,7 @@ void func_80800534_gcnewpause(PauseState* pauseMenu, u32 targetPage)
 			break;
 		case 2: //Main Option Page
 			func_80800A08_gcnewpause(pauseMenu);
-			pauseMenu->unk3 = *(&D_80802072_gcnewpause + (pauseMenu->ActivePauseMenuVariant * 8));
+			pauseMenu->unk3 = D_80802070_gcnewpause[pauseMenu->ActivePauseMenuVariant].unk3;
 			break;
 		case 3: //Totals Page
 			pauseMenu->unk3 = 1;
@@ -1191,7 +1191,7 @@ void func_80801CDC_gcnewpause(PauseState* pauseMenu)
 }
 
 //Draw Gameover Text
-void func_80801DA0_gcnewpause(PauseState* pauseMenu,u32 a1)
+void func_80801DA0_gcnewpause(PauseState* pauseMenu,BtUIntPtr a1)
 {
 	f32 coord[2];
 	coord[0] = 152.0f;
@@ -1230,13 +1230,13 @@ s32 func_80801E80_gcnewpause(s32 a0, s32 a1)
 	return 0x0;
 }
 
-s32 func_80801EF0_gcnewpause(s32 a0)
+s32 func_80801EF0_gcnewpause(BtIntPtr a0)
 {
 	return func_80801E80_gcnewpause(0,0xC);
 }
 
 //Check if any Jinjo is collected
-u32 func_80801F18_gcnewpause(u32 a0)
+u32 func_80801F18_gcnewpause(BtUIntPtr a0)
 {
 	u32 s0;
 	for (s0 = 0; s0 < 9; s0++)

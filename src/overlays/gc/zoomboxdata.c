@@ -126,7 +126,7 @@ void gczoomboxdata_entrypoint_4(s32 arg0, s32 arg1, s16 *arg2, s16 *arg3, f32 *a
 }
 
 s32 gczoomboxdata_entrypoint_5(register s32 arg0) {
-    s32 func_800D58FC(s32 arg0);
+    s32 func_800D58FC(BtIntPtr arg0);
     extern u8 D_80800AA8_gczoomboxdata[];
     union { struct { u16 pad; u16 value; } write; struct { u16 pad; volatile u16 value; } read; } saved;
     u16 asset;
@@ -145,12 +145,12 @@ s32 gczoomboxdata_entrypoint_5(register s32 arg0) {
 
 /* extern */
 
-s32 gczoomboxdata_entrypoint_6(void) {
+s32 gczoomboxdata_entrypoint_6(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 gczoomboxdata_entrypoint_5();
     s32 temp_v0;
 
 #ifdef BT_NATIVE
-    temp_v0 = ((s32 (*)())gczoomboxdata_entrypoint_5)();
+    temp_v0 = ((s32 (*)())gczoomboxdata_entrypoint_5)(bt_a0);
 #else
     temp_v0 = gczoomboxdata_entrypoint_5();
 #endif

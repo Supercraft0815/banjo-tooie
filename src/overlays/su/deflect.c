@@ -8,8 +8,8 @@ extern struct {
 s32 sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3) {
     void func_800A52E0(f32 *, f32, f32);
     s32 *func_800BE3F8(u8 *);
-    s32 func_800F4F34(u32, f32 *, f32, f32);
-    s32 func_800F6438(u32);
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
+    s32 func_800F6438(BtUIntPtr);
     s32 func_808006A4_sudeflect(f32 *, f32, f32);
     s32 func_80800940_sudeflect(f32 *, f32, f32);
     s32 var_s0;
@@ -18,7 +18,7 @@ s32 sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3) {
     var_s2 = 0;
     B_80801020_sudeflect.count = 0;
     if (arg3 & 0x18) {
-        B_80801020_sudeflect.entries[0] = (s32)func_800BE3F8((u8 *)arg0);
+        B_80801020_sudeflect.entries[0] = (BtIntPtr)func_800BE3F8((u8 *)arg0);
     }
     if (arg3 & 2) {
         var_s0 = 0;
@@ -48,8 +48,8 @@ s32 sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3) {
 s32 sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void func_800A5298(f32 *, f32, f32, f32);
     s32 *func_800BE3F8(u8 *);
-    s32 func_800F4EC8(u32, s32, f32, f32, f32);
-    s32 func_800F6438(u32);
+    s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
+    s32 func_800F6438(BtUIntPtr);
     s32 func_808007F4_sudeflect(f32 *, f32, f32, f32);
     s32 func_80800A98_sudeflect(f32 *, f32, f32, f32);
     s32 var_s0;
@@ -58,13 +58,13 @@ s32 sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     var_s2 = 0;
     B_80801020_sudeflect.count = 0;
     if (arg4 & 0x18) {
-        B_80801020_sudeflect.entries[0] = (s32)func_800BE3F8((u8 *)arg0);
+        B_80801020_sudeflect.entries[0] = (BtIntPtr)func_800BE3F8((u8 *)arg0);
     }
     if (arg4 & 2) {
         var_s0 = 0;
         do {
             if (func_800F6438(var_s0) != 0 &&
-                func_800F4EC8(var_s0, (s32)arg0, arg1, arg2, arg3) != 0) {
+                func_800F4EC8(var_s0, (BtIntPtr)arg0, arg1, arg2, arg3) != 0) {
                 B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = var_s0;
                 B_80801020_sudeflect.count++;
                 var_s2 |= 2;
@@ -87,8 +87,8 @@ s32 sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 
 s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
     s32 *func_800BE3F8(u8 *);
-    s32 func_800F4D18(s32, f32 *, f32 *);
-    s32 func_800F6438(u32);
+    s32 func_800F4D18(BtIntPtr, f32 *, f32 *);
+    s32 func_800F6438(BtUIntPtr);
     s32 func_80800BEC_sudeflect(f32 *, f32 *);
     s32 func_80800D14_sudeflect(f32 *, f32 *);
     f32 midpoint[3];
@@ -101,7 +101,7 @@ s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
     }
     B_80801020_sudeflect.count = 0;
     if (arg2 & 0x18) {
-        B_80801020_sudeflect.entries[0] = (s32)func_800BE3F8((u8 *)midpoint);
+        B_80801020_sudeflect.entries[0] = (BtIntPtr)func_800BE3F8((u8 *)midpoint);
     }
     i = 0;
     if (arg2 & 2) {
@@ -127,9 +127,9 @@ s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
     return result;
 }
 
-s32 sudeflect_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 func_800F4E5C(s32, s32, s32, s32, s32);
-    s32 func_800F6438(u32);
+s32 sudeflect_entrypoint_3(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4) {
+    s32 func_800F4E5C(s32, BtIntPtr, BtIntPtr, BtIntPtr, BtIntPtr);
+    s32 func_800F6438(BtUIntPtr);
     s32 var_s0;
     s32 var_s2;
 
@@ -150,7 +150,7 @@ s32 sudeflect_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 }
 
 void sudeflect_entrypoint_4(s32 arg0, f32 *arg1) {
-    int func_800F7700(s32, s32, f32 *);
+    int func_800F7700(BtIntPtr, s32, f32 *);
     s32 func_80800630_sudeflect(s32);
     s32 temp_s0;
     s32 var_s1;
@@ -166,8 +166,8 @@ void sudeflect_entrypoint_4(s32 arg0, f32 *arg1) {
 /* extern */
 
 s32 func_80800630_sudeflect(s32 arg0) {
-    s32 func_800F52B8(s32, s32);
-    s32 func_800F5410(s32);
+    s32 func_800F52B8(BtIntPtr, s32);
+    s32 func_800F5410(BtIntPtr);
     s32 func_800F6720();
     s32 temp_v0;
 
@@ -186,11 +186,11 @@ s32 func_80800630_sudeflect(s32 arg0) {
 
 s32 func_808006A4_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
     s32 _sueggmisc_entrypoint_0();
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F0008(f32 *, f32, f32 *, f32);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     struct EggProp {
         Unk80132ED0 *marker;
@@ -213,7 +213,7 @@ s32 func_808006A4_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
     cell = *list;
     if (cell != NULL) {
         do {
-            entry = (struct EggProp *)func_800E9E88((s32)cell);
+            entry = (struct EggProp *)func_800E9E88((BtIntPtr)cell);
             end = (struct EggProp *)func_800E9EB4(*list);
             if (entry < end) {
                 do {
@@ -239,9 +239,9 @@ s32 func_808006A4_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
 
 s32 func_808007F4_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 _sueggmisc_entrypoint_0();
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, s32);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800E44_sudeflect(f32 *, f32, f32, f32, f32 *, f32);
     struct EggProp {
@@ -257,7 +257,7 @@ s32 func_808007F4_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
     count = 0;
     for (list = (s16 **)B_80801020_sudeflect.entries[0]; (cell = *list) != NULL; list++) {
-        entry = (struct EggProp *)func_800E9E88((s32)cell);
+        entry = (struct EggProp *)func_800E9E88((BtIntPtr)cell);
         end = (struct EggProp *)func_800E9EB4(*list);
         for (; entry < end; entry++) {
             if (!(entry->flags & 1)) {
@@ -278,11 +278,11 @@ s32 func_808007F4_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 s32 func_80800940_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F0008(f32 *, f32, f32 *, f32);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     struct DeflectProp {
         Unk80132ED0 *marker;
@@ -303,7 +303,7 @@ s32 func_80800940_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
     func_800EE7F8(position, arg0);
     position[1] += arg1;
     for (; (cell = *list) != NULL; list++) {
-        entry = (struct DeflectProp *)func_800E9E88((s32)cell);
+        entry = (struct DeflectProp *)func_800E9E88((BtIntPtr)cell);
         end = (struct DeflectProp *)func_800E9EB4(*list);
         for (; entry < end; entry++) {
             if (!(entry->flags & 1)) {
@@ -324,9 +324,9 @@ s32 func_80800940_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
 }
 
 s32 func_80800A98_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, s32);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800E44_sudeflect(f32 *, f32, f32, f32, f32 *, f32);
     struct DeflectProp {
@@ -345,7 +345,7 @@ s32 func_80800A98_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
     count = 0;
     if (cell != NULL) {
         do {
-            entry = (struct DeflectProp *)func_800E9E88((s32)cell);
+            entry = (struct DeflectProp *)func_800E9E88((BtIntPtr)cell);
             end = (struct DeflectProp *)func_800E9EB4(*list);
             if (entry < end) {
                 do {
@@ -371,9 +371,9 @@ s32 func_80800A98_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 s32 func_80800BEC_sudeflect(f32 *arg0, f32 *arg1) {
     s32 _sueggmisc_entrypoint_0();
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, s32);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800ECC_sudeflect(f32 *, f32 *, f32 *, f32);
     struct EggProp {
@@ -392,7 +392,7 @@ s32 func_80800BEC_sudeflect(f32 *arg0, f32 *arg1) {
     count = 0;
     if (cell != NULL) {
         do {
-            entry = (struct EggProp *)func_800E9E88((s32)cell);
+            entry = (struct EggProp *)func_800E9E88((BtIntPtr)cell);
             end = (struct EggProp *)func_800E9EB4(*list);
             if (entry < end) {
                 do {
@@ -417,9 +417,9 @@ s32 func_80800BEC_sudeflect(f32 *arg0, f32 *arg1) {
 }
 
 s32 func_80800D14_sudeflect(f32 *arg0, f32 *arg1) {
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, s32);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800ECC_sudeflect(f32 *, f32 *, f32 *, f32);
     struct DeflectProp {
@@ -438,7 +438,7 @@ s32 func_80800D14_sudeflect(f32 *arg0, f32 *arg1) {
     count = 0;
     if (cell != NULL) {
         do {
-            entry = (struct DeflectProp *)func_800E9E88((s32)cell);
+            entry = (struct DeflectProp *)func_800E9E88((BtIntPtr)cell);
             end = (struct DeflectProp *)func_800E9EB4(*list);
             if (entry < end) {
                 do {

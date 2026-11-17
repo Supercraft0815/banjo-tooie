@@ -58,7 +58,7 @@ void *func_8002C5F8(void *arg0, s16 *arg1, s32 arg2, void *arg3) {
     {
         Command *sp40 = sp7C++;
         sp40->w0 = (sp44->bookSize & 0xFFFFFF) | 0x0B000000;
-        sp40->w1 = ((u32)sp44->sample + 0x38) & 0x1FFFFFFF;
+        sp40->w1 = ((BtUIntPtr)sp44->sample + 0x38) & 0x1FFFFFFF;
     }
     sp48 = (sp44->position + arg2 > sp44->loopEnd) && sp44->loopCount;
     if (sp48) {
@@ -157,7 +157,7 @@ void *func_8002C5F8(void *arg0, s16 *arg1, s32 arg2, void *arg3) {
     }
 }
 
-s32 func_8002CC9C(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_8002CC9C(BtIntPtr arg0, s32 arg1, BtIntPtr arg2) {
     typedef struct {
         s32 start;
         s32 length;

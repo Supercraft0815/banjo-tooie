@@ -33,11 +33,11 @@ void func_80800024_chbottlesfamily(Actor *arg0) {
 }
 
 void func_80800080_chbottlesfamily(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     u32 *_suexpression_entrypoint_20(Actor *);
-    s32 func_808009F0_chbottlesfamily(s32, s32 *);
+    s32 func_808009F0_chbottlesfamily(BtIntPtr, s32 *);
     extern u32 D_80800EB8_chbottlesfamily;
     extern u32 D_80800ECC_chbottlesfamily;
     extern s32 D_80800EDC_chbottlesfamily;
@@ -45,13 +45,13 @@ void func_80800080_chbottlesfamily(Actor *arg0) {
     _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800EB8_chbottlesfamily, &D_80800ECC_chbottlesfamily);
     _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
     if (arg0->unk70_10 == 1) {
-        func_808009F0_chbottlesfamily((s32)arg0, &D_80800EDC_chbottlesfamily);
+        func_808009F0_chbottlesfamily((BtIntPtr)arg0, &D_80800EDC_chbottlesfamily);
     }
 }
 
 void func_80800124_chbottlesfamily(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     f32 func_800DC178(f32, f32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
@@ -72,10 +72,10 @@ void func_80800124_chbottlesfamily(Actor *arg0) {
 void func_808001B0_chbottlesfamily(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, u32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     u32 *_suexpression_entrypoint_20(Actor *);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
@@ -89,7 +89,7 @@ void func_808001B0_chbottlesfamily(Actor *arg0) {
     s32 func_80105230(Actor *, f32 *);
     s32 func_8010B990(Actor *, s32);
     f32 func_8010CD28(Actor *);
-    s32 func_808004B4_chbottlesfamily(s32);
+    s32 func_808004B4_chbottlesfamily(BtIntPtr);
     void func_80800520_chbottlesfamily(Actor *);
     void func_808005D0_chbottlesfamily(Actor *);
     extern s32 D_80800EF8_chbottlesfamily;
@@ -106,7 +106,7 @@ void func_808001B0_chbottlesfamily(Actor *arg0) {
     switch (arg0->unk70_10) {
         case 1:
             func_808005D0_chbottlesfamily(arg0);
-            if (!func_808004B4_chbottlesfamily((s32)arg0) && func_800D90A4(&arg0->unk58)) {
+            if (!func_808004B4_chbottlesfamily((BtIntPtr)arg0) && func_800D90A4(&arg0->unk58)) {
                 func_80800520_chbottlesfamily(arg0);
             }
             break;
@@ -125,7 +125,7 @@ void func_808001B0_chbottlesfamily(Actor *arg0) {
             _subaddierouteDll_entrypoint_5(arg0, data, data->unk6, 0.1f, 4.0f, 120.0f);
             ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], 200.0f, func_800D8FF8() * 300.0f);
             func_8010B990(arg0, 0x1305);
-            if (!func_808004B4_chbottlesfamily((s32)arg0) && func_800D90A4(&arg0->unk58)) {
+            if (!func_808004B4_chbottlesfamily((BtIntPtr)arg0) && func_800D90A4(&arg0->unk58)) {
                 func_80102424(arg0, 1);
                 arg0->unk58 = func_800DC178(5.0f, 10.0f);
             }
@@ -133,7 +133,7 @@ void func_808001B0_chbottlesfamily(Actor *arg0) {
         case 4:
             func_80105230(arg0, NULL);
             func_80102BF8(arg0, 0.1f, 4.0f, 120.0f);
-            if (!func_808004B4_chbottlesfamily((s32)arg0) && func_80102CF4(arg0, 10.0f)) {
+            if (!func_808004B4_chbottlesfamily((BtIntPtr)arg0) && func_80102CF4(arg0, 10.0f)) {
                 func_80102424(arg0, 3);
             }
             break;
@@ -159,9 +159,9 @@ s32 func_8080046C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
     return ret;
 }
 
-s32 func_808004B4_chbottlesfamily(s32 arg0) {
+s32 func_808004B4_chbottlesfamily(BtIntPtr arg0) {
     s32 func_800DA298(s32);
-    s32 func_808009F0_chbottlesfamily(s32, s32 *);
+    s32 func_808009F0_chbottlesfamily(BtIntPtr, s32 *);
     extern s32 D_80800F04_chbottlesfamily;
     extern s16 D_80800F08_chbottlesfamily;
     if (func_800DA298(0x3B) != 0) {
@@ -212,13 +212,13 @@ void func_80800600_chbottlesfamily(Actor *arg0) {
 
 void func_80800630_chbottlesfamily(Actor *arg0) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     u32 *_suexpression_entrypoint_20(Actor *);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     s32 func_80101E4C(Actor *, f32 *);
-    s32 func_808009F0_chbottlesfamily(s32, s32 *);
+    s32 func_808009F0_chbottlesfamily(BtIntPtr, s32 *);
     extern s32 D_80800F2C_chbottlesfamily;
     extern s32 D_80800F48_chbottlesfamily;
     extern u32 D_80800F58_chbottlesfamily;
@@ -228,7 +228,7 @@ void func_80800630_chbottlesfamily(Actor *arg0) {
     _sudeflect_entrypoint_0(arg0->position, arg0->scale * 50.0f, arg0->scale * 50.0f, 0xA);
     _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
     if (arg0->unk70_10 == 1) {
-        func_808009F0_chbottlesfamily((s32) arg0, &D_80800F2C_chbottlesfamily);
+        func_808009F0_chbottlesfamily((BtIntPtr) arg0, &D_80800F2C_chbottlesfamily);
     }
     if (func_80101E4C(arg0, &D_80800F68_chbottlesfamily) != 0) {
         if (arg0->unk5F == 0) {
@@ -240,7 +240,7 @@ void func_80800630_chbottlesfamily(Actor *arg0) {
 }
 
 s32 func_80800720_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     void func_800DF744(s32, s32);
@@ -331,8 +331,8 @@ void func_8080099C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-s32 func_808009F0_chbottlesfamily(s32 arg0, s32 *arg1) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+s32 func_808009F0_chbottlesfamily(BtIntPtr arg0, s32 *arg1) {
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     void func_80800C08_chbottlesfamily(Actor *, s32, s32);
     s32 temp_v0;
     s32 var_v1;

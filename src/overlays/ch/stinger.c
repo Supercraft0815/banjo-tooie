@@ -1,11 +1,11 @@
 #include "common.h"
 
 void func_80800000_chstinger(Actor *arg0) {
-    s32 func_800B5BE4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800B5BE4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
@@ -13,7 +13,7 @@ void func_80800000_chstinger(Actor *arg0) {
     extern s32 D_808007D0_chstinger[];
     extern s32 D_808007FC_chstinger[];
     extern s32 D_80800844_chstinger[];
-    s32 sp5C;
+    BtIntPtr sp5C;
     f32 sp50[3];
     f32 sp44[3];
 
@@ -36,9 +36,9 @@ void func_80800000_chstinger(Actor *arg0) {
 void func_8080015C_chstinger(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    void func_800CB840(s32, s32);
+    void func_800CB840(s32, BtIntPtr);
     void func_800CB870(void);
-    void func_80109BEC(s32, f32, s32, s32, s32, s32);
+    void func_80109BEC(BtIntPtr, f32, s32, s32, s32, BtIntPtr);
     s8 *data;
 
     data = func_80100094(arg0, 0);
@@ -70,14 +70,14 @@ void func_80800218_chstinger(Actor *arg0) {
 void func_8080025C_chstinger(s32 arg0) 
 {
 }
-s32 func_80800264_chstinger(s32 arg0, s32 *arg1) {
+s32 func_80800264_chstinger(BtIntPtr arg0, s32 *arg1) {
     void *func_80100094(Actor *, u32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_800F0734(f32 *, f32 *, f32 *, f32, f32, f32 *, f32 *);
     s32 func_800F5898(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
     f32 distance;
     f32 bestDistance;
     f32 *origin;
@@ -110,11 +110,11 @@ s32 func_80800264_chstinger(s32 arg0, s32 *arg1) {
 
 /* extern */
 
-s32 func_808003B0_chstinger(s32 arg0) {
+s32 func_808003B0_chstinger(BtIntPtr arg0) {
     s32 func_800EA068(s32);
-    s32 func_800F7A7C(s32, s8, s32, s32, s32 *);
+    int func_800F7A7C(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, f32 *arg4);
     void *func_80100094(Actor *, u32);
-    s32 func_80800264_chstinger(s32, s32 *);
+    s32 func_80800264_chstinger(BtIntPtr, s32 *);
     s32 sp2C[3];
     s32 sp28;
     s32 temp_v0;
@@ -135,7 +135,7 @@ s32 func_808003B0_chstinger(s32 arg0) {
 void func_80800420_chstinger(Actor *arg0) {
     void _sumissilehome_entrypoint_6(Actor *, void *);
     f32 func_800136E4(f32);
-    void func_800CB840(s32, s32);
+    void func_800CB840(s32, BtIntPtr);
     void func_800CB870(void);
     u8 *func_800CD820(u8 *, f32 *, f32 *, f32);
     f32 func_800D8FF8(void);
@@ -271,7 +271,16 @@ s32 func_80800774_chstinger(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chstinger_entrypoint_1(void)
 {
-    extern u8 D_80800870_chstinger[];
+    extern ActorData D_80800870_chstinger[];
 
     return (OSThread *) D_80800870_chstinger;
 }
+/* data_to_c.py: from asm/data/overlays/ch/stinger.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+s32 D_808007D0_chstinger [11] BT_DATA(4, overlays_ch_stinger, 0x0) = { 1903076, 2228300, 4980741, 327719, 0, 52429600, 2818124, 4980750, 983080, 1834208, -52428800 };
+s32 D_808007FC_chstinger [18] BT_DATA(4, overlays_ch_stinger, 0x2C) = { 1903068, 2949080, 3342296, 2621540, 2621461, 1310822, 2158832, -263192542, 8388761, 21758361, 1445888, 1572864, 196608, 43, 15073536, 2162688, 0, 18481152 };
+s32 D_80800844_chstinger [11] BT_DATA(4, overlays_ch_stinger, 0x74) = { 1903076, 1376281, 4980758, 268435490, 13369548, 458759, 2555904, 52428800, 52428843, 2490406, 0 };
+ActorData D_80800870_chstinger [1] BT_DATA(4, overlays_ch_stinger, 0xA0) = { { 639, 367, 2103, 1, 0, (void (*)(struct Actor *))func_80800420_chstinger, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 4, (void (*)(struct Actor *))func_8080025C_chstinger, (BtIntPtr)func_80108ED0, 44, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8192, (void (*)(struct Actor *, long, long))func_80800774_chstinger, 0 } };

@@ -27,7 +27,7 @@ void func_800D2014(void) {
 
 s32 func_800D2054(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800D395C(void);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 result;
     s16 *value;
     s32 difference;
@@ -90,3 +90,9 @@ void func_800D21B0(s32 *arg0, s32 **arg1) {
     *arg0 = 0x2E;
     *arg1 = &D_8012B290;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012B290 BT_DATA(16, bss_core2bss1_2, 0x0);
+#endif

@@ -26,16 +26,16 @@ void func_8001207C(void)
     func_800D5E74();
 }
 
-void func_8001209C(s32 arg0) {
-    s32 func_800155BC();
-    s32 func_8001A2B0();
-    s32 func_800A7B24();
-    s32 func_800A7BB8(s32);
+void func_8001209C(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1)) {
+    void func_800155BC(void);
+    void func_8001A2B0();
+    void func_800A7B24(BT_IDO_ONLY(void) BT_PASS2(s32, s32));
+    void func_800A7BB8(s32 arg0);
     extern s32 D_800459CC;
     func_8001A2B0();
     func_800155BC();
     if (D_80043380 == 1) {
-        func_800A7B24();
+        func_800A7B24(BT_PASS2(arg0, bt_a1));
     }
     func_8001207C();
     D_80043380 = arg0;
@@ -90,7 +90,7 @@ void func_800121D0(void) {
 
 // Needs migration
 #if 0
-void func_80012214(void) {
+void func_80012214(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1)) {
     D_800459D0 = osGetMemSize();
     func_8001DDF0(); // start_cic_thread
     init_crc_check();
@@ -122,10 +122,10 @@ void func_80012214(void) {
     func_800A5BE0();
     _cosection_entrypoint_1();
     func_8001253C(func_80087890());
-    func_8001209C(1);
+    func_8001209C(1 BT_PASS2(, bt_a1));
 }
 #else
-void func_80012214(void) {
+void func_80012214(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1)) {
     extern u8 core2_DATA_START[];
     extern u8 core2_RODATA_END[];
 
@@ -162,7 +162,7 @@ void func_80012214(void) {
     func_800A5BE0();
     func_800D740C();
     func_8001253C(_cosection_entrypoint_1());
-    func_8001209C(1);
+    func_8001209C(1 BT_PASS2(, bt_a1));
 }
 #endif
 
@@ -173,17 +173,17 @@ s32 func_800123B0()
 
 /* extern */
 
-void func_800123BC(void) {
-    s32 func_800A5D1C();
-    s32 func_800A7840(s32);
-    s32 func_800A7D84();
-    if (func_800A7D84() != 0) {
-        func_800A7840(0);
+void func_800123BC(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1) BT_PASS2(, s32 bt_a2)) {
+    void func_800A5D1C(void);
+    void func_800A7840(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1) BT_PASS2(, s32 bt_a2));
+    s32 func_800A7D84(BT_PASS2(s32, s32));
+    if (func_800A7D84(BT_PASS2(bt_a0, bt_a1)) != 0) {
+        func_800A7840(0 BT_PASS2(, bt_a1) BT_PASS2(, bt_a2));
     }
     func_800A5D1C();
 }
 
-void func_800123F4(void) {
+void func_800123F4(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1) BT_PASS2(, s32 bt_a2)) {
     void do_crc_check(void);
     s32 func_80012530(void);
     void func_8001608C(void);
@@ -206,7 +206,7 @@ void func_800123F4(void) {
     func_8001608C();
     func_80018444();
     if (D_80043380 == 1) {
-        func_800123BC();
+        func_800123BC(BT_PASS2(bt_a0, bt_a1) BT_PASS2(, bt_a2));
     }
     func_8008160C(1);
     func_8001E010();
@@ -214,19 +214,19 @@ void func_800123F4(void) {
         do_crc_check();
     }
     if (D_80043384 != 0) {
-        func_8001209C(D_80043384 - 1);
+        func_8001209C(D_80043384 - 1 BT_PASS2(, bt_a1));
         D_80043384 = 0;
     }
 }
 
 /* extern */
 
-void func_800124EC(void *arg0) {
-    void func_80012214(void);
-    void func_800123F4(void);
-    func_80012214();
+void func_800124EC(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32 bt_a1) BT_PASS2(, s32 bt_a2)) {
+    void func_80012214(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1));
+    void func_800123F4(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1) BT_PASS2(, s32 bt_a2));
+    func_80012214(BT_PASS2((s32)arg0, bt_a1));
 loop_1:
-    func_800123F4();
+    func_800123F4(BT_PASS2((s32)arg0, bt_a1) BT_PASS2(, bt_a2));
     goto loop_1;
 }
 
@@ -259,3 +259,15 @@ OSThread *func_80012598(void)
 
     return (OSThread *) D_80045788;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80043380 BT_DATA(16, bss_core1bss1_0, 0x0);
+s32 D_80043384 BT_DATA(4, bss_core1bss1_0, 0x4);
+u8 D_80045788 [ 432 ] BT_DATA(4, bss_core1bss1_0, 0x2408);
+__OSThreadOddFpStorage D_80045938 BT_DATA(8, bss_core1bss1_0, 0x25B8);
+s32 D_800459C8 BT_DATA(4, bss_core1bss1_0, 0x2648);
+s32 D_800459CC BT_DATA(4, bss_core1bss1_0, 0x264C);
+u8 * D_8007E994 BT_DATA(4, bss_core1bss1_2_cic_tail, 0xE14);
+#endif

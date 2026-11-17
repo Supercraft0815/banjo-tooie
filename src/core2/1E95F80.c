@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1E95F80_native.inc"
 #else
 #include "common.h"
@@ -54,17 +54,17 @@ void func_800BC690(void) {
         func_800EE7F8(D_80128384, normal);
         func_800EE7F8(D_80128378, D_8011A760[i].point);
     }
-}
+}    typedef struct { s32 unk0; s32 unk4; s32 unk8; u8 unkC; u8 unkD; u8 unkE; u8 unkF; u8 unk10; u8 unk11; s16 unk12; } Obj1E95F80_D_801282E0; /* offsets.py genstruct: fields from raw offsets on &D_801282E0; rename once understood */
 
 void func_800BC8A0(void) {
     s32 heap_free(s32);
     extern s32 D_801282E0;
-    if ((*(u8 *)((s8 *)(&D_801282E0) + (0xD))) != 0) {
-        heap_free((*(s32 *)((s8 *)(&D_801282E0) + (0))));
-        heap_free((*(s32 *)((s8 *)(&D_801282E0) + (4))));
-        (*(s32 *)((s8 *)(&D_801282E0) + (4))) = 0;
-        (*(s32 *)((s8 *)(&D_801282E0) + (0))) = 0;
-        (*(u8 *)((s8 *)(&D_801282E0) + (0xD))) = 0U;
+    if ((((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkD) != 0) {
+        heap_free((((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk0));
+        heap_free((((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk4));
+        (((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk4) = 0;
+        (((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk0) = 0;
+        (((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkD) = 0U;
     }
 }
 
@@ -73,9 +73,9 @@ void func_800BC8A0(void) {
 void func_800BC8F8(s32 *arg0) {
     extern s32 D_801282E0;
     s32 func_800E42E4(s32);
-    if ((*(u8 *)((s8 *)(&D_801282E0) + (0xD))) != 0) {
-        (*(s32 *)((s8 *)(&D_801282E0) + (8))) = (s32) *arg0;
-        *arg0 = (&D_801282E0)[(*(u8 *)((s8 *)(&D_801282E0) + (0xC)))];
+    if ((((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkD) != 0) {
+        (((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk8) = (s32) *arg0;
+        *arg0 = (&D_801282E0)[(((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkC)];
         func_800E42E4(1);
     }
 }
@@ -101,16 +101,16 @@ void func_800BC948(Gfx **arg0) {
     Gfx *sp5C;
     Gfx *sp58;
 
-    if (*(u8 *)((u8 *)&D_801282E0 + 0xD)) {
-        *(u8 *)((u8 *)&D_801282E0 + 0x10) = 0;
+    if (((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkD) {
+        ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk10 = 0;
         gSPEndDisplayList((*arg0)++);
         {
-            Gfx *start = ((Gfx **)&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)];
+            Gfx *start = ((Gfx **)&D_801282E0)[((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkC];
             osWritebackDCache(start, (*arg0 - start) * sizeof(Gfx));
         }
         *arg0 = *(Gfx **)((u8 *)&D_801282E0 + 8);
         func_800E42E4(0);
-        sp5C = (Gfx *)(((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25);
+        sp5C = (Gfx *)(((Gfx (*)[6])&D_801282E0)[((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkC] + 25);
         func_800E4640(&sp5C);
         func_800BCC90(&sp5C);
         gSPEndDisplayList(sp5C++);
@@ -119,11 +119,11 @@ void func_800BC948(Gfx **arg0) {
         gSPEndDisplayList(sp5C++);
         {
             Gfx *start;
-            osWritebackDCache(((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25,
-                (sp5C - (((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25)) * sizeof(Gfx));
+            osWritebackDCache(((Gfx (*)[6])&D_801282E0)[((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkC] + 25,
+                (sp5C - (((Gfx (*)[6])&D_801282E0)[((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkC] + 25)) * sizeof(Gfx));
         }
-        if (!*(u8 *)((u8 *)&D_801282E0 + 0xE) || func_800CAA24((f32 *)func_800E42A8(), D_80128390, D_8012839C)) {
-            func_800E46E0(arg0, ((Gfx (*)[6])&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 25);
+        if (!((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkE || func_800CAA24((f32 *)func_800E42A8(), D_80128390, D_8012839C)) {
+            func_800E46E0(arg0, ((Gfx (*)[6])&D_801282E0)[((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkC] + 25);
             func_800BCC90(arg0);
             gSPClearGeometryMode((*arg0)++, 0x600);
             func_800E7FF8(arg0, 0x200);
@@ -133,24 +133,24 @@ void func_800BC948(Gfx **arg0) {
             func_800E4640(arg0);
             gSPClearGeometryMode((*arg0)++, 0x600);
             func_800E7FF8(arg0, 0x400);
-            if (*(s16 *)((u8 *)&D_801282E0 + 0x12)) {
-                model = func_800D674C(*(s16 *)((u8 *)&D_801282E0 + 0x12));
-                if (!*(u8 *)((u8 *)&D_801282E0 + 0xF)) {
+            if (((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk12) {
+                model = func_800D674C(((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk12);
+                if (!((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkF) {
                     func_800B21CC((void *)func_800B2840((s32)model), D_80128390, D_8012839C);
-                    *(u8 *)((u8 *)&D_801282E0 + 0xE) = 1;
-                    *(u8 *)((u8 *)&D_801282E0 + 0xF) = *(u8 *)((u8 *)&D_801282E0 + 0xE);
+                    ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkE = 1;
+                    ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkF = ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkE;
                 }
                 func_800DF440(0);
                 func_800DF830(1);
-                func_800DF410(*(u8 *)((u8 *)&D_801282E0 + 0x11));
+                func_800DF410(((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk11);
                 func_800DE498(arg0, NULL, NULL, 1.0f, NULL, (s32)model);
             }
             }
-            *(u8 *)((u8 *)&D_801282E0 + 0x10) = 1;
+            ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk10 = 1;
         }
         func_800E46E0(arg0, sp58);
         gSPDisplayList((*arg0)++, (&D_801282E0)[*(u8 *)((u8 *)&D_801282E0 + 0xC)] + 0x80000000);
-        *(u8 *)((u8 *)&D_801282E0 + 0xC) ^= 1;
+        ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkC ^= 1;
     }
 }
 
@@ -162,12 +162,12 @@ void func_800BCC28(s32 arg0, s32 arg1) {
 
 int func_800BCC58(void) {
     extern s32 D_801282E0;
-    return ((*(u8 *)((s8 *)(&D_801282E0) + (0xD))) != 0) && ((*(u8 *)((s8 *)(&D_801282E0) + (0x10))) != 0);
-}
+    return ((((Obj1E95F80_D_801282E0 *)&D_801282E0)->unkD) != 0) && ((((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk10) != 0);
+}    typedef struct { u8 unk0; } Obj1E95F80_D_801282ED; /* offsets.py genstruct: fields from raw offsets on &D_801282ED; rename once understood */
 
 u32 func_800BCC84(void) {
     extern u8 D_801282ED;
-    return *(u8 *)((u8 *)&D_801282ED + 0);
+    return *&((Obj1E95F80_D_801282ED *)&D_801282ED)->unk0;
 }
 
 void func_800BCC90(Gfx **arg0) {
@@ -175,4 +175,10 @@ void func_800BCC90(Gfx **arg0) {
     gSPMatrix((*arg0)++, &D_80128338 - 0x20000000,
               G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
 }
+#endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+Mtx * D_8012D558 BT_DATA(4, bss_core2bss2_1, 0xC18);
 #endif

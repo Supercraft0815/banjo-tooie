@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_lights.h"
 #include "memory.h"
 NativeLighting native_lighting;
@@ -34,7 +34,7 @@ s32 func_800C878C(s32 previous,s32 kind,s32 mask) {
 }
 void func_800C87B8(s32 *out) {rare_memcpy(out,native_lighting.ambient,12);}
 void func_800C87DC(s32 *out) {rare_memcpy(out,native_lighting.primary_color,12);}
-void func_800C8800(s32 id,f32 *out) {
+void func_800C8800(BtIntPtr id,f32 *out) {
     NativeLight *light=native_light(id);if(light)for(s32 i=0;i<3;++i)out[i]=light->position[i];
 }
 void func_800C883C(s32 id,void *out) {
@@ -559,9 +559,9 @@ void * func_800C911C(void) {
 
 /* extern */
 
-void func_800C9128(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800C9128(s32 arg0) {
     s32 _gclightsDll_entrypoint_3(s32 *, s32);
-    _gclightsDll_entrypoint_3(&D_8012AB00, arg0);
+    BT_NATIVE_ONLY(return) _gclightsDll_entrypoint_3(&D_8012AB00, arg0);
 }
 
 

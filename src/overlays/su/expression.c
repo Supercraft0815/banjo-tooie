@@ -49,7 +49,7 @@ s32 suexpression_entrypoint_2(u8 arg0, void *arg1, f32 *arg2) {
         arg2[0] = actor->position[0];
         arg2[1] = sp18[0] * actor->scale + actor->position[1];
         arg2[2] = actor->position[2];
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -63,7 +63,7 @@ void suexpression_entrypoint_3(s16 arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
     *arg3 = (*arg3 + 3) & 0x7FFFFFFC;
     *arg1 = (*arg1 + 3) & 0x7FFFFFFC;
     *arg2 = (*arg2 + 3) & 0x7FFFFFFC;
-}
+}    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; s16 unkE; s8 unk10; s8 unk11; s8 unk12; s8 unk13; u8 pad14[0x81]; u8 unk95; } Objexpression_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -73,11 +73,11 @@ void suexpression_entrypoint_4(u8 *arg0, s16 arg1) {
     s16 temp_v0;
     s16 temp_v0_2;
 
-    temp_v0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    temp_v0 = (((Objexpression_arg0 *)arg0)->unk2);
     if (temp_v0 != 0) {
         _suexpressmorph_entrypoint_3((u8 *)((s8 *)arg0 + temp_v0), arg1, (s16 *)arg0);
     }
-    temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0)));
+    temp_v0_2 = (((Objexpression_arg0 *)arg0)->unk0);
     if (temp_v0_2 != 0) {
         _suexpressjoint_entrypoint_1((u8 *)((s8 *)arg0 + temp_v0_2), arg1, (s16 *)arg0);
     }
@@ -85,52 +85,52 @@ void suexpression_entrypoint_4(u8 *arg0, s16 arg1) {
 
 /* extern */
 
-void suexpression_entrypoint_5(u8 *arg0) {
-    s32 _suexpressmorph_entrypoint_4(void *);
+void suexpression_entrypoint_5(BT_IDO_ONLY(u8 *arg0) BT_PASS2(u8 *arg0, s32 bt_a1)) {
+    s32 _suexpressmorph_entrypoint_4(BT_IDO_ONLY(void *) BT_PASS2(void *, s32));
     s16 temp_v0;
 
-    temp_v0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    temp_v0 = (((Objexpression_arg0 *)arg0)->unk2);
     if (temp_v0 != 0) {
-        _suexpressmorph_entrypoint_4((void *)((s8 *)arg0 + temp_v0));
+        _suexpressmorph_entrypoint_4(BT_IDO_ONLY((void *)((s8 *)arg0 + temp_v0)) BT_PASS2((void *)((s8 *)arg0 + temp_v0), bt_a1));
     }
 }
 
 /* extern */
 
 void suexpression_entrypoint_6(u8 *arg0, s16 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 _suexpressjoint_entrypoint_2(u8 *, s16);
-    s32 _suexpressmorph_entrypoint_5(u8 *, s16);
+    void _suexpressjoint_entrypoint_2(void *arg0, s16 arg1);
+    void _suexpressmorph_entrypoint_5(s16 *arg0, s16 arg1);
     s16 temp_v0;
     s16 temp_v0_2;
 
     if (arg3 == 0) {
-        (*(s16 *)((s8 *)(arg0) + (2))) = 0;
+        (((Objexpression_arg0 *)arg0)->unk2) = 0;
     } else {
-        (*(s16 *)((s8 *)(arg0) + (2))) = arg2;
+        (((Objexpression_arg0 *)arg0)->unk2) = arg2;
     }
     if (arg4 == 0) {
-        (*(s16 *)((s8 *)(arg0) + (0))) = 0;
+        (((Objexpression_arg0 *)arg0)->unk0) = 0;
     } else {
-        (*(s16 *)((s8 *)(arg0) + (0))) = (s16) (arg2 + arg3);
+        (((Objexpression_arg0 *)arg0)->unk0) = (s16) (arg2 + arg3);
     }
-    temp_v0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    temp_v0 = (((Objexpression_arg0 *)arg0)->unk2);
     if (temp_v0 != 0) {
         _suexpressmorph_entrypoint_5((u8 *)((s8 *)arg0 + temp_v0), arg1);
     }
-    temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0)));
+    temp_v0_2 = (((Objexpression_arg0 *)arg0)->unk0);
     if (temp_v0_2 != 0) {
         _suexpressjoint_entrypoint_2((u8 *)((s8 *)arg0 + temp_v0_2), arg1);
     }
-    (*(s16 *)((s8 *)(arg0) + (6))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (4))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (0xA))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (8))) = 0;
-    (*(s8 *)((s8 *)(arg0) + (0x10))) = 0x4B;
-    (*(s8 *)((s8 *)(arg0) + (0x11))) = 0x4B;
-    (*(s8 *)((s8 *)(arg0) + (0x12))) = 1;
-    (*(s16 *)((s8 *)(arg0) + (0xE))) = 0;
-    (*(s8 *)((s8 *)(arg0) + (0x13))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (0xC))) = arg1;
+    (((Objexpression_arg0 *)arg0)->unk6) = 0;
+    (((Objexpression_arg0 *)arg0)->unk4) = 0;
+    (((Objexpression_arg0 *)arg0)->unkA) = 0;
+    (((Objexpression_arg0 *)arg0)->unk8) = 0;
+    (((Objexpression_arg0 *)arg0)->unk10) = 0x4B;
+    (((Objexpression_arg0 *)arg0)->unk11) = 0x4B;
+    (((Objexpression_arg0 *)arg0)->unk12) = 1;
+    (((Objexpression_arg0 *)arg0)->unkE) = 0;
+    (((Objexpression_arg0 *)arg0)->unk13) = 0;
+    (((Objexpression_arg0 *)arg0)->unkC) = arg1;
 }
 
 void *suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2) {
@@ -161,7 +161,7 @@ void suexpression_entrypoint_8(void *arg0, s32 arg1) {
     if (func_80100094() != 0) {
         func_80100074(arg0, arg1, 0);
     }
-    (*(u8 *)((s8 *)(arg0) + (0x95))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x95))) & 0xFFF3);
+    (((Objexpression_arg0 *)arg0)->unk95) = (u8) ((((Objexpression_arg0 *)arg0)->unk95) & 0xFFF3);
 }
 
 void suexpression_entrypoint_9(void *arg0) {
@@ -169,14 +169,14 @@ void suexpression_entrypoint_9(void *arg0) {
 }
 
 void suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2) {
-    void _suexpressjoint_entrypoint_3(Unk80132ED0 *, void *, u8);
+    void _suexpressjoint_entrypoint_3(BtIntPtr arg0, void *arg1, s32 arg2);
     void _suexpressmorph_entrypoint_1(void *);
     void func_8008FE94(s32, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8010D23C(void);
     void suexpression_entrypoint_15(void *, void *, f32 *);
-    void suexpression_entrypoint_16(void *, s32);
+    void suexpression_entrypoint_16(void *, BtIntPtr);
     struct ExpressionHeader {
         s16 joint;
         s16 morph;
@@ -190,24 +190,24 @@ void suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2) {
     if (((struct ExpressionHeader *)arg0)->morph != 0) {
         _suexpressmorph_entrypoint_1((u8 *)arg0 + ((struct ExpressionHeader *)arg0)->morph);
     }
-    if (*(s16 *)((u8 *)arg0 + 4) != 0 ||
-        *(s16 *)((u8 *)arg0 + 6) != 0 ||
-        *(s16 *)((u8 *)arg0 + 8) != 0 ||
-        *(s16 *)((u8 *)arg0 + 0xA) != 0) {
+    if (((Objexpression_arg0 *)arg0)->unk4 != 0 ||
+        ((Objexpression_arg0 *)arg0)->unk6 != 0 ||
+        ((Objexpression_arg0 *)arg0)->unk8 != 0 ||
+        ((Objexpression_arg0 *)arg0)->unkA != 0) {
         if (arg2 != NULL) {
             suexpression_entrypoint_15(arg0, arg1, arg2);
         } else if (func_8010D23C() != 0 && *((u8 *)arg0 + 0x13) == 0) {
             actor = func_80106790(arg1);
             func_8008FE94(5, position);
-            if (*(s16 *)((u8 *)arg0 + 0xE) == 0 ||
+            if (((Objexpression_arg0 *)arg0)->unkE == 0 ||
                 func_800EEB40(actor->position, position) <
-                    (f32)(*(s16 *)((u8 *)arg0 + 0xE) * *(s16 *)((u8 *)arg0 + 0xE))) {
+                    (f32)(((Objexpression_arg0 *)arg0)->unkE * ((Objexpression_arg0 *)arg0)->unkE)) {
                 suexpression_entrypoint_15(arg0, arg1, position);
             } else {
-                suexpression_entrypoint_16(arg0, (s32)arg1);
+                suexpression_entrypoint_16(arg0, (BtIntPtr)arg1);
             }
         } else {
-            suexpression_entrypoint_16(arg0, (s32)arg1);
+            suexpression_entrypoint_16(arg0, (BtIntPtr)arg1);
         }
         if (*((u8 *)arg0 + 0x13) == 1) {
             *((u8 *)arg0 + 0x13) = 0;
@@ -218,29 +218,29 @@ void suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2) {
 
 /* extern */
 
-void suexpression_entrypoint_11(u8 *arg0) {
-    s32 _suexpressmorph_entrypoint_2(void *);
+void suexpression_entrypoint_11(BT_IDO_ONLY(u8 *arg0) BT_PASS2(u8 *arg0, void *bt_a1)) {
+    s32 _suexpressmorph_entrypoint_2(BT_IDO_ONLY(void *) BT_PASS2(void *, void *));
     s16 temp_v0;
 
-    temp_v0 = (*(s16 *)((s8 *)(arg0) + (2)));
+    temp_v0 = (((Objexpression_arg0 *)arg0)->unk2);
     if (temp_v0 != 0) {
-        _suexpressmorph_entrypoint_2((void *)((s8 *)arg0 + temp_v0));
+        _suexpressmorph_entrypoint_2(BT_IDO_ONLY((void *)((s8 *)arg0 + temp_v0)) BT_PASS2((void *)((s8 *)arg0 + temp_v0), bt_a1));
     }
 }
 
 void suexpression_entrypoint_12(void *arg0, f32 arg1, f32 arg2) {
-    (*(s16 *)((s8 *)(arg0) + (6))) = (s16) (s32) arg1;
-    (*(s16 *)((s8 *)(arg0) + (0xA))) = (s16) (s32) arg2;
+    (((Objexpression_arg0 *)arg0)->unk6) = (s16) (s32) arg1;
+    (((Objexpression_arg0 *)arg0)->unkA) = (s16) (s32) arg2;
 }
 
 void suexpression_entrypoint_13(void *arg0, f32 *arg1, f32 *arg2) {
-    *arg1 = (f32) (*(s16 *)((s8 *)(arg0) + (4)));
-    *arg2 = (f32) (*(s16 *)((s8 *)(arg0) + (8)));
+    *arg1 = (f32) (((Objexpression_arg0 *)arg0)->unk4);
+    *arg2 = (f32) (((Objexpression_arg0 *)arg0)->unk8);
 }
 
 void suexpression_entrypoint_14(void *arg0, f32 arg1, f32 arg2) {
-    (*(s8 *)((s8 *)(arg0) + (0x10))) = (s8) (u32) (100.0f * arg1);
-    (*(s8 *)((s8 *)(arg0) + (0x11))) = (s8) (u32) (100.0f * arg2);
+    (((Objexpression_arg0 *)arg0)->unk10) = (s8) (u32) (100.0f * arg1);
+    (((Objexpression_arg0 *)arg0)->unk11) = (s8) (u32) (100.0f * arg2);
 }
 
 /* extern */
@@ -258,43 +258,43 @@ void suexpression_entrypoint_15(void *arg0, void *arg1, f32 *arg2) {
     f32 sp3C[3];
     f32 limit;
 
-    yaw = (f32) (*(u32 *)((s8 *)arg1 + 0x28) >> 23);
+    yaw = (f32) (((Unk80132ED0 *)arg1)->unk28 >> 23);
     pitch = (f32) ((u32)*(u16 *)((s8 *)arg1 + 0x26) >> 7);
     suexpression_entrypoint_2(*(u8 *)((s8 *)arg0 + 0xD), arg1, sp3C);
     func_800F1E6C(sp3C, arg2, &sp54);
     yaw = func_80013728(yaw);
     sp54 = func_800F0E7C(sp54, yaw);
-    if (sp54 < *(s16 *)((s8 *)arg0 + 6) + yaw && yaw - *(s16 *)((s8 *)arg0 + 6) < sp54 && *(s16 *)((s8 *)arg0 + 6) != 0) {
-        if (*(s16 *)((s8 *)arg0 + 4) + yaw < sp54 && *(s16 *)((s8 *)arg0 + 4) < *(s16 *)((s8 *)arg0 + 6)) {
-            *(s16 *)((s8 *)arg0 + 4) += (sp54 - (*(s16 *)((s8 *)arg0 + 4) + yaw)) * 0.1f;
+    if (sp54 < ((Objexpression_arg0 *)arg0)->unk6 + yaw && yaw - ((Objexpression_arg0 *)arg0)->unk6 < sp54 && ((Objexpression_arg0 *)arg0)->unk6 != 0) {
+        if (((Objexpression_arg0 *)arg0)->unk4 + yaw < sp54 && ((Objexpression_arg0 *)arg0)->unk4 < ((Objexpression_arg0 *)arg0)->unk6) {
+            ((Objexpression_arg0 *)arg0)->unk4 += (sp54 - (((Objexpression_arg0 *)arg0)->unk4 + yaw)) * 0.1f;
         }
-        if (sp54 < *(s16 *)((s8 *)arg0 + 4) + yaw && -*(s16 *)((s8 *)arg0 + 6) < *(s16 *)((s8 *)arg0 + 4)) {
-            *(s16 *)((s8 *)arg0 + 4) -= (*(s16 *)((s8 *)arg0 + 4) + yaw - sp54) * 0.1f;
+        if (sp54 < ((Objexpression_arg0 *)arg0)->unk4 + yaw && -((Objexpression_arg0 *)arg0)->unk6 < ((Objexpression_arg0 *)arg0)->unk4) {
+            ((Objexpression_arg0 *)arg0)->unk4 -= (((Objexpression_arg0 *)arg0)->unk4 + yaw - sp54) * 0.1f;
         }
         sp50 = func_800F1828(sp3C, arg2);
         pitch = func_80013728(pitch);
         sp50 = func_800F0E7C(sp50, pitch);
-        if (sp50 < *(s16 *)((s8 *)arg0 + 0xA) + pitch && pitch - *(s16 *)((s8 *)arg0 + 0xA) < sp50 && *(s16 *)((s8 *)arg0 + 0xA) != 0) {
-            if (*(s16 *)((s8 *)arg0 + 8) + pitch < sp50 && *(s16 *)((s8 *)arg0 + 8) < *(s16 *)((s8 *)arg0 + 0xA)) {
-                *(s16 *)((s8 *)arg0 + 8) += (sp50 - (*(s16 *)((s8 *)arg0 + 8) + pitch)) * 0.1f;
+        if (sp50 < ((Objexpression_arg0 *)arg0)->unkA + pitch && pitch - ((Objexpression_arg0 *)arg0)->unkA < sp50 && ((Objexpression_arg0 *)arg0)->unkA != 0) {
+            if (((Objexpression_arg0 *)arg0)->unk8 + pitch < sp50 && ((Objexpression_arg0 *)arg0)->unk8 < ((Objexpression_arg0 *)arg0)->unkA) {
+                ((Objexpression_arg0 *)arg0)->unk8 += (sp50 - (((Objexpression_arg0 *)arg0)->unk8 + pitch)) * 0.1f;
             }
-            if (sp50 < *(s16 *)((s8 *)arg0 + 8) + pitch && -*(s16 *)((s8 *)arg0 + 0xA) < *(s16 *)((s8 *)arg0 + 8)) {
-                *(s16 *)((s8 *)arg0 + 8) -= (*(s16 *)((s8 *)arg0 + 8) + pitch - sp50) * 0.1f;
+            if (sp50 < ((Objexpression_arg0 *)arg0)->unk8 + pitch && -((Objexpression_arg0 *)arg0)->unkA < ((Objexpression_arg0 *)arg0)->unk8) {
+                ((Objexpression_arg0 *)arg0)->unk8 -= (((Objexpression_arg0 *)arg0)->unk8 + pitch - sp50) * 0.1f;
             }
         }
-        if (*(s16 *)((s8 *)arg0 + 0xA) * 1.5f + pitch <= sp50 || sp50 <= pitch - *(s16 *)((s8 *)arg0 + 0xA) * 1.5f) {
-            *(s16 *)((s8 *)arg0 + 8) *= 0.97f;
+        if (((Objexpression_arg0 *)arg0)->unkA * 1.5f + pitch <= sp50 || sp50 <= pitch - ((Objexpression_arg0 *)arg0)->unkA * 1.5f) {
+            ((Objexpression_arg0 *)arg0)->unk8 *= 0.97f;
         }
     }
-    if (*(s16 *)((s8 *)arg0 + 6) * 1.5f + yaw <= sp54 || sp54 <= yaw - *(s16 *)((s8 *)arg0 + 6) * 1.5f) {
-        *(s16 *)((s8 *)arg0 + 4) *= 0.97f;
-        *(s16 *)((s8 *)arg0 + 8) *= 0.97f;
+    if (((Objexpression_arg0 *)arg0)->unk6 * 1.5f + yaw <= sp54 || sp54 <= yaw - ((Objexpression_arg0 *)arg0)->unk6 * 1.5f) {
+        ((Objexpression_arg0 *)arg0)->unk4 *= 0.97f;
+        ((Objexpression_arg0 *)arg0)->unk8 *= 0.97f;
     }
 }
 
-void suexpression_entrypoint_16(void *arg0, s32 arg1) {
-    (*(s16 *)((s8 *)(arg0) + (4))) = (s16) (s32) ((f32) (*(s16 *)((s8 *)(arg0) + (4))) * 0.97f);
-    (*(s16 *)((s8 *)(arg0) + (8))) = (s16) (s32) ((f32) (*(s16 *)((s8 *)(arg0) + (8))) * 0.97f);
+void suexpression_entrypoint_16(void *arg0, BtIntPtr arg1) {
+    (((Objexpression_arg0 *)arg0)->unk4) = (s16) (s32) ((f32) (((Objexpression_arg0 *)arg0)->unk4) * 0.97f);
+    (((Objexpression_arg0 *)arg0)->unk8) = (s16) (s32) ((f32) (((Objexpression_arg0 *)arg0)->unk8) * 0.97f);
 }
 
 void suexpression_entrypoint_17(s16 *arg0, s32 arg1) {
@@ -308,19 +308,19 @@ void suexpression_entrypoint_18(s8 *arg0, s32 arg1) {
 /* extern */
 
 void suexpression_entrypoint_19(u8 *arg0, Actor *arg1) {
-    s32 _suexpressjoint_entrypoint_4(u8 *, Actor *);
+    void _suexpressjoint_entrypoint_4(void *joint, void *actor);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    s32 func_8010262C(Unk80132ED0 *, u32);
-    s32 sp2C;
-    s32 temp_v0_2;
-    s32 temp_v0;
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr sp2C;
+    BtIntPtr temp_v0_2;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_8010262C(arg1->unk0, suexpression_entrypoint_1((*(u8 *)((s8 *)(arg0) + (0xD)))));
     sp2C = temp_v0;
     if (temp_v0 != 0) {
         temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0)));
         if (temp_v0_2 != 0) {
-            _suexpressjoint_entrypoint_4((u8 *)((s32)arg0 + temp_v0_2), arg1);
+            _suexpressjoint_entrypoint_4((u8 *)((BtIntPtr)arg0 + temp_v0_2), arg1);
         }
         if ((*(s16 *)(arg0 + 4) != 0) || ((*(s16 *)((s8 *)(arg0) + (6))) != 0) || ((*(s16 *)((s8 *)(arg0) + (8))) != 0) || ((*(s16 *)((s8 *)(arg0) + (0xA))) != 0)) {
             func_800E0AFC((void *)sp2C, 0x12, 1.0f, (f32) ((*(u8 *)((s8 *)(arg0) + (0x11))) * -(*(s16 *)((s8 *)(arg0) + (8)))) * 0.01f, (f32) ((*(u8 *)((s8 *)(arg0) + (0x10))) * (*(s16 *)(arg0 + 4))) * 0.01f, 0.0f);
@@ -341,12 +341,14 @@ void *suexpression_entrypoint_20(Actor *arg0) {
 }
 
 void *func_80800CF4_suexpression(s32 arg0) {
-    extern s32 D_80800D60_suexpression;
+    extern s32 D_80800D60_suexpression[300];
     u32 temp_v1;
 
     temp_v1 = arg0 - 0xC;
     if (temp_v1 >= 0xC6U) {
         return NULL;
     }
-    return (u8 *) &D_80800D60_suexpression + temp_v1 * 6;
+    return (u8 *) D_80800D60_suexpression + temp_v1 * 6;
 }
+/* data_to_c.py: from asm/data/overlays/su/expression.data.s */
+s32 D_80800D60_suexpression[300] BT_DATA(4, overlays_su_expression, 0x0) = { 0, 0, 0, 0, 120, 0, 5898249, 134217793, 512, 4259840, 33554497, 512, 4259840, 33554497, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 167772160, 0, 0, 0, 0, 0, 0, 0, 7864320, 120, 327680, 11796488, 33554532, 512, 6553600, 33554532, 512, 6553600, 33554532, 512, 13107200, 33554632, 512, 3932160, 33554522, 0, 5898240, 90, 0, 11796491, 33554682, 0, 8192000, 33554582, 512, 58982406, 50331748, 512, 6553600, 33554572, 512, 11796480, 33554632, 512, 62259204, 50331648, 0, 45875207, 150995064, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2560, 0, 0, 0, 11796480, 33554582, 512, 15728640, 33554612, 512, 9175040, 33554672, 512, 11796480, 33554832, 0, 2621440, 33554432, 0, 0, 33554432, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13107200, 33554632, 0, 13762560, 33554432, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 33554432, 1536, 4259840, 33554497, 512, 4259840, 33554497, 512, 4259840, 33554432, 2304, 0, 150995034, 2048, 0, 0, 768, 0, 50331648, 0, 0, 0, 0, 0, 50331648, 1536, 0, 100663296, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5242880, 0, 0, 6553600, 33554532, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9830400, 33554522, 512, 5898240, 33554532, 512, 0, 400, 512, 0, 0, 0, 0, 0, 0, 5242880, 80, 0, 5242880, 33554432, 0, 7864320, 250, 512, 7864320, 150, 0, 9830400, 150, 0, 9830400, 150, 2048, 0, 200, 0, 16384000, 50331748, 1536, 6553600, 33554532, 512, 0, 0, 0, 0, 0, 0, 32768000, 33554482, 512, 9830400, 33554532, 512, 6553600, 33554532, 512, 0, 0, 0, 5898240, 33554552, 0, 7864320, 33554632, 512, 5898240, 33554582, 512, 7864320, 33554552, 0, 3276800, 33554482, 512, 5898240, 33554552, 0, 7864320, 33554632, 512, 5898240, 33554582, 512, 7864320, 33554552, 0, 3276800, 33554482, 512, 0, 0, 0 };

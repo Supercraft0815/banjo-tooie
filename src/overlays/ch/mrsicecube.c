@@ -53,7 +53,7 @@ void func_808000BC_chmrsicecube(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
-    void func_80800634_chmrsicecube(s32);
+    void func_80800634_chmrsicecube(BtIntPtr);
     void func_8080066C_chmrsicecube(u8 *, u8 *);
     void func_808006C4_chmrsicecube(Actor *);
     void func_80800898_chmrsicecube(Actor *);
@@ -67,7 +67,7 @@ void func_808000BC_chmrsicecube(Actor *arg0) {
     sp3C = 0;
     switch (arg0->unk70_10) {
     case 2:
-        func_80800634_chmrsicecube((s32)arg0);
+        func_80800634_chmrsicecube((BtIntPtr)arg0);
         break;
     case 3:
         arg0->unk64_19 = 1;
@@ -108,15 +108,15 @@ void func_808000BC_chmrsicecube(Actor *arg0) {
     }
 }
 
-s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     extern s32 D_808008F0_chmrsicecube;
     extern s32 D_80800A2C_chmrsicecube;
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddieDll_entrypoint_5(Actor *, s32);
-    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    s32 _subaddieDll_entrypoint_5(Actor *arg0, Unk80132ED0 *arg1);
+    u8 _subaddiedialog_entrypoint_9(void *arg0, s32 arg1, void *arg2, s32 arg3);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
@@ -165,14 +165,14 @@ s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_808003BC_chmrsicecube(Actor *arg0, s32 arg1) {
+void func_808003BC_chmrsicecube(Actor *arg0, BtIntPtr arg1) {
     Actor *_subaddielink_entrypoint_4(u8 *);
     void func_800DF744(s32, s32);
     s32 func_800E3E8C(f32 *, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101870(u8 *, s32);
+    void func_80101870(Actor* arg0, void* arg1);
     f32 func_80103FB8(Actor *);
-    void func_8010A764(s32, s32);
+    void func_8010A764(BtIntPtr, BtIntPtr);
     Actor *temp_v0;
 
     if (func_800E3E8C(arg0->position, func_80103FB8(arg0)) != 0) {
@@ -186,11 +186,11 @@ void func_808003BC_chmrsicecube(Actor *arg0, s32 arg1) {
 }
 
 s32 *func_8080043C_chmrsicecube(u8 *arg0, s32 arg1, f32 *arg2) {
-    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
+    Actor *_subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3);
     void func_800EE7F8(f32 *, f32 *);
     s32 *temp_v0;
 
-    temp_v0 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), arg1, -1, 0);
+    temp_v0 = _subaddiefind_entrypoint_0((BtIntPtr)(arg0 + 4), arg1, -1, 0);
     if (temp_v0 != NULL) {
         func_800EE7F8(arg2, (f32 *)(temp_v0 + 1));
     }
@@ -267,24 +267,24 @@ Unk80132ED0 *func_80800508_chmrsicecube(Actor *arg0) {
     return NULL;
 }
 
-void func_80800634_chmrsicecube(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+void func_80800634_chmrsicecube(BtIntPtr arg0) {
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
     extern s32 D_808008F0_chmrsicecube;
     extern s32 D_80800A44_chmrsicecube;
     _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80800A44_chmrsicecube, &D_808008F0_chmrsicecube, 4);
-}
+}    typedef struct { u8 pad0[0x4]; f32 unk4; } Objmrsicecube_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_8080066C_chmrsicecube(u8 *arg0, u8 *arg1)
 {
   void func_800EE7F8(f32 *, f32 *);
   func_800EE7F8((f32 *)arg1, (f32 *)(arg0 + 4));
-  *((f32 *) (((s8 *) arg1) + 4)) += (*((f32 *) (((s8 *) arg0) + 0x38))) * 100.0f;
+  ((Objmrsicecube_arg1 *)arg1)->unk4 += (((Actor *)arg0)->scale) * 100.0f;
 }
 
 void func_808006C4_chmrsicecube(Actor *arg0) {
-    void _chbounce_entrypoint_5(s32, void *);
+    void _chbounce_entrypoint_5(BtIntPtr, void *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _subaddielink_entrypoint_0(void *);
     Actor *_subaddielink_entrypoint_4(u8 *);
     void func_800DA544(s32);
@@ -296,7 +296,7 @@ void func_808006C4_chmrsicecube(Actor *arg0) {
     void func_8010A590(Actor *);
     u32 func_8010A654(void ***, s32);
     void func_80800818_chmrsicecube(u8 *);
-    extern u16 D_80800912_chmrsicecube[][2];
+    extern u16 D_80800910_chmrsicecube[][2];
     extern s32 D_80800A54_chmrsicecube;
     struct MrsIceCubeLinkData { s32 unk0; s32 unk4; s32 unk8; } *sp2C;
     struct MrsIceCubeFlags {
@@ -325,7 +325,7 @@ void func_808006C4_chmrsicecube(Actor *arg0) {
         temp_s0->unk64_24 = func_80102F74(temp_s0, 0x80000001);
         temp_s0->unk64_16 = 1;
         ((struct MrsIceCubeFlags *)temp_s0)->unk74_20 = sp2C->unk8;
-        _chbounce_entrypoint_5(D_80800912_chmrsicecube[arg0->actorData[4]][0], temp_s0);
+        _chbounce_entrypoint_5(D_80800910_chmrsicecube[arg0->actorData[4]][1], temp_s0);
     }
     func_80800818_chmrsicecube(arg0);
     func_800FFAB0(arg0);
@@ -334,20 +334,20 @@ void func_808006C4_chmrsicecube(Actor *arg0) {
 void func_80800818_chmrsicecube(u8 *arg0) {
     s32 pad[2];
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BBCB8(u8 *, u8 *, f32, s32, s32 *);
-    s32 func_801094E0(u8 *, f32);
+    BtIntPtr func_800BBCB8(u8 *, u8 *, f32, s32, s32 *);
+    void func_801094E0(f32 *arg0, f32 arg1);
     extern s32 D_80800A64_chmrsicecube;
     extern s32 D_80800A74_chmrsicecube;
     u8 sp2C[3];
 
     func_8080066C_chmrsicecube(arg0, sp2C);
-    func_800BBCB8(sp2C, arg0 + 4, (*(f32 *)((s8 *)(arg0) + (0x38))), 0xC, &D_80800A74_chmrsicecube);
+    func_800BBCB8(sp2C, arg0 + 4, (((Actor *)arg0)->scale), 0xC, &D_80800A74_chmrsicecube);
     _subaddieaudioquick_entrypoint_2(arg0, sp2C, &D_80800A64_chmrsicecube);
-    func_801094E0(sp2C, (*(f32 *)((s8 *)(arg0) + (0x38))) * 3.0f);
+    func_801094E0(sp2C, (((Actor *)arg0)->scale) * 3.0f);
 }
 
 void func_80800898_chmrsicecube(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     extern u32 D_80800AB8_chmrsicecube;
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800AB8_chmrsicecube, 0.1f);
 }

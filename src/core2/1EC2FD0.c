@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_grid.h"
 #include "native_block_pool.h"
 #include "native_spawn_queue.h"
@@ -27,7 +27,7 @@ void func_800E9708()
     func_800EA370();
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9728(void) {
     func_800EA390();func_800EB70C();
     D_80132DB0=(u8 *)func_800B42FC(sizeof(Prop),10);
@@ -47,7 +47,7 @@ void func_800E9728(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9774(void) {
     func_800EA398();func_800EB750();
     func_800B42DC(D_80132DB0);D_80132DB0=NULL;
@@ -71,7 +71,7 @@ void func_800E9774(void) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E97C0(void) {
     if (func_800EA09C()!=1) { func_800EA45C();func_800A5CFC();func_800EA51C(); }
 }
@@ -89,7 +89,7 @@ void func_800E97C0(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeMarkerProp *func_800E9804(NativeWorldCell *cube) {
     u8 *old_pool=D_80132DB4;
     s16 old_start=cube->dynamic[0];
@@ -122,7 +122,7 @@ void *func_800E9804(s16 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 Prop *func_800E9898(NativeWorldCell *cube) {
     return (void *)func_800B3CDC(&D_80132DB0,cube->models);
 }
@@ -136,7 +136,7 @@ void *func_800E9898(s32 arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeMarkerProp *func_800E98C0(NativeWorldCell *cube) {
     NativeMarkerProp *prop=func_800E9804(cube);
     prop->sprite &= ~2u;
@@ -177,14 +177,14 @@ void *func_800E98C0(s32 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeMarkerProp *func_800E99E0(NativeWorldCell *cube) {
     NativeMarkerProp *prop=func_800E9804(cube);
     prop->flags=(prop->flags & ~0xCu) | 0x11;
     return prop;
 }
 #else
-void *func_800E99E0(void) {
+void *func_800E99E0(BT_PARAM_OR_VOID(s16 *bt_a0)) {
     typedef struct {
         u8 pad[0xB];
         u8 reserved : 3;
@@ -196,7 +196,7 @@ void *func_800E99E0(void) {
     } Flags;
     void *func_800E9804();
     Flags *p;
-    p = func_800E9804();
+    p = func_800E9804(BT_NATIVE_ONLY(bt_a0));
     p->flag1 = 1;
     p->flag8 = 0;
     p->flag4 = 0;
@@ -205,7 +205,7 @@ void *func_800E99E0(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 Prop *func_800E9A24(NativeWorldCell *cube) {
     Prop *prop=func_800E9898(cube);
     prop->flags6=0x32u<<7;
@@ -257,7 +257,7 @@ void *func_800E9A24(s32 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 u32 func_800E9AC0(NativeWorldCell *cube,NativeMarkerProp *prop) {
     u8 *old_pool=D_80132DB4;
     s16 old_start=cube->dynamic[0];
@@ -302,7 +302,7 @@ u32 func_800E9AC0(s16 *arg0, void *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9B74(NativeWorldCell *cube,Prop *prop) {
     uintptr_t offset=(uintptr_t)prop-(uintptr_t)func_800E9D68(cube);
     size_t index=offset/sizeof(*prop);
@@ -329,10 +329,10 @@ void func_800E9B74(s16 *arg0, s32 arg1) {
 }
 #endif
 
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
 Prop *func_800E9D68(s16 *);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 Prop *func_800E9BF4(NativeWorldCell *cube,s32 index) {
     return index<0 || index>=cube->models[1] ? NULL : func_800E9D68(cube)+index;
 }
@@ -340,7 +340,7 @@ Prop *func_800E9BF4(NativeWorldCell *cube,s32 index) {
 s32 func_800E9BF4(s16 *arg0, s32 arg1) { if ((arg1 < 0) || (arg1 >= arg0[1])) return 0; return (s32)func_800E9D68(arg0) + arg1 * 20; }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9C44(NativeWorldCell *cube) {
     NativeMarkerProp *prop=func_800E9E88(cube), *end=func_800E9EB4(cube);
     if (prop) {
@@ -385,7 +385,7 @@ void func_800E9C44(s16 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9CF4(NativeWorldCell *cube) {
     NativeMarkerProp *prop=func_800E9E88(cube), *end=func_800E9EB4(cube);
     for (;prop && prop<end;++prop) if (prop->flags&1) prop->marker->unk0=(u32 *)prop;
@@ -414,7 +414,7 @@ void func_800E9CF4(s16 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 Prop *func_800E9D68(NativeWorldCell *cube) { return func_800B42A0(D_80132DB0,cube->models); }
 #else
 Prop *func_800E9D68(s16 *arg0) {
@@ -424,7 +424,7 @@ Prop *func_800E9D68(s16 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 Prop *func_800E9D90(NativeWorldCell *cube) {
     Prop *begin=func_800E9D68(cube);
     return begin ? begin+cube->models[1] : NULL;
@@ -433,7 +433,7 @@ Prop *func_800E9D90(NativeWorldCell *cube) {
 u32 func_800E9D90(s16 *arg0) { return arg0[1] * 20 + (u32)func_800E9D68(arg0); }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800E9DC4(NativeWorldCell *cube) { return cube->models[1]; }
 #else
 s32 func_800E9DC4(s16 *arg0) {
@@ -441,7 +441,7 @@ s32 func_800E9DC4(s16 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800E9DCC(NativeWorldCell *cube) { return cube->dynamic[1]; }
 #else
 s32 func_800E9DCC(s16 *arg0) {
@@ -451,7 +451,7 @@ s32 func_800E9DCC(s16 *arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 u8 func_800E9DD4(NativeWorldCell *cube) { return *func_800BE5C4(cube); }
 #else
 u8 func_800E9DD4(u8 *arg0) {
@@ -460,7 +460,7 @@ u8 func_800E9DD4(u8 *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9DF8(void) {
     u8 *moved;
     D_80132DB0=defrag(D_80132DB0);
@@ -488,7 +488,7 @@ void func_800E9DF8(void) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9E4C(NativeWorldCell *cube,s32 unused) {
     (void)unused;
     func_800B4290(cube->dynamic);func_800B4290(cube->models);*func_800BE5C4(cube)=0;
@@ -503,7 +503,7 @@ void func_800E9E4C(u8 *arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeMarkerProp *func_800E9E88(NativeWorldCell *cube) { return func_800B42A0(D_80132DB4,cube->dynamic); }
 #else
 s32 func_800E9E88(s32 arg0) {
@@ -513,7 +513,7 @@ s32 func_800E9E88(s32 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 NativeMarkerProp *func_800E9EB4(NativeWorldCell *cube) {
     NativeMarkerProp *begin=func_800E9E88(cube);
     return begin ? begin+cube->dynamic[1] : NULL;
@@ -524,7 +524,7 @@ u32 func_800E9EB4(s16 *arg0) { return arg0[3] * 12 + (u32)func_800E9E88((s32)arg
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800E9EE8(s32 id) {
     NativeWorldCell *cube;
     Prop *prop=_gccubesearch_entrypoint_17(id,&cube);

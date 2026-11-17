@@ -3,7 +3,7 @@
 void func_80800000_indrv_audio(void *arg0, s32 arg1, s32 *arg2) {
     s32 *func_8008FFE8(void);
     void func_800C3AE0(u8, f32);
-    s32 func_800C3BDC(u8);
+    void func_800C3BDC(u8 id);
     u8 func_800C4350();
     void func_800DBEFC(s32 *, s32, f32 *);
     void func_800EE88C(f32 *, s16 *);
@@ -30,9 +30,9 @@ void func_80800000_indrv_audio(void *arg0, s32 arg1, s32 *arg2) {
     func_800C3BDC(sp3B);
 }
 
-void func_808000BC_indrv_audio(s32 arg0, s32 *arg1) {
-    s32 func_800C3BDC(u8);
-    u8 func_800C4350(s32, s32, s32 *);
+void func_808000BC_indrv_audio(BtIntPtr arg0, s32 *arg1) {
+    void func_800C3BDC(u8 id);
+    u8 func_800C4350(s32, BtIntPtr, s32 *);
     extern s32 D_80801478_indrv_audio;
     u8 sp1F;
     u8 temp_v0;
@@ -62,7 +62,7 @@ void indrv_audio_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
                     }
                     break;
                 case -2:
-                    func_808000BC_indrv_audio((s32)arg0, entry->data);
+                    func_808000BC_indrv_audio((BtIntPtr)arg0, entry->data);
                     break;
                 case -4:
                     if (func_800DA298(0xE) != 0) {

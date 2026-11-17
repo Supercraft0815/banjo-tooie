@@ -22,7 +22,7 @@ void func_80017864(void) {
     }
 }
 
-s32 func_800178C4(s32 arg0, s32 arg1, f32 arg2)
+s32 func_800178C4(BtIntPtr arg0, s32 arg1, f32 arg2)
 {
   typedef struct 
   {
@@ -46,10 +46,10 @@ s32 func_800178C4(s32 arg0, s32 arg1, f32 arg2)
     u8 unk1C[0x44];
     Channel *channels;
   } Player;
-  u8 *func_80017810(s32);
+  u8 *func_80017810(BtIntPtr);
   u32 func_800260B0(void *);
-  void func_80026238(void *, u32, u8, s32);
-  void func_800262DC(void *, u32, u8);
+  void func_80026238(BtIntPtr arg0, s32 arg1, volatile u8 arg2, volatile s32 arg3);
+  void func_800262DC(BtIntPtr arg0, s32 arg1, u8 arg2);
   extern const f32 D_80041720;
   extern u8 D_8007AE80[];
   extern u8 D_8007AEA0[];
@@ -151,13 +151,13 @@ s32 func_800178C4(s32 arg0, s32 arg1, f32 arg2)
     D_8007AE80[reset + 3] = 0xFF;
     D_8007AE80[reset] = 0xFF;
     reset += 4;
-  } while ((u32) D_8007AEA0 != ((u32) &D_8007AE80[reset] ^ 0));
+  } while ((BtUIntPtr) D_8007AEA0 != ((BtUIntPtr) &D_8007AE80[reset] ^ 0));
 
   return 0;
 }
 
-s32 func_80017D74(s32 arg0, s32 arg1, f32 arg2) {
-    u8 *func_80017810(s32);
+s32 func_80017D74(BtIntPtr arg0, s32 arg1, f32 arg2) {
+    u8 *func_80017810(BtIntPtr);
     u32 func_800260B0(void *);
     void func_80026330(u8 *, s32);
     extern u8 D_8007AEA0[];
@@ -193,7 +193,7 @@ s32 func_80017D74(s32 arg0, s32 arg1, f32 arg2) {
 
 void func_80017EC0(s32 arg0) {
     int func_80017778(s32);
-    u8 *func_80017810(s32);
+    u8 *func_80017810(BtIntPtr);
     u32 func_800260B0(void *);
     void func_80026330(u8 *, s32);
     extern u8 D_8007AEA0[];
@@ -220,3 +220,11 @@ void func_80017EC0(s32 arg0) {
         func_80026330(player, current);
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_8007AE80 [ 32 ] BT_DATA(16, bss_core1bss1_0_audio_tail, 0x0);
+u8 D_8007AEA0 [ 24 ] BT_DATA(4, bss_core1bss1_0_audio_tail, 0x20);
+s32 D_8007AEB8 [ 6 ] BT_DATA(4, bss_core1bss1_0_audio_tail, 0x38);
+#endif

@@ -40,9 +40,9 @@ void bawandglow_entrypoint_3(PlayerState *self, s32 arg1) {
 }
 #endif
 
-void bawandglow_entrypoint_4(PlayerState *self) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bawandglow_entrypoint_4(PlayerState *self) {
     self->wandglow->unk10 = 1;
-    _chbaddiesetup_entrypoint_1(_bawandglow_entrypoint_2, self->unk184);
+    BT_NATIVE_ONLY(return) _chbaddiesetup_entrypoint_1(_bawandglow_entrypoint_2, self->unk184);
 }
 
 void bawandglow_entrypoint_5(PlayerState *self) {

@@ -2,43 +2,43 @@
 
 OSThread *chfactoryprop_entrypoint_0(void)
 {
-    extern u8 D_80800C20_chfactoryprop[];
+    extern ActorData D_80800C20_chfactoryprop[];
 
     return (OSThread *) D_80800C20_chfactoryprop;
 }
 
 OSThread *chfactoryprop_entrypoint_1(void)
 {
-    extern u8 D_80800C68_chfactoryprop[];
+    extern ActorData D_80800C68_chfactoryprop[];
 
     return (OSThread *) D_80800C68_chfactoryprop;
 }
 
 OSThread *chfactoryprop_entrypoint_2(void)
 {
-    extern u8 D_80800CB0_chfactoryprop[];
+    extern ActorData D_80800CB0_chfactoryprop[];
 
     return (OSThread *) D_80800CB0_chfactoryprop;
-}
+}                typedef struct { u8 pad0[0x18]; u8 unk18; u8 pad19[0x3]; u8 unk1C; u8 pad1D[0x7]; f32 unk24; u8 pad28[0xC]; f32 unk34; u8 pad38[0xC]; f32 unk44; } Objprop_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void func_80800024_chfactoryprop(u8 *arg0) {
-    s32 _subaddiefade_entrypoint_14(s32);
-    s32 func_8010A63C(s32);
-    (*(f32 *)((s8 *)(arg0) + (0x34))) = 1.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x24))) = 1.0f;
-    _subaddiefade_entrypoint_14((s32) arg0);
-    func_8010A63C((s32) arg0);
-    (*(f32 *)((s8 *)(arg0) + (0x44))) = 30.0f;
+void func_80800024_chfactoryprop(u8 *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
+    s32 _subaddiefade_entrypoint_14(BtIntPtr);
+    s32 func_8010A63C(BtIntPtr);
+    (((Objprop_arg0 *)arg0)->unk34) = 1.0f;
+    (((Objprop_arg0 *)arg0)->unk24) = 1.0f;
+    _subaddiefade_entrypoint_14((BtIntPtr) arg0);
+    func_8010A63C((BtIntPtr) arg0);
+    (((Objprop_arg0 *)arg0)->unk44) = 30.0f;
 }
 
 void func_80800070_chfactoryprop(Actor *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     void _subaddieaudioloop_entrypoint_2(Actor *);
     f32 func_800136E4(f32);
     f32 func_800D8FF8(void);
     f32 func_800F15F8(f32, f32, f32);
     void func_80101FDC(Actor *, u32);
-    s32 func_801065A4(void *);
+    BtIntPtr func_801065A4(void *);
     void func_80800324_chfactoryprop(Actor *);
     void func_80800674_chfactoryprop(u8 *);
     void func_80800988_chfactoryprop(Actor *);
@@ -73,7 +73,7 @@ void func_80800070_chfactoryprop(Actor *arg0) {
             break;
     }
     if (func_801065A4(arg0)) {
-        _glid_entrypoint_0(func_801065A4(arg0), 1, &_chfactoryprop_entrypoint_3, (s32)arg0->unk0);
+        _glid_entrypoint_0(func_801065A4(arg0), 1, &_chfactoryprop_entrypoint_3, (BtIntPtr)arg0->unk0);
     }
 }
 
@@ -81,12 +81,12 @@ void func_80800070_chfactoryprop(Actor *arg0) {
 
 void func_808001D8_chfactoryprop(void *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    (*(u8 *)((s8 *)(arg0) + (0x18))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x18))));
-    (*(u8 *)((s8 *)(arg0) + (0x1C))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(arg0) + (0x1C))));
+    (((Objprop_arg0 *)arg0)->unk18) = _subaddieaudioloop_entrypoint_3((((Objprop_arg0 *)arg0)->unk18));
+    (((Objprop_arg0 *)arg0)->unk1C) = _subaddieaudioloop_entrypoint_3((((Objprop_arg0 *)arg0)->unk1C));
 }
 
 s32 func_80800214_chfactoryprop(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(s32);
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
@@ -124,14 +124,14 @@ s32 func_80800214_chfactoryprop(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800324_chfactoryprop(Actor *arg0) {
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
     void func_8008FE68(f32 *);
-    void func_80090794(f32 *);
+    void func_80090794(BtIntPtr arg0);
     void func_800907C0(f32 *);
     void func_800C3058(u8, s32);
     f32 func_800D8FF8(void);
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
-    extern s32 D_80800CF8_chfactoryprop;
+    extern s32 D_80800CF8_chfactoryprop[4];
     f32 velocity[3];
     f32 position[3];
     f32 distance;
@@ -163,7 +163,7 @@ void func_80800324_chfactoryprop(Actor *arg0) {
             }
             if (active != 0 || (active == 0 && *(u8 *)&arg0->actorData[1] != 0)) {
                 rate = func_800F10B4(*(f32 *)&arg0->actorData[5] + speed, 0.0f, 800.0f, 8000.0f, 22000.0f);
-                *(u8 *)&arg0->actorData[1] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[1], position, active, &D_80800CF8_chfactoryprop, arg0->unk70_0);
+                *(u8 *)&arg0->actorData[1] = _subaddieaudioloop_entrypoint_7(*(u8 *)&arg0->actorData[1], position, active, D_80800CF8_chfactoryprop, arg0->unk70_0);
                 if (*(u8 *)&arg0->actorData[1] != 0) {
                     func_800C3058(*(u8 *)&arg0->actorData[1], rate);
                 }
@@ -197,7 +197,7 @@ void func_80800674_chfactoryprop(u8 *arg0) {
     void func_8008FE68(f32 *);
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
-    u8 func_800C4350(s32, u8 *, s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     void func_800C4B64(f32);
     void func_800C4B70(s32);
     f32 func_800D8FF8(void);
@@ -208,10 +208,10 @@ void func_80800674_chfactoryprop(u8 *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
-    s32 func_800F54E4(void);
-    s32 func_800F55FC(s32);
-    extern s32 D_80800D08_chfactoryprop;
-    extern s32 D_80800D14_chfactoryprop;
+    BtIntPtr func_800F54E4(void);
+    s32 func_800F55FC(BtIntPtr);
+    extern s32 D_80800D08_chfactoryprop[3];
+    extern s32 D_80800D14_chfactoryprop[4];
     f32 sp54;
     f32 sp48[3];
     f32 temp_f12;
@@ -241,7 +241,7 @@ void func_80800674_chfactoryprop(u8 *arg0) {
         sp3C = (s32)func_800F10B4(temp_f12, 0.0f, 2000.0f, 32767, 0);
     }
     if (arg0[0x5F] == 0) {
-        arg0[0x5F] = func_800C4350(0, arg0 + 4, &D_80800D08_chfactoryprop);
+        arg0[0x5F] = func_800C4350(0, arg0 + 4, D_80800D08_chfactoryprop);
     }
     sp54 = func_800F12D4(*(f32 *)(arg0 + 0x28), 0.0f, 400.0f, 0.4f, 1.0f);
     temp_f12_2 = func_800F12D4(*(f32 *)(arg0 + 0x28), 0.0f, 400.0f, 0.4f, 1.0f);
@@ -258,7 +258,7 @@ void func_80800674_chfactoryprop(u8 *arg0) {
             sp54 = func_800F12D4(*(f32 *)(arg0 + 0x28), 0.0f, 400.0f, 0.2f, 0.5f) + func_800DC178(-0.05f, 0.05f);
             func_800C4B70((s32)(*(f32 *)(arg0 + 0x24) * (f32)sp3C));
             func_800C4B64(sp54);
-            func_800C4350(arg0[0x18], arg0 + 4, &D_80800D14_chfactoryprop);
+            func_800C4350(arg0[0x18], arg0 + 4, D_80800D14_chfactoryprop);
         }
     }
 }
@@ -266,14 +266,14 @@ void func_80800674_chfactoryprop(u8 *arg0) {
 void func_80800988_chfactoryprop(Actor *arg0) {
     void func_8008FE68(f32 *);
     void func_800C3058(u8, s32);
-    u8 func_800C4350(s32, u8 *, s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     s32 func_800DB9B0(void);
     void func_800E3980(f32 *);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    extern s32 D_80800D24_chfactoryprop;
+    extern s32 D_80800D24_chfactoryprop[7];
     f32 soundPosition[3];
     f32 playerPosition[3];
     f32 distance;
@@ -287,7 +287,7 @@ void func_80800988_chfactoryprop(Actor *arg0) {
     func_800EE7F8(soundPosition, arg0->position);
     soundPosition[0] = playerPosition[0];
     if (arg0->unk5F == 0) {
-        arg0->unk5F = func_800C4350(0, soundPosition, &D_80800D24_chfactoryprop);
+        arg0->unk5F = func_800C4350(0, soundPosition, D_80800D24_chfactoryprop);
     }
     switch (func_800EA05C()) {
         case 0x10F:
@@ -314,14 +314,14 @@ void func_80800988_chfactoryprop(Actor *arg0) {
 
 /* extern */
 
-void func_80800B44_chfactoryprop(s32 arg0) {
-    s32 _chdoormake_entrypoint_12(s32, s32, s32);
-    s32 _chdoormake_entrypoint_3(s32, f32, f32, f32, s32, s32);
-    s32 _chdoormake_entrypoint_6(s32, f32);
-    s32 _chdoormake_entrypoint_8(s32, s32);
+void func_80800B44_chfactoryprop(BtIntPtr arg0) {
+    void _chdoormake_entrypoint_12(Actor *arg0, s32 arg1, u16 arg2);
+    s32 _chdoormake_entrypoint_3(BtIntPtr, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_6(Actor *arg0, f32 arg1);
+    void _chdoormake_entrypoint_8(Actor *arg0, u32 arg1);
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800DA298(s32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *actor);
     s32 func_8010A63C();
     func_8010A63C();
     if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 200.0f, 0x20, 0x18C) != 0) {
@@ -333,3 +333,16 @@ void func_80800B44_chfactoryprop(s32 arg0) {
         func_800FFAB0(arg0);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/prop.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+void _chdoor_entrypoint_0();
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+ActorData D_80800C20_chfactoryprop [1] BT_DATA(4, overlays_ch_factory_prop, 0x0) = { { 791, 946, 1860, 1, 0, (void (*)(struct Actor *))func_80800070_chfactoryprop, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 5120, (void (*)(struct Actor *))func_808001D8_chfactoryprop, 0, 0, 0, (void (*)(struct Actor *))func_80800024_chfactoryprop, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9234, (void (*)(struct Actor *, long, long))func_80800214_chfactoryprop, 0 } };
+ActorData D_80800C68_chfactoryprop [1] BT_DATA(4, overlays_ch_factory_prop, 0x48) = { { 792, 947, 1861, 1, 0, (void (*)(struct Actor *))func_80800070_chfactoryprop, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 17408, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800024_chfactoryprop, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9234, (void (*)(struct Actor *, long, long))func_80800214_chfactoryprop, 0 } };
+ActorData D_80800CB0_chfactoryprop [1] BT_DATA(4, overlays_ch_factory_prop, 0x90) = { { 172, 1278, 2183, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 1024, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800B44_chfactoryprop, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
+s32 D_80800CF8_chfactoryprop[4] BT_DATA(4, overlays_ch_factory_prop, 0xD8) = { 1246371, 655564, 131092, 0 };
+s32 D_80800D08_chfactoryprop[3] BT_DATA(4, overlays_ch_factory_prop, 0xE8) = { 33947667, 104136706, 196608 };
+s32 D_80800D14_chfactoryprop[4] BT_DATA(4, overlays_ch_factory_prop, 0xF4) = { 50724883, 67043357, 1966082, 1114112 };
+s32 D_80800D24_chfactoryprop[7] BT_DATA(4, overlays_ch_factory_prop, 0x104) = { 33947667, 79626250, 11730946, 196608, 0, 0, 0 };

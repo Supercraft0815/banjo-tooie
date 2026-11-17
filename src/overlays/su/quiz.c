@@ -31,7 +31,7 @@ int func_808000C4_suquiz(s32 arg0) { s32 sp18[6]; void func_80015E80(s32, void *
 
 void suquiz_entrypoint_0(void) {
     extern void *D_80127614;
-    s32 _gcstatusDll_entrypoint_11(void);
+    u8 _gcstatusDll_entrypoint_11(void);
     s32 func_800D3948(void);
     int func_800DC298(f32);
     void *heap_alloc(s32);
@@ -190,28 +190,28 @@ s32 suquiz_entrypoint_4(void) {
     default:
         return 0;
     }
-}
+}    typedef struct { u8 pad0[0x28]; s8 unk28; } Objquiz_suquiz_entrypoint_5_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 s32 suquiz_entrypoint_5(void) {
     extern void *D_80127614;
     if (func_800DA298(FLAG2_6B6_UNK) != 0) {
-        return ((*(s8 *)((s8 *)(D_80127614) + (0x28))) + 1) != 0;
+        return ((((Objquiz_suquiz_entrypoint_5_D_80127614 *)D_80127614)->unk28) + 1) != 0;
     }
     return 0;
-}
+}    typedef struct { u8 pad0[0x28]; s8 unk28; } Objquiz_suquiz_entrypoint_6_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 s8 suquiz_entrypoint_6(void) {
     extern void *D_80127614;
     if (func_800DA298(FLAG2_6B6_UNK) != 0) {
-        return (*(s8 *)((s8 *)(D_80127614) + (0x28)));
+        return (((Objquiz_suquiz_entrypoint_6_D_80127614 *)D_80127614)->unk28);
     }
     return -1;
-}
+}    typedef struct { u8 pad0[0x25]; u8 unk25; } Objquiz_suquiz_entrypoint_7_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 u8 suquiz_entrypoint_7(void) {
     extern void *D_80127614;
     if (func_800DA298(FLAG2_6B6_UNK) != 0) {
-        return (*(u8 *)((s8 *)(D_80127614) + (0x25)));
+        return (((Objquiz_suquiz_entrypoint_7_D_80127614 *)D_80127614)->unk25);
     }
     return 6U;
 }
@@ -252,34 +252,34 @@ s32 suquiz_entrypoint_11(s32 arg0) {
     return 0;
 }
 
-void suquiz_entrypoint_12(void) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) suquiz_entrypoint_12(void) {
     int func_800DC298(f32);
     s32 suquiz_entrypoint_4();
     extern f64 D_80800F74_suquiz[];
-    func_800DC298(*(f32 *)&D_80800F74_suquiz[suquiz_entrypoint_4()]);
+    BT_NATIVE_ONLY(return) func_800DC298(*(f32 *)&D_80800F74_suquiz[suquiz_entrypoint_4()]);
 }
 
 void suquiz_entrypoint_13(f32 *arg0) {
     extern void *D_80127614;
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     func_800EE7F8(arg0, (f32 *) D_80127614);
-}
+}    typedef struct { u8 pad0[0xC]; f32 unkC; } Objquiz_suquiz_entrypoint_14_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
-void suquiz_entrypoint_14(f32 *arg0) { extern void *D_80127614; void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg0, (f32 *) ((u8 *) D_80127614 + 0xC)); }
+void suquiz_entrypoint_14(f32 *arg0) { extern void *D_80127614; void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg0, &((Objquiz_suquiz_entrypoint_14_D_80127614 *)D_80127614)->unkC); }    typedef struct { u8 pad0[0x27]; s8 unk27; } Objquiz_suquiz_entrypoint_15_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 s8 suquiz_entrypoint_15(s32 arg0) {
     extern void *D_80127614;
     if (func_800DA298(FLAG2_6B6_UNK) != 0) {
-        return (*(s8 *)((s8 *)(D_80127614) + (0x27)));
+        return (((Objquiz_suquiz_entrypoint_15_D_80127614 *)D_80127614)->unk27);
     }
     return 0;
-}
+}    typedef struct { u8 pad0[0x20]; f32 unk20; } Objquiz_suquiz_entrypoint_16_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 int suquiz_entrypoint_16(void) {
     extern void *D_80127614;
 
     if (func_800DA298(FLAG2_6B6_UNK) != 0) {
-        return (*(f32 *)((s8 *)D_80127614 + 0x20)) <= 0.0f;
+        return (((Objquiz_suquiz_entrypoint_16_D_80127614 *)D_80127614)->unk20) <= 0.0f;
     } else {
         return 1;
     }
@@ -293,7 +293,7 @@ s32 suquiz_entrypoint_17()
 /* extern */
 
 void suquiz_entrypoint_18(u32 arg0) {
-    s32 _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
     switch (arg0) {
     case 0:
         func_800DA524(FLAG_441_UNK);
@@ -322,7 +322,7 @@ void suquiz_entrypoint_18(u32 arg0) {
     default:
         return;
     }
-}
+}    typedef struct { u8 pad0[0x18]; f32 unk18; f32 unk1C; } Objquiz_suquiz_entrypoint_19_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 void suquiz_entrypoint_19(s32 arg0) {
     s32 func_800D3948(void);
@@ -381,7 +381,7 @@ void suquiz_entrypoint_19(s32 arg0) {
                     duration = func_8080009C_suquiz(i, arg0, kind);
                     random = func_800DC0C0();
                     ((s8 *)D_80127614)[0x26] = i;
-                    *(f32 *)((u8 *)D_80127614 + 0x18) = chance;
+                    ((Objquiz_suquiz_entrypoint_19_D_80127614 *)D_80127614)->unk18 = chance;
                     ((s8 *)D_80127614)[0x27] = random <= duration;
                     break;
                 }
@@ -391,7 +391,7 @@ void suquiz_entrypoint_19(s32 arg0) {
         }
     }
 done:
-    *(f32 *)((s8 *)D_80127614 + 0x1C) = 0.0f;
+    ((Objquiz_suquiz_entrypoint_19_D_80127614 *)D_80127614)->unk1C = 0.0f;
     ((u8 *)D_80127614)[0x25] = arg0;
 }
 
@@ -412,7 +412,7 @@ void suquiz_entrypoint_22(s32 arg0, s32 arg1) {
     void func_800EE7F8();
     func_800EE7F8(D_80127614, arg0);
     func_800EE7F8((u8 *) D_80127614 + 0xC, arg1);
-}
+}    typedef struct { u8 pad0[0x20]; f32 unk20; s8 unk24; } Objquiz_suquiz_entrypoint_23_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 void suquiz_entrypoint_23(void) {
     u8 _gcstatusDll_entrypoint_17(void);
@@ -421,17 +421,17 @@ void suquiz_entrypoint_23(void) {
     extern void *D_80127614;
     extern f32 D_80800F70_suquiz[][2];
     if (func_800D3948() != 0) {
-        (*(f32 *)((s8 *)(D_80127614) + (0x20))) = (f32) ((f32) (s32) _gcstatusDll_entrypoint_17() * 60.0f);
+        (((Objquiz_suquiz_entrypoint_23_D_80127614 *)D_80127614)->unk20) = (f32) ((f32) (s32) _gcstatusDll_entrypoint_17() * 60.0f);
     } else {
-        (*(f32 *)((s8 *)(D_80127614) + (0x20))) = D_80800F70_suquiz[suquiz_entrypoint_4()][0];
+        (((Objquiz_suquiz_entrypoint_23_D_80127614 *)D_80127614)->unk20) = D_80800F70_suquiz[suquiz_entrypoint_4()][0];
     }
-    (*(s8 *)((s8 *)(D_80127614) + (0x24))) = 1;
-}
+    (((Objquiz_suquiz_entrypoint_23_D_80127614 *)D_80127614)->unk24) = 1;
+}    typedef struct { u8 pad0[0x34]; s16 unk34; } Objquiz_suquiz_entrypoint_24_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 void suquiz_entrypoint_24(u32 arg0, s32 arg1) {
     extern void *D_80127614;
     void _glcutDll_entrypoint_6(u32, u32);
-    (*(s16 *)((s8 *)(D_80127614) + (0x34))) = arg1;
+    (((Objquiz_suquiz_entrypoint_24_D_80127614 *)D_80127614)->unk34) = arg1;
     func_800DA544(FLAG2_6E3_UNK);
     func_800DA524(FLAG2_6EB_UNK);
     _glcutDll_entrypoint_6(arg0, 0x8AU);
@@ -440,23 +440,23 @@ void suquiz_entrypoint_24(u32 arg0, s32 arg1) {
 /* extern */
 
 void suquiz_entrypoint_25(void) {
-    s32 _glcutDll_entrypoint_17();
+    void _glcutDll_entrypoint_17(void);
     if (func_800DA298(FLAG2_6EB_UNK) == 0) {
         _glcutDll_entrypoint_17();
         func_800DA544(FLAG2_6EB_UNK);
     }
-}
+}    typedef struct { u8 pad0[0x34]; s16 unk34; } Objquiz_suquiz_entrypoint_26_D_80127614; /* offsets.py genstruct: fields from raw offsets on D_80127614; rename once understood */
 
 s16 suquiz_entrypoint_26(void) {
     extern void *D_80127614;
-    return (*(s16 *)((s8 *)(D_80127614) + (0x34)));
+    return (((Objquiz_suquiz_entrypoint_26_D_80127614 *)D_80127614)->unk34);
 }
 
 void suquiz_entrypoint_27(void) {
-    s32 func_80108474(s32, s32 *, s32);
+    Actor *func_80108474(u32 arg0, f32 *arg1, s32 arg2);
     extern s32 D_808010F0_suquiz;
     func_80108474(0x217, &D_808010F0_suquiz, 0);
-}
+} 
 
 void suquiz_entrypoint_28(s32 arg0, s32 arg1, s32 arg2) {
     void func_800C3F48(u32);

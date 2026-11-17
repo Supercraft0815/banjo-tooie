@@ -54,28 +54,28 @@ u32 D_80801014_chmineprospector[] = {
     0x40066666, 0x01DB0001
 };
 
-u32 D_8080102C_chmineprospector[] = {
-    0x01950143, 0x07900001, (u32)D_80800FCC_chmineprospector, (u32)func_80800024_chmineprospector,
-    (u32)func_80105834, (u32)func_80800340_chmineprospector, 0x00000000, 0x00000000,
-    0x00000000, 0x40000122, (u32)func_80800E00_chmineprospector, 0x00000000,
-    0x00140000, (u32)func_8080029C_chmineprospector, (u32)func_80107C2C, 0x82000592,
-    (u32)func_80800398_chmineprospector, 0x00000000
+BtFnWord D_8080102C_chmineprospector[] = {
+    0x01950143, 0x07900001, (BtFnWord)D_80800FCC_chmineprospector, (BtFnWord)func_80800024_chmineprospector,
+    (BtFnWord)func_80105834, (BtFnWord)func_80800340_chmineprospector, 0x00000000, 0x00000000,
+    0x00000000, 0x40000122, (BtFnWord)func_80800E00_chmineprospector, 0x00000000,
+    0x00140000, (BtFnWord)func_8080029C_chmineprospector, (BtFnWord)func_80107C2C, 0x82000592,
+    (BtFnWord)func_80800398_chmineprospector, 0x00000000
 };
 
-u32 D_80801074_chmineprospector[] = {
-    0x01A60151, 0x07910001, 0x00000000, (u32)func_80102EC0,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
+BtFnWord D_80801074_chmineprospector[] = {
+    0x01A60151, 0x07910001, 0x00000000, (BtFnWord)func_80102EC0,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
     0x00000000, 0x40000800, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_80800DF8_chmineprospector, (u32)func_80107C2C, 0x80080C12,
+    0x00000000, (BtFnWord)func_80800DF8_chmineprospector, (BtFnWord)func_80107C2C, 0x80080C12,
     0x00000000, 0x00000000
 };
 
-u32 D_808010BC_chmineprospector[] = {
-    0x01A70152, 0x066D0001, (u32)D_80801014_chmineprospector, (u32)func_80102EC0,
-    (u32)func_80800AF0_chmineprospector, (u32)func_80101870, 0x00000000, 0x3F800000,
-    0x00000000, 0x40040120, (u32)func_80800E00_chmineprospector, 0x00000000,
-    0x00000000, (u32)func_80800BF4_chmineprospector, (u32)func_80107C2C, 0x82000592,
-    (u32)func_80800CD4_chmineprospector, 0x00000000
+BtFnWord D_808010BC_chmineprospector[] = {
+    0x01A70152, 0x066D0001, (BtFnWord)D_80801014_chmineprospector, (BtFnWord)func_80102EC0,
+    (BtFnWord)func_80800AF0_chmineprospector, (BtFnWord)func_80101870, 0x00000000, 0x3F800000,
+    0x00000000, 0x40040120, (BtFnWord)func_80800E00_chmineprospector, 0x00000000,
+    0x00000000, (BtFnWord)func_80800BF4_chmineprospector, (BtFnWord)func_80107C2C, 0x82000592,
+    (BtFnWord)func_80800CD4_chmineprospector, 0x00000000
 };
 
 u32 D_80801104_chmineprospector[] = {
@@ -199,12 +199,12 @@ void func_8080029C_chmineprospector(Actor *arg0) {
 }
 
 void func_80800340_chmineprospector(Actor *arg0, u8 *arg1) {
-    void func_800DBEFC(s32 *, s32, s32);
+    void func_800DBEFC(s32 *, s32, BtIntPtr);
     void func_80101870(Actor* arg0, void* arg1);
     OSThread * func_80104130(void);
     func_80101870(arg0, arg1);
     if (arg0->unk7C_12) {
-        func_800DBEFC((s32 *) func_80104130(), 4, (s32) &arg0->actorData[4]);
+        func_800DBEFC((s32 *) func_80104130(), 4, (BtIntPtr) &arg0->actorData[4]);
         *(f32 *) &arg0->actorData[5] = arg0->position[1];
     }
 }
@@ -213,7 +213,7 @@ s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
     void _gcdialogcamera_entrypoint_4(f32 *);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     void func_800DA544(GameFlag);
     void func_80102424(Actor *, s32);
     void func_808006EC_chmineprospector(Actor *, s32, s32);
@@ -263,19 +263,19 @@ s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
-    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
     void func_808009B0_chmineprospector(Actor *, s32, s32);
 
     extern s8 D_8080111A_chmineprospector;
     s32 temp_v0;
 
     D_8080111A_chmineprospector = arg3;
-    temp_v0 = _subaddiedialog_entrypoint_8((s32)arg0, (u8 *)arg0 + 0x28, &D_8080110C_chmineprospector, arg1, arg2);
+    temp_v0 = _subaddiedialog_entrypoint_8((BtIntPtr)arg0, (u8 *)arg0 + 0x28, &D_8080110C_chmineprospector, arg1, arg2);
     if (temp_v0 == 0) {
         return 0;
     }
-    switch (_subaddiedialog_entrypoint_9((s32)arg0, temp_v0, arg1, arg2)) {
+    switch (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, temp_v0, arg1, arg2)) {
     case 1:
         func_808009B0_chmineprospector(arg0, 3, 0);
         break;
@@ -325,8 +325,8 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102424(Actor *, s32);
     void _glcutDll_entrypoint_6(u32, u32);
     s32 _subaddiedialog_entrypoint_10(s32);
-    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     void func_80800970_chmineprospector(Actor *);
     void func_80800A64_chmineprospector(Actor *, s32, s32);
 
@@ -341,9 +341,9 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
         func_80102424(arg0, 6);
         return;
     }
-    sp34 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F20_chmineprospector, 7);
-    sp30 = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F58_chmineprospector, 7);
-    sp2C = _subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F90_chmineprospector, 4);
+    sp34 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F20_chmineprospector, 7);
+    sp30 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F58_chmineprospector, 7);
+    sp2C = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F90_chmineprospector, 4);
     if (_subaddiedialog_entrypoint_10(sp2C) != 0) {
         func_80800970_chmineprospector(arg0);
         func_80102424(arg0, 6);
@@ -364,11 +364,11 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_10(s32);
-    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
-    s32 func_80108B04(s32, s32);
+    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    s32 func_80108B04(BtIntPtr, s32);
     void func_80800A64_chmineprospector(Actor *, s32, s32);
 
-    if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9((s32)arg0, arg1, D_80800F58_chmineprospector, 7)) != 0) {
+    if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F58_chmineprospector, 7)) != 0) {
         func_80800A64_chmineprospector(arg0, 1, 0x30);
         func_80108B04(arg0, 0);
     }
@@ -407,7 +407,7 @@ s32 func_80800910_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
         return 2;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x10]; s32 unk10; } Objprospector_func_80800970_chmineprospector_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x10]; s32 unk10; } Objprospector_func_80800970_chmineprospector_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80800970_chmineprospector(Actor *arg0) {
     void _capod_entrypoint_3(s32);
@@ -415,10 +415,10 @@ void func_80800970_chmineprospector(Actor *arg0) {
     void *sp1C;
 
     temp_v0 = func_80100094(arg0, 0);
-    if (*(s32 *)((u8 *)temp_v0 + 0x10) != 0) {
+    if (((Objprospector_func_80800970_chmineprospector_temp_v0 *)temp_v0)->unk10 != 0) {
         sp1C = temp_v0;
         _capod_entrypoint_3(0);
-        *(s32 *)((u8 *)sp1C + 0x10) = 0;
+        ((Objprospector_func_80800970_chmineprospector_sp1C *)sp1C)->unk10 = 0;
     }
 }
 
@@ -473,7 +473,7 @@ void func_80800AF0_chmineprospector(Actor *arg0) {
     void _suexpression_entrypoint_10(void *, Unk80132ED0 *, f32 *);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 func_8008FB10(f32 *, f32, f32, f32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80105834(Actor *);
     s32 func_80105998(Actor *, f32);
@@ -536,7 +536,7 @@ block_8:
 }
 
 s32 func_80800CD4_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     if (arg1 == 0x95) {
         _suexpression_entrypoint_7(arg0, 1, 0x32);
@@ -555,7 +555,7 @@ void func_80800D34_chmineprospector(Actor *arg0) {
     extern s32 D_80801178_chmineprospector;
     f32 * volatile sp1C;
 
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C = (f32 *) ((u8 *) arg0 + 4), &D_80801168_chmineprospector, 0.5f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C = &arg0->position[0], &D_80801168_chmineprospector, 0.5f);
     if (func_800DC298(0.1f) != 0) {
         _subaddieaudioquick_entrypoint_2(arg0, sp1C, &D_80801178_chmineprospector);
     }
@@ -571,7 +571,7 @@ void func_80800D8C_chmineprospector(Actor *arg0) {
 
     f32 * volatile temp_a1;
 
-    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = (f32 *) ((s8 *) arg0 + 4), &D_80801184_chmineprospector, &D_808011AC_chmineprospector);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = &arg0->position[0], &D_80801184_chmineprospector, &D_808011AC_chmineprospector);
     _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_80801194_chmineprospector, 0.75f);
     _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_808011A0_chmineprospector, 0.6f);
 }

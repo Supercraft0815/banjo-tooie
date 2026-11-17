@@ -88,7 +88,7 @@ void func_80025084(AudioSeq *seq, ALEvent *evt, s32 arg2) {
 }
 
 s32 func_80025224(AudioSeq *arg0, u32 arg1, ALEvent *arg2, s32 arg3) {
-    u32 func_80025BF0(AudioSeq *, u32);
+    u32 func_80025BF0(AudioSeq *, BtUIntPtr);
     u32 func_80025DE4(AudioSeq *, u32);
     s32 offset;
     u8 status;
@@ -272,7 +272,7 @@ void func_8002597C(AudioSeq *seq, AudioSeqMarker *markers, u32 count, u32 first)
     } while (evt.type != AL_SEQ_END_EVT);
 }
 
-u32 func_80025BF0(AudioSeq *arg0, u32 arg1) {
+u32 func_80025BF0(AudioSeq *arg0, BtUIntPtr arg1) {
     struct Stream {
         s32 header[6];
         u8 *input[32];
@@ -282,28 +282,28 @@ u32 func_80025BF0(AudioSeq *arg0, u32 arg1) {
     volatile u8 spF, spE, spD, spC, spB;
     volatile int sp4;
 
-    if (*(volatile u8 *)((u32)arg0 + (u32)arg1 + 0x118)) {
-        spF = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x98);
+    if (*(volatile u8 *)((BtUIntPtr)arg0 + (BtUIntPtr)arg1 + 0x118)) {
+        spF = **(u8 *volatile *)((BtUIntPtr)arg0 + ((u32)arg1 << 2) + 0x98);
         ((volatile struct Stream *)arg0)->repeat[(u32)arg1] = ((volatile struct Stream *)arg0)->repeat[arg1] + 1;
         ((volatile struct Stream *)arg0)->count[(u32)arg1] = ((volatile struct Stream *)arg0)->count[arg1] - 1;
     } else {
-        spF = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+        spF = **(u8 *volatile *)((BtUIntPtr)arg0 + ((u32)arg1 << 2) + 0x18);
         ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
         if (spF == 0xFE) {
-            spB = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+            spB = **(u8 *volatile *)((BtUIntPtr)arg0 + ((u32)arg1 << 2) + 0x18);
             ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
             if (spB != 0xFE) {
                 spD = spB;
-                spE = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+                spE = **(u8 *volatile *)((BtUIntPtr)arg0 + ((u32)arg1 << 2) + 0x18);
                 ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
-                spC = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x18);
+                spC = **(u8 *volatile *)((BtUIntPtr)arg0 + ((u32)arg1 << 2) + 0x18);
                 ((volatile struct Stream *)arg0)->input[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] + 1;
                 sp4 = spD;
                 sp4 <<= 8;
                 sp4 += spE;
                 ((volatile struct Stream *)arg0)->repeat[(u32)arg1] = ((volatile struct Stream *)arg0)->input[arg1] - sp4 - 4;
                 ((volatile struct Stream *)arg0)->count[(u32)arg1] = spC;
-                spF = **(u8 *volatile *)((u32)arg0 + ((u32)arg1 << 2) + 0x98);
+                spF = **(u8 *volatile *)((BtUIntPtr)arg0 + ((u32)arg1 << 2) + 0x98);
                 ((volatile struct Stream *)arg0)->repeat[(u32)arg1] = ((volatile struct Stream *)arg0)->repeat[arg1] + 1;
                 ((volatile struct Stream *)arg0)->count[(u32)arg1] = ((volatile struct Stream *)arg0)->count[arg1] - 1;
             }
@@ -313,7 +313,7 @@ u32 func_80025BF0(AudioSeq *arg0, u32 arg1) {
 }
 
 u32 func_80025DE4(AudioSeq *seq, u32 track) {
-    u32 func_80025BF0(AudioSeq *, u32);
+    u32 func_80025BF0(AudioSeq *, BtUIntPtr);
     u32 value;
     u32 c;
 

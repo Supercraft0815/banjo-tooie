@@ -28,7 +28,7 @@ void func_80800000_glcrc(void *start, void *end, u32 checksum[2]) {
     checksum[1] = crc2;
 }
 
-u32 glcrc_entrypoint_0(s32 arg0, s32 arg1) {
+u32 glcrc_entrypoint_0(BtIntPtr arg0, BtIntPtr arg1) {
     u32 *temp_a1;
 
     temp_a1 = (u32 *) (arg0 + arg1 - 8);
@@ -36,11 +36,11 @@ u32 glcrc_entrypoint_0(s32 arg0, s32 arg1) {
     return *temp_a1;
 }
 
-int glcrc_entrypoint_1(void *arg0, s32 arg1)
+int glcrc_entrypoint_1(void *arg0, BtIntPtr arg1)
 {
   u32 sp28[2];
   u32 *temp_a1;
   int result;
-  temp_a1 = (u32 *) ((((s32) arg0) + arg1) - 8);
+  temp_a1 = (u32 *) ((((BtIntPtr) arg0) + arg1) - 8);
  func_80800000_glcrc(arg0, temp_a1, sp28); if ((temp_a1[0] != sp28[0]) || (temp_a1[1] != sp28[1])) { result = 0x6E382; } else { result = 0; } return result;
 }

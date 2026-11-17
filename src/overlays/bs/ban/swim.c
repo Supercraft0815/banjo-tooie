@@ -9,9 +9,9 @@ void func_80800000_bsbanswim(struct player_state_s *arg0) {
 /* extern */
 
 void func_80800030_bsbanswim(struct player_state_s *arg0) {
-    s32 _baairbar_entrypoint_0(struct player_state_s *, s32);
-    s32 _baswim_entrypoint_5(struct player_state_s *);
-    s32 _baswim_entrypoint_6(struct player_state_s *, s32);
+    void _baairbar_entrypoint_0(void *self, s32 arg1);
+    void _baswim_entrypoint_5(struct player_state_s *arg0);
+    void _baswim_entrypoint_6(struct player_state_s *arg0, u32 arg1);
     void baphysics_set_gravity(struct player_state_s *, f32);
     void baphysics_set_terminal_velocity(struct player_state_s *, f32);
     void baroll_setAngularVelocity(struct player_state_s *, f32, f32);
@@ -21,7 +21,7 @@ void func_80800030_bsbanswim(struct player_state_s *arg0) {
     void func_8009BC5C(struct player_state_s *, f32);
     s32 func_8009E77C(struct player_state_s *, s32);
     void func_800A0CF4(struct player_state_s *, s32);
-    s32 func_800F8B88();
+    u8 func_800F8B88(void);
     if (func_8009E77C(arg0, 0xB) == 0) {
         _baswim_entrypoint_5(arg0);
         baroll_setAngularVelocity(arg0, 130.0f, 0.9f);
@@ -41,9 +41,9 @@ void func_80800030_bsbanswim(struct player_state_s *arg0) {
 }
 
 void func_80800104_bsbanswim(struct player_state_s *arg0) {
-    s32 _baairbar_entrypoint_0(struct player_state_s *, s32);
-    s32 _baswim_entrypoint_4(struct player_state_s *);
-    s32 _baswim_entrypoint_6(struct player_state_s *, s32);
+    void _baairbar_entrypoint_0(void *self, s32 arg1);
+    void _baswim_entrypoint_4();
+    void _baswim_entrypoint_6(struct player_state_s *arg0, u32 arg1);
     void baroll_setIdeal(struct player_state_s *, f32);
     s32 bs_getCurrentState(struct player_state_s *);
     void func_80093360(struct player_state_s *, f32);
@@ -88,7 +88,7 @@ void func_808001C8_bsbanswim(struct player_state_s *arg0) {
     _baswim_entrypoint_8(arg0, 600.0f);
     func_8009BFE4(arg0, 200.0f, 2.5f);
     *(u8 *)((s8 *)arg0 + 0x164) = 0;
-}
+}    typedef struct { u8 pad0[0x164]; u8 unk164; } Objswim_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080025C_bsbanswim(void *arg0) {
     s32 _baswim_entrypoint_1(void *);
@@ -98,18 +98,18 @@ void func_8080025C_bsbanswim(void *arg0) {
     void _baswim_entrypoint_13(void *);
     void func_800A0E64(void *);
     s32 baanim_getAnimCtrlPtr(void *);
-    s32 anctrl_isAt(s32, f32);
+    s32 anctrl_isAt(BtIntPtr, f32);
     void func_8009BF5C(struct player_state_s *, f32);
     void func_8009DE38(void *, s32, f32);
     s32 player_inWater(void *);
-    s32 bs_setState(void *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 sp24;
     s32 sp20;
     u8 temp_v1;
 
     sp24 = 0;
     sp20 = baanim_getAnimCtrlPtr(arg0);
-    temp_v1 = *(u8 *)((s8 *)arg0 + 0x164);
+    temp_v1 = ((Objswim_arg0 *)arg0)->unk164;
     switch (temp_v1) {
         case 0:
             func_8009BF5C(arg0, 50.0f);
@@ -119,7 +119,7 @@ void func_8080025C_bsbanswim(void *arg0) {
                 }
                 _baswim_entrypoint_10(arg0, 300.0f);
                 _baswim_entrypoint_8(arg0, 200.0f);
-                *(u8 *)((s8 *)arg0 + 0x164) = 1;
+                ((Objswim_arg0 *)arg0)->unk164 = 1;
             }
             break;
         case 1:
@@ -140,7 +140,7 @@ void func_8080025C_bsbanswim(void *arg0) {
 }
 
 s32 bsbanswim_entrypoint_0(s32 arg0) {
-    extern s32 D_80800A30_bsbanswim[];
+    extern BtIntPtr D_80800A30_bsbanswim[];
     return ((s32 *)&D_80800A30_bsbanswim)[arg0];
 }
 
@@ -191,8 +191,8 @@ void func_8080049C_bsbanswim(struct player_state_s *arg0)
 
 /* extern */
 
-void func_808004BC_bsbanswim(s32 arg0) {
-    s32 anctrl_setDuration(s32, s32);
+void func_808004BC_bsbanswim(BtIntPtr arg0) {
+    s32 anctrl_setDuration(BtIntPtr, s32);
     s32 baanim_getAnimCtrlPtr();
     void func_8080040C_bsbanswim(struct player_state_s *);
     s32 sp1C;
@@ -207,12 +207,12 @@ void func_808004F4_bsbanswim(struct player_state_s *arg0) {
     void _baswim_entrypoint_11(void *);
     void _baswim_entrypoint_12(void *);
     void _baswim_entrypoint_13(void *);
-    s32 _baswim_entrypoint_2(s32);
-    s32 _baswim_entrypoint_3(s32);
+    s32 _baswim_entrypoint_2(BtIntPtr);
+    s32 _baswim_entrypoint_3(BtIntPtr);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 anctrl_isAt(s32, f32);
-    s32 bs_setState(void *, s32);
+    s32 anctrl_isAt(BtIntPtr, f32);
+    void bs_setState(void *self, s32 nextState);
     s32 player_inWater(void *);
     s32 sp24;
     s32 sp20;
@@ -260,7 +260,7 @@ void func_808004F4_bsbanswim(struct player_state_s *arg0) {
 }
 
 s32 bsbanswim_entrypoint_1(s32 arg0) {
-    extern s32 D_80800A40_bsbanswim[];
+    extern BtIntPtr D_80800A40_bsbanswim[];
     return ((s32 *)&D_80800A40_bsbanswim)[arg0];
 }
 
@@ -271,8 +271,8 @@ void func_80800670_bsbanswim(struct player_state_s *arg0)
 
 /* extern */
 
-void func_80800690_bsbanswim(s32 arg0) {
-    s32 anctrl_setDuration(s32, s32);
+void func_80800690_bsbanswim(BtIntPtr arg0) {
+    s32 anctrl_setDuration(BtIntPtr, s32);
     s32 baanim_getAnimCtrlPtr();
     void func_8080040C_bsbanswim(struct player_state_s *);
     s32 sp1C;
@@ -287,12 +287,12 @@ void func_808006CC_bsbanswim(struct player_state_s *arg0) {
     void _baswim_entrypoint_11(void *);
     void _baswim_entrypoint_12(void *);
     void _baswim_entrypoint_13(void *);
-    s32 _baswim_entrypoint_2(s32);
-    s32 _baswim_entrypoint_3(s32);
+    s32 _baswim_entrypoint_2(BtIntPtr);
+    s32 _baswim_entrypoint_3(BtIntPtr);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 anctrl_isAt(s32, f32);
-    s32 bs_setState(void *, s32);
+    s32 anctrl_isAt(BtIntPtr, f32);
+    void bs_setState(void *self, s32 nextState);
     s32 player_inWater(void *);
     s32 sp24;
     s32 sp20;
@@ -340,7 +340,7 @@ void func_808006CC_bsbanswim(struct player_state_s *arg0) {
 }
 
 s32 bsbanswim_entrypoint_2(s32 arg0) {
-    extern s32 D_80800A50_bsbanswim[];
+    extern BtIntPtr D_80800A50_bsbanswim[];
     return ((s32 *)&D_80800A50_bsbanswim)[arg0];
 }
 
@@ -351,8 +351,8 @@ void func_80800848_bsbanswim(struct player_state_s *arg0)
 
 /* extern */
 
-void func_80800868_bsbanswim(s32 arg0) {
-    s32 anctrl_setDuration(s32, s32);
+void func_80800868_bsbanswim(BtIntPtr arg0) {
+    s32 anctrl_setDuration(BtIntPtr, s32);
     s32 baanim_getAnimCtrlPtr();
     void func_8080040C_bsbanswim(struct player_state_s *);
     s32 sp1C;
@@ -367,12 +367,12 @@ void func_808008A4_bsbanswim(struct player_state_s *arg0) {
     void _baswim_entrypoint_11(void *);
     void _baswim_entrypoint_12(void *);
     void _baswim_entrypoint_13(void *);
-    s32 _baswim_entrypoint_2(s32);
-    s32 _baswim_entrypoint_3(s32);
+    s32 _baswim_entrypoint_2(BtIntPtr);
+    s32 _baswim_entrypoint_3(BtIntPtr);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
     s32 baanim_getAnimCtrlPtr();
-    s32 anctrl_isAt(s32, f32);
-    s32 bs_setState(void *, s32);
+    s32 anctrl_isAt(BtIntPtr, f32);
+    void bs_setState(void *self, s32 nextState);
     s32 player_inWater(void *);
     s32 sp24;
     s32 sp20;
@@ -420,6 +420,12 @@ void func_808008A4_bsbanswim(struct player_state_s *arg0) {
 }
 
 s32 bsbanswim_entrypoint_3(s32 arg0) {
-    extern s32 D_80800A60_bsbanswim[];
+    extern BtIntPtr D_80800A60_bsbanswim[];
     return ((s32 *)&D_80800A60_bsbanswim)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/ban/swim.data.s */
+void func_80099B94();
+BtIntPtr D_80800A30_bsbanswim [4] BT_DATA(4, overlays_bs_ban_swim, 0x0) = { (BtIntPtr)func_808001A8_bsbanswim, (BtIntPtr)func_808001C8_bsbanswim, (BtIntPtr)func_8080025C_bsbanswim, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800A40_bsbanswim [4] BT_DATA(4, overlays_bs_ban_swim, 0x10) = { (BtIntPtr)func_8080049C_bsbanswim, (BtIntPtr)func_808004BC_bsbanswim, (BtIntPtr)func_808004F4_bsbanswim, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800A50_bsbanswim [4] BT_DATA(4, overlays_bs_ban_swim, 0x20) = { (BtIntPtr)func_80800670_bsbanswim, (BtIntPtr)func_80800690_bsbanswim, (BtIntPtr)func_808006CC_bsbanswim, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800A60_bsbanswim [4] BT_DATA(4, overlays_bs_ban_swim, 0x30) = { (BtIntPtr)func_80800848_bsbanswim, (BtIntPtr)func_80800868_bsbanswim, (BtIntPtr)func_808008A4_bsbanswim, (BtIntPtr)func_80099B94 };

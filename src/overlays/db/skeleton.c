@@ -6,7 +6,7 @@ s32 dbskeleton_entrypoint_0(s16 *arg0) {
 
 f32 dbskeleton_entrypoint_1(f32 *arg0) {
     return arg0[0];
-}
+}    typedef struct { u8 pad0[0x4]; s16 unk4; } Objskeleton_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0xC]; s16 unkC; } Objskeleton_dbskeleton_entrypoint_2_var_a3; /* offsets.py genstruct: fields from raw offsets on var_a3; rename once understood */
 
 /* extern */
 
@@ -17,15 +17,15 @@ s32 dbskeleton_entrypoint_2(u8 *arg0, s32 arg1, f32 *arg2) {
     u8 *var_a3;
 
     var_a3 = arg0 + 8;
-    temp_v0 = ((*(s16 *)((s8 *)(arg0) + (4))) * 0x10) + arg0 + 8;
-    if ((u32) var_a3 < (u32) temp_v0) {
+    temp_v0 = ((((Objskeleton_arg0 *)arg0)->unk4) * 0x10) + arg0 + 8;
+    if ((BtUIntPtr) var_a3 < (BtUIntPtr) temp_v0) {
 loop_1:
-        if (arg1 == (*(s16 *)((s8 *)(var_a3) + (0xC)))) {
+        if (arg1 == (((Objskeleton_dbskeleton_entrypoint_2_var_a3 *)var_a3)->unkC)) {
             func_800EE7F8(arg2, (f32 *)var_a3);
             return 1;
         }
         var_a3 += 0x10;
-        if ((u32) var_a3 >= (u32) temp_v0) {
+        if ((BtUIntPtr) var_a3 >= (BtUIntPtr) temp_v0) {
             goto block_4;
         }
         goto loop_1;
@@ -38,20 +38,20 @@ block_4:
 s32 dbskeleton_entrypoint_3(u8 *arg0, s32 arg1) {
     s32 size;
     u8 *entry;
-    u32 start;
+    BtUIntPtr start;
     u8 *base;
 
     base = arg0 + 8;
     entry = base;
     size = *(s16 *)(arg0 + 4) * 0x10;
-    start = (u32)entry;
-    if (start < (u32)(size + arg0 + 8)) {
+    start = (BtUIntPtr)entry;
+    if (start < (BtUIntPtr)(size + arg0 + 8)) {
         do {
             if (arg1 == *(s16 *)(entry + 0xC)) {
                 return 1;
             }
             entry += 0x10;
-        } while ((u32)entry < (u32)(size + base));
+        } while ((BtUIntPtr)entry < (BtUIntPtr)(size + base));
     }
     return 0;
 }

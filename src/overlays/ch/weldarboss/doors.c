@@ -2,26 +2,26 @@
 
 OSThread *chweldarbossdoors_entrypoint_0(void)
 {
-    extern u8 D_80800270_chweldarbossdoors[];
+    extern ActorData D_80800270_chweldarbossdoors[];
 
     return (OSThread *) D_80800270_chweldarbossdoors;
 }
 
 OSThread *chweldarbossdoors_entrypoint_1(void)
 {
-    extern u8 D_808002B8_chweldarbossdoors[];
+    extern ActorData D_808002B8_chweldarbossdoors[];
 
     return (OSThread *) D_808002B8_chweldarbossdoors;
 }
 
 /* extern */
 
-void func_80800018_chweldarbossdoors(Actor *arg0) {
+void func_80800018_chweldarbossdoors(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
     void _chdoormake_entrypoint_5(Actor *, f32);
     void _chdoormake_entrypoint_6(Actor *, s32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _subaddiefade_entrypoint_14(s32);
+    s32 _subaddiefade_entrypoint_14(BtIntPtr);
     f32 var_f0;
     s32 var_v0;
 
@@ -31,7 +31,7 @@ void func_80800018_chweldarbossdoors(Actor *arg0) {
         var_v0 = 1;
         var_f0 += 180.0f;
     }
-    _subaddiefade_entrypoint_14((s32)arg0);
+    _subaddiefade_entrypoint_14((BtIntPtr)arg0);
     if (_chdoormake_entrypoint_3(arg0, var_f0 + 90.0f, 0.0f, 750.0f, 0x102, -1) != 0) {
         _chdoormake_entrypoint_5(arg0, 8.5f);
         _chdoormake_entrypoint_6(arg0, 0x3F800000);
@@ -43,21 +43,21 @@ void func_80800018_chweldarbossdoors(Actor *arg0) {
 
 void func_808000E0_chweldarbossdoors(Actor *arg0, s32 arg1, s32 arg2)
 {
-  s32 _chdoor_entrypoint_1(s32, s32, s32);
-  void func_80103140(Actor *, u32, u16);
+  s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
+  s32 func_80103140(Actor *actor,u32 id,u16 palette);
   if (arg1 == 0x95)
   {
     func_80103140(arg0, (((((u16) (*((u16 *) (((s8 *) arg0) + 0x76)))) & 0xFFFFFFFFu) >> 7) + 0x837) & 0xFFFF, 0U);
   }
-  _chdoor_entrypoint_1((s32) arg0, arg1, arg2);
-}
+  _chdoor_entrypoint_1((BtIntPtr) arg0, arg1, arg2);
+}    typedef struct { u8 pad0[0x72]; u16 unk72; } Objdoors_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void func_80800140_chweldarbossdoors(void *arg0, s32 arg1)
+void func_80800140_chweldarbossdoors(void *arg0, BtIntPtr arg1)
 {
   s32 func_800DF744(s32, s32, void *);
-  s32 func_80101870(void *, s32);
+  void func_80101870(Actor* arg0, void* arg1);
   s32 var_a1;
-  if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFF) >> 0xA) == 1)
+  if (((((u16) (((Objdoors_arg0 *)arg0)->unk72)) & 0xFFFFFFFF) >> 0xA) == 1)
   {
     var_a1 = 0;
   }
@@ -78,8 +78,8 @@ void func_80800194_chweldarbossdoors(Actor *arg0) {
     void _chdoormake_entrypoint_8(void *, u32);
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     s32 var_a0;
 
@@ -99,3 +99,11 @@ void func_80800194_chweldarbossdoors(Actor *arg0) {
         _chdoormake_entrypoint_8(arg0, 4);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/weldarboss/doors.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80107C2C();
+void func_80101870(Actor* arg0, void* arg1);
+s32 _chdoor_entrypoint_1 ( BtIntPtr , s32 , BtIntPtr );
+ActorData D_80800270_chweldarbossdoors [1] BT_DATA(4, overlays_ch_weldarboss_doors, 0x0) = { { 172, 833, -1, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800140_chweldarbossdoors, 0, 0, 0, 0, 0, 1024, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chweldarbossdoors, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9234, (void (*)(struct Actor *, long, long))func_808000E0_chweldarbossdoors, 0 } };
+ActorData D_808002B8_chweldarbossdoors [1] BT_DATA(4, overlays_ch_weldarboss_doors, 0x48) = { { 172, 1073, 2176, 4, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800194_chweldarbossdoors, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9234, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

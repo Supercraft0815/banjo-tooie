@@ -1,11 +1,11 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "tex_native.inc"
 #else
 #include "common.h"
 
 /* extern */
 
-u8 *dbtex_entrypoint_0(u8 *arg0) {
+typedef struct { s32 unk0; s16 unk4; s16 unk6; } Objtex_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x4]; s16 unk4; } Objtex_dbtex_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ u8 *dbtex_entrypoint_0(u8 *arg0) {
     s32 func_800D5944();
     void *func_800E6950(s32, s32, void *);
     void *heap_alloc_sided(s32, s32);
@@ -19,14 +19,14 @@ u8 *dbtex_entrypoint_0(u8 *arg0) {
     if (arg0 == NULL) {
         return NULL;
     }
-    if (!((*(s16 *)((s8 *)(arg0) + (6))) & 0x100)) {
+    if (!((((Objtex_arg0 *)arg0)->unk6) & 0x100)) {
         return NULL;
     }
-    temp_s1 = ((*(s16 *)((s8 *)(arg0) + (4))) * 8) + 8;
-    temp_v0 = heap_alloc_sided((*(s32 *)((s8 *)(arg0) + (0))) + temp_s1, 1);
+    temp_s1 = ((((Objtex_arg0 *)arg0)->unk4) * 8) + 8;
+    temp_v0 = heap_alloc_sided((((Objtex_arg0 *)arg0)->unk0) + temp_s1, 1);
     rare_memcpy(temp_v0, arg0, temp_s1);
     var_s0 = temp_v0 + 8;
-    temp_s2 = ((*(s16 *)((s8 *)(temp_v0) + (4))) * 8) + temp_v0 + 8;
+    temp_s2 = ((((Objtex_dbtex_entrypoint_0_temp_v0 *)temp_v0)->unk4) * 8) + temp_v0 + 8;
     var_s1 = temp_s2;
     if ((u32) var_s0 < (u32) temp_s2) {
         do {

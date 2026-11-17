@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_camera_db.h"
 #include "memory.h"
 
@@ -136,7 +136,7 @@ s32 func_808000F4_cadbmgrDll(s32 arg0) {
 
 /* extern */
 
-void cadbmgrDll_entrypoint_0(u8 **arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) cadbmgrDll_entrypoint_0(u8 **arg0, s32 arg1) {
     s32 func_800A56A4();
     void *heap_alloc(s32);
     s32 i;
@@ -147,7 +147,7 @@ void cadbmgrDll_entrypoint_0(u8 **arg0, s32 arg1) {
         ((s32 *)*arg0)[i - 1] = 0;
     }
     (*(s32 *)((s8 *)(*arg0) + (0x38))) = arg1;
-    func_800A56A4();
+    BT_NATIVE_ONLY(return) func_800A56A4();
 }
 
 /* extern */
@@ -225,7 +225,7 @@ s32 func_808000F4_cadbmgrDll(s32 arg0) {
     case 7:
         _cadbfunc_entrypoint_25(1);
         break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */

@@ -6,18 +6,18 @@ s32 chbubble_entrypoint_0(void *arg0, f32 *position, f32 *offset, f32 scale, f32
         Mtx *mtx;
         Vtx *vtx;
     } RenderContext;
-    s32 func_80014F00(void);
+    BtIntPtr func_80014F00(void);
     void func_800191F8(f32, f32, f32);
-    void func_800AF614(Gfx **, s32, s32, s32, s32, s32, s32, s32 *, s32 *);
-    s32 func_800D674C(s32);
+    void func_800AF614(Gfx **, BtIntPtr, s32, s32, s32, s32, s32, s32 *, s32 *);
+    BtIntPtr func_800D674C(s32);
     void func_800E3980(f32 *);
     void *func_800E401C(void);
-    void func_800E4140(f32 *, f32 *);
+    int func_800E4140(f32 *arg0, f32 *arg1);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void mlMtxApply(Mtx *);
     void mlMtxSet(void *);
-    s32 texture;
+    BtIntPtr texture;
     f32 camera[3];
     f32 translation[3];
     f32 screen[2];
@@ -43,7 +43,7 @@ s32 chbubble_entrypoint_0(void *arg0, f32 *position, f32 *offset, f32 scale, f32
     {
         Gfx *p = gfx++;
         p->words.w0 = 0xDA380002;
-        p->words.w1 = (u32)((RenderContext *)arg0)->mtx + 0x80000000;
+        p->words.w1 = (BtUIntPtr)((RenderContext *)arg0)->mtx + 0x80000000;
     }
     ((RenderContext *)arg0)->mtx++;
     width = (s32)(offset[0] * 200.0f * scale);

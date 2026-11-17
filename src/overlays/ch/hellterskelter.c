@@ -2,40 +2,40 @@
 
 OSThread *chhellterskelter_entrypoint_0(void)
 {
-    extern u8 D_808007C8_chhellterskelter[];
+    extern ActorData D_808007C8_chhellterskelter[];
 
     return (OSThread *) D_808007C8_chhellterskelter;
 }
 
 OSThread *chhellterskelter_entrypoint_1(void)
 {
-    extern u8 D_80800810_chhellterskelter[];
+    extern ActorData D_80800810_chhellterskelter[];
 
     return (OSThread *) D_80800810_chhellterskelter;
 }
 
 OSThread *chhellterskelter_entrypoint_2(void)
 {
-    extern u8 D_80800858_chhellterskelter[];
+    extern ActorData D_80800858_chhellterskelter[];
 
     return (OSThread *) D_80800858_chhellterskelter;
-}
+}    typedef struct { u8 pad0[0x65]; u8 unk65; } Objhellterskelter_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800024_chhellterskelter(u8 *arg0) {
-    s32 _gccubesearch_entrypoint_0(s32, u8 *);
-    s32 func_800EE88C(u8 *, s32);
-    s32 func_80108B04(u8 *, s32);
-    s32 sp24;
-    s32 sp20;
+    void *_gccubesearch_entrypoint_0(s32 actor_id, Actor *actor);
+    void func_800EE88C(f32 dst[3], s16 src[3]);
+    void func_80108B04(Actor *arg0, u32 arg1);
+    BtIntPtr sp24;
+    BtIntPtr sp20;
 
     sp24 = _gccubesearch_entrypoint_0(0x154, arg0);
     sp20 = _gccubesearch_entrypoint_0(0x320, arg0);
     func_800EE88C(arg0 + 0x18, sp24);
     func_800EE88C(arg0 + 0x28, sp20);
     if (func_800DA298(FLAG3_A4B_UNK) != 0) {
-        (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFEF);
+        (((Objhellterskelter_arg0 *)arg0)->unk65) = (u8) ((((Objhellterskelter_arg0 *)arg0)->unk65) & 0xFFEF);
         func_80108B04(arg0, 0x210);
     }
 }
@@ -43,11 +43,11 @@ void func_80800024_chhellterskelter(u8 *arg0) {
 /* extern */
 
 void func_808000A8_chhellterskelter(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _chshockjump_entrypoint_2(Unk80132ED0 *);
     s32 func_800D90A4(f32 *);
     f32 func_800DC178(f32, f32);
-    s32 func_80108B04();
+    void func_80108B04(Actor *arg0, u32 arg1);
     if (arg0->unk64_19 && (func_800DA298(FLAG3_A4B_UNK) == 0)) {
         if (func_800DA9E4(FLAG2_6A2_UNK, 1) == 0) {
             _capod_entrypoint_13(arg0->unk0, 0, 5, 0x10);
@@ -63,10 +63,10 @@ void func_808000A8_chhellterskelter(Actor *arg0) {
 }
 
 s32 func_80800158_chhellterskelter(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _capod_entrypoint_17(f32);
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
-    s32 func_80108B04();
+    void func_80108B04(Actor *arg0, u32 arg1);
     void func_80800680_chhellterskelter(Actor *, s32);
 
     switch (arg1) {
@@ -104,8 +104,8 @@ void func_80800274_chhellterskelter(s32 arg0)
 }
 
 void func_80800294_chhellterskelter(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _chswitch_entrypoint_10(s32, s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     if (arg1 == 7) {
         func_80101180(0x339, 0xA, 0);
     }
@@ -116,15 +116,15 @@ void func_808002E8_chhellterskelter(s32 arg0)
 {
 }
 void func_808002F0_chhellterskelter(Actor *arg0) {
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F6478(s32);
-    s32 func_800F4F34(u32, f32 *, f32, f32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
     void func_80105834(Actor *);
     void func_808004D0_chhellterskelter(Actor *);
     s32 func_8010CAC0(f32 *, u32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddieaudioloop_entrypoint_5(Actor *, f32 *, s32, s32, s32 *);
+    void _subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4);
     void *func_80105494(Actor *);
     void func_80101FDC(Actor *, u32);
     void func_80800540_chhellterskelter(Actor *volatile);
@@ -132,10 +132,10 @@ void func_808002F0_chhellterskelter(Actor *arg0) {
     s32 func_80105998(Actor *, f32);
     s32 func_80105A5C(Actor *);
     void func_800FFAB0(Actor *);
-    extern s32 D_808008A0_chhellterskelter;
-    extern s32 D_808008AC_chhellterskelter;
+    extern s32 D_808008A0_chhellterskelter[3];
+    extern s32 D_808008AC_chhellterskelter[5];
     f32 sp3C;
-    u32 sp38;
+    BtUIntPtr sp38;
     s32 sp34;
     f32 *sp30;
 
@@ -148,7 +148,7 @@ void func_808002F0_chhellterskelter(Actor *arg0) {
     func_808004D0_chhellterskelter(arg0);
     if (!arg0->unk64_20) {
         if (func_8010CAC0(arg0->position, 400)) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808008A0_chhellterskelter);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808008A0_chhellterskelter);
             arg0->unk64_20 = 1;
         }
     }
@@ -157,7 +157,7 @@ void func_808002F0_chhellterskelter(Actor *arg0) {
             sp34 = func_8010CAC0(arg0->position, 1500);
             sp30 = func_80105494(arg0);
             if (sp34 || (!sp34 && arg0->unk5F)) {
-                _subaddieaudioloop_entrypoint_5(arg0, arg0->position, sp34, 1200, &D_808008AC_chhellterskelter);
+                _subaddieaudioloop_entrypoint_5(arg0, arg0->position, sp34, 1200, D_808008AC_chhellterskelter);
             }
             if (sp30[3] > 0.94f) {
                 func_80101FDC(arg0, 2);
@@ -178,22 +178,22 @@ void func_808002F0_chhellterskelter(Actor *arg0) {
 }
 
 void func_808004D0_chhellterskelter(Actor *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800DC298(f32);
     void *func_80105494();
-    extern s32 D_808008C0_chhellterskelter;
+    extern s32 D_808008C0_chhellterskelter[13];
     if (!((*(f32 *)((s8 *)(func_80105494()) + (0xC))) > 0.9f) && (func_800DC298(0.1f) != 0)) {
-        func_800BBCB8(arg0->position, 0, 1.0f, 1, &D_808008C0_chhellterskelter);
+        func_800BBCB8(arg0->position, 0, 1.0f, 1, D_808008C0_chhellterskelter);
     }
 }
 
 void func_80800540_chhellterskelter(Actor *volatile arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    extern s32 D_808008F4_chhellterskelter;
-    extern s32 D_80800924_chhellterskelter;
+    extern s32 D_808008F4_chhellterskelter[12];
+    extern s32 D_80800924_chhellterskelter[5];
     f32 sp24[3];
     f32 *sp20;
 
@@ -201,24 +201,24 @@ void func_80800540_chhellterskelter(Actor *volatile arg0) {
     func_800EE7F8(sp24, sp20);
     sp24[1] -= 100.0f;
     func_800EF1B8(sp24, arg0->rotation[1] + 180.0f, 50.0f);
-    func_800BBCB8(sp20, sp24, 1.0f, 0xA, &D_808008F4_chhellterskelter);
-    _subaddieaudioquick_entrypoint_2(arg0, sp20, &D_80800924_chhellterskelter);
+    func_800BBCB8(sp20, sp24, 1.0f, 0xA, D_808008F4_chhellterskelter);
+    _subaddieaudioquick_entrypoint_2(arg0, sp20, D_80800924_chhellterskelter);
 }
 
 void func_808005E0_chhellterskelter(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     extern s32 D_80800938_chhellterskelter[];
-    extern s32 D_80800974_chhellterskelter;
+    extern s32 D_80800974_chhellterskelter[7];
     f32 sp24[3];
 
     func_800EE7F8(sp24, arg0->position);
     sp24[1] -= 100.0f;
     func_800EF1B8(sp24, arg0->rotation[1] + 180.0f, 50.0f);
     func_800BABB8(0, arg0->position, sp24, 1.0f, D_80800938_chhellterskelter);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800974_chhellterskelter);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800974_chhellterskelter);
 }
 
 void func_80800680_chhellterskelter(Actor *arg0, s32 arg1)
@@ -256,3 +256,23 @@ void func_80800680_chhellterskelter(Actor *arg0, s32 arg1)
     arg0->unk3C = sp1C->unk0;
   }
 }
+/* data_to_c.py: from asm/data/overlays/ch/hellterskelter.data.s */
+void func_80105834 ( Actor * );
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+extern u8 D_8011A270[];
+void _chswitch_entrypoint_6();
+extern u8 D_808007B0_chhellterskelter[];
+void func_80102EC0();
+OSThread *func_80108ED0(void);
+u8 D_808007B0_chhellterskelter[24] BT_DATA(4, overlays_ch_hellterskelter, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x28, 0x7A, 0xE1, 0x01, 0x00, 0x04, 0x00, 0x41, 0x28, 0x7A, 0xE1, 0x01, 0x00, 0x00, 0x00 };
+ActorData D_808007C8_chhellterskelter [1] BT_DATA(4, overlays_ch_hellterskelter, 0x18) = { { 672, 825, 0, 1, 0, (void (*)(struct Actor *))func_808000A8_chhellterskelter, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800024_chhellterskelter, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_80800158_chhellterskelter, 0 } };
+ActorData D_80800810_chhellterskelter [1] BT_DATA(4, overlays_ch_hellterskelter, 0x60) = { { 835, 827, 1874, 1, (void *)D_8011A270, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800274_chhellterskelter, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80800294_chhellterskelter, 0 } };
+ActorData D_80800858_chhellterskelter [1] BT_DATA(4, overlays_ch_hellterskelter, 0xA8) = { { 673, 826, 1720, 1, (void *)D_808007B0_chhellterskelter, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_808002F0_chhellterskelter, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 2, 4384, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808002E8_chhellterskelter, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1024, 0, 0 } };
+s32 D_808008A0_chhellterskelter[3] BT_DATA(4, overlays_ch_hellterskelter, 0xF0) = { 1246780, 852211, 17563648 };
+s32 D_808008AC_chhellterskelter[5] BT_DATA(4, overlays_ch_hellterskelter, 0xFC) = { 1246224, 852160, 14221336, 65836, 78643200 };
+s32 D_808008C0_chhellterskelter[13] BT_DATA(4, overlays_ch_hellterskelter, 0x110) = { 1903069, 1769622, 16384032, -1061109633, 1441800, 2228377, 11731161, 15073301, 128, 1966085, 655403, 12583219, 0 };
+s32 D_808008F4_chhellterskelter[12] BT_DATA(4, overlays_ch_hellterskelter, 0x144) = { 1903059, 1310742, 7, 65558, 268435501, 26215000, 2228249, 3342348, 1638411, 655400, 720886, 0 };
+s32 D_80800924_chhellterskelter[5] BT_DATA(4, overlays_ch_hellterskelter, 0x174) = { 1246735, 852211, 17563649, 32770000, 0 };
+s32 D_80800938_chhellterskelter [15] BT_DATA(4, overlays_ch_hellterskelter, 0x188) = { 135266333, 165478445, 39322400, 720916, 3276810, 31, -1061109760, 2228377, 16777728, 41943061, 153, 2752512, 655564, 16777231, 0 };
+s32 D_80800974_chhellterskelter[7] BT_DATA(4, overlays_ch_hellterskelter, 0x1C4) = { 1246428, 852172, 15073301, 8388710, 3342337, 32770000, 0 };

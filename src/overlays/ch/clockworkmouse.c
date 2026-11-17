@@ -523,7 +523,7 @@ void func_80801240_chclockworkmouse(Actor* actor) {
             temp_f0 = func_800C7B7C(temp_s5, temp_v0->unkEC, 250.0f, 1.0f);
             temp_v0->unkEC = temp_f0;
             temp_v0->unk84[var_s3] = temp_f0;
-            func_800C7A68(temp_s5, temp_v0->unkEC, (s32)&temp_v0->unkC.vecs[var_s3]);
+            func_800C7A68(temp_s5, temp_v0->unkEC, (BtIntPtr)&temp_v0->unkC.vecs[var_s3]);
             temp_v0->unkF0[var_s3] = 2U;
             temp_v0->unkAC[var_s3] = temp_v0->unkDC;
             temp_v0->unkDC += 0.0075000003f;
@@ -708,7 +708,7 @@ void func_808018BC_chclockworkmouse(Actor* actor) {
 
 void func_80801A94_chclockworkmouse(Actor* actor) {
     Unk80100094* sp3C;
-    s32 sp38;
+    BtIntPtr sp38;
     f32 sp2C[3];
     f32 sp1C[4];
 
@@ -1442,7 +1442,7 @@ s32 func_808032F8_chclockworkmouse(Actor* actor, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_8080364C_chclockworkmouse(void) {
+void func_8080364C_chclockworkmouse(BT_PARAM_OR_VOID(s32 bt_a0 BT_PASS2(, s32 bt_a1))) {
     func_801018A4();
 }
 

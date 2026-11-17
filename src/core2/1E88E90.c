@@ -6,16 +6,16 @@ s32 func_800AF5A0(s16 *arg0) {
 
 s32 func_800AF5A8(s16 *arg0) {
     return arg0[1];
-}
+}               typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; s16 unkE; } Obj1E88E90_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_800AF5B0(void *arg0, s32 *arg1, s32 *arg2) {
-    *arg1 = (s32) (*(s16 *)((s8 *)(arg0) + (4)));
-    *arg2 = (s32) (*(s16 *)((s8 *)(arg0) + (6)));
+    *arg1 = (s32) (((Obj1E88E90_arg0 *)arg0)->unk4);
+    *arg2 = (s32) (((Obj1E88E90_arg0 *)arg0)->unk6);
 }
 
 void func_800AF5C4(void *arg0, s32 *arg1, s32 *arg2) {
-    *arg1 = (s32) (*(s16 *)((s8 *)(arg0) + (8)));
-    *arg2 = (s32) (*(s16 *)((s8 *)(arg0) + (0xA)));
+    *arg1 = (s32) (((Obj1E88E90_arg0 *)arg0)->unk8);
+    *arg2 = (s32) (((Obj1E88E90_arg0 *)arg0)->unkA);
 }
 
 u8 *func_800AF5D8(s16 *arg0) {
@@ -49,7 +49,7 @@ typedef struct {
 } TextureFrame;
 
 TextureFrame *func_800AF5FC(s16 *texture, s32 frame) {
-    return (TextureFrame *)((s32)texture + frame * 0xC + 0x1C);
+    return (TextureFrame *)((BtIntPtr)texture + frame * 0xC + 0x1C);
 }
 
 u8 *func_800AF5D8(s16 *texture);
@@ -98,7 +98,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) | _SHIFTL(G_IM_SIZ_32b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -114,7 +114,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) | _SHIFTL(G_IM_SIZ_16b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -130,7 +130,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_IA, 21, 3) | _SHIFTL(G_IM_SIZ_16b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_16b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -146,7 +146,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_CI, 21, 3) | _SHIFTL(G_IM_SIZ_8b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -162,7 +162,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_IA, 21, 3) | _SHIFTL(G_IM_SIZ_8b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -178,7 +178,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_I, 21, 3) | _SHIFTL(G_IM_SIZ_8b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -194,7 +194,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) | _SHIFTL(G_IM_SIZ_16b, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -210,7 +210,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_IA, 21, 3) | _SHIFTL(G_IM_SIZ_16b, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -226,7 +226,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_I, 21, 3) | _SHIFTL(G_IM_SIZ_16b, 19, 2);
-            g->words.w1 = (u32)data;
+            g->words.w1 = (BtUIntPtr)data;
         }
         gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_16b, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -250,8 +250,8 @@ s32 func_800B0CFC(void *arg0) {
     if (arg0 == NULL) {
         return 1;
     }
-    temp_v0 = (*(s16 *)((s8 *)(arg0) + (0xE)));
-    temp_v1 = (*(s16 *)((s8 *)(arg0) + (0xC)));
+    temp_v0 = (((Obj1E88E90_arg0 *)arg0)->unkE);
+    temp_v1 = (((Obj1E88E90_arg0 *)arg0)->unkC);
     var_a0 = temp_v0 < temp_v1 ? temp_v1 : temp_v0;
     var_v1 = var_a0 <= 0 ? 1 : var_a0;
     return var_v1;

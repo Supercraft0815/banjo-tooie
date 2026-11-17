@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "native_map_sections.h"
 #include "native_lagoonmid_data.inc"
 void gcmapsects_lagoonmid_entrypoint_0(void) {
@@ -40,7 +40,7 @@ void gcmapsects_lagoonmid_entrypoint_1(NativeMap *arg0) {
 #else
 #include "common.h"
 
-void gcmapsects_lagoonmid_entrypoint_0(void) { void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32); void _gcmapsects_entrypoint_1(s32, s32); void _gcmapsects_entrypoint_2(s32, s32); void _gcmapsects_entrypoint_3(s32, s32); void _gcmapsects_entrypoint_10(s32); void _gcmapsects_entrypoint_12(void (*)(u8 *)); void _gcmapsects_entrypoint_14(s32); void _gcmapsects_lagoonmid_entrypoint_1(u8 *); extern s16 D_80800230_gcmapsects_lagoonmid[]; extern s16 D_8080023C_gcmapsects_lagoonmid[]; extern s16 D_80800248_gcmapsects_lagoonmid[]; extern s16 D_808002E0_gcmapsects_lagoonmid[]; extern s16 D_808002EC_gcmapsects_lagoonmid[]; extern s32 D_808002F4_gcmapsects_lagoonmid; extern s32 D_808002F8_gcmapsects_lagoonmid; s16 *section; s16 *scale; u32 limit; s32 i; s16 *rotation; _gcmapsects_entrypoint_10(4); i = 0; do { _gcmapsects_entrypoint_0(D_80800230_gcmapsects_lagoonmid[i * 22 + 19], D_80800230_gcmapsects_lagoonmid[i * 22 + 20], &D_80800230_gcmapsects_lagoonmid[i * 22], &D_8080023C_gcmapsects_lagoonmid[i * 22], &D_80800248_gcmapsects_lagoonmid[i * 22], D_80800230_gcmapsects_lagoonmid[i * 22 + 18]); i++; } while ((void *)&D_80800248_gcmapsects_lagoonmid[i * 22] < (void *)&D_808002F8_gcmapsects_lagoonmid); section = D_808002E0_gcmapsects_lagoonmid; i = 0; do { _gcmapsects_entrypoint_3(section[0], section[1]); section += 2; i++; limit = (u32)i < 3; } while (limit); section = D_808002EC_gcmapsects_lagoonmid; do { _gcmapsects_entrypoint_1(*section, 0); _gcmapsects_entrypoint_2(*section, 0); section++; } while ((void *)section != &D_808002F4_gcmapsects_lagoonmid); _gcmapsects_entrypoint_12(_gcmapsects_lagoonmid_entrypoint_1); _gcmapsects_entrypoint_14(2); }
+void gcmapsects_lagoonmid_entrypoint_0(void) { void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32); void _gcmapsects_entrypoint_1(s32, s32); void _gcmapsects_entrypoint_2(s32, s32); void _gcmapsects_entrypoint_3(s32, s32); void _gcmapsects_entrypoint_10(s32); void _gcmapsects_entrypoint_12(void (*)(u8 *)); void _gcmapsects_entrypoint_14(s32); void _gcmapsects_lagoonmid_entrypoint_1(u8 *); extern s16 D_80800230_gcmapsects_lagoonmid[]; extern s16 D_8080023C_gcmapsects_lagoonmid[]; extern s16 D_80800248_gcmapsects_lagoonmid[]; extern s16 D_808002E0_gcmapsects_lagoonmid[]; extern s16 D_808002EC_gcmapsects_lagoonmid[]; extern s32 D_808002F4_gcmapsects_lagoonmid; extern s32 D_808002F8_gcmapsects_lagoonmid[2]; s16 *section; s16 *scale; u32 limit; s32 i; s16 *rotation; _gcmapsects_entrypoint_10(4); i = 0; do { _gcmapsects_entrypoint_0(D_80800230_gcmapsects_lagoonmid[i * 22 + 19], D_80800230_gcmapsects_lagoonmid[i * 22 + 20], &D_80800230_gcmapsects_lagoonmid[i * 22], &D_8080023C_gcmapsects_lagoonmid[i * 22], &D_80800248_gcmapsects_lagoonmid[i * 22], D_80800230_gcmapsects_lagoonmid[i * 22 + 18]); i++; } while ((void *)&D_80800248_gcmapsects_lagoonmid[i * 22] < (void *)D_808002F8_gcmapsects_lagoonmid); section = D_808002E0_gcmapsects_lagoonmid; i = 0; do { _gcmapsects_entrypoint_3(section[0], section[1]); section += 2; i++; limit = (u32)i < 3; } while (limit); section = D_808002EC_gcmapsects_lagoonmid; do { _gcmapsects_entrypoint_1(*section, 0); _gcmapsects_entrypoint_2(*section, 0); section++; } while ((void *)section != &D_808002F4_gcmapsects_lagoonmid); _gcmapsects_entrypoint_12(_gcmapsects_lagoonmid_entrypoint_1); _gcmapsects_entrypoint_14(2); }
 
 void gcmapsects_lagoonmid_entrypoint_1(u8 *arg0) {
     f32 func_800136E4(f32);
@@ -66,3 +66,11 @@ void gcmapsects_lagoonmid_entrypoint_1(u8 *arg0) {
 }
 
 #endif
+/* data_to_c.py: from asm/data/overlays/gc/mapsects/_lagoonmid.data.s */
+s16 D_80800230_gcmapsects_lagoonmid [6] BT_DATA(4, overlays_gc_mapsects__lagoonmid, 0x0) = { -14967, -32768, -15014, -16384, 17920, 8192 };
+s16 D_8080023C_gcmapsects_lagoonmid [6] BT_DATA(4, overlays_gc_mapsects__lagoonmid, 0xC) = { -14765, -1024, -14920, -20480, 17767, 16384 };
+s16 D_80800248_gcmapsects_lagoonmid [76] BT_DATA(4, overlays_gc_mapsects__lagoonmid, 0x18) = { 17673, -32768, -15672, 0, 18022, 11264, 7500, 1834, 0, 0, 17754, -16384, -14929, 0, 17698, -32768, -15418, -32768, -14859, 6144, -15081, -16384, 17868, -4096, -15042, -12288, 17901, 6144, 7500, 1840, 0, 0, 17754, -16384, -14917, -32768, 17951, 24576, 17633, -16384, -14902, -22528, 17900, 4096, 17807, 24576, -14961, 6144, 17990, 3072, 7500, 1837, 0, 0, -14716, 2048, -15288, 0, 17938, -8192, -14697, 13824, -15003, 8192, 17893, -2048, -14798, -1024, 17611, -8192, 17975, 7168, -160, 1843, 1847, 0 };
+s16 D_808002E0_gcmapsects_lagoonmid [6] BT_DATA(4, overlays_gc_mapsects__lagoonmid, 0xB0) = { 0, 2, 0, 3, 2, 1 };
+s16 D_808002EC_gcmapsects_lagoonmid [4] BT_DATA(4, overlays_gc_mapsects__lagoonmid, 0xBC) = { 0, 3, 1, 2 };
+s32 D_808002F4_gcmapsects_lagoonmid BT_DATA(4, overlays_gc_mapsects__lagoonmid, 0xC4) = -972206080;
+s32 D_808002F8_gcmapsects_lagoonmid[2] BT_DATA(4, overlays_gc_mapsects__lagoonmid, 0xC8) = { 1169879040, -984838144 };

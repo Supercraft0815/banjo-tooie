@@ -2,44 +2,44 @@
 
 OSThread *chfactoryrobot_entrypoint_0(void)
 {
-    extern u8 D_80802928_chfactoryrobot[];
+    extern ActorData D_80802928_chfactoryrobot[];
 
     return (OSThread *) D_80802928_chfactoryrobot;
 }
 
 OSThread *chfactoryrobot_entrypoint_1(void)
 {
-    extern u8 D_80802970_chfactoryrobot[];
+    extern ActorData D_80802970_chfactoryrobot[];
 
     return (OSThread *) D_80802970_chfactoryrobot;
 }
 
 OSThread *chfactoryrobot_entrypoint_2(void)
 {
-    extern u8 D_808029B8_chfactoryrobot[];
+    extern ActorData D_808029B8_chfactoryrobot[];
 
     return (OSThread *) D_808029B8_chfactoryrobot;
-}
+}                    typedef struct { u8 pad0[0x28]; u8 unk28; u8 pad29[0x3]; f32 unk2C; f32 unk30; f32 unk34; } Objrobot_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800024_chfactoryrobot(void *arg0) {
     s32 func_80105010();
-    (*(f32 *)((s8 *)(arg0) + (0x2C))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x34))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x30))) = 20.0f;
+    (((Objrobot_arg0 *)arg0)->unk2C) = 0.0f;
+    (((Objrobot_arg0 *)arg0)->unk34) = 0.0f;
+    (((Objrobot_arg0 *)arg0)->unk30) = 20.0f;
     func_80105010();
 }
 
-u32 func_800F54E4(void);
+BtUIntPtr func_800F54E4(void);
 
 void func_80800058_chfactoryrobot(Actor *arg0) {
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
-    s32 func_800F4F34(u32, f32 *, f32, f32);
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
     void func_80101FDC(Actor *, u32);
     void func_8010D254(f32 *);
     void func_80800264_chfactoryrobot(Actor *);
@@ -97,11 +97,11 @@ void func_80800058_chfactoryrobot(Actor *arg0) {
 }
 
 void func_80800264_chfactoryrobot(Actor *arg0) {
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     s32 func_8010D248(void);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    f32 _subaddieaudioloop_entrypoint_8(void *, f32 *, s32, f32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    f32 _subaddieaudioloop_entrypoint_8(Actor *arg0, BtIntPtr arg1, s32 arg2, f32 arg3);
     void func_80101FDC(Actor *, u32);
 
     func_800D9078(&arg0->unk58);
@@ -149,19 +149,19 @@ s32 func_80800360_chfactoryrobot(Actor *arg0, s32 arg1, u8 *arg2) {
 /* extern */
 
 void func_80800424_chfactoryrobot(Actor *arg0, u8 *arg1) {
-    s32 func_800AE080(s16);
-    s32 func_800AE1E8(s16, s32, s32);
+    void * func_800AE080(s16 handle);
+    void func_800AE1E8(s16 handle, void *skeleton, void *pose);
     u8 *func_800B27E0(u8 *);
     void func_800D93A0(f32[4], f32[3]);
-    void func_800DF41C(s32);
-    void func_800DF72C(s32);
+    void func_800DF41C(BtIntPtr);
+    void func_800DF72C(BtIntPtr);
     void func_800DFF2C(u8 **, s32, f32[4]);
     void func_800EFA4C(f32 *, f32, f32, f32);
     s32 func_801015D0(Actor *);
-    s32 func_801040D0(void);
+    BtIntPtr func_801040D0(void);
     f32 sp38[4];
     f32 sp28[4];
-    s32 temp_s0;
+    BtIntPtr temp_s0;
 
     temp_s0 = func_801040D0();
     func_801015D0(arg0);
@@ -213,15 +213,15 @@ void func_80800508_chfactoryrobot(Actor *arg0) {
 void func_808005D4_chfactoryrobot(Actor *arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EF214(f32 *, f32, f32, f32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80802A00_chfactoryrobot;
-    extern s32 D_80802A38_chfactoryrobot;
-    extern s32 D_80802A6C_chfactoryrobot;
-    extern s32 D_80802A7C_chfactoryrobot;
+    extern s32 D_80802A00_chfactoryrobot[14];
+    extern s32 D_80802A38_chfactoryrobot[13];
+    extern s32 D_80802A6C_chfactoryrobot[4];
+    extern s32 D_80802A7C_chfactoryrobot[4];
     struct RobotRenderFlags {
         u8 pad0[0x70];
         u32 pad70 : 31;
@@ -234,10 +234,10 @@ void func_808005D4_chfactoryrobot(Actor *arg0) {
     position = arg0->position;
     func_800EE7F8(sp44, position);
     func_800EF214(sp44, -arg0->rotation[0], arg0->rotation[1], 20.0f);
-    func_800BBCB8(sp44, position, 1.0f, 8, &D_80802A38_chfactoryrobot);
-    func_800BBCB8(sp44, position, 1.0f, 12, &D_80802A00_chfactoryrobot);
-    func_8010D930(6, ((struct RobotRenderFlags *)arg0)->enabled, sp44, &D_80802A6C_chfactoryrobot);
-    _subaddieaudioquick_entrypoint_2(arg0, sp44, &D_80802A7C_chfactoryrobot);
+    func_800BBCB8(sp44, position, 1.0f, 8, D_80802A38_chfactoryrobot);
+    func_800BBCB8(sp44, position, 1.0f, 12, D_80802A00_chfactoryrobot);
+    func_8010D930(6, ((struct RobotRenderFlags *)arg0)->enabled, sp44, D_80802A6C_chfactoryrobot);
+    _subaddieaudioquick_entrypoint_2(arg0, sp44, D_80802A7C_chfactoryrobot);
     func_800EE7F8(sp38, position);
     func_800EF1B8(sp38, arg0->rotation[1], -50.0f);
     _chexploder_entrypoint_3(arg0, sp38, 0);
@@ -258,12 +258,12 @@ int func_808006DC_chfactoryrobot(Actor *arg0, f32 arg1, f32 arg2) {
     arg0->unk50 = func_800F0D50(func_80013728(arg0->unk50), -60.0f, 60.0f);
     ((f32 *)arg0->actorData)[5] = func_800F1FF0(((f32 *)arg0->actorData)[5], arg0->unk54, 0.15f, dt * arg1, dt * arg2);
     ((f32 *)arg0->actorData)[6] = func_800F1FF0(((f32 *)arg0->actorData)[6], arg0->unk50, 0.15f, dt * arg1, dt * arg2);
-    func_800F20BC(((f32 *)arg0->actorData)[5], arg0->unk54, 4.0f);
+    BT_NATIVE_ONLY(return) func_800F20BC(((f32 *)arg0->actorData)[5], arg0->unk54, 4.0f);
 }
 
 void func_808007C4_chfactoryrobot(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_1(Actor *);
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void _subaddieDll_entrypoint_1(Actor *arg0);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE940(s16 *, f32 *);
@@ -315,24 +315,24 @@ void func_808007C4_chfactoryrobot(Actor *arg0) {
 
 void func_80800920_chfactoryrobot(Actor *arg0) {
     void _chelectricfence_entrypoint_1(Actor *, f32 *);
-    s32 _subaddieDll_entrypoint_1(Actor *);
+    void _subaddieDll_entrypoint_1(Actor *arg0);
     u8 _subaddieaudioloop_entrypoint_6(u8, f32 *, s32, s32, u32 *, s32);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     void _subaddierouteDll_entrypoint_1(Actor *);
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void func_800C31DC(u8, f32);
     void func_800C8CB8(s32, f32 *);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void func_800C8FE0(s32, s32);
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     f32 func_800DC178(f32, f32);
     int func_800DC298(f32);
     void func_800EE88C(f32 *, s16 *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    f32 func_800F57F0(s32, f32 *);
-    s32 func_800F7B9C(s32, s32);
+    f32 func_800F57F0(BtIntPtr, f32 *);
+    s32 func_800F7B9C(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
     void func_80107200(Actor *);
@@ -343,7 +343,7 @@ void func_80800920_chfactoryrobot(Actor *arg0) {
     s32 func_80801B3C_chfactoryrobot(Actor *);
     s32 func_80801BB0_chfactoryrobot(Actor *);
     void func_80801C7C_chfactoryrobot(Actor *);
-    extern s32 D_80802890_chfactoryrobot;
+    extern s32 D_80802890_chfactoryrobot[6];
     extern u32 D_80802A8C_chfactoryrobot[];
     extern u32 D_80802A9C_chfactoryrobot[];
     extern u32 D_80802AAC_chfactoryrobot[];
@@ -401,7 +401,7 @@ void func_80800920_chfactoryrobot(Actor *arg0) {
                 }
             }
             func_800C8CB8(data->light, arg0->position);
-            func_800C8E84(data->light, ((s32 (*)[3])&D_80802890_chfactoryrobot)[func_800DC298(0.35f)]);
+            func_800C8E84(data->light, ((s32 (*)[3])D_80802890_chfactoryrobot)[func_800DC298(0.35f)]);
         } else if (electricFinished) {
             func_800C8FE0(data->light, 0);
         }
@@ -464,7 +464,7 @@ void func_80800920_chfactoryrobot(Actor *arg0) {
             }
         }
     }
-}
+}    typedef struct { u8 pad0[0x14]; s32 unk14; } Objrobot_func_80800DC4_chfactoryrobot_sp2C; /* offsets.py genstruct: fields from raw offsets on sp2C; rename once understood */ typedef struct { u8 pad0[0x7]; s8 unk7; u8 unk8; } Objrobot_func_80800DC4_chfactoryrobot_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 /* extern */
 
@@ -484,15 +484,15 @@ void func_80800DC4_chfactoryrobot(Actor *arg0) {
     var_s0 = temp_v0;
     sp2C = temp_v0;
     do {
-        temp_v0_2 = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(var_s0) + (8))));
+        temp_v0_2 = _subaddieaudioloop_entrypoint_3((((Objrobot_func_80800DC4_chfactoryrobot_var_s0 *)var_s0)->unk8));
         var_s1 += 1;
         var_s0 += 1;
-        (*(s8 *)((s8 *)(var_s0) + (7))) = temp_v0_2;
+        (((Objrobot_func_80800DC4_chfactoryrobot_var_s0 *)var_s0)->unk7) = temp_v0_2;
     } while (var_s1 != 2);
-    temp_a0 = (*(s32 *)((s8 *)(sp2C) + (0x14)));
+    temp_a0 = (((Objrobot_func_80800DC4_chfactoryrobot_sp2C *)sp2C)->unk14);
     if (temp_a0 != 0) {
         func_800C8B84(temp_a0);
-        (*(s32 *)((s8 *)(sp2C) + (0x14))) = 0;
+        (((Objrobot_func_80800DC4_chfactoryrobot_sp2C *)sp2C)->unk14) = 0;
     }
 }
 
@@ -507,14 +507,14 @@ s32 func_80800E40_chfactoryrobot(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80107070(Actor *, s32);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
-    void _chexploder_entrypoint_13(s32, u32);
+    void _chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2);
+    void _chexploder_entrypoint_13(BtIntPtr, u32);
     void func_800FFAB0(Actor *);
     void func_8010A590(Actor *);
     void func_80109FE8(void **, s32);
     s32 func_80801160_chfactoryrobot(u8 *, s32);
     void func_8080183C_chfactoryrobot(Actor *);
-    s32 func_80801C50_chfactoryrobot(s32);
+    s32 func_80801C50_chfactoryrobot(BtIntPtr);
     s32 func_80802470_chfactoryrobot(Actor *, s32);
     RobotData *data;
     Actor *sp20;
@@ -540,7 +540,7 @@ s32 func_80800E40_chfactoryrobot(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x90:
         sp20 = func_80106790(func_80101080());
         _chexploder_entrypoint_9(sp20, 3, 0);
-        _chexploder_entrypoint_13((s32)sp20, 10);
+        _chexploder_entrypoint_13((BtIntPtr)sp20, 10);
         if (func_80107070(arg0, 3) == 0) {
             func_800FFAB0(arg0);
         }
@@ -552,7 +552,7 @@ s32 func_80800E40_chfactoryrobot(Actor *arg0, s32 arg1, s32 arg2) {
         func_8080183C_chfactoryrobot(arg0);
         break;
     case 0x38:
-        return func_80801C50_chfactoryrobot((s32)arg0);
+        return func_80801C50_chfactoryrobot((BtIntPtr)arg0);
     case 0x8F:
         if (arg2 == 0) {
             func_8010A590(arg0);
@@ -587,7 +587,7 @@ void func_80800FFC_chfactoryrobot(Actor *arg0, void *arg1) {
     void func_800DF744(s32, s32);
     void _subaddiefade_entrypoint_9(Actor *, s32 *);
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
-    s32 _subaddiefade_entrypoint_12(s32, s32, s32, s32);
+    void _subaddiefade_entrypoint_12(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
     u8 func_800C9044(s32);
     void func_800C8900(s32, s32 *);
     void func_80101870(Actor *, void *);
@@ -610,7 +610,7 @@ void func_80800FFC_chfactoryrobot(Actor *arg0, void *arg1) {
         active = func_800C9044(sp44->unk14) != 0;
     }
     if (((RobotFlags *)arg0)->flags74 & 1) {
-        _subaddiefade_entrypoint_12((s32)arg0, 255, 255, 255);
+        _subaddiefade_entrypoint_12((BtIntPtr)arg0, 255, 255, 255);
     } else if (active) {
         func_800C8900(sp44->unk14, sp28);
         _subaddiefade_entrypoint_11(arg0, sp28);
@@ -624,13 +624,13 @@ void func_80800FFC_chfactoryrobot(Actor *arg0, void *arg1) {
 s32 func_80801160_chfactoryrobot(u8 *arg0, s32 arg1) {
     void _chexploder_entrypoint_3(void *, void *, u32);
     s32 *_fxgenlist_entrypoint_2(void);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_80102424(Actor *, s32);
     void func_80103DFC(Actor *, f32 *);
     void func_80109FE8(void **, s32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     s32 func_80802470_chfactoryrobot(Actor *, s32);
-    extern s32 D_80802AB8_chfactoryrobot;
+    extern s32 D_80802AB8_chfactoryrobot[5];
     f32 sp2C[3];
 
     func_80102424((Actor *)arg0, arg1);
@@ -638,24 +638,24 @@ s32 func_80801160_chfactoryrobot(u8 *arg0, s32 arg1) {
     case 2:
     case 4:
         func_80109FE8(arg0, 1);
-        return;
+        BT_NATIVE_ONLY(return 0;) return;
     case 5:
         func_80109FE8(arg0, 0);
-        return;
+        BT_NATIVE_ONLY(return 0;) return;
     case 1:
         func_80109FE8(arg0, 0);
-        return;
+        BT_NATIVE_ONLY(return 0;) return;
     case 7:
         func_80103DFC((Actor *)arg0, sp2C);
         func_80802470_chfactoryrobot((Actor *)arg0, 1);
         ((Actor *)arg0)->unk64_24 = 0;
         func_800BBCB8(sp2C, sp2C, 0.8f, 1, _fxgenlist_entrypoint_2());
-        func_8010D930(6, ((Actor *)arg0)->unk70_0, sp2C, &D_80802AB8_chfactoryrobot);
+        func_8010D930(6, ((Actor *)arg0)->unk70_0, sp2C, D_80802AB8_chfactoryrobot);
         _chexploder_entrypoint_3(arg0, ((Actor *)arg0)->position, 0x124);
-        return;
+        BT_NATIVE_ONLY(return 0;) return;
     default:
         func_80109FE8(arg0, 1);
-        return;
+        BT_NATIVE_ONLY(return 0;) return;
     }
 }
 
@@ -689,7 +689,7 @@ s32 func_80801278_chfactoryrobot(Actor *arg0) {
     Unk80132ED0 *_suchase_entrypoint_0(void);
     void func_8008FE94(s32, f32 *);
     f32 func_800D8FF8(void);
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     f32 func_800DC178(f32, f32);
     int func_800DC298(f32);
     f32 func_800EEB40(f32 *, f32 *);
@@ -799,7 +799,7 @@ s32 func_80801278_chfactoryrobot(Actor *arg0) {
     data->scale += 0.7f * (func_800F12D4(((RobotMotion *)arg0->actorData)->speed * scale, 0.0f, 420.0f, 1.0f, 1.1f) - data->scale);
     return 1;
 }
-
+typedef struct { f32 values[2]; } RobotSize;
 void func_8080183C_chfactoryrobot(Actor *arg0) {
     typedef struct {
         u8 pad0[8];
@@ -809,19 +809,19 @@ void func_8080183C_chfactoryrobot(Actor *arg0) {
         u8 pad18[8];
         f32 unk20;
     } RobotData;
-    typedef struct {
-        f32 values[2];
-    } RobotSize;
+
+
+
     void _subaddierouteDll_entrypoint_1(Actor *);
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32[3]);
     void func_800C8D4C(s32, f32 *);
-    s32 func_800C8E84(s32, s32 *);
+    void func_800C8E84(s32 id,u32 *color);
     void func_800C8F64(s32, s32);
     void func_800C8FE0(s32, s32);
     void *func_80100094(Actor *, u32);
     s32 func_80802398_chfactoryrobot(Actor *);
-    extern s32 D_80802890_chfactoryrobot;
+    extern s32 D_80802890_chfactoryrobot[6];
     extern RobotSize D_80802ACC_chfactoryrobot;
     struct {
         RobotSize size;
@@ -839,7 +839,7 @@ void func_8080183C_chfactoryrobot(Actor *arg0) {
     local.size.values[0] *= arg0->scale;
     local.size.values[1] *= arg0->scale;
     data->unk14 = func_800C8A98();
-    func_800C8E84(data->unk14, &D_80802890_chfactoryrobot);
+    func_800C8E84(data->unk14, D_80802890_chfactoryrobot);
     func_800C8CB8(data->unk14, arg0->position);
     func_800C8F64(data->unk14, 3);
     func_800C8D4C(data->unk14, local.size.values);
@@ -860,10 +860,10 @@ void func_80801954_chfactoryrobot(Actor *arg0) {
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     RobotData *data;
     f32 dt;
-    s32 model;
+    BtIntPtr model;
 
     data = func_80100094(arg0, 0);
     dt = func_800D8FF8();
@@ -894,7 +894,7 @@ s32 func_80801A80_chfactoryrobot(Actor *arg0) {
         u32 pad64_0 : 29;
     } RobotFlags;
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     void *func_80100094(Actor *, u32);
     s32 func_80801160_chfactoryrobot(u8 *, s32);
     RobotData *sp24;
@@ -924,7 +924,7 @@ s32 func_80801A80_chfactoryrobot(Actor *arg0) {
 }
 
 /* extern */
-u8 func_800D9078(f32 *);
+s32 func_800D9078(f32 *arg0);
 
 s32 func_80801B3C_chfactoryrobot(Actor *arg0) {
     typedef struct {
@@ -983,10 +983,10 @@ s32 func_80801BB0_chfactoryrobot(Actor *arg0) {
     return 0;
 }
 
-s32 func_80801C50_chfactoryrobot(s32 arg0) {
-    s32 func_80101074(s32 *);
-    extern s32 D_80802AD4_chfactoryrobot;
-    func_80101074(&D_80802AD4_chfactoryrobot);
+s32 func_80801C50_chfactoryrobot(BtIntPtr arg0) {
+    void func_80101074(void *arg0);
+    extern s32 D_80802AD4_chfactoryrobot[6];
+    func_80101074(D_80802AD4_chfactoryrobot);
     return 2;
 }
 
@@ -1049,10 +1049,10 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
         u32 sounded : 1;
         u32 trailing : 20;
     } RobotFlags;
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    s32 _chmrtannoy_entrypoint_0(void);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
+    void _chmrtannoy_entrypoint_0(void);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _sudialog_entrypoint_0(s32, s32);
     s32 func_8008FDC4(void);
     void func_800D1254(s32, s32, f32 *);
@@ -1062,11 +1062,11 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
     int func_800F00A4(f32 *, f32, f32, f32, f32 *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     s32 func_800F1418(s32, s32);
-    s32 func_800F4F34(u32, f32 *, f32, f32);
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8010D23C(void);
-    extern s32 D_80802AEC_chfactoryrobot;
+    extern s32 D_80802AEC_chfactoryrobot[2];
     u8 *data;
     Unk80132ED0 **cursor;
     s32 i;
@@ -1080,13 +1080,13 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
     f32 height7;
 
     data = func_80100094(arg0, 0);
-    position = (f32 *)((u8 *)arg0 + 4);
+    position = &arg0->position[0];
     func_800F4F34(func_800F54E4(), position, 100.0f, 80.0f);
     switch ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) {
     case 1:
-        if (*(Unk80132ED0 **)((u8 *)arg0 + 0x3C) == NULL) {
+        if (arg0->unk3C == NULL) {
             func_80101FDC(arg0, 3);
-        } else if (*(f32 *)((u8 *)func_80106790(*(Unk80132ED0 **)((u8 *)arg0 + 0x3C)) + 0x58) > 0.0f && data[0x14] == 0) {
+        } else if ((func_80106790(arg0->unk3C))->unk58 > 0.0f && data[0x14] == 0) {
             _sudialog_entrypoint_0(0x364, 4);
             i = 0;
             if (data[0x10] < data[0x11]) {
@@ -1095,7 +1095,7 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
                     cursor = (Unk80132ED0 **)data;
                     do {
                         if (func_800F00A4(position, 150.0f, 800.0f, 0.0f,
-                                (f32 *)((u8 *)func_80106790(*cursor) + 4))) {
+                                &(func_80106790(*cursor))->position[0])) {
                             nearby = 1;
                             break;
                         }
@@ -1106,13 +1106,13 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
                 if (!nearby) {
                     func_80108B04(arg0, 0);
                     func_80101FDC(arg0, 2);
-                    *(f32 *)((u8 *)arg0 + 0x58) = func_800DC178(1.5f, 2.5f);
+                    arg0->unk58 = func_800DC178(1.5f, 2.5f);
                 }
             }
         }
         break;
     case 2:
-        if (func_800D9078((f32 *)((u8 *)arg0 + 0x58))) {
+        if (func_800D9078(&arg0->unk58)) {
             func_80101FDC(arg0, 1);
         }
         break;
@@ -1121,19 +1121,19 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
             _capod_entrypoint_13(*(s32 *)arg0, 0, 0xC, 0x30);
             func_80101FDC(arg0, 6);
             ((u8 *)arg0)[0x65] &= ~0x10;
-            *(f32 *)((u8 *)arg0 + 0x58) = 1.0f;
+            arg0->unk58 = 1.0f;
             _chmrtannoy_entrypoint_0();
             _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, 0x133B, 7, position, 0xA3);
         }
         break;
     case 6:
-        done6 = func_800D9078((f32 *)((u8 *)arg0 + 0x58));
-        height6 = func_800F12D4(*(f32 *)((u8 *)arg0 + 0x58), 0.0f, 1.0f, -200.0f, 300.0f);
+        done6 = func_800D9078(&arg0->unk58);
+        height6 = func_800F12D4(arg0->unk58, 0.0f, 1.0f, -200.0f, 300.0f);
         func_800EE7F8(pos6, position);
         pos6[1] += height6;
         func_800D1254(0x39, 1, pos6);
-        if (!((RobotFlags *)arg0)->sounded && *(f32 *)((u8 *)arg0 + 0x58) < 0.7f) {
-            _subaddieaudioquick_entrypoint_2(arg0, position, &D_80802AEC_chfactoryrobot);
+        if (!((RobotFlags *)arg0)->sounded && arg0->unk58 < 0.7f) {
+            _subaddieaudioquick_entrypoint_2(arg0, position, D_80802AEC_chfactoryrobot);
             ((RobotFlags *)arg0)->sounded = 1;
         }
         if (done6) {
@@ -1141,8 +1141,8 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
         }
         break;
     case 7:
-        done7 = func_800D9078((f32 *)((u8 *)arg0 + 0x58));
-        height7 = func_800F12D4(*(f32 *)((u8 *)arg0 + 0x58), 0.0f, 1.0f, 300.0f, -200.0f);
+        done7 = func_800D9078(&arg0->unk58);
+        height7 = func_800F12D4(arg0->unk58, 0.0f, 1.0f, 300.0f, -200.0f);
         func_800EE7F8(pos7, position);
         pos7[1] += height7;
         func_800D1254(0x39, 1, pos7);
@@ -1153,7 +1153,7 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
         break;
     case 8:
         func_800D2498(0x101, data[0x13], 0);
-        if (func_800D9078((f32 *)((u8 *)arg0 + 0x58))) {
+        if (func_800D9078(&arg0->unk58)) {
             func_80101FDC(arg0, 9);
         }
         break;
@@ -1162,7 +1162,7 @@ void func_80801D7C_chfactoryrobot(Actor *arg0) {
         if (data[0x10] < func_800F1418(data[0x11], data[0x13]) && data[0x14] == 0) {
             func_80108B04(arg0, 0);
             func_80101FDC(arg0, 8);
-            *(f32 *)((u8 *)arg0 + 0x58) = func_800DC178(1.5f, 2.5f);
+            arg0->unk58 = func_800DC178(1.5f, 2.5f);
         }
         break;
     case 3:
@@ -1179,10 +1179,10 @@ void func_8080219C_chfactoryrobot(void *arg0) {
     void func_800E8C08(u8);
     u8 temp_a1;
 
-    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x28)));
+    temp_a1 = (((Objrobot_arg0 *)arg0)->unk28);
     if (temp_a1 != 0) {
         func_800E8C08(temp_a1);
-        (*(u8 *)((s8 *)(arg0) + (0x28))) = 0U;
+        (((Objrobot_arg0 *)arg0)->unk28) = 0U;
     }
 }
 
@@ -1212,7 +1212,7 @@ void func_808021D4_chfactoryrobot(void *arg0, s32 arg1) {
 union RobotMessage { void *pointer; s32 value; };
 
 s32 func_80802240_chfactoryrobot(Actor *arg0, s32 arg1, union RobotMessage arg2) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     u8 func_800E8B74(u32);
     void func_800E8C08(u8);
     void func_800E8D28(u8, f32);
@@ -1220,7 +1220,7 @@ s32 func_80802240_chfactoryrobot(Actor *arg0, s32 arg1, union RobotMessage arg2)
     void func_800E8DB0(u8, s32);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
     s32 func_808025D4_chfactoryrobot(Actor *);
-    extern s32 D_80802AF4_chfactoryrobot;
+    extern s32 D_80802AF4_chfactoryrobot[7];
     struct RobotData {
         Unk80132ED0 *markers[4];
         u8 sound;
@@ -1248,7 +1248,7 @@ s32 func_80802240_chfactoryrobot(Actor *arg0, s32 arg1, union RobotMessage arg2)
         ((struct RobotData *)arg0->actorData)->sound = func_800E8B74(0);
         func_800E8DB0(((struct RobotData *)arg0->actorData)->sound, 6);
         func_800E8D28(((struct RobotData *)arg0->actorData)->sound, 1.2f);
-        func_800E8D5C(((struct RobotData *)arg0->actorData)->sound, &D_80802AF4_chfactoryrobot, 3);
+        func_800E8D5C(((struct RobotData *)arg0->actorData)->sound, D_80802AF4_chfactoryrobot, 3);
         break;
     case 0x2A:
         sound = ((struct RobotData *)arg0->actorData)->sound;
@@ -1301,7 +1301,7 @@ s32 func_80802398_chfactoryrobot(Actor *arg0) {
 
 s32 func_80802470_chfactoryrobot(Actor *arg0, s32 arg1) {
     s32 _capod_entrypoint_13();
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800FC660(u32);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
@@ -1347,7 +1347,7 @@ s32 func_80802470_chfactoryrobot(Actor *arg0, s32 arg1) {
 
 s32 func_808025D4_chfactoryrobot(Actor *arg0) {
     s32 _capod_entrypoint_13();
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
     void func_800D1254(s32, s32, f32 *);
     s32 func_800DA298(s32);
@@ -1389,6 +1389,33 @@ s32 func_808025D4_chfactoryrobot(Actor *arg0) {
     }
     if (data->active && !func_800DA298(0x6A3) && func_800EA090() == 3) {
         _capod_entrypoint_13(arg0->unk0, NULL, 8, 0x10);
-        func_800DA544(0x6A3);
+        func_800DA544(0x6A3); BT_NATIVE_ONLY(return 0;)
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/robot.data.s */
+void func_80105834(Actor*);
+void func_801018A4();
+void func_80108ED0();
+void func_80107C2C();
+extern u8 D_808028A8_chfactoryrobot[];
+extern u8 D_808028D0_chfactoryrobot[];
+extern u8 D_808028BC_chfactoryrobot[];
+s32 D_80802890_chfactoryrobot[6] BT_DATA(4, overlays_ch_factory_robot, 0x0) = { 192, 192, 255, 128, 128, 160 };
+u8 D_808028A8_chfactoryrobot[20] BT_DATA(4, overlays_ch_factory_robot, 0x18) = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00 };
+u8 D_808028BC_chfactoryrobot[20] BT_DATA(4, overlays_ch_factory_robot, 0x2C) = { 0x00, 0x02, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00 };
+u8 D_808028D0_chfactoryrobot[88] BT_DATA(4, overlays_ch_factory_robot, 0x40) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0xB5, 0x01, 0x01, 0x3F, 0x11, 0x26, 0xE9, 0x02, 0xB6, 0x00, 0x02, 0x3F, 0x00, 0x00, 0x00, 0x02, 0xB7, 0x00, 0x01, 0x3F, 0x02, 0x8F, 0x5C, 0x02, 0xB8, 0x00, 0x02, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0xB5, 0x01, 0x01, 0x3F, 0x00, 0x00, 0x00, 0x02, 0xB7, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0xB5, 0x00, 0x01, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0xB5, 0x00, 0x01 };
+ActorData D_80802928_chfactoryrobot [1] BT_DATA(4, overlays_ch_factory_robot, 0x98) = { { 801, 957, 2019, 1, 0, (void (*)(struct Actor *))func_80800058_chfactoryrobot, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 229376000, 0, 0, 0, 0, 288, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800024_chfactoryrobot, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 17424, (void (*)(struct Actor *, long, long))func_80800360_chfactoryrobot, (BtIntPtr)D_808028A8_chfactoryrobot } };
+ActorData D_80802970_chfactoryrobot [1] BT_DATA(4, overlays_ch_factory_robot, 0xE0) = { { 802, 958, 2001, 1, (void *)D_808028D0_chfactoryrobot, (void (*)(struct Actor *))func_80800920_chfactoryrobot, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800FFC_chfactoryrobot, 229376000, 1069547520, 0, 0, 17317, 800, (void (*)(struct Actor *))func_80800DC4_chfactoryrobot, (BtIntPtr)func_80108ED0, 64, 0, (void (*)(struct Actor *))func_808007C4_chfactoryrobot, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32734, 21535, (void (*)(struct Actor *, long, long))func_80800E40_chfactoryrobot, (BtIntPtr)D_808028BC_chfactoryrobot } };
+ActorData D_808029B8_chfactoryrobot [1] BT_DATA(4, overlays_ch_factory_robot, 0x128) = { { 803, 959, 2164, 1, 0, (void (*)(struct Actor *))func_80801D7C_chfactoryrobot, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 0, 0, 0, 0, 16384, 2049, (void (*)(struct Actor *))func_8080219C_chfactoryrobot, 0, 24, 0, (void (*)(struct Actor *))func_80801D08_chfactoryrobot, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 21526, (void (*)(struct Actor *, long, long))func_80802240_chfactoryrobot, 0 } };
+s32 D_80802A00_chfactoryrobot[14] BT_DATA(4, overlays_ch_factory_robot, 0x170) = { 1903074, 1834409, -27328467, 19661200, 917524, 1310751, -40960, 1446152, 2228249, 1638412, 786453, 204, 2818329, 21757952 };
+s32 D_80802A38_chfactoryrobot[13] BT_DATA(4, overlays_ch_factory_robot, 0x1A8) = { 1903069, 2949270, 16384014, 1310740, 2146496, -1061158890, 524322, 10027187, 14221542, 1376256, 10027051, 20119961, 0 };
+s32 D_80802A6C_chfactoryrobot[4] BT_DATA(4, overlays_ch_factory_robot, 0x1DC) = { 1246227, 655692, 66086, 163840000 };
+s32 D_80802A7C_chfactoryrobot[4] BT_DATA(4, overlays_ch_factory_robot, 0x1EC) = { 1246349, 655564, 66086, 163840000 };
+u32 D_80802A8C_chfactoryrobot [4] BT_DATA(4, overlays_ch_factory_robot, 0x1FC) = { 0x1305C4, 0xD00F3, 0x10C0016, 0x36B00000 };
+u32 D_80802A9C_chfactoryrobot [4] BT_DATA(4, overlays_ch_factory_robot, 0x20C) = { 0x1304E1, 0xA0100, 0x161F40, 0 };
+u32 D_80802AAC_chfactoryrobot [3] BT_DATA(4, overlays_ch_factory_robot, 0x21C) = { 0x13052E, 0xD0133, 0x1660000 };
+s32 D_80802AB8_chfactoryrobot[5] BT_DATA(4, overlays_ch_factory_robot, 0x228) = { 1246227, 852249, 20119553, 81922500, 0 };
+RobotSize D_80802ACC_chfactoryrobot BT_DATA(4, overlays_ch_factory_robot, 0x23C) = { { 250.0f, 400.0f } };
+s32 D_80802AD4_chfactoryrobot[6] BT_DATA(4, overlays_ch_factory_robot, 0x244) = { 18, 1075838976, 16711680, 1, 1074580685, 16711680 };
+s32 D_80802AEC_chfactoryrobot[2] BT_DATA(4, overlays_ch_factory_robot, 0x25C) = { 1246314, 131072 };
+s32 D_80802AF4_chfactoryrobot[7] BT_DATA(4, overlays_ch_factory_robot, 0x264) = { 0, 0, 1056964608, 1065353216, 1065353216, 0, 0 };

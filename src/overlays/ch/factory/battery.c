@@ -52,13 +52,13 @@ void func_80800050_chfactorybattery(Actor *arg0, s32 arg1) {
     if (arg0 != NULL && arg0->pad6C_21 == 0) {
         arg0->unk6C_0 = arg1;
     }
-}
+}                typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objbattery_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_8080019C_chfactorybattery(volatile unsigned int arg0, void *arg1, s32 arg2, s32 arg3)
 {
-  s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+  s32 _chbaddiesetup_entrypoint_6(s32 *, BtIntPtr, BtIntPtr, s32, s32, s32, BtIntPtr);
   extern s32 _subaddietaxi_entrypoint_16;
-  _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, *((s32 *) (((s8 *) arg1) + 0)), *((s32 *) (((s8 *) arg1) + 4)), *((s32 *) (((s8 *) arg1) + 8)), arg2, arg3);
+  _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, ((Objbattery_arg1 *)arg1)->unk0, ((Objbattery_arg1 *)arg1)->unk4, ((Objbattery_arg1 *)arg1)->unk8, arg2, arg3);
 }
 
 s32 func_808001F8_chfactorybattery(Actor *arg0) {
@@ -70,8 +70,8 @@ s32 func_808001F8_chfactorybattery(Actor *arg0) {
     s32 func_80800444_chfactorybattery(void);
     void func_808006E4_chfactorybattery(Actor *);
     void func_8080130C_chfactorybattery(Actor *, s32);
-    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
-    s32 _subaddieDll_entrypoint_1(Actor *);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
+    void _subaddieDll_entrypoint_1(Actor *arg0);
     void _subaddierouteDll_entrypoint_1(Actor *);
 #ifndef BT_NATIVE
     extern s32 _chfactorybattery_entrypoint_0;
@@ -310,7 +310,7 @@ void func_808008C8_chfactorybattery(Actor *arg0) {
 
 void func_80800948_chfactorybattery(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     extern u32 D_80801B60_chfactorybattery;
     extern u32 D_80801B78_chfactorybattery;
 
@@ -335,13 +335,13 @@ void func_80800948_chfactorybattery(Actor *arg0) {
 }
 
 void func_808009C8_chfactorybattery(Actor *arg0) {
-    s32 func_800F4EC8(u32, s32, f32, f32, f32);
-    s32 func_800F54E4();
+    s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
+    BtIntPtr func_800F54E4();
     f32 func_80103EAC(Actor *);
     f32 func_80103EF4(Actor *);
     s32 pad[1];
     f32 sp30;
-    u32 sp2C;
+    BtUIntPtr sp2C;
 
     switch (arg0->unk70_10) {
     case 1:
@@ -351,14 +351,14 @@ void func_808009C8_chfactorybattery(Actor *arg0) {
     case 13:
         sp2C = func_800F54E4();
         sp30 = func_80103EF4(arg0);
-        func_800F4EC8(sp2C, (s32)arg0->position, sp30, 0.0f, func_80103EAC(arg0) * 0.25f);
+        func_800F4EC8(sp2C, (BtIntPtr)arg0->position, sp30, 0.0f, func_80103EAC(arg0) * 0.25f);
         return;
     case 8:
     case 10:
         if (arg0->unk79_4 == 0) {
             sp2C = func_800F54E4();
             sp30 = func_80103EF4(arg0);
-            func_800F4EC8(sp2C, (s32)arg0->position, sp30, 0.0f, func_80103EAC(arg0) * 0.25f);
+            func_800F4EC8(sp2C, (BtIntPtr)arg0->position, sp30, 0.0f, func_80103EAC(arg0) * 0.25f);
         }
         break;
     }
@@ -370,7 +370,7 @@ void func_80800AB8_chfactorybattery(Actor *arg0) {
     s32 _subaddiejoy_entrypoint_6(Actor *, s32);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, u32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
     s32 _subaddietaxi_entrypoint_1(Actor *, s32);
     s32 _subaddietaxi_entrypoint_11(Actor *, s32);
@@ -382,19 +382,19 @@ void func_80800AB8_chfactorybattery(Actor *arg0) {
     s32 func_800DC128(s32, s32);
     f32 func_800F1DF4(f32 *, f32 *);
     f32 func_800F3780(f32, u8 *, s16);
-    s32 func_800F54E4();
+    BtIntPtr func_800F54E4();
     void *func_80100094(Actor *, u32);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     f32 func_80101F24(Actor *);
     void func_80102BAC(Actor *, f32, f32, f32);
     s32 func_80102CCC(Actor *);
     f32 func_80103EAC(Actor *);
     f32 func_80103EF4(Actor *);
-    void func_8010BA80(Actor *, s32, s32);
-    void func_8010C3A8(Actor *, s32, f32);
+    s32 func_8010BA80(Actor *volatile arg0, volatile s32 arg1, s32 arg2);
+    s32 func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2);
     s32 func_8010C500(Actor *);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
-    f32 func_8010CD50(Actor *, s32);
+    f32 func_8010CD50(Actor *, BtIntPtr);
     void func_8080130C_chfactorybattery(Actor *, s32);
     extern u8 D_80801B88_chfactorybattery[];
     struct Route { u16 pad[3]; u16 node; };
@@ -516,12 +516,12 @@ void func_80800AB8_chfactorybattery(Actor *arg0) {
 }
 
 s32 func_80801040_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddieDll_entrypoint_1();
+    void _subaddieDll_entrypoint_1(Actor *arg0);
     void _subaddierouteDll_entrypoint_1(Actor *);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     void func_800DF744(s32, s32);
-    s32 func_800F54E4();
-    void func_800F7A2C(s32, s32, f32 *);
+    BtIntPtr func_800F54E4();
+    int func_800F7A2C(BtIntPtr arg0, s32 arg1, f32 *arg2);
     s32 func_801015D0(Actor *);
     s32 func_80107070(Actor *, s32);
     f32 func_8010A40C(void *);
@@ -610,11 +610,11 @@ s32 func_80801040_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080130C_chfactorybattery(Actor *arg0, s32 arg1) {
-    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
-    s32 func_800DA544(s32);
-    s32 func_800F54E4();
-    void func_800F7A2C(s32, s32, f32 *);
+    void _subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
+    void func_800DA544(s32 index);
+    BtIntPtr func_800F54E4();
+    int func_800F7A2C(BtIntPtr arg0, s32 arg1, f32 *arg2);
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
@@ -670,7 +670,7 @@ void func_8080130C_chfactorybattery(Actor *arg0, s32 arg1) {
 
 void func_808014C0_chfactorybattery(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    void _subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1);
     if (func_80100094(arg0, 0U) != NULL) {
         _subaddiefx_entrypoint_1(arg0, func_80100094(arg0, 0U));
     }
@@ -732,10 +732,10 @@ void func_8080150C_chfactorybattery(Actor *arg0) {
 /* extern */
 
 void func_80801728_chfactorybattery(Actor *arg0) {
-    s32 _chdoor_entrypoint_0();
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _chdoor_entrypoint_0(BtIntPtr arg0);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_8010CA74(f32 *, s32);
     s32 func_80800480_chfactorybattery();
     if (func_800DA298(0x343) == 0) {
@@ -755,7 +755,7 @@ void func_80801728_chfactorybattery(Actor *arg0) {
 /* extern */
 
 void func_80801804_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
+    s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
     s32 func_800EA05C(void);
     s32 func_80103140(Actor *, u32, u16);
     if (arg1 == 0x95) {

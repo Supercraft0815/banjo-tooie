@@ -33,7 +33,7 @@ void func_800D71F4(s32);
 s32 func_800D721C(s32, s32);
 void *func_800D725C(s32);
 s32 func_800D731C(s32);
-s32 func_800D738C(s32);
+s32 func_800D738C(BtIntPtr);
 s32 func_800D73AC(s32);
 s32 func_800D73CC(s32);
 #endif

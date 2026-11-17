@@ -1,22 +1,22 @@
 #include "common.h"
 
-extern s32 D_80128770;
+extern s32 D_80128770;    typedef struct { u8 pad0[0x30]; s32 unk30; u8 pad34[0x100]; f32 unk134; } Obj1E995C0_D_80128770; /* offsets.py genstruct: fields from raw offsets on &D_80128770; rename once understood */
 
 void func_800BFCD0(s32 arg0, s32 arg1) {
     (*(s32 *)((s8 *)(&(&D_80128770)[arg0]) + (0x30))) = arg1;
-    if ((*(s32 *)((s8 *)(&D_80128770) + (0x30))) < arg0) {
-        (*(s32 *)((s8 *)(&D_80128770) + (0x30))) = arg0;
+    if ((((Obj1E995C0_D_80128770 *)&D_80128770)->unk30) < arg0) {
+        (((Obj1E995C0_D_80128770 *)&D_80128770)->unk30) = arg0;
     }
 }
 
 void func_800BFD00(void)
 {
-  s32 func_800DF744(s32, s32);
+  void func_800DF744(s32 index,s32 value);
   extern s32 D_80128774;
   s8 *new_var;
   s32 var_s0;
   var_s0 = 1;
-  if ((*((s32 *) (((s8 *) (&D_80128770)) + 0x30))) > 0)
+  if ((((Obj1E995C0_D_80128770 *)&D_80128770)->unk30) > 0)
   {
     new_var = &D_80128774;
     do
@@ -26,24 +26,24 @@ void func_800BFD00(void)
       var_s0 += 1;
       new_var += 4;
     }
-    while ((*((s32 *) (((s8 *) (&D_80128770)) + 0x30))) >= var_s0);
+    while ((((Obj1E995C0_D_80128770 *)&D_80128770)->unk30) >= var_s0);
   }
 }
 
 /* extern */
 
-void func_800BFD6C(s32 arg0, s32 arg1) {
-    s32 _glid_entrypoint_5(s32, s32);
-    s32 _glid_entrypoint_6(s32, s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+void func_800BFD6C(BtIntPtr arg0, s32 arg1) {
+    void _glid_entrypoint_5(s32 *arg0, s32 arg1);
+    void _glid_entrypoint_6(s32 *arg0, s32 arg1);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF4B0(s32);
-    void func_800DF738(s32);
-    void func_800DF7DC(s32);
-    void func_800DF818(s32);
+    void func_800DF738(BtIntPtr);
+    void func_800DF7DC(u8 *textures);
+    void func_800DF818(BtIntPtr);
     void func_800E3980(f32 *);
     void func_800E3C8C(f32, f32);
     void func_800E3CB8(f32 *, f32 *);
-    void func_800E44FC(Gfx **);
+    int func_800E44FC(void *frame);
     s32 func_800EA340(void);
     struct RenderData {
         s32 flags[2];
@@ -95,21 +95,21 @@ void func_800BFD6C(s32 arg0, s32 arg1) {
     }
 }
 
-void func_800BFF28()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800BFF28()
 {
-    _gcskyDll_entrypoint_0(&D_80128770);
+    BT_NATIVE_ONLY(return) _gcskyDll_entrypoint_0(&D_80128770);
 }
 
-void func_800BFF4C()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800BFF4C()
 {
-    _gcskyDll_entrypoint_1(&D_80128770);
+    BT_NATIVE_ONLY(return) _gcskyDll_entrypoint_1(&D_80128770);
 }
 
 /* extern */
 
 void func_800BFF70(void) {
     f32 func_800D8FF8();
-    (*(f32 *)((s8 *)(&D_80128770) + 0x134)) += func_800D8FF8();
+    (((Obj1E995C0_D_80128770 *)&D_80128770)->unk134) += func_800D8FF8();
 }
 
 s32 func_800BFFA0(s32 arg0) {
@@ -121,7 +121,7 @@ s32 func_800BFFA0(s32 arg0) {
 
 s32 func_800BFFB4(s32 arg0, s32 arg1, f32 *arg2) {
     void func_800DBEFC(s32 *, s32, f32 *);
-    s32 temp_a3;
+    BtIntPtr temp_a3;
     s32 var_v0;
 
     temp_a3 = (&D_80128770)[arg0];
@@ -134,11 +134,11 @@ s32 func_800BFFB4(s32 arg0, s32 arg1, f32 *arg2) {
 }
 
 void func_800BFFF4(void) {
-    s32 func_800DC060(s32);
-    s32 func_800EE5D8(s32);
+    void *func_800DC060(void *data);
+    BtIntPtr func_800EE5D8(BtIntPtr);
     extern s32 D_80128778[];
     s32 *var_s0;
-    s32 temp_a0;
+    BtIntPtr temp_a0;
 
     var_s0 = &D_80128770; do {
         temp_a0 = var_s0[2];
@@ -156,6 +156,14 @@ void func_800BFFF4(void) {
 /* extern */
 
 void func_800C0064(s32 arg0) {
-    s32 _gcskyDll_entrypoint_2(s32 *, s32);
+    void _gcskyDll_entrypoint_2(BtIntPtr arg0, s32 arg1);
     _gcskyDll_entrypoint_2(&D_80128770, arg0);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80128770 BT_DATA(4, bss_core2bss1_0_2, 0xFD0);
+s32 D_80128774 BT_DATA(4, bss_core2bss1_0_2, 0xFD4);
+s32 D_80128778 [ 78 ] BT_DATA(4, bss_core2bss1_0_2, 0xFD8);
+#endif

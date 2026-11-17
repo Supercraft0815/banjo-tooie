@@ -10,7 +10,7 @@ OSThread *sucoasterhit_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_sucoasterhit(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, u8, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _sucoaster_entrypoint_9(void *, s32, s32);
     s32 func_800D9058(f32);
     void *func_80100094(Actor *, u32);
@@ -85,7 +85,7 @@ void func_80800114_sucoasterhit(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
 
 /* extern */
 
-void func_808001C8_sucoasterhit(Unk80132ED0 *arg0, s32 arg1) {
+void func_808001C8_sucoasterhit(Unk80132ED0 *arg0, BtIntPtr arg1) {
     Actor* func_80106790(Unk80132ED0 *);
     s32 _sucoaster_entrypoint_9(void *, s32, s32);
     struct Flags {
@@ -104,7 +104,7 @@ void func_808001C8_sucoasterhit(Unk80132ED0 *arg0, s32 arg1) {
 
 /* extern */
 
-s32 func_80800208_sucoasterhit(s32 arg0, void *arg1, s32 arg2, s32 *arg3, s32 *arg4) {
+s32 func_80800208_sucoasterhit(BtIntPtr arg0, void *arg1, BtIntPtr arg2, s32 *arg3, s32 *arg4) {
     s32 func_800F0E28(s32, s32, ...);
     struct HitData {
         u8 padding[0x24];
@@ -132,7 +132,7 @@ s32 func_80800208_sucoasterhit(s32 arg0, void *arg1, s32 arg2, s32 *arg3, s32 *a
     return 0;
 }
 
-void func_80800294_sucoasterhit(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
+void func_80800294_sucoasterhit(Unk80132ED0 *arg0, BtIntPtr arg1, s32 arg2) {
     Actor *func_80106790(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
     s32 _glhittableDll_entrypoint_10(s32);
@@ -146,10 +146,10 @@ void func_80800294_sucoasterhit(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     s32 _sueggmisc_entrypoint_0();
     void _suegg_entrypoint_18(Actor *, f32 *);
     void _suegg_entrypoint_19(Actor *, f32 *);
-    void func_800F57F0(u32, f32 *);
-    void func_800F5D70(u32, f32 *);
+    void func_800F57F0(BtUIntPtr, f32 *);
+    void func_800F5D70(BtUIntPtr, f32 *);
     f32 func_800EEFD4(f32[3]);
-    f32 func_800F5F24(u32);
+    f32 func_800F5F24(BtUIntPtr);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EC398(Unk80132ED0 *, f32 *);
     void func_800EFD24(f32[3]);
@@ -159,21 +159,21 @@ void func_80800294_sucoasterhit(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     f32 func_800136E4(f32);
     void _chbounce_entrypoint_3(f32);
     void _chbounce_entrypoint_2(f32);
-    void _chbounce_entrypoint_5(s32, void *);
+    void _chbounce_entrypoint_5(BtIntPtr, void *);
     void func_80109600(Actor *, Unk80132ED0 *);
     void _chflamer_entrypoint_1(void *, void *);
     void func_800EC370(void **, void *);
     void _chfreezy_entrypoint_1(void *, s16 *);
     void func_8010965C(Actor *);
     s32 func_8010A430(Actor *);
-    u32 func_800F54E4(void);
-    void func_800EB860(s32, s32);
-    void func_80108EF4(void);
+    BtUIntPtr func_800F54E4(void);
+    void func_800EB860(s32 (*filter)(s16 *, uintptr_t), uintptr_t data);
+    s32 func_80108EF4(void *arg0, s32 arg1);
     f32 func_800EC708(Unk80132ED0 *);
-    void _chbaddiesetup_entrypoint_10(void);
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    Actor *_chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     void func_800EB874(void);
-    void func_8010D930(s32, s32, f32 *, void *);
+    s32 func_8010D930(s32 arg0, s32 arg1, f32 *arg2, s32 *arg3);
     void _subaddiejoy_entrypoint_10(void *, f32, f32);
     extern u8 D_80800CC4_sucoasterhit[];
     struct MarkerFields {
@@ -346,12 +346,12 @@ void func_80800870_sucoasterhit(Actor *arg0, Actor *arg1, s32 arg2, s32 arg3) {
     f32 volume;
 
     data = _sucoasterdata_entrypoint_1(arg1->actorData[0] >> 28);
-    if (((struct SoundData *)((u32)data + (arg2 << 3)))->id != 0) {
+    if (((struct SoundData *)((BtUIntPtr)data + (arg2 << 3)))->id != 0) {
         if (arg3 != 0) {
             if (arg0->unk5F == 0) {
                 arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, &D_80800CDC_sucoasterhit);
                 volume = func_800DC178(-0.05f, 0.05f);
-                arg1 = (Actor *)((u32)data + (arg2 << 3));
+                arg1 = (Actor *)((BtUIntPtr)data + (arg2 << 3));
                 volume += ((struct SoundData *)arg1)->volume * 0.00390625f;
                 func_800C301C(arg0->unk5F, ((struct SoundData *)arg1)->id);
                 func_800C3058(arg0->unk5F, ((struct SoundData *)arg1)->rate);
@@ -371,7 +371,7 @@ void func_80800870_sucoasterhit(Actor *arg0, Actor *arg1, s32 arg2, s32 arg3) {
 }
 
 s32 sucoasterhit_entrypoint_1(Actor *arg0) {
-    s32 _sucoaster_entrypoint_22(Actor *);
+    void _sucoaster_entrypoint_22(void *arg0);
     s32 _sucoaster_entrypoint_9(void *, s32, s32);
     s32 func_8001210C(s32);
     void *func_80100094(Actor *, u32);
@@ -409,8 +409,8 @@ s32 sucoasterhit_entrypoint_1(Actor *arg0) {
 
 s32 func_80800AEC_sucoasterhit(Actor *arg0, void *arg1) {
     s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32 *);
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_80103F38(Actor *, f32 *);
     extern s32 D_80800CE8_sucoasterhit;
     extern s32 D_80800D14_sucoasterhit;
@@ -422,7 +422,7 @@ s32 func_80800AEC_sucoasterhit(Actor *arg0, void *arg1) {
     f32 sp54[3];
     s32 temp_s3;
     s32 var_s0;
-    s32 sp48;
+    BtIntPtr sp48;
     s32 sp44;
 
     sp44 = ((struct HitData *)arg1)->volume;

@@ -16,14 +16,14 @@ void func_8080002C_chfantasysafeswitch(Actor *arg0) {
 
 s32 func_80800070_chfantasysafeswitch(Actor *arg0, s32 arg1, s32 arg2) {
     void _glcutDll_entrypoint_6(u32, u32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     s32 func_800DA298(s32);
     void func_800DF744(s32, s32);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_801015D0(Actor *);
     void func_80102424(Actor *, s32);
     void func_80103110(Actor *, u32);
@@ -77,7 +77,15 @@ s32 func_80800070_chfantasysafeswitch(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfantasysafeswitch_entrypoint_0(void)
 {
-    extern u8 D_80800288_chfantasysafeswitch[];
+    extern ActorData D_80800288_chfantasysafeswitch[];
 
     return (OSThread *) D_80800288_chfantasysafeswitch;
 }
+/* data_to_c.py: from asm/data/overlays/ch/fantasy/safeswitch.data.s */
+extern u8 D_80800260_chfantasysafeswitch[];
+void func_80105834(Actor*);
+void func_801018A4();
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u8 D_80800260_chfantasysafeswitch[40] BT_DATA(4, overlays_ch_fantasy_safeswitch, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0xD4, 0x00, 0x44, 0x3F, 0x80, 0x00, 0x00, 0x00, 0xD4, 0x00, 0x02, 0x3F, 0x80, 0x00, 0x00, 0x00, 0xD4, 0x00, 0x84, 0x3F, 0x80, 0x00, 0x00, 0x00, 0xD4, 0x00, 0x84 };
+ActorData D_80800288_chfantasysafeswitch [1] BT_DATA(4, overlays_ch_fantasy_safeswitch, 0x28) = { { 289, 1048, 2267, 1, (void *)D_80800260_chfantasysafeswitch, (void (*)(struct Actor *))func_8080002C_chfantasysafeswitch, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chfantasysafeswitch, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9216, (void (*)(struct Actor *, long, long))func_80800070_chfantasysafeswitch, 0 } };

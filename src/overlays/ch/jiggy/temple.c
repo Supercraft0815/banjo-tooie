@@ -2,26 +2,26 @@
 
 OSThread *chjiggytemple_entrypoint_0(void)
 {
-    extern u8 D_808008C8_chjiggytemple[];
+    extern ActorData D_808008C8_chjiggytemple[];
 
     return (OSThread *) D_808008C8_chjiggytemple;
 }
 
 void func_8080000C_chjiggytemple(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
-    extern s32 D_80800910_chjiggytemple;
-    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80800910_chjiggytemple);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+    extern s32 D_80800910_chjiggytemple[7];
+    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, D_80800910_chjiggytemple);
 }
 
 /* extern */
 
 void func_80800034_chjiggytemple(s32 arg0) {
     s32 _sujiggy_entrypoint_0();
-    s32 _sujiggy_entrypoint_2(s32);
+    u8 _sujiggy_entrypoint_2(s32 arg0);
     s32 func_800D035C(s32);
     s32 func_800D2498(u32, s32, u32);
     int func_800DB9B0(void);
-    void func_8010C908(s32, s32);
+    void func_8010C908(BtIntPtr, BtIntPtr);
     func_8010C908(arg0, arg0 + 4);
     func_8080000C_chjiggytemple(arg0);
     if (func_800DB9B0() == 0) {
@@ -34,17 +34,17 @@ void func_808000A8_chjiggytemple(s32 arg0)
 {
 }
 s32 func_808000B0_chjiggytemple(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     void _gcdialogcamera_entrypoint_3(f32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _sujiggy_entrypoint_16();
     s32 _sujiggy_entrypoint_17();
     void func_800C01A8(s16, s32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
-    s32 func_80101180(s32, s32, s32);
+    void func_800DA544(s32 index);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     f32 func_80103EAC(Actor *);
     s32 dialog;
@@ -117,27 +117,27 @@ s32 func_808000B0_chjiggytemple(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chjiggytemple_entrypoint_1(void)
 {
-    extern u8 D_8080092C_chjiggytemple[];
+    extern ActorData D_8080092C_chjiggytemple[];
 
     return (OSThread *) D_8080092C_chjiggytemple;
 }
 
 /* extern */
 
-void func_80800320_chjiggytemple(s32 arg0) {
-    s32 _chdoormake_entrypoint_3(s32, f32, f32, f32, s32, s32);
-    s32 _chdoormake_entrypoint_5(s32, f32);
-    s32 _chdoormake_entrypoint_6(s32, f32);
-    s32 _chdoormake_entrypoint_7(s32, f32);
-    s32 _chdoormake_entrypoint_8(s32, s32);
-    s32 _chdoormake_entrypoint_9(s32, s32, s32, s32);
-    s32 _glcutDll_entrypoint_18();
+void func_80800320_chjiggytemple(BtIntPtr arg0) {
+    s32 _chdoormake_entrypoint_3(BtIntPtr, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *arg0, f32 arg1);
+    void _chdoormake_entrypoint_6(Actor *arg0, f32 arg1);
+    void _chdoormake_entrypoint_7(Actor *arg0, f32 arg1);
+    void _chdoormake_entrypoint_8(Actor *arg0, u32 arg1);
+    void _chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3);
+    s16 _glcutDll_entrypoint_18(void);
     s32 _sujiggy_entrypoint_17();
     s32 func_800DA298(s32);
     s32 func_800EA090();
-    s32 func_8010108C(s32, s32, s32);
+    s32 func_8010108C(BtIntPtr, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
-    f32 func_80103EF4(s32);
+    f32 func_80103EF4(BtIntPtr);
     s32 sp2C;
     s32 sp28;
 
@@ -160,7 +160,7 @@ void func_80800320_chjiggytemple(s32 arg0) {
 }
 
 void func_80800438_chjiggytemple(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     if (arg1 == 7) {
         _chdoor_entrypoint_1(arg0, arg1, arg2);
         return;
@@ -170,34 +170,34 @@ void func_80800438_chjiggytemple(s32 arg0, s32 arg1, s32 arg2) {
 
 OSThread *chjiggytemple_entrypoint_2(void)
 {
-    extern u8 D_80800974_chjiggytemple[];
+    extern ActorData D_80800974_chjiggytemple[];
 
     return (OSThread *) D_80800974_chjiggytemple;
 }
 
 void func_8080047C_chjiggytemple(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
-    extern u32 D_808009BC_chjiggytemple;
-    extern s32 D_808009D0_chjiggytemple;
+    u8 _subaddieaudioloop_entrypoint_7(u8 arg0, f32 *arg1, u32 arg2, u32 *arg3, s32 arg4);
+    extern u32 D_808009BC_chjiggytemple[5];
+    extern s32 D_808009D0_chjiggytemple[4];
     f32 *sp24[2];
     f32 *position;
-    sp24[1] = (f32 *)((u8 *)arg0 + 4);
-    _subaddieaudioloop_entrypoint_4(arg0, sp24[1], 1U, &D_808009BC_chjiggytemple);
+    sp24[1] = &arg0->position[0];
+    _subaddieaudioloop_entrypoint_4(arg0, sp24[1], 1U, D_808009BC_chjiggytemple);
     position = sp24[1];
-    (*(u8 *)((s8 *)(arg0) + (0x24))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(arg0) + (0x24))), position, 1, &D_808009D0_chjiggytemple, 0);
+    (*(u8 *)((s8 *)(arg0) + (0x24))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(arg0) + (0x24))), position, 1, D_808009D0_chjiggytemple, 0);
 }
 
 void func_808004D8_chjiggytemple(Actor *arg0) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     s32 _glcutDll_entrypoint_19(u32);
     s32 _sujiggy_entrypoint_0(void);
     void _sujiggy_entrypoint_15(s32, s32);
     void func_80018820(s32, f32, f32);
-    s32 func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32);
     void func_800B5534(s8 *);
-    void func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800D8FF8(void);
     void func_800E13F0(s32, f32);
     s32 func_800E15CC(s32, f32, f32);
@@ -253,7 +253,7 @@ void func_808004D8_chjiggytemple(Actor *arg0) {
 void func_80800688_chjiggytemple(Actor *arg0, void *arg1) {
     void _sufade_entrypoint_0(s32, void *);
     void func_800E3980(f32 *);
-    void func_800E3A58(s32);
+    void func_800E3A58(BtIntPtr);
     f32 func_800F1DCC(f32, f32);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     void func_80101870(Actor *, void *);
@@ -266,49 +266,49 @@ void func_80800688_chjiggytemple(Actor *arg0, void *arg1) {
     f32 difference;
 
     func_800E3A58(rotation);
-    *(f32 *)((u8 *)arg0 + 0x48) = rotation[1];
+    arg0->rotation[1] = rotation[1];
     func_80101870(arg0, arg1);
     fade = *(f32 *)((u8 *)arg0 + 0x1C);
     if (fade > 0.0f) {
         _sufade_entrypoint_0((s32)(fade * 255.0f), D_80800A50_chjiggytemple);
     }
     func_800E3980(position);
-    if (func_800F1E6C((f32 *)((u8 *)arg0 + 4), position, &yaw)) {
+    if (func_800F1E6C(&arg0->position[0], position, &yaw)) {
         difference = mlAbsF(func_800F1DCC(yaw, rotation[1])) / 25.0f;
         if (difference < 1.0f) {
             _sufade_entrypoint_0((s32)((1.0f - difference) * 100.0f), D_80800A50_chjiggytemple);
         }
     }
-}
+}                typedef struct { u8 pad0[0x24]; u8 unk24; u8 pad25[0x7]; void * unk2C; s32 unk30; } Objtemple_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800784_chjiggytemple(void *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
     void func_800B5450(void *);
-    s32 func_800E1720(s32);
+    BtIntPtr func_800E1720(s32);
     void *temp_a2;
     s32 temp_v0;
     u8 temp_a0;
 
-    temp_a2 = (*(void **)((s8 *)(arg0) + (0x2C)));
+    temp_a2 = (((Objtemple_arg0 *)arg0)->unk2C);
     if (temp_a2 != NULL) {
         func_800B5450(temp_a2);
-        (*(void **)((s8 *)(arg0) + (0x2C))) = NULL;
+        (((Objtemple_arg0 *)arg0)->unk2C) = NULL;
     }
-    temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x30)));
+    temp_v0 = (((Objtemple_arg0 *)arg0)->unk30);
     if (temp_v0 != 0) {
         func_800E1720(temp_v0 - 1);
-        (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
+        (((Objtemple_arg0 *)arg0)->unk30) = 0;
     }
-    temp_a0 = (*(u8 *)((s8 *)(arg0) + (0x24)));
+    temp_a0 = (((Objtemple_arg0 *)arg0)->unk24);
     if (temp_a0 != 0) {
-        (*(u8 *)((s8 *)(arg0) + (0x24))) = _subaddieaudioloop_entrypoint_3(temp_a0);
+        (((Objtemple_arg0 *)arg0)->unk24) = _subaddieaudioloop_entrypoint_3(temp_a0);
     }
 }
 
 s32 func_808007F4_chjiggytemple(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(u32);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
@@ -330,3 +330,20 @@ s32 func_808007F4_chjiggytemple(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/jiggy/temple.data.s */
+extern u8 D_808008B0_chjiggytemple[];
+void func_80102EC0();
+void func_80101870 ( Actor * , void * );
+void func_80107C2C();
+void _chdoor_entrypoint_0();
+u8 D_808008B0_chjiggytemple[24] BT_DATA(4, overlays_ch_jiggy_temple, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x86, 0x51, 0xEC, 0x04, 0xC9, 0x00, 0x00, 0x41, 0x86, 0x51, 0xEC, 0x04, 0xC9, 0x00, 0x00 };
+ActorData D_808008C8_chjiggytemple [1] BT_DATA(4, overlays_ch_jiggy_temple, 0x18) = { { 344, 486, 2359, 1, (void *)D_808008B0_chjiggytemple, (void (*)(struct Actor *))func_80800034_chjiggytemple, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 65536000, 0, 0, 0, 0, 296, (void (*)(struct Actor *))func_808000A8_chjiggytemple, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_808000B0_chjiggytemple, 0 } };
+s32 D_80800910_chjiggytemple[7] BT_DATA(4, overlays_ch_jiggy_temple, 0x60) = { 65863980, 352654598, -1, 0, 9961472, 525864, 0 };
+ActorData D_8080092C_chjiggytemple [1] BT_DATA(4, overlays_ch_jiggy_temple, 0x7C) = { { 172, 487, 2408, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800320_chjiggytemple, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80800438_chjiggytemple, 0 } };
+ActorData D_80800974_chjiggytemple [1] BT_DATA(4, overlays_ch_jiggy_temple, 0xC4) = { { 344, 1202, 2075, 1, 0, (void (*)(struct Actor *))func_808004D8_chjiggytemple, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80800688_chjiggytemple, 20000, 0, 0, 0, 2, 1024, (void (*)(struct Actor *))func_80800784_chjiggytemple, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_808007F4_chjiggytemple, 0 } };
+u32 D_808009BC_chjiggytemple[5] BT_DATA(4, overlays_ch_jiggy_temple, 0x10C) = { 0x130673, 0x200002, 0x1632C8, 0xA00D9, 0 };
+s32 D_808009D0_chjiggytemple[4] BT_DATA(4, overlays_ch_jiggy_temple, 0x120) = { 1246377, 1465792, 655616, 0 };
+s32 D_808009E0_chjiggytemple [17] BT_DATA(4, overlays_ch_jiggy_temple, 0x130) = { 1903077, 1834808, -19660755, 45876400, 721026, 12451890, 22, 33685540, 3342425, 1376256, 4980766, 6553700, 2752512, 1638528, 12582916, 4980743, 131072 };
+f32 D_80800A24_chjiggytemple [3] BT_DATA(4, overlays_ch_jiggy_temple, 0x174) = { 0.0f, -330.0f, 0.0f };
+u8 D_80800A30_chjiggytemple [32] BT_DATA(4, overlays_ch_jiggy_temple, 0x180) = { 0, 0, 0, 0, 0, 0, 0, 0, 0x3E, 0x4C, 0xCC, 0xCD, 0, 0, 0, 0, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0 };
+u8 D_80800A50_chjiggytemple [16] BT_DATA(4, overlays_ch_jiggy_temple, 0x1A0) = { 0, 0, 0, 0xFF, 0, 0, 0, 0xFF, 0, 0, 0, 0xFF, 0, 0, 0, 0 };

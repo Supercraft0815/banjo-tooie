@@ -76,7 +76,7 @@ int func_8008D370(PlayerState *player) {
 
 int func_8008D3B0(PlayerState *player) {
     int func_800C6E38(s32);
-    s32 func_800F64A4(s32, s32);
+    s32 func_800F64A4(BtIntPtr, s32);
     return baflag_isTrue(player, 1) && func_800C6E38(9) && func_800F64A4(player->unk184, 0x401);
 }
 
@@ -87,11 +87,11 @@ s32 func_8008D40C(PlayerState *arg0) {
     s32 func_8008E0C8(PlayerState *);
     void func_8009C128(PlayerState *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    int func_800F6774(u32);
-    s32 func_800F6C5C(s32);
-    s32 func_800F8B88(void);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    int func_800F6774(BtUIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
+    u8 func_800F8B88(void);
     s32 func_800F99E8(void);
     f32 sp34[3];
     s32 sp30;
@@ -166,8 +166,8 @@ int func_8008D790(PlayerState *player) {
     s32 _baduo_entrypoint_4(void);
     s32 func_800C954C(void);
     int func_800DB9B0(void);
-    s32 func_800F6D24(s32);
-    int func_800F8004(s32);
+    s32 func_800F6D24(BtIntPtr);
+    int func_800F8004(BtIntPtr);
     return _baduo_entrypoint_4()
         && !func_8008E39C(player)
         && player_isStable(player)
@@ -243,8 +243,8 @@ int func_8008DA24(PlayerState *player) {
 /* extern */
 
 s32 func_8008DAA8(void *arg0) {
-    s32 func_800F65D0(s32);
-    return func_800F65D0((*(s32 *)((s8 *)(arg0) + (0x184))));
+    s32 func_800F65D0(BtIntPtr);
+    return func_800F65D0((((PlayerState *)arg0)->unk184));
 }
 
 /* extern */
@@ -306,7 +306,7 @@ s32 func_8008DD70(PlayerState *arg0) {
 }
 
 s32 func_8008DD90(PlayerState *arg0) {
-    s32 _badrone_entrypoint_1(PlayerState *);
+    u8 _badrone_entrypoint_1(PlayerState *self);
     s32 func_8009E674(PlayerState *, s32);
 
     if (func_8009E674(arg0, 0x10) != 0) {
@@ -328,7 +328,7 @@ s32 func_8008DDEC(PlayerState *player, f32 position[3], f32 radius) {
 
 s32 func_8008DE24(PlayerState* arg0)
 {
-    func_80096568(arg0,0xE00);
+    BT_NATIVE_ONLY(s32 func_80096568(PlayerState *, s32); return) func_80096568(arg0,0xE00);
 }
 
 s32 func_8008DE44(u8 arg0)
@@ -338,17 +338,17 @@ s32 func_8008DE44(u8 arg0)
 
 /* extern */
 
-s32 func_8008DE50(void) {
-    s32 func_80096694();
-    return func_80096694() == 3;
+s32 func_8008DE50(BT_PARAM_OR_VOID(s32 bt_a0)) {
+    s32 func_80096694(BT_NATIVE_ONLY(s32 bt_a0));
+    return func_80096694(BT_NATIVE_ONLY(bt_a0)) == 3;
 }
 
 /* extern */
 
-void func_8008DE74(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008DE74(BtIntPtr arg0) {
     s32 bs_getCurrentState();
-    s32 func_8009CA70(s32, s32, s32);
-    func_8009CA70(arg0, bs_getCurrentState(), 0x4000);
+    s32 func_8009CA70(PlayerState *arg0, s32 arg1, s32 arg2);
+    BT_NATIVE_ONLY(return) func_8009CA70(arg0, bs_getCurrentState(), 0x4000);
 }
 
 int func_8008DEA4(PlayerState *player, f32 position[3], f32 range) {
@@ -412,9 +412,9 @@ int func_8008E148(PlayerState *player) {
 
 /* extern */
 
-s32 func_8008E1A0(void) {
-    s32 func_80096694();
-    return func_80096694() == 24;
+s32 func_8008E1A0(BT_PARAM_OR_VOID(s32 bt_a0)) {
+    s32 func_80096694(BT_NATIVE_ONLY(s32 bt_a0));
+    return func_80096694(BT_NATIVE_ONLY(bt_a0)) == 24;
 }
 
 int func_8008E1C4(PlayerState *player) {
@@ -430,7 +430,7 @@ int func_8008E1C4(PlayerState *player) {
 /* extern */
 
 s32 func_8008E23C(PlayerState *arg0) {
-    s32 func_800F8B88();
+    u8 func_800F8B88(void);
     return func_800F8B88() == 2;
 }
 
@@ -480,9 +480,9 @@ s32 player_inWater(PlayerState *player)
     return func_800A0FD8(player);
 }
 
-void func_8008E37C()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008E37C(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    func_800A0FE4();
+    BT_NATIVE_ONLY(return) func_800A0FE4(BT_NATIVE_ONLY(bt_a0));
 }
 
 int func_8008E39C(PlayerState *arg0) {

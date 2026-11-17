@@ -2,32 +2,32 @@
 
 OSThread *chonearmbandit_entrypoint_0(void)
 {
-    extern u8 D_808012BC_chonearmbandit[];
+    extern ActorData D_808012BC_chonearmbandit[];
 
     return (OSThread *) D_808012BC_chonearmbandit;
 }
 
 OSThread *chonearmbandit_entrypoint_1(void)
 {
-    extern u8 D_80801304_chonearmbandit[];
+    extern ActorData D_80801304_chonearmbandit[];
 
     return (OSThread *) D_80801304_chonearmbandit;
-}
+}                typedef struct { BtIntPtr unk0; u8 pad4[0x20]; f32 unk24; u8 pad28[0x10]; f32 unk38; u8 pad3C[0x14]; f32 unk50; f32 unk54; } Objonearmbandit_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800018_chonearmbandit(void *arg0) {
     s32 func_80800040_chonearmbandit();
-    (*(f32 *)((s8 *)(arg0) + (0x24))) = 400.0f;
+    (((Objonearmbandit_arg0 *)arg0)->unk24) = 400.0f;
     func_80800040_chonearmbandit();
 }
 
 s32 func_80800040_chonearmbandit(Actor *arg0) {
     void _subaddierouteDll_entrypoint_1(Actor*);
-    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void* func_80100094(Actor*, u32);
-    _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 1U), arg0->position);
-    _subaddierouteDll_entrypoint_1(arg0);
+    BT_NATIVE_ONLY(void *native_result = func_80100094(arg0, 1U);) _subaddierouteDll_entrypoint_3(arg0, BT_IDO_ONLY(func_80100094(arg0, 1U)) BT_NATIVE_ONLY(native_result), arg0->position);
+    _subaddierouteDll_entrypoint_1(arg0); BT_NATIVE_ONLY(return (s32)(BtIntPtr)native_result;)
 }
 
 void func_8080007C_chonearmbandit(u8 *arg0) {
@@ -158,7 +158,7 @@ void func_8080007C_chonearmbandit(u8 *arg0) {
 }
 
 s32 func_80800520_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
-    s32 _chexploder_entrypoint_4(void *, s32, s32);
+    void _chexploder_entrypoint_4(Actor *arg0, s16 *arg1, s32 arg2);
     s32 _subaddieDll_entrypoint_3(Actor *);
     void _subaddierouteDll_entrypoint_1(Actor *);
     void func_80101074(void *);
@@ -167,7 +167,7 @@ s32 func_80800520_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void func_808006F8_chonearmbandit(u8 *, s32);
     void func_80800AB8_chonearmbandit(Actor *);
     void func_80800D00_chonearmbandit(Actor *);
-    extern s32 D_80801280_chonearmbandit;
+    extern s32 D_80801280_chonearmbandit[15];
     switch (arg1) {
         case 0x3F:
             func_808006F8_chonearmbandit((u8 *)arg0, arg2);
@@ -192,7 +192,7 @@ s32 func_80800520_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
             _subaddierouteDll_entrypoint_1(arg0);
             break;
         case 0x38:
-            func_80101074(&D_80801280_chonearmbandit);
+            func_80101074(D_80801280_chonearmbandit);
             return 5;
         default:
             return 0;
@@ -202,9 +202,9 @@ s32 func_80800520_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
 
 /* extern */
 
-void func_8080063C_chonearmbandit(s32 arg0, s32 arg1) {
-    s32 func_800DF744(s32, s32);
-    s32 func_80101870(s32, s32);
+void func_8080063C_chonearmbandit(BtIntPtr arg0, BtIntPtr arg1) {
+    void func_800DF744(s32 index,s32 value);
+    void func_80101870(Actor* arg0, void* arg1);
     func_800DF744(3, 1);
     func_800DF744(4, 0);
     func_80101870(arg0, arg1);
@@ -218,10 +218,10 @@ void func_80800680_chonearmbandit(u8 *arg0, s32 arg1) {
     };
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80102424(Actor *, s32);
-    extern s32 D_80801354_chonearmbandit;
+    extern s32 D_80801354_chonearmbandit[4];
     func_80102424((Actor *)arg0, arg1);
     if (arg1 == 5) {
-        _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), &D_80801354_chonearmbandit);
+        _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), D_80801354_chonearmbandit);
         if (((struct InteractionFlags *)(arg0 + 0x64))->interacting) {
             ((Actor *)arg0)->unk58 = 0.36f;
             return;
@@ -254,12 +254,12 @@ void func_80800740_chonearmbandit(u8 *arg0, f32 arg1) {
     f32 func_800F1DCC(f32, f32);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     f32 func_80101F24(Actor *);
     void func_80102BF8(void *, f32, f32, f32);
     f32 func_80102D78(Actor *, f32 *);
-    void func_8010D09C(s32, f32 *, f32);
+    void func_8010D09C(BtIntPtr, f32 *, f32);
     extern u8 D_808011FC_chonearmbandit[];
     f32 position[3];
     f32 pad;
@@ -328,9 +328,9 @@ void func_80800A14_chonearmbandit(u8 *arg0, f32 arg1) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     void _subaddiejoy_entrypoint_10(void *, f32, f32);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern u32 D_808011F0_chonearmbandit[];
-    extern s32 D_80801364_chonearmbandit;
+    extern s32 D_80801364_chonearmbandit[14];
     f32 position[3];
     f32 height;
 
@@ -340,7 +340,7 @@ void func_80800A14_chonearmbandit(u8 *arg0, f32 arg1) {
             if (height < position[1]) {
                 position[1] = height;
             }
-            func_800BBCB8(position, position, 0.7f, 6, &D_80801364_chonearmbandit);
+            func_800BBCB8(position, position, 0.7f, 6, D_80801364_chonearmbandit);
         }
         _subaddiejoy_entrypoint_10(arg0, 1.4f, 0.3f);
     }
@@ -354,11 +354,11 @@ void func_80800AB8_chonearmbandit(Actor *arg0) {
     f32 func_800F1DCC(f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     int func_800F20BC(f32, f32, f32);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void func_80102FDC(Actor *, f32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80108944(Actor *, Actor *);
-    void func_8010D09C(s32, f32 *, f32);
+    void func_8010D09C(BtIntPtr, f32 *, f32);
     f32 target[3];
     f32 position[3];
     Actor *spawned;
@@ -402,15 +402,15 @@ void func_80800AB8_chonearmbandit(Actor *arg0) {
 
 void func_800FFAB0(Actor *);
 void func_80800D00_chonearmbandit(Actor *arg0) {
-    extern void _chbaddiesetup_entrypoint_10(void);
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    extern Actor *_chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     void _chexploder_entrypoint_6(Actor *, f32, f32);
-    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
     void _subaddiefade_entrypoint_9(Actor *, s32 *);
     void _subaddiejoy_entrypoint_10(void *, f32, f32);
-    s32 func_800D1000(s32, s32, f32 *, s32, s32);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     f32 func_800DC178(f32, f32);
     int func_800DC298(f32);
     void *func_80101080(void);
@@ -509,7 +509,7 @@ void func_80800F80_chonearmbandit(Actor *arg0) {
 }
 
 void func_808010AC_chonearmbandit(Actor *, s32);
-s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
 
 s32 func_80801008_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
     if (arg1 == 0x40) {
@@ -522,24 +522,24 @@ s32 func_80801008_chonearmbandit(Actor *arg0, s32 arg1, volatile s32 arg2) {
 /* extern */
 
 void func_80801040_chonearmbandit(u8 *arg0, s32 arg1) {
-    void* func_800DE448(f32* position, f32* arg1, f32 scale, f32* arg3, s32 arg4);
-    void func_800DF47C(s32 arg0, s32 arg1);
+    void* func_800DE448(f32* position, f32* arg1, f32 scale, f32* arg3, BtIntPtr arg4);
+    void func_800DF47C(s32 arg0, BtIntPtr arg1);
     void func_800EFA4C(f32[3], f32, f32, f32);
     s32 func_801015D0(Actor*);
-    s32 func_8010347C(s32);
+    BtIntPtr func_8010347C(Unk80132ED0 *marker);
     f32 sp2C[3];
 
-    func_800EFA4C(sp2C, (*(f32 *)((s8 *)(arg0) + (0x50))), (*(f32 *)((s8 *)(arg0) + (0x54))), 0.0f);
-    func_800DF47C((s32) func_801015D0, (s32) arg0);
-    func_800DE448(arg0 + 4, sp2C, (*(f32 *)((s8 *)(arg0) + (0x38))), NULL, func_8010347C((*(s32 *)((s8 *)(arg0) + (0)))));
+    func_800EFA4C(sp2C, (((Objonearmbandit_arg0 *)arg0)->unk50), (((Objonearmbandit_arg0 *)arg0)->unk54), 0.0f);
+    func_800DF47C((BtIntPtr) func_801015D0, (BtIntPtr) arg0);
+    func_800DE448(arg0 + 4, sp2C, (((Objonearmbandit_arg0 *)arg0)->unk38), NULL, func_8010347C((((Objonearmbandit_arg0 *)arg0)->unk0)));
 }
 
-void func_808010AC_chonearmbandit(Actor *arg0, s32 arg1) { void func_800C4AF0(f32 *, void *); extern s32 D_808013A4_chonearmbandit; extern s32 D_808013DC_chonearmbandit; (void)&arg0; func_800BBCB8(arg0->position, arg0->position, arg0->scale, 6, &D_808013A4_chonearmbandit);
-    func_800C4AF0(arg0->position, &D_808013DC_chonearmbandit); func_8010A570(arg0); func_800FFAB0(arg0); }
+void func_808010AC_chonearmbandit(Actor *arg0, s32 arg1) { void func_800C4AF0(f32 *, void *); extern s32 D_808013A4_chonearmbandit[14]; extern s32 D_808013DC_chonearmbandit[3]; (void)&arg0; func_800BBCB8(arg0->position, arg0->position, arg0->scale, 6, D_808013A4_chonearmbandit);
+    func_800C4AF0(arg0->position, D_808013DC_chonearmbandit); func_8010A570(arg0); func_800FFAB0(arg0); }
 
 void func_80801114_chonearmbandit(Actor *arg0) {
-    extern s32 D_808013E8_chonearmbandit;
-    func_800BBCB8(arg0->position, 0, arg0->scale, 1, &D_808013E8_chonearmbandit);
+    extern s32 D_808013E8_chonearmbandit[14];
+    func_800BBCB8(arg0->position, 0, arg0->scale, 1, D_808013E8_chonearmbandit);
 }
 
 /* extern */
@@ -561,3 +561,23 @@ s32 func_80801154_chonearmbandit(Actor *arg0) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/onearmbandit.data.s */
+extern u8 D_80801228_chonearmbandit[];
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+extern u8 D_80801214_chonearmbandit[];
+u32 D_808011F0_chonearmbandit [3] BT_DATA(4, overlays_ch_onearmbandit, 0x0) = { 0x130417, 0x163A98, 0 };
+u8 D_808011FC_chonearmbandit [24] BT_DATA(4, overlays_ch_onearmbandit, 0xC) = { 0, 0, 0, 0, 0, 0, 0, 0, 0x3F, 0, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0, 0, 0, 0, 0 };
+u8 D_80801214_chonearmbandit[20] BT_DATA(4, overlays_ch_onearmbandit, 0x24) = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00 };
+u8 D_80801228_chonearmbandit[88] BT_DATA(4, overlays_ch_onearmbandit, 0x38) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x01, 0x80, 0x00, 0x44, 0x3F, 0x4C, 0xCC, 0xCD, 0x01, 0x80, 0x00, 0x01, 0x3F, 0x19, 0x99, 0x9A, 0x01, 0x82, 0x00, 0x01, 0x3F, 0x4C, 0xCC, 0xCD, 0x01, 0x80, 0x00, 0x01, 0x3F, 0x66, 0x66, 0x66, 0x01, 0x81, 0x00, 0x02, 0x3F, 0x4C, 0xCC, 0xCD, 0x01, 0x80, 0x00, 0x01, 0x3F, 0xA0, 0x00, 0x00, 0x01, 0x7F, 0x00, 0x02, 0x3F, 0x4C, 0xCC, 0xCD, 0x01, 0x80, 0x00, 0x44, 0x3F, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x3F, 0x4C, 0xCC, 0xCD, 0x01, 0x80, 0x00, 0x44 };
+s32 D_80801280_chonearmbandit[15] BT_DATA(4, overlays_ch_onearmbandit, 0x90) = { 3, 1082130432, 16580608, 42, 1077936128, 16580608, 18, 1073741824, 16711680, 67, 1069547520, 37879808, 66, 1071644672, 37945344 };
+ActorData D_808012BC_chonearmbandit [1] BT_DATA(4, overlays_ch_onearmbandit, 0xCC) = { { 406, 324, 1737, 1, (void *)D_80801228_chonearmbandit, (void (*)(struct Actor *))func_8080007C_chonearmbandit, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080063C_chonearmbandit, 163840000, 1073741824, 0, 0, 17157, 609, 0, (BtIntPtr)func_80108ED0, 0, 12, (void (*)(struct Actor *))func_80800018_chonearmbandit, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32718, 20509, (void (*)(struct Actor *, long, long))func_80800520_chonearmbandit, (BtIntPtr)D_80801214_chonearmbandit } };
+ActorData D_80801304_chonearmbandit [1] BT_DATA(4, overlays_ch_onearmbandit, 0x114) = { { 750, 859, 1738, 1, 0, (void (*)(struct Actor *))func_80800EBC_chonearmbandit, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80801040_chonearmbandit, 0, 1065353216, 0, 0, 0, 0, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800F80_chonearmbandit, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1040, (void (*)(struct Actor *, long, long))func_80801008_chonearmbandit, 0 } };
+u32 D_8080134C_chonearmbandit [2] BT_DATA(4, overlays_ch_onearmbandit, 0x15C) = { 0x13052D, 0x180000 };
+s32 D_80801354_chonearmbandit[4] BT_DATA(4, overlays_ch_onearmbandit, 0x164) = { 1246511, 852236, 19267608, 0 };
+s32 D_80801364_chonearmbandit[14] BT_DATA(4, overlays_ch_onearmbandit, 0x174) = { 1903069, 2146496, -1065353194, 524322, 10027212, 16777523, 1376307, 10027051, 11731174, 720906, 1310725, 131117, 19661200, 0 };
+u8 D_8080139C_chonearmbandit [8] BT_DATA(4, overlays_ch_onearmbandit, 0x1AC) = { 0, 0x13, 4, 0x13, 0, 0, 0, 0 };
+s32 D_808013A4_chonearmbandit[14] BT_DATA(4, overlays_ch_onearmbandit, 0x1B4) = { 1902428, 1376307, 10027047, 6553800, 6553800, 2818252, 16777238, 335544347, -26149164, 2949420, 26214430, 327685, 851978, 0 };
+s32 D_808013DC_chonearmbandit[3] BT_DATA(4, overlays_ch_onearmbandit, 0x1EC) = { 1246508, 852211, 17563648 };
+s32 D_808013E8_chonearmbandit[14] BT_DATA(4, overlays_ch_onearmbandit, 0x1F8) = { 1903078, 1376307, 10027047, 6553800, 6553800, 2818124, 6684694, 268435492, 4980838, 786442, 0, 0, 0, 0 };

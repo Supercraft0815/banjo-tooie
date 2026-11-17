@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_actor_animation.h"
 #include "freelist.h"
 FreeList *D_80136E70;
@@ -96,7 +96,7 @@ s32 func_801042D8(void *arg0) {
         func_8008B5E8(temp_v0);
         freelist_erase(D_80136E70, (*(s16 *)((s8 *)(arg0) + 0)));
         (*(s16 *)((s8 *)(arg0) + 0)) = 0;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */

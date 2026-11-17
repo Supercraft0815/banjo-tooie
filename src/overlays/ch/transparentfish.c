@@ -42,12 +42,12 @@ s32 D_80801050_chtransparentfish[] = {
     0x00000033, 0x00000000
 };
 
-u32 D_80801098_chtransparentfish[] = {
-    0x012D0295, 0x06D90001, (u32)D_80800F94_chtransparentfish, (u32)func_80800348_chtransparentfish,
-    (u32)func_80105834, (u32)func_80800690_chtransparentfish, 0x13880000, 0x00000000,
-    0x00000000, 0x00220123, (u32)func_80800B30_chtransparentfish, (u32)func_80108ED0,
-    0x00080000, (u32)func_808002B8_chtransparentfish, (u32)func_80107C2C, 0x8040500F,
-    (u32)func_8080078C_chtransparentfish, (u32)D_80800F80_chtransparentfish
+BtFnWord D_80801098_chtransparentfish[] = {
+    0x012D0295, 0x06D90001, (BtFnWord)D_80800F94_chtransparentfish, (BtFnWord)func_80800348_chtransparentfish,
+    (BtFnWord)func_80105834, (BtFnWord)func_80800690_chtransparentfish, 0x13880000, 0x00000000,
+    0x00000000, 0x00220123, (BtFnWord)func_80800B30_chtransparentfish, (BtFnWord)func_80108ED0,
+    0x00080000, (BtFnWord)func_808002B8_chtransparentfish, (BtFnWord)func_80107C2C, 0x8040500F,
+    (BtFnWord)func_8080078C_chtransparentfish, (BtFnWord)D_80800F80_chtransparentfish
 };
 
 void func_80800000_chtransparentfish(Actor *arg0) {
@@ -150,20 +150,20 @@ void func_808002B8_chtransparentfish(Actor *arg0) {
 
 void func_80800348_chtransparentfish(Actor *actor)
 {
-    void _subaddiesect_entrypoint_0(Actor *, s32, s32);
+    s32 _subaddiesect_entrypoint_0(Actor *arg0, s32 arg1, s32 arg2);
     void func_80800AC4_chtransparentfish(Actor *, f32 *, s32);
-    s32 func_800F54E4(void);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    s32 func_800F690C(s32);
+    BtIntPtr func_800F54E4(void);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    s32 func_800F690C(BtIntPtr);
     f32 func_80103EAC(Actor *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     s32 _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
     s32 func_80101E14(Actor *, f32);
     s32 func_80102CCC(Actor *);
-    s32 func_800B53A4(s32);
-    s32 func_800BABB8(s32, u32 *, s32, f32, s32 *);
-    s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, u32 *, BtIntPtr, f32, s32 *);
+    void func_800BA994(void *emitter, s16 yaw_min, s16 pitch_min, s16 speed_min, s16 yaw_max, s16 pitch_max, s16 speed_max);
+    void func_800BA22C(BtIntPtr, s32);
     void func_80800204_chtransparentfish(Actor *);
     void func_80800000_chtransparentfish(Actor *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -183,7 +183,7 @@ void func_80800348_chtransparentfish(Actor *actor)
     f32 position[3];
     f32 height;
     f32 factor;
-    s32 emitter;
+    BtIntPtr emitter;
 
     _subaddiesect_entrypoint_0(actor, (s32)((f32 *)actor->actorData)[5], 11);
     func_80800AC4_chtransparentfish(actor, 0, actor->unk7C_12);
@@ -249,7 +249,7 @@ s32 func_8080078C_chtransparentfish(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     s32 _subaddielink_entrypoint_3(s32 *arg0);
     s32 func_800D0B68(u32 arg0, u32 arg1);
-    s32 func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, s32 arg4);
+    BtIntPtr func_800D10D4(u32 arg0, u32 arg1, f32 *arg2, s32 arg3, BtIntPtr arg4);
     void * func_80100094(Actor *arg0, u32 arg1);
     void func_80102424(Actor *arg0, s32 arg1);
     Actor * func_80106790(Unk80132ED0 *arg0);
@@ -284,7 +284,7 @@ s32 func_8080078C_chtransparentfish(Actor *arg0, s32 arg1, s32 arg2) {
         value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][0] : 0;
         if (value == 0x21F) {
             if (func_800D0B68(0x26, 1) == 0) {
-                spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0x26, 1, arg0->position, 3, (s32)arg0->unk0));
+                spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0x26, 1, arg0->position, 3, (BtIntPtr)arg0->unk0));
             }
             else {
                 return 0;
@@ -294,7 +294,7 @@ s32 func_8080078C_chtransparentfish(Actor *arg0, s32 arg1, s32 arg2) {
             value = (index != 0 && index < 13U) ? D_80800FB4_chtransparentfish[index][0] : 0;
             if (value == 0x136) {
                 if (func_800D0B68(0xB, 4) == 0) {
-                    spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0xB, 4, arg0->position, 3, (s32)arg0->unk0));
+                    spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0xB, 4, arg0->position, 3, (BtIntPtr)arg0->unk0));
                 }
                 else {
                     return 0;
@@ -305,7 +305,7 @@ s32 func_8080078C_chtransparentfish(Actor *arg0, s32 arg1, s32 arg2) {
                 position = arg0->position;
                 if (value == 0x220) {
                     if (func_800D0B68(0xA, 2) == 0) {
-                        spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0xA, 2, arg0->position, 3, (s32)arg0->unk0));
+                        spawned = func_80106790((Unk80132ED0 *)func_800D10D4(0xA, 2, arg0->position, 3, (BtIntPtr)arg0->unk0));
                     }
                     else {
                         return 0;
@@ -405,7 +405,7 @@ s32 func_80800B60_chtransparentfish(void) {
     Prop *props[20];
     s32 temp;
     s32 k;
-    s32 n;
+    s32 n; BT_NATIVE_ONLY(s32 result;)
 
     for (k = 0; k < 20; k++) {
         B_808010E0_chtransparentfish[k].id = 0;
@@ -437,14 +437,14 @@ s32 func_80800B60_chtransparentfish(void) {
     n = 0;
     seed = func_800DC090();
     func_800DC324(rnd);
-    while (!func_80800E10_chtransparentfish(count)) {
+    BT_IDO_ONLY(while (!func_80800E10_chtransparentfish(count))) BT_NATIVE_ONLY(while (!(result = func_80800E10_chtransparentfish(count)))) {
         k = func_800DC128(0, count);
         if (B_808010E0_chtransparentfish[k].assigned == -1) {
             B_808010E0_chtransparentfish[k].assigned = B_808010E0_chtransparentfish[n].value;
             n++;
         }
     }
-    func_800DC324(seed);
+    func_800DC324(seed); BT_NATIVE_ONLY(return result;)
 }
 
 s32 func_80800E10_chtransparentfish(s32 arg0) {
@@ -467,3 +467,9 @@ s32 func_80800EE0_chtransparentfish(s32 arg0) {
     }
     return 0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+FishEntry B_808010E0_chtransparentfish [ 20 ] BT_DATA(16, bss_ch_transparentfish, 0x0);
+#endif

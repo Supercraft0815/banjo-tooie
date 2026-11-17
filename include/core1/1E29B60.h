@@ -4,7 +4,7 @@
 #include "common.h"
 #include <ultra64.h>
 
-void func_8001209C(s32);
+void func_8001209C(BT_IDO_ONLY(s32));
 void func_80012128();
 void func_800121D0();
 void func_8001253C(s32);

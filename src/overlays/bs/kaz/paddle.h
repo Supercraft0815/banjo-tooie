@@ -31,11 +31,11 @@
 #include "core2/1ECB9F0.h"
 #include "player.h"
 
-extern s32 _bskazpaddle_entrypoint_0(s32 idx);
-extern s32 _bskazpaddle_entrypoint_1(s32 idx);
-extern s32 _bskazpaddle_entrypoint_2(s32 idx);
-extern s32 _bskazpaddle_entrypoint_3(s32 idx);
-extern s32 _bskazpaddle_entrypoint_4(s32 idx);
-extern s32 _bskazpaddle_entrypoint_5(s32 idx);
+extern BtIntPtr _bskazpaddle_entrypoint_0(s32 idx);
+extern BtIntPtr _bskazpaddle_entrypoint_1(s32 idx);
+extern BtIntPtr _bskazpaddle_entrypoint_2(s32 idx);
+extern BtIntPtr _bskazpaddle_entrypoint_3(s32 idx);
+extern BtIntPtr _bskazpaddle_entrypoint_4(s32 idx);
+extern BtIntPtr _bskazpaddle_entrypoint_5(s32 idx);
 
 #endif // __BS_KAZ_PADDLE_H__

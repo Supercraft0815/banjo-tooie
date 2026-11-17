@@ -89,9 +89,9 @@ s32 func_808001A8_bsbabykaz(struct player_state_s *arg0, s32 arg1) {
 
 void func_80800214_bsbabykaz(u8 *arg0) {
     s32 _bababykaz_entrypoint_9(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     void func_800F82C0(s32);
-    s32 func_800F9AFC();
+    void func_800F9AFC(void);
     void func_8009C128(u8 *, f32[3]);
     s32 func_801013A8(f32 *, s32, s32);
     f32 sp1C[3];
@@ -106,7 +106,7 @@ void func_80800214_bsbabykaz(u8 *arg0) {
 
 void bsbabykaz_entrypoint_1(struct player_state_s *arg0) {
     void _batimer_set(struct player_state_s *, s32, f32);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     void func_80099B94(struct player_state_s *);
     s32 func_8009E6EC(struct player_state_s *);
     void func_8009E830(struct player_state_s *, s32);
@@ -175,9 +175,9 @@ void func_808003F0_bsbabykaz(void *arg0) {
 
 /* extern */
 
-void func_80800438_bsbabykaz(s32 arg0) {
+void func_80800438_bsbabykaz(BtIntPtr arg0) {
     int baanim_isStopped(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     void bsbabykaz_entrypoint_5();
     int func_8008DD04(struct player_state_s *);
     s32 sp24;
@@ -283,12 +283,12 @@ void bsbabykaz_entrypoint_5(struct player_state_s *arg0) {
     _bababykaz_entrypoint_11(arg0);
 }
 
-void func_8080072C_bsbabykaz(s32 arg0)
+void func_8080072C_bsbabykaz(BtIntPtr arg0)
 {
     bsbabykaz_entrypoint_3(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
-void func_80800754_bsbabykaz(s32 arg0)
+void func_80800754_bsbabykaz(BtIntPtr arg0)
 {
     bsbabykaz_entrypoint_4(arg0);
     _bsdrone_entrypoint_0(arg0);
@@ -299,7 +299,7 @@ void func_8080077C_bsbabykaz(struct player_state_s *arg0) {
     s32 _bababykaz_entrypoint_3(struct player_state_s *);
     s32 _badrone_entrypoint_3(struct player_state_s *);
     void _bsdrone_entrypoint_1(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     void bsbabykaz_entrypoint_5();
     _bsdrone_entrypoint_1(arg0);
     bsbabykaz_entrypoint_5(arg0);
@@ -316,7 +316,7 @@ s32 bsbabykaz_entrypoint_6(s32 arg0) {
 void func_808007EC_bsbabykaz(struct player_state_s *arg0)
 {
     bsbabykaz_entrypoint_3(arg0);
-}
+}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objbabykaz_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080080C_bsbabykaz(void *arg0) {
     void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
@@ -324,7 +324,7 @@ void func_8080080C_bsbabykaz(void *arg0) {
     bsbabykaz_entrypoint_4(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xA9, 0.38f);
     func_8009FFD8(arg0, 1, 1, 3, 6);
-    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    ((Objbabykaz_arg0 *)arg0)->unk15C = 0;
 }
 
 void func_80800864_bsbabykaz(struct player_state_s *arg0) {
@@ -342,7 +342,7 @@ void func_80800864_bsbabykaz(struct player_state_s *arg0) {
     void anctrl_start(struct anctrl_s *);
     int func_8008DF8C(struct player_state_s *, s32);
     int player_isStable(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     s32 next_state;
     struct anctrl_s *anim_ctrl;
     f32 velocity[3];
@@ -390,7 +390,7 @@ s32 bsbabykaz_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80801750_bsbabykaz)[arg0];
 }
 
-void func_808009C4_bsbabykaz(s32 arg0)
+void func_808009C4_bsbabykaz(BtIntPtr arg0)
 {
     baphysics_reset_gravity();
     bsbabykaz_entrypoint_3(arg0);
@@ -451,7 +451,7 @@ void func_80800B54_bsbabykaz(struct player_state_s *arg0) {
     void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
     int baflag_isTrue(struct player_state_s *, s32);
     int bakey_released(struct player_state_s *, int);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     s32 func_8008D544(struct player_state_s *);
     int func_8008DF8C(struct player_state_s *, s32);
     void func_8009B7C0(struct player_state_s *);
@@ -512,22 +512,22 @@ s32 bsbabykaz_entrypoint_8(s32 arg0) {
     return ((s32 *)&D_80801760_bsbabykaz)[arg0];
 }
 
-void func_80800D18_bsbabykaz(s32 arg0)
+void func_80800D18_bsbabykaz(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     bsbabykaz_entrypoint_3(arg0);
 }
-void func_80800D40_bsbabykaz(s32 arg0)
+void func_80800D40_bsbabykaz(BtIntPtr arg0)
 {
     bsbabykaz_entrypoint_4(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
 
-void func_80800D68_bsbabykaz(s32 arg0) {
+void func_80800D68_bsbabykaz(BtIntPtr arg0) {
     s32 _bababykaz_entrypoint_3(struct player_state_s *);
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     void bsbabykaz_entrypoint_5();
     s32 sp1C;
 
@@ -549,9 +549,9 @@ s32 bsbabykaz_entrypoint_9(s32 arg0) {
 
 /* extern */
 
-void func_80800DD4_bsbabykaz(s32 arg0) {
-    void func_8009BF5C(s32, f32);
-    void baroll_setIdeal(s32, f32);
+void func_80800DD4_bsbabykaz(BtIntPtr arg0) {
+    void func_8009BF5C(BtIntPtr, f32);
+    void baroll_setIdeal(BtIntPtr, f32);
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     bsbabykaz_entrypoint_3(arg0);
@@ -577,13 +577,13 @@ void func_80800E0C_bsbabykaz(struct player_state_s *arg0) {
 }
 
 void func_80800EC8_bsbabykaz(struct player_state_s *arg0) {
-    s32 _badrone_entrypoint_25(s32);
+    s32 _badrone_entrypoint_25(BtIntPtr);
     int baanim_isAt(struct player_state_s *, f32);
     int bakey_pressed(struct player_state_s *, int);
     int bastick_getZone(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     int func_8008DD04(struct player_state_s *);
-    int func_8008E148(s32);
+    int func_8008E148(BtIntPtr);
     s32 func_8009BCD4(struct player_state_s *, f32);
     void func_8009D2F0(struct player_state_s *, s32, f32);
     void func_8009DBB0(struct player_state_s *, s32, f32, f32, s32);
@@ -622,14 +622,14 @@ s32 bsbabykaz_entrypoint_10(s32 arg0) {
     return ((s32 *)&D_80801780_bsbabykaz)[arg0];
 }
 
-void func_80801014_bsbabykaz(s32 arg0)
+void func_80801014_bsbabykaz(BtIntPtr arg0)
 {
     func_80090A2C();
     func_800951B4(arg0);
     bsbabykaz_entrypoint_3(arg0);
 }
 
-void func_80801044_bsbabykaz(s32 arg0) {
+void func_80801044_bsbabykaz(BtIntPtr arg0) {
     void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_8009FFD8(void *, s32, s32, s32, s32);
@@ -642,12 +642,12 @@ void func_80801044_bsbabykaz(s32 arg0) {
 
 /* extern */
 
-void func_808010AC_bsbabykaz(s32 arg0) {
-    s32 _badrone_entrypoint_25(s32);
-    s32 bs_setState(s32, s32);
+void func_808010AC_bsbabykaz(BtIntPtr arg0) {
+    s32 _badrone_entrypoint_25(BtIntPtr);
+    s32 bs_setState(BtIntPtr, s32);
     void bsbabykaz_entrypoint_5();
     int func_8008DD04(struct player_state_s *);
-    int func_8008E148(s32);
+    int func_8008E148(BtIntPtr);
     s32 func_808001A8_bsbabykaz(struct player_state_s *, s32);
     s32 sp24;
 
@@ -728,7 +728,7 @@ void func_808011EC_bsbabykaz(struct player_state_s *arg0) {
     }
 }
 
-void func_808012C4_bsbabykaz(s32 arg0)
+void func_808012C4_bsbabykaz(BtIntPtr arg0)
 {
     func_80091E6C();
     bsbabykaz_entrypoint_3(arg0);
@@ -764,10 +764,10 @@ void func_80801384_bsbabykaz(struct player_state_s *arg0) {
     s32 func_8009CC68(struct player_state_s *);
     int func_800DB9B0(void);
     void func_800F3BB0(struct player_state_s *, f32[3]);
-    u32 func_800F54E4(void);
-    s32 func_800F6D24(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6D24(BtIntPtr);
     void func_800F9ADC(void);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_801013A8(f32 *, s32, s32);
     s32 expired;
     f32 pos1[3];
@@ -851,4 +851,4 @@ s32 bsbabykaz_entrypoint_14(f32 *arg0) {
     return 1;
 }
 
-static s32 D_lever[] = { (s32) bsbabykaz_entrypoint_1 };
+static BtFnWord D_lever[] = { (BtFnWord)bsbabykaz_entrypoint_1 };

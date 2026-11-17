@@ -91,22 +91,22 @@ void func_80095964(void *arg0, s32 arg1) {
     }
     func_80095A08(arg0, 8, 0);
     func_80095A08(arg0, 4, 1);
-}
+}    typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; u8 padC[0x58]; f32 unk64; f32 unk68; } Obj1E6F080_func_800959C8_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_800959C8(PlayerState *arg0, f32 arg1, f32 arg2) {
     void *temp_v0;
 
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0x64))) = arg1;
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x94)));
-    (*(f32 *)((s8 *)(temp_v0) + (4))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x64)));
+    (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk4) = (f32) (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk64);
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0x68))) = arg2;
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x94)));
-    (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x68)));
+    (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk8) = (f32) (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk68);
 }
 
 void func_800959FC(s32 *arg0, s32 arg1) {
     ((s32 *) arg0[37])[5] = arg1;
-}
+}    typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_80095A08(void *arg0, s32 arg1, s32 arg2) {
     void *temp_v0;
@@ -114,11 +114,11 @@ void func_80095A08(void *arg0, s32 arg1, s32 arg2) {
 
     if (arg2 != 0) {
         temp_v0 = (*(void **)((s8 *)(arg0) + (0x94)));
-        (*(s32 *)((s8 *)(temp_v0) + (0x14))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x14))) | arg1);
+        (((Obj1E6F080_func_80095A08_temp_v0 *)temp_v0)->unk14) = (s32) ((((Obj1E6F080_func_80095A08_temp_v0 *)temp_v0)->unk14) | arg1);
         return;
     }
     temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x94)));
-    (*(s32 *)((s8 *)(temp_v0_2) + (0x14))) = (s32) ((*(s32 *)((s8 *)(temp_v0_2) + (0x14))) & ~arg1);
+    (((Obj1E6F080_func_80095A08_temp_v0_2 *)temp_v0_2)->unk14) = (s32) ((((Obj1E6F080_func_80095A08_temp_v0_2 *)temp_v0_2)->unk14) & ~arg1);
 }
 
 void func_80095A40(PlayerState *arg0) {
@@ -130,7 +130,7 @@ void func_80095A64(s32 *arg0) {
 }
 
 void func_80095A6C(s32 *arg0, s32 *arg1) {
-    arg1[20] = (s32) arg0;
+    arg1[20] = (BtIntPtr) arg0;
 }
 
 /* extern */
@@ -144,7 +144,7 @@ void func_80095A74(void *arg0, s32 arg1) {
         }
         func_80095A08(arg0, 8, 0);
     }
-}
+}    typedef struct { u8 pad0[0x94]; u8 * unk94; } Obj1E6F080_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80095AD0(s32 *arg0) {
     void baflag_clear(PlayerState *, int);
@@ -154,42 +154,42 @@ void func_80095AD0(s32 *arg0) {
     u8 temp_v0;
     u8 *temp_v1;
 
-    (*(u8 **)((u8 *)arg0 + 0x94))[0xA3] = 0;
-    temp_v1 = *(u8 **)((u8 *)arg0 + 0x94);
+    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA3] = 0;
+    temp_v1 = ((Obj1E6F080_arg0 *)arg0)->unk94;
     temp_v0 = temp_v1[0xA3];
     temp_v1[0x54] = temp_v0;
-    (*(u8 **)((u8 *)arg0 + 0x94))[0xA1] = temp_v0;
-    (*(u8 **)((u8 *)arg0 + 0x94))[0x18] = temp_v0;
-    (*(u8 **)((u8 *)arg0 + 0x94))[0x56] = temp_v0;
-    (*(u8 **)((u8 *)arg0 + 0x94))[0xA0] = temp_v0;
+    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA1] = temp_v0;
+    (((Obj1E6F080_arg0 *)arg0)->unk94)[0x18] = temp_v0;
+    (((Obj1E6F080_arg0 *)arg0)->unk94)[0x56] = temp_v0;
+    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA0] = temp_v0;
     func_800959FC(arg0, 0x400005);
     **(u8 ***)((u8 *)arg0 + 0x94) = func_800C5A38();
-    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x90));
-    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x78));
-    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x84));
-    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x44));
-    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x1C) = 0;
-    (*(u8 **)((u8 *)arg0 + 0x94))[0xA2] = 0;
+    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x90));
+    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x78));
+    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x84));
+    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x44));
+    *(s32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x1C) = 0;
+    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA2] = 0;
     func_80095A40((PlayerState *)arg0);
-    temp_v1 = *(u8 **)((u8 *)arg0 + 0x94);
+    temp_v1 = ((Obj1E6F080_arg0 *)arg0)->unk94;
     *(f32 *)(temp_v1 + 4) = *(f32 *)(temp_v1 + 0x64);
-    temp_v1 = *(u8 **)((u8 *)arg0 + 0x94);
+    temp_v1 = ((Obj1E6F080_arg0 *)arg0)->unk94;
     *(f32 *)(temp_v1 + 8) = *(f32 *)(temp_v1 + 0x68);
     func_80096254(arg0, 1);
     func_8009590C((PlayerState *)arg0, 0.0f);
-    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x9C) = 0;
+    *(s32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x9C) = 0;
     func_800961AC((PlayerState *)arg0, 1);
     baflag_clear((PlayerState *)arg0, 1);
     baflag_clear((PlayerState *)arg0, 2);
-    *(void (**)(s32 *, s32 *))(*(u8 **)((u8 *)arg0 + 0x94) + 0xC) = func_80095A6C;
-    *(void (**)(s32 *))(*(u8 **)((u8 *)arg0 + 0x94) + 0x10) = func_80095A64;
-    (*(u8 **)((u8 *)arg0 + 0x94))[0xA4] = 0;
+    *(void (**)(s32 *, s32 *))(((Obj1E6F080_arg0 *)arg0)->unk94 + 0xC) = func_80095A6C;
+    *(void (**)(s32 *))(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x10) = func_80095A64;
+    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA4] = 0;
 }
 
 /* extern */
 
 void func_80095C10(void *arg0) {
-    s32 func_800C5BA4(s32);
+    void func_800C5BA4(void* arg0);
     func_800C5BA4(*(*(s32 **)((s8 *)(arg0) + (0x94))));
 }
 
@@ -248,9 +248,9 @@ void func_80095C94(PlayerState *self)
   void func_8009C128(PlayerState *, f32 *);
   s32 func_800BEAAC(f32 *, f32 *);
   void func_800C68E8(s8 *, s32, f32);
-  void func_800CB840(s32, s32);
+  void func_800CB840(s32, BtIntPtr);
   void func_8009C15C(PlayerState *, f32 *);
-  s32 func_800C670C(s32);
+  u8 func_800C670C(void *arg0);
   f32 func_800C67D8(f32 *);
   f32 func_800A0E58(void *);
   void baphysics_set_vertical_velocity(PlayerState *, f32);
@@ -268,7 +268,7 @@ void func_80095C94(PlayerState *self)
   s32 func_800F1418(s32, s32);
   void func_800FB508(void *, void *);
   int player_isStable(PlayerState *);
-  s32 func_8010114C(s32, s32, s32);
+  s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
   f32 position[3];
   f32 current[3];
   f32 previous[3];
@@ -312,7 +312,7 @@ void func_80095C94(PlayerState *self)
       if (((PlayerView *) self)->collision->mode == 3)
     {
       void *floor = ((PlayerView *) self)->collision->floor;
-      if (func_800C670C((s32) floor))
+      if (func_800C670C((BtIntPtr) floor))
       {
         f32 y = func_800C67D8(floor);
         f32 offset = func_800A0E58(self);
@@ -358,7 +358,7 @@ void func_80095C94(PlayerState *self)
 
   }
 
-  if (func_800C670C((s32) ((PlayerView *) self)->collision->floor))
+  if (func_800C670C((BtIntPtr) ((PlayerView *) self)->collision->floor))
   {
     groundHeight = func_800C67D8(((PlayerView *) self)->collision->floor);
     ((PlayerView *) self)->collision->flagA0 = ((PlayerView *) self)->collision->position[1] < groundHeight;

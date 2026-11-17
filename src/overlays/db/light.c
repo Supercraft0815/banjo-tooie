@@ -35,10 +35,10 @@ void dblight_entrypoint_1(u8 *arg0, void *arg1, s32 arg2) {
         u8 color[4];
     } LightVertex;
     void *func_800B2190(void *);
-    s8 *_dbvtxnormal_entrypoint_0(s32, s32);
+    s8 *_dbvtxnormal_entrypoint_0(BtIntPtr, s32);
     s32 func_800C8760(s32, s32);
     s32 func_800C878C(s32, s32, s32);
-    void func_800C8800(s32, f32 *);
+    void func_800C8800(BtIntPtr, f32 *);
     void func_800C8898(s32, f32 *);
     void func_800C8900(s32, s32 *);
     s16 *index;
@@ -62,7 +62,7 @@ void dblight_entrypoint_1(u8 *arg0, void *arg1, s32 arg2) {
     vertices = func_800B2190(arg1);
     index = (s16 *)(arg0 + *(u16 *)(arg0 + 0x10) * 4 + 0x18);
     end = index + *(s32 *)(arg0 + 0x14);
-    if ((u32)index < (u32)end) {
+    if ((BtUIntPtr)index < (BtUIntPtr)end) {
       do {
         vertex = (LightVertex *)(vertices + *index * 0x10);
         normal = _dbvtxnormal_entrypoint_0(arg2, *index);
@@ -126,6 +126,6 @@ add_color:
         vertex->color[1] = green;
         vertex->color[2] = blue;
         index++;
-      } while ((u32)index < (u32)end);
+      } while ((BtUIntPtr)index < (BtUIntPtr)end);
     }
 }

@@ -12,16 +12,16 @@ typedef struct {
     s32 callbackArg;
     void *sprite;
     void *frameSprite;
-} SpriteSettings;
+} SpriteSettings;                                typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; } Obj1EBB4F0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 #include "core2/1EBB4F0.h"
 
-s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
+s32 func_800E1C00(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4)
 {
   f32 sp24;
   s32 pad[2];
-  f32 func_800E3928(s32, s32);
+  f32 func_800E3928(BtIntPtr, BtIntPtr);
   f32 func_800E42C0();
-  s32 func_800EE7F8(s32, s32);
+  void func_800EE7F8(f32 dst[3], f32 src[3]);
   extern f32 D_80125D90;
   extern f32 D_80125D94;
   extern SpriteSettings D_8012D470;
@@ -30,17 +30,17 @@ s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
   f32 temp_f0;
   f32 temp_f2;
   f32 var_f0;
-  sp18 = ((f32) (*((s32 *) (((s8 *) (&D_8012D470)) + 0x24)))) * func_800E42C0();
+  sp18 = ((f32) (D_8012D470.period)) * func_800E42C0();
   sp24 = func_800E3928(arg1, arg4);
   func_800EE7F8(arg4, arg1);
   if ((sp24 < 0.0f) || (sp18 < sp24))
   {
     return 0;
   }
-  if (((*((u8 *) (((s8 *) (&D_8012D470)) + 0x21))) == 0) && ((*((s32 *) (((s8 *) (&D_8012D470)) + 0x24))) == 0x4E20))
+  if (((D_8012D470.unk21) == 0) && ((D_8012D470.period) == 0x4E20))
   {
-    var_f0 = ((f32) (*((s16 *) (((s8 *) arg0) + 4)))) * arg2;
-    temp_f2 = ((f32) (*((s16 *) (((s8 *) arg0) + 6)))) * arg3;
+    var_f0 = ((f32) (((Obj1EBB4F0_arg0 *)arg0)->unk4)) * arg2;
+    temp_f2 = ((f32) (((Obj1EBB4F0_arg0 *)arg0)->unk6)) * arg3;
     if (var_f0 < temp_f2)
     {
       var_f0 = temp_f2;
@@ -52,17 +52,17 @@ s32 func_800E1C00(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4)
     goto block_10;
   }
   block_10:
-  if (((*((s32 *) (((s8 *) (&D_8012D470)) + 0x80))) == 0) && ((*((s32 (**)(s32)) (((s8 *) (&D_8012D470)) + 0x78))) != NULL))
+  if (((*((s32 *) (((s8 *) (&D_8012D470)) + 0x80))) == 0) && ((D_8012D470.callback) != NULL))
   {
-    (*((s32 (**)(s32)) (((s8 *) (&D_8012D470)) + 0x78)))(*((s32 *) (((s8 *) (&D_8012D470)) + 0x7C)));
+    (D_8012D470.callback)(D_8012D470.callbackArg);
   }
 
-  if ((*((u8 *) (((s8 *) (&D_8012D470)) + 0x22))) != 0)
+  if ((D_8012D470.unk22) != 0)
   {
     temp_f0 = sp18 - 500.0f;
     if (temp_f0 < sp24)
     {
-      D_8012D48C = (s16) (((s32) ((*((s16 *) (((s8 *) (&D_8012D470)) + 0x1C))) * ((s32) ((1.0f - ((sp24 - temp_f0) / 500.0f)) * 256.0f)))) / 256);
+      D_8012D48C = (s16) (((s32) ((D_8012D470.alpha) * ((s32) ((1.0f - ((sp24 - temp_f0) / 500.0f)) * 256.0f)))) / 256);
     }
   }
   return 1;
@@ -75,7 +75,7 @@ void func_800E1DF4(u8 *arg0, u8 *arg1) {
 
     gfx = *(Gfx **)arg0;
     gSPDisplayList(gfx++, (u8 *)&D_801231B0 - 0x80000000);
-    if (*(u8 *)((u8 *)&D_8012D470 + 0x1F) == 0) {
+    if (D_8012D470.unk1F == 0) {
         gDPSetColorDither(gfx++, G_CD_DISABLE);
     }
     gDPSetColor(gfx++, G_SETPRIMCOLOR,
@@ -87,10 +87,10 @@ void func_800E1DF4(u8 *arg0, u8 *arg1) {
         *(s32 *)((u8 *)&D_8012D470 + 4),
         *(s32 *)((u8 *)&D_8012D470 + 8),
         *(s32 *)((u8 *)&D_8012D470 + 0xC), 255);
-    if ((s32)*(u8 *)((u8 *)&D_8012D470 + 0x1E) > 0
-        && (s32)*(u8 *)((u8 *)&D_8012D470 + 0x1E) < 5) {
+    if ((s32)*&D_8012D470.unk1E > 0
+        && (s32)*&D_8012D470.unk1E < 5) {
         gSPSetGeometryMode(gfx++, G_ZBUFFER);
-        switch (*(u8 *)((u8 *)&D_8012D470 + 0x1E)) {
+        switch (D_8012D470.unk1E) {
         case 1:
             gDPSetRenderMode(gfx++, 0x504A50, 0);
             break;
@@ -99,18 +99,18 @@ void func_800E1DF4(u8 *arg0, u8 *arg1) {
             break;
         case 3:
             gDPSetRenderMode(gfx++, 0x504A70, 0);
-            *(u8 *)((u8 *)&D_8012D470 + 0x20) = 0x80;
+            D_8012D470.unk20 = 0x80;
             break;
         case 4:
             gDPSetRenderMode(gfx++, 0x504B70, 0);
             break;
         }
-    } else if (*(u8 *)((u8 *)&D_8012D470 + 0x1E) == 5) {
+    } else if (D_8012D470.unk1E == 5) {
         gDPSetRenderMode(gfx++, 0x504340, 0);
     } else {
         gDPSetRenderMode(gfx++, 0x504240, 0);
     }
-    if (*(u8 *)((u8 *)&D_8012D470 + 0x20) != 0) {
+    if (D_8012D470.unk20 != 0) {
         gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
         gDPSetBlendColor(gfx++, 0, 0, 0,
             *(u8 *)((u8 *)&D_8012D470 + 0x20));
@@ -133,11 +133,11 @@ void func_800E204C(u8 *arg0, u8 *arg1) {
         *(f32 *)((u8 *)&D_8012D470 + 0x2C) != 1.0f || *(f32 *)((u8 *)&D_8012D470 + 0x30) != 1.0f) {
         func_800F26B0((f32 (*)[4])D_8012D4A8,
             (f32)globalWidth * *(f32 *)((u8 *)&D_8012D470 + 0x2C) / (f32)width,
-            *(f32 *)((u8 *)&D_8012D470 + 0x30) * (f32)*(s16 *)((u8 *)&D_8012D470 + 2) / (f32)*(s16 *)(arg1 + 6), 1.0f);
+            D_8012D470.scaleY * (f32)*&D_8012D470.height / (f32)*(s16 *)(arg1 + 6), 1.0f);
         guMtxF2L((f32 (*)[4])D_8012D4A8, *(Mtx **)(arg0 + 4));
         ptr = (*(Gfx **)arg0)++;
         ptr->words.w0 = 0xDA380000;
-        ptr->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+        ptr->words.w1 = (BtUIntPtr)*(Mtx **)(arg0 + 4);
         *(Mtx **)(arg0 + 4) = *(Mtx **)(arg0 + 4) + 1;
     }
 }
@@ -146,7 +146,7 @@ typedef struct {
     s16 unk0[3];
     s16 paletteOffset;
     s32 textureOffset;
-} TextureFrame;
+} TextureFrame;     
 
 void func_800E2180(u8 *arg0, u8 *arg1, s32 arg2) {
     u8 *func_800AF5D8(s16 *);
@@ -175,28 +175,28 @@ void func_800E2180(u8 *arg0, u8 *arg1, s32 arg2) {
     ptr3 = (*(Gfx **)arg0)++;
     ptr3->words.w0 = 0xDE000000;
     ptr3->words.w1 = osVirtualToPhysical(address);
-}
+}        
 
 void func_800E2260(u8 *arg0, u8 *arg1) { extern SpriteSettings D_8012D470; Gfx *temp_v1; if ((((*(s16 *)((s8 *)(&D_8012D470) + (0))) != (*(s16 *)((s8 *)(arg1) + (4)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (0))) != 0)) || (((*(s16 *)((s8 *)(&D_8012D470) + (2))) != (*(s16 *)((s8 *)(arg1) + (6)))) && ((*(s16 *)((s8 *)(&D_8012D470) + (2))) != 0)) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) != 1.0f) || ((*(f32 *)((s8 *)(&D_8012D470) + (0x30))) != 1.0f)) { temp_v1 = (*(Gfx **)arg0)++; temp_v1->words.w0 = 0xD8380002; temp_v1->words.w1 = 0x40; } }
 
-s32 func_800E22F0(s32 arg0, s32 arg1) { void func_800E8078(Gfx **); void func_800E23A4(void); extern SpriteSettings D_8012D470;
-    if (*(u8 *)((u8 *)&D_8012D470 + 0x1F) == 0 || *(u8 *)((u8 *)&D_8012D470 + 0x20) != 0) {
+s32 func_800E22F0(BtIntPtr arg0, BtIntPtr arg1) { void func_800E8078(Gfx **); void func_800E23A4(void); extern SpriteSettings D_8012D470;
+    if (D_8012D470.unk1F == 0 || D_8012D470.unk20 != 0) {
         Gfx *ptr = (*(Gfx **)arg0)++;
         ptr->words.w1 = 0;
         ptr->words.w0 = 0xE7000000;
-        if (*(u8 *)((u8 *)&D_8012D470 + 0x1F) == 0) {
+        if (D_8012D470.unk1F == 0) {
             Gfx *ptr = (*(Gfx **)arg0)++;
             ptr->words.w1 = 0;
             ptr->words.w0 = 0xE3001801;
         }
-        if (*(u8 *)((u8 *)&D_8012D470 + 0x20) != 0) {
+        if (D_8012D470.unk20 != 0) {
             Gfx *ptr = (*(Gfx **)arg0)++;
             ptr->words.w1 = 0;
             ptr->words.w0 = 0xE2001E01;
         }
     }
     func_800E8078((Gfx **)arg0);
-    func_800E23A4();
+    func_800E23A4(); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800E23A4(void) {
@@ -221,29 +221,29 @@ void func_800E23A4(void) {
     *(f32 *)((u8 *)&D_8012D470 + 0x28) = 0.0f;
     *(f32 *)((u8 *)&D_8012D470 + 0x2C) = *(f32 *)((u8 *)&D_8012D470 + 0x30) = 1.0f;
     *(f32 *)((u8 *)&D_8012D470 + 0x34) = -10.0f;
-}
+}    typedef struct { s8 unk0; } Obj1EBB4F0_D_8012D490; /* offsets.py genstruct: fields from raw offsets on &D_8012D490; rename once understood */
 
 void func_800E2434(s32 arg0) {
     extern s8 D_8012D490;
-    *(s8 *)((u8 *)&D_8012D490 + 0) = arg0;
+    ((Obj1EBB4F0_D_8012D490 *)&D_8012D490)->unk0 = arg0;
 }
 
 void func_800E2440(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800F31DC(s32 *, s32, s32, s32);
+    void func_800F31DC(void *arg0, s32 arg1, s32 arg2, s32 arg3);
     extern s32 D_8012D474;
     func_800F31DC(&D_8012D474, arg0, arg1, arg2);
 }
 
-void func_800E2478(s32 arg0) { void func_800E24F8(s32, s32, s32); func_800E24F8(arg0, arg0, arg0); }
+void func_800E2478(s32 arg0) { void func_800E24F8(s32, s32, s32); func_800E24F8(arg0, arg0, arg0); }    typedef struct { s32 unk0; } Obj1EBB4F0_D_8012D494; /* offsets.py genstruct: fields from raw offsets on &D_8012D494; rename once understood */
 
 void func_800E249C(s32 arg0) {
     extern s32 D_8012D494;
-    *(s32 *)((u8 *)&D_8012D494 + 0) = arg0;
-}
+    ((Obj1EBB4F0_D_8012D494 *)&D_8012D494)->unk0 = arg0;
+}    typedef struct { f32 unk0; } Obj1EBB4F0_D_8012D4A4; /* offsets.py genstruct: fields from raw offsets on &D_8012D4A4; rename once understood */
 
 void func_800E24A8(f32 arg0) {
     extern f32 D_8012D4A4;
-    *(f32 *)((u8 *)&D_8012D4A4 + 0) = arg0;
+    ((Obj1EBB4F0_D_8012D4A4 *)&D_8012D4A4)->unk0 = arg0;
 }
 
 void func_800E24B4(s32 arg0) {
@@ -266,44 +266,44 @@ void func_800E24D8(s32 arg0) {
     D_8012D491 = arg0;
 }
 
-void func_800E24E4(s32 arg0, s32 arg1) {
+void func_800E24E4(BtIntPtr arg0, BtIntPtr arg1) {
     extern SpriteSettings D_8012D470;
     (*(s32 *)((s8 *)(&D_8012D470) + (0x78))) = arg0;
-    (*(s32 *)((s8 *)(&D_8012D470) + (0x7C))) = arg1;
+    (D_8012D470.callbackArg) = arg1;
 }
 
 void func_800E24F8(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800F31DC(s32 *, s32, s32, s32);
+    void func_800F31DC(void *arg0, s32 arg1, s32 arg2, s32 arg3);
     extern s32 D_8012D480;
     func_800F31DC(&D_8012D480, arg0, arg1, arg2);
-}
+}    typedef struct { f32 unk0; } Obj1EBB4F0_D_8012D498; /* offsets.py genstruct: fields from raw offsets on &D_8012D498; rename once understood */
 
 void func_800E2530(f32 arg0) {
     extern f32 D_8012D498;
-    *(f32 *)((u8 *)&D_8012D498 + 0) = arg0;
+    ((Obj1EBB4F0_D_8012D498 *)&D_8012D498)->unk0 = arg0;
 }
 
 void func_800E253C(f32 arg0) {
     extern SpriteSettings D_8012D470;
-    (*(f32 *)((s8 *)(&D_8012D470) + (0x30))) = arg0;
-    (*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) = (f32) (*(f32 *)((s8 *)(&D_8012D470) + (0x30)));
+    (D_8012D470.scaleY) = arg0;
+    (D_8012D470.scaleX) = (f32) (D_8012D470.scaleY);
 }
 
 void func_800E2554(f32 arg0, f32 arg1) {
     extern SpriteSettings D_8012D470;
-    (*(f32 *)((s8 *)(&D_8012D470) + (0x2C))) = arg0;
-    (*(f32 *)((s8 *)(&D_8012D470) + (0x30))) = arg1;
+    (D_8012D470.scaleX) = arg0;
+    (D_8012D470.scaleY) = arg1;
 }
 
 void func_800E2568(s32 arg0, s32 arg1) {
     extern SpriteSettings D_8012D470;
-    (*(s16 *)((s8 *)(&D_8012D470) + (0))) = (s16) arg0;
-    (*(s16 *)((s8 *)(&D_8012D470) + (2))) = (s16) arg1;
-}
+    (D_8012D470.width) = (s16) arg0;
+    (D_8012D470.height) = (s16) arg1;
+}    typedef struct { s16 unk0; } Obj1EBB4F0_D_8012D48C; /* offsets.py genstruct: fields from raw offsets on &D_8012D48C; rename once understood */
 
 void func_800E257C(s32 arg0) {
     extern s16 D_8012D48C;
-    *(s16 *)((u8 *)&D_8012D48C + 0) = arg0;
+    ((Obj1EBB4F0_D_8012D48C *)&D_8012D48C)->unk0 = arg0;
 }
 
 void func_800E2588(u32 arg0) {
@@ -311,7 +311,7 @@ void func_800E2588(u32 arg0) {
     D_8012D48E = (s8) arg0;
 }
 
-void func_800E2594(u32 arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_800AF5E4(void *); void func_800E1DF4(u8 *, u8 *); extern s32 D_8012D4F0; Gfx *first; Gfx *second; Gfx **gfx = (Gfx **)arg0; func_800E1DF4((u8 *)gfx, arg1); first = (*gfx)++; first->words.w0 = 0xDB060008; first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1)); second = (*gfx)++; second->words.w0 = 0xDB060004; second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1)); D_8012D4F0 = (s32)arg1; }
+void func_800E2594(BtUIntPtr arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_800AF5E4(void *); void func_800E1DF4(u8 *, u8 *); extern s32 D_8012D4F0; Gfx *first; Gfx *second; Gfx **gfx = (Gfx **)arg0; func_800E1DF4((u8 *)gfx, arg1); first = (*gfx)++; first->words.w0 = 0xDB060008; first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1)); second = (*gfx)++; second->words.w0 = 0xDB060004; second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1)); D_8012D4F0 = (BtIntPtr)arg1; }
 
 void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_800AF5F0(void *);
@@ -367,7 +367,7 @@ s32 func_800E2720(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, s32 arg5) 
     } else {
         sx = sy = sz = 1.0f;
     }
-    if (func_800E1C00((void *)D_8012D4F0, (s32)arg3, sx, sy, (s32)position) == 0) {
+    if (func_800E1C00((void *)D_8012D4F0, (BtIntPtr)arg3, sx, sy, (BtIntPtr)position) == 0) {
         return 0;
     }
     mlMtxSet(func_800E401C());
@@ -382,7 +382,7 @@ s32 func_800E2720(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, s32 arg5) 
     mlMtxApply(*(Mtx **)(arg0 + 4));
     list = (*(Gfx **)arg0)++;
     list->words.w0 = 0xDA380002;
-    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    list->words.w1 = (BtUIntPtr)*(Mtx **)(arg0 + 4);
     (*(Mtx **)(arg0 + 4))++;
     func_800E2630(arg0, arg1, arg5);
     pop = (*(Gfx **)arg0)++;
@@ -392,7 +392,7 @@ s32 func_800E2720(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, s32 arg5) 
 
 s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5, s32 arg6) {
     void func_800191F8(f32, f32, f32);
-    s32 func_80019CD4(void);
+    void * func_80019CD4(void);
     void mlMtxApply(Mtx *);
     void mlMtxRotatePYR(f32, f32, f32);
     void mlMtxScale_xyz(f32, f32, f32);
@@ -412,7 +412,7 @@ s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5,
     } else {
         sx = sy = sz = 1.0f;
     }
-    if (func_800E1C00((void *)D_8012D4F0, (s32)arg3, sx, sy, (s32)position) == 0) {
+    if (func_800E1C00((void *)D_8012D4F0, (BtIntPtr)arg3, sx, sy, (BtIntPtr)position) == 0) {
         return 0;
     }
     func_80019CD4();
@@ -427,7 +427,7 @@ s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5,
     mlMtxApply(*(Mtx **)(arg0 + 4));
     list = (*(Gfx **)arg0)++;
     list->words.w0 = 0xDA380002;
-    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    list->words.w1 = (BtUIntPtr)*(Mtx **)(arg0 + 4);
     (*(Mtx **)(arg0 + 4))++;
     func_800E2630(arg0, arg1, arg6);
     pop = (*(Gfx **)arg0)++;
@@ -435,8 +435,8 @@ s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5,
     return 1;
 }
 
-void func_800E2A14(s32 arg0) {
-    s32 func_800E22F0(s32, s32);
+void func_800E2A14(BtIntPtr arg0) {
+    s32 func_800E22F0(BtIntPtr, BtIntPtr);
     extern s32 D_8012D4F0;
     func_800E22F0(arg0, D_8012D4F0);
     D_8012D4F0 = 0;
@@ -444,7 +444,7 @@ void func_800E2A14(s32 arg0) {
 
 /* extern */
 
-void func_800E2A3C(u8 *arg0, u8 *arg1, s32 arg2) { void func_800E1DF4(u8 *, u8 *); void func_800E2180(u8 *, u8 *, s32); void func_800E2260(u8 *, u8 *); s32 func_800E22F0(s32, s32); u8 *a = arg0; u8 *b = arg1; func_800E1DF4(a, b); func_800E204C(a, b); func_800E2180(a, b, arg2); func_800E2260(a, b); func_800E22F0(a, b); }
+void func_800E2A3C(u8 *arg0, u8 *arg1, s32 arg2) { void func_800E1DF4(u8 *, u8 *); void func_800E2180(u8 *, u8 *, s32); void func_800E2260(u8 *, u8 *); s32 func_800E22F0(BtIntPtr, BtIntPtr); u8 *a = arg0; u8 *b = arg1; func_800E1DF4(a, b); func_800E204C(a, b); func_800E2180(a, b, arg2); func_800E2260(a, b); func_800E22F0(a, b); }
 
 void func_800E2AA4(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg, f32 *scale) {
     void func_800191F8(f32, f32, f32);
@@ -471,7 +471,7 @@ void func_800E2AA4(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
     } else {
         sx = sy = sz = 1.0f;
     }
-    if (func_800E1C00((void *)resource, (s32)positionArg, sx, sy, (s32)position) == 0) {
+    if (func_800E1C00((void *)resource, (BtIntPtr)positionArg, sx, sy, (BtIntPtr)position) == 0) {
         func_800E23A4();
         return;
     }
@@ -488,19 +488,19 @@ void func_800E2AA4(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
     mlMtxApply(*(Mtx **)(arg0 + 4));
     list = (*(Gfx **)arg0)++;
     list->words.w0 = 0xDA380002;
-    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    list->words.w1 = (BtUIntPtr)*(Mtx **)(arg0 + 4);
     (*(Mtx **)(arg0 + 4))++;
     func_800E204C(arg0, resource);
     func_800E2180(arg0, resource, index);
     func_800E2260(arg0, resource);
     pop = (*(Gfx **)arg0)++;
     pop->words.w0 = 0xD8380002; pop->words.w1 = 0x40;
-    func_800E22F0((s32)arg0, (s32)resource);
+    func_800E22F0((BtIntPtr)arg0, (BtIntPtr)resource);
 }
 
 void func_800E2C54(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg, f32 *rotation, f32 *scale) {
     void func_800191F8(f32, f32, f32);
-    s32 func_80019CD4(void);
+    void * func_80019CD4(void);
     void mlMtxApply(Mtx *);
     void mlMtxRotatePYR(f32, f32, f32);
     void mlMtxScale_xyz(f32, f32, f32);
@@ -521,7 +521,7 @@ void func_800E2C54(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
     } else {
         sx = sy = sz = 1.0f;
     }
-    if (func_800E1C00((void *)resource, (s32)positionArg, sx, sy, (s32)position) == 0) {
+    if (func_800E1C00((void *)resource, (BtIntPtr)positionArg, sx, sy, (BtIntPtr)position) == 0) {
         func_800E23A4();
         return;
     }
@@ -538,14 +538,14 @@ void func_800E2C54(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
     mlMtxApply(*(Mtx **)(arg0 + 4));
     list = (*(Gfx **)arg0)++;
     list->words.w0 = 0xDA380002;
-    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    list->words.w1 = (BtUIntPtr)*(Mtx **)(arg0 + 4);
     (*(Mtx **)(arg0 + 4))++;
     func_800E204C(arg0, resource);
     func_800E2180(arg0, resource, index);
     func_800E2260(arg0, resource);
     pop = (*(Gfx **)arg0)++;
     pop->words.w0 = 0xD8380002; pop->words.w1 = 0x40;
-    func_800E22F0((s32)arg0, (s32)resource);
+    func_800E22F0((BtIntPtr)arg0, (BtIntPtr)resource);
 }
 
 f32 func_800E2DF0(void) {
@@ -564,9 +564,9 @@ f32 func_800E2DF0(void) {
 
 void func_800E2E48(u8 *arg0, u8 *arg1, s32 arg2, int *arg3) {
     void func_800191F8(f32, f32, f32);
-    s32 func_80019CD4(void);
+    void * func_80019CD4(void);
     void func_800E1DF4();
-    void func_800E42F0();
+    int func_800E42F0(void *frame, s32 use_widescreen);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void mlMtxApply(Mtx *);
     void mlMtxRotRoll(f32);
@@ -608,16 +608,16 @@ void func_800E2E48(u8 *arg0, u8 *arg1, s32 arg2, int *arg3) {
     mlMtxApply(*(Mtx **)(arg0 + 4));
     list = (*(Gfx **)arg0)++;
     list->words.w0 = 0xDA380002;
-    list->words.w1 = (u32)*(Mtx **)(arg0 + 4);
+    list->words.w1 = (BtUIntPtr)*(Mtx **)(arg0 + 4);
     (*(Mtx **)(arg0 + 4))++;
     func_800E2180(arg0, arg1, arg2);
     pop = (*(Gfx **)arg0)++;
     pop->words.w0 = 0xD8380002; pop->words.w1 = 0x40;
-    func_800E22F0((s32)arg0, (s32)arg1);
+    func_800E22F0((BtIntPtr)arg0, (BtIntPtr)arg1);
     func_800E4640((Gfx **)arg0);
 }
 
-void func_800E30E0(s32 arg0, void *arg1, s32 arg2, void *arg3) {
+void func_800E30E0(BtIntPtr arg0, void *arg1, s32 arg2, void *arg3) {
     TextureFrame *func_800AF5FC(s16 *, s32);
     void func_800E2E48(u8 *, u8 *, s32, int *);
     extern SpriteSettings D_8012D470;
@@ -653,7 +653,7 @@ void func_800E3220(Gfx **arg0, void *arg1) {
     u8 *func_800AF5D8(s16 *);
     void *func_800AF5E4(void *);
     void func_800E1DF4(u8 *, u8 *);
-    void func_800E42F0();
+    int func_800E42F0(void *frame, s32 use_widescreen);
     extern s32 D_8012D4F4;
     Gfx *first;
     Gfx *second;
@@ -665,13 +665,13 @@ void func_800E3220(Gfx **arg0, void *arg1) {
     second = (*arg0)++;
     second->words.w0 = 0xDB060004;
     second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1));
-    D_8012D4F4 = (s32)arg1;
+    D_8012D4F4 = (BtIntPtr)arg1;
     func_800E42F0(arg0, 0);
 }
 
-s32 func_800E32CC(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
+s32 func_800E32CC(BtIntPtr arg0, s32 arg1, s32 *arg2, s32 arg3) {
     void func_800191F8(f32, f32, f32);
-    s32 func_80019CD4(void);
+    void * func_80019CD4(void);
     void *func_800AF5F0(void *);
     TextureFrame *func_800AF5FC(s16 *, s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -696,10 +696,10 @@ s32 func_800E32CC(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
         *(s16 *)((u8 *)&D_8012D470 + 0x1C) = arg3;
         ptr = (*(Gfx **)arg0)++;
         ptr->words.w0 = 0xFA000000;
-        ptr->words.w1 = (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
-            | (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x14) & 0xFF) << 16)
-            | ((u32)*(s16 *)((u8 *)&D_8012D470 + 0x1C) & 0xFF)
-            | (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x18) & 0xFF) << 8);
+        ptr->words.w1 = (((u32)*&D_8012D470.color[0] & 0xFF) << 24)
+            | (((u32)*&D_8012D470.color[1] & 0xFF) << 16)
+            | ((u32)*&D_8012D470.alpha & 0xFF)
+            | (((u32)*&D_8012D470.color[2] & 0xFF) << 8);
     }
     if (*(s16 *)((u8 *)&D_8012D470 + 0)) {
         width = *(s16 *)((u8 *)&D_8012D470 + 0);
@@ -736,11 +736,11 @@ s32 func_800E32CC(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
     address += frame->unk0[2] * 8;
     ptr3 = (*(Gfx **)arg0)++;
     ptr3->words.w0 = 0xDE000000;
-    ptr3->words.w1 = osVirtualToPhysical(address);
-    gSPPopMatrix((*(Gfx **)arg0)++, G_MTX_MODELVIEW);
+    BT_NATIVE_ONLY(u32 native_result;) ptr3->words.w1 = BT_NATIVE_ONLY(native_result =) osVirtualToPhysical(address);
+    gSPPopMatrix((*(Gfx **)arg0)++, G_MTX_MODELVIEW); BT_NATIVE_ONLY(return native_result;)
 }
 void func_800E35E0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
-    s32 func_800E32CC(s32, s32, s32 *, s32);
+    s32 func_800E32CC(BtIntPtr, s32, s32 *, s32);
     extern SpriteSettings D_8012D470;
     s32 var_t1;
     s32 var_v1;
@@ -761,8 +761,29 @@ void func_800E35E0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
     func_800E32CC(arg0, arg1, sp20, arg3);
 }
 
-void func_800E368C(s32 arg0) { s32 func_800E22F0(s32, s32); extern s32 D_8012D4F4;
+void func_800E368C(BtIntPtr arg0) { s32 func_800E22F0(BtIntPtr, BtIntPtr); extern s32 D_8012D4F4;
     func_800E22F0(arg0, D_8012D4F4);
     D_8012D4F4 = 0;
     func_800E4640((Gfx **)arg0);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+SpriteSettings D_8012D470 BT_DATA(4, bss_core2bss2_1, 0xB30);
+s32 D_8012D474 BT_DATA(4, bss_core2bss2_1, 0xB34);
+s32 D_8012D480 BT_DATA(4, bss_core2bss2_1, 0xB40);
+s16 D_8012D48C BT_DATA(4, bss_core2bss2_1, 0xB4C);
+s8 D_8012D48E BT_DATA(4, bss_core2bss2_1, 0xB4E);
+u8 D_8012D48F BT_DATA(4, bss_core2bss2_1, 0xB4F);
+s8 D_8012D490 BT_DATA(4, bss_core2bss2_1, 0xB50);
+u8 D_8012D491 BT_DATA(4, bss_core2bss2_1, 0xB51);
+u8 D_8012D492 BT_DATA(4, bss_core2bss2_1, 0xB52);
+u8 D_8012D493 BT_DATA(4, bss_core2bss2_1, 0xB53);
+s32 D_8012D494 BT_DATA(4, bss_core2bss2_1, 0xB54);
+f32 D_8012D498 BT_DATA(4, bss_core2bss2_1, 0xB58);
+f32 D_8012D4A4 BT_DATA(4, bss_core2bss2_1, 0xB64);
+f32 D_8012D4A8 [ 4 ] BT_DATA(4, bss_core2bss2_1, 0xB68);
+s32 D_8012D4F0 BT_DATA(4, bss_core2bss2_1, 0xBB0);
+s32 D_8012D4F4 BT_DATA(4, bss_core2bss2_1, 0xBB4);
+#endif

@@ -2,8 +2,8 @@
 
 Actor *subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3) {
     f32 func_800EEB40(f32 *, f32 *);
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     f32 sqrtf(f32);
     f32 temp_f0;
     f32 var_f20;
@@ -39,8 +39,8 @@ Actor *subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3) {
 
 Actor *subaddiefind_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2, f32 *arg3) {
     f32 func_800EEAD4(f32 *, f32 *);
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     f32 temp_f0;
     f32 var_f20;
     Actor *var_s0;
@@ -71,8 +71,8 @@ Actor *subaddiefind_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2, f32 *arg3) {
 /* extern */
 
 Actor *subaddiefind_entrypoint_2(s32 arg0, s32 *arg1) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     Actor *actor;
     s32 sp20;
 
@@ -92,7 +92,7 @@ Actor *subaddiefind_entrypoint_2(s32 arg0, s32 *arg1) {
 /* extern */
 
 Actor *subaddiefind_entrypoint_3(s32 arg0, s32 *arg1) {
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     Actor *actor;
 
     actor = (Actor *)func_8010682C(arg1);
@@ -108,8 +108,8 @@ Actor *subaddiefind_entrypoint_3(s32 arg0, s32 *arg1) {
 /* extern */
 
 s32 subaddiefind_entrypoint_4(s32 arg0, Actor **arg1, s32 arg2) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 var_s1;
     s32 sp38;
     s32 id = arg0;
@@ -135,8 +135,8 @@ s32 subaddiefind_entrypoint_4(s32 arg0, Actor **arg1, s32 arg2) {
 /* extern */
 
 s32 subaddiefind_entrypoint_5(s32 arg0, Actor **arg1, s32 arg2, f32 *arg3, f32 arg4, f32 (*arg5)(f32 *, f32 *)) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 sp48[2];
     s32 var_s1;
     Actor *var_v0;
@@ -162,8 +162,8 @@ s32 subaddiefind_entrypoint_5(s32 arg0, Actor **arg1, s32 arg2, f32 *arg3, f32 a
 /* extern */
 
 s32 subaddiefind_entrypoint_6(s16 *arg0, Actor **arg1, s32 arg2) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s16 *var_v1;
     s32 var_s1;
     s32 sp3C;
@@ -215,8 +215,8 @@ s32 subaddiefind_entrypoint_7(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 Actor *subaddiefind_entrypoint_8(s32 arg0) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     Actor *actor;
     s32 sp20;
 
@@ -233,8 +233,8 @@ Actor *subaddiefind_entrypoint_8(s32 arg0) {
 /* extern */
 
 s32 subaddiefind_entrypoint_9(s32 arg0) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 var_s0;
     Actor *var_v0;
     s32 sp2C;
@@ -289,8 +289,8 @@ Actor *subaddiefind_entrypoint_11(s32 arg0, u32 arg1) {
 /* extern */
 
 Actor *subaddiefind_entrypoint_12(s32 arg0) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     Actor *actor;
     s32 sp20;
 
@@ -316,8 +316,8 @@ Actor **subaddiefind_entrypoint_13(u8 *arg0) {
         u16 flags;
     } MarkerFlags;
     s32 *func_800BE3F8(u8 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     OSThread *func_8010413C(void);
     Actor *func_80106790(Unk80132ED0 *);
     Actor **actors;

@@ -5,8 +5,8 @@
 struct player_state_s;
 
 void bssplat_entrypoint_0(struct player_state_s *arg0) {
-    s32 _badust_entrypoint_8(struct player_state_s *);
-    s32 _bashake_entrypoint_0(struct player_state_s *, s32, s32);
+    void _badust_entrypoint_8(struct player_state_s *self);
+    void _bashake_entrypoint_0(struct player_state_s *arg0, s32 arg1, s32 arg2);
     s32 func_800954E8(void *, s32 *);
     s32 func_80096694(struct player_state_s *);
     void func_8009DB04(struct player_state_s *, s32, f32, s32);
@@ -22,21 +22,21 @@ void bssplat_entrypoint_0(struct player_state_s *arg0) {
     }
     _badust_entrypoint_8(arg0);
     _bashake_entrypoint_0(arg0, 3, 2);
-}
+}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objsplat_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_8080009C_bssplat(void *arg0) {
-    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void bssplat_entrypoint_0(struct player_state_s *);
-    s32 func_8008E944(void *);
-    s32 func_8009DF18(void *, s32, f32, s32);
-    s32 func_8009FFD8(void *, s32, s32, s32, s32);
+    void func_8008E944(void *arg0);
+    void func_8009DF18(void *arg0, s32 arg1, f32 arg2, s32 arg3);
+    void func_8009FFD8(void *arg0, s32 anim_update_type, s32 yaw_state, s32 arg2, s32 arg3);
     baanim_playForDuration_once(arg0, 0x46, 1.1f);
     func_8009FFD8(arg0, 1, 1, 3, 3);
     bssplat_entrypoint_0(arg0);
     func_8009DF18(arg0, 0x427, 1.0f, 0x6D60);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (((Objsplat_arg0 *)arg0)->unk15C) = 0;
     func_8008E944(arg0);
 }
 
@@ -52,7 +52,7 @@ void func_80800114_bssplat(struct player_state_s *arg0) {
     s32 func_800A1718(struct player_state_s *);
     s32 player_inWater(struct player_state_s *);
     int player_isStable(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    void bs_setState(void *self, s32 nextState);
     f32 func_800F0E00(f32, f32);
     s32 sp24;
     struct anctrl_s *sp20;
@@ -91,7 +91,7 @@ void func_80800114_bssplat(struct player_state_s *arg0) {
     if (func_800A1718(arg0) == 0) {
         sp24 = 0x41;
     }
-    bs_setState((s32)arg0, sp24);
+    bs_setState((BtIntPtr)arg0, sp24);
 }
 
 void func_80800274_bssplat(s32 arg0)
@@ -100,6 +100,9 @@ void func_80800274_bssplat(s32 arg0)
     func_8009BD88(arg0);
 }
 s32 bssplat_entrypoint_1(s32 arg0) {
-    extern s32 D_808002B0_bssplat[];
+    extern BtIntPtr D_808002B0_bssplat[];
     return ((s32 *)&D_808002B0_bssplat)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/splat.data.s */
+void func_80099AA8();
+BtIntPtr D_808002B0_bssplat [4] BT_DATA(4, overlays_bs_splat, 0x0) = { (BtIntPtr)func_80800274_bssplat, (BtIntPtr)func_8080009C_bssplat, (BtIntPtr)func_80800114_bssplat, (BtIntPtr)func_80099AA8 };

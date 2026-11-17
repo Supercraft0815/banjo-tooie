@@ -2,7 +2,7 @@
 
 OSThread *chwitchyshockpadswitch_entrypoint_0(void)
 {
-    extern u8 D_80800170_chwitchyshockpadswitch[];
+    extern ActorData D_80800170_chwitchyshockpadswitch[];
 
     return (OSThread *) D_80800170_chwitchyshockpadswitch;
 }
@@ -11,7 +11,7 @@ void func_8080000C_chwitchyshockpadswitch(Actor *arg0)
 {
     s32 _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     s32 _chswitch_entrypoint_7(Actor *, s32);
-    s32 _chswitch_entrypoint_9(Actor *);
+    void _chswitch_entrypoint_9(void *arg0);
     void func_800EE7F8(f32 *, f32 *);
     f32 marker[6];
 
@@ -54,3 +54,10 @@ s32 func_80800094_chwitchyshockpadswitch(Actor *arg0, s32 arg1, s32 arg2)
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/witchy/shockpadswitch.data.s */
+extern u8 D_8011A270[];
+void _chswitch_entrypoint_6();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_80800170_chwitchyshockpadswitch [1] BT_DATA(4, overlays_ch_witchy_shockpadswitch, 0x0) = { { 835, 1255, 1874, 1, (void *)D_8011A270, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chwitchyshockpadswitch, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80800094_chwitchyshockpadswitch, 0 } };

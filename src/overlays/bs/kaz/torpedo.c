@@ -30,17 +30,17 @@ void func_80801400_bskaztorpedo(PlayerState *self);
 void func_80801484_bskaztorpedo(PlayerState *self);
 void func_808014F8_bskaztorpedo(PlayerState *self);
 void func_80801614_bskaztorpedo(PlayerState *self);
-s32 D_80801730_bskaztorpedo[] = {
-    (s32)func_80800AF0_bskaztorpedo, (s32)func_80800B34_bskaztorpedo, (s32)func_80800BA0_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+BtFnWord D_80801730_bskaztorpedo[] = {
+    (BtFnWord)func_80800AF0_bskaztorpedo, (BtFnWord)func_80800B34_bskaztorpedo, (BtFnWord)func_80800BA0_bskaztorpedo, (BtFnWord)func_808008D4_bskaztorpedo
 };
-s32 D_80801740_bskaztorpedo[] = {
-    (s32)func_80800BF8_bskaztorpedo, (s32)func_80800C20_bskaztorpedo, (s32)func_80800CAC_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+BtFnWord D_80801740_bskaztorpedo[] = {
+    (BtFnWord)func_80800BF8_bskaztorpedo, (BtFnWord)func_80800C20_bskaztorpedo, (BtFnWord)func_80800CAC_bskaztorpedo, (BtFnWord)func_808008D4_bskaztorpedo
 };
-s32 D_80801750_bskaztorpedo[] = {
-    (s32)func_80800D48_bskaztorpedo, (s32)func_80800D70_bskaztorpedo, (s32)func_80800DA4_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+BtFnWord D_80801750_bskaztorpedo[] = {
+    (BtFnWord)func_80800D48_bskaztorpedo, (BtFnWord)func_80800D70_bskaztorpedo, (BtFnWord)func_80800DA4_bskaztorpedo, (BtFnWord)func_808008D4_bskaztorpedo
 };
-s32 D_80801760_bskaztorpedo[] = {
-    (s32)func_80800E04_bskaztorpedo, (s32)func_80800E2C_bskaztorpedo, (s32)func_80800E54_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+BtFnWord D_80801760_bskaztorpedo[] = {
+    (BtFnWord)func_80800E04_bskaztorpedo, (BtFnWord)func_80800E2C_bskaztorpedo, (BtFnWord)func_80800E54_bskaztorpedo, (BtFnWord)func_808008D4_bskaztorpedo
 };
 s32 D_80801770_bskaztorpedo[] = {
     0x000C0023, 0x002B0200, 0x0280002D, 0x00140028,
@@ -52,8 +52,8 @@ s32 D_80801770_bskaztorpedo[] = {
     0x00800100, 0x0022003D, 0x0040004A, 0x0059021A,
     0x00000000
 };
-s32 D_808017E4_bskaztorpedo[] = {
-    (s32)func_80800EE8_bskaztorpedo, (s32)func_80800F08_bskaztorpedo, (s32)func_80800FB4_bskaztorpedo, (s32)func_80099AA8
+BtFnWord D_808017E4_bskaztorpedo[] = {
+    (BtFnWord)func_80800EE8_bskaztorpedo, (BtFnWord)func_80800F08_bskaztorpedo, (BtFnWord)func_80800FB4_bskaztorpedo, (BtFnWord)func_80099AA8
 };
 s32 D_808017F4_bskaztorpedo[] = {
     0x001D09E4, 0x000E0005, 0x000A0015, 0x00190080,
@@ -70,14 +70,14 @@ s32 D_80801854_bskaztorpedo[] = {
     0x0022000C, 0x000F0007, 0x00070027, 0x01900190,
     0x03200320, 0x002B0019, 0x004C0E1A, 0x00000000
 };
-s32 D_80801884_bskaztorpedo[] = {
-    (s32)func_8080123C_bskaztorpedo, (s32)func_80801268_bskaztorpedo, (s32)func_808012DC_bskaztorpedo, (s32)func_80800A34_bskaztorpedo
+BtFnWord D_80801884_bskaztorpedo[] = {
+    (BtFnWord)func_8080123C_bskaztorpedo, (BtFnWord)func_80801268_bskaztorpedo, (BtFnWord)func_808012DC_bskaztorpedo, (BtFnWord)func_80800A34_bskaztorpedo
 };
-s32 D_80801894_bskaztorpedo[] = {
-    (s32)func_80801380_bskaztorpedo, (s32)func_808013B4_bskaztorpedo, (s32)func_80801400_bskaztorpedo, (s32)func_808008D4_bskaztorpedo
+BtFnWord D_80801894_bskaztorpedo[] = {
+    (BtFnWord)func_80801380_bskaztorpedo, (BtFnWord)func_808013B4_bskaztorpedo, (BtFnWord)func_80801400_bskaztorpedo, (BtFnWord)func_808008D4_bskaztorpedo
 };
-s32 D_808018A4_bskaztorpedo[] = {
-    (s32)func_80801484_bskaztorpedo, (s32)func_808014F8_bskaztorpedo, (s32)func_80801614_bskaztorpedo, (s32)func_808008D4_bskaztorpedo,
+BtFnWord D_808018A4_bskaztorpedo[] = {
+    (BtFnWord)func_80801484_bskaztorpedo, (BtFnWord)func_808014F8_bskaztorpedo, (BtFnWord)func_80801614_bskaztorpedo, (BtFnWord)func_808008D4_bskaztorpedo,
     0x00000000, 0x00000000, 0x00000000
 };
 
@@ -523,7 +523,7 @@ s32 bskaztorpedo_entrypoint_4(s32 idx) {
 }
 
 void func_808011A4_bskaztorpedo(PlayerState *self) {
-    s32 result;
+    BtIntPtr result;
     f32 sp2C[2]; // should be of size 3 but can't get it to match that way    
 
     func_8009E154(self, NULL, sp2C);

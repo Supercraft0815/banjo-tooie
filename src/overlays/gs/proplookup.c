@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_marker.h"
 static const u16 prop_lookup_0[]={0x0000,0x0000,0x0000,0x0000,0x05DC,0x05DD,0x05DE,0x05DF,0x05F8,0x05F9,0x05FA,0x05FB,0x05FC,0x05FD,0x05FE,0x05FF,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x05DF,0x05E0,0x05E1,0x05E2,0x05E3,0x05E4,0x05E5,0x05E6,0x05E7,0x05E8,0x05E9,0x05EA,0x05EB,0x0000,0x0000,0x05F7,0x05EC,0x05ED,0x0000,0x0000,0x0000,0x0000,0x0000,0x05EE,0x05F6,0x0000,0x0000,0x0000,0x05EF,0x05F0,0x05F1,0x05F2,0x05F3,0x05F4,0x05F5,0x0000};
 s16 gsproplookup_entrypoint_0(NativeMarkerProp *prop) {
@@ -14,13 +14,16 @@ s16 gsproplookup_entrypoint_1(NativeMarkerProp *prop) {
 #include "common.h"
 
 s16 gsproplookup_entrypoint_0(u16 *arg0) {
-    extern s32 D_80800040_gsproplookup;
-    return *((s16 *)&D_80800040_gsproplookup + ((u32)*arg0 >> 4));
+    extern s32 D_80800040_gsproplookup[45];
+    return *((s16 *)D_80800040_gsproplookup + ((u32)*arg0 >> 4));
 }
 
 s16 gsproplookup_entrypoint_1(u16 *arg0) {
-    extern s32 D_808000F4_gsproplookup;
-    return *((s16 *)&D_808000F4_gsproplookup + ((u32)*arg0 >> 4));
+    extern s32 D_808000F4_gsproplookup[31];
+    return *((s16 *)D_808000F4_gsproplookup + ((u32)*arg0 >> 4));
 }
 
 #endif
+/* data_to_c.py: from asm/data/overlays/gs/proplookup.data.s */
+s32 D_80800040_gsproplookup[45] BT_DATA(4, overlays_gs_proplookup, 0x0) = { 0, 0, 98305501, 98436575, 100140537, 100271611, 100402685, 100533759, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98502112, 98633186, 98764260, 98895334, 99026408, 99157482, 99287040, 1527, 99354093, 0, 0, 1518, 100007936, 0, 99550704, 99681778, 99812852, 99942400 };
+s32 D_808000F4_gsproplookup[31] BT_DATA(4, overlays_gs_proplookup, 0xB4) = { 0, 163056057, 163187131, 163318205, 0, 0, 0, 163446784, 0, 0, 0, 0, 0, 0, 0, 0, 2496, 163645890, 163776964, 163905536, 0, 0, 0, 2495, 0, 0, 0, 0, 0, 0, 0 };

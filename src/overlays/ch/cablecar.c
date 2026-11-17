@@ -15,14 +15,14 @@ typedef struct {
 
 OSThread *chcablecar_entrypoint_0(void)
 {
-    extern u8 D_80800EB0_chcablecar[];
+    extern ActorData D_80800EB0_chcablecar[];
 
     return (OSThread *) D_80800EB0_chcablecar;
 }
 
 OSThread *chcablecar_entrypoint_1(void)
 {
-    extern u8 D_80800EF8_chcablecar[];
+    extern ActorData D_80800EF8_chcablecar[];
 
     return (OSThread *) D_80800EF8_chcablecar;
 }
@@ -32,8 +32,8 @@ void func_80800018_chcablecar(Actor *arg0) {
     s32 _susubgame_entrypoint_4(Actor *, u32 *);
     f32 func_800D8FF8(void);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_80101FDC(Actor *, u32);
@@ -134,7 +134,7 @@ void func_80800018_chcablecar(Actor *arg0) {
 void func_808002E0_chcablecar(Actor *arg0) {
     void _mlwave_entrypoint_0(void *, f32, f32);
     void _subaddieDll_entrypoint_4(Actor *, u32);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
     s32 func_800DA298(s32);
     s32 func_800EA05C(void);
     void func_800EE940(s16 *, f32 *);
@@ -190,7 +190,7 @@ s32 func_80800424_chcablecar(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800EA05C(void);
     void func_80108B04(Actor *, u32);
     void func_808004EC_chcablecar(Actor *);
-    void func_80800B74_chcablecar(s32, s32, s32);
+    void func_80800B74_chcablecar(BtIntPtr, s32, s32);
     void func_80800DC8_chcablecar(Actor *);
     typedef struct {
         u32 upper : 19;
@@ -203,7 +203,7 @@ s32 func_80800424_chcablecar(Actor *arg0, s32 arg1, s32 arg2) {
             func_80800DC8_chcablecar(arg0);
             break;
         case 0x2E:
-            func_80800B74_chcablecar((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            func_80800B74_chcablecar((BtIntPtr)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
             break;
         case 0x1F:
             func_808004EC_chcablecar(arg0);
@@ -220,7 +220,7 @@ s32 func_80800424_chcablecar(Actor *arg0, s32 arg1, s32 arg2) {
             return 0;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0xC]; f32 unkC; } Objcablecar_func_808004EC_chcablecar_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -233,13 +233,13 @@ void func_808004EC_chcablecar(Actor *arg0) {
     void *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0xC)));
+    temp_f0 = (((Objcablecar_func_808004EC_chcablecar_temp_v0 *)temp_v0)->unkC);
     if (temp_f0 < 0.4f) {
         var_a2 = 0;
     } else if (temp_f0 > 0.6f) {
         var_a2 = 0xFF;
     } else {
-        var_a2 = (s32) func_800F10B4((*(f32 *)((s8 *)(temp_v0) + (0xC))), 0.4f, 0.6f, 0.0f, 255.0f);
+        var_a2 = (s32) func_800F10B4((((Objcablecar_func_808004EC_chcablecar_temp_v0 *)temp_v0)->unkC), 0.4f, 0.6f, 0.0f, 255.0f);
     }
     func_801015D0(arg0);
     func_800DF6BC(var_a2, 0xFF);
@@ -274,7 +274,7 @@ void func_808005E0_chcablecar(Actor* arg0) {
 
 void func_8080069C_chcablecar(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    extern u32 D_80800F68_chcablecar;
+    extern u32 D_80800F68_chcablecar[6];
     u32 var_a2;
 
     switch (arg0->unk70_10) {
@@ -288,7 +288,7 @@ void func_8080069C_chcablecar(Actor *arg0) {
             break;
     }
     if ((var_a2 != 0) || ((var_a2 == 0) && (arg0->unk5F != 0))) {
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, var_a2, &D_80800F68_chcablecar);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, var_a2, D_80800F68_chcablecar);
     }
 }
 
@@ -323,7 +323,7 @@ s32 func_8080070C_chcablecar(Actor *arg0, f32 arg1) {
 
 void func_808007C8_chcablecar(Actor *arg0, u32 arg1, u32 arg2) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void _susubgame_entrypoint_8(Actor *, void *, s32, s32, s32);
     void func_80015178(s32);
     s32 func_800DA9E4(s32, s32);
@@ -375,16 +375,16 @@ void func_80800914_chcablecar(Actor *arg0) {
     void _susubgame_entrypoint_8(Actor *, void *, s32, s32, s32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F8294(s32, f32 *);
-    void func_800F8444(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F8294(BtIntPtr, f32 *);
+    void func_800F8444(BtIntPtr, f32 *);
     typedef struct {
         s16 start[3];
         s16 end[3];
         f32 fraction;
     } CablecarPath;
     CablecarPath *data;
-    s32 player;
+    BtIntPtr player;
     f32 position3[3];
     f32 rotation3[3];
     f32 position4[3];
@@ -444,7 +444,7 @@ void func_80800AF4_chcablecar(Actor *arg0, u32 arg1) {
 
 /* extern */
 
-void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
+void func_80800B74_chcablecar(BtIntPtr arg0, s32 arg1, s32 arg2) {
     void _subaddieDll_entrypoint_4(Actor*, u32);
     s32 func_800DA298(s32);
     void func_80101FDC(Actor *, u32);
@@ -457,23 +457,23 @@ void func_80800B74_chcablecar(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_80800BD0_chcablecar(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_80016B30(s32, s32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
-    s32 func_800F4BB8(u32, u32, s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F6438(u32);
-    int func_800F6B40(s32);
-    s32 func_800F6C5C(s32);
+    void func_800DA544(s32 index);
+    s32 func_800F4BB8(BtUIntPtr, u32, s32);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6438(BtUIntPtr);
+    int func_800F6B40(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
     void func_80101FDC(Actor *, u32);
     typedef struct {
         u32 upper : 19;
         u32 active : 1;
         u32 lower : 12;
     } CablecarFlags;
-    u32 sp24;
+    BtUIntPtr sp24;
 
     sp24 = func_800F54E4();
     if (func_800F6438(sp24) == 0 ||
@@ -507,10 +507,10 @@ s32 func_80800BD0_chcablecar(Actor *arg0) {
 void func_80800D14_chcablecar(Actor *arg0, s32 arg1) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800F4F34(u32, f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F6C88(s32);
-    s32 func_800F76B0(s32, s32, s32);
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6C88(BtIntPtr);
+    s32 func_800F76B0(BtIntPtr, s32, BtIntPtr);
     void func_80103014(u8 *);
     Actor *func_80106790(Unk80132ED0 *);
     union {
@@ -520,7 +520,7 @@ void func_80800D14_chcablecar(Actor *arg0, s32 arg1) {
             u16 flags;
         } *fields;
     } view;
-    u32 sp20;
+    BtUIntPtr sp20;
     Actor *actor;
 
     if (arg0->unk3C != NULL) {
@@ -532,7 +532,7 @@ void func_80800D14_chcablecar(Actor *arg0, s32 arg1) {
         view.actor = arg0;
         _subaddieDll_entrypoint_4(actor, view.fields->flags);
         if (func_800F6C88(sp20) && func_800F4F34(sp20, actor->position, 0.0f, 80.0f) && arg1) {
-            func_800F76B0(sp20, 10, (s32)actor->unk0);
+            func_800F76B0(sp20, 10, (BtIntPtr)actor->unk0);
         }
     }
 }
@@ -540,7 +540,7 @@ void func_80800D14_chcablecar(Actor *arg0, s32 arg1) {
 void func_80800DC8_chcablecar(Actor *arg0) {
     void _subaddieDll_entrypoint_4(Actor*, u32);
     void func_80102FDC(Actor*, f32);
-    Actor* func_801084B0(s32, Actor**);
+    Actor* func_801084B0(BtIntPtr, Actor**);
     Actor *sp1C;
     union {
         Actor *actor;
@@ -559,9 +559,23 @@ void func_80800DC8_chcablecar(Actor *arg0) {
 
 /* extern */
 
-void func_80800E30_chcablecar(s32 arg0) {
-    s32 _chswitch_entrypoint_7(s32, s32);
-    s32 _chswitch_entrypoint_9(s32);
+void func_80800E30_chcablecar(BtIntPtr arg0) {
+    s32 _chswitch_entrypoint_7(BtIntPtr, s32);
+    void _chswitch_entrypoint_9(void *arg0);
     _chswitch_entrypoint_7(arg0, 0xD4);
     _chswitch_entrypoint_9(arg0);
 }
+/* data_to_c.py: from asm/data/overlays/ch/cablecar.data.s */
+void func_80105834(Actor*);
+void func_801018A4();
+void func_80107C2C();
+extern u8 D_8011A248[];
+void _chswitch_entrypoint_6();
+void func_80101870(Actor* arg0, void* arg1);
+s32 _chswitch_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2);
+ActorData D_80800EB0_chcablecar [1] BT_DATA(4, overlays_ch_cablecar, 0x0) = { { 677, 830, 1917, 1, 0, (void (*)(struct Actor *))func_80800018_chcablecar, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 163840000, 0, 0, 0, 0, 19456, 0, 0, 68, 0, (void (*)(struct Actor *))func_808002E0_chcablecar, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 17410, (void (*)(struct Actor *, long, long))func_80800424_chcablecar, 0 } };
+ActorData D_80800EF8_chcablecar [1] BT_DATA(4, overlays_ch_cablecar, 0x48) = { { 835, 831, 1919, 1, (void *)D_8011A248, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 18444, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800E30_chcablecar, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 10242, (void (*)(struct Actor *, long, long))_chswitch_entrypoint_10, 0 } };
+f32 D_80800F40_chcablecar [ 3 ] BT_DATA(4, overlays_ch_cablecar, 0x90) = { 0.35f, 0.85f, -1.0f };
+s16 D_80800F4C_chcablecar [6] BT_DATA(4, overlays_ch_cablecar, 0x9C) = { 19, 1307, 13, 217, 294, 0 };
+s16 D_80800F58_chcablecar [8] BT_DATA(4, overlays_ch_cablecar, 0xA8) = { 19, 1185, 22, 18000, 13, 230, 256, 0 };
+u32 D_80800F68_chcablecar[6] BT_DATA(4, overlays_ch_cablecar, 0xB8) = { 0x1304BF, 0xA00E6, 0x103E8, 0x11940000, 0, 0 };

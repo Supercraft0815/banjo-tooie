@@ -2,29 +2,29 @@
 
 OSThread *chnutsnbolts_entrypoint_0(void)
 {
-    extern u8 D_80800E28_chnutsnbolts[];
+    extern ActorData D_80800E28_chnutsnbolts[];
 
     return (OSThread *) D_80800E28_chnutsnbolts;
 }
 
 OSThread *chnutsnbolts_entrypoint_1(void)
 {
-    extern u8 D_80800E70_chnutsnbolts[];
+    extern ActorData D_80800E70_chnutsnbolts[];
 
     return (OSThread *) D_80800E70_chnutsnbolts;
 }
 
 OSThread *chnutsnbolts_entrypoint_2(void)
 {
-    extern u8 D_80800EB8_chnutsnbolts[];
+    extern ActorData D_80800EB8_chnutsnbolts[];
 
     return (OSThread *) D_80800EB8_chnutsnbolts;
-}
+}    typedef struct { u8 pad0[0x1C]; f32 unk1C; } Objnutsnbolts_func_80800024_chnutsnbolts_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 /* extern */
 
 void func_80800024_chnutsnbolts(Actor *arg0) {
-    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void* func_80100094(Actor*, u32);
     s32 func_8080092C_chnutsnbolts(Actor *, s32);
     u8 *sp24;
@@ -34,14 +34,14 @@ void func_80800024_chnutsnbolts(Actor *arg0) {
     sp24 = temp_v0;
     _subaddierouteDll_entrypoint_3(arg0, temp_v0 + 8, arg0->position);
     func_8080092C_chnutsnbolts(arg0, 2);
-    (*(f32 *)((s8 *)(sp24) + (0x1C))) = 0.0f;
+    (((Objnutsnbolts_func_80800024_chnutsnbolts_sp24 *)sp24)->unk1C) = 0.0f;
     (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
 }
 
-void func_80800080_chnutsnbolts(Actor *arg0) {
+void func_80800080_chnutsnbolts(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2)) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _subaddiefx_entrypoint_0(Actor *, s32, void *);
-    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    void _subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1);
     f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
@@ -56,8 +56,8 @@ void func_80800080_chnutsnbolts(Actor *arg0) {
     void func_800EFDE8(f32 *, u8 *, f32 *);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    u32 func_800F54E4(void);
-    s32 func_800F6478(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6478(BtIntPtr);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
@@ -208,12 +208,12 @@ s32 func_808005D0_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80103DFC(Actor *, f32 *);
     s32 func_8010A430(void *);
-    void _chbaddiesetup_entrypoint_10(void);
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    Actor *_chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
     Actor *_subaddiefind_entrypoint_3(s32, s32 *);
     s32 _subaddieDll_entrypoint_3(Actor *);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddiefade_entrypoint_3(Actor *);
     void _subaddierouteDll_entrypoint_1(Actor *);
     s32 func_80107070(Actor *, u32);
@@ -336,7 +336,7 @@ s32 func_808005D0_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_808008FC_chnutsnbolts(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 _subaddiefx_entrypoint_1(Actor *, u8 *);
+    void _subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1);
     _subaddiefx_entrypoint_1(arg0, func_80100094(arg0, 0U));
 }
 
@@ -400,7 +400,7 @@ s32 func_8080092C_chnutsnbolts(Actor *arg0, s32 arg1) {
             _subaddiefade_entrypoint_3(arg0);
         }
         break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_80800A88_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
@@ -432,31 +432,56 @@ s32 func_80800A88_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
 void func_80800B80_chnutsnbolts(Actor *arg0) {
-    extern u32 D_80800CC0_chnutsnbolts;
-    extern u32 D_80800F2C_chnutsnbolts;
-    extern u32 D_80800F3C_chnutsnbolts;
+    extern u32 D_80800CC0_chnutsnbolts[4];
+    extern u32 D_80800F2C_chnutsnbolts[4];
+    extern u32 D_80800F3C_chnutsnbolts[3];
     f32 *sp1C[2];
 
-    sp1C[1] = (f32 *) ((u8 *) arg0 + 4);
-    _subaddieaudioquick_entrypoint_4(arg0, sp1C[1], &D_80800CC0_chnutsnbolts, &D_80800F3C_chnutsnbolts);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], &D_80800F2C_chnutsnbolts, 0.2f);
+    sp1C[1] = &arg0->position[0];
+    _subaddieaudioquick_entrypoint_4(arg0, sp1C[1], D_80800CC0_chnutsnbolts, D_80800F3C_chnutsnbolts);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], D_80800F2C_chnutsnbolts, 0.2f);
 }
 
 void func_80800BD4_chnutsnbolts(Actor *arg0) {
-    extern u32 D_80800CC0_chnutsnbolts;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800CC0_chnutsnbolts, 0.65f);
+    extern u32 D_80800CC0_chnutsnbolts[4];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800CC0_chnutsnbolts, 0.65f);
 }
 
 void func_80800C04_chnutsnbolts(Actor *arg0) {
-    extern u32 D_80800CC0_chnutsnbolts;
-    extern u32 D_80800F48_chnutsnbolts;
-    extern u32 D_80800F58_chnutsnbolts;
+    extern u32 D_80800CC0_chnutsnbolts[4];
+    extern u32 D_80800F48_chnutsnbolts[4];
+    extern u32 D_80800F58_chnutsnbolts[6];
     f32 *sp1C[2];
 
-    sp1C[1] = (f32 *) ((u8 *) arg0 + 4);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], &D_80800F48_chnutsnbolts, 0.7f);
-    _subaddieaudioquick_entrypoint_4(arg0, sp1C[1], &D_80800CC0_chnutsnbolts, &D_80800F58_chnutsnbolts);
+    sp1C[1] = &arg0->position[0];
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], D_80800F48_chnutsnbolts, 0.7f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp1C[1], D_80800CC0_chnutsnbolts, D_80800F58_chnutsnbolts);
 }
+/* data_to_c.py: from asm/data/overlays/ch/nutsnbolts.data.s */
+extern u8 D_80800CD0_chnutsnbolts[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+extern u8 D_80800DF0_chnutsnbolts[];
+extern u8 D_80800D30_chnutsnbolts[];
+extern u8 D_80800D90_chnutsnbolts[];
+u32 D_80800CC0_chnutsnbolts[4] BT_DATA(4, overlays_ch_nutsnbolts, 0x0) = { 0x13045A, 0xD0140, 0x1590016, 0x36B00000 };
+u8 D_80800CD0_chnutsnbolts[96] BT_DATA(4, overlays_ch_nutsnbolts, 0x10) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE3, 0x00, 0x4C, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE3, 0x00, 0x4C, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE3, 0x00, 0x02, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xE4, 0x00, 0x01, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xE4, 0x00, 0x01, 0x40, 0x00, 0x00, 0x00, 0x02, 0xE3, 0x00, 0x92, 0x3F, 0x8F, 0x5C, 0x29, 0x02, 0xE5, 0x00, 0x01, 0x3F, 0x8F, 0x5C, 0x29, 0x02, 0xE5, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xE4, 0x04, 0x01, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE3, 0x00, 0x4C };
+u8 D_80800D30_chnutsnbolts[96] BT_DATA(4, overlays_ch_nutsnbolts, 0x70) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE9, 0x00, 0x4C, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE9, 0x00, 0x4C, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE9, 0x00, 0x02, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xEA, 0x00, 0x01, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xEA, 0x00, 0x01, 0x40, 0x00, 0x00, 0x00, 0x02, 0xE9, 0x00, 0x92, 0x3F, 0x8F, 0x5C, 0x29, 0x02, 0xEB, 0x00, 0x01, 0x3F, 0xAF, 0x5C, 0x29, 0x02, 0xEB, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xEA, 0x04, 0x01, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE9, 0x00, 0x4C };
+u8 D_80800D90_chnutsnbolts[96] BT_DATA(4, overlays_ch_nutsnbolts, 0xD0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE6, 0x00, 0x4C, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE6, 0x00, 0x4C, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE6, 0x00, 0x02, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xE7, 0x00, 0x01, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xE7, 0x00, 0x01, 0x40, 0x00, 0x00, 0x00, 0x02, 0xE6, 0x00, 0x92, 0x3F, 0x8F, 0x5C, 0x29, 0x02, 0xE8, 0x00, 0x01, 0x3F, 0x8F, 0x5C, 0x29, 0x02, 0xE8, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x28, 0xF5, 0xC3, 0x02, 0xE7, 0x04, 0x01, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE6, 0x00, 0x4C };
+u8 D_80800DF0_chnutsnbolts[20] BT_DATA(4, overlays_ch_nutsnbolts, 0x130) = { 0x00, 0x02, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00 };
+u8 D_80800E04_chnutsnbolts [12] BT_DATA(4, overlays_ch_nutsnbolts, 0x144) = { 0, 0, 0, 1, 0x3F, 0xE6, 0x66, 0x66, 0, 0x12, 0, 0 };
+u8 D_80800E10_chnutsnbolts [24] BT_DATA(4, overlays_ch_nutsnbolts, 0x150) = { 0, 0, 0, 3, 0x3F, 0xC0, 0, 0, 0, 0x12, 0, 0, 0, 0, 0, 1, 0x40, 0, 0, 0, 0, 0x12, 0, 0 };
+ActorData D_80800E28_chnutsnbolts [1] BT_DATA(4, overlays_ch_nutsnbolts, 0x168) = { { 413, 1086, 2026, 2, (void *)D_80800CD0_chnutsnbolts, (void (*)(struct Actor *))func_80800080_chnutsnbolts, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 163840000, 1065353216, 0, 0, 901, 609, (void (*)(struct Actor *))func_808008FC_chnutsnbolts, (BtIntPtr)func_80108ED0, 32, 0, (void (*)(struct Actor *))func_80800024_chnutsnbolts, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32734, 21533, (void (*)(struct Actor *, long, long))func_808005D0_chnutsnbolts, (BtIntPtr)D_80800DF0_chnutsnbolts } };
+ActorData D_80800E70_chnutsnbolts [1] BT_DATA(4, overlays_ch_nutsnbolts, 0x1B0) = { { 413, 1087, 2027, 2, (void *)D_80800D30_chnutsnbolts, (void (*)(struct Actor *))func_80800080_chnutsnbolts, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 163840000, 1061997773, 0, 0, 901, 609, (void (*)(struct Actor *))func_808008FC_chnutsnbolts, (BtIntPtr)func_80108ED0, 32, 0, (void (*)(struct Actor *))func_80800024_chnutsnbolts, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32734, 21533, (void (*)(struct Actor *, long, long))func_808005D0_chnutsnbolts, (BtIntPtr)D_80800DF0_chnutsnbolts } };
+ActorData D_80800EB8_chnutsnbolts [1] BT_DATA(4, overlays_ch_nutsnbolts, 0x1F8) = { { 413, 1088, 2028, 2, (void *)D_80800D90_chnutsnbolts, (void (*)(struct Actor *))func_80800080_chnutsnbolts, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 163840000, 1067030938, 0, 0, 901, 609, (void (*)(struct Actor *))func_808008FC_chnutsnbolts, (BtIntPtr)func_80108ED0, 32, 0, (void (*)(struct Actor *))func_80800024_chnutsnbolts, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32734, 21533, (void (*)(struct Actor *, long, long))func_808005D0_chnutsnbolts, (BtIntPtr)D_80800DF0_chnutsnbolts } };
+u8 D_80800F00_chnutsnbolts [20] BT_DATA(4, overlays_ch_nutsnbolts, 0x240) = { 0, 0x13, 5, 0xC1, 0, 0xD, 0, 0xB3, 0, 0xCC, 0, 1, 5, 0xDC, 0x13, 0x88, 0, 0, 0, 0 };
+u8 D_80800F14_chnutsnbolts [24] BT_DATA(4, overlays_ch_nutsnbolts, 0x254) = { 0, 0, 0, 0, 0x3D, 0xCC, 0xCC, 0xCD, 0x3F, 0, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0, 0x3D, 0xCC, 0xCC, 0xCD };
+u32 D_80800F2C_chnutsnbolts[4] BT_DATA(4, overlays_ch_nutsnbolts, 0x26C) = { 0x1304B2, 0xD00D9, 0xF30016, 0x36B00000 };
+u32 D_80800F3C_chnutsnbolts[3] BT_DATA(4, overlays_ch_nutsnbolts, 0x27C) = { 0x3F19999A, 0x3F666666, 0xBF800000 };
+u32 D_80800F48_chnutsnbolts[4] BT_DATA(4, overlays_ch_nutsnbolts, 0x288) = { 0x1304B2, 0xD00C0, 0xD90016, 0x36B00000 };
+u32 D_80800F58_chnutsnbolts[6] BT_DATA(4, overlays_ch_nutsnbolts, 0x298) = { 0x3E4CCCCD, 0x3F000000, 0xBF800000, 0, 0, 0 };

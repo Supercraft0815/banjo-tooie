@@ -32,7 +32,7 @@ void cosectionstor_entrypoint_1(void) {
 
 void cosectionstor_entrypoint_2(void)
 {
-  s32 defrag(s32);
+  BtIntPtr defrag(BtIntPtr);
   s32 *new_var;
   s32 *new_var2;
   extern f32 D_80127194;
@@ -43,7 +43,7 @@ void cosectionstor_entrypoint_2(void)
 }
 
 void cosectionstor_entrypoint_3(s32 arg0) {
-    s32 _gccollectDll_entrypoint_6(void *, void *);
+    BtIntPtr _gccollectDll_entrypoint_6(void *, void *);
     u8 *_subaddiestore_entrypoint_0(u8 *, u8 *);
     s32 func_800DAA1C(void);
     void func_800FF44C(void);
@@ -80,8 +80,8 @@ void cosectionstor_entrypoint_3(s32 arg0) {
 }
 
 void cosectionstor_entrypoint_4(s32 arg0) {
-    s32 _gccollectDll_entrypoint_7(void *, void *);
-    void _subaddiestore_entrypoint_1(s32, u8 *);
+    BtIntPtr _gccollectDll_entrypoint_7(void *, void *);
+    void _subaddiestore_entrypoint_1(BtIntPtr, u8 *);
     void func_800DAA28(s32);
     void heap_free(void *);
     s32 *temp_v0;
@@ -96,9 +96,15 @@ void cosectionstor_entrypoint_4(s32 arg0) {
             func_800DAA28(*temp_v0);
             sp24 = (bits += 0x20) >> 5;
             D_80127198[(u32)arg0].ptr = (s32 *)(uintptr_t)_gccollectDll_entrypoint_7(D_80127198[(u32)arg0].ptr, &sp24);
-            _subaddiestore_entrypoint_1((s32)D_80127198[(u32)arg0].ptr, (u8 *)(D_80127198[(u32)arg0].ptr + (((s32)(((u32)sp24 << 5) + 0x7F) >> 7) * 4)));
+            _subaddiestore_entrypoint_1((BtIntPtr)D_80127198[(u32)arg0].ptr, (u8 *)(D_80127198[(u32)arg0].ptr + (((s32)(((u32)sp24 << 5) + 0x7F) >> 7) * 4)));
             heap_free(D_80127198[(u32)arg0].ptr);
             D_80127198[(u32)arg0].ptr = NULL;
         }
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+struct Slot D_80127198 [ 270 ] BT_DATA(4, bss_core2bss1_0_1, 0x138);
+#endif

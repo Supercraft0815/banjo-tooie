@@ -10,7 +10,7 @@
 #include "gc/goto.h"
 #include "gc/cubesearch.h"
 
-f32 func_800C71B0(s32, f32);
+f32 func_800C71B0(BtIntPtr, f32);
 s32 func_800C75A0(s32);
 void func_800C75E8();
 void func_800C7618(s32, s32);

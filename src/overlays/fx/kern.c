@@ -1,7 +1,7 @@
 #include "common.h"
-
+typedef struct { u8 first; u8 key; s8 value2; s8 value3; } KernEntry;
 void func_80800000_fxkern(u8 arg0, u8 arg1, s32 *arg2, s32 *arg3) {
-    typedef struct { u8 first; u8 key; s8 value2; s8 value3; } KernEntry;
+
     extern KernEntry D_80800420_fxkern[];
     s32 key = arg0;
     s32 i;
@@ -73,15 +73,24 @@ void fxkern_entrypoint_1(Gfx **arg0, s32 arg1, u8 *arg2) {
 }
 
 void fxkern_entrypoint_2(void) {
-    s32 func_800B8C50();
+    void func_800B8C50(void);
     extern f32 B_80800480_fxkern;
     func_800B8C50();
     B_80800480_fxkern = 1.0f;
 }
 
 void fxkern_entrypoint_3(f32 arg0) {
-    s32 func_800B8CF0(f32);
+    void func_800B8CF0(f32 size);
     extern f32 B_80800480_fxkern;
     func_800B8CF0(arg0);
     B_80800480_fxkern = arg0;
 }
+/* data_to_c.py: from asm/data/overlays/fx/kern.data.s */
+KernEntry D_80800420_fxkern [24] BT_DATA(4, overlays_fx_kern, 0x0) = { { 0x41, 0x56, -3, 0 }, { 0x57, 0x41, -3, 0 }, { 0x56, 0x41, -3, 0 }, { 0x59, 0x41, -2, 0 }, { 0x4D, 0x4F, -1, 0 }, { 0x44, 0x41, -1, 0 }, { 0x52, 0x4F, -2, 0 }, { 0x54, 0x41, -2, 0 }, { 0x53, 0x54, -1, 0 }, { 0x41, 0x4D, -1, 0 }, { 0x43, 0x4F, -1, 0 }, { 0x4F, 0x56, -1, 0 }, { 0x4C, 0x4F, -1, 0 }, { 0x4D, 0x55, -1, 0 }, { 0x55, 0x4D, -1, 0 }, { 0x4D, 0x41, -2, 0 }, { 0x4D, 0x30, -1, 0 }, { 0x48, 0x49, 1, 0 }, { 0x49, 0x50, 1, 0 }, { 0x45, 0x45, 0, 1 }, { 0x5A, 0x45, 0, -1 }, { 0x2A, 0x53, 1, 0 }, { 0x2A, 0x27, 3, 0 }, { 0, 0, 0, 0 } };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 B_80800480_fxkern BT_DATA(16, bss_fx_kern, 0x0);
+f32 B_80800488_fxkern [ 65 ] [ 2 ] BT_DATA(4, bss_fx_kern, 0x8);
+#endif

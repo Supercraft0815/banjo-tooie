@@ -2,7 +2,7 @@
 #include "native_actor_model.h"
 #include "native_model.h"
 s32 func_8001211C(void),func_800AE0B8(void *),func_800EFFB4(f32 *,f32,f32 *);
-s16 func_800B1F8C(void *,f32 *,f32 *,f32,s32,void *,f32 *,f32,f32 *,u32);
+s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9);
 f32 *func_801027F4(Actor *);
 NativeActorHit *func_80104124(void);
 void func_800EE7F8(f32 *,f32 *),func_80103328(Actor *),func_80103DFC(Actor *,f32 *);

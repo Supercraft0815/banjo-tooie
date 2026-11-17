@@ -2,39 +2,39 @@
 
 /* extern */
 
-void sumissilehome_entrypoint_0(s32 arg0, u8 *arg1) {
-    s32 _subaddielink_entrypoint_0(u8 *);
-    (*(s8 *)((s8 *)(arg1) + (8))) = 0;
-    (*(s8 *)((s8 *)(arg1) + (9))) = 0;
-    (*(s8 *)((s8 *)(arg1) + (0))) = -1;
-    (*(s8 *)((s8 *)(arg1) + (1))) = -1;
-    (*(f32 *)((s8 *)(arg1) + (4))) = 6000.0f;
-    (*(s8 *)((s8 *)(arg1) + (0xA))) = 2;
+typedef struct { s8 unk0; s8 unk1; s16 unk2; f32 unk4; s8 unk8; s8 unk9; s8 unkA; } Objmissilehome_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */ void sumissilehome_entrypoint_0(BtIntPtr arg0, u8 *arg1) {
+    void _subaddielink_entrypoint_0(void *arg0);
+    (((Objmissilehome_arg1 *)arg1)->unk8) = 0;
+    (((Objmissilehome_arg1 *)arg1)->unk9) = 0;
+    (((Objmissilehome_arg1 *)arg1)->unk0) = -1;
+    (((Objmissilehome_arg1 *)arg1)->unk1) = -1;
+    (((Objmissilehome_arg1 *)arg1)->unk4) = 6000.0f;
+    (((Objmissilehome_arg1 *)arg1)->unkA) = 2;
     _subaddielink_entrypoint_0(arg1 + 0xC);
 }
 
-void sumissilehome_entrypoint_1(s32 arg0, void *arg1, s32 arg2) {
-    (*(s8 *)((s8 *)(arg1) + (8))) = 1;
-    (*(s16 *)((s8 *)(arg1) + (2))) = arg2;
+void sumissilehome_entrypoint_1(BtIntPtr arg0, void *arg1, s32 arg2) {
+    (((Objmissilehome_arg1 *)arg1)->unk8) = 1;
+    (((Objmissilehome_arg1 *)arg1)->unk2) = arg2;
 }
 
-void sumissilehome_entrypoint_2(s32 arg0, void *arg1, f32 arg2) {
-    (*(s8 *)((s8 *)(arg1) + (0xA))) = 1;
-    (*(f32 *)((s8 *)(arg1) + (4))) = arg2;
+void sumissilehome_entrypoint_2(BtIntPtr arg0, void *arg1, f32 arg2) {
+    (((Objmissilehome_arg1 *)arg1)->unkA) = 1;
+    (((Objmissilehome_arg1 *)arg1)->unk4) = arg2;
 }
 
-void sumissilehome_entrypoint_3(s32 arg0, s8 *arg1, s32 arg2) {
+void sumissilehome_entrypoint_3(BtIntPtr arg0, s8 *arg1, s32 arg2) {
     *arg1 = arg2;
 }
 
 void sumissilehome_entrypoint_4(s32 arg0, s32 *arg1, s32 arg2) {
-    (*(s8 *)((s8 *)(arg1) + (9))) = (s8)arg2;
+    (((Objmissilehome_arg1 *)arg1)->unk9) = (s8)arg2;
 }
 
 /* extern */
 
 void sumissilehome_entrypoint_5(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     Actor *_subaddielink_entrypoint_4(u8 *);
     s32 func_800EA068(s32);
     Unk80132ED0 *func_8010A01C(s32, s32, s32, s32, s32);
@@ -46,7 +46,7 @@ void sumissilehome_entrypoint_5(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
     sp34 = -1;
     if ((arg1[8] != 0) || ((*(u8 *)((s8 *)(arg1) + (9))) != 0)) {
         if (arg1[8] != 0) {
-            temp_v0_2 = func_8010A01C(arg0 + 4, arg0 + 0x28, arg2, arg3, (s32) (*(s16 *)((s8 *)(arg1) + (2))));
+            temp_v0_2 = func_8010A01C(arg0 + 4, arg0 + 0x28, arg2, arg3, (s32) (((Objmissilehome_arg1 *)arg1)->unk2));
             _subaddielink_entrypoint_1(sp2C = arg1 + 0xC, temp_v0_2);
             if (_subaddielink_entrypoint_4(sp2C) == 0) {
                 (*(u8 *)((s8 *)(arg1) + (8))) = 0U;
@@ -54,9 +54,9 @@ void sumissilehome_entrypoint_5(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
         }
         if ((*(u8 *)((s8 *)(arg1) + (9))) != 0) {
             if (((*(u8 *)((s8 *)(arg1) + (8))) == 0) && (func_800EA068(0x4000) != 0)) {
-                sp34 = func_8010D490(arg0 + 4, arg0 + 0x28, arg2, arg3, (s32) (*(s8 *)((s8 *)(arg1) + (0))));
+                sp34 = func_8010D490(arg0 + 4, arg0 + 0x28, arg2, arg3, (s32) (((Objmissilehome_arg1 *)arg1)->unk0));
             }
-            (*(s8 *)((s8 *)(arg1) + (1))) = (s8) sp34;
+            (((Objmissilehome_arg1 *)arg1)->unk1) = (s8) sp34;
         }
     }
 }
@@ -97,7 +97,7 @@ void func_808001C8_sumissilehome(void *arg0, void *arg1, f32 arg2) {
 
 void sumissilehome_entrypoint_6(Actor *arg0, void *arg1) {
     Actor *_subaddielink_entrypoint_4(u8 *);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_8010A2FC(Actor *, f32 *, f32 *);
     f32 position[3];
     struct MissileHomeData {

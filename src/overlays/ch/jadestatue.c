@@ -2,7 +2,7 @@
 
 OSThread *chjadestatue_entrypoint_0(void)
 {
-    extern u8 D_80800310_chjadestatue[];
+    extern ActorData D_80800310_chjadestatue[];
 
     return (OSThread *) D_80800310_chjadestatue;
 }
@@ -57,7 +57,7 @@ void func_80800104_chjadestatue(Actor *arg0, u8 *arg1) {
 /* extern */
 
 s32 func_80800140_chjadestatue(void *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_800FFAB0(Actor *);
     void func_80109EEC(s16 *, s32);
     Actor *actor = arg0;
@@ -84,7 +84,7 @@ void func_808001C0_chjadestatue(Actor *arg0) {
     void func_800D0BD4(s32, u32);
     s32 func_800D24E8(s32, s32, u32);
     void func_800FC63C(u32, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 sp1C;
 
     _fxsparkle_entrypoint_1(arg0->position, 0xC);
@@ -118,7 +118,7 @@ void func_808002A4_chjadestatue(Actor *arg0) {
     s32 func_800D035C(s32);
     s32 func_800D24E8(s32, s32, u32);
     void func_800FFAB0(Actor *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 sp1C;
     s32 temp_v0;
 
@@ -133,7 +133,14 @@ void func_808002A4_chjadestatue(Actor *arg0) {
 
 OSThread *chjadestatue_entrypoint_1(void)
 {
-    extern u8 D_80800358_chjadestatue[];
+    extern ActorData D_80800358_chjadestatue[];
 
     return (OSThread *) D_80800358_chjadestatue;
 }
+/* data_to_c.py: from asm/data/overlays/ch/jadestatue.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+void func_80101870 ( Actor * arg0 , void * arg1 );
+ActorData D_80800310_chjadestatue [1] BT_DATA(4, overlays_ch_jadestatue, 0x0) = { { 344, 691, 2323, 1, 0, (void (*)(struct Actor *))func_80800098_chjadestatue, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800104_chjadestatue, 0, 0, 0, 0, 16384, 0, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_8080000C_chjadestatue, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9232, (void (*)(struct Actor *, long, long))func_80800140_chjadestatue, 0 } };
+ActorData D_80800358_chjadestatue [1] BT_DATA(4, overlays_ch_jadestatue, 0x48) = { { 344, 1340, 0, 1, 0, (void (*)(struct Actor *))func_808002A4_chjadestatue, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080026C_chjadestatue, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, 0, 0 } };

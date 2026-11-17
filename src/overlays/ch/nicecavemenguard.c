@@ -1,7 +1,7 @@
 #include "ch/nicecavemenguard.h"
 
 void func_80102EC0(s32);
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 void func_808000D4_chnicecavemenguard(Actor *arg0);
 void func_80800388_chnicecavemenguard(Actor* arg0);
@@ -22,12 +22,12 @@ u32 D_808008E8_chnicecavemenguard[] = {
     0x40800000, 0x02EE0001
 };
 
-u32 D_80800920_chnicecavemenguard[] = {
-    0x030E03A5, 0x07EE0001, (u32)D_808008E8_chnicecavemenguard, (u32)func_80102EC0,
-    (u32)func_808000D4_chnicecavemenguard, (u32)func_801018A4, 0x05DC0000, 0x3FC00000,
-    0x018607E7, 0x40840124, (u32)func_80800388_chnicecavemenguard, 0x00000000,
-    0x00000000, (u32)func_8080000C_chnicecavemenguard, (u32)func_80107C2C, 0x84101412,
-    (u32)func_808003A8_chnicecavemenguard, 0x00000000
+BtFnWord D_80800920_chnicecavemenguard[] = {
+    0x030E03A5, 0x07EE0001, (BtFnWord)D_808008E8_chnicecavemenguard, (BtFnWord)func_80102EC0,
+    (BtFnWord)func_808000D4_chnicecavemenguard, (BtFnWord)func_801018A4, 0x05DC0000, 0x3FC00000,
+    0x018607E7, 0x40840124, (BtFnWord)func_80800388_chnicecavemenguard, 0x00000000,
+    0x00000000, (BtFnWord)func_8080000C_chnicecavemenguard, (BtFnWord)func_80107C2C, 0x84101412,
+    (BtFnWord)func_808003A8_chnicecavemenguard, 0x00000000
 };
 
 s32 D_80800968_chnicecavemenguard[] = {
@@ -141,25 +141,25 @@ void func_808000D4_chnicecavemenguard(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
-    s32 _sudeflect_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+    s32 _sudeflect_entrypoint_3(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
     void _sudeflect_entrypoint_4(s32 arg0, f32 *arg1);
     void _suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2);
     void func_800DA544(s32 index);
-    s32 func_800F4F34(u32 arg0, f32 *arg1, f32 arg2, f32 arg3);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
-    void func_800F7B9C(s32 arg0,u32 a1);
-    s32 func_800F7F98(s32 arg0, u32 arg1);
+    s32 func_800F4F34(BtUIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    s32 func_800F7F98(BtIntPtr arg0, u32 arg1);
     s32 func_80101DDC(Actor *arg0);
     void func_80102424(Actor *arg0, s32 arg1);
     void func_80105854(Actor *arg0);
     s32 func_80105A5C(Actor *arg0);
-    void func_80800600_chnicecavemenguard(s32 arg0);
+    void func_80800600_chnicecavemenguard(BtIntPtr arg0);
     void func_80800608_chnicecavemenguard(Actor *arg0);
     void func_80800730_chnicecavemenguard(Actor *arg0);
     void func_8080075C_chnicecavemenguard(Actor *arg0);
     s32 active = 0;
-    u32 player;
+    BtUIntPtr player;
     void *expression;
 
     player = func_800F54E4();
@@ -168,14 +168,14 @@ void func_808000D4_chnicecavemenguard(Actor *arg0) {
     switch (arg0->unk70_10) {
     case 1:
         active = 1;
-        func_80800600_chnicecavemenguard((s32)arg0);
+        func_80800600_chnicecavemenguard((BtIntPtr)arg0);
         if (func_800F64A4(func_800F54E4(), 0x60000) == 0) {
             _subaddiedialog_entrypoint_8(arg0, arg0->position, (subaddiedialog_UnkStruct2 *)D_80800968_chnicecavemenguard, (subaddiedialog_UnkStruct1 *)D_808008C0_chnicecavemenguard, 5);
         }
         break;
     case 2:
         active = 1;
-        func_80800600_chnicecavemenguard((s32)arg0);
+        func_80800600_chnicecavemenguard((BtIntPtr)arg0);
         break;
     case 3:
         active = 1;
@@ -212,7 +212,7 @@ void func_808000D4_chnicecavemenguard(Actor *arg0) {
             _sudeflect_entrypoint_4(9, arg0->position);
         }
     }
-    if (active && (_sudeflect_entrypoint_3((s32)arg0->actorData, (s32)arg0->rotation, (s32)D_80800978_chnicecavemenguard, (s32)D_80800984_chnicecavemenguard, 2) & 2)) {
+    if (active && (_sudeflect_entrypoint_3((BtIntPtr)arg0->actorData, (BtIntPtr)arg0->rotation, (BtIntPtr)D_80800978_chnicecavemenguard, (BtIntPtr)D_80800984_chnicecavemenguard, 2) & 2)) {
         _sudeflect_entrypoint_4(9, arg0->position);
     }
 }
@@ -223,10 +223,10 @@ void func_80800388_chnicecavemenguard(Actor* arg0)
 }
 
 s32 func_808003A8_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_80102424(Actor *, s32);
     void func_808004FC_chnicecavemenguard(void *);
     void func_808005D4_chnicecavemenguard(Actor *, s32, s32);
@@ -266,7 +266,7 @@ s32 func_808003A8_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_808004FC_chnicecavemenguard(void *arg0)
 {
-  s32 func_800DF744(s32, s32);
+  void func_800DF744(s32 index,s32 value);
   s32 func_801015D0();
   f32 func_80101F24(void *);
   u32 temp_t6;
@@ -305,16 +305,16 @@ void func_808005D4_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_80800600_chnicecavemenguard(s32 arg0) 
+void func_80800600_chnicecavemenguard(BtIntPtr arg0) 
 {
 }
 void func_80800608_chnicecavemenguard(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     void func_800C301C(u8, s32);
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
     void func_800C3BDC(u8);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     f32 func_800DC178(f32, f32);
     s32 func_80101E14(Actor *, f32);
     s32 i;
@@ -335,12 +335,12 @@ void func_80800608_chnicecavemenguard(Actor *arg0) {
 }
 
 void func_80800730_chnicecavemenguard(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_808009E8_chnicecavemenguard, 0.0f);
 }
 
 void func_8080075C_chnicecavemenguard(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     extern struct AudioValues D_808009F0_chnicecavemenguard;
     struct AudioValues sp1C;
 
@@ -353,8 +353,8 @@ void func_8080075C_chnicecavemenguard(Actor *arg0) {
 void func_808007A8_chnicecavemenguard(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
-    s32 temp_v0;
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr temp_v0;
 
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1, 0x96);

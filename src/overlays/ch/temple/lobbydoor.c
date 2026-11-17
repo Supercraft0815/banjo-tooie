@@ -3,18 +3,18 @@
 void func_808000B4_chtemplelobbydoor(s32);
 void func_808000BC_chtemplelobbydoor(s32);
 void func_808000E4_chtemplelobbydoor();
-void func_8080000C_chtemplelobbydoor(s32);
+void func_8080000C_chtemplelobbydoor(BtIntPtr);
 s32 func_80800248_chtemplelobbydoor(Actor *, s32, s32);
 void func_80101870(Actor *, void *);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 
-u32 D_808003A0_chtemplelobbydoor[] = {
-    0x00AC02B5, 0x08490004, 0x00000000, (u32)func_808000BC_chtemplelobbydoor,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x00020800, (u32)func_808000B4_chtemplelobbydoor, 0x00000000,
-    0x00000000, (u32)func_8080000C_chtemplelobbydoor, (u32)func_80107C2C, 0x80002402,
-    (u32)func_80800248_chtemplelobbydoor, 0x00000000,
+BtFnWord D_808003A0_chtemplelobbydoor[] = {
+    0x00AC02B5, 0x08490004, 0x00000000, (BtFnWord)func_808000BC_chtemplelobbydoor,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00020800, (BtFnWord)func_808000B4_chtemplelobbydoor, 0x00000000,
+    0x00000000, (BtFnWord)func_8080000C_chtemplelobbydoor, (BtFnWord)func_80107C2C, 0x80002402,
+    (BtFnWord)func_80800248_chtemplelobbydoor, 0x00000000,
 };
 
 s32 D_808003E8_chtemplelobbydoor = 0x190;
@@ -32,14 +32,14 @@ OSThread *chtemplelobbydoor_entrypoint_0(void)
 
 /* extern */
 
-void func_8080000C_chtemplelobbydoor(s32 arg0) {
-    s32 _chdoormake_entrypoint_3(s32, f32, f32, f32, s32, s32);
-    s32 _chdoormake_entrypoint_5(s32, f32);
-    s32 _chdoormake_entrypoint_8(s32, s32);
+void func_8080000C_chtemplelobbydoor(BtIntPtr arg0) {
+    s32 _chdoormake_entrypoint_3(BtIntPtr, f32, f32, f32, s32, s32);
+    void _chdoormake_entrypoint_5(Actor *arg0, f32 arg1);
+    void _chdoormake_entrypoint_8(Actor *arg0, u32 arg1);
     s32 func_800D035C(s32);
     s32 func_800EA090();
-    s32 func_800F5410(s32);
-    s32 func_80101FDC(s32, s32);
+    s32 func_800F5410(BtIntPtr);
+    void func_80101FDC(Actor *actor,u32 state);
     s32 sp24;
     s32 temp_t8;
 
@@ -63,7 +63,7 @@ void func_808000BC_chtemplelobbydoor(s32 arg0)
 
 void func_808000E4_chtemplelobbydoor(s32 arg0) {
     int func_800C6E38(s32);
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     s32 i;
 
     if (func_800C6E38(0x15)) {
@@ -76,16 +76,16 @@ void func_808000E4_chtemplelobbydoor(s32 arg0) {
 }
 
 void func_80800134_chtemplelobbydoor(Actor *arg0, s32 arg1) {
-    void _bsfirstp_entrypoint_18(void);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    void _bsfirstp_entrypoint_18(s32 arg0, s32 arg1);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     u32 func_8009E958(void);
     int func_800C6E38(s32);
-    void func_800C9CD0(f32, s32, s32, s32, f32 *, s16);
+    void func_800C9CD0(f32, BtIntPtr, s32, s32, f32 *, s16);
     s32 func_800DA298(s32);
     s32 func_800DA9E4(s32, s32);
     s32 func_800EA090(void);
-    void func_800F49D4(s32, void *, s32);
-    u32 func_800F54E4(void);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s8 *sp24;
 
@@ -109,13 +109,13 @@ void func_80800134_chtemplelobbydoor(Actor *arg0, s32 arg1) {
 }
 
 s32 func_80800248_chtemplelobbydoor(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_14(void);
-    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7B9C(s32, s32);
-    s32 func_800F7F98(s32, u32);
+    s32 _capod_entrypoint_14(void);
+    s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     u8 *data;
     s32 value;
 

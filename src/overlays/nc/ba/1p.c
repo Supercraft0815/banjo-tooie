@@ -5,7 +5,7 @@ s32 ncba1p_entrypoint_0()
     return 0x54;
 }
 
-int func_80800008_ncba1p(s32 arg0, f32 *arg1, f32 *arg2) {
+int func_80800008_ncba1p(BtIntPtr arg0, f32 *arg1, f32 *arg2) {
     f32 func_800EEAD4(f32 *, f32 *);
     return func_800EEAD4(arg1, arg2) < 40.0f;
 }
@@ -13,7 +13,7 @@ int func_80800008_ncba1p(s32 arg0, f32 *arg1, f32 *arg2) {
 /* extern */
 
 void func_8080004C_ncba1p(void **arg0, s32 arg1) {
-    s32 func_800F7B9C(s32, s32);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
     s32 func_80110840();
     s32 temp_a0;
 
@@ -52,7 +52,7 @@ void func_808000A0_ncba1p(f32 **arg0, f32 *arg1, f32 *arg2) {
     if ((*arg0)[18] == (f32)0.0) {
         ncba1p_entrypoint_5((void **)arg0, 2);
     }
-    if (func_80800008_ncba1p((s32)arg0, *arg0, *arg0 + 6)) {
+    if (func_80800008_ncba1p((BtIntPtr)arg0, *arg0, *arg0 + 6)) {
         func_8080004C_ncba1p((void **)arg0, 0x62);
     }
     func_800EE7F8(arg1, *arg0);
@@ -87,7 +87,7 @@ void func_80800230_ncba1p(f32 **arg0, f32 *arg1, f32 *arg2) {
     if ((*arg0)[18] == (f32)0.0) {
         ncba1p_entrypoint_5((void **)arg0, 4);
     }
-    if (func_80800008_ncba1p((s32)arg0, *arg0 + 6, *arg0) == 0) {
+    if (func_80800008_ncba1p((BtIntPtr)arg0, *arg0 + 6, *arg0) == 0) {
         func_8080004C_ncba1p((void **)arg0, 0x63);
     }
     func_800EE7F8(arg1, *arg0);
@@ -165,11 +165,11 @@ void ncba1p_entrypoint_3(f32 **arg0, f32 *arg1, f32 *arg2) {
         case 4:
             return;
     }
-}
+}    typedef struct { void * unk0; } Obj1p_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void ncba1p_entrypoint_4(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 80) = arg1;
-}
+    *(s8 *)((u8 *)*&((Obj1p_arg0 *)arg0)->unk0 + 80) = arg1;
+}    typedef struct { u8 pad0[0x4C]; s32 unk4C; } Obj1p_ncba1p_entrypoint_5_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
 void ncba1p_entrypoint_5(void **arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
@@ -199,7 +199,7 @@ void ncba1p_entrypoint_5(void **arg0, s32 arg1) {
         case 1:
             func_80110728((void *)arg0, 1);
             data = *arg0;
-            if (*(s32 *)((u8 *)data + 0x4C) == 3) {
+            if (((Obj1p_ncba1p_entrypoint_5_data *)data)->unk4C == 3) {
                 func_800EE7F8(data + 12, data);
                 data = *arg0;
                 func_800EE7F8(data + 15, data + 3);
@@ -230,7 +230,7 @@ void ncba1p_entrypoint_5(void **arg0, s32 arg1) {
             data = *arg0;
             break;
     }
-    *(s32 *)((u8 *)data + 0x4C) = arg1;
+    ((Obj1p_ncba1p_entrypoint_5_data *)data)->unk4C = arg1;
 }
 
 /* extern */
@@ -244,9 +244,9 @@ void ncba1p_entrypoint_6(f32 **arg0, f32 *arg1) {
 
 void ncba1p_entrypoint_7(void **arg0, void *arg1) {
     f32 func_800136E4(f32);
-    (*(f32 *)((s8 *)(*arg0) + (0x24))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (0))));
-    (*(f32 *)((s8 *)(*arg0) + (0x28))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (4))));
-    (*(f32 *)((s8 *)(*arg0) + (0x2C))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (8))));
+    (*(f32 *)((s8 *)(*arg0) + (0x24))) = func_800136E4((((Vec3f *)arg1)->pos.x));
+    (*(f32 *)((s8 *)(*arg0) + (0x28))) = func_800136E4((((Vec3f *)arg1)->pos.y));
+    (*(f32 *)((s8 *)(*arg0) + (0x2C))) = func_800136E4((((Vec3f *)arg1)->pos.z));
 }
 
 void ncba1p_entrypoint_8(f32 **arg0, f32 *arg1) {
@@ -255,19 +255,19 @@ void ncba1p_entrypoint_8(f32 **arg0, f32 *arg1) {
 }
 
 f32 ncba1p_entrypoint_9(void *arg0) {
-    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 16);
+    return *(f32 *)((u8 *)*&((Obj1p_arg0 *)arg0)->unk0 + 16);
 }
 
 s32 ncba1p_entrypoint_10(void *arg0) {
-    return *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 76);
+    return *(s32 *)((u8 *)*&((Obj1p_arg0 *)arg0)->unk0 + 76);
 }
 
 f32 ncba1p_entrypoint_11(void *arg0) {
-    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 72);
+    return *(f32 *)((u8 *)*&((Obj1p_arg0 *)arg0)->unk0 + 72);
 }
 
 void ncba1p_entrypoint_12(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0) + 72) = arg1;
+    *(f32 *)((u8 *)*&((Obj1p_arg0 *)arg0)->unk0 + 72) = arg1;
 }
 
 void ncba1p_entrypoint_13(f32 **volatile arg0, f32 *arg1, f32 *arg2) { void func_800EE7F8(f32 *, f32 *);

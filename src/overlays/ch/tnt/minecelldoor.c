@@ -7,17 +7,17 @@ OSThread *chtntminecelldoor_entrypoint_0(void)
     return (OSThread *) D_80800140_chtntminecelldoor;
 }
 
-void func_8080000C_chtntminecelldoor(s32 arg0)
+void func_8080000C_chtntminecelldoor(s32 arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3))
 {
     _subaddiefade_entrypoint_14();
-    func_8010A63C(arg0);
+    func_8010A63C(arg0 BT_PASS2(, bt_a1) BT_PASS2(, bt_a2) BT_PASS2(, bt_a3));
 }
 s32 func_80800034_chtntminecelldoor(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void _chexploder_entrypoint_3(void *, void *, u32);
-    void _chtntdetonator_entrypoint_1(Actor *, s32);
+    s32 _chtntdetonator_entrypoint_1(Actor *arg0, s32 arg1);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    void func_808000F4_chtntminecelldoor(s32);
+    void func_808000F4_chtntminecelldoor(BtIntPtr);
     f32 sp1C[3];
 
     switch (arg1) {
@@ -28,7 +28,7 @@ s32 func_80800034_chtntminecelldoor(Actor *arg0, s32 arg1, volatile s32 arg2) {
         _chexploder_entrypoint_3(arg0, sp1C, 0x28);
         break;
     case 0x90:
-        func_808000F4_chtntminecelldoor((s32)arg0);
+        func_808000F4_chtntminecelldoor((BtIntPtr)arg0);
         break;
     case 0x95:
         _chtntdetonator_entrypoint_1(arg0, 0x85);
@@ -41,14 +41,14 @@ s32 func_80800034_chtntminecelldoor(Actor *arg0, s32 arg1, volatile s32 arg2) {
 
 /* extern */
 
-void func_808000F4_chtntminecelldoor(s32 arg0) {
-    s32 _chexploder_entrypoint_12(s32, s32);
-    s32 _chexploder_entrypoint_13(s32, s32);
-    s32 func_800DA544(s32);
-    s32 func_80101080();
-    s32 func_80106790(s32);
-    s32 sp1C;
-    s32 temp_v0;
+void func_808000F4_chtntminecelldoor(BtIntPtr arg0) {
+    void _chexploder_entrypoint_12(Actor *arg0, s32 arg1);
+    void _chexploder_entrypoint_13(Actor *arg0, s32 arg1);
+    void func_800DA544(s32 index);
+    BtIntPtr func_80101080();
+    BtIntPtr func_80106790(BtIntPtr);
+    BtIntPtr sp1C;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80106790(func_80101080());
     sp1C = temp_v0;

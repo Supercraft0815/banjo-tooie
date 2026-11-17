@@ -2,14 +2,14 @@
 
 OSThread *chproplighter_entrypoint_0(void)
 {
-    extern u8 D_808001A0_chproplighter[];
+    extern ActorData D_808001A0_chproplighter[];
 
     return (OSThread *) D_808001A0_chproplighter;
 }
 
 void func_8080000C_chproplighter(Actor *arg0) {
     s32 _gccubesearch_entrypoint_16(s32 *, s32 *, s16 **, s32, s32);
-    s32 _gsproplookup_entrypoint_0();
+    s16 _gsproplookup_entrypoint_0(void *prop);
     f32 func_800136E4(f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EE904(s32 *, f32 *);
@@ -61,3 +61,8 @@ void func_8080000C_chproplighter(Actor *arg0) {
 void func_8080017C_chproplighter(void *arg0)
 {
 }
+/* data_to_c.py: from asm/data/overlays/ch/proplighter.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_808001A0_chproplighter [1] BT_DATA(4, overlays_ch_proplighter, 0x0) = { { 344, 1099, -1, 1, 0, (void (*)(struct Actor *))func_8080017C_chproplighter, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chproplighter, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, 0, 0 } };

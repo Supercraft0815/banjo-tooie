@@ -21,8 +21,8 @@ OSThread *chbilldrillplate_entrypoint_2(void)
     return (OSThread *) D_8080116C_chbilldrillplate;
 }
 
-void func_80800024_chbilldrillplate(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_14(s32);
+void func_80800024_chbilldrillplate(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
+    s32 _subaddiefade_entrypoint_14(BtIntPtr);
     s32 func_800DA298(s32);
     int func_800DC298(f32);
     void func_800FFAB0(Actor *);
@@ -44,7 +44,7 @@ void func_80800024_chbilldrillplate(Actor *arg0) {
 
 void func_808000B0_chbilldrillplate(Actor *arg0) {
     void _chbounce_entrypoint_3(f32);
-    void _chbounce_entrypoint_5(s32, void *);
+    void _chbounce_entrypoint_5(BtIntPtr, void *);
     s32 _subaddieDll_entrypoint_6(Actor *, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _subaddiefade_entrypoint_3(Actor *);
@@ -56,7 +56,7 @@ void func_808000B0_chbilldrillplate(Actor *arg0) {
     void func_80103110(void *, s32);
     void func_8010A570(Actor *);
     void func_8010A624(Actor *);
-    void func_808002A0_chbilldrillplate(s32);
+    void func_808002A0_chbilldrillplate(BtIntPtr);
     extern u8 D_808011B4_chbilldrillplate[];
     struct PlateFlags {
         u32 unused:28;
@@ -87,7 +87,7 @@ void func_808000B0_chbilldrillplate(Actor *arg0) {
     case 3:
         arg0->rotation[0] = func_800136E4(arg0->rotation[0] + func_800D8FF8() * *(f32 *)&arg0->actorData[4]);
         if (func_800D9078((f32 *)&arg0->actorData[6])) {
-            func_808002A0_chbilldrillplate((s32)arg0);
+            func_808002A0_chbilldrillplate((BtIntPtr)arg0);
         }
         if (!((struct PlateFlags *)&arg0->unk78)->active) {
             _subaddiefade_entrypoint_3(arg0);
@@ -101,7 +101,7 @@ void func_808000B0_chbilldrillplate(Actor *arg0) {
 /* extern */
 
 s32 func_80800240_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    s32 _subaddieDll_entrypoint_5(Actor *arg0, Unk80132ED0 *arg1);
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
     s32 *value = &arg2;
@@ -118,7 +118,7 @@ s32 func_80800240_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_808002A0_chbilldrillplate(s32 arg0) {
+void func_808002A0_chbilldrillplate(BtIntPtr arg0) {
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
     void _glcutDll_entrypoint_6(u32, u32);
     void func_800DA544(GameFlag);
@@ -145,9 +145,9 @@ void func_808002A0_chbilldrillplate(s32 arg0) {
     }
 }
 
-void func_80800358_chbilldrillplate(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_14(s32);
-    s32 _subaddielink_entrypoint_0(u8 *);
+void func_80800358_chbilldrillplate(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
+    s32 _subaddiefade_entrypoint_14(BtIntPtr);
+    void _subaddielink_entrypoint_0(void *arg0);
     void *func_80100094(Actor *, u32);
     void *func_80801020_chbilldrillplate(void);
     u16 *sp24;
@@ -171,8 +171,8 @@ void func_80800408_chbilldrillplate(Actor *arg0) {
     s32 _subaddielink_entrypoint_2(u8 *);
     Actor *_subaddielink_entrypoint_4(u8 *);
     void func_80018820(s32, f32, f32);
-    s32 func_800B53A4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     f32 func_800DC178(f32, f32);
@@ -194,7 +194,7 @@ void func_80800408_chbilldrillplate(Actor *arg0) {
     f32 dt;
     f32 vec[3];
     s32 i;
-    s32 particles;
+    BtIntPtr particles;
     Actor *other;
 
     link = func_80100094(arg0, 0);
@@ -263,12 +263,12 @@ void func_80800408_chbilldrillplate(Actor *arg0) {
 
 s32 func_80800738_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2)
 {
-  void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+  s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
   s32 _glcutDll_entrypoint_19(s32);
-  s32 _subaddieDll_entrypoint_0(Actor *);
-  Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
-  s32 _subaddielink_entrypoint_0(u8 *);
-  s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+  void _subaddieDll_entrypoint_0(void *arg0);
+  Actor *_subaddiefind_entrypoint_0(f32 *arg0, s32 arg1, s32 arg2, f32 *arg3);
+  void _subaddielink_entrypoint_0(void *arg0);
+  void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
   Actor *_subaddielink_entrypoint_4(u8 *);
   s32 func_800DA298(s32);
   void func_800FC660(u32);
@@ -350,20 +350,20 @@ s32 func_80800738_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2)
     }
   }
   return 0;
-}
+}    typedef struct { u8 pad0[0x2C]; s32 unk2C; } Objbilldrillplate_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void func_80800924_chbilldrillplate(void *arg0, s32 arg1) {
-    s32 func_800DF744(s32, s32);
-    s32 func_80101870(void *, s32);
+void func_80800924_chbilldrillplate(void *arg0, BtIntPtr arg1) {
+    void func_800DF744(s32 index,s32 value);
+    void func_80101870(Actor* arg0, void* arg1);
     void *func_80801020_chbilldrillplate();
     s32 var_a1;
 
     if ((*(u8 *)((s8 *)(func_80801020_chbilldrillplate()) + (0x13))) != 0) {
         var_a1 = 0;
     } else {
-        var_a1 = (*(s32 *)((s8 *)(arg0) + (0x2C)));
+        var_a1 = (((Objbilldrillplate_arg0 *)arg0)->unk2C);
     }
     func_800DF744(1, var_a1);
     func_80101870(arg0, arg1);
@@ -415,7 +415,7 @@ void func_80800B9C_chbilldrillplate(Actor *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_80101010(f32 *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     extern u8 D_80801220_chbilldrillplate[];
     f32 sp2C[3];
@@ -478,8 +478,8 @@ s32 func_80800C98_chbilldrillplate(Actor *volatile arg0, f32 *arg1, f32 arg2) {
 
 /* extern */
 
-void func_80800D5C_chbilldrillplate(s32 arg0) {
-    s32 _subaddiefade_entrypoint_14(s32);
+void func_80800D5C_chbilldrillplate(BtIntPtr arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
+    s32 _subaddiefade_entrypoint_14(BtIntPtr);
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);
     void *func_80800FCC_chbilldrillplate();
@@ -493,8 +493,8 @@ void func_80800D5C_chbilldrillplate(s32 arg0) {
 void func_80800DA4_chbilldrillplate(Actor *arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800B53A4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800D9078(f32 *);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
@@ -503,7 +503,7 @@ void func_80800DA4_chbilldrillplate(Actor *arg0) {
     extern s32 D_80801244_chbilldrillplate;
     f32 sp7C[3];
     f32 sp70[3];
-    s32 temp_s5;
+    BtIntPtr temp_s5;
     s32 var_s1;
 
     if (arg0->unk70_10 == 2 && func_800D9078(&arg0->unk58)) {

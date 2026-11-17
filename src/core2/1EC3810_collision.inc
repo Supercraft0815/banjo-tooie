@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "1EC3810_collision_native.inc"
 #else
 void func_800EA600(s32 arg0, s32 arg1) {
@@ -47,7 +47,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     void func_800D62E4(u16);
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
-    void func_800EA400(s32, u8 *, s32, s32);
+    void func_800EA400(s32, u8 *, BtIntPtr, s32);
     s32 func_800EB350(Actor *, f32 *, f32 *);
     void func_80103508(u8 *);
     s32 func_801039E4(s32);

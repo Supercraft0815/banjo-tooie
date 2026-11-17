@@ -14,9 +14,9 @@ f32 func_800F1828(f32 *arg0, f32 *arg1) {
     f32 temp_f0;
     f32 temp_f2;
 
-    temp_f0 = (*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg0) + (0)));
-    sp18[0] = (*(f32 *)((s8 *)(arg1) + (4))) - (*(f32 *)((s8 *)(arg0) + (4)));
-    temp_f2 = (*(f32 *)((s8 *)(arg1) + (8))) - (*(f32 *)((s8 *)(arg0) + (8)));
+    temp_f0 = (((Vec3f *)arg1)->pos.x) - (((Vec3f *)arg0)->pos.x);
+    sp18[0] = (((Vec3f *)arg1)->pos.y) - (((Vec3f *)arg0)->pos.y);
+    temp_f2 = (((Vec3f *)arg1)->pos.z) - (((Vec3f *)arg0)->pos.z);
     return func_80013B7C(sp18[0], sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2)));
 }
 
@@ -184,20 +184,20 @@ f32 func_800F1CF0(f32 *arg0, f32 *arg1) {
 f32 func_800F1DCC(f32 arg0, f32 arg1) {
     f32 func_80013728(f32);
     return func_80013728(arg0 - arg1);
-}
+}    typedef struct { f32 unk0; s16 unk4; } Obj1ECB0F0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { f32 unk0; s16 unk4; } Obj1ECB0F0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
 f32 func_800F1DF4(f32 *arg0, f32 *arg1) {
     f32 func_80013B7C(f32, f32);
-    return ((f32)(func_80013B7C((*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg0) + (0))), arg1[2] - arg0[2])));
+    return ((f32)(func_80013B7C((((Obj1ECB0F0_arg1 *)arg1)->unk0) - (((Obj1ECB0F0_arg0 *)arg0)->unk0), arg1[2] - arg0[2])));
 }
 
 /* extern */
 
 void func_800F1E28(void *arg0, void *arg1) {
     f32 func_80013B7C(f32, f32);
-    func_80013B7C((f32) ((*(s16 *)((s8 *)(arg1) + (0))) - (*(s16 *)((s8 *)(arg0) + (0)))), (f32) ((*(s16 *)((s8 *)(arg1) + (4))) - (*(s16 *)((s8 *)(arg0) + (4)))));
+    func_80013B7C((f32) ((*(s16 *)((s8 *)(arg1) + (0))) - (*(s16 *)((s8 *)(arg0) + (0)))), (f32) ((((Obj1ECB0F0_arg1 *)arg1)->unk4) - (((Obj1ECB0F0_arg0 *)arg0)->unk4)));
 }
 
 s32 func_800F1E6C(f32 *arg0, f32 *arg1, f32 *target_yaw) {

@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EAC200_native.inc"
 #else
 #include "common.h"
@@ -15,19 +15,19 @@ extern struct {
         f32 end;
     } entry[2];
     s16 color[4];
-} D_8012B320;
+} D_8012B320;                        typedef struct { u8 pad0[0x4]; s8 unk4; u8 pad5[0x1]; s16 unk6; s16 unk8; s16 unkA; s16 unkC; u8 padE[0x2]; f32 unk10; f32 unk14; } Obj1EAC200_func_800D2910_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; u8 unkC; u8 unkD; u8 unkE; u8 unkF; } Obj1EAC200_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_800D2910(s32 arg0, u8 *arg1) {
     u8 *temp_v0;
 
     temp_v0 = (u8 *)&D_8012B320 + (arg0 * 0x14);
-    (*(s8 *)((s8 *)(temp_v0) + (4))) = 1;
-    (*(s16 *)((s8 *)(temp_v0) + (6))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xC)));
-    (*(s16 *)((s8 *)(temp_v0) + (8))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xD)));
-    (*(s16 *)((s8 *)(temp_v0) + (0xA))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xE)));
-    (*(s16 *)((s8 *)(temp_v0) + (0xC))) = (s16) (*(u8 *)((s8 *)(arg1) + (0xF)));
-    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(arg1) + (4)));
-    (*(f32 *)((s8 *)(temp_v0) + (0x14))) = (f32) (*(f32 *)((s8 *)(arg1) + (8)));
+    (((Obj1EAC200_func_800D2910_temp_v0 *)temp_v0)->unk4) = 1;
+    (((Obj1EAC200_func_800D2910_temp_v0 *)temp_v0)->unk6) = (s16) (((Obj1EAC200_arg1 *)arg1)->unkC);
+    (((Obj1EAC200_func_800D2910_temp_v0 *)temp_v0)->unk8) = (s16) (((Obj1EAC200_arg1 *)arg1)->unkD);
+    (((Obj1EAC200_func_800D2910_temp_v0 *)temp_v0)->unkA) = (s16) (((Obj1EAC200_arg1 *)arg1)->unkE);
+    (((Obj1EAC200_func_800D2910_temp_v0 *)temp_v0)->unkC) = (s16) (((Obj1EAC200_arg1 *)arg1)->unkF);
+    (((Obj1EAC200_func_800D2910_temp_v0 *)temp_v0)->unk10) = (f32) (((Obj1EAC200_arg1 *)arg1)->unk4);
+    (((Obj1EAC200_func_800D2910_temp_v0 *)temp_v0)->unk14) = (f32) (((Obj1EAC200_arg1 *)arg1)->unk8);
     (*(u8 *)&D_8012B320) += 1;
 }
 
@@ -126,20 +126,20 @@ void func_800D2A44(Gfx **arg0) {
 }
 
 void func_800D2C54(Gfx **arg0) {
-    if (*(u8 *)((s8 *)&D_8012B320 + 1)) return;
+    if (D_8012B320.pad1[0]) return;
     gDPSetFogColor((*arg0)++,
         *(s16 *)((s8 *)&D_8012B320 + 0x2C),
         *(s16 *)((s8 *)&D_8012B320 + 0x2E),
         *(s16 *)((s8 *)&D_8012B320 + 0x30),
         *(s16 *)((s8 *)&D_8012B320 + 0x32));
-    *(u8 *)((s8 *)&D_8012B320 + 1) = 1;
+    D_8012B320.pad1[0] = 1;
 }
 
 void func_800D2CC4(void) {
     extern u8 D_8012B321;
 
     D_8012B321 = 0;
-}
+}    typedef struct { s32 unk0; s32 unk4; } Obj1EAC200_D_8012B360; /* offsets.py genstruct: fields from raw offsets on &D_8012B360; rename once understood */
 
 void func_800D2CD0(void) {
     void func_800BE58C(s32 *, s32 *);
@@ -157,9 +157,9 @@ void func_800D2CD0(void) {
     register s32 i;
 
     func_800BE58C(dimensions, strides);
-    (*(s32 *)((u8 *)&D_8012B360 + 4)) = dimensions[1];
-    D_8012B360 = (s32)heap_alloc((*(s32 *)((u8 *)&D_8012B360 + 4)) * 2);
-    for (i = 0; i < (*(s32 *)((u8 *)&D_8012B360 + 4)); i++) {
+    (((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk4) = dimensions[1];
+    D_8012B360 = (s32)heap_alloc((((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk4) * 2);
+    for (i = 0; i < (((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk4); i++) {
         *(s16 *)(D_8012B360 + (i << 1)) = 0;
     }
     func_800BE52C(&base, &end);
@@ -178,16 +178,16 @@ void func_800D2CD0(void) {
 void func_800D2E4C(void) {
     s32 heap_free(s32);
     extern s32 D_8012B360;
-    if ((*(s32 *)((s8 *)(&D_8012B360) + (0))) != 0) {
-        heap_free((*(s32 *)((s8 *)(&D_8012B360) + (0))));
-        (*(s32 *)((s8 *)(&D_8012B360) + (0))) = 0;
+    if ((((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk0) != 0) {
+        heap_free((((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk0));
+        (((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk0) = 0;
     }
-    (*(s32 *)((s8 *)(&D_8012B360) + (4))) = 0;
+    (((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk4) = 0;
 }
 
 s32 func_800D2E90(s32 arg0) {
     extern s32 D_8012B360;
-    if ((arg0 < 0) || (arg0 >= (*(s32 *)((s8 *)(&D_8012B360) + 4)))) {
+    if ((arg0 < 0) || (arg0 >= (((Obj1EAC200_D_8012B360 *)&D_8012B360)->unk4))) {
         return 0;
     }
     return *((s16 *)D_8012B360 + arg0) ? 1 : 0;

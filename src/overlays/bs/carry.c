@@ -41,8 +41,8 @@ void func_80800000_bscarry(PlayerState *arg0) {
 
 /* extern */
 
-void func_808000D0_bscarry(s32 arg0) {
-    s32 _bsdrone_entrypoint_3(s32);
+void func_808000D0_bscarry(BtIntPtr arg0) {
+    void _bsdrone_entrypoint_3(struct player_state_s *arg0);
     s32 func_8009E6EC();
     void func_80800000_bscarry(PlayerState *);
     s32 temp_v0;
@@ -123,7 +123,7 @@ void func_8080029C_bscarry(PlayerState *arg0) {
 }
 
 void func_80800310_bscarry(PlayerState *arg0) {
-    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    Unk80132ED0 *_bahold_entrypoint_5(BtIntPtr);
     s32 bastick_getZone(PlayerState *);
     void bs_setState(PlayerState *, s32);
     s32 func_8009BCD4(PlayerState *, f32);
@@ -150,7 +150,7 @@ void func_80800310_bscarry(PlayerState *arg0) {
 }
 
 s32 bscarry_entrypoint_0(s32 arg0) {
-    extern s32 D_808007B0_bscarry[];
+    extern BtIntPtr D_808007B0_bscarry[];
     return ((s32 *)&D_808007B0_bscarry)[arg0];
 }
 
@@ -172,7 +172,7 @@ void func_808003F8_bscarry(PlayerState *arg0) {
 }
 
 void func_8080047C_bscarry(PlayerState *arg0) {
-    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    Unk80132ED0 *_bahold_entrypoint_5(BtIntPtr);
     s32 bastick_getZone(PlayerState *);
     void bs_setState(PlayerState *, s32);
     s32 next_state = 0;
@@ -192,7 +192,7 @@ void func_8080047C_bscarry(PlayerState *arg0) {
 }
 
 s32 bscarry_entrypoint_1(s32 arg0) {
-    extern s32 D_808007C0_bscarry[];
+    extern BtIntPtr D_808007C0_bscarry[];
     return ((s32 *)&D_808007C0_bscarry)[arg0];
 }
 
@@ -209,7 +209,7 @@ void func_80800520_bscarry(PlayerState *arg0) {
 }
 
 void func_80800594_bscarry(PlayerState *arg0) {
-    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    Unk80132ED0 *_bahold_entrypoint_5(BtIntPtr);
     s32 bastick_getZone(PlayerState *);
     void bs_setState(PlayerState *, s32);
     s32 func_8009BCD4(PlayerState *, f32);
@@ -236,16 +236,16 @@ void func_80800594_bscarry(PlayerState *arg0) {
 }
 
 s32 bscarry_entrypoint_2(s32 arg0) {
-    extern s32 D_808007D0_bscarry[];
+    extern BtIntPtr D_808007D0_bscarry[];
     return ((s32 *)&D_808007D0_bscarry)[arg0];
 }
 
-void func_8080065C_bscarry(s32 arg0)
+void func_8080065C_bscarry(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     func_808001D4_bscarry(arg0);
 }
-void func_80800684_bscarry(s32 arg0)
+void func_80800684_bscarry(BtIntPtr arg0)
 {
     func_80800208_bscarry(arg0);
     _bsdrone_entrypoint_0(arg0);
@@ -255,26 +255,26 @@ void func_808006AC_bscarry(PlayerState* self)
     _bsdrone_entrypoint_1(self);
 }
 s32 bscarry_entrypoint_3(s32 arg0) {
-    extern s32 D_808007E0_bscarry[];
+    extern BtIntPtr D_808007E0_bscarry[];
     return ((s32 *)&D_808007E0_bscarry)[arg0];
 }
 
-void func_808006E0_bscarry(s32 arg0)
+void func_808006E0_bscarry(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     func_808001D4_bscarry(arg0);
 }
-void func_80800708_bscarry(s32 arg0)
+void func_80800708_bscarry(BtIntPtr arg0)
 {
     func_80800208_bscarry(arg0);
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
 
-void func_80800730_bscarry(s32 arg0) {
+void func_80800730_bscarry(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_20();
     void bs_setState(PlayerState *, s32);
-    Unk80132ED0 *_bahold_entrypoint_5(s32);
+    Unk80132ED0 *_bahold_entrypoint_5(BtIntPtr);
     s32 sp1C;
 
     sp1C = 0;
@@ -288,6 +288,12 @@ void func_80800730_bscarry(s32 arg0) {
 }
 
 s32 bscarry_entrypoint_4(s32 arg0) {
-    extern s32 D_808007F0_bscarry[];
+    extern BtIntPtr D_808007F0_bscarry[];
     return ((s32 *)&D_808007F0_bscarry)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/carry.data.s */
+BtIntPtr D_808007B0_bscarry [4] BT_DATA(4, overlays_bs_carry, 0x0) = { (BtIntPtr)func_8080027C_bscarry, (BtIntPtr)func_8080029C_bscarry, (BtIntPtr)func_80800310_bscarry, (BtIntPtr)func_80800000_bscarry };
+BtIntPtr D_808007C0_bscarry [4] BT_DATA(4, overlays_bs_carry, 0x10) = { (BtIntPtr)func_808003D8_bscarry, (BtIntPtr)func_808003F8_bscarry, (BtIntPtr)func_8080047C_bscarry, (BtIntPtr)func_80800000_bscarry };
+BtIntPtr D_808007D0_bscarry [4] BT_DATA(4, overlays_bs_carry, 0x20) = { (BtIntPtr)func_80800500_bscarry, (BtIntPtr)func_80800520_bscarry, (BtIntPtr)func_80800594_bscarry, (BtIntPtr)func_80800000_bscarry };
+BtIntPtr D_808007E0_bscarry [4] BT_DATA(4, overlays_bs_carry, 0x30) = { (BtIntPtr)func_8080065C_bscarry, (BtIntPtr)func_80800684_bscarry, (BtIntPtr)func_808006AC_bscarry, (BtIntPtr)func_808000D0_bscarry };
+BtIntPtr D_808007F0_bscarry [4] BT_DATA(4, overlays_bs_carry, 0x40) = { (BtIntPtr)func_808006E0_bscarry, (BtIntPtr)func_80800708_bscarry, (BtIntPtr)func_80800730_bscarry, (BtIntPtr)func_80800000_bscarry };

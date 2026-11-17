@@ -5,5 +5,5 @@
 
 void _chmolehill_entrypoint_1(Actor*, s32);
 s32 _chmolehill_entrypoint_3(Actor*);
-void _chmolehill_entrypoint_4(Actor*, Unk80132ED0*);
+void _chmolehill_entrypoint_4(Actor *arg0, BtIntPtr arg1);
 #endif

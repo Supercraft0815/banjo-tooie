@@ -39,8 +39,8 @@ OSThread *chdinoswitches_entrypoint_3(void)
 
 void func_80800030_chdinoswitches(Actor *arg0) {
     s32 _chswitch_entrypoint_7(Actor *, s32);
-    s32 _chswitch_entrypoint_8(Actor *, s32);
-    s32 _chswitch_entrypoint_9(Actor *);
+    void _chswitch_entrypoint_8(s32 *arg0, s32 arg1);
+    void _chswitch_entrypoint_9(void *arg0);
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
@@ -84,7 +84,7 @@ s32 func_80800108_chdinoswitches(u8 *arg0) {
 }
 
 void func_80800270_chdinoswitches(void *arg0) {
-    void func_801032B0(void *, u16, u16);
+    s32 func_801032B0(Actor *actor,u16 id,u16 palette);
     extern u8 D_80800B28_chdinoswitches[];
     s32 index = *(s32 *)((u8 *)arg0 + 0x18);
 
@@ -99,9 +99,9 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
         u32 unk74_21 : 1;
         u32 pad74_0 : 21;
     } ActorFlags;
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80101074(void *);
-    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
     s32 func_80800108_chdinoswitches(u8 *arg0);
     extern u8 D_80800B28_chdinoswitches[];
@@ -116,13 +116,13 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     case 7:
         sp1C = arg0->unk3C;
         if (sp1C != NULL) {
-            func_8010114C((s32)sp1C, arg1, 0);
+            func_8010114C((BtIntPtr)sp1C, arg1, 0);
         }
         break;
     case 0x95:
         _subaddiefind_entrypoint_10(arg0, 0x364, arg0->unk74_7);
         func_80800270_chdinoswitches(arg0);
-        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+        return _chswitch_entrypoint_10((BtIntPtr)arg0, arg1, arg2);
     case 0x99:
         index = ((ActorFlags *)arg0)->unk74_21
                     ? arg0->actorData[0] : func_80800108_chdinoswitches(arg0);
@@ -134,50 +134,50 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
         }
         break;
     default:
-        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+        return _chswitch_entrypoint_10((BtIntPtr)arg0, arg1, arg2);
     }
     return 1;
 }
 
 s32 func_808003E8_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chswitch_entrypoint_10(s32, s32, s32);
+    s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
-    void func_800CE928(s32, s32, s32);
+    void func_800CE928(s32, BtIntPtr, BtIntPtr);
     s32 func_800CE95C();
     s32 func_800CEAA8(s32);
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
-    s32 func_800F64A4(s32, s32);
+    s32 func_800F64A4(BtIntPtr, s32);
     void func_80101074(void *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80103110(Actor *, u32);
     void _chdinoswitches_entrypoint_4(s32, s32);
     extern u8 D_8011A248[];
     extern u16 D_80800B22_chdinoswitches[][10];
-    s32 callback;
+    BtIntPtr callback;
     Unk80132ED0 *temp;
 
     switch (arg1) {
     case 7:
         if (func_800D0B68(0x18, 0) == 0) {
             func_80103110(arg0, 0);
-            func_8010114C((s32)arg0->unk3C, 7, 0);
+            func_8010114C((BtIntPtr)arg0->unk3C, 7, 0);
             func_800CE8D8(0, 35.0f, 0x23);
             func_800CE88C(0, 1);
-            func_800CE928(0, (s32)_chdinoswitches_entrypoint_4, 0);
+            func_800CE928(0, (BtIntPtr)_chdinoswitches_entrypoint_4, 0);
         }
         break;
     case 0x91:
         if (func_800F64A4(arg2, 0x40000) != 0 &&
             func_800CEAA8(0) != 0 &&
-            func_800CE95C(0) == (s32)_chdinoswitches_entrypoint_4) {
-            callback = (s32)_chdinoswitches_entrypoint_4;
+            func_800CE95C(0) == (BtIntPtr)_chdinoswitches_entrypoint_4) {
+            callback = (BtIntPtr)_chdinoswitches_entrypoint_4;
             func_800CE8D8(0, 35.0f, 0x23);
             func_800CE928(0, callback, 0);
         }
-        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+        return _chswitch_entrypoint_10((BtIntPtr)arg0, arg1, arg2);
     case 8:
         func_80103110(arg0, 1);
         break;
@@ -187,25 +187,25 @@ s32 func_808003E8_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     case 0xB7:
         if (!(arg2 & 0xFFFF) && ((arg2 >> 16) & 0xFFFF) == 0x18) {
             if (func_800CEAA8(0) != 0 &&
-                func_800CE95C(0) == (s32)_chdinoswitches_entrypoint_4) {
+                func_800CE95C(0) == (BtIntPtr)_chdinoswitches_entrypoint_4) {
                 func_800CE928(0, 0, 0);
                 func_800CE88C(0, 0);
             }
             temp = arg0->unk3C;
             if (temp != NULL) {
-                func_8010114C((s32)temp, 7, 0);
+                func_8010114C((BtIntPtr)temp, 7, 0);
             }
         }
         break;
     case 0x95:
         _subaddiefind_entrypoint_10(arg0, 0x364, arg0->unk74_7);
-        _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+        _chswitch_entrypoint_10((BtIntPtr)arg0, arg1, arg2);
         if (func_800DA298(D_80800B22_chdinoswitches[arg0->actorData[0]][0]) != 0) {
             func_80103110(arg0, 0);
         }
         break;
     default:
-        return _chswitch_entrypoint_10((s32)arg0, arg1, arg2);
+        return _chswitch_entrypoint_10((BtIntPtr)arg0, arg1, arg2);
     }
     return 1;
 }
@@ -219,7 +219,7 @@ void chdinoswitches_entrypoint_4(s32 arg0, s32 arg1) {
     void func_800DA524(s32);
     s32 func_800EA05C();
     s32 func_8010108C();
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80103110(Actor *, u32);
     Actor *sp1C;
     Actor *sp18;
@@ -266,20 +266,20 @@ void func_808007A0_chdinoswitches(Actor *arg0) {
 #ifndef BT_NATIVE
     void func_800DA544(GameFlag);
 #endif
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s32 func_80101E14(Actor *, f32);
     void func_80101EE4(Actor *, f32);
     void func_80102424(Actor *, s32);
     void func_80103110(Actor *, u32);
     extern u16 D_80800B22_chdinoswitches[][10];
-    s32 temp_a0;
+    BtIntPtr temp_a0;
 
     if (arg0->unk70_10 == 2 && func_80101E14(arg0, 0.3f) != 0) {
         func_800DA544(D_80800B22_chdinoswitches[arg0->actorData[0]][0]);
         func_80102424(arg0, 3);
         func_80101EE4(arg0, 0.3f);
         func_80103110(arg0, 0);
-        temp_a0 = (s32)arg0->unk3C;
+        temp_a0 = (BtIntPtr)arg0->unk3C;
         if (temp_a0 != 0) {
             func_8010114C(temp_a0, 7, 0);
         }
@@ -287,7 +287,7 @@ void func_808007A0_chdinoswitches(Actor *arg0) {
 }
 
 s32 func_80800848_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32 arg0);
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
@@ -365,7 +365,7 @@ void func_808008F0_chdinoswitches(Actor *arg0) {
 }
 
 void func_80800A48_chdinoswitches(void *arg0) {
-    void func_80103140(void *, u16, u16);
+    s32 func_80103140(Actor *actor,u32 id,u16 palette);
     extern u8 D_80800B2C_chdinoswitches[];
     s32 index = *(s32 *)((u8 *)arg0 + 0x18);
 
@@ -374,7 +374,7 @@ void func_80800A48_chdinoswitches(void *arg0) {
 }
 
 s32 func_80800A88_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(s32);
 
@@ -387,6 +387,6 @@ s32 func_80800A88_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
         case 0x95:
             func_80800A48_chdinoswitches(arg0);
         default:
-            return _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+            return _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
     }
 }

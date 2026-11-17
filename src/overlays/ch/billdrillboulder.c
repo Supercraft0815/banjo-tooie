@@ -2,37 +2,37 @@
 
 OSThread *chbilldrillboulder_entrypoint_0(void)
 {
-    extern u8 D_80800540_chbilldrillboulder[];
+    extern ActorData D_80800540_chbilldrillboulder[];
 
     return (OSThread *) D_80800540_chbilldrillboulder;
 }
 
 OSThread *chbilldrillboulder_entrypoint_1(void)
 {
-    extern u8 D_80800588_chbilldrillboulder[];
+    extern ActorData D_80800588_chbilldrillboulder[];
 
     return (OSThread *) D_80800588_chbilldrillboulder;
 }
 
 OSThread *chbilldrillboulder_entrypoint_2(void)
 {
-    extern u8 D_808005D0_chbilldrillboulder[];
+    extern ActorData D_808005D0_chbilldrillboulder[];
 
     return (OSThread *) D_808005D0_chbilldrillboulder;
 }
 
 void func_80800024_chbilldrillboulder(Actor *arg0) {
     s32 func_808004D4_chbilldrillboulder(void *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F77E8(s32, f32 *);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F77E8(BtIntPtr, f32 *);
+    s32 func_800F7F98(BtIntPtr, u32);
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
-    s32 _capod_entrypoint_21(Unk80132ED0 *, s32, s32, s32);
+    s32 _capod_entrypoint_21(Unk80132ED0 *, BtIntPtr, s32, s32);
     void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
     f32 func_80103EF4(Actor *);
     s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
@@ -134,13 +134,13 @@ void func_808002C4_chbilldrillboulder(Actor *arg0) {
 
 s32 func_808003F0_chbilldrillboulder(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void _chexploder_entrypoint_3(void *, void *, u32);
-    s32 _subaddieDll_entrypoint_5(Actor *, s32);
+    s32 _subaddieDll_entrypoint_5(Actor *arg0, Unk80132ED0 *arg1);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     void func_80103110(Actor *, u32);
     void func_8010A570(Actor *);
     void func_80800024_chbilldrillboulder(Actor *);
-    s32 temp;
+    BtIntPtr temp;
 
     switch (arg1) {
     case 0x3F:
@@ -177,3 +177,14 @@ s32 func_808004D4_chbilldrillboulder(void *arg0) {
     }
     return temp_v1 + 0x514;
 }
+/* data_to_c.py: from asm/data/overlays/ch/billdrillboulder.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800540_chbilldrillboulder [1] BT_DATA(4, overlays_ch_billdrillboulder, 0x0) = { { 343, 271, 1666, 1, 0, (void (*)(struct Actor *))func_8080026C_chbilldrillboulder, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808002C4_chbilldrillboulder, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11280, (void (*)(struct Actor *, long, long))func_808003F0_chbilldrillboulder, 0 } };
+ActorData D_80800588_chbilldrillboulder [1] BT_DATA(4, overlays_ch_billdrillboulder, 0x48) = { { 343, 802, 1939, 1, 0, (void (*)(struct Actor *))func_8080026C_chbilldrillboulder, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808002C4_chbilldrillboulder, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11280, (void (*)(struct Actor *, long, long))func_808003F0_chbilldrillboulder, 0 } };
+ActorData D_808005D0_chbilldrillboulder [1] BT_DATA(4, overlays_ch_billdrillboulder, 0x90) = { { 343, 975, 1666, 1, 0, (void (*)(struct Actor *))func_8080026C_chbilldrillboulder, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808002C4_chbilldrillboulder, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11280, (void (*)(struct Actor *, long, long))func_808003F0_chbilldrillboulder, 0 } };
+s32 D_80800618_chbilldrillboulder [27] BT_DATA(4, overlays_ch_billdrillboulder, 0xD8) = { 68157469, 165478443, 46924646, 1376256, 10027042, 25166336, 75499008, 1638400, 458797, 3276900, 2154151, 1908408330, -6553575, -6553500, 4915300, 68816656, 1902240, 1310765, 26215000, 1834208, -39321566, 11731148, 11731123, 1966130, 3276813, 4919066, 0 };
+s32 D_80800684_chbilldrillboulder [27] BT_DATA(4, overlays_ch_billdrillboulder, 0x144) = { 68157469, 165478443, 46924646, 1376256, 10027042, 25166336, 75499008, 1638400, 458797, 3276900, 2146496, -1065353206, -6553575, -6553500, 4915300, 68816656, 1902169, 1310765, 26215000, 1834208, -39321566, 11731148, 11731123, 1966130, 3276813, 4919066, 0 };
+s32 D_808006F0_chbilldrillboulder [8] BT_DATA(4, overlays_ch_billdrillboulder, 0x1B0) = { 1246227, 655590, 1469792, 66786, 163840000, 0, 0, 0 };

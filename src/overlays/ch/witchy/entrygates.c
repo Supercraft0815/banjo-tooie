@@ -1,6 +1,6 @@
 #include "ch/witchyentrygates.h"
 
-extern u32 D_808001F0_chwitchyentrygates;
+extern BtUIntPtr D_808001F0_chwitchyentrygates[20];
 
 void func_80800000_chwitchyentrygates(Actor* arg0)
 {
@@ -32,7 +32,7 @@ void func_80800000_chwitchyentrygates(Actor* arg0)
 }
 
 void func_808000B8_chwitchyentrygates(Actor *arg0) {
-    s32 _chdoor_entrypoint_0();
+    void _chdoor_entrypoint_0(BtIntPtr arg0);
     void func_800C3F48(u32);
     s32 func_800D90A4(f32 *);
     if (arg0->unk70_10 == 3) {
@@ -51,16 +51,21 @@ void func_808000B8_chwitchyentrygates(Actor *arg0) {
 /* extern */
 
 void func_80800168_chwitchyentrygates(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     s32 var_v0;
 
     if (arg1 == 0x95) {
         var_v0 = (arg0->unk74_7 == 0x33) ? 0x96C : 0x96D;
         func_80103140(arg0, var_v0 & 0xFFFF, arg0->unk0->unk16);
     }
-    _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+    _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
 }
 
 void* chwitchyentrygates_entrypoint_0(void) {
-    return &D_808001F0_chwitchyentrygates;
+    return D_808001F0_chwitchyentrygates;
 }
+/* data_to_c.py: from asm/data/overlays/ch/witchy/entrygates.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+BtUIntPtr D_808001F0_chwitchyentrygates[20] BT_DATA(4, overlays_ch_witchy_entrygates, 0x0) = { 0xAC0489, 0x96C0001, 0, (BtUIntPtr)func_808000B8_chwitchyentrygates, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80101870, 0, 0, 0, 0x20C00, 0, 0, 0, (BtUIntPtr)func_80800000_chwitchyentrygates, (BtUIntPtr)func_80107C2C, 0x80082402, (BtUIntPtr)func_80800168_chwitchyentrygates, 0, 0, 0 };

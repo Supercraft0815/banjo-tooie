@@ -9,24 +9,24 @@ OSThread *func_80108ED0(void);
 OSThread *func_80108EE8(void);
 void func_80800070_chdragonbrothers();
 void func_808003D8_chdragonbrothers(Actor* arg0);
-s32 func_80801D40_chdragonbrothers(Actor *, s32, s32);
+s32 func_80801D40_chdragonbrothers(Actor *, s32, BtIntPtr);
 void func_80802574_chdragonbrothers(Actor *arg0);
 void func_808034DC_chdragonbrothers(Actor *arg0, void *arg1);
 void func_80803574_chdragonbrothers(Actor *arg0);
 void func_808036E4_chdragonbrothers(s32 arg0);
 void func_808038AC_chdragonbrothers(Actor *arg0);
 s32 func_80803DC4_chdragonbrothers(Actor *arg0, s32 arg1, void *arg2);
-void func_80803EFC_chdragonbrothers(void *arg0, s32 arg1);
+void func_80803EFC_chdragonbrothers(void *arg0, BtIntPtr arg1);
 void func_80803F4C_chdragonbrothers(Actor *arg0);
 void func_808040A0_chdragonbrothers(s32 arg0);
 void func_808040A8_chdragonbrothers(Actor *arg0);
-void func_80804318_chdragonbrothers(s32 arg0, s32 arg1);
+void func_80804318_chdragonbrothers(BtIntPtr arg0, BtIntPtr arg1);
 s32 func_80804350_chdragonbrothers(Actor *arg0, s32 arg1, Unk80132ED0 *arg2);
 void func_8080449C_chdragonbrothers(Actor *arg0);
 void func_808048A4_chdragonbrothers(s32 arg0);
 void func_80804AA4_chdragonbrothers(Actor *arg0);
 s32 func_80804C6C_chdragonbrothers(s32 arg0, s32 arg1, s32 arg2);
-void func_80804C90_chdragonbrothers(s32 arg0, s32 arg1);
+void func_80804C90_chdragonbrothers(BtIntPtr arg0, s32 arg1);
 void func_80804CD0_chdragonbrothers(Actor *arg0);
 void func_80804DB0_chdragonbrothers(s32 arg0);
 void func_80804E1C_chdragonbrothers(Actor *arg0);
@@ -172,12 +172,12 @@ u32 D_80805694_chdragonbrothers[] = {
     0xBF800000,
 };
 
-u32 D_808056A8_chdragonbrothers[] = {
-    0x002E0377, 0x07FC0003, (u32)D_80805498_chdragonbrothers, (u32)func_80802574_chdragonbrothers,
-    (u32)func_80105834, (u32)func_808034DC_chdragonbrothers, 0x00000000, 0x00000000,
-    0x00000000, 0x0008056C, (u32)func_808003D8_chdragonbrothers, (u32)func_80108EE8,
-    0x00680000, (u32)func_80800070_chdragonbrothers, (u32)func_80107C2C, 0x80200002,
-    (u32)func_80801D40_chdragonbrothers, 0x00000000,
+BtFnWord D_808056A8_chdragonbrothers[] = {
+    0x002E0377, 0x07FC0003, (BtFnWord)D_80805498_chdragonbrothers, (BtFnWord)func_80802574_chdragonbrothers,
+    (BtFnWord)func_80105834, (BtFnWord)func_808034DC_chdragonbrothers, 0x00000000, 0x00000000,
+    0x00000000, 0x0008056C, (BtFnWord)func_808003D8_chdragonbrothers, (BtFnWord)func_80108EE8,
+    0x00680000, (BtFnWord)func_80800070_chdragonbrothers, (BtFnWord)func_80107C2C, 0x80200002,
+    (BtFnWord)func_80801D40_chdragonbrothers, 0x00000000,
 };
 
 u32 D_808056F0_chdragonbrothers[] = {
@@ -192,12 +192,12 @@ u32 D_80805740_chdragonbrothers[] = {
     0x00000000, 0x43840000, 0xC2EC0000,
 };
 
-u32 D_8080574C_chdragonbrothers[] = {
-    0x002F0378, 0x08010001, (u32)D_808056F0_chdragonbrothers, (u32)func_808038AC_chdragonbrothers,
-    (u32)func_80105834, (u32)func_80803EFC_chdragonbrothers, 0x00000000, 0x00000000,
-    0x00000000, 0x00080C44, (u32)func_808036E4_chdragonbrothers, (u32)func_80108ED0,
-    0x00000000, (u32)func_80803574_chdragonbrothers, (u32)func_80107C2C, 0x00000000,
-    (u32)func_80803DC4_chdragonbrothers, 0x00000000,
+BtFnWord D_8080574C_chdragonbrothers[] = {
+    0x002F0378, 0x08010001, (BtFnWord)D_808056F0_chdragonbrothers, (BtFnWord)func_808038AC_chdragonbrothers,
+    (BtFnWord)func_80105834, (BtFnWord)func_80803EFC_chdragonbrothers, 0x00000000, 0x00000000,
+    0x00000000, 0x00080C44, (BtFnWord)func_808036E4_chdragonbrothers, (BtFnWord)func_80108ED0,
+    0x00000000, (BtFnWord)func_80803574_chdragonbrothers, (BtFnWord)func_80107C2C, 0x00000000,
+    (BtFnWord)func_80803DC4_chdragonbrothers, 0x00000000,
 };
 
 u32 D_80805794_chdragonbrothers[] = {
@@ -237,12 +237,12 @@ u32 D_80805870_chdragonbrothers[] = {
     0x40404000, 0x00000000,
 };
 
-u32 D_808058A8_chdragonbrothers[] = {
-    0x00300379, 0x08150001, 0x00000000, (u32)func_808040A8_chdragonbrothers,
-    (u32)func_80105834, (u32)func_80804318_chdragonbrothers, 0x00000000, 0x3F800000,
-    0x00000000, 0x00001004, (u32)func_808040A0_chdragonbrothers, (u32)func_80108EE8,
-    0x00000000, (u32)func_80803F4C_chdragonbrothers, (u32)func_80107C2C, 0x00000000,
-    (u32)func_80804350_chdragonbrothers, 0x00000000,
+BtFnWord D_808058A8_chdragonbrothers[] = {
+    0x00300379, 0x08150001, 0x00000000, (BtFnWord)func_808040A8_chdragonbrothers,
+    (BtFnWord)func_80105834, (BtFnWord)func_80804318_chdragonbrothers, 0x00000000, 0x3F800000,
+    0x00000000, 0x00001004, (BtFnWord)func_808040A0_chdragonbrothers, (BtFnWord)func_80108EE8,
+    0x00000000, (BtFnWord)func_80803F4C_chdragonbrothers, (BtFnWord)func_80107C2C, 0x00000000,
+    (BtFnWord)func_80804350_chdragonbrothers, 0x00000000,
 };
 
 u32 D_808058F0_chdragonbrothers[] = {
@@ -286,23 +286,23 @@ u32 D_808059EC_chdragonbrothers[] = {
     0x01700180, 0x00011388, 0x1D4C0000,
 };
 
-u32 D_80805A08_chdragonbrothers[] = {
-    0x0031037A, 0x09D70001, 0x00000000, (u32)func_80804AA4_chdragonbrothers,
-    (u32)func_80105834, (u32)func_80804C90_chdragonbrothers, 0x00000000, 0x3F800000,
-    0x00000000, 0x00000404, (u32)func_808048A4_chdragonbrothers, 0x00000000,
-    0x00140000, (u32)func_8080449C_chdragonbrothers, (u32)func_80107C2C, 0x80000002,
-    (u32)func_80804C6C_chdragonbrothers, 0x00000000,
+BtFnWord D_80805A08_chdragonbrothers[] = {
+    0x0031037A, 0x09D70001, 0x00000000, (BtFnWord)func_80804AA4_chdragonbrothers,
+    (BtFnWord)func_80105834, (BtFnWord)func_80804C90_chdragonbrothers, 0x00000000, 0x3F800000,
+    0x00000000, 0x00000404, (BtFnWord)func_808048A4_chdragonbrothers, 0x00000000,
+    0x00140000, (BtFnWord)func_8080449C_chdragonbrothers, (BtFnWord)func_80107C2C, 0x80000002,
+    (BtFnWord)func_80804C6C_chdragonbrothers, 0x00000000,
 };
 
 u32 D_80805A50_chdragonbrothers[] = {
     0x43CF0000, 0xC3E60000, 0x45548000,
 };
 
-u32 D_80805A5C_chdragonbrothers[] = {
-    0x0033037B, 0x08D80003, 0x00000000, (u32)func_80804E1C_chdragonbrothers,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x000A0C04, (u32)func_80804DB0_chdragonbrothers, 0x00000000,
-    0x00000000, (u32)func_80804CD0_chdragonbrothers, (u32)func_80107C2C, 0x80000802,
+BtFnWord D_80805A5C_chdragonbrothers[] = {
+    0x0033037B, 0x08D80003, 0x00000000, (BtFnWord)func_80804E1C_chdragonbrothers,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x000A0C04, (BtFnWord)func_80804DB0_chdragonbrothers, 0x00000000,
+    0x00000000, (BtFnWord)func_80804CD0_chdragonbrothers, (BtFnWord)func_80107C2C, 0x80000802,
     0x00000000, 0x00000000, 0x00000000, 0x00000000,
     0x00000000,
 };
@@ -334,7 +334,7 @@ void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
 s32 _chintrotext_entrypoint_2(s32);
 void func_800FFAB0(Actor *);
 s32 func_800D395C(void);
-s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
 void func_80800070_chdragonbrothers(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_808012B4_chdragonbrothers(u8 *, s32);
@@ -445,8 +445,8 @@ s32 func_808003F8_chdragonbrothers(Actor *arg0) {
 /* extern */
 
 s32 func_80800438_chdragonbrothers(Actor *arg0) {
-    s32 _ncpod_entrypoint_17(s32, s32);
-    s32 func_800F5EF8(s32);
+    s32 _ncpod_entrypoint_17(BtIntPtr, s32);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     s32 *temp_v1;
 
@@ -470,8 +470,8 @@ void func_808004A4_chdragonbrothers(Actor *arg0, s32 arg1) {
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EF334(f32 *, f32);
     s32 func_800F1EA4(f32[3], f32 *);
-    void func_800F5A00(s32, f32 *);
-    void func_800F5A2C(s32, s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5A2C(BtIntPtr, s32, f32 *);
     void *func_80100094(Actor *, u32);
     s32 *temp_v0;
     f32 sp38[3];
@@ -525,7 +525,7 @@ void func_808005A4_chdragonbrothers(void *arg0, s32 arg1) {
 /* extern */
 
 f32 func_8080063C_chdragonbrothers(Actor *arg0) {
-    void func_8008FFBC(s32);
+    void func_8008FFBC(BtIntPtr);
     f32 func_800EF030(void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DCC(f32, f32);
@@ -536,22 +536,22 @@ f32 func_8080063C_chdragonbrothers(Actor *arg0) {
 
     sp3C = ((f32 *)func_80100094(arg0, 0))[6];
     sp38 = func_800F1DCC(sp3C, ((f32 *)arg0->actorData)[0]) * 20.0f;
-    func_8008FFBC((s32)sp28);
+    func_8008FFBC((BtIntPtr)sp28);
     sp28[1] = func_800EF030(sp28);
     sp38 *= func_800F10B4(sp28[1], 0.0f, 5000.0f, 0.0f, 1.0f);
     return sp3C + sp38;
 }
 
 s32 func_808006C8_chdragonbrothers(Actor *arg0) {
-    s32 _ncpod_entrypoint_8(s32, s32, s32);
+    s32 _ncpod_entrypoint_8(BtIntPtr, BtIntPtr, BtIntPtr);
     s32 func_80016B30(s32, s32);
     s32 func_80016B54(s32, s32);
     void func_800C3FC0(s32, f32, s32);
     f32 func_800D8FF8(void);
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_800F1DCC(f32, f32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F5EF8(s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void *func_80110024(s16 *);
     f32 dt;
@@ -594,17 +594,17 @@ s32 func_808006C8_chdragonbrothers(Actor *arg0) {
         sp44[0] = ((f32 *)data)[10];
         sp44[1] = ((f32 *)data)[16];
         sp44[2] = 0.0f;
-        _ncpod_entrypoint_8((s32)func_80110024((s16 *)func_800F5EF8(((s32 *)data)[8])), (s32)sp50, (s32)sp44);
-        ((f32 *)data)[15] = sp5C;
-    }
+        BT_NATIVE_ONLY(s32 result =) _ncpod_entrypoint_8((BtIntPtr)func_80110024((s16 *)func_800F5EF8(((s32 *)data)[8])), (BtIntPtr)sp50, (BtIntPtr)sp44);
+        ((f32 *)data)[15] = sp5C; BT_NATIVE_ONLY(return result;)
+    } BT_NATIVE_ONLY(else return 0;)
 }
 
 void func_808008C8_chdragonbrothers(Actor *arg0) {
-    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
+    s32 _ncpod_entrypoint_16(BtIntPtr, BtIntPtr, s32, s32);
     void func_800A5144();
     f32 func_800F1DF4(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F5EF8(s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void func_808005A4_chdragonbrothers(void *, s32);
     s32 func_808006C8_chdragonbrothers(Actor *);
@@ -619,21 +619,21 @@ void func_808008C8_chdragonbrothers(Actor *arg0) {
         ((f32 *)temp_s0)[18] = 0.0f;
         func_808005A4_chdragonbrothers(temp_s0 + 0x24, temp_s0[0x55]);
         func_808005A4_chdragonbrothers(temp_s0 + 0x30, temp_s0[0x55]);
-        _ncpod_entrypoint_16(func_800F5EF8(((s32 *)temp_s0)[8]), (s32)arg0->unk0, 3, 0x804);
+        _ncpod_entrypoint_16(func_800F5EF8(((s32 *)temp_s0)[8]), (BtIntPtr)arg0->unk0, 3, 0x804);
         arg0->unk74_29 = 1;
         func_808006C8_chdragonbrothers(arg0);
         func_800A5144();
-    }
+    } BT_NATIVE_ONLY(else return 0;)
 }
 
 void func_8080098C_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
-    s32 _ncpod_entrypoint_12(s32, s32);
-    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
-    s32 _ncpod_entrypoint_21(s32, s32, s32);
-    s32 _ncpod_entrypoint_25(s32, s32);
-    s32 func_800F5EF8(s32);
+    s32 _ncpod_entrypoint_12(BtIntPtr, s32);
+    s32 _ncpod_entrypoint_16(BtIntPtr, BtIntPtr, s32, s32);
+    s32 _ncpod_entrypoint_21(BtIntPtr, s32, s32);
+    s32 _ncpod_entrypoint_25(BtIntPtr, s32);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void *func_80110024(s16 *);
     u8 *data;
@@ -642,7 +642,7 @@ void func_8080098C_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
     switch (data[0x5F]) {
         case 0:
             func_80800438_chdragonbrothers(arg0);
-            _ncpod_entrypoint_16(func_800F5EF8(((s32 *)data)[8]), (s32)arg0->unk0, 3, 0);
+            _ncpod_entrypoint_16(func_800F5EF8(((s32 *)data)[8]), (BtIntPtr)arg0->unk0, 3, 0);
         case 1:
             _ncpod_entrypoint_12(func_80110024(func_800F5EF8(((s32 *)data)[8])), 1);
             data[0x5F] = 2;
@@ -655,10 +655,10 @@ void func_8080098C_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
-    s32 _ncpod_entrypoint_20(s32, s32, s32, s32);
-    s32 func_800F5EF8(s32);
+void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, BtIntPtr arg3) {
+    s32 _ncpod_entrypoint_16(BtIntPtr, BtIntPtr, s32, s32);
+    s32 _ncpod_entrypoint_20(BtIntPtr, BtIntPtr, s32, s32);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     u8 *sp1C;
 
@@ -666,7 +666,7 @@ void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     switch (sp1C[0x5F]) {
         case 0:
             func_80800438_chdragonbrothers(arg0);
-            _ncpod_entrypoint_16(func_800F5EF8(((s32 *)sp1C)[8]), (s32)arg0->unk0, 3, 0);
+            _ncpod_entrypoint_16(func_800F5EF8(((s32 *)sp1C)[8]), (BtIntPtr)arg0->unk0, 3, 0);
         case 2:
             sp1C[0x5F] = 1;
         case 1:
@@ -678,8 +678,8 @@ void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
 /* extern */
 
 void func_80800B34_chdragonbrothers(Actor *arg0, s32 arg1) {
-    s32 _ncpod_entrypoint_17(s32, s32);
-    s32 func_800F5EF8(s32);
+    s32 _ncpod_entrypoint_17(BtIntPtr, s32);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void func_808008C8_chdragonbrothers(Actor *);
     u8 *sp1C;
@@ -714,7 +714,7 @@ void func_80800C08_chdragonbrothers(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 func_8001210C(s32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_80101F24(Actor *);
     f32 temp_f0;
     f32 sp28[3];
@@ -734,7 +734,7 @@ void func_80800C08_chdragonbrothers(Actor *arg0) {
 }
 
 void func_80800D20_chdragonbrothers(u8 *arg0, s16 arg1, s32 arg2) {
-    s32 func_800C05B8(s32, s32, f32*, Unk80132ED0*, s32, s32, s16);
+    s32 func_800C05B8(s32, s32, f32*, Unk80132ED0*, BtIntPtr, s32, s16);
     s32 var_v0;
     Actor *actor = (Actor *)arg0;
 
@@ -749,15 +749,15 @@ void func_80800D20_chdragonbrothers(u8 *arg0, s16 arg1, s32 arg2) {
 }
 
 void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
-    s32 _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
     s32 _plsu_entrypoint_1(s32);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     s32 func_800DA9E4(s32, s32);
     void *func_80100094(Actor *, u32);
     void func_8080098C_chdragonbrothers(Actor *, s32, s32);
-    void func_80800A80_chdragonbrothers(Actor *, s32, s32, s32);
+    void func_80800A80_chdragonbrothers(Actor *, s32, s32, BtIntPtr);
     void func_80800B9C_chdragonbrothers(u8 *, s32, f32 *);
     void func_80800D20_chdragonbrothers(u8 *, s16, s32);
     u8 *data;
@@ -860,7 +860,7 @@ void func_80800D98_chdragonbrothers(u8 *arg0, s32 arg1) {
 
 /* extern */
 
-s32 func_8080110C_chdragonbrothers(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
+s32 func_8080110C_chdragonbrothers(BtIntPtr arg0, f32 arg1, f32 arg2, s32 arg3) {
     f32 func_800F2094(f32, f32);
     s32 temp_cond;
     s32 var_s0;
@@ -901,12 +901,12 @@ f32 func_808011C0_chdragonbrothers(u8 *arg0, s32 arg1) {
     do {
         if (arg1 == 0) {
             test = base + step;
-            if (func_8080110C_chdragonbrothers((s32)arg0, test, angle, arg1)) {
+            if (func_8080110C_chdragonbrothers((BtIntPtr)arg0, test, angle, arg1)) {
                 return test;
             }
         }
         test = base - step;
-        if (func_8080110C_chdragonbrothers((s32)arg0, test, angle, arg1)) {
+        if (func_8080110C_chdragonbrothers((BtIntPtr)arg0, test, angle, arg1)) {
             return test;
         }
         step += 1.0f;
@@ -915,16 +915,16 @@ f32 func_808011C0_chdragonbrothers(u8 *arg0, s32 arg1) {
 }
 
 void func_808012B4_chdragonbrothers(u8 *arg0, s32 arg1) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800DA9E4(s32, s32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_800F1DCC(f32, f32);
     void *func_80100094(Actor *, u32);
-    void func_80800A80_chdragonbrothers(Actor *, s32, s32, s32);
+    void func_80800A80_chdragonbrothers(Actor *, s32, s32, BtIntPtr);
     void func_80800B9C_chdragonbrothers(u8 *, s32, f32 *);
     void func_80800D20_chdragonbrothers(u8 *, s16, s32);
     f32 func_808011C0_chdragonbrothers(u8 *, s32);
@@ -1196,7 +1196,7 @@ s32 func_80801A4C_chdragonbrothers(void *arg0, f32 arg1) {
     } else if (actor->unk50 < -75.0f) {
         actor->unk50 = -75.0f;
     }
-    actor->rotation[1] += actor->unk50 * dt;
+    actor->rotation[1] += actor->unk50 * dt; BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80801C44_chdragonbrothers(Actor *arg0, s32 arg1) {
@@ -1224,19 +1224,19 @@ void func_80801C44_chdragonbrothers(Actor *arg0, s32 arg1) {
 void func_80801CEC_chdragonbrothers(void *arg0) {
     f32 func_800F1DCC(f32, f32);
     s32 func_80801A4C_chdragonbrothers(void *, f32);
-    func_80801A4C_chdragonbrothers(arg0, func_800F1DCC((*(f32 *)((s8 *)(arg0) + (0x54))), (*(f32 *)((s8 *)(arg0) + (0x48)))));
-    func_80801A4C_chdragonbrothers(arg0, func_800F1DCC((*(f32 *)((s8 *)(arg0) + (0x54))), (*(f32 *)((s8 *)(arg0) + (0x48)))));
+    func_80801A4C_chdragonbrothers(arg0, func_800F1DCC((((Actor *)arg0)->unk54), (((Actor *)arg0)->rotation[1])));
+    func_80801A4C_chdragonbrothers(arg0, func_800F1DCC((((Actor *)arg0)->unk54), (((Actor *)arg0)->rotation[1])));
 }
 
-s32 func_80801D40_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_80801D40_chdragonbrothers(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     s32 func_800D0A9C(u32, u32);
     void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
     int func_800DC298(f32);
-    s32 func_800F6438(u32);
-    void func_800F7B9C(s32, u32);
+    s32 func_800F6438(BtUIntPtr);
+    void func_800F7B9C(BtIntPtr, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
     s32 func_800DA9E4(s32, s32);
@@ -1245,9 +1245,9 @@ s32 func_80801D40_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EF934(f32 *, f32 *, f32);
     f32 func_800F2094(f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F6478(s32);
-    int func_800F6AA4(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6478(BtIntPtr);
+    int func_800F6AA4(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void *func_80101080(void);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
@@ -1322,7 +1322,7 @@ s32 func_80801D40_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
             case 16:
             case 17:
             case 18: {
-                s32 flag;
+                BtIntPtr flag;
                 flag = func_800F54E4();
                 if (func_800F6438(flag) && !func_800F6AA4(flag) && func_800F6478(flag)) {
                     func_800F7B9C(flag, 0x51);
@@ -1423,7 +1423,7 @@ dialog_done:
         }
         break;
     case 0xD:
-        func_80800A80_chdragonbrothers(arg0, 22, 0x400, (s32)func_80101080());
+        func_80800A80_chdragonbrothers(arg0, 22, 0x400, (BtIntPtr)func_80101080());
         break;
     case 0xB:
         switch (arg2) {
@@ -1474,7 +1474,7 @@ dialog_done:
 
 /* extern */
 
-int func_80802534_chdragonbrothers(s32 arg0) {
+int func_80802534_chdragonbrothers(BtIntPtr arg0) {
     s32 func_8008FA2C(s32, s32);
     return (func_80090248() != 0) && (func_8008FA2C(-1, 0) != 0);
 }
@@ -1485,7 +1485,7 @@ void func_80802574_chdragonbrothers(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void _suexpression_entrypoint_9(u32 *);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_8008FA2C(s32, s32);
 #ifdef BT_NATIVE
     s32 func_80090178(s32);
@@ -1507,7 +1507,7 @@ void func_80802574_chdragonbrothers(Actor *arg0) {
     f32 func_800F1DCC(f32, f32);
     s32 func_800F1EA4(f32 *, f32 *);
     f32 func_800F2094(f32, f32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -1847,7 +1847,7 @@ OSThread *chdragonbrothers_entrypoint_0(void)
 }
 
 void func_80803574_chdragonbrothers(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
     void func_800EE7F8(f32 *, f32 *);
@@ -1966,7 +1966,7 @@ void func_808038AC_chdragonbrothers(Actor *arg0) {
     }
     switch (arg0->unk70_10) {
     case 1:
-        command = *(u8 *)((u32)data + arg0->unk74_7);
+        command = *(u8 *)((BtUIntPtr)data + arg0->unk74_7);
         if (command != 0) {
             if (command != 1) {
                 if (command == 2) {
@@ -1994,7 +1994,7 @@ void func_808038AC_chdragonbrothers(Actor *arg0) {
         }
         break;
     case 4:
-        command = *(u8 *)((u32)data + arg0->unk74_7);
+        command = *(u8 *)((BtUIntPtr)data + arg0->unk74_7);
         if (command != 0) {
             if (command == 2) {
                 func_808036EC_chdragonbrothers(arg0, 9);
@@ -2018,7 +2018,7 @@ void func_808038AC_chdragonbrothers(Actor *arg0) {
     case 6:
     case 7:
         if (func_80101DDC(arg0)) {
-            command = *(u8 *)((u32)data + arg0->unk74_7);
+            command = *(u8 *)((BtUIntPtr)data + arg0->unk74_7);
             if (command != 0) {
                 if (command == 2) {
                     func_808036EC_chdragonbrothers(arg0, 9);
@@ -2039,7 +2039,7 @@ void func_808038AC_chdragonbrothers(Actor *arg0) {
             }
             _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &(*(u32 *)D_808053A0_chdragonbrothers));
         }
-        command = *(u8 *)((u32)data + arg0->unk74_7);
+        command = *(u8 *)((BtUIntPtr)data + arg0->unk74_7);
         if (command != 1) {
             if (command == 2) {
                 func_808036EC_chdragonbrothers(arg0, 9);
@@ -2060,7 +2060,7 @@ void func_808038AC_chdragonbrothers(Actor *arg0) {
             }
             _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &(*(u32 *)D_808053A0_chdragonbrothers));
         }
-        command = *(u8 *)((u32)data + arg0->unk74_7);
+        command = *(u8 *)((BtUIntPtr)data + arg0->unk74_7);
         if (command != 0) {
             if (command == 1) {
                 func_808036EC_chdragonbrothers(arg0, 2);
@@ -2075,9 +2075,9 @@ void func_808038AC_chdragonbrothers(Actor *arg0) {
 s32 func_80803DC4_chdragonbrothers(Actor *arg0, s32 arg1, void *arg2) {
     void func_800EF934(f32 *, f32 *, f32);
     void func_800EE780(f32 *, f32 *, f32 *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     s32 _sueggmisc_entrypoint_0();
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_808037B0_chdragonbrothers(Actor *, u32);
     Actor *actor;
     f32 sp20[3];
@@ -2098,7 +2098,7 @@ s32 func_80803DC4_chdragonbrothers(Actor *arg0, s32 arg1, void *arg2) {
             sp1C = (Unk80132ED0 *)&arg2;
             sp1C = *(void **)sp1C;
             if (_sueggmisc_entrypoint_0(sp1C)) {
-                func_8010114C((s32)sp1C, 0x2C, 0);
+                func_8010114C((BtIntPtr)sp1C, 0x2C, 0);
                 func_808037B0_chdragonbrothers(arg0, sp1C->unk24 >> 22);
                 return 1;
             }
@@ -2108,14 +2108,14 @@ s32 func_80803DC4_chdragonbrothers(Actor *arg0, s32 arg1, void *arg2) {
             return 0;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x64]; s32 unk64; } Objdragonbrothers_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void func_80803EFC_chdragonbrothers(void *arg0, s32 arg1) {
+void func_80803EFC_chdragonbrothers(void *arg0, BtIntPtr arg1) {
     void func_800DF744(s32, s32);
     void func_80101870(Actor *, void *);
-    func_800DF744(1, (u32) ((*(s32 *)((s8 *)(arg0) + (0x64))) << 0xB) >> 0x1F);
+    func_800DF744(1, (u32) ((((Objdragonbrothers_arg0 *)arg0)->unk64) << 0xB) >> 0x1F);
     func_80101870(arg0, arg1);
 }
 
@@ -2129,7 +2129,7 @@ void func_80803F4C_chdragonbrothers(Actor *arg0) {
     s32 func_800EA05C();
     void func_800EEBF0(f32 *, f32 *, f32);
     f32 func_800F1828(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_801032B0(Actor *, u16, u16);
     Actor *func_80106790(Unk80132ED0 *);
@@ -2168,7 +2168,7 @@ void func_808040A8_chdragonbrothers(Actor *arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _subaddiefade_entrypoint_3(Actor *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     f32 func_800D8FF8(void);
     s32 func_800E1610(s32, f32, f32, f32 *);
@@ -2227,7 +2227,7 @@ void func_808040A8_chdragonbrothers(Actor *arg0) {
 
 /* extern */
 
-void func_80804318_chdragonbrothers(s32 arg0, s32 arg1) {
+void func_80804318_chdragonbrothers(BtIntPtr arg0, BtIntPtr arg1) {
     void func_800DF744(s32, s32);
     void func_80101870(Actor *, void *);
     func_800DF744(1, 1);
@@ -2235,12 +2235,12 @@ void func_80804318_chdragonbrothers(s32 arg0, s32 arg1) {
 }
 
 s32 func_80804350_chdragonbrothers(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
-    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
-    void _chexploder_entrypoint_13(s32, u32);
-    void _chexploder_entrypoint_15(s32, u32, f32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    u32 func_800F54E4(void);
-    void func_800F7B9C(s32, u32);
+    void _chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2);
+    void _chexploder_entrypoint_13(BtIntPtr, u32);
+    void _chexploder_entrypoint_15(BtIntPtr, u32, f32);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7B9C(BtIntPtr, u32);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *sp24;
@@ -2280,7 +2280,7 @@ OSThread *chdragonbrothers_entrypoint_2(void)
 }
 
 void func_8080449C_chdragonbrothers(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800AF5A0(s16 *);
     f32 func_800DC178(f32, f32);
     s32 func_800EA05C();
@@ -2428,7 +2428,7 @@ s32 func_808048AC_chdragonbrothers(Actor *arg0) {
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     void func_808049D4_chdragonbrothers(Actor *);
     f32 sp44[3];
@@ -2471,7 +2471,7 @@ s32 func_808048AC_chdragonbrothers(Actor *arg0) {
 
 void func_808049D4_chdragonbrothers(Actor *arg0) {
     s32 _fxegg_entrypoint_0(u32, f32 *, f32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     switch (arg0->unk79_4) {
     case 4:
@@ -2546,9 +2546,9 @@ s32 func_80804C6C_chdragonbrothers(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_80804C90_chdragonbrothers(s32 arg0, s32 arg1) {
-    s32 _subaddiedraw25d_entrypoint_2(s32, s32);
-    s32 func_800E24D8(s32);
+void func_80804C90_chdragonbrothers(BtIntPtr arg0, s32 arg1) {
+    void _subaddiedraw25d_entrypoint_2(Actor *arg0, s32 arg1);
+    void func_800E24D8(s32 arg0);
     func_800E24D8(1);
     _subaddiedraw25d_entrypoint_2(arg0, arg1);
 }
@@ -2561,7 +2561,7 @@ OSThread *chdragonbrothers_entrypoint_3(void)
 /* extern */
 
 void func_80804CD0_chdragonbrothers(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
     void func_800EFA4C(f32 *, f32, f32, f32);

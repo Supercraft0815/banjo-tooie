@@ -3,28 +3,28 @@
 s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
 
 void func_80104350(void) {
-    s32 freelist_new(s32, s32);
+    void * freelist_new(s32 element_size, s32 capacity);
     extern s32 D_80136E80;
     D_80136E80 = freelist_new(0x2C, 8);
 }
 
 void func_80104378(void) {
-    s32 freelist_free(s32);
+    void freelist_free(void *list);
     extern s32 D_80136E80;
     freelist_free(D_80136E80);
     D_80136E80 = 0;
 }
 
 void func_801043A0(void) {
-    s32 freelist_defrag(s32);
+    BtIntPtr freelist_defrag(BtIntPtr);
     extern s32 D_80136E80;
     if (D_80136E80 != 0) {
         D_80136E80 = freelist_defrag(D_80136E80);
     }
 }
 
-void *func_801043D8(s32 arg0) {
-    void *freelist_at(s32, s32);
+void *func_801043D8(BtIntPtr arg0) {
+    void * freelist_at(void *list, s32 index);
     extern s32 D_80136E80;
     s16 temp_a1;
 
@@ -36,7 +36,7 @@ void *func_801043D8(s32 arg0) {
 }
 
 s32 *func_80104410(void *arg0) {
-    void *freelist_at(s32, s32);
+    void * freelist_at(void *list, s32 index);
     extern s32 D_80136E80;
     extern s32 D_80136E88;
     extern s8 D_80136E8B;
@@ -96,38 +96,38 @@ void func_80104504(void *arg0) {
         freelist_erase(D_80136E80, temp_a1, arg0);
         (*(s16 *)((s8 *)(arg0) + (0x8E))) = 0;
     }
-}
+}    typedef struct { u8 pad0[0x3]; u8 unk3; } Obj1EDDC40_func_80104544_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-int func_80104544() {
+int func_80104544(BT_NATIVE_ONLY(s32 bt_a0)) {
     void *func_801043D8();
     void *temp_v0;
 #ifdef BT_NATIVE
-    temp_v0 = ((void * (*)())func_801043D8)();
+    temp_v0 = ((void * (*)(s32))func_801043D8)(bt_a0);
 #else
     temp_v0 = func_801043D8();
 #endif
-    return temp_v0 != NULL && (*(u8 *)((s8 *)temp_v0 + 3)) != 0;
-}
+    return temp_v0 != NULL && (((Obj1EDDC40_func_80104544_temp_v0 *)temp_v0)->unk3) != 0;
+}    typedef struct { u8 pad0[0x3]; s8 unk3; } Obj1EDDC40_func_80104580_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-void func_80104580(void) {
+void func_80104580(BT_PARAM_OR_VOID(s32 bt_a0)) {
     void *func_801043D8();
     void *temp_v0;
 
 #ifdef BT_NATIVE
-    temp_v0 = ((void * (*)())func_801043D8)();
+    temp_v0 = ((void * (*)(s32))func_801043D8)(bt_a0);
 #else
     temp_v0 = func_801043D8();
 #endif
     if (temp_v0 != NULL) {
-        (*(s8 *)((s8 *)(temp_v0) + (3))) = 0;
+        (((Obj1EDDC40_func_80104580_temp_v0 *)temp_v0)->unk3) = 0;
     }
 }
 
 void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
-    s32 func_800AAAE0(s32);
+    void func_800AAAE0(u8 *arg0);
     void func_8010486C(s8 *, f32 *);
     void func_80104958(u8 *);
     void func_801049B4(u8 *, f32 *, s32 *);
@@ -153,15 +153,15 @@ void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
     }
 }
 
-s32 func_80104668(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
+s32 func_80104668(BtIntPtr arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F0E00(f32, f32);
-    void func_800F1988(f32 *, f32 *, f32 *);
+    int func_800F1988(f32 *arg0, f32 *arg1, f32 *arg2);
     void func_801048E4(s8 *, f32 *);
     s8 *sp24;
     f32 sp18[3];
 
-    if (func_80104544() == 0) {
+    if (func_80104544(BT_NATIVE_ONLY(arg0)) == 0) {
         return 0;
     }
     sp24 = func_801043D8(arg0);
@@ -175,7 +175,7 @@ s32 func_80104668(s32 arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
     func_800F1988(sp18, arg3, arg3 + 1);
     arg3[2] = 0.0f;
     return 1;
-}
+}    typedef struct { u8 pad0[0x16]; s16 unk16; } Obj1EDDC40_func_8010473C_var_a0; /* offsets.py genstruct: fields from raw offsets on var_a0; rename once understood */
 
 /* extern */
 
@@ -188,10 +188,10 @@ f32 func_8010473C(Actor *arg0, f32 *arg1) {
     if (arg1 != 0) {
         func_801048E4(var_a0, arg1);
     }
-    return (f32) (*(s16 *)((s8 *)(var_a0) + (0x16)));
+    return (f32) (((Obj1EDDC40_func_8010473C_var_a0 *)var_a0)->unk16);
 }
 
-void func_80104780(s32 arg0) {
+void func_80104780(BtIntPtr arg0) {
     void func_801049B4(u8 *, f32 *, s32 *);
     void func_80104D80(s32 *, s32);
     void func_80104E24(s32 *, s32 *);
@@ -388,7 +388,7 @@ void func_80104E24(s32 *arg0, s32 *arg1) {
 /* extern */
 
 s32 func_80104E78(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_12(s32, s32, s32, s32);
+    void _subaddiefade_entrypoint_12(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
     void func_800EE7F8(f32 *, f32 *);
     void func_801045AC(Actor *, f32 *, f32 *, s32);
     f32 sp3C[3];
@@ -396,8 +396,8 @@ s32 func_80104E78(Actor *arg0) {
     f32 sp24[3];
     s32 *temp_v0;
 
-    func_800EE7F8(sp3C, (f32 *)((u8 *)arg0 + 4));
-    func_800EE7F8(sp30, (f32 *)((u8 *)arg0 + 4));
+    func_800EE7F8(sp3C, &arg0->position[0]);
+    func_800EE7F8(sp30, &arg0->position[0]);
     sp3C[1] -= 300.0f;
     sp30[1] += 100.0f;
     temp_v0 = (s32 *)func_800BEF00(sp30, sp3C, sp24, *(s32 *)((u8 *)arg0 + 0x14));
@@ -405,7 +405,7 @@ s32 func_80104E78(Actor *arg0) {
         func_801045AC(arg0, sp24, sp3C, temp_v0[2]);
         return 1;
     }
-    _subaddiefade_entrypoint_12((s32)arg0, 0xFF, 0xFF, 0xFF);
+    _subaddiefade_entrypoint_12((BtIntPtr)arg0, 0xFF, 0xFF, 0xFF);
     return 0;
 }
 
@@ -441,8 +441,8 @@ void func_80104F2C(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_80105010(Actor *arg0) {
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
-    s32 _subaddiefade_entrypoint_12(s32, s32, s32, s32);
-    s32 func_800AAAE0(s32);
+    void _subaddiefade_entrypoint_12(u8 *arg0, s32 arg1, s32 arg2, s32 arg3);
+    void func_800AAAE0(u8 *arg0);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     u8 *data;
@@ -461,7 +461,7 @@ s32 func_80105010(Actor *arg0) {
     sp3C = func_800BEF00(sp58, sp4C, sp40, arg0->unk14);
     if (sp3C != NULL) {
         func_80104958(data);
-        func_800AAAE0((s32)(data + 0x18));
+        func_800AAAE0((BtIntPtr)(data + 0x18));
         func_8010486C((s8 *)data, sp40);
         *(s16 *)(data + 0x16) = (s32)sp4C[1];
         data[3] = 1;
@@ -473,20 +473,20 @@ s32 func_80105010(Actor *arg0) {
         data[0x28] = 1;
         return 1;
     }
-    _subaddiefade_entrypoint_12((s32)arg0, 0xFF, 0xFF, 0xFF);
+    _subaddiefade_entrypoint_12((BtIntPtr)arg0, 0xFF, 0xFF, 0xFF);
     return 0;
 }
 
 /* extern */
 
-void func_80105138(u8 *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) { s32 func_800C696C(s32, f32, f32, s32, f32 *); func_800C696C(arg1 ? arg1 : (s32)(arg0 + 4), arg2, arg3, *(s32 *)((s8 *)arg0 + 0x14), (f32 *)arg4); }
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80105138(u8 *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4) { s32 func_800C696C(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3, f32 *arg4); BT_NATIVE_ONLY(return) func_800C696C(arg1 ? arg1 : (BtIntPtr)(arg0 + 4), arg2, arg3, *(s32 *)((s8 *)arg0 + 0x14), (f32 *)arg4); }
 
 /* extern */
 
-s32 func_8010518C(s32 arg0) {
-    void *func_801043D8(s32);
+s32 func_8010518C(BtIntPtr arg0) {
+    void *func_801043D8(BtIntPtr);
     int func_80104544();
-    if (func_80104544() == 0) {
+    if (func_80104544(BT_NATIVE_ONLY(arg0)) == 0) {
         return 0;
     }
     return (*(s32 *)((s8 *)(func_801043D8(arg0)) + (0x24)));
@@ -494,7 +494,7 @@ s32 func_8010518C(s32 arg0) {
 
 s32 func_801051C8(Actor *arg0, f32 *arg1) {
     void func_800EFA4C(f32 *, f32, f32, f32);
-    if (func_80104544() == 0) {
+    if (func_80104544(BT_NATIVE_ONLY(arg0)) == 0) {
         func_800EFA4C(arg1, 0.0f, 1.0f, 0.0f);
         return 0;
     }
@@ -511,7 +511,7 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_80101E14(Actor *, f32);
     s32 func_801053D4();
-    void func_8010D640(s32);
+    void func_8010D640(BtIntPtr);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     extern f32 D_80124420;
     extern s32 D_8012442C;
@@ -528,7 +528,7 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
     if (func_800D3948() != 0) {
         return 0;
     }
-    func_8010D640((s32)position);
+    func_8010D640((BtIntPtr)position);
     if (D_80126450 <= func_800EEB40(position, actorPosition = arg0->position)) {
         return 0;
     }
@@ -545,7 +545,7 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
         }
     }
     return 0;
-}
+}        
 
 void func_80105390(u8 *arg0, u8 *arg1) {
     s32 temp_f16;
@@ -579,3 +579,13 @@ s32 func_801053D4(void) {
     }
     return var_v1;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80136E80 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1460);
+s32 D_80136E88 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1468);
+s8 D_80136E8B BT_DATA(4, bss_core2bss2_2_music_tail, 0x146B);
+s32 D_80136EAC BT_DATA(4, bss_core2bss2_2_music_tail, 0x148C);
+s8 D_80136EB0 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1490);
+#endif

@@ -1,10 +1,10 @@
 #include "ch/inflatablebossdoor.h"
 
-extern s32 D_80800140_chinflatablebossdoor;
+extern BtIntPtr D_80800140_chinflatablebossdoor[20];
 
 s32* chinflatablebossdoor_entrypoint_0(void)
 {
-    return &D_80800140_chinflatablebossdoor;
+    return D_80800140_chinflatablebossdoor;
 }
 
 void func_8080000C_chinflatablebossdoor(Actor* arg0)
@@ -36,3 +36,12 @@ void func_8080000C_chinflatablebossdoor(Actor* arg0)
         _chdoormake_entrypoint_6(arg0, 0x3F4CCCCD);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/inflatablebossdoor.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+#ifndef BT_NATIVE
+void func_80107C2C();
+#endif
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+BtIntPtr D_80800140_chinflatablebossdoor[20] BT_DATA(4, overlays_ch_inflatablebossdoor, 0x0) = { 11273326, 155385857, 0, (BtIntPtr)_chdoor_entrypoint_0, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 0, 10223616, 3072, 0, 0, 0, (BtIntPtr)func_8080000C_chinflatablebossdoor, (BtIntPtr)func_80107C2C, -2146948094, (BtIntPtr)_chdoor_entrypoint_1, 0, 0, 0 };

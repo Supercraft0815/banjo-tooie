@@ -7,23 +7,23 @@ s32 ncbaspline_entrypoint_0()
 
 /* extern */
 
-s32 func_80800008_ncbaspline(void *arg0) {
-    s32 func_800D7520(s32);
-    func_800D7520(*(*(s32 **)((s8 *)(arg0) + (0x44))));
-}
+BtIntPtr func_80800008_ncbaspline(void *arg0) {
+    BtIntPtr func_800D7520(s32);
+    BT_NATIVE_ONLY(return) func_800D7520(*(*(s32 **)((s8 *)(arg0) + (0x44))));
+}    typedef struct { u8 pad0[0x44]; u8 * unk44; } Objspline_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080002C_ncbaspline(void *arg0) {
     void func_800EFD24(f32 *);
-    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x44)) = -1;
-    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 4) = 0.0f;
-    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 8) = 0.0f;
-    *(s32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x28) = 0;
-    *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2C) = 0;
-    *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2F) = 0;
-    *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2E) = *(u8 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x2F);
-    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0xC));
-    func_800EFD24((f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x1C));
-    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x44) + 0x18) = 0.0f;
+    *(s32 *)(((Objspline_arg0 *)arg0)->unk44) = -1;
+    *(f32 *)(((Objspline_arg0 *)arg0)->unk44 + 4) = 0.0f;
+    *(f32 *)(((Objspline_arg0 *)arg0)->unk44 + 8) = 0.0f;
+    *(s32 *)(((Objspline_arg0 *)arg0)->unk44 + 0x28) = 0;
+    *(u8 *)(((Objspline_arg0 *)arg0)->unk44 + 0x2C) = 0;
+    *(u8 *)(((Objspline_arg0 *)arg0)->unk44 + 0x2F) = 0;
+    *(u8 *)(((Objspline_arg0 *)arg0)->unk44 + 0x2E) = *(u8 *)(((Objspline_arg0 *)arg0)->unk44 + 0x2F);
+    func_800EFD24((f32 *)(((Objspline_arg0 *)arg0)->unk44 + 0xC));
+    func_800EFD24((f32 *)(((Objspline_arg0 *)arg0)->unk44 + 0x1C));
+    *(f32 *)(((Objspline_arg0 *)arg0)->unk44 + 0x18) = 0.0f;
 }
 
 void ncbaspline_entrypoint_1(void *arg0)
@@ -34,7 +34,7 @@ void ncbaspline_entrypoint_1(void *arg0)
 /* extern */
 
 void ncbaspline_entrypoint_2(s32 arg0) {
-    s32 func_801124D0(s32, s32);
+    s32 func_801124D0(BtIntPtr, s32);
     s32 func_80111B8C(s32, s32, s32);
     func_801124D0(arg0, 1);
     func_80111B8C(arg0, 0x40400000, 0x41000000);
@@ -47,10 +47,10 @@ void ncbaspline_entrypoint_3(void *arg0)
 
 /* extern */
 
-void func_80800130_ncbaspline(s32 arg0, f32 *arg1) {
+void func_80800130_ncbaspline(BtIntPtr arg0, f32 *arg1) {
     s32 func_80112518();
-    s32 func_801124D0(s32, s32);
-    s32 func_80112524(s32, f32 *);
+    s32 func_801124D0(BtIntPtr, s32);
+    void func_80112524(void *arg0, f32 *arg1);
     s32 sp1C;
 
     sp1C = func_80112518();
@@ -61,15 +61,15 @@ void func_80800130_ncbaspline(s32 arg0, f32 *arg1) {
 
 /* extern */
 
-f32 func_8080017C_ncbaspline(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void func_800C7A68(s32, f32, void *);
-    f32 func_800C7B28(s32, f32, f32, s32);
-    f32 func_800C82CC(s32, s32);
+f32 func_8080017C_ncbaspline(void *arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr arg3) {
+    void func_800C7A68(BtIntPtr, f32, void *);
+    f32 func_800C7B28(BtIntPtr, f32, f32, s32);
+    f32 func_800C82CC(BtIntPtr, BtIntPtr);
     s32 func_800EE780(s32 *, s32 *, s32 *);
     f32 func_800EEAD4(void *, void *);
     s32 func_800EF368(s32 *, s32);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
-    s32 func_800F018C(s32 *, s32 *, s32 *, s32);
+    s32 func_800F018C(s32 *, s32 *, s32 *, BtIntPtr);
     s32 sp4C[3];
     s32 sp40[3];
     s32 sp34[3];
@@ -100,8 +100,8 @@ f32 func_8080017C_ncbaspline(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 s32 func_80800318_ncbaspline(void *arg0, f32 *arg1) {
-    void func_800C7A68(s32, f32, void *);
-    f32 func_800C7FD4(s32, f32, f32);
+    void func_800C7A68(BtIntPtr, f32, void *);
+    f32 func_800C7FD4(BtIntPtr, f32, f32);
     f32 func_800EEAD4(void *, void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 mlAbsF(f32);
@@ -115,13 +115,13 @@ s32 func_80800318_ncbaspline(void *arg0, f32 *arg1) {
     f32 velocity;
     f32 direction;
     f32 distance;
-    s32 path;
+    BtIntPtr path;
     struct SplineData { s32 path; f32 velocity; f32 position; u8 pad[0x22]; u8 start; u8 end; };
     struct SplineOwner { u8 pad[0x44]; struct SplineData *data; };
 
     path = func_80800008_ncbaspline(arg0);
-    func_80800130_ncbaspline((s32)arg0, position);
-    distance = func_8080017C_ncbaspline(arg0, path, (s32)position, (s32)arg1);
+    func_80800130_ncbaspline((BtIntPtr)arg0, position);
+    distance = func_8080017C_ncbaspline(arg0, path, (BtIntPtr)position, (BtIntPtr)arg1);
     forwardPosition = func_800C7FD4(path, ((struct SplineOwner *)arg0)->data->position, 1000.0f);
     backwardPosition = func_800C7FD4(path, ((struct SplineOwner *)arg0)->data->position, -1000.0f);
     func_800C7A68(path, forwardPosition, forward);
@@ -156,18 +156,18 @@ s32 func_80800318_ncbaspline(void *arg0, f32 *arg1) {
 }
 
 void ncbaspline_entrypoint_4(void *arg0) {
-    s32 func_800D7520(s32);
-    void func_800C7A68(s32, f32, void *);
+    BtIntPtr func_800D7520(s32);
+    void func_800C7A68(BtIntPtr, f32, void *);
     f32 func_800D8FF8(void);
     s32 func_800EE780(s32 *, s32 *, s32 *);
     void func_800EF334(f32 *, f32);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_80110770(void *, f32 *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, f32 *, f32 *);
-    s32 func_80112524();
+    void func_80110A68(BtIntPtr, f32 *, f32 *);
+    void func_80112524(void *arg0, f32 *arg1);
     s32 func_80800318_ncbaspline(void *, f32 *);
     f32 sp5C[3];
     f32 sp50[3];
@@ -212,36 +212,36 @@ void ncbaspline_entrypoint_4(void *arg0) {
             func_80110790(arg0, sp34);
         }
     }
-}
+}    typedef struct { u8 pad0[0x28]; s32 unk28; } Objspline_ncbaspline_entrypoint_5_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-void ncbaspline_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
+void ncbaspline_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2) {
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x44)));
-    if ((*(s32 *)((s8 *)(temp_v0) + (0x28))) != 0) {
-        (*(s32 *)((s8 *)(temp_v0) + (0x28))) = -1;
+    if ((((Objspline_ncbaspline_entrypoint_5_temp_v0 *)temp_v0)->unk28) != 0) {
+        (((Objspline_ncbaspline_entrypoint_5_temp_v0 *)temp_v0)->unk28) = -1;
     }
-}
+}    typedef struct { u8 pad0[0x8]; u16 unk8; } Objspline_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
-void ncbaspline_entrypoint_6(s32 arg0, void *arg1, s32 arg2) {
-    s32 func_800D5424(u16);
-    void ncbaspline_entrypoint_7(s32, s32);
-    ncbaspline_entrypoint_7(arg0, func_800D5424((*(u16 *)((s8 *)(arg1) + (8)))));
+void ncbaspline_entrypoint_6(BtIntPtr arg0, void *arg1, BtIntPtr arg2) {
+    s32 func_800D5424(s32 arg0);
+    void ncbaspline_entrypoint_7(BtIntPtr, s32);
+    ncbaspline_entrypoint_7(arg0, func_800D5424((((Objspline_arg1 *)arg1)->unk8)));
 }
 
-void ncbaspline_entrypoint_7(s32 arg0, s32 arg1) {
+void ncbaspline_entrypoint_7(BtIntPtr arg0, s32 arg1) {
     void *_gccubesearch_entrypoint_14(s32, s32 *);
     s32 _glsplinefind_entrypoint_3(f32 *);
     void _gspropctrl_entrypoint_11(void *, void *);
     s32 _gspropctrl_entrypoint_13(Prop *);
-    void func_800C7A68(s32, f32, void *);
-    f32 func_800C82CC(s32, s32);
+    void func_800C7A68(BtIntPtr, f32, void *);
+    f32 func_800C82CC(BtIntPtr, BtIntPtr);
     s32 func_800D542C(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE904(s32 *, f32 *);
-    s32 func_800F5C94(s32);
+    s32 func_800F5C94(BtIntPtr);
     void func_800F7E9C(s32, s32);
     f32 func_800FB1EC(struct Unk800C7A68 *, f32, f32 *, s32);
     s32 func_801106A0(s32 *);

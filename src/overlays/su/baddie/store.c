@@ -2,16 +2,16 @@
 
 /* extern */
 
-u8 *subaddiestore_entrypoint_0(u8 *arg0, u8 *arg1) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+typedef struct { s16 unk0; s16 unk2; } Objstore_subaddiestore_entrypoint_0_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */ u8 *subaddiestore_entrypoint_0(u8 *arg0, u8 *arg1) {
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 func_808003AC_subaddiestore(s32 *, s32 *);
     u8 *func_808004FC_subaddiestore(u8 *, u8 *);
     u32 *func_80800AD8_subaddiestore(void *, u32 *);
-    void *heap_realloc(void *, s32);
+    void *heap_realloc(void *, BtIntPtr);
     s32 temp_s1;
     s32 next_entry;
-    s32 entry;
+    BtIntPtr entry;
     u8 *temp_v1;
     u8 *var_s0;
     u32 *var_s1;
@@ -22,9 +22,9 @@ u8 *subaddiestore_entrypoint_0(u8 *arg0, u8 *arg1) {
     temp_s1 = arg1 - arg0;
     arg0 = heap_realloc(arg0, temp_s1 + entry);
     temp_v1 = arg0 + temp_s1;
-    (*(s16 *)((s8 *)(temp_v1) + (0))) = (s16) sp34;
+    (((Objstore_subaddiestore_entrypoint_0_temp_v1 *)temp_v1)->unk0) = (s16) sp34;
     var_s0 = temp_v1 + 4;
-    (*(s16 *)((s8 *)(temp_v1) + (2))) = (s16) sp30;
+    (((Objstore_subaddiestore_entrypoint_0_temp_v1 *)temp_v1)->unk2) = (s16) sp30;
     for (entry = func_801067C4(&sp2C); entry != 0; entry = func_8010682C(&sp2C)) {
         var_s0 = func_808004FC_subaddiestore((u8 *)entry, var_s0);
     }
@@ -35,16 +35,16 @@ u8 *subaddiestore_entrypoint_0(u8 *arg0, u8 *arg1) {
     return arg0;
 }
 
-void subaddiestore_entrypoint_1(s32 arg0, u8 *arg1) {
+void subaddiestore_entrypoint_1(BtIntPtr arg0, u8 *arg1) {
     typedef struct {
         u8 pad0[0x70];
         u32 pad70:14;
         u32 flag70:1;
         u32 rest70:17;
     } StoreFlags;
-    s32 _glcutDll_entrypoint_1(void);
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    u8 _glcutDll_entrypoint_1(void);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     void func_800FFAB0(Actor *);
     s32 func_80102F74(Unk80132ED0 *, s32);
     Actor *func_80108474(u32, f32 *, s32);
@@ -56,7 +56,7 @@ void subaddiestore_entrypoint_1(s32 arg0, u8 *arg1) {
     u8 *sp50;
     s32 i;
     s32 sp48;
-    s32 actor;
+    BtIntPtr actor;
     s16 *header = (s16 *)arg1;
 
     iterator = &sp48;
@@ -106,7 +106,7 @@ s32 func_80800260_subaddiestore(Unk80132ED0 *arg0) {
         u32 flag74:1;
         u32 rest74:17;
     } StoreFlags;
-    s32 _glcutDll_entrypoint_8(void);
+    s16 _glcutDll_entrypoint_8(void);
     int func_800DB9B0(void);
     s32 func_800EA05C(void);
     s32 func_80102F74(Unk80132ED0 *, s32);
@@ -138,8 +138,8 @@ s32 func_80800260_subaddiestore(Unk80132ED0 *arg0) {
 /* extern */
 
 s32 func_80800330_subaddiestore(Actor *arg0) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 sp28[2];
     u32 temp_t6;
     Actor *var_v0;
@@ -165,8 +165,8 @@ block_6:
 }
 
 s32 func_808003AC_subaddiestore(s32 *arg0, s32 *arg1) {
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 func_8001B7B8(s16);
     Actor *actor;
     s32 i;
@@ -265,17 +265,17 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
     } Saved;
     typedef struct { u8 data[0x48]; } Extra48;
     typedef struct { u8 data[0x18]; } Extra18;
-    f32 anctrl_getAnimTimer(s32);
-    s32 anctrl_getIndex(s32);
-    s32 anctrl_getPlaybackType(s32);
+    f32 anctrl_getAnimTimer(BtIntPtr);
+    int anctrl_getIndex(void *arg0);
+    u32 anctrl_getPlaybackType(u8 *arg0);
     u8 *func_8001B798(s16);
     s32 func_8001B7B8(s16);
-    void func_8008B238(s32, f32 *, f32 *);
-    s32 func_8008B28C(s32);
-    s32 func_8008B29C(s32);
-    f32 func_8008B2AC(s32);
-    f32 func_8008B2D4(s32);
-    s32 func_80104248(u8 *);
+    void func_8008B238(void *arg0, f32 *arg1, f32 *arg2);
+    s32 func_8008B28C(void *arg0);
+    u32 func_8008B29C(void *arg0);
+    f32 func_8008B2AC(f32 *arg0);
+    f32 func_8008B2D4(f32 *arg0);
+    void * func_80104248(void *data);
     u8 *func_80105494(u8 *);
     u8 *func_80106F30(u8 *);
     s32 func_8010A698(u8 *);
@@ -290,7 +290,7 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
     u8 *base;
     s32 *sizes;
     u8 *out;
-    s32 anim;
+    BtIntPtr anim;
     s32 size;
     s32 i;
     u8 *entry;
@@ -372,7 +372,7 @@ u8 *func_808004FC_subaddiestore(u8 *arg0, u8 *arg1) {
         } while (i != 0xC);
     }
     return out;
-}
+}                    typedef struct { s16 unk0; s16 unk2; u8 pad4[0x68]; u32 unk6C; u8 pad70[0xC]; s32 unk7C; u8 pad80[0x14]; s32 unk94; } Objstore_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -385,7 +385,7 @@ u32 *func_80800AD8_subaddiestore(void *arg0, u32 *arg1) {
 #endif
         return arg1;
     }
-    *arg1 = (u32) (*(u32 *)((s8 *)(arg0) + (0x6C))) >> 0x15;
+    *arg1 = (u32) (((Objstore_arg0 *)arg0)->unk6C) >> 0x15;
     return arg1 + 1;
 }
 
@@ -432,28 +432,28 @@ void func_80800B24_subaddiestore(u8 *arg0, u8 *arg1) {
     } Saved;
     typedef struct { u8 data[0x48]; } Extra48;
     typedef struct { u8 data[0x18]; } Extra18;
-    void anctrl_setDuration(s32, f32);
-    void anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    void anctrl_setSmoothTransition(s32, s32);
-    void anctrl_setSubrange(s32, f32, f32);
-    s32 anctrl_start(s32);
+    void anctrl_setDuration(BtIntPtr, f32);
+    void anctrl_setIndex(BtIntPtr, s32);
+    void anctrl_setPlaybackType(void *arg0, s32 arg1);
+    void anctrl_setSmoothTransition(BtIntPtr, s32);
+    void anctrl_setSubrange(BtIntPtr, f32, f32);
+    void anctrl_start(void *control);
     s16 func_8001B668(s32, s32);
-    s32 func_8001B754(s16);
+    void func_8001B754(s16 handle);
     u8 *func_8001B798(s16);
-    void func_8008B10C(s32, f32);
-    void func_8008B188(s32, s32);
-    void func_8008B2DC(s32, f32);
+    void func_8008B10C(void *arg0, f32 arg1);
+    void func_8008B188(BtIntPtr, s32);
+    void func_8008B2DC(void *arg0, f32 arg1);
     f32 func_800F0D50(f32, f32, f32);
-    s32 func_80103014(u8 *);
-    s32 func_80104248(u8 *);
-    s32 func_801042B8(u8 *);
+    void func_80103014(u8 *arg0);
+    void * func_80104248(void *data);
+    void * func_801042B8(void *actor);
     void func_80104328(u8 *);
     u8 *func_8010556C(u8 *);
     void func_80105634(u8 *);
-    u8 *func_80106E88(u8 *);
+    BtIntPtr func_80106E88(Actor *arg0);
     void func_80106EE0(u8 *);
-    void func_8010A654(u8 *, u32);
+    u32 func_8010A654(void ***arg0, s32 arg1);
     s32 func_80800F98_subaddiestore(u8 *);
     void rare_memcpy(void *, void *, int);
     Extra48 *first;
@@ -469,7 +469,7 @@ void func_80800B24_subaddiestore(u8 *arg0, u8 *arg1) {
     u8 *entry;
     s32 offset;
     s32 i;
-    s32 anim;
+    BtIntPtr anim;
     u32 playback;
     s16 handle;
 
@@ -574,10 +574,10 @@ u8 *func_80800FD0_subaddiestore(u8 *arg0) {
 
     temp_v0 = arg0 + 0xB0;
     var_a1 = temp_v0;
-    if ((*(s32 *)((s8 *)(arg0) + (0x7C))) & 0xFFF) {
+    if ((((Objstore_arg0 *)arg0)->unk7C) & 0xFFF) {
         var_a1 = temp_v0 + 0x48;
     }
-    if (((u32) ((*(s32 *)((s8 *)(arg0) + (0x94))) * 4) >> 0x16) != 0) {
+    if (((u32) ((((Objstore_arg0 *)arg0)->unk94) * 4) >> 0x16) != 0) {
         var_a1 += 0x18;
     }
     if (func_80800F98_subaddiestore(arg0) != 0) {
@@ -589,7 +589,7 @@ u8 *func_80800FD0_subaddiestore(u8 *arg0) {
         }
     }
     return var_a1;
-}
+}    typedef struct { u8 pad0[0x6C]; u32 unk6C; } Objstore_func_80801054_subaddiestore_var_s1; /* offsets.py genstruct: fields from raw offsets on var_s1; rename once understood */ typedef struct { u8 pad0[0x6C]; u32 unk6C; } Objstore_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
@@ -600,25 +600,25 @@ s32 func_80801054_subaddiestore(u8 *arg0, u8 *arg1, u8 **arg2) {
     s32 var_s0;
     u32 temp_s2;
 
-    temp_s2 = (u32) (*(u32 *)((s8 *)(arg1) + (0x6C))) >> 0x15;
+    temp_s2 = (u32) (((Objstore_arg1 *)arg1)->unk6C) >> 0x15;
     var_s1 = arg0 + 4;
     var_s0 = 0;
-    if ((*(s16 *)((s8 *)(arg0) + (0))) > 0) {
+    if ((((Objstore_arg0 *)arg0)->unk0) > 0) {
 loop_1:
-        if (temp_s2 == ((u32) (*(u32 *)((s8 *)(var_s1) + (0x6C))) >> 0x15)) {
+        if (temp_s2 == ((u32) (((Objstore_func_80801054_subaddiestore_var_s1 *)var_s1)->unk6C) >> 0x15)) {
             *arg2 = var_s1;
             return 1;
         }
         var_s1 = func_80800FD0_subaddiestore(var_s1);
         var_s0 += 1;
-        if (var_s0 >= (*(s16 *)((s8 *)(arg0) + (0)))) {
+        if (var_s0 >= (((Objstore_arg0 *)arg0)->unk0)) {
             var_s0 = 0;
             goto block_5;
         }
         goto loop_1;
     }
 block_5:
-    temp_v1 = (*(s16 *)((s8 *)(arg0) + (2)));
+    temp_v1 = (((Objstore_arg0 *)arg0)->unk2);
     var_v0 = (s32 *)var_s1;
     if (temp_v1 > 0) {
 loop_6:

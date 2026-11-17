@@ -112,7 +112,7 @@ void func_808002E0_sumole(Actor* arg0, s32 arg1, s32 arg2, s32 arg3)
     }
 }
 
-void func_8080037C_sumole(Actor* arg0, s32 arg1, s32 arg2, s32 arg3)
+void func_8080037C_sumole(Actor* arg0, s32 arg1, s32 arg2, BtIntPtr arg3)
 {
     u32 temp_t8;
 
@@ -741,7 +741,7 @@ void sumole_entrypoint_16(Actor* arg0, s32 arg1)
     MoveData* temp_v0;
     s32 sp28;
 
-    func_8010114C((s32)arg0->unk0, 0x21, 0);
+    func_8010114C((BtIntPtr)arg0->unk0, 0x21, 0);
     temp_v0 = (MoveData*)func_80101080();
     arg0->unk58 = 0.0f;
     switch (arg0->unk70_10)

@@ -2,27 +2,27 @@
 
 OSThread *chcactusofstrength_entrypoint_0(void)
 {
-    extern u8 D_80800D00_chcactusofstrength[];
+    extern ActorData D_80800D00_chcactusofstrength[];
 
     return (OSThread *) D_80800D00_chcactusofstrength;
 }
 
 OSThread *chcactusofstrength_entrypoint_1(void)
 {
-    extern u8 D_80800D48_chcactusofstrength[];
+    extern ActorData D_80800D48_chcactusofstrength[];
 
     return (OSThread *) D_80800D48_chcactusofstrength;
 }
 
 OSThread *chcactusofstrength_entrypoint_2(void)
 {
-    extern u8 D_80800D90_chcactusofstrength[];
+    extern ActorData D_80800D90_chcactusofstrength[];
 
     return (OSThread *) D_80800D90_chcactusofstrength;
 }
 
 void func_80800024_chcactusofstrength(Actor *arg0) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32 arg0);
     s32 func_800D9058(f32);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
@@ -55,9 +55,9 @@ void func_80800108_chcactusofstrength(s32 arg0)
 /* extern */
 
 void func_80800110_chcactusofstrength(Actor *arg0, s32 arg1) {
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32 arg0);
     s32 func_8008FCC8(Unk80132ED0 *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80103110(Actor *, u32);
     s32 var_a2;
@@ -102,7 +102,7 @@ s32 func_808001C4_chcactusofstrength(Actor *arg0, s32 arg1, volatile s32 arg2) {
 
 void func_80800200_chcactusofstrength(Actor *arg0) {
     u8 func_800D9078(f32 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_80101FDC(Actor *, u32);
@@ -156,16 +156,16 @@ void func_80800200_chcactusofstrength(Actor *arg0) {
             }
             break;
     }
-}
+}                   typedef struct { u8 pad0[0x8]; f32 unk8; u8 padC[0x1C]; f32 unk28; f32 unk2C; u8 pad30[0x20]; s32 unk50; } Objcactusofstrength_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_808003EC_chcactusofstrength(void *arg0) {
     s32 func_800D0A9C(u32, u32);
     void func_800FFAB0(Actor *);
-    (*(s32 *)((s8 *)(arg0) + (0x50))) = 0;
-    (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
-    (*(f32 *)((s8 *)(arg0) + (0x2C))) = 1200.0f;
+    (((Objcactusofstrength_arg0 *)arg0)->unk50) = 0;
+    (((Objcactusofstrength_arg0 *)arg0)->unk28) = (f32) (((Objcactusofstrength_arg0 *)arg0)->unk8);
+    (((Objcactusofstrength_arg0 *)arg0)->unk2C) = 1200.0f;
     if (func_800D0A9C(0x1E, 1) != 0) {
         func_800FFAB0(arg0);
     }
@@ -173,8 +173,8 @@ void func_808003EC_chcactusofstrength(void *arg0) {
 
 s32 func_80800440_chcactusofstrength(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_800FFAB0(Actor *);
     void func_808004F8_chcactusofstrength(Actor *, s32);
     Actor *actor;
@@ -202,13 +202,13 @@ s32 func_80800440_chcactusofstrength(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808004F8_chcactusofstrength(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _subaddieDll_entrypoint_4(Actor *, u32);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     s32 func_800CEAA8(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC618(s32, s32);
     void func_80101FDC(Actor *, u32);
     f32 sqrtf(f32);
@@ -271,7 +271,7 @@ void func_808006BC_chcactusofstrength(void *arg0) {
         }
         func_80101FDC(arg0, 3);
     }
-}
+}    typedef struct { u8 pad0[0x58]; f32 unk58; } Objcactusofstrength_func_80800718_chcactusofstrength_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
@@ -288,13 +288,13 @@ void func_80800718_chcactusofstrength(void *arg0) {
     sp1C = temp_v0;
     func_80101FDC(temp_v0, 2);
     func_80103110(sp1C, 1);
-    (*(f32 *)((s8 *)(sp1C) + (0x58))) = 2.5f;
+    (((Objcactusofstrength_func_80800718_chcactusofstrength_sp1C *)sp1C)->unk58) = 2.5f;
     _mlwave_entrypoint_0(func_80100074(sp1C, 1, 0x1C), 0x42C80000, 0x42A00000);
 }
 
 void func_80800780_chcactusofstrength(Actor *arg0) {
-    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
-    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
+    void func_800C4104(s32, f32, s32, BtIntPtr, f32, f32);
     void func_80101FDC(Actor *, u32);
     void _subaddieDll_entrypoint_4(Actor *, u32);
 
@@ -306,14 +306,14 @@ void func_80800780_chcactusofstrength(Actor *arg0) {
 }
 
 void func_80800824_chcactusofstrength(Actor *arg0, f32 arg1) {
-    s32 func_800B53A4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    extern s32 D_80800DD8_chcactusofstrength;
-    s32 temp_s4;
+    extern s32 D_80800DD8_chcactusofstrength[12];
+    BtIntPtr temp_s4;
     f32 sp80[3];
     f32 sp74[3];
     f32 sp68[3];
@@ -326,7 +326,7 @@ void func_80800824_chcactusofstrength(Actor *arg0, f32 arg1) {
     for (var_s1 = 0; var_s1 != 2; var_s1++) {
         func_800EEB9C(sp80, func_800DC178(0.0f, 270.0f), 20.0f);
         func_800EF04C(sp80, sp74);
-        func_800BABB8(temp_s4, sp80, sp68, 1.0f, &D_80800DD8_chcactusofstrength);
+        func_800BABB8(temp_s4, sp80, sp68, 1.0f, D_80800DD8_chcactusofstrength);
     }
 }
 
@@ -340,7 +340,7 @@ void func_8080094C_chcactusofstrength(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13F0(f32, f32);
     f32 mlAbsF(f32);
-    extern s32 D_80800E08_chcactusofstrength;
+    extern s32 D_80800E08_chcactusofstrength[4];
     f32 *sp28;
     f32 sp30;
     u32 temp_t6;
@@ -348,7 +348,7 @@ void func_8080094C_chcactusofstrength(Actor *arg0) {
     temp_t6 = arg0->unk70_10;
     if ((temp_t6 == 2) || (temp_t6 == 3)) {
         if (arg0->unk5F == 0) {
-            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80800E08_chcactusofstrength);
+            _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800E08_chcactusofstrength);
         }
         if (arg0->unk5F != 0) {
             sp28 = arg0->position;
@@ -375,7 +375,7 @@ void func_80800A44_chcactusofstrength(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80800E18_chcactusofstrength;
+    extern s32 D_80800E18_chcactusofstrength[3];
     f32 sp28;
     u8 *sp30;
     f32 sp24[3];
@@ -387,7 +387,7 @@ void func_80800A44_chcactusofstrength(Actor *arg0) {
         _mlwave_entrypoint_1(temp_v0);
         arg0->rotation[2] = _mlwave_entrypoint_5(sp30, -20.0f, 20.0f);
         if ((_mlwave_entrypoint_8(sp30, 0.75f) != 0) || (_mlwave_entrypoint_8(sp30, 0.25f) != 0)) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800E18_chcactusofstrength);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800E18_chcactusofstrength);
         }
         if (func_800D9078(&arg0->unk58) != 0) {
             func_800EE7F8(sp24, (f32 *)arg0->actorData);
@@ -435,21 +435,36 @@ s32 func_80800B90_chcactusofstrength(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800C18_chcactusofstrength(Actor *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     s32 func_800CEAA8(s32);
     void func_800CE88C(s32, s32);
-    extern s32 D_80800E24_chcactusofstrength;
-    extern s32 D_80800E64_chcactusofstrength;
+    extern s32 D_80800E24_chcactusofstrength[16];
+    extern s32 D_80800E64_chcactusofstrength[3];
     Actor *sp24;
 
     sp24 = func_80106790(arg0->unk3C);
-    func_800BABB8(0, arg0->position, arg0->position, arg0->scale, &D_80800E24_chcactusofstrength);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800E64_chcactusofstrength);
+    func_800BABB8(0, arg0->position, arg0->position, arg0->scale, D_80800E24_chcactusofstrength);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800E64_chcactusofstrength);
     func_800D1000(0x1E, 1, NULL, 1, 0);
     *(s32 *)&sp24->unk50 = 0;
     if (func_800CEAA8(0) != 0) {
         func_800CE88C(0, 0);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/cactusofstrength.data.s */
+extern u8 D_80800CE0_chcactusofstrength[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u8 D_80800CE0_chcactusofstrength[32] BT_DATA(4, overlays_ch_cactusofstrength, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0xB3, 0x33, 0x33, 0x00, 0xD4, 0x00, 0x44, 0x3E, 0x99, 0x99, 0x9A, 0x00, 0xD4, 0x00, 0x02, 0x3E, 0x80, 0x00, 0x00, 0x00, 0xD5, 0x00, 0x02 };
+ActorData D_80800D00_chcactusofstrength [1] BT_DATA(4, overlays_ch_cactusofstrength, 0x20) = { { 395, 313, 1876, 1, (void *)D_80800CE0_chcactusofstrength, (void (*)(struct Actor *))func_80800024_chcactusofstrength, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800108_chcactusofstrength, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11264, (void (*)(struct Actor *, long, long))func_808001C4_chcactusofstrength, 0 } };
+ActorData D_80800D48_chcactusofstrength [1] BT_DATA(4, overlays_ch_cactusofstrength, 0x68) = { { 397, 315, 1934, 1, 0, (void (*)(struct Actor *))func_80800200_chcactusofstrength, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 32768000, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_808003EC_chcactusofstrength, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800440_chcactusofstrength, 0 } };
+ActorData D_80800D90_chcactusofstrength [1] BT_DATA(4, overlays_ch_cactusofstrength, 0xB0) = { { 396, 314, 1916, 1, 0, (void (*)(struct Actor *))func_80800A44_chcactusofstrength, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800B24_chcactusofstrength, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80800B90_chcactusofstrength, 0 } };
+s32 D_80800DD8_chcactusofstrength[12] BT_DATA(4, overlays_ch_cactusofstrength, 0xF8) = { 1903078, 2818137, 7536674, 4980838, 1638438, 1376256, 8388647, -6488164, 6553700, 2949345, 19661082, 0 };
+s32 D_80800E08_chcactusofstrength[4] BT_DATA(4, overlays_ch_cactusofstrength, 0x128) = { 1246381, 65736, 163840003, 0 };
+s32 D_80800E18_chcactusofstrength[3] BT_DATA(4, overlays_ch_cactusofstrength, 0x138) = { 1246490, 1469792, 0 };
+s32 D_80800E24_chcactusofstrength[16] BT_DATA(4, overlays_ch_cactusofstrength, 0x144) = { 68223005, 165478443, 100665344, 2228608, 33555584, 100663317, 38, 1638400, 458797, 9830650, 2133621, 381681674, -6553575, -6553500, 4915300, 0 };
+s32 D_80800E64_chcactusofstrength[3] BT_DATA(4, overlays_ch_cactusofstrength, 0x184) = { 1246227, 655590, 0 };

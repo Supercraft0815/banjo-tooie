@@ -15,25 +15,25 @@ int func_800C0090(void *caller, s32 arg1) {
 void func_800C00BC()
 {
     _gcdialogDll_entrypoint_0(&D_801288B0);
-}
+}    typedef struct { u8 pad0[0x11C]; u8 unk11C; u8 unk11D; u8 pad11E[0x2]; s32 unk120; s32 unk124; s16 unk128; s16 unk12A; s32 unk12C; u8 pad130[0x2E]; u16 unk15E; u8 pad160[0x6]; s8 unk166; u8 pad167[0x1]; void * unk168; s32 unk16C; u8 pad170[0x10]; s8 unk180; } Obj1E99980_D_801288B0; /* offsets.py genstruct: fields from raw offsets on &D_801288B0; rename once understood */
 
 /* extern */
 
 void func_800C00E0(void) {
     void func_800C0658(void);
     void _gcdialogexec_entrypoint_7(s32 *);
-    s32 func_800FECB8(s32);
+    void func_800FECB8(u32 arg0);
     if (func_800C0638() != 0) {
         func_800FECB8(0);
     }
     func_800C0658();
     _gcdialogexec_entrypoint_7(&D_801288B0);
     (*(s8 *)((s8 *)(&D_801288B0) + (0x15C))) = 0;
-    (*(s8 *)((s8 *)(&D_801288B0) + (0x180))) = 0;
+    (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk180) = 0;
 }
 
-void func_800C0130(s32 arg0) {
-    s32 _gczoombox_entrypoint_2(s32, s32);
+void func_800C0130(BtIntPtr arg0) {
+    s32 _gczoombox_entrypoint_2(s32, BtIntPtr);
     extern s32 D_801288B8;
     extern s32 D_801289DC;
     s32 *var_s0;
@@ -54,27 +54,27 @@ void func_800C0130(s32 arg0) {
 /* extern */
 
 void func_800C01A8(s16 arg0, s32 arg1) {
-    s32 _gcdialogcamera_entrypoint_10(s32 *, s16, s32);
+    void _gcdialogcamera_entrypoint_10(void *arg0, s32 arg1, s32 arg2);
     _gcdialogcamera_entrypoint_10(&D_801288B0, arg0, arg1);
 }
 
 /* Single line: IDO schedules this prologue by source line. */
-void func_800C01D8(s32 arg0, s32 arg1) { s32 _gcdialogexec_entrypoint_5(s32 *, s32, s32); _gcdialogexec_entrypoint_5(&D_801288B0, arg0, arg1); }
+void func_800C01D8(s32 arg0, s32 arg1) { void _gcdialogexec_entrypoint_5(); _gcdialogexec_entrypoint_5(&D_801288B0, arg0, arg1); }
 
 int func_800C0208(void) {
     extern s32 D_80128A18;
-    void *caller = *(void **)((s8 *)&D_801288B0 + 0x168);
+    void *caller = ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk168;
     if (caller == NULL) {
         return 0;
     }
-    if (func_800C0090(caller, *(s32 *)((s8 *)&D_801288B0 + 0x16C))) {
+    if (func_800C0090(caller, ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk16C)) {
         return D_80128A18;
     }
     return 0;
 }
 
 s16 func_800C0258(void) {
-    return ((s16 *)&D_801288B0)[((u32)*(u16 *)((s8 *)&D_801288B0 + 0x15E) >> 15) + 0x8C] + 12;
+    return ((s16 *)&D_801288B0)[((u32)*&((Obj1E99980_D_801288B0 *)&D_801288B0)->unk15E >> 15) + 0x8C] + 12;
 }
 
 s32 func_800C0284(void) {
@@ -98,7 +98,7 @@ s32 func_800C0284(void) {
     } while (var_s0 != &D_801288B8);
     if (D_801289DC != 0) {
         _gczoombox_entrypoint_4(D_801289DC);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800C0308(void) {
@@ -113,31 +113,31 @@ void func_800C0308(void) {
     s32 y_position_change;
 
     if (((struct DialogFlags *)((s8 *)&D_801288B0 + 0x15C))->decremented) {
-        (*(s8 *)((s8 *)&D_801288B0 + 0x166))++;
-        y_position_change = D_8011A7C0[*(s8 *)((s8 *)&D_801288B0 + 0x166)];
-        if (*(s32 *)((s8 *)&D_801288B0 + 0x120) != 0) {
-            *(s16 *)((s8 *)&D_801288B0 + 0x128) -= y_position_change;
-            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x120), *(s16 *)((s8 *)&D_801288B0 + 0x128));
+        (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk166)++;
+        y_position_change = D_8011A7C0[((Obj1E99980_D_801288B0 *)&D_801288B0)->unk166];
+        if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk120 != 0) {
+            ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk128 -= y_position_change;
+            _gczoombox_entrypoint_38(((Obj1E99980_D_801288B0 *)&D_801288B0)->unk120, ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk128);
         }
-        if (*(s32 *)((s8 *)&D_801288B0 + 0x124) != 0) {
-            *(s16 *)((s8 *)&D_801288B0 + 0x12A) += y_position_change;
-            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x124), *(s16 *)((s8 *)&D_801288B0 + 0x12A));
+        if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk124 != 0) {
+            ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12A += y_position_change;
+            _gczoombox_entrypoint_38(((Obj1E99980_D_801288B0 *)&D_801288B0)->unk124, ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12A);
         }
-        if (*(s8 *)((s8 *)&D_801288B0 + 0x166) == 12) {
+        if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk166 == 12) {
             ((struct DialogFlags *)((s8 *)&D_801288B0 + 0x15C))->queued = 0;
         }
     } else {
-        (*(s8 *)((s8 *)&D_801288B0 + 0x166))--;
-        y_position_change = D_8011A7C0[*(s8 *)((s8 *)&D_801288B0 + 0x166)];
-        if (*(s32 *)((s8 *)&D_801288B0 + 0x120) != 0) {
-            *(s16 *)((s8 *)&D_801288B0 + 0x128) += y_position_change;
-            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x120), *(s16 *)((s8 *)&D_801288B0 + 0x128));
+        (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk166)--;
+        y_position_change = D_8011A7C0[((Obj1E99980_D_801288B0 *)&D_801288B0)->unk166];
+        if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk120 != 0) {
+            ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk128 += y_position_change;
+            _gczoombox_entrypoint_38(((Obj1E99980_D_801288B0 *)&D_801288B0)->unk120, ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk128);
         }
-        if (*(s32 *)((s8 *)&D_801288B0 + 0x124) != 0) {
-            *(s16 *)((s8 *)&D_801288B0 + 0x12A) -= y_position_change;
-            _gczoombox_entrypoint_38(*(s32 *)((s8 *)&D_801288B0 + 0x124), *(s16 *)((s8 *)&D_801288B0 + 0x12A));
+        if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk124 != 0) {
+            ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12A -= y_position_change;
+            _gczoombox_entrypoint_38(((Obj1E99980_D_801288B0 *)&D_801288B0)->unk124, ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12A);
         }
-        if (*(s8 *)((s8 *)&D_801288B0 + 0x166) == 0) {
+        if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk166 == 0) {
             ((struct DialogFlags *)((s8 *)&D_801288B0 + 0x15C))->queued = 0;
         }
     }
@@ -167,8 +167,8 @@ void func_800C0438(void) {
     }
 }
 
-s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 _gcdialogexec_entrypoint_3(s32 *, s32, s32, s32, s32, s32);
+s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, BtIntPtr arg4) {
+    s32 _gcdialogexec_entrypoint_3(s32 *, s32, s32, s32, s32, BtIntPtr);
     extern u8 D_80128A30;
     s32 var_v1;
 
@@ -180,8 +180,8 @@ s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     return var_v1;
 }
 
-u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
-    s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, s32, s32, s32, s32);
+u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, BtIntPtr arg4, BtIntPtr arg5, BtIntPtr arg6, s32 arg7) {
+    s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, BtIntPtr, BtIntPtr, s32);
     extern u8 D_80128A30;
     u32 var_v1;
 
@@ -193,8 +193,8 @@ u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, s32 arg4, s3
     return var_v1;
 }
 
- s32 func_800C05B8(s32 arg0, s32 arg1, f32 *arg2, Unk80132ED0 *arg3, s32 arg4, s32 arg5, s16 arg6) {
-    s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, s32, s32, s32, s32);
+ s32 func_800C05B8(s32 arg0, s32 arg1, f32 *arg2, Unk80132ED0 *arg3, BtIntPtr arg4, s32 arg5, s16 arg6) {
+    s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, BtIntPtr, BtIntPtr, s32);
     extern u8 D_80128A30;
     s32 var_v1;
     if (D_80128A30 != 0) {
@@ -208,11 +208,11 @@ u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, s32 arg4, s3
 s32 func_800C0638(void) {
     extern s16 D_80128A12;
     return (D_80128A12 + 1) != 0;
-}
+}    typedef struct { s16 unk0; } Obj1E99980_D_80128A12; /* offsets.py genstruct: fields from raw offsets on &D_80128A12; rename once understood */
 
 s32 func_800C064C(void) {
     extern s16 D_80128A12;
-    return *(s16 *)((u8 *)&D_80128A12 + 0);
+    return *&((Obj1E99980_D_80128A12 *)&D_80128A12)->unk0;
 }
 
 void func_800C0658()
@@ -265,10 +265,10 @@ void func_800C0710(void) {
     g->queue = 1;
     g->decrement = 1;
     g->index--;
-}
+}    typedef struct { u8 pad0[0x104]; BtIntPtr unk104; u8 pad108[0x18]; s32 unk120; } Obj1E99980_func_800C075C_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 void func_800C075C(void) {
-    void *defrag(void *); s32 func_800C7150(s32); extern s32 D_801288B8; s32 *var_s0; s32 temp_a0; s32 temp_a0_2; var_s0 = &D_801288B8 - 2; do { temp_a0 = *(s32 *)((s8 *)var_s0 + 0x120); if (temp_a0 != 0) { *(s32 *)((s8 *)var_s0 + 0x120) = func_800C7150(temp_a0); } if (*(s32 *)((s8 *)&D_801288B0 + 0x12C) != 0) { *(s32 *)((s8 *)&D_801288B0 + 0x12C) = func_800C7150(*(s32 *)((s8 *)&D_801288B0 + 0x12C)); } temp_a0_2 = *(s32 *)((s8 *)var_s0 + 0x104); if (temp_a0_2 != 0) { *(s32 *)((s8 *)var_s0 + 0x104) = defrag(temp_a0_2); } var_s0++; } while (var_s0 != &D_801288B8); }
+    void *defrag(void *); s32 func_800C7150(s32); extern s32 D_801288B8; s32 *var_s0; s32 temp_a0; BtIntPtr temp_a0_2; var_s0 = &D_801288B8 - 2; do { temp_a0 = ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk120; if (temp_a0 != 0) { ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk120 = func_800C7150(temp_a0); } if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C != 0) { ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C = func_800C7150(((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C); } temp_a0_2 = ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk104; if (temp_a0_2 != 0) { ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk104 = defrag(temp_a0_2); } var_s0++; } while (var_s0 != &D_801288B8); }
 
 u32 func_800C07F4(void) {
     extern s32 D_80128A0C;
@@ -292,15 +292,15 @@ void func_800C082C(s32 arg0) {
 
 /* extern */
 
-void func_800C0850(void) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800C0850(void) {
     s32 _gcdialogexec_entrypoint_6(s32 *, s32);
-    (*(u8 *)((s8 *)(&D_801288B0) + (0x11C))) = (u8) ((*(u8 *)((s8 *)(&D_801288B0) + (0x11C))) & 0xFF3F);
-    (*(u8 *)((s8 *)(&D_801288B0) + (0x11D))) = (u8) ((*(u8 *)((s8 *)(&D_801288B0) + (0x11D))) & 0xFF3F);
-    _gcdialogexec_entrypoint_6(&D_801288B0, 6);
+    (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk11C) = (u8) ((((Obj1E99980_D_801288B0 *)&D_801288B0)->unk11C) & 0xFF3F);
+    (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk11D) = (u8) ((((Obj1E99980_D_801288B0 *)&D_801288B0)->unk11D) & 0xFF3F);
+    BT_NATIVE_ONLY(return) _gcdialogexec_entrypoint_6(&D_801288B0, 6);
 }
 
 void func_800C0890(s32 arg0, s32 arg1) {
-    s32 _gcdialogexec_entrypoint_9(s32 *, s32, s32);
+    void _gcdialogexec_entrypoint_9(u8 *arg0, s32 arg1, s32 arg2);
     extern s32 D_801288B0;
     _gcdialogexec_entrypoint_9(&D_801288B0, arg0, arg1);
 }
@@ -339,13 +339,13 @@ s32 func_800C0948(void) {
     return var_v1;
 }
 
-void func_800C0984(s32 arg0) {
-    void _gcnewpause_entrypoint_3(u32, PauseState *);
+void func_800C0984(BtIntPtr arg0) {
+    void _gcnewpause_entrypoint_3(BtUIntPtr, PauseState *);
     s32 func_800A8178(void);
     s32 func_800A8184(void);
-    void func_800C0F8C(s32);
-    void func_800C0FD8(s32);
-    void func_800C1044(s32);
+    void func_800C0F8C(BtIntPtr);
+    void func_800C0FD8(BtIntPtr);
+    void func_800C1044(BtIntPtr);
     void func_800D58CC(void);
     extern s32 D_8011A7D0;
     extern PauseState *D_80128AF0;
@@ -382,13 +382,13 @@ s32 func_800C0A34(void) {
     s32 func_800D3948();
     s32 func_800DA298(s32);
     int func_800DB9B0(void);
-    u32 func_800F54E4(void);
-    s32 func_800F6438(u32);
-    int func_800F6774(u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6438(BtUIntPtr);
+    int func_800F6774(BtUIntPtr);
     extern u8 D_8012762C;
     s32 temp_s2;
     s32 temp_t6;
-    u32 temp_v0;
+    BtUIntPtr temp_v0;
     s32 var_s0;
     s32 var_s1;
     s32 var_s1_2;
@@ -489,9 +489,9 @@ void func_800C0BC0(Gfx** gfx, void* destination, void* source) {
     *gfx = cur_gfx;
 }
 #else
-s32 func_800C0BC0(s32 gfx, s32 destination, s32 source) {
-    s32 func_80014F00(void);
-    s32 row;
+s32 func_800C0BC0(BtIntPtr gfx, BtIntPtr destination, BtIntPtr source) {
+    BtIntPtr func_80014F00(void);
+    s32 row; BT_NATIVE_ONLY(u32 result;)
     s32 col;
     Gfx* cur_gfx = *(Gfx**)gfx;
     gSPDisplayList(cur_gfx++, OS_K0_TO_PHYSICAL(D_8011A7E0));
@@ -549,17 +549,17 @@ s32 func_800C0BC0(s32 gfx, s32 destination, s32 source) {
         }
     }
     gSPDisplayList(cur_gfx++, OS_K0_TO_PHYSICAL(D_8011A840));
-    gDPSetColorImage(cur_gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, OS_K0_TO_PHYSICAL(func_80014F00()));
-    *(Gfx**)gfx = cur_gfx;
+    gDPSetColorImage(cur_gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, OS_K0_TO_PHYSICAL(func_80014F00())); BT_NATIVE_ONLY(result = cur_gfx[-1].words.w1;)
+    *(Gfx**)gfx = cur_gfx; BT_NATIVE_ONLY(return result;)
 }
 #line 556
 #endif
 
-void func_800C0F8C(s32 arg0) {
-    s32 func_800EA34C(s32);
-    s32 func_80014F00();
+void func_800C0F8C(BtIntPtr arg0) {
+    void func_800EA34C(s32 arg0);
+    BtIntPtr func_80014F00();
     s32 func_8001A0A8();
-    s32 func_800C0BC0(s32, s32, s32);
+    s32 func_800C0BC0(BtIntPtr, BtIntPtr, BtIntPtr);
     extern s32 D_80128B00;
     s32 unused;
     s32 sp18;
@@ -570,15 +570,15 @@ void func_800C0F8C(s32 arg0) {
     func_800C0BC0(arg0, sp18, func_80014F00());
 }
 
-void func_800C0FD8(s32 arg0) {
-    s32 func_80014F00();
+void func_800C0FD8(BtIntPtr arg0) {
+    BtIntPtr func_80014F00();
     s32 func_8001A0A8();
-    s32 func_800C0BC0(s32, s32, s32);
+    s32 func_800C0BC0(BtIntPtr, BtIntPtr, BtIntPtr);
     s32 func_800D6E54(s32);
     void func_800FFD10(s32);
     extern s32 D_80128B00;
     s32 unused;
-    s32 sp18;
+    BtIntPtr sp18;
 
     if (D_80128B00 == 0) {
         func_800D6E54(2);
@@ -592,7 +592,23 @@ void func_800C0FD8(s32 arg0) {
 
 /* extern */
 
-void func_800C1044(s32 arg0) {
-    s32 func_800EA34C(s32);
+void func_800C1044(BtIntPtr arg0) {
+    void func_800EA34C(s32 arg0);
     func_800EA34C(1);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_801288B0 BT_DATA(4, bss_core2bss1_0_2, 0x1110);
+s32 D_801288B8 BT_DATA(4, bss_core2bss1_0_2, 0x1118);
+s32 D_801289DC BT_DATA(4, bss_core2bss1_0_2, 0x123C);
+s32 D_80128A0C BT_DATA(4, bss_core2bss1_0_2, 0x126C);
+u8 D_80128A11 BT_DATA(4, bss_core2bss1_0_2, 0x1271);
+s16 D_80128A12 BT_DATA(4, bss_core2bss1_0_2, 0x1272);
+s32 D_80128A18 BT_DATA(4, bss_core2bss1_0_2, 0x1278);
+u8 D_80128A30 BT_DATA(4, bss_core2bss1_0_2, 0x1290);
+PauseState * D_80128AF0 BT_DATA(4, bss_core2bss1_0_2, 0x1350);
+s32 D_80128AF4 BT_DATA(4, bss_core2bss1_0_2, 0x1354);
+s32 D_80128B00 BT_DATA(4, bss_core2bss1_0_2, 0x1360);
+#endif

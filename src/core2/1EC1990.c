@@ -22,7 +22,7 @@ void func_800E8104(void) {
 }
 
 void func_800E8144(void) {
-    s32 func_800A9828(s32, s32, s32);
+    void func_800A9828(s32 arg0, s32 arg1, s32 arg2);
     extern s32 D_8012D5F0;
     extern s32 D_8012D5F4;
     if (D_8012D5F4 != 0) {
@@ -30,12 +30,12 @@ void func_800E8144(void) {
     }
 }
 
-void func_800E817C(s32 arg0) {
-    s32 func_800A8B24(s32, s32);
+void func_800E817C(BtIntPtr arg0) {
+    void func_800A8B24(BtIntPtr arg0, s32 arg1);
     s32 func_800A9800();
-    s32 func_800E7C28(s32);
-    s32 func_800E7CF4(s32);
-    s32 func_800E7D4C(s32);
+    void func_800E7C28(Gfx** gfx);
+    void func_800E7CF4(Gfx** gfx);
+    void func_800E7D4C(Gfx** gfx);
     extern s32 D_8012D5F4;
     if (D_8012D5F4 != 0) {
         func_800A9800();
@@ -51,3 +51,10 @@ s32 func_800E81D0(void) {
 
     return D_8012D5F0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012D5F0 BT_DATA(4, bss_core2bss2_1, 0xCB0);
+s32 D_8012D5F4 BT_DATA(4, bss_core2bss2_1, 0xCB4);
+#endif

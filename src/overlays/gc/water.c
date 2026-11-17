@@ -3,15 +3,15 @@
 /* extern */
 
 void gcwater_entrypoint_0(void) {
-    s32 func_800AAD80(s32);
-    s32 func_800B2720(s32);
-    s32 func_800BEB28(s32);
+    s32 func_800AAD80(u16 *list);
+    u8 *func_800B2720(u8 *arg0);
+    void *func_800BEB28(s32 i);
     void func_800DA3B8(s32, s32);
     s32 var_a1;
-    s32 temp_v0;
-    s32 temp_v0_2;
-    s32 temp_v0_3;
-    s32 temp_v0_4;
+    BtIntPtr temp_v0;
+    BtIntPtr temp_v0_2;
+    BtIntPtr temp_v0_3;
+    BtIntPtr temp_v0_4;
     s32 var_s0;
 
     var_s0 = 0;

@@ -2,73 +2,73 @@
 
 #define PICKUPS_DATA(arg0) ((PickupsData*)(arg0->actorData))
 
-extern s32 D_80800790_chpickups;
-extern s32 D_808007D8_chpickups;
-extern s32 D_80800820_chpickups;
-extern s32 D_80800868_chpickups;
-extern s32 D_808008B0_chpickups;
-extern s32 D_808008F8_chpickups;
-extern s32 D_80800940_chpickups;
-extern s32 D_80800988_chpickups;
-extern s32 D_808009D0_chpickups;
-extern s32 D_80800A18_chpickups;
-extern s32 D_80800A60_chpickups;
-extern s32 D_80800AA8_chpickups;
-extern s32 D_80800AB8_chpickups;
+extern BtIntPtr D_80800790_chpickups[18];
+extern BtIntPtr D_808007D8_chpickups[18];
+extern BtIntPtr D_80800820_chpickups[18];
+extern BtIntPtr D_80800868_chpickups[18];
+extern BtIntPtr D_808008B0_chpickups[18];
+extern BtIntPtr D_808008F8_chpickups[18];
+extern BtIntPtr D_80800940_chpickups[18];
+extern BtIntPtr D_80800988_chpickups[18];
+extern BtIntPtr D_808009D0_chpickups[18];
+extern BtIntPtr D_80800A18_chpickups[18];
+extern BtIntPtr D_80800A60_chpickups[18];
+extern s32 D_80800AA8_chpickups[4];
+extern s32 D_80800AB8_chpickups[6];
 
 s32* chpickups_entrypoint_0(void)
 {
-    return &D_80800790_chpickups;
+    return D_80800790_chpickups;
 }
 
 s32* chpickups_entrypoint_1(void)
 {
-    return &D_808007D8_chpickups;
+    return D_808007D8_chpickups;
 }
 
 s32* chpickups_entrypoint_2(void)
 {
-    return &D_80800820_chpickups;
+    return D_80800820_chpickups;
 }
 
 s32* chpickups_entrypoint_3(void)
 {
-    return &D_80800868_chpickups;
+    return D_80800868_chpickups;
 }
 
 s32* chpickups_entrypoint_4(void)
 {
-    return &D_808008B0_chpickups;
+    return D_808008B0_chpickups;
 }
 
 s32* chpickups_entrypoint_5(void)
 {
-    return &D_808008F8_chpickups;
+    return D_808008F8_chpickups;
 }
 
 s32* chpickups_entrypoint_6(void)
 {
-    return &D_80800940_chpickups;
+    return D_80800940_chpickups;
 }
 
 s32* chpickups_entrypoint_7(void)
 {
-    return &D_80800988_chpickups;
+    return D_80800988_chpickups;
 }
 
 s32* chpickups_entrypoint_8(void)
 {
-    return &D_808009D0_chpickups;
+    return D_808009D0_chpickups;
 }
 
 s32* chpickups_entrypoint_9(void)
 {
-    return &D_80800A18_chpickups;
+    return D_80800A18_chpickups;
 }
 
 s32* chpickups_entrypoint_10(void)
 {
-    return &D_80800A60_chpickups;
+    return D_80800A60_chpickups;
 }
 
 s32 func_80800084_chpickups(Actor* arg0, s32 arg1, s32 arg2)
@@ -153,7 +153,7 @@ void func_808001A0_chpickups(Unk80132ED0* arg0, f32* arg1)
     temp_s0->unk58 = var_f16 * 30.0f;
 }
 
-void func_80800344_chpickups(s32 arg0)
+void func_80800344_chpickups(BtIntPtr arg0)
 {
     func_80101FDC(arg0, 0x2);
 }
@@ -182,10 +182,10 @@ void func_80800364_chpickups(Actor* arg0)
         case 0x4E4:
             break;
         case 0x481:
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800AA8_chpickups);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800AA8_chpickups);
             break;
         default:
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800AB8_chpickups);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800AB8_chpickups);
             break;
         }
         arg0->position[1] = var_f12;
@@ -246,7 +246,7 @@ void func_80800638_chpickups(Actor* arg0)
         case 2:
             break;
         case 5:
-            func_80800344_chpickups((s32)arg0);
+            func_80800344_chpickups((BtIntPtr)arg0);
             break;
         case 1:
             func_80800364_chpickups(arg0);
@@ -280,8 +280,27 @@ void func_80800734_chpickups(Actor* arg0)
     arg0->rotation[0] = 0.0f;
 }
 
-void func_80800740_chpickups(s32 arg0)
+void func_80800740_chpickups(BtIntPtr arg0)
 {
     func_80800638_chpickups(arg0);
     _chdoubloon_entrypoint_1(arg0);
 }
+/* data_to_c.py: from asm/data/overlays/ch/pickups.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+void _chdoubloon_entrypoint_0();
+BtIntPtr D_80800790_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x0) = { 31261145, 152109061, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1058642330, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_808007D8_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x48) = { 28836810, 128319493, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1058642330, 0, 276832260, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_80800820_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x90) = { 28967883, 128188421, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1058642330, 0, 276832260, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_80800868_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0xD8) = { 22545537, 147783685, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1058642330, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_808008B0_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x120) = { 22545634, 129957893, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1065353216, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_808008F8_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x168) = { 22545635, 133365765, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1061997773, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_80800940_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x1B0) = { 22545636, 130023429, 0, (BtIntPtr)func_80800740_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)_chdoubloon_entrypoint_0, 0, 1065353216, 0, 131076, 0, (BtIntPtr)func_80108ED0, 0, (BtIntPtr)func_80800734_chpickups, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_80800988_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x1F8) = { 6751447, 150601733, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1058642330, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_808009D0_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x240) = { 22545685, 158662661, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1058642330, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_80800A18_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x288) = { 22545686, 158597125, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1058642330, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+BtIntPtr D_80800A60_chpickups[18] BT_DATA(4, overlays_ch_pickups, 0x2D0) = { 22545591, 101842949, 0, (BtIntPtr)func_80800638_chpickups, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 0, 1061997773, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, (BtIntPtr)func_80107C2C, 0, (BtIntPtr)func_80800084_chpickups, 0 };
+s32 D_80800AA8_chpickups[4] BT_DATA(4, overlays_ch_pickups, 0x318) = { 1246239, 655616, 1466792, 0 };
+s32 D_80800AB8_chpickups[6] BT_DATA(4, overlays_ch_pickups, 0x328) = { 1246232, 655554, 1466792, 66536, 131072000, 0 };

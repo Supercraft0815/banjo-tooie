@@ -1,7 +1,7 @@
 #include "common.h"
 #include "core2/1EB93C0.h"
 /* IDO keeps overlapping linker-symbol views; the host uses actual struct fields. */
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "memory.h"
 #include "core2/animation.h"
 #include "core2/animation_resource.h"
@@ -17,7 +17,7 @@
 
 
 typedef struct { s16 fields[3]; } SoundListEntry;
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
 extern s32 D_80126CC0;
 extern SoundListEntry *D_80126CC4;
 #endif
@@ -26,7 +26,7 @@ void func_8008BBC0(void *, void *);
 void *heap_realloc(void *, s32);
 #endif
 void func_800DFCC0(s16);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 BoneTransformList *func_800DFCE8(s16);
 #endif
 s16 func_800DFD10(void);
@@ -39,9 +39,9 @@ typedef struct {
     u8 padding[8];
 } SoundListStorage;
 
-SoundListStorage D_80126CC0_storage;
+SoundListStorage D_80126CC0_storage;    typedef struct { s32 unk0; s32 unk4; } Obj1E64F00_D_80126CC0; /* offsets.py genstruct: fields from raw offsets on &D_80126CC0; rename once understood */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008B610(void) {
     u8 *temp_a1;
     u8 *temp_v0;
@@ -61,8 +61,8 @@ void func_8008B610(void) {
 
     temp_v0 = heap_alloc(0x3C);
     temp_a1 = temp_v0 + 0x3C;
-    (*(s32 *)((s8 *)(&D_80126CC0) + (0))) = temp_v0;
-    (*(s32 *)((s8 *)(&D_80126CC0) + (4))) = temp_a1;
+    (((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk0) = temp_v0;
+    (((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk4) = temp_a1;
     func_8008BBC0(temp_v0, temp_a1);
 }
 #endif
@@ -71,7 +71,7 @@ void func_8008B64C(void) { void func_800DFCC0(s16); void heap_free(void *); Soun
     D_80126CC0_storage.start = D_80126CC0_storage.end = NULL;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008B6E0(void) {
     void func_800DFCC0(s16);
     s16 temp_a0;
@@ -113,7 +113,7 @@ void func_8008B6E0(void) {
 #ifdef BT_NATIVE
 void func_8008B768(void) {
     void func_800DFCC0(s16);
-    void *heap_realloc(void *, s32);
+    void *heap_realloc(void *, BtIntPtr);
     struct Entry { s16 value, age, active; };
     struct Entry *entry;
     s32 count;
@@ -171,7 +171,7 @@ void func_8008B768(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008B850(void) {
     void func_800DFCC0(s16);
     struct Entry { s16 value, age, active; };
@@ -228,14 +228,14 @@ s16 func_8008B8E0(void) {
     temp_v0 = func_8008BAC0(&sp1C);
     temp_v0[1] = 0;
     temp_v0[0] = 0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     return (s16)sp1C;
 #else
     return *(s16 *)((s8 *)&sp1C + 2);
 #endif
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_8008B90C(s16 arg0) {
     s16 *entry;
     entry = (s16 *)((u8 *)POSE_START + arg0 * 6 - 6);
@@ -250,7 +250,7 @@ s32 func_8008B90C(s16 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008B954(s16 arg0) {
     void func_800DFCC0(s16 arg0);
     s16 *entry;
@@ -277,7 +277,7 @@ void func_8008B954(s16 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_8008B9C4(s16 arg0, BoneTransformList **arg1) {
     s16 func_800DFD10(void);
     s16 *entry;
@@ -296,7 +296,7 @@ s32 func_8008B9C4(s16 arg0, BoneTransformList **arg1) {
 #else
 s32 func_8008B9C4(s16 arg0, s32 *arg1) {
     extern s32 D_80126CC0;
-    s32 func_800DFCE8(s16 arg0);
+    BT_IDO_ONLY(s32 func_800DFCE8(s16 arg0);)
     s16 func_800DFD10(void);
     s16 *entry;
 
@@ -313,7 +313,7 @@ s32 func_8008B9C4(s16 arg0, s32 *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008BA5C(void) {
     s32 sp1C;
     SoundListEntry *temp_v0;
@@ -330,15 +330,15 @@ void func_8008BA5C(void) {
     s32 sp1C;
     s32 temp_v0;
 
-    sp1C = (s32) ((*(s32 *)((s8 *)(&D_80126CC0) + (4))) - (*(s32 *)((s8 *)(&D_80126CC0) + (0)))) / 6;
-    temp_v0 = defrag((*(s32 *)((s8 *)(&D_80126CC0) + (0))));
-    (*(s32 *)((s8 *)(&D_80126CC0) + (0))) = temp_v0;
-    (*(s32 *)((s8 *)(&D_80126CC0) + (4))) = (sp1C * 6) + D_80126CC0;
+    sp1C = (s32) ((((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk4) - (((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk0)) / 6;
+    temp_v0 = defrag((((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk0));
+    (((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk0) = temp_v0;
+    (((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk4) = (sp1C * 6) + D_80126CC0;
 }
 #endif
 
 s16 *func_8008BAC0(s32 *arg0) {
-    void *heap_realloc(void *, s32);
+    void *heap_realloc(void *, BtIntPtr);
     SoundListEntry *entry;
     s32 count;
 
@@ -366,7 +366,7 @@ s16 *func_8008BAC0(s32 *arg0) {
     entry->fields[2] = 1;
     *arg0 = entry - D_80126CC0_storage.start + 1;
     return (s16 *)entry;
-}
+} 
 
 void func_8008BBC0(void *arg0, void *arg1) {
     u8 *var_v0;
@@ -448,7 +448,7 @@ BoneTransformList *func_8008BD74(void *arg0)
 }
 
 void func_8008BD94(void *arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     struct ImageStruct *func_800D674C(s32);
 #else
     s32 func_800D674C(s32);
@@ -472,7 +472,7 @@ void func_8008BD94(void *arg0) {
 }
 
 void func_8008BEB4(u8 *arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     struct ImageStruct *func_800D674C(s32);
 #else
     s32 func_800D674C(s32);
@@ -502,7 +502,7 @@ void func_8008BEB4(u8 *arg0) {
             ANIM_FIELD(arg0, fresh, arg0[0x1D]) = 0;
         }
     }
-}
+} 
 
 /* extern */
 
@@ -514,7 +514,7 @@ void func_8008C038(void *arg0) {
     } else {
         func_8008BD94(arg0);
     }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (((Animation *)arg0)->callback != NULL) {
         ((Animation *)arg0)->callback(func_8008BD1C(arg0), ((Animation *)arg0)->context);
     }
@@ -532,7 +532,7 @@ void func_8008C0AC(s8 *arg0)
 
 s32 func_8008C0B8(void)
 {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     return sizeof(Animation);
 #else
     return 0x20;
@@ -568,7 +568,7 @@ void func_8008C0D8(void *arg0) {
 void func_8008C124(s16 *arg0, s32 arg1) {
     void func_8008C1B8(s16 *arg0, s32 arg1);
     void func_8008C1C0(f32 *arg0, f32 arg1);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void func_8008C1D4(s32 *arg0, s32 arg1);
 #endif
     void func_8008C1E4(f32 *arg0, f32 arg1);
@@ -601,7 +601,7 @@ void func_8008C1CC(s8 *arg0, s32 arg1) {
     ANIM_FIELD(arg0, loop, arg0[30]) = arg1;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008C1D4(void *arg0, AnimCallback arg1) {
     ((Animation *)arg0)->callback = arg1;
 }
@@ -611,7 +611,7 @@ void func_8008C1D4(s32 *arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008C1DC(void *arg0, uintptr_t arg1) {
     ((Animation *)arg0)->context = arg1;
 }
@@ -631,7 +631,7 @@ void func_8008C1F0(void *arg0, s32 arg1) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008C200(s16 arg0, void *arg1, void *arg2) {
     void func_800AE1E8(s16, void *, BoneTransformList *);
 #else
@@ -643,7 +643,7 @@ void func_8008C200(s16 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008C238(s16 arg0, void *arg1, void *arg2) {
     void func_800AE290(s16, void *, BoneTransformList *);
 #else

@@ -7,7 +7,7 @@ struct player_state_s;
 struct anctrl_s;
 enum asset_e;
 void bsbshock_entrypoint_0(struct player_state_s *arg0) {
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -71,7 +71,7 @@ void bsbshock_entrypoint_0(struct player_state_s *arg0) {
 }
 
 void bsbshock_entrypoint_1(struct player_state_s *arg0) {
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     f32 anctrl_getAnimTimer(struct anctrl_s *);
     int anctrl_isAt(struct anctrl_s *, f32);
@@ -187,14 +187,14 @@ void bsbshock_entrypoint_2(struct player_state_s *arg0) {
 }
 
 s32 bsbshock_entrypoint_3(s32 arg0) {
-    extern s32 D_80800870_bsbshock[];
+    extern BtIntPtr D_80800870_bsbshock[];
     return ((s32 *)&D_80800870_bsbshock)[arg0];
 }
 
 struct anctrl_s;
 enum asset_e;
 void bsbshock_entrypoint_4(struct player_state_s *arg0) {
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setSmoothTransition(struct anctrl_s *, s32);
@@ -255,7 +255,7 @@ void bsbshock_entrypoint_4(struct player_state_s *arg0) {
 }
 
 void bsbshock_entrypoint_5(struct player_state_s *arg0) {
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     int anctrl_isAt(struct anctrl_s *, f32);
     void anctrl_setDuration(struct anctrl_s *, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
@@ -327,6 +327,16 @@ void bsbshock_entrypoint_6(struct player_state_s *arg0) {
 }
 
 s32 bsbshock_entrypoint_7(s32 arg0) {
-    extern s32 D_80800880_bsbshock[];
+    extern BtIntPtr D_80800880_bsbshock[];
     return ((s32 *)&D_80800880_bsbshock)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/hock.data.s */
+void _bsbshock_entrypoint_2();
+void _bsbshock_entrypoint_0();
+void _bsbshock_entrypoint_1();
+void func_80099B94();
+void _bsbshock_entrypoint_6();
+void _bsbshock_entrypoint_4();
+void _bsbshock_entrypoint_5();
+BtIntPtr D_80800870_bsbshock [4] BT_DATA(4, overlays_bs_hock, 0x0) = { (BtIntPtr)_bsbshock_entrypoint_2, (BtIntPtr)_bsbshock_entrypoint_0, (BtIntPtr)_bsbshock_entrypoint_1, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800880_bsbshock [4] BT_DATA(4, overlays_bs_hock, 0x10) = { (BtIntPtr)_bsbshock_entrypoint_6, (BtIntPtr)_bsbshock_entrypoint_4, (BtIntPtr)_bsbshock_entrypoint_5, (BtIntPtr)func_80099B94 };

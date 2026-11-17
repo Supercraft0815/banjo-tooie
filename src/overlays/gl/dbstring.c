@@ -2,10 +2,10 @@
 
 /* extern */
 
-s32 gldbstring_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 func_800D674C(s32);
-    s32 func_800D70D0(s32);
-    s32 func_800D71F4(s32);
+BtIntPtr gldbstring_entrypoint_0(BtIntPtr arg0, s32 arg1) {
+    BtIntPtr func_800D674C(s32);
+    void func_800D70D0(s32 arg0);
+    void func_800D71F4(s32 arg0);
     arg0 = func_800D674C(arg1);
     func_800D70D0(1);
     func_800D71F4(1);
@@ -15,7 +15,7 @@ s32 gldbstring_entrypoint_0(s32 arg0, s32 arg1) {
 /* extern */
 
 u32 *gldbstring_entrypoint_1(u32 *arg0, s16 arg1) {
-    s16 _gldialog_entrypoint_0();
+    s32 _gldialog_entrypoint_0(void);
     u8 *table;
     u8 *text;
     s32 offset;

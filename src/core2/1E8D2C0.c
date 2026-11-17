@@ -3,13 +3,13 @@
 #include "native_block_pool.h"
 #include "memory.h"
 #include <stdlib.h>
+
 #define POOL_HEADER ((s32)sizeof(uintptr_t))
 #define POOL_HEAD(data) ((s16 *)((u8 *)(data) + POOL_HEADER))
 #else
 #define POOL_HEADER 4
 #define POOL_HEAD(data) ((s16 *)((u8 *)(data) + 4))
 #endif
-
 s16 *func_800B39D0(u8 *arg0, s32 arg1) {
     struct Record {
         s16 stride;
@@ -22,7 +22,7 @@ s16 *func_800B39D0(u8 *arg0, s32 arg1) {
 #else
     return (s16 *) (record->data + arg1 * record->stride);
 #endif
-}
+}                   typedef struct { s16 unk0; s16 unk2; } Obj1E8D2C0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -34,12 +34,12 @@ void func_800B39E8(void *arg0) {
 #ifdef BT_NATIVE
     if (*(s16 *)((u8 *)arg0 + 2) > 1) {
 #else
-    if (*(s16 *)((u8 *)arg0 + 2) != 0) {
+    if (((Obj1E8D2C0_arg0 *)arg0)->unk2 != 0) {
 #endif
         *var_v0 = 1;
         temp_v0 = func_800B39D0(arg0, *var_v0);
         temp_v0[0] = 0;
-        temp_v0[1] = *(s16 *)((u8 *)arg0 + 2) - 1;
+        temp_v0[1] = ((Obj1E8D2C0_arg0 *)arg0)->unk2 - 1;
         return;
     }
     *var_v0 = 0;
@@ -225,7 +225,7 @@ void func_800B3EDC(u8 **arg0, s32 arg1) {
         *(s16 *)(resized + 2) = value;
         *arg0 = resized;
     }
-}
+}   
 
 void func_800B3FD0(u8 **arg0, void *arg1, s32 arg2) {
     void aligned4_memcpy(void *, void *, int);
@@ -280,7 +280,7 @@ loop:
     if ((*(s16 *)((u8 *)arg1 + 2)) == 0) {
         (*(s16 *)((u8 *)arg1 + 0)) = 0;
     }
-}
+} 
 
 /* extern */
 
@@ -325,8 +325,8 @@ block_4:
 void func_800B422C(u8 **arg0, s16 *arg1) { u8 *data; s32 count; data = *arg0; count = arg1[0]; if (count != 0) { func_800B3B08(data, count, arg1[1]); func_800B3EDC(arg0, 0xA); arg1[1] = 0; arg1[0] = arg1[1]; } }
 
 void func_800B4290(void *arg0) {
-    (*(s16 *)((s8 *)(arg0) + (2))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (0))) = (s16) (*(s16 *)((s8 *)(arg0) + (2)));
+    (((Obj1E8D2C0_arg0 *)arg0)->unk2) = 0;
+    (((Obj1E8D2C0_arg0 *)arg0)->unk0) = (s16) (((Obj1E8D2C0_arg0 *)arg0)->unk2);
 }
 
 #ifdef BT_NATIVE

@@ -51,19 +51,19 @@ s32 chpowerhut_entrypoint_0(Actor *arg0, PowerhutConfig *arg1) {
 s32 chpowerhut_entrypoint_1(Actor *arg0, PowerhutConfig *arg1) {
     s32 func_800DA298(s32);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_8080047C_chpowerhut(Actor *, PowerhutConfig *);
     void func_80800698_chpowerhut(Actor *, PowerhutConfig *);
     s32 func_808005F4_chpowerhut(Actor *);
-    extern s32 D_80800970_chpowerhut;
+    extern s32 D_80800970_chpowerhut[6];
     s32 active;
 
     active = func_800DA298(arg1->flag) != 0;
     if (!active) {
         active = _glcutDll_entrypoint_20() != 0;
     }
-    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, active, 0x708, &D_80800970_chpowerhut);
+    _subaddieaudioloop_entrypoint_5((BtIntPtr)arg0, (BtIntPtr)arg0->position, active, 0x708, D_80800970_chpowerhut);
     active = arg0->unk70_10;
     switch (active) {
         case 2:
@@ -85,10 +85,10 @@ s32 chpowerhut_entrypoint_1(Actor *arg0, PowerhutConfig *arg1) {
 }
 
 void chpowerhut_entrypoint_2(Actor *arg0, s32 arg1) {
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
-    s32 func_800D674C(s32);
+    void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1);
+    BtIntPtr func_800D674C(s32);
     s32 func_800DC128(s32, s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF744(s32, s32);
     void func_800DF830(s32);
     void *func_80100094(Actor *, u32);
@@ -119,9 +119,9 @@ void chpowerhut_entrypoint_2(Actor *arg0, s32 arg1) {
 }
 
 s32 chpowerhut_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2, u16 *arg3) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32 *);
     void func_800C8D4C(s32, f32 *);
@@ -130,7 +130,7 @@ s32 chpowerhut_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2, u16 *arg3) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
-    void func_80800400_chpowerhut(s32);
+    void func_80800400_chpowerhut(BtIntPtr);
     extern f32 D_80800950_chpowerhut[];
     extern u32 D_80800958_chpowerhut[];
     extern u32 D_80800964_chpowerhut[];
@@ -144,7 +144,7 @@ s32 chpowerhut_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2, u16 *arg3) {
         func_80101FDC(arg0, 2);
         _subaddieDll_entrypoint_4(arg0, 1);
         func_80103110(arg0, 1);
-        func_80800400_chpowerhut((s32)arg0);
+        func_80800400_chpowerhut((BtIntPtr)arg0);
         _capod_entrypoint_13(arg0->unk0, NULL, arg3[1], arg3[2]);
         break;
     case 0x95:
@@ -169,16 +169,16 @@ s32 chpowerhut_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2, u16 *arg3) {
 
 /* extern */
 
-void func_80800400_chpowerhut(s32 arg0) {
+void func_80800400_chpowerhut(BtIntPtr arg0) {
     s16 _chmumbopad_entrypoint_0(s32);
-    s32 _sumumbofx_entrypoint_0(s32, s32, s32, s16);
-    s32 _sumumbofx_entrypoint_15(s32, s32);
-    s32 _sumumbofx_entrypoint_2(s32);
-    s32 _sumumbofx_entrypoint_20(s32, s32);
-    s32 _sumumbofx_entrypoint_24(s32, s32);
+    s32 _sumumbofx_entrypoint_0(BtIntPtr, s32, s32, s16);
+    s32 _sumumbofx_entrypoint_15(BtIntPtr, s32);
+    s32 _sumumbofx_entrypoint_2(BtIntPtr);
+    s32 _sumumbofx_entrypoint_20(BtIntPtr, s32);
+    s32 _sumumbofx_entrypoint_24(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
-    s32 sp1C;
-    s32 temp_v0;
+    BtIntPtr sp1C;
+    BtIntPtr temp_v0;
 
     _sumumbofx_entrypoint_0(arg0, 1, 0x14, _chmumbopad_entrypoint_0(3));
     temp_v0 = func_80100094(arg0, 1);
@@ -191,12 +191,12 @@ void func_80800400_chpowerhut(s32 arg0) {
 
 void func_8080047C_chpowerhut(Actor *arg0, PowerhutConfig *arg1) {
     void _chglowbo_entrypoint_6(void);
-    s32 _sumumbofx_entrypoint_14(s32);
+    s32 _sumumbofx_entrypoint_14(BtIntPtr);
     void _sumumbofx_entrypoint_16(void *, f32);
     void _sumumbofx_entrypoint_17(void *, f32);
-    f32 _sumumbofx_entrypoint_21(s32);
-    s32 _sumumbofx_entrypoint_5(s32, s32);
-    void _sumumbofx_entrypoint_6(s32, f32, f32, s32, s32, u8 *, s32, s32);
+    f32 _sumumbofx_entrypoint_21(BtIntPtr);
+    s32 _sumumbofx_entrypoint_5(BtIntPtr, s32);
+    void _sumumbofx_entrypoint_6(BtIntPtr, f32, f32, s32, s32, u8 *, BtIntPtr, BtIntPtr);
     s32 func_800D9078(f32 *);
     s32 func_800DA298(s32);
     void func_800EFD24(f32 *);
@@ -269,8 +269,8 @@ void func_80800698_chpowerhut(Actor *arg0, PowerhutConfig *arg1) {
     int func_800DC298(f32);
     s32 func_800E15CC(s32, f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
-    void func_80800870_chpowerhut(s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
+    void func_80800870_chpowerhut(BtIntPtr);
     extern u32 D_80800964_chpowerhut[];
     extern s32 D_808009A0_chpowerhut[];
     extern s32 D_808009B4_chpowerhut[];
@@ -305,20 +305,20 @@ void func_80800698_chpowerhut(Actor *arg0, PowerhutConfig *arg1) {
             data->state = 4;
             data->progress = 1.0f;
         }
-        func_80800870_chpowerhut((s32)arg0);
+        func_80800870_chpowerhut((BtIntPtr)arg0);
         break;
     }
 }
 
-void func_80800870_chpowerhut(s32 arg0) {
+void func_80800870_chpowerhut(BtIntPtr arg0) {
     s32 func_8001210C(s32);
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
-    extern s32 D_808009C0_chpowerhut;
-    s32 temp_a0;
+    BtIntPtr func_800BBCB8(BtIntPtr, BtIntPtr, s32, s32, s32 *);
+    extern s32 D_808009C0_chpowerhut[16];
+    BtIntPtr temp_a0;
 
     if (func_8001210C(3) == 0) {
         temp_a0 = arg0 + 0x18;
-        func_800BBCB8(temp_a0, temp_a0, 0x3F800000, 2, &D_808009C0_chpowerhut);
+        func_800BBCB8(temp_a0, temp_a0, 0x3F800000, 2, D_808009C0_chpowerhut);
     }
 }
 
@@ -333,3 +333,13 @@ int chpowerhut_entrypoint_4(Actor *arg0, f32 arg1, Actor *arg2) {
     upper = arg2->position[1] - temp_v0->height;
     return (arg1 < upper) && (temp_v0->pad8 <= arg1);
 }
+/* data_to_c.py: from asm/data/overlays/ch/powerhut.data.s */
+f32 D_80800950_chpowerhut [2] BT_DATA(4, overlays_ch_powerhut, 0x0) = { 600.0f, 1200.0f };
+u32 D_80800958_chpowerhut [3] BT_DATA(4, overlays_ch_powerhut, 0x8) = { 0xFF, 0x20, 0x20 };
+u32 D_80800964_chpowerhut [3] BT_DATA(4, overlays_ch_powerhut, 0x14) = { 0x20, 0xFF, 0x20 };
+s32 D_80800970_chpowerhut[6] BT_DATA(4, overlays_ch_powerhut, 0x20) = { 1246503, 917721, 15925273, 1461792, 66136, 163840000 };
+f32 D_80800988_chpowerhut [3] BT_DATA(4, overlays_ch_powerhut, 0x38) = { 0.0f, 0.0f, 0.0f };
+u8 D_80800994_chpowerhut [12] BT_DATA(4, overlays_ch_powerhut, 0x44) = { 0, 0, 0, 0, 0x42, 0xB4, 0, 0, 0, 0, 0, 0 };
+s32 D_808009A0_chpowerhut [5] BT_DATA(4, overlays_ch_powerhut, 0x50) = { 1246510, 852262, 20971544, 67036, 524288000 };
+s32 D_808009B4_chpowerhut [3] BT_DATA(4, overlays_ch_powerhut, 0x64) = { 1246737, 1572866, 0 };
+s32 D_808009C0_chpowerhut[16] BT_DATA(4, overlays_ch_powerhut, 0x70) = { 1903069, 917534, 2621485, 9830650, 2146559, -1061158863, -2555944, 1446408, 2228428, 16777625, 30146581, 1638553, 2818355, 26804224, 0, 0 };

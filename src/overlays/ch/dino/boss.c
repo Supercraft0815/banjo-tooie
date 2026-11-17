@@ -50,20 +50,20 @@ u32 D_80802A68_chdinoboss[] = {
     0x411CCCCD, 0x01630001
 };
 
-u32 D_80802B40_chdinoboss[] = {
-    0x02FA036F, 0x06DA0001, (u32)D_80802A68_chdinoboss, (u32)func_80800220_chdinoboss,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x00010568, 0x00000000, (u32)func_80108ED0,
-    0x01780000, (u32)func_80800018_chdinoboss, (u32)func_80107C2C, 0x80210420,
-    (u32)func_80800C50_chdinoboss, 0x00000000
+BtFnWord D_80802B40_chdinoboss[] = {
+    0x02FA036F, 0x06DA0001, (BtFnWord)D_80802A68_chdinoboss, (BtFnWord)func_80800220_chdinoboss,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00010568, 0x00000000, (BtFnWord)func_80108ED0,
+    0x01780000, (BtFnWord)func_80800018_chdinoboss, (BtFnWord)func_80107C2C, 0x80210420,
+    (BtFnWord)func_80800C50_chdinoboss, 0x00000000
 };
 
-u32 D_80802B88_chdinoboss[] = {
-    0x009F03D8, 0x00000001, 0x00000000, (u32)func_80802684_chdinoboss,
-    (u32)func_80105834, (u32)func_8010A730, 0x00000000, 0x00000000,
+BtFnWord D_80802B88_chdinoboss[] = {
+    0x009F03D8, 0x00000001, 0x00000000, (BtFnWord)func_80802684_chdinoboss,
+    (BtFnWord)func_80105834, (BtFnWord)func_8010A730, 0x00000000, 0x00000000,
     0x00000000, 0x00000000, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_808025E8_chdinoboss, (u32)func_80107C2C, 0x80000602,
-    (u32)func_808026D0_chdinoboss, 0x00000000
+    0x00000000, (BtFnWord)func_808025E8_chdinoboss, (BtFnWord)func_80107C2C, 0x80000602,
+    (BtFnWord)func_808026D0_chdinoboss, 0x00000000
 };
 
 u8 D_80802BD0_chdinoboss[] = {
@@ -133,7 +133,7 @@ f32 D_80802CA8_chdinoboss[] = {
 
 void _glcutDll_entrypoint_6(u32, u32);
 
-void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
 void _glcutDll_entrypoint_17(void);
 s32 func_800EA05C();
 
@@ -240,14 +240,14 @@ void func_80800220_chdinoboss(Actor* arg0) {
     s32 func_800DA298(s32);
     void func_800DA524(s32);
     void func_800DA544(s32);
-    void _subaddieskeleton_entrypoint_2(Unk80132ED0*, s32, f32*);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
     void func_800EFD24(f32*);
     s32 func_8010C9B0(f32*, u32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     void func_8010D254(f32*);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     u8 func_800D9078(f32*);
     s32 func_800D90A4(f32*);
     u32 func_800FDC28(u32);
@@ -257,7 +257,7 @@ void func_80800220_chdinoboss(Actor* arg0) {
     void _gcfrontend_entrypoint_9(s32);
     void _gcfrontend_entrypoint_10(void);
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
-    Actor* _subaddiefind_entrypoint_2(s32, s32);
+    Actor* _subaddiefind_entrypoint_2(s32, BtIntPtr);
     f32 func_800D8FF8(void);
     f32 func_800136E4(f32);
     f32 func_800DC178(f32, f32);
@@ -274,7 +274,7 @@ void func_80800220_chdinoboss(Actor* arg0) {
     void func_800906DC(f32*);
     void func_800C964C(s32);
     s32 _subaddiedialog_entrypoint_7(Actor*, f32*, void*);
-    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_801022E4(Actor*);
     void _subaddiemulti_entrypoint_6(f32*, f32);
     void func_80800F70_chdinoboss(Actor*, s32);
@@ -717,7 +717,7 @@ void func_80800F70_chdinoboss(Actor *arg0, s32 arg1) {
         f32 unk130;
         f32 unk134;
     } DinoBossData;
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     f32 func_800136E4(f32);
     f32 func_80013728(f32);
@@ -876,12 +876,12 @@ void func_80800F70_chdinoboss(Actor *arg0, s32 arg1) {
 }
 
 void func_80801408_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800DA298(s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_8080248C_chdinoboss(Actor *, s32, s32);
 
@@ -1017,7 +1017,7 @@ void func_80801860_chdinoboss(Actor *arg0) {
     f32 *sp1C[1];
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
 
-    sp1C[0] = (f32 *)((u8 *)arg0 + 4);
+    sp1C[0] = &arg0->position[0];
     _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], D_80802A2C_chdinoboss, 0.8f);
     _subaddieaudioquick_entrypoint_3(arg0, sp1C[0], D_80802C68_chdinoboss, 0.65f);
     _subaddieaudioquick_entrypoint_4(arg0, sp1C[0], D_80802C78_chdinoboss, D_80802C88_chdinoboss);
@@ -1078,8 +1078,8 @@ void func_80801900_chdinoboss(Actor *arg0) {
 void func_80801A44_chdinoboss(Actor *arg0, f32 *arg1) {
     void *func_800C6A7C(f32[3], f32[3], f32[3], u32);
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_8010D09C(s32, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_8010D09C(BtIntPtr, f32 *, f32);
     void func_8010D254(f32 *);
     f32 sp34[3];
     f32 sp28[3];
@@ -1157,7 +1157,7 @@ s32 func_80801C28_chdinoboss(Actor *arg0) {
 f32 func_80801C84_chdinoboss(Actor *arg0) { f32 func_800F10B4(f32, f32, f32, f32, f32); f32 result; result = func_800F10B4((f32)arg0->pad5E, 0.0f, 30.0f, 0.3f, 1.8f); return result; }
 
 void func_80801CDC_chdinoboss(Actor *arg0) {
-    void func_800D2498(u32 itemDisplayUI, u32 value,u32 a2);
+    s32 func_800D2498(u32 itemDisplayUI, s32 value, u32 a2);
     func_800D2498(0xC8U, (u32) arg0->pad5E, 0U);
 }
 
@@ -1222,20 +1222,20 @@ void func_80801DC8_chdinoboss(Actor *arg0) {
     }
 }
 
-void func_80801E90_chdinoboss(s32 arg0, s32 arg1) {
-    u32 func_800F54E4(void);
-    s32 func_800F5EF8(s32);
-    void func_8010FFB0(s32, s32, s32);
+void func_80801E90_chdinoboss(BtIntPtr arg0, BtIntPtr arg1) {
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5EF8(BtIntPtr);
+    void func_8010FFB0(s32, BtIntPtr, BtIntPtr);
 
     func_8010FFB0(func_800F5EF8(func_800F54E4()), arg0, arg1);
 }
 
 /* extern */
 
-void func_80801ECC_chdinoboss(s32 arg0, s32 arg1) {
-    s32 func_800F5EF8(s32);
-    s32 func_800F6438(s32);
-    s32 func_8010FE14(s32, s32, s32);
+void func_80801ECC_chdinoboss(BtIntPtr arg0, BtIntPtr arg1) {
+    s32 func_800F5EF8(BtIntPtr);
+    s32 func_800F6438(BtIntPtr);
+    s32 func_8010FE14(BtIntPtr, BtIntPtr, BtIntPtr);
     s32 var_s0;
 
     var_s0 = 0;
@@ -1250,9 +1250,9 @@ void func_80801ECC_chdinoboss(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_80801F44_chdinoboss(s32 arg0) {
-    s32 func_800F5EF8(s32);
-    s32 func_800F6438(s32);
-    void func_8010F9C0(s32, s32);
+    s32 func_800F5EF8(BtIntPtr);
+    s32 func_800F6438(BtIntPtr);
+    void func_8010F9C0(BtIntPtr, s32);
     s32 var_s0;
 
     var_s0 = 0;
@@ -1282,7 +1282,7 @@ void func_80801FAC_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
         f32 target[3];
     } DinoData;
     void *func_80100094(Actor *, u32);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     f32 func_80102D78(Actor *, f32 *);
     f32 func_800136E4(f32);
     void func_8008FE68(f32 *);
@@ -1291,7 +1291,7 @@ void func_80801FAC_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F1DCC(f32, f32);
-    s32 func_800F1EA4(s32, f32 *);
+    s32 func_800F1EA4(BtIntPtr, f32 *);
     s32 func_800DC298(f32);
     s32 func_800C52F4(s32, s32);
     s32 func_800C53EC(s32, s32);
@@ -1345,8 +1345,8 @@ void func_80801FAC_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
                 f32 angle;
                 func_80801F44_chdinoboss(6);
                 angle = func_80102D78(arg0, vec);
-                if (func_800F1EA4((s32)((u8 *)arg0 + 4), &heading) == 0) {
-                    heading = *(f32 *)((u8 *)arg0 + 0x48);
+                if (func_800F1EA4((BtIntPtr)((u8 *)arg0 + 4), &heading) == 0) {
+                    heading = arg0->rotation[1];
                 }
                 if (func_800F1DCC(angle, heading) > 0.0f) {
                     data->turn = -100.0f;
@@ -1368,10 +1368,10 @@ void func_80801FAC_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
                 func_80801F44_chdinoboss(6);
                 data->timer = 0.0f;
                 offset = func_800DC298(0.5f) ? -35.0f : 35.0f;
-                offset = func_800136E4(*(f32 *)((u8 *)arg0 + 0x48) + offset);
+                offset = func_800136E4(arg0->rotation[1] + offset);
                 vec = data->target;
                 func_800EEB9C(vec, offset, 6000.0f);
-                func_800EF04C(vec, (f32 *)((u8 *)arg0 + 4));
+                func_800EF04C(vec, &arg0->position[0]);
                 cutscene = 1;
                 blend = 0;
                 break;
@@ -1445,36 +1445,36 @@ void func_8080232C_chdinoboss(Actor *arg0, f32 *arg1, f32 *arg2) {
         }
         func_800EEBF0(sp6C, sp5C, sp54);
         func_800A516C(sp78, arg2, sp6C);
-        func_80801ECC_chdinoboss((s32)sp6C, (s32)sp78);
+        func_80801ECC_chdinoboss((BtIntPtr)sp6C, (BtIntPtr)sp78);
         if (done != 0) {
             data->blend = 0;
         }
     } else {
         func_800A516C(sp78, arg2, arg1);
-        func_80801ECC_chdinoboss((s32)arg1, (s32)sp78);
+        func_80801ECC_chdinoboss((BtIntPtr)arg1, (BtIntPtr)sp78);
     }
-}
+}    typedef struct { u8 pad0[0x12B]; s8 unk12B; } Objboss_func_8080248C_chdinoboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x12B]; u8 unk12B; } Objboss_func_8080248C_chdinoboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8080248C_chdinoboss(Actor *arg0, s32 arg1, s32 arg2)
 {
-  void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-  void _capod_entrypoint_14(void);
+  s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+  s32 _capod_entrypoint_14(void);
   void *func_80100094(Actor *, u32);
   u8 *sp1C;
   u8 *temp_v0;
  temp_v0 = func_80100094(arg0, 0U); sp1C = temp_v0;
   arg2 = arg2;
-  if ((*((u8 *) (((s8 *) temp_v0) + 0x12B))) != 0)
+  if ((((Objboss_func_8080248C_chdinoboss_temp_v0 *)temp_v0)->unk12B) != 0)
   {
     _capod_entrypoint_14();
     arg2 = arg2 | 0x2000;
   }
   _capod_entrypoint_13(arg0->unk0, NULL, (u32) arg1, (u32) arg2);
-  *((s8 *) (((s8 *) sp1C) + 0x12B)) = 1;
-}
+  ((Objboss_func_8080248C_chdinoboss_sp1C *)sp1C)->unk12B = 1;
+}    typedef struct { u8 pad0[0x12B]; u8 unk12B; } Objboss_func_80802500_chdinoboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x12B]; s8 unk12B; } Objboss_func_80802500_chdinoboss_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 void func_80802500_chdinoboss(Actor *arg0) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void* func_80100094(Actor*, u32);
     u8 *sp1C[1];
     u8 *temp_v0;
@@ -1482,18 +1482,18 @@ void func_80802500_chdinoboss(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     var_v1 = temp_v0;
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x12B))) != 0) {
+    if ((((Objboss_func_80802500_chdinoboss_temp_v0 *)temp_v0)->unk12B) != 0) {
         sp1C[0] = temp_v0;
         _capod_entrypoint_14();
         var_v1 = sp1C[0];
     }
-    (*(s8 *)((s8 *)(var_v1) + (0x12B))) = 0;
+    (((Objboss_func_80802500_chdinoboss_var_v1 *)var_v1)->unk12B) = 0;
 }
 
 void func_80802540_chdinoboss(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    s32 func_800F4F34(u32, f32 *, f32, f32);
-    u32 func_800F54E4(void);
+    s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
+    BtUIntPtr func_800F54E4(void);
     f32 sp1C[3];
 
     func_800F4F34(func_800F54E4(), arg0->position, 500.0f, 500.0f);
@@ -1507,7 +1507,7 @@ void func_80802540_chdinoboss(Actor *arg0) {
 
 void func_808025E8_chdinoboss(Actor *arg0) {
     s32 _glcutDll_entrypoint_19(s32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);
     void func_80108B04(Actor *, u32);
@@ -1533,14 +1533,14 @@ void func_808025E8_chdinoboss(Actor *arg0) {
 void func_80802684_chdinoboss(Actor *arg0) {
     u8 func_800D9078(f32*);
     void func_80108B04(Actor*, u32);
-    if ((func_800D9078((f32 *)((u8 *)arg0 + 0x58)) != 0) && (arg0->actorData[4] == 0x1DU)) {
+    if ((func_800D9078(&arg0->unk58) != 0) && (arg0->actorData[4] == 0x1DU)) {
         func_80108B04(arg0, 0U);
     }
 }
 
 s32 func_808026D0_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     void _glcutDll_entrypoint_24(u32, u32, u32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     void func_80802864_chdinoboss(Actor *, s32);
@@ -1592,7 +1592,7 @@ s32 func_808026D0_chdinoboss(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80802864_chdinoboss(Actor *arg0, s32 arg1) {
-    s32 _chappearfx_entrypoint_1(s32, s32, s32, s32);
+    void _chappearfx_entrypoint_1(s32 *arg0, s32 arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(s32);
     void func_800FFAB0(Actor *);
     void func_80102FDC(Actor *, f32);

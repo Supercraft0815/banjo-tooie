@@ -88,7 +88,7 @@ void func_80800234_chklungodoors(Actor *arg0) {
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddiefade_entrypoint_0(Actor *);
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_8010A590(Actor *);
     extern u8 D_8080049E_chklungodoors[];
@@ -109,7 +109,7 @@ void func_80800234_chklungodoors(Actor *arg0) {
 }
 
 s32 func_80800300_chklungodoors(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     void _chelectricfence_entrypoint_1(Actor *, f32 *);
     f32 func_800EC75C(void *, f32 *);
     s32 func_80103140(Actor *, u32, u16);
@@ -149,5 +149,5 @@ s32 func_80800300_chklungodoors(Actor *arg0, s32 arg1, s32 arg2) {
             func_8010A570(arg0);
             return 1;
     }
-    return _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+    return _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
 }

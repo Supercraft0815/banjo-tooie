@@ -1,11 +1,11 @@
 #include "common.h"
 
-s32 func_800EA05C(void);
+s32 func_800EA05C(void);     
 
 /* extern */
 
 void func_80800000_chhumba(s32 *arg0, s32 arg1) {
-    s32 _capod_entrypoint_2(s32, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr, s32, s32);
     _capod_entrypoint_2(*arg0, 9, arg1);
 }
 
@@ -33,7 +33,7 @@ void func_80800028_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808000D4_chhumba(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
-    void _capod_entrypoint_20(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_20(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     switch (arg0->unk74_7) {
         case 0:
@@ -48,7 +48,7 @@ void func_808000D4_chhumba(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
 }
 
 void func_8080015C_chhumba(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     switch (arg0->unk74_7) {
         case 0:
@@ -75,7 +75,7 @@ void func_808001E4_chhumba(Actor *arg0) {
 
 void func_80800238_chhumba(u8 *arg0, f32 *arg1) {
     void func_800EFA4C(f32[3], f32, f32, f32);
-    func_800EFA4C(arg1, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x38))) * 5.0f * -50.0f, 0.0f);
+    func_800EFA4C(arg1, 0.0f, (((Actor *)arg0)->scale) * 5.0f * -50.0f, 0.0f);
 }
 
 void func_80800294_chhumba(u8 *arg0, s32 arg1) {
@@ -104,11 +104,11 @@ void func_80800294_chhumba(u8 *arg0, s32 arg1) {
 
 void func_80800338_chhumba(u8 *arg0, s32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 4;
     _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, arg1, arg2, (f32 *)(arg0 + 4), 0x40U);
     ((struct Flags *)arg0)->flag = 1;
-}
+}                typedef struct { u8 pad0[0x38]; f32 unk38; u8 pad3C[0x30]; s32 unk6C; } Objhumba_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_80800384_chhumba(u8 *arg0) {
     s32 func_800EA05C();
@@ -116,7 +116,7 @@ s32 func_80800384_chhumba(u8 *arg0) {
     if (func_800EA05C() == 0x122) {
         return 0x13;
     }
-    return ((s32 *)(&D_80802648_chhumba))[((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF)];
+    return ((s32 *)(&D_80802648_chhumba))[((((Objhumba_arg0 *)arg0)->unk6C) & 0x1FF)];
 }
 
 s32 func_808003CC_chhumba(u8 *arg0) {
@@ -125,7 +125,7 @@ s32 func_808003CC_chhumba(u8 *arg0) {
     if (func_800EA05C() == 0x122) {
         return 0x11AA;
     }
-    return D_8080266E_chhumba[((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF)];
+    return D_8080266E_chhumba[((((Objhumba_arg0 *)arg0)->unk6C) & 0x1FF)];
 }
 
 /* extern */
@@ -135,7 +135,7 @@ s32 func_80800414_chhumba(void *arg0) {
     if (func_800EA05C() == 0x122) {
         return 0x346;
     }
-    return ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0x346;
+    return ((((Objhumba_arg0 *)arg0)->unk6C) & 0x1FF) + 0x346;
 }
 
 s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
@@ -149,15 +149,15 @@ s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80801F74_chhumba(Actor *);
     
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void func_800904C8(s32);
     void func_80090708(s32);
     void func_800DF744(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_801015D0(Actor *);
     u8 *func_801039E4(Unk80132ED0 *);
-    s32 func_80103CB8(Actor *, u32);
-    Actor *func_801084B0(s32, Actor **);
+    BtIntPtr func_80103CB8(Actor *, BtUIntPtr);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     void func_8010D254(f32 *);
     extern s32 D_80802684_chhumba;
     Actor *sp2C;
@@ -226,7 +226,7 @@ s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
             break;
         case 0x1F:
             func_801015D0(arg0);
-            sp2C = (Actor *)func_80103CB8(arg0, (u32)func_801039E4(arg0->unk0));
+            sp2C = (Actor *)func_80103CB8(arg0, (BtUIntPtr)func_801039E4(arg0->unk0));
             ((HumbaModel *)sp2C)->unk14_0 = 1;
             func_800DF744(3, 0);
             func_800DF744(5, 0);
@@ -237,7 +237,7 @@ s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-s32 func_8080071C_chhumba(s32 arg0) {
+s32 func_8080071C_chhumba(BtIntPtr arg0) {
     s32 func_800EA05C();
     s32 map;
 
@@ -267,7 +267,7 @@ s32 func_8080071C_chhumba(s32 arg0) {
     }
 }
 
-s32 func_808007EC_chhumba(s32 arg0) {
+s32 func_808007EC_chhumba(BtIntPtr arg0) {
     return 1;
 }
 
@@ -278,9 +278,9 @@ void func_808007F8_chhumba(Actor *arg0) {
     void func_800DA544(GameFlag);
     func_800DA544(arg0->unk6C_0 + 0xD5);
     if (arg0->unk74_29) {
-        func_800D175C(0x54, -func_808007EC_chhumba((s32) arg0));
+        func_800D175C(0x54, -func_808007EC_chhumba((BtIntPtr) arg0));
     } else {
-        func_800D175C(0x48, -func_808007EC_chhumba((s32) arg0));
+        func_800D175C(0x48, -func_808007EC_chhumba((BtIntPtr) arg0));
     }
     arg0->unk64_20 = 1;
 }
@@ -289,7 +289,7 @@ void func_808007F8_chhumba(Actor *arg0) {
 
 s32 func_80800878_chhumba(void *arg0) {
     s32 func_800DA298(s32);
-    func_800DA298(((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0xD5);
+    BT_NATIVE_ONLY(return) func_800DA298(((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) + 0xD5);
 }
 
 s32 func_808008A0_chhumba(Actor *arg0) {
@@ -313,8 +313,8 @@ s32 func_80800934_chhumba(Actor *arg0, s32 arg1) {
     s32 func_80016B30(s32, s32);
     s32 func_8008FA60(s32, s32);
     s32 func_80090080();
-    u32 func_800F54E4(void);
-    s32 func_800F5FE0(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5FE0(BtIntPtr);
     void func_8010D254(f32 *);
     f32 sp3C;
     f32 sp38;
@@ -347,8 +347,8 @@ s32 func_80800934_chhumba(Actor *arg0, s32 arg1) {
 
 s32 func_80800A50_chhumba(Actor *arg0) {
     s32 func_800EA05C();
-    u32 func_800F54E4(void);
-    s32 func_800F71D4(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F71D4(BtIntPtr);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
     void func_8010D254(f32 *);
     f32 sp2C[3];
@@ -375,9 +375,9 @@ s32 func_80800A50_chhumba(Actor *arg0) {
 /* extern */
 
 s32 func_80800B40_chhumba(u8 *arg0) {
-    s32 func_8008F8B0();
+    void func_8008F8B0();
     void func_8008F8D8(s32);
-    void func_8008F904(void*, s32);
+    void func_8008F904(void*, BtIntPtr);
     void func_8008F938(s32);
     extern s32 func_8010D5DC;
     void func_8008F9F8(f32 *, f32);
@@ -387,7 +387,7 @@ s32 func_80800B40_chhumba(u8 *arg0) {
     func_8008F8D8(1);
     func_8008F938(1);
     func_8008F904(&func_8010D5DC, *(s32 *)arg0);
-    func_8008F9F8((f32 *)(arg0 + 0x28), 200.0f);
+    func_8008F9F8((f32 *)(arg0 + 0x28), 200.0f); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80800BA8_chhumba(Actor *arg0, f32 *arg1) {
@@ -423,11 +423,11 @@ s32 func_80800C20_chhumba(u8 *arg0) {
 /* extern */
 
 void func_80800C6C_chhumba(s32 *arg0) {
-    s32 func_8008F8B0();
+    void func_8008F8B0();
     void func_8008F8D8(s32);
-    void func_8008F904(void*, s32);
+    void func_8008F904(void*, BtIntPtr);
     void func_8008F938(s32);
-    void func_8008F990(s32, f32);
+    void func_8008F990(BtIntPtr, f32);
     extern s32 func_8010D5DC;
     void func_80800BA8_chhumba(Actor *, f32 *);
     s32 pad[2];
@@ -438,21 +438,21 @@ void func_80800C6C_chhumba(s32 *arg0) {
     func_8008F8D8(1);
     func_8008F938(1);
     func_8008F904(&func_8010D5DC, *arg0);
-    func_8008F990((s32) &sp1C, 300.0f);
+    func_8008F990((BtIntPtr) &sp1C, 300.0f);
 }
 
 void func_80800CC8_chhumba(Actor *volatile arg0) {
-    void func_8008FB10(s32, f32, f32, f32);
+    void func_8008FB10(BtIntPtr, f32, f32, f32);
     extern s32 D_80802694_chhumba;
     f32 temp_f0;
 
     temp_f0 = arg0->scale;
-    func_8008FB10((s32) &D_80802694_chhumba, temp_f0 * 1600.0f, temp_f0 * 72.0f, temp_f0 * 350.0f);
+    func_8008FB10((BtIntPtr) &D_80802694_chhumba, temp_f0 * 1600.0f, temp_f0 * 72.0f, temp_f0 * 350.0f);
 }
 
 /* extern */
 
-s32 func_80800D2C_chhumba(s32 arg0) {
+s32 func_80800D2C_chhumba(BtIntPtr arg0) {
     s32 func_800DA9E4(s32, s32);
     void func_80800338_chhumba(u8 *, s32, s32);
     if (func_800DA9E4(0xE2, 1) == 0) {
@@ -463,16 +463,16 @@ s32 func_80800D2C_chhumba(s32 arg0) {
 }
 
 void func_80800D74_chhumba(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     extern s32 D_808026A0_chhumba;
     s32 sp3C;
-    s32 sp38;
+    BtIntPtr sp38;
     f32 sp2C[3];
     f32 sp28;
     f32 sp24;
@@ -490,8 +490,8 @@ void func_80800D74_chhumba(Actor *arg0) {
 
 void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     s32 _fxsplash25d_entrypoint_0(f32 *);
-    s32 _fxsplash_entrypoint_1(f32 *);
-    s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
+    void _fxsplash_entrypoint_1(f32 arg0[3]);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 func_8008FD48(void);
     Unk80132ED0 *func_8008FDEC(void);
     void func_80090658(s32);
@@ -538,7 +538,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80802590_chhumba);
             func_808007F8_chhumba(arg0);
             func_800FC660(0xE);
-            func_80800338_chhumba((s32)arg0, 0x11B4, 0xF);
+            func_80800338_chhumba((BtIntPtr)arg0, 0x11B4, 0xF);
             break;
     }
     func_80101FDC((Actor *)arg0, arg1);
@@ -591,13 +591,13 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
             if (func_800DA9E4(func_80800414_chhumba(arg0), 1) == 0) {
                 if (((Actor *)arg0)->unk74_29) {
                     func_80090708(2);
-                    func_80800338_chhumba((s32)arg0, func_808003CC_chhumba(arg0), 3);
+                    func_80800338_chhumba((BtIntPtr)arg0, func_808003CC_chhumba(arg0), 3);
                     return;
                 }
-                func_80800338_chhumba((s32)arg0, func_808003CC_chhumba(arg0), 0xB);
+                func_80800338_chhumba((BtIntPtr)arg0, func_808003CC_chhumba(arg0), 0xB);
                 return;
             }
-            if (func_80800D2C_chhumba((s32)arg0) == 0) {
+            if (func_80800D2C_chhumba((BtIntPtr)arg0) == 0) {
                 func_808001E4_chhumba(arg0);
                 func_80800E44_chhumba(arg0, 0xC);
                 return;
@@ -620,7 +620,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
         case 16:
             func_80090658(0);
             if (func_800DA9E4(0x1D1, 1) == 0) {
-                func_80800338_chhumba((s32)arg0, 0x11B6, 0xF);
+                func_80800338_chhumba((BtIntPtr)arg0, 0x11B6, 0xF);
                 return;
             }
             func_808001E4_chhumba(arg0);
@@ -692,8 +692,8 @@ void func_8080144C_chhumba(f32 arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA20(void *, void *, f32);
     void func_800EFB24(void *, void *, void *);
-    u32 func_800F54E4(void);
-    void func_800F7F50(s32, void *, void *, f32, s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7F50(BtIntPtr, void *, void *, f32, s32, s32);
     void func_8010D254(f32 *);
     extern f32 D_808026FC_chhumba[];
     extern f32 D_8080272C_chhumba[];
@@ -732,9 +732,9 @@ void *func_80100094(Actor *, u32);
 void func_808015DC_chhumba(Actor *arg0) {
     u32 _chbaddiesetup_entrypoint_0(u32 *);
     s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     void func_8008F964(f32 *);
-    void func_8008FB10(s32, f32, f32, f32);
+    void func_8008FB10(BtIntPtr, f32, f32, f32);
     s32 func_8008FE14(void);
     s32 func_80090178(s32);
     s32 func_800902E4(f32 *, f32, s32, Actor **);
@@ -773,7 +773,7 @@ void func_808015DC_chhumba(Actor *arg0) {
         }
     }
     temp_f0 = arg0->scale;
-    func_8008FB10((s32)arg0->position, temp_f0 * 1350.0f,
+    func_8008FB10((BtIntPtr)arg0->position, temp_f0 * 1350.0f,
                   temp_f0 * 72.0f, temp_f0 * 350.0f);
     if (func_80090178(0x10000) == 0) {
         switch (arg0->unk70_10) {
@@ -801,14 +801,14 @@ void func_808015DC_chhumba(Actor *arg0) {
             if (!arg0->unk74_30) {
                 if (arg0->unk74_29) {
                     sp2C = func_800D1A04(0x54);
-                    if (sp2C >= func_808007EC_chhumba((s32)arg0)) {
+                    if (sp2C >= func_808007EC_chhumba((BtIntPtr)arg0)) {
                         func_80800338_chhumba((u8 *)arg0, 0x11BE, 0x4E);
                     } else {
                         func_80800338_chhumba((u8 *)arg0, 0x11BF, 0xF);
                     }
                 } else {
                     sp2C = func_800D1A04(0x48);
-                    if (sp2C >= func_808007EC_chhumba((s32)arg0)) {
+                    if (sp2C >= func_808007EC_chhumba((BtIntPtr)arg0)) {
                         func_80800338_chhumba((u8 *)arg0, 0x11B0, 0x4E);
                     } else {
                         func_80800338_chhumba((u8 *)arg0, 0x11B3, 0xF);
@@ -932,7 +932,7 @@ void func_80801DB0_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x11AD:
     case 0x11AE:
     case 0x11B7:
-        if (func_80800D2C_chhumba((s32)arg0) == 0) {
+        if (func_80800D2C_chhumba((BtIntPtr)arg0) == 0) {
             func_800C0850();
             func_808001E4_chhumba(arg0);
             func_80800E44_chhumba((u8 *)arg0, 0xC);
@@ -987,7 +987,7 @@ void func_80801F74_chhumba(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     void _suexpression_entrypoint_12(void *, f32, f32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     s32 func_8008FD48();
     s32 func_8008FD70(void);
     s32 func_8009EA2C(void);
@@ -1009,7 +1009,7 @@ void func_80801F74_chhumba(Actor *arg0) {
         return;
     }
     _gspropctrl_entrypoint_11(sp24, (f32 *)&arg0->actorData[4]);
-    arg0->unk6C_0 = func_8080071C_chhumba((s32)arg0);
+    arg0->unk6C_0 = func_8080071C_chhumba((BtIntPtr)arg0);
     _suexpression_entrypoint_7(arg0, 1, 0x40);
     _suexpression_entrypoint_12(func_80100094(arg0, 1), 0.0f, 0.0f);
     switch (sp20) {
@@ -1081,10 +1081,10 @@ OSThread *chhumba_entrypoint_0(void)
 void func_80802234_chhumba(void *arg0) {
     s32 func_800EA05C();
     if (func_800EA05C() == 0x122) {
-        (*(f32 *)((s8 *)(arg0) + (0x38))) = 2.0f;
+        (((Objhumba_arg0 *)arg0)->unk38) = 2.0f;
         return;
     }
-    (*(f32 *)((s8 *)(arg0) + (0x38))) = 1.0f;
+    (((Objhumba_arg0 *)arg0)->unk38) = 1.0f;
 }
 
 OSThread *chhumba_entrypoint_1(void)

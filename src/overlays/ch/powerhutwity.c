@@ -2,28 +2,28 @@
 
 OSThread *chpowerhutwitchy_entrypoint_0(void)
 {
-    extern u8 D_80800B28_chpowerhutwitchy[];
+    extern ActorData D_80800B28_chpowerhutwitchy[];
 
     return (OSThread *) D_80800B28_chpowerhutwitchy;
 }
 
 OSThread *chpowerhutwitchy_entrypoint_1(void)
 {
-    extern u8 D_80800B70_chpowerhutwitchy[];
+    extern ActorData D_80800B70_chpowerhutwitchy[];
 
     return (OSThread *) D_80800B70_chpowerhutwitchy;
 }
 
 OSThread *chpowerhutwitchy_entrypoint_2(void)
 {
-    extern u8 D_80800BB8_chpowerhutwitchy[];
+    extern ActorData D_80800BB8_chpowerhutwitchy[];
 
     return (OSThread *) D_80800BB8_chpowerhutwitchy;
 }
 
 OSThread *chpowerhutwitchy_entrypoint_3(void)
 {
-    extern u8 D_80800C00_chpowerhutwitchy[];
+    extern ActorData D_80800C00_chpowerhutwitchy[];
 
     return (OSThread *) D_80800C00_chpowerhutwitchy;
 }
@@ -32,8 +32,8 @@ void *func_80100094(Actor *, u32);
 
 void func_80800030_chpowerhutwitchy(Actor *arg0) {
     s32 _chpowerhut_entrypoint_0(Actor *, s32 *);
-    extern s32 D_80800B00_chpowerhutwitchy;
-    _chpowerhut_entrypoint_0(arg0, &D_80800B00_chpowerhutwitchy);
+    extern s32 D_80800B00_chpowerhutwitchy[5];
+    _chpowerhut_entrypoint_0(arg0, D_80800B00_chpowerhutwitchy);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x18))) = 0;
 }
 
@@ -41,10 +41,10 @@ void func_80800068_chpowerhutwitchy(Actor *arg0) {
     s32 _chpowerhut_entrypoint_1(Actor *, s32 *);
     void func_800BF744(s32, s32);
     void func_8080024C_chpowerhutwitchy(s32 *);
-    extern s32 D_80800B00_chpowerhutwitchy;
+    extern s32 D_80800B00_chpowerhutwitchy[5];
     u32 state;
 
-    _chpowerhut_entrypoint_1(arg0, &D_80800B00_chpowerhutwitchy);
+    _chpowerhut_entrypoint_1(arg0, D_80800B00_chpowerhutwitchy);
     state = arg0->unk70_10;
     if (state != 1 && state != 2 && state == 3) {
         if (((s16 *)func_80100094(arg0, 0))[6] == 2) {
@@ -69,7 +69,7 @@ void func_80800168_chpowerhutwitchy(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800BF744(s32, s32);
     s32 func_800DA298(s32);
     void func_8080024C_chpowerhutwitchy(s32 *);
-    extern s32 D_80800B00_chpowerhutwitchy;
+    extern s32 D_80800B00_chpowerhutwitchy[5];
     u32 active;
     s32 initial;
 
@@ -92,18 +92,18 @@ void func_80800168_chpowerhutwitchy(Actor *arg0, s32 arg1, s32 arg2) {
             func_8080024C_chpowerhutwitchy((s32 *)arg0);
         }
     }
-    _chpowerhut_entrypoint_3(arg0, arg1, arg2, &D_80800B00_chpowerhutwitchy);
+    _chpowerhut_entrypoint_3(arg0, arg1, arg2, D_80800B00_chpowerhutwitchy);
 }
 
 void func_8080024C_chpowerhutwitchy(s32 *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, void (*)(void), s32);
-    s32 func_800BEA88(s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void *func_800BEA88(s32 i);
 #ifdef BT_NATIVE
     void chpowerhutwitchy_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
     void _chpowerhutwitchy_entrypoint_4(void);
 #endif
-    s32 temp_v0;
+    BtIntPtr temp_v0;
     void (*callback)(void) = _chpowerhutwitchy_entrypoint_4;
 
     temp_v0 = func_800BEA88(0);
@@ -119,7 +119,7 @@ void func_8080024C_chpowerhutwitchy(s32 *arg0) {
 
 void chpowerhutwitchy_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4) {
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_800F2FD0(s32, s32, f32);
+    void func_800F2FD0(u8 *arg0, u8 *arg1, f32 scale);
     s32 func_800F3320(u8 *, u8 *, u8 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     extern u8 D_80800C48_chpowerhutwitchy[];
@@ -155,8 +155,8 @@ void chpowerhutwitchy_entrypoint_4(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk
 
 void func_808005C8_chpowerhutwitchy(Actor *arg0) {
     s32 _chpowerhut_entrypoint_0(Actor *, s32 *);
-    extern s32 D_80800B14_chpowerhutwitchy;
-    _chpowerhut_entrypoint_0(arg0, &D_80800B14_chpowerhutwitchy);
+    extern s32 D_80800B14_chpowerhutwitchy[5];
+    _chpowerhut_entrypoint_0(arg0, D_80800B14_chpowerhutwitchy);
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x18))) = 0;
     (*(s8 *)((s8 *)(func_80100094(arg0, 0)) + (0x19))) = 0;
 }
@@ -166,12 +166,12 @@ void func_80800610_chpowerhutwitchy(Actor *arg0) {
     void func_800BF744(s32, s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_80800890_chpowerhutwitchy(s32 *);
-    void func_808009FC_chpowerhutwitchy(s32);
-    extern s32 D_80800B14_chpowerhutwitchy;
+    void func_808009FC_chpowerhutwitchy(BtIntPtr);
+    extern s32 D_80800B14_chpowerhutwitchy[5];
     f32 sp2C;
     u32 state;
 
-    _chpowerhut_entrypoint_1(arg0, &D_80800B14_chpowerhutwitchy);
+    _chpowerhut_entrypoint_1(arg0, D_80800B14_chpowerhutwitchy);
     state = arg0->unk70_10;
     if (state == 3 || state == 4) {
         if (((s16 *)func_80100094(arg0, 0))[6] == 2) {
@@ -182,7 +182,7 @@ void func_80800610_chpowerhutwitchy(Actor *arg0) {
         if (((u8 *)func_80100094(arg0, 0))[0x19] == 0) {
             sp2C = ((f32 *)func_80100094(arg0, 0))[5];
             if (((s16 *)func_80100094(arg0, 0))[6] == 4) {
-                func_808009FC_chpowerhutwitchy((s32)arg0);
+                func_808009FC_chpowerhutwitchy((BtIntPtr)arg0);
             }
             if (((s16 *)func_80100094(arg0, 0))[6] == 3) {
                 *(f32 *)&arg0->actorData[4] = func_800F10B4(sp2C, 0.0f, 1.0f, 0.3f, 1.0f);
@@ -193,18 +193,18 @@ void func_80800610_chpowerhutwitchy(Actor *arg0) {
 }
 
 s32 func_8080073C_chpowerhutwitchy(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     s32 _chpowerhut_entrypoint_3(Actor *, s32, s32, s32 *);
     s32 _glcutDll_entrypoint_20();
     void func_800BF744(s32, s32);
     s32 func_800DA298(s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800890_chpowerhutwitchy(s32 *);
-    void func_808009FC_chpowerhutwitchy(s32);
-    extern s32 D_80800B14_chpowerhutwitchy;
+    void func_808009FC_chpowerhutwitchy(BtIntPtr);
+    extern s32 D_80800B14_chpowerhutwitchy[5];
     s32 sp24;
 
     switch (arg1) {
@@ -225,24 +225,24 @@ s32 func_8080073C_chpowerhutwitchy(Actor *arg0, s32 arg1, s32 arg2) {
         if (sp24 == 0) {
             func_80800890_chpowerhutwitchy((s32 *)arg0);
         } else {
-            func_808009FC_chpowerhutwitchy((s32)arg0);
+            func_808009FC_chpowerhutwitchy((BtIntPtr)arg0);
         }
         break;
     }
-    return _chpowerhut_entrypoint_3(arg0, arg1, arg2, &D_80800B14_chpowerhutwitchy);
+    return _chpowerhut_entrypoint_3(arg0, arg1, arg2, D_80800B14_chpowerhutwitchy);
 }
 
 void func_80800890_chpowerhutwitchy(s32 *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, void (*)(void), s32);
-    s32 func_800BEA88(s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void *func_800BEA88(s32 i);
 #ifdef BT_NATIVE
-    void chpowerhutwitchy_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+    void chpowerhutwitchy_entrypoint_5(s32 arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
     void _chpowerhutwitchy_entrypoint_5(void);
 #endif
-    s32 sp24;
-    s32 temp_v0;
-    s32 temp_v0_2;
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
+    BtIntPtr temp_v0_2;
     void (*callback)(void) = _chpowerhutwitchy_entrypoint_5;
 
     temp_v0 = func_800BEA88(0);
@@ -255,8 +255,8 @@ void func_80800890_chpowerhutwitchy(s32 *arg0) {
     _glid_entrypoint_0(sp24, 5, callback, *arg0);
 }
 
-void chpowerhutwitchy_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4) {
-    s32 func_800F2FD0(s32, s32, f32);
+void chpowerhutwitchy_entrypoint_5(s32 arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3, Unk80132ED0 *arg4) {
+    void func_800F2FD0(u8 *arg0, u8 *arg1, f32 scale);
     Actor *func_80106790(Unk80132ED0 *);
     f32 temp_f20;
     temp_f20 = *(f32 *)&func_80106790(arg4)->actorData[4];
@@ -287,9 +287,9 @@ void chpowerhutwitchy_entrypoint_5(s32 arg0, s32 arg1, s32 arg2, s32 arg3, Unk80
 
 /* extern */
 
-void func_808009FC_chpowerhutwitchy(s32 arg0) {
-    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
-    s32 func_800BEA88(s32);
+void func_808009FC_chpowerhutwitchy(BtIntPtr arg0) {
+    void _idworldmake_entrypoint_1(BtIntPtr arg0, s32 arg1, volatile unsigned int arg2, s32 arg3);
+    void *func_800BEA88(s32 i);
     s32 func_800EA05C();
     if (func_800EA05C() == 0xD6) {
         _idworldmake_entrypoint_1(func_800BEA88(0), 0x89D, 4, 1);
@@ -319,3 +319,17 @@ void func_80800A58_chpowerhutwitchy(Actor *arg0) {
         }
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/powerhutwity.data.s */
+void func_80105834(Actor*);
+void _chpowerhut_entrypoint_2();
+void func_80107C2C();
+void _chdoor_entrypoint_0();
+void func_80101870(Actor* arg0, void* arg1);
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+s32 D_80800B00_chpowerhutwitchy[5] BT_DATA(4, overlays_ch_powerhutwity, 0x0) = { 15400998, 1049176, 1103626240, 1088421888, 1090519040 };
+s32 D_80800B14_chpowerhutwitchy[5] BT_DATA(4, overlays_ch_powerhutwity, 0x14) = { 15466545, 3146178, 1095761920, 1075838976, 1086324736 };
+ActorData D_80800B28_chpowerhutwitchy [1] BT_DATA(4, overlays_ch_powerhutwity, 0x28) = { { 774, 924, -1, 1, 0, (void (*)(struct Actor *))func_80800068_chpowerhutwitchy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_chpowerhut_entrypoint_2, 196608000, 0, 0, 0, 0, 0, 0, 0, 28, 0, (void (*)(struct Actor *))func_80800030_chpowerhutwitchy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 3074, (void (*)(struct Actor *, long, long))func_80800168_chpowerhutwitchy, 0 } };
+ActorData D_80800B70_chpowerhutwitchy [1] BT_DATA(4, overlays_ch_powerhutwity, 0x70) = { { 775, 925, -1, 1, 0, (void (*)(struct Actor *))func_80800610_chpowerhutwitchy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_chpowerhut_entrypoint_2, 196608000, 0, 0, 0, 0, 0, 0, 0, 28, 0, (void (*)(struct Actor *))func_808005C8_chpowerhutwitchy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 3074, (void (*)(struct Actor *, long, long))func_8080073C_chpowerhutwitchy, 0 } };
+ActorData D_80800BB8_chpowerhutwitchy [1] BT_DATA(4, overlays_ch_powerhutwity, 0xB8) = { { 172, 926, 1947, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800A58_chpowerhutwitchy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
+ActorData D_80800C00_chpowerhutwitchy [1] BT_DATA(4, overlays_ch_powerhutwity, 0x100) = { { 172, 927, 1948, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800A58_chpowerhutwitchy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
+u8 D_80800C48_chpowerhutwitchy [5] BT_DATA(4, overlays_ch_powerhutwity, 0x148) = { 0x64, 0x64, 0x64, 0, 0 };

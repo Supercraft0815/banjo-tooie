@@ -19,9 +19,9 @@ void gldialog_entrypoint_2(void) {
 void gldialog_entrypoint_3(void) {
 }
 
-s32 gldialog_entrypoint_4(s32 arg0) {
+BtIntPtr gldialog_entrypoint_4(s32 arg0) {
     extern u32 D_801275E0[];
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     void func_800D70D0(s32);
     void func_800D71F4(s32);
     u8 *temp_v1_2;
@@ -55,3 +55,10 @@ void gldialog_entrypoint_5(volatile s32 arg0) {
     p[0] = 0;
     p[1] = -1;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u32 D_801275E0 [ 2 ] BT_DATA(4, bss_core2bss1_0_1, 0x580);
+u32 D_80127600 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0x5A0);
+#endif

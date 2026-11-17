@@ -23,7 +23,7 @@
 int func_8008E148(PlayerState *self);
 
 extern u8 D_80800400_bsmumstill[];
-extern s32 D_80800404_bsmumstill[];
-extern s32 D_80800414_bsmumstill[];
+extern BtIntPtr D_80800404_bsmumstill[];
+extern BtIntPtr D_80800414_bsmumstill[];
 
 #endif // __BS_MUM_STILL_H__

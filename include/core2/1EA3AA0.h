@@ -1,7 +1,7 @@
 #ifndef __CORE2_1EA3AA0_H__
 #define __CORE2_1EA3AA0_H__
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_camera.h"
 #else
 #include <ultra64.h>

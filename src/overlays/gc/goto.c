@@ -18,27 +18,27 @@ s32 func_80800000_gcgoto(s8 *arg0, s16 arg1) {
         }
     }
     return 0;
-}
+}    typedef struct { u8 pad0[0x2]; s16 unk2; } Objgoto_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void gcgoto_entrypoint_0(s32 *arg0, s32 *arg1) {
-    extern s8 D_80800710_gcgoto;
-    extern s8 D_80800720_gcgoto;
-    extern s8 D_8080072C_gcgoto;
-    extern s8 D_8080073C_gcgoto;
+    extern s8 D_80800710_gcgoto[16];
+    extern s8 D_80800720_gcgoto[12];
+    extern s8 D_8080072C_gcgoto[16];
+    extern s8 D_8080073C_gcgoto[4];
     if (*arg0 == 0xFB) {
-        if (func_80800000_gcgoto(&D_80800710_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+        if (func_80800000_gcgoto(D_80800710_gcgoto, (((Objgoto_arg1 *)arg1)->unk2)) != 0) {
             *arg0 = 0x1A7;
             return;
         }
-        if (func_80800000_gcgoto(&D_80800720_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+        if (func_80800000_gcgoto(D_80800720_gcgoto, (((Objgoto_arg1 *)arg1)->unk2)) != 0) {
             *arg0 = 0x1A8;
             return;
         }
-        if (func_80800000_gcgoto(&D_8080072C_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+        if (func_80800000_gcgoto(D_8080072C_gcgoto, (((Objgoto_arg1 *)arg1)->unk2)) != 0) {
             *arg0 = 0x1A9;
             return;
         }
-        if (func_80800000_gcgoto(&D_8080073C_gcgoto, (*(s16 *)((s8 *)(arg1) + (2)))) != 0) {
+        if (func_80800000_gcgoto(D_8080073C_gcgoto, (((Objgoto_arg1 *)arg1)->unk2)) != 0) {
             *arg0 = 0x1A6;
         }
     }
@@ -71,14 +71,14 @@ void gcgoto_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
 void func_808001E0_gcgoto(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     Prop *_gccubesearch_entrypoint_5(s32 *, f32 *);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
-    void _plcamera_entrypoint_11(u32, f32 *);
+    void _plcamera_entrypoint_11(BtUIntPtr, f32 *);
     void func_8008FE68(f32 *);
-    void func_80090358(f32 *, f32, void *, s32);
+    void func_80090358(f32 *, f32, void *, BtIntPtr);
     void func_800A1618(s32);
     f32 func_800EEAD4(f32 *, f32 *);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void gcgoto_entrypoint_4(s32, s32, f32, f32, s32);
-    extern s32 D_80800740_gcgoto;
+    extern s32 D_80800740_gcgoto[4];
     f32 playerPos[3];
     f32 propPos[3];
     Prop *prop;
@@ -86,7 +86,7 @@ void func_808001E0_gcgoto(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
     if (D_80127194.unk42C == 0) {
         if (arg0 != NULL) {
-            prop = _gccubesearch_entrypoint_5(&D_80800740_gcgoto, arg0);
+            prop = _gccubesearch_entrypoint_5(D_80800740_gcgoto, arg0);
         } else {
             prop = NULL;
         }
@@ -147,10 +147,10 @@ void gcgoto_entrypoint_4(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void func_8008FE68(f32 *);
     void func_800EEB9C(f32[3], f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void _plcamera_entrypoint_11(u32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void _plcamera_entrypoint_11(BtUIntPtr, f32 *);
     void func_800A1618(s32);
-    void func_80090358(f32 *, f32, void *, s32);
+    void func_80090358(f32 *, f32, void *, BtIntPtr);
     f32 pos[3];
     f32 dest[3];
     f32 offset[3];
@@ -187,9 +187,9 @@ void gcgoto_entrypoint_7(s32 arg0, s32 arg1) {
 
 void gcgoto_entrypoint_8(s32 arg0, s32 arg1) {
     s32 func_80015FA0(s32);
-    s32 func_800A7AD4(s32, s32);
-    s32 func_800FC1CC(s32, s32);
-    s32 func_800FE3EC();
+    void func_800A7AD4(s32 arg0, s32 arg1);
+    void func_800FC1CC(s32 arg0, s32 arg1);
+    void func_800FE3EC(void);
     if (func_80015FA0(0) == 1) {
         func_800A7AD4(1, 2);
         func_800FC1CC(0, 0x320);
@@ -200,7 +200,7 @@ void gcgoto_entrypoint_8(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void gcgoto_entrypoint_9(s32 arg0, s32 arg1) {
+void gcgoto_entrypoint_9(BtIntPtr arg0, s32 arg1) {
     s32 func_8008FD48();
     if (func_8008FD48() == 8) {
         func_808003D0_gcgoto(arg0, 0xBC02);
@@ -209,14 +209,14 @@ void gcgoto_entrypoint_9(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void gcgoto_entrypoint_10(s32 arg0, s32 arg1) {
+void gcgoto_entrypoint_10(BtIntPtr arg0, s32 arg1) {
     s32 func_8008FD48();
     if (func_8008FD48() == 8) {
         func_808003D0_gcgoto(arg0, 0xC403);
     }
 }
 
-void gcgoto_entrypoint_11(s32 arg0, u32 arg1)
+void gcgoto_entrypoint_11(BtIntPtr arg0, u32 arg1)
 {
     s32 sp1C;
     s32 sp18;
@@ -232,7 +232,7 @@ void gcgoto_entrypoint_12(void) {
 }
 
 void gcgoto_entrypoint_13(void) {
-    u32 address = (u32)&D_80127194.unk42C;
+    BtUIntPtr address = (BtUIntPtr)&D_80127194.unk42C;
     u8 *state = (u8 *)address;
     state[0] = 0;
     *(s32 *)(state + 4) = 0;
@@ -243,5 +243,11 @@ void gcgoto_entrypoint_14(s32 arg0) {
 }
 
 u32 gcgoto_entrypoint_15(void) {
-    return *(u8 *)((u8 *)&D_80127194 + 1068);
+    return D_80127194.unk42C;
 }
+/* data_to_c.py: from asm/data/overlays/gc/goto.data.s */
+s8 D_80800710_gcgoto[16] BT_DATA(4, overlays_gc_goto, 0x0) = { 3, 15, 1, 2, 14, 13, 30, 4, 5, 0, 6, 9, -1, 0, 0, 0 };
+s8 D_80800720_gcgoto[12] BT_DATA(4, overlays_gc_goto, 0x10) = { 39, 32, 10, 17, 18, 12, 31, 7, -1, 0, 0, 0 };
+s8 D_8080072C_gcgoto[16] BT_DATA(4, overlays_gc_goto, 0x1C) = { 27, 20, 19, 34, 36, 37, 21, 23, 40, 35, 22, 33, 16, 11, -1, 0 };
+s8 D_8080073C_gcgoto[4] BT_DATA(4, overlays_gc_goto, 0x2C) = { 8, 38, -1, 0 };
+s32 D_80800740_gcgoto[4] BT_DATA(4, overlays_gc_goto, 0x30) = { 589, 590, 591, -1 };

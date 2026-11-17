@@ -59,7 +59,7 @@ void func_808000B8_chswitch(Unk80132ED0 *arg0, s32 arg1) {
 void func_8080012C_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
     void _gcaudiolist_entrypoint_0(s32);
     s32 func_8008FCC8(Unk80132ED0 *);
-    s32 func_800F7F98(s32, u32);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_80102424(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *actor;
@@ -71,7 +71,7 @@ void func_8080012C_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
             actor->actorData[4] = (u32)arg1[13] >> 5;
             func_800F7F98(actor->actorData[4], 1);
     }
-}
+}                 typedef struct { u8 pad0[0x2C]; s32 unk2C; s32 unk30; s32 unk34; u8 pad38[0x18]; s32 unk50; f32 unk54; } Objswit_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -84,18 +84,18 @@ s32 chswitch_entrypoint_3(void *arg0, s32 arg1) {
 
     temp_v0 = func_800DA298(arg1);
     sp1C = temp_v0;
-    (*(s32 *)((s8 *)(arg0) + (0x34))) = arg1;
+    (((Objswit_arg0 *)arg0)->unk34) = arg1;
     func_80103110(arg0, 0);
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = 0.75f;
+    (((Objswit_arg0 *)arg0)->unk54) = 0.75f;
     func_80102E08(arg0);
     return sp1C;
 }
 
 void chswitch_entrypoint_4(Actor *arg0) {
     s32 func_800D9078(f32 *);
-    s32 func_800DA544(s32);
-    s32 func_800F7F98(s32, u32);
-    s32 func_8010108C(Actor *, s32, s32);
+    void func_800DA544(s32 index);
+    s32 func_800F7F98(BtIntPtr, u32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
     void func_80103110(void *, s32);
@@ -116,7 +116,7 @@ void chswitch_entrypoint_4(Actor *arg0) {
 void func_808002B4_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
     void _gcaudiolist_entrypoint_0(s32);
     s32 func_8008FCF4(Unk80132ED0 *);
-    s32 func_800F7F98(s32, u32);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_80102424(Actor *, s32);
     void func_80103110(void *, s32);
     Actor *func_80106790(Unk80132ED0 *);
@@ -137,7 +137,7 @@ void func_808002B4_chswitch(Unk80132ED0 *arg0, u16 *arg1) {
 s32 chswitch_entrypoint_5(Actor *arg0, s32 arg1, u32 arg2) {
     void _gcaudiolist_entrypoint_0(s32);
     s32 func_800DA298(s32);
-    s32 func_800F7F98(s32, u32);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_80102424(Actor *, s32);
     void func_80103110(void *, s32);
     void func_8010A570(Actor *);
@@ -178,9 +178,9 @@ void chswitch_entrypoint_6(Actor *arg0) {
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
     void func_800DA524(s32);
-    s32 func_800DA544(s32);
-    s32 func_800F7F98(s32, u32);
-    s32 func_8010108C(Actor *, s32, s32);
+    void func_800DA544(s32 index);
+    s32 func_800F7F98(BtIntPtr, u32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
     void func_80103110(void *, s32);
@@ -241,17 +241,17 @@ s32 chswitch_entrypoint_7(void *arg0, s32 arg1) {
 
     temp_v0 = func_800DA298(arg1);
     sp24 = temp_v0;
-    (*(s32 *)((s8 *)(arg0) + (0x34))) = arg1;
+    (((Objswit_arg0 *)arg0)->unk34) = arg1;
     if (temp_v0 != 0) {
-        (*(f32 *)((s8 *)(arg0) + (0x54))) = 0.0f;
+        (((Objswit_arg0 *)arg0)->unk54) = 0.0f;
         func_80102424(arg0, 3);
     } else {
-        (*(f32 *)((s8 *)(arg0) + (0x54))) = 0.375f;
+        (((Objswit_arg0 *)arg0)->unk54) = 0.375f;
         func_80102424(arg0, 1);
     }
-    (*(s32 *)((s8 *)(arg0) + (0x2C))) = -1;
-    (*(s32 *)((s8 *)(arg0) + (0x50))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
+    (((Objswit_arg0 *)arg0)->unk2C) = -1;
+    (((Objswit_arg0 *)arg0)->unk50) = 0;
+    (((Objswit_arg0 *)arg0)->unk30) = 0;
     func_80102E08(arg0);
     return sp24;
 }
@@ -261,13 +261,13 @@ void chswitch_entrypoint_8(s32 *arg0, s32 arg1) {
 }
 
 void chswitch_entrypoint_9(void *arg0) {
-    (*(s32 *)((s8 *)(arg0) + (0x30))) = 1;
+    (((Objswit_arg0 *)arg0)->unk30) = 1;
 }
 
 void func_80800694_chswitch(Actor *arg0) {
     s32 _plsu_entrypoint_0(f32 *, f32 *);
     s32 func_800DA298(s32);
-    s32 func_800F5410(s32);
+    s32 func_800F5410(BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80103110(void *, s32);
     f32 sp2C[3];
@@ -294,20 +294,20 @@ s32 chswitch_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_8080093C_chswitch(Actor *arg0);
     void _gcaudiolist_entrypoint_0(s32 arg0);
     s32 func_800DA298(s32 index);
-    s32 func_800F5410(s32 arg0);
-    u32 func_800F54E4(void);
-    Unk80132ED0 *func_800F55D0(s32);
-    s32 func_800F55FC(s32 arg0);
-    s32 func_800F6438(u32 arg0);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F6C5C(s32 arg0);
-    s32 func_800F7874(s32 arg0, s32 arg1, void *arg2);
-    s32 func_800F7F98(s32 arg0, u32 arg1);
+    s32 func_800F5410(BtIntPtr arg0);
+    BtUIntPtr func_800F54E4(void);
+    Unk80132ED0 *func_800F55D0(BtIntPtr);
+    s32 func_800F55FC(BtIntPtr arg0);
+    s32 func_800F6438(BtUIntPtr arg0);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F6C5C(BtIntPtr arg0);
+    s32 func_800F7874(s32 arg0, BtIntPtr arg1, void *arg2);
+    s32 func_800F7F98(BtIntPtr arg0, u32 arg1);
     void func_80102424(Actor *arg0, s32 arg1);
     void func_80103110(void *arg0, s32 arg1);
     s32 playerIndex;
     s32 playerFlags;
-    s32 currentPlayer;
+    BtIntPtr currentPlayer;
     Unk80132ED0 *marker;
     s32 found;
     s32 result;
@@ -348,7 +348,7 @@ s32 chswitch_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
                 }
                 if (!found) {
                     marker = arg0->unk0;
-                    func_800F7874(arg2, (s32)marker, arg0->position);
+                    func_800F7874(arg2, (BtIntPtr)marker, arg0->position);
                 }
             }
         }
@@ -388,9 +388,9 @@ void chswitch_entrypoint_11(Actor *arg0) {
     void _gcaudiolist_entrypoint_0(s32);
     s32 func_800DA298(s32);
     void func_800DA524(s32);
-    s32 func_800DA544(s32);
-    s32 func_800F7F98(s32, u32);
-    s32 func_8010108C(Actor *, s32, s32);
+    void func_800DA544(s32 index);
+    s32 func_800F7F98(BtIntPtr, u32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
 
@@ -447,10 +447,10 @@ void chswitch_entrypoint_13(Actor *arg0) {
     void _gcaudiolist_entrypoint_0(s32);
     f32 func_800D8FF8(void);
     void func_800DA524(s32);
-    s32 func_800DA544(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F6CC8(s32);
-    s32 func_8010108C(Actor *, s32, s32);
+    void func_800DA544(s32 index);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6CC8(BtIntPtr);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     void func_80101EE4(Actor *, f32);

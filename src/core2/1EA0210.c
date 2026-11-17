@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_collision.h"
 typedef struct {
     NativeCollisionLineQuery unk0;
@@ -47,7 +47,7 @@ s32 func_800C696C(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3, f32 *arg4) {
     return 0;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800C69FC(void) {return native_collision.unk84;}
 s32 func_800C6A08(NativeCollisionLineQuery line,NativeCollisionSweepQuery sweep,NativeCollisionSphereQuery sphere) {
     return func_800C6A28(line,sweep,sphere,NULL);

@@ -5,15 +5,15 @@ s32 bamoveledge_entrypoint_0()
     return 0x4;
 }
 
-void bamoveledge_entrypoint_1(s32 arg0) 
+void bamoveledge_entrypoint_1(BtIntPtr arg0) 
 {
 }
-void bamoveledge_entrypoint_2(s32 arg0) 
+void bamoveledge_entrypoint_2(BtIntPtr arg0) 
 {
 }
 /* extern */
 
-void bamoveledge_entrypoint_3(s32 arg0) {
+void bamoveledge_entrypoint_3(BtIntPtr arg0) {
     void func_8009B98C(void *, f32 *);
     void func_8009BB24(void *, f32 *);
     void func_8009BC08(void *, f32 *);

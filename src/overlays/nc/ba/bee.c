@@ -4,7 +4,7 @@
 
 void ncbabee_entrypoint_0(u8 *arg0) {
     s32 func_801120CC(void *, s32, s32, s32);
-    s32 func_801124D0(s32, s32);
+    s32 func_801124D0(BtIntPtr, s32);
     void func_80115858(void *arg0, s32 arg1);
     void func_80115870(void *arg0, f32 arg1);
     s32 func_80111B8C(u8 *, s32, s32);
@@ -12,7 +12,7 @@ void ncbabee_entrypoint_0(u8 *arg0) {
     func_80111B8C(arg0, 0x40800000, 0x41000000);
     func_80115858(arg0, 0);
     func_80115870(arg0, 0.0f);
-    func_801124D0((s32) arg0, 1);
+    func_801124D0((BtIntPtr) arg0, 1);
 }
 
 void ncbabee_entrypoint_1(s32 arg0) 
@@ -32,7 +32,7 @@ void ncbabee_entrypoint_2(PlayerState *arg0) {
     void func_800EEBF0(f32 *, f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
-    f32 func_800F5AE0(s32);
+    BT_NATIVE_ONLY(s32) BT_IDO_ONLY(f32) func_800F5AE0(s32);
     void func_80110790(PlayerState *, f32 *);
     void func_801107F0(void *, f32 *);
     s32 func_80110840(PlayerState *);
@@ -59,7 +59,7 @@ void ncbabee_entrypoint_2(PlayerState *arg0) {
     func_801107F0(arg0, sp58);
     func_80800070_ncbabee(arg0, sp64);
     func_80115444(arg0, &sp48, &sp38);
-    temp_f0 = func_80013728(func_800F5AE0(sp28));
+    temp_f0 = func_80013728(BT_NATIVE_ONLY(((union { s32 i; f32 f; }){ func_800F5AE0(sp28) }).f) BT_IDO_ONLY(func_800F5AE0(sp28)));
     func_80115828(arg0, temp_f0, temp_f0);
     func_800EFB24(sp2C, sp58, sp64);
     func_800F1A88(sp2C, sp3C);

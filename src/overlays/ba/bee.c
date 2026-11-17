@@ -13,8 +13,8 @@
 #include "core2/1ECE0B0.h"
 #include "core2/1ECD170.h"
 
-extern s32 D_80800390_babee;
-extern s32 D_808003BC_babee;
+extern s32 D_80800390_babee[11];
+extern s32 D_808003BC_babee[5];
 
 s32 babee_entrypoint_0(void) {
     return sizeof(BaBee);
@@ -24,7 +24,7 @@ void func_80800008_babee(f32 arg0[3], f32 arg1[3], f32 arg2) {
     f32 sp24[3];
     func_800EFA98(sp24, arg1, arg2);
     func_800EF04C(sp24, arg0);
-    func_800BBCB8(sp24, 0, 1.0f, 1, &D_80800390_babee);
+    func_800BBCB8(sp24, 0, 1.0f, 1, D_80800390_babee);
 }
 
 void babee_entrypoint_1(s32 arg0) {
@@ -64,7 +64,7 @@ void babee_entrypoint_2(PlayerState *self) {
     if (!(0.0f < bee->cooldown)) {
         bee->cooldown += bee->unk0[bee->index].cooldown_time;
         func_8009C128(self, sp20);
-        func_8010D930(0xB, -1, sp20, &D_808003BC_babee);
+        func_8010D930(0xB, -1, sp20, D_808003BC_babee);
         _chbaddiesetup_entrypoint_1(_babee_entrypoint_1, self->unk184);
     }
 }
@@ -102,3 +102,6 @@ void babee_entrypoint_8(PlayerState *self) {
         bee->cooldown -= func_800D8FF8();
     }
 }
+/* data_to_c.py: from asm/data/overlays/ba/bee.data.s */
+s32 D_80800390_babee[11] BT_DATA(4, overlays_ba_bee, 0x0) = { 1903074, 1376281, 4980758, 268435490, 13369548, 458759, 2555904, 32768000, 58982443, 2490406, 0 };
+s32 D_808003BC_babee[5] BT_DATA(4, overlays_ba_bee, 0x2C) = { 1246747, 1461792, 852224, 18415633, 0 };

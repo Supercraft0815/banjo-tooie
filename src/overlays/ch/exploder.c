@@ -2,7 +2,7 @@
 
 OSThread *chexploder_entrypoint_0(void)
 {
-    extern u8 D_80801AE0_chexploder[];
+    extern ActorData D_80801AE0_chexploder[];
 
     return (OSThread *) D_80801AE0_chexploder;
 }
@@ -28,7 +28,7 @@ void func_80800014_chexploder(Actor *arg0)
 /* extern */
 
 void func_80800078_chexploder(void **arg0) {
-    s32 func_800ADFE0(s16);
+    void func_800ADFE0(s16 handle);
     s16 temp_a1;
 
     temp_a1 = (*(s16 *)((s8 *)(*arg0) + (0x10)));
@@ -41,9 +41,9 @@ void func_80800078_chexploder(void **arg0) {
 s32 func_808000C0_chexploder(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void *func_80100094(Actor *, u32);
     void *func_80101080(void);
-    void func_801018A4(Actor *, s32);
+    void func_801018A4(Actor *, BtIntPtr);
     s32 func_80103140(Actor *, u32, u16);
-    void func_80800154_chexploder(Actor *, s32);
+    void func_80800154_chexploder(Actor *, BtIntPtr);
     struct {
         u8 pad0[0x14];
         u16 unk14, unk16;
@@ -66,13 +66,13 @@ s32 func_808000C0_chexploder(Actor *arg0, s32 arg1, volatile s32 arg2) {
     return 1;
 }
 
-void func_80800154_chexploder(Actor *arg0, s32 arg1) {
-    s32 func_80019CD4(void);
+void func_80800154_chexploder(Actor *arg0, BtIntPtr arg1) {
+    void * func_80019CD4(void);
     void func_800ADD80(s16, u8 *);
     void func_800ADEC4(u8 *, u8 *, s32, f32 [4][4]);
     void *func_800AE080(s16);
     u8 *func_800B27E0(u8 *);
-    void func_800DF72C(s32);
+    void func_800DF72C(BtIntPtr);
     void func_800DF744(s32, s32);
     void *func_80100094(Actor *, u32);
     s32 func_801015D0(Actor *);
@@ -117,7 +117,7 @@ void func_80800154_chexploder(Actor *arg0, s32 arg1) {
         mlMtxGet(matrix);
         func_800ADEC4(model, animation, part->index, matrix);
     }
-    func_800DF72C((s32)model);
+    func_800DF72C((BtIntPtr)model);
     for (i = 1, visibility = (u8 *)data + 1; i <= data->visibility[0]; i++, visibility++) {
         func_800DF744(i, visibility[0x18]);
     }
@@ -220,7 +220,7 @@ s32 func_808002FC_chexploder(Actor *arg0) {
     }
     return count;
 }
-
+struct SoundEntry { s16 unk0, unk2, unk4, unk6, unk8; };
 void func_8080067C_chexploder(Actor *arg0, void *arg1, f32 *arg2) {
     void func_800C4B64(f32);
     void func_800C4B70(s32);
@@ -228,11 +228,11 @@ void func_8080067C_chexploder(Actor *arg0, void *arg1, f32 *arg2) {
     f32 func_800DC178(f32, f32);
     void *func_80100094(Actor *, u32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    struct SoundEntry {
-        s16 unk0, unk2, unk4, unk6, unk8;
-    };
+
+
+
     extern struct SoundEntry D_80801B28_chexploder[];
-    extern s32 D_80801BA0_chexploder;
+    extern s32 D_80801BA0_chexploder[4];
     struct {
         u8 pad0[0x12];
         u8 unk12;
@@ -263,7 +263,7 @@ void func_8080067C_chexploder(Actor *arg0, void *arg1, f32 *arg2) {
             func_800C4B7C(sp34);
             func_800C4B64(sp2C - ((f32)((struct HitData *)arg1)->unk38 - 1.0f) * sp28);
             func_800C4B70(sp30 - ((struct HitData *)arg1)->unk38 * 4000 + 4000);
-            func_8010D930(7, arg0->unk70_0, arg2, &D_80801BA0_chexploder);
+            func_8010D930(7, arg0->unk70_0, arg2, D_80801BA0_chexploder);
             if (data->unk54 & 0x100) {
                 data->unk56 = 1;
             }
@@ -275,8 +275,8 @@ void func_8080067C_chexploder(Actor *arg0, void *arg1, f32 *arg2) {
 void func_80800834_chexploder(Actor *arg0, void *arg1, f32 arg2[3]) {
     void *func_80100094(Actor *, u32);
     f32 func_800EEFD4(f32 *);
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_80801BB0_chexploder[], D_80801BD8_chexploder[];
     extern s32 D_80801BE4_chexploder[], D_80801BF0_chexploder[];
     extern s32 D_80801C00_chexploder[];
@@ -292,10 +292,10 @@ void func_80800834_chexploder(Actor *arg0, void *arg1, f32 arg2[3]) {
         u8 pad24[0x14];
         u8 unk38;
     };
-    s32 sp38;
-    s32 sp34;
-    s32 sp30;
-    s32 sp2C;
+    BtIntPtr sp38;
+    BtIntPtr sp34;
+    BtIntPtr sp30;
+    BtIntPtr sp2C;
 
     data = func_80100094(arg0, 0);
     if (((struct HitData *)arg1)->unk38 < 3 &&
@@ -358,14 +358,14 @@ s32 func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
     u32 *func_80100074(Actor *, u32, u32);
     u8 *func_801039E4(Unk80132ED0 *);
     u8 *func_800B27E0(u8 *);
-    s32 func_80104248(void *);
+    void * func_80104248(void *data);
     void *func_8008AEDC(void *);
-    void func_8008C238(s16, s32, s32);
-    void func_8008C200(s16, s32, s32);
+    void func_8008C238(s16, BtIntPtr, BtIntPtr);
+    void func_8008C200(s16, BtIntPtr, BtIntPtr);
     s32 func_800AE124(s16);
     void *func_800AE080(s16);
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
-    u32 func_800ADE50(u8 *, u8 *, s32);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
+    BtUIntPtr func_800ADE50(u8 *, u8 *, s32);
     s32 func_800AE630(u8 *, u8 *, s32, f32 *);
     void func_800F2C1C(MtxF *, f32 *);
     void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
@@ -390,7 +390,7 @@ s32 func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
     } *part;
     u8 *skeleton;
     u8 *matrices;
-    s32 ctrl;
+    BtIntPtr ctrl;
     s32 i;
     f32 sp6C[3];
     f32 sp60[3];
@@ -398,7 +398,7 @@ s32 func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
     data = func_80100094((Actor *)arg0, 0);
     skeleton = func_800B27E0(func_801039E4(((Actor *)arg0)->unk0));
     ctrl = func_80104248(arg1);
-    func_8008C238(((ExploderMarker *)((Actor *)arg0)->unk0)->anim, (s32)skeleton, (s32)func_8008AEDC(ctrl));
+    func_8008C238(((ExploderMarker *)((Actor *)arg0)->unk0)->anim, (BtIntPtr)skeleton, (BtIntPtr)func_8008AEDC(ctrl));
     data->count = func_800AE124(((ExploderMarker *)((Actor *)arg0)->unk0)->anim);
     part = (void *)func_80100074((Actor *)arg0, 1, data->count * 0x3C);
     matrices = func_800AE080(((ExploderMarker *)((Actor *)arg0)->unk0)->anim);
@@ -407,7 +407,7 @@ s32 func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
         func_800F2C1C((MtxF *)func_800ADE50(matrices, skeleton, part->bone), part->unk24);
     }
     part = func_80100094((Actor *)arg0, 1);
-    func_8008C200(((ExploderMarker *)((Actor *)arg0)->unk0)->anim, (s32)skeleton, (s32)func_8008AEDC(ctrl));
+    func_8008C200(((ExploderMarker *)((Actor *)arg0)->unk0)->anim, (BtIntPtr)skeleton, (BtIntPtr)func_8008AEDC(ctrl));
     matrices = func_800AE080(((ExploderMarker *)((Actor *)arg0)->unk0)->anim);
     for (i = 0; i < data->count; i++, part++) {
         func_800AE630(matrices, skeleton, part->bone, part->unkC);
@@ -435,17 +435,17 @@ s32 func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
     }
     data->unk5C = 1e10f;
     func_800EFD24(((Actor *)arg0)->rotation);
-    func_80100094((Actor *)arg0, 1);
+    BT_NATIVE_ONLY(return) func_80100094((Actor *)arg0, 1);
 }
 
-void func_80800D7C_chexploder(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3) {
+void func_80800D7C_chexploder(Actor *arg0, BtIntPtr arg1, f32 *arg2, s32 arg3) {
     void *func_80100094(Actor *, u32);
     u32 *func_80100074(Actor *, u32, u32);
     u8 *func_801039E4(Unk80132ED0 *);
     u8 *func_800B27E0(u8 *);
     s32 _dbskeleton_entrypoint_0(u8 *);
     s32 _dbskeleton_entrypoint_2(u8 *, s32, f32 *);
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
     void func_800EFD24(f32 *);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800F18FC(f32 *, f32 *, f32 *);
@@ -503,7 +503,7 @@ void func_80800D7C_chexploder(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3) {
     func_800EFD24(arg0->rotation);
 }
 
-void func_80800F74_chexploder(Actor *arg0, s32 arg1) {
+void func_80800F74_chexploder(Actor *arg0, BtIntPtr arg1) {
     void *func_80100094(Actor *, u32);
     f32 func_800DC178(f32, f32);
     void func_800EF368(f32 *, f32);
@@ -548,10 +548,10 @@ void func_80800F74_chexploder(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-void func_808010E0_chexploder(u8 *arg0, s32 arg1, s32 arg2) {
+void func_808010E0_chexploder(u8 *arg0, BtIntPtr arg1, s32 arg2) {
     s32 func_80018820(s32, s32, s32);
-    s32 func_800E1610(s32, s32, s32, s32);
-    s32 func_800FFAB0(s32);
+    s32 func_800E1610(s32, s32, s32, BtIntPtr);
+    s32 func_800FFAB0(BtIntPtr);
     if (arg2 & 2) {
         func_800E1610(0, 0x41F00000, 0x3F666666, arg0 + 4);
     }
@@ -566,33 +566,33 @@ void func_808010E0_chexploder(u8 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_80801188_chexploder(u8 *arg0, u8 *arg1, s32 arg2) {
+void func_80801188_chexploder(u8 *arg0, u8 *arg1, BtIntPtr arg2) {
     u8 * func_800B26F0(u8 *arg0);
     if (func_800B26F0(arg1) != NULL) {
         arg0[0x70] = (u8)((arg0[0x70] & ~1) | 1);
         (*(u8 *)((s8 *)(arg0) + (0x71))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x71))) & 0xFFDF);
     }
-}
+}    typedef struct { u8 pad0[0x14]; u16 unk14; u16 unk16; u8 pad18[0x3C]; s16 unk54; } Objexploder_chexploder_entrypoint_1_temp_s1; /* offsets.py genstruct: fields from raw offsets on temp_s1; rename once understood */ typedef struct { void * unk0; u8 pad4[0x34]; f32 unk38; u8 pad3C[0x29]; u8 unk65; } Objexploder_chexploder_entrypoint_1_sp30; /* offsets.py genstruct: fields from raw offsets on sp30; rename once understood */ typedef struct { void * unk0; u8 pad4[0x14]; f32 unk18; f32 unk1C; f32 unk20; u8 pad24[0x14]; f32 unk38; u8 pad3C[0x38]; u8 unk74; } Objexploder_chexploder_entrypoint_1_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
 void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     s32 pad;
     void func_80800A18_chexploder(Actor *arg0);
-    void func_80800D7C_chexploder(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3);
-    void func_80800F74_chexploder(Actor *arg0, s32 arg1);
-    void func_808010E0_chexploder(u8 *arg0, s32 arg1, s32 arg2);
-    void func_80801188_chexploder(u8 *arg0, u8 *arg1, s32 arg2);
+    void func_80800D7C_chexploder(Actor *arg0, BtIntPtr arg1, f32 *arg2, s32 arg3);
+    void func_80800F74_chexploder(Actor *arg0, BtIntPtr arg1);
+    void func_808010E0_chexploder(u8 *arg0, BtIntPtr arg1, s32 arg2);
+    void func_80801188_chexploder(u8 *arg0, u8 *arg1, BtIntPtr arg2);
     s16 func_800AE020();
     void func_800EE7F8(f32 *, f32 *);
     void * func_80100094(Actor *, u32);
     s32 func_80101074(void *);
-    s32 func_8010108C(void *, s32, s32);
+    s32 func_8010108C(void *, s32, BtIntPtr);
     s32 func_80103140(Actor *, u32, u16);
     u8 * func_801039E4(Unk80132ED0 *);
-    s32 func_80104248(void *);
+    void * func_80104248(void *data);
     void *func_80106790();
-    u8 *func_801084B0(s32, void **);
+    u8 *func_801084B0(BtIntPtr, void **);
     s32 func_80108944(u8 *, void *);
     s32 func_80800AC8_chexploder(u8 *, void *, u8 *, s32);
     void *sp30;
@@ -602,32 +602,32 @@ void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     sp30 = func_80106790();
     temp_v0 = func_801084B0(0x1FF, &sp30);
     temp_s1 = func_80100094(temp_v0, 0);
-    (*(f32 *)((s8 *)(temp_v0) + (0x18))) = arg1;
-    (*(f32 *)((s8 *)(temp_v0) + (0x1C))) = arg2;
-    (*(f32 *)((s8 *)(temp_v0) + (0x20))) = arg3;
+    (((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk18) = arg1;
+    (((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk1C) = arg2;
+    (((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk20) = arg3;
     func_800EE7F8(temp_v0 + 0x44, (u8 *)(u8 *)sp30 + 0x44);
-    (*(f32 *)((s8 *)(temp_v0) + (0x38))) = (f32) (*(f32 *)((s8 *)(sp30) + (0x38)));
-    if ((*(s16 *)((s8 *)((*(void **)((s8 *)(temp_v0) + (0)))) + (0x10))) == 0) {
-        (*(s16 *)((s8 *)((*(void **)((s8 *)(temp_v0) + (0)))) + (0x10))) = func_800AE020();
+    (((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk38) = (f32) (((Objexploder_chexploder_entrypoint_1_sp30 *)sp30)->unk38);
+    if ((*(s16 *)((s8 *)((((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk0)) + (0x10))) == 0) {
+        (*(s16 *)((s8 *)((((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk0)) + (0x10))) = func_800AE020();
     }
-    (*(u16 *)((s8 *)(temp_s1) + (0x14))) = (u16) (*(u16 *)((s8 *)((*(void **)((s8 *)(sp30) + (0)))) + (0x14)));
-    (*(u16 *)((s8 *)(temp_s1) + (0x16))) = (u16) (*(u16 *)((s8 *)((*(void **)((s8 *)(sp30) + (0)))) + (0x16)));
-    (*(s16 *)((s8 *)(temp_s1) + (0x54))) = (s16) arg4;
-    (*(u8 *)((s8 *)(sp30) + (0x65))) = (u8) ((*(u8 *)((s8 *)(sp30) + (0x65))) & 0xFFFE);
+    (((Objexploder_chexploder_entrypoint_1_temp_s1 *)temp_s1)->unk14) = (u16) (*(u16 *)((s8 *)((((Objexploder_chexploder_entrypoint_1_sp30 *)sp30)->unk0)) + (0x14)));
+    (((Objexploder_chexploder_entrypoint_1_temp_s1 *)temp_s1)->unk16) = (u16) (*(u16 *)((s8 *)((((Objexploder_chexploder_entrypoint_1_sp30 *)sp30)->unk0)) + (0x16)));
+    (((Objexploder_chexploder_entrypoint_1_temp_s1 *)temp_s1)->unk54) = (s16) arg4;
+    (((Objexploder_chexploder_entrypoint_1_sp30 *)sp30)->unk65) = (u8) ((((Objexploder_chexploder_entrypoint_1_sp30 *)sp30)->unk65) & 0xFFFE);
     func_80108944(temp_v0, sp30);
-    func_80801188_chexploder(temp_v0, func_801039E4((*(void **)((s8 *)(sp30) + (0)))), (s32) sp30);
-    (*(u8 *)((s8 *)(temp_v0) + (0x74))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x74))) & 0xFFFD);
-    func_80103140(temp_v0, (*(u16 *)((s8 *)(temp_s1) + (0x14))), (*(u16 *)((s8 *)(temp_s1) + (0x16))));
+    func_80801188_chexploder(temp_v0, func_801039E4((((Objexploder_chexploder_entrypoint_1_sp30 *)sp30)->unk0)), (BtIntPtr) sp30);
+    (((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk74) = (u8) ((((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk74) & 0xFFFD);
+    func_80103140(temp_v0, (((Objexploder_chexploder_entrypoint_1_temp_s1 *)temp_s1)->unk14), (((Objexploder_chexploder_entrypoint_1_temp_s1 *)temp_s1)->unk16));
     func_80800A18_chexploder((Actor *) temp_v0);
     if (func_80104248(sp30) != 0) {
         func_80800AC8_chexploder(temp_v0, sp30, temp_v0 + 0x18, arg4);
     } else {
-        func_80800D7C_chexploder((Actor *) temp_v0, (s32) sp30, (f32 *) (temp_v0 + 0x18), arg4);
+        func_80800D7C_chexploder((Actor *) temp_v0, (BtIntPtr) sp30, (f32 *) (temp_v0 + 0x18), arg4);
     }
-    func_80101074((*(void **)((s8 *)(temp_v0) + (0))));
-    func_8010108C(sp30, 0x90, (*(u16 *)((s8 *)(temp_s1) + (0x14))));
-    func_80800F74_chexploder((Actor *) temp_v0, (s32) sp30);
-    func_808010E0_chexploder(temp_v0, (s32) sp30, arg4);
+    func_80101074((((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk0));
+    func_8010108C(sp30, 0x90, (((Objexploder_chexploder_entrypoint_1_temp_s1 *)temp_s1)->unk14));
+    func_80800F74_chexploder((Actor *) temp_v0, (BtIntPtr) sp30);
+    func_808010E0_chexploder(temp_v0, (BtIntPtr) sp30, arg4);
 }
 
 void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
@@ -637,14 +637,14 @@ void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s
         u8 flag74_1 : 1;
         u8 pad74_0 : 1;
     };
-    s32 func_8010108C(void *, s32, s32);
+    s32 func_8010108C(void *, s32, BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80101038(f32 *);
     s32 func_80101074(void *);
     s32 func_80103140(Actor *, u32, u16);
     u8 *func_801039E4(Unk80132ED0 *);
-    s32 func_80104248(void *);
+    void * func_80104248(void *data);
     void *func_80106790();
     Actor *func_80108474(u32, f32 *, s32);
     s32 func_80108944(u8 *, void *);
@@ -693,7 +693,7 @@ void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s
         ((struct ExploderFlags *)actor)->flag74_1 = 0;
     }
     func_80103140(actor, data->unk14, data->unk16);
-    func_80801188_chexploder((u8 *)actor, func_801039E4(actor->unk0), (s32)parent);
+    func_80801188_chexploder((u8 *)actor, func_801039E4(actor->unk0), (BtIntPtr)parent);
     func_80800A18_chexploder(actor);
     if (parent != NULL && (arg5 & 0x80) && func_80104248(parent) != 0) {
         func_80800AC8_chexploder((u8 *)actor, parent, (u8 *)origin, arg5);
@@ -704,15 +704,15 @@ void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s
         func_80101074(actor->unk0);
         func_8010108C(parent, 0x90, data->unk14);
     }
-    func_80800F74_chexploder(actor, (s32)parent);
-    func_808010E0_chexploder((u8 *)actor, (s32)parent, arg5);
+    func_80800F74_chexploder(actor, (BtIntPtr)parent);
+    func_808010E0_chexploder((u8 *)actor, (BtIntPtr)parent, arg5);
 }
 
 void chexploder_entrypoint_3(Actor *arg0, f32 *arg1, s32 arg2) {
     void func_800EE7F8(f32 *, f32 *);
     void func_80103DFC(Actor *, f32 *);
     void func_8010A570(Actor *);
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
 #ifndef BT_NATIVE
     extern s32 _chexploder_entrypoint_1;
 #endif
@@ -729,7 +729,7 @@ void chexploder_entrypoint_3(Actor *arg0, f32 *arg1, s32 arg2) {
     if (arg2 & 4) {
         func_8010A570(arg0);
     }
-    _chbaddiesetup_entrypoint_5(&_chexploder_entrypoint_1, (s32)arg0->unk0,
+    _chbaddiesetup_entrypoint_5(&_chexploder_entrypoint_1, (BtIntPtr)arg0->unk0,
         sp24.words[0], sp24.words[1], sp24.words[2], arg2);
 }
 
@@ -744,8 +744,8 @@ void chexploder_entrypoint_4(Actor *arg0, s16 *arg1, s32 arg2) {
     chexploder_entrypoint_3(arg0, sp1C, arg2);
 }
 
-void chexploder_entrypoint_5(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg4, s32 arg5) {
-    s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) chexploder_entrypoint_5(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg4, s32 arg5) {
+    s32 _chbaddiesetup_entrypoint_6(s32 *, BtIntPtr, BtIntPtr, s32, s32, s32, BtIntPtr);
     void func_8010A570(Actor *);
 #ifndef BT_NATIVE
     extern s32 _chexploder_entrypoint_2;
@@ -754,10 +754,10 @@ void chexploder_entrypoint_5(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg
         struct { s16 first, second; } half;
         s32 word;
     } sp34, sp30;
-    volatile s32 sp2C;
+    volatile BtIntPtr sp2C;
 
     if (arg0 != NULL) {
-        sp2C = (s32)arg0->unk0;
+        sp2C = (BtIntPtr)arg0->unk0;
     } else {
         sp2C = 0;
     }
@@ -768,35 +768,35 @@ void chexploder_entrypoint_5(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg
     if (arg5 & 4) {
         func_8010A570(arg0);
     }
-    _chbaddiesetup_entrypoint_6(&_chexploder_entrypoint_2, sp2C, sp34.word, sp30.word, arg3, arg4, arg5);
-}
+    BT_NATIVE_ONLY(return) _chbaddiesetup_entrypoint_6(&_chexploder_entrypoint_2, sp2C, sp34.word, sp30.word, arg3, arg4, arg5);
+}    typedef struct { s16 unk0; s16 unk2; } Objexploder_chexploder_entrypoint_6_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chexploder_entrypoint_6(Actor *arg0, f32 arg1, f32 arg2) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s16 *)((s8 *)(temp_v0) + (0))) = (s16) (s32) arg1;
-    (*(s16 *)((s8 *)(temp_v0) + (2))) = (s16) (s32) arg2;
-}
+    (((Objexploder_chexploder_entrypoint_6_temp_v0 *)temp_v0)->unk0) = (s16) (s32) arg1;
+    (((Objexploder_chexploder_entrypoint_6_temp_v0 *)temp_v0)->unk2) = (s16) (s32) arg2;
+}    typedef struct { u8 pad0[0x8]; s16 unk8; s16 unkA; } Objexploder_chexploder_entrypoint_7_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chexploder_entrypoint_7(Actor *arg0, f32 arg1, f32 arg2) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s16 *)((s8 *)(temp_v0) + (8))) = (s16) (s32) arg1;
-    (*(s16 *)((s8 *)(temp_v0) + (0xA))) = (s16) (s32) arg2;
-}
+    (((Objexploder_chexploder_entrypoint_7_temp_v0 *)temp_v0)->unk8) = (s16) (s32) arg1;
+    (((Objexploder_chexploder_entrypoint_7_temp_v0 *)temp_v0)->unkA) = (s16) (s32) arg2;
+}    typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; } Objexploder_chexploder_entrypoint_8_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chexploder_entrypoint_8(Actor *arg0, f32 arg1, f32 arg2) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s16 *)((s8 *)(temp_v0) + (4))) = (s16) (s32) arg1;
-    (*(s16 *)((s8 *)(temp_v0) + (6))) = (s16) (s32) arg2;
-}
+    (((Objexploder_chexploder_entrypoint_8_temp_v0 *)temp_v0)->unk4) = (s16) (s32) arg1;
+    (((Objexploder_chexploder_entrypoint_8_temp_v0 *)temp_v0)->unk6) = (s16) (s32) arg2;
+}    typedef struct { u8 pad0[0x18]; u8 unk18; } Objexploder_chexploder_entrypoint_9_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
     void* func_80100094(Actor*, u32);
@@ -804,8 +804,8 @@ void chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2) {
 
     temp_v0 = func_80100094(arg0, 0U);
     (*(s8 *)((s8 *)((temp_v0 + arg1)) + (0x18))) = (s8) arg2;
-    if ((s32) (*(u8 *)((s8 *)(temp_v0) + (0x18))) < arg1) {
-        (*(u8 *)((s8 *)(temp_v0) + (0x18))) = (u8) arg1;
+    if ((s32) (((Objexploder_chexploder_entrypoint_9_temp_v0 *)temp_v0)->unk18) < arg1) {
+        (((Objexploder_chexploder_entrypoint_9_temp_v0 *)temp_v0)->unk18) = (u8) arg1;
     }
 }
 
@@ -889,15 +889,15 @@ void chexploder_entrypoint_13(Actor *arg0, s32 arg1) {
 void chexploder_entrypoint_14(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
     (*(s16 *)((s8 *)(func_80100094(arg0, 0U)) + (0x10))) = (s16) arg1;
-}
+}    typedef struct { u8 pad0[0x13]; s8 unk13; u8 pad14[0x44]; f32 unk58; } Objexploder_chexploder_entrypoint_15_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chexploder_entrypoint_15(Actor *arg0, s32 arg1, f32 arg2) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s8 *)((s8 *)(temp_v0) + (0x13))) = (s8) arg1;
-    (*(f32 *)((s8 *)(temp_v0) + (0x58))) = arg2;
+    (((Objexploder_chexploder_entrypoint_15_temp_v0 *)temp_v0)->unk13) = (s8) arg1;
+    (((Objexploder_chexploder_entrypoint_15_temp_v0 *)temp_v0)->unk58) = arg2;
 }
 
 void chexploder_entrypoint_16(Actor *arg0, s32 arg1) {
@@ -909,3 +909,15 @@ void chexploder_entrypoint_16(Actor *arg0, s32 arg1) {
     temp_v0->id = arg1;
     func_80103140(arg0, temp_v0->id, temp_v0->next);
 }
+/* data_to_c.py: from asm/data/overlays/ch/exploder.data.s */
+void func_80102EC0();
+void func_801018A4 ( Actor * , BtIntPtr );
+void func_80107C2C();
+ActorData D_80801AE0_chexploder [1] BT_DATA(4, overlays_ch_exploder, 0x0) = { { 344, 511, -1, 1, 0, (void (*)(struct Actor *))func_80800014_chexploder, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_801018A4, 29999, 0, 0, 0, 0, 1056, (void (*)(struct Actor *))func_80800078_chexploder, 0, 96, 0, (void (*)(struct Actor *))func_8080000C_chexploder, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32640, 9218, (void (*)(struct Actor *, long, long))func_808000C0_chexploder, 0 } };
+struct SoundEntry D_80801B28_chexploder [12] BT_DATA(4, overlays_ch_exploder, 0x48) = { { 1184, 25000, 256, 256, 6 }, { 1045, 25000, 256, 256, 6 }, { 1046, 25000, 256, 256, 6 }, { 1047, 25000, 256, 256, 6 }, { 1577, 18000, 179, 179, 6 }, { 1047, 18000, 256, 256, 25 }, { 1473, 18000, 256, 256, 6 }, { 1473, 12000, 256, 256, 25 }, { 1113, 25000, 256, 256, 25 }, { 1688, 25000, 243, 268, 0 }, { 1300, 28000, 179, 179, 0 }, { 0, 0, 0, 0, 0 } };
+s32 D_80801BA0_chexploder[4] BT_DATA(4, overlays_ch_exploder, 0xC0) = { 2162689, 81922500, 1900574, 0 };
+s32 D_80801BB0_chexploder [10] BT_DATA(4, overlays_ch_exploder, 0xD0) = { 1903069, 1442304, 917514, 1310754, 15925516, 7536780, 1376281, 11730987, 8388761, 0 };
+s32 D_80801BD8_chexploder [3] BT_DATA(4, overlays_ch_exploder, 0xF8) = { 2088615, 1895825690, 0 };
+s32 D_80801BE4_chexploder [3] BT_DATA(4, overlays_ch_exploder, 0x104) = { 2146496, -1061158630, 0 };
+s32 D_80801BF0_chexploder [4] BT_DATA(4, overlays_ch_exploder, 0x110) = { 2113791, 1086325018, 1376281, 8388608 };
+s32 D_80801C00_chexploder [4] BT_DATA(4, overlays_ch_exploder, 0x120) = { 2113600, 1086325018, 0, 0 };

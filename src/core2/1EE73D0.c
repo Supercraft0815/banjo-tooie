@@ -10,7 +10,7 @@ typedef struct {
     u16 unk6;
 } AnimationEntry;
 
-void func_8010DAE0(s32 arg0, s32 arg1) {
+void func_8010DAE0(BtIntPtr arg0, s32 arg1) {
     typedef struct anctrl_s AnimCtrl;
     typedef enum asset_e AssetId;
     void anctrl_reset(AnimCtrl *);
@@ -66,13 +66,13 @@ void func_8010DAE0(s32 arg0, s32 arg1) {
 
 void func_8010DC50(s32 arg0) {
     void *func_80104148(s32);
-    s32 func_80104268(s32);
+    void * func_80104268(s16 *handle);
     s16 func_800AE020();
-    void func_8010DAE0(s32, s32);
+    void func_8010DAE0(BtIntPtr, s32);
     s16 *ptr;
     ptr = func_80104148(arg0);
     if (*((u8 *)ptr + 4) == 0) {
-        func_8010DAE0(func_80104268((s32)((u8 *)ptr + 2)), arg0);
+        func_8010DAE0(func_80104268((BtIntPtr)((u8 *)ptr + 2)), arg0);
         *ptr = func_800AE020();
     }
     *((u8 *)ptr + 4) = *((u8 *)ptr + 4) + 1;
@@ -80,7 +80,7 @@ void func_8010DC50(s32 arg0) {
 
 void func_8010DCB4(s32 arg0) {
     void *func_80104148(s32);
-    s32 func_801042D8(s32);
+    void func_801042D8(s16 *handle);
     void func_800ADFE0(s16);
     void func_80100E18(s16);
     s16 *ptr;
@@ -92,7 +92,7 @@ void func_8010DCB4(s32 arg0) {
     if ((s32)count > 0) {
         *((u8 *)ptr + 4) = count - 1;
         if (*((u8 *)ptr + 4) == 0) {
-            func_801042D8((s32)((u8 *)ptr + 2));
+            func_801042D8((BtIntPtr)((u8 *)ptr + 2));
             func_800ADFE0(ptr[0]);
             temp_a0 = ptr[4];
             ptr[0] = 0;
@@ -120,23 +120,23 @@ void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     typedef AnimationEntry Entry;
     extern Entry D_80124740[];
     State *state;
-    s32 control;
+    BtIntPtr control;
     Gfx **buffers;
     void *func_80104148(s32);
     s32 func_801015D0(Actor *);
-    s32 func_80104200(s16);
-    void func_8008B304(s32);
+    void * func_80104200(s16 handle);
+    void func_8008B304(BtIntPtr);
     u8 *func_800B27E0(u8 *);
     void *func_8008AEDC(void *);
-    void func_8008C200(s16, s32, s32);
+    void func_8008C200(s16, BtIntPtr, BtIntPtr);
     Gfx **func_800A7180(void);
     void *func_800AE080(s16);
     void func_800AE598(s32 *, s32 *);
-    void func_800DF72C(s32);
-    s16 func_80100D24(s32, s32, s32, s32, s32, s32);
-    s32 func_80100A74(s16, s32);
-    void func_800DF818(s32);
-    void func_800DF714(s32);
+    void func_800DF72C(BtIntPtr);
+    s16 func_80100D24(void *model,s32 asset,s32 buffers,s32 packed,s32 palette,s32 *color);
+    BtIntPtr func_80100A74(s16, s32);
+    void func_800DF818(BtIntPtr);
+    void func_800DF714(Mtx *matrices);
 
     state = func_80104148(arg1);
     func_801015D0(arg0);
@@ -145,20 +145,20 @@ void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
         if (control != 0 && state->unk0 != 0) {
             if (state->unk5 == 0) {
                 func_8008B304(control);
-                func_8008C200(state->unk0, (s32)func_800B27E0((u8 *)arg2), (s32)func_8008AEDC((void *)control));
+                func_8008C200(state->unk0, (BtIntPtr)func_800B27E0((u8 *)arg2), (BtIntPtr)func_8008AEDC((void *)control));
                 if (D_80124740[arg1].type == 2) {
                     buffers = func_800A7180();
-                    state->unk10 = (s32)((u8 *)buffers[1] + 0x40);
-                    control = (s32)func_800AE080(state->unk0);
+                    state->unk10 = (BtIntPtr)((u8 *)buffers[1] + 0x40);
+                    control = (BtIntPtr)func_800AE080(state->unk0);
                     func_800AE598((s32 *)control, (s32 *)(buffers + 1));
                 }
             }
-            control = (s32)func_800AE080(state->unk0);
+            control = (BtIntPtr)func_800AE080(state->unk0);
             func_800DF72C(control);
             switch (D_80124740[arg1].type) {
             case 1:
                 if (state->unk8 == 0) {
-                    state->unk8 = func_80100D24((s32)arg2, arg0->unk0->unk14, 2, 0, arg0->unk0->unk16, 0);
+                    state->unk8 = func_80100D24((BtIntPtr)arg2, arg0->unk0->unk14, 2, 0, arg0->unk0->unk16, 0);
                     state->unkC = arg2->unk28;
                 }
                 control = func_80100A74(state->unk8, state->unk6);
@@ -172,7 +172,7 @@ void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
         }
         state->unk5 = 1;
     }
-}
+}    typedef struct { u8 pad0[0x5]; s8 unk5; } Obj1EE73D0_func_8010DEFC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -185,28 +185,28 @@ void func_8010DEFC(void) {
     do {
         temp_v0 = func_80104148(var_s0);
         var_s0 += 1;
-        (*(s8 *)((s8 *)(temp_v0) + (5))) = 0;
+        (((Obj1EE73D0_func_8010DEFC_temp_v0 *)temp_v0)->unk5) = 0;
     } while (var_s0 != 0xB);
-}
+}    typedef struct { u8 pad0[0x2]; s16 unk2; } Obj1EE73D0_func_8010DF3C_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
 void func_8010DF3C(void) {
-    s32 func_8008ADE4(s32);
+    void func_8008ADE4(void *this);
     void *func_80104148(s32);
-    s32 func_80104200(s16);
+    void * func_80104200(s16 handle);
     s32 var_s0;
     void *temp_v0;
 
     var_s0 = 0;
     do {
         temp_v0 = func_80104148(var_s0);
-        if ((*(s16 *)((s8 *)(temp_v0) + (2))) != 0) {
-            func_8008ADE4(func_80104200((*(s16 *)((s8 *)(temp_v0) + (2)))));
+        if ((((Obj1EE73D0_func_8010DF3C_temp_v0 *)temp_v0)->unk2) != 0) {
+            func_8008ADE4(func_80104200((((Obj1EE73D0_func_8010DF3C_temp_v0 *)temp_v0)->unk2)));
         }
         var_s0 += 1;
     } while (var_s0 != 0xB);
-}
+}    typedef struct { s16 unk0; s16 unk2; u8 unk4; u8 pad5[0x3]; s16 unk8; } Obj1EE73D0_func_8010DF98_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -219,14 +219,14 @@ void func_8010DF98(void) {
     var_s0 = 0;
     do {
         temp_v0 = func_80104148(var_s0);
-        if (((*(u8 *)((s8 *)(temp_v0) + (4))) != 0) || ((*(s16 *)((s8 *)(temp_v0) + (2))) != 0) || ((*(s16 *)((s8 *)(temp_v0) + (8))) != 0)) {
-            (*(u8 *)((s8 *)(temp_v0) + (4))) = 0U;
-            (*(s16 *)((s8 *)(temp_v0) + (2))) = 0;
-            (*(s16 *)((s8 *)(temp_v0) + (8))) = 0;
+        if (((((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk4) != 0) || ((((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk2) != 0) || ((((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk8) != 0)) {
+            (((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk4) = 0U;
+            (((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk2) = 0;
+            (((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk8) = 0;
         }
-        if ((*(s16 *)((s8 *)(temp_v0) + (0))) != 0) {
-            func_800ADFE0((*(s16 *)((s8 *)(temp_v0) + (0))));
-            (*(s16 *)((s8 *)(temp_v0) + (0))) = 0;
+        if ((((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk0) != 0) {
+            func_800ADFE0((((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk0));
+            (((Obj1EE73D0_func_8010DF98_temp_v0 *)temp_v0)->unk0) = 0;
         }
         var_s0 += 1;
     } while (var_s0 != 0xB);

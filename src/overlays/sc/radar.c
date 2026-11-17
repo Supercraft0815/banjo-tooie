@@ -87,8 +87,8 @@ void func_8080074C_scradar(void *arg0, u8 arg1, u8 arg2, u8 arg3) {
 
 s32 func_80800768_scradar(s32 arg0) {
     s32 func_8009E674(struct player_state_s *, s32);
-    struct player_state_s *func_800F53D0(s32);
-    s32 func_800F5410(s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
+    s32 func_800F5410(BtIntPtr);
 
     switch (func_800F5410(arg0)) {
     case 0xC:
@@ -110,7 +110,7 @@ void func_808007D4_scradar(void *arg0, f32 *arg1, f32 arg2) {
     f32 func_80013B70(f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F0DC0(f32, f32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     f32 sqrtf(f32);
     s32 player;
     f32 pos[3];
@@ -146,16 +146,16 @@ void func_808007D4_scradar(void *arg0, f32 *arg1, f32 arg2) {
 }
 
 void scradar_entrypoint_0(void) {
-    u8 _gcstatusDll_entrypoint_16(s32 arg0);
+    u8 _gcstatusDll_entrypoint_16(BtIntPtr arg0);
     s32 func_80092258(void *arg0);
     void func_800A8A04(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4);
     s32 func_800A940C(s32 arg0);
     s32 func_800A9420(s32 arg0);
     s32 func_800A946C(void);
-    struct player_state_s *func_800F53D0(s32 arg0);
-    void func_800F5A00(s32, f32 *);
-    f32 func_800F5F24(u32 arg0);
-    s32 func_800F6438(u32 arg0);
+    struct player_state_s *func_800F53D0(BtIntPtr arg0);
+    void func_800F5A00(BtIntPtr, f32 *);
+    f32 func_800F5F24(BtUIntPtr arg0);
+    s32 func_800F6438(BtUIntPtr arg0);
     extern struct Radar B_80800E50_scradar[];
     extern s16 D_80800E30_scradar[];
     extern u8 D_80800E3C_scradar[][2];
@@ -258,20 +258,20 @@ void scradar_entrypoint_0(void) {
 }
 
 void scradar_entrypoint_1(Gfx **arg0) {
-    s32 func_800A7180(void);
+    Gfx **func_800A7180(void);
     s32 func_800A946C(void);
     void func_800B9990(Gfx **);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     void func_800E2434(s32);
     void func_800E253C(f32);
     void func_800E257C(s32);
-    s32 func_800E30E0(s32, s32, s32, void *);
+    void func_800E30E0(BtIntPtr arg0, void *arg1, s32 arg2, void *arg3);
     extern struct Radar B_80800E50_scradar[];
     Gfx *gfx;
     struct Radar *entry;
     struct Radar *entry2;
     s16 n;
-    s32 buffers;
+    BtIntPtr buffers;
     s32 count;
     s32 j;
     s32 i;
@@ -303,3 +303,12 @@ void scradar_entrypoint_1(Gfx **arg0) {
     gDPPipeSync((*arg0)++);
     gDPSetCycleType((*arg0)++, G_CYC_2CYCLE);
 }
+/* data_to_c.py: from asm/data/overlays/sc/radar.data.s */
+s16 D_80800E30_scradar [6] BT_DATA(4, overlays_sc_radar, 0x0) = { 2945, 2945, 2945, 2945, 2948, 2947 };
+u8 D_80800E3C_scradar [10] [ 2 ] BT_DATA(4, overlays_sc_radar, 0xC) = { { 0x40, 0x60 }, { 0x40, 0x60 }, { 0x40, 0x60 }, { 0x40, 0x60 }, { 0x60, 0x80 }, { 0x70, 0x90 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+struct Radar B_80800E50_scradar [ 4 ] BT_DATA(16, bss_sc_radar, 0x0);
+#endif

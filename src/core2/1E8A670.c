@@ -1,11 +1,11 @@
 #include "common.h"
 
-s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, s32 arg6, f32 *arg7, f32 *arg8) {
+s32 func_800B0D80(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5, BtIntPtr arg6, f32 *arg7, f32 *arg8) {
     void func_80019224(f32 *, f32 *);
     void func_80019750(f32 *, f32 *, f32, f32 *);
-    void func_80019AA0(void *, s32);
-    s32 func_80019CD4(void);
-    s32 func_800ADE2C(s32, s32);
+    void func_80019AA0(void *, BtIntPtr);
+    void * func_80019CD4(void);
+    BtIntPtr func_800ADE2C(BtIntPtr, s32);
     void func_800EE88C(f32 *, s16 *);
     f32 func_800EEAD4(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -47,7 +47,7 @@ s32 func_800B0ECC(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5
     void func_800193C4(f32 *, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
     void func_80019A10(f32 *, f32 *);
-    s32 func_80019CD4(void);
+    void * func_80019CD4(void);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF334(f32 *, f32);
     f32 radius;
@@ -97,7 +97,7 @@ s32 func_800B1110(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5
     void func_800193C4(f32 *, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
     void func_80019924(f32 *, f32 *);
-    s32 func_80019CD4(void);
+    void * func_80019CD4(void);
     void func_800EE88C(f32 *, s16 *);
     f32 totalRadius;
     f32 center[3];
@@ -146,7 +146,7 @@ s32 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5
 {
   void func_800193C4(f32 *, f32 *);
   void func_8001980C(f32 *, f32 *, f32, f32 *);
-  s32 func_80019CD4(void);
+  void * func_80019CD4(void);
   f32 sqrtf(f32);
   extern s16 D_80127EE0;
   f32 distance;
@@ -195,13 +195,13 @@ s32 func_800B1328(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, f32 *arg5
   }
 
   return 0;
-}
+}    typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1E8A670_func_800B1508_sp9C; /* offsets.py genstruct: fields from raw offsets on sp9C; rename once understood */ typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1E8A670_func_800B1508_sp78; /* offsets.py genstruct: fields from raw offsets on sp78; rename once understood */ typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1E8A670_func_800B1508_sp60; /* offsets.py genstruct: fields from raw offsets on sp60; rename once understood */ typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1E8A670_func_800B1508_sp54; /* offsets.py genstruct: fields from raw offsets on sp54; rename once understood */ typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1E8A670_func_800B1508_sp6C; /* offsets.py genstruct: fields from raw offsets on sp6C; rename once understood */ typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1E8A670_func_800B1508_sp84; /* offsets.py genstruct: fields from raw offsets on sp84; rename once understood */ typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1E8A670_func_800B1508_spA8; /* offsets.py genstruct: fields from raw offsets on spA8; rename once understood */
 
-s32 func_800B1508(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+s32 func_800B1508(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, s32 arg8) {
     void func_80019480(f32 *, f32, f32, f32);
     void func_80019994(f32 *, f32 *);
-    void func_80019AA0(void *, s32);
-    s32 func_800ADE2C(s32, s32);
+    void func_80019AA0(void *, BtIntPtr);
+    BtIntPtr func_800ADE2C(BtIntPtr, s32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF2A0(f32 *);
     void func_800EF334(f32 *, f32);
@@ -249,29 +249,29 @@ s32 func_800B1508(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5,
             func_800EFB24(normal.v, spA8, sp90);
             func_800EF2A0(normal.v);
             func_800EFB24(sp9C, arg6, spA8);
-            if (!(arg7 <= ((*(f32 *)((s8 *)sp9C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp9C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp9C + 8)) * (0, normal.n.z)))) {
+            if (!(arg7 <= ((((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk0) * normal.n.x + (((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk4) * normal.n.y + (((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk8) * (0, normal.n.z)))) {
                 func_800EFB24(sp84, arg6, sp90);
-                if (!(arg7 <= -((*(f32 *)((s8 *)sp84 + 0)) * normal.n.x + (*(f32 *)((s8 *)sp84 + 4)) * normal.n.y + (*(f32 *)((s8 *)sp84 + 8)) * (0, normal.n.z)))) {
+                if (!(arg7 <= -((((Obj1E8A670_func_800B1508_sp84 *)sp84)->unk0) * normal.n.x + (((Obj1E8A670_func_800B1508_sp84 *)sp84)->unk4) * normal.n.y + (((Obj1E8A670_func_800B1508_sp84 *)sp84)->unk8) * (0, normal.n.z)))) {
                     func_80019480(sp78, spD4[0], spE0[1], spE0[2]);
                     func_800EFB24(normal.v, spA8, sp78);
                     func_800EF2A0(normal.v);
-                    if (!(arg7 <= ((*(f32 *)((s8 *)sp9C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp9C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp9C + 8)) * (0, normal.n.z)))) {
+                    if (!(arg7 <= ((((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk0) * normal.n.x + (((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk4) * normal.n.y + (((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk8) * (0, normal.n.z)))) {
                         if (1) {}
-                        (*(f32 *)((s8 *)sp6C + 0)) = (*(f32 *)((s8 *)arg6 + 0)) - (*(f32 *)((s8 *)sp78 + 0));
-                        (*(f32 *)((s8 *)sp6C + 4)) = (*(f32 *)((s8 *)arg6 + 4)) - (*(f32 *)((s8 *)sp78 + 4));
-                        (*(f32 *)((s8 *)sp6C + 8)) = (*(f32 *)((s8 *)arg6 + 8)) - (*(f32 *)((s8 *)sp78 + 8));
-                        if (!(arg7 <= -((*(f32 *)((s8 *)sp6C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp6C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp6C + 8)) * (0, normal.n.z)))) {
+                        (((Obj1E8A670_func_800B1508_sp6C *)sp6C)->unk0) = (((Vec3f *)arg6)->pos.x) - (((Obj1E8A670_func_800B1508_sp78 *)sp78)->unk0);
+                        (((Obj1E8A670_func_800B1508_sp6C *)sp6C)->unk4) = (((Vec3f *)arg6)->pos.y) - (((Obj1E8A670_func_800B1508_sp78 *)sp78)->unk4);
+                        (((Obj1E8A670_func_800B1508_sp6C *)sp6C)->unk8) = (((Vec3f *)arg6)->pos.z) - (((Obj1E8A670_func_800B1508_sp78 *)sp78)->unk8);
+                        if (!(arg7 <= -((((Obj1E8A670_func_800B1508_sp6C *)sp6C)->unk0) * normal.n.x + (((Obj1E8A670_func_800B1508_sp6C *)sp6C)->unk4) * normal.n.y + (((Obj1E8A670_func_800B1508_sp6C *)sp6C)->unk8) * (0, normal.n.z)))) {
                             func_80019480(sp60, spE0[0], spD4[1], spE0[2]);
-                            normal.n.x = (*(f32 *)((s8 *)spA8 + 0)) - (*(f32 *)((s8 *)sp60 + 0));
-                            normal.n.y = (*(f32 *)((s8 *)spA8 + 4)) - (*(f32 *)((s8 *)sp60 + 4));
-                            normal.n.z = (*(f32 *)((s8 *)spA8 + 8)) - (*(f32 *)((s8 *)sp60 + 8));
+                            normal.n.x = (((Obj1E8A670_func_800B1508_spA8 *)spA8)->unk0) - (((Obj1E8A670_func_800B1508_sp60 *)sp60)->unk0);
+                            normal.n.y = (((Obj1E8A670_func_800B1508_spA8 *)spA8)->unk4) - (((Obj1E8A670_func_800B1508_sp60 *)sp60)->unk4);
+                            normal.n.z = (((Obj1E8A670_func_800B1508_spA8 *)spA8)->unk8) - (((Obj1E8A670_func_800B1508_sp60 *)sp60)->unk8);
                             func_800EF2A0(normal.v);
-                            if (!(arg7 <= ((*(f32 *)((s8 *)sp9C + 0)) * normal.n.x + (*(f32 *)((s8 *)sp9C + 4)) * normal.n.y + (*(f32 *)((s8 *)sp9C + 8)) * (0, normal.n.z)))) {
+                            if (!(arg7 <= ((((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk0) * normal.n.x + (((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk4) * normal.n.y + (((Obj1E8A670_func_800B1508_sp9C *)sp9C)->unk8) * (0, normal.n.z)))) {
                                 if (1) {}
-                                (*(f32 *)((s8 *)sp54 + 0)) = (*(f32 *)((s8 *)arg6 + 0)) - (*(f32 *)((s8 *)sp60 + 0));
-                                (*(f32 *)((s8 *)sp54 + 4)) = (*(f32 *)((s8 *)arg6 + 4)) - (*(f32 *)((s8 *)sp60 + 4));
-                                (*(f32 *)((s8 *)sp54 + 8)) = (*(f32 *)((s8 *)arg6 + 8)) - (*(f32 *)((s8 *)sp60 + 8));
-                                if (!(arg7 <= -((*(f32 *)((s8 *)sp54 + 0)) * normal.n.x + (*(f32 *)((s8 *)sp54 + 4)) * normal.n.y + (*(f32 *)((s8 *)sp54 + 8)) * (0, normal.n.z)))) {
+                                (((Obj1E8A670_func_800B1508_sp54 *)sp54)->unk0) = (((Vec3f *)arg6)->pos.x) - (((Obj1E8A670_func_800B1508_sp60 *)sp60)->unk0);
+                                (((Obj1E8A670_func_800B1508_sp54 *)sp54)->unk4) = (((Vec3f *)arg6)->pos.y) - (((Obj1E8A670_func_800B1508_sp60 *)sp60)->unk4);
+                                (((Obj1E8A670_func_800B1508_sp54 *)sp54)->unk8) = (((Vec3f *)arg6)->pos.z) - (((Obj1E8A670_func_800B1508_sp60 *)sp60)->unk8);
+                                if (!(arg7 <= -((((Obj1E8A670_func_800B1508_sp54 *)sp54)->unk0) * normal.n.x + (((Obj1E8A670_func_800B1508_sp54 *)sp54)->unk4) * normal.n.y + (((Obj1E8A670_func_800B1508_sp54 *)sp54)->unk8) * (0, normal.n.z)))) {
                                     return entry[0x15];
                                 }
                             }
@@ -286,11 +286,11 @@ s32 func_800B1508(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5,
     return 0;
 }
 
-s32 func_800B196C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+s32 func_800B196C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, s32 arg8) {
     void func_80019480(f32 *, f32, f32, f32);
     void func_800198D4(f32 *, f32 *);
-    void func_80019AA0(void *, s32);
-    s32 func_800ADE2C(s32, s32);
+    void func_80019AA0(void *, BtIntPtr);
+    BtIntPtr func_800ADE2C(BtIntPtr, s32);
     void func_800EF2A0(f32 *);
     void func_800EF3DC(f32 *, f32 *);
     void func_800EFB24(void *, void *, void *);
@@ -310,7 +310,7 @@ s32 func_800B196C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5,
 
     entry = *(s16 *)arg0 * 0x18 + arg0 + 8;
     limit = *(s16 *)(arg0 + 2) * 0x10 + entry;
-    while ((u32)entry < (u32)limit) {
+    while ((BtUIntPtr)entry < (BtUIntPtr)limit) {
         index = entry[0xD] - 1;
         if (!((1 << index) & arg8)) {
             position[0] = *(s16 *)(entry + 4);
@@ -352,12 +352,12 @@ rejected:
     return 0;
 }
 
-s32 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, s32 arg8) {
+s32 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, s32 arg8) {
     void func_80019224(f32 *, f32 *);
     void func_800193C4(f32 *, f32 *);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
-    s32 func_80019CD4(void);
-    s32 func_800ADE2C(s32, s32);
+    void * func_80019CD4(void);
+    BtIntPtr func_800ADE2C(BtIntPtr, s32);
     void func_800EE88C(f32 *, s16 *);
     f32 func_800EEB40(f32 *, f32 *);
     f32 func_800EEFD4(f32 *);
@@ -409,6 +409,13 @@ s32 func_800B1D3C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5,
     return 0;
 }
 
-s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, s32 arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9) { void func_80019750(f32 *, f32 *, f32, f32 *); s32 func_80019CD4(void); s32 func_800B1508(u8 *, f32 *, f32 *, f32, f32 *, s32, f32 *, f32, s32); void func_800EFA4C(f32 *, f32, f32, f32); void mlMtxGet(void *); extern s32 D_80127EA0; s32 result; f32 **translation = &arg1; f32 **rotation = &arg2; if (arg5 != 0) { func_80019CD4(); func_80019750(*translation, *rotation, arg3, arg4); mlMtxGet(&D_80127EA0); result = func_800B1D3C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); if (result == 0) { result = func_800B1508(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } if (result == 0) { result = func_800B196C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } } else { result = func_800B1328(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); if (result == 0) { result = func_800B0ECC(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } if (result == 0) { result = func_800B1110(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } } if (result != 0) { func_800EFA4C(arg8, 0.0f, 1.0f, 0.0f); } return result; }
+s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9) { void func_80019750(f32 *, f32 *, f32, f32 *); void * func_80019CD4(void); s32 func_800B1508(u8 *, f32 *, f32 *, f32, f32 *, BtIntPtr, f32 *, f32, s32); void func_800EFA4C(f32 *, f32, f32, f32); void mlMtxGet(void *); extern s32 D_80127EA0; s32 result; f32 **translation = &arg1; f32 **rotation = &arg2; if (arg5 != 0) { func_80019CD4(); func_80019750(*translation, *rotation, arg3, arg4); mlMtxGet(&D_80127EA0); result = func_800B1D3C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); if (result == 0) { result = func_800B1508(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } if (result == 0) { result = func_800B196C(arg0, *translation, *rotation, arg3, arg4, arg5, arg6, arg7, arg9); } } else { result = func_800B1328(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); if (result == 0) { result = func_800B0ECC(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } if (result == 0) { result = func_800B1110(arg0, *translation, *rotation, arg3, arg4, arg6, arg7, arg9); } } if (result != 0) { func_800EFA4C(arg8, 0.0f, 1.0f, 0.0f); } return result; }
 
 #include "1E8A670_vertices.inc"
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80127EA0 BT_DATA(4, bss_core2bss1_0_2, 0x700);
+s16 D_80127EE0 BT_DATA(4, bss_core2bss1_0_2, 0x740);
+#endif

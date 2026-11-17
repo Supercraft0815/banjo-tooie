@@ -2,26 +2,26 @@
 
 OSThread *chstonepillar_entrypoint_0(void)
 {
-    extern u8 D_808013F0_chstonepillar[];
+    extern ActorData D_808013F0_chstonepillar[];
 
     return (OSThread *) D_808013F0_chstonepillar;
 }
 
 OSThread *chstonepillar_entrypoint_1(void)
 {
-    extern u8 D_80801438_chstonepillar[];
+    extern ActorData D_80801438_chstonepillar[];
 
     return (OSThread *) D_80801438_chstonepillar;
 }
 
 void func_80800018_chstonepillar(Actor *arg0)
 {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, s16, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(u32);
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     s32 func_80800474_chstonepillar(Actor *);
@@ -89,7 +89,7 @@ void func_80800018_chstonepillar(Actor *arg0)
     }
 }
 
-void func_808001FC_chstonepillar(Actor *arg0)
+void func_808001FC_chstonepillar(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3))
 {
     void func_80800EE0_chstonepillar(Actor *);
     _subaddiefade_entrypoint_14();
@@ -98,11 +98,11 @@ void func_808001FC_chstonepillar(Actor *arg0)
 void func_80800224_chstonepillar(Actor *arg0) {
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80800C10_chstonepillar(f32 *);
-    void func_80800DA4_chstonepillar(s32);
+    void func_80800DA4_chstonepillar(BtIntPtr);
     void func_80800E30_chstonepillar(Actor *);
     void func_80800FE0_chstonepillar(Actor *);
     s32 func_8080112C_chstonepillar(Actor *);
@@ -126,7 +126,7 @@ void func_80800224_chstonepillar(Actor *arg0) {
                         func_80800E30_chstonepillar(arg0);
                     }
                 } else {
-                    func_80800DA4_chstonepillar((s32)arg0);
+                    func_80800DA4_chstonepillar((BtIntPtr)arg0);
                 }
             }
         }
@@ -174,7 +174,7 @@ void func_808003F4_chstonepillar(Actor *arg0, s32 arg1) {
     void func_800DF744(s32, s32);
     void *func_80100094(Actor *, u32);
     s32 func_801015D0(Actor *);
-    void func_80101808(Actor *, s32 (*)(Actor *));
+    s32 func_80101808(Actor* arg0, void (*arg1)(Actor*));
     s32 var_s0;
 
     for (var_s0 = 0; var_s0 != 5; var_s0++) {
@@ -259,7 +259,7 @@ void func_808005B4_chstonepillar(Actor *arg0, s32 arg1, f32 *arg2) {
 }
 
 void func_808006AC_chstonepillar(Unk80132ED0 **arg0) {
-    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, s16, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800DA298(s32);
     s32 func_800DA564(s32, s32);
     extern s16 D_80801480_chstonepillar[];
@@ -272,7 +272,7 @@ void func_80800704_chstonepillar(Actor *arg0) {
     s32 func_800D0B68(u32, u32);
     void func_800D1254(u32, u32, f32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800DA564(s32, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -333,7 +333,7 @@ s32 func_80800870_chstonepillar(Actor *arg0) {
     f32 func_800F1DF4(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_8080148C_chstonepillar;
+    extern s32 D_8080148C_chstonepillar[3];
     struct PillarData {
         f32 position[3];
         f32 destination[3];
@@ -358,7 +358,7 @@ s32 func_80800870_chstonepillar(Actor *arg0) {
             data->speed *= 0.08f;
             func_800D1254(8, 1, position);
             data->bounced = 1;
-            func_8010D930(3, 0, position, &D_8080148C_chstonepillar);
+            func_8010D930(3, 0, position, D_8080148C_chstonepillar);
             return 1;
         } else {
             acceleration = data->velocity;
@@ -378,7 +378,7 @@ s32 func_80800870_chstonepillar(Actor *arg0) {
             if (position[1] < data->destination[1]) {
                 position[1] = data->destination[1];
                 data->velocity *= -0.6f;
-                func_8010D930(3, 0, position, &D_8080148C_chstonepillar);
+                func_8010D930(3, 0, position, D_8080148C_chstonepillar);
                 if (data->velocity < 2.0f * acceleration) {
                     func_800D1254(8, 1, position);
                     return 0;
@@ -393,8 +393,8 @@ s32 func_80800870_chstonepillar(Actor *arg0) {
 void func_80800ADC_chstonepillar(Actor *arg0, s32 arg1) {
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(u32);
-    s32 func_800DA524(s32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA524(s32 index);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     s16 *sp1C;
@@ -412,7 +412,7 @@ void func_80800ADC_chstonepillar(Actor *arg0, s32 arg1) {
 
 s32 func_80800B58_chstonepillar(Actor *arg0) {
     s32 *_fxgenlist_entrypoint_0(void);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800D1218(u32, u32, f32 *);
     void func_800D1254(u32, u32, f32 *);
     void *func_80100094(Actor *, u32);
@@ -430,15 +430,15 @@ s32 func_80800B58_chstonepillar(Actor *arg0) {
 }
 
 void func_80800BDC_chstonepillar(f32 *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_80801498_chstonepillar;
-    func_800BBCB8(arg0, 0, 1.0f, 1, &D_80801498_chstonepillar);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_80801498_chstonepillar[8];
+    func_800BBCB8(arg0, 0, 1.0f, 1, D_80801498_chstonepillar);
 }
 
 void func_80800C10_chstonepillar(f32 *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_808014B8_chstonepillar;
-    func_800BBCB8(arg0, arg0, 1.0f, 3, &D_808014B8_chstonepillar);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_808014B8_chstonepillar[14];
+    func_800BBCB8(arg0, arg0, 1.0f, 3, D_808014B8_chstonepillar);
 }
 
 void func_80800C44_chstonepillar(Actor *arg0) {
@@ -462,9 +462,9 @@ void func_80800CC8_chstonepillar(Actor *arg0, s32 arg1) {
     void func_800CE8D8(s32, f32, s32);
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    void func_800DA544(s32 index);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     int func_80800DD8_chstonepillar(Actor *);
     void func_808011CC_chstonepillar(Actor *, u32, f32, f32);
@@ -487,9 +487,9 @@ void func_80800CC8_chstonepillar(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800DA4_chstonepillar(s32 arg0) {
+void func_80800DA4_chstonepillar(BtIntPtr arg0) {
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     if (func_800DA298(0x9D8) == 0) {
         func_800DA544(0x9D8);
     }
@@ -514,12 +514,12 @@ int func_80800DD8_chstonepillar(Actor *arg0) {
 
 void func_80800E30_chstonepillar(Actor *arg0) {
     void _glcutDll_entrypoint_6(u32, u32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
-    s32 func_800DA7A8(s32, s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F6CC8(s32);
-    s32 func_800F7F98(s32, u32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6CC8(BtIntPtr);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     u8 *sp1C;
 
@@ -577,10 +577,10 @@ void func_80800FE0_chstonepillar(Actor *arg0) {
     s32 func_800CEAD0(s32);
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     void func_800FC660(u32);
-    void func_808010CC_chstonepillar(s32);
+    void func_808010CC_chstonepillar(BtIntPtr);
     s32 func_8080112C_chstonepillar(Actor *);
     void func_80801174_chstonepillar(Actor *);
 
@@ -596,7 +596,7 @@ void func_80800FE0_chstonepillar(Actor *arg0) {
             }
         }
         if (func_800D0B68(8, 1) == 0) {
-            func_808010CC_chstonepillar((s32)arg0);
+            func_808010CC_chstonepillar((BtIntPtr)arg0);
             func_800FC660(0x17);
         }
     }
@@ -604,16 +604,16 @@ void func_80800FE0_chstonepillar(Actor *arg0) {
 
 /* extern */
 
-void func_808010CC_chstonepillar(s32 arg0) {
+void func_808010CC_chstonepillar(BtIntPtr arg0) {
     void _glcutDll_entrypoint_6(u32, u32);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
-    u32 func_800F54E4(void);
-    s32 func_800F6CC8(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6CC8(BtIntPtr);
     if ((func_800DA298(0x9D9) == 0) && (func_800EA05C() != 0xB9) && (func_800F6CC8(func_800F54E4()) == 0)) {
         _glcutDll_entrypoint_6(0xB9, 0xB);
     }
-}
+}    typedef struct { u8 pad0[0x2C]; s16 unk2C; } Objstonepillar_func_8080112C_chstonepillar_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
@@ -623,7 +623,7 @@ s32 func_8080112C_chstonepillar(Actor *arg0) {
     u8 *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
-    if (func_800DA564(0x9CD, 3) == (*(s16 *)((s8 *)(sp1C) + (0x2C)))) {
+    if (func_800DA564(0x9CD, 3) == (((Objstonepillar_func_8080112C_chstonepillar_sp1C *)sp1C)->unk2C)) {
         return 1;
     }
     return 0;
@@ -632,8 +632,8 @@ s32 func_8080112C_chstonepillar(Actor *arg0) {
 /* extern */
 
 void func_80801174_chstonepillar(Actor *arg0) {
-    s32 func_800DA524(s32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA524(s32 index);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     void func_80101FDC(Actor *, u32);
     func_800DA7A8(0x9CD, 0, 3);
     func_800DA7A8(0x9CD, 0, 3);
@@ -699,11 +699,23 @@ s32 func_80801238_chstonepillar(Actor *arg0) {
 void func_80801374_chstonepillar(Actor *arg0, s32 arg1)
 {
   s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-  extern u32 D_808014F0_chstonepillar;
+  extern u32 D_808014F0_chstonepillar[4];
   u32 temp_a2;
   temp_a2 = arg1 == ((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFF) >> 0xA);
   if ((temp_a2 != 0) || ((temp_a2 == 0) && (arg0->unk5F != 0)))
   {
-    _subaddieaudioloop_entrypoint_4(arg0, NULL, temp_a2, &D_808014F0_chstonepillar);
+    _subaddieaudioloop_entrypoint_4(arg0, NULL, temp_a2, D_808014F0_chstonepillar);
   }
 }
+/* data_to_c.py: from asm/data/overlays/ch/stonepillar.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+ActorData D_808013F0_chstonepillar [1] BT_DATA(4, overlays_ch_stonepillar, 0x0) = { { 415, 302, 1609, 1, 0, (void (*)(struct Actor *))func_80800018_chstonepillar, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808003F4_chstonepillar, 0, 0, 0, 0, 0, 3074, 0, 0, 60, 0, (void (*)(struct Actor *))func_80800520_chstonepillar, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8194, (void (*)(struct Actor *, long, long))func_8080031C_chstonepillar, 0 } };
+ActorData D_80801438_chstonepillar [1] BT_DATA(4, overlays_ch_stonepillar, 0x48) = { { 416, 303, 1610, 1, 0, (void (*)(struct Actor *))func_80800224_chstonepillar, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, 0, (BtIntPtr)func_80108ED0, 60, 0, (void (*)(struct Actor *))func_808001FC_chstonepillar, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 8192, (void (*)(struct Actor *, long, long))func_80800390_chstonepillar, 0 } };
+s16 D_80801480_chstonepillar [6] BT_DATA(4, overlays_ch_stonepillar, 0x90) = { 4, 6, 8, 10, 0, 0 };
+s32 D_8080148C_chstonepillar[3] BT_DATA(4, overlays_ch_stonepillar, 0x9C) = { 1246185, 1459792, 131072 };
+s32 D_80801498_chstonepillar[8] BT_DATA(4, overlays_ch_stonepillar, 0xA8) = { 1903049, 1376294, 13369368, 0, 234884608, 2294016, 2818304, 16777216 };
+s32 D_808014B8_chstonepillar[14] BT_DATA(4, overlays_ch_stonepillar, 0xC8) = { 1903049, 2293952, 2125412, 1354760213, 2490572, 1572864, 3584, 234881067, 4980864, 721076, 13107200, 45, 11469050, 0 };
+u32 D_808014F0_chstonepillar[4] BT_DATA(4, overlays_ch_stonepillar, 0x100) = { 0x1304A9, 0x167D00, 0x140000, 0 };

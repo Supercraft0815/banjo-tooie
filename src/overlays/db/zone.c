@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_zones.h"
 #include <math.h>
 void func_800EE940(s16 *,f32 *);
@@ -89,7 +89,7 @@ void dbzone_entrypoint_1(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3) {
 
 /* extern */
 
-void dbzone_entrypoint_2(s16 arg0[][7], f32 *arg1, s32 arg2) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) dbzone_entrypoint_2(s16 arg0[][7], f32 *arg1, s32 arg2) {
     void func_800EE940(s16 dst[3], f32 src[3]);
     int func_8080010C_dbzone(s16 *, s16 *);
     s16 sp1C[6];
@@ -98,7 +98,7 @@ void dbzone_entrypoint_2(s16 arg0[][7], f32 *arg1, s32 arg2) {
     func_800EE940(sp1C, arg1);
     temp = arg0;
     temp += arg2;
-    func_8080010C_dbzone(temp[0] + 1, sp1C);
+    BT_NATIVE_ONLY(return) func_8080010C_dbzone(temp[0] + 1, sp1C);
 }
 
 /* extern */

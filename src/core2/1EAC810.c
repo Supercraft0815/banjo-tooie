@@ -21,7 +21,7 @@ s32 func_800D2F20(void) {
     return func_800BDC5C() * 4;
 }
 
-s32 func_800D2F44(s32 arg0, s32 *arg1, s32 arg2, f32 *arg3) {
+s32 func_800D2F44(BtIntPtr arg0, s32 *arg1, s32 arg2, f32 *arg3) {
     s32 func_800E3D0C(f32 *, f32 *);
     f32 func_800E42C0(void);
     extern f32 D_80125B00;
@@ -48,15 +48,15 @@ s32 func_800D2F44(s32 arg0, s32 *arg1, s32 arg2, f32 *arg3) {
     return func_800E3D0C(min, max);
 }
 
-s32 func_800D3104(s32 arg0, s32 *arg1) {
+s32 func_800D3104(BtIntPtr arg0, s32 *arg1) {
     int func_800BCC58(void);
     void func_800BD64C(s32 *, f32 *);
     s32 func_800BDC5C(void);
-    void func_800E3958(s32);
+    void func_800E3958(BtIntPtr);
     void func_800E3980(f32 *);
     f32 func_800E42C0(void);
     s32 func_800E9DCC(s16 *);
-    void func_800EB5E0(s32, s32);
+    void func_800EB5E0(BtIntPtr, BtIntPtr);
     void func_800EB800(void);
     void func_800EFA88(void *, s32, s32, s32);
     void func_800EFB58(void *, void *, void *);
@@ -71,14 +71,14 @@ s32 func_800D3104(s32 arg0, s32 *arg1) {
     s32 max[3];
     f32 largest;
     register f32 value;
-    s32 cell;
+    BtIntPtr cell;
     s32 size;
     s32 x, y, z;
     s32 coord[3];
 
     func_800EB800();
     func_800E3980(pos);
-    func_800E3958((s32)dir);
+    func_800E3958((BtIntPtr)dir);
     func_800BD64C(center, pos);
     func_800EFB58(center, center, arg1 + 1);
     func_800EFD3C(min);
@@ -97,7 +97,7 @@ s32 func_800D3104(s32 arg0, s32 *arg1) {
         if (dir[axis] < 0.0f) {
             max[axis] = center[axis];
         } else {
-            cell = (s32)((f32 *)(&dir + 1) - 2);
+            cell = (BtIntPtr)((f32 *)(&dir + 1) - 2);
             if ((f32 *)cell == &dir[axis]) {
                 min[axis] = func_800F0E28(0, center[axis] - 1);
             } else {
@@ -113,7 +113,7 @@ s32 func_800D3104(s32 arg0, s32 *arg1) {
             max[axis] = (s32)((f32)center[axis] + func_800E42C0() * 4.0f);
         }
     }
-    func_800EB5E0((s32)(arg1 + 13), arg0);
+    func_800EB5E0((BtIntPtr)(arg1 + 13), arg0);
     size = func_800BDC5C();
     for (x = min[0]; x <= max[0]; x++) {
         for (y = min[1]; y <= max[1]; y++) {
@@ -127,7 +127,7 @@ s32 func_800D3104(s32 arg0, s32 *arg1) {
                 }
             }
         }
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800D34A0(void) {
@@ -153,7 +153,7 @@ void func_800D34A0(void) {
 }
 
 s16 *func_800D3524(s32 arg0) {
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
 
     if (D_8011B560[arg0].value == 0) {
         D_8011B560[arg0].value = func_800D674C(D_8011B560[arg0].id);
@@ -229,18 +229,24 @@ int func_800D36C4(s32 arg0, s32 arg1) {
         return func_800D3574(arg0);
     }
     return (*(u8 *)((s8 *)(func_800B0D6C(temp_v0, sp18)) + (2)));
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1EAC810_func_800D3724_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 s32 func_800D3724(s32 arg0) {
-    s32 func_800D6C34(s16);
+    s32 func_800D6C34(s32 arg0);
     s32 var_v1;
     u8 *temp_v0;
 
     temp_v0 = (u8 *)D_8011B560 + arg0 * 8;
-    if ((*(s32 *)((s8 *)temp_v0 + 4)) != 0) {
+    if ((((Obj1EAC810_func_800D3724_temp_v0 *)temp_v0)->unk4) != 0) {
         var_v1 = func_800D6C34(*(s16 *)(temp_v0 + 0));
     } else {
         var_v1 = 1;
     }
     return var_v1;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s8 D_8012B370 [ 128 ] BT_DATA(4, bss_core2bss1_2, 0xE0);
+#endif

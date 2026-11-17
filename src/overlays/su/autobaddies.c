@@ -3,8 +3,8 @@
 void suautobaddies_entrypoint_0(void) {
     u32 _chbaddiesetup_entrypoint_0(u32 *);
     s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
-    s32 _gcsectionDll_entrypoint_2(s32);
-    s32 _gcsectionDll_entrypoint_3(s32, s32);
+    BtIntPtr _gcsectionDll_entrypoint_2(s32);
+    s32 _gcsectionDll_entrypoint_3(BtIntPtr, s32);
     u32 func_800A9CD0(void);
     s32 func_800EA05C();
     void func_80800104_suautobaddies(void);
@@ -35,14 +35,14 @@ void suautobaddies_entrypoint_0(void) {
 /* extern */
 
 void suautobaddies_entrypoint_1(void) {
-    s32 _glcutDll_entrypoint_18();
-    s32 func_8010108C(s32, s32, s32);
-    s32 func_801067C4(s32 *);
-    s32 func_8010682C(s32 *);
+    s16 _glcutDll_entrypoint_18(void);
+    s32 func_8010108C(BtIntPtr, s32, BtIntPtr);
+    BtIntPtr func_801067C4(s32 *);
+    BtIntPtr func_8010682C(s32 *);
     s32 sp28;
     s32 temp_s0;
-    s32 temp_v0_2;
-    s32 var_a0;
+    BtIntPtr temp_v0_2;
+    BtIntPtr var_a0;
 
     temp_s0 = _glcutDll_entrypoint_18();
     var_a0 = func_801067C4((&sp28) - 1);
@@ -61,7 +61,7 @@ void func_80800104_suautobaddies(void) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _gcintrotext_entrypoint_1();
     s32 _gclevel_entrypoint_4(s32);
-    s32 _glcutDll_entrypoint_1();
+    u8 _glcutDll_entrypoint_1(void);
     s32 _glcutDll_entrypoint_19(s32);
     s32 _glcutDll_entrypoint_20();
     s32 func_800A9C98();
@@ -73,13 +73,13 @@ void func_80800104_suautobaddies(void) {
 
 void func_80800194_suautobaddies(void) {
     s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
-    s32 _gcsectionDll_entrypoint_4(s32);
-    s32 _glcutDll_entrypoint_1();
+    u8 _gcsectionDll_entrypoint_4(s32 arg0);
+    u8 _glcutDll_entrypoint_1(void);
     s32 func_800A9C98();
     s32 func_800D3934();
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     s32 func_800DB9B0();
     s32 func_800EA05C();
     extern s32 _chbaddiesetup_entrypoint_8;
@@ -99,7 +99,7 @@ void func_80800194_suautobaddies(void) {
 /* extern */
 
 void func_80800258_suautobaddies(void) {
-    s32 _suquiz_entrypoint_27();
+    void _suquiz_entrypoint_27(void);
     s32 func_800DA298(s32);
     s32 func_800DB9B0();
     if ((func_800DA298(0x6B6) != 0) && (func_800DB9B0() != 0)) {
@@ -112,8 +112,8 @@ void func_80800258_suautobaddies(void) {
 void func_80800298_suautobaddies(void) {
     s32 func_800DA298(s32);
     s32 func_800EA05C();
-    s32 func_800EFD24(s32 *);
-    s32 func_80108474(s32, s32 *, s32);
+    void func_800EFD24(f32 vec[3]);
+    Actor *func_80108474(u32 arg0, f32 *arg1, s32 arg2);
     s32 sp1C[3];
     s32 temp_v0;
 
@@ -127,7 +127,7 @@ void func_80800298_suautobaddies(void) {
 }
 
 void suautobaddies_entrypoint_2(void) {
-    s32 func_800C9DAC(f32, s32 *);
+    void func_800C9DAC(f32 time, void *funcPtr);
     void func_800D1864(u32, u32, u32);
     s32 func_800D1A04(s32);
 #ifndef BT_NATIVE
@@ -144,9 +144,9 @@ void suautobaddies_entrypoint_2(void) {
 }
 
 void func_8080036C_suautobaddies(void) {
-    s32 func_800C9DAC(f32, s32 *);
+    void func_800C9DAC(f32 time, void *funcPtr);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
+    void func_800DA524(s32 index);
     s32 func_800DB9B0();
     s32 func_800EA05C();
 #ifndef BT_NATIVE

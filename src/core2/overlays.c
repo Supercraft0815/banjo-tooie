@@ -397,3 +397,12 @@ s32 func_80081D80(s32 arg0) {
     return 3;
 }
 #endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u32 D_80126730 BT_DATA(16, bss_core2bss1, 0x0);
+struct Overlay * D_80126738 [ 352 ] BT_DATA(4, bss_core2bss1, 0x8);
+s32 D_80126CB8 BT_DATA(4, bss_core2bss1, 0x588);
+s32 D_80126CBC BT_DATA(4, bss_core2bss1, 0x58C);
+#endif

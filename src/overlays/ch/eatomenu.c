@@ -2,7 +2,7 @@
 
 OSThread *chcheatomenu_entrypoint_0(void)
 {
-    extern u8 D_8080089C_chcheatomenu[];
+    extern ActorData D_8080089C_chcheatomenu[];
 
     return (OSThread *) D_8080089C_chcheatomenu;
 }
@@ -11,8 +11,8 @@ void func_8080000C_chcheatomenu(s32 arg0)
 {
 }
 void func_80800014_chcheatomenu(Actor *arg0) {
-    s32 _gcnewoption_entrypoint_0(s32);
-    s32 _gcnewoption_entrypoint_6(u8 *, s32);
+    void _gcnewoption_entrypoint_0(void *arg0);
+    void _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
     void func_80090708(s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -30,7 +30,7 @@ void func_80800014_chcheatomenu(Actor *arg0) {
             func_80800720_chcheatomenu((u8 *) arg0);
             break;
         case 4:
-            _gcnewoption_entrypoint_0((s32) func_80100094(arg0, 0U));
+            _gcnewoption_entrypoint_0((BtIntPtr) func_80100094(arg0, 0U));
             break;
         case 5:
             _gcnewoption_entrypoint_6((u8 *) arg0, 0);
@@ -44,7 +44,7 @@ void func_80800014_chcheatomenu(Actor *arg0) {
 s32 func_808000D4_chcheatomenu(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
     void func_80101FDC(Actor *, u32);
-    void func_8080052C_chcheatomenu(Actor *, s32, s32, s32);
+    void func_8080052C_chcheatomenu(Actor *, BtIntPtr, s32, s32);
     void func_808007B8_chcheatomenu(void *);
     s16 *data = (s16 *)&arg2;
     switch (arg1) {
@@ -64,23 +64,23 @@ s32 func_808000D4_chcheatomenu(Actor *arg0, s32 arg1, s32 arg2) {
 void *func_80100094(Actor *, u32);
 
 void func_80800150_chcheatomenu(Actor *arg0, s32 arg1) {
-    void *_gcnewoption_entrypoint_1(s32, s32);
+    void _gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1);
     if ((u32) arg0->unk70_10 == 4) {
-        _gcnewoption_entrypoint_1((s32) func_80100094(arg0, 0U), arg1);
+        _gcnewoption_entrypoint_1((BtIntPtr) func_80100094(arg0, 0U), arg1);
     }
 }
-
-s32 func_80800194_chcheatomenu(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
-    s32 _gcnewoption_entrypoint_13(s32, s32, void *);
+struct OptionColor { s16 values[3]; };
+s32 func_80800194_chcheatomenu(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    void _gcnewoption_entrypoint_12(void *a0, u32 optionIndex, s16 textIndex);
+    void _gcnewoption_entrypoint_13(BtIntPtr arg0, s32 arg1, void *arg2);
     s32 _gcnewoption_entrypoint_17();
     s32 _gcnewoption_entrypoint_18();
     s32 _gcnewoption_entrypoint_19();
     s32 func_800D3DD0(s32);
     s32 func_800D3E14(s32);
-    void func_800D3F58(s32, s32);
+    void func_800D3F58(BtIntPtr, s32);
     void func_800D3FD4(u32);
-    struct OptionColor { s16 values[3]; };
+
     extern struct OptionColor D_808008E4_chcheatomenu;
     extern struct OptionColor D_808008EC_chcheatomenu;
     extern struct OptionColor D_808008F4_chcheatomenu;
@@ -117,14 +117,14 @@ s32 func_80800194_chcheatomenu(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     if (arg3) {
         func_800D3FD4(1);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_80800364_chcheatomenu(Actor *arg0, void *arg1) {
-    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
-    s32 _gcnewoption_entrypoint_31(s32, s32, s16);
-    s32 _gcnewoption_entrypoint_32(s32, s32);
-    s32 _gcnewoption_entrypoint_40(s32, s32, s32, s32, f32, f32);
+    void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
+    void _gcnewoption_entrypoint_31(BtIntPtr arg0, s32 arg1, s16 arg2);
+    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    void _gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
     s32 func_800F1418(s32, s32);
     s32 func_80800800_chcheatomenu(void);
     s32 count;
@@ -140,21 +140,21 @@ s32 func_80800364_chcheatomenu(Actor *arg0, void *arg1) {
             _gcnewoption_entrypoint_31(arg1, i, 0x37);
             i++;
         } while (i != count);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
 
-void func_80800428_chcheatomenu(s32 arg0, s32 arg1) {
-    s32 _gcnewoption_entrypoint_21(s32, s32);
-    s32 _gcnewoption_entrypoint_22(s32, s32);
-    s32 _gcnewoption_entrypoint_23(s32, s32);
-    s32 _gcnewoption_entrypoint_31(s32, s32, s16);
+void func_80800428_chcheatomenu(BtIntPtr arg0, BtIntPtr arg1) {
+    void _gcnewoption_entrypoint_21(BtIntPtr arg0, s32 arg1);
+    void _gcnewoption_entrypoint_22(BtIntPtr arg0, s32 arg1);
+    void _gcnewoption_entrypoint_23(BtIntPtr arg0, s32 arg1);
+    void _gcnewoption_entrypoint_31(BtIntPtr arg0, s32 arg1, s16 arg2);
     s32 func_800D3DD0(s32);
     s32 func_800D3E14(s32);
     s32 func_800D3E40(s32);
-    s16 func_800D3FC0(s32);
-    s32 func_80800194_chcheatomenu(s32, s32, s32, s32);
+    u32 func_800D3FC0(s32 arg0);
+    s32 func_80800194_chcheatomenu(BtIntPtr, BtIntPtr, s32, s32);
     s32 var_s0;
     s32 var_s1;
 
@@ -181,9 +181,9 @@ block_8:
     } while (var_s1 != 0xD);
 }
 
-void func_8080052C_chcheatomenu(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_8080052C_chcheatomenu(Actor *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     void func_80101FDC(Actor *, u32);
-    s32 func_80800194_chcheatomenu(s32, s32, s32, s32);
+    s32 func_80800194_chcheatomenu(BtIntPtr, BtIntPtr, s32, s32);
 
     switch (arg3) {
     case 1:
@@ -201,7 +201,7 @@ void func_8080052C_chcheatomenu(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
 void func_8080058C_chcheatomenu(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_2(f32 *, u32, u32, u32);
     s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
 #ifdef BT_NATIVE
     s32 func_80090178(s32);
 #else
@@ -230,9 +230,9 @@ void func_8080058C_chcheatomenu(Actor *arg0) {
 }
 
 void func_80800668_chcheatomenu(Actor *arg0) {
-    void _gcnewoption_entrypoint_10(void *, u8);
+    void _gcnewoption_entrypoint_10(void *arg0, s32 arg1);
     void _gcnewoption_entrypoint_11(void *);
-    void _gcnewoption_entrypoint_4(Actor *, u32, s32 *, s32 *, s32);
+    void _gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
     void _gcnewoption_entrypoint_8(void *, u32);
     void _gcnewoption_entrypoint_9(void *, u32);
     void func_80090708(s32);
@@ -260,19 +260,19 @@ void func_80800668_chcheatomenu(Actor *arg0) {
 }
 
 void func_80800720_chcheatomenu(u8 *arg0) {
-    s32 _capod_entrypoint_10(s32, s32 *);
-    s32 _capod_entrypoint_11(s32, u8 *);
-    s32 _capod_entrypoint_2(s32, s32, s32);
-    s32 _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
-    s32 _capod_entrypoint_9(s32, s32 *);
-    s32 _gcdialogcamera_entrypoint_8();
-    extern s32 D_80800880_chcheatomenu;
+    void _capod_entrypoint_10(s32 arg0, BtIntPtr arg1);
+    void _capod_entrypoint_11(s32 arg0, BtIntPtr arg1);
+    s32 _capod_entrypoint_2(BtIntPtr, s32, s32);
+    void _capod_entrypoint_7(s32 arg0, s32 arg1);
+    void _capod_entrypoint_8(s32 arg0);
+    void _capod_entrypoint_9(s32 arg0, BtIntPtr arg1);
+    void _gcdialogcamera_entrypoint_8();
+    extern s32 D_80800880_chcheatomenu[4];
     extern s32 D_80800890_chcheatomenu;
     if (!((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF)) {
         _capod_entrypoint_2((*(s32 *)((s8 *)(arg0) + (0))), 0x19, 0);
         _capod_entrypoint_8(1);
-        _capod_entrypoint_9(0, &D_80800880_chcheatomenu);
+        _capod_entrypoint_9(0, D_80800880_chcheatomenu);
         _capod_entrypoint_10(0, &D_80800890_chcheatomenu);
         _capod_entrypoint_11(0, arg0 + 0x44);
         _gcdialogcamera_entrypoint_8();
@@ -309,3 +309,13 @@ s32 func_80800800_chcheatomenu(void) {
     } while (var_s0 != 0xD);
     return var_s1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/eatomenu.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+s32 D_80800880_chcheatomenu[4] BT_DATA(4, overlays_ch_eatomenu, 0x0) = { 1132068864, 1126170624, 1114636288, 1114636288 };
+s32 D_80800890_chcheatomenu BT_DATA(4, overlays_ch_eatomenu, 0x10) = 1154367488;
+u8 D_80800890_chcheatomenu__gap[8] BT_DATA(4, overlays_ch_eatomenu, 0x14) = { 0 };
+ActorData D_8080089C_chcheatomenu [1] BT_DATA(4, overlays_ch_eatomenu, 0x1C) = { { 545, 394, -1, 1, 0, (void (*)(struct Actor *))func_80800014_chcheatomenu, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800150_chcheatomenu, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chcheatomenu, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_808000D4_chcheatomenu, 0 } };
+struct OptionColor D_808008E4_chcheatomenu BT_DATA(4, overlays_ch_eatomenu, 0x64) = { { 0, 255, 0 } };
+struct OptionColor D_808008EC_chcheatomenu BT_DATA(4, overlays_ch_eatomenu, 0x6C) = { { 255, 0, 0 } };
+struct OptionColor D_808008F4_chcheatomenu BT_DATA(4, overlays_ch_eatomenu, 0x74) = { { 255, 255, 255 } };

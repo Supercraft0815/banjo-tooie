@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_palette.h"
 void dbpalette_entrypoint_0(const void *palette,s32 index,void *output) {
     const u8 *entry=(const u8 *)palette+index*4;

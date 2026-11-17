@@ -1,5 +1,5 @@
 #include "core2/1EDB4D0.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EDB4D0_native.inc"
 #else
 
@@ -207,7 +207,7 @@ void func_80101FDC(Actor *arg0, u32 arg1) {
     s32 sp1C;
     struct anctrl_s *temp_v0;
 
-    sp1C = func_80101F64();
+    sp1C = func_80101F64(BT_PASS2(arg0, arg1));
     if (func_80101BE0(arg0, arg1) != 0) {
         temp_v0 = func_80104248(arg0);
         if ((temp_v0 != 0) && (sp1C != 0)) {

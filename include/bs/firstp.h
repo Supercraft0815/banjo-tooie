@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-void func_80807D48_bsfirstp(s32);
-void func_8080800C_bsfirstp(s32);
+void func_80807D48_bsfirstp(BtIntPtr);
+void func_8080800C_bsfirstp(BtIntPtr);
 
 #endif

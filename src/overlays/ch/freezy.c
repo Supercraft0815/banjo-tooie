@@ -2,17 +2,17 @@
 
 OSThread *chfreezy_entrypoint_0(void)
 {
-    extern u8 D_80800700_chfreezy[];
+    extern ActorData D_80800700_chfreezy[];
 
     return (OSThread *) D_80800700_chfreezy;
-}
+}    typedef struct { u8 pad0[0x38]; f32 unk38; } Objfreezy_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_8080000C_chfreezy(void *arg0) {
     s32 _sufreezy_entrypoint_1();
     _sufreezy_entrypoint_1();
-    (*(f32 *)((s8 *)(arg0) + (0x38))) = 0.2f;
+    (((Objfreezy_arg0 *)arg0)->unk38) = 0.2f;
 }
 
 /* extern */
@@ -26,7 +26,7 @@ void func_8080003C_chfreezy(Actor *arg0) {
 
 void func_80800080_chfreezy(Actor *arg0) {
     Actor *_subaddielink_entrypoint_4(u8 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void _sufreezy_entrypoint_4(Unk80132ED0 *, s32);
     s32 func_800D9078(f32 *);
     f32 func_800F15F8(f32, f32, f32);
@@ -64,7 +64,7 @@ void func_80800080_chfreezy(Actor *arg0) {
 s32 func_80800190_chfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
     s32 _subaddielink_entrypoint_3(u8 *);
     void _sufreezy_entrypoint_4(Unk80132ED0 *, s32);
-    void _sufreezy_entrypoint_5(Unk80132ED0 *, s32);
+    void _sufreezy_entrypoint_5(Unk80132ED0 *, BtIntPtr);
     void _sufreezy_entrypoint_6(Unk80132ED0 *, s32);
     void _sufreezy_entrypoint_7(Unk80132ED0 *, s32);
     void func_800FFAB0(Actor *);
@@ -99,13 +99,13 @@ s32 func_80800190_chfreezy(Actor *arg0, s32 arg1, volatile s32 arg2) {
 }
 
 void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _sufreezy_entrypoint_3(Actor *);
     s32 func_8010108C();
     void func_80102190(void *, s32);
     void func_8010A570(Actor *);
-    extern s32 D_80800748_chfreezy;
+    extern s32 D_80800748_chfreezy[6];
 #ifdef BT_NATIVE
     void chfreezy_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4);
 #else
@@ -130,7 +130,7 @@ void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
     if (!arg0->unk64_17) {
         if (freezy->flags.unk74_24) {
             freezy->flags.unk74_24 = 0;
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800748_chfreezy);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800748_chfreezy);
             return;
         }
         if (!arg0->unk64_17 && !freezy->flags.unk78_2) {
@@ -142,7 +142,7 @@ void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
             func_8010A570(arg0);
             func_8010108C(arg0, 3, 0);
             _sufreezy_entrypoint_3(arg0);
-            _chbaddiesetup_entrypoint_5(&_chfreezy_entrypoint_2, (s32)arg0->unk0, 0, sp34, sp30, sp2C);
+            _chbaddiesetup_entrypoint_5(&_chfreezy_entrypoint_2, (BtIntPtr)arg0->unk0, 0, sp34, sp30, sp2C);
         }
     }
 }
@@ -152,7 +152,7 @@ void chfreezy_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, s32 arg2, f32 arg3, f32 
     s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     void func_8010A828(void **, s32);
     u32 func_8010A848(void **);
     void func_8080044C_chfreezy(u8 **, Actor *, s32);
@@ -181,8 +181,8 @@ void func_8080044C_chfreezy(u8 **arg0, Actor *arg1, s32 arg2) {
     void func_80103DFC(Actor*, f32*);
     void func_808004B8_chfreezy(Actor *, Actor *, s32);
     if (((u32) (*(u32 *)((s8 *)(*arg0) + (0x24))) >> 0x16) == 0x2F6) {
-        func_800EE7F8((f32 *)((u8 *)arg0 + 0x44), (f32 *)((u8 *)arg1 + 0x44));
-        func_80103DFC(arg1, (f32 *)((u8 *)arg0 + 4));
+        func_800EE7F8(&((Actor *)arg0)->rotation[0], &arg1->rotation[0]);
+        func_80103DFC(arg1, &((Actor *)arg0)->position[0]);
         func_808004B8_chfreezy(arg0, arg1, arg2);
     }
 }
@@ -240,3 +240,10 @@ void func_808006C0_chfreezy(Actor *arg0) {
     _sufreezy_entrypoint_2();
     func_800FFAB0(arg0);
 }
+/* data_to_c.py: from asm/data/overlays/ch/freezy.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800700_chfreezy [1] BT_DATA(4, overlays_ch_freezy, 0x0) = { { 758, 867, 1885, 1, 0, (void (*)(struct Actor *))func_80800080_chfreezy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16, 0, 0, (BtIntPtr)func_80108ED0, 0, 8, (void (*)(struct Actor *))func_8080000C_chfreezy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 0, (void (*)(struct Actor *, long, long))func_80800190_chfreezy, 0 } };
+s32 D_80800748_chfreezy[6] BT_DATA(4, overlays_ch_freezy, 0x48) = { 1246428, 852224, 21757973, 128, 6684672, 0 };

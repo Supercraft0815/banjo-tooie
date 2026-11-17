@@ -2,23 +2,23 @@
 
 OSThread *chrainripples_entrypoint_0(void)
 {
-    extern u8 D_80800290_chrainripples[];
+    extern ActorData D_80800290_chrainripples[];
 
     return (OSThread *) D_80800290_chrainripples;
-}
+}    typedef struct { u8 pad0[0x2C]; f32 unk2C; } Objrainripples_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_8080000C_chrainripples(void *arg0) {
     f32 func_808001FC_chrainripples();
-    (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) (func_808001FC_chrainripples() + 4.0f);
+    (((Objrainripples_arg0 *)arg0)->unk2C) = (f32) (func_808001FC_chrainripples() + 4.0f);
 }
 
 void func_80800040_chrainripples(Actor *arg0) {
-    s32 _fxrain_entrypoint_3(s32);
+    int _fxrain_entrypoint_3(void *arg0);
     s32 func_800B7C98(void);
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     u32 func_800CC5F4(s32);
     void *func_800CC63C(s32, s32);
     f32 func_800D8FF8(void);
@@ -32,8 +32,8 @@ void func_80800040_chrainripples(Actor *arg0) {
     s32 count;
     s32 total;
     s32 i;
-    s32 effect;
-    s32 rain;
+    BtIntPtr effect;
+    BtIntPtr rain;
     f32 position[3];
     struct RainPoint *point;
     f32 delta;
@@ -64,7 +64,7 @@ void func_80800040_chrainripples(Actor *arg0) {
 /* extern */
 
 f32 func_808001FC_chrainripples(f32 *arg0) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp34[3];
     f32 sp28[3];
@@ -79,3 +79,9 @@ f32 func_808001FC_chrainripples(f32 *arg0) {
     }
     return arg0[2];
 }
+/* data_to_c.py: from asm/data/overlays/ch/rainripples.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_80800290_chrainripples [1] BT_DATA(4, overlays_ch_rainripples, 0x0) = { { 165, 991, 0, 1, 0, (void (*)(struct Actor *))func_80800040_chrainripples, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 327680000, 0, 0, 0, 0, 1, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chrainripples, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, 0, 0 } };
+s32 D_808002D8_chrainripples [10] BT_DATA(4, overlays_ch_rainripples, 0x48) = { 1903067, 1446401, 2818252, 16777237, 128, 2228249, 1638553, 16777247, -512, 18481152 };

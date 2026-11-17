@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-s32 _ncpoddialog_entrypoint_8(Unk80132ED0*, u8);
+s32 _ncpoddialog_entrypoint_8(void *arg0, s32 arg1);
 
 #endif

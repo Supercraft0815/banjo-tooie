@@ -98,7 +98,7 @@ s32 func_80800220_subaddietaxi(f32 *arg0, f32 arg1) {
 int subaddietaxi_entrypoint_2(Actor *arg0, s32 arg1) {
     s32 func_8008FCC8(Unk80132ED0 *);
     s32 func_800905C4(Unk80132ED0 *, s32);
-    u8 func_800CB3E0(s32);
+    s32 func_800CB3E0(s32 arg0);
     s32 temp_v0;
 
     temp_v0 = func_800CB3E0(arg1);
@@ -119,7 +119,7 @@ void subaddietaxi_entrypoint_3(void) {
 }
 
 s32 subaddietaxi_entrypoint_4(void) {
-    u8 func_800CB3E0(s32);
+    s32 func_800CB3E0(s32 arg0);
     f32 func_800CB3FC(volatile s32, f32 *, s32 *);
     s32 func_800CB534(s32, f32 *, f32);
     s32 func_800CB698(s32, s32);
@@ -170,18 +170,18 @@ s32 subaddietaxi_entrypoint_4(void) {
             break;
         }
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 s32 subaddietaxi_entrypoint_5(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_2(void *arg0);
     f32 func_800CB45C(volatile s32, f32 *, s32 *, s32 *);
     s32 func_800CB698(s32, s32);
     void func_800CB70C(s32);
     s32 func_800EA05C();
     void func_800EE7F8(f32 *, f32 *);
     void func_800FFAB0(Actor *);
-    extern s32 D_80800D5C_subaddietaxi;
+    extern s32 D_80800D5C_subaddietaxi[3];
     s32 sp3C;
     s32 sp38;
     f32 sp2C[3];
@@ -196,7 +196,7 @@ s32 subaddietaxi_entrypoint_5(Actor *arg0, s32 arg1) {
         arg0->unk74_7 = sp38;
         sp24 = 1;
         _subaddiefade_entrypoint_2(arg0);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800D5C_subaddietaxi);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800D5C_subaddietaxi);
     } else {
         func_800FFAB0(arg0);
     }
@@ -208,13 +208,13 @@ s32 subaddietaxi_entrypoint_5(Actor *arg0, s32 arg1) {
 /* extern */
 
 void subaddietaxi_entrypoint_6(s32 *arg0, volatile f32 arg1) {
-    void func_800DFF64(s32 *, s32, s32);
+    void func_800DFF64(s32 *, s32, BtIntPtr);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 sp1C[3];
     f32 scale = arg1;
 
     func_800EFA4C(sp1C, scale, scale, scale);
-    func_800DFF64(arg0, 0x12, (s32)sp1C);
+    func_800DFF64(arg0, 0x12, (BtIntPtr)sp1C);
 }
 
 void *func_8010410C(void);
@@ -227,7 +227,7 @@ void subaddietaxi_entrypoint_7(Unk80132ED0 *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_8008AEE4(struct anctrl_s *, void (*)(s32 *, f32));
     void func_8008AF04(struct anctrl_s *, s32);
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     extern void _subaddietaxi_entrypoint_6(s32 *, f32);
     s32 pad;
     TaxiState *sp28;
@@ -243,7 +243,7 @@ void subaddietaxi_entrypoint_7(Unk80132ED0 *arg0) {
     func_8008AEE4(sp24, _subaddietaxi_entrypoint_6);
     sp20.value = 1.0f;
     func_8008AF04(sp24, sp20.bits);
-    _subaddiefade_entrypoint_1((s32)actor, 0xFF);
+    _subaddiefade_entrypoint_1((BtIntPtr)actor, 0xFF);
 }
 
 void subaddietaxi_entrypoint_8(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
@@ -282,7 +282,7 @@ void subaddietaxi_entrypoint_9(Actor *arg0, s32 arg1) {
     void func_800CB6B4(s32, f32 *, f32, s32);
     s32 func_800EA05C();
     if (!arg0->unk64_17) {
-        func_800CB6B4(arg1, (f32 *)((u8 *)arg0 + 4), *(f32 *)((u8 *)arg0 + 0x48), func_800EA05C());
+        func_800CB6B4(arg1, &arg0->position[0], arg0->rotation[1], func_800EA05C());
     }
 }
 
@@ -321,7 +321,7 @@ s32 subaddietaxi_entrypoint_11(Actor *arg0, s32 arg1) {
     void _fxsparkle_entrypoint_1(f32 *, u32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     int _subaddiefade_entrypoint_0(Actor *);
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     s32 func_800C696C(f32 *, f32, f32, s32, f32 *);
     s16 func_800CB518(s32);
     s32 func_800CB698(s32, s32);
@@ -389,7 +389,7 @@ s32 subaddietaxi_entrypoint_11(Actor *arg0, s32 arg1) {
         }
     }
     sp58 = _subaddiefade_entrypoint_0(arg0);
-    _subaddiefade_entrypoint_1((s32)arg0, (s32)func_800F10B4(((TaxiMotion *)arg0->actorData)->time, 0.0f, 1.0f, 0, 255.0f));
+    _subaddiefade_entrypoint_1((BtIntPtr)arg0, (s32)func_800F10B4(((TaxiMotion *)arg0->actorData)->time, 0.0f, 1.0f, 0, 255.0f));
     arg0->scale = func_800F10B4(((TaxiMotion *)arg0->actorData)->time, 7.7f, 8.0f, ((TaxiMotion *)arg0->actorData)->scale, 0.05f);
     if (sp58 == 255 && _subaddiefade_entrypoint_0(arg0) != 255) {
         _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800D68_subaddietaxi);
@@ -410,8 +410,8 @@ s32 subaddietaxi_entrypoint_12(u8 *arg0, s32 arg1) {
 
 /* extern */
 
-s32 subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800CB4D0(s32, s32, s32);
+s32 subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
+    s32 func_800CB4D0(s32, BtIntPtr, s32);
     void func_800CB70C(s32);
     void func_800CB764(s32, f32 *, f32, s32, s32);
     s32 func_800EA05C();
@@ -430,13 +430,13 @@ s32 subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-void subaddietaxi_entrypoint_14(s32 arg0, s32 arg1) {
+void subaddietaxi_entrypoint_14(BtIntPtr arg0, s32 arg1) {
     (*(s16 *)((s8 *)(func_8010410C()) + (0x20))) = 0;
     _subaddieDll_entrypoint_4(arg0, 1);
 }
 
 /* extern */
-s32 subaddietaxi_entrypoint_15(s32 arg0, s32 arg1) {
+s32 subaddietaxi_entrypoint_15(BtIntPtr arg0, s32 arg1) {
     func_801078DC((Actor *)arg0, (u8 *)func_8010410C() + 0x20);
     if (_subaddiefade_entrypoint_0(arg0) == 0xFF) {
         _subaddieDll_entrypoint_4((Actor *)arg0, 0);
@@ -447,13 +447,13 @@ s32 subaddietaxi_entrypoint_15(s32 arg0, s32 arg1) {
 
 void func_80800C00_subaddietaxi(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
-    extern s32 D_80800D50_subaddietaxi;
-    extern s32 D_80800D74_subaddietaxi;
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
+    extern s32 D_80800D50_subaddietaxi[3];
+    extern s32 D_80800D74_subaddietaxi[16];
     f32 *sp24[2];
 
-    sp24[1] = arg0->position; func_800BBCB8(sp24[1], (s32)sp24[1], 1.0f, 6, &D_80800D74_subaddietaxi);
-    _subaddieaudioquick_entrypoint_2(arg0, sp24[1], &D_80800D50_subaddietaxi);
+    sp24[1] = arg0->position; func_800BBCB8(sp24[1], (BtIntPtr)sp24[1], 1.0f, 6, D_80800D74_subaddietaxi);
+    _subaddieaudioquick_entrypoint_2(arg0, sp24[1], D_80800D50_subaddietaxi);
 }
 
 typedef struct {
@@ -466,7 +466,7 @@ typedef struct {
 void subaddietaxi_entrypoint_16(TaxiSpawnArgs args) {
     s32 func_80800CF0_subaddietaxi(s32);
     Actor *func_80108474(u32, f32 *, s32);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *actor;
     struct {
         s32 flags;
@@ -490,3 +490,9 @@ s32 func_80800CF0_subaddietaxi(s32 arg0) {
     extern s16 D_80800DB4_subaddietaxi[];
     return ((s16 *)&D_80800DB4_subaddietaxi)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/su/baddie/taxi.data.s */
+s32 D_80800D50_subaddietaxi[3] BT_DATA(4, overlays_su_baddie_taxi, 0x0) = { 1246231, 1459792, 0 };
+s32 D_80800D5C_subaddietaxi[3] BT_DATA(4, overlays_su_baddie_taxi, 0xC) = { 1246445, 66536, 327680000 };
+u8 D_80800D68_subaddietaxi [12] BT_DATA(4, overlays_su_baddie_taxi, 0x18) = { 0, 0x13, 4, 0xEE, 0, 1, 3, 0xE8, 0x13, 0x88, 0, 0 };
+s32 D_80800D74_subaddietaxi[16] BT_DATA(4, overlays_su_baddie_taxi, 0x24) = { 1903069, 2818252, 16777250, 8388761, 13369600, 1376256, 2490393, 7, 2949270, 13107230, 1966110, 2130048, -2134900725, 1310770, 327680, 0 };
+s16 D_80800DB4_subaddietaxi [22] BT_DATA(4, overlays_su_baddie_taxi, 0x64) = { -1, 322, 657, 652, 652, 652, 652, 982, 982, 982, 982, 838, 657, 1158, 1158, 1158, 0, 0, 0, 0, 0, 0 };

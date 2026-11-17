@@ -2,7 +2,7 @@
 
 OSThread *chdiggergroundgen_entrypoint_0(void)
 {
-    extern u8 D_80800500_chdiggergroundgen[];
+    extern ActorData D_80800500_chdiggergroundgen[];
 
     return (OSThread *) D_80800500_chdiggergroundgen;
 }
@@ -11,7 +11,7 @@ OSThread *chdiggergroundgen_entrypoint_0(void)
 
 void func_8080000C_chdiggergroundgen(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *arg0);
     _subaddielink_entrypoint_0(func_80100094(arg0, 0U));
 }
 
@@ -103,12 +103,12 @@ void func_80800118_chdiggergroundgen(Actor *arg0) {
 
 void func_808002C4_chdiggergroundgen(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     f32 func_800DC178(f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80102FDC(void *, f32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     extern u8 D_80800548_chdiggergroundgen[];
     f32 *sp1C;
     Actor *sp18;
@@ -130,7 +130,7 @@ void func_8080035C_chdiggergroundgen(Actor *arg0) {
     f32 func_8001395C(f32);
     s32 func_8008FB10(f32 *, f32, f32, f32);
     void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
-    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    void func_800C4104(s32, f32, s32, BtIntPtr, f32, f32);
     void func_80101FDC(Actor *, u32);
     extern f32 D_80800554_chdiggergroundgen[];
     f32 *data;
@@ -152,3 +152,10 @@ void func_8080035C_chdiggergroundgen(Actor *arg0) {
         func_80101FDC(arg0, 1);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/digger/groundgen.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80800500_chdiggergroundgen [1] BT_DATA(4, overlays_ch_digger_groundgen, 0x0) = { { 419, 306, 0, 1, 0, (void (*)(struct Actor *))func_80800034_chdiggergroundgen, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 1, 0, 0, 20, 0, (void (*)(struct Actor *))func_8080000C_chdiggergroundgen, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_808000AC_chdiggergroundgen, 0 } };
+u8 D_80800548_chdiggergroundgen [12] BT_DATA(4, overlays_ch_digger_groundgen, 0x48) = { 0, 0x13, 4, 0xBE, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 0 };
+f32 D_80800554_chdiggergroundgen [3] BT_DATA(4, overlays_ch_digger_groundgen, 0x54) = { 1.7665089e+28f, 0.0f, 0.0f };

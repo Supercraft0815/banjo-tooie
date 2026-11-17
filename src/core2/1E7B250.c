@@ -9,7 +9,7 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
     s32 func_80091E80(u8 *, s32);
     f32 func_800962D4(void *);
     f32 func_80096364(PlayerState *);
-    s32 func_800965D4(void *);
+    BtIntPtr func_800965D4(void *);
     void func_800965E0(void *, u8 *);
     void func_80096604(void *, f32 *);
     s32 func_80096628(PlayerState *);
@@ -29,7 +29,7 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
     f32 direction[3];
     f32 delta[3];
     f32 dot;
-    s32 i;
+    BtIntPtr i;
     s32 j;
     s32 flags;
     f32 temp;
@@ -103,7 +103,7 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
             }
         }
     }
-    if (**(u8 **)((u8 *)arg0 + 0x108) == 1) shade = 50;
+    if (*arg0->unk108 == 1) shade = 50;
     else shade = !func_800F40EC(arg0) ? 200 : 250;
     if (flags & 0x4000000) {
         arg1[0] = ((arg1[0] + arg1[1]) + arg1[2]) * (255.0f - shade) * D_801254AC + shade;
@@ -128,7 +128,7 @@ void func_800A1F0C(void *volatile arg0, s32 *arg1) {
     color = arg1++;
     temp_v0 = *(f32 **)((s8 *)arg0 + 0x108);
     func_800EFA88(color, (s32)(temp_v0[1] + 0.5f), (s32)(temp_v0[2] + 0.5f), (s32)(temp_v0[3] + 0.5f));
-}
+}    typedef struct { u8 pad0[0x108]; void * unk108; } Obj1E7B250_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 unk0; u8 unk1; } Obj1E7B250_func_800A1F78_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_800A1F78(void *arg0) {
     s32 func_800EA05C();
@@ -138,19 +138,19 @@ void func_800A1F78(void *arg0) {
     void *temp_v0_2;
 
     temp_v0 = func_800EA05C();
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (4))) = 255.0f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (8))) = 255.0f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (0xC))) = 255.0f;
-    (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (0))) = 1U;
+    (*(f32 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (4))) = 255.0f;
+    (*(f32 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (8))) = 255.0f;
+    (*(f32 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (0xC))) = 255.0f;
+    (*(u8 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (0))) = 1U;
     for (i = 0; D_80119260[i] != 0; i++) {
         if (temp_v0 == D_80119260[i]) {
-            (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (0))) = 2U;
+            (*(u8 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (0))) = 2U;
             break;
         }
     }
-    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x108)));
-    (*(u8 *)((s8 *)(temp_v0_2) + (1))) = (u8) (*(u8 *)((s8 *)(temp_v0_2) + (0)));
-}
+    temp_v0_2 = (((Obj1E7B250_arg0 *)arg0)->unk108);
+    (((Obj1E7B250_func_800A1F78_temp_v0_2 *)temp_v0_2)->unk1) = (u8) (((Obj1E7B250_func_800A1F78_temp_v0_2 *)temp_v0_2)->unk0);
+}    typedef struct { u8 unk0; u8 unk1; } Obj1E7B250_func_800A2018_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 unk0; u8 unk1; } Obj1E7B250_func_800A2018_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_800A2018(PlayerState *arg0, s32 arg1) {
     u8 temp_v1;
@@ -159,18 +159,18 @@ void func_800A2018(PlayerState *arg0, s32 arg1) {
 
     if (arg1 == -1) {
         temp_v0 = (*(void **)((s8 *)(arg0) + (0x108)));
-        (*(u8 *)((s8 *)(temp_v0) + (0))) = (u8) (*(u8 *)((s8 *)(temp_v0) + (1)));
+        (((Obj1E7B250_func_800A2018_temp_v0 *)temp_v0)->unk0) = (u8) (((Obj1E7B250_func_800A2018_temp_v0 *)temp_v0)->unk1);
         return;
     }
     temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x108)));
-    temp_v1 = (*(u8 *)((s8 *)(temp_v0_2) + (0)));
+    temp_v1 = (((Obj1E7B250_func_800A2018_temp_v0_2 *)temp_v0_2)->unk0);
     if (arg1 != temp_v1) {
-        (*(u8 *)((s8 *)(temp_v0_2) + (1))) = temp_v1;
+        (((Obj1E7B250_func_800A2018_temp_v0_2 *)temp_v0_2)->unk1) = temp_v1;
         (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x108)))) + (0))) = (u8) arg1;
     }
 }
 
-void func_800A2058(s32 arg0) 
+void func_800A2058(BtIntPtr arg0) 
 {
 }
 void func_800A2060(PlayerState *arg0) {
@@ -180,31 +180,31 @@ void func_800A2060(PlayerState *arg0) {
     s32 i;
     f32 target[3];
 
-    switch (**(u8 **)((s8 *)arg0 + 0x108)) {
+    switch (*arg0->unk108) {
         case 0:
             func_800EFA4C(target, 255.0f, 255.0f, 255.0f);
             break;
         case 3:
-            func_800EE7F8(target, (f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + 4));
+            func_800EE7F8(target, (f32 *)(arg0->unk108 + 4));
             break;
         default:
             if (func_800965C8(arg0)) {
                 func_800A1968(arg0, target);
             } else {
-                func_800EE7F8(target, (f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + 4));
+                func_800EE7F8(target, (f32 *)(arg0->unk108 + 4));
             }
             break;
     }
     for (i = 0; i < 3; i++) {
-        if (((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] < target[i]) {
-            ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] += 40.0f;
-                if (target[i] < ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1]) {
-                ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] = target[i];
+        if (((f32 *)(arg0->unk108 + i * 4))[1] < target[i]) {
+            ((f32 *)(arg0->unk108 + i * 4))[1] += 40.0f;
+                if (target[i] < ((f32 *)(arg0->unk108 + i * 4))[1]) {
+                ((f32 *)(arg0->unk108 + i * 4))[1] = target[i];
             }
-        } else if (target[i] < ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1]) {
-            ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] -= 40.0f;
-                if (((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] < target[i]) {
-                ((f32 *)(*(u8 **)((s8 *)arg0 + 0x108) + i * 4))[1] = target[i];
+        } else if (target[i] < ((f32 *)(arg0->unk108 + i * 4))[1]) {
+            ((f32 *)(arg0->unk108 + i * 4))[1] -= 40.0f;
+                if (((f32 *)(arg0->unk108 + i * 4))[1] < target[i]) {
+                ((f32 *)(arg0->unk108 + i * 4))[1] = target[i];
             }
         }
     }

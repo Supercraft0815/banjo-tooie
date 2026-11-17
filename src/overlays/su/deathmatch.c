@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 sudeathmatch_entrypoint_0(s32 arg0, f32 *arg1, f32 *arg2) {
+s32 sudeathmatch_entrypoint_0(BtIntPtr arg0, f32 *arg1, f32 *arg2) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     s32 _gspropctrl_entrypoint_12(Prop *);
@@ -10,8 +10,8 @@ s32 sudeathmatch_entrypoint_0(s32 arg0, f32 *arg1, f32 *arg2) {
     void func_800EE780(f32 *, f32 *, f32 *);
     f32 func_800EFC7C(void *, void *);
     s32 func_800F5898(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
     extern Prop *B_80800300_sudeathmatch[40];
     extern u8 B_808003A0_sudeathmatch[40];
     extern s32 B_808003C8_sudeathmatch;
@@ -73,3 +73,11 @@ s32 sudeathmatch_entrypoint_0(s32 arg0, f32 *arg1, f32 *arg2) {
     }
     return 0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+Prop * B_80800300_sudeathmatch [ 40 ] BT_DATA(16, bss_su_deathmatch, 0x0);
+u8 B_808003A0_sudeathmatch [ 40 ] BT_DATA(4, bss_su_deathmatch, 0xA0);
+s32 B_808003C8_sudeathmatch BT_DATA(4, bss_su_deathmatch, 0xC8);
+#endif

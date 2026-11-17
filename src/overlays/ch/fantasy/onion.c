@@ -1,7 +1,7 @@
 #include "common.h"
 
 f32 func_80800000_chfantasyonion(Actor *arg0) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     u8 func_800E8714(s32);
     void func_800E8830(u8, f32[3]);
     void func_800E8870(u8, f32);
@@ -25,8 +25,8 @@ f32 func_80800000_chfantasyonion(Actor *arg0) {
 
 void func_808000BC_chfantasyonion(Actor *arg0) {
     s32 _glsplinefind_entrypoint_3(f32 *);
-    s32 func_800C7A68(s32, f32, f32 *);
-    s32 func_800D7520(s32);
+    void func_800C7A68(void *arg0, f32 arg1, f32 *arg2);
+    BtIntPtr func_800D7520(s32);
     void func_800D8648(s32, f32 *);
     f32 func_800DC0C0(void);
     int func_800EEDE8(f32 *, f32 *, f32);
@@ -69,17 +69,17 @@ void func_808000BC_chfantasyonion(Actor *arg0) {
     }
     ((f32 *)arg0->actorData)[4] = func_80800000_chfantasyonion(arg0);
     func_80101EE4(arg0, func_800DC0C0());
-}
+}                typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0xC]; s32 unk18; u8 pad1C[0x8]; f32 unk24; f32 unk28; f32 unk2C; f32 unk30; f32 unk34; u8 pad38[0x10]; f32 unk48; } Objonion_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800254_chfantasyonion(u8 *arg0) {
-    s32 _plsu_entrypoint_3(s32);
+    s32 _plsu_entrypoint_3(BtIntPtr);
     f32 func_80013970(f32);
     s32 func_80015178(u32);
     s32 func_80015184();
-    s32 func_800C7A68(s32, f32, f32 *);
-    s32 func_800D7520(s32);
+    void func_800C7A68(void *arg0, f32 arg1, f32 *arg2);
+    BtIntPtr func_800D7520(s32);
     s32 func_800D90A4(u8 *);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800EF04C(f32 *, f32 *);
@@ -87,13 +87,13 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     s32 func_800EF934(f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    s32 func_800F54E4();
-    s32 func_800F5A00(s32, f32 *);
-    s32 func_800F5B38(s32, f32 *);
-    s32 func_800F5C94(s32);
-    s32 func_800F79DC(s32, s32, s32);
-    s32 func_800F832C(s32, f32 *);
-    s32 func_800F8418(s32, f32 *);
+    BtIntPtr func_800F54E4();
+    s32 func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F5B38(BtIntPtr, f32 *);
+    s32 func_800F5C94(BtIntPtr);
+    s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);
+    s32 func_800F832C(BtIntPtr, f32 *);
+    s32 func_800F8418(BtIntPtr, f32 *);
     s32 func_80102BAC(u8 *, s32, s32, s32);
     f32 func_80800000_chfantasyonion(Actor *);
     typedef struct {
@@ -123,23 +123,23 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     f32 sp38[3];
     f32 temp_f0;
 
-    sp6C = _plsu_entrypoint_3((*(s32 *)((s8 *)(arg0) + (0))));
+    sp6C = _plsu_entrypoint_3((((Objonion_arg0 *)arg0)->unk0));
     if (sp6C != -1) {
-        if ((-1.0f == (*(f32 *)((s8 *)(arg0) + (0x2C)))) && (0.0f == (*(f32 *)((s8 *)(arg0) + (0x30))))) {
+        if ((-1.0f == (((Objonion_arg0 *)arg0)->unk2C)) && (0.0f == (((Objonion_arg0 *)arg0)->unk30))) {
             ((OnionBits *)arg0)->saved = func_80015184();
             func_80015178(4U);
-            (*(f32 *)((s8 *)(arg0) + (0x30))) = 3.0f;
+            (((Objonion_arg0 *)arg0)->unk30) = 3.0f;
         }
         if (func_800F5C94(sp6C) != 0xC) {
-            func_800F79DC(sp6C, 4, (*(s32 *)((s8 *)(arg0) + (0))));
+            func_800F79DC(sp6C, 4, (((Objonion_arg0 *)arg0)->unk0));
             sp6C = -1;
         }
         if (sp6C != -1) {
             func_800F5A00(func_800F54E4(), sp60);
             func_800EF3DC(sp60, arg0 + 4);
-            sp5C = (*(f32 *)((s8 *)(arg0) + (0x48)));
+            sp5C = (((Objonion_arg0 *)arg0)->unk48);
         }
-    } else if (-1.0f != (*(f32 *)((s8 *)(arg0) + (0x2C)))) {
+    } else if (-1.0f != (((Objonion_arg0 *)arg0)->unk2C)) {
         func_80015178(((OnionBits *)arg0)->saved);
     }
     switch (((OnionBits *)arg0)->state) {
@@ -152,15 +152,15 @@ void func_80800254_chfantasyonion(u8 *arg0) {
             if (!((OnionBits *)arg0)->locked) {
                 ((OnionBits *)arg0)->direction = !((OnionBits *)arg0)->direction;
             }
-            (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) ((s32)((OnionBits *)arg0)->duration / 10);
+            (((Objonion_arg0 *)arg0)->unk24) = (f32) ((s32)((OnionBits *)arg0)->duration / 10);
         }
         temp_f0 = (f32) ((s32)((OnionBits *)arg0)->duration / 10);
         if (((OnionBits *)arg0)->direction) {
-            sp58 = func_800F10B4((*(f32 *)((s8 *)(arg0) + (0x24))), 0.0f, temp_f0, 0.0f, 1.0f);
+            sp58 = func_800F10B4((((Objonion_arg0 *)arg0)->unk24), 0.0f, temp_f0, 0.0f, 1.0f);
         } else {
-            sp58 = func_800F10B4((*(f32 *)((s8 *)(arg0) + (0x24))), 0.0f, temp_f0, 1.0f, 0.0f);
+            sp58 = func_800F10B4((((Objonion_arg0 *)arg0)->unk24), 0.0f, temp_f0, 1.0f, 0.0f);
         }
-        func_800C7A68(func_800D7520((s32) (*(f32 *)((s8 *)(arg0) + (0x34)))), sp58, (f32 *)(arg0 + 4));
+        func_800C7A68(func_800D7520((s32) (((Objonion_arg0 *)arg0)->unk34)), sp58, (f32 *)(arg0 + 4));
         if (sp48 != 0) {
             (*(f32 *)(arg0 + 0x54)) = func_800F1DF4(sp4C, (f32 *)(arg0 + 4));
         } else {
@@ -170,12 +170,12 @@ void func_80800254_chfantasyonion(u8 *arg0) {
         break;
     }
     if (func_800D90A4(arg0 + 0x30) == 0) {
-        sp44 = func_800F10B4((*(f32 *)((s8 *)(arg0) + (0x30))), 3.0f, 0.0f, 1.0f, 0.0f);
+        sp44 = func_800F10B4((((Objonion_arg0 *)arg0)->unk30), 3.0f, 0.0f, 1.0f, 0.0f);
         temp_f0 = func_80013970(sp44 * 2160.0f);
-        (*(f32 *)((s8 *)(arg0) + (8))) += temp_f0 * (20.0f * sp44);
+        (((Objonion_arg0 *)arg0)->unk8) += temp_f0 * (20.0f * sp44);
     }
     if (sp6C != -1) {
-        sp5C -= (*(f32 *)((s8 *)(arg0) + (0x48)));
+        sp5C -= (((Objonion_arg0 *)arg0)->unk48);
         func_800F5B38(func_800F54E4(), sp38);
         sp38[1] -= sp5C;
         func_800F832C(func_800F54E4(), sp38);
@@ -183,18 +183,18 @@ void func_80800254_chfantasyonion(u8 *arg0) {
         func_800EF04C(sp60, (f32 *)(arg0 + 4));
         func_800F8418(func_800F54E4(), sp60);
     }
-    (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) sp6C;
-    (*(f32 *)((s8 *)(arg0) + (0x28))) = func_80800000_chfantasyonion(arg0);
+    (((Objonion_arg0 *)arg0)->unk2C) = (f32) sp6C;
+    (((Objonion_arg0 *)arg0)->unk28) = func_80800000_chfantasyonion(arg0);
 }
 
 void func_80800624_chfantasyonion(Actor *arg0, void *arg1) {
-    s32 func_800D674C(s32);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    BtIntPtr func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF830(s32);
     s32 func_800E88E4(u8);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 func_80101870(Actor *, void *);
+    void func_80101870(Actor* arg0, void* arg1);
     extern f32 D_80800748_chfantasyonion[3];
     f32 sp34[3];
     f32 sp30;
@@ -216,16 +216,24 @@ void func_808006E0_chfantasyonion(void *arg0) {
     s32 func_800E87E0(s32, void *);
     s32 temp_v0;
 
-    temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x18)));
+    temp_v0 = (((Objonion_arg0 *)arg0)->unk18);
     if (temp_v0 != 0) {
         func_800E87E0(temp_v0 & 0xFF, arg0);
-        (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
+        (((Objonion_arg0 *)arg0)->unk18) = 0;
     }
 }
 
 OSThread *chfantasyonion_entrypoint_0(void)
 {
-    extern u8 D_80800754_chfantasyonion[];
+    extern ActorData D_80800754_chfantasyonion[];
 
     return (OSThread *) D_80800754_chfantasyonion;
 }
+/* data_to_c.py: from asm/data/overlays/ch/fantasy/onion.data.s */
+extern u8 D_80800730_chfantasyonion[];
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u8 D_80800730_chfantasyonion[24] BT_DATA(4, overlays_ch_fantasy_onion, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x04, 0x0A, 0x00, 0x01, 0x3F, 0xA6, 0x66, 0x66, 0x04, 0x0A, 0x00, 0x01 };
+f32 D_80800748_chfantasyonion [ 3 ] BT_DATA(4, overlays_ch_fantasy_onion, 0x18) = { 0.0f, 0.0f, 0.0f };
+ActorData D_80800754_chfantasyonion [1] BT_DATA(4, overlays_ch_fantasy_onion, 0x24) = { { 344, 1151, 2207, 1, (void *)D_80800730_chfantasyonion, (void (*)(struct Actor *))func_80800254_chfantasyonion, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800624_chfantasyonion, 0, 0, 0, 0, 128, 2080, (void (*)(struct Actor *))func_808006E0_chfantasyonion, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808000BC_chfantasyonion, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 17410, 0, 0 } };

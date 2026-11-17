@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80800000_chegggolden(Actor *arg0) {
-    void _fxegg_entrypoint_6(f32 *, f32, f32 *);
+    BtIntPtr _fxegg_entrypoint_6(f32 arg0[3], f32 arg1, f32 arg2[3]);
     s32 func_800A946C(void);
     f32 func_800D8FF8(void);
     void func_800EE7F8(f32 *, f32 *);
@@ -42,7 +42,7 @@ void func_80800110_chegggolden(Actor *arg0) {
     void _suegg_entrypoint_16(void *);
     void _suegg_entrypoint_3(void *);
     void _sueggmisc_entrypoint_1(void *);
-    s32 _sueggmove_entrypoint_3(void *);
+    u8 _sueggmove_entrypoint_3(Actor *arg0);
     struct GoldenData {
         u8 pad[0x30];
         f32 time;
@@ -90,20 +90,20 @@ void func_80800110_chegggolden(Actor *arg0) {
 
 OSThread *chegggolden_entrypoint_0(void)
 {
-    extern u8 D_808003F0_chegggolden[];
+    extern ActorData D_808003F0_chegggolden[];
 
     return (OSThread *) D_808003F0_chegggolden;
 }
 
 /* extern */
 
-void *chegggolden_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _suegg_entrypoint_1(void *, f32);
-    void *_suegg_entrypoint_11(s32, s32, s32);
-    s32 _sueggmove_entrypoint_10(s32);
-    s32 _sueggmove_entrypoint_5(void *, s32);
-    s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 _sueggmove_entrypoint_7(void *, s32);
+void *chegggolden_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
+    Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
+    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
+    void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
+    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
     Actor *temp_v0;
 
     _sueggmove_entrypoint_10(arg0);
@@ -119,13 +119,13 @@ void *chegggolden_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-void *chegggolden_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _suegg_entrypoint_1(void *, f32);
-    void *_suegg_entrypoint_11(s32, s32, s32);
-    s32 _sueggmove_entrypoint_10(s32);
-    s32 _sueggmove_entrypoint_5(void *, s32);
-    s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 _sueggmove_entrypoint_7(void *, s32);
+void *chegggolden_entrypoint_2(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
+    Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
+    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
+    void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
+    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
     Actor *temp_v0;
 
     _sueggmove_entrypoint_10(arg0);
@@ -138,3 +138,12 @@ void *chegggolden_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     temp_v0->unk70_10 = 1;
     return temp_v0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/egg/golden.data.s */
+void func_80105834(Actor*);
+void _subaddiedraw25d_entrypoint_2();
+void _suegg_entrypoint_2();
+OSThread *_suegg_entrypoint_0(void);
+void _suegg_entrypoint_5();
+void func_80107C2C();
+s32 _suegg_entrypoint_17(Actor *arg0, s32 arg1, s32 arg2);
+ActorData D_808003F0_chegggolden [1] BT_DATA(4, overlays_ch_egg_golden, 0x0) = { { 620, 351, 2499, 1, 0, (void (*)(struct Actor *))func_80800110_chegggolden, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_subaddiedraw25d_entrypoint_2, 0, 1065353216, 0, 0, 0, 4, (void (*)(struct Actor *))_suegg_entrypoint_2, (BtIntPtr)_suegg_entrypoint_0, 76, 0, (void (*)(struct Actor *))_suegg_entrypoint_5, (void (*)(void *, long, void *, long, void *))func_80107C2C, -30720, 0, (void (*)(struct Actor *, long, long))_suegg_entrypoint_17, 0 } };

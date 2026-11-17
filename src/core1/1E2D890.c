@@ -183,7 +183,7 @@ void func_8001608C(void) {
     s32 _glrecord_entrypoint_0(OSContPad *, s32 *);
     s32 func_800A9CAC(void);
     void func_800A9CDC(void);
-    s32 func_800D8FA0(s32);
+    void func_800D8FA0(s32 arg0);
     f32 func_800DC0C0(void);
     extern s32 D_80079AC0;
     extern u8 D_80079D69;
@@ -406,7 +406,7 @@ void func_8001662C(void) {
 
 // joy_thread_entry
 void func_800166DC(UNUSED void* arg0) {
-    s32 eeprom_type = osEepromProbe(&D_80079B60);
+    s32 eeprom_type = osEepromProbe(&D_80079B60); BT_NATIVE_ONLY(((s32 *)D_80079D70)[0x1EC / 4] = eeprom_type;)  // N64 frame slot, read by gldbDll
     func_80016864();
     func_80014DC4();
     if (eeprom_type < EEPROM_TYPE_16K) {
@@ -419,7 +419,7 @@ void func_800166DC(UNUSED void* arg0) {
 void func_80016734(void) {
     osCreateMesgQueue(&D_80079B60, &D_80079B38, 1);
     osCreateMesgQueue(&D_80079B78, &D_80079B3C, 1);
-    func_8001DCB0(&D_80079BA8, &D_80079D58, THREAD_ID_JOY, func_800166DC, NULL, &D_80079D70[JOY_THREAD_STACK_SIZE / sizeof(u64)], JOY_THREAD_PRI);
+    func_8001DCB0(&D_80079BA8, &D_80079D58, THREAD_ID_JOY, func_800166DC, NULL, BT_NATIVE_ONLY((u8 *)D_80079D70 + 0x1D0) BT_IDO_ONLY(&D_80079D70[JOY_THREAD_STACK_SIZE / sizeof(u64)]), JOY_THREAD_PRI);
     osSetEventMesg(OS_EVENT_SI, &D_80079B60, &D_80079B38);
     osContInit(&D_80079B60, &D_80079D68, D_80079B90);
     osStartThread(&D_80079BA8);
@@ -555,3 +555,32 @@ s32 func_80016BBC(s32 arg0, u16 arg1) {
 void func_80016BDC(s32 arg0) {
     osContSetCh((u8) arg0);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+unkD_800799C0 D_800799C0 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3080);
+unkD_800799E0 D_800799E0 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x30A0);
+s32 D_80079A14 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x30D4);
+s32 D_80079AC0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3180);
+s32 D_80079AF4 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31B4);
+unkD_80079AF8 D_80079AF8 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31B8);
+u16 D_80079AFC [ 3 ] [ 8 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31BC);
+OSMesg D_80079B38 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31F8);
+OSMesg D_80079B3C BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31FC);
+OSContPad D_80079B40 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3200);
+OSContPad D_80079B58 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3218);
+OSMesgQueue D_80079B60 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3220);
+OSMesgQueue D_80079B78 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3238);
+OSContStatus D_80079B90 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3250);
+u8 D_80079B93 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3253);
+volatile s32 D_80079BA0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3260);
+OSThread D_80079BA8 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x3268);
+__OSThreadOddFpStorage D_80079D58 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x3418);
+u8 D_80079D68 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3428);
+u8 D_80079D69 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3429);
+u8 D_80079D6C [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x342C);
+u64 D_80079D70 [ JOY_THREAD_STACK_SIZE / sizeof ( u64 ) ] BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x3430);
+OSMesgQueue D_80079F70 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3630);
+OSMesg D_80079F88 [ 6 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3648);
+#endif

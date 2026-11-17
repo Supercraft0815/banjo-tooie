@@ -3,9 +3,9 @@
 typedef struct { f32 v[3]; } StoneballVector;
 void func_80801BE0_chstoneballcontrol(Actor *);
 void func_80105834(Actor *);
-void _sukickball_entrypoint_0(Actor *, void *);
+void _sukickball_entrypoint_0(Actor *arg0, s32 arg1);
 void _sukickball_entrypoint_1(Actor *, void *);
-void func_8080367C_chstoneballcontrol(s32);
+void func_8080367C_chstoneballcontrol(BtIntPtr);
 void func_80801B44_chstoneballcontrol(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 void func_80803724_chstoneballcontrol(Actor *);
@@ -35,12 +35,12 @@ struct ActorIds D_808050CC_chstoneballcontrol = {{
     0x02, 0x9E, 0xFF, 0xFF,
 }};
 
-u32 D_808050D4_chstoneballcontrol[] = {
-    0x023901B7, 0x06370001, 0x00000000, (u32)func_8080079C_chstoneballcontrol,
-    (u32)func_80105834, (u32)func_8010A730, 0x00000000, 0x00000000,
-    0x00000000, 0x00080004, (u32)func_8080120C_chstoneballcontrol, 0x00000000,
-    0x00400000, (u32)func_80800F9C_chstoneballcontrol, (u32)func_80107C2C, 0x80000202,
-    (u32)func_80800360_chstoneballcontrol, 0x00000000,
+BtFnWord D_808050D4_chstoneballcontrol[] = {
+    0x023901B7, 0x06370001, 0x00000000, (BtFnWord)func_8080079C_chstoneballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)func_8010A730, 0x00000000, 0x00000000,
+    0x00000000, 0x00080004, (BtFnWord)func_8080120C_chstoneballcontrol, 0x00000000,
+    0x00400000, (BtFnWord)func_80800F9C_chstoneballcontrol, (BtFnWord)func_80107C2C, 0x80000202,
+    (BtFnWord)func_80800360_chstoneballcontrol, 0x00000000,
 };
 
 u8 D_8080511C_chstoneballcontrol[] = {
@@ -102,27 +102,27 @@ StoneballDistances D_808052B0_chstoneballcontrol = {{
 
 StoneballVector D_808052C0_chstoneballcontrol = {{0.0f, 0.0f, 0.0f}};
 
-u32 D_808052CC_chstoneballcontrol[] = {
-    0x02670155, 0x06700005, 0x00000000, (u32)func_80801BE0_chstoneballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
-    0x00000000, 0x00800004, (u32)func_8080367C_chstoneballcontrol, 0x00000000,
-    0x00240000, (u32)func_80801B44_chstoneballcontrol, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_808052CC_chstoneballcontrol[] = {
+    0x02670155, 0x06700005, 0x00000000, (BtFnWord)func_80801BE0_chstoneballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
+    0x00000000, 0x00800004, (BtFnWord)func_8080367C_chstoneballcontrol, 0x00000000,
+    0x00240000, (BtFnWord)func_80801B44_chstoneballcontrol, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 
-u32 D_80805314_chstoneballcontrol[] = {
-    0x025301B8, 0x06770005, 0x00000000, (u32)func_80801BE0_chstoneballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
-    0x00000000, 0x00800006, (u32)func_8080367C_chstoneballcontrol, 0x00000000,
-    0x00240000, (u32)func_80801B44_chstoneballcontrol, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_80805314_chstoneballcontrol[] = {
+    0x025301B8, 0x06770005, 0x00000000, (BtFnWord)func_80801BE0_chstoneballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
+    0x00000000, 0x00800006, (BtFnWord)func_8080367C_chstoneballcontrol, 0x00000000,
+    0x00240000, (BtFnWord)func_80801B44_chstoneballcontrol, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 
-u32 D_8080535C_chstoneballcontrol[] = {
-    0x0254029E, 0x06720005, 0x00000000, (u32)func_80801BE0_chstoneballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
-    0x00000000, 0x00800004, (u32)func_8080367C_chstoneballcontrol, 0x00000000,
-    0x00240000, (u32)func_80801B44_chstoneballcontrol, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_8080535C_chstoneballcontrol[] = {
+    0x0254029E, 0x06720005, 0x00000000, (BtFnWord)func_80801BE0_chstoneballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
+    0x00000000, 0x00800004, (BtFnWord)func_8080367C_chstoneballcontrol, 0x00000000,
+    0x00240000, (BtFnWord)func_80801B44_chstoneballcontrol, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 
@@ -146,17 +146,17 @@ StoneballVector D_8080541C_chstoneballcontrol = {{0.0f, 0.0f, 0.0f}};
 
 StoneballVector D_80805428_chstoneballcontrol = {{0.0f, 0.0f, 0.0f}};
 
-u32 D_80805434_chstoneballcontrol[] = {
-    0x023701B6, 0x066A000B, (u32)D_808053A4_chstoneballcontrol, (u32)func_80803724_chstoneballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_1, 0x00000000, 0x00000000,
-    0x00000000, 0x00000004, (u32)func_808047E8_chstoneballcontrol, 0x00000000,
-    0x00180000, (u32)func_808046C4_chstoneballcontrol, (u32)func_80107C2C, 0x80000003,
-    (u32)func_808036C0_chstoneballcontrol, 0x00000000, 0x00000000,
-};
+BtFnWord D_80805434_chstoneballcontrol[] = {
+    0x023701B6, 0x066A000B, (BtFnWord)D_808053A4_chstoneballcontrol, (BtFnWord)func_80803724_chstoneballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_1, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (BtFnWord)func_808047E8_chstoneballcontrol, 0x00000000,
+    0x00180000, (BtFnWord)func_808046C4_chstoneballcontrol, (BtFnWord)func_80107C2C, 0x80000003,
+    (BtFnWord)func_808036C0_chstoneballcontrol, 0x00000000, 0x00000000,
+};    typedef struct { u8 pad0[0x4]; f32 unk4; } Objstoneballcontrol_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800000_chstoneballcontrol(Unk80132ED0 **arg0, u32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    _subaddiedialog_entrypoint_11(*arg0, arg1, arg2 | 0xE, (f32 *)((s8 *)arg0 + 4), 0x33);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    _subaddiedialog_entrypoint_11(*arg0, arg1, arg2 | 0xE, &((Objstoneballcontrol_arg0 *)arg0)->unk4, 0x33);
 }
 
 f32 func_80800040_chstoneballcontrol(void *arg0) {
@@ -175,7 +175,7 @@ f32 func_80800070_chstoneballcontrol(void *arg0) {
 /* extern */
 
 #ifdef BT_NATIVE
-f32 func_8080009C_chstoneballcontrol(s32 bt_a0) {
+f32 func_8080009C_chstoneballcontrol(BtIntPtr bt_a0) {
 #else
 f32 func_8080009C_chstoneballcontrol() {
 #endif
@@ -211,7 +211,7 @@ s32 func_80800130_chstoneballcontrol(s32 arg0) {
 void func_80800144_chstoneballcontrol(void *arg0) {
     void *func_80100094(Actor *, u32);
     void _sukickball_entrypoint_17(Actor *);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void func_800A54F8(s32);
     s32 func_800DA298(s32);
     struct StoneballData {
@@ -241,7 +241,7 @@ void func_80800144_chstoneballcontrol(void *arg0) {
 void func_80800210_chstoneballcontrol(Actor *arg0, s32 arg1) {
     f32 func_800DC178(f32, f32);
     s32 func_800EA05C(void);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     Actor *actor;
 
     switch (arg1) {
@@ -283,14 +283,14 @@ u8 func_80800360_chstoneballcontrol(u8 *arg0, s32 arg1, s32 arg2) {
         u8 mode : 4;
         u8 flags79_lo : 4;
     } ControlFlags;
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     s32 _capod_entrypoint_17(f32);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    u32 _gcgoto_entrypoint_1(u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _subaddiemulti_entrypoint_4(s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void func_800A54F8(s32);
     s32 func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
@@ -328,7 +328,7 @@ u8 func_80800360_chstoneballcontrol(u8 *arg0, s32 arg1, s32 arg2) {
         if (_capod_entrypoint_17(delay)) {
             _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0,
                 data[0x39] + 0xF3E, 6,
-                (f32 *)((u8 *)func_80106790(_sukickball_entrypoint_8(arg0, data[0x39] + 1)) + 4), 0);
+                &(func_80106790(_sukickball_entrypoint_8(arg0, data[0x39] + 1)))->position[0], 0);
             ((ControlFlags *)arg0)->dialog = 1;
         }
         return 3;
@@ -417,11 +417,11 @@ void func_8080079C_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     f32 func_800D8FF8(void);
     void _sukickball_entrypoint_17(Actor *);
-    void _sukickball_entrypoint_19(Actor *, s32, u8);
+    void _sukickball_entrypoint_19(Actor *arg0, s32 arg1, s32 arg2);
     s32 func_800CEB54(s32, f32);
     s32 func_800CEAD0(s32);
     u32 func_800FDC28(u32);
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     void func_80800908_chstoneballcontrol(Actor *);
     void func_8080145C_chstoneballcontrol(Actor *);
     struct StoneballUpdateData {
@@ -476,7 +476,7 @@ void func_80800908_chstoneballcontrol(Actor *arg0) {
     s32 _sumultiscore_entrypoint_2(s32 *, s32 *, s32 *, s32, s32);
     void func_800FC6B0(u32);
     s32 func_800D2054(s32, s32, s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_80101FDC();
     struct StoneballScore {
         u8 pad0[0x20];
@@ -579,7 +579,7 @@ void func_80800B4C_chstoneballcontrol(void *arg0, s32 arg1) {
     }
 }
 
-void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
+void func_80800BCC_chstoneballcontrol(u8 *arg0, BtIntPtr arg1) {
     typedef StoneballVector Vec3;
     f32 func_800DC178(f32, f32);
     void func_800EE780(f32 *, f32 *, f32 *);
@@ -593,7 +593,7 @@ void func_80800BCC_chstoneballcontrol(u8 *arg0, s32 arg1) {
     f32 sp24;
 
     if (arg1 == 0) {
-        var_f2 = (*(f32 *)((s8 *)(arg0) + (0x48))) + func_800DC178(110.0f, 250.0f);
+        var_f2 = (((Actor *)arg0)->rotation[1]) + func_800DC178(110.0f, 250.0f);
     } else {
         sp24 = func_80102D78(arg0);
         var_f2 = func_800DC178(110.0f, 250.0f) + sp24;
@@ -638,11 +638,11 @@ void func_80800D20_chstoneballcontrol(u8 *arg0) {
 }
 
 void func_80800DB4_chstoneballcontrol(void *arg0, f32 *arg1) {
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     int func_800F0064(f32 *, f32, f32 *);
-    void func_800F5A00(s32, f32 *);
-    void func_800F7B9C(s32, u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F7B9C(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     struct {
@@ -671,8 +671,8 @@ void func_80800DB4_chstoneballcontrol(void *arg0, f32 *arg1) {
 
 void func_80800EBC_chstoneballcontrol(s32 arg0, s32 arg1) {
     struct player_state_s;
-    struct player_state_s *func_800F53D0(s32);
-    void func_800F82D4(s32, s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
+    void func_800F82D4(BtIntPtr, s32);
     void _baattach_entrypoint_6(struct player_state_s *, s32, s32, s32);
     switch (arg1) {
         case 0:
@@ -688,7 +688,7 @@ void func_80800EBC_chstoneballcontrol(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_80800F24_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     s32 _chintrotext_entrypoint_2(s32);
     s32 func_800D395C(void);
     if ((arg1 != 0) || (func_800D395C() != 0)) {
@@ -701,9 +701,9 @@ void func_80800F24_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800F9C_chstoneballcontrol(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11(void);
+    u8 _gcstatusDll_entrypoint_11(void);
     void _sukickball_entrypoint_18(Actor *);
-    u8 _sukickball_entrypoint_3(void);
+    s32 _sukickball_entrypoint_3(void);
 #ifdef BT_NATIVE
     s32 func_80090178(s32);
 #else
@@ -713,11 +713,11 @@ void func_80800F9C_chstoneballcontrol(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
     s32 func_800EA05C(void);
-    void func_800F4CEC(s32, u32);
-    s32 func_800F6438(u32);
+    void func_800F4CEC(BtIntPtr, u32);
+    s32 func_800F6438(BtUIntPtr);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     void func_8080128C_chstoneballcontrol(Actor *);
     void func_80801330_chstoneballcontrol(Actor *, s32);
     void func_8080145C_chstoneballcontrol(Actor *);
@@ -801,8 +801,8 @@ void func_80800F9C_chstoneballcontrol(Actor *arg0) {
 void func_8080120C_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800DA3B8(s32, s32);
-    void func_800F4CC0(s32);
-    s32 func_800F6438(u32);
+    void func_800F4CC0(BtIntPtr);
+    s32 func_800F6438(BtUIntPtr);
     struct Fields {
         u8 pad0[0x39];
         u8 state;
@@ -873,9 +873,9 @@ void func_80801330_chstoneballcontrol(Actor *arg0, s32 arg1) {
     void _sukickball_entrypoint_16(s32, f32 *);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
-    void func_800F82D4(s32, s32);
-    s32 func_800F832C(s32, f32 *);
-    void func_800F8294(s32, f32 *);
+    void func_800F82D4(BtIntPtr, s32);
+    s32 func_800F832C(BtIntPtr, f32 *);
+    void func_800F8294(BtIntPtr, f32 *);
     struct Fields {
         u8 pad0[0xA];
         u8 states[6];
@@ -921,7 +921,7 @@ void func_8080145C_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_800DA298(s32);
     void func_80108B04(Actor *, u32);
-    void func_80801638_chstoneballcontrol(s32, s32 *);
+    void func_80801638_chstoneballcontrol(BtIntPtr, s32 *);
     void func_80801884_chstoneballcontrol(Actor *);
     struct StoneballData {
         u8 pad0[0x39];
@@ -934,7 +934,7 @@ void func_8080145C_chstoneballcontrol(Actor *arg0) {
     data = func_80100094(arg0, 0);
     counts = D_808050BC_chstoneballcontrol;
     state = -1;
-    func_80801638_chstoneballcontrol((s32)arg0, counts.values);
+    func_80801638_chstoneballcontrol((BtIntPtr)arg0, counts.values);
     if (data->state == 3) {
         if (func_800DA298(0x5F) || func_800DA298(0x9EA)) {
             if (counts.values[0] <= 0) {
@@ -966,7 +966,7 @@ void func_8080145C_chstoneballcontrol(Actor *arg0) {
     }
 }
 
-void func_80801638_chstoneballcontrol(s32 arg0, s32 *arg1) {
+void func_80801638_chstoneballcontrol(BtIntPtr arg0, s32 *arg1) {
     s32 _subaddiefind_entrypoint_6(u8 *, Actor **, s32);
 
     Actor *actors[20];
@@ -1092,7 +1092,7 @@ OSThread *chstoneballcontrol_entrypoint_0(void)
 void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     void _subaddiefade_entrypoint_3(Actor *);
     void _sukickball_entrypoint_11(u8 *, s32);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
     void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
     void func_800F4F98(s32, void *);
     void *func_80100094(Actor *, u32);
@@ -1102,7 +1102,7 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     void func_80802588_chstoneballcontrol(Actor *volatile, volatile s32);
 
     u8 *data;
-    s32 linked;
+    BtIntPtr linked;
     u32 kind;
     u32 state;
 
@@ -1173,9 +1173,9 @@ void func_80801B44_chstoneballcontrol(Actor *arg0) {
 void func_80801BE0_chstoneballcontrol(Actor *arg0) {
     typedef struct { f32 timer; f32 unk4; f32 position[3]; f32 unk14; f32 unk18; f32 unk1C; u8 owner; } BallData;
     typedef struct { u8 pad[0x24]; u32 id:10; u32 flags:22; } MarkerState;
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    s32 _sukickball_entrypoint_7(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     f32 func_800137AC(f32);
     f32 func_800137C4(void);
     void func_8008FB58(f32 *, f32, f32);
@@ -1190,9 +1190,9 @@ void func_80801BE0_chstoneballcontrol(Actor *arg0) {
     s32 func_800EF1B8(f32 *, f32, f32);
     f32 func_800EFBFC(void *, void *);
     void func_800EFCD8(f32 *, f32, f32);
-    void func_800F5A00(s32, f32 *);
-    void func_800F5D70(s32, f32 *);
-    f32 func_800F5F24(u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5D70(BtIntPtr, f32 *);
+    f32 func_800F5F24(BtUIntPtr);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_808023AC_chstoneballcontrol(u8 *volatile);
@@ -1377,12 +1377,12 @@ void func_808024F8_chstoneballcontrol(Actor *arg0) {
 
 void func_80802588_chstoneballcontrol(Actor *volatile arg0, volatile s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
 
     extern s32 D_80804FE8_chstoneballcontrol;
-    s32 emitter;
+    BtIntPtr emitter;
     s32 model;
     f32 *position;
 
@@ -1395,13 +1395,13 @@ void func_80802588_chstoneballcontrol(Actor *volatile arg0, volatile s32 arg1) {
 }
 
 void func_80802614_chstoneballcontrol(f32 *arg0) {
-    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
 
     func_800BBCB8(arg0, 0, 1.0f, 2, D_80805178_chstoneballcontrol);
 }
 
 void func_80802648_chstoneballcontrol(f32 *arg0) {
-    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
 
     func_800BBCB8(arg0, 0, 1.0f, 0xA, D_808051C0_chstoneballcontrol);
     func_800BBCB8(arg0, 0, 1.0f, 5, D_80805210_chstoneballcontrol);
@@ -1528,8 +1528,8 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
     typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
     s32 *func_800BE3F8(void *);
-    Entry *func_800E9E88(s32);
-    Entry *func_800E9EB4(s32);
+    Entry *func_800E9E88(BtIntPtr);
+    void * func_800E9EB4(void *cube);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80802D9C_chstoneballcontrol(Actor *, Actor *);
     void func_80802E30_chstoneballcontrol(Actor *, u32);
@@ -1548,13 +1548,13 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
                 marker = entry->marker;
                 if (marker != (Marker *)*arg0) {
                     if (marker->id == 0x267 || marker->id == 0x253 || marker->id == 0x254) {
-                        func_80802D9C_chstoneballcontrol(arg0, func_80106790((s32)marker));
+                        func_80802D9C_chstoneballcontrol(arg0, func_80106790((BtIntPtr)marker));
                     }
                     if (marker->id == 0) {
                         func_80802E30_chstoneballcontrol(arg0, (u32)marker->index >> 5);
                     }
                     if (marker->id == 0x237) {
-                        func_80802EA0_chstoneballcontrol(arg0, func_80106790((s32)marker));
+                        func_80802EA0_chstoneballcontrol(arg0, func_80106790((BtIntPtr)marker));
                     }
                 }
             }
@@ -1579,7 +1579,7 @@ void func_80802D9C_chstoneballcontrol(Actor *arg0, Actor *arg1) {
 void func_80802E30_chstoneballcontrol(Actor *arg0, u32 arg1) {
     s32 _sukickball_entrypoint_12(u8 *, s32);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
     f32 sp18[3];
@@ -1609,7 +1609,7 @@ void func_80802F14_chstoneballcontrol(Actor *arg0) {
     typedef struct { f32 timer; u8 pad[0x1C]; u8 owner; } BallData;
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
     void _sukickball_entrypoint_11(u8 *, s32);
     void func_800F4F98(s32, void *);
     BallData *data;
@@ -1689,9 +1689,9 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
 #endif
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    s32 _sukickball_entrypoint_7(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_10(u8 *, s32, s32);
     void _sukickball_entrypoint_11(u8 *, s32);
     s32 _sukickball_entrypoint_12(u8 *, s32);
@@ -1700,9 +1700,9 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     s32 func_800EFFB4(f32 *, f32, f32 *);
     void func_800F4950(s32, void *, void (*)(void));
     void func_800F4F98(s32, void *);
-    s32 func_800F5410(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
+    s32 func_800F5410(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
     BallData *data = func_80100094(arg0, 0);
     f32 distances[4];
     u8 *parent;
@@ -1785,10 +1785,10 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
 void func_80803538_chstoneballcontrol(u8 *actorPtr) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_11(u8 *, s32);
-    f32 func_800F5F24(u32);
+    f32 func_800F5F24(BtUIntPtr);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F4F98(s32, void *);
     void func_800C4140(u32, f32 *, u32);
@@ -1823,7 +1823,7 @@ void func_80803538_chstoneballcontrol(u8 *actorPtr) {
     func_800C4140(0x7FFF453C, arg0->position, 0x3E800640);
 }
 
-void func_8080367C_chstoneballcontrol(s32 arg0)
+void func_8080367C_chstoneballcontrol(BtIntPtr arg0)
 {
     func_80801944_chstoneballcontrol(arg0,0);
 }
@@ -1912,7 +1912,7 @@ void func_80803724_chstoneballcontrol(Actor *arg0) {
     void func_808040B8_chstoneballcontrol(Actor *);
     void func_80804218_chstoneballcontrol(Actor *);
     void func_80804304_chstoneballcontrol(u8 *);
-    s32 func_80804810_chstoneballcontrol(Actor *);
+    BtIntPtr func_80804810_chstoneballcontrol(Actor *);
     void func_80804B60_chstoneballcontrol(Actor *);
     BallControl *sp64;
     Actor *sp60;
@@ -2151,10 +2151,10 @@ void func_808040B8_chstoneballcontrol(Actor *arg0) {
 }
 
 void func_8080419C_chstoneballcontrol(Actor *arg0, s32 arg1) {
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void func_800EE7F8(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     u8 *parent;
 
@@ -2199,20 +2199,20 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
 
     s32 _sukickball_entrypoint_12(u8 *, s32);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    s32 _sukickball_entrypoint_7(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     f32 func_800EEF94(f32 *);
     s32 func_800EF1B8(f32 *, f32, f32);
     s32 func_800EFFB4(f32 *, f32, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    void func_800F5A00(s32, f32 *);
-    void func_800F5D70(s32, f32 *);
-    void func_800F7700(s32, s32, f32 *);
-    void func_800F8294(s32, f32 *);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5D70(BtIntPtr, f32 *);
+    void func_800F7700(BtIntPtr, s32, f32 *);
+    void func_800F8294(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     f32 func_80102D78();
     Actor *func_80106790(Unk80132ED0 *);
@@ -2275,7 +2275,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
                 } else {
                     _sukickball_entrypoint_13(position, selfPosition, 60.0f);
                     if (func_800DC0C0() < 0.5f && !_sukickball_entrypoint_12(parent, *(s32 *)(arg0 + 0x6C) & 0x1FF)) {
-                        func_80800BCC_chstoneballcontrol(arg0, (s32)position);
+                        func_80800BCC_chstoneballcontrol(arg0, (BtIntPtr)position);
                     }
                     if (_sukickball_entrypoint_6(parent, i) && func_800F52B8(i, *(Unk80132ED0 **)arg0) == 2) {
                         f32 secondPosition[3];
@@ -2296,7 +2296,7 @@ void func_808046C4_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_8010A590(Actor *);
     s32 func_800EA05C();
-    s32 _gcstatusDll_entrypoint_11();
+    u8 _gcstatusDll_entrypoint_11(void);
     void *func_800BD0DC(s32);
     void func_800BD268();
     void func_800BD28C();
@@ -2350,7 +2350,7 @@ void func_808047E8_chstoneballcontrol(Actor *arg0) {
     func_800BD09C(*data);
 }
 
-s32 func_80804810_chstoneballcontrol(Actor *arg0)
+BtIntPtr func_80804810_chstoneballcontrol(Actor *arg0)
 {
     s32 *_subaddiefind_entrypoint_0();
     f32 func_800136E4(f32);
@@ -2368,32 +2368,32 @@ s32 func_80804810_chstoneballcontrol(Actor *arg0)
     f32 angle;
     f32 speed;
 
-    selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, -1, &distance.f);
+    selected = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x155, -1, &distance.f);
     if (selected == NULL) {
-        selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x29E, -1, &distance.f);
+        selected = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x29E, -1, &distance.f);
         if (selected == NULL) {
-            selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1B8, -1, &distance.f);
+            selected = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1B8, -1, &distance.f);
             if (selected == NULL) {
                 return NULL;
             }
         }
     } else if ((((u32)*(u16 *)(selected + 0x72) >> 10) == 2 &&
-                !func_800F0064((f32 *)((u8 *)arg0 + 4), 100.0f, (f32 *)(selected + 4))) ||
+                !func_800F0064(&arg0->position[0], 100.0f, (f32 *)(selected + 4))) ||
                ((u32)*(u16 *)(selected + 0x72) >> 10) == 6 ||
                ((u32)*(u16 *)(selected + 0x72) >> 10) == 4 ||
                ((u32)*(u16 *)(selected + 0x72) >> 10) == 3) {
         switch ((u32)*(u16 *)(selected + 0x72) >> 10) {
             case 2:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 2, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x155, 2, &distance.f);
                 break;
             case 3:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 3, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x155, 3, &distance.f);
                 break;
             case 6:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 6, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x155, 6, &distance.f);
                 break;
             case 4:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x155, 4, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x155, 4, &distance.f);
                 break;
         }
         if (other != NULL && (((u32)*(u16 *)(other + 0x72) >> 10) == 1 ||
@@ -2418,7 +2418,7 @@ s32 func_80804810_chstoneballcontrol(Actor *arg0)
             speed = 25.0f;
         }
         if (speed < 30.0f) {
-            *(f32 *)((u8 *)arg0 + 0x54) = func_80102D78(arg0, (f32 *)(selected + 0x18));
+            arg0->unk54 = func_80102D78(arg0, (f32 *)(selected + 0x18));
             if (!func_80102CF4(arg0, 0x42340000) && func_80102CF4(arg0, 0x42B40000) &&
                 func_800DC0C0() < 0.8f) {
                 func_80800B4C_chstoneballcontrol(arg0, 8);
@@ -2429,7 +2429,7 @@ s32 func_80804810_chstoneballcontrol(Actor *arg0)
     } else {
         func_800EE7F8((f32 *)((u8 *)arg0 + 0x18), (f32 *)(selected + 4));
     }
-    return (s32)selected;
+    return (BtIntPtr)selected;
 }
 
 void func_80804B60_chstoneballcontrol(Actor *arg0) {

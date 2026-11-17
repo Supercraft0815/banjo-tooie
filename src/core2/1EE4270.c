@@ -45,7 +45,7 @@ void func_8010AA9C(s32 *arg0) {
     func_800EE7F8(arg0, &D_80136F40);
 }
 
-s32 func_8010AAC0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 func_8010AAC0(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     void func_800D4584(void *, f32 *, f32 *, f32 *);
     f32 func_800EC708(Unk80132ED0 *);
     void func_800EE7F8(f32 *, f32 *);
@@ -130,17 +130,17 @@ s32 func_8010AAC0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     func_8010A654(arg0, saved);
     return result ? 1 : 0;
-}
+}               typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0xC]; s32 unk14; u8 pad18[0x2C]; f32 unk44; f32 unk48; u8 pad4C[0x24]; u32 unk70; } Obj1EE4270_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 s32 func_8010ACE0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 func_800CC6CC(s32, s32);
-    s32 func_8010AAC0(void *, s32, s32, s32);
+    s32 func_8010AAC0(void *, BtIntPtr, s32, s32);
     u32 temp_v0;
     u32 temp_v1;
 
-    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    temp_v0 = (((Obj1EE4270_arg0 *)arg0)->unk70);
     temp_v1 = temp_v0 >> 0x19;
     if ((temp_v1 != 0) && (func_800CC6CC(temp_v1 - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) == 0)) {
         return 0;
@@ -166,8 +166,8 @@ s32 func_8010AD4C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     sp3C[0] = temp_f2;
     arg1[1] = arg1[1] + temp_f2;
     ((f32 *)arg0)[2] = ((f32 *)arg0)[2] + temp_f2;
-    sp38 = func_800BF340(arg1, (f32 *)((u8 *)arg0 + 4), D_80136F30, *(s32 *)((u8 *)arg0 + 0x14), temp_f2);
-    func_800EE7F8(D_80136F20, (f32 *)((u8 *)arg0 + 4));
+    sp38 = func_800BF340(arg1, &((Obj1EE4270_arg0 *)arg0)->unk4, D_80136F30, ((Obj1EE4270_arg0 *)arg0)->unk14, temp_f2);
+    func_800EE7F8(D_80136F20, &((Obj1EE4270_arg0 *)arg0)->unk4);
     arg3 = sp3C[0];
     arg1[1] = arg1[1] - arg3;
     ((f32 *)arg0)[2] = ((f32 *)arg0)[2] - arg3;
@@ -187,7 +187,7 @@ s32 func_8010AE30(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     u32 temp_v0;
     u32 temp_v1;
 
-    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    temp_v0 = (((Obj1EE4270_arg0 *)arg0)->unk70);
     temp_v1 = temp_v0 >> 0x19;
     if ((temp_v1 != 0) && (func_800CC6CC(temp_v1 - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) == 0)) {
         return 0;
@@ -196,7 +196,7 @@ s32 func_8010AE30(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
 }
 
 s32 func_8010AE9C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
-    s32 func_800BF0E0(f32 *, f32 *, f32, f32 *, s32, s32);
+    void *func_800BF0E0(f32 *a,f32 *b,f32 radius,f32 *out,s32 flags,u32 mode);
     f32 func_800EC708(Unk80132ED0 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_8010A40C(void *);
@@ -204,7 +204,7 @@ s32 func_8010AE9C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     extern f32 D_80136F20[3];
     extern f32 D_80136F30[3];
     f32 sp3C[1];
-    s32 sp38;
+    BtIntPtr sp38;
     f32 sp34;
     f32 temp_f2;
 
@@ -213,8 +213,8 @@ s32 func_8010AE9C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     sp3C[0] = temp_f2;
     arg1[1] = arg1[1] + temp_f2;
     ((f32 *)arg0)[2] = ((f32 *)arg0)[2] + temp_f2;
-    sp38 = func_800BF0E0(arg1, (f32 *)((u8 *)arg0 + 4), temp_f2, D_80136F30, 3, *(s32 *)((u8 *)arg0 + 0x14));
-    func_800EE7F8(D_80136F20, (f32 *)((u8 *)arg0 + 4));
+    sp38 = func_800BF0E0(arg1, &((Obj1EE4270_arg0 *)arg0)->unk4, temp_f2, D_80136F30, 3, ((Obj1EE4270_arg0 *)arg0)->unk14);
+    func_800EE7F8(D_80136F20, &((Obj1EE4270_arg0 *)arg0)->unk4);
     arg3 = sp3C[0];
     arg1[1] = arg1[1] - arg3;
     ((f32 *)arg0)[2] = ((f32 *)arg0)[2] - arg3;
@@ -234,7 +234,7 @@ s32 func_8010AF8C(void *arg0, f32 *arg1, s32 arg2, f32 arg3) {
     u32 temp_v0;
     u32 temp_v1;
 
-    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    temp_v0 = (((Obj1EE4270_arg0 *)arg0)->unk70);
     temp_v1 = temp_v0 >> 0x19;
     if ((temp_v1 != 0) && (func_800CC6CC(temp_v1 - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) == 0)) {
         return 0;
@@ -247,7 +247,7 @@ s32 func_8010AF8C(void *arg0, f32 *arg1, s32 arg2, f32 arg3) {
 s32 func_8010AFF8(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800EF214(f32 *, f32, f32, f32);
     f32 func_8010C4AC(void *);
-    func_800EF214((f32 *)(arg0 + 4), (*(f32 *)((s8 *)(arg0) + (0x44))), (*(f32 *)((s8 *)(arg0) + (0x48))), func_8010C4AC(arg0));
+    func_800EF214((f32 *)(arg0 + 4), (((Obj1EE4270_arg0 *)arg0)->unk44), (((Obj1EE4270_arg0 *)arg0)->unk48), func_8010C4AC(arg0));
     return 0;
 }
 
@@ -305,7 +305,7 @@ s32 func_8010B1F4(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
     f32 func_800D8FF8(void);
     f32 func_800F13F0(f32, f32);
-    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3);
     s32 func_8010C3E8(Actor *);
     f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
@@ -341,7 +341,7 @@ s32 func_8010B1F4(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
 s32 func_8010B330(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3);
     f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
     f32 sp3C[3];
@@ -369,7 +369,7 @@ s32 func_8010B330(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
 s32 func_8010B410(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3);
     s32 func_8010C3E8(Actor *);
     f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
@@ -404,7 +404,7 @@ s32 func_8010B514(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 func_800D8FF8(void);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F13F0(f32, f32);
-    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3);
     s32 func_8010C3E8(Actor *);
     f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
@@ -454,7 +454,7 @@ int func_8010B69C(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
 s32 func_8010B71C(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
     f32 func_800D8FF8(void);
-    s32 func_801045AC(Actor *, f32 *, f32 *, s32);
+    void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3);
     f32 func_8010C460(Actor *);
     extern s32 D_80136F40;
     f32 sp34[3];
@@ -532,9 +532,9 @@ s32 func_8010B910(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-s32 func_8010B94C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 func_8010B94C(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 func_800D8FF8();
-    s32 func_800EF174(s32, s32, f32);
+    void func_800EF174(f32 dst[3], f32 src[3], f32 scale);
     func_800EF174(arg0 + 4, arg0 + 0x28, func_800D8FF8());
     return 0;
 }
@@ -600,7 +600,7 @@ s32 func_8010BAEC(Actor *volatile arg0, volatile s32 arg1, s32 arg2) {
     return result;
 }
 
-s32 func_8010BB5C(Actor *arg0, s32 arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
+s32 func_8010BB5C(Actor *arg0, BtIntPtr arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     void func_800EF04C(f32 *, f32 *);
@@ -635,10 +635,10 @@ s32 func_8010BB5C(Actor *arg0, s32 arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5
     return 1;
 }
 
-s32 func_8010BCC8(Actor *arg0, s32 arg1, Actor *arg2) {
+s32 func_8010BCC8(Actor *arg0, BtIntPtr arg1, Actor *arg2) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_8010A40C(void *);
-    s32 func_8010BB5C(Actor *, s32, f32 *, f32, f32, f32);
+    s32 func_8010BB5C(Actor *, BtIntPtr, f32 *, f32, f32, f32);
     f32 position[3];
     f32 height;
     f32 scale;
@@ -674,8 +674,8 @@ s32 func_8010BDB0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
     } Entry;
     void _chflamer_entrypoint_1(void *, void *);
     s32 *func_800BE3F8(u8 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     s32 func_80102F74(void *, s32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *arg0;
@@ -701,7 +701,7 @@ s32 func_8010BDB0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
                 continue;
             }
             other = func_80106790(marker);
-            if (!((CollisionFlags *)other)->collidable || !func_8010BCC8(arg0, (s32)position, other)) {
+            if (!((CollisionFlags *)other)->collidable || !func_8010BCC8(arg0, (BtIntPtr)position, other)) {
                 continue;
             }
             if (((CollisionFlags *)other)->burning && !((CollisionFlags *)arg0)->burning && func_80102F74(arg0, 0x80020000)) {
@@ -719,7 +719,7 @@ s32 func_8010BDB0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-void func_8010BF4C(Actor *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) { s32 func_80102844(Actor *, f32, s32, s32); *(f32 *)((s8 *)arg0 + 0x24) = arg2; func_80102844(arg0, (f32) arg3, -1, arg1); func_8010B990(arg0, arg4); }
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8010BF4C(Actor *arg0, BtIntPtr arg1, f32 arg2, s32 arg3, s32 arg4) { s32 func_80102844(Actor *arg0, f32 arg1, s32 arg2, f32 *arg3); *(f32 *)((s8 *)arg0 + 0x24) = arg2; func_80102844(arg0, (f32) arg3, -1, arg1); BT_NATIVE_ONLY(return) func_8010B990(arg0, arg4); }
 
 s32 func_8010BFA4(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     f32 func_800136E4(f32);
@@ -781,8 +781,8 @@ s32 func_8010C100(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     } Entry;
     void _chflamer_entrypoint_1(void *, void *);
     s32 *func_800BE3F8(u8 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     s32 func_80102F74(void *, s32);
     f32 func_80103F38(Actor *, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
@@ -871,14 +871,14 @@ s32 func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2) {
 s32 func_8010C3E8(Actor *arg0) {
     f32 func_800BECCC(void);
     void func_800FFAB0(Actor *);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     f32 temp_f12;
     s32 var_v0;
 
     temp_f12 = func_800BECCC() - 1000.0f;
     var_v0 = 0;
-    if ((*(f32 *)((s8 *)(arg0) + (8))) < temp_f12) {
-        (*(f32 *)((s8 *)(arg0) + (8))) = temp_f12;
+    if ((arg0->position[1]) < temp_f12) {
+        (arg0->position[1]) = temp_f12;
         if (func_8010108C(arg0, 0x4D, 1) > 0) {
             return 0;
         }
@@ -915,3 +915,11 @@ f32 func_8010C4AC(void *arg0) {
     }
     return (*(f32 *)((s8 *)(arg0) + (0x24)));
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_80136F20 [ 3 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1500);
+f32 D_80136F30 [ 3 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1510);
+s32 D_80136F40 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1520);
+#endif

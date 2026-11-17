@@ -57,9 +57,9 @@ void bsdronebitten_entrypoint_1(PlayerState *arg0) {
     func_8009D9D4(arg0);
 }
 
-void bsdronebitten_entrypoint_2()
+void bsdronebitten_entrypoint_2(BT_NATIVE_ONLY(struct player_state_s *bt_a0))
 {
-    func_80099AA8();
+    func_80099AA8(BT_NATIVE_ONLY(bt_a0));
 }
 
 /* extern */
@@ -67,10 +67,10 @@ void bsdronebitten_entrypoint_2()
 void bsdronebitten_entrypoint_3(PlayerState *arg0) {
     s32 _badata_entrypoint_24(PlayerState *);
     f32 baphysics_get_vertical_velocity(PlayerState *);
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     int func_8008DA24(PlayerState *);
     int func_8008DF8C(PlayerState *, s32);
-    s32 func_800F64A4(s32, s32);
+    s32 func_800F64A4(BtIntPtr, s32);
     s32 player_inWater(PlayerState *);
     s32 sp2C;
     s32 pad;
@@ -102,7 +102,7 @@ f32 bsdronebitten_entrypoint_4(void *arg0, f32 arg1) {
     default:
         return arg1;
     }
-}
+}    typedef struct { u8 pad0[0x191]; u8 unk191; } Objbitten_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x4]; f32 unk4; } Objbitten_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void bsdronebitten_entrypoint_5(void *arg0, void *arg1, f32 arg2)
 {
@@ -112,18 +112,18 @@ void bsdronebitten_entrypoint_5(void *arg0, void *arg1, f32 arg2)
   f32 sp1C;
   float new_var;
   u8 temp_v0;
-  temp_v0 = *((u8 *) (((s8 *) arg0) + 0x191));
+  temp_v0 = ((Objbitten_arg0 *)arg0)->unk191;
   if ((temp_v0 != 1) && (temp_v0 == 2))
   {
     sp1C = _bamovegoto_entrypoint_3();
     new_var = (func_80013970(arg2 * 180.0f) * sp1C) * 0.5f;
-    *((f32 *) (((s8 *) arg1) + 4)) = (f32) ((*((f32 *) (((s8 *) arg1) + 4))) + new_var);
+    ((Objbitten_arg1 *)arg1)->unk4 = (f32) ((((Objbitten_arg1 *)arg1)->unk4) + new_var);
   }
 }
 
-void bsdronebitten_entrypoint_6(s32 arg0)
+void bsdronebitten_entrypoint_6(BtIntPtr arg0)
 {
-    void _bafpctrl_entrypoint_19(s32);
+    void _bafpctrl_entrypoint_19(BtIntPtr);
     func_800961A0((s32 *)arg0, 0);
     func_8008E95C(arg0);
     _bafpctrl_entrypoint_19(arg0);
@@ -142,7 +142,7 @@ void bsdronebitten_entrypoint_7(PlayerState *arg0) {
     void _bamovegoto_entrypoint_7(void *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void _bamovegoto_entrypoint_12(void *, f32 *);
-    void _bamovegoto_entrypoint_11(void *, f32 (*)(void *, f32), void (*)(void *, void *, f32));
+    void _bamovegoto_entrypoint_11(void *arg0, BtIntPtr arg1, BtIntPtr arg2);
     void _bamovegoto_entrypoint_13(void *);
     void func_8008E944(PlayerState *);
     void func_8009D9D4(PlayerState *);
@@ -175,9 +175,9 @@ void bsdronebitten_entrypoint_7(PlayerState *arg0) {
     *((s8 *)arg0 + 0x190) = 0;
 }
 
-void bsdronebitten_entrypoint_8()
+void bsdronebitten_entrypoint_8(BT_NATIVE_ONLY(struct player_state_s *bt_a0))
 {
-    func_80099AA8();
+    func_80099AA8(BT_NATIVE_ONLY(bt_a0));
 }
 
 /* extern */
@@ -221,7 +221,7 @@ void func_808004C4_bsdronebitten(void *arg0, s32 arg1, s32 arg2) {
 #ifndef BT_NATIVE
     s32 baanim_getAnimCtrlPtr();
 #endif
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
 #ifdef BT_NATIVE
     temp_v0 = ((AnimCtrl* (*)())baanim_getAnimCtrlPtr)();
@@ -239,11 +239,11 @@ void func_808004C4_bsdronebitten(void *arg0, s32 arg1, s32 arg2) {
 
 void bsdronebitten_entrypoint_9(PlayerState *arg0) {
     s32 _badata_entrypoint_20(PlayerState *);
-    s32 _badust_entrypoint_8(PlayerState *);
+    void _badust_entrypoint_8(struct player_state_s *self);
     s32 _bamovegoto_entrypoint_4();
-    s32 _bashake_entrypoint_0(PlayerState *, s32, s32);
+    void _bashake_entrypoint_0(struct player_state_s *arg0, s32 arg1, s32 arg2);
     int baanim_isStopped(PlayerState *);
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     void func_8009D9D4(PlayerState *);
     void func_8009DB04(PlayerState *, s32, f32, s32);
     s32 func_800A1718(PlayerState *);

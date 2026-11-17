@@ -2,18 +2,18 @@
 #include "gfx.h"
 #include "memory.h"
 
-s32 func_80014F00();
+BtIntPtr func_80014F00();
 void func_8001D96C();
-void func_8001D3D8(s32, s32, const char*, ...);
+void func_8001D3D8(s16 arg0, s16 arg1, const char *arg2, ...);
 void _gzthread_entrypoint_0(s32, char*);
-void func_8001D9CC(s32, s32);
+void func_8001D9CC(u16 arg0, u16 arg1);
 void _gzreg_entrypoint_0(void*);
 void _gzthread_entrypoint_1(s32);
 void _gztrace_entrypoint_1(void*, s32, s32, s32);
-s32 func_80014F00();
+BtIntPtr func_80014F00();
 s32 func_80014F38();
 void func_80015430(s32);
-void func_8001DA60(s32);
+void func_8001DA60(BtIntPtr);
 void wait_five_seconds_gzpublic();
 void func_80800040_gzpublic(s32);
 

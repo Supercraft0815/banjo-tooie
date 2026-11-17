@@ -7,8 +7,8 @@ void func_8001E2A0()
 
 void func_8001E2C8(void) {
     extern s32 D_8007E950;
-    s32 func_8001D37C();
-    s32 func_8001D96C();
+    void func_8001D37C(BtIntPtr arg0, ...);
+    void func_8001D96C();
     extern s32 D_80041840;
     func_8001D96C();
     func_8001D37C(&D_80041840, D_8007E950);
@@ -17,9 +17,9 @@ void func_8001E2C8(void) {
 
 void func_8001E304(void) {
     void _gzreg_entrypoint_1(void);
-    s32 func_8001D37C();
-    s32 func_8001D96C();
-    s32 func_8001D9CC(s32, s32);
+    void func_8001D37C(BtIntPtr arg0, ...);
+    void func_8001D96C();
+    void func_8001D9CC(u16 arg0, u16 arg1);
     extern s32 D_80041868;
     func_8001D96C();
     func_8001D37C(&D_80041868);
@@ -29,8 +29,8 @@ void func_8001E304(void) {
 }
 
 void func_8001E34C(void) {
-    s32 func_8001D37C();
-    s32 func_8001D96C();
+    void func_8001D37C(BtIntPtr arg0, ...);
+    void func_8001D96C();
     extern s32 D_8004187C;
     func_8001D96C();
     func_8001D37C(&D_8004187C);
@@ -45,7 +45,7 @@ void func_8001E380()
 void func_8001E3A0(void) {
     extern s32 D_8007E948;
     s32 func_8001211C(void);
-    s32 func_8001D37C(s32 *, s32, s32);
+    void func_8001D37C(BtIntPtr arg0, ...);
     extern s32 D_800418A8;
     func_8001D37C(&D_800418A8, func_8001211C(), D_8007E948);
     func_8001E2A0();
@@ -53,15 +53,15 @@ void func_8001E3A0(void) {
 
 void func_8001E3E0(void) {
     s32 func_8001211C(void);
-    s32 func_8001D37C();
+    void func_8001D37C(BtIntPtr arg0, ...);
     extern s32 D_800418D4;
     func_8001D37C(&D_800418D4, func_8001211C());
     func_8001E2A0();
 }
 
 void func_8001E418(void) {
-    s32 func_8001D37C();
-    s32 func_8001D96C();
+    void func_8001D37C(BtIntPtr arg0, ...);
+    void func_8001D96C();
     extern s32 D_800418EC;
     func_8001D96C();
     func_8001D37C(&D_800418EC);
@@ -69,8 +69,8 @@ void func_8001E418(void) {
 }
 
 void func_8001E44C(void) {
-    s32 func_8001D3D8(s32, s32, s32 *, s32);
-    s32 func_8001D96C();
+    void func_8001D3D8(s16 arg0, s16 arg1, const char *arg2, ...);
+    void func_8001D96C();
     extern s32 D_800418FC;
     extern s32 D_8007E950;
     func_8001D96C();
@@ -117,7 +117,7 @@ void func_8001E4B0(void) {
     }
 }
 
-void func_8001E578(s32 arg0) { extern s32 D_8007E94C, D_8007E958; OSThread *func_8001DDA4(s32); void func_8001E7B4(s32); void func_8001E4B0(void); void _gzpublic_entrypoint_0(s32); func_8001E7B4(1); osSetThreadPri(func_8001DDA4(D_8007E958), 0); osSetThreadPri(func_8001DDA4(7), 0x5B); func_8001E4B0(); _gzpublic_entrypoint_0(D_8007E94C); }
+void func_8001E578(s32 arg0) { extern s32 D_8007E94C, D_8007E958; OSThread *func_8001DDA4(s32); void func_8001E7B4(s32); void func_8001E4B0(void); void _gzpublic_entrypoint_0(struct unkD_8007E94C* arg0); func_8001E7B4(1); osSetThreadPri(func_8001DDA4(D_8007E958), 0); osSetThreadPri(func_8001DDA4(7), 0x5B); func_8001E4B0(); _gzpublic_entrypoint_0(D_8007E94C); }
 
 void func_8001E5DC(s32 arg0) {
     extern s32 D_8007E948;
@@ -200,3 +200,15 @@ s32 func_8001E7CC(void) {
 
     return D_8007E948;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s16 D_8007DB80 BT_DATA(16, bss_core1bss1_2_cic_tail, 0x0);
+OSThread D_8007E788 BT_DATA(8, bss_core1bss1_2_cic_tail, 0xC08);
+__OSThreadOddFpStorage D_8007E938 BT_DATA(8, bss_core1bss1_2_cic_tail, 0xDB8);
+s32 D_8007E948 BT_DATA(4, bss_core1bss1_2_cic_tail, 0xDC8);
+s32 D_8007E94C BT_DATA(4, bss_core1bss1_2_cic_tail, 0xDCC);
+s32 D_8007E950 BT_DATA(4, bss_core1bss1_2_cic_tail, 0xDD0);
+s32 D_8007E95C [ 13 ] BT_DATA(4, bss_core1bss1_2_cic_tail, 0xDDC);
+#endif

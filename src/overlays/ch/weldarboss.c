@@ -14,7 +14,7 @@ s32 func_808014CC_chweldarboss(Actor *, s32, s32);
 void func_80803EA4_chweldarboss(Actor *);
 void func_8080412C_chweldarboss(Actor *, void *);
 void func_80803E50_chweldarboss(Actor *);
-u32 func_808040F4_chweldarboss(s32, s32, s32);
+u32 func_808040F4_chweldarboss(BtIntPtr, s32, s32);
 
 u32 D_80804790_chweldarboss[] = {
     0x00000000, 0x00000000, 0x3E23D70A, 0x037A0001,
@@ -26,20 +26,20 @@ s32 D_808047B8_chweldarboss[] = {
     0x0013041D, 0x000D00C0, 0x00D90000,
 };
 
-u32 D_808047C4_chweldarboss[] = {
-    0x02F80465, 0x08170001, (u32)D_808045F0_chweldarboss, (u32)func_8080030C_chweldarboss,
-    (u32)func_80105834, (u32)func_80801944_chweldarboss, 0x00000000, 0x00000000,
-    0x00000000, 0x00000568, (u32)func_808002BC_chweldarboss, (u32)func_80108ED0,
-    0x00B80000, (u32)func_80800018_chweldarboss, (u32)func_80107C2C, 0x82010480,
-    (u32)func_808014CC_chweldarboss, 0x00000000,
+BtFnWord D_808047C4_chweldarboss[] = {
+    0x02F80465, 0x08170001, (BtFnWord)D_808045F0_chweldarboss, (BtFnWord)func_8080030C_chweldarboss,
+    (BtFnWord)func_80105834, (BtFnWord)func_80801944_chweldarboss, 0x00000000, 0x00000000,
+    0x00000000, 0x00000568, (BtFnWord)func_808002BC_chweldarboss, (BtFnWord)func_80108ED0,
+    0x00B80000, (BtFnWord)func_80800018_chweldarboss, (BtFnWord)func_80107C2C, 0x82010480,
+    (BtFnWord)func_808014CC_chweldarboss, 0x00000000,
 };
 
-u32 D_8080480C_chweldarboss[] = {
-    0x01580468, 0x086B0001, (u32)D_80804790_chweldarboss, (u32)func_80803EA4_chweldarboss,
-    (u32)func_80105834, (u32)func_8080412C_chweldarboss, 0x00000000, 0x00000000,
+BtFnWord D_8080480C_chweldarboss[] = {
+    0x01580468, 0x086B0001, (BtFnWord)D_80804790_chweldarboss, (BtFnWord)func_80803EA4_chweldarboss,
+    (BtFnWord)func_80105834, (BtFnWord)func_8080412C_chweldarboss, 0x00000000, 0x00000000,
     0x00000000, 0x00020400, 0x00000000, 0x00000000,
-    0x00100000, (u32)func_80803E50_chweldarboss, (u32)func_80107C2C, 0x80000402,
-    (u32)func_808040F4_chweldarboss, 0x00000000,
+    0x00100000, (BtFnWord)func_80803E50_chweldarboss, (BtFnWord)func_80107C2C, 0x80000402,
+    (BtFnWord)func_808040F4_chweldarboss, 0x00000000,
 };
 
 s32 D_80804854_chweldarboss[] = {
@@ -229,19 +229,19 @@ void func_80800018_chweldarboss(Actor *arg0) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_19(s32);
     s32 _glcutDll_entrypoint_20(void);
-    void _plcamera_entrypoint_8(s32);
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _plcamera_entrypoint_8(s32 *arg0);
+    void _subaddielink_entrypoint_0(void *arg0);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     void func_800BF744(s32, s32);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
-    void func_800F497C(s32);
-    s32 func_800F54E4(void);
-    void func_800F608C(s32, s32);
-    s32 func_800F6438(u32);
-    s32 func_800F64A4(s32, s32);
-    void func_800F8294(s32, f32 *);
+    void func_800F497C(BtIntPtr);
+    BtIntPtr func_800F54E4(void);
+    void func_800F608C(BtIntPtr, s32);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F8294(BtIntPtr, f32 *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
@@ -252,9 +252,9 @@ void func_80800018_chweldarboss(Actor *arg0) {
     void func_80802214_chweldarboss(Actor *, s32, s32);
     void func_80803CF0_chweldarboss(Actor *, s32, s32);
     WeldarLocal *local;
-    s32 map;
+    BtIntPtr map;
     s32 i;
-    s32 map2;
+    BtIntPtr map2;
 
     local = func_80100094(arg0, 0);
     if (_glcutDll_entrypoint_19(0x8A)) {
@@ -317,7 +317,7 @@ void func_80800018_chweldarboss(Actor *arg0) {
     }
     _chintrotext_entrypoint_2(1);
     arg0->unk64_16 = 0;
-}
+}    typedef struct { u8 pad0[0xB0]; u8 unkB0; u8 unkB1; u8 unkB2; } Objweldarboss_func_808002BC_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_808002BC_chweldarboss(Actor *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
@@ -325,9 +325,9 @@ void func_808002BC_chweldarboss(Actor *arg0) {
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(u8 *)((s8 *)(temp_v0) + (0xB0))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xB0))));
-    (*(u8 *)((s8 *)(temp_v0) + (0xB1))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xB1))));
-    (*(u8 *)((s8 *)(temp_v0) + (0xB2))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0xB2))));
+    (((Objweldarboss_func_808002BC_chweldarboss_temp_v0 *)temp_v0)->unkB0) = _subaddieaudioloop_entrypoint_3((((Objweldarboss_func_808002BC_chweldarboss_temp_v0 *)temp_v0)->unkB0));
+    (((Objweldarboss_func_808002BC_chweldarboss_temp_v0 *)temp_v0)->unkB1) = _subaddieaudioloop_entrypoint_3((((Objweldarboss_func_808002BC_chweldarboss_temp_v0 *)temp_v0)->unkB1));
+    (((Objweldarboss_func_808002BC_chweldarboss_temp_v0 *)temp_v0)->unkB2) = _subaddieaudioloop_entrypoint_3((((Objweldarboss_func_808002BC_chweldarboss_temp_v0 *)temp_v0)->unkB2));
 }
 
 void func_8080030C_chweldarboss(Actor *arg0)
@@ -356,13 +356,13 @@ void func_8080030C_chweldarboss(Actor *arg0)
         u8 pad7D[0x37];
         f32 unkB4;
     } WeldarData;
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     void _chexploder_entrypoint_5(Actor *, s32, f32 *, f32, f32, s32);
     void _subaddieaudioquick_entrypoint_2(Actor*, f32[3], void*);
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
     s32 _subaddiefind_entrypoint_9(s32);
     void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800D8FF8(void);
     u8 func_800D9078(f32*);
     s32 func_800D90A4(f32*);
@@ -375,12 +375,12 @@ void func_8080030C_chweldarboss(Actor *arg0)
     s32 func_800F0064(f32 *, f32, f32 *);
     f32 func_800F0D50(f32, f32, f32);
     f32 func_800F1DF4(f32[3], f32[3]);
-    s32 func_800F54E4(void);
-    void func_800F5A00(s32, f32[3]);
-    s32 func_800F64A4(s32 characterIndex, s32 transformationType);
-    void func_800F82D4(s32, s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32[3]);
+    s32 func_800F64A4(BtIntPtr characterIndex, s32 transformationType);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_80101DDC(Actor*);
     s32 func_80101E14(Actor*, f32);
     void func_80102B2C(Actor*, f32);
@@ -390,7 +390,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
     void func_8010A570(Actor*);
     void func_8010A590(Actor *);
     s32 func_8010CA74(f32 *, s32);
-    f32 func_8010CD50(Actor*, u32);
+    f32 func_8010CD50(Actor*, BtUIntPtr);
     void func_80801AA0_chweldarboss(Actor *, s32);
     void func_80802214_chweldarboss(Actor *, s32, s32);
     void func_808023F8_chweldarboss(Actor *);
@@ -410,11 +410,11 @@ void func_8080030C_chweldarboss(Actor *arg0)
     void func_80803624_chweldarboss(Actor *);
     void func_8080367C_chweldarboss(Actor *);
     void func_80803770_chweldarboss(Actor *);
-    int func_80803B48_chweldarboss(s32);
+    int func_80803B48_chweldarboss(BtIntPtr);
     void func_80803C18_chweldarboss(Actor *);
     void func_80803CF0_chweldarboss(Actor *, s32, s32);
     void func_80803D64_chweldarboss(Actor *);
-    s32 func_80803D98_chweldarboss(s32);
+    BtIntPtr func_80803D98_chweldarboss(BtIntPtr);
     extern f32 B_80804AE0_chweldarboss[3];
 
     extern void _chbaddiesetup_entrypoint_10(void);
@@ -431,7 +431,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
     f32 sp68;
     f32 sp64;
     f32 sp60;
-    s32 sp5C;
+    BtIntPtr sp5C;
     f32 sp58;
     f32 sp54;
     f32 sp50;
@@ -446,7 +446,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
 
     sp94 = func_80100094(arg0, 0U);
     sp90 = 0;
-    sp94->unk78 = func_80803D98_chweldarboss((s32)arg0);
+    sp94->unk78 = func_80803D98_chweldarboss((BtIntPtr)arg0);
     func_8080367C_chweldarboss(arg0);
     func_800F5A00((s32) sp94->unk78, sp84);
     switch (arg0->unk70_10) {
@@ -896,9 +896,9 @@ s32 func_808014CC_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_8080227C_chweldarboss(Actor *, s32);
     void func_80801AA0_chweldarboss(Actor *, s32);
     s32 func_80803DD8_chweldarboss(Actor *);
-    s32 func_800F79DC(s32, s32, s32);
+    s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);
     s32 _sueggmisc_entrypoint_0();
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);
     void _chexploder_entrypoint_15(Actor *, u32, f32);
@@ -940,7 +940,7 @@ s32 func_808014CC_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
             case 32:
                 func_80801AA0_chweldarboss(arg0, 0x21);
             default:
-                func_800F79DC(hit->id, 7, (s32)arg0->unk0);
+                func_800F79DC(hit->id, 7, (BtIntPtr)arg0->unk0);
                 break;
             }
         }
@@ -949,7 +949,7 @@ s32 func_808014CC_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x40: {
         Actor *other = *(Actor **)&arg2;
         if (func_80803DD8_chweldarboss(arg0) && _sueggmisc_entrypoint_0(other)) {
-            func_8010114C((s32)other, 0x2C, 0);
+            func_8010114C((BtIntPtr)other, 0x2C, 0);
         }
         break;
     }
@@ -1124,11 +1124,11 @@ void func_80801AA0_chweldarboss(Actor *arg0, s32 arg1) {
     s32 func_800D395C(void);
     void func_800EE7F8(f32 *, f32 *);
     void func_800F4FC4(void);
-    s32 func_800F8150(u32, s32);
-    void func_800F82D4(s32, s32);
+    s32 func_800F8150(BtUIntPtr, s32);
+    void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80802214_chweldarboss(Actor *, s32, s32);
     f32 func_80803378_chweldarboss(Actor *);
@@ -1377,7 +1377,7 @@ s32 func_80802100_chweldarboss(Actor *arg0, s32 arg1) {
     void func_80801AA0_chweldarboss(Actor *, s32);
     void func_80803CF0_chweldarboss(Actor *, s32, s32);
     void func_80803D64_chweldarboss(Actor *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     WeldarData *data;
     s32 result;
 
@@ -1432,13 +1432,13 @@ void func_8080227C_chweldarboss(Actor *arg0, s32 arg1) {
     } WeldarData;
     s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
     s32 func_800DC128(s32, s32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80100120(Actor *);
     void func_80101010(f32 *);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
-    void func_8010D09C(s32, f32 *, f32);
+    void func_8010D09C(BtIntPtr, f32 *, f32);
     WeldarData *data;
     Actor *sp38;
     Actor *sp34;
@@ -1463,7 +1463,7 @@ void func_8080227C_chweldarboss(Actor *arg0, s32 arg1) {
             func_800F5A00(data->unk78, sp28);
             sp28[1] = 0.0f;
             func_80101010(sp28);
-            func_8010108C(sp24, 0x8E, (s32)arg0->unk0);
+            func_8010108C(sp24, 0x8E, (BtIntPtr)arg0->unk0);
             break;
     }
 }
@@ -1585,7 +1585,7 @@ void func_808026BC_chweldarboss(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800E1540(s32);
     void func_800E1378(s32);
     void func_800E13F0(s32, f32);
@@ -1661,7 +1661,7 @@ void func_808029D8_chweldarboss(Actor *arg0) {
         u8 unkB2;
     } WeldarData;
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
@@ -1687,7 +1687,7 @@ void func_80802ABC_chweldarboss(Actor *arg0, f32 arg1) {
     void func_80018820(s32, f32, f32);
     s32 func_800E15CC(s32, f32, f32);
 
-    if (_subaddieaudioquick_entrypoint_3(arg0, (f32 *) ((u8 *) arg0 + 4), D_808049EC_chweldarboss, arg1) != 0) {
+    if (_subaddieaudioquick_entrypoint_3(arg0, &arg0->position[0], D_808049EC_chweldarboss, arg1) != 0) {
         func_800E15CC(0, 10.0f, 0.8f);
         func_80018820(0, 0.8f, 0.3f);
     }
@@ -1696,14 +1696,14 @@ void func_80802ABC_chweldarboss(Actor *arg0, f32 arg1) {
 void func_80802B1C_chweldarboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80018820(s32, f32, f32);
-    s32 func_800B53A4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC178(f32, f32);
     s32 func_800E15CC(s32, f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
 
-    s32 particles;
+    BtIntPtr particles;
     f32 position[3];
     s32 i;
 
@@ -1752,7 +1752,7 @@ void func_80802D2C_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EF1B8(f32 *, f32, f32);
     void *func_80100094(Actor *, u32);
     void func_80102B2C(Actor *, f32);
-    f32 func_8010CD50(Actor *, u32);
+    f32 func_8010CD50(Actor *, BtUIntPtr);
     s32 func_8010D490(f32 *, f32 *, f32, f32, s32);
     void func_80802E80_chweldarboss(Actor *);
     void func_80803080_chweldarboss(Actor *, s32);
@@ -1808,10 +1808,10 @@ void func_80802E80_chweldarboss(Actor *arg0) {
 }
 
 void func_80802F14_chweldarboss(Actor *arg0, s32 arg1) {
-    s32 func_800F4EC8(u32, s32, f32, f32, f32);
-    s32 func_800F6438(u32);
+    s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
+    s32 func_800F6438(BtUIntPtr);
     s32 func_800F682C(s32);
-    int func_800F6AA4(s32);
+    int func_800F6AA4(BtIntPtr);
     s32 var_s0;
     s32 limit;
 
@@ -1819,7 +1819,7 @@ void func_80802F14_chweldarboss(Actor *arg0, s32 arg1) {
     limit = 8;
     do {
         if ((func_800F6438(var_s0) != 0) && ((arg1 != 0) || (func_800F682C(var_s0) == 0) || (func_800F6AA4(var_s0) != 0))) {
-            func_800F4EC8(var_s0, (s32)arg0->position, 600.0f, -100.0f, 300.0f);
+            func_800F4EC8(var_s0, (BtIntPtr)arg0->position, 600.0f, -100.0f, 300.0f);
         }
         var_s0 += 1;
     } while (var_s0 != limit);
@@ -1834,7 +1834,7 @@ void func_80802FE4_chweldarboss(Actor *arg0, s32 arg1) {
     s32 func_800D90A4(f32 *);
     void *func_80100094(Actor *, u32);
     void func_80102B2C(Actor *, f32);
-    f32 func_8010CD50(Actor *, u32);
+    f32 func_8010CD50(Actor *, BtUIntPtr);
     void func_80801AA0_chweldarboss(Actor *, s32);
     WeldarData *sp2C;
     s32 sp28;
@@ -1862,11 +1862,11 @@ void func_80803080_chweldarboss(Actor *arg0, s32 arg1) {
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    void func_800F5D9C(s32, f32 *);
-    s32 func_800F6478(s32);
-    s32 func_800F6590(s32);
-    s32 func_800F8418(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5D9C(BtIntPtr, f32 *);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F6590(BtIntPtr);
+    s32 func_800F8418(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     WeldarData *data;
     f32 sp50[3];
@@ -1902,11 +1902,11 @@ s32 func_80803184_chweldarboss(Actor *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     s32 func_800F0008(f32 *, f32, f32 *, f32);
-    s32 func_800F54E4(void);
-    f32 func_800F5BF0(s32, f32 *);
-    s32 func_800F6478(s32);
-    s32 func_800F64A4(s32, s32);
-    void func_800F7B9C(s32, u32);
+    BtIntPtr func_800F54E4(void);
+    f32 func_800F5BF0(BtIntPtr, f32 *);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F7B9C(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     s32 func_80803DD8_chweldarboss(Actor *);
 
@@ -1952,9 +1952,9 @@ void func_808032A8_chweldarboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    s32 func_800F7CF4(s32, s32, void *);
-    s32 func_800F8150(u32, s32);
-    void func_800F8294(s32, f32 *);
+    s32 func_800F7CF4(BtIntPtr, s32, void *);
+    s32 func_800F8150(BtUIntPtr, s32);
+    void func_800F8294(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80101E14(Actor *, f32);
 
@@ -1995,7 +1995,7 @@ f32 func_80803378_chweldarboss(Actor *arg0) {
 s32 func_808033D8_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     return ((u8 *)func_80100094(arg0, 0))[0x62] == 0 ? 5 : 8;
-}
+}    typedef struct { u8 pad0[0x64]; u8 unk64; u8 pad65[0x13]; s16 unk78; } Objweldarboss_func_8080340C_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x64]; s8 unk64; } Objweldarboss_func_8080340C_chweldarboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
@@ -2007,25 +2007,25 @@ void func_8080340C_chweldarboss(Actor *arg0) {
     u8 *sp1C;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x64))) == 0) {
+    if ((((Objweldarboss_func_8080340C_chweldarboss_temp_v0 *)temp_v0)->unk64) == 0) {
         sp1C = temp_v0;
-        func_800F4AF4((*(s16 *)((s8 *)(temp_v0) + (0x78))), 0x14);
-        (*(s8 *)((s8 *)(sp1C) + (0x64))) = 1;
+        func_800F4AF4((((Objweldarboss_func_8080340C_chweldarboss_temp_v0 *)temp_v0)->unk78), 0x14);
+        (((Objweldarboss_func_8080340C_chweldarboss_sp1C *)sp1C)->unk64) = 1;
     }
     func_808034A0_chweldarboss(arg0);
-}
+}    typedef struct { u8 pad0[0x64]; u8 unk64; u8 pad65[0x13]; s16 unk78; } Objweldarboss_func_80803460_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
 void func_80803460_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 func_800F4B20(u32);
+    s32 func_800F4B20(BtUIntPtr);
     u8 *temp_v0;
     u8 pad[1];
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x64))) != 0) {
-        func_800F4B20((*(s16 *)((s8 *)(temp_v0) + (0x78))));
+    if ((((Objweldarboss_func_80803460_chweldarboss_temp_v0 *)temp_v0)->unk64) != 0) {
+        func_800F4B20((((Objweldarboss_func_80803460_chweldarboss_temp_v0 *)temp_v0)->unk78));
         (*(s8 *)((s8 *)(temp_v0) + (0x64))) = 0;
     }
 }
@@ -2039,10 +2039,10 @@ void func_808034A0_chweldarboss(Actor *arg0) {
     } WeldarCameraData;
     void *func_80100094(Actor *, u32);
     void func_800EE7F8(f32 *, f32 *);
-    void _plcamera_entrypoint_9(s32, f32 *, f32);
-    s32 func_800F5EF8(s32);
-    s32 func_80110014(s32 *);
-    void func_80116088(u8 *, s32);
+    void _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
+    s32 func_800F5EF8(BtIntPtr);
+    BtIntPtr func_80110014(s32 *);
+    void func_80116088(u8 *, BtIntPtr);
     WeldarCameraData *sp34;
     f32 sp28[3];
     s32 pad[2];
@@ -2065,8 +2065,8 @@ void func_80803528_chweldarboss(Actor *arg0, f32 *arg1) {
     } WeldarTriggerData;
     void *func_80100094(Actor *, u32);
     f32 func_800EFC7C(f32 *, f32 *);
-    void func_800F82D4(s32, s32);
-    int func_80803B48_chweldarboss(s32);
+    void func_800F82D4(BtIntPtr, s32);
+    int func_80803B48_chweldarboss(BtIntPtr);
     WeldarTriggerData *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
@@ -2077,22 +2077,22 @@ void func_80803528_chweldarboss(Actor *arg0, f32 *arg1) {
             func_800F82D4(sp1C->unk78, 2);
         }
     }
-}
+}    typedef struct { u8 pad0[0x65]; u8 unk65; u8 pad66[0x12]; s16 unk78; } Objweldarboss_func_808035D0_chweldarboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_808035D0_chweldarboss(Actor *arg0) {
-    void func_800F7B9C(s32, u32);
-    void func_800F82D4(s32, s32);
+    void func_800F7B9C(BtIntPtr, u32);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     u8 *sp1C;
     s32 sp18;
     sp1C = func_80100094(arg0, 0U);
-    if ((*(u8 *)((s8 *)(sp1C) + (0x65))) != 0) {
-        sp18 = (*(s16 *)((s8 *)(sp1C) + (0x78)));
+    if ((((Objweldarboss_func_808035D0_chweldarboss_sp1C *)sp1C)->unk65) != 0) {
+        sp18 = (((Objweldarboss_func_808035D0_chweldarboss_sp1C *)sp1C)->unk78);
         func_800F82D4(sp18, 0);
         func_800F7B9C(sp18, 0x5AU);
         (*(s8 *)((s8 *)(sp1C) + (0x65))) = 0;
     }
-}
+}    typedef struct { u8 pad0[0x6E]; u8 unk6E; u8 pad6F[0x42]; u8 unkB1; } Objweldarboss_func_80803624_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0xB1]; s8 unkB1; } Objweldarboss_func_80803624_chweldarboss_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 void func_80803624_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
@@ -2103,7 +2103,7 @@ void func_80803624_chweldarboss(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     sp24 = temp_v0;
-    (*(s8 *)((s8 *)(sp24) + (0xB1))) = _subaddieaudioloop_entrypoint_7((*(u8 *)((s8 *)(temp_v0) + (0xB1))), arg0->position, (*(u8 *)((s8 *)(temp_v0) + (0x6E))), D_80804AB4_chweldarboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
+    (((Objweldarboss_func_80803624_chweldarboss_sp24 *)sp24)->unkB1) = _subaddieaudioloop_entrypoint_7((((Objweldarboss_func_80803624_chweldarboss_temp_v0 *)temp_v0)->unkB1), arg0->position, (((Objweldarboss_func_80803624_chweldarboss_temp_v0 *)temp_v0)->unk6E), D_80804AB4_chweldarboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
 }
 
 void func_8080367C_chweldarboss(Actor *arg0) {
@@ -2115,11 +2115,11 @@ void func_8080367C_chweldarboss(Actor *arg0) {
     if (((s32) temp_t6 >= 7) && ((s32) temp_t6 < 0x2D)) {
         func_800D2498(0xFDU, (u32) (*(u8 *)((s8 *)(func_80100094(arg0, 0U)) + (0x6F))), 0U);
     }
-}
+}    typedef struct { u8 pad0[0x62]; s8 unk62; u8 pad63[0x45]; f32 unkA8; s16 unkAC; } Objweldarboss_func_808036C8_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_808036C8_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 _mlwave_entrypoint_0(void *, f32, f32);
+    void _mlwave_entrypoint_0(void *arg0, f32 arg1, f32 arg2);
     void _mlwave_entrypoint_7(void *, f32);
     void func_800BF744(s32, s32);
     u8 *sp1C;
@@ -2127,21 +2127,21 @@ void func_808036C8_chweldarboss(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    (*(s8 *)((s8 *)temp_v0 + 0x62)) = 1;
-    (*(s16 *)((s8 *)temp_v0 + 0xAC)) = 2;
-    (*(f32 *)((s8 *)temp_v0 + 0xA8)) = 10.0f;
+    (((Objweldarboss_func_808036C8_chweldarboss_temp_v0 *)temp_v0)->unk62) = 1;
+    (((Objweldarboss_func_808036C8_chweldarboss_temp_v0 *)temp_v0)->unkAC) = 2;
+    (((Objweldarboss_func_808036C8_chweldarboss_temp_v0 *)temp_v0)->unkA8) = 10.0f;
     _mlwave_entrypoint_0(temp_v0 + 0x88, 300.0f, 300.0f);
     _mlwave_entrypoint_7(sp1C + 0x88, 0.25f);
     func_800BF744(3, 1);
-}
+}    typedef struct { u8 pad0[0xA8]; f32 unkA8; s16 unkAC; } Objweldarboss_func_8080373C_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8080373C_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s16 *)((s8 *)(temp_v0) + (0xAC))) = 4;
-    (*(f32 *)((s8 *)(temp_v0) + (0xA8))) = 2.0f;
+    (((Objweldarboss_func_8080373C_chweldarboss_temp_v0 *)temp_v0)->unkAC) = 4;
+    (((Objweldarboss_func_8080373C_chweldarboss_temp_v0 *)temp_v0)->unkA8) = 2.0f;
 }
 
 void func_80803770_chweldarboss(Actor *arg0) {
@@ -2152,17 +2152,17 @@ void func_80803770_chweldarboss(Actor *arg0) {
     s32 _mlwave_entrypoint_8(u8 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800BF744(s32, s32);
-    s32 func_800BEA88(s32);
+    BtIntPtr func_800BEA88(s32);
     s32 func_808038F8_chweldarboss(Actor *);
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    s32 _glid_entrypoint_0(BtIntPtr, s32, s32 *, BtIntPtr);
 #ifdef BT_NATIVE
-    void chweldarboss_entrypoint_2(s32 arg0, s32 arg1, u32 arg2, s32 arg3, Unk80132ED0 *arg4);
+    void chweldarboss_entrypoint_2(s32 arg0, s32 arg1, BtUIntPtr arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
     extern s32 _chweldarboss_entrypoint_2;
 #endif
     s32 pad;
     s32 update;
-    s32 timer2;
+    BtIntPtr timer2;
     s32 timer4;
     u8 *data;
 
@@ -2199,19 +2199,19 @@ void func_80803770_chweldarboss(Actor *arg0) {
     if (update) {
         timer2 = func_800BEA88(0);
         if (timer2) {
-            _glid_entrypoint_0(timer2, 1, &_chweldarboss_entrypoint_2, (s32)arg0->unk0);
+            _glid_entrypoint_0(timer2, 1, &_chweldarboss_entrypoint_2, (BtIntPtr)arg0->unk0);
         }
     }
 }
 
 s32 func_808038F8_chweldarboss(Actor *arg0) {
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    s32 func_800F6438(u32);
-    int func_800F6AA4(s32);
-    int func_80803B48_chweldarboss(s32);
-    s32 func_800F796C(s32, s32);
+    s32 func_800F6438(BtUIntPtr);
+    int func_800F6AA4(BtIntPtr);
+    int func_80803B48_chweldarboss(BtIntPtr);
+    s32 func_800F796C(BtIntPtr, s32);
     void _chelectricfence_entrypoint_1(Actor *, f32 *);
     s32 pad;
     f32 pos[3];
@@ -2254,21 +2254,21 @@ s32 func_808038F8_chweldarboss(Actor *arg0) {
 
 /* extern */
 
-int func_80803B48_chweldarboss(s32 arg0) {
-    f32 func_800F5628(s32);
-    s32 func_800F6478(s32);
-    s32 func_800F6C5C(s32);
+int func_80803B48_chweldarboss(BtIntPtr arg0) {
+    BT_IDO_ONLY(f32 func_800F5628(BtIntPtr);) BT_NATIVE_ONLY(s32 func_800F5628(BtIntPtr);)
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
 
     if ((func_800F6478(arg0) == 0) || (func_800F6C5C(arg0) == 0)) {
         return 0;
     }
-    return func_800F5628(arg0) < 50.0f;
+    return BT_IDO_ONLY(func_800F5628(arg0)) BT_NATIVE_ONLY(((union { s32 i; f32 f; }){ .i = func_800F5628(arg0) }).f) < 50.0f;
 }
 
-void chweldarboss_entrypoint_2(s32 arg0, s32 arg1, u32 arg2, s32 arg3, Unk80132ED0 *arg4) {
+void chweldarboss_entrypoint_2(s32 arg0, s32 arg1, BtUIntPtr arg2, s32 arg3, Unk80132ED0 *arg4) {
     void *func_80100094(Actor *, u32);
     Actor* func_80106790(Unk80132ED0 *);
-    u32 temp_a0;
+    BtUIntPtr temp_a0;
     u8 temp_v1;
 
     temp_v1 = (*(u8 *)((s8 *)(func_80100094(func_80106790(arg4), 0U)) + (0xAF)));
@@ -2313,7 +2313,7 @@ void func_80803C18_chweldarboss(Actor *arg0) {
         sp28 = (s32)func_800F10B4(linkedData->unk0[2], 0.0f, 1.0f, 4.0f, 0.0f);
         data->unk84 = (s32)func_800F13C4(data->unk80, 2.0f) + sp28;
     }
-}
+}    typedef struct { u8 pad0[0x72]; s16 unk72; } Objweldarboss_func_80803CF0_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x72]; s16 unk72; } Objweldarboss_func_80803CF0_chweldarboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_80803CF0_chweldarboss(Actor *arg0, s32 arg1, s32 arg2)
 {
@@ -2325,14 +2325,14 @@ void func_80803CF0_chweldarboss(Actor *arg0, s32 arg1, s32 arg2)
   temp_v0 = func_80100094(arg0, 0U);
   sp1C = temp_v0;
   arg2 = arg2;
-  if ((*((s16 *) (((s8 *) temp_v0) + 0x72))) != 0)
+  if ((((Objweldarboss_func_80803CF0_chweldarboss_temp_v0 *)temp_v0)->unk72) != 0)
   {
     _capod_entrypoint_14();
     arg2 = arg2 | 0x2000;
   }
   _capod_entrypoint_13(arg0->unk0, NULL, (u32) arg1, (u32) arg2);
-  *((s16 *) (((s8 *) sp1C) + 0x72)) = 1;
-}
+  ((Objweldarboss_func_80803CF0_chweldarboss_sp1C *)sp1C)->unk72 = 1;
+}    typedef struct { u8 pad0[0x72]; s16 unk72; } Objweldarboss_func_80803D64_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80803D64_chweldarboss(Actor *arg0) {
     void _capod_entrypoint_14(void);
@@ -2340,19 +2340,19 @@ void func_80803D64_chweldarboss(Actor *arg0) {
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(s16 *)((s8 *)(temp_v0) + (0x72))) != 0) {
-        (*(s16 *)((s8 *)(temp_v0) + (0x72))) = 0;
+    if ((((Objweldarboss_func_80803D64_chweldarboss_temp_v0 *)temp_v0)->unk72) != 0) {
+        (((Objweldarboss_func_80803D64_chweldarboss_temp_v0 *)temp_v0)->unk72) = 0;
         _capod_entrypoint_14();
     }
 }
 
 /* extern */
 
-s32 func_80803D98_chweldarboss(s32 arg0) {
-    s32 func_800F54E4();
-    s32 func_8010D290(s32);
-    s32 temp_v0;
-    s32 var_v1;
+BtIntPtr func_80803D98_chweldarboss(BtIntPtr arg0) {
+    BtIntPtr func_800F54E4();
+    BtIntPtr func_8010D290(s32);
+    BtIntPtr temp_v0;
+    BtIntPtr var_v1;
 
     temp_v0 = func_8010D290(0x10000);
     var_v1 = temp_v0;
@@ -2384,7 +2384,7 @@ s32 func_80803DD8_chweldarboss(Actor *arg0) {
             break;
     }
     return result;
-}
+}    typedef struct { u8 pad0[0x8]; f32 unk8; } Objweldarboss_func_80803E50_chweldarboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -2397,7 +2397,7 @@ void func_80803E50_chweldarboss(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    (*(f32 *)((s8 *)(temp_v0) + (8))) = 0.0f;
+    (((Objweldarboss_func_80803E50_chweldarboss_temp_v0 *)temp_v0)->unk8) = 0.0f;
     func_808041C4_chweldarboss(arg0, 1);
     _subaddielink_entrypoint_1(sp1C, arg0->unk3C);
     arg0->unk3C = NULL;
@@ -2466,7 +2466,7 @@ void func_80803EA4_chweldarboss(Actor *arg0) {
     func_800C8E84(light, func_8001210C(1) ? D_80804AC8_chweldarboss : D_80804ABC_chweldarboss);
 }
 
-u32 func_808040F4_chweldarboss(s32 unused, s32 arg1, s32 arg2) {
+u32 func_808040F4_chweldarboss(BtIntPtr unused, s32 arg1, s32 arg2) {
     void func_80804230_chweldarboss(Actor *);
 
     if (arg1 == 0x95) {
@@ -2509,7 +2509,7 @@ void func_808041C4_chweldarboss(Actor *arg0, s32 arg1) {
             break;
     }
     func_80102424(arg0, arg1);
-}
+}    typedef struct { u8 pad0[0xC]; s32 unkC; } Objweldarboss_func_80804230_chweldarboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
@@ -2526,6 +2526,12 @@ void func_80804230_chweldarboss(Actor *arg0) {
     sp1C = temp_v0;
     _subaddielink_entrypoint_3(temp_v0);
     temp_v0_2 = func_800C8A98();
-    (*(s32 *)((s8 *)(sp1C) + (0xC))) = temp_v0_2;
+    (((Objweldarboss_func_80804230_chweldarboss_sp1C *)sp1C)->unkC) = temp_v0_2;
     func_800C8FE0(temp_v0_2, 0);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 B_80804AE0_chweldarboss [ 3 ] BT_DATA(16, bss_ch_weldarboss, 0x0);
+#endif

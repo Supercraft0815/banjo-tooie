@@ -2,7 +2,7 @@
 
 OSThread *chfloater_entrypoint_0(void)
 {
-    extern u8 D_808002A0_chfloater[];
+    extern ActorData D_808002A0_chfloater[];
 
     return (OSThread *) D_808002A0_chfloater;
 }
@@ -10,7 +10,7 @@ OSThread *chfloater_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_chfloater(Actor *arg0) {
-    s32 _mlwave_entrypoint_1(u8 *);
+    void _mlwave_entrypoint_1(void *arg0);
     f32 _mlwave_entrypoint_5(u8 *, f32, f32);
     f32 func_800136E4(f32);
     void *func_80100094(Actor *, u32);
@@ -29,7 +29,7 @@ void func_8080000C_chfloater(Actor *arg0) {
 
 void func_808000C0_chfloater(Actor *arg0) {
     s32 _gccubesearch_entrypoint_16(s32 *, s32 *, s16 **, s32, s32);
-    s32 _gsproplookup_entrypoint_0();
+    s16 _gsproplookup_entrypoint_0(void *prop);
     void _mlwave_entrypoint_0(void *, f32, f32);
     void _mlwave_entrypoint_2(void *, f32, f32);
     f32 func_800136E4(f32);
@@ -81,3 +81,8 @@ void func_808000C0_chfloater(Actor *arg0) {
         func_80104E78(arg0);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/floater.data.s */
+void func_80102EC0();
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_808002A0_chfloater [1] BT_DATA(4, overlays_ch_floater, 0x0) = { { 683, 841, -1, 1, 0, (void (*)(struct Actor *))func_8080000C_chfloater, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 42598400, 0, 0, 0, 0, 18436, 0, 0, 84, 0, (void (*)(struct Actor *))func_808000C0_chfloater, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 17426, 0, 0 } };

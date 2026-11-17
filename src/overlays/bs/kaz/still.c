@@ -3,10 +3,10 @@
 #include "overlays/bs/kaz/still.h"
 
 extern u8 D_808008A0_bskazstill[];
-extern s32 D_808008A4_bskazstill[];
-extern s32 D_808008B4_bskazstill[];
-extern s32 D_808008C4_bskazstill[];
-extern s32 D_808008D4_bskazstill[];
+extern BtIntPtr D_808008A4_bskazstill[];
+extern BtIntPtr D_808008B4_bskazstill[];
+extern BtIntPtr D_808008C4_bskazstill[];
+extern BtIntPtr D_808008D4_bskazstill[];
 
 u8 func_80800000_bskazstill(PlayerState *self) {
     if (self->unk160.word >= 4U) {
@@ -203,12 +203,12 @@ void bskazstill_entrypoint_2(PlayerState *self) {
     bs_setState(self, func_808001A4_bskazstill(self, BS_STATE_0_INVALID));
 }
 
-s32 bskazstill_entrypoint_3(s32 idx) {
+BtIntPtr bskazstill_entrypoint_3(s32 idx) {
     return D_808008A4_bskazstill[idx];
 }
 
 BanjoStateId bskazstill_entrypoint_4(PlayerState *self, BanjoStateId arg1) {
-    func_808001A4_bskazstill(self, arg1);
+    BT_NATIVE_ONLY(return) func_808001A4_bskazstill(self, arg1);
 }
 
 void bskazstill_entrypoint_5(PlayerState *self) {
@@ -231,7 +231,7 @@ void bskazstill_entrypoint_7(PlayerState *self) {
     bs_setState(self, func_808001A4_bskazstill(self, next_state));
 }
 
-s32 bskazstill_entrypoint_8(s32 idx) {
+BtIntPtr bskazstill_entrypoint_8(s32 idx) {
     return D_808008B4_bskazstill[idx];
 }
 
@@ -249,7 +249,7 @@ void func_808007A8_bskazstill(PlayerState *self) {
     _bsdrone_entrypoint_1(self);
 }
 
-s32 bskazstill_entrypoint_9(s32 idx) {
+BtIntPtr bskazstill_entrypoint_9(s32 idx) {
     return D_808008C4_bskazstill[idx];
 }
 
@@ -273,6 +273,15 @@ void func_8080082C_bskazstill(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazstill_entrypoint_10(s32 idx) {
+BtIntPtr bskazstill_entrypoint_10(s32 idx) {
     return D_808008D4_bskazstill[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/still.data.s */
+void func_8009AB78(PlayerState *);
+void _bsdrone_entrypoint_3();
+void func_80099B94(PlayerState *);
+u8 D_808008A0_bskazstill [4] BT_DATA(4, overlays_bs_kaz_still, 0x0) = { 1, 4, 3, 2 };
+BtIntPtr D_808008A4_bskazstill [4] BT_DATA(4, overlays_bs_kaz_still, 0x4) = { (BtIntPtr)_bskazstill_entrypoint_0, (BtIntPtr)_bskazstill_entrypoint_1, (BtIntPtr)_bskazstill_entrypoint_2, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_808008B4_bskazstill [4] BT_DATA(4, overlays_bs_kaz_still, 0x14) = { (BtIntPtr)_bskazstill_entrypoint_5, (BtIntPtr)_bskazstill_entrypoint_6, (BtIntPtr)_bskazstill_entrypoint_7, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_808008C4_bskazstill [4] BT_DATA(4, overlays_bs_kaz_still, 0x24) = { (BtIntPtr)func_80800758_bskazstill, (BtIntPtr)func_80800780_bskazstill, (BtIntPtr)func_808007A8_bskazstill, (BtIntPtr)_bsdrone_entrypoint_3 };
+BtIntPtr D_808008D4_bskazstill [7] BT_DATA(4, overlays_bs_kaz_still, 0x34) = { (BtIntPtr)func_808007DC_bskazstill, (BtIntPtr)func_80800804_bskazstill, (BtIntPtr)func_8080082C_bskazstill, (BtIntPtr)func_80099B94, 0, 0, 0 };

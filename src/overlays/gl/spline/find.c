@@ -61,7 +61,7 @@ s32 glsplinefind_entrypoint_3(f32 arg0[3]) {
         } while (var_s4 < SPLINE_FIELD(temp_v0, count, *(s32 *)(temp_v0 + 0x188)));
     }
     return -1;
-}
+}    typedef struct { u8 pad0[0x14]; f32 unk14; } Objfind_glsplinefind_entrypoint_4_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 /* extern */
 
@@ -93,7 +93,7 @@ s32 glsplinefind_entrypoint_4(s32 arg0[3], s32 arg1[3]) {
             /* The last point has no following point to form a segment. */
             if (temp_s2) temp_s2--;
 #endif
-            var_s0 = (f32 *)((u8 *)var_s0 + 0x14);
+            var_s0 = &((Objfind_glsplinefind_entrypoint_4_var_s0 *)var_s0)->unk14;
             if (temp_s2 > 0) {
                 do {
                     if (func_800EECE0(sp58, var_s0) != 0 && func_800EECE0(sp4C, var_s0 + 3) != 0) {

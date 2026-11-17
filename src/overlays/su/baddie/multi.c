@@ -3,9 +3,9 @@
 /* extern */
 
 void subaddiemulti_entrypoint_0(s32 arg0) {
-    s32 func_800F608C(s32, s32);
-    s32 func_800F6438(u32);
-    s32 func_800F82D4(s32, s32);
+    void func_800F608C(BtIntPtr arg0, s32 arg1);
+    s32 func_800F6438(BtUIntPtr);
+    void func_800F82D4(BtIntPtr arg0,s32 arg1);
     s32 var_s0;
 
     var_s0 = 0;
@@ -23,9 +23,9 @@ void subaddiemulti_entrypoint_0(s32 arg0) {
 /* extern */
 
 void subaddiemulti_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 func_800F608C(s32, s32);
-    s32 func_800F6438(u32);
-    s32 func_800F8300(s32, s32, s32);
+    void func_800F608C(BtIntPtr arg0, s32 arg1);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F8300(BtIntPtr, s32, BtIntPtr);
     s32 var_s0;
 
     var_s0 = 0;
@@ -43,8 +43,8 @@ void subaddiemulti_entrypoint_1(s32 arg0, s32 arg1) {
 /* extern */
 
 void subaddiemulti_entrypoint_2(void) {
-    s32 func_800F6438(u32);
-    s32 func_800F82D4(s32, s32);
+    s32 func_800F6438(BtUIntPtr);
+    void func_800F82D4(BtIntPtr arg0,s32 arg1);
     s32 var_s0;
 
     var_s0 = 0;
@@ -59,14 +59,14 @@ void subaddiemulti_entrypoint_2(void) {
 /* extern */
 
 void subaddiemulti_entrypoint_3(s32 arg0) {
-    Prop *_gccubesearch_entrypoint_14(s32, s32);
-    void _plcamera_entrypoint_8(s32);
+    void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
+    void _plcamera_entrypoint_8(s32 *arg0);
     void func_800EE88C(f32 *, s16 *);
     void func_800EFD24(f32 *);
-    s32 func_800F6438(u32);
-    void func_800F8294(s32, f32 *);
-    s32 func_800F832C(s32, f32 *);
-    s32 var_s0;
+    s32 func_800F6438(BtUIntPtr);
+    void func_800F8294(BtIntPtr, f32 *);
+    void func_800F832C(BtIntPtr arg0,f32* a1);
+    BtIntPtr var_s0;
     Prop *temp_v0;
     f32 sp3C[3];
     f32 sp30[3];
@@ -90,9 +90,9 @@ void subaddiemulti_entrypoint_3(s32 arg0) {
 /* extern */
 
 void subaddiemulti_entrypoint_4(s32 arg0) {
-    s32 func_800F5EF8(s32);
-    s32 func_800F6438(u32);
-    s32 _ncfixposrot_entrypoint_8(s32, s32);
+    s32 func_800F5EF8(BtIntPtr);
+    s32 func_800F6438(BtUIntPtr);
+    s32 _ncfixposrot_entrypoint_8(BtIntPtr, s32);
     s32 var_s0;
 
     var_s0 = 0;
@@ -102,20 +102,20 @@ void subaddiemulti_entrypoint_4(s32 arg0) {
         }
         var_s0 += 1;
     } while (var_s0 != 8);
-}
+}                typedef struct { u8 pad0[0x1A]; u16 unk1A; u8 pad1C[0x8]; u32 unk24; } Objmulti_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-u32 subaddiemulti_entrypoint_5(void *arg0)
+BtUIntPtr subaddiemulti_entrypoint_5(void *arg0)
 {
   u32 _suegg_entrypoint_7(void *);
   s32 _sueggmisc_entrypoint_0();
-  u32 func_800F54E4(void *);
+  BtUIntPtr func_800F54E4(void *);
   if (_sueggmisc_entrypoint_0() != 0)
   {
     return _suegg_entrypoint_7(arg0);
   }
-  if ((((u32) (*((u32 *) (((s8 *) arg0) + 0x24)))) >> 0x16) == 0)
+  if ((((u32) (((Objmulti_arg0 *)arg0)->unk24)) >> 0x16) == 0)
   {
-    return (((u16) (*((u16 *) (((s8 *) arg0) + 0x1A)))) & 0xFFFFFFFFu) >> 5;
+    return (((u16) (((Objmulti_arg0 *)arg0)->unk1A)) & 0xFFFFFFFFu) >> 5;
   }
   return func_800F54E4(arg0);
 }
@@ -125,9 +125,9 @@ void subaddiemulti_entrypoint_6(f32 *arg0, f32 arg1) {
     void func_800EF04C(f32 *, f32 *);
     f32 func_800EFC7C(void *, void *);
     f32 func_800F1DF4(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
-    s32 func_800F8418(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F8418(BtIntPtr, f32 *);
     f32 sqrtf(f32);
     f32 sp50[4];
     f32 height;

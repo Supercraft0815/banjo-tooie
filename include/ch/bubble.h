@@ -3,6 +3,6 @@
 
 #include "common.h"
 
-s32 _chbubble_entrypoint_0(s32, f32*, f32*, f32, f32);
+s32 _chbubble_entrypoint_0(void *arg0, f32 *position, f32 *offset, f32 scale, f32 distance);
 
 #endif

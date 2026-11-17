@@ -24,6 +24,6 @@
 extern void _bskazeggass_entrypoint_0(PlayerState *self);
 extern void _bskazeggass_entrypoint_1(PlayerState *self);
 extern void _bskazeggass_entrypoint_2(PlayerState *self);
-extern s32 _bskazeggass_entrypoint_3(s32 idx);
+extern BtIntPtr _bskazeggass_entrypoint_3(s32 idx);
 
 #endif // __BS_KAZ_EGGASS_H__

@@ -47,8 +47,8 @@ Acmd *func_8002D030(u8 *arg0, s16 *arg1, s32 arg2, Acmd *arg3) {
     return sp2C;
 }
 
-s32 func_8002D328(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 func_8002CC9C(void *, s32, s32);
+s32 func_8002D328(u8 *arg0, s32 arg1, BtIntPtr arg2) {
+    s32 func_8002CC9C(void *, s32, BtIntPtr);
     f32 *value;
 
     value = (f32 *)&arg2;

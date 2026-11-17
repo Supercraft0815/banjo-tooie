@@ -5,7 +5,7 @@
 void func_80800000_chjigsawdance(Actor *arg0) {
     s32 func_800C8A98();
     void func_800C8CB8(s32, f32[3]);
-    s32 func_800CF9E4(s32, s32, s32);
+    void func_800CF9E4(s32 arg0, s32 arg1, s32 arg2);
     s32 func_800CFA70(s32, s32);
     if (func_800CFA70((s32)arg0->unk50, 1) != -1) {
         arg0->unk6C_0 = func_800C8A98();
@@ -88,10 +88,10 @@ void func_808000F0_chjigsawdance(Actor *arg0) {
         anctrl_start(control);
         break;
     }
-}
+}    typedef struct { u8 pad0[0x50]; f32 unk50; } Objdance_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void chjigsawdance_entrypoint_0(void *arg0, s32 arg1) {
-    (*(f32 *)((s8 *)(arg0) + (0x50))) = (f32) arg1;
+    (((Objdance_arg0 *)arg0)->unk50) = (f32) arg1;
 }
 
 void chjigsawdance_entrypoint_1(Actor *arg0, s32 arg1) {
@@ -144,7 +144,14 @@ void chjigsawdance_entrypoint_1(Actor *arg0, s32 arg1) {
 
 OSThread *chjigsawdance_entrypoint_2(void)
 {
-    extern u8 D_80800488_chjigsawdance[];
+    extern ActorData D_80800488_chjigsawdance[];
 
     return (OSThread *) D_80800488_chjigsawdance;
 }
+/* data_to_c.py: from asm/data/overlays/ch/jigsaw/dance.data.s */
+extern u8 D_80800460_chjigsawdance[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+u8 D_80800460_chjigsawdance[40] BT_DATA(4, overlays_ch_jigsaw_dance, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x00, 0x76, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x00, 0x76, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00 };
+ActorData D_80800488_chjigsawdance [1] BT_DATA(4, overlays_ch_jigsaw_dance, 0x28) = { { 104, 556, 1551, 1, (void *)D_80800460_chjigsawdance, (void (*)(struct Actor *))func_808000F0_chjigsawdance, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 4, (void (*)(struct Actor *))func_808000AC_chjigsawdance, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chjigsawdance, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };

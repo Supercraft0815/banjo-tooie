@@ -96,7 +96,7 @@ void func_808003E0_bskazfly(PlayerState *self) {
     func_800A4E30(self);
 }
 
-s32 bskazfly_entrypoint_0(s32 idx) {
+BtIntPtr bskazfly_entrypoint_0(s32 idx) {
     return D_80801C38_bskazfly[idx];
 }
 
@@ -221,7 +221,7 @@ void func_808008A8_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-s32 bskazfly_entrypoint_1(s32 idx) {
+BtIntPtr bskazfly_entrypoint_1(s32 idx) {
     return D_80801C48_bskazfly[idx];
 }
 
@@ -428,7 +428,7 @@ void func_808010DC_bskazfly(PlayerState *self) {
 }
 
 
-s32 bskazfly_entrypoint_2(s32 idx) {
+BtIntPtr bskazfly_entrypoint_2(s32 idx) {
     return D_80801C58_bskazfly[idx];
 }
 
@@ -508,7 +508,7 @@ void func_80801320_bskazfly(PlayerState *self) {
 }
 
 
-s32 bskazfly_entrypoint_3(s32 idx) {
+BtIntPtr bskazfly_entrypoint_3(s32 idx) {
     return D_80801C68_bskazfly[idx];
 }
 
@@ -620,7 +620,7 @@ void func_808017B0_bskazfly(PlayerState *self) {
     func_8008E95C(self);
 }
 
-s32 bskazfly_entrypoint_4(s32 idx) {
+BtIntPtr bskazfly_entrypoint_4(s32 idx) {
     return D_80801C78_bskazfly[idx];
 }
 
@@ -638,7 +638,7 @@ void func_8080185C_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-s32 bskazfly_entrypoint_5(s32 idx) {
+BtIntPtr bskazfly_entrypoint_5(s32 idx) {
     return D_80801C88_bskazfly[idx];
 }
 
@@ -658,7 +658,7 @@ void func_808018F4_bskazfly(PlayerState *self) {
 }
 
 
-s32 bskazfly_entrypoint_6(s32 idx) {
+BtIntPtr bskazfly_entrypoint_6(s32 idx) {
     return D_80801C98_bskazfly[idx];
 }
 
@@ -676,7 +676,7 @@ void func_8080198C_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-s32 bskazfly_entrypoint_7(s32 idx) {
+BtIntPtr bskazfly_entrypoint_7(s32 idx) {
     return D_80801CA8_bskazfly[idx];
 }
 
@@ -707,7 +707,7 @@ void func_80801ABC_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-s32 bskazfly_entrypoint_8(s32 idx) {
+BtIntPtr bskazfly_entrypoint_8(s32 idx) {
     return D_80801CB8_bskazfly[idx];
 }
 
@@ -738,6 +738,19 @@ void func_80801BB4_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-s32 bskazfly_entrypoint_9(s32 idx) {
+BtIntPtr bskazfly_entrypoint_9(s32 idx) {
     return D_80801CC8_bskazfly[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/fly.data.s */
+void func_80099AA8();
+s32 D_80801C10_bskazfly [10] BT_DATA(4, overlays_bs_kaz_fly, 0x0) = { 1903076, 1376281, 10027042, 6684761, 1638425, 2556304, 26215200, 52428843, 8388736, 0 };
+BtIntPtr D_80801C38_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x28) = { (BtIntPtr)func_808003E0_bskazfly, (BtIntPtr)func_80800248_bskazfly, (BtIntPtr)func_80800320_bskazfly, (BtIntPtr)func_80801AF0_bskazfly };
+BtIntPtr D_80801C48_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x38) = { (BtIntPtr)func_808008A8_bskazfly, (BtIntPtr)func_8080042C_bskazfly, (BtIntPtr)func_80800540_bskazfly, (BtIntPtr)func_80801AF0_bskazfly };
+BtIntPtr D_80801C58_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x48) = { (BtIntPtr)func_808010DC_bskazfly, (BtIntPtr)func_80800CF4_bskazfly, (BtIntPtr)func_80800EB4_bskazfly, (BtIntPtr)func_80801AF0_bskazfly };
+BtIntPtr D_80801C68_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x58) = { (BtIntPtr)func_80801320_bskazfly, (BtIntPtr)func_8080111C_bskazfly, (BtIntPtr)func_80801248_bskazfly, (BtIntPtr)func_80801AF0_bskazfly };
+BtIntPtr D_80801C78_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x68) = { (BtIntPtr)func_808017B0_bskazfly, (BtIntPtr)func_80801448_bskazfly, (BtIntPtr)func_80801640_bskazfly, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80801C88_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x78) = { (BtIntPtr)func_8080185C_bskazfly, (BtIntPtr)func_80801800_bskazfly, (BtIntPtr)func_80801838_bskazfly, (BtIntPtr)func_80801AF0_bskazfly };
+BtIntPtr D_80801C98_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x88) = { (BtIntPtr)func_808018F4_bskazfly, (BtIntPtr)func_80801898_bskazfly, (BtIntPtr)func_808018D0_bskazfly, (BtIntPtr)func_80801AF0_bskazfly };
+BtIntPtr D_80801CA8_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0x98) = { (BtIntPtr)func_8080198C_bskazfly, (BtIntPtr)func_80801930_bskazfly, (BtIntPtr)func_80801964_bskazfly, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801CB8_bskazfly [4] BT_DATA(4, overlays_bs_kaz_fly, 0xA8) = { (BtIntPtr)func_80801ABC_bskazfly, (BtIntPtr)func_808019C8_bskazfly, (BtIntPtr)func_80801A38_bskazfly, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801CC8_bskazfly [6] BT_DATA(4, overlays_bs_kaz_fly, 0xB8) = { (BtIntPtr)func_80801BB4_bskazfly, (BtIntPtr)func_80801B50_bskazfly, (BtIntPtr)func_80801B94_bskazfly, (BtIntPtr)_bsdrone_entrypoint_3, 0, 0 };

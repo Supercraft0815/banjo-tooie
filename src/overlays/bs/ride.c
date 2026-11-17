@@ -74,7 +74,7 @@ typedef struct player_state_s {
 } PlayerState;
 
 void func_80800000_bsride(PlayerState *arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_800947EC(PlayerState *, s32, s32);
     void func_800961AC(PlayerState *, s32);
@@ -82,7 +82,7 @@ void func_80800000_bsride(PlayerState *arg0) {
     void func_8009FFD8();
     void func_800A34E4(void *, s32);
 
-    arg0->unk15C.word = (s32)_subaddiefind_entrypoint_2(func_8009EA64(), 0)->unk0;
+    arg0->unk15C.word = (BtIntPtr)_subaddiefind_entrypoint_2(func_8009EA64(), 0)->unk0;
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_800A34E4(arg0, 0);
     func_800961AC(arg0, 8);
@@ -96,7 +96,7 @@ void func_8080008C_bsride(struct player_state_s *arg0) {
     void func_800961AC(struct player_state_s *, s32);
     void baroll_setIdeal(struct player_state_s *, f32);
     void func_8009BF5C(struct player_state_s *, f32);
-    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    arg0->unk15C.word = 0;
     func_800947EC(arg0, 1, 0);
     func_800A34E4(arg0, 1);
     func_800961AC(arg0, 1);
@@ -104,15 +104,15 @@ void func_8080008C_bsride(struct player_state_s *arg0) {
     func_8009BF5C(arg0, 0.0f);
 }
 
-s32 func_808000F0_bsride(s32 arg0) { func_8009EAE8(0); func_8080008C_bsride(arg0); }
+s32 func_808000F0_bsride(BtIntPtr arg0) { func_8009EAE8(0); func_8080008C_bsride(arg0); BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
-void func_8080011C_bsride(s32 arg0) {
+void func_8080011C_bsride(BtIntPtr arg0) {
     void func_80099B94(PlayerState *);
     s32 func_8009E6EC();
     void func_8009E830(PlayerState *, s32);
-    s32 func_808000F0_bsride(s32);
+    s32 func_808000F0_bsride(BtIntPtr);
     if (func_8009E6EC() == 0x28) {
         func_808000F0_bsride(arg0);
         func_8009E830(arg0, 2);
@@ -121,11 +121,11 @@ void func_8080011C_bsride(s32 arg0) {
     func_80099B94(arg0);
 }
 
-void func_8080016C_bsride()
+void func_8080016C_bsride(BT_NATIVE_ONLY(s32 bt_a0))
 {
     void func_8080008C_bsride();
 #ifdef BT_NATIVE
-    ((void (*)())func_8080008C_bsride)();
+    ((void (*)())func_8080008C_bsride)(BT_NATIVE_ONLY(bt_a0));
 #else
     func_8080008C_bsride();
 #endif
@@ -133,8 +133,8 @@ void func_8080016C_bsride()
 
 /* extern */
 
-void func_8080018C_bsride(s32 arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+void func_8080018C_bsride(BtIntPtr arg0) {
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     void func_8009C128(PlayerState *, f32[3]);
     void func_80800000_bsride(PlayerState *);
     func_80800000_bsride(arg0);
@@ -172,21 +172,21 @@ void func_808001CC_bsride(PlayerState *arg0) {
 }
 
 s32 bsride_entrypoint_0(s32 arg0) {
-    extern s32 D_808009C0_bsride[];
+    extern BtIntPtr D_808009C0_bsride[];
     return ((s32 *)&D_808009C0_bsride)[arg0];
 }
-
+struct RideAnim { s16 state; s16 index; f32 duration; u8 loop; u8 timed; u8 mode; f32 end; f32 threshold; };
 void func_808002A0_bsride(PlayerState *arg0) {
-    struct RideAnim {
-        s16 state;
-        s16 index;
-        f32 duration;
-        u8 loop;
-        u8 timed;
-        u8 mode;
-        f32 end;
-        f32 threshold;
-    };
+
+
+
+
+
+
+
+
+
+
     extern struct RideAnim D_808009D0_bsride[];
     f32 anctrl_getAnimTimer(struct anctrl_s *);
     int anctrl_getIndex(struct anctrl_s *);
@@ -215,9 +215,9 @@ void func_808002A0_bsride(PlayerState *arg0) {
     for (entry = D_808009D0_bsride; entry->state != 0; entry++) {
         if (state == entry->state) {
             same = anctrl_getIndex(anim) == entry->index;
-            enter = entry->mode == 1 && *(s32 *)((u8 *)arg0 + 0x160) == 0;
-            active = entry->mode == 1 && *(s32 *)((u8 *)arg0 + 0x160) == 1;
-            normal = entry->mode == 0 && *(s32 *)((u8 *)arg0 + 0x160) == 0;
+            enter = entry->mode == 1 && arg0->unk160.word == 0;
+            active = entry->mode == 1 && arg0->unk160.word == 1;
+            normal = entry->mode == 0 && arg0->unk160.word == 0;
             elapsed = entry->timed == 1 && anctrl_getAnimTimer(anim) > entry->threshold;
             if (enter || (normal && !same) || (active && elapsed)) {
                 anctrl_reset(anim);
@@ -233,13 +233,13 @@ void func_808002A0_bsride(PlayerState *arg0) {
                 if (entry->mode == 1) {
                     func_8009D89C(arg0, 1.0f);
                 }
-                *(s32 *)((u8 *)arg0 + 0x160) = entry->mode;
+                arg0->unk160.word = entry->mode;
             }
             func_8009E830(arg0, 2);
             return;
         }
     }
-    func_8080011C_bsride((s32)arg0);
+    func_8080011C_bsride((BtIntPtr)arg0);
 }
 
 void func_808004AC_bsride(struct player_state_s *arg0) {
@@ -250,43 +250,43 @@ void func_808004AC_bsride(struct player_state_s *arg0) {
 /* extern */
 
 void func_808004D8_bsride(struct player_state_s *arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     void func_80800000_bsride(PlayerState *);
     func_80800000_bsride(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x281, 0x3F333333);
     func_80093230(arg0, 1.35f);
-    (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
+    (arg0->unk160.word) = 0;
 }
 
 void func_80800524_bsride(struct player_state_s *arg0) {
     int baanim_isStopped(struct player_state_s *);
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     void bs_setState(void *, s32);
     s32 next_state;
 
     next_state = 0;
-    if (*(s32 *)((s8 *)arg0 + 0x160) == 1) {
+    if (arg0->unk160.word == 1) {
         if (baanim_isStopped(arg0)) {
             baanim_playForDuration_loopSmooth(arg0, 0x281, 0x3F333333);
-            *(s32 *)((s8 *)arg0 + 0x160) = 0;
+            arg0->unk160.word = 0;
         }
     }
-    if (*(s32 *)((s8 *)arg0 + 0x15C) == 0) {
+    if (arg0->unk15C.word == 0) {
         next_state = 0x2F;
     }
     bs_setState(arg0, next_state);
 }
 
 s32 bsride_entrypoint_1(s32 arg0) {
-    extern s32 D_80800A70_bsride[];
+    extern BtIntPtr D_80800A70_bsride[];
     return ((s32 *)&D_80800A70_bsride)[arg0];
 }
 
-void func_808005B8_bsride()
+void func_808005B8_bsride(BT_NATIVE_ONLY(s32 bt_a0))
 {
     void func_8080008C_bsride();
 #ifdef BT_NATIVE
-    ((void (*)())func_8080008C_bsride)();
+    ((void (*)())func_8080008C_bsride)(BT_NATIVE_ONLY(bt_a0));
 #else
     func_8080008C_bsride();
 #endif
@@ -294,12 +294,12 @@ void func_808005B8_bsride()
 
 /* extern */
 
-void func_808005D8_bsride(s32 arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+void func_808005D8_bsride(BtIntPtr arg0) {
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     void func_80800000_bsride(PlayerState *);
     func_80800000_bsride(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x83, 0x3FE66666);
-}
+}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objride_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -313,8 +313,8 @@ void func_8080060C_bsride(void *arg0) {
 
     animCtrl = baanim_getAnimCtrlPtr(arg0);
     next_state = 0;
-    if ((*(s32 *)((s8 *)arg0 + 0x15C)) != 0) {
-        func_8008B10C(animCtrl, _chhandcart_entrypoint_1(*(s32 *)((s8 *)arg0 + 0x15C)));
+    if ((((Objride_arg0 *)arg0)->unk15C) != 0) {
+        func_8008B10C(animCtrl, _chhandcart_entrypoint_1(((Objride_arg0 *)arg0)->unk15C));
     } else {
         next_state = 0x2F;
     }
@@ -323,11 +323,11 @@ void func_8080060C_bsride(void *arg0) {
 
 /* extern */
 
-void func_8080066C_bsride(s32 arg0) {
+void func_8080066C_bsride(BtIntPtr arg0) {
     void func_80099B94(PlayerState *);
     s32 func_8009E6EC();
     void func_8009E830(PlayerState *, s32);
-    s32 func_808000F0_bsride(s32);
+    s32 func_808000F0_bsride(BtIntPtr);
     if (func_8009E6EC() == 0x28) {
         func_808000F0_bsride(arg0);
         func_8009E830(arg0, 2);
@@ -337,7 +337,7 @@ void func_8080066C_bsride(s32 arg0) {
 }
 
 s32 bsride_entrypoint_2(s32 arg0) {
-    extern s32 D_80800A80_bsride[];
+    extern BtIntPtr D_80800A80_bsride[];
     return ((s32 *)&D_80800A80_bsride)[arg0];
 }
 
@@ -349,7 +349,7 @@ void func_808006D0_bsride(PlayerState *arg0, s32 arg1) {
     void baflag_clear(PlayerState *, s32);
     void func_800F817C(s32, s32);
 
-    *(s32 *)((s8 *)arg0 + 0x160) = arg1;
+    arg0->unk160.word = arg1;
     switch (arg1) {
         case 1:
             _bafpctrl_entrypoint_14(arg0, 1);
@@ -378,7 +378,7 @@ void func_80800798_bsride(PlayerState *arg0) {
     temp_v0 = func_8009E6EC(arg0);
     switch (temp_v0) {
         case 0x28:
-            func_808000F0_bsride((s32)arg0);
+            func_808000F0_bsride((BtIntPtr)arg0);
             func_8009E830(arg0, 2);
             break;
         case 0x4B:
@@ -396,14 +396,14 @@ void func_80800798_bsride(PlayerState *arg0) {
     }
 }
 
-void func_8080084C_bsride(s32 arg0)
+void func_8080084C_bsride(BtIntPtr arg0)
 {
     func_808006D0_bsride(arg0,0);
     func_8080008C_bsride(arg0);
 }
 
 void func_80800878_bsride(PlayerState *arg0) {
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_800961AC(PlayerState *, s32);
     void func_8009FFD8();
@@ -419,7 +419,7 @@ void func_80800878_bsride(PlayerState *arg0) {
 }
 
 void func_80800904_bsride(PlayerState *arg0) {
-    s32 _chflysaucer_entrypoint_0(s32, f32);
+    void _chflysaucer_entrypoint_0(Unk80132ED0 *arg0, f32 arg1);
     f32 anctrl_getAnimTimer(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void baflag_set(PlayerState *, s32);
@@ -443,6 +443,12 @@ void func_80800904_bsride(PlayerState *arg0) {
 }
 
 s32 bsride_entrypoint_3(s32 arg0) {
-    extern s32 D_80800A90_bsride[];
+    extern BtIntPtr D_80800A90_bsride[];
     return ((s32 *)&D_80800A90_bsride)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/ride.data.s */
+BtIntPtr D_808009C0_bsride [4] BT_DATA(4, overlays_bs_ride, 0x0) = { (BtIntPtr)func_8080016C_bsride, (BtIntPtr)func_8080018C_bsride, (BtIntPtr)func_808001CC_bsride, (BtIntPtr)func_8080011C_bsride };
+struct RideAnim D_808009D0_bsride [8] BT_DATA(4, overlays_bs_ride, 0x10) = { { 116, 641, 0.7f, 1, 0, 0, 0.0f, 0.0f }, { 117, 592, 0.7f, 0, 0, 0, 0.5f, 0.0f }, { 118, 593, 0.7f, 0, 0, 0, 0.5f, 0.0f }, { 119, 594, 0.7f, 0, 1, 1, 1.0f, 0.75f }, { 120, 595, 0.7f, 0, 1, 1, 1.0f, 0.75f }, { 121, 596, 0.7f, 0, 1, 1, 1.0f, 0.75f }, { 122, 597, 0.7f, 0, 1, 1, 1.0f, 0.75f }, { 0, 0, 0.0f, 0, 0, 0, 0.0f, 0.0f } };
+BtIntPtr D_80800A70_bsride [4] BT_DATA(4, overlays_bs_ride, 0xB0) = { (BtIntPtr)func_808004AC_bsride, (BtIntPtr)func_808004D8_bsride, (BtIntPtr)func_80800524_bsride, (BtIntPtr)func_808002A0_bsride };
+BtIntPtr D_80800A80_bsride [4] BT_DATA(4, overlays_bs_ride, 0xC0) = { (BtIntPtr)func_808005B8_bsride, (BtIntPtr)func_808005D8_bsride, (BtIntPtr)func_8080060C_bsride, (BtIntPtr)func_8080066C_bsride };
+BtIntPtr D_80800A90_bsride [4] BT_DATA(4, overlays_bs_ride, 0xD0) = { (BtIntPtr)func_8080084C_bsride, (BtIntPtr)func_80800878_bsride, (BtIntPtr)func_80800904_bsride, (BtIntPtr)func_80800798_bsride };

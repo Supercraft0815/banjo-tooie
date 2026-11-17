@@ -214,10 +214,10 @@ void func_800151BC(s32 arg0) {
     }
     {
     s32 *const waitCount = &D_80079704;
-    if (D_80079138 < func_80015184() - *waitCount) {
+    if (D_80079138 < BT_FRAME_INTERVAL(func_80015184()) - *waitCount) {
     wait_for_frame:
         osRecvMesg(&D_80079030, NULL, 1);
-        if (D_80079138 < func_80015184() - *waitCount) {
+        if (D_80079138 < BT_FRAME_INTERVAL(func_80015184()) - *waitCount) {
             goto wait_for_frame;
         }
     }
@@ -336,7 +336,7 @@ void func_800155BC(void) {
 }
 #endif
 
-void func_80015670(s32 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80015670(s32 arg0, s32 arg1) {
 #ifdef BT_NATIVE // OSViMode has no pointers, so the N64 offsets hold on the host
     extern OSViMode *D_80078F68;
 #define D_80078F68 ((u8 *)D_80078F68)
@@ -367,7 +367,7 @@ void func_80015670(s32 arg0, s32 arg1) {
     *sp1C = arg1 + 0x30;
     *sp18 = arg1 + 0x1F4;
     *sp28 = *sp2C;
-    osSetIntMask(temp_v0);
+    BT_NATIVE_ONLY(return) osSetIntMask(temp_v0);
 }
 
 #ifdef BT_NATIVE
@@ -479,7 +479,7 @@ void *func_8001592C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     v->d[5] = (s32)(((f32)arg1 + (f32)arg3 * 0.5f) * 4.0f);
     osWritebackDCache(v, 0x200);
     return e;
-}
+}    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; s16 unkE; } Obj1E2C940_func_80015A70_temp_a0; /* offsets.py genstruct: fields from raw offsets on temp_a0; rename once understood */
 
 
 void func_80015A70(s32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
@@ -491,14 +491,14 @@ void func_80015A70(s32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     temp_v0 = func_80015828();
     *arg0 = temp_v0;
     temp_a0 = D_800797B8 + (temp_v0 * 0x10);
-    (*(s16 *)((s8 *)(temp_a0) + (4))) = 0x1FF;
-    (*(s16 *)((s8 *)(temp_a0) + (6))) = 0;
-    (*(s16 *)((s8 *)(temp_a0) + (0xC))) = 0x1FF;
-    (*(s16 *)((s8 *)(temp_a0) + (0xE))) = 0;
-    (*(s16 *)((s8 *)(temp_a0) + (0))) = (s16) (s32) (arg1 * 4.0f);
-    (*(s16 *)((s8 *)(temp_a0) + (2))) = (s16) (s32) (arg2 * 4.0f);
-    (*(s16 *)((s8 *)(temp_a0) + (8))) = (s16) (s32) (arg3 * 4.0f);
-    (*(s16 *)((s8 *)(temp_a0) + (0xA))) = (s16) (s32) (arg4 * 4.0f);
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unk4) = 0x1FF;
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unk6) = 0;
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unkC) = 0x1FF;
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unkE) = 0;
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unk0) = (s16) (s32) (arg1 * 4.0f);
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unk2) = (s16) (s32) (arg2 * 4.0f);
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unk8) = (s16) (s32) (arg3 * 4.0f);
+    (((Obj1E2C940_func_80015A70_temp_a0 *)temp_a0)->unkA) = (s16) (s32) (arg4 * 4.0f);
     osWritebackDCache(temp_a0, 0x200);
 }
 
@@ -552,13 +552,13 @@ void func_80015B34(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     viewport[4] = (s32)(((f32)arg1 + (f32)width * 0.5f) * 4.0f);
     viewport[5] = (s32)(((f32)arg2 + (f32)height * 0.5f) * 4.0f);
     osWritebackDCache(D_800797B8 + index * 0x10, 0x200);
-}
+}                 typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; s16 unk8; s16 unkA; } Obj1E2C940_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80015CC0(void *arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
-    *arg1 = (s32) (*(s16 *)((s8 *)(arg0) + (4)));
-    *arg2 = (s32) (*(s16 *)((s8 *)(arg0) + (6)));
-    *arg3 = (s32) (*(s16 *)((s8 *)(arg0) + (8)));
-    *arg4 = (s32) (*(s16 *)((s8 *)(arg0) + (0xA)));
+    *arg1 = (s32) (((Obj1E2C940_arg0 *)arg0)->unk4);
+    *arg2 = (s32) (((Obj1E2C940_arg0 *)arg0)->unk6);
+    *arg3 = (s32) (((Obj1E2C940_arg0 *)arg0)->unk8);
+    *arg4 = (s32) (((Obj1E2C940_arg0 *)arg0)->unkA);
 }
 
 void func_80015CE8(void *arg0, void *arg1) {
@@ -572,9 +572,37 @@ f32 func_80015D14(void *arg0) {
     extern f32 D_80041710;
     f32 var_f2;
 
-    var_f2 = (f32) (*(s16 *)((s8 *)(arg0) + (8))) / (f32) (*(s16 *)((s8 *)(arg0) + (0xA)));
+    var_f2 = (f32) (((Obj1E2C940_arg0 *)arg0)->unk8) / (f32) (((Obj1E2C940_arg0 *)arg0)->unkA);
     if (widescreen_enabled != 0) {
         var_f2 *= D_80041710;
     }
     return var_f2;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s16 D_80078F60 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2620);
+s16 D_80078F62 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2622);
+s16 D_80078F64 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2624);
+OSViMode * D_80078F68 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2628);
+s32 D_80078F80 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2640);
+s32 D_80078F88 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2648);
+ViEventHandler D_80078F90 [ 8 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2650);
+OSMesgQueue D_80078FD0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2690);
+OSMesg D_80078FE8 [ 10 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x26A8);
+OSMesgQueue D_80079010 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x26D0);
+OSMesgQueue D_80079030 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x26F0);
+volatile s32 D_80079138 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x27F8);
+s32 D_8007913C BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x27FC);
+OSThread D_80079140 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x2800);
+__OSThreadOddFpStorage D_800792F0 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x29B0);
+s32 D_80079700 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2DC0);
+s32 D_80079704 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2DC4);
+u8 D_80079710 [ 8 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2DD0);
+s8 D_80079718 [ 96 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2DD8);
+s16 D_80079778 [ 32 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2E38);
+u8 D_800797B8 [ 512 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x2E78);
+s16 widescreen_enabled BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3078);
+char * D_8007E990 BT_DATA(4, bss_core1bss1_2_cic_tail, 0xE10);
+#endif

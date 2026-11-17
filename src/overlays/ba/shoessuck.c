@@ -3,7 +3,7 @@
 struct player_state_s;
 
 s32 bashoessuck_entrypoint_0(struct player_state_s *arg0, f32 *arg1) {
-    void func_8009C128(s32, f32[3]);
+    void func_8009C128(BtIntPtr, f32[3]);
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -16,7 +16,7 @@ s32 bashoessuck_entrypoint_0(struct player_state_s *arg0, f32 *arg1) {
     s32 i;
     s32 j;
 
-    func_8009C128((s32)arg0, position);
+    func_8009C128((BtIntPtr)arg0, position);
     for (j = 0; j < 8; j++) {
         for (i = 0; i < 3; i++) {
             start[i] = position[i] + D_80800740_bashoessuck[j][i];
@@ -34,11 +34,11 @@ s32 bashoessuck_entrypoint_0(struct player_state_s *arg0, f32 *arg1) {
     return 0;
 }
 
-void bashoessuck_entrypoint_1(s32 arg0, f32 arg1[3]) {
-    s32 _gccubesearch_entrypoint_1(s32, f32[3]);
-    void _gspropctrl_entrypoint_11(s32, f32[3]);
-    void func_8009C128(s32, f32[3]);
-    s32 temp_v0;
+void bashoessuck_entrypoint_1(BtIntPtr arg0, f32 arg1[3]) {
+    void *_gccubesearch_entrypoint_1(s32 actor_id, f32 *position);
+    void _gspropctrl_entrypoint_11(BtIntPtr, f32[3]);
+    void func_8009C128(BtIntPtr, f32[3]);
+    BtIntPtr temp_v0;
 
     func_8009C128(arg0, arg1);
     temp_v0 = _gccubesearch_entrypoint_1(0x16D, arg1);
@@ -56,7 +56,7 @@ void bashoessuck_entrypoint_2(struct player_state_s *arg0) {
     func_800961AC(arg0, 1);
 }
 
-void bashoessuck_entrypoint_3(s32 arg0)
+void bashoessuck_entrypoint_3(BtIntPtr arg0)
 {
     func_800961AC(arg0,0xA);
 }
@@ -153,9 +153,9 @@ s32 bashoessuck_entrypoint_5(struct player_state_s *arg0, f32 *arg1) {
     void _bamovespline_entrypoint_9(struct player_state_s *, f32);
     Prop *_gccubesearch_entrypoint_5(s32 *, f32 *);
     s32 _glsplinefind_entrypoint_3(f32 *);
-    void _gspropctrl_entrypoint_11(s32, f32[3]);
-    void func_8009C128(s32, f32[3]);
-    s32 baphysics_set_type(void *, s32);
+    void _gspropctrl_entrypoint_11(BtIntPtr, f32[3]);
+    void func_8009C128(BtIntPtr, f32[3]);
+    void baphysics_set_type(void *self, s32 type);
     void func_8009BB24(void *, f32 *);
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     f32 func_800C82CC(void *, f32 *);
@@ -237,3 +237,6 @@ s32 bashoessuck_entrypoint_5(struct player_state_s *arg0, f32 *arg1) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ba/shoessuck.data.s */
+f32 D_80800740_bashoessuck [8] [ 6 ] BT_DATA(4, overlays_ba_shoessuck, 0x0) = { { -24.0f, 8.0f, 0.0f, 24.0f, 8.0f, 0.0f }, { 24.0f, 8.0f, 0.0f, -24.0f, 8.0f, 0.0f }, { 0.0f, 8.0f, -24.0f, 0.0f, 8.0f, 24.0f }, { 0.0f, 8.0f, 24.0f, 0.0f, 8.0f, -24.0f }, { -24.0f, -8.0f, 0.0f, 24.0f, -8.0f, 0.0f }, { 24.0f, -8.0f, 0.0f, -24.0f, -8.0f, 0.0f }, { 0.0f, -8.0f, -24.0f, 0.0f, -8.0f, 24.0f }, { 0.0f, -8.0f, 24.0f, 0.0f, -8.0f, -24.0f } };
+s32 D_80800800_bashoessuck [4] BT_DATA(4, overlays_ba_shoessuck, 0xC0) = { 363, 364, -1, 0 };

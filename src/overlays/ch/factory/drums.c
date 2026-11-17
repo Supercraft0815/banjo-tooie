@@ -100,12 +100,12 @@ u32 D_80801250_chfactorydrums[] = {
     0x00000000, 0x437A0000, 0x00000000,
 };
 
-u32 D_8080125C_chfactorydrums[] = {
-    0x011503F0, 0x07CF0001, (u32)D_80800FF4_chfactorydrums, (u32)func_808003DC_chfactorydrums,
-    (u32)func_80105834, (u32)func_80101870, 0x0BB80000, 0x3FC00000,
-    0x00000000, 0x43850221, 0x00000000, (u32)func_80108ED0,
-    0x000C0000, (u32)func_808003A8_chfactorydrums, (u32)func_80107C2C, 0x8002541D,
-    (u32)func_80800D90_chfactorydrums, (u32)D_80800FE0_chfactorydrums, 0x00000000, 0x00000000,
+BtFnWord D_8080125C_chfactorydrums[] = {
+    0x011503F0, 0x07CF0001, (BtFnWord)D_80800FF4_chfactorydrums, (BtFnWord)func_808003DC_chfactorydrums,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x0BB80000, 0x3FC00000,
+    0x00000000, 0x43850221, 0x00000000, (BtFnWord)func_80108ED0,
+    0x000C0000, (BtFnWord)func_808003A8_chfactorydrums, (BtFnWord)func_80107C2C, 0x8002541D,
+    (BtFnWord)func_80800D90_chfactorydrums, (BtFnWord)D_80800FE0_chfactorydrums, 0x00000000, 0x00000000,
     0x00000000,
 };
 
@@ -157,8 +157,8 @@ s32 func_80800130_chfactorydrums(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF2A0(f32 *);
     void func_800EF3DC(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     u8 *actors[10];
     s32 count;
     s32 i;
@@ -220,7 +220,7 @@ void func_808002B8_chfactorydrums(Actor *arg0) {
 }
 
 void func_808003A8_chfactorydrums(Actor *arg0) {
-    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void* func_80100094(Actor*, u32);
     _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 0U), arg0->position);
 }
@@ -244,13 +244,13 @@ void func_808003DC_chfactorydrums(Actor *arg0) {
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA4D0(s16 *, s16);
-    void func_800BA544(s32 *, s32);
-    void func_800BA670(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800BA544(s32 *, BtIntPtr);
+    void func_800BA670(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800C4140(u32, f32 *, u32);
     f32 func_800D8FF8(void);
     s32 func_800D90A4(f32 *);
@@ -260,18 +260,18 @@ void func_808003DC_chfactorydrums(Actor *arg0) {
     f32 func_800F1214(f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     void func_80102BAC(Actor *, f32, f32, f32);
     void func_80108B04(Actor *, s32);
-    void func_8010BA80(Actor *, s32, s32);
-    void func_8010C3A8(Actor *, s32, f32);
+    s32 func_8010BA80(Actor *volatile arg0, volatile s32 arg1, s32 arg2);
+    s32 func_8010C3A8(Actor *arg0, u32 arg1, f32 arg2);
     s32 func_8010C500(Actor *);
     void func_8010C93C(Actor *, f32 *, f32);
-    f32 func_8010CD50(Actor *, s32);
+    f32 func_8010CD50(Actor *, BtIntPtr);
     void func_80800CD0_chfactorydrums(Actor *, s32);
-    void _chfactorydrums_entrypoint_0(s32, s32);
-    void _chfactorydrums_entrypoint_1(s32, s32);
+    void _chfactorydrums_entrypoint_0(s32, BtIntPtr);
+    void _chfactorydrums_entrypoint_1(s32, BtIntPtr);
     union DrumUpdateActor {
         Actor actor;
         struct {
@@ -292,9 +292,9 @@ void func_808003DC_chfactorydrums(Actor *arg0) {
     Vec3s32 sp54;
     f32 sp50;
     struct DrumRoute *sp4C;
-    s32 sp48;
-    s32 sp44;
-    s32 sp40;
+    BtIntPtr sp48;
+    BtIntPtr sp44;
+    BtIntPtr sp40;
 
     if (arg0->unk70_10 != 7) {
         func_8010C93C(arg0, arg0->position, 0.5f);
@@ -416,13 +416,13 @@ void func_808003DC_chfactorydrums(Actor *arg0) {
     }
 }
 
-void chfactorydrums_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+void chfactorydrums_entrypoint_0(s32 arg0, BtIntPtr arg1) {
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     func_800BBCB8((f32 *)arg1, NULL, 1.0f, 1, &(*(s32 *)D_808011CC_chfactorydrums));
 }
 
-void chfactorydrums_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+void chfactorydrums_entrypoint_1(s32 arg0, BtIntPtr arg1) {
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     func_800BBCB8((f32 *)arg1, NULL, 1.0f, 1, &(*(s32 *)D_80801208_chfactorydrums));
 }
 

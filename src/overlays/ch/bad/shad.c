@@ -2,7 +2,7 @@
 
 OSThread *chbadshad_entrypoint_0(void)
 {
-    extern u8 D_80800A10_chbadshad[];
+    extern ActorData D_80800A10_chbadshad[];
 
     return (OSThread *) D_80800A10_chbadshad;
 }
@@ -46,7 +46,7 @@ void func_80800090_chbadshad(Actor *arg0) { if (!arg0->unk64_17 && (s32) arg0->a
 
 void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF410(s32);
     f32 func_800DF428(f32);
     void func_800DF470(s32);
@@ -112,8 +112,8 @@ void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
 f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
     void func_8010279C(void *, void *);
-    s32 func_80104668(s32, f32 *, f32 *, f32 *, f32 *);
-    s32 func_8010518C(s32);
+    s32 func_80104668(BtIntPtr, f32 *, f32 *, f32 *, f32 *);
+    s32 func_8010518C(BtIntPtr);
     void *func_80105494(Actor *);
     s32 func_8080086C_chbadshad();
     struct MovementFlags {
@@ -208,7 +208,7 @@ void chbadshad_entrypoint_3(Actor *arg0, void *arg1, s32 arg2, f32 arg3, s16 *ar
 struct ShadowSource { Unk80132ED0 *marker; };
 void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     Actor *func_80106790(Unk80132ED0 *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     f32 func_8080028C_chbadshad(Actor *, Actor *, f32 *);
     struct ShadowData {
         s32 frame;
@@ -233,9 +233,9 @@ void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 ar
             sp1C->unk14 = sp24->unk14;
             ((struct ShadowData *)sp1C->actorData)->height = func_8080028C_chbadshad(sp24, sp1C, sp2C);
             if (!sp1C->unk64_17) {
-                sp24->pad40 = (s32)sp1C->unk0;
+                sp24->pad40 = (BtIntPtr)sp1C->unk0;
                 sp1C->scale = sp20;
-                sp1C->pad40 = (s32)sp28;
+                sp1C->pad40 = (BtIntPtr)sp28;
                 sp1C->actorData[0] = func_8001211C();
             }
         }
@@ -243,12 +243,12 @@ void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 ar
 }
 
 Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
 #ifndef BT_NATIVE
     extern s32 _chbadshad_entrypoint_4;
 #endif
     Actor *func_80106790(Unk80132ED0 *);
-    int func_8080078C_chbadshad(Actor *, s32);
+    int func_8080078C_chbadshad(Actor *, BtIntPtr);
     void func_8080082C_chbadshad(Actor *);
     s32 func_8001211C(void);
     struct ShadowData {
@@ -268,7 +268,7 @@ Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
     }
     else if ((Unk80132ED0 *)((Actor *)arg0)->pad40 == NULL) {
         _chbaddiesetup_entrypoint_5(&_chbadshad_entrypoint_4,
-            (s32)((Actor *)arg0)->unk0, *(s32 *)&arg2, ((s32 *)arg1)[0],
+            (BtIntPtr)((Actor *)arg0)->unk0, *(s32 *)&arg2, ((s32 *)arg1)[0],
             ((s32 *)arg1)[1], ((s32 *)arg1)[2]);
     }
     else {
@@ -276,7 +276,7 @@ Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
     if (shadow->unk64_17) {
         return NULL;
     } else {
-    if (func_8080078C_chbadshad(shadow, (s32)arg0)) {
+    if (func_8080078C_chbadshad(shadow, (BtIntPtr)arg0)) {
         ((struct ShadowData *)shadow->actorData)->height =
             func_8080028C_chbadshad(arg0, shadow, arg1);
     } else {
@@ -293,7 +293,7 @@ Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
 
 /* extern */
 
-int func_8080078C_chbadshad(Actor *arg0, s32 arg1) {
+int func_8080078C_chbadshad(Actor *arg0, BtIntPtr arg1) {
     struct ShadowFlags {
         u8 unk78;
         u8 unk79;
@@ -341,7 +341,7 @@ s32 func_8080086C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2, f32 *arg3) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F0E00(f32, f32);
-    void func_800F1988(f32 *, f32 *, f32 *);
+    int func_800F1988(f32 *arg0, f32 *arg1, f32 *arg2);
     void func_8010279C(void *, void *);
     void func_801045AC(Actor *, f32 *, f32 *, s32);
     u32 func_8010A654(void ***, s32);
@@ -385,3 +385,7 @@ s32 func_8080086C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2, f32 *arg3) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/bad/shad.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800A10_chbadshad [1] BT_DATA(4, overlays_ch_bad_shad, 0x0) = { { 155, 579, 1591, 1, 0, (void (*)(struct Actor *))func_80800090_chbadshad, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808000E0_chbadshad, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chbadshad, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };

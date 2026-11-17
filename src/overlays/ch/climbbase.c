@@ -67,9 +67,9 @@ void func_80800128_chclimbbase(Actor *arg0) {
 
 void func_80800200_chclimbbase(Actor *arg0) {
     void func_800EFB24(void *, void *, void *);
-    u32 func_800F54E4(void);
-    void func_800F7F00(s32, s32, s32, f32, s32, s32, f32);
-    void func_800F7F50(s32, s32, s32, f32, s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7F00(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32, s32, f32);
+    void func_800F7F50(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32, s32);
     void func_8010D254(f32 *);
     f32 difference[3];
     register f32 radius;
@@ -83,11 +83,11 @@ void func_80800200_chclimbbase(Actor *arg0) {
         && position[1] <= ((f32 *)arg0->actorData)[1]) {
         switch (arg0->unk6C_9) {
             case 0x1F9:
-                func_800F7F50(func_800F54E4(), (s32)arg0->position, (s32)arg0->actorData,
+                func_800F7F50(func_800F54E4(), (BtIntPtr)arg0->position, (BtIntPtr)arg0->actorData,
                     arg0->unk74_7, arg0->unk6C_0, arg0->actorData[3]);
                 break;
             case 0x16E:
-                func_800F7F00(func_800F54E4(), (s32)arg0->position, (s32)arg0->actorData,
+                func_800F7F00(func_800F54E4(), (BtIntPtr)arg0->position, (BtIntPtr)arg0->actorData,
                     arg0->unk74_7, arg0->unk6C_0, arg0->actorData[3], arg0->rotation[1]);
                 break;
         }

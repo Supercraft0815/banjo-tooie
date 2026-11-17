@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_80800000_bapreload(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
+typedef struct { u8 pad0[0x184]; s32 unk184; } Objpreload_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_bapreload(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
     s32 func_800A940C(s32);
     s32 func_800EA068(s32);
     extern s32 D_808002F0_bapreload;
@@ -34,9 +34,9 @@ void func_80800000_bapreload(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
         return;
     }
     if (func_800EA068(0x20) != 0) {
-        index = func_800A940C(*(s32 *)((s8 *)arg0 + 0x184));
+        index = func_800A940C(((Objpreload_arg0 *)arg0)->unk184);
     } else {
-        index = *(s32 *)((s8 *)arg0 + 0x184);
+        index = ((Objpreload_arg0 *)arg0)->unk184;
     }
     table += index;
     *arg2 = table->first;
@@ -61,7 +61,7 @@ void bapreload_entrypoint_0(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
         *arg3 = 0;
         return;
     }
-    *arg2 = *(s16 *)((s32)&D_808002A0_bapreload + arg1 * 4);
+    *arg2 = *(s16 *)((BtIntPtr)&D_808002A0_bapreload + arg1 * 4);
     *arg3 = 0;
     if (*arg2 == 0) {
         if (D_8012762C == 0xD) {
@@ -77,7 +77,7 @@ s32 bapreload_entrypoint_1(s32 arg0, s32 *arg1) {
     extern s16 D_808002A2_bapreload;
     s32 var_v1;
 
-    var_v1 = *(s16 *)((s32)&D_808002A2_bapreload + arg0 * 4);
+    var_v1 = *(s16 *)((BtIntPtr)&D_808002A2_bapreload + arg0 * 4);
     *arg1 = 0;
     switch (arg0) {
     case 0xB:

@@ -5,16 +5,16 @@ OSThread *chsquits_entrypoint_0(void)
     extern u8 D_808006D8_chsquits[];
 
     return (OSThread *) D_808006D8_chsquits;
-}
+}                 typedef struct { u8 pad0[0x2C]; f32 unk2C; u8 pad30[0x3E]; u16 unk6E; } Objsquits_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080000C_chsquits(u8 *arg0) {
     f32 func_800DC178(f32, f32);
-    (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) (((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00) | 1);
-    (*(f32 *)((s8 *)(arg0) + (0x2C))) = func_800DC178(5.0f, 8.0f);
+    (((Objsquits_arg0 *)arg0)->unk6E) = (u16) (((((Objsquits_arg0 *)arg0)->unk6E) & 0xFE00) | 1);
+    (((Objsquits_arg0 *)arg0)->unk2C) = func_800DC178(5.0f, 8.0f);
 }
 
 void func_80800054_chsquits(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D90A4(f32 *);
     f32 func_800DC178(f32, f32);
     void func_80101FDC(Actor *, u32);

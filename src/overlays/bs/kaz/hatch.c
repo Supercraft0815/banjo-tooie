@@ -30,9 +30,9 @@ void func_808000D4_bskazhatch(PlayerState *self) {
 }
 
 void func_80800108_bskazhatch(PlayerState *self) {
-    s32 func_80099A4C(PlayerState *);
+    BtIntPtr func_80099A4C(PlayerState *);
     void func_800FC660(u32);
-    s32 value;
+    BtIntPtr value;
 
     switch (func_8009E6EC(self)) {
         case 0x15:
@@ -120,6 +120,8 @@ void func_80800220_bskazhatch(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazhatch_entrypoint_0(s32 idx) {
+BtIntPtr bskazhatch_entrypoint_0(s32 idx) {
     return D_808004E0_bskazhatch[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/hatch.data.s */
+BtIntPtr D_808004E0_bskazhatch [4] BT_DATA(4, overlays_bs_kaz_hatch, 0x0) = { (BtIntPtr)func_808000A8_bskazhatch, (BtIntPtr)func_808000D4_bskazhatch, (BtIntPtr)func_80800220_bskazhatch, (BtIntPtr)func_80800108_bskazhatch };

@@ -2,12 +2,12 @@
 
 #include "overlays/bs/kaz/paddle.h"
 
-extern s32 D_80800A50_bskazpaddle[];
-extern s32 D_80800A60_bskazpaddle[];
-extern s32 D_80800A70_bskazpaddle[];
-extern s32 D_80800A80_bskazpaddle[];
-extern s32 D_80800A90_bskazpaddle[];
-extern s32 D_80800AA0_bskazpaddle[];
+extern BtIntPtr D_80800A50_bskazpaddle[];
+extern BtIntPtr D_80800A60_bskazpaddle[];
+extern BtIntPtr D_80800A70_bskazpaddle[];
+extern BtIntPtr D_80800A80_bskazpaddle[];
+extern BtIntPtr D_80800A90_bskazpaddle[];
+extern BtIntPtr D_80800AA0_bskazpaddle[];
 
 void func_80800000_bskazpaddle(PlayerState *self) {
     if (func_8009E69C(self, 1) == 0) {
@@ -73,7 +73,7 @@ void func_80800190_bskazpaddle(PlayerState *self) {
 void func_808002A0_bskazpaddle(PlayerState *self) {
     BanjoStateId next_state;
     f32 sp40[3];
-    s32 sp3C;
+    BtIntPtr sp3C;
 
     next_state = BS_STATE_0_INVALID;
     func_8009C128(self, sp40);
@@ -97,12 +97,12 @@ void func_808002A0_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazpaddle_entrypoint_0(s32 idx) {
+BtIntPtr bskazpaddle_entrypoint_0(s32 idx) {
     return D_80800A50_bskazpaddle[idx];
 }
 
 void func_808003F4_bskazpaddle(PlayerState *self, f32 arg1[3]) {
-    s32 sp2C;
+    BtIntPtr sp2C;
 
     sp2C = func_8009FBB0(self, arg1, 40);
     func_800BA930(sp2C, 0, 100, 0, 0, 100, 0);
@@ -158,7 +158,7 @@ void func_80800518_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazpaddle_entrypoint_1(s32 idx) {
+BtIntPtr bskazpaddle_entrypoint_1(s32 idx) {
     return D_80800A60_bskazpaddle[idx];
 }
 
@@ -201,7 +201,7 @@ void func_8080070C_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazpaddle_entrypoint_2(s32 idx) {
+BtIntPtr bskazpaddle_entrypoint_2(s32 idx) {
     return D_80800A70_bskazpaddle[idx];
 }
 
@@ -226,7 +226,7 @@ void func_80800894_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazpaddle_entrypoint_3(s32 idx) {
+BtIntPtr bskazpaddle_entrypoint_3(s32 idx) {
     return D_80800A80_bskazpaddle[idx];
 }
 
@@ -250,7 +250,7 @@ void func_8080093C_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazpaddle_entrypoint_4(s32 idx) {
+BtIntPtr bskazpaddle_entrypoint_4(s32 idx) {
     return D_80800A90_bskazpaddle[idx];
 }
 
@@ -275,6 +275,14 @@ void func_808009FC_bskazpaddle(PlayerState *self) {
     func_80800000_bskazpaddle(self);
 }
 
-s32 bskazpaddle_entrypoint_5(s32 idx) {
+BtIntPtr bskazpaddle_entrypoint_5(s32 idx) {
     return D_80800AA0_bskazpaddle[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/paddle.data.s */
+void func_80099B94(PlayerState *);
+BtIntPtr D_80800A50_bskazpaddle [4] BT_DATA(4, overlays_bs_kaz_paddle, 0x0) = { (BtIntPtr)func_80800164_bskazpaddle, (BtIntPtr)func_80800190_bskazpaddle, (BtIntPtr)func_808002A0_bskazpaddle, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800A60_bskazpaddle [4] BT_DATA(4, overlays_bs_kaz_paddle, 0x10) = { (BtIntPtr)func_80800448_bskazpaddle, (BtIntPtr)func_80800468_bskazpaddle, (BtIntPtr)func_80800518_bskazpaddle, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800A70_bskazpaddle [4] BT_DATA(4, overlays_bs_kaz_paddle, 0x20) = { (BtIntPtr)func_80800664_bskazpaddle, (BtIntPtr)func_8080068C_bskazpaddle, (BtIntPtr)func_8080070C_bskazpaddle, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800A80_bskazpaddle [4] BT_DATA(4, overlays_bs_kaz_paddle, 0x30) = { (BtIntPtr)func_80800818_bskazpaddle, (BtIntPtr)func_80800838_bskazpaddle, (BtIntPtr)func_80800894_bskazpaddle, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800A90_bskazpaddle [4] BT_DATA(4, overlays_bs_kaz_paddle, 0x40) = { (BtIntPtr)func_808008EC_bskazpaddle, (BtIntPtr)func_80800914_bskazpaddle, (BtIntPtr)func_8080093C_bskazpaddle, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800AA0_bskazpaddle [4] BT_DATA(4, overlays_bs_kaz_paddle, 0x50) = { (BtIntPtr)func_808009FC_bskazpaddle, (BtIntPtr)func_80800990_bskazpaddle, (BtIntPtr)func_808009B8_bskazpaddle, (BtIntPtr)_bsdrone_entrypoint_3 };

@@ -2,24 +2,24 @@
 
 /* extern */
 
-u8 *vpflicker_entrypoint_0(u8 *arg0, u8 *arg1) {
+typedef struct { f32 unk0; s32 unk4; } Objflicker_vpflicker_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; } Objflicker_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x2]; u16 unk2; } Objflicker_vpflicker_entrypoint_0_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */ u8 *vpflicker_entrypoint_0(u8 *arg0, u8 *arg1) {
     void *heap_alloc(s32);
     u8 *temp_a0;
     u8 *temp_a1;
     u8 *var_v1;
     u8 *temp_v0;
 
-    temp_v0 = heap_alloc(((*(s32 *)((s8 *)(arg0) + (0x14))) * 2) + 8);
+    temp_v0 = heap_alloc(((((Objflicker_arg0 *)arg0)->unk14) * 2) + 8);
     temp_a0 = arg1 + 0x14;
-    temp_a1 = ((*(s32 *)((s8 *)(arg0) + (0x14))) * 4) + arg1 + 0x14;
-    (*(s32 *)((s8 *)(temp_v0) + (4))) = 0;
+    temp_a1 = ((((Objflicker_arg0 *)arg0)->unk14) * 4) + arg1 + 0x14;
+    (((Objflicker_vpflicker_entrypoint_0_temp_v0 *)temp_v0)->unk4) = 0;
     var_v1 = temp_a0;
-    (*(f32 *)((s8 *)(temp_v0) + (0))) = 1.0f;
+    (((Objflicker_vpflicker_entrypoint_0_temp_v0 *)temp_v0)->unk0) = 1.0f;
     if (temp_a0 < temp_a1) {
         do {
-            if ((*(u16 *)((s8 *)(var_v1) + (2))) != 0) {
-                (*(s16 *)((s8 *)((temp_v0 + ((*(s32 *)((s8 *)(temp_v0) + (4))) * 2))) + (8))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
-                (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (4))) + 1);
+            if ((((Objflicker_vpflicker_entrypoint_0_var_v1 *)var_v1)->unk2) != 0) {
+                (*(s16 *)((s8 *)((temp_v0 + ((((Objflicker_vpflicker_entrypoint_0_temp_v0 *)temp_v0)->unk4) * 2))) + (8))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
+                (((Objflicker_vpflicker_entrypoint_0_temp_v0 *)temp_v0)->unk4) = (s32) ((((Objflicker_vpflicker_entrypoint_0_temp_v0 *)temp_v0)->unk4) + 1);
             }
             var_v1 += 4;
         } while (var_v1 < temp_a1);

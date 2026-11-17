@@ -8,14 +8,14 @@ s32 func_8009F300()
 f32 func_8009F308(PlayerState *arg0) {
     void func_8009C128(PlayerState *, f32[3]);
     f32 *func_800A4C48(PlayerState *);
-    s32 func_800CA7E4(f32 *, s32);
+    void func_800CA7E4(void *camera, f32 *position);
     s32 func_800F1E6C(f32[3], f32[3], f32 *target_yaw);
     f32 sp2C[3];
     f32 sp20[3];
     f32 sp1C;
 
     func_8009C128(arg0, sp2C);
-    func_800CA7E4(func_800A4C48(arg0), (s32) sp20);
+    func_800CA7E4(func_800A4C48(arg0), (BtIntPtr) sp20);
     func_800F1E6C(sp2C, sp20, &sp1C);
     return sp1C;
 }
@@ -25,7 +25,7 @@ f32 func_8009F308(PlayerState *arg0) {
 s32 func_8009F354(PlayerState *arg0) {
     s32 _badata_entrypoint_24(PlayerState *);
     int baflag_isTrue(PlayerState *, s32);
-    s32 baflag_set(PlayerState *, s32);
+    void baflag_set(void *self, s32 id);
     s32 bs_getCurrentState(PlayerState *);
     s32 sp1C;
 
@@ -61,7 +61,7 @@ s32 func_8009F440(PlayerState *arg0, f32 *origin, f32 *rotation, f32 *arg1, f32 
     s32 func_800F1660(f32, f32);
     void func_800F4200(u8 *, f32 *);
     void func_800F4648(void *, f32 *);
-    s32 func_80019CD4(void);
+    void * func_80019CD4(void);
     void func_8001980C(f32 *, f32 *, f32, f32 *);
     void func_80019750(f32 *, f32 *, f32, f32 *);
     void func_800193C4(f32 *, f32 *);
@@ -275,31 +275,31 @@ s32 func_8009FA20(PlayerState *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
 
 /* extern */
 
-s32 func_8009FBB0(PlayerState *arg0, f32 *arg1, f32 arg2) {
+BtIntPtr func_8009FBB0(PlayerState *arg0, f32 *arg1, f32 arg2) {
     f32 func_800964DC(PlayerState *);
-    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, s32);
+    BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, s32);
     return _fxairbub_entrypoint_1(arg1, arg2, func_800964DC(arg0), 0x3F800000);
 }
 
 void func_8009FBE8(PlayerState *arg0, u8 *arg1) {
     void func_8009C128(PlayerState *, f32[3]);
     f32 *func_800A4C48(PlayerState *);
-    s32 func_800CA7E4(f32 *, s32);
+    void func_800CA7E4(void *camera, f32 *position);
     void func_800EFB24(void *arg0, void *arg1, void *arg2);
     f32 sp2C[3];
     s32 sp20[3];
 
     func_8009C128(arg0, sp2C);
-    func_800CA7E4(func_800A4C48(arg0), (s32) sp20);
+    func_800CA7E4(func_800A4C48(arg0), (BtIntPtr) sp20);
     func_800EFB24(arg1, sp20, sp2C);
 }
 
 /* extern */
 
 void func_8009FC34(PlayerState *arg0, s32 arg1) {
-    s32 _fxripple_entrypoint_1(s32, f32 *, s32);
+    s32 _fxripple_entrypoint_1(s32, f32 *, BtIntPtr);
     f32 func_800964DC(PlayerState *);
-    s32 func_800966E0(void *);
+    BtIntPtr func_800966E0(void *);
     void func_8009C128(PlayerState *, f32[3]);
     f32 sp1C[3];
 
@@ -308,9 +308,9 @@ void func_8009FC34(PlayerState *arg0, s32 arg1) {
     _fxripple_entrypoint_1(arg1, sp1C, func_800966E0(arg0));
 }
 
-void func_8009FC80(PlayerState *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(BtIntPtr) func_8009FC80(PlayerState *arg0) {
     void func_8009C128(PlayerState *, f32[3]);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
     extern s32 D_80119220;
     f32 sp24[3];
@@ -319,22 +319,22 @@ void func_8009FC80(PlayerState *arg0) {
     sp24[0] += func_800DC178(-30.0f, 30.0f);
     sp24[1] += func_800DC178(95.0f, 105.0f);
     sp24[2] += func_800DC178(-30.0f, 30.0f);
-    func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80119220);
+    BT_NATIVE_ONLY(return) func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80119220);
 }
 
 /* extern */
 
 void func_8009FD24(PlayerState *arg0, s32 arg1) {
-    s32 _fxsplash_entrypoint_2(f32[3], f32);
+    BtIntPtr _fxsplash_entrypoint_2(f32[3], f32);
     void func_80092C00(void *, f32 *);
     void func_80092C24(void *, f32 *);
     f32 func_800964DC(PlayerState *);
     s32 func_80096544(PlayerState *);
-    void func_800BA22C(s32, s32);
-    s32 func_800BA994(s32, s32, s16, s32, s32, s32, s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA994(void *emitter, s16 yaw_min, s16 pitch_min, s16 speed_min, s16 yaw_max, s16 pitch_max, s16 speed_max);
     f32 sp44[3];
     f32 sp40;
-    s32 sp3C;
+    BtIntPtr sp3C;
 
     if (func_80096544(arg0) != 0) {
         if (arg1 != 0) {
@@ -359,7 +359,7 @@ void func_8009FE58(PlayerState* arg0)
 
 void func_8009FE78(PlayerState *arg0)
 {
-    **(s32 **)((u8 *)arg0 + 0x12C) = 0;
+    *arg0->unk12C = 0;
 }
 
 /* extern */
@@ -385,7 +385,7 @@ enum bs_state_e bs_getTypeOfJump(PlayerState *self) {
 /* extern */
 
 void func_8009FF00(PlayerState *arg0) {
-    s32 (*_badata_entrypoint_28(PlayerState *))(PlayerState *, f32);
+    BtIntPtr _badata_entrypoint_28(PlayerState *self);
     s32 (*sp1C)(PlayerState *, f32);
 
     sp1C = _badata_entrypoint_28(arg0);
@@ -412,7 +412,7 @@ void func_8009FF44(PlayerState *arg0, enum asset_e arg1, f32 arg2, f32 arg3, f32
 /* extern */
 
 void func_8009FFD8(PlayerState *arg0, enum baanim_update_type_e anim_update_type, enum yaw_type_e yaw_state, s32 arg2, enum ba_physics_type_e arg3) {
-    s32 func_8009D2D8(PlayerState *, s32);
+    void func_8009D2D8(PlayerState *arg0, s32 arg1);
     func_8008CA4C(arg0, anim_update_type);
     yaw_setUpdateType(arg0, yaw_state);
     func_8009D2D8(arg0, arg2);
@@ -456,13 +456,13 @@ void func_800A0064(PlayerState *arg0, f32 *arg1) {
 
     func_8009C128(arg0, sp24);
     func_800F18FC(sp24, arg1, sp18);
-    yaw_setIdeal(arg0, *(f32 *)&sp18[1]);
+    yaw_setIdeal(arg0, *(f32 *)&sp18[1]); BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
 
 void func_800A0110(AnimCtrl *arg0, AnimCtrl *arg1) {
-    s32 _badata_entrypoint_3(AnimCtrl *, enum asset_e *, f32 *);
+    void _badata_entrypoint_3(PlayerState *self, AssetId *assetId, f32 *arg2);
     f32 sp1C;
     enum asset_e sp18;
 
@@ -474,7 +474,7 @@ void func_800A0110(AnimCtrl *arg0, AnimCtrl *arg1) {
 /* extern */
 
 void func_800A0150(s32 arg0) {
-    s32 func_800FC240(s32, s32);
+    void func_800FC240(s32 arg0, s32 arg1);
     void func_800FC660(u32);
     func_800FC240(0, 0xFA0);
     func_800FC660(arg0);
@@ -485,7 +485,7 @@ void func_800A0150(s32 arg0) {
 void func_800A0180(PlayerState *arg0) {
     s32 _badata_entrypoint_16();
     int baflag_isTrue(PlayerState *, s32);
-    s32 baflag_set(PlayerState *, s32);
+    void baflag_set(void *self, s32 id);
     s32 func_800D395C();
     s32 func_800FCCD4(s32);
     s32 func_800FE4E4();
@@ -513,7 +513,7 @@ void func_800A042C(PlayerState *arg0) {
     void baroll_setIdeal(PlayerState *, f32);
     void func_8009BF5C(PlayerState *, f32);
     void func_8009BFBC(void *arg0);
-    s32 baroll_applyIdeal(PlayerState *);
+    void baroll_applyIdeal(PlayerState *self);
     func_8009BF5C(arg0, 0.0f);
     func_8009BFBC(arg0);
     baroll_setIdeal(arg0, 0.0f);

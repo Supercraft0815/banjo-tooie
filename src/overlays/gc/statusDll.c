@@ -35,17 +35,17 @@ void gcstatusDll_entrypoint_0(void)
     temp_s3->field10 = 0;
     temp_s3->field11 = 2;
     temp_s3->value = 0x173;
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; s8 unk8; u8 pad9[0x4]; s8 unkD; u8 padE[0x4]; s8 unk12; s8 unk13; s8 unk14; s8 unk15; } ObjstatusDll_D_8012B3FC; /* offsets.py genstruct: fields from raw offsets on &D_8012B3FC; rename once understood */
 
 
 void gcstatusDll_entrypoint_1(s32 arg0) {
     extern s32 D_8012B3FC;
-    *(s32 *)((u8 *)&D_8012B3FC + 4) = arg0;
+    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk4 = arg0;
 }
 
 void gcstatusDll_entrypoint_2(s32 arg0) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 8) = arg0;
+    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk8 = arg0;
 }
 
 void gcstatusDll_entrypoint_3(s32 arg0, s32 arg1) {
@@ -55,12 +55,12 @@ void gcstatusDll_entrypoint_3(s32 arg0, s32 arg1) {
 
 void gcstatusDll_entrypoint_4(s32 arg0) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 13) = arg0;
+    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unkD = arg0;
 }
 
 void gcstatusDll_entrypoint_5(s32 arg0) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 18) = arg0;
+    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk12 = arg0;
 }
 
 void gcstatusDll_entrypoint_6(s32 arg0, s32 arg1) {
@@ -70,17 +70,17 @@ void gcstatusDll_entrypoint_6(s32 arg0, s32 arg1) {
 
 void gcstatusDll_entrypoint_7(s32 arg0) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 19) = arg0;
+    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk13 = arg0;
 }
 
 void gcstatusDll_entrypoint_8(s32 arg0) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 20) = arg0;
+    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk14 = arg0;
 }
 
 void gcstatusDll_entrypoint_9(s32 arg0) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 21) = arg0;
+    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk15 = arg0;
 }
 
 u8 gcstatusDll_entrypoint_10(void) {
@@ -100,7 +100,7 @@ u8 gcstatusDll_entrypoint_11(void) {
 
 s32 gcstatusDll_entrypoint_12(void) {
     extern s32 D_8012B3FC;
-    return *(s32 *)((u8 *)&D_8012B3FC + 4);
+    return *&((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk4;
 }
 
 u8 gcstatusDll_entrypoint_13(s32 arg0) {
@@ -120,7 +120,7 @@ u8 gcstatusDll_entrypoint_15(void) {
     return (*(u8 *)((s8 *)(&D_8012B3FC) + (18)));
 }
 
-u8 gcstatusDll_entrypoint_16(s32 arg0) {
+u8 gcstatusDll_entrypoint_16(BtIntPtr arg0) {
     extern s32 D_8012B3FC;
     return *((u8 *)&D_8012B3FC + 14 + arg0);
 }
@@ -167,3 +167,11 @@ s32 gcstatusDll_entrypoint_20(void) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/gc/statusDll.data.s */
+u8 D_80800230_gcstatusDll [ 4 ] [ 2 ] BT_DATA(4, overlays_gc_statusDll, 0x0) = { { 1, 0 }, { 2, 1 }, { 4, 2 }, { 5, 3 } };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012B3FC BT_DATA(4, bss_core2bss1_2, 0x16C);
+#endif

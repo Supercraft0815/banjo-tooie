@@ -35,7 +35,7 @@ typedef struct {
 } ModuleEntry;
 extern ModuleEntry D_808008C0_vpmodule[];
 
-void *vpmodule_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2) {
+void *vpmodule_entrypoint_0(u8 *arg0, BtIntPtr arg1, BtIntPtr arg2) {
     typedef struct {
         u8 pad0[0x20];
         s16 count20;
@@ -45,7 +45,7 @@ void *vpmodule_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2) {
         s32 offsets[1];
     } ModuleInput;
     void *heap_alloc(s32);
-    void _dbvpl_entrypoint_1(void *, void *, s32, s32);
+    void _dbvpl_entrypoint_1(BtIntPtr arg0, u8 *arg1, u8 *arg2, s32 *arg3);
     void func_808005C4_vpmodule();
     u8 *allocation;
     s32 i;
@@ -89,17 +89,17 @@ void *vpmodule_entrypoint_0(u8 *arg0, s32 arg1, s32 arg2) {
         } while (i != count);
     }
     aligned = output;
-    if ((s32)output & 0xF) {
+    if ((BtIntPtr)output & 0xF) {
         do {
             aligned++;
-        } while ((s32)aligned & 0xF);
+        } while ((BtIntPtr)aligned & 0xF);
     }
     *(s32 *)allocation = aligned - allocation;
     _dbvpl_entrypoint_1(arg0, aligned, arg1, arg2);
     *(s32 *)(allocation + 4) = *(s32 *)allocation + ((ModuleInput *)arg0)->count20 * 16;
     func_808005C4_vpmodule(allocation, arg0, arg1);
     return allocation;
-}
+}    typedef struct { u8 pad0[0x2C]; s32 unk2C; } Objmodule_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void vpmodule_entrypoint_1(u8 *arg0, void *arg1) {
     void heap_free(void *);
@@ -107,7 +107,7 @@ void vpmodule_entrypoint_1(u8 *arg0, void *arg1) {
     u8 *var_s0;
 
     var_s0 = arg0 + 8;
-    temp_s1 = ((*(s32 *)((s8 *)(arg1) + (0x2C))) * 8) + arg0 + 8;
+    temp_s1 = ((((Objmodule_arg1 *)arg1)->unk2C) * 8) + arg0 + 8;
     if (var_s0 < temp_s1) {
         do {
             D_808008C0_vpmodule[*var_s0].free(*(void **)(var_s0 + 4));
@@ -122,7 +122,7 @@ void vpmodule_entrypoint_2(u8 *arg0, void *arg1) {
     u8 *var_s0;
 
     var_s0 = arg0 + 8;
-    temp_s3 = ((*(s32 *)((s8 *)arg1 + 0x2C)) * 8) + arg0 + 8;
+    temp_s3 = ((((Objmodule_arg1 *)arg1)->unk2C) * 8) + arg0 + 8;
     if (var_s0 < temp_s3) {
         do {
             if (var_s0[1] != 0) {
@@ -167,7 +167,7 @@ void vpmodule_entrypoint_3(VpHeaderA *arg0, VpHeaderB *arg1, struct VpDst *arg2)
             index = cell - start;
             do {
 if (!arg1) {}
-                record = (VpRecord *)((u8 *)arg1->recordOffsets[module->index] + (s32)arg1);
+                record = (VpRecord *)((u8 *)arg1->recordOffsets[module->index] + (BtIntPtr)arg1);
                 desc = record->desc[index];
                 if (desc[1] != 0) {
                     p = &(*(u8 (*)[1])record->desc[arg1->cellCount])[desc[0]];
@@ -194,10 +194,10 @@ void func_808005C4_vpmodule(u8 *arg0, u8 *arg1, u8 *arg2) {
     typedef struct { s16 index; u8 count; u8 pad[17]; } Chunk;
     typedef struct { u8 data[16]; } Vertex;
     typedef struct { u16 offset; u16 length; } Range;
-    u32 sp40;
-    u32 temp_fp;
+    BtUIntPtr sp40;
+    BtUIntPtr temp_fp;
     u8 *temp_v1;
-    u32 var_s2;
+    BtUIntPtr var_s2;
     u8 *temp_t0;
     u8 *temp_a0;
     u8 *temp_s0;
@@ -215,7 +215,7 @@ void func_808005C4_vpmodule(u8 *arg0, u8 *arg1, u8 *arg2) {
     temp_t0 = *(s32 *)(arg1 + 0x14) * 20 + temp_v1;
     temp_fp = *(s32 *)(arg1 + 0x2C) * 8 + arg0 + 8;
     var_s7 = temp_v1;
-    if ((u32)temp_v1 < (u32)temp_t0) {
+    if ((BtUIntPtr)temp_v1 < (BtUIntPtr)temp_t0) {
         sp40 = arg0 + 8;
         do {
             var_s3 = arg0;
@@ -230,14 +230,14 @@ void func_808005C4_vpmodule(u8 *arg0, u8 *arg1, u8 *arg2) {
                         temp_a0 += ((Chunk *)var_s7 - (Chunk *)temp_v1) * 4;
                         range = (Range *)(temp_a0 + 0x14);
                         if (((volatile Range *)range)->length != 0) {
-                            var_s0 = (u8 *)((s32)(*(s32 *)(arg1 + 0x14) * 4 + *(u8 (*)[1])temp_v1_2) + range->offset + 0x14);
+                            var_s0 = (u8 *)((BtIntPtr)(*(s32 *)(arg1 + 0x14) * 4 + *(u8 (*)[1])temp_v1_2) + range->offset + 0x14);
                             temp_s1 = range->length + var_s0;
-                            if ((u32)var_s0 < (u32)temp_s1) {
+                            if ((BtUIntPtr)var_s0 < (BtUIntPtr)temp_s1) {
                                 do {
                                     vertex = var_s0[1];
                                     D_808008C0_vpmodule[*(u8 *)var_s2].unk10(vertex * 16 + var_s3, *var_s0++);
                                     var_s0++;
-                                } while ((u32)var_s0 < (u32)temp_s1);
+                                } while ((BtUIntPtr)var_s0 < (BtUIntPtr)temp_s1);
                             }
                         }
                     }
@@ -246,31 +246,54 @@ void func_808005C4_vpmodule(u8 *arg0, u8 *arg1, u8 *arg2) {
             }
             aligned8_memcpy(*(s16 *)var_s7 + (Vertex *)(*(s32 *)arg0 + *(u8 (*)[1])arg0), var_s3, var_s7[2] * 16);
             temp_s0 = var_s7[2] * 16 + var_s3;
-            if ((u32)var_s3 < (u32)temp_s0) {
+            if ((BtUIntPtr)var_s3 < (BtUIntPtr)temp_s0) {
                 temp_s1 = arg2 + 0x18;
                 do {
                     aligned8_memcpy((*(u16 *)(var_s3 + 6) & 0x7FFF) * 16 + temp_s1, var_s3, 16);
                     var_s3 += 16;
-                } while ((u32)var_s3 < (u32)temp_s0);
+                } while ((BtUIntPtr)var_s3 < (BtUIntPtr)temp_s0);
             }
             var_s7 += 20;
-        } while ((u32)var_s7 < (u32)temp_t0);
+        } while ((BtUIntPtr)var_s7 < (BtUIntPtr)temp_t0);
     }
-}
+}    typedef struct { u8 pad0[0x1]; s8 unk1; } Objmodule_vpmodule_entrypoint_4_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 s32 vpmodule_entrypoint_4(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
     u32 temp_t0;
-    u32 var_v1;
+    BtUIntPtr var_v1;
 
     var_v1 = arg0 + 8;
-    temp_t0 = ((*(s32 *)((s8 *)(arg1) + (0x2C))) * 8) + arg0 + 8;
+    temp_t0 = ((((Objmodule_arg1 *)arg1)->unk2C) * 8) + arg0 + 8;
     while (var_v1 < temp_t0) {
         s32 *record = (s32 *)(((s32 *)(arg1 + 0x30))[*(s16 *)(var_v1 + 2)] + arg1);
         if (arg2 == *record) {
-            (*(s8 *)((s8 *)(var_v1) + (1))) = arg3;
+            (((Objmodule_vpmodule_entrypoint_4_var_v1 *)var_v1)->unk1) = arg3;
             return 1;
         }
         var_v1 += 8;
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/vp/module.data.s */
+void _vplight_entrypoint_0();
+void _vplight_entrypoint_2();
+void _vplight_entrypoint_1();
+void _vplight_entrypoint_3();
+void _vplight_entrypoint_4();
+void _vpwibble_entrypoint_0();
+void _vpwibble_entrypoint_2();
+void _vpwibble_entrypoint_1();
+void _vpwibble_entrypoint_3();
+void _vpflicker_entrypoint_0();
+void _vpflicker_entrypoint_2();
+void _vpflicker_entrypoint_1();
+void _vpflicker_entrypoint_3();
+void _vpglow_entrypoint_0();
+void _vpglow_entrypoint_2();
+void _vpglow_entrypoint_1();
+void _vpglow_entrypoint_3();
+void _vpscroll_entrypoint_0();
+void _vpscroll_entrypoint_2();
+void _vpscroll_entrypoint_1();
+void _vpscroll_entrypoint_3();
+ModuleEntry D_808008C0_vpmodule [5] BT_DATA(4, overlays_vp_module, 0x0) = { { (void *(*)(void *, void *))_vplight_entrypoint_0, (void (*)(void *, void *))_vplight_entrypoint_2, (void (*)(void *))_vplight_entrypoint_1, (BtIntPtr)_vplight_entrypoint_3, (void (*)(void *, unsigned char))_vplight_entrypoint_4 }, { (void *(*)(void *, void *))_vpwibble_entrypoint_0, (void (*)(void *, void *))_vpwibble_entrypoint_2, (void (*)(void *))_vpwibble_entrypoint_1, (BtIntPtr)_vpwibble_entrypoint_3, 0 }, { (void *(*)(void *, void *))_vpflicker_entrypoint_0, (void (*)(void *, void *))_vpflicker_entrypoint_2, (void (*)(void *))_vpflicker_entrypoint_1, (BtIntPtr)_vpflicker_entrypoint_3, 0 }, { (void *(*)(void *, void *))_vpglow_entrypoint_0, (void (*)(void *, void *))_vpglow_entrypoint_2, (void (*)(void *))_vpglow_entrypoint_1, (BtIntPtr)_vpglow_entrypoint_3, 0 }, { (void *(*)(void *, void *))_vpscroll_entrypoint_0, (void (*)(void *, void *))_vpscroll_entrypoint_2, (void (*)(void *))_vpscroll_entrypoint_1, (BtIntPtr)_vpscroll_entrypoint_3, 0 } };

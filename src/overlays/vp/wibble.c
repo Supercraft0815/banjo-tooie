@@ -60,8 +60,8 @@ s32 func_808000B0_vpwibble(u8 *arg0, s32 arg1) {
         *(f32 *)(arg0 + 0x2C) = -value;
     } else {
         *(f32 *)(arg0 + 0x2C) = (f32)arg1 * value;
-    }
-}
+    } BT_NATIVE_ONLY(return 0;)
+}                          typedef struct { u8 pad0[0x34]; s32 unk34; } Objwibble_vpwibble_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x2]; u16 unk2; } Objwibble_vpwibble_entrypoint_0_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; s16 unk18; s16 unk1A; f32 unk1C; f32 unk20; f32 unk24; f32 unk28; u8 pad2C[0x4]; u8 unk30; u8 unk31; u8 unk32; u8 unk33; } Objwibble_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -69,21 +69,21 @@ u8 *vpwibble_entrypoint_0(u8 *arg0, u8 *arg1) {
     void func_800EE88C(f32 *, s16 *);
     s32 func_808000B0_vpwibble(u8 *, s32);
     void *heap_alloc(s32);
-    u32 temp_a0;
-    u32 temp_a1;
-    u32 var_v1;
+    BtUIntPtr temp_a0;
+    BtUIntPtr temp_a1;
+    BtUIntPtr var_v1;
     u8 *temp_v0;
 
-    temp_v0 = heap_alloc(((*(s32 *)((s8 *)(arg0) + (0x14))) * 2) + 0x38);
+    temp_v0 = heap_alloc(((((Objwibble_arg0 *)arg0)->unk14) * 2) + 0x38);
     temp_a0 = arg1 + 0x14;
-    temp_a1 = ((*(s32 *)((s8 *)(arg0) + (0x14))) * 4) + arg1 + 0x14;
-    (*(s32 *)((s8 *)(temp_v0) + (0x34))) = 0;
+    temp_a1 = ((((Objwibble_arg0 *)arg0)->unk14) * 4) + arg1 + 0x14;
+    (((Objwibble_vpwibble_entrypoint_0_temp_v0 *)temp_v0)->unk34) = 0;
     var_v1 = temp_a0;
     if (temp_a0 < temp_a1) {
         do {
-            if ((*(u16 *)((s8 *)(var_v1) + (2))) != 0) {
-                (*(s16 *)((s8 *)((temp_v0 + ((*(s32 *)((s8 *)(temp_v0) + (0x34))) * 2))) + (0x38))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
-                (*(s32 *)((s8 *)(temp_v0) + (0x34))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x34))) + 1);
+            if ((((Objwibble_vpwibble_entrypoint_0_var_v1 *)var_v1)->unk2) != 0) {
+                (*(s16 *)((s8 *)((temp_v0 + ((((Objwibble_vpwibble_entrypoint_0_temp_v0 *)temp_v0)->unk34) * 2))) + (0x38))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
+                (((Objwibble_vpwibble_entrypoint_0_temp_v0 *)temp_v0)->unk34) = (s32) ((((Objwibble_vpwibble_entrypoint_0_temp_v0 *)temp_v0)->unk34) + 1);
             }
             var_v1 += 4;
         } while (var_v1 < temp_a1);
@@ -156,7 +156,7 @@ f32 func_808003F0_vpwibble(void *arg0, void *arg1, void *arg2) {
     return temp_f12;
 }
 
-void vpwibble_entrypoint_3(void *arg0, s32 arg1, u32 arg2, s32 arg3) {
+void vpwibble_entrypoint_3(void *arg0, s32 arg1, BtUIntPtr arg2, BtIntPtr arg3) {
     f32 height;
     s32 shade;
     f32 offsets[2];

@@ -17,9 +17,9 @@ void func_8080000C_choctopus(Actor *arg0) {
 void func_80800054_choctopus(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 _subaddiesect_entrypoint_0(Actor *, s32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
-    s32 _suexpression_entrypoint_18(void *, s32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddieaudioloop_entrypoint_5(Actor *, f32 *, s32, s32, s32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800D9078(f32 *);
@@ -70,11 +70,11 @@ void func_80800054_choctopus(Actor *arg0) {
     }
 }
 
-void func_808007E4_choctopus();
+void func_808007E4_choctopus(BT_NATIVE_ONLY(Actor *bt_a0));
 
-void func_80800210_choctopus()
+void func_80800210_choctopus(BT_NATIVE_ONLY(Actor *bt_a0))
 {
-    func_808007E4_choctopus();
+    func_808007E4_choctopus(BT_NATIVE_ONLY(bt_a0));
 }
 
 void func_80800230_choctopus(Actor *arg0, s32 arg1) {
@@ -148,8 +148,8 @@ void *func_80100094(Actor *, u32);
 void func_80800428_choctopus(Actor *arg0, s32 arg1) {
     s16 func_800CB854(s32 *);
     void func_80102424(Actor *, s32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _suexpression_entrypoint_18(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     extern u8 D_808008C0_choctopus[];
     extern u8 D_8080098C_choctopus[];
@@ -181,9 +181,9 @@ void func_80800428_choctopus(Actor *arg0, s32 arg1) {
     }
 }
 
-s32 func_80800540_choctopus(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 arg4) {
+s32 func_80800540_choctopus(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, BtIntPtr arg3, s32 arg4) {
     s32 _subaddiecustomhits_entrypoint_3(Actor *, f32 *, f32);
-    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);
+    s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9);
     s16 func_800CB854(s32 *);
     f32 func_800EFC7C(void *, void *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
@@ -254,7 +254,7 @@ OSThread *choctopus_entrypoint_1(void)
 
 void func_80800790_choctopus(Actor *arg0) {
     void _suexpression_entrypoint_12(void*, f32, f32);
-    void _suexpression_entrypoint_7(Actor*, u32, u32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1U, 0xB6U);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 80.0f, 30.0f);

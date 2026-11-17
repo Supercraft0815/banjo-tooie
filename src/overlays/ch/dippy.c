@@ -2,14 +2,14 @@
 
 OSThread *chdippy_entrypoint_0(void)
 {
-    extern u8 D_80801580_chdippy[];
+    extern ActorData D_80801580_chdippy[];
 
     return (OSThread *) D_80801580_chdippy;
 }
 
 OSThread *chdippy_entrypoint_1(void)
 {
-    extern u8 D_808015C8_chdippy[];
+    extern ActorData D_808015C8_chdippy[];
 
     return (OSThread *) D_808015C8_chdippy;
 }
@@ -58,8 +58,8 @@ void func_808000D8_chdippy(Actor *arg0) {
     void func_80800948_chdippy(Actor *arg0);
     void func_80800990_chdippy(Actor *arg0);
     void func_80800D44_chdippy(u8 *arg0);
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, s32);
@@ -149,7 +149,7 @@ void func_808000D8_chdippy(Actor *arg0) {
 s32 func_80800374_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(u32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_8080047C_chdippy(Actor *, s32, s32);
     void func_80800654_chdippy(Actor *, s32);
     void func_80800CBC_chdippy(Actor *, s32, s32);
@@ -212,16 +212,16 @@ void func_80800530_chdippy(Actor *arg0) {
     s32 func_800DA298(s32);
     f32 func_800F1DF4(f32 *, f32 *);
     int func_800F20BC(f32, f32, f32);
-    s32 func_800F4BB8(u32, u32, s32);
-    u32 func_800F54E4(void);
-    f32 func_800F5F24(u32);
-    s32 func_800F5FE0(s32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F6C5C(s32);
+    s32 func_800F4BB8(BtUIntPtr, u32, s32);
+    BtUIntPtr func_800F54E4(void);
+    f32 func_800F5F24(BtUIntPtr);
+    s32 func_800F5FE0(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F6C5C(BtIntPtr);
     s32 func_8010D23C(void);
     void func_8010D254(f32 *);
     void func_80800654_chdippy(Actor *, s32);
-    u32 sp2C;
+    BtUIntPtr sp2C;
     f32 sp20[3];
 
     sp2C = func_800F54E4();
@@ -251,7 +251,7 @@ void func_80800654_chdippy(Actor *arg0, s32 arg1) {
     void func_800DA544(s32);
     void func_80102424(Actor *, s32);
     void func_80800CBC_chdippy(Actor *, s32, s32);
-    extern s32 D_80801610_chdippy;
+    extern s32 D_80801610_chdippy[4];
     f32 sp1C[3];
 
     _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp1C);
@@ -274,7 +274,7 @@ void func_80800654_chdippy(Actor *arg0, s32 arg1) {
         break;
     case 6:
         func_80800CBC_chdippy(arg0, 0x37, 0x30);
-        _subaddieaudioquick_entrypoint_2(arg0, sp1C, &D_80801610_chdippy);
+        _subaddieaudioquick_entrypoint_2(arg0, sp1C, D_80801610_chdippy);
         break;
     case 7:
         func_80800CBC_chdippy(arg0, 0x2E, 0x30);
@@ -301,21 +301,21 @@ void func_80800654_chdippy(Actor *arg0, s32 arg1) {
 }
 
 void func_80800800_chdippy(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
     s32 func_8001211C(void);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_80101F24(Actor *);
-    extern s32 D_80801480_chdippy;
-    extern u32 D_808014A0_chdippy;
-    extern s32 D_80801620_chdippy;
-    extern u32 D_8080164C_chdippy;
-    extern u32 D_8080165C_chdippy;
-    extern u32 D_8080166C_chdippy;
-    extern u32 D_80801688_chdippy;
-    extern u32 D_80801698_chdippy;
+    extern s32 D_80801480_chdippy[4];
+    extern u32 D_808014A0_chdippy[4];
+    extern s32 D_80801620_chdippy[11];
+    extern u32 D_8080164C_chdippy[4];
+    extern u32 D_8080165C_chdippy[4];
+    extern u32 D_8080166C_chdippy[7];
+    extern u32 D_80801688_chdippy[4];
+    extern u32 D_80801698_chdippy[3];
     f32 sp34[3];
     f32 sp30;
     s32 sp2C;
@@ -323,49 +323,49 @@ void func_80800800_chdippy(Actor *arg0) {
     sp30 = func_80101F24(arg0);
     sp2C = func_8001211C();
     _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp34);
-    _subaddieaudioquick_entrypoint_4(arg0, sp34, &D_808014A0_chdippy, &D_80801688_chdippy);
-    _subaddieaudioquick_entrypoint_3(arg0, sp34, &D_80801480_chdippy, 0.43f);
-    _subaddieaudioquick_entrypoint_4(arg0, sp34, &D_8080164C_chdippy, &D_80801698_chdippy);
-    _subaddieaudioquick_entrypoint_3(arg0, sp34, &D_8080165C_chdippy, 0.9f);
-    _subaddieaudioquick_entrypoint_3(arg0, sp34, &D_8080166C_chdippy, 0.61f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp34, D_808014A0_chdippy, D_80801688_chdippy);
+    _subaddieaudioquick_entrypoint_3(arg0, sp34, D_80801480_chdippy, 0.43f);
+    _subaddieaudioquick_entrypoint_4(arg0, sp34, D_8080164C_chdippy, D_80801698_chdippy);
+    _subaddieaudioquick_entrypoint_3(arg0, sp34, D_8080165C_chdippy, 0.9f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp34, D_8080166C_chdippy, 0.61f);
     if (sp30 > 0.61f && sp30 < 0.66f && !(sp2C & 1) &&
         _subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp34)) {
-        func_800BBCB8(sp34, NULL, 1.0f, 1, &D_80801620_chdippy);
+        func_800BBCB8(sp34, NULL, 1.0f, 1, D_80801620_chdippy);
     }
 }
 
 void func_80800948_chdippy(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
-    extern s32 D_80801480_chdippy;
+    extern s32 D_80801480_chdippy[4];
     f32 sp1C[3];
 
     _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp1C);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801480_chdippy, 0.4f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C, D_80801480_chdippy, 0.4f);
 }
 
 void func_80800990_chdippy(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
-    extern s32 D_80801490_chdippy;
+    extern s32 D_80801490_chdippy[4];
     f32 sp1C[3];
 
     _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp1C);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801490_chdippy, 0.15f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C, D_80801490_chdippy, 0.15f);
 }
 
 s32 func_808009D8_chdippy(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
-    s32 func_800B53A4(s32);
-    void func_800BA1D0(s32, f32 *, f32 *, s32);
-    void func_800BA4D0(s32, s32);
-    void func_800BA544(s32 *, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA1D0(BtIntPtr, f32 *, f32 *, s32);
+    void func_800BA4D0(void *emitter, s16 min_y);
+    void func_800BA544(s32 *, BtIntPtr);
     void func_800BA5A8(s16 *, s32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, s32, s32, f32, s32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800DC128(s32, s32);
     f32 func_80101F24(Actor *);
 #ifdef BT_NATIVE
@@ -373,10 +373,10 @@ s32 func_808009D8_chdippy(Actor *arg0) {
 #else
     void _chdippy_entrypoint_2(void);
 #endif
-    extern s32 D_808014B0_chdippy;
-    extern s32 D_808014D8_chdippy;
-    extern u32 D_808016A4_chdippy, D_808016B4_chdippy;
-    extern u32 D_808016C4_chdippy, D_808016DC_chdippy;
+    extern s32 D_808014B0_chdippy[10];
+    extern s32 D_808014D8_chdippy[10];
+    extern u32 D_808016A4_chdippy[4]; extern u32 D_808016B4_chdippy[4];
+    extern u32 D_808016C4_chdippy[6]; extern u32 D_808016DC_chdippy[3];
     extern u8 D_808016E8_chdippy[][2];
     f32 sp8C[3];
     f32 sp88;
@@ -384,19 +384,19 @@ s32 func_808009D8_chdippy(Actor *arg0) {
     s32 sp78;
     f32 sp48[4][3];
     s32 i;
-    s32 emitter;
+    BtIntPtr emitter;
 
     sp88 = func_80101F24(arg0);
     _subaddieskeleton_entrypoint_3(arg0->unk0, 5, sp8C);
-    _subaddieaudioquick_entrypoint_4(arg0, sp8C, &D_808016A4_chdippy, &D_808016C4_chdippy);
-    _subaddieaudioquick_entrypoint_4(arg0, sp8C, &D_808016B4_chdippy, &D_808016DC_chdippy);
+    _subaddieaudioquick_entrypoint_4(arg0, sp8C, D_808016A4_chdippy, D_808016C4_chdippy);
+    _subaddieaudioquick_entrypoint_4(arg0, sp8C, D_808016B4_chdippy, D_808016DC_chdippy);
     if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp7C) && sp7C[1] < 1500.0f) {
         _subaddieskeleton_entrypoint_2(arg0->unk0, 5, sp8C);
         sp8C[1] = 1500.0f;
-        func_800BBCB8(sp8C, NULL, 1.5f, 1, &D_808014B0_chdippy);
+        func_800BBCB8(sp8C, NULL, 1.5f, 1, D_808014B0_chdippy);
         _subaddieskeleton_entrypoint_2(arg0->unk0, 7, sp8C);
         sp8C[1] = 1500.0f;
-        func_800BBCB8(sp8C, NULL, 1.5f, 1, &D_808014B0_chdippy);
+        func_800BBCB8(sp8C, NULL, 1.5f, 1, D_808014B0_chdippy);
     }
     if (sp88 > 0.3f && arg0->unk7C_12 && sp7C[1] > 1500.0f) {
         sp78 = func_800DC128(0, 3);
@@ -406,24 +406,24 @@ s32 func_808009D8_chdippy(Actor *arg0) {
         emitter = func_800B53A4(1);
         func_800BA994((u8 *)emitter, -45, (s32)(arg0->rotation[1] - 25.0f), 25, -25, (s32)(arg0->rotation[1] + 25.0f), 75);
         func_800BA5A8((s16 *)emitter, 0x1200);
-        func_800BABB8(emitter, sp7C, NULL, 1.0f, &D_808014D8_chdippy);
+        func_800BABB8(emitter, sp7C, NULL, 1.0f, D_808014D8_chdippy);
         func_800BA4D0(emitter, 1500);
-        func_800BA544((s32 *)emitter, (s32)_chdippy_entrypoint_2);
+        func_800BA544((s32 *)emitter, (BtIntPtr)_chdippy_entrypoint_2);
         func_800BA1D0(emitter, sp48[D_808016E8_chdippy[sp78][0]], sp48[D_808016E8_chdippy[sp78][1]], 1);
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 void chdippy_entrypoint_2(s32 arg0, f32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_808014B0_chdippy;
-    func_800BBCB8(arg1, NULL, 1.2f, 1, &D_808014B0_chdippy);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_808014B0_chdippy[10];
+    func_800BBCB8(arg1, NULL, 1.2f, 1, D_808014B0_chdippy);
 }
 
 /* extern */
 
 void func_80800CBC_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     s32 _glcutDll_entrypoint_19(u32);
 
     if (arg0->unk64_20) {
@@ -444,16 +444,16 @@ void func_80800D44_chdippy(u8 *arg0) {
         unsigned int active : 1;
         unsigned int : 20;
     };
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     if (((struct Flags *)arg0)->active) {
         _capod_entrypoint_14();
         arg0[0x65] &= 0xFFEF;
     }
-}
+}                 typedef struct { u8 pad0[0x8]; f32 unk8; u8 padC[0x10]; f32 unk1C; u8 pad20[0x45]; u8 unk65; } Objdippy_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800D84_chdippy(void *arg0) {
-    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
-    (*(f32 *)((s8 *)(arg0) + (0x1C))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+    (((Objdippy_arg0 *)arg0)->unk65) = (u8) ((((Objdippy_arg0 *)arg0)->unk65) & 0xFFFE);
+    (((Objdippy_arg0 *)arg0)->unk1C) = (f32) (((Objdippy_arg0 *)arg0)->unk8);
 }
 
 void func_80800D9C_chdippy(void *self) {
@@ -481,9 +481,9 @@ void func_80800D9C_chdippy(void *self) {
         u8 pad98[3];
         u8 alpha;
     };
-    void _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 _idwibble_entrypoint_5(s32, s16);
-    s32 _idworld_entrypoint_4(s32, s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void _idwibble_entrypoint_5(void *arg0, s16 arg1);
+    BtIntPtr _idworld_entrypoint_4(BtIntPtr, s32);
 #ifndef BT_NATIVE
     void _chdippy_entrypoint_2(void);
 #endif
@@ -492,34 +492,34 @@ void func_80800D9C_chdippy(void *self) {
 #else
     void _chdippy_entrypoint_3(void);
 #endif
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA4D0(s32, s32);
-    void func_800BA544(s32 *, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA4D0(void *emitter, s16 min_y);
+    void func_800BA544(s32 *, BtIntPtr);
     void func_800BA5A8(s16 *, s32);
     void func_800BA714(void *, s16, s16);
-    s32 func_800BABB8(s32, s32, s32, f32, s32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    s32 func_800BEA88(s32);
-    u8 func_800D9078(f32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void *func_800BEA88(s32 i);
+    s32 func_800D9078(f32 *arg0);
     s32 func_800D90A4(f32 *);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *actor);
     void func_80101FDC(Actor *, u32);
-    s32 func_8010D930(s32, s32, s32, s32 *);
-    extern s32 D_808014D8_chdippy;
-    extern s32 D_808016F0_chdippy;
-    extern s32 D_80801734_chdippy;
+    s32 func_8010D930(s32, s32, BtIntPtr, s32 *);
+    extern s32 D_808014D8_chdippy[10];
+    extern s32 D_808016F0_chdippy[17];
+    extern s32 D_80801734_chdippy[6];
     s32 count;
     f32 position[3];
-    s32 emitter;
-    s32 glid;
-    s32 world;
-    s32 wibble;
+    BtIntPtr emitter;
+    BtIntPtr glid;
+    BtIntPtr world;
+    BtIntPtr wibble;
 
     switch (((struct Dippy *)self)->state) {
         case 2:
@@ -527,7 +527,7 @@ void func_80800D9C_chdippy(void *self) {
             ((struct Dippy *)self)->offset = func_800F12D4(((struct Dippy *)self)->elapsed, 0.0f, 6.0f, 0.0f, -2000.0f);
             ((struct Dippy *)self)->position[1] = ((struct Dippy *)self)->offset + ((struct Dippy *)self)->baseY;
             if (((struct Dippy *)self)->elapsed > 1.0f) {
-                func_800BBCB8((s32)((struct Dippy *)self)->position, (s32)((struct Dippy *)self)->position, 1.0f, 2, &D_808016F0_chdippy);
+                func_800BBCB8((BtIntPtr)((struct Dippy *)self)->position, (BtIntPtr)((struct Dippy *)self)->position, 1.0f, 2, D_808016F0_chdippy);
             } else {
                 ((struct Dippy *)self)->alpha = (s32)func_800F10B4(((struct Dippy *)self)->elapsed, 1.0f, 0.0f, 255.0f, 0.0f);
             }
@@ -538,7 +538,7 @@ void func_80800D9C_chdippy(void *self) {
             } else {
                 if (func_800D90A4(&((struct Dippy *)self)->soundTimer)) {
                     ((struct Dippy *)self)->soundTimer = func_800DC178(0.2f, 0.5f);
-                    func_8010D930(9, -1, (s32)((struct Dippy *)self)->position, &D_80801734_chdippy);
+                    func_8010D930(9, -1, (BtIntPtr)((struct Dippy *)self)->position, D_80801734_chdippy);
                 }
                 if (((struct Dippy *)self)->timer < 15.0f) {
                     if (func_800DC0C0() < func_800F10B4(((struct Dippy *)self)->timer, 15.0f, 0.0f, 1.0f, 0.0f)) {
@@ -555,9 +555,9 @@ void func_80800D9C_chdippy(void *self) {
                     position[1] += 6000.0f;
                     func_800BA5A8((s16 *)emitter, 0x200);
                     func_800BA714((void *)emitter, 500, 500);
-                    func_800BABB8(emitter, (s32)position, 0, 1.0f, &D_808014D8_chdippy);
+                    func_800BABB8(emitter, (BtIntPtr)position, 0, 1.0f, D_808014D8_chdippy);
                     func_800BA4D0(emitter, 1500);
-                    func_800BA544((s32 *)emitter, (s32)_chdippy_entrypoint_2);
+                    func_800BA544((s32 *)emitter, (BtIntPtr)_chdippy_entrypoint_2);
                     func_800BA22C(emitter, count);
                 }
             }
@@ -568,7 +568,7 @@ void func_80800D9C_chdippy(void *self) {
             _glid_entrypoint_0(glid, 1, (s32 *)_chdippy_entrypoint_3, ((struct Dippy *)self)->marker);
             _glid_entrypoint_0(glid, 2, (s32 *)_chdippy_entrypoint_3, ((struct Dippy *)self)->marker);
             if (((struct Dippy *)self)->counter-- == 0) {
-                func_800FFAB0((s32)self);
+                func_800FFAB0((BtIntPtr)self);
             }
             break;
     }
@@ -614,14 +614,14 @@ s32 func_80801110_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
 s32 func_80801200_chdippy(Actor *arg0) {
     s32 _glcutDll_entrypoint_19(u32);
     s32 _glcutDll_entrypoint_20();
-    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
-    s32 func_800BEA88(s32);
+    void _idworldmake_entrypoint_1(BtIntPtr arg0, s32 arg1, volatile unsigned int arg2, s32 arg3);
+    void *func_800BEA88(s32 i);
     void func_800C4AF0(f32 *, void *);
     s32 func_800DA298(s32);
     f32 func_800DC178(f32, f32);
     void func_80101FDC(Actor *, u32);
     extern f32 D_8080174C_chdippy[];
-    s32 sp24;
+    BtIntPtr sp24;
 
     sp24 = func_800BEA88(1);
     if (_glcutDll_entrypoint_20() != 0) {
@@ -638,7 +638,7 @@ s32 func_80801200_chdippy(Actor *arg0) {
         arg0->unk79_4 = 2;
         *(f32 *)&arg0->actorData[0] = -2000.0f;
         func_80101FDC(arg0, 1);
-        return;
+        return BT_NATIVE_ONLY(0);
     } else {
         arg0->unk79_4 = 2;
         *(f32 *)&arg0->actorData[0] = 0.0f;
@@ -648,7 +648,7 @@ s32 func_80801200_chdippy(Actor *arg0) {
     if (arg0->unk70_10 == 2) {
         func_800C4AF0((f32 *)arg0->actorData, D_8080174C_chdippy);
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
@@ -667,3 +667,32 @@ void chdippy_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 
         } while (arg2 < end);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/dippy.data.s */
+extern u8 D_80801500_chdippy[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+void func_801018A4();
+s32 D_80801480_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x0) = { 1246410, 131096, 852083, 9175040 };
+s32 D_80801490_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x10) = { 1246410, 131096, 852121, 11730944 };
+u32 D_808014A0_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x20) = { 0x130551, 0x20018, 0xD00CC, 0xE60000 };
+s32 D_808014B0_chdippy[10] BT_DATA(4, overlays_ch_dippy, 0x30) = { 1903067, 1441793, 2818227, 11730965, 179, 2228428, 13369804, 31850527, -512, 0 };
+s32 D_808014D8_chdippy[10] BT_DATA(4, overlays_ch_dippy, 0x58) = { 1903091, 2162687, -21757918, 6684800, 3342412, 1831508, -229375993, 65579, 167774720, 0 };
+u8 D_80801500_chdippy[128] BT_DATA(4, overlays_ch_dippy, 0x80) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00, 0x02, 0xD7, 0x00, 0x02, 0x40, 0x80, 0x00, 0x00, 0x02, 0xD9, 0x00, 0x02, 0x41, 0x04, 0xCC, 0xCD, 0x02, 0xD8, 0x00, 0x01, 0x40, 0x60, 0x00, 0x00, 0x02, 0xDA, 0x00, 0x02, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xDE, 0x00, 0x02, 0x40, 0xB6, 0x66, 0x66, 0x02, 0xDC, 0x00, 0x01, 0x40, 0x66, 0x66, 0x66, 0x02, 0xDD, 0x00, 0x02, 0x40, 0xE3, 0x33, 0x33, 0x02, 0xDB, 0x00, 0x02, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xDE, 0x00, 0x02, 0x40, 0x99, 0x99, 0x9A, 0x02, 0xDF, 0x00, 0x01, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xE0, 0x00, 0x02, 0x3F, 0xCC, 0xCC, 0xCD, 0x02, 0xDE, 0x00, 0x02, 0x40, 0xB6, 0x66, 0x66, 0x02, 0xDC, 0x00, 0x01 };
+ActorData D_80801580_chdippy [1] BT_DATA(4, overlays_ch_dippy, 0x100) = { { 832, 1069, 2025, 5, (void *)D_80801500_chdippy, (void (*)(struct Actor *))func_808000D8_chdippy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 327680000, 0, 0, 0, 0, 1096, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chdippy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800374_chdippy, 0 } };
+ActorData D_808015C8_chdippy [1] BT_DATA(4, overlays_ch_dippy, 0x148) = { { 344, 1089, 2271, 2, 0, (void (*)(struct Actor *))func_80800D9C_chdippy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 0, 0, 0, 0, 2, 7232, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800D84_chdippy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80801110_chdippy, 0 } };
+s32 D_80801610_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x190) = { 1246484, 131096, 852019, 4980736 };
+s32 D_80801620_chdippy[11] BT_DATA(4, overlays_ch_dippy, 0x1A0) = { 1903069, 1442304, 2818508, 36896802, 25166336, 75499008, 1376256, 2490393, 7, 2088615, 1895825408 };
+u32 D_8080164C_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x1CC) = { 0x130430, 0x2000D, 0x800099, 0 };
+u32 D_8080165C_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x1DC) = { 0x1304F8, 0x20018, 0xA0080, 0 };
+u32 D_8080166C_chdippy[7] BT_DATA(4, overlays_ch_dippy, 0x1EC) = { 0x130410, 0x20018, 0x150000, 0x1000033, 0xC0000, 0x1330033, 0xB30000 };
+u32 D_80801688_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x208) = { 0x3D8F5C29, 0x3DF5C28F, 0x3E0F5C29, 0xBF800000 };
+u32 D_80801698_chdippy[3] BT_DATA(4, overlays_ch_dippy, 0x218) = { 0x3F4A3D71, 0x3F547AE1, 0xBF800000 };
+u32 D_808016A4_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x224) = { 0x13040A, 0x20018, 0xD0059, 0x730000 };
+u32 D_808016B4_chdippy[4] BT_DATA(4, overlays_ch_dippy, 0x234) = { 0x130434, 0x20018, 0xD0073, 0xA60000 };
+u32 D_808016C4_chdippy[6] BT_DATA(4, overlays_ch_dippy, 0x244) = { 0x3E75C28F, 0x3EB851EC, 0x3F1EB852, 0x3F333333, 0x3F4CCCCD, 0xBF800000 };
+u32 D_808016DC_chdippy[3] BT_DATA(4, overlays_ch_dippy, 0x25C) = { 0x3EF0A3D7, 0x3F6B851F, 0xBF800000 };
+u8 D_808016E8_chdippy [4] [ 2 ] BT_DATA(4, overlays_ch_dippy, 0x268) = { { 1, 0 }, { 0, 3 }, { 2, 3 }, { 0, 0 } };
+s32 D_808016F0_chdippy[17] BT_DATA(4, overlays_ch_dippy, 0x270) = { 1903069, 1446416, 1572864, 466432, 503316525, 13107500, 721076, 11796510, -655326, 30147123, 13369600, -1073610731, 1638553, 2818355, 23461915, 13107500, 0 };
+s32 D_80801734_chdippy[6] BT_DATA(4, overlays_ch_dippy, 0x2B4) = { 1246547, 852224, 23461910, 1179648001, 10000, 0 };
+f32 D_8080174C_chdippy [9] BT_DATA(4, overlays_ch_dippy, 0x2CC) = { 1.746281e-39f, 2.204066e-39f, 6.979512e-39f, 2.3509946e-38f, 4.68551e-39f, 1.1754972e-38f, 0.0f, 0.0f, 0.0f };

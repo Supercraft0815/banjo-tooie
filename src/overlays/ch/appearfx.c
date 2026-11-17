@@ -100,7 +100,7 @@ void func_80800014_chappearfx(Actor *arg0) {
         }
       } while (i < remaining);
     }
-}
+}    typedef struct { u8 pad0[0xD]; u8 unkD; } Objappearfx_func_8080031C_chappearfx_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8080031C_chappearfx(Actor *arg0) {
     void func_800FCA90(u32);
@@ -109,8 +109,8 @@ void func_8080031C_chappearfx(Actor *arg0) {
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(u8 *)((s8 *)(temp_v0) + (0xD))) != 0) {
-        (*(u8 *)((s8 *)(temp_v0) + (0xD))) = 0U;
+    if ((((Objappearfx_func_8080031C_chappearfx_temp_v0 *)temp_v0)->unkD) != 0) {
+        (((Objappearfx_func_8080031C_chappearfx_temp_v0 *)temp_v0)->unkD) = 0U;
         func_800FCAE0(0x1CU, 0U, 0x1F4U);
         func_800FCA90(0x1CU);
     }
@@ -150,9 +150,9 @@ void func_808003A0_chappearfx(Actor *arg0, u8 *arg1) {
     void func_800E24D8(s32);
     void func_800E2530(f32);
     void func_800E2588(u32);
-    void func_800E2594(u32, void *);
+    void func_800E2594(BtUIntPtr, void *);
     s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
-    void func_800E2A14(s32);
+    void func_800E2A14(BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -172,7 +172,7 @@ void func_808003A0_chappearfx(Actor *arg0, u8 *arg1) {
     if (data->count != 0) {
         image = func_800D674C(D_80800970_chappearfx[data->image][0]);
         func_800E2588((data->flags & 0x10) ? 0 : 1);
-        func_800E2594((u32)arg1, image);
+        func_800E2594((BtUIntPtr)arg1, image);
         func_800E24D8(1);
         for (i = 0; i < data->count; i++, particle++) {
             size = arg0->scale * particle->unk10;
@@ -183,7 +183,7 @@ void func_808003A0_chappearfx(Actor *arg0, u8 *arg1) {
             func_800E2530(particle->unkC);
             func_800E2720(arg1, 0, particle->unk4, position, scale, data->alpha);
         }
-        func_800E2A14((s32)arg1);
+        func_800E2A14((BtIntPtr)arg1);
     }
 }
 
@@ -234,32 +234,32 @@ void func_80800554_chappearfx(Actor *arg0) {
     }
 }
 
-void chappearfx_entrypoint_1(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) chappearfx_entrypoint_1(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _chbaddiesetup_entrypoint_4(s32 *, s32, s32, s32, s32);
 #ifdef BT_NATIVE
-    s32 chappearfx_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+    s32 chappearfx_entrypoint_3(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3);
 #else
     extern s32 _chappearfx_entrypoint_3;
 #endif
-    _chbaddiesetup_entrypoint_4(&_chappearfx_entrypoint_3, *arg0, arg1, arg2, arg3);
+    BT_NATIVE_ONLY(return) _chbaddiesetup_entrypoint_4(&_chappearfx_entrypoint_3, *arg0, arg1, arg2, arg3);
 }
 
 /* extern */
 
 void chappearfx_entrypoint_2(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
 #ifdef BT_NATIVE
-    s32 chappearfx_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+    s32 chappearfx_entrypoint_3(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3);
 #else
     s32 chappearfx_entrypoint_3(s32, s32, s32, s32);
 #endif
     chappearfx_entrypoint_3(*arg0, arg1, arg2, *(s32 *)&arg3);
 }
 
-s32 chappearfx_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+s32 chappearfx_entrypoint_3(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_2(void *arg0);
     void _subaddielink_entrypoint_0(void *);
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     f32 func_800F0E00(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13F0(f32, f32);
@@ -319,4 +319,4 @@ s32 chappearfx_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     if (arg1 & 0x20) {
         _subaddiefade_entrypoint_2(source);
     }
-}
+BT_NATIVE_ONLY(return 0;)}

@@ -1,7 +1,7 @@
 #include "core2/1E831D0.h"
 
 void func_800A98E0(void) {
-    s32 _gsattract_entrypoint_3();
+    void _gsattract_entrypoint_3(void);
     extern u8 D_80127760;
     extern s8 D_80127763;
     if ((D_80127760 != 1) && (D_80127760 == 2)) {
@@ -12,7 +12,7 @@ void func_800A98E0(void) {
 
 void func_800A9924(s16 arg0, u8 arg1) {
     extern u8 D_80127760;
-    s32 _glrecord_entrypoint_3(s16, s16);
+    void _glrecord_entrypoint_3(s32 arg0, s32 arg1);
     s32 func_800D3D28(void);
     void func_800A9D08(void);
     void func_8001608C(void);
@@ -44,7 +44,7 @@ void func_800A9998(void) {
 void func_800A9A14(void) {
     extern u8 D_80127760;
     s32 func_8001211C(void);
-    s32 _gcgoto_entrypoint_14(s32);
+    void _gcgoto_entrypoint_14(s32 arg0);
     void func_800E8144(void);
     void _gsattract_entrypoint_1(void);
     func_8001211C();
@@ -58,7 +58,7 @@ void func_800A9A14(void) {
     }
 }
 
-void func_800A9AA4(void) {
+void func_800A9AA4(BT_PARAM_OR_VOID(s32 bt_a0)) {
     extern u8 D_80127760;
     void func_800E817C(void);
     void _gsattract_entrypoint_2(void);
@@ -80,7 +80,7 @@ void func_800A9AF8(void) {
     }
     if (*(&D_80127760 + 4) == 0) {
             func_800D3D58();
-        *(u8 *)(u32)&D_80127760 = 0;
+        *(u8 *)(BtUIntPtr)&D_80127760 = 0;
         _glrecord_entrypoint_4();
     }
     *(&D_80127760 + 2) = *(&D_80127760 + 3) = 0;
@@ -88,12 +88,12 @@ void func_800A9AF8(void) {
 }
 
 void func_800A9B84(void) {
-}
+}    typedef struct { u8 unk0; s8 unk1; u8 unk2; u8 pad3[0x1]; s8 unk4; u8 pad5[0x1]; s16 unk6; s16 unk8; s16 unkA; s16 unkC; } Obj1E831D0_D_80127760; /* offsets.py genstruct: fields from raw offsets on &D_80127760; rename once understood */
 
 void func_800A9B8C(s32 arg0, s32 arg1) {
     extern u8 D_80127760;
-    (*(s16 *)((s8 *)(&D_80127760) + (0xA))) = (s16) arg0;
-    (*(s16 *)((s8 *)(&D_80127760) + (0xC))) = (s16) arg1;
+    (((Obj1E831D0_D_80127760 *)&D_80127760)->unkA) = (s16) arg0;
+    (((Obj1E831D0_D_80127760 *)&D_80127760)->unkC) = (s16) arg1;
 }
 
 void func_800A9BA0(s32 arg0, s32 arg1, s32 arg2) {
@@ -101,12 +101,12 @@ void func_800A9BA0(s32 arg0, s32 arg1, s32 arg2) {
     void func_800A79D4(s32, s32);
     void func_800A7A90(s32);
     void func_800A7B18(u32);
-    (*(s8 *)((s8 *)(&D_80127760) + (1))) = (s8) arg0;
-    if ((*(u8 *)((s8 *)(&D_80127760) + (0))) != 0) {
-        (*(s8 *)((s8 *)(&D_80127760) + (4))) = 1;
+    (((Obj1E831D0_D_80127760 *)&D_80127760)->unk1) = (s8) arg0;
+    if ((((Obj1E831D0_D_80127760 *)&D_80127760)->unk0) != 0) {
+        (((Obj1E831D0_D_80127760 *)&D_80127760)->unk4) = 1;
     }
-    (*(s16 *)((s8 *)(&D_80127760) + (6))) = (s16) arg1;
-    (*(s16 *)((s8 *)(&D_80127760) + (8))) = (s16) arg2;
+    (((Obj1E831D0_D_80127760 *)&D_80127760)->unk6) = (s16) arg1;
+    (((Obj1E831D0_D_80127760 *)&D_80127760)->unk8) = (s16) arg2;
     func_800A79D4(arg1, arg2);
     func_800A7A90(1);
     func_800A7B18(3U);
@@ -136,7 +136,7 @@ void func_800A9C50(void) {
     void func_800A7B18(u32);
     s32 func_800A8264();
     if (func_800A8264() == 0) {
-        func_800A79D4((s32) (*(s16 *)((s8 *)(&D_80127760) + (0xA))), (s32) (*(s16 *)((s8 *)(&D_80127760) + (0xC))));
+        func_800A79D4((s32) (((Obj1E831D0_D_80127760 *)&D_80127760)->unkA), (s32) (((Obj1E831D0_D_80127760 *)&D_80127760)->unkC));
         func_800A7A90(1);
         func_800A7B18(1U);
     }
@@ -156,13 +156,13 @@ s32 func_800A9CAC(void) {
 
 u32 func_800A9CD0(void) {
     extern u8 D_80127760;
-    return *(u8 *)((u8 *)&D_80127760 + 0);
+    return *&((Obj1E831D0_D_80127760 *)&D_80127760)->unk0;
 }
 
 void func_800A9CDC(void) {
     extern u8 D_80127760;
-    if ((*(u8 *)((s8 *)(&D_80127760) + (2))) == 0) {
-        (*(u8 *)((s8 *)(&D_80127760) + (2))) = 1U;
+    if ((((Obj1E831D0_D_80127760 *)&D_80127760)->unk2) == 0) {
+        (((Obj1E831D0_D_80127760 *)&D_80127760)->unk2) = 1U;
     }
 }
 
@@ -199,3 +199,10 @@ void func_800A9D08(void) {
         short_ptr++;
     } while (short_ptr != short_end);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_80127760 BT_DATA(4, bss_core2bss1_0_1, 0x700);
+s8 D_80127763 BT_DATA(4, bss_core2bss1_0_1, 0x703);
+#endif

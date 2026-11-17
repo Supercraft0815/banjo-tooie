@@ -1,8 +1,8 @@
 #include "common.h"
 
-void gsattract_entrypoint_0(void) {
+typedef struct { u8 pad0[0x4]; u8 unk4; u8 pad5[0x3]; f32 unk8; } Objattract_D_8013546C; /* offsets.py genstruct: fields from raw offsets on &D_8013546C; rename once understood */ void gsattract_entrypoint_0(void) {
     extern s32 D_8013546C;
-    (*(f32 *)((s8 *)(&D_8013546C) + (8))) = 0.0f;
+    (((Objattract_D_8013546C *)&D_8013546C)->unk8) = 0.0f;
 }
 
 void gsattract_entrypoint_1(void) {
@@ -65,7 +65,7 @@ void gsattract_entrypoint_3(void) {
     u8 *state;
 
     if (func_800A8264() == 0) {
-        state = (u8 *)(u32)(&D_8013546C + 1);
+        state = (u8 *)(BtUIntPtr)(&D_8013546C + 1);
         var_a0 = state[1] + 1;
         if (var_a0 >= *((u8 *)&D_80800493_gsattract + state[0] * 12)) {
             var_a0 = 0;
@@ -112,12 +112,12 @@ void func_808002A4_gsattract(s32 arg0) {
     }
     func_800D3A14((u8)temp_v0[4]);
     func_800A9BA0(2, *(s16 *)temp_v0, temp_v0[2]);
-}
+}    typedef struct { s16 unk0; u8 unk2; } Objattract_gsattract_entrypoint_5_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void gsattract_entrypoint_5(s32 arg0) {
     void func_800A9B84(void);
     void func_800A9B8C(s32, s32);
-    void func_800FE4E4(void);
+    s32 func_800FE4E4(void);
     extern s32 D_8013546C;
     extern s32 D_80800490_gsattract;
     extern s16 widescreen_enabled;
@@ -127,13 +127,19 @@ void gsattract_entrypoint_5(s32 arg0) {
         if (widescreen_enabled != 0) {
             arg0 = 1;
         }
-        if (arg0 != (*(u8 *)((s8 *)(&D_8013546C) + (4)))) {
+        if (arg0 != (((Objattract_D_8013546C *)&D_8013546C)->unk4)) {
             func_80800274_gsattract(arg0);
         }
         func_800FE4E4();
         func_800A9B84();
-        temp_v0 = ((*(u8 *)((s8 *)(&D_8013546C) + (4))) * 0xC) + (u8 *)&D_80800490_gsattract;
-        func_800A9B8C((*(s16 *)((s8 *)(temp_v0) + (0))), (*(u8 *)((s8 *)(temp_v0) + (2))));
+        temp_v0 = ((((Objattract_D_8013546C *)&D_8013546C)->unk4) * 0xC) + (u8 *)&D_80800490_gsattract;
+        func_800A9B8C((((Objattract_gsattract_entrypoint_5_temp_v0 *)temp_v0)->unk0), (((Objattract_gsattract_entrypoint_5_temp_v0 *)temp_v0)->unk2));
         gsattract_entrypoint_3();
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8013546C BT_DATA(4, bss_core2bss2_2, 0x25CC);
+#endif

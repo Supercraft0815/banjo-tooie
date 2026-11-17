@@ -139,7 +139,7 @@ s32 func_800FF564(void) {
     func_80106608();
     func_80106A28();
     func_80106E18();
-    func_8010DF98();
+    func_8010DF98(); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800FF62C(void) {
@@ -349,7 +349,7 @@ void func_800FFC14()
 {
     func_800FFC3C();
     func_8010DEFC();
-}
+}    typedef struct { u8 pad0[0x7E]; u8 unk7E; } Obj1ED8C80_func_800FFC3C_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 void func_800FFC3C(void) {
     s32 func_801067C4(s32 *);
@@ -359,7 +359,7 @@ void func_800FFC3C(void) {
 
     if ((var_s0 = func_801067C4(sp20)) != 0) {
         do {
-            *(u8 *)((s8 *)var_s0 + 0x7E) &= 0xFFEF;
+            ((Obj1ED8C80_func_800FFC3C_var_s0 *)var_s0)->unk7E &= 0xFFEF;
         } while ((var_s0 = func_8010682C(sp20)) != 0);
     }
 }
@@ -702,4 +702,11 @@ s32 func_8010038C(Actor *arg0, f32 *arg1) {
     }
     return func_800EFFB4(arg0->position, (f32)(s32)range->radius, arg1);
 }
+#endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_80127194 BT_DATA(4, bss_core2bss1_0_1, 0x134);
+s32 D_80135A50 BT_DATA(4, bss_core2bss2_2_music_tail, 0x30);
 #endif

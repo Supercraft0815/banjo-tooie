@@ -232,7 +232,12 @@ s32 func_808008EC_chintrocam(s32 arg0, s32 arg1, s32 arg2)
 }
 OSThread *chintrocam_entrypoint_0(void)
 {
-    extern u8 D_80800A20_chintrocam[];
+    extern ActorData D_80800A20_chintrocam[];
 
     return (OSThread *) D_80800A20_chintrocam;
 }
+/* data_to_c.py: from asm/data/overlays/ch/intro/cam.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80800A20_chintrocam [1] BT_DATA(4, overlays_ch_intro_cam, 0x0) = { { 344, 416, 0, 1, 0, (void (*)(struct Actor *))func_8080005C_chintrocam, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 4, 0, 0, 0, 0, 4, (void (*)(struct Actor *))func_80800054_chintrocam, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chintrocam, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_808008EC_chintrocam, 0 } };

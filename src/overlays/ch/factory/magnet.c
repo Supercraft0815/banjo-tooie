@@ -52,9 +52,9 @@ void func_80800000_chfactorymagnet(Actor *arg0) {
 void func_80800224_chfactorymagnet(Actor *arg0) {
     s32 _chmrtannoy_entrypoint_0(void);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _sumumbofx_entrypoint_14(s32);
-    s32 _sumumbofx_entrypoint_27(s32);
-    s32 _sumumbofx_entrypoint_5(s32, s32);
+    s32 _sumumbofx_entrypoint_14(BtIntPtr);
+    s32 _sumumbofx_entrypoint_27(BtIntPtr);
+    s32 _sumumbofx_entrypoint_5(BtIntPtr, s32);
     void func_800CE88C(s32, s32);
     s16 func_800CEA84(s32);
     s32 func_800CEAA8(s32);
@@ -69,30 +69,30 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
     void func_800EF334(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F8418(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F8418(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80103110(Actor *, u32);
     void func_80108B04(Actor *, s32);
-    void func_8080083C_chfactorymagnet(s32);
+    void func_8080083C_chfactorymagnet(BtIntPtr);
     void func_80800898_chfactorymagnet(Actor *, s32);
     void func_80800FE8_chfactorymagnet(Actor *);
-    s32 func_808012E4_chfactorymagnet(s32, f32);
+    s32 func_808012E4_chfactorymagnet(BtIntPtr, f32);
     void func_80801368_chfactorymagnet(u8 *);
-    void func_80801460_chfactorymagnet(Actor *, s32);
+    void func_80801460_chfactorymagnet(Actor *, BtIntPtr);
     void func_80801B74_chfactorymagnet(Actor *);
     f32 sp54[3];
     f32 sp48[3];
-    s32 sp44;
-    s32 sp40;
-    s32 sp3C;
-    s32 sp38;
-    s32 sp34;
+    BtIntPtr sp44;
+    BtIntPtr sp40;
+    BtIntPtr sp3C;
+    BtIntPtr sp38;
+    BtIntPtr sp34;
 
     switch (arg0->unk70_10) {
     case 1:
-        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+        if (func_808012E4_chfactorymagnet((BtIntPtr)arg0, ((f32 *)arg0->actorData)[5])) {
             func_80800898_chfactorymagnet(arg0, 2);
         }
         break;
@@ -102,15 +102,15 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         }
         break;
     case 3:
-        func_8080083C_chfactorymagnet((s32)arg0);
-        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[4])) {
+        func_8080083C_chfactorymagnet((BtIntPtr)arg0);
+        if (func_808012E4_chfactorymagnet((BtIntPtr)arg0, ((f32 *)arg0->actorData)[4])) {
             func_80800898_chfactorymagnet(arg0, 4);
-        } else if (!func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+        } else if (!func_808012E4_chfactorymagnet((BtIntPtr)arg0, ((f32 *)arg0->actorData)[5])) {
             func_80800898_chfactorymagnet(arg0, 5);
         }
         break;
     case 4:
-        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[6])) {
+        if (func_808012E4_chfactorymagnet((BtIntPtr)arg0, ((f32 *)arg0->actorData)[6])) {
             func_800F5A00(func_800F54E4(), sp54);
             func_800EFB24(sp48, sp54, arg0->position);
             func_800D90A4((f32 *)arg0->actorData);
@@ -120,17 +120,17 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         } else {
             func_80800898_chfactorymagnet(arg0, 5);
         }
-        func_8080083C_chfactorymagnet((s32)arg0);
+        func_8080083C_chfactorymagnet((BtIntPtr)arg0);
         break;
     case 5:
-        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+        if (func_808012E4_chfactorymagnet((BtIntPtr)arg0, ((f32 *)arg0->actorData)[5])) {
             func_80800898_chfactorymagnet(arg0, 2);
         } else if (--arg0->unk6C_0 == 0) {
             func_80800898_chfactorymagnet(arg0, 6);
         }
         break;
     case 6:
-        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5])) {
+        if (func_808012E4_chfactorymagnet((BtIntPtr)arg0, ((f32 *)arg0->actorData)[5])) {
             func_80800898_chfactorymagnet(arg0, 2);
         } else if (func_800D90A4(&arg0->unk58)) {
             func_80800898_chfactorymagnet(arg0, 1);
@@ -142,7 +142,7 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         }
         break;
     case 8:
-        sp44 = (s32)func_80100094(arg0, 0);
+        sp44 = (BtIntPtr)func_80100094(arg0, 0);
         func_80801460_chfactorymagnet(arg0, sp44);
         _sumumbofx_entrypoint_14(sp44);
         if (_sumumbofx_entrypoint_27(sp44)) {
@@ -150,7 +150,7 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         }
         break;
     case 9:
-        sp40 = (s32)func_80100094(arg0, 0);
+        sp40 = (BtIntPtr)func_80100094(arg0, 0);
         func_80801460_chfactorymagnet(arg0, sp40);
         _sumumbofx_entrypoint_14(sp40);
         _sumumbofx_entrypoint_5(sp40, 0x40400000);
@@ -159,7 +159,7 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         }
         break;
     case 11:
-        sp3C = (s32)func_80100094(arg0, 0);
+        sp3C = (BtIntPtr)func_80100094(arg0, 0);
         func_80801460_chfactorymagnet(arg0, sp3C);
         _sumumbofx_entrypoint_14(sp3C);
         func_800D91EC(&arg0->unk58, 1.0f);
@@ -171,7 +171,7 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         }
         break;
     case 12:
-        sp38 = (s32)func_80100094(arg0, 0);
+        sp38 = (BtIntPtr)func_80100094(arg0, 0);
         func_80801460_chfactorymagnet(arg0, sp38);
         _sumumbofx_entrypoint_14(sp38);
         func_80801368_chfactorymagnet(arg0);
@@ -181,7 +181,7 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         }
         break;
     case 13:
-        sp34 = (s32)func_80100094(arg0, 0);
+        sp34 = (BtIntPtr)func_80100094(arg0, 0);
         func_80801460_chfactorymagnet(arg0, sp34);
         _sumumbofx_entrypoint_14(sp34);
         func_80801368_chfactorymagnet(arg0);
@@ -190,7 +190,7 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
         }
         break;
     case 14:
-        if (func_808012E4_chfactorymagnet((s32)arg0, ((f32 *)arg0->actorData)[5]) && !func_800DA298(0x1B8)) {
+        if (func_808012E4_chfactorymagnet((BtIntPtr)arg0, ((f32 *)arg0->actorData)[5]) && !func_800DA298(0x1B8)) {
             func_800DA524(0xA06);
             func_800DA524(0x9DE);
             func_80800898_chfactorymagnet(arg0, 2);
@@ -237,11 +237,11 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
 
 /* extern */
 
-void func_8080083C_chfactorymagnet(s32 arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+void func_8080083C_chfactorymagnet(BtIntPtr arg0) {
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void func_800EE7F8(f32 dst[3], f32 src[3]);
-    s32 func_800F4EC8(s32, s32 *, f32, f32, f32);
-    u32 func_800F54E4(void);
+    s32 func_800F4EC8(BtIntPtr, s32 *, f32, f32, f32);
+    BtUIntPtr func_800F54E4(void);
     s32 sp24[3];
 
     func_800EE7F8(sp24, _subaddiefind_entrypoint_2(0x3FC, 0)->position);
@@ -260,7 +260,7 @@ void func_80800898_chfactorymagnet(Actor *arg0, s32 arg1) {
     s32 func_800DA544(s32);
     f32 func_800DC178(f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_8010A624(Actor *);
     void func_8010A63C(Actor *);
@@ -339,12 +339,12 @@ void func_80800898_chfactorymagnet(Actor *arg0, s32 arg1) {
 }
 
 s32 func_80800B20_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void _sumumbofx_entrypoint_3(void *, f32);
     void _sumumbofx_entrypoint_4(void *);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
-    void func_800CE928(s32, s32, s32);
+    void func_800CE928(s32, BtIntPtr, BtIntPtr);
     s32 func_800DA298(s32);
     s32 func_800DA524(s32);
     f32 func_800DC178(f32, f32);
@@ -353,7 +353,7 @@ s32 func_80800B20_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80108B04(Actor *, s32);
     void *func_80800E40_chfactorymagnet(Actor *);
-    void func_80801A9C_chfactorymagnet(s32, f32 *, f32 *);
+    void func_80801A9C_chfactorymagnet(BtIntPtr, f32 *, f32 *);
     void func_80801AE8_chfactorymagnet(Actor *);
     extern f32 D_80802910_chfactorymagnet[3];
 #ifdef BT_NATIVE
@@ -380,7 +380,7 @@ s32 func_80800B20_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
     case 0xB:
         if (arg2 == 2) {
             func_800CE8D8(0, 90.0f, 0x5A);
-            func_800CE928(0, (s32)_chfactorymagnet_entrypoint_0, (s32)arg0->unk0);
+            func_800CE928(0, (BtIntPtr)_chfactorymagnet_entrypoint_0, (BtIntPtr)arg0->unk0);
             func_800CE88C(0, 1);
         }
         return 3;
@@ -390,12 +390,12 @@ s32 func_80800B20_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
             sp4C = func_80108528(0x3F6, D_80802910_chfactorymagnet, 0, &arg0);
             sp4C->unk3C = arg0->unk0;
             arg0->unk3C = sp4C->unk0;
-            func_80801A9C_chfactorymagnet((s32)arg0, NULL, sp40);
+            func_80801A9C_chfactorymagnet((BtIntPtr)arg0, NULL, sp40);
             func_80108528(0x50F, sp40, 0, &arg0)->scale = arg0->scale;
             break;
         case 1:
             sp30 = func_800DC178(0.0f, 360.0f);
-            func_80801A9C_chfactorymagnet((s32)arg0, NULL, sp34);
+            func_80801A9C_chfactorymagnet((BtIntPtr)arg0, NULL, sp34);
             func_800EF214(sp34, func_800DC178(0.0f, 360.0f), sp30, func_80103EAC(arg0));
             sp4C = func_80108528(0x52F, sp34, 0, &arg0);
             sp4C->scale = arg0->scale;
@@ -462,14 +462,14 @@ void *func_80800E40_chfactorymagnet(Actor *arg0) {
 }
 
 void func_80800EF0_chfactorymagnet(Actor *arg0, s32 arg1) {
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
-    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    s32 _sumumbofx_entrypoint_8(u8 *, BtIntPtr);
+    s32 _sumumbofx_entrypoint_9(u8 *, BtIntPtr);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
     void func_80101870(Actor *, void *);
-    void func_808016A4_chfactorymagnet(Actor *, s32);
-    void func_80801A9C_chfactorymagnet(s32, f32 *, f32 *);
+    void func_808016A4_chfactorymagnet(Actor *, BtIntPtr);
+    void func_80801A9C_chfactorymagnet(BtIntPtr, f32 *, f32 *);
     struct MagnetVector { f32 v[3]; };
     extern struct MagnetVector D_8080291C_chfactorymagnet;
     f32 sp4C[3];
@@ -481,7 +481,7 @@ void func_80800EF0_chfactorymagnet(Actor *arg0, s32 arg1) {
     sp3C = func_800F12D4(arg0->unk58, 0.25f, 1.0f, 0.0f, 1.0f);
     sp30 = D_8080291C_chfactorymagnet;
     temp_s1 = func_80100094(arg0, 0);
-    func_80801A9C_chfactorymagnet((s32)arg0, sp4C, sp40);
+    func_80801A9C_chfactorymagnet((BtIntPtr)arg0, sp4C, sp40);
     func_800EFE50(arg0->position, sp4C, sp40, sp3C);
     if (temp_s1 != NULL) {
         _sumumbofx_entrypoint_9(temp_s1, arg1);
@@ -500,9 +500,9 @@ void func_80800FE8_chfactorymagnet(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     f32 func_800138D0(f32);
     f32 func_80013970(f32);
-    s32 func_800B53A4(s32);
-    void func_800BA1D0(s32, f32[3], f32[3], s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA1D0(BtIntPtr, f32[3], f32[3], s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_80103EF4(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
@@ -510,7 +510,7 @@ void func_80800FE8_chfactorymagnet(Actor *arg0) {
     extern s32 D_80802940_chfactorymagnet;
     extern s32 D_8080294C_chfactorymagnet;
     extern s32 D_80802954_chfactorymagnet;
-    s32 sp74;
+    BtIntPtr sp74;
     Actor *sp70;
     f32 sp64[3];
     f32 sp58[3];
@@ -554,12 +554,12 @@ void func_80800FE8_chfactorymagnet(Actor *arg0) {
 
 /* extern */
 
-s32 func_808012E4_chfactorymagnet(s32 arg0, f32 arg1) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+s32 func_808012E4_chfactorymagnet(BtIntPtr arg0, f32 arg1) {
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_80090178(s32);
     f32 func_800EFC7C(void *, void *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     f32 sp24[3];
     Actor *sp20;
 
@@ -571,13 +571,13 @@ s32 func_808012E4_chfactorymagnet(s32 arg0, f32 arg1) {
     return 0;
 }
 
-/* extern */ void func_80801368_chfactorymagnet(u8 *arg0) { s32 func_800D90F8(u8 *, f32); s32 func_800D91EC(u8 *, f32); f32 func_800DC178(f32, f32); f32 temp_f0; s32 var_v0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (0x1C))); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x58)))) { var_v0 = func_800D90F8(arg0 + 0x58, temp_f0); } else { var_v0 = func_800D91EC(arg0 + 0x58, temp_f0); } if (var_v0 != 0) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = func_800DC178(0.0f, 1.0f); } }
+/* extern */ void func_80801368_chfactorymagnet(u8 *arg0) { s32 func_800D90F8(u8 *, f32); s32 func_800D91EC(u8 *, f32); f32 func_800DC178(f32, f32); f32 temp_f0; s32 var_v0; temp_f0 = (*(f32 *)((s8 *)(arg0) + (0x1C))); if (temp_f0 < (((Actor *)arg0)->unk58)) { var_v0 = func_800D90F8(arg0 + 0x58, temp_f0); } else { var_v0 = func_800D91EC(arg0 + 0x58, temp_f0); } if (var_v0 != 0) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = func_800DC178(0.0f, 1.0f); } }
 
 /* extern */
 
 void chfactorymagnet_entrypoint_0(s32 arg0, s32 arg1) {
     s32 _chmrtannoy_entrypoint_0();
-    s32 func_800C05B8(s32, s32, s32, s32, s32, s32, s32);
+    s32 func_800C05B8(s32, s32, s32, s32, BtIntPtr, s32, s32);
     s32 func_800DA298(s32);
     s32 func_800DA524(s32);
     s32 func_800EA05C();
@@ -591,19 +591,19 @@ void chfactorymagnet_entrypoint_0(s32 arg0, s32 arg1) {
     }
 }
 
-void func_80801460_chfactorymagnet(Actor *arg0, s32 arg1) {
-    s32 _sumumbofx_entrypoint_7(s32, f32, s32, s32, f32 *, s32, s32);
+void func_80801460_chfactorymagnet(Actor *arg0, BtIntPtr arg1) {
+    void _sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f32 *arg5, f32 *arg6);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     f32 func_80103EAC(Actor *);
-    void func_80801A9C_chfactorymagnet(s32, f32 *, f32 *);
+    void func_80801A9C_chfactorymagnet(BtIntPtr, f32 *, f32 *);
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp34[3];
     f32 sp30;
 
     sp30 = func_800F12D4(arg0->unk58, 0.25f, 1.0f, 0.0f, 1.0f);
-    func_80801A9C_chfactorymagnet((s32)arg0, sp40, sp34);
+    func_80801A9C_chfactorymagnet((BtIntPtr)arg0, sp40, sp34);
     func_800EFE50(sp4C, sp40, sp34, sp30);
     _sumumbofx_entrypoint_7(arg1, func_80103EAC(arg0) * 0.6f, 0, 0x28, sp4C, 0, 0);
 }
@@ -612,8 +612,8 @@ void func_80801508_chfactorymagnet(Actor *arg0, s32 arg1) {
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     struct MagnetParticle {
         f32 position[3];
@@ -647,15 +647,15 @@ void func_80801508_chfactorymagnet(Actor *arg0, s32 arg1) {
     }
 }
 
-void func_808016A4_chfactorymagnet(Actor *arg0, s32 arg1) {
+void func_808016A4_chfactorymagnet(Actor *arg0, BtIntPtr arg1) {
     f32 func_800138D0(f32);
     f32 func_80013970(f32);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     s32 func_800D90A4(f32 *);
     void func_800E2588(u32);
-    void func_800E2594(u32, void *);
+    void func_800E2594(BtUIntPtr, void *);
     s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
-    void func_800E2A14(s32);
+    void func_800E2A14(BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -748,7 +748,7 @@ void func_808019F4_chfactorymagnet(Actor *arg0, f32 *arg1, f32 *arg2) {
     func_800EE780(arg2, arg0->position, sp1C);
 }
 
-void func_80801A9C_chfactorymagnet(s32 arg0, f32 *arg1, f32 *arg2) {
+void func_80801A9C_chfactorymagnet(BtIntPtr arg0, f32 *arg1, f32 *arg2) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     extern f32 D_8080298C_chfactorymagnet;
     extern f32 D_80802998_chfactorymagnet;
@@ -758,7 +758,7 @@ void func_80801A9C_chfactorymagnet(s32 arg0, f32 *arg1, f32 *arg2) {
     if (arg2 != NULL) {
         func_800EE7F8(arg2, &D_80802998_chfactorymagnet);
     }
-}
+}    typedef struct { u8 pad0[0x348]; s32 unk348; s32 unk34C; } Objmagnet_func_80801AE8_chfactorymagnet_temp_s0; /* offsets.py genstruct: fields from raw offsets on temp_s0; rename once understood */
 
 /* extern */
 
@@ -771,14 +771,14 @@ void func_80801AE8_chfactorymagnet(Actor *arg0) {
     void *temp_s0;
 
     temp_s0 = func_80100094(arg0, 1);
-    (*(s32 *)((s8 *)(temp_s0) + (0x348))) = func_800C8A98();
-    (*(s32 *)((s8 *)(temp_s0) + (0x34C))) = func_800C8A98();
-    func_800C8E54((*(s32 *)((s8 *)(temp_s0) + (0x348))), 300.0f, 450.0f);
-    func_800C8E54((*(s32 *)((s8 *)(temp_s0) + (0x34C))), 300.0f, 450.0f);
-    func_800C8FE0((*(s32 *)((s8 *)(temp_s0) + (0x348))), 0);
-    func_800C8FE0((*(s32 *)((s8 *)(temp_s0) + (0x34C))), 0);
-    func_800C8F64((*(s32 *)((s8 *)(temp_s0) + (0x348))), 3);
-    func_800C8F64((*(s32 *)((s8 *)(temp_s0) + (0x34C))), 3);
+    (((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk348) = func_800C8A98();
+    (((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk34C) = func_800C8A98();
+    func_800C8E54((((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk348), 300.0f, 450.0f);
+    func_800C8E54((((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk34C), 300.0f, 450.0f);
+    func_800C8FE0((((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk348), 0);
+    func_800C8FE0((((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk34C), 0);
+    func_800C8F64((((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk348), 3);
+    func_800C8F64((((Objmagnet_func_80801AE8_chfactorymagnet_temp_s0 *)temp_s0)->unk34C), 3);
 }
 
 void func_80801B74_chfactorymagnet(Actor *arg0) {
@@ -810,10 +810,10 @@ void func_80801B74_chfactorymagnet(Actor *arg0) {
 }
 
 void func_80801CD8_chfactorymagnet(Actor *arg0) {
-    s32 func_800B53A4(s32);
+    BtIntPtr func_800B53A4(s32);
     void func_800BA5B0(s16 *, s32, s32);
     void func_800BAA9C(void *, f32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
@@ -831,7 +831,7 @@ void func_80801CD8_chfactorymagnet(Actor *arg0) {
     f32 sp9C[3];
     f32 sp90[3];
     f32 t;
-    s32 particle;
+    BtIntPtr particle;
     s32 offset;
     f32 sp78[3];
     MagnetParticle *data;
@@ -854,11 +854,11 @@ void func_80801CD8_chfactorymagnet(Actor *arg0) {
             func_800BABB8(particle, sp78, NULL, 1.0f, D_808029BC_chfactorymagnet);
         }
     }
-}
+}                  typedef struct { u8 pad0[0x24]; s32 unk24; u8 pad28[0x5A]; s16 unk82; } Objmagnet_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80801E84_chfactorymagnet(u8 *arg0) {
     s32 _sumumbofx_entrypoint_1(void *, s32);
-    if ((*(s16 *)((s8 *)(arg0) + (0x82))) != 0) {
+    if ((((Objmagnet_arg0 *)arg0)->unk82) != 0) {
         _sumumbofx_entrypoint_1(arg0, 0);
     }
 }
@@ -875,14 +875,14 @@ void func_80801EBC_chfactorymagnet(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    void func_800F4D74(s32, f32 *, f32, f32, f32);
-    u32 func_800F54E4(void);
+    void func_800F4D74(BtIntPtr, f32 *, f32, f32, f32);
+    BtUIntPtr func_800F54E4(void);
     f32 func_80103EF4(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     f32 sp3C[3];
     f32 sp38;
     f32 sine;
-    u32 sp30;
+    BtUIntPtr sp30;
 
     if (func_800DA298(0xA06) != 0) {
         sp38 = func_80103EF4(arg0) * 1.2f;
@@ -982,9 +982,9 @@ OSThread *chfactorymagnet_entrypoint_3(void)
 void func_80802390_chfactorymagnet(Actor *arg0) {
     void _subaddieaudioloop_entrypoint_2(Actor *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_8001210C(s32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800C8A98(void);
     void func_800C8B84(s32);
     void func_800C8CB8(s32, f32 *);
@@ -1099,7 +1099,7 @@ void func_8080281C_chfactorymagnet(u8 *arg0) {
     void func_800C8B84(s32);
     s32 temp_a1;
 
-    temp_a1 = (*(s32 *)((s8 *)(arg0) + (0x24)));
+    temp_a1 = (((Objmagnet_arg0 *)arg0)->unk24);
     if (temp_a1 != 0) {
         func_800C8B84(temp_a1);
     }

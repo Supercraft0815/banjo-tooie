@@ -19,8 +19,8 @@ void gccollectDll_entrypoint_1();
 void _gccollectDll_entrypoint_2();
 void _gccollectDll_entrypoint_3();
 
-s32 func_808003E0_gccollectDll(void*, void*);
+BtIntPtr func_808003E0_gccollectDll(void*, void*);
 void func_808005BC_gccollectDll(u32, Prop*);
-s32 func_80800660_gccollectDll(void*, void*);
+BtIntPtr func_80800660_gccollectDll(void*, void*);
 void func_808007D8_gccollectDll(Prop*);
 #endif

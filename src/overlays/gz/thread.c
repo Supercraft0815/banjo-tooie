@@ -31,7 +31,7 @@ const char R_808002F8_gzthread[] = "CRASH";
 void gzthread_entrypoint_1(s32 arg0) {
     extern u8 *D_80800380_gzthread[];
     extern u8 D_808003A8_gzthread[];
-    s32 func_80014ED4(void);
+    BtIntPtr func_80014ED4(void);
     void func_8001D37C(const char *arg0, ...);
     void func_8001D3D8(s16 arg0, s16 arg1, const char *arg2, ...);
     void func_8001D98C(u16 arg0);

@@ -68,7 +68,7 @@ s32 func_808000B8_chdoormake(Actor *arg0) {
                 arg0->unk64_16 = 1;
             }
             break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -215,7 +215,7 @@ s32 chdoormake_entrypoint_3(Actor *arg0, f32 arg1, f32 arg2, f32 arg3, u32 arg4,
 /* extern */
 
 s32 chdoormake_entrypoint_4(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     s32 func_808000B8_chdoormake(Actor *);
@@ -276,7 +276,7 @@ void chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3) {
     } *data;
     data = (struct DoorData *)((s8 *)func_80100094(arg0, 0U) + arg1 * 8);
     data->kind = arg2;
-    *(s16 *)((s8 *)data + 0x1E) = arg3;
+    data->amount = arg3;
     data->flag = 1;
     data->value = 0;
 }
@@ -319,3 +319,7 @@ void chdoormake_entrypoint_12(Actor *arg0, s32 arg1, u16 arg2) {
     void *func_80100094(Actor *, u32);
     (*(s8 *)((s8 *)func_80100094(arg0, 0U) + (arg1 * 8) + 0x20)) = (s8) arg2;
 }
+/* data_to_c.py: from asm/data/overlays/ch/doormake.data.s */
+u8 D_808009A0_chdoormake [108] BT_DATA(4, overlays_ch_doormake, 0x0) = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0xC0, 0x46, 0x50, 1, 0, 5, 7, 0x55, 0xF0, 1, 0, 5, 0x28, 0x55, 0xF0, 0, 0xC0, 4, 0xAD, 0x55, 0xF0, 1, 0, 5, 0xB0, 0x55, 0xF0, 1, 0x33, 4, 0xA9, 0x55, 0xF0, 0, 0x80, 5, 0xB9, 0x7D, 0, 0, 0xCC, 6, 0x38, 0x3A, 0x98, 0, 0xE6, 4, 0xAD, 0x55, 0xF0, 1, 0, 0, 0, 0x55, 0xF0, 0, 0, 6, 0x72, 0x55, 0xF0, 0, 0xCC, 4, 0xAD, 0x55, 0xF0, 1, 0, 6, 0x95, 0x7D, 0, 1, 0, 6, 0x95, 0x7D, 0, 0, 0xCC, 5, 0xB9, 0x7D, 0, 1, 0, 5, 0xB9, 0x7D, 0, 1, 0 };
+u8 D_80800A0C_chdoormake [180] BT_DATA(4, overlays_ch_doormake, 0x6C) = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xAB, 0x55, 0xF0, 0, 0xE6, 0, 1, 0, 1, 4, 0xC7, 0x46, 0x50, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xC7, 0x46, 0x50, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xC7, 0x46, 0x50, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 5, 0x2B, 0x55, 0xF0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xAF, 0x55, 0xF0, 0, 0xB3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xC7, 0x55, 0xF0, 1, 0, 0, 1, 0, 1, 4, 0xC7, 0x55, 0xF0, 1, 0 };
+u8 D_80800AC0_chdoormake [192] BT_DATA(4, overlays_ch_doormake, 0x120) = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xC7, 0x55, 0xF0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xC7, 0x55, 0xF0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0xCC, 0x46, 0x50, 0, 0xCC, 0, 0, 0, 1, 4, 0xC7, 0x55, 0xF0, 0, 0xCC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xC7, 0x55, 0xF0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 4, 0xC7, 0x55, 0xF0, 1, 0, 0, 1, 0, 1, 4, 0xCC, 0x46, 0x50, 0, 0xCC, 0, 1, 0, 1, 6, 0x96, 0x7D, 0, 1, 0, 0, 1, 0, 1, 4, 0xCC, 0x7D, 0, 0, 0xCC, 0, 1, 0, 1, 4, 0xC7, 0x55, 0xF0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

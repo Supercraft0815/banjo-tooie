@@ -5,10 +5,10 @@ s32 badust_entrypoint_0()
     return 0xC;
 }
 
-void func_80800008_badust(s32 arg0) 
+void func_80800008_badust(BtIntPtr arg0) 
 {
 }
-struct player_state_s;
+struct player_state_s;    typedef struct { u8 pad0[0x5C]; void * unk5C; } Objdust_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x9]; u8 unk9; } Objdust_func_80800010_badust_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 void func_80800010_badust(void *arg0) {
     s32 _batimer_decrement(void *, s32);
     void _batimer_set(struct player_state_s *, s32, f32);
@@ -22,9 +22,9 @@ void func_80800010_badust(void *arg0) {
         func_800A2EEC(arg0, 0);
         _batimer_set(arg0, 8, 0.12f);
     }
-    temp_v0 = *(void **)((s8 *)arg0 + 0x5C);
-    *(u8 *)((s8 *)temp_v0 + 9) = (*(u8 *)((s8 *)temp_v0 + 9) + 1) % 2;
-    temp_v1 = *(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0x5C) + 9);
+    temp_v0 = ((Objdust_arg0 *)arg0)->unk5C;
+    ((Objdust_func_80800010_badust_temp_v0 *)temp_v0)->unk9 = (((Objdust_func_80800010_badust_temp_v0 *)temp_v0)->unk9 + 1) % 2;
+    temp_v1 = *(u8 *)((s8 *)*&((Objdust_arg0 *)arg0)->unk5C + 9);
     switch (temp_v1) {
         case 0:
             badust_entrypoint_4(arg0, (func_8009BB18(arg0) + 180.0f) - 70.0f, 20.0f);
@@ -36,7 +36,7 @@ void func_80800010_badust(void *arg0) {
             badust_entrypoint_4(arg0, func_8009BB18(arg0) + 180.0f + 50.0f, 20.0f);
             return;
     }
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; } Objdust_badust_entrypoint_1_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -51,14 +51,14 @@ void badust_entrypoint_1(void *arg0) {
     void *temp_v0;
 
     if ((func_80096544() == 0) || (sp24 = func_800964DC(arg0), !(func_8009C150(arg0) < sp24))) {
-        temp_v0 = (*(void **)((s8 *)(arg0) + (0x5C)));
-        if ((*(s32 *)((s8 *)(temp_v0) + (4))) != 0) {
-            (*(s32 *)((s8 *)(temp_v0) + (4))) = 0;
+        temp_v0 = (((Objdust_arg0 *)arg0)->unk5C);
+        if ((((Objdust_badust_entrypoint_1_temp_v0 *)temp_v0)->unk4) != 0) {
+            (((Objdust_badust_entrypoint_1_temp_v0 *)temp_v0)->unk4) = 0;
         } else {
-            (*(s32 *)((s8 *)(temp_v0) + (4))) = 1;
+            (((Objdust_badust_entrypoint_1_temp_v0 *)temp_v0)->unk4) = 1;
         }
         if (func_8009BB5C(arg0) > 100.0f) {
-            if ((*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (4))) != 0) {
+            if ((*(s32 *)((s8 *)((((Objdust_arg0 *)arg0)->unk5C)) + (4))) != 0) {
                 badust_entrypoint_4(arg0, func_8009BB18(arg0) - 20.0f, 20.0f);
                 return;
             }
@@ -72,18 +72,18 @@ void badust_entrypoint_1(void *arg0) {
 typedef struct player_state_s PlayerState;
 void badust_entrypoint_2(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
     s32 _fxdlsmoke_entrypoint_0(f32 *);
-    void func_800BA22C(s32, s32);
-    void func_800BA450(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA450(BtIntPtr, s16, s16, s16, s16, s16, s16);
     void func_800BA5BC(void *, f32, f32);
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
     void func_800BA8F8(void *, f32, f32);
-    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
     f32 temp_f0;
     s16 temp_f10;
     s16 temp_f18;
     s16 temp_f6;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = _fxdlsmoke_entrypoint_0(arg1);
     temp_f6 = arg2[0];
@@ -119,20 +119,20 @@ void badust_entrypoint_3(PlayerState *arg0, f32 arg1, f32 arg2) {
 s32 badust_entrypoint_4(void *arg0, f32 arg1, f32 arg2) {
     s32 _fxdlsmoke_entrypoint_0(f32 *);
     void func_8009C128(PlayerState *, f32[3]);
-    void func_800BA22C(s32, s32);
-    void func_800BA450(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA450(BtIntPtr, s16, s16, s16, s16, s16, s16);
     void func_800BA5BC(void *, f32, f32);
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
     void func_800BA8F8(void *, f32, f32);
-    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
+    void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFCD8(f32 *, f32, f32);
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp34[3];
-    s32 emitter;
+    BtIntPtr emitter;
 
     func_800EFA4C(sp34, 0.0f, 40.0f, 0.0f);
     func_8009C128(arg0, sp40);
@@ -147,7 +147,7 @@ s32 badust_entrypoint_4(void *arg0, f32 arg1, f32 arg2) {
     func_800BA7FC(emitter, 0.7f, 0.75f);
     func_800BA8F8(emitter, 0.6f, 0.7f);
     func_800BA5BC(emitter, 19.0f, 19.0f);
-    func_800BA22C(emitter, 1);
+    func_800BA22C(emitter, 1); BT_NATIVE_ONLY(return emitter;)
 }
 
 /* extern */
@@ -238,7 +238,7 @@ void badust_entrypoint_9(void *arg0) {
     s32 badust_entrypoint_4(void *, f32, f32);
     f32 func_8009BB18(void *);
 
-    switch (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4)) {
+    switch (*(s32 *)((u8 *)*&((Objdust_arg0 *)arg0)->unk5C + 4)) {
         case 0:
             badust_entrypoint_4(arg0, func_8009BB18(arg0) - 20.0f, 40.0f);
             break;
@@ -249,9 +249,9 @@ void badust_entrypoint_9(void *arg0) {
             badust_entrypoint_4(arg0, func_8009BB18(arg0), 30.0f);
             break;
     }
-    (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4))++;
-    if (*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4) >= 3) {
-        *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 0x5C) + 4) = 0;
+    (*(s32 *)((u8 *)*&((Objdust_arg0 *)arg0)->unk5C + 4))++;
+    if (*(s32 *)((u8 *)*&((Objdust_arg0 *)arg0)->unk5C + 4) >= 3) {
+        *(s32 *)((u8 *)*&((Objdust_arg0 *)arg0)->unk5C + 4) = 0;
     }
 }
 
@@ -273,9 +273,9 @@ void badust_entrypoint_10(PlayerState *arg0, f32 arg1) {
 
 void badust_entrypoint_11(void *arg0) {
     void badust_entrypoint_12(void *, s32);
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (4))) = 0;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (8))) = 0;
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x5C)))) + (0))) = 0;
+    (*(s32 *)((s8 *)((((Objdust_arg0 *)arg0)->unk5C)) + (4))) = 0;
+    (*(s8 *)((s8 *)((((Objdust_arg0 *)arg0)->unk5C)) + (8))) = 0;
+    (*(s32 *)((s8 *)((((Objdust_arg0 *)arg0)->unk5C)) + (0))) = 0;
     badust_entrypoint_12(arg0, 1);
 }
 
@@ -287,7 +287,7 @@ void badust_entrypoint_12(void *arg0, s32 arg1) {
     switch (arg1) {
         case 2:
             func_8009ADF0(arg0, 3, 1);
-            *((s8 *)*(void **)((u8 *)arg0 + 0x5C) + 9) = 0;
+            *((s8 *)*&((Objdust_arg0 *)arg0)->unk5C + 9) = 0;
             _batimer_set(arg0, 8, 0.01f);
             break;
         case 3:
@@ -311,3 +311,5 @@ void badust_entrypoint_13(void *arg0) {
             break;
     }
 }
+/* data_to_c.py: from asm/data/overlays/ba/dust.data.s */
+u8 D_80800CB0_badust[16] BT_DATA(4, overlays_ba_dust, 0x0) = { 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0xFE, 0x00, 0x00, 0x00, 0x00 };

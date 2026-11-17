@@ -12,9 +12,9 @@ void func_80800020_ncbasuck(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbasuck_entrypoint_0(s32 arg0) {
+void ncbasuck_entrypoint_0(BtIntPtr arg0) {
     void func_80111B8C(s32 *, f32, f32);
-    s32 func_801124D0(s32, s32);
+    void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);
     func_80111B8C((s32 *) arg0, 4.0f, 8.0f);
@@ -29,16 +29,16 @@ void ncbasuck_entrypoint_1(s32 arg0)
 /* extern */
 
 s32 func_80800094_ncbasuck(s32 *arg0) {
-    s32 func_80092BC4(s32);
-    s32 func_800F53D0(s32);
+    s32 func_80092BC4(BtIntPtr);
+    PlayerState *func_800F53D0(BtIntPtr arg0);
     return func_80092BC4(func_800F53D0(func_80110840(arg0)));
 }
 
 /* extern */
 
 f32 func_808000C4_ncbasuck(s32 *arg0) {
-    f32 func_80092BD0(s32);
-    s32 func_800F53D0(s32);
+    f32 func_80092BD0(BtIntPtr);
+    PlayerState *func_800F53D0(BtIntPtr arg0);
     return func_80092BD0(func_800F53D0(func_80110840(arg0)));
 }
 
@@ -50,9 +50,9 @@ void ncbasuck_entrypoint_2(PlayerState *arg0) {
     f32 func_800EEF94(f32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     s32 func_80111CC8(void *, f32 *);
     f32 func_80112C3C(void *, f32);

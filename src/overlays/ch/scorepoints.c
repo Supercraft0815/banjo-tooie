@@ -2,7 +2,7 @@
 
 OSThread *chscorepoints_entrypoint_0(void)
 {
-    extern u8 D_808003C0_chscorepoints[];
+    extern ActorData D_808003C0_chscorepoints[];
 
     return (OSThread *) D_808003C0_chscorepoints;
 }
@@ -116,10 +116,14 @@ void chscorepoints_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4
     *(s32 *)&sp18->unk50 = func_800D3DA4(arg1) + 0xC29;
 }
 
-void chscorepoints_entrypoint_2(s32 arg0, s32 arg1, void *arg2, s32 arg3) {
-    s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+void chscorepoints_entrypoint_2(s32 arg0, BtIntPtr arg1, void *arg2, s32 arg3) {
+    s32 _chbaddiesetup_entrypoint_6(s32 *, BtIntPtr, BtIntPtr, s32, s32, s32, BtIntPtr);
 #ifndef BT_NATIVE
     extern s32 _chscorepoints_entrypoint_1;
 #endif
-    _chbaddiesetup_entrypoint_6(&_chscorepoints_entrypoint_1, arg0, arg1, (s32) (*(f32 *)((s8 *)(arg2) + (0))), (s32) (*(f32 *)((s8 *)(arg2) + (4))), (s32) (*(f32 *)((s8 *)(arg2) + (8))), arg3);
+    _chbaddiesetup_entrypoint_6(&_chscorepoints_entrypoint_1, arg0, arg1, (s32) (((Vec3f *)arg2)->pos.x), (s32) (((Vec3f *)arg2)->pos.y), (s32) (((Vec3f *)arg2)->pos.z), arg3);
 }
+/* data_to_c.py: from asm/data/overlays/ch/scorepoints.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_808003C0_chscorepoints [1] BT_DATA(4, overlays_ch_scorepoints, 0x0) = { { 829, 334, -1, 1, 0, (void (*)(struct Actor *))func_808000BC_chscorepoints, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080019C_chscorepoints, 0, 0, 0, 0, 2, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chscorepoints, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };

@@ -3,58 +3,58 @@
 s32 bakaztorpedo_entrypoint_0() 
 {
     return 0x20;
-}
+}                      typedef struct { u8 pad0[0xB0]; void * unkB0; u8 padB4[0xD0]; s32 unk184; } Objkaztorpedo_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 f32 bakaztorpedo_entrypoint_1(void *arg0) {
-    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 176) + 16);
+    return *(f32 *)((u8 *)*&((Objkaztorpedo_arg0 *)arg0)->unkB0 + 16);
 }
 
 /* extern */
 
 void bakaztorpedo_entrypoint_2(void *arg0) {
-    s32 func_8009EA08(f32);
+    void func_8009EA08(f32 arg0);
     s32 func_800C2FDC(u8);
-    func_8009EA08((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x10))));
-    func_800C2FDC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x1C))));
+    func_8009EA08((*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0x10))));
+    func_800C2FDC((*(u8 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0x1C))));
 }
 
 void bakaztorpedo_entrypoint_3(void *arg0) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x10))) = 20.0f;
-}
+    (*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0x10))) = 20.0f;
+}    typedef struct { u8 pad0[0x14]; f32 unk14; f32 unk18; } Objkaztorpedo_bakaztorpedo_entrypoint_4_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */ typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; } Objkaztorpedo_bakaztorpedo_entrypoint_4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void bakaztorpedo_entrypoint_4(void *arg0) {
-    s8 func_8009D454(void *, s32, s32 *);
+    s32 func_8009D454(void *arg0, volatile u8 arg1, s32 *arg2);
     f32 func_8009EA88();
-    extern s32 D_80800420_bakaztorpedo;
+    extern s32 D_80800420_bakaztorpedo[8];
     f32 temp_f0;
     void *temp_v0;
     void *temp_v0_2;
 
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (8))) = 0.0f;
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0xB0)));
-    temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (8)));
-    (*(f32 *)((s8 *)(temp_v0) + (4))) = temp_f0;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0))) = temp_f0;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x10))) = func_8009EA88();
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0xC))) = 1;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x18))) = 0.0f;
-    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0xB0)));
-    (*(f32 *)((s8 *)(temp_v0_2) + (0x14))) = (f32) (*(f32 *)((s8 *)(temp_v0_2) + (0x18)));
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (0x1C))) = func_8009D454(arg0, 0, &D_80800420_bakaztorpedo);
+    (*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (8))) = 0.0f;
+    temp_v0 = (((Objkaztorpedo_arg0 *)arg0)->unkB0);
+    temp_f0 = (((Objkaztorpedo_bakaztorpedo_entrypoint_4_temp_v0 *)temp_v0)->unk8);
+    (((Objkaztorpedo_bakaztorpedo_entrypoint_4_temp_v0 *)temp_v0)->unk4) = temp_f0;
+    (*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0))) = temp_f0;
+    (*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0x10))) = func_8009EA88();
+    (*(s8 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0xC))) = 1;
+    (*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0x18))) = 0.0f;
+    temp_v0_2 = (((Objkaztorpedo_arg0 *)arg0)->unkB0);
+    (((Objkaztorpedo_bakaztorpedo_entrypoint_4_temp_v0_2 *)temp_v0_2)->unk14) = (f32) (((Objkaztorpedo_bakaztorpedo_entrypoint_4_temp_v0_2 *)temp_v0_2)->unk18);
+    (*(s8 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (0x1C))) = func_8009D454(arg0, 0, D_80800420_bakaztorpedo);
 }
 
 void bakaztorpedo_entrypoint_5(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (4))) = arg1;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xB0)))) + (8))) = arg2;
+    (*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (4))) = arg1;
+    (*(f32 *)((s8 *)((((Objkaztorpedo_arg0 *)arg0)->unkB0)) + (8))) = arg2;
 }
 
 void bakaztorpedo_entrypoint_6(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 176) + 12) = arg1;
+    *(s8 *)((u8 *)*&((Objkaztorpedo_arg0 *)arg0)->unkB0 + 12) = arg1;
 }
 
 void bakaztorpedo_entrypoint_7(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 176) + 24) = arg1;
-}
+    *(f32 *)((u8 *)*&((Objkaztorpedo_arg0 *)arg0)->unkB0 + 24) = arg1;
+} 
 
 void bakaztorpedo_entrypoint_8(void *arg0) {
     f32 func_800136E4(f32);
@@ -72,7 +72,7 @@ void bakaztorpedo_entrypoint_8(void *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_800F1574(f32 *, f32);
     f32 func_800F15F8(f32, f32, f32);
-    int func_800F8004(s32);
+    int func_800F8004(BtIntPtr);
     void func_800FC660(u32);
     s32 player_inWater(void *);
     f32 sp64;
@@ -89,7 +89,7 @@ void bakaztorpedo_entrypoint_8(void *arg0) {
     void *data;
 
     sp60 = func_800D8FF8();
-    data = *(void **)((u8 *)arg0 + 0xB0);
+    data = ((Objkaztorpedo_arg0 *)arg0)->unkB0;
     switch (*(u8 *)((u8 *)data + 0xC)) {
         default: sp64 = 0.0f; break;
         case 2: sp64 = 1.0f; break;
@@ -113,7 +113,7 @@ void bakaztorpedo_entrypoint_8(void *arg0) {
         value = 0;
     }
     func_800D2498(0xCB, value, 0);
-    data = *(void **)((u8 *)arg0 + 0xB0);
+    data = ((Objkaztorpedo_arg0 *)arg0)->unkB0;
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0xB0) + 0x14) = func_800136E4(*(f32 *)((u8 *)data + 0x18) * sp60 + *(f32 *)((u8 *)data + 0x14));
     sp58 = func_80092AD8(arg0);
     func_800E0AF0(sp58, 1.0f);
@@ -125,9 +125,11 @@ void bakaztorpedo_entrypoint_8(void *arg0) {
         func_800C31DC(*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0xB0) + 0x1C), sp40);
         func_800C3BDC(*(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0xB0) + 0x1C));
     }
-    data = *(void **)((u8 *)arg0 + 0xB0);
+    data = ((Objkaztorpedo_arg0 *)arg0)->unkB0;
     *(f32 *)*(void **)((u8 *)arg0 + 0xB0) = func_800F15F8(*(f32 *)data, *(f32 *)((u8 *)data + 4), sp60 * 100.0f);
     zero = 0.0;
     func_800E0AFC(sp58, 0x6C, 1.0f, *(f32 *)*(void **)((u8 *)arg0 + 0xB0), 0.0, 0.0);
     func_800E0AFC(sp58, 0x6C, 1.0f, 0.0f, *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0xB0) + 8), 0.0f);
 }
+/* data_to_c.py: from asm/data/overlays/ba/kaztorpedo.data.s */
+s32 D_80800420_bakaztorpedo[8] BT_DATA(4, overlays_ba_kaztorpedo, 0x0) = { 33947667, 103874587, 1463792, 655616, 1114112, 0, 0, 0 };

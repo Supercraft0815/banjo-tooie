@@ -1,6 +1,6 @@
 #include "common.h"
 
-void bamovehover_entrypoint_0(s32 arg0) 
+void bamovehover_entrypoint_0(BtIntPtr arg0) 
 {
 }
 /* extern */
@@ -11,7 +11,7 @@ void bamovehover_entrypoint_1(void *arg0) {
     func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0xAC);
     func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0xB8);
     func_800EFA4C((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10, 0x41855556, 0x42055556, 0x42480000);
-}
+}    typedef struct { u8 pad0[0xC8]; s8 * unkC8; } Objhover_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -30,11 +30,11 @@ void bamovehover_entrypoint_2(void *arg0) {
     s32 i;
 
     delta = func_800D8FF8();
-    func_800EF174((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0xAC),
-                 (f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0xB8), delta);
+    func_800EF174((f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 0xAC),
+                 (f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 0xB8), delta);
     for (i = 0; i < 3; i++) {
-        difference = ((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0xAC))[i]
-                   - ((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 4))[i];
+        difference = ((f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 0xAC))[i]
+                   - ((f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 4))[i];
         magnitude = mlAbsF(difference);
         if (magnitude > 5.0f) {
             step = 220.0f * delta;
@@ -44,22 +44,22 @@ void bamovehover_entrypoint_2(void *arg0) {
             } else {
                 velocity[i] = -speed;
             }
-            ((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0x10))[i] =
-                func_800F15F8(((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0x10))[i], velocity[i], step);
+            ((f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 0x10))[i] =
+                func_800F15F8(((f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 0x10))[i], velocity[i], step);
         }
     }
-    func_800EF174((f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 4),
-                 (f32 *)(*(s8 **)((s8 *)arg0 + 0xC8) + 0x10), delta);
+    func_800EF174((f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 4),
+                 (f32 *)(((Objhover_arg0 *)arg0)->unkC8 + 0x10), delta);
 }
 
 /* extern */
 
-void bamovehover_entrypoint_3(void *arg0) {
+void bamovehover_entrypoint_3(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32 bt_a1)) {
     s32 func_800EE7F8(s32);
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 172);
 }
 
-void bamovehover_entrypoint_4(u8 *arg0, s32 arg1) {
+void bamovehover_entrypoint_4(u8 *arg0, BtIntPtr arg1) {
     s32 func_800EE7F8(s32);
     s32 func_800EFD24(s32);
     if (arg1 == 0) {

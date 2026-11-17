@@ -2,27 +2,27 @@
 
 /* extern */
 
-u8 *vpscroll_entrypoint_0(u8 *arg0, u8 *arg1) {
+typedef struct { f32 unk0; s16 unk4; u8 pad6[0x2]; f32 unk8; s32 unkC; } Objscroll_vpscroll_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; } Objscroll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x2]; u16 unk2; } Objscroll_vpscroll_entrypoint_0_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */ u8 *vpscroll_entrypoint_0(u8 *arg0, u8 *arg1) {
     u8 *temp_a0;
     u8 *temp_a1;
     u8 *temp_v0;
     u8 *var_v1;
-    temp_v0 = heap_alloc(((*(s32 *)((s8 *)(arg0) + (0x14))) * 2) + 0x10);
-    temp_a1 = ((*(s32 *)((s8 *)(arg0) + (0x14))) * 4) + arg1 + 0x14;
-    (*(s32 *)((s8 *)(temp_v0) + (0xC))) = 0;
-    (*(s16 *)((s8 *)(temp_v0) + (4))) = 0;
-    (*(f32 *)((s8 *)(temp_v0) + (0))) = 0.0f;
+    temp_v0 = heap_alloc(((((Objscroll_arg0 *)arg0)->unk14) * 2) + 0x10);
+    temp_a1 = ((((Objscroll_arg0 *)arg0)->unk14) * 4) + arg1 + 0x14;
+    (((Objscroll_vpscroll_entrypoint_0_temp_v0 *)temp_v0)->unkC) = 0;
+    (((Objscroll_vpscroll_entrypoint_0_temp_v0 *)temp_v0)->unk4) = 0;
+    (((Objscroll_vpscroll_entrypoint_0_temp_v0 *)temp_v0)->unk0) = 0.0f;
     temp_a0 = arg1 + 0x14;
     var_v1 = temp_a0;
-    (*(f32 *)((s8 *)(temp_v0) + (8))) = (f32) (*(s32 *)arg1 % 100);
-    if ((u32) temp_a0 < (u32) temp_a1) {
+    (((Objscroll_vpscroll_entrypoint_0_temp_v0 *)temp_v0)->unk8) = (f32) (*(s32 *)arg1 % 100);
+    if ((BtUIntPtr) temp_a0 < (BtUIntPtr) temp_a1) {
         do {
-            if ((*(u16 *)((s8 *)(var_v1) + (2))) != 0) {
-                (*(s16 *)((s8 *)((temp_v0 + ((*(s32 *)((s8 *)(temp_v0) + (0xC))) * 2))) + (0x10))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
-                (*(s32 *)((s8 *)(temp_v0) + (0xC))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0xC))) + 1);
+            if ((((Objscroll_vpscroll_entrypoint_0_var_v1 *)var_v1)->unk2) != 0) {
+                (*(s16 *)((s8 *)((temp_v0 + ((((Objscroll_vpscroll_entrypoint_0_temp_v0 *)temp_v0)->unkC) * 2))) + (0x10))) = (s16) ((s32) (var_v1 - temp_a0) >> 2);
+                (((Objscroll_vpscroll_entrypoint_0_temp_v0 *)temp_v0)->unkC) = (s32) ((((Objscroll_vpscroll_entrypoint_0_temp_v0 *)temp_v0)->unkC) + 1);
             }
             var_v1 += 4;
-        } while ((u32) var_v1 < (u32) temp_a1);
+        } while ((BtUIntPtr) var_v1 < (BtUIntPtr) temp_a1);
     }
     return temp_v0;
 }

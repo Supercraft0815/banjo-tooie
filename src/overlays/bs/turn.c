@@ -51,7 +51,7 @@ void bsturn_entrypoint_1(struct player_state_s *self) {
     int bakey_pressed(struct player_state_s *, int);
     s32 func_800A055C(struct player_state_s *, s32);
     s32 bs_getTypeOfJump(struct player_state_s *);
-    s32 bs_setState(struct player_state_s *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 next_state;
     f32 timer;
     f32 angle;
@@ -94,18 +94,24 @@ void bsturn_entrypoint_1(struct player_state_s *self) {
 
 /* extern */
 
-void bsturn_entrypoint_2(s32 arg0) {
-    s32 baroll_setIdeal(s32, f32);
+void bsturn_entrypoint_2(BtIntPtr arg0) {
+    void baroll_setIdeal(void *self, f32 arg1);
     f32 func_800136E4(f32);
-    void func_8009BF5C(s32, f32);
+    void func_8009BF5C(BtIntPtr, f32);
     f32 yaw_get();
-    s32 yaw_set(s32, f32);
+    void yaw_set(void *self, f32 arg1);
     yaw_set(arg0, func_800136E4(yaw_get() - 180.0f));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
 }
 
 s32 bsturn_entrypoint_3(s32 arg0) {
-    extern s32 D_80800360_bsturn[];
+    extern BtIntPtr D_80800360_bsturn[];
     return ((s32 *)&D_80800360_bsturn)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/turn.data.s */
+void _bsturn_entrypoint_2();
+void _bsturn_entrypoint_0();
+void _bsturn_entrypoint_1();
+void func_8009AB78();
+BtIntPtr D_80800360_bsturn [4] BT_DATA(4, overlays_bs_turn, 0x0) = { (BtIntPtr)_bsturn_entrypoint_2, (BtIntPtr)_bsturn_entrypoint_0, (BtIntPtr)_bsturn_entrypoint_1, (BtIntPtr)func_8009AB78 };

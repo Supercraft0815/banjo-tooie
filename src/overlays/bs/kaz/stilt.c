@@ -2,14 +2,14 @@
 
 #include "overlays/bs/kaz/stilt.h"
 
-extern s32 D_80801200_bskazstilt[];
-extern s32 D_80801210_bskazstilt[];
-extern s32 D_80801220_bskazstilt[];
-extern s32 D_80801230_bskazstilt[];
-extern s32 D_80801240_bskazstilt[];
-extern s32 D_80801250_bskazstilt[];
-extern s32 D_80801260_bskazstilt[];
-extern s32 D_80801270_bskazstilt[];
+extern BtIntPtr D_80801200_bskazstilt[];
+extern BtIntPtr D_80801210_bskazstilt[];
+extern BtIntPtr D_80801220_bskazstilt[];
+extern BtIntPtr D_80801230_bskazstilt[];
+extern BtIntPtr D_80801240_bskazstilt[];
+extern BtIntPtr D_80801250_bskazstilt[];
+extern BtIntPtr D_80801260_bskazstilt[];
+extern BtIntPtr D_80801270_bskazstilt[];
 
 s32 func_80800000_bskazstilt(PlayerState *self) {
     return player_inWater(self);
@@ -119,7 +119,7 @@ void bskazstilt_entrypoint_2(PlayerState *self) {
     func_800C2FDC(self->unk160.bytes[0]);
 }
 
-s32 bskazstilt_entrypoint_3(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_3(s32 idx) {
     return D_80801200_bskazstilt[idx];
 }
 
@@ -171,7 +171,7 @@ void bskazstilt_entrypoint_6(PlayerState *self) {
     func_80800234_bskazstilt(self);
 }
 
-s32 bskazstilt_entrypoint_7(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_7(s32 idx) {
     return D_80801210_bskazstilt[idx];
 }
 
@@ -231,7 +231,7 @@ void bskazstilt_entrypoint_10(PlayerState *self) {
     func_80800234_bskazstilt(self);
 }
 
-s32 bskazstilt_entrypoint_11(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_11(s32 idx) {
     return D_80801220_bskazstilt[idx];
 }
 
@@ -281,7 +281,7 @@ void bskazstilt_entrypoint_14(PlayerState *self) {
     func_80800234_bskazstilt(self);
 }
 
-s32 bskazstilt_entrypoint_15(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_15(s32 idx) {
     return D_80801230_bskazstilt[idx];
 }
 
@@ -399,7 +399,7 @@ void bskazstilt_entrypoint_18(PlayerState *self) {
     func_80800234_bskazstilt(self);
 }
 
-s32 bskazstilt_entrypoint_19(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_19(s32 idx) {
     return D_80801240_bskazstilt[idx];
 }
 
@@ -464,7 +464,7 @@ void bskazstilt_entrypoint_22(PlayerState *self) {
     func_80800234_bskazstilt(self);
 }
 
-s32 bskazstilt_entrypoint_23(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_23(s32 idx) {
     return D_80801250_bskazstilt[idx];
 }
 
@@ -491,7 +491,7 @@ void bskazstilt_entrypoint_26(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazstilt_entrypoint_27(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_27(s32 idx) {
     return D_80801260_bskazstilt[idx];
 }
 
@@ -514,6 +514,17 @@ void bskazstilt_entrypoint_30(PlayerState *self) {
     func_80800234_bskazstilt(self);
 }
 
-s32 bskazstilt_entrypoint_31(s32 idx) {
+BtIntPtr bskazstilt_entrypoint_31(s32 idx) {
     return D_80801270_bskazstilt[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/stilt.data.s */
+void func_80099B94(PlayerState *);
+void _bsdrone_entrypoint_3();
+BtIntPtr D_80801200_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x0) = { (BtIntPtr)_bskazstilt_entrypoint_2, (BtIntPtr)_bskazstilt_entrypoint_0, (BtIntPtr)_bskazstilt_entrypoint_1, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801210_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x10) = { (BtIntPtr)_bskazstilt_entrypoint_6, (BtIntPtr)_bskazstilt_entrypoint_4, (BtIntPtr)_bskazstilt_entrypoint_5, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801220_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x20) = { (BtIntPtr)_bskazstilt_entrypoint_10, (BtIntPtr)_bskazstilt_entrypoint_8, (BtIntPtr)_bskazstilt_entrypoint_9, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801230_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x30) = { (BtIntPtr)_bskazstilt_entrypoint_14, (BtIntPtr)_bskazstilt_entrypoint_12, (BtIntPtr)_bskazstilt_entrypoint_13, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801240_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x40) = { (BtIntPtr)_bskazstilt_entrypoint_18, (BtIntPtr)_bskazstilt_entrypoint_16, (BtIntPtr)_bskazstilt_entrypoint_17, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801250_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x50) = { (BtIntPtr)_bskazstilt_entrypoint_22, (BtIntPtr)_bskazstilt_entrypoint_20, (BtIntPtr)_bskazstilt_entrypoint_21, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801260_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x60) = { (BtIntPtr)_bskazstilt_entrypoint_24, (BtIntPtr)_bskazstilt_entrypoint_25, (BtIntPtr)_bskazstilt_entrypoint_26, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801270_bskazstilt [4] BT_DATA(4, overlays_bs_kaz_stilt, 0x70) = { (BtIntPtr)_bskazstilt_entrypoint_30, (BtIntPtr)_bskazstilt_entrypoint_28, (BtIntPtr)_bskazstilt_entrypoint_29, (BtIntPtr)_bsdrone_entrypoint_3 };

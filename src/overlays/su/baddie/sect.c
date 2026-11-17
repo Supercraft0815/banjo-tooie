@@ -10,7 +10,7 @@ s32 subaddiesect_entrypoint_0(Actor *arg0, s32 arg1, s32 arg2) {
         u32 pad70_0 : 3;
     };
     s32 _gcmapsects_entrypoint_5(s32);
-    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_2(void *arg0);
     void func_8010381C(Actor *);
     void func_8010A570(Actor *);
     void func_8010A590(Actor *);
@@ -48,9 +48,9 @@ s32 subaddiesect_entrypoint_0(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void subaddiesect_entrypoint_1(s32 arg0) {
-    s32 _gcmapsects_entrypoint_4(s32);
-    _gcmapsects_entrypoint_4(arg0 + 0x4);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) subaddiesect_entrypoint_1(BtIntPtr arg0) {
+    s32 _gcmapsects_entrypoint_4(f32 *point);
+    BT_NATIVE_ONLY(return) _gcmapsects_entrypoint_4(arg0 + 0x4);
 }
 
 s32 subaddiesect_entrypoint_2(Actor *arg0, s32 arg1, s32 arg2) {

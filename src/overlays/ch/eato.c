@@ -10,10 +10,10 @@ OSThread *chcheato_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_chcheato(Actor *arg0) {
-    void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
+    void _subaddieitem_entrypoint_0(BtIntPtr, BtUIntPtr, s32, s32);
     void *func_80100094(Actor *, u32);
-    u32 func_8010A828(Actor*, u32);
-    s32 _subaddieitem_entrypoint_1(s32, s32);
+    void func_8010A828(void **arg0, s32 arg1);
+    void _subaddieitem_entrypoint_1(s8 *arg0, s32 arg1);
     _subaddieitem_entrypoint_0(func_80100094(arg0, 1), 0x4E3U, -1, 3);
     _subaddieitem_entrypoint_1(func_80100094(arg0, 1), 5);
     func_8010A828(arg0, 9U);
@@ -22,11 +22,11 @@ void func_8080000C_chcheato(Actor *arg0) {
 void func_80102424(Actor *, s32);
 
 void func_80800068_chcheato(Actor *arg0) {
-    s32 _gcnewoption_entrypoint_0(s32);
-    s32 _gcnewoption_entrypoint_6(u8 *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _gcnewoption_entrypoint_0(void *arg0);
+    void _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void func_80090708(s32);
     s32 func_800C0638(void);
     void func_800D1824(s32);
@@ -83,12 +83,12 @@ void func_80800068_chcheato(Actor *arg0) {
 
 s32 func_80800204_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800434_chcheato(Actor *, s32, s32);
-    void func_80800AB4_chcheato(s32, s32, s32, s32);
+    void func_80800AB4_chcheato(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_80800C64_chcheato(void *, s32, s32);
     void *func_80101080(void);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     extern u32 D_80800E50_chcheato;
 
     switch (arg1) {
@@ -103,7 +103,7 @@ s32 func_80800204_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
         }
         break;
     case 0x20:
-        func_80800AB4_chcheato((s32)arg0, (s32)func_80101080(), ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        func_80800AB4_chcheato((BtIntPtr)arg0, (BtIntPtr)func_80101080(), ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
         break;
     case 0x52:
         _gcdialogcamera_entrypoint_3(&D_80800E50_chcheato, arg0->scale);
@@ -117,17 +117,17 @@ s32 func_80800204_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
         return 0;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x72]; u16 unk72; } Objeato_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void func_8080035C_chcheato(void *arg0, s32 arg1)
+void func_8080035C_chcheato(void *arg0, BtIntPtr arg1)
 {
-  s32 _gcnewoption_entrypoint_1(s32, s32);
+  void _gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1);
   s32 func_800EB854();
     void *func_80100094(Actor *, u32);
-  s32 func_80101870(void *, s32);
+  void func_80101870(Actor* arg0, void* arg1);
   if (func_800EB854() == 3)
   {
-    if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) >> 0xA) == 5)
+    if (((((u16) (((Objeato_arg0 *)arg0)->unk72)) & 0xFFFFFFFFu) >> 0xA) == 5)
     {
       _gcnewoption_entrypoint_1(func_80100094(arg0, 0), arg1);
     }
@@ -167,14 +167,14 @@ void func_80800434_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80800C0C_chcheato(void);
     void func_80800CC0_chcheato(void *arg0);
     s32 _capod_entrypoint_14();
-    s32 _glcutDll_entrypoint_17();
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _subaddieitem_entrypoint_2(s32);
-    s32 func_800C01A8(s32, s32);
-    s32 func_800C0850();
+    void _glcutDll_entrypoint_17(void);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    void _subaddieitem_entrypoint_2(u8 *arg0);
+    void func_800C01A8(s16 arg0, s32 arg1);
+    void func_800C0850(void);
     s32 func_800D1A04(s32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void * func_80100094(Actor *, u32);
     s32 sp2C;
 
@@ -321,14 +321,14 @@ s32 func_80800888_chcheato(void) {
     return sp1C + 0x114A;
 }
 
-void func_808008B8_chcheato(s32 arg0, s32 arg1) {
+void func_808008B8_chcheato(BtIntPtr arg0, s32 arg1) {
     typedef struct {
         s16 data[3];
     } OptionColors;
-    s32 _gcnewoption_entrypoint_12(s32, s32, s16);
-    s32 _gcnewoption_entrypoint_13(s32, s32, void *);
+    void _gcnewoption_entrypoint_12(void *a0, u32 optionIndex, s16 textIndex);
+    void _gcnewoption_entrypoint_13(BtIntPtr arg0, s32 arg1, void *arg2);
     s32 _gcnewoption_entrypoint_17();
-    s32 _gcnewoption_entrypoint_19(s32, s32);
+    s32 _gcnewoption_entrypoint_19(BtIntPtr, s32);
     extern OptionColors D_80800F20_chcheato;
     extern OptionColors D_80800F28_chcheato;
     s32 pad;
@@ -350,10 +350,10 @@ void func_808008B8_chcheato(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_8080098C_chcheato(s32 arg0, s32 arg1) {
-    s32 _gcnewoption_entrypoint_14(s32, s32, s32, s32, f32);
-    s32 _gcnewoption_entrypoint_32(s32, s32);
-    s32 _gcnewoption_entrypoint_40(s32, s32, s32, s32, f32, f32);
+void func_8080098C_chcheato(BtIntPtr arg0, BtIntPtr arg1) {
+    void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
+    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    void _gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
     _gcnewoption_entrypoint_14(arg1, 0, 1, 2, 4.0f);
     _gcnewoption_entrypoint_40(arg1, 0x41, 0x22, 0x20, 0.8f, 1.0f);
     _gcnewoption_entrypoint_32(arg1, 0x37);
@@ -361,10 +361,10 @@ void func_8080098C_chcheato(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800A04_chcheato(s32 arg0) {
-    s32 _gcnewoption_entrypoint_21(s32, s32);
-    void _gcnewoption_entrypoint_23(s32, s32);
-    void _gcnewoption_entrypoint_31(s32, s32, s16);
+void func_80800A04_chcheato(BtIntPtr arg0) {
+    void _gcnewoption_entrypoint_21(BtIntPtr arg0, s32 arg1);
+    void _gcnewoption_entrypoint_23(BtIntPtr, s32);
+    void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     s32 func_800D3E14(s32);
     u32 func_800D3FC0(s32);
     s32 func_80800C0C_chcheato(void);
@@ -385,8 +385,8 @@ void func_80800A04_chcheato(s32 arg0) {
     }
 }
 
-void func_80800AB4_chcheato(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void func_80800A04_chcheato(s32);
+void func_80800AB4_chcheato(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    void func_80800A04_chcheato(BtIntPtr);
     switch (arg3) {
         case 0:
             func_80800A04_chcheato(arg1);
@@ -398,11 +398,11 @@ void func_80800AB4_chcheato(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 void func_80800B00_chcheato(Actor *arg0) {
-    s32 _gcnewoption_entrypoint_10(s32, s32);
-    s32 _gcnewoption_entrypoint_11(s32);
-    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, u32, s32);
-    s32 _gcnewoption_entrypoint_8(s32, s32);
-    s32 _gcnewoption_entrypoint_9(s32, s32);
+    void _gcnewoption_entrypoint_10(void *arg0, s32 arg1);
+    void _gcnewoption_entrypoint_11(s16 *arg0);
+    void _gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
+    void _gcnewoption_entrypoint_8(s16 *arg0, s32 arg1);
+    void _gcnewoption_entrypoint_9(s16 *arg0, s32 arg1);
     void func_80090708(s32);
     s32 func_800F1418(s32, s32);
     void *func_80100094(Actor *, u32);
@@ -477,12 +477,12 @@ void func_80800CC0_chcheato(void *arg0) {
 }
 
 void func_80800D08_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
     void _capod_entrypoint_8(s32);
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
-    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
+    void _gcdialogcamera_entrypoint_5(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_8(void);
     extern u32 D_80800E50_chcheato;
 

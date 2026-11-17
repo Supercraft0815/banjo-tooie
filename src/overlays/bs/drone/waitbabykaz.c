@@ -5,10 +5,10 @@ void bsdronewaitbabykaz_entrypoint_0(s32 arg0)
 }
 /* extern */
 
-void bsdronewaitbabykaz_entrypoint_1(s32 arg0) {
-    s32 _badata_entrypoint_3(s32, s32 *, s32 *);
-    s32 baanim_playForDuration_loopSmooth(s32, s32, s32);
-    s32 func_8009FFD8(s32, s32, s32, s32, s32);
+void bsdronewaitbabykaz_entrypoint_1(BtIntPtr arg0) {
+    void _badata_entrypoint_3(void *self, void *assetId, f32 *arg2);
+    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    s32 func_8009FFD8(BtIntPtr, s32, s32, s32, s32);
     s32 sp24;
     s32 sp20;
 
@@ -22,7 +22,7 @@ void bsdronewaitbabykaz_entrypoint_2(struct player_state_s *arg0) {
     void func_80099B94(struct player_state_s *);
     s32 func_8009E6EC(struct player_state_s *);
     void func_8009E830(struct player_state_s *, s32);
-    void func_800F7B9C(s32, u32);
+    void func_800F7B9C(BtIntPtr, u32);
     s32 temp_v0;
     s32 temp_v0_2;
 
@@ -63,9 +63,9 @@ void bsdronewaitbabykaz_entrypoint_2(struct player_state_s *arg0) {
 }
 
 void bsdronewaitbabykaz_entrypoint_3(s32 arg0) {
-    s32 _badata_entrypoint_34(s32);
+    s32 _badata_entrypoint_34(BtIntPtr);
     s32 _plsu_entrypoint_1(s32);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     s32 var_a1;
     s32 sp1C;
 

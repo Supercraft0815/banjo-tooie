@@ -1,10 +1,10 @@
 #include "common.h"
 
+
 void sumultiscore_entrypoint_0(s32 *arg0, s32 *arg1, s32 arg2) {
     s32 i;
     s32 j;
     s32 temp;
-
     for (i = 1; i < arg2; i++) {
         for (j = i; j > 0 && arg0[j - 1] < arg0[j]; j--) {
             temp = arg0[j];
@@ -89,7 +89,7 @@ s32 sumultiscore_entrypoint_2(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg
         return 0;
     }
     return indices[0] + 1;
-}
+}                    typedef struct { u8 pad0[0x12]; s16 unk12; s16 unk14; s16 unk16; } Objmultiscore_sumultiscore_entrypoint_3_temp_s1; /* offsets.py genstruct: fields from raw offsets on temp_s1; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x514]; s32 unk518; } Objmultiscore_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -106,9 +106,9 @@ void sumultiscore_entrypoint_3(u8 *arg0) {
     s32 sp48;
     register u8 *var_s0;
 
-    (*(s32 *)((s8 *)(arg0) + (0x518))) = _gcstatusDll_entrypoint_11();
+    (((Objmultiscore_arg0 *)arg0)->unk518) = _gcstatusDll_entrypoint_11();
     var_s2 = 0;
-    if ((*(s32 *)((s8 *)(arg0) + (0x518))) > 0) {
+    if ((((Objmultiscore_arg0 *)arg0)->unk518) > 0) {
         var_s0 = arg0 + 0x28;
         do {
             temp_s1 = var_s0;
@@ -124,12 +124,12 @@ void sumultiscore_entrypoint_3(u8 *arg0) {
             (*(s16 *)((s8 *)(var_s0) + (-0x130))) = (s16) (sp54 + 0x1C);
             (*(s16 *)((s8 *)(var_s0) + (-0x12E))) = (s16) ((sp48 + sp50) - 0xE);
             (*(s16 *)((s8 *)(var_s0) + (-0x12C))) = (s16) ((sp4C + sp54) - 0x1C);
-            (*(s16 *)((s8 *)(temp_s1) + (0x12))) = (s16) ((sp48 + sp50) - 0xE);
-            (*(s16 *)((s8 *)(temp_s1) + (0x14))) = (s16) ((sp4C / 2) + sp54);
-            (*(s16 *)((s8 *)(temp_s1) + (0x16))) = (s16) ((sp48 / 2) + sp50);
-        } while (var_s2 < (*(s32 *)((s8 *)(arg0) + (0x518))));
+            (((Objmultiscore_sumultiscore_entrypoint_3_temp_s1 *)temp_s1)->unk12) = (s16) ((sp48 + sp50) - 0xE);
+            (((Objmultiscore_sumultiscore_entrypoint_3_temp_s1 *)temp_s1)->unk14) = (s16) ((sp4C / 2) + sp54);
+            (((Objmultiscore_sumultiscore_entrypoint_3_temp_s1 *)temp_s1)->unk16) = (s16) ((sp48 / 2) + sp50);
+        } while (var_s2 < (((Objmultiscore_arg0 *)arg0)->unk518));
     }
-    (*(s32 *)((s8 *)(arg0) + (0))) = 0;
+    (((Objmultiscore_arg0 *)arg0)->unk0) = 0;
     sumultiscore_entrypoint_4(arg0, 0, 5, 0);
 }
 
@@ -155,7 +155,7 @@ s32 sumultiscore_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     row = arg0;
     if (*(s32 *)(arg0 + 0x518) > 0) {
         do {
-            entry = (struct ScoreEntry *)((u32)row - (0U - (*(u32 *)arg0 << 5)) + 0x40);
+            entry = (struct ScoreEntry *)((BtUIntPtr)row - (0U - (*(u32 *)arg0 << 5)) + 0x40);
             ((volatile struct ScoreEntry *)entry)->kind = arg1;
             ((volatile struct ScoreEntry *)entry)->mode = arg2;
             entry->flag = arg3;
@@ -207,10 +207,10 @@ s32 sumultiscore_entrypoint_4(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     *(s32 *)(arg0 + arg1 * 4 + 4) = *(s32 *)arg0;
     *(s32 *)arg0 += 1;
-}
+    BT_NATIVE_ONLY(return 0;)}
 
 struct player_state_s;
-struct player_state_s *func_800F53D0(s32);
+struct player_state_s *func_800F53D0(BtIntPtr);
 
 struct Entry {
     u8 unk0, unk1;
@@ -231,22 +231,22 @@ struct Multi {
     s32 unk0;
     s32 order[9];
     struct Row rows[4];
-};
+};     
 
 void sumultiscore_entrypoint_5(struct Multi *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s16 _badeathmatch_entrypoint_9(s32, s32);
+    s32 _badeathmatch_entrypoint_9(void *arg0, s32 arg1);
     extern s32 D_808014B0_sumultiscore[];
     struct Row *row;
     struct Entry *src;
     struct Entry *dst;
-    s32 var_a1;
+    BtIntPtr var_a1;
 
     var_a1 = arg1;
     row = &arg0->rows[var_a1];
     src = arg0->order[arg2] + row->entries;
     dst = arg0->order[0] + row->entries;
     if (row->previous != 0) {
-        var_a1 = (s32)(arg0->order[row->previous] + row->entries);
+        var_a1 = (BtIntPtr)(arg0->order[row->previous] + row->entries);
         ((struct Entry *)var_a1)->unk6 = dst->unk6;
     }
     row->previous = arg2;
@@ -270,21 +270,21 @@ void sumultiscore_entrypoint_6(struct Multi *arg0) {
     s32 func_800F1574(f32 *, f32);
     f32 mlAbsF(f32);
     void func_80800BFC_sumultiscore(struct Multi *, s32, struct Entry *);
-    void func_80800D24_sumultiscore(s32, s32, void *);
-    void func_80800D54_sumultiscore(s32, s32, s32);
-    void func_80800D64_sumultiscore(s32, s32, void *);
-    void func_80800DD0_sumultiscore(s32, s32, u8 *);
-    void func_80800E84_sumultiscore(s32, s32, s32);
+    void func_80800D24_sumultiscore(BtIntPtr, s32, void *);
+    void func_80800D54_sumultiscore(BtIntPtr, s32, s32);
+    void func_80800D64_sumultiscore(BtIntPtr, s32, void *);
+    void func_80800DD0_sumultiscore(BtIntPtr, s32, u8 *);
+    void func_80800E84_sumultiscore(BtIntPtr, s32, s32);
     s32 i;
     s32 j;
     struct Row *slot;
-    s32 entry;
+    BtIntPtr entry;
     f32 timer;
 
     for (i = 0; i < *(s32 *)((u8 *)arg0 + 0x518); i++) {
         for (j = 0; j < arg0->unk0; j++) {
-            slot = (struct Row *)((s32)&arg0->rows[i] + (j << 5));
-            entry = (s32)&slot->entries[0];
+            slot = (struct Row *)((BtIntPtr)&arg0->rows[i] + (j << 5));
+            entry = (BtIntPtr)&slot->entries[0];
             if (slot->entries[0].unk18 != 0.0f) {
                 func_800F1574(&((struct Entry *)entry)->unk18, func_800D8FF8());
                 timer = ((struct Entry *)entry)->unk18;
@@ -293,11 +293,11 @@ void sumultiscore_entrypoint_6(struct Multi *arg0) {
             }
             switch (((struct Entry *)entry)->unk0) {
                 case 0: func_80800BFC_sumultiscore(arg0, i, (struct Entry *)entry); break;
-                case 1: func_80800D24_sumultiscore((s32)arg0, i, (struct Entry *)entry); break;
-                case 2: func_80800D54_sumultiscore((s32)arg0, i, (s32)entry); break;
-                case 3: func_80800D64_sumultiscore((s32)arg0, i, (struct Entry *)entry); break;
-                case 4: func_80800DD0_sumultiscore((s32)arg0, i, &((struct Entry *)entry)->unk0); break;
-                case 5: func_80800E84_sumultiscore((s32)arg0, i, (s32)entry); break;
+                case 1: func_80800D24_sumultiscore((BtIntPtr)arg0, i, (struct Entry *)entry); break;
+                case 2: func_80800D54_sumultiscore((BtIntPtr)arg0, i, (s32)entry); break;
+                case 3: func_80800D64_sumultiscore((BtIntPtr)arg0, i, (struct Entry *)entry); break;
+                case 4: func_80800DD0_sumultiscore((BtIntPtr)arg0, i, &((struct Entry *)entry)->unk0); break;
+                case 5: func_80800E84_sumultiscore((BtIntPtr)arg0, i, (s32)entry); break;
             }
         }
     }
@@ -306,12 +306,12 @@ void sumultiscore_entrypoint_6(struct Multi *arg0) {
 /* extern */
 
 void func_80800BFC_sumultiscore(struct Multi *arg0, s32 arg1, struct Entry *arg2) {
-    s16 _badeathmatch_entrypoint_9(s32, s32);
+    s32 _badeathmatch_entrypoint_9(void *arg0, s32 arg1);
     f32 func_80013970(f32);
     f32 func_800D8FF8(void);
     s32 func_800F1574(f32 *, f32);
     f32 mlAbsF(f32);
-    s32 var_a1;
+    BtIntPtr var_a1;
     s32 sp38;
     struct Multi *row;
     f32 temp_f0;
@@ -324,7 +324,7 @@ void func_80800BFC_sumultiscore(struct Multi *arg0, s32 arg1, struct Entry *arg2
             arg2->unk8 = _badeathmatch_entrypoint_9(func_800F53D0(arg1), sp38);
         }
         if (func_800F1574(&arg2->unk14, func_800D8FF8()) != 0) {
-            var_a1 = (s32)(row->rows[0].entries + arg0->order[row->rows[0].previous]);
+            var_a1 = (BtIntPtr)(row->rows[0].entries + arg0->order[row->rows[0].previous]);
             ((struct Entry *)var_a1)->unk6 = arg2->unk6;
             row->rows[0].previous = 0;
             arg2->unk6 = 0;
@@ -335,80 +335,80 @@ void func_80800BFC_sumultiscore(struct Multi *arg0, s32 arg1, struct Entry *arg2
         arg2->unk5 = (s32)(mlAbsF(func_80013970(temp_f0 * 720.0f)) * 255.99f);
         }
     }
-}
+}                    typedef struct { u8 pad0[0x2]; s16 unk2; u8 pad4[0x1]; u8 unk5; u8 unk6; u8 pad7[0x1]; s16 unk8; u8 padA[0xA]; f32 unk14; } Objmultiscore_arg2; /* offsets.py genstruct: fields from raw offsets on arg2; rename once understood */
 
 /* extern */
 
-void func_80800D24_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
-    s16 func_800F5578(s32);
-    (*(s16 *)((s8 *)(arg2) + (8))) = func_800F5578(arg1);
+void func_80800D24_sumultiscore(BtIntPtr arg0, s32 arg1, void *arg2) {
+    s32 func_800F5578(BtIntPtr arg0);
+    (((Objmultiscore_arg2 *)arg2)->unk8) = func_800F5578(arg1);
 }
 
-void func_80800D54_sumultiscore(s32 arg0, s32 arg1, s32 arg2) {
+void func_80800D54_sumultiscore(BtIntPtr arg0, s32 arg1, s32 arg2) {
 }
-void func_80800D64_sumultiscore(s32 arg0, s32 arg1, void *arg2) {
-    s32 _badeathmatch_entrypoint_6(s32);
-    s16 _badeathmatch_entrypoint_9(s32, s32);
+void func_80800D64_sumultiscore(BtIntPtr arg0, s32 arg1, void *arg2) {
+    s32 _badeathmatch_entrypoint_6(BtIntPtr);
+    s32 _badeathmatch_entrypoint_9(void *arg0, s32 arg1);
     extern s32 D_808014B0_sumultiscore[];
     s32 sp1C;
     s32 temp_v0;
 
     temp_v0 = _badeathmatch_entrypoint_6(func_800F53D0(arg1));
     sp1C = temp_v0;
-    (*(s16 *)((s8 *)(arg2) + (2))) = (s16) D_808014B0_sumultiscore[temp_v0];
-    (*(s16 *)((s8 *)(arg2) + (8))) = _badeathmatch_entrypoint_9(func_800F53D0(arg1), sp1C);
+    (((Objmultiscore_arg2 *)arg2)->unk2) = (s16) D_808014B0_sumultiscore[temp_v0];
+    (((Objmultiscore_arg2 *)arg2)->unk8) = _badeathmatch_entrypoint_9(func_800F53D0(arg1), sp1C);
 }
 
 /* extern */
 
-void func_80800DD0_sumultiscore(s32 arg0, s32 arg1, u8 *arg2) {
+void func_80800DD0_sumultiscore(BtIntPtr arg0, s32 arg1, u8 *arg2) {
     f32 func_800D8FF8();
-    u8 func_800F1418(s32, s32);
+    s32 func_800F1418(s32 arg0, s32 arg1);
     s32 func_800F1574(f32 *, f32);
     u8 temp_v0;
 
-    if ((*(f32 *)((s8 *)(arg2) + (0x14))) != 0.0f) {
+    if ((((Objmultiscore_arg2 *)arg2)->unk14) != 0.0f) {
         func_800F1574(arg2 + 0x14, func_800D8FF8());
-        if ((*(u8 *)((s8 *)(arg2) + (6))) == 0) {
-            (*(u8 *)((s8 *)(arg2) + (6))) = 1U;
-            (*(u8 *)((s8 *)(arg2) + (5))) = 0U;
+        if ((((Objmultiscore_arg2 *)arg2)->unk6) == 0) {
+            (((Objmultiscore_arg2 *)arg2)->unk6) = 1U;
+            (((Objmultiscore_arg2 *)arg2)->unk5) = 0U;
             return;
         }
-        (*(u8 *)((s8 *)(arg2) + (5))) = func_800F1418((*(u8 *)((s8 *)(arg2) + (5))) + 0x20, 0xFF);
+        (((Objmultiscore_arg2 *)arg2)->unk5) = func_800F1418((((Objmultiscore_arg2 *)arg2)->unk5) + 0x20, 0xFF);
         return;
     }
-    if ((*(u8 *)((s8 *)(arg2) + (6))) != 0) {
-        temp_v0 = (*(u8 *)((s8 *)(arg2) + (5)));
+    if ((((Objmultiscore_arg2 *)arg2)->unk6) != 0) {
+        temp_v0 = (((Objmultiscore_arg2 *)arg2)->unk5);
         if ((s32) temp_v0 >= 0x21) {
-            (*(u8 *)((s8 *)(arg2) + (5))) = (u8) (temp_v0 - 0x20);
+            (((Objmultiscore_arg2 *)arg2)->unk5) = (u8) (temp_v0 - 0x20);
             return;
         }
-        (*(u8 *)((s8 *)(arg2) + (6))) = 0U;
+        (((Objmultiscore_arg2 *)arg2)->unk6) = 0U;
     }
 }
 
-void func_80800E84_sumultiscore(s32 arg0, s32 arg1, s32 arg2) {
+void func_80800E84_sumultiscore(BtIntPtr arg0, s32 arg1, s32 arg2) {
 }
-void sumultiscore_entrypoint_7(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void sumultiscore_entrypoint_9(s32, s32, s32, s32);
+void sumultiscore_entrypoint_7(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    void sumultiscore_entrypoint_9(BtIntPtr, BtIntPtr, s32, s32);
     s8 *table = (s8 *)arg0 + (arg2 << 2);
     s32 index = *(s32 *)(table + 4);
-    s32 offset = arg1 * 0x13C;
+    BtIntPtr offset = arg1 * 0x13C;
     arg3 += *(s16 *)((s8 *)(arg0 + offset + (index << 5)) + 0x48);
     sumultiscore_entrypoint_9(arg0, arg1, arg2, arg3);
 }
 
-s16 sumultiscore_entrypoint_8(s32 arg0, s32 arg1, s32 arg2) {
+s16 sumultiscore_entrypoint_8(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s8 *table = (s8 *)arg0 + (arg2 << 2);
     s32 index = *(s32 *)(table + 4);
-    s32 offset = arg1 * 0x13C;
+    BtIntPtr offset = arg1 * 0x13C;
     return *(s16 *)((s8 *)(arg0 + offset + (index << 5)) + 0x48);
 }
 
-void sumultiscore_entrypoint_9(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 base;
+void sumultiscore_entrypoint_9(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    BtIntPtr base;
     s32 index;
-    s32 offset;
+    BtIntPtr offset;
     offset = arg1 * 0x13C;
     base = arg0 + offset;
     index = *(s32 *)((s8 *)arg0 + (arg2 << 2) + 4);
@@ -429,13 +429,13 @@ void sumultiscore_entrypoint_11(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     *(f32 *)((s8 *)arg0 + offset + (index << 5) + 0x58) = arg3;
 }
 
-void sumultiscore_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
+void sumultiscore_entrypoint_12(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
     void func_800B7F14(Gfx **);
     void func_800B811C(Gfx **);
     void func_800B8C50(void);
     void func_800B8C98(s32);
     void func_800B8CBC(u8, u8, u8);
-    void func_80801160_sumultiscore(u16 (*)[2], void *, s32);
+    void func_80801160_sumultiscore(u16 (*)[2], void *, BtIntPtr);
     void func_808011E0_sumultiscore(u16 (*)[2], u8 *, s32, Gfx **);
     s32 i;
     s32 j;
@@ -447,7 +447,7 @@ void sumultiscore_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
         for (i = 0; i < *(s32 *)arg0; i++) {
             entry = base + (u32)i * 0x20;
             if (arg2 == entry[0x1E]) {
-                func_80801160_sumultiscore((u16 (*)[2])base, (void *)((s32)base + (i << 5) + 0x18), arg1);
+                func_80801160_sumultiscore((u16 (*)[2])base, (void *)((BtIntPtr)base + (i << 5) + 0x18), arg1);
             }
         }
     }
@@ -460,19 +460,19 @@ void sumultiscore_entrypoint_12(s32 arg0, s32 arg1, s32 arg2) {
         for (i = 0; i < *(s32 *)arg0; i++) {
             entry = base + (u32)i * 0x20;
             if (arg2 == entry[0x1E]) {
-                func_808011E0_sumultiscore((u16 (*)[2])base, (u8 *)((s32)base + (i << 5) + 0x18), j, (Gfx **)arg1);
+                func_808011E0_sumultiscore((u16 (*)[2])base, (u8 *)((BtIntPtr)base + (i << 5) + 0x18), j, (Gfx **)arg1);
             }
         }
     }
     func_800B811C((Gfx **)arg1);
-}
+} 
 
 /* extern */
 
-void func_80801160_sumultiscore(u16 (*arg0)[2], void *arg1, s32 arg2) {
+void func_80801160_sumultiscore(u16 (*arg0)[2], void *arg1, BtIntPtr arg2) {
     void _fxdialog_entrypoint_1(s32, s32);
     void _fxdialog_entrypoint_2(f32);
-    void _fxdialog_entrypoint_4(s32, u16, u8, f32, f32, s32, s32);
+    void _fxdialog_entrypoint_4(BtIntPtr arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, s32 arg5, s32 arg6);
     u16 *temp_v0;
     s32 x;
     s32 y;
@@ -490,7 +490,7 @@ void func_808011E0_sumultiscore(u16 (*positions)[2], u8 *entry, s32 player, Gfx 
     void func_800B80D0(Gfx **);
     void func_800B8C8C(s32);
     void func_800B8C98(s32);
-    s32 func_800B8E28(s32, s32, s32, u8 *);
+    s32 func_800B8E28(BtIntPtr, s32, s32, u8 *);
     char buf[16];
     s32 x, y;
     s32 alpha;
@@ -507,18 +507,18 @@ void func_808011E0_sumultiscore(u16 (*positions)[2], u8 *entry, s32 player, Gfx 
         func_800B8C8C(alpha);
         func_800B80D0(graphics);
         sprintf(buf, "PLAYER %d", player + 1);
-        func_800B8E28((s32)graphics, x - 0x20, y - 0xC, (u8 *)buf);
+        func_800B8E28((BtIntPtr)graphics, x - 0x20, y - 0xC, (u8 *)buf);
     }
     alpha = (s32)((f32)(u32)entry[5] * 0.667f);
     func_800B8C98(3);
     func_800B8C8C(alpha);
     func_800B80D0(graphics);
     sprintf(buf, "%d", *(s16 *)(entry + 8));
-    func_800B8E28((s32)graphics, x, y, (u8 *)buf);
+    func_800B8E28((BtIntPtr)graphics, x, y, (u8 *)buf);
 }
 
 void func_80801340_sumultiscore(void *arg0, s32 arg1) {
-    s32 _gcstatusDll_entrypoint_13();
+    u8 _gcstatusDll_entrypoint_13(s32 arg0);
 
     switch (_gcstatusDll_entrypoint_13(arg1)) {
         default:
@@ -546,3 +546,5 @@ void func_80801340_sumultiscore(void *arg0, s32 arg1) {
             break;
     }
 }
+/* data_to_c.py: from asm/data/overlays/su/multiscore.data.s */
+s32 D_808014B0_sumultiscore [8] BT_DATA(4, overlays_su_multiscore, 0x0) = { 0, 2945, 2947, 2946, 2948, 2949, 2501, 2499 };

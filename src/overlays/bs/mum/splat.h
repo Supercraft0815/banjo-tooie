@@ -19,6 +19,6 @@
 #include "player.h"
 #include <ultra64.h>
 
-extern s32 D_808001E0_bsmumsplat[];
+extern BtIntPtr D_808001E0_bsmumsplat[];
 
 #endif // __BS_MUM_SPLAT_H__

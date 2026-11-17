@@ -6,7 +6,7 @@ extern f32 func_80013970(f32);
 extern f32 func_800138D0(f32);
 extern BubbleWarpData D_80800C20_chbubbleelevator[2];
 extern u32 D_80800C50_chbubbleelevator[2];
-extern u32 D_80800C58_chbubbleelevator;
+extern BtUIntPtr D_80800C58_chbubbleelevator[18];
 
 //Setup
 void func_80800000_chbubbleelevator(Actor* arg0)
@@ -309,7 +309,7 @@ s32 func_8080090C_chbubbleelevator(Actor* arg0, s32 arg1, s32 arg2)
 }
 
 //Draw Update
-void func_80800A10_chbubbleelevator(Actor* arg0, s32 arg1) {
+void func_80800A10_chbubbleelevator(Actor* arg0, BtIntPtr arg1) {
     f32 sp5C;
     f32 sp58;
     f32 sp4C[3];
@@ -340,5 +340,14 @@ void func_80800A10_chbubbleelevator(Actor* arg0, s32 arg1) {
 
 u32* chbubbleelevator_entrypoint_0(void)
 {
-    return &D_80800C58_chbubbleelevator;
+    return D_80800C58_chbubbleelevator;
 }
+/* data_to_c.py: from asm/data/overlays/ch/bubbleelevator.data.s */
+void func_80105834(Actor*);
+void func_80108ED0();
+#ifndef BT_NATIVE
+void func_80107C2C();
+#endif
+BubbleWarpData D_80800C20_chbubbleelevator [ 2 ] BT_DATA(4, overlays_ch_bubbleelevator, 0x0) = { { 0, 2, 0, 0, 0x14, 0x136, 3000.0f, 0.5f, 1.0f }, { 0x1F, 0x21, 0, 0, 5, 0x15A, -3000.0f, 1.5f, 1.0f } };
+u32 D_80800C50_chbubbleelevator [ 2 ] BT_DATA(4, overlays_ch_bubbleelevator, 0x30) = { 0x130486, 0x20000 };
+BtUIntPtr D_80800C58_chbubbleelevator[18] BT_DATA(4, overlays_ch_bubbleelevator, 0x38) = { 0x3560412, 0xFFFF0001, 0, (BtUIntPtr)func_80800124_chbubbleelevator, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80800A10_chbubbleelevator, 0x3E80000, 0, 0, 0x20001, 0, (BtUIntPtr)func_80108ED0, 0, (BtUIntPtr)func_80800000_chbubbleelevator, (BtUIntPtr)func_80107C2C, 0x80000400, (BtUIntPtr)func_8080090C_chbubbleelevator, 0 };

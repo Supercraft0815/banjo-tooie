@@ -1,7 +1,7 @@
 #include "common.h"
 
-void func_80800000_chlavaentrancebridge(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = -2750.0f;
+typedef struct { u8 pad0[0x58]; f32 unk58; } Objentrancebridge_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chlavaentrancebridge(void *arg0) {
+    (((Objentrancebridge_arg0 *)arg0)->unk58) = -2750.0f;
 }
 
 /* extern */
@@ -25,7 +25,7 @@ s32 func_80800010_chlavaentrancebridge(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080008C_chlavaentrancebridge(Actor *arg0) {
-    s32 _idworld_entrypoint_3(s32);
+    BtIntPtr _idworld_entrypoint_3(s32);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80018820(s32, f32, f32);
@@ -69,7 +69,14 @@ void func_8080008C_chlavaentrancebridge(Actor *arg0) {
 
 OSThread *chlavaentrancebridge_entrypoint_0(void)
 {
-    extern u8 D_80800230_chlavaentrancebridge[];
+    extern ActorData D_80800230_chlavaentrancebridge[];
 
     return (OSThread *) D_80800230_chlavaentrancebridge;
 }
+/* data_to_c.py: from asm/data/overlays/ch/lava/entrancebridge.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+u32 D_80800220_chlavaentrancebridge [2] BT_DATA(4, overlays_ch_lava_entrancebridge, 0x0) = { 0x1304AD, 0x20000 };
+u32 D_80800228_chlavaentrancebridge [2] BT_DATA(4, overlays_ch_lava_entrancebridge, 0x8) = { 0x1304CC, 0x20000 };
+ActorData D_80800230_chlavaentrancebridge [1] BT_DATA(4, overlays_ch_lava_entrancebridge, 0x10) = { { 344, 910, 0, 1, 0, (void (*)(struct Actor *))func_8080008C_chlavaentrancebridge, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chlavaentrancebridge, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80800010_chlavaentrancebridge, 0 } };

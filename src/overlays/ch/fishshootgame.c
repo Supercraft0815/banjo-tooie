@@ -2,7 +2,7 @@
 
 OSThread *chfishshootgame_entrypoint_0(void)
 {
-    extern u8 D_808018C0_chfishshootgame[];
+    extern ActorData D_808018C0_chfishshootgame[];
 
     return (OSThread *) D_808018C0_chfishshootgame;
 }
@@ -14,9 +14,9 @@ void func_8080000C_chfishshootgame(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
     void _gspropctrl_entrypoint_10(Prop *, s16 *);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
     s32 _susubgame_entrypoint_11(s32);
-    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void _susubgame_entrypoint_12(void *arg0, void *arg1);
     u8 *func_800B27E0(u8 *);
     f32 func_800BED50(f32 *);
     s32 func_800D0A9C(u32, u32);
@@ -25,7 +25,7 @@ void func_8080000C_chfishshootgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     u8 *func_801039E4(Unk80132ED0 *);
     void func_80108B04(Actor *, u32);
-    extern s32 D_808018B0_chfishshootgame;
+    extern s32 D_808018B0_chfishshootgame[4];
     struct FishShootData {
         f32 position[3];
         f32 target[3];
@@ -70,20 +70,20 @@ void func_8080000C_chfishshootgame(Actor *arg0) {
     func_80108B04(arg0, 1);
     subgame = data->subgame;
     _susubgame_entrypoint_0(arg0, subgame, 0);
-    _susubgame_entrypoint_12(subgame, &D_808018B0_chfishshootgame);
+    _susubgame_entrypoint_12(subgame, D_808018B0_chfishshootgame);
 }
 
 void func_80800178_chfishshootgame(Actor *arg0) {
     s32 _susubgame_entrypoint_11(s32);
-    s32 _susubgame_entrypoint_2(void *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
     s32 func_800FCCD4(s32);
     void *func_80100094(Actor *, u32);
     s32 data[2];
 
-    data[1] = (s32)func_80100094(arg0, 0);
+    data[1] = (BtIntPtr)func_80100094(arg0, 0);
     _susubgame_entrypoint_11(0);
     if (func_800FCCD4(0x53) != 0) {
         func_800FCAE0(0x53, 0, 0xFA0);
@@ -97,21 +97,21 @@ void func_80800178_chfishshootgame(Actor *arg0) {
 
 void func_808001F0_chfishshootgame(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800B5BE4(s32);
+    BtIntPtr func_800B5BE4(s32);
     void func_800BA4D0(s16 *, s16);
-    void func_800BA544(s32 *, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void func_800BA544(s32 *, BtIntPtr);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80801908_chfishshootgame;
+    extern s32 D_80801908_chfishshootgame[2];
     extern s32 D_80801910_chfishshootgame[];
     extern s32 D_80801934_chfishshootgame[];
     extern s32 _fxsplash_entrypoint_0;
     u8 *sp44;
     f32 sp38[3];
     f32 sp2C[3];
-    s32 sp28;
+    BtIntPtr sp28;
 
     sp44 = func_80100094(arg0, 0);
     func_800EE7F8(sp38, arg0->position);
@@ -119,24 +119,24 @@ void func_808001F0_chfishshootgame(Actor *arg0) {
     func_800BBCB8(sp38, NULL, 1.0f, 1, D_80801910_chfishshootgame);
     sp28 = func_800B5BE4(1);
     func_800BA4D0((s16 *)sp28, (s16)(s32)sp38[1]);
-    func_800BA544((s32 *)sp28, (s32)&_fxsplash_entrypoint_0);
+    func_800BA544((s32 *)sp28, (BtIntPtr)&_fxsplash_entrypoint_0);
     func_800EE7F8(sp2C, sp38);
     sp2C[1] -= 200.0f;
     func_800BABB8(sp28, sp38, sp2C, 1.0f, D_80801934_chfishshootgame);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801908_chfishshootgame);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801908_chfishshootgame);
 }
 
 void func_808002E8_chfishshootgame(Actor *arg0, f32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor*, f32[3], void*);
     void func_800C4B64(f32);
-    extern s32 D_80801978_chfishshootgame;
+    extern s32 D_80801978_chfishshootgame[3];
     func_800C4B64(arg1);
-    _subaddieaudioquick_entrypoint_2(arg0, (f32 *)((u8 *)arg0 + 4), &D_80801978_chfishshootgame);
+    _subaddieaudioquick_entrypoint_2(arg0, &arg0->position[0], D_80801978_chfishshootgame);
 }
 
 void func_80800320_chfishshootgame(Actor *arg0) {
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     u8 *sp34;
@@ -152,17 +152,17 @@ void func_80800320_chfishshootgame(Actor *arg0) {
 Actor *func_80106790(Unk80132ED0 *);
 
 void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
-    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_80090270(void);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     void func_800DA3B8(s32, s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800FC6B0(u32);
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
@@ -171,7 +171,7 @@ void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80800A90_chfishshootgame(Actor *, f32 *);
-    extern s32 D_80801984_chfishshootgame;
+    extern s32 D_80801984_chfishshootgame[2];
     struct FishShootData {
         f32 position[3];
         f32 target[3];
@@ -201,7 +201,7 @@ void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
     if (arg1 != oldState) {
         switch (arg1) {
         case 13:
-            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)data->subgame);
             func_808002E8_chfishshootgame(arg0, 0.8f);
             func_800FFAB0(arg0);
             func_800FFA88(arg0->unk3C);
@@ -240,7 +240,7 @@ void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
             func_800DA3B8(0, 1);
             break;
         case 4:
-            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)data->subgame);
             arg0->unk58 = 0.0f;
             func_800CE8D8(0, 60.0f, 60);
             func_800CE88C(0, 1);
@@ -248,7 +248,7 @@ void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
             break;
         case 5:
             func_800CE88C(0, 0);
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801984_chfishshootgame);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801984_chfishshootgame);
             data->unk30 = 1;
             flag = 1;
             break;
@@ -290,11 +290,11 @@ void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
 
 void func_8080076C_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    s32 func_800DA544(s32);
-    s32 _susubgame_entrypoint_2(void *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void func_800DA544(s32 index);
+    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     struct FishShootData {
         f32 position[3];
         f32 target[3];
@@ -355,14 +355,14 @@ void func_8080076C_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
         state = 0xB;
         break;
     case 0x1025:
-        if (_susubgame_entrypoint_2(arg0, (s32)data->subgame)) {
-            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+        if (_susubgame_entrypoint_2(arg0, (BtIntPtr)data->subgame)) {
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)data->subgame);
         }
         state = 3;
         break;
     case 0x1026:
-        if (_susubgame_entrypoint_2(arg0, (s32)data->subgame)) {
-            _susubgame_entrypoint_4(arg0, (s32)data->subgame);
+        if (_susubgame_entrypoint_2(arg0, (BtIntPtr)data->subgame)) {
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)data->subgame);
         }
     case 0x1060:
         state = 1;
@@ -380,14 +380,14 @@ void func_8080076C_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_808009C0_chfishshootgame(Actor *arg0) {
     s32 func_800DA298(s32);
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
-    extern s32 D_8080198C_chfishshootgame;
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+    extern s32 D_8080198C_chfishshootgame[5];
     extern u16 D_808019A0_chfishshootgame[];
     s32 i;
 
     if (func_800DA298(0x449)) { for (i = 0; i < 1; i = 1) { D_808019A0_chfishshootgame[i] |= 0x42; } }
     else { for (i = 0; i < 1; i = 1) { D_808019A0_chfishshootgame[i] &= ~0x40; } }
-    _subaddiedialog_entrypoint_7((s32)arg0, (s32)arg0 + 4, &D_8080198C_chfishshootgame);
+    _subaddiedialog_entrypoint_7((BtIntPtr)arg0, (BtIntPtr)arg0 + 4, D_8080198C_chfishshootgame);
 }
 
 void func_80800A28_chfishshootgame(Actor *arg0) {
@@ -405,7 +405,7 @@ void func_80800A28_chfishshootgame(Actor *arg0) {
     sp2C = func_80100094(arg0, 0U);
     func_800DFC20(sp30, 0x5D, sp20);
     *(f32 *)(sp2C + 0x24) = *(f32 *)(sp2C + 0x28) * sp20[1];
-}
+}    typedef struct { u8 pad0[0x24]; f32 unk24; } Objfishshootgame_func_80800A90_chfishshootgame_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_80800A90_chfishshootgame(Actor *arg0, f32 *arg1) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
@@ -414,7 +414,7 @@ void func_80800A90_chfishshootgame(Actor *arg0, f32 *arg1) {
 
     sp1C = func_80100094(arg0, 0U);
     func_800EE7F8(arg1, arg0->position);
-    arg1[1] += (*(f32 *)((s8 *)(sp1C) + (0x24))) + 60.0f;
+    arg1[1] += (((Objfishshootgame_func_80800A90_chfishshootgame_sp1C *)sp1C)->unk24) + 60.0f;
 }
 
 /* extern */
@@ -465,9 +465,9 @@ void func_80800B30_chfishshootgame(Actor *arg0) {
 
 void func_80800C24_chfishshootgame(u8 *arg0) {
     u8 func_800C4350(u8, f32[3], s32 *);
-    extern s32 D_808019A8_chfishshootgame;
+    extern s32 D_808019A8_chfishshootgame[4];
     if (arg0[0x5F] == 0) {
-        arg0[0x5F] = func_800C4350(0, NULL, &D_808019A8_chfishshootgame);
+        arg0[0x5F] = func_800C4350(0, NULL, D_808019A8_chfishshootgame);
     }
     func_800C4350(arg0[0x5F], NULL, NULL);
 }
@@ -511,7 +511,7 @@ void func_80800C78_chfishshootgame(Actor *arg0, s32 arg1, f32 arg2) {
 }
 
 void func_80800D48_chfishshootgame(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 func_8008FB10(f32 *, f32, f32, f32);
     f32 func_800CEA60(s32);
     s32 func_800CEAD0(s32);
@@ -526,7 +526,7 @@ void func_80800D48_chfishshootgame(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
     void func_80108B04(Actor *, u32);
-    void func_8010C788(s32, f32, f32, f32);
+    void func_8010C788(BtIntPtr, f32, f32, f32);
     extern u32 D_808019B8_chfishshootgame[];
     extern u32 D_808019C8_chfishshootgame[];
     struct FishShootData {
@@ -633,16 +633,16 @@ void func_80800D48_chfishshootgame(Actor *arg0) {
 
 s32 func_80801110_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_19(f32[3]);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     s32 _glcutDll_entrypoint_20();
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     Unk80132ED0 *func_800D0634(u32, u32);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
-    extern s32 D_808018B0_chfishshootgame;
+    extern s32 D_808018B0_chfishshootgame[4];
     struct FishShootData {
         f32 position[3];
         f32 target[3];
@@ -711,7 +711,7 @@ s32 func_80801110_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
             }
             return 3;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_808018B0_chfishshootgame, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_808018B0_chfishshootgame, arg0->scale);
             break;
         case 0x57:
             return _susubgame_entrypoint_3(arg0, initial->subgame, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
@@ -723,7 +723,7 @@ s32 func_80801110_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfishshootgame_entrypoint_1(void)
 {
-    extern u8 D_80801A00_chfishshootgame[];
+    extern ActorData D_80801A00_chfishshootgame[];
 
     return (OSThread *) D_80801A00_chfishshootgame;
 }
@@ -735,18 +735,18 @@ void func_808013B8_chfishshootgame(void *arg0)
   f32 func_800D8FF8();
   s32 func_8010B990(void *, s32);
   f32 temp_f0;
-  *((f32 *) (((s8 *) arg0) + 0x24)) = (f32) ((*((f32 *) (((s8 *) arg0) + 0x58))) * func_800D8FF8());
+  *((f32 *) (((s8 *) arg0) + 0x24)) = (f32) ((((Actor *)arg0)->unk58) * func_800D8FF8());
   func_8010B990(arg0, 0x100008);
-  temp_f0 = *((f32 *) (((s8 *) arg0) + 0x50));
-  if (temp_f0 < ((*((f32 *) (((s8 *) arg0) + 8))) + 40.0f))
+  temp_f0 = ((Actor *)arg0)->unk50;
+  if (temp_f0 < ((((Actor *)arg0)->position[1]) + 40.0f))
   {
-    *((f32 *) (((s8 *) arg0) + 8)) = (f32) (temp_f0 - 40.0f);
+    ((Actor *)arg0)->position[1] = (f32) (temp_f0 - 40.0f);
   }
 }
 
 void func_80801424_chfishshootgame(Actor *arg0, s32 arg1) {
-    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _subaddiefade_entrypoint_3(Actor *);
     void func_80102424(Actor *, s32);
@@ -844,7 +844,7 @@ void func_808015DC_chfishshootgame(Actor *arg0) {
 
 /* extern */
 
-s32 func_80801768_chfishshootgame(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_80801768_chfishshootgame(BtIntPtr arg0, s32 arg1, s32 arg2) {
     void func_80801424_chfishshootgame(Actor *, s32);
     if (arg1 == 0x40) {
         func_80801424_chfishshootgame(arg0, 4);
@@ -855,7 +855,34 @@ s32 func_80801768_chfishshootgame(s32 arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfishshootgame_entrypoint_2(void)
 {
-    extern u8 D_80801A7C_chfishshootgame[];
+    extern ActorData D_80801A7C_chfishshootgame[];
 
     return (OSThread *) D_80801A7C_chfishshootgame;
 }
+/* data_to_c.py: from asm/data/overlays/ch/fishshootgame.data.s */
+extern u8 D_80801840_chfishshootgame[];
+void func_80102EC0();
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+extern u8 D_808019D0_chfishshootgame[];
+OSThread *func_80108ED0(void);
+u8 D_80801840_chfishshootgame[112] BT_DATA(4, overlays_ch_fishshootgame, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x40, 0x00, 0x00, 0x01, 0x70, 0x00, 0x00, 0x41, 0x40, 0x00, 0x00, 0x01, 0x70, 0x00, 0x00, 0x40, 0x95, 0x58, 0x10, 0x01, 0x6F, 0x00, 0x02, 0x40, 0xAE, 0xB8, 0x52, 0x01, 0x6E, 0x00, 0x00, 0x3F, 0x99, 0x99, 0x9A, 0x01, 0x6D, 0x00, 0x02, 0x40, 0xAE, 0xB8, 0x52, 0x01, 0x6E, 0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x01, 0x6B, 0x00, 0x02, 0x40, 0x80, 0x00, 0x00, 0x01, 0x6C, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x01, 0x6C, 0x00, 0x00, 0x40, 0xAE, 0xB8, 0x52, 0x01, 0x6E, 0x00, 0x00, 0x40, 0xAE, 0xB8, 0x52, 0x01, 0x6E, 0x00, 0x00, 0x40, 0xAE, 0xB8, 0x52, 0x01, 0x6E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+s32 D_808018B0_chfishshootgame[4] BT_DATA(4, overlays_ch_fishshootgame, 0x70) = { 1128136704, 1126170624, 1126170624, 1120403456 };
+ActorData D_808018C0_chfishshootgame [1] BT_DATA(4, overlays_ch_fishshootgame, 0x80) = { { 344, 446, 1745, 1, (void *)D_80801840_chfishshootgame, (void (*)(struct Actor *))func_80800D48_chfishshootgame, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 327680000, 1073741824, 0, 0, 0, 256, (void (*)(struct Actor *))func_80800178_chfishshootgame, 0, 200, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80801110_chfishshootgame, 0 } };
+s32 D_80801908_chfishshootgame[2] BT_DATA(4, overlays_ch_fishshootgame, 0xC8) = { 1246555, 1769472 };
+s32 D_80801910_chfishshootgame [9] BT_DATA(4, overlays_ch_fishshootgame, 0xD0) = { 1903067, 1445889, 2752512, 512, 41943061, 128, 2228736, 33555968, 100663296 };
+s32 D_80801934_chfishshootgame [17] BT_DATA(4, overlays_ch_fishshootgame, 0xF4) = { 1903066, 2162687, -21757925, -85132564, 458753, 1376256, 13369378, 327690, 131074, 2818560, 33554454, 268435501, 26215100, 720996, 7864320, 7706, 0 };
+s32 D_80801978_chfishshootgame[3] BT_DATA(4, overlays_ch_fishshootgame, 0x138) = { 1246554, 1900571, 0 };
+s32 D_80801984_chfishshootgame[2] BT_DATA(4, overlays_ch_fishshootgame, 0x144) = { 1246558, 1769472 };
+s32 D_8080198C_chfishshootgame[5] BT_DATA(4, overlays_ch_fishshootgame, 0x14C) = { 71893592, 267128813, 1, 274726912, 6488066 };
+u16 D_808019A0_chfishshootgame [4] BT_DATA(4, overlays_ch_fishshootgame, 0x160) = { 0xA, 0xE28, 0x200, 0 };
+s32 D_808019A8_chfishshootgame[4] BT_DATA(4, overlays_ch_fishshootgame, 0x168) = { 33947667, 85327894, 1310720027, 0 };
+u32 D_808019B8_chfishshootgame [4] BT_DATA(4, overlays_ch_fishshootgame, 0x178) = { 0x3E23D70A, 0x3E8F5C29, 0x3ECCCCCD, 0xBF800000 };
+u32 D_808019C8_chfishshootgame [2] BT_DATA(4, overlays_ch_fishshootgame, 0x188) = { 0x13055F, 0 };
+u8 D_808019D0_chfishshootgame[48] BT_DATA(4, overlays_ch_fishshootgame, 0x190) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x01, 0xC2, 0x00, 0x00, 0x3F, 0x1C, 0x28, 0xF6, 0x01, 0xC2, 0x00, 0x00, 0x3F, 0x1C, 0x28, 0xF6, 0x01, 0xC3, 0x00, 0x02, 0x40, 0x0A, 0x3D, 0x71, 0x01, 0xC4, 0x00, 0x02, 0x3F, 0x80, 0x00, 0x00, 0x01, 0xC2, 0x00, 0x00 };
+ActorData D_80801A00_chfishshootgame [1] BT_DATA(4, overlays_ch_fishshootgame, 0x1C0) = { { 456, 447, 1758, 1, (void *)D_808019D0_chfishshootgame, (void (*)(struct Actor *))func_808015DC_chfishshootgame, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 327680000, 1077936128, 0, 0, 0, 268, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80801568_chfishshootgame, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 0, (void (*)(struct Actor *, long, long))func_80801768_chfishshootgame, 0 } };
+s32 D_80801A48_chfishshootgame [7] BT_DATA(4, overlays_ch_fishshootgame, 0x208) = { 2949080, -2555944, 2621480, 2621474, 786455, 786455, 337248256 };
+u8 D_80801A64_chfishshootgame [8] BT_DATA(4, overlays_ch_fishshootgame, 0x224) = { 0, 0x13, 5, 0x5D, 0, 0x1B, 0, 0 };
+u8 D_80801A6C_chfishshootgame [8] BT_DATA(4, overlays_ch_fishshootgame, 0x22C) = { 0, 0x13, 5, 0x5C, 0, 0x1B, 0, 0 };
+u8 D_80801A74_chfishshootgame [8] BT_DATA(4, overlays_ch_fishshootgame, 0x234) = { 0, 0x13, 4, 0x9C, 0, 0x1B, 0, 0 };
+ActorData D_80801A7C_chfishshootgame [1] BT_DATA(4, overlays_ch_fishshootgame, 0x23C) = { { 344, 464, 1779, 1, (void *)D_80801840_chfishshootgame, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 327680000, 0, 0, 0, 0, 1028, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };

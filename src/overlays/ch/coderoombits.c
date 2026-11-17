@@ -9,8 +9,8 @@ OSThread *chcoderoombits_entrypoint_0(void)
 
 void func_8080000C_chcoderoombits(Actor *arg0) {
     u32* func_80100074(Actor*, u32, u32);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_12(void *arg0, void *arg1);
     extern s32 D_80801308_chcoderoombits;
     u32 *sp1C;
     u32 *temp_v0;
@@ -25,27 +25,27 @@ struct player_state_s;
 
 void func_80800058_chcoderoombits(Actor *arg0) {
     typedef struct player_state_s PlayerState;
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     void func_800946C4(PlayerState *, s32);
     s32 func_800C064C(void);
     int func_800C6E38(s32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     f32 func_800EEAD4(f32 *, f32 *);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A00(s32, s32);
-    void func_800F4A8C(s32, f32 *, f32);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    PlayerState *func_800F53D0(s32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F5C94(s32);
-    s32 func_800F6478(s32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F6C5C(s32);
-    s32 func_800F7F98(s32, u32);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A00(BtIntPtr, s32);
+    void func_800F4A8C(BtIntPtr, f32 *, f32);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    PlayerState *func_800F53D0(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F5C94(BtIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F6C5C(BtIntPtr);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     s32 func_8010C9B0(f32 *, s32);
@@ -54,7 +54,7 @@ void func_80800058_chcoderoombits(Actor *arg0) {
     extern s32 func_8010D5DC;
     f32 sp34[3];
     struct { u8 pad[0x18]; u8 flag; } *sp30;
-    s32 sp2C;
+    BtIntPtr sp2C;
     s32 sp28;
 
     sp30 = func_80100094(arg0, 0U);
@@ -122,9 +122,9 @@ s32 func_8080033C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800946C4(PlayerState *, s32);
     s32 *func_800BEC10(void);
     void func_800DBEFC(s32 *, s32, f32 *);
-    PlayerState *func_800F53D0(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7CF4(s32, s32, void *);
+    PlayerState *func_800F53D0(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7CF4(BtIntPtr, s32, void *);
     void func_80101FDC(Actor *, u32);
     void func_8080040C_chcoderoombits(Actor *, s32, s32);
     void func_808004B8_chcoderoombits(Actor *);
@@ -152,9 +152,9 @@ s32 func_8080033C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_8080040C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _susubgame_entrypoint_4(void *, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     switch (arg1) {
@@ -178,7 +178,7 @@ void func_8080040C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
 struct CodeRoomBit { u8 * unk0; u16 unk4; u16 unk6; u16 unk8; u8 flag; };
 extern struct CodeRoomBit D_808011F4_chcoderoombits[];
 void *func_80100094(Actor *, u32);
-void func_80800E28_chcoderoombits(Actor *);
+void func_80800E28_chcoderoombits(Actor *);    typedef struct { u8 pad0[0x19]; u8 unk19; } Objcoderoombits_func_808004B8_chcoderoombits_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_808004B8_chcoderoombits(Actor *arg0) {
     void *sp1C;
@@ -195,19 +195,19 @@ void func_808004B8_chcoderoombits(Actor *arg0) {
             room++;
         } while (bit->unk0 != 0);
     }
-    *(u8 *)((u8 *)sp1C + 0x19) = 0;
+    ((Objcoderoombits_func_808004B8_chcoderoombits_sp1C *)sp1C)->unk19 = 0;
     func_80800E28_chcoderoombits(arg0);
 }
 
 s32 func_8080052C_chcoderoombits(Actor *arg0, u8 *arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    void func_800DA544(s32 index);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC660(u32);
     s32 func_8080077C_chcoderoombits(Actor *, struct CodeRoomBit *);
-    s32 func_80800B40_chcoderoombits(s32, void *);
+    s32 func_80800B40_chcoderoombits(BtIntPtr, void *);
     void func_8080091C_chcoderoombits(Actor *);
     void func_80800998_chcoderoombits(Actor *);
     void func_80800D90_chcoderoombits(Actor *, s32);
@@ -230,7 +230,7 @@ s32 func_8080052C_chcoderoombits(Actor *arg0, u8 *arg1) {
     bit = D_808011F4_chcoderoombits;
     if (bit->unk0 != 0) {
         do {
-            if (func_80800B40_chcoderoombits((s32)arg0, bit) != 0) {
+            if (func_80800B40_chcoderoombits((BtIntPtr)arg0, bit) != 0) {
                 goto next;
             }
             {
@@ -292,12 +292,12 @@ s32 func_8080052C_chcoderoombits(Actor *arg0, u8 *arg1) {
 }
 
 s32 func_8080077C_chcoderoombits(Actor *arg0, struct CodeRoomBit *arg1) {
-    s32 _gcfrontend_entrypoint_9(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D3F2C(s32);
-    s32 func_800DA544(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    void func_800DA544(s32 index);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC660(u32);
     s32 func_80800FDC_chcoderoombits(void);
     struct { u8 pad[0x19]; u8 flag; } *data;
@@ -341,7 +341,7 @@ s32 func_8080077C_chcoderoombits(Actor *arg0, struct CodeRoomBit *arg1) {
         func_800F7F98(func_800F54E4(), 1);
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x19]; u8 unk19; } Objcoderoombits_func_8080091C_chcoderoombits_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
 void func_8080091C_chcoderoombits(Actor *arg0) {
     void *data;
@@ -352,7 +352,7 @@ void func_8080091C_chcoderoombits(Actor *arg0) {
     data = func_80100094(arg0, 0U);
     bit = D_808011F4_chcoderoombits;
     *room = 0;
-    *(u8 *)((u8 *)data + 0x19) = 0;
+    ((Objcoderoombits_func_8080091C_chcoderoombits_data *)data)->unk19 = 0;
     if (bit->unk0 != 0) {
         do {
             if (bit->flag != 0) {
@@ -382,7 +382,7 @@ void func_80800998_chcoderoombits(Actor *arg0) {
 }
 
 void chcoderoombits_entrypoint_1(s32 arg0, Unk80132ED0 *arg1) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 *func_800BEC10(void);
     void func_800DBEFC(s32 *, s32, f32 *);
     void func_800EC398(Unk80132ED0 *, f32 *);
@@ -414,7 +414,7 @@ void chcoderoombits_entrypoint_1(s32 arg0, Unk80132ED0 *arg1) {
     }
 }
 
-s32 func_80800B40_chcoderoombits(s32 arg0, void *arg1) {
+s32 func_80800B40_chcoderoombits(BtIntPtr arg0, void *arg1) {
     s32 func_800D3EC8(s32);
     s32 func_800D3E6C(s32);
     s32 _gcfrontend_entrypoint_3(s32);
@@ -450,10 +450,10 @@ s32 func_80800B40_chcoderoombits(s32 arg0, void *arg1) {
 
 void func_80800BF4_chcoderoombits(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 func_800BEA88(s32);
+    void *func_800BEA88(s32 i);
     int func_800D91EC(f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
 #ifdef BT_NATIVE
     void chcoderoombits_entrypoint_2(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
@@ -464,7 +464,7 @@ void func_80800BF4_chcoderoombits(Actor *arg0) {
         struct { f32 value; f32 fraction; s32 state; } bits[26];
     } *data;
     Unk80132ED0 *marker;
-    s32 id;
+    BtIntPtr id;
     s32 i;
 
     data = func_80100094(arg0, 0);
@@ -492,7 +492,7 @@ void func_80800BF4_chcoderoombits(Actor *arg0) {
                 break;
         }
         if (id != 0) {
-            _glid_entrypoint_0(id, i + 1, _chcoderoombits_entrypoint_2, (s32)marker);
+            _glid_entrypoint_0(id, i + 1, _chcoderoombits_entrypoint_2, (BtIntPtr)marker);
         }
     }
 }

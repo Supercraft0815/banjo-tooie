@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_actor.h"
 #include "native_spline.h"
 #include "native_spawn_queue.h"
@@ -18,7 +18,7 @@
 
 OSThread *func_80107C20(void)
 {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void func_80108F08(void *, void *, s32);
     static void (*D_80124580[8])(void *, void *, s32) = { [3] = func_80108F08 };
 #else
@@ -28,7 +28,7 @@ OSThread *func_80107C20(void)
     return (OSThread *) D_80124580;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 Actor *func_80107C2C(s32 *arg0, s32 arg1, ActorData *arg2, NativeActorFactory arg3, Prop *arg4)
 #else
 void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
@@ -158,15 +158,15 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
     };
     void *func_80106668(s32 *);
     u32 *func_80100074(void *, u32, u32);
-    s32 func_800D738C(s32);
+    s32 func_800D738C(BtIntPtr);
     void *func_800EBED4(s32 *, s32, s32, s32);
     void func_800EC340(void *, s32);
     void func_800EC360(void *, s32);
     void func_800EC368(void *, s32);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_80102FA0(void *, s32);
 #endif
-    s32 _subaddieDll_entrypoint_1();
+    void _subaddieDll_entrypoint_1(Actor *arg0);
     void func_8010A800(void *, s32);
     void func_8010A63C(void *);
     void func_80108658(void *, s32, s32, void *);
@@ -174,15 +174,15 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
     void func_80102424(void *, s32);
     void func_80103930(void *);
     void func_8010A3E8(void *, f32);
-    void func_80106E88(void *);
+    BtIntPtr func_80106E88(Actor *arg0);
     void func_80104F2C(void *, s32, s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *func_800BEC1C(void);
 #else
     s32 func_800BEC1C(void);
 #endif
     void _subaddiezone_entrypoint_0(void *);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Actor *actor;
 #else
     struct Fields *actor;
@@ -191,7 +191,7 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
     s32 i;
 
     actor = func_80106668(&index);
-#ifdef BT_NATIVE
+#ifdef BT_NATIVE // ILP32 too: guard or init the original lacks
     if (!actor) return NULL;
 #endif
     AF(actor, factory, actor->unk10) = arg3;
@@ -222,8 +222,8 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
     } else {
         AF(actor, unk0, actor->marker) = func_800EBED4(arg0, (func_800D738C(HOST((u16)arg2->unk4, ((struct Info *)arg2)->unk4)) == 7) ? 0 : 1, HOST(arg2->unk0, ((struct Info *)arg2)->unk0), (HOST(((u32)(u16)arg2->unk24 << 16) | (u16)arg2->unk26, ((struct Info *)arg2)->flags) & 0x400) ? 1 : 0);
     }
-#ifdef BT_NATIVE
-    if (!actor->unk0) {
+#ifdef BT_NATIVE // ILP32 too: guard or init the original lacks
+    if (!AF(actor, unk0, actor->marker)) {
         func_80100074(actor, 0, 0);
         func_80100074(actor, 1, 0);
         func_801066C0(index);
@@ -332,8 +332,8 @@ Actor *func_80108474(u32 arg0, f32 *arg1, s32 arg2) {
     return func_80108C90((s32) arg0, sp1C, (u32) arg2, NULL);
 }
 
-#ifdef BT_NATIVE
-Actor *func_801084B0(s32 arg0, Actor **arg1) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+Actor *func_801084B0(BtIntPtr arg0, Actor **arg1) {
     void func_800EE904(s32 [3], f32 [3]);
     Actor *func_80108C90(s32, s32 *, u32, Prop *);
     s32 position[3];
@@ -367,7 +367,7 @@ Actor *func_8010856C(s32 arg0, f32 *arg1, f32 *arg2) {
     s32 sp20[3];
     Actor *actor;
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     func_800EE904(sp20, arg1);
     actor = func_80108DC0(arg0, sp20, (s32)arg2[1], 0, 0, 0);
     if (!actor) return NULL;
@@ -377,7 +377,7 @@ Actor *func_8010856C(s32 arg0, f32 *arg1, f32 *arg2) {
 #endif
     actor->rotation[0] = arg2[0];
     return actor;
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1EE1510_func_801085CC_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
 
 Actor *func_801085CC(s32 arg0, s16 *arg1, u32 arg2) {
     Actor* func_80108C90(s32, s32*, u32, Prop*);
@@ -385,11 +385,11 @@ Actor *func_801085CC(s32 arg0, s16 *arg1, u32 arg2) {
     s16 *var_v1;
     s32 *var_v0;
     s32 *end;
-#ifdef BT_NATIVE
+#ifdef BT_NATIVE // ILP32 too: the N64 loop ends at &arg0, the home slot IDO puts right after sp24
     for (s32 i = 0; i < 3; ++i) sp24[i] = arg1[i];
     return func_80108C90(arg0, sp24, arg2, NULL);
 #else
-    end = &arg0; var_v0 = sp24; var_v1 = arg1; for (;;) { *var_v0 = *var_v1; var_v0 = (s32 *)((u8 *)var_v0 + 4); var_v1++; if (var_v0 == end) break; } func_80108C90(arg0, sp24, arg2, NULL);
+    end = &arg0; var_v0 = sp24; var_v1 = arg1; for (;;) { *var_v0 = *var_v1; var_v0 = &((Obj1EE1510_func_801085CC_var_v0 *)var_v0)->unk4; var_v1++; if (var_v0 == end) break; } func_80108C90(arg0, sp24, arg2, NULL);
 #endif
 }
 
@@ -578,20 +578,20 @@ void func_80108944(Actor *arg0, Actor *arg1) {
         sp30 = 0x80080000;
     }
     func_80108658(arg0, flags, sp30, NULL);
-}
+}                 typedef struct { s32 unk0; s32 unk4; s32 unk8; } Obj1EE1510_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 static void native_actor_spawn_queued(uintptr_t id, uintptr_t x, uintptr_t y, uintptr_t z, uintptr_t yaw, uintptr_t flags) {
     func_80108A8C((u32)id, (s32)x, (s32)y, (s32)z, (s32)yaw, (s32)flags);
 }
 #endif
 
 void func_80108A30(s32 arg0, void *arg1, f32 arg2, s32 arg3) {
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 _chbaddiesetup_entrypoint_6(void (*)(u32, s32, s32, s32, s32, s32), s32, s32, s32, s32, s32, s32);
 #endif
     void func_80108A8C(u32, s32, s32, s32, s32, s32);
-    _chbaddiesetup_entrypoint_6(HOST(native_actor_spawn_queued, &func_80108A8C), arg0, (*(s32 *)((s8 *)(arg1) + (0))), (*(s32 *)((s8 *)(arg1) + (4))), (*(s32 *)((s8 *)(arg1) + (8))), *(s32 *)&arg2, arg3);
+    _chbaddiesetup_entrypoint_6(HOST(native_actor_spawn_queued, &func_80108A8C), arg0, (((Obj1EE1510_arg1 *)arg1)->unk0), (((Obj1EE1510_arg1 *)arg1)->unk4), (((Obj1EE1510_arg1 *)arg1)->unk8), *(s32 *)&arg2, arg3);
 }
 
 void func_80108A8C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
@@ -607,9 +607,9 @@ void func_80108A8C(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
         actor->rotation[1] = yaw;
         actor->unk74_7 = arg5;
     }
-}
+}    typedef struct { u8 pad0[0x12]; u16 unk12; } Obj1EE1510_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_80108B04(Actor *arg0, u32 arg1) {
     Unk80132ED0 *marker = arg0->unk0;
     if (marker) _chbaddiesetup_entrypoint_3(func_80108B44, (uintptr_t)marker, arg1, (marker->unk10 >> 1) & 0x7FFF);
@@ -626,7 +626,7 @@ void func_80108B04(s32 *arg0, s32 arg1) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_80108B44(uintptr_t arg0, uintptr_t arg1, uintptr_t arg2) {
     intptr_t func_8010114C(Unk80132ED0 *, s32, uintptr_t);
     Unk80132ED0 *marker = (Unk80132ED0 *)arg0;
@@ -638,7 +638,7 @@ void func_80108B44(uintptr_t arg0, uintptr_t arg1, uintptr_t arg2) {
 void func_80108B44(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_8010114C(s32, s32, s32);
     s32 func_801069A4();
-    if ((arg2 == ((u32) (*(u16 *)((s8 *)(arg0) + (0x12))) >> 1)) && (func_801069A4() != 0)) {
+    if ((arg2 == ((u32) (((Obj1EE1510_arg0 *)arg0)->unk12) >> 1)) && (func_801069A4() != 0)) {
         func_8010114C((s32) arg0, 0x3D, arg1);
     }
 }
@@ -646,7 +646,7 @@ void func_80108B44(u8 *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_80108B8C(uintptr_t arg0, uintptr_t arg1, uintptr_t arg2) {
     intptr_t func_8010114C(Unk80132ED0 *, s32, uintptr_t);
     Unk80132ED0 *marker = (Unk80132ED0 *)arg0;
@@ -658,13 +658,13 @@ void func_80108B8C(uintptr_t arg0, uintptr_t arg1, uintptr_t arg2) {
 void func_80108B8C(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_8010114C(s32, s32, s32);
     s32 func_801069A4();
-    if ((arg2 == ((u32) (*(u16 *)((s8 *)(arg0) + (0x12))) >> 1)) && (func_801069A4() != 0)) {
+    if ((arg2 == ((u32) (((Obj1EE1510_arg0 *)arg0)->unk12) >> 1)) && (func_801069A4() != 0)) {
         func_8010114C((s32) arg0, 0x59, arg1);
     }
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_80108BD4(Actor *arg0, u32 arg1) {
     Unk80132ED0 *marker = arg0->unk0;
     if (marker) _chbaddiesetup_entrypoint_3(func_80108B8C, (uintptr_t)marker, arg1, (marker->unk10 >> 1) & 0x7FFF);
@@ -683,7 +683,7 @@ void func_80108C14(void) {
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);
     void *func_80100368(void *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_801067C4(s32 *);
     s32 func_8010682C(s32 *);
 #endif
@@ -711,7 +711,7 @@ void func_80108C14(void) {
 Actor *func_80108C90(s32 arg0, s32 *arg1, u32 arg2, Prop *arg3) {
     typedef ActorData *(*ActorFactory)(void);
     typedef Actor *(*ActorSpawn)(s32 *, u32, ActorData *, ActorFactory, Prop *);
-    ActorFactory _gemarkersDll_entrypoint_0(s32);
+    BtIntPtr _gemarkersDll_entrypoint_0(s32 arg0);
     ActorFactory factory;
     ActorData *data;
 
@@ -720,7 +720,7 @@ Actor *func_80108C90(s32 arg0, s32 *arg1, u32 arg2, Prop *arg3) {
         return NULL;
     }
     data = factory();
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (!data || !data->unk38_func) return NULL;
     return data->unk38_func(arg1, (s32)arg2, data, factory, arg3);
 #else
@@ -730,7 +730,7 @@ Actor *func_80108C90(s32 arg0, s32 *arg1, u32 arg2, Prop *arg3) {
 
 void *func_80108CF4(s32 arg0)
 {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
   void *_gccubesearch_entrypoint_17(s32, void *);
 #else
   s32 _gccubesearch_entrypoint_17(s32, s32);
@@ -752,7 +752,7 @@ void *func_80108CF4(s32 arg0)
 #endif
   };
   s32 pad;
-#ifdef BT_NATIVE
+#ifdef BT_NATIVE // ILP32 too: guard or init the original lacks
   u32 remaining = 2048;
 #endif
   u32 sp20;
@@ -764,7 +764,7 @@ void *func_80108CF4(s32 arg0)
   {
     do
     {
-#ifdef BT_NATIVE
+#ifdef BT_NATIVE // ILP32 too: guard or init the original lacks
       if (!remaining--) return NULL;
 #endif
       sp20 = 0;
@@ -822,11 +822,11 @@ Actor *func_80108DC0(s32 arg0, s32 *arg1, u32 arg2, s32 arg3, s32 arg4, Prop *ar
             found = _glsplinefind_entrypoint_2(arg1);
         }
         if (found >= 0) {
-#ifdef BT_NATIVE
+#ifdef BT_NATIVE // ILP32 too: guard or init the original lacks
             if (found >= 0x200) return actor;
 #endif
             entry = func_8010556C(actor);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             if (!entry) return actor;
             ((NativeActorPathState *)entry)->first = (((NativeActorPathState *)entry)->first & ~0x7FEu) | ((u32)found << 1);
 #else
@@ -836,7 +836,7 @@ Actor *func_80108DC0(s32 arg0, s32 *arg1, u32 arg2, s32 arg3, s32 arg4, Prop *ar
             point[1] = arg1[1];
             point[2] = arg1[2];
             HOST(((NativeActorPathState *)entry)->time, entry->unkC) = func_800C82CC(func_800D7520(found), point);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             actor->pad74_0 |= 16;
 #else
             ((ActorSplineFlags *)actor)->hasSpline = 1;

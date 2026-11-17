@@ -12,10 +12,10 @@ f32 func_8009E138(PlayerState *arg0, s32 arg1) {
 
 /* extern */
 
-void func_8009E154(PlayerState *arg0, s32 arg1, f32 *arg2) {
+void func_8009E154(PlayerState *arg0, BtIntPtr arg1, f32 *arg2) {
     f32 func_800136E4(f32);
     int func_80092CDC(void *, f32 *, s32);
-    void func_80092D18(void *, s32);
+    void func_80092D18(void *, BtIntPtr);
     void func_80096394(PlayerState *, f32 *);
     f32 func_8009BFCC(PlayerState *);
     void func_8009C128(PlayerState *, f32 *);
@@ -64,9 +64,9 @@ void func_8009E154(PlayerState *arg0, s32 arg1, f32 *arg2) {
     func_800EE7F8(arg2, sp7C);
 }
 
-void func_8009E388(s32 arg0) 
+void func_8009E388(BtIntPtr arg0) 
 {
-}
+}    typedef struct { f32 unk0; s16 unk4; u8 pad6[0x2]; s32 unk8; u8 padC[0xC]; f32 unk18; f32 unk1C; f32 unk20; f32 unk24; } Obj1E77A20_func_8009E390_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 /* extern */
 
 void func_8009E390(PlayerState *arg0) {
@@ -78,13 +78,13 @@ void func_8009E390(PlayerState *arg0) {
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x114)))) + (0xF0))) = 0;
     for (var_s0 = 0; var_s0 < 3; var_s0++) {
         temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x114))) + var_s0 * 0x28;
-        (*(f32 *)((s8 *)(temp_v0) + (0))) = 0.0;
-        (*(s16 *)((s8 *)(temp_v0) + (4))) = 0;
-        (*(s32 *)((s8 *)(temp_v0) + (8))) = 0;
-        (*(f32 *)((s8 *)(temp_v0) + (0x20))) = 0.0;
-        (*(f32 *)((s8 *)(temp_v0) + (0x24))) = 0.0;
-        (*(f32 *)((s8 *)(temp_v0) + (0x1C))) = 0.0;
-        (*(f32 *)((s8 *)(temp_v0) + (0x18))) = 0.0;
+        (((Obj1E77A20_func_8009E390_temp_v0 *)temp_v0)->unk0) = 0.0;
+        (((Obj1E77A20_func_8009E390_temp_v0 *)temp_v0)->unk4) = 0;
+        (((Obj1E77A20_func_8009E390_temp_v0 *)temp_v0)->unk8) = 0;
+        (((Obj1E77A20_func_8009E390_temp_v0 *)temp_v0)->unk20) = 0.0;
+        (((Obj1E77A20_func_8009E390_temp_v0 *)temp_v0)->unk24) = 0.0;
+        (((Obj1E77A20_func_8009E390_temp_v0 *)temp_v0)->unk1C) = 0.0;
+        (((Obj1E77A20_func_8009E390_temp_v0 *)temp_v0)->unk18) = 0.0;
         func_800EFD24((f32 *)(temp_v0 + 0xC));
     }
     func_8009E5A4(arg0, 0, 1);
@@ -96,7 +96,7 @@ void func_8009E390(PlayerState *arg0) {
 }
 
 void func_8009E474(PlayerState *arg0) {
-    s32 rare_memcpy(u8 *, u8 *, s32);
+    void rare_memcpy(void* dst, void* src, int length);
     u8 *temp_a0;
 
     temp_a0 = (*(u8 **)((s8 *)(arg0) + (0x114)));
@@ -107,7 +107,7 @@ void func_8009E474(PlayerState *arg0) {
 /* extern */
 
 void func_8009E4AC(PlayerState *arg0) {
-    s32 rare_memcpy(u8 *, u8 *, s32);
+    void rare_memcpy(void* dst, void* src, int length);
     u8 *temp_a1;
 
     (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x114)))) + (0xF0))) = 1;
@@ -115,12 +115,12 @@ void func_8009E4AC(PlayerState *arg0) {
     rare_memcpy(temp_a1 + 0x78, temp_a1, 0x78);
 }
 
-void func_8009E4E0(void *arg0, s32 arg1, s32 arg2) {
+void func_8009E4E0(void *arg0, s32 arg1, BtIntPtr arg2) {
     (*(s32 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x114))) + (arg1 * 0x28))) + (8))) = arg2;
 }
 
 void func_8009E4FC(void *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = arg1 * 0x28;
     (*(f32 *)((s8 *)(((*(s32 *)((s8 *)(arg0) + (0x114))) + temp_v0)) + (0x20))) = arg2;
@@ -196,24 +196,24 @@ s32 bs_getPreviousState(PlayerState *self) {
 /* extern */
 
 s32 func_8009E71C(void *arg0, s32 arg1) {
-    s32 func_8009CBDC(s32, s32);
+    s16 func_8009CBDC(PlayerState *arg0, s32 arg1);
     return func_8009CBDC(arg0, (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (4)))) == arg1;
 }
 
 s32 func_8009E74C(PlayerState *arg0, s32 arg1) {
-    s32 func_8009CBDC(s32, s32);
-    return func_8009CBDC((s32)arg0, arg0->state->next) == arg1;
+    s16 func_8009CBDC(PlayerState *arg0, s32 arg1);
+    return func_8009CBDC((BtIntPtr)arg0, arg0->state->next) == arg1;
 }
 
 s32 func_8009E77C(PlayerState *arg0, s32 arg1) {
-    s32 func_8009CBDC(s32, s32);
-    return func_8009CBDC((s32)arg0, arg0->state->previous) == arg1;
-}
+    s16 func_8009CBDC(PlayerState *arg0, s32 arg1);
+    return func_8009CBDC((BtIntPtr)arg0, arg0->state->previous) == arg1;
+}    typedef struct { u8 pad0[0x120]; void * unk120; } Obj1E77A20_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8009E7AC(void *arg0) {
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (0))) = 0;
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (4))) = 0;
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (8))) = 0;
+    (*(s32 *)((s8 *)((((Obj1E77A20_arg0 *)arg0)->unk120)) + (0))) = 0;
+    (*(s32 *)((s8 *)((((Obj1E77A20_arg0 *)arg0)->unk120)) + (4))) = 0;
+    (*(s32 *)((s8 *)((((Obj1E77A20_arg0 *)arg0)->unk120)) + (8))) = 0;
 }
 
 s32 func_8009E7C8(PlayerState *arg0, s32 arg1) {

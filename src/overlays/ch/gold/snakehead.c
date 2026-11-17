@@ -2,21 +2,21 @@
 
 OSThread *chgoldsnakehead_entrypoint_0(void)
 {
-    extern u8 D_80800508_chgoldsnakehead[];
+    extern ActorData D_80800508_chgoldsnakehead[];
 
     return (OSThread *) D_80800508_chgoldsnakehead;
 }
 
 OSThread *chgoldsnakehead_entrypoint_1(void)
 {
-    extern u8 D_80800550_chgoldsnakehead[];
+    extern ActorData D_80800550_chgoldsnakehead[];
 
     return (OSThread *) D_80800550_chgoldsnakehead;
 }
 
 OSThread *chgoldsnakehead_entrypoint_2(void)
 {
-    extern u8 D_80800598_chgoldsnakehead[];
+    extern ActorData D_80800598_chgoldsnakehead[];
 
     return (OSThread *) D_80800598_chgoldsnakehead;
 }
@@ -27,7 +27,7 @@ void func_80800024_chgoldsnakehead(Actor *arg0) {
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
     Actor *_subaddiefind_entrypoint_3(s32, s32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     void func_800FFAB0(Actor *);
     void func_80103014(u8 *);
     struct SnakeFlags { u32 : 18; u32 enabled : 1; u32 : 13; };
@@ -71,7 +71,7 @@ void func_8080015C_chgoldsnakehead(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF214(f32 *, f32, f32, f32);
     void func_800FC63C(u32, u32);
-    s32 func_80101FDC();
+    void func_80101FDC(Actor *actor,u32 state);
     void func_80102B2C(Actor *, f32);
     void func_80102B6C(u8 *, f32);
     extern u8 D_808004F0_chgoldsnakehead[];
@@ -100,13 +100,13 @@ void func_808002B4_chgoldsnakehead(Actor *arg0, u8 *arg1) { void func_800DF744(s
 
 /* extern */
 
-void func_80800324_chgoldsnakehead(s32 arg0, s32 arg1) {
+void func_80800324_chgoldsnakehead(BtIntPtr arg0, s32 arg1) {
     s32 func_800DA564(s32, s32);
-    s32 func_800DA7A8(s32, s32, s32);
-    s32 func_80101180(s32, s32, s32);
-    s32 func_80101FDC(s32, s32);
-    s32 func_80102FE8(s32, s32);
-    s32 func_80103110(s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
+    s32 func_80101180(s32, s32, BtIntPtr);
+    void func_80101FDC(Actor *actor,u32 state);
+    void func_80102FE8(void *arg0, s32 arg1);
+    void func_80103110(void *arg0, s32 arg1);
     s32 func_8010A570();
     s32 sp1C;
     s32 temp_a1;
@@ -163,3 +163,14 @@ void func_80800440_chgoldsnakehead(Actor *arg0) {
         func_800FFAB0(arg0);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/gold/snakehead.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+void _chdoor_entrypoint_0();
+void func_80101870 ( Actor * , void * );
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+u8 D_808004F0_chgoldsnakehead [24] BT_DATA(4, overlays_ch_gold_snakehead, 0x0) = { 0, 0x13, 3, 0xF1, 0, 0xD, 0, 0xCC, 1, 0, 0, 0x16, 0x6D, 0x60, 0, 1, 4, 0xE2, 0x13, 0x88, 0, 0, 0, 0 };
+ActorData D_80800508_chgoldsnakehead [1] BT_DATA(4, overlays_ch_gold_snakehead, 0x18) = { { 341, 269, 1624, 1, 0, (void (*)(struct Actor *))func_8080015C_chgoldsnakehead, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808002B4_chgoldsnakehead, 0, 0, 0, 0, 0, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800024_chgoldsnakehead, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11264, (void (*)(struct Actor *, long, long))func_808003A8_chgoldsnakehead, 0 } };
+ActorData D_80800550_chgoldsnakehead [1] BT_DATA(4, overlays_ch_gold_snakehead, 0x60) = { { 172, 270, 1623, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_808003E0_chgoldsnakehead, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
+ActorData D_80800598_chgoldsnakehead [1] BT_DATA(4, overlays_ch_gold_snakehead, 0xA8) = { { 172, 1225, 1623, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800440_chgoldsnakehead, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

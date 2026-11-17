@@ -1,10 +1,10 @@
 #include "core2/1E82660.h"
 
 void func_800A8D70(s32 arg0, s32 arg1) {
-    s32 _gcsectionDll_entrypoint_2(s32);
-    s32 _gcsectionDll_entrypoint_3(s32, s32);
+    BtIntPtr _gcsectionDll_entrypoint_2(s32);
+    s32 _gcsectionDll_entrypoint_3(BtIntPtr, s32);
     s32 _gcstatusDll_entrypoint_1();
-    s32 _gcstatusDll_entrypoint_11();
+    u8 _gcstatusDll_entrypoint_11(void);
     s32 func_800A877C(s32);
     extern s16 D_801276D0;
     extern u8 D_801276D4;
@@ -42,26 +42,26 @@ void func_800A8D70(s32 arg0, s32 arg1) {
         ((s32 *)&D_801276D0)[i + 6] = 0;
     }
     D_801276D0 = 0;
-}
+}    typedef struct { u8 pad0[0x58]; s32 unk58; } Obj1E82660_func_800A8E9C_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 void func_800A8E9C(void) {
     extern s16 D_801276D0;
     extern s16 D_801276F0;
     s32 func_8010FC38(u8 *);
     s16 *var_s0;
-    s32 temp_a0;
-    var_s0 = &D_801276D0; do { temp_a0 = *(s32 *)((u8 *)var_s0 + 0x58); if (temp_a0 != 0) { func_8010FC38((u8 *)temp_a0); } var_s0 += 2; } while (var_s0 != &D_801276F0);
-}
+    BtIntPtr temp_a0;
+    var_s0 = &D_801276D0; do { temp_a0 = ((Obj1E82660_func_800A8E9C_var_s0 *)var_s0)->unk58; if (temp_a0 != 0) { func_8010FC38((u8 *)temp_a0); } var_s0 += 2; } while (var_s0 != &D_801276F0);
+}    typedef struct { u8 pad0[0x58]; void * unk58; } Obj1E82660_func_800A8EF0_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
-void func_800A8EF0(s32 arg0, s32 arg1) {
+void func_800A8EF0(BtIntPtr arg0, s32 arg1) {
     extern s16 D_801276D0;
     extern s16 D_801276F0;
-    void func_8010FAEC(s32, void *);
+    void func_8010FAEC(BtIntPtr, void *);
     s32 *var_s0;
     void *temp_a1;
 
     var_s0 = (s32 *)&D_801276D0; do {
-        temp_a1 = *(void **)((u8 *)var_s0 + 0x58);
+        temp_a1 = ((Obj1E82660_func_800A8EF0_var_s0 *)var_s0)->unk58;
         if ((temp_a1 != 0) && (arg1 == var_s0[6])) {
             func_8010FAEC(arg0, temp_a1);
         }
@@ -75,14 +75,14 @@ void func_800A8F68(void) {
     extern s16 D_801276D0;
     s32 i;
     s16 *ptr;
-    s32 address;
+    BtIntPtr address;
 
     i = 0;
     do {
         func_800A91F4(i);
         i++;
     } while (i != 8);
-    address = (s32)&D_801276D0;
+    address = (BtIntPtr)&D_801276D0;
     ptr = (volatile s16 *)address;
     i = ptr[1];
     if (i != 0) {
@@ -149,8 +149,8 @@ s32 func_800A907C(s32 arg0, s32 arg1, s32 arg2) {
     D_801276D0++;
     (&D_801276D0)[arg0 + 4] = arg1;
     ((u8 *)&D_801276D0)[arg1 + 4]++;
-    ((s32 *)&D_801276D0)[arg0 + 14] = (s32)func_800CA334();
-    ((s32 *)&D_801276D0)[arg0 + 22] = (s32)func_8010FB34(((s32 *)&D_801276D0)[arg0 + 14], arg0);
+    ((s32 *)&D_801276D0)[arg0 + 14] = (BtIntPtr)func_800CA334();
+    ((s32 *)&D_801276D0)[arg0 + 22] = (BtIntPtr)func_8010FB34(((s32 *)&D_801276D0)[arg0 + 14], arg0);
     ((s32 *)&D_801276D0)[arg0 + 6] = arg2;
     if (((u8 *)&D_801276D0)[arg1 + 4] == 1) {
         func_800A88C4(arg2, ((s32 *)&D_801276D0)[arg0 + 14]);
@@ -190,7 +190,7 @@ void func_800A91F4(s32 arg0) {
         if (temp_s0[4] != -1) {
             func_8010FBD4(temp_s1[0x16]);
             temp_s1[0x16] = 0;
-            if (func_800A8984(temp_s0[4]) == (s32)temp_s1[0xE]) {
+            if (func_800A8984(temp_s0[4]) == (BtIntPtr)temp_s1[0xE]) {
                 func_800A8948(temp_s0[4]);
             }
             func_800CA364(temp_s1[0xE]);
@@ -224,7 +224,7 @@ void func_800A92A8(s32 arg0, s32 arg1) {
 void func_800A9318(s32 arg0) {
     extern s16 D_801276D0;
     extern s16 D_801276F0;
-    s32 func_8010FE34(s32, s32);
+    s32 func_8010FE34(BtIntPtr, s32);
     s32 *var_s0;
     s32 temp_a0;
 
@@ -253,12 +253,12 @@ void func_800A9378(void) {
     } while (var_s0 != 8);
 }
 
-s32 func_800A93E4(s32 arg0) {
+BtIntPtr func_800A93E4(BtIntPtr arg0) {
     extern s32 D_80127728[];
     return ((s32 *)&D_80127728)[arg0];
 }
 
-s32 func_800A93F8(s32 arg0) {
+BtIntPtr func_800A93F8(s32 arg0) {
     extern s32 D_80127708[];
     return ((s32 *)&D_80127708)[arg0];
 }
@@ -273,21 +273,21 @@ s32 func_800A9420(s32 arg0) {
     s32 func_800A8984(s32);
     return *(s32 *)((u8 *)&D_801276D0 + arg0 * 4 + 0x38) ==
         func_800A8984(*(s32 *)((u8 *)&D_801276D0 + arg0 * 4 + 0x18));
-}
+}    typedef struct { s16 unk0; } Obj1E82660_D_801276D0; /* offsets.py genstruct: fields from raw offsets on &D_801276D0; rename once understood */
 
 s32 func_800A9460(void) {
     extern s16 D_801276D0;
-    return *(s16 *)((u8 *)&D_801276D0 + 0);
-}
+    return *&((Obj1E82660_D_801276D0 *)&D_801276D0)->unk0;
+}    typedef struct { s16 unk0; } Obj1E82660_D_801276D2; /* offsets.py genstruct: fields from raw offsets on &D_801276D2; rename once understood */
 
 s32 func_800A946C(void) {
     extern s16 D_801276D2;
-    return *(s16 *)((u8 *)&D_801276D2 + 0);
+    return *&((Obj1E82660_D_801276D2 *)&D_801276D2)->unk0;
 }
 
 s32 func_800A9478(s32 arg0) {
     extern s16 D_801276D0;
-    s32 func_800F6438(u32);
+    s32 func_800F6438(BtUIntPtr);
     s32 var_s0;
     s32 var_s1;
     s32 *table;
@@ -307,7 +307,7 @@ s32 func_800A9478(s32 arg0) {
 }
 
 void func_800A9514(f32 *arg0, f32 *arg1) {
-    void func_800CA7E4(s32, s32 *);
+    void func_800CA7E4(BtIntPtr, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     extern f32 D_80125600;
@@ -334,7 +334,7 @@ void func_800A9514(f32 *arg0, f32 *arg1) {
     } while (var_s0 != (s32 *)&D_801276F0);
 }
 
-void func_800A95C4(void) {
+void func_800A95C4(BT_PARAM_OR_VOID(s32 bt_a0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2))) {
     extern s16 D_801276D0;
     extern s16 D_801276F0;
     s32 func_800A88C4();
@@ -350,7 +350,7 @@ void func_800A95C4(void) {
     do {
         old = var_s0[14];
         if (old != 0) {
-            var_s0[14] = (s32)func_800CA384((void *)var_s0[14]);
+            var_s0[14] = (BtIntPtr)func_800CA384((void *)var_s0[14]);
             if (var_s0[14] != old && func_800A8984(var_s0[6]) == old) {
                 func_800A88C4(var_s0[6], var_s0[14]);
             }
@@ -419,7 +419,7 @@ void func_800A9800(void) {
 
 void func_800A9828(s32 arg0, s32 arg1, s32 arg2) {
     void func_800A8D00(s32, s32);
-    s32 func_800E7F60(void);
+    void func_800E7F60();
     extern s16 D_80127750;
     extern s16 D_80127752;
     extern s32 D_80127754;
@@ -439,10 +439,10 @@ void func_800A9828(s32 arg0, s32 arg1, s32 arg2) {
     func_800A8D00(D_80127750, D_80127752);
 }
 
-s32 func_800A989C(void) {
-    s32 func_80014F00(void);
+BtIntPtr func_800A989C(void) {
+    BtIntPtr func_80014F00(void);
     extern s32 D_80127754;
-    s32 result;
+    BtIntPtr result;
 
     if (D_80127754 != 0) {
         result = D_80127754;
@@ -451,3 +451,24 @@ s32 func_800A989C(void) {
     }
     return result;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s16 D_801276D0 BT_DATA(4, bss_core2bss1_0_1, 0x670);
+s16 D_801276D2 BT_DATA(4, bss_core2bss1_0_1, 0x672);
+u8 D_801276D4 BT_DATA(4, bss_core2bss1_0_1, 0x674);
+u8 D_801276D5 BT_DATA(4, bss_core2bss1_0_1, 0x675);
+u8 D_801276D6 BT_DATA(4, bss_core2bss1_0_1, 0x676);
+u8 D_801276D7 BT_DATA(4, bss_core2bss1_0_1, 0x677);
+s16 D_801276E0 BT_DATA(4, bss_core2bss1_0_1, 0x680);
+s32 D_801276E8 [ 1 ] BT_DATA(4, bss_core2bss1_0_1, 0x688);
+s32 D_801276EC [ 1 ] BT_DATA(4, bss_core2bss1_0_1, 0x68C);
+s16 D_801276F0 BT_DATA(4, bss_core2bss1_0_1, 0x690);
+s32 D_801276F4 [ 5 ] BT_DATA(4, bss_core2bss1_0_1, 0x694);
+s32 D_80127708 [ 8 ] BT_DATA(4, bss_core2bss1_0_1, 0x6A8);
+s32 D_80127728 [ 10 ] BT_DATA(4, bss_core2bss1_0_1, 0x6C8);
+s16 D_80127750 BT_DATA(4, bss_core2bss1_0_1, 0x6F0);
+s16 D_80127752 BT_DATA(4, bss_core2bss1_0_1, 0x6F2);
+s32 D_80127754 BT_DATA(4, bss_core2bss1_0_1, 0x6F4);
+#endif

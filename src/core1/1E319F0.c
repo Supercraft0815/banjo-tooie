@@ -1,9 +1,9 @@
 #include "buffers.h"
 
-void rom_dma_read(u8*, u8*, u32);
+void rom_dma_read(u8 *arg0, BtIntPtr arg1, s32 arg2);
 u8* func_8001A0A8();
 void func_8001A2B0();
-void func_8001C1E0(u8**, u8**);
+s32 func_8001C1E0(u8** arg0, u8** arg1);
 s32 func_8001C26C();
 s32 func_8001C28C();
 extern u8* D_8007E994;

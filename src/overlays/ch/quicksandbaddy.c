@@ -38,13 +38,13 @@ void func_80800000_chquicksandbaddy(Actor *arg0) {
 }
 
 void func_80800140_chquicksandbaddy(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
     s32 func_8008FC00(void);
     void func_800C4140(u32, f32 *, u32);
-    f32 func_800C6920(s32, f32, f32, s32);
+    f32 func_800C6920(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3);
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     s32 func_800CC338(f32 *, s32, s32);
     void *func_800CC63C(s32, s32);
@@ -60,16 +60,16 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
     void func_800EF334(f32 *, f32);
     void func_800EFB24(f32 *, f32 *, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
-    void func_800F4F34(s32, f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    f32 func_800F5628(s32);
-    s32 func_800F56AC(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6AA4(s32);
-    s32 func_800F6C5C(s32);
-    s32 func_800F7B9C(s32, s32);
-    void func_800F7C58(s32, s32, s32);
-    void func_800F7D90(s32, s32, f32 *, s32);
+    s32 func_800F4F34(BtUIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3);
+    BtUIntPtr func_800F54E4(void);
+    BT_IDO_ONLY(f32 func_800F5628(BtIntPtr);) BT_NATIVE_ONLY(s32 func_800F5628(BtIntPtr);)
+    s32 func_800F56AC(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6AA4(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
+    int func_800F7C58(BtIntPtr arg0, s32 arg1, s32 arg2);
+    void func_800F7D90(BtIntPtr, s32, f32 *, s32);
     void func_800FC660(s32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -84,7 +84,7 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
     s32 func_80800DBC_chquicksandbaddy(Actor *);
     s32 func_80801154_chquicksandbaddy(Actor *, f32 *);
     void func_80800FC8_chquicksandbaddy(f32 *, f32, s32);
-    void chquicksandbaddy_entrypoint_0(s32, s32);
+    void chquicksandbaddy_entrypoint_0(s32, BtIntPtr);
     extern u16 D_808012A4_chquicksandbaddy[][4];
     extern u32 D_808012E0_chquicksandbaddy[];
     extern u32 D_808012F0_chquicksandbaddy[];
@@ -137,7 +137,7 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
                 _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808012E0_chquicksandbaddy);
                 _subaddieDll_entrypoint_4(arg0, 1);
                 func_800F5A00(func_800F54E4(), arg0->position);
-                arg0->position[1] = func_800F5628(func_800F54E4()) + arg0->unk54;
+                arg0->position[1] = BT_IDO_ONLY(func_800F5628(func_800F54E4())) BT_NATIVE_ONLY(((union { s32 bits; f32 value; }){ .bits = func_800F5628(func_800F54E4()) }).value) + arg0->unk54;
                 if (func_8008FC00() == 1) {
                     func_80102424(arg0, 5);
                     arg0->unk58 = 0.0f;
@@ -152,7 +152,7 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
             if (func_800D90A4(&((f32 *)arg0->actorData)[3])) {
                 ((f32 *)arg0->actorData)[3] = 0.5f;
                 if (func_800F56AC(func_800F54E4()) != 0x14 && func_800F6C5C(func_800F54E4())) {
-                    spB4[1] = func_800F5628(func_800F54E4());
+                    spB4[1] = BT_IDO_ONLY(func_800F5628(func_800F54E4())) BT_NATIVE_ONLY(((union { s32 bits; f32 value; }){ .bits = func_800F5628(func_800F54E4()) }).value);
                     func_800EE7F8((f32 *)arg0->actorData, spB4);
                     arg0->unk64_20 = 1;
                 }
@@ -282,13 +282,13 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
     if (D_808012A4_chquicksandbaddy[arg0->unk70_10][0] == 0x1E4) {
         arg0->unk64_16 = 1;
         if (func_80101E14(arg0, 0.07f) || func_80101E14(arg0, 0.92f)) {
-            height = func_800C6920((s32)arg0->position, 500.0f, -500.0f, 0) + arg0->unk54;
+            height = func_800C6920((BtIntPtr)arg0->position, 500.0f, -500.0f, 0) + arg0->unk54;
             func_80800FC8_chquicksandbaddy(arg0->position, height, 5);
             arg0->position[1] = height;
-            chquicksandbaddy_entrypoint_0(0, (s32)arg0->position);
+            chquicksandbaddy_entrypoint_0(0, (BtIntPtr)arg0->position);
         } else if (func_80101F24(arg0) > 0.2f && func_80101F24(arg0) < 0.55f && func_800DC0C0() < 0.5f) {
             _subaddieskeleton_entrypoint_0(arg0, 0x4D, sp3C);
-            func_80800FC8_chquicksandbaddy(sp3C, func_800C6920((s32)sp3C, 500.0f, -500.0f, 0) + arg0->unk54, 1);
+            func_80800FC8_chquicksandbaddy(sp3C, func_800C6920((BtIntPtr)sp3C, 500.0f, -500.0f, 0) + arg0->unk54, 1);
         }
     } else {
         arg0->unk64_16 = 0;
@@ -298,10 +298,10 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
 /* extern */
 
 f32 func_80800CC0_chquicksandbaddy(u8 *arg0) {
-    f32 func_800C6920(s32, f32, f32, s32);
+    f32 func_800C6920(f32 arg0[3], f32 arg1, f32 arg2, s32 arg3);
     f32 result;
 
-    result = func_800C6920((s32) (arg0 + 4), 500.0f, -500.0f, 0);
+    result = func_800C6920((BtIntPtr) (arg0 + 4), 500.0f, -500.0f, 0);
     result += *(f32 *) (arg0 + 0x54);
     return result;
 }
@@ -333,11 +333,11 @@ s32 func_80800DBC_chquicksandbaddy(Actor *arg0) {
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
     s32 func_800D90A4(f32 *);
     f32 func_800EEB40(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    Unk80132ED0 *func_800F55D0(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
-    s32 func_800F6E00(s32);
+    BtUIntPtr func_800F54E4(void);
+    Unk80132ED0 *func_800F55D0(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
+    s32 func_800F6E00(BtIntPtr);
     s32 func_8010C500(void *);
     f32 position[3];
     u8 *actors[20];
@@ -379,18 +379,18 @@ s32 func_80800DBC_chquicksandbaddy(Actor *arg0) {
     return func_800D90A4(&arg0->unk58) == 0;
 }
 
-void chquicksandbaddy_entrypoint_0(s32 arg0, s32 arg1) {
+void chquicksandbaddy_entrypoint_0(s32 arg0, BtIntPtr arg1) {
     s32 func_8001210C(s32);
-    s32 func_800B53A4(s32);
-    s32 func_800BA22C(s32, s32);
-    s32 func_800BAB80(s32, s32 *);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    BtIntPtr func_800B53A4(s32);
+    s32 func_800BA22C(BtIntPtr, s32);
+    s32 func_800BAB80(BtIntPtr, s32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
     f32 func_800DC0C0();
     s32 func_808010A0_chquicksandbaddy(void *);
     extern s32 D_80801370_chquicksandbaddy;
     extern s32 D_80801390_chquicksandbaddy;
-    s32 sp24;
-    s32 temp_v0;
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
 
     if ((func_800DC0C0() < 0.75f) && (func_808010A0_chquicksandbaddy(&D_80801390_chquicksandbaddy) != 0) && (func_8001210C(3) != 0)) {
         temp_v0 = func_800B53A4(1);
@@ -402,20 +402,20 @@ void chquicksandbaddy_entrypoint_0(s32 arg0, s32 arg1) {
 }
 
 void func_80800FC8_chquicksandbaddy(f32 *arg0, f32 arg1, s32 arg2) {
-    s32 func_800B53A4(s32);
-    s32 func_800BA22C(s32, s32);
-    s32 func_800BA4D0(s32, s16);
-    s32 func_800BA544(s32, s32 *);
-    s32 func_800BA714(s32, s32, s32);
-    s32 func_800BAB80(s32, s32 *);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    BtIntPtr func_800B53A4(s32);
+    s32 func_800BA22C(BtIntPtr, s32);
+    void func_800BA4D0(void *emitter, s16 min_y);
+    void func_800BA544(void *emitter, BtIntPtr arg1);
+    void func_800BA714(void *emitter, s16 min, s16 max);
+    s32 func_800BAB80(BtIntPtr, s32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
     s32 func_808010A0_chquicksandbaddy(void *);
     extern s32 D_80801394_chquicksandbaddy;
     extern s32 D_808013D4_chquicksandbaddy;
 #ifndef BT_NATIVE
     extern s32 _chquicksandbaddy_entrypoint_0;
 #endif
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     if (func_808010A0_chquicksandbaddy(&D_808013D4_chquicksandbaddy) != 0) {
         temp_v0 = func_800B53A4(arg2);

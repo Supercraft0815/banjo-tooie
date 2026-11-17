@@ -42,8 +42,15 @@ void func_800A5430(f32 rotation[3], f32 position[3], f32 arg2, f32 dest[3]) {
 
 /* extern */
 
-void func_800A5490(void) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800A5490(void) {
     s32 func_8008FFE8();
-    s32 func_8010FFD8(s32);
-    func_8010FFD8(func_8008FFE8());
+    s32 func_8010FFD8(BtIntPtr);
+    BT_NATIVE_ONLY(return) func_8010FFD8(func_8008FFE8());
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_801270A0 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0x40);
+f32 D_801270D0 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0x70);
+#endif

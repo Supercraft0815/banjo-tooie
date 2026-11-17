@@ -2,28 +2,28 @@
 
 OSThread *chtrashcompactor_entrypoint_0(void)
 {
-    extern u8 D_808008D0_chtrashcompactor[];
+    extern ActorData D_808008D0_chtrashcompactor[];
 
     return (OSThread *) D_808008D0_chtrashcompactor;
 }
 
 OSThread *chtrashcompactor_entrypoint_1(void)
 {
-    extern u8 D_80800918_chtrashcompactor[];
+    extern ActorData D_80800918_chtrashcompactor[];
 
     return (OSThread *) D_80800918_chtrashcompactor;
 }
 
 OSThread *chtrashcompactor_entrypoint_2(void)
 {
-    extern u8 D_80800960_chtrashcompactor[];
+    extern ActorData D_80800960_chtrashcompactor[];
 
     return (OSThread *) D_80800960_chtrashcompactor;
 }
 
 OSThread *chtrashcompactor_entrypoint_3(void)
 {
-    extern u8 D_808009A8_chtrashcompactor[];
+    extern ActorData D_808009A8_chtrashcompactor[];
 
     return (OSThread *) D_808009A8_chtrashcompactor;
 }
@@ -86,42 +86,42 @@ void func_808000BC_chtrashcompactor(void *arg0) {
         u16 kind:9;
         u16 flags76:7;
     } Compactor;
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    void _capod_entrypoint_14(void);
-    s32 _chmrtannoy_entrypoint_0(void);
-    f32 _subaddieaudioloop_entrypoint_8(void *, s32 *, s32, f32);
-    s32 _subaddieaudioquick_entrypoint_2(void *, f32 *, s32 *);
-    s32 _subaddiedialog_entrypoint_11(s32, s32, s32, f32 *, s32);
-    void _sudeflect_entrypoint_2(f32 *, f32 *, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
+    s32 _capod_entrypoint_14(void);
+    void _chmrtannoy_entrypoint_0(void);
+    f32 _subaddieaudioloop_entrypoint_8(Actor *arg0, BtIntPtr arg1, s32 arg2, f32 arg3);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2);
     void func_800187B4(s32, f32, f32, f32);
     s32 func_8008FDC4(void);
     s32 func_80090150(void);
     s32 func_80090248(void);
     void func_800904C8(s32);
-    s32 func_80090658(s32);
-    s32 func_80090708(s32);
-    u8 func_800D9078(f32 *);
+    void func_80090658(s32 arg0);
+    void func_80090708(s32 arg0);
+    s32 func_800D9078(f32 *arg0);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800E15CC(s32, f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    s32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6438(u32);
-    s32 func_800F6478(s32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(void *, s32);
-    void func_80104004(void *, f32 *, f32 *);
-    void *func_80106790(s32);
-    extern s32 D_808009F0_chtrashcompactor;
-    extern s32 D_808009FC_chtrashcompactor;
-    extern s32 D_80800A0C_chtrashcompactor;
-    s32 player;
+    s32 func_80104004(Actor *actor,f32 *minimum,f32 *maximum);
+    void *func_80106790(BtIntPtr);
+    extern s32 D_808009F0_chtrashcompactor[3];
+    extern s32 D_808009FC_chtrashcompactor[4];
+    extern s32 D_80800A0C_chtrashcompactor[9];
+    BtIntPtr player;
     s32 blocked;
     s32 deflect;
     f32 position[3];
@@ -155,7 +155,7 @@ void func_808000BC_chtrashcompactor(void *arg0) {
         }
         blocked = 1;
     }
-    ((Compactor *)arg0)->sound = _subaddieaudioloop_entrypoint_8(arg0, &D_808009F0_chtrashcompactor, ((Compactor *)arg0)->state != 1, ((Compactor *)arg0)->sound);
+    ((Compactor *)arg0)->sound = _subaddieaudioloop_entrypoint_8(arg0, D_808009F0_chtrashcompactor, ((Compactor *)arg0)->state != 1, ((Compactor *)arg0)->sound);
     switch (((Compactor *)arg0)->state) {
         case 1:
             deflect = 1;
@@ -182,8 +182,8 @@ void func_808000BC_chtrashcompactor(void *arg0) {
             closingBlend = func_800F12D4(((Compactor *)arg0)->timer, 0.0f, 0.45f, 1.0f, 0.0f);
             func_800EFE50(((Compactor *)arg0)->position, ((Compactor *)arg0)->start, ((Compactor *)arg0)->end, closingBlend);
             if (closingDone) {
-                _subaddieaudioquick_entrypoint_2(arg0, ((Compactor *)arg0)->position, &D_808009FC_chtrashcompactor);
-                _subaddieaudioquick_entrypoint_2(arg0, ((Compactor *)arg0)->position, &D_80800A0C_chtrashcompactor);
+                _subaddieaudioquick_entrypoint_2(arg0, ((Compactor *)arg0)->position, D_808009FC_chtrashcompactor);
+                _subaddieaudioquick_entrypoint_2(arg0, ((Compactor *)arg0)->position, D_80800A0C_chtrashcompactor);
                 func_800E15CC(2, 80.0f, 0.85f);
                 func_800187B4(0, 2.0f, 1.0f, 1.0f);
                 func_80101FDC(arg0, 4);
@@ -259,10 +259,10 @@ void func_808000BC_chtrashcompactor(void *arg0) {
 }
 
 s32 func_80800684_chtrashcompactor(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     s32 func_800DA298(s32);
-    s32 func_80101180(s32, s32, s32);
-    Actor *func_801084B0(s32, Actor **);
+    s32 func_80101180(s32, s32, BtIntPtr);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     void func_80108944(Actor *, Actor *);
     void func_80108B04(Actor *, u32);
     typedef struct {
@@ -308,18 +308,18 @@ s32 func_80800684_chtrashcompactor(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_808007A4_chtrashcompactor(s32 arg0) {
-    s32 _chswitch_entrypoint_7(s32, s32);
-    s32 _chswitch_entrypoint_8(s32, s32);
-    s32 _chswitch_entrypoint_9(s32);
+void func_808007A4_chtrashcompactor(BtIntPtr arg0) {
+    s32 _chswitch_entrypoint_7(BtIntPtr, s32);
+    void _chswitch_entrypoint_8(s32 *arg0, s32 arg1);
+    void _chswitch_entrypoint_9(void *arg0);
     _chswitch_entrypoint_7(arg0, 0x9F5);
     _chswitch_entrypoint_8(arg0, 512);
     _chswitch_entrypoint_9(arg0);
 }
 
 void func_808007DC_chtrashcompactor(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _chswitch_entrypoint_10(s32, s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     if (arg1 == 7) {
         func_80101180(0x3B7, 7, 0);
         return;
@@ -332,7 +332,7 @@ void func_808007DC_chtrashcompactor(s32 arg0, s32 arg1, s32 arg2) {
 void func_8080081C_chtrashcompactor(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    void _chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3);
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
     void func_800C87DC(s32 *);
     s32 sp24[3];
@@ -344,3 +344,19 @@ void func_8080081C_chtrashcompactor(Actor *arg0) {
     func_800C87DC(sp24);
     _subaddiefade_entrypoint_11(arg0, sp24);
 }
+/* data_to_c.py: from asm/data/overlays/ch/trashcompactor.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+void func_80102EC0();
+extern u8 D_8011A270[];
+void _chswitch_entrypoint_6();
+void _chdoor_entrypoint_0();
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+ActorData D_808008D0_chtrashcompactor [1] BT_DATA(4, overlays_ch_trashcompactor, 0x0) = { { 793, 948, 1862, 1, 0, (void (*)(struct Actor *))func_808000BC_chtrashcompactor, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 1024, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800030_chtrashcompactor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 1042, (void (*)(struct Actor *, long, long))func_80800684_chtrashcompactor, 0 } };
+ActorData D_80800918_chtrashcompactor [1] BT_DATA(4, overlays_ch_trashcompactor, 0x48) = { { 794, 949, 1863, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 1028, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 2066, 0, 0 } };
+ActorData D_80800960_chtrashcompactor [1] BT_DATA(4, overlays_ch_trashcompactor, 0x90) = { { 835, 950, 1976, 1, (void *)D_8011A270, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_808007A4_chtrashcompactor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808007DC_chtrashcompactor, 0 } };
+ActorData D_808009A8_chtrashcompactor [1] BT_DATA(4, overlays_ch_trashcompactor, 0xD8) = { { 172, 951, 1955, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 2, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080081C_chtrashcompactor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9234, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
+s32 D_808009F0_chtrashcompactor[3] BT_DATA(4, overlays_ch_trashcompactor, 0x120) = { 0, 1148846080, 0 };
+s32 D_808009FC_chtrashcompactor[4] BT_DATA(4, overlays_ch_trashcompactor, 0x12C) = { 1246414, 852160, 14221336, 131072 };
+s32 D_80800A0C_chtrashcompactor[9] BT_DATA(4, overlays_ch_trashcompactor, 0x13C) = { 1246428, 786432, 14221644, 18415637, 217, 3342338, 0, 0, 0 };

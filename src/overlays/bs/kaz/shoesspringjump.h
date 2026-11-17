@@ -15,6 +15,6 @@
 extern void _bskazshoesspringjump_entrypoint_0(PlayerState *self);
 extern void _bskazshoesspringjump_entrypoint_1(PlayerState *self);
 extern void _bskazshoesspringjump_entrypoint_2(PlayerState *self);
-extern s32 _bskazshoesspringjump_entrypoint_3(s32 idx);
+extern BtIntPtr _bskazshoesspringjump_entrypoint_3(s32 idx);
 
 #endif // __BS_KAZ_SHOESSPRINGJUMP_H__

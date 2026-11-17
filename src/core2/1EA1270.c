@@ -39,7 +39,7 @@ SplineDerivativeFunc func_800C7980(u8 *arg0) {
         return &_mlspline_entrypoint_10;
     }
     return &_mlspline_entrypoint_8;
-}
+}   
 
 /* extern */
 
@@ -94,7 +94,7 @@ void func_800C7A68(Unk800C7A68* arg0, f32 arg1, f32 *arg2) {
     }
 
     func_800C79EC(arg0)(arg1, arg0->unk2, &arg0->unk14, arg2);
-}
+}          typedef struct { u8 pad0[0x2]; u8 unk2; u8 pad3[0x1]; u8 unk4; u8 pad5[0x7]; f32 unkC; u8 pad10[0x4]; f32 unk14; } Obj1EA1270_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -110,7 +110,7 @@ void func_800C7AE4(u8 *arg0, s32 arg1, s32 arg2) {
 #ifdef BT_NATIVE
     return
 #endif
-    _mlspline_entrypoint_11((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, func_800C7980((u8 *)arg0));
+    _mlspline_entrypoint_11((((Obj1EA1270_arg0 *)arg0)->unk2), arg0 + 0x14, arg1, arg2, func_800C7980((u8 *)arg0));
 }
 
 /* extern */
@@ -127,7 +127,7 @@ void func_800C7B28(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 #ifdef BT_NATIVE
     return
 #endif
-    _mlspline_entrypoint_12((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, arg2, arg3 * 2, func_800C7980((u8 *)arg0));
+    _mlspline_entrypoint_12((((Obj1EA1270_arg0 *)arg0)->unk2), arg0 + 0x14, arg1, arg2, arg3 * 2, func_800C7980((u8 *)arg0));
 }
 
 f32 func_800C7B7C(Unk800C7A68 *arg0, f32 arg1, f32 arg2, f32 arg3) {
@@ -160,14 +160,14 @@ f32 func_800C7E28(void *arg0) {
     f32 *end;
     s32 i;
 
-    point = (f32 *) ((u8 *) arg0 + 0x14);
+    point = &((Obj1EA1270_arg0 *)arg0)->unk14;
     end = (f32 *) (count * 12 + (u8 *) arg0 + 8);
     for (i = 0; point != end; point += 3, i++) {
         if (point[0] == end[0] && point[1] == end[1] && point[2] == end[2]) {
-            return *(f32 *) ((u8 *) arg0 + 0xC) = (f32) i / (count - 1);
+            return *&((Obj1EA1270_arg0 *)arg0)->unkC = (f32) i / (count - 1);
         }
     }
-    return *(f32 *) ((u8 *) arg0 + 0xC) = 1.0f;
+    return *&((Obj1EA1270_arg0 *)arg0)->unkC = 1.0f;
 }
 
 /* extern */
@@ -184,14 +184,14 @@ f32 func_800C7FD4(u8 *arg0, f32 arg1, f32 arg2) {
     f32 sp30;
     f32 var_f0;
 
-    if ((*(u8 *)((s8 *)(arg0) + (4))) != 0) {
+    if ((((Obj1EA1270_arg0 *)arg0)->unk4) != 0) {
         var_f0 = _glintrosyncDll_entrypoint_5();
     } else {
         var_f0 = func_800D8FF8();
     }
     sp2C = var_f0;
     sp30 = func_800C7E28(arg0);
-    return _mlspline_entrypoint_13((*(u8 *)((s8 *)(arg0) + (2))), arg0 + 0x14, arg1, var_f0 * arg2, sp30, func_800C7980(arg0));
+    return _mlspline_entrypoint_13((((Obj1EA1270_arg0 *)arg0)->unk2), arg0 + 0x14, arg1, var_f0 * arg2, sp30, func_800C7980(arg0));
 }
 
 /* extern */

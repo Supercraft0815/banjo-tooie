@@ -73,11 +73,11 @@ void bschokedie_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bschokedie_entrypoint_2(s32 arg0) {
-    s32 baroll_setIdeal(s32, f32);
+void bschokedie_entrypoint_2(BtIntPtr arg0) {
+    void baroll_setIdeal(void *self, f32 arg1);
     s32 func_800951B4();
-    s32 func_8009BF5C(s32, f32);
-    s32 func_800A4E30(s32);
+    void func_8009BF5C(void *arg0, f32 arg1);
+    void func_800A4E30(void *arg0);
     func_800951B4();
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
@@ -85,6 +85,12 @@ void bschokedie_entrypoint_2(s32 arg0) {
 }
 
 s32 bschokedie_entrypoint_3(s32 arg0) {
-    extern s32 D_808002B0_bschokedie[];
+    extern BtIntPtr D_808002B0_bschokedie[];
     return ((s32 *)&D_808002B0_bschokedie)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/chokedie.data.s */
+void _bschokedie_entrypoint_2();
+void _bschokedie_entrypoint_0();
+void _bschokedie_entrypoint_1();
+void _basudie_entrypoint_11();
+BtIntPtr D_808002B0_bschokedie [4] BT_DATA(4, overlays_bs_chokedie, 0x0) = { (BtIntPtr)_bschokedie_entrypoint_2, (BtIntPtr)_bschokedie_entrypoint_0, (BtIntPtr)_bschokedie_entrypoint_1, (BtIntPtr)_basudie_entrypoint_11 };

@@ -2,10 +2,10 @@
 
 OSThread *chfpsgame_entrypoint_0(void)
 {
-    extern u8 D_808021A0_chfpsgame[];
+    extern ActorData D_808021A0_chfpsgame[];
 
     return (OSThread *) D_808021A0_chfpsgame;
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; } Objfpsgame_func_8080000C_chfpsgame_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8080000C_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
     void* func_80100094(Actor*, u32);
@@ -13,10 +13,10 @@ void func_8080000C_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
 
     temp_v0 = func_80100094(arg0, 0U);
     if (arg2 != 0) {
-        (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (4))) | (1 << arg1));
+        (((Objfpsgame_func_8080000C_chfpsgame_temp_v0 *)temp_v0)->unk4) = (s32) ((((Objfpsgame_func_8080000C_chfpsgame_temp_v0 *)temp_v0)->unk4) | (1 << arg1));
         return;
     }
-    (*(s32 *)((s8 *)(temp_v0) + (4))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (4))) & ~(1 << arg1));
+    (((Objfpsgame_func_8080000C_chfpsgame_temp_v0 *)temp_v0)->unk4) = (s32) ((((Objfpsgame_func_8080000C_chfpsgame_temp_v0 *)temp_v0)->unk4) & ~(1 << arg1));
 }
 
 s32 func_80800074_chfpsgame(Actor *arg0, s32 arg1) {
@@ -34,7 +34,7 @@ s32 func_80800074_chfpsgame(Actor *arg0, s32 arg1) {
 /* extern */
 
 s32 func_808000BC_chfpsgame(u16 arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    u8 _gcstatusDll_entrypoint_11(void);
     s32 func_80016BBC(s32, u16);
     s32 temp_v0;
     s32 var_s0;
@@ -62,8 +62,8 @@ s32 func_808000BC_chfpsgame(u16 arg0) {
 
 void func_80800138_chfpsgame(u32 arg0) {
     s32 func_800F5898();
-    s32 func_800F6BE4(s32);
-    s32 func_800F7F98(s32, u32);
+    s32 func_800F6BE4(BtIntPtr);
+    s32 func_800F7F98(BtIntPtr, u32);
     s32 var_s0;
 
     var_s0 = 0;
@@ -80,7 +80,7 @@ void func_80800138_chfpsgame(u32 arg0) {
 void func_8080019C_chfpsgame(Actor **arg0) {
     u32 _bsfirstp_entrypoint_3(s32, s32, s32);
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
-    s32 _gcstatusDll_entrypoint_19(void);
+    u8 _gcstatusDll_entrypoint_19(void);
     s32 func_800EA05C(void);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *func_801085CC(s32, s16 *, u32);
@@ -123,7 +123,7 @@ void func_8080019C_chfpsgame(Actor **arg0) {
         } while (i < count);
     }
     *arg0 = actor;
-}
+}    typedef struct { s32 unk0; s32 unk4; } Objfpsgame_func_808002FC_chfpsgame_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 /* extern */
 
@@ -134,7 +134,7 @@ void func_808002FC_chfpsgame(Actor *arg0) {
     void func_808006A8_chfpsgame(Actor *arg0);
     void func_8080075C_chfpsgame(Actor *arg0);
     void func_80801C5C_chfpsgame(Actor *arg0);
-    s32 _gcstatusDll_entrypoint_11();
+    u8 _gcstatusDll_entrypoint_11(void);
     s32 _gcstatusDll_entrypoint_14();
     void* func_80100094();
     s32 func_80800CF8_chfpsgame(Actor *, s32);
@@ -143,10 +143,10 @@ void func_808002FC_chfpsgame(Actor *arg0) {
 
     sp24 = func_80100094(arg0, 0);
     sp20 = _gcstatusDll_entrypoint_14();
-    (*(s32 *)((s8 *)(sp24) + (4))) = 0;
+    (((Objfpsgame_func_808002FC_chfpsgame_sp24 *)sp24)->unk4) = 0;
     func_80800CF8_chfpsgame(arg0, 0);
     func_80801C5C_chfpsgame(arg0);
-    (*(s32 *)((s8 *)(sp24) + (0))) = _gcstatusDll_entrypoint_11();
+    (((Objfpsgame_func_808002FC_chfpsgame_sp24 *)sp24)->unk0) = _gcstatusDll_entrypoint_11();
     switch (sp20) {
     case 1:
     case 4:
@@ -173,12 +173,12 @@ typedef struct player_state_s PlayerState;
 
 void func_808003D0_chfpsgame(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    PlayerState *func_800F53D0(s32);
-    void _bsfirstp_entrypoint_4(PlayerState *, s32);
+    PlayerState *func_800F53D0(BtIntPtr);
+    void _bsfirstp_entrypoint_4(BtIntPtr arg0, s32 arg1);
     void _bsfirstp_entrypoint_5(PlayerState *, s32, s32);
-    s32 _gcstatusDll_entrypoint_13();
-    s32 _gcstatusDll_entrypoint_19(void);
-    s32 _sumultiscore_entrypoint_3(u8 *);
+    u8 _gcstatusDll_entrypoint_13(s32 arg0);
+    u8 _gcstatusDll_entrypoint_19(void);
+    void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     struct {
         s32 count;
@@ -213,11 +213,11 @@ void func_808003D0_chfpsgame(Actor *arg0, s32 arg1) {
 
 void func_808004E0_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    PlayerState *func_800F53D0(s32);
-    void _bsfirstp_entrypoint_4(PlayerState *, s32);
+    PlayerState *func_800F53D0(BtIntPtr);
+    void _bsfirstp_entrypoint_4(BtIntPtr arg0, s32 arg1);
     void _bsfirstp_entrypoint_5(PlayerState *, s32, s32);
-    s32 _gcstatusDll_entrypoint_13();
-    s32 _sumultiscore_entrypoint_3(u8 *);
+    u8 _gcstatusDll_entrypoint_13(s32 arg0);
+    void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     struct {
         s32 count;
@@ -248,12 +248,12 @@ void func_808004E0_chfpsgame(Actor *arg0) {
 
 void func_808005B0_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    PlayerState *func_800F53D0(s32);
-    void _bsfirstp_entrypoint_4(PlayerState *, s32);
+    PlayerState *func_800F53D0(BtIntPtr);
+    void _bsfirstp_entrypoint_4(BtIntPtr arg0, s32 arg1);
     void _bsfirstp_entrypoint_5(PlayerState *, s32, s32);
-    s32 _gcstatusDll_entrypoint_13();
-    s32 _gcstatusDll_entrypoint_19(void);
-    s32 _sumultiscore_entrypoint_3(u8 *);
+    u8 _gcstatusDll_entrypoint_13(s32 arg0);
+    u8 _gcstatusDll_entrypoint_19(void);
+    void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     struct {
         s32 count;
@@ -287,11 +287,11 @@ void func_808005B0_chfpsgame(Actor *arg0) {
 
 void func_808006A8_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    PlayerState *func_800F53D0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
     void func_800A18C8();
     void func_800A1870(PlayerState *, s32);
     void _badeathmatch_entrypoint_11(PlayerState *, s32, s32);
-    s32 _sumultiscore_entrypoint_3(u8 *);
+    void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     struct {
         s32 count;
@@ -320,9 +320,9 @@ void func_808006A8_chfpsgame(Actor *arg0) {
 
 void func_8080075C_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    PlayerState *func_800F53D0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
     s32 _gcstatusDll_entrypoint_15(void);
-    s32 _sumultiscore_entrypoint_3(u8 *);
+    void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     void _badeathmatch_entrypoint_10(PlayerState *, s32, s32, s32);
     void _badeathmatch_entrypoint_7(PlayerState *, s32);
@@ -386,10 +386,10 @@ void func_8080075C_chfpsgame(Actor *arg0) {
 /* extern */
 
 void func_808008D4_chfpsgame(s32 arg0) {
-    s32 func_80800FF4_chfpsgame(s32);
+    s32 func_80800FF4_chfpsgame(BtIntPtr);
     s32 func_808015EC_chfpsgame();
-    s32 func_80801758_chfpsgame(s32);
-    s32 func_808018E0_chfpsgame(s32);
+    s32 func_80801758_chfpsgame(BtIntPtr);
+    s32 func_808018E0_chfpsgame(BtIntPtr);
     func_808015EC_chfpsgame();
     func_80800FF4_chfpsgame(arg0);
     func_80801758_chfpsgame(arg0);
@@ -399,21 +399,21 @@ void func_808008D4_chfpsgame(s32 arg0) {
 void func_8080090C_chfpsgame(s32 arg0) 
 {
 }
-s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void *func_80100094(Actor *, u32);
     s32 _gcstatusDll_entrypoint_14();
     s32 _gcstatusDll_entrypoint_15();
     u32 _suegg_entrypoint_7(void *);
     void _sumultiscore_entrypoint_5(u8 *, s32, s32, s32);
-    void _sumultiscore_entrypoint_9(u8 *, s32, s32, s32);
-    s32 func_800F5410(s32);
-    s32 func_800F7C0C(s32, s32, f32);
+    void _sumultiscore_entrypoint_9(u8 *, BtIntPtr, s32, s32);
+    s32 func_800F5410(BtIntPtr);
+    s32 func_800F7C0C(BtIntPtr, s32, f32);
     void func_800FC660(u32);
-    void func_80800BCC_chfpsgame(Actor *, s32, s32);
+    void func_80800BCC_chfpsgame(Actor *, s32, BtIntPtr);
     s32 func_80800CF8_chfpsgame(Actor *, s32);
-    void func_808013DC_chfpsgame(Actor *, s32, u32);
+    void func_808013DC_chfpsgame(Actor *, BtIntPtr, u32);
     void func_80801D40_chfpsgame(Actor *, s32, Unk80132ED0 *);
-    void func_80802020_chfpsgame(Actor *, s32, s32);
+    void func_80802020_chfpsgame(Actor *, s32, BtIntPtr);
     struct {
         s32 count;
         s32 flags;
@@ -423,7 +423,7 @@ s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
         u8 score[1];
     } *data;
     s32 player;
-    s32 victim;
+    BtIntPtr victim;
     s32 mode;
 
     data = func_80100094(arg0, 0);
@@ -483,7 +483,7 @@ s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x74:
         {
             s32 owner;
-            s32 egg = arg2;
+            BtIntPtr egg = arg2;
             owner = _suegg_entrypoint_7((void *)egg);
             func_80802020_chfpsgame(arg0, owner, egg);
         }
@@ -502,10 +502,10 @@ s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
+void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void *func_80100094(Actor *, u32);
-    s32 _gcstatusDll_entrypoint_16(s32);
-    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
+    s32 _gcstatusDll_entrypoint_16(BtIntPtr);
+    void _sumultiscore_entrypoint_7(u8 *, BtIntPtr, s32, s32);
     void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
     struct {
         s32 count;
@@ -545,19 +545,19 @@ void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
 s32 func_80800CF8_chfpsgame(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void _gcfrontend_entrypoint_10(void);
-    s32 _gcstatusDll_entrypoint_11();
+    u8 _gcstatusDll_entrypoint_11(void);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
-    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
-    void _sumultiscore_entrypoint_9(u8 *, s32, s32, s32);
+    s16 _sumultiscore_entrypoint_8(BtIntPtr arg0, s32 arg1, s32 arg2);
+    void _sumultiscore_entrypoint_9(u8 *, BtIntPtr, s32, s32);
     void _sumultiscore_entrypoint_10(void *, s32);
     void func_800AA20C(s32, s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     s32 func_80101238(s32, s32);
-    u32 func_8010A828(Actor *, u32);
-    void func_808013DC_chfpsgame(Actor *, s32, u32);
+    void func_8010A828(void **arg0, s32 arg1);
+    void func_808013DC_chfpsgame(Actor *, BtIntPtr, u32);
     void func_80801814_chfpsgame(Actor *);
     void func_808018B0_chfpsgame(Actor *);
     void func_80801C9C_chfpsgame(Actor *);
@@ -651,21 +651,21 @@ if (!j) {}
         _gcfrontend_entrypoint_10();
         break;
     }
-    data->state = arg1;
+    data->state = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
-s32 func_80800FF4_chfpsgame(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+s32 func_80800FF4_chfpsgame(BtIntPtr arg0) {
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     int func_800A4C68(void *);
     s32 func_800C954C(void);
     s32 func_800C96CC();
     f32 func_800D8FF8(void);
     s32 func_800F1574(f32 *, f32);
-    PlayerState *func_800F53D0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
     void *func_80100094(Actor *, u32);
     s32 func_80800CF8_chfpsgame(Actor *, s32);
     s32 func_8080121C_chfpsgame(Actor *);
-    s32 func_808012CC_chfpsgame(s32);
+    s32 func_808012CC_chfpsgame(BtIntPtr);
     void func_8080135C_chfpsgame(Actor *);
     struct Data {
         s32 count;
@@ -736,14 +736,14 @@ s32 func_80800FF4_chfpsgame(s32 arg0) {
             func_80800CF8_chfpsgame((Actor *)arg0, 7);
         }
         break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_8080121C_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 _gcstatusDll_entrypoint_11();
-    s32 _gcstatusDll_entrypoint_18(void);
-    s32 _sumultiscore_entrypoint_8(void *, s32, s32);
+    u8 _gcstatusDll_entrypoint_11(void);
+    u8 _gcstatusDll_entrypoint_18(void);
+    s16 _sumultiscore_entrypoint_8(BtIntPtr arg0, s32 arg1, s32 arg2);
     s32 func_80801ADC_chfpsgame(Actor *);
     u8 *data;
     s32 status;
@@ -770,11 +770,11 @@ s32 func_8080121C_chfpsgame(Actor *arg0) {
 
 /* extern */
 
-s32 func_808012CC_chfpsgame(s32 arg0) {
-    s16 _badeathmatch_entrypoint_9(void *, s32);
-    s32 _gcstatusDll_entrypoint_11();
+s32 func_808012CC_chfpsgame(BtIntPtr arg0) {
+    s32 _badeathmatch_entrypoint_9(void *arg0, s32 arg1);
+    u8 _gcstatusDll_entrypoint_11(void);
     s32 _gcstatusDll_entrypoint_14();
-    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
     s32 temp_v0;
     s32 var_s0;
     s32 var_s1;
@@ -811,10 +811,10 @@ void func_8080135C_chfpsgame(Actor *arg0) {
     }
 }
 
-void func_808013DC_chfpsgame(Actor *arg0, s32 arg1, u32 arg2) {
+void func_808013DC_chfpsgame(Actor *arg0, BtIntPtr arg1, u32 arg2) {
     void _bainvisible_entrypoint_3(PlayerState *);
     void _bainvisible_entrypoint_8(PlayerState *, s32, f32, f32);
-    s32 _sudeathmatch_entrypoint_0(s32, f32 *, f32 *);
+    s32 _sudeathmatch_entrypoint_0(BtIntPtr, f32 *, f32 *);
     void func_80093370(void *, s32);
     void func_8009337C(void *, s32);
     s32 func_800A1760(PlayerState *);
@@ -823,11 +823,11 @@ void func_808013DC_chfpsgame(Actor *arg0, s32 arg1, u32 arg2) {
     int func_800A4C68(void *);
     void func_800C968C(s32, s32);
     void func_800F44DC(void *, s32);
-    PlayerState *func_800F53D0(s32);
-    s32 func_800F7C0C(s32, s32, f32);
-    s32 func_800F7F98(s32, u32);
-    void func_800F8294(s32, f32 *);
-    s32 func_800F832C(s32, f32 *);
+    PlayerState *func_800F53D0(BtIntPtr);
+    s32 func_800F7C0C(BtIntPtr, s32, f32);
+    s32 func_800F7F98(BtIntPtr, u32);
+    void func_800F8294(BtIntPtr, f32 *);
+    void func_800F832C(BtIntPtr arg0,f32* a1);
     void *func_80100094(Actor *, u32);
     struct {
         u8 pad[0x530];
@@ -884,15 +884,15 @@ void func_808013DC_chfpsgame(Actor *arg0, s32 arg1, u32 arg2) {
 }
 
 s32 func_808015EC_chfpsgame(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11(void);
+    u8 _gcstatusDll_entrypoint_11(void);
     s32 func_80016BBC(s32, u16);
     int func_800A4C68(void *);
     s32 func_800C96CC();
     s32 func_800C9714();
     f32 func_800D8FF8(void);
     s32 func_800F1574(f32 *, f32);
-    PlayerState *func_800F53D0(s32);
-    s32 func_800F54F0(s32);
+    PlayerState *func_800F53D0(BtIntPtr);
+    s32 func_800F54F0(BtIntPtr);
     void *func_80100094(Actor *, u32);
     struct {
         u8 pad[0x530];
@@ -908,7 +908,7 @@ s32 func_808015EC_chfpsgame(Actor *arg0) {
     data = func_80100094(arg0, 0U);
     i = 0;
     if (_gcstatusDll_entrypoint_11() <= 0) {
-        return;
+        return BT_NATIVE_ONLY(0);
     }
 loop:
         player = func_800F53D0(i);
@@ -936,34 +936,34 @@ loop:
         i++;
     if (i < _gcstatusDll_entrypoint_11()) {
         goto loop;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
-s32 func_80801758_chfpsgame(s32 arg0) {
+s32 func_80801758_chfpsgame(BtIntPtr arg0) {
     void *func_80100094(Actor *, u32);
     s32 _sumultiscore_entrypoint_6(u8 *);
     return _sumultiscore_entrypoint_6((u8 *)func_80100094((Actor *)arg0, 0U) + 0x14);
 }
 
-void func_80801780_chfpsgame(Actor *arg0, s32 arg1) {
+void func_80801780_chfpsgame(Actor *arg0, BtIntPtr arg1) {
     void *func_80100094(Actor *, u32);
     s32 func_800EB854(void);
-    s32 _sumultiscore_entrypoint_12(s32, s32, s32);
+    void _sumultiscore_entrypoint_12(BtIntPtr arg0, BtIntPtr arg1, s32 arg2);
     void _scradar_entrypoint_0(void);
-    void _scradar_entrypoint_1(s32);
-    void func_80801B30_chfpsgame(Actor *, s32);
+    void _scradar_entrypoint_1(Gfx **arg0);
+    void func_80801B30_chfpsgame(Actor *, BtIntPtr);
     u8 *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
     switch (func_800EB854()) {
         case 3:
-            _sumultiscore_entrypoint_12((s32)(sp1C + 0x14), arg1, 1);
+            _sumultiscore_entrypoint_12((BtIntPtr)(sp1C + 0x14), arg1, 1);
             _scradar_entrypoint_0();
             _scradar_entrypoint_1(arg1);
             break;
         case 4:
             func_80801B30_chfpsgame(arg0, arg1);
-            _sumultiscore_entrypoint_12((s32)(sp1C + 0x14), arg1, 2);
+            _sumultiscore_entrypoint_12((BtIntPtr)(sp1C + 0x14), arg1, 2);
             break;
     }
 }
@@ -987,19 +987,19 @@ void func_80801814_chfpsgame(Actor *arg0) {
         func_80801A8C_chfpsgame(arg0, 0.0f);
     }
     *(f32 *)(temp_s0 + 0x560) = *(f32 *)(temp_s0 + 0x55C);
-}
+}    typedef struct { u8 pad0[0x558]; s8 unk558; s8 unk559; u8 pad55A[0x2]; f32 unk55C; } Objfpsgame_func_808018B0_chfpsgame_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_808018B0_chfpsgame(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s8 *)((s8 *)(temp_v0) + (0x558))) = 0;
-    (*(s8 *)((s8 *)(temp_v0) + (0x559))) = 0;
-    (*(f32 *)((s8 *)(temp_v0) + (0x55C))) = 0.0f;
+    (((Objfpsgame_func_808018B0_chfpsgame_temp_v0 *)temp_v0)->unk558) = 0;
+    (((Objfpsgame_func_808018B0_chfpsgame_temp_v0 *)temp_v0)->unk559) = 0;
+    (((Objfpsgame_func_808018B0_chfpsgame_temp_v0 *)temp_v0)->unk55C) = 0.0f;
 }
 
-s32 func_808018E0_chfpsgame(s32 arg0) {
+s32 func_808018E0_chfpsgame(BtIntPtr arg0) {
     f32 func_800D8FF8(void);
     s32 func_800F0E28(s32, s32);
     s32 func_800F1418(s32, s32);
@@ -1027,7 +1027,7 @@ s32 func_808018E0_chfpsgame(s32 arg0) {
             }
             if (*(f32 *)(temp_v0 + 0x564) > 1.0f) {
                 temp_v0[0x559] = func_800F1418(temp_v0[0x559] + sp20 * 4, 255);
-                return;
+                return BT_NATIVE_ONLY(0);
             }
             if (*(f32 *)(temp_v0 + 0x564) < 0.5f) {
                 temp_v0[0x559] = func_800F0E28(temp_v0[0x559] - sp20 * 2, 0);
@@ -1035,37 +1035,37 @@ s32 func_808018E0_chfpsgame(s32 arg0) {
         } else {
             if (*(f32 *)(temp_v0 + 0x560) < 10.99f) {
                 func_80801A8C_chfpsgame((Actor *)arg0, 60.0f);
-                return;
+                return BT_NATIVE_ONLY(0);
             }
             if (temp_v0[0x55B] == 0) {
                 func_80801A8C_chfpsgame((Actor *)arg0, 2.5f);
             }
         }
-    }
-}
+    } BT_NATIVE_ONLY(return 0;)
+}    typedef struct { u8 pad0[0x558]; s8 unk558; u8 pad559[0xB]; f32 unk564; } Objfpsgame_func_80801A8C_chfpsgame_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80801A8C_chfpsgame(Actor *arg0, f32 arg1) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(f32 *)((s8 *)(temp_v0) + (0x564))) = arg1;
+    (((Objfpsgame_func_80801A8C_chfpsgame_temp_v0 *)temp_v0)->unk564) = arg1;
     if (arg1 != 0.0f) {
-        (*(s8 *)((s8 *)(temp_v0) + (0x558))) = 1;
+        (((Objfpsgame_func_80801A8C_chfpsgame_temp_v0 *)temp_v0)->unk558) = 1;
         return;
     }
-    (*(s8 *)((s8 *)(temp_v0) + (0x558))) = 0;
-}
+    (((Objfpsgame_func_80801A8C_chfpsgame_temp_v0 *)temp_v0)->unk558) = 0;
+}    typedef struct { u8 pad0[0x55C]; f32 unk55C; f32 unk560; } Objfpsgame_func_80801ADC_chfpsgame_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-s32 func_80801ADC_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 var_v1; void *temp_v0; temp_v0 = func_80100094(arg0, 0U); var_v1 = ((*(f32 *)((s8 *)temp_v0 + 0x55C)) != 0.0f) && ((*(f32 *)((s8 *)temp_v0 + 0x560)) == 0.0f) ? 1 : 0; return var_v1; }
+s32 func_80801ADC_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 var_v1; void *temp_v0; temp_v0 = func_80100094(arg0, 0U); var_v1 = ((((Objfpsgame_func_80801ADC_chfpsgame_temp_v0 *)temp_v0)->unk55C) != 0.0f) && ((((Objfpsgame_func_80801ADC_chfpsgame_temp_v0 *)temp_v0)->unk560) == 0.0f) ? 1 : 0; return var_v1; }
 
-void func_80801B30_chfpsgame(Actor *arg0, s32 arg1) {
+void func_80801B30_chfpsgame(Actor *arg0, BtIntPtr arg1) {
     void *func_80100094(Actor *, u32);
     void _fxdialog_entrypoint_1(s32, s32);
     void _fxdialog_entrypoint_2(f32);
-    void _fxdialog_entrypoint_4(s32, s32, s32, f32, f32, s32, s32);
+    void _fxdialog_entrypoint_4(BtIntPtr, s32, s32, f32, f32, s32, s32);
     void func_800B7F14(Gfx **);
     void func_800B811C(Gfx **);
     void func_800B8C50(void);
@@ -1095,24 +1095,24 @@ void func_80801B30_chfpsgame(Actor *arg0, s32 arg1) {
         func_800B8E28((Gfx **)arg1, 0x99, 0x72, text);
         func_800B811C((Gfx **)arg1);
     }
-}
+}    typedef struct { u8 pad0[0x568]; s32 unk568; s32 unk56C; u8 pad570[0x4C]; s32 unk5BC; s32 unk5C0; u8 pad5C4[0x4C]; s32 unk610; s32 unk614; u8 pad618[0x4C]; s32 unk664; s32 unk668; } Objfpsgame_func_80801C5C_chfpsgame_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80801C5C_chfpsgame(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s32 *)((s8 *)(temp_v0) + (0x5BC))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x5C0))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x610))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x614))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x664))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x668))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x568))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x56C))) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk5BC) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk5C0) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk610) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk614) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk664) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk668) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk568) = 0;
+    (((Objfpsgame_func_80801C5C_chfpsgame_temp_v0 *)temp_v0)->unk56C) = 0;
 }
 
-void func_80801C9C_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 func_8010114C(s32, s32, s32); struct Entry { s32 actor; s32 unused; }; struct Group { s32 count; struct Entry entries[10]; }; struct Data { s8 pad[0x568]; struct Group groups[4]; }; struct Data *data; struct Group *cursor; s32 *count; s32 offset; s32 index; data = func_80100094(arg0, 0U); for (offset = 0; offset < 4; offset++) { cursor = &data->groups[offset]; count = &cursor->count; if (data->groups[offset].count != 0) { do { index = cursor->count - 1; cursor->count = index; func_8010114C(cursor->entries[index].actor, 0x45, 0); } while (*count != 0); } } }
+void func_80801C9C_chfpsgame(Actor *arg0) { void *func_80100094(Actor *, u32); s32 func_8010114C(BtIntPtr, s32, BtIntPtr); struct Entry { s32 actor; s32 unused; }; struct Group { s32 count; struct Entry entries[10]; }; struct Data { s8 pad[0x568]; struct Group groups[4]; }; struct Data *data; struct Group *cursor; s32 *count; s32 offset; s32 index; data = func_80100094(arg0, 0U); for (offset = 0; offset < 4; offset++) { cursor = &data->groups[offset]; count = &cursor->count; if (data->groups[offset].count != 0) { do { index = cursor->count - 1; cursor->count = index; func_8010114C(cursor->entries[index].actor, 0x45, 0); } while (*count != 0); } } }
 
 void func_80801D40_chfpsgame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     void *func_80100094(Actor *, u32);
@@ -1142,7 +1142,7 @@ void func_80801DF0_chfpsgame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     f32 func_800EEB40(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     struct Entry { Unk80132ED0 *marker; s32 unused; };
     struct Group { s32 count; struct Entry entries[10]; };
     struct Data { s32 count; s8 pad[0x564]; struct Group groups[4]; };
@@ -1181,7 +1181,7 @@ void func_80801DF0_chfpsgame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
 void func_80801F34_chfpsgame(Actor *arg0, s32 arg1) {
     s32 func_8001211C(void);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     struct Entry { s32 actor; u32 time; };
     struct Group { s32 count; struct Entry entries[10]; };
     struct Data { s8 pad[0x568]; struct Group groups[4]; };
@@ -1208,7 +1208,7 @@ void func_80801F34_chfpsgame(Actor *arg0, s32 arg1) {
     entry->entries[0].time = group->entries[group->count].time;
 }
 
-void func_80802020_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
+void func_80802020_chfpsgame(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void *func_80100094(Actor *, u32);
     struct Entry { s32 actor; s32 unused; };
     struct Group { s32 count; struct Entry entries[10]; };
@@ -1229,3 +1229,7 @@ void func_80802020_chfpsgame(Actor *arg0, s32 arg1, s32 arg2) {
         }
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/fpsgame.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_808021A0_chfpsgame [1] BT_DATA(4, overlays_ch_fpsgame, 0x0) = { { 344, 708, -1, 1, 0, (void (*)(struct Actor *))func_808008D4_chfpsgame, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80801780_chfpsgame, 0, 0, 0, 0, 2112, 1024, (void (*)(struct Actor *))func_8080090C_chfpsgame, 0, 1720, 0, (void (*)(struct Actor *))func_808002FC_chfpsgame, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, -31742, (void (*)(struct Actor *, long, long))func_80800914_chfpsgame, 0 } };

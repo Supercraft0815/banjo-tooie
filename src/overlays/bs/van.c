@@ -3,7 +3,7 @@
 #include "overlays/ba/assets.h"
 #endif
 
-struct player_state_s;
+struct player_state_s; 
 void func_80800000_bsvan(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bastick_getZone(struct player_state_s *);
@@ -44,8 +44,8 @@ void func_808000BC_bsvan(u8 *arg0) {
 }
 
 void bsvan_entrypoint_0(struct player_state_s *arg0) {
-    s32 _bastatemem_entrypoint_1(void *);
-    s32 _bavan_entrypoint_2(struct player_state_s *);
+    void _bastatemem_entrypoint_1(void *arg0);
+    void _bavan_entrypoint_2(void *self);
     void baflag_clear(struct player_state_s *, s32);
     void baroll_resetAngularVelocity(struct player_state_s *);
     void baroll_setIdeal(struct player_state_s *, f32);
@@ -115,34 +115,34 @@ void bsvan_entrypoint_1(struct player_state_s *arg0) {
 }
 
 void bsvan_entrypoint_2(struct player_state_s *arg0) {
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_8009C128(struct player_state_s *, f32[3]);
-    extern s32 D_80801B90_bsvan;
+    extern s32 D_80801B90_bsvan[44];
     f32 sp24[3];
-    s32 sp20;
+    BtIntPtr sp20;
 
     sp20 = func_800B5BE4(8);
     func_8009C128(arg0, sp24);
-    func_800BABB8(sp20, sp24, NULL, 1.0f, &D_80801B90_bsvan);
+    func_800BABB8(sp20, sp24, NULL, 1.0f, D_80801B90_bsvan);
 }
 
 void func_8080032C_bsvan(void *arg0) {
     void func_80092C90(void *, f32[3], s32);
-    s32 func_800B5BE4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA77C(s32, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA77C(BtIntPtr, s16, s16, s16);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC178(f32, f32);
-    extern s32 D_80801C40_bsvan;
+    extern s32 D_80801C40_bsvan[19];
     f32 sp2C[3];
-    s32 sp28;
-    s32 temp_v0;
+    BtIntPtr sp28;
+    BtIntPtr temp_v0;
 
     func_80092C90(arg0, sp2C, 4);
     temp_v0 = func_800B5BE4(8);
     sp28 = temp_v0;
-    func_800BABB8(temp_v0, sp2C, NULL, 1.0f, &D_80801C40_bsvan);
+    func_800BABB8(temp_v0, sp2C, NULL, 1.0f, D_80801C40_bsvan);
     func_800BA77C(sp28, 0, 0, (s16) (s32) func_800DC178(0.0f, 359.0f));
     func_800BA22C(sp28, 1);
 }
@@ -189,7 +189,7 @@ void bsvan_entrypoint_3(struct player_state_s *arg0) {
     _bavan_entrypoint_8(arg0);
 }
 
-void func_808004F8_bsvan(s32 arg0)
+void func_808004F8_bsvan(BtIntPtr arg0)
 {
     _basudie_entrypoint_6();
     bsvan_entrypoint_0(arg0);
@@ -197,7 +197,7 @@ void func_808004F8_bsvan(s32 arg0)
 struct anctrl_s;
 enum asset_e;
 void func_80800520_bsvan(struct player_state_s *arg0) {
-    void _basudie_entrypoint_2(struct player_state_s *, f32, f32, f32);
+    void _basudie_entrypoint_2(BtIntPtr arg0, f32 arg1, f32 arg2, f32 arg3);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -270,11 +270,11 @@ void func_808005E4_bsvan(struct player_state_s *arg0) {
 }
 
 s32 bsvan_entrypoint_4(s32 arg0) {
-    extern s32 D_80801C8C_bsvan[];
+    extern BtIntPtr D_80801C8C_bsvan[];
     return ((s32 *)&D_80801C8C_bsvan)[arg0];
 }
 
-void func_80800760_bsvan(s32 arg0)
+void func_80800760_bsvan(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     bsvan_entrypoint_0(arg0);
@@ -284,13 +284,13 @@ void func_80800788_bsvan(struct player_state_s *arg0)
     bsvan_entrypoint_1(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
-void func_808007B0_bsvan(s32 arg0)
+void func_808007B0_bsvan(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_1();
     bsvan_entrypoint_3(arg0);
 }
 s32 bsvan_entrypoint_5(s32 arg0) {
-    extern s32 D_80801C9C_bsvan[];
+    extern BtIntPtr D_80801C9C_bsvan[];
     return ((s32 *)&D_80801C9C_bsvan)[arg0];
 }
 
@@ -304,7 +304,7 @@ void func_808007EC_bsvan(struct player_state_s *arg0) {
     bsvan_entrypoint_0(arg0);
 }
 
-struct anctrl_s;
+struct anctrl_s;     
 void func_80800824_bsvan(struct player_state_s *arg0) {
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -391,7 +391,7 @@ void func_808008D4_bsvan(struct player_state_s *arg0) {
 }
 
 s32 bsvan_entrypoint_6(s32 arg0) {
-    extern s32 D_80801CAC_bsvan[];
+    extern BtIntPtr D_80801CAC_bsvan[];
     return ((s32 *)&D_80801CAC_bsvan)[arg0];
 }
 
@@ -537,27 +537,27 @@ void func_80800E0C_bsvan(struct player_state_s *arg0) {
 }
 
 s32 bsvan_entrypoint_7(s32 arg0) {
-    extern s32 D_80801CBC_bsvan[];
+    extern BtIntPtr D_80801CBC_bsvan[];
     return ((s32 *)&D_80801CBC_bsvan)[arg0];
-}
+}                  typedef struct { BtIntPtr unk0; } Objvan_func_80800E60_bsvan_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */ typedef struct { u8 pad0[0x15C]; s32 unk15C; u8 pad160[0x28]; u8 * unk188; } Objvan_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800E60_bsvan(u8 *arg0, s32 (*arg1)(u8 *)) {
-    s32 _chfaircoinbox_entrypoint_0(s32, u8 *);
+    s32 _chfaircoinbox_entrypoint_0(Unk80132ED0 *arg0, f32 *arg1);
     void bs_setState(struct player_state_s *, int);
-    s32 func_80099A4C(u8 *);
+    BtIntPtr func_80099A4C(u8 *);
     s32 func_8009E6EC();
-    s32 func_8009E830(u8 *, s32);
+    void func_8009E830(void *arg0, s32 arg1);
     s32 temp_v0;
     u8 *temp_v1;
 
     temp_v0 = func_8009E6EC(arg0);
     switch (temp_v0) {
     case 0x46:
-        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x188)))) + (0))) = func_80099A4C(arg0);
-        temp_v1 = (*(u8 **)((s8 *)(arg0) + (0x188)));
-        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x188)))) + (0x10))) = _chfaircoinbox_entrypoint_0((*(s32 *)((s8 *)(temp_v1) + (0))), temp_v1 + 4);
+        (*(s32 *)((s8 *)((((Objvan_arg0 *)arg0)->unk188)) + (0))) = func_80099A4C(arg0);
+        temp_v1 = (((Objvan_arg0 *)arg0)->unk188);
+        (*(s32 *)((s8 *)((((Objvan_arg0 *)arg0)->unk188)) + (0x10))) = _chfaircoinbox_entrypoint_0((((Objvan_func_80800E60_bsvan_temp_v1 *)temp_v1)->unk0), temp_v1 + 4);
         func_8009E830(arg0, 2);
         bs_setState(arg0, 0x121);
         return;
@@ -647,11 +647,11 @@ void func_80801034_bsvan(struct player_state_s *arg0) {
 }
 
 s32 bsvan_entrypoint_10(s32 arg0) {
-    extern s32 D_80801CCC_bsvan[];
+    extern BtIntPtr D_80801CCC_bsvan[];
     return ((s32 *)&D_80801CCC_bsvan)[arg0];
 }
 
-void func_80801118_bsvan(s32 arg0)
+void func_80801118_bsvan(BtIntPtr arg0)
 {
     _babounce_entrypoint_3();
     bsvan_entrypoint_0(arg0);
@@ -693,11 +693,11 @@ void func_80801198_bsvan(struct player_state_s *arg0) {
 }
 
 s32 bsvan_entrypoint_11(s32 arg0) {
-    extern s32 D_80801CDC_bsvan[];
+    extern BtIntPtr D_80801CDC_bsvan[];
     return ((s32 *)&D_80801CDC_bsvan)[arg0];
 }
 
-void func_80801224_bsvan(s32 arg0)
+void func_80801224_bsvan(BtIntPtr arg0)
 {
     _babounce_entrypoint_3();
     bsvan_entrypoint_0(arg0);
@@ -715,7 +715,7 @@ void func_8080124C_bsvan(struct player_state_s *arg0) {
 
 /* extern */
 
-void func_808012A4_bsvan(s32 arg0) {
+void func_808012A4_bsvan(BtIntPtr arg0) {
     void bs_setState(struct player_state_s *, int);
     int _babounce_entrypoint_2();
     s32 _babounce_entrypoint_9(struct player_state_s *);
@@ -733,11 +733,11 @@ void func_808012A4_bsvan(s32 arg0) {
 }
 
 s32 bsvan_entrypoint_12(s32 arg0) {
-    extern s32 D_80801CEC_bsvan[];
+    extern BtIntPtr D_80801CEC_bsvan[];
     return ((s32 *)&D_80801CEC_bsvan)[arg0];
 }
 
-void func_8080130C_bsvan(s32 arg0)
+void func_8080130C_bsvan(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     bsvan_entrypoint_0(arg0);
@@ -749,7 +749,7 @@ void func_80801334_bsvan(struct player_state_s *arg0)
 }
 void func_8080135C_bsvan(u8 *arg0) {
     void bs_setState(struct player_state_s *, int);
-    s32 _bsrest_entrypoint_13(s32);
+    s32 _bsrest_entrypoint_13(BtIntPtr);
     s32 _bsrest_entrypoint_20();
     s32 sp1C;
 
@@ -762,7 +762,7 @@ void func_8080135C_bsvan(u8 *arg0) {
 }
 
 s32 bsvan_entrypoint_13(s32 arg0) {
-    extern s32 D_80801CFC_bsvan[];
+    extern BtIntPtr D_80801CFC_bsvan[];
     return ((s32 *)&D_80801CFC_bsvan)[arg0];
 }
 
@@ -795,10 +795,10 @@ void func_8080145C_bsvan(struct player_state_s *arg0) {
     void func_80092C90(void *, f32[3], s32);
     void func_8009C128(struct player_state_s *, f32[3]);
     void func_8009D3A8(struct player_state_s *, s32);
-    s32 func_800B5BE4(s32);
-    void func_800BA77C(s32, s16, s16, s16);
+    BtIntPtr func_800B5BE4(s32);
+    void func_800BA77C(BtIntPtr, s16, s16, s16);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC178(f32, f32);
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
@@ -809,7 +809,7 @@ void func_8080145C_bsvan(struct player_state_s *arg0) {
     f32 sp58[3];
     f32 sp4C[3];
     f32 sp40[3];
-    s32 sp3C;
+    BtIntPtr sp3C;
 
     sp6C = 0;
     func_8009D3A8(arg0, 0);
@@ -841,7 +841,7 @@ void func_8080145C_bsvan(struct player_state_s *arg0) {
 }
 
 s32 bsvan_entrypoint_14(s32 arg0) {
-    extern s32 D_80801D70_bsvan[];
+    extern BtIntPtr D_80801D70_bsvan[];
     return ((s32 *)&D_80801D70_bsvan)[arg0];
 }
 
@@ -875,10 +875,10 @@ s32 func_8080164C_bsvan(void *arg0, s32 arg1) {
         yaw_setIdeal(arg0, func_800F1DF4(sp24, *(f32 **)((s8 *)arg0 + 0x188) + 1));
         break;
     }
-    *(s32 *)((s8 *)arg0 + 0x15C) = arg1;
+    *(s32 *)((s8 *)arg0 + 0x15C) = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
-void func_80801770_bsvan(void *arg0) { s32 _chfaircoinbox_entrypoint_1(s32); _chfaircoinbox_entrypoint_1(*(*(s32 **)((s8 *)(arg0) + 0x188))); bsvan_entrypoint_0(arg0); }
+void func_80801770_bsvan(void *arg0) { void _chfaircoinbox_entrypoint_1(Unk80132ED0 *arg0); _chfaircoinbox_entrypoint_1(*(*(s32 **)((s8 *)(arg0) + 0x188))); bsvan_entrypoint_0(arg0); }
 
 void func_808017A0_bsvan(register void *arg0) {
     void func_8009FFD8();
@@ -889,17 +889,17 @@ void func_808017A0_bsvan(register void *arg0) {
     baanim_playForDuration_loopSmooth(arg0, 0xEE, 1.0f);
     func_8009FFD8(arg0, 1, 3, 3, 2);
     yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
-    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    ((Objvan_arg0 *)arg0)->unk15C = 0;
     func_8080164C_bsvan(arg0, 1);
 }
 
 /* extern */
 
 void bsvan_entrypoint_15(s32 arg0) {
-    void _chfaircoin_entrypoint_0(f32 *, f32 *, f32);
+    u8 *_chfaircoin_entrypoint_0(BtIntPtr arg0, BtIntPtr arg1, f32 arg2);
     void func_8009C128(struct player_state_s *, f32[3]);
     void func_800EE7F8(f32 *, f32 *);
-    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
     struct player_state_s *sp34;
     f32 sp28[3];
     f32 sp1C[3];
@@ -914,7 +914,7 @@ void bsvan_entrypoint_15(s32 arg0) {
 
 void func_80801890_bsvan(struct player_state_s *arg0) {
     s32 _batimer_decrement(void *, s32);
-    void _chbaddiesetup_entrypoint_1(s32 *, s32);
+    void _chbaddiesetup_entrypoint_1(s32 *, BtIntPtr);
     int baanim_isAt(struct player_state_s *, f32);
     int baanim_isStopped(struct player_state_s *);
     void bs_setState(struct player_state_s *, int);
@@ -981,6 +981,24 @@ void func_80801890_bsvan(struct player_state_s *arg0) {
 }
 
 s32 bsvan_entrypoint_16(s32 arg0) {
-    extern s32 D_80801D80_bsvan[];
+    extern BtIntPtr D_80801D80_bsvan[];
     return ((s32 *)&D_80801D80_bsvan)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/van.data.s */
+void _basudie_entrypoint_11();
+void _bsvan_entrypoint_9();
+void _bsvan_entrypoint_8();
+void func_80099AA8();
+s32 D_80801B90_bsvan[44] BT_DATA(4, overlays_bs_van, 0x0) = { 1903068, 2949080, 3342296, 2621540, 2621461, 1310822, 2158832, -263192542, 25166233, 41943808, 1445888, 1572864, 196608, 43, 25166233, 2162688, 0, 720816, 3932160, -5242820, 282, 2818457, 28508193, 0, 5898250, 5242940, 80, 3932160, 18481195, 28508620, 2162688, 180, 655360, 3997616, 60, -5242598, 2818508, 31850529, 0, 17694730, 60, 5242880, 3932240, 18481152 };
+s32 D_80801C40_bsvan[19] BT_DATA(4, overlays_bs_van, 0xB0) = { 1903068, 655360, 0, 0, 44, -1310470, -1310700, 22937620, 1376276, 6684704, -252645296, 2228275, 6684876, 20119574, 268435480, 6, 0, 2818201, 11730944 };
+BtIntPtr D_80801C8C_bsvan [4] BT_DATA(4, overlays_bs_van, 0xFC) = { (BtIntPtr)func_808004F8_bsvan, (BtIntPtr)func_80800520_bsvan, (BtIntPtr)func_808005E4_bsvan, (BtIntPtr)_basudie_entrypoint_11 };
+BtIntPtr D_80801C9C_bsvan [4] BT_DATA(4, overlays_bs_van, 0x10C) = { (BtIntPtr)func_80800760_bsvan, (BtIntPtr)func_80800788_bsvan, (BtIntPtr)func_808007B0_bsvan, (BtIntPtr)_bsvan_entrypoint_9 };
+BtIntPtr D_80801CAC_bsvan [4] BT_DATA(4, overlays_bs_van, 0x11C) = { (BtIntPtr)func_808007EC_bsvan, (BtIntPtr)func_80800824_bsvan, (BtIntPtr)func_808008D4_bsvan, (BtIntPtr)_bsvan_entrypoint_8 };
+BtIntPtr D_80801CBC_bsvan [4] BT_DATA(4, overlays_bs_van, 0x12C) = { (BtIntPtr)func_80800E0C_bsvan, (BtIntPtr)func_80800A5C_bsvan, (BtIntPtr)func_80800BDC_bsvan, (BtIntPtr)_bsvan_entrypoint_8 };
+BtIntPtr D_80801CCC_bsvan [4] BT_DATA(4, overlays_bs_van, 0x13C) = { (BtIntPtr)func_80800F50_bsvan, (BtIntPtr)func_80800F70_bsvan, (BtIntPtr)func_80801034_bsvan, (BtIntPtr)_bsvan_entrypoint_8 };
+BtIntPtr D_80801CDC_bsvan [4] BT_DATA(4, overlays_bs_van, 0x14C) = { (BtIntPtr)func_80801118_bsvan, (BtIntPtr)func_80801140_bsvan, (BtIntPtr)func_80801198_bsvan, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80801CEC_bsvan [4] BT_DATA(4, overlays_bs_van, 0x15C) = { (BtIntPtr)func_80801224_bsvan, (BtIntPtr)func_8080124C_bsvan, (BtIntPtr)func_808012A4_bsvan, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80801CFC_bsvan [4] BT_DATA(4, overlays_bs_van, 0x16C) = { (BtIntPtr)func_8080130C_bsvan, (BtIntPtr)func_80801334_bsvan, (BtIntPtr)func_8080135C_bsvan, (BtIntPtr)_bsvan_entrypoint_8 };
+s32 D_80801D0C_bsvan [25] BT_DATA(4, overlays_bs_van, 0x17C) = { 1903068, 1376276, 6684694, 268435466, 0, 0, 0, 2228249, 3342515, 13369376, -926351536, 1572864, 131072, 43, 13369574, 18481186, 3342412, 20119884, 2158832, -263192552, 196614, 0, 2818329, 20119834, 0 };
+BtIntPtr D_80801D70_bsvan [4] BT_DATA(4, overlays_bs_van, 0x1E0) = { (BtIntPtr)func_808013BC_bsvan, (BtIntPtr)func_808013E4_bsvan, (BtIntPtr)func_8080145C_bsvan, (BtIntPtr)_bsvan_entrypoint_8 };
+BtIntPtr D_80801D80_bsvan [4] BT_DATA(4, overlays_bs_van, 0x1F0) = { (BtIntPtr)func_80801770_bsvan, (BtIntPtr)func_808017A0_bsvan, (BtIntPtr)func_80801890_bsvan, (BtIntPtr)_bsvan_entrypoint_8 };

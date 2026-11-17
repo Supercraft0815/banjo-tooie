@@ -11,10 +11,10 @@ void func_8080000C_chattract(s32 arg0)
 {
 }
 void func_80800014_chattract(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_1(Actor *, s32);
-    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
+    void _subaddiefade_entrypoint_2(void *arg0);
     void _subaddiefade_entrypoint_3(Actor *);
-    s32 _subaddiefade_entrypoint_5();
+    void _subaddiefade_entrypoint_5(void *arg0);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     void func_800FFAB0(Actor *);
@@ -57,7 +57,7 @@ void func_80800014_chattract(Actor *arg0) {
             func_80102424(arg0, arg0->unk70_10);
         }
     } else if (!((struct AttractState *)arg0)->state && func_800D9078(&arg0->unk58)) {
-        entry = (struct AttractEntry *)((s32)arg0->unk74_7 * (s32)sizeof(struct AttractEntry) + (s32)(&D_8080046C_chattract[0][0] - 1));
+        entry = (struct AttractEntry *)((s32)arg0->unk74_7 * (s32)sizeof(struct AttractEntry) + (BtIntPtr)(&D_8080046C_chattract[0][0] - 1));
         if (entry->unk8 != 0.0f) {
             if (entry->pad3 != 0) {
                 _subaddiefade_entrypoint_5(arg0);
@@ -74,13 +74,13 @@ void func_80800014_chattract(Actor *arg0) {
     }
 }
 
-void func_80800204_chattract(Actor *arg0, s32 arg1) {
+void func_80800204_chattract(Actor *arg0, BtIntPtr arg1) {
     void func_800DF410(s32);
     void func_800DF47C(s32 (*)(Actor *), Actor *);
     void func_800DF4CC(f32 *);
-    void func_800DF944(u32, f32 *, f32, f32, u8, u8, s32);
+    void * func_800DF944(void *a0, f32 *coords, f32 a2, f32 a3, f32 *a4, s32 a5, void *a6);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     s32 func_801015D0(Actor *);
     f32 sp3C[3];
     if (arg0->rotation[1]) {
@@ -93,7 +93,7 @@ void func_80800204_chattract(Actor *arg0, s32 arg1) {
 }
 
 s32 func_808002AC_chattract(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiefade_entrypoint_2();
+    void _subaddiefade_entrypoint_2(void *arg0);
     void func_80102424(Actor *, s32);
     s32 func_80103140(Actor *, u32, u16);
     struct AttractFlags {
@@ -137,7 +137,7 @@ s32 func_808002AC_chattract(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void chattract_entrypoint_1(s32 arg0) {
-    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    s32 _chbaddiesetup_entrypoint_1(s32 *, BtIntPtr);
 #ifdef BT_NATIVE
     void chattract_entrypoint_2(s32 arg0);
 #else

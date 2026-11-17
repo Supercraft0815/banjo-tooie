@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EDCA30_native.inc"
 #else
 #include "common.h"
@@ -316,7 +316,7 @@ u8 *func_80103964(u8 *arg0) {
     void *func_800D674C(s32);
     s32 temp_a1;
 
-    temp_a1 = (*(u16 *)((s8 *)(arg0) + (0x14)));
+    temp_a1 = (((Unk80132ED0 *)arg0)->unk14);
     if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
         return 0;
     }
@@ -368,16 +368,16 @@ u8 *func_801039E4(Unk80132ED0 *arg0) {
     return sp24;
 }
 
-void func_80103AA0(u8 *arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(u8 *) func_80103AA0(u8 *arg0)
 {
-    func_801039A4(arg0);
+    BT_NATIVE_ONLY(return) func_801039A4(arg0);
 }
 
 /* extern */
 
 s32 func_80103AC0(Actor *arg0) {
     s32 func_800D6C34(u16);
-    return func_800D6C34((*(u16 *)((s8 *)(arg0->unk0) + (0x14))));
+    return func_800D6C34((arg0->unk0->unk14));
 }
 
 /* extern */
@@ -386,7 +386,7 @@ s32 func_80103AE4(u8 *arg0) {
     void *func_800D674C(s32);
     s32 temp_a1;
 
-    temp_a1 = (*(u16 *)((s8 *)(arg0) + (0x14)));
+    temp_a1 = (((Unk80132ED0 *)arg0)->unk14);
     if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
         return 0;
     }
@@ -482,14 +482,14 @@ s32 func_80103CDC(u8 *arg0, u8 *arg1) {
     return func_80103B24(arg0, 0, arg1);
 }
 
-void func_80103D00(s32 arg0,s32 arg1)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80103D00(s32 arg0,s32 arg1)
 {
-    func_80103B24(arg0,0x1,arg1);
+    BT_NATIVE_ONLY(return) func_80103B24(arg0,0x1,arg1);
 }
 
 s32 func_80103D24(Actor *arg0) {
     s32 func_80103BF0(Actor*, u32, u32);
-    func_80103BF0(arg0, 1, 0);
+    BT_NATIVE_ONLY(return) func_80103BF0(arg0, 1, 0);
 }
 
 /* extern */

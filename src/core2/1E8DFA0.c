@@ -2,14 +2,14 @@
 
 /* extern */
 
-int func_800B46B0(void *arg0, s32 arg1, f32 arg2[3], f32 arg3[3]) {
+int func_800B46B0(void *arg0, BtIntPtr arg1, f32 arg2[3], f32 arg3[3]) {
     struct Bounds {
         u16 flags;
         u8 pad2[0xAA];
         s16 lower;
         s16 upper;
     };
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     f32 sp2C[3];
     s32 var_a3;
     f32 temp_f0;
@@ -42,7 +42,7 @@ int func_800B46B0(void *arg0, s32 arg1, f32 arg2[3], f32 arg3[3]) {
     }
 }
 
-s32 func_800B4790(s32 arg0) {
+s32 func_800B4790(BtIntPtr arg0) {
     typedef struct {
         s16 acceleration[3];
         s16 position[3];
@@ -185,7 +185,7 @@ s32 func_800B4790(s32 arg0) {
                     p->touched = 0;
                     if ((s32)p->bounces > 0) {
                         func_800EFA4C(probe, p->position[0], p->position[1] + 50.0f, p->position[2]);
-                        hit = func_800B46B0((UpdateEmitter *)arg0, (s32)p, probe, position);
+                        hit = func_800B46B0((UpdateEmitter *)arg0, (BtIntPtr)p, probe, position);
                         func_800EE940(p->position, position);
                         if (hit) {
                             if (((UpdateEmitter *)arg0)->sound) {
@@ -257,10 +257,10 @@ s32 func_800B4790(s32 arg0) {
             break;
         }
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 void func_800B5028(void) {
-    s32 heap_alloc(s32);
+    BtIntPtr heap_alloc(s32);
     extern s32 D_80127F10;
     extern s16 D_80127F18;
     D_80127F10 = heap_alloc(0);
@@ -284,15 +284,15 @@ void func_800B5054(void) {
 }
 
 void func_800B50F0(void) {
-    s32 func_800B4790(s32);
+    s32 func_800B4790(BtIntPtr);
     void func_800B5450(void *);
     f32 func_800D8FF8(void);
     extern s32 D_80127F10;
     extern f32 D_80127F14;
     extern s16 D_80127F18;
-    s32 emitter;
+    BtIntPtr emitter;
     s32 i;
-    s32 offset;
+    BtIntPtr offset;
     u8 *entry;
 
     if (D_80127F14 < func_800D8FF8()) {
@@ -326,8 +326,8 @@ void func_800B50F0(void) {
     }
 }
 
-void func_800B525C(s32 arg0) {
-    void func_800BC358(void *, s32, s32);
+void func_800B525C(BtIntPtr arg0) {
+    void func_800BC358(void *, BtIntPtr, s32);
     extern s32 D_80127F10;
     extern s16 D_80127F18;
     s32 i;
@@ -336,8 +336,8 @@ void func_800B525C(s32 arg0) {
     }
 }
 
-void func_800B52EC(s32 arg0) {
-    void func_800BC358(void *, s32, s32);
+void func_800B52EC(BtIntPtr arg0) {
+    void func_800BC358(void *, BtIntPtr, s32);
     extern s32 D_80127F10;
     extern s16 D_80127F18;
     s32 i;
@@ -351,12 +351,12 @@ void func_800B537C(s32 arg0)
     func_800B525C(arg0);
     func_800B52EC(arg0);
 }
-s32 func_800B53A4(s32 arg0) {
-    s32 func_800BA2E8(s32);
-    void *heap_realloc(void *, s32);
+BtIntPtr func_800B53A4(s32 arg0) {
+    s16 *func_800BA2E8(s32 arg0);
+    void *heap_realloc(void *, BtIntPtr);
     extern s32 D_80127F10;
     extern s16 D_80127F18;
-    D_80127F10 = (s32)heap_realloc((void *)D_80127F10, ++D_80127F18 * 4);
+    D_80127F10 = (BtIntPtr)heap_realloc((void *)D_80127F10, ++D_80127F18 * 4);
     (*(s32 *)((s8 *)((D_80127F10 + (D_80127F18 * 4))) + (-4))) = func_800BA2E8(arg0);
     (*(s8 *)((s8 *)((*(void **)((s8 *)((D_80127F10 + (D_80127F18 * 4))) + (-4)))) + (9))) = 1;
     return ((s32 *)D_80127F10 + D_80127F18)[-1];
@@ -364,7 +364,7 @@ s32 func_800B53A4(s32 arg0) {
 
 void func_800B5450(void *arg0) {
     s32 func_800BA2C4(void *);
-    void *heap_realloc(void *, s32);
+    void *heap_realloc(void *, BtIntPtr);
     extern s32 D_80127F10;
     extern s16 D_80127F18;
     s32 i = 0;
@@ -375,7 +375,7 @@ void func_800B5450(void *arg0) {
     func_800BA2C4(arg0);
     (*(void ***)&D_80127F10)[i] = (*(void ***)&D_80127F10)[D_80127F18 - 1];
     D_80127F18--;
-    D_80127F10 = (s32)heap_realloc((void *)D_80127F10, D_80127F18 * 4);
+    D_80127F10 = (BtIntPtr)heap_realloc((void *)D_80127F10, D_80127F18 * 4);
 }
 
 void func_800B5534(s8 *arg0)
@@ -389,11 +389,11 @@ void func_800B553C(s8 *arg0)
 }
 
 void *func_800B5548(void *arg0) {
-    s32 defrag(s32);
+    BtIntPtr defrag(BtIntPtr);
     extern s32 D_80127F10;
     extern s16 D_80127F18;
     int i;
-    s32 old;
+    BtIntPtr old;
     struct RelocatedEmitter {
         u8 pad[0x8C];
         void *start;
@@ -402,15 +402,15 @@ void *func_800B5548(void *arg0) {
     };
 
     if (arg0) {
-        old = (s32)arg0;
+        old = (BtIntPtr)arg0;
         i = 0;
         while ((*(void ***)&D_80127F10)[i] != arg0 && i < D_80127F18) {
             i++;
         }
-        arg0 = (void *)defrag((s32)arg0);
-        ((struct RelocatedEmitter *)arg0)->start = (void *)((s32)arg0 + (u32)((s32)((struct RelocatedEmitter *)arg0)->start - old));
-        ((struct RelocatedEmitter *)arg0)->end = (void *)((s32)arg0 + (u32)((s32)((struct RelocatedEmitter *)arg0)->end - old));
-        ((struct RelocatedEmitter *)arg0)->capacity = (void *)((s32)arg0 + (u32)((s32)((struct RelocatedEmitter *)arg0)->capacity - old));
+        arg0 = (void *)defrag((BtIntPtr)arg0);
+        ((struct RelocatedEmitter *)arg0)->start = (void *)((BtIntPtr)arg0 + (u32)((BtIntPtr)((struct RelocatedEmitter *)arg0)->start - old));
+        ((struct RelocatedEmitter *)arg0)->end = (void *)((BtIntPtr)arg0 + (u32)((BtIntPtr)((struct RelocatedEmitter *)arg0)->end - old));
+        ((struct RelocatedEmitter *)arg0)->capacity = (void *)((BtIntPtr)arg0 + (u32)((BtIntPtr)((struct RelocatedEmitter *)arg0)->capacity - old));
         if (i < D_80127F18) {
             (*(void ***)&D_80127F10)[i] = arg0;
         }
@@ -419,7 +419,7 @@ void *func_800B5548(void *arg0) {
 }
 
 void func_800B562C(void) {
-    s32 defrag(s32);
+    BtIntPtr defrag(BtIntPtr);
     extern s32 D_80127F10;
     D_80127F10 = defrag(D_80127F10);
 }
@@ -434,3 +434,12 @@ void func_800B5654(s32 arg0, s32 arg1) {
 }
 
 #include "1E8DFA0_reflection_height.inc"
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80127F10 BT_DATA(4, bss_core2bss1_0_2, 0x770);
+f32 D_80127F14 BT_DATA(4, bss_core2bss1_0_2, 0x774);
+s16 D_80127F18 BT_DATA(4, bss_core2bss1_0_2, 0x778);
+s8 D_80127F1C BT_DATA(4, bss_core2bss1_0_2, 0x77C);
+#endif

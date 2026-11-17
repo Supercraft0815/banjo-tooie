@@ -33,7 +33,7 @@ s32 func_80800038_glgamestore(s32 arg0) {
     return func_80800030_glgamestore(2) + arg0 * 0x1C0;
 }
 
-s32 func_8080006C_glgamestore(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_8080006C_glgamestore(s32 arg0, BtIntPtr arg1, s32 arg2) {
     s32 _gleeprom_entrypoint_2();
     s32 func_80800000_glgamestore();
     s32 var_v1;
@@ -56,16 +56,16 @@ s32 func_8080006C_glgamestore(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void glgamestore_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 func_8080006C_glgamestore(s32, s32, s32);
-    func_8080006C_glgamestore(func_80800038_glgamestore(arg0), arg1, 0x1C0);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glgamestore_entrypoint_0(s32 arg0, BtIntPtr arg1) {
+    s32 func_8080006C_glgamestore(s32, BtIntPtr, s32);
+    BT_NATIVE_ONLY(return) func_8080006C_glgamestore(func_80800038_glgamestore(arg0), arg1, 0x1C0);
 }
 
 /* extern */
 
-s32 glgamestore_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 _glglobaldata_entrypoint_1(s32);
-    s32 func_8080006C_glgamestore(s32, s32, s32);
+s32 glgamestore_entrypoint_1(s32 arg0, BtIntPtr arg1) {
+    s32 _glglobaldata_entrypoint_1(u8 *arg0);
+    s32 func_8080006C_glgamestore(s32, BtIntPtr, s32);
     s32 var_v1;
     s32 sp1C;
 
@@ -80,7 +80,7 @@ s32 glgamestore_entrypoint_1(s32 arg0, s32 arg1) {
 }
 
 #ifdef BT_NATIVE
-s32 func_8080013C_glgamestore(s32 bt_a0, s32 bt_a1, s32 bt_a2) {
+s32 func_8080013C_glgamestore(s32 bt_a0, BtIntPtr bt_a1, s32 bt_a2) {
 #else
 s32 func_8080013C_glgamestore() {
 #endif
@@ -99,16 +99,16 @@ s32 func_8080013C_glgamestore() {
 
 /* extern */
 
-void glgamestore_entrypoint_2(s32 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glgamestore_entrypoint_2(s32 arg0, s32 arg1) {
     s32 func_8080013C_glgamestore();
-    func_8080013C_glgamestore(func_80800038_glgamestore(arg0), arg1, 0x1C0);
+    BT_NATIVE_ONLY(return) func_8080013C_glgamestore(func_80800038_glgamestore(arg0), arg1, 0x1C0);
 }
 
 /* extern */
 
-void glgamestore_entrypoint_3(s32 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glgamestore_entrypoint_3(s32 arg0, BtIntPtr arg1) {
     s32 func_8080013C_glgamestore();
-    func_8080013C_glgamestore(func_80800030_glgamestore(arg0), arg1, 0x80);
+    BT_NATIVE_ONLY(return) func_8080013C_glgamestore(func_80800030_glgamestore(arg0), arg1, 0x80);
 }
 
 s32 func_808001E0_glgamestore(s32 arg0) {
@@ -125,11 +125,11 @@ s32 func_808001E0_glgamestore(s32 arg0) {
     return var_v1;
 }
 
-void glgamestore_entrypoint_4()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glgamestore_entrypoint_4(BT_NATIVE_ONLY(s32 bt_a0))
 {
     s32 func_80800038_glgamestore();
 #ifdef BT_NATIVE
-    func_808001E0_glgamestore(((s32 (*)())func_80800038_glgamestore)());
+    BT_NATIVE_ONLY(return) func_808001E0_glgamestore(((s32 (*)(s32))func_80800038_glgamestore)(bt_a0));
 #else
     func_808001E0_glgamestore(func_80800038_glgamestore());
 #endif
@@ -137,12 +137,18 @@ void glgamestore_entrypoint_4()
 
 /* extern */
 
-void glgamestore_entrypoint_5(void) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glgamestore_entrypoint_5(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 func_80800030_glgamestore();
     s32 func_808001E0_glgamestore(s32);
 #ifdef BT_NATIVE
-    func_808001E0_glgamestore(((s32 (*)())func_80800030_glgamestore)());
+    BT_NATIVE_ONLY(return) func_808001E0_glgamestore(((s32 (*)(s32))func_80800030_glgamestore)(bt_a0));
 #else
     func_808001E0_glgamestore(func_80800030_glgamestore());
 #endif
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 B_80800270_glgamestore BT_DATA(16, bss_gl_gamestore, 0x0);
+#endif

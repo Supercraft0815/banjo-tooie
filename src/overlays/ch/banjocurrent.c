@@ -1,17 +1,17 @@
 #include "common.h"
 
 void func_800907C0(f32 *);
-u32 func_800F54E4(void);
+BtUIntPtr func_800F54E4(void);
 
 s32 func_80800000_chbanjocurrent(void)
 {
-    s32 func_800F4C24(s32);
+    s32 func_800F4C24(BtIntPtr);
     return func_800F4C24(func_800F54E4());
 }
 
 OSThread *chbanjocurrent_entrypoint_0(void)
 {
-    extern u8 D_808007D0_chbanjocurrent[];
+    extern ActorData D_808007D0_chbanjocurrent[];
 
     return (OSThread *) D_808007D0_chbanjocurrent;
 }
@@ -26,15 +26,15 @@ void func_80800034_chbanjocurrent(s32 *arg0) {
 /* extern */
 
 void func_80800050_chbanjocurrent(u16 *arg0, f32 *arg1, f32 arg2[][2], s32 *arg3) {
-    s32 func_800B2840(s32);
-    s32 func_800BEB28(s32);
+    BtIntPtr func_800B2840(BtIntPtr);
+    void *func_800BEB28(s32 i);
     void func_800EE88C(f32 *, s16 *);
     f32 var_f0;
     f32 var_f2;
     s32 *var_s5;
-    s32 temp_s6;
-    s32 temp_v0;
-    s32 var_a0;
+    BtIntPtr temp_s6;
+    BtIntPtr temp_v0;
+    BtIntPtr var_a0;
     s32 var_s0;
     f32 *var_s4;
     u16 *var_s3;
@@ -68,9 +68,9 @@ void func_80800050_chbanjocurrent(u16 *arg0, f32 *arg1, f32 arg2[][2], s32 *arg3
 
 void func_808001D0_chbanjocurrent(void *arg0) {
     extern s32 func_8008FF94(void);
-    extern f32 func_800F5E7C(s32);
-    extern f32 func_800F5F7C(s32);
-    extern void *func_800F5E50(s32);
+    extern f32 func_800F5E7C(BtIntPtr);
+    extern f32 func_800F5F7C(BtIntPtr);
+    extern void *func_800F5E50(BtIntPtr);
     void func_80800050_chbanjocurrent(u16 *arg0, f32 *arg1, f32 arg2[][2], s32 *arg3);
     extern void func_800EFB24(void *, void *, void *);
     extern void func_800EF2A0(f32 *);
@@ -79,12 +79,12 @@ void func_808001D0_chbanjocurrent(void *arg0) {
     extern void func_800EE97C(f32 *, f32 *, f32 *);
     extern f32 func_80013A7C(f32);
     extern void func_800EF334(f32 *, f32);
-    extern void func_80090794(f32 *);
+    extern void func_80090794(BtIntPtr arg0);
     extern f32 func_800D8FF8(void);
     extern void func_800EF174(f32 *, f32 *, f32);
     s32 active;
     s32 i;
-    s32 player;
+    BtIntPtr player;
     f32 strength;
     void *node;
     s32 type;
@@ -146,7 +146,7 @@ void func_808001D0_chbanjocurrent(void *arg0) {
 
 OSThread *chbanjocurrent_entrypoint_1(void)
 {
-    extern u8 D_80800818_chbanjocurrent[];
+    extern ActorData D_80800818_chbanjocurrent[];
 
     return (OSThread *) D_80800818_chbanjocurrent;
 }
@@ -181,20 +181,20 @@ f32 func_80800514_chbanjocurrent(f32 *arg0, f32 *arg1, f32 arg2) {
 
 void func_808005F4_chbanjocurrent(Actor *arg0) {
     s32 func_8008FF94(void);
-    void func_80090794(f32 *);
+    void func_80090794(BtIntPtr arg0);
     void func_800907C0(f32 *);
     f32 func_800D8FF8(void);
-    u32 func_800F54E4(void);
-    void *func_800F5E50(s32);
-    f32 func_800F5E7C(s32);
-    f32 func_800F5F7C(s32);
+    BtUIntPtr func_800F54E4(void);
+    void *func_800F5E50(BtIntPtr);
+    f32 func_800F5E7C(BtIntPtr);
+    f32 func_800F5F7C(BtIntPtr);
     struct CurrentActor {
         u8 header[0x48];
         f32 type;
     };
     s32 state;
     s32 current;
-    s32 player;
+    BtIntPtr player;
     f32 strength;
     s32 *node;
     f32 distance;
@@ -231,3 +231,9 @@ void func_808005F4_chbanjocurrent(Actor *arg0) {
         }
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/banjocurrent.data.s */
+void func_80102EC0();
+void func_8010A730();
+void func_80107C2C();
+ActorData D_808007D0_chbanjocurrent [1] BT_DATA(4, overlays_ch_banjocurrent, 0x0) = { { 344, 465, 0, 2, 0, (void (*)(struct Actor *))func_808001D0_chbanjocurrent, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9730, 0, 0 } };
+ActorData D_80800818_chbanjocurrent [1] BT_DATA(4, overlays_ch_banjocurrent, 0x48) = { { 344, 470, 0, 1, 0, (void (*)(struct Actor *))func_808005F4_chbanjocurrent, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9730, 0, 0 } };

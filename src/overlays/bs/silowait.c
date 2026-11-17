@@ -21,7 +21,7 @@ void func_8080003C_bssilowait(struct player_state_s *arg0) {
     void baphysics_set_gravity(struct player_state_s *, f32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void baphysics_set_terminal_velocity(struct player_state_s *, f32);
-    s32 func_80091E48(s32, s32);
+    s32 func_80091E48(BtIntPtr, s32);
     void func_80092880(struct player_state_s *, s32);
     void func_8009BA9C(struct player_state_s *, f32 *);
     void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
@@ -37,11 +37,11 @@ void func_8080003C_bssilowait(struct player_state_s *arg0) {
 
 /* extern */
 
-void func_808000D0_bssilowait(s32 arg0) {
-    s32 bs_setState(s32, s32);
-    s32 func_80099AA8(s32);
+void func_808000D0_bssilowait(BtIntPtr arg0) {
+    void bs_setState(void *self, s32 nextState);
+    void func_80099AA8(void *arg0);
     s32 func_8009E6EC();
-    s32 func_8009E830(s32, s32);
+    void func_8009E830(void *arg0, s32 arg1);
     if (func_8009E6EC() == 0x90) {
         bs_setState(arg0, 1);
         func_8009E830(arg0, 2);
@@ -54,6 +54,8 @@ void func_80800120_bssilowait(s32 arg0)
 {
 }
 s32 bssilowait_entrypoint_0(s32 arg0) {
-    extern s32 D_80800140_bssilowait[];
+    extern BtIntPtr D_80800140_bssilowait[];
     return ((s32 *)&D_80800140_bssilowait)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/silowait.data.s */
+BtIntPtr D_80800140_bssilowait [4] BT_DATA(4, overlays_bs_silowait, 0x0) = { (BtIntPtr)func_80800000_bssilowait, (BtIntPtr)func_8080003C_bssilowait, (BtIntPtr)func_80800120_bssilowait, (BtIntPtr)func_808000D0_bssilowait };

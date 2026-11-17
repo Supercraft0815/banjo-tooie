@@ -1,5 +1,5 @@
 #include "common.h"
-void func_80102424(Actor *, s32);
+void func_80102424(Actor *, s32);      
 
 OSThread *chdinofamilysick_entrypoint_0(void)
 {
@@ -10,13 +10,13 @@ OSThread *chdinofamilysick_entrypoint_0(void)
 
 void func_8080000C_chdinofamilysick(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddietaxi_entrypoint_1(Actor *, s32);
     s32 _subaddietaxi_entrypoint_11(Actor *, s32);
     s32 _subaddietaxi_entrypoint_5(Actor *, s32);
     void _subaddietaxi_entrypoint_9(Actor *, s32);
-    s32 _chdinofamilyfx_entrypoint_0(u8 *);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    void _chdinofamilyfx_entrypoint_0(Actor *arg0);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     void func_800DA544(GameFlag);
 
     switch (arg0->unk70_10) {
@@ -84,13 +84,13 @@ void func_80800244_chdinofamilysick(Actor *arg0, s32 arg1) {
             func_80102424(arg0, 5);
             break;
     }
-}
+}                typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objfamilysick_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_8080030C_chdinofamilysick(volatile unsigned int arg0, void *arg1, s32 arg2, s32 arg3)
 {
-  s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+  s32 _chbaddiesetup_entrypoint_6(s32 *, BtIntPtr, BtIntPtr, s32, s32, s32, BtIntPtr);
   extern s32 _subaddietaxi_entrypoint_16;
-  _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, *((s32 *) (((s8 *) arg1) + 0)), *((s32 *) (((s8 *) arg1) + 4)), *((s32 *) (((s8 *) arg1) + 8)), arg2, arg3);
+  _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, ((Objfamilysick_arg1 *)arg1)->unk0, ((Objfamilysick_arg1 *)arg1)->unk4, ((Objfamilysick_arg1 *)arg1)->unk8, arg2, arg3);
 }
 
 /* extern */
@@ -105,10 +105,10 @@ s32 func_80800368_chdinofamilysick(s32 arg0, s32 arg1, f32 arg2[3]) {
 }
 
 s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     s32 _glcutDll_entrypoint_20();
-    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     s32 func_800CB3E0(s32);
     s32 func_800DA298(s32);
@@ -233,16 +233,16 @@ void func_808005F8_chdinofamilysick(Actor *arg0) {
 }
 
 void func_80800768_chdinofamilysick(Actor *arg0) {
-    s32 _chdinofamilyfx_entrypoint_0(u8 *);
+    void _chdinofamilyfx_entrypoint_0(Actor *arg0);
     void _glcutDll_entrypoint_24(u32, u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     void func_800C8E84(s32, u32 *);
     void func_800DA524(s32);
     int func_800F3214(void *, void *, void *, f32);
     void func_800FFA88(Unk80132ED0 *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     f32 func_80101F24(Actor *);
     s32 func_80105998(Actor *, f32);
     s32 func_80105A5C(Actor *);
@@ -329,9 +329,9 @@ void func_80800A1C_chdinofamilysick(Actor *arg0) {
 }
 
 s32 func_80800AB0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     s32 _glcutDll_entrypoint_19(u32);
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32 *);

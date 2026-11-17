@@ -2,13 +2,13 @@
 
 OSThread *chflowerbaddie_entrypoint_0(void)
 {
-    extern u8 D_80800C14_chflowerbaddie[];
+    extern ActorData D_80800C14_chflowerbaddie[];
 
     return (OSThread *) D_80800C14_chflowerbaddie;
 }
 
 void func_8080000C_chflowerbaddie(Actor *arg0) {
-    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void* func_80100094(Actor*, u32);
     _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 0U), arg0->position);
     (*(f32 *)((s8 *)(arg0) + (0x24))) = 600.0f;
@@ -115,11 +115,11 @@ void func_8080005C_chflowerbaddie(Actor *arg0) {
 }
 
 s32 func_80800380_chflowerbaddie(Actor *arg0, s32 arg1, s32 *arg2) {
-    s32 _chexploder_entrypoint_4(void *, s32, s32);
+    void _chexploder_entrypoint_4(Actor *arg0, s16 *arg1, s32 arg2);
     void _chexploder_entrypoint_6(Actor *, f32, f32);
-    s32 _chexploder_entrypoint_7(Actor *, f32, f32);
+    void _chexploder_entrypoint_7(Actor *arg0, f32 arg1, f32 arg2);
     void _chexploder_entrypoint_8(Actor *, f32, f32);
-    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2);
     void _chexploder_entrypoint_10(Actor *, s16 *);
     s32 _subaddieDll_entrypoint_3(Actor *);
     void _subaddieaudioloop_entrypoint_2(Actor *);
@@ -230,29 +230,29 @@ void func_80800610_chflowerbaddie(Actor *arg0, void *arg1) {
 }
 
 void func_808006A0_chflowerbaddie(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_80103DFC(Actor *, f32 *);
-    extern s32 D_80800CCC_chflowerbaddie;
-    extern s32 D_80800CF0_chflowerbaddie;
-    extern s32 D_80800D04_chflowerbaddie;
-    extern s32 D_80800D18_chflowerbaddie;
+    extern s32 D_80800CCC_chflowerbaddie[9];
+    extern s32 D_80800CF0_chflowerbaddie[5];
+    extern s32 D_80800D04_chflowerbaddie[5];
+    extern s32 D_80800D18_chflowerbaddie[4];
     f32 sp34[3];
-    s32 emitter;
+    BtIntPtr emitter;
 
     func_80103DFC(arg0, sp34);
     emitter = func_800B53A4(1);
-    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CCC_chflowerbaddie);
-    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800D18_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, D_80800CCC_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, D_80800D18_chflowerbaddie);
     func_800BA22C(emitter, 1);
     emitter = func_800B53A4(2);
-    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CCC_chflowerbaddie);
-    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CF0_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, D_80800CCC_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, D_80800CF0_chflowerbaddie);
     func_800BA22C(emitter, 2);
     emitter = func_800B53A4(4);
-    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800CCC_chflowerbaddie);
-    func_800BABB8(emitter, sp34, sp34, arg0->scale, &D_80800D04_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, D_80800CCC_chflowerbaddie);
+    func_800BABB8(emitter, sp34, sp34, arg0->scale, D_80800D04_chflowerbaddie);
     func_800BA22C(emitter, 4);
     arg0->unk64_20 = 0;
 }
@@ -331,14 +331,14 @@ s32 func_808008D4_chflowerbaddie(Actor *arg0) {
 void func_80800980_chflowerbaddie(Actor *arg0, f32 *arg1) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
     void func_800C3BDC(u8);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     s32 func_80101E4C(Actor *, f32 *);
-    extern s32 D_80800D28_chflowerbaddie;
+    extern s32 D_80800D28_chflowerbaddie[6];
 
     if (func_80101E4C(arg0, arg1) != 0) {
         if (arg0->unk5F == 0) {
             arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
-            func_800C4350(arg0->unk5F, arg0->position, &D_80800D28_chflowerbaddie);
+            func_800C4350(arg0->unk5F, arg0->position, D_80800D28_chflowerbaddie);
         }
         func_800C3BDC(arg0->unk5F);
     }
@@ -348,7 +348,7 @@ s32 func_808009F0_chflowerbaddie(Actor *arg0, void *arg1, f32 arg2) {
     void _subaddieaudioloop_entrypoint_2(Actor *);
     f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
-    void _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
+    s32 _subaddierouteDll_entrypoint_7(void *arg0, void *arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5);
     f32 func_800D8FF8(void);
     void func_80102424(Actor *, s32);
     void func_80102B2C(Actor *, f32);
@@ -384,3 +384,24 @@ s32 func_808009F0_chflowerbaddie(Actor *arg0, void *arg1, f32 arg2) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/flowerbaddie.data.s */
+extern u8 D_80800B70_chflowerbaddie[];
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+extern u8 D_80800BB8_chflowerbaddie[];
+u8 D_80800B70_chflowerbaddie[72] BT_DATA(4, overlays_ch_flowerbaddie, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xF3, 0x33, 0x33, 0x03, 0x9D, 0x00, 0x01, 0x3F, 0xF3, 0x33, 0x33, 0x03, 0x9E, 0x00, 0x02, 0x3F, 0x54, 0x7A, 0xE1, 0x03, 0x9F, 0x03, 0x01, 0x3F, 0x40, 0x00, 0x00, 0x03, 0xA0, 0x00, 0x02, 0x3F, 0x75, 0xC2, 0x8F, 0x03, 0xA1, 0x00, 0x02, 0x3F, 0xF3, 0x33, 0x33, 0x03, 0x9D, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xF3, 0x33, 0x33, 0x03, 0x9D, 0x00, 0x01 };
+u8 D_80800BB8_chflowerbaddie[20] BT_DATA(4, overlays_ch_flowerbaddie, 0x48) = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00 };
+u8 D_80800BCC_chflowerbaddie [72] BT_DATA(4, overlays_ch_flowerbaddie, 0x5C) = { 0, 0, 0, 0x12, 0x3F, 0xC0, 0, 0, 0, 0xFD, 0, 0, 0, 0, 0, 1, 0x3F, 0xB3, 0x33, 0x33, 2, 3, 0, 0, 0, 0, 0, 0x45, 0x3F, 0xE6, 0x66, 0x66, 0, 0x46, 0, 0, 0, 0, 0, 0x51, 0x3F, 0xE6, 0x66, 0x66, 0, 0x52, 0, 0, 0, 0, 0, 0x4D, 0x3F, 0xE6, 0x66, 0x66, 0, 0x4E, 0, 0, 0, 0, 0, 0x49, 0x3F, 0xE6, 0x66, 0x66, 0, 0x4A, 0, 0 };
+ActorData D_80800C14_chflowerbaddie [1] BT_DATA(4, overlays_ch_flowerbaddie, 0xA4) = { { 425, 1131, 2197, 1, (void *)D_80800B70_chflowerbaddie, (void (*)(struct Actor *))func_8080005C_chflowerbaddie, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800610_chflowerbaddie, 131072000, 1058642330, 0, 0, 773, 545, 0, (BtIntPtr)func_80108ED0, 16, 0, (void (*)(struct Actor *))func_8080000C_chflowerbaddie, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32734, 21533, (void (*)(struct Actor *, long, long))func_80800380_chflowerbaddie, (BtIntPtr)D_80800BB8_chflowerbaddie } };
+u32 D_80800C5C_chflowerbaddie [3] BT_DATA(4, overlays_ch_flowerbaddie, 0xEC) = { 0x1304D5, 0xD00F3, 0x10C0000 };
+u8 D_80800C68_chflowerbaddie [24] BT_DATA(4, overlays_ch_flowerbaddie, 0xF8) = { 0x3F, 0, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0x40, 0, 0, 0x3E, 0x4C, 0xCC, 0xCD, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0 };
+f32 D_80800C80_chflowerbaddie [5] BT_DATA(4, overlays_ch_flowerbaddie, 0x110) = { 0.56f, 0.68f, 0.79f, 0.89f, -1.0f };
+f32 D_80800C94_chflowerbaddie [5] BT_DATA(4, overlays_ch_flowerbaddie, 0x124) = { 0.0f, 0.25f, 0.5f, 0.75f, -1.0f };
+u8 D_80800CA8_chflowerbaddie [24] BT_DATA(4, overlays_ch_flowerbaddie, 0x138) = { 0, 0, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0, 0, 0, 0x3E, 0x4C, 0xCC, 0xCD, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0 };
+u8 D_80800CC0_chflowerbaddie [12] BT_DATA(4, overlays_ch_flowerbaddie, 0x150) = { 0, 0x13, 4, 0x84, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 0 };
+s32 D_80800CCC_chflowerbaddie[9] BT_DATA(4, overlays_ch_flowerbaddie, 0x15C) = { 1903069, 2228608, 33554944, 41943061, 153, 1638400, 458797, 3276900, 0 };
+s32 D_80800CF0_chflowerbaddie[5] BT_DATA(4, overlays_ch_flowerbaddie, 0x180) = { 2818406, 26804238, 1966140, 2162560, -4325376 };
+s32 D_80800D04_chflowerbaddie[5] BT_DATA(4, overlays_ch_flowerbaddie, 0x194) = { 2818457, 30146574, 3932260, 2130112, -4325376 };
+s32 D_80800D18_chflowerbaddie[4] BT_DATA(4, overlays_ch_flowerbaddie, 0x1A8) = { 2818355, 23461920, -48928, 0 };
+s32 D_80800D28_chflowerbaddie[6] BT_DATA(4, overlays_ch_flowerbaddie, 0x1B8) = { 50724883, 67043341, 19267904, 1456792, 196608, 0 };

@@ -39,7 +39,7 @@ void glglobaldata_entrypoint_2(u8 *arg0) {
 void func_80800124_glglobaldata(u8 *arg0, s32 *arg1) { arg0[*arg1] = 8; *arg1 += 1; }
 
 void glglobaldata_entrypoint_3(u8 *arg0) {
-    s32 _glcrc_entrypoint_0(s32 *, s32);
+    u32 _glcrc_entrypoint_0(BtIntPtr arg0, BtIntPtr arg1);
     void glglobaldata_entrypoint_4(u8 *);
     void rare_memcpy(void *, void *, int);
     extern void (*D_80800230_glglobaldata[])(s32 *, s32 *);
@@ -69,3 +69,8 @@ void glglobaldata_entrypoint_4(u8 *arg0) {
         arg0[i] = 0;
     }
 }
+/* data_to_c.py: from asm/data/overlays/gl/obaldata.data.s */
+void func_800DABF0();
+void func_800D21B0();
+void ( * D_80800230_glglobaldata [2] ) ( s32 * , s32 * ) BT_DATA(4, overlays_gl_obaldata, 0x0) = { (void (*)(long *, long *))func_800DABF0, (void (*)(long *, long *))func_800D21B0 };
+void ( * D_80800238_glglobaldata [2] ) ( s32 * , s32 * ) BT_DATA(4, overlays_gl_obaldata, 0x8) = { 0, 0 };

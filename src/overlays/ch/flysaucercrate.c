@@ -29,12 +29,12 @@ u32 D_80800D20_chflysaucercrate[] = {
     0x3FC00000, 0x00940084,
 };
 
-u32 D_80800D78_chflysaucercrate[] = {
-    0x020302A3, 0x06910001, (u32)D_80800D20_chflysaucercrate, (u32)func_80800348_chflysaucercrate,
-    (u32)func_80105834, (u32)func_80101870, 0x07D00000, 0x40400000,
+BtFnWord D_80800D78_chflysaucercrate[] = {
+    0x020302A3, 0x06910001, (BtFnWord)D_80800D20_chflysaucercrate, (BtFnWord)func_80800348_chflysaucercrate,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x07D00000, 0x40400000,
     0x00000000, 0x00080004, 0x00000000, 0x00000000,
-    0x00000000, (u32)func_80800A88_chflysaucercrate, (u32)func_80107C2C, 0x80000002,
-    (u32)func_808000E4_chflysaucercrate, 0x00000000,
+    0x00000000, (BtFnWord)func_80800A88_chflysaucercrate, (BtFnWord)func_80107C2C, 0x80000002,
+    (BtFnWord)func_808000E4_chflysaucercrate, 0x00000000,
 };
 
 u32 D_80800DC0_chflysaucercrate[] = {
@@ -67,10 +67,10 @@ OSThread *chflysaucercrate_entrypoint_0(void)
 }
 
 void func_8080000C_chflysaucercrate(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_80102424(Actor *, s32);
     void func_80108B04(Actor *, u32);
 
@@ -101,16 +101,16 @@ void func_8080000C_chflysaucercrate(Actor *arg0, s32 arg1) {
 }
 
 s32 func_808000E4_chflysaucercrate(Actor *arg0, s32 arg1, u32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(s32);
     void _glcutDll_entrypoint_6(u32, u32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
 
 
     switch (arg1) {
@@ -168,15 +168,15 @@ handled:
 
 void func_8080028C_chflysaucercrate(u8 *arg0, u32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 4;
-    _subaddiedialog_entrypoint_11((*(Unk80132ED0 **)((s8 *)(arg0) + (0))), arg1, arg2, arg0 + 4, 0x41U);
+    _subaddiedialog_entrypoint_11((((Actor *)arg0)->unk0), arg1, arg2, arg0 + 4, 0x41U);
     ((struct Flags *)arg0)->flag = 1;
 }
 
 void func_808002D8_chflysaucercrate(Actor *arg0, f32 arg1) {
     void func_800C31DC(u8, f32);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
 
 
     if (arg0->unk5F == 0) {
@@ -189,7 +189,7 @@ void func_808002D8_chflysaucercrate(Actor *arg0, f32 arg1) {
 
 void func_80800348_chflysaucercrate(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
-    s32 _subaddiefade_entrypoint_5(Actor *);
+    void _subaddiefade_entrypoint_5(void *arg0);
     s32 _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
     s32 func_80016B30(s32, s32);
     s32 func_8008FA60(s32, s32);
@@ -331,15 +331,15 @@ void func_80800A2C_chflysaucercrate(void *arg0) {
 
     func_80102B2C(arg0, 4.0f);
     func_80102B6C(arg0, 4.0f);
-    if (*(f32 *)((s8 *)arg0 + 0x4C)) {
-        *(f32 *)((s8 *)arg0 + 0x4C) *= 0.8f;
+    if (((Actor *)arg0)->rotation[2]) {
+        ((Actor *)arg0)->rotation[2] *= 0.8f;
     }
 }
 
 void func_80800A88_chflysaucercrate(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(s32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
     void func_800FFAB0(Actor *);

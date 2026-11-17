@@ -123,3 +123,12 @@ void func_8001B7F0(s16 arg0, u8 arg1, int arg2) { u32 value = arg1;
     rare_memset(D_8007BF10[arg0].ptr, value, arg2);
 }
 #endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+Entry D_8007BF10 [ 1 ] BT_DATA(4, bss_core1bss1_1, 0x250);
+s32 D_8007BF18 BT_DATA(4, bss_core1bss1_1, 0x258);
+s32 D_8007C6E0 BT_DATA(4, bss_core1bss1_1, 0xA20);
+s32 D_8007C6E4 BT_DATA(4, bss_core1bss1_1, 0xA24);
+#endif

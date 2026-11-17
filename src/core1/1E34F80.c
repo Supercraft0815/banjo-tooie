@@ -47,9 +47,9 @@ void func_8001D6C0(u16 *arg0, int arg1, int arg2, u8 arg3) {
         }
         osWritebackDCache((var_s6 + arg0), 5);
     }
-}
+}    typedef struct { u8 pad0[0x690]; s32 unk690; s32 unk694; s32 unk698; s32 unk69C; s32 unk6A0; } Obj1E34F80_D_8007D170; /* offsets.py genstruct: fields from raw offsets on &D_8007D170; rename once understood */
 
-void func_8001D800(u8 arg0) { void bzero(void *, int); extern s32 D_8007D170; s32 row; u8 (*new_var)[56]; loop: switch (arg0) { case 9: *((s32 *) (((u8 *) (&D_8007D170)) + 0x690)) = ((*((s32 *) (((u8 *) (&D_8007D170)) + 0x690))) + 7) & (~7); if ((*((s32 *) (((u8 *) (&D_8007D170)) + 0x690))) >= 0x38) { arg0 = 10; goto loop; } break; case 10: *((s32 *) (((u8 *) (&D_8007D170)) + 0x690)) = 0; (*((s32 *) (((u8 *) (&D_8007D170)) + 0x694)))++; if ((*((s32 *) (((u8 *) (&D_8007D170)) + 0x694))) >= 30) { *((s32 *) (((u8 *) (&D_8007D170)) + 0x694)) -= 30; *((s32 *) (((u8 *) (&D_8007D170)) + 0x698)) = 1; } if (*((s32 *) (((u8 *) (&D_8007D170)) + 0x698))) { row = *((s32 *) (((u8 *) (&D_8007D170)) + 0x694)); if (row) { } new_var = (u8 (*)[56]) (&D_8007D170); (*((s32 *) (((u8 *) (&D_8007D170)) + 0x69C)))--; if ((*((s32 *) (((u8 *) (&D_8007D170)) + 0x69C))) < 0) { *((s32 *) (((u8 *) (&D_8007D170)) + 0x69C)) += 30; } bzero(new_var[row], 56); } break; case 12: bzero(&D_8007D170, 0x690); case 13: *((s32 *) (((u8 *) (&D_8007D170)) + 0x690)) = 0; *((s32 *) (((u8 *) (&D_8007D170)) + 0x694)) = 0; *((s32 *) (((u8 *) (&D_8007D170)) + 0x69C)) = 0; *((s32 *) (((u8 *) (&D_8007D170)) + 0x698)) = 0; break; default: if ((arg0 >= 0x20) && (arg0 < 0x7F)) { ((u8 (*)[56]) (&D_8007D170))[*((s32 *) (((u8 *) (&D_8007D170)) + 0x694))][*((s32 *) (((u8 *) (&D_8007D170)) + 0x690))] = arg0; (*((s32 *) (((u8 *) (&D_8007D170)) + 0x690)))++; if ((*((s32 *) (((u8 *) (&D_8007D170)) + 0x690))) >= (((0xFFFF & ((((56 & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0xFFFF)) & 0xFFFF) & 0xFFFF)) { arg0 = 10; goto loop; } } break; }
+void func_8001D800(u8 arg0) { void bzero(void *, int); extern s32 D_8007D170; s32 row; u8 (*new_var)[56]; loop: switch (arg0) { case 9: ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690 = ((((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690) + 7) & (~7); if ((((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690) >= 0x38) { arg0 = 10; goto loop; } break; case 10: ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690 = 0; (((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk694)++; if ((((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk694) >= 30) { ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk694 -= 30; ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk698 = 1; } if (((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk698) { row = ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk694; if (row) { } new_var = (u8 (*)[56]) (&D_8007D170); (((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk69C)--; if ((((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk69C) < 0) { ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk69C += 30; } bzero(new_var[row], 56); } break; case 12: bzero(&D_8007D170, 0x690); case 13: ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690 = 0; ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk694 = 0; ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk69C = 0; ((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk698 = 0; break; default: if ((arg0 >= 0x20) && (arg0 < 0x7F)) { ((u8 (*)[56]) (&D_8007D170))[((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk694][((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690] = arg0; (((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690)++; if ((((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk690) >= (((0xFFFF & ((((56 & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0xFFFF)) & 0xFFFF) & 0xFFFF)) { arg0 = 10; goto loop; } } break; }
 }
 
 void func_8001D96C()
@@ -89,7 +89,7 @@ void func_8001DA00(u8 *arg0, s32 arg1) {
 void func_8001DA58(void) {
 }
 
-void func_8001DA60(u16 *arg0) { u32 func_80014EC8(); s32 func_80014ED4(void); extern s32 D_8007D170; extern s32 D_8007D80C; extern s32 D_8007D810; s32 row; s32 column; s32 leading; s32 line; u16 *buffer; u8 *text; u8 *character; s32 value;  buffer = arg0; if (D_8007D810 == 0) { if (arg0 == NULL) { buffer = func_80014ED4(); } osInvalDCache(buffer, func_80014EC8()); text = (u8 *)&D_8007D170; line = 0; do { leading = 1; row = (line + D_8007D80C) % 30; column = 0; character = text; do { value = *character; if (leading != 0) { if (value != 0 && value != 0x20) { leading = 0; goto draw; } } else { draw: if (value != 0) { func_8001D6C0(buffer, column, row, value); } } column++; character++; } while (column != 0x38); line++; text += 0x38; } while (line != 30); osWritebackDCache(buffer, func_80014EC8()); } }
+void func_8001DA60(u16 *arg0) { u32 func_80014EC8(); BtIntPtr func_80014ED4(void); extern s32 D_8007D170; extern s32 D_8007D80C; extern s32 D_8007D810; s32 row; s32 column; s32 leading; s32 line; u16 *buffer; u8 *text; u8 *character; s32 value;  buffer = arg0; if (D_8007D810 == 0) { if (arg0 == NULL) { buffer = func_80014ED4(); } osInvalDCache(buffer, func_80014EC8()); text = (u8 *)&D_8007D170; line = 0; do { leading = 1; row = (line + D_8007D80C) % 30; column = 0; character = text; do { value = *character; if (leading != 0) { if (value != 0 && value != 0x20) { leading = 0; goto draw; } } else { draw: if (value != 0) { func_8001D6C0(buffer, column, row, value); } } column++; character++; } while (column != 0x38); line++; text += 0x38; } while (line != 30); osWritebackDCache(buffer, func_80014EC8()); } }
 
 /* extern */
 
@@ -114,9 +114,19 @@ void func_8001DB90(u16 *arg0, int arg1, u32 arg2, u8 *arg3) {
 
 void func_8001DC6C(void) {
     extern s32 D_8007D170;
-    if ((*(s32 *)((s8 *)(&D_8007D170) + (0x6A0))) != 0) {
-        (*(s32 *)((s8 *)(&D_8007D170) + (0x6A0))) = 0;
+    if ((((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk6A0) != 0) {
+        (((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk6A0) = 0;
         return;
     }
-    (*(s32 *)((s8 *)(&D_8007D170) + (0x6A0))) = 1;
+    (((Obj1E34F80_D_8007D170 *)&D_8007D170)->unk6A0) = 1;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8007D170 BT_DATA(4, bss_core1bss1_2, 0xA70);
+s32 D_8007D800 BT_DATA(4, bss_core1bss1_2, 0x1100);
+s32 D_8007D804 BT_DATA(4, bss_core1bss1_2, 0x1104);
+s32 D_8007D80C BT_DATA(4, bss_core1bss1_2, 0x110C);
+s32 D_8007D810 BT_DATA(4, bss_core1bss1_2, 0x1110);
+#endif

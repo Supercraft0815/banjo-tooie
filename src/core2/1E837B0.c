@@ -35,7 +35,7 @@ s32 func_800A9F14(s32 arg0) {
 }
 
 s32 func_800A9F30(void) {
-    s32 func_8001BDAC(s32 *, s32);
+    void *func_8001BDAC(s32 *size, s32 n);
     extern s32 D_80127770;
     s32 sp1C;
 
@@ -105,7 +105,7 @@ u32 func_800AA0B8(void) {
 }
 
 s32 func_800AA0C4(void) {
-    return *(s16 *)((u8 *)&D_80127780 + 0);
+    return *&D_80127780.current;
 }
 
 s32 func_800AA0D0(void) {
@@ -155,13 +155,13 @@ void func_800AA200(s32 arg0) {
 
 void func_800AA20C(s32 arg0, s32 arg1) {
     D_80127780.values[arg0 + 4] = arg1;
-}
+}    typedef struct { u8 pad0[0x4]; s16 unk4; } Obj1E837B0_func_800AA220_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_800AA220(s32 arg0, s32 arg1) {
     s16 *temp_v0;
 
     temp_v0 = (s16 *)&D_80127780 + arg0;
-    (*(s16 *)((s8 *)(temp_v0) + (4))) = (s16) ((*(s16 *)((s8 *)(temp_v0) + (4))) + arg1);
+    (((Obj1E837B0_func_800AA220_temp_v0 *)temp_v0)->unk4) = (s16) ((((Obj1E837B0_func_800AA220_temp_v0 *)temp_v0)->unk4) + arg1);
 }
 
 /* extern */
@@ -177,3 +177,9 @@ s32 func_800AA240(void) {
 s32 func_800AA274(s32 arg0) {
     return func_800A9F80(arg0);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80127770 BT_DATA(4, bss_core2bss1_0_1, 0x710);
+#endif

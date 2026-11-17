@@ -2,14 +2,14 @@
 
 void func_8080050C_chdoor(Actor *);
 
-void chdoor_entrypoint_0(s32 arg0)
+void chdoor_entrypoint_0(BtIntPtr arg0)
 {
     func_80800028_chdoor();
     func_8080050C_chdoor(arg0);
 }
 int func_80800028_chdoor(u8 *arg0) {
     s32 _glcutDll_entrypoint_19(s32);
-    u8 func_800D9078(f32 *);
+    s32 func_800D9078(f32 *arg0);
     s32 func_800DA298(s32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
@@ -96,7 +96,7 @@ int func_80800028_chdoor(u8 *arg0) {
         }
         break;
     }
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8080032C_chdoor(u8 *arg0, f32 arg1) {
@@ -112,8 +112,8 @@ void func_8080032C_chdoor(u8 *arg0, f32 arg1) {
         s16 destination[3];
         s16 roll;
     };
-    s32 _subaddiefade_entrypoint_1(s32, s32);
-    void _sudeflect_entrypoint_3(f32 *, f32 *, f32 *, f32 *, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
+    s32 _sudeflect_entrypoint_3(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
     void func_800EE88C(f32 *, s16 *);
     void func_800EFE50(f32 *, void *, void *, f32);
     f32 func_800F1DCC(f32, f32);
@@ -174,7 +174,7 @@ void func_8080050C_chdoor(Actor *arg0) {
     void func_800C4B70(s32);
     void func_800C4B7C(s32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_808015B0_chdoor;
+    extern s32 D_808015B0_chdoor[4];
     struct DoorLoopSoundData *sp20;
     struct DoorLoopSoundData *data;
     s32 loop;
@@ -189,7 +189,7 @@ void func_8080050C_chdoor(Actor *arg0) {
         func_800C4B7C(data->sound);
         func_800C4B70(sp20->volume);
         func_800C4B64((f32)sp20->pitch * 0.00390625f);
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, loop, &D_808015B0_chdoor);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, loop, D_808015B0_chdoor);
     }
 }
 
@@ -207,7 +207,7 @@ void func_808005E4_chdoor(Actor *arg0, s32 arg1) {
     void func_800C4B70(s32);
     void func_800C4B7C(s32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_808015B0_chdoor;
+    extern s32 D_808015B0_chdoor[4];
     struct DoorSoundData *temp_v0;
     struct DoorSoundData *sp1C;
 
@@ -217,7 +217,7 @@ void func_808005E4_chdoor(Actor *arg0, s32 arg1) {
         func_800C4B7C(temp_v0->sound);
         func_800C4B70(sp1C->volume);
         func_800C4B64((f32)sp1C->pitch * 0.00390625f);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808015B0_chdoor);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808015B0_chdoor);
     }
 }
 
@@ -235,7 +235,7 @@ void func_8080069C_chdoor(Actor *arg0, s32 arg1) {
     void func_800C4B70(s32);
     void func_800C4B7C(s32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_808015B0_chdoor;
+    extern s32 D_808015B0_chdoor[4];
     struct DoorSoundData *temp_v0;
     struct DoorSoundData *sp1C;
 
@@ -245,7 +245,7 @@ void func_8080069C_chdoor(Actor *arg0, s32 arg1) {
         func_800C4B7C(temp_v0->sound);
         func_800C4B70(sp1C->volume);
         func_800C4B64((f32)sp1C->pitch * 0.00390625f);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808015B0_chdoor);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808015B0_chdoor);
     }
 }
 
@@ -265,7 +265,7 @@ void func_80800754_chdoor(u8 *arg0) {
     s32 func_800DA298(s32);
     void func_80800B14_chdoor(u8 *, s32);
     void func_800EE88C(f32 *, s16 *);
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_80103014(u8 *);
     struct DoorInitialData *data;
     s32 state;
@@ -320,7 +320,7 @@ void func_808008A0_chdoor(u8 *arg0) {
     s32 func_800DA298(s32);
     void func_80800B14_chdoor(u8 *, s32);
     void func_800EE88C(f32 *, s16 *);
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_80103014(u8 *);
     struct DoorInitialData *data;
     s32 state;
@@ -417,7 +417,7 @@ void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
     void func_80800FC0_chdoor(Actor *, s32);
     void func_808005E4_chdoor(Actor *, s32);
     void func_80801330_chdoor(Actor *, s32);
-    s32 _subaddieaudioloop_entrypoint_2(u8 *);
+    void _subaddieaudioloop_entrypoint_2(void *arg0);
     void func_800FC660(u32);
     void func_800FFAB0(u8 *);
     void func_8010A624(u8 *);
@@ -535,7 +535,7 @@ void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
 }
 
 void func_80800FC0_chdoor(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800DA9E4(s32, s32);
     void *func_80100094(Actor *, u32);
     struct DoorData {
@@ -563,8 +563,8 @@ void func_80800FC0_chdoor(Actor *arg0, s32 arg1) {
     }
 }
 
-s32 chdoor_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 func_808013C0_chdoor(Actor *, s32);
+s32 chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2) {
+    s32 func_808013C0_chdoor(Actor *, BtIntPtr);
     void *func_80100094(Actor *, u32);
     void _chdoormake_entrypoint_5(Actor *, f32);
     s32 _glcutDll_entrypoint_19(s32);
@@ -682,14 +682,14 @@ void func_80801330_chdoor(Actor *arg0, s32 arg1) {
     }
 }
 
-s32 func_808013C0_chdoor(Actor *arg0, s32 arg1) {
+s32 func_808013C0_chdoor(Actor *arg0, BtIntPtr arg1) {
     f32 func_800137AC(f32);
     f32 func_800137C4(void);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
     s32 func_800F0AA4(f32 *, f32 *, f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    f32 func_800F5F24(u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    f32 func_800F5F24(BtUIntPtr);
     void *func_80100094(Actor *, u32);
     f32 mlAbsF(f32);
     struct DoorData {
@@ -733,3 +733,5 @@ s32 func_808013C0_chdoor(Actor *arg0, s32 arg1) {
     func_808009F4_chdoor((u8 *)arg0);
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/door.data.s */
+s32 D_808015B0_chdoor[4] BT_DATA(4, overlays_ch_door, 0x0) = { 2162717, 1966082, 0, 0 };

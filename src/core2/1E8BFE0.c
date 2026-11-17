@@ -3,10 +3,10 @@
 #include "native_model.h"
 #endif
 
-u8 *func_800B26F0(u8 *arg0) {
+typedef struct { u8 pad0[0x14]; s32 unk14; s32 unk18; s32 unk1C; u8 pad20[0x4]; s32 unk24; s32 unk28; s32 unk2C; s32 unk30; s32 unk34; s32 unk38; s32 unk3C; s32 unk40; } Obj1E8BFE0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ u8 *func_800B26F0(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x28)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk28);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -35,7 +35,7 @@ u8 *func_800B2720(u8 *arg0) {
     if (arg0 == NULL) {
         return NULL;
     }
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x1C)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk1C);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -45,7 +45,7 @@ u8 *func_800B2720(u8 *arg0) {
 u8 *func_800B274C(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x24)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk24);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -55,7 +55,7 @@ u8 *func_800B274C(u8 *arg0) {
 u8 *func_800B2768(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x40)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk40);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -65,7 +65,7 @@ u8 *func_800B2768(u8 *arg0) {
 u8 *func_800B2784(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x3C)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk3C);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -75,7 +75,7 @@ u8 *func_800B2784(u8 *arg0) {
 u8 *func_800B27A0(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x38)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk38);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -85,7 +85,7 @@ u8 *func_800B27A0(u8 *arg0) {
 u8 *func_800B27BC(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x30)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk30);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -99,7 +99,7 @@ f32 func_800B27D8(f32 *arg0) {
 u8 *func_800B27E0(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x18)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk18);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -120,7 +120,7 @@ s32 func_800B27FC(s32 arg0) {
 u8 *func_800B2808(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x2C)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk2C);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -130,7 +130,7 @@ u8 *func_800B2808(u8 *arg0) {
 u8 *func_800B2824(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x14)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk14);
     if (temp_v1 == 0) {
         return NULL;
     }
@@ -166,7 +166,7 @@ u8 *func_800B284C(u8 *arg0) {
 u8 *func_800B2868(u8 *arg0) {
     s32 temp_v1;
 
-    temp_v1 = (*(s32 *)((s8 *)(arg0) + (0x34)));
+    temp_v1 = (((Obj1E8BFE0_arg0 *)arg0)->unk34);
     if (temp_v1 == 0) {
         return NULL;
     }

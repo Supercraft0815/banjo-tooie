@@ -17,17 +17,17 @@ typedef struct {
 extern u8 D_8011A904;
 extern s16 D_8011A910[];
 extern D_8012760C_unk D_8012760C;
-extern s8 D_8012AAF0;
+extern s8 D_8012AAF0;    typedef struct { u8 pad0[0x4]; void * unk4; } Obj1EA0AA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-f32 func_800C71B0(s32 arg0, f32 arg1) {
+f32 func_800C71B0(BtIntPtr arg0, f32 arg1) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 var_f12;
     f32 var_f2;
     u32 temp_t7;
 
-    temp_t7 = (u32) (*(u16 *)((s8 *)((*(void **)((s8 *)(arg0) + (4)))) + (6))) >> 7;
+    temp_t7 = (u32) (*(u16 *)((s8 *)((((Obj1EA0AA0_arg0 *)arg0)->unk4)) + (6))) >> 7;
     if (temp_t7 == 0x32) {
         var_f2 = arg1;
     } else {
@@ -95,7 +95,7 @@ void func_800C7364(s32 arg0, s32 arg1, s32* arg2)
     }
 }
 void func_800C73A4(void) {
-    Prop *_gccubesearch_entrypoint_14(s32, s32);
+    void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
     void func_800FF000(s32);
     CallbackEntry *ptr;
     s32 sp28;
@@ -174,7 +174,7 @@ void func_800C75E8(void)
 
 void func_800C7618(s32 arg0, s32 arg1) {
     void func_800FC788(s32, s32);
-    void func_800FCDE0(s32, s32, f32);
+    s32 func_800FCDE0(s32 arg0, s32 arg1, f32 arg2);
     if (arg1 != 0) {
         if (func_800FCCD4(arg0) != 0) {
             if (arg1 == 1) {
@@ -268,3 +268,11 @@ void func_800C7900(void)
         }
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+D_8012760C_unk D_8012760C BT_DATA(4, bss_core2bss1_0_1, 0x5AC);
+s8 D_8012760D BT_DATA(4, bss_core2bss1_0_1, 0x5AD);
+s8 D_8012AAF0 BT_DATA(4, bss_core2bss1_1, 0x10);
+#endif

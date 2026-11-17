@@ -149,3 +149,9 @@ void func_800C718C(void) {
     extern s32 D_8012AAE0;
     D_8012AAE0 += 1;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012AAE0 BT_DATA(16, bss_core2bss1_1, 0x0);
+#endif

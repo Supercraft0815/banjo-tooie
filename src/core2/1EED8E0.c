@@ -29,9 +29,9 @@ s32 func_80113FF0(void *arg0) {
     return best;
 }
 
-void func_8011413C(s32 camera, f32 rotation[3], f32 scale, s32 index) {
-    void func_800CA740(s32, f32 *);
-    void func_800CB0E8(s32, f32 *, s32);
+void func_8011413C(BtIntPtr camera, f32 rotation[3], f32 scale, s32 index) {
+    void func_800CA740(BtIntPtr, f32 *);
+    void func_800CB0E8(BtIntPtr, f32 *, s32);
     void func_800EF334(f32 *, f32);
     if (index != 0) {
         func_800CB0E8(camera, rotation, index - 1);
@@ -57,8 +57,8 @@ void func_8011413C(s32 camera, f32 rotation[3], f32 scale, s32 index) {
         s32 flags;
         f32 normal[3];
         CameraCollisionEntry entries[7];
-    } CameraCollisionData;
-s32 func_80114184(CameraCollisionData *data, s32 camera, f32 scale, s32 enabled, u32 flags) {
+    } CameraCollisionData;     
+s32 func_80114184(CameraCollisionData *data, BtIntPtr camera, f32 scale, s32 enabled, u32 flags) {
     void func_800CA8F4(f32 *, f32 *, f32 *);
     f32 func_800EEAA4(f32 *, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
@@ -77,7 +77,7 @@ s32 func_80114184(CameraCollisionData *data, s32 camera, f32 scale, s32 enabled,
 
     if (!enabled) {
         func_80113FF0(data);
-        return;
+        BT_IDO_ONLY(return;) BT_NATIVE_ONLY(return 0;)
     }
     func_800CA8F4((f32 *)camera, position, normal);
     if (data->active && func_800EEAA4(normal, data->normal) < 0.1f) {
@@ -120,7 +120,7 @@ s32 func_80114184(CameraCollisionData *data, s32 camera, f32 scale, s32 enabled,
             }
         }
     }
-    func_80113FF0(data);
+    func_80113FF0(data); BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -148,7 +148,7 @@ s32 func_801143A4(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3) {
 }
 
 f32 func_80114444(s32 arg0) {
-    s32 func_800F5410(s32);
+    s32 func_800F5410(BtIntPtr);
     if (func_800F5410(arg0) == 0xD) {
         return 1.1f;
     }
@@ -159,11 +159,11 @@ f32 func_80114444(s32 arg0) {
 
 s32 func_8011447C(f32 *arg0, f32 *arg1) {
     s32 func_800F5898();
-    s32 func_800F5EF8(s32);
-    s32 func_800F6438(u32);
+    s32 func_800F5EF8(BtIntPtr);
+    s32 func_800F6438(BtUIntPtr);
     int func_800F6640(s32);
     s32 func_800F6690(s32);
-    s32 func_800F6BE4(s32);
+    s32 func_800F6BE4(BtIntPtr);
     PlayerState *func_80110014(s32);
     f32 temp_f20;
     s32 var_s0;
@@ -196,15 +196,15 @@ s32 func_8011458C(f32 *arg0, f32 *arg1, f32 *arg2) {
         unsigned int is_actor : 1;
     } Prop;
     s32 *func_800BE444(f32 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     f32 func_800EC75C(void *, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_801072A8(void *);
     f32 scale;
     s32 *list;
-    u32 prop;
-    u32 end;
+    BtUIntPtr prop;
+    BtUIntPtr end;
     Unk80132ED0 *marker;
     f32 sp60[3];
     Actor *actor;
@@ -244,7 +244,7 @@ s32 func_8011458C(f32 *arg0, f32 *arg1, f32 *arg2) {
     return hit;
 }
 
-f32 func_80114774(CameraCollisionData *arg0, s32 arg1, s32 arg2, s32 arg3) {
+f32 func_80114774(CameraCollisionData *arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr arg3) {
     s32 func_800C954C(void);
     f32 func_800C9588(void);
     f32 func_800F0E00(f32, f32);
@@ -287,7 +287,7 @@ f32 func_80114774(CameraCollisionData *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 void func_8011490C(CameraCollisionData *arg0, s32 *arg1, s32 arg2) {
     s32 func_800A940C(s32);
-    void func_800BCC28(s32, s32);
+    void func_800BCC28(BtIntPtr, BtIntPtr);
     int func_800BCC58(void);
     void func_800BED18(s32 *, s32 *);
     f32 func_800C5190(s32);
@@ -295,12 +295,12 @@ void func_8011490C(CameraCollisionData *arg0, s32 *arg1, s32 arg2) {
     s32 func_800E36D0(s32 *, s32 *, f32 *, f32 *);
     void func_800EE84C(f32 *, s32 *);
     f32 func_800F13F0(f32, f32);
-    s32 func_8010FF80(s32 *);
+    BtIntPtr func_8010FF80(s32 *);
     f32 position[3];
     f32 direction[3];
     s32 minimum[3];
     s32 maximum[3];
-    s32 camera;
+    BtIntPtr camera;
     s32 i;
     f32 transformedMin[3];
     f32 transformedMax[3];
@@ -312,8 +312,8 @@ void func_8011490C(CameraCollisionData *arg0, s32 *arg1, s32 arg2) {
     if (func_800BCC58()) {
         func_800EE84C(transformedMin, minimum);
         func_800EE84C(transformedMax, maximum);
-        func_800BCC28((s32)transformedMin, (s32)transformedMin);
-        func_800BCC28((s32)transformedMax, (s32)transformedMax);
+        func_800BCC28((BtIntPtr)transformedMin, (BtIntPtr)transformedMin);
+        func_800BCC28((BtIntPtr)transformedMax, (BtIntPtr)transformedMax);
         for (i = 0; i < 3; i++) {
             if (transformedMin[i] < minimum[i]) {
                 minimum[i] = transformedMin[i];
@@ -341,7 +341,7 @@ void func_8011490C(CameraCollisionData *arg0, s32 *arg1, s32 arg2) {
     } else if (*(f32 *)((u8 *)arg0 + 0xC) < 10.0f) {
         *(f32 *)((u8 *)arg0 + 0xC) = 10.0f;
     } else {
-        *(f32 *)((u8 *)arg0 + 0xC) = func_800F13F0(*(f32 *)((u8 *)arg0 + 0xC), func_80114774(arg0, camera, (s32)arg1, (s32)position));
+        *(f32 *)((u8 *)arg0 + 0xC) = func_800F13F0(*(f32 *)((u8 *)arg0 + 0xC), func_80114774(arg0, camera, (BtIntPtr)arg1, (BtIntPtr)position));
     }
     scale = 1.0f / func_800C5190(func_800A940C(arg2));
     if (scale != 1.0f) {
@@ -377,20 +377,20 @@ void *func_80114BD4(void) {
 void func_80114C7C(void* arg0)
 {
     heap_free(arg0);
-}
+}               typedef struct { u8 pad0[0x3]; s8 unk3; s8 unk4; u8 pad5[0x3]; f32 unk8; f32 unkC; f32 unk10; u8 pad14[0x24]; s32 unk38; } Obj1EED8E0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void func_80114C9C(void *arg0, f32 *arg1, f32 *arg2) {
-    *arg1 = (*(f32 *)((s8 *)(arg0) + (0xC)));
-    *arg2 = (*(f32 *)((s8 *)(arg0) + (0x10)));
+    *arg1 = (((Obj1EED8E0_arg0 *)arg0)->unkC);
+    *arg2 = (((Obj1EED8E0_arg0 *)arg0)->unk10);
 }
 
 void func_80114CB0(void *arg0, f32 arg1) {
-    (*(s8 *)((s8 *)(arg0) + (4))) = 0;
-    (*(f32 *)((s8 *)(arg0) + (8))) = arg1;
+    (((Obj1EED8E0_arg0 *)arg0)->unk4) = 0;
+    (((Obj1EED8E0_arg0 *)arg0)->unk8) = arg1;
 }
 
 void func_80114CC0(void *arg0, f32 arg1) {
-    (*(s8 *)((s8 *)(arg0) + (4))) = 1;
-    (*(f32 *)((s8 *)(arg0) + (8))) = arg1;
+    (((Obj1EED8E0_arg0 *)arg0)->unk4) = 1;
+    (((Obj1EED8E0_arg0 *)arg0)->unk8) = arg1;
 }
 
 void* func_80114CD4(void* arg0)
@@ -416,7 +416,7 @@ void func_80114CF4(u8 *arg0, f32 *arg1, s32 arg2, f32 *arg3) {
             var_s2 += 3;
         } while (var_s0 != 0x24);
         func_800EE7F8((f32 *)(arg0 + 0x3C), arg3);
-        (*(s32 *)((s8 *)(arg0) + (0x38))) = arg2;
-        (*(s8 *)((s8 *)(arg0) + (3))) = 1;
+        (((Obj1EED8E0_arg0 *)arg0)->unk38) = arg2;
+        (((Obj1EED8E0_arg0 *)arg0)->unk3) = 1;
     }
 }

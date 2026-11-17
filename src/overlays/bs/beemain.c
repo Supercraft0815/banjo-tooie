@@ -5,15 +5,15 @@ void _babee_entrypoint_2(struct player_state_s *self);
 extern s32 _badrone_entrypoint_3(struct player_state_s *self);
 extern void _bsdrone_entrypoint_1(struct player_state_s *self);
 
-void func_80800000_bsbeemain(s32 arg0) {
-    s32 func_8009DF18(s32, s32, f32, s32);
+void func_80800000_bsbeemain(BtIntPtr arg0) {
+    s32 func_8009DF18(BtIntPtr, s32, f32, s32);
     func_8009DF18(arg0, 0x41F, 1.4f, 0x1F40);
 }
 
 /* extern */
 
-void func_8080002C_bsbeemain(s32 arg0) {
-    s32 func_8009D7A4(s32, f32, f32);
+void func_8080002C_bsbeemain(BtIntPtr arg0) {
+    void func_8009D7A4(void *arg0, f32 arg1, f32 arg2);
     func_8009D7A4(arg0, 1.35f, 1.45f);
 }
 
@@ -53,7 +53,7 @@ void func_80800128_bsbeemain(struct player_state_s *arg0) {
     int bakey_held(struct player_state_s *, s32);
     int bakey_pressed(struct player_state_s *, s32);
     s32 bastick_getZone(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     int func_8008DD04(struct player_state_s *);
     void func_8009D3A8(struct player_state_s *, s32);
     s32 func_800A02DC(struct player_state_s *, s32);
@@ -90,7 +90,7 @@ void func_808001FC_bsbeemain(s32 arg0)
     _bsbee_entrypoint_0(arg0);
 }
 s32 bsbeemain_entrypoint_0(s32 arg0) {
-    extern s32 D_80801260_bsbeemain[];
+    extern BtIntPtr D_80801260_bsbeemain[];
     return ((s32 *)&D_80801260_bsbeemain)[arg0];
 }
 
@@ -112,7 +112,7 @@ void func_808002C0_bsbeemain(struct player_state_s *arg0) {
     int bakey_held(struct player_state_s *, s32);
     int bakey_pressed(struct player_state_s *, s32);
     s32 bastick_getZone(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     int func_8008DD04(struct player_state_s *);
     s32 func_8009BCD4(struct player_state_s *, f32);
     void func_8009D3A8(struct player_state_s *, s32);
@@ -151,7 +151,7 @@ void func_808003B4_bsbeemain(s32 arg0)
     _bsbee_entrypoint_0(arg0);
 }
 s32 bsbeemain_entrypoint_1(s32 arg0) {
-    extern s32 D_80801270_bsbeemain[];
+    extern BtIntPtr D_80801270_bsbeemain[];
     return ((s32 *)&D_80801270_bsbeemain)[arg0];
 }
 
@@ -199,7 +199,7 @@ void func_808003F0_bsbeemain(struct player_state_s *arg0) {
     baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
     baphysics_set_vertical_velocity(arg0, 693.5f);
     baphysics_set_gravity(arg0, -1200.0f);
-    func_8080002C_bsbeemain((s32)arg0);
+    func_8080002C_bsbeemain((BtIntPtr)arg0);
     ((s32 *)arg0)[0x57] = 0;
 }
 
@@ -218,7 +218,7 @@ void func_80800548_bsbeemain(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bastick_getZone(struct player_state_s *);
     s32 player_inWater(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     s32 next = 0;
     struct anctrl_s *control;
     f32 velocity[3];
@@ -246,7 +246,7 @@ void func_80800548_bsbeemain(struct player_state_s *arg0) {
     case 2:
         func_8009D3A8(arg0, 0);
         if (player_isStable(arg0)) {
-            func_80800000_bsbeemain((s32)arg0);
+            func_80800000_bsbeemain((BtIntPtr)arg0);
             baanim_setEndAndDuration(arg0, 1.0f, 0.7f);
             ((s32 *)arg0)[0x57] = 3;
         }
@@ -274,7 +274,7 @@ void func_80800788_bsbeemain(s32 arg0)
     baphysics_reset_gravity(arg0);
 }
 s32 bsbeemain_entrypoint_2(s32 arg0) {
-    extern s32 D_80801280_bsbeemain[];
+    extern BtIntPtr D_80801280_bsbeemain[];
     return ((s32 *)&D_80801280_bsbeemain)[arg0];
 }
 
@@ -319,7 +319,7 @@ void func_80800874_bsbeemain(struct player_state_s *arg0) {
     int bakey_pressed(struct player_state_s *, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bastick_getZone(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     void func_8009BB24(void *, f32 *);
     s32 sp34;
     struct anctrl_s *sp30;
@@ -341,7 +341,7 @@ void func_80800874_bsbeemain(struct player_state_s *arg0) {
     case 1:
         func_8009D3A8(arg0, 0);
         if (player_isStable(arg0)) {
-            func_80800000_bsbeemain((s32)arg0);
+            func_80800000_bsbeemain((BtIntPtr)arg0);
             baphysics_set_target_horizontal_velocity(arg0, 0.0f);
             baanim_setEndAndDuration(arg0, 1.0f, 0.7f);
             ((s32 *)arg0)[0x57] = 2;
@@ -376,16 +376,16 @@ void func_80800874_bsbeemain(struct player_state_s *arg0) {
     if (player_inWater(arg0)) {
         sp34 = 0x8C;
     }
-    bs_setState((s32)arg0, sp34);
+    bs_setState((BtIntPtr)arg0, sp34);
 }
 
-void func_80800A74_bsbeemain()
+void func_80800A74_bsbeemain(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    _bsbee_entrypoint_0();
+    _bsbee_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
 }
 
 s32 bsbeemain_entrypoint_3(s32 arg0) {
-    extern s32 D_80801290_bsbeemain[];
+    extern BtIntPtr D_80801290_bsbeemain[];
     return ((s32 *)&D_80801290_bsbeemain)[arg0];
 }
 
@@ -394,15 +394,15 @@ void bsbeemain_entrypoint_4(s32 arg0)
     _babounce_entrypoint_3();
     _bsbee_entrypoint_0(arg0);
 }
-void _babounce_entrypoint_5(s32, s32, f32);
+void _babounce_entrypoint_5(BtIntPtr, s32, f32);
 void bsbeemain_entrypoint_5(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x1E0, 0.7518f); }
 
 /* extern */
 
 void bsbeemain_entrypoint_6(s32 arg0) {
     s32 _bsbee_entrypoint_2();
-    s32 _babounce_entrypoint_9(s32);
-    s32 bs_setState(s32, s32);
+    s32 _babounce_entrypoint_9(BtIntPtr);
+    s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -414,7 +414,7 @@ void bsbeemain_entrypoint_6(s32 arg0) {
 }
 
 s32 bsbeemain_entrypoint_7(s32 arg0) {
-    extern s32 D_808012A0_bsbeemain[];
+    extern BtIntPtr D_808012A0_bsbeemain[];
     return ((s32 *)&D_808012A0_bsbeemain)[arg0];
 }
 
@@ -429,8 +429,8 @@ void func_80800B90_bsbeemain(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entryp
 
 void func_80800BD0_bsbeemain(s32 arg0) {
     s32 _bsbee_entrypoint_2();
-    s32 _babounce_entrypoint_9(s32);
-    s32 bs_setState(s32, s32);
+    s32 _babounce_entrypoint_9(BtIntPtr);
+    s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -442,7 +442,7 @@ void func_80800BD0_bsbeemain(s32 arg0) {
 }
 
 s32 bsbeemain_entrypoint_8(s32 arg0) {
-    extern s32 D_808012B0_bsbeemain[];
+    extern BtIntPtr D_808012B0_bsbeemain[];
     return ((s32 *)&D_808012B0_bsbeemain)[arg0];
 }
 
@@ -509,13 +509,13 @@ void func_80800E0C_bsbeemain(struct player_state_s *arg0) {
     void baphysics_set_vertical_velocity(struct player_state_s *, f32);
     void func_8009D3A8(struct player_state_s *, s32);
     void baanim_setEnd(struct player_state_s *, f32);
-    s32 func_8009DF18(s32, s32, f32, s32);
+    s32 func_8009DF18(BtIntPtr, s32, f32, s32);
     int player_isStable(struct player_state_s *);
     f32 func_800F0E00(f32, f32);
     s32 _batimer_decrement(void *, s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void _basudie_entrypoint_0(struct player_state_s *);
-    s32 bs_setState(s32, s32);
+    s32 bs_setState(BtIntPtr, s32);
     f32 velocity;
 
     _bsbee_entrypoint_2();
@@ -564,13 +564,13 @@ void func_80800FB8_bsbeemain(s32 arg0) { baphysics_reset_gravity(); func_800A4E3
 /* extern */
 
 void func_80800FF0_bsbeemain(s32 arg0) {
-    s32 _basudie_entrypoint_11(s32);
-    s32 bs_setState(s32, s32);
+    void _basudie_entrypoint_11(s32 arg0);
+    s32 bs_setState(BtIntPtr, s32);
     s32 func_80093370(s32, s32);
-    f32 func_80099A34(s32);
+    f32 func_80099A34(BtIntPtr);
     s32 func_8009BDAC(s32, f32);
     s32 func_8009E6EC();
-    s32 func_8009E830(s32, s32);
+    s32 func_8009E830(BtIntPtr, s32);
     if (func_8009E6EC() == 0x83) {
         func_8009BDAC(arg0, func_80099A34(arg0));
         func_80093370(arg0, 1);
@@ -582,7 +582,7 @@ void func_80800FF0_bsbeemain(s32 arg0) {
 }
 
 s32 bsbeemain_entrypoint_9(s32 arg0) {
-    extern s32 D_808012C0_bsbeemain[];
+    extern BtIntPtr D_808012C0_bsbeemain[];
     return ((s32 *)&D_808012C0_bsbeemain)[arg0];
 }
 
@@ -595,9 +595,9 @@ void func_80801080_bsbeemain(s32 arg0)
 
 void func_808010A8_bsbeemain(s32 arg0) {
     s32 _bsbee_entrypoint_2();
-    s32 _bsrest_entrypoint_13(s32);
-    s32 _bsrest_entrypoint_20(s32);
-    s32 bs_setState(s32, s32);
+    s32 _bsrest_entrypoint_13(BtIntPtr);
+    s32 _bsrest_entrypoint_20(BtIntPtr);
+    s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
@@ -614,7 +614,7 @@ void func_808010F4_bsbeemain(s32 arg0)
     _bsbee_entrypoint_0(arg0);
 }
 s32 bsbeemain_entrypoint_10(s32 arg0) {
-    extern s32 D_808012D0_bsbeemain[];
+    extern BtIntPtr D_808012D0_bsbeemain[];
     return ((s32 *)&D_808012D0_bsbeemain)[arg0];
 }
 
@@ -638,7 +638,7 @@ void func_8080118C_bsbeemain(struct player_state_s *arg0) {
     }
 }
 
-void func_808011E8_bsbeemain(s32 arg0) {
+void func_808011E8_bsbeemain(BtIntPtr arg0) {
     if (_badrone_entrypoint_3(arg0) == 2) {
         func_800947EC(arg0, 2, 0);
     }
@@ -647,6 +647,22 @@ void func_808011E8_bsbeemain(s32 arg0) {
 }
 
 s32 bsbeemain_entrypoint_11(s32 arg0) {
-    extern s32 D_808012E0_bsbeemain[];
+    extern BtIntPtr D_808012E0_bsbeemain[];
     return ((s32 *)&D_808012E0_bsbeemain)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/beemain.data.s */
+void func_80099B94();
+void _bsbeemain_entrypoint_4();
+void _bsbeemain_entrypoint_5();
+void _bsbeemain_entrypoint_6();
+void func_80099AA8();
+void _bsdrone_entrypoint_3();
+BtIntPtr D_80801260_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x0) = { (BtIntPtr)func_808001FC_bsbeemain, (BtIntPtr)func_808000C0_bsbeemain, (BtIntPtr)func_80800128_bsbeemain, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801270_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x10) = { (BtIntPtr)func_808003B4_bsbeemain, (BtIntPtr)func_80800238_bsbeemain, (BtIntPtr)func_808002C0_bsbeemain, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801280_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x20) = { (BtIntPtr)func_80800788_bsbeemain, (BtIntPtr)func_808003F0_bsbeemain, (BtIntPtr)func_80800548_bsbeemain, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801290_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x30) = { (BtIntPtr)func_80800A74_bsbeemain, (BtIntPtr)func_808007C4_bsbeemain, (BtIntPtr)func_80800874_bsbeemain, (BtIntPtr)func_80099B94 };
+BtIntPtr D_808012A0_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x40) = { (BtIntPtr)_bsbeemain_entrypoint_4, (BtIntPtr)_bsbeemain_entrypoint_5, (BtIntPtr)_bsbeemain_entrypoint_6, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_808012B0_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x50) = { (BtIntPtr)func_80800B68_bsbeemain, (BtIntPtr)func_80800B90_bsbeemain, (BtIntPtr)func_80800BD0_bsbeemain, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_808012C0_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x60) = { (BtIntPtr)func_80800FB8_bsbeemain, (BtIntPtr)func_80800C28_bsbeemain, (BtIntPtr)func_80800E0C_bsbeemain, (BtIntPtr)func_80800FF0_bsbeemain };
+BtIntPtr D_808012D0_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x70) = { (BtIntPtr)func_808010F4_bsbeemain, (BtIntPtr)func_80801080_bsbeemain, (BtIntPtr)func_808010A8_bsbeemain, (BtIntPtr)func_80099B94 };
+BtIntPtr D_808012E0_bsbeemain [4] BT_DATA(4, overlays_bs_beemain, 0x80) = { (BtIntPtr)func_808011E8_bsbeemain, (BtIntPtr)func_80801130_bsbeemain, (BtIntPtr)func_8080118C_bsbeemain, (BtIntPtr)_bsdrone_entrypoint_3 };

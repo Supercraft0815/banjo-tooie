@@ -1,23 +1,23 @@
 #include "common.h"
 
 void func_80102780(void *arg0, void *arg1) {
-    (*(f32 *)((s8 *)(arg1) + (0))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x44)));
-    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x48)));
-    (*(f32 *)((s8 *)(arg1) + (8))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x4C)));
+    (((Vec3f *)arg1)->pos.x) = (f32) (((Actor *)arg0)->rotation[0]);
+    (((Vec3f *)arg1)->pos.y) = (f32) (((Actor *)arg0)->rotation[1]);
+    (((Vec3f *)arg1)->pos.z) = (f32) (((Actor *)arg0)->rotation[2]);
 }
 
 /* extern */
 
 void func_8010279C(void *arg0, void *arg1) {
     f32 func_800136E4(f32);
-    (*(f32 *)((s8 *)(arg0) + (0x44))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (0))));
-    (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (4))));
-    (*(f32 *)((s8 *)(arg0) + (0x4C))) = func_800136E4((*(f32 *)((s8 *)(arg1) + (8))));
+    (((Actor *)arg0)->rotation[0]) = func_800136E4((((Vec3f *)arg1)->pos.x));
+    (((Actor *)arg0)->rotation[1]) = func_800136E4((((Vec3f *)arg1)->pos.y));
+    (((Actor *)arg0)->rotation[2]) = func_800136E4((((Vec3f *)arg1)->pos.z));
 }
 
 f32 *func_801027F4(u8 *arg0) {
     extern f32 D_80135AA0;
-    if (((u32) (*(u32 *)((s8 *)(arg0) + (0x94))) >> 0x1F) != 0) {
+    if (((u32) (((Actor *)arg0)->pad94) >> 0x1F) != 0) {
         func_80102780(arg0, &D_80135AA0);
         D_80135AA0 = -D_80135AA0;
         return &D_80135AA0;
@@ -55,12 +55,12 @@ f32 func_801028C4(Actor *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
 
 void func_80102924(void *arg0, f32 arg1) {
     f32 func_800136E4(f32);
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_800136E4(arg1);
+    (((Actor *)arg0)->unk54) = func_800136E4(arg1);
 }
 
 void func_80102950(void *arg0, f32 arg1) {
     f32 func_800136E4(f32);
-    (*(f32 *)((s8 *)(arg0) + (0x50))) = func_800136E4(arg1);
+    (((Actor *)arg0)->unk50) = func_800136E4(arg1);
 }
 
 /* extern */
@@ -115,7 +115,7 @@ void func_80102B2C(Actor *arg0, f32 arg1) {
 }
 
 void func_80102B6C(u8 *arg0, f32 arg1) {
-    (*(f32 *)((s8 *)(arg0) + (0x44))) = func_80102A04(arg0, (*(f32 *)((s8 *)(arg0) + (0x44))), (*(f32 *)((s8 *)(arg0) + (0x50))), (s32) arg1);
+    (((Actor *)arg0)->rotation[0]) = func_80102A04(arg0, (((Actor *)arg0)->rotation[0]), (((Actor *)arg0)->unk50), (s32) arg1);
 }
 
 void func_80102BAC(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) { f32 func_800F1FF0(f32, f32, f32, f32, f32); arg0->rotation[1] = func_800F1FF0(arg0->rotation[1], arg0->unk54, arg1, arg2, arg3); }
@@ -128,7 +128,7 @@ void func_80102BF8(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
     f32 temp_f0;
 
     temp_f0 = func_800D8FF8();
-    (*(f32 *)((s8 *)(arg0) + (0x48))) = func_800F1FF0((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), arg1, temp_f0 * arg2, temp_f0 * arg3);
+    (((Actor *)arg0)->rotation[1]) = func_800F1FF0((((Actor *)arg0)->rotation[1]), (((Actor *)arg0)->unk54), arg1, temp_f0 * arg2, temp_f0 * arg3);
 }
 
 void func_80102C58(Actor *arg0, volatile s32 arg1, f32 arg2, f32 arg3) {
@@ -138,16 +138,16 @@ void func_80102C58(Actor *arg0, volatile s32 arg1, f32 arg2, f32 arg3) {
 
 /* extern */
 
-void func_80102CA4(void *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80102CA4(void *arg0) {
     s32 func_800F20BC(f32, f32, s32);
-    func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x44))), (*(f32 *)((s8 *)(arg0) + (0x50))), 0x40400000);
+    BT_IDO_ONLY(func_800F20BC((((Actor *)arg0)->rotation[0]), (((Actor *)arg0)->unk50), 0x40400000);) BT_NATIVE_ONLY(return func_800F20BC((((Actor *)arg0)->rotation[0]), (((Actor *)arg0)->unk50), 0x40400000);)
 }
 
 /* extern */
 
-void func_80102CCC(void *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80102CCC(void *arg0) {
     s32 func_800F20BC(f32, f32, s32);
-    func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), 0x40400000);
+    BT_IDO_ONLY(func_800F20BC((((Actor *)arg0)->rotation[1]), (((Actor *)arg0)->unk54), 0x40400000);) BT_NATIVE_ONLY(return func_800F20BC((((Actor *)arg0)->rotation[1]), (((Actor *)arg0)->unk54), 0x40400000);)
 }
 
 s32 func_80102CF4(Actor *arg0, s32 arg1) {
@@ -155,19 +155,19 @@ s32 func_80102CF4(Actor *arg0, s32 arg1) {
     s32 func_800F20BC(f32, f32, s32);
     (void)p;
     return func_800F20BC(arg0->rotation[1], arg0->unk54, arg1);
-}
+}    typedef struct { u8 pad0[0x48]; f32 unk48; } Obj1EDC070_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80102D20(u8 *arg0, s32 arg1, f32 arg2) {
     s32 *p = &arg1;
     s32 func_800F20BC(f32, f32, s32);
     (void)p;
-    func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), arg2, arg1);
+    func_800F20BC((((Obj1EDC070_arg0 *)arg0)->unk48), arg2, arg1);
 }
 
-void func_80102D4C(u8 *arg0, s32 arg1) { s32 *p = &arg1;
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80102D4C(u8 *arg0, s32 arg1) { s32 *p = &arg1;
     s32 func_800F20BC(f32, f32, s32);
     (void)p;
-    func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x44))), (*(f32 *)((s8 *)(arg0) + (0x50))), arg1);
+    BT_IDO_ONLY(func_800F20BC((((Actor *)arg0)->rotation[0]), (((Actor *)arg0)->unk50), arg1);) BT_NATIVE_ONLY(return func_800F20BC((((Actor *)arg0)->rotation[0]), (((Actor *)arg0)->unk50), arg1);)
 }
 
 /* extern */
@@ -213,3 +213,9 @@ s32 func_80102E08(Actor *arg0) {
     }
     return sp30;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_80135AA0 BT_DATA(4, bss_core2bss2_2_music_tail, 0x80);
+#endif

@@ -2,17 +2,17 @@
 
 OSThread *chjujubagfx_entrypoint_0(void)
 {
-    extern u8 D_80800470_chjujubagfx[];
+    extern ActorData D_80800470_chjujubagfx[];
 
     return (OSThread *) D_80800470_chjujubagfx;
 }
 
 void *func_80100094(Actor *, u32);
 void func_80101FDC(Actor *, u32);
-void func_800DA524(s32);
+void func_800DA524(s32);     
 
 void func_8080000C_chjujubagfx(Actor *arg0, s32 arg1) {
-    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
+    void _sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3);
     void _sumumbofx_entrypoint_2(void *);
     void _sumumbofx_entrypoint_24(void *, f32);
     void _sumumbofx_entrypoint_4(void *);
@@ -42,46 +42,46 @@ void func_8080000C_chjujubagfx(Actor *arg0, s32 arg1) {
             arg0->unk64_20 = 1;
             break;
     }
-}
+}                 typedef struct { u8 pad0[0x3C]; s32 unk3C; u8 pad40[0x25]; u8 unk65; } Objjujubagfx_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800100_chjujubagfx(u8 *arg0) {
-    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, s32);
-    s32 func_8008FE94(s32, u8 *);
+    s32 *_subaddiefind_entrypoint_0(BtIntPtr, s32, s32, s32);
+    void func_8008FE94(s32 arg0,f32* arg1);
     s32 func_8010D278();
     void func_8080000C_chjujubagfx(Actor *, s32);
     if (func_8010D278() != 0xD) {
-        (*(s32 *)((s8 *)(arg0) + (0x3C))) = (s32) *_subaddiefind_entrypoint_0(arg0 + 4, 0x190, -1, 0);
+        (((Objjujubagfx_arg0 *)arg0)->unk3C) = (s32) *_subaddiefind_entrypoint_0(arg0 + 4, 0x190, -1, 0);
     } else {
         func_8008FE94(1, arg0 + 4);
     }
-    (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFEF);
+    (((Objjujubagfx_arg0 *)arg0)->unk65) = (u8) ((((Objjujubagfx_arg0 *)arg0)->unk65) & 0xFFEF);
     func_8080000C_chjujubagfx(arg0, 2);
 }
 
 /* extern */
 
 void func_80800174_chjujubagfx(Actor *arg0) {
-    s32 _sumumbofx_entrypoint_1(Actor *, s32);
+    void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
     if (func_80100094(arg0, 1U) != NULL) {
         _sumumbofx_entrypoint_1(arg0, 1);
     }
 }
-
+typedef struct { f32 v[3]; } Vec3;
 void func_808001A8_chjujubagfx(Actor *arg0) {
-    s32 _sumumbofx_entrypoint_14(void *);
+    void _sumumbofx_entrypoint_14(u8 *arg0);
     void _sumumbofx_entrypoint_17(void *, f32);
     f32 _sumumbofx_entrypoint_21(void *);
     f32 _sumumbofx_entrypoint_22(u8 *);
-    s32 _sumumbofx_entrypoint_7(void *, f32, s32, s32, f32 *, f32 *, f32 *);
+    void _sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f32 *arg5, f32 *arg6);
     void _chnewmumbo_entrypoint_0(Actor *, f32 *);
     s32 func_800DA298(s32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 func_8008FE94(s32, u8 *);
+    void func_8008FE94(s32 arg0,f32* arg1);
     void func_800FFAB0(Actor *);
     s32 func_8010D278();
-    typedef struct { f32 v[3]; } Vec3;
+
     extern Vec3 D_808004B8_chjujubagfx;
     extern Vec3 D_808004C4_chjujubagfx;
     Vec3 sp4C = D_808004B8_chjujubagfx;
@@ -125,10 +125,10 @@ void func_808001A8_chjujubagfx(Actor *arg0) {
     }
 }
 
-void func_808003D4_chjujubagfx(Actor *arg0, s32 arg1) { void *_sumumbofx_entrypoint_8(u8 *, s32); _sumumbofx_entrypoint_8(func_80100094(arg0, 1U), arg1); }
+void func_808003D4_chjujubagfx(Actor *arg0, s32 arg1) { void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1); _sumumbofx_entrypoint_8(func_80100094(arg0, 1U), arg1); }
 
 void chjujubagfx_entrypoint_1(void) {
-    void func_80108474(u32, f32*, s32);
+    Actor *func_80108474(u32 arg0, f32 *arg1, s32 arg2);
     void func_8010D254(f32*);
     f32 sp1C[3];
 
@@ -143,3 +143,9 @@ void chjujubagfx_entrypoint_2(void) {
 #endif
     _chbaddiesetup_entrypoint_0(&_chjujubagfx_entrypoint_1);
 }
+/* data_to_c.py: from asm/data/overlays/ch/jujubagfx.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800470_chjujubagfx [1] BT_DATA(4, overlays_ch_jujubagfx, 0x0) = { { 702, 761, 1599, 1, 0, (void (*)(struct Actor *))func_808001A8_chjujubagfx, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808003D4_chjujubagfx, 327680000, 0, 0, 0, 0, 4, (void (*)(struct Actor *))func_80800174_chjujubagfx, 0, 0, 0, (void (*)(struct Actor *))func_80800100_chjujubagfx, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };
+Vec3 D_808004B8_chjujubagfx BT_DATA(4, overlays_ch_jujubagfx, 0x48) = { { 0.0f, 0.0f, 0.0f } };
+Vec3 D_808004C4_chjujubagfx BT_DATA(4, overlays_ch_jujubagfx, 0x54) = { { 0.0f, -14.0f, 0.0f } };

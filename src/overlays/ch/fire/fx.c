@@ -2,14 +2,14 @@
 
 OSThread *chfirefx_entrypoint_0(void)
 {
-    extern u8 D_80801200_chfirefx[];
+    extern ActorData D_80801200_chfirefx[];
 
     return (OSThread *) D_80801200_chfirefx;
 }
 
 OSThread *chfirefx_entrypoint_1(void)
 {
-    extern u8 D_80801248_chfirefx[];
+    extern ActorData D_80801248_chfirefx[];
 
     return (OSThread *) D_80801248_chfirefx;
 }
@@ -50,7 +50,7 @@ void chfirefx_entrypoint_2(Actor *arg0, f32 arg1, f32 arg2, s32 arg3, s32 arg4) 
     } *data;
     u32 *func_80100074(Actor *, u32, u32);
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     s32 func_800EA05C(void);
     Actor *other;
     data = (struct FireData *)func_80100074(arg0, 0, arg3 * 20 + 32);
@@ -87,7 +87,7 @@ void chfirefx_entrypoint_3(Actor *arg0) {
         u8 link[8];
         struct FireParticle particles[1];
     };
-    s32 _chhotwaterpoolbits_entrypoint_5(s32, s32);
+    s32 _chhotwaterpoolbits_entrypoint_5(BtIntPtr, s32);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     void func_800EE88C(f32 *, s16 *);
@@ -95,11 +95,11 @@ void chfirefx_entrypoint_3(Actor *arg0) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800EFC7C(void *, void *);
-    u32 func_800F54E4(void);
-    s32 func_800F6438(u32);
-    s32 func_800F6478(s32);
-    int func_800F6AA4(s32);
-    s32 func_800F7B9C(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    int func_800F6AA4(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     s32 func_8010CEF8(f32 *, s32);
     s32 func_80800884_chfirefx(Actor *);
@@ -108,7 +108,7 @@ void chfirefx_entrypoint_3(Actor *arg0) {
     void rare_memcpy(void *, void *, int);
     register struct FireData *data;
     register struct FireParticle *particle;
-    register u32 player;
+    register BtUIntPtr player;
     f32 delta;
     f32 speed;
     f32 acceleration;
@@ -205,9 +205,9 @@ void chfirefx_entrypoint_4(Actor *arg0, u8 *arg1) {
     };
     void func_800E24D8(s32);
     void func_800E2588(u32);
-    void func_800E2594(u32, void *);
+    void func_800E2594(BtUIntPtr, void *);
     s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
-    void func_800E2A14(s32);
+    void func_800E2A14(BtIntPtr);
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
@@ -263,15 +263,15 @@ s32 chfirefx_entrypoint_5(Actor *arg0, s32 arg1, s32 arg2) {
         return 0;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x14]; s16 unk14; s16 unk16; } Objfx_chfirefx_entrypoint_6_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chfirefx_entrypoint_6(Actor *arg0, s16 arg1, s16 arg2) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s16 *)((s8 *)(temp_v0) + (0x14))) = arg1;
-    (*(s16 *)((s8 *)(temp_v0) + (0x16))) = arg2;
+    (((Objfx_chfirefx_entrypoint_6_temp_v0 *)temp_v0)->unk14) = arg1;
+    (((Objfx_chfirefx_entrypoint_6_temp_v0 *)temp_v0)->unk16) = arg2;
 }
 
 s32 func_80800884_chfirefx(Actor *arg0) {
@@ -342,13 +342,13 @@ s32 func_80800884_chfirefx(Actor *arg0) {
 void func_80800AA8_chfirefx(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_800DA298(s32);
-    void func_8010D640(s32);
+    void func_8010D640(BtIntPtr);
     f32 func_800EEB40(f32 *, f32 *);
     u8 func_800C4350(s32, f32[3], s32 *);
     void func_800C3584(u8, f32, f32);
     void func_800C3BDC(u8);
     void _subaddieaudioloop_entrypoint_2(Actor *);
-    extern s32 D_80801290_chfirefx;
+    extern s32 D_80801290_chfirefx[6];
     u16 *data;
     f32 position[3];
     s32 active;
@@ -366,7 +366,7 @@ void func_80800AA8_chfirefx(Actor *arg0) {
     }
     if (active) {
         if (arg0->unk5F == 0) {
-            arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, &D_80801290_chfirefx);
+            arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, D_80801290_chfirefx);
         }
         if (arg0->unk5F != 0) {
             func_800C4350(arg0->unk5F, arg0->position, NULL);
@@ -479,7 +479,7 @@ void func_80800E9C_chfirefx(Actor *arg0) {
 }
 
 void func_80800F00_chfirefx(Actor *arg0) {
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *arg0);
     void *func_80100094(Actor *, u32);
     s32 *sp2C;
     s32 var_s0;
@@ -567,7 +567,7 @@ void func_80800F7C_chfirefx(Actor *arg0)
 
 void func_8080116C_chfirefx(Actor *arg0, Unk80132ED0 **arg1)
 {
-  s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+  void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
   void *func_80100094(Actor *, u32);
   void func_80103110(Actor *, u32);
   s32 *temp_v0;
@@ -575,3 +575,17 @@ void func_8080116C_chfirefx(Actor *arg0, Unk80132ED0 **arg1)
   _subaddielink_entrypoint_1((((u8 *) temp_v0) + ((temp_v0[1]++) * 8)) + ((0, 8)), *arg1);
   func_80103110(arg0, 1U);
 }
+/* data_to_c.py: from asm/data/overlays/ch/fire/fx.data.s */
+void _chfirefx_entrypoint_3();
+void func_80105834(Actor*);
+void _chfirefx_entrypoint_4();
+void func_80107C2C();
+#ifndef BT_NATIVE
+void _chfirefx_entrypoint_5();
+#endif
+void func_80102EC0();
+void func_8010A730();
+ActorData D_80801200_chfirefx [1] BT_DATA(4, overlays_ch_fire_fx, 0x0) = { { 788, 940, -1, 2, 0, (void (*)(struct Actor *))_chfirefx_entrypoint_3, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_chfirefx_entrypoint_4, 249036800, 0, 0, 0, 2, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chfirefx, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 25602, (void (*)(struct Actor *, long, long))_chfirefx_entrypoint_5, 0 } };
+ActorData D_80801248_chfirefx [1] BT_DATA(4, overlays_ch_fire_fx, 0x48) = { { 344, 649, 0, 1, 0, (void (*)(struct Actor *))func_80800F7C_chfirefx, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 0, 0, 0, 136, 0, (void (*)(struct Actor *))func_80800F00_chfirefx, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11778, 0, 0 } };
+s32 D_80801290_chfirefx[6] BT_DATA(4, overlays_ch_fire_fx, 0x90) = { 1246339, 33947655, 1449792, 917811, 24117632, 196608 };
+u32 D_808012A8_chfirefx [6] BT_DATA(4, overlays_ch_fire_fx, 0xA8) = { 0xFF, 0xC0, 0x40, 0, 0, 0 };

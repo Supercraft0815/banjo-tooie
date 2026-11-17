@@ -208,8 +208,8 @@ void func_800D58CC(void) {
     func_800D55DC();
 }
 
-s32 func_800D58FC(s32 arg0) {
-#ifdef BT_NATIVE
+s32 func_800D58FC(BtIntPtr arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_flags(arg0) & 15;
 #else
     s32 rom_read_word(s32, u32 *);
@@ -222,7 +222,7 @@ s32 func_800D58FC(s32 arg0) {
 
 s32 func_800D593C() 
 {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_count();
 #else
     return 0x3666;
@@ -235,7 +235,7 @@ s32 func_800D5944()
 }
 
 s32 func_800D5950(s32 arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_packed_size(arg0);
 #else
     s32 rom_read_word(s32, u32 *);
@@ -254,7 +254,7 @@ s32 func_800D5950(s32 arg0) {
 }
 
 s32 func_800D59C0(s32 index) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return (native_asset_flags(index) >> 4) & 1;
 #else
     typedef struct {
@@ -286,7 +286,7 @@ s32 func_800D5A04(s32 arg0) {
 }
 
 s32 func_800D5A6C(s32 arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_rom_offset(arg0);
 #else
     s32 rom_read_word(s32, u32 *); extern s32 D_8011B900; extern u32 D_8012B440; extern s32 D_8012B448; rom_read_word((s32)((u32 *)D_8011B900 + arg0), &D_8012B440); return D_8012B448 + ((u32) D_8012B440 >> 6);
@@ -317,7 +317,7 @@ void func_800D5B24(void) {
 
 void *func_800D5B34(s32 arg0)
 {
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
   s32 func_800E4AF0();
   s32 func_800E4BF4(s32);
   void *func_800E6950(s32, s32, void *);
@@ -349,14 +349,14 @@ void *func_800D5B34(s32 arg0)
   }
   if (index < ((u8) D_8012B7E4))
   {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     if (D_8012B658[index] == 255) return NULL;
     D_8012B7E8 = native_asset_sizes[index];
 #endif
     D_8012B658[index]++;
     return D_8012B450[index];
   }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
   result = native_asset_load(arg0, &D_8012B7E8);
   if (!result) return NULL;
 #else
@@ -407,7 +407,7 @@ void *func_800D5B34(s32 arg0)
 }
 
 void func_800D5D70(void) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     native_assets_shutdown();
     D_8012B7E6 = 0;
     func_800D55A0();
@@ -425,7 +425,7 @@ void func_800D5D70(void) {
 }
 
 s32 func_800D5DB8(s32 arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_packed_size(arg0);
 #else
     s32 rom_read_word(s32, u32 *);
@@ -464,7 +464,7 @@ int func_800D5E94(void *arg0)
 }
 
 s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_read_into(arg0, arg1, arg2);
 #else
     void *func_800E6950(s32, s32, void *);
@@ -539,4 +539,10 @@ void native_assets_shutdown(void) {
     for (i = 0; i < (u8)D_8012B7E4; ++i) heap_free(D_8012B450[i]);
     D_8012B7E4 = 0;
 }
+#endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012B7F0 BT_DATA(4, bss_core2bss1_2_status_tail, 0x3D0);
 #endif

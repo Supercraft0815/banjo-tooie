@@ -71,15 +71,15 @@ void func_8080019C_gcsectionskip(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 
         }
     }
     func_800EE7F8(arg1, sp64);
-}
+}    typedef struct { u8 pad0[0x6]; u16 unk6; } Objsectionskip_func_808002A0_gcsectionskip_node; /* offsets.py genstruct: fields from raw offsets on node; rename once understood */
 
 /* extern */
 
-void func_808002A0_gcsectionskip(s32 arg0, s16 *arg1) {
+void func_808002A0_gcsectionskip(BtIntPtr arg0, s16 *arg1) {
     void func_800EFB24(void *, void *, void *);
-    void func_800F5D70(s32, f32 *);
-    void func_800F5D9C(s32, f32 *);
-    s32 func_800F8418(s32, f32 *);
+    void func_800F5D70(BtIntPtr, f32 *);
+    void func_800F5D9C(BtIntPtr, f32 *);
+    s32 func_800F8418(BtIntPtr, f32 *);
     void func_8080019C_gcsectionskip(f32 *, f32 *, f32 *, f32, f32);
     f32 sp54[3];
     f32 sp48[3];
@@ -92,7 +92,7 @@ void func_808002A0_gcsectionskip(s32 arg0, s16 *arg1) {
 
     if (node != NULL) {
         sp2C = (u32)*((u8 *)node + 0x13) >> 7;
-        sp28 = (f32)((u32)*(u16 *)((u8 *)node + 6) >> 7);
+        sp28 = (f32)((u32)*&((Objsectionskip_func_808002A0_gcsectionskip_node *)node)->unk6 >> 7);
         func_800F5D9C(arg0, sp30);
         func_800F5D70(arg0, sp3C);
         func_800EF334(sp3C, func_800D8FF8());
@@ -103,7 +103,7 @@ void func_808002A0_gcsectionskip(s32 arg0, s16 *arg1) {
     }
 }
 
-void func_80800374_gcsectionskip(s32 arg0, s32 arg1) {
+void func_80800374_gcsectionskip(BtIntPtr arg0, BtIntPtr arg1) {
     func_800F7E3C(arg0, 0);
     func_808002A0_gcsectionskip(arg0, arg1);
 }
@@ -114,7 +114,7 @@ void gcsectionskip_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-s32 gcsectionskip_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4) {
+s32 gcsectionskip_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4) {
     s32 _chchuffycont_entrypoint_0(s32 *, s32 *);
     s32 _chchuffycont_entrypoint_1(s32 *, s32 *);
     s32 func_800A8264(void);
@@ -122,13 +122,13 @@ s32 gcsectionskip_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4)
     s32 func_800D3948(void);
     s32 func_800D395C(void);
     s32 func_800DC298(f32);
-    s32 func_800F4BE4(s32);
-    s32 func_800F5410(s32);
-    s32 func_800F66F0(s32);
-    s32 func_800F6CC8(s32);
-    s32 func_800F6D24(s32);
-    s32 func_800F70BC(s32);
-    s32 func_800F7C9C(s32, s32, s32, s32);
+    s32 func_800F4BE4(BtIntPtr);
+    s32 func_800F5410(BtIntPtr);
+    s32 func_800F66F0(BtIntPtr);
+    s32 func_800F6CC8(BtIntPtr);
+    s32 func_800F6D24(BtIntPtr);
+    s32 func_800F70BC(BtIntPtr);
+    s32 func_800F7C9C(BtIntPtr, s32, s32, s32);
     s32 func_800F8B88(void);
     void func_80800374_gcsectionskip();
     s32 func_80800D3C_gcsectionskip(s32 *, s32 *);
@@ -136,7 +136,7 @@ s32 gcsectionskip_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4)
     extern u8 D_8012762C;
     extern u8 D_80801040_gcsectionskip[];
     s32 sp2C;
-    u32 sp28;
+    BtUIntPtr sp28;
     s32 sp24;
 
     sp2C = 1;
@@ -358,7 +358,7 @@ s32 gcsectionskip_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4)
         }
         goto final_checks;
     case 25: {
-        u32 sp20;
+        BtUIntPtr sp20;
         sp20 = func_800F54E4();
         if (sp24 == 0x11) {
             func_80800374_gcsectionskip(sp28, arg0);
@@ -368,7 +368,7 @@ s32 gcsectionskip_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4)
         goto final_checks;
     }
     case 26: {
-        u32 sp1C;
+        BtUIntPtr sp1C;
         sp1C = func_800F54E4();
         if (sp24 == 0x11) {
             func_80800374_gcsectionskip(sp28, arg0);
@@ -458,7 +458,7 @@ final_checks:
 }
 
 s32 func_80800D3C_gcsectionskip(s32 *arg0, s32 *arg1) {
-    s32 func_800F5410(s32);
+    s32 func_800F5410(BtIntPtr);
     enum map_e map;
 
     if (func_800F5410(func_800F54E4()) != 1) {
@@ -517,3 +517,5 @@ s32 func_80800D3C_gcsectionskip(s32 *arg0, s32 *arg1) {
 }
 
 void func_80800EF8_gcsectionskip(s32 arg0, s32 arg1) { func_800C05B8(arg0, 0, NULL, NULL, 0, 0, arg1); }
+/* data_to_c.py: from asm/data/overlays/gc/sectionskip.data.s */
+u8 D_80801040_gcsectionskip [16] BT_DATA(4, overlays_gc_sectionskip, 0x0) = { 0, 0x16, 0x23, 0x28, 0x17, 0x13, 0x24, 0x25, 0x15, 0x14, 0, 0, 0, 0, 0, 0 };

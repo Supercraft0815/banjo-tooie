@@ -16,7 +16,7 @@ f32 func_80107C00(void);
         u32 active : 1;
         u32 pad18_0 : 22;
     } CoasterData;
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     s32 _subaddiesect_entrypoint_1(Actor *);
     s32 _sucoasterdata_entrypoint_0(Actor *);
     u32 *func_80100074(Actor *, u32, u32);
@@ -63,16 +63,16 @@ void sucoaster_entrypoint_2(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 _subaddiesect_entrypoint_0(Actor *, s32, s32);
     void _sucoasterplayer_entrypoint_0(Actor *);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_800D9058(f32);
     s32 func_800D9078(f32 *);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_8080027C_sucoaster(Actor *, void *);
-    s32 func_80802760_sucoaster(s32);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
     s32 sucoaster_entrypoint_17(Actor *, s32);
     void sucoaster_entrypoint_22(void *);
     CoasterData *data;
-    s32 index;
+    BtIntPtr index;
 
     data = func_80100094(arg0, 0);
     if (data->sector == -1 || _subaddiesect_entrypoint_0(arg0, data->sector, 1)) {
@@ -97,7 +97,7 @@ void sucoaster_entrypoint_2(Actor *arg0) {
                     }
                 }
             }
-            index = func_80802760_sucoaster((s32)data);
+            index = func_80802760_sucoaster((BtIntPtr)data);
             if (index != -1) {
                 func_800F5A00(index, (f32 *)arg0->actorData);
             }
@@ -139,12 +139,12 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
     } ActorFlags;
     void _subaddiefade_entrypoint_3(Actor *);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, u8, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
     void *_sucoasterdata_entrypoint_1(u32);
     s32 _sucoasterdata_entrypoint_3(u32);
     s32 _sucoasterhit_entrypoint_1(void *);
-    s32 _sucoasterhit_entrypoint_2(void *);
+    void _sucoasterhit_entrypoint_2(Actor *arg0);
     s32 func_8001210C(s32);
     s32 func_800D9058(f32);
     f32 func_800DC178(f32, f32);
@@ -158,7 +158,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
     f32 func_8080230C_sucoaster(Actor *, void *);
     s32 func_80802400_sucoaster(Actor *, void *);
     s32 func_80802550_sucoaster(Actor *, Actor *);
-    f32 func_8080264C_sucoaster(void *, s32);
+    f32 func_8080264C_sucoaster(void *, BtIntPtr);
     s32 sucoaster_entrypoint_7(Actor *, s32, f32);
     void sucoaster_entrypoint_8(Actor *);
     s32 sucoaster_entrypoint_9(Actor *, s32, s32);
@@ -222,7 +222,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
             if (sucoaster_entrypoint_9(arg0, 2, 0)) {
                 arg0->unk6C_0 = func_800D9058(2.0f);
             }
-        } else if (!_subaddierouteDll_entrypoint_7(arg0, arg1, arg0->unk54, func_8080264C_sucoaster(arg0, (s32)arg1), ((CoasterData *)arg1)->radius, 0x5802)) {
+        } else if (!_subaddierouteDll_entrypoint_7(arg0, arg1, arg0->unk54, func_8080264C_sucoaster(arg0, (BtIntPtr)arg1), ((CoasterData *)arg1)->radius, 0x5802)) {
             if (sucoaster_entrypoint_9(arg0, 2, 0)) {
                 arg0->unk6C_0 = func_800D9058(2.0f);
             }
@@ -250,7 +250,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
         break;
     case 7:
         sucoaster_entrypoint_16(arg0, 0);
-        arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)arg1);
+        arg0->unk54 = func_8080264C_sucoaster(arg0, (BtIntPtr)arg1);
         func_808020B8_sucoaster(arg0, arg1, 1.0f);
         if (func_80101DDC(arg0)) {
             if (sucoaster_entrypoint_14(arg0)) {
@@ -270,7 +270,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
             sucoaster_entrypoint_15(arg0);
         } else {
             if (((CoasterData *)arg1)->route || _subaddierouteDll_entrypoint_4(arg0)) {
-                arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)arg1);
+                arg0->unk54 = func_8080264C_sucoaster(arg0, (BtIntPtr)arg1);
             }
             if (*(u16 *)(config + 0x4A) && func_80102CF4(arg0, 80.0f) && func_80802400_sucoaster(arg0, arg1)) {
                 sucoaster_entrypoint_9(arg0, 9, 0);
@@ -280,7 +280,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
         break;
     case 9:
         if (((CoasterData *)arg1)->route || _subaddierouteDll_entrypoint_4(arg0)) {
-            arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)arg1);
+            arg0->unk54 = func_8080264C_sucoaster(arg0, (BtIntPtr)arg1);
         }
         sucoaster_entrypoint_7(arg0, 0x5802, 30.0f);
         sucoaster_entrypoint_16(arg0, 1);
@@ -296,7 +296,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
         break;
     case 10:
         sucoaster_entrypoint_11(arg0, _sucoasterdata_entrypoint_3(((CoasterData *)arg1)->track));
-        if (func_80802550_sucoaster((s32)arg0, (s32)arg1)) {
+        if (func_80802550_sucoaster((BtIntPtr)arg0, (BtIntPtr)arg1)) {
             sucoaster_entrypoint_15(arg0);
         } else if (((CoasterData *)arg1)->route || _subaddierouteDll_entrypoint_4(arg0)) {
             arg0->unk54 = func_8080230C_sucoaster(arg0, arg1);
@@ -351,7 +351,7 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
     }
 }
 
-u8 *sucoaster_entrypoint_3(Actor *arg0) { void *func_80100094(Actor *, u32); return (u8 *)func_80100094(arg0, 0U) + 0x1C; }
+u8 *sucoaster_entrypoint_3(Actor *arg0) { void *func_80100094(Actor *, u32); return (u8 *)func_80100094(arg0, 0U) + 0x1C; }    typedef struct { u8 pad0[0x19]; u8 unk19; } Objcoaster_sucoaster_entrypoint_4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void sucoaster_entrypoint_4(Actor *arg0) {
     void* func_80100094(Actor*, u32);
@@ -359,7 +359,7 @@ void sucoaster_entrypoint_4(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     if (temp_v0 != NULL) {
-        (*(u8 *)((s8 *)(temp_v0) + (0x19))) = (u8) ((*(u8 *)((s8 *)(temp_v0) + (0x19))) & 0xFFBF);
+        (((Objcoaster_sucoaster_entrypoint_4_temp_v0 *)temp_v0)->unk19) = (u8) ((((Objcoaster_sucoaster_entrypoint_4_temp_v0 *)temp_v0)->unk19) & 0xFFBF);
     }
 }
 
@@ -384,12 +384,12 @@ void func_80800C68_sucoaster(void *arg0, void *arg1, f32 arg2) {
     f32 func_800F15F8(f32, f32, f32);
     s32 func_800F20BC(f32, f32, s32);
     f32 func_80107C00();
-    if (((0.6f * (f32) (*(s16 *)((s8 *)(arg1) + (0xE)))) < (*(f32 *)((s8 *)(arg0) + (0x24)))) && (func_800F20BC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))), 0x42700000) == 0)) {
+    if (((0.6f * (f32) (*(s16 *)((s8 *)(arg1) + (0xE)))) < (*(f32 *)((s8 *)(arg0) + (0x24)))) && (func_800F20BC((((Actor *)arg0)->rotation[1]), (((Actor *)arg0)->unk54), 0x42700000) == 0)) {
         (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x24))) * 0.95f);
         return;
     }
     (*(f32 *)((s8 *)(arg0) + (0x24))) = func_800F15F8((*(f32 *)((s8 *)(arg0) + (0x24))), (f32) (*(s16 *)((s8 *)(arg1) + (0xE))), func_80107C00() * arg2);
-}
+}    typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; } Objcoaster_sucoaster_entrypoint_6_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void sucoaster_entrypoint_6(Actor *arg0, f32 arg1) {
     void *func_80100094(Actor *, u32);
@@ -397,7 +397,7 @@ void sucoaster_entrypoint_6(Actor *arg0, f32 arg1) {
     void *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
-    *(s16 *)((s8 *)sp1C + 0xE) = (s32)(((f32)*(s16 *)((s8 *)sp1C + 0xC) * 0.00390625f) * func_80107C00() * arg1);
+    ((Objcoaster_sucoaster_entrypoint_6_sp1C *)sp1C)->unkE = (s32)(((f32)*&((Objcoaster_sucoaster_entrypoint_6_sp1C *)sp1C)->unkC * 0.00390625f) * func_80107C00() * arg1);
 }
 
 s32 sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2) {
@@ -425,26 +425,26 @@ s32 sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2) {
         s16 max;
     } CoasterConfig;
     s32 _subaddierouteDll_entrypoint_4(Actor *);
-    void _subaddierouteDll_entrypoint_5(Actor *, void *, u16, f32, f32, f32);
+    void _subaddierouteDll_entrypoint_5(Actor *arg0, void *arg1, s32 arg2, f32 arg3, f32 arg4, f32 arg5);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
     void *_sucoasterdata_entrypoint_1(u32);
     f32 func_800136E4(f32);
     f32 func_800DC178(f32, f32);
     int func_800F1EA4(f32 *, f32 *);
-    s32 func_800F64A4(s32, s32);
+    s32 func_800F64A4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_8010AA54(s32 *);
     s32 func_8010BA80(Actor *, s32, s32);
-    s32 func_80802760_sucoaster(s32);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
     f32 func_808021A8_sucoaster(Actor *, void *, s32);
     s32 func_80802384_sucoaster(Actor *, void *, f32);
     s32 sucoaster_entrypoint_9(Actor *, s32, s32);
-    void sucoaster_entrypoint_18(s32);
+    void sucoaster_entrypoint_18(BtIntPtr);
     s32 pad54;
     CoasterData *sp50;
     CoasterConfig *sp4C;
     s32 sp48;
-    s32 index;
+    BtIntPtr index;
     s32 result;
     union { f32 vector[3]; s32 words[3]; } sp34;
     f32 sp30;
@@ -454,7 +454,7 @@ s32 sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2) {
     sp50 = data;
     sp4C = _sucoasterdata_entrypoint_1(data->track);
     if (!data->disabled) {
-        index = func_80802760_sucoaster((s32)data);
+        index = func_80802760_sucoaster((BtIntPtr)data);
         if (index != -1 && func_800F64A4(index, sp4C->collision)) {
             arg1 |= 1;
         }
@@ -469,7 +469,7 @@ s32 sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2) {
     }
     _subaddierouteDll_entrypoint_5(arg0, sp50, data->previous, sp4C->speed, sp4C->min, sp4C->max);
     func_80800C68_sucoaster(arg0, data, arg2);
-    sucoaster_entrypoint_18((s32)arg0);
+    sucoaster_entrypoint_18((BtIntPtr)arg0);
     result = func_8010BA80(arg0, 0x305425, 0x20);
     sp48 = result;
     if (result & 0x20) {
@@ -527,7 +527,7 @@ s32 sucoaster_entrypoint_10(Actor *arg0, s32 arg1) {
         u32 hit : 1;
         u32 pad18_0 : 21;
     } CoasterData;
-    s32 _subaddiefade_entrypoint_5();
+    void _subaddiefade_entrypoint_5(void *arg0);
     s32 _sucoasterdata_entrypoint_2(u32);
     s32 _sucoasterdata_entrypoint_3(u32);
     s32 _sucoasterdata_entrypoint_4(u32);
@@ -537,9 +537,9 @@ s32 sucoaster_entrypoint_10(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
-    void func_80802260_sucoaster(Actor *, s32);
+    void func_80802260_sucoaster(Actor *, BtIntPtr);
     f32 func_8080230C_sucoaster(Actor *, void *);
-    f32 func_8080264C_sucoaster(void *, s32);
+    f32 func_8080264C_sucoaster(void *, BtIntPtr);
     void sucoaster_entrypoint_11(Actor *, f32);
     CoasterData *data;
     s32 maximum;
@@ -573,7 +573,7 @@ s32 sucoaster_entrypoint_10(Actor *arg0, s32 arg1) {
         break;
     case 5:
         sucoaster_entrypoint_6(arg0, 0.0f);
-        arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)data);
+        arg0->unk54 = func_8080264C_sucoaster(arg0, (BtIntPtr)data);
         break;
     case 6:
         arg0->unk6C_0 = func_800D9058(2.0f);
@@ -589,7 +589,7 @@ s32 sucoaster_entrypoint_10(Actor *arg0, s32 arg1) {
         sucoaster_entrypoint_6(arg0, (f32)_sucoasterdata_entrypoint_4(data->track));
         sucoaster_entrypoint_11(arg0, (f32)_sucoasterdata_entrypoint_3(data->track));
         if (!arg0->unk64_29) {
-            arg0->unk54 = func_8080264C_sucoaster(arg0, (s32)data);
+            arg0->unk54 = func_8080264C_sucoaster(arg0, (BtIntPtr)data);
         }
         break;
     case 9:
@@ -605,7 +605,7 @@ s32 sucoaster_entrypoint_10(Actor *arg0, s32 arg1) {
         ((f32 *)arg0->actorData)[3] = 0.0f;
         break;
     case 12:
-        func_80802260_sucoaster(arg0, (s32)data);
+        func_80802260_sucoaster(arg0, (BtIntPtr)data);
         break;
     case 14:
         func_8010A570(arg0);
@@ -692,15 +692,15 @@ s32 func_808015F8_sucoaster(Actor *arg0, void *arg1) {
         u32 index : 6;
         u32 pad70_0 : 4;
     } CoasterActor;
-    s32 func_80802760_sucoaster(s32);
-    void func_800F5A00(s32, f32 *);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800CC338(f32 *, s32, s32);
     f32 sp24[3];
-    s32 route;
+    BtIntPtr route;
     u32 sp1C;
     u8 index;
 
-    route = func_80802760_sucoaster((s32)arg1);
+    route = func_80802760_sucoaster((BtIntPtr)arg1);
     index = ((CoasterState *)arg1)->index;
     if (index != 0) {
         sp1C = index;
@@ -718,9 +718,9 @@ s32 sucoaster_entrypoint_13(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_801072A8(void *);
     s32 func_808015F8_sucoaster(Actor *, void *);
-    s32 func_8080202C_sucoaster(Actor *, s32);
+    s32 func_8080202C_sucoaster(Actor *, BtIntPtr);
     s32 func_80802594_sucoaster(Actor *, Actor *);
-    s32 func_80802760_sucoaster(s32);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
     void *sp24;
 
     sp24 = func_80100094(arg0, 0);
@@ -733,10 +733,10 @@ s32 sucoaster_entrypoint_13(Actor *arg0) {
     if (func_801072A8(arg0) != 0) {
         return 0;
     }
-    if (func_80802760_sucoaster((s32)sp24) == -1) {
+    if (func_80802760_sucoaster((BtIntPtr)sp24) == -1) {
         return 0;
     }
-    if (func_8080202C_sucoaster(arg0, (s32)sp24) != 0) {
+    if (func_8080202C_sucoaster(arg0, (BtIntPtr)sp24) != 0) {
         if (func_80802594_sucoaster(arg0, sp24) != 0) {
             sucoaster_entrypoint_9(arg0, 10, 0);
             return 2;
@@ -765,7 +765,7 @@ s32 sucoaster_entrypoint_14(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     void *func_80100094(Actor *, u32);
     s32 func_808015F8_sucoaster(Actor *, void *);
-    s32 func_8080202C_sucoaster(Actor *, s32);
+    s32 func_8080202C_sucoaster(Actor *, BtIntPtr);
     s32 func_80802594_sucoaster(Actor *, Actor *);
     void *data;
 
@@ -774,7 +774,7 @@ s32 sucoaster_entrypoint_14(Actor *arg0) {
         ((CoasterData *)data)->unk12 = func_800D9058(func_800DC178(5.0f, 8.0f));
         return 1;
     }
-    if (func_8080202C_sucoaster(arg0, (s32)data) != 0 &&
+    if (func_8080202C_sucoaster(arg0, (BtIntPtr)data) != 0 &&
         func_808015F8_sucoaster(arg0, data) != 0 &&
         _suchase_entrypoint_1(arg0) != 0) {
         return 0;
@@ -790,7 +790,7 @@ void sucoaster_entrypoint_15(Actor *arg0) {
         u8 pad13[3];
         u8 counter;
     } CoasterData;
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, u8, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 func_800D9058(f32);
     f32 func_800DC178(f32, f32);
     void *func_80100094(Actor *, u32);
@@ -858,10 +858,10 @@ s32 sucoaster_entrypoint_17(Actor *arg0, s32 arg1) {
     } CoasterSound;
     void *_sucoasterdata_entrypoint_1(u32);
     void *func_80100094(Actor *, u32);
-    void func_8010D640(s32);
+    void func_8010D640(BtIntPtr);
     f32 func_800EEB40(f32 *, f32 *);
     f32 func_800DC178(f32, f32);
-    void func_800C4104(s32, f32, s32, s32, f32, f32);
+    void func_800C4104(s32, f32, s32, BtIntPtr, f32, f32);
     f32 volume;
     CoasterSound *config;
     f32 position[4];
@@ -869,21 +869,21 @@ s32 sucoaster_entrypoint_17(Actor *arg0, s32 arg1) {
     config = func_80100094(arg0, 0);
     config = _sucoasterdata_entrypoint_1(((CoasterData *)config)->track);
     if (((CoasterSound *)((u8 *)config + arg1 * 8))->id != 0) {
-        func_8010D640((s32)position);
+        func_8010D640((BtIntPtr)position);
         if (func_800EEB40(position, arg0->position) >= 6250000.0f) {
             return 0;
         }
         {
             volume = func_800DC178(-0.05f, 0.05f) + (f32)((CoasterSound *)((u8 *)config + arg1 * 8))->volume * 0.00390625f;
             func_800C4104(((CoasterSound *)((u8 *)config + arg1 * 8))->id, volume,
-                          ((CoasterSound *)((u8 *)config + arg1 * 8))->rate, (s32)arg0->position, 1250.0f, 2500.0f);
+                          ((CoasterSound *)((u8 *)config + arg1 * 8))->rate, (BtIntPtr)arg0->position, 1250.0f, 2500.0f);
         }
         return 1;
     }
     return 0;
 }
 
-void sucoaster_entrypoint_18(s32 arg0)
+void sucoaster_entrypoint_18(BtIntPtr arg0)
 {
     func_80105230(arg0,0);
 }
@@ -892,13 +892,13 @@ void sucoaster_entrypoint_18(s32 arg0)
 
 void sucoaster_entrypoint_19(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 _suexpression_entrypoint_18(u8 *, s32);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
     if (func_80100094(arg0, 1U) != NULL) {
         _suexpression_entrypoint_18(func_80100094(arg0, 1U), 1);
     }
 }
 
-void sucoaster_entrypoint_20()
+void sucoaster_entrypoint_20(BT_PASS2(s32 bt_a0, s32 bt_a1))
 {
     func_80101870();
 }
@@ -927,16 +927,16 @@ s32 sucoaster_entrypoint_21(Actor *arg0, s32 arg1, s32 arg2) {
         u32 ready : 1;
         u32 pad18_0 : 21;
     } CoasterData;
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddierouteDll_entrypoint_1(Actor *);
     void *_sucoasterdata_entrypoint_1(u32);
-    s32 _sucoasterdata_entrypoint_5(u32, u32, s32 *);
+    s32 *_sucoasterdata_entrypoint_5(u32 arg0, s32 arg1, s32 *arg2);
     void _sucoasterplayer_entrypoint_1(Actor *);
     void _suexpression_entrypoint_13(void *, f32 *, f32 *);
     s32 func_800D9058(f32);
     void *func_80100094(Actor *, u32);
-    void func_80101010(s32);
-    void func_80101074(s32);
+    void func_80101010(BtIntPtr);
+    void func_80101074(BtIntPtr);
     s32 func_80107070(Actor *, s32);
     s32 func_8010A590(u8 *);
     void func_80802690_sucoaster(Actor *, u8 *);
@@ -1019,7 +1019,7 @@ s32 sucoaster_entrypoint_21(Actor *arg0, s32 arg1, s32 arg2) {
             rotation[2] = 0.0f;
             data = func_80100094(arg0, 1);
             _suexpression_entrypoint_13(data, &rotation[1], &rotation[0]);
-            func_80101010((s32)rotation);
+            func_80101010((BtIntPtr)rotation);
             break;
         }
         case 0x95:
@@ -1081,18 +1081,18 @@ void sucoaster_entrypoint_22(void *arg0) {
     }
 }
 
-s32 func_8080202C_sucoaster(Actor *arg0, s32 arg1) {
+s32 func_8080202C_sucoaster(Actor *arg0, BtIntPtr arg1) {
     typedef struct {
         u8 pad0[0x18];
         u32 pad18_23 : 9;
         u32 flag : 1;
         u32 pad18_0 : 22;
     } CoasterData;
-    s32 func_80802760_sucoaster(s32);
-    s32 func_800F6478(s32);
-    void func_800F5A00(s32, f32 *);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
-    s32 object;
+    BtIntPtr object;
     f32 position[3];
 
     object = func_80802760_sucoaster(arg1);
@@ -1184,7 +1184,7 @@ f32 func_808021A8_sucoaster(Actor *arg0, void *arg1, s32 arg2) {
 
 /* extern */
 
-void func_80802260_sucoaster(Actor *arg0, s32 arg1) {
+void func_80802260_sucoaster(Actor *arg0, BtIntPtr arg1) {
     typedef struct {
         u8 pad0[0x64];
         u32 flag31 : 1;
@@ -1252,8 +1252,8 @@ s32 func_80802400_sucoaster(Actor *arg0, void *arg1) {
         f32 speed;
     } CoasterSpeed;
     void *_sucoasterdata_entrypoint_1(u32);
-    s32 func_80802760_sucoaster(s32);
-    f32 func_800F57F0(s32, f32 *);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
+    BT_IDO_ONLY(f32 func_800F57F0(BtIntPtr, f32 *);) BT_NATIVE_ONLY(s32 func_800F57F0(BtIntPtr, f32 *);)
     f32 func_800D8FF8(void);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800EFC7C(void *, void *);
@@ -1264,7 +1264,7 @@ s32 func_80802400_sucoaster(Actor *arg0, void *arg1) {
     f32 delta;
 
     data = _sucoasterdata_entrypoint_1(((CoasterObject *)arg1)->flags >> 28);
-    radius = func_800F57F0(func_80802760_sucoaster((s32)arg1), position);
+    radius = BT_IDO_ONLY(func_800F57F0(func_80802760_sucoaster((BtIntPtr)arg1), position)) BT_NATIVE_ONLY(((union { s32 bits; f32 value; }){ .bits = func_800F57F0(func_80802760_sucoaster((BtIntPtr)arg1), position) }).value);
     distance = (f32)((CoasterObject *)arg1)->distance * 0.00390625f * (f32)(u32)data->distance;
     speed = ((CoasterSpeed *)arg0->actorData)->speed;
     delta = func_800D8FF8();
@@ -1297,16 +1297,16 @@ s32 func_80802594_sucoaster(Actor *arg0, Actor *arg1) {
         s32 flags;
     } CoasterData;
     void *_sucoasterdata_entrypoint_1(u32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F5C94(s32);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F5C94(BtIntPtr);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
     CoasterData *data;
-    s32 object;
+    BtIntPtr object;
     s32 result;
-    s32 func_80802760_sucoaster(s32);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
 
     data = _sucoasterdata_entrypoint_1(arg1->actorData[0] >> 28);
-    object = func_80802760_sucoaster((s32)arg1);
+    object = func_80802760_sucoaster((BtIntPtr)arg1);
     if (object == -1) {
         return 0;
     }
@@ -1325,14 +1325,14 @@ s32 func_80802594_sucoaster(Actor *arg0, Actor *arg1) {
 
 /* extern */
 
-f32 func_8080264C_sucoaster(void *arg0, s32 arg1) {
-    f32 func_8010CD50(void *, s32);
-    s32 func_80802760_sucoaster(s32);
-    s32 temp_v0;
+f32 func_8080264C_sucoaster(void *arg0, BtIntPtr arg1) {
+    f32 func_8010CD50(void *, BtIntPtr);
+    BtIntPtr func_80802760_sucoaster(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80802760_sucoaster(arg1);
     if (temp_v0 == -1) {
-        return (*(f32 *)((s8 *)(arg0) + (0x48)));
+        return (((Actor *)arg0)->rotation[1]);
     }
     return func_8010CD50(arg0, temp_v0);
 }
@@ -1351,10 +1351,10 @@ void func_80802690_sucoaster(Actor *arg0, u8 *arg1) {
         } expression;
     } TrackData;
     void *_sucoasterdata_entrypoint_1(u32);
-    s32 _suexpression_entrypoint_1(u8);
-    void _suexpression_entrypoint_7(Actor *, u32, u32);
+    u8 _suexpression_entrypoint_1(u8 arg0);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     void _suexpression_entrypoint_12(void *, f32, f32);
-    s32 _suexpression_entrypoint_17(void *, s32);
+    void _suexpression_entrypoint_17(s16 *arg0, s32 arg1);
     void *func_80100094(Actor *, u32);
     TrackData *sp1C;
 
@@ -1368,13 +1368,13 @@ void func_80802690_sucoaster(Actor *arg0, u8 *arg1) {
 
 void func_80802728_sucoaster(Actor *arg0, u8 * volatile arg1) {
     void *func_80100094(Actor *, u32);
-    s32 _suexpression_entrypoint_8(Actor *, s32);
+    void _suexpression_entrypoint_8(void *arg0, s32 arg1);
     if (func_80100094(arg0, 1U) != NULL) {
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
 
-s32 func_80802760_sucoaster(s32 arg0) {
+BtIntPtr func_80802760_sucoaster(BtIntPtr arg0) {
     typedef struct {
         u8 pad0[0x18];
         u32 track : 4;
@@ -1382,8 +1382,8 @@ s32 func_80802760_sucoaster(s32 arg0) {
         u32 flag : 1;
         u32 pad18_0 : 19;
     } CoasterData;
-    u32 func_800F54E4(void);
-    s32 func_8010D290(s32);
+    BtUIntPtr func_800F54E4(void);
+    BtIntPtr func_8010D290(s32);
     void *_sucoasterdata_entrypoint_1(u32);
     CoasterData *data = (CoasterData *)arg0;
 

@@ -1,6 +1,6 @@
 #include "common.h"
 
-struct Unk800C7A68;
+struct Unk800C7A68;     
 
 void *func_800FAB50(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 arg3, f32 arg4) {
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
@@ -195,7 +195,7 @@ f32 func_800FB1EC(struct Unk800C7A68 *arg0, f32 arg1, f32 arg2[3], s32 arg3) {
 /* extern */
 
 void *func_800FB2AC(f32 arg0[3], f32 arg1) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -204,7 +204,7 @@ void *func_800FB2AC(f32 arg0[3], f32 arg1) {
     f32 sp38[3];
     f32 sp2C[3];
     f32 sp20[3];
-    s32 sp1C;
+    BtIntPtr sp1C;
 
     func_800EFA4C(sp20, 0.0f, arg1, 0.0f);
     func_800EE780(sp2C, arg0, sp20);
@@ -214,10 +214,10 @@ void *func_800FB2AC(f32 arg0[3], f32 arg1) {
         func_800EE7F8(arg0, sp38);
     }
     return sp1C;
-}
+}    typedef struct { u16 unk0; u16 unk2; f32 unk4; s32 unk8; } Obj1ED4440_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_800FB338(void *arg0, void *arg1, s32 *arg2, f32 *arg3) {
-    *arg3 = (*(f32 *)((s8 *)(arg0) + (4)));
+    *arg3 = (((Obj1ED4440_arg0 *)arg0)->unk4);
     return 0;
 }
 
@@ -264,12 +264,18 @@ void *func_800FB434(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 arg4[3], s
         func_800EFA4C(arg1, sp24[0], sp24[1] - arg2, sp24[2]);
     }
     return result;
-}
+}                 typedef struct { u16 unk0; u16 unk2; u16 unk4; s16 unk6; s32 unk8; } Obj1ED4440_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_800FB508(void *arg0, void *arg1) {
-    (*(u16 *)((s8 *)(arg0) + (0))) = (u16) (*(u16 *)((s8 *)(arg1) + (0)));
-    (*(u16 *)((s8 *)(arg0) + (2))) = (u16) (*(u16 *)((s8 *)(arg1) + (2)));
-    (*(u16 *)((s8 *)(arg0) + (4))) = (u16) (*(u16 *)((s8 *)(arg1) + (4)));
-    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) (*(s32 *)((s8 *)(arg1) + (8)));
-    (*(s16 *)((s8 *)(arg0) + (6))) = (s16) (*(s16 *)((s8 *)(arg1) + (6)));
+    (((Obj1ED4440_arg0 *)arg0)->unk0) = (u16) (((Obj1ED4440_arg1 *)arg1)->unk0);
+    (((Obj1ED4440_arg0 *)arg0)->unk2) = (u16) (((Obj1ED4440_arg1 *)arg1)->unk2);
+    (*(u16 *)((s8 *)(arg0) + (4))) = (u16) (((Obj1ED4440_arg1 *)arg1)->unk4);
+    (((Obj1ED4440_arg0 *)arg0)->unk8) = (s32) (((Obj1ED4440_arg1 *)arg1)->unk8);
+    (*(s16 *)((s8 *)(arg0) + (6))) = (s16) (((Obj1ED4440_arg1 *)arg1)->unk6);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_801357C0 BT_DATA(4, bss_core2bss2_2, 0x2920);
+#endif

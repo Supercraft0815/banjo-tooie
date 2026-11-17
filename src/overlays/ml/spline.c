@@ -1,15 +1,15 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "ml/spline.h"
 #include <math.h>
-typedef void *SplinePoints;
+typedef void *SplinePoints; 
 typedef SplineDerivativeFunc SplineCallback;
 #else
 typedef s32 SplinePoints;
 typedef s32 (*SplineCallback)(f32, s32, s32, f32 *);
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_0(f32 t, s32 arg1, void *input, f32 *dst) {
     f32 (*points)[3] = input;
 #else
@@ -37,7 +37,7 @@ void mlspline_entrypoint_1(f32 arg0, s32 arg1, u8 *arg2, f32 *arg3) {
     *arg3 = (((*(f32 *)((s8 *)(arg2) + (4))) - temp_f0) * arg0) + temp_f0;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_2(f32 arg0, s32 arg1, void *input, f32 *output) {
     u8 *arg2 = input; u8 *arg3 = (u8 *)output;
 #else
@@ -51,13 +51,13 @@ void mlspline_entrypoint_3(f32 arg0, s32 arg1, void *arg2, f32 *arg3) {
     f32 temp_f14;
     f32 temp_f2;
 
-    temp_f0 = (*(f32 *)((s8 *)(arg2) + (0)));
-    temp_f2 = (*(f32 *)((s8 *)(arg2) + (4)));
-    temp_f14 = (*(f32 *)((s8 *)(arg2) + (8)));
+    temp_f0 = (((Vec3f *)arg2)->pos.x);
+    temp_f2 = (((Vec3f *)arg2)->pos.y);
+    temp_f14 = (((Vec3f *)arg2)->pos.z);
     *arg3 = (((((temp_f14 + temp_f0) - (2.0f * temp_f2)) * (2.0f * arg0)) + (((4.0f * temp_f2) - (3.0f * temp_f0)) - temp_f14)) * arg0) + temp_f0;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_4(f32 arg0, s32 arg1, void *input, f32 *output) {
     f32 (*arg2)[3] = input; volatile f32 *arg3 = output;
 #else
@@ -137,7 +137,7 @@ void mlspline_entrypoint_4(f32 arg0, s32 arg1, f32 arg2[][3], volatile f32 *arg3
     }
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_5(f32 arg0, s32 arg1, void *input, f32 *output) {
     f32 *arg2 = input; volatile f32 *arg3 = output;
 #else
@@ -227,7 +227,7 @@ void mlspline_entrypoint_5(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_6(f32 arg0, s32 arg1, void *arg2, f32 *arg3) {
     void func_800EFB24(void *, void *, void *);
     func_800EFB24(arg3, (u8 *)arg2 + 12, arg2);
@@ -239,7 +239,7 @@ void mlspline_entrypoint_6(f32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_7(f32 arg0, s32 arg1, void *input, f32 *output) {
     f32 *arg2 = input; f32 *arg3 = output;
 #else
@@ -260,7 +260,7 @@ calculate:
     for (; (i ^ end) != 0; i += 4) { a = point[0]; b = point[3]; c = point[6]; *out = ((a - 2.0f * b) + c) * (4 * arg0) + ((4.0f * b - 3.0f * a) - c); point++; out++; }
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_8(f32 arg0, s32 arg1, void *input, f32 *output) {
     f32 *arg2 = input; volatile f32 *arg3 = output;
 #else
@@ -423,7 +423,7 @@ void mlspline_entrypoint_9(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
     }
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void mlspline_entrypoint_10(f32 arg0, s32 arg1, void *input, f32 *output) {
     f32 *arg2 = input; volatile f32 *arg3 = output;
 #else
@@ -600,7 +600,7 @@ f32 mlspline_entrypoint_13(s32 arg0, SplinePoints arg1, f32 arg2, f32 arg3, f32 
         return arg2;
     }
     arg5(arg2, arg0, arg1, sp8C);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     speed = func_800EEF94(sp8C);
     /* A stationary tangent cannot provide a finite distance-to-parameter step. */
     if (!isfinite(speed) || speed <= 0.0f) return arg2;
@@ -649,7 +649,7 @@ f32 mlspline_entrypoint_13(s32 arg0, SplinePoints arg1, f32 arg2, f32 arg3, f32 
     if ((var_s3 == 0) && (mlAbsF(var_f20 - sp7C) > 0.01f)) {
         arg5(var_f22, arg0, arg1, sp8C);
         speed = func_800EEF94(sp8C) * (f32) spA0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         if (!isfinite(speed) || speed <= 0.0f) return var_f22;
 #endif
         temp_f12 = (var_f20 - arg3) / speed;

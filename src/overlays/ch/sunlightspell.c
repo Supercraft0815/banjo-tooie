@@ -25,7 +25,7 @@ void func_80800048_chsunlightspell(Actor *arg0) {
     void func_80800404_chsunlightspell(Actor *, s32);
     void func_80800668_chsunlightspell(Actor *);
     void func_80800704_chsunlightspell(Actor *, f32);
-    extern u32 D_80800890_chsunlightspell;
+    extern u32 D_80800890_chsunlightspell[5];
     f32 sp34;
     f32 sp30;
     f32 sp2C;
@@ -66,7 +66,7 @@ void func_80800048_chsunlightspell(Actor *arg0) {
         func_80800668_chsunlightspell(arg0);
         func_80800704_chsunlightspell(arg0, func_800F12D4(sp30, 0.0f, 1.0f, 10.0f, 100.0f));
         arg0->scale = func_800F12D4(sp30, 0.0f, 1.0f, 0.01f, 1.0f);
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80800890_chsunlightspell);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800890_chsunlightspell);
         if (_sumumbofx_entrypoint_27(func_80100094(arg0, 1))) {
             func_80800404_chsunlightspell(arg0, 7);
         }
@@ -74,7 +74,7 @@ void func_80800048_chsunlightspell(Actor *arg0) {
     case 7:
         func_80800668_chsunlightspell(arg0);
         func_80800704_chsunlightspell(arg0, 100.0f);
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80800890_chsunlightspell);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800890_chsunlightspell);
         if (_sumumbofx_entrypoint_27(func_80100094(arg0, 1))) {
             func_80800404_chsunlightspell(arg0, 8);
         }
@@ -84,7 +84,7 @@ void func_80800048_chsunlightspell(Actor *arg0) {
         func_80800704_chsunlightspell(arg0, 100.0f);
         sp2C = 1.0f - _sumumbofx_entrypoint_26(func_80100094(arg0, 1));
         arg0->alpha = (u8)(u32)(sp2C * 255.0f);
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80800890_chsunlightspell);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80800890_chsunlightspell);
         _subaddieaudioloop_entrypoint_1(arg0, (s32)(sp2C * 20000.0f));
         if (_sumumbofx_entrypoint_27(func_80100094(arg0, 1))) {
             func_80800404_chsunlightspell(arg0, 9);
@@ -94,7 +94,7 @@ void func_80800048_chsunlightspell(Actor *arg0) {
         break;
     }
 }
-
+struct SunlightColor { s32 rgb[3]; };
 void func_80800404_chsunlightspell(Actor *arg0, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     s16 _chmumbopad_entrypoint_0(s32);
@@ -115,7 +115,7 @@ void func_80800404_chsunlightspell(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80103110(void *, s32);
-    struct SunlightColor { s32 rgb[3]; } sp34;
+    struct SunlightColor sp34;
     extern struct SunlightColor D_808008A4_chsunlightspell;
     struct SunlightActorFlags {
         u8 unk78;
@@ -199,8 +199,8 @@ void func_80800668_chsunlightspell(Actor *arg0) {
 
 void func_80800704_chsunlightspell(Actor *arg0, f32 arg1) {
     void* func_80100094(Actor*, u32);
-    s32 _sumumbofx_entrypoint_14(u8 *);
-    s32 _sumumbofx_entrypoint_7(u8 *, f32, s32, s32, f32 *, s32, s32);
+    void _sumumbofx_entrypoint_14(u8 *arg0);
+    void _sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f32 *arg5, f32 *arg6);
     _sumumbofx_entrypoint_7(func_80100094(arg0, 1U), arg1, 0, 0x2E, arg0->position, 0, 0);
     _sumumbofx_entrypoint_14(func_80100094(arg0, 1U));
 }
@@ -241,7 +241,14 @@ s32 func_808007CC_chsunlightspell(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chsunlightspell_entrypoint_0(void)
 {
-    extern u8 D_808008BC_chsunlightspell[];
+    extern ActorData D_808008BC_chsunlightspell[];
 
     return (OSThread *) D_808008BC_chsunlightspell;
 }
+/* data_to_c.py: from asm/data/overlays/ch/sunlightspell.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+u32 D_80800890_chsunlightspell[5] BT_DATA(4, overlays_ch_sunlightspell, 0x0) = { 0x130673, 0x200002, 0xA0119, 0x164E20, 0 };
+struct SunlightColor D_808008A4_chsunlightspell BT_DATA(4, overlays_ch_sunlightspell, 0x14) = { { 255, 255, 255 } };
+f32 D_808008B0_chsunlightspell [ 3 ] BT_DATA(4, overlays_ch_sunlightspell, 0x20) = { -9000.0f, 8000.0f, -3100.0f };
+ActorData D_808008BC_chsunlightspell [1] BT_DATA(4, overlays_ch_sunlightspell, 0x2C) = { { 305, 663, 2344, 1, 0, (void (*)(struct Actor *))func_80800048_chsunlightspell, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800768_chsunlightspell, 0, 0, 0, 0, 2, 4096, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chsunlightspell, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_808007CC_chsunlightspell, 0 } };

@@ -2,22 +2,22 @@
 
 OSThread *chfactorylight_entrypoint_0(void)
 {
-    extern u8 D_80800B90_chfactorylight[];
+    extern ActorData D_80800B90_chfactorylight[];
 
     return (OSThread *) D_80800B90_chfactorylight;
 }
 
 /* extern */
 
-void func_8080000C_chfactorylight(s32 arg0) {
-    s32 func_8010A800(s32, s32);
+void func_8080000C_chfactorylight(BtIntPtr arg0) {
+    void func_8010A800(void **arg0, s32 arg1);
     void func_80800830_chfactorylight();
     func_80800830_chfactorylight();
     func_8010A800(arg0, 0x2);
 }
 
 void func_80800038_chfactorylight(Actor *arg0) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     s32 _subaddiezone_entrypoint_1(void *);
     f32 func_800136E4(f32);
     void func_800C4140(u32, f32 *, u32);
@@ -35,11 +35,11 @@ void func_80800038_chfactorylight(Actor *arg0) {
     void func_800EFD3C(u32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1214(f32, f32, f32);
-    s32 func_800F2E60();
+    void func_800F2E60(s32 arg0[3], s32 arg1[3]);
     int func_800F3214(void *, void *, void *, f32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    s32 func_801065A4(void *);
+    BtIntPtr func_801065A4(void *);
 #ifdef BT_NATIVE
     void chfactorylight_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
@@ -102,7 +102,7 @@ void func_80800038_chfactorylight(Actor *arg0) {
         }
     }
     if (arg0->unk7C_12 && func_801065A4(arg0)) {
-        _glid_entrypoint_0(func_801065A4(arg0), 1, &_chfactorylight_entrypoint_1, (s32)arg0->unk0);
+        _glid_entrypoint_0(func_801065A4(arg0), 1, &_chfactorylight_entrypoint_1, (BtIntPtr)arg0->unk0);
     }
     if (func_800EA05C() == 0x10D && (arg0->unk70_10 == 3 || arg0->unk70_10 == 1) && func_800D9154(&((LightActorData *)arg0->actorData)->timer, 1.3f)) {
         func_800C4140(((u16)(u32)(func_800F1214(arg0->unk54, 0.9f, 1.1f) * 1023.0f) << 21) + 0x1F4566, arg0->position, 0x138800FA);
@@ -280,7 +280,7 @@ void func_80800778_chfactorylight(void *arg0, s32 *arg1)
 }
 
 void func_80800830_chfactorylight(Actor *arg0) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_80103014(u8 *);
@@ -361,3 +361,7 @@ void func_808008E4_chfactorylight(Actor *arg0) {
         }
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/light.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800B90_chfactorylight [1] BT_DATA(4, overlays_ch_factory_light, 0x0) = { { 675, 935, 1859, 1, 0, (void (*)(struct Actor *))func_80800038_chfactorylight, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808006B8_chfactorylight, 0, 0, 0, 0, 0, 23552, (void (*)(struct Actor *))func_80800408_chfactorylight, 0, 28, 0, (void (*)(struct Actor *))func_8080000C_chfactorylight, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_8080057C_chfactorylight, 0 } };

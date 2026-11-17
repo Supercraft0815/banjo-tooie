@@ -31,15 +31,15 @@ typedef struct {
     f32 unk94;
     f32 unk98;
     f32 unk9C;
-} MeshEffect;
+} MeshEffect;     
 
 
 void func_800EC890(s32 arg0) 
 {
-}
+}               typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk14; s16 unk18; s8 unk1A; s8 unk1B; s8 unk1C; u8 pad1D[0xC]; s8 unk29; u8 pad2A[0x1A]; f32 unk44; f32 unk48; s16 unk4C; s16 unk4E; } Obj1EC6180_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void func_800EC898(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     typedef struct { s16 map; s16 id; s16 scale; s16 offset; } Entry;
-    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     s32 func_800EA05C();
     extern Entry D_80123580[];
     Entry *var_t0;
@@ -54,31 +54,31 @@ void func_800EC898(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
             break;
         }
     }
-    (*(f32 *)((s8 *)(arg0) + (0x14))) = (f32) (2048.0f / (f32) (*(s16 *)((s8 *)(var_t0) + (4))));
-    (*(f32 *)((s8 *)(arg0) + (0xC))) = (f32) ((*(s16 *)((s8 *)(var_t0) + (6))) << 6);
+    (((Obj1EC6180_arg0 *)arg0)->unk14) = (f32) (2048.0f / (f32) (var_t0->scale));
+    (((Obj1EC6180_arg0 *)arg0)->unkC) = (f32) ((var_t0->offset) << 6);
     _glidmake_entrypoint_2(arg2, arg3, arg0, arg0 + 6);
     temp_v0 = arg1 / 10;
     if (temp_v0 & 1) {
-        (*(s8 *)((s8 *)(arg0) + (0x1A))) = 0;
+        (((Obj1EC6180_arg0 *)arg0)->unk1A) = 0;
     } else {
-        (*(s8 *)((s8 *)(arg0) + (0x1A))) = 1;
+        (((Obj1EC6180_arg0 *)arg0)->unk1A) = 1;
     }
     if (temp_v0 & 2) {
-        (*(s8 *)((s8 *)(arg0) + (0x1B))) = 0;
+        (((Obj1EC6180_arg0 *)arg0)->unk1B) = 0;
     } else {
-        (*(s8 *)((s8 *)(arg0) + (0x1B))) = 1;
+        (((Obj1EC6180_arg0 *)arg0)->unk1B) = 1;
     }
     if (temp_v0 & 4) {
-        (*(s8 *)((s8 *)(arg0) + (0x1C))) = 0;
+        (((Obj1EC6180_arg0 *)arg0)->unk1C) = 0;
     } else {
-        (*(s8 *)((s8 *)(arg0) + (0x1C))) = 1;
+        (((Obj1EC6180_arg0 *)arg0)->unk1C) = 1;
     }
-    temp_v0_2 = (*(s16 *)((s8 *)(arg0) + (0x18)));
+    temp_v0_2 = (((Obj1EC6180_arg0 *)arg0)->unk18);
     if (temp_v0_2 == 0) {
-        (*(s8 *)((s8 *)(arg0) + (0x1C))) = 0;
+        (((Obj1EC6180_arg0 *)arg0)->unk1C) = 0;
         return;
     }
-    (*(f32 *)((s8 *)(arg0) + (0x10))) = (f32) (50.0f / (f32) temp_v0_2);
+    (((Obj1EC6180_arg0 *)arg0)->unk10) = (f32) (50.0f / (f32) temp_v0_2);
 }
 
 void func_800EC9E0(s32 arg0, s32 arg1, s32 arg2) {
@@ -279,7 +279,7 @@ void func_800EDAF4(u8 *arg0) {
 }
 
 void func_800EDB20(void *self, s32 arg1, void *model, s32 mesh_id) {
-    void _glidmake_entrypoint_2(s32, s32, u8 *, u8 *);
+    void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     MeshEffect *arg0 = self;
     arg0->unk0 = 0;
     arg0->unkC = NULL;
@@ -294,7 +294,7 @@ void func_800EDB20(void *self, s32 arg1, void *model, s32 mesh_id) {
     arg0->unk98 = 0.0f;
     arg0->unk44 = 0;
     arg0->unk48 = 0;
-    _glidmake_entrypoint_2((s32)model, mesh_id, (u8 *)arg0->unk14, (u8 *)arg0->unk1A);
+    _glidmake_entrypoint_2((BtIntPtr)model, mesh_id, (u8 *)arg0->unk14, (u8 *)arg0->unk1A);
 }
 
 void func_800EDBA0(void *self, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4){
@@ -423,13 +423,13 @@ void func_800EDF98(void *self, s32 opacity){
 void func_800EDFBC(void *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4)
 {
   void func_800ED964(void *);
-  *((s8 *) (((s8 *) arg0) + 0x29)) = 4;
-  *((f32 *) (((s8 *) arg0) + 4)) = arg1;
-  *((f32 *) (((s8 *) arg0) + 0x48)) = arg3;
-  *((f32 *) (((s8 *) arg0) + 0x44)) = 0.0f;
-  *((f32 *) (((s8 *) arg0) + 8)) = arg2;
-  *((s16 *) (((s8 *) arg0) + 0x4C)) = 0;
-  *((s16 *) (((s8 *) arg0) + 0x4E)) = (s16) arg4;
+  ((Obj1EC6180_arg0 *)arg0)->unk29 = 4;
+  ((Obj1EC6180_arg0 *)arg0)->unk4 = arg1;
+  ((Obj1EC6180_arg0 *)arg0)->unk48 = arg3;
+  ((Obj1EC6180_arg0 *)arg0)->unk44 = 0.0f;
+  ((Obj1EC6180_arg0 *)arg0)->unk8 = arg2;
+  ((Obj1EC6180_arg0 *)arg0)->unk4C = 0;
+  ((Obj1EC6180_arg0 *)arg0)->unk4E = (s16) arg4;
   func_800ED964(arg0);
 }
 
@@ -440,7 +440,7 @@ void func_800EE010(void *self){
 }
 
 void func_800EE040(void *self, s32 sfx_id, f32 arg2, f32 arg3){
-    s32 func_800C2E04(void);
+    u8 func_800C2E04(void);
     void func_800C301C(u8, s32);
     void func_800C330C(u8, s32);
     void func_800C31DC(u8, f32);
@@ -471,9 +471,9 @@ void func_800EE100(s16 *arg0, s32 arg1) {
     arg0[38] = arg1;
 }
 
-void func_800EE108(MeshEffect *arg0, s32 model, s32 mesh_id) {
+void func_800EE108(MeshEffect *arg0, BtIntPtr model, s32 mesh_id) {
     f32 func_800D8FF8(void);
-    void _glid_entrypoint_0(s32, s32, s32 *, s32);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800C395C(u8);
     s16 func_800C3920(u8);
     f32 func_800DC264(f32, f32);
@@ -502,7 +502,7 @@ void func_800EE108(MeshEffect *arg0, s32 model, s32 mesh_id) {
                 arg0->unk28 = 2;
             }
         }
-        _glid_entrypoint_0(model, mesh_id, (s32 *)func_800EC9F0, (s32)arg0);
+        _glid_entrypoint_0(model, mesh_id, (s32 *)func_800EC9F0, (BtIntPtr)arg0);
         if (arg0->unk28 != 0) {
             arg0->unk28--;
             if (arg0->unk28 == 0) {
@@ -520,13 +520,13 @@ void func_800EE108(MeshEffect *arg0, s32 model, s32 mesh_id) {
         }
         switch (arg0->unk29) {
             case 5:
-                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED79C, (s32)arg0);
+                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED79C, (BtIntPtr)arg0);
                 break;
             case 6:
-                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED424, (s32)arg0);
+                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED424, (BtIntPtr)arg0);
                 break;
             default:
-                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED144, (s32)arg0);
+                _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED144, (BtIntPtr)arg0);
                 break;
         }
         if (arg0->unk28 != 0) {
@@ -561,19 +561,19 @@ void func_800EE108(MeshEffect *arg0, s32 model, s32 mesh_id) {
     }
     switch (arg0->unk29) {
         case 1:
-            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ECD60, (s32)arg0);
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ECD60, (BtIntPtr)arg0);
             break;
         case 2:
-            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ECEEC, (s32)arg0);
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ECEEC, (BtIntPtr)arg0);
             break;
         case 3:
-            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED064, (s32)arg0);
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED064, (BtIntPtr)arg0);
             break;
         case 4:
-            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED7F8, (s32)arg0);
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED7F8, (BtIntPtr)arg0);
             break;
         case 7:
-            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED0D4, (s32)arg0);
+            _glid_entrypoint_0(model, mesh_id, (s32 *)func_800ED0D4, (BtIntPtr)arg0);
             break;
     }
     if (arg0->unk48 <= arg0->unk44) {

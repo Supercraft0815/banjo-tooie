@@ -3,23 +3,23 @@
 struct FortuneEntry {
         s16 unk0;
         s16 ability;
-        f32 unk4;
+        s16 unk4; s16 unk6;
         f32 weight;
     };
 
 OSThread *chmadamegrunty_entrypoint_0(void)
 {
-    extern u8 D_80800B50_chmadamegrunty[];
+    extern ActorData D_80800B50_chmadamegrunty[];
 
     return (OSThread *) D_80800B50_chmadamegrunty;
 }
 
 OSThread *chmadamegrunty_entrypoint_1(void)
 {
-    extern u8 D_80800B98_chmadamegrunty[];
+    extern ActorData D_80800B98_chmadamegrunty[];
 
     return (OSThread *) D_80800B98_chmadamegrunty;
-}
+}    typedef struct { u8 pad0[0x58]; f32 unk58; } Objmadamegrunty_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -28,19 +28,19 @@ void func_80800018_chmadamegrunty(void *arg0) {
     s32 func_80101FDC(void *, s32);
     if (func_800DA298(0xA02) != 0) {
         func_80101FDC(arg0, 7);
-        (*(f32 *)((s8 *)(arg0) + (0x58))) = 20.0f;
+        (((Objmadamegrunty_arg0 *)arg0)->unk58) = 20.0f;
     }
 }
 
 void func_8080005C_chmadamegrunty(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_16(void);
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
-    void func_800F4924(s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_80101180(s32, s32, s32);
+    void func_800F4924(BtIntPtr, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800200_chmadamegrunty(Actor *);
     void func_808003B0_chmadamegrunty(Actor *);
     void func_8080082C_chmadamegrunty(void *, s32);
@@ -98,18 +98,18 @@ s32 func_80800198_chmadamegrunty(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800200_chmadamegrunty(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4AC0(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F6438(u32);
-    s32 func_800F6478(s32);
-    s32 func_800F64A4(s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4AC0(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
     s32 func_8010C500(void *);
     void func_8080082C_chmadamegrunty(void *, s32);
     extern s32 func_8010D5DC;
-    u32 temp_v0;
+    BtUIntPtr temp_v0;
 
     temp_v0 = func_800F54E4();
     if (func_800F6438(temp_v0) && func_800F6478(temp_v0) &&
@@ -123,16 +123,16 @@ void func_80800200_chmadamegrunty(Actor *arg0) {
 }
 
 void func_808002BC_chmadamegrunty(Actor *arg0) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     int func_800DC298(f32);
     void func_800EEB9C(f32 [3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4AC0(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4AC0(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_8080082C_chmadamegrunty(void *, s32);
     extern s32 func_8010D5DC;
     f32 sp24[3];
@@ -152,12 +152,12 @@ void func_808002BC_chmadamegrunty(Actor *arg0) {
 }
 
 void func_808003B0_chmadamegrunty(Actor *arg0) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     int func_800DC298(f32);
-    u32 func_800F54E4(void);
-    void func_800F7C0C(s32, s32, f32);
-    void func_800F82D4(s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7C0C(BtIntPtr arg0, s32 arg1, f32 arg2);
+    void func_800F82D4(BtIntPtr, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_8080082C_chmadamegrunty(void *, s32);
 
     func_800F82D4(func_800F54E4(), 0);
@@ -172,10 +172,10 @@ void func_808003B0_chmadamegrunty(Actor *arg0) {
 }
 
 void func_80800460_chmadamegrunty(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
-    void func_800F82D4(s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F82D4(BtIntPtr, s32);
     void func_8080082C_chmadamegrunty(void *, s32);
     s32 state;
 
@@ -203,14 +203,14 @@ s32 func_80800564_chmadamegrunty(Actor *arg0) {
     int func_800C6E38(s32);
     f32 func_800DC178(f32, f32);
     extern struct FortuneEntry D_80800AF0_chmadamegrunty[];
-    extern u8 D_80800B50_chmadamegrunty[];
+    extern ActorData D_80800B50_chmadamegrunty[];
     struct FortuneEntry *entry;
     u8 *end;
     f32 total = 0.0f;
     f32 cumulative = 0.0f;
     s32 i;
 
-    end = D_80800B50_chmadamegrunty; entry = D_80800AF0_chmadamegrunty;
+    end = (u8 *)D_80800B50_chmadamegrunty; entry = D_80800AF0_chmadamegrunty;
     do {
         if (entry->ability == -1 || func_800C6E38(entry->ability)) {
             total += entry->weight;
@@ -228,16 +228,16 @@ s32 func_80800564_chmadamegrunty(Actor *arg0) {
         }
     }
     return 0;
-}
+}    typedef struct { s16 unk0; u8 pad2[0x2]; s16 unk4; } Objmadamegrunty_func_80800670_chmadamegrunty_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80800670_chmadamegrunty(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D175C(s16, s16);
     s32 func_800D3EF4(s32);
     s32 func_800EE7F8(s32 *, u8 *);
     s32 func_800EF1B8(s32 *, f32, s32);
-    void func_800F4924(s32, s32);
-    u32 func_800F54E4(void);
+    void func_800F4924(BtIntPtr, s32);
+    BtUIntPtr func_800F54E4(void);
     s32 func_800FC660(s32);
     s32 func_80101FDC(void *, s32);
 
@@ -261,7 +261,7 @@ void func_80800670_chmadamegrunty(Actor *arg0) {
     case 4:
     case 5:
         temp_v0 = (sp30 * 0xC) + (u8 *)D_80800AF0_chmadamegrunty;
-        func_800D175C((*(s16 *)((s8 *)(temp_v0) + (0))), (*(s16 *)((s8 *)(temp_v0) + (4))));
+        func_800D175C((((Objmadamegrunty_func_80800670_chmadamegrunty_temp_v0 *)temp_v0)->unk0), (((Objmadamegrunty_func_80800670_chmadamegrunty_temp_v0 *)temp_v0)->unk4));
         func_808002BC_chmadamegrunty(arg0);
         return;
     case 6:
@@ -278,7 +278,7 @@ void func_80800670_chmadamegrunty(Actor *arg0) {
 }
 
 void func_80800784_chmadamegrunty(Actor *arg0, s32 arg1, s16 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80800670_chmadamegrunty();
     s32 dialog;
     switch (arg1) {
@@ -307,14 +307,14 @@ void func_80800784_chmadamegrunty(Actor *arg0, s32 arg1, s16 arg2) {
 /* extern */
 
 void func_8080082C_chmadamegrunty(void *arg0, s32 arg1) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_80101FDC();
     Actor *actor = arg0;
     func_80101FDC();
     if (arg1 == 7) {
         _subaddieDll_entrypoint_4(arg0, 1);
-        (*(f32 *)((s8 *)(arg0) + (0x58))) = 60.0f;
+        (((Actor *)arg0)->unk58) = 60.0f;
         _subaddiedialog_entrypoint_11(actor->unk0, 0x10CA, 4, NULL, 0x43);
     }
 }
@@ -325,16 +325,16 @@ s32 func_80800898_chmadamegrunty(f32 arg0, f32 arg1, f32 arg2) {
     }
     return 0;
 }
-
+typedef struct { s32 sound; f32 time; f32 pitch; } MadameGruntySound;
 s32 func_808008D4_chmadamegrunty(Actor *arg0) {
     s32 func_800D9078(f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_808009AC_chmadamegrunty(Actor *, s32, f32);
-    typedef struct {
-        s32 sound;
-        f32 time;
-        f32 pitch;
-    } MadameGruntySound;
+
+
+
+
+
     extern MadameGruntySound D_80800BE0_chmadamegrunty[];
     s32 timer_result[2]; /* Preserve IDO stack allocation. */
     MadameGruntySound *sound;
@@ -382,9 +382,22 @@ void func_808009AC_chmadamegrunty(Actor *arg0, s32 arg1, f32 arg2) {
 void func_80800A30_chmadamegrunty(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
     void _chdoormake_entrypoint_5(Actor *, f32);
-    s32 _chdoormake_entrypoint_7(void *, f32);
+    void _chdoormake_entrypoint_7(Actor *arg0, f32 arg1);
     if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, arg0->scale * 200.0f, 0x2812, 0xA02) != 0) {
         _chdoormake_entrypoint_5(arg0, 1.0f);
         _chdoormake_entrypoint_7(arg0, 1.0f);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/madamegrunty.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+void _chdoor_entrypoint_0();
+void func_80101870(Actor* arg0, void* arg1);
+void _chdoor_entrypoint_1();
+struct FortuneEntry D_80800AF0_chmadamegrunty [8] BT_DATA(4, overlays_ch_madamegrunty, 0x0) = { { -1, -1, 0, 0, 0.01f }, { 64, 49, 20, 0, 0.11f }, { 65, 44, 5, 0, 0.11f }, { 67, 45, 5, 0, 0.11f }, { 70, 9, 10, 0, 0.11f }, { 71, 18, 5, 0, 0.11f }, { -1, -1, 1, 0, 0.11f }, { -1, -1, -1, 0, 0.33f } };
+ActorData D_80800B50_chmadamegrunty [1] BT_DATA(4, overlays_ch_madamegrunty, 0x60) = { { 428, 335, 0, 1, 0, (void (*)(struct Actor *))func_8080005C_chmadamegrunty, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 131072000, 0, 0, 0, 0, 1, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chmadamegrunty, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9730, (void (*)(struct Actor *, long, long))func_80800198_chmadamegrunty, 0 } };
+ActorData D_80800B98_chmadamegrunty [1] BT_DATA(4, overlays_ch_madamegrunty, 0xA8) = { { 172, 980, 1793, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800A30_chmadamegrunty, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
+MadameGruntySound D_80800BE0_chmadamegrunty [9] BT_DATA(4, overlays_ch_madamegrunty, 0xF0) = { { 1045, 0.1f, 0.9f }, { 1047, 0.15f, 0.9f }, { 1063, 0.2f, 1.0f }, { 1037, 0.35f, 1.0f }, { 1060, 0.45f, 1.0f }, { 1045, 0.6f, 1.0f }, { 1047, 0.65f, 1.0f }, { 1059, 0.7f, 1.0f }, { 1170, 0.85f, 1.0f } };
+s32 D_80800C4C_chmadamegrunty BT_DATA(4, overlays_ch_madamegrunty, 0x15C) = 131096;
+u8 D_80800C4C_chmadamegrunty__gap[16] BT_DATA(4, overlays_ch_madamegrunty, 0x160) = { 0 };

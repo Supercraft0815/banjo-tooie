@@ -18,8 +18,8 @@ void idlight_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     *arg0 = 1.0f;
 }
 
-void idlight_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, f32 *);
+void idlight_entrypoint_3(f32 *arg0, BtIntPtr arg1, s32 arg2) {
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800DC264(f32, f32);
 #ifndef BT_NATIVE
     extern s32 _idlight_entrypoint_0;

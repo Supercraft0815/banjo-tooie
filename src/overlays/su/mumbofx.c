@@ -1,6 +1,6 @@
 #include "common.h"
 
-void sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3) {
+typedef struct { u8 pad0[0x63]; s8 unk63; } Objmumbofx_sumumbofx_entrypoint_0_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x54]; s16 unk58; } Objmumbofx_sumumbofx_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ void sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     u32* func_80100074(Actor*, u32, u32);
     void* func_80100094(Actor*, u32);
@@ -10,13 +10,13 @@ void sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3) {
     func_80100074(arg0, arg1, (arg2 * 0x2C) + 0x64);
     temp_v0 = func_80100094(arg0, arg1);
     sp1C = temp_v0;
-    (*(s32 *)((s8 *)(temp_v0) + (0))) = (s32) arg3;
-    (*(s16 *)((s8 *)(temp_v0) + (0x58))) = (s16) arg2;
+    (((Objmumbofx_sumumbofx_entrypoint_0_temp_v0 *)temp_v0)->unk0) = (s32) arg3;
+    (((Objmumbofx_sumumbofx_entrypoint_0_temp_v0 *)temp_v0)->unk58) = (s16) arg2;
     func_800EE7F8(temp_v0 + 0x1C, arg0->position);
-    (*(s8 *)((s8 *)(sp1C) + (0x63))) = 0;
+    (((Objmumbofx_sumumbofx_entrypoint_0_sp1C *)sp1C)->unk63) = 0;
 }
 
-void sumumbofx_entrypoint_1(Actor *arg0, u32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32 *) sumumbofx_entrypoint_1(Actor *arg0, u32 arg1) {
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
     u32 *func_80100074(Actor *, u32, u32);
@@ -40,8 +40,8 @@ void sumumbofx_entrypoint_1(Actor *arg0, u32 arg1) {
         func_800FCAE0(0x1C, 0, 0x4E20);
         func_800FCA90(0x1C);
     }
-    func_80100074(arg0, arg1, 0);
-}
+    BT_NATIVE_ONLY(return) func_80100074(arg0, arg1, 0);
+}                            typedef struct { f32 unk0; f32 unk4; f32 unk8; f32 unkC; u8 pad10[0xC]; f32 unk1C; f32 unk20; f32 unk24; } Objmumbofx_sumumbofx_entrypoint_2_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */ typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk14; f32 unk18; u8 pad1C[0x18]; f32 unk34; f32 unk38; u8 pad3C[0x18]; s32 unk54; s16 unk58; s16 unk5A; s16 unk5C; s16 unk5E; u8 unk60; s8 unk61; s8 unk62; s8 unk63; } Objmumbofx_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -51,35 +51,35 @@ void sumumbofx_entrypoint_2(u8 *arg0) {
     s32 var_s1;
     u8 *var_s0;
 
-    (*(s16 *)((s8 *)(arg0) + (0x5A))) = 0;
-    (*(s16 *)((s8 *)(arg0) + (0x5C))) = 0;
-    (*(u8 *)((s8 *)(arg0) + (0x60))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x60))) & 0xFF01);
-    (*(s16 *)((s8 *)(arg0) + (0x5E))) = 0;
-    (*(s8 *)((s8 *)(arg0) + (0x61))) = 0;
-    (*(s8 *)((s8 *)(arg0) + (0x62))) = 2;
-    (*(s32 *)((s8 *)(arg0) + (0x54))) = -1;
+    (((Objmumbofx_arg0 *)arg0)->unk5A) = 0;
+    (((Objmumbofx_arg0 *)arg0)->unk5C) = 0;
+    (((Objmumbofx_arg0 *)arg0)->unk60) = (u8) ((((Objmumbofx_arg0 *)arg0)->unk60) & 0xFF01);
+    (((Objmumbofx_arg0 *)arg0)->unk5E) = 0;
+    (((Objmumbofx_arg0 *)arg0)->unk61) = 0;
+    (((Objmumbofx_arg0 *)arg0)->unk62) = 2;
+    (((Objmumbofx_arg0 *)arg0)->unk54) = -1;
     var_s0 = arg0 + 0x64;
     var_s1 = 0;
-    (*(f32 *)((s8 *)(arg0) + (0x10))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x14))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (0x18))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (4))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (0xC))) = 1.0f;
-    if ((*(s16 *)((s8 *)(arg0) + (0x58))) > 0) {
+    (((Objmumbofx_arg0 *)arg0)->unk10) = 0.0f;
+    (((Objmumbofx_arg0 *)arg0)->unk14) = 0.0f;
+    (((Objmumbofx_arg0 *)arg0)->unk18) = 0.0f;
+    (((Objmumbofx_arg0 *)arg0)->unk4) = 0.0f;
+    (((Objmumbofx_arg0 *)arg0)->unkC) = 1.0f;
+    if ((((Objmumbofx_arg0 *)arg0)->unk58) > 0) {
         do {
-            (*(f32 *)((s8 *)(var_s0) + (0x1C))) = 0.0f;
+            (((Objmumbofx_sumumbofx_entrypoint_2_var_s0 *)var_s0)->unk1C) = 0.0f;
             temp_f0 = func_800DC178(0.4f, 0.8f);
-            (*(f32 *)((s8 *)(var_s0) + (0x24))) = temp_f0;
-            (*(f32 *)((s8 *)(var_s0) + (0x20))) = func_800DC178(0, temp_f0);
-            (*(f32 *)((s8 *)(var_s0) + (0))) = func_800DC178(0.0f, 359.0f);
-            (*(f32 *)((s8 *)(var_s0) + (4))) = 0.0f;
-            (*(f32 *)((s8 *)(var_s0) + (0xC))) = func_800DC178(8.0f, 16.0f);
-            (*(f32 *)((s8 *)(var_s0) + (8))) = func_800DC178(8.0f, 16.0f);
+            (((Objmumbofx_sumumbofx_entrypoint_2_var_s0 *)var_s0)->unk24) = temp_f0;
+            (((Objmumbofx_sumumbofx_entrypoint_2_var_s0 *)var_s0)->unk20) = func_800DC178(0, temp_f0);
+            (((Objmumbofx_sumumbofx_entrypoint_2_var_s0 *)var_s0)->unk0) = func_800DC178(0.0f, 359.0f);
+            (((Objmumbofx_sumumbofx_entrypoint_2_var_s0 *)var_s0)->unk4) = 0.0f;
+            (((Objmumbofx_sumumbofx_entrypoint_2_var_s0 *)var_s0)->unkC) = func_800DC178(8.0f, 16.0f);
+            (((Objmumbofx_sumumbofx_entrypoint_2_var_s0 *)var_s0)->unk8) = func_800DC178(8.0f, 16.0f);
             var_s1 += 1;
             var_s0 += 0x2C;
-        } while (var_s1 < (*(s16 *)((s8 *)(arg0) + (0x58))));
+        } while (var_s1 < (((Objmumbofx_arg0 *)arg0)->unk58));
     }
-}
+}    typedef struct { f32 unk0; f32 unk4; f32 unk8; f32 unkC; u8 pad10[0x10]; f32 unk20; f32 unk24; } Objmumbofx_sumumbofx_entrypoint_3_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 void sumumbofx_entrypoint_3(u8 *arg0, f32 arg1)
 {
@@ -89,23 +89,23 @@ void sumumbofx_entrypoint_3(u8 *arg0, f32 arg1)
   u8 *var_s0;
   var_s0 = arg0 + 0x64;
   var_s1 = 0;
-  if ((*((s16 *) (((s8 *) arg0) + 0x58))) > 0)
+  if ((((Objmumbofx_arg0 *)arg0)->unk58) > 0)
   {
     do
     {
       temp_f0 = func_800DC178(0.4f, 0.8f);
-      *((f32 *) (((s8 *) var_s0) + 0x24)) = temp_f0;
-      *((f32 *) (((s8 *) var_s0) + 0x20)) = func_800DC178(0.0, temp_f0);
-      *((f32 *) (((s8 *) var_s0) + 0)) = func_800DC178(0.0f, 359.0f);
-      *((f32 *) (((s8 *) var_s0) + 4)) = func_800DC178(0.0f, arg1);
-      *((f32 *) (((s8 *) var_s0) + 0xC)) = func_800DC178(8.0f, 16.0f);
-      *((f32 *) (((s8 *) var_s0) + 8)) = func_800DC178(8.0f, 16.0f);
+      ((Objmumbofx_sumumbofx_entrypoint_3_var_s0 *)var_s0)->unk24 = temp_f0;
+      ((Objmumbofx_sumumbofx_entrypoint_3_var_s0 *)var_s0)->unk20 = func_800DC178(0.0, temp_f0);
+      ((Objmumbofx_sumumbofx_entrypoint_3_var_s0 *)var_s0)->unk0 = func_800DC178(0.0f, 359.0f);
+      ((Objmumbofx_sumumbofx_entrypoint_3_var_s0 *)var_s0)->unk4 = func_800DC178(0.0f, arg1);
+      ((Objmumbofx_sumumbofx_entrypoint_3_var_s0 *)var_s0)->unkC = func_800DC178(8.0f, 16.0f);
+      ((Objmumbofx_sumumbofx_entrypoint_3_var_s0 *)var_s0)->unk8 = func_800DC178(8.0f, 16.0f);
       var_s1 += 1;
       var_s0 += 0x2C;
     }
-    while (var_s1 < (*((s16 *) (((s8 *) arg0) + 0x58))));
+    while (var_s1 < (((Objmumbofx_arg0 *)arg0)->unk58));
   }
-}
+}    typedef struct { u8 pad0[0x28]; f32 unk28; } Objmumbofx_sumumbofx_entrypoint_4_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
 
 void sumumbofx_entrypoint_4(u8 *arg0) {
     struct FlagByte {
@@ -117,17 +117,17 @@ void sumumbofx_entrypoint_4(u8 *arg0) {
 
     var_v0 = arg0 + 0x64;
     var_v1 = 0;
-    (*(f32 *)((s8 *)(arg0) + (8))) = 0.0f;
-    if ((*(s16 *)((s8 *)(arg0) + (0x58))) > 0) {
+    (((Objmumbofx_arg0 *)arg0)->unk8) = 0.0f;
+    if ((((Objmumbofx_arg0 *)arg0)->unk58) > 0) {
         do {
-            (*(f32 *)((s8 *)(var_v0) + (0x28))) = 1.0f;
+            (((Objmumbofx_sumumbofx_entrypoint_4_var_v0 *)var_v0)->unk28) = 1.0f;
             var_v1 += 1;
             var_v0 += 0x2C;
-            (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg0) + (8))) + 1.0f);
-        } while (var_v1 < (*(s16 *)((s8 *)(arg0) + (0x58))));
+            (((Objmumbofx_arg0 *)arg0)->unk8) = (f32) ((((Objmumbofx_arg0 *)arg0)->unk8) + 1.0f);
+        } while (var_v1 < (((Objmumbofx_arg0 *)arg0)->unk58));
     }
-    if ((*(f32 *)((s8 *)(arg0) + (4))) != 1.0f) {
-        (*(f32 *)((s8 *)(arg0) + (4))) = 1.0f;
+    if ((((Objmumbofx_arg0 *)arg0)->unk4) != 1.0f) {
+        (((Objmumbofx_arg0 *)arg0)->unk4) = 1.0f;
         ((struct FlagByte *)(arg0 + 0x60))->flag = 1;
     }
 }
@@ -150,7 +150,7 @@ void func_808003E4_sumumbofx(u8 *arg0, f32 arg1, f32 arg2) {
     func_800EF334(sp34, 1.0f - *(f32 *)(arg0 + 0x28));
     func_800EF334((f32 *)(arg0 + 0x10), *(f32 *)(arg0 + 0x28));
     func_800EF04C((f32 *)(arg0 + 0x10), sp34);
-}
+}    typedef struct { u8 pad0[0x28]; f32 unk28; } Objmumbofx_sumumbofx_entrypoint_5_var_v0_2; /* offsets.py genstruct: fields from raw offsets on var_v0_2; rename once understood */
 
 /* extern */
 
@@ -164,27 +164,27 @@ s32 sumumbofx_entrypoint_5(u8 *arg0, f32 arg1) {
     var_t0 = 0;
     var_v0_2 = arg0 + 0x64;
     var_a1 = 0;
-    (*(f32 *)((s8 *)(arg0) + (8))) = 0.0f;
-    if ((*(s16 *)((s8 *)(arg0) + (0x58))) > 0) {
+    (((Objmumbofx_arg0 *)arg0)->unk8) = 0.0f;
+    if ((((Objmumbofx_arg0 *)arg0)->unk58) > 0) {
         do {
-            if ((*(s16 *)((s8 *)(arg0) + (0x5A))) >= var_a1) {
-                if ((*(f32 *)((s8 *)(var_v0_2) + (0x28))) < 0.98f) {
+            if ((((Objmumbofx_arg0 *)arg0)->unk5A) >= var_a1) {
+                if ((((Objmumbofx_sumumbofx_entrypoint_5_var_v0_2 *)var_v0_2)->unk28) < 0.98f) {
                     f32 temp_f2;
-                    temp_f2 = (1.0f - (*(f32 *)((s8 *)(var_v0_2) + (0x28)))) * 0.075f;
-                    (*(f32 *)((s8 *)(var_v0_2) + (0x28))) += temp_f2 < 0.02f ? 0.02f : temp_f2;
+                    temp_f2 = (1.0f - (((Objmumbofx_sumumbofx_entrypoint_5_var_v0_2 *)var_v0_2)->unk28)) * 0.075f;
+                    (((Objmumbofx_sumumbofx_entrypoint_5_var_v0_2 *)var_v0_2)->unk28) += temp_f2 < 0.02f ? 0.02f : temp_f2;
                 } else {
-                    (*(f32 *)((s8 *)(var_v0_2) + (0x28))) = 1.0f;
+                    (((Objmumbofx_sumumbofx_entrypoint_5_var_v0_2 *)var_v0_2)->unk28) = 1.0f;
                     var_t0 += 1;
                 }
             }
             var_a1 += 1;
-            (*(f32 *)((s8 *)(arg0) + (8))) += (*(f32 *)((s8 *)(var_v0_2) + (0x28)));
+            (((Objmumbofx_arg0 *)arg0)->unk8) += (((Objmumbofx_sumumbofx_entrypoint_5_var_v0_2 *)var_v0_2)->unk28);
             var_v0_2 += 0x2C;
-        } while (var_a1 < (*(s16 *)((s8 *)(arg0) + (0x58))));
+        } while (var_a1 < (((Objmumbofx_arg0 *)arg0)->unk58));
     }
-    (*(s16 *)((s8 *)(arg0) + (0x5A))) = (s16) (s32) func_800F10B4((*(f32 *)((s8 *)(arg0) + (0x18))), 0.0f, arg1, 0.0f, (f32) (*(s16 *)((s8 *)(arg0) + (0x58))));
-    (*(f32 *)((s8 *)(arg0) + (0x18))) += func_800D8FF8();
-    if (var_t0 < (*(s16 *)((s8 *)(arg0) + (0x58)))) {
+    (((Objmumbofx_arg0 *)arg0)->unk5A) = (s16) (s32) func_800F10B4((((Objmumbofx_arg0 *)arg0)->unk18), 0.0f, arg1, 0.0f, (f32) (((Objmumbofx_arg0 *)arg0)->unk58));
+    (((Objmumbofx_arg0 *)arg0)->unk18) += func_800D8FF8();
+    if (var_t0 < (((Objmumbofx_arg0 *)arg0)->unk58)) {
         return 0;
     }
     return 1;
@@ -332,21 +332,21 @@ void sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f
         func_800EE7F8((f32 *)(arg0 + 0x1C), arg5);
     }
 }
-
-void sumumbofx_entrypoint_8(u8 *arg0, s32 arg1) {
-    s32 func_800D674C(s32);
+struct Vec { s32 x, y, z; };
+void sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1) {
+    BtIntPtr func_800D674C(s32);
     void func_800E24D8(s32);
     void func_800E2588(u32);
-    s32 func_800E2594(s32, s32);
-    s32 func_800E2720(s32, s32, s32, f32 *, f32 *, s32);
-    void func_800E2A14(s32);
+    void func_800E2594(BtUIntPtr arg0, void *arg1);
+    s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(BtIntPtr);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    struct Vec { s32 x, y, z; };
+
     extern struct Vec D_808014D0_sumumbofx;
     struct Vec sp74;
     f32 sp68[3];
     f32 temp_f0;
-    s32 temp_s0;
+    BtIntPtr temp_s0;
     s32 var_s1;
     u8 *var_s0;
 
@@ -376,8 +376,8 @@ void sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1) {
     void func_800B99CC(Gfx **, s32, s32 *);
     f32 func_800EEB40(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     f32 sp4C;
     f32 sp40[3];
     f32 distance;
@@ -426,46 +426,46 @@ s32 sumumbofx_entrypoint_10(u8 *arg0) {
 /* extern */
 
 #ifdef BT_NATIVE
-void sumumbofx_entrypoint_11(void *arg0, s32 bt_a1) {
+void sumumbofx_entrypoint_11(void *arg0, BtIntPtr bt_a1) {
 #else
 void sumumbofx_entrypoint_11(void *arg0) {
 #endif
     s32 func_800C8CB8(s16);
-    func_800C8CB8((*(s16 *)((s8 *)(arg0) + (0x5E))));
+    func_800C8CB8((((Objmumbofx_arg0 *)arg0)->unk5E));
 }
 
 void func_80800F8C_sumumbofx(u8 *arg0) {
-    s32 func_800C8E84(s32, s32 *);
-    void func_800F3214(s32, s32, s32, f32);
-    struct Vec { s32 x, y, z; };
+    void func_800C8E84(s32 id,u32 *color);
+    int func_800F3214(void *arg0, void *arg1, void *arg2, f32 arg3);
+
     extern struct Vec D_808014DC_sumumbofx;
     s32 sp24[3];
     struct Vec sp18;
 
     sp18 = D_808014DC_sumumbofx;
-    func_800F3214((s32) sp24, (s32) &sp18, (s32) (arg0 + 0x3C), *(f32 *) (arg0 + 4));
+    func_800F3214((BtIntPtr) sp24, (BtIntPtr) &sp18, (BtIntPtr) (arg0 + 0x3C), *(f32 *) (arg0 + 4));
     func_800C8E84(*(s16 *)(arg0 + 0x5E), sp24);
 }
 
 /* extern */
 
-void sumumbofx_entrypoint_12(u8 *arg0, s32 arg1, f32 *arg2, s32 *arg3) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) sumumbofx_entrypoint_12(u8 *arg0, BtIntPtr arg1, f32 *arg2, s32 *arg3) {
     void sumumbofx_entrypoint_11();
     func_800EE830((s32 *) (arg0 + 0x3C), arg3);
-    (*(s16 *)((s8 *)(arg0) + (0x5E))) = func_800C8A98();
+    (((Objmumbofx_arg0 *)arg0)->unk5E) = func_800C8A98();
     func_80800F8C_sumumbofx(arg0);
 #ifdef BT_NATIVE
     ((void (*)())sumumbofx_entrypoint_11)(arg0, arg1);
 #else
     sumumbofx_entrypoint_11(arg0, arg1);
 #endif
-    func_800C8D4C((s32) (*(s16 *)((s8 *)(arg0) + (0x5E))), arg2);
+    BT_NATIVE_ONLY(return) func_800C8D4C((s32) (((Objmumbofx_arg0 *)arg0)->unk5E), arg2);
 }
 
 /* extern */
 
 void sumumbofx_entrypoint_13(void *arg0) {
-    s32 func_800C8B84(s16);
+    void func_800C8B84(volatile s32 id);
     func_800C8B84((*(s16 *)((s8 *)(arg0) + (0x5E))));
 }
 
@@ -473,8 +473,8 @@ void sumumbofx_entrypoint_14(u8 *arg0) {
     s32 func_800D9078(f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_800FCAE0(u32, u32, u32);
     f32 sumumbofx_entrypoint_26(void *);
     struct Flags { u8 pad[0x60]; unsigned char mode:7; unsigned char changed:1; };
@@ -547,8 +547,8 @@ void sumumbofx_entrypoint_19(s8 *arg0, s32 arg1) {
 }
 
 void sumumbofx_entrypoint_20(void *arg0, f32 arg1) {
-    (*(f32 *)((s8 *)(arg0) + (0x10))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0x14))) = arg1;
+    (((Objmumbofx_arg0 *)arg0)->unk10) = arg1;
+    (((Objmumbofx_arg0 *)arg0)->unk14) = arg1;
 }
 
 f32 sumumbofx_entrypoint_21(f32 *arg0)
@@ -561,22 +561,22 @@ f32 sumumbofx_entrypoint_22(f32 *arg0) {
 }
 
 void sumumbofx_entrypoint_23(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 4) = arg1;
+    ((Objmumbofx_arg0 *)arg0)->unk4 = arg1;
 }
 
 void sumumbofx_entrypoint_24(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 12) = arg1;
+    ((Objmumbofx_arg0 *)arg0)->unkC = arg1;
 }
 
 /* extern */
 
-void sumumbofx_entrypoint_25(u8 *arg0, s32 arg1, s32 arg2) {
-    (*(s32 *)((s8 *)(arg0) + (0x54))) = arg1;
-    func_800EE830(arg0 + 0x48, arg2);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) sumumbofx_entrypoint_25(u8 *arg0, s32 arg1, BtIntPtr arg2) {
+    (((Objmumbofx_arg0 *)arg0)->unk54) = arg1;
+    BT_NATIVE_ONLY(return) func_800EE830(arg0 + 0x48, arg2);
 }
 
 f32 sumumbofx_entrypoint_26(void *arg0) {
-    return 1.0f - ((*(f32 *)((s8 *)(arg0) + (0x10))) / (*(f32 *)((s8 *)(arg0) + (0x14))));
+    return 1.0f - ((((Objmumbofx_arg0 *)arg0)->unk10) / (((Objmumbofx_arg0 *)arg0)->unk14));
 }
 
 s32 sumumbofx_entrypoint_27(f32 *arg0) {
@@ -588,8 +588,11 @@ s32 sumumbofx_entrypoint_27(f32 *arg0) {
 
 void sumumbofx_entrypoint_28(u8 *arg0, f32 *arg1, f32 arg2, f32 arg3) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
-    (*(s8 *)((s8 *)(arg0) + (0x63))) = 1;
+    (((Objmumbofx_arg0 *)arg0)->unk63) = 1;
     func_800EE7F8(arg0 + 0x28, arg1);
-    (*(f32 *)((s8 *)(arg0) + (0x34))) = (f32) (arg2 * arg2);
-    (*(f32 *)((s8 *)(arg0) + (0x38))) = (f32) (arg3 * arg3);
+    (((Objmumbofx_arg0 *)arg0)->unk34) = (f32) (arg2 * arg2);
+    (((Objmumbofx_arg0 *)arg0)->unk38) = (f32) (arg3 * arg3);
 }
+/* data_to_c.py: from asm/data/overlays/su/mumbofx.data.s */
+struct Vec D_808014D0_sumumbofx BT_DATA(4, overlays_su_mumbofx, 0x0) = { 0, 0, 0 };
+struct Vec D_808014DC_sumumbofx BT_DATA(4, overlays_su_mumbofx, 0xC) = { 0, 0, 0 };

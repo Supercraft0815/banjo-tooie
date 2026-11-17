@@ -125,7 +125,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     extern s32 D_80122DC8[], D_80122DCC[];
     extern RenderCallback D_80123030[], D_80123038[];
     extern f32 D_80125D54, D_80125D58, D_80125D5C, D_80125D60, D_80125D64;
-    void func_800E39A8(s32, s32);
+    void func_800E39A8(BtIntPtr, BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     void func_800DE318(void);
     void func_800EFD24(f32 *);
@@ -156,7 +156,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
 #ifndef BT_NATIVE
     void _dbanim_entrypoint_0(u8 *, u8 *, u8 *);
 #endif
-    s32 func_80019CD4(void);
+    MtxF *func_80019CD4(void);
     void func_80019750(f32 *, f32 *, f32, f32 *);
 #ifndef BT_NATIVE
     void func_800AE598(u8 *, Mtx **);
@@ -188,7 +188,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     void *translucent_mode;
 
     D_8012C940 = 0;
-    func_800E39A8((s32)&D_8012CE98, (s32)&D_8012CEA8);
+    func_800E39A8((BtIntPtr)&D_8012CE98, (BtIntPtr)&D_8012CEA8);
     if (arg1 != NULL) {
         func_800EE7F8(object_position, arg1);
     } else {
@@ -298,11 +298,11 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         }
     }
     if (arg5->flags & 2) {
-        D_8012C820 = (s32)D_80122DF0;
+        D_8012C820 = (BtIntPtr)D_80122DF0;
     } else if (arg5->flags & 0x80) {
-        D_8012C820 = (s32)D_80122EB0;
+        D_8012C820 = (BtIntPtr)D_80122EB0;
     } else if (arg5->flags & 0x100) {
-        D_8012C820 = (s32)D_80122F70;
+        D_8012C820 = (BtIntPtr)D_80122F70;
     } else {
         D_8012C820 = NULL;
     }
@@ -400,7 +400,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         }
         D_8012CEC4 = (s32 (*)(MtxF *, s32 *, s16))D_80123030[D_8012CA11].value;
     }
-    func_800DE2A4((s32)arg0, ((u8 *)arg5 + arg5->geometry));
+    func_800DE2A4((BtIntPtr)arg0, ((u8 *)arg5 + arg5->geometry));
     if (arg5->flags & 0x40) {
         func_800E4640(&arg0->gfx);
     } else {
@@ -467,3 +467,69 @@ ImageStruct *func_800DF944(void *a0, f32 *coords, f32 a2, f32 a3, f32 *a4, s32 a
     func_800E4640(a0);
     return a6;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012C820 BT_DATA(4, bss_core2bss2, 0x30);
+s32 D_8012C824 BT_DATA(4, bss_core2bss2, 0x34);
+s32 D_8012C828 BT_DATA(4, bss_core2bss2, 0x38);
+f32 D_8012C82C BT_DATA(4, bss_core2bss2, 0x3C);
+f32 D_8012C830 BT_DATA(4, bss_core2bss2, 0x40);
+s32 D_8012C834 BT_DATA(4, bss_core2bss2, 0x44);
+s32 D_8012C838 BT_DATA(4, bss_core2bss2, 0x48);
+s32 D_8012C83C BT_DATA(4, bss_core2bss2, 0x4C);
+u8 D_8012C840 BT_DATA(4, bss_core2bss2, 0x50);
+s32 D_8012C844 BT_DATA(4, bss_core2bss2, 0x54);
+s32 D_8012C848 BT_DATA(4, bss_core2bss2, 0x58);
+s32 D_8012C940 BT_DATA(16, bss_core2bss2_1, 0x0);
+RenderData D_8012C948 BT_DATA(4, bss_core2bss2_1, 0x8);
+f32 * D_8012C94C BT_DATA(4, bss_core2bss2_1, 0xC);
+s32 D_8012C95C BT_DATA(4, bss_core2bss2_1, 0x1C);
+DisplayListView * D_8012C960 BT_DATA(4, bss_core2bss2_1, 0x20);
+s32 D_8012C964 BT_DATA(4, bss_core2bss2_1, 0x24);
+s32 D_8012C968 BT_DATA(4, bss_core2bss2_1, 0x28);
+s8 D_8012C96C BT_DATA(4, bss_core2bss2_1, 0x2C);
+s32 D_8012C970 BT_DATA(4, bss_core2bss2_1, 0x30);
+s32 D_8012C974 BT_DATA(4, bss_core2bss2_1, 0x34);
+s32 D_8012C978 BT_DATA(4, bss_core2bss2_1, 0x38);
+s32 D_8012C980 BT_DATA(4, bss_core2bss2_1, 0x40);
+s32 D_8012C988 BT_DATA(4, bss_core2bss2_1, 0x48);
+s32 D_8012C9A4 BT_DATA(4, bss_core2bss2_1, 0x64);
+s32 D_8012C9A8 BT_DATA(4, bss_core2bss2_1, 0x68);
+s32 D_8012C9AC BT_DATA(4, bss_core2bss2_1, 0x6C);
+void ( * D_8012C9B0 ) ( s32 ) BT_DATA(4, bss_core2bss2_1, 0x70);
+s32 D_8012C9B4 BT_DATA(4, bss_core2bss2_1, 0x74);
+s32 D_8012C9B8 BT_DATA(4, bss_core2bss2_1, 0x78);
+s32 D_8012C9BC BT_DATA(4, bss_core2bss2_1, 0x7C);
+s32 D_8012C9C8 BT_DATA(4, bss_core2bss2_1, 0x88);
+s32 D_8012CA08 BT_DATA(4, bss_core2bss2_1, 0xC8);
+u8 D_8012CA11 BT_DATA(4, bss_core2bss2_1, 0xD1);
+s32 D_8012CA18 BT_DATA(4, bss_core2bss2_1, 0xD8);
+f32 D_8012CA1C BT_DATA(4, bss_core2bss2_1, 0xDC);
+s32 D_8012CA28 BT_DATA(4, bss_core2bss2_1, 0xE8);
+s16 D_8012CA38 BT_DATA(4, bss_core2bss2_1, 0xF8);
+LookAtBuffer D_8012CA40 BT_DATA(8, bss_core2bss2_1, 0x100);
+f32 D_8012CE48 [ 3 ] BT_DATA(4, bss_core2bss2_1, 0x508);
+s32 D_8012CE58 BT_DATA(4, bss_core2bss2_1, 0x518);
+s32 D_8012CE98 BT_DATA(4, bss_core2bss2_1, 0x558);
+f32 D_8012CEA8 BT_DATA(4, bss_core2bss2_1, 0x568);
+f32 D_8012CEAC BT_DATA(4, bss_core2bss2_1, 0x56C);
+f32 D_8012CEB8 [ 3 ] BT_DATA(4, bss_core2bss2_1, 0x578);
+f32 D_8012CEC8 BT_DATA(4, bss_core2bss2_1, 0x588);
+s32 D_8012CED0 BT_DATA(4, bss_core2bss2_1, 0x590);
+s32 D_8012CEE0 BT_DATA(4, bss_core2bss2_1, 0x5A0);
+s32 D_8012CEF0 BT_DATA(4, bss_core2bss2_1, 0x5B0);
+f32 D_8012CEFC BT_DATA(4, bss_core2bss2_1, 0x5BC);
+s32 D_8012CF00 BT_DATA(4, bss_core2bss2_1, 0x5C0);
+s32 D_8012CF10 BT_DATA(4, bss_core2bss2_1, 0x5D0);
+s32 D_8012CF20 BT_DATA(4, bss_core2bss2_1, 0x5E0);
+f32 D_8012CF2C BT_DATA(4, bss_core2bss2_1, 0x5EC);
+s32 D_8012CF30 BT_DATA(4, bss_core2bss2_1, 0x5F0);
+s32 D_8012CF40 BT_DATA(4, bss_core2bss2_1, 0x600);
+s32 D_8012CF50 BT_DATA(4, bss_core2bss2_1, 0x610);
+f32 D_8012CF60 [ 3 ] BT_DATA(4, bss_core2bss2_1, 0x620);
+f32 D_8012CF70 [ 3 ] BT_DATA(4, bss_core2bss2_1, 0x630);
+f32 D_8012CF80 [ 3 ] BT_DATA(4, bss_core2bss2_1, 0x640);
+GeoCommandFunction * D_8012CF8C BT_DATA(4, bss_core2bss2_1, 0x64C);
+#endif

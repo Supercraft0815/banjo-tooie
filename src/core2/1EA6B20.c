@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_collision.h"
 static f32 D_8012B010;
 #endif
@@ -9,7 +9,7 @@ void func_800CD230(f32 arg0) {
     *(f32 *)((u8 *)&D_8012B010 + 0) = arg0;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800CD23C(f32 *arg0, f32 *arg1, f32 *arg2, u32 arg3) {
 #else
 s32 func_800CD23C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
@@ -22,7 +22,7 @@ s32 func_800CD23C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *temp_v0, *var_s5;
 #else
     s32 temp_v0;
@@ -49,7 +49,7 @@ s32 func_800CD23C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return var_s5;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800CD3A8(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4, u32 arg5) {
 #else
 s32 func_800CD3A8(s32 arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5)
@@ -64,7 +64,7 @@ s32 func_800CD3A8(s32 arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5)
   s32 min[3];
   s32 max[3];
   s32 pad[2];
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
   void *temp_v0, *result;
 #else
   s32 temp_v0;
@@ -101,7 +101,7 @@ s32 func_800CD3A8(s32 arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5)
   return result;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800CD544(f32 *arg0, f32 arg1, f32 *arg2, u32 arg3) {
 #else
 s32 func_800CD544(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
@@ -115,7 +115,7 @@ s32 func_800CD544(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     s32 min[3];
     s32 max[3];
     s32 pad[2];
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *temp_v0, *result;
 #else
     s32 temp_v0;
@@ -142,7 +142,7 @@ s32 func_800CD544(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     return result;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "1EA6B20_native.inc"
 #else
 s32 func_800CD6B4(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4) {
@@ -514,4 +514,10 @@ s32 func_800CDFA8(s32 arg0, s32 *arg1) {
     return *(s32 *)(D_8012AF70 + (arg0 << 2));
 }
 
+#endif
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+BT_LP64_ONLY(static) f32 D_8012B010 BT_DATA(4, bss_core2bss1_1, 0x530);
 #endif

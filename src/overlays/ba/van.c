@@ -11,17 +11,17 @@
 #include "core2/1EBA250.h"
 #include "core2/1ECA640.h"
 
-extern s32 D_808002F0_bavan; // 02 06 00 13 05 06 00 0A  01 00 00 00 00 00 00 00  
+extern s32 D_808002F0_bavan[4]; // 02 06 00 13 05 06 00 0A  01 00 00 00 00 00 00 00  
 
 s32 bavan_entrypoint_0(void) {
     return sizeof(BaVan);
 }
 
-void bavan_entrypoint_1(PlayerState *self) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bavan_entrypoint_1(PlayerState *self) {
     f32 sp1C[3];
     func_8009DE38(self, 0x505, 1.0f);
     func_8009C128(self, sp1C);
-    func_801013A8(sp1C, 0x19, self->unk184);
+    BT_NATIVE_ONLY(return) func_801013A8(sp1C, 0x19, self->unk184);
 }
 
 void bavan_entrypoint_2(PlayerState *self) {
@@ -34,7 +34,7 @@ void bavan_entrypoint_3(PlayerState *self) {
     self->van->unk4 = 0.0f;
     self->van->unk8 = 0.0f;
     self->van->unkC = 0.0f;
-    self->van->unk10 = func_8009D454(self, 0, &D_808002F0_bavan);
+    self->van->unk10 = func_8009D454(self, 0, D_808002F0_bavan);
     self->van->unk14 = 1.0f;
     func_800C368C(self->van->unk10, 0);
     func_800C334C(self->van->unk10, 0x40);
@@ -77,3 +77,5 @@ void bavan_entrypoint_8(PlayerState *self) {
     func_800C31DC(self->van->unk10, self->van->unk14);
     func_800C3BDC(self->van->unk10);
 }
+/* data_to_c.py: from asm/data/overlays/ba/van.data.s */
+s32 D_808002F0_bavan[4] BT_DATA(4, overlays_ba_van, 0x0) = { 33947667, 84279306, 16777216, 0 };

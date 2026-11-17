@@ -7,8 +7,8 @@ void func_80800000_cheggnormal(void *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA20(void *, void *, f32);
-    void _fxegg_entrypoint_1(f32 *, f32);
-    void _fxegg_entrypoint_2(f32 *, f32);
+    BtIntPtr _fxegg_entrypoint_1(f32 arg0[3], f32 arg1);
+    BtIntPtr _fxegg_entrypoint_2(f32 arg0[3], f32 arg1);
     void _fxegg_entrypoint_7(f32 *, f32 *, f32);
     void _fxegg_entrypoint_8(f32 *, f32 *, f32);
     f32 interval;
@@ -47,11 +47,11 @@ void func_80800000_cheggnormal(void *arg0) {
         }
       } while (data->timer <= 0.0f);
     }
-}
+}                typedef struct { u8 pad0[0x38]; f32 unk38; u8 pad3C[0x36]; u16 unk72; } Objnormal_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800194_cheggnormal(void *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 func_800EEEA8(s32);
+    int func_800EEEA8(f32 vec[3]);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 _suegg_entrypoint_8(void *);
     s32 _suegg_entrypoint_12(void *);
@@ -61,7 +61,7 @@ void func_80800194_cheggnormal(void *arg0) {
     void _suegg_entrypoint_23(void *);
     void _suegg_entrypoint_3(void *);
     void _sueggmisc_entrypoint_1(void *);
-    s32 _sueggmove_entrypoint_3(void *);
+    u8 _sueggmove_entrypoint_3(Actor *arg0);
     void func_80800000_cheggnormal(void *);
     struct FireData {
         u8 pad[0x39];
@@ -70,10 +70,10 @@ void func_80800194_cheggnormal(void *arg0) {
     } *data;
 
     data = func_80100094(arg0, 0);
-    switch ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) {
+    switch ((u32)*&((Objnormal_arg0 *)arg0)->unk72 >> 10) {
     case 1:
         if (_suegg_entrypoint_8(arg0) == 0) {
-            if (func_800EEEA8((s32)((u8 *)arg0 + 0x28)) != 0) {
+            if (func_800EEEA8((BtIntPtr)((u8 *)arg0 + 0x28)) != 0) {
                 data->flag = 1;
             } else {
                 func_80800000_cheggnormal(arg0);
@@ -86,7 +86,7 @@ void func_80800194_cheggnormal(void *arg0) {
         break;
     case 2:
         if (_suegg_entrypoint_8(arg0) == 0) {
-            *(f32 *)((u8 *)arg0 + 0x38) = func_800F10B4(*(f32 *)((u8 *)data + 0x30), 0.0f, 0.134f, 0.1f, 0.25f);
+            ((Objnormal_arg0 *)arg0)->unk38 = func_800F10B4(*(f32 *)((u8 *)data + 0x30), 0.0f, 0.134f, 0.1f, 0.25f);
             if (_sueggmove_entrypoint_3(arg0) != 0) {
                 _suegg_entrypoint_23(arg0);
             }
@@ -108,18 +108,18 @@ void func_80800194_cheggnormal(void *arg0) {
 
 OSThread *cheggnormal_entrypoint_0(void)
 {
-    extern u8 D_808004D0_cheggnormal[];
+    extern ActorData D_808004D0_cheggnormal[];
 
     return (OSThread *) D_808004D0_cheggnormal;
 }
 
-void *cheggnormal_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _suegg_entrypoint_1(void *, f32);
-    void *_suegg_entrypoint_11(s32, s32, s32);
-    s32 _sueggmove_entrypoint_10(s32);
-    s32 _sueggmove_entrypoint_5(void *, s32);
-    s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 _sueggmove_entrypoint_7(void *, s32);
+void *cheggnormal_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
+    Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
+    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
+    void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
+    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
     void *func_80100094(Actor *, u32);
     Actor *temp_v0;
     struct NormalData {
@@ -144,15 +144,15 @@ void *cheggnormal_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     return temp_v0;
 }
 
-void *cheggnormal_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void *cheggnormal_entrypoint_2(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     void *func_80100094(Actor *, u32);
-    s32 _suegg_entrypoint_1(void *, f32);
-    void *_suegg_entrypoint_11(s32, s32, s32);
-    s32 _sueggmove_entrypoint_10(s32);
-    s32 _sueggmove_entrypoint_5(void *, s32);
-    s32 _sueggmove_entrypoint_6(void *, f32, f32);
-    s32 _sueggmove_entrypoint_7(void *, s32);
-    s32 func_800F693C(s32);
+    void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
+    Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
+    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
+    void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
+    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
+    s32 func_800F693C(BtIntPtr);
     Actor *actor;
     struct NormalData {
         u8 pad[0x38];
@@ -178,3 +178,12 @@ void *cheggnormal_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
     return actor;
 }
+/* data_to_c.py: from asm/data/overlays/ch/egg/normal.data.s */
+void func_80105834(Actor*);
+void _subaddiedraw25d_entrypoint_2();
+void _suegg_entrypoint_2();
+OSThread *_suegg_entrypoint_0(void);
+void _suegg_entrypoint_5();
+void func_80107C2C();
+s32 _suegg_entrypoint_17(Actor *arg0, s32 arg1, s32 arg2);
+ActorData D_808004D0_cheggnormal [1] BT_DATA(4, overlays_ch_egg_normal, 0x0) = { { 620, 346, 2519, 1, 0, (void (*)(struct Actor *))func_80800194_cheggnormal, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_subaddiedraw25d_entrypoint_2, 0, 1065353216, 0, 0, 0, 4, (void (*)(struct Actor *))_suegg_entrypoint_2, (BtIntPtr)_suegg_entrypoint_0, 76, 0, (void (*)(struct Actor *))_suegg_entrypoint_5, (void (*)(void *, long, void *, long, void *))func_80107C2C, -30720, 0, (void (*)(struct Actor *, long, long))_suegg_entrypoint_17, 0 } };

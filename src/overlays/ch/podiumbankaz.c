@@ -2,8 +2,8 @@
 
 /* extern */
 
-void func_80800000_chpodiumbankaz(s32 arg0) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+void func_80800000_chpodiumbankaz(BtIntPtr arg0) {
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     s32 func_800C6E38(s32);
     if (func_800C6E38(0x1C) != 0) {
         _subaddiefade_entrypoint_1(arg0, 0xFF);
@@ -16,9 +16,9 @@ void func_80800000_chpodiumbankaz(s32 arg0) {
 
 void func_80800044_chpodiumbankaz(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_1(f32 *, u32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
 
     if (func_800DA298(0x4F4) == 0) {
         if ((_subaddiedialog_entrypoint_1(arg0->position, 0xFA, 0) != 0) && (_subaddiedialog_entrypoint_11(arg0->unk0, 0xD82, 0xE, arg0->position, 0) != 0)) {
@@ -28,8 +28,8 @@ void func_80800044_chpodiumbankaz(Actor *arg0) {
 }
 
 void func_808000B8_chpodiumbankaz(Actor *arg0) {
-    s32 func_800F6BE4(s32);
-    s32 func_800F7B9C(s32, s32);
+    s32 func_800F6BE4(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
 
     switch (arg0->unk70_10) {
@@ -49,8 +49,8 @@ void func_808000B8_chpodiumbankaz(Actor *arg0) {
 }
 
 void func_80800170_chpodiumbankaz(Actor *arg0) {
-    s32 func_800F6BE4(s32);
-    s32 func_800F7B9C(s32, s32);
+    s32 func_800F6BE4(BtIntPtr);
+    s32 func_800F7B9C(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
 
     switch (arg0->unk70_10) {
@@ -72,11 +72,11 @@ void func_80800170_chpodiumbankaz(Actor *arg0) {
 /* extern */
 
 void func_80800228_chpodiumbankaz(Unk80132ED0 *arg0, s32 arg1) {
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     s32 func_800C6E38(s32);
-    s32 func_800F5410(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F7D38(s32, s32, void *, f32);
+    s32 func_800F5410(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F7D38(BtIntPtr, s32, void *, f32);
     void func_80101FDC(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *actor;
@@ -103,8 +103,8 @@ void func_80800228_chpodiumbankaz(Unk80132ED0 *arg0, s32 arg1) {
 
 void func_80800318_chpodiumbankaz(Unk80132ED0 *arg0, s32 arg1) {
     s32 func_800C6E38(s32);
-    s32 func_800F5410(s32);
-    s32 func_800F7CF4(s32, s32, void *);
+    s32 func_800F5410(BtIntPtr);
+    s32 func_800F7CF4(BtIntPtr, s32, void *);
     void func_80101FDC(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *sp1C;
@@ -120,8 +120,8 @@ void func_80800318_chpodiumbankaz(Unk80132ED0 *arg0, s32 arg1) {
     }
 }
 
-void func_808003C4_chpodiumbankaz(s32 arg0, s32 arg1) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+void func_808003C4_chpodiumbankaz(BtIntPtr arg0, s32 arg1) {
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     if (arg1 == 0x1C) {
         _subaddiefade_entrypoint_1(arg0, 0xFF);
     }
@@ -132,7 +132,7 @@ s32 func_808003EC_chpodiumbankaz(Actor *arg0, s32 arg1, s32 arg2) {
 
     switch (arg1) {
         case 0x1A:
-            func_808003C4_chpodiumbankaz((s32)arg0, arg2);
+            func_808003C4_chpodiumbankaz((BtIntPtr)arg0, arg2);
             return 1;
         case 0x91:
             if (func_800DA298(0xA84) != 0) {
@@ -149,7 +149,7 @@ s32 func_80800464_chpodiumbankaz(Actor *arg0, s32 arg1, s32 arg2) {
 
     switch (arg1) {
         case 0x1A:
-            func_808003C4_chpodiumbankaz((s32)arg0, arg2);
+            func_808003C4_chpodiumbankaz((BtIntPtr)arg0, arg2);
             return 1;
         case 0x91:
             if (func_800DA298(0xAC2) != 0) {
@@ -163,14 +163,21 @@ s32 func_80800464_chpodiumbankaz(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chpodiumbankaz_entrypoint_0(void)
 {
-    extern u8 D_80800500_chpodiumbankaz[];
+    extern ActorData D_80800500_chpodiumbankaz[];
 
     return (OSThread *) D_80800500_chpodiumbankaz;
 }
 
 OSThread *chpodiumbankaz_entrypoint_1(void)
 {
-    extern u8 D_80800548_chpodiumbankaz[];
+    extern ActorData D_80800548_chpodiumbankaz[];
 
     return (OSThread *) D_80800548_chpodiumbankaz;
 }
+/* data_to_c.py: from asm/data/overlays/ch/podiumbankaz.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800500_chpodiumbankaz [1] BT_DATA(4, overlays_ch_podiumbankaz, 0x0) = { { 617, 343, 2018, 1, 0, (void (*)(struct Actor *))func_808000B8_chpodiumbankaz, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 32768000, 0, 0, 0, 16384, 2068, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chpodiumbankaz, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9234, (void (*)(struct Actor *, long, long))func_808003EC_chpodiumbankaz, 0 } };
+ActorData D_80800548_chpodiumbankaz [1] BT_DATA(4, overlays_ch_podiumbankaz, 0x48) = { { 616, 342, 2017, 1, 0, (void (*)(struct Actor *))func_80800170_chpodiumbankaz, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 32768000, 0, 0, 0, 16384, 2068, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chpodiumbankaz, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9234, (void (*)(struct Actor *, long, long))func_80800464_chpodiumbankaz, 0 } };

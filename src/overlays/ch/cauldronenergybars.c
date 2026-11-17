@@ -2,8 +2,8 @@
 
 #define CAULDRONENERGYBARS_DATA(arg0) ((CauldronEnergyBarsData*)(arg0->actorData))
 
-extern s32 D_808002C0_chcauldronenergybars;
-extern s32 D_808002D4_chcauldronenergybars;
+extern s32 D_808002C0_chcauldronenergybars[5];
+extern BtIntPtr D_808002D4_chcauldronenergybars[19];
 
 void func_80800000_chcauldronenergybars(Actor* arg0)
 {
@@ -48,14 +48,14 @@ void func_808000B8_chcauldronenergybars(Actor* arg0)
         {
             func_8010A590(arg0);
         }
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808002C0_chcauldronenergybars);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808002C0_chcauldronenergybars);
         return;
     case 2:
         if (func_800D90A4(&arg0->unk58) != 0)
         {
             func_800FFAB0(arg0);
         }
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808002C0_chcauldronenergybars);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808002C0_chcauldronenergybars);
         _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4(arg0->unk58, CAULDRONENERGYBARS_DATA(arg0)->unk1C, 0.0f, 1.4f, 0.7f));
         arg0->alpha = (u8)(s32)func_800F10B4(arg0->unk58, CAULDRONENERGYBARS_DATA(arg0)->unk1C, 0.0f, 255.0f, 0.0f);
         return;
@@ -99,5 +99,12 @@ s32 func_808001C4_chcauldronenergybars(Actor* arg0, s32 arg1, s32 arg2)
 
 s32* chcauldronenergybars_entrypoint_0(void)
 {
-    return &D_808002D4_chcauldronenergybars;
+    return D_808002D4_chcauldronenergybars;
 }
+/* data_to_c.py: from asm/data/overlays/ch/cauldronenergybars.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+s32 D_808002C0_chcauldronenergybars[5] BT_DATA(4, overlays_ch_cauldronenergybars, 0x0) = { 1246647, 65736, 131072010, 23461910, 2097152000 };
+BtIntPtr D_808002D4_chcauldronenergybars[19] BT_DATA(4, overlays_ch_cauldronenergybars, 0x14) = { 53544077, 158859265, 0, (BtIntPtr)func_808000B8_chcauldronenergybars, (BtIntPtr)func_80105834, (BtIntPtr)func_80101870, 131072000, 0, 0, 3072, 0, (BtIntPtr)func_80108ED0, 0, (BtIntPtr)func_80800000_chcauldronenergybars, (BtIntPtr)func_80107C2C, -2147474432, (BtIntPtr)func_808001C4_chcauldronenergybars, 0, 0 };

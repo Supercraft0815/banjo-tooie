@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_actor.h"
 #define ACTOR_SHADOW_SCALE(data) (((ActorData *)(data))->shadow_scale)
 #else
@@ -17,14 +17,14 @@ typedef struct {
 void func_80102EC0(s32 arg0) 
 {
 }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 int func_80102EC8(Actor *self, f32 (*positions)[3])
 #else
 int func_80102EC8(ActorPathView *self, f32 (*positions)[3])
 #endif
 {
     s32 func_800CC338(f32 (*)[3], s32, s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     return self->unk70_25 < 1 || func_800CC338(positions, self->unk70_25 - 1, ((self->pad70_1 >> 3) & 63) - 1) != -1;
 #else
     return self->index < 1 || func_800CC338(positions, self->index - 1, self->value - 1) != -1;
@@ -32,7 +32,7 @@ int func_80102EC8(ActorPathView *self, f32 (*positions)[3])
 }
 
 s32 func_80102F14(void *arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Actor *actor = arg0;
     if (actor->pad74_18 & 1) return 1;
     actor->pad74_18 |= 1;
@@ -55,7 +55,7 @@ s32 func_80102F14(void *arg0) {
 }
 
 s32 func_80102F44(void *arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Actor *actor = arg0;
     if (actor->unk79_2) return 1;
     actor->unk79_2 = 1;
@@ -80,13 +80,13 @@ s32 func_80102F44(void *arg0) {
 
 s32 func_80102F74(void *arg0, s32 arg1) {
     void *func_80100368(void *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_80102FA0(Actor *, s32);
 #endif
     return func_80102FA0(func_80100368(arg0), arg1);
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_80102FA0(ActorData *arg0, s32 arg1)
 #else
 s32 func_80102FA0(Actor *arg0, s32 arg1)
@@ -96,13 +96,13 @@ s32 func_80102FA0(Actor *arg0, s32 arg1)
     s32 var_v1;
 
     if (arg1 & 0x80000000) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         var_v0 = ((u32)(u16)arg0->unk3C << 16) | (u16)arg0->unk3E;
 #else
         var_v0 = *(s32 *)((u8 *)arg0 + 0x3C);
 #endif
     } else {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         var_v0 = ((u32)(u16)arg0->unk24 << 16) | (u16)arg0->unk26;
 #else
         var_v0 = *(s32 *)((u8 *)arg0 + 0x24);
@@ -117,15 +117,15 @@ s32 func_80102FA0(Actor *arg0, s32 arg1)
 }
 
 void func_80102FDC(void *arg0, f32 arg1) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     ((Actor *)arg0)->scale = arg1;
 #else
-    *(f32 *)((u8 *)arg0 + 56) = arg1;
+    *&((Actor *)arg0)->scale = arg1;
 #endif
 }
 
 void func_80102FE8(void *arg0, s32 arg1) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Actor *actor = arg0;
     actor->pad74_0 = (actor->pad74_0 & ~32u) | (arg1 != 0 ? 32 : 0);
 #else
@@ -145,14 +145,14 @@ void func_80102FE8(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80103014(u8 *arg0) {
-#ifdef BT_NATIVE
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80103014(u8 *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void func_800EC124(f32 *, void *, f32 *);
     Actor *actor = (Actor *)arg0;
-    func_800EC124(actor->position, actor->unk0, actor->rotation);
+    func_800EC124(actor->position, actor->unk0, actor->rotation); BT_NATIVE_ONLY(return 0;)
 #else
     s32 func_800EC124(void *, s32, void *, s32 *);
-    func_800EC124(arg0 + 4, *(s32 *)arg0, arg0 + 0x44, (s32 *)arg0);
+    BT_NATIVE_ONLY(return) func_800EC124(arg0 + 4, *(s32 *)arg0, arg0 + 0x44, (s32 *)arg0);
 #endif
 }
 
@@ -169,16 +169,16 @@ void func_80103040(Actor *arg0) {
     } ActorCallbacks;
     void *func_80100368(void *);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
+    void _chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2);
     Actor *parent;
     ActorCallbacks *callbacks;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Unk80132ED0 *marker;
 #else
     s32 marker;
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (arg0->pad74_18 & 4) {
 #else
     if (((struct ShadowFlags *)arg0)->enabled) {
@@ -188,7 +188,7 @@ void func_80103040(Actor *arg0) {
             _chbadshad_entrypoint_1(arg0, arg0->position, arg0->scale * ACTOR_SHADOW_SCALE(callbacks));
             return;
         }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         marker = arg0->parent_marker;
         parent = marker ? func_80106790(marker) : NULL;
         if (parent && (parent->unk7C_12 || !parent->unk64_16)) {
@@ -203,7 +203,7 @@ void func_80103040(Actor *arg0) {
 }
 
 void func_80103110(void *arg0, s32 arg1) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Actor *actor = arg0;
     actor->pad7C_13 = (actor->pad7C_13 & ~2u) | (arg1 != 0 ? 2 : 0);
 #else

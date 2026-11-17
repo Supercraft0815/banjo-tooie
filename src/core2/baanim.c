@@ -77,7 +77,7 @@ void __baanim_oscillateScale(f32 dst[3], f32 x, f32 min, f32 osc_size) {
 }
 
 #ifndef NONMATCHING
-void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
+void __baanim_applyBottlesBonus(BtIntPtr arg0, s32 arg1) {
     void func_80098218(PlayerState *, s32 *);
     s16 *func_800A4C88(void *);
     f32 func_800A8258(void);
@@ -90,7 +90,7 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
 #ifndef BT_NATIVE
     void func_800DFFA0(s32 *, s32, f32 *);
 #endif
-    s32 func_8010FFD8(s32);
+    s32 func_8010FFD8(BtIntPtr);
     static s32 D_80126CD0;
     f32 sp2C[3];
     f32 sp28;
@@ -163,7 +163,7 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
             func_800DFF64((s32 *)arg0, 0x67, sp2C);
             break;
     }
-    if (func_8010FFD8((s32)func_800A4C88(sp24)) != 0) {
+    if (func_8010FFD8((BtIntPtr)func_800A4C88(sp24)) != 0) {
         __baanim_oscillateScale(sp2C, sp28, 0.9f, 0.2f);
         func_800DFF64((s32 *)arg0, sp24->anim->unkE, sp2C);
     }
@@ -324,7 +324,7 @@ void func_8008CA4C(PlayerState *self, BaAnimUpdateType arg1) {
     self->anim->state = arg1;
 }
 
-s32 func_8008CA74(PlayerState *self) {
+BtIntPtr func_8008CA74(PlayerState *self) {
     return func_8008B4D4(self->anim->anctrl);
 }
 

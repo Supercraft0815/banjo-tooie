@@ -3,7 +3,7 @@
 /* extern */
 
 s32 ncstart_entrypoint_0(s32 arg0, f32 *arg1, f32 *arg2) {
-    Prop *_gccubesearch_entrypoint_14(s32, s32);
+    void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     s32 _gspropctrl_entrypoint_12(Prop *);
     f32 func_800136E4(f32);

@@ -2,7 +2,7 @@
 
 OSThread *ch1pfreeze_entrypoint_0(void)
 {
-    extern u8 D_80800420_ch1pfreeze[];
+    extern ActorData D_80800420_ch1pfreeze[];
 
     return (OSThread *) D_80800420_ch1pfreeze;
 }
@@ -53,7 +53,7 @@ void func_8080014C_ch1pfreeze(Actor *arg0, Gfx **arg1)
 {
   s32 func_800A89F8();
   void func_800B99CC(Gfx **, s32, s32 *);
-  f32 func_800F5794(s32, f32 *, s32);
+  BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5794(BtIntPtr, f32 *, s32);
   s32 func_800F5ECC(s32);
   void func_80101870(Actor *, void *);
   f32 temp_f0;
@@ -79,7 +79,7 @@ void func_8080014C_ch1pfreeze(Actor *arg0, Gfx **arg1)
     {
       do
       {
-        temp_f0 = func_800F5794(temp_s2->unk0, arg0->position, var_s0);
+        temp_f0 = BT_IDO_ONLY(func_800F5794(temp_s2->unk0, arg0->position, var_s0)) BT_NATIVE_ONLY(((union { s32 i; f32 f; }){ .i = func_800F5794(temp_s2->unk0, arg0->position, var_s0) }).f);
         var_f2 = temp_f0;
         if (var_s0 != 2)
         {
@@ -155,7 +155,7 @@ void func_808002D0_ch1pfreeze(Actor *arg0, s32 arg1) {
 /* extern */
 
 s32 ch1pfreeze_entrypoint_1(s32 arg0) {
-    f32 func_800F5F24(u32);
+    f32 func_800F5F24(BtUIntPtr);
     Actor *sp2C;
     f32 sp20[3];
     void *temp_v0;
@@ -165,7 +165,12 @@ s32 ch1pfreeze_entrypoint_1(s32 arg0) {
     sp2C = func_80108474(0x2C5, sp20, 0);
     temp_v0 = func_80100094(sp2C, 0);
     *(s32 *)temp_v0 = arg0;
-    *(f32 *)((s8 *)sp2C + 0x48) = func_800F5F24(arg0);
+    sp2C->rotation[1] = func_800F5F24(arg0);
     func_808002D0_ch1pfreeze(sp2C, 2);
     return (*(s32 *)((s8 *)sp2C + 0));
 }
+/* data_to_c.py: from asm/data/overlays/ch/1pfreeze.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800420_ch1pfreeze [1] BT_DATA(4, overlays_ch_1pfreeze, 0x0) = { { 344, 709, 1885, 1, 0, (void (*)(struct Actor *))func_80800054_ch1pfreeze, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080014C_ch1pfreeze, 0, 0, 0, 0, 2, 0, (void (*)(struct Actor *))func_80800014_ch1pfreeze, (BtIntPtr)func_80108ED0, 36, 0, (void (*)(struct Actor *))func_8080000C_ch1pfreeze, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9234, (void (*)(struct Actor *, long, long))func_80800294_ch1pfreeze, 0 } };

@@ -2,20 +2,20 @@
 
 OSThread *chklungophial_entrypoint_0(void)
 {
-    extern u8 D_80800C30_chklungophial[];
+    extern ActorData D_80800C30_chklungophial[];
 
     return (OSThread *) D_80800C30_chklungophial;
 }
 
 OSThread *chklungophial_entrypoint_1(void)
 {
-    extern u8 D_80800C78_chklungophial[];
+    extern ActorData D_80800C78_chklungophial[];
 
     return (OSThread *) D_80800C78_chklungophial;
 }
 
 void func_80800018_chklungophial(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32 *);
     void func_800C8E54(s32, f32, f32);
@@ -24,10 +24,10 @@ void func_80800018_chklungophial(Actor *arg0) {
     int func_800DC298(f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFD24(f32 *);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     void func_80108A30(s32, void *, f32, s32);
-    void func_8010D12C(s32, f32 *, f32, s32);
+    void func_8010D12C(BtIntPtr, f32 *, f32, s32);
     extern u32 D_80800CC0_chklungophial[];
     struct Motion {
         f32 unused[3];
@@ -67,9 +67,9 @@ void func_80800018_chklungophial(Actor *arg0) {
     }
 }
 
-void func_80800204_chklungophial(Actor *arg0) {
+void func_80800204_chklungophial(Actor *arg0 BT_PASS2(, s32 bt_a1)) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
     f32 func_800136E4(f32);
     s32 func_800BFA1C();
@@ -81,7 +81,7 @@ void func_80800204_chklungophial(Actor *arg0) {
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     s32 func_8010B990(Actor *, s32);
-    s32 func_808003C8_chklungophial(s32, s32);
+    s32 func_808003C8_chklungophial(BtIntPtr, s32);
     s32 func_80800AEC_chklungophial(Actor *, f32 *, f32);
     extern u8 D_80800CCC_chklungophial[];
     struct Phial {
@@ -110,7 +110,7 @@ void func_80800204_chklungophial(Actor *arg0) {
         arg0->rotation[0] = func_800136E4(arg0->rotation[0] + dt * arg0->unk54);
         ((struct Motion *)arg0->actorData)->velocity[1] -= 800.0f * dt;
         if (func_8010B990(arg0, 0x400007) & 0x20) {
-            func_808003C8_chklungophial((s32)arg0, 1);
+            func_808003C8_chklungophial((BtIntPtr)arg0, 1);
         }
         if (func_800DC298(0.6f) && klungo != NULL) {
             _subaddieskeleton_entrypoint_3(arg0->unk0, 4, position);
@@ -132,7 +132,7 @@ void func_80800204_chklungophial(Actor *arg0) {
 /* extern */
 
 s32 func_8080038C_chklungophial(s32 arg0, s32 arg1, volatile s32 arg2) {
-    s32 func_808003C8_chklungophial(s32, s32);
+    s32 func_808003C8_chklungophial(BtIntPtr, s32);
     int ret;
     if (arg1 == 0x40) {
         func_808003C8_chklungophial(arg0, 0);
@@ -143,14 +143,14 @@ s32 func_8080038C_chklungophial(s32 arg0, s32 arg1, volatile s32 arg2) {
     return ret;
 }
 
-s32 func_808003C8_chklungophial(s32 arg0, s32 arg1) {
+s32 func_808003C8_chklungophial(BtIntPtr arg0, s32 arg1) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA77C(s32, s16, s16, s16);
-    s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA77C(BtIntPtr, s16, s16, s16);
+    BtIntPtr func_800BABB8(BtIntPtr, f32 *, f32 *, f32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
@@ -177,7 +177,7 @@ s32 func_808003C8_chklungophial(s32 arg0, s32 arg1) {
     s32 pad;
     struct Phial *data;
     f32 normal[3];
-    s32 emitter;
+    BtIntPtr emitter;
     Actor *other;
     f32 delay;
     s32 i;
@@ -219,7 +219,7 @@ s32 func_808003C8_chklungophial(s32 arg0, s32 arg1) {
         data->effect = _chlightfader_entrypoint_1(data->effect, 1.5f, 2);
     }
     func_800FFAB0(actor);
-    func_8010A570(actor);
+    func_8010A570(actor); BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_808006B4_chklungophial(Actor *arg0, f32 *arg1, f32 *arg2) {
@@ -327,13 +327,13 @@ s32 func_80800980_chklungophial(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_808009BC_chklungophial(Actor *arg0, s32 arg1) {
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     void func_800E24D8(s32);
     void func_800E2530(f32);
     void func_800E2588(u32);
-    s32 func_800E2594(s32, s32);
-    s32 func_800E2720(s32, s32, s32, f32 *, f32 *, s32);
-    void func_800E2A14(s32);
+    void func_800E2594(BtUIntPtr arg0, void *arg1);
+    s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(BtIntPtr);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
     struct PhialEntry {
@@ -350,7 +350,7 @@ void func_808009BC_chklungophial(Actor *arg0, s32 arg1) {
         struct PhialEntry entries[50];
     } *temp_v0;
     f32 temp_f0;
-    s32 temp_s1;
+    BtIntPtr temp_s1;
     s32 var_s1;
     f32 sp4C[3];
     struct PhialEntry *var_s0;
@@ -417,3 +417,19 @@ s32 func_80800AEC_chklungophial(Actor *arg0, f32 *arg1, f32 arg2) {
     temp_v0->count += 1;
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/klungo/phial.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800C30_chklungophial [1] BT_DATA(4, overlays_ch_klungo_phial, 0x0) = { { 818, 1058, 1800, 1, 0, (void (*)(struct Actor *))func_80800204_chklungophial, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 1065353216, 0, 0, 0, 68, 0, (BtIntPtr)func_80108ED0, 20, 0, (void (*)(struct Actor *))func_80800018_chklungophial, (void (*)(void *, long, void *, long, void *))func_80107C2C, 0, 0, (void (*)(struct Actor *, long, long))func_8080038C_chklungophial, 0 } };
+ActorData D_80800C78_chklungophial [1] BT_DATA(4, overlays_ch_klungo_phial, 0x48) = { { 819, 1059, -1, 1, 0, (void (*)(struct Actor *))func_80800828_chklungophial, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808009BC_chklungophial, 0, 0, 0, 0, 2, 1028, 0, 0, 1804, 0, (void (*)(struct Actor *))func_80800820_chklungophial, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8194, (void (*)(struct Actor *, long, long))func_80800980_chklungophial, 0 } };
+u32 D_80800CC0_chklungophial [3] BT_DATA(4, overlays_ch_klungo_phial, 0x90) = { 0xFF, 0xFF, 0x80 };
+u8 D_80800CCC_chklungophial [16] BT_DATA(4, overlays_ch_klungo_phial, 0x9C) = { 0, 0x13, 6, 1, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 2, 0, 0, 0, 0 };
+s32 D_80800CDC_chklungophial [15] BT_DATA(4, overlays_ch_klungo_phial, 0xAC) = { 1902512, 1443206, 2818355, 26804263, 13107400, 26214800, 2949620, 39321627, -65471264, 2228480, 20119680, 10027029, 204, 917534, 3276800 };
+s32 D_80800D18_chklungophial [4] BT_DATA(4, overlays_ch_klungo_phial, 0xE8) = { 1246349, 1572877, 22610291, 0 };
+s32 D_80800D28_chklungophial [10] BT_DATA(4, overlays_ch_klungo_phial, 0xF8) = { 1903069, 2228608, 33554944, 41943061, 153, 1638400, 458795, 20119910, 2162687, 1088421888 };
+s32 D_80800D50_chklungophial [7] BT_DATA(4, overlays_ch_klungo_phial, 0x120) = { 1246428, 852224, 18415637, 2490496, 6684673, 52432300, 0 };
+s32 D_80800D6C_chklungophial [9] BT_DATA(4, overlays_ch_klungo_phial, 0x13C) = { 17825821, 136380459, 33555072, 2228608, 33555584, 83886101, 128, 3342339, 0 };
+s32 D_80800D90_chklungophial [15] BT_DATA(4, overlays_ch_klungo_phial, 0x160) = { 68157469, 165478427, 9830575, 720916, 2621440, 32, -16288, 2228326, 8388761, 11730965, 153, 2752512, 655616, 25165839, 0 };
+s32 D_80800DCC_chklungophial [5] BT_DATA(4, overlays_ch_klungo_phial, 0x19C) = { 1246239, 1572877, 10879168, 0, 0 };

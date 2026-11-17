@@ -4,8 +4,8 @@ void func_80800000_chwallsnakebaddy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     f32 func_800D8FF8(void);
-    u32 func_800F54E4(void);
-    f32 func_800F5F7C(u32);
+    BtUIntPtr func_800F54E4(void);
+    f32 func_800F5F7C(BtUIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
@@ -61,11 +61,11 @@ void func_80800000_chwallsnakebaddy(Actor *arg0) {
 
 void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
     s32 func_8001211C(void);
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
-    void func_800BAB80(s32, f32 *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
+    void func_800BAB80(BtIntPtr, f32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800DBEFC(s32 *, s32, f32 *);
     void func_800DF744(s32, s32);
     void func_80101870(Actor *, void *);
@@ -78,12 +78,12 @@ void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
     extern s32 D_80800764_chwallsnakebaddy[];
     extern s32 D_8080078C_chwallsnakebaddy[];
     extern f32 D_80800798_chwallsnakebaddy[];
-    s32 smokeEmitter;
+    BtIntPtr smokeEmitter;
     s32 active;
     f32 position[3];
     u8 *count;
     s16 *model;
-    s32 emitter;
+    BtIntPtr emitter;
     s32 state;
     s32 visible;
 
@@ -128,8 +128,8 @@ void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
 }
 
 void func_808004FC_chwallsnakebaddy(Actor *arg0, s32 arg1) {
-    extern void _chbaddiesetup_entrypoint_10(void);
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    extern Actor *_chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
@@ -172,9 +172,9 @@ s32 func_808005D8_chwallsnakebaddy(Actor *arg0, s32 arg1, volatile s32 arg2) {
     return 1;
 }
 
-void func_80800650_chwallsnakebaddy()
+void func_80800650_chwallsnakebaddy(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    func_80105010();
+    func_80105010(BT_NATIVE_ONLY(bt_a0));
 }
 
 OSThread *chwallsnakebaddy_entrypoint_0(void)

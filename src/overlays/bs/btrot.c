@@ -10,7 +10,7 @@ void func_8009FE58(PlayerState *);
 void _bashoes_entrypoint_20(PlayerState *);
 void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
 s32 bs_getNextState(PlayerState *);
-s32 func_8008CA4C(void *, s32);
+void func_8008CA4C(void *self, s32 arg1);
 s32 func_80800000_bsbtrot(PlayerState *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 func_8008E3E8(PlayerState *);
     s32 func_8008E40C(PlayerState *);
@@ -129,7 +129,7 @@ void func_80800308_bsbtrot(PlayerState *arg0) {
     s32 func_8008E40C(PlayerState *);
     s32 bs_getCurrentState(PlayerState *);
     void func_80099A7C(PlayerState *, f32 *);
-    s32 _bashoessuck_entrypoint_5(s32, f32[3]);
+    s32 _bashoessuck_entrypoint_5(BtIntPtr, f32[3]);
     void func_8009E830(PlayerState *, s32);
     void func_80099B94(PlayerState *);
 
@@ -162,7 +162,7 @@ void func_80800308_bsbtrot(PlayerState *arg0) {
             func_80099B94(arg0);
             break;
     }
-}
+}    typedef struct { u8 pad0[0x15C]; u32 unk15C; s32 unk160; s32 unk164; } Objbtrot_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -171,7 +171,7 @@ void func_808003F0_bsbtrot(void *arg0) {
     s32 func_8009E6EC();
     void func_80800308_bsbtrot(PlayerState *);
     if (func_8009E6EC() == 0x8D) {
-        (*(s32 *)((s8 *)(arg0) + (0x164))) = 1;
+        (((Objbtrot_arg0 *)arg0)->unk164) = 1;
         func_80800308_bsbtrot(arg0);
         return;
     }
@@ -252,7 +252,7 @@ void func_8080061C_bsbtrot(PlayerState *arg0) {
     void _bashoes_entrypoint_14(PlayerState *);
     void baflag_clear(PlayerState *, s32);
     void baroll_setIdeal(PlayerState *, f32);
-    s32 bastatetimer_set(void *, s32, f32);
+    void bastatetimer_set(void *self, s32 id, f32 arg2);
     void bastick_resetZones(PlayerState *);
     void func_80094F14(u8 *, s32, s32, f32);
     void func_800962B0(PlayerState *, s32);
@@ -365,8 +365,8 @@ void func_808008D0_bsbtrot(PlayerState *arg0) {
     void func_800A2D2C(PlayerState *, f32, s32);
     AnimCtrl *baanim_getAnimCtrlPtr();
     f32 func_800F13C4(f32, f32);
-    void _bashoes_entrypoint_18(PlayerState *);
-    void _bashoes_entrypoint_19(PlayerState *);
+    void _bashoes_entrypoint_18(BtIntPtr arg0);
+    void _bashoes_entrypoint_19(BtIntPtr arg0);
     AnimCtrl *sp24;
     f32 sp20;
     f32 sp1C;
@@ -452,7 +452,7 @@ void bsbtrot_entrypoint_1(PlayerState *arg0) {
     bs_setState(arg0, var_s0);
 }
 
-void bsbtrot_entrypoint_2(s32 arg0) { bainput_enable(arg0, 0, 1); func_8080061C_bsbtrot(arg0); }
+void bsbtrot_entrypoint_2(BtIntPtr arg0) { bainput_enable(arg0, 0, 1); func_8080061C_bsbtrot(arg0); }
 
 s32 bsbtrot_entrypoint_3(s32 arg0) {
     extern s32 D_80802E50_bsbtrot[];
@@ -505,18 +505,18 @@ s32 bsbtrot_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80802E60_bsbtrot)[arg0];
 }
 
-s32 func_80800DC4_bsbtrot(s32 arg0) {
+s32 func_80800DC4_bsbtrot(BtIntPtr arg0) {
     return func_80800000_bsbtrot(arg0, 0x15, 0x44, 0x29C, 0xA1);
 }
 
 /* extern */
 
-void func_80800DF4_bsbtrot(s32 arg0) {
+void func_80800DF4_bsbtrot(BtIntPtr arg0) {
     s32 pad[2];
-    s32 func_8008C9F0(s32, f32, f32, f32, f32);
-    s32 func_8008CA30(s32, f32);
-    s32 func_8008E1A0(s32);
-    f32 func_8009BBB8(s32);
+    s32 func_8008C9F0(BtIntPtr, f32, f32, f32, f32);
+    s32 func_8008CA30(BtIntPtr, f32);
+    s32 func_8008E1A0(BtIntPtr);
+    f32 func_8009BBB8(BtIntPtr);
     f32 func_800F10B4(f32, f32, f32, s32, f32);
     f32 func_80800164_bsbtrot(PlayerState *);
     f32 func_808001B8_bsbtrot();
@@ -540,7 +540,7 @@ void func_80800DF4_bsbtrot(s32 arg0) {
     func_8008CA30(arg0, 1.0f);
 }
 
-void bsbtrot_entrypoint_8(s32 arg0) {
+void bsbtrot_entrypoint_8(BtIntPtr arg0) {
     baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot(arg0), 0.53f);
     func_8009FFD8(arg0, 2, 1, 1, 2);
     func_80800538_bsbtrot(arg0);
@@ -559,8 +559,8 @@ void bsbtrot_entrypoint_9(PlayerState *arg0) {
     s32 func_80800710_bsbtrot(void *arg0);
     int func_8080075C_bsbtrot(PlayerState *arg0, s32 arg1);
     void func_808008D0_bsbtrot(PlayerState *arg0);
-    s32 func_80800DC4_bsbtrot(s32 arg0);
-    void func_80800DF4_bsbtrot(s32 arg0);
+    s32 func_80800DC4_bsbtrot(BtIntPtr arg0);
+    void func_80800DF4_bsbtrot(BtIntPtr arg0);
     s32 player_inWater(PlayerState *);
     int bakey_pressed(PlayerState *, int);
     s32 bastick_getZone(PlayerState *);
@@ -572,9 +572,9 @@ void bsbtrot_entrypoint_9(PlayerState *arg0) {
 
     var_s1 = 0;
     func_80800120_bsbtrot(arg0);
-    func_80800DF4_bsbtrot((s32) arg0);
+    func_80800DF4_bsbtrot((BtIntPtr) arg0);
     func_808004B4_bsbtrot(arg0);
-    func_808002A4_bsbtrot(arg0, func_80800DC4_bsbtrot((s32) arg0));
+    func_808002A4_bsbtrot(arg0, func_80800DC4_bsbtrot((BtIntPtr) arg0));
     func_8009D3A8(arg0, 1);
     func_80800438_bsbtrot(arg0);
     func_808008D0_bsbtrot(arg0);
@@ -610,7 +610,7 @@ s32 bsbtrot_entrypoint_11(s32 arg0) {
 }
 
 void func_8009D2D8(PlayerState *, s32);
-s32 baphysics_set_type(void *, s32);
+void baphysics_set_type(void *self, s32 type);
 
 void bsbtrot_entrypoint_12(PlayerState *arg0) {
     void anctrl_reset(AnimCtrl *);
@@ -678,13 +678,13 @@ void bsbtrot_entrypoint_13(void *arg0) {
     s32 func_8008E3E8(PlayerState *);
     void func_8009BB24(void *, f32 *);
     s32 nextState;
-    s32 animCtrl;
+    BtIntPtr animCtrl;
     f32 velocity[3];
     s32 shoes;
     nextState = 0;
     animCtrl = baanim_getAnimCtrlPtr(arg0);
     func_808004B4_bsbtrot(arg0);
-    if (func_8008E3E8((s32)arg0) != 0) {
+    if (func_8008E3E8((BtIntPtr)arg0) != 0) {
         _bashoes_entrypoint_20(arg0);
     }
     if (baflag_isTrue(arg0, 0xF) != 0) {
@@ -696,21 +696,21 @@ void bsbtrot_entrypoint_13(void *arg0) {
     if (bakey_released(arg0, 8) && (velocity[1] > 0.0f)) {
         baphysics_reset_gravity(arg0);
     }
-    switch (*(u32 *)((u8 *)arg0 + 0x15C)) {
+    switch (((Objbtrot_arg0 *)arg0)->unk15C) {
     case 0:
         if (anctrl_isStopped(animCtrl) != 0) {
             anctrl_setSubrange(animCtrl, 0.0f, 0.4653f);
             anctrl_setDuration(animCtrl, 10.0f);
-            anctrl_setPlaybackType((s32)animCtrl, 1);
-            *(u32 *)((u8 *)arg0 + 0x15C) = 1;
+            anctrl_setPlaybackType((BtIntPtr)animCtrl, 1);
+            ((Objbtrot_arg0 *)arg0)->unk15C = 1;
         }
         break;
     case 1:
         if (func_8008DF8C(arg0, 0x8C) != 0) {
             anctrl_setSubrange(animCtrl, 0.0f, 0.7328f);
             anctrl_setDuration(animCtrl, 1.4f);
-            anctrl_setPlaybackType((s32)animCtrl, 1);
-            *(u32 *)((u8 *)arg0 + 0x15C) = 2;
+            anctrl_setPlaybackType((BtIntPtr)animCtrl, 1);
+            ((Objbtrot_arg0 *)arg0)->unk15C = 2;
         }
         break;
     case 2:
@@ -719,9 +719,9 @@ void bsbtrot_entrypoint_13(void *arg0) {
             func_8009FE58(arg0);
             anctrl_setSubrange(animCtrl, 0.0f, 0.8798f);
             anctrl_setDuration(animCtrl, 0.9f);
-            anctrl_setPlaybackType((s32)animCtrl, 1);
+            anctrl_setPlaybackType((BtIntPtr)animCtrl, 1);
             func_8009D2D8(arg0, 1);
-            *(u32 *)((u8 *)arg0 + 0x15C) = 3;
+            ((Objbtrot_arg0 *)arg0)->unk15C = 3;
             if (baphysics_get_target_horizontal_velocity(arg0) > 220.0f) {
                 func_8009D658(arg0);
             }
@@ -736,8 +736,8 @@ void bsbtrot_entrypoint_13(void *arg0) {
         if (anctrl_isStopped(animCtrl) != 0) {
             anctrl_setSubrange(animCtrl, 0.0f, 0.8898f);
             anctrl_setDuration(animCtrl, 2.0f);
-            anctrl_setPlaybackType((s32)animCtrl, 1);
-            *(u32 *)((u8 *)arg0 + 0x15C) = 4;
+            anctrl_setPlaybackType((BtIntPtr)animCtrl, 1);
+            ((Objbtrot_arg0 *)arg0)->unk15C = 4;
         }
         _badust_entrypoint_1(arg0);
         break;
@@ -749,8 +749,8 @@ void bsbtrot_entrypoint_13(void *arg0) {
         if (anctrl_isStopped(animCtrl) != 0) {
             anctrl_setSubrange(animCtrl, 0.0f, 1.0f);
             anctrl_setDuration(animCtrl, 1.2f);
-            anctrl_setPlaybackType((s32)animCtrl, 1);
-            *(u32 *)((u8 *)arg0 + 0x15C) = 5;
+            anctrl_setPlaybackType((BtIntPtr)animCtrl, 1);
+            ((Objbtrot_arg0 *)arg0)->unk15C = 5;
         }
         _badust_entrypoint_1(arg0);
         break;
@@ -777,7 +777,7 @@ void bsbtrot_entrypoint_13(void *arg0) {
         nextState = 0x4C;
     }
     if (player_isStable(arg0) != 0) {
-        if (bakey_pressed((s32)arg0, 8) != 0) {
+        if (bakey_pressed((BtIntPtr)arg0, 8) != 0) {
             nextState = func_8080075C_bsbtrot(arg0, nextState);
         }
         if (func_8008DF18(arg0) != 0) {
@@ -787,11 +787,11 @@ void bsbtrot_entrypoint_13(void *arg0) {
     if (func_8008E260(arg0) != 0) {
         nextState = 0x3D;
     }
-    bs_setState((s32)arg0, nextState);
+    bs_setState((BtIntPtr)arg0, nextState);
 }
 
 void baphysics_reset_gravity();
-void bsbtrot_entrypoint_14(s32 arg0)
+void bsbtrot_entrypoint_14(BtIntPtr arg0)
 {
     baphysics_reset_gravity();
     func_8080061C_bsbtrot(arg0);
@@ -803,7 +803,7 @@ s32 bsbtrot_entrypoint_15(s32 arg0) {
 
 /* extern */
 
-void func_8080163C_bsbtrot(s32 arg0) {
+void func_8080163C_bsbtrot(BtIntPtr arg0) {
     s32 func_8009E6EC();
     void func_80099B94(PlayerState *);
     s32 temp_v0;
@@ -816,7 +816,7 @@ void func_8080163C_bsbtrot(s32 arg0) {
 
 /* extern */
 
-void bsbtrot_entrypoint_16(s32 arg0) {
+void bsbtrot_entrypoint_16(BtIntPtr arg0) {
     void baanim_playForDuration_once(void *, s32, f32);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     baanim_playForDuration_once((void *)arg0, 7, 0.6f);
@@ -853,7 +853,7 @@ void bsbtrot_entrypoint_17(PlayerState *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-void bsbtrot_entrypoint_18(s32 arg0) {
+void bsbtrot_entrypoint_18(BtIntPtr arg0) {
     s32 func_8009CA70(PlayerState *, s32, s32);
     if (func_8009CA70((PlayerState *)arg0, bs_getNextState((PlayerState *)arg0), 0x40) != 0) {
         func_800931AC((PlayerState *)arg0, 2);
@@ -1010,7 +1010,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr(arg0);
     func_808004B4_bsbtrot(arg0);
-    if (func_8008E3E8((s32)arg0) != 0) {
+    if (func_8008E3E8((BtIntPtr)arg0) != 0) {
         _bashoes_entrypoint_20(arg0);
     }
     if (baflag_isTrue(arg0, 0xF) != 0) {
@@ -1019,13 +1019,13 @@ void bsbtrot_entrypoint_25(void *arg0) {
         func_80800438_bsbtrot(arg0);
     }
     func_8009BB24(arg0, velocity);
-    switch (*(u32 *)((u8 *)arg0 + 0x15C)) {
+    switch (((Objbtrot_arg0 *)arg0)->unk15C) {
         case 0:
             if (func_8008DF8C(arg0, 0x8C) != 0) {
                 anctrl_setSubrange(anim_ctrl, 0.0f, 0.7328f);
                 anctrl_setDuration(anim_ctrl, 1.4f);
                 anctrl_setPlaybackType(anim_ctrl, 1);
-                *(u32 *)((u8 *)arg0 + 0x15C) = 1;
+                ((Objbtrot_arg0 *)arg0)->unk15C = 1;
             }
             break;
         case 1:
@@ -1040,7 +1040,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
                     func_8009D658(arg0);
                 }
                 _badust_entrypoint_1(arg0);
-                *(u32 *)((u8 *)arg0 + 0x15C) = 2;
+                ((Objbtrot_arg0 *)arg0)->unk15C = 2;
             }
             break;
         case 2:
@@ -1052,7 +1052,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
                 anctrl_setSubrange(anim_ctrl, 0.0f, 0.8898f);
                 anctrl_setDuration(anim_ctrl, 2.0f);
                 anctrl_setPlaybackType(anim_ctrl, 1);
-                *(u32 *)((u8 *)arg0 + 0x15C) = 3;
+                ((Objbtrot_arg0 *)arg0)->unk15C = 3;
             }
             _badust_entrypoint_1(arg0);
             break;
@@ -1065,7 +1065,7 @@ void bsbtrot_entrypoint_25(void *arg0) {
                 anctrl_setSubrange(anim_ctrl, 0.0f, 1.0f);
                 anctrl_setDuration(anim_ctrl, 1.2f);
                 anctrl_setPlaybackType(anim_ctrl, 1);
-                *(u32 *)((u8 *)arg0 + 0x15C) = 4;
+                ((Objbtrot_arg0 *)arg0)->unk15C = 4;
             }
             _badust_entrypoint_1(arg0);
             break;
@@ -1106,7 +1106,7 @@ s32 bsbtrot_entrypoint_27(s32 arg0) {
     return ((s32 *)&D_80802EB0_bsbtrot)[arg0];
 }
 
-void bsbtrot_entrypoint_28(s32 arg0)
+void bsbtrot_entrypoint_28(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     func_8080061C_bsbtrot(arg0);
@@ -1152,7 +1152,7 @@ s32 bsbtrot_entrypoint_31(s32 arg0) {
 }
 
 void bsbtrot_entrypoint_32(PlayerState *arg0) {
-    s32 _bareact_entrypoint_1(PlayerState *, s32);
+    void _bareact_entrypoint_1(void *arg0, s32 arg1);
     s32 _bareact_entrypoint_2();
     f32 _bareact_entrypoint_3(PlayerState *);
     f32 _bareact_entrypoint_4(PlayerState *);
@@ -1247,12 +1247,12 @@ void bsbtrot_entrypoint_36(PlayerState *arg0)
     _bsdrone_entrypoint_0(arg0);
 }
 
-void bsbtrot_entrypoint_37(s32 arg0)
+void bsbtrot_entrypoint_37(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_1();
     func_808004B4_bsbtrot(arg0);
 }
-void bsbtrot_entrypoint_38(s32 arg0)
+void bsbtrot_entrypoint_38(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     func_8080061C_bsbtrot(arg0);
@@ -1326,7 +1326,7 @@ s32 bsbtrot_entrypoint_43(s32 arg0) {
     return ((s32 *)&D_80802EF0_bsbtrot)[arg0];
 }
 
-s32 func_808025D8_bsbtrot(s32 arg0, s32 arg1) {
+s32 func_808025D8_bsbtrot(BtIntPtr arg0, s32 arg1) {
     AnimCtrl *temp_a0;
     AnimCtrl *sp34;
     f32 sp28[2];
@@ -1390,18 +1390,18 @@ s32 func_808025D8_bsbtrot(s32 arg0, s32 arg1) {
         baanim_setEnd(self, 1.0f);
         break;
     }
-    *(s32 *)((s8 *)self + 0x15C) = arg1;
+    *(s32 *)((s8 *)self + 0x15C) = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
-void bsbtrot_entrypoint_44(s32 arg0)
+void bsbtrot_entrypoint_44(BtIntPtr arg0)
 {
     baphysics_reset_gravity();
     func_8080061C_bsbtrot(arg0);
 }
 /* extern */
 
-void bsbtrot_entrypoint_45(s32 arg0) {
-    s32 func_808025D8_bsbtrot(s32, s32);
+void bsbtrot_entrypoint_45(BtIntPtr arg0) {
+    s32 func_808025D8_bsbtrot(BtIntPtr, s32);
     func_80800538_bsbtrot(arg0);
     (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
     func_808025D8_bsbtrot(arg0, 1);
@@ -1431,18 +1431,18 @@ void bsbtrot_entrypoint_46(PlayerState *arg0) {
     switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
     case 1:
         if (anctrl_isStopped(anim)) {
-            func_808025D8_bsbtrot((s32)arg0, 2);
+            func_808025D8_bsbtrot((BtIntPtr)arg0, 2);
         }
         break;
     case 2:
         if (func_8008DF8C(arg0, 0x82)) {
-            func_808025D8_bsbtrot((s32)arg0, 3);
+            func_808025D8_bsbtrot((BtIntPtr)arg0, 3);
         }
         break;
     case 3:
         func_8009D3A8(arg0, 1);
         if (player_isStable(arg0)) {
-            func_808025D8_bsbtrot((s32)arg0, 4);
+            func_808025D8_bsbtrot((BtIntPtr)arg0, 4);
         }
         break;
     case 4:
@@ -1471,15 +1471,15 @@ s32 bsbtrot_entrypoint_47(s32 arg0) {
 /* extern */
 
 void func_808029D8_bsbtrot(void *arg0) {
-    s32 _bashoessuck_entrypoint_3(void *);
+    void _bashoessuck_entrypoint_3(BtIntPtr arg0);
     s32 bs_getPreviousState();
     void func_80092880(PlayerState *, s32);
     s32 func_8009CA70(PlayerState *, s32, s32);
     void func_800A2018(PlayerState *, s32);
-    s32 func_800A4DA4(void *, s32);
+    void func_800A4DA4(PlayerState *arg0, s32 arg1);
     if (func_8009CA70(arg0, bs_getPreviousState(), 0x800) == 0) {
         _bashoessuck_entrypoint_3(arg0);
-        (*(s32 *)((s8 *)(arg0) + (0x160))) = 1;
+        (((Objbtrot_arg0 *)arg0)->unk160) = 1;
         func_80092880(arg0, 0);
         func_800A2018(arg0, 3);
         func_800A4DA4(arg0, 0x19);
@@ -1494,7 +1494,7 @@ void func_80802A4C_bsbtrot(void *arg0) {
     void func_800A4E30(PlayerState *);
     if (func_8009CA70(arg0, bs_getNextState(arg0), 0x800) == 0) {
         _bashoessuck_entrypoint_2(arg0);
-        (*(s32 *)((s8 *)arg0 + 0x160)) = 0;
+        (((Objbtrot_arg0 *)arg0)->unk160) = 0;
         func_80092880(arg0, 1);
         func_800A2018(arg0, -1);
         func_800A4E30(arg0);
@@ -1504,9 +1504,9 @@ void func_80802A4C_bsbtrot(void *arg0) {
 void bsbtrot_entrypoint_48(void *arg0) {
     func_80800538_bsbtrot(arg0);
     func_808029D8_bsbtrot(arg0);
-    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot((s32)arg0), 0.53f);
+    baanim_playForDuration_loopSmooth(arg0, func_80800DC4_bsbtrot((BtIntPtr)arg0), 0.53f);
     func_8009FFD8(arg0, 2, 1, 9, 0x12);
-    func_80800DF4_bsbtrot((s32)arg0);
+    func_80800DF4_bsbtrot((BtIntPtr)arg0);
 }
 
 /* extern */
@@ -1520,8 +1520,8 @@ void bsbtrot_entrypoint_49(PlayerState *arg0) {
     s32 func_80800710_bsbtrot(void *arg0);
     int func_8080075C_bsbtrot(PlayerState *arg0, s32 arg1);
     void func_808008D0_bsbtrot(PlayerState *arg0);
-    s32 func_80800DC4_bsbtrot(s32 arg0);
-    void func_80800DF4_bsbtrot(s32 arg0);
+    s32 func_80800DC4_bsbtrot(BtIntPtr arg0);
+    void func_80800DF4_bsbtrot(BtIntPtr arg0);
     s32 player_inWater(PlayerState *);
     s32 _badrone_entrypoint_23(PlayerState *, s32 *);
     s32 _bamovespline_entrypoint_1(PlayerState *, s32);
@@ -1541,9 +1541,9 @@ void bsbtrot_entrypoint_49(PlayerState *arg0) {
     var_s1 = 0;
     func_800956B8();
     func_80800120_bsbtrot(arg0);
-    func_80800DF4_bsbtrot((s32) arg0);
+    func_80800DF4_bsbtrot((BtIntPtr) arg0);
     func_808004B4_bsbtrot(arg0);
-    func_808002A4_bsbtrot(arg0, func_80800DC4_bsbtrot((s32) arg0));
+    func_808002A4_bsbtrot(arg0, func_80800DC4_bsbtrot((BtIntPtr) arg0));
     _bashoessuck_entrypoint_4(arg0);
     func_80800438_bsbtrot(arg0);
     func_808008D0_bsbtrot(arg0);
@@ -1576,7 +1576,7 @@ void bsbtrot_entrypoint_49(PlayerState *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-void bsbtrot_entrypoint_50(s32 arg0)
+void bsbtrot_entrypoint_50(BtIntPtr arg0)
 {
     func_80802A4C_bsbtrot((void *)arg0);
     func_8080061C_bsbtrot(arg0);
@@ -1612,7 +1612,7 @@ void bsbtrot_entrypoint_53(PlayerState *arg0) {
     bs_setState(arg0, func_808007E0_bsbtrot(arg0, sp24));
 }
 
-void bsbtrot_entrypoint_54(s32 arg0)
+void bsbtrot_entrypoint_54(BtIntPtr arg0)
 {
     func_80802A4C_bsbtrot((void *)arg0);
     func_8080061C_bsbtrot(arg0);
@@ -1623,4 +1623,4 @@ s32 bsbtrot_entrypoint_55(s32 arg0) {
 }
 
 /* The ROM table holds the syscall stub, so this copy (its .data is not linked) only records the address reference for IDO. */
-static s32 D_bsbtrot_entrypoint_13_ref[] = {(s32)bsbtrot_entrypoint_13};
+static BtFnWord D_bsbtrot_entrypoint_13_ref[] = {(BtFnWord)bsbtrot_entrypoint_13};

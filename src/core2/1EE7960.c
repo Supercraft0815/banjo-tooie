@@ -1,9 +1,9 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EE7960_native.inc"
 #else
 #include "common.h"
 
-extern s32 D_80137074;
+extern s32 D_80137074;    typedef struct { s32 * unk0; u8 pad4[0xC]; s8 unk10; u8 pad11[0x3]; u8 * unk14; f32 * unk18; f32 * unk1C; } Obj1EE7960_D_80137060; /* offsets.py genstruct: fields from raw offsets on &D_80137060; rename once understood */
 
 s32 func_8010E070(void) {
     void func_800192FC(f32 *, f32 *);
@@ -15,35 +15,35 @@ s32 func_8010E070(void) {
     extern s32 D_80137064;
     extern s32 D_80137078;
     extern s32 D_8013707C;
-    f32 *p;
-    f32 sum;
+    BT_IDO_ONLY(f32 *p;) BT_NATIVE_ONLY(f32 sum;)
+    BT_IDO_ONLY(f32 sum;) BT_NATIVE_ONLY(f32 *p;)
     f32 scale;
 
-    *((u8 *)&D_80137060 + 0x11) = func_800B3784(*(u8 **)((u8 *)&D_80137060 + 0x14));
-    func_800B37A4(*(u8 **)((u8 *)&D_80137060 + 0x14), &D_80137078, &D_8013707C);
+    *((u8 *)&D_80137060 + 0x11) = func_800B3784(((Obj1EE7960_D_80137060 *)&D_80137060)->unk14);
+    func_800B37A4(((Obj1EE7960_D_80137060 *)&D_80137060)->unk14, &D_80137078, &D_8013707C);
     if (*((u8 *)&D_80137060 + 0x10) == 0) {
-        for (p = *(f32 **)((u8 *)&D_80137060 + 0x18);
-             p < *(f32 **)((u8 *)&D_80137060 + 0x1C); p += 7) {
+        for (p = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
+             p < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; p += 7) {
             func_800192FC(p, p);
             func_800EF368(p, 256.0f);
         }
     }
     if (*((u8 *)&D_80137060 + 0x11) >= 2) {
         sum = 0.0f;
-        for (p = *(f32 **)((u8 *)&D_80137060 + 0x18);
-             p < *(f32 **)((u8 *)&D_80137060 + 0x1C); p += 7) {
+        for (p = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
+             p < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; p += 7) {
             sum += p[6];
         }
         sum = 1.0f / sum;
-        for (p = *(f32 **)((u8 *)&D_80137060 + 0x18);
-             p < *(f32 **)((u8 *)&D_80137060 + 0x1C); p += 7) {
+        for (p = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
+             p < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; p += 7) {
             scale = 1.0f - p[6] * sum;
             ((s32 *)p)[3] *= scale;
             ((s32 *)p)[4] *= scale;
             ((s32 *)p)[5] *= scale;
         }
     }
-    func_800B37B8(*(s32 *)((u8 *)&D_80137060 + 0x14), &D_80137064);
+    func_800B37B8(*(s32 *)((u8 *)&D_80137060 + 0x14), &D_80137064); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8010E204(void *arg0, s32 arg1, f32 arg2) {
@@ -76,8 +76,8 @@ void func_8010E2C4(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     int func_800DF8D4(s32 *);
     s32 func_8010E070();
     extern s32 D_80137060;
-    (*(s32 **)((s8 *)(&D_80137060) + (0))) = arg0;
-    (*(s8 *)((s8 *)(&D_80137060) + (0x10))) = func_800DF8D4(arg0);
+    (((Obj1EE7960_D_80137060 *)&D_80137060)->unk0) = arg0;
+    (((Obj1EE7960_D_80137060 *)&D_80137060)->unk10) = func_800DF8D4(arg0);
     if (arg2 != 0) {
         func_800B37E4((*(s32 *)((s8 *)(&D_80137060) + (0x14))), arg2);
     } else {
@@ -170,8 +170,8 @@ void func_8010E4C4(f32 *arg0, s32 *arg1, s32 arg2) {
             p->light[1] = g;
             p->light[2] = b;
         }
-        for (light = *(f32 **)((u8 *)&D_80137060 + 0x18);
-             light < *(f32 **)((u8 *)&D_80137060 + 0x1C); light += 7) {
+        for (light = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
+             light < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; light += 7) {
             p = start;
             normal = normals;
             if (*((u8 *)&D_80137060 + 0x10)) {

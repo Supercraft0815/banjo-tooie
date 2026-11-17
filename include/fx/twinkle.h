@@ -5,7 +5,7 @@
 #include "overlays/ba/assets.h"
 
 #ifdef BT_NATIVE
-void _fxtwinkle_entrypoint_0(s32 arg0);
+void _fxtwinkle_entrypoint_0(BtIntPtr arg0);
 #else
 void _fxtwinkle_entrypoint_0(f32*);
 #endif

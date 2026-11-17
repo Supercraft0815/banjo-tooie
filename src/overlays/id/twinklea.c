@@ -1,30 +1,30 @@
 #include "common.h"
 
-void idtwinklea_entrypoint_0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    (*(s32 *)((s8 *)(arg0) + (0))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (4))) = 0;
+typedef struct { s32 unk0; s32 unk4; } Objtwinklea_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void idtwinklea_entrypoint_0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    (((Objtwinklea_arg0 *)arg0)->unk0) = 0;
+    (((Objtwinklea_arg0 *)arg0)->unk4) = 0;
 }
 
 void idtwinklea_entrypoint_1(s32 arg0) 
 {
 }
-void idtwinklea_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 _idtwinkle_entrypoint_6(s32, s32, s32);
-    s32 _idworld_entrypoint_2(s32);
+void idtwinklea_entrypoint_2(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    void _idtwinkle_entrypoint_6(u8 *arg0, s32 *arg1, s32 *arg2);
+    BtIntPtr _idworld_entrypoint_2(s32);
 #ifdef BT_NATIVE
     void idtwinklea_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, u8 *arg4);
 #else
     extern s32 _idtwinklea_entrypoint_3;
 #endif
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = _idworld_entrypoint_2(arg2 - 0xC8);
     if (temp_v0 != 0) {
         _idtwinkle_entrypoint_6(temp_v0, arg0, arg0 + 4);
         _glid_entrypoint_0(arg1, arg2, &_idtwinklea_entrypoint_3, arg0);
     }
-}
+}              
 
 void idtwinklea_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, u8 *arg4) {
     f32 var_f0;

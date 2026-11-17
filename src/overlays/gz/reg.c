@@ -118,7 +118,7 @@ struct GzRegEntry {
 };
 
 void func_80800000_gzreg(s32 arg0, s8 *arg1, struct GzRegEntry *arg2) {
-    void func_8001D37C(s32 arg0, ...);
+    void func_8001D37C(BtIntPtr arg0, ...);
     s32 first;
     s32 mask;
     s8 *separator;
@@ -176,10 +176,10 @@ void func_808000CC_gzreg(s8 *arg0, f32 arg1) {
         sprintf(arg0, "%d", *(s32 *)&arg1);
         break;
     }
-}
+}    typedef struct { u8 pad0[0x11C]; u32 unk11C; } Objreg_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void gzreg_entrypoint_0(void *arg0) {
-    void func_8001D37C(s32 arg0, ...);
+    void func_8001D37C(BtIntPtr arg0, ...);
     extern struct GzRegEntry D_80800FF0_gzreg;
     extern struct GzRegEntry D_80801140_gzreg;
     extern struct GzRegEntry D_808012B4_gzreg;
@@ -188,8 +188,8 @@ void gzreg_entrypoint_0(void *arg0) {
     s8 sp30[16];
     __OSThreadContext *context;
 
-    context = (__OSThreadContext *)((s32)arg0 + 0x20);
-    func_8001D37C("pc:x%08X\n", *(u32 *)((u8 *)arg0 + 0x11C));
+    context = (__OSThreadContext *)((BtIntPtr)arg0 + 0x20);
+    func_8001D37C("pc:x%08X\n", ((Objreg_arg0 *)arg0)->unk11C);
     func_80800000_gzreg(context->cause,
         "cause",
         &D_80800FF0_gzreg);
@@ -262,7 +262,7 @@ void gzreg_entrypoint_0(void *arg0) {
 
 void gzreg_entrypoint_1(void)
 {
-    void func_8001D37C(s32 arg0, ...);
+    void func_8001D37C(BtIntPtr arg0, ...);
     s32 heap_bytes_free(void);
     extern struct GzRegEntry D_80800EA0_gzreg;
     extern struct GzRegEntry D_80800F30_gzreg;

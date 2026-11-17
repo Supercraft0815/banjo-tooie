@@ -7,8 +7,8 @@ s32 basetup_entrypoint_0()
 
 /* extern */
 
-void func_80800008_basetup(s32 arg0) {
-    s32 func_800A0FF0(s32);
+void func_80800008_basetup(BtIntPtr arg0) {
+    void func_800A0FF0(void *arg0);
     s32 func_800DA298(s32);
     s32 func_800DB9B0();
     s32 func_800EA05C();
@@ -26,7 +26,7 @@ void func_80800008_basetup(s32 arg0) {
 struct player_state_s;
 void func_80800080_basetup(struct player_state_s *self) {
     s32 _bashoes_entrypoint_1(struct player_state_s *);
-    void _bashoes_entrypoint_6(struct player_state_s *, s32);
+    int _bashoes_entrypoint_6(void *arg0, s32 arg1);
     int func_800A3274(struct player_state_s *);
     s32 func_800F40EC(struct player_state_s *);
     s32 shoes;
@@ -47,18 +47,18 @@ void func_80800080_basetup(struct player_state_s *self) {
             break;
         }
     }
-}
+}    typedef struct { u8 pad0[0x4]; f32 unk4; } Objsetup_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800140_basetup(void *arg0) {
-    s32 func_800C6A7C(s32 *, void *, s32 *, s32);
-    s32 func_800EE7F8(s32 *, void *);
+    void *func_800C6A7C(f32 arg0[3], f32 arg1[3], f32 arg2[3], u32 flags);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     s32 sp24[3];
     s32 sp18[3];
 
     func_800EE7F8(sp18, arg0);
-    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg0) + (4))) - 1000.0f);
+    (((Objsetup_arg0 *)arg0)->unk4) = (f32) ((((Objsetup_arg0 *)arg0)->unk4) - 1000.0f);
     func_800C6A7C(sp18, arg0, sp24, 0x420025);
 }
 
@@ -85,13 +85,13 @@ void func_80800194_basetup(struct player_state_s *self, void *arg1, void *arg2) 
 }
 
 void basetup_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 _badata_entrypoint_35(s32);
-    s32 bs_setState(s32, s32);
+    s32 _badata_entrypoint_35(BtIntPtr);
+    void bs_setState(void *self, s32 nextState);
     u32 func_8009E958(void);
     void func_800A3544(void *, s32);
     int func_800C6E38(s32);
     s32 func_800EA068(s32);
-    struct player_state_s *func_800F53D0(s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
     struct player_state_s *self;
     s32 pad28;
     s32 flag;
@@ -125,14 +125,14 @@ void basetup_entrypoint_1(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_808002D4_basetup(s32 arg0) {
-    s32 _badata_entrypoint_33(s32);
-    s32 _badata_entrypoint_35(s32);
-    s32 bastatetimer_set(s32, s32, f32);
-    s32 bs_setState(s32, s32);
+void func_808002D4_basetup(BtIntPtr arg0) {
+    s32 _badata_entrypoint_33(BtIntPtr);
+    s32 _badata_entrypoint_35(BtIntPtr);
+    void bastatetimer_set(void *self, s32 id, f32 arg2);
+    void bs_setState(void *self, s32 nextState);
     f32 func_8009E97C();
     f32 func_8009E988();
-    s32 func_8009EA20();
+    u8 func_8009EA20(void);
     s32 func_8009EA64();
     void func_80800080_basetup(struct player_state_s *);
     bastatetimer_set(arg0, 2, func_8009E97C());
@@ -153,13 +153,13 @@ void func_80800394_basetup(struct player_state_s *self) {
     s32 func_8008DAA8(void *);
     s32 func_8008E23C(struct player_state_s *);
     void func_800F457C(void *, s32);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     s32 _badrone_entrypoint_29(struct player_state_s *);
     s32 bs_getCurrentState(struct player_state_s *);
-    s32 bs_setState(s32, s32);
-    s32 func_800F64A4(s32, s32);
+    void bs_setState(void *self, s32 nextState);
+    s32 func_800F64A4(BtIntPtr, s32);
     void func_800F8128(s32);
-    s32 func_800F8B88();
+    u8 func_800F8B88(void);
     void func_800F8D50(s32, s32);
     s32 func_800F8DA8();
     s32 sp34;
@@ -220,7 +220,7 @@ void func_80800394_basetup(struct player_state_s *self) {
 }
 
 s32 func_80800534_basetup(struct player_state_s *arg0) {
-    s32 _glcutDll_entrypoint_1();
+    u8 _glcutDll_entrypoint_1(void);
     void _plcamera_entrypoint_13(s32, f32);
     s32 func_8008DAA8(void *);
     s32 func_8008E23C(struct player_state_s *);
@@ -230,7 +230,7 @@ s32 func_80800534_basetup(struct player_state_s *arg0) {
     void func_800F452C();
     s32 func_800F89E4(s32, f32 *);
     f32 func_800F8A50(void);
-    s32 func_800F8B7C(void);
+    u8 func_800F8B7C(void);
     s32 func_800F99E8(void);
     s32 func_800F99FC(void);
     void yaw_applyIdeal(struct player_state_s *);
@@ -250,7 +250,7 @@ s32 func_80800534_basetup(struct player_state_s *arg0) {
     }
     if (func_800F99FC() != 0) {
         if (func_800A3274(arg0) == 0xA) {
-            func_808002D4_basetup((s32)arg0);
+            func_808002D4_basetup((BtIntPtr)arg0);
         }
         return 1;
     }
@@ -281,13 +281,13 @@ Prop *func_808006F0_basetup(s32 bt_a0) {
 #else
 Prop *func_808006F0_basetup() {
 #endif
-    Prop *_gccubesearch_entrypoint_14(s32, s32);
+    void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
     s32 _gemarkersDll_entrypoint_1();
-    _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(), 0);
+    BT_NATIVE_ONLY(return) _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(), 0);
 }
 
 Prop *func_8080071C_basetup(s32 arg0) {
-    Prop *_gccubesearch_entrypoint_14(s32, s32);
+    void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
     s32 func_800A9C98(void);
     s32 id = 0x52;
 
@@ -302,7 +302,7 @@ Prop *func_8080071C_basetup(s32 arg0) {
 
 /* extern */
 
-s32 func_80800778_basetup(s32 arg0) {
+s32 func_80800778_basetup(BtIntPtr arg0) {
     u32 func_8009E958(void);
     void func_8009E9D8(s32);
     void func_8009EB18(s32);
@@ -346,12 +346,12 @@ void basetup_entrypoint_2(struct player_state_s *arg0) {
 #ifndef BT_NATIVE
     void _basetup_entrypoint_1(s32);
 #endif
-    void _bashoes_entrypoint_6(struct player_state_s *, s32);
+    int _bashoes_entrypoint_6(void *arg0, s32 arg1);
     s32 _gclevel_entrypoint_4(s32);
     void _gspropctrl_entrypoint_11(Prop *, f32 *);
     s32 _gspropctrl_entrypoint_12(Prop *);
     s32 _gspropctrl_entrypoint_13(Prop *);
-    s32 _sudeathmatch_entrypoint_0(s32, f32 *, f32 *);
+    s32 _sudeathmatch_entrypoint_0(BtIntPtr, f32 *, f32 *);
     void func_80092778(struct player_state_s *);
     u32 func_8009E958(void);
     u32 func_8009E994(void);
@@ -366,9 +366,9 @@ void basetup_entrypoint_2(struct player_state_s *arg0) {
     s32 func_800EA090(void);
     void func_800F44DC(void *, s32);
     void func_800F452C(struct player_state_s *, f32 *);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A8C(s32, f32 *, f32);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A8C(BtIntPtr, f32 *, f32);
     void yaw_setIdeal(struct player_state_s *, f32);
     void yaw_applyIdeal(struct player_state_s *);
     Prop *sp64;
@@ -401,7 +401,7 @@ void basetup_entrypoint_2(struct player_state_s *arg0) {
             }
             sp60 = NULL;
         }
-        sp3C = func_80800778_basetup((s32)arg0);
+        sp3C = func_80800778_basetup((BtIntPtr)arg0);
         if (sp3C == 9) {
             _bashoes_entrypoint_6(arg0, 1);
             func_8009EB0C(0.0f);
@@ -438,20 +438,20 @@ void basetup_entrypoint_2(struct player_state_s *arg0) {
             _gspropctrl_entrypoint_11(sp60, sp2C);
             func_80800194_basetup(arg0, sp2C, sp50);
             func_800F452C(arg0, sp2C);
-            func_808002D4_basetup((s32)arg0);
+            func_808002D4_basetup((BtIntPtr)arg0);
             func_800F497C(*(s32 *)((u8 *)arg0 + 0x184));
             func_800F49D4(*(s32 *)((u8 *)arg0 + 0x184), _basetup_entrypoint_1, *(s32 *)((u8 *)arg0 + 0x184));
             func_800F4A8C(*(s32 *)((u8 *)arg0 + 0x184), sp50, sp28);
             return;
         }
         func_800F452C(arg0, sp50);
-        func_808002D4_basetup((s32)arg0);
+        func_808002D4_basetup((BtIntPtr)arg0);
     }
 }
 
-void basetup_entrypoint_3(s32 arg0) 
+void basetup_entrypoint_3(BtIntPtr arg0) 
 {
 }
-void basetup_entrypoint_4(s32 arg0) 
+void basetup_entrypoint_4(BtIntPtr arg0) 
 {
 }

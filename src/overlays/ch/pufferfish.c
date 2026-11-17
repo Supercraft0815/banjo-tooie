@@ -2,14 +2,14 @@
 
 /* extern */
 
-void func_80800000_chpufferfish(void *arg0) {
+typedef struct { u8 pad0[0x34]; f32 unk34; f32 unk38; } Objpufferfish_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chpufferfish(void *arg0) {
     s32 _subaddieDll_entrypoint_1();
     void func_800FFAB0(Actor *);
     if (_subaddieDll_entrypoint_1() == 0) {
         func_800FFAB0(arg0);
         return;
     }
-    (*(f32 *)((s8 *)(arg0) + (0x34))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
+    (((Objpufferfish_arg0 *)arg0)->unk34) = (f32) (((Objpufferfish_arg0 *)arg0)->unk38);
 }
 
 void func_80800040_chpufferfish(Actor *arg0) {
@@ -74,7 +74,7 @@ void func_80800040_chpufferfish(Actor *arg0) {
 
 void func_80800274_chpufferfish(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800FFAB0(Actor *);
     void func_80101CDC(Actor *, f32);
     s32 func_80107070(Actor *, s32);
@@ -121,7 +121,7 @@ s32 func_808003C8_chpufferfish(Actor *arg0, s32 arg1, s32 arg2) {
         u32 node : 6;
         u32 : 4;
     };
-    s32 func_800CC63C(s32, s32);
+    BtIntPtr func_800CC63C(s32, s32);
     void func_80102924(void *, f32);
     f32 func_80102D78(void *, void *);
     s32 func_80107070(Actor *, s32);
@@ -183,7 +183,7 @@ void func_80800518_chpufferfish(Actor *arg0) {
     void func_80800274_chpufferfish(Actor *, s32);
     void func_8080086C_chpufferfish(Actor *, s32);
     void func_8080093C_chpufferfish(Actor *, s32);
-    extern u32 D_80801298_chpufferfish;
+    extern u32 D_80801298_chpufferfish[4];
     f32 sp24;
     f32 sp20;
     f32 value;
@@ -199,7 +199,7 @@ void func_80800518_chpufferfish(Actor *arg0) {
                 func_8080086C_chpufferfish(arg0, 2);
             }
         } else {
-            if (func_800D90A4((f32 *)((u8 *)arg0 + 0x58)) && func_8010C9B0((f32 *)((u8 *)arg0 + 4), 500)) {
+            if (func_800D90A4(&arg0->unk58) && func_8010C9B0(&arg0->position[0], 500)) {
                 func_8080086C_chpufferfish(arg0, 2);
             }
         }
@@ -220,7 +220,7 @@ void func_80800518_chpufferfish(Actor *arg0) {
         value = func_80101F24(arg0);
         sp24 = value;
         scale = *(f32 *)((u8 *)arg0 + 0x34);
-        *(f32 *)((u8 *)arg0 + 0x38) = func_800F1214(value, scale, 2.0f * scale);
+        arg0->scale = func_800F1214(value, scale, 2.0f * scale);
         if (func_80101DDC(arg0)) {
             _subaddieaudioloop_entrypoint_2(arg0);
             if (((u32)*(u8 *)((u8 *)arg0 + 0x79) >> 4) == 3) {
@@ -229,7 +229,7 @@ void func_80800518_chpufferfish(Actor *arg0) {
                 func_8080086C_chpufferfish(arg0, 3);
             }
         } else {
-            _subaddieaudioloop_entrypoint_4(arg0, (f32 *)((u8 *)arg0 + 4), 1, &D_80801298_chpufferfish);
+            _subaddieaudioloop_entrypoint_4(arg0, &arg0->position[0], 1, D_80801298_chpufferfish);
             _subaddieaudioloop_entrypoint_0(arg0, func_800F1214(sp24, 0.8f, 1.4f));
         }
         break;
@@ -237,12 +237,12 @@ void func_80800518_chpufferfish(Actor *arg0) {
         value = func_80101F24(arg0);
         sp20 = value;
         scale = *(f32 *)((u8 *)arg0 + 0x34);
-        *(f32 *)((u8 *)arg0 + 0x38) = func_800F1214(value, scale, 2.0f * scale);
+        arg0->scale = func_800F1214(value, scale, 2.0f * scale);
         if (func_80101E14(arg0, 0.1f)) {
             _subaddieaudioloop_entrypoint_2(arg0);
             func_8080086C_chpufferfish(arg0, 1);
         } else {
-            _subaddieaudioloop_entrypoint_4(arg0, (f32 *)((u8 *)arg0 + 4), 1, &D_80801298_chpufferfish);
+            _subaddieaudioloop_entrypoint_4(arg0, &arg0->position[0], 1, D_80801298_chpufferfish);
             _subaddieaudioloop_entrypoint_0(arg0, func_800F1214(sp20, 0.8f, 1.4f));
         }
         func_8080093C_chpufferfish(arg0, 1);
@@ -280,14 +280,14 @@ void func_8080086C_chpufferfish(Actor *arg0, s32 arg1) {
 }
 
 void func_8080093C_chpufferfish(Actor *arg0, s32 arg1) {
-    s32 _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
+    BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
-    void func_800BA22C(s32, s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
     f32 func_800DC178(f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 position[3];
-    s32 emitter;
+    BtIntPtr emitter;
 
     if (_subaddieskeleton_entrypoint_2(arg0->unk0, 4, position)) {
         func_800EFA4C(position, position[0] + func_800DC178(-20.0f, 20.0f),
@@ -304,7 +304,7 @@ void func_8080093C_chpufferfish(Actor *arg0, s32 arg1) {
 void func_80800AB0_chpufferfish(void *arg0, s32 arg1, f32 arg2, f32 arg3) {
     s32 _subaddieDll_entrypoint_11(void *, s32, s32);
     f32 func_800136E4(f32);
-    s32 func_800CC63C(s32, s32);
+    BtIntPtr func_800CC63C(s32, s32);
     s32 func_800D90A4(f32 *);
     f32 func_800DC178(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -422,7 +422,23 @@ void func_80800F30_chpufferfish(Actor *arg0) {
 
 OSThread *chpufferfish_entrypoint_0(void)
 {
-    extern u8 D_808012A8_chpufferfish[];
+    extern ActorData D_808012A8_chpufferfish[];
 
     return (OSThread *) D_808012A8_chpufferfish;
 }
+/* data_to_c.py: from asm/data/overlays/ch/pufferfish.data.s */
+extern u8 D_80801174_chpufferfish[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+extern u8 D_80801160_chpufferfish[];
+u8 D_80801160_chpufferfish[20] BT_DATA(4, overlays_ch_pufferfish, 0x0) = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00 };
+u8 D_80801174_chpufferfish[40] BT_DATA(4, overlays_ch_pufferfish, 0x14) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x01, 0xC8, 0x00, 0x49, 0x3F, 0xB3, 0x33, 0x33, 0x01, 0xC9, 0x00, 0x0A, 0x3F, 0x40, 0x00, 0x00, 0x01, 0xCA, 0x00, 0x49, 0x3F, 0xB3, 0x33, 0x33, 0x01, 0xC9, 0x00, 0x12 };
+s32 D_8080119C_chpufferfish [13] BT_DATA(4, overlays_ch_pufferfish, 0x3C) = { 1903069, 2818560, 67108898, 25166336, 75499008, 1376256, 2490393, 7, 2949170, 6553632, -555819298, 917654, 9830400 };
+s32 D_808011D0_chpufferfish [13] BT_DATA(4, overlays_ch_pufferfish, 0x70) = { 1902311, 1310742, 335806509, 29491750, 1769472, 34, 16777472, 8388761, 1966100, 1310734, 9830550, 1376256, 16580608 };
+s32 D_80801204_chpufferfish [13] BT_DATA(4, overlays_ch_pufferfish, 0xA4) = { 1902320, 1310742, 335806509, 29491750, 1769472, 34, 13369497, 6684748, 1966100, 1310734, 9830550, 1376256, 16580608 };
+s32 D_80801238_chpufferfish [20] BT_DATA(4, overlays_ch_pufferfish, 0xD8) = { 1903065, 1445892, 1769622, 9830421, 204, 2818560, 50331692, 0, 0, 6553600, 2162687, -16842718, 786455, 786455, 917604, 13107247, 4194368, 0, 167772160, 3342336 };
+s32 D_80801288_chpufferfish [4] BT_DATA(4, overlays_ch_pufferfish, 0x128) = { 1246459, 655564, 1471792, 1769472 };
+u32 D_80801298_chpufferfish[4] BT_DATA(4, overlays_ch_pufferfish, 0x138) = { 0x1305B1, 0x1B0001, 0x3E80BB8, 0 };
+ActorData D_808012A8_chpufferfish [1] BT_DATA(4, overlays_ch_pufferfish, 0x148) = { { 304, 666, 1766, 1, (void *)D_80801174_chpufferfish, (void (*)(struct Actor *))func_80800040_chpufferfish, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 393216000, 0, 0, 0, 32, 353, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chpufferfish, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32704, 21517, (void (*)(struct Actor *, long, long))func_808003C8_chpufferfish, (BtIntPtr)D_80801160_chpufferfish } };

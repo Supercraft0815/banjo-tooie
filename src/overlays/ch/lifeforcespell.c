@@ -2,21 +2,21 @@
 
 OSThread *chlifeforcespell_entrypoint_0(void)
 {
-    extern u8 D_80800460_chlifeforcespell[];
+    extern ActorData D_80800460_chlifeforcespell[];
 
     return (OSThread *) D_80800460_chlifeforcespell;
 }
-
+struct SpellColor { s32 values[3]; };
 void func_8080000C_chlifeforcespell(Actor *arg0) {
-    s16 _chmumbopad_entrypoint_0(s32);
-    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
-    s32 _sumumbofx_entrypoint_2(void *);
-    void _sumumbofx_entrypoint_25(void *, s32, s32 *);
-    s32 _sumumbofx_entrypoint_24(void *, f32);
-    s32 _sumumbofx_entrypoint_15(void *, f32);
-    s32 _sumumbofx_entrypoint_20(void *, f32);
+    s32 _chmumbopad_entrypoint_0(s32 arg0);
+    void _sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3);
+    void _sumumbofx_entrypoint_2(u8 *arg0);
+    void _sumumbofx_entrypoint_25(u8 *arg0, s32 arg1, BtIntPtr arg2);
+    void _sumumbofx_entrypoint_24(void *arg0, f32 arg1);
+    void _sumumbofx_entrypoint_15(void *arg0, f32 arg1);
+    void _sumumbofx_entrypoint_20(void *arg0, f32 arg1);
     void *func_80100094(Actor *, u32);
-    struct SpellColor { s32 values[3]; } color;
+    struct SpellColor color;
     extern struct SpellColor D_808004A8_chlifeforcespell;
     void *data;
 
@@ -33,22 +33,22 @@ void func_8080000C_chlifeforcespell(Actor *arg0) {
 void func_808000C8_chlifeforcespell(Actor *arg0) {
     void _chglowbo_entrypoint_6(void);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    s32 _sumumbofx_entrypoint_1(void *, s32);
-    s32 _sumumbofx_entrypoint_14(s32);
+    void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
+    void _sumumbofx_entrypoint_14(u8 *arg0);
     void _sumumbofx_entrypoint_16(void *, f32);
     void _sumumbofx_entrypoint_17(void *, f32);
-    f32 _sumumbofx_entrypoint_21(s32);
+    f32 _sumumbofx_entrypoint_21(BtIntPtr);
     f32 _sumumbofx_entrypoint_22(u8 *);
     s32 _sumumbofx_entrypoint_5(void *, f32);
     void _sumumbofx_entrypoint_7(void *, f32, s32, s32, f32 *, f32 *, s32 *);
     s32 func_800D9078(f32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     void func_800EFD24(f32 *);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_808004B4_chlifeforcespell[];
@@ -97,10 +97,10 @@ void func_808000C8_chlifeforcespell(Actor *arg0) {
 
 /* extern */
 
-void func_8080028C_chlifeforcespell(Actor *arg0, s32 arg1) {
+void func_8080028C_chlifeforcespell(Actor *arg0, BtIntPtr arg1) {
     void* func_80100094(Actor*, u32);
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
-    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1);
+    void _sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1);
     _sumumbofx_entrypoint_9(func_80100094(arg0, 1U), arg1);
     _sumumbofx_entrypoint_8(func_80100094(arg0, 1U), arg1);
 }
@@ -151,3 +151,10 @@ s32 chlifeforcespell_entrypoint_2(Actor *arg0, Unk80132ED0 *arg1, s32 *arg2) {
     _subaddiefade_entrypoint_9(arg0, arg2);
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/lifeforcespell.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800460_chlifeforcespell [1] BT_DATA(4, overlays_ch_lifeforcespell, 0x0) = { { 344, 1116, -1, 1, 0, (void (*)(struct Actor *))func_808000C8_chlifeforcespell, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080028C_chlifeforcespell, 0, 0, 0, 0, 0, 1024, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chlifeforcespell, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, 0, 0 } };
+struct SpellColor D_808004A8_chlifeforcespell BT_DATA(4, overlays_ch_lifeforcespell, 0x48) = { { 0, 0, 0 } };
+s32 D_808004B4_chlifeforcespell [3] BT_DATA(4, overlays_ch_lifeforcespell, 0x54) = { 0, 1119092736, 0 };
+f32 D_808004C0_chlifeforcespell [ 3 ] BT_DATA(4, overlays_ch_lifeforcespell, 0x60) = { 3.57331e-43f, 1.34525e-43f, 3.57331e-43f };

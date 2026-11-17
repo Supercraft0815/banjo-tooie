@@ -2,21 +2,21 @@
 
 #define GLOWBO_DATA(arg0) ((GlowboActorData*)(arg0->actorData))
 
-extern u32 D_808013B0_chglowbo;
-extern u32 D_80801420_chglowbo;
-extern u32 D_80801430_chglowbo;
-extern u32 D_8080143C_chglowbo;
-extern u32 D_80801448_chglowbo;
-extern u32 D_80801454_chglowbo;
+extern u32 D_808013B0_chglowbo[6];
+extern u32 D_80801420_chglowbo[4];
+extern u32 D_80801430_chglowbo[3];
+extern u32 D_8080143C_chglowbo[3];
+extern u32 D_80801448_chglowbo[3];
+extern u32 D_80801454_chglowbo[3];
 extern s32 D_80801460_chglowbo[3];
 extern f32 D_8080146C_chglowbo[18];
 extern Vec3s32 D_808014B4_chglowbo;
-extern u32 D_808014C0_chglowbo;
-extern u32 D_80801508_chglowbo;
-extern u32 D_80801540_chglowbo;
-extern u32 D_80801588_chglowbo;
-extern u32 D_808015D0_chglowbo;
-extern f32 D_80801618_chglowbo;
+extern BtUIntPtr D_808014C0_chglowbo[18];
+extern u32 D_80801508_chglowbo[14];
+extern BtUIntPtr D_80801540_chglowbo[18];
+extern BtUIntPtr D_80801588_chglowbo[18];
+extern BtUIntPtr D_808015D0_chglowbo[18];
+extern f32 D_80801618_chglowbo[6];
 #ifdef BT_NATIVE
     void chglowbo_entrypoint_5(void);
 #else
@@ -162,7 +162,7 @@ void func_808002F4_chglowbo(Actor* arg0)
                 }
                 GLOWBO_DATA(arg0)->unkC = func_800F15F8(GLOWBO_DATA(arg0)->unkC, sp74->unk10, gamespeed * 250.0f);
                 func_801026CC(arg0, D_808014B4_chglowbo, GLOWBO_DATA(arg0)->unkC);
-                func_8010C3A8(arg0, 0x305425, func_800F3780(func_80101F24(arg0), &D_808013B0_chglowbo, 3));
+                func_8010C3A8(arg0, 0x305425, func_800F3780(func_80101F24(arg0), D_808013B0_chglowbo, 3));
                 if (sp74->unk4 != 0)
                 {
                     func_800EE7F8(sp54, arg0->position);
@@ -173,20 +173,20 @@ void func_808002F4_chglowbo(Actor* arg0)
                 if (((sp74->unkC <= 0.0f) && (func_800DC298(0.1f) != 0)) && (func_8010CAC0(arg0->position, 0x5DCU) != 0))
                 {
                     sp74->unkC = 4.0f;
-                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801420_chglowbo);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801420_chglowbo);
                 }
                 else
                 {
                     sp74->unkC = (f32)(sp74->unkC - func_800D8FF8());
                 }
-                _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801430_chglowbo, 0.3f);
-                _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_8080143C_chglowbo, 0.8f);
+                _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801430_chglowbo, 0.3f);
+                _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_8080143C_chglowbo, 0.8f);
                 break;
 
             case 0xa:
                 func_800EE7F8(arg0->position, &GLOWBO_DATA(arg0)->unk10);
                 func_800EF1B8(arg0->position, arg0->rotation[1] - 90.0f, arg0->unk74_7);
-                arg0->rotation[1] += (func_800D8FF8() * 100.0f) * func_800F3780(func_80101F24(arg0), &D_808013B0_chglowbo, 3);
+                arg0->rotation[1] += (func_800D8FF8() * 100.0f) * func_800F3780(func_80101F24(arg0), D_808013B0_chglowbo, 3);
                 if (sp74->unk4 != 0)
                 {
                     sp48[0] = arg0->position[0];
@@ -197,11 +197,11 @@ void func_808002F4_chglowbo(Actor* arg0)
                 }
                 if (func_80101E14(arg0, 0.3f) != 0)
                 {
-                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801430_chglowbo);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801430_chglowbo);
                 }
                 if (func_80101E14(arg0, 0.8f) != 0)
                 {
-                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080143C_chglowbo);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080143C_chglowbo);
                 }
 
             }
@@ -241,7 +241,7 @@ s32 func_80800880_chglowbo(Actor* arg0, s32 arg1, s32 arg2)
             func_800D0BD4(sp2C->unk0, 3U);
             func_800D1844(0x48U);
         }
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801454_chglowbo);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801454_chglowbo);
         func_80101FDC(arg0, 1U);
         if (sp2C->unk4) {
             func_800C8E54(sp2C->unk4, 0.0f, 0.0f);
@@ -264,7 +264,7 @@ s32 func_80800880_chglowbo(Actor* arg0, s32 arg1, s32 arg2)
 }
 
 u32* chglowbo_entrypoint_0(void) {
-    return &D_808014C0_chglowbo;
+    return D_808014C0_chglowbo;
 }
 
 void func_80800A48_chglowbo(Actor* arg0)
@@ -300,7 +300,7 @@ void func_80800A48_chglowbo(Actor* arg0)
 void func_80800B10_chglowbo(Actor* arg0)
 {
     glowboStruct* temp_v0 = (glowboStruct*)func_80100094(arg0, 0U);
-    func_800BBCB8(arg0->position, 0, 1.0f, 1, &D_80801508_chglowbo);
+    func_800BBCB8(arg0->position, 0, 1.0f, 1, D_80801508_chglowbo);
     switch (arg0->unk70_10)
     {
     case 4:
@@ -371,11 +371,11 @@ void func_80800B10_chglowbo(Actor* arg0)
 }
 
 u32* chglowbo_entrypoint_1(void) {
-    return &D_80801540_chglowbo;
+    return D_80801540_chglowbo;
 }
 
 u32* chglowbo_entrypoint_2(void) {
-    return &D_80801588_chglowbo;
+    return D_80801588_chglowbo;
 }
 
 void func_80800E28_chglowbo(Actor* arg0)
@@ -423,7 +423,7 @@ void func_80800F64_chglowbo(Actor* arg0)
         }
         if ((arg0->position[1] <= GLOWBO_DATA(arg0)->unk0[1]) && (GLOWBO_DATA(arg0)->unk14 <= 0.0f))
         {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801448_chglowbo);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801448_chglowbo);
             arg0->position[1] = (f32)GLOWBO_DATA(arg0)->unk0[1];
             GLOWBO_DATA(arg0)->unk14 = 0.0f;
             GLOWBO_DATA(arg0)->unkC = 100.0f;
@@ -447,7 +447,7 @@ void func_80800F64_chglowbo(Actor* arg0)
     }
 }
 
-void func_80801118_chglowbo(Actor* arg0, s32 arg1)
+void func_80801118_chglowbo(Actor* arg0, BtIntPtr arg1)
 {
     func_800DF5D8(0x80, 0x80, 0x80, _subaddiefade_entrypoint_0(arg0));
     func_80101870(arg0, arg1);
@@ -464,12 +464,12 @@ s32 func_8080115C_chglowbo(Actor* arg0, s32 arg1, u32 arg2) {
 
 u32* chglowbo_entrypoint_3(void) 
 {
-    return &D_808015D0_chglowbo;
+    return D_808015D0_chglowbo;
 }
 
 void chglowbo_entrypoint_4(void)
 {
-    func_80108474(0x2A0, &D_80801618_chglowbo, func_800DC178(0.0f, 359.0f));
+    func_80108474(0x2A0, D_80801618_chglowbo, func_800DC178(0.0f, 359.0f));
 }
 
 void chglowbo_entrypoint_5(void) 
@@ -507,3 +507,26 @@ void func_80801258_chglowbo(Actor* arg0)
     }
     GLOWBO_DATA(arg0)->unkC = 0.0f;
 }
+/* data_to_c.py: from asm/data/overlays/ch/glowbo.data.s */
+extern u8 D_808013C8_chglowbo[];
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+#ifndef BT_NATIVE
+void func_80107C2C();
+#endif
+u32 D_808013B0_chglowbo[6] BT_DATA(4, overlays_ch_glowbo, 0x0) = { 0, 0, 0x3F000000, 0x3F800000, 0x3F800000, 0 };
+u8 D_808013C8_chglowbo[88] BT_DATA(4, overlays_ch_glowbo, 0x18) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00, 0x3F, 0x66, 0x66, 0x66, 0x02, 0x13, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x02, 0x12, 0x00, 0x00 };
+u32 D_80801420_chglowbo[4] BT_DATA(4, overlays_ch_glowbo, 0x70) = { 0x130661, 0x1655F0, 0x105DC, 0x9C40000 };
+u32 D_80801430_chglowbo[3] BT_DATA(4, overlays_ch_glowbo, 0x80) = { 0x1304D5, 0x161770, 0 };
+u32 D_8080143C_chglowbo[3] BT_DATA(4, overlays_ch_glowbo, 0x8C) = { 0x130402, 0x162EE0, 0 };
+u32 D_80801448_chglowbo[3] BT_DATA(4, overlays_ch_glowbo, 0x98) = { 0x130402, 0x166590, 0 };
+u32 D_80801454_chglowbo[3] BT_DATA(4, overlays_ch_glowbo, 0xA4) = { 0x1304DD, 0x1661A8, 0 };
+s32 D_80801460_chglowbo [ 3 ] BT_DATA(4, overlays_ch_glowbo, 0xB0) = { 255, 96, 96 };
+f32 D_8080146C_chglowbo [ 18 ] BT_DATA(4, overlays_ch_glowbo, 0xBC) = { 400.0f, 200.0f, 200.0f, 230.0f, 230.0f, 260.0f, 260.0f, 290.0f, 290.0f, 320.0f, 320.0f, 350.0f, 350.0f, 380.0f, 380.0f, 410.0f, 410.0f, 300.0f };
+Vec3s32 D_808014B4_chglowbo BT_DATA(4, overlays_ch_glowbo, 0x104) = { 1.0f, -0.002f, 0.35f };
+BtUIntPtr D_808014C0_chglowbo[18] BT_DATA(4, overlays_ch_glowbo, 0x110) = { 0x39021B, 0x7660002, (BtUIntPtr)D_808013C8_chglowbo, (BtUIntPtr)func_808002F4_chglowbo, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80101870, 0x13880000, 0x3FC00000, 0, 0x40144, 0, (BtUIntPtr)func_80108ED0, 0x18000C, (BtUIntPtr)func_8080013C_chglowbo, (BtUIntPtr)func_80107C2C, 0, (BtUIntPtr)func_80800880_chglowbo, 0 };
+u32 D_80801508_chglowbo[14] BT_DATA(4, overlays_ch_glowbo, 0x158) = { 0x1D09E4, 0x220026, 0x330019, 0x140027, 0xC8, 0xF0, 0x161000, 0x150033, 0x99002B, 0x330066, 0x2CFFCE, 0x28FFCE, 0x320050, 0x320000 };
+BtUIntPtr D_80801540_chglowbo[18] BT_DATA(4, overlays_ch_glowbo, 0x190) = { 0x1FF029F, 0x7660004, (BtUIntPtr)D_808013C8_chglowbo, (BtUIntPtr)func_80800B10_chglowbo, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80101870, 0, 0x3FC00000, 0, 0x144, 0, 0, 0x180000, (BtUIntPtr)func_80800A48_chglowbo, (BtUIntPtr)func_80107C2C, 0x80000002, 0, 0 };
+BtUIntPtr D_80801588_chglowbo[18] BT_DATA(4, overlays_ch_glowbo, 0x1D8) = { 0x1FF0523, 0x7660004, (BtUIntPtr)D_808013C8_chglowbo, (BtUIntPtr)func_80800B10_chglowbo, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80101870, 0, 0x3FC00000, 0, 0x144, 0, 0, 0x180000, (BtUIntPtr)func_80800A48_chglowbo, (BtUIntPtr)func_80107C2C, 0x80000002, 0, 0 };
+BtUIntPtr D_808015D0_chglowbo[18] BT_DATA(4, overlays_ch_glowbo, 0x220) = { 0x20002A0, 0x7660008, (BtUIntPtr)D_808013C8_chglowbo, (BtUIntPtr)func_80800F64_chglowbo, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80801118_chglowbo, 0, 0x3FC00000, 0, 0x40104, 0, 0, 0, (BtUIntPtr)func_80800E28_chglowbo, (BtUIntPtr)func_80107C2C, 0x80000002, (BtUIntPtr)func_8080115C_chglowbo, 0 };
+f32 D_80801618_chglowbo[6] BT_DATA(4, overlays_ch_glowbo, 0x268) = { 0.0f, -26.0f, 0.0f, 0.0f, 0.0f, 0.0f };

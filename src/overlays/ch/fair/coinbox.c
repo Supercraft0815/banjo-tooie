@@ -8,18 +8,18 @@ s32 func_80800000_chfaircoinbox(u8 *arg0) {
 
 void func_8080001C_chfaircoinbox(u8 *arg0) {
     struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     extern s32 D_80800470_chfaircoinbox[3][2];
     func_800DA544(D_80800470_chfaircoinbox[((struct CoinboxData *)arg0)->index - 0x32][1]);
 }
 
-s32 func_80800050_chfaircoinbox(s32 arg0) {
+s32 func_80800050_chfaircoinbox(BtIntPtr arg0) {
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     extern s32 D_80800470_chfaircoinbox[][2];
     s32 index;
     index = ((Actor *)arg0)->unk74_7 - 0x32;
-    arg0 = (s32)D_80800470_chfaircoinbox[index];
+    arg0 = (BtIntPtr)D_80800470_chfaircoinbox[index];
     if (func_800DA298(((s32 *)arg0)[1]) != 0) {
         func_800DA544(((s32 *)arg0)[0]);
     }
@@ -31,7 +31,7 @@ void func_808000A4_chfaircoinbox(Actor *arg0, u32 arg1) {
     void func_80090708(s32);
     void func_800C01A8(s16, s32);
     void func_800FC660(u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     s32 index;
 
@@ -63,10 +63,10 @@ void func_8080016C_chfaircoinbox(s32 arg0)
 }
 /* extern */
 
-void func_80800174_chfaircoinbox(s32 arg0) {
+void func_80800174_chfaircoinbox(BtIntPtr arg0) {
     s32 func_800DA298(s32);
     s32 func_8010A63C();
-    s32 func_80800050_chfaircoinbox(s32);
+    s32 func_80800050_chfaircoinbox(BtIntPtr);
     void func_808000A4_chfaircoinbox(Actor *, u32);
     func_8010A63C();
     if (func_800DA298(func_80800050_chfaircoinbox(arg0)) != 0) {
@@ -77,16 +77,16 @@ void func_80800174_chfaircoinbox(s32 arg0) {
 }
 
 void func_808001C8_chfaircoinbox(Actor *arg0) {
-    s32 func_8008FB10(s32, f32, f32, f32);
+    s32 func_8008FB10(BtIntPtr, f32, f32, f32);
 #ifndef BT_NATIVE
     s32 func_800DA298(GameFlag);
 #endif
     void func_808002CC_chfaircoinbox(Actor *);
 
-    func_8008FB10((s32)arg0->position, 120.0f, 0.0f, 92.0f);
+    func_8008FB10((BtIntPtr)arg0->position, 120.0f, 0.0f, 92.0f);
     switch (arg0->unk70_10) {
         case 1:
-            if (func_800DA298(func_80800050_chfaircoinbox((s32)arg0)) != 0) {
+            if (func_800DA298(func_80800050_chfaircoinbox((BtIntPtr)arg0)) != 0) {
                 func_808000A4_chfaircoinbox(arg0, 3);
                 return;
             }
@@ -160,20 +160,20 @@ void func_808002CC_chfaircoinbox(Actor *arg0) {
 /* extern */
 
 s32 chfaircoinbox_entrypoint_0(Unk80132ED0 *arg0, f32 *arg1) {
-    s32 func_800EE7F8(s32, s32);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     Actor *func_80106790(Unk80132ED0 *);
-    func_800EE7F8((s32) arg1, (s32) ((u8 *) func_80106790(arg0) + 4));
+    func_800EE7F8((BtIntPtr) arg1, (BtIntPtr) ((u8 *) func_80106790(arg0) + 4));
     return 1;
 }
 
 /* extern */
 void chfaircoinbox_entrypoint_1(Unk80132ED0 *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     Actor *actor;
 
     actor = func_80106790(arg0);
-    _subaddiedialog_entrypoint_11((Unk80132ED0 *) actor->unk0, 0x10B8, 4, (f32 *) ((u8 *) actor + 4), 0x8C);
+    _subaddiedialog_entrypoint_11((Unk80132ED0 *) actor->unk0, 0x10B8, 4, &actor->position[0], 0x8C);
 }
 
 s32 func_808003C4_chfaircoinbox(Actor *arg0, s32 arg1, s32 arg2) {

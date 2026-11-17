@@ -142,12 +142,12 @@ u32 D_8080465C_chflysaucer[] = {
     0x3F4CCCCD, 0x3F400000, 0x3F59999A,
 };
 
-u32 D_80804668_chflysaucer[] = {
-    0x020202A2, 0x06900001, (u32)D_808045A4_chflysaucer, (u32)func_808024E0_chflysaucer,
-    (u32)func_80105834, (u32)func_808035C4_chflysaucer, 0x09C40000, 0x4019999A,
-    0x00000000, 0x00080024, (u32)func_80803150_chflysaucer, 0x00000000,
-    0x00300000, (u32)func_80802ED8_chflysaucer, (u32)func_80107C2C, 0x84000002,
-    (u32)func_8080185C_chflysaucer, 0x00000000,
+BtFnWord D_80804668_chflysaucer[] = {
+    0x020202A2, 0x06900001, (BtFnWord)D_808045A4_chflysaucer, (BtFnWord)func_808024E0_chflysaucer,
+    (BtFnWord)func_80105834, (BtFnWord)func_808035C4_chflysaucer, 0x09C40000, 0x4019999A,
+    0x00000000, 0x00080024, (BtFnWord)func_80803150_chflysaucer, 0x00000000,
+    0x00300000, (BtFnWord)func_80802ED8_chflysaucer, (BtFnWord)func_80107C2C, 0x84000002,
+    (BtFnWord)func_8080185C_chflysaucer, 0x00000000,
 };
 
 u32 D_808046B0_chflysaucer[] = {
@@ -170,12 +170,12 @@ u32 D_80804704_chflysaucer[] = {
     0x09E409E8, 0x09E00000,
 };
 
-u32 D_8080470C_chflysaucer[] = {
-    0x020402A4, 0x08250001, 0x00000000, (u32)func_80803C3C_chflysaucer,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x00000004, (u32)func_80803BE8_chflysaucer, (u32)func_80108ED0,
-    0x00000000, (u32)func_80803B60_chflysaucer, (u32)func_80107C2C, 0x00000000,
-    (u32)func_80803D30_chflysaucer, 0x00000000, 0x00000000, 0x00000000,
+BtFnWord D_8080470C_chflysaucer[] = {
+    0x020402A4, 0x08250001, 0x00000000, (BtFnWord)func_80803C3C_chflysaucer,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (BtFnWord)func_80803BE8_chflysaucer, (BtFnWord)func_80108ED0,
+    0x00000000, (BtFnWord)func_80803B60_chflysaucer, (BtFnWord)func_80107C2C, 0x00000000,
+    (BtFnWord)func_80803D30_chflysaucer, 0x00000000, 0x00000000, 0x00000000,
     0x00000000,
 };
 
@@ -189,18 +189,18 @@ s32 func_80800000_chflysaucer(Actor *arg0) {
     sp1C = func_80100094(arg0, 0U);
     sp1C[0x26] = func_800DA564(0xA34, 3);
     return sp1C[0x26];
-}
+}    typedef struct { u8 pad0[0x26]; s8 unk26; } Objflysaucer_func_8080003C_chflysaucer_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
 void func_8080003C_chflysaucer(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     u8 *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
     func_800DA7A8(0xA34, arg1, 3);
-    (*(s8 *)((s8 *)(sp1C) + (0x26))) = (s8) arg1;
+    (((Objflysaucer_func_8080003C_chflysaucer_sp1C *)sp1C)->unk26) = (s8) arg1;
 }
 
 s32 func_80800080_chflysaucer(Actor *arg0, s32 **arg1) {
@@ -301,9 +301,9 @@ void func_808001B4_chflysaucer(Actor *arg0, s32 arg1) {
 
 void func_80800388_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    void _capod_entrypoint_8(s32 arg0);
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
     u8 *data;
@@ -325,8 +325,8 @@ void func_80800388_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800424_chflysaucer(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
     void *func_80100094(Actor *, u32);
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
     u8 *data;
 
     data = func_80100094(arg0, 0U);
@@ -339,22 +339,22 @@ void func_80800424_chflysaucer(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg
             _capod_entrypoint_6(arg3, arg1, arg2);
             break;
     }
-}
+}    typedef struct { u8 pad0[0x28]; u8 unk28; } Objflysaucer_func_808004B0_chflysaucer_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_808004B0_chflysaucer(Actor *arg0) {
-    void _capod_entrypoint_3(u32);
+    s32 _capod_entrypoint_3(s32 arg0);
     void* func_80100094(Actor*, u32);
     u8 *sp1C[1];
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x28))) != 0) {
+    if ((((Objflysaucer_func_808004B0_chflysaucer_temp_v0 *)temp_v0)->unk28) != 0) {
         sp1C[0] = temp_v0;
         _capod_entrypoint_3(0U);
         temp_v0 = sp1C[0];
         (*(s8 *)((s8 *)(temp_v0) + (0x28))) = 0;
     }
-}
+}    typedef struct { u8 pad0[0x434]; s16 unk434; } Objflysaucer_D_80127194; /* offsets.py genstruct: fields from raw offsets on &D_80127194; rename once understood */
 
 #ifdef BT_NATIVE
 void func_808004F0_chflysaucer(s32 bt_a0) {
@@ -363,12 +363,12 @@ void func_808004F0_chflysaucer(void) {
 #endif
     void func_808017D0_chflysaucer();
     extern s32 D_80127194;
-    (*(s16 *)((s8 *)(&D_80127194) + (0x434))) = 0;
+    (((Objflysaucer_D_80127194 *)&D_80127194)->unk434) = 0;
     func_808017D0_chflysaucer();
 }
 
 void func_80800514_chflysaucer(Actor *arg0) {
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     void func_800FE850(void);
     void *func_80100094(Actor *, u32);
     u8 *sp24;
@@ -450,7 +450,7 @@ s16 func_80800728_chflysaucer(Actor *arg0) {
 /* extern */
 
 s32 func_80800758_chflysaucer(s16 arg0) {
-    s32 func_800A5800(s32);
+    u8 *func_800A5800(s32 id);
     s32 _cadbfunc_entrypoint_16(s16 *);
     s32 var_s0;
 
@@ -467,11 +467,11 @@ s32 func_80800758_chflysaucer(s16 arg0) {
 
 void func_808007C4_chflysaucer(Actor *arg0, s16 arg1) {
     void *func_80100094(Actor *, u32);
-    s32 func_800A5800(s32);
+    u8 *func_800A5800(s32 id);
     void func_800EE7F8(f32 *, f32 *);
     void func_800F0EF0(s32, f32 *);
     s32 _cadbfunc_entrypoint_0(u8 *);
-    s32 _cadbfunc_entrypoint_2(s32);
+    s32 _cadbfunc_entrypoint_2(f32 *arg0);
     s32 _cadbfunc_entrypoint_10(f32 *);
     s32 _cadbfunc_entrypoint_12(f32 *);
     s32 _cadbfunc_entrypoint_14(f32 *);
@@ -480,7 +480,7 @@ void func_808007C4_chflysaucer(Actor *arg0, s16 arg1) {
     void _suspline_entrypoint_0(void *, s32, s32);
     void *_suspline_entrypoint_10(void *, s32);
     f32 *_suspline_entrypoint_11(void *, s32);
-    void _suspline_entrypoint_20(Actor *, s32, s32, s32, s32, s32);
+    void _suspline_entrypoint_20(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
     s16 i;
     f32 *vectors[2];
     f32 *values[3];
@@ -514,7 +514,7 @@ void func_808007C4_chflysaucer(Actor *arg0, s16 arg1) {
         } else {
             _cadbfunc_entrypoint_0((u8 *)vectors[0]);
         }
-        _cadbfunc_entrypoint_2((s32)vectors[1]);
+        _cadbfunc_entrypoint_2((BtIntPtr)vectors[1]);
         _cadbfunc_entrypoint_10(values[0]);
         _cadbfunc_entrypoint_12(values[1]);
         _cadbfunc_entrypoint_14(values[2]);
@@ -537,12 +537,12 @@ void func_808009DC_chflysaucer(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_800904F4(s32, Unk80132ED0 *);
     void func_800904C8(s32);
-    void func_800F4CEC(s32, u32);
-    void func_800F4CC0(s32);
-    u32 func_800F54E4(void);
+    void func_800F4CEC(BtIntPtr, u32);
+    void func_800F4CC0(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
     void func_800BF4A4(s32, s32);
     s32 func_8008FFE8(void);
-    void func_8010FD38(s32, f32);
+    void func_8010FD38(BtIntPtr, f32);
     struct anctrl_s *func_80104200(s16);
     struct anctrl_s *func_80104268(u32 *);
     void anctrl_setIndex(struct anctrl_s *, enum asset_e);
@@ -700,43 +700,43 @@ s32 func_80800DAC_chflysaucer(Actor *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     return 1;
 }
 
-u32 func_80800E48_chflysaucer(s32 arg0) {
+u32 func_80800E48_chflysaucer(BtIntPtr arg0) {
     s32 func_800D0A9C(u32, u32);
     s16 func_800D211C(s32);
     s32 func_800D395C(void);
     extern s32 D_80127194;
     if (func_800D395C() != 0) {
-        if (func_800D211C(0x8D) < *(s16 *)((s8 *)&D_80127194 + 0x434)) {
+        if (func_800D211C(0x8D) < ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) {
             return 4;
         }
         return 5;
     }
     if (func_800D0A9C(0x18, 1) == 0 && func_800D0A9C(9, 4) == 0) {
-        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x1F4 &&
-            *(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x190) {
+        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x1F4 &&
+            ((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x190) {
             return 3;
         }
-        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x1F4) {
+        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x1F4) {
             return 1;
         }
-        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x190) {
+        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x190) {
             return 2;
         }
         return 0;
     }
     if (func_800D0A9C(0x18, 1) == 0) {
-        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x1F4) {
+        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x1F4) {
             return 1;
         }
         return 0;
     }
     if (func_800D0A9C(9, 4) == 0) {
-        if (*(s16 *)((s8 *)&D_80127194 + 0x434) >= 0x190) {
+        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x190) {
             return 2;
         }
         return 0;
     }
-    if (func_800D211C(0x8D) < *(s16 *)((s8 *)&D_80127194 + 0x434)) {
+    if (func_800D211C(0x8D) < ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) {
         return 4;
     } else {
         return 5;
@@ -746,11 +746,11 @@ u32 func_80800E48_chflysaucer(s32 arg0) {
 /* extern */
 
 #ifdef BT_NATIVE
-void func_80800F98_chflysaucer(s32 bt_a0) {
+void func_80800F98_chflysaucer(BtIntPtr bt_a0) {
 #else
 void func_80800F98_chflysaucer() {
 #endif
-    s32 func_800FC6B0(s32);
+    void func_800FC6B0(u32 track_id);
     u32 func_80800E48_chflysaucer();
     u32 temp_v0;
 
@@ -791,15 +791,15 @@ s32 func_80800FF0_chflysaucer(Actor *arg0) {
 }
 
 void func_80801034_chflysaucer(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (4))) = -7800.0f;
-    (*(f32 *)((s8 *)(arg0) + (8))) = 1700.0f;
-    (*(f32 *)((s8 *)(arg0) + (0xC))) = -2900.0f;
+    (((Actor *)arg0)->position[0]) = -7800.0f;
+    (((Actor *)arg0)->position[1]) = 1700.0f;
+    (((Actor *)arg0)->position[2]) = -2900.0f;
 }
 
 /* extern */
 
 void func_8080105C_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80800388_chflysaucer(Actor *, s32, s32);
     arg2 |= 6;
     if (func_80800FF0_chflysaucer(arg0) == 0) {
@@ -832,7 +832,7 @@ void func_8080105C_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
     arg0->unk74_30 = 1;
 }
 
-void func_80801130_chflysaucer(s32 arg0) {
+void func_80801130_chflysaucer(BtIntPtr arg0) {
     s32 func_800D2054(s32, s32, s32);
     s32 func_800DA9E4(s32, s32);
     void func_808012A4_chflysaucer(Actor *, s32);
@@ -850,18 +850,18 @@ void func_80801130_chflysaucer(s32 arg0) {
         return;
     case 1:
         func_808012A4_chflysaucer((Actor *)arg0, 7);
-        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
         return;
     case 2:
         func_808012A4_chflysaucer((Actor *)arg0, 8);
-        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
         return;
     case 3:
         func_808012A4_chflysaucer((Actor *)arg0, 9);
-        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
         return;
     case 4:
-        func_800D2054(0, 0x8D, *(s16 *)((s8 *)&D_80127194 + 0x434));
+        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
         func_8080105C_chflysaucer((Actor *)arg0, 0x10E4, 1);
         return;
     case 5:
@@ -958,12 +958,12 @@ void func_80801428_chflysaucer(Actor *arg0) {
 
 void func_8080149C_chflysaucer(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 func_801042D8(s32);
+    void func_801042D8(s16 *handle);
     s16 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
     if (*temp_v0 != 0) {
-        func_801042D8((s32) temp_v0);
+        func_801042D8((BtIntPtr) temp_v0);
     }
 }
 
@@ -991,30 +991,30 @@ void chflysaucer_entrypoint_0(Unk80132ED0 *arg0, f32 arg1) {
             func_8008B10C(sp1C[0], arg1);
         }
     }
-}
+}    typedef struct { u8 pad0[0x2]; s16 unk2; } Objflysaucer_func_80801534_chflysaucer_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80801534_chflysaucer(Actor *arg0) {
     void* func_80100094(Actor*, u32);
-    s32 func_801042D8(s32);
+    void func_801042D8(s16 *handle);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(s16 *)((s8 *)(temp_v0) + (2))) != 0) {
-        func_801042D8((s32) (temp_v0 + 2));
+    if ((((Objflysaucer_func_80801534_chflysaucer_temp_v0 *)temp_v0)->unk2) != 0) {
+        func_801042D8((BtIntPtr) (temp_v0 + 2));
     }
 }
 
 void func_80102424(Actor *, s32);
 void func_80801568_chflysaucer(Actor *arg0, s32 arg1) {
     void func_808004F0_chflysaucer();
-    s32 _gcfrontend_entrypoint_9(s32);
-    s32 _subaddieDll_entrypoint_0(Actor *);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    void _subaddieDll_entrypoint_0(void *arg0);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 func_800D0A9C(u32, u32);
     s32 func_800D395C(void);
     s32 func_800DA9E4(s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7C0C(s32, s32, f32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7C0C(BtIntPtr, s32, f32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
@@ -1090,7 +1090,7 @@ void func_80801568_chflysaucer(Actor *arg0, s32 arg1) {
 void func_808017D0_chflysaucer(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80801568_chflysaucer(Actor *, s32);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_808012A4_chflysaucer(Actor *, s32);
     void func_808009DC_chflysaucer(Actor *, s32);
     s32 entry;
@@ -1109,12 +1109,12 @@ void func_808017D0_chflysaucer(Actor *arg0) {
 
 union PackedArg { s32 word; struct { s16 a; s16 b; } h; };
 s32 func_8080185C_chflysaucer(Actor *arg0, s32 arg1, union PackedArg arg2) {
-    void _capod_entrypoint_14(void);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _capod_entrypoint_14(void);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void _gcfrontend_entrypoint_10(void);
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     s32 func_800D0A9C(u32, u32);
-    s32 func_800D1000(s32, s32, s32 *, s32, void *);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s16 func_800D211C(s32);
     s32 func_800D395C(void);
     void *func_80100094(Actor *, u32);
@@ -1386,15 +1386,15 @@ void func_80801E98_chflysaucer(Actor *arg0) {
 
 /* extern */
 
-void func_80802014_chflysaucer(s32 arg0) {
-    void func_8008FB10(s32, f32, f32, f32);
+void func_80802014_chflysaucer(BtIntPtr arg0) {
+    s32 func_8008FB10(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     func_8008FB10(arg0 + 4, 65.0f, 0.0f, 90.0f);
 }
 
 void func_80802044_chflysaucer(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 _suspline_entrypoint_2(void *, f32);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_808012A4_chflysaucer(Actor *, s32);
     void func_808009DC_chflysaucer(Actor *, s32);
     u8 *sp34;
@@ -1417,7 +1417,7 @@ void func_80802044_chflysaucer(Actor *arg0) {
 
 void func_80802114_chflysaucer(Actor *arg0, f32 arg1) {
     void func_800C31DC(u8, f32);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     u8 index;
 
     index = arg0->unk5F;
@@ -1437,7 +1437,7 @@ void func_80802114_chflysaucer(Actor *arg0, f32 arg1) {
 
 void func_808021C0_chflysaucer(Actor *arg0, u8 *arg1, s32 arg2) {
     s32 func_800C2FDC(u8);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     void func_800C4B64(f32);
     if (arg2 == arg1[0x2D]) {
         if (arg2 != 3) {
@@ -1600,7 +1600,7 @@ void func_808024E0_chflysaucer(Actor *arg0) {
                     switch (data->mode) {
                         case 0:
                             func_80801E98_chflysaucer(arg0);
-                            func_80802014_chflysaucer((s32)arg0);
+                            func_80802014_chflysaucer((BtIntPtr)arg0);
                             break;
                         case 5:
                             func_808012A4_chflysaucer(arg0, 6);
@@ -1626,7 +1626,7 @@ void func_808024E0_chflysaucer(Actor *arg0) {
                     }
                     break;
                 case 6:
-                    func_80802014_chflysaucer((s32)arg0);
+                    func_80802014_chflysaucer((BtIntPtr)arg0);
                     break;
             }
             break;
@@ -1728,8 +1728,8 @@ void func_80802CF0_chflysaucer(Actor *arg0) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
     void func_800EF6A8(f32 *, f32 *, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F81D4(u32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F81D4(BtUIntPtr, f32 *);
     f32 distance;
     f32 position[3];
     f32 rotation[3];
@@ -1826,7 +1826,7 @@ void func_80802ED8_chflysaucer(Actor *arg0) {
     case 6:
         if (sp20 == 0xD6) {
             func_80801034_chflysaucer(arg0);
-            func_80801130_chflysaucer((s32)arg0);
+            func_80801130_chflysaucer((BtIntPtr)arg0);
             return;
         }
         func_800FFAB0(arg0);
@@ -1899,22 +1899,22 @@ void func_808031C8_chflysaucer(Actor *arg0) {
 /* extern */
 
 f32 func_80803224_chflysaucer(Actor *arg0) {
-    s32 func_800AE080(s16 arg0);
+    void * func_800AE080(s16 handle);
     f32 func_800F1828(f32*, f32*);
-    s32 func_801039E4(s32);
-    s32 func_800AE630(s32, u8 *, s32, f32 *);
+    BtIntPtr func_801039E4(BtIntPtr);
+    s32 func_800AE630(void *list, void *skeleton, s32 index, f32 *output);
     u8 *func_800B27E0(u8 *);
     u8 *sp3C;
     f32 sp30[3];
     f32 sp24[3];
     s32 pad;
-    s32 sp1C;
+    BtIntPtr sp1C;
 
-    sp3C = func_800B27E0(func_801039E4((s32)arg0->unk0));
+    sp3C = func_800B27E0(func_801039E4((BtIntPtr)arg0->unk0));
     sp1C = func_800AE080(*(s16 *)&arg0->unk0->unk10);
     func_800AE630(sp1C, sp3C, 0x2A, sp30);
     func_800AE630(sp1C, sp3C, 0x2B, sp24);
-    func_800F1828(sp30, sp24);
+    BT_NATIVE_ONLY(return) func_800F1828(sp30, sp24);
 }
 
 typedef union FlySaucerRenderActor {
@@ -1926,15 +1926,15 @@ typedef union FlySaucerRenderActor {
     } flags;
 } FlySaucerRenderActor;
 
-void func_8080329C_chflysaucer(FlySaucerRenderActor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
+void func_8080329C_chflysaucer(FlySaucerRenderActor *arg0, f32 *arg1, f32 *arg2, BtIntPtr arg3) {
     void *func_8008AEDC(void *);
-    void func_8008B304(s32);
-    s32 func_8008C27C();
+    void func_8008B304(BtIntPtr);
+    BtIntPtr func_8008C27C();
     struct ImageStruct;
     struct ImageStruct *func_800D674C(s32);
     s32 func_800D70F8(s32, s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
-    void func_800DF41C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void func_800DF41C(BtIntPtr);
     void func_800DF440(s32);
     void func_800DF830(s32);
     void func_800EE7F8(f32 *, f32 *);
@@ -1978,11 +1978,11 @@ void func_8080329C_chflysaucer(FlySaucerRenderActor *arg0, f32 *arg1, f32 *arg2,
             sp4C = func_80104200(sp74->unk0);
             func_800EF6A8(sp50, arg2, 0.0f, 105.0f, 8.0f);
             func_800EF04C(sp50, arg1);
-            func_8008B304((s32)sp4C);
+            func_8008B304((BtIntPtr)sp4C);
             func_800DF41C(func_8008C27C(func_8008AEDC(sp4C)));
             func_800DF440(0);
             func_800DF830(arg0->flags.renderMode);
-            func_800DE448(sp50, sp60, arg0->actor.scale * 0.95f, NULL, (s32)sp6C);
+            func_800DE448(sp50, sp60, arg0->actor.scale * 0.95f, NULL, (BtIntPtr)sp6C);
         }
         break;
     case 1:
@@ -1991,11 +1991,11 @@ void func_8080329C_chflysaucer(FlySaucerRenderActor *arg0, f32 *arg1, f32 *arg2,
             sp3C = func_80104200(sp74->unk0);
             func_800EF6A8(sp40, arg2, 0.0f, sp74->unk10 + 35.0f, 15.0f);
             func_800EF04C(sp40, arg1);
-            func_8008B304((s32)sp3C);
+            func_8008B304((BtIntPtr)sp3C);
             func_800DF41C(func_8008C27C(func_8008AEDC(sp3C)));
             func_800DF440(0);
             func_800DF830(arg0->flags.renderMode);
-            func_800DE448(sp40, sp60, arg0->actor.scale * 0.95f, NULL, (s32)sp6C);
+            func_800DE448(sp40, sp60, arg0->actor.scale * 0.95f, NULL, (BtIntPtr)sp6C);
         }
         break;
     }
@@ -2003,29 +2003,29 @@ void func_8080329C_chflysaucer(FlySaucerRenderActor *arg0, f32 *arg1, f32 *arg2,
         sp2C = func_80104200(sp74->unk2);
         func_800EF6A8(sp30, arg2, 0.0f, 105.0f, 11.0f);
         func_800EF04C(sp30, arg1);
-        func_8008B304((s32)sp2C);
+        func_8008B304((BtIntPtr)sp2C);
         func_800DF41C(func_8008C27C(func_8008AEDC(sp2C)));
         func_800DF440(0);
         func_800DF830(arg0->flags.renderMode);
-        func_800DE448(sp30, sp60, arg0->actor.scale * 0.95f, NULL, (s32)sp70);
+        func_800DE448(sp30, sp60, arg0->actor.scale * 0.95f, NULL, (BtIntPtr)sp70);
     }
     func_800D70F8(0x829, 0);
     func_800D70F8(0x82A, 0);
 }
 
 void func_808035C4_chflysaucer(Actor *arg0, Gfx **arg1) {
-    s32 func_800AE080(s16);
-    s32 func_800AE630(s32, u8 *, s32, f32 *);
+    void * func_800AE080(s16 handle);
+    s32 func_800AE630(void *list, void *skeleton, s32 index, f32 *output);
     u8 *func_800B27E0(u8 *);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
-    void func_800DF47C(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void func_800DF47C(s32, BtIntPtr);
     void func_800DF744(s32, s32);
     void func_800E3BAC(f32 *);
     void func_800E3C30(f32 *);
     void func_800E3CE8(void);
     void func_800E41CC(void);
     void func_800E4208(void);
-    void func_800E44FC(Gfx **);
+    int func_800E44FC(void *frame);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF6A8(f32 *, f32 *, f32, f32, f32);
@@ -2035,8 +2035,8 @@ void func_808035C4_chflysaucer(Actor *arg0, Gfx **arg1) {
     s32 func_801015D0(Actor *);
     f32 *func_801018D8(Actor *);
     int func_80101970(Actor *);
-    s32 func_8010347C(Unk80132ED0 *);
-    s32 func_801039E4(s32);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_801039E4(BtIntPtr);
     f32 sp6C[3];
     f32 sp60[3];
     f32 sp54[3];
@@ -2084,12 +2084,12 @@ void func_808035C4_chflysaucer(Actor *arg0, Gfx **arg1) {
         func_808031C8_chflysaucer(arg0);
     }
     func_80101970(arg0);
-    func_800DF47C((s32)func_801015D0, (s32)arg0);
+    func_800DF47C((BtIntPtr)func_801015D0, (BtIntPtr)arg0);
     func_800DE448(sp6C, sp60, arg0->scale, func_801018D8(arg0), func_8010347C(arg0->unk0));
     sp60[0] -= 5.0f;
     if (arg0->unk7C_12) {
-        sp34 = func_800B27E0(func_801039E4((s32)arg0->unk0));
-        func_8080329C_chflysaucer((FlySaucerRenderActor *)arg0, sp6C, sp60, (s32)arg1);
+        sp34 = func_800B27E0(func_801039E4((BtIntPtr)arg0->unk0));
+        func_8080329C_chflysaucer((FlySaucerRenderActor *)arg0, sp6C, sp60, (BtIntPtr)arg1);
         func_800AE630(func_800AE080(*(s16 *)&arg0->unk0->unk10), sp34, 3, sp44->unkC);
     }
     if (sp44->unk24 == 2) {
@@ -2146,7 +2146,7 @@ void func_808038C4_chflysaucer(Unk80132ED0 *arg0, f32 *arg1, f32 *arg2, s32 arg3
     sp20->unk58 = arg5;
 }
 
-s32 func_808039B8_chflysaucer(s32 arg0, s32 *arg1, f32 *arg2, s32 *arg3, s32 arg4, f32 arg5)
+s32 func_808039B8_chflysaucer(BtIntPtr arg0, s32 *arg1, f32 *arg2, s32 *arg3, s32 arg4, f32 arg5)
 {
   s32 *p;
   s32 color;
@@ -2156,12 +2156,12 @@ s32 func_808039B8_chflysaucer(s32 arg0, s32 *arg1, f32 *arg2, s32 *arg3, s32 arg
   s32 *modep = &arg4;
   Unk80132ED0 *owner = (Unk80132ED0 *) arg0;
   f32 *position = (f32 *) arg1;
- do { if ((*arg3) != (-1)) { mode = *modep; i = 0; p = arg3; do { switch (mode) { case 1: color = func_80803844_chflysaucer(); angle = *p; break; case 2: color = 0; angle = *p; break; case 3: color = 1; angle = *p; break; case 4: color = 2; angle = *p; break; case 5: color = *((s32 *) (((u8 *) (&(*(s32 *)D_808046B0_chflysaucer))) + i)); angle = *p; break; default: angle = *p; break; } func_808038C4_chflysaucer(owner, position, arg2, angle, color, arg5); i += 4; p++; } while ((*p) != (-1)); } } while (0);
+ do { if ((*arg3) != (-1)) { mode = *modep; i = 0; p = arg3; do { switch (mode) { case 1: color = func_80803844_chflysaucer(); angle = *p; break; case 2: color = 0; angle = *p; break; case 3: color = 1; angle = *p; break; case 4: color = 2; angle = *p; break; case 5: color = *((s32 *) (((u8 *) (&(*(s32 *)D_808046B0_chflysaucer))) + i)); angle = *p; break; default: angle = *p; break; } func_808038C4_chflysaucer(owner, position, arg2, angle, color, arg5); i += 4; p++; } while ((*p) != (-1)); } } while (0); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80803AF0_chflysaucer(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     s32 func_80800DAC_chflysaucer(Actor *, f32 *, f32 *, f32);
-    s32 func_808039B8_chflysaucer(s32, s32 *, f32 *, s32 *, s32, f32);
+    s32 func_808039B8_chflysaucer(BtIntPtr, s32 *, f32 *, s32 *, s32, f32);
     s32 sp34[3];
     f32 sp28[3];
     s32 sp20[2];
@@ -2216,14 +2216,14 @@ void func_80803C3C_chflysaucer(Actor *arg0) {
     }
 }
 
-void func_80803CC4_chflysaucer(s32 arg0, s32 arg1) {
-    s32 func_800B53A4(s32);
-    s32 func_800BA22C(s32, s32);
-    s32 func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
-    s32 sp24;
-    s32 temp_a1;
-    s32 temp_v0;
+void func_80803CC4_chflysaucer(BtIntPtr arg0, s32 arg1) {
+    BtIntPtr func_800B53A4(s32);
+    s32 func_800BA22C(BtIntPtr, s32);
+    s32 func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BtIntPtr sp24;
+    BtIntPtr temp_a1;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(6);
     temp_a1 = arg0 + 4;
@@ -2234,22 +2234,22 @@ void func_80803CC4_chflysaucer(s32 arg0, s32 arg1) {
 }
 
 s32 func_80803D30_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
     s32 _subaddiefade_entrypoint_0(Actor *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_8010A570(Actor *);
     extern s32 D_80127194;
     int sp24[1];
     s32 *sp20;
     s16 *temp_v0;
-    s32 temp_a0;
+    BtIntPtr temp_a0;
 
     switch (arg1) {
         case 0x40:
             sp20 = &arg2;
             sp24[0] = *sp20;
             if (_subaddiefade_entrypoint_0(arg0) >= 0x61) {
-                func_80803CC4_chflysaucer((s32) arg0, ((s16 *)D_80804704_chflysaucer)[arg0->unk79_4]);
+                func_80803CC4_chflysaucer((BtIntPtr) arg0, ((s16 *)D_80804704_chflysaucer)[arg0->unk79_4]);
                 _chscorepoints_entrypoint_2(arg0->unk79_4 + 1, 0, arg0->position, 1);
                 temp_v0 = (s16 *)&D_80127194;
                 temp_v0 += 0x21A;

@@ -2,17 +2,17 @@
 
 /* extern */
 
-void func_80800000_chbeanstalkseed(void *arg0) {
+typedef struct { BtIntPtr unk0; u8 pad4[0x72]; u16 unk76; } Objbeanstalkseed_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chbeanstalkseed(void *arg0) {
     s32 func_800DA298(s32);
-    s32 func_800FFA88(s32);
-    if (func_800DA298(((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x33D) != 0) {
-        func_800FFA88((*(s32 *)((s8 *)(arg0) + (0))));
+    void func_800FFA88(Unk80132ED0 *marker);
+    if (func_800DA298(((u32) (((Objbeanstalkseed_arg0 *)arg0)->unk76) >> 7) + 0x33D) != 0) {
+        func_800FFA88((((Objbeanstalkseed_arg0 *)arg0)->unk0));
     }
 }
-
+struct Times5 { f32 value[5]; }; struct Times3 { f32 value[3]; };
 void func_8080003C_chbeanstalkseed(Actor *arg0) {
-    struct Times5 { f32 value[5]; };
-    struct Times3 { f32 value[3]; };
+
+
     extern struct Times5 D_80800BE0_chbeanstalkseed;
     extern struct Times3 D_80800BF4_chbeanstalkseed;
     s32 func_80101E4C(Actor *, f32 *);
@@ -29,24 +29,24 @@ void func_8080003C_chbeanstalkseed(Actor *arg0) {
 
 s32 func_8080026C_chbeanstalkseed(u8 *arg0, s32 arg1, s32 arg2)
 {
-  s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s32);
-  s32 func_800D1844(s32);
+  u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+  void func_800D1844(s32 arg0);
   s32 func_800DA298(s32);
-  s32 func_800DA544(s32);
-  s32 func_800F5410(s32);
+  void func_800DA544(s32 index);
+  s32 func_800F5410(BtIntPtr);
   s32 *new_var;
-  s32 func_800F54E4();
-  s32 func_800FC6B0(s32);
-  s32 func_800FFA88(s32);
+  BtIntPtr func_800F54E4();
+  void func_800FC6B0(u32 track_id);
+  void func_800FFA88(Unk80132ED0 *marker);
   if (arg1 == 0x3E)
   {
-    new_var = (s32 *) (((s8 *) arg0) + 0);
-    func_800DA544(((((u16) (*((u16 *) (((s8 *) arg0) + 0x76)))) & 0xFFFFFFFFu) >> 7) + 0x33D);
+    new_var = &((Objbeanstalkseed_arg0 *)arg0)->unk0;
+    func_800DA544(((((u16) (((Objbeanstalkseed_arg0 *)arg0)->unk76)) & 0xFFFFFFFFu) >> 7) + 0x33D);
     func_800FC6B0(0);
     func_800D1844(0x50);
     if ((func_800DA298(0x6BE) == 0) && (func_800F5410(func_800F54E4()) == 1))
     {
-      _subaddiedialog_entrypoint_11(*((s32 *) (((s8 *) arg0) + 0)), 0x1430, 6, arg0 + 4, 0xC);
+      _subaddiedialog_entrypoint_11(((Objbeanstalkseed_arg0 *)arg0)->unk0, 0x1430, 6, arg0 + 4, 0xC);
       func_800DA544(0x6BE);
     }
     func_800FFA88(*new_var);
@@ -57,7 +57,7 @@ s32 func_8080026C_chbeanstalkseed(u8 *arg0, s32 arg1, s32 arg2)
 
 OSThread *chbeanstalkseed_entrypoint_0(void)
 {
-    extern u8 D_80800C00_chbeanstalkseed[];
+    extern ActorData D_80800C00_chbeanstalkseed[];
 
     return (OSThread *) D_80800C00_chbeanstalkseed;
 }
@@ -70,10 +70,10 @@ s32 func_80800328_chbeanstalkseed(s32 bt_a0) {
 s32 func_80800328_chbeanstalkseed(void) {
 #endif
     s32 func_800D1A04(s32);
-    s32 func_800F54E4();
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F66F0(s32);
-    s32 func_800F6720(s32);
+    BtIntPtr func_800F54E4();
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F66F0(BtIntPtr);
+    s32 func_800F6720(BtIntPtr);
     s32 func_8010C500();
     if (func_8010C500() == 0) {
         return 0;
@@ -94,10 +94,10 @@ s32 func_80800328_chbeanstalkseed(void) {
 }
 
 void func_808003D8_chbeanstalkseed(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
-    void _subaddieitem_entrypoint_0(s32, u32, s32, s32);
-    void _subaddieitem_entrypoint_2(s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
+    void _subaddieitem_entrypoint_0(BtIntPtr, BtUIntPtr, s32, s32);
+    void _subaddieitem_entrypoint_2(BtIntPtr);
     s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
     f32 func_80013970(f32);
     void func_800C3F48(u32);
@@ -105,12 +105,12 @@ void func_808003D8_chbeanstalkseed(Actor *arg0) {
     s32 func_800F0064(f32 *, f32, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13C4(f32, f32);
-    s32 func_800F54E4(void);
-    void func_800F7F50(s32, f32 *, f32 *, f32, s32, s32);
-    s32 func_800FFA88(s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F7F50(BtIntPtr, f32 *, f32 *, f32, s32, s32);
+    void func_800FFA88(Unk80132ED0 *marker);
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
-    s32 func_801000D8(Actor *, s32, s32);
+    void *func_801000D8(Actor *actor,s32 slot,s32 size);
     void func_80101FDC(Actor *, u32);
     void func_8010C964(Actor *);
     void func_8010D254(f32 *);
@@ -122,7 +122,7 @@ void func_808003D8_chbeanstalkseed(Actor *arg0) {
 
     switch ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10) {
     case 1: {
-        s32 item;
+        BtIntPtr item;
 #ifdef BT_NATIVE
         if (((s32 (*)())func_80800328_chbeanstalkseed)(arg0) != 0) {
 #else
@@ -198,10 +198,10 @@ void func_808003D8_chbeanstalkseed(Actor *arg0) {
 }
 
 void func_80800804_chbeanstalkseed(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_800C3F48(u32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_80102424(Actor *, s32);
     s32 func_80103140(Actor *, u32, u16);
     void func_8010A63C(Actor *);
@@ -233,13 +233,13 @@ void func_80800804_chbeanstalkseed(Actor *arg0, s32 arg1) {
     }
     func_80102424(arg0, arg1);
 }
-
+struct Rotation { f32 v[3]; };
 void func_80800950_chbeanstalkseed(Actor *arg0, void *arg1) {
-    s32 func_800D674C(s32);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    BtIntPtr func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF830(s32);
     void func_80101870(Actor *, void *);
-    struct Rotation { f32 v[3]; };
+
     extern struct Rotation D_80800C48_chbeanstalkseed;
     struct Rotation rotation;
 
@@ -262,10 +262,10 @@ void func_80800950_chbeanstalkseed(Actor *arg0, void *arg1) {
 }
 
 s32 func_80800A0C_chbeanstalkseed(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 seed;
 
     switch (arg1) {
@@ -302,7 +302,19 @@ s32 func_80800A0C_chbeanstalkseed(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chbeanstalkseed_entrypoint_1(void)
 {
-    extern u8 D_80800C54_chbeanstalkseed[];
+    extern ActorData D_80800C54_chbeanstalkseed[];
 
     return (OSThread *) D_80800C54_chbeanstalkseed;
 }
+/* data_to_c.py: from asm/data/overlays/ch/beanstalkseed.data.s */
+extern u8 D_80800BD0_chbeanstalkseed[];
+void func_80105834(Actor*);
+void func_80101870 ( Actor * , void * );
+void func_80108ED0();
+void func_80107C2C();
+u8 D_80800BD0_chbeanstalkseed[16] BT_DATA(4, overlays_ch_beanstalkseed, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x7B, 0x85, 0x1F, 0x01, 0xFC, 0x00, 0x01 };
+struct Times5 D_80800BE0_chbeanstalkseed BT_DATA(4, overlays_ch_beanstalkseed, 0x10) = { { 0.07f, 0.2f, 0.57f, 0.7f, -1.0f } };
+struct Times3 D_80800BF4_chbeanstalkseed BT_DATA(4, overlays_ch_beanstalkseed, 0x24) = { { 0.37f, 0.87f, -1.0f } };
+ActorData D_80800C00_chbeanstalkseed [1] BT_DATA(4, overlays_ch_beanstalkseed, 0x30) = { { 295, 1037, 2255, 1, (void *)D_80800BD0_chbeanstalkseed, (void (*)(struct Actor *))func_8080003C_chbeanstalkseed, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 65536000, 0, 0, 0, 128, 0, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chbeanstalkseed, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9216, (void (*)(struct Actor *, long, long))func_8080026C_chbeanstalkseed, 0 } };
+struct Rotation D_80800C48_chbeanstalkseed BT_DATA(4, overlays_ch_beanstalkseed, 0x78) = { { 0.0f, 0.0f, 0.0f } };
+ActorData D_80800C54_chbeanstalkseed [1] BT_DATA(4, overlays_ch_beanstalkseed, 0x84) = { { 344, 1152, 2269, 1, 0, (void (*)(struct Actor *))func_808003D8_chbeanstalkseed, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800950_chbeanstalkseed, 131072000, 0, 0, 0, 2, 1057, 0, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 9218, (void (*)(struct Actor *, long, long))func_80800A0C_chbeanstalkseed, 0 } };

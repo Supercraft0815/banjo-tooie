@@ -4,14 +4,14 @@
 void init_crc_check();
 void ovl_entrypoint();
 void func_800A1364();
-void func_800965D4();
+BtIntPtr func_800965D4(void *arg0);
 void func_8001C1C0();
 s32 func_800CFA90(void);
 void func_800D1510();
 void set_crc_entry(s32);
 
 extern u8 build_data_ROM_START[];
-void rom_read_word(uintptr_t, u32*);
+s32 rom_read_word(u32 address, u32 *value);
 
 // Do not change these two structs or CRC calculation in the ROM compressor will fail
 typedef struct {

@@ -60,7 +60,7 @@ void func_80800154_chintrotext(Actor *arg0) {
     s32 func_800D9078(f32 *);
     s32 func_800C954C(void);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_800FFAB0(Actor *);
     void func_8080051C_chintrotext(Actor *, s32);
     struct IntroTextData {
@@ -156,7 +156,7 @@ void func_808003EC_chintrotext(Actor *arg0, u32 *arg1) {
     s32 _subaddiefade_entrypoint_0(Actor *);
     void func_800B8C8C(s32);
     void func_800B8CE0(s32);
-    s32 func_800E71B8(s32);
+    BtIntPtr func_800E71B8(BtIntPtr);
     struct IntroTextData {
         s16 count;
         s16 y[10];
@@ -179,7 +179,7 @@ void func_808003EC_chintrotext(Actor *arg0, u32 *arg1) {
             }
             _fxkern_entrypoint_3(scale);
             _fxkern_entrypoint_1(arg1, data->y[i],
-                (u32 *)func_800E71B8((s32)func_80100094(arg0, 0) + data->offsets[i]));
+                (u32 *)func_800E71B8((BtIntPtr)func_80100094(arg0, 0) + data->offsets[i]));
         }
     }
 }
@@ -187,7 +187,7 @@ void func_808003EC_chintrotext(Actor *arg0, u32 *arg1) {
 void func_8080051C_chintrotext(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     extern f32 D_808007A0_chintrotext[][4];
     extern f32 D_808007A4_chintrotext[][4];
     extern f32 D_808007A8_chintrotext[][4];

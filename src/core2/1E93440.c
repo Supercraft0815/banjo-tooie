@@ -215,12 +215,12 @@ void func_800B9B50(ParticleEmitter *emitter, Particle *particle) {
 }
 
 s32 func_800BA198(ParticleEmitter *emitter) {
-    s32 temp_v1;
+    BtIntPtr temp_v1;
 
     if (emitter != NULL) {
-        temp_v1 = (s32)emitter->end;
+        temp_v1 = (BtIntPtr)emitter->end;
         if (temp_v1 != 0) {
-            return (s32) (temp_v1 - (s32)emitter->begin) / (s32)sizeof(Particle);
+            return (s32) (temp_v1 - (BtIntPtr)emitter->begin) / (s32)sizeof(Particle);
         }
     }
     return 0;
@@ -235,7 +235,7 @@ void func_800BA1D0(ParticleEmitter *emitter, f32 position[3], f32 velocity[3], s
     func_800BA22C(emitter, count);
 }
 
-void func_800BA22C(s32 arg0, s32 n) {
+void func_800BA22C(BtIntPtr arg0, s32 n) {
     void func_800B9B50(ParticleEmitter *, Particle *);
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     for (; n > 0; n--) {
@@ -244,15 +244,15 @@ void func_800BA22C(s32 arg0, s32 n) {
 }
 
 int func_800BA28C(ParticleEmitter *emitter) {
-    return (((s32)emitter->end -
-             (s32)emitter->begin) / (s32)sizeof(Particle) == 0) &&
+    return (((BtIntPtr)emitter->end -
+             (BtIntPtr)emitter->begin) / (s32)sizeof(Particle) == 0) &&
            (emitter->state == 2);
 }
 
 /* extern */
 
 s32 func_800BA2C4(void *arg0) {
-    s32 heap_free();
+    void heap_free(void *memory);
     heap_free(arg0);
     return 0;
 }
@@ -292,11 +292,11 @@ s16 *func_800BA2E8(s32 arg0) {
 
 /* extern */
 
-void func_800BA3FC(s32 arg0, s32 asset_id) {
+void func_800BA3FC(BtIntPtr arg0, s32 asset_id) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
-    s8 func_800AF5A0(s32);
-    s32 func_800D674C(u16);
-    s32 func_800D738C(s32);
+    s32 func_800AF5A0(s16 *arg0);
+    void * func_800D674C(s32 a0);
+    s32 func_800D738C(BtIntPtr);
     if (asset_id != emitter->asset_id) {
         emitter->asset_id = (u16) asset_id;
         emitter->asset_kind = func_800D738C(asset_id & 0xFFFF);
@@ -304,7 +304,7 @@ void func_800BA3FC(s32 arg0, s32 asset_id) {
     }
 }
 
-void func_800BA450(s32 arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
+void func_800BA450(BtIntPtr arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EFA6C(void *, s16, s16, s16);
     func_800EFA6C(emitter->acceleration_min, min_x, min_y, min_z);
@@ -339,7 +339,7 @@ void func_800BA4D0(ParticleEmitter *emitter, s16 min_y) {
     emitter->min_y = min_y;
 }
 
-void func_800BA544(ParticleEmitter *emitter, s32 arg1) {
+void func_800BA544(ParticleEmitter *emitter, BtIntPtr arg1) {
     emitter->unkC0 = arg1;
 }
 
@@ -358,9 +358,9 @@ void func_800BA568(ParticleEmitter *emitter, s16 max_y) {
 
 /* extern */
 
-void func_800BA574(ParticleEmitter *emitter) {
-    s32 func_800EE814(s32);
-    func_800EE814(emitter->unkC);
+void func_800BA574(ParticleEmitter *emitter BT_PASS2(, s32 bt_a0)) {
+    s32 func_800EE814(s32 BT_PASS2(, s32));
+    func_800EE814(emitter->unkC BT_PASS2(, bt_a0));
 }
 
 void func_800BA594(ParticleEmitter *emitter, f32 fade_in, f32 fade_out) {
@@ -407,9 +407,9 @@ void func_800BA660(ParticleEmitter *emitter, s32 arg1, s16 arg2) {
     emitter->unk98 = arg2;
 }
 
-void func_800BA670(s32 arg0, s32 asset_id) {
+void func_800BA670(BtIntPtr arg0, s32 asset_id) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
-    s32 func_800D738C(s32);
+    s32 func_800D738C(BtIntPtr);
     if (asset_id != emitter->asset_id) {
         emitter->asset_id = (u16) asset_id;
         emitter->asset_kind = func_800D738C(asset_id & 0xFFFF);
@@ -439,13 +439,13 @@ void func_800BA730(ParticleEmitter *emitter, s16 radius_min, s16 radius_max, s16
 
 /* extern */
 
-void func_800BA75C(s32 arg0, f32 position[3]) {
+void func_800BA75C(BtIntPtr arg0, f32 position[3]) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EE940(s16 *, f32 *);
     func_800EE940(emitter->position, position);
 }
 
-void func_800BA77C(s32 arg0, s16 x, s16 y, s16 z) {
+void func_800BA77C(BtIntPtr arg0, s16 x, s16 y, s16 z) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EFA6C(void *, s16, s16, s16);
     func_800EFA6C(emitter->rotation, x, y, z);
@@ -482,7 +482,7 @@ void func_800BA8F8(ParticleEmitter *emitter, f32 min, f32 max) {
     emitter->lifetime[1] = (s16) (s32) (max * 256.0f);
 }
 
-void func_800BA930(s32 arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
+void func_800BA930(BtIntPtr arg0, s16 min_x, s16 min_y, s16 min_z, s16 max_x, s16 max_y, s16 max_z) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800EFA6C(void *, s16, s16, s16);
     emitter->velocity_mode = 0;
@@ -530,16 +530,16 @@ void func_800BAB54(ParticleEmitter *emitter, f32 arg1) {
 
 /* extern */
 
-void func_800BAB60(ParticleEmitter *emitter) {
-    s32 func_800F2EA0(s32);
-    func_800F2EA0(emitter->color);
+void func_800BAB60(ParticleEmitter *emitter BT_PASS2(, s32 bt_a0)) {
+    s32 func_800F2EA0(BtIntPtr BT_PASS2(, s32));
+    func_800F2EA0(emitter->color BT_PASS2(, bt_a0));
 }
 
 /* extern */
 
-void func_800BAB80(s32 arg0, f32 *arg1) {
+void func_800BAB80(BtIntPtr arg0, f32 *arg1) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
-    s32 func_800F2EBC(s32, f32 *);
+    void func_800F2EBC(void *arg0, void *arg1);
     func_800F2EBC(emitter->color, arg1);
 }
 
@@ -553,13 +553,13 @@ void func_800BABB0(s32 arg0)
 }
 /* extern */
 
-s32 func_800BABB8(s32 arg0, f32 *position, f32 *target, f32 scale, s16 *cmd) {
+BtIntPtr func_800BABB8(BtIntPtr arg0, f32 *position, f32 *target, f32 scale, s16 *cmd) {
 
-    s8 func_800AF5A0(s32);
-    s32 func_800B53A4(s32);
+    s32 func_800AF5A0(s16 *arg0);
+    BtIntPtr func_800B53A4(s32);
     void func_800B5534(s8 *);
-    s32 func_800D674C(u16);
-    s32 func_800D738C(s32);
+    void * func_800D674C(s32 a0);
+    s32 func_800D738C(BtIntPtr);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     s32 func_800DC298(f32);
@@ -697,7 +697,7 @@ s32 func_800BABB8(s32 arg0, f32 *position, f32 *target, f32 scale, s16 *cmd) {
                     ((ParticleEmitter *)arg0)->spawn_timer = func_800DC178(((ParticleEmitter *)arg0)->spawn_interval[0], ((ParticleEmitter *)arg0)->spawn_interval[1]);
                     break;
                 case 0x10: {
-                    s32 temp_v0_6;
+                    BtIntPtr temp_v0_6;
                     temp_v0_6 = func_800B53A4((s32) (command & 0xFF00) >> 8);
                     arg0 = temp_v0_6;
                     if (position != NULL) {
@@ -707,7 +707,7 @@ s32 func_800BABB8(s32 arg0, f32 *position, f32 *target, f32 scale, s16 *cmd) {
                 }
                 case 0x11: {
                     s32 temp_t0;
-                    s32 temp_v0_7;
+                    BtIntPtr temp_v0_7;
                     temp_t0 = (s32) (command & 0xFF00) >> 8;
                     sp17C = temp_t0;
                     temp_v0_7 = func_800B53A4(temp_t0);
@@ -802,7 +802,7 @@ s32 func_800BABB8(s32 arg0, f32 *position, f32 *target, f32 scale, s16 *cmd) {
                     cmd += 2;
                     break;
                 case 0x1C: {
-                    s32 temp_v0_10;
+                    BtIntPtr temp_v0_10;
                     temp_v0_10 = func_800BA2E8((s32) (command & 0xFF00) >> 8);
                     arg0 = temp_v0_10;
                     if (position != NULL) {
@@ -1032,10 +1032,10 @@ s32 func_800BABB8(s32 arg0, f32 *position, f32 *target, f32 scale, s16 *cmd) {
     return arg0;
 }
 
-s32 func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4) {
-    s32 func_800B53A4(s32);
-    s32 sp24;
-    s32 temp_v0;
+BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4) {
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(arg3);
     sp24 = temp_v0;
@@ -1047,7 +1047,7 @@ s32 func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4) {
 /* extern */
 
 void func_800BBD18(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 *arg4) {
-    s32 func_800B4790(s32);
+    s32 func_800B4790(BtIntPtr);
     if (arg0 != 0) {
         func_800BABB8(arg0, arg1, arg2, arg3, arg4);
         func_800B4790(arg0);

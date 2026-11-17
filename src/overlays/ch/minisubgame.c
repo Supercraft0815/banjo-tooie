@@ -2,14 +2,14 @@
 
 OSThread *chminisubgame_entrypoint_0(void)
 {
-    extern u8 D_80801424_chminisubgame[];
+    extern ActorData D_80801424_chminisubgame[];
 
     return (OSThread *) D_80801424_chminisubgame;
 }
 
 OSThread *chminisubgame_entrypoint_1(void)
 {
-    extern u8 D_8080146C_chminisubgame[];
+    extern ActorData D_8080146C_chminisubgame[];
 
     return (OSThread *) D_8080146C_chminisubgame;
 }
@@ -17,8 +17,8 @@ OSThread *chminisubgame_entrypoint_1(void)
 void func_80800018_chminisubgame(Actor *arg0) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_11(s32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_11(s32 arg0);
     void *func_80100094(Actor *, u32);
     extern Prop *B_80801590_chminisubgame[];
     u32 *data;
@@ -46,8 +46,8 @@ void func_80800018_chminisubgame(Actor *arg0) {
 }
 
 void func_808000C8_chminisubgame(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     void func_80090708(s32);
     void func_800BF99C(s32, s32, s32);
     s32 func_800CEAD0(s32);
@@ -62,7 +62,7 @@ void func_808000C8_chminisubgame(Actor *arg0) {
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
     s32 func_80800AAC_chminisubgame(Actor *);
@@ -164,27 +164,27 @@ void func_808000C8_chminisubgame(Actor *arg0) {
 }
 
 void func_80800430_chminisubgame(Actor *arg0) {
-    s32 _susubgame_entrypoint_11(s32);
-    s32 _susubgame_entrypoint_2(void *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_11(s32 arg0);
+    u8 _susubgame_entrypoint_2(BtIntPtr arg0, u8 *arg1);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void* func_80100094(Actor*, u32);
     u8 *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
     _susubgame_entrypoint_11(0);
-    if (_susubgame_entrypoint_2(arg0, (s32) (sp1C + 0x30C)) != 0) {
-        _susubgame_entrypoint_4(arg0, (s32) (sp1C + 0x30C));
+    if (_susubgame_entrypoint_2(arg0, (BtIntPtr) (sp1C + 0x30C)) != 0) {
+        _susubgame_entrypoint_4(arg0, (BtIntPtr) (sp1C + 0x30C));
     }
 }
 
 s32 func_80800484_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_19(f32[3]);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _subaddiefade_entrypoint_2();
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    void _subaddiefade_entrypoint_2(void *arg0);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    s32 _susubgame_entrypoint_4(void *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_80090708(s32);
     void func_800BF99C(s32, s32, s32);
     s32 func_800D0A9C(u32, u32);
@@ -192,13 +192,13 @@ s32 func_80800484_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
     s16 func_800D211C(s32);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     f32 func_800DC178(f32, f32);
     void func_800E3980(f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     f32 func_80102D78(Actor *, f32 *);
     s32 func_80103140(Actor *, u32, u16);
@@ -296,7 +296,7 @@ s32 func_80800484_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
         func_80108B04(arg0, *(u32 *)packed);
         entry = arg0->unk3C;
         if (entry != NULL) {
-            func_8010114C((s32)entry, 0x3E, 0);
+            func_8010114C((BtIntPtr)entry, 0x3E, 0);
             arg0->unk3C = NULL;
         }
         break;
@@ -311,7 +311,7 @@ s32 func_80800484_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
     case 0xB:
         if (arg2 == 1) {
             func_80090708(0);
-            _susubgame_entrypoint_4(arg0, (s32)(data + 0x30C));
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x30C));
             func_80101FDC(arg0, 5);
             ((f32 *)arg0->actorData)[0] = 0.5f;
             return 4;
@@ -371,26 +371,26 @@ s32 func_80800AAC_chminisubgame(Actor *arg0) {
 void func_80800BA8_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 _gcfrontend_entrypoint_9(s32);
-    u32 _gcgoto_entrypoint_1(u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_8009055C(s32, s32);
     void func_80090708(s32);
     void func_800BF99C(s32, s32, s32);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     void func_800D2770(s32, s32);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     u8 *data;
     s32 dialog;
@@ -426,14 +426,14 @@ void func_80800BA8_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x102F:
         marker = arg0->unk3C;
         if (marker != NULL) {
-            func_8010114C((s32)marker, 0x3E, 0);
+            func_8010114C((BtIntPtr)marker, 0x3E, 0);
             arg0->unk3C = NULL;
         }
         dialog = 0xCEC;
         _susubgame_entrypoint_5(arg0, data + 0x30C, 5, 1, 0);
         break;
     case 0xCEC:
-        _susubgame_entrypoint_4(arg0, (s32)(data + 0x30C));
+        _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x30C));
         arg0->actorData[5] = 0;
         arg0->actorData[4] = 0;
         func_800D2770(0xFC, 0);
@@ -501,7 +501,7 @@ void func_80800EC8_chminisubgame(Actor *arg0) {
     void func_80102BF8(void *, f32, f32, f32);
     f32 func_80102D78(Actor *, f32 *);
     s32 func_8010C9B0(f32 *, s32);
-    void func_8010D600(s32);
+    void func_8010D600(BtIntPtr);
     s32 func_80801058_chminisubgame(Actor *, s32, s32);
     f32 sp34[3];
     f32 sp28[3];
@@ -528,7 +528,7 @@ void func_80800EC8_chminisubgame(Actor *arg0) {
             func_80102424(arg0, 2);
         }
 block_9:
-        func_8010D600((s32)sp28);
+        func_8010D600((BtIntPtr)sp28);
         arg0->unk54 = func_80102D78(arg0, sp28);
         func_80102BF8(arg0, 0.1f, 4.0f, 180.0f);
         ((f32 *)arg0->actorData)[4] += (240.0f + (arg0->unk58 / ((f32 *)arg0->actorData)[5]) * -120.0f) * func_800D8FF8();
@@ -540,12 +540,12 @@ block_9:
 }
 
 s32 func_80801058_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
-    s32 _subaddiemulti_entrypoint_5(s32);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
+    BtIntPtr _subaddiemulti_entrypoint_5(BtIntPtr);
     s32 func_800DA298(s32);
-    int func_800F7A2C(s32, s32, f32 *);
+    int func_800F7A2C(BtIntPtr, s32, f32 *);
     void func_800FFAB0(Actor *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     void func_8010A570(Actor *);
     s32 func_8010CC10(f32 *, f32);
@@ -564,7 +564,7 @@ s32 func_80801058_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
     Unk80132ED0 *event;
     Unk80132ED0 *marker;
     s32 work;
-    s32 index;
+    BtIntPtr index;
     s32 slot;
     s32 points;
     Actor *other;
@@ -576,7 +576,7 @@ s32 func_80801058_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
         break;
     case 0x40:
         sp28 = *(Unk80132ED0 **)&arg2;
-        index = _subaddiemulti_entrypoint_5((s32)sp28);
+        index = _subaddiemulti_entrypoint_5((BtIntPtr)sp28);
         actor = *actorRef;
         work = actor->unk6C_0 + 1;
         marker = actor->unk3C;
@@ -591,7 +591,7 @@ s32 func_80801058_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
         _chscorepoints_entrypoint_2(work, points, scoredActor->position, 1);
         event = *(Unk80132ED0 **)&sp28;
         if (*(u16 *)&event->unk18 & 1) {
-            func_8010114C((s32)event, 0x98, 0);
+            func_8010114C((BtIntPtr)event, 0x98, 0);
         }
     case 0x3E:
         if (sp2C == NULL) {
@@ -624,44 +624,64 @@ s32 func_80801058_chminisubgame(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808011DC_chminisubgame(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    extern s32 D_808014B4_chminisubgame;
-    s32 sp24;
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808014B4_chminisubgame[15];
+    BtIntPtr sp24;
     f32 *temp_a1;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(arg2);
     sp24 = temp_v0;
     func_800BA670(temp_v0, arg1);
     temp_a1 = arg0 + 4;
-    func_800BABB8(sp24, temp_a1, temp_a1, (*(f32 *)((s8 *)(arg0) + (0x38))), &D_808014B4_chminisubgame);
+    func_800BABB8(sp24, temp_a1, temp_a1, (((Actor *)arg0)->scale), D_808014B4_chminisubgame);
     func_800BA22C(sp24, arg2);
 }
 
 void func_80801248_chminisubgame(Actor *arg0) {
     s32 func_80090270();
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800C4AF0(f32 *, void *);
     s32 func_800CEAD0(s32);
     s32 func_800DA298(s32);
     s32 func_800E1610(s32, f32, f32, f32 *);
-    extern s32 D_808014F0_chminisubgame;
-    extern s32 D_80801534_chminisubgame;
-    extern s32 D_80801578_chminisubgame;
+    extern s32 D_808014F0_chminisubgame[17];
+    extern s32 D_80801534_chminisubgame[17];
+    extern s32 D_80801578_chminisubgame[6];
     f32 *position;
 
     if (func_80090270() == 0 && (func_800DA298(0) != 0 || func_800CEAD0(0) == 0)) {
         position = arg0->position;
         func_800E1610(0, 20.0f, 0.6f, position);
-        func_800C4AF0(position, &D_80801578_chminisubgame);
+        func_800C4AF0(position, D_80801578_chminisubgame);
     }
     position = arg0->position;
     func_808011DC_chminisubgame((u8 *)arg0, arg0->unk6C_0 * 3 + 0x9A4, 2);
     func_808011DC_chminisubgame((u8 *)arg0, arg0->unk6C_0 * 3 + 0x9A5, 6);
     func_808011DC_chminisubgame((u8 *)arg0, arg0->unk6C_0 * 3 + 0x9A6, 4);
-    func_800BABB8(0, position, NULL, 1.0f, &D_808014F0_chminisubgame);
-    func_800BABB8(0, position, NULL, 1.0f, &D_80801534_chminisubgame);
+    func_800BABB8(0, position, NULL, 1.0f, D_808014F0_chminisubgame);
+    func_800BABB8(0, position, NULL, 1.0f, D_80801534_chminisubgame);
 }
+/* data_to_c.py: from asm/data/overlays/ch/minisubgame.data.s */
+void func_80102EC0();
+void func_8010A730();
+void func_80107C2C();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+s16 D_80801400_chminisubgame [3] [ 6 ] BT_DATA(4, overlays_ch_minisubgame, 0x0) = { { 1902, 200, 300, 70, 70, 50 }, { 1903, 200, 300, 70, 70, 75 }, { 1904, 200, 300, 70, 70, 100 } };
+ActorData D_80801424_chminisubgame [1] BT_DATA(4, overlays_ch_minisubgame, 0x24) = { { 344, 1197, 0, 1, 0, (void (*)(struct Actor *))func_808000C8_chminisubgame, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800430_chminisubgame, 0, 804, 0, (void (*)(struct Actor *))func_80800018_chminisubgame, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80800484_chminisubgame, 0 } };
+ActorData D_8080146C_chminisubgame [1] BT_DATA(4, overlays_ch_minisubgame, 0x6C) = { { 455, 1198, 1902, 3, 0, (void (*)(struct Actor *))func_80800EC8_chminisubgame, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 260, 0, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 0, (void (*)(struct Actor *, long, long))func_80801058_chminisubgame, 0 } };
+s32 D_808014B4_chminisubgame[15] BT_DATA(4, overlays_ch_minisubgame, 0xB4) = { 18022422, 268435477, 204, 2818355, 26804258, 16777472, 6684825, 917514, 1310765, 78644700, 1834908, -13107161, 13107400, 26214800, 0 };
+s32 D_808014F0_chminisubgame[17] BT_DATA(4, overlays_ch_minisubgame, 0xF0) = { 118489117, 165019669, 131225, 1446400, 917724, 15728678, 0, -6553600, 100, 1638401, 65570, 20119961, 53675008, 2752522, 655488, 9175055, 0 };
+s32 D_80801534_chminisubgame[17] BT_DATA(4, overlays_ch_minisubgame, 0x134) = { 84934685, 165019669, 131225, 1446400, 917564, 7864358, 0, -6553600, 100, 1638400, 34, 20119961, 67110297, 2752520, 524390, 6684687, 0 };
+s32 D_80801578_chminisubgame[6] BT_DATA(4, overlays_ch_minisubgame, 0x178) = { 1246227, 1769496, 66536, 393216000, 0, 0 };
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+Prop * B_80801590_chminisubgame [ 60 ] BT_DATA(16, bss_ch_minisubgame, 0x0);
+#endif

@@ -2,14 +2,14 @@
 
 OSThread *chghostdoor_entrypoint_0(void)
 {
-    extern u8 D_80800220_chghostdoor[];
+    extern ActorData D_80800220_chghostdoor[];
 
     return (OSThread *) D_80800220_chghostdoor;
 }
 
 OSThread *chghostdoor_entrypoint_1(void)
 {
-    extern u8 D_80800268_chghostdoor[];
+    extern ActorData D_80800268_chghostdoor[];
 
     return (OSThread *) D_80800268_chghostdoor;
 }
@@ -48,7 +48,7 @@ void func_80800018_chghostdoor(Actor *arg0) {
 }
 
 s32 func_808000F4_chghostdoor(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     void func_800FFAB0(Actor *);
     s32 func_80103140(Actor *, u32, u16);
     s32 id;
@@ -62,7 +62,7 @@ s32 func_808000F4_chghostdoor(Actor *arg0, s32 arg1, s32 arg2) {
             func_800FFAB0(arg0);
             return 1;
     }
-    return _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+    return _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
 }
 
 void func_80800190_chghostdoor(s32 arg0)
@@ -73,17 +73,26 @@ void func_80800190_chghostdoor(s32 arg0)
 
 /* extern */
 
-s32 func_808001BC_chghostdoor(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 _chswitch_entrypoint_10(Actor *);
-    s32 func_80101180(s32, s32, s32);
+s32 func_808001BC_chghostdoor(Actor *arg0, s32 arg1 BT_PASS2(, s32 bt_a2)) {
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _chswitch_entrypoint_10(Actor * BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2));
+    s32 func_80101180(s32, s32, BtIntPtr);
     int result;
     if (arg1 == 7) {
         _capod_entrypoint_13(arg0->unk0, 0, 5, 0x10);
         func_80101180(0x344, 7, 0);
         result = 1;
     } else {
-        return _chswitch_entrypoint_10(arg0);
+        return _chswitch_entrypoint_10(arg0 BT_PASS2(, arg1) BT_PASS2(, bt_a2));
     }
     return result;
 }
+/* data_to_c.py: from asm/data/overlays/ch/ghostdoor.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+extern u8 D_8011A248[];
+void _chswitch_entrypoint_6();
+ActorData D_80800220_chghostdoor [1] BT_DATA(4, overlays_ch_ghostdoor, 0x0) = { { 172, 836, -1, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chghostdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11266, (void (*)(struct Actor *, long, long))func_808000F4_chghostdoor, 0 } };
+ActorData D_80800268_chghostdoor [1] BT_DATA(4, overlays_ch_ghostdoor, 0x48) = { { 835, 840, 2157, 1, (void *)D_8011A248, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2060, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800190_chghostdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808001BC_chghostdoor, 0 } };

@@ -5,9 +5,9 @@
 #include "memory.h"
 void _glid_entrypoint_5(void *,void *),_glid_entrypoint_6(void *,void *);
 void _vpmodule_entrypoint_2(void *,void *),_vpmodule_entrypoint_3(void *,void *,void *);
-s32 _vpmodule_entrypoint_4(void *,void *,s32,s32);
+s32 _vpmodule_entrypoint_4(s32 arg0, u8 *arg1, s32 arg2, s32 arg3);
 void _idworldmake_entrypoint_5(void *,s32),_idworldmake_entrypoint_6(void *,s32,s32),_idworldmake_entrypoint_7(void *,s32,s32);
-void _rtlight_entrypoint_2(void *,void *,void *,s32);
+void _rtlight_entrypoint_2(u8 *arg0, void *arg1, s32 arg2, s32 arg3);
 void *_dbvpl_entrypoint_0(void *,s32);
 s32 func_800EA340(void);
 void *func_800DE448(f32 *,f32 *,f32,f32 *,void *);
@@ -47,8 +47,8 @@ void func_800BE7F8(s32 mode,s32 index) {
     }
 }
 void func_800BE9B0(void) {if(native_map.section_count)gcmapsects_entrypoint_17(&native_map);}
-void func_800BE9E4(s32 mode) {func_800BE7F8(mode,0);if(native_map.section_count)gcmapsects_entrypoint_18(&native_map,mode);}
-void func_800BEA24(s32 mode) {func_800BE7F8(mode,1);if(native_map.section_count)gcmapsects_entrypoint_19(&native_map,mode);}
+void func_800BE9E4(BtIntPtr mode) {func_800BE7F8(mode,0);if(native_map.section_count)gcmapsects_entrypoint_18(&native_map,mode);}
+void func_800BEA24(BtIntPtr mode) {func_800BE7F8(mode,1);if(native_map.section_count)gcmapsects_entrypoint_19(&native_map,mode);}
 f32 func_800BEA64(f32 *point) {return func_800BE600(point,0x20020);}
 void *func_800BEA88(s32 i) {NativeMapLayer *s=map_layer(i);return s ? s->instances : NULL;}
 s32 func_800BEAAC(f32 *point,f32 *height) {return native_map.section_count ? gcmapsects_entrypoint_6(&native_map,point,height) : 0;}

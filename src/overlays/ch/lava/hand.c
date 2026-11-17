@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_80800000_chlavahand(void *arg0) {
+typedef struct { u8 pad0[0x38]; f32 unk38; u8 pad3C[0x18]; f32 unk54; } Objhand_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chlavahand(void *arg0) {
     struct Flags {
         u8 pad0 : 7;
         u8 flag0 : 1;
@@ -9,13 +9,13 @@ void func_80800000_chlavahand(void *arg0) {
     };
     ((struct Flags *)((u8 *)arg0 + 0x64))->flag0 = 1;
     ((struct Flags *)((u8 *)arg0 + 0x64))->flag1 = 0;
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x38)));
+    (((Objhand_arg0 *)arg0)->unk54) = (f32) (((Objhand_arg0 *)arg0)->unk38);
 }
 
 void func_80800024_chlavahand(Actor *arg0) {
     f32 func_800F1F0C(f32 *, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_80102424(Actor *, s32);
     s32 func_80103140(Actor *, u32, u16);
     void func_8010A590(Actor *);
@@ -58,14 +58,14 @@ void func_80800124_chlavahand(u8 *arg0) {
     s32 func_80101E14(u8 *, f32);
     f32 func_80101F24(u8 *);
     void func_80102424(Actor *, s32);
-    void func_80107070(u8 *, s32);
+    s32 func_80107070(Actor *arg0, u32 arg1);
     void func_8010A800(u8 *, s32);
     s32 func_8010C754(u8 *);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
     void func_80800024_chlavahand(Actor *);
     void func_80800910_chlavahand(Actor *);
     void func_80800A30_chlavahand(Actor *);
-    extern u32 D_80801324_chlavahand;
+    extern u32 D_80801324_chlavahand[3];
     struct Flags {
         u32 pad : 2;
         u32 active : 1;
@@ -101,7 +101,7 @@ void func_80800124_chlavahand(u8 *arg0) {
         } else {
             *(f32 *)(arg0 + 0x38) = *(f32 *)(arg0 + 0x54);
         }
-        _subaddieaudioloop_entrypoint_4(arg0, (f32 *)(arg0 + 4), sp48 < 1000, &D_80801324_chlavahand);
+        _subaddieaudioloop_entrypoint_4(arg0, (f32 *)(arg0 + 4), sp48 < 1000, D_80801324_chlavahand);
         _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4((f32) sp48, 1000.0f, 0.0f, 0.8f, 1.2f));
         _subaddieaudioloop_entrypoint_1(arg0, (s32) (func_80013970(func_80101F24(arg0) * 180.0f) * 16000.0f));
         if (func_80101E14(arg0, 0.2f)) {
@@ -126,7 +126,7 @@ void func_80800124_chlavahand(u8 *arg0) {
         if (func_800DC0C0() < 0.1f) {
             func_80800A30_chlavahand(arg0);
         }
-        _subaddieaudioloop_entrypoint_4(arg0, (f32 *)(arg0 + 4), 1, &D_80801324_chlavahand);
+        _subaddieaudioloop_entrypoint_4(arg0, (f32 *)(arg0 + 4), 1, D_80801324_chlavahand);
         _subaddieaudioloop_entrypoint_0(arg0, func_800F1214(sp44, 0.8f, 1.2f));
         _subaddieaudioloop_entrypoint_1(arg0, (s32) (sp44 * 16000.0f));
         *(f32 *)(arg0 + 0x38) = func_800F15F8(*(f32 *)(arg0 + 0x38), *(f32 *)(arg0 + 0x54), 0.1f);
@@ -149,7 +149,7 @@ void func_80800124_chlavahand(u8 *arg0) {
     case 6:
     case 7:
         sp3C = (u32) arg0[0x9B] / 255.0f;
-        _subaddieaudioloop_entrypoint_4(arg0, (f32 *)(arg0 + 4), 1, &D_80801324_chlavahand);
+        _subaddieaudioloop_entrypoint_4(arg0, (f32 *)(arg0 + 4), 1, D_80801324_chlavahand);
         _subaddieaudioloop_entrypoint_0(arg0, func_800F1214(sp3C, 0.8f, 1.2f));
         _subaddieaudioloop_entrypoint_1(arg0, (s32) (sp3C * 16000.0f));
         if (func_800DC0C0() < sp3C) {
@@ -207,7 +207,7 @@ void func_80800910_chlavahand(Actor *arg0) {
 
 void func_80800A30_chlavahand(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
     extern s32 D_80801330_chlavahand[];
     extern s32 D_808013A0_chlavahand[];
@@ -278,10 +278,10 @@ s32 func_80800AAC_chlavahand(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_80800D8C_chlavahand(Actor *arg0, s32 arg1) {
-    s32 func_80101870(Actor *, s32);
+void func_80800D8C_chlavahand(Actor *arg0, BtIntPtr arg1) {
+    void func_80101870(Actor* arg0, void* arg1);
     Actor *func_80106790(Unk80132ED0 *);
-    void func_80800FB4_chlavahand(Actor *, s32);
+    void func_80800FB4_chlavahand(Actor *, BtIntPtr);
     Unk80132ED0 *temp_a1;
     s32 temp_t9;
 
@@ -297,7 +297,7 @@ void func_80800D8C_chlavahand(Actor *arg0, s32 arg1) {
 
 OSThread *chlavahand_entrypoint_0(void)
 {
-    extern u8 D_808013D0_chlavahand[];
+    extern ActorData D_808013D0_chlavahand[];
 
     return (OSThread *) D_808013D0_chlavahand;
 }
@@ -350,11 +350,11 @@ void func_80800E0C_chlavahand(Actor *arg0) {
     }
 }
 
-void func_80800FB4_chlavahand(Actor *arg0, s32 arg1) {
+void func_80800FB4_chlavahand(Actor *arg0, BtIntPtr arg1) {
     struct ImageStruct *func_800D674C(s32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_801015D0(Actor *);
-    void func_808011BC_chlavahand(Actor *, s32, s32, s32, f32, s32, s32);
+    void func_808011BC_chlavahand(Actor *, BtIntPtr, s32, s32, f32, s32, s32);
     union { struct ImageStruct *ptr; s32 bits; } image;
     struct HandFlags { u8 pad[0x7A]; u16 mode : 2; u16 rest : 14; };
     Actor *parent;
@@ -378,11 +378,11 @@ void func_80800FB4_chlavahand(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-void func_808011BC_chlavahand(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6) {
+void func_808011BC_chlavahand(Actor *arg0, BtIntPtr arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6) {
     s32 _subaddieskeleton_entrypoint_0(Actor*, s32, f32*);
     void func_800DF410(s32 a0);
     void func_800DF830(s32 arg0);
-    s32 func_800DE498(s32, f32 *, s32, s32, s32, s32);
+    s32 func_800DE498(BtIntPtr, f32 *, s32, s32, s32, BtIntPtr);
     f32 sp24[3];
 
     _subaddieskeleton_entrypoint_0(arg0, arg3, sp24);
@@ -393,7 +393,21 @@ void func_808011BC_chlavahand(Actor *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg
 
 OSThread *chlavahand_entrypoint_1(void)
 {
-    extern u8 D_80801418_chlavahand[];
+    extern ActorData D_80801418_chlavahand[];
 
     return (OSThread *) D_80801418_chlavahand;
 }
+/* data_to_c.py: from asm/data/overlays/ch/lava/hand.data.s */
+extern u8 D_808012C0_chlavahand[];
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+extern u8 D_80801310_chlavahand[];
+void func_8010A730();
+u8 D_808012C0_chlavahand[80] BT_DATA(4, overlays_ch_lava_hand, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x0C, 0xCC, 0xCD, 0x04, 0x23, 0x00, 0x44, 0x40, 0x0C, 0xCC, 0xCD, 0x04, 0x23, 0x00, 0x42, 0x40, 0x0C, 0xCC, 0xCD, 0x04, 0xB4, 0x00, 0x42, 0x3F, 0x99, 0x99, 0x9A, 0x04, 0x24, 0x00, 0x42, 0x3F, 0x99, 0x99, 0x9A, 0x04, 0xB5, 0x00, 0x42, 0x3F, 0x99, 0x99, 0x9A, 0x04, 0x24, 0x00, 0x84, 0x3F, 0x99, 0x99, 0x9A, 0x04, 0xB5, 0x00, 0x84, 0x3F, 0x99, 0x99, 0x9A, 0x04, 0x24, 0x00, 0x84, 0x40, 0x0C, 0xCC, 0xCD, 0x04, 0x23, 0x00, 0x44 };
+u8 D_80801310_chlavahand[20] BT_DATA(4, overlays_ch_lava_hand, 0x50) = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x03, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00 };
+u32 D_80801324_chlavahand[3] BT_DATA(4, overlays_ch_lava_hand, 0x64) = { 0x130483, 0xA0100, 0 };
+s32 D_80801330_chlavahand [28] BT_DATA(4, overlays_ch_lava_hand, 0x70) = { 17825821, 165412888, 19, 100665856, 1769922, 39321632, -1771152696, 2228275, 3342848, 50331669, 6684787, 2752768, 16777728, 41943062, 269484314, 17825821, 153550875, 29491800, 2135662, 1526661154, 16777728, 0, 1376281, 1638443, 16777600, 458753, 1445904, 18481152 };
+s32 D_808013A0_chlavahand [12] BT_DATA(4, overlays_ch_lava_hand, 0xE0) = { 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53 };
+ActorData D_808013D0_chlavahand [1] BT_DATA(4, overlays_ch_lava_hand, 0x110) = { { 265, 1001, 2341, 1, (void *)D_808012C0_chlavahand, (void (*)(struct Actor *))func_80800124_chlavahand, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800D8C_chlavahand, 98304000, 0, 0, 0, 2, 104, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chlavahand, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 1025, (void (*)(struct Actor *, long, long))func_80800AAC_chlavahand, (BtIntPtr)D_80801310_chlavahand } };
+ActorData D_80801418_chlavahand [1] BT_DATA(4, overlays_ch_lava_hand, 0x158) = { { 344, 1024, 2343, 1, 0, (void (*)(struct Actor *))func_80800E0C_chlavahand, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 98304000, 0, 0, 0, 2, 4100, 0, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };

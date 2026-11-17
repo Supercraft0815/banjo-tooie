@@ -5,20 +5,20 @@ void func_8010A730(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_8010A73C(Actor *arg0, s32 arg1) {
-    s32 func_801039E4(Unk80132ED0 *);
+    BtIntPtr func_801039E4(Unk80132ED0 *);
     func_801039E4(arg0->unk0);
 }
 
 /* extern */
 
-void func_8010A764(s32 arg0, s32 arg1) {
+void func_8010A764(BtIntPtr arg0, BtIntPtr arg1) {
     void *func_80100368();
     (*(s32 (**)(s32, s32))((s8 *)(func_80100368()) + (0x14)))(arg0, arg1);
 }
 
 /* extern */
 
-void func_8010A79C(Actor *arg0, s32 arg1) {
+void func_8010A79C(Actor *arg0, BtIntPtr arg1) {
     void *func_80100368(void *arg0);
     struct {
         u8 padding[0x14];
@@ -71,9 +71,9 @@ void func_8010A85C(u8 *arg0, s32 arg1) {
         u8 low : 4;
     };
     ((struct Fields *)arg0)->low = arg1;
-}
+}    typedef struct { void * unk0; u8 pad4[0x10]; u16 unk14; u8 pad16[0x12]; s32 unk28; } Obj1EE4020_func_8010A874_temp_s3; /* offsets.py genstruct: fields from raw offsets on temp_s3; rename once understood */ typedef struct { void * unk0; u8 pad4[0x60]; u16 unk64; u8 pad66[0x12]; u8 unk78; } Obj1EE4020_func_8010A874_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
 
-void func_8010A874(s32 arg0)
+void func_8010A874(BtIntPtr arg0)
 {
   s32 _subaddiezone_entrypoint_1(void *);
   void func_800E3A30(s16 *);
@@ -95,17 +95,17 @@ void func_8010A874(s32 arg0)
   {
     do
     {
-      temp_s3 = *((void **) (((s8 *) var_v0) + 0));
-      if ((((*((u16 *) (((s8 *) temp_s3) + 0x14))) != 0) && ((*((u16 *) (((s8 *) var_v0) + 0x64))) & 1)) && (((*((u8 *) (((s8 *) var_v0) + 0x78))) == 0) || (_subaddiezone_entrypoint_1(var_v0) != 0)))
+      temp_s3 = ((Obj1EE4020_func_8010A874_var_v0 *)var_v0)->unk0;
+      if ((((((Obj1EE4020_func_8010A874_temp_s3 *)temp_s3)->unk14) != 0) && ((((Obj1EE4020_func_8010A874_var_v0 *)var_v0)->unk64) & 1)) && (((((Obj1EE4020_func_8010A874_var_v0 *)var_v0)->unk78) == 0) || (_subaddiezone_entrypoint_1(var_v0) != 0)))
       {
         var_s1 = 1;
         var_s0 = 0;
-        temp_s2 = ((u32) ((*((s32 *) (((s8 *) temp_s3) + 0x28))) << 0x17)) >> 0x18;
+        temp_s2 = ((u32) ((((Obj1EE4020_func_8010A874_temp_s3 *)temp_s3)->unk28) << 0x17)) >> 0x18;
         do
         {
           if (temp_s2 & var_s1)
           {
-            func_800EB3D0(*((void **) (((s8 *) temp_s3) + 0)), var_s0, sp40);
+            func_800EB3D0(((Obj1EE4020_func_8010A874_temp_s3 *)temp_s3)->unk0, var_s0, sp40);
           }
           var_s0 += 1;
           var_s1 *= 2;

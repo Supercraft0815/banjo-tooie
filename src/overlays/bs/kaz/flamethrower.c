@@ -2,7 +2,7 @@
 
 #include "overlays/bs/kaz/flamethrower.h"
 
-extern s32 D_808003B0_bskazflamethrower[];
+extern BtIntPtr D_808003B0_bskazflamethrower[];
 
 void bskazflamethrower_entrypoint_0(PlayerState *self, f32 arg1[3], f32 arg2[3]) {
     f32 unk0[3];
@@ -20,10 +20,10 @@ void bskazflamethrower_entrypoint_0(PlayerState *self, f32 arg1[3], f32 arg2[3])
 /* extern */
 
 void func_80800094_bskazflamethrower(PlayerState *arg0, u32 arg1) {
-    s32 _baflamethrower_entrypoint_1(PlayerState *);
-    s32 _baflamethrower_entrypoint_2(PlayerState *, void (*)(PlayerState *, f32 [3], s32));
-    s32 _baflamethrower_entrypoint_3(PlayerState *);
-    s32 _baflamethrower_entrypoint_4(PlayerState *);
+    void _baflamethrower_entrypoint_1(BtIntPtr arg0);
+    void _baflamethrower_entrypoint_2(BtIntPtr arg0, BtIntPtr arg1);
+    void _baflamethrower_entrypoint_3(BtIntPtr arg0);
+    void _baflamethrower_entrypoint_4(BtIntPtr arg0);
     AnimCtrl *temp_a0;
 
     temp_a0 = baanim_getAnimCtrlPtr(arg0);
@@ -104,6 +104,9 @@ void bskazflamethrower_entrypoint_3(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazflamethrower_entrypoint_4(s32 idx) {
+BtIntPtr bskazflamethrower_entrypoint_4(s32 idx) {
     return D_808003B0_bskazflamethrower[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/flamethrower.data.s */
+void func_80099B94(PlayerState *);
+BtIntPtr D_808003B0_bskazflamethrower [4] BT_DATA(4, overlays_bs_kaz_flamethrower, 0x0) = { (BtIntPtr)_bskazflamethrower_entrypoint_1, (BtIntPtr)_bskazflamethrower_entrypoint_2, (BtIntPtr)_bskazflamethrower_entrypoint_3, (BtIntPtr)func_80099B94 };

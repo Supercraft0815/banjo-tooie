@@ -5,7 +5,7 @@ typedef struct {
     u8 start;
     u8 count;
     u8 unk2[10];
-} GCFrontendRange;
+} GCFrontendRange;     
 
 /* extern */
 
@@ -31,7 +31,7 @@ void gcfrontend_entrypoint_0(void) {
             var_s1 += 1;
         } while (var_s0 < temp_v0);
     }
-}
+}    typedef struct { u8 pad0[0x1]; u8 unk1; s16 unk2; } Objfrontend_gcfrontend_entrypoint_1_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 s32 gcfrontend_entrypoint_1(s32 arg0) {
     extern GCFrontendRange D_80800D80_gcfrontend[4];
@@ -40,8 +40,8 @@ s32 gcfrontend_entrypoint_1(s32 arg0) {
     void *temp_v0;
 
     temp_v0 = (arg0 * 0xC) + (u8 *)&D_80800D80_gcfrontend;
-    var_s0 = (*(s16 *)((s8 *)(temp_v0) + (2)));
-    temp_s1 = (*(u8 *)((s8 *)(temp_v0) + (1))) + var_s0;
+    var_s0 = (((Objfrontend_gcfrontend_entrypoint_1_temp_v0 *)temp_v0)->unk2);
+    temp_s1 = (((Objfrontend_gcfrontend_entrypoint_1_temp_v0 *)temp_v0)->unk1) + var_s0;
     if (var_s0 < temp_s1) {
 loop_1:
         if (func_800DA298(var_s0) != 0) {
@@ -60,7 +60,7 @@ block_4:
 int gcfrontend_entrypoint_2(void) {
     s32 gcfrontend_entrypoint_1(s32);
     return gcfrontend_entrypoint_1(0) || gcfrontend_entrypoint_1(1) || gcfrontend_entrypoint_1(2);
-}
+}    typedef struct { u8 unk0; u8 pad1[0x1]; s16 unk2; } Objfrontend_gcfrontend_entrypoint_3_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
 s32 gcfrontend_entrypoint_3(s32 arg0) {
     s32 func_80800450_gcfrontend();
@@ -68,7 +68,7 @@ s32 gcfrontend_entrypoint_3(s32 arg0) {
     void *temp_v1;
 
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
-    return func_800DA298(((*(s16 *)((s8 *)(temp_v1) + (2))) + arg0) - (*(u8 *)((s8 *)(temp_v1) + (0))));
+    return func_800DA298(((((Objfrontend_gcfrontend_entrypoint_3_temp_v1 *)temp_v1)->unk2) + arg0) - (((Objfrontend_gcfrontend_entrypoint_3_temp_v1 *)temp_v1)->unk0));
 }
 
 u8 gcfrontend_entrypoint_4(s32 arg0) {
@@ -94,13 +94,13 @@ void gcfrontend_entrypoint_7(s32 arg0, s32 arg1) {
     void func_800D3CF8(s32);
     void func_800D3D10(s32);
     s32 func_80800450_gcfrontend(s32);
-    void func_80800738_gcfrontend(void *, s32, s32, s32);
+    void func_80800738_gcfrontend(void *, BtIntPtr, s32, s32);
     extern GCFrontendRange D_80800D80_gcfrontend[4];
     extern u8 D_80800DA4_gcfrontend;
     s32 result;
     s32 mode;
     s32 rangeIndex;
-    s32 secondary;
+    BtIntPtr secondary;
     u8 *base;
     u8 *range;
     void *volatile entry;
@@ -115,7 +115,7 @@ void gcfrontend_entrypoint_7(s32 arg0, s32 arg1) {
         base = *(u8 **)(range + 4);
         arg0 -= *range;
         if (rangeIndex != 2) {
-            secondary = (s32)(base + arg0 * 16 + 4);
+            secondary = (BtIntPtr)(base + arg0 * 16 + 4);
         }
         entry = base + arg0 * 16; if (range == &D_80800DA4_gcfrontend) {
             mode = 3;
@@ -126,12 +126,12 @@ void gcfrontend_entrypoint_7(s32 arg0, s32 arg1) {
 }
 
 s32 func_808002DC_gcfrontend(s32 arg0, s32 arg1) {
-    void func_80800738_gcfrontend(void *, s32, s32, s32);
+    void func_80800738_gcfrontend(void *, BtIntPtr, s32, s32);
     extern s32 D_80800C9C_gcfrontend;
     void *temp_v0;
 
     temp_v0 = (arg0 * 0x10) + (u8 *)&D_80800C9C_gcfrontend;
-    func_80800738_gcfrontend((u8 *)temp_v0 - 0xA00, (u8 *)temp_v0 - 0x9FC, *(u8 *)((u8 *)temp_v0 - 0x9F3), arg1);
+    func_80800738_gcfrontend((u8 *)temp_v0 - 0xA00, (u8 *)temp_v0 - 0x9FC, *(u8 *)((u8 *)temp_v0 - 0x9F3), arg1); BT_NATIVE_ONLY(return 0;)
 }
 
 void gcfrontend_entrypoint_8(s32 arg0, s32 arg1) {
@@ -144,7 +144,7 @@ void gcfrontend_entrypoint_8(s32 arg0, s32 arg1) {
         var_a1 = 0;
     }
     func_808002DC_gcfrontend(arg0, var_a1);
-}
+}    typedef struct { u8 unk0; u8 pad1[0x1]; s16 unk2; } Objfrontend_gcfrontend_entrypoint_9_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
 void gcfrontend_entrypoint_9(s32 arg0) {
     s32 func_80800450_gcfrontend();
@@ -152,7 +152,7 @@ void gcfrontend_entrypoint_9(s32 arg0) {
     void *temp_v1;
 
     temp_v1 = (func_80800450_gcfrontend() * 0xC) + (u8 *)&D_80800D80_gcfrontend;
-    func_800DA544(((*(s16 *)((s8 *)(temp_v1) + (2))) + arg0) - (*(u8 *)((s8 *)(temp_v1) + (0))));
+    func_800DA544(((((Objfrontend_gcfrontend_entrypoint_9_temp_v1 *)temp_v1)->unk2) + arg0) - (((Objfrontend_gcfrontend_entrypoint_9_temp_v1 *)temp_v1)->unk0));
 }
 
 /* extern */
@@ -175,8 +175,8 @@ void gcfrontend_entrypoint_11(void) {
 /* extern */
 
 void gcfrontend_entrypoint_12(void) {
-    s32 func_800AA00C();
-    s32 func_800AA074();
+    void func_800AA00C(void);
+    void func_800AA074(void);
     func_800AA074();
     func_800AA00C();
     gcfrontend_entrypoint_10();
@@ -185,7 +185,7 @@ void gcfrontend_entrypoint_12(void) {
 /* extern */
 
 void gcfrontend_entrypoint_13(void) {
-    s32 func_800D37D4();
+    void func_800D37D4(void);
     s32 func_808002DC_gcfrontend(s32, s32);
     func_800D37D4();
     func_808002DC_gcfrontend(0xA6, -1);
@@ -206,7 +206,7 @@ s32 func_80800450_gcfrontend(s32 arg0) {
     return 4;
 }
 
-void func_80800520_gcfrontend(s32 arg0) {
+void func_80800520_gcfrontend(BtIntPtr arg0) {
     void func_800D3A14(s32);
     void func_800D3A20(s32);
     void func_800D3A54(s32, s32);
@@ -215,7 +215,7 @@ void func_80800520_gcfrontend(s32 arg0) {
     int func_800DC298(f32);
     extern s32 D_808008FC_gcfrontend[][2];
     s16 value;
-    s32 offset;
+    BtIntPtr offset;
     u16 *entry;
     int count;
     int end;
@@ -253,7 +253,7 @@ void func_80800520_gcfrontend(s32 arg0) {
                 end = count * 4;
                 break;
             case 5:
-                func_80800520_gcfrontend((s32)D_808008FC_gcfrontend[value]);
+                func_80800520_gcfrontend((BtIntPtr)D_808008FC_gcfrontend[value]);
                 count = *(s32 *)arg0;
                 end = count * 4;
                 break;
@@ -308,23 +308,23 @@ void func_8080068C_gcfrontend(s32 *arg0, s32 *arg1) {
             entry++;
         } while (entry != end);
     }
-}
+}                       typedef struct { s16 unk0; s16 unk2; } Objfrontend_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void func_80800738_gcfrontend(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 func_800A791C(s32, s32, s32);
-    s32 func_800D39A8();
-    s32 func_800D39DC(s32);
-    s32 func_800D3B24();
-    s32 func_800EA334(s32);
-    void func_80800520_gcfrontend(s32);
+void func_80800738_gcfrontend(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    void func_800A791C(s32 arg0, s32 arg1, s32 arg2);
+    void func_800D39A8(void);
+    void func_800D39DC(s32 arg0);
+    void func_800D3B24(void);
+    void func_800EA334(s32 arg0);
+    void func_80800520_gcfrontend(BtIntPtr);
     void func_8080068C_gcfrontend(s32 *, s32 *);
     s32 sp1C;
     s32 sp18;
 
-    sp1C = (s32) (*(s16 *)((s8 *)(arg0) + (2)));
-    sp18 = (s32) (*(s16 *)((s8 *)(arg0) + (0)));
+    sp1C = (s32) (((Objfrontend_arg0 *)arg0)->unk2);
+    sp18 = (s32) (((Objfrontend_arg0 *)arg0)->unk0);
     func_800D39A8();
     func_800D39DC(arg3);
     if (arg1 != 0) {
@@ -336,7 +336,7 @@ void func_80800738_gcfrontend(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
         func_800EA334(0);
     }
     func_800A791C(sp18, sp1C, 1);
-}
+} 
 
 s16 gcfrontend_entrypoint_14(s32 arg0) {
     s32 func_80800450_gcfrontend();

@@ -24,10 +24,10 @@ void bsbkflamethrower_entrypoint_0(struct player_state_s *arg0, f32 arg1[3], f32
 void func_80800094_bsbkflamethrower(struct player_state_s *arg0, u32 arg1) {
     struct anctrl_s;
     void func_8009FFD8();
-    s32 _baflamethrower_entrypoint_1(struct player_state_s *);
-    s32 _baflamethrower_entrypoint_2(struct player_state_s *, void (*)(struct player_state_s *, f32 [3], f32 [3]));
-    s32 _baflamethrower_entrypoint_3(struct player_state_s *);
-    s32 _baflamethrower_entrypoint_4(struct player_state_s *);
+    void _baflamethrower_entrypoint_1(BtIntPtr arg0);
+    void _baflamethrower_entrypoint_2(BtIntPtr arg0, BtIntPtr arg1);
+    void _baflamethrower_entrypoint_3(BtIntPtr arg0);
+    void _baflamethrower_entrypoint_4(BtIntPtr arg0);
     void _batimer_set(struct player_state_s *, s32, f32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void anctrl_setSubrange(struct anctrl_s *, f32, f32);
@@ -78,7 +78,7 @@ void func_80800094_bsbkflamethrower(struct player_state_s *arg0, u32 arg1) {
     }
 }
 
-void bsbkflamethrower_entrypoint_1(s32 arg0)
+void bsbkflamethrower_entrypoint_1(BtIntPtr arg0)
 {
     func_80800094_bsbkflamethrower(arg0,0);
 }
@@ -97,7 +97,7 @@ void bsbkflamethrower_entrypoint_3(struct player_state_s *arg0) {
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
     s32 _bsstand_entrypoint_8(struct player_state_s *, s32);
     void _baflamethrower_entrypoint_5(struct player_state_s *);
-    s32 bs_setState(struct player_state_s *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 sp24;
 
     sp24 = 0;
@@ -139,6 +139,12 @@ void bsbkflamethrower_entrypoint_3(struct player_state_s *arg0) {
 }
 
 s32 bsbkflamethrower_entrypoint_4(s32 arg0) {
-    extern s32 D_80800450_bsbkflamethrower[];
+    extern BtIntPtr D_80800450_bsbkflamethrower[];
     return ((s32 *)&D_80800450_bsbkflamethrower)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/bkflamethrower.data.s */
+void _bsbkflamethrower_entrypoint_1();
+void _bsbkflamethrower_entrypoint_2();
+void _bsbkflamethrower_entrypoint_3();
+void func_80099B94();
+BtIntPtr D_80800450_bsbkflamethrower [4] BT_DATA(4, overlays_bs_bkflamethrower, 0x0) = { (BtIntPtr)_bsbkflamethrower_entrypoint_1, (BtIntPtr)_bsbkflamethrower_entrypoint_2, (BtIntPtr)_bsbkflamethrower_entrypoint_3, (BtIntPtr)func_80099B94 };

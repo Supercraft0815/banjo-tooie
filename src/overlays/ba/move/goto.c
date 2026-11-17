@@ -10,22 +10,22 @@ void func_80800000_bamovegoto(void *arg0, s32 arg1) {
         func_8009BA9C(arg0, 0);
     }
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = (s8) arg1;
-}
+}    typedef struct { u8 pad0[0xC8]; u8 * unkC8; } Objgoto_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void bamovegoto_entrypoint_0(u8 *arg0) {
     void func_800EFD24(f32 *);
-    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x80))) = 0;
-    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x7C))) = 0;
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x78))) = 0.0f;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x55))) = 1;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x56))) = 0;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = 0;
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x70))) = 1.0f;
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x74))) = 0.0;
-    func_800EFD24((f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x58));
-    func_800EFD24((f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x64));
+    (*(s32 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x80))) = 0;
+    (*(s32 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x7C))) = 0;
+    (*(f32 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x78))) = 0.0f;
+    (*(s8 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x55))) = 1;
+    (*(s8 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x56))) = 0;
+    (*(s8 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x54))) = 0;
+    (*(f32 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x70))) = 1.0f;
+    (*(f32 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8)) + (0x74))) = 0.0;
+    func_800EFD24((f32 *)((((Objgoto_arg0 *)arg0)->unkC8) + 0x58));
+    func_800EFD24((f32 *)((((Objgoto_arg0 *)arg0)->unkC8) + 0x64));
 }
 
 void bamovegoto_entrypoint_1(void *arg0) {
@@ -33,9 +33,9 @@ void bamovegoto_entrypoint_1(void *arg0) {
     void func_8009C0F8(void *, f32 *);
     u8 *state;
 
-    state = *(u8 **)((u8 *)arg0 + 0xC8);
+    state = ((Objgoto_arg0 *)arg0)->unkC8;
     func_800EE7F8((f32 *)(state + 4), (f32 *)(state + 0x64));
-    func_8009C0F8(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x64));
+    func_8009C0F8(arg0, (f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x64));
     func_80800000_bamovegoto(arg0, 6);
 }
 
@@ -45,19 +45,19 @@ f32 bamovegoto_entrypoint_2(void *arg0) {
 
 /* extern */
 
-void bamovegoto_entrypoint_3(void *arg0) {
-    s32 func_800EEAD4(s32, s32);
-    s32 temp_v0;
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) bamovegoto_entrypoint_3(void *arg0) {
+    f32 func_800EEAD4(f32 a[3], f32 b[3]);
+    BtIntPtr temp_v0;
 
     temp_v0 = (*(s32 *)((s8 *)(arg0) + (0xC8)));
-    func_800EEAD4(temp_v0 + 0x58, temp_v0 + 0x64);
+    BT_NATIVE_ONLY(return) func_800EEAD4(temp_v0 + 0x58, temp_v0 + 0x64);
 }
 
 s32 bamovegoto_entrypoint_4(void *arg0) {
     return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) == 6;
 }
 
-void bamovegoto_entrypoint_5(s32 arg0)
+void bamovegoto_entrypoint_5(BtIntPtr arg0)
 {
     func_80800000_bamovegoto(arg0,0);
 }
@@ -82,7 +82,7 @@ void bamovegoto_entrypoint_10(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 86) = arg1;
 }
 
-void bamovegoto_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
+void bamovegoto_entrypoint_11(void *arg0, BtIntPtr arg1, BtIntPtr arg2) {
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x80))) = arg1;
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x7C))) = arg2;
 }
@@ -91,13 +91,13 @@ void bamovegoto_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
 
 void bamovegoto_entrypoint_12(void *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 100), arg1);
+    func_800EE7F8((f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 100), arg1);
 }
 
 /* extern */
 
 void bamovegoto_entrypoint_13(void *arg0) {
-    s32 baphysics_set_type(s32, s32);
+    void baphysics_set_type(void *self, s32 type);
     baphysics_set_type(arg0, 0xC);
     if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x55))) == 1) {
         func_80800000_bamovegoto(arg0, 2);
@@ -130,18 +130,18 @@ void bamovegoto_entrypoint_14(void *arg0) {
     f32 value;
     u8 *state;
 
-    state = *(u8 **)((u8 *)arg0 + 0xC8);
+    state = ((Objgoto_arg0 *)arg0)->unkC8;
     switch (state[0x54]) {
     case 2:
         func_8009C128(arg0, (f32 *)(state + 0x58));
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         if (*(f32 *)(state + 0x78) != 0.0f) {
             func_800EFB24(diff, state + 0x64, state + 0x58);
             value = func_800EEFFC(diff);
-            state = *(u8 **)((u8 *)arg0 + 0xC8);
+            state = ((Objgoto_arg0 *)arg0)->unkC8;
             *(f32 *)(state + 0x70) = value / *(f32 *)(state + 0x78);
         }
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         *(f32 *)(state + 0x74) = 0.0;
         func_8009BA9C(arg0, 0);
         baphysics_set_target_horizontal_velocity(arg0, 0.0f);
@@ -149,37 +149,37 @@ void bamovegoto_entrypoint_14(void *arg0) {
         break;
     case 3:
         value = func_800D8FF8();
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         *(f32 *)(state + 0x74) += value;
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         progress = func_800F10B4(*(f32 *)(state + 0x74), 0.0,
                                *(f32 *)(state + 0x70), 0.0, 1.0f);
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         if (*(f32 (**)(void *, f32))(state + 0x80) != 0) {
             blend = (*(f32 (**)(void *, f32))(state + 0x80))(arg0, progress);
         } else {
             blend = progress;
         }
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         func_800EE7F8(oldpos, (f32 *)(state + 4));
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
-        *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4) =
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
+        *(f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 4) =
             func_800F1214(blend, *(f32 *)(state + 0x58), *(f32 *)(state + 0x64));
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
-        *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 8) =
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
+        *(f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 8) =
             func_800F1214(blend, *(f32 *)(state + 0x5C), *(f32 *)(state + 0x68));
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
-        *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0xC) =
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
+        *(f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0xC) =
             func_800F1214(blend, *(f32 *)(state + 0x60), *(f32 *)(state + 0x6C));
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         if (*(void (**)(void *, f32 *, f32))(state + 0x7C) != 0) {
             (*(void (**)(void *, f32 *, f32))(state + 0x7C))(arg0, (f32 *)(state + 4), progress);
         }
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         func_800EFB24(state + 0x10, state + 4, oldpos);
-        func_800EF334((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x10), 1.0f / func_800D8FF8());
+        func_800EF334((f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x10), 1.0f / func_800D8FF8());
         baphysics_set_target_horizontal_velocity(arg0,
-            func_800EEF94((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x10)));
+            func_800EEF94((f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x10)));
         if (progress == 1.0f) {
             func_80800000_bamovegoto(arg0, 6);
         }
@@ -190,29 +190,29 @@ void bamovegoto_entrypoint_14(void *arg0) {
         break;
     case 5:
         dt = func_800D8FF8();
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         func_800EFB24(velocity, state + 0x64, state + 4);
         velocity[1] = 0.0f;
-        if (func_800EEFFC(velocity) <= *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x78) * dt) {
+        if (func_800EEFFC(velocity) <= *(f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x78) * dt) {
             func_80800000_bamovegoto(arg0, 6);
         } else {
-            func_800EF368(velocity, *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x78));
+            func_800EF368(velocity, *(f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x78));
         }
-        *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x10) = velocity[0];
-        *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x18) = velocity[2];
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        *(f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x10) = velocity[0];
+        *(f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x18) = velocity[2];
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         if (state[0x56] != 0) {
             *(f32 *)(state + 0x14) += *(f32 *)(state + 0x34) * dt;
-            state = *(u8 **)((u8 *)arg0 + 0xC8);
+            state = ((Objgoto_arg0 *)arg0)->unkC8;
             if (*(f32 *)(state + 0x14) < *(f32 *)(state + 0x38)) {
                 *(f32 *)(state + 0x14) = *(f32 *)(state + 0x38);
             }
         }
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         func_800EFA20(state + 0x28, state + 0x10, dt);
         baphysics_set_target_horizontal_velocity(arg0,
-            func_800EEF94((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x10)));
-        state = *(u8 **)((u8 *)arg0 + 0xC8);
+            func_800EEF94((f32 *)(((Objgoto_arg0 *)arg0)->unkC8 + 0x10)));
+        state = ((Objgoto_arg0 *)arg0)->unkC8;
         func_800EF04C((f32 *)(state + 4), (f32 *)(state + 0x28));
         break;
     case 0:

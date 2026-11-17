@@ -8,9 +8,9 @@ void func_80800000_chsmalltrexdoor(Actor *arg0) {
     s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_80101FDC(Actor *, u32);
     f32 func_80103EAC(Actor *);
     f32 sp44[3];
@@ -37,13 +37,13 @@ void func_80800000_chsmalltrexdoor(Actor *arg0) {
 /* extern */
 
 void func_80800150_chsmalltrexdoor(Actor *arg0) {
-    s32 _chdoor_entrypoint_0();
+    void _chdoor_entrypoint_0(BtIntPtr arg0);
     s32 func_800D90A4(f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
     f32 func_800F2094(f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     s32 func_8010108C();
     f32 sp2C[3];
     f32 sp28;
@@ -69,9 +69,9 @@ void func_80800244_chsmalltrexdoor(Actor *arg0, s32 arg1, s32 arg2) {
         s32 unk0[7];
         f32 unk1C;
     } DoorData;
-    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    u32 func_800F54E4(void);
+    s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    BtUIntPtr func_800F54E4(void);
     if (((arg1 == 0x1D) || (arg1 == 0x1E)) && (func_800F52B8(func_800F54E4(), arg0->unk0) == 0x18)) {
         ((DoorData *)arg0->actorData)->unk1C = 4.0f;
         _chdoor_entrypoint_1(arg0, 7, 0);
@@ -82,7 +82,12 @@ void func_80800244_chsmalltrexdoor(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chsmalltrexdoor_entrypoint_0(void)
 {
-    extern u8 D_808002E0_chsmalltrexdoor[];
+    extern ActorData D_808002E0_chsmalltrexdoor[];
 
     return (OSThread *) D_808002E0_chsmalltrexdoor;
 }
+/* data_to_c.py: from asm/data/overlays/ch/smalltrexdoor.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_808002E0_chsmalltrexdoor [1] BT_DATA(4, overlays_ch_smalltrexdoor, 0x0) = { { 172, 655, 2184, 1, 0, (void (*)(struct Actor *))func_80800150_chsmalltrexdoor, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 327680000, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chsmalltrexdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 25602, (void (*)(struct Actor *, long, long))func_80800244_chsmalltrexdoor, 0 } };

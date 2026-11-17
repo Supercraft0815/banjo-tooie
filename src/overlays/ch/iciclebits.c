@@ -41,10 +41,10 @@ void func_808000D0_chiciclebits(Actor *arg0) {
     void _subaddieDll_entrypoint_7(Actor *, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80018820(s32, f32, f32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_80101FDC(Actor *, u32);
     void func_80103110(Actor *, u32);
     extern u16 D_808003EE_chiciclebits[][5];
@@ -91,10 +91,10 @@ void func_808000D0_chiciclebits(Actor *arg0) {
 }
 
 s32 func_80800240_chiciclebits(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80018820(s32, f32, f32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_80103110(Actor *, u32);
     s32 func_80103140(Actor *, u32, u16);

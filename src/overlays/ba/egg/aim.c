@@ -17,7 +17,7 @@ f32 func_80800008_baeggaim(f32 arg0, f32 arg1, f32 arg2) { s32 func_800D8FEC(); 
     return var_f20;
 }
 
-void func_808000B4_baeggaim(struct player_state_s *arg0, f32 *arg1) { s32 _baeggcursor_entrypoint_10(void *, f32, f32); s32 _baeggcursor_entrypoint_3(void *, f32 *, f32 *); f32 bastick_getX(struct player_state_s *); f32 bastick_getY(struct player_state_s *); f32 func_80800008_baeggaim(f32, f32, f32); f32 sp24; f32 sp20; f32 temp_f0;
+void func_808000B4_baeggaim(struct player_state_s *arg0, f32 *arg1) { void _baeggcursor_entrypoint_10(void *arg0, f32 arg1, f32 arg2); void _baeggcursor_entrypoint_3(void *arg0, f32 *arg1, f32 *arg2); f32 bastick_getX(struct player_state_s *); f32 bastick_getY(struct player_state_s *); f32 func_80800008_baeggaim(f32, f32, f32); f32 sp24; f32 sp20; f32 temp_f0;
     _baeggcursor_entrypoint_3(arg0, arg1, arg1 + 1);
     sp24 = (bastick_getX(arg0) * 114.0f) + 114.0f + 38.0f;
     sp20 = (bastick_getY(arg0) * 85.5f) + 85.5f + 28.5f;
@@ -27,7 +27,7 @@ void func_808000B4_baeggaim(struct player_state_s *arg0, f32 *arg1) { s32 _baegg
     _baeggcursor_entrypoint_10(arg0, arg1[0], temp_f0);
 }
 
-void func_80800170_baeggaim(s32 arg0, f32 *arg1, f32 arg2) {
+void func_80800170_baeggaim(BtIntPtr arg0, f32 *arg1, f32 arg2) {
     f32 func_800F1344(f32, f32, f32, f32, f32);
     f32 unused;
     f32 temp;
@@ -58,7 +58,7 @@ void func_80800170_baeggaim(s32 arg0, f32 *arg1, f32 arg2) {
     arg1[1] = func_800F1344(y, 0.0f, 32.5f, zero, arg2);
 }
 
-void func_80800264_baeggaim(struct player_state_s *arg0, s32 arg1) {
+void func_80800264_baeggaim(struct player_state_s *arg0, BtIntPtr arg1) {
     f32 _bafpctrl_entrypoint_3(struct player_state_s *);
     f32 _bsdronelook_entrypoint_2(f32);
     void _ncba1p_entrypoint_7(struct player_state_s *, f32[3]);
@@ -66,7 +66,7 @@ void func_80800264_baeggaim(struct player_state_s *arg0, s32 arg1) {
     int baflag_isTrue(struct player_state_s *, s32);
     struct player_state_s *func_800A4CA8(struct player_state_s *);
     f32 func_800D8FF8(void);
-    void func_80800170_baeggaim(s32, f32 *, f32);
+    void func_80800170_baeggaim(BtIntPtr, f32 *, f32);
     f32 speed;
     f32 dt;
     struct {
@@ -89,19 +89,19 @@ void func_80800264_baeggaim(struct player_state_s *arg0, s32 arg1) {
     _ncba1p_entrypoint_7(player, vectors.rotation);
 }
 
-void baeggaim_entrypoint_1(s32 arg0)
+void baeggaim_entrypoint_1(BtIntPtr arg0)
 {
     _baeggcursor_entrypoint_7(arg0,0x4);
     _baeggfire_entrypoint_4(arg0);
 }
 
-void baeggaim_entrypoint_2(s32 arg0)
+void baeggaim_entrypoint_2(BtIntPtr arg0)
 {
     _baeggcursor_entrypoint_7(arg0,0x3);
     _baeggfire_entrypoint_5(arg0);
 }
 
-void baeggaim_entrypoint_3(struct player_state_s *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) baeggaim_entrypoint_3(struct player_state_s *arg0) {
     int bakey_held(struct player_state_s *, s32);
     int bakey_pressed(struct player_state_s *, int);
     s32 func_80094510(struct player_state_s *);
@@ -115,7 +115,7 @@ void baeggaim_entrypoint_3(struct player_state_s *arg0) {
     }
     func_808000B4_baeggaim(arg0, sp28);
     if ((baflag_isTrue(arg0, 0x2E) == 0) && (_bafpctrl_entrypoint_1(arg0) == 0)) {
-        func_80800264_baeggaim(arg0, (s32)sp28);
+        func_80800264_baeggaim(arg0, (BtIntPtr)sp28);
     }
     sp24 = 0;
     if (func_80094510(arg0) == 7) {
@@ -128,5 +128,5 @@ void baeggaim_entrypoint_3(struct player_state_s *arg0) {
     if ((sp24 != 0) && (_bafpctrl_entrypoint_2(arg0) == 0) && (func_80094B14(arg0) != 0)) {
         _baeggfire_entrypoint_7(arg0);
     }
-    _baeggfire_entrypoint_6(arg0);
+    BT_NATIVE_ONLY(return) _baeggfire_entrypoint_6(arg0);
 }

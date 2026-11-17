@@ -17,12 +17,12 @@ u32 D_808010B0_chnastycavemen[] = {
     0x40600000, 0x02F40001
 };
 
-u32 D_808010E8_chnastycavemen[] = {
-    0x01DE01DA, 0x07EE0001, (u32)D_808010B0_chnastycavemen, (u32)func_80102EC0,
-    (u32)func_8080067C_chnastycavemen, (u32)func_80800B10_chnastycavemen, 0x00000000, 0x00000000,
+BtFnWord D_808010E8_chnastycavemen[] = {
+    0x01DE01DA, 0x07EE0001, (BtFnWord)D_808010B0_chnastycavemen, (BtFnWord)func_80102EC0,
+    (BtFnWord)func_8080067C_chnastycavemen, (BtFnWord)func_80800B10_chnastycavemen, 0x00000000, 0x00000000,
     0x00000000, 0x00040420, 0x00000000, 0x00000000,
-    0x00580000, 0x00000000, (u32)func_80107C2C, 0x84005412,
-    (u32)func_808009BC_chnastycavemen, 0x00000000
+    0x00580000, 0x00000000, (BtFnWord)func_80107C2C, 0x84005412,
+    (BtFnWord)func_808009BC_chnastycavemen, 0x00000000
 };
 
 s32 D_80801130_chnastycavemen[] = {
@@ -67,12 +67,12 @@ u32 D_80801194_chnastycavemen[] = {
     0x406CCCCD, 0x02F50000
 };
 
-u32 D_808011BC_chnastycavemen[] = {
-    0x015801DB, 0x07EE0001, (u32)D_80801194_chnastycavemen, (u32)func_80102EC0,
-    (u32)func_80800BE0_chnastycavemen, (u32)func_80800E68_chnastycavemen, 0x0BB80000, 0x3F800000,
-    0x00000000, 0x00040020, (u32)func_8080103C_chnastycavemen, 0x00000000,
-    0x00000000, 0x00000000, (u32)func_80107C2C, 0x80004412,
-    (u32)func_80800E90_chnastycavemen, 0x00000000
+BtFnWord D_808011BC_chnastycavemen[] = {
+    0x015801DB, 0x07EE0001, (BtFnWord)D_80801194_chnastycavemen, (BtFnWord)func_80102EC0,
+    (BtFnWord)func_80800BE0_chnastycavemen, (BtFnWord)func_80800E68_chnastycavemen, 0x0BB80000, 0x3F800000,
+    0x00000000, 0x00040020, (BtFnWord)func_8080103C_chnastycavemen, 0x00000000,
+    0x00000000, 0x00000000, (BtFnWord)func_80107C2C, 0x80004412,
+    (BtFnWord)func_80800E90_chnastycavemen, 0x00000000
 };
 
 u32 D_80801204_chnastycavemen[] = {
@@ -99,8 +99,8 @@ int func_8080000C_chnastycavemen(void) {
 /* extern */
 
 int func_80800060_chnastycavemen(void) {
-    u32 func_800F54E4(void);
-    s32 func_800F640C(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F640C(BtIntPtr, s32);
     s32 func_8008FE14();
     return (func_8008FE14() == 0x1D9) ||
         (func_800F640C(func_800F54E4(), 0x1D9) != 0);
@@ -123,11 +123,11 @@ int func_808000AC_chnastycavemen(int arg0, s32 *arg1, s32 *arg2) {
             break;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x436]; s16 unk436; } Objnastycavemen_D_80127194; /* offsets.py genstruct: fields from raw offsets on &D_80127194; rename once understood */
 
-int func_8080010C_chnastycavemen(s32 arg0) {
+int func_8080010C_chnastycavemen(BtIntPtr arg0) {
     extern f32 D_80127194;
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     s32 func_8008FD48();
     void func_800900D0(s32);
     void func_800904C8(s32);
@@ -145,7 +145,7 @@ int func_8080010C_chnastycavemen(s32 arg0) {
             func_800904C8(0x97);
             break;
         default:
-            func_808000AC_chnastycavemen(*(s16 *)((s8 *)&D_80127194 + 0x436), &sp24, &sp20);
+            func_808000AC_chnastycavemen(((Objnastycavemen_D_80127194 *)&D_80127194)->unk436, &sp24, &sp20);
             _gcgoto_entrypoint_1(sp24, sp20);
             break;
     }
@@ -154,13 +154,13 @@ int func_8080010C_chnastycavemen(s32 arg0) {
 
 /* extern */
 
-int func_80800194_chnastycavemen(s32 arg0, s32 arg1) {
-    s32 func_800F56AC(s32);
-    s32 func_800F6478(s32);
-    s32 func_800F64A4(s32, s32);
-    s32 func_800F651C(s32);
-    s32 func_800F6C5C(s32);
-    int func_800F72DC(s32);
+int func_80800194_chnastycavemen(BtIntPtr arg0, BtIntPtr arg1) {
+    s32 func_800F56AC(BtIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_800F651C(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
+    int func_800F72DC(BtIntPtr);
     s32 sp34;
     s32 sp30;
     s32 sp2C;
@@ -182,9 +182,9 @@ int func_80800194_chnastycavemen(s32 arg0, s32 arg1) {
 }
 
 void func_80800268_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_8008FD48();
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
@@ -264,7 +264,7 @@ void func_808004C4_chnastycavemen(Actor *arg0) {
     void func_800EFB24(void *, void *, void *);
     f32 func_800F1DCC(f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     s32 pad;
     f32 vec[3];
     void *anim;
@@ -296,8 +296,8 @@ void func_8080067C_chnastycavemen(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 func_8008FB10(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     s32 func_800902E4(f32 *, f32, s32, Actor **);
-    u32 func_800F54E4(void);
-    s32 func_800F55FC(s32 arg0);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F55FC(BtIntPtr arg0);
     void * func_80100094(Actor *arg0, u32 arg1);
     s32 func_80101DDC(Actor *arg0);
     s32 func_80101E14(Actor *arg0, f32 arg1);
@@ -320,7 +320,7 @@ void func_8080067C_chnastycavemen(Actor *arg0) {
     case 1:
         _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801138_chnastycavemen, 0.6f);
         _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801144_chnastycavemen, 0.05f);
-        if (func_80800194_chnastycavemen((s32)arg0, func_800F54E4())) {
+        if (func_80800194_chnastycavemen((BtIntPtr)arg0, func_800F54E4())) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801150_chnastycavemen);
             func_80800268_chnastycavemen(arg0, 2, 0);
         }
@@ -334,7 +334,7 @@ void func_8080067C_chnastycavemen(Actor *arg0) {
     case 3:
         _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80801174_chnastycavemen, D_80801164_chnastycavemen);
         if (arg0->unk74_30 && arg0->unk74_29) {
-            if (!func_8080010C_chnastycavemen((s32)arg0)) {
+            if (!func_8080010C_chnastycavemen((BtIntPtr)arg0)) {
                 _capod_entrypoint_14();
             }
             arg0->unk74_29 = 0;
@@ -372,8 +372,8 @@ void func_80800968_chnastycavemen(void) {
     s32 func_800EA090(void);
     s32 sp1C;
     sp1C = func_800EA090();
-    if (((*(s16 *)((s8 *)(&D_80127194) + 0x436)) == 0) || ((sp1C != 0) && (func_80090178(0x10000) == 0))) {
-        (*(s16 *)((s8 *)(&D_80127194) + 0x436)) = (s16) sp1C;
+    if (((((Objnastycavemen_D_80127194 *)&D_80127194)->unk436) == 0) || ((sp1C != 0) && (func_80090178(0x10000) == 0))) {
+        (((Objnastycavemen_D_80127194 *)&D_80127194)->unk436) = (s16) sp1C;
     }
 }
 
@@ -382,8 +382,8 @@ s32 func_808009BC_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
     u32 _glcutDll_entrypoint_19(s32);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     s32 func_800DA298(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F640C(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F640C(BtIntPtr, s32);
     void func_800FFA88(Unk80132ED0 *);
     void func_80105A9C(Actor *, f32);
     void func_80108A30(s32, void *, f32, s32);
@@ -448,10 +448,10 @@ OSThread *chnastycavemen_entrypoint_1(void)
 }
 
 void func_80800BE0_chnastycavemen(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_5(f32 *, u32, u32, u32);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_8008FF6C(void);
     void func_80090708(s32);
     f32 func_800F1DCC(f32, f32);
@@ -524,8 +524,8 @@ void func_80800E68_chnastycavemen(u8 *arg0, s32 arg1) {
     func_80101808(arg0, &func_801017D0);
 }
 
-s32 func_80800E90_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) { s32 _suexpression_entrypoint_12(void *, s32, s32); s32 _suexpression_entrypoint_17(void *, s32); s32 _suexpression_entrypoint_7(Actor *, s32, s32); void func_80090708(s32); s32 func_800DA298(s32); void func_800DF3E0(void); void func_800DF744(s32, s32); s32 func_800EA090(void); f32 func_800F1DCC(f32, f32); void *func_80100094(Actor *, u32); s32 func_801015D0(Actor *); void func_80102424(Actor *, s32); void func_8010573C(Actor *, f32); void *sp1C; f32 yaw; Actor *rotationActor; switch (arg1) { case 0x95: func_80100094(arg0, 1); func_80800968_chnastycavemen(); if (func_8080000C_chnastycavemen()) { func_80102424(arg0, 1); } else if (func_800DA298(0x184)) { func_8010573C(arg0, 1.0f); yaw = func_800F1DCC(arg0->rotation[1], 180.0f); rotationActor = arg0; rotationActor->rotation[1] = yaw; func_80102424(rotationActor, 4); } else if (func_800EA090() == 5) { func_80102424(arg0, 1); } _suexpression_entrypoint_7(arg0, 1, 0x96); sp1C = func_80100094(arg0, 1);
-    _suexpression_entrypoint_12(sp1C, 0x42700000, 0x41700000); _suexpression_entrypoint_17(sp1C, 0x320); break; case 0x2E: switch (*(s16 *)&arg2) { case 0x17EF: case 0x17F0: func_8080010C_chnastycavemen((s32)arg0); break; default: func_80090708(2); func_80102424(arg0, 3); break; } break; case 0x1F: func_801015D0(arg0); func_800DF3E0(); func_800DF744(5, 2); func_800DF744(6, 2); func_800DF744(8, 2); func_800DF744(4, 3); break; default: return 0; } return 1; }
+s32 func_80800E90_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) { s32 _suexpression_entrypoint_12(void *, s32, s32); s32 _suexpression_entrypoint_17(void *, s32); BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32); void func_80090708(s32); s32 func_800DA298(s32); void func_800DF3E0(void); void func_800DF744(s32, s32); s32 func_800EA090(void); f32 func_800F1DCC(f32, f32); void *func_80100094(Actor *, u32); s32 func_801015D0(Actor *); void func_80102424(Actor *, s32); void func_8010573C(Actor *, f32); void *sp1C; f32 yaw; Actor *rotationActor; switch (arg1) { case 0x95: func_80100094(arg0, 1); func_80800968_chnastycavemen(); if (func_8080000C_chnastycavemen()) { func_80102424(arg0, 1); } else if (func_800DA298(0x184)) { func_8010573C(arg0, 1.0f); yaw = func_800F1DCC(arg0->rotation[1], 180.0f); rotationActor = arg0; rotationActor->rotation[1] = yaw; func_80102424(rotationActor, 4); } else if (func_800EA090() == 5) { func_80102424(arg0, 1); } _suexpression_entrypoint_7(arg0, 1, 0x96); sp1C = func_80100094(arg0, 1);
+    _suexpression_entrypoint_12(sp1C, 0x42700000, 0x41700000); _suexpression_entrypoint_17(sp1C, 0x320); break; case 0x2E: switch (*(s16 *)&arg2) { case 0x17EF: case 0x17F0: func_8080010C_chnastycavemen((BtIntPtr)arg0); break; default: func_80090708(2); func_80102424(arg0, 3); break; } break; case 0x1F: func_801015D0(arg0); func_800DF3E0(); func_800DF744(5, 2); func_800DF744(6, 2); func_800DF744(8, 2); func_800DF744(4, 3); break; default: return 0; } return 1; }
 
 void func_8080103C_chnastycavemen(s32 arg0) {
     _suexpression_entrypoint_8(arg0, 1);

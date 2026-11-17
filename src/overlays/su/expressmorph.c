@@ -33,7 +33,7 @@ s32 suexpressmorph_entrypoint_0(s16 arg0) {
     t = D_80801327_suexpressmorph[i][0] * 4 + 8;
     t += D_80801327_suexpressmorph[i][0] * 4;
     return t;
-}
+}                typedef struct { u8 pad0[0x2]; s16 unk2; u8 pad4[0x4]; f32 unk8; } Objexpressmorph_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 #ifdef BT_NATIVE // defined below on the N64; the arrays before it need the complete type
 struct MorphEntry {
@@ -48,7 +48,7 @@ struct MorphEntry;
 #endif
 
 s32 func_808000EC_suexpressmorph(f32 *arg0, void *arg1) {
-    f32 func_800D8FF8(void); extern struct MorphEntry D_80801320_suexpressmorph[]; f32 *var_s0; f32 *var_s2; u8 *var_v0; s32 var_s3; s32 var_s4; s32 temp_v1;  var_s0 = (f32 *)((u8 *)arg1 + 8); var_s3 = 0; var_s4 = 0; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]; temp_v1 = var_v0[7]; var_s2 = (f32 *)(temp_v1 * 4 + (u8 *)arg1 + 8); if ((s32)temp_v1 > 0) { do { if (*var_s2 <= 0) { *(f32 *)((u8 *)arg0 + var_s3) = *(f32 *)((s32)(*(f32 (**)[9])var_v0)[((u8 *)arg1)[5]] + var_s3 + 4); } else { *var_s2 -= func_800D8FF8(); } if (*(f32 *)((u8 *)arg0 + var_s3) < *var_s0) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 < 0.0f) { *var_s0 = 0.0f; } } else if (*var_s0 < *(f32 *)((u8 *)arg0 + var_s3)) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 > 1.0f) { *var_s0 = 1.0f; } } var_s4++; var_s3 += 4; var_s0++; var_s2++; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]; } while (var_s4 < (s32)var_v0[7]); } }
+    f32 func_800D8FF8(void); extern struct MorphEntry D_80801320_suexpressmorph[]; BT_IDO_ONLY(f32 *var_s0; f32 *var_s2; u8 *var_v0;) BT_NATIVE_ONLY(u8 *var_v0; f32 *var_s0; f32 *var_s2;) BtIntPtr var_s3; s32 var_s4; s32 temp_v1;  var_s0 = &((Objexpressmorph_arg1 *)arg1)->unk8; var_s3 = 0; var_s4 = 0; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]; temp_v1 = var_v0[7]; var_s2 = (f32 *)(temp_v1 * 4 + (u8 *)arg1 + 8); if ((s32)temp_v1 > 0) { do { if (*var_s2 <= 0) { *(f32 *)((u8 *)arg0 + var_s3) = *(f32 *)((BtIntPtr)(*(f32 (**)[9])var_v0)[((u8 *)arg1)[5]] + var_s3 + 4); } else { *var_s2 -= func_800D8FF8(); } if (*(f32 *)((u8 *)arg0 + var_s3) < *var_s0) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 < 0.0f) { *var_s0 = 0.0f; } } else if (*var_s0 < *(f32 *)((u8 *)arg0 + var_s3)) { *var_s0 += (*(f32 *)((u8 *)arg0 + var_s3) - *var_s0) * 0.2f; if (*var_s0 > 1.0f) { *var_s0 = 1.0f; } } var_s4++; var_s3 += 4; var_s0++; var_s2++; var_v0 = ((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]; } while (var_s4 < (s32)var_v0[7]); } BT_NATIVE_ONLY(return 0;) }
 
 s32 func_808002BC_suexpressmorph(f32 *arg0, void *arg1) {
     u32 func_800D5298(void);
@@ -56,9 +56,9 @@ s32 func_808002BC_suexpressmorph(f32 *arg0, void *arg1) {
     s32 func_800D52F4(void);
     extern struct MorphEntry D_80801320_suexpressmorph[];
     s32 pad;
-    f32 *timer;
+    BT_IDO_ONLY(f32 *timer;) BT_NATIVE_ONLY(BtIntPtr offset;)
     s32 state;
-    s32 offset;
+    BT_IDO_ONLY(BtIntPtr offset;) BT_NATIVE_ONLY(f32 *timer;)
     s32 i;
     s32 selected;
     s16 *row;
@@ -66,50 +66,50 @@ s32 func_808002BC_suexpressmorph(f32 *arg0, void *arg1) {
     f32 *values;
 
     selected = -1;
-    timer = (f32 *)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)][7] * 4 + (u8 *)arg1 + 8);
+    timer = (f32 *)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2][7] * 4 + (u8 *)arg1 + 8);
     if (func_800D52F4() == *(s16 *)arg1) {
         state = func_800D52A4() + 1;
         i = 0;
-        if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[6] > 0) {
-            row = *(s16 **)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]);
+        if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2])[6] > 0) {
+            row = *(s16 **)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]);
             do {
                 if (state == *row) {
                     selected = i;
                 }
                 i++;
                 row += 18;
-            } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[6]);
+            } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2])[6]);
         }
         i = 0;
         if (func_800D5298()) {
-            if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7] > 0) {
+            if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2])[7] > 0) {
                 offset = 0;
                 do {
                 i++;
-                if (*(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4) != -1.0f) {
-                    if (*timer < *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 20)) {
-                        *timer = *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 20);
-                        *(f32 *)((u8 *)arg0 + offset) = *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4);
+                if (*(f32 *)((BtIntPtr)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]))[selected] + offset + 4) != -1.0f) {
+                    if (*timer < *(f32 *)((BtIntPtr)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]))[selected] + offset + 20)) {
+                        *timer = *(f32 *)((BtIntPtr)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]))[selected] + offset + 20);
+                        *(f32 *)((u8 *)arg0 + offset) = *(f32 *)((BtIntPtr)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]))[selected] + offset + 4);
                                 }
                 }
                 offset += 4;
                 timer++;
-                } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7]);
+                } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2])[7]);
             }
         } else {
-            if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7] > 0) {
+            if ((s32)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2])[7] > 0) {
                 offset = 0;
                 do {
                 i++;
-                if (*(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4) != -1.0f) {
-                    *(f32 *)((u8 *)arg0 + offset) = *(f32 *)((s32)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)]))[selected] + offset + 4);
+                if (*(f32 *)((BtIntPtr)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]))[selected] + offset + 4) != -1.0f) {
+                    *(f32 *)((u8 *)arg0 + offset) = *(f32 *)((BtIntPtr)(*(f32 (**)[9])(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2]))[selected] + offset + 4);
                         }
                 offset += 4;
-                } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[*(s16 *)((u8 *)arg1 + 2)])[7]);
+                } while (i < (s32)(((u8 (*)[12])D_80801320_suexpressmorph)[((Objexpressmorph_arg1 *)arg1)->unk2])[7]);
             }
         }
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 #ifndef BT_NATIVE
 struct MorphEntry {
@@ -146,24 +146,24 @@ void suexpressmorph_entrypoint_2(u8 *arg0, void *arg1) {
     };
     s32 pad0;
     u8 *sp38;
-    s32 sp34;
+    BtIntPtr sp34;
     s32 pad;
     u8 *sp2C;
     u8 *morph;
-    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
-    s32 _dbmorph_entrypoint_4(u8 *, u8 *, s32, u8, s32);
-    s32 func_800AE080(s16);
+    void _dbmorph_entrypoint_3(void *arg0, void *arg1, void *arg2, s32 arg3, f32 *weights);
+    void _dbmorph_entrypoint_4(s16 *arg0, u8 *arg1, u8 *arg2, s32 arg3, BtIntPtr arg4);
+    void * func_800AE080(s16 handle);
     u8 *func_800B2768(u8 *);
-    s32 func_800B2840(s32);
+    BtIntPtr func_800B2840(BtIntPtr);
     u8 *func_80103AA0(u8 *);
-    s32 func_80103CDC(u8 *, u8 *);
+    BtIntPtr func_80103CDC(u8 *, u8 *);
     extern u8 D_80801328_suexpressmorph[];
 
     sp38 = func_80103AA0(*(u8 **)arg1);
     if (sp38 != NULL) {
         morph = (u8 *)func_80103CDC(arg1, sp38);
         if (morph != NULL) {
-            sp34 = func_800B2840((s32)sp38);
+            sp34 = func_800B2840((BtIntPtr)sp38);
             sp2C = func_800B2768(sp38);
             _dbmorph_entrypoint_3(sp2C, morph, sp34, arg0[6], arg0 + 8);
             if (D_80801328_suexpressmorph[*(s16 *)(arg0 + 2) * 12] & 1) {
@@ -184,7 +184,7 @@ void suexpressmorph_entrypoint_3(s16 *arg0, s16 arg1) {
 
 void suexpressmorph_entrypoint_4(s8 *arg0, s32 arg1) {
     arg0[6] = arg1;
-}
+}    typedef struct { u8 pad0[0x8]; f32 unk8; } Objexpressmorph_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void suexpressmorph_entrypoint_5(s16 *arg0, s16 arg1) {
     extern struct MorphEntry D_80801320_suexpressmorph[];
@@ -196,7 +196,7 @@ void suexpressmorph_entrypoint_5(s16 *arg0, s16 arg1) {
     suexpressmorph_entrypoint_3(arg0, arg1);
     ((s8 *)arg0)[5] = 0;
     ((s8 *)arg0)[6] = 1;
-    var_v0 = (f32 *)((u8 *)arg0 + 8);
+    var_v0 = &((Objexpressmorph_arg0 *)arg0)->unk8;
     count = D_80801320_suexpressmorph[arg0[1]].count;
     var_v1 = (f32 *)(count * 4 + (u8 *)arg0 + 8);
     var_a0 = 0;

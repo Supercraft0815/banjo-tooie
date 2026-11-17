@@ -9,16 +9,16 @@ OSThread *chweldarhead_entrypoint_0(void)
 
 void func_8080000C_chweldarhead(Actor *arg0) {
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_12(u32 *, s32 *);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_12(void *arg0, void *arg1);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800DA298(s32);
     s32 func_800DA9E4(s32, s32);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F8294(s32, f32 *);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F8294(BtIntPtr, f32 *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
@@ -28,7 +28,7 @@ void func_8080000C_chweldarhead(Actor *arg0) {
     f32 *data;
     f32 position[6];
     f32 target[6];
-    s32 player;
+    BtIntPtr player;
 
     data = func_80100094(arg0, 0);
     _susubgame_entrypoint_0(arg0, (u32 *)(data + 6), 0);
@@ -55,7 +55,7 @@ void func_8080000C_chweldarhead(Actor *arg0) {
 }
 
 void func_80800170_chweldarhead(u8 *arg0) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     s32 _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
     s32 func_800DC128(s32, s32);
     extern s32 D_80800538_chweldarhead;
@@ -114,8 +114,8 @@ s32 func_808001E4_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_8080038C_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void func_80108B04(Actor *, u32);
     void func_80102424(Actor *, s32);
     u8 *data;

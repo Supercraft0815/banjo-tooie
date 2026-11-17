@@ -47,9 +47,9 @@ void func_80800018_chbiggafoot(Actor *arg0) {
 }
 
 void func_80800100_chbiggafoot(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     s32 _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _sudeflect_entrypoint_3(f32 *, f32 *, f32 *, f32 *, s32);
+    s32 _sudeflect_entrypoint_3(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
     void _sudeflect_entrypoint_4(s32, f32 *);
     f32 func_80013970(f32);
     f32 func_800D8FF8(void);
@@ -60,8 +60,8 @@ void func_80800100_chbiggafoot(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
@@ -74,7 +74,7 @@ void func_80800100_chbiggafoot(Actor *arg0) {
     void func_8010A570(Actor *);
     void func_8010A590(Actor *);
     s32 func_8010B990(Actor *, s32);
-    void func_808008D4_chbiggafoot(s32);
+    void func_808008D4_chbiggafoot(BtIntPtr);
     s32 func_808008FC_chbiggafoot(Actor *);
     void func_80800980_chbiggafoot(void *);
     s32 func_808009EC_chbiggafoot(Actor *);
@@ -101,7 +101,7 @@ void func_80800100_chbiggafoot(Actor *arg0) {
             arg0->unk64_20 = 0;
             func_80102424(arg0, 3);
         } else {
-            func_808008D4_chbiggafoot((s32)arg0);
+            func_808008D4_chbiggafoot((BtIntPtr)arg0);
         }
         break;
     case 2:
@@ -165,26 +165,26 @@ void func_808004B0_chbiggafoot(s32 arg0)
 
 s32 func_808004D4_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_17(f32);
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_3(u32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
-    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_3(s32 arg0);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
+    void _dbmorph_entrypoint_3(void *arg0, void *arg1, void *arg2, s32 arg3, f32 *weights);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     u8 *func_800B2768(u8 *);
-    s32 func_800B2840(s32);
+    BtIntPtr func_800B2840(BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F0D50(f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_800FFAB0(Actor *);
     s32 func_801015D0(Actor *);
     void func_80102424(Actor *, s32);
-    s32 func_80103CB8(Actor *, u32);
-    s32 func_80106790(s32);
+    BtIntPtr func_80103CB8(Actor *, BtUIntPtr);
+    BtIntPtr func_80106790(BtIntPtr);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_8010A570(Actor *);
     void func_8010D930(s32, s32, f32 *, s32 *);
@@ -237,7 +237,7 @@ s32 func_808004D4_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x1F:
         model = *(u8 **)&arg2;
         sp50[0] = sp50[1] = func_800F0D50(((f32 *)arg0->actorData)[4] + ((f32 *)arg0->actorData)[5], 0.0f, 1.0f);
-        _dbmorph_entrypoint_3(func_800B2768(model), (u8 *)func_80103CB8(arg0, (u32)model), func_800B2840((s32)model), 1, (u8 *)sp50);
+        _dbmorph_entrypoint_3(func_800B2768(model), (u8 *)func_80103CB8(arg0, (BtUIntPtr)model), func_800B2840((BtIntPtr)model), 1, (u8 *)sp50);
         func_801015D0(arg0);
         break;
     case 0x52:
@@ -269,7 +269,7 @@ s32 func_808004D4_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80800840_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_80102424(Actor *, s32);
@@ -289,8 +289,8 @@ void func_80800840_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_808008D4_chbiggafoot(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+void func_808008D4_chbiggafoot(BtIntPtr arg0) {
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     extern s32 D_80801198_chbiggafoot;
     _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80801198_chbiggafoot);
 }
@@ -299,12 +299,12 @@ void func_808008D4_chbiggafoot(s32 arg0) {
 
 s32 func_808008FC_chbiggafoot(Actor *arg0) {
     s32 func_800F0008(f32 [3], f32, f32 [3], f32);
-    u32 func_800F54E4(void);
-    f32 func_800F5BF0(s32, f32 *);
-    s32 func_800F6478(s32);
+    BtUIntPtr func_800F54E4(void);
+    f32 func_800F5BF0(BtIntPtr, f32 *);
+    s32 func_800F6478(BtIntPtr);
     f32 sp24[3];
     s32 pad20;
-    s32 sp1C;
+    BtIntPtr sp1C;
 
     if (arg0->unk58 > 0.0f) {
         return 0;
@@ -319,24 +319,24 @@ s32 func_808008FC_chbiggafoot(Actor *arg0) {
 /* extern */
 
 void func_80800980_chbiggafoot(void *arg0) {
-    u32 func_800F54E4(void);
-    s32 func_800F5A00(s32, s32 *);
-    s32 func_800F6438(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5A00(BtIntPtr, s32 *);
+    s32 func_800F6438(BtIntPtr);
     s32 func_80102BF8(void *, s32, s32, s32);
     f32 func_80102D78(void *, s32 *);
     s32 sp1C[3];
 
     if (func_800F6438(func_800F54E4()) != 0) {
         func_800F5A00(func_800F54E4(), sp1C);
-        (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+        (((Actor *)arg0)->unk54) = func_80102D78(arg0, sp1C);
         func_80102BF8(arg0, 0x3E19999A, 0x40A00000, 0x42F00000);
     }
 }
 
 s32 func_808009EC_chbiggafoot(Actor *arg0) {
     s32 func_800D9078(f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F6478(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6478(BtIntPtr);
     s32 func_8010C9B0(f32 *, u32);
     s32 sp1C;
 
@@ -358,7 +358,7 @@ s32 func_808009EC_chbiggafoot(Actor *arg0) {
 void func_80800A9C_chbiggafoot(Actor *arg0) {
     s32 func_801022E4(Actor *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     extern u32 D_808011B4_chbiggafoot;
     extern u32 D_808011C4_chbiggafoot;
     extern u32 D_808011D4_chbiggafoot;
@@ -390,7 +390,7 @@ void func_80800A9C_chbiggafoot(Actor *arg0) {
 void func_80800BA4_chbiggafoot(Actor *arg0) { void func_80102424(Actor *, s32); void func_80800CDC_chbiggafoot(Actor *); extern s16 D_80801030_chbiggafoot; func_80102424(arg0, 6); arg0->unk3C = NULL; arg0->unk6C_0 = 0; ((f32 *)arg0->actorData)[3] = 1.0f; _capod_entrypoint_20(arg0->unk0, D_80801030_chbiggafoot, 0x10); func_80800CDC_chbiggafoot(arg0); }
 
 void func_80800C04_chbiggafoot(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D9078(f32 *);
     void func_80102424(Actor *, s32);
     void func_80800CDC_chbiggafoot(Actor *);
@@ -414,7 +414,7 @@ void func_80800C04_chbiggafoot(Actor *arg0) {
 
 void func_80800CDC_chbiggafoot(Actor *arg0) {
     void func_800C3BDC(u8 id);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     void func_800C32C4(u8, s32);
     extern u8 D_80801038_chbiggafoot[];
     extern s32 D_80801224_chbiggafoot;
@@ -437,7 +437,7 @@ void func_80800D5C_chbiggafoot(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFE50(f32[3], f32[3], f32[3], f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_80800E98_chbiggafoot(u8 *);
     extern u8 D_80801238_chbiggafoot[];
@@ -461,12 +461,12 @@ void func_80800D5C_chbiggafoot(Actor *arg0) {
 /* extern */
 
 s32 func_80800E2C_chbiggafoot(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _chexploder_entrypoint_6(s32, s32, s32);
-    s32 _chexploder_entrypoint_9(s32, s32, s32);
-    s32 func_80101080();
-    s32 func_80106790(s32);
-    s32 sp1C;
-    s32 temp_v0;
+    s32 _chexploder_entrypoint_6(BtIntPtr, s32, s32);
+    s32 _chexploder_entrypoint_9(BtIntPtr, s32, s32);
+    BtIntPtr func_80101080();
+    BtIntPtr func_80106790(BtIntPtr);
+    BtIntPtr sp1C;
+    BtIntPtr temp_v0;
 
     if (arg1 == 0x90) {
         temp_v0 = func_80106790(func_80101080());
@@ -480,7 +480,7 @@ s32 func_80800E2C_chbiggafoot(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800E98_chbiggafoot(u8 *arg0) {
-    s32 func_800BBCB8(u8 *, s32, s32, s32, s32 *);
+    BtIntPtr func_800BBCB8(u8 *, BtIntPtr, s32, s32, s32 *);
     extern s32 D_80801244_chbiggafoot;
     func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_80801244_chbiggafoot);
 }

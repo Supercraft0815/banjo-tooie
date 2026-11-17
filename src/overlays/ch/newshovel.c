@@ -2,7 +2,7 @@
 
 OSThread *chnewshovel_entrypoint_0(void)
 {
-    extern u8 D_80800FB4_chnewshovel[];
+    extern ActorData D_80800FB4_chnewshovel[];
 
     return (OSThread *) D_80800FB4_chnewshovel;
 }
@@ -10,7 +10,7 @@ OSThread *chnewshovel_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_chnewshovel(Actor *arg0) {
-    void _subaddierouteDll_entrypoint_3(Actor*, void*, f32*);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void* func_80100094(Actor*, u32);
     s32 func_808007F8_chnewshovel(Actor *, s32);
     _subaddierouteDll_entrypoint_3(arg0, func_80100094(arg0, 0U), arg0->position);
@@ -35,16 +35,16 @@ void func_8080004C_chnewshovel(Actor *arg0) {
         s16 state;
     } ShovelState;
     void *func_80100094(Actor *, u32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
-    s32 _suexpression_entrypoint_20();
-    void func_800F5A00(s32, f32 *);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
+    BtIntPtr _suexpression_entrypoint_20();
+    void func_800F5A00(BtIntPtr, f32 *);
     s32 func_80101DDC(Actor *);
-    s32 func_8010D290(s32);
-    void func_80800570_chnewshovel(s32);
+    BtIntPtr func_8010D290(s32);
+    void func_80800570_chnewshovel(BtIntPtr);
     s32 func_80800610_chnewshovel(void *);
     s32 func_808006B0_chnewshovel(Actor *, s32);
     s32 func_80800930_chnewshovel(Actor *);
-    s32 func_80800B5C_chnewshovel(s32);
+    s32 func_80800B5C_chnewshovel(BtIntPtr);
     s32 func_80800BC0_chnewshovel(Actor *);
     int func_80800C58_chnewshovel(Actor *);
     s32 sp24;
@@ -54,7 +54,7 @@ void func_8080004C_chnewshovel(Actor *arg0) {
     if (!((ShovelFlags *)arg0)->inactive) {
         _suexpression_entrypoint_10((u32 *)_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
         sp24 = func_80800930_chnewshovel(arg0);
-        func_80800570_chnewshovel((s32)arg0);
+        func_80800570_chnewshovel((BtIntPtr)arg0);
         switch (arg0->unk70_10) {
         case 1:
             if (func_80800610_chnewshovel(arg0)) {
@@ -90,7 +90,7 @@ void func_8080004C_chnewshovel(Actor *arg0) {
             break;
         case 5:
             if (func_80101DDC(arg0)) {
-                func_808006B0_chnewshovel(arg0, func_80800610_chnewshovel(arg0) ? 3 : (func_80800B5C_chnewshovel((s32)arg0) ? 1 : 6));
+                func_808006B0_chnewshovel(arg0, func_80800610_chnewshovel(arg0) ? 3 : (func_80800B5C_chnewshovel((BtIntPtr)arg0) ? 1 : 6));
             }
             break;
         case 6:
@@ -99,11 +99,11 @@ void func_8080004C_chnewshovel(Actor *arg0) {
                     func_808006B0_chnewshovel(arg0, 3);
                 }
             } else {
-                if (func_80800B5C_chnewshovel((s32)arg0)) {
+                if (func_80800B5C_chnewshovel((BtIntPtr)arg0)) {
                     ((ShovelMotion *)arg0->actorData)->unk24 *= 0.9f;
                 }
                 if (sp20->state == 2) {
-                    func_808006B0_chnewshovel(arg0, func_80800B5C_chnewshovel((s32)arg0) ? 1 : 6);
+                    func_808006B0_chnewshovel(arg0, func_80800B5C_chnewshovel((BtIntPtr)arg0) ? 1 : 6);
                 }
             }
             break;
@@ -126,8 +126,8 @@ s32 func_80800330_chnewshovel(Actor *arg0, s32 arg1, s32 *arg2) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     void _suexpression_entrypoint_13(void *, f32 *, f32 *);
     void _suexpression_entrypoint_14(void *, f32, f32);
-    s32 _suexpression_entrypoint_20();
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_20();
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     void func_800DF744(s32, s32);
     void func_800EFD24(f32 *);
     void func_800FFAB0(Actor *);
@@ -138,7 +138,7 @@ s32 func_80800330_chnewshovel(Actor *arg0, s32 arg1, s32 *arg2) {
     s32 func_80107070(Actor *, u32);
     void func_8010A570(Actor *);
     s32 func_808006B0_chnewshovel(Actor *, s32);
-    s32 func_80800DC8_chnewshovel(s32);
+    s32 func_80800DC8_chnewshovel(BtIntPtr);
     extern u8 D_80800FFC_chnewshovel[];
     void *sp3C;
     void *temp;
@@ -189,7 +189,7 @@ s32 func_80800330_chnewshovel(Actor *arg0, s32 arg1, s32 *arg2) {
         }
         break;
     case 0x38:
-        return func_80800DC8_chnewshovel((s32)arg0);
+        return func_80800DC8_chnewshovel((BtIntPtr)arg0);
     case 0x94:
         temp = (void *)_suexpression_entrypoint_20(arg0);
         if (temp == NULL) {
@@ -207,29 +207,29 @@ s32 func_80800330_chnewshovel(Actor *arg0, s32 arg1, s32 *arg2) {
     return 1;
 }
 
-void func_80800570_chnewshovel(s32 arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(s32, s32, s32 *, s32);
-    s32 _subaddieaudioquick_entrypoint_4(s32, s32, s32 *, s32 *);
-    s32 func_80101E14(s32, s32);
+void func_80800570_chnewshovel(BtIntPtr arg0) {
+    s32 _subaddieaudioquick_entrypoint_3(BtIntPtr, s32, s32 *, s32);
+    s32 _subaddieaudioquick_entrypoint_4(BtIntPtr, BtIntPtr, s32 *, s32 *);
+    s32 func_80101E14(BtIntPtr, s32);
     s32 func_801022E4();
-    s32 func_80800CC4_chnewshovel(s32);
-    s32 func_80800D18_chnewshovel(s32);
-    extern s32 D_80801008_chnewshovel;
-    extern s32 D_80801018_chnewshovel;
-    extern s32 D_80801024_chnewshovel;
+    s32 func_80800CC4_chnewshovel(BtIntPtr);
+    s32 func_80800D18_chnewshovel(BtIntPtr);
+    extern s32 D_80801008_chnewshovel[4];
+    extern s32 D_80801018_chnewshovel[3];
+    extern s32 D_80801024_chnewshovel[4];
     s32 temp_v0;
 
     temp_v0 = func_801022E4();
     if (temp_v0 != 0x1BA) {
         if (temp_v0 == 0x1BB) {
-            _subaddieaudioquick_entrypoint_4(arg0, arg0 + 4, &D_80801008_chnewshovel, &D_80801018_chnewshovel);
+            _subaddieaudioquick_entrypoint_4(arg0, arg0 + 4, D_80801008_chnewshovel, D_80801018_chnewshovel);
             if (func_80101E14(arg0, 0x3F333333) != 0) {
                 func_80800CC4_chnewshovel(arg0);
                 func_80800D18_chnewshovel(arg0);
             }
         }
     } else {
-        _subaddieaudioquick_entrypoint_3(arg0, arg0 + 4, &D_80801024_chnewshovel, 0x3ECCCCCD);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0 + 4, D_80801024_chnewshovel, 0x3ECCCCCD);
     }
 }
 
@@ -237,11 +237,11 @@ void func_80800570_chnewshovel(s32 arg0) {
 
 s32 func_80800610_chnewshovel(void *arg0) {
     s32 _suchase_entrypoint_1(void *);
-    s32 func_800F6478(s32);
-    s32 func_8010C550(void *, s32);
-    s32 func_8010D290(s32);
-    s32 temp_v0;
-    s32 sp1C;
+    s32 func_800F6478(BtIntPtr);
+    s32 func_8010C550(void *, BtIntPtr);
+    BtIntPtr func_8010D290(s32);
+    BtIntPtr temp_v0;
+    BtIntPtr sp1C;
 
     if (((Actor *)arg0)->unk64_29) {
         return 1;
@@ -270,9 +270,9 @@ s32 func_808006B0_chnewshovel(Actor *arg0, s32 arg1) {
     } ShovelState;
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_80107B70(s32, f32 *);
-    s32 func_8010D290(s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_80107B70(BtIntPtr, f32 *);
+    BtIntPtr func_8010D290(s32);
     s32 func_808007F8_chnewshovel(Actor *, s32);
     ShovelState *state;
 
@@ -300,7 +300,7 @@ s32 func_808006B0_chnewshovel(Actor *arg0, s32 arg1) {
         func_808007F8_chnewshovel(arg0, 0);
         break;
     case 6:
-        func_80107B70((s32)arg0, (f32 *)arg0->actorData);
+        func_80107B70((BtIntPtr)arg0, (f32 *)arg0->actorData);
         func_80102424(arg0, arg1);
         func_808007F8_chnewshovel(arg0, 1);
         break;
@@ -324,8 +324,8 @@ s32 func_808007F8_chnewshovel(Actor *arg0, s32 arg1) {
     } ShovelState;
     void *func_80100094(Actor *, u32);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_80800D18_chnewshovel(s32);
-    s32 func_80800CC4_chnewshovel(s32);
+    s32 func_80800D18_chnewshovel(BtIntPtr);
+    s32 func_80800CC4_chnewshovel(BtIntPtr);
     ShovelState *sp24;
     f32 sp20;
 
@@ -341,8 +341,8 @@ s32 func_808007F8_chnewshovel(Actor *arg0, s32 arg1) {
             ((ShovelMotion *)arg0->actorData)->acceleration = (-sp20 - sp20) / 0.6f;
             break;
         case 2:
-            func_80800D18_chnewshovel((s32)arg0);
-            func_80800CC4_chnewshovel((s32)arg0);
+            func_80800D18_chnewshovel((BtIntPtr)arg0);
+            func_80800CC4_chnewshovel((BtIntPtr)arg0);
             ((ShovelMotion *)arg0->actorData)->unk24 = 0;
             ((ShovelMotion *)arg0->actorData)->velocity[1] = 0;
             break;
@@ -445,9 +445,9 @@ s32 func_80800A50_chnewshovel(Actor *arg0) {
 
 /* extern */
 
-s32 func_80800B5C_chnewshovel(s32 arg0) {
+s32 func_80800B5C_chnewshovel(BtIntPtr arg0) {
     f32 func_800EEB40(f32 *, f32 *);
-    s32 func_80107B70(s32, f32 *);
+    s32 func_80107B70(BtIntPtr, f32 *);
     f32 sp1C[3];
 
     if (func_80107B70(arg0, sp1C) != 0) {
@@ -512,19 +512,19 @@ int func_80800C58_chnewshovel(Actor *arg0) {
     return 1;
 }
 
-s32 func_80800CC4_chnewshovel(s32 arg0) {
+s32 func_80800CC4_chnewshovel(BtIntPtr arg0) {
     s32 func_800DC298(f32);
-    extern s32 D_80801064_chnewshovel;
-    func_800C4B7C(func_800DC298(0.5f) ? 0x517 : 0x518);
-    _subaddieaudioquick_entrypoint_2((Actor *) arg0, (f32 *) (arg0 + 4), &D_80801064_chnewshovel);
+    extern s32 D_80801064_chnewshovel[4]; BT_NATIVE_ONLY(s32 result;)
+    BT_NATIVE_ONLY(result =) func_800C4B7C(func_800DC298(0.5f) ? 0x517 : 0x518);
+    _subaddieaudioquick_entrypoint_2((Actor *) arg0, (f32 *) (arg0 + 4), D_80801064_chnewshovel); BT_NATIVE_ONLY(return result;)
 }
 
-s32 func_80800D18_chnewshovel(s32 arg0)
+s32 func_80800D18_chnewshovel(BtIntPtr arg0)
 {
-  s32 func_800B53A4(s32);
-  void func_800BA22C(s32, s32);
+  BtIntPtr func_800B53A4(s32);
+  void func_800BA22C(BtIntPtr, s32);
   void func_800BAB60(s32, void *);
-  s32 func_800BABB8(s32, f32 [3], f32 [3], f32, s32 []);
+  BtIntPtr func_800BABB8(BtIntPtr, f32 [3], f32 [3], f32, s32 []);
   void func_800EE7F8(f32 *, f32 *);
   void func_800F2EA0(void *, void *);
   extern s32 D_80801074_chnewshovel[];
@@ -549,12 +549,31 @@ s32 func_80800D18_chnewshovel(s32 arg0)
     }
     func_800BAB60(particle.emitter, particle.color);
     func_800BA22C(particle.emitter, 3);
-  }
+  } BT_NATIVE_ONLY(return 0;)
 }
 
-s32 func_80800DC8_chnewshovel(s32 arg0) {
+s32 func_80800DC8_chnewshovel(BtIntPtr arg0) {
     s32 func_80101074(s32 *);
-    extern s32 D_808010B0_chnewshovel;
-    func_80101074(&D_808010B0_chnewshovel);
+    extern s32 D_808010B0_chnewshovel[8];
+    func_80101074(D_808010B0_chnewshovel);
     return 2;
 }
+/* data_to_c.py: from asm/data/overlays/ch/newshovel.data.s */
+extern u8 D_80800F50_chnewshovel[];
+void func_80102EC0();
+void func_801018A4();
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+extern u8 D_80800FA0_chnewshovel[];
+u8 D_80800F50_chnewshovel[80] BT_DATA(4, overlays_ch_newshovel, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x70, 0xA3, 0xD7, 0x01, 0xB8, 0x00, 0x44, 0x3F, 0x70, 0xA3, 0xD7, 0x01, 0xB8, 0x00, 0x42, 0x3F, 0x19, 0x99, 0x9A, 0x01, 0xB9, 0x00, 0x42, 0x3F, 0x66, 0x66, 0x66, 0x01, 0xBA, 0x00, 0x02, 0x40, 0x40, 0x00, 0x00, 0x01, 0xBB, 0x00, 0x02, 0x3F, 0x19, 0x99, 0x9A, 0x01, 0xB9, 0x00, 0x42, 0x3F, 0x70, 0xA3, 0xD7, 0x01, 0xB8, 0x00, 0x44, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x70, 0xA3, 0xD7, 0x01, 0xB8, 0x00, 0x44 };
+u8 D_80800FA0_chnewshovel[20] BT_DATA(4, overlays_ch_newshovel, 0x50) = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00 };
+ActorData D_80800FB4_chnewshovel [1] BT_DATA(4, overlays_ch_newshovel, 0x64) = { { 10, 282, 1647, 1, (void *)D_80800F50_chnewshovel, (void (*)(struct Actor *))func_8080004C_chnewshovel, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_801018A4, 131072000, 1058642330, 0, 0, 17157, 801, (void (*)(struct Actor *))func_80800310_chnewshovel, (BtIntPtr)func_80108ED0, 20, 0, (void (*)(struct Actor *))func_8080000C_chnewshovel, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 5149, (void (*)(struct Actor *, long, long))func_80800330_chnewshovel, (BtIntPtr)D_80800FA0_chnewshovel } };
+u8 D_80800FFC_chnewshovel [12] BT_DATA(4, overlays_ch_newshovel, 0xAC) = { 0, 0x13, 4, 7, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 0 };
+s32 D_80801008_chnewshovel[4] BT_DATA(4, overlays_ch_newshovel, 0xB8) = { 1246237, 852300, 23461910, 983040000 };
+s32 D_80801018_chnewshovel[3] BT_DATA(4, overlays_ch_newshovel, 0xC8) = { 1041865114, 1053609165, -1082130432 };
+s32 D_80801024_chnewshovel[4] BT_DATA(4, overlays_ch_newshovel, 0xD4) = { 1246207, 852147, 13369366, 1048576000 };
+u8 D_80801034_chnewshovel [24] BT_DATA(4, overlays_ch_newshovel, 0xE4) = { 0, 0, 0, 0, 0x3E, 0x19, 0x99, 0x9A, 0x3F, 0, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0x80, 0, 0, 0x3E, 0x19, 0x99, 0x9A };
+u8 D_8080104C_chnewshovel [24] BT_DATA(4, overlays_ch_newshovel, 0xFC) = { 0, 0, 0, 0, 0, 0, 0, 0, 0x3F, 0, 0, 0, 0x3F, 0x80, 0, 0, 0x3F, 0x59, 0x99, 0x9A, 0, 0, 0, 0 };
+s32 D_80801064_chnewshovel[4] BT_DATA(4, overlays_ch_newshovel, 0x114) = { 2162701, 15925516, 1459792, 0 };
+s32 D_80801074_chnewshovel [15] BT_DATA(4, overlays_ch_newshovel, 0x124) = { 1902244, 1445888, 1834408, -39321561, -39256664, 39322200, 2949270, 13107234, 786457, 0, 2818201, 13369365, 179, 917514, 983040 };
+s32 D_808010B0_chnewshovel[8] BT_DATA(4, overlays_ch_newshovel, 0x160) = { 3, 1065353216, 65536, 107, 1068708659, 34734080, 0, 0 };

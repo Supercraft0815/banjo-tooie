@@ -5,7 +5,7 @@ u32 *func_80100074(Actor *, u32, u32);
 s32 func_80800000_chlagoonfish(Actor *arg0) {
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
-    s32 func_800EE7F8();
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     void func_800EF214(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
     struct {
@@ -34,7 +34,7 @@ s32 func_80800000_chlagoonfish(Actor *arg0) {
         data->velocity[1] = func_800DC178(-400.0f, 400.0f);
         data->velocity[2] = func_800DC178(-400.0f, 400.0f);
         data->unk28 = 400.0f;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -234,8 +234,8 @@ void func_8080038C_chlagoonfish(Actor *arg0) {
 }
 
 void func_80800908_chlagoonfish(Actor *arg0, s32 arg1) {
-    s32 func_800D674C(s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    BtIntPtr func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF830(s32);
     void *func_80100094(Actor *, u32);
     struct {
@@ -267,8 +267,8 @@ void func_80800908_chlagoonfish(Actor *arg0, s32 arg1) {
 /* extern */
 
 void func_808009FC_chlagoonfish(u8 *arg0) {
-    s32 func_800CC63C(s32, s32);
-    s32 func_800EE7F8(u8 *, s32);
+    BtIntPtr func_800CC63C(s32, s32);
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
     u32 temp_v0;
 
     temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
@@ -308,7 +308,11 @@ int func_80800AE0_chlagoonfish(Actor *arg0, s32 arg1, u8 *arg2) {
 
 OSThread *chlagoonfish_entrypoint_0(void)
 {
-    extern u8 D_80800B70_chlagoonfish[];
+    extern ActorData D_80800B70_chlagoonfish[];
 
     return (OSThread *) D_80800B70_chlagoonfish;
 }
+/* data_to_c.py: from asm/data/overlays/ch/lagoon/fish.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+ActorData D_80800B70_chlagoonfish [1] BT_DATA(4, overlays_ch_lagoon_fish, 0x0) = { { 740, 799, 1855, 1, 0, (void (*)(struct Actor *))func_8080038C_chlagoonfish, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800908_chlagoonfish, 491520000, 0, 0, 0, 0, 1025, (void (*)(struct Actor *))func_80800264_chlagoonfish, 0, 0, 0, (void (*)(struct Actor *))func_808001A0_chlagoonfish, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 17410, (void (*)(struct Actor *, long, long))func_80800AE0_chlagoonfish, 0 } };

@@ -2,7 +2,7 @@
 
 OSThread *chhellterskeltermouth_entrypoint_0(void)
 {
-    extern u8 D_80800330_chhellterskeltermouth[];
+    extern ActorData D_80800330_chhellterskeltermouth[];
 
     return (OSThread *) D_80800330_chhellterskeltermouth;
 }
@@ -87,7 +87,7 @@ void func_808001BC_chhellterskeltermouth(Actor *arg0) {
 /* extern */
 
 s32 func_80800258_chhellterskeltermouth(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_80101FDC(Actor *, u32);
     void func_80102FE8(void *, s32);
     void func_80103110(Actor *, u32);
@@ -109,6 +109,13 @@ s32 func_80800258_chhellterskeltermouth(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_808002E4_chhellterskeltermouth(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
-    extern u32 D_80800384_chhellterskeltermouth;
-    _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_80800384_chhellterskeltermouth);
+    extern u32 D_80800384_chhellterskeltermouth[7];
+    _subaddieaudioloop_entrypoint_4(arg0, &arg0->position[0], 1U, D_80800384_chhellterskeltermouth);
 }
+/* data_to_c.py: from asm/data/overlays/ch/hellterskeltermouth.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_80800330_chhellterskeltermouth [1] BT_DATA(4, overlays_ch_hellterskeltermouth, 0x0) = { { 426, 832, 1918, 1, 0, (void (*)(struct Actor *))func_8080000C_chhellterskeltermouth, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 229376000, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_808001BC_chhellterskeltermouth, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80800258_chhellterskeltermouth, 0 } };
+u8 D_80800378_chhellterskeltermouth [12] BT_DATA(4, overlays_ch_hellterskeltermouth, 0x48) = { 0, 0x13, 4, 0xCC, 0, 0xD, 0, 0xA6, 0, 0xC0, 0, 0 };
+u32 D_80800384_chhellterskeltermouth[7] BT_DATA(4, overlays_ch_hellterskeltermouth, 0x54) = { 0x1304AD, 0x105DC, 0xBB8000E, 0x94009E, 0x190016, 0x6D600000, 0 };

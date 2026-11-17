@@ -1,13 +1,13 @@
 #include "common.h"
 
 s32 func_80800000_chstoneballcoach(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void func_800DF744(s32, s32);
     s32 func_801015D0(Actor *);
-    extern s32 D_808003B8_chstoneballcoach;
+    extern s32 D_808003B8_chstoneballcoach[4];
     switch (arg1) {
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_808003B8_chstoneballcoach, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_808003B8_chstoneballcoach, arg0->scale);
         break;
     case 0x2E:
         arg0->unk70_10 = 1;
@@ -25,7 +25,7 @@ s32 func_80800000_chstoneballcoach(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80800090_chstoneballcoach(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, s32, s32, s16);
+    s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, s32, s16);
     if (arg1 != 0) {
         func_800C05B8(arg1, arg2, arg0->position, arg0->unk0, 0, 0, 0x34);
         arg0->unk70_10 = 2;
@@ -39,7 +39,7 @@ void func_80800100_chstoneballcoach(void *arg0) {
     s32 func_80102B2C(void *, s32);
     s32 func_80102CF4(void *, s32);
     f32 func_8010CD28();
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_8010CD28();
+    (((Actor *)arg0)->unk54) = func_8010CD28();
     if (func_80102CF4(arg0, 0x3F800000) == 0) {
         func_80102B2C(arg0, 0x3F800000);
     }
@@ -54,9 +54,9 @@ void func_80800140_chstoneballcoach(Actor *arg0) {
     s32 func_80090178(s32);
     s32 func_800DA298(s32);
     s32 func_800DA9E4(s32, s32);
-    s32 func_8010C820(Actor *, s32, s32);
+    void func_8010C820(BtIntPtr arg0, s32 arg1, s32 arg2);
     s32 func_8010CAC0(f32 *, s32);
-    extern f32 D_808003C8_chstoneballcoach;
+    extern f32 D_808003C8_chstoneballcoach[3];
     s32 var_a3;
     s32 sp28;
 
@@ -66,7 +66,7 @@ void func_80800140_chstoneballcoach(Actor *arg0) {
     }
     if (arg0->unk70_10 == 1) {
         if (func_80090178(0x80) != 0) {
-            if (func_8010CAC0(&D_808003C8_chstoneballcoach, 0x96) != 0) {
+            if (func_8010CAC0(D_808003C8_chstoneballcoach, 0x96) != 0) {
                 if (func_800DA9E4(0x428, 1) == 0) {
                     func_80800090_chstoneballcoach(arg0, 0xF23, 6);
                 }
@@ -112,7 +112,16 @@ void func_8080035C_chstoneballcoach(Actor *arg0) {
 
 OSThread *chstoneballcoach_entrypoint_0(void)
 {
-    extern u8 D_808003D4_chstoneballcoach[];
+    extern ActorData D_808003D4_chstoneballcoach[];
 
     return (OSThread *) D_808003D4_chstoneballcoach;
 }
+/* data_to_c.py: from asm/data/overlays/ch/stoneballcoa.data.s */
+extern u8 D_808003A0_chstoneballcoach[];
+void func_80105834(Actor*);
+void func_801018A4();
+void func_80107C2C();
+u8 D_808003A0_chstoneballcoach[24] BT_DATA(4, overlays_ch_stoneballcoa, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x00, 0x7B, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x00, 0x7B, 0x00, 0x00 };
+s32 D_808003B8_chstoneballcoach[4] BT_DATA(4, overlays_ch_stoneballcoa, 0x18) = { 1126170624, 1120403456, 1120403456, 1109393408 };
+f32 D_808003C8_chstoneballcoach[3] BT_DATA(4, overlays_ch_stoneballcoa, 0x28) = { -1200.0f, -350.0f, -350.0f };
+ActorData D_808003D4_chstoneballcoach [1] BT_DATA(4, overlays_ch_stoneballcoa, 0x34) = { { 599, 371, 1654, 1, (void *)D_808003A0_chstoneballcoach, (void (*)(struct Actor *))func_80800140_chstoneballcoach, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 0, 0, 0, 0, 8, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080035C_chstoneballcoach, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_80800000_chstoneballcoach, 0 } };

@@ -63,11 +63,11 @@ void func_800E0A70(s16 arg0) {
     func_8001B754(arg0);
 }
 
-void func_800E0A98(Unkfunc_800E0960_1* arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(Unkfunc_800E0960_1 *) func_800E0A98(Unkfunc_800E0960_1* arg0) {
     Unkfunc_800E0960_1* temp_v0;
 
     temp_v0 = (Unkfunc_800E0960_1*)defrag(arg0);
-    temp_v0->unk0 = (Unkfunc_800E0960_2* )&temp_v0[1];
+    temp_v0->unk0 = (Unkfunc_800E0960_2* )&temp_v0[1]; BT_NATIVE_ONLY(return temp_v0;)
 }
 
 void func_800E0AC0(Unkfunc_800E0960_1* arg0) {

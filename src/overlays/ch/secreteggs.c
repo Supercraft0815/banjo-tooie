@@ -16,7 +16,7 @@ extern u32 D_8080050C_chsecreteggs;
 
 void func_80800000_chsecreteggs(Actor* arg0)
 {
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(0x14);
     func_800BABB8(temp_v0, arg0->position, arg0->position, 1.0f, &D_808004A8_chsecreteggs);

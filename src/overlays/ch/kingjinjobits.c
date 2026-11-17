@@ -2,33 +2,33 @@
 
 OSThread *chkingjinjobits_entrypoint_0(void)
 {
-    extern u8 D_80800A80_chkingjinjobits[];
+    extern ActorData D_80800A80_chkingjinjobits[];
 
     return (OSThread *) D_80800A80_chkingjinjobits;
 }
 
 void func_8080000C_chkingjinjobits(s32 arg0) 
 {
-}
+}    typedef struct { BtIntPtr unk0; } Objkingjinjobits_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void func_80800014_chkingjinjobits(u8 *arg0) {
 
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     s32 _capod_entrypoint_14();
-    s32 _glcutDll_entrypoint_0();
-    s32 _glcutDll_entrypoint_12(s32);
-    s32 _glcutDll_entrypoint_16();
-    s32 _glcutDll_entrypoint_22(s32);
-    s32 _glcutDll_entrypoint_7(s32);
-    s32 _glid_entrypoint_0(s32, s32, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 func_800BEA88(s32);
+    void _glcutDll_entrypoint_0(void);
+    void _glcutDll_entrypoint_12(s32 arg0);
+    void _glcutDll_entrypoint_16(void);
+    void _glcutDll_entrypoint_22(u32 arg0);
+    void _glcutDll_entrypoint_7(u32 arg0);
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    void *func_800BEA88(s32 i);
     void func_800BF744(s32, s32);
     s32 func_800D9078(u8 *);
     s32 func_800DA298(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
-    s32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
+    BtIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     s32 func_8010C500(u8 *);
@@ -46,8 +46,8 @@ void func_80800014_chkingjinjobits(u8 *arg0) {
     case 2:
         if ((func_8010D23C() != 0) && (func_8010C500(arg0) != 0)) {
             func_800DA544(0x367);
-            _subaddiedialog_entrypoint_11((*(s32 *)((s8 *)(arg0) + (0))), 0x1537, 0x44, 0, 0x97);
-            _capod_entrypoint_13((*(s32 *)((s8 *)(arg0) + (0))), 0, 9, 0x10);
+            _subaddiedialog_entrypoint_11((((Objkingjinjobits_arg0 *)arg0)->unk0), 0x1537, 0x44, 0, 0x97);
+            _capod_entrypoint_13((((Objkingjinjobits_arg0 *)arg0)->unk0), 0, 9, 0x10);
             func_80101FDC(arg0, 1);
             return;
         }
@@ -75,7 +75,7 @@ void func_80800014_chkingjinjobits(u8 *arg0) {
         break;
     case 5:
         sp24 = func_800D9078(arg0 + 0x58);
-        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (*(s32 *)((s8 *)(arg0) + (0))));
+        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (((Objkingjinjobits_arg0 *)arg0)->unk0));
         if (sp24 != 0) {
             func_800BF744(3, 0);
             func_800FFAB0(arg0);
@@ -87,11 +87,11 @@ void func_80800014_chkingjinjobits(u8 *arg0) {
             func_80101FDC(arg0, 7);
             func_800BF744(3, 1);
         }
-        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (*(s32 *)((s8 *)(arg0) + (0))));
+        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (((Objkingjinjobits_arg0 *)arg0)->unk0));
         return;
     case 7:
         sp20 = func_800D9078(arg0 + 0x58);
-        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (*(s32 *)((s8 *)(arg0) + (0))));
+        _glid_entrypoint_0(func_800BEA88(0), 1, &_chkingjinjobits_entrypoint_1, (((Objkingjinjobits_arg0 *)arg0)->unk0));
         if (sp20 != 0) {
             func_800BF744(1, 1);
             func_800BF744(2, 0);
@@ -109,8 +109,8 @@ void func_80800014_chkingjinjobits(u8 *arg0) {
 
 s32 func_8080029C_chkingjinjobits(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800EA05C(void);
-    s32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80800354_chkingjinjobits(Actor *);
     void func_80800744_chkingjinjobits(Actor *, s32, s16);
@@ -138,14 +138,14 @@ s32 func_8080029C_chkingjinjobits(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800354_chkingjinjobits(Actor *arg0) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    s32 _capod_entrypoint_2(s32, s32, s32);
-    s32 _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
-    s32 _gcdialogcamera_entrypoint_8(void);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr, s32, s32);
+    void _capod_entrypoint_7(s32 arg0, s32 arg1);
+    void _capod_entrypoint_8(s32 arg0);
+    void _gcdialogcamera_entrypoint_8();
     s32 _glcutDll_entrypoint_19(s32);
-    s32 _subaddieDll_entrypoint_1(Actor *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_1(Actor *arg0);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     void func_800BF744(s32, s32);
     s32 func_800D0B68(s32, s32);
@@ -155,11 +155,11 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
     s32 func_800EA05C(void);
     s32 func_800EA090(void);
     u32 func_800EA364(void);
-    void func_800F497C(s32);
-    void func_800F49A8(s32, s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
-    s32 func_800F54E4(void);
+    void func_800F497C(BtIntPtr);
+    void func_800F49A8(BtIntPtr, s32);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
+    BtIntPtr func_800F54E4(void);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     extern s32 func_8010D5DC;
@@ -170,7 +170,7 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
     s32 cameraFlags;
     f32 rotation[3];
     f32 position[3];
-    s32 camera;
+    BtIntPtr camera;
 
     active = 0;
     flag360 = func_800DA298(0x360);
@@ -183,7 +183,7 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
                 if (func_800EA364() == 0x143) {
                     cameraFlags = 0x2900;
                 }
-                _capod_entrypoint_13((s32)arg0->unk0, 0, 0x4B, cameraFlags);
+                _capod_entrypoint_13((BtIntPtr)arg0->unk0, 0, 0x4B, cameraFlags);
                 _subaddiedialog_entrypoint_11(arg0->unk0, 0x154D, 0x44, 0, 0xAE);
                 active = 1;
             } else if (func_800DB9B0() == 0 && flag360 == 0 && flag3B == 0 &&
@@ -192,11 +192,11 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
                 _subaddiemarker_entrypoint_1(arg0, 0x154, 0x32, position, 1);
                 func_800F497C(camera);
                 func_800F49A8(camera, 1);
-                func_800F49D4(camera, &func_8010D5DC, (s32)arg0->unk0);
+                func_800F49D4(camera, &func_8010D5DC, (BtIntPtr)arg0->unk0);
                 func_800F4A58(camera, position, 200.0f);
                 _subaddiedialog_entrypoint_11(arg0->unk0, 0x154C, 0x44, 0, 0xAE);
                 func_80101FDC(arg0, 3);
-                _capod_entrypoint_13((s32)arg0->unk0, 0, 0x4C, 0x2030);
+                _capod_entrypoint_13((BtIntPtr)arg0->unk0, 0, 0x4C, 0x2030);
                 active = 1;
             }
             func_800BF744(1, flag360 == 0);
@@ -244,7 +244,7 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
         case 0x160:
             if (func_800EA090() == 4) {
                 active = 1;
-                _capod_entrypoint_2((s32)arg0->unk0, 0x15, 0x2000);
+                _capod_entrypoint_2((BtIntPtr)arg0->unk0, 0x15, 0x2000);
                 _capod_entrypoint_8(1);
                 _gcdialogcamera_entrypoint_8();
                 _capod_entrypoint_7(5, 1);
@@ -289,9 +289,9 @@ void chkingjinjobits_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk8
     f32 distance;
     actor = func_80106790(arg4);
     if ((*(u32 *)((u8 *)actor + 0x6C)) & 0x1FF) {
-        amount = func_800F12D4(*(f32 *)((u8 *)actor + 0x58), 0.0f, 12.0f, 10.0f, 3000.0f);
+        amount = func_800F12D4(actor->unk58, 0.0f, 12.0f, 10.0f, 3000.0f);
     } else {
-        amount = func_800F12D4(*(f32 *)((u8 *)actor + 0x58), 0.0f, 12.0f, 3000.0f, 10.0f);
+        amount = func_800F12D4(actor->unk58, 0.0f, 12.0f, 3000.0f, 10.0f);
     }
     for (end = arg1 + arg3; arg1 < end; arg1++, arg2++) {
         func_800EE88C(position, arg1);
@@ -301,3 +301,9 @@ void chkingjinjobits_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk8
         else { arg2->v.cn[3] = (u32)func_800F10B4(distance - amount, 0.0f, 200.0f, 0, 255.0f); }
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/kingjinjobits.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80800A80_chkingjinjobits [1] BT_DATA(4, overlays_ch_kingjinjobits, 0x0) = { { 344, 1259, 0, 1, 0, (void (*)(struct Actor *))func_80800014_chkingjinjobits, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chkingjinjobits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9730, (void (*)(struct Actor *, long, long))func_8080029C_chkingjinjobits, 0 } };
+f32 D_80800AC8_chkingjinjobits [ 3 ] BT_DATA(4, overlays_ch_kingjinjobits, 0x48) = { 0.0f, 1800.0f, 0.0f };

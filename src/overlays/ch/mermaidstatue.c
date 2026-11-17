@@ -2,17 +2,17 @@
 
 OSThread *chmermaidstatue_entrypoint_0(void)
 {
-    extern u8 D_80800354_chmermaidstatue[];
+    extern ActorData D_80800354_chmermaidstatue[];
 
     return (OSThread *) D_80800354_chmermaidstatue;
 }
 
 OSThread *chmermaidstatue_entrypoint_1(void)
 {
-    extern u8 D_8080039C_chmermaidstatue[];
+    extern ActorData D_8080039C_chmermaidstatue[];
 
     return (OSThread *) D_8080039C_chmermaidstatue;
-}
+}                 typedef struct { u8 pad0[0x30]; s32 unk30; u8 pad34[0x42]; u16 unk76; } Objmermaidstatue_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -20,14 +20,14 @@ void func_80800018_chmermaidstatue(void *arg0) {
     s32 _subaddiesect_entrypoint_1();
     s32 _subaddiesect_entrypoint_2(void *, s32, s32);
     s32 func_800DA298(s32);
-    s32 func_800DA7A8(s32, s32, s32);
-    s32 func_80101FDC(void *, s32);
-    s32 func_80109EEC(void *, s32);
-    s32 func_8010A570(void *);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
+    void func_80101FDC(Actor *actor,u32 state);
+    void func_80109EEC(s16 *arg0, s32 arg1);
+    void func_8010A570(Actor *arg0);
     s32 temp_v0;
 
     temp_v0 = _subaddiesect_entrypoint_1();
-    (*(s32 *)((s8 *)(arg0) + (0x30))) = temp_v0;
+    (((Objmermaidstatue_arg0 *)arg0)->unk30) = temp_v0;
     _subaddiesect_entrypoint_2(arg0, temp_v0, 0);
     func_800DA7A8(0x6B1, 0, 3);
     func_80109EEC(arg0, 0x40);
@@ -42,10 +42,10 @@ void func_80800094_chmermaidstatue(s32 arg0)
 }
 /* extern */
 
-void func_8080009C_chmermaidstatue(void *arg0, s32 arg1) {
-    s32 func_800DF744(s32, s32);
-    s32 func_80101870(void *, s32);
-    func_800DF744(3, ((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) - 0x31);
+void func_8080009C_chmermaidstatue(void *arg0, BtIntPtr arg1) {
+    void func_800DF744(s32 index,s32 value);
+    void func_80101870(Actor* arg0, void* arg1);
+    func_800DF744(3, ((u32) (((Objmermaidstatue_arg0 *)arg0)->unk76) >> 7) - 0x31);
     func_80101870(arg0, arg1);
 }
 
@@ -71,9 +71,9 @@ s32 func_808000E0_chmermaidstatue(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_80800150_chmermaidstatue(void) {
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800DA564(s32, s32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     s32 func_800DC128(s32, s32);
     s32 temp_v0;
 
@@ -87,13 +87,13 @@ s32 func_80800150_chmermaidstatue(void) {
 }
 
 void func_808001B0_chmermaidstatue(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800DA564(s32, s32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     void func_800FC660(u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_80800150_chmermaidstatue(void);
     extern s16 D_80800330_chmermaidstatue[][6];
     s32 statue;
@@ -135,3 +135,13 @@ void func_808002C8_chmermaidstatue(Actor *arg0) {
         _chdoormake_entrypoint_6(arg0, 0x40400000);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/mermaidstatue.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+void _chdoor_entrypoint_0();
+void func_80101870(Actor* arg0, void* arg1);
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+s16 D_80800330_chmermaidstatue [3] [ 6 ] BT_DATA(4, overlays_ch_mermaidstatue, 0x0) = { { 0, 3, 0, 0, 1, 2 }, { 1, 0, 2, 0, 3, 3 }, { 2, 1, 3, 0, 2, 1 } };
+ActorData D_80800354_chmermaidstatue [1] BT_DATA(4, overlays_ch_mermaidstatue, 0x24) = { { 804, 960, 1769, 1, 0, (void (*)(struct Actor *))func_80800094_chmermaidstatue, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080009C_chmermaidstatue, 98304000, 0, 0, 0, 0, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800018_chmermaidstatue, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9296, (void (*)(struct Actor *, long, long))func_808000E0_chmermaidstatue, 0 } };
+ActorData D_8080039C_chmermaidstatue [1] BT_DATA(4, overlays_ch_mermaidstatue, 0x6C) = { { 172, 961, 1791, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808002C8_chmermaidstatue, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

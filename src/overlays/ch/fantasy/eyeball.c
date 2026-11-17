@@ -3,7 +3,7 @@
 /* extern */
 
 void func_80800000_chfantasyeyeball(Actor *arg0) {
-    s32 _subaddielink_entrypoint_0(u8 *);
+    void _subaddielink_entrypoint_0(void *arg0);
     s32 func_800D0B68(u32, u32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
@@ -24,21 +24,21 @@ void func_80800000_chfantasyeyeball(Actor *arg0) {
     ((f32 *)arg0->actorData)[6] = 0.0f;
 }
 
-void func_808000D8_chfantasyeyeball(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+void func_808000D8_chfantasyeyeball(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     Actor *_subaddielink_entrypoint_4(u8 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    s32 func_800B53A4(s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800C4140(s32, f32 *, s32);
     s32 func_800D90A4(f32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     f32 func_800DC178(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    int func_800F6720(s32);
+    BtUIntPtr func_800F54E4(void);
+    int func_800F6720(BtIntPtr);
     void func_800FC6B0(u32);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
@@ -46,7 +46,7 @@ void func_808000D8_chfantasyeyeball(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
     void func_80108B04(Actor *, u32);
     void func_8010A590(Actor *);
-    void func_8010C93C(s32, s32, f32);
+    void func_8010C93C(BtIntPtr, BtIntPtr, f32);
     s32 func_8010C9B0(f32 *, s32);
     s32 func_80800950_chfantasyeyeball();
     void func_808011D0_chfantasyeyeball(Actor *, f32, f32, f32);
@@ -58,7 +58,7 @@ void func_808000D8_chfantasyeyeball(Actor *arg0) {
     extern s32 D_80801EEC_chfantasyeyeball[];
     f32 sp54[3];
     s32 sp50;
-    s32 sp4C;
+    BtIntPtr sp4C;
     Actor *sp48;
     Actor *sp44;
     f32 sp40;
@@ -197,18 +197,18 @@ void func_808000D8_chfantasyeyeball(Actor *arg0) {
 }
 
 s32 func_80800950_chfantasyeyeball(Actor *arg0, s32 arg1, Actor *arg2, Actor *arg3) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800C3F48(u32);
     void func_800C4140(s32, f32 *, s32);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_80102424(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80800F78_chfantasyeyeball(Actor *, Actor *);
     s32 func_80800FEC_chfantasyeyeball(Actor *);
     void func_80801290_chfantasyeyeball(Actor *, s32, s32);
-    f32 func_808016B4_chfantasyeyeball(s32);
+    f32 func_808016B4_chfantasyeyeball(BtIntPtr);
     Unk80132ED0 *marker;
 
     if (arg2) {}
@@ -224,7 +224,7 @@ s32 func_80800950_chfantasyeyeball(Actor *arg0, s32 arg1, Actor *arg2, Actor *ar
         }
         break;
     case 3:
-        ((f32 *)arg0->actorData)[3] = func_808016B4_chfantasyeyeball((s32)arg0);
+        ((f32 *)arg0->actorData)[3] = func_808016B4_chfantasyeyeball((BtIntPtr)arg0);
         break;
     case 7:
     case 10:
@@ -262,10 +262,10 @@ s32 func_80800950_chfantasyeyeball(Actor *arg0, s32 arg1, Actor *arg2, Actor *ar
         ((f32 *)arg0->actorData)[5] = 1.5f;
         break;
     }
-    func_80102424(arg0, arg1);
+    func_80102424(arg0, arg1); BT_NATIVE_ONLY(return 0;)
 }
 
-s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2 BT_PASS2(, s32 bt_a3)) {
     typedef struct {
         u8 actorFields[0x74];
         u32 pad74_6 : 26;
@@ -278,19 +278,19 @@ s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
     void _chskeletonexplode_entrypoint_3(Actor *, s32, s32);
     void _chskeletonexplode_entrypoint_4(Actor *, s32);
     void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
-    s32 _subaddielink_entrypoint_1(void *, Unk80132ED0 *);
+    void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     s32 _subaddielink_entrypoint_3(u8 *);
     void func_800C4140(s32, f32 *, s32);
     s32 func_800D0A9C(u32, u32);
     s32 func_800D0B68(u32, u32);
-    s32 func_800D10D4(u32, u32, f32 *, s32, s32);
+    BtIntPtr func_800D10D4(u32, u32, f32 *, s32, BtIntPtr);
     void func_800DF744(s32, s32);
     f32 func_800EEAD4(f32 *, f32 *);
     void func_800EEBF0(f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_800FC6B0(u32);
     void *func_80100094(Actor *, u32);
     void func_80101074(void *);
@@ -300,7 +300,7 @@ s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80108B04(Actor *, u32);
     void func_8010A570(Actor *);
-    void func_8010D12C(s32, f32 *, f32, s32);
+    void func_8010D12C(BtIntPtr, f32 *, f32, s32);
     s32 func_80800950_chfantasyeyeball();
     void func_80801740_chfantasyeyeball(Actor *, f32 *);
     extern u8 D_80801E98_chfantasyeyeball[];
@@ -405,7 +405,7 @@ s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800F78_chfantasyeyeball(Actor *arg0, Actor *arg1) {
     void* func_80100094(Actor*, u32);
-    s32 _subaddielink_entrypoint_5(u8 *, u8 *);
+    void _subaddielink_entrypoint_5(void *arg0, void *arg1);
     s32 func_80800950_chfantasyeyeball(Actor *, s32, Actor *, Actor *);
     void *sp18[2];
 
@@ -447,14 +447,14 @@ s32 func_80800FEC_chfantasyeyeball(Actor *arg0) {
         arg0->actorData[7] = 0;
         return 0;
     }
-    arg0->actorData[7] = (u32)((Actor *)actors[best])->unk0;
+    arg0->actorData[7] = (BtUIntPtr)((Actor *)actors[best])->unk0;
     return 1;
 }
 
 /* extern */
 
 void func_808010B0_chfantasyeyeball(Actor *arg0, f32 *arg1, f32 *arg2) {
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     f32 func_800DC0C0(void);
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EF04C(f32 *, f32 *);
@@ -478,7 +478,7 @@ void func_808010B0_chfantasyeyeball(Actor *arg0, f32 *arg1, f32 *arg2) {
 
 void func_808011D0_chfantasyeyeball(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) {
     void func_800A516C(f32 *, f32 *, f32 *);
-    void func_800E39D8(s32, s32);
+    void func_800E39D8(BtIntPtr, BtIntPtr);
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -494,11 +494,11 @@ void func_808011D0_chfantasyeyeball(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 void func_80801290_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 func_800A50B0(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7B9C(s32, s32);
-    s32 func_800F82D4(s32, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    void func_800A50B0(s32 arg0);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    void func_800F82D4(BtIntPtr arg0,s32 arg1);
 
     _subaddieDll_entrypoint_4(arg0, 1);
     arg0->unk58 = 2.708f;
@@ -513,11 +513,11 @@ void func_80801290_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80801314_chfantasyeyeball(void *arg0) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 func_800A50B0(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F7B9C(s32, s32);
-    s32 func_800F82D4(s32, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    void func_800A50B0(s32 arg0);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    void func_800F82D4(BtIntPtr arg0,s32 arg1);
     func_800F82D4(func_800F54E4(), 0);
     _subaddieDll_entrypoint_4(arg0, 0);
     func_800F7B9C(func_800F54E4(), 0x6C);
@@ -560,11 +560,11 @@ void func_808013F8_chfantasyeyeball(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     void func_80801740_chfantasyeyeball(Actor *, f32 *);
-    s32 sp6C;
+    BtIntPtr sp6C;
     f32 sp60[3];
     f32 sp54[3];
     f32 sp4C[2];
@@ -604,7 +604,7 @@ void func_808013F8_chfantasyeyeball(Actor *arg0) {
     }
 }
 
-f32 func_808016B4_chfantasyeyeball(s32 arg0) {
+f32 func_808016B4_chfantasyeyeball(BtIntPtr arg0) {
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
     u8 *found[10];
     s32 count;
@@ -652,7 +652,7 @@ s32 func_808017B4_chfantasyeyeball(void) {
 
 OSThread *chfantasyeyeball_entrypoint_0(void)
 {
-    extern u8 D_80801F28_chfantasyeyeball[];
+    extern ActorData D_80801F28_chfantasyeyeball[];
 
     return (OSThread *) D_80801F28_chfantasyeyeball;
 }
@@ -660,9 +660,9 @@ OSThread *chfantasyeyeball_entrypoint_0(void)
 void func_8080182C_chfantasyeyeball(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     f32 func_80013970(f32);
-    s32 func_800B53A4(s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 *func_800BF340(f32[3], f32[3], f32[3], s32, f32);
     f32 func_800D8FF8(void);
     int func_800D91EC(f32 *, f32);
@@ -686,7 +686,7 @@ void func_8080182C_chfantasyeyeball(Actor *arg0) {
     EyeballData;
     f32 sp4C[3];
     f32 sp40[3];
-    s32 sp3C;
+    BtIntPtr sp3C;
     if (func_800D91EC(&((EyeballData *)arg0->actorData)->timer, 5.0f)) {
     func_80801BC4_chfantasyeyeball(arg0, NULL);
     return;
@@ -725,8 +725,8 @@ s32 func_80801A50_chfantasyeyeball(Actor *arg0, s32 arg1, Unk80132ED0 *volatile 
     f32 func_800DC178(f32, f32);
     void func_800DF744(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80101080(void);
     s32 func_801015D0(Actor *);
@@ -770,18 +770,18 @@ s32 func_80801A50_chfantasyeyeball(Actor *arg0, s32 arg1, Unk80132ED0 *volatile 
 
 void func_80801BC4_chfantasyeyeball(Actor *arg0, f32 *arg1) {
     void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
-    void func_800BA22C(s32, s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800C4140(s32, f32 *, s32);
-    extern s32 D_80801FC0_chfantasyeyeball;
-    s32 temp_v0;
+    extern s32 D_80801FC0_chfantasyeyeball[18];
+    BtIntPtr temp_v0;
     f32 *var_a2;
     s32 var_s0;
 
     for (var_s0 = 0; var_s0 < 8; var_s0++) {
         var_a2 = arg1 != NULL ? arg1 : arg0->position;
-        temp_v0 = func_800BABB8(0, arg0->position, var_a2, 1.0f, &D_80801FC0_chfantasyeyeball);
+        temp_v0 = func_800BABB8(0, arg0->position, var_a2, 1.0f, D_80801FC0_chfantasyeyeball);
         func_800BA3FC(temp_v0, var_s0 + 0x9DF);
         func_800BA22C(temp_v0, 3);
     }
@@ -796,7 +796,21 @@ void func_80801BC4_chfantasyeyeball(Actor *arg0, f32 *arg1) {
 
 OSThread *chfantasyeyeball_entrypoint_1(void)
 {
-    extern u8 D_80802008_chfantasyeyeball[];
+    extern ActorData D_80802008_chfantasyeyeball[];
 
     return (OSThread *) D_80802008_chfantasyeyeball;
 }
+/* data_to_c.py: from asm/data/overlays/ch/fantasy/eyeball.data.s */
+extern u8 D_80801E30_chfantasyeyeball[];
+void func_80105834(Actor*);
+void func_801018A4();
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u8 D_80801E30_chfantasyeyeball[104] BT_DATA(4, overlays_ch_fantasy_eyeball, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x5C, 0x28, 0xF6, 0x03, 0x93, 0x00, 0x49, 0x3F, 0x88, 0x93, 0x75, 0x03, 0x96, 0x00, 0x4A, 0x3F, 0x5C, 0x28, 0xF6, 0x03, 0x97, 0x00, 0x49, 0x3F, 0x66, 0x66, 0x66, 0x03, 0x9A, 0x00, 0x4A, 0x3F, 0x66, 0x66, 0x66, 0x03, 0x98, 0x00, 0x4A, 0x3F, 0x5C, 0x28, 0xF6, 0x03, 0x93, 0x00, 0x4A, 0x3F, 0x9A, 0x9F, 0xBE, 0x03, 0x95, 0x00, 0x4A, 0x3F, 0x9A, 0x9F, 0xBE, 0x03, 0x95, 0x00, 0x86, 0x3F, 0x9A, 0x9F, 0xBE, 0x03, 0x95, 0x00, 0x86, 0x3F, 0x9A, 0x9F, 0xBE, 0x03, 0x99, 0x00, 0x4A, 0x3F, 0x9A, 0x9F, 0xBE, 0x03, 0x99, 0x00, 0x86, 0x3F, 0x9A, 0x9F, 0xBE, 0x03, 0x99, 0x00, 0x86 };
+u8 D_80801E98_chfantasyeyeball [84] BT_DATA(4, overlays_ch_fantasy_eyeball, 0x68) = { 0, 0, 0, 0x2B, 0x40, 0, 0, 0, 1, 0x12, 0, 0, 0, 0, 0, 0x12, 0x40, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0x2C, 0x40, 0x73, 0x33, 0x33, 0, 0x2A, 0, 0, 0, 0, 0, 0x50, 0x40, 0, 0, 0, 2, 0x52, 0, 0, 0, 0, 0, 0x55, 0x40, 0, 0, 0, 2, 0x57, 0, 0, 0, 0, 0, 0x4B, 0x40, 0, 0, 0, 2, 0x4D, 0, 0, 0, 0, 0, 0x46, 0x40, 0, 0, 0, 2, 0x48, 0, 0 };
+s32 D_80801EEC_chfantasyeyeball [15] BT_DATA(4, overlays_ch_fantasy_eyeball, 0xBC) = { 1447302, 917554, 6553645, 26215000, 1834208, -39321564, 4194380, 1376256, 12582955, 16777728, 2555904, -26214400, 26214449, -3211364, 52035584 };
+ActorData D_80801F28_chfantasyeyeball [1] BT_DATA(4, overlays_ch_fantasy_eyeball, 0xF8) = { { 271, 1154, 2195, 1, (void *)D_80801E30_chfantasyeyeball, (void (*)(struct Actor *))func_808000D8_chfantasyeyeball, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 458752000, 0, 0, 0, 130, 608, 0, (BtIntPtr)func_80108ED0, 8, 0, (void (*)(struct Actor *))func_80800000_chfantasyeyeball, (void (*)(void *, long, void *, long, void *))func_80107C2C, -31742, 28676, (void (*)(struct Actor *, long, long))func_80800B68_chfantasyeyeball, 0 } };
+s32 D_80801F70_chfantasyeyeball [16] BT_DATA(4, overlays_ch_fantasy_eyeball, 0x140) = { 1834408, -32767978, 268435470, 1966110, 2359360, 4980757, 192, 2818124, 4980775, 65136, 400, 3080268, 2490368, 38, 40, 18481152 };
+u32 D_80801FB0_chfantasyeyeball [4] BT_DATA(4, overlays_ch_fantasy_eyeball, 0x180) = { 0x13065C, 0x1661A8, 0xA0100, 0 };
+s32 D_80801FC0_chfantasyeyeball[18] BT_DATA(4, overlays_ch_fantasy_eyeball, 0x190) = { 51380246, 361103374, 1966110, 2949520, 39321627, -52363864, 2359360, 4980757, 192, 2818176, 16777255, 65136, 400, 3080268, 2490368, 38, 40, 0 };
+ActorData D_80802008_chfantasyeyeball [1] BT_DATA(4, overlays_ch_fantasy_eyeball, 0x1D8) = { { 272, 1155, 2196, 1, 0, (void (*)(struct Actor *))func_8080182C_chfantasyeyeball, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 0, 0, 0, 0, 128, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32736, 0, (void (*)(struct Actor *, long, long))func_80801A50_chfantasyeyeball, 0 } };

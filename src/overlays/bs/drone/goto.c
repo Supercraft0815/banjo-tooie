@@ -2,7 +2,7 @@
 
 s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
     void func_808000C0_bsdronegoto();
-    void func_80800148_bsdronegoto(s32);
+    void func_80800148_bsdronegoto(BtIntPtr);
     void func_80800150_bsdronegoto(void *);
     void func_8080032C_bsdronegoto(void *);
     s32 state;
@@ -10,7 +10,7 @@ s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
     state = *(s32 *)((s8 *)arg0 + 0x190);
     switch (state) {
     case 1:
-        func_80800148_bsdronegoto((s32)arg0);
+        func_80800148_bsdronegoto((BtIntPtr)arg0);
         break;
     case 2:
         func_8080032C_bsdronegoto(arg0);
@@ -25,7 +25,7 @@ s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
         func_80800150_bsdronegoto(arg0);
         return;
     }
-}
+    BT_NATIVE_ONLY(return 0;)}   
 
 /* extern */
 
@@ -70,9 +70,9 @@ void func_808000E0_bsdronegoto(struct player_state_s *arg0) {
     }
 }
 
-void func_80800148_bsdronegoto(s32 arg0) 
+void func_80800148_bsdronegoto(BtIntPtr arg0) 
 {
-}
+}           typedef struct { u8 pad0[0x190]; s32 unk190; s32 unk194; s32 unk198; } Objgoto_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 /* extern */
 
 void func_80800150_bsdronegoto(void *arg0) {
@@ -108,7 +108,7 @@ void func_80800150_bsdronegoto(void *arg0) {
         _bamovegoto_entrypoint_8(arg0, sp38);
     }
     func_8009FFD8(arg0, 1, 1, 3, 0);
-    (*(s32 *)((s8 *)(arg0) + (0x198))) = func_80095898(arg0);
+    (((Objgoto_arg0 *)arg0)->unk198) = func_80095898(arg0);
     if (_badrone_entrypoint_7(arg0) != 0) {
         func_800961A0(arg0, 0);
         _bamovegoto_entrypoint_10(arg0, 1);
@@ -163,7 +163,7 @@ void func_8080026C_bsdronegoto(void *arg0) {
 
 void func_8080032C_bsdronegoto(void *arg0) {
     s32 func_800961A0(s32 *, s32);
-    func_800961A0(arg0, (*(s32 *)((s8 *)(arg0) + (0x198))));
+    func_800961A0(arg0, (((Objgoto_arg0 *)arg0)->unk198));
 }
 
 /* extern */
@@ -174,8 +174,8 @@ void bsdronegoto_entrypoint_0(void *arg0) {
     s32 func_80091E48(void *, s32);
     s32 func_80800000_bsdronegoto(void *, s32);
     int player_isStable(struct player_state_s *);
-    (*(s32 *)((s8 *)(arg0) + (0x190))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0x194))) = 0;
+    (((Objgoto_arg0 *)arg0)->unk190) = 0;
+    (((Objgoto_arg0 *)arg0)->unk194) = 0;
     _gcgoto_entrypoint_14(1);
     func_80091E48(arg0, 0x3F);
     if ((player_isStable(arg0) == 0) && (_badata_entrypoint_14(arg0) != 0)) {

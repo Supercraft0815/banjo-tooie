@@ -2,10 +2,10 @@
 
 #include "overlays/bs/kaz/jump.h"
 
-extern s32 D_80800C40_bskazjump[];
-extern s32 D_80800C50_bskazjump[];
-extern s32 D_80800C60_bskazjump[];
-extern s32 D_80800C70_bskazjump[];
+extern BtIntPtr D_80800C40_bskazjump[];
+extern BtIntPtr D_80800C50_bskazjump[];
+extern BtIntPtr D_80800C60_bskazjump[];
+extern BtIntPtr D_80800C70_bskazjump[];
 
 void bskazjump_entrypoint_0(PlayerState *self) {
     AnimCtrl *animCtrl;
@@ -132,7 +132,7 @@ void bskazjump_entrypoint_2(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-s32 bskazjump_entrypoint_3(s32 idx) {
+BtIntPtr bskazjump_entrypoint_3(s32 idx) {
     return D_80800C40_bskazjump[idx];
 }
 
@@ -232,7 +232,7 @@ void bskazjump_entrypoint_6(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazjump_entrypoint_7(s32 idx) {
+BtIntPtr bskazjump_entrypoint_7(s32 idx) {
     return D_80800C50_bskazjump[idx];
 }
 
@@ -291,7 +291,7 @@ void bskazjump_entrypoint_10(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-s32 bskazjump_entrypoint_11(s32 idx) {
+BtIntPtr bskazjump_entrypoint_11(s32 idx) {
     return D_80800C60_bskazjump[idx];
 }
 
@@ -339,6 +339,13 @@ void bskazjump_entrypoint_14(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazjump_entrypoint_15(s32 idx) {
+BtIntPtr bskazjump_entrypoint_15(s32 idx) {
     return D_80800C70_bskazjump[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/jump.data.s */
+void _bskazshoessuckspline_entrypoint_0();
+void func_80099B94(PlayerState *);
+BtIntPtr D_80800C40_bskazjump [4] BT_DATA(4, overlays_bs_kaz_jump, 0x0) = { (BtIntPtr)_bskazjump_entrypoint_2, (BtIntPtr)_bskazjump_entrypoint_0, (BtIntPtr)_bskazjump_entrypoint_1, (BtIntPtr)_bskazshoessuckspline_entrypoint_0 };
+BtIntPtr D_80800C50_bskazjump [4] BT_DATA(4, overlays_bs_kaz_jump, 0x10) = { (BtIntPtr)_bskazjump_entrypoint_4, (BtIntPtr)_bskazjump_entrypoint_5, (BtIntPtr)_bskazjump_entrypoint_6, (BtIntPtr)_bskazshoessuckspline_entrypoint_0 };
+BtIntPtr D_80800C60_bskazjump [4] BT_DATA(4, overlays_bs_kaz_jump, 0x20) = { (BtIntPtr)_bskazjump_entrypoint_10, (BtIntPtr)_bskazjump_entrypoint_8, (BtIntPtr)_bskazjump_entrypoint_9, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800C70_bskazjump [4] BT_DATA(4, overlays_bs_kaz_jump, 0x30) = { (BtIntPtr)_bskazjump_entrypoint_12, (BtIntPtr)_bskazjump_entrypoint_13, (BtIntPtr)_bskazjump_entrypoint_14, (BtIntPtr)func_80099B94 };

@@ -2,16 +2,16 @@
 
 /* extern */
 
-s32 func_80800000_fxstep(void *arg0) {
+typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x4]; f32 unk10; s32 (*unk14)(u8 *, s32, s32); s32 unk18; s32 (*unk1C)(void *, s32, s32); s32 unk20; u8 unk24; u8 unk25; u8 unk26; } Objstep_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ s32 func_80800000_fxstep(void *arg0) {
     s32 func_800C84B0(s32);
     f32 temp_f0;
     s32 temp_a1;
 
-    temp_f0 = (*(f32 *)((s8 *)(arg0) + (0x10))) - (*(f32 *)((s8 *)(arg0) + (8)));
+    temp_f0 = (((Objstep_arg0 *)arg0)->unk10) - (((Objstep_arg0 *)arg0)->unk8);
     if ((temp_f0 > 0.0f) && (temp_f0 < 60.0f)) {
         return 4;
     }
-    temp_a1 = (*(s32 *)((s8 *)(arg0) + (0)));
+    temp_a1 = (((Objstep_arg0 *)arg0)->unk0);
     if (temp_a1 == 0) {
         return 0;
     }
@@ -33,17 +33,17 @@ void func_80800078_fxstep(u8 *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 
     temp_f0 = arg3 * 0.5f;
     sp20 = func_800DC178(arg2 - temp_f0, arg2 + temp_f0);
-    if ((*(u8 *)((s8 *)(arg0) + (0x26))) != 0) {
-        var_s0 = (*(u8 *)((s8 *)(arg0) + (0x24)));
+    if ((((Objstep_arg0 *)arg0)->unk26) != 0) {
+        var_s0 = (((Objstep_arg0 *)arg0)->unk24);
     } else {
-        var_s0 = (*(u8 *)((s8 *)(arg0) + (0x25)));
+        var_s0 = (((Objstep_arg0 *)arg0)->unk25);
     }
     func_800C35E8(var_s0, (f32 *)(arg0 + 4));
     func_800C301C(var_s0, arg1);
     func_800C31DC(var_s0, sp20);
     func_800C3058(var_s0, arg4);
     func_800C3BDC(var_s0);
-    (*(u8 *)((s8 *)(arg0) + (0x26))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x26))) ^ 1);
+    (((Objstep_arg0 *)arg0)->unk26) = (u8) ((((Objstep_arg0 *)arg0)->unk26) ^ 1);
 }
 
 /* extern */
@@ -60,7 +60,7 @@ void func_8080012C_fxstep(u8 *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, f32 
     s32 var_a2;
     u8 var_s0;
 
-    if ((*(u8 *)((s8 *)(arg0) + (0x26))) != 0) {
+    if ((((Objstep_arg0 *)arg0)->unk26) != 0) {
         var_f2 = arg3;
     } else {
         var_f2 = arg4;
@@ -73,16 +73,16 @@ void func_8080012C_fxstep(u8 *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, f32 
         var_a2 = arg2;
     }
     if (arg0[0x26] != 0) {
-        var_s0 = (*(u8 *)((s8 *)(arg0) + (0x24)));
+        var_s0 = (((Objstep_arg0 *)arg0)->unk24);
     } else {
-        var_s0 = (*(u8 *)((s8 *)(arg0) + (0x25)));
+        var_s0 = (((Objstep_arg0 *)arg0)->unk25);
     }
     func_800C35E8(var_s0, (f32 *)(arg0 + 4));
     func_800C301C(var_s0, var_a2);
     func_800C31DC(var_s0, var_f2);
     func_800C3058(var_s0, arg6);
     func_800C3BDC(var_s0);
-    (*(u8 *)((s8 *)(arg0) + (0x26))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x26))) ^ 1);
+    (((Objstep_arg0 *)arg0)->unk26) = (u8) ((((Objstep_arg0 *)arg0)->unk26) ^ 1);
 }
 
 typedef struct {
@@ -110,17 +110,17 @@ s32 func_80800210_fxstep(u8 *arg0, f32 arg1, f32 arg2, s32 arg3) {
     }
     return 0;
 }
-
-s32 func_808002B4_fxstep(s32 arg0, f32 arg1, f32 arg2, s32 arg3) {
+typedef struct { s16 id; s16 sound; f32 offset; f32 flags; s16 scale; s16 pad; } StepEntry;
+s32 func_808002B4_fxstep(BtIntPtr arg0, f32 arg1, f32 arg2, s32 arg3) {
     void func_80800078_fxstep(u8 *, s32, f32, f32, s32);
-    typedef struct {
-        s16 id;
-        s16 sound;
-        f32 offset;
-        f32 flags;
-        s16 scale;
-        s16 pad;
-    } StepEntry;
+
+
+
+
+
+
+
+
     extern StepEntry D_80800AA0_fxstep[];
     s32 i;
     for (i = 0; D_80800AA0_fxstep[i].id != 0; i++) {
@@ -143,16 +143,16 @@ void func_80800344_fxstep(u8 *arg0, f32 arg1, f32 arg2, s32 arg3) {
     if (arg3 != 0) {
         func_80800210_fxstep(arg0, arg1, arg2, var_a3);
     }
-    temp_v0_2 = (*(s32 (**)(u8 *, s32, s32))((s8 *)(arg0) + (0x14)));
+    temp_v0_2 = (((Objstep_arg0 *)arg0)->unk14);
     if (temp_v0_2 != NULL) {
-        temp_v0_2(arg0, var_a3, (*(s32 *)((s8 *)(arg0) + (0x18))));
+        temp_v0_2(arg0, var_a3, (((Objstep_arg0 *)arg0)->unk18));
     }
 }
 
 /* extern */
 
 void func_808003B4_fxstep(void *arg0, f32 arg1, f32 arg2, s32 arg3) {
-    s32 func_808002B4_fxstep(s32, f32, f32, s32);
+    s32 func_808002B4_fxstep(BtIntPtr, f32, f32, s32);
     s32 var_a3;
     s32 (*temp_v0_2)(void *, s32, s32);
 
@@ -160,9 +160,9 @@ void func_808003B4_fxstep(void *arg0, f32 arg1, f32 arg2, s32 arg3) {
     if (arg3 != 0) {
         func_808002B4_fxstep(arg0, arg1, arg2, var_a3);
     }
-    temp_v0_2 = (*(s32 (**)(void *, s32, s32))((s8 *)(arg0) + (0x1C)));
+    temp_v0_2 = (((Objstep_arg0 *)arg0)->unk1C);
     if (temp_v0_2 != NULL) {
-        temp_v0_2(arg0, var_a3, (*(s32 *)((s8 *)(arg0) + (0x20))));
+        temp_v0_2(arg0, var_a3, (((Objstep_arg0 *)arg0)->unk20));
     }
 }
 
@@ -170,21 +170,21 @@ void func_808003B4_fxstep(void *arg0, f32 arg1, f32 arg2, s32 arg3) {
 
 void fxstep_entrypoint_0(void *arg0) {
     s32 func_800C2FDC(u8);
-    s32 heap_free(void *);
-    func_800C2FDC((*(u8 *)((s8 *)(arg0) + (0x24))));
-    func_800C2FDC((*(u8 *)((s8 *)(arg0) + (0x25))));
+    void heap_free(void *memory);
+    func_800C2FDC((((Objstep_arg0 *)arg0)->unk24));
+    func_800C2FDC((((Objstep_arg0 *)arg0)->unk25));
     heap_free(arg0);
 }
 
 void *fxstep_entrypoint_1(void) {
-    s32 func_800C2E04(void);
+    u8 func_800C2E04(void);
     void func_800C330C(u8, s32);
     void func_800C3418(u8, s32);
     void func_800EFD24(f32 *);
     void *heap_alloc(s32);
-    void fxstep_entrypoint_4(void *, s32, s32);
+    void fxstep_entrypoint_4(void *, BtIntPtr, s32);
     void fxstep_entrypoint_5(void *, s32, f32);
-    void fxstep_entrypoint_7(void *, s32, s32);
+    void fxstep_entrypoint_7(void *, BtIntPtr, s32);
     struct {
         s32 unk0;
         f32 position[3];
@@ -218,7 +218,7 @@ void fxstep_entrypoint_3(s8 *arg0, s32 arg1) {
     arg0[39] = arg1;
 }
 
-void fxstep_entrypoint_4(void *arg0, s32 arg1, s32 arg2) {
+void fxstep_entrypoint_4(void *arg0, BtIntPtr arg1, s32 arg2) {
     (*(s32 *)((s8 *)(arg0) + (0x1C))) = arg1;
     (*(s32 *)((s8 *)(arg0) + (0x20))) = arg2;
 }
@@ -230,12 +230,12 @@ void fxstep_entrypoint_5(void *arg0, s32 arg1, f32 arg2) {
 
 /* extern */
 
-void fxstep_entrypoint_6(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) fxstep_entrypoint_6(s32 arg0 BT_PASS2(, s32 bt_a1)) {
     s32 func_800EE7F8(s32);
-    func_800EE7F8(arg0 + 0x4);
+    BT_NATIVE_ONLY(return) func_800EE7F8(arg0 + 0x4);
 }
 
-void fxstep_entrypoint_7(void *arg0, s32 arg1, s32 arg2) {
+void fxstep_entrypoint_7(void *arg0, BtIntPtr arg1, s32 arg2) {
     (*(s32 *)((s8 *)(arg0) + (0x14))) = arg1;
     (*(s32 *)((s8 *)(arg0) + (0x18))) = arg2;
 }
@@ -256,8 +256,8 @@ void fxstep_entrypoint_9(void *arg0) {
 
 /* extern */
 
-void fxstep_entrypoint_10(s32 arg0, s32 arg1) {
-    s32 func_808002B4_fxstep(s32, f32, f32, s32);
+void fxstep_entrypoint_10(BtIntPtr arg0, s32 arg1) {
+    s32 func_808002B4_fxstep(BtIntPtr, f32, f32, s32);
     func_808002B4_fxstep(arg0, 0.0f, 1.0f, arg1);
 }
 
@@ -283,7 +283,7 @@ void fxstep_entrypoint_13(u8 *arg0, s32 arg1) {
 /* extern */
 
 void fxstep_entrypoint_14(s32 arg0, s32 arg1, f32 *arg2, s32 arg3, s32 arg4) {
-    s32 func_800C2E04(void);
+    u8 func_800C2E04(void);
     void func_800C301C(u8, s32);
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
@@ -331,3 +331,6 @@ s32 fxstep_entrypoint_15(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3, f32 *arg4) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/fx/step.data.s */
+FxStepEntry D_80800830_fxstep [26] BT_DATA(4, overlays_fx_step, 0x0) = { { 1, 1028, 1028, 0, 1.0f, 1.2f, 0.05f, 9000, 0 }, { 2, 1027, 1027, 0, 1.0f, 1.2f, 0.05f, 3000, 0 }, { 3, 1029, 1029, 0, 1.0f, 1.2f, 0.05f, 11000, 0 }, { 4, 1034, 1034, 0, 1.0f, 1.2f, 0.05f, 13000, 0 }, { 5, 1049, 1049, 0, 1.0f, 1.2f, 0.05f, 9000, 0 }, { 6, 1026, 1026, 0, 1.0f, 1.2f, 0.05f, 7000, 0 }, { 7, 1051, 1051, 0, 1.0f, 1.0f, 0.05f, 10000, 0 }, { 8, 1025, 1025, 0, 0.7f, 0.8f, 0.05f, 17000, 0 }, { 11, 1034, 1034, 0, 0.5f, 0.55f, 0.01f, 16000, 0 }, { 9, 1113, 1113, 0, 1.0f, 1.1f, 0.05f, 21000, 0 }, { 10, 1114, 1114, 0, 1.0f, 1.1f, 0.05f, 21000, 0 }, { 12, 1154, 1154, 0, 0.85f, 0.89f, 0.05f, 21000, 0 }, { 13, 1008, 1008, 0, 0.96f, 1.04f, 0.02f, 10000, 0 }, { 14, 1034, 1034, 0, 1.2f, 1.35f, 0.05f, 13000, 0 }, { 15, 1135, 1135, 0, 0.95f, 1.1f, 0.05f, 16000, 0 }, { 16, 1051, 1051, 0, 1.0f, 1.0f, 0.05f, 9000, 0 }, { 17, 1198, 1198, 0, 1.0f, 1.0f, 0.05f, 9000, 0 }, { 18, 1212, 1212, 0, 1.0f, 1.0f, 0.05f, 9000, 0 }, { 19, 1390, 1390, 0, 1.0f, 1.1f, 0.05f, 11000, 0 }, { 21, 1034, 1034, 0, 1.0f, 1.2f, 0.05f, 13000, 0 }, { 22, 1390, 1390, 0, 1.0f, 1.1f, 0.05f, 13000, 0 }, { 23, 1474, 1474, 0, 1.4f, 1.5f, 0.05f, 25000, 0 }, { 26, 1237, 1237, 0, 1.0f, 1.5f, 0.05f, 25000, 0 }, { 20, 1551, 1551, 0, 1.0f, 1.2f, 0.05f, 11000, 0 }, { 24, 1026, 1026, 0, 1.0f, 1.2f, 0.05f, 7000, 0 }, { 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0 } };
+StepEntry D_80800AA0_fxstep [23] BT_DATA(4, overlays_fx_step, 0x270) = { { 1, 1098, 1.0f, 0.05f, 12000, 0 }, { 2, 1102, 1.0f, 0.05f, 3000, 0 }, { 3, 1029, 1.0f, 0.05f, 14000, 0 }, { 4, 1034, 1.0f, 0.05f, 13000, 0 }, { 5, 1104, 1.0f, 0.05f, 11000, 0 }, { 6, 1100, 1.0f, 0.05f, 10000, 0 }, { 7, 1051, 1.0f, 0.05f, 17000, 0 }, { 8, 1025, 0.7f, 0.05f, 17000, 0 }, { 11, 1034, 0.5f, 0.03f, 17000, 0 }, { 9, 1113, 1.0f, 0.05f, 22000, 0 }, { 10, 1114, 1.0f, 0.05f, 22000, 0 }, { 12, 1154, 0.9f, 0.05f, 22000, 0 }, { 16, 1051, 1.0f, 0.05f, 22000, 0 }, { 17, 1198, 1.0f, 0.05f, 22000, 0 }, { 18, 1212, 1.0f, 0.05f, 22000, 0 }, { 19, 1390, 1.0f, 0.05f, 32767, 0 }, { 21, 1034, 1.0f, 0.05f, 13000, 0 }, { 22, 1390, 0.85f, 0.05f, 28000, 0 }, { 23, 1474, 1.4f, 0.05f, 32000, 0 }, { 26, 1237, 1.0f, 0.05f, 32000, 0 }, { 20, 1551, 1.0f, 0.05f, 14000, 0 }, { 24, 1100, 1.0f, 0.05f, 10000, 0 }, { 0, 0, 0.0f, 0.0f, 0, 0 } };

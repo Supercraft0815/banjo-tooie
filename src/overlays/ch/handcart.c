@@ -1690,7 +1690,7 @@ void func_80803698_chhandcart(Actor *arg0)
     _sudeflect_entrypoint_1(arg0->position, 180.0f, 0.0f, 65.0f, 0x1E);
 }
 
-void func_808036D0_chhandcart(s32 arg0, Actor* arg1) 
+void func_808036D0_chhandcart(BtIntPtr arg0, Actor* arg1) 
 {
     HandcartMemory* sp1C;
 
@@ -1859,7 +1859,7 @@ void func_80803794_chhandcart(Actor* arg0)
             sp3C->unk8F8 = 1;
             func_80800A24_chhandcart(sp40, sp40->unk64_19 ? 3 : 1, 4);
         }
-        func_808036D0_chhandcart((s32)arg0, sp40);
+        func_808036D0_chhandcart((BtIntPtr)arg0, sp40);
         if (func_80105A5C(arg0) != 0)
         {
             func_808031D0_chhandcart(arg0, 9);
@@ -1888,7 +1888,7 @@ void func_80803794_chhandcart(Actor* arg0)
         }
         break;
     case 9:
-        func_808036D0_chhandcart((s32)arg0, sp40);
+        func_808036D0_chhandcart((BtIntPtr)arg0, sp40);
         if (func_80105A5C(sp40) != 0)
         {
             func_80800EA0_chhandcart(sp40);
@@ -1900,7 +1900,7 @@ void func_80803794_chhandcart(Actor* arg0)
         }
         break;
     case 10:
-        func_808036D0_chhandcart((s32)arg0, sp40);
+        func_808036D0_chhandcart((BtIntPtr)arg0, sp40);
         func_80803698_chhandcart(arg0);
         if (func_80105A5C(sp40) != 0)
         {
@@ -1913,7 +1913,7 @@ void func_80803794_chhandcart(Actor* arg0)
         }
         break;
     case 11:
-        func_808036D0_chhandcart((s32)arg0, sp40);
+        func_808036D0_chhandcart((BtIntPtr)arg0, sp40);
         func_80803698_chhandcart(arg0);
         func_80803514_chhandcart(arg0);
         if (func_80105A5C(sp40) != 0)
@@ -2120,14 +2120,14 @@ s32 func_80803FC4_chhandcart(Actor* arg0, s32 arg1, u32 arg2)
     return 1;
 }
 
-void func_8080436C_chhandcart(void) 
+void func_8080436C_chhandcart(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(s32 bt_a0) BT_PASS2(, s32 bt_a1))) 
 {
-    func_801018A4();
+    func_801018A4(BT_PASS2(bt_a0, bt_a1));
 }
 
-void chhandcart_entrypoint_1(Actor* arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) chhandcart_entrypoint_1(Actor* arg0)
 {
-    func_80101F24(func_80106790((Unk80132ED0*)arg0));
+    BT_NATIVE_ONLY(return) func_80101F24(func_80106790((Unk80132ED0*)arg0));
 }
 
 void* chhandcart_entrypoint_2(void) 

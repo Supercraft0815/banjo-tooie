@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_actor.h"
 #include "native_actor_model.h"
 #include "native_spline.h"
@@ -64,7 +64,7 @@ void func_80105438(void) {
     void freelist_free(FreeList *);
     extern FreeList *D_80136EC0;
     freelist_free(D_80136EC0);
-#ifdef BT_NATIVE
+#ifdef BT_NATIVE // ILP32 too: guard or init the original lacks
     D_80136EC0 = NULL;
 #endif
 }
@@ -112,13 +112,13 @@ u32 pad24 : 26;
 #endif
 } *sp24;
     s32 sp20;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Unk80132ED0 *marker = arg0->unk0;
 #endif
 
     sp24 = func_80105494(arg0);
     sp20 = func_800D8588(arg0, func_800D7DE8(arg0), 0x19, 0x19);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     /* Spawning can move both the actor and its path-state pool. */
     if (marker) {
         arg0 = func_80106790(marker);
@@ -165,7 +165,7 @@ void *func_8010556C(Actor *arg0) {
     sp18 = freelist_next(&D_80136EC0, &sp1C);
     arg0->unk7C_0 = sp1C;
     rare_memset(sp18, 0, 0x48);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     ((NativeActorPathState *)sp18)->first = 0x3FF << 1;
     ((NativeActorPathState *)sp18)->flags28 = 7u << 29;
     ((NativeActorPathState *)sp18)->speed = 100.0f;
@@ -186,7 +186,7 @@ void func_80105634(Actor *arg0) {
     extern FreeList *D_80136EC0;
     if (arg0->unk7C_0 != 0) {
         freelist_erase(D_80136EC0, arg0->unk7C_0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         arg0->unk7C_0 = 0;
         arg0->pad74_0 &= ~16u;
 #else
@@ -282,11 +282,11 @@ void func_80105834(Actor *arg0)
 
 void func_80105854(Actor *arg0) {
     s32 func_80105A5C(Actor *);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Unk80132ED0 *marker = arg0->unk0;
 #endif
     func_801054D4(arg0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (marker) {
         arg0 = func_80106790(marker);
         if (!arg0) return;
@@ -302,7 +302,7 @@ void func_8010588C(Actor *arg0) { void func_8010A570(Actor *); struct { u32 word
 u32 upper : 21; u32 flag : 1; u32 lower : 10;
 #endif
 } *flags; func_8010A570(arg0); flags = (void *)arg0->unk0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     arg0->unk0->unk28 |= 1 << 10;
 #else
     flags->flag = 1;
@@ -360,7 +360,7 @@ u32 upper : 27; u32 flag : 1; u32 lower : 4;
     var_v1->previous = 0.0f;
     var_v1->speed = arg2;
     actorFlags = (void *)arg0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     arg0->pad74_0 |= 16;
 #else
     actorFlags->flag = 1;
@@ -458,7 +458,7 @@ void func_80105BAC(Actor *arg0) {
 
     temp_v0 = func_80105494(arg0);
     if (temp_v0 != NULL) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         ((NativeActorPathState *)temp_v0)->flags18 |= 1u << 31;
 #else
         temp_v0->flag = 1;
@@ -478,7 +478,7 @@ void func_80105BE0(Actor *arg0, s32 arg1) {
     } *temp_v0;
     temp_v0 = func_80105494(arg0);
     if (temp_v0 != NULL) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         ((NativeActorPathState *)temp_v0)->flags24 = (((NativeActorPathState *)temp_v0)->flags24 & ~32u) | ((arg1 & 1u) << 5);
 #else
         temp_v0->flag = arg1;
@@ -516,27 +516,27 @@ void func_80105C48(void) {
 }
 
 void func_80105CD0(void) {
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 defrag(s32);
 #endif
     void *freelist_at(FreeList *, s32);
     s16 freelist_capacity(FreeList *);
     FreeList *freelist_defrag(FreeList *);
     s32 freelist_is_element_alive(FreeList *, s32);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void func_801063EC(s16, s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_begin(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 vector_defrag(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_end(s32);
 #endif
     extern FreeList *D_80136ED0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     typedef NativeActorItem Item;
 #else
     typedef struct {
@@ -548,14 +548,14 @@ void func_80105CD0(void) {
 #endif
     s32 index;
     s32 capacity;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     NativeActorItems *entry;
 #else
     s32 *entry;
 #endif
     Item *item;
     Item *end;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void (*callback)(void *);
 #else
     s32 callback;
@@ -579,7 +579,7 @@ void func_80105CD0(void) {
             }
         }
         D_80136ED0 = freelist_defrag(D_80136ED0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         D_80136ED4 = NULL;
 #else
         (&D_80136ED0)[1] = 0;
@@ -589,17 +589,17 @@ void func_80105CD0(void) {
 
 void func_80105DFC(Actor *arg0) {
     s16 *_glidmake_entrypoint_1();
-#ifdef BT_NATIVE
-    void *_glidmake_entrypoint_5(u16, void *);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void *_glidmake_entrypoint_5(s32 arg0, f32 *arg1);
 #else
     s32 _glidmake_entrypoint_5(u16, s32);
 #endif
     void freelist_erase(FreeList *, s32);
     void *freelist_next(FreeList **, s32 *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 vector_new(s32, s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void *func_80106320();
 #endif
     extern FreeList *D_80136ED0;
@@ -612,7 +612,7 @@ void func_80105DFC(Actor *arg0) {
     s16 temp_a1;
     s32 sp38;
     s32 var_s2;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     NativeActorItems *entry;
 #else
     s32 *entry;
@@ -671,16 +671,16 @@ void func_80105DFC(Actor *arg0) {
 void func_801060E4(s16 arg0) {
     void *freelist_at(FreeList *, s32);
     void freelist_erase(FreeList *, s32);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 vector_free(s32);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void _glidmake_entrypoint_4(void *);
 #else
     s32 _glidmake_entrypoint_4(s32);
 #endif
     extern FreeList *D_80136ED0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     NativeActorItems *entry;
 #else
     s32 *entry;
@@ -694,13 +694,13 @@ void func_801060E4(s16 arg0) {
 
 void func_80106138(void *arg0) {
     void *func_801063C0(void *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_begin(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_end(s32);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     typedef NativeActorItem Item;
 #else
     typedef struct {
@@ -714,7 +714,7 @@ void func_80106138(void *arg0) {
         u8 pad[0x90];
         s16 index;
     } Owner;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     NativeActorItems *entry;
 #else
     s32 *entry;
@@ -749,35 +749,35 @@ void func_801061D8(Actor *arg0) {
     } ActorFlags;
     void *func_801063C0(void *);
     void func_800D62E4(s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void _glid_entrypoint_5(void *,void *),_glid_entrypoint_6(void *,void *);
 #else
     u8 *func_80103AA0(u8 *);
     void func_800D62E4(s32);
     s32 func_80103CDC(u8 *, u8 *);
     s32 func_80103D00(void *, u8 *);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void _glid_entrypoint_5(void *, s32);
 #else
     s32 _glid_entrypoint_5(s32, s32);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void _glid_entrypoint_6(void *, s32);
 #else
     s32 _glid_entrypoint_6(s32, s32);
 #endif
 #endif
     void func_8010381C(Actor *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_begin(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_end(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     extern s32 D_80136ED4;
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     typedef NativeActorItem Item;
 #else
     typedef struct {
@@ -787,7 +787,7 @@ void func_801061D8(Actor *arg0) {
         u8 data[0xA0];
     } Item;
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     NativeActorItems *entry;
 #else
     s32 *entry;
@@ -797,7 +797,7 @@ void func_801061D8(Actor *arg0) {
     Item *item;
 
     entry = func_801063C0(arg0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     model = func_80103AA0(arg0->unk0);
 #else
     model = func_80103AA0((u8 *)arg0->unk0);
@@ -824,7 +824,7 @@ void func_801061D8(Actor *arg0) {
     }
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 Unk80132ED0 *func_80106314(void)
 #else
 s32 func_80106314()
@@ -833,17 +833,17 @@ s32 func_80106314()
     return D_80136ED8;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_80106320(Actor *arg0, s32 arg1, s32 arg2, s32 arg3)
 #else
 void *func_80106320(s32 *arg0, s32 arg1, s32 arg2, s32 arg3)
 #endif
 {
     void *func_801063C0(void *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void *vector_push_back(void **);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     typedef NativeActorItems Entry;
 #else
     typedef struct {
@@ -851,7 +851,7 @@ void *func_80106320(s32 *arg0, s32 arg1, s32 arg2, s32 arg3)
         void *items;
     } Entry;
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     typedef NativeActorItem Item;
 #else
     typedef struct {
@@ -869,7 +869,7 @@ void *func_80106320(s32 *arg0, s32 arg1, s32 arg2, s32 arg3)
     item->type = arg2;
     ITEM_MODEL(item) = ITEM_ENTRY(entry, model, entry->unk0);
     ITEM_ID(item) = arg1;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     D_80136ED8 = arg0->unk0;
 #else
     D_80136ED8 = *arg0;
@@ -884,7 +884,7 @@ void *func_801063C0(void *arg0) {
     return freelist_at(D_80136ED0, OWNER_INDEX(arg0, (*(s16 *)((s8 *)(arg0) + (0x90)))));
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_801063EC(s16 arg0, void *arg1)
 #else
 void func_801063EC(s16 arg0, s32 arg1)
@@ -892,13 +892,13 @@ void func_801063EC(s16 arg0, s32 arg1)
 {
     void *freelist_at(FreeList *, s32);
     extern FreeList *D_80136ED0;
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_begin(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_end(s32);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     NativeActorItems *entry;
 #else
     s32 *entry;
@@ -916,7 +916,7 @@ void func_801063EC(s16 arg0, s32 arg1)
         if (begin < end) {
             do {
                 item += ITEM_SIZE;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 ((NativeActorItem *)(item - ITEM_SIZE))->model = arg1;
 #else
                 *(s32 *)(item - 0xA8) = arg1;
@@ -929,7 +929,7 @@ void func_801063EC(s16 arg0, s32 arg1)
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8010647C(void *arg0, void *arg1)
 #else
 void func_8010647C(void *arg0, s32 arg1)
@@ -942,10 +942,10 @@ void func_8010647C(void *arg0, s32 arg1)
 
 void *func_8010649C(void *arg0, s32 arg1) {
     s32 pad;
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_begin(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_end(s32);
 #endif
     uintptr_t sp20;
@@ -975,13 +975,13 @@ block_6:
 }
 
 void *func_80106520(s32 arg0) {
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_begin(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     u32 vector_end(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     extern s32 D_80136ED4;
 #endif
     s32 pad;
@@ -1007,13 +1007,13 @@ block_6:
     return NULL;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_801065A4(void *arg0)
 #else
 s32 func_801065A4(void *arg0)
 #endif
 {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *result = NULL;
 #else
     s32 result = 0;

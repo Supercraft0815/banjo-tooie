@@ -52,13 +52,13 @@ void func_80800054_chfactorystationdoors(Actor *arg0) {
 
 void func_80800158_chfactorystationdoors(s32 arg0, s32 arg1) {
     s32 func_800DF500(f32, f32, s32);
-    s32 func_80101870(s32, s32);
+    s32 func_80101870(BtIntPtr, BtIntPtr);
     func_800DF500(1.07f, 1.65f, 0x3F800000);
     func_80101870(arg0, arg1);
 }
 
 s32 func_8080019C_chfactorystationdoors(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(u32);
     void func_80101FDC(Actor *, u32);
 
@@ -76,7 +76,13 @@ s32 func_8080019C_chfactorystationdoors(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfactorystationdoors_entrypoint_0(void)
 {
-    extern u8 D_80800268_chfactorystationdoors[];
+    extern ActorData D_80800268_chfactorystationdoors[];
 
     return (OSThread *) D_80800268_chfactorystationdoors;
 }
+/* data_to_c.py: from asm/data/overlays/ch/factory/stationdoors.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+u32 D_80800250_chfactorystationdoors [3] BT_DATA(4, overlays_ch_factory_stationdoors, 0x0) = { 0x1305B0, 0x2000A, 0x1330000 };
+u32 D_8080025C_chfactorystationdoors [3] BT_DATA(4, overlays_ch_factory_stationdoors, 0xC) = { 0x1304C7, 0x180002, 0 };
+ActorData D_80800268_chfactorystationdoors [1] BT_DATA(4, overlays_ch_factory_stationdoors, 0x18) = { { 356, 1030, 2172, 1, 0, (void (*)(struct Actor *))func_80800054_chfactorystationdoors, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800158_chfactorystationdoors, 0, 0, 0, 0, 0, 3076, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chfactorystationdoors, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_8080019C_chfactorystationdoors, 0 } };

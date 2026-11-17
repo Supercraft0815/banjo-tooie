@@ -59,7 +59,7 @@ void func_808000E8_gldbDll(s32 *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 *gldbDll_entrypoint_0(s32 arg0, s32 *arg1) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_load(arg0, arg1);
 #else
     s32 func_8001C2AC(u8 *, u8 *);
@@ -104,7 +104,7 @@ void gldbDll_entrypoint_1(void) {
     for (i = 0; i != 32; i += 8) {
         func_800DA544(((_glreflight_entrypoint_0() & (0xFF << i)) >> i) + 0x9C4);
     }
-}
+}    typedef struct { u8 pad0[0x1EC]; s32 unk1EC; } ObjdbDll_D_80079D70; /* offsets.py genstruct: fields from raw offsets on &D_80079D70; rename once understood */
 
 void gldbDll_entrypoint_2(void) {
     s32 _gleeprom_entrypoint_0(void);
@@ -116,7 +116,7 @@ void gldbDll_entrypoint_2(void) {
     s32 i;
 
     eeprom = _gleeprom_entrypoint_0();
-    flags = *(s32 *)((s8 *)&D_80079D70 + 0x1EC) | _glreflight_entrypoint_0() | eeprom;
+    flags = ((ObjdbDll_D_80079D70 *)&D_80079D70)->unk1EC | _glreflight_entrypoint_0() | eeprom;
     for (i = 0; i < 8; i++) {
         func_800DA3B8(i + 0x648, (u32)((1 << i) & flags) >> i);
     }

@@ -2,7 +2,7 @@
 
 OSThread *chspiralgrill_entrypoint_0(void)
 {
-    extern u8 D_80800180_chspiralgrill[];
+    extern ActorData D_80800180_chspiralgrill[];
 
     return (OSThread *) D_80800180_chspiralgrill;
 }
@@ -20,7 +20,7 @@ s32 func_8080003C_chspiralgrill(Actor *arg0, s32 arg1, s32 arg2) {
     void _chexploder_entrypoint_3(void *, void *, u32);
     s32 _chexploder_entrypoint_6(Actor *, f32, f32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
@@ -58,3 +58,10 @@ s32 func_8080003C_chspiralgrill(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/spiralgrill.data.s */
+void func_80102EC0();
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800180_chspiralgrill [1] BT_DATA(4, overlays_ch_spiralgrill, 0x0) = { { 11, 1274, 2386, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 0, 0, 51, 0, 0, 3072, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_8080000C_chspiralgrill, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 3072, (void (*)(struct Actor *, long, long))func_8080003C_chspiralgrill, 0 } };
+u8 D_808001C8_chspiralgrill [24] BT_DATA(4, overlays_ch_spiralgrill, 0x48) = { 0, 0x13, 4, 0xC8, 0, 0x16, 0x5D, 0xC0, 0, 1, 0, 0xC8, 0x17, 0x70, 0, 0xA, 1, 0x4C, 0, 0, 0, 0, 0, 0 };

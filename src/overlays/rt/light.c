@@ -7,22 +7,22 @@ typedef struct {
     s16 max[3];
     s16 first;
     s16 count;
-} Cell;
+} Cell;                     typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objlight_arg2; /* offsets.py genstruct: fields from raw offsets on arg2; rename once understood */
 
 void func_80800000_rtlight(void *arg0, s32 arg1, void *arg2) {
-    (*(s32 *)((s8 *)(arg2) + (8))) = (s32) (arg1 / (s32) (*(u16 *)((s8 *)(arg0) + (0xE))));
-    (*(s32 *)((s8 *)(arg2) + (4))) = (s32) ((s32) (arg1 % (s32) (*(u16 *)((s8 *)(arg0) + (0xE)))) / (s32) (*(u16 *)((s8 *)(arg0) + (0xC))));
-    (*(s32 *)((s8 *)(arg2) + (0))) = (s32) (arg1 % (s32) (*(u16 *)((s8 *)(arg0) + (0xE)))) % (s32) (*(u16 *)((s8 *)(arg0) + (0xC)));
-    (*(s32 *)((s8 *)(arg2) + (0))) += (*(s16 *)((s8 *)(arg0) + (0)));
-    (*(s32 *)((s8 *)(arg2) + (4))) += (*(s16 *)((s8 *)(arg0) + (2)));
-    (*(s32 *)((s8 *)(arg2) + (8))) += (*(s16 *)((s8 *)(arg0) + (4)));
+    (((Objlight_arg2 *)arg2)->unk8) = (s32) (arg1 / (s32) (*(u16 *)((s8 *)(arg0) + (0xE))));
+    (((Objlight_arg2 *)arg2)->unk4) = (s32) ((s32) (arg1 % (s32) (*(u16 *)((s8 *)(arg0) + (0xE)))) / (s32) (*(u16 *)((s8 *)(arg0) + (0xC))));
+    (((Objlight_arg2 *)arg2)->unk0) = (s32) (arg1 % (s32) (*(u16 *)((s8 *)(arg0) + (0xE)))) % (s32) (*(u16 *)((s8 *)(arg0) + (0xC)));
+    (((Objlight_arg2 *)arg2)->unk0) += (*(s16 *)((s8 *)(arg0) + (0)));
+    (((Objlight_arg2 *)arg2)->unk4) += (*(s16 *)((s8 *)(arg0) + (2)));
+    (((Objlight_arg2 *)arg2)->unk8) += (*(s16 *)((s8 *)(arg0) + (4)));
 }
 
-void rtlight_entrypoint_0(void* arg0) 
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) rtlight_entrypoint_0(void* arg0) 
 {
-    heap_free(arg0);
+    BT_NATIVE_ONLY(return) heap_free(arg0);
 }
-void *rtlight_entrypoint_1(void *arg0, void *arg1, s32 arg2) {
+void *rtlight_entrypoint_1(void *arg0, void *arg1, BtIntPtr arg2) {
     typedef struct {
         s16 origin[3];
         u16 pad[5];
@@ -71,9 +71,9 @@ void *rtlight_entrypoint_1(void *arg0, void *arg1, s32 arg2) {
     count = source->count;
     result = heap_alloc(count * sizeof(Cell) + source->vertexCount * sizeof(Vertex) + sizeof(Header));
     *(Source **)result = source;
-    *(s16 *)((u8 *)result + 4) = *(s16 *)((u8 *)source + 18);
-    *(u16 *)((u8 *)result + 6) = count;
-    result->inverseScale = 1.0f / *(s16 *)((u8 *)source + 18);
+    result->scale = source->scale;
+    result->count = count;
+    result->inverseScale = 1.0f / source->scale;
     input = (Pair *)(source + 1);
     base = (u8 *)(result + 1);
     cell = (Cell *)base;
@@ -103,7 +103,7 @@ void *rtlight_entrypoint_1(void *arg0, void *arg1, s32 arg2) {
     vertexEnd = vertex + source->vertexCount;
     indices = (s16 *)input;
     vertices = func_800B2190(arg1);
-    if ((u32)vertex < (u32)vertexEnd) { do { base = (u8 *)vertex; vertex++; vertex[-1].index = *indices; i = 0; color = vertices + *indices * 16; do { base[8 + i] = color[12 + i]; i++; } while (i != 3); indices++; } while ((u32)vertex < (u32)vertexEnd); }
+    if ((BtUIntPtr)vertex < (BtUIntPtr)vertexEnd) { do { base = (u8 *)vertex; vertex++; vertex[-1].index = *indices; i = 0; color = vertices + *indices * 16; do { base[8 + i] = color[12 + i]; i++; } while (i != 3); indices++; } while ((BtUIntPtr)vertex < (BtUIntPtr)vertexEnd); }
     return result;
 }
 
@@ -176,7 +176,7 @@ void func_8080036C_rtlight(u8 *arg0, f32 *arg1, f32 arg2, Cell ***arg3, Cell ***
 }
 
 void func_80800544_rtlight(void *arg0, s32 position[3]) {
-    void func_800C8800(void *, f32 *);
+    void func_800C8800(BtIntPtr id,f32 *out);
     f32 pos[3];
     func_800C8800(arg0, pos);
     position[0] = (s32)pos[0];
@@ -208,7 +208,7 @@ void rtlight_entrypoint_2(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
     void *func_800B2190(void *);
     s32 func_800C8760(s32, s32);
     s32 func_800C878C(s32, s32, s32);
-    void func_800C8800(void *, f32 *);
+    void func_800C8800(BtIntPtr id,f32 *out);
     void func_800C883C(s32, void *);
     void func_800C8900(s32, void *);
     s32 func_800E3DC0(s16 *, s16 *);

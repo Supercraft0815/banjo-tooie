@@ -2,19 +2,19 @@
 
 OSThread *chvandoor_entrypoint_0(void)
 {
-    extern u8 D_80800640_chvandoor[];
+    extern ActorData D_80800640_chvandoor[];
 
     return (OSThread *) D_80800640_chvandoor;
 }
 
 void func_8080000C_chvandoor(Actor *arg0) {
-    s32 _subaddieDll_entrypoint_0(Actor *);
+    void _subaddieDll_entrypoint_0(void *arg0);
     s32 func_800DA298(s32);
     void func_800DA524(s32);
     s32 func_800EA05C();
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     void func_8010A800(Actor *, s32);
     void func_80800388_chvandoor(Actor *, s32);
     s32 sp2C;
@@ -44,7 +44,7 @@ void func_80800104_chvandoor(Actor *arg0) {
     s32 func_800D9078(f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800388_chvandoor(Actor *, s32);
     s32 func_8080044C_chvandoor(Actor *);
     extern u32 D_80800688_chvandoor;
@@ -96,8 +96,8 @@ void func_80800104_chvandoor(Actor *arg0) {
 
 s32 func_80800280_chvandoor(Actor *arg0, s32 arg1, s32 arg2) {
     f32 func_800EEB40(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    s32 func_80101180(s32, s32, s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800388_chvandoor(Actor *, s32);
     f32 sp1C[3];
 
@@ -158,14 +158,14 @@ s32 func_8080044C_chvandoor(Actor *arg0) {
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
     Actor *_subaddiefind_entrypoint_3(s32, s32 *);
     f32 func_800EEB40(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
-    s32 func_8010D290(s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    BtIntPtr func_8010D290(s32);
     extern Actor *B_80800690_chvandoor[];
     extern Actor *B_80800694_chvandoor;
     f32 position[3];
     Actor *actor;
     s32 cursor;
-    s32 player;
+    BtIntPtr player;
     s32 i;
     s32 j;
     s32 count;
@@ -203,3 +203,16 @@ s32 func_8080044C_chvandoor(Actor *arg0) {
     }
     return func_800EEB40(B_80800690_chvandoor[0]->position, position) > 2250000.0f;
 }
+/* data_to_c.py: from asm/data/overlays/ch/vandoor.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_80800640_chvandoor [1] BT_DATA(4, overlays_ch_vandoor, 0x0) = { { 172, 972, 1957, 1, 0, (void (*)(struct Actor *))func_80800104_chvandoor, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chvandoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11282, (void (*)(struct Actor *, long, long))func_80800280_chvandoor, 0 } };
+u32 D_80800688_chvandoor BT_DATA(4, overlays_ch_vandoor, 0x48) = 0x130507;
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+Actor * B_80800690_chvandoor [ 1 ] BT_DATA(16, bss_ch_vandoor, 0x0);
+Actor * B_80800694_chvandoor BT_DATA(4, bss_ch_vandoor, 0x4);
+#endif

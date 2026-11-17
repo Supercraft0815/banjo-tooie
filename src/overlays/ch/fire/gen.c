@@ -3,8 +3,8 @@
 s32 func_80800000_chfiregen(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     u8 value;
     Unk80132ED0 **param = &arg2;
-    u8 func_800D731C(s32);
-    s32 func_800DBE60(u8, s32, s32);
+    s32 func_800D731C(s32 arg0);
+    void func_800DBE60(u8 arg0, s32 arg1, s32 arg2);
     s32 func_801015D0(Actor *);
     void func_80800978_chfiregen(Actor *, Unk80132ED0 *);
 
@@ -81,29 +81,29 @@ void func_808000EC_chfiregen(Actor *arg0) {
     } FireData;
     extern f32 func_800D9004(void);
     extern s32 _sudeflect_entrypoint_1(u8 *, f32, f32, f32, s32);
-    extern s32 _subaddieaudioloop_entrypoint_2(u8 *);
-    extern s32 _subaddieaudioquick_entrypoint_2(s32, s32, s32 *);
+    extern void _subaddieaudioloop_entrypoint_2(void *arg0);
+    extern void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     extern void func_800C31DC(u8, f32);
-    extern u8 func_800C4350(s32, f32 *, s32 *);
+    extern u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     extern f32 func_800DC0C0(void);
     extern f32 func_800DC178(f32, f32);
     extern f32 func_800F10B4(f32, f32, f32, f32, f32);
     extern void func_80101CDC(Actor *, f32);
     extern f32 func_80101D0C(Actor *);
     extern s32 func_80101E14(Actor *, f32);
-    extern s32 func_801039E4(s32);
-    extern s32 func_80103CB8(Actor *, u32);
+    extern BtIntPtr func_801039E4(BtIntPtr);
+    extern BtIntPtr func_80103CB8(Actor *, BtUIntPtr);
     extern u8 *func_800B2768(u8 *);
-    extern s32 func_800B2840(s32);
-    extern void _dbmorph_entrypoint_3(u8 *, s32, s32, s32, f32 *);
+    extern BtIntPtr func_800B2840(BtIntPtr);
+    extern void _dbmorph_entrypoint_3(u8 *, BtIntPtr, BtIntPtr, s32, f32 *);
     extern void func_808008F4_chfiregen(Actor *, s32);
     extern void func_80800B4C_chfiregen(Actor *, s32);
     extern s32 D_80801570_chfiregen[];
     extern s32 D_80801580_chfiregen[];
     f32 timer;
     f32 dt;
-    u32 model;
-    s32 mesh;
+    BtUIntPtr model;
+    BtIntPtr mesh;
     dt = func_800D9004();
     _sudeflect_entrypoint_1((u8 *) arg0->position, 80.0f, 0.0, 75.0f, 10);
     if (arg0->unk64_19) {
@@ -159,7 +159,7 @@ void func_808000EC_chfiregen(Actor *arg0) {
         }
         if ((func_800DC0C0() < 0.08f) && func_80101E14(arg0, 0.1f)) {
             func_80800B4C_chfiregen(arg0, 3);
-            _subaddieaudioquick_entrypoint_2((s32) arg0, (s32) arg0->position, D_80801570_chfiregen);
+            _subaddieaudioquick_entrypoint_2((BtIntPtr) arg0, (BtIntPtr) arg0->position, D_80801570_chfiregen);
         }
         if (func_800DC0C0() < 0.25f) {
             func_80800B4C_chfiregen(arg0, 1);
@@ -192,7 +192,7 @@ void func_808000EC_chfiregen(Actor *arg0) {
             timer += func_800DC178(0.05f, 0.15f);
             if (timer > 4.0f) {
                 func_80800B4C_chfiregen(arg0, 3);
-                _subaddieaudioquick_entrypoint_2((s32) arg0, (s32) arg0->position, D_80801570_chfiregen);
+                _subaddieaudioquick_entrypoint_2((BtIntPtr) arg0, (BtIntPtr) arg0->position, D_80801570_chfiregen);
                 timer = 10000000.0f;
                 _subaddieaudioloop_entrypoint_2((u8 *) arg0);
             }
@@ -207,7 +207,7 @@ void func_808000EC_chfiregen(Actor *arg0) {
             ((FireData *) arg0)->morph = ((FireData *) arg0)->morph - 0.16f;
         }
         if ((func_800DC0C0() < 0.03f) && func_80101E14(arg0, 0.1f)) {
-            _subaddieaudioquick_entrypoint_2((s32) arg0, (s32) arg0->position, D_80801570_chfiregen);
+            _subaddieaudioquick_entrypoint_2((BtIntPtr) arg0, (BtIntPtr) arg0->position, D_80801570_chfiregen);
         }
         if (arg0->unk54 < 0.6f) {
             arg0->unk54 = 0.6f;
@@ -231,7 +231,7 @@ void func_808000EC_chfiregen(Actor *arg0) {
         }
     }
     if (((FireData *) arg0)->morph > 0.02f) {
-        model = func_801039E4((s32) arg0->unk0);
+        model = func_801039E4((BtIntPtr) arg0->unk0);
         mesh = func_80103CB8(arg0, model);
         _dbmorph_entrypoint_3(func_800B2768((u8 *) model), mesh, func_800B2840(model), 1, &((FireData *) arg0)->morph);
     }
@@ -276,7 +276,7 @@ s32 func_80800890_chfiregen(Actor *arg0) {
 /* extern */
 
 void func_808008F4_chfiregen(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
     s32 sp1C;
@@ -332,14 +332,14 @@ void func_80800A78_chfiregen(Actor *arg0) {
 }
 
 void func_80800B4C_chfiregen(Actor *arg0, s32 arg1) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800DBEFC(void *, s32, f32[3]);
     int func_800DC298(f32);
     extern s32 D_80801784_chfiregen[];
-    s32 sp34;
+    BtIntPtr sp34;
     f32 sp28[3];
     s32 var_a1;
 
@@ -442,7 +442,7 @@ void func_80800C44_chfiregen(Actor *arg0) {
         arg0->rotation[2] = ((f32 *)arg0->actorData)[6];
         ((f32 *)arg0->actorData)[3] = 0.15f;
     }
-}
+}    typedef struct { u8 pad0[0x50]; f32 unk50; } Objgen_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -451,15 +451,15 @@ void func_80800E54_chfiregen(u8 *arg0) {
     s32 func_800EE904(s32 *, u8 *, u8 *);
     s32 sp1C[3];
 
-    if ((s32) (*(f32 *)((s8 *)(arg0) + (0x50))) != -1) {
+    if ((s32) (((Objgen_arg0 *)arg0)->unk50) != -1) {
         func_800EE904(sp1C, arg0 + 0x18, arg0);
-        func_800C8E84((s32) (*(f32 *)((s8 *)(arg0) + (0x50))), sp1C, arg0);
+        func_800C8E84((s32) (((Objgen_arg0 *)arg0)->unk50), sp1C, arg0);
     }
 }
 
 void func_80800EB8_chfiregen(Actor *arg0) {
     s32 func_800C8E84();
-    void func_800C8800(s32, f32 *);
+    void func_800C8800(BtIntPtr, f32 *);
     void func_800C8900(s32, s32 *);
     s32 func_800C9128(f32 *);
     f32 func_800DC178(f32, f32);
@@ -534,7 +534,7 @@ OSThread *chfiregen_entrypoint_17(void)
 
 void *func_8080105C_chfiregen(Actor *arg0) {
     s32 sp1C;
-    s32 _idworld_entrypoint_3(s32);
+    BtIntPtr _idworld_entrypoint_3(s32);
 
     switch (arg0->unk6C_9) {
     case 0x2AA:
@@ -544,12 +544,12 @@ void *func_8080105C_chfiregen(Actor *arg0) {
         sp1C = 0x1AE;
         break;
     }
-    _idworld_entrypoint_3(sp1C);
+    BT_NATIVE_ONLY(return) _idworld_entrypoint_3(sp1C);
 }
 
 void *func_808010B4_chfiregen(Actor *arg0) {
     s32 sp1C;
-    s32 _idworld_entrypoint_3(s32);
+    BtIntPtr _idworld_entrypoint_3(s32);
 
     switch (arg0->unk6C_9) {
     case 0x2AA:
@@ -559,7 +559,7 @@ void *func_808010B4_chfiregen(Actor *arg0) {
         sp1C = 0x1B1;
         break;
     }
-    _idworld_entrypoint_3(sp1C);
+    BT_NATIVE_ONLY(return) _idworld_entrypoint_3(sp1C);
 }
 
 void func_8080110C_chfiregen(Actor *arg0) {

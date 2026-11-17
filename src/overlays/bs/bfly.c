@@ -6,16 +6,16 @@ struct anctrl_s;
 void func_8009C128(PlayerState *, f32[3]);
 
 void func_80800000_bsbfly(PlayerState *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
-    extern s32 D_80801D20_bsbfly;
+    extern s32 D_80801D20_bsbfly[10];
     f32 sp24[3];
 
     func_8009C128(arg0, sp24);
     sp24[0] += func_800DC178(-30.0f, 30.0f);
     sp24[1] += 50.0f + func_800DC178(0.0f, 30.0f);
     sp24[2] += func_800DC178(-30.0f, 30.0f);
-    func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80801D20_bsbfly);
+    func_800BBCB8(sp24, NULL, 1.0f, 1, D_80801D20_bsbfly);
 }
 
 /* extern */
@@ -55,7 +55,7 @@ void func_80800128_bsbfly(PlayerState *arg0) {
 void func_80800188_bsbfly(PlayerState *arg0) {
     void _baboost_entrypoint_4(PlayerState *, s32);
     void _bafly_entrypoint_4(PlayerState *);
-    s32 _bastatemem_entrypoint_1(void *);
+    void _bastatemem_entrypoint_1(void *arg0);
     void baflag_clear(PlayerState *, s32);
     void baphysics_reset_gravity(PlayerState *);
     void baphysics_reset_terminal_velocity(PlayerState *);
@@ -86,7 +86,7 @@ void func_80800188_bsbfly(PlayerState *arg0) {
 }
 
 void func_80800248_bsbfly(PlayerState *arg0) {
-    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void baphysics_set_gravity(PlayerState *, f32);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void baphysics_set_target_yaw(PlayerState *, f32);
@@ -146,17 +146,17 @@ void func_80800320_bsbfly(PlayerState *arg0) {
 
 /* extern */
 
-void func_808003E0_bsbfly(s32 arg0) {
+void func_808003E0_bsbfly(BtIntPtr arg0) {
     void func_800A0CF4(PlayerState *, s32);
     void func_800A4E30(PlayerState *);
-    s32 func_800C6DA0(s32);
+    void func_800C6DA0(s32 arg0);
     func_800C6DA0(0x44);
     func_800A0CF4(arg0, 0);
     func_800A4E30(arg0);
 }
 
 s32 bsbfly_entrypoint_0(s32 arg0) {
-    extern s32 D_80801D48_bsbfly[];
+    extern BtIntPtr D_80801D48_bsbfly[];
     return ((s32 *)&D_80801D48_bsbfly)[arg0];
 }
 
@@ -234,7 +234,7 @@ void func_8080050C_bsbfly(PlayerState *arg0) {
 
 void func_80800624_bsbfly(PlayerState *arg0) {
     s32 _baboost_entrypoint_1(void *);
-    void _baboost_entrypoint_2(PlayerState *, f32);
+    s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
     void _baboost_entrypoint_5(void *);
     void _bafly_entrypoint_10(void *, f32, f32);
     void _bafly_entrypoint_11(void *);
@@ -246,12 +246,12 @@ void func_80800624_bsbfly(PlayerState *arg0) {
     void _bafly_entrypoint_8(void *, f32, f32, f32, f32, f32, f32, f32);
     void _bafly_entrypoint_9(void *);
     s32 _bafpctrl_entrypoint_4();
-    s32 _chusefeather_entrypoint_1(s32, s32);
+    void _chusefeather_entrypoint_1(s32 arg0, s32 arg1);
     int anctrl_isAt(struct anctrl_s *, f32);
     void anctrl_setDuration(struct anctrl_s *, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     s32 bainput_should_beak_bust(void *);
-    s32 bakey_pressed(s32, s32);
+    s32 bakey_pressed(BtIntPtr, s32);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
     void bs_setState(PlayerState *, s32);
     s32 func_8008D0E0(void *);
@@ -275,7 +275,7 @@ void func_80800624_bsbfly(PlayerState *arg0) {
     _bafly_entrypoint_10(arg0, 300.0f, 80.0f);
     _bafly_entrypoint_11(arg0);
     flap = 0;
-    if (bakey_pressed((s32)arg0, 8)) {
+    if (bakey_pressed((BtIntPtr)arg0, 8)) {
         ((u8 *)arg0->kazfly)[0x1C] = 1;
     }
     if (((u8 *)arg0->kazfly)[0x1C] && func_8001211C() % 3 == 0) {
@@ -328,7 +328,7 @@ void func_80800624_bsbfly(PlayerState *arg0) {
         next_state = 0xF;
     }
     *(f32 *)arg0->kazfly = func_800F0E00(*(f32 *)arg0->kazfly - func_800D8FF8(), 0.0f);
-    if (*(f32 *)arg0->kazfly == 0.0f && bakey_pressed((s32)arg0, 9) && func_8008D0E0(arg0) && _bafly_entrypoint_12(arg0)) {
+    if (*(f32 *)arg0->kazfly == 0.0f && bakey_pressed((BtIntPtr)arg0, 9) && func_8008D0E0(arg0) && _bafly_entrypoint_12(arg0)) {
         next_state = 0x2A;
     }
     if (player_inWater(arg0)) {
@@ -338,11 +338,11 @@ void func_80800624_bsbfly(PlayerState *arg0) {
         next_state = 1;
     }
     _baboost_entrypoint_5(arg0);
-    bs_setState((s32)arg0, next_state);
+    bs_setState((BtIntPtr)arg0, next_state);
 }
 
 s32 bsbfly_entrypoint_1(s32 arg0) {
-    extern s32 D_80801D58_bsbfly[];
+    extern BtIntPtr D_80801D58_bsbfly[];
     return ((s32 *)&D_80801D58_bsbfly)[arg0];
 }
 
@@ -367,7 +367,7 @@ void func_80800A24_bsbfly(PlayerState *arg0, s32 arg1) {
     void anctrl_setDuration(struct anctrl_s *, f32);
     void baflag_clear(PlayerState *, s32);
     void baflag_set(PlayerState *, s32);
-    s32 baphysics_set_type(s32, s32);
+    void baphysics_set_type(void *self, s32 type);
     void baroll_setIdeal(PlayerState *, f32);
     void yaw_setIdeal(PlayerState *, f32);
     void func_8009BF5C(PlayerState *, f32);
@@ -383,7 +383,7 @@ void func_80800A24_bsbfly(PlayerState *arg0, s32 arg1) {
     void func_8009C128(PlayerState *, f32 *);
     void _bafly_entrypoint_1(PlayerState *, f32 *, f32 *, f32);
     void _batimer_set(PlayerState *, s32, f32);
-    s32 _chusefeather_entrypoint_1(s32, s32);
+    void _chusefeather_entrypoint_1(s32 arg0, s32 arg1);
     f32 sp34[3];
     struct anctrl_s *sp30;
 
@@ -453,7 +453,7 @@ void func_80800C38_bsbfly(PlayerState *arg0) {
     func_8009BA9C(arg0, sp38);
 }
 
-void func_80800D50_bsbfly(PlayerState *arg0) { func_80800128_bsbfly(arg0); (*(s32 *)((s8 *)(arg0) + 0x160)) = 0; func_80800A24_bsbfly(arg0, 1); }
+void func_80800D50_bsbfly(PlayerState *arg0) { func_80800128_bsbfly(arg0); (arg0->unk160.word) = 0; func_80800A24_bsbfly(arg0, 1); }
 
 s32 func_80800D80_bsbfly(PlayerState *arg0, s32 arg1) {
     int baflag_isTrue(PlayerState *, s32);
@@ -520,7 +520,7 @@ void func_80800F10_bsbfly(PlayerState *arg0) {
     void _bafly_entrypoint_6(PlayerState *, f32);
     s32 _batimer_decrement(void *, s32);
     void _batimer_set(PlayerState *, s32, f32);
-    s32 _chusefeather_entrypoint_1(s32, s32);
+    void _chusefeather_entrypoint_1(s32 arg0, s32 arg1);
     int anctrl_isAt(struct anctrl_s *, f32);
     s32 anctrl_isStopped(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
@@ -589,14 +589,14 @@ void func_80800F10_bsbfly(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-void func_80801138_bsbfly(s32 arg0)
+void func_80801138_bsbfly(BtIntPtr arg0)
 {
     func_80800A24_bsbfly(arg0,0);
     func_80800188_bsbfly(arg0);
 }
 
 s32 bsbfly_entrypoint_2(s32 arg0) {
-    extern s32 D_80801D68_bsbfly[];
+    extern BtIntPtr D_80801D68_bsbfly[];
     return ((s32 *)&D_80801D68_bsbfly)[arg0];
 }
 
@@ -710,7 +710,7 @@ void func_80801334_bsbfly(PlayerState *arg0) {
 }
 
 s32 bsbfly_entrypoint_3(s32 arg0) {
-    extern s32 D_80801D78_bsbfly[];
+    extern BtIntPtr D_80801D78_bsbfly[];
     return ((s32 *)&D_80801D78_bsbfly)[arg0];
 }
 
@@ -844,8 +844,8 @@ void func_808016B4_bsbfly(PlayerState *arg0) {
 
 /* extern */
 
-void func_8080183C_bsbfly(s32 arg0) {
-    s32 func_8008E95C(s32);
+void func_8080183C_bsbfly(BtIntPtr arg0) {
+    void func_8008E95C(PlayerState *arg0);
     void func_800A042C(PlayerState *);
     void func_800A0CF4(PlayerState *, s32);
     void func_800A4E30(PlayerState *);
@@ -856,74 +856,74 @@ void func_8080183C_bsbfly(s32 arg0) {
 }
 
 s32 bsbfly_entrypoint_4(s32 arg0) {
-    extern s32 D_80801D88_bsbfly[];
+    extern BtIntPtr D_80801D88_bsbfly[];
     return ((s32 *)&D_80801D88_bsbfly)[arg0];
 }
 
 /* extern */
 
 void func_8080188C_bsbfly(PlayerState *arg0) {
-    s32 _bafly_entrypoint_13(s32, s32, s32, s32);
+    s32 _bafly_entrypoint_13(BtIntPtr, s32, s32, s32);
     void func_800A0CF4(PlayerState *, s32);
     func_80800128_bsbfly(arg0);
     _bafly_entrypoint_13(arg0, 0, 0xD3, 0x3F99999A);
     func_800A0CF4(arg0, 1);
 }
 
-void func_808018D0_bsbfly(s32 arg0) {
-    s32 _bafly_entrypoint_14(s32, s32, s32);
+void func_808018D0_bsbfly(BtIntPtr arg0) {
+    void _bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2);
     _bafly_entrypoint_14(arg0, 0x24, 2);
 }
 
-void func_808018F4_bsbfly(s32 arg0) { void func_800A0CF4(PlayerState *, s32); func_800A0CF4(arg0, 0); _bafly_entrypoint_15(arg0); func_80800188_bsbfly(arg0); }
+void func_808018F4_bsbfly(BtIntPtr arg0) { void func_800A0CF4(PlayerState *, s32); func_800A0CF4(arg0, 0); _bafly_entrypoint_15(arg0); func_80800188_bsbfly(arg0); }
 
 s32 bsbfly_entrypoint_5(s32 arg0) {
-    extern s32 D_80801D98_bsbfly[];
+    extern BtIntPtr D_80801D98_bsbfly[];
     return ((s32 *)&D_80801D98_bsbfly)[arg0];
 }
 
 /* extern */
 
 void func_8080193C_bsbfly(PlayerState *arg0) {
-    s32 _bafly_entrypoint_13(s32, s32, s32, s32);
+    s32 _bafly_entrypoint_13(BtIntPtr, s32, s32, s32);
     void func_800A0CF4(PlayerState *, s32);
     func_80800128_bsbfly(arg0);
     _bafly_entrypoint_13(arg0, 1, 0xD3, 0x3F99999A);
     func_800A0CF4(arg0, 1);
 }
 
-void func_80801980_bsbfly(s32 arg0) {
-    s32 _bafly_entrypoint_14(s32, s32, s32);
+void func_80801980_bsbfly(BtIntPtr arg0) {
+    void _bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2);
     _bafly_entrypoint_14(arg0, 0x24, 2);
 }
 
-void func_808019A4_bsbfly(s32 arg0) { void func_800A0CF4(PlayerState *, s32); func_800A0CF4(arg0, 0); _bafly_entrypoint_15(arg0); func_80800188_bsbfly(arg0); }
+void func_808019A4_bsbfly(BtIntPtr arg0) { void func_800A0CF4(PlayerState *, s32); func_800A0CF4(arg0, 0); _bafly_entrypoint_15(arg0); func_80800188_bsbfly(arg0); }
 
 s32 bsbfly_entrypoint_6(s32 arg0) {
-    extern s32 D_80801DA8_bsbfly[];
+    extern BtIntPtr D_80801DA8_bsbfly[];
     return ((s32 *)&D_80801DA8_bsbfly)[arg0];
 }
 
 /* extern */
 
 void func_808019EC_bsbfly(PlayerState *arg0) {
-    s32 _bafly_entrypoint_16(s32, s32, s32);
+    s32 _bafly_entrypoint_16(BtIntPtr, s32, s32);
     func_80800128_bsbfly(arg0);
     _bafly_entrypoint_16(arg0, 0x10D, 0x3F800000);
 }
 
-void func_80801A1C_bsbfly(s32 arg0) {
-    s32 _bafly_entrypoint_17(s32, s32, s32, s32 *);
+void func_80801A1C_bsbfly(BtIntPtr arg0) {
+    void _bafly_entrypoint_17(PlayerState *arg0, s32 arg1, s32 arg2, s32 *arg3);
     _bafly_entrypoint_17(arg0, 0x24, 0x20, arg0 + 0x15C);
 }
 
-void func_80801A44_bsbfly(s32 arg0)
+void func_80801A44_bsbfly(BtIntPtr arg0)
 {
     _bafly_entrypoint_18();
     func_80800188_bsbfly(arg0);
 }
 s32 bsbfly_entrypoint_7(s32 arg0) {
-    extern s32 D_80801DB8_bsbfly[];
+    extern BtIntPtr D_80801DB8_bsbfly[];
     return ((s32 *)&D_80801DB8_bsbfly)[arg0];
 }
 
@@ -968,12 +968,12 @@ void func_80801B80_bsbfly(PlayerState *arg0)
 }
 
 s32 bsbfly_entrypoint_8(s32 arg0) {
-    extern s32 D_80801DC8_bsbfly[];
+    extern BtIntPtr D_80801DC8_bsbfly[];
     return ((s32 *)&D_80801DC8_bsbfly)[arg0];
 }
 
 void func_80801BB4_bsbfly(PlayerState *arg0) {
-    void _baboost_entrypoint_2(PlayerState *, f32);
+    s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
     void baflag_set(PlayerState *, s32);
     s32 bs_getCurrentState(PlayerState *);
     void func_80099B94(PlayerState *);
@@ -1001,10 +1001,10 @@ void func_80801BB4_bsbfly(PlayerState *arg0) {
 
 /* extern */
 
-void func_80801C58_bsbfly(s32 arg0) {
-    s32 _badrone_entrypoint_3(s32);
-    s32 _bsdrone_entrypoint_0(s32);
-    s32 baphysics_set_type(s32, s32);
+void func_80801C58_bsbfly(BtIntPtr arg0) {
+    s32 _badrone_entrypoint_3(BtIntPtr);
+    void _bsdrone_entrypoint_0(struct player_state_s *arg0);
+    void baphysics_set_type(void *self, s32 type);
     func_80800128_bsbfly(arg0);
     _bsdrone_entrypoint_0(arg0);
     if (_badrone_entrypoint_3(arg0) == 0xE) {
@@ -1016,12 +1016,27 @@ void func_80801C9C_bsbfly(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-void func_80801CBC_bsbfly(s32 arg0)
+void func_80801CBC_bsbfly(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     func_80800188_bsbfly(arg0);
 }
 s32 bsbfly_entrypoint_9(s32 arg0) {
-    extern s32 D_80801DD8_bsbfly[];
+    extern BtIntPtr D_80801DD8_bsbfly[];
     return ((s32 *)&D_80801DD8_bsbfly)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/bfly.data.s */
+void func_80099AA8();
+void func_80099B94 ( PlayerState * );
+void _bsdrone_entrypoint_3();
+s32 D_80801D20_bsbfly[10] BT_DATA(4, overlays_bs_bfly, 0x0) = { 1903076, 1376281, 10027042, 6684761, 1638425, 2556304, 26215200, 52428843, 8388736, 0 };
+BtIntPtr D_80801D48_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x28) = { (BtIntPtr)func_808003E0_bsbfly, (BtIntPtr)func_80800248_bsbfly, (BtIntPtr)func_80800320_bsbfly, (BtIntPtr)func_80801BB4_bsbfly };
+BtIntPtr D_80801D58_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x38) = { (BtIntPtr)func_80800454_bsbfly, (BtIntPtr)func_8080050C_bsbfly, (BtIntPtr)func_80800624_bsbfly, (BtIntPtr)func_8080042C_bsbfly };
+BtIntPtr D_80801D68_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x48) = { (BtIntPtr)func_80801138_bsbfly, (BtIntPtr)func_80800D50_bsbfly, (BtIntPtr)func_80800F10_bsbfly, (BtIntPtr)func_80801BB4_bsbfly };
+BtIntPtr D_80801D78_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x58) = { (BtIntPtr)func_80801178_bsbfly, (BtIntPtr)func_80801208_bsbfly, (BtIntPtr)func_80801334_bsbfly, (BtIntPtr)func_80801BB4_bsbfly };
+BtIntPtr D_80801D88_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x68) = { (BtIntPtr)func_8080183C_bsbfly, (BtIntPtr)func_808014E8_bsbfly, (BtIntPtr)func_808016B4_bsbfly, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80801D98_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x78) = { (BtIntPtr)func_808018F4_bsbfly, (BtIntPtr)func_8080188C_bsbfly, (BtIntPtr)func_808018D0_bsbfly, (BtIntPtr)func_80801BB4_bsbfly };
+BtIntPtr D_80801DA8_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x88) = { (BtIntPtr)func_808019A4_bsbfly, (BtIntPtr)func_8080193C_bsbfly, (BtIntPtr)func_80801980_bsbfly, (BtIntPtr)func_80801BB4_bsbfly };
+BtIntPtr D_80801DB8_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0x98) = { (BtIntPtr)func_80801A44_bsbfly, (BtIntPtr)func_808019EC_bsbfly, (BtIntPtr)func_80801A1C_bsbfly, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801DC8_bsbfly [4] BT_DATA(4, overlays_bs_bfly, 0xA8) = { (BtIntPtr)func_80801B80_bsbfly, (BtIntPtr)func_80801A80_bsbfly, (BtIntPtr)func_80801AEC_bsbfly, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80801DD8_bsbfly [6] BT_DATA(4, overlays_bs_bfly, 0xB8) = { (BtIntPtr)func_80801CBC_bsbfly, (BtIntPtr)func_80801C58_bsbfly, (BtIntPtr)func_80801C9C_bsbfly, (BtIntPtr)_bsdrone_entrypoint_3, 0, 0 };

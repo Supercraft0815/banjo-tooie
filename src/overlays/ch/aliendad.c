@@ -13,16 +13,16 @@ u32 D_80802670_chaliendad[] = {
     0x00000000,
 };
 
-u32 D_80802674_chaliendad[] = {
+BtFnWord D_80802674_chaliendad[] = {
     0x0158045A, 0x08070009,
-    (u32)D_808025F4_chaliendad, (u32)func_808000AC_chaliendad,
-    (u32)func_80105834, (u32)func_80800918_chaliendad,
+    (BtFnWord)D_808025F4_chaliendad, (BtFnWord)func_808000AC_chaliendad,
+    (BtFnWord)func_80105834, (BtFnWord)func_80800918_chaliendad,
     0x0BB80000, 0x00000000,
     0x00000000, 0x00040060,
-    (u32)func_808008C8_chaliendad, 0x00000000,
-    0x003C0000, (u32)func_80800024_chaliendad,
-    (u32)func_80107C2C, 0x84400412,
-    (u32)func_80800A54_chaliendad, 0x00000000,
+    (BtFnWord)func_808008C8_chaliendad, 0x00000000,
+    0x003C0000, (BtFnWord)func_80800024_chaliendad,
+    (BtFnWord)func_80107C2C, 0x84400412,
+    (BtFnWord)func_80800A54_chaliendad, 0x00000000,
 };
 
 u8 D_808026BC_chaliendad[] = {
@@ -70,28 +70,28 @@ void func_80800024_chaliendad(Actor *arg0) {
 }
 
 void func_808000AC_chaliendad(Actor *arg0) {
-    s32 _chbadshad_entrypoint_2(Actor *, s32, f32, s32);
+    s32 _chbadshad_entrypoint_2(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3);
     void _subaddieDll_entrypoint_4(Actor *, u32);
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
-    s32 _subaddieaudioquick_entrypoint_2(void *, void *, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
-    s32 _suexpression_entrypoint_18(void *, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
     void func_80018820(s32, f32, f32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF1B8(f32 *, f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(Unk80132ED0 *, s32, s32);
+    s32 func_8010114C(Unk80132ED0 *, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     s32 func_801022E4(Actor *);
@@ -100,7 +100,7 @@ void func_808000AC_chaliendad(Actor *arg0) {
     void func_80108B04(Actor *, s32);
     void func_808012AC_chaliendad(Actor *);
     void func_80801324_chaliendad(Actor *, s32);
-    void func_80801B9C_chaliendad(s32);
+    void func_80801B9C_chaliendad(BtIntPtr);
     void func_80801C60_chaliendad(void *);
     void func_80801C9C_chaliendad(Actor *, s32, s32);
     void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
@@ -295,7 +295,7 @@ void func_808000AC_chaliendad(Actor *arg0) {
     }
 }
 
-void *func_80100094(Actor *, u32);
+void *func_80100094(Actor *, u32);    typedef struct { u8 pad0[0x38]; u8 unk38; u8 unk39; } Objaliendad_func_808008C8_chaliendad_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_808008C8_chaliendad(Actor *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
@@ -303,13 +303,13 @@ void func_808008C8_chaliendad(Actor *arg0) {
     void *sp1C;
 
     sp1C = func_80100094(arg0, 0U);
-    (*(u8 *)((s8 *)(sp1C) + (0x38))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(sp1C) + (0x38))));
-    (*(u8 *)((s8 *)(sp1C) + (0x39))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(sp1C) + (0x39))));
+    (((Objaliendad_func_808008C8_chaliendad_sp1C *)sp1C)->unk38) = _subaddieaudioloop_entrypoint_3((((Objaliendad_func_808008C8_chaliendad_sp1C *)sp1C)->unk38));
+    (((Objaliendad_func_808008C8_chaliendad_sp1C *)sp1C)->unk39) = _subaddieaudioloop_entrypoint_3((((Objaliendad_func_808008C8_chaliendad_sp1C *)sp1C)->unk39));
     func_80801E80_chaliendad(arg0);
 }
 
 void func_80800918_chaliendad(Actor *arg0, void *arg1) {
-    void _chlifeforcespell_entrypoint_2(Actor *, s32, s32 *);
+    s32 _chlifeforcespell_entrypoint_2(Actor *arg0, Unk80132ED0 *arg1, s32 *arg2);
     void _subaddiefade_entrypoint_11(Actor *, s32 *);
     void _subaddiefade_entrypoint_9(Actor *, s32 *);
     void func_800DF744(s32, s32);
@@ -346,13 +346,13 @@ void func_80800918_chaliendad(Actor *arg0, void *arg1) {
 
 s32 func_80800A54_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
     extern u32 D_808025E4_chaliendad;
-    s32 _chlifeforcespell_entrypoint_1(Actor **, void *, s32, f32, s32);
+    Unk80132ED0 *_chlifeforcespell_entrypoint_1(Actor **arg0, f32 arg1[3], s32 arg2, f32 arg3, s32 arg4);
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void func_800E39A8(f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
@@ -488,8 +488,8 @@ s32 func_80800A54_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800F28_chaliendad(Actor *arg0) {
     s32 _glcutDll_entrypoint_19(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800DA298(s32);
     int func_800DB9B0(void);
     s32 func_800EA090(void);
@@ -565,8 +565,8 @@ void func_80800F28_chaliendad(Actor *arg0) {
 }
 
 void func_80801110_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    u8 _subaddiedialog_entrypoint_9(void *arg0, s32 arg1, void *arg2, s32 arg3);
     void func_80102424(Actor *, s32);
     void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
     extern s32 D_808025C0_chaliendad;
@@ -599,7 +599,7 @@ void func_80801110_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80801220_chaliendad(void *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddieaudioquick_entrypoint_2(void *, void *, s32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     extern s32 D_8080281C_chaliendad;
     if (arg1 == 0x12A0) {
         _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 + 4, &D_8080281C_chaliendad);
@@ -878,8 +878,8 @@ void func_80801868_chaliendad(Actor *arg0) {
     }
 }
 
-void func_80801B9C_chaliendad(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+void func_80801B9C_chaliendad(BtIntPtr arg0) {
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
     extern s32 D_808025C0_chaliendad;
     extern s32 D_80802824_chaliendad;
     _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80802824_chaliendad, &D_808025C0_chaliendad, 3);
@@ -889,8 +889,8 @@ void func_80801B9C_chaliendad(s32 arg0) {
 
 void func_80801BD4_chaliendad(Actor *arg0) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
     Actor *temp_v0;
@@ -915,12 +915,12 @@ void func_80801C60_chaliendad(void *arg0) {
 }
 
 void func_80801C9C_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    void _capod_entrypoint_8(s32 arg0);
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
-    void _gcdialogcamera_entrypoint_5(f32 *);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
+    void _gcdialogcamera_entrypoint_5(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_8(void);
     extern u32 D_808025E4_chaliendad;
 
@@ -941,8 +941,8 @@ void func_80801C9C_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80801D40_chaliendad(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     if (arg3 == NULL) {
         arg3 = arg0->unk0;
@@ -975,8 +975,8 @@ s32 func_80801DD0_chaliendad(void) {
 void func_80801E28_chaliendad(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
-    s32 temp_v0;
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr temp_v0;
 
     if (func_80100094(arg0, 1U) == NULL) {
         temp_v0 = _suexpression_entrypoint_7(arg0, 1, 0x62);
@@ -1021,7 +1021,7 @@ void func_80801EB4_chaliendad(Actor *arg0) {
 }
 
 void func_80801F98_chaliendad(Actor *arg0) {
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void func_800FFAB0(Actor *);
     void func_80102424(Actor *, s32);
     void func_80105834(Actor *);
@@ -1057,7 +1057,7 @@ void func_80802058_chaliendad(Actor *arg0) {
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     void func_800FFAB0(Actor *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80802218_chaliendad(Actor *);
     void func_80802284_chaliendad(Actor *);
@@ -1094,12 +1094,12 @@ void func_80802058_chaliendad(Actor *arg0) {
 }
 
 void func_80802188_chaliendad(Actor *arg0, s32 arg1) {
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
-    void func_800DF47C(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void func_800DF47C(s32, BtIntPtr);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 *func_801018D8(Actor *);
     int func_80101970(Actor *);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     s32 func_801015D0(Actor *);
     f32 sp34[3];
     f32 *sp30;
@@ -1109,7 +1109,7 @@ void func_80802188_chaliendad(Actor *arg0, s32 arg1) {
     func_800EFA4C(sp34, arg0->rotation[0], sp30[2], arg0->rotation[2]);
     func_800DF47C(&func_801015D0, arg0);
     func_800DE448(arg0->position, sp34, arg0->scale, func_801018D8(arg0), func_8010347C(arg0->unk0));
-}
+}    typedef struct { f32 unk0; f32 unk4; f32 unk8; } Objaliendad_func_80802218_chaliendad_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
@@ -1124,9 +1124,9 @@ void func_80802218_chaliendad(Actor *arg0) {
     sp1C = func_80100094(arg0, 0U);
     temp_f0 = func_800D8FF8();
     sp18 = temp_f0;
-    temp_f0_2 = func_800F15F8((*(f32 *)((s8 *)(sp1C) + (4))), (*(f32 *)((s8 *)(sp1C) + (0))), temp_f0 * 15.0f);
-    (*(f32 *)((s8 *)(sp1C) + (4))) = temp_f0_2;
-    (*(f32 *)((s8 *)(sp1C) + (8))) = (f32) ((*(f32 *)((s8 *)(sp1C) + (8))) + (temp_f0_2 * sp18));
+    temp_f0_2 = func_800F15F8((((Objaliendad_func_80802218_chaliendad_sp1C *)sp1C)->unk4), (((Objaliendad_func_80802218_chaliendad_sp1C *)sp1C)->unk0), temp_f0 * 15.0f);
+    (((Objaliendad_func_80802218_chaliendad_sp1C *)sp1C)->unk4) = temp_f0_2;
+    (((Objaliendad_func_80802218_chaliendad_sp1C *)sp1C)->unk8) = (f32) ((((Objaliendad_func_80802218_chaliendad_sp1C *)sp1C)->unk8) + (temp_f0_2 * sp18));
 }
 
 void func_80802284_chaliendad(Actor *arg0) {
@@ -1148,10 +1148,10 @@ void func_808022CC_chaliendad(Actor *arg0) {
     arg0->unk58 = 5.0f;
     sp1C[0] = 100.0f;
     sp1C[1] = 10.0f;
-}
+}    typedef struct { u8 pad0[0x58]; f32 unk58; } Objaliendad_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80802330_chaliendad(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = 0.85f;
+    (((Objaliendad_arg0 *)arg0)->unk58) = 0.85f;
 }
 
 void func_80802340_chaliendad(Actor *arg0) {

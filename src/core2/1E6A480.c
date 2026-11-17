@@ -27,7 +27,7 @@ void func_80090C28(PlayerState *self, s32 arg1) {
 void func_80090C34(PlayerState *self) {
     s32 func_8008E37C(PlayerState *);
     s32 func_800CBBC0(s32);
-    s32 func_800CCDF4(s32, s32 *, s32 *, s32, s32);
+    s32 func_800CCDF4(BtIntPtr, s32 *, s32 *, s32, s32);
     s32 func_800F3ED0(void *);
     void func_801107F0(void *, f32 *);
     s32 bs_getCurrentState(PlayerState *);

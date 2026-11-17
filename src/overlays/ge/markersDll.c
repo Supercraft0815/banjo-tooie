@@ -2,7 +2,7 @@
 
 extern s32* D_80800090_gemarkersDll[490];
 
-s32 gemarkersDll_entrypoint_0(s32 arg0)
+BtIntPtr gemarkersDll_entrypoint_0(s32 arg0)
 {
     if ((arg0 < 0xB6) || (arg0 >= 0x546))
     {

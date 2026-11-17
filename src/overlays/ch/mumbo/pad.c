@@ -44,16 +44,16 @@ s16 D_808010EC_chmumbopad[] = {
     0x015E, 0x0000,
 };
 
-u32 D_80801110_chmumbopad[] = {
+BtFnWord D_80801110_chmumbopad[] = {
     0x021002B0, 0xFFFF0001,
-    0x00000000, (u32)func_8080044C_chmumbopad,
-    (u32)func_80105834, (u32)func_80101870,
+    0x00000000, (BtFnWord)func_8080044C_chmumbopad,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870,
     0x00000000, 0x00000000,
     0x00000000, 0x0000181C,
-    0x00000000, (u32)func_80108ED0,
-    0x00000000, (u32)func_80800140_chmumbopad,
-    (u32)func_80107C2C, 0x80002C02,
-    (u32)func_80800514_chmumbopad, 0x00000000,
+    0x00000000, (BtFnWord)func_80108ED0,
+    0x00000000, (BtFnWord)func_80800140_chmumbopad,
+    (BtFnWord)func_80107C2C, 0x80002C02,
+    (BtFnWord)func_80800514_chmumbopad, 0x00000000,
     0x00000000, 0x00000000,
 };
 
@@ -63,9 +63,9 @@ s32 chmumbopad_entrypoint_0(s32 arg0) {
 
 /* extern */
 
-void func_80800014_chmumbopad(s32 arg0, s32 arg1, s32 arg2) {
+void func_80800014_chmumbopad(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
     s32 _gccubesearch_entrypoint_1(s32);
-    s32 _gspropctrl_entrypoint_11(s32, s32);
+    s32 _gspropctrl_entrypoint_11(BtIntPtr, BtIntPtr);
     _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(arg2), arg1);
 }
 
@@ -100,12 +100,12 @@ void func_80800140_chmumbopad(void *arg0) {
         u32 : 12;
         u32 spell : 9;
     } MumboPad;
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     s32 func_800DA298(s32);
     int func_800EA05C(void);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    void func_800FFAB0(s32);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800FFAB0(BtIntPtr);
     void func_80101FDC(Actor *, u32);
     s32 func_80103140(void **, s32, u16);
     f32 func_80103EAC(Actor *);
@@ -182,13 +182,13 @@ void func_80800140_chmumbopad(void *arg0) {
             func_80101FDC((Actor *)pad, 2);
             goto active;
         }
-        func_800FFAB0((s32)pad);
+        func_800FFAB0((BtIntPtr)pad);
         return;
     }
 active:
-    func_80800014_chmumbopad((s32)pad, (s32)((u8 *)pad + 0x18), D_80801060_chmumbopad[pad->spell]);
+    func_80800014_chmumbopad((BtIntPtr)pad, (BtIntPtr)((u8 *)pad + 0x18), D_80801060_chmumbopad[pad->spell]);
     if (func_800F5410(func_800F54E4()) != 0xD) {
-        _subaddiefade_entrypoint_1((s32)pad, 0x87);
+        _subaddiefade_entrypoint_1((BtIntPtr)pad, 0x87);
     }
 }
 
@@ -225,7 +225,7 @@ s32 func_80800514_chmumbopad(Actor *arg0, s32 arg1, s32 arg2) {
         u32 enabled : 1;
         u32 : 13;
     } PadMarker;
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void func_80103110(void *, s32);
     void func_80800674_chmumbopad(Actor *, s32);
     void func_808008CC_chmumbopad(void *, s32);
@@ -260,7 +260,7 @@ s32 func_80800514_chmumbopad(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_8080063C_chmumbopad(s32 *arg0, s32 arg1) {
     s32 func_800F5FA8(s32);
-    s32 func_800F7874(s32, s32, void *, s32 *);
+    s32 func_800F7874(s32, BtIntPtr, void *, s32 *);
     func_800F7874(arg1, *arg0, (u8 *)arg0 + 4, arg0);
     func_800F5FA8(arg1);
 }
@@ -272,10 +272,10 @@ void func_80800674_chmumbopad(Actor *arg0, s32 arg1) {
         u32 enabled : 1;
         u32 : 13;
     } PadMarker;
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800C067C(s32);
-    s32 func_800F7CF4(s32, s32, void *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_800F7CF4(BtIntPtr, s32, void *);
+    s32 func_80101180(s32, s32, BtIntPtr);
 
     func_800F7CF4(arg1, 0x43, arg0->actorData);
     func_800C067C(0x11DD);
@@ -360,14 +360,14 @@ void func_808008CC_chmumbopad(void *arg0, s32 arg1) {
         u32 touched : 1;
         u32 : 29;
     } MumboPad;
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80015E80(s32, void *);
     s32 func_800C0638(void);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     s32 func_800DA564(s32, s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
     s32 buttons[6];
 
     if (func_800F54E4() == arg1) {

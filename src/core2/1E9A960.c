@@ -61,7 +61,7 @@ void func_800C1070(f32 *arg0, f32 *arg1) {
     void func_800E3980(f32 *);
     s32 func_800EA068(s32);
     s32 func_800F5310();
-    s32 func_800F5EF8(s32);
+    s32 func_800F5EF8(BtIntPtr);
     s32 func_8010FFA8(s32);
     void func_8010FFB0(s32, f32 *, f32 *);
     s32 temp_v0;
@@ -87,10 +87,10 @@ s32 func_800C1104(u16 *arg0) {
     s32 func_800A5490(void);
     s32 func_800EA068(s32);
     s32 func_800F5310();
-    s32 func_800F5D18(s32);
-    s32 func_800F5EF8(s32);
+    s32 func_800F5D18(BtIntPtr);
+    s32 func_800F5EF8(BtIntPtr);
     s32 func_8010FFA8(s32);
-    s32 func_8010FFD8(s32);
+    s32 func_8010FFD8(BtIntPtr);
     s32 _plsu_entrypoint_0(f32 *, f32 *);
     f32 sp24[3];
     s32 pad;
@@ -248,10 +248,10 @@ void func_800C1568(s32 arg0) {
 void func_800C157C(void) {
     extern s32 D_80128B10;
     extern s32 D_80128B90;
-    u32 end;
+    BtUIntPtr end;
     s32 *var_v1;
 
-    end = (u32)&D_80128B90;
+    end = (BtUIntPtr)&D_80128B90;
     for (var_v1 = &D_80128B10; ; ) {
     var_v1 += 8;
     ((s32 *)var_v1)[-6] = 0;
@@ -262,7 +262,7 @@ void func_800C157C(void) {
     ((s32 *)var_v1)[-1] = 0;
     ((s32 *)var_v1)[-8] = 0;
     ((s32 *)var_v1)[-7] = 0;
-        if ((u32)var_v1 == end) {
+        if ((BtUIntPtr)var_v1 == end) {
             break;
         }
     }
@@ -300,8 +300,8 @@ void func_800C16A4(u8 index) {
 void func_800C16F8(SfxSource *arg0, s32 arg1) {
     s32 func_800CBBE0(s32);
     s32 func_800CBC00(s32);
-    s32 func_800CCEF4(s32, s32 *, s32 *, s32, s32);
-    void func_800DC3D4(s32, f32, u16, u8, u8, s32);
+    s32 func_800CCEF4(BtIntPtr, s32 *, s32 *, s32, s32);
+    void func_800DC3D4(s32, f32, u16, u8, u8, BtIntPtr);
     SfxSource *source = arg0;
     u32 parameters;
     s32 kind;
@@ -316,7 +316,7 @@ void func_800C16F8(SfxSource *arg0, s32 arg1) {
         func_800C13A0(source, 0x10);
         source->unk20 = -1;
         source->unk24 = -1;
-        if (func_800CCEF4((s32)source, &source->unk20,
+        if (func_800CCEF4((BtIntPtr)source, &source->unk20,
                          &source->unk24, 0, 0)
             && func_800CBC00(source->unk20)) {
             kind = func_800CBBE0(source->unk20);
@@ -332,7 +332,7 @@ void func_800C16F8(SfxSource *arg0, s32 arg1) {
                                    *(&source->unk1C), func_800C13C4(arg0, 0x400));
         func_800DC3D4(source->sfx_id - 0x3E9,
                      source->pitch, *(u16 *)&source->volume,
-                     source->unk61, parameters, (s32)func_800C1430(source->handle));
+                     source->unk61, parameters, (BtIntPtr)func_800C1430(source->handle));
     }
 }
 
@@ -901,7 +901,7 @@ s32 func_800C2C4C(u8 index) {
     void func_800EFD24(f32 *);
     void func_800C3418(u8, s32);
     void func_800C3798(u8, f32, f32);
-    SfxSource *source;
+    SfxSource *source; BT_NATIVE_ONLY(s32 map;)
 
     source = func_800C1414(index);
     source->callback = 0;
@@ -913,7 +913,7 @@ s32 func_800C2C4C(u8 index) {
     source->handle = 0;
     source->lifetime = 0xFF;
     source->pitch = 1.0f;
-    source->map = func_800EA05C();
+    source->map = BT_NATIVE_ONLY(map =) func_800EA05C();
     source->use_falloff = 1;
     source->pitch_mode = 0;
     source->expiring = 0;
@@ -945,7 +945,7 @@ s32 func_800C2C4C(u8 index) {
     func_800C13B0(source, 0x200);
     func_800C13B0(source, 0x400);
     func_800C3418(index, 2);
-    func_800C3798(index, 0.2f, 0.1f);
+    func_800C3798(index, 0.2f, 0.1f); BT_NATIVE_ONLY(return map;)
 }
 
 u8 func_800C2E04(void) {
@@ -1504,7 +1504,7 @@ void func_800C401C(s32 arg0, f32 arg1, u32 arg2, f32 *arg3, f32 arg4, f32 arg5, 
     }
 }
 
-void func_800C4104(s32 arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5) {
+void func_800C4104(s32 arg0, f32 arg1, s32 arg2, BtIntPtr arg3, f32 arg4, f32 arg5) {
     void func_800C401C(s32, f32, u32, f32 *, f32, f32, s32);
     func_800C401C(arg0, arg1, arg2, (f32 *)arg3, arg4, arg5, 2);
 }
@@ -1560,7 +1560,7 @@ void func_800C4308(f32 arg0, f32 arg1) {
 
 void func_800C431C(u8 arg0, s32 arg1) {
     func_800C1414(arg0)->use_falloff = (s8) arg1;
-}
+}    typedef struct { f32 unk0; s16 unk4; s16 unk6; } Obj1E9A960_D_8012A990; /* offsets.py genstruct: fields from raw offsets on &D_8012A990; rename once understood */
 
 u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (s16 *)command_list;
     extern f32 D_8012A990;
@@ -1796,7 +1796,7 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 2);
             break;
         case 30:
-            func_800C3058(index, *(s16 *)((u8 *)&D_8012A990 + 4));
+            func_800C3058(index, ((Obj1E9A960_D_8012A990 *)&D_8012A990)->unk4);
             break;
         case 26:
             a = *(s16 *)commands * (1.0f / 256.0f);
@@ -1813,7 +1813,7 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             source->unk7B2 = 1;
             break;
         case 33:
-            func_800C301C(index, *(s16 *)((u8 *)&D_8012A990 + 6));
+            func_800C301C(index, ((Obj1E9A960_D_8012A990 *)&D_8012A990)->unk6);
             break;
         case 35:
             a = *(s16 *)commands * (1.0f / 256.0f);
@@ -1865,15 +1865,28 @@ void func_800C4AF0(f32 *arg0, void *arg1) {
 
 void func_800C4B64(f32 arg0) {
     extern f32 D_8012A990;
-    *(f32 *)((u8 *)&D_8012A990 + 0) = arg0;
-}
+    ((Obj1E9A960_D_8012A990 *)&D_8012A990)->unk0 = arg0;
+}    typedef struct { s16 unk0; } Obj1E9A960_D_8012A994; /* offsets.py genstruct: fields from raw offsets on &D_8012A994; rename once understood */
 
 void func_800C4B70(s32 arg0) {
     extern s16 D_8012A994;
-    *(s16 *)((u8 *)&D_8012A994 + 0) = arg0;
-}
+    ((Obj1E9A960_D_8012A994 *)&D_8012A994)->unk0 = arg0;
+}    typedef struct { s16 unk0; } Obj1E9A960_D_8012A996; /* offsets.py genstruct: fields from raw offsets on &D_8012A996; rename once understood */
 
 void func_800C4B7C(s32 arg0) {
     extern s16 D_8012A996;
-    *(s16 *)((u8 *)&D_8012A996 + 0) = arg0;
+    ((Obj1E9A960_D_8012A996 *)&D_8012A996)->unk0 = arg0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s64 D_80128B08 BT_DATA(8, bss_core2bss1_0_2, 0x1368);
+s32 D_80128B0C BT_DATA(4, bss_core2bss1_0_2, 0x136C);
+s32 D_80128B10 BT_DATA(4, bss_core2bss1_0_2, 0x1370);
+s32 D_80128B90 BT_DATA(4, bss_core2bss1_0_2, 0x13F0);
+s32 D_80128C10 BT_DATA(4, bss_core2bss1_0_2, 0x1470);
+f32 D_8012A990 BT_DATA(4, bss_core2bss1_0_2, 0x31F0);
+s16 D_8012A994 BT_DATA(4, bss_core2bss1_0_2, 0x31F4);
+s16 D_8012A996 BT_DATA(4, bss_core2bss1_0_2, 0x31F6);
+#endif

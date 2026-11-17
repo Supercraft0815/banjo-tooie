@@ -32,6 +32,6 @@
 extern void _bskazdie_entrypoint_0(PlayerState *self);
 extern void _bskazdie_entrypoint_1(PlayerState *self);
 extern void _bskazdie_entrypoint_2(PlayerState *self);
-extern s32 _bskazdie_entrypoint_3(s32 idx);
+extern BtIntPtr _bskazdie_entrypoint_3(s32 idx);
 
 #endif // __BS_KAZ_DIE_H__

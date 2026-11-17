@@ -42,10 +42,10 @@ int bafly_entrypoint_2(PlayerState *arg0) {
         return 0;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x8C]; void * unk8C; } Objfly_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 u32 bafly_entrypoint_3(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 8);
+    return *(u8 *)((u8 *)*&((Objfly_arg0 *)arg0)->unk8C + 8);
 }
 
 /* extern */
@@ -54,37 +54,37 @@ void bafly_entrypoint_4(void *arg0) {
     s32 func_800C2FDC(s32, u8, void *);
     u8 temp_a1;
 
-    temp_a1 = (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9)));
+    temp_a1 = (*(u8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (9)));
     if (temp_a1 != 0) {
         func_800C2FDC(temp_a1 & 0xFF, temp_a1, arg0);
-        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))) = 0;
+        (*(s8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (9))) = 0;
     }
 }
 
 /* extern */
 
 void bafly_entrypoint_5(void *arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    u8 _gcstatusDll_entrypoint_11(void);
     u8 func_800C2E04();
-    s32 func_800C3418(u8, s32);
+    void func_800C3418(u8 indx, s32 arg1);
     s32 func_800EA05C();
     s32 temp_v0;
 
     if (_gcstatusDll_entrypoint_11() >= 2) {
-        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))) = 0U;
+        (*(u8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (9))) = 0U;
     } else {
-        (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))) = func_800C2E04();
-        func_800C3418((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (9))), 0);
+        (*(u8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (9))) = func_800C2E04();
+        func_800C3418((*(u8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (9))), 0);
     }
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (4))) = 1.0f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0))) = 0.0f;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (8))) = 0;
+    (*(f32 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (4))) = 1.0f;
+    (*(f32 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (0))) = 0.0f;
+    (*(s8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (8))) = 0;
     temp_v0 = func_800EA05C();
     if ((temp_v0 != 0xE4) && (temp_v0 != 0x17B)) {
-        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0xE))) = 0;
+        (*(s8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (0xE))) = 0;
         return;
     }
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0xE))) = 1;
+    (*(s8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (0xE))) = 1;
 }
 
 void bafly_entrypoint_6(void *arg0, f32 arg1) {
@@ -92,7 +92,7 @@ void bafly_entrypoint_6(void *arg0, f32 arg1) {
 }
 
 void bafly_entrypoint_7(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 140) + 8) = arg1;
+    *(s8 *)((u8 *)*&((Objfly_arg0 *)arg0)->unk8C + 8) = arg1;
 }
 
 void bafly_entrypoint_8(PlayerState *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7) {
@@ -138,15 +138,15 @@ void bafly_entrypoint_8(PlayerState *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg
 
 /* extern */
 
-void bafly_entrypoint_9(s32 arg0) {
+void bafly_entrypoint_9(BtIntPtr arg0) {
     f32 _bafpctrl_entrypoint_3(PlayerState *);
-    s32 bakey_held(s32, s32);
-    s32 baroll_setIdeal(s32, f32);
-    f32 bastick_getX(s32);
+    s32 bakey_held(BtIntPtr, s32);
+    s32 baroll_setIdeal(BtIntPtr, f32);
+    f32 bastick_getX(BtIntPtr);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    f32 yaw_getIdeal(s32);
-    s32 yaw_setIdeal(s32, f32);
-    s32 yaw_setVelocityBounded(s32, s32, s32);
+    f32 yaw_getIdeal(BtIntPtr);
+    s32 yaw_setIdeal(BtIntPtr, f32);
+    s32 yaw_setVelocityBounded(BtIntPtr, s32, s32);
     f32 sp34;
     f32 var_f2;
     f32 var_f0;
@@ -237,10 +237,10 @@ void bafly_entrypoint_11(PlayerState *arg0) {
 /* extern */
 
 s32 bafly_entrypoint_12(void *arg0) {
-    s32 _suinv_entrypoint_0(s32 *, s32, s32, s32, s32);
+    void _suinv_entrypoint_0(s32* arg0, s32 failure, s32 success, s32 itemType, s32 amountToRemove);
     s32 sp24;
 
-    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x8C)))) + (0xE))) != 0) {
+    if ((*(u8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (0xE))) != 0) {
         return 1;
     }
     _suinv_entrypoint_0(&sp24, 0, 1, 0x46, 1);
@@ -269,7 +269,7 @@ void bafly_entrypoint_13(PlayerState *arg0, s32 arg1, s32 arg2, f32 arg3) {
     s32 func_800E1610(s32, f32, f32, f32 *);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     void yaw_applyIdeal(PlayerState *);
-    s32 yaw_setIdeal(s32, f32);
+    s32 yaw_setIdeal(BtIntPtr, f32);
     f32 sp54[3];
     f32 sp48[3];
     f32 sp44;
@@ -309,7 +309,7 @@ void bafly_entrypoint_13(PlayerState *arg0, s32 arg1, s32 arg2, f32 arg3) {
 /* extern */
 
 void bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2) {
-    s32 anctrl_isStopped(s32);
+    s32 anctrl_isStopped(BtIntPtr);
     s32 baanim_getAnimCtrlPtr();
     void bs_setState(PlayerState *, s32);
     int player_isStable(PlayerState *);
@@ -325,7 +325,7 @@ void bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2) {
     bs_setState(arg0, sp1C);
 }
 
-void bafly_entrypoint_15(s32 arg0) { func_8009BC34(); func_8008E95C(arg0); func_8009BD88(arg0); func_800A4E30(arg0); }
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bafly_entrypoint_15(s32 arg0) { func_8009BC34(); func_8008E95C(arg0); func_8009BD88(arg0); BT_NATIVE_ONLY(return) func_800A4E30(arg0); }
 
 /* extern */
 
@@ -351,7 +351,7 @@ void bafly_entrypoint_16(PlayerState *arg0, s32 arg1, f32 arg2) {
     s32 func_800E1610(s32, f32, f32, f32 *);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     void yaw_applyIdeal(PlayerState *);
-    s32 yaw_setIdeal(s32, f32);
+    s32 yaw_setIdeal(BtIntPtr, f32);
     f32 sp4C;
     f32 sp40[3];
     f32 sp34[3];
@@ -378,7 +378,7 @@ void bafly_entrypoint_16(PlayerState *arg0, s32 arg1, f32 arg2) {
 /* extern */
 
 void bafly_entrypoint_17(PlayerState *arg0, s32 arg1, s32 arg2, s32 *arg3) {
-    s32 anctrl_isStopped(s32);
+    s32 anctrl_isStopped(BtIntPtr);
     s32 baanim_getAnimCtrlPtr();
     void bs_setState(PlayerState *, s32);
     int func_8008DD04(PlayerState *);
@@ -399,18 +399,18 @@ void bafly_entrypoint_17(PlayerState *arg0, s32 arg1, s32 arg2, s32 *arg3) {
     bs_setState(arg0, sp24);
 }
 
-void bafly_entrypoint_18(s32 arg0)
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bafly_entrypoint_18(s32 arg0)
 {
     baphysics_reset_gravity();
-    func_8008E95C(arg0);
+    BT_NATIVE_ONLY(return) func_8008E95C(arg0);
 }
 /* extern */
 
-void bafly_entrypoint_19(s32 arg0) {
-    s32 _bafpctrl_entrypoint_11(s32, s32, s32);
-    s32 _bafpctrl_entrypoint_14(s32, s32);
+void bafly_entrypoint_19(BtIntPtr arg0) {
+    s32 _bafpctrl_entrypoint_11(BtIntPtr, s32, s32);
+    s32 _bafpctrl_entrypoint_14(BtIntPtr, s32);
     s32 _bafpctrl_entrypoint_4();
-    s32 _bafpctrl_entrypoint_9(s32, s32);
+    s32 _bafpctrl_entrypoint_9(BtIntPtr, s32);
     int baflag_isTrue(PlayerState *, s32);
     s32 func_800C6E38(s32);
     if (_bafpctrl_entrypoint_4() != 3) {

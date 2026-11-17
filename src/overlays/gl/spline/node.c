@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spline.h"
 #include "native_actor.h"
 #define SPLINE_VECTOR(v) (v)
@@ -170,38 +170,38 @@ u8 unused7c[0x114];
         f32 time;
     } SplineActor;
     struct anctrl_s;
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 _glsplinefuncs_entrypoint_0(s32, s32 *, f32 *, void *, s32, f32 *, f32 *);
 #endif
-    s32 _seqdat_entrypoint_0(s32, s32);
+    s16 _seqdat_entrypoint_0(s32 arg0, s32 arg1);
     void anctrl_reset(struct anctrl_s *);
     void anctrl_setDuration(struct anctrl_s *, f32);
     void anctrl_setIndex(struct anctrl_s *, s32);
     void anctrl_start(struct anctrl_s *);
     void func_8008B188(struct anctrl_s *, s32);
-#ifdef BT_NATIVE
-    s32 func_800C04C8(s32, s32, s32, s32, void (*)(s32, s32, s32));
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, BtIntPtr arg4);
 #else
     s32 func_800C04C8(s32, s32, s32, s32, s32 *);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     f32 func_800C7AE4(void *, f32, f32);
 #else
     f32 func_800C7AE4(s32, f32, f32);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *func_800D7520(s32);
 #else
     s32 func_800D7520(s32);
 #endif
     f32 func_800D7708(s32, f32, s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void func_800D7754(Actor *, s32);
 #else
     s32 func_800D7754(u8 *, s32);
 #endif
     void func_800DA3B8(s32, s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void func_800EE7F8(void *, f32 *);
 #else
     void func_800EE7F8(u8 *, f32 *);
@@ -210,7 +210,7 @@ u8 unused7c[0x114];
     void func_80101D7C(Actor *);
     struct anctrl_s *func_80104248(void *);
     struct anctrl_s *func_801042B8(Actor *);
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     Spline *func_80105494(Actor *);
 #endif
     extern s16 D_808009B0_glsplinenode[];
@@ -231,7 +231,7 @@ u8 unused7c[0x114];
     struct anctrl_s *sp50;
     u8 *sp4C;
     s32 mode;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     s32 jumped;
 #endif
     register Actor *actor;
@@ -249,7 +249,7 @@ u8 unused7c[0x114];
         case 0:
             if (((Node *)arg2)->wc.flags.mode != 0) {
                 sp7C->first.bits.mode = ((Node *)arg2)->wc.flags.mode;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 sp7C->timer = ((NativeSplineContext *)arg0)->value0;
 #else
                 sp7C->timer = ((SplineActor *)arg0)->time;
@@ -262,7 +262,7 @@ u8 unused7c[0x114];
             mode = ((Node *)arg2)->w4.wait.mode;
             if ((((Node *)arg2)->w10.bits.wait) == 1) {
                 if (mode == 0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                     arg1->unk79_1 = 1; arg1->unk79_0 = 0;
 #else
                     ((SplineActor *)arg1)->waitState = 2;
@@ -274,7 +274,7 @@ u8 unused7c[0x114];
                     } else {
                         mode = 0;
                     }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                     arg1->unk79_1 = (mode >> 1); arg1->unk79_0 = mode;
 #else
                     ((SplineActor *)sp4C)->waitState = mode;
@@ -295,7 +295,7 @@ u8 unused7c[0x114];
             break;
         }
         case 6:
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             func_800DA3B8(((Node *)arg2)->w4.word >> 16, 1);
 #else
             func_800DA3B8((*(u16 *)(arg2 + 4)), 1);
@@ -303,33 +303,33 @@ u8 unused7c[0x114];
             break;
         }
         if ((((Node *)arg2)->wc.flags.spline) != 0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             jumped = _glsplinefuncs_entrypoint_0
 #else
             arg2 = (u8 *)_glsplinefuncs_entrypoint_0
 #endif
                 (((Node *)arg2)->wc.flags.spline,
                 &sp74, &sp68, SPLINE_VECTOR(sp5C), sp7C->first.bits.spline, &sp58, &sp54);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             if (!jumped) return sp78;
 #endif
             sp78 = 2;
             sp7C->first.bits.spline = sp74;
             sp7C->position = sp68;
             func_800EE7F8(SPLINE_ACTOR(arg1, position, (u8 *)arg1 + 4), sp5C);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             if (jumped) {
 #else
             if (arg2) {
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
                 mode = (s32)arg1;
 #endif
                 if (sp58 != -9999.0f) {
                     SPLINE_ACTOR(arg1, rotation[1], ((SplineActor *)mode)->yaw) = sp58;
                     SPLINE_ACTOR(arg1, unk54, ((SplineActor *)mode)->targetYaw) = SPLINE_ACTOR(arg1, rotation[1], ((SplineActor *)mode)->yaw);
                 }
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
                 mode = (s32)*(Actor **)&arg1;
 #endif
                 if (sp54 != -9999.0f) {
@@ -402,14 +402,14 @@ u8 unused7c[0x114];
             end = (Node *)(((NodeList *)arg3)->count * 0x14 + arg3 + 4);
             sp4C = (u8 *)((NodeList *)arg3)->nodes;
             link = ((Node *)arg2)->w4.bits.link;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             while ((Node *)sp4C < end && ((Node *)sp4C)->w10.bits.link != link) {
 #else
             while (((Node *)sp4C)->w10.bits.link != link && (Node *)sp4C < end) {
 #endif
                 sp4C += 0x14;
             }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             if ((Node *)sp4C == end) return sp78;
 #endif
             sp7C->w44.mode = ((Node *)arg2)->w4.bits.interp;

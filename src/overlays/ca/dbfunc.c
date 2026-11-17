@@ -202,7 +202,7 @@ CAMERA_FIELD func_808002F8_cadbfunc(void) {
         default:
             return 0;
     }
-}
+}    typedef struct { f32 unk0; f32 unk4; } Objdbfunc_cadbfunc_entrypoint_6_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -214,10 +214,10 @@ s32 cadbfunc_entrypoint_6(f32 *arg0, f32 *arg1) {
     if (temp_v0 == 0) {
         return 0;
     }
-    *arg0 = (*(f32 *)((s8 *)(temp_v0) + (0)));
-    *arg1 = (*(f32 *)((s8 *)(temp_v0) + (4)));
+    *arg0 = (((Objdbfunc_cadbfunc_entrypoint_6_temp_v0 *)temp_v0)->unk0);
+    *arg1 = (((Objdbfunc_cadbfunc_entrypoint_6_temp_v0 *)temp_v0)->unk4);
     return 1;
-}
+}    typedef struct { f32 unk0; f32 unk4; } Objdbfunc_cadbfunc_entrypoint_7_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -229,8 +229,8 @@ s32 cadbfunc_entrypoint_7(f32 arg0, f32 arg1) {
     if (temp_v0 == 0) {
         return 0;
     }
-    (*(f32 *)((s8 *)(temp_v0) + (0))) = arg0;
-    (*(f32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    (((Objdbfunc_cadbfunc_entrypoint_7_temp_v0 *)temp_v0)->unk0) = arg0;
+    (((Objdbfunc_cadbfunc_entrypoint_7_temp_v0 *)temp_v0)->unk4) = arg1;
     return 1;
 }
 
@@ -248,7 +248,7 @@ CAMERA_FIELD func_808003EC_cadbfunc(void) {
         default:
             return 0;
     }
-}
+}    typedef struct { f32 unk0; f32 unk4; } Objdbfunc_cadbfunc_entrypoint_8_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -260,10 +260,10 @@ s32 cadbfunc_entrypoint_8(f32 *arg0, f32 *arg1) {
     if (temp_v0 == 0) {
         return 0;
     }
-    *arg0 = (*(f32 *)((s8 *)(temp_v0) + (0)));
-    *arg1 = (*(f32 *)((s8 *)(temp_v0) + (4)));
+    *arg0 = (((Objdbfunc_cadbfunc_entrypoint_8_temp_v0 *)temp_v0)->unk0);
+    *arg1 = (((Objdbfunc_cadbfunc_entrypoint_8_temp_v0 *)temp_v0)->unk4);
     return 1;
-}
+}    typedef struct { f32 unk0; f32 unk4; } Objdbfunc_cadbfunc_entrypoint_9_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -275,8 +275,8 @@ s32 cadbfunc_entrypoint_9(f32 arg0, f32 arg1) {
     if (temp_v0 == 0) {
         return 0;
     }
-    (*(f32 *)((s8 *)(temp_v0) + (0))) = arg0;
-    (*(f32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    (((Objdbfunc_cadbfunc_entrypoint_9_temp_v0 *)temp_v0)->unk0) = arg0;
+    (((Objdbfunc_cadbfunc_entrypoint_9_temp_v0 *)temp_v0)->unk4) = arg1;
     return 1;
 }
 
@@ -294,7 +294,7 @@ CAMERA_FIELD func_808004E0_cadbfunc(void) {
         default:
             return 0;
     }
-}
+}    typedef struct { f32 unk0; } Objdbfunc_cadbfunc_entrypoint_10_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -306,9 +306,9 @@ s32 cadbfunc_entrypoint_10(f32 *arg0) {
     if (temp_v0 == 0) {
         return 0;
     }
-    *arg0 = (*(f32 *)((s8 *)(temp_v0) + (0)));
+    *arg0 = (((Objdbfunc_cadbfunc_entrypoint_10_temp_v0 *)temp_v0)->unk0);
     return 1;
-}
+}    typedef struct { f32 unk0; } Objdbfunc_cadbfunc_entrypoint_11_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -320,7 +320,7 @@ s32 cadbfunc_entrypoint_11(f32 arg0) {
     if (temp_v0 == 0) {
         return 0;
     }
-    (*(f32 *)((s8 *)(temp_v0) + (0))) = arg0;
+    (((Objdbfunc_cadbfunc_entrypoint_11_temp_v0 *)temp_v0)->unk0) = arg0;
     return 1;
 }
 

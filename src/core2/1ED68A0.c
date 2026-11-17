@@ -302,13 +302,13 @@ void func_800FDBB8(s32 arg0) {
 u32 func_800FDC28(u32 arg0) {
     extern s32 D_801359C0;
     extern u8 D_80135A10[];
-    u32 result = (u32)&D_801359C0;
+    BtUIntPtr result = (BtUIntPtr)&D_801359C0;
     if (arg0 != ((u8 *)result)[0x40]) {
         ((u8 *)result)[0x40] = arg0;
         if (!(arg0 & 0xFF)) {
             ((s8 *)result)[0x18] = 1;
         }
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800FDC58(s32 arg0) {
@@ -695,12 +695,12 @@ s32 func_800FE7A8(s32 arg0) { extern s16 D_801359C8; extern s32 D_80135A20[]; ex
         }
     }
     return 0;
-}
+}    typedef struct { f32 unk0; f32 unk4; u8 pad8[0x8]; u8 unk10; u8 pad11[0x2]; s8 unk13; s8 unk14; } Obj1ED68A0_D_801359C0; /* offsets.py genstruct: fields from raw offsets on &D_801359C0; rename once understood */
 
 void func_800FE820(f32 arg0) {
     extern s32 D_801359C0;
-    (*(u8 *)((s8 *)(&D_801359C0) + (0x10))) = 0xFF;
-    (*(f32 *)((s8 *)(&D_801359C0) + (4))) = (f32) (1.0f / arg0);
+    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk10) = 0xFF;
+    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk4) = (f32) (1.0f / arg0);
 }
 
 void func_800FE844(u32 arg0) {
@@ -716,11 +716,11 @@ void func_800FE850()
 void func_800FE870()
 {
     func_800DA544(FLAG2_675_UNK);
-}
+}    typedef struct { u8 unk0; } Obj1ED68A0_D_801359CE; /* offsets.py genstruct: fields from raw offsets on &D_801359CE; rename once understood */
 
 u32 func_800FE890(void) {
     extern s8 D_801359CE;
-    return *(u8 *)((u8 *)&D_801359CE + 0);
+    return *&((Obj1ED68A0_D_801359CE *)&D_801359CE)->unk0;
 }
 
 void func_800FE89C(void) {
@@ -734,13 +734,13 @@ void func_800FE8AC(void) {
 }
 
 void func_800FE8BC(s32 arg0, s32 arg1) {
-    s32 _cothemedll_entrypoint_5(s32 *, s32, s32);
+    void _cothemedll_entrypoint_5(void *arg0, s32 arg1, s32 arg2);
     extern s32 D_801359C0;
     _cothemedll_entrypoint_5(&D_801359C0, arg0, arg1);
 }
 
 void func_800FE8EC(s32 arg0) {
-    s32 _cothemedll_entrypoint_4(s32 *, s32);
+    void _cothemedll_entrypoint_4(void *arg0, s32 arg1);
     extern s32 D_801359C0;
     _cothemedll_entrypoint_4(&D_801359C0, arg0);
 }
@@ -843,11 +843,11 @@ void func_800FE914(s32 arg0) {
     }
     D_801359E4 = volume;
     if (&D_801359C8) {}
-}
+}    typedef struct { f32 unk0; } Obj1ED68A0_D_801359F0; /* offsets.py genstruct: fields from raw offsets on &D_801359F0; rename once understood */
 
 void func_800FEC1C(f32 arg0) {
     extern f32 D_801359F0;
-    *(f32 *)((u8 *)&D_801359F0 + 0) = arg0;
+    ((Obj1ED68A0_D_801359F0 *)&D_801359F0)->unk0 = arg0;
 }
 
 s32 func_800FEC28(s32 arg0) {
@@ -937,7 +937,7 @@ s32 func_800FED90(s32 arg0) {
     var_v0 = 2;
     while (var_v0 != 0xE) {
         var_v0 += 4;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800FEDC4(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
@@ -983,7 +983,7 @@ void func_800FEDC4(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
         func_800C3BDC(*((u8 *)&D_801359C0 + arg0 + 0x34));
     }
     *(s16 *)((u8 *)&D_801359C0 + arg0 * 2 + 0x36) = arg1;
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; u8 pad8[0x2]; s16 unkA; } Obj1ED68A0_func_800FEF94_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x4]; s16 unk8; } Obj1ED68A0_func_800FEF94_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
     extern s32 D_80123E84;
@@ -992,30 +992,30 @@ void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
 
     if (arg2 != 0) {
         temp_v0 = (arg1 * 0xC) + (u8 *)&D_80123E84;
-        *arg3 = (*(s32 *)((s8 *)(temp_v0) + (4)));
-        *arg4 = (*(s16 *)((s8 *)(temp_v0) + (0xA)));
+        *arg3 = (((Obj1ED68A0_func_800FEF94_temp_v0 *)temp_v0)->unk4);
+        *arg4 = (((Obj1ED68A0_func_800FEF94_temp_v0 *)temp_v0)->unkA);
         return;
     }
     temp_v0_2 = (arg1 * 0xC) + (u8 *)&D_80123E84;
-    *arg3 = (*(s32 *)((s8 *)(temp_v0_2) + (0)));
-    *arg4 = (*(s16 *)((s8 *)(temp_v0_2) + (8)));
+    *arg3 = (((Obj1ED68A0_func_800FEF94_temp_v0_2 *)temp_v0_2)->unk0);
+    *arg4 = (((Obj1ED68A0_func_800FEF94_temp_v0_2 *)temp_v0_2)->unk8);
 }
 
 void func_800FF000(s32 arg0) {
     extern s32 D_801359C0;
-    (*(s8 *)((s8 *)(&D_801359C0) + (0x13))) = (s8) arg0;
-    (*(f32 *)((s8 *)(&D_801359C0) + (0))) = 0.2f;
+    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk13) = (s8) arg0;
+    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk0) = 0.2f;
 }
 
 void func_800FF01C(f32 arg0) {
     extern s32 D_801359C0;
-    (*(s8 *)((s8 *)(&D_801359C0) + (0x13))) = 1;
-    (*(s8 *)((s8 *)(&D_801359C0) + (0x14))) = 1;
-    (*(f32 *)((s8 *)(&D_801359C0) + (0))) = arg0;
+    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk13) = 1;
+    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk14) = 1;
+    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk0) = arg0;
 }
 
 void func_800FF038(s32 arg0) {
-    s32 _cothemedll_entrypoint_2(s32 *, s32);
+    void _cothemedll_entrypoint_2(void *arg0, s32 arg1);
     extern s32 D_801359C0;
     _cothemedll_entrypoint_2(&D_801359C0, arg0);
 }
@@ -1133,3 +1133,33 @@ f32 func_800FF060(f32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     *arg1 = direction * velocity;
     return (distance1 + distance2 + distance3 + distance4) * direction;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_801359C0 BT_DATA(4, bss_core2bss2_2, 0x2B20);
+s16 D_801359C8 BT_DATA(4, bss_core2bss2_2, 0x2B28);
+s8 D_801359CE BT_DATA(4, bss_core2bss2_2, 0x2B2E);
+s8 D_801359CF BT_DATA(4, bss_core2bss2_2, 0x2B2F);
+u8 D_801359D1 BT_DATA(4, bss_core2bss2_2, 0x2B31);
+u8 D_801359D5 BT_DATA(4, bss_core2bss2_2, 0x2B35);
+u8 D_801359D6 BT_DATA(4, bss_core2bss2_2, 0x2B36);
+s8 D_801359D7 BT_DATA(4, bss_core2bss2_2, 0x2B37);
+s8 D_801359D8 BT_DATA(4, bss_core2bss2_2, 0x2B38);
+s16 D_801359E2 BT_DATA(4, bss_core2bss2_2, 0x2B42);
+s32 D_801359E8 BT_DATA(4, bss_core2bss2_2, 0x2B48);
+f32 D_801359EC BT_DATA(4, bss_core2bss2_2, 0x2B4C);
+f32 D_801359F0 BT_DATA(4, bss_core2bss2_2, 0x2B50);
+u8 D_80135A00 [ 1 ] BT_DATA(4, bss_core2bss2_2, 0x2B60);
+s8 D_80135A01 BT_DATA(4, bss_core2bss2_2, 0x2B61);
+s32 * D_80135A04 BT_DATA(4, bss_core2bss2_2, 0x2B64);
+s32 * D_80135A08 BT_DATA(4, bss_core2bss2_2, 0x2B68);
+f32 D_80135A0C BT_DATA(4, bss_core2bss2_2, 0x2B6C);
+s32 D_80135A20 [ 3 ] BT_DATA(16, bss_core2bss2_2_music_tail, 0x0);
+s32 D_80135A2C [ 1 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0xC);
+f32 D_80135A30 [ 3 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0x10);
+u8 D_80135A3C [ 3 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1C);
+u8 D_80135A3F [ 1 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1F);
+s32 D_80135A40 BT_DATA(4, bss_core2bss2_2_music_tail, 0x20);
+f32 D_80135A44 BT_DATA(4, bss_core2bss2_2_music_tail, 0x24);
+#endif

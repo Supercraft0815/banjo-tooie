@@ -3,8 +3,8 @@
 void func_80800000_chcrusherboulder(Actor *arg0, void *arg1) {
     void *func_80100094(Actor *, u32);
     s32 _sumumbofx_entrypoint_10(u8 *);
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
-    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1);
+    void _sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1);
     void func_800DF5D8(u32, u32, u32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
@@ -38,14 +38,14 @@ void func_80800000_chcrusherboulder(Actor *arg0, void *arg1) {
         _sumumbofx_entrypoint_8(data, arg1);
     }
 }
-
+struct Vector { s32 v[3]; };
 s32 func_80800100_chcrusherboulder(u8 *arg0, f32 *arg1) {
-    struct Vector { s32 v[3]; };
+
     extern struct Vector D_80801388_chcrusherboulder;
     extern struct Vector D_80801394_chcrusherboulder;
-    s32 _sumumbofx_entrypoint_7(u8 *, f32, s32, s32, f32 *, struct Vector *, struct Vector *);
-    s32 _sumumbofx_entrypoint_14(u8 *);
-    s32 _sumumbofx_entrypoint_11(u8 *, f32 *);
+    void _sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f32 *arg5, f32 *arg6);
+    void _sumumbofx_entrypoint_14(u8 *arg0);
+    void _sumumbofx_entrypoint_11(void *arg0, BtIntPtr bt_a1);
     struct Vector sp3C = D_80801388_chcrusherboulder;
     struct Vector sp30 = D_80801394_chcrusherboulder;
 
@@ -53,7 +53,7 @@ s32 func_80800100_chcrusherboulder(u8 *arg0, f32 *arg1) {
     _sumumbofx_entrypoint_14(arg0);
     arg1[1] += 300.0f;
     _sumumbofx_entrypoint_11(arg0, arg1);
-    arg1[1] -= 300.0f;
+    arg1[1] -= 300.0f; BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -104,11 +104,11 @@ void func_80800338_chcrusherboulder(Actor *arg0) {
     s32 func_800DA544(s32);
     f32 _sumumbofx_entrypoint_22(u8 *);
     s32 _sumumbofx_entrypoint_1(void *, s32);
-    s32 func_8010A800(s32, s32);
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 func_8010A800(BtIntPtr, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
     void func_800187B4(s32, f32, f32, f32);
-    extern s32 D_808013A0_chcrusherboulder;
+    extern s32 D_808013A0_chcrusherboulder[5];
     u8 *sp3C;
     s8 sp3B;
 
@@ -142,13 +142,13 @@ void func_80800338_chcrusherboulder(Actor *arg0) {
             func_80800100_chcrusherboulder(sp3C, arg0->position);
             if (_sumumbofx_entrypoint_22(sp3C) <= 0.02f) {
                 _sumumbofx_entrypoint_1(arg0, 1);
-                func_8010A800((s32)arg0, 0);
+                func_8010A800((BtIntPtr)arg0, 0);
                 func_80800A1C_chcrusherboulder(arg0, 6);
             }
             break;
         case 6:
             if (func_800DA298(0x4FB)) {
-                _capod_entrypoint_13((s32)arg0->unk0, 0, 4, 0x4030);
+                _capod_entrypoint_13((BtIntPtr)arg0->unk0, 0, 4, 0x4030);
                 func_80800A1C_chcrusherboulder(arg0, 7);
             }
             break;
@@ -156,7 +156,7 @@ void func_80800338_chcrusherboulder(Actor *arg0) {
             func_80800100_chcrusherboulder(sp3C, arg0->position);
             if (_sumumbofx_entrypoint_22(sp3C) <= 0.02f) {
                 _sumumbofx_entrypoint_1(arg0, 1);
-                func_8010A800((s32)arg0, 0);
+                func_8010A800((BtIntPtr)arg0, 0);
                 func_80800A1C_chcrusherboulder(arg0, 7);
             }
         case 7:
@@ -181,7 +181,7 @@ void func_80800338_chcrusherboulder(Actor *arg0) {
                 }
                 if (arg0->unk74_30) {
                     arg0->position[0] -= 144.0f * func_800D8FF8() * func_800DC178(0.2f, 0.3f);
-                    sp3B = _subaddieaudioloop_entrypoint_7(((u8 *)arg0->actorData)[12], arg0->position, 1, &D_808013A0_chcrusherboulder, *(u32 *)((u8 *)arg0 + 0x70) & 1);
+                    sp3B = _subaddieaudioloop_entrypoint_7(((u8 *)arg0->actorData)[12], arg0->position, 1, D_808013A0_chcrusherboulder, *(u32 *)((u8 *)arg0 + 0x70) & 1);
                     ((f32 *)arg0->actorData)[3] = *(f32 *)&sp3B;
                     if (func_800DC0C0() < 0.2f) {
                         arg0->unk74_30 = 0;
@@ -248,8 +248,8 @@ void func_8080087C_chcrusherboulder(u8 *arg0) {
 /* extern */
 
 void func_808009C0_chcrusherboulder(u8 *arg0) {
-    s32 _sudeflect_entrypoint_0(s32, s32, s32, s32);
-    _sudeflect_entrypoint_0((s32) (arg0 + 4), 0x43160000, 0x43700000, 0xA);
+    s32 _sudeflect_entrypoint_0(BtIntPtr, s32, s32, s32);
+    _sudeflect_entrypoint_0((BtIntPtr) (arg0 + 4), 0x43160000, 0x43700000, 0xA);
     if (((Actor *) arg0)->unk74_29) {
         func_80800338_chcrusherboulder((Actor *) arg0);
         return;
@@ -269,15 +269,15 @@ void func_80800A1C_chcrusherboulder(Actor *arg0, s32 arg1) {
     void _sumumbofx_entrypoint_3(void *, f32);
     s32 _sumumbofx_entrypoint_12(void *, f32 *, f32 *, f32 *);
     s32 _sumumbofx_entrypoint_24(void *, f32);
-    s32 func_8010A800(s32, s32);
+    s32 func_8010A800(BtIntPtr, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     s32 func_800E1610(s32, f32, f32, f32 *);
     s32 func_800DA544(s32);
     void _subaddieaudioloop_entrypoint_2(Actor *);
     u8 _subaddieaudioloop_entrypoint_3(u8);
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void func_808010EC_chcrusherboulder(void);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     extern s32 D_808013B4_chcrusherboulder[];
     extern f32 D_808013C0_chcrusherboulder[];
     extern f32 D_808013C8_chcrusherboulder[];
@@ -421,16 +421,16 @@ void func_80800ED0_chcrusherboulder(Actor *arg0) {
     *(f32 *)&arg0->actorData[3] = *(f32 *)&sp27;
     func_800DA524(0);
 }
-
+struct BoulderPosition { f32 v[3]; };
 void func_80800F38_chcrusherboulder(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 func_8001211C(void);
     f32 func_800DC0C0(void);
     void func_80801064_chcrusherboulder(f32[3], f32);
     void func_80801128_chcrusherboulder(f32[3], s32);
-    struct BoulderPosition { f32 v[3]; };
+
     extern struct BoulderPosition D_808013E0_chcrusherboulder;
-    extern u32 D_808013EC_chcrusherboulder;
+    extern u32 D_808013EC_chcrusherboulder[4];
     struct BoulderPosition sp24 = D_808013E0_chcrusherboulder;
 
     if (!(func_8001211C() & 3)) {
@@ -449,37 +449,37 @@ void func_80800F38_chcrusherboulder(Actor *arg0) {
         func_800DC0C0();
         func_80801128_chcrusherboulder(sp24.v, *(s32 *)&arg0->scale);
     }
-    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808013EC_chcrusherboulder);
+    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808013EC_chcrusherboulder);
 }
 
 void func_80801064_chcrusherboulder(f32 arg0[3], f32 arg1) {
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    extern s32 D_808013FC_chcrusherboulder;
-    extern s32 D_8080143C_chcrusherboulder;
-    extern s32 D_80801450_chcrusherboulder;
-    s32 temp_a0;
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808013FC_chcrusherboulder[16];
+    extern s32 D_8080143C_chcrusherboulder[5];
+    extern s32 D_80801450_chcrusherboulder[5];
+    BtIntPtr temp_a0;
 
-    temp_a0 = func_800BABB8(0, arg0, NULL, 1.0f, &D_808013FC_chcrusherboulder);
+    temp_a0 = func_800BABB8(0, arg0, NULL, 1.0f, D_808013FC_chcrusherboulder);
     func_800BABB8(temp_a0, arg0, NULL, 1.0f,
-        arg0[2] < -325.0f ? &D_8080143C_chcrusherboulder : &D_80801450_chcrusherboulder);
+        arg0[2] < -325.0f ? D_8080143C_chcrusherboulder : D_80801450_chcrusherboulder);
 }
 
 void func_808010EC_chcrusherboulder(void) {
-    s32 func_800BBCB8(s32 *, s32, s32, s32, s32 *);
-    extern s32 D_80801464_chcrusherboulder;
-    extern s32 D_80801470_chcrusherboulder;
-    func_800BBCB8(&D_80801464_chcrusherboulder, 0, 0x3F800000, 3, &D_80801470_chcrusherboulder);
+    BtIntPtr func_800BBCB8(s32 *, BtIntPtr, s32, s32, s32 *);
+    extern s32 D_80801464_chcrusherboulder[3];
+    extern s32 D_80801470_chcrusherboulder[19];
+    func_800BBCB8(D_80801464_chcrusherboulder, 0, 0x3F800000, 3, D_80801470_chcrusherboulder);
 }
 
 void func_80801128_chcrusherboulder(f32 arg0[3], s32 arg1) {
-    s32 func_800BA22C(s32, s32);
-    s32 func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    extern s32 D_808014BC_chcrusherboulder;
-    s32 sp24;
-    s32 temp_v0;
+    void func_800BA22C(BtIntPtr arg0, s32 n);
+    void func_800BA3FC(BtIntPtr arg0, s32 asset_id);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    extern s32 D_808014BC_chcrusherboulder[12];
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
 
-    temp_v0 = func_800BABB8(0, arg0, NULL, 1.0f, &D_808014BC_chcrusherboulder);
+    temp_v0 = func_800BABB8(0, arg0, NULL, 1.0f, D_808014BC_chcrusherboulder);
     sp24 = temp_v0;
     func_800BA3FC(temp_v0, 0x9DD);
     func_800BA22C(sp24, 1);
@@ -495,7 +495,7 @@ s32 func_80801184_chcrusherboulder(s32 arg0, s32 arg1, u32 arg2) {
     s32 _glcutDll_entrypoint_6(s32, s32);
     s32 func_800DA544(s32);
     s32 func_800DB9B0();
-    s32 func_800FFAB0(s32);
+    s32 func_800FFAB0(BtIntPtr);
     if (arg1 == 0xB) {
         switch (arg2) {
         case 6:
@@ -533,7 +533,27 @@ s32 func_80801184_chcrusherboulder(s32 arg0, s32 arg1, u32 arg2) {
 
 OSThread *chcrusherboulder_entrypoint_0(void)
 {
-    extern u8 D_808014EC_chcrusherboulder[];
+    extern ActorData D_808014EC_chcrusherboulder[];
 
     return (OSThread *) D_808014EC_chcrusherboulder;
 }
+/* data_to_c.py: from asm/data/overlays/ch/crusherboulder.data.s */
+void func_80107C2C();
+u8 D_80801360_chcrusherboulder [20] BT_DATA(4, overlays_ch_crusherboulder, 0x0) = { 0, 0x13, 4, 0xCC, 0, 0xA, 1, 0, 0, 0x16, 0x7D, 0, 0, 1, 0, 0, 0x13, 0x88, 0, 0 };
+u8 D_80801374_chcrusherboulder [20] BT_DATA(4, overlays_ch_crusherboulder, 0x14) = { 0, 0x13, 4, 0xD1, 0, 0xA, 0, 0xE6, 0, 0x16, 0x7D, 0, 0, 1, 0x27, 0x10, 0x3A, 0x98, 0, 0 };
+struct Vector D_80801388_chcrusherboulder BT_DATA(4, overlays_ch_crusherboulder, 0x28) = { { 0, 0, 0 } };
+struct Vector D_80801394_chcrusherboulder BT_DATA(4, overlays_ch_crusherboulder, 0x34) = { { 0, 1125515264, 0 } };
+s32 D_808013A0_chcrusherboulder[5] BT_DATA(4, overlays_ch_crusherboulder, 0x40) = { 1246381, 655590, 1465792, 66036, 327680000 };
+s32 D_808013B4_chcrusherboulder [3] BT_DATA(4, overlays_ch_crusherboulder, 0x54) = { 0, 0, 0 };
+f32 D_808013C0_chcrusherboulder [2] BT_DATA(4, overlays_ch_crusherboulder, 0x60) = { 500.0f, 1000.0f };
+f32 D_808013C8_chcrusherboulder [3] BT_DATA(4, overlays_ch_crusherboulder, 0x68) = { 0.0f, 3.57331e-43f, 0.0f };
+f32 D_808013D4_chcrusherboulder [3] BT_DATA(4, overlays_ch_crusherboulder, 0x74) = { -5000.0f, 950.0f, -6000.0f };
+struct BoulderPosition D_808013E0_chcrusherboulder BT_DATA(4, overlays_ch_crusherboulder, 0x80) = { { -2350.0f, 325.0f, -325.0f } };
+u32 D_808013EC_chcrusherboulder[4] BT_DATA(4, overlays_ch_crusherboulder, 0x8C) = { 0x1304D2, 0x167D00, 0x101F4, 0x13880000 };
+s32 D_808013FC_chcrusherboulder[16] BT_DATA(4, overlays_ch_crusherboulder, 0x9C) = { 51380253, 109576202, 65436, -3276800, 6553650, 1834008, -131071961, -23527784, 23593320, 2228864, 100664576, 58720277, 384, 1441796, 458753, 0 };
+s32 D_8080143C_chcrusherboulder[5] BT_DATA(4, overlays_ch_crusherboulder, 0xDC) = { 3080167, 5898640, 1638520, 52429594, 0 };
+s32 D_80801450_chcrusherboulder[5] BT_DATA(4, overlays_ch_crusherboulder, 0xF0) = { 3080167, 3932560, 1638490, 52429594, 0 };
+s32 D_80801464_chcrusherboulder[3] BT_DATA(4, overlays_ch_crusherboulder, 0x104) = { -979615744, 1148026880, -977567744 };
+s32 D_80801470_chcrusherboulder[19] BT_DATA(4, overlays_ch_crusherboulder, 0x110) = { 1902216, 720846, -3211314, 3276850, 3276846, -1572899, 98304025, 2295760, 1833008, -262143961, -23527784, 23593320, 2228864, 100664576, 58720277, 384, 1441796, 458753, 0 };
+s32 D_808014BC_chcrusherboulder[12] BT_DATA(4, overlays_ch_crusherboulder, 0x15C) = { 17825817, 65542, 655510, -19595364, 16384100, 6553627, 3276900, 2228608, 41943168, 25165845, 384, -603848704 };
+ActorData D_808014EC_chcrusherboulder [1] BT_DATA(4, overlays_ch_crusherboulder, 0x18C) = { { 610, 382, 1671, 1, 0, (void (*)(struct Actor *))func_808009C0_chcrusherboulder, (void (*)(struct Actor *))func_808009C0_chcrusherboulder, (void (*)(long, long))func_80800000_chcrusherboulder, 262144000, 0, 0, 0, 8200, 4, (void (*)(struct Actor *))func_80800ED0_chcrusherboulder, 0, 0, 0, (void (*)(struct Actor *))func_80800D3C_chcrusherboulder, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 2, (void (*)(struct Actor *, long, long))func_80801184_chcrusherboulder, 0 } };

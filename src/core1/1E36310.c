@@ -17,3 +17,9 @@ void func_8001E7E8(void) {
 u32 func_8001E830(void) {
     return 0x002C8800;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u32 D_8007E998 BT_DATA(4, bss_core1bss1_2_cic_tail, 0xE18);
+#endif

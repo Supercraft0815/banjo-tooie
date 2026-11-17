@@ -1,6 +1,6 @@
 #include "common.h"
-void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, s32, s32, s16);
+s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, s32, s16);
 
 /* extern */
 
@@ -59,9 +59,9 @@ void func_80800120_chjinjo(Actor *arg0) {
 /* extern */
 
 void chjinjo_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 func_800D0C78(s32, s32, s32);
+    void func_800D0C78(u32 arg0, u32 arg1, u32 arg2);
     func_800D0C78(arg0 + 0x51, 1, arg1);
-}
+}    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; s16 unkE; } Objjinjo_chjinjo_entrypoint_2_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 s16 chjinjo_entrypoint_2(s32 arg0) {
     s32 func_800EA05C();
@@ -78,24 +78,24 @@ s16 chjinjo_entrypoint_2(s32 arg0) {
         return D_80801302_chjinjo;
     }
 loop_5:
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (0)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (2)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk0)) {
+        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk2);
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (4)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (6)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk4)) {
+        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk6);
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (8)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (0xA)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk8)) {
+        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unkA);
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (0xC)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (0xE)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unkC)) {
+        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unkE);
     }
     var_v1 += 4;
     if (var_v1 == &D_80801324_chjinjo) {
         return -1;
     }
     goto loop_5;
-}
+}    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; s16 unkE; } Objjinjo_chjinjo_entrypoint_3_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 s16 chjinjo_entrypoint_3(s32 arg0) {
     extern s16 D_80801300_chjinjo;
@@ -109,17 +109,17 @@ s16 chjinjo_entrypoint_3(s32 arg0) {
         return D_80801300_chjinjo;
     }
 loop_3:
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (2)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (0)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk2)) {
+        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk0);
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (6)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (4)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk6)) {
+        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk4);
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (0xA)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (8)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unkA)) {
+        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk8);
     }
-    if (arg0 == (*(s16 *)((s8 *)(var_v1) + (0xE)))) {
-        return (*(s16 *)((s8 *)(var_v1) + (0xC)));
+    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unkE)) {
+        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unkC);
     }
     var_v1 += 4;
     if (var_v1 == &D_80801324_chjinjo) {
@@ -139,20 +139,20 @@ void func_808002E0_chjinjo(Actor *arg0) {
         u32 pad74_0 : 20;
     } JinjoFlags;
     void _fxtwinkle_entrypoint_0(f32 *);
-    s32 _glcutDll_entrypoint_6(s32, s32);
+    void _glcutDll_entrypoint_6(u32 arg0, u32 arg1);
     void _subaddieaudioloop_entrypoint_2(Actor *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddiefade_entrypoint_0(Actor *);
-    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     void _suexpression_entrypoint_12(void *, f32, f32);
     void func_8008FFBC(f32 *);
     s32 func_800901CC(f32 *, f32);
     void func_800C3EB8(s32);
     void func_800C4244(s32, f32, u32, f32 *, f32, f32);
     f32 func_800D8FF8(void);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
     void func_800E3980(f32 *);
@@ -162,7 +162,7 @@ void func_808002E0_chjinjo(Actor *arg0) {
     void func_800EF3DC(f32 *, f32 *);
     f32 func_800F1DCC(f32, f32);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
-    void func_800F82D4(s32, s32);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FC63C(u32, u32);
     void func_800FC74C(u32);
     void func_800FCA90(u32);
@@ -352,7 +352,7 @@ void func_808002E0_chjinjo(Actor *arg0) {
 /* extern */
 
 void chjinjo_entrypoint_4(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _glcutDll_entrypoint_6(s32, s32);
+    void _glcutDll_entrypoint_6(u32 arg0, u32 arg1);
     _glcutDll_entrypoint_6(0x142, 0x84);
 }
 
@@ -363,11 +363,11 @@ s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
         u32 unk18_5 : 11;
         u32 pad18_0 : 5;
     } JinjoEvent;
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _suexpression_entrypoint_12(void *, f32, f32);
     void *_suexpression_entrypoint_20(Actor *);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     void _suexpression_entrypoint_8(Actor *, u32);
     void func_800D0BD4(s32, u32);
     u8 func_800D0CC8(s32);
@@ -405,7 +405,7 @@ s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
                 _subaddieDll_entrypoint_4(arg0, 1);
                 func_8010A570(arg0);
                 if (!func_800DA9E4(0x35, 1)) {
-                    func_800C05B8(0xCDA, 0xC, NULL, NULL, (s32)_chjinjo_entrypoint_4, 0, func_808000DC_chjinjo(arg0));
+                    func_800C05B8(0xCDA, 0xC, NULL, NULL, (BtIntPtr)_chjinjo_entrypoint_4, 0, func_808000DC_chjinjo(arg0));
                 }
                 func_800D0BD4(arg0->unk6C_0, 0);
                 func_800D24E8(sp40 + 0xE1, func_800D1338(sp40), func_800D129C(sp40));
@@ -414,7 +414,7 @@ s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
         }
         break;
     case 0x13:
-        arg0->unk6C_0 = (s32)arg2;
+        arg0->unk6C_0 = (BtIntPtr)arg2;
         if (arg0->unk6C_0 == 0x1E) {
             arg0->unk74_29 = 1;
         }
@@ -486,8 +486,8 @@ u32 func_80801098_chjinjo(Actor *arg0, s32 arg1) {
     s32 func_800D129C(u32);
     u32 func_800D1338(u32);
     s32 func_800DA298(s32);
-    s32 func_800DA7A8(s32, s32, s32);
-    void func_800F82D4(s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
+    void func_800F82D4(BtIntPtr, s32);
     s32 sp2C;
     s32 temp_v0;
     s32 sp24;

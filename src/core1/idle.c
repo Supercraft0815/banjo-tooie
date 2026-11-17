@@ -30,3 +30,11 @@ void func_80013678(void* arg) {
 
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u64 D_800773F0 [ IDLE_THREAD_STACK_SIZE64 ] BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0xAB0);
+OSThread D_800775F0 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0xCB0);
+__OSThreadOddFpStorage D_800777A0 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0xE60);
+#endif

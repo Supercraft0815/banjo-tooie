@@ -71,7 +71,7 @@ s32 func_80800110_chchuffy(s32 arg0) {
             break;
         }
     }
-    if (i >= 7U) {
+    BT_NATIVE_ONLY(if (arg0 != 4 && arg0 != 0 && arg0 != 1) return 0;) if (i >= 7U) {
         return -1U;
     }
     return i;
@@ -189,7 +189,7 @@ void func_80800410_chchuffy(Actor *actor, s32 index) {
     data->scale[index] = func_800DC178(0.2f, 0.4f);
     data->timer[index] = func_800DC128(0xB9, 0xFA);
     data->kind[index] = func_800DC128(0, 6);
-}
+}    typedef struct { u8 pad0[0xA]; u8 unkA; } Objuffy_func_80800524_chchuffy_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -206,7 +206,7 @@ void func_80800524_chchuffy(Actor *arg0) {
         func_80800410_chchuffy(actor, var_s0);
     }
     temp_v0 = actor->unk0->unk0;
-    (*(u8 *)((s8 *)(temp_v0) + (0xA))) = (u8) (((*(u8 *)((s8 *)(temp_v0) + (0xA))) & 0xFF07) | 0x18);
+    (((Objuffy_func_80800524_chchuffy_temp_v0 *)temp_v0)->unkA) = (u8) (((((Objuffy_func_80800524_chchuffy_temp_v0 *)temp_v0)->unkA) & 0xFF07) | 0x18);
 }
 
 void func_8080059C_chchuffy(Actor *actor) {
@@ -232,7 +232,7 @@ void func_8080059C_chchuffy(Actor *actor) {
     f32 func_800DC178(f32, f32);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800EFD24();
+    void func_800EFD24(f32 vec[3]);
     void *func_80100094(Actor *, u32);
     struct ParticleData *data;
     f32 delta;
@@ -278,21 +278,21 @@ void func_8080059C_chchuffy(Actor *actor) {
 
 void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 4;
-    _subaddiedialog_entrypoint_11((*(Unk80132ED0 **)((s8 *)(arg0) + (0))), arg1, arg2, arg0 + 4, 0x6FU);
+    _subaddiedialog_entrypoint_11((((Actor *)arg0)->unk0), arg1, arg2, arg0 + 4, 0x6FU);
     ((struct Flags *)arg0)->flag = 1;
 }
 
 s32 func_80800864_chchuffy(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
-    void _gcsectionskip_entrypoint_1(void *, s32, s32, u8, s32);
+    s32 _gcsectionskip_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4);
 #ifdef BT_NATIVE
     s32 func_80090178(s32);
 #else
     s32 func_80090178(AllowedTransformation);
 #endif
     Actor *func_80106790(Unk80132ED0 *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     Actor *other;
 
     switch (arg1) {
@@ -341,14 +341,14 @@ void func_808009CC_chchuffy(Actor *arg0) {
         u8 pad3C[0x10];
         f32 position[3];
     };
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _capod_entrypoint_14();
-    s32 _chbaddiesetup_entrypoint_1(s32 *, s32);
+    s32 _chbaddiesetup_entrypoint_1(s32 *, BtIntPtr);
     void _glcutDll_entrypoint_17(void);
     void _glcutDll_entrypoint_24(u32, u32, u32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
     f32 _sumumbofx_entrypoint_22(u8 *);
     void func_80090734(s32, f32 *);
     f32 func_800D8FF8(void);
@@ -370,7 +370,7 @@ void func_808009CC_chchuffy(Actor *arg0) {
     void func_80800FBC_chchuffy(Actor *);
     void func_8080115C_chchuffy(Actor *);
     void func_8080130C_chchuffy(Actor *);
-    s32 func_808016D0_chchuffy(s32);
+    s32 func_808016D0_chchuffy(BtIntPtr);
     void func_808017D4_chchuffy(Actor *, s32);
     extern u32 D_80802320_chchuffy[];
     extern u32 D_80802334_chchuffy[];
@@ -486,10 +486,10 @@ void func_808009CC_chchuffy(Actor *arg0) {
     data->timer -= func_800D8FF8();
 }
 
-void func_80800EF4_chchuffy(Unk80132ED0 *arg0) { void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32); s32 func_80800110_chchuffy(s32); s32 temp_v0; temp_v0 = func_80800110_chchuffy(4); if (D_8080247C_chchuffy[temp_v0].value != -1) { _capod_entrypoint_13(arg0->unk0, 0, D_8080247C_chchuffy[temp_v0].value, 0x2830); } }
+void func_80800EF4_chchuffy(Unk80132ED0 *arg0) { s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3); s32 func_80800110_chchuffy(s32); s32 temp_v0; temp_v0 = func_80800110_chchuffy(4); if (D_8080247C_chchuffy[temp_v0].value != -1) { _capod_entrypoint_13(arg0->unk0, 0, D_8080247C_chchuffy[temp_v0].value, 0x2830); } }
 
 void func_80800F54_chchuffy(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0*, Unk80132ED0*, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _chintrotext_entrypoint_2(s32);
     s32 func_80800110_chchuffy(s32);
     s32 temp_v0;
@@ -619,12 +619,12 @@ void func_8080115C_chchuffy(Actor *arg0) {
 void func_8080130C_chchuffy(Actor *arg0) {
     typedef struct { f32 v[2]; } ChuffyPair;
     typedef struct { f32 v[3]; } ChuffyVector;
-    s16 _chmumbopad_entrypoint_0(s32);
-    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
-    s32 _sumumbofx_entrypoint_2(void *);
-    s32 _sumumbofx_entrypoint_24(void *, f32);
-    s32 _sumumbofx_entrypoint_15(void *, f32);
-    s32 _sumumbofx_entrypoint_12(void *, ChuffyVector *, ChuffyPair *, ChuffyVector *);
+    s32 _chmumbopad_entrypoint_0(s32 arg0);
+    void _sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3);
+    void _sumumbofx_entrypoint_2(u8 *arg0);
+    void _sumumbofx_entrypoint_24(void *arg0, f32 arg1);
+    void _sumumbofx_entrypoint_15(void *arg0, f32 arg1);
+    void _sumumbofx_entrypoint_12(u8 *arg0, BtIntPtr arg1, f32 *arg2, s32 *arg3);
     void *func_80100094(Actor *, u32);
     extern ChuffyPair D_80802568_chchuffy;
     extern ChuffyVector D_80802570_chchuffy;
@@ -650,15 +650,15 @@ void func_808013E8_chchuffy(Actor *arg0, f32 *arg1, f32 *arg2) {
     void *func_80100094(Actor *, u32);
     void func_8010D254(f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    s32 func_800EFD24();
+    void func_800EFD24(f32 vec[3]);
     void func_800EE7F8(f32 *, f32 *);
     void _sumumbofx_entrypoint_6(void *, f32, f32, s32, s32, f32 *, f32 *, f32 *);
     s32 _sumumbofx_entrypoint_27(void *);
     s32 _sumumbofx_entrypoint_5(void *, f32);
     void _sumumbofx_entrypoint_18(void *, f32);
     void _sumumbofx_entrypoint_16(void *, f32);
-    s32 _sumumbofx_entrypoint_11(u8 *, f32 *);
-    s32 _sumumbofx_entrypoint_14(void *);
+    void _sumumbofx_entrypoint_11(void *arg0, BtIntPtr bt_a1);
+    void _sumumbofx_entrypoint_14(u8 *arg0);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101DDC(Actor *);
     void _chglowbo_entrypoint_6(void);
@@ -713,8 +713,8 @@ void func_808013E8_chchuffy(Actor *arg0, f32 *arg1, f32 *arg2) {
 void func_8080167C_chchuffy(s32 *arg0) {
     s32 _capod_entrypoint_14();
     s32 _glcutDll_entrypoint_19(s32);
-    s32 _glcutDll_entrypoint_21();
-    s32 func_800D9290();
+    void _glcutDll_entrypoint_21(void);
+    void func_800D9290(void);
     if (_glcutDll_entrypoint_19(0x72) != 0) {
         _capod_entrypoint_14();
         func_800D9290();
@@ -724,7 +724,7 @@ void func_8080167C_chchuffy(s32 *arg0) {
     *arg0 = 0xD0;
 }
 
-s32 func_808016D0_chchuffy(s32 arg0) {
+s32 func_808016D0_chchuffy(BtIntPtr arg0) {
     void _glcutDll_entrypoint_24(u32, u32, u32);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
@@ -801,7 +801,7 @@ void func_808018F8_chchuffy(Actor *arg0) {
     s32 func_80800110_chchuffy(s32);
     s32 func_80800264_chchuffy();
     void func_808017D4_chchuffy(Actor *, s32);
-    extern struct Entry D_8080247E_chchuffy[];
+
     s32 sp1C;
     s32 temp_v0;
 
@@ -815,7 +815,7 @@ void func_808018F8_chchuffy(Actor *arg0) {
         func_808017D4_chchuffy(arg0, 5);
         return;
     }
-    if (func_800DA298(D_8080247E_chchuffy[sp1C].pad[0]) != 0) {
+    if (func_800DA298(D_8080247C_chchuffy[sp1C].pad[1]) != 0) {
         func_808017D4_chchuffy(arg0, 8);
         return;
     }
@@ -826,16 +826,16 @@ void func_808019A4_chchuffy(Actor *arg0, u8 *arg1) {
     typedef struct { u8 pad[8]; s16 unk8; s16 unkA; } ImageStruct;
     ImageStruct *func_800D674C(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_800EFD24();
+    void func_800EFD24(f32 vec[3]);
     void func_80101870(Actor *, void *);
     void func_800DF5D8(u32, u32, u32, s32);
     void func_800E2588(u32);
-    void func_800E2594(u32, void *);
+    void func_800E2594(BtUIntPtr, void *);
     s32 _sumumbofx_entrypoint_10(u8 *);
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
+    void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1);
     void func_800DBEFC(s32 *, s32, f32 *);
     s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);
-    void func_800E2A14(s32);
+    void func_800E2A14(BtIntPtr);
     s32 color;
     s32 i;
     struct ChuffyDrawData {
@@ -873,18 +873,18 @@ void func_808019A4_chchuffy(Actor *arg0, u8 *arg1) {
     func_800DBEFC((s32 *)arg0->unk0->unk4, 10, data->position);
     func_800DBEFC((s32 *)arg0->unk0->unk4, 9, data->rotation);
     if (func_80100094(arg0, 1) != NULL) {
-        _sumumbofx_entrypoint_8(func_80100094(arg0, 1), (s32)arg1);
+        _sumumbofx_entrypoint_8(func_80100094(arg0, 1), (BtIntPtr)arg1);
     }
     if ((s32)arg0->unk70_10 >= 6) {
         func_800E2588(1);
-        func_800E2594((u32)arg1, func_800D674C(data->asset));
+        func_800E2594((BtUIntPtr)arg1, func_800D674C(data->asset));
         for (i = 0; i < 10; i++) {
             scale[0] = data->scales[i];
             scale[1] = data->scales[i];
             scale[2] = data->scales[i];
             func_800E2720(arg1, data->colors[i], 0, data->points[i], scale, data->flags[i]);
         }
-        func_800E2A14((s32)arg1);
+        func_800E2A14((BtIntPtr)arg1);
     }
 }
 
@@ -933,7 +933,7 @@ void func_80801B8C_chchuffy(Actor *arg0) {
 void func_80801C78_chchuffy(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_800C2FDC(u8);
-    s32 _sumumbofx_entrypoint_1(void *, s32);
+    void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
     u8 *data;
 
     data = func_80100094(arg0, 0);
@@ -952,14 +952,14 @@ void func_80801C78_chchuffy(Actor *arg0) {
 
 void func_80801CF8_chchuffy(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_808025A0_chchuffy;
     func_800BBCB8((f32 *)((u8 *)func_80100094(arg0, 0) + 0x2C), 0, 1.0f, arg1, &D_808025A0_chchuffy);
 }
 
 void func_80801D3C_chchuffy(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_808025E4_chchuffy;
     f32 *temp_a0;
 
@@ -971,7 +971,7 @@ void func_80801D3C_chchuffy(Actor *arg0, s32 arg1) {
 
 void func_80801D94_chchuffy(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80802630_chchuffy;
     Actor **actor = &arg0;
     func_800BBCB8((f32 *)((u8 *)func_80100094(*actor, 0) + 8), 0, 1.0f, arg1, &D_80802630_chchuffy);
@@ -980,7 +980,7 @@ void func_80801D94_chchuffy(Actor *arg0, s32 arg1) {
 void func_80801DDC_chchuffy(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800C3058(u8, s32);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     extern s32 D_8080267C_chchuffy;
     struct {
         u8 pad0[0x14];
@@ -1016,7 +1016,7 @@ void func_80801EAC_chchuffy(Actor *arg0) {
 void func_80801F04_chchuffy(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800C3058(u8, s32);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     extern s32 D_808023DC_chchuffy;
     struct {
         u8 unk0;
@@ -1038,8 +1038,8 @@ void func_80801F04_chchuffy(Actor *arg0) {
 
 /* extern */
 
-void func_80801F84_chchuffy(s32 arg0) {
-    s32 func_800EFD24(s32);
+void func_80801F84_chchuffy(BtIntPtr arg0) {
+    void func_800EFD24(f32 vec[3]);
     func_800EFD24(arg0 + 0x4);
 }
 
@@ -1076,10 +1076,10 @@ void func_80802060_chchuffy(Actor *arg0, void *arg1) {
     Prop *_gccubesearch_entrypoint_6(s32 *, f32 *);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     void func_800EF1B8(f32 *, f32, f32);
-    Unk80132ED0 *func_800F55D0(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
-    void func_800F77E8(s32, f32 *);
+    Unk80132ED0 *func_800F55D0(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
+    void func_800F77E8(BtIntPtr, f32 *);
     extern s32 D_808026A4_chchuffy;
     Prop *prop;
     f32 sp38[3];
@@ -1108,7 +1108,7 @@ void func_80802060_chchuffy(Actor *arg0, void *arg1) {
 }
 
 void func_80802164_chchuffy(Actor *arg0) {
-    void func_8008FA94(f32 *, f32 *);
+    void func_8008FA94(BtIntPtr arg0,BtIntPtr arg1);
 #ifdef BT_NATIVE
     s32 func_80090178(s32);
 #else
@@ -1117,8 +1117,8 @@ void func_80802164_chchuffy(Actor *arg0) {
     s32 func_800DA298(s32);
     int func_800DB9B0(void);
     int func_800F0064(f32 *, f32, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F7F00(s32, s32, s32, f32, s32, s32, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7F00(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32, s32, f32);
     u32 func_8010A654(void ***, s32);
     void func_8010D254(f32 *);
     extern f32 D_808026AC_chchuffy[];

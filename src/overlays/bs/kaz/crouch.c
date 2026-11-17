@@ -2,7 +2,7 @@
 
 #include "overlays/bs/kaz/crouch.h"
 
-extern s32 D_808007C0_bskazcrouch[];
+extern BtIntPtr D_808007C0_bskazcrouch[];
 
 void func_80800000_bskazcrouch(PlayerState *self) {
     baanim_playForDuration_loopSmooth(self, ASSET_28F_ANIM_BSKAZCROUCH_UNKNOWN, 0.5f);
@@ -24,7 +24,7 @@ void func_808000B4_bskazcrouch(AnimCtrl *anim_ctrl, f32 arg1) {
     anctrl_setDuration(anim_ctrl, func_800F10B4(arg1, 0, 180, 0.5, 0.2));
 }
 
-void func_808000FC_bskazcrouch(PlayerState *self, s32 arg1) {
+void func_808000FC_bskazcrouch(PlayerState *self, BtIntPtr arg1) {
     func_800A2CE8(self, 0.41f, 4);
     func_800A2CE8(self, 0.91f, 3);
 }
@@ -154,7 +154,7 @@ void bskazcrouch_entrypoint_2(PlayerState *arg0) {
         break;
     case 4:
         func_808000B4_bskazcrouch(sp34, sp30);
-        func_808000FC_bskazcrouch(arg0, (s32) sp34);
+        func_808000FC_bskazcrouch(arg0, (BtIntPtr) sp34);
         if (sp30 == 0.0f) {
             if (anctrl_getAnimTimer(sp34) <= 0.5f) {
                 anctrl_setSubrange(sp34, 0.0f, 0.5f);
@@ -167,7 +167,7 @@ void bskazcrouch_entrypoint_2(PlayerState *arg0) {
         break;
     case 3:
         func_808000B4_bskazcrouch(sp34, sp30);
-        func_808000FC_bskazcrouch(arg0, (s32) sp34);
+        func_808000FC_bskazcrouch(arg0, (BtIntPtr) sp34);
         if (sp30 != 0.0f) {
             anctrl_setSubrange(sp34, 0.0f, 1.0f);
             anctrl_setPlaybackType(sp34, 2);
@@ -196,6 +196,9 @@ void bskazcrouch_entrypoint_3(PlayerState *self) {
 }
 
 
-s32 bskazcrouch_entrypoint_4(s32 idx) {
+BtIntPtr bskazcrouch_entrypoint_4(s32 idx) {
     return D_808007C0_bskazcrouch[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/crouch.data.s */
+void _bskazcrouch_entrypoint_2();
+BtIntPtr D_808007C0_bskazcrouch [4] BT_DATA(4, overlays_bs_kaz_crouch, 0x0) = { (BtIntPtr)_bskazcrouch_entrypoint_3, (BtIntPtr)_bskazcrouch_entrypoint_1, (BtIntPtr)_bskazcrouch_entrypoint_2, (BtIntPtr)func_80099B94 };

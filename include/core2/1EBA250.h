@@ -33,7 +33,7 @@ void *func_800E0960(s32);
 s16 func_800E09B8(s32);
 void func_800E0A50(void *);
 void func_800E0A70(s16);
-void func_800E0A98(Unkfunc_800E0960_1 *);
+Unkfunc_800E0960_1 *func_800E0A98(Unkfunc_800E0960_1 *);
 void func_800E0AC0(Unkfunc_800E0960_1 *);
 void func_800E0C20(Unkfunc_800E0960_1 *,u8,f32,f32,f32,f32);
 void func_800E0CB4(Unkfunc_800E0960_1 *,u8,f32[4]);

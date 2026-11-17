@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern s32 D_808008B0_scinfobar;
+extern s32 D_808008B0_scinfobar;         typedef struct { u8 unk0; u8 pad1[0x1]; u8 unk2; u8 pad3[0x1]; s16 unk4; s16 unk6; u8 pad8[0x4]; f32 unkC; u8 pad10[0x4]; f32 unk14; u8 pad18[0x4]; s32 unk1C; u8 pad20[0xC]; s16 unk2C; s16 unk2E; s16 unk30; u8 unk32; } Objinfobar_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800000_scinfobar(void *arg0, s32 arg1) {
     u8 func_800E8B74(u32);
@@ -16,23 +16,23 @@ void func_80800000_scinfobar(void *arg0, s32 arg1) {
 
     if ((((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].value << 17 >> 17) != 0) {
         sp1C = (f32) (((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].value << 17 >> 17) * 0.00390625f;
-        (*(u8 *)((s8 *)(arg0) + (0x32))) = func_800E8B74(((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].id);
+        (((Objinfobar_arg0 *)arg0)->unk32) = func_800E8B74(((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].id);
         if (((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].data != 0) {
-            func_800E8D5C((*(u8 *)((s8 *)(arg0) + (0x32))), ((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].data, 0);
+            func_800E8D5C((((Objinfobar_arg0 *)arg0)->unk32), ((struct InfobarEntry *)&D_808008B0_scinfobar)[arg1].data, 0);
         }
-        func_800E8D28((*(u8 *)((s8 *)(arg0) + (0x32))), sp1C);
+        func_800E8D28((((Objinfobar_arg0 *)arg0)->unk32), sp1C);
         return;
     }
-    (*(u8 *)((s8 *)(arg0) + (0x32))) = 0U;
+    (((Objinfobar_arg0 *)arg0)->unk32) = 0U;
 }
 
 void func_808000B0_scinfobar(void *arg0) {
     s16 temp_v0;
 
-    (*(s16 *)((s8 *)(arg0) + (0x30))) = 0;
-    temp_v0 = (*(s16 *)((s8 *)(arg0) + (0x30)));
-    (*(s16 *)((s8 *)(arg0) + (0x2E))) = temp_v0;
-    (*(s16 *)((s8 *)(arg0) + (0x2C))) = temp_v0;
+    (((Objinfobar_arg0 *)arg0)->unk30) = 0;
+    temp_v0 = (((Objinfobar_arg0 *)arg0)->unk30);
+    (((Objinfobar_arg0 *)arg0)->unk2E) = temp_v0;
+    (((Objinfobar_arg0 *)arg0)->unk2C) = temp_v0;
 }
 
 void func_808000C4_scinfobar(u32 *arg0, s32 temp_a1) {
@@ -41,17 +41,17 @@ void func_808000C4_scinfobar(u32 *arg0, s32 temp_a1) {
     void scinfobar_entrypoint_8(u32 *, s32);
     void scinfobar_entrypoint_9(u32 *, s32);
 
-    temp_a1 = *(u8 *)((s8 *)arg0 + 0x32);
-    *(s16 *)((s8 *)arg0 + 4) = *(s16 *)((s8 *)arg0 + 6);
-    *(s16 *)((s8 *)arg0 + 6) = -1;
+    temp_a1 = ((Objinfobar_arg0 *)arg0)->unk32;
+    ((Objinfobar_arg0 *)arg0)->unk4 = ((Objinfobar_arg0 *)arg0)->unk6;
+    ((Objinfobar_arg0 *)arg0)->unk6 = -1;
     *(s8 *)((s8 *)arg0 + 2) = 0;
     if (temp_a1 != 0) {
         func_800E8C08((u8)temp_a1);
     }
-    func_80800000_scinfobar(arg0, *(s16 *)((s8 *)arg0 + 4));
-    scinfobar_entrypoint_8(arg0, *(s16 *)((s8 *)arg0 + 0x2C));
-    scinfobar_entrypoint_9(arg0, *(s16 *)((s8 *)arg0 + 0x2E));
-    scinfobar_entrypoint_3(arg0, *(s16 *)((s8 *)arg0 + 0x30));
+    func_80800000_scinfobar(arg0, ((Objinfobar_arg0 *)arg0)->unk4);
+    scinfobar_entrypoint_8(arg0, ((Objinfobar_arg0 *)arg0)->unk2C);
+    scinfobar_entrypoint_9(arg0, ((Objinfobar_arg0 *)arg0)->unk2E);
+    scinfobar_entrypoint_3(arg0, ((Objinfobar_arg0 *)arg0)->unk30);
     func_808000B0_scinfobar(arg0);
 }
 
@@ -72,10 +72,10 @@ void func_80800144_scinfobar(u8 *arg0, s32 arg1) {
         *(u8 *)arg0 = arg1;
         switch (arg1) {
         case 0x65:
-            if (*(u8 *)((s8 *)arg0 + 2) != 0) {
-                index = *(s16 *)((s8 *)arg0 + 0x30);
+            if (((Objinfobar_arg0 *)arg0)->unk2 != 0) {
+                index = ((Objinfobar_arg0 *)arg0)->unk30;
             } else {
-                index = *(s32 *)((s8 *)arg0 + 0x1C);
+                index = ((Objinfobar_arg0 *)arg0)->unk1C;
             }
             callback = D_80800D58_scinfobar[index].callback;
             if (callback != NULL) {
@@ -83,16 +83,16 @@ void func_80800144_scinfobar(u8 *arg0, s32 arg1) {
             }
             break;
         case 0x66:
-            *(f32 *)((s8 *)arg0 + 0x14) = 1.0f;
+            ((Objinfobar_arg0 *)arg0)->unk14 = 1.0f;
             break;
         case 0x64:
-            *(f32 *)((s8 *)arg0 + 0x14) = 0.0f;
+            ((Objinfobar_arg0 *)arg0)->unk14 = 0.0f;
             break;
         case 0x67:
             break;
         }
     }
-}
+}    typedef struct { s8 unk0; s8 unk1; s8 unk2; s8 unk3; s16 unk4; s16 unk6; u8 pad8[0x2]; s8 unkA; u8 padB[0x9]; f32 unk14; u8 pad18[0x8]; s32 unk20; s32 unk24; s32 unk28; } Objinfobar_scinfobar_entrypoint_0_ptr; /* offsets.py genstruct: fields from raw offsets on ptr; rename once understood */
 
 void *scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
     void *heap_alloc(s32);
@@ -101,19 +101,19 @@ void *scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
     void *ptr;
 
     ptr = heap_alloc(0x34);
-    *(s8 *)((s8 *)ptr + 0) = 0x64;
-    *(s8 *)((s8 *)ptr + 2) = 0;
-    *(s16 *)((s8 *)ptr + 4) = arg0;
-    *(s16 *)((s8 *)ptr + 6) = -1;
-    *(s8 *)((s8 *)ptr + 1) = arg1;
-    *(s8 *)((s8 *)ptr + 3) = 0;
-    *(s8 *)((s8 *)ptr + 0xA) = 0;
-    *(f32 *)((s8 *)ptr + 0x14) = 0.0f;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk0 = 0x64;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk2 = 0;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk4 = arg0;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk6 = -1;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk1 = arg1;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk3 = 0;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unkA = 0;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk14 = 0.0f;
     scinfobar_entrypoint_3(ptr, arg2);
     scinfobar_entrypoint_10(ptr, 0xD8);
-    *(s32 *)((s8 *)ptr + 0x24) = 0;
-    *(s32 *)((s8 *)ptr + 0x28) = 0;
-    *(s32 *)((s8 *)ptr + 0x20) = 0;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk24 = 0;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk28 = 0;
+    ((Objinfobar_scinfobar_entrypoint_0_ptr *)ptr)->unk20 = 0;
     func_808000B0_scinfobar(ptr);
     func_80800000_scinfobar(ptr, arg0);
     return ptr;
@@ -123,9 +123,9 @@ void *scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
 
 void scinfobar_entrypoint_1(void *arg0, s32 temp_a1) {
     void func_800E8C08();
-    s32 heap_free(void *);
+    void heap_free(void *memory);
 
-    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x32)));
+    temp_a1 = (((Objinfobar_arg0 *)arg0)->unk32);
     if (temp_a1 != 0) {
         func_800E8C08(temp_a1 & 0xFF, temp_a1, arg0);
     }
@@ -161,12 +161,12 @@ void scinfobar_entrypoint_2(u8 *arg0) {
 void scinfobar_entrypoint_3(void *arg0, s32 arg1) {
     struct Entry { f32 value; f32 rest[2]; };
     extern struct Entry D_80800D5C_scinfobar[];
-    if (*(u8 *)((s8 *)arg0 + 2) != 0) {
-        *(s16 *)((s8 *)arg0 + 0x30) = arg1;
+    if (((Objinfobar_arg0 *)arg0)->unk2 != 0) {
+        ((Objinfobar_arg0 *)arg0)->unk30 = arg1;
         return;
     }
-    *(s32 *)((s8 *)arg0 + 0x1C) = arg1;
-    *(f32 *)((s8 *)arg0 + 0xC) = D_80800D5C_scinfobar[arg1].value;
+    ((Objinfobar_arg0 *)arg0)->unk1C = arg1;
+    ((Objinfobar_arg0 *)arg0)->unkC = D_80800D5C_scinfobar[arg1].value;
 }
 
 void scinfobar_entrypoint_4(s32 *arg0, s32 arg1) {
@@ -193,18 +193,18 @@ void scinfobar_entrypoint_6(u8 *arg0, s32 arg1) {
 s32 scinfobar_entrypoint_7(void *arg0, s32 arg1) {
     u8 temp_v0;
 
-    if ((*(u8 *)((s8 *)(arg0) + (2))) != 0) {
+    if ((((Objinfobar_arg0 *)arg0)->unk2) != 0) {
         return 0;
     }
-    if ((arg1 == (*(s16 *)((s8 *)(arg0) + (4)))) || (arg1 == (*(s16 *)((s8 *)(arg0) + (6))))) {
+    if ((arg1 == (((Objinfobar_arg0 *)arg0)->unk4)) || (arg1 == (((Objinfobar_arg0 *)arg0)->unk6))) {
         return 1;
     }
-    temp_v0 = (*(u8 *)((s8 *)(arg0) + (0)));
-    (*(s16 *)((s8 *)(arg0) + (6))) = arg1;
+    temp_v0 = (((Objinfobar_arg0 *)arg0)->unk0);
+    (((Objinfobar_arg0 *)arg0)->unk6) = arg1;
     if ((temp_v0 == 0x66) || (temp_v0 == 0x65)) {
-        (*(u8 *)((s8 *)(arg0) + (2))) = 0x67U;
+        (((Objinfobar_arg0 *)arg0)->unk2) = 0x67U;
     } else {
-        (*(u8 *)((s8 *)(arg0) + (2))) = 0x65U;
+        (((Objinfobar_arg0 *)arg0)->unk2) = 0x65U;
     }
     return 1;
 }
@@ -288,9 +288,9 @@ s32 scinfobar_entrypoint_23(u8 *arg0) {
     return *arg0 == 101;
 }
 
-void func_80800608_scinfobar(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+void func_80800608_scinfobar(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     void _fxdialog_entrypoint_2(f32);
-    void _fxdialog_entrypoint_4(s32, s32, s32, f32, f32, s32, s32);
+    void _fxdialog_entrypoint_4(BtIntPtr, s32, s32, f32, f32, s32, s32);
     s32 func_800E8C58(u8);
     extern s32 D_808008B0_scinfobar;
     union { struct { s16 temp; void *value; } fields; f64 alignment; } entry;
@@ -304,52 +304,52 @@ void func_80800608_scinfobar(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s
         arg2 = arg5 != 0 ? func_800E8C58(arg5) : 0;
         _fxdialog_entrypoint_4(arg0, (*(s16 *)((s8 *)(entry.fields.value) + (0))), arg2, (f32) (*(s8 *)((s8 *)(entry.fields.value) + (2))), (f32) (*(s8 *)((s8 *)(entry.fields.value) + (3))), arg4, (u32) (*(u16 *)((s8 *)(entry.fields.value) + (6))) >> 0xF);
     }
-}
+}      
 
 /* extern */
 
-void func_808006EC_scinfobar(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
-    s32 _fxdialog_entrypoint_0();
-    s32 _fxdialog_entrypoint_1(s32, s32);
+void func_808006EC_scinfobar(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3) {
+    void _fxdialog_entrypoint_0(void);
+    void _fxdialog_entrypoint_1(s32 arg0, s32 arg1);
     void _fxdialog_entrypoint_2(f32);
-    s32 _fxdialog_entrypoint_3(s32, f32, u8, s32);
+    void _fxdialog_entrypoint_3(BtIntPtr arg0, f32 arg1, s32 arg2, s32 arg3);
     _fxdialog_entrypoint_0();
     _fxdialog_entrypoint_1(arg2, arg3);
     _fxdialog_entrypoint_2((*(f32 *)((s8 *)(arg1) + (0xC))));
     _fxdialog_entrypoint_3(arg0, (f32) (*(s16 *)((s8 *)(arg1) + (8))) * (*(f32 *)((s8 *)(arg1) + (0x14))), (*(u8 *)((s8 *)(arg1) + (1))), 0xFF);
-}
+}               typedef struct { u8 unk0; u8 unk1; u8 unk2; u8 pad3[0x1]; s16 unk4; s16 unk6; s16 unk8; u8 padA[0x2]; f32 unkC; u8 pad10[0x4]; f32 unk14; u8 pad18[0x4]; s32 unk1C; u8 pad20[0x12]; u8 unk32; } Objinfobar_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
-void scinfobar_entrypoint_24(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+void scinfobar_entrypoint_24(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3) {
     extern s32 D_80800D54_scinfobar;
     s32 var_v0;
     s32 temp_v0_2;
 
     func_808006EC_scinfobar(arg0, arg1, arg2, arg3);
-    if ((*(u8 *)((s8 *)(arg1) + (0))) != 0x64) {
-        if (*(s32 (**)(s32, void *, s32, s32))((s8 *)&D_80800D54_scinfobar + (*(s32 *)((s8 *)arg1 + 0x1C) * 0xC)) != NULL) {
-            (*(s32 (**)(s32, void *, s32, s32))((s8 *)&D_80800D54_scinfobar + (*(s32 *)((s8 *)arg1 + 0x1C) * 0xC)))(arg0, arg1, arg2, arg3);
+    if ((((Objinfobar_arg1 *)arg1)->unk0) != 0x64) {
+        if (*(s32 (**)(s32, void *, s32, s32))((s8 *)&D_80800D54_scinfobar + (((Objinfobar_arg1 *)arg1)->unk1C * 0xC)) != NULL) {
+            (*(s32 (**)(s32, void *, s32, s32))((s8 *)&D_80800D54_scinfobar + (((Objinfobar_arg1 *)arg1)->unk1C * 0xC)))(arg0, arg1, arg2, arg3);
         }
     }
-    var_v0 = *(u8 *)((s8 *)arg1 + 2);
+    var_v0 = ((Objinfobar_arg1 *)arg1)->unk2;
     if (var_v0 == 0) {
         goto normal;
     }
     temp_v0_2 = var_v0;
-    var_v0 = *(u8 *)((s8 *)arg1 + 0) - var_v0;
+    var_v0 = ((Objinfobar_arg1 *)arg1)->unk0 - var_v0;
     if (var_v0 != 0) {
         goto normal;
     }
     {
-        var_v0 = (s32) ((*(f32 *)((s8 *)(arg1) + (0x14))) * 255.0f);
+        var_v0 = (s32) ((((Objinfobar_arg1 *)arg1)->unk14) * 255.0f);
         if (temp_v0_2 == 0x65) {
             var_v0 = 0xFF - var_v0;
         }
-        func_80800608_scinfobar(arg0, (s32) (*(s16 *)((s8 *)(arg1) + (4))), arg2, arg3, var_v0, (s32) (*(u8 *)((s8 *)(arg1) + (0x32))));
-        func_80800608_scinfobar(arg0, (s32) (*(s16 *)((s8 *)(arg1) + (6))), arg2, arg3, 0xFF - var_v0, 0);
+        func_80800608_scinfobar(arg0, (s32) (((Objinfobar_arg1 *)arg1)->unk4), arg2, arg3, var_v0, (s32) (((Objinfobar_arg1 *)arg1)->unk32));
+        func_80800608_scinfobar(arg0, (s32) (((Objinfobar_arg1 *)arg1)->unk6), arg2, arg3, 0xFF - var_v0, 0);
         return;
     }
 normal:
     {
-        func_80800608_scinfobar(arg0, (s32) (*(s16 *)((s8 *)(arg1) + (4))), arg2, arg3, 0xFF, (s32) (*(u8 *)((s8 *)(arg1) + (0x32))));
+        func_80800608_scinfobar(arg0, (s32) (((Objinfobar_arg1 *)arg1)->unk4), arg2, arg3, 0xFF, (s32) (((Objinfobar_arg1 *)arg1)->unk32));
     }
 }

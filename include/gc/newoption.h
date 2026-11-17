@@ -13,7 +13,7 @@ void _gcnewoption_entrypoint_0(void *arg0);
 void _gcnewoption_entrypoint_0(OptionState*);
 #endif
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_1(u8 *arg0, s32 arg1);
+void _gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1);
 #else
 void _gcnewoption_entrypoint_1(OptionState*, u32);
 #endif
@@ -23,17 +23,17 @@ int gcnewoption_entrypoint_2(void);
 int _gcnewoption_entrypoint_2(void);
 
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, s32 arg2, s32 arg3, s32 arg4);
+void _gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
 #else
 void _gcnewoption_entrypoint_4(Actor*, u32, u32*, u32, s32);
 #endif
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+void _gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
 void _gcnewoption_entrypoint_5(OptionState*, void*, u8, s16, s32);
 #endif
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32) _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
 #else
 void _gcnewoption_entrypoint_6(OptionState*, u32);
 #endif
@@ -70,7 +70,7 @@ void _gcnewoption_entrypoint_11(OptionState*);
 void gcnewoption_entrypoint_12(OptionState* a0, u32 optionIndex, s16 textIndex);
 void _gcnewoption_entrypoint_12(OptionState* a0, u32 optionIndex, s16 textIndex);
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_13(s32 arg0, s32 arg1, void *arg2);
+void _gcnewoption_entrypoint_13(BtIntPtr arg0, s32 arg1, void *arg2);
 #else
 void _gcnewoption_entrypoint_13(OptionState*, u32, u32*);
 #endif
@@ -80,23 +80,23 @@ void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 ar
 void _gcnewoption_entrypoint_14(OptionState*, u32, u32, u32, f32);
 #endif
 #ifdef BT_NATIVE
-s32 _gcnewoption_entrypoint_19(s32 arg0, s32 arg1);
+s32 _gcnewoption_entrypoint_19(BtIntPtr arg0, s32 arg1);
 #else
 s32 _gcnewoption_entrypoint_19(OptionState*, s32);
 #endif
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_23(s32 arg0, s32 arg1);
+void _gcnewoption_entrypoint_23(BtIntPtr arg0, s32 arg1);
 #else
 void _gcnewoption_entrypoint_23(OptionState*, u32);
 #endif
 
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_31(s32 arg0, s32 arg1, s16 arg2);
+void _gcnewoption_entrypoint_31(BtIntPtr arg0, s32 arg1, s16 arg2);
 #else
 void _gcnewoption_entrypoint_31(OptionState*, s32, s16);
 #endif
 #ifdef BT_NATIVE
-void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
 #else
 void _gcnewoption_entrypoint_32(OptionState*, u32);
 #endif

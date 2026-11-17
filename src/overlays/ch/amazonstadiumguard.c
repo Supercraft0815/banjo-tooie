@@ -20,12 +20,12 @@ u32 D_808006B8_chamazonstadiumguard[] = {
     0x40E00000, 0x01990000
 };
 
-u32 D_80800700_chamazonstadiumguard[] = {
-    0x015F0116, 0x06610001, (u32)D_808006B8_chamazonstadiumguard, (u32)func_80800028_chamazonstadiumguard,
-    (u32)func_80105834, (u32)func_80101870, 0x1F400000, 0x00000000,
-    0x00000000, 0x00000160, (u32)func_808002F4_chamazonstadiumguard, 0x00000000,
-    0x00000000, (u32)func_8080000C_chamazonstadiumguard, (u32)func_80107C2C, 0x86006502,
-    (u32)func_80800328_chamazonstadiumguard, 0x00000000
+BtFnWord D_80800700_chamazonstadiumguard[] = {
+    0x015F0116, 0x06610001, (BtFnWord)D_808006B8_chamazonstadiumguard, (BtFnWord)func_80800028_chamazonstadiumguard,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x1F400000, 0x00000000,
+    0x00000000, 0x00000160, (BtFnWord)func_808002F4_chamazonstadiumguard, 0x00000000,
+    0x00000000, (BtFnWord)func_8080000C_chamazonstadiumguard, (BtFnWord)func_80107C2C, 0x86006502,
+    (BtFnWord)func_80800328_chamazonstadiumguard, 0x00000000
 };
 
 f32 D_80800748_chamazonstadiumguard[] = {
@@ -63,24 +63,24 @@ u32 D_808007D0_chamazonstadiumguard[] = {
     0x3F2E147B, 0x3F4CCCCD, 0x3F6B851F, 0xBF800000
 };
 
-void *func_80100094(Actor *, u32);
+void *func_80100094(Actor *, u32);     
 
 OSThread *chamazonstadiumguard_entrypoint_0(void)
 {
     return (OSThread *) D_80800700_chamazonstadiumguard;
-}
+}                 typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; u8 pad10[0x18]; f32 unk28; f32 unk2C; f32 unk30; } Objamazonstadiumguard_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8080000C_chamazonstadiumguard(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) (*(f32 *)((s8 *)(arg0) + (4)));
-    (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
-    (*(f32 *)((s8 *)(arg0) + (0x30))) = (f32) (*(f32 *)((s8 *)(arg0) + (0xC)));
+    (((Objamazonstadiumguard_arg0 *)arg0)->unk28) = (f32) (((Objamazonstadiumguard_arg0 *)arg0)->unk4);
+    (((Objamazonstadiumguard_arg0 *)arg0)->unk2C) = (f32) (((Objamazonstadiumguard_arg0 *)arg0)->unk8);
+    (((Objamazonstadiumguard_arg0 *)arg0)->unk30) = (f32) (((Objamazonstadiumguard_arg0 *)arg0)->unkC);
 }
 
 void func_80800028_chamazonstadiumguard(Actor *arg0) {
     s32 _chbadshad_entrypoint_2(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
     s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
-    s32 _sudeflect_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+    s32 _sudeflect_entrypoint_3(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
     void _sudeflect_entrypoint_4(s32 arg0, f32 *arg1);
     void _suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2);
     int func_800DB9B0(void);
@@ -92,8 +92,8 @@ void func_80800028_chamazonstadiumguard(Actor *arg0) {
     void func_801020DC(void *arg0, s32 arg1);
     void func_80103014(u8 *arg0);
     void func_80800530_chamazonstadiumguard(Actor *arg0);
-    void func_808005CC_chamazonstadiumguard(s32 arg0);
-    void func_80800620_chamazonstadiumguard(s32 arg0);
+    void func_808005CC_chamazonstadiumguard(BtIntPtr arg0);
+    void func_80800620_chamazonstadiumguard(BtIntPtr arg0);
     void func_80800648_chamazonstadiumguard(Actor *arg0);
     s32 sp54 = 0;
     f32 sp48[3];
@@ -182,10 +182,10 @@ void func_808002F4_chamazonstadiumguard(Actor* arg0)
     }
 }
 s32 func_80800328_chamazonstadiumguard(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     s32 _glcutDll_entrypoint_20(void);
     void _suexpression_entrypoint_12(void *, f32, f32);
-    void *_suexpression_entrypoint_7(Actor *, u32, u32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     s32 func_800EA090(void);
     void func_801020DC(void *, s32);
     void func_80102424(Actor *, s32);
@@ -227,7 +227,7 @@ s32 func_80800328_chamazonstadiumguard(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800488_chamazonstadiumguard(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800C01A8(s16, s32);
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_80102424(Actor *, s32);
 
     switch (arg1) {
@@ -264,8 +264,8 @@ void func_80800530_chamazonstadiumguard(Actor *arg0) {
     }
 }
 
-void func_808005CC_chamazonstadiumguard(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+void func_808005CC_chamazonstadiumguard(BtIntPtr arg0) {
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     s32 func_8010D278();
     if (func_8010D278() == 8) {
         _subaddiedialog_entrypoint_7(arg0, arg0 + 4, D_80800770_chamazonstadiumguard);
@@ -274,8 +274,8 @@ void func_808005CC_chamazonstadiumguard(s32 arg0) {
     _subaddiedialog_entrypoint_7(arg0, arg0 + 4, D_8080078C_chamazonstadiumguard);
 }
 
-void func_80800620_chamazonstadiumguard(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+void func_80800620_chamazonstadiumguard(BtIntPtr arg0) {
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     _subaddiedialog_entrypoint_7(arg0, arg0 + 4, D_808007A8_chamazonstadiumguard);
 }
 

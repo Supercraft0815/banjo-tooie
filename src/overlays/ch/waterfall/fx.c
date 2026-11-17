@@ -2,7 +2,7 @@
 
 OSThread *chwaterfallfx_entrypoint_0(void)
 {
-    extern u8 D_80800410_chwaterfallfx[];
+    extern ActorData D_80800410_chwaterfallfx[];
 
     return (OSThread *) D_80800410_chwaterfallfx;
 }
@@ -79,13 +79,13 @@ void func_8080000C_chwaterfallfx(Actor *arg0) {
 }
 
 void func_80800148_chwaterfallfx(Actor *arg0) {
-    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    void _subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4);
     void func_800C3058(u8, s32);
     s32 func_808001F8_chwaterfallfx(Actor *);
-    extern s32 D_80800458_chwaterfallfx;
+    extern s32 D_80800458_chwaterfallfx[8];
     u8 temp_a0;
 
-    _subaddieaudioloop_entrypoint_5((s32)arg0, (s32)arg0->position, 1, 0xC80, &D_80800458_chwaterfallfx);
+    _subaddieaudioloop_entrypoint_5((BtIntPtr)arg0, (BtIntPtr)arg0->position, 1, 0xC80, D_80800458_chwaterfallfx);
     temp_a0 = arg0->unk5F;
     if (temp_a0 != 0) {
         if (!arg0->unk64_19) {
@@ -105,8 +105,8 @@ s32 func_808001E4_chwaterfallfx(s32 arg0, s32 arg1, s32 arg2)
     return 0;
 }
 s32 func_808001F8_chwaterfallfx(Actor *arg0) {
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800D8FF8(void);
     f32 func_800DC178(f32, f32);
     void func_800E3980(f32 *);
@@ -117,7 +117,7 @@ s32 func_808001F8_chwaterfallfx(Actor *arg0) {
     void func_800EFE50(f32[3], f32[3], f32[3], f32);
     extern s32 D_80800478_chwaterfallfx[];
     f32 camera[3];
-    s32 effect;
+    BtIntPtr effect;
     s32 i;
     s32 count;
     f32 velocity[3];
@@ -146,4 +146,11 @@ s32 func_808001F8_chwaterfallfx(Actor *arg0) {
             }
         }
     }
-}
+BT_NATIVE_ONLY(return 0;) }
+/* data_to_c.py: from asm/data/overlays/ch/waterfall/fx.data.s */
+void func_80102EC0();
+void func_8010A730();
+void func_80107C2C();
+ActorData D_80800410_chwaterfallfx [1] BT_DATA(4, overlays_ch_waterfall_fx, 0x0) = { { 344, 443, 0, 1, 0, (void (*)(struct Actor *))func_80800148_chwaterfallfx, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8010A730, 393216000, 0, 0, 0, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chwaterfallfx, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_808001E4_chwaterfallfx, 0 } };
+s32 D_80800458_chwaterfallfx[8] BT_DATA(4, overlays_ch_waterfall_fx, 0x48) = { 1246188, 65936, 209715226, 16777344, 917696, 14221350, 1452792, 0 };
+s32 D_80800478_chwaterfallfx [18] BT_DATA(4, overlays_ch_waterfall_fx, 0x68) = { 1903069, 1769922, 36044845, 13107450, 917519, 1310742, 100663346, 51, 131111, -6488164, 6553700, 2228369, 11206904, 17760277, 786598, 2818201, 11763714, 18481152 };

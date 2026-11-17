@@ -2,10 +2,10 @@
 
 OSThread *chhillbilly_entrypoint_0(void)
 {
-    extern u8 D_80800C60_chhillbilly[];
+    extern ActorData D_80800C60_chhillbilly[];
 
     return (OSThread *) D_80800C60_chhillbilly;
-}
+}    typedef struct { u8 pad0[0x4]; f32 unk4; } Objhillbilly_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -19,7 +19,7 @@ void func_8080000C_chhillbilly(void *arg0) {
 
     if (_sucoaster_entrypoint_0(arg0, 0xC) != 0) {
         sp1C = _sucoaster_entrypoint_3(arg0);
-        func_800EE940((s16 *)(sp1C + 6), sp18 = (f32 *)((u8 *)arg0 + 4));
+        func_800EE940((s16 *)(sp1C + 6), sp18 = &((Objhillbilly_arg0 *)arg0)->unk4);
         position = sp18;
         func_800EE940((s16 *)sp1C, position);
     }
@@ -34,15 +34,15 @@ void func_80800064_chhillbilly(Actor *arg0) {
         u32 unk78_2 : 1;
         u32 pad78_0 : 2;
     };
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
     s32 _sucoaster_entrypoint_10(Actor *, s32);
     s32 _sucoaster_entrypoint_13();
-    s32 _sucoaster_entrypoint_19(void *);
-    s32 _sucoaster_entrypoint_2();
+    void _sucoaster_entrypoint_19(Actor *arg0);
+    void _sucoaster_entrypoint_2(Actor *arg0);
     u8 *_sucoaster_entrypoint_3();
-    void _sucoaster_entrypoint_7(Actor *, s32, f32);
+    s32 _sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2);
     void func_800EE88C(f32 *, s16 *);
     void func_800EE940(s16 *, f32 *);
     s32 func_80101DDC(Actor *);
@@ -54,7 +54,7 @@ void func_80800064_chhillbilly(Actor *arg0) {
     s32 func_8080042C_chhillbilly(u8 *);
     void func_80800944_chhillbilly(Actor *);
     void func_808009D8_chhillbilly(Actor *, s32, s32);
-    extern u32 D_80800CA8_chhillbilly;
+    extern u32 D_80800CA8_chhillbilly[3];
     f32 sp34[3];
     f32 sp28[3];
 
@@ -75,7 +75,7 @@ void func_80800064_chhillbilly(Actor *arg0) {
             func_80800944_chhillbilly(arg0);
             arg0->unk54 = func_8010CD28(arg0);
             func_80102BF8(arg0, 0.2f, 60.0f, 300.0f);
-            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800CA8_chhillbilly, 0.2f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800CA8_chhillbilly, 0.2f);
             if (func_80101DDC(arg0)) {
                 _sucoaster_entrypoint_10(arg0, (((struct HillbillyFlags *)arg0)->flags74 & 1) ? 18 : (arg0->unk64_29 ? 2 : 8));
             }
@@ -114,7 +114,7 @@ void func_80800064_chhillbilly(Actor *arg0) {
 
 /* extern */
 
-void func_80800298_chhillbilly(Actor *arg0, u8 *arg1) { s32 _sucoaster_entrypoint_20(Actor *, u8 *); s32 var_a1; if ((u32)(arg0->unk0->unk28 << 18) >> 31) { var_a1 = 0; } else { var_a1 = 1; } func_800DF744(3, var_a1); _sucoaster_entrypoint_20(arg0, arg1); }
+void func_80800298_chhillbilly(Actor *arg0, u8 *arg1) { void _sucoaster_entrypoint_20(); s32 var_a1; if ((u32)(arg0->unk0->unk28 << 18) >> 31) { var_a1 = 0; } else { var_a1 = 1; } func_800DF744(3, var_a1); _sucoaster_entrypoint_20(arg0, arg1); }
 
 /* extern */
 
@@ -130,10 +130,10 @@ s32 func_808002F0_chhillbilly(f32 *arg0) {
 
 void func_80800348_chhillbilly(Actor *arg0) {
     u8 *_sucoaster_entrypoint_3();
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
-    extern s32 D_80800CB4_chhillbilly;
+    extern s32 D_80800CB4_chhillbilly[15];
     f32 sp24[3];
 
     if (arg0->unk70_10 == 0x16) {
@@ -141,7 +141,7 @@ void func_80800348_chhillbilly(Actor *arg0) {
     } else {
         func_800EE88C(sp24, (s16 *)_sucoaster_entrypoint_3(arg0));
     }
-    func_800BBCB8(sp24, NULL, arg0->scale, 1, &D_80800CB4_chhillbilly);
+    func_800BBCB8(sp24, NULL, arg0->scale, 1, D_80800CB4_chhillbilly);
 }
 
 /* extern */
@@ -357,10 +357,10 @@ void func_80800894_chhillbilly(Actor *arg0, s32 arg1) {
 void func_80800944_chhillbilly(Actor *arg0) {
     u8 *_sucoaster_entrypoint_3();
     s32 func_8001210C(s32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
-    extern s32 D_80800CF0_chhillbilly;
+    extern s32 D_80800CF0_chhillbilly[16];
     f32 sp34[3];
     f32 sp28[3];
 
@@ -368,7 +368,7 @@ void func_80800944_chhillbilly(Actor *arg0) {
         func_800EE88C(sp28, (s16 *)_sucoaster_entrypoint_3(arg0));
         func_800EE7F8(sp34, sp28);
         sp34[1] -= 20.0f;
-        func_800BBCB8(sp28, sp34, 1.0f, 3, &D_80800CF0_chhillbilly);
+        func_800BBCB8(sp28, sp34, 1.0f, 3, D_80800CF0_chhillbilly);
     }
 }
 
@@ -391,3 +391,17 @@ void func_808009D8_chhillbilly(Actor *arg0, s32 arg1, s32 arg2) {
             break;
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/hillbilly.data.s */
+extern u8 D_80800BA8_chhillbilly[];
+void func_80105834(Actor*);
+void _sucoaster_entrypoint_1();
+OSThread *_sucoasterhit_entrypoint_0(void);
+void func_80107C2C();
+extern u8 D_80800B40_chhillbilly[];
+u8 D_80800B40_chhillbilly[20] BT_DATA(4, overlays_ch_hillbilly, 0x0) = { 0x00, 0x16, 0x00, 0x01, 0x00, 0x0E, 0x00, 0x01, 0x00, 0x0D, 0x00, 0x01, 0x00, 0x10, 0x00, 0x01, 0x00, 0x16, 0x00, 0x01 };
+u8 D_80800B54_chhillbilly [84] BT_DATA(4, overlays_ch_hillbilly, 0x14) = { 0, 0, 0, 0x2A, 0x3F, 0xA0, 0, 0, 0, 0x2B, 0, 0, 0, 0, 0, 0x1E, 0x3F, 0xA6, 0x66, 0x66, 2, 0x1C, 0, 0, 0, 0, 0, 0x10, 0x3F, 0xA6, 0x66, 0x66, 2, 0xE, 0, 0, 0, 0, 0, 0x1C, 0x3F, 0xA6, 0x66, 0x66, 1, 0xE, 0, 0, 0, 0, 0, 0x14, 0x3F, 0x99, 0x99, 0x9A, 2, 0x18, 0, 0, 0, 0, 0, 6, 0x3F, 0x99, 0x99, 0x9A, 2, 0xA, 0, 0, 0, 0, 0, 1, 0x3F, 0xC0, 0, 0, 1, 0x12, 0, 0 };
+u8 D_80800BA8_chhillbilly[184] BT_DATA(4, overlays_ch_hillbilly, 0x68) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x02, 0x1D, 0x00, 0x01, 0x3F, 0x19, 0x99, 0x9A, 0x02, 0x1D, 0x00, 0x01, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x01, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x01, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x01, 0x3F, 0x99, 0x99, 0x9A, 0x03, 0xE1, 0x00, 0x02, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x01, 0x3F, 0x00, 0x00, 0x00, 0x03, 0xE2, 0x00, 0x02, 0x3F, 0xB3, 0x33, 0x33, 0x02, 0x1B, 0x00, 0x02, 0x3F, 0xB3, 0x33, 0x33, 0x02, 0x1B, 0x00, 0x84, 0x3F, 0x19, 0x99, 0x9A, 0x02, 0x1D, 0x00, 0x01, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x8C, 0xCC, 0xCD, 0x02, 0x1C, 0x00, 0x01, 0x3F, 0xC0, 0x00, 0x00, 0x02, 0x1A, 0x00, 0x01, 0x3F, 0x66, 0x66, 0x66, 0x02, 0x18, 0x00, 0x02, 0x3F, 0x8C, 0xCC, 0xCD, 0x02, 0x19, 0x00, 0x02, 0x3F, 0x4C, 0xCC, 0xCD, 0x02, 0x1A, 0x00, 0x01, 0x3F, 0x8C, 0xCC, 0xCD, 0x02, 0x1C, 0x00, 0x01 };
+ActorData D_80800C60_chhillbilly [1] BT_DATA(4, overlays_ch_hillbilly, 0x120) = { { 417, 336, 1930, 22, (void *)D_80800BA8_chhillbilly, (void (*)(struct Actor *))func_80800064_chhillbilly, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800298_chhillbilly, 196608000, 1065353216, 0, 0, 17157, 865, (void (*)(struct Actor *))_sucoaster_entrypoint_1, (BtIntPtr)_sucoasterhit_entrypoint_0, 0, 0, (void (*)(struct Actor *))func_8080000C_chhillbilly, (void (*)(void *, long, void *, long, void *))func_80107C2C, -31694, 21533, (void (*)(struct Actor *, long, long))func_80800540_chhillbilly, (BtIntPtr)D_80800B40_chhillbilly } };
+u32 D_80800CA8_chhillbilly[3] BT_DATA(4, overlays_ch_hillbilly, 0x168) = { 0x1304CF, 0xD00F3, 0x10C0000 };
+s32 D_80800CB4_chhillbilly[15] BT_DATA(4, overlays_ch_hillbilly, 0x174) = { 1902474, 2556004, 13107400, 26214427, -52363964, 1376256, 6684715, 50332672, 2948970, 19726186, 9830800, 9830407, 196612, 8388630, 25296896 };
+s32 D_80800CF0_chhillbilly[16] BT_DATA(4, overlays_ch_hillbilly, 0x1B0) = { 1902244, 1446274, 1834408, -39321561, -39256664, 39322200, 2949270, 13107234, 786457, 0, 2818201, 13369365, 179, 720946, 3997686, -1310720 };

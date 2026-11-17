@@ -1,11 +1,11 @@
 #include "common.h"
 
 void func_80800000_chusefeather(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
-    void func_800BA3FC(s32, s32);
-    void func_800BA75C(s32, f32[3]);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
+    void func_800BA3FC(BtIntPtr, s32);
+    void func_800BA75C(BtIntPtr, f32[3]);
     void func_800BABA0(void *, f32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     void func_800EF1B8(f32 *, f32, f32);
@@ -13,7 +13,7 @@ void func_80800000_chusefeather(Actor *arg0) {
     void func_800FFAB0(Actor *);
     extern s32 D_80800340_chusefeather[];
     s32 i;
-    s32 emitter;
+    BtIntPtr emitter;
     f32 position[3];
     s32 alpha;
 
@@ -38,7 +38,7 @@ void func_80800000_chusefeather(Actor *arg0) {
         func_800FFAB0(arg0);
     } else {
         alpha = (s32)func_800F10B4(arg0->unk58, 0.0, 0.3f, 0.0, 255.0f);
-        _subaddiefade_entrypoint_1((s32)arg0, alpha);
+        _subaddiefade_entrypoint_1((BtIntPtr)arg0, alpha);
         if (alpha == 0) {
             func_800FFAB0(arg0);
         }
@@ -47,8 +47,8 @@ void func_80800000_chusefeather(Actor *arg0) {
 
 void chusefeather_entrypoint_0(s32 arg0, s32 arg1) {
     f32 func_800DC0C0(void);
-    void func_800F5A00(s32, f32 *);
-    f32 func_800F5F24(u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    f32 func_800F5F24(BtUIntPtr);
     void func_80102FDC(Actor *, f32);
     Actor *func_80108474(u32, f32 *, s32);
     Actor *sp2C;
@@ -86,14 +86,21 @@ void chusefeather_entrypoint_1(s32 arg0, s32 arg1) {
 
 OSThread *chusefeather_entrypoint_2(void)
 {
-    extern u8 D_80800364_chusefeather[];
+    extern ActorData D_80800364_chusefeather[];
 
     return (OSThread *) D_80800364_chusefeather;
 }
 
 OSThread *chusefeather_entrypoint_3(void)
 {
-    extern u8 D_808003AC_chusefeather[];
+    extern ActorData D_808003AC_chusefeather[];
 
     return (OSThread *) D_808003AC_chusefeather;
 }
+/* data_to_c.py: from asm/data/overlays/ch/usefeather.data.s */
+void func_80105834(Actor*);
+void _subaddiedraw25d_entrypoint_2();
+void func_80107C2C();
+s32 D_80800340_chusefeather [9] BT_DATA(4, overlays_ch_usefeather, 0x0) = { 17825826, 3997747, 131074, 2752512, 64, 4194325, 76, 1445888, 0 };
+ActorData D_80800364_chusefeather [1] BT_DATA(4, overlays_ch_usefeather, 0x24) = { { 344, 618, 2494, 1, 0, (void (*)(struct Actor *))func_80800000_chusefeather, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_subaddiedraw25d_entrypoint_2, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };
+ActorData D_808003AC_chusefeather [1] BT_DATA(4, overlays_ch_usefeather, 0x6C) = { { 344, 619, 2495, 1, 0, (void (*)(struct Actor *))func_80800000_chusefeather, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_subaddiedraw25d_entrypoint_2, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };

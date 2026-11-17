@@ -60,7 +60,7 @@ void anseq_entrypoint_0(s16 *pSeqIndx) {
     vector_clear(func_800B2890(*pSeqIndx));
 }
 
-void* func_80800134_anseq(s16 *pSeqIndx, f32 duration, s32 arg_count, void * func_ptr, s32 a0, s32 a1, s32 a2, s32 a3){
+void* func_80800134_anseq(s16 *pSeqIndx, f32 duration, s32 arg_count, void * func_ptr, s32 a0, s32 a1, BtIntPtr a2, BtIntPtr a3){
     AnSeqElement *v0 = func_800B2A58(*pSeqIndx);
     v0->duration = duration;
     v0->argCount = arg_count;
@@ -125,6 +125,6 @@ void anseq_entrypoint_8(s16 *pSeqIndx, AnimCtrl *pAnCtl) {
     }
 }
 
-void anseq_entrypoint_9(s16 arg0){
-    func_8001B798(arg0);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s16 *) anseq_entrypoint_9(s16 arg0){
+    BT_NATIVE_ONLY(return (s16 *)) func_8001B798(arg0);
 }

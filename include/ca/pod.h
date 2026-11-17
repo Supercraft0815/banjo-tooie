@@ -3,7 +3,7 @@
 
 #include "common.h"
 
-void _capod_entrypoint_1(f32*, f32*);
+void _capod_entrypoint_1(BtIntPtr arg0, BtIntPtr arg1);
 void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
 void _capod_entrypoint_3(u32);
 void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);               /* extern */

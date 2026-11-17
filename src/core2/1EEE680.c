@@ -7,7 +7,7 @@ s32 func_80114D90()
 
 void func_80114D98(void *arg0, s32 arg1) {
     s16 *temp_v1;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     if ((arg1 == 0) || (arg1 == 1)) {
         temp_v0 = arg1 * 2;

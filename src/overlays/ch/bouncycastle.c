@@ -2,28 +2,28 @@
 
 OSThread *chbouncycastle_entrypoint_0(void)
 {
-    extern u8 D_80800930_chbouncycastle[];
+    extern ActorData D_80800930_chbouncycastle[];
 
     return (OSThread *) D_80800930_chbouncycastle;
 }
 
 OSThread *chbouncycastle_entrypoint_1(void)
 {
-    extern u8 D_80800978_chbouncycastle[];
+    extern ActorData D_80800978_chbouncycastle[];
 
     return (OSThread *) D_80800978_chbouncycastle;
 }
 
 OSThread *chbouncycastle_entrypoint_2(void)
 {
-    extern u8 D_808009C0_chbouncycastle[];
+    extern ActorData D_808009C0_chbouncycastle[];
 
     return (OSThread *) D_808009C0_chbouncycastle;
 }
 
 OSThread *chbouncycastle_entrypoint_3(void)
 {
-    extern u8 D_80800A08_chbouncycastle[];
+    extern ActorData D_80800A08_chbouncycastle[];
 
     return (OSThread *) D_80800A08_chbouncycastle;
 }
@@ -32,14 +32,14 @@ OSThread *chbouncycastle_entrypoint_3(void)
 
 void chbouncycastle_entrypoint_4(Actor *arg0) {
     struct anctrl_s;
-    void func_8008B304(s32);
-    s32 func_8008B4D4(struct anctrl_s *);
-    void func_800DF41C(s32);
-    void func_800DF818(s32);
+    void func_8008B304(BtIntPtr);
+    void * func_8008B4D4(void *arg0);
+    void func_800DF41C(BtIntPtr);
+    void func_800DF818(BtIntPtr);
     void func_800DF830(s32);
     void *func_80100094(Actor *, u32);
-    s32 func_801039E4(s32);
-    s32 func_80103CDC(u8 *, u8 *);
+    BtIntPtr func_801039E4(BtIntPtr);
+    BtIntPtr func_80103CDC(u8 *, u8 *);
     void func_80103D48(void **);
     s32 func_80103D70(void **);
     struct anctrl_s *func_80104248(void *);
@@ -56,13 +56,13 @@ void chbouncycastle_entrypoint_4(Actor *arg0) {
     s32 *sp24;
     struct anctrl_s *sp20;
 
-    sp28 = (Unk80132ED0 *)func_801039E4((s32)arg0->unk0);
+    sp28 = (Unk80132ED0 *)func_801039E4((BtIntPtr)arg0->unk0);
     sp24 = func_80100094(arg0, 0);
     func_80103D48((void **)arg0);
     *sp24 = sp28->unk28;
     if (*(s16 *)&arg0->pad8C != 0 && (arg0->unk70_10 == 2 || arg0->unk79_4 != 0)) {
         sp20 = func_80104248(arg0);
-        func_8008B304((s32)sp20);
+        func_8008B304((BtIntPtr)sp20);
         func_800DF41C(func_8008B4D4(sp20));
     } else {
         sp28->unk28 = 0;
@@ -78,11 +78,11 @@ void chbouncycastle_entrypoint_4(Actor *arg0) {
 /* extern */
 
 void func_80800148_chbouncycastle(void **arg0) {
-    s32 _glidmake_entrypoint_4(s32);
-    s32 _glidmake_entrypoint_5(u16, s32);
-    s32 func_8010647C(void **, s32);
-    s32 func_801065A4();
-    s32 temp_v0;
+    void _glidmake_entrypoint_4(void* arg0);
+    void *_glidmake_entrypoint_5(s32 arg0, f32 *arg1);
+    s32 func_8010647C(void **, BtIntPtr);
+    BtIntPtr func_801065A4();
+    BtIntPtr temp_v0;
 
     temp_v0 = func_801065A4();
     if (temp_v0 != 0) {
@@ -92,16 +92,16 @@ void func_80800148_chbouncycastle(void **arg0) {
 }
 
 void func_80800198_chbouncycastle(Actor *arg0, s32 arg1) {
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
-    void func_800DF47C(s32, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void func_800DF47C(s32, BtIntPtr);
     void *func_80100094(Actor *, u32);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     u8 *func_80103AA0(u8 *);
     extern void _chbouncycastle_entrypoint_4(Actor *);
     s32 *sp2C;
 
     sp2C = func_80100094(arg0, 0);
-    func_800DF47C((s32)_chbouncycastle_entrypoint_4, (s32)arg0);
+    func_800DF47C((BtIntPtr)_chbouncycastle_entrypoint_4, (BtIntPtr)arg0);
     func_800DE448(NULL, NULL, arg0->scale, NULL, func_8010347C(arg0->unk0));
     if (arg0->unk7C_12) {
         ((Unk80132ED0 *)func_80103AA0((u8 *)arg0->unk0))->unk28 = *sp2C;
@@ -242,7 +242,7 @@ void func_8080051C_chbouncycastle(Actor *arg0) {
     u8 func_800C4350(s32, f32[3], s32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_80101E14(Actor *, f32);
-    extern s32 D_80800A50_chbouncycastle;
+    extern s32 D_80800A50_chbouncycastle[3];
     extern f32 D_80800A5C_chbouncycastle[4];
     f32 temp_f20;
     f32 *var_s2;
@@ -250,7 +250,7 @@ void func_8080051C_chbouncycastle(Actor *arg0) {
     u8 temp_v0;
     s32 var_s1;
     s32 count = sizeof(D_80800A5C_chbouncycastle) / sizeof(f32);
-    s32 *audio_params = &D_80800A50_chbouncycastle;
+    s32 *audio_params = D_80800A50_chbouncycastle;
 
     for (var_s1 = 0, var_s2 = D_80800A5C_chbouncycastle; var_s1 < count; var_s1++, var_s2++) {
         if (func_80101E14(arg0, *var_s2) != 0) {
@@ -261,25 +261,25 @@ void func_8080051C_chbouncycastle(Actor *arg0) {
             func_800C4350(temp_v0 & 0xFF, temp_s0, audio_params);
         }
     }
-}
+}    typedef struct { u8 pad0[0x28]; s32 unk28; } Objbouncycastle_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800670_chbouncycastle(u8 *arg0) {
     s32 func_800CBB80(s32, s32);
-    s32 func_800CBDD4(s32, s32, s32);
+    s32 func_800CBDD4(BtIntPtr, s32, s32);
     s32 func_800DA298(s32);
     s32 temp_v0;
 
     temp_v0 = func_800CBDD4(arg0 + 4, 0x64, 1);
-    (*(s32 *)((s8 *)(arg0) + (0x28))) = temp_v0;
+    (((Objbouncycastle_arg0 *)arg0)->unk28) = temp_v0;
     if (temp_v0 != -1) {
-        func_800CBB80((*(s32 *)((s8 *)(arg0) + (0x28))), func_800DA298(0xB2));
+        func_800CBB80((((Objbouncycastle_arg0 *)arg0)->unk28), func_800DA298(0xB2));
     }
 }
 
 void func_808006C4_chbouncycastle(Actor *arg0) {
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     s32 func_800D9078(f32 *);
     void func_80101FDC(Actor *, u32);
 
@@ -351,3 +351,17 @@ s32 func_80800830_chbouncycastle(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/bouncycastle.data.s */
+extern u8 D_80800910_chbouncycastle[];
+void func_80105834(Actor*);
+void func_80107C2C();
+void func_80101870(Actor* arg0, void* arg1);
+void func_80102EC0();
+void func_8010A73C();
+u8 D_80800910_chbouncycastle[32] BT_DATA(4, overlays_ch_bouncycastle, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xE0, 0x00, 0x00, 0x01, 0x12, 0x00, 0x44, 0x40, 0xE0, 0x00, 0x00, 0x01, 0x12, 0x00, 0x0A, 0x40, 0xE0, 0x00, 0x00, 0x01, 0x12, 0x00, 0x84 };
+ActorData D_80800930_chbouncycastle [1] BT_DATA(4, overlays_ch_bouncycastle, 0x20) = { { 686, 844, 1725, 1, (void *)D_80800910_chbouncycastle, (void (*)(struct Actor *))func_80800254_chbouncycastle, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800198_chbouncycastle, 0, 0, 0, 0, 0, 7176, 0, 0, 28, 0, (void (*)(struct Actor *))func_8080045C_chbouncycastle, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_80800308_chbouncycastle, 0 } };
+ActorData D_80800978_chbouncycastle [1] BT_DATA(4, overlays_ch_bouncycastle, 0x68) = { { 691, 849, 0, 1, 0, (void (*)(struct Actor *))func_808006C4_chbouncycastle, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800670_chbouncycastle, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_80800774_chbouncycastle, 0 } };
+ActorData D_808009C0_chbouncycastle [1] BT_DATA(4, overlays_ch_bouncycastle, 0xB0) = { { 172, 967, 1952, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A73C, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800828_chbouncycastle, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 3074, (void (*)(struct Actor *, long, long))func_80800830_chbouncycastle, 0 } };
+ActorData D_80800A08_chbouncycastle [1] BT_DATA(4, overlays_ch_bouncycastle, 0xF8) = { { 172, 968, 1952, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A73C, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800828_chbouncycastle, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 3074, (void (*)(struct Actor *, long, long))func_80800830_chbouncycastle, 0 } };
+s32 D_80800A50_chbouncycastle[3] BT_DATA(4, overlays_ch_bouncycastle, 0x140) = { 1246458, 1572866, 1114112 };
+f32 D_80800A5C_chbouncycastle [ 4 ] BT_DATA(4, overlays_ch_bouncycastle, 0x14C) = { 0.2159091f, 0.4f, 0.65f, 0.88f };

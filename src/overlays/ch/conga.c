@@ -9,15 +9,15 @@ OSThread *chconga_entrypoint_0(void)
 
 /* extern */
 
-void func_8080000C_chconga(s32 arg0) {
+void func_8080000C_chconga(BtIntPtr arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 _subaddieitem_entrypoint_0(s32, s32, s32, s32);
-    s32 _subaddieitem_entrypoint_1(s32, s32);
+    void _subaddieitem_entrypoint_0(u8 *arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    void _subaddieitem_entrypoint_1(s8 *arg0, s32 arg1);
     s32 func_800D395C();
     s32 func_800DA298(s32);
-    s32 func_800F54E4();
-    s32 func_800F64A4(s32, s32);
-    s32 func_800FFAB0(s32);
+    BtIntPtr func_800F54E4();
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800FFAB0(Actor *actor);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80105A9C(Actor *, f32);
@@ -51,19 +51,19 @@ block_10:
 }
 
 void func_80800118_chconga(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     int func_800C6E38(s32);
     void func_800D1824(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80103DFC(Actor *, f32 *);
     void func_80105854(Actor *);
-    void func_80800538_chconga(s32);
+    void func_80800538_chconga(BtIntPtr);
     void func_80800618_chconga(Actor *);
     f32 sp2C[3];
 
@@ -71,7 +71,7 @@ void func_80800118_chconga(Actor *arg0) {
     switch (arg0->unk70_10) {
     case 1:
         func_800D1824(0x4D);
-        func_80800538_chconga((s32)arg0);
+        func_80800538_chconga((BtIntPtr)arg0);
         func_80800618_chconga(arg0);
         break;
     case 2:
@@ -108,7 +108,7 @@ s32 func_808002A0_chconga(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800374_chconga(Actor *, s32, s32);
     s32 func_80800478_chconga(Actor *, s32, s32);
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    void *_suexpression_entrypoint_7(Actor *, u32, u32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     void _suexpression_entrypoint_12(void *, f32, f32);
     void *func_80100094(Actor *, u32);
     extern u32 D_808006E8_chconga;
@@ -133,12 +133,12 @@ s32 func_808002A0_chconga(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800374_chconga(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 func_808004BC_chconga(s32, s32);
+    s32 func_808004BC_chconga(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
-    void _subaddieitem_entrypoint_2(s32);
+    void _subaddieitem_entrypoint_2(BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80105A9C(Actor *, f32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
 
     switch (arg1) {
     case 0x10B1:
@@ -174,7 +174,7 @@ s32 func_80800478_chconga(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-s32 func_808004BC_chconga(s32 arg0, s32 arg1) {
+s32 func_808004BC_chconga(BtIntPtr arg0, s32 arg1) {
     int func_800C6E38(s32);
     s32 var_v1;
 
@@ -190,13 +190,13 @@ s32 func_808004BC_chconga(s32 arg0, s32 arg1) {
     return var_v1;
 }
 
-void func_80800538_chconga(s32 arg0) {
-    s32 _subaddiedialog_entrypoint_7(s32, s32, s32 *);
+void func_80800538_chconga(BtIntPtr arg0) {
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     s32 func_800D1A04(s32);
     s32 func_800DA298(s32);
-    s32 func_800F54E4();
-    s32 func_800F64A4(s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    BtIntPtr func_800F54E4();
+    s32 func_800F64A4(BtIntPtr, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     extern s32 D_808006F8_chconga;
     extern s16 D_808006FC_chconga;
     extern s16 D_808006FE_chconga;

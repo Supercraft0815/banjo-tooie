@@ -22,11 +22,11 @@ void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultD
     extern u8 D_80127F00[3];
     extern u16 D_8011A5B0[];
     void *func_800B56D0(u8);
-    void func_800BA22C(s32, s32);
-    void func_800BA3FC(s32, s32);
-    void func_800BA75C(s32, f32[3]);
-    void func_800BA930(s32, s16, s16, s16, s16, s16, s16);
-    void func_800BAB80(s32, f32 *);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    void func_800BA75C(BtIntPtr, f32[3]);
+    void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
+    void func_800BAB80(BtIntPtr, f32 *);
     void func_800BA594(void *, f32, f32);
     void func_800BA5A8(s16 *, s32);
     void func_800BA5B0(s16 *, s32, s32);
@@ -74,3 +74,9 @@ void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultD
     }
     func_800BA22C(emitter, 1);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_80127F00 [ 3 ] BT_DATA(4, bss_core2bss1_0_2, 0x760);
+#endif

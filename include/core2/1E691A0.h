@@ -9,7 +9,7 @@ void func_8008F8D8(s32);
 void func_8008F904(void*, Unk80132ED0*);
 void func_8008F938(s32);
 void func_8008F990(f32*, f32);
-void func_8008FB58(f32[3], f32, f32);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FB58(f32[3], f32, f32);
 void func_8008FBE0(u32 a0);
 s32 func_8008FC00();
 s32 func_8008FC28();
@@ -27,11 +27,11 @@ s32 func_80090270(void);
 void func_800903D0(f32[3]);
 void func_800904C8(s32);
 void func_800904F4(s32, Unk80132ED0*);
-void func_80090658(s32);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090658(s32);
 void func_800906B0(f32[3]);
 void func_800906DC(f32[3]);
 void func_80090708(s32);
 void func_800907C0(f32[3]);
-void func_80090734(s32, f32[3]);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090734(s32, f32[3]);
 
 #endif

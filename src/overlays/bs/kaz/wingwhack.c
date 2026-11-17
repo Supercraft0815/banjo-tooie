@@ -4,11 +4,11 @@
 
 extern s32 D_80800920_bskazwingwhack[];
 extern s32 D_80800A80_bskazwingwhack[];
-extern s32 D_80800AB8_bskazwingwhack[];
-extern s32 D_80800AC8_bskazwingwhack[];
+extern BtIntPtr D_80800AB8_bskazwingwhack[];
+extern BtIntPtr D_80800AC8_bskazwingwhack[];
 
 void func_80800000_bskazwingwhack(PlayerState *self, f32 arg1[3], f32 arg2, f32 arg3) {
-    s32 temp_s0;
+    BtIntPtr temp_s0;
     f32 sp30[3];
 
     temp_s0 = func_800B5BE4(0xA);
@@ -96,7 +96,7 @@ void func_80800278_bskazwingwhack(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazwingwhack_entrypoint_0(s32 idx) {
+BtIntPtr bskazwingwhack_entrypoint_0(s32 idx) {
     return D_80800AB8_bskazwingwhack[idx];
 }
 
@@ -182,6 +182,12 @@ void func_80800580_bskazwingwhack(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskazwingwhack_entrypoint_1(s32 idx) {
+BtIntPtr bskazwingwhack_entrypoint_1(s32 idx) {
     return D_80800AC8_bskazwingwhack[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/wingwhack.data.s */
+void func_80099B94(PlayerState *);
+s32 D_80800920_bskazwingwhack [88] BT_DATA(4, overlays_bs_kaz_wingwhack, 0x0) = { 1023960469, 0, 1029946579, 1116334981, 1033852315, 1113637519, 1036831949, 1120347095, 1039811582, 1124626596, 1041489304, 1126093292, 1042985832, 1124059054, 1044475648, 1117070295, 1045965465, 1116758344, 1047455282, 1115739914, 1049136359, 1110607135, 1049881267, 1121703690, 1050626176, 1116051866, 1051743538, 1112436900, 1052491802, 1123351265, 1053236711, 1118645780, 1053981619, 1120016794, 1054726527, 1119727124, 1055474791, 1119762514, 1056219700, 1118375772, 1056964608, 1116251095, 1057337062, 1113349161, 1057709516, 1112324178, 1058083648, 1112976916, 1058456103, 1115974533, 1058828557, 1119620956, 1059201011, 1124249108, 1059575143, 1126213878, 1059947597, 1126818120, 1060320051, 1126413763, 1060692505, 1125065687, 1061064960, 1122837463, 1061439092, 1120396902, 1061811546, 1116255027, 1062184000, 1100412355, 1062556454, 1093486510, 1062930586, 1103568568, 1063303040, 1097481585, 1063675494, 1087037768, 1064047949, 1087939543, 1064420403, 1087939543, 1064794535, 1091011871, 1065166989, 1092416963, 1065353216, 1088107315 };
+s32 D_80800A80_bskazwingwhack [14] BT_DATA(4, overlays_bs_kaz_wingwhack, 0x160) = { 2013397036, 65286, 0, -16384000, 1376256, 131110, 0, 0, 0, 2228736, 33554688, 16777259, 2490406, 18481152 };
+BtIntPtr D_80800AB8_bskazwingwhack [4] BT_DATA(4, overlays_bs_kaz_wingwhack, 0x198) = { (BtIntPtr)func_808000DC_bskazwingwhack, (BtIntPtr)func_80800148_bskazwingwhack, (BtIntPtr)func_80800278_bskazwingwhack, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800AC8_bskazwingwhack [6] BT_DATA(4, overlays_bs_kaz_wingwhack, 0x1A8) = { (BtIntPtr)func_808004A8_bskazwingwhack, (BtIntPtr)func_808004DC_bskazwingwhack, (BtIntPtr)func_80800580_bskazwingwhack, (BtIntPtr)func_80099B94, 0, 0 };

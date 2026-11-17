@@ -2,7 +2,7 @@
 
 extern u32 D_808017DC_chtoothyfish[];
 void func_80101870(Actor *, void *);
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
@@ -65,12 +65,12 @@ u32 D_80801864_chtoothyfish[] = {
     0x3EDC28F6, 0x3F68F5C3, 0xBF800000,
 };
 
-u32 D_80801870_chtoothyfish[] = {
-    0x02D4030F, 0x06C50001, (u32)D_808017DC_chtoothyfish, (u32)func_808004A4_chtoothyfish,
-    (u32)func_808004A4_chtoothyfish, (u32)func_801018A4, 0x2EE02AF8, 0x00000000,
-    0x00000000, 0x00000C68, (u32)func_80800470_chtoothyfish, (u32)func_80108ED0,
-    0x00400000, (u32)func_80800000_chtoothyfish, (u32)func_80107C2C, 0x00000000,
-    (u32)func_80800B68_chtoothyfish, 0x00000000,
+BtFnWord D_80801870_chtoothyfish[] = {
+    0x02D4030F, 0x06C50001, (BtFnWord)D_808017DC_chtoothyfish, (BtFnWord)func_808004A4_chtoothyfish,
+    (BtFnWord)func_808004A4_chtoothyfish, (BtFnWord)func_801018A4, 0x2EE02AF8, 0x00000000,
+    0x00000000, 0x00000C68, (BtFnWord)func_80800470_chtoothyfish, (BtFnWord)func_80108ED0,
+    0x00400000, (BtFnWord)func_80800000_chtoothyfish, (BtFnWord)func_80107C2C, 0x00000000,
+    (BtFnWord)func_80800B68_chtoothyfish, 0x00000000,
 };
 
 u32 D_808018B8_chtoothyfish[] = {
@@ -82,11 +82,11 @@ u32 D_808018B8_chtoothyfish[] = {
     0x00000000, 0x00190000, 0x00330000,
 };
 
-u32 D_80801914_chtoothyfish[] = {
-    0x02D50310, 0x073A0001, 0x00000000, (u32)func_8080106C_chtoothyfish,
-    (u32)func_80105834, (u32)func_80101870, 0x00000000, 0x00000000,
-    0x00000000, 0x00000800, (u32)func_80800EDC_chtoothyfish, 0x00000000,
-    0x00000000, (u32)func_80800E04_chtoothyfish, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_80801914_chtoothyfish[] = {
+    0x02D50310, 0x073A0001, 0x00000000, (BtFnWord)func_8080106C_chtoothyfish,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
+    0x00000000, 0x00000800, (BtFnWord)func_80800EDC_chtoothyfish, 0x00000000,
+    0x00000000, (BtFnWord)func_80800E04_chtoothyfish, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000, 0x00000000,
 };
 
@@ -148,17 +148,17 @@ void func_808000E8_chtoothyfish(Actor *arg0, s32 arg1) {
 }
 
 void func_80800188_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA568(s16 *, s16);
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
     s32 sp34;
     s32 temp_v0;
-    s32 temp_v0_2;
+    BtIntPtr temp_v0_2;
 
     temp_v0 = func_800DC128(0, 5);
     sp34 = temp_v0;
@@ -172,8 +172,8 @@ void func_80800188_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 void func_808002DC_chtoothyfish(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
-    void _subaddieskeleton_entrypoint_2(Unk80132ED0*, s32, f32*);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
     f32 sp1C[3];
 
     if (arg0->unk7C_12) {
@@ -193,7 +193,7 @@ void func_80800350_chtoothyfish(Actor *arg0, u8 *arg1, s32 arg2) {
     }
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &(*(s32 *)D_808017AC_chtoothyfish));
     ((f32 *)(arg1 + 0x18))[arg2] = 1.0f;
-}
+}    typedef struct { u8 pad0[0x34]; u8 unk34; } Objtoothyfish_func_808003D4_chtoothyfish_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 void func_808003D4_chtoothyfish(Actor *arg0, u8 *arg1)
 {
@@ -203,7 +203,7 @@ void func_808003D4_chtoothyfish(Actor *arg0, u8 *arg1)
   s32 var_v0;
   u8 *var_v1;
   var_a2 = 0;
- do { var_v0 = 0; var_v1 = arg1; do { var_v0 += 1; if ((*((u8 *) (((s8 *) var_v1) + 0x34))) == 0) { var_a2 += 1; } var_v1 += 1; } while (var_v0 != 5); } while (0);
+ do { var_v0 = 0; var_v1 = arg1; do { var_v0 += 1; if ((((Objtoothyfish_func_808003D4_chtoothyfish_var_v1 *)var_v1)->unk34) == 0) { var_a2 += 1; } var_v1 += 1; } while (var_v0 != 5); } while (0);
   if (var_a2 != (*((u8 *) (((s8 *) arg1) + 0x3E))))
   {
     if (var_a2 != 0)
@@ -247,10 +247,10 @@ void func_80800470_chtoothyfish(Actor *arg0, s32 arg1, s32 arg2, u8 *arg3) {
 }
 
 void func_808004A4_chtoothyfish(Actor *arg0) {
-    s32 _gcgoto_entrypoint_5(s32, s32, f32);
-    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
-    void func_80090358(f32 *, f32, void *, s32);
+    void _gcgoto_entrypoint_5(s32 arg0, s32 arg1, f32 arg2);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
+    void func_80090358(f32 *, f32, void *, BtIntPtr);
     f32 func_800D8FF8(void);
     s32 func_800DC298(f32);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
@@ -258,10 +258,10 @@ void func_808004A4_chtoothyfish(Actor *arg0) {
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     f32 func_800F1DCC(f32, f32);
-    s32 func_800F8B88(void);
+    u8 func_800F8B88(void);
     void *func_80100094(Actor *, u32);
     s32 func_80101E14(Actor *, f32);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     void func_80105834(Actor *);
     void func_80105A9C(Actor *, f32);
     void func_8010A624(Actor *);
@@ -276,7 +276,7 @@ void func_808004A4_chtoothyfish(Actor *arg0) {
         u8 other[5];
     } *data;
     s32 i;
-    s32 skeleton;
+    BtIntPtr skeleton;
     f32 sp50[3];
     f32 sp44[3];
     f32 sp38[3];
@@ -448,26 +448,26 @@ void func_8080096C_chtoothyfish(Actor *arg0, Unk80132ED0 *arg1) {
 }
 
 s32 func_80800B68_chtoothyfish(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_800DF744(s32, s32);
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    void func_800F497C(s32);
-    void func_800F49A8(s32, s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A00(s32, s32);
-    void func_800F4A2C(s32, f32 *);
-    void func_800F4A8C(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F608C(s32, s32);
-    void func_800F8294(s32, f32 *);
-    s32 func_800F832C(s32, f32 *);
+    void func_800F497C(BtIntPtr);
+    void func_800F49A8(BtIntPtr, s32);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A00(BtIntPtr, s32);
+    void func_800F4A2C(BtIntPtr, f32 *);
+    void func_800F4A8C(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F608C(BtIntPtr, s32);
+    void func_800F8294(BtIntPtr, f32 *);
+    void func_800F832C(BtIntPtr arg0,f32* a1);
     void *func_80100094(Actor *, u32);
     s32 func_801015D0(Actor *);
     void func_80103014(u8 *);
     void func_8010573C(Actor *, f32);
-    void func_80801588_chtoothyfish(Actor *, s32);
+    void func_80801588_chtoothyfish(Actor *, BtIntPtr);
     extern s32 func_8010D5DC;
     struct ToothyfishData {
         f32 unk0[6];
@@ -479,7 +479,7 @@ s32 func_80800B68_chtoothyfish(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     } *data;
     f32 position[3];
     f32 rotation[3];
-    s32 player;
+    BtIntPtr player;
     s32 i;
 
     data = func_80100094(arg0, 0);
@@ -499,7 +499,7 @@ s32 func_80800B68_chtoothyfish(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
             func_800F4A2C(player, position);
             func_800F49A8(player, 1);
             func_800F4A00(player, 1);
-            func_800F49D4(player, &func_8010D5DC, (s32)arg0->unk0);
+            func_800F49D4(player, &func_8010D5DC, (BtIntPtr)arg0->unk0);
             func_800EEC30(position, -arg0->rotation[0], arg0->rotation[1], arg0->scale * 350.0f);
             func_800EF04C(position, arg0->position);
             func_800F4A8C(player, position, 2.0f);
@@ -518,7 +518,7 @@ s32 func_80800B68_chtoothyfish(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
         func_8080096C_chtoothyfish(arg0, arg2);
         break;
     case 0x3D:
-        func_80801588_chtoothyfish(arg0, (s32)arg2);
+        func_80801588_chtoothyfish(arg0, (BtIntPtr)arg2);
         break;
     case 0x1F:
         func_801015D0(arg0);
@@ -543,7 +543,7 @@ OSThread *chtoothyfish_entrypoint_0(void)
 
 void func_80800E04_chtoothyfish(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    void _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
+    s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     s32 func_80103140(Actor *, u32, u16);
@@ -581,16 +581,16 @@ void func_80800EE4_chtoothyfish(Actor *arg0, s32 arg1) {
 }
 
 void func_80800F6C_chtoothyfish(f32 *arg0, f32 arg1, f32 arg2) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA568(s16 *, s16);
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DC128(s32, s32);
     s32 sp2C;
     s32 temp_v0;
-    s32 temp_v0_2;
+    BtIntPtr temp_v0_2;
 
     temp_v0 = func_800DC128(0, 5);
     sp2C = temp_v0;
@@ -755,10 +755,10 @@ void func_8080106C_chtoothyfish(Actor *self)
 
 /* extern */
 
-void func_80801588_chtoothyfish(Actor *arg0, s32 arg1) {
+void func_80801588_chtoothyfish(Actor *arg0, BtIntPtr arg1) {
     void* func_80100094(Actor*, u32);
-    Actor* func_801084B0(s32, Actor**);
-    s32 func_800DA544(s32);
+    Actor* func_801084B0(BtIntPtr, Actor**);
+    void func_800DA544(s32 index);
     Actor *sp1C;
     u8 *sp18;
 

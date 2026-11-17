@@ -11,10 +11,10 @@
 #include "core2/1E79FD0.h"
 #include "common.h"
 
-extern s32 D_808004A0_bsmumcast[];
+extern BtIntPtr D_808004A0_bsmumcast[];
 
 extern void _bsmumcast_entrypoint_0(PlayerState *self);
 extern void _bsmumcast_entrypoint_1(PlayerState *self);
-extern s32 _bsmumcast_entrypoint_4(s32 idx);
+extern BtIntPtr _bsmumcast_entrypoint_4(s32 idx);
 
 #endif // __BS_MUM_CAST_H__

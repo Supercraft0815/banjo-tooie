@@ -33,23 +33,23 @@
 #include "common.h"
 
 extern s16 D_80801340_bsledge[];
-extern s32 D_80801348_bsledge[];
-extern s32 D_80801358_bsledge[];
-extern s32 D_80801368_bsledge[];
-extern s32 D_80801378_bsledge[];
+extern BtIntPtr D_80801348_bsledge[];
+extern BtIntPtr D_80801358_bsledge[];
+extern BtIntPtr D_80801368_bsledge[];
+extern BtIntPtr D_80801378_bsledge[];
 extern u8 D_80801388_bsledge[];
 extern u8 D_80801390_bsledge[];
-extern s32 D_80801398_bsledge[];
-extern s32 D_808013A8_bsledge[];
+extern BtIntPtr D_80801398_bsledge[];
+extern BtIntPtr D_808013A8_bsledge[];
 
-extern s32 _bsledge_entrypoint_0(s32 idx);
-extern s32 _bsledge_entrypoint_1(s32 idx);
-extern s32 _bsledge_entrypoint_2(s32 idx);
-extern s32 _bsledge_entrypoint_3(s32 idx);
-extern s32 _bsledge_entrypoint_4(s32 idx);
+extern BtIntPtr _bsledge_entrypoint_0(s32 idx);
+extern BtIntPtr _bsledge_entrypoint_1(s32 idx);
+extern BtIntPtr _bsledge_entrypoint_2(s32 idx);
+extern BtIntPtr _bsledge_entrypoint_3(s32 idx);
+extern BtIntPtr _bsledge_entrypoint_4(s32 idx);
 extern void _bsledge_entrypoint_5(PlayerState *self);
 extern void _bsledge_entrypoint_6(PlayerState *self);
 extern void _bsledge_entrypoint_7(PlayerState *self);
-extern s32 _bsledge_entrypoint_8(s32 idx);
+extern BtIntPtr _bsledge_entrypoint_8(s32 idx);
 
 #endif // __BS_LEDGE_H__

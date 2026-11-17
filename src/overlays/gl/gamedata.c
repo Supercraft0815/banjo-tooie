@@ -64,7 +64,7 @@ void func_80800098_glgamedata(u8 *arg0, s32 *arg1, u8 arg2) {
 /* extern */
 
 void glgamedata_entrypoint_1(void *arg0) {
-    s32 _glcrc_entrypoint_0(s32 *, s32);
+    u32 _glcrc_entrypoint_0(BtIntPtr arg0, BtIntPtr arg1);
     void glgamedata_entrypoint_6(u8 *);
     s32 var_s0;
     s32 sp28;
@@ -81,11 +81,11 @@ void glgamedata_entrypoint_1(void *arg0) {
     _glcrc_entrypoint_0(arg0, 0x1C0);
 }
 
-s32 func_808001E4_glgamedata(s32 arg0) {
+s32 func_808001E4_glgamedata(BtIntPtr arg0) {
     return 4;
 }
 
-s32 func_808001F0_glgamedata(s32 arg0, s32 *arg1) {
+s32 func_808001F0_glgamedata(BtIntPtr arg0, s32 *arg1) {
     s32 size;
     void (*callback)(u8 *, s32);
     u8 type;
@@ -105,8 +105,8 @@ s32 func_808001F0_glgamedata(s32 arg0, s32 *arg1) {
 
 /* extern */
 
-void glgamedata_entrypoint_2(s32 arg0) {
-    s32 func_808001F0_glgamedata(s32, s32 *);
+void glgamedata_entrypoint_2(BtIntPtr arg0) {
+    s32 func_808001F0_glgamedata(BtIntPtr, s32 *);
     s32 sp24;
 
     sp24 = func_808001E4_glgamedata(arg0);
@@ -207,3 +207,20 @@ void glgamedata_entrypoint_6(u8 *arg0) {
         arg0[i] = 0;
     }
 }
+/* data_to_c.py: from asm/data/overlays/gl/gamedata.data.s */
+void _glsavegame_entrypoint_5();
+void _glsavegame_entrypoint_6();
+void func_800DAFC4();
+void func_800DB67C();
+void func_800DAFCC();
+void func_800D1C70();
+void func_800D1C78();
+void func_800D1DFC();
+void func_800D2140();
+void func_800D2148();
+void func_800D2188();
+void func_800DAC08();
+void func_800DAC10();
+void func_800DAC50();
+GameDataEntry D_808004F0_glgamedata [7] BT_DATA(4, overlays_gl_gamedata, 0x0) = { { 0, 0, 0 }, { (long (*)(void))func_80800000_glgamedata, 0, (void (*)(unsigned char *, long, unsigned long, long *))func_80800008_glgamedata }, { (long (*)(void))_glsavegame_entrypoint_5, 0, (void (*)(unsigned char *, long, unsigned long, long *))_glsavegame_entrypoint_6 }, { (long (*)(void))func_800DAFC4, (void (*)(unsigned char *, long))func_800DB67C, (void (*)(unsigned char *, long, unsigned long, long *))func_800DAFCC }, { (long (*)(void))func_800D1C70, (void (*)(unsigned char *, long))func_800D1C78, (void (*)(unsigned char *, long, unsigned long, long *))func_800D1DFC }, { (long (*)(void))func_800D2140, (void (*)(unsigned char *, long))func_800D2148, (void (*)(unsigned char *, long, unsigned long, long *))func_800D2188 }, { (long (*)(void))func_800DAC08, (void (*)(unsigned char *, long))func_800DAC10, (void (*)(unsigned char *, long, unsigned long, long *))func_800DAC50 } };
+GameDataEntry D_80800544_glgamedata BT_DATA(4, overlays_gl_gamedata, 0x54) = { 0, 0, 0 };

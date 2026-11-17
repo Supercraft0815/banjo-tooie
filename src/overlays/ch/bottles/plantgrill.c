@@ -2,7 +2,7 @@
 
 OSThread *chbottlesplantgrill_entrypoint_0(void)
 {
-    extern u8 D_808000F0_chbottlesplantgrill[];
+    extern ActorData D_808000F0_chbottlesplantgrill[];
 
     return (OSThread *) D_808000F0_chbottlesplantgrill;
 }
@@ -32,3 +32,10 @@ void func_8080000C_chbottlesplantgrill(Actor *arg0) {
         func_800FFAB0(arg0);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/bottles/plantgrill.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+ActorData D_808000F0_chbottlesplantgrill [1] BT_DATA(4, overlays_ch_bottles_plantgrill, 0x0) = { { 172, 1258, 1921, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chbottlesplantgrill, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9218, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

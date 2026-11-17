@@ -45,7 +45,7 @@ Acmd *func_8002D450(u8 *arg0, s16 *arg1, Acmd *arg2) {
 /* extern */
 
 s32 func_8002D694(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_8002CC9C(s32, s32, s32);
+    s32 func_8002CC9C(BtIntPtr, s32, BtIntPtr);
     func_8002CC9C(arg0, arg1, arg2);
     return 0;
 }

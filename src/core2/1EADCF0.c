@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
-    void func_800D4D5C(s32, void *);
+    void func_800D4D5C(BtIntPtr, void *);
     f32 func_800C6784(void *);
     void func_800C675C(void *, f32 *);
     extern f32 D_80125B20;
@@ -40,7 +40,7 @@ void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
  s32 func_800D4534(f32 arg0[3][3], void *arg1) { if (arg1 == 0) return 0; func_800AAD28(arg0); return 1; }
 
 #ifdef BT_NATIVE
-void func_800D4564(s32 bt_a0)
+void func_800D4564(BtIntPtr bt_a0)
 #else
 void func_800D4564()
 #endif
@@ -264,20 +264,20 @@ void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
     } else {
         func_800EE7F8(arg2, current->position);
     }
-}
+}    typedef struct { BtIntPtr unk0; u8 pad4[0x8]; s32 unkC; s32 (*unk10)(void *); s32 unk14; } Obj1EADCF0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
-void func_800D4D5C(s32 arg0, void *arg1) {
-    s32 func_800C65E0(s32);
-    s32 func_800C68AC(s32, s32);
-    s32 func_800C68CC(s32, s32);
+void func_800D4D5C(BtIntPtr arg0, void *arg1) {
+    void func_800C65E0(u8 *arg0);
+    s32 func_800C68AC(s32, BtIntPtr);
+    void func_800C68CC(s32 *arg0, s32 arg1);
     s32 func_800EA600(s32);
-    s32 func_800EA614();
-    func_800EA600((*(s32 *)((s8 *)(arg1) + (0xC))));
-    (*(s32 (**)(void *))((s8 *)(arg1) + (0x10)))(arg1);
-    func_800C68AC((*(s32 *)((s8 *)(arg1) + (0))), arg0);
-    func_800C68CC((*(s32 *)((s8 *)(arg1) + (0))), (*(s32 *)((s8 *)(arg1) + (0x14))));
-    func_800C65E0((*(s32 *)((s8 *)(arg1) + (0))));
+    void func_800EA614(void);
+    func_800EA600((((Obj1EADCF0_arg1 *)arg1)->unkC));
+    (((Obj1EADCF0_arg1 *)arg1)->unk10)(arg1);
+    func_800C68AC((((Obj1EADCF0_arg1 *)arg1)->unk0), arg0);
+    func_800C68CC((((Obj1EADCF0_arg1 *)arg1)->unk0), (((Obj1EADCF0_arg1 *)arg1)->unk14));
+    func_800C65E0((((Obj1EADCF0_arg1 *)arg1)->unk0));
     func_800EA614();
 }

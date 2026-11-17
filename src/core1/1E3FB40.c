@@ -7,10 +7,10 @@ typedef struct {
     u8 coefficients[0x20];
     s32 flags;
     void *state[2];
-} AudioPoleFilter;
+} AudioPoleFilter;     
 
 Gfx *func_80028010(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3, Gfx *arg4) {
-    Gfx *func_80028328(s32 *, s32, u32, s32, s32, Gfx *);
+    Gfx *func_80028328(s32 *, s32, BtUIntPtr, s32, s32, Gfx *);
     f32 func_800287FC(f32 *, s32);
     Gfx *sp54;
     s32 sp50;
@@ -58,11 +58,11 @@ Gfx *func_80028010(s32 *arg0, f32 *arg1, s32 arg2, s32 arg3, Gfx *arg4) {
     return sp54;
 }
 
-Gfx *func_80028328(s32 *arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4, Gfx *arg5) {
+Gfx *func_80028328(s32 *arg0, s32 arg1, BtUIntPtr arg2, s32 arg3, s32 arg4, Gfx *arg5) {
     Gfx *cursor;
     s32 firstCount;
     s32 secondCount;
-    u32 end;
+    BtUIntPtr end;
     u32 limit;
 
     cursor = arg5;
@@ -92,11 +92,11 @@ Gfx *func_80028328(s32 *arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4, Gfx *arg5)
     return cursor;
 }
 
-Gfx *func_80028520(s32 *arg0, s32 arg1, u32 arg2, s32 arg3, Gfx *arg4) {
+Gfx *func_80028520(s32 *arg0, s32 arg1, BtUIntPtr arg2, s32 arg3, Gfx *arg4) {
     Gfx *cursor;
     s32 firstCount;
     s32 secondCount;
-    u32 end;
+    BtUIntPtr end;
     u32 limit;
 
     cursor = arg4;
@@ -159,7 +159,7 @@ f32 func_800287FC(f32 *arg0, s32 arg1) {
     value = value < 0.0f ? -value : value;
     value -= 1.0f;
     return arg0[7] * value;
-}
+}                   typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; } Obj1E3FB40_arg4; /* offsets.py genstruct: fields from raw offsets on arg4; rename once understood */
 
 /* extern */
 
@@ -175,11 +175,11 @@ void func_800288C0(f32 arg0, f32 arg1, f32 arg2, void *arg3, void *arg4) {
     sp24 = func_80013C48(arg1 * 3.1415927f, arg0);
     sp20 = sp24 * sp24;
     sp1C = (sp24 * 1.4142137f) / arg2;
-    (*(f32 *)((s8 *)(arg3) + (0))) = (f32) (sp20 / (1.0f + sp20 + sp1C));
-    (*(f32 *)((s8 *)(arg3) + (4))) = (f32) ((*(f32 *)((s8 *)(arg3) + (0))) * 2.0f);
-    (*(f32 *)((s8 *)(arg3) + (8))) = (f32) (*(f32 *)((s8 *)(arg3) + (0)));
-    (*(f32 *)((s8 *)(arg4) + (4))) = (f32) (((sp20 - 1.0f) * 2.0f) / (1.0f + sp20 + sp1C));
-    (*(f32 *)((s8 *)(arg4) + (8))) = (f32) (((1.0f + sp20) - sp1C) / (1.0f + sp20 + sp1C));
+    (((Vec3f *)arg3)->pos.x) = (f32) (sp20 / (1.0f + sp20 + sp1C));
+    (((Vec3f *)arg3)->pos.y) = (f32) ((((Vec3f *)arg3)->pos.x) * 2.0f);
+    (((Vec3f *)arg3)->pos.z) = (f32) (((Vec3f *)arg3)->pos.x);
+    (((Obj1E3FB40_arg4 *)arg4)->unk4) = (f32) (((sp20 - 1.0f) * 2.0f) / (1.0f + sp20 + sp1C));
+    (((Obj1E3FB40_arg4 *)arg4)->unk8) = (f32) (((1.0f + sp20) - sp1C) / (1.0f + sp20 + sp1C));
 }
 
 s32 func_80028A24(s16 *arg0) {
@@ -204,7 +204,7 @@ s32 func_80028A24(s16 *arg0) {
     for (; i < 16; i++) {
         power *= ratio;
         (arg0 + i)[4] = (s32)(power * scale);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 f32 func_80028B74(s32 arg0) {
@@ -225,7 +225,7 @@ f32 func_80028B74(s32 arg0) {
         arg0 >>= 1;
     }
     return ratio;
-}
+} 
 
 void func_80028C04(void *arg0, f32 arg1) {
     s32 i;
@@ -253,7 +253,7 @@ void func_80028C04(void *arg0, f32 arg1) {
     }
 }
 
-void func_80028DF0(void *arg0, s32 arg1, s16 arg2, s32 arg3) {
+void func_80028DF0(void *arg0, BtIntPtr arg1, s16 arg2, BtIntPtr arg3) {
     typedef struct Input {
         u8 pad00[0x18];
         s32 rate;
@@ -296,7 +296,7 @@ void func_80028DF0(void *arg0, s32 arg1, s16 arg2, s32 arg3) {
         s16 *unk28;
         s16 *unk2C;
     } Header;
-    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
     s32 func_80028A24(s16 *);
     extern s32 D_80041268;
 
@@ -377,8 +377,8 @@ void func_80028DF0(void *arg0, s32 arg1, s16 arg2, s32 arg3) {
 
 /* extern */
 
-void func_800293B4(u8 *arg0, s32 (*arg1)(u8 *), s32 arg2) {
-    s32 func_80020EE4(s32, s32, void *, s32, s32);
+void func_800293B4(u8 *arg0, s32 (*arg1)(u8 *), BtIntPtr arg2) {
+    BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
     (*(s32 *)((s8 *)(arg0) + (0xC))) = func_80020EE4(0, 0, (void *)arg2, 1, 0x20);
     (*(s32 *)((s8 *)(arg0) + (0x10))) = func_80020EE4(0, 0, (void *)arg2, 1, 0x20);
     (*(s32 *)((s8 *)(arg0) + (0x28))) = arg1(arg0 + 0x2C);

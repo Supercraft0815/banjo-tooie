@@ -2,7 +2,7 @@
 
 OSThread *ch2dbaddy_entrypoint_0(void)
 {
-    extern u8 D_80800A9C_ch2dbaddy[];
+    extern ActorData D_80800A9C_ch2dbaddy[];
 
     return (OSThread *) D_80800A9C_ch2dbaddy;
 }
@@ -12,7 +12,7 @@ OSThread *ch2dbaddy_entrypoint_0(void)
 void func_8080000C_ch2dbaddy(Actor *arg0) {
     s32 _sucoaster_entrypoint_0(void *, s32);
     u8 *_sucoaster_entrypoint_3();
-    s32 func_800EE940();
+    void func_800EE940(s16 dst[3], f32 src[3]);
     void func_80102FDC(Actor *, f32);
     void func_8010A3E8(void *, f32);
     void func_8010A570(Actor *);
@@ -34,10 +34,10 @@ void func_808000A0_ch2dbaddy(Actor *arg0) {
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     s32 _sucoaster_entrypoint_10(Actor *, s32);
     s32 _sucoaster_entrypoint_13();
-    s32 _sucoaster_entrypoint_19(void *);
-    s32 _sucoaster_entrypoint_2();
+    void _sucoaster_entrypoint_19(Actor *arg0);
+    void _sucoaster_entrypoint_2(Actor *arg0);
     u8 *_sucoaster_entrypoint_3();
-    void _sucoaster_entrypoint_7(Actor *, s32, f32);
+    s32 _sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2);
     void func_800EE88C(f32 *, s16 *);
     s32 func_80101DDC(Actor *);
     f32 func_80101F24(Actor *);
@@ -304,7 +304,7 @@ s32 func_80800700_ch2dbaddy(Actor *arg0, s32 arg1) {
     void func_80800850_ch2dbaddy();
     s32 func_801032B0(Actor *, u16, u16);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern u32 D_80800AE4_ch2dbaddy;
+    extern u32 D_80800AE4_ch2dbaddy[4];
     u8 *sp24;
 
     sp24 = _sucoaster_entrypoint_3();
@@ -331,16 +331,16 @@ s32 func_80800700_ch2dbaddy(Actor *arg0, s32 arg1) {
             arg0->unk64_16 = 1;
             arg0->unk64_20 = 0;
             func_8010A570(arg0);
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800AE4_ch2dbaddy);
-            break;
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800AE4_ch2dbaddy);
+            BT_NATIVE_ONLY(return 0;) break;
     }
 }
 
 void func_80800820_ch2dbaddy(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    extern u32 D_80800AF4_ch2dbaddy;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800AF4_ch2dbaddy, 0.1f);
-}
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    extern u32 D_80800AF4_ch2dbaddy[3];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800AF4_ch2dbaddy, 0.1f);
+}    typedef struct { u8 pad0[0x6]; s16 unk6; } Obj2dbaddy_func_80800850_ch2dbaddy_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 #ifdef BT_NATIVE
 void func_80800850_ch2dbaddy(s32 bt_a0) {
@@ -353,5 +353,20 @@ void func_80800850_ch2dbaddy(void) {
     u8 *sp1C;
 
     sp1C = _sucoaster_entrypoint_3();
-    (*(s16 *)((s8 *)(sp1C) + (6))) = D_80800B00_ch2dbaddy[func_800DC128(0, 3)];
+    (((Obj2dbaddy_func_80800850_ch2dbaddy_sp1C *)sp1C)->unk6) = D_80800B00_ch2dbaddy[func_800DC128(0, 3)];
 }
+/* data_to_c.py: from asm/data/overlays/ch/2dbaddy.data.s */
+extern u8 D_80800984_ch2dbaddy[];
+void func_80105834(Actor*);
+void _sucoaster_entrypoint_20();
+void _sucoaster_entrypoint_1();
+OSThread *_sucoasterhit_entrypoint_0(void);
+void func_80107C2C();
+extern u8 D_80800970_ch2dbaddy[];
+u8 D_80800970_ch2dbaddy[20] BT_DATA(4, overlays_ch_2dbaddy, 0x0) = { 0x00, 0x13, 0x00, 0x01, 0x00, 0x0E, 0x00, 0x01, 0x00, 0x0D, 0x00, 0x01, 0x00, 0x10, 0x00, 0x01, 0x00, 0x13, 0x00, 0x03 };
+u8 D_80800984_ch2dbaddy[184] BT_DATA(4, overlays_ch_2dbaddy, 0x14) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0xA6, 0x66, 0x66, 0x03, 0x80, 0x00, 0x01, 0x40, 0xA6, 0x66, 0x66, 0x03, 0x80, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x3F, 0x35, 0xC2, 0x8F, 0x03, 0x7D, 0x00, 0x02, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x3F, 0x00, 0x00, 0x00, 0x03, 0x7F, 0x00, 0x02, 0x3F, 0xB3, 0x33, 0x33, 0x01, 0xEA, 0x00, 0x02, 0x3F, 0xB3, 0x33, 0x33, 0x01, 0xEA, 0x00, 0x84, 0x40, 0xA6, 0x66, 0x66, 0x03, 0x80, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xA0, 0x00, 0x00, 0x03, 0x7B, 0x00, 0x44, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x3F, 0xA0, 0x00, 0x00, 0x03, 0x7B, 0x00, 0x44, 0x3F, 0xA0, 0x00, 0x00, 0x03, 0x7B, 0x00, 0x02, 0x3F, 0x80, 0x00, 0x00, 0x03, 0x7C, 0x00, 0x01, 0x3F, 0x8F, 0x5C, 0x29, 0x03, 0x7E, 0x00, 0x02 };
+u8 D_80800A3C_ch2dbaddy [96] BT_DATA(4, overlays_ch_2dbaddy, 0xCC) = { 0, 0, 0, 0x12, 0x40, 0x66, 0x66, 0x66, 0, 0x13, 0, 0, 0, 0, 0, 0x1C, 0x3F, 0xE6, 0x66, 0x66, 0, 0x1E, 0, 0, 0, 0, 0, 0xE, 0x3F, 0xE6, 0x66, 0x66, 0, 0x10, 0, 0, 0, 0, 0, 0x2B, 0x40, 0xC, 0xCC, 0xCD, 0, 0x1E, 0, 0, 0, 0, 0, 0x2A, 0x40, 0xC, 0xCC, 0xCD, 0, 0x10, 0, 0, 0, 0, 0, 0x1A, 0x40, 0xC, 0xCC, 0xCD, 2, 0x18, 0, 0, 0, 0, 0, 0xC, 0x40, 0xC, 0xCC, 0xCD, 2, 0xA, 0, 0, 0, 0, 0, 0x46, 0x40, 0x73, 0x33, 0x33, 2, 0x44, 0, 0 };
+ActorData D_80800A9C_ch2dbaddy [1] BT_DATA(4, overlays_ch_2dbaddy, 0x12C) = { { 759, 1124, 0, 19, (void *)D_80800984_ch2dbaddy, (void (*)(struct Actor *))func_808000A0_ch2dbaddy, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))_sucoaster_entrypoint_20, 196608000, 0, 0, 0, 17159, 809, (void (*)(struct Actor *))_sucoaster_entrypoint_1, (BtIntPtr)_sucoasterhit_entrypoint_0, 0, 0, (void (*)(struct Actor *))func_8080000C_ch2dbaddy, (void (*)(void *, long, void *, long, void *))func_80107C2C, -31694, 21533, (void (*)(struct Actor *, long, long))func_808002A8_ch2dbaddy, (BtIntPtr)D_80800970_ch2dbaddy } };
+u32 D_80800AE4_ch2dbaddy[4] BT_DATA(4, overlays_ch_2dbaddy, 0x174) = { 0x130520, 0xD00F3, 0x10C0018, 0 };
+u32 D_80800AF4_ch2dbaddy[3] BT_DATA(4, overlays_ch_2dbaddy, 0x184) = { 0x1305EC, 0xD00F3, 0x10C0000 };
+s16 D_80800B00_ch2dbaddy [8] BT_DATA(4, overlays_ch_2dbaddy, 0x190) = { 2072, 2073, 2074, 0, 0, 0, 0, 0 };

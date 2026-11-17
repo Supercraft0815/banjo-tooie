@@ -167,7 +167,7 @@ void bsrest_entrypoint_3(PlayerState *self) {
     func_808003FC_bsrest(self);
 }
 
-s32 bsrest_entrypoint_4(s32 idx) {
+BtIntPtr bsrest_entrypoint_4(s32 idx) {
     return D_80800910_bsrest[idx];
 }
 
@@ -198,7 +198,7 @@ void bsrest_entrypoint_7(PlayerState *self) {
     func_808003FC_bsrest(self);
 }
 
-s32 bsrest_entrypoint_8(s32 idx) {
+BtIntPtr bsrest_entrypoint_8(s32 idx) {
     return D_80800920_bsrest[idx];
 }
 
@@ -232,7 +232,7 @@ void bsrest_entrypoint_11(PlayerState *self) {
     func_8080003C_bsrest(self);
 }
 
-s32 bsrest_entrypoint_12(s32 idx) {
+BtIntPtr bsrest_entrypoint_12(s32 idx) {
     return D_80800930_bsrest[idx];
 }
 
@@ -289,7 +289,7 @@ void bsrest_entrypoint_18(PlayerState *self) {
     bsrest_entrypoint_17(self, 1);
 }
 
-s32 bsrest_entrypoint_19(PlayerState *self, s32 arg1) {
+s32 bsrest_entrypoint_19(PlayerState *self, BtIntPtr arg1) {
     if (arg1 != 0) {
         bsrest_entrypoint_0(self);
         if (_badata_entrypoint_15(self) != 0) {
@@ -310,3 +310,8 @@ s32 bsrest_entrypoint_19(PlayerState *self, s32 arg1) {
 s32 bsrest_entrypoint_20(PlayerState *self) {
     return bsrest_entrypoint_19(self, 1);
 }
+/* data_to_c.py: from asm/data/overlays/bs/rest.data.s */
+void func_80099B94(PlayerState *);
+BtIntPtr D_80800910_bsrest [4] BT_DATA(4, overlays_bs_rest, 0x0) = { (BtIntPtr)_bsrest_entrypoint_3, (BtIntPtr)_bsrest_entrypoint_1, (BtIntPtr)_bsrest_entrypoint_2, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800920_bsrest [4] BT_DATA(4, overlays_bs_rest, 0x10) = { (BtIntPtr)_bsrest_entrypoint_7, (BtIntPtr)_bsrest_entrypoint_5, (BtIntPtr)_bsrest_entrypoint_6, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800930_bsrest [4] BT_DATA(4, overlays_bs_rest, 0x20) = { (BtIntPtr)_bsrest_entrypoint_11, (BtIntPtr)_bsrest_entrypoint_9, (BtIntPtr)_bsrest_entrypoint_10, (BtIntPtr)func_80099B94 };

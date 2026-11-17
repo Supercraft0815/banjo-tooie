@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_map_props.h"
 
 void *gspropmarker_entrypoint_0(NativeWorldCell *cell, s32 id) {

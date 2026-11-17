@@ -21,12 +21,12 @@ typedef struct ba_backpack_s {
 } BaBackpack;
 
 s32 babackpack_get_size(void);
-s32 babackpack_entrypoint_1(PlayerState *self);
+BtIntPtr babackpack_entrypoint_1(PlayerState *self);
 void babackpack_entrypoint_2(PlayerState *self);
 void babackpack_entrypoint_3(PlayerState *self, f32 *position, f32 *arg2, s32 arg3, f32 *arg4);
 s32 babackpack_get_state(PlayerState *self);
-void babackpack_entrypoint_5(PlayerState *self, s32 arg1, s32 arg2);
-void babackpack_entrypoint_6(PlayerState *self, s32 arg1, s32 arg2);
+void babackpack_entrypoint_5(PlayerState *self, BtIntPtr arg1, s32 arg2);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) babackpack_entrypoint_6(PlayerState *self, BtIntPtr arg1, s32 arg2);
 f32 babackpack_get_scale(PlayerState *self);
 void babackpack_entrypoint_8(PlayerState *self);
 void babackpack_entrypoint_9(PlayerState *self);

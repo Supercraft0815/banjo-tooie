@@ -2,10 +2,10 @@
 
 /* extern */
 
-void func_80800000_chdinofamilysmall(u8 *arg0) {
+typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x1C]; f32 unk28; f32 unk2C; f32 unk30; f32 unk34; f32 unk38; } Objfamilysmall_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chdinofamilysmall(u8 *arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
-    s32 func_800EFA4C(u8 *, f32, f32, f32);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     s32 func_808008B4_chdinofamilysmall(u8 *, s32);
     if (_glcutDll_entrypoint_20() != 0) {
         func_808008B4_chdinofamilysmall(arg0, 0xA);
@@ -14,7 +14,7 @@ void func_80800000_chdinofamilysmall(u8 *arg0) {
     } else {
         func_808008B4_chdinofamilysmall(arg0, 9);
     }
-    (*(f32 *)((s8 *)(arg0) + (0x34))) = (f32) (*(f32 *)((s8 *)(arg0) + (8)));
+    (((Objfamilysmall_arg0 *)arg0)->unk34) = (f32) (((Objfamilysmall_arg0 *)arg0)->unk8);
     func_800EFA4C(arg0 + 0x28, 1.0f, 1.0f, 1.0f);
 }
 
@@ -24,12 +24,12 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
     s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s32);
     s32 _subaddiedialog_entrypoint_4(u8 *, s32, s32);
     s32 _sudeflect_entrypoint_1(u8 *, f32, f32, f32, s32);
-    s32 _sumumbofx_entrypoint_14(s32);
-    f32 _sumumbofx_entrypoint_21(s32);
-    f32 _sumumbofx_entrypoint_26(s32);
-    s32 _sumumbofx_entrypoint_27(s32);
-    s32 _sumumbofx_entrypoint_5(s32, s32);
-    s32 _sumumbofx_entrypoint_7(s32, f32, s32, s32, f32 *, s32, s32);
+    s32 _sumumbofx_entrypoint_14(BtIntPtr);
+    f32 _sumumbofx_entrypoint_21(BtIntPtr);
+    f32 _sumumbofx_entrypoint_26(BtIntPtr);
+    s32 _sumumbofx_entrypoint_27(BtIntPtr);
+    s32 _sumumbofx_entrypoint_5(BtIntPtr, s32);
+    s32 _sumumbofx_entrypoint_7(BtIntPtr, f32, s32, s32, f32 *, s32, s32);
     f32 func_800138D0(f32);
     f32 func_80013970(f32);
     s32 func_800C4244(s32, s32, s32, u8 *, f32, f32);
@@ -37,7 +37,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
     s32 func_800E1610(s32, s32, s32, u8 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    s32 func_80100094(u8 *, s32);
+    BtIntPtr func_80100094(u8 *, s32);
     s32 func_80103DFC(u8 *, f32 *);
     f32 func_80103EAC(u8 *);
     s32 func_808008B4_chdinofamilysmall(u8 *, s32);
@@ -57,7 +57,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
     switch (((struct StateBits *)(arg0 + 0x70))->state) {
     case 1:
         if (_subaddiedialog_entrypoint_4(arg0 + 4, 0x258, 0) != 0) {
-            _subaddiedialog_entrypoint_11((*(s32 *)((s8 *)(arg0) + (0))), 0x17CB, 0xF, arg0 + 4, 0x39);
+            _subaddiedialog_entrypoint_11((((Objfamilysmall_arg0 *)arg0)->unk0), 0x17CB, 0xF, arg0 + 4, 0x39);
         }
         _sudeflect_entrypoint_1(arg0 + 4, (*(f32 *)(arg0 + 0x38)) * 235.0f, 0, (*(f32 *)(arg0 + 0x38)) * 179.0f, 0x1E);
         _chdinofamilyfx_entrypoint_0(arg0);
@@ -92,7 +92,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
         func_80103DFC(arg0, sp6C);
         _sumumbofx_entrypoint_7(func_80100094(arg0, 1), func_80103EAC(arg0), 0, 0x28, sp6C, 0, 0);
         _sumumbofx_entrypoint_14(func_80100094(arg0, 1));
-        (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x34))) + func_800F12D4(_sumumbofx_entrypoint_26(func_80100094(arg0, 1)), 0.0f, 1.0f, 0.0f, 800.0f));
+        (((Objfamilysmall_arg0 *)arg0)->unk8) = (f32) ((((Objfamilysmall_arg0 *)arg0)->unk34) + func_800F12D4(_sumumbofx_entrypoint_26(func_80100094(arg0, 1)), 0.0f, 1.0f, 0.0f, 800.0f));
         if (_sumumbofx_entrypoint_27(func_80100094(arg0, 1)) != 0) {
             func_808008B4_chdinofamilysmall(arg0, 6);
             return;
@@ -105,7 +105,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
                 _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800EE8_chdinofamilysmall);
                 ((struct SoundBits *)(arg0 + 0x64))->first = 1;
             }
-            (*(f32 *)((s8 *)(arg0) + (0x38))) = func_800F12D4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 4.0f, 2.0f, 0.5f, 0.5);
+            (((Objfamilysmall_arg0 *)arg0)->unk38) = func_800F12D4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 4.0f, 2.0f, 0.5f, 0.5);
             (*(f32 *)(arg0 + 0x30)) = (*(f32 *)(arg0 + 0x2C)) = (*(f32 *)(arg0 + 0x28)) = func_800F12D4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 4.0f, 2.0f, 1.0f, 2.0);
         } else {
             sp5C = func_800F10B4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 2.0f, 0.0f, 1.0f, 0.0f);
@@ -113,10 +113,10 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
                 _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800EFC_chdinofamilysmall);
                 ((struct SoundBits *)(arg0 + 0x64))->second = 1;
             }
-            (*(f32 *)((s8 *)(arg0) + (0x38))) = func_800F12D4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 2.0f, 0.0f, 0.5f, 1.0f);
-            (*(f32 *)((s8 *)(arg0) + (0x28))) = (f32) ((func_800138D0(sp5C * 3.0f * 360.0f) * sp5C) + 1.0f);
-            (*(f32 *)((s8 *)(arg0) + (0x2C))) = (f32) ((func_800138D0(sp5C * 5.0f * 360.0f) * sp5C) + 1.0f);
-            (*(f32 *)((s8 *)(arg0) + (0x30))) = (f32) ((func_800138D0(sp5C * 4.0f * 360.0f) * sp5C) + 1.0f);
+            (((Objfamilysmall_arg0 *)arg0)->unk38) = func_800F12D4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 2.0f, 0.0f, 0.5f, 1.0f);
+            (((Objfamilysmall_arg0 *)arg0)->unk28) = (f32) ((func_800138D0(sp5C * 3.0f * 360.0f) * sp5C) + 1.0f);
+            (((Objfamilysmall_arg0 *)arg0)->unk2C) = (f32) ((func_800138D0(sp5C * 5.0f * 360.0f) * sp5C) + 1.0f);
+            (((Objfamilysmall_arg0 *)arg0)->unk30) = (f32) ((func_800138D0(sp5C * 4.0f * 360.0f) * sp5C) + 1.0f);
         }
         _sumumbofx_entrypoint_7(func_80100094(arg0, 1), func_80103EAC(arg0) * ((2.0f * func_80013970(_sumumbofx_entrypoint_26(func_80100094(arg0, 1)) * 180.0f)) + 1.0f), 0, 0x28, sp60, 0, 0);
         _sumumbofx_entrypoint_14(func_80100094(arg0, 1));
@@ -131,12 +131,12 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
         _sumumbofx_entrypoint_14(func_80100094(arg0, 1));
         sp4C = _sumumbofx_entrypoint_21(func_80100094(arg0, 1));
         if ((sp4C <= 1.6500001f) && (sp4C >= 1.05f)) {
-            (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg0) + (0x34))) + (func_800138D0(func_800F10B4(sp4C, 1.6500001f, 1.05f, 0, 90.0f)) * 800.0f));
+            (((Objfamilysmall_arg0 *)arg0)->unk8) = (f32) ((((Objfamilysmall_arg0 *)arg0)->unk34) + (func_800138D0(func_800F10B4(sp4C, 1.6500001f, 1.05f, 0, 90.0f)) * 800.0f));
         } else if ((sp4C < 1.05f) && !((struct LandingBits *)(arg0 + 0x74))->landed) {
                     func_800C4244(0x416, 0x3F666666, 0x55F0, arg0 + 4, 100.0f, 2500.0f);
             ((struct LandingBits *)(arg0 + 0x74))->landed = 1;
             func_800E1610(3, 0x42C80000, 0x3F19999A, arg0 + 4);
-            (*(f32 *)((s8 *)(arg0) + (8))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x34)));
+            (((Objfamilysmall_arg0 *)arg0)->unk8) = (f32) (((Objfamilysmall_arg0 *)arg0)->unk34);
         }
         if (sp4C <= 0.0f) {
             func_808008B4_chdinofamilysmall(arg0, 8);
@@ -148,7 +148,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
         return;
     case 9:
         if (_subaddiedialog_entrypoint_4(arg0 + 4, 0x258, 0) != 0) {
-            _subaddiedialog_entrypoint_11((*(s32 *)((s8 *)(arg0) + (0))), 0x17CC, 0xF, arg0 + 4, 0x39);
+            _subaddiedialog_entrypoint_11((((Objfamilysmall_arg0 *)arg0)->unk0), 0x17CC, 0xF, arg0 + 4, 0x39);
         }
         _sudeflect_entrypoint_1(arg0 + 4, (*(f32 *)(arg0 + 0x38)) * 235.0f, 0, (*(f32 *)(arg0 + 0x38)) * 179.0f, 0x1E);
         _chdinofamilyfx_entrypoint_0(arg0);
@@ -165,22 +165,22 @@ s32 func_808008B4_chdinofamilysmall(u8 *arg0, s32 arg1) {
         u32 otherFlags : 28;
         u32 state : 4;
     };
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _chglowbo_entrypoint_6(void);
-    s16 _chmumbopad_entrypoint_0(s32);
-    s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
-    s32 _sumumbofx_entrypoint_1(void *, s32);
-    void _sumumbofx_entrypoint_2(s32);
-    void _sumumbofx_entrypoint_15(s32, f32);
-    void _sumumbofx_entrypoint_16(s32, f32);
-    void _sumumbofx_entrypoint_17(s32, f32);
-    void _sumumbofx_entrypoint_18(s32, f32);
-    void _sumumbofx_entrypoint_20(s32, f32);
-    void _sumumbofx_entrypoint_24(s32, f32);
-    void _sumumbofx_entrypoint_25(s32, s32, s32 *);
+    s32 _chmumbopad_entrypoint_0(s32 arg0);
+    void _sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3);
+    void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
+    void _sumumbofx_entrypoint_2(BtIntPtr);
+    void _sumumbofx_entrypoint_15(BtIntPtr, f32);
+    void _sumumbofx_entrypoint_16(BtIntPtr, f32);
+    void _sumumbofx_entrypoint_17(BtIntPtr, f32);
+    void _sumumbofx_entrypoint_18(BtIntPtr, f32);
+    void _sumumbofx_entrypoint_20(BtIntPtr, f32);
+    void _sumumbofx_entrypoint_24(BtIntPtr, f32);
+    void _sumumbofx_entrypoint_25(u8 *arg0, s32 arg1, BtIntPtr arg2);
     void func_800DA524(s32);
     void func_800DA544(s32);
-    s32 func_80100094(u8 *, s32);
+    BtIntPtr func_80100094(u8 *, s32);
     void func_80102424(Actor *, s32);
     void func_8010A800(Actor *, s32);
     s32 color[3];
@@ -234,17 +234,17 @@ s32 func_808008B4_chdinofamilysmall(u8 *arg0, s32 arg1) {
         actor->scale = 1.0f;
         break;
     }
-    func_80102424(actor, arg1);
+    func_80102424(actor, arg1); BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_80800AF4_chdinofamilysmall(Actor *arg0, s32 arg1, s32 arg2) {
     extern u16 D_80800E94_chdinofamilysmall[][4];
     extern s32 D_80800F10_chdinofamilysmall[];
-    void _capod_entrypoint_14(void);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
+    s32 _capod_entrypoint_14(void);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void func_800DF744(s32, s32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_801015D0(Actor *);
     void func_80101FDC(Actor *, u32);
 
@@ -275,24 +275,24 @@ s32 func_80800AF4_chdinofamilysmall(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_80800C10_chdinofamilysmall(Actor *arg0, s32 arg1) {
+void func_80800C10_chdinofamilysmall(Actor *arg0, BtIntPtr arg1) {
     typedef struct {
         f32 pad[4];
         f32 scale[3];
         f32 height;
     } DinoData;
-    s32 func_80100094();
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
-    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    BtIntPtr func_80100094();
+    void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1);
+    void _sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1);
     struct ImageStruct *func_800D674C(s32);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF410(s32);
     void func_800DF500(f32, f32, f32);
     void func_800DF744(s32, s32);
     void func_800DF830(s32);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_801015D0(Actor *);
-    void func_801018A4(Actor *, s32);
+    void func_801018A4(Actor *, BtIntPtr);
     extern f32 B_80800F70_chdinofamilysmall[3];
     extern f32 B_80800F94_chdinofamilysmall[3];
     extern f32 B_80800FA0_chdinofamilysmall[3];

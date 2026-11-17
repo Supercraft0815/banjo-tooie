@@ -3,14 +3,14 @@
 s32 func_80800000_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
     void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800D0A9C(s32, s32);
     void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     void func_800FC6B0(u32);
     void func_800FFA88(Unk80132ED0 *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     Actor *func_80108474(u32, f32 *, s32);
     void func_80108B04(Actor *, u32);
     void func_808004C8_chtoxicroombits(s32);
@@ -122,7 +122,7 @@ f32 func_80800458_chtoxicroombits(void) {
 /* extern */
 
 void func_808004C8_chtoxicroombits(s32 arg0) {
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     func_800DA7A8(0x6DF, arg0, 3);
 }
 
@@ -175,13 +175,13 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
         u8 count : 4;
         u8 other : 4;
     };
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     void _subaddieaudioloop_entrypoint_1(u8 *, s32);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
     s32 _sudeflect_entrypoint_1(u8 *, f32, f32, f32, s32);
-    s32 func_800D0634(u32, u32);
+    Unk80132ED0 *func_800D0634(u32 arg0, u32 arg1);
     f32 func_800D8FF8(void);
     s32 func_800D90A4(f32 *);
     f32 func_800D91B8(f32 *);
@@ -192,7 +192,7 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
     void func_800FFAB0(Actor *);
     f32 func_80103EAC(Actor *);
     f32 func_80103EF4(Actor *);
-    u8 *func_80106790(s32);
+    u8 *func_80106790(BtIntPtr);
     f32 func_80800458_chtoxicroombits(void);
     void func_80800960_chtoxicroombits(u8 *, s32);
     int func_80800BE4_chtoxicroombits(u8 *);
@@ -305,10 +305,10 @@ void func_80800A2C_chtoxicroombits(Actor *arg0, void *arg1) {
 
 int func_80800BE4_chtoxicroombits(u8 *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
-    void func_800F48BC(s32, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
+    void func_800F48BC(BtIntPtr, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
     f32 sp1C[3];
 
     func_800F5A00(func_800F54E4(), sp1C);
@@ -325,15 +325,15 @@ int func_80800BE4_chtoxicroombits(u8 *arg0) {
 s32 func_80800CB0_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_19(f32[3]);
     void _chmrtannoy_entrypoint_0(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800CF2D4(s32);
-    s32 func_800D0634(u32, u32);
+    Unk80132ED0 *func_800D0634(u32 arg0, u32 arg1);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_80103140(Actor *, u32, u16);
-    u8 *func_80106790(s32);
+    u8 *func_80106790(BtIntPtr);
     Actor *func_80108474(u32, f32 *, s32);
     void func_80109F08(void *, s32);
     extern f32 D_80801028_chtoxicroombits[];

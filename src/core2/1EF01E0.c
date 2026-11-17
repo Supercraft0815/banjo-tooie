@@ -152,3 +152,9 @@ void func_80116914(u32 *b, u32 n, u32 s, u16 *d, u8 *e, struct Huft **t, s32 *m)
         }
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80137388 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1968);
+#endif

@@ -2,13 +2,13 @@
 
 /* extern */
 
-void bsthrow_entrypoint_0(void *arg0) {
+typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objthrow_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void bsthrow_entrypoint_0(void *arg0) {
     typedef struct player_state_s PlayerState;
-    s32 anctrl_reset(s32);
-    s32 anctrl_setDuration(s32, s32);
-    s32 anctrl_setIndex(s32, s32);
-    s32 anctrl_setPlaybackType(s32, s32);
-    s32 anctrl_start(s32);
+    s32 anctrl_reset(BtIntPtr);
+    s32 anctrl_setDuration(BtIntPtr, s32);
+    s32 anctrl_setIndex(BtIntPtr, s32);
+    s32 anctrl_setPlaybackType(BtIntPtr, s32);
+    s32 anctrl_start(BtIntPtr);
     s32 baanim_getAnimCtrlPtr();
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 baphysics_set_type(void *, s32);
@@ -30,22 +30,22 @@ void bsthrow_entrypoint_0(void *arg0) {
     baphysics_set_type(arg0, 3);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_8009BA9C(arg0, 0);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (((Objthrow_arg0 *)arg0)->unk15C) = 0;
 }
 
 
 void bsthrow_entrypoint_1(void *arg0) {
     struct anctrl_s;
     s32 baanim_getAnimCtrlPtr();
-    int anctrl_isAt(s32, f32);
-    s32 anctrl_isStopped(s32);
+    int anctrl_isAt(BtIntPtr, f32);
+    s32 anctrl_isStopped(BtIntPtr);
     void func_8009C128(void *, f32[3]);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     void yaw_setIdeal(void *, f32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 bs_setState(void *, s32);
+    void bs_setState(void *self, s32 nextState);
     Unk80132ED0 *_bahold_entrypoint_5(void *);
-    s32 _bahold_entrypoint_6(void *, Unk80132ED0 *);
+    void _bahold_entrypoint_6(void *arg0, BtIntPtr arg1);
     void func_800A33CC(void *, f32 *);
     s32 sp4C;
     s32 sp48;
@@ -57,7 +57,7 @@ void bsthrow_entrypoint_1(void *arg0) {
     sp4C = 0;
     sp48 = baanim_getAnimCtrlPtr(arg0);
     sp28 = _bahold_entrypoint_5(arg0);
-    if ((*(s32 *)((s8 *)arg0 + 0x15C)) == 0 && sp28 != NULL) {
+    if ((((Objthrow_arg0 *)arg0)->unk15C) == 0 && sp28 != NULL) {
         _bahold_entrypoint_6(arg0, sp28);
     }
     func_8009C128(arg0, sp30);
@@ -65,21 +65,21 @@ void bsthrow_entrypoint_1(void *arg0) {
     func_800F1E6C(sp30, sp3C, &sp2C);
     yaw_setIdeal(arg0, sp2C);
     if (anctrl_isAt(sp48, 0.35f) && sp28 != NULL) {
-        (*(s32 *)((s8 *)arg0 + 0x15C)) = 1;
+        (((Objthrow_arg0 *)arg0)->unk15C) = 1;
         func_80106790(sp28)->unk64_22 = 1;
     }
     if (anctrl_isStopped(sp48)) {
         sp4C = 1;
     }
     bs_setState(arg0, sp4C);
-}
+}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objthrow_bsthrow_entrypoint_2_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
 
 /* extern */
 
 void bsthrow_entrypoint_2(void *self) {
-    s32 bastatetimer_set(void *, s32, f32);
+    void bastatetimer_set(void *self, s32 id, f32 arg2);
     s32 bs_getNextState(void *);
-    (*(s32 *)((s8 *)(self) + 0x15C)) = 0;
+    (((Objthrow_bsthrow_entrypoint_2_self *)self)->unk15C) = 0;
     if (bs_getNextState(self) == 1) {
         bastatetimer_set(self, 0, 0.14f);
         bastatetimer_set(self, 1, 0.28f);
@@ -87,7 +87,7 @@ void bsthrow_entrypoint_2(void *self) {
 }
 
 s32 bsthrow_entrypoint_3(s32 arg0) {
-    extern s32 D_808002F0_bsthrow[];
+    extern BtIntPtr D_808002F0_bsthrow[];
     return ((s32 *)&D_808002F0_bsthrow)[arg0];
 }
 
@@ -95,16 +95,16 @@ s32 bsthrow_entrypoint_3(s32 arg0) {
 
 void bsthrow_entrypoint_4(void *arg0) {
     s32 func_8008E9AC(void *);
-    s32 func_8008F6B8(void *, s32);
-    s32 func_80099B94(void *);
+    void func_8008F6B8(struct player_state_s *player, s32 actor_id);
+    void func_80099B94(void *arg0);
     s32 func_8009E6EC();
-    s32 func_8009E830(void *, s32);
+    void func_8009E830(void *arg0, s32 arg1);
     s32 temp_v0;
 
     temp_v0 = func_8009E6EC();
     switch (temp_v0) {
     case 18:
-        if ((*(s32 *)((s8 *)(arg0) + (0x15C))) == 0) {
+        if ((((Objthrow_arg0 *)arg0)->unk15C) == 0) {
             func_8008F6B8(arg0, func_8008E9AC(arg0));
             return;
         }
@@ -122,3 +122,9 @@ void bsthrow_entrypoint_4(void *arg0) {
         return;
     }
 }
+/* data_to_c.py: from asm/data/overlays/bs/throw.data.s */
+void _bsthrow_entrypoint_2();
+void _bsthrow_entrypoint_0();
+void _bsthrow_entrypoint_1();
+void _bsthrow_entrypoint_4();
+BtIntPtr D_808002F0_bsthrow [4] BT_DATA(4, overlays_bs_throw, 0x0) = { (BtIntPtr)_bsthrow_entrypoint_2, (BtIntPtr)_bsthrow_entrypoint_0, (BtIntPtr)_bsthrow_entrypoint_1, (BtIntPtr)_bsthrow_entrypoint_4 };

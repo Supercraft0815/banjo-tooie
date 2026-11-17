@@ -43,17 +43,17 @@ void func_808001B8_chping(Actor *arg0) {
     f32 func_80013970(f32);
     s32 func_800A940C(s32);
     void func_800C4B90(s32, f32, f32);
-    void func_800CB840(s32, s32);
+    void func_800CB840(s32, BtIntPtr);
     void func_800CB870(void);
     f32 func_800D8FF8(void);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F0F9C(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80100094();
     s32 func_80109CC4(f32 *, f32, void *);
-    s32 func_8010A570();
+    void func_8010A570(Actor *arg0);
     void func_8010A590(Actor *);
     f32 phase;
     f32 wave1;
@@ -79,7 +79,7 @@ void func_808001B8_chping(Actor *arg0) {
     if (elapsed < 3.0f) {
         radius = func_800F10B4(elapsed, 0.0f, 3.0f, 14.0f, 840.0f);
         func_8010A590(arg0);
-        func_800CB840(5, (s32)arg0);
+        func_800CB840(5, (BtIntPtr)arg0);
         func_80109CC4(arg0->position, radius, arg0->unk0);
         func_800CB870();
         func_8010A570(arg0);
@@ -88,15 +88,15 @@ void func_808001B8_chping(Actor *arg0) {
     if (data->time > 4.2f) {
         func_800FFA88(arg0->unk0);
     }
-}
+}    typedef struct { s32 unk0; f32 unk4; } Objping_chping_entrypoint_0_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 /* extern */
 
 s32 chping_entrypoint_0(s32 arg0) {
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(s32 *, s32);
     s32 *func_80108474(s32, s32 *, s32);
-    s32 func_8010A570(s32 *);
+    void func_8010A570(Actor *arg0);
     s32 *sp2C;
     s32 sp20[3];
     s32 *temp_v0;
@@ -106,15 +106,20 @@ s32 chping_entrypoint_0(s32 arg0) {
     temp_v0 = func_80108474(0x169, sp20, 0);
     sp2C = temp_v0;
     temp_v0_2 = func_80100094(temp_v0, 0);
-    (*(f32 *)((s8 *)(temp_v0_2) + (4))) = 0.0f;
-    (*(s32 *)((s8 *)(temp_v0_2) + (0))) = arg0;
+    (((Objping_chping_entrypoint_0_temp_v0_2 *)temp_v0_2)->unk4) = 0.0f;
+    (((Objping_chping_entrypoint_0_temp_v0_2 *)temp_v0_2)->unk0) = arg0;
     func_8010A570(sp2C);
     return *sp2C;
 }
 
 OSThread *chping_entrypoint_1(void)
 {
-    extern u8 D_80800410_chping[];
+    extern ActorData D_80800410_chping[];
 
     return (OSThread *) D_80800410_chping;
 }
+/* data_to_c.py: from asm/data/overlays/ch/ping.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800410_chping [1] BT_DATA(4, overlays_ch_ping, 0x0) = { { 635, 361, 1759, 1, 0, (void (*)(struct Actor *))func_808001B8_chping, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800000_chping, 0, 0, 0, 0, 0, 4, 0, (BtIntPtr)func_80108ED0, 8, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, 0, 0, 0, 0 } };

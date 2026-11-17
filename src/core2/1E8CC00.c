@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1E8CC00_native.inc"
 #else
 #include "common.h"
@@ -20,9 +20,9 @@ s32 func_800B3310(s32 arg0) {
     return (s32)ptr;
 }
 
-void func_800B3370(void* arg0) 
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800B3370(void* arg0) 
 {
-    heap_free(arg0);
+    heap_free(arg0); BT_NATIVE_ONLY(return 0;)
 }
 void *func_800B3390(void *arg0, f32 arg1) {
     struct entry { f32 position[3]; s32 value[3]; f32 radius; };
@@ -164,19 +164,19 @@ void func_800B37A4(u8 *arg0, s32 *arg1, s32 *arg2) {
     *arg2 = (*(s32 *)((s8 *)(arg0) + (0x10)));
 }
 
-void func_800B37B8(s32 arg0, s32 *arg1) { func_800EE830(arg1, (s32 *)arg0); }
+void func_800B37B8(s32 arg0, s32 *arg1) { func_800EE830(arg1, (s32 *)arg0); }    typedef struct { u8 pad0[0x10]; u8 * unk10; u8 * unk14; } Obj1E8CC00_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x10]; u8 * unk10; } Obj1E8CC00_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_800B37E4(s32 *arg0, s32 *arg1) {
     s32 aligned4_memcpy(void *, void *, s32);
     u8 *cursor;
 
-    *(u8 **)((u8 *)arg0 + 0x10) = (u8 *)arg0 + 0x18;
+    ((Obj1E8CC00_arg0 *)arg0)->unk10 = (u8 *)arg0 + 0x18;
     for (cursor = (u8 *)arg1 + 0x18;
-         cursor < *(u8 **)((u8 *)arg1 + 0x10) &&
-         *(u8 **)((u8 *)arg0 + 0x10) < *(u8 **)((u8 *)arg0 + 0x14);
+         cursor < ((Obj1E8CC00_arg1 *)arg1)->unk10 &&
+         ((Obj1E8CC00_arg0 *)arg0)->unk10 < ((Obj1E8CC00_arg0 *)arg0)->unk14;
          cursor += 0x1C) {
-        aligned4_memcpy(*(u8 **)((u8 *)arg0 + 0x10), cursor, 0x1C);
-        *(u8 **)((u8 *)arg0 + 0x10) += 0x1C;
+        aligned4_memcpy(((Obj1E8CC00_arg0 *)arg0)->unk10, cursor, 0x1C);
+        ((Obj1E8CC00_arg0 *)arg0)->unk10 += 0x1C;
     }
     func_800EE830(arg0, arg1);
 }
@@ -190,9 +190,9 @@ void func_800B38A8(s32 *arg0, s32 *arg1)
     func_800EE830(arg0, arg1);
 }
 
-void func_800B38C8()
+void func_800B38C8(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    func_800C87B8();
+    BT_NATIVE_ONLY(void func_800C87B8(s32 *);) func_800C87B8(BT_NATIVE_ONLY((s32 *)bt_a0));
 }
 
 void *func_800B38E8(u8 *arg0) {

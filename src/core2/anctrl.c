@@ -205,7 +205,7 @@ void anctrl_setIndex(AnimCtrl *arg0, AssetId arg1)
 void *func_8008AEDC(void *arg0)
 {
     return (u8 *)arg0 + ANCTRL_HEADER_SIZE;
-}
+}   
 
 /* extern */
 
@@ -355,11 +355,11 @@ void anctrl_setSubrange(AnimCtrl *arg0, f32 arg1, f32 arg2) {
         return;
     }
     (*(f32 *)((s8 *)(arg0) + (8))) = arg2;
-}
+}          typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; } Objanctrl_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8008B238(void *arg0, f32 *arg1, f32 *arg2) {
-    *arg1 = (*(f32 *)((s8 *)(arg0) + (4)));
-    *arg2 = (*(f32 *)((s8 *)(arg0) + (8)));
+    *arg1 = (((Objanctrl_arg0 *)arg0)->unk4);
+    *arg2 = (((Objanctrl_arg0 *)arg0)->unk8);
 }
 
 void anctrl_setStart(AnimCtrl *arg0, f32 arg1) {

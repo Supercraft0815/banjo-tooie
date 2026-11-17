@@ -16,10 +16,10 @@ OSThread *chbottlesparty_entrypoint_1(void)
 
 /* extern */
 
-void func_80800018_chbottlesparty(s32 arg0) {
+void func_80800018_chbottlesparty(BtIntPtr arg0) {
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);
-    s32 func_8010A800(s32, s32);
+    void func_8010A800(void **arg0, s32 arg1);
     if (func_800DA298(0x3B) == 0) {
         func_800FFAB0((Actor *)arg0);
         return;
@@ -27,11 +27,11 @@ void func_80800018_chbottlesparty(s32 arg0) {
     func_8010A800(arg0, 0);
 }
 
-void func_8080022C_chbottlesparty(s32);
-void func_8080005C_chbottlesparty(s32 arg0) { void func_80800170_chbottlesparty(s32); func_8080022C_chbottlesparty(arg0); if (((Actor *)arg0)->unk70_10 == 1) { func_80800170_chbottlesparty(arg0); } }
+void func_8080022C_chbottlesparty(BtIntPtr);
+void func_8080005C_chbottlesparty(BtIntPtr arg0) { void func_80800170_chbottlesparty(BtIntPtr); func_8080022C_chbottlesparty(arg0); if (((Actor *)arg0)->unk70_10 == 1) { func_80800170_chbottlesparty(arg0); } }
 
 s32 func_8080009C_chbottlesparty(Actor *arg0, s32 arg1, volatile s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void func_80101FDC(Actor *, u32);
     void func_80800138_chbottlesparty(Actor *);
     extern s32 D_808004A0_chbottlesparty;
@@ -59,13 +59,13 @@ void func_80800138_chbottlesparty(Actor *arg0) {
     }
 }
 
-void func_80800170_chbottlesparty(s32 arg) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+void func_80800170_chbottlesparty(BtIntPtr arg) {
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
     s32 func_800D90A4(f32 *);
     s32 func_800DA298(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     s32 func_8010CAC0(f32 *, u32);
     extern s32 D_808004B0_chbottlesparty;
@@ -82,7 +82,7 @@ void func_80800170_chbottlesparty(s32 arg) {
     }
 }
 
-void func_8080022C_chbottlesparty(s32 arg0) 
+void func_8080022C_chbottlesparty(BtIntPtr arg0) 
 {
 }
 void func_80800234_chbottlesparty(Actor *arg0) {

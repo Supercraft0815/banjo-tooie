@@ -2,6 +2,29 @@
 #define __COMMON_H__
 
 #include "types.h"
+// A function address stored in a data table: a 32-bit word on the N64, pointer-sized natively.
+#ifdef BT_NATIVE
+typedef __UINTPTR_TYPE__ BtFnWord;
+#else
+typedef u32 BtFnWord;
+#endif
+// data_to_c.py definitions: natively module m's data stays one block at the N64 offsets o
+// (bt-datagroup), so code that reaches a table through its neighbour still finds it (wasm build only)
+#ifdef BT_ILP32
+#define BT_DATA(n, m, o) __attribute__((aligned(n), section(".btgroup." #m "." #o)))
+#else
+#define BT_DATA(n, m, o)
+#endif
+#include "bt_native.h"
+// Native code that only the LP64 build keeps (the ILP32 build compiles the original code instead),
+// and `#include BT_LP64_HEADER("native_x.h")` for a native-only header inside an #ifdef BT_NATIVE.
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define BT_LP64_ONLY(code) code
+#define BT_LP64_HEADER(h) h
+#else
+#define BT_LP64_ONLY(code)
+#define BT_LP64_HEADER(h) "bt_empty.h"
+#endif
 #ifdef BT_NATIVE
 #include "gameflags.h"
 typedef struct ActorData *(*NativeActorFactory)(void);
@@ -386,9 +409,9 @@ typedef struct ActorData {
     s16 unk26;
     void (*unk28_func)(Actor* actor);
 #ifdef BT_NATIVE
-    union { s32 unk2C; OSThread *(*marker_callback)(void); };
+    union { BtIntPtr unk2C; OSThread *(*marker_callback)(void); };
 #else
-    s32 unk2C;
+    BtIntPtr unk2C;
 #endif
     s16 unk30;
     s16 unk32;
@@ -405,11 +428,14 @@ typedef struct ActorData {
 #else
     void (*unk40_func)(Actor* actor, s32 arg1, s32 arg2);
 #endif
-    s16 unk44;
-    s16 unk46;
+    BtIntPtr unk44; /* read as a word (1EE06E0.c); baddies hold a pointer to their own data here */
+} ActorData; /* 0x48: an actor descriptor, as the overlays' data holds it */
+
+typedef struct ActorDataX { /* descriptors with two more words */
+    ActorData base;
     void (*unk48_func)(Actor* actor, s32 arg1, s32 arg2);
     s32 unk4C;
-} ActorData;
+} ActorDataX;
 
 #ifdef BT_NATIVE
 typedef struct Prop {

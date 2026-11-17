@@ -67,7 +67,7 @@ void func_800E1294(s32 arg0, f32 position[3], f32 rotation[3], f32 delta) {
 
 f32 func_800E1338(s32 arg0) {
     extern f32 D_8012CFB8[];
-    return *(f32 *)((s32)&D_8012CFB8 + ((arg0 * 31) * 4));
+    return *(f32 *)((BtIntPtr)&D_8012CFB8 + ((arg0 * 31) * 4));
 }
 
 s32 func_800E1354(s32 arg0) {
@@ -95,7 +95,7 @@ void func_800E1378(s32 arg0) {
 
 void func_800E13F0(s32 arg0, f32 arg1) {
     extern f32 D_8012CFB8[];
-    *(f32 *)((s32)&D_8012CFB8 + ((arg0 * 31) * 4)) = arg1;
+    *(f32 *)((BtIntPtr)&D_8012CFB8 + ((arg0 * 31) * 4)) = arg1;
 }
 
 typedef struct {
@@ -123,19 +123,19 @@ void func_800E1410(s32 arg0, f32 arg1, f32 arg2) {
 
 void func_800E144C(s32 arg0, f32 arg1) {
     extern f32 D_8012CFAC[];
-    *(f32 *)((s32)&D_8012CFAC + ((arg0 * 31) * 4)) = arg1;
+    *(f32 *)((BtIntPtr)&D_8012CFAC + ((arg0 * 31) * 4)) = arg1;
 }
 
 void func_800E146C(s32 arg0, f32 arg1) {
     extern f32 D_8012CFA4[];
-    *(f32 *)((s32)&D_8012CFA4 + ((arg0 * 31) * 4)) = arg1;
+    *(f32 *)((BtIntPtr)&D_8012CFA4 + ((arg0 * 31) * 4)) = arg1;
 }
 
 void func_800E148C(s32 arg0, f32 arg1, f32 arg2) {
     extern f32 D_8012CFA4[];
     f32 *entry;
 
-    entry = (f32 *)((s32)((u8 *)D_8012CFA4 - 0x14) + ((arg0 * 31) * 4));
+    entry = (f32 *)((BtIntPtr)((u8 *)D_8012CFA4 - 0x14) + ((arg0 * 31) * 4));
     entry[3] = arg1;
     entry[4] = arg2;
 }
@@ -149,7 +149,7 @@ void func_800E14B8(s32 arg0, f32 *arg1) {
 
 void func_800E14F8(s32 arg0, u8 *arg1, s16 arg2) {
     void rare_memcpy(void *, void *, int);
-    s32 entry = (s32)D_8012CF90 + (arg0 * 31) * 4;
+    BtIntPtr entry = (BtIntPtr)D_8012CF90 + (arg0 * 31) * 4;
     s16 *countPtr = &arg2;
     s16 count = *countPtr;
     *(u8 *)(entry + 0x78) = count;
@@ -196,13 +196,13 @@ s32 func_800E1664(s32 arg0, f32 arg1, f32 arg2, f32 *arg3, u8 *arg4, s16 arg5) {
     func_800E14F8(temp_v0, arg4, arg5);
     temp_v0_2 = &D_8012CF90[sp1C];
     temp_v0_2->active = 4;
-    (*(f32 *)((s8 *)(temp_v0_2) + (0x20))) = arg1;
-    (*(f32 *)((s8 *)(temp_v0_2) + (0x30))) = 0.0f;
-    (*(f32 *)((s8 *)(temp_v0_2) + (0x18))) = arg2;
+    (temp_v0_2->unk20) = arg1;
+    (temp_v0_2->unk30) = 0.0f;
+    (temp_v0_2->unk18) = arg2;
     if (arg1 >= 0.0f) {
-        (*(f32 *)((s8 *)(temp_v0_2) + (0x2C))) = 1.0f;
+        (temp_v0_2->multiplier) = 1.0f;
     } else {
-        (*(f32 *)((s8 *)(temp_v0_2) + (0x2C))) = -1.0f;
+        (temp_v0_2->multiplier) = -1.0f;
     }
     if (arg3 != 0) {
         func_800E14B8(sp1C, arg3);
@@ -210,19 +210,19 @@ s32 func_800E1664(s32 arg0, f32 arg1, f32 arg2, f32 *arg3, u8 *arg4, s16 arg5) {
     return sp1C;
 }
 
-s32 func_800E1720(s32 arg0) {
+BtIntPtr func_800E1720(s32 arg0) {
     Entry *entry;
 
     entry = &D_8012CF90[arg0];
     entry->active = 1;
     entry->updated = 0;
-    return (s32)entry;
+    return (BtIntPtr)entry;
 }
 
 /* extern */
 
 void func_800E1748(void) {
-    s32 func_800E1720(s32);
+    BtIntPtr func_800E1720(s32);
     s32 var_s0;
 
     var_s0 = 0;
@@ -236,7 +236,7 @@ void func_800E1748(void) {
 
 void func_800E1788(void) {
     void func_800E1378(s32);
-    s32 func_800EFD24(Entry *);
+    void func_800EFD24(f32 vec[3]);
     Entry *var_s0;
     s32 var_s1;
 
@@ -244,7 +244,7 @@ void func_800E1788(void) {
     var_s1 = 0;
     do {
         var_s0->active = 1;
-        (*(f32 *)((s8 *)(var_s0) + (0x30))) = 0.0f;
+        (var_s0->unk30) = 0.0f;
         var_s0->updated = 0;
         func_800EFD24(var_s0);
         func_800E1378(var_s1);
@@ -269,36 +269,36 @@ void func_800E1804(void) {
     for (i = 0; i < 10; i++) {
         switch ((u8)D_8012CF90[i].active) {
             case 2:
-                if (*(f32 *)((s8 *)&D_8012CF90[i] + 0x28) >= 0.0f) {
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x2C) = (f32)1.0;
+                if (D_8012CF90[i].strength >= 0.0f) {
+                    D_8012CF90[i].multiplier = (f32)1.0;
                 } else {
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x2C) = (f32)-1.0;
+                    D_8012CF90[i].multiplier = (f32)-1.0;
                 }
                 *(u8 *)&D_8012CF90[i].active = 3;
                 D_8012CF90[i].pad77[0] = 0;
                 break;
             case 3:
-                if (*(f32 *)((s8 *)&D_8012CF90[i] + 0x30) != 0.0f) {
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x30) = func_800F0E00(0.0f, *(f32 *)((s8 *)&D_8012CF90[i] + 0x30) - dt);
+                if (D_8012CF90[i].unk30 != 0.0f) {
+                    D_8012CF90[i].unk30 = func_800F0E00(0.0f, D_8012CF90[i].unk30 - dt);
                     if ((u8)D_8012CF90[i].pad77[0]) {
-                        *(f32 *)((s8 *)&D_8012CF90[i] + 0x28) = func_800F10B4(*(f32 *)((s8 *)&D_8012CF90[i] + 0x30), *(f32 *)((s8 *)&D_8012CF90[i] + 0x18), 0.0f, *(f32 *)((s8 *)&D_8012CF90[i] + 0x24), *(f32 *)((s8 *)&D_8012CF90[i] + 0x20));
+                        D_8012CF90[i].strength = func_800F10B4(D_8012CF90[i].unk30, D_8012CF90[i].unk18, 0.0f, D_8012CF90[i].unk24, D_8012CF90[i].unk20);
                     }
                 } else if ((u8)D_8012CF90[i].pad77[0]) {
-                    decay = *(f32 *)((s8 *)&D_8012CF90[i] + 0x1C);
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x28) *= decay * decay;
+                    decay = D_8012CF90[i].unk1C;
+                    D_8012CF90[i].strength *= decay * decay;
                 }
                 D_8012CF90[i].pad77[0] = (u8)D_8012CF90[i].pad77[0] ^ 1;
-                *(f32 *)((s8 *)&D_8012CF90[i] + 0x2C) = -*(f32 *)((s8 *)&D_8012CF90[i] + 0x2C);
-                if (*(f32 *)((s8 *)&D_8012CF90[i] + 0x1C) != 1.0f && mlAbsF(*(f32 *)((s8 *)&D_8012CF90[i] + 0x28)) < 0.001f) {
+                D_8012CF90[i].multiplier = -D_8012CF90[i].multiplier;
+                if (D_8012CF90[i].unk1C != 1.0f && mlAbsF(D_8012CF90[i].strength) < 0.001f) {
                     func_800E1720(i);
                 }
                 break;
             case 4:
-                if (*(f32 *)((s8 *)&D_8012CF90[i] + 0x30) < *(f32 *)((s8 *)&D_8012CF90[i] + 0x18)) {
-                    value = func_800F13F0(*(f32 *)((s8 *)&D_8012CF90[i] + 0x18), *(f32 *)((s8 *)&D_8012CF90[i] + 0x30) + dt);
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x30) = value;
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x28) = *(f32 *)((s8 *)&D_8012CF90[i] + 0x20) * func_800F3780(value / *(f32 *)((s8 *)&D_8012CF90[i] + 0x18), (u8 *)&D_8012CF90[i].pad34[0], *(u8 *)&D_8012CF90[i].pad77[1]);
-                    *(f32 *)((s8 *)&D_8012CF90[i] + 0x2C) = -*(f32 *)((s8 *)&D_8012CF90[i] + 0x2C);
+                if (D_8012CF90[i].unk30 < D_8012CF90[i].unk18) {
+                    value = func_800F13F0(D_8012CF90[i].unk18, D_8012CF90[i].unk30 + dt);
+                    D_8012CF90[i].unk30 = value;
+                    D_8012CF90[i].strength = D_8012CF90[i].unk20 * func_800F3780(value / D_8012CF90[i].unk18, (u8 *)&D_8012CF90[i].pad34[0], *(u8 *)&D_8012CF90[i].pad77[1]);
+                    D_8012CF90[i].multiplier = -D_8012CF90[i].multiplier;
                 } else {
                     func_800E1720(i);
                 }
@@ -349,3 +349,13 @@ void func_800E1A58(f32 *arg0, f32 *arg1) {
         index++;
     } while ((void *)D_8012D468 != (void *)&D_8012CF90[index]);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_8012CFA4 [ 2 ] BT_DATA(4, bss_core2bss2_1, 0x664);
+f32 D_8012CFAC [ 3 ] BT_DATA(4, bss_core2bss2_1, 0x66C);
+f32 D_8012CFB8 [ 19 ] BT_DATA(4, bss_core2bss2_1, 0x678);
+u8 D_8012D004 [ 1124 ] BT_DATA(4, bss_core2bss2_1, 0x6C4);
+u8 D_8012D468 [ 8 ] BT_DATA(4, bss_core2bss2_1, 0xB28);
+#endif

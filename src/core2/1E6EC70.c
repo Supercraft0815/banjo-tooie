@@ -115,7 +115,7 @@ void func_80095588(PlayerState *arg0, s32 arg1) {
     if ((temp_v0 == 2) || (temp_v0 == 3)) {
         func_800956B8(arg0);
     }
-}
+}    typedef struct { u8 pad0[0x10]; s32 unk10; s32 unk14; } Obj1E6EC70_func_800955CC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -128,7 +128,7 @@ void func_800955CC(PlayerState *arg0) {
     func_80095588(arg0, 1);
     (*(s32 *)((s8 *)((*(f32 **)((s8 *)(arg0) + (0x7C)))) + (0x10))) = 0;
     temp_v0 = (*(f32 **)((s8 *)(arg0) + (0x7C)));
-    (*(s32 *)((s8 *)(temp_v0) + (0x14))) = (s32) (*(s32 *)((s8 *)(temp_v0) + (0x10)));
+    (((Obj1E6EC70_func_800955CC_temp_v0 *)temp_v0)->unk14) = (s32) (((Obj1E6EC70_func_800955CC_temp_v0 *)temp_v0)->unk10);
 }
 
 /* extern */

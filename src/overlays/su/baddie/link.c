@@ -1,8 +1,8 @@
 #include "common.h"
 
-void subaddielink_entrypoint_0(void *arg0) {
-    (*(s32 *)((s8 *)(arg0) + (4))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0))) = 0;
+typedef struct { s32 unk0; s32 unk4; } Objlink_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void subaddielink_entrypoint_0(void *arg0) {
+    (((Objlink_arg0 *)arg0)->unk4) = 0;
+    (((Objlink_arg0 *)arg0)->unk0) = 0;
 }
 
 void subaddielink_entrypoint_1(u8 *arg0, u8 *arg1) {
@@ -59,9 +59,9 @@ Actor *subaddielink_entrypoint_4(Unk80132ED0 **arg0) {
         return 0;
     }
     return func_80106790(*arg0);
-}
+}                  typedef struct { s32 unk0; s32 unk4; } Objlink_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void subaddielink_entrypoint_5(void *arg0, void *arg1) {
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) (*(s32 *)((s8 *)(arg0) + (0)));
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) (*(s32 *)((s8 *)(arg0) + (4)));
+    (((Objlink_arg1 *)arg1)->unk0) = (s32) (((Objlink_arg0 *)arg0)->unk0);
+    (((Objlink_arg1 *)arg1)->unk4) = (s32) (((Objlink_arg0 *)arg0)->unk4);
 }

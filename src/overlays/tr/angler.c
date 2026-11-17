@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "angler_native.inc"
 #else
 #include "common.h"
@@ -38,7 +38,7 @@ void func_80800000_trangler(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     norm *= scale;
     func_800DF900(actor);
     if (arg2 != 0) {
-        ((struct entry *)func_8010E924(arg2, center, norm, scale))->value = -1.0f;
+        BT_IDO_ONLY(((struct entry *)func_8010E924(arg2, center, norm, scale))->value = -1.0f;) BT_NATIVE_ONLY({ struct entry *e = func_8010E924(arg2, center, norm, scale); if (e) e->value = -1.0f; })  // NULL when the light is out of range (Lord Woo Fak Fak lure at x 7168); the N64 would fault at 0x24
     }
     current = func_800C8760(0, 1);
     while (current != 0) {

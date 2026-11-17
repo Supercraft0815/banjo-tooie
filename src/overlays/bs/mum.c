@@ -141,7 +141,7 @@ void func_80800484_bsmum(PlayerState *self) {
     }
 }
 
-s32 bsmum_entrypoint_3(s32 idx) {
+BtIntPtr bsmum_entrypoint_3(s32 idx) {
     return D_80801140_bsmum[idx];
 }
 
@@ -159,7 +159,7 @@ void func_808005B0_bsmum(PlayerState *self) {
     _bsdrone_entrypoint_1(self);
 }
 
-s32 bsmum_entrypoint_4(s32 idx) {
+BtIntPtr bsmum_entrypoint_4(s32 idx) {
     return D_80801150_bsmum[idx];
 }
 
@@ -212,7 +212,7 @@ void func_8080065C_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmum_entrypoint_5(s32 idx) {
+BtIntPtr bsmum_entrypoint_5(s32 idx) {
     return D_80801160_bsmum[idx];
 }
 
@@ -332,7 +332,7 @@ void func_808009F8_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmum_entrypoint_6(s32 idx) {
+BtIntPtr bsmum_entrypoint_6(s32 idx) {
     return D_80801170_bsmum[idx];
 }
 
@@ -363,7 +363,7 @@ void func_80800C2C_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmum_entrypoint_7(s32 idx) {
+BtIntPtr bsmum_entrypoint_7(s32 idx) {
     return D_80801180_bsmum[idx];
 }
 
@@ -391,7 +391,7 @@ void bsmum_entrypoint_10(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmum_entrypoint_11(s32 idx) {
+BtIntPtr bsmum_entrypoint_11(s32 idx) {
     return D_80801190_bsmum[idx];
 }
 
@@ -415,7 +415,7 @@ void func_80800E10_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmum_entrypoint_12(s32 idx) {
+BtIntPtr bsmum_entrypoint_12(s32 idx) {
     return D_808011A0_bsmum[idx];
 }
 
@@ -484,6 +484,17 @@ void func_80801058_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmum_entrypoint_14(s32 idx) {
+BtIntPtr bsmum_entrypoint_14(s32 idx) {
     return D_808011B0_bsmum[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/mum.data.s */
+void _basudie_entrypoint_11();
+void func_80099AA8();
+BtIntPtr D_80801140_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x0) = { (BtIntPtr)func_80800428_bsmum, (BtIntPtr)func_80800454_bsmum, (BtIntPtr)func_80800484_bsmum, (BtIntPtr)_basudie_entrypoint_11 };
+BtIntPtr D_80801150_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x10) = { (BtIntPtr)func_80800560_bsmum, (BtIntPtr)func_80800588_bsmum, (BtIntPtr)func_808005B0_bsmum, (BtIntPtr)func_80800130_bsmum };
+BtIntPtr D_80801160_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x20) = { (BtIntPtr)func_808005E4_bsmum, (BtIntPtr)func_80800604_bsmum, (BtIntPtr)func_8080065C_bsmum, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_80801170_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x30) = { (BtIntPtr)func_80800980_bsmum, (BtIntPtr)func_808009C8_bsmum, (BtIntPtr)func_808009F8_bsmum, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_80801180_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x40) = { (BtIntPtr)func_80800BC4_bsmum, (BtIntPtr)func_80800BEC_bsmum, (BtIntPtr)func_80800C2C_bsmum, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80801190_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x50) = { (BtIntPtr)_bsmum_entrypoint_8, (BtIntPtr)_bsmum_entrypoint_9, (BtIntPtr)_bsmum_entrypoint_10, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_808011A0_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x60) = { (BtIntPtr)func_80800DC0_bsmum, (BtIntPtr)func_80800DE8_bsmum, (BtIntPtr)func_80800E10_bsmum, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_808011B0_bsmum [4] BT_DATA(4, overlays_bs_mum, 0x70) = { (BtIntPtr)func_80800FA4_bsmum, (BtIntPtr)func_80800FE0_bsmum, (BtIntPtr)func_80801058_bsmum, (BtIntPtr)_bsmum_entrypoint_0 };

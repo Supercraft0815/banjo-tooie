@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_grid.h"
 #include "native_actor.h"
 #include "native_model.h"
@@ -24,16 +24,16 @@ static s32 marker_generation;
 s32 func_800DC214(s32, s32);
 void func_800E3A30(s16 *);
 void _gspropprop_entrypoint_2(void *);
-void _gspropprop_entrypoint_3(void *, s32);
+void _gspropprop_entrypoint_3(void *, BtIntPtr);
 void func_800CDFD0(void *);
 f32 func_800136E4(f32);
 s32 func_800B0CFC(void *);
 void *func_801039E4(void *);
-s32 func_8010A79C(Actor *, s32);
+void func_8010A79C(Actor *arg0, BtIntPtr arg1);
 #endif
 
 typedef struct {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Vector *entries[7];
 #else
     s32 entries[7];
@@ -43,7 +43,7 @@ typedef struct {
 
 EntryGroup D_80132E80;
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB3D0(void *data, s32 group, s16 *origin) {
     NativeMarkerProp *prop = data;
     MarkerGroupElement *begin, *end, *current;
@@ -108,8 +108,8 @@ void func_800EB3D0(void *arg0, s32 arg1, s16 *arg2) {
 }
 #endif
 
-#ifdef BT_NATIVE
-void func_800EB51C(s32 group, s32 mode) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_800EB51C(s32 group, BtIntPtr mode) {
     Vector *vec;
     MarkerGroupElement *current, *end;
     if (group < 0 || group >= 7 || !(vec = D_80132E80.entries[group])) return;
@@ -131,7 +131,7 @@ void func_800EB51C(s32 arg0, s32 arg1) {
     typedef struct { Prop *prop; s32 unknown; } Element;
     void *vector_begin(s32);
     void *vector_end(s32);
-    void func_800EC7D4(Unk80132ED0 *, s32);
+    void func_800EC7D4(Unk80132ED0 *, BtIntPtr);
     void _gspropprop_entrypoint_3(void *, s32);
     s32 vector;
     Element *end;
@@ -158,8 +158,8 @@ void func_800EB51C(s32 arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
-void func_800EB5E0(void *cube, s32 unused) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_800EB5E0(void *cube, BtIntPtr unused) {
     s16 origin[3];
     NativeMarkerProp *prop, *end;
     (void)unused;
@@ -244,7 +244,7 @@ void func_800EB70C(void) {
     }
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB750(void) {
     for (Vector **vec=D_80132E80.entries; vec<D_80132E80.entries+7; ++vec) {
         if (*vec) { vector_free(*vec); *vec = NULL; }
@@ -271,7 +271,7 @@ void func_800EB750(void)
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB7A8(void) {
     for (Vector **vec=D_80132E80.entries; vec<D_80132E80.entries+7; ++vec) {
         if (*vec) { *vec = vector_defrag(*vec); }
@@ -295,7 +295,7 @@ void func_800EB7A8(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB800(void) {
     for (Vector **vec=D_80132E80.entries; vec<D_80132E80.entries+7; ++vec) {
         if (*vec) { vector_clear(*vec); }
@@ -325,7 +325,7 @@ s32 func_800EB854(void) {
     return D_80132E80.selected;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB860(s32 (*filter)(s16 *, uintptr_t), uintptr_t data) {
     marker_search.filter = filter;
     marker_search.userdata = data;
@@ -338,7 +338,7 @@ void func_800EB860(s32 arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB874(void) { marker_search.filter = NULL; }
 #else
 void func_800EB874(void)
@@ -349,7 +349,7 @@ void func_800EB874(void)
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB880(s32 *position, s32 type, s32 radius) {
     func_800EE830(marker_search.position, position);
     marker_search.type = type;
@@ -372,7 +372,7 @@ void func_800EB880(s32 *arg0, s32 arg1, s32 arg2) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB8C0(void *cube) {
     s32 x, y, z, distance, group;
     if (func_800E9DCC(cube) && (marker_search.type==1 || marker_search.type==2)) {
@@ -487,7 +487,7 @@ void func_800EB8C0(s32 arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800EBB30(void **cube, void **prop) {
     *cube=marker_search.cube; *prop=marker_search.prop; return marker_search.kind;
 }
@@ -500,7 +500,7 @@ s32 func_800EBB30(s32 *arg0, s32 *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 OSThread *func_800EBB50(void) {
     static uintptr_t callbacks[5];
     return (OSThread *)callbacks;
@@ -514,7 +514,7 @@ OSThread *func_800EBB50(void)
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBB5C(void) { marker_generation=0x6B7; }
 #else
 void func_800EBB5C(void) {
@@ -526,7 +526,7 @@ void func_800EBB5C(void) {
 void func_800EBB6C(void) {
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800EBB74(void) { return 1; }
 #else
 s32 func_800EBB74(void) {
@@ -535,7 +535,7 @@ s32 func_800EBB74(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBB94(void) {
     for (s32 i=0; i<25; ++i) marker_used[i]=0;
     for (s32 i=0; i<200; ++i) marker_pool[i].unk10 &= 0xFFFF0001u;
@@ -559,9 +559,9 @@ void func_800EBB94(void) {
 #endif
 
 void func_800EBC04(void) {
-}
+}                               typedef struct { s32 unk0; s32 unk4; s32 unk8; u8 padC[0x4]; s32 unk10; u8 pad14[0x8]; s16 unk1C; } Obj1EC4CC0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBC0C(void *cube, s32 *position, void *data, s32 model) {
     Unk80132ED0 *marker=data;
     NativeMarkerProp *prop=func_800E99E0(cube);
@@ -605,7 +605,7 @@ void func_800EBC0C(s32 arg0, s32 *arg1, void *arg2, s32 arg3) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBCD0(void *data, s32 *position, void *old_cube, void *new_cube) {
     Unk80132ED0 *marker=data;
     /* Reserve before removal so a failed allocation preserves the old position. */
@@ -642,7 +642,7 @@ void func_800EBCD0(u8 **arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBD2C(void *data, s32 *position, s32 index) {
     Unk80132ED0 *marker=data;
     func_800EBCD0(marker, position, func_800BDB9C(marker->cube_index), func_800BDB9C(index));
@@ -660,7 +660,7 @@ void func_800EBD2C(u8 *arg0, s32 arg1, s32 arg2) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800EBD78(void) {
     for (s32 bucket=0; bucket<25; ++bucket) {
         if (marker_used[bucket]==0xFF) continue;
@@ -710,7 +710,7 @@ loop_2:
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBE24(void *data) {
     uintptr_t offset=(uintptr_t)data-(uintptr_t)marker_pool;
     size_t index;
@@ -738,7 +738,7 @@ void func_800EBE24(void *arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBE74(s32 *position, void *data, s32 model) {
     Unk80132ED0 *marker=data;
     void *cube=(marker->unk10 & 1) ? func_800BDC44() : func_800BDBC4(position);
@@ -762,7 +762,7 @@ void func_800EBE74(s32 arg0, void *arg1, s32 arg2) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800EBED4(s32 *position, s32 model, s32 type, s32 flags) {
     Unk80132ED0 *marker=func_800EBD78();
     if (!marker) return NULL;
@@ -807,7 +807,7 @@ void *func_800EBED4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800EBF8C(f32 *position, s32 model, u32 type, s32 flags) {
     s32 vec[3];
     func_800EE904(vec, position);
@@ -822,7 +822,7 @@ void *func_800EBF8C(f32 *arg0, s32 arg1, u32 arg2, Prop *arg3) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800EBFD4(f32 *position, s32 model, u32 type) {
     return func_800EBF8C(position, model, type, 0);
 }
@@ -835,7 +835,7 @@ void *func_800EBFD4(f32 *arg0, s32 arg1, u32 arg2) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EBFF4(void *data) {
     Unk80132ED0 *marker=data;
     if (marker->unk0) func_800E9AC0(func_800BDB9C(marker->cube_index), (void *)marker->unk0);
@@ -852,20 +852,20 @@ void func_800EBFF4(void *arg0) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC030(void *data, s32 *position) {
     NativeMarkerProp *prop=(void *)((Unk80132ED0 *)data)->unk0;
     if (prop) for (s32 i=0; i<3; ++i) prop->position[i]=position[i];
 }
 #else
 void func_800EC030(void **arg0, void *arg1) {
-    (*(s16 *)((s8 *)(*arg0) + (4))) = (s16) (*(s32 *)((s8 *)(arg1) + (0)));
-    (*(s16 *)((s8 *)(*arg0) + (6))) = (s16) (*(s32 *)((s8 *)(arg1) + (4)));
-    (*(s16 *)((s8 *)(*arg0) + (8))) = (s16) (*(s32 *)((s8 *)(arg1) + (8)));
+    (*(s16 *)((s8 *)(*arg0) + (4))) = (s16) (((Obj1EC4CC0_arg1 *)arg1)->unk0);
+    (*(s16 *)((s8 *)(*arg0) + (6))) = (s16) (((Obj1EC4CC0_arg1 *)arg1)->unk4);
+    (*(s16 *)((s8 *)(*arg0) + (8))) = (s16) (((Obj1EC4CC0_arg1 *)arg1)->unk8);
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC058(s32 *position, void *data) {
     Unk80132ED0 *marker=data;
     s32 index=(marker->unk10 & 1) ? -1 : func_800BD97C(position);
@@ -885,12 +885,12 @@ void func_800EC058(s32 *arg0, void **arg1) {
     void func_800CDFD0(void **);
     s32 result;
 
-    if (*(s32 *)((u8 *)arg1 + 0x10) & 1) {
+    if (((Obj1EC4CC0_arg1 *)arg1)->unk10 & 1) {
         result = -1;
     } else {
         result = func_800BD97C(arg0);
     }
-    if (result == *(s16 *)((u8 *)arg1 + 0x1C)) {
+    if (result == ((Obj1EC4CC0_arg1 *)arg1)->unk1C) {
         func_800EC030(arg1, arg0);
     } else {
         func_800EBD2C((u8 *)arg1, (s32)arg0, result);
@@ -903,7 +903,7 @@ void func_800EC058(s32 *arg0, void **arg1) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC0EC(f32 *position, void *marker) {
     s32 vec[3];
     func_800EE904(vec, position);
@@ -920,7 +920,7 @@ void func_800EC0EC(f32 *arg0, void **arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC124(f32 *position, void *data, f32 *angles) {
     Unk80132ED0 *marker=data;
     marker->unk24=(marker->unk24 & ~(0x1FFu<<7)) | (((u32)func_800136E4(angles[0]) & 0x1FF)<<7);
@@ -948,7 +948,7 @@ void func_800EC124(f32 *arg0, void *arg1, f32 *arg2) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC340(void *data, s32 index) {
     Unk80132ED0 *marker=data;
     marker->unk18=(marker->unk18 & ~0xFFE0u) | (((u32)index & 0x7FF)<<5);
@@ -964,7 +964,7 @@ void func_800EC340(void *arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC358(void *marker, struct NativeMarkerCollision *(*value)(void)) { ((Unk80132ED0 *)marker)->collision=value; }
 #else
 void func_800EC358(s32 *arg0, s32 arg1) {
@@ -972,7 +972,7 @@ void func_800EC358(s32 *arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC360(void *marker, s32 value) { ((Unk80132ED0 *)marker)->unk14=value; }
 #else
 void func_800EC360(s16 *arg0, s32 arg1) {
@@ -980,7 +980,7 @@ void func_800EC360(s16 *arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC368(void *marker, s32 value) { ((Unk80132ED0 *)marker)->unk16=value; }
 #else
 void func_800EC368(s16 *arg0, s32 arg1) {
@@ -988,20 +988,20 @@ void func_800EC368(s16 *arg0, s32 arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC370(void *data, s16 *position) {
     NativeMarkerProp *prop=(void *)((Unk80132ED0 *)data)->unk0;
     func_800EE814(position, prop->position);
 }
 #else
 void func_800EC370(void **arg0, void *arg1) {
-    (*(s16 *)((s8 *)(arg1) + (0))) = (s16) (*(s16 *)((s8 *)(*arg0) + (4)));
-    (*(s16 *)((s8 *)(arg1) + (2))) = (s16) (*(s16 *)((s8 *)(*arg0) + (6)));
-    (*(s16 *)((s8 *)(arg1) + (4))) = (s16) (*(s16 *)((s8 *)(*arg0) + (8)));
+    (((Prop *)arg1)->position[0]) = (s16) (*(s16 *)((s8 *)(*arg0) + (4)));
+    (((Prop *)arg1)->position[1]) = (s16) (*(s16 *)((s8 *)(*arg0) + (6)));
+    (((Prop *)arg1)->position[2]) = (s16) (*(s16 *)((s8 *)(*arg0) + (8)));
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC398(Unk80132ED0 *marker, f32 *position) {
     NativeMarkerProp *prop=(void *)marker->unk0;
     func_800EE88C(position, prop->position);
@@ -1013,7 +1013,7 @@ void func_800EC398(Unk80132ED0 *arg0, f32 *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800EC3C4(void *data) { return ((Unk80132ED0 *)data)->callback(); }
 #else
 void *func_800EC3C4(void *arg0) {
@@ -1023,7 +1023,7 @@ void *func_800EC3C4(void *arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800EC3E8(void *data) {
     u16 model=((Unk80132ED0 *)data)->unk14;
     return model==0 || model==0xFFFF ? NULL : func_800D674C(model);
@@ -1033,7 +1033,7 @@ void *func_800EC3E8(u8 *arg0) {
     void *func_800D674C(s32);
     s32 temp_a1;
 
-    temp_a1 = (*(u16 *)((s8 *)(arg0) + (0x14)));
+    temp_a1 = (((Unk80132ED0 *)arg0)->unk14);
     if ((temp_a1 == 0) || (temp_a1 == 0xFFFF)) {
         return 0;
     }
@@ -1043,7 +1043,7 @@ void *func_800EC3E8(u8 *arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void *func_800EC428(void *data) {
     Unk80132ED0 *marker=data;
     if (marker->unk18 & 0x10000) return func_801039E4(marker);
@@ -1068,7 +1068,7 @@ s32 func_800EC428(void *arg0) {
 
 /* extern */
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 f32 func_800EC48C(void *data) {
     Unk80132ED0 *marker=data;
     f32 radius;
@@ -1096,7 +1096,7 @@ f32 func_800EC48C(void *arg0) {
 #endif
 
 typedef struct { u8 pad0[0x14]; u16 model; u8 pad16[8]; s16 center[3]; } PropCenterView;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 f32 func_800EC504(void *data) {
     Unk80132ED0 *marker=data;
     s32 model=marker->unk14, cached;
@@ -1146,7 +1146,7 @@ f32 func_800EC504(PropCenterView *prop) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 f32 func_800EC5C0(void *data, f32 (*callback)(void *)) {
     Unk80132ED0 *marker=((NativeMarkerProp *)data)->marker;
     f32 value=marker->unk18>>21;
@@ -1188,7 +1188,7 @@ f32 func_800EC5C0(void *arg0, void *arg1) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 f32 func_800EC708(Unk80132ED0 *marker) {
     NativeMarkerProp *prop=(void *)marker->unk0;
     return func_800EC5C0(prop, (prop->flags & 2) ? func_800EC504 : func_800EC48C);
@@ -1204,7 +1204,7 @@ f32 func_800EC708(Unk80132ED0 *marker) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 f32 func_800EC75C(void *data, f32 *center) {
     Unk80132ED0 *marker=data;
     NativeMarkerProp *prop=(void *)marker->unk0;
@@ -1245,13 +1245,13 @@ f32 func_800EC75C(void *marker, f32 *arg1) {
 
 /* extern */
 
-void func_800EC7D4(Unk80132ED0 *arg0, s32 arg1) {
+void func_800EC7D4(Unk80132ED0 *arg0, BtIntPtr arg1) {
     Actor* func_80106790(Unk80132ED0 *);
-    s32 func_8010A79C(Actor *, s32);
+    void func_8010A79C(Actor *arg0, BtIntPtr arg1);
     func_8010A79C(func_80106790(arg0), arg1);
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 int func_800EC800(void *data) {
     Unk80132ED0 *marker=data;
     return (marker->unk18 & 0x10000)!=0 && marker->unk14!=0;
@@ -1259,11 +1259,11 @@ int func_800EC800(void *data) {
 #else
 int func_800EC800(void *arg0) {
     return ((*(u16 *)((u8 *)arg0 + 0x18) & 1) != 0)
-        && (*(u16 *)((u8 *)arg0 + 0x14) != 0);
+        && (((Unk80132ED0 *)arg0)->unk14 != 0);
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EC828(void) { if (--marker_generation<0x6B7) marker_generation=0x7FFF; }
 #else
 void func_800EC828(void) {
@@ -1275,7 +1275,7 @@ void func_800EC828(void) {
 }
 #endif
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 s32 func_800EC854(void) {
     s32 result=marker_generation;
     if (++marker_generation>=0x8000) marker_generation=0x6B7;

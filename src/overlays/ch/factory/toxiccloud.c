@@ -55,20 +55,20 @@ f32 D_8080155C_chfactorytoxiccloud[] = {
     0.0f, 100.0f, 0.0f,
 };
 
-u32 D_80801568_chfactorytoxiccloud[] = {
-    0x011603FF, 0x07090002, (u32)D_8080144C_chfactorytoxiccloud, (u32)func_808001B8_chfactorytoxiccloud,
-    (u32)func_80105834, (u32)func_80800C7C_chfactorytoxiccloud, 0x0FA00000, 0x00000000,
-    0x00000000, 0x00A20261, 0x00000000, (u32)func_80108ED0,
-    0x01440000, (u32)func_80800000_chfactorytoxiccloud, (u32)func_80107C2C, 0x8020540D,
-    (u32)func_808011A0_chfactorytoxiccloud, (u32)D_80801420_chfactorytoxiccloud,
+BtFnWord D_80801568_chfactorytoxiccloud[] = {
+    0x011603FF, 0x07090002, (BtFnWord)D_8080144C_chfactorytoxiccloud, (BtFnWord)func_808001B8_chfactorytoxiccloud,
+    (BtFnWord)func_80105834, (BtFnWord)func_80800C7C_chfactorytoxiccloud, 0x0FA00000, 0x00000000,
+    0x00000000, 0x00A20261, 0x00000000, (BtFnWord)func_80108ED0,
+    0x01440000, (BtFnWord)func_80800000_chfactorytoxiccloud, (BtFnWord)func_80107C2C, 0x8020540D,
+    (BtFnWord)func_808011A0_chfactorytoxiccloud, (BtFnWord)D_80801420_chfactorytoxiccloud,
 };
 
 void func_80800000_chfactorytoxiccloud(Actor *arg0) {
-    s32 _subaddiefade_entrypoint_1(s32, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
-    void func_80800A34_chfactorytoxiccloud(s32, void *);
+    void func_80800A34_chfactorytoxiccloud(BtIntPtr, void *);
     void func_80800FCC_chfactorytoxiccloud(Actor *, s32);
     s32 offset;
     u8 *data;
@@ -77,12 +77,12 @@ void func_80800000_chfactorytoxiccloud(Actor *arg0) {
     data = func_80100094(arg0, 0);
     if (arg0->unk7A_5) {
         arg0->scale = 1.0f;
-        _subaddiefade_entrypoint_1((s32)arg0, 0xFF);
+        _subaddiefade_entrypoint_1((BtIntPtr)arg0, 0xFF);
         *(f32 *)&arg0->actorData[3] = 600.0f;
     } else {
         func_80102424(arg0, 1);
         arg0->unk58 = 0.0f;
-        _subaddiefade_entrypoint_1((s32)arg0, 0);
+        _subaddiefade_entrypoint_1((BtIntPtr)arg0, 0);
         arg0->unk64_16 = 0;
         arg0->scale = 0.0f;
         func_8010A570(arg0);
@@ -90,7 +90,7 @@ void func_80800000_chfactorytoxiccloud(Actor *arg0) {
     arg0->unk64_24 = 1;
     func_80800FCC_chfactorytoxiccloud(arg0, 1);
     for (offset = 0, entry = data; offset != 0x144; offset += 0x24, entry += 0x24) {
-        func_80800A34_chfactorytoxiccloud((s32)arg0, entry);
+        func_80800A34_chfactorytoxiccloud((BtIntPtr)arg0, entry);
     }
 }
 
@@ -109,8 +109,8 @@ s32 func_808000F0_chfactorytoxiccloud(void *arg0, void *arg1) {
         } data;
     };
     s32 func_800CC338(s32 *, s32, s32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     int func_80800BF8_chfactorytoxiccloud();
     u32 temp_t9;
 
@@ -163,8 +163,8 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
         f32 rest[6];
     };
     s32 _subaddieDll_entrypoint_11(void *, s32, s32);
-    s32 _subaddiefade_entrypoint_1(s32, s32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800CC338(s32 *, s32, s32);
     void func_800CF2D4(s32);
     void func_800CF494(void);
@@ -179,14 +179,14 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    f32 func_800F5F24(u32);
+    BtUIntPtr func_800F54E4(void);
+    f32 func_800F5F24(BtUIntPtr);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80102BAC(Actor *, f32, f32, f32);
     void func_8010A590(Actor *);
-    void func_80800A34_chfactorytoxiccloud(s32, void *);
-    void func_80800AD8_chfactorytoxiccloud(s32, f32 *volatile);
+    void func_80800A34_chfactorytoxiccloud(BtIntPtr, void *);
+    void func_80800AD8_chfactorytoxiccloud(BtIntPtr, f32 *volatile);
     void func_80800FCC_chfactorytoxiccloud(Actor *, s32);
     void func_808010B8_chfactorytoxiccloud(void *);
     s32 func_80801164_chfactorytoxiccloud(Actor *, s32, s32);
@@ -202,7 +202,7 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
     struct CloudParticle *particle;
     f32 distance;
 
-    func_80800AD8_chfactorytoxiccloud((s32)arg0, position);
+    func_80800AD8_chfactorytoxiccloud((BtIntPtr)arg0, position);
     i = 4;
     if (func_808000F0_chfactorytoxiccloud(arg0, position)) {
         func_80102424(arg0, i);
@@ -214,7 +214,7 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
         switch (arg0->unk70_10) {
         case 1:
             if (func_800D91EC(&arg0->unk58, 0.3f)) {
-                _subaddiefade_entrypoint_1((s32)arg0, 255);
+                _subaddiefade_entrypoint_1((BtIntPtr)arg0, 255);
                 arg0->scale = 1.0f;
                 if (arg0->unk64_29) {
                     func_80102424(arg0, 3);
@@ -223,7 +223,7 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
                 }
             } else {
                 scale = func_800F10B4(arg0->unk58, 0.0f, 0.3f, 0.0f, 1.0f);
-                _subaddiefade_entrypoint_1((s32)arg0, (u16)(255.0f * scale));
+                _subaddiefade_entrypoint_1((BtIntPtr)arg0, (u16)(255.0f * scale));
                 arg0->scale = scale;
                 arg0->unk64_16 = 1;
                 func_8010A590(arg0);
@@ -329,7 +329,7 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
                     if (func_800DC0C0() < 0.5f) {
                         func_800BBCB8(arg0->position, NULL, arg0->scale, 1, ((s32 *)D_8080148C_chfactorytoxiccloud));
                     }
-                    func_80800A34_chfactorytoxiccloud((s32)arg0, entry);
+                    func_80800A34_chfactorytoxiccloud((BtIntPtr)arg0, entry);
                 }
             }
         }
@@ -338,7 +338,7 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
 
 /* extern */
 
-void func_80800A34_chfactorytoxiccloud(s32 arg0, void *arg1) {
+void func_80800A34_chfactorytoxiccloud(BtIntPtr arg0, void *arg1) {
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     (*(f32 *)((s8 *)(arg1) + (0))) = func_800DC178(0.5f, 1.0f);
@@ -350,16 +350,16 @@ void func_80800A34_chfactorytoxiccloud(s32 arg0, void *arg1) {
 
 /* extern */
 
-void func_80800AD8_chfactorytoxiccloud(s32 arg0, f32 *volatile arg1) {
+void func_80800AD8_chfactorytoxiccloud(BtIntPtr arg0, f32 *volatile arg1) {
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    void func_800F5A2C(s32, s32, f32 *);
-    f32 func_800F5F24(u32);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5A2C(BtIntPtr, s32, f32 *);
+    f32 func_800F5F24(BtUIntPtr);
     f32 sp34[3];
     f32 sp28[3];
     s32 temp_v0;
@@ -411,7 +411,7 @@ void func_80800C7C_chfactorytoxiccloud(Actor *arg0, u8 *arg1) {
     struct ImageStruct *func_800D674C(s32);
     void func_800E2440(s32, s32, s32);
     void func_800E24B4(s32);
-    void func_800E24E4(s32, s32);
+    void func_800E24E4(BtIntPtr, BtIntPtr);
     void func_800E24F8(s32, s32, s32);
     void func_800E257C(s32);
     void func_800E2588(u32);
@@ -481,7 +481,7 @@ void func_80800C7C_chfactorytoxiccloud(Actor *arg0, u8 *arg1) {
                 if (((Cloud *)arg0)->flags.halfAlpha) {
                     alpha >>= 1;
                 }
-                func_800E24E4((s32)_subaddiedraw25d_entrypoint_0, (s32)arg0);
+                func_800E24E4((BtIntPtr)_subaddiedraw25d_entrypoint_0, (BtIntPtr)arg0);
                 func_800E24F8(10, 255, 4);
                 func_800E2440(4, 140, 2);
                 func_800E257C(alpha);
@@ -497,7 +497,7 @@ void func_80800C7C_chfactorytoxiccloud(Actor *arg0, u8 *arg1) {
 
 void func_80800FCC_chfactorytoxiccloud(Actor *arg0, s32 arg1) {
     s32 func_8001210C(s32);
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void *func_800CC63C(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     struct {
@@ -547,7 +547,7 @@ void func_808010B8_chfactorytoxiccloud(void *arg0) {
 
     sp24 = _subaddiejoy_entrypoint_3() * 650.0f;
     func_80102BAC(arg0, 1.5f, 1.0f, 25.0f);
-    if (mlAbsF(func_80013728((*(f32 *)((s8 *)(arg0) + (0x54))) - (*(f32 *)((s8 *)(arg0) + (0x48))))) < 90.0f) {
+    if (mlAbsF(func_80013728((((Actor *)arg0)->unk54) - (((Actor *)arg0)->rotation[1]))) < 90.0f) {
         (*(f32 *)((s8 *)(arg0) + (0x24))) = sp24;
     } else {
         (*(f32 *)((s8 *)(arg0) + (0x24))) = (f32) (sp24 / 10.0f);
@@ -562,15 +562,15 @@ s32 func_80801164_chfactorytoxiccloud(Actor *arg0, s32 arg1, s32 arg2) {
     f32 sp1C;
     s32 result;
 
-    sp1C = (*(f32 *)((s8 *)(arg0) + (0x48)));
-    (*(f32 *)((s8 *)(arg0) + (0x48))) = (f32) (*(f32 *)((s8 *)(arg0) + (0x54)));
+    sp1C = (arg0->rotation[1]);
+    (arg0->rotation[1]) = (f32) (arg0->unk54);
     result = func_8010BA80(arg0, arg1, arg2);
-    (*(f32 *)((s8 *)(arg0) + (0x48))) = sp1C;
+    (arg0->rotation[1]) = sp1C;
     return result;
 }
 
 s32 func_808011A0_chfactorytoxiccloud(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800FFAB0(Actor *);
     void func_800CF494(void);
     void func_80102424(Actor *, s32);
@@ -622,8 +622,8 @@ s32 func_808012C4_chfactorytoxiccloud(Actor *arg0) {
     } Cloud;
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
     f32 func_800EEB40(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     u8 *actors[10];
     f32 distance;
     s32 count;

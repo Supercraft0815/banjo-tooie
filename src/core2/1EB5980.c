@@ -62,11 +62,11 @@ s32 func_800DC2D4(f32 arg0) {
 void func_800DC310(void) {
     extern s32 D_8012C7F0;
     D_8012C7F0 = 0xEAA0C7;
-}
+}    typedef struct { s32 unk0; } Obj1EB5980_D_8012C7F0; /* offsets.py genstruct: fields from raw offsets on &D_8012C7F0; rename once understood */
 
 void func_800DC324(s32 arg0) {
     extern s32 D_8012C7F0;
-    *(s32 *)((u8 *)&D_8012C7F0 + 0) = arg0;
+    ((Obj1EB5980_D_8012C7F0 *)&D_8012C7F0)->unk0 = arg0;
 }
 
 void func_800DC330(void) {
@@ -86,3 +86,12 @@ void func_800DC354(void) {
     D_8012C7F0 = D_8012C7F8;
     D_8012C7F4 = D_8012C7FC;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012C7F0 BT_DATA(16, bss_core2bss2, 0x0);
+s32 D_8012C7F4 BT_DATA(4, bss_core2bss2, 0x4);
+s32 D_8012C7F8 BT_DATA(4, bss_core2bss2, 0x8);
+s32 D_8012C7FC BT_DATA(4, bss_core2bss2, 0xC);
+#endif

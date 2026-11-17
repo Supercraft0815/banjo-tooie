@@ -34,7 +34,7 @@ s32 func_80800000_chintroticker(u8 *arg0) {
             }
         }
         entry++;
-    } while (entry != end);
+    } while (entry != end); BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_808000B0_chintroticker(u8 *arg0, s32 arg1) {
@@ -99,10 +99,10 @@ s32 func_808000B0_chintroticker(u8 *arg0, s32 arg1) {
 }
 
 void func_80800188_chintroticker(u8 *arg0, s32 arg1) {
-    s32 func_800167F4(void);
+    u8 func_800167F4(void);
     void _chattract_entrypoint_1(s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
 
     if (arg1 == 0xA1 || arg1 == 0x18B || arg1 == 0x18E || arg1 == 0x194 || arg1 == 0x196) {
         switch (arg0[0x79] >> 4) {
@@ -134,8 +134,8 @@ void func_80800188_chintroticker(u8 *arg0, s32 arg1) {
 /* extern */
 
 void func_80800254_chintroticker(Actor *arg0) {
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     switch (arg0->unk79_4) {
     case 2:
         func_800DA524(0x578);
@@ -159,7 +159,7 @@ void func_80800254_chintroticker(Actor *arg0) {
 }
 
 void func_808002DC_chintroticker(u8 *arg0) {
-    s32 _glcutDll_entrypoint_18();
+    s16 _glcutDll_entrypoint_18(void);
     void _glintrosyncDll_entrypoint_2(f32);
     s32 func_800EA05C();
     void func_800FFAB0(Actor *);
@@ -195,10 +195,10 @@ void func_808002DC_chintroticker(u8 *arg0) {
 void func_808003BC_chintroticker(s32 arg0) 
 {
 }
-void func_808003C4_chintroticker(s32 arg0) {
+void func_808003C4_chintroticker(BtIntPtr arg0) {
     void _gcfrontend_entrypoint_10(void);
-    s32 _gcfrontend_entrypoint_13();
-    s32 _glcutDll_entrypoint_12(s32);
+    void _gcfrontend_entrypoint_13(void);
+    void _glcutDll_entrypoint_12(s32 arg0);
     void _glcutDll_entrypoint_17(void);
     void _gsattract_entrypoint_5(s32);
     void func_800A7990(s32, s32, s32);
@@ -236,12 +236,12 @@ void func_808003C4_chintroticker(s32 arg0) {
     }
 }
 
-void func_808004A8_chintroticker(s32 arg0, s32 arg1) {
+void func_808004A8_chintroticker(BtIntPtr arg0, s32 arg1) {
     void _glcutDll_entrypoint_14(s32);
     void _glcutDll_entrypoint_24(u32, u32, u32);
     void func_800A7990(s32, s32, s32);
     int func_800A8264(void);
-    void func_808003C4_chintroticker(s32);
+    void func_808003C4_chintroticker(BtIntPtr);
     Actor *actor = (Actor *)arg0;
 
     if (func_800A8264() == 0) {
@@ -258,8 +258,8 @@ void func_808004A8_chintroticker(s32 arg0, s32 arg1) {
     }
 }
 
-void func_80800530_chintroticker(s32 arg0, s32 arg1) {
-    void func_808004A8_chintroticker(s32, s32);
+void func_80800530_chintroticker(BtIntPtr arg0, s32 arg1) {
+    void func_808004A8_chintroticker(BtIntPtr, s32);
     extern s16 D_808008C4_chintroticker;
     s16 *var_v1;
     s16 temp_a1;
@@ -289,7 +289,7 @@ loop_4:
     }
 }
 
-void func_808005AC_chintroticker(s32 arg0) {
+void func_808005AC_chintroticker(BtIntPtr arg0) {
     s32 func_800EA05C(void);
     s32 func_800DA9E4(s32, s32);
     s32 func_800DA298(s32);

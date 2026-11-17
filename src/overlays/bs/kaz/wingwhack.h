@@ -25,7 +25,7 @@
 #include "core2/1ECD170.h"
 #include "player.h"
 
-extern s32 _bskazwingwhack_entrypoint_0(s32 idx);
-extern s32 _bskazwingwhack_entrypoint_1(s32 idx);
+extern BtIntPtr _bskazwingwhack_entrypoint_0(s32 idx);
+extern BtIntPtr _bskazwingwhack_entrypoint_1(s32 idx);
 
 #endif // __BS_KAZ_WINGWHACK__

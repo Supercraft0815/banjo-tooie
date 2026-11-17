@@ -139,3 +139,9 @@ void func_800DB8BC(char* arg0, s32 time) {
 int func_800DB9B0(void) {
     return func_800DA298(FLAG2_641_CUTSCENE_STORAGE_ACTIVE);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+f32 D_8012C768 [ 2 ] BT_DATA(4, bss_core2bss1_2_status_tail, 0x1348);
+#endif

@@ -42,16 +42,16 @@ void func_80800104_chdinofamilymissing(Actor *arg0) {
         u32 pad74_4 : 28;
         u32 unk74_0 : 4;
     };
-    s32 _chdinofamilyfx_entrypoint_0(Actor *);
+    void _chdinofamilyfx_entrypoint_0(Actor *arg0);
     void _glcutDll_entrypoint_24(u32, u32, u32);
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
-    void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
-    s32 func_800DA524(s32);
-    s32 func_800DA544(s32);
+    s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
+    void func_800DA524(s32 index);
+    void func_800DA544(s32 index);
     void func_800FFAB0(Actor *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     f32 func_80103EAC(Actor *);
     f32 func_80103EF4(Actor *);
@@ -105,7 +105,7 @@ void func_80800104_chdinofamilymissing(Actor *arg0) {
 }
 
 s32 func_80800324_chdinofamilymissing(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800EA05C();
     void func_800FFAB0(Actor *);
@@ -155,8 +155,8 @@ void func_80800418_chdinofamilymissing(Actor *arg0) {
 }
 
 s32 func_808004A4_chdinofamilymissing(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(s32);
     void _glcutDll_entrypoint_24(u32, u32, u32);

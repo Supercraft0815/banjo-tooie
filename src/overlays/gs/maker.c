@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_gsfile.h"
 #include "native_assets.h"
 #include "core2/1EAF950.h"
@@ -274,10 +274,10 @@ void gsmaker_entrypoint_0(void *arg0) {
     s32 func_800D70F8(s16, s32);
     s32 func_800D721C(s16, s32);
     void heap_free(void *);
-    if ((*(s32 *)((s8 *)(arg0) + (0x14))) == 2) {
-        func_800D721C((*(s16 *)((s8 *)(arg0) + (0x20))), 0);
-        func_800D70F8((*(s16 *)((s8 *)(arg0) + (0x20))), 0);
-        func_800D6CEC((*(s16 *)((s8 *)(arg0) + (0x20))));
+    if ((((GsFile *)arg0)->mode) == 2) {
+        func_800D721C((((GsFile *)arg0)->asset_id), 0);
+        func_800D70F8((((GsFile *)arg0)->asset_id), 0);
+        func_800D6CEC((((GsFile *)arg0)->asset_id));
     }
     heap_free(arg0);
 }
@@ -311,9 +311,9 @@ GsFile *gsmaker_entrypoint_1(s32 arg0) {
 
 /* extern */
 
-void gsmaker_entrypoint_2(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(GsFile *) gsmaker_entrypoint_2(s32 arg0) {
     GsFile *gsmaker_entrypoint_1(s32);
-    gsmaker_entrypoint_1(arg0 + 0x955);
+    BT_NATIVE_ONLY(return) gsmaker_entrypoint_1(arg0 + 0x955);
 }
 
 /* extern */

@@ -45,6 +45,9 @@ void func_8080019C_bsmumsplat(PlayerState *self) {
     _bsmum_entrypoint_1(self);
 }
 
-s32 bsmumsplat_entrypoint_0(s32 idx) {
+BtIntPtr bsmumsplat_entrypoint_0(s32 idx) {
     return D_808001E0_bsmumsplat[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/mum/splat.data.s */
+void func_80099AA8();
+BtIntPtr D_808001E0_bsmumsplat [4] BT_DATA(4, overlays_bs_mum_splat, 0x0) = { (BtIntPtr)func_8080019C_bsmumsplat, (BtIntPtr)func_80800000_bsmumsplat, (BtIntPtr)func_808000A0_bsmumsplat, (BtIntPtr)func_80099AA8 };

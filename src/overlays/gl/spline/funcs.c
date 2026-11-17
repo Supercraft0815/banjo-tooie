@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spline.h"
 #include "native_actor.h"
 #else
@@ -21,7 +21,7 @@ s32 glsplinefuncs_entrypoint_0(s32 arg0, s32 *arg1, f32 *arg2, f32 *arg3, s32 ar
     s32 i;
 
     state = func_800D7400();
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     *arg5 = *arg6 = -9999.0f;
     if (!native_spline_context.count || arg4 < -1 || arg4 >= native_spline_context.count) return 0;
 #endif
@@ -33,7 +33,7 @@ s32 glsplinefuncs_entrypoint_0(s32 arg0, s32 *arg1, f32 *arg2, f32 *arg3, s32 ar
         first = data + 4;
         entry = first;
         end = data + *(s32 *)data * 20 + 4;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         while (entry < end && arg0 != (*(u32 *)(entry + 16) >> 21)) {
 #else
         while (arg0 != (*(u32 *)(entry + 16) >> 21) && entry < end) {
@@ -44,7 +44,7 @@ s32 glsplinefuncs_entrypoint_0(s32 arg0, s32 *arg1, f32 *arg2, f32 *arg3, s32 ar
             if ((*(u32 *)(entry + 4) & 1) == 1) {
                 if (!(*(u32 *)(entry + 12) & 1) && ((*(u32 *)(entry + 4) << 25) >> 29) == 7) {
                     *arg5 = (f32)(*(u32 *)(entry + 12) >> 23);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                     *arg6 = (f32)((*(u32 *)(entry + 4) >> 7) & 0x1FF);
 #else
                     *arg6 = (f32)((u32)*(u16 *)(entry + 6) >> 7);
@@ -63,7 +63,7 @@ s32 glsplinefuncs_entrypoint_0(s32 arg0, s32 *arg1, f32 *arg2, f32 *arg3, s32 ar
             first = data + 4;
         entry = first;
             end = data + *(s32 *)data * 20 + 4;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         while (entry < end && arg0 != (*(u32 *)(entry + 16) >> 21)) {
 #else
         while (arg0 != (*(u32 *)(entry + 16) >> 21) && entry < end) {
@@ -74,7 +74,7 @@ s32 glsplinefuncs_entrypoint_0(s32 arg0, s32 *arg1, f32 *arg2, f32 *arg3, s32 ar
                 if ((*(u32 *)(entry + 4) & 1) == 1) {
                     if (!(*(u32 *)(entry + 12) & 1) && ((*(u32 *)(entry + 4) << 25) >> 29) == 7) {
                         *arg5 = (f32)(*(u32 *)(entry + 12) >> 23);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                     *arg6 = (f32)((*(u32 *)(entry + 4) >> 7) & 0x1FF);
 #else
                     *arg6 = (f32)((u32)*(u16 *)(entry + 6) >> 7);
@@ -91,7 +91,7 @@ s32 glsplinefuncs_entrypoint_0(s32 arg0, s32 *arg1, f32 *arg2, f32 *arg3, s32 ar
     return 0;
 }
 
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
 typedef struct {
     s32 word;
 } SplineSpawnWord;
@@ -125,7 +125,7 @@ void glsplinefuncs_entrypoint_1(s32 arg0, SplineSpawnWord arg1, s32 arg2) {
         u32 splineFlag:1;
         u32 unused77:4;
     } SplineActor;
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void func_800D87D4(s32 *, s32);
 #endif
     void *func_80105494(Actor *);
@@ -145,28 +145,28 @@ void glsplinefuncs_entrypoint_1(s32 arg0, SplineSpawnWord arg1, s32 arg2) {
 
     sp5C = arg0;
     if (((u8 *)&arg0)[0]) {} /* Preserve IDO's incoming argument home. */
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     state = (void *)*(s32 *)&arg2;
 #endif
     sp4C = (arg1.word >> 12) & 0x3F;
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (sp4C >= 33 || !glsplinefuncs_entrypoint_0(arg1.word & 0xFFF, &sp50, &sp48, sp3C, arg2, &sp38, &sp34)) return;
 #else
     glsplinefuncs_entrypoint_0((arg1.word &= 0xFFF), &sp50, &sp48, sp3C, (s32)state, &sp38, &sp34);
 #endif
     sp30 = func_80108474(sp5C, sp3C, (s32) sp38);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (!sp30) return;
 #endif
     state = func_80105494(sp30);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (!state) state = func_8010556C(sp30);
 #endif
     object = sp30;
     state->signedId = sp50;
     state->progress = sp48;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     ((Actor *)object)->unk50 = sp34;
     ((Actor *)object)->rotation[0] = sp34;
     ((Actor *)object)->pad74_0 |= 16;
@@ -176,7 +176,7 @@ void glsplinefuncs_entrypoint_1(s32 arg0, SplineSpawnWord arg1, s32 arg2) {
     object->splineFlag = 1;
 #endif
     if (sp4C != 0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         func_800D87D4(sp30, sp4C);
 #else
         func_800D87D4((s32 *)sp30, sp4C);

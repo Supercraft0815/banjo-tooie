@@ -2,7 +2,7 @@
 
 void func_80800000_choildrill(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    s32 func_800BEF00(f32[3], f32[3], f32[3], s32);
+    void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     s32 func_800D0A9C(u32, u32);
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
@@ -37,21 +37,21 @@ void func_80800000_choildrill(Actor *arg0) {
     func_800EFA4C(sp24[0], sp34[0], sp34[1] - 5000.0f, sp34[2]);
     func_800BEF00(sp34, sp24[0], sp28, 0);
 }
-
+typedef struct { f32 time; f32 value; u8 flags; u8 pad[3]; f32 rate; } DrillStep; typedef struct { f32 v[3]; } DrillVec;
 void func_80800104_choildrill(Actor *arg0)
 {
-  typedef struct 
-  {
-    f32 time;
-    f32 value;
-    u8 flags;
-    u8 pad[3];
-    f32 rate;
-  } DrillStep;
-  typedef struct 
-  {
-    f32 v[3];
-  } DrillVec;
+
+
+
+
+
+
+
+
+
+
+
+
   extern DrillStep D_8080130C_choildrill[];
   extern DrillVec D_80801300_choildrill;
   void _fxtwinkle_entrypoint_2(f32 *, s32);
@@ -71,7 +71,7 @@ void func_80800104_choildrill(Actor *arg0)
   void func_800FFAB0(Actor *);
   void *func_8010262C(Unk80132ED0 *, s32);
   void func_80103110(void *, s32);
-  s32 func_80103DFC(Actor *, f32 *);
+  void func_80103DFC(Actor *actor,f32 *center);
   void func_808007DC_choildrill(Actor *, f32, s32);
   void func_808008AC_choildrill(f32 *);
   void func_8080097C_choildrill(Actor *);
@@ -166,7 +166,7 @@ void func_80800104_choildrill(Actor *arg0)
     }
       break;
 
- } if ((*((u16 *) (((u8 *) arg0->unk0) + 0x14))) == 0x91F) { arg0->unk50 += ((f32 *) arg0->actorData)[7] * func_800D8FF8(); if (arg0->unk50 >= 360.0f) { arg0->unk50 -= 360.0f; } step = (((arg0->unk50 > 272.0f) && (arg0->unk54 < 272.0f)) ? 9 : 0) | (done = ((arg0->unk50 > 92.0f) && (arg0->unk54 < 92.0f)) ? 5 : 0, flags3 = ((arg0->unk50 > 180.0f) && (arg0->unk50 < 270.0f)) ? 2 : 0, flags3 | done); func_80800CF0_choildrill(arg0, step, func_800F10B4(((f32 *) arg0->actorData)[7], 0.0f, 180.0f, 0.8f, 1.1f)); arg0->unk54 = arg0->unk50; part = func_8010262C(arg0->unk0, 2); if (part) {
+ } if ((arg0->unk0->unk14) == 0x91F) { arg0->unk50 += ((f32 *) arg0->actorData)[7] * func_800D8FF8(); if (arg0->unk50 >= 360.0f) { arg0->unk50 -= 360.0f; } step = (((arg0->unk50 > 272.0f) && (arg0->unk54 < 272.0f)) ? 9 : 0) | (done = ((arg0->unk50 > 92.0f) && (arg0->unk54 < 92.0f)) ? 5 : 0, flags3 = ((arg0->unk50 > 180.0f) && (arg0->unk50 < 270.0f)) ? 2 : 0, flags3 | done); func_80800CF0_choildrill(arg0, step, func_800F10B4(((f32 *) arg0->actorData)[7], 0.0f, 180.0f, 0.8f, 1.1f)); arg0->unk54 = arg0->unk50; part = func_8010262C(arg0->unk0, 2); if (part) {
       angle1 = func_800136E4(func_80013970(arg0->unk50) * 20.0f);
       angle2 = func_800136E4(-angle1);
       func_800E0AFC(part, 0x2A, -1.0f, angle1, 0.0f, 0.0f);
@@ -199,16 +199,16 @@ void func_808007DC_choildrill(Actor *arg0, f32 arg1, s32 arg2) {
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     void _subaddieaudioloop_entrypoint_2(Actor *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC0C0(void);
-    extern u32 D_8080138C_choildrill;
-    extern s32 D_80801398_choildrill;
+    extern u32 D_8080138C_choildrill[3];
+    extern s32 D_80801398_choildrill[14];
     extern f32 D_808013D0_choildrill[3];
     if (arg2 != 0) {
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_8080138C_choildrill);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_8080138C_choildrill);
         _subaddieaudioloop_entrypoint_0(arg0, arg1);
         if (func_800DC0C0() < 0.4f) {
-            func_800BBCB8(D_808013D0_choildrill, NULL, 1.0f, 1, &D_80801398_choildrill);
+            func_800BBCB8(D_808013D0_choildrill, NULL, 1.0f, 1, D_80801398_choildrill);
         }
     } else {
         _subaddieaudioloop_entrypoint_2(arg0);
@@ -216,31 +216,31 @@ void func_808007DC_choildrill(Actor *arg0, f32 arg1, s32 arg2) {
 }
 
 void choildrill_entrypoint_0(s32 arg0, f32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_808013DC_choildrill;
-    func_800BBCB8(arg1, NULL, 1.0f, 1, &D_808013DC_choildrill);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_808013DC_choildrill[10];
+    func_800BBCB8(arg1, NULL, 1.0f, 1, D_808013DC_choildrill);
 }
 
 void func_808008AC_choildrill(f32 *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    s32 func_800BA4D0(s32, s16);
-    void func_800BA544(s32 *, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA4D0(void *emitter, s16 min_y);
+    void func_800BA544(s32 *, BtIntPtr);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800C6920(f32[3], f32, f32, s32);
-    extern s32 D_80801404_choildrill;
+    extern s32 D_80801404_choildrill[19];
 #ifndef BT_NATIVE
     extern s32 _choildrill_entrypoint_0;
 #endif
-    s32 temp_s1;
+    BtIntPtr temp_s1;
     f32 sp28;
 
     temp_s1 = func_800B53A4(8);
     sp28 = arg0[1];
     arg0[1] = func_800C6920(arg0, 200.0f, -200.0f, 0) + 5.0f;
-    func_800BABB8(temp_s1, arg0, arg0, 1.0f, &D_80801404_choildrill);
+    func_800BABB8(temp_s1, arg0, arg0, 1.0f, D_80801404_choildrill);
     func_800BA4D0(temp_s1, (s16) (s32) arg0[1]);
-    func_800BA544((s32 *) temp_s1, (s32) &_choildrill_entrypoint_0);
+    func_800BA544((s32 *) temp_s1, (BtIntPtr) &_choildrill_entrypoint_0);
     func_800BA22C(temp_s1, 8);
     choildrill_entrypoint_0(0, arg0);
     arg0[1] = sp28;
@@ -264,7 +264,7 @@ void func_8080097C_choildrill(Actor *arg0) {
 }
 
 void func_808009F8_choildrill(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void func_800C3F48(u32);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
@@ -324,7 +324,7 @@ void func_808009F8_choildrill(Actor *arg0, s32 arg1) {
 
 void func_80800B90_choildrill(void **arg0) {
     s32 func_80103140(void **, s32, u16);
-    s32 func_8010A590(void **);
+    void func_8010A590(Actor *arg0);
     s32 func_8010A624();
     func_8010A624();
     func_8010A590(arg0);
@@ -332,11 +332,11 @@ void func_80800B90_choildrill(void **arg0) {
 }
 
 s32 func_80800BCC_choildrill(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _chjigsawcollect_entrypoint_1(Actor **, s32, s32);
     void _glcutDll_entrypoint_6(u32, u32);
     void func_800D0BD4(s32, u32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     void func_800FFAB0(Actor *);
     void func_80108B04(Actor *, u32);
 
@@ -374,7 +374,7 @@ s32 func_80800BCC_choildrill(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800CF0_choildrill(Actor *arg0, u8 arg1, f32 arg2) {
     void func_800C4140(u32, f32 *, u32);
     s32 func_8001210C(s32);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80801450_choildrill[];
     if (arg1 & 4) {
         func_800C4140(((u16)(arg2 * 1023.0f) << 21) + 0x9C608, arg0->position, 0x12C000FA);
@@ -392,7 +392,7 @@ void func_80800F08_choildrill(Actor *arg0, void *arg1) {
     f32 func_80013970(f32);
     void *func_800D674C(s32);
     f32 func_800DC178(f32, f32);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF830(s32);
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EF04C(f32 *, f32 *);
@@ -421,22 +421,22 @@ void func_80800F08_choildrill(Actor *arg0, void *arg1) {
         func_800EF04C(sp3C, sp54);
         _fxtwinkle_entrypoint_0(sp3C);
         func_800DF830(1);
-        func_800DE498(arg1, sp54, sp48, 1.0f, NULL, (s32)sp64);
+        func_800DE498(arg1, sp54, sp48, 1.0f, NULL, (BtIntPtr)sp64);
     }
 }
 
 OSThread *choildrill_entrypoint_1(void)
 {
-    extern u8 D_808014A8_choildrill[];
+    extern ActorData D_808014A8_choildrill[];
 
     return (OSThread *) D_808014A8_choildrill;
 }
 
 /* extern */
 
-void func_808010C0_choildrill(s32 arg0) {
-    s32 _chswitch_entrypoint_7(s32, s32);
-    s32 _chswitch_entrypoint_9(s32);
+void func_808010C0_choildrill(BtIntPtr arg0) {
+    s32 _chswitch_entrypoint_7(BtIntPtr, s32);
+    void _chswitch_entrypoint_9(void *arg0);
     s32 func_800DA298(s32);
     _chswitch_entrypoint_7(arg0, 0x351);
     _chswitch_entrypoint_9(arg0);
@@ -445,13 +445,13 @@ void func_808010C0_choildrill(s32 arg0) {
 
 /* extern */
 
-s32 func_80801110_choildrill(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _chswitch_entrypoint_10(s32, s32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+s32 func_80801110_choildrill(BtIntPtr arg0, s32 arg1, s32 arg2) {
+    s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    u32 func_800F54E4(void);
-    int func_800F6B94(s32);
-    s32 func_80101180(s32, s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    int func_800F6B94(BtIntPtr);
+    s32 func_80101180(s32, s32, BtIntPtr);
     Actor *actor = (Actor *)arg0;
     if (arg1 != 7) {
         if (arg1 == 0x91) {
@@ -479,7 +479,28 @@ block_11:
 
 OSThread *choildrill_entrypoint_2(void)
 {
-    extern u8 D_808014F0_choildrill[];
+    extern ActorData D_808014F0_choildrill[];
 
     return (OSThread *) D_808014F0_choildrill;
 }
+/* data_to_c.py: from asm/data/overlays/ch/oildrill.data.s */
+extern u8 D_808012B0_choildrill[];
+void func_80105834(Actor*);
+void func_80108ED0();
+void func_80107C2C();
+extern u8 D_8011A1BC[];
+void _chswitch_entrypoint_6();
+void func_80101870 ( Actor * , void * );
+u8 D_808012B0_choildrill[80] BT_DATA(4, overlays_ch_oildrill, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00 };
+DrillVec D_80801300_choildrill BT_DATA(4, overlays_ch_oildrill, 0x50) = { { -6460.0f, 0.0f, 1777.0f } };
+DrillStep D_8080130C_choildrill [8] BT_DATA(4, overlays_ch_oildrill, 0x5C) = { { 0.0f, 0.0f, 0, { 0, 0, 0 }, 0.0f }, { 2.0f, 0.0f, 1, { 0, 0, 0 }, 0.0f }, { 6.0f, 0.0f, 5, { 0, 0, 0 }, 1.1f }, { 6.5f, 0.3f, 5, { 0, 0, 0 }, 1.1f }, { 7.0f, 0.1f, 5, { 0, 0, 0 }, 1.1f }, { 9.0f, 0.4f, 1, { 0, 0, 0 }, 0.0f }, { 18.0f, 1.0f, 1, { 0, 0, 0 }, 0.0f }, { -1.0f, 0.0f, 0, { 0, 0, 0 }, 0.0f } };
+u32 D_8080138C_choildrill[3] BT_DATA(4, overlays_ch_oildrill, 0xDC) = { 0x1304B4, 0x103E8, 0x27100000 };
+s32 D_80801398_choildrill[14] BT_DATA(4, overlays_ch_oildrill, 0xE8) = { 1903068, 1572864, 1250304, 503316507, 19661325, 851998, 2054746, 1509949462, 301989925, 83887872, 1376335, 10027051, 42074880, 0 };
+f32 D_808013D0_choildrill [ 3 ] BT_DATA(4, overlays_ch_oildrill, 0x120) = { -5260.0f, 3600.0f, 4510.0f };
+s32 D_808013DC_choildrill[10] BT_DATA(4, overlays_ch_oildrill, 0x12C) = { 1903067, 1445889, 2818560, 50331669, 4194496, 2228480, 16777984, 83886111, -1263891456, -2013134848 };
+s32 D_80801404_choildrill[19] BT_DATA(4, overlays_ch_oildrill, 0x154) = { 1903065, 1834008, -58982355, 19661200, 1445888, 2293790, 1376268, 15073323, 67109888, 3080320, 8388608, 3342425, 153, 3276750, -655353, 65547, 1310770, 327680, 0 };
+s32 D_80801450_choildrill [16] BT_DATA(4, overlays_ch_oildrill, 0x1A0) = { 1903092, 1834558, -36044755, 9830650, 851998, 1446912, 2490618, 16384000, 26214800, 34, 11731200, 4980864, 262297, 458754, 3276790, -1966080 };
+f32 D_80801490_choildrill [ 3 ] BT_DATA(4, overlays_ch_oildrill, 0x1E0) = { -5530.0f, 3015.0f, 4600.0f };
+f32 D_8080149C_choildrill [ 3 ] BT_DATA(4, overlays_ch_oildrill, 0x1EC) = { -6230.0f, 2980.0f, 6520.0f };
+ActorData D_808014A8_choildrill [1] BT_DATA(4, overlays_ch_oildrill, 0x1F8) = { { 344, 1156, 2335, 2, (void *)D_808012B0_choildrill, (void (*)(struct Actor *))func_80800104_choildrill, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800F08_choildrill, 262164000, 0, 0, 0, 128, 3104, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_choildrill, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800BCC_choildrill, 0 } };
+ActorData D_808014F0_choildrill [1] BT_DATA(4, overlays_ch_oildrill, 0x240) = { { 344, 1157, 2354, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808010C0_choildrill, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80801110_choildrill, 0 } };

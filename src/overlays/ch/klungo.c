@@ -15,16 +15,16 @@ u32 D_80803B60_chklungo[] = {
     0x02640001,
 };
 
-u32 D_80803B6C_chklungo[] = {
+BtFnWord D_80803B6C_chklungo[] = {
     0x00B3041E, 0xFFFF0001,
-    (u32)D_80803A4C_chklungo, (u32)func_808002D0_chklungo,
-    (u32)func_8080101C_chklungo, (u32)func_808011B4_chklungo,
+    (BtFnWord)D_80803A4C_chklungo, (BtFnWord)func_808002D0_chklungo,
+    (BtFnWord)func_8080101C_chklungo, (BtFnWord)func_808011B4_chklungo,
     0x00000000, 0x40000000,
     0x00000000, 0x00040561,
-    (u32)func_8080162C_chklungo, (u32)func_80108ED0,
-    0x00A00000, (u32)func_8080000C_chklungo,
-    (u32)func_80107C2C, 0x80201404,
-    (u32)func_80801220_chklungo, 0x00000000,
+    (BtFnWord)func_8080162C_chklungo, (BtFnWord)func_80108ED0,
+    0x00A00000, (BtFnWord)func_8080000C_chklungo,
+    (BtFnWord)func_80107C2C, 0x80201404,
+    (BtFnWord)func_80801220_chklungo, 0x00000000,
 };
 
 u32 D_80803BB4_chklungo[] = {
@@ -41,22 +41,22 @@ OSThread *chklungo_entrypoint_0(void)
 void func_8080000C_chklungo(Actor *arg0) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
-    s16 _glsplinefind_entrypoint_0(u32, f32 *);
-    void _plcamera_entrypoint_8(s32);
+    s32 _glsplinefind_entrypoint_0(s32 arg0, f32 arg1[3]);
+    void _plcamera_entrypoint_8(s32 *arg0);
     s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
-    void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_1(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_12(u32 *, s32 *);
+    void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_1(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_12(void *arg0, void *arg1);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
-    void func_800F497C(s32);
-    u32 func_800F54E4(void);
-    void func_800F608C(s32, s32);
-    void func_800F8294(s32, f32 *);
+    void func_800F497C(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F608C(BtIntPtr, s32);
+    void func_800F8294(BtIntPtr, f32 *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    void func_801032B0(void *, u16, u16);
+    s32 func_801032B0(Actor *actor,u16 id,u16 palette);
     void func_80109FE8(void **, s32);
     void func_80801964_chklungo(Actor *, s32);
     void func_808020F0_chklungo(Actor *, s32);
@@ -93,7 +93,7 @@ void func_8080000C_chklungo(Actor *arg0) {
         u8 pad70:7;
         u8 flag70:1;
     };
-    s32 camera;
+    BtIntPtr camera;
 
     data = func_80100094(arg0, 0);
     data->unk8 = func_8080242C_chklungo();
@@ -156,33 +156,33 @@ void func_8080000C_chklungo(Actor *arg0) {
 }
 
 void func_808002D0_chklungo(Actor *arg0) {
-    s32 _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     s32 _subaddiefade_entrypoint_0(Actor *);
     s32 _subaddiefind_entrypoint_9(s32);
     void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, u32, s32, f32, s32, s32);
+    s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
-    s32 _suexpression_entrypoint_18(void *, s32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
+    void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
     void func_8008FB58(f32 *, f32, f32);
     s32 func_800CBD84(f32 *);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    s32 func_800EFD24(s32 *);
+    void func_800EFD24(f32 vec[3]);
     void func_800EFE50(f32 *, void *, void *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
@@ -595,7 +595,7 @@ void func_808002D0_chklungo(Actor *arg0) {
 void func_8080101C_chklungo(Actor *arg0) {
     void _gcfrontend_entrypoint_10(void);
     void _glcutDll_entrypoint_6(u32, u32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_800D395C(void);
     void *func_80100094(Actor *, u32);
     void func_80105834(Actor *);
@@ -665,15 +665,15 @@ void func_808010E0_chklungo(Actor *arg0, s32 arg1) {
     if (data->unk1A != 0) {
         func_800DF5D8(0xE0, 0xE0, 0xFF, _subaddiefade_entrypoint_0(arg0));
     }
-}
+}    typedef struct { u8 pad0[0x72]; u16 unk72; } Objklungo_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_808011B4_chklungo(void *arg0, s32 arg1)
 {
-  s32 func_800DF440(s32);
+  void func_800DF440(s32 enabled);
   s32 func_80101808(void *, s32 *);
   extern s32 func_801017D0;
   u32 temp_t7;
-  temp_t7 = (u16) (*((u16 *) (((s8 *) arg0) + 0x72)));
+  temp_t7 = (u16) (((Objklungo_arg0 *)arg0)->unk72);
   temp_t7 = temp_t7 >> 0xA;
   if (((temp_t7 == 0xD) || (temp_t7 == 0x15)) || (temp_t7 == 0x16))
   {
@@ -687,16 +687,16 @@ void func_808011B4_chklungo(void *arg0, s32 arg1)
 }
 
 s32 func_80801220_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void _subaddierouteDll_entrypoint_1(Actor *);
-    void *_suexpression_entrypoint_7(Actor *, s32, s32);
-    s32 _suexpression_entrypoint_8(Actor *, s32);
-    s32 _suexpression_entrypoint_12(void *, f32, f32);
-    s32 _suexpression_entrypoint_17(void *, s32);
+    void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
+    void _suexpression_entrypoint_8(void *arg0, s32 arg1);
+    void _suexpression_entrypoint_12(void *arg0, f32 arg1, f32 arg2);
+    void _suexpression_entrypoint_17(s16 *arg0, s32 arg1);
     s32 func_800D395C(void);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
-    void func_801032B0(void *, u16, u16);
+    s32 func_801032B0(Actor *actor,u16 id,u16 palette);
     void func_80108B04(Actor *, u32);
     void func_8010A800(Actor *, s32);
     void func_80801680_chklungo(Actor *, s32);
@@ -824,28 +824,28 @@ s32 func_80801220_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
         return 0;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x1A]; s16 unk1A; } Objklungo_func_8080162C_chklungo_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_8080162C_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_80802558_chklungo(Actor *);
     void func_80802FCC_chklungo(Actor *);
-    s32 _suexpression_entrypoint_8(Actor *, s32);
+    void _suexpression_entrypoint_8(void *arg0, s32 arg1);
     void *sp1C;
 
     sp1C = func_80100094(arg0, 0);
     func_80802FCC_chklungo(arg0);
     func_80802558_chklungo(arg0);
-    if (*(s16 *)((s8 *)sp1C + 0x1A) == 0) {
+    if (((Objklungo_func_8080162C_chklungo_sp1C *)sp1C)->unk1A == 0) {
         _suexpression_entrypoint_8(arg0, 1);
     }
-}
+}    typedef struct { u8 pad0[0x1A]; s16 unk1A; } Objklungo_func_80801680_chklungo_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
 void func_80801680_chklungo(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80801964_chklungo(Actor *, s32);
     void func_800FC6B0(u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void *data;
 
     data = func_80100094(arg0, 0);
@@ -859,7 +859,7 @@ void func_80801680_chklungo(Actor *arg0, s32 arg1) {
             func_80801964_chklungo(arg0, 18);
             return;
         case 23:
-            if (*(s16 *)((s8 *)data + 0x1A) == 0) {
+            if (((Objklungo_func_80801680_chklungo_data *)data)->unk1A == 0) {
                 func_80801964_chklungo(arg0, 24);
                 func_800FC6B0(14);
                 func_80101180(0x41E, 0x2C, 1);
@@ -934,7 +934,7 @@ void func_80801744_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
 s32 func_80801848_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    return _susubgame_entrypoint_3(arg0, (s32)func_80100094(arg0, 0U) + 0x88, arg1, arg2);
+    return _susubgame_entrypoint_3(arg0, (BtIntPtr)func_80100094(arg0, 0U) + 0x88, arg1, arg2);
 }
 
 void func_80801888_chklungo(void *arg0) {
@@ -944,46 +944,46 @@ void func_80801888_chklungo(void *arg0) {
     s32 sp1C[3];
 
     func_8010D600(sp1C);
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+    (((Actor *)arg0)->unk54) = func_80102D78(arg0, sp1C);
     func_80102BF8(arg0, 0.15f, 4.0f, 200.0f);
 }
 
 /* extern */
 
 void func_808018D4_chklungo(void *arg0) {
-    s32 func_800EFD24(s32 *);
+    void func_800EFD24(f32 vec[3]);
     f32 func_80102D78(void *, s32 *);
     s32 sp1C[3];
     f32 temp_f0;
 
     func_800EFD24(sp1C);
     temp_f0 = func_80102D78(arg0, sp1C);
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = temp_f0;
-    (*(f32 *)((s8 *)(arg0) + (0x48))) = temp_f0;
+    (((Actor *)arg0)->unk54) = temp_f0;
+    (((Actor *)arg0)->rotation[1]) = temp_f0;
 }
 
 void func_80801910_chklungo(u8 *arg0) {
-    void _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
+    s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     Actor *actor = (Actor *)arg0;
     _sudeflect_entrypoint_0(actor->position, actor->scale * 100.0f, actor->scale * 130.0f, 2);
 }
 
 void func_80801964_chklungo(Actor *arg0, s32 arg1) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     void _subaddiefade_entrypoint_3(Actor *);
     s32 func_800DA298(s32);
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
-    void func_800F497C(s32);
-    void func_800F49A8(s32, s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
-    u32 func_800F54E4(void);
+    void func_800F497C(BtIntPtr);
+    void func_800F49A8(BtIntPtr, s32);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80108B04(Actor *, u32);
     void func_80109FE8(void **, s32);
@@ -1044,7 +1044,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
     s32 sp38;
     s32 sp34;
     struct KlungoState *data;
-    s32 sp2C;
+    BtIntPtr sp2C;
     f32 sp28;
 
     sp3C = arg0->unk70_10;
@@ -1064,7 +1064,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
             func_808025CC_chklungo(arg0, 0);
             func_800F497C(sp2C);
             func_800F49A8(sp2C, 1);
-            func_800F49D4(sp2C, &func_8010D5DC, (s32)arg0->unk0);
+            func_800F49D4(sp2C, &func_8010D5DC, (BtIntPtr)arg0->unk0);
             func_800F4A58(sp2C, data->unk64, data->unk40 ? 220 : 300);
             func_800FDC28(1);
             break;
@@ -1237,7 +1237,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
 
 void func_808020F0_chklungo(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     f32 func_800DC178(f32, f32);
     struct {
         u8 pad0[8];
@@ -1319,7 +1319,7 @@ void func_8080220C_chklungo(Actor *arg0) {
 
 s32 func_8080231C_chklungo(Actor *arg0, f32 arg1, f32 arg2) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     f32 func_800D8FF8(void);
     s32 sp1C;
     f32 var_f2;
@@ -1339,7 +1339,7 @@ s32 func_8080231C_chklungo(Actor *arg0, f32 arg1, f32 arg2) {
 
 s32 func_808023A4_chklungo(Actor *arg0, f32 arg1, f32 arg2) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    s32 _subaddiefade_entrypoint_1(Actor *, s32);
+    void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     f32 func_800D8FF8(void);
     s32 sp1C;
     f32 var_f2;
@@ -1401,19 +1401,19 @@ s32 func_80802480_chklungo(Actor *arg0, s32 arg1) {
 
 s32 func_80802558_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 _susubgame_entrypoint_4(void *, s32);
-    return _susubgame_entrypoint_4(arg0, (s32)func_80100094(arg0, 0U) + 0x88);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
+    return _susubgame_entrypoint_4(arg0, (BtIntPtr)func_80100094(arg0, 0U) + 0x88);
 }
 
 void func_80802588_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     _susubgame_entrypoint_5(arg0, (u8 *)func_80100094(arg0, 0U) + 0x88, arg1, arg2, 0);
-}
+}    typedef struct { u8 pad0[0x8]; s16 unk8; } Objklungo_func_808025CC_chklungo_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
 void func_808025CC_chklungo(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     extern s16 D_808038A0_chklungo;
     void *data;
     s32 *entry;
@@ -1421,7 +1421,7 @@ void func_808025CC_chklungo(Actor *arg0, s32 arg1) {
     s32 a2;
 
     data = func_80100094(arg0, 0U);
-    entry = (s32 *)((u8 *)&D_808038A0_chklungo + (*(s16 *)((u8 *)data + 8) * 0x84) + (arg1 * 8));
+    entry = (s32 *)((u8 *)&D_808038A0_chklungo + (((Objklungo_func_808025CC_chklungo_data *)data)->unk8 * 0x84) + (arg1 * 8));
     a3 = entry[3];
     a2 = entry[2];
     _susubgame_entrypoint_6(arg0, (u8 *)data + 0x88, a2, a3, 0);
@@ -1429,7 +1429,7 @@ void func_808025CC_chklungo(Actor *arg0, s32 arg1) {
 
 void func_80802634_chklungo(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
-    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     extern u32 D_80803BE0_chklungo;
     extern u32 D_80803BEC_chklungo;
     extern u32 D_80803BFC_chklungo;
@@ -1438,7 +1438,7 @@ void func_80802634_chklungo(Actor *arg0) {
     extern u32 D_80803C2C_chklungo;
     f32 *temp_s1;
 
-    temp_s1 = (f32 *)((s8 *)arg0 + 4);
+    temp_s1 = &arg0->position[0];
     _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80803BE0_chklungo, 0.2f);
     _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80803BEC_chklungo, 0.78f);
     _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80803C0C_chklungo, &D_80803C2C_chklungo);
@@ -1468,8 +1468,8 @@ void func_808026CC_chklungo(Actor *arg0) {
 
 void func_80802798_chklungo(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
-    extern void _chbaddiesetup_entrypoint_10(void);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
+    extern Actor *_chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw);
     void func_800EE7F8(f32 *, f32 *);
     void func_80018820(s32, f32, f32);
     s32 func_800E15CC(s32, f32, f32);
@@ -1532,15 +1532,15 @@ void func_80802940_chklungo(Actor *arg0) {
 
 s32 func_8080299C_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 func_800B53A4(s32);
-    void func_800BAB80(s32, f32 *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BAB80(BtIntPtr, f32 *);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
     extern s16 D_808038A0_chklungo;
     extern s32 D_80803CC0_chklungo;
-    s32 particles;
+    BtIntPtr particles;
     s32 i;
     f32 sp74[3];
     s16 *data;
@@ -1554,7 +1554,7 @@ s32 func_8080299C_chklungo(Actor *arg0) {
         sp74[1] += func_800DC178(10.0f, 50.0f);
         func_800BABB8(particles, sp74, arg0->position, 1.0f, &D_80803CC0_chklungo);
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 void func_80802B10_chklungo(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -1577,10 +1577,10 @@ s32 func_80802B84_chklungo(Actor *arg0, s32 arg1) {
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80100120(Actor *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102FDC(Actor *, f32);
     void func_80103DFC(Actor *, f32 *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_8010A800(Actor *, s32);
     extern f32 D_808038F8_chklungo[][33];
@@ -1622,13 +1622,13 @@ s32 func_80802B84_chklungo(Actor *arg0, s32 arg1) {
         case 2:
             if (arg0->unk70_10 != 0x14) {
                 func_8010A800(arg0, 0);
-                return;
+                return BT_NATIVE_ONLY(0);
             }
             clone = func_801084B0(0x41E, &arg0);
             if (clone->unk70_25 == 0) {
                 func_800FFAB0(clone);
                 func_80101180(0x41E, 10, 0);
-                return;
+                return BT_NATIVE_ONLY(0);
             }
             cloneData = func_80100094(clone, 0);
             data[15] ^= 1;
@@ -1638,13 +1638,13 @@ s32 func_80802B84_chklungo(Actor *arg0, s32 arg1) {
             func_80801964_chklungo(clone, data[15] == 0 ? 0x16 : 0x15);
             break;
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 u8 func_80802DF4_chklungo(Actor *arg0) {
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
     s32 func_800DA564(s32, s32);
-    s32 func_800DA7A8(s32, s32, s32);
+    void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     s32 func_800DA980(s32, s32);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
@@ -1721,7 +1721,7 @@ void func_80802F58_chklungo(Actor *arg0) {
         func_80803158_chklungo(arg0, 0x1630, 0x44);
         *(s16 *)(sp1C + 0x24) = 1;
     }
-}
+}    typedef struct { u8 pad0[0x48]; u8 unk48; } Objklungo_func_80802FCC_chklungo_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x48]; u8 unk48; } Objklungo_func_80802FCC_chklungo_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80802FCC_chklungo(Actor *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
@@ -1731,13 +1731,13 @@ void func_80802FCC_chklungo(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    (*(u8 *)((s8 *)(sp1C) + (0x48))) = _subaddieaudioloop_entrypoint_3((*(u8 *)((s8 *)(temp_v0) + (0x48))));
-}
+    (((Objklungo_func_80802FCC_chklungo_sp1C *)sp1C)->unk48) = _subaddieaudioloop_entrypoint_3((((Objklungo_func_80802FCC_chklungo_temp_v0 *)temp_v0)->unk48));
+}    typedef struct { u8 pad0[0x46]; s16 unk46; } Objklungo_func_80803000_chklungo_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x46]; s16 unk46; } Objklungo_func_80803000_chklungo_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
 void func_80803000_chklungo(Actor *arg0) {
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void* func_80100094(Actor*, u32);
     s32 func_800F4AF4(u32, s32);
     void func_808030A4_chklungo(Actor *);
@@ -1746,39 +1746,39 @@ void func_80803000_chklungo(Actor *arg0) {
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    if ((*(s16 *)((s8 *)(temp_v0) + (0x46))) == 0) {
+    if ((((Objklungo_func_80803000_chklungo_temp_v0 *)temp_v0)->unk46) == 0) {
         func_800F4AF4(func_800F54E4(), 0x14);
-        (*(s16 *)((s8 *)(sp1C) + (0x46))) = 1;
+        (((Objklungo_func_80803000_chklungo_sp1C *)sp1C)->unk46) = 1;
     }
     func_808030A4_chklungo(arg0);
-}
+}    typedef struct { u8 pad0[0x46]; s16 unk46; } Objklungo_func_8080305C_chklungo_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0x46]; s16 unk46; } Objklungo_func_8080305C_chklungo_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
 void func_8080305C_chklungo(Actor *arg0) {
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void* func_80100094(Actor*, u32);
-    s32 func_800F4B20(u32);
+    void func_800F4B20(BtIntPtr arg0);
     u8 *sp1C;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
     sp1C = temp_v0;
-    if ((*(s16 *)((s8 *)(temp_v0) + (0x46))) != 0) {
+    if ((((Objklungo_func_8080305C_chklungo_temp_v0 *)temp_v0)->unk46) != 0) {
         func_800F4B20(func_800F54E4());
-        (*(s16 *)((s8 *)(sp1C) + (0x46))) = 0;
+        (((Objklungo_func_8080305C_chklungo_sp1C *)sp1C)->unk46) = 0;
     }
 }
 
 void func_808030A4_chklungo(Actor *arg0) {
-    s32 _plcamera_entrypoint_10(s32);
-    void _plcamera_entrypoint_9(s32, f32 *, f32);
+    s32 _plcamera_entrypoint_10(BtIntPtr);
+    void _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F5EF8(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
-    s32 func_80110014(s32 *);
-    void func_80116088(u8 *, s32);
+    BtIntPtr func_80110014(s32 *);
+    void func_80116088(u8 *, BtIntPtr);
     struct {
         u8 padding[0x46];
         s16 cameraActive;
@@ -1799,7 +1799,7 @@ void func_808030A4_chklungo(Actor *arg0) {
 }
 
 s32 func_80803158_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     return _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0xAB);
 }
 
@@ -1832,11 +1832,11 @@ void func_80803208_chklungo(s32 *arg0) {
 void func_8080322C_chklungo(Actor *arg0, f32 arg1) {
     s32 func_800CC338(s32 *, s32, s32);
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    void func_8010D09C(s32, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_8010D09C(BtIntPtr, f32 *, f32);
     s32 func_80803304_chklungo(Actor *, f32 *);
-    s32 func_80803390_chklungo(void *, f32 *);
-    void func_80803464_chklungo(s32, void *, f32 *, f32 *);
+    BtIntPtr func_80803390_chklungo(void *, f32 *);
+    void func_80803464_chklungo(BtIntPtr, void *, f32 *, f32 *);
     struct KlungoNavigation {
         u32 reserved[28];
         u32 region : 7;
@@ -1855,7 +1855,7 @@ void func_8080322C_chklungo(Actor *arg0, f32 arg1) {
             return;
         }
     }
-    func_80803464_chklungo((s32)arg0,
+    func_80803464_chklungo((BtIntPtr)arg0,
         (void *)func_80803390_chklungo(arg0, sp2C), sp2C,
         sp20 = (f32 *)arg0->actorData);
     if (!func_80803304_chklungo(arg0, sp20)) {
@@ -1883,15 +1883,15 @@ s32 func_80803304_chklungo(Actor *arg0, f32 arg1[3]) {
 
 /* extern */
 
-s32 func_80803390_chklungo(void *arg0, f32 *arg1) {
+BtIntPtr func_80803390_chklungo(void *arg0, f32 *arg1) {
     s32 func_800CC5F4(s32);
-    s32 func_800CC63C(s32, s32);
+    BtIntPtr func_800CC63C(s32, s32);
     f32 func_800EEB40(s32, f32 *);
     f32 temp_f20;
     s32 temp_v0;
-    s32 temp_v0_2;
+    BtIntPtr temp_v0_2;
     s32 var_s0;
-    s32 var_s2;
+    BtIntPtr var_s2;
 
     temp_v0 = func_800CC5F4(((u32) (*(u32 *)((s8 *)(arg0) + (0x70))) >> 0x19) - 1);
     var_s2 = 0;
@@ -1906,11 +1906,11 @@ s32 func_80803390_chklungo(void *arg0, f32 *arg1) {
         } while (var_s0 < temp_v0);
     }
     return var_s2;
-}
+}    typedef struct { u8 pad0[0xC]; s16 unkC; } Objklungo_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 /* extern */
 
-void func_80803464_chklungo(s32 arg0, void *arg1, f32 *arg2, f32 *arg3) {
+void func_80803464_chklungo(BtIntPtr arg0, void *arg1, f32 *arg2, f32 *arg3) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F1DF4(void *, f32 *);
@@ -1918,7 +1918,7 @@ void func_80803464_chklungo(s32 arg0, void *arg1, f32 *arg2, f32 *arg3) {
 
     sp1C = func_800F1DF4(arg1, arg2);
     func_800EE7F8(arg3, arg1);
-    func_800EF1B8(arg3, sp1C, (f32) (*(s16 *)((s8 *)(arg1) + (0xC))));
+    func_800EF1B8(arg3, sp1C, (f32) (((Objklungo_arg1 *)arg1)->unkC));
 }
 
 s32 func_808034CC_chklungo(void *arg0) {
@@ -1929,14 +1929,14 @@ s32 func_808034CC_chklungo(void *arg0) {
     f32 sp20[3];
     f32 *sp18;
 
-    sp18 = (f32 *)((u8 *)arg0 + 4);
+    sp18 = &((Actor *)arg0)->position[0];
     func_800EE7F8(sp2C, sp18);
-    func_800EF1B8(sp2C, *(f32 *)((u8 *)arg0 + 0x48) + 90.0f, 150.0f);
+    func_800EF1B8(sp2C, ((Actor *)arg0)->rotation[1] + 90.0f, 150.0f);
     if (func_800CBD84(sp2C) == -1) {
         return 0;
     }
     func_800EE7F8(sp20, sp18);
-    func_800EF1B8(sp20, *(f32 *)((u8 *)arg0 + 0x48) - 90.0f, 150.0f);
+    func_800EF1B8(sp20, ((Actor *)arg0)->rotation[1] - 90.0f, 150.0f);
     if (func_800CBD84(sp20) == -1) {
         return 0;
     }

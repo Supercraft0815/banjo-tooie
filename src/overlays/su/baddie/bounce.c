@@ -21,7 +21,7 @@ void subaddiebounce_entrypoint_0(u8 *arg0) {
     func_800EFB24(delta, arg0 + 0x18, arg0 + 4);
     func_800EF334(delta, 1.0f / time);
     *(f32 *)(arg0 + 0x2C) = *(f32 *)(arg0 + 0x24);
-}
+} 
 
 /* extern */
 

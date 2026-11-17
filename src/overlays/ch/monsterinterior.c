@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80101870(Actor *, void *);
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
@@ -30,64 +30,64 @@ u8 D_80801E58_chmonsterinterior[] = {
     0x3F, 0x80, 0x00, 0x00, 0x03, 0x61, 0x00, 0x09,
 };
 
-u32 D_80801E80_chmonsterinterior[] = {
+BtFnWord D_80801E80_chmonsterinterior[] = {
     0x01580451, 0x00000001,
-    0x00000000, (u32)func_808000BC_chmonsterinterior,
-    (u32)func_80105834, (u32)func_80101870,
+    0x00000000, (BtFnWord)func_808000BC_chmonsterinterior,
+    (BtFnWord)func_80105834, (BtFnWord)func_80101870,
     0x00000000, 0x00000000,
     0x00000000, 0x00000001,
-    (u32)func_8080060C_chmonsterinterior, 0x00000000,
-    0x05440000, (u32)func_8080003C_chmonsterinterior,
-    (u32)func_80107C2C, 0x80000602,
-    (u32)func_808002D4_chmonsterinterior, 0x00000000,
+    (BtFnWord)func_8080060C_chmonsterinterior, 0x00000000,
+    0x05440000, (BtFnWord)func_8080003C_chmonsterinterior,
+    (BtFnWord)func_80107C2C, 0x80000602,
+    (BtFnWord)func_808002D4_chmonsterinterior, 0x00000000,
 };
 
-u32 D_80801EC8_chmonsterinterior[] = {
+BtFnWord D_80801EC8_chmonsterinterior[] = {
     0x01580455, 0xFFFF0001,
-    0x00000000, (u32)func_80800E0C_chmonsterinterior,
-    (u32)func_80105834, (u32)func_8080101C_chmonsterinterior,
+    0x00000000, (BtFnWord)func_80800E0C_chmonsterinterior,
+    (BtFnWord)func_80105834, (BtFnWord)func_8080101C_chmonsterinterior,
     0x00000000, 0x00000000,
     0x00000000, 0x00400401,
-    (u32)func_8080060C_chmonsterinterior, 0x00000000,
-    0x05440000, (u32)func_80800DA4_chmonsterinterior,
-    (u32)func_80107C2C, 0x80000402,
-    (u32)func_80801050_chmonsterinterior, 0x00000000,
+    (BtFnWord)func_8080060C_chmonsterinterior, 0x00000000,
+    0x05440000, (BtFnWord)func_80800DA4_chmonsterinterior,
+    (BtFnWord)func_80107C2C, 0x80000402,
+    (BtFnWord)func_80801050_chmonsterinterior, 0x00000000,
 };
 
-u32 D_80801F10_chmonsterinterior[] = {
+BtFnWord D_80801F10_chmonsterinterior[] = {
     0x02A60452, 0xFFFF0001,
-    0x00000000, (u32)func_808014E8_chmonsterinterior,
-    (u32)func_80105834, (u32)func_801018A4,
+    0x00000000, (BtFnWord)func_808014E8_chmonsterinterior,
+    (BtFnWord)func_80105834, (BtFnWord)func_801018A4,
     0x00000000, 0x00000000,
     0x00000000, 0x00000124,
-    (u32)func_808017E8_chmonsterinterior, (u32)func_80108ED0,
-    0x002C0000, (u32)func_808013D0_chmonsterinterior,
-    (u32)func_80107C2C, 0x80241001,
-    (u32)func_808017F0_chmonsterinterior, 0x00000000,
+    (BtFnWord)func_808017E8_chmonsterinterior, (BtFnWord)func_80108ED0,
+    0x002C0000, (BtFnWord)func_808013D0_chmonsterinterior,
+    (BtFnWord)func_80107C2C, 0x80241001,
+    (BtFnWord)func_808017F0_chmonsterinterior, 0x00000000,
 };
 
-u32 D_80801F58_chmonsterinterior[] = {
+BtFnWord D_80801F58_chmonsterinterior[] = {
     0x02A60453, 0xFFFF0001,
-    0x00000000, (u32)func_808014E8_chmonsterinterior,
-    (u32)func_80105834, (u32)func_801018A4,
+    0x00000000, (BtFnWord)func_808014E8_chmonsterinterior,
+    (BtFnWord)func_80105834, (BtFnWord)func_801018A4,
     0x00000000, 0x00000000,
     0x00000000, 0x00000124,
-    (u32)func_808017E8_chmonsterinterior, (u32)func_80108ED0,
-    0x002C0000, (u32)func_808013D0_chmonsterinterior,
-    (u32)func_80107C2C, 0x80241001,
-    (u32)func_808017F0_chmonsterinterior, 0x00000000,
+    (BtFnWord)func_808017E8_chmonsterinterior, (BtFnWord)func_80108ED0,
+    0x002C0000, (BtFnWord)func_808013D0_chmonsterinterior,
+    (BtFnWord)func_80107C2C, 0x80241001,
+    (BtFnWord)func_808017F0_chmonsterinterior, 0x00000000,
 };
 
-u32 D_80801FA0_chmonsterinterior[] = {
+BtFnWord D_80801FA0_chmonsterinterior[] = {
     0x02A60454, 0xFFFF0001,
-    0x00000000, (u32)func_808014E8_chmonsterinterior,
-    (u32)func_80105834, (u32)func_801018A4,
+    0x00000000, (BtFnWord)func_808014E8_chmonsterinterior,
+    (BtFnWord)func_80105834, (BtFnWord)func_801018A4,
     0x00000000, 0x00000000,
     0x00000000, 0x00000124,
-    (u32)func_808017E8_chmonsterinterior, (u32)func_80108ED0,
-    0x002C0000, (u32)func_808013D0_chmonsterinterior,
-    (u32)func_80107C2C, 0x80241001,
-    (u32)func_808017F0_chmonsterinterior, 0x00000000,
+    (BtFnWord)func_808017E8_chmonsterinterior, (BtFnWord)func_80108ED0,
+    0x002C0000, (BtFnWord)func_808013D0_chmonsterinterior,
+    (BtFnWord)func_80107C2C, 0x80241001,
+    (BtFnWord)func_808017F0_chmonsterinterior, 0x00000000,
 };
 
 u16 D_80801FE8_chmonsterinterior[] = {
@@ -167,10 +167,10 @@ OSThread *chmonsterinterior_entrypoint_4(void)
 }
 
 void func_8080003C_chmonsterinterior(Actor *arg0) {
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_11(s32);
-    u32 func_800F54E4(void);
-    s32 func_800F6438(u32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_11(s32 arg0);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6438(BtUIntPtr);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     u32 *data;
@@ -196,15 +196,15 @@ void func_808000BC_chmonsterinterior(Actor *arg0) {
     int func_800D9154(f32 *, f32);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F7C0C(s32, s32, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7C0C(BtIntPtr, s32, f32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
     s32 func_80800C38_chmonsterinterior(Actor *, s32 *);
     s32 *data;
-    s32 player;
+    BtIntPtr player;
     u32 animation;
     f32 random;
 
@@ -254,17 +254,17 @@ s32 func_808002D4_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 _susubgame_entrypoint_3(void *, s32, s32, u32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_3(void *, BtIntPtr, s32, u32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800D395C(void);
     s32 func_800DA9E4(s32, s32);
-    void func_800F49D4(s32, void *, s32);
-    u32 func_800F54E4(void);
-    void func_800F7B9C(s32, u32);
-    void func_800F7C58(s32, s32, s32);
-    void func_800F82D4(s32, s32);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7B9C(BtIntPtr, u32);
+    int func_800F7C58(BtIntPtr arg0, s32 arg1, s32 arg2);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -272,12 +272,12 @@ s32 func_808002D4_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     void func_8080078C_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
     s32 func_808009C0_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2);
     void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1);
-    void _bsfirstp_entrypoint_18(void);
-    s32 data;
-    s32 player;
+    void _bsfirstp_entrypoint_18(s32 arg0, s32 arg1);
+    BtIntPtr data;
+    BtIntPtr player;
     s32 text;
 
-    data = (s32)func_80100094(arg0, 0);
+    data = (BtIntPtr)func_80100094(arg0, 0);
     switch (arg1) {
         default:
             return 0;
@@ -347,8 +347,8 @@ void func_8080060C_chmonsterinterior(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_800CEAA8(s32);
     void func_800CE88C(s32, s32);
-    s32 _susubgame_entrypoint_2(void *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     s32 data[2];
 
     data[1] = func_80100094(arg0, 0);
@@ -369,8 +369,8 @@ void func_8080068C_chmonsterinterior(Actor *arg0) {
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     s32 func_800D3948(void);
-    void func_800F7B9C(s32, u32);
-    void func_800F7C0C(s32, s32, f32);
+    void func_800F7B9C(BtIntPtr, u32);
+    void func_800F7C0C(BtIntPtr, s32, f32);
     u32 func_800FDC28(u32);
     void func_80101FDC(Actor *, u32);
     s32 var_s0;
@@ -399,15 +399,15 @@ void func_8080068C_chmonsterinterior(Actor *arg0) {
 void func_8080078C_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 _gcfrontend_entrypoint_9(s32);
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
@@ -484,13 +484,13 @@ s32 func_808009C0_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1) {
-    s32 _susubgame_entrypoint_2(void *, s32);
+    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
     void func_800CD08C(s32, f32 *);
     s32 func_800D3948(void);
     s32 func_800DC128(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
-    void func_80105138(u8 *, s32, f32, f32, s32);
+    void func_80105138(u8 *, BtIntPtr, f32, f32, BtIntPtr);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80800BC8_chmonsterinterior(u8 **, s32);
     struct SpawnFlags {
@@ -508,20 +508,20 @@ void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1) {
     if (arg1 == 0 || arg1 == 1 || arg1 == 2) {
         mode = func_800D3948();
         data = func_80100094(arg0, 0);
-        if (_susubgame_entrypoint_2(arg0, (s32)data + 0x10)) {
+        if (_susubgame_entrypoint_2(arg0, (BtIntPtr)data + 0x10)) {
             func_800EE7F8(position, arg0->position);
         } else {
             func_800CD08C(arg0->unk70_25 - 1, position);
         }
         position[1] = arg0->position[1];
-        func_80105138((u8 *)arg0, (s32)position, 200.0f, -200.0f, (s32)&height);
+        func_80105138((u8 *)arg0, (BtIntPtr)position, 200.0f, -200.0f, (BtIntPtr)&height);
         position[1] = height;
         spawned = func_80108528(arg1 + 0x452, position, func_800DC128(0, 0x167), &arg0);
         spawned->unk3C = arg0->unk0;
         spawned->unk64_20 = mode;
         spawned->actorData[5] = arg1;
         spawned->unk6C_0 = arg0->unk6C_0;
-        spawned->unk64_19 = _susubgame_entrypoint_2(arg0, (s32)data + 0x10);
+        spawned->unk64_19 = _susubgame_entrypoint_2(arg0, (BtIntPtr)data + 0x10);
         ((struct SpawnFlags *)spawned)->flag = mode == 0;
         func_80800BC8_chmonsterinterior((u8 **)spawned, arg1);
     }
@@ -529,7 +529,7 @@ void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1) {
 
 void func_80800BC8_chmonsterinterior(u8 **arg0, s32 arg1) {
     s32 func_800D3948(void);
-    void func_801032B0(void *, u16, u16);
+    s32 func_801032B0(Actor *actor,u16 id,u16 palette);
     if (func_800D3948() != 0) {
         func_801032B0(arg0, D_80801FF0_chmonsterinterior[arg1], *(u16 *)(*arg0 + 0x16));
         return;
@@ -591,7 +591,7 @@ s32 func_80800C38_chmonsterinterior(Actor *arg0, s32 *arg1) {
 void func_80800DA4_chmonsterinterior(Actor *arg0) {
     void _subaddiemulti_entrypoint_3(s32);
     void* func_80100094(Actor*, u32);
-    s32 _sumultiscore_entrypoint_3(u8 *);
+    void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     u8 *sp1C;
 
@@ -671,8 +671,8 @@ void func_80800E0C_chmonsterinterior(Actor *arg0) {
 
 void func_8080101C_chmonsterinterior(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
-    s32 _sumultiscore_entrypoint_12(s32, s32, s32);
-    _sumultiscore_entrypoint_12((s32)func_80100094(arg0, 0U) + 0x28, arg1, 1);
+    void _sumultiscore_entrypoint_12(BtIntPtr arg0, BtIntPtr arg1, s32 arg2);
+    _sumultiscore_entrypoint_12((BtIntPtr)func_80100094(arg0, 0U) + 0x28, arg1, 1);
 }
 
 s32 func_80801050_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
@@ -831,7 +831,7 @@ void func_808014E8_chmonsterinterior(Actor *arg0) {
     void _subaddiefade_entrypoint_3(Actor *);
     s32 func_80801C1C_chmonsterinterior(u8 *);
     s32 func_80801C78_chmonsterinterior(u8 *);
-    void func_8010C93C(s32, s32, f32);
+    void func_8010C93C(BtIntPtr, BtIntPtr, f32);
     f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
     void func_80102BF8(void *, f32, f32, f32);
     s32 func_8010C3A8(Actor *, u32, f32);
@@ -878,7 +878,7 @@ void func_808014E8_chmonsterinterior(Actor *arg0) {
             }
             break;
         case 2:
-            func_8010C93C((s32)arg0, (s32)arg0->position, 1.0f);
+            func_8010C93C((BtIntPtr)arg0, (BtIntPtr)arg0->position, 1.0f);
             if (arg0->unk64_29) {
                 joy = _subaddiejoy_entrypoint_9(arg0, &arg0->unk54, 3);
                 ((MonsterData *)arg0)->unk24 = data->unk28 * 1.4f;
@@ -960,26 +960,26 @@ s32 func_808017F0_chmonsterinterior(Actor *arg0, s32 arg1, Unk80132ED0 *volatile
 }
 
 void func_80801930_chmonsterinterior(Actor *arg0, Unk80132ED0 *arg1) {
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
-    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
-    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
+    BtIntPtr _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    void _sumultiscore_entrypoint_7(u8 *, BtIntPtr, s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800D3948(void);
     s32 func_800DC128(s32, s32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80103DFC(Actor *, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     s32 pad;
     s32 *data;
     s32 count;
-    s32 emitter;
-    s32 player;
+    BtIntPtr emitter;
+    BtIntPtr player;
     f32 position[3];
     f32 scorePosition[3];
 
@@ -1005,7 +1005,7 @@ void func_80801930_chmonsterinterior(Actor *arg0, Unk80132ED0 *arg1) {
     _chscorepoints_entrypoint_2(D_80801E50_chmonsterinterior[arg0->actorData[5]], player, scorePosition, 1);
     func_800FFAB0(arg0);
     if (*(u16 *)&arg1->unk18 & 1) {
-        func_8010114C((s32)arg1, 0x98, 0);
+        func_8010114C((BtIntPtr)arg1, 0x98, 0);
     }
 }
 
@@ -1049,7 +1049,7 @@ s32 func_80801C1C_chmonsterinterior(u8 *arg0) {
 
     temp_v0 = func_800D9078((f32 *) (arg0 + 0x28));
     sp24 = temp_v0;
-    (*(f32 *)((s8 *)(arg0) + (8))) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, 0.0f, -250.0f);
+    (((Actor *)arg0)->position[1]) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, 0.0f, -250.0f);
     return sp24;
 }
 
@@ -1061,6 +1061,6 @@ s32 func_80801C78_chmonsterinterior(u8 *arg0) {
     s32 sp28;
 
     sp28 = func_800D9078((f32 *) (arg0 + 0x28));
-    (*(f32 *)((s8 *)(arg0) + (8))) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, -250.0f, 0.0f);
+    (((Actor *)arg0)->position[1]) = func_800F12D4((*(f32 *)((s8 *)(arg0) + (0x28))), 0.0f, 0.6f, -250.0f, 0.0f);
     return sp28;
 }

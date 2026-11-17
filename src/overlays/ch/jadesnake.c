@@ -20,21 +20,21 @@ void func_80800048_chjadesnake(Actor *arg0) {
 
 /* extern */
 
-int func_8080009C_chjadesnake(s32 arg0) {
+int func_8080009C_chjadesnake(BtIntPtr arg0) {
     s32 pad;
-    u32 func_800F54E4(void);
-    s32 func_800F56AC(s32);
-    s32 func_800F6478(s32);
-    s32 func_800F651C(s32);
-    s32 func_800F6C5C(s32);
-    int func_800F72DC(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F56AC(BtIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    s32 func_800F651C(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
+    int func_800F72DC(BtIntPtr);
     s32 sp30;
     s32 sp2C;
     s32 sp28;
     s32 sp24;
     s32 temp_t8;
     s32 temp_t9;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
     s32 var_v0;
 
     temp_v0 = func_800F54E4();
@@ -50,12 +50,12 @@ int func_8080009C_chjadesnake(s32 arg0) {
 }
 
 void func_80800150_chjadesnake(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    void _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80090708(s32);
     void func_80090734(s32, f32 *);
     void func_800C4B7C(s32);
@@ -69,8 +69,8 @@ void func_80800150_chjadesnake(Actor *arg0) {
     s32 func_800DA9E4(GameFlag, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F56AC(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F56AC(BtIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
@@ -111,7 +111,7 @@ void func_80800150_chjadesnake(Actor *arg0) {
                 func_800C4B7C((sp48 & 1) ? 0x5C6 : 0x5C7);
                 _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800964_chjadesnake);
             }
-            if (!sp50 && sp4C && func_8080009C_chjadesnake((s32)arg0)) {
+            if (!sp50 && sp4C && func_8080009C_chjadesnake((BtIntPtr)arg0)) {
                 _subaddieaudioquick_entrypoint_2(arg0, sp54, D_80800910_chjadesnake);
                 func_80090734(2, arg0->position);
                 func_8010A85C((u8 *)arg0, 1);
@@ -182,7 +182,7 @@ void func_80800150_chjadesnake(Actor *arg0) {
                     func_80102424(arg0, 1);
                 }
             }
-            if (!sp50 && sp4C && func_8080009C_chjadesnake((s32)arg0)) {
+            if (!sp50 && sp4C && func_8080009C_chjadesnake((BtIntPtr)arg0)) {
                 _subaddieaudioquick_entrypoint_2(arg0, sp54, D_80800910_chjadesnake);
                 func_80090734(2, arg0->position);
                 func_8010A85C((u8 *)arg0, 1);
@@ -233,13 +233,13 @@ void func_80800728_chjadesnake(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800770_chjadesnake(Actor *arg0, u8 *arg1) {
-    s32 func_800DBEFC(s32, s32, s32);
+    void func_800DBEFC(void *data,s32 index,f32 *out);
     void func_80101870(Actor* arg0, void* arg1);
     OSThread * func_80104130(void);
     func_80101870(arg0, arg1);
     if (((struct { u32 unused : 19; u32 active : 1; u32 rest : 12; } *)((u8 *)arg0 + 0x7C))->active) {
-        func_800DBEFC(func_80104130(), 4, (s32) arg0->actorData);
-        func_800DBEFC(func_80104130(), 5, (s32) &arg0->actorData[4]);
+        func_800DBEFC(func_80104130(), 4, (BtIntPtr) arg0->actorData);
+        func_800DBEFC(func_80104130(), 5, (BtIntPtr) &arg0->actorData[4]);
     }
 }
 
@@ -249,8 +249,8 @@ s32 func_808007DC_chjadesnake(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EFB24(void *, void *, void *);
     void func_800EF334(f32 *, f32);
     void func_80102FE8(void *, s32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    extern s32 D_808009E4_chjadesnake;
+    void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
+    extern s32 D_808009E4_chjadesnake[4];
     Actor *sp1C;
 
     switch (arg1) {
@@ -271,7 +271,7 @@ s32 func_808007DC_chjadesnake(Actor *arg0, s32 arg1, s32 arg2) {
             func_80800728_chjadesnake(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
             return 1;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_808009E4_chjadesnake, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_808009E4_chjadesnake, arg0->scale);
             return 1;
         default:
             return 0;
@@ -281,7 +281,24 @@ s32 func_808007DC_chjadesnake(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chjadesnake_entrypoint_0(void)
 {
-    extern u8 D_808009F4_chjadesnake[];
+    extern ActorData D_808009F4_chjadesnake[];
 
     return (OSThread *) D_808009F4_chjadesnake;
 }
+/* data_to_c.py: from asm/data/overlays/ch/jadesnake.data.s */
+extern u8 D_80800970_chjadesnake[];
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+u32 D_80800910_chjadesnake [4] BT_DATA(4, overlays_ch_jadesnake, 0x0) = { 0x1304AA, 0xD00F3, 0x10C0016, 0x79180000 };
+u32 D_80800920_chjadesnake [3] BT_DATA(4, overlays_ch_jadesnake, 0x10) = { 0x1303E9, 0x165208, 0 };
+u32 D_8080092C_chjadesnake [3] BT_DATA(4, overlays_ch_jadesnake, 0x1C) = { 0x1304A4, 0x167918, 0 };
+u32 D_80800938_chjadesnake [4] BT_DATA(4, overlays_ch_jadesnake, 0x28) = { 0x130430, 0xA0133, 0x167918, 0 };
+u32 D_80800948_chjadesnake [4] BT_DATA(4, overlays_ch_jadesnake, 0x38) = { 0x13051F, 0x165DC0, 0x101F4, 0x13880000 };
+u32 D_80800958_chjadesnake [3] BT_DATA(4, overlays_ch_jadesnake, 0x48) = { 0x13051E, 0x165DC0, 0 };
+u32 D_80800964_chjadesnake [3] BT_DATA(4, overlays_ch_jadesnake, 0x54) = { 0x21000D, 0x1260140, 0 };
+u8 D_80800970_chjadesnake[80] BT_DATA(4, overlays_ch_jadesnake, 0x60) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x10, 0x00, 0x00, 0x01, 0x93, 0x00, 0x01, 0x3F, 0xB3, 0x33, 0x33, 0x01, 0x94, 0x00, 0x02, 0x41, 0x00, 0x00, 0x00, 0x01, 0x95, 0x00, 0x01, 0x40, 0xAB, 0x85, 0x1F, 0x01, 0x96, 0x00, 0x02, 0x41, 0x00, 0x00, 0x00, 0x01, 0x95, 0x00, 0x01, 0x41, 0x00, 0x00, 0x00, 0x01, 0x95, 0x00, 0x01, 0x40, 0xAB, 0x85, 0x1F, 0x01, 0x96, 0x00, 0x02, 0x40, 0xAB, 0x85, 0x1F, 0x01, 0x96, 0x00, 0x02, 0x41, 0x00, 0x00, 0x00, 0x01, 0x95, 0x00, 0x01 };
+f32 D_808009C0_chjadesnake [7] BT_DATA(4, overlays_ch_jadesnake, 0xB0) = { 0.1f, 0.25f, 0.4f, 0.55f, 0.75f, 0.9f, -1.0f };
+u32 D_808009DC_chjadesnake [2] BT_DATA(4, overlays_ch_jadesnake, 0xCC) = { 0x3F23D70A, 0xBF800000 };
+s32 D_808009E4_chjadesnake[4] BT_DATA(4, overlays_ch_jadesnake, 0xD4) = { 1136525312, 0, 1132920832, 0 };
+ActorData D_808009F4_chjadesnake [1] BT_DATA(4, overlays_ch_jadesnake, 0xE4) = { { 340, 268, 1631, 1, (void *)D_80800970_chjadesnake, (void (*)(struct Actor *))func_80800150_chjadesnake, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800770_chjadesnake, 0, 0, 0, 0, 8, 46, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chjadesnake, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 8192, (void (*)(struct Actor *, long, long))func_808007DC_chjadesnake, 0 } };

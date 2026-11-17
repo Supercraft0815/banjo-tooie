@@ -41,14 +41,14 @@ typedef struct {
     u8 red, green, blue, alpha;
 } ActorRenderState;
 
-void func_80106A98(Actor *actor, s32 arg1) {
+void func_80106A98(Actor *actor, BtIntPtr arg1) {
     u8 *func_800B27A0(u8 *);
     void func_800DF5D8(u32, u32, u32, s32);
-    void func_800DF660(s32, s32, s32, s32);
-    void func_800DF720(s32);
-    s32 func_80100AC4(s16);
-    s32 func_80106C4C(Actor *);
-    s32 sp24;
+    void func_800DF660(s32, s32, BtIntPtr, s32);
+    void func_800DF720(BtIntPtr);
+    BtIntPtr func_80100AC4(s16);
+    BtIntPtr func_80106C4C(Actor *);
+    BtIntPtr sp24;
     s32 var_a1;
     ActorRenderState *arg0 = (ActorRenderState *)actor;
 
@@ -89,7 +89,7 @@ void func_80106A98(Actor *actor, s32 arg1) {
 
 s32 func_80106C08(void) {
     extern s32 D_80136EF0;
-    s32 func_800B3310(s32);
+    void * func_800B3310(s32 capacity);
 
     if (D_80136EF0 == 0) {
         D_80136EF0 = func_800B3310(0x6);
@@ -97,14 +97,14 @@ s32 func_80106C08(void) {
     return D_80136EF0;
 }
 
-s32 func_80106C4C(Actor *arg0) {
+BtIntPtr func_80106C4C(Actor *arg0) {
     void _subaddiefade_entrypoint_9(Actor *, s32 *);
-    s32 func_800B3494(s32, f32 *, f32);
-    int func_800B36C0(s32, f32 *, s32 *, f32);
+    s32 func_800B3494(BtIntPtr, f32 *, f32);
+    int func_800B36C0(BtIntPtr, f32 *, s32 *, f32);
     void func_800B37A4(u8 *, s32 *, s32 *);
     void func_800C8960(s32 *, f32 *);
     f32 func_80103F38(Actor *, f32 *);
-    void func_80106D60(s32, s32, s32 *);
+    void func_80106D60(BtIntPtr, BtIntPtr, s32 *);
     void func_80106DA4(s32 *, s32 *);
     struct entry {
         f32 position[3];
@@ -115,7 +115,7 @@ s32 func_80106C4C(Actor *arg0) {
     s32 pad60;
     s32 sp5C;
     s32 sp50[3];
-    s32 sp4C;
+    BtIntPtr sp4C;
     s32 sp48;
     union {
         u32 value;
@@ -130,7 +130,7 @@ s32 func_80106C4C(Actor *arg0) {
     f32 sp38[3];
     s32 sp2C[3];
     f32 radius;
-    s32 handle;
+    BtIntPtr handle;
 
     flags.value = arg0->pad7A_0;
     if (!flags.bits.flag1) {
@@ -138,7 +138,7 @@ s32 func_80106C4C(Actor *arg0) {
     }
     _subaddiefade_entrypoint_9(arg0, sp50);
     handle = func_80106C08();
-    func_80106D60((s32)arg0, handle, sp50);
+    func_80106D60((BtIntPtr)arg0, handle, sp50);
     sp5C = func_800B3494(handle, sp64, func_80103F38(arg0, sp64));
     func_800B37A4((u8 *)handle, &sp4C, &sp48);
     if (sp5C < (s32)arg0->pad7A_7) {
@@ -154,7 +154,7 @@ s32 func_80106C4C(Actor *arg0) {
 
 /* extern */
 
-void func_80106D60(s32 arg0, s32 arg1, s32 *arg2) {
+void func_80106D60(BtIntPtr arg0, BtIntPtr arg1, s32 *arg2) {
     void func_800B38A8();
     void func_800C87B8(s32 *);
     void func_80106DA4(s32 *, s32 *);
@@ -172,3 +172,9 @@ void func_80106DA4(s32 *arg0, s32 *arg1) {
         arg0[i] = (arg0[i] * arg1[i]) >> 8;
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_80136EF0 BT_DATA(4, bss_core2bss2_2_music_tail, 0x14D0);
+#endif

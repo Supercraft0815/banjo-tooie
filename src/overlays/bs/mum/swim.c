@@ -2,7 +2,7 @@
 
 void func_80800000_bsmumswim(PlayerState *self) {
     f32 sp2C[3];
-    s32 sp28;
+    BtIntPtr sp28;
 
     if (func_80096544(self) != 0) {
         if (func_800DC0C0() > 0.5f) {
@@ -80,7 +80,7 @@ void bsmumswim_entrypoint_1(PlayerState *self) {
 void bsmumswim_entrypoint_2(PlayerState *self) {
     enum bs_state_e next_state;
     f32 sp40[3];
-    s32 sp3C;
+    BtIntPtr sp3C;
 
     next_state = BS_STATE_0_INVALID;
     func_8009C128(self, sp40);
@@ -104,7 +104,7 @@ void bsmumswim_entrypoint_2(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmumswim_entrypoint_3(s32 idx) {
+BtIntPtr bsmumswim_entrypoint_3(s32 idx) {
     return D_80800B30_bsmumswim[idx];
 }
 
@@ -162,7 +162,7 @@ void func_80800714_bsmumswim(PlayerState *self) {
     func_800A4E30(self);
 }
 
-s32 bsmumswim_entrypoint_4(s32 idx) {
+BtIntPtr bsmumswim_entrypoint_4(s32 idx) {
     return D_80800B40_bsmumswim[idx];
 }
 
@@ -227,7 +227,7 @@ void func_808009A0_bsmumswim(PlayerState *self) {
     func_80800198_bsmumswim(self);
 }
 
-s32 bsmumswim_entrypoint_5(s32 idx) {
+BtIntPtr bsmumswim_entrypoint_5(s32 idx) {
     return D_80800B50_bsmumswim[idx];
 }
 
@@ -251,7 +251,7 @@ void func_80800A24_bsmumswim(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsmumswim_entrypoint_6(s32 idx) {
+BtIntPtr bsmumswim_entrypoint_6(s32 idx) {
     return D_80800B60_bsmumswim[idx];
 }
 
@@ -276,6 +276,12 @@ void func_80800ADC_bsmumswim(PlayerState *self) {
     func_80800198_bsmumswim(self);
 }
 
-s32 bsmumswim_entrypoint_7(s32 idx) {
+BtIntPtr bsmumswim_entrypoint_7(s32 idx) {
     return D_80800B70_bsmumswim[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/mum/swim.data.s */
+BtIntPtr D_80800B30_bsmumswim [4] BT_DATA(4, overlays_bs_mum_swim, 0x0) = { (BtIntPtr)_bsmumswim_entrypoint_0, (BtIntPtr)_bsmumswim_entrypoint_1, (BtIntPtr)_bsmumswim_entrypoint_2, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_80800B40_bsmumswim [4] BT_DATA(4, overlays_bs_mum_swim, 0x10) = { (BtIntPtr)func_80800714_bsmumswim, (BtIntPtr)func_80800498_bsmumswim, (BtIntPtr)func_8080056C_bsmumswim, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_80800B50_bsmumswim [4] BT_DATA(4, overlays_bs_mum_swim, 0x20) = { (BtIntPtr)func_808009A0_bsmumswim, (BtIntPtr)func_80800750_bsmumswim, (BtIntPtr)func_80800870_bsmumswim, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_80800B60_bsmumswim [4] BT_DATA(4, overlays_bs_mum_swim, 0x30) = { (BtIntPtr)func_808009D4_bsmumswim, (BtIntPtr)func_808009FC_bsmumswim, (BtIntPtr)func_80800A24_bsmumswim, (BtIntPtr)_bsmum_entrypoint_0 };
+BtIntPtr D_80800B70_bsmumswim [4] BT_DATA(4, overlays_bs_mum_swim, 0x40) = { (BtIntPtr)func_80800ADC_bsmumswim, (BtIntPtr)func_80800A70_bsmumswim, (BtIntPtr)func_80800A98_bsmumswim, (BtIntPtr)_bsdrone_entrypoint_3 };

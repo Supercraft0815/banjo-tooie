@@ -3,8 +3,8 @@
 #include "overlays/bs/kaz/shock.h"
 
 extern s32 D_80800770_bskazshock[];
-extern s32 D_808007A4_bskazshock[];
-extern s32 D_808007B4_bskazshock[];
+extern BtIntPtr D_808007A4_bskazshock[];
+extern BtIntPtr D_808007B4_bskazshock[];
 
 void bskazshock_entrypoint_0(PlayerState *self) {
     f32 sp24[3];
@@ -113,7 +113,7 @@ void bskazshock_entrypoint_3(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-s32 bskazshock_entrypoint_4(s32 idx) {
+BtIntPtr bskazshock_entrypoint_4(s32 idx) {
     return D_808007A4_bskazshock[idx];
 }
 
@@ -186,6 +186,11 @@ void bskazshock_entrypoint_7(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-s32 bskazshock_entrypoint_8(s32 idx) {
+BtIntPtr bskazshock_entrypoint_8(s32 idx) {
     return D_808007B4_bskazshock[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/kaz/shock.data.s */
+void func_80099B94(PlayerState *);
+s32 D_80800770_bskazshock [13] BT_DATA(4, overlays_bs_kaz_shock, 0x0) = { 1903073, 720871, 65511, 1638430, 1638421, 1638553, 2228326, 5832729, 1638439, 26214800, 52429600, 2818176, 8388608 };
+BtIntPtr D_808007A4_bskazshock [4] BT_DATA(4, overlays_bs_kaz_shock, 0x34) = { (BtIntPtr)_bskazshock_entrypoint_3, (BtIntPtr)_bskazshock_entrypoint_1, (BtIntPtr)_bskazshock_entrypoint_2, (BtIntPtr)func_80099B94 };
+BtIntPtr D_808007B4_bskazshock [7] BT_DATA(4, overlays_bs_kaz_shock, 0x44) = { (BtIntPtr)_bskazshock_entrypoint_7, (BtIntPtr)_bskazshock_entrypoint_5, (BtIntPtr)_bskazshock_entrypoint_6, (BtIntPtr)func_80099B94, 0, 0, 0 };

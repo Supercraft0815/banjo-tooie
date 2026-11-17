@@ -17,21 +17,21 @@ void bssplitup_entrypoint_0(void *arg0) {
     func_8009FFD8(arg0, 1, 1, 3, 2);
     func_8009B94C(arg0, 0);
     func_8009BA9C(arg0, 0);
-}
+}    typedef struct { u8 pad0[0x184]; s32 unk184; } Objsplitup_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void bssplitup_entrypoint_1(void *arg0) {
     s32 baanim_isStopped();
-    s32 bs_setState(void *, s32);
-    s32 func_800F457C(void *, s32);
-    s32 func_800F54E4();
+    void bs_setState(void *self, s32 nextState);
+    void func_800F457C(void *arg0, s32 arg1);
+    BtIntPtr func_800F54E4();
     s32 sp1C;
 
     sp1C = 0;
     if (baanim_isStopped() != 0) {
         sp1C = 1;
-        if (func_800F54E4() != (*(s32 *)((s8 *)(arg0) + (0x184)))) {
+        if (func_800F54E4() != (((Objsplitup_arg0 *)arg0)->unk184)) {
             func_800F457C(arg0, 2);
         }
     }
@@ -40,9 +40,9 @@ void bssplitup_entrypoint_1(void *arg0) {
 
 /* extern */
 
-void bssplitup_entrypoint_2(s32 arg0) {
-    void _sudialog_entrypoint_0(s32, s32);
-    s32 _baduo_entrypoint_7(void *, s32);
+void bssplitup_entrypoint_2(BtIntPtr arg0) {
+    s32 _sudialog_entrypoint_0(s32 arg0, s32 arg1);
+    void _baduo_entrypoint_7(PlayerState *arg0, s32 arg1);
     s32 bs_getNextState(void *);
     _baduo_entrypoint_7(arg0, 3);
     if (bs_getNextState(arg0) != 0x5A) {
@@ -51,7 +51,7 @@ void bssplitup_entrypoint_2(s32 arg0) {
 }
 
 s32 bssplitup_entrypoint_3(s32 arg0) {
-    extern s32 D_80800700_bssplitup[];
+    extern BtIntPtr D_80800700_bssplitup[];
     return ((s32 *)&D_80800700_bssplitup)[arg0];
 }
 
@@ -60,10 +60,10 @@ s32 func_8080012C_bssplitup(PlayerState *arg0, s32 arg1) {
     void _bamovegoto_entrypoint_12(void *, f32 *);
     void _bamovegoto_entrypoint_13(void *);
     void _bamovegoto_entrypoint_7(void *, f32);
-    void _subaddiefind_entrypoint_5(s32, f32 **, s32, f32 *, f32, f32 (*)(f32 *, f32 *));
+    s32 _subaddiefind_entrypoint_5(s32 arg0, Actor **arg1, s32 arg2, f32 *arg3, f32 arg4, f32 (*arg5)(f32 *, f32 *));
     f32 baanim_getTimer(PlayerState *);
     void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
-    s32 baphysics_set_type(void *, s32);
+    void baphysics_set_type(void *self, s32 type);
     void func_8009B94C(u8 *, f32 *);
     void func_8009BA9C(PlayerState *, f32 *);
     void func_8009C128(PlayerState *, f32 *);
@@ -99,7 +99,7 @@ s32 func_8080012C_bssplitup(PlayerState *arg0, s32 arg1) {
     case 3:
         baphysics_set_type(arg0, 2);
         break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -121,9 +121,9 @@ void bssplitup_entrypoint_4(PlayerState *arg0) {
 void bssplitup_entrypoint_5(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
     s32 baanim_isStopped();
-    s32 bs_setState(void *, s32);
-    s32 func_800F457C(void *, s32);
-    s32 func_800F54E4();
+    void bs_setState(void *self, s32 nextState);
+    void func_800F457C(void *arg0, s32 arg1);
+    BtIntPtr func_800F54E4();
     s32 func_8080012C_bssplitup(PlayerState *, s32);
     s32 sp24;
 
@@ -154,14 +154,14 @@ void bssplitup_entrypoint_5(PlayerState *arg0) {
 /* extern */
 
 void bssplitup_entrypoint_6(void *arg0) {
-    s32 _baduo_entrypoint_7(void *, s32);
+    void _baduo_entrypoint_7(PlayerState *arg0, s32 arg1);
     s32 func_800F8EE4(s32);
     _baduo_entrypoint_7(arg0, 3);
-    func_800F8EE4((*(s32 *)((s8 *)(arg0) + (0x184))));
+    func_800F8EE4((((Objsplitup_arg0 *)arg0)->unk184));
 }
 
 s32 bssplitup_entrypoint_7(s32 arg0) {
-    extern s32 D_80800710_bssplitup[];
+    extern BtIntPtr D_80800710_bssplitup[];
     return ((s32 *)&D_80800710_bssplitup)[arg0];
 }
 
@@ -184,8 +184,8 @@ void bssplitup_entrypoint_8(void *arg0) {
 
 void bssplitup_entrypoint_9(u8 *arg0) {
     s32 _batimer_decrement(void *, s32);
-    s32 bs_setState(void *, s32);
-    s32 _baduo_entrypoint_16(u8 *);
+    void bs_setState(void *self, s32 nextState);
+    void _baduo_entrypoint_16(PlayerState *arg0);
     s32 var_a2;
 
     var_a2 = 0;
@@ -201,12 +201,12 @@ void bssplitup_entrypoint_10(s32 arg0)
 {
 }
 s32 bssplitup_entrypoint_11(s32 arg0) {
-    extern s32 D_80800720_bssplitup[];
+    extern BtIntPtr D_80800720_bssplitup[];
     return ((s32 *)&D_80800720_bssplitup)[arg0];
 }
 
 void bssplitup_entrypoint_12(void *arg0) {
-    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
     f32 func_800136E4(f32);
     void func_8009B94C(u8 *, f32 *);
@@ -224,9 +224,9 @@ void bssplitup_entrypoint_12(void *arg0) {
 
 /* extern */
 
-void bssplitup_entrypoint_13(s32 arg0) {
+void bssplitup_entrypoint_13(BtIntPtr arg0) {
     s32 baanim_isStopped();
-    s32 bs_setState(void *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 sp1C;
 
     sp1C = 0;
@@ -237,18 +237,18 @@ void bssplitup_entrypoint_13(s32 arg0) {
 }
 
 void func_800A0CF4(PlayerState *, s32);
-void bssplitup_entrypoint_14(s32 arg0)
+void bssplitup_entrypoint_14(BtIntPtr arg0)
 {
     func_800A0CF4(arg0,0);
 }
 
 s32 bssplitup_entrypoint_15(s32 arg0) {
-    extern s32 D_80800730_bssplitup[];
+    extern BtIntPtr D_80800730_bssplitup[];
     return ((s32 *)&D_80800730_bssplitup)[arg0];
 }
 
 void bssplitup_entrypoint_16(void *arg0) {
-    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void baphysics_set_horizontal_velocity(PlayerState *, f32, f32);
     void func_8009B94C(u8 *, f32 *);
     void func_8009DF18(PlayerState *, s32, f32, s32);
@@ -265,7 +265,7 @@ void bssplitup_entrypoint_16(void *arg0) {
 
 void bssplitup_entrypoint_17(void *arg0) {
     s32 baanim_isStopped();
-    s32 bs_setState(void *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 next_state;
     s32 unused;
 
@@ -276,12 +276,35 @@ void bssplitup_entrypoint_17(void *arg0) {
     bs_setState(arg0, next_state);
 }
 
-void bssplitup_entrypoint_18(s32 arg0)
+void bssplitup_entrypoint_18(BtIntPtr arg0)
 {
     func_800A0CF4(arg0,0);
 }
 
 s32 bssplitup_entrypoint_19(s32 arg0) {
-    extern s32 D_80800740_bssplitup[];
+    extern BtIntPtr D_80800740_bssplitup[];
     return ((s32 *)&D_80800740_bssplitup)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/splitup.data.s */
+void _bssplitup_entrypoint_2();
+void _bssplitup_entrypoint_0();
+void _bssplitup_entrypoint_1();
+void func_80099AA8();
+void _bssplitup_entrypoint_6();
+void _bssplitup_entrypoint_4();
+void _bssplitup_entrypoint_5();
+void _bssplitup_entrypoint_10();
+void _bssplitup_entrypoint_8();
+void _bssplitup_entrypoint_9();
+void _bssplitup_entrypoint_14();
+void _bssplitup_entrypoint_12();
+void _bssplitup_entrypoint_13();
+void func_80099B94(PlayerState *);
+void _bssplitup_entrypoint_18();
+void _bssplitup_entrypoint_16();
+void _bssplitup_entrypoint_17();
+BtIntPtr D_80800700_bssplitup [4] BT_DATA(4, overlays_bs_splitup, 0x0) = { (BtIntPtr)_bssplitup_entrypoint_2, (BtIntPtr)_bssplitup_entrypoint_0, (BtIntPtr)_bssplitup_entrypoint_1, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80800710_bssplitup [4] BT_DATA(4, overlays_bs_splitup, 0x10) = { (BtIntPtr)_bssplitup_entrypoint_6, (BtIntPtr)_bssplitup_entrypoint_4, (BtIntPtr)_bssplitup_entrypoint_5, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80800720_bssplitup [4] BT_DATA(4, overlays_bs_splitup, 0x20) = { (BtIntPtr)_bssplitup_entrypoint_10, (BtIntPtr)_bssplitup_entrypoint_8, (BtIntPtr)_bssplitup_entrypoint_9, (BtIntPtr)func_80099AA8 };
+BtIntPtr D_80800730_bssplitup [4] BT_DATA(4, overlays_bs_splitup, 0x30) = { (BtIntPtr)_bssplitup_entrypoint_14, (BtIntPtr)_bssplitup_entrypoint_12, (BtIntPtr)_bssplitup_entrypoint_13, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800740_bssplitup [4] BT_DATA(4, overlays_bs_splitup, 0x40) = { (BtIntPtr)_bssplitup_entrypoint_18, (BtIntPtr)_bssplitup_entrypoint_16, (BtIntPtr)_bssplitup_entrypoint_17, (BtIntPtr)func_80099B94 };

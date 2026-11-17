@@ -40,10 +40,10 @@ void idwater_entrypoint_3(WaterEffect *arg0, s32 arg1, void *arg2, s32 arg3) {
     arg0->unk14 = 0.0f;
     arg0->unk18 = 0.0f;
     arg0->unk1C = 0.0f;
-}
+}             typedef struct { s16 unk0; s16 unk2; f32 unk4; f32 unk8; s16 unkC; s16 unkE; s16 unk10; u8 pad12[0x2]; f32 unk14; f32 unk18; f32 unk1C; } Objwater_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void idwater_entrypoint_4(void *arg0, s32 arg1, s32 arg2) {
-    s32 _glid_entrypoint_2(s32, s32, s32 *, void *);
+void idwater_entrypoint_4(void *arg0, BtIntPtr arg1, s32 arg2) {
+    void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
     f32 func_800138D0(f32);
     f32 func_80013970(f32);
     f32 func_800D8FF8();
@@ -61,42 +61,42 @@ void idwater_entrypoint_4(void *arg0, s32 arg1, s32 arg2) {
 
     temp_f0 = func_800D8FF8();
     sp30 = temp_f0;
-    (*(f32 *)((s8 *)arg0 + 4)) = (f32) ((*(f32 *)((s8 *)arg0 + 4)) + temp_f0);
-    sp20 = func_800138D0((*(f32 *)((s8 *)arg0 + 4)) * 0.2f * 180.0f);
-    scroll[0] = ((func_80013970((*(f32 *)((s8 *)arg0 + 4)) * 0.08f * 180.0f) * 100.0f) + (150.0f * sp20)) * 0.8f;
-    sp20 = func_80013970((*(f32 *)((s8 *)arg0 + 4)) * 0.5f * 180.0f);
-    scroll[1] = ((func_800138D0((*(f32 *)((s8 *)arg0 + 4)) * 0.22f * 180.0f) * 100.0f) + (50.0f * sp20)) * 0.8f;
+    (((Objwater_arg0 *)arg0)->unk4) = (f32) ((((Objwater_arg0 *)arg0)->unk4) + temp_f0);
+    sp20 = func_800138D0((((Objwater_arg0 *)arg0)->unk4) * 0.2f * 180.0f);
+    scroll[0] = ((func_80013970((((Objwater_arg0 *)arg0)->unk4) * 0.08f * 180.0f) * 100.0f) + (150.0f * sp20)) * 0.8f;
+    sp20 = func_80013970((((Objwater_arg0 *)arg0)->unk4) * 0.5f * 180.0f);
+    scroll[1] = ((func_800138D0((((Objwater_arg0 *)arg0)->unk4) * 0.22f * 180.0f) * 100.0f) + (50.0f * sp20)) * 0.8f;
     if (scroll[0] >= 0.0f) {
-        (*(s16 *)((s8 *)arg0 + 0)) = (s32) (scroll[0] + 0.5f);
+        (((Objwater_arg0 *)arg0)->unk0) = (s32) (scroll[0] + 0.5f);
     } else {
-        (*(s16 *)((s8 *)arg0 + 0)) = (s32) (scroll[0] - 0.5f);
+        (((Objwater_arg0 *)arg0)->unk0) = (s32) (scroll[0] - 0.5f);
     }
     if (scroll[1] >= 0.0f) {
-        (*(s16 *)((s8 *)arg0 + 2)) = (s32) (scroll[1] + 0.5f);
+        (((Objwater_arg0 *)arg0)->unk2) = (s32) (scroll[1] + 0.5f);
     } else {
-        (*(s16 *)((s8 *)arg0 + 2)) = (s32) (scroll[1] - 0.5f);
+        (((Objwater_arg0 *)arg0)->unk2) = (s32) (scroll[1] - 0.5f);
     }
-    sp20 = func_800138D0((*(f32 *)((s8 *)arg0 + 4)) * 0.5f * 180.0f);
-    temp_f18 = ((*(f32 *)((s8 *)arg0 + 8)) * 0.75f * sp20) + (((*(f32 *)((s8 *)arg0 + 8)) * 0.25f) * func_80013970((*(f32 *)((s8 *)arg0 + 4)) * 0.11f * 180.0f));
-    if ((*(f32 *)((s8 *)arg0 + 0x14)) < (*(f32 *)((s8 *)arg0 + 0x1C))) {
-        (*(f32 *)((s8 *)arg0 + 0x18)) = (*(f32 *)((s8 *)arg0 + 0x14));
-        (*(f32 *)((s8 *)arg0 + 0x14)) = (f32) ((*(f32 *)((s8 *)arg0 + 0x14)) + sp30);
-        if ((*(f32 *)((s8 *)arg0 + 0x1C)) < (*(f32 *)((s8 *)arg0 + 0x14))) {
-            (*(f32 *)((s8 *)arg0 + 0x14)) = (*(f32 *)((s8 *)arg0 + 0x1C));
+    sp20 = func_800138D0((((Objwater_arg0 *)arg0)->unk4) * 0.5f * 180.0f);
+    temp_f18 = ((((Objwater_arg0 *)arg0)->unk8) * 0.75f * sp20) + (((((Objwater_arg0 *)arg0)->unk8) * 0.25f) * func_80013970((((Objwater_arg0 *)arg0)->unk4) * 0.11f * 180.0f));
+    if ((((Objwater_arg0 *)arg0)->unk14) < (((Objwater_arg0 *)arg0)->unk1C)) {
+        (((Objwater_arg0 *)arg0)->unk18) = (((Objwater_arg0 *)arg0)->unk14);
+        (((Objwater_arg0 *)arg0)->unk14) = (f32) ((((Objwater_arg0 *)arg0)->unk14) + sp30);
+        if ((((Objwater_arg0 *)arg0)->unk1C) < (((Objwater_arg0 *)arg0)->unk14)) {
+            (((Objwater_arg0 *)arg0)->unk14) = (((Objwater_arg0 *)arg0)->unk1C);
         }
     }
-    if ((*(f32 *)((s8 *)arg0 + 0x14)) < (*(f32 *)((s8 *)arg0 + 0x1C))) {
-        temp_v0 = (*(s16 *)((s8 *)arg0 + 0xC));
+    if ((((Objwater_arg0 *)arg0)->unk14) < (((Objwater_arg0 *)arg0)->unk1C)) {
+        temp_v0 = (((Objwater_arg0 *)arg0)->unkC);
         var_f0 = (f32) temp_v0;
-        var_f0 += ((*(f32 *)((s8 *)arg0 + 0x14)) / (*(f32 *)((s8 *)arg0 + 0x1C))) * (f32) ((*(s16 *)((s8 *)arg0 + 0xE)) - temp_v0);
+        var_f0 += ((((Objwater_arg0 *)arg0)->unk14) / (((Objwater_arg0 *)arg0)->unk1C)) * (f32) ((((Objwater_arg0 *)arg0)->unkE) - temp_v0);
     } else {
-        var_f0 = (f32) (*(s16 *)((s8 *)arg0 + 0xE));
+        var_f0 = (f32) (((Objwater_arg0 *)arg0)->unkE);
     }
     var_f0 += temp_f18;
     if (var_f0 >= 0.0f) {
-        (*(s16 *)((s8 *)arg0 + 0x10)) = (s32) (var_f0 + 0.5f);
+        (((Objwater_arg0 *)arg0)->unk10) = (s32) (var_f0 + 0.5f);
     } else {
-        (*(s16 *)((s8 *)arg0 + 0x10)) = (s32) (var_f0 - 0.5f);
+        (((Objwater_arg0 *)arg0)->unk10) = (s32) (var_f0 - 0.5f);
     }
     _glid_entrypoint_2(arg1, arg2, &_idwater_entrypoint_0, arg0);
 }

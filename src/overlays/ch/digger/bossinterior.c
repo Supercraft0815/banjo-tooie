@@ -2,7 +2,7 @@
 
 OSThread *chdiggerbossinterior_entrypoint_0(void)
 {
-    extern u8 D_80800230_chdiggerbossinterior[];
+    extern ActorData D_80800230_chdiggerbossinterior[];
 
     return (OSThread *) D_80800230_chdiggerbossinterior;
 }
@@ -10,7 +10,7 @@ OSThread *chdiggerbossinterior_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_chdiggerbossinterior(s32 arg0) {
-    s32 func_800FE850();
+    void func_800FE850();
     func_800FE850();
 }
 
@@ -19,14 +19,14 @@ void func_8080002C_chdiggerbossinterior(Actor *arg0) {
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);
     Actor *_subaddiefind_entrypoint_3(s32, s32 *);
     void _sucoaster_entrypoint_5(Actor *);
-    void func_800D2498(u32, s32, u32);
+    s32 func_800D2498(u32 itemDisplayUI, s32 value, u32 a2);
     s32 func_800DA980(s32, s32);
-    extern u32 D_80800278_chdiggerbossinterior;
+    extern u32 D_80800278_chdiggerbossinterior[6];
     s32 sp30[2];
     Actor *actor;
 
     func_800D2498(0x10B, 2 - func_800DA980(0xA4F, 2), 0);
-    _subaddieaudioloop_entrypoint_4(arg0, NULL, 1, &D_80800278_chdiggerbossinterior);
+    _subaddieaudioloop_entrypoint_4(arg0, NULL, 1, D_80800278_chdiggerbossinterior);
     if (arg0->unk70_10 == 2) {
         if (arg0->unk79_4-- == 0) {
             actor = _subaddiefind_entrypoint_2(0x131, sp30);
@@ -79,3 +79,9 @@ Actor *func_80800178_chdiggerbossinterior(Actor *arg0, s32 arg1) {
     }
     return arg0;
 }
+/* data_to_c.py: from asm/data/overlays/ch/digger/bossinterior.data.s */
+void func_80102EC0();
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_80800230_chdiggerbossinterior [1] BT_DATA(4, overlays_ch_digger_bossinterior, 0x0) = { { 344, 1271, 0, 1, 0, (void (*)(struct Actor *))func_8080002C_chdiggerbossinterior, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chdiggerbossinterior, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_808000F4_chdiggerbossinterior, 0 } };
+u32 D_80800278_chdiggerbossinterior[6] BT_DATA(4, overlays_ch_digger_bossinterior, 0x48) = { 0x1305F0, 0xE00E6, 0x1000066, 0x180014, 0x20000, 0 };

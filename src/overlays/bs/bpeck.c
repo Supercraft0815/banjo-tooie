@@ -2,9 +2,9 @@
 
 struct player_state_s;
 void bsbpeck_entrypoint_0(struct player_state_s *self) {
-    s32 baanim_playForDuration_once(void *, s32, f32);
-    s32 baflag_set(struct player_state_s *, s32);
-    s32 func_800A0CF4();
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
+    void baflag_set(void *self, s32 id);
+    void func_800A0CF4(void *arg0, s32 arg1);
     void baphysics_set_gravity(struct player_state_s *, f32);
     void baphysics_set_vertical_velocity(struct player_state_s *, f32);
     s32 bs_getPreviousState(struct player_state_s *);
@@ -46,7 +46,7 @@ void bsbpeck_entrypoint_0(struct player_state_s *self) {
 typedef struct player_state_s PlayerState;
 
 void func_80800168_bsbpeck(PlayerState *self) {
-    s32 baflag_set(PlayerState *, s32);
+    void baflag_set(void *self, s32 id);
     void func_8009DE38(PlayerState *, s32, f32);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
     f32 rate = 1.0f;
@@ -80,7 +80,7 @@ void bsbpeck_entrypoint_1(PlayerState *self) {
     void anctrl_setStart(AnimCtrl *, f32);
     void anctrl_start(AnimCtrl *);
     void func_8008B188(AnimCtrl *, s32);
-    s32 _bswalk_entrypoint_1();
+    void _bswalk_entrypoint_1();
     AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
@@ -142,12 +142,12 @@ void bsbpeck_entrypoint_1(PlayerState *self) {
 
 /* extern */
 
-void bsbpeck_entrypoint_2(s32 arg0) {
-    s32 baflag_clear(s32, s32);
+void bsbpeck_entrypoint_2(BtIntPtr arg0) {
+    void baflag_clear(void *self, s32 id);
     void func_800C6DA0(s32);
-    s32 baphysics_reset_gravity(s32);
-    s32 func_8009E474(s32);
-    s32 func_800A0CF4(s32, s32);
+    void baphysics_reset_gravity(PlayerState *arg0);
+    void func_8009E474(PlayerState *arg0);
+    void func_800A0CF4(void *arg0, s32 arg1);
     baflag_clear(arg0, 0x2A);
     func_800C6DA0(0x46);
     func_8009E474(arg0);
@@ -156,6 +156,12 @@ void bsbpeck_entrypoint_2(s32 arg0) {
 }
 
 s32 bsbpeck_entrypoint_3(s32 arg0) {
-    extern s32 D_808004A0_bsbpeck[];
+    extern BtIntPtr D_808004A0_bsbpeck[];
     return ((s32 *)&D_808004A0_bsbpeck)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/bpeck.data.s */
+void _bsbpeck_entrypoint_2();
+void _bsbpeck_entrypoint_0();
+void _bsbpeck_entrypoint_1();
+void func_80099B94(PlayerState *);
+BtIntPtr D_808004A0_bsbpeck [4] BT_DATA(4, overlays_bs_bpeck, 0x0) = { (BtIntPtr)_bsbpeck_entrypoint_2, (BtIntPtr)_bsbpeck_entrypoint_0, (BtIntPtr)_bsbpeck_entrypoint_1, (BtIntPtr)func_80099B94 };

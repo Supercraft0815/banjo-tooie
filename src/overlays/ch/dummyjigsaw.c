@@ -39,7 +39,13 @@ s32 func_80800128_chdummyjigsaw(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chdummyjigsaw_entrypoint_0(void)
 {
-    extern u8 D_80800190_chdummyjigsaw[];
+    extern ActorData D_80800190_chdummyjigsaw[];
 
     return (OSThread *) D_80800190_chdummyjigsaw;
 }
+/* data_to_c.py: from asm/data/overlays/ch/dummyjigsaw.data.s */
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+ActorData D_80800190_chdummyjigsaw [1] BT_DATA(4, overlays_ch_dummyjigsaw, 0x0) = { { 303, 664, 1552, 1, 0, (void (*)(struct Actor *))func_80800000_chdummyjigsaw, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 163840000, 0, 0, 0, 0, 4, 0, (BtIntPtr)func_80108ED0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 16384, (void (*)(struct Actor *, long, long))func_80800128_chdummyjigsaw, 0 } };

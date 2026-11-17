@@ -10,7 +10,7 @@ s32 func_80800000_chfantasycannon(Actor *arg0) {
 /* extern */
 
 void func_80800028_chfantasycannon(u8 *arg0) {
-    s32 func_800DA544(s32);
+    void func_800DA544(s32 index);
     func_800DA544(((u32) (*(u16 *)((s8 *)(arg0) + (0x76))) >> 7) + 0x55D);
 }
 
@@ -21,8 +21,8 @@ s32 func_80800050_chfantasycannon(s32 bt_a0) {
 #else
 s32 func_80800050_chfantasycannon(void) {
 #endif
-    u32 func_800F54E4(void);
-    s32 func_800F64DC(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64DC(BtIntPtr);
     s32 func_8010C500();
     if (func_8010C500() == 0) {
         return 0;
@@ -34,18 +34,18 @@ s32 func_80800050_chfantasycannon(void) {
 }
 
 void func_808000A4_chfantasycannon(void) {
-    s32 func_800B5BE4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32[3]);
-    extern s32 D_80800CF8_chfantasycannon;
+    BtIntPtr func_800B5BE4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32[3]);
+    extern s32 D_80800CF8_chfantasycannon[14];
     f32 sp2C[3];
-    s32 sp28;
+    BtIntPtr sp28;
 
     sp28 = func_800B5BE4(0x1A);
     func_800F5A00(func_800F54E4(), sp2C);
     sp2C[1] += 60.0f;
-    func_800BABB8(sp28, sp2C, NULL, 1.0f, &D_80800CF8_chfantasycannon);
+    func_800BABB8(sp28, sp2C, NULL, 1.0f, D_80800CF8_chfantasycannon);
 }
 
 /* extern */
@@ -105,12 +105,12 @@ void func_80800228_chfantasycannon(Actor *arg0) {
     s32 func_800D90A4(f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    void func_800F4CC0(s32);
-    void func_800F4CEC(s32, u32);
-    u32 func_800F54E4(void);
-    s32 func_800F6C5C(s32);
-    s32 func_800F7B9C(s32, s32);
-    s32 func_800F8294(s32, f32 *);
+    void func_800F4CC0(BtIntPtr);
+    void func_800F4CEC(BtIntPtr, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F6C5C(BtIntPtr);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    void func_800F8294(BtIntPtr arg0,f32* a1);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
@@ -195,19 +195,19 @@ void func_80800228_chfantasycannon(Actor *arg0) {
 }
 
 s32 func_80800544_chfantasycannon(Actor *arg0, s32 arg1) {
-    void _capod_entrypoint_1(f32 *, f32 *);
-    void func_800F5A00(s32, f32[3]);
-    Actor *_subaddiefind_entrypoint_2(s32, s32);
+    void _capod_entrypoint_1(BtIntPtr arg0, BtIntPtr arg1);
+    void func_800F5A00(BtIntPtr, f32[3]);
+    Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800DA298(s32);
     s32 func_80015184(void);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F5EF8(s32);
-    int func_800F78EC(s32, f32 *, f32, f32);
-    s32 func_800F8294(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5EF8(BtIntPtr);
+    int func_800F78EC(BtIntPtr, f32 *, f32, f32);
+    void func_800F8294(BtIntPtr arg0,f32* a1);
     void *func_80100094(Actor *, u32);
     void func_8010FFB0(s32, f32 *, f32 *);
     f32 *sp84;
@@ -296,16 +296,16 @@ s32 func_80800544_chfantasycannon(Actor *arg0, s32 arg1) {
         }
         break;
     }
-    func_80102424(arg0, arg1);
+    func_80102424(arg0, arg1); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_808008B0_chfantasycannon(Actor *arg0) {
-    void _capod_entrypoint_1(f32 *, f32 *);
+    void _capod_entrypoint_1(BtIntPtr arg0, BtIntPtr arg1);
     void func_800A516C(f32 *, f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     f32 sp4C[3];
     f32 sp40[3];
@@ -357,17 +357,17 @@ s32 func_808009B8_chfantasycannon(Actor *arg0) {
         }
     }
     func_800EE780(data[0], data[2], arg0->position);
-    func_800EF334(data[0], 0.5f);
+    func_800EF334(data[0], 0.5f); BT_NATIVE_ONLY(return 0;)
 }
 
 OSThread *chfantasycannon_entrypoint_0(void)
 {
-    extern u8 D_80800D30_chfantasycannon[];
+    extern ActorData D_80800D30_chfantasycannon[];
 
     return (OSThread *) D_80800D30_chfantasycannon;
 }
 
-void func_80800B84_chfantasycannon()
+void func_80800B84_chfantasycannon(BT_PASS2(s32 bt_a0, s32 bt_a1))
 {
     func_80101870();
 }
@@ -377,7 +377,7 @@ void func_80800BA4_chfantasycannon(Actor *arg0) { arg0->rotation[1] = 0.0f; if (
 /* extern */
 
 void func_80800BDC_chfantasycannon(Actor *arg0) {
-    s32 _plsu_entrypoint_3(Unk80132ED0 *);
+    s32 _plsu_entrypoint_3(BtIntPtr arg0);
     void func_800C3F48(u32);
     s32 func_800D90A4(f32 *);
     s32 sp24;
@@ -394,7 +394,17 @@ void func_80800BDC_chfantasycannon(Actor *arg0) {
 
 OSThread *chfantasycannon_entrypoint_1(void)
 {
-    extern u8 D_80800D78_chfantasycannon[];
+    extern ActorData D_80800D78_chfantasycannon[];
 
     return (OSThread *) D_80800D78_chfantasycannon;
 }
+/* data_to_c.py: from asm/data/overlays/ch/fantasy/cannon.data.s */
+extern u8 D_80800CC0_chfantasycannon[];
+void func_80105834();
+int func_80101870();
+void func_80108ED0();
+void func_80107C2C();
+u8 D_80800CC0_chfantasycannon[56] BT_DATA(4, overlays_ch_fantasy_cannon, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x6E, 0xD9, 0x17, 0x03, 0x91, 0x00, 0x49, 0x3F, 0x6E, 0xD9, 0x17, 0x03, 0x91, 0x00, 0x09, 0x40, 0x2E, 0xB8, 0x52, 0x03, 0x92, 0x00, 0x4A, 0x40, 0x2E, 0xB8, 0x52, 0x03, 0x92, 0x00, 0x0A, 0x3F, 0x6E, 0xD9, 0x17, 0x03, 0x91, 0x00, 0x49, 0x3F, 0x6E, 0xD9, 0x17, 0x03, 0x91, 0x00, 0x49 };
+s32 D_80800CF8_chfantasycannon[14] BT_DATA(4, overlays_ch_fantasy_cannon, 0x38) = { 1903071, 1446400, 1834008, -39321586, 1638460, 2555904, 0, 19660834, 4194406, 1638502, 1376281, 8388651, 6684800, 52035584 };
+ActorData D_80800D30_chfantasycannon [1] BT_DATA(4, overlays_ch_fantasy_cannon, 0x70) = { { 344, 1149, 2194, 1, (void *)D_80800CC0_chfantasycannon, (void (*)(struct Actor *))func_80800228_chfantasycannon, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 32768000, 0, 0, 0, 0, 9, 0, (BtIntPtr)func_80108ED0, 36, 0, (void (*)(struct Actor *))func_8080010C_chfantasycannon, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 25600, 0, 0 } };
+ActorData D_80800D78_chfantasycannon [1] BT_DATA(4, overlays_ch_fantasy_cannon, 0xB8) = { { 344, 1150, 2350, 1, 0, (void (*)(struct Actor *))func_80800BDC_chfantasycannon, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800B84_chfantasycannon, 39321600, 0, 0, 0, 2, 6152, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800BA4_chfantasycannon, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, 0, 0 } };

@@ -52,7 +52,7 @@ void func_808000B4_cheel(Actor *arg0) {
     data->eel.unk73_0 = 1;
     arg0->unk64_25 = 1;
     data->eel.unk24 = arg0->scale * 1000.0f;
-}
+}    typedef struct { u8 pad0[0xDC]; s32 unkDC; } Objeel_func_80800128_cheel_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */ typedef struct { u8 pad0[0xDC]; s32 unkDC; } Objeel_func_80800128_cheel_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80800128_cheel(Actor *arg0) {
     void func_800C8B84(s32);
@@ -61,10 +61,10 @@ void func_80800128_cheel(Actor *arg0) {
     u8 *sp1C;
 
     temp_v0 = func_80100094(arg0, 0U);
-    if ((*(s32 *)((s8 *)(temp_v0) + (0xDC))) != 0) {
+    if ((((Objeel_func_80800128_cheel_temp_v0 *)temp_v0)->unkDC) != 0) {
         sp1C = temp_v0;
-        func_800C8B84((*(s32 *)((s8 *)(temp_v0) + (0xDC))));
-        (*(s32 *)((s8 *)(sp1C) + (0xDC))) = 0;
+        func_800C8B84((((Objeel_func_80800128_cheel_temp_v0 *)temp_v0)->unkDC));
+        (((Objeel_func_80800128_cheel_sp1C *)sp1C)->unkDC) = 0;
     }
 }
 
@@ -133,7 +133,7 @@ s32 func_808002A0_cheel(u8 *arg0) {
     f32 temp_f0;
     f32 var_f2;
 
-    temp_f0 = func_800F1DCC((*(f32 *)((s8 *)(arg0) + (0x48))), (*(f32 *)((s8 *)(arg0) + (0x54))));
+    temp_f0 = func_800F1DCC((((Actor *)arg0)->rotation[1]), (((Actor *)arg0)->unk54));
     var_f2 = temp_f0;
     if (temp_f0 < 0.0f) {
         var_f2 = -temp_f0;
@@ -158,15 +158,15 @@ void func_8080031C_cheel(Actor *arg0) {
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
-    s32 func_8010262C(Unk80132ED0 *, u32);
+    BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     s32 func_80107070(Actor *, s32);
     s32 func_8010C500(void *);
-    void func_8010CE28(s32, f32 *);
+    void func_8010CE28(BtIntPtr, f32 *);
     void func_80800D60_cheel(Actor *);
     void func_80801120_cheel(Actor *);
     void func_80801200_cheel(Actor *, s32);
     void *model;
-    s32 i;
+    BtIntPtr i;
     struct { f32 values[55]; } *data;
     f32 dt;
     f32 angles3[2];
@@ -205,9 +205,9 @@ void func_8080031C_cheel(Actor *arg0) {
         /* IDO: this always-true guard preserves AS1's original block weights.
          * Its unsigned arithmetic and the aligned marker self-copy preserve
          * scratch-register order; AS1 removes all of their instructions. */
-        if (((u64)(((((u32)arg0->pointerToSyscallEntry + 1U) ^ 1U) + 1U) ^ 1U) & 0xffffffffULL) <= 0xffffffffULL) {
+        if (((u64)(((((BtUIntPtr)arg0->pointerToSyscallEntry + 1U) ^ 1U) + 1U) ^ 1U) & 0xffffffffULL) <= 0xffffffffULL) {
             /* Markers have four-byte alignment; the mask preserves the pointer. */
-            i = (s32)((u32)arg0->unk0 & ~3U);
+            i = (s32)((BtUIntPtr)arg0->unk0 & ~3U);
             *(Unk80132ED0 *)i = *(Unk80132ED0 *)i;
             i = 8;
             do {
@@ -274,7 +274,7 @@ void func_8080031C_cheel(Actor *arg0) {
         func_80800D60_cheel(arg0);
         break;
     case 3:
-        func_8010CE28((s32)arg0, angles3);
+        func_8010CE28((BtIntPtr)arg0, angles3);
         ((EelUpdateActor *)arg0)->actor.unk50 = -angles3[0];
         if (((EelUpdateActor *)arg0)->actor.unk64_29) {
             ((EelUpdateActor *)arg0)->eel.speed = _subaddiejoy_entrypoint_9(arg0, &((EelUpdateActor *)arg0)->actor.unk54, 3) * 1000.0f * ((EelUpdateActor *)arg0)->actor.scale;
@@ -312,7 +312,7 @@ void func_8080031C_cheel(Actor *arg0) {
         func_80800D60_cheel(arg0);
         break;
     case 5:
-        func_8010CE28((s32)arg0, angles5);
+        func_8010CE28((BtIntPtr)arg0, angles5);
         ((EelUpdateActor *)arg0)->actor.unk50 = angles5[0];
         ((EelUpdateActor *)arg0)->actor.unk54 = -angles5[1];
         func_80800168_cheel(arg0);
@@ -326,7 +326,7 @@ void func_8080031C_cheel(Actor *arg0) {
         func_80800D60_cheel(arg0);
         break;
     case 6:
-        func_8010CE28((s32)arg0, angles6);
+        func_8010CE28((BtIntPtr)arg0, angles6);
         ((EelUpdateActor *)arg0)->actor.unk50 = angles6[0];
         ((EelUpdateActor *)arg0)->actor.unk54 = -angles6[1];
         func_80800168_cheel(arg0);
@@ -378,10 +378,10 @@ void func_8080031C_cheel(Actor *arg0) {
 void func_80800D60_cheel(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
-    s32 func_800B53A4(s32);
-    void func_800BA1D0(s32, f32 *, f32 *, s32);
-    void func_800BA3FC(s32, s32);
-    s32 func_800BABB8(s32, f32 *, f32 *, f32, s32 *);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA1D0(BtIntPtr, f32 *, f32 *, s32);
+    void func_800BA3FC(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32 *, f32 *, f32, s32 *);
     s32 func_800C8A98(void);
     void func_800C8B84(s32);
     void func_800C8CB8(s32, f32 *);
@@ -408,8 +408,8 @@ void func_80800D60_cheel(Actor *arg0) {
         s32 unkDC;
     } *data;
     f32 position[3];
-    s32 emitter1;
-    s32 emitter2;
+    BtIntPtr emitter1;
+    BtIntPtr emitter2;
 
     data = func_80100094(arg0, 0);
     if (func_8010A610(arg0)) {
@@ -561,13 +561,13 @@ void func_80801200_cheel(Actor *arg0, s32 arg1) {
 s32 func_80801330_cheel(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_8008FD48();
-    void func_80090460(s32, s32);
+    void func_80090460(s32, BtIntPtr);
     void func_800904C8(s32);
     void func_800DF5D8(u32, u32, u32, s32);
     void func_800DF744(s32, s32);
     void func_80101010(f32 *);
     s32 func_801015D0(Actor *);
-    extern s32 D_808015F4_cheel;
+    extern s32 D_808015F4_cheel[5];
     extern f32 D_80801638_cheel[];
 
     if (arg1 == 0x1F) goto event_1f;
@@ -600,12 +600,12 @@ event_3e:
             if (func_8008FD48() == 0xC) {
                 func_800904C8(0x54);
             } else {
-                func_80090460(0xF, (s32)arg0->unk0);
+                func_80090460(0xF, (BtIntPtr)arg0->unk0);
             }
         }
         goto done;
 event_40:
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808015F4_cheel);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808015F4_cheel);
         func_80801200_cheel(arg0, 9);
         goto done;
 event_8f:
@@ -621,7 +621,21 @@ done:
 
 OSThread *cheel_entrypoint_0(void)
 {
-    extern u8 D_80801644_cheel[];
+    extern ActorData D_80801644_cheel[];
 
     return (OSThread *) D_80801644_cheel;
 }
+/* data_to_c.py: from asm/data/overlays/ch/eel.data.s */
+extern u8 D_80801560_cheel[];
+void func_80105834(Actor*);
+void func_801018A4();
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+extern u8 D_808015C8_cheel[];
+u8 D_80801560_cheel[104] BT_DATA(4, overlays_ch_eel, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7E, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7E, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7D, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7D, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7E, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7E, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7E, 0x00, 0x00, 0x3E, 0xCC, 0xCC, 0xCD, 0x04, 0xAB, 0x00, 0x02, 0x3F, 0x40, 0x00, 0x00, 0x04, 0xAC, 0x00, 0x02, 0x3F, 0x40, 0x00, 0x00, 0x04, 0xAC, 0x00, 0x84, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7E, 0x00, 0x00, 0x3F, 0x26, 0x66, 0x66, 0x01, 0x7E, 0x00, 0x00 };
+u8 D_808015C8_cheel[20] BT_DATA(4, overlays_ch_eel, 0x68) = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00 };
+u32 D_808015DC_cheel [6] BT_DATA(4, overlays_ch_eel, 0x7C) = { 0x13052E, 0xD0133, 0x1660001, 0x1F407D0, 0x164650, 0 };
+s32 D_808015F4_cheel[5] BT_DATA(4, overlays_ch_eel, 0x94) = { 1246689, 655872, 1507327, 68036, 327680000 };
+s32 D_80801608_cheel [12] BT_DATA(4, overlays_ch_eel, 0xA8) = { 2818086, 3342370, 8388787, 393235, 2555724, -11731124, 142868660, 11796524, -19595564, -19660500, 19661100, 0 };
+f32 D_80801638_cheel [3] BT_DATA(4, overlays_ch_eel, 0xD8) = { 0.0f, 200.0f, 0.0f };
+ActorData D_80801644_cheel [1] BT_DATA(4, overlays_ch_eel, 0xE4) = { { 739, 798, 1739, 1, (void *)D_80801560_cheel, (void (*)(struct Actor *))func_8080031C_cheel, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 491520000, 0, 0, 0, 1, 105, (void (*)(struct Actor *))func_80800128_cheel, (BtIntPtr)func_80108ED0, 224, 0, (void (*)(struct Actor *))func_808000B4_cheel, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32672, 3, (void (*)(struct Actor *, long, long))func_80801330_cheel, (BtIntPtr)D_808015C8_cheel } };

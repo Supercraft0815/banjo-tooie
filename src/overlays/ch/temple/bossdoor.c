@@ -2,7 +2,7 @@
 
 OSThread *chtemplebossdoor_entrypoint_0(void)
 {
-    extern u8 D_808001C0_chtemplebossdoor[];
+    extern ActorData D_808001C0_chtemplebossdoor[];
 
     return (OSThread *) D_808001C0_chtemplebossdoor;
 }
@@ -38,9 +38,9 @@ void func_8080000C_chtemplebossdoor(Actor *arg0) {
 }
 
 s32 func_808000E8_chtemplebossdoor(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(Actor *, s32, s32);
-    void _capod_entrypoint_14(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
+    s32 _capod_entrypoint_14(void);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800FFA88(Unk80132ED0 *);
     void func_80108BD4(Actor *, s32);
     s32 temp;
@@ -69,3 +69,9 @@ s32 func_808000E8_chtemplebossdoor(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return _chdoor_entrypoint_1(arg0, arg1, arg2);
 }
+/* data_to_c.py: from asm/data/overlays/ch/temple/bossdoor.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_808001C0_chtemplebossdoor [1] BT_DATA(4, overlays_ch_temple_bossdoor, 0x0) = { { 172, 692, 2111, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chtemplebossdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808000E8_chtemplebossdoor, 0 } };

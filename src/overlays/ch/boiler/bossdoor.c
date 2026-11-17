@@ -2,7 +2,7 @@
 
 OSThread *chboilerbossdoor_entrypoint_0(void)
 {
-    extern u8 D_808000F0_chboilerbossdoor[];
+    extern ActorData D_808000F0_chboilerbossdoor[];
 
     return (OSThread *) D_808000F0_chboilerbossdoor;
 }
@@ -33,3 +33,10 @@ void func_8080000C_chboilerbossdoor(Actor *arg0) {
         func_8010108C(arg0, 8, 0);
     }
 }
+/* data_to_c.py: from asm/data/overlays/ch/boiler/bossdoor.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
+ActorData D_808000F0_chboilerbossdoor [1] BT_DATA(4, overlays_ch_boiler_bossdoor, 0x0) = { { 172, 1133, 1915, 4, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 134, 0, 0, 1024, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chboilerbossdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11266, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };

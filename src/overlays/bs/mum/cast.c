@@ -41,7 +41,7 @@ s32 func_80800000_bsmumcast(PlayerState *self, s32 arg1) {
         func_800A0DA0(self, 1);
         break;
     }
-}
+    BT_NATIVE_ONLY(return 0;)}
 #else
 // Decomp failure
 #endif
@@ -90,7 +90,7 @@ void bsmumcast_entrypoint_2(PlayerState *self) {
 #ifndef NONMATCHINGS
 void bsmumcast_entrypoint_3(PlayerState *arg0)
 {
-  s32 _chjujubagfx_entrypoint_2();
+  void _chjujubagfx_entrypoint_2(void);
   enum bs_state_e sp24;
   u32 temp_t6;
   sp24 = BS_STATE_0_INVALID;
@@ -158,6 +158,10 @@ void bsmumcast_entrypoint_3(PlayerState *arg0)
 // Decomp failure
 #endif
 
-s32 bsmumcast_entrypoint_4(s32 idx) {
+BtIntPtr bsmumcast_entrypoint_4(s32 idx) {
     return D_808004A0_bsmumcast[idx];
 }
+/* data_to_c.py: from asm/data/overlays/bs/mum/cast.data.s */
+void _bsmumcast_entrypoint_3();
+void _bsmumcast_entrypoint_2();
+BtIntPtr D_808004A0_bsmumcast [4] BT_DATA(4, overlays_bs_mum_cast, 0x0) = { (BtIntPtr)_bsmumcast_entrypoint_0, (BtIntPtr)_bsmumcast_entrypoint_1, (BtIntPtr)_bsmumcast_entrypoint_3, (BtIntPtr)_bsmumcast_entrypoint_2 };

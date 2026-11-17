@@ -1,31 +1,31 @@
 #include "common.h"
 
-void func_80800000_chtntmineshoot(Actor *arg0) { extern s32 D_80802590_chtntmineshoot; extern s32 D_8080259C_chtntmineshoot; f32 *sp1C[2]; sp1C[1] = arg0->position; func_800C4AF0(sp1C[1], &D_80802590_chtntmineshoot);
-    func_800C4AF0(sp1C[1], &D_8080259C_chtntmineshoot);
+void func_80800000_chtntmineshoot(Actor *arg0) { extern s32 D_80802590_chtntmineshoot[3]; extern s32 D_8080259C_chtntmineshoot[3]; f32 *sp1C[2]; sp1C[1] = arg0->position; func_800C4AF0(sp1C[1], D_80802590_chtntmineshoot);
+    func_800C4AF0(sp1C[1], D_8080259C_chtntmineshoot);
 }
 
-void func_8080003C_chtntmineshoot(s32 arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_808025A8_chtntmineshoot;
-    func_800BBCB8((f32 *)(arg0 + 4), 0, 1.0f, 4, &D_808025A8_chtntmineshoot);
+void func_8080003C_chtntmineshoot(BtIntPtr arg0) {
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    extern s32 D_808025A8_chtntmineshoot[9];
+    func_800BBCB8((f32 *)(arg0 + 4), 0, 1.0f, 4, D_808025A8_chtntmineshoot);
 }
 
 void func_80800078_chtntmineshoot(f32 *arg0, f32 arg1) {
     void func_800187B4(s32, f32, f32, f32);
     s32 func_800E1610(s32, f32, f32, f32 *);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    extern s32 D_808025CC_chtntmineshoot;
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    extern s32 D_808025CC_chtntmineshoot[4];
     f32 sp1C[3];
 
     if (arg0 != NULL) {
-        func_800C4AF0(arg0, &D_808025CC_chtntmineshoot);
+        func_800C4AF0(arg0, D_808025CC_chtntmineshoot);
         if (arg1 != 0.0f) {
             func_800E1610(0, 50.0f, arg1, arg0);
         }
     } else {
         func_800F5A00(func_800F54E4(), sp1C);
-        func_800C4AF0(sp1C, &D_808025CC_chtntmineshoot);
+        func_800C4AF0(sp1C, D_808025CC_chtntmineshoot);
         if (arg1 != 0.0f) {
             func_800E1610(0, 50.0f, arg1, sp1C);
         }
@@ -35,22 +35,22 @@ void func_80800078_chtntmineshoot(f32 *arg0, f32 arg1) {
 
 void func_80800150_chtntmineshoot(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
-    extern u32 D_808025DC_chtntmineshoot;
-    _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_808025DC_chtntmineshoot);
+    extern u32 D_808025DC_chtntmineshoot[7];
+    _subaddieaudioloop_entrypoint_4(arg0, &arg0->position[0], 1U, D_808025DC_chtntmineshoot);
     arg0->unk5F = 0;
 }
 
 void func_80800188_chtntmineshoot(f32 *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
-    f32 func_800F5F24(u32);
-    extern s32 D_808025F8_chtntmineshoot;
-    extern s32 D_80802644_chtntmineshoot;
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
+    f32 func_800F5F24(BtUIntPtr);
+    extern s32 D_808025F8_chtntmineshoot[19];
+    extern s32 D_80802644_chtntmineshoot[19];
     f32 sp2C[3];
-    u32 sp28;
+    BtUIntPtr sp28;
 
     if (arg0 != NULL) {
         func_800EE7F8(sp2C, arg0);
@@ -59,11 +59,11 @@ void func_80800188_chtntmineshoot(f32 *arg0) {
         func_800F5A00(sp28, sp2C);
         func_800EF1B8(sp2C, func_800F5F24(sp28), 200.0f);
     }
-    func_800BBCB8(sp2C, NULL, 1.0f, 1, &D_808025F8_chtntmineshoot);
-    func_800BBCB8(sp2C, NULL, 1.0f, 1, &D_80802644_chtntmineshoot);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, D_808025F8_chtntmineshoot);
+    func_800BBCB8(sp2C, NULL, 1.0f, 1, D_80802644_chtntmineshoot);
 }
 
-void func_80800228_chtntmineshoot(Actor *arg0) { void *func_80100094(Actor *, u32); void _subaddierouteDll_entrypoint_3(Actor *, void *, f32 *); void func_80800440_chtntmineshoot(Actor *, s32); void func_80800BCC_chtntmineshoot(Actor *); u8 *sp24; sp24 = func_80100094(arg0, 0U); func_80800BCC_chtntmineshoot(arg0); func_80800440_chtntmineshoot(arg0, 0); _subaddierouteDll_entrypoint_3(arg0, sp24 + 0x18, (f32 *)((u8 *)arg0 + 4)); }
+void func_80800228_chtntmineshoot(Actor *arg0) { void *func_80100094(Actor *, u32); void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2); void func_80800440_chtntmineshoot(Actor *, s32); void func_80800BCC_chtntmineshoot(Actor *); u8 *sp24; sp24 = func_80100094(arg0, 0U); func_80800BCC_chtntmineshoot(arg0); func_80800440_chtntmineshoot(arg0, 0); _subaddierouteDll_entrypoint_3(arg0, sp24 + 0x18, &arg0->position[0]); }
 
 void func_80800280_chtntmineshoot(Actor *arg0) {
     f32 func_800136E4(f32);
@@ -118,7 +118,7 @@ void func_80800280_chtntmineshoot(Actor *arg0) {
             func_80108B04(arg0, 4);
             break;
         case 5:
-            func_8080003C_chtntmineshoot((s32)arg0);
+            func_8080003C_chtntmineshoot((BtIntPtr)arg0);
             func_80108B04(arg0, 5);
             break;
     }
@@ -128,7 +128,7 @@ void func_80800280_chtntmineshoot(Actor *arg0) {
 
 void func_80800440_chtntmineshoot(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     u8 *sp1C;
     u8 *temp_v0;
 
@@ -176,7 +176,7 @@ s32 func_808004BC_chtntmineshoot(Actor *arg0, s32 arg1) {
 s32 func_808005AC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddierouteDll_entrypoint_1(Actor *);
     void func_800FFAB0(Actor *);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800BF4_chtntmineshoot(Actor *, s32);
     void func_80801F90_chtntmineshoot(Actor **, s32);
 
@@ -214,14 +214,14 @@ s32 func_808005AC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808006D0_chtntmineshoot(Actor *arg0, u8 *arg1) {
     void *func_800D674C(s32);
     void func_800DBEFC(s32 *, s32, f32 *);
-    s32 func_800DF5D8(u8, u8, u8, u8);
+    void func_800DF5D8(u32 r,u32 g,u32 b,s32 alpha);
     void func_800DF744(s32, s32);
     void func_800E24D8(s32);
     void func_800E2588(u32);
     void func_800E2AA4(u8 *, u8 *, s32, s32, f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    s32 func_80101870(void *, s32);
+    void func_80101870(Actor* arg0, void* arg1);
     OSThread *func_80104130(void);
     void func_80800C90_chtntmineshoot(Actor *);
     struct { u8 pad0; u8 state; u8 pad2[2]; u8 color; } *sp44;
@@ -253,14 +253,14 @@ void func_808006D0_chtntmineshoot(Actor *arg0, u8 *arg1) {
 
 void func_80800830_chtntmineshoot(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
     f32 func_800F13F0(f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFD24(f32 *);
     void func_80101CDC(Actor *, f32);
-    extern s32 D_80802580_chtntmineshoot;
+    extern s32 D_80802580_chtntmineshoot[4];
     struct { u8 pad[0x14]; u8 state; } *sp4C;
     f32 sp48;
     f32 sp44;
@@ -279,7 +279,7 @@ void func_80800830_chtntmineshoot(Actor *arg0, s32 arg1) {
             ((f32 *)arg0->actorData)[7] = (-sp44 - sp44) / sp48;
             sp48 += sp40 * 0.5f;
             func_80101CDC(arg0, sp48);
-            func_800C4AF0(arg0->position, &D_80802580_chtntmineshoot);
+            func_800C4AF0(arg0->position, D_80802580_chtntmineshoot);
             func_80800440_chtntmineshoot(arg0, 1);
             break;
         case 2:
@@ -356,15 +356,15 @@ s32 func_80800AD0_chtntmineshoot(Actor *arg0) {
             break;
     }
     return result;
-}
+}    typedef struct { u8 pad0[0x1]; s8 unk1; u8 pad2[0x2]; s8 unk4; } Objmineshoot_func_80800BCC_chtntmineshoot_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80800BCC_chtntmineshoot(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
-    (*(s8 *)((s8 *)(temp_v0) + (1))) = 0;
-    (*(s8 *)((s8 *)(temp_v0) + (4))) = 0;
+    (((Objmineshoot_func_80800BCC_chtntmineshoot_temp_v0 *)temp_v0)->unk1) = 0;
+    (((Objmineshoot_func_80800BCC_chtntmineshoot_temp_v0 *)temp_v0)->unk4) = 0;
 }
 
 void func_80800BF4_chtntmineshoot(Actor *arg0, s32 arg1) {
@@ -436,7 +436,7 @@ void func_80800C90_chtntmineshoot(Actor *arg0) {
 
 OSThread *chtntmineshoot_entrypoint_0(void)
 {
-    extern u8 D_80802690_chtntmineshoot[];
+    extern ActorData D_80802690_chtntmineshoot[];
 
     return (OSThread *) D_80802690_chtntmineshoot;
 }
@@ -444,8 +444,8 @@ OSThread *chtntmineshoot_entrypoint_0(void)
 /* extern */
 
 void func_80800E10_chtntmineshoot(Actor *arg0) {
-    s32 _susubgame_entrypoint_11(s32);
-    s32 func_800C2E04(void);
+    void _susubgame_entrypoint_11(s32 arg0);
+    u8 func_800C2E04(void);
     void func_800C330C(u8 id, s32);
     void* func_80100094(Actor*, u32);
     void func_800C431C(u8, s32);
@@ -456,27 +456,27 @@ void func_80800E10_chtntmineshoot(Actor *arg0) {
     func_800C330C(sp1C->id, 3);
     func_800C431C(sp1C->id, 0);
     _susubgame_entrypoint_11(0);
-}
+}    typedef struct { u8 pad0[0x4]; s32 unk4; f32 unk8; u8 padC[0x4]; s32 unk10; } Objmineshoot_func_80800E64_chtntmineshoot_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
 int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    s32 func_800CE8D8(s32, f32, s32);
+    void func_800CE8D8(s32 arg0, f32 arg1, s32 arg2);
     s32 func_800D2498(u32, s32, u32);
     s32 func_800D2054(s32, s32, s32);
-    void func_800F49D4(s32, void *, s32);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800FE820(f32);
     s32 func_80801974_chtntmineshoot(Actor *, s32);
-    s32 func_80101180(s32, s32, s32);
-    s32 _susubgame_entrypoint_11(s32);
-    u32 func_800F54E4(void);
-    void func_800D284C(u32);
-    s32 func_800F7F98(s32, u32);
-    s32 func_800D211C(s32);
-    s32 func_800F7B9C(s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
+    void _susubgame_entrypoint_11(s32 arg0);
+    BtUIntPtr func_800F54E4(void);
+    int func_800D284C(s32 a0);
+    s32 func_800F7F98(BtIntPtr, u32);
+    s16 func_800D211C(s32 arg0);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
     void _gcfrontend_entrypoint_9(s32);
     void *data;
-    s32 player;
+    BtIntPtr player;
     s32 pad0;
     s32 pad1;
     s32 message;
@@ -485,7 +485,7 @@ int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
     if (arg1 != ((u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10)) {
         switch (arg1) {
         case 2:
-            *(s32 *)((u8 *)data + 4) = 0;
+            ((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk4 = 0;
             func_800D2498(0x102, *(s32 *)data, 0);
             break;
         case 3:
@@ -497,13 +497,13 @@ int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
             break;
         case 4:
             func_800FE820(1.0f);
-            *(s32 *)((u8 *)data + 4) = 1;
+            ((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk4 = 1;
             _susubgame_entrypoint_11(0);
             func_80801974_chtntmineshoot(arg0, 0xFA2);
             break;
         case 5:
-            *(s32 *)((u8 *)data + 4) = 2;
-            *(s32 *)((u8 *)data + 0x10) = 0;
+            ((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk4 = 2;
+            ((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk10 = 0;
             _susubgame_entrypoint_11(0);
             break;
         case 7:
@@ -521,14 +521,14 @@ int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
             func_800F7F98(func_800F54E4(), 1);
             break;
         case 9:
-            *(s32 *)((u8 *)data + 4) = 0;
-            *(f32 *)((u8 *)data + 8) = 0.0f;
-            func_800D2498(0xCC, (s32)*(f32 *)((u8 *)data + 8), 0);
+            ((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk4 = 0;
+            ((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk8 = 0.0f;
+            func_800D2498(0xCC, (s32)*&((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk8, 0);
             func_800D2498(0x102, *(s32 *)data, 0);
             func_80101180(0x2BE, 0xA, 0);
             break;
         case 11:
-            switch (func_800D2054(1, 0x95, (s32)*(f32 *)((u8 *)data + 8))) {
+            switch (func_800D2054(1, 0x95, (s32)*&((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk8)) {
             case -1:
                 message = 0xFB6;
                 break;
@@ -542,14 +542,14 @@ int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
             func_80801974_chtntmineshoot(arg0, message);
             break;
         case 10:
-            *(s32 *)((u8 *)data + 0x10) = 0;
+            ((Objmineshoot_func_80800E64_chtntmineshoot_data *)data)->unk10 = 0;
             break;
         case 12:
             func_80801974_chtntmineshoot(arg0, 0xCEB);
             break;
         }
         func_80101FDC(arg0, arg1);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
@@ -618,10 +618,10 @@ void func_80801318_chtntmineshoot(Actor *arg0) {
     void func_800C3CE8(u8);
     s32 func_800D9078(f32 *);
     f32 func_800DC178(f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     s32 func_80801974_chtntmineshoot(Actor *, s32);
     f32 sp28[4];
     struct { u8 pad[12]; u8 id; s32 state; } *data;
@@ -667,10 +667,10 @@ void func_8080146C_chtntmineshoot(Actor *arg0) {
     void func_800C3CE8(u8);
     s32 func_800D9078(f32 *);
     f32 func_800DC178(f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F5A00(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     f32 sp28[4];
     struct { u8 pad[12]; u8 id; s32 state; f32 timer; } *data;
 
@@ -715,12 +715,12 @@ void func_8080146C_chtntmineshoot(Actor *arg0) {
             }
             break;
     }
-}
+}    typedef struct { u8 pad0[0xC]; u8 unkC; } Objmineshoot_func_80801604_chtntmineshoot_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_80801604_chtntmineshoot(Actor *arg0) {
-    s32 _susubgame_entrypoint_11(s32);
-    void func_800C2FDC(u8 id);
-    void func_800D284C(u32 a0);
+    void _susubgame_entrypoint_11(s32 arg0);
+    s32 func_800C2FDC(u8 index);
+    int func_800D284C(s32 a0);
     void* func_80100094(Actor*, u32);
     u8 *sp1C;
     u8 temp_a0;
@@ -728,10 +728,10 @@ void func_80801604_chtntmineshoot(Actor *arg0) {
     sp1C = func_80100094(arg0, 0U);
     _susubgame_entrypoint_11(0);
     func_800D284C(0x102U);
-    temp_a0 = (*(u8 *)((s8 *)(sp1C) + (0xC)));
+    temp_a0 = (((Objmineshoot_func_80801604_chtntmineshoot_sp1C *)sp1C)->unkC);
     if (temp_a0 != 0) {
         func_800C2FDC(temp_a0);
-        (*(u8 *)((s8 *)(sp1C) + (0xC))) = 0U;
+        (((Objmineshoot_func_80801604_chtntmineshoot_sp1C *)sp1C)->unkC) = 0U;
     }
 }
 
@@ -742,7 +742,7 @@ s32 func_80801658_chtntmineshoot(Actor **arg0) {
     s32 func_800D0A9C(u32, u32);
     s32 func_800D395C(void);
     Actor *func_80106790(Unk80132ED0 *);
-    void func_801085CC(s32, s16 *, u32);
+    Actor *func_801085CC(s32 arg0, s16 *arg1, u32 arg2);
     Actor *temp_v0;
     Unk80132ED0 *sp88;
     Prop *sp38[20];
@@ -775,11 +775,11 @@ s32 func_80801658_chtntmineshoot(Actor **arg0) {
 s32 func_80801714_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D0A9C(u32, u32);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC660(u32);
     void *func_80100094(Actor *, u32);
-    s32 func_80801A18_chtntmineshoot(s32, s32, s32);
+    s32 func_80801A18_chtntmineshoot(BtIntPtr, s32, s32);
     void func_80801A54_chtntmineshoot(Actor *, s32, s32);
     s32 *sp2C;
     s32 sp28;
@@ -822,7 +822,7 @@ s32 func_80801714_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
             }
             break;
         case 0x30:
-            return func_80801A18_chtntmineshoot((s32)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            return func_80801A18_chtntmineshoot((BtIntPtr)arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
         case 0x2E:
             func_80801A54_chtntmineshoot(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
             break;
@@ -842,9 +842,9 @@ s32 func_80801714_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_80801974_chtntmineshoot(Actor *arg0, s32 arg1) {
-    u32 func_800F54E4(void);
-    s32 func_800F7F98(s32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7F98(BtIntPtr, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 dialog;
 
     dialog = 7;
@@ -870,8 +870,8 @@ s32 func_80801974_chtntmineshoot(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-s32 func_80801A18_chtntmineshoot(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800D211C(s32);
+s32 func_80801A18_chtntmineshoot(BtIntPtr arg0, s32 arg1, s32 arg2) {
+    s16 func_800D211C(s32 arg0);
     if (arg1 == 0xFB3) {
         return func_800D211C(0x95);
     }
@@ -879,11 +879,11 @@ s32 func_80801A18_chtntmineshoot(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80801A54_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
     void func_800A7AD4(s32, s32);
-    s32 func_800F7F98(s32, u32);
+    s32 func_800F7F98(BtIntPtr, u32);
 
     switch (arg1) {
         case 0xFA3:
@@ -920,21 +920,21 @@ void func_80801A54_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chtntmineshoot_entrypoint_1(void)
 {
-    extern u8 D_808026D8_chtntmineshoot[];
+    extern ActorData D_808026D8_chtntmineshoot[];
 
     return (OSThread *) D_808026D8_chtntmineshoot;
 }
-
+struct Vec { f32 v[3]; };
 void func_80801BA0_chtntmineshoot(void) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800E1610(s32, f32, f32, f32 *);
-    struct Vec { f32 v[3]; };
+
     extern struct Vec D_80802720_chtntmineshoot;
-    extern s32 D_8080272C_chtntmineshoot;
+    extern s32 D_8080272C_chtntmineshoot[18];
     struct Vec sp24;
 
     sp24 = D_80802720_chtntmineshoot;
-    func_800BBCB8(sp24.v, 0, 1.0f, 2, &D_8080272C_chtntmineshoot);
+    func_800BBCB8(sp24.v, 0, 1.0f, 2, D_8080272C_chtntmineshoot);
     func_800E1610(0, 20.0f, 0.9f, sp24.v);
 }
 
@@ -945,14 +945,14 @@ void func_80801C18_chtntmineshoot(s32 arg0)
 {
 }
 void func_80801C20_chtntmineshoot(u8 *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800C6E38(s32);
-    s32 func_800C964C(s32);
+    void func_800C964C(s32 arg0);
     s32 func_800DA9E4(s32, s32);
     s32 func_800EA090(void);
-    void func_800F49D4(s32, void *, s32);
-    s32 func_800F5410(s32);
-    u32 func_800F54E4(void);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    s32 func_800F5410(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
     void func_80101FDC(Actor *, u32);
     extern s32 _bsfirstp_entrypoint_18;
     typedef struct { u32 pad[29]; u32 pad74_19 : 13; u32 active : 1; u32 pad74_0 : 18; } ActorFlags;
@@ -984,7 +984,7 @@ void func_80801C20_chtntmineshoot(u8 *arg0) {
 void func_80801D6C_chtntmineshoot(Actor *arg0) {
     void func_80801C20_chtntmineshoot(u8 *arg0);
     s32 func_800D9078(f32 *);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     void func_80101FDC(Actor *, u32);
 
     func_80801C20_chtntmineshoot(arg0);
@@ -1001,14 +1001,14 @@ void func_80801D6C_chtntmineshoot(Actor *arg0) {
 }
 
 s32 func_80801DEC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800D0A9C(u32, u32);
     s32 func_800EA090(void);
-    u32 func_800F54E4(void);
-    s32 func_800F7B9C(s32, s32);
-    s32 func_800F7F98(s32, u32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F7B9C(BtIntPtr arg0,u32 a1);
+    s32 func_800F7F98(BtIntPtr, u32);
     void func_80101FDC(Actor *, u32);
 
     switch (arg1) {
@@ -1052,29 +1052,29 @@ s32 func_80801DEC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chtntmineshoot_entrypoint_2(void)
 {
-    extern u8 D_80802774_chtntmineshoot[];
+    extern ActorData D_80802774_chtntmineshoot[];
 
     return (OSThread *) D_80802774_chtntmineshoot;
 }
-
+typedef struct { u32 state; u16 pad4; u16 anim; f32 size; f32 unkC; f32 distance; f32 height; f32 speedMin; f32 speedMax; f32 yMin; f32 yMax; f32 lifeMin; f32 lifeMax; } DebrisSettings;
 void func_80801F90_chtntmineshoot(Actor **arg0, s32 arg1)
 {
-  typedef struct 
-  {
-    u32 state;
-    u16 pad4;
-    u16 anim;
-    f32 size;
-    f32 unkC;
-    f32 distance;
-    f32 height;
-    f32 speedMin;
-    f32 speedMax;
-    f32 yMin;
-    f32 yMax;
-    f32 lifeMin;
-    f32 lifeMax;
-  } DebrisSettings;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   typedef struct 
   {
     f32 pad18[4];
@@ -1091,7 +1091,7 @@ void func_80801F90_chtntmineshoot(Actor **arg0, s32 arg1)
   void func_800EFA98(f32 *, f32 *, f32);
   void func_80101FDC(Actor *, u32);
   s32 func_80103140(Actor *, u32, u16);
-  Actor *func_801084B0(s32, Actor **);
+  Actor *func_801084B0(BtIntPtr, Actor **);
   extern DebrisSettings D_808027BC_chtntmineshoot[][2];
   Actor *actor;
   u32 *color;
@@ -1138,11 +1138,11 @@ void func_80802140_chtntmineshoot(s32 arg0)
 }
 /* extern */
 
-void func_80802148_chtntmineshoot(void *arg0, s32 arg1) {
-    s32 func_800DF5D8(u8, u8, u8, u8);
-    s32 func_80101870(void *, s32);
+void func_80802148_chtntmineshoot(void *arg0, BtIntPtr arg1) {
+    void func_800DF5D8(u32 r,u32 g,u32 b,s32 alpha);
+    void func_80101870(Actor* arg0, void* arg1);
     void func_80802320_chtntmineshoot(Actor *);
-    func_800DF5D8((*(u8 *)((s8 *)(arg0) + (0x98))), (*(u8 *)((s8 *)(arg0) + (0x99))), (*(u8 *)((s8 *)(arg0) + (0x9A))), (*(u8 *)((s8 *)(arg0) + (0x9B))));
+    func_800DF5D8((((Actor *)arg0)->pad98), (((Actor *)arg0)->pad99), (((Actor *)arg0)->pad9A), (((Actor *)arg0)->alpha));
     func_80101870(arg0, arg1);
     func_80802320_chtntmineshoot(arg0);
 }
@@ -1205,16 +1205,16 @@ void func_808022A8_chtntmineshoot(Actor *arg0, s32 arg1) {
 void func_80802320_chtntmineshoot(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 func_8001211C(void);
-    void func_800BA22C(s32, s32);
-    void func_800BA3FC(s32, s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA3FC(BtIntPtr, s32);
     void func_800BA4B0(s8 *, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800DC090(void);
     extern s32 D_8080287C_chtntmineshoot[];
     extern s32 D_808028C4_chtntmineshoot[];
     f32 sp2C[3];
-    s32 sp28;
-    s32 sp24;
+    BtIntPtr sp28;
+    BtIntPtr sp24;
     switch (arg0->unk70_10) {
     case 5:
         if (!(func_800DC090() & 3) &&
@@ -1237,7 +1237,31 @@ void func_80802320_chtntmineshoot(Actor *arg0) {
 
 OSThread *chtntmineshoot_entrypoint_3(void)
 {
-    extern u8 D_808028E4_chtntmineshoot[];
+    extern ActorData D_808028E4_chtntmineshoot[];
 
     return (OSThread *) D_808028E4_chtntmineshoot;
 }
+/* data_to_c.py: from asm/data/overlays/ch/tnt/mineshoot.data.s */
+extern u8 D_80802550_chtntmineshoot[];
+void func_80105834(Actor*);
+void func_80108ED0();
+void func_80107C2C();
+void func_80101870 ( Actor * arg0 , void * arg1 );
+u8 D_80802550_chtntmineshoot[48] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x1D, 0x00, 0x0A, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x1D, 0x00, 0x4A, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x1D, 0x00, 0x0A, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x1D, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x04, 0x1D, 0x00, 0x00 };
+s32 D_80802580_chtntmineshoot[4] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x30) = { 1246421, 1455792, 65836, 131072000 };
+s32 D_80802590_chtntmineshoot[3] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x40) = { 1246230, 65836, 131072000 };
+s32 D_8080259C_chtntmineshoot[3] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x4C) = { 1246370, 65836, 131072000 };
+s32 D_808025A8_chtntmineshoot[9] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x58) = { 786512, 2294720, 2818528, 34603029, 11731148, 1903035, 1572864, 592896, 201326592 };
+s32 D_808025CC_chtntmineshoot[4] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x7C) = { 1246227, 1572865, 19663800, 0 };
+u32 D_808025DC_chtntmineshoot[7] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x8C) = { 0x20306, 0x2070016, 0x7D000015, 0x190280, 0x1000013, 0x4A9000A, 0x1000000 };
+s32 D_808025F8_chtntmineshoot[19] BT_DATA(4, overlays_ch_tnt_mineshoot, 0xA8) = { 1903050, 1572864, 658560, 335544364, 0, 0, 1966080, 720696, 65336, 13107200, 13107222, 1048610, 16777856, 33555712, 1376281, 15073310, 3276850, 2818816, 50331648 };
+s32 D_80802644_chtntmineshoot[19] BT_DATA(4, overlays_ch_tnt_mineshoot, 0xF4) = { 1903035, 1572864, 592896, 201326636, 0, 0, 1966080, 720696, 65336, 13107200, 13107222, 1048610, 16777856, 33555712, 1376281, 15073310, 3276850, 2818816, 50331648 };
+ActorData D_80802690_chtntmineshoot [1] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x140) = { { 363, 702, 2300, 1, (void *)D_80802550_chtntmineshoot, (void (*)(struct Actor *))func_80800280_chtntmineshoot, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808006D0_chtntmineshoot, 131072000, 1065353216, 0, 0, 4, 35, 0, (BtIntPtr)func_80108ED0, 36, 0, (void (*)(struct Actor *))func_80800228_chtntmineshoot, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1028, (void (*)(struct Actor *, long, long))func_808005AC_chtntmineshoot, 0 } };
+ActorData D_808026D8_chtntmineshoot [1] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x188) = { { 344, 700, 0, 1, 0, (void (*)(struct Actor *))func_808011D4_chtntmineshoot, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80801604_chtntmineshoot, 0, 24, 0, (void (*)(struct Actor *))func_80800E10_chtntmineshoot, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_80801714_chtntmineshoot, 0 } };
+struct Vec D_80802720_chtntmineshoot BT_DATA(4, overlays_ch_tnt_mineshoot, 0x1D0) = { { 100.0f, -25.0f, 3000.0f } };
+s32 D_8080272C_chtntmineshoot[18] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x1DC) = { 1903068, 1572864, 3927, 315031553, -1245204, -3276780, -2555954, 2949100, 6618836, 1310920, -26214378, 738197538, 16777666, 41943808, 1376296, 14417963, 67240962, 0 };
+ActorData D_80802774_chtntmineshoot [1] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x224) = { { 344, 701, 0, 1, 0, (void (*)(struct Actor *))func_80801D6C_chtntmineshoot, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80801C18_chtntmineshoot, 0, 0, 0, (void (*)(struct Actor *))func_80801C10_chtntmineshoot, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 514, (void (*)(struct Actor *, long, long))func_80801DEC_chtntmineshoot, 0 } };
+DebrisSettings D_808027BC_chtntmineshoot [2] [ 2 ] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x26C) = { { { 2, 0, 0x84B, -1000.0f, -500.0f, 50.0f, 50.0f, 0.0f, 0.0f, 500.0f, 500.0f, 45.0f, 45.0f }, { 3, 0, 0x84C, -1000.0f, -500.0f, 20.0f, 50.0f, 100.0f, 200.0f, 300.0f, 500.0f, 90.0f, 180.0f } }, { { 4, 0, 0x84B, -1000.0f, -500.0f, 50.0f, 50.0f, 0.0f, 0.0f, 750.0f, 750.0f, 180.0f, 180.0f }, { 5, 0, 0x84C, -2000.0f, -1000.0f, 20.0f, 50.0f, 200.0f, 400.0f, 500.0f, 1250.0f, 180.0f, 360.0f } } };
+s32 D_8080287C_chtntmineshoot [18] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x32C) = { 17825813, 51, 2949090, 3997666, 1966180, 1966107, -1310690, 720886, 65526, 655360, 655394, 983065, 2293806, 2818124, 8388629, 6684851, 1441796, 0 };
+s32 D_808028C4_chtntmineshoot [8] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x374) = { 17825821, 164167714, 3342464, 1638438, 1376256, 3342379, 4325504, 0 };
+ActorData D_808028E4_chtntmineshoot [1] BT_DATA(4, overlays_ch_tnt_mineshoot, 0x394) = { { 344, 707, 2124, 1, 0, (void (*)(struct Actor *))func_80802198_chtntmineshoot, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80802148_chtntmineshoot, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, (void (*)(struct Actor *))func_80802140_chtntmineshoot, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, 0, 0 } };

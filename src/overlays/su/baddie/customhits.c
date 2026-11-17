@@ -1,13 +1,13 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "customhits_native.inc"
 #else
 #include "common.h"
 
-void subaddiecustomhits_entrypoint_0(void **arg0, s32 arg1) {
+typedef struct { u8 pad0[0x74]; u8 unk74; } Objcustomhits_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void subaddiecustomhits_entrypoint_0(void **arg0, s32 arg1) {
     void func_800EC358(void *, s32);
 
     func_800EC358(*arg0, arg1);
-    (*(u8 *)((s8 *)(arg0) + (0x74))) = (u8) (((*(u8 *)((s8 *)(arg0) + (0x74))) & 0xFF7F) | 0x80);
+    (((Objcustomhits_arg0 *)arg0)->unk74) = (u8) (((((Objcustomhits_arg0 *)arg0)->unk74) & 0xFF7F) | 0x80);
 }
 
 OSThread *subaddiecustomhits_entrypoint_1(void)

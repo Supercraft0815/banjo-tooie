@@ -27,7 +27,7 @@ void func_80800098_gctransitionDll(s32 *arg0, f32 *arg1) {
     *arg1 *= func_800A8AF0(*arg0) * 0.75f;
 }
 
-void func_808000D8_gctransitionDll(s32 address, s32 arg1, void *arg2) {
+void func_808000D8_gctransitionDll(BtIntPtr address, s32 arg1, void *arg2) {
     typedef struct anctrl_s AnimCtrl;
     struct TransitionData {
         u8 kind;
@@ -49,7 +49,7 @@ void func_808000D8_gctransitionDll(s32 address, s32 arg1, void *arg2) {
         AnimCtrl *control;
         s32 unk30;
     };
-    int _gcaudiolist_entrypoint_0();
+    void _gcaudiolist_entrypoint_0(s32 arg0);
     AnimCtrl *func_8008AD80(s32);
     void anctrl_reset(AnimCtrl *);
     void anctrl_setIndex(AnimCtrl *, int);
@@ -133,13 +133,13 @@ void gctransitionDll_entrypoint_0(s32 *arg0, Gfx **arg1) {
         u8 pad[0x18];
         f32 scale;
     };
-    void func_8008B304(s32);
-    s32 func_8008B4D4(void *);
+    void func_8008B304(BtIntPtr);
+    void * func_8008B4D4(void *arg0);
     void func_800B99CC(Gfx **, s32, s32 *);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     void func_800DE318(void);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
-    void func_800DF41C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void func_800DF41C(BtIntPtr);
     void func_800DF830(s32);
     void func_800E3BAC(f32 *);
     void func_800E3C30(f32 *);
@@ -147,7 +147,7 @@ void gctransitionDll_entrypoint_0(s32 *arg0, Gfx **arg1) {
     void func_800E3CE8(void);
     void func_800E41CC(void);
     void func_800E4208(void);
-    void func_800E44FC(Gfx **);
+    int func_800E44FC(void *frame);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFD24(f32 *);
     f32 func_800F1480(f32);
@@ -254,75 +254,75 @@ void gctransitionDll_entrypoint_0(s32 *arg0, Gfx **arg1) {
         }
         func_800E4208();
     }
-}
+}    typedef struct { u8 pad0[0x1]; u8 unk1; } ObjtransitionDll_gctransitionDll_entrypoint_1_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-void gctransitionDll_entrypoint_1(s32 arg0) {
+void gctransitionDll_entrypoint_1(BtIntPtr arg0) {
     s32 func_800EA05C();
     void *func_80800000_gctransitionDll(s32);
     void *func_8080004C_gctransitionDll(s32);
-    void func_808000D8_gctransitionDll(s32, s32, void *);
+    void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
     void *temp_v0;
 
     temp_v0 = func_80800000_gctransitionDll((*(u8 *)((s8 *)(func_8080004C_gctransitionDll(func_800EA05C())) + (2))));
-    func_808000D8_gctransitionDll(arg0, (*(u8 *)((s8 *)(temp_v0) + (1))), temp_v0);
-}
+    func_808000D8_gctransitionDll(arg0, (((ObjtransitionDll_gctransitionDll_entrypoint_1_temp_v0 *)temp_v0)->unk1), temp_v0);
+}    typedef struct { s32 unk0; s32 unk4; s8 unk8; u8 pad9[0x13]; u8 unk1C; s8 unk1D; u8 pad1E[0x2]; s32 unk20; f32 unk24; } ObjtransitionDll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 gctransitionDll_entrypoint_2(void *arg0) {
-    return (*(u8 *)((s8 *)(arg0) + (0x1C))) == 1;
+    return (((ObjtransitionDll_arg0 *)arg0)->unk1C) == 1;
 }
 
 s32 gctransitionDll_entrypoint_3(void *arg0) {
-    return (*(u8 *)((s8 *)(arg0) + (0x1C))) != 1;
+    return (((ObjtransitionDll_arg0 *)arg0)->unk1C) != 1;
 }
 
 int gctransitionDll_entrypoint_4(void *arg0) {
-    int state = *(u8 *)((s8 *)arg0 + 0x1C);
+    int state = ((ObjtransitionDll_arg0 *)arg0)->unk1C;
 
     return state == 4 ||
-        (state == 2 && *(s32 *)((s8 *)arg0 + 4) < 2) ||
+        (state == 2 && ((ObjtransitionDll_arg0 *)arg0)->unk4 < 2) ||
         state == 6 || state == 9 ||
-        (state == 7 && *(s32 *)((s8 *)arg0 + 4) < 2);
+        (state == 7 && ((ObjtransitionDll_arg0 *)arg0)->unk4 < 2);
 }
 
 void gctransitionDll_entrypoint_5(u8 *arg0) {
-    void func_808000D8_gctransitionDll(s32, s32, void *);
+    void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
     func_808000D8_gctransitionDll(arg0, 0x1, 0);
-}
+}    typedef struct { u8 pad0[0x1]; u8 unk1; } ObjtransitionDll_gctransitionDll_entrypoint_6_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-void gctransitionDll_entrypoint_6(s32 arg0) {
+void gctransitionDll_entrypoint_6(BtIntPtr arg0) {
     s32 func_800EA05C();
     void *func_80800000_gctransitionDll(s32);
     void *func_8080004C_gctransitionDll(s32);
-    void func_808000D8_gctransitionDll(s32, s32, void *);
+    void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
     void *temp_v0;
 
     temp_v0 = func_80800000_gctransitionDll((*(u8 *)((s8 *)(func_8080004C_gctransitionDll(func_800EA05C())) + (3))));
-    func_808000D8_gctransitionDll(arg0, (*(u8 *)((s8 *)(temp_v0) + (1))), temp_v0);
-}
+    func_808000D8_gctransitionDll(arg0, (((ObjtransitionDll_gctransitionDll_entrypoint_6_temp_v0 *)temp_v0)->unk1), temp_v0);
+}    typedef struct { u8 pad0[0x1]; u8 unk1; } ObjtransitionDll_gctransitionDll_entrypoint_7_temp_a2; /* offsets.py genstruct: fields from raw offsets on temp_a2; rename once understood */
 
-void gctransitionDll_entrypoint_7(s32 arg0, s32 arg1) {
-    void func_808000D8_gctransitionDll(s32, s32, void *);
-    extern s32 D_80800EA4_gctransitionDll;
+void gctransitionDll_entrypoint_7(BtIntPtr arg0, s32 arg1) {
+    void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
+    extern s32 D_80800EA4_gctransitionDll[110];
     u8 *temp_a2;
 
-    temp_a2 = (arg1 * 0x14) + (u8 *)&D_80800EA4_gctransitionDll;
-    func_808000D8_gctransitionDll(arg0, (*(u8 *)((s8 *)(temp_a2) + (1))), temp_a2);
+    temp_a2 = (arg1 * 0x14) + (u8 *)D_80800EA4_gctransitionDll;
+    func_808000D8_gctransitionDll(arg0, (((ObjtransitionDll_gctransitionDll_entrypoint_7_temp_a2 *)temp_a2)->unk1), temp_a2);
 }
 
 void gctransitionDll_entrypoint_8(u8 *arg0, s32 arg1) {
     u32 func_800E6A00(void);
-    void func_808000D8_gctransitionDll(s32, s32, void *);
-    (*(s8 *)((s8 *)(arg0) + (8))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0x20))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0))) = arg1;
+    void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
+    (((ObjtransitionDll_arg0 *)arg0)->unk8) = 0;
+    (((ObjtransitionDll_arg0 *)arg0)->unk20) = 0;
+    (((ObjtransitionDll_arg0 *)arg0)->unk0) = arg1;
     (*(s8 *)((s8 *)(arg0) + (0x1C))) = 0;
-    (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.0f;
-    (*(s8 *)((s8 *)(arg0) + (0x1D))) = func_800E6A00();
-    func_808000D8_gctransitionDll((s32) arg0, 1U, NULL);
+    (((ObjtransitionDll_arg0 *)arg0)->unk24) = 0.0f;
+    (((ObjtransitionDll_arg0 *)arg0)->unk1D) = func_800E6A00();
+    func_808000D8_gctransitionDll((BtIntPtr) arg0, 1U, NULL);
 }
 
 void gctransitionDll_entrypoint_9(u8 *arg0) {
@@ -335,7 +335,7 @@ void gctransitionDll_entrypoint_9(u8 *arg0) {
     s32 func_800EA170(void);
     void func_800EA334(s32);
     void func_800EA34C(s32);
-    void func_808000D8_gctransitionDll(s32, s32, void *);
+    void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
     f32 delta;
 
     if (arg0[0x1D]) {
@@ -393,7 +393,7 @@ void gctransitionDll_entrypoint_9(u8 *arg0) {
                     *(f32 *)(arg0 + 0x24) -= 360.0f;
                 }
             }
-            func_808000D8_gctransitionDll((s32)arg0, arg0[0xA], NULL);
+            func_808000D8_gctransitionDll((BtIntPtr)arg0, arg0[0xA], NULL);
             if (*(s32 *)(arg0 + 0x2C)) {
                 func_800EA170();
             }
@@ -401,3 +401,11 @@ void gctransitionDll_entrypoint_9(u8 *arg0) {
         *(s32 *)(arg0 + 0x30) += 1;
     }
 }
+/* data_to_c.py: from asm/data/overlays/gc/transitionDll.data.s */
+u8 D_80800CB0_gctransitionDll [500] BT_DATA(4, overlays_gc_transitionDll, 0x0) = { 0x20, 8, 1, 0, 0x40, 0xB0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1E, 3, 1, 0, 0x3F, 0xF3, 0x33, 0x33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x1F, 4, 2, 0, 0x3F, 0xF3, 0x33, 0x33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 1, 0, 0x3F, 0x33, 0x33, 0x33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 2, 0, 0x3F, 0x33, 0x33, 0x33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 5, 1, 0, 0x3F, 0, 0, 0, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 4, 6, 2, 0, 0x3F, 0, 0, 0, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 5, 5, 1, 0, 0x40, 0, 0, 0, 0, 0, 0xB, 0x43, 0, 0, 0, 0, 0x40, 0x60, 0, 0, 6, 6, 2, 0, 0x3F, 0x66, 0x66, 0x66, 0, 0, 0xB, 0x43, 0, 0, 0, 0, 0x40, 0x60, 0, 0, 7, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 1, 0, 0x3F, 0x8C, 0xCC, 0xCD, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 7, 0, 0x3F, 0x33, 0x33, 0x33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xA, 6, 2, 0, 0x40, 0x60, 0, 0, 0, 0, 0xB, 0x47, 0, 0, 0, 0, 0x40, 0x6C, 0xCC, 0xCD, 0xB, 5, 1, 0, 0x3E, 0x99, 0x99, 0x9A, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0xC, 6, 2, 0, 0x3E, 0x99, 0x99, 0x9A, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0xD, 3, 1, 0, 0x3F, 0x19, 0x99, 0x9A, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xE, 5, 1, 0, 0x3F, 0x80, 0, 0, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0xF, 6, 2, 0, 0x3F, 0x80, 0, 0, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0x10, 5, 1, 0, 0x40, 0x20, 0, 0, 0, 0, 6, 0xF9, 0, 0, 1, 0xF5, 0x3E, 0x8A, 0xF, 0xA, 0x11, 6, 2, 0, 0x40, 0, 0, 0, 0, 0, 6, 0xF9, 0, 0, 1, 0xF5, 0x3E, 0x8A, 0xF, 0xA, 0x12, 5, 1, 0, 0x3F, 0x99, 0x99, 0x9A, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0x13, 6, 2, 0, 0x3F, 0x99, 0x99, 0x9A, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0x14, 6, 2, 0, 0x40, 0xC, 0xCC, 0xCD, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0x15, 5, 1, 0, 0x40, 0xC, 0xCC, 0xCD, 0, 0, 0xB, 0x42, 0, 0, 0, 0, 0x41, 0xC8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+s32 D_80800EA4_gctransitionDll[110] BT_DATA(4, overlays_gc_transitionDll, 0x1F4) = { 168165888, 1080033280, 2887, 0, 1080872141, 268763392, 1075838976, 1785, 501, 1049235210, 285606400, 1073741824, 1785, 501, 1049235210, 101057024, 1063675494, 2883, 0, 1080033280, 84214016, 1075838976, 2883, 0, 1080033280, 151586560, 1060320051, 0, 0, 0, 134742272, 1060320051, 0, 0, 0, 235208960, 1065353216, 2882, 0, 1103626240, 252051968, 1065353216, 2882, 0, 1103626240, 117506304, 0, 0, 0, 0, 134742272, 1066192077, 0, 0, 0, 151586560, 1069547520, 0, 0, 0, 369426688, 1058642330, 2882, 0, 1103626240, 386269696, 1058642330, 2882, 0, 1103626240, 402981120, 1058642330, 2882, 0, 1103626240, 419824128, 1058642330, 2882, 0, 1103626240, 436535552, 1056964608, 2882, 0, 1103626240, 453378560, 1056964608, 2882, 0, 1103626240, 470089984, 1065353216, 2883, 0, 1080872141, 486932992, 1065353216, 2883, 0, 1080872141, 16974080, 1060320051, 0, 0, 0, 33817088, 1060320051, 0, 0, 0 };
+u16 D_8080105C_gctransitionDll [56] BT_DATA(4, overlays_gc_transitionDll, 0x3AC) = { 0xA1, 0x1E04, 0xA2, 0x104, 0xA3, 0x104, 0xA4, 0x104, 0xA5, 0x109, 0xA6, 0x104, 0xA7, 0x80A, 0xA8, 0x104, 0xA9, 0x104, 0xAA, 0x104, 0xAB, 0x104, 0xAC, 0x109, 0x18E, 0x1E04, 0x18C, 0x104, 0x18D, 0x104, 0x18F, 0x104, 0x190, 0x104, 0x17E, 0x104, 0x191, 0x104, 0x192, 0x104, 0x194, 0x104, 0x195, 0x104, 0x196, 0x104, 0x197, 0x104, 0x198, 0x104, 0x193, 0x104, 0x199, 0x104, 0, 0x506 };
+s32 D_808010CC_gctransitionDll [3] BT_DATA(4, overlays_gc_transitionDll, 0x41C) = { 255, 255, 255 };
+s32 D_808010D8_gctransitionDll [3] BT_DATA(4, overlays_gc_transitionDll, 0x428) = { 0, 0, 0 };
+f32 D_808010E4_gctransitionDll BT_DATA(4, overlays_gc_transitionDll, 0x434) = 63.60261f;
+f32 D_808010E8_gctransitionDll BT_DATA(4, overlays_gc_transitionDll, 0x438) = 500.0f;

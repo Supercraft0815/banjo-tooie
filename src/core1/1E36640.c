@@ -68,7 +68,7 @@ void func_800200B8(SfxState *);
 void func_80020128(SfxState *);
 void func_800201A4(ALEventQueue *, SfxState *, s32);
 s32 func_80020298(u16 *, u16 *);
-SfxState *func_80020790(s16, s16, u8, f32, u8, u8, s32);
+SfxState *func_80020790(s16, s16, u8, f32, u8, u8, BtIntPtr);
 void func_80026500(ALEventQueue *, SfxEvent *, s32, s32);
 s32 func_800268D0(ALVoice *, ALVoiceConfig *);
 void func_80026BE0(ALVoice *, s16, s32);
@@ -79,7 +79,7 @@ void func_80026F40(ALVoice *, u8);
 
 void func_8001EB10(s32 *arg0) {
     void func_80020E40(ALLink *, ALLink *);
-    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
     void func_800263C0(ALEventQueue *, ALEventListItem *, s32);
     s32 func_8002645C(ALEventQueue *, SfxEvent *);
     void func_800267F0(s32 *);
@@ -113,7 +113,7 @@ void func_8001EB10(s32 *arg0) {
     event.type = 0x20;
     func_80026500(&D_800411DC->queue, &event, D_800411DC->frameTime, 1);
     D_800411DC->pad4C = func_8002645C(&D_800411DC->queue, (SfxEvent *)D_800411DC->pad28);
-}
+}    typedef struct { u8 pad0[0x28]; s16 unk28; u8 pad2A[0x1E]; s32 unk48; s32 unk4C; s32 unk50; } Obj1E36640_func_8001ED68_player; /* offsets.py genstruct: fields from raw offsets on player; rename once understood */
 
 s32 func_8001ED68(void *arg0) {
     s32 func_8002645C(ALEventQueue *, SfxEvent *);
@@ -122,19 +122,19 @@ s32 func_8001ED68(void *arg0) {
 
     player = arg0;
     do {
-        switch (*(s16 *)((u8 *)player + 0x28)) {
+        switch (((Obj1E36640_func_8001ED68_player *)player)->unk28) {
         case 0x20:
             event.type = 0x20;
-            func_80026500((ALEventQueue *)(player + 0x14), &event, *(s32 *)((u8 *)player + 0x48), 1);
+            func_80026500((ALEventQueue *)(player + 0x14), &event, ((Obj1E36640_func_8001ED68_player *)player)->unk48, 1);
             break;
         default:
             func_8001EE34((SfxEvent *)(player + 0x28));
             break;
         }
-        *(s32 *)((u8 *)player + 0x4C) = func_8002645C((ALEventQueue *)(player + 0x14), (SfxEvent *)(player + 0x28));
-    } while (*(s32 *)((u8 *)player + 0x4C) == 0);
-    *(s32 *)((u8 *)player + 0x50) += *(s32 *)((u8 *)player + 0x4C);
-    return *(s32 *)((u8 *)player + 0x4C);
+        ((Obj1E36640_func_8001ED68_player *)player)->unk4C = func_8002645C((ALEventQueue *)(player + 0x14), (SfxEvent *)(player + 0x28));
+    } while (((Obj1E36640_func_8001ED68_player *)player)->unk4C == 0);
+    ((Obj1E36640_func_8001ED68_player *)player)->unk50 += ((Obj1E36640_func_8001ED68_player *)player)->unk4C;
+    return *&((Obj1E36640_func_8001ED68_player *)player)->unk4C;
 }
 
 void func_8001EE34(SfxEvent *arg0) {
@@ -390,9 +390,9 @@ void func_8001EE34(SfxEvent *arg0) {
 /* extern */
 
 void func_800200B8(SfxState *arg0) {
-    s32 func_800205D0(SfxState *);
-    s32 func_80026FF0(ALVoice *);
-    s32 func_80027090(ALVoice *);
+    void func_800205D0(void *arg0);
+    void func_80026FF0(ALVoice *arg0);
+    void func_80027090(ALVoice *arg0);
     if (arg0->flags & 4) {
         func_80026FF0(&arg0->voice);
         func_80027090(&arg0->voice);
@@ -473,7 +473,7 @@ s32 func_80020298(u16 *arg0, u16 *arg1) {
 SfxState *func_8002039C(SfxSound *arg0) {
     void func_80020E74(ALLink *);
     f32 func_80027170(s32);
-    void func_800E9070(s32, s32);
+    void func_800E9070(BtIntPtr, s32);
     extern SfxState *D_800411D0;
     extern SfxState *D_800411D8;
     SfxState *sp24;
@@ -499,7 +499,7 @@ SfxState *func_8002039C(SfxSound *arg0) {
             D_800411D4 = sp24;
         }
         osSetIntMask(sp18);
-        func_800E9070((s32)arg0, 0);
+        func_800E9070((BtIntPtr)arg0, 0);
         sp1C = (arg0->decayTime + 1) == 0;
         sp24->sound = arg0;
         sp24->priority = sp1C + 0x40;

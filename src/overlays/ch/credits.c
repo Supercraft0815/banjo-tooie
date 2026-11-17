@@ -1,11 +1,11 @@
 #include "common.h"
 
-s16 func_80800000_chcredits(s32 arg0) {
+typedef struct { u8 pad0[0x3]; u8 unk3; u8 unk4; } Objcredits_D_8012760D; /* offsets.py genstruct: fields from raw offsets on &D_8012760D; rename once understood */ s16 func_80800000_chcredits(s32 arg0) {
     extern s32 D_8012760D;
     extern s16 D_80801208_chcredits[];
     extern s16 D_808012C0_chcredits[];
     s32 offset = arg0 << 3;
-    if ((*(u8 *)((s8 *)(&D_8012760D) + (4))) == 2) {
+    if ((((Objcredits_D_8012760D *)&D_8012760D)->unk4) == 2) {
         return *(s16 *)((u8 *)D_808012C0_chcredits + offset);
     }
     return *(s16 *)((u8 *)D_80801208_chcredits + offset);
@@ -16,7 +16,7 @@ s16 func_8080003C_chcredits(s32 arg0) {
     extern s16 D_80801202_chcredits[];
     extern s16 D_808012BA_chcredits[];
     s32 offset = arg0 << 3;
-    if ((*(u8 *)((s8 *)(&D_8012760D) + (4))) == 2) {
+    if ((((Objcredits_D_8012760D *)&D_8012760D)->unk4) == 2) {
         return *(s16 *)((u8 *)D_808012BA_chcredits + offset);
     }
     return *(s16 *)((u8 *)D_80801202_chcredits + offset);
@@ -24,7 +24,7 @@ s16 func_8080003C_chcredits(s32 arg0) {
 
 s32 func_80800078_chcredits(void) {
     extern s32 D_8012760D;
-    u8 *ptr = (u8 *)(u32)((s8 *)&D_8012760D + 3);
+    u8 *ptr = (u8 *)(BtUIntPtr)((s8 *)&D_8012760D + 3);
     if (ptr[1] == 2) {
         return ptr[0] >= 0x51U;
     }
@@ -33,7 +33,7 @@ s32 func_80800078_chcredits(void) {
 
 void func_808000B4_chcredits(s32 arg0) {
     extern s32 D_8012760D;
-    s8 *ptr = (s8 *)(u32)((s8 *)&D_8012760D + 3);
+    s8 *ptr = (s8 *)(BtUIntPtr)((s8 *)&D_8012760D + 3);
     ptr[1] = arg0;
     ptr[0] = 0;
 }
@@ -43,9 +43,9 @@ void func_808000C8_chcredits()
     _glcutDll_entrypoint_17();
 }
 
-s32 func_808000E8_chcredits(void) { s32 _gcfrontend_entrypoint_9(s32); extern volatile u8 D_80127610[]; volatile u8 *ptr = D_80127610; switch (ptr[2]) { case 0: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000C8_chcredits(); break; } break; case 1: _gcfrontend_entrypoint_9(0x85); ptr = D_80127610; switch (ptr[1]) { case 0: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; case 2: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; } }
+s32 func_808000E8_chcredits(void) { void _gcfrontend_entrypoint_9(s32 arg0); extern volatile u8 D_80127610[]; volatile u8 *ptr = D_80127610; switch (ptr[2]) { case 0: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000C8_chcredits(); break; } break; case 1: _gcfrontend_entrypoint_9(0x85); ptr = D_80127610; switch (ptr[1]) { case 0: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; case 2: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; } BT_NATIVE_ONLY(return 0;) }
 
-void chcredits_entrypoint_0(s32 arg0) { s32 func_800DA544(s32); s32 func_808000E8_chcredits(); extern s32 D_8012760D; volatile s8 *ptr; ptr = (s8 *)(u32)((s8 *)&D_8012760D + 3); ptr[1] = 0; ptr[2] = arg0; func_808000E8_chcredits(); func_800DA544(0x650); _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(func_80800000_chcredits(-1)); _glcutDll_entrypoint_22(0x8C); _glcutDll_entrypoint_16(); }
+void chcredits_entrypoint_0(s32 arg0) { void func_800DA544(s32 index); s32 func_808000E8_chcredits(); extern s32 D_8012760D; volatile s8 *ptr; ptr = (s8 *)(BtUIntPtr)((s8 *)&D_8012760D + 3); ptr[1] = 0; ptr[2] = arg0; func_808000E8_chcredits(); func_800DA544(0x650); _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(func_80800000_chcredits(-1)); _glcutDll_entrypoint_22(0x8C); _glcutDll_entrypoint_16(); }
 
 s32 chcredits_entrypoint_1(void) {
     extern volatile u8 D_80127610[];
@@ -56,10 +56,10 @@ s32 chcredits_entrypoint_1(void) {
     return -1;
 }
 
-void func_808002A4_chcredits(s32 *arg0) { void func_80800710_chcredits(s32 *, s32); void func_808003E8_chcredits(s32 *, s32); extern s32 D_8012760D; if ((*(u8 *)((s8 *)(&D_8012760D) + 3)) == 0) { func_80800710_chcredits(arg0, 2); } else { func_80800710_chcredits(arg0, 3); } func_808003E8_chcredits(arg0, func_8080003C_chcredits(*(u8 *)((s8 *)(&D_8012760D) + 3))); }
+void func_808002A4_chcredits(s32 *arg0) { void func_80800710_chcredits(s32 *, s32); void func_808003E8_chcredits(s32 *, s32); extern s32 D_8012760D; if ((((Objcredits_D_8012760D *)&D_8012760D)->unk3) == 0) { func_80800710_chcredits(arg0, 2); } else { func_80800710_chcredits(arg0, 3); } func_808003E8_chcredits(arg0, func_8080003C_chcredits(((Objcredits_D_8012760D *)&D_8012760D)->unk3)); }
 
 void func_80800300_chcredits(s32 *arg0) {
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void _glcutDll_entrypoint_24(u32, u32, u32);
     s32 func_800EA05C();
     s32 func_808000E8_chcredits();
@@ -73,7 +73,7 @@ void func_80800300_chcredits(s32 *arg0) {
         func_808000E8_chcredits();
         return;
     }
-    map = func_80800000_chcredits(*(u8 *)((s8 *)&D_8012760D + 3));
+    map = func_80800000_chcredits(((Objcredits_D_8012760D *)&D_8012760D)->unk3);
     ptr = (u8 *)D_80127610;
     ptr[0] = ptr[0] + (saved.map = map, 1);
     current = func_800EA05C();
@@ -90,7 +90,7 @@ void func_80800300_chcredits(s32 *arg0) {
 
 void func_8080038C_chcredits(void) {
     void _gcfrontend_entrypoint_10(void);
-    s32 _gcgoto_entrypoint_1(s32, s32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     s32 func_800D395C();
     s32 func_800EA05C();
     s32 temp_v0;
@@ -108,8 +108,8 @@ void func_8080038C_chcredits(void) {
 /* extern */
 
 void func_808003E8_chcredits(s32 *arg0, s32 arg1) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
-    s32 _capod_entrypoint_21(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
+    s32 _capod_entrypoint_21(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_800A5854(s32);
     s32 temp_v0;
 
@@ -368,15 +368,15 @@ void func_80800BD4_chcredits(s32 *arg0) {
 
 s32 func_80800C84_chcredits(Actor *arg0, Gfx **arg1) {
     s32 _glglobalsettings_entrypoint_3();
-    s32 func_800D674C(s32);
-    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, s32);
+    BtIntPtr func_800D674C(s32);
+    void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF830(s32);
-    void func_800E39D8(s32, s32);
+    void func_800E39D8(BtIntPtr, BtIntPtr);
     void func_800E3C8C(f32, f32);
     void func_800E3CE8(void);
     void func_800E41CC(void);
     void func_800E4208(void);
-    void func_800E44FC(Gfx **);
+    int func_800E44FC(void *frame);
     void func_800E7C28(Gfx **);
     void func_800E7CF4(Gfx **);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
@@ -394,7 +394,7 @@ s32 func_80800C84_chcredits(Actor *arg0, Gfx **arg1) {
     func_800E41CC();
     func_800E3C8C(50.0f, 2000.0f);
     offset = index * 12;
-    func_800E39D8(offset + (s32)D_80801578_chcredits, offset + (s32)D_80801560_chcredits);
+    func_800E39D8(offset + (BtIntPtr)D_80801578_chcredits, offset + (BtIntPtr)D_80801560_chcredits);
     func_800E3CE8();
     func_800E44FC(arg1);
     func_800E7C28(arg1);
@@ -419,19 +419,19 @@ s32 func_80800C84_chcredits(Actor *arg0, Gfx **arg1) {
     }
     func_80101870(arg0, arg1);
     func_800E4208();
-    func_800E44FC(arg1);
+    BT_NATIVE_ONLY(return) func_800E44FC(arg1);
 }
 
 /* extern */
 
-void func_80800E4C_chcredits(s32 arg0, s32 arg1, Gfx **arg2, s32 arg3) {
+void func_80800E4C_chcredits(BtIntPtr arg0, s32 arg1, Gfx **arg2, s32 arg3) {
     s32 _glglobalsettings_entrypoint_3();
     void func_800B80D0(Gfx **);
     void func_800B8C8C(s32);
     void func_800B8CBC(u8, u8, u8);
     void func_800B8CF0(f32);
-    s32 func_800B8CFC(s32);
-    s32 func_800B8E28(Gfx **, s32, s32, s32);
+    s32 func_800B8CFC(BtIntPtr);
+    s32 func_800B8E28(Gfx **, s32, s32, BtIntPtr);
     f32 var_f20;
     s32 sp28;
     s32 sp24;
@@ -463,12 +463,12 @@ s32 func_80800F50_chcredits(Actor *arg0, Gfx **arg1) {
     s32 func_800E7188(u8 *);
     void *func_80100094(Actor *, u32);
     extern s32 D_8012760D;
-    s32 text;
+    BtIntPtr text;
     s32 i;
     s32 titleY;
     s32 bodyY;
 
-    text = (s32)func_80100094(arg0, 0);
+    text = (BtIntPtr)func_80100094(arg0, 0);
     func_800B8C50();
     func_800B7F14(arg1);
     func_800B8CB0(1);
@@ -495,7 +495,7 @@ s32 func_80800F50_chcredits(Actor *arg0, Gfx **arg1) {
             func_80800E4C_chcredits(text + (i + 2) * 0x80, i * 15 + bodyY, arg1, arg0->unk6C_0);
         }
     }
-    func_800B811C(arg1);
+    func_800B811C(arg1); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80801108_chcredits(Actor *arg0, Gfx **arg1) {
@@ -524,3 +524,9 @@ OSThread *chcredits_entrypoint_2(void)
 
     return (OSThread *) D_8080159C_chcredits;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+volatile u8 D_80127610 [ 4 ] BT_DATA(4, bss_core2bss1_0_1, 0x5B0);
+#endif

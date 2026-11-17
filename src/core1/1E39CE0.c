@@ -131,27 +131,27 @@ void func_80022E20(MusicPlayer *, u8);
 void func_80022ECC(MusicPlayer *, u8);
 void func_80024D90(MusicPlayer *, f32);
 void func_80026500(ALEventQueue *, MusicEvent *, s32, s32);
-void func_800268D0(ALVoice *, ALVoiceConfig *);
+s32 func_800268D0(ALVoice *arg0, ALVoiceConfig *arg1);
 void func_80026BE0(ALVoice *, s16, s32);
 void func_80026CB0(ALVoice *, ALWaveTable *, f32, s16, u8, u8, u8, f32, u8, s32);
 void func_80026DE0(ALVoice *, u8);
 void func_80026E90(ALVoice *, f32);
 void func_80026F40(ALVoice *, u8);
-f32 func_80027170(s16);
+f32 func_80027170(s32 arg0);
 f32 func_80028B74(s32);
 void func_8002976C(MusicPlayer *, ALVoice *, s32);
-MusicVoiceState *func_80029A04(MusicPlayer *, u8, u8, u8, MusicSound *);
+s32 *func_80029A04(void *arg0, u8 arg1, u8 arg2, u8 arg3, BtIntPtr arg4);
 MusicVoiceState *func_80029B18(MusicPlayer *, u8, u8);
 MusicSound *func_80029BA0(MusicPlayer *, u8, u8, u8);
 s16 func_80029D54(MusicVoiceState *, MusicPlayer *);
 u8 func_80029E64(MusicVoiceState *, MusicPlayer *);
 s32 func_80029F5C(MusicVoiceState *, s32);
 u8 func_80029FA0(MusicVoiceState *, MusicPlayer *);
-void func_8002A318(MusicPlayer *, s32, u8);
+s32 func_8002A318(void *arg0, s32 arg1, s32 arg2);
 void func_8002A7E0(ALVoice *, f32);
 void func_8002AB30(ALVoice *, u8);
 s32 func_800E9048(void);
-ALInstrument *func_800E93AC(u8);
+void *func_800E93AC(s32 arg0);
 extern struct {
     u8 pad0[0x3C];
     s32 numFxBusses;
@@ -160,7 +160,7 @@ extern s32 D_8007EA50[];
 
 
 void func_800221B0(MusicPlayer *arg0, ALSeqpConfig *arg1) {
-    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
     s32 func_8002241C(MusicPlayer *);
     void func_80026100(void *);
     void func_800263C0(ALEventQueue *, ALEventListItem *, s32);
@@ -219,17 +219,17 @@ s32 func_8002241C(MusicPlayer *arg0) {
     s32 func_80024A5C(MusicPlayer *, MusicEvent *);
     void func_80024DD8(MusicPlayer *);
     s32 func_8002645C(ALEventQueue *, MusicEvent *);
-    s32 func_800266B0(ALEventQueue *, s32);
-    s32 func_80026FF0(ALVoice *);
-    s32 func_80027090(ALVoice *);
-    s32 func_80029670(MusicPlayer *, ALVoice *);
-    s32 func_800298E4(MusicPlayer *, ALVoice *, s32);
-    s32 func_8002A024(MusicPlayer *, u8 *);
+    void func_800266B0(ALEventQueue *arg0, s16 arg1);
+    void func_80026FF0(ALVoice *arg0);
+    void func_80027090(ALVoice *arg0);
+    void func_80029670(u8 *arg0, ALVoice *arg1);
+    u8 func_800298E4(u8 *arg0, BtIntPtr arg1, s32 arg2);
+    void func_8002A024(void *arg0, BtIntPtr arg1);
     s32 func_8002A6A4(MusicPlayer *, MusicVoiceState *);
-    s32 func_8002A940(u8);
-    s32 func_8002A9B8(u8);
-    s32 func_8002AA30(s32, s32, u8 *);
-    s32 func_8002AA74(s32, u8, u8 *);
+    s32 func_8002A940(s16 arg0);
+    s32 func_8002A9B8(s16 arg0);
+    void func_8002AA30(void *arg0, s16 arg1, BtIntPtr arg2);
+    void func_8002AA74(void * volatile arg0, volatile s16 arg1, s32 * volatile arg2);
     MusicPlayer *p;
     MusicEvent event;
     ALVoice *voice;
@@ -238,8 +238,8 @@ s32 func_8002241C(MusicPlayer *arg0) {
     void *osc;
     f32 value;
     u8 chan;
-    s32 param1;
-    s32 param2;
+    BtIntPtr param1;
+    BtIntPtr param2;
 
     p = arg0;
     do {
@@ -416,7 +416,7 @@ s32 func_80022D1C(MusicPlayer *arg0) {
     MusicEvent event;
 
     if (arg0->target == NULL) {
-        return;
+        BT_NATIVE_ONLY(return 0;) return;
     }
     func_80025084(arg0->target, &event, 1);
     switch (event.type) {
@@ -985,7 +985,7 @@ s32 func_80024A5C(MusicPlayer *arg0, MusicEvent *arg1) {
         }
     }
     }
-}
+    BT_NATIVE_ONLY(return 0;)}
 
 void func_80024C9C(ALEventQueue *evtq, ALEventListItem *item) {
     void func_80020E40(ALLink *, ALLink *);

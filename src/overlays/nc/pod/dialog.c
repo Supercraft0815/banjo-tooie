@@ -10,7 +10,7 @@ void func_80800000_ncpoddialog(u8 *arg0, s32 arg1, f32 *arg2) {
     temp_v0 = ((f32 (*)[4])arg0)[arg1];
     arg2[1] += temp_v0[3];
     arg2[1] += 0.5f * (temp_v0[0] - temp_v0[3]);
-}
+}    typedef struct { u8 pad0[0x44]; f32 unk44; u8 pad48[0x88]; f32 unkD0; u8 padD4[0x80]; f32 unk154; u8 pad158[0x18]; f32 unk170; u8 pad174[0x98]; f32 unk20C; u8 pad210[0x1]; s8 unk211; u8 unk212; u8 unk213; s8 unk214; s8 unk215; u8 unk216; u8 pad217[0x1]; s8 unk218; } Objdialog_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -20,16 +20,16 @@ void func_8080008C_ncpoddialog(u8 *arg0) {
     f32 temp_f0;
     f32 var_f2;
 
-    temp_f0 = func_800F1DCC(func_800F1DF4((f32 *)(arg0 + 0x28), (f32 *)(arg0 + 0x34)), (*(f32 *)((s8 *)(arg0) + (0x44))), arg0);
+    temp_f0 = func_800F1DCC(func_800F1DF4((f32 *)(arg0 + 0x28), (f32 *)(arg0 + 0x34)), (((Objdialog_arg0 *)arg0)->unk44), arg0);
     var_f2 = temp_f0;
     if ((temp_f0 < -90.0f) || (temp_f0 > 90.0f)) {
         var_f2 = -temp_f0;
     }
     if (var_f2 > 0.0f) {
-        (*(s8 *)((s8 *)(arg0) + (0x214))) = 1;
+        (((Objdialog_arg0 *)arg0)->unk214) = 1;
         return;
     }
-    (*(s8 *)((s8 *)(arg0) + (0x214))) = 0;
+    (((Objdialog_arg0 *)arg0)->unk214) = 0;
 }
 
 s32 func_80800128_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 *arg4) {
@@ -68,8 +68,8 @@ s32 func_80800128_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 *a
     return 1;
 }
 
-s32 func_80800338_ncpoddialog(void *arg0, s32 arg1, s32 arg2) {
-    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s8, s32);
+s32 func_80800338_ncpoddialog(void *arg0, BtIntPtr arg1, s32 arg2) {
+    s32 _ncpod_entrypoint_5(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3, BtIntPtr arg4);
     void *func_80110024(s16 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_80800D10_ncpoddialog(void *, f32 *, f32 *);
@@ -108,7 +108,7 @@ s32 func_80800338_ncpoddialog(void *arg0, s32 arg1, s32 arg2) {
         state = *(s8 *)(p + 0x211);
         if (state != 9) {
             if (p[0x212] != 0 && state == 8 && ready == 0) {
-                if (_ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0xAC, *(s8 *)(p + 0x211), (s32)p) != 5) {
+                if (_ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0xAC, *(s8 *)(p + 0x211), (BtIntPtr)p) != 5) {
                     result = _ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0x58, *(s8 *)(p + 0x211), 0);
                     if (result == 4) {
                         return result;
@@ -183,7 +183,7 @@ s32 func_80800584_ncpoddialog(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *a
 }
 
 s32 func_80800698_ncpoddialog(void *arg0) {
-    switch (*(s8 *)((s8 *)arg0 + 0x211)) {
+    switch (((Objdialog_arg0 *)arg0)->unk211) {
     case 2:
     case 4:
     case 5:
@@ -197,7 +197,7 @@ s32 func_80800698_ncpoddialog(void *arg0) {
 }
 
 s32 func_808006D4_ncpoddialog(void *arg0) {
-    switch (*(s8 *)((s8 *)arg0 + 0x211)) {
+    switch (((Objdialog_arg0 *)arg0)->unk211) {
     case 2:
     case 3:
     case 4:
@@ -324,7 +324,7 @@ void func_80800D10_ncpoddialog(void *arg0, f32 *arg1, f32 *arg2) {
     x = (s32)((f32)view[0] + (f32)view[2] * 0.5f);
     y = 114;
     func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 0, center, size);
-    if (*(s8 *)((u8 *)arg0 + 0x211) != 8 && *(s8 *)((u8 *)arg0 + 0x211) != 9) {
+    if (((Objdialog_arg0 *)arg0)->unk211 != 8 && ((Objdialog_arg0 *)arg0)->unk211 != 9) {
         while (x < center[0] && i != 10) {
             i++;
             func_80800B28_ncpoddialog(arg0, arg1, arg2, view, 1, center, size);
@@ -359,11 +359,11 @@ void func_80800D10_ncpoddialog(void *arg0, f32 *arg1, f32 *arg2) {
 
 /* extern */
 
-s32 func_80801058_ncpoddialog(void *arg0, s32 arg1) {
-    s32 func_80800338_ncpoddialog(void *, s32, s32);
+s32 func_80801058_ncpoddialog(void *arg0, BtIntPtr arg1) {
+    s32 func_80800338_ncpoddialog(void *, BtIntPtr, s32);
 
-    if ((*(u8 *)((s8 *)arg0 + 0x212)) != 0) {
-        (*(u8 *)((s8 *)arg0 + 0x212)) = 0;
+    if ((((Objdialog_arg0 *)arg0)->unk212) != 0) {
+        (((Objdialog_arg0 *)arg0)->unk212) = 0;
         return func_80800338_ncpoddialog(arg0, arg1, 2);
     }
     return 3;
@@ -374,12 +374,12 @@ s32 func_80801058_ncpoddialog(void *arg0, s32 arg1) {
 void *ncpoddialog_entrypoint_0(s16 arg0) {
     void *func_8001B798(s16);
     return func_8001B798(arg0);
-}
+}    typedef struct { u8 pad0[0x210]; u8 unk210; } Objdialog_ncpoddialog_entrypoint_1_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
-s32 ncpoddialog_entrypoint_1(s16 arg0, s32 arg1) {
-    s32 func_808015CC_ncpoddialog(void *, s32);
+s32 ncpoddialog_entrypoint_1(s16 arg0, BtIntPtr arg1) {
+    s32 func_808015CC_ncpoddialog(void *, BtIntPtr);
     void *sp1C;
     s32 temp_v0;
     s32 temp_v0_2;
@@ -394,7 +394,7 @@ s32 ncpoddialog_entrypoint_1(s16 arg0, s32 arg1) {
     if (temp_v0_2 == 4) {
         return temp_v0_2;
     }
-    temp_v0_4 = (*(u8 *)((s8 *)(sp1C) + (0x210)));
+    temp_v0_4 = (((Objdialog_ncpoddialog_entrypoint_1_sp1C *)sp1C)->unk210);
     if ((temp_v0_4 != 1) && (temp_v0_4 == 2)) {
         temp_v0 = func_808015CC_ncpoddialog(sp1C, arg1);
         var_v1 = temp_v0;
@@ -449,12 +449,12 @@ s16 ncpoddialog_entrypoint_2(void) {
 
 /* extern */
 
-void func_808012A0_ncpoddialog(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _plcamera_entrypoint_14(s32, s32, s32);
-    s32 func_800F5EF8(s32);
+void func_808012A0_ncpoddialog(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2) {
+    void _plcamera_entrypoint_14(s32 *arg0, BtIntPtr arg1, BtIntPtr arg2);
+    s32 func_800F5EF8(BtIntPtr);
     s32 func_800F690C();
-    s32 func_800F693C(s32);
-    s32 func_8010FFB0(s32, s32, s32);
+    s32 func_800F693C(BtIntPtr);
+    s32 func_8010FFB0(s32, BtIntPtr, BtIntPtr);
     if ((func_800F690C() != 0) || (func_800F693C(arg0) != 0)) {
         _plcamera_entrypoint_14(arg0, arg1, arg2);
         return;
@@ -466,23 +466,23 @@ s32 func_80801310_ncpoddialog(f32 *arg0, s16 *arg1) {
     void *func_80110024(s16 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF214(f32 *, f32, f32, f32);
-    f32 sp2C[3];
-    func_808012A0_ncpoddialog(_ncpod_entrypoint_4(func_80110024(arg1)),
+    f32 sp2C[3]; BT_NATIVE_ONLY(s32 native_result;)
+    func_808012A0_ncpoddialog(BT_NATIVE_ONLY(native_result = ) _ncpod_entrypoint_4(func_80110024(arg1)),
         arg0 + 0x56, arg0 + 0x59);
     func_800EE7F8(arg0 + 0x80, arg0 + 0x56);
     func_800EE7F8(sp2C, arg0 + 0x59);
-    func_800EF214(arg0 + 0x80, -sp2C[0], sp2C[1], -500.0f);
+    func_800EF214(arg0 + 0x80, -sp2C[0], sp2C[1], -500.0f); BT_NATIVE_ONLY(return native_result;)
 }
 
 /* extern */
 
 void ncpoddialog_entrypoint_3(s16 arg0) {
-    s32 func_8001B754(s16);
+    void func_8001B754(s16 handle);
     func_8001B754(arg0);
 }
 
 s32 func_808013C0_ncpoddialog(u8 *arg0) {
-    s32 func_800BF340(f32 *, f32 *, f32 *, s32, f32);
+    void *func_800BF340(f32 *a,f32 *b,f32 *out,s32 flags,f32 extend);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp4C[3];
     f32 sp40[3];
@@ -514,7 +514,7 @@ s32 func_808013C0_ncpoddialog(u8 *arg0) {
 /* extern */
 
 s32 func_80801504_ncpoddialog(u8 *arg0) {
-    s32 func_800BF340(f32 *, f32 *, f32 *, s32, f32);
+    void *func_800BF340(f32 *a,f32 *b,f32 *out,s32 flags,f32 extend);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp6C[3];
     f32 sp60[3];
@@ -540,11 +540,11 @@ s32 func_80801504_ncpoddialog(u8 *arg0) {
     return var_s7;
 }
 
-s32 func_808015CC_ncpoddialog(void *arg0, s32 arg1) {
-    f32 _mlspline_entrypoint_13(s16, u8 *, f32, f32, f32, s32 *);
+s32 func_808015CC_ncpoddialog(void *arg0, BtIntPtr arg1) {
+    f32 _mlspline_entrypoint_13(s32 arg0, void *arg1, f32 arg2, f32 arg3, f32 arg4, void *arg5);
     void _mlspline_entrypoint_4(f32, s32, f32 *, f32 *);
     extern s32 _mlspline_entrypoint_8;
-    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s8, s32);
+    s32 _ncpod_entrypoint_5(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3, BtIntPtr arg4);
     void _ncpod_entrypoint_8(u8 *arg0, f32 *arg1, f32 *arg2);
     void _ncpod_entrypoint_9(void *arg0, f32 arg1);
     void * func_80110024(s16 *arg0);
@@ -567,29 +567,29 @@ s32 func_808015CC_ncpoddialog(void *arg0, s32 arg1) {
             high = low = 5000.0f;
             break;
     }
-    if (*(f32 *)((u8 *)arg0 + 0x20C) < 0.15f) {
-        *(f32 *)((u8 *)arg0 + 0x154) = func_800F10B4(*(f32 *)((u8 *)arg0 + 0x20C), 0.0f, 0.15f, low, high);
-    } else if (*(f32 *)((u8 *)arg0 + 0x20C) > 0.85f) {
-        *(f32 *)((u8 *)arg0 + 0x154) = func_800F10B4(*(f32 *)((u8 *)arg0 + 0x20C), 0.85f, 1.0, high, low);
+    if (((Objdialog_arg0 *)arg0)->unk20C < 0.15f) {
+        ((Objdialog_arg0 *)arg0)->unk154 = func_800F10B4(((Objdialog_arg0 *)arg0)->unk20C, 0.0f, 0.15f, low, high);
+    } else if (((Objdialog_arg0 *)arg0)->unk20C > 0.85f) {
+        ((Objdialog_arg0 *)arg0)->unk154 = func_800F10B4(((Objdialog_arg0 *)arg0)->unk20C, 0.85f, 1.0, high, low);
     }
-    if (1.0f > *(f32 *)((u8 *)arg0 + 0x20C)) {
+    if (1.0f > ((Objdialog_arg0 *)arg0)->unk20C) {
         if (((u8 *)arg0)[0x213] == 1) {
-            *(f32 *)((u8 *)arg0 + 0x20C) = 1.0f;
+            ((Objdialog_arg0 *)arg0)->unk20C = 1.0f;
         } else {
-            *(f32 *)((u8 *)arg0 + 0x20C) = _mlspline_entrypoint_13(10, (u8 *)arg0 + 0x58, *(f32 *)((u8 *)arg0 + 0x20C), *(f32 *)((u8 *)arg0 + 0x154) * func_800D8FF8(), 1.0f, &_mlspline_entrypoint_8);
+            ((Objdialog_arg0 *)arg0)->unk20C = _mlspline_entrypoint_13(10, (u8 *)arg0 + 0x58, ((Objdialog_arg0 *)arg0)->unk20C, ((Objdialog_arg0 *)arg0)->unk154 * func_800D8FF8(), 1.0f, &_mlspline_entrypoint_8);
         }
     } else {
-        *(f32 *)((u8 *)arg0 + 0x20C) = 1.0f;
-        if (_ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0x58, *(s8 *)((u8 *)arg0 + 0x211), 0) == 4) {
+        ((Objdialog_arg0 *)arg0)->unk20C = 1.0f;
+        if (_ncpod_entrypoint_5((s16 *)arg1, func_80110024((s16 *)arg1), 0x58, ((Objdialog_arg0 *)arg0)->unk211, 0) == 4) {
             return 4;
         }
         func_80800338_ncpoddialog(arg0, arg1, 1);
     }
     points = (u8 *)arg0 + 0x58;
-    _mlspline_entrypoint_4(*(f32 *)((u8 *)arg0 + 0x20C), 10, (f32 *)points, (f32 *)((u8 *)arg0 + 0x170));
+    _mlspline_entrypoint_4(((Objdialog_arg0 *)arg0)->unk20C, 10, (f32 *)points, &((Objdialog_arg0 *)arg0)->unk170);
     points = (u8 *)arg0 + 0x17C;
-    _mlspline_entrypoint_4(*(f32 *)((u8 *)arg0 + 0x20C), 10, (f32 *)((u8 *)arg0 + 0xD0), (f32 *)points);
-    _ncpod_entrypoint_8(func_80110024((s16 *)arg1), (f32 *)((u8 *)arg0 + 0x170), (f32 *)points);
+    _mlspline_entrypoint_4(((Objdialog_arg0 *)arg0)->unk20C, 10, &((Objdialog_arg0 *)arg0)->unkD0, (f32 *)points);
+    _ncpod_entrypoint_8(func_80110024((s16 *)arg1), &((Objdialog_arg0 *)arg0)->unk170, (f32 *)points);
     _ncpod_entrypoint_9(func_80110024((s16 *)arg1), 40.0f);
     return 0;
 }
@@ -605,7 +605,7 @@ void func_808017F4_ncpoddialog(u8 *arg0, s16 *arg1) {
 
     sp34 = _ncpod_entrypoint_4(func_80110024(arg1));
     func_808023B4_ncpoddialog(arg0, arg1);
-    func_808012A0_ncpoddialog(sp34, (s32)(arg0 + 0x58), (s32)(arg0 + 0xD0));
+    func_808012A0_ncpoddialog(sp34, (BtIntPtr)(arg0 + 0x58), (BtIntPtr)(arg0 + 0xD0));
     *(f32 *)(arg0 + 0xD0) = func_800136E4(*(f32 *)(arg0 + 0xD0));
     *(f32 *)(arg0 + 0xD4) = func_800136E4(*(f32 *)(arg0 + 0xD4));
     *(f32 *)(arg0 + 0x140) = func_800136E4(func_800F1DF4((f32 *)(arg0 + 0x148), (f32 *)(arg0 + 0xC4)));
@@ -878,7 +878,7 @@ void func_8080230C_ncpoddialog(u8 *arg0, void *arg1, void *arg2) {
 void func_808023B4_ncpoddialog(u8 *arg0, s16 *arg1) {
     s32 _cadbfunc_entrypoint_0(u8 *);
     s32 _cadbfunc_entrypoint_2(f32 *);
-    s32 func_800A5800(s32);
+    u8 *func_800A5800(s32 id);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EF04C(f32 *, f32 *);
@@ -978,7 +978,7 @@ void ncpoddialog_entrypoint_5(u8 *arg0, s32 arg1, f32 *arg2) {
 
 /* extern */
 
-void ncpoddialog_entrypoint_6(s32 arg0, s32 arg1, f32 *arg2) {
+void ncpoddialog_entrypoint_6(BtIntPtr arg0, s32 arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
     typedef struct { u8 pad[0x40]; f32 position[1][3]; } Pod;
     func_800EE7F8(((Pod *)arg0)->position[arg1], arg2);
@@ -986,49 +986,49 @@ void ncpoddialog_entrypoint_6(s32 arg0, s32 arg1, f32 *arg2) {
 
 void ncpoddialog_entrypoint_7(void *arg0, s32 arg1) {
     if (arg1 >= 0) {
-        (*(s8 *)((s8 *)(arg0) + (0x215))) = 1;
+        (((Objdialog_arg0 *)arg0)->unk215) = 1;
         if (arg1 == 0) {
-            (*(s8 *)((s8 *)(arg0) + (0x214))) = 0;
+            (((Objdialog_arg0 *)arg0)->unk214) = 0;
             return;
         }
-        (*(s8 *)((s8 *)(arg0) + (0x214))) = 1;
+        (((Objdialog_arg0 *)arg0)->unk214) = 1;
         return;
     }
-    (*(s8 *)((s8 *)(arg0) + (0x215))) = 0;
+    (((Objdialog_arg0 *)arg0)->unk215) = 0;
 }
 
 s32 ncpoddialog_entrypoint_8(void *arg0, s32 arg1) {
-    (*(s8 *)((s8 *)(arg0) + (0x218))) = arg1;
+    (((Objdialog_arg0 *)arg0)->unk218) = arg1;
     return 5;
 }
 
 /* extern */
 
 void ncpoddialog_entrypoint_9(void *arg0, s16 *arg1, int arg2, s32 arg3) {
-    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s8, s32);
+    s32 _ncpod_entrypoint_5(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3, BtIntPtr arg4);
     void func_8009055C(s32, s32);
     void *func_80110024(s16 *);
-    s32 func_80800338_ncpoddialog(void *, s32, s32);
+    s32 func_80800338_ncpoddialog(void *, BtIntPtr, s32);
     s32 func_80801310_ncpoddialog();
     s32 var_v1;
 
-    var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
+    var_v1 = (((Objdialog_arg0 *)arg0)->unk211);
     if (var_v1 == -1) {
 #ifdef BT_NATIVE
         ((s32 (*)())func_80801310_ncpoddialog)();
 #else
         func_80801310_ncpoddialog();
 #endif
-        var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
+        var_v1 = (((Objdialog_arg0 *)arg0)->unk211);
     }
-    if ((var_v1 != arg2) || ((*(u8 *)((s8 *)(arg0) + (0x216))) != 0)) {
-        (*(u8 *)((s8 *)(arg0) + (0x216))) = 0U;
-        (*(s8 *)((s8 *)(arg0) + (0x211))) = (s8) arg2;
-        (*(u8 *)((s8 *)(arg0) + (0x213))) = (u8) arg3;
+    if ((var_v1 != arg2) || ((((Objdialog_arg0 *)arg0)->unk216) != 0)) {
+        (((Objdialog_arg0 *)arg0)->unk216) = 0U;
+        (((Objdialog_arg0 *)arg0)->unk211) = (s8) arg2;
+        (((Objdialog_arg0 *)arg0)->unk213) = (u8) arg3;
         func_8009055C(0x64, (arg3 << 0x10) | arg2);
-        var_v1 = (*(s8 *)((s8 *)(arg0) + (0x211)));
-        if (((var_v1 == 0) && ((*(u8 *)((s8 *)(arg0) + (0x213))) == 1)) || (var_v1 == 7)) {
-            if (_ncpod_entrypoint_5(arg1, func_80110024(arg1), 0x58, (*(s8 *)((s8 *)(arg0) + (0x211))), 0) != 4) {
+        var_v1 = (((Objdialog_arg0 *)arg0)->unk211);
+        if (((var_v1 == 0) && ((((Objdialog_arg0 *)arg0)->unk213) == 1)) || (var_v1 == 7)) {
+            if (_ncpod_entrypoint_5(arg1, func_80110024(arg1), 0x58, (((Objdialog_arg0 *)arg0)->unk211), 0) != 4) {
                 func_80800338_ncpoddialog(arg0, arg1, 1);
             }
         } else {
@@ -1039,9 +1039,9 @@ void ncpoddialog_entrypoint_9(void *arg0, s16 *arg1, int arg2, s32 arg3) {
 
 /* extern */
 
-void ncpoddialog_entrypoint_10(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) ncpoddialog_entrypoint_10(s32 arg0) {
     s32 ncpoddialog_entrypoint_11();
-    ncpoddialog_entrypoint_11(arg0 & 0xFFFF, (u32) (arg0 & 0xFFFF0000) >> 0x10, 1, arg0);
+    BT_NATIVE_ONLY(return) ncpoddialog_entrypoint_11(arg0 & 0xFFFF, (u32) (arg0 & 0xFFFF0000) >> 0x10, 1, arg0);
 }
 
 s32 ncpoddialog_entrypoint_11(s32 arg0, s32 arg1, s32 arg2) {
@@ -1061,3 +1061,5 @@ s32 ncpoddialog_entrypoint_11(s32 arg0, s32 arg1, s32 arg2) {
     }
     return 0;
 }
+/* data_to_c.py: from asm/data/overlays/nc/pod/dialog.data.s */
+f32 D_80802A40_ncpoddialog [8] [ 3 ] BT_DATA(4, overlays_nc_pod_dialog, 0x0) = { { 0.0f, 0.0f, 0.0f }, { 5.0f, 0.0f, 0.0f }, { -5.0f, 0.0f, 0.0f }, { 0.0f, 5.0f, 0.0f }, { 0.0f, -5.0f, 0.0f }, { 0.0f, 0.0f, -20.0f }, { 0.0f, 0.0f, 20.0f }, { 0.0f, 0.0f, 0.0f } };

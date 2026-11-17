@@ -2,7 +2,7 @@
 
 extern u32 D_808003E0_chhoneycarrier[3];
 extern f32 D_808003EC_chhoneycarrier[2];
-extern u32 D_808003F4_chhoneycarrier;
+extern BtUIntPtr D_808003F4_chhoneycarrier[19];
 
 //Called when the object is touched
 void func_80800000_chhoneycarrier(Actor* arg0, unkStructHoneyCarrier* arg1)
@@ -26,7 +26,7 @@ void func_80800000_chhoneycarrier(Actor* arg0, unkStructHoneyCarrier* arg1)
     }
 }
 
-s32 func_808000C4_chhoneycarrier(Actor* arg0, s32 arg1, s32 arg2)
+s32 func_808000C4_chhoneycarrier(Actor* arg0, s32 arg1, BtIntPtr arg2)
 {
     f32 sp2C[3];
     switch (arg1)
@@ -103,5 +103,14 @@ void func_80800380_chhoneycarrier(Actor* arg0,void* arg1)
 
 u32* chhoneycarrier_entrypoint_0(void)
 {
-    return &D_808003F4_chhoneycarrier;
+    return D_808003F4_chhoneycarrier;
 }
+/* data_to_c.py: from asm/data/overlays/ch/honeycarrier.data.s */
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+#ifndef BT_NATIVE
+void func_80107C2C();
+#endif
+u32 D_808003E0_chhoneycarrier [ 3 ] BT_DATA(4, overlays_ch_honeycarrier, 0x0) = { 0xFF, 0xFF, 0xC0 };
+f32 D_808003EC_chhoneycarrier [ 2 ] BT_DATA(4, overlays_ch_honeycarrier, 0xC) = { 250.0f, 350.0f };
+BtUIntPtr D_808003F4_chhoneycarrier[19] BT_DATA(4, overlays_ch_honeycarrier, 0x14) = { 0x530220, 0x6120001, 0, (BtUIntPtr)func_80800260_chhoneycarrier, (BtUIntPtr)func_80105834, (BtUIntPtr)func_80800380_chhoneycarrier, 0, 0x3F4CCCCD, 0, 4, 0, (BtUIntPtr)func_80108ED0, 0, (BtUIntPtr)func_80800210_chhoneycarrier, (BtUIntPtr)func_80107C2C, 0x88003000, (BtUIntPtr)func_808000C4_chhoneycarrier, 0, 0 };

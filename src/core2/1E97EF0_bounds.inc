@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "native_map.h"
 void func_800BEC4C(s32 *lower,s32 *upper,s32 size) {
     func_800BECE0(lower,upper);

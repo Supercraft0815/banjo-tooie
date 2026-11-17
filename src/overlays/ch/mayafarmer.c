@@ -1,14 +1,14 @@
 #include "common.h"
 
 void func_80800000_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    s32 _capod_entrypoint_7(s32, s32);
-    s32 _capod_entrypoint_8(s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    void _capod_entrypoint_7(s32 arg0, s32 arg1);
+    void _capod_entrypoint_8(s32 arg0);
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    void _gcdialogcamera_entrypoint_4(f32 *);
-    void _gcdialogcamera_entrypoint_5(f32 *);
-    s32 _gcdialogcamera_entrypoint_8(void);
-    extern s32 D_8080124C_chmayafarmer;
+    void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
+    void _gcdialogcamera_entrypoint_5(BtIntPtr arg0);
+    void _gcdialogcamera_entrypoint_8();
+    extern s32 D_8080124C_chmayafarmer[4];
 
     switch (arg0->unk6C_0) {
         case 0:
@@ -16,7 +16,7 @@ void func_80800000_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
         case 1:
             _capod_entrypoint_8(1);
             arg0->unk6C_0 = 2;
-            _gcdialogcamera_entrypoint_3(&D_8080124C_chmayafarmer, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_8080124C_chmayafarmer, arg0->scale);
             _gcdialogcamera_entrypoint_4(arg0->position);
             _gcdialogcamera_entrypoint_5(arg0->rotation);
             _gcdialogcamera_entrypoint_8();
@@ -26,8 +26,8 @@ void func_80800000_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808000B0_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg3) {
-    void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
-    void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
+    s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
+    s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
 
     switch (arg0->unk6C_0) {
         case 0:
@@ -38,13 +38,13 @@ void func_808000B0_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *ar
             _capod_entrypoint_6(arg3, arg1, arg2);
             break;
     }
-}
+}    typedef struct { u8 pad0[0x6C]; s32 unk6C; u32 unk70; } Objmayafarmer_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_80800138_chmayafarmer(void *arg0) {
     s32 _capod_entrypoint_3(s32, void *);
-    if ((*(s32 *)((s8 *)(arg0) + (0x6C))) & 0x1FF) {
+    if ((((Objmayafarmer_arg0 *)arg0)->unk6C) & 0x1FF) {
         _capod_entrypoint_3(0, arg0);
         (*(u16 *)((s8 *)(arg0) + (0x6E))) = (u16) ((*(u16 *)((s8 *)(arg0) + (0x6E))) & 0xFE00);
     }
@@ -52,9 +52,9 @@ void func_80800138_chmayafarmer(void *arg0) {
 
 void func_80800180_chmayafarmer(u8 *arg0, u32 arg1, s32 arg2) {
     struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 4;
-    _subaddiedialog_entrypoint_11((*(Unk80132ED0 **)((s8 *)(arg0) + (0))), arg1, arg2, arg0 + 4, 0x2AU);
+    _subaddiedialog_entrypoint_11((((Actor *)arg0)->unk0), arg1, arg2, arg0 + 4, 0x2AU);
     ((struct Flags *)arg0)->flag = 1;
 }
 
@@ -79,12 +79,12 @@ s32 func_80800228_chmayafarmer(u8 *arg0, s32 arg1, s32 arg2) {
     };
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
-    s32 _suexpression_entrypoint_7(Actor *, s32, s32);
+    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     void func_800C01A8(s16, s32);
     u32 func_800C07F4(void);
     s32 func_800CBC3C(u8 *);
     s32 func_800CD08C(s32, u8 *);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     s32 func_800DA544(s32);
     f32 func_800DC178(f32, f32);
     void *func_80100094(Actor *, u32);
@@ -176,7 +176,7 @@ void func_80800540_chmayafarmer(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_3(f32 *, s32, s32, s32, s32);
     s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
     void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 func_800D0A9C(u32, u32);
     void *func_80100094(Actor *, u32);
@@ -261,20 +261,20 @@ void func_8080085C_chmayafarmer(void *arg0) {
 
 OSThread *chmayafarmer_entrypoint_0(void)
 {
-    extern u8 D_80801278_chmayafarmer[];
+    extern ActorData D_80801278_chmayafarmer[];
 
     return (OSThread *) D_80801278_chmayafarmer;
 }
 
-int func_808008F8_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
+int func_808008F8_chmayafarmer(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800EC398(s32 *, f32 *);
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
-    extern s32 D_80801230_chmayafarmer;
+    extern s32 D_80801230_chmayafarmer[3];
     f32 sp2C[3];
     f32 angle;
     f32 *volatile sp24;
@@ -284,7 +284,7 @@ int func_808008F8_chmayafarmer(Actor *arg0, s32 arg1, s32 arg2) {
         sp24 = arg0->position;
         angle = func_800F1DF4(sp2C, arg0->position);
         func_800EFCD8((f32 *)&arg0->actorData[4], angle, 25.0f);
-        _subaddieaudioquick_entrypoint_2(arg0, sp24, &D_80801230_chmayafarmer);
+        _subaddieaudioquick_entrypoint_2(arg0, sp24, D_80801230_chmayafarmer);
         func_80102424(arg0, 3);
         func_8010A570(arg0);
         func_8010114C(arg0->unk3C, arg1, arg2);
@@ -314,7 +314,7 @@ void func_808009A0_chmayafarmer(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s32 func_80101E14(Actor *, f32);
     void func_80102424(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);
@@ -322,7 +322,7 @@ void func_808009A0_chmayafarmer(Actor *arg0) {
     void func_80800D60_chmayafarmer(MayaFarmerActor *, Actor *);
     void func_80801040_chmayafarmer(Actor *);
     void func_808010DC_chmayafarmer(Actor *);
-    extern s32 D_8080123C_chmayafarmer;
+    extern s32 D_8080123C_chmayafarmer[4];
     Actor *sp44;
     f32 sp38[3];
     f32 sp2C[3];
@@ -357,7 +357,7 @@ void func_808009A0_chmayafarmer(Actor *arg0) {
             } else {
                 ((f32 *)arg0->actorData)[5] = 0.0f;
                 func_800EF04C(arg0->position, (f32 *)&arg0->actorData[4]);
-                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080123C_chmayafarmer);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080123C_chmayafarmer);
                 func_80102424(arg0, 4);
             }
             break;
@@ -426,7 +426,7 @@ void func_80800D18_chmayafarmer(u8 *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     u32 temp_v0;
 
-    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    temp_v0 = (((Objmayafarmer_arg0 *)arg0)->unk70);
     func_800EE7F8(arg0 + 0x18, func_800CC63C((temp_v0 >> 0x19) - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1));
 }
 
@@ -517,13 +517,32 @@ void func_80801040_chmayafarmer(Actor *arg0) {
 
 void func_808010DC_chmayafarmer(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
-    extern u32 D_808012E8_chmayafarmer;
-    _subaddieaudioloop_entrypoint_4(arg0, (f32 *) ((u8 *) arg0 + 4), 1U, &D_808012E8_chmayafarmer);
+    extern u32 D_808012E8_chmayafarmer[5];
+    _subaddieaudioloop_entrypoint_4(arg0, &arg0->position[0], 1U, D_808012E8_chmayafarmer);
 }
 
 OSThread *chmayafarmer_entrypoint_1(void)
 {
-    extern u8 D_808012FC_chmayafarmer[];
+    extern ActorData D_808012FC_chmayafarmer[];
 
     return (OSThread *) D_808012FC_chmayafarmer;
 }
+/* data_to_c.py: from asm/data/overlays/ch/mayafarmer.data.s */
+extern u8 D_808011E0_chmayafarmer[];
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+extern u8 D_808012C0_chmayafarmer[];
+void func_80105834(Actor*);
+OSThread *func_80108ED0(void);
+u8 D_808011E0_chmayafarmer[48] BT_DATA(4, overlays_ch_mayafarmer, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x40, 0x00, 0x00, 0x01, 0x97, 0x00, 0x01, 0x3F, 0x40, 0x00, 0x00, 0x01, 0x97, 0x00, 0x01, 0x40, 0xDC, 0xCC, 0xCD, 0x01, 0x9D, 0x00, 0x02, 0x3F, 0x66, 0x66, 0x66, 0x01, 0x98, 0x00, 0x01, 0x3F, 0x66, 0x66, 0x66, 0x01, 0x98, 0x00, 0x01 };
+u8 D_80801210_chmayafarmer [16] BT_DATA(4, overlays_ch_mayafarmer, 0x30) = { 0, 0x13, 3, 0xFF, 0, 0xD, 0, 0xCC, 1, 0x66, 0, 0x16, 0x55, 0xF0, 0, 0 };
+u8 D_80801220_chmayafarmer [16] BT_DATA(4, overlays_ch_mayafarmer, 0x40) = { 0, 0x13, 4, 2, 0, 0xA, 1, 0x99, 0, 0x16, 0x3E, 0x80, 0, 0, 0, 0 };
+s32 D_80801230_chmayafarmer[3] BT_DATA(4, overlays_ch_mayafarmer, 0x50) = { 1246387, 1463792, 0 };
+s32 D_8080123C_chmayafarmer[4] BT_DATA(4, overlays_ch_mayafarmer, 0x5C) = { 1246239, 655718, 1463792, 0 };
+s32 D_8080124C_chmayafarmer[4] BT_DATA(4, overlays_ch_mayafarmer, 0x6C) = { 1142702080, 1136361472, 1132068864, 1135542272 };
+s32 D_8080125C_chmayafarmer [4] BT_DATA(4, overlays_ch_mayafarmer, 0x7C) = { 1144750080, 1136361472, 1132068864, 1132068864 };
+u8 D_8080126C_chmayafarmer [12] BT_DATA(4, overlays_ch_mayafarmer, 0x8C) = { 0x45, 0x52, 0x90, 0, 0x45, 0x3B, 0x80, 0, 0xC5, 0xB1, 0xC0, 0 };
+ActorData D_80801278_chmayafarmer [1] BT_DATA(4, overlays_ch_mayafarmer, 0x98) = { { 560, 411, 1632, 1, (void *)D_808011E0_chmayafarmer, (void (*)(struct Actor *))func_80800540_chmayafarmer, 0, (void (*)(long, long))func_80101870, 229376000, 1084926635, 0, 0, 128, 352, (void (*)(struct Actor *))func_80800520_chmayafarmer, 0, 0, 0, (void (*)(struct Actor *))func_8080085C_chmayafarmer, (void (*)(void *, long, void *, long, void *))func_80107C2C, -31232, 25730, (void (*)(struct Actor *, long, long))func_80800228_chmayafarmer, 0 } };
+u8 D_808012C0_chmayafarmer[40] BT_DATA(4, overlays_ch_mayafarmer, 0xE0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x40, 0x00, 0x00, 0x01, 0x9E, 0x00, 0x01, 0x3F, 0x40, 0x00, 0x00, 0x01, 0x9E, 0x00, 0x01, 0x3E, 0xCC, 0xCC, 0xCD, 0x01, 0x9F, 0x00, 0x41, 0x3F, 0x66, 0x66, 0x66, 0x01, 0xA0, 0x00, 0x42 };
+u32 D_808012E8_chmayafarmer[5] BT_DATA(4, overlays_ch_mayafarmer, 0x108) = { 0x13049B, 0x161388, 0xE00E6, 0x1190180, 0 };
+ActorData D_808012FC_chmayafarmer [1] BT_DATA(4, overlays_ch_mayafarmer, 0x11C) = { { 701, 760, 1634, 1, (void *)D_808012C0_chmayafarmer, (void (*)(struct Actor *))func_808009A0_chmayafarmer, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 196608000, 0, 0, 0, 32, 13, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800B9C_chmayafarmer, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32224, 16512, (void (*)(struct Actor *, long, long))func_808008F8_chmayafarmer, 0 } };

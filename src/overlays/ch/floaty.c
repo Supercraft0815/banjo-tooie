@@ -9,19 +9,19 @@ OSThread *chfloaty_entrypoint_0(void)
 
 s32 func_8080000C_chfloaty(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
-}
+}                   typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objfloaty_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_80800020_chfloaty(volatile unsigned int arg0, void *arg1, s32 arg2, s32 arg3)
 {
-  s32 _chbaddiesetup_entrypoint_6(s32 *, s32, s32, s32, s32, s32, s32);
+  s32 _chbaddiesetup_entrypoint_6(s32 *, BtIntPtr, BtIntPtr, s32, s32, s32, BtIntPtr);
   extern s32 _subaddietaxi_entrypoint_16;
-  _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, *((s32 *) (((s8 *) arg1) + 0)), *((s32 *) (((s8 *) arg1) + 4)), *((s32 *) (((s8 *) arg1) + 8)), arg2, arg3);
+  _chbaddiesetup_entrypoint_6(&_subaddietaxi_entrypoint_16, arg0, ((Objfloaty_arg1 *)arg1)->unk0, ((Objfloaty_arg1 *)arg1)->unk4, ((Objfloaty_arg1 *)arg1)->unk8, arg2, arg3);
 }
 
 s32 func_800DA298(s32);
 
 void func_8080007C_chfloaty(Actor *arg0, s32 arg1) {
-    u8 func_800CB3E0(s32);
+    s32 func_800CB3E0(s32 arg0);
     void func_80102FDC(Actor *, f32);
     void func_808006AC_chfloaty(Actor *, s32);
     s32 state;
@@ -42,17 +42,17 @@ void func_8080007C_chfloaty(Actor *arg0, s32 arg1) {
 
 void func_80800118_chfloaty(Actor *arg0)
 {
-    s32 _plsu_entrypoint_3(Unk80132ED0 *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _plsu_entrypoint_3(BtIntPtr arg0);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
-    s32 _subaddieDll_entrypoint_4(void *, s32);
-    void _subaddietaxi_entrypoint_5(Actor *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
+    s32 _subaddietaxi_entrypoint_5(Actor *arg0, s32 arg1);
     f32 func_80013970(f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     f32 mlAbsF(f32);
     f32 func_8010CD28(Actor *);
-    s32 func_80102BAC(Actor *, f32, f32, f32);
+    void func_80102BAC(Actor *arg0, f32 arg1, f32 arg2, f32 arg3);
     s32 func_80101E14(Actor *, f32);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     void func_800C4140(s32, f32 *, s32);
@@ -60,7 +60,7 @@ void func_80800118_chfloaty(Actor *arg0)
     void *func_8010262C(Unk80132ED0 *, s32);
     void func_8010C964(Actor *);
     void func_808006AC_chfloaty(Actor *, s32);
-    void func_80800BD8_chfloaty(s32, s32);
+    void func_80800BD8_chfloaty(BtIntPtr, s32);
     s32 index;
     f32 scale;
     f32 first;
@@ -111,7 +111,7 @@ void func_80800118_chfloaty(Actor *arg0)
                 }
                 arg0->scale = scale;
             }
-            func_80800BD8_chfloaty((s32)arg0, 1);
+            func_80800BD8_chfloaty((BtIntPtr)arg0, 1);
             func_8010C964(arg0);
             break;
         case 4:
@@ -129,7 +129,7 @@ void func_80800118_chfloaty(Actor *arg0)
             arg0->unk54 = func_8010CD28(arg0);
             func_80102BAC(arg0, 0.1f, 0.5f, 8.0f);
             func_8010C964(arg0);
-            func_80800BD8_chfloaty((s32)arg0, 1);
+            func_80800BD8_chfloaty((BtIntPtr)arg0, 1);
             break;
         case 6:
             if (func_800D90A4((f32 *)&arg0->actorData[3])) {
@@ -146,26 +146,26 @@ void func_80800118_chfloaty(Actor *arg0)
                 arg0->alpha = (s32)func_800F12D4(*(f32 *)&arg0->actorData[3], 1.0f, 0.0f, 255.0f, 0.0f);
             }
             func_8010C964(arg0);
-            func_80800BD8_chfloaty((s32)arg0, 1);
+            func_80800BD8_chfloaty((BtIntPtr)arg0, 1);
             break;
     }
 }
 
 void func_808006AC_chfloaty(Actor *arg0, s32 arg1) {
-    s32 _subaddieDll_entrypoint_4(void *, s32);
+    void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     f32 func_800C6920(f32 *, f32, f32, s32);
     s32 func_800CB698(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    void func_800F77E8(s32, f32 *);
-    s32 func_800F7C0C(s32, s32, f32);
+    void func_800F77E8(BtIntPtr, f32 *);
+    s32 func_800F7C0C(BtIntPtr, s32, f32);
     void func_80102FDC(Actor *, f32);
     void func_80104580(Actor *);
     void func_8010A63C(Actor *);
     f32 func_8010CD28(Actor *);
     f32 func_80800B68_chfloaty(Actor *);
-    void func_80800BD8_chfloaty(s32, s32);
+    void func_80800BD8_chfloaty(BtIntPtr, s32);
     extern f32 D_80800E84_chfloaty[][3];
 
     switch (arg1) {
@@ -186,7 +186,7 @@ void func_808006AC_chfloaty(Actor *arg0, s32 arg1) {
         arg0->unk50 = 1.5f;
         func_80103140(arg0, 0x924, arg0->unk0->unk16);
         arg0->rotation[1] = func_8010CD28(arg0);
-        func_80800BD8_chfloaty((s32)arg0, 0xA);
+        func_80800BD8_chfloaty((BtIntPtr)arg0, 0xA);
         arg0->position[1] = func_800C6920(arg0->position, 1000.0f, -1000.0f, 0) + 100.0f;
         break;
     case 4:
@@ -215,7 +215,7 @@ void func_808006AC_chfloaty(Actor *arg0, s32 arg1) {
 }
 
 s32 func_8080090C_chfloaty(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddietaxi_entrypoint_13(Actor *, s32, void *, s32);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     void func_800DF744(s32, s32);
     s32 func_801015D0(Actor *);
@@ -296,16 +296,16 @@ f32 func_80800B68_chfloaty(Actor *arg0) {
     }
 }
 
-void func_80800BD8_chfloaty(s32 arg0, s32 arg1) {
+void func_80800BD8_chfloaty(BtIntPtr arg0, s32 arg1) {
     s32 func_8001210C(s32);
-    s32 func_800B5BE4(s32);
-    s32 func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, s32, s32, s32, s32 *);
+    BtIntPtr func_800B5BE4(s32);
+    s32 func_800BA22C(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
     void func_80800CA0_chfloaty(Actor *);
     extern s32 D_80800EA8_chfloaty;
-    s32 sp24;
-    s32 temp_a1;
-    s32 temp_v0;
+    BtIntPtr sp24;
+    BtIntPtr temp_a1;
+    BtIntPtr temp_v0;
 
     if (func_8001210C(1) != 0) {
         temp_v0 = func_800B5BE4(0x1C);
@@ -315,7 +315,7 @@ void func_80800BD8_chfloaty(s32 arg0, s32 arg1) {
         func_800BA22C(sp24, arg1);
     }
     func_80800CA0_chfloaty((Actor *) arg0);
-}
+}    typedef struct { u8 pad0[0x65]; u8 unk65; } Objfloaty_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800C4C_chfloaty(u8 *arg0) {
     void func_800FCA90(u32);
@@ -323,7 +323,7 @@ void func_80800C4C_chfloaty(u8 *arg0) {
     if (((Actor *) arg0)->unk64_19) {
         func_800FCAE0(0x1CU, 0U, 0x7D0U);
         func_800FCA90(0x1CU);
-        (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFF7);
+        (((Objfloaty_arg0 *)arg0)->unk65) = (u8) ((((Objfloaty_arg0 *)arg0)->unk65) & 0xFFF7);
     }
 }
 

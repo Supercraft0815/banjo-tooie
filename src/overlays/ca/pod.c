@@ -4,7 +4,7 @@ s32 capod_entrypoint_0(s32 arg0, s32 arg1, s32 arg2)
 {
   s32 _ncpod_entrypoint_6(s32, s32, s32, s32, s32);
   s32 func_8008FFE8();
-  s32 func_80110024(s32);
+  s32 func_80110024(BtIntPtr);
   s32 sp24[2];
   s32 temp_v0;
   temp_v0 = func_80110024(func_8008FFE8());
@@ -18,11 +18,11 @@ s32 capod_entrypoint_0(s32 arg0, s32 arg1, s32 arg2)
 
 /* extern */
 
-void capod_entrypoint_1(s32 arg0, s32 arg1) {
-    s32 _ncpod_entrypoint_8(s32, s32, s32);
+void capod_entrypoint_1(BtIntPtr arg0, BtIntPtr arg1) {
+    void _ncpod_entrypoint_8(u8 *arg0, f32 *arg1, f32 *arg2);
     s32 func_8008FFE8();
-    s32 func_80110024(s32);
-    s32 temp_v0;
+    s32 func_80110024(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80110024(func_8008FFE8());
     if (temp_v0 != 0) {
@@ -32,8 +32,8 @@ void capod_entrypoint_1(s32 arg0, s32 arg1) {
 
 /* extern */
 
-s32 capod_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _ncpod_entrypoint_16(s32, s32, s32, s32);
+s32 capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2) {
+    s32 _ncpod_entrypoint_16(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_8008FFE8();
     s32 temp_v0;
 
@@ -47,7 +47,7 @@ s32 capod_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 capod_entrypoint_3(s32 arg0) {
-    s32 _ncpod_entrypoint_17(s32, s32);
+    s32 _ncpod_entrypoint_17(BtIntPtr, s32);
     s32 func_8008FFE8();
     s32 temp_v0;
 
@@ -75,10 +75,10 @@ s32 capod_entrypoint_4(void) {
 /* extern */
 
 void capod_entrypoint_5(s32 arg0) {
-    s32 _ncpod_entrypoint_19(s32, s32);
+    void _ncpod_entrypoint_19(void *arg0, s32 arg1);
     s32 func_8008FFE8();
-    s32 func_80110024(s32);
-    s32 temp_v0;
+    s32 func_80110024(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80110024(func_8008FFE8());
     if (temp_v0 != 0) {
@@ -88,8 +88,8 @@ void capod_entrypoint_5(s32 arg0) {
 
 /* extern */
 
-s32 capod_entrypoint_6(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _ncpod_entrypoint_20(s32, s32, s32, s32);
+s32 capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2) {
+    s32 _ncpod_entrypoint_20(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_8008FFE8();
     s32 temp_v0;
 
@@ -103,9 +103,9 @@ s32 capod_entrypoint_6(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void capod_entrypoint_7(s32 arg0, s32 arg1) {
-    s32 _ncpod_entrypoint_21(s32, s32, s32);
+    void _ncpod_entrypoint_21(s16 *arg0, s32 arg1, s32 arg2);
     s32 func_8008FFE8();
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_8008FFE8();
     if (temp_v0 != 0) {
@@ -116,9 +116,9 @@ void capod_entrypoint_7(s32 arg0, s32 arg1) {
 /* extern */
 
 void capod_entrypoint_8(s32 arg0) {
-    s32 _ncpod_entrypoint_12(s32, s32);
+    s32 _ncpod_entrypoint_12(BtIntPtr, s32);
     s32 func_8008FFE8();
-    s32 func_80110024(s32);
+    s32 func_80110024(BtIntPtr);
     s32 temp_v0;
 
     temp_v0 = func_80110024(func_8008FFE8());
@@ -129,11 +129,11 @@ void capod_entrypoint_8(s32 arg0) {
 
 /* extern */
 
-void capod_entrypoint_9(s32 arg0, s32 arg1) {
-    s32 _ncpod_entrypoint_22(s32, s32, s32);
+void capod_entrypoint_9(s32 arg0, BtIntPtr arg1) {
+    void _ncpod_entrypoint_22(s16 *arg0, s32 arg1, BtIntPtr arg2);
     s32 func_8008FFE8();
-    s32 func_80110024(s32);
-    s32 temp_v0;
+    s32 func_80110024(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80110024(func_8008FFE8());
     if (temp_v0 != 0) {
@@ -143,11 +143,11 @@ void capod_entrypoint_9(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void capod_entrypoint_10(s32 arg0, s32 arg1) {
-    s32 _ncpod_entrypoint_23(s32, s32, s32);
+void capod_entrypoint_10(s32 arg0, BtIntPtr arg1) {
+    void _ncpod_entrypoint_23(s16 *arg0, s32 arg1, BtIntPtr arg2);
     s32 func_8008FFE8();
-    s32 func_80110024(s32);
-    s32 temp_v0;
+    s32 func_80110024(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80110024(func_8008FFE8());
     if (temp_v0 != 0) {
@@ -157,11 +157,11 @@ void capod_entrypoint_10(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void capod_entrypoint_11(s32 arg0, s32 arg1) {
-    s32 _ncpod_entrypoint_24(s32, s32, s32);
+void capod_entrypoint_11(s32 arg0, BtIntPtr arg1) {
+    void _ncpod_entrypoint_24(s16 *arg0, s32 arg1, BtIntPtr arg2);
     s32 func_8008FFE8();
-    s32 func_80110024(s32);
-    s32 temp_v0;
+    s32 func_80110024(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80110024(func_8008FFE8());
     if (temp_v0 != 0) {
@@ -172,10 +172,10 @@ void capod_entrypoint_11(s32 arg0, s32 arg1) {
 /* extern */
 
 void capod_entrypoint_12(s32 arg0) {
-    s32 _ncpod_entrypoint_25(s32, s32);
+    void _ncpod_entrypoint_25(s16 *arg0, s32 arg1);
     s32 func_8008FFE8();
-    s32 func_80110024(s32);
-    s32 temp_v0;
+    s32 func_80110024(BtIntPtr);
+    BtIntPtr temp_v0;
 
     temp_v0 = func_80110024(func_8008FFE8());
     if (temp_v0 != 0) {
@@ -185,10 +185,10 @@ void capod_entrypoint_12(s32 arg0) {
 
 /* extern */
 
-s32 capod_entrypoint_13(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _ncpod_entrypoint_26(s32, s32, s32, s32, s32);
+s32 capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    s32 _ncpod_entrypoint_26(void *arg0, void *arg1, void *arg2, s32 arg3, s32 arg4);
     s32 func_8008FFE8();
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_8008FFE8();
     if ((temp_v0 != 0) && (_ncpod_entrypoint_26(temp_v0, arg0, arg1, arg2, arg3) != 0)) {
@@ -269,10 +269,10 @@ f32 capod_entrypoint_18(void) {
 
 /* extern */
 
-void capod_entrypoint_19(s32 arg0) {
-    s32 _ncpod_entrypoint_31(s32, s32);
+void capod_entrypoint_19(BtIntPtr arg0) {
+    void _ncpod_entrypoint_31(s16 *arg0, BtIntPtr arg1);
     s32 func_8008FFE8();
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_8008FFE8();
     if (temp_v0 != 0) {
@@ -282,8 +282,8 @@ void capod_entrypoint_19(s32 arg0) {
 
 /* extern */
 
-s32 capod_entrypoint_20(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _ncpod_entrypoint_32(s32, s32, s32, s32);
+s32 capod_entrypoint_20(BtIntPtr arg0, s32 arg1, s32 arg2) {
+    s32 _ncpod_entrypoint_32(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_8008FFE8();
     s32 temp_v0;
 
@@ -296,10 +296,10 @@ s32 capod_entrypoint_20(s32 arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-s32 capod_entrypoint_21(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _ncpod_entrypoint_33(s32, s32, s32, s32, s32);
+s32 capod_entrypoint_21(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+    s32 _ncpod_entrypoint_33(void *arg0, void *arg1, void *arg2, s32 arg3, s32 arg4);
     s32 func_8008FFE8();
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_8008FFE8();
     if ((temp_v0 != 0) && (_ncpod_entrypoint_33(temp_v0, arg0, arg1, arg2, arg3) != 0)) {

@@ -3,26 +3,26 @@
 s32 func_8009AD70() 
 {
     return 0xF;
-}
+}    typedef struct { u8 pad0[0xC4]; u8 * unkC4; u8 * unkC8; } Objbaphysics_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_8009AD78(void *arg0, s32 arg1) {
-    return (*(u8 **)((u8 *)arg0 + 0xC4))[arg1];
+    return (((Objbaphysics_arg0 *)arg0)->unkC4)[arg1];
 }
 
-void func_8009AD88(s32 arg0) 
+void func_8009AD88(BtIntPtr arg0) 
 {
 }
 void func_8009AD90(u8 *arg0) {
     s32 var_v0;
     var_v0 = 3;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC4)))) + (0))) = 0;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC4)))) + (1))) = 0;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC4)))) + (2))) = 0;
+    (*(s8 *)((s8 *)((((Objbaphysics_arg0 *)arg0)->unkC4)) + (0))) = 0;
+    (*(s8 *)((s8 *)((((Objbaphysics_arg0 *)arg0)->unkC4)) + (1))) = 0;
+    (*(s8 *)((s8 *)((((Objbaphysics_arg0 *)arg0)->unkC4)) + (2))) = 0;
     do {
-        *((*(u8 **)((s8 *)(arg0) + (0xC4))) + var_v0) = 0;
-        (*(s8 *)((s8 *)(((*(u8 **)((s8 *)(arg0) + (0xC4))) + var_v0)) + (1))) = 0;
-        (*(s8 *)((s8 *)(((*(u8 **)((s8 *)(arg0) + (0xC4))) + var_v0)) + (2))) = 0;
-        (*(u8 **)((s8 *)(arg0) + (0xC4)))[var_v0 + 3] = 0;
+        *((((Objbaphysics_arg0 *)arg0)->unkC4) + var_v0) = 0;
+        (*(s8 *)((s8 *)(((((Objbaphysics_arg0 *)arg0)->unkC4) + var_v0)) + (1))) = 0;
+        (*(s8 *)((s8 *)(((((Objbaphysics_arg0 *)arg0)->unkC4) + var_v0)) + (2))) = 0;
+        (((Objbaphysics_arg0 *)arg0)->unkC4)[var_v0 + 3] = 0;
         var_v0 += 4;
     } while (var_v0 != 0xF);
 }
@@ -145,7 +145,7 @@ void func_8009B08C(u8 *arg0) {
     func_800EFA20(temp_v0 + 0x28, temp_v0 + 0x10, sp28);
     temp_v0 = *(u8 **)(arg0 + 0xC8);
     func_800EF04C((f32 *)(temp_v0 + 4), (f32 *)(temp_v0 + 0x28));
-}
+}    typedef struct { u8 pad0[0x14]; f32 unk14; u8 pad18[0x1C]; f32 unk34; f32 unk38; } Objbaphysics_func_8009B170_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -159,17 +159,17 @@ void func_8009B170(u8 *arg0) {
 
     temp_f0 = func_800D8FF8();
     temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0) + (0x14))) += (*(f32 *)((s8 *)(temp_v0) + (0x34))) * temp_f0;
+    (((Objbaphysics_func_8009B170_temp_v0 *)temp_v0)->unk14) += (((Objbaphysics_func_8009B170_temp_v0 *)temp_v0)->unk34) * temp_f0;
     temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
-    temp_f2 = (*(f32 *)((s8 *)(temp_v0) + (0x38)));
-    if ((*(f32 *)((s8 *)(temp_v0) + (0x14))) < temp_f2) {
-        (*(f32 *)((s8 *)(temp_v0) + (0x14))) = temp_f2;
+    temp_f2 = (((Objbaphysics_func_8009B170_temp_v0 *)temp_v0)->unk38);
+    if ((((Objbaphysics_func_8009B170_temp_v0 *)temp_v0)->unk14) < temp_f2) {
+        (((Objbaphysics_func_8009B170_temp_v0 *)temp_v0)->unk14) = temp_f2;
         temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
     }
     func_800EFA20(temp_v0 + 0x28, temp_v0 + 0x10, temp_f0);
     temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
     func_800EF04C((f32 *)(temp_v0 + 4), (f32 *)(temp_v0 + 0x28));
-}
+}    typedef struct { u8 pad0[0x8]; f32 unk8; u8 padC[0x8]; f32 unk14; u8 pad18[0x14]; f32 unk2C; u8 pad30[0x4]; f32 unk34; f32 unk38; } Objbaphysics_func_8009B1FC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -182,18 +182,18 @@ void func_8009B1FC(void *arg0) {
 
     temp_f0 = func_800D8FF8();
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0) + (0x14))) += (*(f32 *)((s8 *)(temp_v0) + (0x34))) * temp_f0;
+    (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk14) += (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk34) * temp_f0;
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-    var_f2 = (*(f32 *)((s8 *)(temp_v0) + (0x14)));
-    temp_f12 = (*(f32 *)((s8 *)(temp_v0) + (0x38)));
+    var_f2 = (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk14);
+    temp_f12 = (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk38);
     if (var_f2 < temp_f12) {
-        (*(f32 *)((s8 *)(temp_v0) + (0x14))) = temp_f12;
+        (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk14) = temp_f12;
         temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-        var_f2 = (*(f32 *)((s8 *)(temp_v0) + (0x14)));
+        var_f2 = (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk14);
     }
-    (*(f32 *)((s8 *)(temp_v0) + (0x2C))) = var_f2 * temp_f0;
+    (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk2C) = var_f2 * temp_f0;
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0) + (8))) += (*(f32 *)((s8 *)(temp_v0) + (0x2C)));
+    (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk8) += (((Objbaphysics_func_8009B1FC_temp_v0 *)temp_v0)->unk2C);
 }
 
 void func_8009B27C(void *arg0) {
@@ -240,21 +240,21 @@ void func_8009B3B8(u8 *arg0) {
     void func_800EF04C(f32[3], f32[3]);
     void func_800EF334(f32 vec[3], f32 scale);
 
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x28, (*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10);
-    func_800EF334((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x28, func_800D8FF8());
-    func_800EF04C((*(s32 *)((s8 *)(arg0) + (0xC8))) + 4, (*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x28);
+    func_800EE7F8((((PlayerState *)arg0)->unkC8) + 0x28, (((PlayerState *)arg0)->unkC8) + 0x10);
+    func_800EF334((((PlayerState *)arg0)->unkC8) + 0x28, func_800D8FF8());
+    func_800EF04C((((PlayerState *)arg0)->unkC8) + 4, (((PlayerState *)arg0)->unkC8) + 0x28);
 }
 
 void func_8009B414(PlayerState *arg0) {
     void func_8009C128(PlayerState *, f32[3]);
     void func_800EFB24(void *, void *, void *);
     f32 sp1C[3];
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     func_8009C128(arg0, sp1C);
-    temp_v0 = *(s32 *)((u8 *)arg0 + 0xC8);
+    temp_v0 = arg0->unkC8;
     func_800EFB24(temp_v0 + 0x28, temp_v0 + 4, sp1C);
-}
+}    typedef struct { u8 pad0[0x8]; f32 unk8; u8 padC[0x3C]; f32 unk48; f32 unk4C; } Objbaphysics_func_8009B450_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8009B450(void *arg0) {
     f32 func_80013970(f32);
@@ -265,19 +265,19 @@ void func_8009B450(void *arg0) {
 
     temp_f0 = func_800D8FF8();
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0) + (0x4C))) += temp_f0;
+    (((Objbaphysics_func_8009B450_temp_v0 *)temp_v0)->unk4C) += temp_f0;
     temp_f0 = func_800F0F9C((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x4C))), 1.2f);
     temp_f0 *= 360.0f;
     temp_f0 = func_80013970(temp_f0);
     temp_f0 *= 5.0f;
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0) + (8))) = temp_f0;
-    (*(f32 *)((s8 *)(temp_v0) + (8))) += (*(f32 *)((s8 *)(temp_v0) + (0x48)));
+    (((Objbaphysics_func_8009B450_temp_v0 *)temp_v0)->unk8) = temp_f0;
+    (((Objbaphysics_func_8009B450_temp_v0 *)temp_v0)->unk8) += (((Objbaphysics_func_8009B450_temp_v0 *)temp_v0)->unk48);
 }
 
-void func_8009B4D0(void *arg0, s32 arg1) {
+void func_8009B4D0(void *arg0, BtIntPtr arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x28);
+    func_800EE7F8(arg1, ((PlayerState *)arg0)->unkC8 + 0x28);
 }
 
 void func_8009B4FC(PlayerState *arg0) {
@@ -379,7 +379,7 @@ void func_8009B590(PlayerState *arg0) {
     }
     func_8009C0F8(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4));
     *(f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 0x50) = 1.0f;
-}
+}    typedef struct { u8 pad0[0x10]; f32 unk10; u8 pad14[0x4]; f32 unk18; } Objbaphysics_func_8009B7C0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8009B7C0(PlayerState *arg0) {
     void *temp_v0;
@@ -387,19 +387,19 @@ void func_8009B7C0(PlayerState *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x18))) = 0.0f;
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0) + (0x18)));
+    (((Objbaphysics_func_8009B7C0_temp_v0 *)temp_v0)->unk10) = (f32) (((Objbaphysics_func_8009B7C0_temp_v0 *)temp_v0)->unk18);
 }
 
 void baphysics_set_type(PlayerState *self, BaPhysicsType type) {
-    void _bamoveledge_entrypoint_1(PlayerState *);
-    void _bamoveledge_entrypoint_2(PlayerState *);
-    void _bamovethrust_entrypoint_0(PlayerState *);
+    void _bamoveledge_entrypoint_1(BtIntPtr arg0);
+    void _bamoveledge_entrypoint_2(BtIntPtr arg0);
+    void _bamovethrust_entrypoint_0(BtIntPtr arg0);
     void _bamovethrust_entrypoint_1(PlayerState *);
     void _bamovegoto_entrypoint_5(PlayerState *);
     void _bamovegoto_entrypoint_6(PlayerState *);
-    void _bamovespline_entrypoint_5(PlayerState *);
+    void _bamovespline_entrypoint_5(BtIntPtr arg0);
     void _bamovespline_entrypoint_6(PlayerState *);
-    void _bamovehover_entrypoint_0(PlayerState *);
+    void _bamovehover_entrypoint_0(BtIntPtr arg0);
     void _bamovehover_entrypoint_1(PlayerState *);
     BaPhysicsType old_type;
 
@@ -436,17 +436,17 @@ void func_8009B94C(u8 *arg0, f32 *arg1) {
     void func_800EE7F8();
     void func_800EFD24(f32 vec[3]);
     if (arg1 != 0) {
-        func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x1C);
+        func_800EE7F8((((PlayerState *)arg0)->unkC8) + 0x1C);
         return;
     }
-    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x1C);
+    func_800EFD24((((PlayerState *)arg0)->unkC8) + 0x1C);
 }
 
 /* extern */
 
 void func_8009B98C(void *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8((f32 *)(*(u8 **)((u8 *)arg0 + 0xC8) + 4), arg1);
+    func_800EE7F8((f32 *)(((Objbaphysics_arg0 *)arg0)->unkC8 + 4), arg1);
 }
 
 void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel) {
@@ -458,7 +458,7 @@ void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel) {
 void baphysics_set_target_yaw(PlayerState *arg0, f32 target_yaw) {
     f32 func_800136E4(f32);
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x40))) = func_800136E4(target_yaw);
-}
+}    typedef struct { u8 pad0[0x3C]; f32 unk3C; f32 unk40; } Objbaphysics_func_8009B9F0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x10]; f32 unk10; u8 pad14[0x4]; f32 unk18; f32 unk1C; u8 pad20[0x4]; f32 unk24; } Objbaphysics_func_8009B9F0_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 /* extern */
 
@@ -469,12 +469,12 @@ void func_8009B9F0(PlayerState *arg0, f32 arg1) {
 
     baphysics_set_target_horizontal_velocity(arg0, arg1);
     temp_v0 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
-    func_800EEB9C((f32 *)(temp_v0 + 0x1C), (*(f32 *)((s8 *)(temp_v0) + (0x40))), (*(f32 *)((s8 *)(temp_v0) + (0x3C))));
+    func_800EEB9C((f32 *)(temp_v0 + 0x1C), (((Objbaphysics_func_8009B9F0_temp_v0 *)temp_v0)->unk40), (((Objbaphysics_func_8009B9F0_temp_v0 *)temp_v0)->unk3C));
     (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x20))) = 0.0f;
     temp_v0_2 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0_2) + (0x10))) = (f32) (*(f32 *)((s8 *)(temp_v0_2) + (0x1C)));
+    (((Objbaphysics_func_8009B9F0_temp_v0_2 *)temp_v0_2)->unk10) = (f32) (((Objbaphysics_func_8009B9F0_temp_v0_2 *)temp_v0_2)->unk1C);
     temp_v0_2 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
-    (*(f32 *)((s8 *)(temp_v0_2) + (0x18))) = (f32) (*(f32 *)((s8 *)(temp_v0_2) + (0x24)));
+    (((Objbaphysics_func_8009B9F0_temp_v0_2 *)temp_v0_2)->unk18) = (f32) (((Objbaphysics_func_8009B9F0_temp_v0_2 *)temp_v0_2)->unk24);
 }
 
 void baphysics_set_vertical_velocity(PlayerState *arg0, f32 arg1) {
@@ -483,17 +483,17 @@ void baphysics_set_vertical_velocity(PlayerState *arg0, f32 arg1) {
 
 void baphysics_set_horizontal_velocity(PlayerState *arg0, f32 yaw, f32 vel) {
     void func_800EEB9C(f32[3], f32, f32);
-    func_800EEB9C((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10, yaw, vel);
+    func_800EEB9C((arg0->unkC8) + 0x10, yaw, vel);
 }
 
 void func_8009BA9C(PlayerState *arg0, f32 *arg1) {
     void func_800EE7F8();
     void func_800EFD24(f32 vec[3]);
     if (arg1 != NULL) {
-        func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10);
+        func_800EE7F8((arg0->unkC8) + 0x10);
         return;
     }
-    func_800EFD24((*(s32 *)((s8 *)(arg0) + (0xC8))) + 0x10);
+    func_800EFD24((arg0->unkC8) + 0x10);
 }
 
 f32 func_8009BADC(PlayerState *arg0) {
@@ -521,11 +521,11 @@ f32 func_8009BB18(void *arg0) {
 }
 
 /* Single line: IDO schedules this prologue by source line. */
-void func_8009BB24(PlayerState *arg0, f32 arg1[3]) { void func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xC8) + 0x10); }
+void func_8009BB24(PlayerState *arg0, f32 arg1[3]) { void func_800EE7F8(); func_800EE7F8(arg1, arg0->unkC8 + 0x10); }
 
 f32 baphysics_get_vertical_velocity(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x14)));
-}
+}    typedef struct { u8 pad0[0x10]; f32 unk10; u8 pad14[0x4]; f32 unk18; } Objbaphysics_func_8009BB5C_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 f32 func_8009BB5C(PlayerState *arg0) {
     f32 temp_f0;
@@ -533,8 +533,8 @@ f32 func_8009BB5C(PlayerState *arg0) {
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
-    temp_f0 = (*(f32 *)((s8 *)(temp_v0) + (0x18)));
-    temp_f2 = (*(f32 *)((s8 *)(temp_v0) + (0x10)));
+    temp_f0 = (((Objbaphysics_func_8009BB5C_temp_v0 *)temp_v0)->unk18);
+    temp_f2 = (((Objbaphysics_func_8009BB5C_temp_v0 *)temp_v0)->unk10);
     return sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
 }
 
@@ -590,7 +590,7 @@ void baphysics_set_gravity(PlayerState *arg0, f32 arg1) {
 
 void baphysics_set_terminal_velocity(PlayerState *arg0, f32 arg1) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x38))) = arg1;
-}
+}    typedef struct { u8 pad0[0x10]; f32 unk10; u8 pad14[0x4]; f32 unk18; } Objbaphysics_func_8009BCD4_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
 s32 func_8009BCD4(PlayerState *arg0, f32 arg1) {
     f32 temp_f0;
@@ -599,8 +599,8 @@ s32 func_8009BCD4(PlayerState *arg0, f32 arg1) {
     u8 *temp_v1;
 
     temp_v1 = (*(u8 **)((s8 *)(arg0) + (0xC8)));
-    temp_f0 = (*(f32 *)((s8 *)(temp_v1) + (0x18)));
-    temp_f2 = (*(f32 *)((s8 *)(temp_v1) + (0x10)));
+    temp_f0 = (((Objbaphysics_func_8009BCD4_temp_v1 *)temp_v1)->unk18);
+    temp_f2 = (((Objbaphysics_func_8009BCD4_temp_v1 *)temp_v1)->unk10);
     magnitude = (temp_f0 * temp_f0) + (temp_f2 * temp_f2);
     return magnitude <= arg1 * arg1;
 }

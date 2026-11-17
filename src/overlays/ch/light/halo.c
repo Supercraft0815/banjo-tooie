@@ -2,11 +2,11 @@
 
 /* extern */
 
-void func_80800000_chlighthalo(u8 *arg0) {
+typedef struct { u8 pad0[0x34]; u8 unk34; } Objhalo_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chlighthalo(u8 *arg0) {
     void func_800E8830(u8, f32 *);
     u8 temp_a2;
 
-    temp_a2 = (*(u8 *)((s8 *)(arg0) + (0x34)));
+    temp_a2 = (((Objhalo_arg0 *)arg0)->unk34);
     if (temp_a2 != 0) {
         func_800E8830(temp_a2, (f32 *)(arg0 + 4));
     }
@@ -18,24 +18,24 @@ void func_80800030_chlighthalo(void *arg0) {
     s32 func_800E87E0(s32, u8, void *);
     u8 temp_a1;
 
-    temp_a1 = (*(u8 *)((s8 *)(arg0) + (0x34)));
+    temp_a1 = (((Objhalo_arg0 *)arg0)->unk34);
     if (temp_a1 != 0) {
         func_800E87E0(temp_a1 & 0xFF, temp_a1, arg0);
-        (*(u8 *)((s8 *)(arg0) + (0x34))) = 0U;
+        (((Objhalo_arg0 *)arg0)->unk34) = 0U;
     }
 }
 
 void func_80800068_chlighthalo(u8 *arg0, s32 arg1) {
     s32 func_800A89F8(void);
-    s32 func_800E8918(u8, s32, s32, f32 *);
+    s32 func_800E8918(u8, s32, BtIntPtr, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void _subaddiedraw25d_entrypoint_0(void *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800E2588(u32);
     void func_800E24F8(s32, s32, s32);
     void func_800E257C(s32);
-    s32 func_800D674C(s32);
-    void func_800E2AA4(s32, s32, s32, s32, void *, f32 *);
+    BtIntPtr func_800D674C(s32);
+    void func_800E2AA4(BtIntPtr, BtIntPtr, s32, s32, void *, f32 *);
     struct HaloFlags { u32 unused:11; u32 edge:1; u32 rest:20; };
     struct HaloScale { u8 unused[0x38]; f32 value; };
     f32 screen[2];
@@ -99,7 +99,7 @@ void func_80800068_chlighthalo(u8 *arg0, s32 arg1) {
 s32 func_80800448_chlighthalo(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct { f32 value[2]; } HaloRadius;
     void _subaddiefade_entrypoint_11(u8 *, u8 *);
-    s32 func_800BF8E4(void);
+    s8 func_800BF8E4(void);
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32 *);
     void func_800C8D4C(s32, f32 *);
@@ -155,7 +155,12 @@ void func_80800630_chlighthalo(s32 arg0)
 }
 OSThread *chlighthalo_entrypoint_0(void)
 {
-    extern u8 D_808006A8_chlighthalo[];
+    extern ActorData D_808006A8_chlighthalo[];
 
     return (OSThread *) D_808006A8_chlighthalo;
 }
+/* data_to_c.py: from asm/data/overlays/ch/light/halo.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+f32 D_808006A0_chlighthalo [2] BT_DATA(4, overlays_ch_light_halo, 0x0) = { 250.0f, 400.0f };
+ActorData D_808006A8_chlighthalo [1] BT_DATA(4, overlays_ch_light_halo, 0x8) = { { 344, 1290, 2503, 1, 0, (void (*)(struct Actor *))func_80800000_chlighthalo, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800068_chlighthalo, 0, 0, 0, 0, 2, 0, (void (*)(struct Actor *))func_80800030_chlighthalo, 0, 0, 0, (void (*)(struct Actor *))func_80800630_chlighthalo, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800448_chlighthalo, 0 } };

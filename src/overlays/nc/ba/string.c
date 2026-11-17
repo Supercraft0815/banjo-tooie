@@ -12,9 +12,9 @@ void func_80800008_ncbastring(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbastring_entrypoint_1(s32 arg0) {
+void ncbastring_entrypoint_1(BtIntPtr arg0) {
     void func_80111B8C(s32 *, f32, f32);
-    s32 func_801124D0(s32, s32);
+    void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);
     func_80111B8C((s32 *) arg0, 4.0f, 8.0f);
@@ -39,9 +39,9 @@ void ncbastring_entrypoint_3(PlayerState *arg0) {
     f32 func_800EEF94(f32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     s32 func_80111CC8(void *, f32 *);
     f32 func_80112C3C(void *, f32);
@@ -97,7 +97,7 @@ void ncbastring_entrypoint_3(PlayerState *arg0) {
     func_80800008_ncbastring(arg0, sp64);
     func_80110A68(arg0, sp40, sp64);
     func_80110790(arg0, sp40);
-}
+}    typedef struct { f32 unk0; f32 unk4; s8 unk8; } Objstring_ncbastring_entrypoint_4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -122,15 +122,15 @@ void ncbastring_entrypoint_4(PlayerState *arg0) {
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0))) = temp_f0;
     func_80115444(arg0, &sp30, &sp2C);
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x50)));
-    if ((*(f32 *)((s8 *)(temp_v0) + (0))) < sp30) {
-        (*(s8 *)((s8 *)(temp_v0) + (8))) = 1;
+    if ((((Objstring_ncbastring_entrypoint_4_temp_v0 *)temp_v0)->unk0) < sp30) {
+        (((Objstring_ncbastring_entrypoint_4_temp_v0 *)temp_v0)->unk8) = 1;
         (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (4))) = sp2C;
         return;
     }
-    if (sp2C < (*(f32 *)((s8 *)(temp_v0) + (4)))) {
-        (*(s8 *)((s8 *)(temp_v0) + (8))) = 1;
+    if (sp2C < (((Objstring_ncbastring_entrypoint_4_temp_v0 *)temp_v0)->unk4)) {
+        (((Objstring_ncbastring_entrypoint_4_temp_v0 *)temp_v0)->unk8) = 1;
         (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0))) = sp30;
         return;
     }
-    (*(s8 *)((s8 *)(temp_v0) + (8))) = 0;
+    (((Objstring_ncbastring_entrypoint_4_temp_v0 *)temp_v0)->unk8) = 0;
 }

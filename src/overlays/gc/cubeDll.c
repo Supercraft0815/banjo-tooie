@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_collision.h"
 #include "native_cube.h"
 #include "memory.h"
@@ -216,7 +216,7 @@ u32 gccubeDll_entrypoint_7(void) {
 
 /* extern */
 
-void gccubeDll_entrypoint_0(void *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gccubeDll_entrypoint_0(void *arg0) {
     s32 _gspropsDll_entrypoint_0(u32, s32 *, s32 *);
     s32 _gspropsDll_entrypoint_1(s32 *, s32);
     u32 var_s0;
@@ -235,7 +235,7 @@ void gccubeDll_entrypoint_0(void *arg0) {
             var_s0 += 8;
         } while (var_s0 < (*(u32 *)((s8 *)arg0 + 0)) + (*(s32 *)((s8 *)arg0 + 0x24)) * 8);
     }
-    _gspropsDll_entrypoint_1(sp34, sp2C);
+    BT_NATIVE_ONLY(return) _gspropsDll_entrypoint_1(sp34, sp2C);
 }
 
 s32 func_808000B8_gccubeDll(s32 arg0, s32 arg1) {
@@ -265,7 +265,7 @@ s32 func_808000B8_gccubeDll(s32 arg0, s32 arg1) {
             _gspropsDll_entrypoint_4(&second[i]);
         }
         heap_free(second);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 s32 func_80800230_gccubeDll(s32 arg0, s32 arg1) {
@@ -295,7 +295,7 @@ s32 func_80800230_gccubeDll(s32 arg0, s32 arg1) {
             _gspropsDll_entrypoint_4(&second[i]);
         }
         heap_free(second);
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_808003A0_gccubeDll(s32 arg0, s32 arg1) {
@@ -439,7 +439,7 @@ void gccubeDll_entrypoint_5(struct gccubeDll_entrypoint_5_arg *arg0) {
 
 /* extern */
 
-void gccubeDll_entrypoint_6(void *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gccubeDll_entrypoint_6(void *arg0) {
     s32 _gspropsDll_entrypoint_2(s32, s32);
     s32 func_800CB9FC();
     s32 func_800CBA20();
@@ -462,7 +462,7 @@ void gccubeDll_entrypoint_6(void *arg0) {
         } while (var_s0 < (*(s32 *)((s8 *)(arg0) + (0x24))));
     }
     func_800CB9FC();
-    func_800CBA44();
+    BT_NATIVE_ONLY(return) func_800CBA44();
 }
 
 /* extern */

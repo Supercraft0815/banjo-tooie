@@ -65,26 +65,26 @@ typedef struct bs_kazfly_s {
 } BsKazFly;
 
 s32 D_80801C10_bskazfly[];
-s32 D_80801C38_bskazfly[];
-s32 D_80801C48_bskazfly[];
-s32 D_80801C58_bskazfly[];
-s32 D_80801C68_bskazfly[];
-s32 D_80801C78_bskazfly[];
-s32 D_80801C88_bskazfly[];
-s32 D_80801C98_bskazfly[];
-s32 D_80801CA8_bskazfly[];
-s32 D_80801CB8_bskazfly[];
-s32 D_80801CC8_bskazfly[];
+BtIntPtr D_80801C38_bskazfly[];
+BtIntPtr D_80801C48_bskazfly[];
+BtIntPtr D_80801C58_bskazfly[];
+BtIntPtr D_80801C68_bskazfly[];
+BtIntPtr D_80801C78_bskazfly[];
+BtIntPtr D_80801C88_bskazfly[];
+BtIntPtr D_80801C98_bskazfly[];
+BtIntPtr D_80801CA8_bskazfly[];
+BtIntPtr D_80801CB8_bskazfly[];
+BtIntPtr D_80801CC8_bskazfly[];
 
-extern s32 _bskazfly_entrypoint_0(s32 idx);
-extern s32 _bskazfly_entrypoint_1(s32 idx);
-extern s32 _bskazfly_entrypoint_2(s32 idx);
-extern s32 _bskazfly_entrypoint_3(s32 idx);
-extern s32 _bskazfly_entrypoint_4(s32 idx);
-extern s32 _bskazfly_entrypoint_5(s32 idx);
-extern s32 _bskazfly_entrypoint_6(s32 idx);
-extern s32 _bskazfly_entrypoint_7(s32 idx);
-extern s32 _bskazfly_entrypoint_8(s32 idx);
-extern s32 _bskazfly_entrypoint_9(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_0(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_1(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_2(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_3(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_4(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_5(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_6(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_7(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_8(s32 idx);
+extern BtIntPtr _bskazfly_entrypoint_9(s32 idx);
 
 #endif // __BS_KAZ_FLY_H__

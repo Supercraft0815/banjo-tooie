@@ -13,8 +13,8 @@ void func_8080000C_chcheatopage(Actor *arg0) { void func_80103110(void *, s32); 
 void func_80800070_chcheatopage(Actor *arg0) {
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80103110(void *, s32);
     void _glcutDll_entrypoint_6(u32, u32);
@@ -37,7 +37,7 @@ void func_80800070_chcheatopage(Actor *arg0) {
 /* extern */
 
 s32 func_80800124_chcheatopage(Actor *arg0, s32 arg1, s32 arg2) {
-    void func_80800194_chcheatopage(Actor *, s32);
+    void func_80800194_chcheatopage(Actor *, BtIntPtr);
     switch (arg1) {
         case 0x3E:
             func_80800194_chcheatopage(arg0, arg2);
@@ -56,15 +56,15 @@ s32 func_80800124_chcheatopage(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-void func_80800194_chcheatopage(Actor *arg0, s32 arg1) {
+void func_80800194_chcheatopage(Actor *arg0, BtIntPtr arg1) {
     void _fxsparkle_entrypoint_1(f32 *, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D035C(s32);
     void func_800D0BD4(s32, u32);
     void func_800D1844(s32);
     s32 func_800DA9E4(s32, s32);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
@@ -97,15 +97,15 @@ void func_80800194_chcheatopage(Actor *arg0, s32 arg1) {
         }
         func_800FFAB0(arg0);
     }
-}
+}    typedef struct { u8 pad0[0x72]; u16 unk72; } Objeatopage_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void func_808002A0_chcheatopage(void *arg0) {
+void func_808002A0_chcheatopage(void *arg0 BT_PASS2(, s32 bt_a1)) {
     s32 func_80101870();
     void func_80103110(void *, s32);
     func_80101870();
-    if ((((struct { unsigned int : 19; unsigned int active : 1; unsigned int : 12; } *)((s8 *)arg0 + 0x7C))->active) && (((u32) (*(u16 *)((s8 *)(arg0) + (0x72))) >> 0xA) == 1)) {
+    if ((((struct { unsigned int : 19; unsigned int active : 1; unsigned int : 12; } *)((s8 *)arg0 + 0x7C))->active) && (((u32) (((Objeatopage_arg0 *)arg0)->unk72) >> 0xA) == 1)) {
         func_80103110(arg0, 1);
     }
 }

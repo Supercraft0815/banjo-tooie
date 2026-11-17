@@ -22,32 +22,32 @@ struct BounceConfig {
 
 void chbounce_entrypoint_0(void) {
     extern f32 D_8012716C;
-    f32 *temp_v0 = (f32 *)(u32)((u8 *)&D_8012716C + 28);
+    f32 *temp_v0 = (f32 *)(BtUIntPtr)((u8 *)&D_8012716C + 28);
     temp_v0[0] = 0.0f;
     temp_v0[1] = 1.0f;
     temp_v0[2] = 0.0;
 }
 
 void chbounce_entrypoint_1(void) {
-}
+}    typedef struct { u8 pad0[0x1C]; f32 unk1C; u8 pad20[0x4]; f32 unk24; } Objbounce_D_8012716C; /* offsets.py genstruct: fields from raw offsets on &D_8012716C; rename once understood */
 
 void chbounce_entrypoint_2(f32 arg0) {
     extern f32 D_8012716C;
-    *(f32 *)((u8 *)&D_8012716C + 28) = arg0;
+    ((Objbounce_D_8012716C *)&D_8012716C)->unk1C = arg0;
 }
 
 void chbounce_entrypoint_3(f32 arg0) {
     extern f32 D_8012716C;
-    *(f32 *)((u8 *)&D_8012716C + 36) = arg0;
+    ((Objbounce_D_8012716C *)&D_8012716C)->unk24 = arg0;
 }
 
 void chbounce_entrypoint_4(Actor *arg0, s32 *arg1) {
     void func_800EE84C(f32 dst[3], s32 src[3]);
-    void chbounce_entrypoint_6(Actor *arg0, u32 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32 *) chbounce_entrypoint_6(Actor *arg0, BtUIntPtr arg1);
     f32 position[3];
 
     func_800EE84C(position, arg1);
-    chbounce_entrypoint_6(arg0, (u32) position);
+    chbounce_entrypoint_6(arg0, (BtUIntPtr) position);
 }
 
 /* extern */
@@ -97,7 +97,7 @@ block_17:
     return 0x229;
 }
 
-u32 *func_80800190_chbounce(Actor *arg0, u32 arg1, u32 arg2) {
+u32 *func_80800190_chbounce(Actor *arg0, BtUIntPtr arg1, BtUIntPtr arg2) {
     struct BounceGlobals {
         f32 angle;
         f32 scale;
@@ -142,7 +142,7 @@ u32 *func_80800190_chbounce(Actor *arg0, u32 arg1, u32 arg2) {
     u8 *extra;
     f32 *base;
 
-    config = &D_80800FE0_chbounce[(s32) arg0];
+    config = &D_80800FE0_chbounce[(BtIntPtr) arg0];
     loopConfig = config;
     actor = 0;
     if (arg2 != 0) {
@@ -178,7 +178,7 @@ u32 *func_80800190_chbounce(Actor *arg0, u32 arg1, u32 arg2) {
                 goto next_actor;
             }
             {
-                type = (s32) arg0;
+                type = (BtIntPtr) arg0;
                 func_80100074(actor, 2, 0x34);
                 data = func_80100094(actor, 2);
                 position = (u8 *) actor + 4;
@@ -218,8 +218,8 @@ u32 *func_80800190_chbounce(Actor *arg0, u32 arg1, u32 arg2) {
                         }
                     }
                     *(f32 *) (data + 0x18) = yRandom;
-                    *(f32 *) ((u8 *) actor + 0x48) = yRandom;
-                    func_800EF934(vector, vector, *(f32 *) ((u8 *) actor + 0x48) + globals->angle);
+                    actor->rotation[1] = yRandom;
+                    func_800EF934(vector, vector, actor->rotation[1] + globals->angle);
                 }
                 *(f32 *) (data + 0x20) = 0.0f;
                 ((struct BounceBits *) data)->flag24 = 0;
@@ -239,21 +239,21 @@ u32 *func_80800190_chbounce(Actor *arg0, u32 arg1, u32 arg2) {
     return (u32 *) actor;
 }
 
-void chbounce_entrypoint_5(s32 arg0, u8 *arg1) {
-    extern s32 D_80801000_chbounce;
-    u32* func_80800190_chbounce(Actor*, u32, u32);
-    *(f32 *)((u8 *)&D_80801000_chbounce + arg0 * 0x24) = *(f32 *)(arg1 + 0x48);
-    func_80800190_chbounce((Actor *)arg0, (u32)(arg1 + 4), (u32)arg1);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32 *) chbounce_entrypoint_5(BtIntPtr arg0, u8 *arg1) {
+    extern struct BounceConfig D_80800FE0_chbounce[];
+    u32* func_80800190_chbounce(Actor*, BtUIntPtr, BtUIntPtr);
+    D_80800FE0_chbounce[arg0].unk20 = *(f32 *)(arg1 + 0x48);
+    BT_NATIVE_ONLY(return) func_80800190_chbounce((Actor *)arg0, (BtUIntPtr)(arg1 + 4), (BtUIntPtr)arg1);
 }
 
-void chbounce_entrypoint_6(Actor *arg0, u32 arg1) {
-    u32* func_80800190_chbounce(Actor*, u32, u32);
-    func_80800190_chbounce(arg0, arg1, 0U);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32 *) chbounce_entrypoint_6(Actor *arg0, BtUIntPtr arg1) {
+    u32* func_80800190_chbounce(Actor*, BtUIntPtr, BtUIntPtr);
+    BT_NATIVE_ONLY(return) func_80800190_chbounce(arg0, arg1, 0U);
 }
 
-s32 chbounce_entrypoint_7(s32 arg0, f32 *arg1, s32 arg2) {
-    extern s16 D_80800FE2_chbounce;
-    u32 *func_80800190_chbounce(Actor *, u32, u32);
+BtIntPtr chbounce_entrypoint_7(BtIntPtr arg0, f32 *arg1, s32 arg2) {
+    extern struct BounceConfig D_80800FE0_chbounce[];
+    u32 *func_80800190_chbounce(Actor *, BtUIntPtr, BtUIntPtr);
     Actor *actor;
     struct {
         u8 pad[0x28];
@@ -262,8 +262,8 @@ s32 chbounce_entrypoint_7(s32 arg0, f32 *arg1, s32 arg2) {
         f32 pitch;
     } *data;
 
-    *(s16 *)((u8 *)&D_80800FE2_chbounce + arg0 * 0x24) = arg2;
-    actor = (Actor *)func_80800190_chbounce((Actor *)arg0, (u32)arg1, 0U);
+    D_80800FE0_chbounce[arg0].actorId = arg2;
+    actor = (Actor *)func_80800190_chbounce((Actor *)arg0, (BtUIntPtr)arg1, 0U);
     data = func_80100094(actor, 2U);
     switch (arg2) {
         case 0x1C9:
@@ -294,12 +294,12 @@ s32 chbounce_entrypoint_7(s32 arg0, f32 *arg1, s32 arg2) {
             data->volume = 0x3E80;
             break;
     }
-    return (s32)actor;
+    return (BtIntPtr)actor;
 }
 
-s32 func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
+BtIntPtr func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
-    s32 func_800BF0E0(f32 *, f32 *, f32, f32 *, s32, s32);
+    void *func_800BF0E0(f32 *a,f32 *b,f32 radius,f32 *out,s32 flags,u32 mode);
     void *func_800C6A7C(f32 *, f32 *, f32 *, u32);
     void *func_800C6B78(f32 *, f32 *, f32, f32 *, s32, u32);
     s32 func_800CC338(f32 *, s32, s32);
@@ -310,7 +310,7 @@ s32 func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg
     void func_800EFB24(void *, void *, void *);
     u32 func_8010A654(void ***, s32);
     u32 func_8010A698(void ***);
-    s32 result;
+    BtIntPtr result;
     f32 radius;
     s32 pad[2];
     s32 saved;
@@ -343,7 +343,7 @@ s32 func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg
     if (arg4) {
         result = func_800BF0E0(arg1, arg2, radius, arg3, 3, arg0->unk14);
         if (result == 0) {
-            result = (s32)func_800BEF00(arg1, arg2, arg3, arg0->unk14);
+            result = (BtIntPtr)func_800BEF00(arg1, arg2, arg3, arg0->unk14);
             if (result != 0) {
                 func_800EF04C(arg2, arg3);
             }
@@ -351,10 +351,10 @@ s32 func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg
     } else {
         saved = func_8010A698(arg0);
         func_8010A654(arg0, 0);
-        result = (s32)func_800C6B78(arg1, arg2, radius, arg3, 3, arg0->unk14);
+        result = (BtIntPtr)func_800C6B78(arg1, arg2, radius, arg3, 3, arg0->unk14);
         func_8010A654(arg0, saved);
         if (result == 0) {
-            result = (s32)func_800C6A7C(arg1, arg2, arg3, arg0->unk14);
+            result = (BtIntPtr)func_800C6A7C(arg1, arg2, arg3, arg0->unk14);
             if (result != 0) {
                 func_800EF04C(arg2, arg3);
             }
@@ -382,7 +382,7 @@ void chbounce_entrypoint_8(Actor *arg0) {
     void func_800EFB24(void *, void *, void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800FFAB0(Actor *);
-    s32 func_8010108C(Actor *, s32, s32);
+    s32 func_8010108C(Actor *, s32, BtIntPtr);
     void func_80104580(void);
     void *func_80105494(Actor *);
     void func_8010A63C(Actor *);
@@ -511,8 +511,8 @@ void chbounce_entrypoint_8(Actor *arg0) {
 
 /* extern */
 
-s32 chbounce_entrypoint_9(Actor *arg0) {
-    return (s32) ((s8 *) func_80100094(arg0, 2U) + 0xC);
+BtIntPtr chbounce_entrypoint_9(Actor *arg0) {
+    return (BtIntPtr) ((s8 *) func_80100094(arg0, 2U) + 0xC);
 }
 
 s32 chbounce_entrypoint_10(Actor *arg0) {
@@ -524,3 +524,7 @@ void func_80800F74_chbounce(Actor *arg0) {
     (*(u8 *)((s8 *)(arg0) + (0x7B))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x7B))) & 0xFFF7);
     func_80100074(arg0, 2U, 0U);
 }
+/* data_to_c.py: from asm/data/overlays/ch/bounce.data.s */
+struct BounceConfig D_80800FE0_chbounce [34] BT_DATA(4, overlays_ch_bounce, 0x0) = { { 0x21, 500, 1, 1028, 1.8f, 20000, 100, 50, 500, 250, 100, 50, { 0, 0 }, 0.6f, 0.0f }, { 0x2D, 528, 1, 0, 1.25f, 16000, 0, 0, 200, 0, 0, 0, { 0, 0 }, 0.2f, 315.0f }, { 1, 553, 1, 1001, 1.25f, 18000, 50, 150, 500, 250, 50, 150, { 0, 0 }, 0.6f, 0.0f }, { 0x21, 553, 1, 1001, 1.25f, 18000, 0, 0, 750, 250, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x21, 553, 2, 1001, 1.25f, 18000, 50, 150, 500, 250, 50, 150, { 0, 0 }, 0.6f, 0.0f }, { 0x21, 553, 3, 1001, 1.25f, 18000, 50, 150, 500, 250, 50, 150, { 0, 0 }, 0.6f, 0.0f }, { 0x481, 553, 1, 1028, 1.2f, 20000, 250, 0, 200, 0, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x481, 553, 1, 1028, 1.2f, 20000, 350, 0, 350, 0, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x481, 553, 1, 1028, 1.2f, 20000, 450, 0, 400, 0, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x481, 553, 1, 1028, 1.2f, 20000, 550, 0, 450, 0, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x481, 553, 1, 1028, 1.2f, 20000, 650, 0, 500, 0, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x681, 553, 1, 1028, 1.2f, 20000, 250, 0, 200, 0, 0, 0, { 0, 0 }, 0.0f, 0.0f }, { 0x681, 553, 1, 1028, 1.2f, 20000, 350, 0, 350, 0, 0, 0, { 0, 0 }, 0.0f, 0.0f }, { 0x681, 553, 1, 1028, 1.2f, 20000, 450, 0, 400, 0, 0, 0, { 0, 0 }, 0.0f, 0.0f }, { 0x681, 553, 1, 1028, 1.2f, 20000, 550, 0, 450, 0, 0, 0, { 0, 0 }, 0.0f, 0.0f }, { 0x681, 553, 1, 1028, 1.2f, 20000, 650, 0, 500, 0, 0, 0, { 0, 0 }, 0.0f, 0.0f }, { 0x480, 553, 1, 1028, 1.2f, 20000, 250, 0, 200, 0, 0, 0, { 0, 0 }, 0.5f, 0.0f }, { 0x480, 553, 1, 1028, 1.2f, 20000, 300, 0, 250, 0, 0, 0, { 0, 0 }, 0.5f, 0.0f }, { 0x480, 553, 1, 1028, 1.2f, 20000, 400, 0, 325, 0, 0, 0, { 0, 0 }, 0.5f, 0.0f }, { 0x480, 553, 1, 1028, 1.2f, 20000, 650, 0, 450, 0, 0, 0, { 0, 0 }, 0.5f, 0.0f }, { 0x480, 553, 1, 1028, 1.2f, 20000, 950, 0, 500, 0, 0, 0, { 0, 0 }, 0.5f, 0.0f }, { 0, 457, 1, 1048, 1.25f, 16000, 20, 30, 500, 500, 20, 30, { 0, 0 }, 0.6f, 0.0f }, { 0, 459, 1, 1048, 1.25f, 16000, 20, 30, 500, 500, 20, 30, { 0, 0 }, 0.6f, 0.0f }, { 0, 460, 1, 1048, 1.25f, 16000, 20, 30, 500, 500, 20, 30, { 0, 0 }, 0.6f, 0.0f }, { 0x21, 407, 1, 1001, 1.25f, 18000, 0, 0, 750, 250, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x21, 406, 1, 1001, 1.25f, 18000, 0, 0, 750, 250, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0xC80, 0, 1, 1028, 1.2f, 20000, 250, 0, 1000, 0, 0, 0, { 0, 0 }, 0.5f, 0.0f }, { 0x2400, 0, 1, 1577, 1.0f, 14000, 50, 30, 1000, 50, 50, 30, { 0, 0 }, 0.5f, 0.0f }, { 0x1021, 543, 1, 1001, 1.25f, 16000, 0, 0, 500, 250, 100, 50, { 0, 0 }, 0.6f, 0.0f }, { 0x1024, 543, 1, 1001, 1.25f, 16000, 0, 0, 500, 250, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x1024, 543, 1, 1001, 1.25f, 16000, 0, 0, 0, 0, 0, 0, { 0, 0 }, 0.6f, 0.0f }, { 0x29, 543, 1, 1001, 1.25f, 16000, 300, 0, 500, 250, -300, -100, { 0, 0 }, 0.6f, 180.0f }, { 0x29, 543, 1, 1001, 1.25f, 16000, -100, -100, 750, 250, -300, -100, { 0, 0 }, 0.6f, 0.0f }, { 0x401, 553, 1, 1001, 1.25f, 18000, 300, 100, 600, 250, 300, 100, { 0, 0 }, 0.6f, 0.0f } };
+f32 D_808014A8_chbounce BT_DATA(4, overlays_ch_bounce, 0x4C8) = 400.0f;
+s32 D_808014AC_chbounce [5] BT_DATA(4, overlays_ch_bounce, 0x4CC) = { 2162717, 1966081, 13110200, 0, 0 };

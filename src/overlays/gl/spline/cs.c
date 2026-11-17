@@ -1,5 +1,5 @@
 #include "common.h"
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spline.h"
 #include "native_actor.h"
 #include "native_spawn_queue.h"
@@ -24,7 +24,7 @@ void glsplinecs_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
     func_800D035C(1);
 }
 
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
 typedef struct SplineCSController SplineCSController;
 #endif
 
@@ -122,7 +122,7 @@ f32 unk2C;
 
 typedef struct { u8 pad:4; u8 mode:4; } SplineCSActorMode;
 typedef struct { u8 pad:6; u8 direction:2; } SplineCSActorDirection;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 typedef NativeSplineTarget SplineCSTarget;
 _Static_assert(sizeof(SplineCSState) == 0x48, "script path-state layout");
 #else
@@ -170,7 +170,7 @@ void func_80800228_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2, s
 
 void func_80800310_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2, s32 arg3) {
     void *func_80105494(Actor *);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *func_800D7520(s32);
 #else
     s32 func_800D7520(s32);
@@ -186,14 +186,14 @@ void func_80800310_glsplinecs(SplineCSController *arg0, Actor *arg1, s32 arg2, s
 /* extern */
 
 SplineCSAnim func_808003A8_glsplinecs(Actor *arg0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     AnimCtrl *func_80104248(void *);
     AnimCtrl *func_801042B8(Actor *);
 #else
     s32 func_80104248(void *);
     s32 func_801042B8(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct anctrl_s;
 #endif
     void anctrl_reset(struct anctrl_s *);
@@ -202,7 +202,7 @@ SplineCSAnim func_808003A8_glsplinecs(Actor *arg0) {
 
     var_v1 = func_80104248(arg0);
     if (var_v1 == 0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         temp_v0_2 = func_801042B8(arg0);
 #else
         temp_v0_2 = func_801042B8((s32) arg0);
@@ -213,7 +213,7 @@ SplineCSAnim func_808003A8_glsplinecs(Actor *arg0) {
     return var_v1;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 static void native_spline_spawn_queued(uintptr_t id, uintptr_t word, uintptr_t path) {
     glsplinefuncs_entrypoint_1((s32)id, (SplineSpawnWord){(s32)word}, (s32)path);
 }
@@ -225,7 +225,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     void func_800FFA88(Unk80132ED0 *);
     void func_800DA544(s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *func_800D7520(s32);
 #else
     s32 func_800D7520(s32);
@@ -236,75 +236,75 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
     void func_80090708(s32);
     s32 func_8008FFE8(void);
     s32 _seqdefine_entrypoint_0(s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     Actor *_subaddiefind_entrypoint_12(s32);
 #else
     Unk80132ED0 *_subaddiefind_entrypoint_12(s32);
 #endif
     void _subaddiefade_entrypoint_1(Actor *, s32);
     void func_80105BE0(Actor *, s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     SplineCSAnim func_808003A8_glsplinecs(Actor *);
 #else
     s32 func_808003A8_glsplinecs(Actor *);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void func_8008B10C(s32, f32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void _chbaddiesetup_entrypoint_3(s32 *, s32, s32, s32);
 #endif
     void _chintrotext_entrypoint_1(s32, s32, s32, s32);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void *_gccubesearch_entrypoint_17(s32, void *);
 #else
     s32 _gccubesearch_entrypoint_17(s32, s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void _glsplinefuncs_entrypoint_0(s32, s32 *, f32 *, f32 *, s32, s32 *, s32 *);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void _gspropctrl_entrypoint_10(s32, u8 *);
 #endif
-    s32 _seqdat_entrypoint_0(s32, s32);
-#ifndef BT_NATIVE
+    s16 _seqdat_entrypoint_0(s32 arg0, s32 arg1);
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void anctrl_setDuration(s32, f32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void anctrl_setIndex(s32, u32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void anctrl_setPlaybackType(s32, s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void anctrl_start(s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void func_8008B188(s32, s32);
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void func_8008B1C8(s32, f32);
 #endif
     void func_800A50B0(s32);
-#ifdef BT_NATIVE
-    void func_800C04C8(s32, s32, s32, s32, void (*)(s32, s32, s32));
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, BtIntPtr arg4);
 #else
     void func_800C04C8(s32, s32, s32, s32, s32 *);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void func_800C84A4(s8 *, s32);
 #else
     void func_800C84A4(s32, s32);
 #endif
     void func_800DA3B8(s32, s32);
-    void func_8010FD38(s32, f32);
+    void func_8010FD38(BtIntPtr, f32);
     void func_8080002C_glsplinecs(SplineCSController *, Actor *, s32);
     void func_80800228_glsplinecs(SplineCSController *, Actor *, s32, s32, s32 *);
     void func_80800310_glsplinecs(SplineCSController *, Actor *, s32, s32);
 #ifndef BT_NATIVE
     extern s32 _glsplinecs_entrypoint_0;
 #endif
-#ifndef BT_NATIVE
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     extern s32 _glsplinefuncs_entrypoint_1;
 #endif
     Actor *var_a0;
@@ -319,7 +319,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
     s32 spD8;
     f32 spD4;
     f32 spC8[3];
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     f32 spC4, spC0;
 #else
     s32 spC4;
@@ -350,11 +350,11 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
     u8 *temp_a0_6;
     s32 temp_a2;
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     s32 command_count, opcode, operand;
 #endif
     temp_s2 = func_80105494(arg1);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (!temp_s2) return;
     temp_s5 = native_spline_script(arg0, temp_s2->id, &command_count);
     if (!temp_s5) goto invalid_script;
@@ -372,13 +372,13 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
             temp_s2->unk8 = 0.0000f;
         }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         if (!native_spline_command_words(temp_s5, command_count, temp_s2->index)) goto invalid_script;
 #endif
         var_s1 = (s32 *)((u8 *)temp_s5 + temp_s2->index * 4);
 
         while ((var_s1[1] != 2) && (((*temp_s5 == 0x10005) && ((f32) (*(s32 *)((s8 *)(var_s1) + (0))) <= (SPLINE_FIELD(arg0, value0, arg0->elapsed) - temp_s2->unk4))) || ((*temp_s5 == 0x10006) && (((f32) (*(s32 *)((s8 *)(var_s1) + (0))) / 4000000.0f) <= temp_s2->unkC))) && (temp_s2->unk20 == 0.00000f) && ((temp_s2->wait) == 0) && ((temp_s2->message) == 0) && ((temp_s2->counter) == 0) && !(temp_s2->unk2C > 0.000000f)) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             opcode = (u32)var_s1[1] >> 16; operand = var_s1[1] & 0xFFFF;
             if (((opcode == 0x20 || opcode == 0x21) && operand >= 128) ||
                 ((opcode == 0x22 || opcode == 0x23 || opcode == 0x25 || opcode == 0x2B || opcode == 0x2C) && operand >= 33) ||
@@ -435,7 +435,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 arg1->unk7A_11 = var_s1[1] & 0xFFFF;
                 break;
             case 0x37:
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 arg1->pad74_0 = (arg1->pad74_0 & ~15u) | (var_s1[1] & 15);
 #else
                 ((SplineCSActorMode *)((u8 *)arg1 + 0x77))->mode = var_s1[1] & 0xFFFF;
@@ -457,7 +457,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 temp_s2->unk14 = func_800D7708(temp_s2->signedId, temp_s2->unkC, var_s1[1] & 0xFFFF);
                 break;
             case 0x15:
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (!_glsplinefuncs_entrypoint_0(var_s1[1] & 0xFFFF, &spD8, &spD4, &spC8[0], temp_s2->signedId, &spC4, &spC0)) break;
 #else
                 _glsplinefuncs_entrypoint_0(var_s1[1] & 0xFFFF, &spD8, &spD4, &spC8[0], temp_s2->signedId, &spC4, &spC0);
@@ -473,14 +473,14 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 var_v1_3 = (temp_v0_2 & 0x8000) ? (temp_v0_2 | 0xFFFF0000) : temp_v0_2;
                 var_v0 = (var_v1_3 >= 0) ? var_v1_3 : -var_v1_3;
                 if (var_v1_3 < 0) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                     arg1->unk79_1 = 1; arg1->unk79_0 = 0;
 #else
                     ((SplineCSActorDirection *)((u8 *)arg1 + 0x79))->direction = 2;
 #endif
                 } else {
                     var_a1_2 = (var_v1_3 > 0) ? 1 : 0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                     arg1->unk79_1 = 0; arg1->unk79_0 = var_a1_2;
 #else
                     ((SplineCSActorDirection *)((u8 *)arg1 + 0x79))->direction = var_a1_2;
@@ -513,7 +513,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 } else {
                     var_a1_2 = (uintptr_t)arg0->actors[temp_v0_4];
                 }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (!var_a1_2) goto invalid_script;
 #endif
                 func_800FFA88((Unk80132ED0*)var_a1_2);
@@ -525,23 +525,23 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 } else {
                     var_a1_2 = (uintptr_t)arg0->actors[temp_v0_5];
                 }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (!var_a1_2) goto invalid_script;
 #endif
                 func_800FFA88((Unk80132ED0*)var_a1_2);
                 func_800A50B0(2);
                 break;
             case 0x24:
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             {
                 Unk80132ED0 *marker = arg1->unk0;
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 _chbaddiesetup_entrypoint_3(native_spline_spawn_queued, var_s1[1] & 0xFFFF, var_s1[2], temp_s2->signedId);
 #else
                 _chbaddiesetup_entrypoint_3(&_glsplinefuncs_entrypoint_1, var_s1[1] & 0xFFFF, (*(s32 *)((s8 *)(var_s1) + (8))), temp_s2->signedId);
 #endif
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (marker) {
                     arg1 = func_80106790(marker);
                     if (!arg1) return;
@@ -598,7 +598,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 var_v1_3 = (temp_v0_6 >> 0xC) & 0x3F;
                 var_s0 = temp_v0_6 & 0xFFF;
                 temp_v0_6 = 0;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 var_a0 = native_spline_actor(arg0, arg1, var_v1_3);
                 if (!var_a0) goto invalid_script;
 #else
@@ -609,7 +609,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 }
 #endif
                 temp_v0_7 = func_80105494(var_a0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (!temp_v0_7) goto invalid_script;
 #endif
                 temp_v0_7->id = var_s0;
@@ -622,7 +622,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 break;
             case 0x2B:
                 temp_v0_8 = var_s1[1] & 0xFFFF;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 var_a0 = native_spline_actor(arg0, arg1, temp_v0_8);
                 if (!var_a0) goto invalid_script;
 #else
@@ -633,7 +633,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 }
 #endif
                 temp_v0_7 = func_80105494(var_a0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (!temp_v0_7) goto invalid_script;
 #endif
                 temp_v0_7->unk20 = 1700000.0f;
@@ -643,7 +643,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 break;
             case 0x2C:
                 temp_v0_10 = var_s1[1] & 0xFFFF;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 var_a0 = native_spline_actor(arg0, arg1, temp_v0_10);
                 if (!var_a0) goto invalid_script;
 #else
@@ -654,7 +654,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 }
 #endif
                 temp_v0_7 = func_80105494(var_a0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (!temp_v0_7) goto invalid_script;
 #endif
                 temp_v0_7->unk20 = 0.00000000000f;
@@ -662,7 +662,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
             case 0xA:
                 var_s0 = (var_s1[1] >> 6) & 0x3F;
                 var_v1_3 = var_s1[1] & 0x3F;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 var_a0 = native_spline_actor(arg0, arg1, var_v1_3);
                 if (!var_a0) goto invalid_script;
 #else
@@ -673,7 +673,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 }
 #endif
                 temp_v0_7 = func_80105494(var_a0);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
                 if (!temp_v0_7) goto invalid_script;
 #endif
                 temp_v0_7->actorTarget = var_s0;
@@ -686,7 +686,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 var_a1_2 = (var_s1[1] & 0xFFFF) ? 0 : 2;
                 func_80090708(var_a1_2);
                 break;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             case 0xB: {
                 void *_gccubesearch_entrypoint_17(s32, void *);
                 void _gspropctrl_entrypoint_10(void *, void *);
@@ -781,7 +781,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                     temp_s2->unk8 = SPLINE_FIELD(arg0, value0, arg0->elapsed) - temp_s2->unk4;
                 }
                 break;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             case 0x21:
                 arg0->counters[var_s1[1] & 0xFFFF] = arg0->initial_counters[var_s1[1] & 0xFFFF];
                 break;
@@ -818,7 +818,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 _chintrotext_entrypoint_1(0x18BC, var_s1[1] & 0xFFFF, 2, 2);
                 break;
             }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
             if (temp_s2->index > 0x1FFD || !native_spline_command_words(temp_s5, command_count, temp_s2->index + 2)) goto invalid_script;
 #endif
             var_s1 = (temp_s2->index += 2, (s32 *)((u8 *)temp_s5 + temp_s2->index * 4));
@@ -830,7 +830,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
             temp_s2->unk8 = 0.0000000000000f;
         }
     }
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     return;
 invalid_script:
     temp_s2->id = temp_s2->index = 0;

@@ -49,3 +49,10 @@ void func_800A5A4C(void) {
         }
     }
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+CameraDistanceEntry * D_801270F0 BT_DATA(4, bss_core2bss1_0_1, 0x90);
+u8 D_8012762C BT_DATA(4, bss_core2bss1_0_1, 0x5CC);
+#endif

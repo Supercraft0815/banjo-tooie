@@ -2,29 +2,29 @@
 
 OSThread *chloggo_entrypoint_0(void)
 {
-    extern u8 D_80800648_chloggo[];
+    extern ActorData D_80800648_chloggo[];
 
     return (OSThread *) D_80800648_chloggo;
 }
 
 OSThread *chloggo_entrypoint_1(void)
 {
-    extern u8 D_80800690_chloggo[];
+    extern ActorData D_80800690_chloggo[];
 
     return (OSThread *) D_80800690_chloggo;
 }
 
 /* extern */
 
-void func_80800018_chloggo(s32 arg0) {
-    s32 _gccubesearch_entrypoint_0(s32, s32);
+void func_80800018_chloggo(BtIntPtr arg0) {
+    void *_gccubesearch_entrypoint_0(s32 actor_id, Actor *actor);
     s32 _glcutDll_entrypoint_20();
     s32 func_800D0A9C(u32, u32);
     s32 func_800DA298(s32);
-    s32 func_800EE88C(s32, s32);
+    void func_800EE88C(f32 dst[3], s16 src[3]);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
-    s32 func_8010A5B0(s32, s32);
+    s32 func_8010A5B0(BtIntPtr, s32);
     func_800EE88C(arg0 + 0x18, _gccubesearch_entrypoint_0(0x201, arg0));
     if (_glcutDll_entrypoint_20() != 0) {
         func_80102424(arg0, 4);
@@ -38,10 +38,10 @@ void func_80800018_chloggo(s32 arg0) {
 }
 
 void func_808000AC_chloggo(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_8(s32, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
     s32 func_800D0A9C(u32, u32);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    u32 func_800F54E4(void);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    BtUIntPtr func_800F54E4(void);
     void func_80800398_chloggo(Actor *);
     void func_80800460_chloggo(Actor *);
     extern s32 D_808005E0_chloggo[];
@@ -71,13 +71,13 @@ void func_808000AC_chloggo(Actor *arg0) {
 }
 
 s32 func_808001B8_chloggo(Actor *arg0, s32 arg1, void *arg2) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    s32 _capod_entrypoint_14(void);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_9(s32, s32, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
+    u8 _subaddiedialog_entrypoint_9(void *arg0, s32 arg1, void *arg2, s32 arg3);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
     void func_80102424(Actor *, s32);
     void func_8010A590(Actor *);
     void func_80800398_chloggo(Actor *);
@@ -100,7 +100,7 @@ s32 func_808001B8_chloggo(Actor *arg0, s32 arg1, void *arg2) {
                     func_80102424(arg0, 1);
                     break;
                 default:
-                    if (_subaddiedialog_entrypoint_9((s32)arg0, *(s16 *)&arg2, D_808005E0_chloggo, 6) == 1) {
+                    if (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, *(s16 *)&arg2, D_808005E0_chloggo, 6) == 1) {
                         func_8010A590(arg0);
                     }
                     func_80102424(arg0, 1);
@@ -134,18 +134,18 @@ s32 func_808001B8_chloggo(Actor *arg0, s32 arg1, void *arg2) {
 }
 
 void func_80800398_chloggo(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F64A4(s32, s32);
-    void func_800F77E8(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F64A4(BtIntPtr, s32);
+    void func_800F77E8(BtIntPtr, f32 *);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
     f32 sp34[3];
     s32 dialog;
-    s32 sp2C;
+    BtIntPtr sp2C;
 
     sp2C = func_800F54E4();
     func_800EE7F8(sp34, arg0->position);
@@ -163,25 +163,25 @@ void func_80800398_chloggo(Actor *arg0) {
 }
 
 void func_80800460_chloggo(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    extern u32 D_808006F8_chloggo;
-    extern u32 D_80800710_chloggo;
-    extern u32 D_80800728_chloggo;
-    extern u32 D_80800740_chloggo;
+    s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
+    extern u32 D_808006F8_chloggo[6];
+    extern u32 D_80800710_chloggo[6];
+    extern u32 D_80800728_chloggo[6];
+    extern u32 D_80800740_chloggo[8];
     f32 *temp_s1;
 
-    temp_s1 = (f32 *)((s8 *)arg0 + 4);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_808006F8_chloggo, 0.09f);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800740_chloggo, 0.16f);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800710_chloggo, 0.22f);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80800728_chloggo, 0.6f);
+    temp_s1 = &arg0->position[0];
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, D_808006F8_chloggo, 0.09f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, D_80800740_chloggo, 0.16f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, D_80800710_chloggo, 0.22f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, D_80800728_chloggo, 0.6f);
 }
 
 /* extern */
 
-void func_808004F8_chloggo(s32 arg0) {
+void func_808004F8_chloggo(BtIntPtr arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 func_800FFAB0(s32);
+    void func_800FFAB0(Actor *actor);
     if (_glcutDll_entrypoint_20() != 0) {
         func_800FFAB0(arg0);
     }
@@ -189,7 +189,7 @@ void func_808004F8_chloggo(s32 arg0) {
 
 int func_80800528_chloggo(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void _chexploder_entrypoint_3(void *, void *, u32);
-    void _chexploder_entrypoint_13(s32, u32);
+    void _chexploder_entrypoint_13(BtIntPtr, u32);
     void func_800DA544(GameFlag);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
@@ -212,3 +212,21 @@ int func_80800528_chloggo(Actor *arg0, s32 arg1, volatile s32 arg2) {
     }
     return 1;
 }
+/* data_to_c.py: from asm/data/overlays/ch/loggo.data.s */
+extern u8 D_80800620_chloggo[];
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108ED0(void);
+void func_80107C2C();
+void func_80102EC0();
+s32 D_808005E0_chloggo [12] BT_DATA(4, overlays_ch_loggo, 0x0) = { 1, 323027200, 1025, 323092992, 512, 327221504, 512, 327352832, 1024, 327287040, -73729, 302711552 };
+s32 D_80800610_chloggo [4] BT_DATA(4, overlays_ch_loggo, 0x30) = { 1537, 325583360, -73729, 302711552 };
+u8 D_80800620_chloggo[40] BT_DATA(4, overlays_ch_loggo, 0x40) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x02, 0x38, 0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x02, 0x38, 0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x02, 0x38, 0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x02, 0x38, 0x00, 0x00 };
+ActorData D_80800648_chloggo [1] BT_DATA(4, overlays_ch_loggo, 0x68) = { { 173, 1077, 1598, 1, (void *)D_80800620_chloggo, (void (*)(struct Actor *))func_808000AC_chloggo, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 1075838976, 0, 0, 16384, 2316, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800018_chloggo, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9362, (void (*)(struct Actor *, long, long))func_808001B8_chloggo, 0 } };
+ActorData D_80800690_chloggo [1] BT_DATA(4, overlays_ch_loggo, 0xB0) = { { 342, 1078, 1967, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 385, 0, 16384, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808004F8_chloggo, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10256, (void (*)(struct Actor *, long, long))func_80800528_chloggo, 0 } };
+s32 D_808006D8_chloggo [4] BT_DATA(4, overlays_ch_loggo, 0xF8) = { 23658496, 19660973, 12, 37487104 };
+s32 D_808006E8_chloggo [4] BT_DATA(4, overlays_ch_loggo, 0x108) = { 1246251, 655488, 1572866, 0 };
+u32 D_808006F8_chloggo[6] BT_DATA(4, overlays_ch_loggo, 0x118) = { 0x130627, 0x10190, 0x3E8000D, 0xF3010C, 0x1655F0, 0 };
+u32 D_80800710_chloggo[6] BT_DATA(4, overlays_ch_loggo, 0x130) = { 0x1305C1, 0x10190, 0x3E8000D, 0x1A601C0, 0x162EE0, 0 };
+u32 D_80800728_chloggo[6] BT_DATA(4, overlays_ch_loggo, 0x148) = { 0x130555, 0x10190, 0x3E8000D, 0xF3010C, 0x161F40, 0 };
+u32 D_80800740_chloggo[8] BT_DATA(4, overlays_ch_loggo, 0x160) = { 0x130556, 0x10190, 0x3E8000D, 0xF3010C, 0x161F40, 0, 0, 0 };

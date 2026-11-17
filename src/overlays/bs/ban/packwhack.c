@@ -15,19 +15,19 @@
 #include "core2/1E93440.h"
 #include "core2/1ECA640.h"
 
-extern s32 D_808004D0_bsbanpackwhack;
+extern s32 D_808004D0_bsbanpackwhack[15];
 extern BsScript D_8080050C_bsbanpackwhack[4];
 
-extern void _babackpack_entrypoint_5(PlayerState *);
+extern void _babackpack_entrypoint_5(PlayerState *self, BtIntPtr arg1, s32 arg2);
 
 
-s32 func_80800000_bsbanpackwhack(s32 arg0, f32 arg1) {
-    s32 sp24 = func_800B5BE4(0xA);
+BtIntPtr func_80800000_bsbanpackwhack(BtIntPtr arg0, f32 arg1) {
+    BtIntPtr sp24 = func_800B5BE4(0xA);
     func_800BA77C(sp24, 0, (s16)arg1, 0);
-    return func_800BABB8(sp24, arg0, 0, 1.0f, &D_808004D0_bsbanpackwhack);
+    return func_800BABB8(sp24, arg0, 0, 1.0f, D_808004D0_bsbanpackwhack);
 }
 
-void func_80800074_bsbanpackwhack(PlayerState * self, s32 arg1) {
+void func_80800074_bsbanpackwhack(PlayerState * self, BtIntPtr arg1) {
     s32 tmp_v0 = func_80800000_bsbanpackwhack(arg1, yaw_get(self));
     func_800BA22C(tmp_v0, 1);
 }
@@ -130,3 +130,10 @@ void bsbanpackwhack_entrypoint_2(PlayerState *self) {
 BsScript bsbanpackwhack_entrypoint_3(BsScriptType type) {
     return D_8080050C_bsbanpackwhack[type];
 }
+/* data_to_c.py: from asm/data/overlays/bs/ban/packwhack.data.s */
+void _bsbanpackwhack_entrypoint_0();
+void _bsbanpackwhack_entrypoint_1();
+void _bsbanpackwhack_entrypoint_2();
+void func_80099B94(PlayerState *);
+s32 D_808004D0_bsbanpackwhack[15] BT_DATA(4, overlays_bs_ban_packwhack, 0x0) = { 1902114, 2013397036, 20, 0, 1310720, 1376256, 131110, 400, 0, 26214400, 2228736, 33554688, 16777259, 3342387, 0 };
+BsScript D_8080050C_bsbanpackwhack [ 4 ] BT_DATA(4, overlays_bs_ban_packwhack, 0x3C) = { (void (*)(struct player_state_s *))_bsbanpackwhack_entrypoint_0, (void (*)(struct player_state_s *))_bsbanpackwhack_entrypoint_1, (void (*)(struct player_state_s *))_bsbanpackwhack_entrypoint_2, (void (*)(struct player_state_s *))func_80099B94 };

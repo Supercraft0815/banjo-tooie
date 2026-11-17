@@ -2,14 +2,14 @@
 
 OSThread *chfireicestorm_entrypoint_0(void)
 {
-    extern u8 D_80800EA8_chfireicestorm[];
+    extern ActorData D_80800EA8_chfireicestorm[];
 
     return (OSThread *) D_80800EA8_chfireicestorm;
 }
 
 OSThread *chfireicestorm_entrypoint_1(void)
 {
-    extern u8 D_80800EF0_chfireicestorm[];
+    extern ActorData D_80800EF0_chfireicestorm[];
 
     return (OSThread *) D_80800EF0_chfireicestorm;
 }
@@ -64,15 +64,15 @@ void func_808001CC_chfireicestorm(Actor *arg0) {
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
     f32 func_800DC178(f32, f32);
-    u32 func_800F54E4(void);
-    s32 func_800F55FC(s32);
-    s32 func_800F6478(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F55FC(BtIntPtr);
+    s32 func_800F6478(BtIntPtr);
     void func_80108B04(Actor *, u32);
     void func_80800558_chfireicestorm(Actor *, u32);
-    void func_80800940_chfireicestorm(s32);
+    void func_80800940_chfireicestorm(BtIntPtr);
     s32 func_80800980_chfireicestorm(Actor *, u32, u32);
     s32 func_808009C8_chfireicestorm(Actor *);
-    s32 sp24;
+    BtIntPtr sp24;
     u32 state;
 
     sp24 = func_800F54E4();
@@ -82,14 +82,14 @@ void func_808001CC_chfireicestorm(Actor *arg0) {
         case 1:
             if (func_800D90A4(&arg0->unk58) && _subaddiedialog_entrypoint_16()) {
                 if (func_80800980_chfireicestorm(arg0, arg0->unk64_20 ? 0x12D0 : 0x12CF, 4)) {
-                    func_80800940_chfireicestorm((s32)arg0);
+                    func_80800940_chfireicestorm((BtIntPtr)arg0);
                     func_80800558_chfireicestorm(arg0, 2);
                 }
             }
             break;
         case 3:
             if (func_800D9078(&arg0->unk58)) {
-                func_80800940_chfireicestorm((s32)arg0);
+                func_80800940_chfireicestorm((BtIntPtr)arg0);
                 func_80800558_chfireicestorm(arg0, 4);
             }
             break;
@@ -154,15 +154,15 @@ s32 func_80800384_chfireicestorm(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_8080048C_chfireicestorm(Actor *arg0) {
-    s32 _idworldmake_entrypoint_1(s32, s32, s32, s32);
-    s32 func_800BEA88(s32);
+    void _idworldmake_entrypoint_1(BtIntPtr arg0, s32 arg1, volatile unsigned int arg2, s32 arg3);
+    void *func_800BEA88(s32 i);
     s32 func_800EA090(void);
     void func_800FFAB0(Actor *);
     s32 sp2C;
     volatile s32 sp28;
     s32 pad;
-    s32 sp20;
-    s32 sp1C;
+    BtIntPtr sp20;
+    BtIntPtr sp1C;
     s32 temp_v0;
     s32 var_v1;
 
@@ -225,14 +225,14 @@ Actor *func_80800608_chfireicestorm(Actor *arg0) {
     void func_800EF368(f32 *, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
-    u32 func_800F54E4(void);
-    f32 func_800F5BF0(s32, f32 *);
+    BtUIntPtr func_800F54E4(void);
+    f32 func_800F5BF0(BtIntPtr, f32 *);
     void func_80102FDC(Actor *, f32);
     s32 func_80103140(Actor *, u32, u16);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80800E80_chfireicestorm;
-    extern s32 D_80800E94_chfireicestorm;
+    extern s32 D_80800E80_chfireicestorm[5];
+    extern s32 D_80800E94_chfireicestorm[5];
     Actor *child;
     f32 sp40[3];
     f32 sp34[3];
@@ -249,13 +249,13 @@ Actor *func_80800608_chfireicestorm(Actor *arg0) {
     func_800EF368((f32 *)&child->actorData[4], func_800DC178(2750.0f, 3250.0f));
     func_800EFA4C((f32 *)child->actorData, func_800DC178(50.0f, 100.0f), 0.0f, func_800DC178(5.0f, 10.0f));
     func_80103140(child, (u16)(arg0->unk64_20 ? 0x814 : 0x815), child->unk0->unk16);
-    func_8010D930(4, child->unk70_0, sp34, child->unk64_20 ? &D_80800E94_chfireicestorm : &D_80800E80_chfireicestorm);
+    func_8010D930(4, child->unk70_0, sp34, child->unk64_20 ? D_80800E94_chfireicestorm : D_80800E80_chfireicestorm);
     return arg0;
 }
 
 Actor *func_808007EC_chfireicestorm(Actor *arg0) {
-    void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s32 _subaddieDll_entrypoint_0(Actor *);
+    s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
+    void _subaddieDll_entrypoint_0(void *arg0);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF368(f32 *, f32);
@@ -266,7 +266,7 @@ Actor *func_808007EC_chfireicestorm(Actor *arg0) {
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_8010A570(Actor *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80800E80_chfireicestorm;
+    extern s32 D_80800E80_chfireicestorm[5];
     Actor *temp_v0;
     f32 sp38[3];
     f32 sp2C[3];
@@ -285,7 +285,7 @@ Actor *func_808007EC_chfireicestorm(Actor *arg0) {
     func_800EFA4C((f32 *)temp_v0->actorData, func_800DC178(50.0f, 100.0f), 0.0f, func_800DC178(5.0f, 10.0f));
     func_80103140(temp_v0, 0x815, temp_v0->unk0->unk16);
     if (!temp_v0->unk64_19) {
-        func_8010D930(4, temp_v0->unk70_0, sp2C, &D_80800E80_chfireicestorm);
+        func_8010D930(4, temp_v0->unk70_0, sp2C, D_80800E80_chfireicestorm);
     }
     _capod_entrypoint_13(temp_v0->unk0, 0, 0x27, 0x10);
     return arg0;
@@ -293,18 +293,18 @@ Actor *func_808007EC_chfireicestorm(Actor *arg0) {
 
 /* extern */
 
-void func_80800940_chfireicestorm(s32 arg0) {
+void func_80800940_chfireicestorm(BtIntPtr arg0) {
     s32 func_800C3FF0(s32, s32, s32);
     func_800C3FF0(0x605, 0x3F4CCCCD, 0x7FFF);
     func_800C3FF0(0x604, 0x3F800000, 0x7FFF);
 }
 
 s32 func_80800980_chfireicestorm(Actor *arg0, u32 arg1, u32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     u32 var_v0;
 
     var_v0 = arg0->unk64_20 ? 0x75 : 0x76;
-    _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, NULL, var_v0);
+    BT_NATIVE_ONLY(return) _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, NULL, var_v0);
 }
 
 /* extern */
@@ -322,14 +322,14 @@ s32 func_808009C8_chfireicestorm(Actor *arg0) {
         return 1;
     }
     return 0;
-}
+}    typedef struct { u8 pad0[0x58]; f32 unk58; } Objicestorm_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800A40_chfireicestorm(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x58))) = 8.0f;
+    (((Objicestorm_arg0 *)arg0)->unk58) = 8.0f;
 }
 
 void func_80800A50_chfireicestorm(Actor *arg0) {
-    s32 _subaddieaudioloop_entrypoint_5(s32, s32, s32, s32, s32 *);
+    void _subaddieaudioloop_entrypoint_5(Actor *arg0, f32 *arg1, u32 arg2, s32 arg3, u32 *arg4);
     void _subaddiefade_entrypoint_3(Actor *);
     void *func_800C6A7C(f32[3], f32[3], f32[3], u32);
     f32 func_800D8FF8(void);
@@ -338,11 +338,11 @@ void func_80800A50_chfireicestorm(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA20(void *, void *, f32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800D0C_chfireicestorm(Actor *);
     void func_80800DC8_chfireicestorm(Actor *);
     void func_80800E08_chfireicestorm(Actor *);
-    extern s32 D_80800F38_chfireicestorm;
+    extern s32 D_80800F38_chfireicestorm[5];
     void *sp64;
     f32 sp58[3];
     f32 sp4C[3];
@@ -357,7 +357,7 @@ void func_80800A50_chfireicestorm(Actor *arg0) {
         sp64 = func_800C6A7C(arg0->position, sp4C, sp34, 0x20020);
         func_800EE7F8(arg0->position, sp4C);
         if (arg0->unk64_19) {
-            _subaddieaudioloop_entrypoint_5(arg0, arg0->position, 1, 1500, &D_80800F38_chfireicestorm);
+            _subaddieaudioloop_entrypoint_5(arg0, arg0->position, 1, 1500, D_80800F38_chfireicestorm);
         }
         if (sp64 != NULL) {
             if (arg0->unk64_19) {
@@ -379,18 +379,18 @@ void func_80800A50_chfireicestorm(Actor *arg0) {
 
 s32 func_80800BA4_chfireicestorm(Actor *arg0, s32 arg1, void *arg2) {
     s32 _capod_entrypoint_17(f32);
-    s32 _chexploder_entrypoint_9(Actor *, s32, s32);
+    void _chexploder_entrypoint_9(Actor *arg0, s32 arg1, s32 arg2);
     void _subaddiefade_entrypoint_3(Actor *);
-    s32 func_800F6438(u32);
-    s32 func_800F6478(s32);
-    void func_800F7B9C(s32, u32);
+    s32 func_800F6438(BtUIntPtr);
+    s32 func_800F6478(BtIntPtr);
+    void func_800F7B9C(BtIntPtr, u32);
     void func_800FFAB0(Actor *);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     void func_80800D0C_chfireicestorm(Actor *);
     extern f32 D_80800F4C_chfireicestorm[];
-    extern s32 D_80800F54_chfireicestorm;
+    extern s32 D_80800F54_chfireicestorm[5];
     struct {
         u8 pad0[0x18];
         u32 pad18 : 16;
@@ -427,7 +427,7 @@ s32 func_80800BA4_chfireicestorm(Actor *arg0, s32 arg1, void *arg2) {
     case 0xE:
         for (i = 0; i < 2; i++) {
             if (_capod_entrypoint_17(D_80800F4C_chfireicestorm[i])) {
-                func_8010D930(4, arg0->unk70_0, arg0->position, &D_80800F54_chfireicestorm);
+                func_8010D930(4, arg0->unk70_0, arg0->position, D_80800F54_chfireicestorm);
                 return 3;
             }
         }
@@ -448,8 +448,8 @@ void func_80800D0C_chfireicestorm(Actor *arg0) {
     s32 func_800E1610(s32, f32, f32, f32 *);
     void func_80101FDC(Actor *, u32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80800F68_chfireicestorm;
-    extern s32 D_80800F7C_chfireicestorm;
+    extern s32 D_80800F68_chfireicestorm[5];
+    extern s32 D_80800F7C_chfireicestorm[6];
     s32 *var_a3;
     u32 var_a2;
 
@@ -461,24 +461,42 @@ void func_80800D0C_chfireicestorm(Actor *arg0) {
     func_800E1610(2, 150.0f, 0.85f, arg0->position);
     func_80018820(0, 2.0f, 0.3f);
     if (arg0->unk64_20) {
-        var_a3 = &D_80800F68_chfireicestorm;
+        var_a3 = D_80800F68_chfireicestorm;
     } else {
-        var_a3 = &D_80800F7C_chfireicestorm;
+        var_a3 = D_80800F7C_chfireicestorm;
     }
     func_8010D930(4, arg0->unk70_0, arg0->position, var_a3);
     func_80101FDC(arg0, 2);
 }
 
 void func_80800DC8_chfireicestorm(Actor *arg0) {
-    s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
-    extern s32 D_80800F94_chfireicestorm;
-    func_800BBCB8(arg0->position, 0, arg0->scale, 1, &D_80800F94_chfireicestorm);
+    BtIntPtr func_800BBCB8(f32 *, BtIntPtr, f32, s32, s32 *);
+    extern s32 D_80800F94_chfireicestorm[14];
+    func_800BBCB8(arg0->position, 0, arg0->scale, 1, D_80800F94_chfireicestorm);
 }
 
 void func_80800E08_chfireicestorm(Actor *arg0) {
-    s32 func_800BBCB8(f32 *, s32, f32, s32, s32 *);
-    extern s32 D_80800FCC_chfireicestorm;
-    extern s32 D_80800FFC_chfireicestorm;
-    func_800BBCB8(arg0->position, 0, arg0->scale, 1, &D_80800FCC_chfireicestorm);
-    func_800BBCB8(arg0->position, 0, arg0->scale, 2, &D_80800FFC_chfireicestorm);
+    BtIntPtr func_800BBCB8(f32 *, BtIntPtr, f32, s32, s32 *);
+    extern s32 D_80800FCC_chfireicestorm[12];
+    extern s32 D_80800FFC_chfireicestorm[13];
+    func_800BBCB8(arg0->position, 0, arg0->scale, 1, D_80800FCC_chfireicestorm);
+    func_800BBCB8(arg0->position, 0, arg0->scale, 2, D_80800FFC_chfireicestorm);
 }
+/* data_to_c.py: from asm/data/overlays/ch/fire/icestorm.data.s */
+void func_80102EC0();
+void func_8010A730();
+void func_80107C2C();
+void func_80101870(Actor* arg0, void* arg1);
+OSThread *func_80108EE8(void);
+s32 D_80800E80_chfireicestorm[5] BT_DATA(4, overlays_ch_fire_icestorm, 0x0) = { 1246721, 852211, 17563672, 66536, 327680000 };
+s32 D_80800E94_chfireicestorm[5] BT_DATA(4, overlays_ch_fire_icestorm, 0x14) = { 1246723, 852211, 17563672, 66536, 327680000 };
+ActorData D_80800EA8_chfireicestorm [1] BT_DATA(4, overlays_ch_fire_icestorm, 0x28) = { { 344, 1276, 0, 1, 0, (void (*)(struct Actor *))func_808001CC_chfireicestorm, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800360_chfireicestorm, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chfireicestorm, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9730, (void (*)(struct Actor *, long, long))func_80800384_chfireicestorm, 0 } };
+ActorData D_80800EF0_chfireicestorm [1] BT_DATA(4, overlays_ch_fire_icestorm, 0x70) = { { 344, 1277, -1, 1, 0, (void (*)(struct Actor *))func_80800A50_chfireicestorm, (void (*)(struct Actor *))func_80102EC0, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 4, 0, (BtIntPtr)func_80108EE8, 0, 0, (void (*)(struct Actor *))func_80800A40_chfireicestorm, (void (*)(void *, long, void *, long, void *))func_80107C2C, 0, 0, (void (*)(struct Actor *, long, long))func_80800BA4_chfireicestorm, 0 } };
+s32 D_80800F38_chfireicestorm[5] BT_DATA(4, overlays_ch_fire_icestorm, 0xB8) = { 1246339, 1457792, 917811, 24117632, 0 };
+f32 D_80800F4C_chfireicestorm [2] BT_DATA(4, overlays_ch_fire_icestorm, 0xCC) = { 0.07f, 0.2f };
+s32 D_80800F54_chfireicestorm[5] BT_DATA(4, overlays_ch_fire_icestorm, 0xD4) = { 1246721, 655577, 1572865, 65541000, 0 };
+s32 D_80800F68_chfireicestorm[5] BT_DATA(4, overlays_ch_fire_icestorm, 0xE8) = { 1246648, 1572865, 81922500, 852275, 21757952 };
+s32 D_80800F7C_chfireicestorm[6] BT_DATA(4, overlays_ch_fire_icestorm, 0xFC) = { 1246727, 852211, 17563670, 1835008001, 81922500, 0 };
+s32 D_80800F94_chfireicestorm[14] BT_DATA(4, overlays_ch_fire_icestorm, 0x114) = { 1903054, 1446400, 3276802, 1376256, 10027042, 26804736, 20119961, 2818188, 9175067, 19661100, 1572864, 6400, 419430423, 8388608 };
+s32 D_80800FCC_chfireicestorm[12] BT_DATA(4, overlays_ch_fire_icestorm, 0x14C) = { 1903069, 1446400, 3276802, 1376256, 10027042, 26804736, 20119961, 2818188, 9175067, 19661100, 1507456, 0 };
+s32 D_80800FFC_chfireicestorm[13] BT_DATA(4, overlays_ch_fire_icestorm, 0x17C) = { 1903072, 1446400, 917600, 6291477, 1638553, 2228480, 16777318, 6684711, -26214000, -52428000, 2818124, 8388608, 0 };

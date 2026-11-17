@@ -11,7 +11,7 @@ struct StateView {
 
 typedef char StateView_size_check[(sizeof(struct StateView) == 0x4ED0) ? 1 : -1];
 
-struct StateView D_8012D690;
+struct StateView D_8012D690;     
 
 void func_800E8A60(void) {
 }
@@ -50,7 +50,7 @@ void func_800E8B04(void) {
 }
 
 void func_800E8B3C(void) {
-    s32 freelist_defrag(s32);
+    BtIntPtr freelist_defrag(BtIntPtr);
     extern s32 D_8012D680;
     if (D_8012D680 != 0) {
         D_8012D680 = freelist_defrag(D_8012D680);
@@ -60,7 +60,7 @@ void func_800E8B3C(void) {
 u8 func_800E8B74(u32 arg0) {
     s32 freelist_new(s32, s32);
     void *freelist_next(s32 *, s32 *);
-    s32 func_800D674C(s32);
+    BtIntPtr func_800D674C(s32);
     extern void func_800E8CDC(u8);
     extern s32 D_8012D680;
     s16 *temp;
@@ -108,7 +108,7 @@ s32 func_800E8C58(u8 arg0) {
 
 void *func_800E8CB0(u8 arg0) {
     extern s32 D_8012D680;
-    void *freelist_at(s32, s32);
+    void * freelist_at(void *list, s32 index);
     return freelist_at(D_8012D680, arg0);
 }
 
@@ -123,13 +123,13 @@ void func_800E8CDC(u8 arg0) {
 void func_800E8D28(u8 arg0, f32 arg1) {
     void *func_800E8CB0(u8);
     (*(f32 *)((s8 *)(func_800E8CB0(arg0)) + (8))) = arg1;
-}
+}    typedef struct { u8 pad0[0x2]; s16 unk2; } Obj1EC2350_func_800E8D5C_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 void func_800E8D5C(u8 arg0, void *arg1, s16 arg2) {
     void func_800E8E3C(u8 *);
     void *sp1C;
     sp1C = func_800E8CB0(arg0);
-    *(s16 *)((s8 *)sp1C + 2) = (s16)arg2;
+    ((Obj1EC2350_func_800E8D5C_sp1C *)sp1C)->unk2 = (s16)arg2;
     rare_memcpy((u8 *)sp1C + 0x10, arg1, (s16)arg2 * 8);
     func_800E8E3C(sp1C);
 }
@@ -149,16 +149,16 @@ void func_800E8DE4(u8 *arg0, f32 arg1) {
     temp_f0 = *(f32 *)(arg0 + 4);
     *(f32 *)(arg0 + 4) = temp_f0 - (f32)(s32)temp_f0;
     func_800E8E3C(arg0);
-}
+}                 typedef struct { u8 pad0[0x2]; s16 unk2; f32 unk4; u8 pad8[0x4]; f32 unkC; u8 pad10[0x10]; s32 unk20; s32 unk24; } Obj1EC2350_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_800E8E3C(u8 *arg0) {
     f32 func_800F3780(f32, u8 *, s16);
-    (*(f32 *)((s8 *)(arg0) + (0xC))) = func_800F3780((*(f32 *)((s8 *)(arg0) + (4))), arg0 + 0x10, (*(s16 *)((s8 *)(arg0) + (2))));
+    (((Obj1EC2350_arg0 *)arg0)->unkC) = func_800F3780((((Obj1EC2350_arg0 *)arg0)->unk4), arg0 + 0x10, (((Obj1EC2350_arg0 *)arg0)->unk2));
 }
 
-void func_800E8E70(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
+void func_800E8E70(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3) {
     void *func_80012EE8(void);
     void *func_80012EF4(void);
     void *func_80012F60(void);
@@ -169,14 +169,14 @@ void func_800E8E70(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
     if (arg3 == 0) {
         osWritebackDCache((void *)arg0, arg2);
         sp30 = func_80012F6C();
-        osPiStartDma(sp30, 1, 0, (u32)arg1, (void *)arg0, (u32) arg2, func_80012F60());
+        osPiStartDma(sp30, 1, 0, (BtUIntPtr)arg1, (void *)arg0, (u32) arg2, func_80012F60());
         osRecvMesg(func_80012F60(), NULL, 1);
         osInvalDCache((void *)arg0, arg2);
         return;
     }
     osWritebackDCache((void *)arg0, arg2);
     sp30 = func_80012EF4();
-    osPiStartDma(sp30, 1, 0, (u32)arg1, (void *)arg0, (u32) arg2, func_80012EE8());
+    osPiStartDma(sp30, 1, 0, (BtUIntPtr)arg1, (void *)arg0, (u32) arg2, func_80012EE8());
     osRecvMesg(func_80012EE8(), NULL, 1);
     osInvalDCache((void *)arg0, arg2);
 }
@@ -189,7 +189,7 @@ u8 *func_800E8F68(u8 *arg0) {
 }
 
 void func_800E8F8C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void func_800E8E70(s32, void *, s32, s32);
+    void func_800E8E70(BtIntPtr, void *, s32, s32);
     extern s32 D_80123524;
     extern struct StateView D_8012D690;
     extern s32 D_8012D960;
@@ -200,13 +200,13 @@ void func_800E8F8C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 *dest;
 
     index = (u16)D_80132560[arg1] + arg2;
-    func_800E8E70((s32)&D_8012D960,
+    func_800E8E70((BtIntPtr)&D_8012D960,
                   (u8 *)D_80123524 + index * 0xD8,
                   0xD8, arg3);
-    dest = (u8 *)(arg0 * 0xD8 + 0x3A8 + (s32)&D_8012D690);
+    dest = (u8 *)(arg0 * 0xD8 + 0x3A8 + (BtIntPtr)&D_8012D690);
     saved = dest;
     rare_memcpy(dest, &D_8012D960, 0xD8);
-    *(s32 *)(saved + 0x18) += (s32)&unknown3_ROM_START;
+    *(s32 *)(saved + 0x18) += (BtIntPtr)&unknown3_ROM_START;
 }
 
 s32 func_800E9048(void) {
@@ -223,16 +223,16 @@ s16 func_800E9054(s32 arg0) {
     return *(s16 *)((u8 *)&D_80131CF6 + index);
 }
 
-void func_800E9070(s32 arg0, s32 arg1) {
+void func_800E9070(BtIntPtr arg0, s32 arg1) {
     extern struct StateView D_8012D690;
-    s32 offset = arg0 - (s32)&D_8012D690;
+    BtIntPtr offset = arg0 - (BtIntPtr)&D_8012D690;
     u8 *p = (u8 *)&D_8012D690 + ((offset - 0x3A8) / 216);
     *p = *p + 1;
 }
 
 void func_800E90A4(s32 arg0, s32 arg1) {
     extern struct StateView D_8012D690;
-    s32 offset = arg0 - (s32)&D_8012D690;
+    BtIntPtr offset = arg0 - (BtIntPtr)&D_8012D690;
     u8 *p = (u8 *)&D_8012D690 + ((offset - 0x3A8) / 216);
     *p = *p - 1;
 }
@@ -289,31 +289,31 @@ void func_800E9320(s32 arg0, s32 arg1) {
 #endif
 
 void func_800E9340(void *arg0, s32 arg1, s32 arg2) {
-    void func_800E8E70(s32, void *, s32, s32);
+    void func_800E8E70(BtIntPtr, void *, s32, s32);
     extern struct StateView D_8012D690;
     extern s32 unknown2_ROM_START;
     s32 temp_v0;
     temp_v0 = arg1 * 0x12;
-    func_800E8E70((s32)arg0, (void *)((s32)&unknown2_ROM_START + temp_v0 + 8), 0x12, arg2);
-    rare_memcpy((void *)((s32)&D_8012D690 + temp_v0 + 0x4658), arg0, 0x12);
+    func_800E8E70((BtIntPtr)arg0, (void *)((BtIntPtr)&unknown2_ROM_START + temp_v0 + 8), 0x12, arg2);
+    rare_memcpy((void *)((BtIntPtr)&D_8012D690 + temp_v0 + 0x4658), arg0, 0x12);
 }
 
 void *func_800E93AC(s32 arg0) {
     extern struct StateView D_8012D690;
-    return (void *) ((arg0 * 0x12) + 0x4658 + (s32) &D_8012D690);
+    return (void *) ((arg0 * 0x12) + 0x4658 + (BtIntPtr) &D_8012D690);
 }
 
 void func_800E93CC(s32 arg0) {
-    void func_800E8E70(s32, void *, s32, s32);
+    void func_800E8E70(BtIntPtr, void *, s32, s32);
     extern s16 D_80131CE0;
     extern s32 D_80123524;
     extern s32 unknown2_ROM_START;
     u8 *sp1C[2];
 
     sp1C[1] = (u8 *)&unknown2_ROM_START;
-    func_800E8E70((s32)&D_80131CE0, (void *)sp1C[1], 8, arg0);
+    func_800E8E70((BtIntPtr)&D_80131CE0, (void *)sp1C[1], 8, arg0);
     D_80123524 = (D_80131CE0 * 0x12 + 0xB) & ~3;
-    D_80123524 += (s32)sp1C[1];
+    D_80123524 += (BtIntPtr)sp1C[1];
 }
 
 void func_800E9438(s32 arg0) {
@@ -407,3 +407,11 @@ void func_800E96B0(s32 arg0) {
     void func_800E95AC(u32, s32);
     func_800E95AC(200, arg0);
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012D680 BT_DATA(4, bss_core2bss2_1, 0xD40);
+s16 D_80132560 [ 120 ] BT_DATA(16, bss_core2bss2_1_reset_tail, 0x0);
+u8 D_80132650 [ 1880 ] BT_DATA(4, bss_core2bss2_1_reset_tail, 0xF0);
+#endif

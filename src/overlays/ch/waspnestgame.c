@@ -16,21 +16,21 @@ OSThread *chwaspnestgame_entrypoint_1(void)
     return (OSThread *) D_80801FC8_chwaspnestgame;
 }
 
-s32 func_800DA544(s32);
+void func_800DA544(s32 index);
 void func_80090708(s32);
-s32 func_80101180(s32, s32, s32);
+s32 func_80101180(s32, s32, BtIntPtr);
 s32 func_800D395C(void);
 void func_80101FDC(Actor *, u32);
 void func_80800018_chwaspnestgame(Actor *arg0, s32 arg1) {
-    s32 _gcfrontend_entrypoint_9(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _susubgame_entrypoint_4(void *, void *);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     s32 func_800D2054(s32, s32, s32);
     void func_800D2770(s32, s32);
-    s32 func_800DA524(s32);
+    void func_800DA524(s32 index);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -126,8 +126,8 @@ void func_80800018_chwaspnestgame(Actor *arg0, s32 arg1) {
 void func_808002EC_chwaspnestgame(Actor *arg0) {
     s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
-    s32 _susubgame_entrypoint_0(Actor *, u32 *, s32);
-    s32 _susubgame_entrypoint_11(s32);
+    void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
+    void _susubgame_entrypoint_11(s32 arg0);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFD24(f32 *);
     void *func_80100094(Actor *, u32);
@@ -161,8 +161,8 @@ void func_808002EC_chwaspnestgame(Actor *arg0) {
 /* extern */
 
 void func_80800400_chwaspnestgame(Actor *arg0) {
-    s32 _susubgame_entrypoint_11(s32);
-    s32 _susubgame_entrypoint_2(void *, void *);
+    void _susubgame_entrypoint_11(s32 arg0);
+    u8 _susubgame_entrypoint_2(BtIntPtr arg0, u8 *arg1);
     s32 _susubgame_entrypoint_4(void *, void *);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -183,8 +183,8 @@ void func_80800400_chwaspnestgame(Actor *arg0) {
 s32 func_800D0B68(u32, u32);
 void func_80108B04(Actor *, u32);
 void func_8080047C_chwaspnestgame(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     void func_800C3224(u8, f32, f32, f32);
     u8 func_800C4350(u8, f32 *, s32 *);
     s32 func_800CEAD0(s32);
@@ -256,10 +256,10 @@ void func_8080047C_chwaspnestgame(Actor *arg0) {
 s32 func_80800724_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     s32 func_800DA298(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_80800018_chwaspnestgame(Actor *, s32);
     void func_80800B80_chwaspnestgame(Actor *);
     void func_80800C7C_chwaspnestgame(Actor *, s32);
@@ -278,7 +278,7 @@ s32 func_80800724_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
         case 0x95:
             if ((func_800D0A9C(0x4B, 1) && !func_800D0B68(0x4B, 1)) ||
                 (func_800D0A9C(0x18, 4) && !func_800D0B68(0x18, 4))) {
-                *(f32 *)((u8 *)arg0 + 0x58) = 0.5f;
+                arg0->unk58 = 0.5f;
                 func_80101FDC(arg0, 5);
             } else {
                 func_80090708(2);
@@ -380,9 +380,9 @@ void func_80800B80_chwaspnestgame(Actor *arg0) {
 void func_80800C00_chwaspnestgame(void *arg0, s32 arg1) {
     f32 func_800DC178(f32, f32);
     s32 func_800EF368(void *, s32);
-    (*(f32 *)((s8 *)(arg0) + (0))) = func_800DC178(-100.0f, 100.0f);
-    (*(f32 *)((s8 *)(arg0) + (4))) = func_800DC178(-100.0f, 100.0f);
-    (*(f32 *)((s8 *)(arg0) + (8))) = func_800DC178(-100.0f, 100.0f);
+    (((Vec3f *)arg0)->pos.x) = func_800DC178(-100.0f, 100.0f);
+    (((Vec3f *)arg0)->pos.y) = func_800DC178(-100.0f, 100.0f);
+    (((Vec3f *)arg0)->pos.z) = func_800DC178(-100.0f, 100.0f);
     func_800EF368(arg0, arg1);
 }
 
@@ -433,8 +433,8 @@ void func_80800D7C_chwaspnestgame(Actor *arg0, s32 arg1) {
 
 s32 func_80800DE4_chwaspnestgame(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80800018_chwaspnestgame(Actor *, s32);
     u8 *data;
 
@@ -485,11 +485,11 @@ void func_80800F98_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    u32 _gcgoto_entrypoint_1(u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
-    s32 func_800D1000(s32, s32, s32 *, s32, s32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
+    s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     void *data;
     s32 dialog;
     s32 flags;
@@ -572,7 +572,7 @@ void func_80800F98_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
     if (dialog != 0) {
         _subaddiedialog_entrypoint_11(arg0->unk0, dialog, flags, NULL, 0x99);
     }
-}
+}    typedef struct { u8 pad0[0x24]; s32 unk24; u8 pad28[0xC]; s32 unk34; } Objwaspnestgame_func_80801260_chwaspnestgame_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -581,9 +581,9 @@ void func_80801260_chwaspnestgame(Unk80132ED0 *arg0, s32 arg1) {
     void *temp_v0;
 
     temp_v0 = func_80106790(arg0);
-    (*(s32 *)((s8 *)(temp_v0) + (0x24))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x24))) + arg1);
-    (*(s32 *)((s8 *)(temp_v0) + (0x34))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x34))) - 1);
-}
+    (((Objwaspnestgame_func_80801260_chwaspnestgame_temp_v0 *)temp_v0)->unk24) = (s32) ((((Objwaspnestgame_func_80801260_chwaspnestgame_temp_v0 *)temp_v0)->unk24) + arg1);
+    (((Objwaspnestgame_func_80801260_chwaspnestgame_temp_v0 *)temp_v0)->unk34) = (s32) ((((Objwaspnestgame_func_80801260_chwaspnestgame_temp_v0 *)temp_v0)->unk34) - 1);
+}    typedef struct { u8 pad0[0x34]; s32 unk34; } Objwaspnestgame_func_8080129C_chwaspnestgame_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -596,10 +596,10 @@ void func_8080129C_chwaspnestgame(void) {
     void *temp_v0;
 
     temp_v0 = func_80106790();
-    (*(s32 *)((s8 *)(temp_v0) + (0x34))) = (s32) ((*(s32 *)((s8 *)(temp_v0) + (0x34))) - 1);
+    (((Objwaspnestgame_func_8080129C_chwaspnestgame_temp_v0 *)temp_v0)->unk34) = (s32) ((((Objwaspnestgame_func_8080129C_chwaspnestgame_temp_v0 *)temp_v0)->unk34) - 1);
 }
 
-void func_808012C8_chwaspnestgame(s32 arg0)
+void func_808012C8_chwaspnestgame(BtIntPtr arg0)
 {
 }
 /* extern */
@@ -611,9 +611,9 @@ void func_808012D0_chwaspnestgame(void *arg0) {
     s32 sp1C[3];
 
     func_8010D600(sp1C);
-    (*(f32 *)((s8 *)(arg0) + (0x54))) = func_80102D78(arg0, sp1C);
+    (((Actor *)arg0)->unk54) = func_80102D78(arg0, sp1C);
     func_80102BF8(arg0, 0x3DCCCCCD, 0x40800000, 0x43340000);
-    func_808012C8_chwaspnestgame((s32) arg0);
+    func_808012C8_chwaspnestgame((BtIntPtr) arg0);
 }
 
 void func_80801324_chwaspnestgame(f32 *arg0, f32 arg1, f32 arg2) {
@@ -623,7 +623,7 @@ void func_80801324_chwaspnestgame(f32 *arg0, f32 arg1, f32 arg2) {
     }
 }
 
-s32 func_80801364_chwaspnestgame(s32 actor, s32 arg1)
+s32 func_80801364_chwaspnestgame(BtIntPtr actor, s32 arg1)
 {
   void _subaddiefade_entrypoint_3(Actor *);
   void func_8008FE68(f32 *);
@@ -632,12 +632,12 @@ s32 func_80801364_chwaspnestgame(s32 actor, s32 arg1)
   void func_800EF2A0(f32 *);
   void func_800EFD24(f32 *);
   void func_80102424(Actor *, s32);
-  s32 func_8010A570(s32);
+  BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8010A570(BtIntPtr);
   void func_8010DC50(s32);
   s32 func_8010DCB4(s32);
   extern u8 D_80802024_chwaspnestgame[];
   extern u8 D_80802038_chwaspnestgame[];
-  f32 pos[3];
+  f32 pos[3]; BT_NATIVE_ONLY(s32 nativeRet = 0;)
   Actor *arg0 = (Actor *) actor;
   struct Motion
   {
@@ -648,7 +648,7 @@ s32 func_80801364_chwaspnestgame(s32 actor, s32 arg1)
   };
   if ((arg0->unk70_10 == 2) && (arg1 != 5))
   {
-    func_8010DCB4(10);
+    BT_NATIVE_ONLY(nativeRet = ) func_8010DCB4(10);
   }
   switch (arg1)
   {
@@ -692,7 +692,7 @@ s32 func_80801364_chwaspnestgame(s32 actor, s32 arg1)
 
   }
 
-  func_80102424(arg0, arg1);
+  func_80102424(arg0, arg1); BT_NATIVE_ONLY(return nativeRet;)
 }
 
 /* extern */
@@ -718,9 +718,9 @@ void func_808014BC_chwaspnestgame(Actor *arg0, f32 *arg1) {
 }
 
 s32 func_80801590_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2) {
-    void func_800BA22C(s32, s32);
-    void func_800BA77C(s32, s16, s16, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA77C(BtIntPtr, s16, s16, s16);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800BEF00(f32 *, f32 *, f32 *, s32);
     void func_800C4AF0(f32 *, void *);
     void func_800EE7F8(f32 *, f32 *);
@@ -736,7 +736,7 @@ s32 func_80801590_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2) {
     f32 end[3];
     f32 normal[3];
     f32 angles[3];
-    s32 emitter;
+    BtIntPtr emitter;
 
     func_800EFB24(delta, arg0->actorData, arg0->position);
     distance = func_800EEF94(delta);
@@ -815,8 +815,8 @@ void func_80801880_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) {
 void func_80801954_chwaspnestgame(s32 arg0) {
     s32 func_800DA298(s32);
     f32 func_800EEB40(s32, s32);
-    s32 func_8010A570(s32);
-    s32 func_80801364_chwaspnestgame(s32, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8010A570(BtIntPtr);
+    s32 func_80801364_chwaspnestgame(BtIntPtr, s32);
     if (func_800EEB40(arg0 + 0x18, arg0 + 4) > 1.0f) {
         func_80801364_chwaspnestgame(arg0, 2);
     } else {
@@ -843,9 +843,9 @@ void func_808019D4_chwaspnestgame(Actor *arg0) {
 
 void func_80801A10_chwaspnestgame(Actor *arg0) {
     void func_8080129C_chwaspnestgame();
-    void func_808012C8_chwaspnestgame(s32 arg0);
+    void func_808012C8_chwaspnestgame(BtIntPtr arg0);
     void func_808012D0_chwaspnestgame(void *arg0);
-    s32 func_80801364_chwaspnestgame(s32 actor, s32 arg1);
+    s32 func_80801364_chwaspnestgame(BtIntPtr actor, s32 arg1);
     s32 func_808017DC_chwaspnestgame(Actor *arg0, f32 arg1, s32 arg2);
     void func_80801880_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2, f32 arg3);
     void func_80801CE4_chwaspnestgame(Actor *arg0);
@@ -874,7 +874,7 @@ void func_80801A10_chwaspnestgame(Actor *arg0) {
                 func_800FFA88((u8 *)arg0 ->unk0);
                 return;
             }
-            func_80801364_chwaspnestgame((s32) arg0, 1);
+            func_80801364_chwaspnestgame((BtIntPtr) arg0, 1);
             return;
         }
     default:
@@ -888,35 +888,35 @@ void func_80801A10_chwaspnestgame(Actor *arg0) {
         }
         break;
     case 3:
-        func_808012C8_chwaspnestgame((s32) arg0);
+        func_808012C8_chwaspnestgame((BtIntPtr) arg0);
         if (func_808017DC_chwaspnestgame(arg0, 1000.0f, 1) != 0) {
-            func_80801364_chwaspnestgame((s32) arg0, 4);
+            func_80801364_chwaspnestgame((BtIntPtr) arg0, 4);
             return;
         }
         break;
     case 4:
         if (func_80101DDC(arg0) != 0) {
-            func_80801364_chwaspnestgame((s32) arg0, 7);
+            func_80801364_chwaspnestgame((BtIntPtr) arg0, 7);
             return;
         }
         break;
     case 6:
         func_80801D28_chwaspnestgame(arg0);
         if (func_808017DC_chwaspnestgame(arg0, 500.0f, 1) != 0) {
-            func_80801364_chwaspnestgame((s32) arg0, 7);
+            func_80801364_chwaspnestgame((BtIntPtr) arg0, 7);
         }
         break;
     }
 }
 
 s32 func_80801B9C_chwaspnestgame(Actor *arg0, s32 arg1, Unk80132ED0 *volatile arg2) {
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
-    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
+    BtIntPtr _subaddiemulti_entrypoint_5(Unk80132ED0 *);
     void func_800C4AF0(f32 *, void *);
     s32 func_801015D0(Actor *);
     void func_8010DD20(Actor *, s32, Unk80132ED0 *);
     extern u8 D_8080207C_chwaspnestgame[];
-    s32 player;
+    BtIntPtr player;
     s32 score;
     u32 state;
 
@@ -929,14 +929,14 @@ s32 func_80801B9C_chwaspnestgame(Actor *arg0, s32 arg1, Unk80132ED0 *volatile ar
             score = arg0->unk6C_0;
             _chscorepoints_entrypoint_2(score, player, arg0->position, 1);
             func_80801260_chwaspnestgame(arg0->unk3C, score);
-            func_80801364_chwaspnestgame((s32)arg0, 3);
+            func_80801364_chwaspnestgame((BtIntPtr)arg0, 3);
             break;
         case 0x45:
             state = arg0->unk70_10;
             if (state == 2) {
-                func_80801364_chwaspnestgame((s32)arg0, 5);
+                func_80801364_chwaspnestgame((BtIntPtr)arg0, 5);
             } else if (state == 1) {
-                func_80801364_chwaspnestgame((s32)arg0, 6);
+                func_80801364_chwaspnestgame((BtIntPtr)arg0, 6);
             }
             break;
         case 0x1F:

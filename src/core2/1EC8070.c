@@ -135,11 +135,11 @@ void func_800EEB9C(f32 dst[3], f32 angle, f32 distance) {
     dst[0] = func_800137F4(angle) * distance;
     dst[1] = 0.0f;
     dst[2] = func_80013788() * distance;
-}
+}    typedef struct { f32 unk0; f32 unk4; f32 unk8; } Obj1EC8070_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_800EEBF0(f32 *arg0, f32 *arg1, f32 arg2) {
     func_800EFD24(arg0);
-    func_800EF214(arg0, (*(f32 *)((s8 *)(arg1) + (0))), (*(f32 *)((s8 *)(arg1) + (4))), arg2);
+    func_800EF214(arg0, (((Obj1EC8070_arg1 *)arg1)->unk0), (((Obj1EC8070_arg1 *)arg1)->unk4), arg2);
 }
 
 void func_800EEC30(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
@@ -156,9 +156,9 @@ void func_800EEC70(void *arg0, f32 arg1, f32 arg2, f32 arg3) {
     f32 sp1C;
 
     sp1C = func_800138D0(arg1) * arg3;
-    (*(f32 *)((s8 *)(arg0) + (4))) = 0.0f;
-    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) (func_800137F4(arg2) * sp1C);
-    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) (func_80013788() * sp1C);
+    (((Vec3f *)arg0)->pos.y) = 0.0f;
+    (((Vec3f *)arg0)->pos.x) = (f32) (func_800137F4(arg2) * sp1C);
+    (((Vec3f *)arg0)->pos.z) = (f32) (func_80013788() * sp1C);
 }
 
 int func_800EECE0(f32 a[3], f32 b[3]) {
@@ -201,14 +201,14 @@ f32 func_800EEFD4(f32 *arg0) {
     f32 x = arg0[0];
     f32 y = arg0[1];
     return (z * z) + ((x * x) + (y * y));
-}
+}    typedef struct { f32 unk0; s32 unk4; f32 unk8; } Obj1EC8070_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 f32 func_800EEFFC(void *arg0) {
     f32 temp_f0;
     f32 temp_f2;
 
-    temp_f0 = (*(f32 *)((s8 *)(arg0) + (8)));
-    temp_f2 = (*(f32 *)((s8 *)(arg0) + (0)));
+    temp_f0 = (((Obj1EC8070_arg0 *)arg0)->unk8);
+    temp_f2 = (((Obj1EC8070_arg0 *)arg0)->unk0);
     return sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
 }
 
@@ -216,13 +216,13 @@ f32 func_800EF030(void *arg0) {
     f32 temp_f12;
     f32 temp_f2;
 
-    temp_f2 = (*(f32 *)((s8 *)(arg0) + (8)));
-    temp_f12 = (*(f32 *)((s8 *)(arg0) + (0)));
+    temp_f2 = (((Obj1EC8070_arg0 *)arg0)->unk8);
+    temp_f12 = (((Obj1EC8070_arg0 *)arg0)->unk0);
     return (temp_f2 * temp_f2) + (temp_f12 * temp_f12);
 }
 
 void func_800EF04C(f32 *arg0, f32 *arg1) {
-    (*(f32 *)((s8 *)(arg0) + (0))) += (*(f32 *)((s8 *)(arg1) + (0)));
+    (((Obj1EC8070_arg0 *)arg0)->unk0) += (((Obj1EC8070_arg1 *)arg1)->unk0);
     arg0[1] += arg1[1];
     arg0[2] += arg1[2];
 }
@@ -334,9 +334,9 @@ void func_800EF410(f32 arg0[3], f32 arg1[3])
 
 void func_800EF49C(void *arg0) {
     f32 func_800136E4(f32);
-    (*(f32 *)((s8 *)(arg0) + (0))) = func_800136E4((*(f32 *)((s8 *)(arg0) + (0))));
-    (*(f32 *)((s8 *)(arg0) + (4))) = func_800136E4((*(f32 *)((s8 *)(arg0) + (4))));
-    (*(f32 *)((s8 *)(arg0) + (8))) = func_800136E4((*(f32 *)((s8 *)(arg0) + (8))));
+    (((Vec3f *)arg0)->pos.x) = func_800136E4((((Vec3f *)arg0)->pos.x));
+    (((Vec3f *)arg0)->pos.y) = func_800136E4((((Vec3f *)arg0)->pos.y));
+    (((Vec3f *)arg0)->pos.z) = func_800136E4((((Vec3f *)arg0)->pos.z));
 }
 
 void func_800EF4E4(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
@@ -461,26 +461,26 @@ void func_800EF9A8(f32 dst[3], f32 src[3], f32 roll) {
 }
 
 void func_800EFA20(void *arg0, void *arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * arg2);
-    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) * arg2);
-    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) * arg2);
+    (((Vec3f *)arg0)->pos.x) = (f32) ((((Vec3f *)arg1)->pos.x) * arg2);
+    (((Vec3f *)arg0)->pos.y) = (f32) ((((Vec3f *)arg1)->pos.y) * arg2);
+    (((Vec3f *)arg0)->pos.z) = (f32) ((((Vec3f *)arg1)->pos.z) * arg2);
 }
 
 void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    (*(f32 *)((s8 *)(arg0) + (0))) = arg1;
+    (((Obj1EC8070_arg0 *)arg0)->unk0) = arg1;
     arg0[1] = arg2;
     arg0[2] = arg3;
 }
 
 void func_800EFA6C(void *arg0, s16 arg1, s16 arg2, s16 arg3) {
-    (*(s16 *)((s8 *)(arg0) + (0))) = arg1;
-    (*(s16 *)((s8 *)(arg0) + (2))) = arg2;
-    (*(s16 *)((s8 *)(arg0) + (4))) = arg3;
+    (((Prop *)arg0)->position[0]) = arg1;
+    (((Prop *)arg0)->position[1]) = arg2;
+    (((Prop *)arg0)->position[2]) = arg3;
 }
 
 void func_800EFA88(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     (*(s32 *)((s8 *)(arg0) + (0))) = arg1;
-    (*(s32 *)((s8 *)(arg0) + (4))) = arg2;
+    (((Obj1EC8070_arg0 *)arg0)->unk4) = arg2;
     (*(s32 *)((s8 *)(arg0) + (8))) = arg3;
 }
 
@@ -495,23 +495,23 @@ void func_800EFA98(f32 dst[3], f32 src[3], f32 length) {
 }
 
 void func_800EFB24(void *arg0, void *arg1, void *arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg2) + (0))));
-    (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) - (*(f32 *)((s8 *)(arg2) + (4))));
-    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) - (*(f32 *)((s8 *)(arg2) + (8))));
-}
+    (((Vec3f *)arg0)->pos.x) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) - (((Vec3f *)arg2)->pos.x));
+    (((Vec3f *)arg0)->pos.y) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) - (((Vec3f *)arg2)->pos.y));
+    (((Vec3f *)arg0)->pos.z) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) - (((Vec3f *)arg2)->pos.z));
+}                   typedef struct { s32 unk0; s32 unk4; s32 unk8; } Obj1EC8070_arg2; /* offsets.py genstruct: fields from raw offsets on arg2; rename once understood */
 
 void func_800EFB58(void *arg0, void *arg1, void *arg2) {
-    (*(s32 *)((s8 *)(arg0) + (0))) = (s32) ((*(s32 *)((s8 *)(arg1) + (0))) - (*(s32 *)((s8 *)(arg2) + (0))));
-    (*(s32 *)((s8 *)(arg0) + (4))) = (s32) ((*(s32 *)((s8 *)(arg1) + (4))) - (*(s32 *)((s8 *)(arg2) + (4))));
-    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) ((*(s32 *)((s8 *)(arg1) + (8))) - (*(s32 *)((s8 *)(arg2) + (8))));
+    (*(s32 *)((s8 *)(arg0) + (0))) = (s32) ((*(s32 *)((s8 *)(arg1) + (0))) - (((Obj1EC8070_arg2 *)arg2)->unk0));
+    (((Obj1EC8070_arg0 *)arg0)->unk4) = (s32) ((*(s32 *)((s8 *)(arg1) + (4))) - (((Obj1EC8070_arg2 *)arg2)->unk4));
+    (*(s32 *)((s8 *)(arg0) + (8))) = (s32) ((*(s32 *)((s8 *)(arg1) + (8))) - (((Obj1EC8070_arg2 *)arg2)->unk8));
 }
 
 f32 func_800EFB8C(f32 *arg0, f32 *arg1) {
     f32 temp_f0;
     f32 temp_f2;
 
-    temp_f0 = (*(f32 *)((s8 *)(arg0) + (0))) - (*(f32 *)((s8 *)(arg1) + (0)));
-    temp_f2 = (*(f32 *)((s8 *)(arg0) + (8))) - (*(f32 *)((s8 *)(arg1) + (8)));
+    temp_f0 = (((Obj1EC8070_arg0 *)arg0)->unk0) - (((Obj1EC8070_arg1 *)arg1)->unk0);
+    temp_f2 = (((Obj1EC8070_arg0 *)arg0)->unk8) - (((Obj1EC8070_arg1 *)arg1)->unk8);
     if ((temp_f0 != 0.0f) || (temp_f2 != 0.0f)) {
         return sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
     }
@@ -525,8 +525,8 @@ f32 func_800EFBFC(void *arg0, void *arg1) {
     f32 temp_f0;
     f32 var_f12;
 
-    sp1C = mlAbsF((*(f32 *)((s8 *)(arg1) + (0))) - (*(f32 *)((s8 *)(arg0) + (0))));
-    temp_f0 = mlAbsF((*(f32 *)((s8 *)(arg1) + (8))) - (*(f32 *)((s8 *)(arg0) + (8))));
+    sp1C = mlAbsF((((Obj1EC8070_arg1 *)arg1)->unk0) - (((Obj1EC8070_arg0 *)arg0)->unk0));
+    temp_f0 = mlAbsF((((Obj1EC8070_arg1 *)arg1)->unk8) - (((Obj1EC8070_arg0 *)arg0)->unk8));
     if (sp1C < temp_f0) {
         var_f12 = sp1C;
     } else {
@@ -539,8 +539,8 @@ f32 func_800EFC7C(void *arg0, void *arg1) {
     f32 temp_f12;
     f32 temp_f2;
 
-    temp_f2 = (*(f32 *)((s8 *)(arg0) + (0))) - (*(f32 *)((s8 *)(arg1) + (0)));
-    temp_f12 = (*(f32 *)((s8 *)(arg0) + (8))) - (*(f32 *)((s8 *)(arg1) + (8)));
+    temp_f2 = (*(f32 *)((s8 *)(arg0) + (0))) - (((Obj1EC8070_arg1 *)arg1)->unk0);
+    temp_f12 = (*(f32 *)((s8 *)(arg0) + (8))) - (((Obj1EC8070_arg1 *)arg1)->unk8);
     if ((temp_f2 != 0.0f) || (temp_f12 != 0.0f)) {
         return (temp_f2 * temp_f2) + (temp_f12 * temp_f12);
     }
@@ -584,11 +584,11 @@ void func_800EFD60(f32 arg0[3], f32 arg1[3], f32 arg2) {
 
     sp1C = mlAbsF(func_800137AC(arg2));
     temp_f0 = mlAbsF(func_800137C4());
-    temp_f2 = (*(f32 *)((s8 *)(arg1) + (0)));
-    temp_f12 = (*(f32 *)((s8 *)(arg1) + (8)));
-    (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((temp_f2 * sp1C) + (temp_f12 * temp_f0));
+    temp_f2 = (((Obj1EC8070_arg1 *)arg1)->unk0);
+    temp_f12 = (((Obj1EC8070_arg1 *)arg1)->unk8);
+    (((Obj1EC8070_arg0 *)arg0)->unk0) = (f32) ((temp_f2 * sp1C) + (temp_f12 * temp_f0));
     arg0[1] = arg1[1];
-    (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((temp_f12 * sp1C) + (temp_f2 * temp_f0));
+    (((Obj1EC8070_arg0 *)arg0)->unk8) = (f32) ((temp_f12 * sp1C) + (temp_f2 * temp_f0));
 }
 
 void func_800EFDE8(f32 *arg0, u8 *arg1, f32 *arg2) {

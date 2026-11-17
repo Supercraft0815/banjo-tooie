@@ -2,12 +2,12 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
-void func_80800000_sukickball(s32 arg0, s32 arg1, f32 *arg2, f32 arg3) {
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+struct kickball_vector { f32 v[3]; };
+void func_80800000_sukickball(BtIntPtr arg0, BtIntPtr arg1, f32 *arg2, f32 arg3) {
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF830(s32);
-    s32 func_801039E4(s32);
-    struct kickball_vector { f32 v[3]; };
+    BtIntPtr func_801039E4(BtIntPtr);
+
     extern struct kickball_vector D_80801200_sukickball;
     struct kickball_vector sp24 = D_80801200_sukickball;
 
@@ -18,15 +18,15 @@ void func_80800000_sukickball(s32 arg0, s32 arg1, f32 *arg2, f32 arg3) {
 void sukickball_entrypoint_0(Actor *arg0, s32 arg1) {
     f32 func_800138D0(f32);
     void func_800DBEFC(s32 *, s32, f32 *);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     s32 func_800DF350(void);
     void func_800DF410(s32);
-    void func_800DF47C(s32, s32);
+    void func_800DF47C(s32, BtIntPtr);
     void *func_80100094(Actor *, u32);
     s32 func_801015D0(Actor *);
-    s32 func_8010347C(Unk80132ED0 *);
+    BtIntPtr func_8010347C(Unk80132ED0 *);
     OSThread *func_80104130(void);
-    struct kickball_vector { f32 v[3]; };
+
     struct kickball_render_data { f32 unused[2]; f32 position[3]; f32 angle; };
     extern struct kickball_vector D_8080120C_sukickball;
     struct kickball_render_data *sp54;
@@ -41,7 +41,7 @@ if (!arg0) {}
     sp48.v[0] = arg0->rotation[0];
     sp48.v[1] = 0.0f;
     sp48.v[2] = arg0->rotation[2];
-    func_800DF47C((s32)func_801015D0, (s32)arg0);
+    func_800DF47C((BtIntPtr)func_801015D0, (BtIntPtr)arg0);
     wave = func_800138D0(sp54->angle);
     value = (s32)((u32)arg0->alpha * wave);
     if (value < 0) {
@@ -67,7 +67,7 @@ if (!arg0) {}
         sp38[0] = arg0->position[0];
         sp38[1] = arg0->position[1] - 30.0f;
         sp38[2] = arg0->position[2];
-        func_80800000_sukickball((s32)arg0->unk3C, arg1, sp38, 0.4f);
+        func_80800000_sukickball((BtIntPtr)arg0->unk3C, arg1, sp38, 0.4f);
     }
 }
 
@@ -76,7 +76,7 @@ void sukickball_entrypoint_1(Actor *arg0, void *arg1) {
     func_800DF744(1, D_80801218_sukickball[arg0->unk6C_0]);
     func_80101870(arg0, arg1);
     if (arg0->unk7C_12) {
-        func_80800000_sukickball((s32)arg0->unk3C, (s32)arg1, (f32 *)arg0->position, 0.5f);
+        func_80800000_sukickball((BtIntPtr)arg0->unk3C, (BtIntPtr)arg1, (f32 *)arg0->position, 0.5f);
     }
 }
 
@@ -251,21 +251,21 @@ s32 sukickball_entrypoint_5(Actor *arg0, f32 *arg1) {
 
 /* extern */
 
-s32 sukickball_entrypoint_6(Actor *arg0, s32 arg1) {
+s32 sukickball_entrypoint_6(Actor *arg0, BtIntPtr arg1) {
     void* func_80100094(Actor*, u32);
-    return (*(u8 *)((s8 *)((s32)func_80100094(arg0, 0U) + arg1 + 0xA))) == 2;
+    return (*(u8 *)((s8 *)((BtIntPtr)func_80100094(arg0, 0U) + arg1 + 0xA))) == 2;
 }
 
 /* extern */
 
-s32 sukickball_entrypoint_7(Actor *arg0, s32 arg1) {
+s32 sukickball_entrypoint_7(Actor *arg0, BtIntPtr arg1) {
     void* func_80100094(Actor*, u32);
-    return (*(u8 *)((s8 *)((s32)func_80100094(arg0, 0U) + arg1 + 0xA))) == 1;
+    return (*(u8 *)((s8 *)((BtIntPtr)func_80100094(arg0, 0U) + arg1 + 0xA))) == 1;
 }
 
 /* extern */
 
-s32 sukickball_entrypoint_8(Actor *arg0, s32 arg1) {
+BtIntPtr sukickball_entrypoint_8(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
     return ((s32 *)func_80100094(arg0, 0U))[arg1 + 4];
 }
@@ -374,7 +374,7 @@ s32 sukickball_entrypoint_13(f32 *arg0, f32 *arg1, f32 arg2) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     int func_800F0064(f32 *, f32, f32 *);
-    struct kickball_vector { f32 v[3]; };
+
     extern struct kickball_vector D_80801228_sukickball;
     struct kickball_vector sp4C;
     f32 sp40[3];
@@ -453,7 +453,7 @@ void sukickball_entrypoint_16(s32 arg0, f32 *arg1) {
 /* extern */
 
 void sukickball_entrypoint_17(Actor *arg0) {
-    void func_800F8294(s32, f32 *);
+    void func_800F8294(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     void sukickball_entrypoint_16(s32, f32 *);
     f64 pad;
@@ -487,7 +487,7 @@ void sukickball_entrypoint_18(Actor *arg0) {
     func_800D2748(0xC4, 0x20);
     func_800D2748(0xC5, 0x21);
     func_800D2748(0xC6, 0x22);
-}
+}    typedef struct { u8 pad0[0x38]; u8 unk38; } Objkickball_sukickball_entrypoint_19_temp_s2; /* offsets.py genstruct: fields from raw offsets on temp_s2; rename once understood */
 
 /* extern */
 
@@ -505,7 +505,7 @@ void sukickball_entrypoint_19(Actor *arg0, s32 arg1, s32 arg2) {
     if (arg2 > 0) {
         do {
             var_s1 = var_s0 + 0xC3;
-            if ((*(u8 *)((s8 *)(temp_s2) + (0x38))) == 0) {
+            if ((((Objkickball_sukickball_entrypoint_19_temp_s2 *)temp_s2)->unk38) == 0) {
                 var_s1 = var_s0 + 0xC3;
                 func_800D2770(var_s1, 0);
             } else {
@@ -517,5 +517,11 @@ void sukickball_entrypoint_19(Actor *arg0, s32 arg1, s32 arg2) {
             var_s0 += 1;
         } while (var_s0 != arg2);
     }
-    (*(u8 *)((s8 *)(temp_s2) + (0x38))) = 1U;
+    (((Objkickball_sukickball_entrypoint_19_temp_s2 *)temp_s2)->unk38) = 1U;
 }
+/* data_to_c.py: from asm/data/overlays/su/kickball.data.s */
+struct kickball_vector D_80801200_sukickball BT_DATA(4, overlays_su_kickball, 0x0) = { { 0.0f, 0.0f, 0.0f } };
+struct kickball_vector D_8080120C_sukickball BT_DATA(4, overlays_su_kickball, 0xC) = { { 0.0f, 0.0f, 0.0f } };
+s32 D_80801218_sukickball [4] BT_DATA(4, overlays_su_kickball, 0x18) = { 4, 2, 1, 3 };
+struct kickball_vector D_80801228_sukickball BT_DATA(4, overlays_su_kickball, 0x28) = { { 0.0f, 0.0f, 0.0f } };
+f32 D_80801234_sukickball [7] BT_DATA(4, overlays_su_kickball, 0x34) = { 270.0f, 90.0f, 180.0f, 0.0f, 0.0f, 0.0f, 0.0f };

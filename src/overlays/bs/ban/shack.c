@@ -65,7 +65,7 @@ void func_80800100_bsbanshack(PlayerState *arg0) {
 void func_80800164_bsbanshack(PlayerState *arg0) {
     int _babackpack_get_state();
     void _babackpack_set_state(void *, s32);
-    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void bastick_popZone(PlayerState *);
     s32 bs_getCurrentState(PlayerState *);
     void func_8008CA98(PlayerState *);
@@ -144,7 +144,7 @@ void func_8080037C_bsbanshack(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
     int baanim_isStopped(PlayerState *);
     s32 bainput_enable(void *, s32, s32);
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     void func_8009DBF0(PlayerState *, s32, f32);
     s32 sp24;
 
@@ -164,7 +164,7 @@ void func_8080037C_bsbanshack(PlayerState *arg0) {
 }
 
 s32 bsbanshack_entrypoint_0(s32 arg0) {
-    extern s32 D_80800CB0_bsbanshack[];
+    extern BtIntPtr D_80800CB0_bsbanshack[];
     return ((s32 *)&D_80800CB0_bsbanshack)[arg0];
 }
 
@@ -184,7 +184,7 @@ void func_808004AC_bsbanshack(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
     int baanim_isStopped(PlayerState *);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     void func_8009DEC0(PlayerState *, s32, f32, f32, s32, s32);
     void func_800A0CD0(void *, s32);
     s32 sp2C;
@@ -214,7 +214,7 @@ void func_808004AC_bsbanshack(PlayerState *arg0) {
 }
 
 s32 bsbanshack_entrypoint_1(s32 arg0) {
-    extern s32 D_80800CC0_bsbanshack[];
+    extern BtIntPtr D_80800CC0_bsbanshack[];
     return ((s32 *)&D_80800CC0_bsbanshack)[arg0];
 }
 
@@ -242,7 +242,7 @@ void func_808005DC_bsbanshack(PlayerState *arg0, s32 arg1) {
         break;
     case 1:
         control = baanim_getAnimCtrlPtr(arg0);
-        *(s32 *)((u8 *)arg0 + 0x160) = 0;
+        arg0->unk160.word = 0;
         anctrl_reset(control);
         anctrl_setIndex(control, 0x294);
         anctrl_setDuration(control, 1.0f);
@@ -263,10 +263,10 @@ void func_808005DC_bsbanshack(PlayerState *arg0, s32 arg1) {
         baanim_setEndAndDuration(arg0, 1.0f, 0.8f);
         break;
     }
-    *(u8 *)((u8 *)arg0 + 0x15C) = arg1;
+    arg0->unk15C.bytes[0] = arg1;
 }
 
-void func_80800744_bsbanshack(s32 arg0)
+void func_80800744_bsbanshack(BtIntPtr arg0)
 {
     func_808005DC_bsbanshack(arg0,0);
     func_80800164_bsbanshack(arg0);
@@ -275,7 +275,7 @@ void func_80800744_bsbanshack(s32 arg0)
 void func_80800770_bsbanshack(PlayerState *arg0)
 {
     func_8080021C_bsbanshack(arg0);
-    *(u8 *)((u8 *)arg0 + 0x15C) = 0;
+    arg0->unk15C.bytes[0] = 0;
     func_808005DC_bsbanshack(arg0, 1);
 }
 
@@ -290,7 +290,7 @@ void func_808007A0_bsbanshack(PlayerState *arg0)
     s32 func_8008E260(PlayerState *);
     void func_8009FE58(PlayerState *);
     int player_isStable(PlayerState *);
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 sp24;
 
     sp24 = 0;
@@ -336,7 +336,7 @@ void func_808007A0_bsbanshack(PlayerState *arg0)
 }
 
 s32 bsbanshack_entrypoint_2(s32 arg0) {
-    extern s32 D_80800CD0_bsbanshack[];
+    extern BtIntPtr D_80800CD0_bsbanshack[];
     return ((s32 *)&D_80800CD0_bsbanshack)[arg0];
 }
 
@@ -365,7 +365,7 @@ void func_80800948_bsbanshack(PlayerState *arg0) {
 void func_808009E4_bsbanshack(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);
     int bastick_getZone(PlayerState *);
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 func_8009BCD4(PlayerState *, f32);
     void func_8009DF18(PlayerState *, s32, f32, s32);
     void func_800A2CE8(PlayerState *, f32, s32);
@@ -386,11 +386,11 @@ void func_808009E4_bsbanshack(PlayerState *arg0) {
 }
 
 s32 bsbanshack_entrypoint_3(s32 arg0) {
-    extern s32 D_80800CE0_bsbanshack[];
+    extern BtIntPtr D_80800CE0_bsbanshack[];
     return ((s32 *)&D_80800CE0_bsbanshack)[arg0];
 }
 
-void func_80800AD0_bsbanshack(s32 arg0)
+void func_80800AD0_bsbanshack(BtIntPtr arg0)
 {
     _bsdrone_entrypoint_2();
     func_80800164_bsbanshack(arg0);
@@ -405,11 +405,11 @@ void func_80800B20_bsbanshack(PlayerState* self)
     _bsdrone_entrypoint_1(self);
 }
 s32 bsbanshack_entrypoint_4(s32 arg0) {
-    extern s32 D_80800CF0_bsbanshack[];
+    extern BtIntPtr D_80800CF0_bsbanshack[];
     return ((s32 *)&D_80800CF0_bsbanshack)[arg0];
 }
 
-void func_80800B54_bsbanshack(s32 arg0)
+void func_80800B54_bsbanshack(BtIntPtr arg0)
 {
     _bsrest_entrypoint_14();
     func_80800164_bsbanshack(arg0);
@@ -421,7 +421,7 @@ void func_80800B7C_bsbanshack(PlayerState *arg0)
 }
 void func_80800BA4_bsbanshack(PlayerState *arg0) {
     s32 _bsrest_entrypoint_20();
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     s32 next_state;
     s32 unused;
 
@@ -433,7 +433,7 @@ void func_80800BA4_bsbanshack(PlayerState *arg0) {
 }
 
 s32 bsbanshack_entrypoint_5(s32 arg0) {
-    extern s32 D_80800D00_bsbanshack[];
+    extern BtIntPtr D_80800D00_bsbanshack[];
     return ((s32 *)&D_80800D00_bsbanshack)[arg0];
 }
 
@@ -448,11 +448,21 @@ void func_80800C10_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_lo
 
 void func_80800C6C_bsbanshack(PlayerState *arg0) {
     s32 func_80800074_bsbanshack(PlayerState *, s32);
-    s32 bs_setState(PlayerState *, s32);
+    void bs_setState(void *self, s32 nextState);
     bs_setState(arg0, func_80800074_bsbanshack(arg0, 0U));
 }
 
 s32 bsbanshack_entrypoint_6(s32 arg0) {
-    extern s32 D_80800D10_bsbanshack[];
+    extern BtIntPtr D_80800D10_bsbanshack[];
     return ((s32 *)&D_80800D10_bsbanshack)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/ban/shack.data.s */
+void func_80099B94(PlayerState *);
+void _bsdrone_entrypoint_3();
+BtIntPtr D_80800CB0_bsbanshack [4] BT_DATA(4, overlays_bs_ban_shack, 0x0) = { (BtIntPtr)func_808002AC_bsbanshack, (BtIntPtr)func_8080030C_bsbanshack, (BtIntPtr)func_8080037C_bsbanshack, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800CC0_bsbanshack [4] BT_DATA(4, overlays_bs_ban_shack, 0x10) = { (BtIntPtr)func_80800430_bsbanshack, (BtIntPtr)func_80800450_bsbanshack, (BtIntPtr)func_808004AC_bsbanshack, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800CD0_bsbanshack [4] BT_DATA(4, overlays_bs_ban_shack, 0x20) = { (BtIntPtr)func_80800744_bsbanshack, (BtIntPtr)func_80800770_bsbanshack, (BtIntPtr)func_808007A0_bsbanshack, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800CE0_bsbanshack [4] BT_DATA(4, overlays_bs_ban_shack, 0x30) = { (BtIntPtr)func_80800928_bsbanshack, (BtIntPtr)func_80800948_bsbanshack, (BtIntPtr)func_808009E4_bsbanshack, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800CF0_bsbanshack [4] BT_DATA(4, overlays_bs_ban_shack, 0x40) = { (BtIntPtr)func_80800AD0_bsbanshack, (BtIntPtr)func_80800AF8_bsbanshack, (BtIntPtr)func_80800B20_bsbanshack, (BtIntPtr)_bsdrone_entrypoint_3 };
+BtIntPtr D_80800D00_bsbanshack [4] BT_DATA(4, overlays_bs_ban_shack, 0x50) = { (BtIntPtr)func_80800B54_bsbanshack, (BtIntPtr)func_80800B7C_bsbanshack, (BtIntPtr)func_80800BA4_bsbanshack, (BtIntPtr)func_80099B94 };
+BtIntPtr D_80800D10_bsbanshack [4] BT_DATA(4, overlays_bs_ban_shack, 0x60) = { (BtIntPtr)func_80800BF0_bsbanshack, (BtIntPtr)func_80800C10_bsbanshack, (BtIntPtr)func_80800C6C_bsbanshack, (BtIntPtr)func_80099B94 };

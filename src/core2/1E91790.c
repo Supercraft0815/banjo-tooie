@@ -23,7 +23,7 @@ f32 func_800DC178(f32, f32);
 struct ImageStruct;
 struct ImageStruct *func_800D674C(s32);
 
-void func_800B7EA0(s32 arg0, s32 arg1) {
+void func_800B7EA0(BtIntPtr arg0, s32 arg1) {
     void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, s32 cms, s32 cmt, s32 *width, s32 *height);
     s32 sp38[2];
     s32 sp34;
@@ -56,7 +56,7 @@ void func_800B7F14(Gfx **arg0) {
         g->words.w0 = 0xFC117E03; g->words.w1 = 0xFF0FF3FF; }
         { Gfx *g = (*arg0)++;
         g->words.w0 = 0xE200001C; g->words.w1 = 0x0C184A40; }
-        func_800B7EA0((s32)arg0, D_801282C0.data[9] + 0xC24);
+        func_800B7EA0((BtIntPtr)arg0, D_801282C0.data[9] + 0xC24);
     } else {
         { Gfx *g = (*arg0)++;
         g->words.w0 = 0xE3000A01; g->words.w1 = 0; }
@@ -286,7 +286,7 @@ void func_800B8DEC(Gfx **arg0, s32 arg1, s32 arg2, u8 arg3) {
     }
 }
 
-s32 func_800B8E28(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
+s32 func_800B8E28(BtIntPtr arg0, s32 arg1, s32 arg2, u8 *arg3) {
     int func_800D3574(s32);
     u8 func_800D35BC(s32);
     s32 spacing;
@@ -311,12 +311,12 @@ s32 func_800B8E28(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
             }
         }
     }
-}
+BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
-void func_800B8F88(s32 arg0, s32 arg1, u8 *arg2) {
-    s32 func_800B8E28(s32, s32, s32, u8 *);
+void func_800B8F88(BtIntPtr arg0, s32 arg1, u8 *arg2) {
+    s32 func_800B8E28(BtIntPtr, s32, s32, u8 *);
     func_800B8E28(arg0, (s32) (0x130 - func_800B8CFC(arg2)) / 2, arg1, arg2);
 }
 
@@ -324,16 +324,16 @@ void func_800B8FE0(void) {
     extern s32 D_8012712C;
 
     D_8012712C = 0;
-}
+}    typedef struct { void * unk0; s32 unk4; } Obj1E91790_D_80127128; /* offsets.py genstruct: fields from raw offsets on &D_80127128; rename once understood */
 
 void func_800B8FEC(void) {
-    s32 heap_free(void *);
+    void heap_free(void *memory);
     extern s32 D_80127128;
-    if ((*(void **)((s8 *)(&D_80127128) + (0))) != NULL) {
-        heap_free((*(void **)((s8 *)((*(void **)((s8 *)(&D_80127128) + (0)))) + (0x1C))));
-        heap_free((*(void **)((s8 *)(&D_80127128) + (0))));
-        (*(void **)((s8 *)(&D_80127128) + (0))) = NULL;
-        (*(s32 *)((s8 *)(&D_80127128) + (4))) = 0;
+    if ((((Obj1E91790_D_80127128 *)&D_80127128)->unk0) != NULL) {
+        heap_free((*(void **)((s8 *)((((Obj1E91790_D_80127128 *)&D_80127128)->unk0)) + (0x1C))));
+        heap_free((((Obj1E91790_D_80127128 *)&D_80127128)->unk0));
+        (((Obj1E91790_D_80127128 *)&D_80127128)->unk0) = NULL;
+        (((Obj1E91790_D_80127128 *)&D_80127128)->unk4) = 0;
     }
 }
 
@@ -376,7 +376,7 @@ void func_800B9108(s32 arg0) {
     typedef struct { f32 position[3]; f32 velocity[3]; } Particle;
     typedef struct { f32 position[3]; f32 velocity[3]; u8 mode; Particle *particles; } Emitter;
     typedef struct { Emitter *emitter; s32 count; } State;
-    s32 aligned4_memcpy(void *, void *, s32);
+    void aligned4_memcpy(void* dst, void* src, int length);
     extern s32 D_80127128;
     ((State *)&D_80127128)->count = ((State *)&D_80127128)->count - 1;
     if (arg0 < ((State *)&D_80127128)->count) {
@@ -606,3 +606,22 @@ s32 func_800B97A4(Gfx **gfx, Mtx **mtx, f32 position[3]) {
     }
     return 0;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s32 D_8012712C BT_DATA(4, bss_core2bss1_0_1, 0xCC);
+f32 D_80127138 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0xD8);
+f32 D_80127148 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0xE8);
+f32 D_80127154 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0xF4);
+f32 D_80127160 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0x100);
+f32 D_8012716C BT_DATA(4, bss_core2bss1_0_1, 0x10C);
+s8 D_801282C3 BT_DATA(4, bss_core2bss1_0_2, 0xB23);
+s8 D_801282C4 BT_DATA(4, bss_core2bss1_0_2, 0xB24);
+s8 D_801282C5 BT_DATA(4, bss_core2bss1_0_2, 0xB25);
+s8 D_801282C6 BT_DATA(4, bss_core2bss1_0_2, 0xB26);
+s8 D_801282C7 BT_DATA(4, bss_core2bss1_0_2, 0xB27);
+s8 D_801282C9 BT_DATA(4, bss_core2bss1_0_2, 0xB29);
+s32 D_801282D0 BT_DATA(4, bss_core2bss1_0_2, 0xB30);
+f32 D_801282D4 BT_DATA(4, bss_core2bss1_0_2, 0xB34);
+#endif

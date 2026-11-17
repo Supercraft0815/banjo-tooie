@@ -6,17 +6,17 @@ s32 plsu_entrypoint_0(f32 *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_800F5898();
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6BE4(s32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6BE4(BtIntPtr);
     f32 sp44[3];
     f32 temp_f0;
     f32 var_f20;
     s32 var_s0;
-    s32 sp34;
+    s32 sp34; BT_NATIVE_ONLY(s32 native_count;)
 
     var_f20 = 3.4028235e38f;
     var_s0 = 0;
-    if (func_800F5898() > 0) {
+    BT_IDO_ONLY(if (func_800F5898() > 0)) BT_NATIVE_ONLY(native_count = func_800F5898(); if (native_count > 0) {} else return native_count;) {
         do {
             if (func_800F6BE4(var_s0) != 0) {
                 func_800F5A00(var_s0, sp44);
@@ -36,9 +36,9 @@ s32 plsu_entrypoint_0(f32 *arg0, f32 *arg1) {
 /* extern */
 
 s32 plsu_entrypoint_1(s32 arg0) {
-    s32 func_800F5410(s32);
+    s32 func_800F5410(BtIntPtr);
     s32 func_800F5898();
-    s32 func_800F6BE4(s32);
+    s32 func_800F6BE4(BtIntPtr);
     s32 var_s0;
 
     var_s0 = 0;
@@ -72,11 +72,11 @@ s32 plsu_entrypoint_2(void) {
 
 /* extern */
 
-s32 plsu_entrypoint_3(s32 arg0) {
-    s32 func_800F55D0(s32);
+s32 plsu_entrypoint_3(BtIntPtr arg0) {
+    s32 func_800F55D0(BtIntPtr);
     s32 func_800F5898();
-    s32 func_800F6BE4(s32);
-    s32 func_800F6C5C(s32);
+    s32 func_800F6BE4(BtIntPtr);
+    s32 func_800F6C5C(BtIntPtr);
     s32 var_s0;
 
     var_s0 = 0;

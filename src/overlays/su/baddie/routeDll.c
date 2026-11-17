@@ -50,7 +50,7 @@ void subaddierouteDll_entrypoint_0(void) {
         state[0] = 0;
     }
     state[1] = 0;
-}
+} 
 
 /* extern */
 
@@ -98,7 +98,7 @@ s32 func_8080011C_subaddierouteDll(s32 arg0, s16 *arg1) {
         } while (var_s4 < temp_v0);
     }
     return var_fp;
-}
+} 
 
 /* extern */
 
@@ -173,7 +173,7 @@ void subaddierouteDll_entrypoint_1(Actor *arg0) {
             }
         }
     }
-    count = func_800CC5F4(route);
+    BT_NATIVE_ONLY(if (route < 0) return;) count = func_800CC5F4(route); /* no route: the N64 writes into its heap header before the table */
     table = func_8001B798(*handle);
     tableOffset = route * 4;
     slot = (s16 *)((s8 *)table + tableOffset);
@@ -200,7 +200,7 @@ void subaddierouteDll_entrypoint_1(Actor *arg0) {
             src++;
         } while (i != count);
     }
-}
+}    typedef struct { u8 pad0[0x70]; u32 unk70; } ObjrouteDll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -211,23 +211,23 @@ void subaddierouteDll_entrypoint_2(void *arg0) {
     register s32 sp2C;
     s16 *temp_v0;
 
-    sp2C = ((u32) (*(u32 *)((s8 *)(arg0) + (0x70))) >> 0x19) - 1;
-    temp_v0 = func_8001B798(*(s16 *)func_801015B0());
+    sp2C = ((u32) (((ObjrouteDll_arg0 *)arg0)->unk70) >> 0x19) - 1;
+    temp_v0 = func_8001B798(*(s16 *)func_801015B0()); BT_NATIVE_ONLY(if (sp2C < 0) return;)
     (*(s16 *)((u8 *)temp_v0 + sp2C * 4 + 2)) = (s16)(*(s16 *)((u8 *)temp_v0 + sp2C * 4 + 2) - 1);
     if ((*(s16 *)((u8 *)temp_v0 + sp2C * 4 + 2)) == 0) {
-        arg0 = (s16 *)((s32)temp_v0 + sp2C * 4);
+        arg0 = (s16 *)((BtIntPtr)temp_v0 + sp2C * 4);
         func_8001B754(*(s16 *)arg0);
         *(s16 *)arg0 = 0;
     }
 }
 
-void subaddierouteDll_entrypoint_3(s32 arg0, void *arg1, f32 *arg2) {
-    void func_80800564_subaddierouteDll(s32, void *);
+void subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2) {
+    void func_80800564_subaddierouteDll(BtIntPtr, void *);
     rare_memset(arg1, 0, 0xC);
     func_80800564_subaddierouteDll(arg0, arg1);
 }
 
-void func_80800564_subaddierouteDll(s32 arg0, void *arg1) {
+void func_80800564_subaddierouteDll(BtIntPtr arg0, void *arg1) {
     (*(s16 *)((s8 *)(arg1) + (6))) = 0;
     (*(s32 *)((s8 *)(arg1) + (8))) = 0;
 }
@@ -279,7 +279,7 @@ s32 subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f
     return func_80102D98(arg0, arg3, 0, arg4, (f32) arg5, (f32) arg6);
 }
 
-s32 func_808006D0_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+s32 func_808006D0_subaddierouteDll(Actor *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, s32 arg4) {
     u8 func_800CC61C(s32);
     void *func_800CC684(s32, s32);
     void func_800EEB9C(f32[3], f32, f32);
@@ -310,7 +310,7 @@ s32 func_808006D0_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s3
     return 1;
 }
 
-s32 func_80800828_subaddierouteDll(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+s32 func_80800828_subaddierouteDll(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, s32 arg4) {
     void *func_800CC63C(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
@@ -375,7 +375,7 @@ s32 func_80800828_subaddierouteDll(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32
     return 0;
 }
 
-s32 func_80800A74_subaddierouteDll(void *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+s32 func_80800A74_subaddierouteDll(void *arg0, BtIntPtr arg1, f32 arg2, s32 arg3, s32 arg4) {
     s32 *func_800BEF00(f32 *, f32 *, f32 *, s32);
     s32 func_800CC6CC(s32, s32);
     f32 func_800EC708(Unk80132ED0 *);
@@ -433,7 +433,7 @@ s32 subaddierouteDll_entrypoint_7(Actor *arg0, RouteResult *arg1, f32 arg2, f32 
     s32 *func_800BE444(f32 *arg0);
     f32 func_800F1DCC(f32 arg0, f32 arg1);
     s32 func_80800D88_subaddierouteDll(Actor *, RouteResult *, f32, s32, s32 *);
-    s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4, s32 *arg5);
+    s32 func_8080160C_subaddierouteDll(Actor *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, s32 arg4, s32 *arg5);
     f32 func_8080183C_subaddierouteDll(u8 *arg0, f32 arg1);
     f32 temp;
     f32 leftAngle;
@@ -443,7 +443,7 @@ s32 subaddierouteDll_entrypoint_7(Actor *arg0, RouteResult *arg1, f32 arg2, f32 
     s32 *cell;
     s32 count;
 
-    func_80800564_subaddierouteDll((s32)arg0, arg1);
+    func_80800564_subaddierouteDll((BtIntPtr)arg0, arg1);
     if (arg5 & 0x1000) {
         arg4 = func_8080183C_subaddierouteDll((u8 *)arg0, arg4);
     }
@@ -457,7 +457,7 @@ s32 subaddierouteDll_entrypoint_7(Actor *arg0, RouteResult *arg1, f32 arg2, f32 
         arg3 = temp;
     }
     leftAngle = func_800F1DCC(arg3, arg2);
-    if (func_8080160C_subaddierouteDll(arg0, (s32)arg1, arg2, arg4, arg5, cell)) {
+    if (func_8080160C_subaddierouteDll(arg0, (BtIntPtr)arg1, arg2, arg4, arg5, cell)) {
         return 1;
     }
     if (leftAngle < 0.0f) {
@@ -471,11 +471,11 @@ s32 subaddierouteDll_entrypoint_7(Actor *arg0, RouteResult *arg1, f32 arg2, f32 
     count = 4;
     do {
         leftAngle = func_800136E4(leftAngle + leftStep);
-        if (func_8080160C_subaddierouteDll(arg0, (s32)arg1, leftAngle, arg4, arg5, cell)) {
+        if (func_8080160C_subaddierouteDll(arg0, (BtIntPtr)arg1, leftAngle, arg4, arg5, cell)) {
             return 1;
         }
         right = func_800136E4(right + rightStep);
-        if (func_8080160C_subaddierouteDll(arg0, (s32)arg1, right, arg4, arg5, cell)) {
+        if (func_8080160C_subaddierouteDll(arg0, (BtIntPtr)arg1, right, arg4, arg5, cell)) {
             return 1;
         }
     } while (--count);
@@ -491,8 +491,8 @@ typedef struct {
 
 s32 func_80800D88_subaddierouteDll(Actor *arg0, RouteResult *arg1, f32 arg2, s32 arg3, s32 *arg4) {
     s32 *func_800BE444(f32 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     f32 func_800EC708(Unk80132ED0 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE940(s16 *, f32 *);
@@ -757,11 +757,11 @@ s32 subaddierouteDll_entrypoint_9(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-s32 func_8080160C_subaddierouteDll(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4, s32 *arg5) {
+s32 func_8080160C_subaddierouteDll(Actor *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, s32 arg4, s32 *arg5) {
     s32 func_800DC128(s32, s32);
-    s32 func_808006D0_subaddierouteDll(Actor *, s32, f32, f32, s32);
-    s32 func_80800828_subaddierouteDll(void *, s32, f32, f32, s32);
-    s32 func_80800A74_subaddierouteDll(void *, s32, f32, s32, s32);
+    s32 func_808006D0_subaddierouteDll(Actor *, BtIntPtr, f32, f32, s32);
+    s32 func_80800828_subaddierouteDll(void *, BtIntPtr, f32, f32, s32);
+    s32 func_80800A74_subaddierouteDll(void *, BtIntPtr, f32, s32, s32);
     if (!(arg4 & 0x200) && (func_808006D0_subaddierouteDll(arg0, arg1, arg2, arg3, arg4) == 0)) {
         return 0;
     }
@@ -796,7 +796,7 @@ s32 func_80801784_subaddierouteDll(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, f32
     f32 func_800EC708(Unk80132ED0 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF11C(f32 *, s16 *);
-    f32 func_8008FE3C(f32 *);
+    BT_IDO_ONLY(f32 func_8008FE3C(f32 *);) BT_NATIVE_ONLY(s32 func_8008FE3C(f32 *);)
     Actor *sp20[2];
     s32 temp_v0;
 
@@ -813,7 +813,7 @@ s32 func_80801784_subaddierouteDll(Actor *arg0, Unk80132ED0 *arg1, s32 arg2, f32
         func_800EF11C(arg3, (s16 *)&arg1->unk1C + 1);
         return 1;
     case 1:
-        arg3[3] = func_8008FE3C(arg3) * 4.0f;
+        arg3[3] = BT_NATIVE_ONLY(((union { s32 i; f32 f; }){ .i = func_8008FE3C(arg3) }.f)) BT_IDO_ONLY(func_8008FE3C(arg3)) * 4.0f;
         return 1;
     default:
         return 0;
@@ -830,3 +830,9 @@ f32 func_8080183C_subaddierouteDll(u8 *arg0, f32 arg1) {
     temp_f12 = func_800F13F0(arg1, func_800EFBFC(arg0 + 4, arg0 + 0x18));
     return func_800F0E00(temp_f12, (f32)(u32)*(u16 *)(arg0 + 0x62) * (*(f32 *)(arg0 + 0x38) * 1.2f));
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+s16 B_808018E0_subaddierouteDll [ 32 ] BT_DATA(16, bss_baddie_routeDll, 0x0);
+#endif

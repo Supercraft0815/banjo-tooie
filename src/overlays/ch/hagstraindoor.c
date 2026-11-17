@@ -31,18 +31,24 @@ void func_80800000_chhagstraindoor(Actor *arg0) {
 /* extern */
 
 void func_808000D4_chhagstraindoor(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chdoor_entrypoint_1(s32, s32, s32);
+    s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     s32 func_80103140(Actor *, u32, u16);
 
     if (arg1 == 0x95) {
         func_80103140(arg0, ((arg0->unk74_7 == 0x32) ? 0x94F : 0x950) & 0xFFFF, 0);
     }
-    _chdoor_entrypoint_1((s32)arg0, arg1, arg2);
+    _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
 }
 
 OSThread *chhagstraindoor_entrypoint_0(void)
 {
-    extern u8 D_80800150_chhagstraindoor[];
+    extern ActorData D_80800150_chhagstraindoor[];
 
     return (OSThread *) D_80800150_chhagstraindoor;
 }
+/* data_to_c.py: from asm/data/overlays/ch/hagstraindoor.data.s */
+void _chdoor_entrypoint_0();
+void func_80105834(Actor*);
+void func_80101870(Actor* arg0, void* arg1);
+void func_80107C2C();
+ActorData D_80800150_chhagstraindoor [1] BT_DATA(4, overlays_ch_hagstraindoor, 0x0) = { { 881, 908, -1, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chhagstraindoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808000D4_chhagstraindoor, 0 } };

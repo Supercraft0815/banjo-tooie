@@ -17,12 +17,12 @@ void func_8080003C_chpiranha(Actor *arg0, u32 arg1) {
         s16 unkA;
     } ImageStruct;
     ImageStruct *func_800D674C(s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     s32 func_800DF350(void);
     void func_800DF410(s32);
     void func_800DF830(s32);
     void func_800EE780(f32 *, f32 *, f32 *);
-    s32 func_800EFA4C(s32, f32, f32, f32);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     void *func_80100094(Actor *, u32);
     u8 *func_801039E4(Unk80132ED0 *);
     struct PiranhaFish {
@@ -58,7 +58,7 @@ void func_8080003C_chpiranha(Actor *arg0, u32 arg1) {
         func_800EE780(position, arg0->position, fish->position);
         func_800DF830(2);
         func_800DF410(0xFF);
-        func_800DE448(position, rotation, 0.075f, NULL, (s32)model);
+        func_800DE448(position, rotation, 0.075f, NULL, (BtIntPtr)model);
         state->unk1 |= func_800DF350();
         if (i < 10) {
             image = func_800D674C(0x637);
@@ -66,14 +66,14 @@ void func_8080003C_chpiranha(Actor *arg0, u32 arg1) {
                 position[1] = state->unk10[0] + 6.0f;
                 func_800DF410(0xC0);
                 func_800DF830(2);
-                func_800DE448(position, rotation, 0.1f, NULL, (s32)image);
+                func_800DE448(position, rotation, 0.1f, NULL, (BtIntPtr)image);
                 state->unk1 |= func_800DF350();
             }
         }
     }
 }
 
-void func_80800218_chpiranha(Actor *arg0, u32 arg1) { if (arg0->unk70_10 == 7) { arg0->unk64_16 = 1; } func_80101FDC(arg0, arg1); if (arg1 == 7) { arg0->unk64_16 = 0; } }
+void func_80800218_chpiranha(Actor *arg0, u32 arg1) { if (arg0->unk70_10 == 7) { arg0->unk64_16 = 1; } func_80101FDC(arg0, arg1); if (arg1 == 7) { arg0->unk64_16 = 0; } } 
 
 void func_80800280_chpiranha(void *arg0) {
     *(u16 *)((u8 *)arg0 + 0x6E) = (*(u16 *)((u8 *)arg0 + 0x6E) & 0xFE00) | (((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7) & 0x1FF);
@@ -83,7 +83,7 @@ void func_808002A0_chpiranha(Actor *arg0) {
     void func_8008FE94(s32, f32 *);
     f32 func_80090010(void);
     void func_80090434(s32);
-    s32 func_800BF0E0(f32 *, f32 *, f32, f32 *, s32, s32);
+    void *func_800BF0E0(f32 *a,f32 *b,f32 radius,f32 *out,s32 flags,u32 mode);
     s32 func_800C2FDC(u8);
     f32 func_800D8FF8(void);
     void func_800DA3B8(s32, s32);
@@ -104,10 +104,10 @@ void func_808002A0_chpiranha(Actor *arg0) {
     void func_80800EFC_chpiranha(Actor *, void *, f32);
     void func_80801250_chpiranha(u8 *, u8 *, u8 *, f32, f32, u8 *, f32 *);
     void func_80801420_chpiranha(Actor *);
-    void func_80801508_chpiranha(s32);
+    void func_80801508_chpiranha(BtIntPtr);
     void func_8080154C_chpiranha(Actor *);
     s32 func_80801638_chpiranha(Actor *);
-    void func_80801690_chpiranha(s32, s32);
+    void func_80801690_chpiranha(BtIntPtr, BtIntPtr);
     struct PiranhaState {
         u8 unk0;
         u8 unk1;
@@ -204,7 +204,7 @@ void func_808002A0_chpiranha(Actor *arg0) {
             if (sp68 < 2500.0f) {
                 func_80800EFC_chpiranha(arg0, sp7C->position, 100.0f);
             }
-            func_80801508_chpiranha((s32)arg0);
+            func_80801508_chpiranha((BtIntPtr)arg0);
             break;
         case 3:
             func_800EE7F8((f32 *)arg0->actorData, sp70);
@@ -268,7 +268,7 @@ void func_808002A0_chpiranha(Actor *arg0) {
             if (arg0->unk58 > 0.2f && func_8010D284() == 3) {
                 if (arg0->unk6C_0-- > 0) {
                     func_800EE780(sp44, sp7C->fish[arg0->unk6C_0].position, arg0->position);
-                    func_80801690_chpiranha((s32)arg0, (s32)sp44);
+                    func_80801690_chpiranha((BtIntPtr)arg0, (BtIntPtr)sp44);
                     arg0->unk58 -= 0.2f;
                 }
             }
@@ -290,7 +290,7 @@ void func_808002A0_chpiranha(Actor *arg0) {
                 if (sp68 < 2500.0f) {
                     func_80800218_chpiranha(arg0, 2);
                 }
-                func_80801508_chpiranha((s32)arg0);
+                func_80801508_chpiranha((BtIntPtr)arg0);
             } else {
                 if (func_80800CAC_chpiranha() > 7500.0f && sp68 < 2500.0f) {
                     func_80800218_chpiranha(arg0, 2);
@@ -310,11 +310,11 @@ void func_808002A0_chpiranha(Actor *arg0) {
 }
 
 f32 func_80800CAC_chpiranha(void) {
-    void func_8008FFBC(s32);
+    void func_8008FFBC(BtIntPtr);
     f32 sp1C[3];
     f32 result;
 
-    func_8008FFBC((s32)sp1C);
+    func_8008FFBC((BtIntPtr)sp1C);
     result = sp1C[1];
     result = sp1C[0] * sp1C[0] + result * result + sp1C[2] * sp1C[2];
     return result;
@@ -324,7 +324,7 @@ f32 func_80800CAC_chpiranha(void) {
 
 void func_80800CEC_chpiranha(void *arg0, void *arg1, f32 arg2, f32 *arg3, f32 arg4, f32 arg5) {
     f32 func_800DC178(f32, f32);
-    s32 func_800EFA4C(s32, f32, f32, f32);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     f32 func_800EFC7C(void *, void *);
     f32 temp_f22;
     f32 temp_f24;
@@ -348,15 +348,15 @@ loop_1:
 
 s32 func_80800DD0_chpiranha(Actor *arg0, u8 *arg1) {
     if (arg0->unk70_10 != 7) {
-        func_80800CEC_chpiranha((s32)arg1, (s32)(arg1 + 0x18),
+        func_80800CEC_chpiranha((BtIntPtr)arg1, (BtIntPtr)(arg1 + 0x18),
             arg0->unk70_10 == 4 ? (arg0->unk0->unk24 >> 22 == 0x2C2 ? 150.0f : 50.0f) : (arg0->unk70_10 == 3 ? 100.0f : 150.0f),
             (f32 *)(arg1 + 0x2C), arg0->unk70_10 == 1 ? 20.0f : 40.0f,
             arg0->unk70_10 == 1 ? 40.0f : 80.0f);
     } else {
-        func_80800CEC_chpiranha((s32)arg1, (s32)(arg1 + 0x18), 5.0f,
+        func_80800CEC_chpiranha((BtIntPtr)arg1, (BtIntPtr)(arg1 + 0x18), 5.0f,
             (f32 *)(arg1 + 0x2C), 5.0f, 5.0f);
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 void func_80800EFC_chpiranha(Actor *arg0, void *arg1, f32 arg2) {
     void func_800EF04C(f32 *, f32 *);
@@ -387,7 +387,7 @@ void func_80800EFC_chpiranha(Actor *arg0, void *arg1, f32 arg2) {
 
 void func_8080106C_chpiranha(Actor *arg0) {
     f32 func_800DC178(f32, f32);
-    s32 func_800EFA4C(s32, f32, f32, f32);
+    void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     void func_800EFD24(f32 *);
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
@@ -464,7 +464,7 @@ void func_80801250_chpiranha(u8 *arg0, u8 *arg1, u8 *arg2, f32 arg3, f32 arg4, u
         func_800EFD24(zero);
         func_800F18FC((f32 *)arg2, zero, (f32 *)arg5);
     }
-}
+}    typedef struct { u8 pad0[0x2C]; f32 unk2C; } Objpiranha_func_80801420_chpiranha_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 /* extern */
 
@@ -483,7 +483,7 @@ void func_80801420_chpiranha(Actor *arg0) {
     var_s0 += 0x1C;
     for (; var_s2 < arg0->unk6C_0; var_s2++) {
             temp_s1 = var_s0 + 0x18;
-            func_80801250_chpiranha(temp_s1, var_s0, var_s0 + 0xC, (*(f32 *)((s8 *)(var_s0) + (0x2C))), 150.0f, var_s0 + 0x24, sp58);
+            func_80801250_chpiranha(temp_s1, var_s0, var_s0 + 0xC, (((Objpiranha_func_80801420_chpiranha_var_s0 *)var_s0)->unk2C), 150.0f, var_s0 + 0x24, sp58);
             if (func_800EFC7C(var_s0, temp_s1) < 2500.0f) {
                 func_80800DD0_chpiranha(arg0, var_s0);
             }
@@ -493,7 +493,7 @@ void func_80801420_chpiranha(Actor *arg0) {
 
 /* extern */
 
-void func_80801508_chpiranha(s32 arg0) {
+void func_80801508_chpiranha(BtIntPtr arg0) {
     s32 func_8010C500();
     s32 func_8010C9B0(f32 *, s32);
     void func_80800218_chpiranha(Actor *, u32);
@@ -535,24 +535,24 @@ s32 func_80801638_chpiranha(Actor *arg0) {
         ((u32)*(u16 *)((s8 *)arg0->unk3C + 0x12) >> 1) != *(s32 *)((s8 *)func_80100094(arg0, 0U) + 0x18) : 1;
 }
 
-void func_80801690_chpiranha(s32 arg0, s32 arg1) {
-    s32 func_800BBCB8(s32, s32, s32, s32, s32 *);
-    extern s32 D_80801B10_chpiranha;
-    func_800BBCB8(arg1, 0, 0x3F800000, 1, &D_80801B10_chpiranha);
+void func_80801690_chpiranha(BtIntPtr arg0, BtIntPtr arg1) {
+    BtIntPtr func_800BBCB8(BtIntPtr, BtIntPtr, s32, s32, s32 *);
+    extern s32 D_80801B10_chpiranha[20];
+    func_800BBCB8(arg1, 0, 0x3F800000, 1, D_80801B10_chpiranha);
 }
 
 /* extern */
 
 s32 *func_808016D0_chpiranha(u8 *arg0) {
-    s32 *_subaddiefind_entrypoint_0(s32, s32, s32, f32 *);
+    s32 *_subaddiefind_entrypoint_0(BtIntPtr, s32, s32, f32 *);
     s32 pad;
     s32 *sp28;
     f32 sp24;
     f32 sp20;
     s32 *temp_v0;
 
-    sp28 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), 0x211, -1, &sp24);
-    temp_v0 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), 0x199, -1, &sp20);
+    sp28 = _subaddiefind_entrypoint_0((BtIntPtr)(arg0 + 4), 0x211, -1, &sp24);
+    temp_v0 = _subaddiefind_entrypoint_0((BtIntPtr)(arg0 + 4), 0x199, -1, &sp20);
     if ((temp_v0 != NULL) && (sp28 == NULL)) {
         sp28 = temp_v0;
     }
@@ -560,7 +560,7 @@ s32 *func_808016D0_chpiranha(u8 *arg0) {
         sp28 = temp_v0;
         sp24 = sp20;
     }
-    temp_v0 = _subaddiefind_entrypoint_0((s32)(arg0 + 4), 0x19A, -1, &sp20);
+    temp_v0 = _subaddiefind_entrypoint_0((BtIntPtr)(arg0 + 4), 0x19A, -1, &sp20);
     if ((temp_v0 != NULL) && (sp28 == NULL)) {
         sp28 = temp_v0;
     }
@@ -651,21 +651,27 @@ s32 func_8080182C_chpiranha(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chpiranha_entrypoint_0(void)
 {
-    extern u8 D_80801B60_chpiranha[];
+    extern ActorData D_80801B60_chpiranha[];
 
     return (OSThread *) D_80801B60_chpiranha;
 }
 
 OSThread *chpiranha_entrypoint_1(void)
 {
-    extern u8 D_80801BA8_chpiranha[];
+    extern ActorData D_80801BA8_chpiranha[];
 
     return (OSThread *) D_80801BA8_chpiranha;
 }
 
 OSThread *chpiranha_entrypoint_2(void)
 {
-    extern u8 D_80801BF0_chpiranha[];
+    extern ActorData D_80801BF0_chpiranha[];
 
     return (OSThread *) D_80801BF0_chpiranha;
 }
+/* data_to_c.py: from asm/data/overlays/ch/piranha.data.s */
+void func_80107C2C();
+s32 D_80801B10_chpiranha[20] BT_DATA(4, overlays_ch_piranha, 0x0) = { 1902138, 1441794, 262272, 458755, 524492, 16777219, 68626192, 2752512, 131584, 41943061, 166, 1833208, -117964765, 4194343, -39256664, 39322200, 2948820, 49217236, 19661700, 19660800 };
+ActorData D_80801B60_chpiranha [1] BT_DATA(4, overlays_ch_piranha, 0x50) = { { 705, 764, 1855, 1, 0, (void (*)(struct Actor *))func_808002A0_chpiranha, 0, (void (*)(long, long))func_8080003C_chpiranha, 262144000, 1065353216, 0, 0, 0, 1, (void (*)(struct Actor *))func_80800000_chpiranha, 0, 0, 0, (void (*)(struct Actor *))func_80800280_chpiranha, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_8080182C_chpiranha, 0 } };
+ActorData D_80801BA8_chpiranha [1] BT_DATA(4, overlays_ch_piranha, 0x98) = { { 706, 765, 1855, 7, 0, (void (*)(struct Actor *))func_808002A0_chpiranha, 0, (void (*)(long, long))func_8080003C_chpiranha, 262144000, 1065353216, 0, 0, 0, 1, (void (*)(struct Actor *))func_80800000_chpiranha, 0, 0, 0, (void (*)(struct Actor *))func_80800280_chpiranha, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_8080182C_chpiranha, 0 } };
+ActorData D_80801BF0_chpiranha [1] BT_DATA(4, overlays_ch_piranha, 0xE0) = { { 707, 766, 1855, 7, 0, (void (*)(struct Actor *))func_808002A0_chpiranha, 0, (void (*)(long, long))func_8080003C_chpiranha, 262144000, 1065353216, 0, 0, 0, 1, (void (*)(struct Actor *))func_80800000_chpiranha, 0, 0, 0, (void (*)(struct Actor *))func_80800280_chpiranha, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_8080182C_chpiranha, 0 } };

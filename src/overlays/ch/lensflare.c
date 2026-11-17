@@ -57,7 +57,7 @@ compare:
     goto loop_1;
 found:
     ((LensFlareActorData *)arg0->actorData)->intensity = 1.01f;
-}
+}    typedef struct { u8 pad0[0x24]; s32 unk24; u8 pad28[0xC]; f32 unk34; u8 pad38[0x18]; u8 unk50; } Objlensflare_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     typedef struct {
@@ -85,7 +85,7 @@ void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     void func_800E40DC(f32, f32, f32 *, f32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800EFA88(void *, u8, u8, u8);
-    void func_800B99CC(s32, s32, f32 *);
+    void func_800B99CC(BtIntPtr, s32, f32 *);
     void func_800E24F8(s32, s32, s32);
     void func_800E2530(f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -94,8 +94,8 @@ void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     f32 func_800EEFD4(f32 *);
     void func_800EFA98(f32 *, f32 *, f32);
     void func_800EE780(f32 *, f32 *, f32 *);
-    void func_800E2720(s32, s32, s32, f32 *, f32 *, s32);
-    void func_800E2A14(s32);
+    void func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);
+    void func_800E2A14(BtIntPtr);
     f32 source[3];
     f32 scale[3];
     f32 delta[3];
@@ -112,35 +112,35 @@ void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     Flare *flares;
 
     if (func_800BFFB4(0, 4, source)) {
-        func_800E8830(*(u8 *)((u8 *)arg0 + 0x50), source);
-        if (func_800E88AC(*(u8 *)((u8 *)arg0 + 0x50), screen) == 1 ||
+        func_800E8830(((Objlensflare_arg0 *)arg0)->unk50, source);
+        if (func_800E88AC(((Objlensflare_arg0 *)arg0)->unk50, screen) == 1 ||
             ((FlareActor *)arg0)->forced) {
             fade = (mlAbsF(screen[0] - 152.0f) * mlAbsF(screen[0] - 152.0f) +
                     mlAbsF(screen[1] - 114.0f) * mlAbsF(screen[1] - 114.0f)) / 19602.0f;
-            if (*(f32 *)((u8 *)arg0 + 0x34) < fade) {
-                *(f32 *)((u8 *)arg0 + 0x34) *= 1.35f;
-                if (*(f32 *)((u8 *)arg0 + 0x34) > fade) {
-                    *(f32 *)((u8 *)arg0 + 0x34) = fade;
+            if (((Objlensflare_arg0 *)arg0)->unk34 < fade) {
+                ((Objlensflare_arg0 *)arg0)->unk34 *= 1.35f;
+                if (((Objlensflare_arg0 *)arg0)->unk34 > fade) {
+                    ((Objlensflare_arg0 *)arg0)->unk34 = fade;
                 } else {
-                    fade = *(f32 *)((u8 *)arg0 + 0x34);
+                    fade = ((Objlensflare_arg0 *)arg0)->unk34;
                 }
             } else {
-                *(f32 *)((u8 *)arg0 + 0x34) /= 1.35f;
-                if (*(f32 *)((u8 *)arg0 + 0x34) < fade) {
-                    *(f32 *)((u8 *)arg0 + 0x34) = fade;
+                ((Objlensflare_arg0 *)arg0)->unk34 /= 1.35f;
+                if (((Objlensflare_arg0 *)arg0)->unk34 < fade) {
+                    ((Objlensflare_arg0 *)arg0)->unk34 = fade;
                 } else {
-                    fade = *(f32 *)((u8 *)arg0 + 0x34);
+                    fade = ((Objlensflare_arg0 *)arg0)->unk34;
                 }
             }
         } else {
-            if (*(f32 *)((u8 *)arg0 + 0x34) < 1.01f) {
-                *(f32 *)((u8 *)arg0 + 0x34) *= 1.35f;
+            if (((Objlensflare_arg0 *)arg0)->unk34 < 1.01f) {
+                ((Objlensflare_arg0 *)arg0)->unk34 *= 1.35f;
             }
-            if (*(f32 *)((u8 *)arg0 + 0x34) > 1.0f) {
-                *(f32 *)((u8 *)arg0 + 0x34) = 1.01f;
+            if (((Objlensflare_arg0 *)arg0)->unk34 > 1.0f) {
+                ((Objlensflare_arg0 *)arg0)->unk34 = 1.01f;
                 return;
             }
-            fade = *(f32 *)((u8 *)arg0 + 0x34);
+            fade = ((Objlensflare_arg0 *)arg0)->unk34;
         }
         if (fade > 1.0f) {
             return;
@@ -149,7 +149,7 @@ void func_808000FC_chlensflare(void *arg0, s32 arg1) {
         screen[1] = 228.0f - screen[1];
         func_800E40DC(screen[0], screen[1], scale, delta);
         func_800EFB24(delta, scale, source);
-        flares = D_808008F4_chlensflare[*(s32 *)((u8 *)arg0 + 0x24)].flares;
+        flares = D_808008F4_chlensflare[((Objlensflare_arg0 *)arg0)->unk24].flares;
         for (i = 0; flares[i].type; i++) {}
         if (flares[i].r) {
             func_800EFA88(color, flares[i].r, flares[i].g, flares[i].b);

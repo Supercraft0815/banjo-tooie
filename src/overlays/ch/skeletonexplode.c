@@ -1,6 +1,6 @@
 #include "common.h"
 
-struct anctrl_s;
+struct anctrl_s;     
 
 void func_80800000_chskeletonexplode(Actor *arg0) {
     void* func_80100094(Actor*, u32);
@@ -14,7 +14,7 @@ void func_80800000_chskeletonexplode(Actor *arg0) {
 /* extern */
 
 void func_80800034_chskeletonexplode(void **arg0) {
-    s32 func_800ADFE0(s16);
+    void func_800ADFE0(s16 handle);
     s16 temp_a1;
 
     temp_a1 = (*(s16 *)((s8 *)(*arg0) + (0x10)));
@@ -203,11 +203,11 @@ void func_80800594_chskeletonexplode(void *arg0) {
 void func_808005CC_chskeletonexplode(Actor *arg0, void *arg1, f32 *arg2) {
     f32 _dbskeleton_entrypoint_1(void *);
     s32 _dbskeleton_entrypoint_2(u8 *, s32, f32 *);
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
     void *func_8008AEDC(void *);
-    void func_8008C200(s16, s32, s32);
-    s32 func_8008C27C();
-    u32 func_800ADE50(u8 *, u8 *, s32);
+    void func_8008C200(s16, BtIntPtr, BtIntPtr);
+    BtIntPtr func_8008C27C();
+    BtUIntPtr func_800ADE50(u8 *, u8 *, s32);
     void *func_800AE080(s16);
     s32 func_800AE124(s16);
     s32 func_800AE630(u8 *, u8 *, s32, f32 *);
@@ -249,7 +249,7 @@ void func_808005CC_chskeletonexplode(Actor *arg0, void *arg1, f32 *arg2) {
     f32 sp80[3];
     f32 *position;
     void *anim;
-    u32 matrix;
+    BtUIntPtr matrix;
 
     skeleton = func_800B27E0(func_801039E4(arg0->unk0));
     control = func_80104248(arg1);
@@ -283,10 +283,10 @@ void func_808005CC_chskeletonexplode(Actor *arg0, void *arg1, f32 *arg2) {
     }
 }
 
-void func_80800894_chskeletonexplode(Actor *arg0, s32 arg1, f32 *arg2) {
+void func_80800894_chskeletonexplode(Actor *arg0, BtIntPtr arg1, f32 *arg2) {
     s32 _dbskeleton_entrypoint_0(u8 *);
     s32 _dbskeleton_entrypoint_2(u8 *, s32, f32 *);
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
     u8 *func_800B27E0(u8 *);
     f32 func_800DC178(f32, f32);
     void func_800EE780(f32 *, f32 *, f32 *);
@@ -341,10 +341,10 @@ void chskeletonexplode_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 a
     void func_800EF334(f32 *, f32);
     void *func_80100094(Actor *, u32);
     void func_80101074(void *);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     struct anctrl_s *func_80104248(void *);
     Actor *func_80106790(Unk80132ED0 *);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     struct SkeletonExplodeMarker {
         u8 pad0[0x10];
         s16 animation;
@@ -395,14 +395,14 @@ void chskeletonexplode_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 a
     if (func_80104248(source)) {
         func_808005CC_chskeletonexplode(actor, source, position);
     } else {
-        func_80800894_chskeletonexplode(actor, (s32)source, position);
+        func_80800894_chskeletonexplode(actor, (BtIntPtr)source, position);
     }
     data->count = 0;
     data->sound = 0;
     data->state = 0;
     if (((struct SkeletonExplodeMarker *)state.marker)->flags & 1) {
         func_80101074(actor->unk0);
-        func_8010114C((s32)state.marker, 0xF, 0);
+        func_8010114C((BtIntPtr)state.marker, 0xF, 0);
     }
     part = func_80100094(actor, 0);
     for (state.i = 0; state.i < actor->unk6C_0; state.i++, part++) {
@@ -411,17 +411,17 @@ void chskeletonexplode_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 a
         part->unk30[1] = func_800DC178(((f32 *)actor->actorData)[6], ((f32 *)actor->actorData)[0]);
         part->unk30[2] = func_800DC178(((f32 *)actor->actorData)[6], ((f32 *)actor->actorData)[0]);
     }
-}
+}                  typedef struct { u8 pad0[0x18]; f32 unk18; u8 pad1C[0xC]; f32 unk28; f32 unk2C; f32 unk30; } Objskeletonexplode_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void chskeletonexplode_entrypoint_1(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0x28))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0x2C))) = arg2;
+    (((Objskeletonexplode_arg0 *)arg0)->unk28) = arg1;
+    (((Objskeletonexplode_arg0 *)arg0)->unk2C) = arg2;
 }
 
 void chskeletonexplode_entrypoint_2(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0x30))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0x18))) = arg2;
-}
+    (((Objskeletonexplode_arg0 *)arg0)->unk30) = arg1;
+    (((Objskeletonexplode_arg0 *)arg0)->unk18) = arg2;
+}    typedef struct { u8 pad0[0x4]; s32 unk4; } Objskeletonexplode_chskeletonexplode_entrypoint_3_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void chskeletonexplode_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2) {
     void* func_80100094(Actor*, u32);
@@ -429,8 +429,8 @@ void chskeletonexplode_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2) {
 
     temp_v0 = func_80100094(arg0, 1U);
     (*(s32 *)((s8 *)((temp_v0 + (arg1 * 4))) + (4))) = arg2;
-    if ((*(s32 *)((s8 *)(temp_v0) + (4))) < arg1) {
-        (*(s32 *)((s8 *)(temp_v0) + (4))) = arg1;
+    if ((((Objskeletonexplode_chskeletonexplode_entrypoint_3_temp_v0 *)temp_v0)->unk4) < arg1) {
+        (((Objskeletonexplode_chskeletonexplode_entrypoint_3_temp_v0 *)temp_v0)->unk4) = arg1;
     }
 }
 
@@ -462,7 +462,7 @@ void chskeletonexplode_entrypoint_7(Actor *arg0, f32 *arg1) {
     sp[1] = arg0->unk0->unk14;
     sp[0] = arg0->unk0->unk16;
     func_800EE904(&sp[2], arg1);
-    _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, (s32) arg0->unk0, sp[2], sp[3], sp[4], sp[1], sp[0]);
+    _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, (BtIntPtr) arg0->unk0, sp[2], sp[3], sp[4], sp[1], sp[0]);
 }
 
 void chskeletonexplode_entrypoint_8(Actor **arg0, s16 *arg1) {
@@ -476,18 +476,18 @@ void chskeletonexplode_entrypoint_8(Actor **arg0, s16 *arg1) {
     sp[2] = arg1[0];
     sp[3] = arg1[1];
     sp[4] = arg1[2];
-    _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, (s32) *arg0, sp[2], sp[3], sp[4], sp[1], sp[0]);
+    _chbaddiesetup_entrypoint_6(&_chskeletonexplode_entrypoint_0, (BtIntPtr) *arg0, sp[2], sp[3], sp[4], sp[1], sp[0]);
 }
 
 s32 func_80800E88_chskeletonexplode(Actor *arg0) {
-    s32 _dbskeleton_entrypoint_4(u8 *, u32);
-    s32 func_80019CD4(void);
+    s16 _dbskeleton_entrypoint_4(s16 arg0[][8], s32 arg1);
+    void * func_80019CD4(void);
     void func_800ADD80(s16, u8 *);
     void func_800ADEC4(u8 *, u8 *, s32, f32 [4][4]);
     void *func_800AE080(s16);
     u8 *func_800B27E0(u8 *);
     void func_800DF6BC(s32, s32);
-    void func_800DF72C(s32);
+    void func_800DF72C(BtIntPtr);
     void func_800DF758(s32 *);
     void *func_80100094(Actor *, u32);
     s32 func_801015D0(Actor *);
@@ -535,17 +535,17 @@ s32 func_80800E88_chskeletonexplode(Actor *arg0) {
         mlMtxGet(matrix);
         func_800ADEC4(transforms, skeleton, bone, matrix);
     }
-    func_800DF72C((s32)transforms);
+    func_800DF72C((BtIntPtr)transforms);
     func_800DF758(data->values);
     flags.mode = data->mode;
     if (flags.mode != 0) {
         func_800DF6BC(flags.mode, arg0->alpha);
     }
-}
+    BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
 
-s32 func_8080100C_chskeletonexplode(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_8080100C_chskeletonexplode(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 func_80800E88_chskeletonexplode();
     switch (arg1) {
     case 0x1F:
@@ -559,7 +559,19 @@ s32 func_8080100C_chskeletonexplode(s32 arg0, s32 arg1, s32 arg2) {
 
 OSThread *chskeletonexplode_entrypoint_9(void)
 {
-    extern u8 D_80801138_chskeletonexplode[];
+    extern ActorData D_80801138_chskeletonexplode[];
 
     return (OSThread *) D_80801138_chskeletonexplode;
 }
+/* data_to_c.py: from asm/data/overlays/ch/skeletonexplode.data.s */
+void func_80105834(Actor*);
+void func_801018A4();
+void func_80107C2C();
+u8 D_80801090_chskeletonexplode [24] BT_DATA(4, overlays_ch_skeletonexplode, 0x0) = { 0, 0x13, 4, 0x15, 0, 0xD, 0, 0xE6, 1, 0, 0, 0x16, 0x1F, 0x40, 0, 1, 5, 0xDC, 9, 0xC4, 0, 0, 0, 0 };
+u8 D_808010A8_chskeletonexplode [24] BT_DATA(4, overlays_ch_skeletonexplode, 0x18) = { 0, 0x13, 4, 0x16, 0, 0xD, 0, 0xE6, 1, 0, 0, 0x16, 0x1F, 0x40, 0, 1, 5, 0xDC, 9, 0xC4, 0, 0, 0, 0 };
+u8 D_808010C0_chskeletonexplode [24] BT_DATA(4, overlays_ch_skeletonexplode, 0x30) = { 0, 0x13, 4, 0x17, 0, 0xD, 0, 0xE6, 1, 0, 0, 0x16, 0x1F, 0x40, 0, 1, 5, 0xDC, 9, 0xC4, 0, 0, 0, 0 };
+u8 D_808010D8_chskeletonexplode [24] BT_DATA(4, overlays_ch_skeletonexplode, 0x48) = { 0, 0x13, 4, 0x5A, 0, 0xD, 0, 0xE6, 1, 0, 0, 0x16, 0x1F, 0x40, 0, 1, 5, 0xDC, 9, 0xC4, 0, 0, 0, 0 };
+u8 D_808010F0_chskeletonexplode [24] BT_DATA(4, overlays_ch_skeletonexplode, 0x60) = { 0, 0x13, 4, 0xB, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 0x16, 0x1F, 0x40, 0, 1, 5, 0xDC, 9, 0xC4, 0, 0, 0, 0 };
+u8 D_80801108_chskeletonexplode [24] BT_DATA(4, overlays_ch_skeletonexplode, 0x78) = { 0, 0x13, 4, 0x1F, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 0x16, 0x1F, 0x40, 0, 1, 5, 0xDC, 9, 0xC4, 0, 0, 0, 0 };
+u8 D_80801120_chskeletonexplode [24] BT_DATA(4, overlays_ch_skeletonexplode, 0x90) = { 0, 0x13, 4, 0xA0, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 0x16, 0x1F, 0x40, 0, 1, 5, 0xDC, 9, 0xC4, 0, 0, 0, 0 };
+ActorData D_80801138_chskeletonexplode [1] BT_DATA(4, overlays_ch_skeletonexplode, 0xA8) = { { 708, 772, -1, 1, 0, (void (*)(struct Actor *))func_808001BC_chskeletonexplode, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_801018A4, 0, 0, 0, 0, 128, 1060, (void (*)(struct Actor *))func_80800034_chskeletonexplode, 0, 0, 248, (void (*)(struct Actor *))func_80800000_chskeletonexplode, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32640, 2, (void (*)(struct Actor *, long, long))func_8080100C_chskeletonexplode, 0 } };

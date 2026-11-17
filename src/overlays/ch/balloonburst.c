@@ -21,33 +21,33 @@ void func_808010D8_chballoonburst(Actor *arg0, s32 arg1);
 void func_80800EDC_chballoonburst(Actor *arg0);
 s32 func_8080110C_chballoonburst(void *arg0, s32 arg1, s32 arg2);
 void func_808015D4_chballoonburst(Actor *arg0);
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 OSThread *func_80108ED0(void);
 void func_8080154C_chballoonburst(BalloonBurstActor *arg0);
 s32 func_808017A4_chballoonburst(BalloonBurstActor *arg0, s32 arg1, Unk80132ED0 *arg2);
 
-u32 D_80801C40_chballoonburst[] = {
-    0x02B1034F, 0x00000001, 0x00000000, (u32)func_80800098_chballoonburst,
-    (u32)func_80105834, (u32)func_8010A730, 0x00000000, 0x00000000,
-    0x00000000, 0x00400000, (u32)func_808008F0_chballoonburst, 0x00000000,
-    0x054C0000, (u32)func_80800024_chballoonburst, (u32)func_80107C2C, 0x80000602,
-    (u32)func_808001FC_chballoonburst, 0x00000000
+BtFnWord D_80801C40_chballoonburst[] = {
+    0x02B1034F, 0x00000001, 0x00000000, (BtFnWord)func_80800098_chballoonburst,
+    (BtFnWord)func_80105834, (BtFnWord)func_8010A730, 0x00000000, 0x00000000,
+    0x00000000, 0x00400000, (BtFnWord)func_808008F0_chballoonburst, 0x00000000,
+    0x054C0000, (BtFnWord)func_80800024_chballoonburst, (BtFnWord)func_80107C2C, 0x80000602,
+    (BtFnWord)func_808001FC_chballoonburst, 0x00000000
 };
 
-u32 D_80801C88_chballoonburst[] = {
-    0x02B1044C, 0xFFFF0001, 0x00000000, (u32)func_80800F4C_chballoonburst,
-    (u32)func_80105834, (u32)func_808010D8_chballoonburst, 0x00000000, 0x00000000,
-    0x00000000, 0x00400400, (u32)func_808008F0_chballoonburst, 0x00000000,
-    0x054C0000, (u32)func_80800EDC_chballoonburst, (u32)func_80107C2C, 0x80000402,
-    (u32)func_8080110C_chballoonburst, 0x00000000
+BtFnWord D_80801C88_chballoonburst[] = {
+    0x02B1044C, 0xFFFF0001, 0x00000000, (BtFnWord)func_80800F4C_chballoonburst,
+    (BtFnWord)func_80105834, (BtFnWord)func_808010D8_chballoonburst, 0x00000000, 0x00000000,
+    0x00000000, 0x00400400, (BtFnWord)func_808008F0_chballoonburst, 0x00000000,
+    0x054C0000, (BtFnWord)func_80800EDC_chballoonburst, (BtFnWord)func_80107C2C, 0x80000402,
+    (BtFnWord)func_8080110C_chballoonburst, 0x00000000
 };
 
-u32 D_80801CD0_chballoonburst[] = {
-    0x02B20350, 0xFFFF0001, 0x00000000, (u32)func_808015D4_chballoonburst,
-    (u32)func_80105834, (u32)func_801018A4, 0x00000000, 0x00000000,
-    0x00000000, 0x00000004, 0x00000000, (u32)func_80108ED0,
-    0x00000000, (u32)func_8080154C_chballoonburst, (u32)func_80107C2C, 0x80200080,
-    (u32)func_808017A4_chballoonburst, 0x00000000
+BtFnWord D_80801CD0_chballoonburst[] = {
+    0x02B20350, 0xFFFF0001, 0x00000000, (BtFnWord)func_808015D4_chballoonburst,
+    (BtFnWord)func_80105834, (BtFnWord)func_801018A4, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, 0x00000000, (BtFnWord)func_80108ED0,
+    0x00000000, (BtFnWord)func_8080154C_chballoonburst, (BtFnWord)func_80107C2C, 0x80200080,
+    (BtFnWord)func_808017A4_chballoonburst, 0x00000000
 };
 
 s32 D_80801D18_chballoonburst[] = {
@@ -134,8 +134,8 @@ void func_80800098_chballoonburst(Actor *arg0) {
     s32 func_800D24E8(s32, s32, u32);
     int func_800D9154(f32 *, f32);
     f32 func_800DC178(f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F7C0C(s32, s32, f32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F7C0C(BtIntPtr arg0, s32 arg1, f32 arg2);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -184,12 +184,12 @@ void func_80800098_chballoonburst(Actor *arg0) {
 }
 
 s32 func_808001FC_chballoonburst(Actor *arg0, int arg1, s32 arg2) {
-    void _capod_entrypoint_19(s32 arg0);
+    void _capod_entrypoint_19(BtIntPtr arg0);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
-    s32 _susubgame_entrypoint_3(s32 arg0, u8 *arg1, s32 arg2, s32 arg3);
+    s32 _susubgame_entrypoint_3(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32 arg0,s32 arg1);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr arg0,s32 arg1);
     void * func_80100094(Actor *arg0, u32 arg1);
     Actor * func_80106790(Unk80132ED0 *arg0);
     void func_808003C4_chballoonburst(Actor *arg0, s32 arg1, s32 arg2);
@@ -220,7 +220,7 @@ s32 func_808001FC_chballoonburst(Actor *arg0, int arg1, s32 arg2) {
             if (arg2 == 4) {
                 marker = arg0->unk3C;
                 if (marker != NULL) {
-                    _capod_entrypoint_19((s32)func_80106790(marker)->position);
+                    _capod_entrypoint_19((BtIntPtr)func_80106790(marker)->position);
                 }
             }
             return 3;
@@ -230,7 +230,7 @@ s32 func_808001FC_chballoonburst(Actor *arg0, int arg1, s32 arg2) {
             func_800F82D4(func_800F54E4(), 2);
             break;
         case 0x57:
-            return _susubgame_entrypoint_3((s32)arg0, data + 0x18, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+            return _susubgame_entrypoint_3((BtIntPtr)arg0, data + 0x18, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
         case 0x95:
             func_80800790_chballoonburst(arg0);
             break;
@@ -245,24 +245,24 @@ s32 _gcstatusDll_entrypoint_11(void);
 void func_808003C4_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 _gcfrontend_entrypoint_9(s32);
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     void _glcutDll_entrypoint_6(u32, u32);
-    void _plcamera_entrypoint_8(s32);
+    void _plcamera_entrypoint_8(s32 *arg0);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     s32 func_800D395C(void);
     void func_800DA544(GameFlag);
-    void func_800F4CC0(s32);
-    u32 func_800F54E4(void);
-    int func_800F7C58(s32, s32, s32);
-    void func_800F82D4(s32, s32);
+    void func_800F4CC0(BtIntPtr);
+    BtUIntPtr func_800F54E4(void);
+    int func_800F7C58(BtIntPtr, s32, s32);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
     u8 *data;
-    s32 player;
+    BtIntPtr player;
 
     data = func_80100094(arg0, 0);
     switch (arg1) {
@@ -304,17 +304,17 @@ void func_808003C4_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
                     _gcgoto_entrypoint_1(0xE4, 1);
                 } else {
                     func_800F4CC0(player);
-                    _susubgame_entrypoint_4(arg0, (s32)(data + 0x18));
+                    _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x18));
                 }
                 func_800F7C58(player, 0x5D, 0);
             }
             break;
         case 0xCEC:
-            _susubgame_entrypoint_4(arg0, (s32)(data + 0x18));
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x18));
             func_80800970_chballoonburst(arg0, 0);
             break;
         case 0x10D2:
-            _susubgame_entrypoint_4(arg0, (s32)(data + 0x18));
+            _susubgame_entrypoint_4(arg0, (BtIntPtr)(data + 0x18));
             func_800F82D4(func_800F54E4(), 0);
             _glcutDll_entrypoint_6(0xE1, 0x22);
             break;
@@ -362,17 +362,17 @@ void func_80800790_chballoonburst(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _susubgame_entrypoint_10(Actor *, s32, s32, s32);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_800BF744(s32, s32);
-    void func_800F4CEC(s32, u32);
-    u32 func_800F54E4(void);
-    int func_800F7C58(s32, s32, s32);
-    void func_800F82D4(s32, s32);
+    void func_800F4CEC(BtIntPtr, u32);
+    BtUIntPtr func_800F54E4(void);
+    int func_800F7C58(BtIntPtr, s32, s32);
+    void func_800F82D4(BtIntPtr, s32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     u8 *sp2C;
-    s32 sp28;
+    BtIntPtr sp28;
 
     sp2C = func_80100094(arg0, 0);
     sp28 = func_800F54E4();
@@ -401,8 +401,8 @@ void func_808008F0_chballoonburst(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_800CEAA8(s32);
     void func_800CE88C(s32, s32);
-    s32 _susubgame_entrypoint_2(void *, s32);
-    s32 _susubgame_entrypoint_4(void *, s32);
+    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     s32 data[2];
 
     data[1] = func_80100094(arg0, 0);
@@ -422,8 +422,8 @@ void func_80800970_chballoonburst(Actor *arg0, s32 arg1) {
     void func_800CE8D8(s32, f32, s32);
     void func_800D2770(s32, s32);
     void func_800DA524(s32);
-    void func_800F7B9C(s32, u32);
-    void func_800F7C0C(s32, s32, f32);
+    void func_800F7B9C(BtIntPtr, u32);
+    s32 func_800F7C0C(BtIntPtr arg0, s32 arg1, f32 arg2);
     u32 func_800FDC28(u32);
     void func_80101FDC(Actor *, u32);
     s32 i;
@@ -496,7 +496,7 @@ s32 func_80800A7C_chballoonburst(void *arg0, s32 *arg1) {
 void func_80102424(Actor *, s32);
 
 void func_80800BE8_chballoonburst(Actor *arg0, s32 arg1) {
-    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, s32);
+    void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800DA298(s32);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
@@ -578,9 +578,9 @@ void func_80800BE8_chballoonburst(Actor *arg0, s32 arg1) {
 /* extern */
 
 void func_80800EDC_chballoonburst(Actor *arg0) {
-    s32 _subaddiemulti_entrypoint_3(s32);
+    void _subaddiemulti_entrypoint_3(s32 arg0);
     void *func_80100094(Actor *, u32);
-    s32 _sumultiscore_entrypoint_3(u8 *);
+    void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     u8 *data;
 
@@ -647,8 +647,8 @@ void func_80800F4C_chballoonburst(Actor *arg0) {
 
 void func_808010D8_chballoonburst(Actor *arg0, s32 arg1) {
     void* func_80100094(Actor*, u32);
-    s32 _sumultiscore_entrypoint_12(s32, s32, s32);
-    _sumultiscore_entrypoint_12((s32)func_80100094(arg0, 0U) + 0x30, arg1, 1);
+    void _sumultiscore_entrypoint_12(BtIntPtr arg0, BtIntPtr arg1, s32 arg2);
+    _sumultiscore_entrypoint_12((BtIntPtr)func_80100094(arg0, 0U) + 0x30, arg1, 1);
 }
 
 s32 func_8080110C_chballoonburst(void *arg0, s32 arg1, s32 arg2) {
@@ -678,7 +678,7 @@ void func_808011A8_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     s32 _gcstatusDll_entrypoint_11();
     s32 _subaddiemulti_entrypoint_2();
-    int func_800F7C58(s32, s32, s32);
+    int func_800F7C58(BtIntPtr, s32, s32);
     void func_80101FDC(Actor *, u32);
     s32 i;
 
@@ -704,7 +704,7 @@ s32 func_80801254_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
         return (*(s32 *)((s8 *)(func_80100094(arg0, 0U)) + (8))) + 1;
     }
     return 0;
-}
+}    typedef struct { u8 pad0[0x72]; u16 unk72; } Objballoonburst_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80801290_chballoonburst(void *arg0)
 {
@@ -712,13 +712,13 @@ void func_80801290_chballoonburst(void *arg0)
   s32 _subaddiemulti_entrypoint_1(s32, s32);
   s32 func_800BF544(s32, s32, s32);
   void func_800BF744(s32, s32);
-  void func_800F4CEC(s32, u32);
-  int func_800F7C58(s32, s32, s32);
+  void func_800F4CEC(BtIntPtr, u32);
+  int func_800F7C58(BtIntPtr, s32, s32);
   s32 var_s0;
   func_800BF744(1, 1);
   func_800BF744(2, 0);
   func_800BF544(0, 0, 0);
-  if (((((u16) (*((u16 *) (((s8 *) arg0) + 0x72)))) & 0xFFFFFFFFu) >> 0xA) == 1)
+  if (((((u16) (((Objballoonburst_arg0 *)arg0)->unk72)) & 0xFFFFFFFFu) >> 0xA) == 1)
   {
     _subaddiemulti_entrypoint_1(2, 0);
   }
@@ -878,12 +878,12 @@ void func_808015D4_chballoonburst(Actor *arg0) {
 }
 
 s32 func_808017A4_chballoonburst(BalloonBurstActor *arg0, s32 arg1, Unk80132ED0 *arg2) {
-    void _chscorepoints_entrypoint_2(s32, s32, f32 *, s32);
-    s32 _subaddiemulti_entrypoint_5(Unk80132ED0 *);
-    void _sumultiscore_entrypoint_7(u8 *, s32, s32, s32);
+    void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
+    BtIntPtr _subaddiemulti_entrypoint_5(Unk80132ED0 *);
+    void _sumultiscore_entrypoint_7(u8 *, BtIntPtr, s32, s32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    s32 func_8010114C(s32, s32, s32);
+    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s32 func_801015D0(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     void func_8010A570(Actor *);
@@ -893,7 +893,7 @@ s32 func_808017A4_chballoonburst(BalloonBurstActor *arg0, s32 arg1, Unk80132ED0 
     void func_80801948_chballoonburst(BalloonBurstActor *);
     Unk80132ED0 **argp;
     Unk80132ED0 *sp28;
-    s32 sp24;
+    BtIntPtr sp24;
     s32 sp20;
     s32 state;
     s32 *data;
@@ -917,7 +917,7 @@ s32 func_808017A4_chballoonburst(BalloonBurstActor *arg0, s32 arg1, Unk80132ED0 
                 func_8010A570(&arg0->actor);
                 func_800FFAB0(&arg0->actor);
                 if (*(u16 *)&sp28->unk18 & 1) {
-                    func_8010114C((s32)sp28, 0x98, 0);
+                    func_8010114C((BtIntPtr)sp28, 0x98, 0);
                 }
                 }
             }
@@ -968,7 +968,7 @@ void func_80801948_chballoonburst(BalloonBurstActor *arg0) {
 }
 
 void func_80801A10_chballoonburst(Actor *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 *temp_a0;
 
     temp_a0 = arg0->position;
@@ -976,29 +976,29 @@ void func_80801A10_chballoonburst(Actor *arg0) {
 }
 
 void func_80801A50_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
-    s32 sp24;
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr sp24;
     f32 *temp_a1;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(arg2);
     sp24 = temp_v0;
     func_800BA670(temp_v0, arg1);
     temp_a1 = arg0 + 4;
-    func_800BABB8(sp24, temp_a1, temp_a1, (*(f32 *)((s8 *)(arg0) + (0x38))), D_80801D5C_chballoonburst);
+    func_800BABB8(sp24, temp_a1, temp_a1, (((BalloonBurstActor *)arg0)->actor.scale), D_80801D5C_chballoonburst);
     func_800BA22C(sp24, arg2);
 }
 
 void func_80801ABC_chballoonburst(Actor *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     func_800BBCB8(arg0->position, 0, arg0->scale, 1, D_80801D98_chballoonburst);
 }
 
 void func_80801AFC_chballoonburst(BalloonBurstActor *arg0) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     if (arg0->actor.unk64_20) {
         func_800BBCB8(arg0->actor.position, NULL, arg0->actor.scale, 0xE, D_80801DBC_chballoonburst);

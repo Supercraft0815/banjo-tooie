@@ -1,8 +1,8 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 
-s32 func_80800000_bsstand(s32 *arg0) {
-    extern s32 D_80800D90_bsstand[];
+BtIntPtr func_80800000_bsstand(s32 *arg0) {
+    extern BtIntPtr D_80800D90_bsstand[];
     return D_80800D90_bsstand[arg0[0x160 / 4]];
 }
 
@@ -66,7 +66,7 @@ s32 func_80800038_bsstand(self, next_state) {
 /* extern */
 
 void bsstand_entrypoint_0(void *arg0) {
-    s32 baanim_playForDuration_once(void *, s32, f32);
+    void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 bs_getPreviousState(PlayerState *);
@@ -92,14 +92,14 @@ void bsstand_entrypoint_0(void *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_800909CC(arg0);
     if (func_8008E23C(arg0) != 0) {
-        (*(s32 *)((s8 *)(arg0) + (0x160))) = 0;
-        (*(s32 *)((s8 *)(arg0) + (0x164))) = 6;
+        (((PlayerState *)arg0)->unk160.word) = 0;
+        (((PlayerState *)arg0)->unk164.word) = 6;
     } else {
-        (*(s32 *)((s8 *)(arg0) + (0x160))) = 1;
-        (*(s32 *)((s8 *)(arg0) + (0x164))) = 0x15;
+        (((PlayerState *)arg0)->unk160.word) = 1;
+        (((PlayerState *)arg0)->unk164.word) = 0x15;
     }
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
-    (*(s32 *)((s8 *)(arg0) + (0x168))) = 0;
+    (((PlayerState *)arg0)->unk15C.word) = 0;
+    (((PlayerState *)arg0)->unk168.word) = 0;
 }
 
 struct anctrl_s;
@@ -195,11 +195,11 @@ void bsstand_entrypoint_1(PlayerState *arg0) {
     void func_8008B1C8(void *, f32);
     s32 func_8008DD04(PlayerState *);
     void func_800909CC(PlayerState *);
-    s32 func_80090A2C();
+    void func_80090A2C(PlayerState *self);
     void func_8009D874(PlayerState *);
     void func_8009DF18(PlayerState *, s32, f32, s32);
     void func_8009DF94(PlayerState *, s32, f32, s32);
-    s32 func_800A0CF4(PlayerState *, s32);
+    void func_800A0CF4(PlayerState* arg0, s32 arg1);
     f32 yaw_get(PlayerState *);
     void yaw_setIdeal(PlayerState *, f32);
     void yaw_setUpdateType(PlayerState *, s32);
@@ -326,8 +326,8 @@ void bsstand_entrypoint_1(PlayerState *arg0) {
 }
 
 void bsstand_entrypoint_2(PlayerState *arg0) {
-    s32 func_800A0CF4(PlayerState *, s32);
-    s32 func_80090A2C();
+    void func_800A0CF4(PlayerState* arg0, s32 arg1);
+    void func_80090A2C(PlayerState *self);
     void func_800951B4(void* mem);
     func_800A0CF4(arg0, 0);
     func_80090A2C(arg0);
@@ -335,7 +335,7 @@ void bsstand_entrypoint_2(PlayerState *arg0) {
 }
 
 s32 bsstand_entrypoint_3(s32 arg0) {
-    extern s32 D_80800D98_bsstand[];
+    extern BtIntPtr D_80800D98_bsstand[];
     return ((s32 *)&D_80800D98_bsstand)[arg0];
 }
 
@@ -376,20 +376,20 @@ void bsstand_entrypoint_6(s32 arg0)
 {
 }
 s32 bsstand_entrypoint_7(s32 arg0) {
-    extern s32 D_80800DA8_bsstand[];
+    extern BtIntPtr D_80800DA8_bsstand[];
     return ((s32 *)&D_80800DA8_bsstand)[arg0];
 }
 
-void bsstand_entrypoint_8()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bsstand_entrypoint_8(BT_NATIVE_ONLY(s32 bt_a0) BT_PASS2(, s32 bt_a1))
 {
-    func_80800038_bsstand();
+    BT_NATIVE_ONLY(return) func_80800038_bsstand(BT_PASS2(bt_a0, bt_a1));
 }
 
 
 
-void bsstand_entrypoint_9()
+void bsstand_entrypoint_9(BT_NATIVE_ONLY(s32 bt_a0))
 {
-    _bsdrone_entrypoint_0();
+    _bsdrone_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
 }
 
 void bsstand_entrypoint_10(PlayerState* self)
@@ -403,6 +403,26 @@ void bsstand_entrypoint_11(s32 arg0)
 }
 
 s32 bsstand_entrypoint_12(s32 arg0) {
-    extern s32 D_80800DB8_bsstand[];
+    extern BtIntPtr D_80800DB8_bsstand[];
     return ((s32 *)&D_80800DB8_bsstand)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/stand.data.s */
+extern u8 D_80800D70_bsstand[];
+extern u8 D_80800D78_bsstand[];
+void _bsstand_entrypoint_2();
+void _bsstand_entrypoint_0();
+void _bsstand_entrypoint_1();
+void func_8009AB78(PlayerState *);
+void _bsstand_entrypoint_6();
+void _bsstand_entrypoint_4();
+void _bsstand_entrypoint_5();
+void _bsstand_entrypoint_11();
+void _bsstand_entrypoint_9();
+void _bsstand_entrypoint_10();
+void _bsdrone_entrypoint_3();
+u8 D_80800D70_bsstand[8] BT_DATA(4, overlays_bs_stand, 0x0) = { 0x08, 0x08, 0x08, 0x40, 0x08, 0x08, 0x00, 0x00 };
+u8 D_80800D78_bsstand[24] BT_DATA(4, overlays_bs_stand, 0x8) = { 0x09, 0x0A, 0x0C, 0x10, 0x09, 0x09, 0x0A, 0x09, 0x20, 0x09, 0x0A, 0x0C, 0x10, 0x09, 0x09, 0x0A, 0x09, 0x10, 0x09, 0x0A, 0x20, 0x00, 0x00, 0x00 };
+BtIntPtr D_80800D90_bsstand [2] BT_DATA(4, overlays_bs_stand, 0x20) = { (BtIntPtr)D_80800D70_bsstand, (BtIntPtr)D_80800D78_bsstand };
+BtIntPtr D_80800D98_bsstand [4] BT_DATA(4, overlays_bs_stand, 0x28) = { (BtIntPtr)_bsstand_entrypoint_2, (BtIntPtr)_bsstand_entrypoint_0, (BtIntPtr)_bsstand_entrypoint_1, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_80800DA8_bsstand [4] BT_DATA(4, overlays_bs_stand, 0x38) = { (BtIntPtr)_bsstand_entrypoint_6, (BtIntPtr)_bsstand_entrypoint_4, (BtIntPtr)_bsstand_entrypoint_5, (BtIntPtr)func_8009AB78 };
+BtIntPtr D_80800DB8_bsstand [6] BT_DATA(4, overlays_bs_stand, 0x48) = { (BtIntPtr)_bsstand_entrypoint_11, (BtIntPtr)_bsstand_entrypoint_9, (BtIntPtr)_bsstand_entrypoint_10, (BtIntPtr)_bsdrone_entrypoint_3, 0, 0 };

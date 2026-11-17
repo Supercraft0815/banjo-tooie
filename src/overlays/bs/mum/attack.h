@@ -25,8 +25,8 @@
 #include <ultra64.h>
 
 extern s32 D_808006F0_bsmumattack[];
-extern s32 D_80800700_bsmumattack[];
+extern BtIntPtr D_80800700_bsmumattack[];
 
-extern s32 _bsmumattack_entrypoint_0(s32 idx);
+extern BtIntPtr _bsmumattack_entrypoint_0(s32 idx);
 
 #endif // __BS_MUM_ATTACK_H__

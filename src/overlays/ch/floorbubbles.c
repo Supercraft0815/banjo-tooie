@@ -1,19 +1,19 @@
 #include "common.h"
 
 void func_80800000_chfloorbubbles(Actor *arg0) {
-    s32 func_800B53A4(s32);
-    void func_800BA22C(s32, s32);
+    BtIntPtr func_800B53A4(s32);
+    void func_800BA22C(BtIntPtr, s32);
     void func_800BA568(s16 *, s16);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
     extern s32 D_80800270_chfloorbubbles[];
     f32 (*sp34)[3];
     s32 sp30;
-    s32 sp2C;
+    BtIntPtr sp2C;
     s32 temp_v0;
-    s32 temp_v0_2;
+    BtIntPtr temp_v0_2;
 
     sp34 = func_80100094(arg0, 0);
     if (func_800DC0C0() < 0.1f) {
@@ -58,7 +58,13 @@ void func_80800244_chfloorbubbles(s32 arg0)
 }
 OSThread *chfloorbubbles_entrypoint_0(void)
 {
-    extern u8 D_808002CC_chfloorbubbles[];
+    extern ActorData D_808002CC_chfloorbubbles[];
 
     return (OSThread *) D_808002CC_chfloorbubbles;
 }
+/* data_to_c.py: from asm/data/overlays/ch/floorbubbles.data.s */
+void func_80105834(Actor*);
+void func_8010A730();
+void func_80107C2C();
+s32 D_80800270_chfloorbubbles [23] BT_DATA(4, overlays_ch_floorbubbles, 0x0) = { 1903065, 1445892, 2883584, 3276800, 70, 27, 9830600, 458753, 1376256, 13369387, 25166464, 720884, -6488076, 786432, 786464, -257, 2228254, 2490388, 1638447, 4194368, 0, 1638400, 3342336 };
+ActorData D_808002CC_chfloorbubbles [1] BT_DATA(4, overlays_ch_floorbubbles, 0x5C) = { { 527, 687, 1652, 1, 0, (void (*)(struct Actor *))func_80800000_chfloorbubbles, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 163840000, 0, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800244_chfloorbubbles, 0, 120, 0, (void (*)(struct Actor *))func_8080010C_chfloorbubbles, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, 0, 0 } };

@@ -5,8 +5,8 @@ s32 bahold_entrypoint_0()
     return 0x10;
 }
 
-void func_80800008_bahold(u8 *arg0, s32 arg1) {
-    s32 func_8009ADF0(void *, s32, s32);
+void func_80800008_bahold(u8 *arg0, BtIntPtr arg1) {
+    void func_8009ADF0(void *arg0, s32 arg1, s32 arg2);
     s32 var_a2;
 
     (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x9C)))) + (8))) = arg1;
@@ -20,7 +20,7 @@ void func_80800008_bahold(u8 *arg0, s32 arg1) {
 
 void bahold_entrypoint_1(u8 *arg0) { void bahold_entrypoint_7(void *, f32, f32); func_80800008_bahold(arg0, (s32)0); (*(u8 **)((s8 *)arg0 + 0x9C))[0xC] = 0; bahold_entrypoint_7(arg0, 0.0f, 0.0f); }
 
-void bahold_entrypoint_2(s32 arg0) 
+void bahold_entrypoint_2(BtIntPtr arg0) 
 {
 }
 /* extern */
@@ -52,7 +52,7 @@ void func_808000E0_bahold(PlayerState *arg0) {
     rotation[1] = func_800136E4(((f32 *)arg0->unk9C)[1] + rotation[1]);
     position[1] += ((f32 *)arg0->unk9C)[0];
     func_80800088_bahold(*(Unk80132ED0 **)((s8 *)arg0->unk9C + 8), position, rotation);
-}
+}    typedef struct { u8 pad0[0x8]; s32 unk8; u8 unkC; } Objhold_bahold_entrypoint_3_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -60,8 +60,8 @@ void bahold_entrypoint_3(PlayerState *arg0) {
     void *temp_v0;
 
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x9C)));
-    if ((*(s32 *)((s8 *)(temp_v0) + (8))) != 0) {
-        if ((*(u8 *)((s8 *)(temp_v0) + (0xC))) == 0) {
+    if ((((Objhold_bahold_entrypoint_3_temp_v0 *)temp_v0)->unk8) != 0) {
+        if ((((Objhold_bahold_entrypoint_3_temp_v0 *)temp_v0)->unkC) == 0) {
             func_80800008_bahold(arg0, 0);
             return;
         }
@@ -70,7 +70,7 @@ void bahold_entrypoint_3(PlayerState *arg0) {
     }
 }
 
-void bahold_entrypoint_4(s32 arg0)
+void bahold_entrypoint_4(BtIntPtr arg0)
 {
     func_80800008_bahold(arg0,0);
 }
@@ -81,13 +81,13 @@ Unk80132ED0 *bahold_entrypoint_5(PlayerState *arg0) {
 
 /* extern */
 
-void bahold_entrypoint_6(PlayerState *arg0, s32 arg1) {
+void bahold_entrypoint_6(PlayerState *arg0, BtIntPtr arg1) {
     func_80800008_bahold(arg0, arg1);
     func_808000E0_bahold(arg0);
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (0xC))) = 1;
-}
+}    typedef struct { u8 pad0[0x9C]; void * unk9C; } Objhold_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void bahold_entrypoint_7(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (0))) = arg1;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x9C)))) + (4))) = arg2;
+    (*(f32 *)((s8 *)((((Objhold_arg0 *)arg0)->unk9C)) + (0))) = arg1;
+    (*(f32 *)((s8 *)((((Objhold_arg0 *)arg0)->unk9C)) + (4))) = arg2;
 }

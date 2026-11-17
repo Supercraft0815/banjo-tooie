@@ -1,4 +1,4 @@
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1EA3AA0_native.inc"
 #else
 #include "core2/1EA3AA0.h"
@@ -13,7 +13,7 @@ void func_800CA1B0(void *arg0) {
     func_800EFA4C(vec[0], -1.0f, 0.0f, 0.0f);
     temp = vec[0];
     func_800EF934(temp, temp, *(f32 *)((u8 *)arg0 + 0xE8) * (*(f32 *)((u8 *)arg0 + 0xE4) * 0.5f));
-}
+}   typedef struct { f32 unk0; f32 unk4; f32 unk8; u8 padC[0xC]; f32 unk18; f32 unk1C; f32 unk20; u8 pad24[0xC0]; f32 unkE4; f32 unkE8; f32 unkEC; f32 unkF0; f32 unkF4; f32 unkF8; u8 padFC[0x8]; f32 unk104; u8 pad108[0x8]; f32 unk110; f32 unk114; f32 unk118; f32 unk11C; f32 unk120; f32 unk124; u8 pad128[0x3C]; f32 unk164; } Obj1EA3AA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_800CA218(void *arg0, f32 arg1) {
     void func_800EF8BC(f32 dst[3], f32 src[3], f32 pitch);
@@ -22,14 +22,14 @@ void func_800CA218(void *arg0, f32 arg1) {
     f32 *vec[1];
     register f32 *temp;
 
-    vec[0] = (f32 *)((u8 *)arg0 + 0x104);
+    vec[0] = &((Obj1EA3AA0_arg0 *)arg0)->unk104;
     func_800EFA4C(vec[0], 0.0f, 1.0f, 0.0f);
     temp = vec[0];
     func_800EF8BC(temp, temp, arg1);
-    vec[0] = (f32 *)((u8 *)arg0 + 0xF8);
+    vec[0] = &((Obj1EA3AA0_arg0 *)arg0)->unkF8;
     func_800EFA4C(vec[0], -1.0f, 0.0f, 0.0f);
     temp = vec[0];
-    func_800EF934(temp, temp, *(f32 *)((u8 *)arg0 + 0xE8) * arg1);
+    func_800EF934(temp, temp, ((Obj1EA3AA0_arg0 *)arg0)->unkE8 * arg1);
 }
 
 void func_800CA2A8(void *arg0, f32 arg1) {
@@ -55,7 +55,7 @@ void func_800CA314(s32 arg0,s32 arg1)
     aligned4_memcpy(arg0,arg1,0x168);
 }
 
-void func_800CA440(void *);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CA440(void *);
 
 u8 *func_800CA334(void) {
     void* heap_alloc(s32 size);
@@ -68,9 +68,9 @@ u8 *func_800CA334(void) {
     return sp1C;
 }
 
-void func_800CA364(void* arg0) 
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CA364(void* arg0) 
 {
-    heap_free(arg0);
+    heap_free(arg0); BT_NATIVE_ONLY(return 0;)
 }
 void* func_800CA384(void* arg0) 
 {
@@ -81,7 +81,7 @@ void func_800CA3A4(s32 arg0, f32 arg1) {
     void func_800EF4E4(f32[3], f32, f32, f32, f32, f32);
     f32 sp24[3];
 
-    func_800EF4E4(sp24, (*(f32 *)((s8 *)(arg0) + (0x18))), (*(f32 *)((s8 *)(arg0) + (0x1C))), 0.0f, 0.0f, arg1);
+    func_800EF4E4(sp24, (((Obj1EA3AA0_arg0 *)arg0)->unk18), (((Obj1EA3AA0_arg0 *)arg0)->unk1C), 0.0f, 0.0f, arg1);
     func_800EF04C((f32 *) arg0, sp24);
 }
 
@@ -96,7 +96,7 @@ void func_800CA3F4(f32 *arg0, f32 *arg1, f32 arg2) {
     func_800EF04C(arg1, sp1C);
 }
 
-void func_800CA440(void *arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CA440(void *arg0) {
     f32 func_800139F8(f32);
     void func_800CA5F8(f32 *, f32, f32, f32);
     void func_800CA688(s32, f32, f32, f32);
@@ -110,13 +110,13 @@ void func_800CA440(void *arg0) {
     func_800CA688((s32)arg0, 0.0f, 0.0f, 0.0f);
     func_800CA6C0(arg0, 1.0f, 10000.0f);
     func_800CA6F0(arg0, 1.0f);
-    (*(f32 *)((s8 *)arg0 + 0xE4)) = 40.0f;
-    sp20 = (*(f32 *)((s8 *)arg0 + 0xE4)) * 0.5f;
-    (*(f32 *)((s8 *)arg0 + 0xF4)) = 1.0f / func_800139F8(sp20);
-    (*(f32 *)((s8 *)arg0 + 0xE8)) = D_80125970;
+    (((Obj1EA3AA0_arg0 *)arg0)->unkE4) = 40.0f;
+    sp20 = (((Obj1EA3AA0_arg0 *)arg0)->unkE4) * 0.5f;
+    (((Obj1EA3AA0_arg0 *)arg0)->unkF4) = 1.0f / func_800139F8(sp20);
+    (((Obj1EA3AA0_arg0 *)arg0)->unkE8) = D_80125970;
     func_800CA218(arg0, sp20);
     func_800CA2A8(arg0, sp20);
-    func_800CAF34((s32)arg0);
+    BT_NATIVE_ONLY(return) func_800CAF34((s32)arg0);
 }
 
 /* extern */
@@ -124,9 +124,9 @@ void func_800CA440(void *arg0) {
 void func_800CA510(void *arg0, f32 arg1) {
     void func_800CA1B0(void *);
     void func_800CA2A8(void *, f32);
-    (*(f32 *)((s8 *)(arg0) + (0xE8))) = arg1;
+    (((Obj1EA3AA0_arg0 *)arg0)->unkE8) = arg1;
     func_800CA1B0(arg0);
-    func_800CA2A8(arg0, (*(f32 *)((s8 *)(arg0) + (0xE4))) * 0.5f);
+    func_800CA2A8(arg0, (((Obj1EA3AA0_arg0 *)arg0)->unkE4) * 0.5f);
 }
 
 /* extern */
@@ -138,22 +138,22 @@ void func_800CA558(void *arg0, f32 arg1) {
     f32 sp18;
 
     sp18 = arg1 * 0.5f;
-    (*(f32 *)((s8 *)(arg0) + (0xE4))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0xF4))) = (f32) (1.0f / func_800139F8(sp18));
+    (((Obj1EA3AA0_arg0 *)arg0)->unkE4) = arg1;
+    (((Obj1EA3AA0_arg0 *)arg0)->unkF4) = (f32) (1.0f / func_800139F8(sp18));
     func_800CA218(arg0, sp18);
     func_800CA2A8(arg0, sp18);
 }
 
 void func_800EE7F8();
 
-void func_800CA5B8()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CA5B8(BT_PASS2(s32 bt_a0, s32 bt_a1))
 {
-    func_800EE7F8();
+    func_800EE7F8(BT_PASS2(bt_a0, bt_a1)); BT_NATIVE_ONLY(return 0;)
 }
 
-void func_800CA5D8()
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CA5D8(BT_PASS2(s32 bt_a0, s32 bt_a1))
 {
-    func_800EE84C();
+    BT_NATIVE_ONLY(return) func_800EE84C(BT_PASS2(bt_a0, bt_a1));
 }
 
 void func_800CA5F8(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
@@ -170,7 +170,7 @@ void func_800CA628(f32 *arg0, f32 *arg1, f32 *arg2) {
     }
 }
 
-void func_800CA668(s32 arg0) { func_800EE7F8(arg0 + 0x18); }
+void func_800CA668(s32 arg0 BT_PASS2(, s32 bt_a1)) { func_800EE7F8(arg0 + 0x18 BT_PASS2(, bt_a1)); }
 
 void func_800CA688(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     void func_800EFA4C(f32[3], f32, f32, f32);
@@ -178,13 +178,13 @@ void func_800CA688(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 void func_800CA6C0(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)(arg0) + (0xEC))) = arg1;
-    (*(f32 *)((s8 *)(arg0) + (0xF0))) = arg2;
+    (((Obj1EA3AA0_arg0 *)arg0)->unkEC) = arg1;
+    (((Obj1EA3AA0_arg0 *)arg0)->unkF0) = arg2;
 }
 
 void func_800CA6D4(void *arg0, f32 *arg1, f32 *arg2) {
-    *arg1 = (*(f32 *)((s8 *)(arg0) + (0xEC)));
-    *arg2 = (*(f32 *)((s8 *)(arg0) + (0xF0)));
+    *arg1 = (((Obj1EA3AA0_arg0 *)arg0)->unkEC);
+    *arg2 = (((Obj1EA3AA0_arg0 *)arg0)->unkF0);
 }
 
 f32 func_800CA6E8(f32 *arg0) {
@@ -192,7 +192,7 @@ f32 func_800CA6E8(f32 *arg0) {
 }
 
 void func_800CA6F0(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)arg0 + 356) = arg1;
+    ((Obj1EA3AA0_arg0 *)arg0)->unk164 = arg1;
 }
 
 f32 func_800CA6FC(f32 *arg0) {
@@ -238,18 +238,18 @@ f32 func_800CA7B4(f32 *arg0) {
 }
 
 void func_800CA7BC(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
-    *arg1 = (*(f32 *)((s8 *)(arg0) + (0xE4)));
-    *arg2 = (*(f32 *)((s8 *)(arg0) + (0xE8)));
-    *arg3 = (*(f32 *)((s8 *)(arg0) + (0xEC)));
-    *arg4 = (*(f32 *)((s8 *)(arg0) + (0xF0)));
+    *arg1 = (((Obj1EA3AA0_arg0 *)arg0)->unkE4);
+    *arg2 = (((Obj1EA3AA0_arg0 *)arg0)->unkE8);
+    *arg3 = (((Obj1EA3AA0_arg0 *)arg0)->unkEC);
+    *arg4 = (((Obj1EA3AA0_arg0 *)arg0)->unkF0);
 }
 
-void func_800CA7E4(s32 arg0, s32 *arg1) { func_800EE7F8(arg1, (s32 *)arg0); }
+void func_800CA7E4(s32 arg0, s32 *arg1) { func_800EE7F8(arg1, (s32 *)arg0); }    typedef struct { s32 unk0; s32 unk4; s32 unk8; } Obj1EA3AA0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_800CA810(void *arg0, void *arg1) {
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (0))) * 500.0f) / 500.0f);
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (4))) * 500.0f) / 500.0f);
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (8))) * 500.0f) / 500.0f);
+    (((Obj1EA3AA0_arg1 *)arg1)->unk0) = (s32) ((f32) (s32) ((((Obj1EA3AA0_arg0 *)arg0)->unk0) * 500.0f) / 500.0f);
+    (((Obj1EA3AA0_arg1 *)arg1)->unk4) = (s32) ((f32) (s32) ((((Obj1EA3AA0_arg0 *)arg0)->unk4) * 500.0f) / 500.0f);
+    (((Obj1EA3AA0_arg1 *)arg1)->unk8) = (s32) ((f32) (s32) ((((Obj1EA3AA0_arg0 *)arg0)->unk8) * 500.0f) / 500.0f);
 }
 
 void func_800CA8B4(f32 *arg0, f32 *arg1, f32 *arg2) {
@@ -271,9 +271,9 @@ void func_800CA8F4(f32 *arg0, f32 *arg1, f32 *arg2) {
 }
 
 void func_800CA934(void *arg0, void *arg1) {
-    (*(s16 *)((s8 *)(arg1) + (0))) = (s16) (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (0))) * 500.0f) / 500.0f);
-    (*(s16 *)((s8 *)(arg1) + (2))) = (s16) (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (4))) * 500.0f) / 500.0f);
-    (*(s16 *)((s8 *)(arg1) + (4))) = (s16) (s32) ((f32) (s32) ((*(f32 *)((s8 *)(arg0) + (8))) * 500.0f) / 500.0f);
+    (*(s16 *)((s8 *)(arg1) + (0))) = (s16) (s32) ((f32) (s32) ((((Obj1EA3AA0_arg0 *)arg0)->unk0) * 500.0f) / 500.0f);
+    (*(s16 *)((s8 *)(arg1) + (2))) = (s16) (s32) ((f32) (s32) ((((Obj1EA3AA0_arg0 *)arg0)->unk4) * 500.0f) / 500.0f);
+    (*(s16 *)((s8 *)(arg1) + (4))) = (s16) (s32) ((f32) (s32) ((((Obj1EA3AA0_arg0 *)arg0)->unk8) * 500.0f) / 500.0f);
 }
 
 void func_800CA9D8(f32 *arg0, f32 *arg1) {
@@ -281,9 +281,9 @@ void func_800CA9D8(f32 *arg0, f32 *arg1) {
 }
 
 void func_800CAA00(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
-    *arg1 = (*(f32 *)((s8 *)(arg0) + (0x18)));
-    *arg2 = (*(f32 *)((s8 *)(arg0) + (0x1C)));
-    *arg3 = (*(f32 *)((s8 *)(arg0) + (0x20)));
+    *arg1 = (((Obj1EA3AA0_arg0 *)arg0)->unk18);
+    *arg2 = (((Obj1EA3AA0_arg0 *)arg0)->unk1C);
+    *arg3 = (((Obj1EA3AA0_arg0 *)arg0)->unk20);
 }
 
 f32 func_800CAA1C(f32 *arg0) {
@@ -344,7 +344,7 @@ s32 func_800CAF34(s32 arg0) {
     func_80019224((f32 *)(arg0 + 0x134), (f32 *)(arg0 + 0x11C));
     func_80019224((f32 *)(arg0 + 0x140), (f32 *)(arg0 + 0x110));
     func_80019480((f32 *)(arg0 + 0x14C), -*(f32 *)(arg0 + 0x11C), *(f32 *)(arg0 + 0x120), *(f32 *)(arg0 + 0x124));
-    func_80019480((f32 *)(arg0 + 0x158), *(f32 *)(arg0 + 0x11C), -*(f32 *)(arg0 + 0x120), *(f32 *)(arg0 + 0x124));
+    func_80019480((f32 *)(arg0 + 0x158), *(f32 *)(arg0 + 0x11C), -*(f32 *)(arg0 + 0x120), *(f32 *)(arg0 + 0x124)); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_800CB0E8(u8 *arg0, f32 *arg1, s32 arg2) { void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, (f32 *)(arg0 + 0x128 + (arg2 * 12))); }

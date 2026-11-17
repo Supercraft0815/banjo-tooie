@@ -27,10 +27,10 @@ extern void _bskazshock_entrypoint_0(PlayerState *self);
 extern void _bskazshock_entrypoint_1(PlayerState *self);
 extern void _bskazshock_entrypoint_2(PlayerState *self);
 extern void _bskazshock_entrypoint_3(PlayerState *self);
-extern s32 _bskazshock_entrypoint_4(s32 idx);
+extern BtIntPtr _bskazshock_entrypoint_4(s32 idx);
 extern void _bskazshock_entrypoint_5(PlayerState *self);
 extern void _bskazshock_entrypoint_6(PlayerState *self);
 extern void _bskazshock_entrypoint_7(PlayerState *self);
-extern s32 _bskazshock_entrypoint_8(s32 idx);
+extern BtIntPtr _bskazshock_entrypoint_8(s32 idx);
 
 #endif // __BS_KAZ_SHOCK_H__

@@ -3,12 +3,12 @@
 s32 ncbadolly_entrypoint_0() 
 {
     return 0x2C;
-}
+}    typedef struct { u8 pad0[0x1C]; u8 * unk1C; } Objdolly_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void ncbadolly_entrypoint_1(u8 *arg0) {
-    s32 func_801124D0(s32, s32);
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x1C)))) + (0x21))) = 1;
-    func_801124D0((s32) arg0, 1);
+    void func_801124D0(BtIntPtr arg0, s32 arg1);
+    (*(s8 *)((s8 *)((((Objdolly_arg0 *)arg0)->unk1C)) + (0x21))) = 1;
+    func_801124D0((BtIntPtr) arg0, 1);
 }
 
 void ncbadolly_entrypoint_2(s32 arg0) 
@@ -21,9 +21,9 @@ void ncbadolly_entrypoint_3(PlayerState *arg0) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA98(f32 *, f32 *, f32);
     void func_800EFB24(void *, void *, void *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80111AE0(void *, f32 *);
     void func_80112524(PlayerState *, f32 *);
     s32 func_8011329C(PlayerState *);
@@ -64,8 +64,8 @@ void ncbadolly_entrypoint_3(PlayerState *arg0) {
             func_8011329C(arg0);
         }
         func_80112524(arg0, sp64);
-        func_80110A68((s32)arg0, (s32)sp4C, (s32)sp64);
-        func_80110790((s32)arg0, sp4C);
+        func_80110A68((BtIntPtr)arg0, (BtIntPtr)sp4C, (BtIntPtr)sp64);
+        func_80110790((BtIntPtr)arg0, sp4C);
     }
 }
 
@@ -79,25 +79,25 @@ void ncbadolly_entrypoint_4(u8 *arg0, s32 arg1) {
     s32 _cadbfunc_entrypoint_4(u8 *);
     s32 _cadbfunc_entrypoint_6(f32 *, f32 *);
     s32 _cadbfunc_entrypoint_8(f32 *, f32 *);
-    s32 func_800A5800(s32);
+    u8 *func_800A5800(s32 id);
     void func_80111B8C(s32 *, f32, f32);
-    void func_80112570(u8 *, s32, f32);
+    void func_80112570(u8 *, BtIntPtr, f32);
     f32 sp2C;
     f32 sp28;
     s32 sp24;
 
     func_800A5800(arg1);
     _cadbfunc_entrypoint_29(1, &sp24);
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x1C)))) + (0x20))) = (s8) sp24;
-    _cadbfunc_entrypoint_4((*(u8 **)((s8 *)(arg0) + (0x1C))) + 0xC);
-    _cadbfunc_entrypoint_0((*(u8 **)((s8 *)(arg0) + (0x1C))));
+    (*(s8 *)((s8 *)((((Objdolly_arg0 *)arg0)->unk1C)) + (0x20))) = (s8) sp24;
+    _cadbfunc_entrypoint_4((((Objdolly_arg0 *)arg0)->unk1C) + 0xC);
+    _cadbfunc_entrypoint_0((((Objdolly_arg0 *)arg0)->unk1C));
     _cadbfunc_entrypoint_6(&sp2C, &sp28);
     func_80111B8C((s32 *) arg0, sp2C, sp28);
     _cadbfunc_entrypoint_8(&sp2C, &sp28);
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x1C)))) + (0x24))) = sp2C;
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x1C)))) + (0x28))) = sp28;
-    _cadbfunc_entrypoint_18((*(u8 **)((s8 *)(arg0) + (0x1C))) + 0x1C);
-    _cadbfunc_entrypoint_20((*(u8 **)((s8 *)(arg0) + (0x1C))) + 0x18);
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x1C)))) + (0x21))) = 0;
-    func_80112570(arg0, (s32) ((*(u8 **)((s8 *)(arg0) + (0x1C))) + 0xC), 150.0f);
+    (*(f32 *)((s8 *)((((Objdolly_arg0 *)arg0)->unk1C)) + (0x24))) = sp2C;
+    (*(f32 *)((s8 *)((((Objdolly_arg0 *)arg0)->unk1C)) + (0x28))) = sp28;
+    _cadbfunc_entrypoint_18((((Objdolly_arg0 *)arg0)->unk1C) + 0x1C);
+    _cadbfunc_entrypoint_20((((Objdolly_arg0 *)arg0)->unk1C) + 0x18);
+    (*(s8 *)((s8 *)((((Objdolly_arg0 *)arg0)->unk1C)) + (0x21))) = 0;
+    func_80112570(arg0, (BtIntPtr) ((((Objdolly_arg0 *)arg0)->unk1C) + 0xC), 150.0f);
 }

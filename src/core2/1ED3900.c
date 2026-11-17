@@ -41,7 +41,7 @@ init_entries:
 }
 
 void func_800FA130(s32 arg0, s32 arg1) {
-    s32 _scinfobar_entrypoint_0(s32, s32, s32);
+    void *_scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2);
     s32 _scinfobar_entrypoint_1(s32);
     void _scinfobar_entrypoint_6(s32, s32);
     extern s32 D_80123880[][7];
@@ -173,10 +173,10 @@ void func_800FA2C0(void) {
             break;
         }
     }
-}
+}    typedef struct { u8 pad0[0x6]; s16 unk6; s16 unk8; } Obj1ED3900_func_800FA508_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
-void func_800FA508(s32 arg0) {
-    s32 _scinfobar_entrypoint_24(s32, s32, s16, s16);
+void func_800FA508(BtIntPtr arg0) {
+    void _scinfobar_entrypoint_24(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3);
     s32 func_800A9C98(void);
     int func_800DB9B0(void);
     extern s32 D_80123880[][7];
@@ -186,7 +186,7 @@ void func_800FA508(s32 arg0) {
     extern s32 D_80123DC0;
     extern u8 D_801357B0;
     s32 (*var_s0)[7];
-    s32 temp_a1;
+    BtIntPtr temp_a1;
     int var_v1;
     int var_v1_2;
 
@@ -194,9 +194,9 @@ void func_800FA508(s32 arg0) {
         var_v1 = func_800A9C98() != 0 || func_800DB9B0() != 0;
         var_s0 = D_80123880; do { temp_a1 = var_s0[0][6];
             if (temp_a1 != 0) {
-                var_v1_2 = (s32) var_s0 != (s32) &D_801239B4 && (s32) var_s0 != (s32) &D_80123998 && (s32) var_s0 != (s32) &D_80123D6C;
+                var_v1_2 = (BtIntPtr) var_s0 != (BtIntPtr) &D_801239B4 && (BtIntPtr) var_s0 != (BtIntPtr) &D_80123998 && (BtIntPtr) var_s0 != (BtIntPtr) &D_80123D6C;
                 if ((var_v1 == 0) || (var_v1_2 == 0)) {
-                    _scinfobar_entrypoint_24(arg0, temp_a1, *(s16 *)((s8 *)var_s0 + 6), *(s16 *)((s8 *)var_s0 + 8));
+                    _scinfobar_entrypoint_24(arg0, temp_a1, ((Obj1ED3900_func_800FA508_var_s0 *)var_s0)->unk6, ((Obj1ED3900_func_800FA508_var_s0 *)var_s0)->unk8);
                 }
             }
             var_s0++;
@@ -206,10 +206,10 @@ void func_800FA508(s32 arg0) {
 
 void func_800FA608(void)
 {
-  s32 defrag(s32);
+  BtIntPtr defrag(BtIntPtr);
   extern s32 D_80123880[][7];
   extern s32 D_80123DC0;
-  s32 new_var;
+  BtIntPtr new_var;
   s32 (*var_s0)[7];
   s32 temp_a0;
  var_s0 = D_80123880; do { temp_a0 = var_s0[0][6];
@@ -223,7 +223,7 @@ void func_800FA608(void)
   while (var_s0 != ((s32 (*)[7]) (&D_80123DC0)));
 }
 
-void func_800FA660(void)
+void func_800FA660(BT_PARAM_OR_VOID(BT_PASS2(s32 bt_a0, s32 bt_a1)))
 {
   s32 _scinfobar_entrypoint_1(s32);
   extern s32 D_80123DC0;
@@ -254,13 +254,13 @@ void func_800FA6B8(s32 arg0, s32 arg1, s32 arg2) {
 s32 func_800FA708(u32 arg0, s32 arg1, s32 arg2, u32 arg3)
 {
   void _scinfobar_entrypoint_6(s32, s32);
-  s32 _scinfobar_entrypoint_16(s32);
-  s32 _scinfobar_entrypoint_22(s32);
-  s32 _scinfobar_entrypoint_23(s32);
-  s32 _scinfobar_entrypoint_7(s32, s32);
+  s32 _scinfobar_entrypoint_16(s16 *arg0);
+  s32 _scinfobar_entrypoint_22(u8 *arg0);
+  s32 _scinfobar_entrypoint_23(u8 *arg0);
+  s32 _scinfobar_entrypoint_7(void *arg0, s32 arg1);
   extern s32 D_80123880[][7];
   s32 *entry;
-  s32 handle;
+  BtIntPtr handle;
   s32 state;
   u32 mode;
   entry = D_80123880[arg1];
@@ -300,20 +300,20 @@ s32 func_800FA818(s32 arg0, s32 arg1) {
     }
     func_800FA240(arg0, 0);
     return 1;
-}
+}    typedef struct { u8 pad0[0xC]; u8 unkC; u8 padD[0x1]; s8 unkE; } Obj1ED3900_func_800FA874_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
 int func_800FA874(s32 arg0, s32 arg1) {
-    s32 _scinfobar_entrypoint_22(s32);
+    s32 _scinfobar_entrypoint_22(u8 *arg0);
     extern s32 D_80123880[][7];
-    s32 temp_a2;
+    BtIntPtr temp_a2;
     s32 *temp_v1;
 
     temp_v1 = D_80123880[arg0];
     temp_a2 = temp_v1[6];
-    if ((temp_a2 == 0) || (arg1 != (*(s8 *)((s8 *)(temp_v1) + (0xE))))) {
+    if ((temp_a2 == 0) || (arg1 != (((Obj1ED3900_func_800FA874_temp_v1 *)temp_v1)->unkE))) {
         return 0;
     }
-    return (*(u8 *)((s8 *)(temp_v1) + (0xC))) == 2 &&
+    return (((Obj1ED3900_func_800FA874_temp_v1 *)temp_v1)->unkC) == 2 &&
         _scinfobar_entrypoint_22(temp_a2) != 0;
 }
 
@@ -326,7 +326,7 @@ s32 func_800FA8E8(s32 arg0, s32 arg1) {
         return -1;
     }
     return (*((u8 *)temp_v1 + 0xC)) != 0;
-}
+}    typedef struct { u8 pad0[0xC]; u8 unkC; u8 padD[0x1]; s8 unkE; } Obj1ED3900_func_800FA934_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
 int func_800FA934(s32 arg0, s32 arg1) {
     s32 _scinfobar_entrypoint_21(s32);
@@ -336,10 +336,10 @@ int func_800FA934(s32 arg0, s32 arg1) {
 
     temp_v1 = D_80123880[arg0];
     temp_a2 = temp_v1[6];
-    if ((temp_a2 == 0) || (arg1 != (*(s8 *)((s8 *)(temp_v1) + (0xE))))) {
+    if ((temp_a2 == 0) || (arg1 != (((Obj1ED3900_func_800FA934_temp_v1 *)temp_v1)->unkE))) {
         return -1;
     }
-    return (*(u8 *)((s8 *)(temp_v1) + (0xC))) == 2 &&
+    return (((Obj1ED3900_func_800FA934_temp_v1 *)temp_v1)->unkC) == 2 &&
         _scinfobar_entrypoint_21(temp_a2) != 0;
 }
 
@@ -349,9 +349,9 @@ void func_800FA9A8(s32 arg0) {
 }
 
 void func_800FA9B4(s32 arg0, s32 arg1) {
-    s32 _scinfobar_entrypoint_9(s32, s32);
+    void _scinfobar_entrypoint_9(u32 *arg0, s32 arg1);
     extern s32 D_80123898[][7];
-    s32 temp_a2;
+    BtIntPtr temp_a2;
 
     temp_a2 = D_80123898[arg0][0];
     if (temp_a2 != 0) {
@@ -360,9 +360,9 @@ void func_800FA9B4(s32 arg0, s32 arg1) {
 }
 
 void func_800FA9F4(s32 arg0, s32 arg1) {
-    s32 _scinfobar_entrypoint_4(s32, s32);
+    void _scinfobar_entrypoint_4(s32 *arg0, s32 arg1);
     extern s32 D_80123898[][7];
-    s32 temp_a2;
+    BtIntPtr temp_a2;
 
     temp_a2 = D_80123898[arg0][0];
     if (temp_a2 != 0) {
@@ -371,9 +371,9 @@ void func_800FA9F4(s32 arg0, s32 arg1) {
 }
 
 void func_800FAA34(s32 arg0) {
-    s32 _scinfobar_entrypoint_5(s32, s32);
+    void _scinfobar_entrypoint_5(s8 *arg0, s32 arg1);
     extern s32 D_80123898[][7];
-    s32 temp_a2;
+    BtIntPtr temp_a2;
 
     temp_a2 = D_80123898[arg0][0];
     if (temp_a2 != 0) {
@@ -382,18 +382,18 @@ void func_800FAA34(s32 arg0) {
 }
 
 void func_800FAA74(s32 arg0) {
-    s32 _scinfobar_entrypoint_5(s32, s32);
+    void _scinfobar_entrypoint_5(s8 *arg0, s32 arg1);
     extern s32 D_80123898[][7];
-    s32 temp_a2;
+    BtIntPtr temp_a2;
 
     temp_a2 = D_80123898[arg0][0];
     if (temp_a2 != 0) {
         _scinfobar_entrypoint_5(temp_a2, 2);
     }
-}
+}    typedef struct { u8 pad0[0x14]; f32 unk14; } Obj1ED3900_func_800FAAB4_temp_s0; /* offsets.py genstruct: fields from raw offsets on temp_s0; rename once understood */
 
 s32 func_800FAAB4(s32 arg0, s32 arg1) {
-    s32 _scinfobar_entrypoint_7(s32, s32);
+    s32 _scinfobar_entrypoint_7(void *arg0, s32 arg1);
     void _scinfobar_entrypoint_6(s32, s32);
     extern s32 D_80123880[][7];
     s32 *temp_s0;
@@ -407,8 +407,14 @@ s32 func_800FAAB4(s32 arg0, s32 arg1) {
     if (_scinfobar_entrypoint_7(temp_s0[6], arg1) == 0) {
         return 0;
     }
-    *(f32 *)((s8 *)temp_s0 + 0x14) = 2.0f;
+    ((Obj1ED3900_func_800FAAB4_temp_s0 *)temp_s0)->unk14 = 2.0f;
     _scinfobar_entrypoint_6(temp_s0[6], 0);
     ((s8 *)temp_s0)[0x11] = 1;
     return 1;
 }
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+u8 D_801357B0 BT_DATA(4, bss_core2bss2_2, 0x2910);
+#endif

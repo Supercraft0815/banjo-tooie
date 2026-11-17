@@ -1,6 +1,6 @@
 #include "common.h"
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_gsfile.h"
 #include "native_world_load.h"
 #include <stdio.h>
@@ -61,56 +61,56 @@ void gsworldDll_entrypoint_0(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void gsworldDll_entrypoint_1(void *arg0) {
-    s32 _chbounce_entrypoint_1();
-    s32 _gccollectDll_entrypoint_5();
-    s32 _gcgoto_entrypoint_12();
-    s32 _glcutDll_entrypoint_5();
-    s32 _gldialog_entrypoint_3();
-    s32 _idworldmake_entrypoint_3();
-    s32 _subaddierouteDll_entrypoint_0();
-    s32 _sufade_entrypoint_2();
-    s32 _sulights_entrypoint_8();
-    s32 func_800A5630();
-    s32 func_800A5CC4();
-    s32 func_800AB9D0();
-    s32 func_800B5054();
-    s32 func_800B5824();
-    s32 func_800B5AD4();
-    s32 func_800B5E04();
-    s32 func_800B7CC4();
-    s32 func_800BC8A0();
-    s32 func_800BD5DC();
-    s32 func_800BF420();
-    s32 func_800BFCB4();
-    s32 func_800BFF28();
-    s32 func_800C00E0();
-    s32 func_800C5770();
-    s32 func_800C6A60();
-    s32 func_800C7500();
-    s32 func_800C7A60();
-    s32 func_800C90D0();
-    s32 func_800CB9AC();
-    s32 func_800D2970();
-    s32 func_800D2E4C();
-    s32 func_800D743C();
-    s32 func_800D8800();
-    s32 func_800D8898();
-    s32 func_800DBB24();
-    s32 func_800E1748();
-    s32 func_800E4CE8();
-    s32 func_800E86DC();
-    s32 func_800E8B04();
-    s32 func_800E9774();
-    s32 func_800EA148(s32);
-    s32 func_800EBC04();
-    s32 func_800F732C();
-    s32 func_800FA660();
-    s32 func_800FF038(u16);
-    s32 func_800FFDBC();
-    s32 func_80100610();
-    s32 func_80100B4C();
-    s32 func_8010D89C();
+typedef struct { s16 unk0; u16 unk2; BtIntPtr unk4; s16 unk8; u8 padA[0x4]; u16 unkE; } ObjworldDll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void gsworldDll_entrypoint_1(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32 bt_a1)) {
+    void _chbounce_entrypoint_1(void);
+    void _gccollectDll_entrypoint_5(void);
+    void _gcgoto_entrypoint_12(void);
+    void _glcutDll_entrypoint_5(void);
+    void _gldialog_entrypoint_3(void);
+    void _idworldmake_entrypoint_3(void);
+    void _subaddierouteDll_entrypoint_0(void);
+    void _sufade_entrypoint_2(void);
+    void _sulights_entrypoint_8(void);
+    void func_800A5630(void);
+    void func_800A5CC4(void);
+    void func_800AB9D0(void);
+    void func_800B5054(void);
+    void func_800B5824(void);
+    void func_800B5AD4(void);
+    void func_800B5E04(void);
+    void func_800B7CC4(void);
+    void func_800BC8A0(void);
+    void func_800BD5DC();
+    void func_800BF420(void);
+    void func_800BFCB4(void);
+    void func_800BFF28();
+    void func_800C00E0(void);
+    void func_800C5770(void);
+    void func_800C6A60(void);
+    void func_800C7500(void);
+    void func_800C7A60(void);
+    void func_800C90D0(void);
+    void func_800CB9AC(void);
+    void func_800D2970(void);
+    void func_800D2E4C(void);
+    void func_800D743C();
+    void func_800D8800(void);
+    void func_800D8898(void);
+    void func_800DBB24(void);
+    void func_800E1748(void);
+    void func_800E4CE8(void);
+    void func_800E86DC(void);
+    void func_800E8B04(void);
+    void func_800E9774(void);
+    void func_800EA148(s32 arg0);
+    void func_800EBC04(void);
+    void func_800F732C(void);
+    void func_800FA660(void);
+    void func_800FF038(s32 arg0);
+    void func_800FFDBC(void);
+    void func_80100610(void);
+    void func_80100B4C(void);
+    void func_8010D89C(void);
     _gccollectDll_entrypoint_5();
     func_800EA148(3);
     func_800C00E0();
@@ -154,7 +154,7 @@ void gsworldDll_entrypoint_1(void *arg0) {
     func_800D2E4C();
     func_800EBC04();
     _gldialog_entrypoint_3();
-    func_800FF038((*(u16 *)((s8 *)(arg0) + (2))));
+    func_800FF038((((ObjworldDll_arg0 *)arg0)->unk2));
     func_800DBB24();
     func_800E8B04();
     func_800D2970();
@@ -165,17 +165,17 @@ void gsworldDll_entrypoint_1(void *arg0) {
 /* extern */
 
 void gsworldDll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _chbounce_entrypoint_0();
-    s32 _gcgoto_entrypoint_13();
-    s32 _gcsectionDll_entrypoint_2(s32);
-    s32 _gcstatusDll_entrypoint_11();
-    s32 _gcwater_entrypoint_0();
-    s32 _glcutDll_entrypoint_4();
-    s32 _gldialog_entrypoint_2();
-    s32 _glhittableDll_entrypoint_0();
-    s32 _glintrosyncDll_entrypoint_6(s32);
-    s32 _idworldmake_entrypoint_4();
-    s32 func_800A5124(s16);
+    void _chbounce_entrypoint_0(void);
+    void _gcgoto_entrypoint_13(void);
+    BtIntPtr _gcsectionDll_entrypoint_2(s32);
+    u8 _gcstatusDll_entrypoint_11(void);
+    void _gcwater_entrypoint_0(void);
+    void _glcutDll_entrypoint_4(void);
+    void _gldialog_entrypoint_2(void);
+    void _glhittableDll_entrypoint_0(void);
+    void _glintrosyncDll_entrypoint_6(s32 arg0);
+    void _idworldmake_entrypoint_4(void);
+    void func_800A5124();
     void func_800A5320(void);
     void func_800A55E0(void);
     void func_800A5AB0(void);
@@ -189,46 +189,46 @@ void gsworldDll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800B5B04(void);
     void func_800B5DFC(void);
     void func_800B7D14(void);
-    s32 func_800BC690();
-    s32 func_800BD570();
-    void func_800BF444(void);
+    void func_800BC690(void);
+    void func_800BD570();
+    s32 func_800BF444(void);
     void func_800BF68C(void);
-    s32 func_800BFCBC();
-    s32 func_800BFF4C();
-    s32 func_800C00BC();
+    void func_800BFCBC(void);
+    void func_800BFF4C();
+    void func_800C00BC();
     void func_800C5778(void);
     void func_800C6A68(void);
     void func_800C73A4(void);
-    s32 func_800C7A58();
-    s32 func_800C90AC();
-    s32 func_800CB988();
+    void func_800C7A58(void);
+    void func_800C90AC(void);
+    void func_800CB988();
     void func_800D298C(void);
     void func_800D2CD0(void);
-    s32 func_800D5250();
-    s32 func_800D7418();
-    s32 func_800D8800();
+    void func_800D5250();
+    void func_800D7418();
+    void func_800D8800(void);
     void func_800D8870(void);
-    s32 func_800D9FFC();
-    s32 func_800DA048();
+    void func_800D9FFC(void);
+    void func_800DA048(void);
     void func_800E1788(void);
     void func_800E829C(void);
-    s32 func_800E8A60();
+    void func_800E8A60(void);
     void func_800E9728(void);
     void func_800EA334(s32);
     void func_800EA34C(s32);
-    s32 func_800EBB94();
-    s32 func_800F73C4(s32);
-    s32 func_800FA010();
-    s32 func_800FE740();
-    s32 func_8010052C();
-    s32 func_80100B3C();
-    s32 func_8010D790();
+    void func_800EBB94(void);
+    void func_800F73C4(s32 arg0);
+    void func_800FA010(void);
+    void func_800FE740(void);
+    void func_8010052C(void);
+    void func_80100B3C(void);
+    void func_8010D790(void);
 
-    (*(u16 *)((s8 *)(arg0) + (0xE))) = (*(u16 *)((s8 *)(arg0) + (2)));
-    (*(s16 *)((s8 *)(arg0) + (0))) = 3;
-    (*(u16 *)((s8 *)(arg0) + (2))) = arg1;
-    (*(s32 *)((s8 *)(arg0) + (4))) = _gcsectionDll_entrypoint_2(arg1);
-    (*(s16 *)((s8 *)(arg0) + (8))) = (s16) arg2;
+    (((ObjworldDll_arg0 *)arg0)->unkE) = (((ObjworldDll_arg0 *)arg0)->unk2);
+    (((ObjworldDll_arg0 *)arg0)->unk0) = 3;
+    (((ObjworldDll_arg0 *)arg0)->unk2) = arg1;
+    (((ObjworldDll_arg0 *)arg0)->unk4) = _gcsectionDll_entrypoint_2(arg1);
+    (((ObjworldDll_arg0 *)arg0)->unk8) = (s16) arg2;
     func_800A9EC0((s32) arg1);
     func_800D8800();
     func_800BC690();
@@ -267,7 +267,7 @@ void gsworldDll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800BD570();
     func_800FA010();
     if (arg3 != 0xF) {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
         if(!gsworldDll_entrypoint_0(arg1,arg3)) {
             fprintf(stderr,"Banjo-Tooie native world: loading map %d failed\n",arg1);
             abort();
@@ -291,7 +291,7 @@ void gsworldDll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_800FE740();
     func_800C73A4();
     _chbounce_entrypoint_0();
-    func_800A5124((*(s16 *)((s8 *)(arg0) + (8))));
+    func_800A5124((((ObjworldDll_arg0 *)arg0)->unk8));
     func_800B5DFC();
     func_800A5C94();
     _glcutDll_entrypoint_4();
@@ -315,7 +315,7 @@ void gsworldDll_entrypoint_3(s16 *arg0, s32 arg1) {
     *arg0 = arg1;
 }
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 #define WORLD_FILENAME const char *
 #else
 #define WORLD_FILENAME s32
@@ -323,5 +323,5 @@ void gsworldDll_entrypoint_3(s16 *arg0, s32 arg1) {
 void func_8080054C_gsworldDll(s32 arg0, s32 arg1, WORLD_FILENAME arg2) {
 }
 void gsworldDll_entrypoint_4(void *arg0) {
-    func_8080054C_gsworldDll(1, (s32) (*(u16 *)((s8 *)(arg0) + (2))), (WORLD_FILENAME) "world.gs");
+    func_8080054C_gsworldDll(1, (s32) (((ObjworldDll_arg0 *)arg0)->unk2), (WORLD_FILENAME) "world.gs");
 }

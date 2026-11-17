@@ -24,10 +24,10 @@ s32 dbmorph_entrypoint_1(s16 *arg0) {
 
 /* extern */
 
-u8 dbmorph_entrypoint_2(void) {
+u8 dbmorph_entrypoint_2(BT_PARAM_OR_VOID(s16 *bt_a0) BT_PASS2(, s32 bt_a1)) {
     void *func_80800000_dbmorph();
 #ifdef BT_NATIVE
-    return (*(u8 *)((s8 *)(((void * (*)())func_80800000_dbmorph)()) + (3)));
+    return (*(u8 *)((s8 *)(((void * (*)(s16 *, s32))func_80800000_dbmorph)(BT_PASS2(bt_a0, bt_a1))) + (3)));
 #else
     return (*(u8 *)((s8 *)(func_80800000_dbmorph()) + (3)));
 #endif
@@ -67,7 +67,7 @@ typedef struct {
 } MorphBlock;
 
 void dbmorph_entrypoint_3(void *arg0, MorphTarget *arg1, void *arg2, s32 arg3, f32 *weights) {
-    s32 aligned4_memcpy(void *, void *, s32);
+    void aligned4_memcpy(void* dst, void* src, int length);
     void *func_800B2190(void *);
     void *func_80800000_dbmorph();
     f32 weight;
@@ -158,7 +158,7 @@ void dbmorph_entrypoint_3(void *arg0, MorphTarget *arg1, void *arg2, s32 arg3, f
             while (*indices++ != -2) {
             }
         }
-        if ((u32) indices & 3) {
+        if ((BtUIntPtr) indices & 3) {
             indices++;
         }
         block = (MorphBlock *) indices;
@@ -166,11 +166,11 @@ void dbmorph_entrypoint_3(void *arg0, MorphTarget *arg1, void *arg2, s32 arg3, f
     arg1->dirty = dirty;
 }
 
-void dbmorph_entrypoint_4(s16 *arg0, u8 *arg1, u8 *arg2, s32 arg3, s32 arg4) {
-    s32 func_800ADE2C(s32, s32);
+void dbmorph_entrypoint_4(s16 *arg0, u8 *arg1, u8 *arg2, s32 arg3, BtIntPtr arg4) {
+    BtIntPtr func_800ADE2C(BtIntPtr, s32);
     void *func_800B2190(void *);
     void *func_80100480(s32, s32);
-    s32 func_80116568(s32, void *, void *, s32);
+    void func_80116568(void *matrix, const s16 *input, s16 *output, s32 count);
     s32 remaining;
     s16 *output;
     s16 *data;

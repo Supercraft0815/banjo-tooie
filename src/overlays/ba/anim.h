@@ -33,7 +33,7 @@ typedef struct ba_anim_s {
 } BaAnim;
 
 s32 baanim_get_size(void);
-void __baanim_applyBottlesBonus(s32 arg0, s32 arg1);
+void __baanim_applyBottlesBonus(BtIntPtr arg0, s32 arg1);
 void baanim_init(PlayerState *self);
 void baanim_free(PlayerState *self);
 void baanim_update(PlayerState *self);
@@ -47,7 +47,7 @@ void func_8008C9E4(PlayerState *self, s32 arg1);
 void func_8008C9F0(PlayerState *self, f32, f32, f32, f32);
 void func_8008CA30(PlayerState *self, f32 scale);
 void func_8008CA4C(PlayerState *self, BaAnimUpdateType arg1);
-s32 func_8008CA74(PlayerState *self);
+BtIntPtr func_8008CA74(PlayerState *self);
 void func_8008CA98(PlayerState *self);
 AnimCtrl* baanim_getAnimCtrlPtr(PlayerState* self);
 f32 baanim_getTimer(PlayerState *self);

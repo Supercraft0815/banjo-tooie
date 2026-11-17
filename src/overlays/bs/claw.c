@@ -7,7 +7,7 @@ void bsclaw_entrypoint_0(struct player_state_s *arg0) {
     void baflag_clear(struct player_state_s *, s32);
     s32 func_8009E474();
     void func_800A0CF4(struct player_state_s *, s32);
-    s32 func_800C6DA0(s32);
+    void func_800C6DA0(s32 arg0);
     func_8009E474();
     func_800C6DA0(0x47);
     baflag_clear(arg0, 0x1F);
@@ -50,24 +50,24 @@ void bsclaw_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsclaw_entrypoint_2(s32 arg0) {
+void bsclaw_entrypoint_2(BtIntPtr arg0) {
 
-    s32 _batimer_decrement(s32, s32);
-    f32 _batimer_get(s32, s32);
-    f32 anctrl_getAnimTimer(s32);
-    s32 anctrl_isAt(s32, s32);
-    s32 anctrl_isStopped(s32);
+    s32 _batimer_decrement(BtIntPtr, s32);
+    f32 _batimer_get(BtIntPtr, s32);
+    f32 anctrl_getAnimTimer(BtIntPtr);
+    s32 anctrl_isAt(BtIntPtr, s32);
+    s32 anctrl_isStopped(BtIntPtr);
     s32 baanim_getAnimCtrlPtr();
     void baflag_clear(struct player_state_s *, s32);
-    s32 baflag_set(s32, s32);
-    s32 bakey_pressed(s32, s32);
-    s32 baphysics_set_horizontal_velocity(s32, f32, s32);
+    s32 baflag_set(BtIntPtr, s32);
+    s32 bakey_pressed(BtIntPtr, s32);
+    s32 baphysics_set_horizontal_velocity(BtIntPtr, f32, s32);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
-    s32 bs_getTypeOfJump(s32);
-    s32 bs_setState(s32, s32);
-    s32 func_8009DE38(s32, s32, s32);
-    s32 player_inWater(s32);
-    f32 yaw_get(s32);
+    s32 bs_getTypeOfJump(BtIntPtr);
+    s32 bs_setState(BtIntPtr, s32);
+    s32 func_8009DE38(BtIntPtr, s32, s32);
+    s32 player_inWater(BtIntPtr);
+    f32 yaw_get(BtIntPtr);
     s32 sp24;
     s32 sp20;
     f32 sp1C;
@@ -117,6 +117,12 @@ void bsclaw_entrypoint_2(s32 arg0) {
 }
 
 s32 bsclaw_entrypoint_3(s32 arg0) {
-    extern s32 D_80800400_bsclaw[];
+    extern BtIntPtr D_80800400_bsclaw[];
     return ((s32 *)&D_80800400_bsclaw)[arg0];
 }
+/* data_to_c.py: from asm/data/overlays/bs/claw.data.s */
+void _bsclaw_entrypoint_0();
+void _bsclaw_entrypoint_1();
+void _bsclaw_entrypoint_2();
+void func_80099B94();
+BtIntPtr D_80800400_bsclaw [4] BT_DATA(4, overlays_bs_claw, 0x0) = { (BtIntPtr)_bsclaw_entrypoint_0, (BtIntPtr)_bsclaw_entrypoint_1, (BtIntPtr)_bsclaw_entrypoint_2, (BtIntPtr)func_80099B94 };

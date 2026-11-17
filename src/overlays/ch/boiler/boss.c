@@ -1,35 +1,35 @@
 #include "common.h"
 
 extern u8 D_80802B7C_chboilerboss[];
-void func_801018A4(Actor *, s32);
+void func_801018A4(Actor *, BtIntPtr);
 void func_80102EC0();
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
 void func_80800030_chboilerboss();
 void func_80800304_chboilerboss(Actor* arg0);
 void func_80800324_chboilerboss(Actor *arg0);
-s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2);
+s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, BtIntPtr arg2);
 
 u32 D_80802C00_chboilerboss[] = {
     0x00BE0002, 0x3F99999A,
     0x02C60001,
 };
 
-u32 D_80802C0C_chboilerboss[] = {
+BtFnWord D_80802C0C_chboilerboss[] = {
     0x00070118, 0x06500001,
-    (u32)D_80802B7C_chboilerboss, (u32)func_80102EC0,
-    (u32)func_80800324_chboilerboss, (u32)func_801018A4,
+    (BtFnWord)D_80802B7C_chboilerboss, (BtFnWord)func_80102EC0,
+    (BtFnWord)func_80800324_chboilerboss, (BtFnWord)func_801018A4,
     0x00000000, 0x00000000,
     0x00000000, 0x00011568,
-    (u32)func_80800304_chboilerboss, (u32)func_80108ED0,
-    0x00800000, (u32)func_80800030_chboilerboss,
-    (u32)func_80107C2C, 0x80000422,
-    (u32)func_808008B0_chboilerboss, 0x00000000,
+    (BtFnWord)func_80800304_chboilerboss, (BtFnWord)func_80108ED0,
+    0x00800000, (BtFnWord)func_80800030_chboilerboss,
+    (BtFnWord)func_80107C2C, 0x80000422,
+    (BtFnWord)func_808008B0_chboilerboss, 0x00000000,
 };
 
-u32 D_80802C54_chboilerboss[] = {
+BtFnWord D_80802C54_chboilerboss[] = {
     0x002B0223, 0x064D000E,
-    (u32)D_80802B7C_chboilerboss,
+    (BtFnWord)D_80802B7C_chboilerboss,
 };
 
 OSThread *chboilerboss_entrypoint_0(void)
@@ -63,24 +63,24 @@ void func_80800030_chboilerboss(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800DA524(s32);
     void func_800EE88C(f32 *, s16 *);
-    void func_800F497C(s32);
-    void func_800F49D4(s32, void *, s32);
-    void func_800F4A58(s32, f32 *, f32);
-    u32 func_800F54E4(void);
-    void func_800F608C(s32, s32);
-    void func_800F8294(s32, f32 *);
-    s32 func_800FFAB0(s32);
+    void func_800F497C(BtIntPtr);
+    void func_800F49D4(BtIntPtr, void *, BtIntPtr);
+    void func_800F4A58(BtIntPtr, f32 *, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F608C(BtIntPtr, s32);
+    void func_800F8294(BtIntPtr, f32 *);
+    s32 func_800FFAB0(BtIntPtr);
     void func_80102424(Actor *, s32);
     void func_80105A9C(Actor *, f32);
     s32 _chintrotext_entrypoint_2(s32);
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     s32 _glcutDll_entrypoint_20(void);
-    void func_800F49A8(s32, s32);
+    void func_800F49A8(BtIntPtr, s32);
     void func_80105BAC(Actor *);
     void func_80109FE8(void **, s32);
     s32 func_80800F34_chboilerboss(Actor *, s32);
     void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
-    void func_808024B8_chboilerboss(s32);
+    void func_808024B8_chboilerboss(BtIntPtr);
     void func_80802730_chboilerboss(Actor *, s32, s32);
     void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
     extern f32 D_80802B4C_chboilerboss[];
@@ -98,7 +98,7 @@ void func_80800030_chboilerboss(Actor *arg0) {
     int i;
     int j;
     int count;
-    s32 player;
+    BtIntPtr player;
     union BoilerFlags {
         u32 word;
         struct {
@@ -148,7 +148,7 @@ void func_80800030_chboilerboss(Actor *arg0) {
         func_800F497C(player);
         func_8080238C_chboilerboss(&arg0->unk0, 0xF9E, 0x10F);
         func_80800F34_chboilerboss(arg0, 4);
-        func_808024B8_chboilerboss((s32)arg0);
+        func_808024B8_chboilerboss((BtIntPtr)arg0);
         func_80802730_chboilerboss(arg0, 2, 1);
         return;
     }
@@ -157,7 +157,7 @@ void func_80800030_chboilerboss(Actor *arg0) {
     func_800F8294(player, data->position[0]);
     func_800F497C(player);
     func_800F49A8(player, 1);
-    func_800F49D4(player, &func_8010D5DC, (s32)arg0->unk0);
+    func_800F49D4(player, &func_8010D5DC, (BtIntPtr)arg0->unk0);
     func_800F4A58(player, data->position[1], 300.0f);
     _chintrotext_entrypoint_2(1);
     func_8080238C_chboilerboss(&arg0->unk0, 0xFA8, 0x40);
@@ -174,17 +174,17 @@ void func_80800324_chboilerboss(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
-    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, u32);
+    void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     void _suexpression_entrypoint_9(u32 *);
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800CEAD0(s32);
     void func_800DA544(GameFlag);
     f32 func_800DC178(f32, f32);
     int func_800DC298(f32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800F4EC8(u32, s32, f32, f32, f32);
-    u32 func_800F54E4(void);
-    void func_800F82D4(s32, s32);
+    s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
+    BtUIntPtr func_800F54E4(void);
+    void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -202,7 +202,7 @@ void func_80800324_chboilerboss(Actor *arg0) {
     void func_80802114_chboilerboss(Actor *);
     void func_8080221C_chboilerboss(Actor *, s32, volatile s32);
     void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
-    s32 func_808023C8_chboilerboss(s32);
+    s32 func_808023C8_chboilerboss(BtIntPtr);
     void func_808025DC_chboilerboss(Actor *);
     extern s32 D_80802AB0_chboilerboss;
     extern u32 D_80802B08_chboilerboss;
@@ -230,7 +230,7 @@ void func_80800324_chboilerboss(Actor *arg0) {
     func_808012C8_chboilerboss(arg0);
     func_80801628_chboilerboss(arg0);
     func_80802114_chboilerboss(arg0);
-    func_808023C8_chboilerboss((s32)arg0);
+    func_808023C8_chboilerboss((BtIntPtr)arg0);
     switch (arg0->unk70_10) {
     case 1:
     case 4:
@@ -324,7 +324,7 @@ void func_80800324_chboilerboss(Actor *arg0) {
         _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802B08_chboilerboss, 0.0f);
         break;
     case 11:
-        func_800F4EC8(func_800F54E4(), (s32)arg0->position, 340.0f, 0.0f, 300.0f);
+        func_800F4EC8(func_800F54E4(), (BtIntPtr)arg0->position, 340.0f, 0.0f, 300.0f);
         _subaddieDll_entrypoint_7(arg0, 8);
         _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80802D60_chboilerboss);
         break;
@@ -332,28 +332,28 @@ void func_80800324_chboilerboss(Actor *arg0) {
     func_808025DC_chboilerboss(arg0);
 }
 
-s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
     void _gcfrontend_entrypoint_10(void);
     s32 func_800D395C(void);
-    u32 func_800F54E4(void);
+    BtUIntPtr func_800F54E4(void);
     void func_800F8300();
     u32 func_800FDC28(u32);
-    s32 func_800FFAB0(s32);
+    s32 func_800FFAB0(BtIntPtr);
     void *func_80100094(Actor *, u32);
-    s32 func_80101180(s32, s32, s32);
+    s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800B94_chboilerboss(Actor *, u8 *);
     void func_80800D50_chboilerboss(Actor *, s32 *);
     void func_80800E90_chboilerboss(Actor *, s32 *);
     s32 func_80800F34_chboilerboss(Actor *, s32);
-    void func_80801584_chboilerboss(Actor *, s32);
+    void func_80801584_chboilerboss(Actor *, BtIntPtr);
     void func_80801D80_chboilerboss(Actor *, s32, s32);
     void func_8080221C_chboilerboss(Actor *, s32, volatile s32);
     void func_808022BC_chboilerboss(Actor *);
     void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
     void func_808024DC_chboilerboss(Actor *);
-    s32 func_80802690_chboilerboss(s32, s32, s32);
-    void func_808026F0_chboilerboss(s32);
+    s32 func_80802690_chboilerboss(BtIntPtr, s32, s32);
+    void func_808026F0_chboilerboss(BtIntPtr);
     void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
     extern s32 D_80802AA0_chboilerboss;
     struct BoilerBossData {
@@ -392,7 +392,7 @@ s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
         switch (arg2) {
         case 8:
             if (func_800D395C()) {
-                func_808026F0_chboilerboss((s32)arg0);
+                func_808026F0_chboilerboss((BtIntPtr)arg0);
                 _gcfrontend_entrypoint_10();
             } else {
                 func_808027E4_chboilerboss(arg0, 0x14, 0x30, NULL);
@@ -400,11 +400,11 @@ s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
             }
             return 4;
         case 20:
-            func_808026F0_chboilerboss((s32)arg0);
+            func_808026F0_chboilerboss((BtIntPtr)arg0);
             func_800FFAB0(arg0);
             return 4;
         case 19:
-            func_808026F0_chboilerboss((s32)arg0);
+            func_808026F0_chboilerboss((BtIntPtr)arg0);
             func_808024DC_chboilerboss(arg0);
             return 4;
         }
@@ -413,7 +413,7 @@ s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
         _gcdialogcamera_entrypoint_3(&D_80802AA0_chboilerboss, arg0->scale);
         break;
     case 0x57:
-        return func_80802690_chboilerboss((s32)arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
+        return func_80802690_chboilerboss((BtIntPtr)arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
     case 0x95:
         if (data->unk56) {
             func_800FDC28(1U);
@@ -439,22 +439,22 @@ s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800B94_chboilerboss(Actor *arg0, u8 *arg1) {
-    s32 _dbmorph_entrypoint_4(u8 *, u8 *, s32, u8, s32);
+    void _dbmorph_entrypoint_4(s16 *arg0, u8 *arg1, u8 *arg2, s32 arg3, BtIntPtr arg4);
     void *func_800AE080(s16);
     s32 func_800AE0E8(s16);
     u8 *func_800B2768(u8 *);
-    s32 func_800B2840(s32);
+    BtIntPtr func_800B2840(BtIntPtr);
     void func_800DF5D8(u32, u32, u32, s32);
     void func_800DF744(s32, s32);
     s32 func_801015D0(Actor *);
-    s32 func_80103CDC(u8 *, u8 *);
+    BtIntPtr func_80103CDC(u8 *, u8 *);
     void func_808010F4_chboilerboss(Actor *);
     u32 sp3C;
     u32 sp38;
     u32 sp34;
     u8 *sp30;
-    s32 sp2C;
-    s32 sp28;
+    BtIntPtr sp2C;
+    BtIntPtr sp28;
     sp3C = (arg0->unk0->unk28 << 18) >> 31;
     sp38 = (arg0->unk0->unk28 << 19) >> 31;
     sp34 = (arg0->unk0->unk28 << 20) >> 31;
@@ -472,10 +472,10 @@ void func_80800B94_chboilerboss(Actor *arg0, u8 *arg1) {
     if ((arg0->unk0->unk28 << 20) >> 31) {
         sp30 = func_800B2768(arg1);
         sp2C = func_80103CDC((u8 *)arg0, arg1);
-        sp28 = func_800B2840((s32)arg1);
+        sp28 = func_800B2840((BtIntPtr)arg1);
         if (func_800AE0E8(*(s16 *)&arg0->unk0->unk10)) {
             _dbmorph_entrypoint_4(sp30, (u8 *)sp2C, sp28, 1,
-                (s32)func_800AE080(*(s16 *)&arg0->unk0->unk10));
+                (BtIntPtr)func_800AE080(*(s16 *)&arg0->unk0->unk10));
         }
         func_800DF5D8(arg0->pad98, arg0->pad99, arg0->pad9A, 255);
     }
@@ -535,7 +535,7 @@ void func_80800D50_chboilerboss(Actor *arg0, s32 *arg1) {
 
 void func_80800E64_chboilerboss(void *arg0) {
     s32 func_800D2498(s32, u8, s32, void *);
-    func_800D2498(0xC7, (*(u8 *)((s8 *)(arg0) + (0x5E))), 0, arg0);
+    func_800D2498(0xC7, (((Actor *)arg0)->pad5E), 0, arg0);
 }
 
 void func_80800E90_chboilerboss(Actor *arg0, s32 *arg1) {
@@ -569,16 +569,16 @@ void func_80800E90_chboilerboss(Actor *arg0, s32 *arg1) {
 }
 
 s32 func_80800F34_chboilerboss(Actor *arg0, s32 arg1) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void func_800187B4(s32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80109FE8(void **, s32);
     void func_80801EB4_chboilerboss(Actor *);
     void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
-    void func_808024B8_chboilerboss(s32);
+    void func_808024B8_chboilerboss(BtIntPtr);
     void func_808024DC_chboilerboss(Actor *);
-    void func_80802594_chboilerboss(s32);
+    void func_80802594_chboilerboss(BtIntPtr);
     void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
     struct {
         u8 pad[0x58];
@@ -591,7 +591,7 @@ s32 func_80800F34_chboilerboss(Actor *arg0, s32 arg1) {
     data = func_80100094(arg0, 0);
     active = 0;
     func_80102424(arg0, arg1);
-    func_80802594_chboilerboss((s32)arg0);
+    func_80802594_chboilerboss((BtIntPtr)arg0);
     switch (arg1) {
     case 7:
         func_808027E4_chboilerboss(arg0, 2, 0x30, NULL);
@@ -617,7 +617,7 @@ s32 func_80800F34_chboilerboss(Actor *arg0, s32 arg1) {
         break;
     case 2:
         func_800187B4(0, 1.6f, 0.25f, 2.0f);
-        func_808024B8_chboilerboss((s32)arg0);
+        func_808024B8_chboilerboss((BtIntPtr)arg0);
         func_808027E4_chboilerboss(arg0, 0, 0x20, NULL);
         _chintrotext_entrypoint_1(0x18B9, 0, 1, 0);
         data->unk60 = 1;
@@ -630,18 +630,18 @@ s32 func_80800F34_chboilerboss(Actor *arg0, s32 arg1) {
         break;
     }
     data->unk58 = active;
-    func_808024DC_chboilerboss(arg0);
+    func_808024DC_chboilerboss(arg0); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_808010F4_chboilerboss(Actor *arg0) {
-    s32 _dbmorph_entrypoint_3(u8 *, u8 *, s32, u8, u8 *);
+    void _dbmorph_entrypoint_3(void *arg0, void *arg1, void *arg2, s32 arg3, f32 *weights);
     u8 *func_800B2768(u8 *);
-    s32 func_800B2840(s32);
+    BtIntPtr func_800B2840(BtIntPtr);
     f32 func_800F0E00(f32, f32);
     void *func_80100094(Actor *, u32);
     f32 func_80101F24(Actor *);
     u8 *func_801039E4(Unk80132ED0 *);
-    s32 func_80103CB8(Actor *, u32);
+    BtIntPtr func_80103CB8(Actor *, BtUIntPtr);
     union BoilerFlags {
         u32 word;
         struct {
@@ -697,8 +697,8 @@ void func_808010F4_chboilerboss(Actor *arg0) {
             break;
         }
         model = func_800B2768(mesh);
-        vertices = (u8 *)func_80103CB8(arg0, (u32)mesh);
-        _dbmorph_entrypoint_3(model, vertices, func_800B2840((s32)mesh), 1, (u8 *)&data->unk4C);
+        vertices = (u8 *)func_80103CB8(arg0, (BtUIntPtr)mesh);
+        _dbmorph_entrypoint_3(model, vertices, func_800B2840((BtIntPtr)mesh), 1, (u8 *)&data->unk4C);
     }
 }
 
@@ -792,12 +792,12 @@ void func_808014F4_chboilerboss(Actor *arg0, f32 *arg1, f32 arg2) {
     arg1[1] -= 10.0f;
 }
 
-void func_80801584_chboilerboss(Actor *arg0, s32 arg1)
+void func_80801584_chboilerboss(Actor *arg0, BtIntPtr arg1)
 {
   void func_80102424(Actor *, s32);
   void func_80102FDC(void *, f32);
   void func_80105A9C(Actor *, f32);
-  Actor *func_801084B0(s32, Actor **);
+  Actor *func_801084B0(BtIntPtr, Actor **);
   extern f32 D_80802B4C_chboilerboss[];
   Actor *sp1C;
   u32 flags;
@@ -818,8 +818,8 @@ void func_80801628_chboilerboss(Actor *arg0) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     void func_800EF1B8(f32 *arg0, f32 arg1, f32 arg2);
     void *func_80100094(Actor *arg0, u32 arg1);
-    void func_808019C8_chboilerboss(s32 arg0, f32 *arg1);
-    void func_80801A08_chboilerboss(s32 arg0, f32 *arg1);
+    void func_808019C8_chboilerboss(BtIntPtr arg0, f32 *arg1);
+    void func_80801A08_chboilerboss(BtIntPtr arg0, f32 *arg1);
     f32 *data;
     u32 bit13;
     u32 bit12;
@@ -837,28 +837,28 @@ void func_80801628_chboilerboss(Actor *arg0) {
         if (arg0->unk70_10 == 5) {
             if (func_800DC298(0.5f)) {
                 func_80801464_chboilerboss(arg0, position, 75.0f);
-                func_808019C8_chboilerboss((s32)arg0, position);
+                func_808019C8_chboilerboss((BtIntPtr)arg0, position);
             }
         } else if (func_800DC298(0.15f)) {
             func_80801464_chboilerboss(arg0, position, 75.0f);
-            func_808019C8_chboilerboss((s32)arg0, position);
+            func_808019C8_chboilerboss((BtIntPtr)arg0, position);
         }
     }
     if (bit11 && !bit12) {
         if (arg0->unk70_10 == 5) {
             if (func_800DC298(0.5f)) {
                 func_808014F4_chboilerboss(arg0, position, 75.0f);
-                func_808019C8_chboilerboss((s32)arg0, position);
+                func_808019C8_chboilerboss((BtIntPtr)arg0, position);
             }
         } else if (func_800DC298(0.15f)) {
             func_808014F4_chboilerboss(arg0, position, 75.0f);
-            func_808019C8_chboilerboss((s32)arg0, position);
+            func_808019C8_chboilerboss((BtIntPtr)arg0, position);
         }
     }
     if (!bit11 && arg0->unk70_10 != 9 && func_800DC298(0.4f)) {
         func_800EE7F8(position, data + 6);
         func_800EF1B8(position, arg0->rotation[1], 75.0f);
-        func_80801A08_chboilerboss((s32)arg0, position);
+        func_80801A08_chboilerboss((BtIntPtr)arg0, position);
     }
 }
 
@@ -907,19 +907,19 @@ void func_808017F0_chboilerboss(Actor *arg0) {
     }
 }
 
-void func_808019C8_chboilerboss(s32 arg0, f32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+void func_808019C8_chboilerboss(BtIntPtr arg0, f32 *arg1) {
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80802ACC_chboilerboss;
     func_800BBCB8(arg1, 0, 1.0f, 1, &D_80802ACC_chboilerboss);
 }
 
-void func_80801A08_chboilerboss(s32 arg0, f32 *arg1) {
-    s32 func_800B53A4(s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+void func_80801A08_chboilerboss(BtIntPtr arg0, f32 *arg1) {
+    BtIntPtr func_800B53A4(s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_80802ACC_chboilerboss;
     extern s32 D_80802D68_chboilerboss;
-    s32 sp24;
-    s32 temp_v0;
+    BtIntPtr sp24;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(1);
     sp24 = temp_v0;
@@ -928,12 +928,12 @@ void func_80801A08_chboilerboss(s32 arg0, f32 *arg1) {
 }
 
 void func_80801A74_chboilerboss(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
-    void func_800BA22C(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_80802D88_chboilerboss;
     extern s32 D_80802DA4_chboilerboss;
     extern s32 D_80802DB0_chboilerboss;
-    s32 emitter;
+    BtIntPtr emitter;
     s32 *settings;
 
     emitter = func_800BABB8(0, arg1, arg2, arg0->scale, &D_80802D88_chboilerboss);
@@ -947,19 +947,19 @@ void func_80801A74_chboilerboss(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
 }
 
 void func_80801B00_chboilerboss(Actor *arg0, f32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80802DBC_chboilerboss;
     func_800BBCB8(arg1, 0, arg0->scale, 4, &D_80802DBC_chboilerboss);
 }
 
 void func_80801B44_chboilerboss(Actor *arg0, f32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     extern s32 D_80802E00_chboilerboss;
     func_800BBCB8(arg1, 0, arg0->scale, 8, &D_80802E00_chboilerboss);
 }
 
 void func_80801B88_chboilerboss(Actor *arg0, s32 *arg1) {
-    s32 func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EC398(s32 *, f32 *);
     void func_800EEBF0(f32 *, f32 *, f32);
     void func_800EF04C(f32 *, f32 *);
@@ -1014,7 +1014,7 @@ void func_80801CE8_chboilerboss(Actor *arg0) {
 
 void func_80801D80_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
     extern void _chbaddiesetup_entrypoint_10(void);
-    void _chbaddiesetup_entrypoint_5(void *, s32, s32, s32, s32, s32);
+    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     s32 _chexploder_entrypoint_5(u8 *, s32, u8 *, s32, f32, s32);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
@@ -1023,7 +1023,7 @@ void func_80801D80_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80800F34_chboilerboss(Actor *, s32);
     void func_80802414_chboilerboss(Actor *);
     void func_808024DC_chboilerboss(Actor *);
-    void func_808026F0_chboilerboss(s32);
+    void func_808026F0_chboilerboss(BtIntPtr);
     f32 sp2C;
 
     switch (arg1) {
@@ -1035,7 +1035,7 @@ void func_80801D80_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
         case 0xF9A:
         case 0xF9B:
             func_80109FE8((void *)arg0, 1);
-            func_808026F0_chboilerboss((s32)arg0);
+            func_808026F0_chboilerboss((BtIntPtr)arg0);
             func_808024DC_chboilerboss(arg0);
             break;
         case 0xF98:
@@ -1064,7 +1064,7 @@ void func_80801EB4_chboilerboss(Actor *arg0) { void func_80101CDC(Actor *, f32);
 
 void func_80801F10_chboilerboss(s32 arg0) {
     s32 func_800DA298(s32);
-    s32 func_800FFAB0(s32);
+    s32 func_800FFAB0(BtIntPtr);
     if (func_800DA298(0x86) != 0) {
         func_800FFAB0(arg0);
     }
@@ -1207,9 +1207,9 @@ void func_8080221C_chboilerboss(Actor *arg0, s32 arg1, volatile s32 arg2) {
 }
 
 void func_808022BC_chboilerboss(Actor *arg0) {
-    s32 _chexploder_entrypoint_12(s32, s32);
+    s32 _chexploder_entrypoint_12(BtIntPtr, s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800D1000(u32, u32, f32 *, u32, Unk80132ED0 *);
     s32 func_800D395C(void);
 #ifndef BT_NATIVE
@@ -1238,20 +1238,20 @@ void func_808022BC_chboilerboss(Actor *arg0) {
 }
 
 void func_8080238C_chboilerboss(Unk80132ED0 **arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 0x104;
     _subaddiedialog_entrypoint_11(*arg0, arg1, arg2, (f32 *)(arg0 + 1), 0x42);
-}
+}    typedef struct { u8 pad0[0x60]; s32 unk60; s16 unk64; } Objboss_func_808023C8_chboilerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
-s32 func_808023C8_chboilerboss(s32 arg0) {
+s32 func_808023C8_chboilerboss(BtIntPtr arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_80800F34_chboilerboss(Actor *, s32);
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
-    if (((*(s32 *)((s8 *)(temp_v0) + (0x60))) == 0) && ((*(s16 *)((s8 *)(temp_v0) + (0x64))) != 0)) {
+    if (((((Objboss_func_808023C8_chboilerboss_temp_v0 *)temp_v0)->unk60) == 0) && ((((Objboss_func_808023C8_chboilerboss_temp_v0 *)temp_v0)->unk64) != 0)) {
         func_80800F34_chboilerboss(arg0, 2);
     }
     return 0;
@@ -1260,7 +1260,7 @@ s32 func_808023C8_chboilerboss(s32 arg0) {
 u32 func_800FDC28(u32);
 
 void func_80802414_chboilerboss(Actor *arg0) {
-    s32 _gcfrontend_entrypoint_9(s32);
+    void _gcfrontend_entrypoint_9(s32 arg0);
     void func_800A51C0(void);
 #ifndef BT_NATIVE
     void func_800DA544(s32);
@@ -1269,7 +1269,7 @@ void func_80802414_chboilerboss(Actor *arg0) {
     void func_80109FE8(void **, s32);
     void func_8010A590(Actor *);
     s32 func_80800F34_chboilerboss(Actor *, s32);
-    void func_808026F0_chboilerboss(s32);
+    void func_808026F0_chboilerboss(BtIntPtr);
     extern f32 D_80802B5C_chboilerboss;
     struct {
         u8 pad0[0x48];
@@ -1294,7 +1294,7 @@ void func_80802414_chboilerboss(Actor *arg0) {
     func_800FDC28(3);
 }
 
-void func_808024B8_chboilerboss(s32 arg0)
+void func_808024B8_chboilerboss(BtIntPtr arg0)
 {
     func_800FDC28(0x1);
 }
@@ -1303,7 +1303,7 @@ void func_808024B8_chboilerboss(s32 arg0)
 
 void func_808024DC_chboilerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    void func_80802538_chboilerboss(s32);
+    void func_80802538_chboilerboss(BtIntPtr);
     u8 *temp_v0;
     u8 *saved[1];
 
@@ -1315,12 +1315,12 @@ void func_808024DC_chboilerboss(Actor *arg0) {
         }
         temp_v0[0x58] = 0;
     }
-}
+}    typedef struct { u8 pad0[0x57]; u8 unk57; } Objboss_func_80802538_chboilerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x57]; s8 unk57; } Objboss_func_80802538_chboilerboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
-void func_80802538_chboilerboss(s32 arg0) {
-    u32 func_800F54E4(void);
+void func_80802538_chboilerboss(BtIntPtr arg0) {
+    BtUIntPtr func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s32 func_800F4AF4(u32, s32);
     void func_808025DC_chboilerboss(Actor *);
@@ -1329,39 +1329,39 @@ void func_80802538_chboilerboss(s32 arg0) {
 
     temp_v0 = func_80100094(arg0, 0);
     sp1C = temp_v0;
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x57))) == 0) {
+    if ((((Objboss_func_80802538_chboilerboss_temp_v0 *)temp_v0)->unk57) == 0) {
         func_800F4AF4(func_800F54E4(), 0x14);
-        (*(s8 *)((s8 *)(sp1C) + (0x57))) = 1;
+        (((Objboss_func_80802538_chboilerboss_sp1C *)sp1C)->unk57) = 1;
     }
     func_808025DC_chboilerboss(arg0);
-}
+}    typedef struct { u8 pad0[0x57]; u8 unk57; } Objboss_func_80802594_chboilerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x57]; s8 unk57; } Objboss_func_80802594_chboilerboss_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 /* extern */
 
-void func_80802594_chboilerboss(s32 arg0) {
-    u32 func_800F54E4(void);
+void func_80802594_chboilerboss(BtIntPtr arg0) {
+    BtUIntPtr func_800F54E4(void);
     void *func_80100094(Actor *, u32);
-    s32 func_800F4B20(u32);
+    s32 func_800F4B20(BtUIntPtr);
     u8 *sp1C;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
     sp1C = temp_v0;
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x57))) != 0) {
+    if ((((Objboss_func_80802594_chboilerboss_temp_v0 *)temp_v0)->unk57) != 0) {
         func_800F4B20(func_800F54E4());
-        (*(s8 *)((s8 *)(sp1C) + (0x57))) = 0;
+        (((Objboss_func_80802594_chboilerboss_sp1C *)sp1C)->unk57) = 0;
     }
 }
 
 void func_808025DC_chboilerboss(Actor *arg0) {
-    s32 _plcamera_entrypoint_10(s32);
-    void _plcamera_entrypoint_9(s32, f32 *, f32);
+    s32 _plcamera_entrypoint_10(BtIntPtr);
+    void _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
-    u32 func_800F54E4(void);
-    s32 func_800F5EF8(s32);
+    BtUIntPtr func_800F54E4(void);
+    s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
-    s32 func_80110014(s32 *);
-    void func_80116088(u8 *, s32);
+    BtIntPtr func_80110014(s32 *);
+    void func_80116088(u8 *, BtIntPtr);
     u8 *data;
     f32 position[3];
 
@@ -1380,7 +1380,7 @@ void func_808025DC_chboilerboss(Actor *arg0) {
 
 /* extern */
 
-s32 func_80802690_chboilerboss(s32 arg0, s32 arg1, s32 arg2) {
+s32 func_80802690_chboilerboss(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
     void *func_80100094(Actor *, u32);
     void func_80802730_chboilerboss(Actor *, s32, s32);
@@ -1391,16 +1391,16 @@ s32 func_80802690_chboilerboss(s32 arg0, s32 arg1, s32 arg2) {
         return 2;
     }
     return 1;
-}
+}    typedef struct { u8 pad0[0x59]; u8 unk59; } Objboss_func_808026F0_chboilerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-void func_808026F0_chboilerboss(s32 arg0) {
+void func_808026F0_chboilerboss(BtIntPtr arg0) {
     void _capod_entrypoint_3(u32);
     void *func_80100094(Actor *, u32);
     u8 *sp1C[1];
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
-    if ((*(u8 *)((s8 *)(temp_v0) + (0x59))) != 0) {
+    if ((((Objboss_func_808026F0_chboilerboss_temp_v0 *)temp_v0)->unk59) != 0) {
         sp1C[0] = temp_v0;
         _capod_entrypoint_3(0);
         temp_v0 = sp1C[0];

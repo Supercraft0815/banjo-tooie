@@ -11,7 +11,7 @@ void func_80800DD8_chcollballcontrol(Actor *arg0);
 void func_80801038_chcollballcontrol(Actor *arg0);
 void func_80801964_chcollballcontrol(Actor *arg0);
 void func_80801A20_chcollballcontrol(Actor *arg0);
-void func_80803208_chcollballcontrol(s32 arg0);
+void func_80803208_chcollballcontrol(BtIntPtr arg0);
 s32 func_80803420_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2);
 void func_80803484_chcollballcontrol(Actor *arg0);
 void func_80804420_chcollballcontrol(Actor *arg0);
@@ -85,12 +85,12 @@ u32 D_80804D90_chcollballcontrol[] = {
     0x00000000, 0x00000000,
 };
 
-u32 D_80804DA8_chcollballcontrol[] = {
-    0x003F019E, 0x06370001, 0x00000000, (u32)func_808006FC_chcollballcontrol,
-    (u32)func_80105834, (u32)func_8010A730, 0x00000000, 0x00000000,
-    0x00000000, 0x00080004, (u32)func_80801038_chcollballcontrol, 0x00000000,
-    0x00400000, (u32)func_80800DD8_chcollballcontrol, (u32)func_80107C2C, 0x80000202,
-    (u32)func_808002B8_chcollballcontrol, 0x00000000,
+BtFnWord D_80804DA8_chcollballcontrol[] = {
+    0x003F019E, 0x06370001, 0x00000000, (BtFnWord)func_808006FC_chcollballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)func_8010A730, 0x00000000, 0x00000000,
+    0x00000000, 0x00080004, (BtFnWord)func_80801038_chcollballcontrol, 0x00000000,
+    0x00400000, (BtFnWord)func_80800DD8_chcollballcontrol, (BtFnWord)func_80107C2C, 0x80000202,
+    (BtFnWord)func_808002B8_chcollballcontrol, 0x00000000,
 };
 
 u8 D_80804DF0_chcollballcontrol[] = {
@@ -146,27 +146,27 @@ u32 D_80804F4C_chcollballcontrol[] = {
     0x00000000, 0x00000000, 0x00000000,
 };
 
-u32 D_80804F58_chcollballcontrol[] = {
-    0x004401A1, 0x06700005, 0x00000000, (u32)func_80801A20_chcollballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
-    0x00000000, 0x00000004, (u32)func_80803208_chcollballcontrol, 0x00000000,
-    0x00240000, (u32)func_80801964_chcollballcontrol, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_80804F58_chcollballcontrol[] = {
+    0x004401A1, 0x06700005, 0x00000000, (BtFnWord)func_80801A20_chcollballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (BtFnWord)func_80803208_chcollballcontrol, 0x00000000,
+    0x00240000, (BtFnWord)func_80801964_chcollballcontrol, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 
-u32 D_80804FA0_chcollballcontrol[] = {
-    0x004201A3, 0x06770005, 0x00000000, (u32)func_80801A20_chcollballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
-    0x00000000, 0x00000006, (u32)func_80803208_chcollballcontrol, 0x00000000,
-    0x00240000, (u32)func_80801964_chcollballcontrol, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_80804FA0_chcollballcontrol[] = {
+    0x004201A3, 0x06770005, 0x00000000, (BtFnWord)func_80801A20_chcollballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
+    0x00000000, 0x00000006, (BtFnWord)func_80803208_chcollballcontrol, 0x00000000,
+    0x00240000, (BtFnWord)func_80801964_chcollballcontrol, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 
-u32 D_80804FE8_chcollballcontrol[] = {
-    0x004301A2, 0x06720005, 0x00000000, (u32)func_80801A20_chcollballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
-    0x00000000, 0x00000004, (u32)func_80803208_chcollballcontrol, 0x00000000,
-    0x00240000, (u32)func_80801964_chcollballcontrol, (u32)func_80107C2C, 0x80000002,
+BtFnWord D_80804FE8_chcollballcontrol[] = {
+    0x004301A2, 0x06720005, 0x00000000, (BtFnWord)func_80801A20_chcollballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_0, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (BtFnWord)func_80803208_chcollballcontrol, 0x00000000,
+    0x00240000, (BtFnWord)func_80801964_chcollballcontrol, (BtFnWord)func_80107C2C, 0x80000002,
     0x00000000, 0x00000000,
 };
 
@@ -200,18 +200,18 @@ u32 D_808050C0_chcollballcontrol[] = {
     0x00000000, 0x00000000, 0x00000000,
 };
 
-u32 D_808050CC_chcollballcontrol[] = {
-    0x0040019F, 0x066A000B, (u32)D_80805030_chcollballcontrol, (u32)func_80803484_chcollballcontrol,
-    (u32)func_80105834, (u32)_sukickball_entrypoint_1, 0x00000000, 0x00000000,
-    0x00000000, 0x00000004, (u32)func_808044F4_chcollballcontrol, 0x00000000,
-    0x00180000, (u32)func_80804420_chcollballcontrol, (u32)func_80107C2C, 0x80000003,
-    (u32)func_80803420_chcollballcontrol, 0x00000000, 0x00000000, 0x00000000,
+BtFnWord D_808050CC_chcollballcontrol[] = {
+    0x0040019F, 0x066A000B, (BtFnWord)D_80805030_chcollballcontrol, (BtFnWord)func_80803484_chcollballcontrol,
+    (BtFnWord)func_80105834, (BtFnWord)_sukickball_entrypoint_1, 0x00000000, 0x00000000,
+    0x00000000, 0x00000004, (BtFnWord)func_808044F4_chcollballcontrol, 0x00000000,
+    0x00180000, (BtFnWord)func_80804420_chcollballcontrol, (BtFnWord)func_80107C2C, 0x80000003,
+    (BtFnWord)func_80803420_chcollballcontrol, 0x00000000, 0x00000000, 0x00000000,
     0x00000000,
-};
+};                     typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0x4]; f32 unkC; } Objcollballcontrol_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800000_chcollballcontrol(Unk80132ED0 **arg0, u32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
-    _subaddiedialog_entrypoint_11(*arg0, arg1, arg2 | 0xE, (f32 *)((s8 *)arg0 + 4), 0x33);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
+    _subaddiedialog_entrypoint_11(*arg0, arg1, arg2 | 0xE, &((Objcollballcontrol_arg0 *)arg0)->unk4, 0x33);
 }
 
 f32 func_80800040_chcollballcontrol(void *arg0) {
@@ -230,7 +230,7 @@ f32 func_80800070_chcollballcontrol(void *arg0) {
 /* extern */
 
 #ifdef BT_NATIVE
-f32 func_8080009C_chcollballcontrol(s32 bt_a0) {
+f32 func_8080009C_chcollballcontrol(BtIntPtr bt_a0) {
 #else
 f32 func_8080009C_chcollballcontrol() {
 #endif
@@ -245,7 +245,7 @@ f32 func_8080009C_chcollballcontrol() {
 /* extern */
 
 #ifdef BT_NATIVE
-f32 func_808000C8_chcollballcontrol(s32 bt_a0) {
+f32 func_808000C8_chcollballcontrol(BtIntPtr bt_a0) {
 #else
 f32 func_808000C8_chcollballcontrol() {
 #endif
@@ -258,7 +258,7 @@ f32 func_808000C8_chcollballcontrol() {
 }
 
 #ifdef BT_NATIVE
-f32 func_808000F4_chcollballcontrol(s32 bt_a0)
+f32 func_808000F4_chcollballcontrol(BtIntPtr bt_a0)
 #else
 f32 func_808000F4_chcollballcontrol()
 #endif
@@ -301,9 +301,9 @@ void func_8080014C_chcollballcontrol(Actor *arg0) {
     }
 }
 
-void func_808001B8_chcollballcontrol(Actor *arg0, s32 arg1) {
+void func_808001B8_chcollballcontrol(Actor *arg0, BtIntPtr arg1) {
     f32 func_800DC178(f32, f32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
     Actor *actor;
 
     switch (arg1) {
@@ -332,16 +332,16 @@ void func_808001B8_chcollballcontrol(Actor *arg0, s32 arg1) {
 }
 
 s32 func_808002B8_chcollballcontrol(Unk80132ED0 **arg0, s32 arg1, Unk80132ED0 *arg2) {
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     s32 _capod_entrypoint_17(f32);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    u32 _gcgoto_entrypoint_1(u32, u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
+    u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _subaddiemulti_entrypoint_4(s32);
     void func_800A54F8(s32);
-    s32 func_800CE88C(s32, s32);
-    s32 func_800CE8D8(s32, f32, s32);
+    void func_800CE88C(s32 arg0, s32 arg1);
+    void func_800CE8D8(s32 arg0, f32 arg1, s32 arg2);
     s32 func_800D2054(s32, s32, s32);
     s16 func_800D211C(s32);
     s32 func_800D395C(void);
@@ -351,7 +351,7 @@ s32 func_808002B8_chcollballcontrol(Unk80132ED0 **arg0, s32 arg1, Unk80132ED0 *a
     Actor *func_80106790(Unk80132ED0 *);
     u32 func_800FDC28(u32);
     void func_8080014C_chcollballcontrol(Actor *);
-    void func_808001B8_chcollballcontrol(Actor *, s32);
+    void func_808001B8_chcollballcontrol(Actor *, BtIntPtr);
     void func_80801500_chcollballcontrol(Actor *, s32);
     struct Flags {
         u8 pad0[0x65];
@@ -467,7 +467,7 @@ s32 func_808002B8_chcollballcontrol(Unk80132ED0 **arg0, s32 arg1, Unk80132ED0 *a
         case 1:
         case 2:
             if (!func_800D395C() && !func_800DA9E4(data->level + 0x41F, 1)) {
-                _capod_entrypoint_13((s32)*arg0, 0, 1, 0x2020);
+                _capod_entrypoint_13((BtIntPtr)*arg0, 0, 1, 0x2020);
                 ((u8 *)arg0)[0x79] = (((u8 *)arg0)[0x79] & ~0xF0) | 0x10;
             } else {
                 func_800A54F8(0);
@@ -488,14 +488,14 @@ void func_808006FC_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     f32 func_800D8FF8(void);
     void _sukickball_entrypoint_17(Actor *);
-    void _sukickball_entrypoint_19(Actor *, s32, u8);
+    void _sukickball_entrypoint_19(Actor *arg0, s32 arg1, s32 arg2);
     s32 func_800DA298(s32);
-    void _capod_entrypoint_14(void);
+    s32 _capod_entrypoint_14(void);
     void func_800A54F8(s32);
     s32 func_800CEB54(s32, f32);
     s32 func_800CEAD0(s32);
     u32 func_800FDC28(u32);
-    u32 _gcgoto_entrypoint_1(u32, u32);
+    void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     void func_808008FC_chcollballcontrol(Actor *);
     void func_808011E8_chcollballcontrol(Actor *);
     struct CollballUpdate {
@@ -563,8 +563,8 @@ void func_808008FC_chcollballcontrol(Actor *arg0) {
     s32 _sumultiscore_entrypoint_2(s32 *, s32 *, s32 *, s32, s32);
     void func_800FC6B0(u32);
     s32 func_800D2054(s32, s32, s32);
-    s32 func_800DA544(s32);
-    s32 func_80101FDC();
+    void func_800DA544(s32 index);
+    void func_80101FDC(Actor *actor,u32 state);
     void func_800AA200(s32);
     struct CollballScore {
         u8 pad0[0x20];
@@ -665,11 +665,11 @@ void func_80800B5C_chcollballcontrol(u8 *arg0) {
 }
 
 void func_80800BF0_chcollballcontrol(Actor *arg0, f32 *arg1) {
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     int func_800F0064(f32 *, f32, f32 *);
-    void func_800F5A00(s32, f32 *);
-    void func_800F7B9C(s32, u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F7B9C(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     struct {
@@ -698,8 +698,8 @@ void func_80800BF0_chcollballcontrol(Actor *arg0, f32 *arg1) {
 
 void func_80800CF8_chcollballcontrol(s32 arg0, s32 arg1) {
     struct player_state_s;
-    struct player_state_s *func_800F53D0(s32);
-    void func_800F82D4(s32, s32);
+    struct player_state_s *func_800F53D0(BtIntPtr);
+    void func_800F82D4(BtIntPtr, s32);
     void _baattach_entrypoint_6(struct player_state_s *, s32, s32, s32);
     switch (arg1) {
         case 0:
@@ -715,7 +715,7 @@ void func_80800CF8_chcollballcontrol(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_80800D60_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
+    void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     s32 _chintrotext_entrypoint_2(s32);
     s32 func_800D395C(void);
     if ((arg1 != 0) || (func_800D395C() != 0)) {
@@ -729,7 +729,7 @@ void func_80800D60_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800DD8_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    Actor *func_801084B0(s32, Actor **);
+    Actor *func_801084B0(BtIntPtr, Actor **);
 #ifdef BT_NATIVE
     s32 func_80090178(s32);
 #else
@@ -739,10 +739,10 @@ void func_80800DD8_chcollballcontrol(Actor *arg0) {
     void func_800DA3B8(s32, s32);
     s32 func_800DA298(s32);
     s32 func_800D0A9C(u32, u32);
-    s32 func_800F6438(u32);
-    void func_800F4CEC(s32, u32);
-    u8 _sukickball_entrypoint_3(void);
-    s32 _gcstatusDll_entrypoint_11(void);
+    s32 func_800F6438(BtUIntPtr);
+    void func_800F4CEC(BtIntPtr, u32);
+    s32 _sukickball_entrypoint_3(void);
+    u8 _gcstatusDll_entrypoint_11(void);
     void _sukickball_entrypoint_18(Actor *);
     void func_80801108_chcollballcontrol(Actor *, s32);
 
@@ -822,8 +822,8 @@ void func_80800DD8_chcollballcontrol(Actor *arg0) {
 void func_80801038_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800DA3B8(s32, s32);
-    void func_800F4CC0(s32);
-    s32 func_800F6438(u32);
+    void func_800F4CC0(BtIntPtr);
+    s32 func_800F6438(BtUIntPtr);
     struct Fields {
         u8 pad0[0x39];
         u8 state;
@@ -875,9 +875,9 @@ void func_80801108_chcollballcontrol(Actor *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     f32 _sukickball_entrypoint_15(s32);
     void _sukickball_entrypoint_16(s32, f32 *);
-    void func_800F82D4(s32, s32);
-    s32 func_800F832C(s32, f32 *);
-    void func_800F8294(s32, f32 *);
+    void func_800F82D4(BtIntPtr, s32);
+    void func_800F832C(BtIntPtr arg0,f32* a1);
+    void func_800F8294(BtIntPtr, f32 *);
     struct Data {
         u8 pad[0xA];
         u8 state[6];
@@ -947,8 +947,8 @@ void func_80801350_chcollballcontrol(Actor *arg0, s32 *arg1) {
     typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
     s32 *func_800BE444(f32 *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     Actor *func_80106790(Unk80132ED0 *);
     Entry *entry, *end;
     s32 *list;
@@ -1095,17 +1095,17 @@ OSThread *chcollballcontrol_entrypoint_0(void)
 void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     void _subaddiefade_entrypoint_3(Actor *);
     void _sukickball_entrypoint_11(u8 *, s32);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
     void func_800F4F98(s32, void *);
     void *func_80100094(Actor *, u32);
-    s32 func_80101FDC(u8 *, s32);
+    void func_80101FDC(Actor *actor,u32 state);
     Actor *func_80106790(Unk80132ED0 *);
     void func_808021D4_chcollballcontrol(Actor *);
     void func_80802264_chcollballcontrol(Actor *volatile, volatile s32);
 
     u8 *data;
-    s32 linked;
+    BtIntPtr linked;
     u32 kind;
     u32 state;
 
@@ -1177,12 +1177,12 @@ void func_80801964_chcollballcontrol(Actor *arg0) {
 }
 
 void func_80801A20_chcollballcontrol(Actor *arg0) {
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    s32 _sukickball_entrypoint_7(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     f32 func_800137AC(f32);
     f32 func_800137C4(void);
-    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     f32 func_800DC0C0(void);
@@ -1191,9 +1191,9 @@ void func_80801A20_chcollballcontrol(Actor *arg0) {
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800EFBFC(void *, void *);
     void func_800EFCD8(f32 *, f32, f32);
-    void func_800F5A00(s32, f32 *);
-    void func_800F5D70(s32, f32 *);
-    f32 func_800F5F24(u32);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5D70(BtIntPtr, f32 *);
+    f32 func_800F5F24(BtUIntPtr);
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_808020B0_chcollballcontrol(void *);
@@ -1323,7 +1323,7 @@ void func_808020B0_chcollballcontrol(void *arg0) {
 
     temp_v0 = func_8080237C_chcollballcontrol();
     temp_a1 = temp_v0;
-    (*(f32 *)((s8 *)(arg0) + (8))) = 30.0f;
+    (((Actor *)arg0)->position[1]) = 30.0f;
     if (temp_v0 != -1) {
         func_808023FC_chcollballcontrol(arg0, temp_a1);
     }
@@ -1358,12 +1358,12 @@ void func_808021D4_chcollballcontrol(Actor *arg0) {
 
 void func_80802264_chcollballcontrol(Actor *volatile arg0, volatile s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    void func_800BA22C(s32, s32);
-    void func_800BA670(s32, s32);
-    s32 func_800BABB8(s32, f32[3], f32[3], f32, s32[]);
+    void func_800BA22C(BtIntPtr, s32);
+    void func_800BA670(BtIntPtr, s32);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
 
 
-    s32 emitter;
+    BtIntPtr emitter;
     s32 model;
     f32 *position;
 
@@ -1376,13 +1376,13 @@ void func_80802264_chcollballcontrol(Actor *volatile arg0, volatile s32 arg1) {
 }
 
 void func_808022F0_chcollballcontrol(f32 *arg0) {
-    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
 
     func_800BBCB8(arg0, 0, 1.0f, 2, D_80804E4C_chcollballcontrol);
 }
 
 void func_80802324_chcollballcontrol(f32 *arg0) {
-    void func_800BBCB8(f32[3], s32, f32, s32, s32 *);
+    BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
 
 
     func_800BBCB8(arg0, 0, 1.0f, 0xA, D_80804E94_chcollballcontrol);
@@ -1393,14 +1393,14 @@ s32 func_8080237C_chcollballcontrol(void *arg0) {
     f32 temp_f0;
     f32 temp_f0_2;
 
-    temp_f0 = (*(f32 *)((s8 *)(arg0) + (4)));
+    temp_f0 = (((Objcollballcontrol_arg0 *)arg0)->unk4);
     if (temp_f0 < -675.0f) {
         return 2;
     }
     if (temp_f0 > 675.0f) {
         return 0;
     }
-    temp_f0_2 = (*(f32 *)((s8 *)(arg0) + (0xC)));
+    temp_f0_2 = (((Objcollballcontrol_arg0 *)arg0)->unkC);
     if (temp_f0_2 < -675.0f) {
         return 3;
     }
@@ -1475,15 +1475,15 @@ s32 func_808023FC_chcollballcontrol(void *ptr, s32 arg1) {
                 func_80801764_chcollballcontrol(arg0, 6);
             }
             break;
-    }
+    } BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80802764_chcollballcontrol(s32 *arg0) {
     typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
     s32 *func_800BE3F8(void *);
-    s32 func_800E9E88(s32);
-    u32 func_800E9EB4(s16 *);
+    BtIntPtr func_800E9E88(BtIntPtr);
+    BtUIntPtr func_800E9EB4(s16 *);
     Actor *func_80106790(Unk80132ED0 *);
     void func_808028D0_chcollballcontrol(Actor *, Actor *);
     void func_80802964_chcollballcontrol(Actor *, u32);
@@ -1502,13 +1502,13 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
                 marker = entry->marker;
                 if (marker != (Marker *)*arg0) {
                     if (marker->id == 0x44 || marker->id == 0x42 || marker->id == 0x43) {
-                        func_808028D0_chcollballcontrol(arg0, func_80106790((s32)marker));
+                        func_808028D0_chcollballcontrol(arg0, func_80106790((BtIntPtr)marker));
                     }
                     if (marker->id == 0) {
                         func_80802964_chcollballcontrol(arg0, (u32)marker->index >> 5);
                     }
                     if (marker->id == 0x40) {
-                        func_808029D8_chcollballcontrol(arg0, func_80106790((s32)marker));
+                        func_808029D8_chcollballcontrol(arg0, func_80106790((BtIntPtr)marker));
                     }
                 }
             }
@@ -1532,9 +1532,9 @@ void func_808028D0_chcollballcontrol(Actor *arg0, Actor *arg1) {
 }
 
 void func_80802964_chcollballcontrol(Actor *arg0, u32 arg1) {
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
     f32 sp18[3];
@@ -1547,7 +1547,7 @@ void func_80802964_chcollballcontrol(Actor *arg0, u32 arg1) {
 }
 
 void func_808029D8_chcollballcontrol(Actor *arg0, Actor *arg1) {
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
@@ -1564,7 +1564,7 @@ void func_80802A50_chcollballcontrol(Actor *arg0) {
     typedef struct { f32 timer; u8 pad[0x1C]; u8 owner; } BallData;
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
     void _sukickball_entrypoint_11(u8 *, s32);
     void func_800F4F98(s32, void *);
     BallData *data;
@@ -1653,20 +1653,20 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
 #endif
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    s32 _sukickball_entrypoint_7(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_10(u8 *, s32, s32);
     void _sukickball_entrypoint_11(u8 *, s32);
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
     void func_800F4950(s32, void *, void (*)(void));
     void func_800F4F98(s32, void *);
-    s32 func_800F5410(s32);
-    void func_800F5A00(s32, f32 *);
-    s32 func_800F6C5C(s32);
+    s32 func_800F5410(BtIntPtr);
+    void func_800F5A00(BtIntPtr, f32 *);
+    s32 func_800F6C5C(BtIntPtr);
     BallData *data = func_80100094(arg0, 0);
     f32 distances[4];
     u8 *parent;
@@ -1749,10 +1749,10 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
 void func_808030D0_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_11(u8 *, s32);
-    f32 func_800F5F24(u32);
+    f32 func_800F5F24(BtUIntPtr);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F4F98(s32, void *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -1787,7 +1787,7 @@ void func_808030D0_chcollballcontrol(Actor *arg0) {
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804C98_chcollballcontrol);
 }
 
-void func_80803208_chcollballcontrol(s32 arg0)
+void func_80803208_chcollballcontrol(BtIntPtr arg0)
 {
     func_80801764_chcollballcontrol(arg0,0);
 }
@@ -1830,10 +1830,10 @@ void func_8080324C_chcollballcontrol(Actor *arg0, s32 arg1) {
     }
 }
 
-void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
+void func_808032CC_chcollballcontrol(u8 *arg0, BtIntPtr arg1) {
     typedef struct { f32 v[3]; } Vec3;
     f32 func_800DC178(f32, f32);
-    s32 func_800EE780(u8 *, u8 *, s32 *);
+    void func_800EE780(f32 dst[3], f32 a[3], f32 b[3]);
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_80102D78(u8 *);
     void func_8080324C_chcollballcontrol();
@@ -1844,7 +1844,7 @@ void func_808032CC_chcollballcontrol(u8 *arg0, s32 arg1) {
     f32 sp24;
 
     if (arg1 == 0) {
-        var_f2 = (*(f32 *)((s8 *)(arg0) + (0x48))) + func_800DC178(110.0f, 250.0f);
+        var_f2 = (((Actor *)arg0)->rotation[1]) + func_800DC178(110.0f, 250.0f);
     } else {
         sp24 = func_80102D78(arg0);
         var_f2 = func_800DC178(110.0f, 250.0f) + sp24;
@@ -1899,14 +1899,14 @@ void func_80803484_chcollballcontrol(Actor *arg0) {
     } BallControl;
     f32 func_80800070_chcollballcontrol();
     f32 _subaddiejoy_entrypoint_3();
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_14(Actor *);
     f32 _sukickball_entrypoint_15(s32);
     void _sukickball_entrypoint_16(s32, f32 *);
     void _sukickball_entrypoint_2(Actor *, f32, f32);
     s32 _sukickball_entrypoint_5(Actor *, f32 *);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
-    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
@@ -1926,7 +1926,7 @@ void func_80803484_chcollballcontrol(Actor *arg0) {
     void func_80803E18_chcollballcontrol(Actor *);
     void func_80803F70_chcollballcontrol(Actor *);
     void func_8080405C_chcollballcontrol(u8 *);
-    s32 func_8080451C_chcollballcontrol(Actor *);
+    BtIntPtr func_8080451C_chcollballcontrol(Actor *);
     void func_8080486C_chcollballcontrol(Actor *);
 
 
@@ -2132,7 +2132,7 @@ s32 func_80803D54_chcollballcontrol(s32 arg0, s32 arg1) {
 void func_80803E18_chcollballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_4(s32, void *);
     void func_80803EF4_chcollballcontrol(Actor *, s32);
     struct {
@@ -2158,10 +2158,10 @@ void func_80803E18_chcollballcontrol(Actor *arg0) {
 }
 
 void func_80803EF4_chcollballcontrol(Actor *arg0, s32 arg1) {
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void func_800EE7F8(f32 *, f32 *);
-    void func_800F5A00(s32, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
     u8 *parent;
 
@@ -2176,7 +2176,7 @@ void func_80803EF4_chcollballcontrol(Actor *arg0, s32 arg1) {
 
 void func_80803F70_chcollballcontrol(Actor *arg0) {
     f32 func_800DC178(f32, f32);
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_4(s32, void *);
     Actor *func_80106790(Unk80132ED0 *);
     f32 func_80102D78();
@@ -2212,10 +2212,10 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
 
     Actor *func_80106790(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
-    s32 _sukickball_entrypoint_6(u8 *, s32);
-    s32 _sukickball_entrypoint_7(u8 *, s32);
-    Unk80132ED0 *_sukickball_entrypoint_8(u8 *, s32);
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
+    s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
+    BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
@@ -2224,11 +2224,11 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     void func_800EF04C(f32 *, f32 *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
-    s32 func_800F52B8(s32, Unk80132ED0 *);
-    void func_800F5A00(s32, f32 *);
-    void func_800F5D70(s32, f32 *);
-    void func_800F7700(s32, s32, f32 *);
-    void func_800F8294(s32, f32 *);
+    s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
+    void func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5D70(BtIntPtr, f32 *);
+    int func_800F7700(BtIntPtr arg0, s32 arg1, f32 *arg2);
+    void func_800F8294(BtIntPtr, f32 *);
     f32 func_80102D78();
     void func_8080324C_chcollballcontrol();
     u8 *parent;
@@ -2292,7 +2292,7 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
                     _sukickball_entrypoint_13(pos, selfPos, 60.0f);
                     if ((func_800DC0C0() < 0.5f) &&
                         !_sukickball_entrypoint_12(parent, *(s32 *)(arg0 + 0x6C) & 0x1FF)) {
-                        func_808032CC_chcollballcontrol(arg0, (s32)pos);
+                        func_808032CC_chcollballcontrol(arg0, (BtIntPtr)pos);
                     }
                     if (_sukickball_entrypoint_6(parent, i) &&
                         func_800F52B8(i, *(Unk80132ED0 **)arg0) == 2) {
@@ -2327,8 +2327,8 @@ void func_80804420_chcollballcontrol(Actor *arg0) {
     void *func_800BD0DC(s32);
     void func_800BD268();
     void func_800BD28C();
-    s32 _gcstatusDll_entrypoint_11();
-    u8 _sukickball_entrypoint_3();
+    u8 _gcstatusDll_entrypoint_11(void);
+    s32 _sukickball_entrypoint_3(void);
     BallData *data;
 
     data = func_80100094(arg0, 0);
@@ -2354,7 +2354,7 @@ void func_808044F4_chcollballcontrol(Actor *arg0) {
     func_800BD09C(*data);
 }
 
-s32 func_8080451C_chcollballcontrol(Actor *arg0)
+BtIntPtr func_8080451C_chcollballcontrol(Actor *arg0)
 {
     s32 *_subaddiefind_entrypoint_0();
     f32 func_800136E4(f32);
@@ -2372,32 +2372,32 @@ s32 func_8080451C_chcollballcontrol(Actor *arg0)
     f32 angle;
     f32 speed;
 
-    selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, -1, &distance.f);
+    selected = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1A1, -1, &distance.f);
     if (selected == NULL) {
-        selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A2, -1, &distance.f);
+        selected = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1A2, -1, &distance.f);
         if (selected == NULL) {
-            selected = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A3, -1, &distance.f);
+            selected = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1A3, -1, &distance.f);
             if (selected == NULL) {
                 return NULL;
             }
         }
     } else if ((((u32)*(u16 *)(selected + 0x72) >> 10) == 2 &&
-                !func_800F0064((f32 *)((u8 *)arg0 + 4), 100.0f, (f32 *)(selected + 4))) ||
+                !func_800F0064(&arg0->position[0], 100.0f, (f32 *)(selected + 4))) ||
                ((u32)*(u16 *)(selected + 0x72) >> 10) == 6 ||
                ((u32)*(u16 *)(selected + 0x72) >> 10) == 4 ||
                ((u32)*(u16 *)(selected + 0x72) >> 10) == 3) {
         switch ((u32)*(u16 *)(selected + 0x72) >> 10) {
             case 2:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 2, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1A1, 2, &distance.f);
                 break;
             case 3:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 3, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1A1, 3, &distance.f);
                 break;
             case 6:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 6, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1A1, 6, &distance.f);
                 break;
             case 4:
-                other = (u8 *)_subaddiefind_entrypoint_0((f32 *)((u8 *)arg0 + 4), 0x1A1, 4, &distance.f);
+                other = (u8 *)_subaddiefind_entrypoint_0(&arg0->position[0], 0x1A1, 4, &distance.f);
                 break;
         }
         if (other != NULL && (((u32)*(u16 *)(other + 0x72) >> 10) == 1 ||
@@ -2422,7 +2422,7 @@ s32 func_8080451C_chcollballcontrol(Actor *arg0)
             speed = 25.0f;
         }
         if (speed < 30.0f) {
-            *(f32 *)((u8 *)arg0 + 0x54) = func_80102D78(arg0, (f32 *)(selected + 0x18));
+            arg0->unk54 = func_80102D78(arg0, (f32 *)(selected + 0x18));
             if (!func_80102CF4(arg0, 0x42340000) && func_80102CF4(arg0, 0x42B40000) &&
                 func_800DC0C0() < 0.8f) {
                 func_8080324C_chcollballcontrol(arg0, 8);
@@ -2433,7 +2433,7 @@ s32 func_8080451C_chcollballcontrol(Actor *arg0)
     } else {
         func_800EE7F8((f32 *)((u8 *)arg0 + 0x18), (f32 *)(selected + 4));
     }
-    return (s32)selected;
+    return (BtIntPtr)selected;
 }
 
 void func_8080486C_chcollballcontrol(Actor *arg0) {
@@ -2445,7 +2445,7 @@ void func_8080486C_chcollballcontrol(Actor *arg0) {
         f32 speed;
         f32 velocity[3];
     } Motion;
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    u8 _sukickball_entrypoint_12(Actor *arg0, s32 arg1);
     f32 func_800136E4(f32);
     f32 func_800D8FF8(void);
     void func_800EF04C(f32 *, f32 *);

@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 func_80800000_glintrosyncDll(s32 arg0) {
+typedef struct { s32 unk0; u8 pad4[0x4]; s32 unk8; u8 padC[0x4]; s32 unk10; u8 pad14[0x4]; s32 unk18; } ObjintrosyncDll_func_80800000_glintrosyncDll_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */ s32 func_80800000_glintrosyncDll(s32 arg0) {
     extern s32 D_808004A0_glintrosyncDll;
     extern s32 D_808004A8_glintrosyncDll;
     extern s32 D_808004B0_glintrosyncDll;
@@ -20,16 +20,16 @@ s32 func_80800000_glintrosyncDll(s32 arg0) {
         return 2;
     }
 loop_7:
-    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0)))) {
+    if (arg0 == (((ObjintrosyncDll_func_80800000_glintrosyncDll_var_v0 *)var_v0)->unk0)) {
         return var_v1;
     }
-    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (8)))) {
+    if (arg0 == (((ObjintrosyncDll_func_80800000_glintrosyncDll_var_v0 *)var_v0)->unk8)) {
         return var_v1 + 1;
     }
-    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0x10)))) {
+    if (arg0 == (((ObjintrosyncDll_func_80800000_glintrosyncDll_var_v0 *)var_v0)->unk10)) {
         return var_v1 + 2;
     }
-    if (arg0 == (*(s32 *)((s8 *)(var_v0) + (0x18)))) {
+    if (arg0 == (((ObjintrosyncDll_func_80800000_glintrosyncDll_var_v0 *)var_v0)->unk18)) {
         return var_v1 + 3;
     }
     var_v1 += 4;
@@ -38,7 +38,7 @@ loop_7:
         return -1;
     }
     goto loop_7;
-}
+}    typedef struct { u8 pad0[0x43C]; u32 unk43C; s32 unk440; f32 unk444; f32 unk448; } ObjintrosyncDll_D_80127194; /* offsets.py genstruct: fields from raw offsets on &D_80127194; rename once understood */
 
 u32 func_808000BC_glintrosyncDll(s32 arg0) {
     extern f32 D_80127194;
@@ -46,10 +46,10 @@ u32 func_808000BC_glintrosyncDll(s32 arg0) {
     u32 temp_v0;
 
     temp_v0 = osGetCount();
-    if (temp_v0 >= (*(u32 *)((s8 *)&D_80127194 + 0x43C))) {
-        var_a0 = temp_v0 - (*(u32 *)((s8 *)&D_80127194 + 0x43C));
+    if (temp_v0 >= (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C)) {
+        var_a0 = temp_v0 - (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C);
     } else {
-        var_a0 = (0xFFFFFFFF - (*(u32 *)((s8 *)&D_80127194 + 0x43C))) + temp_v0 + 1;
+        var_a0 = (0xFFFFFFFF - (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C)) + temp_v0 + 1;
     }
     return (u32)((f32)var_a0 * 0.021333333f);
 }
@@ -59,8 +59,8 @@ u32 func_808000BC_glintrosyncDll(s32 arg0) {
 void glintrosyncDll_entrypoint_0(s32 arg0) {
     extern f32 D_80127194;
     s32 func_80800000_glintrosyncDll(s32);
-    (*(u32 *)((s8 *)(&D_80127194) + (0x43C))) = osGetCount();
-    (*(s32 *)((s8 *)(&D_80127194) + (0x440))) = func_80800000_glintrosyncDll(arg0);
+    (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C) = osGetCount();
+    (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk440) = func_80800000_glintrosyncDll(arg0);
 }
 
 void glintrosyncDll_entrypoint_1(void) {
@@ -92,15 +92,15 @@ void glintrosyncDll_entrypoint_1(void) {
 
 void glintrosyncDll_entrypoint_2(f32 arg0) {
     extern f32 D_80127194;
-    *(f32 *)((u8 *)&D_80127194 + 1092) = arg0;
+    ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk444 = arg0;
 }
 
 f32 glintrosyncDll_entrypoint_3(void) {
     extern f32 D_80127194;
-    return *(f32 *)((u8 *)&D_80127194 + 1092);
+    return *&((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk444;
 }
 
-void glintrosyncDll_entrypoint_4(f32 arg0) { extern f32 D_80127194; f32 temp_f0; f32 *temp_v0; temp_v0 = (f32 *)(u32)((u8 *)&D_80127194 + 0x43C); temp_f0 = temp_v0[2]; if ((temp_f0 < 364.5f) && ((temp_f0 + arg0) >= 364.5f)) { temp_v0[3] = 0.86f; } temp_v0[2] = temp_f0 + arg0; }
+void glintrosyncDll_entrypoint_4(f32 arg0) { extern f32 D_80127194; f32 temp_f0; f32 *temp_v0; temp_v0 = (f32 *)(BtUIntPtr)((u8 *)&D_80127194 + 0x43C); temp_f0 = temp_v0[2]; if ((temp_f0 < 364.5f) && ((temp_f0 + arg0) >= 364.5f)) { temp_v0[3] = 0.86f; } temp_v0[2] = temp_f0 + arg0; }
 
 f32 glintrosyncDll_entrypoint_5(void) {
     s32 func_800C954C(void);
@@ -108,9 +108,9 @@ f32 glintrosyncDll_entrypoint_5(void) {
     f32 func_800D9004(void);
     extern f32 D_80127194;
     if (func_800C954C() != 0) {
-        return *(f32 *)((u8 *)&D_80127194 + 0x448) * func_800D8FF8();
+        return *&((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk448 * func_800D8FF8();
     }
-    return *(f32 *)((u8 *)&D_80127194 + 0x448) * func_800D9004();
+    return *&((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk448 * func_800D9004();
 }
 
 void glintrosyncDll_entrypoint_6(s32 arg0)
@@ -122,17 +122,17 @@ void glintrosyncDll_entrypoint_6(s32 arg0)
   };
   extern struct IntroSyncEntry D_808004F8_glintrosyncDll[27];
   extern f32 D_80127194;
-  s32 _gcsectionDll_entrypoint_4(s32);
+  u8 _gcsectionDll_entrypoint_4(s32 arg0);
   struct IntroSyncEntry *entry;
   u8 *state;
   if (_gcsectionDll_entrypoint_4(arg0) == 0xD)
   {
-    state = (u8 *) ((u32) (((u8 *) (&D_80127194)) + 0x43C));
+    state = (u8 *) ((BtUIntPtr) (((u8 *) (&D_80127194)) + 0x43C));
     state[0x10] = 1;
   }
   else
   {
-    state = (u8 *) ((u32) (((u8 *) (&D_80127194)) + 0x43C));
+    state = (u8 *) ((BtUIntPtr) (((u8 *) (&D_80127194)) + 0x43C));
     state[0x10] = 0;
   }
  *((f32 *) (state + 0xC)) = 1.0f; if (state[0x10] != 0) { entry = D_808004F8_glintrosyncDll; do {
@@ -143,6 +143,6 @@ void glintrosyncDll_entrypoint_6(s32 arg0)
       }
       entry++;
     }
-    while (entry != ((struct IntroSyncEntry *) ((u32) (&D_808004F8_glintrosyncDll[27]))));
+    while (entry != ((struct IntroSyncEntry *) ((BtUIntPtr) (&D_808004F8_glintrosyncDll[27]))));
   }
 }

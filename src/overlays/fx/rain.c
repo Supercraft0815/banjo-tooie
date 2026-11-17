@@ -1,8 +1,8 @@
 #include "common.h"
 
-void func_80800000_fxrain(s32 arg0) {
+typedef struct { u8 unk0; u8 pad1[0xF]; f32 unk10; u8 pad14[0xC]; BtIntPtr unk20; s32 unk24; s32 unk28; u8 pad2C[0x4]; u8 unk30; u8 pad31[0x3]; f32 unk34; u8 pad38[0xC]; f32 unk44; } Objrain_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_fxrain(BtIntPtr arg0) {
     f32 func_800DC178(f32 arg0, f32 arg1);
-    void func_800E3958(s32 arg0);
+    void func_800E3958(BtIntPtr arg0);
     void func_800E3980(f32 *arg0);
     void func_800E3A58(f32 *arg0);
     s32 func_800E3F8C(f32 arg0, f32 arg1, f32 arg2);
@@ -12,7 +12,7 @@ void func_80800000_fxrain(s32 arg0) {
     void func_800EF934(f32 dst[3], f32 src[3], f32 yaw);
     void func_800EFA4C(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     void *vector_push_back(void **);
-    s32 vector_size(s32);
+    s32 vector_size(void *vec);
     f32 sp64[3];
     f32 sp58[3];
     Vec3f angles;
@@ -21,15 +21,15 @@ void func_80800000_fxrain(s32 arg0) {
     f32 *sp40;
     f32 sp34[3];
 
-    if (vector_size(*(s32 *)((u8 *)arg0 + 0x20)) < *(s32 *)((u8 *)arg0 + 0x24)) {
+    if (vector_size(((Objrain_arg0 *)arg0)->unk20) < ((Objrain_arg0 *)arg0)->unk24) {
         func_800E3980(sp64);
-        func_800E3958((s32)sp58);
+        func_800E3958((BtIntPtr)sp58);
         func_800E3A58(angles.f);
         sp40 = vector_push_back((void **)((u8 *)arg0 + 0x20));
         distance = func_800DC178(50.0f, 2000.0f);
         random = func_800DC178(200.0f, 300.0f);
         func_800EFA4C(sp34, 0.0f, random, -distance);
-        if (func_800EEFD4((f32 *)((u8 *)arg0 + 0x10)) < 25.0f) {
+        if (func_800EEFD4(&((Objrain_arg0 *)arg0)->unk10) < 25.0f) {
             random = func_800DC178(0.0f, 360.0f);
             func_800EF934(sp34, sp34, random);
         } else {
@@ -56,56 +56,56 @@ void func_808001E8_fxrain(s32 *arg0, s32 arg1) {
 /* extern */
 
 void fxrain_entrypoint_0(void *arg0) {
-    s32 vector_clear(s32);
-    vector_clear((*(s32 *)((s8 *)(arg0) + (0x20))));
-}
+    void vector_clear(void *vec);
+    vector_clear((((Objrain_arg0 *)arg0)->unk20));
+}    typedef struct { u8 pad0[0x18]; s8 unk18; } Objrain_fxrain_entrypoint_1_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 /* extern */
 
 void fxrain_entrypoint_1(void *arg0) {
-    s32 func_800D674C(s32);
-    s32 func_800DE448(u32, s32, f32, s32, s32);
+    BtIntPtr func_800D674C(s32);
+    void* func_800DE448(f32* position, f32* arg1, f32 scale, f32* arg3, u8* arg4);
     s32 func_800DF350(void);
     void func_800DF830(s32);
-    u32 vector_begin(s32);
-    u32 vector_end(s32);
-    u32 sp3C;
-    s32 temp_s1;
-    u32 temp_v0;
-    u32 var_s0;
+    void * vector_begin(void *vec);
+    void * vector_end(void *vec);
+    BtUIntPtr sp3C;
+    BtIntPtr temp_s1;
+    BtUIntPtr temp_v0;
+    BtUIntPtr var_s0;
 
     temp_s1 = func_800D674C(0x9EC);
-    sp3C = vector_begin((*(s32 *)((s8 *)(arg0) + (0x20))));
-    temp_v0 = vector_end((*(s32 *)((s8 *)(arg0) + (0x20))));
+    sp3C = vector_begin((((Objrain_arg0 *)arg0)->unk20));
+    temp_v0 = vector_end((((Objrain_arg0 *)arg0)->unk20));
     var_s0 = sp3C;
     if (var_s0 < temp_v0) {
         do {
             func_800DF830(2);
             func_800DE448(var_s0, 0, 1.0f, 0, temp_s1);
-            (*(s8 *)((s8 *)(var_s0) + (0x18))) = func_800DF350();
+            (((Objrain_fxrain_entrypoint_1_var_s0 *)var_s0)->unk18) = func_800DF350();
             var_s0 += 0x1C;
         } while (var_s0 < temp_v0);
     }
 }
 
 int fxrain_entrypoint_2(void *arg0) {
-    s32 vector_size(s32);
-    return ((*(s32 *)((s8 *)(arg0) + (0x28))) != 1) && (vector_size((*(s32 *)((s8 *)(arg0) + (0x20)))) == 0);
+    s32 vector_size(void *vec);
+    return ((((Objrain_arg0 *)arg0)->unk28) != 1) && (vector_size((((Objrain_arg0 *)arg0)->unk20)) == 0);
 }
 
 int fxrain_entrypoint_3(void *arg0) {
     s32 state;
 
-    if ((*(s32 *)((s8 *)arg0 + 0x28)) != 1) {
+    if ((((Objrain_arg0 *)arg0)->unk28) != 1) {
         return 0;
     }
-    state = (*(u8 *)((s8 *)arg0 + 0x30));
+    state = (((Objrain_arg0 *)arg0)->unk30);
     switch (state) {
     case 1:
     case 2:
         return 1;
     case 3:
-        return ((*(f32 *)((s8 *)arg0 + 0x44)) * 0.9f) > (*(f32 *)((s8 *)arg0 + 0x34));
+        return ((((Objrain_arg0 *)arg0)->unk44) * 0.9f) > (((Objrain_arg0 *)arg0)->unk34);
     default:
         return 0;
     }
@@ -115,37 +115,37 @@ int fxrain_entrypoint_3(void *arg0) {
 
 void fxrain_entrypoint_4(u8 *arg0) {
     s32 func_800C2FDC();
-    s32 heap_free(u8 *);
+    void heap_free(void *memory);
     s32 vector_free(s32, u8 *);
     u8 temp_a2;
 
-    temp_a2 = (*(u8 *)((s8 *)(arg0) + (0)));
+    temp_a2 = (((Objrain_arg0 *)arg0)->unk0);
     if (temp_a2 != 0) {
         func_800C2FDC(temp_a2 & 0xFF, arg0, (u32)temp_a2);
-        (*(u8 *)((s8 *)(arg0) + (0))) = 0;
+        (((Objrain_arg0 *)arg0)->unk0) = 0;
     }
-    vector_free((*(s32 *)((s8 *)(arg0) + (0x20))), arg0);
+    vector_free((((Objrain_arg0 *)arg0)->unk20), arg0);
     heap_free(arg0);
-}
+}    typedef struct { s8 unk0; u8 pad1[0x1B]; s8 unk1C; u8 pad1D[0x3]; BtIntPtr unk20; s32 unk24; s32 unk28; f32 unk2C; s8 unk30; } Objrain_fxrain_entrypoint_5_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
 u8 *fxrain_entrypoint_5(s32 arg0) {
-    s32 func_800EFD24(u8 *);
+    void func_800EFD24(f32 vec[3]);
     u8 *heap_alloc(s32);
-    s32 vector_new(s32, s32);
+    void * vector_new(u32 element_size, u32 count);
     u8 *temp_v0;
 
     temp_v0 = heap_alloc(0x4C);
     func_800EFD24(temp_v0 + 4);
     func_800EFD24(temp_v0 + 0x10);
-    (*(s8 *)((s8 *)(temp_v0) + (0))) = 0;
-    (*(s8 *)((s8 *)(temp_v0) + (0x1C))) = 0;
-    (*(s8 *)((s8 *)(temp_v0) + (0x30))) = 0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x20))) = vector_new(0x1C, arg0);
-    (*(s32 *)((s8 *)(temp_v0) + (0x24))) = arg0;
-    (*(s32 *)((s8 *)(temp_v0) + (0x28))) = 0;
-    (*(f32 *)((s8 *)(temp_v0) + (0x2C))) = 0.1f;
+    (((Objrain_fxrain_entrypoint_5_temp_v0 *)temp_v0)->unk0) = 0;
+    (((Objrain_fxrain_entrypoint_5_temp_v0 *)temp_v0)->unk1C) = 0;
+    (((Objrain_fxrain_entrypoint_5_temp_v0 *)temp_v0)->unk30) = 0;
+    (((Objrain_fxrain_entrypoint_5_temp_v0 *)temp_v0)->unk20) = vector_new(0x1C, arg0);
+    (((Objrain_fxrain_entrypoint_5_temp_v0 *)temp_v0)->unk24) = arg0;
+    (((Objrain_fxrain_entrypoint_5_temp_v0 *)temp_v0)->unk28) = 0;
+    (((Objrain_fxrain_entrypoint_5_temp_v0 *)temp_v0)->unk2C) = 0.1f;
     return temp_v0;
 }
 
@@ -167,7 +167,7 @@ void fxrain_entrypoint_6(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     this->values[3] = arg4;
 }
 
-void fxrain_entrypoint_7(s32 arg0)
+void fxrain_entrypoint_7(BtIntPtr arg0)
 {
     func_808001E8_fxrain(arg0,1);
 }
@@ -175,7 +175,7 @@ void fxrain_entrypoint_7(s32 arg0)
 /* extern */
 
 void fxrain_entrypoint_8(u8 *arg0) {
-    s32 func_800C3A40(u8, f32, f32, f32);
+    void func_800C3A40(u8 arg0, f32 arg1, f32 arg2, f32 arg3);
     u8 temp_a0;
 
     func_808001E8_fxrain(arg0, 2);
@@ -206,14 +206,14 @@ void fxrain_entrypoint_9(void *arg0) {
         u8 persistent;
     } RainParticle;
     s32 func_800A5490(void);
-    s32 func_800C2E04(void);
+    u8 func_800C2E04(void);
     s32 func_800C2FDC();
     void func_800C301C(u8, s32);
     void func_800C316C(u8, s32, s32, f32);
     void func_800C330C(u8, s32);
     void func_800C3418(u8, s32);
     void func_800C37E0(u8, f32, f32, f32);
-    s32 func_800C3A40(u8, f32, f32, f32);
+    void func_800C3A40(u8 arg0, f32 arg1, f32 arg2, f32 arg3);
     void func_800C3BDC(u8);
     f32 func_800D8FF8(void);
     void func_800E3980(f32 *);
@@ -221,10 +221,10 @@ void fxrain_entrypoint_9(void *arg0) {
     f32 func_800EEB40(f32 *, f32 *);
     void func_800EFB24(void *, void *, void *);
     s32 func_800F1574(f32 *, f32);
-    void *vector_at(s32, s32);
-    s32 vector_clear(s32);
-    s32 vector_erase(s32, s32);
-    s32 vector_size(s32);
+    void * vector_at(void *vec, s32 index);
+    void vector_clear(void *vec);
+    void vector_erase(void *vec, u32 index);
+    s32 vector_size(void *vec);
     f32 position[3];
     f32 delta;
 

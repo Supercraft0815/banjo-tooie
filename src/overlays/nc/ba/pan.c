@@ -36,12 +36,12 @@ void func_80800048_ncbapan(PlayerState *arg0) {
 void ncbapan_entrypoint_1(PlayerState *arg0) {
     void func_80111B8C(s32 *, f32, f32);
     void func_801120CC(s32 *, f32, f32, f32);
-    void func_801124D0(s32, s32);
+    void func_801124D0(BtIntPtr, s32);
     void func_80115858(void *, s32);
     void func_80115870(void *, f32);
     func_801120CC(arg0, 2000.0f, 4000.0f, -4000.0f);
     func_80111B8C(arg0, 4.0f, 8.0f);
-    func_801124D0((s32) arg0, 1);
+    func_801124D0((BtIntPtr) arg0, 1);
     func_80115858(arg0, 1);
     func_80115870(arg0, 5.0f);
     func_80800048_ncbapan(arg0);
@@ -56,9 +56,9 @@ void ncbapan_entrypoint_3(PlayerState *arg0) {
     f32 func_800EEF94(f32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F1A88(f32 *, f32 *);
-    void func_80110790(s32, f32 *);
+    void func_80110790(BtIntPtr, f32 *);
     void func_801107F0(void *, f32 *);
-    void func_80110A68(s32, s32, s32);
+    void func_80110A68(BtIntPtr, BtIntPtr, BtIntPtr);
     void func_80110F44(void *);
     s32 func_80111FD4(void *, f32 *);
     f32 func_80112C3C(void *, f32);
@@ -99,6 +99,6 @@ void ncbapan_entrypoint_3(PlayerState *arg0) {
         func_80800048_ncbapan(arg0);
     }
     func_80800008_ncbapan(arg0, sp54);
-    func_80110A68((s32)arg0, (s32)sp30, (s32)sp54);
-    func_80110790((s32)arg0, sp30);
+    func_80110A68((BtIntPtr)arg0, (BtIntPtr)sp30, (BtIntPtr)sp54);
+    func_80110790((BtIntPtr)arg0, sp30);
 }

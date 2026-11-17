@@ -50,14 +50,14 @@ void func_808000BC_chswampplatform(Actor *arg0) {
         u16 state:6;
         u16 pad72:10;
     } Platform;
-    s32 _capod_entrypoint_13(s32, s32, s32, s32);
+    s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void _chglowbo_entrypoint_6(void);
-    s16 _chmumbopad_entrypoint_0(s32);
+    s32 _chmumbopad_entrypoint_0(s32 arg0);
     void _subaddieaudioquick_entrypoint_2(void *, f32 *, s32 *);
     void _sumumbofx_entrypoint_0(void *, s32, s32, s16);
     void _sumumbofx_entrypoint_1(void *, s32);
     void _sumumbofx_entrypoint_2(void *);
-    void _sumumbofx_entrypoint_5(void *, f32);
+    s32 _sumumbofx_entrypoint_5(u8 *arg0, f32 arg1);
     void _sumumbofx_entrypoint_14(void *);
     void _sumumbofx_entrypoint_15(void *, f32);
     void _sumumbofx_entrypoint_16(void *, f32);
@@ -65,7 +65,7 @@ void func_808000BC_chswampplatform(Actor *arg0) {
     void _sumumbofx_entrypoint_18(void *, f32);
     f32 _sumumbofx_entrypoint_21(void *);
     void _sumumbofx_entrypoint_24(void *, f32);
-    void _sumumbofx_entrypoint_25(void *, s32, s32 *);
+    void _sumumbofx_entrypoint_25(u8 *arg0, s32 arg1, BtIntPtr arg2);
     s32 _sumumbofx_entrypoint_27(void *);
     f32 func_800138D0(f32);
     s32 func_800DA298(s32);
@@ -74,8 +74,8 @@ void func_808000BC_chswampplatform(Actor *arg0) {
     void func_8010A800(void *, s32);
     void func_80800804_chswampplatform(void *);
     f32 mlAbsF(f32);
-    extern s32 D_808009D0_chswampplatform;
-    extern s32 D_808009E4_chswampplatform;
+    extern s32 D_808009D0_chswampplatform[5];
+    extern s32 D_808009E4_chswampplatform[5];
     s32 position[3];
     Platform *self = (Platform *)arg0;
 
@@ -118,7 +118,7 @@ void func_808000BC_chswampplatform(Actor *arg0) {
     case 4:
         if (_sumumbofx_entrypoint_21(func_80100094(arg0, 1)) > 2.0f) {
             if (!self->sound1) {
-                _subaddieaudioquick_entrypoint_2(arg0, self->position, &D_808009D0_chswampplatform);
+                _subaddieaudioquick_entrypoint_2(arg0, self->position, D_808009D0_chswampplatform);
                 self->sound1 = 1;
             }
             self->progress = func_800138D0((_sumumbofx_entrypoint_21(func_80100094(arg0, 1)) - 2.0f) * 0.5f * 90.0f);
@@ -126,7 +126,7 @@ void func_808000BC_chswampplatform(Actor *arg0) {
             self->scale[2] = self->scale[1] = self->scale[0] = 2.0f * self->progress + 1.0f;
         } else {
             if (!self->sound2) {
-                _subaddieaudioquick_entrypoint_2(arg0, self->position, &D_808009E4_chswampplatform);
+                _subaddieaudioquick_entrypoint_2(arg0, self->position, D_808009E4_chswampplatform);
                 self->sound2 = 1;
             }
             self->progress = 1.0f - func_800138D0(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)) * 0.5f * 90.0f);
@@ -172,8 +172,8 @@ void func_8080061C_chswampplatform(Actor *arg0, void *arg1) {
         f32 unk34;
     } PlatformData;
     s32 _subaddiefind_entrypoint_4(s32, Actor **, s32);
-    s32 _sumumbofx_entrypoint_8(u8 *, s32);
-    s32 _sumumbofx_entrypoint_9(u8 *, s32);
+    void _sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1);
+    void _sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1);
     s32 func_800DA298(s32);
     void func_800DF500(f32, f32, f32);
     void func_80101870(Actor *, void *);
@@ -186,7 +186,7 @@ void func_8080061C_chswampplatform(Actor *arg0, void *arg1) {
     if (func_800DA298(0x9DE)) {
         if (func_80100094(arg0, 1)) {
             count = _subaddiefind_entrypoint_4(0x28E, actors, 5);
-            _sumumbofx_entrypoint_9(func_80100094(arg0, 1), (s32)arg1);
+            _sumumbofx_entrypoint_9(func_80100094(arg0, 1), (BtIntPtr)arg1);
             i = 0;
             if (count > 0) {
                 actor = actors;
@@ -205,7 +205,7 @@ void func_8080061C_chswampplatform(Actor *arg0, void *arg1) {
                     actor++;
                 } while (i != count);
             }
-            _sumumbofx_entrypoint_8(func_80100094(arg0, 1), (s32)arg1);
+            _sumumbofx_entrypoint_8(func_80100094(arg0, 1), (BtIntPtr)arg1);
         }
     } else {
         arg0->position[1] = ((PlatformData *)arg0->actorData)->position[1] - func_80103EF4(arg0) * 0.5f;
@@ -234,7 +234,7 @@ void func_80800804_chswampplatform(void *self) {
         f32 unk34;
     } PlatformData;
     s32 _subaddiefind_entrypoint_4(s32, Actor **, s32);
-    s32 _sumumbofx_entrypoint_7(void *, f32, s32, s32, f32 *, s32, s32);
+    void _sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f32 *arg5, f32 *arg6);
     void func_80103DFC(Actor *, f32 *);
     f32 func_80103EAC(Actor *);
     Actor *actors[5];
@@ -262,7 +262,13 @@ void func_80800804_chswampplatform(void *self) {
 
 OSThread *chswampplatform_entrypoint_0(void)
 {
-    extern u8 D_808009F8_chswampplatform[];
+    extern ActorData D_808009F8_chswampplatform[];
 
     return (OSThread *) D_808009F8_chswampplatform;
 }
+/* data_to_c.py: from asm/data/overlays/ch/swampplatform.data.s */
+void func_80105834(Actor*);
+void func_80107C2C();
+s32 D_808009D0_chswampplatform[5] BT_DATA(4, overlays_ch_swampplatform, 0x0) = { 1246237, 655488, 1469792, 68536, 393216000 };
+s32 D_808009E4_chswampplatform[5] BT_DATA(4, overlays_ch_swampplatform, 0x14) = { 1246238, 655616, 1469792, 68536, 393216000 };
+ActorData D_808009F8_chswampplatform [1] BT_DATA(4, overlays_ch_swampplatform, 0x28) = { { 344, 654, 1768, 7, 0, (void (*)(struct Actor *))func_808000BC_chswampplatform, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080061C_chswampplatform, 0, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chswampplatform, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))func_808007A4_chswampplatform, 0 } };
