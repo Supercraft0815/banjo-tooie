@@ -445,11 +445,20 @@ static void passThroughIndirect(Module &M) {
     }
 }
 
-struct FixCalls : PassInfoMixin<FixCalls> {
+// Cartridge linker symbols and zero-initialized data placements also apply when
+// testing guest code without any call-signature repair.
+struct LinkerSymbols : PassInfoMixin<LinkerSymbols> {
     PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
         placeCData(M);
         if (!AbsSyms.empty())
             resolveAbsSyms(M);
+        return PreservedAnalyses::none();
+    }
+};
+
+struct FixCalls : PassInfoMixin<FixCalls> {
+    PreservedAnalyses run(Module &M, ModuleAnalysisManager &AM) {
+        LinkerSymbols().run(M, AM);
         flattenByVal(M);
         fixUndefReturns(M);
         addPassThroughParams(M);
@@ -1005,6 +1014,8 @@ extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
                     [](StringRef Name, ModulePassManager &MPM, ArrayRef<PassBuilder::PipelineElement>) {
                         if (Name == "bt-fixcalls")
                             MPM.addPass(FixCalls());
+                        else if (Name == "bt-linker-symbols")
+                            MPM.addPass(LinkerSymbols());
                         else if (Name == "bt-bigendian")
                             MPM.addPass(BigEndian());
                         else if (Name == "bt-safepoints")

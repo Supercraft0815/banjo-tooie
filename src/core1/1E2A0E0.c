@@ -393,15 +393,15 @@ void *func_80012F00(void) {
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80012F0C(s32 arg0) {
-    s32 func_80021A00(s32);
+    BT_IDO_ONLY(s32 func_80021A00(s32);) BT_NATIVE_ONLY(void func_80021A00(u8);)
     D_8006A1CC.master = arg0;
-    BT_NATIVE_ONLY(return) func_80021A00(arg0 & 0xFF);
+    func_80021A00(arg0 & 0xFF); BT_NATIVE_ONLY(return 0;)
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80012F34(s32 arg0, s32 arg1) {
-    s32 func_80021AD0();
+    BT_IDO_ONLY(s32 func_80021AD0();) BT_NATIVE_ONLY(void func_80021AD0(s32, s32);)
     *(((volatile s16 *)D_8006A1CC.channels) + arg0) = arg1;
-    BT_NATIVE_ONLY(return) func_80021AD0();
+    BT_IDO_ONLY(func_80021AD0();) BT_NATIVE_ONLY(func_80021AD0(arg0, arg1); return 0;)
 }
 
 void *func_80012F60(void) {

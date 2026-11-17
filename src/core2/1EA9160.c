@@ -182,7 +182,7 @@ u32 func_800CFC8C(s32 arg0, s32 arg1) {
     extern u8 D_8011ACB0[];
     extern u8 D_8011ACD4[];
     extern u8 D_8011AD08[];
-    s32 _chnests_entrypoint_13(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _chnests_entrypoint_13(s32);
     s32 i;
     u32 count = 0;
 
@@ -227,7 +227,7 @@ u32 func_800CFC8C(s32 arg0, s32 arg1) {
         case 6:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
                 if (arg1 == D_8011AD08[i * 2 - 2]) {
-                    count += _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
                 }
             }
             return count;
@@ -253,7 +253,7 @@ s32 func_800D0018(s32 arg0, s32 arg1) {
     extern u8 D_8011ACAE[][2];
     extern u8 D_8011ACD2[][2];
     extern u8 D_8011AD08[];
-    s32 _chnests_entrypoint_13(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _chnests_entrypoint_13(s32);
     s32 i;
     s32 count = 0;
 
@@ -296,7 +296,7 @@ s32 func_800D0018(s32 arg0, s32 arg1) {
         case 6:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
                 if (func_800D0B68(i, arg0) && arg1 == D_8011AD08[i * 2 - 2]) {
-                    count += _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
                 }
             }
             return count;
@@ -312,7 +312,7 @@ s32 func_800D0018(s32 arg0, s32 arg1) {
 }
 
 s32 func_800D035C(s32 a0) {
-    s32 _chnests_entrypoint_13(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _chnests_entrypoint_13(s32);
     extern u8 D_8011AD08[];
     s32 i;
     s32 count;
@@ -323,7 +323,7 @@ s32 func_800D035C(s32 a0) {
         if (func_800D0894(a0) >= i) {
             do {
                 if (func_800D0B68(i, a0) != 0) {
-                    count += _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
                 }
                 i++;
             } while (func_800D0894(a0) >= i);

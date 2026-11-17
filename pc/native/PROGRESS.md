@@ -1826,3 +1826,30 @@ prüfte alle 17 Werte, ältere Tastaturnamen und unbekannte Einträge.
 Die fünf Menüseiten wurden in beiden Renderern mit 1.920 × 1.440 Pixeln
 aufgenommen. Die ursprünglichen 29 Spieltraces bestehen auch im integrierten
 Build. Belege und Aufnahmen stehen in `build/acceptance/a5-2026-11-17/`.
+
+## 2026-11-17 — N2, Aufrufsignaturen und abschaltbare LLVM-Pässe
+
+`BT_PASS_OFF` schaltet einzelne Pässe im separaten `BT_OUT` ab. Auch
+ohne `bt-fixcalls` löst der Linker die Cartridge-Symbole und positioniert
+die C-Daten. Der reguläre Build schreibt die zwölf von `bt-stackslots`
+vergrößerten Stackbereiche mit Funktion und Bytebereich nach
+`build/ilp32/stackslots.txt`. Ohne diesen Pass scheitern die 29 bisherigen
+Fälle bereits beim Start.
+
+Die beiden Audio-Weiterleitungen für `func_80021A00` und `func_80021AD0`
+sowie die Aufrufer von `chnests_entrypoint_13` und
+`gcsectionDll_entrypoint_4` verwenden unter ILP32 die tatsächliche Signatur.
+Beim Übergang zu einem vorzeichenbehafteten 32-Bit-Ergebnis bleibt die
+bisherige Erweiterung des unteren Bytes erhalten. Der vollständige
+IR-Vergleich mit dem Stand vor diesen Änderungen ergab null abweichende
+Funktionen. Im Diagnose-Binary ohne Signaturreparatur sank die Zahl der
+ungültigen Aufrufvarianten von 163 auf 150 (143 bzw. 130 verschiedene
+Ziele). Der Intro-Lauf erreicht jetzt den Hänger eines Gastthreads auf
+Priorität 20. Die Aufrufreparatur bleibt im regulären Build aktiv.
+
+Das reguläre Gate bestand neun Testprogramme und alle 162.276 Retraces.
+Ein frisch aus HEAD gebauter Original-IDO-Vergleich ergab null Unterschiede
+bei Funktionen und Objektdaten. Die dekomprimierte ROM und das vollständige
+Cartridge-Abbild stimmen byteweise. Belege liegen in
+`build/acceptance/n2-2026-11-17/`, darunter `sections-validation.json`,
+`sections-ir.log` und `sections-full-gate.log`.

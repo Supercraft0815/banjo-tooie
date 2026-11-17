@@ -54,7 +54,7 @@ void func_80800018_glcutDll(u32 arg0)
                 func_800FE844(2);
                 func_800FE734(1);
             }
-            if (_gcsectionDll_entrypoint_4(D_801275E8.unk0) != D_8012762C)
+            if (BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(D_801275E8.unk0) != D_8012762C)
             {
                 func_800A8230();
             }
@@ -102,7 +102,7 @@ void func_80800018_glcutDll(u32 arg0)
             func_800FE844(2);
             func_800FE734(1);
         }
-        if (_gcsectionDll_entrypoint_4(D_801275E8.unk2) != D_8012762C)
+        if (BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(D_801275E8.unk2) != D_8012762C)
         {
             func_800A8230();
         }

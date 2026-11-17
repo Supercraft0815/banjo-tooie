@@ -1,5 +1,5 @@
 #include "core2/1E80A70.h"
-s32 _gcsectionDll_entrypoint_4(s32);
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcsectionDll_entrypoint_4(s32);
 
 typedef struct {
     s16 unk0;
@@ -111,7 +111,7 @@ void func_800A72A4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 sp18;
 
     sp1C = D_8012762C;
-    sp18 = _gcsectionDll_entrypoint_4(arg0);
+    sp18 = BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(arg0);
     func_800E96E0();
     _gcsectionDll_entrypoint_1(1);
     if (arg3 || arg2 || sp18 != sp1C) {
@@ -309,7 +309,7 @@ void func_800A76F4(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1)) {
     func_800A759C(2, 0U);
     D_80127630.unk1C = (u8) (s32) arg0;
     func_800A5CF0(0);
-    if (((func_800DA9E4(FLAG2_647_UNK, 0) == 0) || (_gcsectionDll_entrypoint_4((s32) D_80127630.mapValue) == D_8012762C)) && (func_800DA298(FLAG2_650_UNK) == 0)) {
+    if (((func_800DA9E4(FLAG2_647_UNK, 0) == 0) || (BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4((s32) D_80127630.mapValue) == D_8012762C)) && (func_800DA298(FLAG2_650_UNK) == 0)) {
         _cosectionstor_entrypoint_3(func_800EA05C());
     }
     func_800A7380(BT_IDO_ONLY(1) BT_PASS2(1, bt_a1));
@@ -769,8 +769,8 @@ int func_800A81C4(void) {
     if (D_80127630.mapValue == 0) {
         return 0;
     }
-    a = _gcsectionDll_entrypoint_4(D_80127630.mapValue);
-    b = _gcsectionDll_entrypoint_4(func_800EA05C());
+    a = BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(D_80127630.mapValue);
+    b = BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(func_800EA05C());
     return b != a && D_80127630.unk6 == 0;
 }
 

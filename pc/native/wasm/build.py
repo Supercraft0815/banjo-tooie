@@ -153,6 +153,21 @@ def guest_object_tag(compiler_version=None):
     return flags_hash([CLANG, compiler_version, *GUEST_FLAGS, bitfields])
 
 
+def guest_pipeline(disabled, xsym):
+    passes = ['function(mem2reg)', 'bt-fixcalls']
+    if xsym:
+        passes.append('bt-xsym')
+    passes += ['bt-bigendian', 'bt-datagroup', 'bt-stackslots', 'internalize',
+               'bt-safepoints', 'default<O2>', 'bt-fixcalls']
+    omit = {'bt-' + name.strip().removeprefix('bt-') for name in disabled.split(',') if name.strip()}
+    unknown = omit - {p for p in passes if p.startswith('bt-')} - {'bt-xsym'}
+    if unknown:
+        raise ValueError('BT_PASS_OFF: unknown pass ' + ', '.join(sorted(unknown)))
+    if 'bt-fixcalls' in omit:
+        passes[1] = 'bt-linker-symbols'
+    return ','.join(p for p in passes if p not in omit)
+
+
 def up_to_date(obj, dep):
     if not obj.exists() or not dep.exists():
         return False
@@ -319,7 +334,7 @@ def build_guest(jobs, compiler_version):
     print('guest: %d/%d game files compile, %d native/runtime files' % (game_ok, game_total, len(objs) - game_ok))
     for s in failed:
         if not s.startswith('src/'):
-            print('  runtime file failed: %s (%s)' % (s, OUT / 'obj' / tag / (s.replace('/', '__') + '.log')))
+            sys.exit('runtime file failed: %s (%s)' % (s, OUT / 'obj' / tag / (s.replace('/', '__') + '.log')))
 
     # 2. Data and traps.
     defined, undef = nm(objs)
@@ -429,10 +444,13 @@ def build_guest(jobs, compiler_version):
              # again, so the fix runs before and after the optimization pipeline. Safepoints go in
              # before it: an opaque call per loop latch keeps loads of data other threads write
              # inside wait loops, as preemption anywhere on the N64 does.
-             '-passes=function(mem2reg),bt-fixcalls,%sbt-bigendian,' % ('bt-xsym,' if os.environ.get('BT_XSYM') else '') + 'bt-datagroup,bt-stackslots,internalize,bt-safepoints,default<O2>,bt-fixcalls', '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'), '-bt-widened=%s' % (OUT / 'widened.txt'), '-bt-xsym-sites=%s' % (OUT / 'xsym_sites.txt'),
+             '-passes=' + guest_pipeline(os.environ.get('BT_PASS_OFF', ''), os.environ.get('BT_XSYM')),
+             '-bt-abs-syms=%s' % (gen / 'linker_syms.txt'), '-bt-widened=%s' % (OUT / 'widened.txt'), '-bt-xsym-sites=%s' % (OUT / 'xsym_sites.txt'),
              '-internalize-public-api-list=' + ','.join(EXPORTS + LIBCALLS), str(linked), '-o', str(fixed)]
             # BT_NOINLINE=1: keeps every function separate, so crash backtraces name the real function.
             + (['-inline-threshold=-100000'] if os.environ.get('BT_NOINLINE') else []))
+    (OUT / 'stackslots.txt').write_text(''.join(line + '\n' for line in r.stderr.splitlines()
+                                                if line.startswith('bt-stackslots:') and ': slot reached at' in line))
     if r.returncode != 0:
         sys.exit('opt failed:\n' + r.stderr[:8000])
     wasm = OUT / 'game.wasm'

@@ -17,6 +17,14 @@ import trace_tools
 
 
 class BuildTest(unittest.TestCase):
+    def test_disabled_passes_preserve_pipeline_order_and_remove_both_fixcalls(self):
+        baseline = 'function(mem2reg),bt-fixcalls,bt-bigendian,bt-datagroup,bt-stackslots,internalize,bt-safepoints,default<O2>,bt-fixcalls'
+        self.assertEqual(build.guest_pipeline('', False), baseline)
+        self.assertEqual(build.guest_pipeline('bt-fixcalls, stackslots', True),
+                         'function(mem2reg),bt-linker-symbols,bt-xsym,bt-bigendian,bt-datagroup,internalize,bt-safepoints,default<O2>')
+        with self.assertRaisesRegex(ValueError, 'BT_PASS_OFF'):
+            build.guest_pipeline('stackslot', False)
+
     def test_explicit_prefix_wins_over_path(self):
         with patch.dict(os.environ, {'BT_LLVM_BIN': '/custom llvm/bin', 'BT_WABT': '/custom wabt'}, clear=True), \
              patch.object(build.sys, 'platform', 'linux'), patch.object(build.shutil, 'which', return_value='/path/tool'):

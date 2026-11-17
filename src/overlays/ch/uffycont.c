@@ -255,7 +255,7 @@ void func_80800768_chchuffycont(BtIntPtr arg0, BtIntPtr arg1) {
 
 s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
 {
-  s32 _gcsectionDll_entrypoint_4(s32);
+  BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcsectionDll_entrypoint_4(s32);
   void func_800A7A5C(void);
   void func_800A8230(void);
   s32 func_800DA298(s32);
@@ -291,8 +291,8 @@ s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
     }
     else
     {
-      temp_s0 = _gcsectionDll_entrypoint_4(*arg0);
-      if (_gcsectionDll_entrypoint_4(0xD0) != temp_s0)
+      temp_s0 = BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(*arg0);
+      if (BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(0xD0) != temp_s0)
       {
         func_800A8230();
       }
@@ -306,7 +306,7 @@ s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
   {
     *arg0 = 0xD0;
     *arg1 = 1;
-    if (_gcsectionDll_entrypoint_4(0xD0) != D_8012762C)
+    if (BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(0xD0) != D_8012762C)
     {
       func_800A8230();
     }
@@ -316,7 +316,7 @@ s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
 }
 
 s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
-    s32 _gcsectionDll_entrypoint_4(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcsectionDll_entrypoint_4(s32);
     void func_800A8230(void);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
@@ -346,8 +346,8 @@ s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
             *arg0 = *ptr;
             *arg1 = 3;
         }
-        section = _gcsectionDll_entrypoint_4(*arg0);
-        if (_gcsectionDll_entrypoint_4(0x121) != section) {
+        section = BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(*arg0);
+        if (BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(0x121) != section) {
             func_800A8230();
         }
         result = 1;
@@ -362,7 +362,7 @@ s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
             *arg0 = 0x121;
             result = 1;
             *arg1 = 1;
-            if (_gcsectionDll_entrypoint_4(0x121) != D_8012762C) {
+            if (BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(0x121) != D_8012762C) {
                 func_800A8230();
             }
         }
@@ -388,12 +388,12 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) chchuffycont_entrypoint_3(void)
 {
   extern s16 D_80800B20_chchuffycont;
   extern s16 D_80800B66_chchuffycont;
-  s32 _gcsectionDll_entrypoint_4(s32);
+  BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcsectionDll_entrypoint_4(s32);
   s32 func_800DA298(s32);
   s16 *var_s0;
   s16 *var_s1;
  var_s0 = &D_80800B20_chchuffycont; var_s1 = &D_80800B66_chchuffycont; loop_1: if (func_800DA298(var_s0[1]) == 0) { var_s0 += 5; if (var_s0 != var_s1) { goto loop_1; }
   }
 
-  BT_NATIVE_ONLY(return) _gcsectionDll_entrypoint_4(*var_s0);
+  BT_NATIVE_ONLY(return) BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(*var_s0);
 }

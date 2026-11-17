@@ -438,7 +438,7 @@ final_checks:
         s32 sameSection;
 
         level = D_8012762C;
-        section = _gcsectionDll_entrypoint_4(arg1);
+        section = BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(arg1);
         sameSection = section == level && sp24 == 0xD;
         if (level != section || (level == 0x1A && !sameSection)) {
 #ifdef BT_NATIVE
