@@ -1611,3 +1611,27 @@ Zusätzlicher Werkzeugbefund: Der Trace-Header meldet bei `BT_SAVE=<Kopie>` noch
 EEPROM-Hash `0000000000000000`, obwohl Engine-Log und kopierte Save-Datei stimmen.
 Für Q2 die Trace-Metadaten auf den tatsächlich geladenen Save beziehen; aktuelle
 Repro-Logs enthalten daher zusätzlich den SHA-256 des synthetischen Ausgangsstands.
+
+## 2026-11-17 — Q1: Bildbögen und isolierte Spielsteuerung
+
+Agententeil fertig, menschliche Abnahme ausdrücklich vorläufig offen gelassen.
+`build/acceptance/q1-2026-11-17/summary-ego60.json` verzeichnet 14 Karten:
+AF, 152, B8, C7, D6, 1A7, 112, 100, 127, 128, 136, 15D, 142 und 14F.
+Jeder Bogen zeigt den Startpunkt nach zehn Spielsekunden, das Pause-Menü und
+die Ego-Sicht. Alle drei Ansichten wurden visuell geprüft. Die vier zunächst
+fehlenden Pause-Menüs auf D6, 112, 127 und 128 wurden mit länger gehaltenem Start
+in frischen Läufen nachgeholt; das Manifest zeigt auf `sheet-corrected.png` und
+die zugehörigen `*-pausefix`-Aufnahmen. Alte Belege sind erhalten.
+
+Alle Läufe verwenden dasselbe eingefrorene P0-Programm und einen synthetischen
+2048-Byte-Spielstand aus `save_editor.py`/den `worlds`-Flags. Karten-IDs,
+Eingaben, Zeiten und SHA-256-Werte stehen im Manifest; alle referenzierten
+Bild-, Blatt- und Tracepfade sowie Prüfsummen wurden maschinell verifiziert.
+Alle Spielprozesse sind beendet. Das belegt die Port-Aufnahmen, keinen
+Vergleich mit ares oder N64-Hardware und kein Durchspielen.
+
+`play.py start --exe FILE --dir NEW_DIR` hält Programm und Laufverzeichnis
+fest. `play.py --dir DIR COMMAND` richtet Folgebefehle einschließlich `stop`
+an dieselbe Session. Bestehende Zielordner und ungültige Optionen werden
+abgewiesen; bisherige Aufrufe bleiben gültig. Neun ROM-freie Tests prüfen
+Argumente, Pfade, Save-Kopie und Prozessstart; `play_test.py` gehört nun zum Gate.
