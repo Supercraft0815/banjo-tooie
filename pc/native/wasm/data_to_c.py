@@ -275,6 +275,14 @@ CANDIDATES = ('ActorData', 'ActorDataX')  # struct types a `u8 x[]` blob holding
 CHARS = {T.UCHAR, T.CHAR_S, T.SCHAR, T.CHAR_U}
 
 
+def readonly_object(decl):
+    # Canonical array types carry the element qualifier. Pointers to const
+    # data remain writable unless the pointer object itself is const.
+    t = decl.type.get_canonical()
+    return (t.is_const_qualified() and not t.is_volatile_qualified()
+            and not any(child.kind.is_attribute() for child in decl.get_children()))
+
+
 def plan(mod, generic=False, native=False):
     """(module name, status, C text to append) for one module. native: definitions for the native
     build only (the N64 keeps the asm file), so IDO's placement rules do not apply: explicit
@@ -313,8 +321,8 @@ def plan(mod, generic=False, native=False):
         visit(tu.cursor, False)
         own = [x.spelling for x in tu.cursor.walk_preorder() if x.kind == K.VAR_DECL and x.is_definition()
                and (x.storage_class == ci.StorageClass.STATIC or x.semantic_parent.kind == K.TRANSLATION_UNIT)
-               and not x.type.is_const_qualified() and x.location.file
-               and x.location.file.name == str(c) and '=' in [y.spelling for y in x.get_tokens()]]
+               and x.location.file and x.location.file.name == str(c) and not readonly_object(x)
+               and '=' in [y.spelling for y in x.get_tokens()]]
         if own and not native:  # its own .data comes first in the object and would move the appended definitions
             raise Refuse('C file defines data itself (%s)' % own[0])
         for sym in file_scope:
