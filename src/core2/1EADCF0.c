@@ -4,8 +4,8 @@ void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
     void func_800D4D5C(BtIntPtr, void *);
     f32 func_800C6784(void *);
     void func_800C675C(void *, f32 *);
-    extern f32 D_80125B20;
-    extern f32 D_80125B24;
+
+
     f32 normal[3];
     f32 height;
     f32 y;
@@ -16,7 +16,7 @@ void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
     func_800C675C(*(void **)arg0, normal);
     grounded = *((u8 *)arg0 + 0x56);
     *((u8 *)arg0 + 0x56) = 0;
-    if (!(normal[1] < D_80125B20)) {
+    if (!(normal[1] < 0.432f)) {
         y = ((f32 *)arg1)[1];
         if (y <= height) {
             ((f32 *)arg1)[1] = height;
@@ -24,7 +24,7 @@ void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
             return;
         }
         if (grounded && arg2[1] < 0.0f) {
-            if (normal[1] < D_80125B24) {
+            if (normal[1] < 0.9f) {
                 if (y < height + 30.0f) {
                     ((f32 *)arg1)[1] = height;
                     *((u8 *)arg0 + 0x56) = 1;
@@ -84,7 +84,7 @@ void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
         u8 count;
         u8 flag;
     } State;
-    extern f32 D_80125B28, D_80125B2C, D_80125B30, D_80125B34;
+
     f32 func_800C673C(f32 *);
     void *func_800C6B78(f32 *, f32 *, f32, f32 *, s32, u32);
     void func_800D4400(void *, void *, f32 *);
@@ -160,7 +160,7 @@ void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
                 }
             }
             if (current->wall && current->wallNormal[1] >= 0
-                && current->wallNormal[1] < D_80125B28) {
+                && current->wallNormal[1] < 0.02f) {
                 if (state->object) {
                     threshold = func_800C673C(state->object) - 1.0f;
                     if (threshold <= mlAbsF(oldY - current->position[1])) {
@@ -216,7 +216,7 @@ void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
             }
         }
         if (!current->flag && current->triangle && arg3[1] < 0.0f
-            && mlAbsF(current->normal[1]) < D_80125B2C
+            && mlAbsF(current->normal[1]) < 0.01f
             && func_800D4534(current->matrix, current->triangle)) {
             func_800F0524(delta, current->matrix, current->position);
             func_800EFA20(offset, current->normal, state->radius + 1);
@@ -226,13 +226,13 @@ void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
             current->position[0] = delta[0];
             current->position[2] = delta[2];
         }
-        if (current->normal[1] > D_80125B30 && state->radius != state->height
+        if (current->normal[1] > 0.6f && state->radius != state->height
             && func_800D4534(current->matrix, current->triangle)) {
             adjust = 1;
             func_800EE7F8(intersection, current->position);
             func_800EFA4C(up, 0.0f, 1.0f, 0.0f);
             if (func_800F0CB4(intersection, up, current->matrix, current->normal)
-                && mlAbsF(current->position[1] - intersection[1]) < D_80125B34) {
+                && mlAbsF(current->position[1] - intersection[1]) < 0.01f) {
                 adjust = 0;
             }
             if (adjust) {

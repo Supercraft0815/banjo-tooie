@@ -165,13 +165,13 @@ s32 func_800E0464(s16 *arg0) {
 }
 
 f32 func_800E046C(void *arg0, s32 arg1) {
-    extern f32 D_80125D70;
+
     s32 temp_v0;
     s16 temp_v1;
 
     temp_v0 = (((Obj1EB9940_arg0 *)arg0)->unk2);
     if (!(arg1 != temp_v0)) {
-        return D_80125D70;
+        return 0.999999f;
     }
     temp_v1 = (((Obj1EB9940_arg0 *)arg0)->unk0);
     return (f32) (arg1 - temp_v1) / (f32) (temp_v0 - temp_v1);

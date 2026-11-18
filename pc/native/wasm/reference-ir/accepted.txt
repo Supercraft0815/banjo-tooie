@@ -44,3 +44,15 @@ projection and coordinates. The line-neutral source layout has identical
 canonical IR to the independently tested graphics implementation. Original IDO
 functions, data, and both ROM images match. See integrated-graphics-ir.log,
 integrated-ido.log and integrated-rom.json in build/acceptance/a6-2026-11-17/.
+
+2026-11-18  N1 original f32 constants and ten overlay data owners
+For 29 core2 translation units, substituting the 92 binary32 values read
+directly from their original ROM offsets in the old IR yields identical
+canonical instructions in all 764 functions (102 replaced loads).
+For the ten overlays, changing ownership moves initializers and changes
+addresses spelled as inner labels into base plus field offset. Seven
+animation readers/writers and the two other interior-field accesses have
+equivalent 32-bit address expressions. All 9,745 initialized swap targets
+match by original data owner and offset. See proof/ir-per-module.json,
+ir-data-linked.json, inner-aliases.json, ir-animation-linked.json and
+animation-aliases.json in build/acceptance/n1-2026-11-18/.

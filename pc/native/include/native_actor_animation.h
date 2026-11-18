@@ -2,7 +2,8 @@
 #define BT_NATIVE_ACTOR_ANIMATION_H
 #include "core2/1EDB4D0.h"
 #include "core2/anctrl.h"
-typedef struct {f32 duration;u16 index,flags;} NativeActorAnimation;
+#include "core2/actor_animation_entry.h"
+typedef ActorAnimationEntry NativeActorAnimation;
 void func_80104170(void),func_801041A0(void),func_801041C8(void);
 AnimCtrl *func_80104200(s16),*func_80104248(void *),*func_80104268(s16 *),*func_801042B8(Actor *);
 void func_801042D8(s16 *),func_80104328(Actor *);

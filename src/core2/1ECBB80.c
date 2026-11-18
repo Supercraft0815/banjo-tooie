@@ -25,7 +25,7 @@ f32 func_800F22EC(void *arg0) {
 
 f32 func_800F2320(void *arg0) {
     f32 mlAbsF(f32);
-    extern f32 D_80125EE0;
+
     f32 sp1C;
     f32 temp_f0;
     f32 var_f12;
@@ -37,7 +37,7 @@ f32 func_800F2320(void *arg0) {
     } else {
         var_f12 = temp_f0;
     }
-    return (sp1C + temp_f0) - (var_f12 * D_80125EE0);
+    return (sp1C + temp_f0) - (var_f12 * 0.41421357f);
 }               typedef struct { f32 unk0; f32 unk4; } Obj1ECBB80_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */ typedef struct { f32 unk0; f32 unk4; } Obj1ECBB80_arg2; /* offsets.py genstruct: fields from raw offsets on arg2; rename once understood */
 
 void func_800F2388(void *arg0, void *arg1, void *arg2) {

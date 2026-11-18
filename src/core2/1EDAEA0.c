@@ -114,7 +114,7 @@ int func_80101970(Actor *arg0) {
     void func_800DF470(s32);
     s32 func_800EA068(s32);
     void *func_80100368(void *);
-    extern f32 D_80126430;
+
     f32 value;
     f32 fallback;
 
@@ -124,7 +124,7 @@ int func_80101970(Actor *arg0) {
         func_800DF428(value);
     } else if (!(arg0->unk0->unk10 & 1)) {
         if (func_800EA068(0x200)) {
-            fallback = D_80126430;
+            fallback = 29999.0f;
         } else {
             fallback = func_800D2F20();
         }
@@ -138,7 +138,7 @@ int func_80101970(Actor *arg0) {
 void func_80101A50(void *arg0) {
     f32 func_800DC0C0(void);
     void func_800DF744(s32, s32);
-    extern f32 D_80126434;
+
     struct {
         u8 pad0[0x78];
         u32 pad78 : 18;
@@ -153,7 +153,7 @@ void func_80101A50(void *arg0) {
     if (!actor->disabled) {
         switch (actor->blinkState) {
             case 0:
-                if (func_800DC0C0() < D_80126434) {
+                if (func_800DC0C0() < 0.03f) {
                     actor->blinkState = 1;
                 }
                 break;

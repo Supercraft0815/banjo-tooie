@@ -2,14 +2,14 @@
 
 OSThread *chbottlesparty_entrypoint_0(void)
 {
-    extern u8 D_80800410_chbottlesparty[];
+    extern ActorData D_80800410_chbottlesparty[];
 
     return (OSThread *) D_80800410_chbottlesparty;
 }
 
 OSThread *chbottlesparty_entrypoint_1(void)
 {
-    extern u8 D_80800458_chbottlesparty[];
+    extern ActorData D_80800458_chbottlesparty[];
 
     return (OSThread *) D_80800458_chbottlesparty;
 }
@@ -34,7 +34,7 @@ s32 func_8080009C_chbottlesparty(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void func_80101FDC(Actor *, u32);
     void func_80800138_chbottlesparty(Actor *);
-    extern s32 D_808004A0_chbottlesparty;
+    extern s32 D_808004A0_chbottlesparty[4];
 
     switch (arg1) {
     case 0x2E:
@@ -42,7 +42,7 @@ s32 func_8080009C_chbottlesparty(Actor *arg0, s32 arg1, volatile s32 arg2) {
         func_80101FDC(arg0, 1);
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_808004A0_chbottlesparty, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_808004A0_chbottlesparty, arg0->scale);
         break;
     case 0x95:
         func_80800138_chbottlesparty(arg0);
@@ -68,11 +68,11 @@ void func_80800170_chbottlesparty(BtIntPtr arg) {
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     s32 func_8010CAC0(f32 *, u32);
-    extern s32 D_808004B0_chbottlesparty;
+    extern s32 D_808004B0_chbottlesparty[7];
     Actor *arg0 = (Actor *)arg;
     if (func_800DA298(0x43) == 0) {
         if (func_800DA298(0x67C) == 0) {
-            _subaddiedialog_entrypoint_7(arg0, arg0->position, &D_808004B0_chbottlesparty);
+            _subaddiedialog_entrypoint_7(arg0, arg0->position, D_808004B0_chbottlesparty);
             return;
         }
         if ((func_800F64A4(func_800F54E4(), 0x601) != 0) && (func_8010CAC0(arg0->position, 0x1F4) != 0) && (func_800D90A4((f32 *)&arg0->actorData[4]) != 0)) {
@@ -119,16 +119,16 @@ void func_80800330_chbottlesparty(Actor *arg0) {
     int func_800F3214(void *, void *, void *, f32);
     f32 func_800F3780(f32, u8 *, s16);
     void func_80103DFC(Actor *, f32 *);
-    extern f32 D_808004CC_chbottlesparty[][3];
-    extern f32 D_808004FC_chbottlesparty[3];
-    extern u8 D_80800508_chbottlesparty[3];
+    extern s32 D_808004CC_chbottlesparty[][3];
+    extern s32 D_808004FC_chbottlesparty[3];
+    extern f32 D_80800508_chbottlesparty[3][2];
     u32 sp3C[3];
     f32 sp30[3];
     f32 delta;
     f32 sp28;
 
     if (arg0->actorData[4] != 0) {
-        sp28 = func_800F3780(func_800F0F9C(arg0->unk58, *(f32 *)&arg0->actorData[5]), D_80800508_chbottlesparty, 3);
+        sp28 = func_800F3780(func_800F0F9C(arg0->unk58, *(f32 *)&arg0->actorData[5]), (u8 *)D_80800508_chbottlesparty, 3);
         func_80103DFC(arg0, sp30);
         func_800F3214(sp3C, D_808004FC_chbottlesparty, D_808004CC_chbottlesparty[arg0->unk6C_0], sp28);
         func_800C8E84(arg0->actorData[4], sp3C);
@@ -136,7 +136,7 @@ void func_80800330_chbottlesparty(Actor *arg0) {
         arg0->unk58 += delta;
     }
 }
-
 s32 func_808003E4_chbottlesparty(s32 arg0, s32 arg1, s32 arg2) {
     return 0;
 }
+#include "party_data.inc"

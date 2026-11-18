@@ -1,7 +1,7 @@
 #include "ch/jiggypost.h"
 
-extern void* D_80800380_chjiggypost;
-extern void* D_808003C8_chjiggypost;
+extern ActorData D_80800380_chjiggypost;
+extern f32 D_808003C8_chjiggypost[6];
 
 void* chjiggypost_entrypoint_0(void) 
 {
@@ -118,7 +118,6 @@ void func_808001C4_chjiggypost(Actor* arg0, s32 arg1, s32 arg2)
     }
 
 }
-
 s32 func_808002DC_chjiggypost(Actor* arg0, s32 arg1, s32 arg2)
 {
     splitS32* split = (splitS32*)&arg2;
@@ -131,10 +130,11 @@ s32 func_808002DC_chjiggypost(Actor* arg0, s32 arg1, s32 arg2)
     case 0x30:
         return _sujiggy_entrypoint_2(arg0->unk74_7 - 0x33);
     case 0x52:
-        _gcdialogcamera_entrypoint_3((u32 *) &D_808003C8_chjiggypost, arg0->scale);
+        _gcdialogcamera_entrypoint_3((u32 *) D_808003C8_chjiggypost, arg0->scale);
         break;
     default:
         return 0;
     }
     return 1;
 }
+#include "post_data.inc"

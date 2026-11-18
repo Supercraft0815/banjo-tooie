@@ -5,25 +5,25 @@ extern u32 D_8012C764;
 extern f32 D_8012C760;
 
 void func_800D8F50(f32 arg0) {
-    extern f32 D_80125D10;
-    if (arg0 < D_80125D10) {
+
+    if (arg0 < 0.050000004f) {
         D_8012C760 = arg0;
         return;
     }
-    D_8012C760 = D_80125D10;
+    D_8012C760 = 0.050000004f;
 }
 
 void func_800D8F84(void) {
-    extern f32 D_80125D14;
-    D_8012C760 = D_80125D14;
+
+    D_8012C760 = 0.01f;
     D_8012C764 = 0;
 }
 
 void func_800D8FA0(s32 arg0) {
-    extern f32 D_80125D18;
+
 
     D_8012C764 = func_800F0D90(arg0, 1, 0xF);
-    func_800D8F50((f32) (s32) D_8012C764 * D_80125D18);
+    func_800D8F50((f32) (s32) D_8012C764 * 0.016666668f);
 }
 
 u32 func_800D8FEC()
@@ -37,8 +37,8 @@ f32 func_800D8FF8()
 }
 
 f32 func_800D9004(void) {
-    extern f32 D_80125D1C;
-    return (s32)D_8012C764 * D_80125D1C;
+
+    return (s32)D_8012C764 * 0.016666668f;
 }
 
 f32 func_800D902C(void) {

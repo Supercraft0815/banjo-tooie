@@ -310,7 +310,7 @@ void func_800A9514(f32 *arg0, f32 *arg1) {
     void func_800CA7E4(BtIntPtr, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
-    extern f32 D_80125600;
+
     extern s16 D_801276D0;
     extern s16 D_801276F0;
     f32 sp4C[3];
@@ -319,7 +319,7 @@ void func_800A9514(f32 *arg0, f32 *arg1) {
     f32 var_f20;
     s32 temp_a0;
 
-    var_f20 = D_80125600;
+    var_f20 = 3.4028235e+38f;
     var_s0 = (s32 *)&D_801276D0; do {
         temp_a0 = var_s0[14];
         if (temp_a0 != 0) {

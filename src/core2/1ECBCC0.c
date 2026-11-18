@@ -187,11 +187,11 @@ void func_800F2C1C(MtxF *arg0, f32 *arg1) {
     f32 func_80013A7C(f32, f32);
     f32 func_80013AAC(f32);
     f32 mlAbsF(f32);
-    extern f32 D_80125EF0;
+
     f32 cosine;
     s32 pad;
 
-    if (D_80125EF0 < 1.0f - mlAbsF(arg0->m[2][1])) {
+    if (0.00001f < 1.0f - mlAbsF(arg0->m[2][1])) {
         arg1[0] = func_80013AAC(-arg0->m[2][1]);
         cosine = func_800138D0(arg1[0]);
     } else {

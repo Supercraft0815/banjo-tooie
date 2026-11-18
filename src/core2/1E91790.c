@@ -406,9 +406,9 @@ void func_800B9170(void) {
     } State;
     extern s32 D_80127128;
     extern f32 D_80127138[3];
-    extern f32 D_801256A0;
-    extern f32 D_801256A4;
-    extern f32 D_801256A8;
+
+
+
     s32 func_8001211C(void);
     void func_8008FE68(f32 *);
     s32 func_800A5490(void);
@@ -460,7 +460,7 @@ void func_800B9170(void) {
         ((State *)&D_80127128)->index++;
         if (((State *)&D_80127128)->index < ((State *)&D_80127128)->count) {
             sp5C = &((State *)&D_80127128)->emitter->particles[((State *)&D_80127128)->index];
-            if (func_800EEAD4(sp5C->position, D_80127138) > D_801256A0) {
+            if (func_800EEAD4(sp5C->position, D_80127138) > 1300.0f) {
                 func_800B9108(((State *)&D_80127128)->index);
             }
         } else {
@@ -470,7 +470,7 @@ void func_800B9170(void) {
             if (((State *)&D_80127128)->count < 100) {
                 sp40 = ((State *)&D_80127128)->emitter->particles + ((State *)&D_80127128)->count;
                 ((State *)&D_80127128)->count++;
-                sp58 = func_800DC178(100.0f, D_801256A4);
+                sp58 = func_800DC178(100.0f, 1300.0f);
                 func_800EFA4C(sp4C, 0.0f, func_800DC0C0() * 200.0f + 200.0f, -sp58);
                 if (func_800EEFD4(((State *)&D_80127128)->emitter->velocity) < 25.0f) {
                     var_f20 = 100.0f;
@@ -479,7 +479,7 @@ void func_800B9170(void) {
                 }
                 func_800EF934(sp4C, sp4C, func_800E3A80() + func_800DC178(-var_f20, var_f20));
                 func_800EF04C(sp4C, D_80127138);
-                if (sp58 < D_801256A8) {
+                if (sp58 < 650.0f) {
                     for (sp44 = 0; sp44 < 5 && func_800E3F8C(sp4C[0], sp4C[1] - 10.0f, sp4C[2]); sp44++) {
                         sp4C[1] += 200.0f;
                     }
@@ -555,8 +555,8 @@ void func_800B956C(void) {
 }
 
 s32 func_800B97A4(Gfx **gfx, Mtx **mtx, f32 position[3]) {
-    extern const f32 D_801256AC;
-    extern const f32 D_801256B0;
+
+
     register f32 delta;
     Gfx *packet;
     typedef struct { u8 pad[0xC]; f32 center[3]; } Model;
@@ -583,11 +583,11 @@ s32 func_800B97A4(Gfx **gfx, Mtx **mtx, f32 position[3]) {
     void mlMtxTranslate(f32, f32, f32);
 
     func_800EFB24(D_80127160, position, D_80127148);
-    if (D_801256AC < (delta = ((State *)&D_80127128)->delta[0])
-        && delta < D_801256B0
+    if (-1.7e+04f < (delta = ((State *)&D_80127128)->delta[0])
+        && delta < 1.7e+04f
         && position[1] > -200.0f
-        && D_801256AC < (delta = ((State *)&D_80127128)->delta[2])
-        && delta < D_801256B0
+        && -1.7e+04f < (delta = ((State *)&D_80127128)->delta[2])
+        && delta < 1.7e+04f
         && func_800E3E8C(position, ((State *)&D_80127128)->radius)) {
         mlMtx_set_translation(position[0], position[1], position[2]);
         mlMtxApply(*mtx);

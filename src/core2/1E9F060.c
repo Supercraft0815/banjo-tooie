@@ -97,8 +97,8 @@ u8 *func_800C5A38(void) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFD24(f32 *);
     void *heap_alloc(s32);
-    extern f32 D_801258A0;
-    extern f32 D_801258A4;
+
+
     struct allocation {
         s32 model;
         s16 a[3];
@@ -153,10 +153,10 @@ u8 *func_800C5A38(void) {
     this->c = 0;
     this->b = this->e;
     func_800EFA4C(this->v64, 0.0f, 1.0f, 0.0f);
-    this->x = D_801258A0;
+    this->x = -18000.0f;
     this->f7C = 0;
     this->f8C = 0;
-    this->y = D_801258A4;
+    this->y = -19000.0f;
     this->f80 = this->f7C;
     this->f8E = 0;
     this->f90 = this->f8E;
@@ -321,7 +321,7 @@ void func_800C6060(u8 *arg0) {
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F0E00(f32, f32);
-    extern f32 D_801258A8;
+
     f32 sp64;
     f32 sp48[7];
     BtIntPtr triangle;
@@ -362,7 +362,7 @@ void func_800C6060(u8 *arg0) {
         } else {
             if ((sp48[1] < 0.0f) && !(*(s32 *)(triangle + 8) & 0x10000)) {
                 sp64 = sp48[3] - sp38[1];
-                triangle = func_800C5CC0(sp38, sp64 - 1.0f, sp64 - D_801258A8, *(u32 *)(arg0 + 0x84) | mask, sp48);
+                triangle = func_800C5CC0(sp38, sp64 - 1.0f, sp64 - 1.3e+03f, *(u32 *)(arg0 + 0x84) | mask, sp48);
                 if (triangle != 0) {
                     func_800C5F40(arg0, sp48, (void *)triangle);
                 } else {
@@ -497,8 +497,8 @@ u32 func_800C6704(u8 *arg0) {
 }
 
 u8 func_800C670C(void *arg0) {
-    extern f32 D_801258AC;
-    if (D_801258AC == (((Obj1E9F060_arg0 *)arg0)->unk74)) {
+
+    if (-19000.0f == (((Obj1E9F060_arg0 *)arg0)->unk74)) {
         return 0U;
     }
     return (((Obj1E9F060_arg0 *)arg0)->unk8F);

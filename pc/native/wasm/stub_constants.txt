@@ -10,6 +10,7 @@ asm/data/overlays/ch/caveofhorrorsdoors.data.s 0x808001FC _bsbtrot_entrypoint_10
 asm/data/overlays/ch/crate.data.s 0x8080044C _bsbtrot_entrypoint_10
 asm/data/overlays/ch/crate.data.s 0x80800494 _bsbtrot_entrypoint_10
 asm/data/overlays/ch/crate.data.s 0x808004DC _bsbtrot_entrypoint_10
+asm/data/overlays/ch/dino/familymissing.data.s 0x80800718 boot_thread_stack+0xF26
 asm/data/overlays/ch/dino/familysick.data.s 0x80800EE4 boot_thread_stack+0xF24
 asm/data/overlays/ch/dino/familysick.data.s 0x80800FB4 boot_thread_stack+0xF26
 asm/data/overlays/ch/dino/familysmall.data.s 0x80800F5C boot_thread_stack+0xF26

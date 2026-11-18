@@ -846,14 +846,14 @@ void func_8009337C(void *arg0, s32 arg1) {
 
 void func_80093388(void *arg0) {
     f32 mlAbsF(f32);
-    extern f32 D_80124D40;
+
     f32 difference;
     f32 step;
 
     difference = *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x3C)
                - *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x30);
     step = mlAbsF(difference);
-    if (step < D_80124D40) {
+    if (step < 0.01f) {
         *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x30) =
             *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x3C);
     } else {

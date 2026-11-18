@@ -13,21 +13,7 @@
 #include "core2/1EDB4D0.h"
 
 
-typedef struct {
-	/* 0x00 */ u16 unk0;
-	/* 0x02 */ u16 unk2;
-	/* 0x04 */ u16 unk4;
-	/* 0x06 */ u16 unk6;
-	/* 0x08 */ u32 unk8;
-	/* 0x0C */ u16 unkC;
-	/* 0x0E */ u16 unkE;
-	/* 0x10 */ s16 unk10;
-	/* 0x12 */ u16 unk12;
-	/* 0x14 */ u16 unk14;
-	/* 0x16 */ u8 unk16;
-	/* 0x17 */ u8 unk17;
-	/* 0x18 */ u8 unk18;
-}subaddiedialog_UnkStruct0;
+#include "su/baddiedialog_descriptor.h"
 
 typedef struct {
 	/* 0x00 */ u32 TransformationType;

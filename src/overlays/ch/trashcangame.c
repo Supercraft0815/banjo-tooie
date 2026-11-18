@@ -1,7 +1,7 @@
 #include "common.h"
-
+#include "core2/actor_animation_entry.h"
 s32 func_800F64A4(BtIntPtr, s32);
-
+#include "su/baddiedialog_descriptor.h"
 void func_80800000_chtrashcangame(void *arg0) {
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
     (*(s32 *)((s8 *)(arg0) + (0x30))) = 0;
@@ -56,7 +56,7 @@ void func_80800144_chtrashcangame(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
 void func_80800180_chtrashcangame(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);
-    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, subaddiedialog_UnkStruct0 *);
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     s32 func_800CEAD0(s32);
@@ -73,8 +73,8 @@ void func_80800180_chtrashcangame(Actor *arg0) {
     void func_80800BA8_chtrashcangame(Actor *);
     void func_80801740_chtrashcangame(Actor *, s32, s32);
     void func_808018E4_chtrashcangame();
-    extern s32 D_80803090_chtrashcangame;
-    extern s16 D_80803096_chtrashcangame;
+    extern subaddiedialog_UnkStruct0 D_80803090_chtrashcangame;
+
 
     _sudeflect_entrypoint_1(arg0->position, func_80103EF4(arg0), 0.0f, func_80103EAC(arg0), 0x1E);
     switch (arg0->unk70_10) {
@@ -85,7 +85,7 @@ void func_80800180_chtrashcangame(Actor *arg0) {
         break;
     case 3:
         if (func_800D0A9C(0x4E, 1) != 0) {
-            D_80803096_chtrashcangame = 0x13F0;
+            D_80803090_chtrashcangame.unk6 = 0x13F0;
         }
         if (_subaddiedialog_entrypoint_7(arg0, arg0->position, &D_80803090_chtrashcangame) != 0) {
             func_80801740_chtrashcangame(arg0, 2, 0);
@@ -373,11 +373,11 @@ s32 func_80800B64_chtrashcangame(f32 *arg0) {
 
     BT_NATIVE_ONLY(return) _subaddiefind_entrypoint_5(0x476, &sp.output, 0x32, arg0, 300.0f, func_800EFC7C);
 }
-
+typedef struct { f32 values[4]; } Timing4; typedef struct { f32 values[7]; } Timing7;
 void func_80800BA8_chtrashcangame(Actor *arg0) {
-    typedef struct { f32 values[4]; } Timing4;
-    typedef struct { f32 values[7]; } Timing7;
-    extern u16 D_80802FF4_chtrashcangame[][4];
+
+
+    extern ActorAnimationEntry D_80802FF0_chtrashcangame[];
     extern Timing4 D_808030BC_chtrashcangame;
     extern Timing4 D_808030CC_chtrashcangame;
     extern Timing4 D_808030DC_chtrashcangame;
@@ -392,7 +392,7 @@ void func_80800BA8_chtrashcangame(Actor *arg0) {
     s32 func_80101E4C(Actor *, f32 *);
     void func_800C4140(u32, f32 *, u32);
 
-    switch (D_80802FF4_chtrashcangame[(u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10][0]) {
+    switch (D_80802FF0_chtrashcangame[(u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10].index) {
         case 0x369: {
             Timing4 first = D_808030BC_chtrashcangame;
             Timing4 second = D_808030CC_chtrashcangame;
@@ -686,7 +686,7 @@ typedef struct {
     u32 particleSubIndex : 6;
     u32 pad70_0 : 4;
 } ChTrashcanParticleActor;
-
+struct ColorTable { f32 values[4]; };
 void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
     void func_800BA22C(BtIntPtr, s32);
     void func_800BAB80(BtIntPtr, f32 *);
@@ -696,7 +696,7 @@ void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
     s32 func_800D90A4(f32 *);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
-    struct ColorTable { f32 values[4]; };
+
     extern struct ColorTable D_80803164_chtrashcangame;
     extern s32 D_80803174_chtrashcangame[];
     f32 position[3];
@@ -790,7 +790,7 @@ void func_808019EC_chtrashcangame(Actor *arg0, s32 arg1) {
 
 OSThread *chtrashcangame_entrypoint_0(void)
 {
-    extern u8 D_808031B4_chtrashcangame[];
+    extern ActorData D_808031B4_chtrashcangame[];
 
     return (OSThread *) D_808031B4_chtrashcangame;
 }
@@ -964,7 +964,7 @@ s32 func_808020D8_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chtrashcangame_entrypoint_1(void)
 {
-    extern u8 D_808031FC_chtrashcangame[];
+    extern ActorData D_808031FC_chtrashcangame[];
 
     return (OSThread *) D_808031FC_chtrashcangame;
 }
@@ -1159,7 +1159,7 @@ s32 func_8080292C_chtrashcangame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
 
 OSThread *chtrashcangame_entrypoint_2(void)
 {
-    extern u8 D_808033A0_chtrashcangame[];
+    extern ActorData D_808033A0_chtrashcangame[];
 
     return (OSThread *) D_808033A0_chtrashcangame;
 }
@@ -1181,7 +1181,7 @@ void func_80802C40_chtrashcangame(Actor *arg0) {
 
 OSThread *chtrashcangame_entrypoint_3(void)
 {
-    extern u8 D_808033E8_chtrashcangame[];
+    extern ActorData D_808033E8_chtrashcangame[];
 
     return (OSThread *) D_808033E8_chtrashcangame;
 }
@@ -1198,7 +1198,7 @@ void func_80802CC0_chtrashcangame(Actor *arg0) {
 
 OSThread *chtrashcangame_entrypoint_4(void)
 {
-    extern u8 D_80803430_chtrashcangame[];
-
+    extern ActorData D_80803430_chtrashcangame[];
     return (OSThread *) D_80803430_chtrashcangame;
 }
+#include "trashcangame_data.inc"

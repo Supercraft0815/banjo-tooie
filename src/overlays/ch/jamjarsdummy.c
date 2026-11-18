@@ -1,5 +1,5 @@
 #include "common.h"
-
+typedef struct { u16 animation; s16 state; } JamjarsAnimation;
 void func_80800000_chjamjarsdummy(Actor *arg0, s32 arg1) {
     void _subaddiefade_entrypoint_8(Actor *, s32);
 
@@ -74,9 +74,9 @@ void func_80800238_chjamjarsdummy(s32 arg0)
 }
 void func_80800240_chjamjarsdummy(Actor *arg0) {
     void func_80800000_chjamjarsdummy(Actor *, s32);
-    extern struct { u16 value; u16 pad; } D_8080032C_chjamjarsdummy[];
-    extern struct { s16 value; s16 pad; } D_8080032E_chjamjarsdummy[];
-    func_80103140(arg0, D_8080032C_chjamjarsdummy[arg0->unk6C_0].value, arg0->unk0->unk16); func_80102424(arg0, D_8080032E_chjamjarsdummy[arg0->unk6C_0].value); func_80800000_chjamjarsdummy(arg0, 0);
+    extern JamjarsAnimation D_8080032C_chjamjarsdummy[];
+
+    func_80103140(arg0, D_8080032C_chjamjarsdummy[arg0->unk6C_0].animation, arg0->unk0->unk16); func_80102424(arg0, D_8080032C_chjamjarsdummy[arg0->unk6C_0].state); func_80800000_chjamjarsdummy(arg0, 0);
 }
 
 /* extern */
@@ -92,7 +92,7 @@ void func_808002AC_chjamjarsdummy(Actor *arg0, void *arg1) {
 
 OSThread *chjamjarsdummy_entrypoint_0(void)
 {
-    extern u8 D_80800338_chjamjarsdummy[];
-
+    extern ActorData D_80800338_chjamjarsdummy[];
     return (OSThread *) D_80800338_chjamjarsdummy;
 }
+#include "jamjarsdummy_data.inc"

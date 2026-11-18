@@ -56,13 +56,13 @@ void func_800F18FC(f32 *arg0, f32 *arg1, f32 *arg2) {
 }
 
 int func_800F1988(f32 *arg0, f32 *arg1, f32 *arg2) {
-    extern f32 D_80125ED0;
+
     f32 length;
 
     *arg1 = 0.0f;
     *arg2 = 0.0f;
     length = sqrtf(arg0[2] * arg0[2] + arg0[0] * arg0[0]);
-    if (length < D_80125ED0) {
+    if (length < 0.01f) {
         return 0;
     }
     *arg2 = func_800F1800(arg0[0] / length);
@@ -153,7 +153,7 @@ f32 func_800F1C98(f32 *arg0, f32 *arg1) {
 f32 func_800F1CF0(f32 *arg0, f32 *arg1) {
     f32 mlAbsF(f32);
     f32 sqrtf(f32);
-    extern f32 D_80125ED4;
+
     f32 denominator;
     f32 cross;
     f32 pad;
@@ -170,7 +170,7 @@ f32 func_800F1CF0(f32 *arg0, f32 *arg1) {
     secondZ = arg1[2];
     secondX = arg1[0];
     denominator = sqrtf(secondZ * secondZ + secondX * secondX) * length;
-    if (D_80125ED4 < denominator) {
+    if (0.000001f < denominator) {
         cross = arg0[2] * arg1[0] - arg0[0] * arg1[2];
         absolute = mlAbsF(cross);
         if (denominator < absolute) {

@@ -237,7 +237,7 @@ u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     void func_800EFB24(void *, void *, void *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
-    extern f32 D_801259A0;
+
     f32 length;
     f32 reach;
     f32 count;
@@ -301,7 +301,7 @@ u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
                             if (*(u16 *)(marker + 0x14) != 0 && *(u16 *)(marker + 0x14) != 0xFFFF && (*(u16 *)(marker + 0x18) & 1)) {
                                 actor = (u8 *)func_80106790((Unk80132ED0 *)marker);
                                 if (!((ActorFlags *)(actor + 0x64))->disabled && !(*(u16 *)(actor + 0x66) & spA4)) {
-                                    reach = (f32)samples * arg3 * D_801259A0;
+                                    reach = (f32)samples * arg3 * 1.1f;
                                     radius = _subaddiecustomhits_entrypoint_5(actor, sp80);
                                     distance = func_800EEB40(sp80, spB0);
                                     if (!((radius + reach) * (radius + reach) < distance)) {
@@ -376,7 +376,7 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
-    extern f32 D_801259A4;
+
     extern u8 D_8012AF70[];
     extern u8 D_8012AFF0[];
     register s32 count;
@@ -437,7 +437,7 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
             radii++;
         } while (i != arg3);
     }
-    reach *= D_801259A4;
+    reach *= 1.1f;
     cubes = func_800BE444(center);
     if (*cubes != 0) {
         do {

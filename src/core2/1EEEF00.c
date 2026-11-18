@@ -30,7 +30,7 @@ void func_80115618(Actor *arg0, f32 arg1, f32 arg2) {
     void func_801107B0(void *, f32 *);
     void func_801107F0(void *, f32 *);
     s32 func_80110840(s32 *);
-    extern f32 D_80126610;
+
     f32 sp54[3];
     f32 sp48[3];
     f32 angle;
@@ -42,7 +42,7 @@ void func_80115618(Actor *arg0, f32 arg1, f32 arg2) {
     sp3C = func_80110840((s32 *)arg0);
     if (func_800F6C5C(sp3C)) {
         func_800F5680(sp3C, sp54);
-        if (D_80126610 < sp54[1]) {
+        if (0.6f < sp54[1]) {
             func_801107B0(arg0, sp48);
             func_801107F0(arg0, sp2C);
             func_800EF3DC(sp48, sp2C);
@@ -290,7 +290,7 @@ void func_80115D88(PlayerState *arg0) { void func_801107F0(void *, f32 *); void 
 void func_80115DEC(PlayerState *arg0, f32 arg1, f32 arg2) {
     f32 func_800F1DCC(f32, f32);
     f32 mlAbsF(f32);
-    extern f32 D_80126614;
+
     void *var_v0;
 
     var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
@@ -301,7 +301,7 @@ void func_80115DEC(PlayerState *arg0, f32 arg1, f32 arg2) {
     (((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk20) = arg1;
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x2C))) = 0.0f;
     var_v0 = (*(void **)((s8 *)(arg0) + (0x3C)));
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x30))) = (f32) ((mlAbsF(func_800F1DCC((((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk20), (((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk24))) * D_80126614) / arg2);
+    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x30))) = (f32) ((mlAbsF(func_800F1DCC((((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk20), (((Obj1EEEF00_func_80115DEC_var_v0 *)var_v0)->unk24))) * 1.2f) / arg2);
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x3C)))) + (0x1D))) = 1;
 }
 

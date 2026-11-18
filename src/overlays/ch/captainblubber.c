@@ -1,21 +1,21 @@
 #include "common.h"
 BT_NATIVE_ONLY(void func_80105834();)
 void func_8080143C_chcaptainblubber(Actor *arg0);
-
+#include "core2/actor_animation_entry.h"
 void func_80800000_chcaptainblubber(Actor *arg0) {
     s32 func_8008F8B0();
     s32 func_8008F8D8(s32);
     s32 func_8008F904(s32 *, BtIntPtr);
     s32 func_8008F938(s32);
     s32 func_8008F990(s32 *, s32);
-    extern s32 D_808016C0_chcaptainblubber;
+    extern s32 D_808016C0_chcaptainblubber[3];
     extern s32 func_8010D5DC;
     if (!arg0->unk64_20) {
         func_8008F8B0();
         func_8008F8D8(1);
         func_8008F904(&func_8010D5DC, (BtIntPtr)arg0->unk0);
         func_8008F938(1);
-        func_8008F990(&D_808016C0_chcaptainblubber, 0x43FA0000);
+        func_8008F990(D_808016C0_chcaptainblubber, 0x43FA0000);
         arg0->unk64_20 = 1;
     }
 }
@@ -196,7 +196,7 @@ s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chappearfx_entrypoint_1(BtIntPtr, s32, s32, s32);
     void func_80108B04(Actor *, u32);
     s32 func_800F5410(BtIntPtr);
-    extern s32 D_808016D8_chcaptainblubber;
+    extern s32 D_808016D8_chcaptainblubber[4];
     Actor *spawned;
     s32 text;
     s32 flags;
@@ -269,7 +269,7 @@ s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) {
             }
             return 1;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_808016D8_chcaptainblubber, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_808016D8_chcaptainblubber, arg0->scale);
             return 1;
         case 0x3D:
             spawned = func_80108528(0x1F0, arg0->actorData, (s32)arg0->unk54, &arg0);
@@ -313,12 +313,12 @@ s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return 0;
 }
-
+typedef struct { f32 values[3]; } Times3; typedef struct { f32 values[4]; } Times4; typedef struct { f32 values[7]; } Times7;
 int func_80800A1C_chcaptainblubber(Actor *arg0) {
-    typedef struct { f32 values[3]; } Times3;
-    typedef struct { f32 values[4]; } Times4;
-    typedef struct { f32 values[7]; } Times7;
-    extern u16 D_80801654_chcaptainblubber[][4];
+
+
+
+    extern ActorAnimationEntry D_80801650_chcaptainblubber[];
     extern Times4 D_808016E8_chcaptainblubber;
     extern Times3 D_808016F8_chcaptainblubber;
     extern Times3 D_80801704_chcaptainblubber;
@@ -344,7 +344,7 @@ int func_80800A1C_chcaptainblubber(Actor *arg0) {
     f32 sp44[3];
     f32 sp38[3];
 
-    switch (D_80801654_chcaptainblubber[arg0->unk70_10][0]) {
+    switch (D_80801650_chcaptainblubber[arg0->unk70_10].index) {
     case 0x159:
         sp9C = D_808016E8_chcaptainblubber;
         if (func_80101E4C(arg0, sp9C.values)) {
@@ -420,10 +420,10 @@ void func_8080143C_chcaptainblubber(Actor *arg0) {
     s32 _chbadshad_entrypoint_1(Actor *, f32 *, f32);
     void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    extern u16 D_80801654_chcaptainblubber[][4];
+    extern ActorAnimationEntry D_80801650_chcaptainblubber[];
     f32 sp24[3];
 
-    if (D_80801654_chcaptainblubber[arg0->unk70_10][0] == 0x1C0) {
+    if (D_80801650_chcaptainblubber[arg0->unk70_10].index == 0x1C0) {
         _subaddieskeleton_entrypoint_0(arg0, 3, sp24);
         sp24[1] = 0.0f;
     } else {
@@ -438,7 +438,7 @@ void func_808014C8_chcaptainblubber(Actor* arg0)
 }
 OSThread *chcaptainblubber_entrypoint_0(void)
 {
-    extern u8 D_8080176C_chcaptainblubber[];
-
+    extern ActorData D_8080176C_chcaptainblubber[];
     return (OSThread *) D_8080176C_chcaptainblubber;
 }
+#include "captainblubber_data.inc"

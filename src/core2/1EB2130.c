@@ -63,7 +63,7 @@ s32 func_800D89C8(s16 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     f32 func_800EEAD4(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
-    extern const f32 D_80125CF0;
+
     f32 edge1[3];
     f32 edge2[3];
     s32 i;
@@ -77,7 +77,7 @@ s32 func_800D89C8(s16 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
         return 0;
     }
     entry[0x1A] = 0;
-    if (func_800EEAD4(arg7, (f32 *)(entry + 8)) > D_80125CF0) {
+    if (func_800EEAD4(arg7, (f32 *)(entry + 8)) > 0.1f) {
         return 0;
     }
     for (i = 0; i != 3; i++) {
@@ -109,10 +109,10 @@ void func_800D8B80(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u
   void func_800EFA4C(f32 *, f32, f32, f32);
   void func_800EFB24(void *, void *, void *);
   f32 mlAbsF(f32);
-  extern const f32 D_80125CF4[1];
-  extern const f32 D_80125CF8;
-  extern const f32 D_80125CFC;
-  extern const f32 D_80125D00;
+
+
+
+
   f32 edge1[3];
   f32 edge2[3];
   f32 point[3];
@@ -161,10 +161,10 @@ void func_800D8B80(s16 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, u
 
   func_800EFB24(edge1, vertices[1], vertices[0]);
   func_800EFB24(edge2, vertices[2], vertices[0]);
- func_800EE97C(normal, edge1, edge2); bound = D_80125CF4[0]; if ((((((normal[0] > bound) || (bound < normal[1])) || (bound < normal[2])) || (normal[0] < D_80125CF8)) || (normal[1] < D_80125CF8)) || (normal[2] < D_80125CF8)) { normal[0] *= D_80125CFC; normal[1] *= D_80125CFC;
-    normal[2] *= D_80125CFC;
+ func_800EE97C(normal, edge1, edge2); bound = 100000.0f; if ((((((normal[0] > bound) || (bound < normal[1])) || (bound < normal[2])) || (normal[0] < -100000.0f)) || (normal[1] < -100000.0f)) || (normal[2] < -100000.0f)) { normal[0] *= 0.00001f; normal[1] *= 0.00001f;
+    normal[2] *= 0.00001f;
   }
-  if (func_800EEF94(normal) < D_80125D00)
+  if (func_800EEF94(normal) < 0.001f)
   {
     result[0x1A] = 0;
     return;

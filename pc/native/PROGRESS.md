@@ -1961,3 +1961,30 @@ frei. Alle 46 Korpusfälle bestanden mit AddressSanitizer, UndefinedBehaviorSani
 LeakSanitizer und aktiviertem Audio-Befehlsvergleich. Alle 245.660 Retraces
 stimmen mit den akzeptierten Referenzen überein.
 Laufprotokolle liegen unter `build/acceptance/q3-2026-11-17/`.
+
+## 2026-11-18 — N1, 29 Konstantenmodule und zehn Datentabellen
+
+92 Fließkommakonstanten aus der Original-ROM ersetzen 102 Ladezugriffe in
+29 Modulen. Die Prüfrechnung verglich 764 native Funktionen nach Einsetzen
+der Originalwerte. Zwei weitere Kandidaten bleiben auf ihrem bisherigen
+Stand, weil IDO bei der Umstellung andere Textbytes erzeugte.
+
+Zehn weitere Module besitzen ihre Daten nun in C. Die erste Fünfergruppe
+umfasst 1.152 Bytes und 40 unveränderte Relokationen. Die fünf Animations-
+und Dialogtabellen umfassen 2.352 Bytes. Drei vermeintliche Adressrelokationen
+sind nach Feldlayout, verlinkten ROM-Bytes und vorherigem nativem IR konstante
+Actor-Flags. Für Innenlabels wurden die Feldadressen über 32-Bit-Basen und
+Indizes geprüft. Alle 9.745 Byte-Swap-Ziele stimmen nach Zuordnung zum
+ursprünglichen Modul und Offset überein.
+
+Die C-Dateien behalten alle ihre Zeilenzahl. Original-IDO und `make check`
+bestanden. Alle 870 Originalfunktionen behalten ihre Lage, Größe und
+gelinkten Bytes. Die 39 geänderten Objektdatenabschnitte entsprechen den
+neuen C-Definitionen. Alle 35.098.224 dekomprimierten Bytes sowie alle
+33.554.432 Cartridge-Bytes einschließlich Originalfüllung stimmen überein.
+Der Hauptbaum wurde mit dem neuen Linkerskript und den zugehörigen Splits
+erneut gebaut. Neun Testprogramme und 46 Abläufe bestanden mit 245.660
+identischen Retraces. Der mit demselben Clang 23 separat neu gebaute Hauptbaum
+hat dasselbe kanonische IR wie der geprüfte Kandidat. 103 Datenmodule stehen
+weiter auf der Arbeitsliste, gegenüber 113 vor diesem Paket. Die Belege
+liegen unter `build/acceptance/n1-2026-11-18/`.

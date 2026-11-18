@@ -60,7 +60,7 @@ void func_800F018C(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA20(f32 *, f32 *, f32);
     void func_800EFB24(f32 *, f32 *, f32 *);
-    extern f32 D_80125EB0;
+
     f32 sp34[3];
     f32 sp28[3];
     f32 temp_f0;
@@ -68,7 +68,7 @@ void func_800F018C(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
 
     func_800EFB24(sp34, arg2, arg1);
     temp_f0 = func_800EEFD4(sp34);
-    if (temp_f0 < D_80125EB0) {
+    if (temp_f0 < 0.01f) {
         func_800EE7F8(arg0, arg1);
         return;
     }
@@ -88,7 +88,7 @@ void func_800F0274(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA20(f32 *, f32 *, f32);
     void func_800EFB24(f32 *, f32 *, f32 *);
-    extern f32 D_80125EB4;
+
     f32 sp34[3];
     f32 sp28[3];
     f32 sp24;
@@ -97,7 +97,7 @@ void func_800F0274(f32 *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
 
     func_800EFB24(sp34, arg2, arg1);
     temp_f0 = func_800EEFD4(sp34);
-    if (temp_f0 < D_80125EB4) {
+    if (temp_f0 < 0.01f) {
         func_800EE7F8(arg0, arg1);
         return;
     }

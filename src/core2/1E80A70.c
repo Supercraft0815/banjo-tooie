@@ -23,7 +23,7 @@ typedef struct {
 } D_80127630_unk;
 extern s32 D_8011A3F0;
 extern s32 D_8011A3F4;
-extern f32 D_801255F8;
+
 extern D_80127630_unk D_80127630;
 
 extern Gfx *D_80127658;
@@ -43,14 +43,14 @@ Gfx **func_800A7180(void)
 }
 
 void func_800A718C(void) {
-    extern f32 D_801255F0;
+
     void func_800E3BFC(f32, f32, f32);
     void func_800E3C58(f32, f32, f32);
     void func_800E3900(f32);
     void func_800E3CE8(void);
     func_800E3BFC(0.0f, 0.0f, 0.0f);
     func_800E3C58(-30.0f, 30.0f, 0.0f);
-    func_800E3900(D_801255F0);
+    func_800E3900(6000.0f);
     func_800E3CE8();
 }
 
@@ -335,7 +335,7 @@ void func_800A7840(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1) BT_PASS2(
     void func_800A7FD4(BT_IDO_ONLY(void) BT_PASS2(s32, s32) BT_PASS2(, s32));
     void func_800E4628(void);
     void func_800E82EC(void);
-    extern f32 D_801255F4;
+
     extern s16 D_80127634;
     extern s32 D_80127650;
     Gfx *sp1C;
@@ -350,7 +350,7 @@ void func_800A7840(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1) BT_PASS2(
     if (D_80127634 == 0) {
         sp18 = D_80127658;
         func_80015410();
-        if ((D_80127650 == 0) && (func_8001BD50(D_801255F4) != 0)) {
+        if ((D_80127650 == 0) && (func_8001BD50(0.4f) != 0)) {
             func_800A7FD4(BT_PASS2(arg0, bt_a1) BT_PASS2(, bt_a2));
         }
         func_800E82EC();
@@ -612,7 +612,7 @@ s32 func_800A7D84(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1))
         break;
     case 3:
         D_80127630.unkC += func_800D8FF8();
-        if ((D_801255F8 < D_80127630.unkC) && (func_800C0A34() != 0))
+        if ((0.6f < D_80127630.unkC) && (func_800C0A34() != 0))
         {
             func_800A759C(4, 0U);
         }

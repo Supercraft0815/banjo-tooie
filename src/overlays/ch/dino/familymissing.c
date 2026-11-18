@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/actor_animation_entry.h"
 void func_80800000_chdinofamilymissing(Actor *arg0) {
     s32 _glcutDll_entrypoint_19(s32);
     s32 _glcutDll_entrypoint_20();
@@ -59,7 +59,7 @@ void func_80800104_chdinofamilymissing(Actor *arg0) {
     s32 func_80105998(Actor *, f32);
     s32 func_80105A5C(Actor *);
     void func_80800418_chdinofamilymissing(Actor *);
-    extern u32 D_808006A0_chdinofamilymissing;
+    extern u32 D_808006A0_chdinofamilymissing[3];
     _sudeflect_entrypoint_1(arg0->position, func_80103EF4(arg0), 0.0f, func_80103EAC(arg0), 10);
     switch (arg0->unk70_10) {
         case 1:
@@ -72,7 +72,7 @@ void func_80800104_chdinofamilymissing(Actor *arg0) {
                 _glcutDll_entrypoint_24(0x118, -1, 0x35);
                 func_800FFAB0(arg0);
             }
-            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808006A0_chdinofamilymissing, 0.47f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_808006A0_chdinofamilymissing, 0.47f);
             break;
         case 2:
             if (func_80105A5C(arg0)) {
@@ -83,7 +83,7 @@ void func_80800104_chdinofamilymissing(Actor *arg0) {
                 func_80800418_chdinofamilymissing(arg0);
                 func_80105834(arg0);
             }
-            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808006A0_chdinofamilymissing, 0.47f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_808006A0_chdinofamilymissing, 0.47f);
             break;
         case 3:
             if (func_80105A5C(arg0)) {
@@ -139,12 +139,12 @@ void func_80800418_chdinofamilymissing(Actor *arg0) {
     f32 func_800F3780(f32, u8 *, s16);
     f32 func_80101F24(Actor *);
     void func_80105A9C(Actor *, f32);
-    extern u8 D_808006AC_chdinofamilymissing;
+    extern u8 D_808006AC_chdinofamilymissing[32];
     f32 temp_f2;
     f32 var_f0;
     f32 temp_f6;
 
-    temp_f2 = func_800F3780(func_80101F24(arg0), &D_808006AC_chdinofamilymissing, 4);
+    temp_f2 = func_800F3780(func_80101F24(arg0), D_808006AC_chdinofamilymissing, 4);
     if (arg0->unk70_10 == 1) {
         var_f0 = 0.75f;
     } else {
@@ -163,7 +163,7 @@ s32 func_808004A4_chdinofamilymissing(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800DA298(s32);
     void func_800DF744(s32, s32);
     s32 func_801015D0(Actor *);
-    extern u16 D_80800664_chdinofamilymissing[][4];
+    extern ActorAnimationEntry D_80800660_chdinofamilymissing[];
     extern s32 D_808006CC_chdinofamilymissing[];
 
     switch (arg1) {
@@ -171,7 +171,7 @@ s32 func_808004A4_chdinofamilymissing(Actor *arg0, s32 arg1, s32 arg2) {
             return func_80800324_chdinofamilymissing(arg0, arg2);
         case 0x1F:
             func_801015D0(arg0);
-            if (D_80800664_chdinofamilymissing[arg0->unk70_10][0] == 0x14D) {
+            if (D_80800660_chdinofamilymissing[arg0->unk70_10].index == 0x14D) {
                 func_800DF744(3, 1);
                 return 1;
             }
@@ -201,7 +201,7 @@ s32 func_808004A4_chdinofamilymissing(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chdinofamilymissing_entrypoint_0(void)
 {
-    extern u8 D_808006DC_chdinofamilymissing[];
-
-    return (OSThread *) D_808006DC_chdinofamilymissing;
+    extern ActorData D_808006DC_chdinofamilymissing;
+    return (OSThread *) &D_808006DC_chdinofamilymissing;
 }
+#include "familymissing_data.inc"

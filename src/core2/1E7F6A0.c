@@ -11,7 +11,7 @@ void func_800A5DB0(Actor *arg0) {
     void func_800F1988(f32 *, f32 *, f32 *);
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F554C(s32);
     void func_800F5680(s32, f32 *);
-    extern f32 D_801255D0;
+
     f32 pad;
     f32 sp58[3];
     f32 sp4C[3];
@@ -22,7 +22,7 @@ void func_800A5DB0(Actor *arg0) {
 
     func_800EE7F8(sp58, arg0->position);
     sp44 = ((f32 *)arg0->actorData)[3];
-    sp34 = func_800F10B4(sp58[1] - sp44, 0.0f, 300.0f, 0.43f, D_801255D0);
+    sp34 = func_800F10B4(sp58[1] - sp44, 0.0f, 300.0f, 0.43f, 0.28f);
     sp48 = BT_IDO_ONLY(func_800F554C(arg0->unk74_7)) BT_NATIVE_ONLY(((union { s32 i; f32 f; }){ .i = func_800F554C(arg0->unk74_7) }).f) * (sp34 * arg0->unk58);
     sp58[1] = sp44;
     func_800F5680(arg0->unk74_7, sp38);
@@ -132,7 +132,7 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     void func_800F274C(MtxF *);
     void func_800F27D4(f32 [4][4], f32 [4][4], f32 [4][4]);
     s32 func_800F5410(BtIntPtr);
-    extern f32 D_801255D4, D_801255D8;
+
     MtxF projection;
     MtxF rotation;
     PlayerState *player;
@@ -148,15 +148,15 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     originalModel = func_80092B04(player, 0);
     func_800F274C(&projection);
     dot = func_800EEAA4(arg3, arg2);
-    if (dot < D_801255D4) {
+    if (dot < 0.01f) {
         return;
     }
-    if (dot < D_801255D8) {
+    if (dot < 0.4f) {
         f32 axis[3];
         f32 angle;
         MtxF correction;
 
-        angle = func_80013A7C(D_801255D8);
+        angle = func_80013A7C(0.4f);
         func_800EE97C(axis, arg2, arg3);
         func_800F254C(&correction, axis, angle);
         func_800F23D0(&correction, arg3, arg2);
@@ -305,15 +305,15 @@ s32 func_800A69F0(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
     void func_800EF174(f32 *, f32 *, f32);
     void func_800F5680(s32, f32 *);
     f32 mlAbsF(f32);
-    extern f32 D_801255DC;
-    extern f32 D_801255E0;
+
+
     f32 sp3C[3];
     f32 sp38;
     f32 sp2C[3];
 
     func_800EE7F8(arg1, arg0->position);
     sp38 = *(f32 *)&arg0->actorData[3];
-    if ((mlAbsF(arg1[1] - sp38) < D_801255DC) || (D_801255E0 < arg2[1])) {
+    if ((mlAbsF(arg1[1] - sp38) < 0.1f) || (0.99f < arg2[1])) {
         func_800F5680(arg0->unk74_7, sp3C);
         arg1[1] = sp38;
         func_800A6250(arg0, arg1, sp3C, arg2, arg3);

@@ -23,8 +23,8 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
     s32 func_800F40EC(PlayerState *);
     Actor *func_80106790(Unk80132ED0 *);
     void _subaddiefade_entrypoint_9(Actor *, s32 *);
-    extern f32 D_801254A0, D_801254A4, D_801254A8;
-    extern f32 D_801254AC, D_801254B0;
+
+
     f32 pos[3];
     f32 direction[3];
     f32 delta[3];
@@ -72,16 +72,16 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
         normal[0] = -normal[2];
         normal[2] = temp;
         dot = func_800EEAA4(direction, normal);
-        if (dot == 0.0f) dot = D_801254A0;
+        if (dot == 0.0f) dot = 0.1f;
         ratio = -func_800EEAA4(edge, normal) / dot;
         func_800EFA4C(point, vertices[0][0] + direction[0] * ratio, 0, vertices[0][2] + direction[2] * ratio);
         func_800EFB24(delta, point, vertices[1]);
-        ratio = func_800EEF94(delta) / (func_800EEF94(normal) + D_801254A4);
+        ratio = func_800EEF94(delta) / (func_800EEF94(normal) + 0.01f);
         for (i = 0; i < 3; i++) {
             arg1[i] = colors[1][i] + (colors[2][i] - colors[1][i]) * ratio;
         }
         func_800EFB24(delta, point, vertices[0]);
-        ratio = 1.0f - func_800EEF94(direction) / (func_800EEF94(delta) + D_801254A8);
+        ratio = 1.0f - func_800EEF94(direction) / (func_800EEF94(delta) + 0.01f);
         for (i = 0; i < 3; i++) {
             arg1[i] = arg1[i] + (colors[0][i] - arg1[i]) * ratio;
         }
@@ -106,12 +106,12 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
     if (*arg0->unk108 == 1) shade = 50;
     else shade = !func_800F40EC(arg0) ? 200 : 250;
     if (flags & 0x4000000) {
-        arg1[0] = ((arg1[0] + arg1[1]) + arg1[2]) * (255.0f - shade) * D_801254AC + shade;
+        arg1[0] = ((arg1[0] + arg1[1]) + arg1[2]) * (255.0f - shade) * 0.0013071895f + shade;
         ratio = arg1[0];
         arg1[1] = ratio;
         arg1[2] = ratio;
     } else {
-        dot = D_801254B0;
+        dot = 0.0039215684f;
         arg1[0] = arg1[0] * (255.0f - shade) * dot + shade;
         arg1[1] = arg1[1] * (255.0f - shade) * dot + shade;
         arg1[2] = arg1[2] * (255.0f - shade) * dot + shade;

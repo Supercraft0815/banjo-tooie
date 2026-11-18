@@ -227,9 +227,9 @@ s32 func_800F1418(s32 arg0, s32 arg1) {
 
 f32 func_800F1434(f32 arg0) {
     f32 func_8001395C(f32);
-    extern f32 D_80125EC0;
-    extern f32 D_80125EC4;
-    return (func_8001395C((arg0 * D_80125EC0) + D_80125EC4) + 1.0f) * 0.5f;
+
+
+    return (func_8001395C((arg0 * 3.1415927f) + -1.5707964f) + 1.0f) * 0.5f;
 }
 
 /* extern */

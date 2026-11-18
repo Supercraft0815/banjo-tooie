@@ -237,8 +237,8 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
     s32 func_8010108C(void *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     void func_801096C8(void *, s32);
-    extern f32 D_80124B70;
-    extern f32 D_80124B74;
+
+
     struct HitFlags {
         u8 pad[0x5C];
         u8 flags[1];
@@ -295,7 +295,7 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
                     sp34 = func_800F0D90(result - 1, 0, 4);
                 }
                 func_800F76B0(sp28, sp34 + 8, arg1);
-                _bamotor_entrypoint_1(sp20, 0.8f, (f32)sp34 + D_80124B70, 0.3f);
+                _bamotor_entrypoint_1(sp20, 0.8f, (f32)sp34 + 0.2f, 0.3f);
                 break;
             case 2:
                 sp34 = func_800F0D90(sp34, 1, 5) - 1;
@@ -303,7 +303,7 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
                     sp34 = func_800F0D90(result - 1, 0, 4);
                 }
                 func_800F79DC(sp28, sp34 + 3, arg1);
-                _bamotor_entrypoint_1(sp20, 1.0f, (f32)sp34 + D_80124B74, 0.5f);
+                _bamotor_entrypoint_1(sp20, 1.0f, (f32)sp34 + 0.3f, 0.5f);
                 if (*(s32 *)((u8 *)func_80100368(sp24) + 0x24) & 0x03000000) {
                     func_801096C8(sp24, **(s32 **)((u8 *)sp20 + 0xC));
                 }

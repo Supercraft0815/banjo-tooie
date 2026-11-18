@@ -667,7 +667,7 @@ void func_800CD08C(s32 arg0, f32 *arg1) {
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    extern f32 D_80125990;
+
     extern s32 D_8012AE84;
     f32 temp_f20;
     f32 temp_f24;
@@ -680,7 +680,7 @@ void func_800CD08C(s32 arg0, f32 *arg1) {
     temp_a0 = (arg0 * 0x1C) + D_8012AE84;
     temp_s7 = *(u32 *)temp_a0 >> 9;
     temp_s2 = func_800CB8F0(temp_a0);
-    temp_f24 = D_80125990;
+    temp_f24 = 359.0f;
     do {
         temp_a1 = (func_800DC128(0, temp_s7) * 0x18) + temp_s2;
         func_800EE7F8(arg1, temp_a1);

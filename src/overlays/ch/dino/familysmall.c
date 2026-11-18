@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/actor_animation_entry.h"
 /* extern */
 
 typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x1C]; f32 unk28; f32 unk2C; f32 unk30; f32 unk34; f32 unk38; } Objfamilysmall_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chdinofamilysmall(u8 *arg0) {
@@ -41,8 +41,8 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
     s32 func_80103DFC(u8 *, f32 *);
     f32 func_80103EAC(u8 *);
     s32 func_808008B4_chdinofamilysmall(u8 *, s32);
-    extern s32 D_80800EE8_chdinofamilysmall;
-    extern s32 D_80800EFC_chdinofamilysmall;
+    extern s32 D_80800EE8_chdinofamilysmall[5];
+    extern s32 D_80800EFC_chdinofamilysmall[5];
     f32 sp84[3];
     f32 sp78[3];
     f32 sp6C[3];
@@ -102,7 +102,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
         func_80103DFC(arg0, sp60);
         if (_sumumbofx_entrypoint_21(func_80100094(arg0, 1)) > 2.0f) {
             if (!((struct SoundBits *)(arg0 + 0x64))->first) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800EE8_chdinofamilysmall);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800EE8_chdinofamilysmall);
                 ((struct SoundBits *)(arg0 + 0x64))->first = 1;
             }
             (((Objfamilysmall_arg0 *)arg0)->unk38) = func_800F12D4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 4.0f, 2.0f, 0.5f, 0.5);
@@ -110,7 +110,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
         } else {
             sp5C = func_800F10B4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 2.0f, 0.0f, 1.0f, 0.0f);
             if (!((struct SoundBits *)(arg0 + 0x64))->second) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80800EFC_chdinofamilysmall);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80800EFC_chdinofamilysmall);
                 ((struct SoundBits *)(arg0 + 0x64))->second = 1;
             }
             (((Objfamilysmall_arg0 *)arg0)->unk38) = func_800F12D4(_sumumbofx_entrypoint_21(func_80100094(arg0, 1)), 2.0f, 0.0f, 0.5f, 1.0f);
@@ -238,7 +238,7 @@ s32 func_808008B4_chdinofamilysmall(u8 *arg0, s32 arg1) {
 }
 
 s32 func_80800AF4_chdinofamilysmall(Actor *arg0, s32 arg1, s32 arg2) {
-    extern u16 D_80800E94_chdinofamilysmall[][4];
+    extern ActorAnimationEntry D_80800E90_chdinofamilysmall[];
     extern s32 D_80800F10_chdinofamilysmall[];
     s32 _capod_entrypoint_14(void);
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
@@ -262,7 +262,7 @@ s32 func_80800AF4_chdinofamilysmall(Actor *arg0, s32 arg1, s32 arg2) {
         return 3;
     case 0x1F:
         func_801015D0(arg0);
-        if (D_80800E94_chdinofamilysmall[arg0->unk70_10][0] == 0x14D) {
+        if (D_80800E90_chdinofamilysmall[arg0->unk70_10].index == 0x14D) {
             func_800DF744(3, 1);
             return 1;
         }
@@ -334,7 +334,7 @@ void func_80800C10_chdinofamilysmall(Actor *arg0, BtIntPtr arg1) {
 
 OSThread *chdinofamilysmall_entrypoint_0(void)
 {
-    extern u8 D_80800F20_chdinofamilysmall[];
-
+    extern ActorData D_80800F20_chdinofamilysmall[];
     return (OSThread *) D_80800F20_chdinofamilysmall;
 }
+#include "familysmall_data.inc"

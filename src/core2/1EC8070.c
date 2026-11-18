@@ -520,7 +520,7 @@ f32 func_800EFB8C(f32 *arg0, f32 *arg1) {
 
 f32 func_800EFBFC(void *arg0, void *arg1) {
     f32 mlAbsF(f32);
-    extern f32 D_80125EA0;
+
     f32 sp1C;
     f32 temp_f0;
     f32 var_f12;
@@ -532,7 +532,7 @@ f32 func_800EFBFC(void *arg0, void *arg1) {
     } else {
         var_f12 = temp_f0;
     }
-    return (sp1C + temp_f0) - (var_f12 * D_80125EA0);
+    return (sp1C + temp_f0) - (var_f12 * 0.41421357f);
 }
 
 f32 func_800EFC7C(void *arg0, void *arg1) {

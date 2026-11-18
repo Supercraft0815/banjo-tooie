@@ -113,9 +113,9 @@ void func_8009D658(PlayerState *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800F0E00(f32, f32);
     f32 func_800F13F0(f32, f32);
-    extern f32 D_80125380;
-    extern f32 D_80125384;
-    extern f32 D_80125388;
+
+
+
     f32 sp2C[3];
     u8 *temp_v0;
 
@@ -129,8 +129,8 @@ void func_8009D658(PlayerState *arg0) {
         func_800C431C((arg0->unk104)[1], 0);
     }
     func_8009C128(arg0, sp2C);
-    *(f32 *)(arg0->unk104 + 0x14) += func_800DC0C0() * D_80125380 - D_80125384;
-    *(f32 *)(arg0->unk104 + 0x14) = func_800F0E00(*(f32 *)(arg0->unk104 + 0x14), D_80125388);
+    *(f32 *)(arg0->unk104 + 0x14) += func_800DC0C0() * 0.1f - 0.05f;
+    *(f32 *)(arg0->unk104 + 0x14) = func_800F0E00(*(f32 *)(arg0->unk104 + 0x14), 0.9f);
     *(f32 *)(arg0->unk104 + 0x14) = func_800F13F0(*(f32 *)(arg0->unk104 + 0x14), 1.5f);
     func_800C35E8((arg0->unk104)[1], sp2C);
     temp_v0 = arg0->unk104;
@@ -244,12 +244,12 @@ void func_8009DA40(PlayerState *arg0) {
 
 void func_8009DAAC(s32 *arg0, f32 *arg1) {
     s32 func_8009EA2C(void);
-    extern f32 D_8012538C;
+
     s32 flags = *arg0 & ~0xFFF;
 
     *arg0 &= 0xFFF;
     if (flags == 0x4000 && func_8009EA2C() != 0) {
-        *arg1 -= D_8012538C;
+        *arg1 -= 0.2f;
     }
 }
 
@@ -257,16 +257,16 @@ void func_8009DB04(PlayerState *arg0, s32 arg1, f32 arg2, s32 arg3) {
     void func_8009C128(PlayerState *, f32[3]);
     void func_800C4208(s32, f32, u32, f32[3], f32, f32);
     void func_800C4244(s32, f32, u32, f32[3], f32, f32);
-    extern f32 D_80125390;
-    extern f32 D_80125394;
+
+
     f32 position[3];
 
     func_8009DAAC(&arg1, &arg2);
     func_8009C128(arg0, position);
     if (func_8009D3D8(arg0) != 0) {
-        func_800C4208(arg1, arg2, arg3, position, 250.0f, D_80125390);
+        func_800C4208(arg1, arg2, arg3, position, 250.0f, 5400.0f);
     } else {
-        func_800C4244(arg1, arg2, arg3, position, 250.0f, D_80125394);
+        func_800C4244(arg1, arg2, arg3, position, 250.0f, 5400.0f);
     }
 }
 
@@ -279,16 +279,16 @@ void func_8009DBF0(PlayerState *arg0, s32 arg1, f32 arg2) {
     void func_8009C128(PlayerState *, f32[3]);
     void func_800C4208(s32, f32, u32, f32[3], f32, f32);
     void func_800C4244(s32, f32, u32, f32[3], f32, f32);
-    extern f32 D_80125398;
-    extern f32 D_8012539C;
+
+
     f32 position[3];
 
     func_8009DAAC(&arg1, &arg2);
     func_8009C128(arg0, position);
     if (func_8009D3D8(arg0) != 0) {
-        func_800C4208(arg1, arg2, 0x55F0, position, 250.0f, D_80125398);
+        func_800C4208(arg1, arg2, 0x55F0, position, 250.0f, 5400.0f);
     } else {
-        func_800C4244(arg1, arg2, 0x55F0, position, 250.0f, D_8012539C);
+        func_800C4244(arg1, arg2, 0x55F0, position, 250.0f, 5400.0f);
     }
 }
 

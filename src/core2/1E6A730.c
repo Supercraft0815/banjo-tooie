@@ -14,8 +14,8 @@ void func_80090E48(void *arg0) {
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC178(f32, f32);
     extern s32 D_80117DB0;
-    extern f32 D_80124D00;
-    extern f32 D_80124D04;
+
+
     f32 sp34[3];
     void *temp_v1;
 
@@ -27,8 +27,8 @@ void func_80090E48(void *arg0) {
     func_800BABB8(func_8009FBB0(arg0, sp34, 0.0f), 0, 0, 1.0f, &D_80117DB0);
     temp_v1 = (((Obj1E6A730_arg0 *)arg0)->unk30);
     if (((((Obj1E6A730_func_80090E48_temp_v1 *)temp_v1)->unkF) != 0) && ((((Obj1E6A730_func_80090E48_temp_v1 *)temp_v1)->unk0) == 0.0f)) {
-        (((Obj1E6A730_func_80090E48_temp_v1 *)temp_v1)->unk0) = (f32) D_80124D00;
-        func_8009DF94(arg0, 0x3ED, func_800DC178(0.5f, D_80124D04), 0x1770);
+        (((Obj1E6A730_func_80090E48_temp_v1 *)temp_v1)->unk0) = (f32) 0.12f;
+        func_8009DF94(arg0, 0x3ED, func_800DC178(0.5f, 0.7f), 0x1770);
     }
 }
 
@@ -36,27 +36,27 @@ void func_80090F38(void *arg0) {
     f32 func_800DC0C0();
     s32 func_800DC128(s32 arg0, s32 arg1);
     f32 func_800DC178(f32, f32);
-    extern f32 D_80124D08;
-    extern f32 D_80124D0C;
-    extern f32 D_80124D10;
-    extern f32 D_80124D14;
-    extern f32 D_80124D18;
-    extern f32 D_80124D1C;
+
+
+
+
+
+
     f32 temp_f0;
 
     (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (8))) = 0.0f;
     temp_f0 = func_800DC0C0();
     if (temp_f0 < 0.5f) {
-        (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (4))) = func_800DC178(D_80124D08, D_80124D0C);
+        (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (4))) = func_800DC178(0.6f, 0.7f);
         (*(s8 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (0xC))) = 1;
         return;
     }
-    if (temp_f0 < D_80124D10) {
-        (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (4))) = func_800DC178(D_80124D14, 1.0f);
+    if (temp_f0 < 0.7f) {
+        (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (4))) = func_800DC178(0.7, 1.0f);
         (*(s8 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (0xC))) = func_800DC128(1, 4);
         return;
     }
-    (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (4))) = func_800DC178(D_80124D18, D_80124D1C);
+    (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (4))) = func_800DC178(2.3f, 2.6f);
     (*(s8 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (0xC))) = func_800DC128(6, 0xF);
 }
 
@@ -107,8 +107,8 @@ void func_80091110(void *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
     s32 func_800F40EC(PlayerState *);
-    extern f32 D_80124D20;
-    extern f32 D_80124D24;
+
+
     f32 sp24;
     f32 temp_f0;
 
@@ -119,7 +119,7 @@ void func_80091110(void *arg0) {
         if ((*(u8 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (0xC))) != 0) {
             (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (8))) = (f32) ((*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (8))) - temp_f0);
             if ((*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (8))) < 0.0f) {
-                (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (8))) = func_800DC178(D_80124D20, D_80124D24);
+                (*(f32 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (8))) = func_800DC178(0.066f, 0.1f);
                 (*(u8 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (0xC))) = (u8) ((*(u8 *)((s8 *)((((Obj1E6A730_arg0 *)arg0)->unk30)) + (0xC))) - 1);
                 func_80090E48(arg0);
             }
@@ -145,10 +145,10 @@ void func_80091110(void *arg0) {
 }
 
 void func_80091290(PlayerState *arg0, f32 arg1, s32 arg2, s32 arg3) {
-    extern f32 D_80124D28;
-    extern f32 D_80124D2C;
-    extern f32 D_80124D30;
-    extern f32 D_80124D34;
+
+
+
+
     void func_80092C90(void *, f32[3], s32);
     BtIntPtr func_8009FBB0(PlayerState *, f32 *, f32);
     void func_800BA22C(BtIntPtr, s32);
@@ -165,7 +165,7 @@ void func_80091290(PlayerState *arg0, f32 arg1, s32 arg2, s32 arg3) {
     BtIntPtr emitter;
     f32 lifetime;
 
-    scale = func_800F10B4(arg1, 5.0f, 20.0f, 4.0f, D_80124D28);
+    scale = func_800F10B4(arg1, 5.0f, 20.0f, 4.0f, 0.7f);
     func_80092C90(arg0, position, arg3);
     (*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x10)) += arg1 * func_800D8FF8();
     count = (s32)(*(f32 *)(*(u8 **)((u8 *)arg0 + 0x30) + 0x10));
@@ -174,12 +174,12 @@ void func_80091290(PlayerState *arg0, f32 arg1, s32 arg2, s32 arg3) {
     func_800BA930(emitter, -60, -50, -60, 60, 100, 60);
     if (arg2) {
         func_800BA6B0((u8 *)emitter, -50, -70, -50, 50, 70, 50);
-        lifetime = D_80124D2C;
+        lifetime = 0.09f;
         func_800BA7C4((void *)emitter, lifetime, 0.1f);
         func_800BA7FC((void *)emitter, 0.2f, 0.22f);
     } else {
-        func_800BA7C4((void *)emitter, D_80124D30, D_80124D30);
-        func_800BA7FC((void *)emitter, D_80124D34, D_80124D34);
+        func_800BA7C4((void *)emitter, 0.09f, 0.09f);
+        func_800BA7FC((void *)emitter, 0.12f, 0.12f);
     }
     func_800BA8F8((void *)emitter, scale, scale);
     arg3 = 0;

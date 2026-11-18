@@ -4,14 +4,14 @@ void func_800FFAB0(Actor *);
 
 OSThread *chbiggafoot_entrypoint_0(void)
 {
-    extern u8 D_80801094_chbiggafoot[];
+    extern ActorData D_80801094_chbiggafoot[];
 
     return (OSThread *) D_80801094_chbiggafoot;
 }
 
 OSThread *chbiggafoot_entrypoint_1(void)
 {
-    extern u8 D_808010DC_chbiggafoot[];
+    extern ActorData D_808010DC_chbiggafoot[];
 
     return (OSThread *) D_808010DC_chbiggafoot;
 }
@@ -291,8 +291,8 @@ void func_80800840_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_808008D4_chbiggafoot(BtIntPtr arg0) {
     s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
-    extern s32 D_80801198_chbiggafoot;
-    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80801198_chbiggafoot);
+    extern s32 D_80801198_chbiggafoot[7];
+    _subaddiedialog_entrypoint_7(arg0, arg0 + 4, D_80801198_chbiggafoot);
 }
 
 /* extern */
@@ -359,42 +359,42 @@ void func_80800A9C_chbiggafoot(Actor *arg0) {
     s32 func_801022E4(Actor *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
     s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
-    extern u32 D_808011B4_chbiggafoot;
-    extern u32 D_808011C4_chbiggafoot;
-    extern u32 D_808011D4_chbiggafoot;
-    extern u32 D_808011E4_chbiggafoot;
-    extern u32 D_808011F4_chbiggafoot;
+    extern u32 D_808011B4_chbiggafoot[4];
+    extern u32 D_808011C4_chbiggafoot[4];
+    extern u32 D_808011D4_chbiggafoot[4];
+    extern u32 D_808011E4_chbiggafoot[4];
+    extern u32 D_808011F4_chbiggafoot[3];
     extern u32 D_80801200_chbiggafoot;
-    extern u32 D_80801208_chbiggafoot;
-    extern u32 D_80801218_chbiggafoot;
+    extern u32 D_80801208_chbiggafoot[4];
+    extern u32 D_80801218_chbiggafoot[3];
     f32 *position;
 
     switch (func_801022E4(arg0)) {
         case 0x389:
             position = arg0->position;
-            _subaddieaudioquick_entrypoint_3(arg0, position, &D_808011B4_chbiggafoot, 0.75f);
-            _subaddieaudioquick_entrypoint_4(arg0, position, &D_808011D4_chbiggafoot, &D_808011F4_chbiggafoot);
-            _subaddieaudioquick_entrypoint_4(arg0, position, &D_808011C4_chbiggafoot, &D_808011E4_chbiggafoot);
+            _subaddieaudioquick_entrypoint_3(arg0, position, D_808011B4_chbiggafoot, 0.75f);
+            _subaddieaudioquick_entrypoint_4(arg0, position, D_808011D4_chbiggafoot, D_808011F4_chbiggafoot);
+            _subaddieaudioquick_entrypoint_4(arg0, position, D_808011C4_chbiggafoot, D_808011E4_chbiggafoot);
             break;
         case 0x38B:
             position = arg0->position;
             _subaddieaudioquick_entrypoint_3(arg0, position, &D_80801200_chbiggafoot, 0.12f);
-            _subaddieaudioquick_entrypoint_3(arg0, position, &D_80801208_chbiggafoot, 0.62f);
+            _subaddieaudioquick_entrypoint_3(arg0, position, D_80801208_chbiggafoot, 0.62f);
             break;
         case 0x38A:
-            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801218_chbiggafoot, 0.35f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801218_chbiggafoot, 0.35f);
             break;
     }
 }
 
-void func_80800BA4_chbiggafoot(Actor *arg0) { void func_80102424(Actor *, s32); void func_80800CDC_chbiggafoot(Actor *); extern s16 D_80801030_chbiggafoot; func_80102424(arg0, 6); arg0->unk3C = NULL; arg0->unk6C_0 = 0; ((f32 *)arg0->actorData)[3] = 1.0f; _capod_entrypoint_20(arg0->unk0, D_80801030_chbiggafoot, 0x10); func_80800CDC_chbiggafoot(arg0); }
+void func_80800BA4_chbiggafoot(Actor *arg0) { void func_80102424(Actor *, s32); void func_80800CDC_chbiggafoot(Actor *); extern s16 D_80801030_chbiggafoot[4]; func_80102424(arg0, 6); arg0->unk3C = NULL; arg0->unk6C_0 = 0; ((f32 *)arg0->actorData)[3] = 1.0f; _capod_entrypoint_20(arg0->unk0, D_80801030_chbiggafoot[0], 0x10); func_80800CDC_chbiggafoot(arg0); }
 
 void func_80800C04_chbiggafoot(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D9078(f32 *);
     void func_80102424(Actor *, s32);
     void func_80800CDC_chbiggafoot(Actor *);
-    extern s16 D_80801030_chbiggafoot;
+    extern s16 D_80801030_chbiggafoot[4];
     s32 temp_t3;
 
     if (func_800D9078(&((f32 *)arg0->actorData)[3]) != 0) {
@@ -406,7 +406,7 @@ void func_80800C04_chbiggafoot(Actor *arg0) {
             func_80102424(arg0, 8);
             return;
         }
-        _capod_entrypoint_20(arg0->unk0, (&D_80801030_chbiggafoot)[temp_t3], 0x10);
+        _capod_entrypoint_20(arg0->unk0, D_80801030_chbiggafoot[temp_t3], 0x10);
         func_80800CDC_chbiggafoot(arg0);
         ((f32 *)arg0->actorData)[3] = 1.0f;
     }
@@ -417,10 +417,10 @@ void func_80800CDC_chbiggafoot(Actor *arg0) {
     u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     void func_800C32C4(u8, s32);
     extern u8 D_80801038_chbiggafoot[];
-    extern s32 D_80801224_chbiggafoot;
+    extern s32 D_80801224_chbiggafoot[5];
     u8 sp1F;
 
-    sp1F = func_800C4350(0, NULL, &D_80801224_chbiggafoot);
+    sp1F = func_800C4350(0, NULL, D_80801224_chbiggafoot);
     func_800C32C4(sp1F, D_80801038_chbiggafoot[arg0->unk6C_0]);
     func_800C3BDC(sp1F);
 }
@@ -478,9 +478,9 @@ s32 func_80800E2C_chbiggafoot(s32 arg0, s32 arg1, s32 arg2) {
     }
     return 1;
 }
-
 void func_80800E98_chbiggafoot(u8 *arg0) {
     BtIntPtr func_800BBCB8(u8 *, BtIntPtr, s32, s32, s32 *);
-    extern s32 D_80801244_chbiggafoot;
-    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, &D_80801244_chbiggafoot);
+    extern s32 D_80801244_chbiggafoot[11];
+    func_800BBCB8(arg0 + 4, 0, (*(s32 *)((s8 *)(arg0) + (0x38))), 1, D_80801244_chbiggafoot);
 }
+#include "biggafoot_data.inc"

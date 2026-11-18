@@ -7,7 +7,7 @@ void func_800C4B90(s32 arg0, f32 arg1, f32 arg2) {
     s32 func_800A8984(s32);
     void *func_800A89A0(s32);
     f32 func_800A8AD4(s32);
-    extern f32 D_80125890;
+
     extern f32 D_8012A9A0[];
     f32 temp_f8;
     f32 sp20;
@@ -20,7 +20,7 @@ void func_800C4B90(s32 arg0, f32 arg1, f32 arg2) {
         sp20 = func_800A8AD4(arg0);
         temp_f8 = func_80015D14(sp18);
         D_8012A9A0[31] += (arg1 * sp20) / 40.0f;
-        D_8012A9A0[30] += (arg2 * temp_f8) / D_80125890;
+        D_8012A9A0[30] += (arg2 * temp_f8) / 1.3333334f;
     }
 }
 
@@ -33,7 +33,7 @@ s32 func_800C4C34(s32 arg0, f32 *arg1, f32 *arg2, s32 *arg3) {
     void func_800CA7E4(BtIntPtr, s32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F23D0();
-    extern f32 D_80125894;
+
     f32 sp64[3];
     s32 sp58[3];
     f32 sp54;
@@ -49,7 +49,7 @@ s32 func_800C4C34(s32 arg0, f32 *arg1, f32 *arg2, s32 *arg3) {
     func_800CA7E4(camera, sp58);
     func_800EFB24(sp64, arg1, sp58);
     func_800F23D0(func_800CA7AC(camera), sp64, sp64);
-    *arg3 = sp64[2] < D_80125894;
+    *arg3 = sp64[2] < -1e-05f;
     if (*arg3 == 0) {
         arg2[1] = 0.0f;
         arg2[0] = 0.0f;
@@ -82,7 +82,7 @@ void func_800C4E58(s32 arg0, f32 *arg1, f32 *arg2) {
     void func_800EFD24(f32 *);
     f32 func_800F214C(f32, f32);
     void func_800F23D0(MtxF *, f32 *, f32 *);
-    extern f32 D_80125898;
+
     f32 sp54[3];
     f32 sp50;
     f32 sp4C;
@@ -96,7 +96,7 @@ void func_800C4E58(s32 arg0, f32 *arg1, f32 *arg2) {
     camera = func_800A8984(arg0);
     func_800A8A04(arg0, &sp44, &sp40, &sp3C, &sp38);
     sp4C = func_800CA79C(camera) * (f32) sp38 * 0.5f;
-    if (func_800F214C(sp4C, D_80125898) == 0.0f) {
+    if (func_800F214C(sp4C, 1e-05f) == 0.0f) {
         func_800EFD24(arg2);
         return;
     }

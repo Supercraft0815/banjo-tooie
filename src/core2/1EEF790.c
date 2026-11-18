@@ -9,14 +9,14 @@ void func_80115EA8(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5)
     f32 func_800D8FF8(void);
     f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
     f32 mlAbsF(f32);
-    extern f32 D_80126620;
+
     f32 sp34;
     f32 sp30;
     f32 sp2C;
 
     sp34 = arg0 - *arg1;
     sp30 = mlAbsF(sp34);
-    if (D_80126620 < sp30) {
+    if (0.001f < sp30) {
         sp2C = func_800FF060(sp34, arg2, arg4, arg5, arg3, func_800D8FF8());
         if (sp30 < mlAbsF(sp2C)) {
             *arg2 = 0.0f;
@@ -101,7 +101,7 @@ void func_80116120(void *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg
     f32 func_800F22EC(void *);
     void func_800F2388(void *, void *, void *);
     f32 func_800FF060(f32, f32 *, f32, f32, f32, f32);
-    extern f32 D_80126624;
+
     f32 delta[2];
     f32 distance;
     f32 step;
@@ -109,7 +109,7 @@ void func_80116120(void *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg
 
     func_800F2388(delta, arg0, arg1);
     distance = func_800F22EC(delta);
-    if (D_80126624 < distance) {
+    if (0.01f < distance) {
         step = func_800FF060(distance, arg2, arg4, arg5, arg3, func_800D8FF8());
         if (distance < step) {
             scale = 1.0f;

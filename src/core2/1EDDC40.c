@@ -237,13 +237,13 @@ void func_8010486C(s8 *arg0, f32 *arg1) {
 }
 
 void func_801048E4(s8 *arg0, f32 *arg1) {
-    extern f32 D_80126440;
+
     s32 i;
     f32 *dst;
     s8 *src;
     f32 scale;
 
-    for (i = 0, dst = arg1, src = arg0, scale = D_80126440; i < 3; i++, dst++, src++) {
+    for (i = 0, dst = arg1, src = arg0, scale = 0.007874015f; i < 3; i++, dst++, src++) {
         *dst = *src * scale;
     }
 }
@@ -286,9 +286,9 @@ void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
     void func_800EFB24(void *, void *, void *);
     s32 func_800F36D4(s32 *, s32 *);
     void func_80105390(u8 *, u8 *);
-    extern f32 D_80126444;
-    extern f32 D_80126448;
-    extern f32 D_8012644C;
+
+
+
     f32 point[3];
     f32 delta[3];
     f32 offset[3];
@@ -333,20 +333,20 @@ void func_801049B4(u8 *arg0, f32 *arg1, s32 *arg2) {
     func_800EE97C(perpendicular, edge21, normal);
     denominator = func_800EEAA4(delta, perpendicular);
     if (denominator == 0.0f) {
-        denominator = D_80126444;
+        denominator = 0.1f;
     }
     t = -func_800EEAA4(edge, perpendicular) / denominator;
     func_800EFA4C(intersection, vertices[0][0] + delta[0] * t, 0.0,
                  vertices[0][2] + delta[2] * t);
     func_800EFB24(offset, intersection, vertices[1]);
     distance = func_800EEF94(offset);
-    blend = distance / (func_800EEF94(perpendicular) + D_80126448);
+    blend = distance / (func_800EEF94(perpendicular) + 0.01f);
     for (i = 0; i < 3; i++) {
         arg2[i] = (s32)((f32)colors[1][i] + (f32)(colors[2][i] - colors[1][i]) * blend);
     }
     func_800EFB24(offset, intersection, vertices[0]);
     distance = func_800EEF94(delta);
-    blend = 1.0f - distance / (func_800EEF94(offset) + D_8012644C);
+    blend = 1.0f - distance / (func_800EEF94(offset) + 0.01f);
     for (i = 0; i < 3; i++) {
         arg2[i] = (s32)((f32)arg2[i] + (f32)(colors[0][i] - arg2[i]) * blend);
     }
@@ -515,7 +515,7 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     extern f32 D_80124420;
     extern s32 D_8012442C;
-    extern f32 D_80126450;
+
     f32 *values;
     f32 position[3];
     s32 i = 0;
@@ -529,7 +529,7 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
         return 0;
     }
     func_8010D640((BtIntPtr)position);
-    if (D_80126450 <= func_800EEB40(position, actorPosition = arg0->position)) {
+    if (2.25e+06f <= func_800EEB40(position, actorPosition = arg0->position)) {
         return 0;
     }
     values = arg1 != NULL ? arg1 : &D_80124420;
