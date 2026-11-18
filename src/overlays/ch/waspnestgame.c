@@ -4,14 +4,14 @@ s32 func_800D0A9C(u32, u32);
 
 OSThread *chwaspnestgame_entrypoint_0(void)
 {
-    extern u8 D_80801F80_chwaspnestgame[];
+    extern ActorData D_80801F80_chwaspnestgame[];
 
     return (OSThread *) D_80801F80_chwaspnestgame;
 }
 
 OSThread *chwaspnestgame_entrypoint_1(void)
 {
-    extern u8 D_80801FC8_chwaspnestgame[];
+    extern ActorData D_80801FC8_chwaspnestgame[];
 
     return (OSThread *) D_80801FC8_chwaspnestgame;
 }
@@ -193,7 +193,7 @@ void func_8080047C_chwaspnestgame(Actor *arg0) {
     f32 func_800DC0C0(void);
     int func_800DC298(f32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80802010_chwaspnestgame[];
+    extern s16 D_80802010_chwaspnestgame[10];
     struct NestData {
         f32 position[2][3];
         f32 timer[2];
@@ -267,7 +267,7 @@ s32 func_80800724_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80800DE4_chwaspnestgame(Actor *, s32);
     s32 func_80800EB8_chwaspnestgame(void *, s32, s32);
     void func_80800F98_chwaspnestgame(Actor *, s32, s32);
-    extern s16 D_80801F76_chwaspnestgame[];
+    extern u16 D_80801F70_chwaspnestgame[8];
     u8 *sp34;
     s32 sp30;
     s16 *sp2C;
@@ -319,7 +319,7 @@ s32 func_80800724_chwaspnestgame(Actor *arg0, s32 arg1, s32 arg2) {
             sp2C = (s16 *)&arg2;
             sp30 = sp2C[1];
             func_80101180(0x1E4, 0x45, 0);
-            _susubgame_entrypoint_6(arg0, sp34 + 0x24, D_80801F76_chwaspnestgame[sp30], 0x20, 0);
+            _susubgame_entrypoint_6(arg0, sp34 + 0x24, (s16)D_80801F70_chwaspnestgame[sp30 + 3], 0x20, 0);
             func_80108B04(arg0, -sp30);
             break;
         case 0xB:
@@ -344,7 +344,7 @@ Actor *func_80800AF8_chwaspnestgame(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3)
     void func_800EE7F8(f32 *, f32 *);
     Actor *sp1C;
     Actor *temp_v0;
-    extern u16 D_80801F70_chwaspnestgame[];
+    extern u16 D_80801F70_chwaspnestgame[8];
 
     temp_v0 = func_80108528(0x1E4, arg1, 0, &arg0);
     temp_v0->unk3C = arg0->unk0;
@@ -635,8 +635,8 @@ s32 func_80801364_chwaspnestgame(BtIntPtr actor, s32 arg1)
   BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8010A570(BtIntPtr);
   void func_8010DC50(s32);
   s32 func_8010DCB4(s32);
-  extern u8 D_80802024_chwaspnestgame[];
-  extern u8 D_80802038_chwaspnestgame[];
+  extern s16 D_80802024_chwaspnestgame[10];
+  extern s16 D_80802038_chwaspnestgame[6];
   f32 pos[3]; BT_NATIVE_ONLY(s32 nativeRet = 0;)
   Actor *arg0 = (Actor *) actor;
   struct Motion
@@ -727,8 +727,8 @@ s32 func_80801590_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2) {
     f32 func_800EEF94(f32 *);
     void func_800EFB24(void *, void *, void *);
     void func_800F1988(f32 *, f32 *, f32 *);
-    extern s32 D_80802044_chwaspnestgame[];
-    extern s32 D_80802068_chwaspnestgame[];
+    extern s16 D_80802044_chwaspnestgame[18];
+    extern s16 D_80802068_chwaspnestgame[10];
     f32 distance;
     f32 speed;
     f32 delta[3];
@@ -762,7 +762,7 @@ s32 func_80801590_chwaspnestgame(Actor *arg0, f32 arg1, f32 arg2) {
         arg0->unk74_30 = (s32)arg0->unk74_30 ^ 1;
         func_800F1988(normal, &angles[0], &angles[1]);
         angles[2] = 0.0f;
-        emitter = func_800BABB8(0, end, NULL, 1.0f, D_80802044_chwaspnestgame);
+        emitter = func_800BABB8(0, end, NULL, 1.0f, (s32 *)D_80802044_chwaspnestgame);
         func_800BA77C(emitter, (s16)(s32)angles[0], (s16)(s32)angles[1], (s16)(s32)angles[2]);
         func_800BA22C(emitter, 1);
         func_800C4AF0(arg0->position, D_80802068_chwaspnestgame);
@@ -915,7 +915,7 @@ s32 func_80801B9C_chwaspnestgame(Actor *arg0, s32 arg1, Unk80132ED0 *volatile ar
     void func_800C4AF0(f32 *, void *);
     s32 func_801015D0(Actor *);
     void func_8010DD20(Actor *, s32, Unk80132ED0 *);
-    extern u8 D_8080207C_chwaspnestgame[];
+    extern s16 D_8080207C_chwaspnestgame[10];
     BtIntPtr player;
     s32 score;
     u32 state;
@@ -976,7 +976,6 @@ void func_80801D28_chwaspnestgame(Actor *arg0) {
     s32 j;
     f32 pos[3];
     f32 distance;
-
     data = func_80100094(func_80106790(arg0->unk3C), 0);
     func_800E3980(pos);
     distance = func_800EEAD4(arg0->position, pos);
@@ -994,3 +993,4 @@ void func_80801D28_chwaspnestgame(Actor *arg0) {
         data->distances[i] = distance;
     }
 }
+#include "waspnestgame_data.inc"

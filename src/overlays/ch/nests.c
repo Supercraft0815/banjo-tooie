@@ -1,9 +1,9 @@
 #include "common.h"
 
 void func_800FFAB0(Actor *);
-struct Entry { s16 value; s16 rest[4]; u8 reward; u8 amount; s16 tail; };
+struct Entry { s16 value; s16 rest[4]; u8 reward; u8 amount; u8 modelPart; u8 padD; };
 struct NestsContact { u8 pad[0x1A]; u16 playerFlags; };
-extern struct Entry D_80801118_chnests[];
+extern struct Entry D_80801118_chnests[14];
 
 s32 func_800D9078(f32 *);
 
@@ -344,10 +344,10 @@ void func_80800968_chnests(void *arg0, s32 arg1) {
     void func_800DF744(s32, s32);
     void func_801018A4(Actor *, BtIntPtr);
     void *func_80800898_chnests(Actor *, BtIntPtr, f32);
-    extern s32 D_80801124_chnests;
+
     if (func_80800898_chnests(arg0, arg1, ((Objnests_arg0 *)arg0)->unk48) != 0) {
         func_800DF3E0();
-        func_800DF744(((u8 *)&D_80801124_chnests)[(((Objnests_arg0 *)arg0)->unk1C) * 14], 1);
+        func_800DF744(D_80801118_chnests[(((Objnests_arg0 *)arg0)->unk1C)].modelPart, 1);
         func_801018A4((BtIntPtr)arg0, arg1);
     }
 }
@@ -365,10 +365,10 @@ void func_80800A00_chnests(void *arg0, s32 arg1) {
     void func_800DF744(s32, s32);
     void func_801018A4(Actor *, BtIntPtr);
     void *func_80800898_chnests(Actor *, BtIntPtr, f32);
-    extern s32 D_80801124_chnests;
+
     if (func_80800898_chnests(arg0, arg1, ((Objnests_arg0 *)arg0)->unk48) != 0) {
         func_800DF3E0();
-        func_800DF744(((u8 *)&D_80801124_chnests)[(((Objnests_arg0 *)arg0)->unk1C) * 14], 1);
+        func_800DF744(D_80801118_chnests[(((Objnests_arg0 *)arg0)->unk1C)].modelPart, 1);
         func_801018A4((BtIntPtr)arg0, arg1);
     }
 }
@@ -483,19 +483,19 @@ void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
     void func_800DF744(s32, s32);
     void func_801018A4(Actor *, BtIntPtr);
     void *func_80800898_chnests(Actor *, BtIntPtr, f32);
-    extern s32 D_80801124_chnests;
+
     s32 sp24;
 
     if (func_80800898_chnests(arg0, arg1, arg0->rotation[1]) != 0) {
         func_800DF3E0();
-        func_800DF744(((u8 *)&D_80801124_chnests)[arg0->actorData[1] * 14], 1);
+        func_800DF744(D_80801118_chnests[arg0->actorData[1]].modelPart, 1);
         if (arg0->actorData[6] == 1) {
             sp24 = (s32)((arg0->unk58 / 0.25f) * 255.0f);
             ((struct Flags *)arg0)->mode = 2;
             _subaddiefade_entrypoint_1((BtIntPtr)arg0, sp24);
             func_801018A4(arg0, arg1);
             func_800DF3E0();
-            func_800DF744(((u8 *)&D_80801124_chnests)[arg0->unk6C_0 * 14], 1);
+            func_800DF744(D_80801118_chnests[arg0->unk6C_0].modelPart, 1);
             ((struct Flags *)arg0)->mode = 1;
             _subaddiefade_entrypoint_1((BtIntPtr)arg0, 255 - sp24);
             func_801018A4(arg0, arg1);
@@ -521,91 +521,91 @@ void func_80800F08_chnests(BtIntPtr arg0) {
 
 OSThread *chnests_entrypoint_0(void)
 {
-    extern u8 D_808011E8_chnests[];
+    extern ActorData D_808011E8_chnests[];
 
     return (OSThread *) D_808011E8_chnests;
 }
 
 OSThread *chnests_entrypoint_1(void)
 {
-    extern u8 D_80801230_chnests[];
+    extern ActorData D_80801230_chnests[];
 
     return (OSThread *) D_80801230_chnests;
 }
 
 OSThread *chnests_entrypoint_2(void)
 {
-    extern u8 D_80801278_chnests[];
+    extern ActorData D_80801278_chnests[];
 
     return (OSThread *) D_80801278_chnests;
 }
 
 OSThread *chnests_entrypoint_3(void)
 {
-    extern u8 D_808012C0_chnests[];
+    extern ActorData D_808012C0_chnests[];
 
     return (OSThread *) D_808012C0_chnests;
 }
 
 OSThread *chnests_entrypoint_4(void)
 {
-    extern u8 D_80801308_chnests[];
+    extern ActorData D_80801308_chnests[];
 
     return (OSThread *) D_80801308_chnests;
 }
 
 OSThread *chnests_entrypoint_5(void)
 {
-    extern u8 D_80801350_chnests[];
+    extern ActorData D_80801350_chnests[];
 
     return (OSThread *) D_80801350_chnests;
 }
 
 OSThread *chnests_entrypoint_6(void)
 {
-    extern u8 D_80801398_chnests[];
+    extern ActorData D_80801398_chnests[];
 
     return (OSThread *) D_80801398_chnests;
 }
 
 OSThread *chnests_entrypoint_7(void)
 {
-    extern u8 D_808013E0_chnests[];
+    extern ActorData D_808013E0_chnests[];
 
     return (OSThread *) D_808013E0_chnests;
 }
 
 OSThread *chnests_entrypoint_8(void)
 {
-    extern u8 D_80801428_chnests[];
+    extern ActorData D_80801428_chnests[];
 
     return (OSThread *) D_80801428_chnests;
 }
 
 OSThread *chnests_entrypoint_9(void)
 {
-    extern u8 D_80801470_chnests[];
+    extern ActorData D_80801470_chnests[];
 
     return (OSThread *) D_80801470_chnests;
 }
 
 OSThread *chnests_entrypoint_10(void)
 {
-    extern u8 D_808014B8_chnests[];
+    extern ActorData D_808014B8_chnests[];
 
     return (OSThread *) D_808014B8_chnests;
 }
 
 OSThread *chnests_entrypoint_11(void)
 {
-    extern u8 D_80801500_chnests[];
+    extern ActorData D_80801500_chnests[];
 
     return (OSThread *) D_80801500_chnests;
 }
 
 OSThread *chnests_entrypoint_12(void)
 {
-    extern u8 D_80801548_chnests[];
+    extern ActorData D_80801548_chnests[];
 
     return (OSThread *) D_80801548_chnests;
 }
@@ -636,9 +636,9 @@ int func_80801014_chnests(Actor *arg0) {
         || arg0->unk6C_9 == 0x2B8
         || arg0->unk6C_9 == 0x1E9;
 }
-
 int func_808010A0_chnests(void *arg0) {
     return ((u32)(*(s32 *)((u8 *)arg0 + 0x6C) << 11) >> 20) == 0x1CE
         || ((u32)(*(s32 *)((u8 *)arg0 + 0x6C) << 11) >> 20) == 0x1CF
         || ((u32)(*(s32 *)((u8 *)arg0 + 0x6C) << 11) >> 20) == 0x4A6;
 }
+#include "nests_data.inc"

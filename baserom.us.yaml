@@ -4221,7 +4221,7 @@ segments:
     subsegments: 
       - [0x01F7DC00, c, nests]
       - [0x01F7ECE0, .rodata, nests]
-      - [0x01F7ECF0, data, nests]
+      - [0x01F7ECF0, .data, nests]
       - [0x01F7F190, bss, nests]
   - name: chbanjocurrent_header
     dir: overlays/chbanjocurrent
@@ -4336,7 +4336,7 @@ segments:
     subsegments: 
       - [0x01F86C40, c, waspnestgame]
       - [0x01F88AA0, .rodata, waspnestgame]
-      - [0x01F88B70, data, waspnestgame]
+      - [0x01F88B70, .data, waspnestgame]
       - [0x01F88CD0, bss, waspnestgame]
   - name: chwarppad_header
     dir: overlays/chwarppad
@@ -6487,7 +6487,7 @@ segments:
     subsegments: 
       - [0x01FE4660, c, iciclebits]
       - [0x01FE49F0, .rodata, iciclebits]
-      - [0x01FE4A00, data, iciclebits]
+      - [0x01FE4A00, .data, iciclebits]
       - [0x01FE4B40, bss, iciclebits]
   - name: chsabreman_header
     dir: overlays/chsabreman
@@ -9480,7 +9480,7 @@ segments:
     subsegments: 
       - [0x0208DE80, c, wallsnakebaddy]
       - [0x0208E500, .rodata, wallsnakebaddy]
-      - [0x0208E520, data, wallsnakebaddy]
+      - [0x0208E520, .data, wallsnakebaddy]
       - [0x0208E680, bss, wallsnakebaddy]
   - name: chamazongoldhordeofficial_header
     dir: overlays/chamazongoldhordeofficial

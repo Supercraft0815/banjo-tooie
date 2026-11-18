@@ -1,8 +1,8 @@
 #include "common.h"
-
+typedef struct { s16 position[3]; u16 flag; u16 animation; } IcicleEntry;
 OSThread *chiciclebits_entrypoint_0(void)
 {
-    extern u8 D_808003A0_chiciclebits[];
+    extern ActorData D_808003A0_chiciclebits[];
 
     return (OSThread *) D_808003A0_chiciclebits;
 }
@@ -13,7 +13,7 @@ void func_8080000C_chiciclebits(Actor *arg0) {
     void func_800EF334(f32 *, f32);
     void func_80101FDC(Actor *, u32);
     void func_8010A570(Actor *);
-    extern s16 D_808003E8_chiciclebits[][5];
+    extern IcicleEntry D_808003E8_chiciclebits[7];
     typedef struct {
         u32 pad[4];
         s32 index;
@@ -24,13 +24,13 @@ void func_8080000C_chiciclebits(Actor *arg0) {
     register s32 index;
     f32 *volatile position;
 
-    index = arg0->unk74_7 - 0x32; position = arg0->position; func_800EE88C(arg0->position, D_808003E8_chiciclebits[index]);
+    index = arg0->unk74_7 - 0x32; position = arg0->position; func_800EE88C(arg0->position, D_808003E8_chiciclebits[index].position);
     func_800EF334(position, 100.0f);
     ((IcicleData *)arg0->actorData)->index = index;
     ((IcicleData *)arg0->actorData)->height = arg0->position[1];
     ((IcicleData *)arg0->actorData)->speed = 600.0f;
     arg0->position[1] += 2500.0f;
-    if (func_800DA298((u16)D_808003E8_chiciclebits[index][3]) != 0) {
+    if (func_800DA298(D_808003E8_chiciclebits[index].flag) != 0) {
         arg0->position[1] = ((IcicleData *)arg0->actorData)->height;
         func_8010A570(arg0);
         func_80101FDC(arg0, 4);
@@ -47,10 +47,10 @@ void func_808000D0_chiciclebits(Actor *arg0) {
     void func_800DA544(s32 index);
     void func_80101FDC(Actor *, u32);
     void func_80103110(Actor *, u32);
-    extern u16 D_808003EE_chiciclebits[][5];
-    extern s32 D_80800430_chiciclebits[];
-    extern s32 D_80800468_chiciclebits[];
-    extern u8 D_808004A8_chiciclebits[];
+    extern IcicleEntry D_808003E8_chiciclebits[7];
+    extern s16 D_80800430_chiciclebits[28];
+    extern s16 D_80800468_chiciclebits[32];
+    extern s16 D_808004A8_chiciclebits[8];
     typedef struct {
         u32 pad[4];
         s32 index;
@@ -68,8 +68,8 @@ void func_808000D0_chiciclebits(Actor *arg0) {
             _subaddieDll_entrypoint_7(arg0, 8);
             if (func_800D9078(&arg0->unk58)) {
                 position[0] = arg0->position;
-                func_800BBCB8(position[0], position[0], 1.0f, 6, D_80800430_chiciclebits);
-                func_800BBCB8(position[0], position[0], 1.0f, 8, D_80800468_chiciclebits);
+                func_800BBCB8(position[0], position[0], 1.0f, 6, (s32 *)D_80800430_chiciclebits);
+                func_800BBCB8(position[0], position[0], 1.0f, 8, (s32 *)D_80800468_chiciclebits);
                 func_80101FDC(arg0, 3);
             }
             break;
@@ -83,7 +83,7 @@ void func_808000D0_chiciclebits(Actor *arg0) {
                 _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808004A8_chiciclebits);
                 func_80101FDC(arg0, 4);
                 func_80103110(arg0, 0);
-                func_800DA544(D_808003EE_chiciclebits[((IcicleData *)arg0->actorData)->index][0]);
+                func_800DA544(D_808003E8_chiciclebits[((IcicleData *)arg0->actorData)->index].flag);
                 func_80018820(0, 5.0f, 0.4f);
             }
             break;
@@ -99,11 +99,10 @@ s32 func_80800240_chiciclebits(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80103110(Actor *, u32);
     s32 func_80103140(Actor *, u32, u16);
     void func_8010A570(Actor *);
-    extern u16 D_808003F0_chiciclebits[][5];
-    extern u8 D_808004B8_chiciclebits[];
-    extern u8 D_808004C8_chiciclebits[];
+    extern IcicleEntry D_808003E8_chiciclebits[7];
+    extern s16 D_808004B8_chiciclebits[8];
+    extern s16 D_808004C8_chiciclebits[12];
     s32 sp24;
-
     switch (arg1) {
         case 0x40:
             sp24 = func_80101180(0x41C, 0x43, 0) == 0;
@@ -124,10 +123,11 @@ s32 func_80800240_chiciclebits(Actor *arg0, s32 arg1, s32 arg2) {
             }
             break;
         case 0x95:
-            func_80103140(arg0, D_808003F0_chiciclebits[arg0->actorData[4]][0], arg0->unk0->unk16);
+            func_80103140(arg0, D_808003E8_chiciclebits[arg0->actorData[4]].animation, arg0->unk0->unk16);
             break;
         default:
             return 0;
     }
     return 1;
 }
+#include "iciclebits_data.inc"

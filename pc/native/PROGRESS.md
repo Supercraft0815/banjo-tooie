@@ -2087,3 +2087,14 @@ der vollständige Vergleich der dekomprimierten ROM und aller Cartridge-Bytes,
 zehn Testprogramme und 46 Spielabläufe mit 245.660 Retraces. Die Arbeitsliste
 sank von 92 auf 84 Module. Belege liegen unter
 `build/acceptance/n1-2026-11-18/proof/` und in `logs/root-layout4-*-resume.log`.
+
+## 2026-11-18 — N1, Nester, Wespenspiel, Eiszapfen und Wandschlange
+
+Vier weitere Overlays beziehen ihre Tabellen aus C. Alle 2.208 Datenbytes und
+134 Relokationen stimmen in den Original-IDO-Objekten überein. Alle 88
+betroffenen Spielfunktionen behalten Lage, Größe und Instruktionen. Für die
+geänderte Adressberechnung im nativen Build wurden die Byteadressen einzeln
+verglichen. Nach der Integration bestanden `make check`, beide vollständigen
+ROM-Vergleiche, zehn Testprogramme und 46 Spielabläufe mit 245.660 Retraces.
+Die N1-Arbeitsliste sank von 84 auf 80 Module. Objektvergleiche, Adressbelege
+und Laufprotokolle liegen unter `build/acceptance/n1-2026-11-18/`.

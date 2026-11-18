@@ -12,9 +12,9 @@ void func_80800000_chwallsnakebaddy(Actor *arg0) {
     void func_80102424(Actor *, s32);
     s32 func_80107070(Actor *, u32);
     s32 func_8010CA74(f32 *, s32);
-    extern s32 D_808006F4_chwallsnakebaddy;
-    extern s32 D_80800700_chwallsnakebaddy;
-    extern s32 D_80800710_chwallsnakebaddy;
+    extern s32 D_808006F4_chwallsnakebaddy[3];
+    extern s32 D_80800700_chwallsnakebaddy[4];
+    extern s32 D_80800710_chwallsnakebaddy[4];
     f32 y;
 
     switch (arg0->unk70_10) {
@@ -30,17 +30,17 @@ void func_80800000_chwallsnakebaddy(Actor *arg0) {
                 ? arg0->position[1] - 500.0f <= y
                 : y <= arg0->position[1] + 360.0f) {
                 func_80102424(arg0, y <= arg0->position[1] ? 2 : 3);
-                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808006F4_chwallsnakebaddy);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808006F4_chwallsnakebaddy);
             }
         }
         break;
     case 2:
     case 3:
         if (func_80101E14(arg0, 0.18f) || func_80101E14(arg0, 0.31f)) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800700_chwallsnakebaddy);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800700_chwallsnakebaddy);
         }
         if (func_80101E14(arg0, 0.6f)) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800710_chwallsnakebaddy);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800710_chwallsnakebaddy);
         }
         if (func_80101E14(arg0, 0.999f)) {
             func_80102424(arg0, 1);
@@ -72,8 +72,8 @@ void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
     OSThread *func_80104130(void);
     s32 func_801072A8(void *);
     extern s32 D_80800720_chwallsnakebaddy[];
-    extern s16 D_80800750_chwallsnakebaddy[];
-    extern s16 D_8080075A_chwallsnakebaddy;
+    extern s16 D_80800750_chwallsnakebaddy[6];
+
     extern u8 D_8080075C_chwallsnakebaddy[];
     extern s32 D_80800764_chwallsnakebaddy[];
     extern s32 D_8080078C_chwallsnakebaddy[];
@@ -106,7 +106,7 @@ void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
                 func_800BABB8(emitter, position, position, arg0->scale, D_80800764_chwallsnakebaddy);
                 func_800BA22C(emitter, *count);
                 count++;
-            } while (++model != &D_8080075A_chwallsnakebaddy);
+            } while (++model != &D_80800750_chwallsnakebaddy[5]);
             emitter = func_800B53A4(5);
             func_800BABB8(emitter, position, NULL, arg0->scale, D_80800720_chwallsnakebaddy);
             func_800BABB8(emitter, position, NULL, arg0->scale, D_8080078C_chwallsnakebaddy);
@@ -136,15 +136,15 @@ void func_808004FC_chwallsnakebaddy(Actor *arg0, s32 arg1) {
     void func_80102424(Actor *, s32);
     s32 func_8010A430(void *);
     void func_8010A570(Actor *);
-    extern s32 D_8080079C_chwallsnakebaddy;
-    extern s32 D_808007A8_chwallsnakebaddy;
+    extern s32 D_8080079C_chwallsnakebaddy[3];
+    extern s32 D_808007A8_chwallsnakebaddy[3];
     f32 position[3];
 
     arg0->unk64_20 = 1;
     func_8010A570(arg0);
     func_80102424(arg0, arg0->unk70_10 == 2 ? 4 : 5);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080079C_chwallsnakebaddy);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808007A8_chwallsnakebaddy);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080079C_chwallsnakebaddy);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808007A8_chwallsnakebaddy);
     if (func_8010A430(arg0)) {
         func_800EE7F8(position, arg0->position);
         func_800EF1B8(position, arg0->rotation[1], 60.0f);
@@ -179,7 +179,7 @@ void func_80800650_chwallsnakebaddy(BT_NATIVE_ONLY(s32 bt_a0))
 
 OSThread *chwallsnakebaddy_entrypoint_0(void)
 {
-    extern u8 D_808007B4_chwallsnakebaddy[];
-
+    extern ActorData D_808007B4_chwallsnakebaddy[];
     return (OSThread *) D_808007B4_chwallsnakebaddy;
 }
+#include "wallsnakebaddy_data.inc"
