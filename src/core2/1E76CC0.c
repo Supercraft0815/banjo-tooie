@@ -48,7 +48,7 @@ void func_8009D4A8(PlayerState *arg0, u8 *arg1) {
 
     func_8009C128(arg0, sp1C);
     func_800C4AF0(sp1C, arg1);
-}    typedef struct { u8 pad0[0x104]; void * unk104; } Obj1E76CC0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x104]; union { void * unk104; u8 * unk104_u8p; }; } Obj1E76CC0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -434,7 +434,7 @@ void func_8009E0AC(void *arg0, s32 arg1) {
 
 void func_8009E0B8(void *arg0) {
     s32 func_800C3CE8(u8);
-    func_800C3CE8(*(*(u8 **)((s8 *)(arg0) + (0x104))));
+    func_800C3CE8(*(((Obj1E76CC0_arg0 *)arg0)->unk104_u8p));
 }
 
 /* extern */

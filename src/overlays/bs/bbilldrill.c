@@ -2,7 +2,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
+#include "overlays/ba/playerstate.h"
 void func_80800000_bsbbilldrill(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x168) = 0;
 }
@@ -20,25 +20,25 @@ void func_80800008_bsbbilldrill(void *arg0) {
     f32 sp24[3];
 
     if (func_800BF8E4() > 0) {
-        if ((*(s32 *)((s8 *)(arg0) + (0x168))) == 0) {
-            (*(s32 *)((s8 *)(arg0) + (0x168))) = func_800C8A98();
-            func_800C8E54((*(s32 *)((s8 *)(arg0) + (0x168))), 80.0f, 350.0f);
-            func_800C8F64((*(s32 *)((s8 *)(arg0) + (0x168))), 0xB);
+        if ((((PlayerState *)arg0)->unk168.word) == 0) {
+            (((PlayerState *)arg0)->unk168.word) = func_800C8A98();
+            func_800C8E54((((PlayerState *)arg0)->unk168.word), 80.0f, 350.0f);
+            func_800C8F64((((PlayerState *)arg0)->unk168.word), 0xB);
         }
         func_8009C128(arg0, sp24);
         sp24[1] -= 10.0f;
-        func_800C8CB8((*(s32 *)((s8 *)(arg0) + (0x168))), sp24);
-        func_800C8E84((*(s32 *)((s8 *)(arg0) + (0x168))), D_80800AB0_bsbbilldrill[func_8001210C(1)]);
+        func_800C8CB8((((PlayerState *)arg0)->unk168.word), sp24);
+        func_800C8E84((((PlayerState *)arg0)->unk168.word), D_80800AB0_bsbbilldrill[func_8001210C(1)]);
     }
-}    typedef struct { u8 pad0[0x168]; s32 unk168; } Objbbilldrill_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_808000C0_bsbbilldrill(u8 *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
     s32 temp_a3;
 
-    temp_a3 = (((Objbbilldrill_arg0 *)arg0)->unk168);
+    temp_a3 = (((PlayerState *)arg0)->unk168.word);
     if (temp_a3 != 0) {
-        (((Objbbilldrill_arg0 *)arg0)->unk168) = _chlightfader_entrypoint_1(temp_a3, 0.6f, 2);
+        (((PlayerState *)arg0)->unk168.word) = _chlightfader_entrypoint_1(temp_a3, 0.6f, 2);
     }
 }
 
@@ -115,7 +115,7 @@ void func_80800298_bsbbilldrill(struct player_state_s *arg0) {
 }
 
 void func_808002DC_bsbbilldrill(void *arg0, s32 arg1) {
-    typedef struct player_state_s PlayerState;
+
     void _badust_entrypoint_10(PlayerState *, f32);
     void _bamotor_entrypoint_3(PlayerState *, f32, f32, f32, f32, f32, f32);
     void _bashake_entrypoint_1(PlayerState *, s32, s32);
@@ -147,8 +147,8 @@ void func_808002DC_bsbbilldrill(void *arg0, s32 arg1) {
     *((s8 *)arg0 + 0x15C) = arg1;
     switch (arg1) {
     case 1:
-        *(f32 *)((u8 *)arg0 + 0x16C) = yaw_get(arg0);
-        *(f32 *)((u8 *)arg0 + 0x170) = 0;
+        ((PlayerState *)arg0)->unk16C = yaw_get(arg0);
+        ((PlayerState *)arg0)->unk170 = 0;
         func_80098520(arg0, 0);
         _batimer_set(arg0, 0, 0.3f);
         if (func_8009EA2C()) {
@@ -159,7 +159,7 @@ void func_808002DC_bsbbilldrill(void *arg0, s32 arg1) {
         *((s8 *)arg0 + 0x15D) = 0;
         break;
     case 2:
-        *(f32 *)((u8 *)arg0 + 0x170) = 1500.0f;
+        ((PlayerState *)arg0)->unk170 = 1500.0f;
         func_80098520(arg0, 1.0f);
         _batimer_set(arg0, 0, 0.15f);
         break;
@@ -211,7 +211,7 @@ void func_808005C0_bsbbilldrill(u8 *arg0) {
 /* extern */
 
 void bsbbilldrill_entrypoint_0(void *arg0) {
-    typedef struct player_state_s PlayerState;
+
     void baflag_clear(PlayerState *, int);
     void baphysics_reset_gravity(PlayerState *);
     void baphysics_reset_terminal_velocity(PlayerState *);
@@ -304,7 +304,7 @@ void bsbbilldrill_entrypoint_2(struct player_state_s *arg0) {
     case 1:
         func_80800298_bsbbilldrill(arg0);
         timer = _batimer_get(arg0, 0);
-        *(f32 *)((u8 *)arg0 + 0x170) = func_800F10B4(timer, 0.0f, 0.3f, 1500.0f, 50.0f);
+        arg0->unk170 = func_800F10B4(timer, 0.0f, 0.3f, 1500.0f, 50.0f);
         func_808005C0_bsbbilldrill((u8 *)arg0);
         func_80098520(arg0, func_800F10B4(timer, 0.0f, 0.3f, 1.0f, 0.0f));
         if (_batimer_decrement(arg0, 0)) {

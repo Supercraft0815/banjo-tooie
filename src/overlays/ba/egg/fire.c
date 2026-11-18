@@ -5,7 +5,7 @@ struct player_state_s;
 s32 baeggfire_entrypoint_0() 
 {
     return 0x14;
-}                              typedef struct { u8 pad0[0x12]; u8 unk12; } Objfire_func_80800008_baeggfire_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */ typedef struct { u8 pad0[0x11]; u8 unk11; } Objfire_func_80800008_baeggfire_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x6C]; void * unk6C; u8 pad70[0x114]; s32 unk184; } Objfire_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x12]; u8 unk12; } Objfire_func_80800008_baeggfire_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */ typedef struct { u8 pad0[0x11]; u8 unk11; } Objfire_func_80800008_baeggfire_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x6C]; union { void * unk6C; f32 * unk6C_f32p; }; u8 pad70[0x114]; s32 unk184; } Objfire_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 BtIntPtr func_80800008_baeggfire(void *arg0, s32 arg1) {
     void *temp_v0;
@@ -216,7 +216,7 @@ void baeggfire_entrypoint_6(void *arg0) {
     f32 *data;
 
     func_808000B8_baeggfire(arg0);
-    data = *(f32 **)((u8 *)arg0 + 0x6C);
+    data = ((Objfire_arg0 *)arg0)->unk6C_f32p;
     switch (((Objfire_baeggfire_entrypoint_6_data *)data)->unk8) {
         case 1:
             if (((Objfire_baeggfire_entrypoint_6_data *)data)->unkC != 0) {

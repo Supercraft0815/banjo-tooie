@@ -29,7 +29,7 @@ void func_80800008_basub(u8 *arg0, s32 arg1) {
             break;
     }
     (*(u8 **)(arg0 + 0x130))[0x5D] = arg1;
-}    typedef struct { u8 pad0[0x130]; u8 * unk130; u8 pad134[0x50]; s32 unk184; } Objsub_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x130]; union { u8 * unk130; void * unk130_voidp; }; u8 pad134[0x50]; s32 unk184; } Objsub_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -135,7 +135,7 @@ void basub_entrypoint_1(BtIntPtr arg0)
 f32 basub_entrypoint_2(void *arg0) {
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x130)));
+    temp_v0 = (((Objsub_arg0 *)arg0)->unk130_voidp);
     if ((((Objsub_basub_entrypoint_2_temp_v0 *)temp_v0)->unk4) > 0.0f) {
         return (((Objsub_basub_entrypoint_2_temp_v0 *)temp_v0)->unk0);
     }
@@ -172,7 +172,7 @@ void basub_entrypoint_5(void *arg0) {
 #endif
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x130)));
+    temp_v0 = (((Objsub_arg0 *)arg0)->unk130_voidp);
     if ((((Objsub_basub_entrypoint_5_temp_v0 *)temp_v0)->unk1C) == 0.0f) {
         (((Objsub_basub_entrypoint_5_temp_v0 *)temp_v0)->unk1C) = 3.0f;
         func_8009DB04(arg0, 0x52A, 1.0f, 0x7FFF);
@@ -249,11 +249,11 @@ void basub_entrypoint_8(void *arg0, s32 arg1) {
     u8 temp_v1;
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x130)));
+    temp_v0 = (((Objsub_arg0 *)arg0)->unk130_voidp);
     temp_v1 = (((Objsub_basub_entrypoint_8_temp_v0 *)temp_v0)->unk5E);
     if (((((Objsub_basub_entrypoint_8_temp_v0 *)temp_v0)->unk28) + temp_v1) < 0xA) {
         (((Objsub_basub_entrypoint_8_temp_v0 *)temp_v0)->unk5E) = (u8) (temp_v1 + 1);
-        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x58))) = 0.35f;
+        (*(f32 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x58))) = 0.35f;
     }
 }
 
@@ -280,8 +280,8 @@ void basub_entrypoint_9(void *arg0) {
     void _bawobble_entrypoint_2(void *self);
     s32 func_800C2FDC(u8);
     func_80800458_basub(arg0, 0x2C);
-    func_800C2FDC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0xC))));
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0xC))) = 0;
+    func_800C2FDC((*(u8 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0xC))));
+    (*(s8 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0xC))) = 0;
     _bawobble_entrypoint_2(arg0);
 }
 
@@ -307,15 +307,15 @@ void basub_entrypoint_10(u8 *arg0) {
 }
 
 void basub_entrypoint_11(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 304) + 16) = arg1;
+    *(f32 *)((u8 *)*&((Objsub_arg0 *)arg0)->unk130_voidp + 16) = arg1;
 }
 
 void basub_entrypoint_12(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 304) + 24) = arg1;
+    *(f32 *)((u8 *)*&((Objsub_arg0 *)arg0)->unk130_voidp + 24) = arg1;
 }
 
 void basub_entrypoint_13(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 304) + 36) = arg1;
+    *(f32 *)((u8 *)*&((Objsub_arg0 *)arg0)->unk130_voidp + 36) = arg1;
 }
 
 void basub_entrypoint_14(u8 *arg0) {
@@ -373,16 +373,16 @@ void basub_entrypoint_14(u8 *arg0) {
 
 void basub_entrypoint_15(void *arg0, s32 arg1) {
     if (arg1 != 0) {
-        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x68))) = 3000.0f;
-        (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x5F))) = 6;
-        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x60))) = 0.8f;
-        (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x64))) = 0.28f;
+        (*(f32 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x68))) = 3000.0f;
+        (*(s8 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x5F))) = 6;
+        (*(f32 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x60))) = 0.8f;
+        (*(f32 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x64))) = 0.28f;
         return;
     }
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x68))) = 1500.0f;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x5F))) = 3;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x60))) = 0.8f;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x130)))) + (0x64))) = 0.28f;
+    (*(f32 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x68))) = 1500.0f;
+    (*(s8 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x5F))) = 3;
+    (*(f32 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x60))) = 0.8f;
+    (*(f32 *)((s8 *)((((Objsub_arg0 *)arg0)->unk130_voidp)) + (0x64))) = 0.28f;
 }
 /* data_to_c.py: from asm/data/overlays/ba/sub.data.s */
 s32 D_80800C10_basub[5] BT_DATA(4, overlays_ba_sub, 0x0) = { 1246227, 1474559, 65836, 360448017, 0 };

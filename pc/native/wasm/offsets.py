@@ -23,8 +23,11 @@ another pass; the tool repeats until nothing changes.
                                     rewrites those accesses as ((Type *)argN)->field
   offsets.py genstruct              structs for objects only reached through raw offsets (per file
                                     and argN), then apply
+  offsets.py layouts [FILES]        list matching generated layouts across files for type review
   offsets.py unions                 generated structs: other types at a field's offset become union
                                     members, accesses into padding split it (after scan); then apply
+  offsets.py extend [FILES]         extend generated pointer-only views to observed fields and add
+                                    typed alternatives for their pointer fields; then apply
   offsets.py verify [TREE]          the whole N64 loop below in a scratch clone (default build/n64verify)
   offsets.py check [TREE]           after any codemod: make check there, list functions that differ from HEAD
 
@@ -184,7 +187,7 @@ def candidates(path):
     src = Path(path).read_text(errors='surrogateescape')
     data = src.encode('utf-8', 'surrogateescape')
     if len(data) != len(src):  # byte offsets below index the text: needs plain ASCII files
-        return [], collections.Counter({'non-ascii file': 1})
+        return [], collections.Counter({'non-ascii file': 1}), []
     tu = ci.Index.create().parse(path, ARGS)
     out, stats, pads = [], collections.Counter(), []
 
@@ -269,6 +272,9 @@ def candidates(path):
         if not path:
             pad = find_pad(rec, off, pt.get_canonical().get_size(), max(pt.get_canonical().get_align(), 1))
             ty = re.sub(r'\b(const|volatile)\s+', '', c.type.get_pointee().spelling)
+            name = rec.get_declaration().spelling
+            if name.startswith('Obj') and (off >= rec.get_size() or pt.kind == T.POINTER):
+                pads.append(('VIEW', name, off, ty))
             if pad and pt.get_canonical().get_size() > 0 and PLAIN.match(ty):
                 f, rel, fo, names = pad
                 loc = f.extent
@@ -331,7 +337,7 @@ def split_pads(results):
     want = collections.defaultdict(set)  # (header, start, end, name, field offset) -> {(rel, type, size)}
     names = {}
     for _, (_, _, pads) in results:
-        for header, s, e, name, fo, rel, ty, size, existing in (x for x in pads if x[0] not in ('BASE', 'CALL', 'FIT')):
+        for header, s, e, name, fo, rel, ty, size, existing in (x for x in pads if len(x) == 9):
             want[(header, s, e, name, fo)].add((rel, ty, size))
             names[(header, s, e, name, fo)] = set(existing)
     code = '\n'.join(p.read_text(errors='replace') for p in (ROOT / 'src').rglob('*.[ch]')) + \
@@ -543,27 +549,55 @@ def genstruct():
     print('genstruct: %d structs written, %d functions typed; skipped %s' % (made, len(rows), dict(skipped)))
 
 
-def unions():
+def layouts(files):
+    """Group generated declarations by their complete fields, including union members and padding."""
+    declaration = re.compile(r'typedef struct \{ ((?:[^{}\n]|\{[^{}\n]*\})*) \} (Obj\w+); '
+                             r'/\* offsets.py genstruct: fields from raw offsets on ([^;]+);')
+    groups = collections.defaultdict(list)
+    for path in files:
+        for fields, name, base in declaration.findall(Path(path).read_text()):
+            groups[' '.join(fields.split())].append((path, name, base))
+    for fields, views in sorted(groups.items()):
+        if len({path for path, _, _ in views}) > 1:
+            yield fields, views
+
+
+def unions(views=None):
     """Generated structs whose remaining raw accesses read another type at a field's offset, or
     reach into padding (needs a scan): the type joins the field in an anonymous union
     (`union { s32 unk20; u8 *unk20_u8p; };`, IDO accepts it; layout unchanged), or the padding
     splits around a new field. Then apply."""
     import csv
     typed = {}
-    for r in csv.DictReader(INFERRED_TSV.open(), delimiter='\t'):
-        if r['type'].startswith('Obj'):
-            typed[(r['file'], r['function'], r['base'])] = r['type'][:-1].strip()
     want = collections.defaultdict(set)
-    for r in csv.DictReader((ROOT / 'build' / 'offsets_bases.tsv').open(), delimiter='\t'):
-        name = typed.get((r['file'], r['function'], r['base']))
-        if name:
-            want[(r['file'], name)].add((int(r['offset'], 16), re.sub(r'\s+', ' ', r['access_type'].strip())))
+    if views is not None:
+        for f, (_, _, records) in views:
+            for row in records:
+                if row[0] == 'VIEW':
+                    _, name, off, ty = row
+                    want[(f, name)].add((off, ty))
+    else:
+        for r in csv.DictReader(INFERRED_TSV.open(), delimiter='\t'):
+            if r['type'].startswith('Obj'):
+                typed[(r['file'], r['function'], r['base'])] = r['type'][:-1].strip()
+        for r in csv.DictReader((ROOT / 'build' / 'offsets_bases.tsv').open(), delimiter='\t'):
+            name = typed.get((r['file'], r['function'], r['base']))
+            if name:
+                want[(r['file'], name)].add((int(r['offset'], 16), re.sub(r'\s+', ' ', r['access_type'].strip())))
     changed, added = set(), 0
     for (f, name), accs in sorted(want.items()):
         text = (ROOT / f).read_text()
         m = re.search(r'typedef struct \{ ((?:[^{}\n]|\{[^{}\n]*\})*) \} %s; ' % re.escape(name), text)
         if not m:
             continue
+        if views is not None:
+            if not text[m.end():].startswith('/* offsets.py genstruct:'):
+                continue
+            rest = text[:m.start()] + text[m.end():]
+            # Only direct member selections can grow. A cast used in pointer arithmetic also depends on sizeof.
+            selection = r'\(\s*\(\s*%s\s*\*\s*\)\s*&?\s*\w+\s*\)\s*->' % re.escape(name)
+            if re.search(r'\b%s\b' % re.escape(name), re.sub(selection, '', rest)):
+                continue
         # elements: [offset, size, members] with members [(type, name)]; padding has members None
         elems = []
         for part in re.findall(r'(?:union \{[^{}]*\}|[^;{}])+;', m.group(1)):
@@ -582,14 +616,27 @@ def unions():
                 ty = re.sub(r'\(\*unk\w+\)', '(*)', x) if '(*unk' in x else x[:fm.start()].strip()
                 parsed.append((ty, fm.group(0)))
             off = int(re.search(r'unk([0-9A-F]+)', parsed[0][1]).group(1), 16)
-            size = max(4 if '*' in t else SIZES.get(t, 0) for t, _ in parsed)
+            size = max(4 if '*' in t or t in ('BtIntPtr', 'BtUIntPtr', 'BtFnWord') else SIZES.get(t, 0) for t, _ in parsed)
             elems.append([off, size, parsed])
+        if not elems or any(size <= 0 for _, size, _ in elems):
+            continue
+        original_count = added
         for off, ty in sorted(accs):
             if not (GEN_FIELD.match(ty) or FN_FIELD.match(ty)):
                 continue
             size = 4 if '*' in ty else SIZES[ty]
             e = next((e for e in elems if e[0] <= off < e[0] + e[1]), None)
-            if e is None or off % size:
+            if off % size:
+                continue
+            if e is None:
+                end = elems[-1][0] + elems[-1][1]
+                if views is None or off < end:
+                    continue
+                if off > end:
+                    elems.append([end, off - end, None])
+                elems.append([off, size, [(ty, 'unk%X' % off)]])
+                added += 1
+                changed.add(f)
                 continue
             tag = 'fn' if FN_FIELD.match(ty) else ty.replace(' ', '').replace('*', 'p')
             if e[2] is None:  # padding: split it around the new field
@@ -600,12 +647,21 @@ def unions():
                          [off + size, e[0] + e[1] - off - size, None]]
                 elems[i:i + 1] = [x for x in parts if x[1] > 0]
             elif e[0] == off and size <= e[1] and ty not in (t for t, _ in e[2]):
-                e[2].append((ty, 'unk%X_%s' % (off, tag)))
+                stem = 'unk%X_%s' % (off, tag)
+                names = {member for _, member in e[2]}
+                member_name = stem
+                suffix = 2
+                while member_name in names:
+                    member_name = stem + str(suffix)
+                    suffix += 1
+                e[2].append((ty, member_name))
             else:
                 continue
             added += 1
             changed.add(f)
 
+        if added == original_count:
+            continue
         def member(ty, nm):
             return ty.replace('(*)', '(*%s)' % nm, 1) + ';' if FN_FIELD.match(ty) else '%s %s;' % (ty, nm)
         out = []
@@ -618,7 +674,7 @@ def unions():
                 out.append('union { %s };' % ' '.join(member(*x) for x in mems))
         text = text[:m.start(1)] + ' '.join(out) + text[m.end(1):]
         (ROOT / f).write_text(text)
-    print('unions: %d fields or union members added in %d files' % (added, len(changed)))
+    print('%s: %d fields or union members added in %d files' % ('extend' if views is not None else 'unions', added, len(changed)))
 
 
 def docker_make(tree, flags=''):
@@ -711,6 +767,12 @@ def verify(tree):
 
 def main():
     cmd, args = sys.argv[1], sys.argv[2:]
+    if cmd == 'layouts':
+        for fields, views in layouts(game_files(args)):
+            print(fields)
+            for path, name, base in views:
+                print(f'  {path}\t{name}\t{base}')
+        return
     if cmd == 'infer':
         return infer()
     if cmd == 'genstruct':
@@ -752,6 +814,7 @@ def main():
     files = game_files(args)
     keep = set(KEEP.read_text().split()) if KEEP.exists() and cmd != 'keep' else set()
     found = set()
+    edited_files = set()
     total = collections.Counter()
     rows = []
     passes = 0
@@ -759,6 +822,8 @@ def main():
         passes += 1
         with Pool(os.cpu_count()) as pool:
             results = pool.map(work, files)
+        if cmd == 'extend':
+            return unions(results)
         changed = 0
         with EDITS.open('a') as log:
             for path, (items, stats, _) in results:
@@ -775,6 +840,7 @@ def main():
                     found.update('%s:%s' % (path, i[4]) for i in items)
                 if cmd == 'apply' and items:
                     apply_edits(path, items, log)
+                    edited_files.add(path)
                     changed += len(items)
         if cmd == 'pad':
             split_pads(results)
@@ -810,7 +876,7 @@ def main():
         print('pass %d: %d rewrites' % (passes, changed))
         files = sorted({p for p, (items, _, _) in results if items})
     if cmd == 'apply':  # cast rewrites may now use a generated struct above its declaration
-        for f in sorted((ROOT / 'src').rglob('*.c')):
+        for f in map(Path, sorted(edited_files)):
             if 'offsets.py genstruct' in f.read_text(errors='replace'):
                 place_decls.place(f)
 

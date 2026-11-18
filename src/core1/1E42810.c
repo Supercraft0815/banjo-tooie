@@ -238,7 +238,7 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
         voice->elapsed = voice->duration;
     }
     return output;
-}    typedef struct { u8 pad0[0x48]; s32 unk48; f32 unk4C; s32 unk50; u8 pad54[0x6]; s16 unk5A; u8 pad5C[0x18]; s32 unk74; s32 unk78; void * unk7C; void * unk80; s32 unk84; } Obj1E42810_func_8002B684_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
+} typedef struct { u8 pad0[0x48]; s32 unk48; f32 unk4C; s32 unk50; u8 pad54[0x6]; s16 unk5A; u8 pad5C[0x18]; s32 unk74; s32 unk78; void * unk7C; union { void * unk80; void ** unk80_voidpp; }; s32 unk84; } Obj1E42810_func_8002B684_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
     s32 func_8002D328(u8 *arg0, s32 arg1, BtIntPtr arg2);
@@ -248,7 +248,7 @@ s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
     switch (arg1) {
         case 3:
             if (((Obj1E42810_func_8002B684_sp24 *)sp24)->unk80 != NULL) {
-                **(void ***)((s8 *)sp24 + 0x80) = arg2;
+                *((Obj1E42810_func_8002B684_sp24 *)sp24)->unk80_voidpp = arg2;
             } else {
                 ((Obj1E42810_func_8002B684_sp24 *)sp24)->unk7C = arg2;
             }

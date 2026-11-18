@@ -3,7 +3,7 @@
 s32 baflamethrower_entrypoint_0() 
 {
     return 0x10;
-}    typedef struct { u8 pad0[0x88]; void * unk88; } Objflamethrower_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x88]; union { void * unk88; u8 * unk88_u8p; }; } Objflamethrower_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -59,7 +59,7 @@ void baflamethrower_entrypoint_1(BtIntPtr arg0)
     _baflameline_entrypoint_2(arg0);
 }
 
-void baflamethrower_entrypoint_2(BtIntPtr arg0, BtIntPtr arg1) { _baflameline_entrypoint_3(); (*(s32 *)((s8 *)(*(u8 **)((s8 *)(arg0) + 0x88)) + 0)) = arg1; (*(s8 *)((s8 *)(*(u8 **)((s8 *)(arg0) + 0x88)) + 0xC)) = 0; func_80800088_baflamethrower(arg0, 1); }
+void baflamethrower_entrypoint_2(BtIntPtr arg0, BtIntPtr arg1) { _baflameline_entrypoint_3(); (*(s32 *)((s8 *)(((Objflamethrower_arg0 *)arg0)->unk88_u8p) + 0)) = arg1; (*(s8 *)((s8 *)(((Objflamethrower_arg0 *)arg0)->unk88_u8p) + 0xC)) = 0; func_80800088_baflamethrower(arg0, 1); }
 
 void baflamethrower_entrypoint_3(BtIntPtr arg0)
 {

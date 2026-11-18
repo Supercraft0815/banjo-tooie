@@ -116,7 +116,7 @@ void func_800A1968(PlayerState *arg0, f32 *arg1) {
         arg1[1] = arg1[1] * (255.0f - shade) * dot + shade;
         arg1[2] = arg1[2] * (255.0f - shade) * dot + shade;
     }
-}
+} typedef struct { u8 pad0[0x108]; union { void * unk108; f32 * unk108_f32p; }; } Obj1E7B250_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -126,9 +126,9 @@ void func_800A1F0C(void *volatile arg0, s32 *arg1) {
     s32 *color;
 
     color = arg1++;
-    temp_v0 = *(f32 **)((s8 *)arg0 + 0x108);
+    temp_v0 = ((Obj1E7B250_arg0 *)arg0)->unk108_f32p;
     func_800EFA88(color, (s32)(temp_v0[1] + 0.5f), (s32)(temp_v0[2] + 0.5f), (s32)(temp_v0[3] + 0.5f));
-}    typedef struct { u8 pad0[0x108]; void * unk108; } Obj1E7B250_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 unk0; u8 unk1; } Obj1E7B250_func_800A1F78_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
+} typedef struct { u8 unk0; u8 unk1; } Obj1E7B250_func_800A1F78_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_800A1F78(void *arg0) {
     s32 func_800EA05C();

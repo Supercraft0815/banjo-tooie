@@ -1,6 +1,6 @@
 #include "common.h"
 
-typedef struct { s32 unk0; s32 unk4; } Objlink_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void subaddielink_entrypoint_0(void *arg0) {
+typedef struct { union { s32 unk0; u8 * unk0_u8p; }; s32 unk4; } Objlink_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void subaddielink_entrypoint_0(void *arg0) {
     (((Objlink_arg0 *)arg0)->unk4) = 0;
     (((Objlink_arg0 *)arg0)->unk0) = 0;
 }
@@ -8,7 +8,7 @@ typedef struct { s32 unk0; s32 unk4; } Objlink_arg0; /* offsets.py genstruct: fi
 void subaddielink_entrypoint_1(u8 *arg0, u8 *arg1) {
     if (arg1 != NULL) {
         (*(u32 *)((s8 *)(arg0) + (4))) = (u32)*(u16 *)(arg1 + 0x12) >> 1;
-        (*(u8 **)((s8 *)(arg0) + (0))) = arg1;
+        (((Objlink_arg0 *)arg0)->unk0_u8p) = arg1;
         return;
     }
     subaddielink_entrypoint_0(arg0);

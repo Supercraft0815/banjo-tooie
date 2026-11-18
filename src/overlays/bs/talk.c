@@ -1,10 +1,10 @@
 #include "common.h"
-
+#include "overlays/ba/playerstate.h"
 /* extern */
 
-typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objtalk_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void bstalk_entrypoint_0(void *arg0) {
+void bstalk_entrypoint_0(void *arg0) {
     typedef struct anctrl_s AnimCtrl;
-    typedef struct player_state_s PlayerState;
+
     void anctrl_reset(AnimCtrl *);
     void anctrl_setPlaybackType(AnimCtrl *, s32);
     void anctrl_start(AnimCtrl *);
@@ -38,7 +38,7 @@ typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objtalk_arg0; /* offsets.py genst
     func_8009D2D8(arg0, 3);
     baphysics_set_type(arg0, 2);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
-    (((Objtalk_arg0 *)arg0)->unk15C) = 1;
+    (((PlayerState *)arg0)->unk15C.word) = 1;
 }
 
 void bstalk_entrypoint_1(u8 *arg0) {
@@ -46,10 +46,10 @@ void bstalk_entrypoint_1(u8 *arg0) {
     s32 var_a1;
 
     var_a1 = 0;
-    if ((((Objtalk_arg0 *)arg0)->unk15C) == 0) {
+    if ((((PlayerState *)arg0)->unk15C.word) == 0) {
         var_a1 = 1;
     }
-    (((Objtalk_arg0 *)arg0)->unk15C) = 0;
+    (((PlayerState *)arg0)->unk15C.word) = 0;
     bs_setState((BtIntPtr) arg0, var_a1);
 }
 
@@ -68,7 +68,7 @@ void bstalk_entrypoint_4(void *arg0) {
     s32 func_8009E6EC();
     void func_8009E830(void *arg0, s32 arg1);
     if (func_8009E6EC() == 8) {
-        (((Objtalk_arg0 *)arg0)->unk15C) = 1;
+        (((PlayerState *)arg0)->unk15C.word) = 1;
         func_8009E830(arg0, 2);
         return;
     }

@@ -2,7 +2,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
+#include "overlays/ba/playerstate.h"
 struct player_state_s; 
 void func_80800000_bsvan(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
@@ -95,7 +95,7 @@ void bsvan_entrypoint_1(struct player_state_s *arg0) {
         _bastatemem_entrypoint_0(arg0, 0x14);
         _bavan_entrypoint_3(arg0);
         **(s32 **)((u8 *)arg0 + 0x188) = 0;
-        *(f32 *)((u8 *)arg0 + 0x174) = 1.0f;
+        arg0->unk174 = 1.0f;
         _batimer_set(arg0, 2, 0.0f);
         func_80092864(arg0, 2.29998779296875f);
         func_8009BFE4(arg0, 1000.0f, 12.0f);
@@ -211,7 +211,7 @@ void func_80800520_bsvan(struct player_state_s *arg0) {
 
     control = baanim_getAnimCtrlPtr(arg0);
     bsvan_entrypoint_1(arg0);
-    *(f32 *)((s8 *)arg0 + 0x16C) = 250.0f;
+    arg0->unk16C = 250.0f;
     _basudie_entrypoint_2(arg0, 250.0f, 420.0f, -1200.0f);
     anctrl_reset(control);
     anctrl_setSmoothTransition(control, 0);
@@ -221,7 +221,7 @@ void func_80800520_bsvan(struct player_state_s *arg0) {
     anctrl_setPlaybackType(control, 1);
     anctrl_start(control);
     func_8009D820(arg0, 1.8f);
-    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    arg0->unk15C.word = 0;
 }
 
 void func_808005E4_bsvan(struct player_state_s *arg0) {
@@ -236,15 +236,15 @@ void func_808005E4_bsvan(struct player_state_s *arg0) {
     f32 velocity;
 
     _basudie_entrypoint_5(arg0);
-    baphysics_set_target_horizontal_velocity(arg0, *(f32 *)((s8 *)arg0 + 0x16C));
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    baphysics_set_target_horizontal_velocity(arg0, arg0->unk16C);
+    switch (arg0->unk15C.word) {
         case 0:
             if (player_isStable(arg0)) {
                 baanim_setEnd(arg0, 0.7453f);
                 func_8009DF18(arg0, 0x417, 0.8f, 0x4650);
                 func_8009DF18(arg0, 0x428, 1.8f, 0x4650);
                 baphysics_set_vertical_velocity(arg0, 400.0f);
-                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+                arg0->unk15C.word = 1;
             }
             break;
         case 1:
@@ -252,16 +252,16 @@ void func_808005E4_bsvan(struct player_state_s *arg0) {
                 baanim_setEnd(arg0, 1.0f);
                 func_8009DF18(arg0, 0x417, 0.8f, 0x4650);
                 func_8009DF18(arg0, 0x428, 1.8f, 0x4650);
-                *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+                arg0->unk15C.word = 2;
             }
             break;
         case 2:
-            *(s32 *)((s8 *)arg0 + 0x15C) = 3;
+            arg0->unk15C.word = 3;
             break;
         case 3:
-            velocity = *(f32 *)((s8 *)arg0 + 0x16C);
+            velocity = arg0->unk16C;
             if (velocity > 0.0f) {
-                *(f32 *)((s8 *)arg0 + 0x16C) = func_800F0E00(0.0f, velocity - 10.0f);
+                arg0->unk16C = func_800F0E00(0.0f, velocity - 10.0f);
             }
             break;
     }
@@ -327,7 +327,7 @@ void func_80800824_bsvan(struct player_state_s *arg0) {
     anctrl_start(control);
     func_8009FFD8(arg0, 1, 3, 3, 6);
     yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
-    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    arg0->unk15C.word = 0;
 }
 
 void func_808008D4_bsvan(struct player_state_s *arg0) {
@@ -355,11 +355,11 @@ void func_808008D4_bsvan(struct player_state_s *arg0) {
     func_8009D3A8(arg0, 0);
     func_80800000_bsvan(arg0);
     func_8009BB24(arg0, sp24);
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
         case 0:
             if (func_8008DF8C(arg0, 0x82)) {
                 baanim_setEnd(arg0, 0.6939f);
-                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+                arg0->unk15C.word = 1;
             }
             break;
         case 1:
@@ -367,7 +367,7 @@ void func_808008D4_bsvan(struct player_state_s *arg0) {
                 func_800A2EAC(arg0);
                 baphysics_set_target_horizontal_velocity(arg0, 0.0f);
                 baanim_setEndAndDuration(arg0, 1, 1.0f);
-                *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+                arg0->unk15C.word = 2;
             }
             break;
         case 2:
@@ -375,7 +375,7 @@ void func_808008D4_bsvan(struct player_state_s *arg0) {
     }
     if (player_isStable(arg0) &&
         (bastick_getZone(arg0) > 0 ||
-         (*(s32 *)((s8 *)arg0 + 0x15C) == 2 && anctrl_isStopped(sp30)))) {
+         (arg0->unk15C.word == 2 && anctrl_isStopped(sp30)))) {
         if (baflag_isTrue(arg0, 0x19)) {
             sp34 = _badrone_entrypoint_28(arg0);
         } else {
@@ -445,7 +445,7 @@ void func_80800A5C_bsvan(struct player_state_s *arg0) {
     baphysics_set_gravity(arg0, -1200.0f);
     func_8009D7A4(arg0, 1.35f, 1.45f);
     _bavan_entrypoint_7(arg0, 0.0f);
-    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    arg0->unk15C.word = 0;
 }
 
 void func_80800BDC_bsvan(struct player_state_s *arg0) {
@@ -476,16 +476,16 @@ void func_80800BDC_bsvan(struct player_state_s *arg0) {
     if (bakey_released(arg0, 8) && sp24[1] > 0.0f) {
         baphysics_reset_gravity(arg0);
     }
-    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
     case 0:
         if (func_8008DF8C(arg0, 0x82)) {
             baanim_setEndAndDuration(arg0,
                 1.0f + 0.0f,
                 0.7f);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            arg0->unk15C.word = 2;
         } else if (anctrl_isStopped(sp30)) {
             baanim_setEndAndDuration(arg0, 0.69f, 3.0f);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            arg0->unk15C.word = 1;
         }
         break;
     case 1:
@@ -493,7 +493,7 @@ void func_80800BDC_bsvan(struct player_state_s *arg0) {
             baanim_setEndAndDuration(arg0,
                 1.0f + 0.0f,
                 1.0f);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            arg0->unk15C.word = 2;
         }
         break;
     case 2:
@@ -503,7 +503,7 @@ void func_80800BDC_bsvan(struct player_state_s *arg0) {
             baanim_setEndAndDuration(arg0,
                 1.0f + 0.0f,
                 1.0f);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 3;
+            arg0->unk15C.word = 3;
         }
         break;
     case 3:
@@ -539,7 +539,7 @@ void func_80800E0C_bsvan(struct player_state_s *arg0) {
 s32 bsvan_entrypoint_7(s32 arg0) {
     extern BtIntPtr D_80801CBC_bsvan[];
     return ((s32 *)&D_80801CBC_bsvan)[arg0];
-}                  typedef struct { BtIntPtr unk0; } Objvan_func_80800E60_bsvan_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */ typedef struct { u8 pad0[0x15C]; s32 unk15C; u8 pad160[0x28]; u8 * unk188; } Objvan_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { BtIntPtr unk0; } Objvan_func_80800E60_bsvan_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
 /* extern */
 
@@ -555,9 +555,9 @@ void func_80800E60_bsvan(u8 *arg0, s32 (*arg1)(u8 *)) {
     temp_v0 = func_8009E6EC(arg0);
     switch (temp_v0) {
     case 0x46:
-        (*(s32 *)((s8 *)((((Objvan_arg0 *)arg0)->unk188)) + (0))) = func_80099A4C(arg0);
-        temp_v1 = (((Objvan_arg0 *)arg0)->unk188);
-        (*(s32 *)((s8 *)((((Objvan_arg0 *)arg0)->unk188)) + (0x10))) = _chfaircoinbox_entrypoint_0((((Objvan_func_80800E60_bsvan_temp_v1 *)temp_v1)->unk0), temp_v1 + 4);
+        (*(s32 *)((s8 *)((((PlayerState *)arg0)->state_mem)) + (0))) = func_80099A4C(arg0);
+        temp_v1 = (((PlayerState *)arg0)->state_mem);
+        (*(s32 *)((s8 *)((((PlayerState *)arg0)->state_mem)) + (0x10))) = _chfaircoinbox_entrypoint_0((((Objvan_func_80800E60_bsvan_temp_v1 *)temp_v1)->unk0), temp_v1 + 4);
         func_8009E830(arg0, 2);
         bs_setState(arg0, 0x121);
         return;
@@ -862,7 +862,7 @@ s32 func_8080164C_bsvan(void *arg0, s32 arg1) {
         baanim_playForDuration_onceSmooth(arg0, 0xF1, 1.2f);
         break;
     case 3:
-        if (*(s32 *)((s8 *)arg0 + 0x15C) == 2) {
+        if (((PlayerState *)arg0)->unk15C.word == 2) {
             _batimer_set(arg0, 3, 0.001f);
         } else {
             _batimer_set(arg0, 3, 0.5f);
@@ -875,7 +875,7 @@ s32 func_8080164C_bsvan(void *arg0, s32 arg1) {
         yaw_setIdeal(arg0, func_800F1DF4(sp24, *(f32 **)((s8 *)arg0 + 0x188) + 1));
         break;
     }
-    *(s32 *)((s8 *)arg0 + 0x15C) = arg1; BT_NATIVE_ONLY(return 0;)
+    ((PlayerState *)arg0)->unk15C.word = arg1; BT_NATIVE_ONLY(return 0;)
 }
 
 void func_80801770_bsvan(void *arg0) { void _chfaircoinbox_entrypoint_1(Unk80132ED0 *arg0); _chfaircoinbox_entrypoint_1(*(*(s32 **)((s8 *)(arg0) + 0x188))); bsvan_entrypoint_0(arg0); }
@@ -889,7 +889,7 @@ void func_808017A0_bsvan(register void *arg0) {
     baanim_playForDuration_loopSmooth(arg0, 0xEE, 1.0f);
     func_8009FFD8(arg0, 1, 3, 3, 2);
     yaw_setVelocityBounded(arg0, 300.0f, 6.5f);
-    ((Objvan_arg0 *)arg0)->unk15C = 0;
+    ((PlayerState *)arg0)->unk15C.word = 0;
     func_8080164C_bsvan(arg0, 1);
 }
 
@@ -933,7 +933,7 @@ void func_80801890_bsvan(struct player_state_s *arg0) {
 
     sp24 = 0;
     func_8009D3A8(arg0, 0);
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
     case 1:
         sp20 = yaw_get(arg0);
         if (yaw_getIdeal(arg0) == sp20) {
@@ -950,7 +950,7 @@ void func_80801890_bsvan(struct player_state_s *arg0) {
         break;
     case 3:
         if (_batimer_decrement(arg0, 3)) {
-            _chbaddiesetup_entrypoint_1(&_bsvan_entrypoint_15, *(s32 *)((s8 *)arg0 + 0x184));
+            _chbaddiesetup_entrypoint_1(&_bsvan_entrypoint_15, arg0->unk184);
             temp_v0 = *(s32 **)((s8 *)arg0 + 0x188);
             temp_v0[4]--;
             if ((*(s32 **)((s8 *)arg0 + 0x188))[4]) {

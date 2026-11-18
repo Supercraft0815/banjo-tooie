@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "overlays/ba/playerstate.h"
 struct player_state_s;
 void func_80800000_bstntswim(struct player_state_s *arg0) {
     void func_80092C00(struct player_state_s *, f32 *);
@@ -106,10 +106,10 @@ void func_80800200_bstntswim(struct player_state_s *arg0) {
     speed = func_800A3298(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xE7, 0x40D00000);
     velocity = func_800F10B4(speed, 40.0f, 1000.0f, -300.0f, -1200.0f);
-    *(f32 *)((u8 *)arg0 + 0x16C) = velocity;
+    arg0->unk16C = velocity;
     baphysics_set_vertical_velocity(arg0, velocity);
     func_8009FFD8(arg0, 1, 3, 3, 6);
-}    typedef struct { u8 pad0[0x16C]; f32 unk16C; } Objtntswim_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_808002D0_bstntswim(void *arg0) {
     f32 baphysics_get_vertical_velocity(void *);
@@ -130,9 +130,9 @@ void func_808002D0_bstntswim(void *arg0) {
     effect = func_8009FBB0(arg0, position, 20.0f);
     func_800BA930(effect, -30, -30, -30, 30, 30, 30);
     func_800BA22C(effect, 1);
-    if (((Objtntswim_arg0 *)arg0)->unk16C < 0.0f) {
-        ((Objtntswim_arg0 *)arg0)->unk16C += func_800F0E00(mlAbsF(((Objtntswim_arg0 *)arg0)->unk16C) * 0.1f, 50.0f);
-        baphysics_set_vertical_velocity(arg0, ((Objtntswim_arg0 *)arg0)->unk16C);
+    if (((PlayerState *)arg0)->unk16C < 0.0f) {
+        ((PlayerState *)arg0)->unk16C += func_800F0E00(mlAbsF(((PlayerState *)arg0)->unk16C) * 0.1f, 50.0f);
+        baphysics_set_vertical_velocity(arg0, ((PlayerState *)arg0)->unk16C);
     }
     if (player_isStable(arg0)) {
         next_state = 0x10F;

@@ -329,17 +329,17 @@ int func_808008B4_idbounce(void) {
         return 0;
     }
     return 1;
-}
+} typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0x14]; f32 unk1C; f32 unk20; union { f32 * unk24; void * unk24_voidp; }; f32 * unk28; f32 * unk2C; f32 unk30; f32 unk34; f32 unk38; f32 unk3C; f32 unk40; f32 unk44; f32 unk48; f32 unk4C; f32 unk50; f32 unk54; f32 unk58; f32 unk5C; } Objbounce_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void idbounce_entrypoint_3(void *arg0) {
     void heap_free(void *);
     extern u8 D_80135480[];
     u8 *state;
 
-    heap_free(*(void **)((u8 *)arg0 + 0x24));
+    heap_free(((Objbounce_arg0 *)arg0)->unk24_voidp);
     state = D_80135480;
     state[3]--;
-}    typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0x14]; f32 unk1C; f32 unk20; f32 * unk24; f32 * unk28; f32 * unk2C; f32 unk30; f32 unk34; f32 unk38; f32 unk3C; f32 unk40; f32 unk44; f32 unk48; f32 unk4C; f32 unk50; f32 unk54; f32 unk58; f32 unk5C; } Objbounce_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void idbounce_entrypoint_4(void *arg0, s32 arg1, BtIntPtr arg2, s32 arg3, s32 arg4) {
     s32 *func_80800874_idbounce(s32 arg0);

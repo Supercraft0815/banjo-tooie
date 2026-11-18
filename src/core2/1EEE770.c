@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core1/heap.h"
 s32 func_80114E80(s32 arg0) { extern u8 D_80124A50; u8 *base = &D_80124A50; u8 *p = &D_80124A50; if (D_80124A50 != 0) { do { if (arg0 == *p) { return (p - base) / 5; } p += 5; } while (*p != 0); } return (p - base) / 5; }                 typedef struct { BtIntPtr unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x1]; s8 unkD; u8 padE[0x2]; f32 unk10; } Obj1EEE770_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
@@ -66,20 +66,20 @@ void *func_80115118(BtIntPtr arg0) {
     extern s16 D_80124A58;
     s16 *ptr;
     s16 map;
-    void *result;
+    Obj1EEE770_func_80115118_result *result;
 
-    result = heap_alloc(0x14);
-    (((Obj1EEE770_func_80115118_result *)result)->unk0) = arg0;
-    (((Obj1EEE770_func_80115118_result *)result)->unk4) = func_80114E80(func_800EA05C());
-    (((Obj1EEE770_func_80115118_result *)result)->unkC) = 0;
-    (((Obj1EEE770_func_80115118_result *)result)->unkD) = 0;
-    (((Obj1EEE770_func_80115118_result *)result)->unkE) = 1;
-    (((Obj1EEE770_func_80115118_result *)result)->unk10) = 0.0f;
+    result = heap_alloc(sizeof(*result));
+    (result->unk0) = arg0;
+    (result->unk4) = func_80114E80(func_800EA05C());
+    (result->unkC) = 0;
+    (result->unkD) = 0;
+    (result->unkE) = 1;
+    (result->unk10) = 0.0f;
     map = func_800EA05C();
     ptr = &D_80124A58;
     while (*ptr != 0) {
         if (map == *ptr) {
-            (((Obj1EEE770_func_80115118_result *)result)->unkE) = 0;
+            (result->unkE) = 0;
             break;
         }
         ptr++;

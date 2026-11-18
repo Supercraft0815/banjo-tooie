@@ -6,7 +6,7 @@ void func_80800000_bsdronexform(BtIntPtr arg0, s32 arg1, s32 arg2) {
     extern s32 D_808011F0_bsdronexform[11];
     func_800BABB8(arg1, 0, 0, 1.0f, D_808011F0_bsdronexform);
     func_800BA3FC(arg1, arg2);
-}    typedef struct { u8 pad0[0x18C]; void * unk18C; } Objxform_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x18C]; union { void * unk18C; s32 * unk18C_s32p; }; } Objxform_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -50,25 +50,25 @@ s32 func_808000E4_bsdronexform(void *arg0) {
     pos[0] += sine * *(f32 *)((u8 *)*&((Objxform_arg0 *)arg0)->unk18C + 0x18);
     pos[1] += func_800F1214(func_800F0F9C(time, 1.14f), 0.0f, 130.0f);
     pos[2] += cosine * *(f32 *)((u8 *)*&((Objxform_arg0 *)arg0)->unk18C + 0x18);
-    func_80800050_bsdronexform(arg0, (*(s32 **)((u8 *)arg0 + 0x18C))[1], sine, cosine);
-    func_800BA75C((*(s32 **)((u8 *)arg0 + 0x18C))[1], pos);
-    func_800BA22C((*(s32 **)((u8 *)arg0 + 0x18C))[1], 1);
+    func_80800050_bsdronexform(arg0, (((Objxform_arg0 *)arg0)->unk18C_s32p)[1], sine, cosine);
+    func_800BA75C((((Objxform_arg0 *)arg0)->unk18C_s32p)[1], pos);
+    func_800BA22C((((Objxform_arg0 *)arg0)->unk18C_s32p)[1], 1);
     func_8008FE68(pos);
     angle = (1.0f - func_800F13C4(phase + 0.5f, 1.0f)) * 360.0f;
     pos[0] -= func_80013970(angle) * *(f32 *)((u8 *)*&((Objxform_arg0 *)arg0)->unk18C + 0x18);
     pos[1] += func_800F1214(func_800F0F9C(time, 1.14f), 130.0f, 0.0f);
     pos[2] -= func_800138D0(angle) * *(f32 *)((u8 *)*&((Objxform_arg0 *)arg0)->unk18C + 0x18);
-    func_80800050_bsdronexform(arg0, (*(s32 **)((u8 *)arg0 + 0x18C))[0], sine, cosine);
-    func_800BA75C((*(s32 **)((u8 *)arg0 + 0x18C))[0], pos);
-    func_800BA22C((*(s32 **)((u8 *)arg0 + 0x18C))[0], 1); BT_NATIVE_ONLY(return 0;)
+    func_80800050_bsdronexform(arg0, (((Objxform_arg0 *)arg0)->unk18C_s32p)[0], sine, cosine);
+    func_800BA75C((((Objxform_arg0 *)arg0)->unk18C_s32p)[0], pos);
+    func_800BA22C((((Objxform_arg0 *)arg0)->unk18C_s32p)[0], 1); BT_NATIVE_ONLY(return 0;)
 }
 
 /* extern */
 
 void func_808002CC_bsdronexform(void *arg0) {
     void func_800B5450(void *arg0);
-    func_800B5450((*(s32 *)((s8 *)((*(s32 **)((s8 *)(arg0) + (0x18C)))) + (4))));
-    func_800B5450(*(*(s32 **)((s8 *)(arg0) + (0x18C))));
+    func_800B5450((*(s32 *)((s8 *)((((Objxform_arg0 *)arg0)->unk18C_s32p)) + (4))));
+    func_800B5450(*(((Objxform_arg0 *)arg0)->unk18C_s32p));
 }
 
 /* extern */

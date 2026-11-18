@@ -1,6 +1,6 @@
 #include "common.h"
 
-typedef struct { u8 pad0[0xC]; f32 unkC; u8 pad10[0x8]; s32 unk18; BtIntPtr unk1C; s16 unk20; u8 unk22; u8 pad23[0x1]; s32 unk24; u8 pad28[0x10]; f32 unk38; } Objleaves_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_fxleaves(void *arg0) {
+typedef struct { u8 pad0[0xC]; f32 unkC; u8 pad10[0x8]; s32 unk18; union { BtIntPtr unk1C; void * unk1C_voidp; }; s16 unk20; u8 unk22; u8 pad23[0x1]; s32 unk24; u8 pad28[0x10]; f32 unk38; } Objleaves_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_fxleaves(void *arg0) {
     void func_8008FE68(f32 *);
     void func_800E3958(f32 *);
     void func_800E3A58(f32 *);
@@ -28,7 +28,7 @@ typedef struct { u8 pad0[0xC]; f32 unkC; u8 pad10[0x8]; s32 unk18; BtIntPtr unk1
         func_8008FE68(sp74);
         func_800E3958(sp68);
         func_800E3A58(sp5C);
-        sp50 = vector_push_back((void **)((u8 *)arg0 + 0x1C));
+        sp50 = vector_push_back(&((Objleaves_arg0 *)arg0)->unk1C_voidp);
         distance = func_800DC178(50.0f, 1200.0f);
         func_800EFA4C(sp44, 0.0f, func_800DC178(200.0f, 500.0f), -distance);
         if (func_800EEFD4(&((Objleaves_arg0 *)arg0)->unkC) < 25.0f) {

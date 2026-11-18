@@ -440,14 +440,14 @@ void func_808005F0_bsstonehead(PlayerState *arg0, s32 arg1) {
             break;
     }
     arg0->unk15C.word = arg1;
-}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objstonehead_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 /* extern */
 
 void bsstonehead_entrypoint_4(BtIntPtr arg0) {
     void func_808005F0_bsstonehead(PlayerState *, s32);
     func_80800060_bsstonehead(arg0);
-    (((Objstonehead_arg0 *)arg0)->unk15C) = 0;
+    (((PlayerState *)arg0)->unk15C.word) = 0;
     func_808005F0_bsstonehead(arg0, 1);
 }
 

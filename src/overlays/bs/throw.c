@@ -1,9 +1,9 @@
 #include "common.h"
-
+#include "overlays/ba/playerstate.h"
 /* extern */
 
-typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objthrow_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void bsthrow_entrypoint_0(void *arg0) {
-    typedef struct player_state_s PlayerState;
+void bsthrow_entrypoint_0(void *arg0) {
+
     s32 anctrl_reset(BtIntPtr);
     s32 anctrl_setDuration(BtIntPtr, s32);
     s32 anctrl_setIndex(BtIntPtr, s32);
@@ -30,7 +30,7 @@ typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objthrow_arg0; /* offsets.py gens
     baphysics_set_type(arg0, 3);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_8009BA9C(arg0, 0);
-    (((Objthrow_arg0 *)arg0)->unk15C) = 0;
+    (((PlayerState *)arg0)->unk15C.word) = 0;
 }
 
 
@@ -57,7 +57,7 @@ void bsthrow_entrypoint_1(void *arg0) {
     sp4C = 0;
     sp48 = baanim_getAnimCtrlPtr(arg0);
     sp28 = _bahold_entrypoint_5(arg0);
-    if ((((Objthrow_arg0 *)arg0)->unk15C) == 0 && sp28 != NULL) {
+    if ((((PlayerState *)arg0)->unk15C.word) == 0 && sp28 != NULL) {
         _bahold_entrypoint_6(arg0, sp28);
     }
     func_8009C128(arg0, sp30);
@@ -65,7 +65,7 @@ void bsthrow_entrypoint_1(void *arg0) {
     func_800F1E6C(sp30, sp3C, &sp2C);
     yaw_setIdeal(arg0, sp2C);
     if (anctrl_isAt(sp48, 0.35f) && sp28 != NULL) {
-        (((Objthrow_arg0 *)arg0)->unk15C) = 1;
+        (((PlayerState *)arg0)->unk15C.word) = 1;
         func_80106790(sp28)->unk64_22 = 1;
     }
     if (anctrl_isStopped(sp48)) {
@@ -104,7 +104,7 @@ void bsthrow_entrypoint_4(void *arg0) {
     temp_v0 = func_8009E6EC();
     switch (temp_v0) {
     case 18:
-        if ((((Objthrow_arg0 *)arg0)->unk15C) == 0) {
+        if ((((PlayerState *)arg0)->unk15C.word) == 0) {
             func_8008F6B8(arg0, func_8008E9AC(arg0));
             return;
         }

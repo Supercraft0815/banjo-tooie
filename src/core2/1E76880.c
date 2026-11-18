@@ -34,7 +34,7 @@ void func_8009CFE8(PlayerState *self) {
         change = 0.0f;
     }
     yaw_setIdeal(self, yaw_getIdeal(self) + change);
-}    typedef struct { u8 pad0[0xFC]; s32 * unkFC; } Obj1E76880_func_8009D088_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
+} typedef struct { u8 pad0[0xFC]; union { s32 * unkFC; void * unkFC_voidp; }; } Obj1E76880_func_8009D088_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
 
 s32 func_8009D088(void *self) {
     f32 bastick_distance(PlayerState *);
@@ -82,7 +82,7 @@ s32 func_8009D088(void *self) {
             if (bastick_distance(self) != 0.0f) {
                 angle = bastick_getAngleRelativeToBanjo(self);
                 if (mlAbsF(func_800F1DCC(yaw_getIdeal(self), angle)) >=
-                    *(f32 *)((u8 *)*(void **)((u8 *)self + 0xFC) + 4)) {
+                    *(f32 *)((u8 *)*&((Obj1E76880_func_8009D088_self *)self)->unkFC_voidp + 4)) {
                     yaw_setIdeal(self, bastick_getAngleRelativeToBanjo(self));
                 }
             }

@@ -68,12 +68,12 @@ void func_80098408(u8 *arg0) {
     func_800984F0(arg0, D_80117E9C);
     func_800984CC(arg0, D_80117E90);
     func_80098520(arg0, 1.0f);
-}
+} typedef struct { u8 pad0[0xAC]; union { void * unkAC; u8 * unkAC_u8p; }; u8 padB0[0x30]; union { void * unkE0; u8 * unkE0_u8p; }; } Obj1E71B00_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80098480(u8 *arg0, s32 arg1, s32 arg2) {
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x28))) = arg1;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x2A))) = arg2;
-}               typedef struct { u8 pad0[0xAC]; void * unkAC; u8 padB0[0x30]; void * unkE0; } Obj1E71B00_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+    (*(s8 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC_u8p)) + (0x28))) = arg1;
+    (*(s8 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC_u8p)) + (0x2A))) = arg2;
+}
 
 void func_80098494(void *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     (*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC)) + (0))) = arg1;
@@ -91,8 +91,8 @@ void func_800984CC(void *arg0, f32 *arg1) {
 
 void func_800984F0(u8 *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xAC)))) + (0x29))) = 1;
-    func_800EE7F8((f32 *)((*(u8 **)((s8 *)(arg0) + (0xAC))) + 0x10), arg1);
+    (*(s8 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkAC_u8p)) + (0x29))) = 1;
+    func_800EE7F8((f32 *)((((Obj1E71B00_arg0 *)arg0)->unkAC_u8p) + 0x10), arg1);
 }
 
 void func_80098520(void *arg0, f32 arg1) {
@@ -108,11 +108,11 @@ s32 func_80098530()
 
 void func_80098538(u8 *arg0) {
     s32 func_800EFD24(u8 *, u8 *);
-    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0xE0))), arg0);
-    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0xE0))) + 0xC, arg0);
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2C))) = 0;
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x28))) = 0.0f;
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xE0)))) + (0x2F))) = 0;
+    func_800EFD24((((Obj1E71B00_arg0 *)arg0)->unkE0_u8p), arg0);
+    func_800EFD24((((Obj1E71B00_arg0 *)arg0)->unkE0_u8p) + 0xC, arg0);
+    (*(s8 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkE0_u8p)) + (0x2C))) = 0;
+    (*(f32 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkE0_u8p)) + (0x28))) = 0.0f;
+    (*(s8 *)((s8 *)((((Obj1E71B00_arg0 *)arg0)->unkE0_u8p)) + (0x2F))) = 0;
 }
 
 void func_80098590(f32 **arg0, f32 *arg1) {

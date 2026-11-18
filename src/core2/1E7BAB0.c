@@ -3,7 +3,7 @@
 s32 func_800A21C0() 
 {
     return 0x14;
-}    typedef struct { u8 pad0[0xB4]; u8 * unkB4; } Obj1E7BAB0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0xB4]; union { u8 * unkB4; s8 * unkB4_s8p; void * unkB4_voidp; }; } Obj1E7BAB0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_800A21C8(void *arg0) {
     struct MapEntry { s16 map; u8 first; u8 second; };
@@ -26,14 +26,14 @@ void func_800A21C8(void *arg0) {
     (((Obj1E7BAB0_arg0 *)arg0)->unkB4)[0] = entry->first;
     (((Obj1E7BAB0_arg0 *)arg0)->unkB4)[1] = entry->second;
     if (entry->map == -1 && func_800C8C18() > 0) {
-        (*(s8 **)((u8 *)arg0 + 0xB4))[0] = 2;
-        (*(s8 **)((u8 *)arg0 + 0xB4))[1] = 0;
+        (((Obj1E7BAB0_arg0 *)arg0)->unkB4_s8p)[0] = 2;
+        (((Obj1E7BAB0_arg0 *)arg0)->unkB4_s8p)[1] = 0;
     }
-    data = *(void **)((u8 *)arg0 + 0xB4);
+    data = ((Obj1E7BAB0_arg0 *)arg0)->unkB4_voidp;
     first = *(s8 *)data;
     if (first >= 3) {
         *(u8 *)data = 2;
-        first = (*(s8 **)((u8 *)arg0 + 0xB4))[0];
+        first = (((Obj1E7BAB0_arg0 *)arg0)->unkB4_s8p)[0];
     }
     func_800A25DC((BtIntPtr)arg0, first);
 }
@@ -92,7 +92,7 @@ void func_800A235C(void *arg0) {
     func_800EF04C(sp80, sp8C);
     sp78 = func_800B3494(*(s32 *)(((Obj1E7BAB0_arg0 *)arg0)->unkB4 + 4), sp80, sp7C);
     func_800B37A4(*(u8 **)(((Obj1E7BAB0_arg0 *)arg0)->unkB4 + 4), &sp68, &sp64);
-    if (sp78 < **(s8 **)((u8 *)arg0 + 0xB4) && (((Obj1E7BAB0_arg0 *)arg0)->unkB4)[1]) {
+    if (sp78 < *((Obj1E7BAB0_arg0 *)arg0)->unkB4_s8p && (((Obj1E7BAB0_arg0 *)arg0)->unkB4)[1]) {
         func_800C8960(sp4C, sp58);
         func_800A22C8(sp4C, sp6C);
         sp78 += func_800B36C0(*(s32 *)(((Obj1E7BAB0_arg0 *)arg0)->unkB4 + 4), sp58, sp4C, sp78 ? *(f32 *)(sp68 + 0x18) : 500.0f);
@@ -141,11 +141,11 @@ void func_800A2540(void *arg0, s32 arg1) {
         func_800DF5D8(color[0], color[1], color[2], arg1);
         return;
     }
-    temp = *(void **)((u8 *)arg0 + 0xB4);
+    temp = ((Obj1E7BAB0_arg0 *)arg0)->unkB4_voidp;
     if (((Obj1E7BAB0_func_800A2540_temp *)temp)->unk3 == 0) {
         func_800A235C(arg0);
-        *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 0xB4) + 3) = 1;
-        temp = *(void **)((u8 *)arg0 + 0xB4);
+        *(u8 *)((u8 *)*&((Obj1E7BAB0_arg0 *)arg0)->unkB4_voidp + 3) = 1;
+        temp = ((Obj1E7BAB0_arg0 *)arg0)->unkB4_voidp;
     }
     func_800DF660(1, 0, ((Obj1E7BAB0_func_800A2540_temp *)temp)->unk4, arg1);
 }

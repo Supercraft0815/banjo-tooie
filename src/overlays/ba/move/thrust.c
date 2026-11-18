@@ -14,7 +14,7 @@ void func_80800000_bamovethrust(BtIntPtr arg0, f32 *arg1, f32 arg2) {
 
 void bamovethrust_entrypoint_0(BtIntPtr arg0) 
 {
-}    typedef struct { u8 pad0[0xC8]; void * unkC8; } Objthrust_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0xC8]; union { void * unkC8; u8 * unkC8_u8p; }; } Objthrust_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void bamovethrust_entrypoint_1(void *arg0) {
     (*(f32 *)((s8 *)((((Objthrust_arg0 *)arg0)->unkC8)) + (0x8C))) = 1.0f;
     (*(f32 *)((s8 *)((((Objthrust_arg0 *)arg0)->unkC8)) + (0x84))) = 1.0f;
@@ -46,16 +46,16 @@ void bamovethrust_entrypoint_5(u8 *arg0) {
     f32 sp38[3];
     f32 sp2C[3];
 
-    func_80800000_bamovethrust((BtIntPtr) arg0, sp38, (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x8C))));
-    func_800EE7F8(sp2C, (f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10));
-    func_800EF334(sp2C, (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC8)))) + (0x84))));
-    func_800EE780((f32 *)((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10), sp2C, sp38);
+    func_80800000_bamovethrust((BtIntPtr) arg0, sp38, (*(f32 *)((s8 *)((((Objthrust_arg0 *)arg0)->unkC8_u8p)) + (0x8C))));
+    func_800EE7F8(sp2C, (f32 *)((((Objthrust_arg0 *)arg0)->unkC8_u8p) + 0x10));
+    func_800EF334(sp2C, (*(f32 *)((s8 *)((((Objthrust_arg0 *)arg0)->unkC8_u8p)) + (0x84))));
+    func_800EE780((f32 *)((((Objthrust_arg0 *)arg0)->unkC8_u8p) + 0x10), sp2C, sp38);
     temp_f0 = func_800D8FF8();
     (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x14)) += (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x34)) * temp_f0;
     if ((*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x14)) < (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x38))) {
         (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x14)) = (*(f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x38));
     }
-    func_800EFA20((*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x28, (*(u8 **)((s8 *)(arg0) + (0xC8))) + 0x10, temp_f0);
+    func_800EFA20((((Objthrust_arg0 *)arg0)->unkC8_u8p) + 0x28, (((Objthrust_arg0 *)arg0)->unkC8_u8p) + 0x10, temp_f0);
     func_800EF04C((f32 *)((*(u8 **)(arg0 + 0xC8)) + 4), (f32 *)((*(u8 **)(arg0 + 0xC8)) + 0x28));
 }
 

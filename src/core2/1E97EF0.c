@@ -124,7 +124,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_800BE7F8(s32 arg0, s32 arg1) {
             }
         }
     }
-    BT_NATIVE_ONLY(return 0;) }    typedef struct { void * unk0; s32 unk4; s32 unk8; s32 unkC; u8 pad10[0x8]; s32 unk18; s32 unk1C; u8 pad20[0x9]; u8 unk29; u8 unk2A; u8 pad2B[0x1]; s32 unk2C; s32 unk30; s32 unk34; s32 unk38; u8 pad3C[0x8]; s32 unk44; s32 unk48; u8 pad4C[0x9]; u8 unk55; u8 unk56; u8 pad57[0x3]; u16 unk5A; u16 unk5C; u8 pad5E[0xA]; s32 unk68; u8 pad6C[0xB]; u8 unk77; u8 pad78[0xC]; s8 unk84; s8 unk85; s8 unk86; s8 unk87; s32 unk88; u8 pad8C[0xEC]; s32 unk178; s32 unk17C; u8 pad180[0x30]; s32 unk1B0; } Obj1E97EF0_D_801285B0; /* offsets.py genstruct: fields from raw offsets on &D_801285B0; rename once understood */
+    BT_NATIVE_ONLY(return 0;) } typedef struct { void * unk0; s32 unk4; s32 unk8; s32 unkC; u8 pad10[0x8]; s32 unk18; s32 unk1C; u8 pad20[0x9]; u8 unk29; u8 unk2A; u8 pad2B[0x1]; union { s32 unk2C; u16 * unk2C_u16p; }; s32 unk30; s32 unk34; s32 unk38; u8 pad3C[0x8]; s32 unk44; s32 unk48; u8 pad4C[0x9]; u8 unk55; u8 unk56; u8 pad57[0x3]; u16 unk5A; u16 unk5C; u8 pad5E[0xA]; s32 unk68; u8 pad6C[0xB]; u8 unk77; u8 pad78[0xC]; s8 unk84; s8 unk85; s8 unk86; s8 unk87; s32 unk88; u8 pad8C[0xEC]; s32 unk178; s32 unk17C; u8 pad180[0x30]; s32 unk1B0; } Obj1E97EF0_D_801285B0; /* offsets.py genstruct: fields from raw offsets on &D_801285B0; rename once understood */
 
 /* extern */
 
@@ -395,7 +395,7 @@ void *func_800BF228(f32 *position, f32 radius, f32 *normal, u32 flag_filter) {
     if (((Obj1E97EF0_D_801285B0 *)&D_801285B0)->unk56 == 0) {
         return result;
     }
-    hit = func_800AC978(*(u16 **)((s8 *)&D_801285B0 + 0x2C),
+    hit = func_800AC978(((Obj1E97EF0_D_801285B0 *)&D_801285B0)->unk2C_u16p,
         ((u16 **)&D_801285B0)[((Obj1E97EF0_D_801285B0 *)&D_801285B0)->unk55 + 15],
         position, radius, normal, flag_filter);
     if (hit != 0) {

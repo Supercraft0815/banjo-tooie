@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "overlays/ba/playerstate.h"
 struct anctrl_s;
 
 /* extern */
@@ -14,11 +14,11 @@ void bsbabykaz_entrypoint_0(u8 *arg0) {
 
     func_8009C128(arg0, sp24);
     sp1C[0] = yaw_get(arg0);
-    _cheggclockwork_entrypoint_3(sp24, sp1C[0], _bababykaz_entrypoint_4(arg0), (*(s32 *)((s8 *)(arg0) + (0x160))));
+    _cheggclockwork_entrypoint_3(sp24, sp1C[0], _bababykaz_entrypoint_4(arg0), (((PlayerState *)arg0)->unk160.word));
 }
 
 void func_80800050_bsbabykaz(void *arg0) {
-    (*(f32 *)((s8 *)(arg0) + (0x170))) = 0.0f;
+    (((PlayerState *)arg0)->unk170) = 0.0f;
 }
 
 /* extern */
@@ -35,8 +35,8 @@ void func_8080005C_bsbabykaz(void *arg0) {
     sp24 = temp_v0;
     func_800E0AF0(temp_v0, 1.0f);
     func_800E0AFC(sp24, 0x5B, 1.0f, -50.0f, 0.0f, 0.0f);
-    func_800E0AFC(sp24, 0x5D, 1.0f, 0.0f, (*(f32 *)((s8 *)(arg0) + (0x170))), 0.0f);
-    (*(f32 *)((s8 *)(arg0) + (0x170))) += func_800D8FF8() * 500.0f;
+    func_800E0AFC(sp24, 0x5D, 1.0f, 0.0f, (((PlayerState *)arg0)->unk170), 0.0f);
+    (((PlayerState *)arg0)->unk170) += func_800D8FF8() * 500.0f;
 }
 
 /* extern */
@@ -100,7 +100,7 @@ void func_80800214_bsbabykaz(u8 *arg0) {
     func_801013A8(&sp1C, 0x39, 0);
     bs_setState(arg0, 0x5A);
     _bababykaz_entrypoint_9(arg0);
-    func_800F82C0((*(s32 *)((s8 *)(arg0) + (0x184))));
+    func_800F82C0((((PlayerState *)arg0)->unk184));
     func_800F9AFC();
 }
 
@@ -144,7 +144,7 @@ void bsbabykaz_entrypoint_1(struct player_state_s *arg0) {
         func_8009E830(arg0, 2);
         break;
     case 0x8E:
-        *(s32 *)((u8 *)arg0 + 0x160) = 0;
+        arg0->unk160.word = 0;
         bs_setState(arg0, 0x94);
         func_8009E830(arg0, 2);
         _batimer_set(arg0, 0, 0.0f);
@@ -256,7 +256,7 @@ void bsbabykaz_entrypoint_4(struct player_state_s *arg0) {
         _bababykaz_entrypoint_6(arg0);
         func_800947EC(arg0, 1, 1);
         func_80800050_bsbabykaz(arg0);
-        *(s32 *)((s8 *)arg0 + 0x160) = 1;
+        arg0->unk160.word = 1;
         func_80092864(arg0, 0.29998779296875f);
         func_80095A74(arg0, 1);
     }
@@ -316,7 +316,7 @@ s32 bsbabykaz_entrypoint_6(s32 arg0) {
 void func_808007EC_bsbabykaz(struct player_state_s *arg0)
 {
     bsbabykaz_entrypoint_3(arg0);
-}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objbabykaz_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_8080080C_bsbabykaz(void *arg0) {
     void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
@@ -324,7 +324,7 @@ void func_8080080C_bsbabykaz(void *arg0) {
     bsbabykaz_entrypoint_4(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0xA9, 0.38f);
     func_8009FFD8(arg0, 1, 1, 3, 6);
-    ((Objbabykaz_arg0 *)arg0)->unk15C = 0;
+    ((PlayerState *)arg0)->unk15C.word = 0;
 }
 
 void func_80800864_bsbabykaz(struct player_state_s *arg0) {
@@ -356,7 +356,7 @@ void func_80800864_bsbabykaz(struct player_state_s *arg0) {
         func_80800134_bsbabykaz(arg0);
     }
     func_8009BB24(arg0, velocity);
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
         case 0:
             if (func_8008DF8C(arg0, 0x5A)) {
                 anctrl_reset(anim_ctrl);
@@ -365,7 +365,7 @@ void func_80800864_bsbabykaz(struct player_state_s *arg0) {
                 anctrl_setDuration(anim_ctrl, 2.0f);
                 anctrl_setPlaybackType(anim_ctrl, 1);
                 anctrl_start(anim_ctrl);
-                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+                arg0->unk15C.word = 1;
             }
             break;
         case 1:
@@ -440,7 +440,7 @@ void func_808009EC_bsbabykaz(struct player_state_s *arg0) {
     baphysics_set_horizontal_velocity(arg0, sp2C, baphysics_get_target_horizontal_velocity(arg0));
     baphysics_set_vertical_velocity(arg0, 475.0f);
     baphysics_set_gravity(arg0, -1200.0f);
-    *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+    arg0->unk15C.word = 0;
     func_8009DE38(arg0, 0x432, 1.4f);
 }
 
@@ -474,15 +474,15 @@ void func_80800B54_bsbabykaz(struct player_state_s *arg0) {
     if (((bakey_released(arg0, 8) != 0) && (sp24[1] > 0.0f)) || (func_8008D544(arg0) == 0)) {
         baphysics_reset_gravity(arg0);
     }
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
     case 0:
         if (anctrl_isStopped(sp30) != 0) {
             baanim_setEndAndDuration(arg0, 0.6667f, 4.0f);
-            *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            arg0->unk15C.word = 1;
         }
         if (func_8008DF8C(arg0, 0x82) != 0) {
             baanim_setEndAndDuration(arg0, 1.0f, 1.4f);
-            *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+            arg0->unk15C.word = 2;
         }
         break;
     case 1:
@@ -491,7 +491,7 @@ void func_80800B54_bsbabykaz(struct player_state_s *arg0) {
         }
         if (func_8008DF8C(arg0, 0x5A) != 0) {
             baanim_setEndAndDuration(arg0, 1.0f, 2.0f);
-            *(s32 *)((s8 *)arg0 + 0x15C) = 2;
+            arg0->unk15C.word = 2;
         }
         break;
     case 2:
@@ -694,7 +694,7 @@ void func_80801134_bsbabykaz(struct player_state_s *arg0, s32 arg1) {
             _batimer_set(arg0, 0, duration);
             break;
     }
-    *(s32 *)((u8 *)arg0 + 0x15C) = arg1;
+    arg0->unk15C.word = arg1;
 }
 
 void func_808011EC_bsbabykaz(struct player_state_s *arg0) {
@@ -720,7 +720,7 @@ void func_808011EC_bsbabykaz(struct player_state_s *arg0) {
         case 0x86:
             break;
         case 0x94:
-            if (*(s32 *)((u8 *)arg0 + 0x15C) == 2) {
+            if (arg0->unk15C.word == 2) {
                 func_800F9B54();
                 func_80801134_bsbabykaz(arg0, 3);
             }
@@ -774,7 +774,7 @@ void func_80801384_bsbabykaz(struct player_state_s *arg0) {
     s32 result;
     f32 pos2[3];
 
-    if (*(s32 *)((u8 *)arg0 + 0x15C) == 3) {
+    if (arg0->unk15C.word == 3) {
         return;
     }
     _batimer_decrement(arg0, 0);
@@ -783,7 +783,7 @@ void func_80801384_bsbabykaz(struct player_state_s *arg0) {
         func_800F6D24(func_800F54E4()) != 0) {
         return;
     }
-    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
         case 1:
             if (expired != 0) {
                 func_800F3BB0(arg0, pos1);

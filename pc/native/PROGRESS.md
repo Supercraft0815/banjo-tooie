@@ -2098,3 +2098,27 @@ verglichen. Nach der Integration bestanden `make check`, beide vollständigen
 ROM-Vergleiche, zehn Testprogramme und 46 Spielabläufe mit 245.660 Retraces.
 Die N1-Arbeitsliste sank von 84 auf 80 Module. Objektvergleiche, Adressbelege
 und Laufprotokolle liegen unter `build/acceptance/n1-2026-11-18/`.
+
+## 2026-11-18 — N3, Spielerzustand, feste Kamera und Heapgrößen
+
+16 Module greifen jetzt über den gemeinsamen `PlayerState` auf den
+Spielerzustand zu. Die feste Kamera verwendet für Position, Drehung und
+Letterbox-Schalter eine vollständige Struktur. Vier Heapzuweisungen
+berechnen ihre Größe mit `sizeof`. Der LP64-Compiler kennt in vier zuvor
+unvollständig deklarierten Modulen jetzt den Zeigerrückgabewert des Heaps.
+Die Zahl der LP64-Warnstellen sank von 1.064 auf 1.060. Alle 1.109 Module
+lassen sich unter LP64 übersetzen.
+
+`offsets.py layouts` findet nach der Umstellung 103 dateiübergreifende
+Gruppen mit insgesamt 457 lokalen Typdeklarationen zur Prüfung.
+`extend` ergänzt Felder anhand der nachgewiesenen Zugriffe, sofern der
+Typ ausschließlich für direkten Feldzugriff verwendet wird. Die Arbeitsliste
+der rohen Zugriffe sank von 4.793 auf 4.449, darunter 207 statt 208 mit von
+der Zeigerbreite abhängigem Offset. Es verbleiben 45 statt 49 feste Heapgrößen.
+
+Alle 77 geänderten Quellen wurden für den direkten Vorgänger `91866d1c1` neu
+mit Original-IDO übersetzt. Der Objektvergleich ergab keine Unterschiede
+bei Funktionen oder Daten. Beide ROM-Abbilder waren bytegleich, der native
+IR-Vergleich ergab keine abweichende Funktion. Zehn Testprogramme, die
+Codemod-Tests und alle 46 Spielabläufe mit 245.660 Retraces bestanden.
+Belege liegen unter `build/acceptance/n3-2026-11-18/`.

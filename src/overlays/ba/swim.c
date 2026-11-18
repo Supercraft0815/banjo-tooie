@@ -102,12 +102,12 @@ void baswim_entrypoint_8(void *arg0, f32 arg1) {
 
 void baswim_entrypoint_9(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 308) + 0) = arg1;
-}
+} typedef struct { u8 pad0[0x134]; union { void * unk134; f32 * unk134_f32p; }; } Objswim_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void baswim_entrypoint_10(void *arg0, f32 arg1) {
     f32 *temp_v0;
 
-    temp_v0 = (*(f32 **)((s8 *)(arg0) + (0x134)));
+    temp_v0 = (((Objswim_arg0 *)arg0)->unk134_f32p);
     if (*temp_v0 < arg1) {
         *temp_v0 = arg1;
     }
@@ -172,7 +172,7 @@ void baswim_entrypoint_12(struct player_state_s *arg0) {
         return;
     }
     func_8009BF5C(arg0, func_800F10B4(temp_f0_2, 0.0f, 1.0f, 0.0f, 85.0f));
-}    typedef struct { u8 pad0[0x134]; void * unk134; } Objswim_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 /* extern */
 

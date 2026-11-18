@@ -67,7 +67,7 @@ void func_80800000_bainvisible(BtIntPtr arg0, void *arg1, s32 arg2) {
         ((f32 *)arg1)[2] = 1.0f;
         break;
     }
-}    typedef struct { u8 pad0[0x8]; f32 unk8; f32 unkC; u8 pad10[0x98]; u8 * unkA8; } Objinvisible_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x8]; f32 unk8; f32 unkC; u8 pad10[0x98]; union { u8 * unkA8; f32 * unkA8_f32p; s8 * unkA8_s8p; void * unkA8_voidp; }; } Objinvisible_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_808001BC_bainvisible(void *arg0) {
     f32 func_80013728(f32);
@@ -90,16 +90,16 @@ void func_808001BC_bainvisible(void *arg0) {
     sp5C = ((Objinvisible_arg0 *)arg0)->unkA8 + 0x1C;
     sp50 = 1.0f / func_800D8FF8();
     func_8009BC08(arg0, sp44);
-    sp58 = func_800EFB8C(sp44, *(f32 **)((u8 *)arg0 + 0xA8)) * sp50;
-    func_800EE7F8(*(f32 **)((u8 *)arg0 + 0xA8), sp44);
-    if ((*(f32 **)((u8 *)arg0 + 0xA8))[5] < sp58) {
+    sp58 = func_800EFB8C(sp44, ((Objinvisible_arg0 *)arg0)->unkA8_f32p) * sp50;
+    func_800EE7F8(((Objinvisible_arg0 *)arg0)->unkA8_f32p, sp44);
+    if ((((Objinvisible_arg0 *)arg0)->unkA8_f32p)[5] < sp58) {
         sp58 = 1.0f;
     } else {
-        sp58 = sp58 / (*(f32 **)((u8 *)arg0 + 0xA8))[5];
+        sp58 = sp58 / (((Objinvisible_arg0 *)arg0)->unkA8_f32p)[5];
     }
     sp40 = yaw_get(arg0);
-    sp54 = mlAbsF(func_80013728(sp40 - (*(f32 **)((u8 *)arg0 + 0xA8))[3]));
-    (*(f32 **)((u8 *)arg0 + 0xA8))[3] = sp40;
+    sp54 = mlAbsF(func_80013728(sp40 - (((Objinvisible_arg0 *)arg0)->unkA8_f32p)[3]));
+    (((Objinvisible_arg0 *)arg0)->unkA8_f32p)[3] = sp40;
     turn = sp54 * sp50;
     if (*(f32 *)(((Objinvisible_arg0 *)arg0)->unkA8 + 0x18) < turn) {
         sp54 = 1.0f;
@@ -156,8 +156,8 @@ s32 bainvisible_entrypoint_0()
 }
 
 void bainvisible_entrypoint_1(void *arg0, f32 arg1, f32 arg2) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA8)))) + (0x14))) = arg1;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA8)))) + (0x18))) = arg2;
+    (*(f32 *)((s8 *)((((Objinvisible_arg0 *)arg0)->unkA8_voidp)) + (0x14))) = arg1;
+    (*(f32 *)((s8 *)((((Objinvisible_arg0 *)arg0)->unkA8_voidp)) + (0x18))) = arg2;
 }
 
 f32 bainvisible_entrypoint_2(void *arg0, s32 arg1) {
@@ -169,7 +169,7 @@ void bainvisible_entrypoint_3(BtIntPtr arg0) {
     void func_80800000_bainvisible(BtIntPtr, void *, s32);
     s8 *sp1C;
 
-    sp1C = *(s8 **)((s8 *)arg0 + 0xA8) + 0x1C;
+    sp1C = ((Objinvisible_arg0 *)arg0)->unkA8_s8p + 0x1C;
     func_80800000_bainvisible(arg0, sp1C, 1);
     sp1C += 0x30;
     func_80800000_bainvisible(arg0, sp1C, 1);
@@ -181,7 +181,7 @@ void bainvisible_entrypoint_4(BtIntPtr arg0) {
     void func_80800000_bainvisible(BtIntPtr, void *, s32);
     s8 *sp1C;
 
-    sp1C = *(s8 **)((s8 *)arg0 + 0xA8) + 0x1C;
+    sp1C = ((Objinvisible_arg0 *)arg0)->unkA8_s8p + 0x1C;
     func_80800000_bainvisible(arg0, sp1C, 0);
     sp1C += 0x30;
     func_80800000_bainvisible(arg0, sp1C, 0);
@@ -193,7 +193,7 @@ void bainvisible_entrypoint_5(BtIntPtr arg0, f32 arg1) {
     void func_80800000_bainvisible(BtIntPtr, void *, s32);
     s8 *sp1C;
 
-    sp1C = *(s8 **)((s8 *)arg0 + 0xA8) + 0x1C;
+    sp1C = ((Objinvisible_arg0 *)arg0)->unkA8_s8p + 0x1C;
     func_80800000_bainvisible(arg0, sp1C, 2);
     sp1C += 0x30;
     func_80800000_bainvisible(arg0, sp1C, 2);

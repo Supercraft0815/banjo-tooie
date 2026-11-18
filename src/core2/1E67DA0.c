@@ -71,7 +71,7 @@ void func_8008E618(PlayerState *self) {
     (*(struct Entry **)self->unkC)->player = self->unk184;
     baflag_clear(self, 8);
     self->unkC->unk18 = -1;
-}                 typedef struct { u8 pad0[0xC]; s32 * unkC; u8 pad10[0xA]; u16 unk1A; } Obj1E67DA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0xC]; union { s32 * unkC; void * unkC_voidp; }; u8 pad10[0xA]; u16 unk1A; } Obj1E67DA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -199,7 +199,7 @@ s32 func_8008E974(u8 *arg0) {
 
 void func_8008E9A0(void *arg0, s32 arg1)
 {
-    ((s32 *) *(void **) ((u8 *) arg0 + 0xC))[1] = arg1;
+    ((s32 *) *&((Obj1E67DA0_arg0 *)arg0)->unkC_voidp)[1] = arg1;
 }
 
 s32 func_8008E9AC(void *arg0)

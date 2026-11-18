@@ -326,7 +326,7 @@ void func_80110790(BtIntPtr arg0, f32 *arg1) {
 void func_801107B0(void *arg0, f32 *arg1) {
     void func_800F5A00(BtIntPtr, f32 *);
     func_800F5A00((*(s32 *)((s8 *)(arg0) + (0x68))), arg1);
-}    typedef struct { u8 pad0[0x34]; f32 * unk34; u8 pad38[0x2C]; s32 * unk64; s32 unk68; s32 unk6C; } Obj1EE9AB0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x34]; union { f32 * unk34; void * unk34_voidp; }; u8 pad38[0x2C]; s32 * unk64; s32 unk68; s32 unk6C; } Obj1EE9AB0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -810,8 +810,8 @@ void func_80111410(void *arg0, void *arg1, void *arg2, f32 arg3) {
     if (length != 0.0f) {
         dt = func_800D8FF8();
         inverse = 1.0f / length;
-        step[0] = (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x34) + 8) * dt) * (delta[0] * inverse);
-        step[1] = (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x34) + 0xC) * dt) * (delta[1] * inverse);
+        step[0] = (*(f32 *)((s8 *)*&((Obj1EE9AB0_arg0 *)arg0)->unk34_voidp + 8) * dt) * (delta[0] * inverse);
+        step[1] = (*(f32 *)((s8 *)*&((Obj1EE9AB0_arg0 *)arg0)->unk34_voidp + 0xC) * dt) * (delta[1] * inverse);
         step[2] = (arg3 * dt) * (delta[2] * inverse);
         step[0] = func_800F212C(step[0], delta[0]);
         step[1] = func_800F212C(step[1], delta[1]);

@@ -123,7 +123,7 @@ u8 *func_800C5A38(void) {
     s32 j;
     u8 *ptr;
 
-    this = heap_alloc(0xA0);
+    this = heap_alloc(sizeof(*this));
     func_800EFD24(this->v4C);
     func_800EFD24(this->v58);
     for (i = 0; i < 36; i += 12) {

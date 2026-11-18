@@ -143,13 +143,13 @@ void func_800A3F14(PlayerState *arg0, s32 arg1) {
         }
         (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (6))) = (s8) arg1;
     }
-}
+} typedef struct { u8 pad0[0x38]; union { u8 * unk38; void * unk38_voidp; }; } Obj1E7D460_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
 void func_800A4030(void *arg0) {
     void func_800A4074(PlayerState *, s32);
-    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (6))) == 9) {
+    if ((*(u8 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38_voidp)) + (6))) == 9) {
         func_800A4074(arg0, 9);
         return;
     }
@@ -184,7 +184,7 @@ void func_800A4074(PlayerState *arg0, s32 arg1) {
 
 void func_800A4160(BtIntPtr arg0) 
 {
-}    typedef struct { u8 pad0[0x38]; u8 * unk38; } Obj1E7D460_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 /* extern */
 
 void func_800A4168(u8 *arg0) {
@@ -680,8 +680,8 @@ void func_800A4EFC(void *arg0, f32 arg1) {
 void func_800A5004(void *arg0) {
     s32 func_800A4E94(void *);
     void * func_800CA334(void);
-    if ((*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (0x3C))) == 0) {
-        (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (0x3C))) = func_800CA334();
+    if ((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38_voidp)) + (0x3C))) == 0) {
+        (*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38_voidp)) + (0x3C))) = func_800CA334();
         func_800A4E94(arg0);
     }
 }

@@ -1,6 +1,6 @@
 #include "common.h"
 
-typedef struct { u8 pad0[0x188]; void * unk188; } Objvanish_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_bsdronevanish(void *arg0, s32 arg1) {
+typedef struct { u8 pad0[0x188]; union { void * unk188; s32 * unk188_s32p; }; } Objvanish_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_bsdronevanish(void *arg0, s32 arg1) {
     void _batimer_set(struct player_state_s *, s32, f32);
     void func_80093370(void *, s32);
     void func_800FC618(s32, s32);
@@ -33,11 +33,11 @@ void func_808000CC_bsdronevanish(void *arg0) {
     f32 pos[3];
 
     func_800F3BB0(arg0, pos);
-    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[1], pos, NULL, 1.0f, D_80800560_bsdronevanish);
-    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[0], pos, NULL, 1.0f, D_80800560_bsdronevanish);
+    func_800BABB8((((Objvanish_arg0 *)arg0)->unk188_s32p)[1], pos, NULL, 1.0f, D_80800560_bsdronevanish);
+    func_800BABB8((((Objvanish_arg0 *)arg0)->unk188_s32p)[0], pos, NULL, 1.0f, D_80800560_bsdronevanish);
     pos[1] += 130.0f;
-    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[1], pos, NULL, 1.0f, D_8080056C_bsdronevanish);
-    func_800BABB8((*(s32 **)((s8 *)arg0 + 0x188))[0], pos, NULL, 1.0f, D_8080056C_bsdronevanish);
+    func_800BABB8((((Objvanish_arg0 *)arg0)->unk188_s32p)[1], pos, NULL, 1.0f, D_8080056C_bsdronevanish);
+    func_800BABB8((((Objvanish_arg0 *)arg0)->unk188_s32p)[0], pos, NULL, 1.0f, D_8080056C_bsdronevanish);
 }
 
 void func_8080019C_bsdronevanish(s32 arg0, s32 arg1) {
@@ -52,8 +52,8 @@ void func_8080019C_bsdronevanish(s32 arg0, s32 arg1) {
 
 void func_808001E4_bsdronevanish(void *arg0) {
     void func_800B5450(void *arg0);
-    func_800B5450((*(s32 *)((s8 *)((*(s32 **)((s8 *)(arg0) + (0x188)))) + (4))));
-    func_800B5450(*(*(s32 **)((s8 *)(arg0) + (0x188))));
+    func_800B5450((*(s32 *)((s8 *)((((Objvanish_arg0 *)arg0)->unk188_s32p)) + (4))));
+    func_800B5450(*(((Objvanish_arg0 *)arg0)->unk188_s32p));
 }
 
 /* extern */

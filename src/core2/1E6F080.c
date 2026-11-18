@@ -106,18 +106,18 @@ void func_800959C8(PlayerState *arg0, f32 arg1, f32 arg2) {
 
 void func_800959FC(s32 *arg0, s32 arg1) {
     ((s32 *) arg0[37])[5] = arg1;
-}    typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
+} typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */ typedef struct { u8 pad0[0x94]; union { u8 * unk94; s32 * unk94_s32p; u8 ** unk94_u8pp; void * unk94_voidp; }; } Obj1E6F080_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80095A08(void *arg0, s32 arg1, s32 arg2) {
     void *temp_v0;
     void *temp_v0_2;
 
     if (arg2 != 0) {
-        temp_v0 = (*(void **)((s8 *)(arg0) + (0x94)));
+        temp_v0 = (((Obj1E6F080_arg0 *)arg0)->unk94_voidp);
         (((Obj1E6F080_func_80095A08_temp_v0 *)temp_v0)->unk14) = (s32) ((((Obj1E6F080_func_80095A08_temp_v0 *)temp_v0)->unk14) | arg1);
         return;
     }
-    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x94)));
+    temp_v0_2 = (((Obj1E6F080_arg0 *)arg0)->unk94_voidp);
     (((Obj1E6F080_func_80095A08_temp_v0_2 *)temp_v0_2)->unk14) = (s32) ((((Obj1E6F080_func_80095A08_temp_v0_2 *)temp_v0_2)->unk14) & ~arg1);
 }
 
@@ -144,7 +144,7 @@ void func_80095A74(void *arg0, s32 arg1) {
         }
         func_80095A08(arg0, 8, 0);
     }
-}    typedef struct { u8 pad0[0x94]; u8 * unk94; } Obj1E6F080_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_80095AD0(s32 *arg0) {
     void baflag_clear(PlayerState *, int);
@@ -163,7 +163,7 @@ void func_80095AD0(s32 *arg0) {
     (((Obj1E6F080_arg0 *)arg0)->unk94)[0x56] = temp_v0;
     (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA0] = temp_v0;
     func_800959FC(arg0, 0x400005);
-    **(u8 ***)((u8 *)arg0 + 0x94) = func_800C5A38();
+    *((Obj1E6F080_arg0 *)arg0)->unk94_u8pp = func_800C5A38();
     func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x90));
     func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x78));
     func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x84));
@@ -190,7 +190,7 @@ void func_80095AD0(s32 *arg0) {
 
 void func_80095C10(void *arg0) {
     void func_800C5BA4(void* arg0);
-    func_800C5BA4(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+    func_800C5BA4(*(((Obj1E6F080_arg0 *)arg0)->unk94_s32p));
 }
 
 f32 func_80095C34(f32 arg0, f32 arg1, f32 arg2) {

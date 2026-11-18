@@ -956,7 +956,7 @@ void func_8009AB78(PlayerState *arg0) {
     }
     bs_setState(arg0, sp24);
     func_8009E830(arg0, sp28);
-}
+} typedef struct { u8 pad0[0xC0]; union { void * unkC0; u8 * unkC0_u8p; }; } Obj1E72EA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -964,16 +964,16 @@ void func_8009AC6C(u8 *arg0) {
     s32 func_800EFD24(u8 *, u8 *);
     s32 temp_v0;
 
-    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC0)))) + (0x18))) = 0;
-    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0xC0)))) + (0x14))) = 0;
-    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0xC0))) + 8, arg0);
+    (*(s32 *)((s8 *)((((Obj1E72EA0_arg0 *)arg0)->unkC0_u8p)) + (0x18))) = 0;
+    (*(s32 *)((s8 *)((((Obj1E72EA0_arg0 *)arg0)->unkC0_u8p)) + (0x14))) = 0;
+    func_800EFD24((((Obj1E72EA0_arg0 *)arg0)->unkC0_u8p) + 8, arg0);
     {
         s32 i;
         for (i = 0; i < 5; i++) {
             *(s32 *)(*(u8 **)(arg0 + 0xC0) + 0x4C + i * 0x28) = 0;
         }
     }
-}    typedef struct { u8 pad0[0xC0]; void * unkC0; } Obj1E72EA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_8009ACF4(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*&((Obj1E72EA0_arg0 *)arg0)->unkC0 + 0) = arg1;

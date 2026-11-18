@@ -10,7 +10,7 @@ s32 baeggcursor_entrypoint_0()
     return 0x1C;
 }
 
-s32 baeggcursor_entrypoint_7(void *, s32);    typedef struct { u8 pad0[0x8]; u8 unk8; u8 pad9[0x1]; u8 unkA; } Objcursor_baeggcursor_entrypoint_1_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x68]; void * unk68; } Objcursor_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+s32 baeggcursor_entrypoint_7(void *, s32); typedef struct { u8 pad0[0x8]; u8 unk8; u8 pad9[0x1]; u8 unkA; } Objcursor_baeggcursor_entrypoint_1_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x68]; union { void * unk68; s8 * unk68_s8p; }; } Objcursor_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -158,38 +158,38 @@ s32 baeggcursor_entrypoint_11(void *arg0) {
     f32 (*table)[2];
     u8 state;
 
-    state = *(u8 *)(*(s8 **)((s8 *)arg0 + 0x68) + 9);
+    state = *(u8 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 9);
     switch (state) {
     case 3:
-        if (*(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC) < 0.1f) {
-            scale = func_800F10B4(*(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC), 0.0, 0.1f, 1.0f, 0.8f);
+        if (*(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC) < 0.1f) {
+            scale = func_800F10B4(*(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC), 0.0, 0.1f, 1.0f, 0.8f);
         } else {
-            scale = func_800F10B4(*(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC), 0.1f, 0.3f, 0.8f, 16.0f);
+            scale = func_800F10B4(*(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC), 0.1f, 0.3f, 0.8f, 16.0f);
         }
-        *(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0x18) = scale;
-        *(s32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0x14) = func_800F10B4(*(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC), 0.0, 0.3f, 120.0, 0.0);
-        if (func_800D9078((f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC))) {
+        *(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0x18) = scale;
+        *(s32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0x14) = func_800F10B4(*(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC), 0.0, 0.3f, 120.0, 0.0);
+        if (func_800D9078((f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC))) {
             baeggcursor_entrypoint_7(arg0, 2);
         }
         break;
     case 4:
-        *(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0x18) = func_800F10B4(*(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC), 0.0, 0.2f, 16.0f, 1.0f);
-        *(s32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0x14) = func_800F10B4(*(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC), 0.0, 0.2f, 0.0f, 120.0);
-        if (func_800D9078((f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC))) {
+        *(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0x18) = func_800F10B4(*(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC), 0.0, 0.2f, 16.0f, 1.0f);
+        *(s32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0x14) = func_800F10B4(*(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC), 0.0, 0.2f, 0.0f, 120.0);
+        if (func_800D9078((f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC))) {
             baeggcursor_entrypoint_7(arg0, 1);
         }
         break;
     case 5:
-        time = *(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC);
-        table = (f32 (*)[2])func_80800000_baeggcursor(*(u8 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0x10));
+        time = *(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC);
+        table = (f32 (*)[2])func_80800000_baeggcursor(*(u8 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0x10));
         for (i = 0; table[i][0] <= time; i++) {
             if (table[i][1] == 0.0f) {
                 baeggcursor_entrypoint_7(arg0, 2);
                 break;
             }
         }
-        *(f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0x18) = func_800F10B4(time, table[i - 1][0], table[i][0], table[i - 1][1], table[i][1]);
-        func_800D91B8((f32 *)(*(s8 **)((s8 *)arg0 + 0x68) + 0xC));
+        *(f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0x18) = func_800F10B4(time, table[i - 1][0], table[i][0], table[i - 1][1], table[i][1]);
+        func_800D91B8((f32 *)(((Objcursor_arg0 *)arg0)->unk68_s8p + 0xC));
         break;
     }
     BT_NATIVE_ONLY(return 0;)}

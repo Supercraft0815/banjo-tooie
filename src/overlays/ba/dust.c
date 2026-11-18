@@ -8,7 +8,7 @@ s32 badust_entrypoint_0()
 void func_80800008_badust(BtIntPtr arg0) 
 {
 }
-struct player_state_s;    typedef struct { u8 pad0[0x5C]; void * unk5C; } Objdust_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x9]; u8 unk9; } Objdust_func_80800010_badust_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+struct player_state_s; typedef struct { u8 pad0[0x5C]; union { void * unk5C; s32 * unk5C_s32p; }; } Objdust_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x9]; u8 unk9; } Objdust_func_80800010_badust_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 void func_80800010_badust(void *arg0) {
     s32 _batimer_decrement(void *, s32);
     void _batimer_set(struct player_state_s *, s32, f32);
@@ -283,7 +283,7 @@ void badust_entrypoint_12(void *arg0, s32 arg1) {
     void func_8009ADF0(void *, s32, s32);
     void _batimer_set(struct player_state_s *, s32, f32);
 
-    **(s32 **)((u8 *)arg0 + 0x5C) = arg1;
+    *((Objdust_arg0 *)arg0)->unk5C_s32p = arg1;
     switch (arg1) {
         case 2:
             func_8009ADF0(arg0, 3, 1);
@@ -302,7 +302,7 @@ void badust_entrypoint_12(void *arg0, s32 arg1) {
 void badust_entrypoint_13(void *arg0) {
     void func_80800010_badust(void *);
 
-    switch (**(s32 **)((u8 *)arg0 + 0x5C)) {
+    switch (*((Objdust_arg0 *)arg0)->unk5C_s32p) {
         case 2:
             func_80800010_badust(arg0);
             break;

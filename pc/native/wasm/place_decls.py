@@ -47,7 +47,8 @@ def place(path, keep_unused=False):
     decls = []
     for i, l in enumerate(lines):
         decls += [(m.group(1), m.group(0).rstrip()) for m in DECL.finditer(l)]
-        lines[i] = DECL.sub('', l)
+        if DECL.search(l):
+            lines[i] = DECL.sub('', l).rstrip(' \t')
     code = blank('\n'.join(lines), branches=False).split('\n')
     depth, top, semi = 0, [], []  # top-level starts, top-level lines ending in `;` or `}`
     ended = True  # the previous significant line ended a declaration (or was a directive)

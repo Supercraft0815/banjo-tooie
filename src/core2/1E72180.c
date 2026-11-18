@@ -3,7 +3,7 @@
 s32 func_80098890() 
 {
     return 0x1C;
-}                   typedef struct { u8 pad0[0xB8]; void * unkB8; f32 * unkBC; u8 padC0[0x98]; s32 unk158; u8 pad15C[0x28]; s32 unk184; } Obj1E72180_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0xB8]; union { void * unkB8; s32 * unkB8_s32p; }; union { f32 * unkBC; s8 * unkBC_s8p; u8 * unkBC_u8p; }; u8 padC0[0x98]; s32 unk158; u8 pad15C[0x28]; s32 unk184; } Obj1E72180_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80098898(void *arg0) {
     void func_800BED18(s32 *, s32 *);
@@ -27,8 +27,8 @@ void func_80098898(void *arg0) {
     (((Obj1E72180_arg0 *)arg0)->unkBC)[0] += var_v1[4];
     (((Obj1E72180_arg0 *)arg0)->unkBC)[1] += var_v1[5];
     (((Obj1E72180_arg0 *)arg0)->unkBC)[2] += var_v1[6];
-    (*(s8 **)((s8 *)arg0 + 0xBC))[0x18] = 0;
-    (*(s8 **)((s8 *)arg0 + 0xBC))[0x19] = 0;
+    (((Obj1E72180_arg0 *)arg0)->unkBC_s8p)[0x18] = 0;
+    (((Obj1E72180_arg0 *)arg0)->unkBC_s8p)[0x19] = 0;
 }
 
 void func_800989E4(void *arg0) {
@@ -53,7 +53,7 @@ void func_800989E4(void *arg0) {
     if (!func_8008DAA8(arg0)) {
         return;
     }
-    if ((*(u8 **)((s8 *)arg0 + 0xBC))[0x19]) {
+    if ((((Obj1E72180_arg0 *)arg0)->unkBC_u8p)[0x19]) {
         return;
     }
     mode = func_800BF6B8();
@@ -63,8 +63,8 @@ void func_800989E4(void *arg0) {
     func_8009C128(arg0, position);
     if (mode == 2 || !func_800EFED0(((Obj1E72180_arg0 *)arg0)->unkBC + 3,
                                    ((Obj1E72180_arg0 *)arg0)->unkBC, position)) {
-        if ((*(u8 **)((s8 *)arg0 + 0xBC))[0x18] == 0) {
-            (*(u8 **)((s8 *)arg0 + 0xBC))[0x18] = 1;
+        if ((((Obj1E72180_arg0 *)arg0)->unkBC_u8p)[0x18] == 0) {
+            (((Obj1E72180_arg0 *)arg0)->unkBC_u8p)[0x18] = 1;
             if (func_800D3948() || func_800D395C()) {
                 _gcfrontend_entrypoint_12();
                 return;
@@ -201,12 +201,12 @@ void func_80098C48(void *arg0) {
     void func_800A2D94(void *arg0);
     void func_800A3820(void *arg0);
     void func_800A4168(u8 *arg0);
-    (*(s8 *)((s8 *)((*(s32 **)((s8 *)(arg0) + (0xB8)))) + (8))) = 1;
+    (*(s8 *)((s8 *)((((Obj1E72180_arg0 *)arg0)->unkB8_s32p)) + (8))) = 1;
     func_8009AD90();
     _badronemem_entrypoint_3(arg0);
     _bastatemem_entrypoint_3(arg0);
     func_800A3820(arg0);
-    *(*(s32 **)((s8 *)(arg0) + (0xB8))) = 0;
+    *(((Obj1E72180_arg0 *)arg0)->unkB8_s32p) = 0;
     bakey_init(arg0);
     func_8009FE78(arg0);
     func_8009C038(arg0);

@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core1/heap.h"
 /* extern */
 
 typedef struct { f32 unk0; s16 unk4; u8 pad6[0x2]; f32 unk8; s32 unkC; } Objscroll_vpscroll_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; } Objscroll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x2]; u16 unk2; } Objscroll_vpscroll_entrypoint_0_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */ u8 *vpscroll_entrypoint_0(u8 *arg0, u8 *arg1) {

@@ -3,7 +3,7 @@
 s32 baspin_entrypoint_0() 
 {
     return 0x8;
-}
+} typedef struct { u8 pad0[0x118]; union { u8 * unk118; void * unk118_voidp; }; } Objspin_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -18,7 +18,7 @@ void baspin_entrypoint_1(void *arg0) {
     BtIntPtr func_800A4CA8(void *);
     void yaw_applyIdeal(void *self);
     void yaw_setIdeal(void *self, f32 arg1);
-    if (((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x118)))) + (1))) == 1) && (_bafpctrl_entrypoint_4() == 3)) {
+    if (((*(u8 *)((s8 *)((((Objspin_arg0 *)arg0)->unk118_voidp)) + (1))) == 1) && (_bafpctrl_entrypoint_4() == 3)) {
         _ncba1p_entrypoint_4(func_800A4CA8(arg0), 1);
     }
     func_8009BD88(arg0);
@@ -27,7 +27,7 @@ void baspin_entrypoint_1(void *arg0) {
     yaw_setIdeal(arg0, func_80092BE8(arg0));
     yaw_applyIdeal(arg0);
     func_800931AC(arg0, 1);
-}    typedef struct { u8 pad0[0x118]; u8 * unk118; } Objspin_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void baspin_entrypoint_2(void *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
     s32 _bafpctrl_entrypoint_4(void *);

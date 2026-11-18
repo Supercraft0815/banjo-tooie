@@ -1,6 +1,6 @@
 #include "common.h"
 
-struct Unk800C7A68;    typedef struct { u8 pad0[0xC8]; u8 * unkC8; } Objspline_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+struct Unk800C7A68; typedef struct { u8 pad0[0xC8]; union { u8 * unkC8; void * unkC8_voidp; }; } Objspline_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -62,9 +62,9 @@ void bamovespline_entrypoint_0(void *arg0, f32 *arg1) {
     f32 sp20[4];
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0xC8)));
+    temp_v0 = (((Objspline_arg0 *)arg0)->unkC8_voidp);
     if ((((Objspline_bamovespline_entrypoint_0_temp_v0 *)temp_v0)->unk90) == 4) {
-        func_800C810C(func_800D7520((((Objspline_bamovespline_entrypoint_0_temp_v0 *)temp_v0)->unk94)), (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x98))), arg1, sp20);
+        func_800C810C(func_800D7520((((Objspline_bamovespline_entrypoint_0_temp_v0 *)temp_v0)->unk94)), (*(f32 *)((s8 *)((((Objspline_arg0 *)arg0)->unkC8_voidp)) + (0x98))), arg1, sp20);
         return;
     }
     func_800EFA4C(arg1, 0.0f, 1.0f, 0.0f);
@@ -79,7 +79,7 @@ int bamovespline_entrypoint_1(void *arg0, f32 arg1) {
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
 
-    temp_v0 = *(void **)((u8 *)arg0 + 0xC8);
+    temp_v0 = ((Objspline_arg0 *)arg0)->unkC8_voidp;
     if (((Objspline_bamovespline_entrypoint_1_temp_v0 *)temp_v0)->unk90 != 4) {
         return 0;
     }
@@ -93,15 +93,15 @@ int bamovespline_entrypoint_1(void *arg0, f32 arg1) {
 }
 
 u32 bamovespline_entrypoint_2(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 145);
+    return *(u8 *)((u8 *)*&((Objspline_arg0 *)arg0)->unkC8_voidp + 145);
 }
 
 u32 bamovespline_entrypoint_3(void *arg0) {
-    return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 146);
+    return *(u8 *)((u8 *)*&((Objspline_arg0 *)arg0)->unkC8_voidp + 146);
 }
 
 s32 bamovespline_entrypoint_4(void *arg0) {
-    return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x90))) == 4;
+    return (*(u8 *)((s8 *)((((Objspline_arg0 *)arg0)->unkC8_voidp)) + (0x90))) == 4;
 }
 
 void bamovespline_entrypoint_5(BtIntPtr arg0) 
@@ -110,7 +110,7 @@ void bamovespline_entrypoint_5(BtIntPtr arg0)
 void bamovespline_entrypoint_6(void *arg0) { (*(s8 *)(((Objspline_arg0 *)arg0)->unkC8 + 0x90)) = 0; func_808000F4_bamovespline(arg0, 1); }
 
 void bamovespline_entrypoint_7(void *arg0, s32 arg1) {
-    *(s16 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 148) = arg1;
+    *(s16 *)((u8 *)*&((Objspline_arg0 *)arg0)->unkC8_voidp + 148) = arg1;
 }
 
 void bamovespline_entrypoint_8(BtIntPtr arg0)
@@ -119,7 +119,7 @@ void bamovespline_entrypoint_8(BtIntPtr arg0)
 }
 
 void bamovespline_entrypoint_9(void *arg0, f32 arg1) {
-    (*(f32 *)((s8 *)(*(void **)((s8 *)arg0 + 0xC8)) + 0x98)) = arg1;
+    (*(f32 *)((s8 *)(((Objspline_arg0 *)arg0)->unkC8_voidp) + 0x98)) = arg1;
     func_808000F4_bamovespline(arg0, 4);
 }
 

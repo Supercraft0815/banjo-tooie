@@ -1,5 +1,5 @@
 #include "gl/globalsettings.h"
-
+#include "core1/heap.h"
 void heap_free(void *mem);
 
 /* extern */

@@ -167,7 +167,7 @@ s32 func_80800228_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
             return 0;
     }
     return 1;
-}    typedef struct { u8 pad0[0x18]; s32 unk18; s32 unk1C; s32 unk20; BtIntPtr unk24; BtIntPtr unk28; u8 pad2C[0x4]; BtIntPtr unk30; BtIntPtr unk34; u8 pad38[0x4]; s32 unk3C; u8 pad40[0x10]; void * unk50; u8 pad54[0x11]; u8 unk65; u8 pad66[0x8]; u16 unk6E; } Objgameselect_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x18]; s32 unk18; s32 unk1C; s32 unk20; union { BtIntPtr unk24; void * unk24_voidp; }; BtIntPtr unk28; u8 pad2C[0x4]; BtIntPtr unk30; union { BtIntPtr unk34; void * unk34_voidp; }; u8 pad38[0x4]; s32 unk3C; u8 pad40[0x10]; void * unk50; u8 pad54[0x11]; u8 unk65; u8 pad66[0x8]; u16 unk6E; } Objgameselect_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800440_chgameselect(void *arg0) {
     void func_808036D8_chgameselect(void);
@@ -1305,11 +1305,11 @@ void func_80802480_chgameselect(void *arg0) {
     void *temp_a0;
     void *temp_a1;
 
-    temp_a1 = *(void **)((u8 *)arg0 + 0x24);
+    temp_a1 = ((Objgameselect_arg0 *)arg0)->unk24_voidp;
     if (temp_a1 != NULL) {
         heap_free(temp_a1);
     }
-    temp_a0 = *(void **)((u8 *)arg0 + 0x34);
+    temp_a0 = ((Objgameselect_arg0 *)arg0)->unk34_voidp;
     if (temp_a0 != NULL) {
         heap_free(temp_a0);
     }

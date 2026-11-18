@@ -1,6 +1,6 @@
 #include "common.h"
 
-typedef struct { u8 unk0; u8 pad1[0xF]; f32 unk10; u8 pad14[0xC]; BtIntPtr unk20; s32 unk24; s32 unk28; u8 pad2C[0x4]; u8 unk30; u8 pad31[0x3]; f32 unk34; u8 pad38[0xC]; f32 unk44; } Objrain_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_fxrain(BtIntPtr arg0) {
+typedef struct { u8 unk0; u8 pad1[0xF]; f32 unk10; u8 pad14[0xC]; union { BtIntPtr unk20; void * unk20_voidp; }; s32 unk24; s32 unk28; u8 pad2C[0x4]; u8 unk30; u8 pad31[0x3]; f32 unk34; u8 pad38[0xC]; f32 unk44; } Objrain_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_fxrain(BtIntPtr arg0) {
     f32 func_800DC178(f32 arg0, f32 arg1);
     void func_800E3958(BtIntPtr arg0);
     void func_800E3980(f32 *arg0);
@@ -25,7 +25,7 @@ typedef struct { u8 unk0; u8 pad1[0xF]; f32 unk10; u8 pad14[0xC]; BtIntPtr unk20
         func_800E3980(sp64);
         func_800E3958((BtIntPtr)sp58);
         func_800E3A58(angles.f);
-        sp40 = vector_push_back((void **)((u8 *)arg0 + 0x20));
+        sp40 = vector_push_back(&((Objrain_arg0 *)arg0)->unk20_voidp);
         distance = func_800DC178(50.0f, 2000.0f);
         random = func_800DC178(200.0f, 300.0f);
         func_800EFA4C(sp34, 0.0f, random, -distance);

@@ -93,7 +93,7 @@ void *func_8010FB34(s32 arg0, s32 arg1) {
     (((Obj1EE92B0_func_8010FB34_temp_v0 *)temp_v0)->unk16) = 0;
     func_8010F9C0(temp_v0, 1);
     return temp_v0;
-}    typedef struct { u8 * unk0; struct player_state_s * unk4; u8 pad8[0x4]; void * unkC; u8 * unk10; u8 pad14[0x4]; s8 unk18; u8 pad19[0x3]; s32 unk1C; s8 unk20; u8 pad21[0x1B]; f32 unk3C; } Obj1EE92B0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 * unk0; struct player_state_s * unk4; u8 pad8[0x4]; union { void * unkC; u8 * unkC_u8p; }; union { u8 * unk10; void * unk10_voidp; }; u8 pad14[0x4]; s8 unk18; u8 pad19[0x3]; s32 unk1C; s8 unk20; u8 pad21[0x1B]; f32 unk3C; } Obj1EE92B0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -116,7 +116,7 @@ void func_8010FBD4(void *arg0) {
     if (temp_a0_2 != 0) {
         func_801150F8(temp_a0_2);
     }
-    func_80114C7C((*(void **)((s8 *)(arg0) + (0x10))));
+    func_80114C7C((((Obj1EE92B0_arg0 *)arg0)->unk10_voidp));
     heap_free(arg0);
 }
 
@@ -256,7 +256,7 @@ BtIntPtr func_8010FF80(s32 *arg0) {
 
 void func_8010FF88(void *arg0 BT_PASS2(, s32 bt_a0) BT_PASS2(, s32 bt_a1)) {
     void func_80114C9C();
-    func_80114C9C((*(void **)((s8 *)(arg0) + (0x10))) BT_PASS2(, bt_a0) BT_PASS2(, bt_a1));
+    func_80114C9C((((Obj1EE92B0_arg0 *)arg0)->unk10_voidp) BT_PASS2(, bt_a0) BT_PASS2(, bt_a1));
 }
 
 s32 func_8010FFA8(s16 *arg0) {
@@ -281,7 +281,7 @@ s32 func_8010FFD8(BtIntPtr arg0) {
     u8 *temp_a1;
     s32 var_v1;
 
-    temp_a1 = (*(u8 **)((s8 *)(arg0) + (0xC)));
+    temp_a1 = (((Obj1EE92B0_arg0 *)arg0)->unkC_u8p);
     if (temp_a1 != 0) {
         var_v1 = func_801150F0(temp_a1);
     } else {

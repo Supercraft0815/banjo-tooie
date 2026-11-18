@@ -3,7 +3,7 @@
 s32 baflameline_entrypoint_0() 
 {
     return 0x28;
-}    typedef struct { u8 pad0[0x18]; f32 unk18; } Objflameline_baflameline_entrypoint_1_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */ typedef struct { u8 pad0[0x84]; f32 * unk84; } Objflameline_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x18]; f32 unk18; } Objflameline_baflameline_entrypoint_1_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */ typedef struct { u8 pad0[0x84]; union { f32 * unk84; u8 * unk84_u8p; void * unk84_voidp; }; } Objflameline_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void baflameline_entrypoint_1(void *arg0) {
     BtIntPtr func_800B53A4(s32);
@@ -23,7 +23,7 @@ void baflameline_entrypoint_1(void *arg0) {
     void *temp_v1;
 
     temp_s1 = func_800B53A4(0xE);
-    temp_v1 = *(void **)((s8 *)arg0 + 0x84);
+    temp_v1 = ((Objflameline_arg0 *)arg0)->unk84_voidp;
     func_800EFA20(sp90, (s8 *)temp_v1 + 0xC, ((Objflameline_baflameline_entrypoint_1_temp_v1 *)temp_v1)->unk18);
     func_800EF04C(sp90, ((Objflameline_arg0 *)arg0)->unk84);
     for (var_s0 = 0; var_s0 != 7; var_s0++) {
@@ -34,7 +34,7 @@ void baflameline_entrypoint_1(void *arg0) {
     }
 }
 
-void func_80800184_baflameline(void *arg0, f32 arg1[3]) { void func_800BA77C(BtIntPtr, s16, s16, s16); void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16); BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]); f32 func_800DC178(f32, f32); void func_800EFA20(void *, void *, f32); extern s32 D_80800738_baflameline[]; f32 sp34[3]; func_800EFA20(sp34, (s8 *)*(void **)((s8 *)arg0 + 0x84) + 0xC, *(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x18) / 0.3f); sp34[1] -= (*(f32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x18) / 0.3f) * 0.1f; func_800BA77C(*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x1C), 0, 0, (s16)(s32)func_800DC178(0.0f, 359.0f)); func_800BA930(*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x1C), (s16)sp34[0], (s16)sp34[1], (s16)sp34[2], (s16)sp34[0], (s16)sp34[1], (s16)sp34[2]); func_800BABB8(*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x84) + 0x1C), arg1, NULL, 1.0f, D_80800738_baflameline); }    typedef struct { u8 pad0[0x1C]; s32 unk1C; u8 pad20[0x4]; s32 unk24; } Objflameline_baflameline_entrypoint_2_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
+void func_80800184_baflameline(void *arg0, f32 arg1[3]) { void func_800BA77C(BtIntPtr, s16, s16, s16); void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16); BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]); f32 func_800DC178(f32, f32); void func_800EFA20(void *, void *, f32); extern s32 D_80800738_baflameline[]; f32 sp34[3]; func_800EFA20(sp34, (s8 *)*&((Objflameline_arg0 *)arg0)->unk84_voidp + 0xC, *(f32 *)((s8 *)*&((Objflameline_arg0 *)arg0)->unk84_voidp + 0x18) / 0.3f); sp34[1] -= (*(f32 *)((s8 *)*&((Objflameline_arg0 *)arg0)->unk84_voidp + 0x18) / 0.3f) * 0.1f; func_800BA77C(*(s32 *)((s8 *)*&((Objflameline_arg0 *)arg0)->unk84_voidp + 0x1C), 0, 0, (s16)(s32)func_800DC178(0.0f, 359.0f)); func_800BA930(*(s32 *)((s8 *)*&((Objflameline_arg0 *)arg0)->unk84_voidp + 0x1C), (s16)sp34[0], (s16)sp34[1], (s16)sp34[2], (s16)sp34[0], (s16)sp34[1], (s16)sp34[2]); func_800BABB8(*(s32 *)((s8 *)*&((Objflameline_arg0 *)arg0)->unk84_voidp + 0x1C), arg1, NULL, 1.0f, D_80800738_baflameline); } typedef struct { u8 pad0[0x1C]; s32 unk1C; u8 pad20[0x4]; s32 unk24; } Objflameline_baflameline_entrypoint_2_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
 
 /* extern */
 
@@ -45,13 +45,13 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) baflameline_entrypoint_2(void *arg0) {
     s32 temp_a0;
     void *var_v0;
 
-    func_800C2FDC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x84)))) + (0x20))), arg0);
-    var_v0 = (*(void **)((s8 *)(arg0) + (0x84)));
+    func_800C2FDC((*(u8 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_voidp)) + (0x20))), arg0);
+    var_v0 = (((Objflameline_arg0 *)arg0)->unk84_voidp);
     temp_a0 = (((Objflameline_baflameline_entrypoint_2_var_v0 *)var_v0)->unk24);
     if (temp_a0 != 0) {
         func_800C8B84(temp_a0, arg0);
-        (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x84)))) + (0x24))) = 0;
-        var_v0 = (*(void **)((s8 *)(arg0) + (0x84)));
+        (*(s32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_voidp)) + (0x24))) = 0;
+        var_v0 = (((Objflameline_arg0 *)arg0)->unk84_voidp);
     }
     BT_NATIVE_ONLY(return) func_800B5450((((Objflameline_baflameline_entrypoint_2_var_v0 *)var_v0)->unk1C), arg0);
 }
@@ -66,19 +66,19 @@ void baflameline_entrypoint_3(u8 *arg0) {
     void func_800C8FE0(s32 id,s32 enabled);
     void func_800EFD24(f32 vec[3]);
     extern s32 D_80800784_baflameline[5];
-    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0x84))));
-    func_800EFD24((*(u8 **)((s8 *)(arg0) + (0x84))) + 0xC);
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x18))) = 1.0f;
-    (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x1C))) = func_800B53A4(0x28);
-    func_800B5534((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x1C))));
+    func_800EFD24((((Objflameline_arg0 *)arg0)->unk84_u8p));
+    func_800EFD24((((Objflameline_arg0 *)arg0)->unk84_u8p) + 0xC);
+    (*(f32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x18))) = 1.0f;
+    (*(s32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x1C))) = func_800B53A4(0x28);
+    func_800B5534((*(s32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x1C))));
     if (func_800BF8E4() > 0) {
-        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x24))) = func_800C8A98();
-        func_800C8F64((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x24))), 0xB);
-        func_800C8FE0((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x24))), 0);
+        (*(s32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x24))) = func_800C8A98();
+        func_800C8F64((*(s32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x24))), 0xB);
+        func_800C8FE0((*(s32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x24))), 0);
     } else {
-        (*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x24))) = 0;
+        (*(s32 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x24))) = 0;
     }
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x84)))) + (0x20))) = func_800C4350(0, 0, D_80800784_baflameline);
+    (*(s8 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_u8p)) + (0x20))) = func_800C4350(0, 0, D_80800784_baflameline);
 }
 
 /* extern */
@@ -98,7 +98,7 @@ void baflameline_entrypoint_5(void *arg0 BT_PASS2(, s32 bt_a1)) {
 }
 
 void baflameline_entrypoint_6(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 132) + 24) = arg1;
+    *(f32 *)((u8 *)*&((Objflameline_arg0 *)arg0)->unk84_voidp + 24) = arg1;
 }
 
 void baflameline_entrypoint_7(void *arg0) {

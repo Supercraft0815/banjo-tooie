@@ -1,15 +1,15 @@
 #include "common.h"
-
-typedef struct { u8 pad0[0x15C]; s32 unk15C; u8 pad160[0xC]; f32 unk16C; } Objcrouch_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_bscrouch(BtIntPtr arg0) {
+#include "overlays/ba/playerstate.h"
+void func_80800000_bscrouch(BtIntPtr arg0) {
     s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
     baanim_playForDuration_loopSmooth(arg0, 0x10C, 0x3F000000);
-    (((Objcrouch_arg0 *)arg0)->unk15C) = 4;
+    (((PlayerState *)arg0)->unk15C.word) = 4;
 }
 
 void func_80800034_bscrouch(BtIntPtr arg0) {
     s32 baanim_playForDuration_onceSmooth(BtIntPtr, s32, s32);
     baanim_playForDuration_onceSmooth(arg0, 0x116, 0x40000000);
-    (((Objcrouch_arg0 *)arg0)->unk15C) = 2;
+    (((PlayerState *)arg0)->unk15C.word) = 2;
 }
 
 /* extern */
@@ -19,7 +19,7 @@ void func_80800068_bscrouch(void *arg0) {
     void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
     baanim_playForDuration_onceSmoothStartingAt(arg0, 0x10C, 0.5f, 0.9999f);
     _batimer_set(arg0, 2, 2.0f);
-    (((Objcrouch_arg0 *)arg0)->unk15C) = 1;
+    (((PlayerState *)arg0)->unk15C.word) = 1;
 }
 
 /* extern */
@@ -90,14 +90,14 @@ void bscrouch_entrypoint_0(void *arg0) {
     _batimer_set(arg0, 1, 0.2f);
     func_8009BB24(arg0, velocity);
     speed = sqrtf(velocity[0] * velocity[0] + velocity[2] * velocity[2]);
-    ((Objcrouch_arg0 *)arg0)->unk16C = speed;
+    ((PlayerState *)arg0)->unk16C = speed;
     if (speed > 140.0f) {
         func_8009D658(arg0);
     }
     if (func_800F1EA4(velocity, &yaw)) {
         baphysics_set_target_yaw(arg0, yaw);
     }
-    ((Objcrouch_arg0 *)arg0)->unk15C = 0;
+    ((PlayerState *)arg0)->unk15C.word = 0;
 }
 
 void bscrouch_entrypoint_1(void *arg0) {
@@ -135,7 +135,7 @@ void bscrouch_entrypoint_1(void *arg0) {
     _batimer_decrement(arg0, 0);
     _batimer_decrement(arg0, 1);
     speed = func_800F10B4(_batimer_get(arg0, 0), 0.0f, 0.3f, 0.0f,
-                        ((Objcrouch_arg0 *)arg0)->unk16C);
+                        ((PlayerState *)arg0)->unk16C);
     baphysics_set_target_horizontal_velocity(arg0, speed);
     if (speed > 220.0f) {
         _badust_entrypoint_9(arg0);

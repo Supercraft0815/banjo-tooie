@@ -1144,7 +1144,7 @@ void func_80801C74_bsfirstp(u8 *arg0) {
             break;
         }
     }
-}    typedef struct { f32 unk0; f32 unk4; f32 unk8; s32 unkC; f32 unk10; f32 unk14; f32 unk18; u8 pad1C[0x13C]; s32 unk158; s32 unk15C; u8 pad160[0x24]; s32 unk184; void * unk188; } Objfirstp_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0xA8]; s32 unkA8; u8 padAC[0x4]; s32 unkB0; } Objfirstp_func_80801D30_bsfirstp_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+} typedef struct { f32 unk0; f32 unk4; f32 unk8; s32 unkC; f32 unk10; f32 unk14; f32 unk18; u8 pad1C[0x13C]; s32 unk158; s32 unk15C; u8 pad160[0x24]; s32 unk184; union { void * unk188; f32 * unk188_f32p; s32 * unk188_s32p; s8 * unk188_s8p; u8 * unk188_u8p; }; } Objfirstp_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0xA8]; s32 unkA8; u8 padAC[0x4]; s32 unkB0; } Objfirstp_func_80801D30_bsfirstp_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -2756,7 +2756,7 @@ void func_808047EC_bsfirstp(u8 *arg0) {
     void func_80804848_bsfirstp(u8 *, s32);
     u8 *sp1C;
 
-    sp1C = (*(u8 **)((s8 *)(arg0) + (0x188)));
+    sp1C = (((Objfirstp_arg0 *)arg0)->unk188_u8p);
     bzero(sp1C + 0x12C, 0x38);
     bzero(sp1C + 0x164, 0x38);
     func_80804848_bsfirstp(arg0, (((Objfirstp_func_808047EC_bsfirstp_sp1C *)sp1C)->unkC));
@@ -3876,7 +3876,7 @@ void func_8080649C_bsfirstp(void *arg0) {
     } local;
     register f32 *temp_v0;
 
-    sp54 = *(u8 **)((u8 *)arg0 + 0x188);
+    sp54 = ((Objfirstp_arg0 *)arg0)->unk188_u8p;
     local.sp40 = func_800D9004() - 0.033333335f;
     temp_v0 = (f32 *)(sp54 + 0x1CC);
     local.sp4C = func_808052C8_bsfirstp(temp_v0 + 2, temp_v0[0], temp_v0[1], 0.033333335f);
@@ -4131,7 +4131,7 @@ f32 func_80806AD0_bsfirstp(u8 *arg0, f32 arg1, f32 arg2) {
     f32 sp34;
     f32 sp30;
 
-    temp_s0 = (*(f32 **)((s8 *)(arg0) + (0x188)));
+    temp_s0 = (((Objfirstp_arg0 *)arg0)->unk188_f32p);
     temp_f2 = func_800D9004() - 0.033333335f;
     sp34 = func_808057C8_bsfirstp(temp_s0 + 0x84, arg1, temp_s0[0x7C], 0.033333335f, arg2);
     if (temp_f2 != 0.0f) {
@@ -4144,7 +4144,7 @@ f32 func_80806AD0_bsfirstp(u8 *arg0, f32 arg1, f32 arg2) {
 }
 
 void bsfirstp_entrypoint_28(void *arg0, void *arg1) {
-    s32 *ptr0 = *(s32 **)((s8 *)arg0 + 0x188);
+    s32 *ptr0 = ((Objfirstp_arg0 *)arg0)->unk188_s32p;
     s32 *ptr1 = ((Objfirstp_arg1 *)arg1)->unk188;
 
     ptr0[0x64 / 4] = ((Objfirstp_arg1 *)arg1)->unk184;
@@ -4775,7 +4775,7 @@ void func_80807A70_bsfirstp(void *arg0) {
     void func_800936CC(void *, s32);
     s32 *temp_v0;
 
-    temp_v0 = (*(s32 **)((s8 *)(arg0) + (0x188)));
+    temp_v0 = (((Objfirstp_arg0 *)arg0)->unk188_s32p);
     if (*temp_v0 != -1) {
         func_800936CC(arg0, 0);
         func_8009359C(arg0, 0);
@@ -5043,7 +5043,7 @@ void func_80808084_bsfirstp(BtIntPtr arg0)
 }
 
 void func_808080A4_bsfirstp(void *arg0, u8 arg1) {
-    s8 *ptr = *(s8 **)((s8 *)arg0 + 0x188);
+    s8 *ptr = ((Objfirstp_arg0 *)arg0)->unk188_s8p;
     ptr[0x72] = arg1;
 }
 
@@ -5940,7 +5940,7 @@ void func_8080995C_bsfirstp(u8 *arg0) {
         u8 *data;
     } local;
 
-    local.data = *(u8 **)((s8 *)arg0 + 0x188);
+    local.data = ((Objfirstp_arg0 *)arg0)->unk188_u8p;
     bcopy((u8 *)func_80802458_bsfirstp(arg0) + 0x74, local.data + 0x230, 0x18);
     *(s16 *)(local.data + 0x248) = 0;
     *(f32 *)(local.data + 0x24C) = 0.0f;

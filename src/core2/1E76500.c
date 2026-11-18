@@ -32,11 +32,11 @@ s32 func_8009CC68(PlayerState *self) {
         return 0;
     }
     return (s32) (*(u8 *)((s8 *)((u8 *)temp_v1 + ((u32)temp_a1 << 4)) - 0x10));
-}
+} typedef struct { u8 pad0[0xF0]; union { u8 * unkF0; void * unkF0_voidp; }; } Obj1E76500_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_8009CC90(void *arg0) {
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xF0)))) + (0x81))) = 0;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xF0)))) + (0x80))) = 0;
+    (*(s8 *)((s8 *)((((Obj1E76500_arg0 *)arg0)->unkF0_voidp)) + (0x81))) = 0;
+    (*(s8 *)((s8 *)((((Obj1E76500_arg0 *)arg0)->unkF0_voidp)) + (0x80))) = 0;
 }    typedef struct { u8 pad0[0x80]; u8 unk80; } Obj1E76500_func_8009CCA4_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8009CCA4(PlayerState *arg0) {
@@ -53,7 +53,7 @@ void func_8009CCA4(PlayerState *arg0) {
             (*(s8 *)((s8 *)((arg0->unkF0)) + (0x81))) = 0;
         }
     }
-}    typedef struct { u8 pad0[0xF0]; u8 * unkF0; } Obj1E76500_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_8009CCFC(s32 *arg0, s32 arg1)
 {
@@ -119,7 +119,7 @@ void func_8009CDE0(void *arg0, s32 arg1) {
 void func_8009CEE8(void *arg0) {
     void *temp_v0;
 
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0xF0)));
+    temp_v0 = (((Obj1E76500_arg0 *)arg0)->unkF0_voidp);
     if ((((Obj1E76500_func_8009CEE8_temp_v0 *)temp_v0)->unk80) != 0) {
         (((Obj1E76500_func_8009CEE8_temp_v0 *)temp_v0)->unk81) = 0;
     }

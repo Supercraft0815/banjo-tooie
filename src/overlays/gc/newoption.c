@@ -1,6 +1,6 @@
 #include "gc/newoption.h"
 
-typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; u8 padE[0x6]; f32 unk14; f32 unk18; u8 pad1C[0x4]; BtIntPtr unk20; s8 unk24; u8 pad25[0x1]; s16 unk26; s16 unk28; s16 unk2A; f32 unk2C; f32 unk30; s16 unk34; u8 pad36[0x2]; f32 unk38; u8 pad3C[0x1FA]; s16 unk236; s16 unk238; u8 pad23A[0x2]; u32 * unk23C; u8 pad240[0x14]; s16 unk254; s16 unk256; f32 unk258; f32 unk25C; } Objnewoption_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ s32 func_80800000_gcnewoption(u8 *arg0, s32 arg1) {
+typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; u8 padE[0x6]; f32 unk14; f32 unk18; u8 pad1C[0x4]; union { BtIntPtr unk20; u8 * unk20_u8p; }; s8 unk24; u8 pad25[0x1]; s16 unk26; s16 unk28; s16 unk2A; f32 unk2C; f32 unk30; s16 unk34; u8 pad36[0x2]; f32 unk38; u8 pad3C[0x1FA]; s16 unk236; s16 unk238; u8 pad23A[0x2]; union { u32 * unk23C; u8 * unk23C_u8p; }; u8 pad240[0x14]; s16 unk254; s16 unk256; f32 unk258; f32 unk25C; } Objnewoption_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ s32 func_80800000_gcnewoption(u8 *arg0, s32 arg1) {
     s16 temp_v0;
     s32 var_v1;
 
@@ -380,7 +380,7 @@ s32 gcnewoption_entrypoint_3(u8 *arg0) {
     u8 *text;
 
     offset = 3;
-    text = *(u8 **)((s8 *)arg0 + 0x23C);
+    text = ((Objnewoption_arg0 *)arg0)->unk23C_u8p;
     if (text[offset] != 0x8D) {
         do {
             offset += text[offset + 1];
@@ -1658,8 +1658,8 @@ s32 func_80802674_gcnewoption(void *arg0) {
             break;
     }
     *(s8 *)(((u8 *)arg0) + index + 0x94) = state;
-    if (*(u8 **)(((u8 *)arg0) + 0x20)) {
-        state = _gczoombox_entrypoint_3(*(u8 **)(((u8 *)arg0) + 0x20));
+    if (((Objnewoption_arg0 *)arg0)->unk20_u8p) {
+        state = _gczoombox_entrypoint_3(((Objnewoption_arg0 *)arg0)->unk20_u8p);
         switch (state) {
             case 0:
             case 2:

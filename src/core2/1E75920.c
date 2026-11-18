@@ -3,7 +3,7 @@
 s32 func_8009C030() 
 {
     return 0x30;
-}    typedef struct { u8 pad0[0xE4]; BtIntPtr unkE4; } Obj1E75920_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0xE4]; union { BtIntPtr unkE4; void * unkE4_voidp; }; } Obj1E75920_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -38,7 +38,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8009C0F8(BT_IDO_ONLY(void *arg0) BT_P
 }
 
 void func_8009C118(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 228) + 4) = arg1;
+    *(f32 *)((u8 *)*&((Obj1E75920_arg0 *)arg0)->unkE4_voidp + 4) = arg1;
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8009C128(PlayerState *arg0, f32 arg1[3]) {

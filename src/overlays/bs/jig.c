@@ -1,10 +1,10 @@
 #include "common.h"
 struct anctrl_s; 
 struct player_state_s;     
-
+#include "overlays/ba/playerstate.h"
 s32 bsjig_entrypoint_0(s32 arg0) {
     return arg0 == 0x44;
-}                typedef struct { u8 pad0[0x15C]; s32 unk15C; s32 unk160; u8 pad164[0x20]; s32 unk184; } Objjig_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void bsjig_entrypoint_1(void *arg0) {
     void _chjigsawdance_entrypoint_1(Actor *arg0, s32 arg1);
@@ -48,7 +48,7 @@ void bsjig_entrypoint_1(void *arg0) {
     if (flag == 0) {
         flag = 0;
     }
-    ((Objjig_arg0 *)arg0)->unk160 = flag;
+    ((PlayerState *)arg0)->unk160.word = flag;
     func_800FC660(5);
     func_800A4DFC(arg0, 9);
     func_800C52F4(func_800A4C68(arg0), 2);
@@ -58,7 +58,7 @@ void bsjig_entrypoint_1(void *arg0) {
     baflag_clear(arg0, 0xF);
     func_8008E944(arg0);
     _chjigsawdance_entrypoint_1(func_80106790(func_800A32F8(arg0)), 1);
-    ((Objjig_arg0 *)arg0)->unk15C = 0;
+    ((PlayerState *)arg0)->unk15C.word = 0;
 }
 
 /* extern */
@@ -101,20 +101,20 @@ void bsjig_entrypoint_3(void *arg0) {
         func_8009D874(arg0);
     }
     if (anctrl_isAt(sp20, 0.835f) != 0) {
-        (((Objjig_arg0 *)arg0)->unk15C) = (s32) ((((Objjig_arg0 *)arg0)->unk15C) + 1);
+        (((PlayerState *)arg0)->unk15C.word) = (s32) ((((PlayerState *)arg0)->unk15C.word) + 1);
         func_8009DE38(arg0, 0x434, 1.3f);
     }
     if (anctrl_isAt(sp20, 0.94f) != 0) {
         func_8009DE38(arg0, 0x3EA, 1.0f);
     }
     if (anctrl_isStopped(sp20) != 0) {
-        if ((((Objjig_arg0 *)arg0)->unk160) != 0) {
+        if ((((PlayerState *)arg0)->unk160.word) != 0) {
             sp24 = 0x34;
         } else {
             sp24 = 1;
         }
     }
-    func_8009919C(arg0, &_bsjig_entrypoint_2, (((Objjig_arg0 *)arg0)->unk184));
+    func_8009919C(arg0, &_bsjig_entrypoint_2, (((PlayerState *)arg0)->unk184));
     bs_setState(arg0, sp24);
 }
 
@@ -206,7 +206,7 @@ void bsjig_entrypoint_9(struct player_state_s *arg0) {
     struct anctrl_s *control;
 
     control = baanim_getAnimCtrlPtr(arg0);
-    (*(s32 *)((u8 *)arg0 + 0x164)) = bs_getPreviousState(arg0) == 0x44;
+    (arg0->unk164.word) = bs_getPreviousState(arg0) == 0x44;
     baflag_clear(arg0, 0x1A);
     anctrl_reset(control);
     anctrl_setIndex(control, 0x282);
@@ -224,7 +224,7 @@ void bsjig_entrypoint_9(struct player_state_s *arg0) {
     func_8008E944(arg0);
 }
 
-typedef struct player_state_s PlayerState;
+
 
 void bsjig_entrypoint_10(PlayerState *arg0) {
     int baanim_isAt(PlayerState *, f32);

@@ -3,7 +3,7 @@
 #else
 #include "common.h"
 
-void func_800BC690(void) {
+typedef struct { s32 unk0; union { s32 unk4; void * unk4_voidp; }; s32 unk8; u8 unkC; u8 unkD; u8 unkE; u8 unkF; u8 unk10; u8 unk11; s16 unk12; } Obj1E95F80_D_801282E0; /* offsets.py genstruct: fields from raw offsets on &D_801282E0; rename once understood */ void func_800BC690(void) {
     void func_800B5680(s32);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
@@ -36,7 +36,7 @@ void func_800BC690(void) {
         ((State *)&D_801282E0)->count = D_8011A760[i].count;
         ((State *)&D_801282E0)->mode = D_8011A760[i].mode;
         *(void **)&D_801282E0 = heap_alloc(0x5DC0);
-        *(void **)((s8 *)&D_801282E0 + 4) = heap_alloc(0x5DC0);
+        ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk4_voidp = heap_alloc(0x5DC0);
         func_800EF410(normal, D_8011A760[i].normal);
         ((f32 *)&D_801282E0)[5] = 1.0f - (2.0f * normal[0]) * normal[0];
         ((f32 *)&D_801282E0)[9] = (2.0f * -normal[1]) * normal[0];
@@ -54,7 +54,7 @@ void func_800BC690(void) {
         func_800EE7F8(D_80128384, normal);
         func_800EE7F8(D_80128378, D_8011A760[i].point);
     }
-}    typedef struct { s32 unk0; s32 unk4; s32 unk8; u8 unkC; u8 unkD; u8 unkE; u8 unkF; u8 unk10; u8 unk11; s16 unk12; } Obj1E95F80_D_801282E0; /* offsets.py genstruct: fields from raw offsets on &D_801282E0; rename once understood */
+}
 
 void func_800BC8A0(void) {
     s32 heap_free(s32);

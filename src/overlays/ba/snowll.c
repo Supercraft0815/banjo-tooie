@@ -5,7 +5,7 @@ struct player_state_s;
 s32 basnowball_entrypoint_0() 
 {
     return 0x30;
-}    typedef struct { u8 pad0[0x2D]; u8 unk2D; } Objsnowll_func_80800008_basnowball_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */ typedef struct { u8 pad0[0x110]; void * unk110; } Objsnowll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x2D]; u8 unk2D; } Objsnowll_func_80800008_basnowball_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */ typedef struct { u8 pad0[0x110]; union { void * unk110; u8 * unk110_u8p; }; } Objsnowll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -97,35 +97,35 @@ void func_808001B8_basnowball(void *arg0, s32 arg1) {
     f32 pitch;
     u8 *data;
 
-    data = *(u8 **)((u8 *)arg0 + 0x110);
+    data = ((Objsnowll_arg0 *)arg0)->unk110_u8p;
     switch (data[0x28]) {
         case 0:
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x24) = func_80800084_basnowball(func_800A1718(arg0));
-            data = *(u8 **)((u8 *)arg0 + 0x110);
+            *(f32 *)(((Objsnowll_arg0 *)arg0)->unk110_u8p + 0x24) = func_80800084_basnowball(func_800A1718(arg0));
+            data = ((Objsnowll_arg0 *)arg0)->unk110_u8p;
             break;
         case 2:
             _bawobble_entrypoint_7(arg0);
-            func_8009E55C(arg0, 0, *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x1C) * 50.0f);
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110)) = 0.0f;
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 4) = 7.5f;
-            data = *(u8 **)((u8 *)arg0 + 0x110);
+            func_8009E55C(arg0, 0, *(f32 *)(((Objsnowll_arg0 *)arg0)->unk110_u8p + 0x1C) * 50.0f);
+            *(f32 *)(((Objsnowll_arg0 *)arg0)->unk110_u8p) = 0.0f;
+            *(f32 *)(((Objsnowll_arg0 *)arg0)->unk110_u8p + 4) = 7.5f;
+            data = ((Objsnowll_arg0 *)arg0)->unk110_u8p;
             break;
     }
     data[0x28] = arg1;
     switch (arg1) {
         case 1:
-            data = *(u8 **)((u8 *)arg0 + 0x110);
+            data = ((Objsnowll_arg0 *)arg0)->unk110_u8p;
             *(f32 *)(data + 0x1C) = *(f32 *)(data + 0x24);
             break;
         case 2:
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x18) = 1.0f;
-            data = *(u8 **)((u8 *)arg0 + 0x110);
+            *(f32 *)(((Objsnowll_arg0 *)arg0)->unk110_u8p + 0x18) = 1.0f;
+            data = ((Objsnowll_arg0 *)arg0)->unk110_u8p;
             *(f32 *)(data + 0x20) = *(f32 *)(data + 0x1C);
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x24) = func_80800084_basnowball(func_800A1718(arg0));
+            *(f32 *)(((Objsnowll_arg0 *)arg0)->unk110_u8p + 0x24) = func_80800084_basnowball(func_800A1718(arg0));
             _bawobble_entrypoint_1(arg0);
             _bawobble_entrypoint_4(arg0, 0.2f, 0.2f);
-            pitch = func_800F10B4(*(f32 *)(*(u8 **)((u8 *)arg0 + 0x110) + 0x24), 1.0, 3.0, 0.0, -0.5) + 1.2f;
-            data = *(u8 **)((u8 *)arg0 + 0x110);
+            pitch = func_800F10B4(*(f32 *)(((Objsnowll_arg0 *)arg0)->unk110_u8p + 0x24), 1.0, 3.0, 0.0, -0.5) + 1.2f;
+            data = ((Objsnowll_arg0 *)arg0)->unk110_u8p;
             if (*(f32 *)(data + 0x20) < *(f32 *)(data + 0x24)) {
                 _bawobble_entrypoint_5(arg0, 1.0f + 0.0f, 1.2);
                 func_8009DB04(arg0, 0x65A, pitch, 0x36B0);

@@ -235,7 +235,7 @@ void func_80012B74(s32 arg0) {
             D_8003CC64[i] = 0;
         }
     }
-}    typedef struct { u8 unk0; u8 pad1[0x3]; struct dma_node * unk4; void * unk8; } Obj1E2A0E0_D_80069A30; /* offsets.py genstruct: fields from raw offsets on &D_80069A30; rename once understood */
+} typedef struct { u8 unk0; u8 pad1[0x3]; union { struct dma_node * unk4; void * unk4_voidp; }; union { void * unk8; s32 * unk8_s32p; struct dma_node * unk8_structdma_nodep; }; } Obj1E2A0E0_D_80069A30; /* offsets.py genstruct: fields from raw offsets on &D_80069A30; rename once understood */
 
 s32 func_80012BB4(s32 addr, s32 len, void *state) {
     void func_80020E40(ALLink *, ALLink *);
@@ -270,11 +270,11 @@ s32 func_80012BB4(s32 addr, s32 len, void *state) {
             return osVirtualToPhysical((void *)low_bit);
         }
     }
-    node = *(struct dma_node **)((u8 *)&D_80069A30 + 8);
+    node = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8_structdma_nodep;
     if (node == NULL) {
         return osVirtualToPhysical(head);
     }
-    *(struct dma_node **)((u8 *)&D_80069A30 + 8) = (struct dma_node *)node->link.next;
+    ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8_structdma_nodep = (struct dma_node *)node->link.next;
     func_80020E74(&node->link);
     if (prev != NULL) {
         func_80020E40(&node->link, &prev->link);
@@ -307,7 +307,7 @@ s32 *func_80012D4C(s32 **arg0) {
     extern s32 func_80012BB4(s32, s32, void *);
     if ((((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk0) == 0) {
         (*(s32 *)((s8 *)(&D_80069A30) + (4))) = 0;
-        (*(s32 **)((s8 *)(&D_80069A30) + (8))) = &D_80069A40;
+        (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8_s32p) = &D_80069A40;
         (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk0) = 1U;
     }
     *arg0 = &D_80069A30;
@@ -334,13 +334,13 @@ void func_80012D84(void) {
             i++;
         } while (i < D_8006A14C);
     }
-    node = *(void **)((u8 *)&D_80069A30 + 4);
+    node = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4_voidp;
     if (node != NULL) {
         do {
             next = *(void **)node;
             if ((u32)(((Obj1E2A0E0_func_80012D84_node *)node)->unkC + 1) < D_8006A148) {
-                if (node == *(void **)((u8 *)&D_80069A30 + 4)) {
-                    *(void **)((u8 *)&D_80069A30 + 4) = *(void **)node;
+                if (node == ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4_voidp) {
+                    ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4_voidp = *(void **)node;
                 }
                 func_80020E74(node);
                 if (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8 != NULL) {

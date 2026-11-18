@@ -2,7 +2,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
+#include "overlays/ba/playerstate.h"
 struct player_state_s; 
 struct anctrl_s;
 enum asset_e;
@@ -17,7 +17,7 @@ int func_8008DF8C(struct player_state_s *, s32);
 void func_80800000_bsjump(BtIntPtr arg0) {
     void func_8009D7A4(void *arg0, f32 arg1, f32 arg2);
     func_8009D7A4(arg0, 0.91f, 1.09f);
-}                typedef struct { u8 pad0[0x15C]; s32 unk15C; s32 unk160; s32 unk164; } Objjump_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void bsjump_entrypoint_0(void *arg0) {
     void _bswalk_entrypoint_1();
@@ -51,7 +51,7 @@ void bsjump_entrypoint_0(void *arg0) {
     s32 previous_state;
 
     anim_ctrl = baanim_getAnimCtrlPtr(arg0);
-    ((Objjump_arg0 *)arg0)->unk164 = baflag_isTrue(arg0, 2) && !func_8008E23C(arg0);
+    ((PlayerState *)arg0)->unk164.word = baflag_isTrue(arg0, 2) && !func_8008E23C(arg0);
     previous_state = bs_getPreviousState(arg0);
     if (func_8009CBDC(arg0, previous_state) == 0xA) {
         func_80098840(arg0);
@@ -61,10 +61,10 @@ void bsjump_entrypoint_0(void *arg0) {
         anctrl_setStart(anim_ctrl, 0.5042f);
         anctrl_setDuration(anim_ctrl, 8.0f);
         anctrl_setPlaybackType(anim_ctrl, 1);
-        ((Objjump_arg0 *)arg0)->unk15C = 1;
+        ((PlayerState *)arg0)->unk15C.word = 1;
         return;
     }
-    ((Objjump_arg0 *)arg0)->unk160 = func_8009CA70(arg0, previous_state, 1);
+    ((PlayerState *)arg0)->unk160.word = func_8009CA70(arg0, previous_state, 1);
     anctrl_reset(anim_ctrl);
     anctrl_setIndex(anim_ctrl, 8);
     anctrl_setDuration(anim_ctrl, 1.9f);
@@ -80,14 +80,14 @@ void bsjump_entrypoint_0(void *arg0) {
     baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
     _bswalk_entrypoint_1(arg0);
     baphysics_set_horizontal_velocity(arg0, yaw_getIdeal(arg0), baphysics_get_target_horizontal_velocity(arg0));
-    if (((Objjump_arg0 *)arg0)->unk160 != 0) {
+    if (((PlayerState *)arg0)->unk160.word != 0) {
         baphysics_set_vertical_velocity(arg0, 610.0f);
     } else {
         baphysics_set_vertical_velocity(arg0, 710.0f);
     }
     baphysics_set_gravity(arg0, -1350.0f);
-    ((Objjump_arg0 *)arg0)->unk15C = 0;
-    if (((Objjump_arg0 *)arg0)->unk164 != 0) {
+    ((PlayerState *)arg0)->unk15C.word = 0;
+    if (((PlayerState *)arg0)->unk164.word != 0) {
         func_8009DE38(arg0, 0x422, 1.0f);
     } else {
         func_80800000_bsjump((BtIntPtr)arg0);
@@ -110,7 +110,7 @@ void bsjump_entrypoint_1(void *arg0) {
     f32 height_difference;
 
     next_state = 0;
-    if (((Objjump_arg0 *)arg0)->unk164 != 0) {
+    if (((PlayerState *)arg0)->unk164.word != 0) {
         func_8009FC80(arg0);
     }
     if (baflag_isTrue(arg0, 0xF) != 0) {
@@ -120,33 +120,33 @@ void bsjump_entrypoint_1(void *arg0) {
     }
     func_8009BB24(arg0, velocity);
     if (((bakey_released(arg0, 8) != 0) && (velocity[1] > 0.0f) &&
-         (((Objjump_arg0 *)arg0)->unk164 == 0)) || (func_8008D544(arg0) == 0)) {
+         (((PlayerState *)arg0)->unk164.word == 0)) || (func_8008D544(arg0) == 0)) {
         baphysics_reset_gravity(arg0);
     }
-    switch (((Objjump_arg0 *)arg0)->unk15C) {
+    switch (((PlayerState *)arg0)->unk15C.word) {
     case 2:
         break;
     case 0:
         if (baanim_isStopped(arg0) != 0) {
             baanim_setEndAndDuration(arg0, 0.6667f, 4.0f);
-            ((Objjump_arg0 *)arg0)->unk15C = 1;
+            ((PlayerState *)arg0)->unk15C.word = 1;
         }
         if (func_8008DF8C(arg0, 0x82) != 0) {
             baanim_setEndAndDuration(arg0, 1.0f, 1.4f);
-            ((Objjump_arg0 *)arg0)->unk15C = 2;
+            ((PlayerState *)arg0)->unk15C.word = 2;
         }
         break;
     case 1:
         if (baanim_isStopped(arg0) != 0) {
             next_state = 0x2F;
         }
-        if (((Objjump_arg0 *)arg0)->unk164 != 0) {
-            ((Objjump_arg0 *)arg0)->unk164 = 0;
+        if (((PlayerState *)arg0)->unk164.word != 0) {
+            ((PlayerState *)arg0)->unk164.word = 0;
             next_state = 0x21;
         }
         if (func_8008DF8C(arg0, 0x5A) != 0) {
             baanim_setEndAndDuration(arg0, 1.0f, 2.0f);
-            ((Objjump_arg0 *)arg0)->unk15C = 2;
+            ((PlayerState *)arg0)->unk15C.word = 2;
         }
         break;
     }
@@ -154,7 +154,7 @@ void bsjump_entrypoint_1(void *arg0) {
         next_state = 0x3D;
     }
     if (bakey_released(arg0, 8) != 0) {
-        ((Objjump_arg0 *)arg0)->unk164 = 0;
+        ((PlayerState *)arg0)->unk164.word = 0;
     }
     switch (func_800A3274(arg0)) {
     case 1:
@@ -163,8 +163,8 @@ void bsjump_entrypoint_1(void *arg0) {
         }
         if (bainput_func_80097F08(arg0) != 0) {
             height_difference = func_8009C150(arg0) - func_800964DC(arg0);
-            if ((((Objjump_arg0 *)arg0)->unk160 != 0 && ((height_difference > 2.0f) != 0)) ||
-                ((Objjump_arg0 *)arg0)->unk160 == 0) {
+            if ((((PlayerState *)arg0)->unk160.word != 0 && ((height_difference > 2.0f) != 0)) ||
+                ((PlayerState *)arg0)->unk160.word == 0) {
                 next_state = 0x11;
             }
         }
@@ -227,7 +227,7 @@ void bsjump_entrypoint_4(void *arg0) {
     anctrl_setDuration(temp_s0, 0.38f);
     anctrl_start(temp_s0);
     func_8009FFD8(arg0, 1, 1, 3, 6);
-    (((Objjump_arg0 *)arg0)->unk15C) = 0;
+    (((PlayerState *)arg0)->unk15C.word) = 0;
 }
 
 void bsjump_entrypoint_5(void *arg0) {
@@ -255,7 +255,7 @@ void bsjump_entrypoint_5(void *arg0) {
         _bswalk_entrypoint_1(arg0);
     }
     func_8009BB24(arg0, velocity);
-    switch (((Objjump_arg0 *)arg0)->unk15C) {
+    switch (((PlayerState *)arg0)->unk15C.word) {
     case 0:
         if (func_8008DF8C(arg0, 0x5A)) {
             anctrl_reset(anim_ctrl);
@@ -264,7 +264,7 @@ void bsjump_entrypoint_5(void *arg0) {
             anctrl_setDuration(anim_ctrl, 2.0f);
             anctrl_setPlaybackType(anim_ctrl, 1);
             anctrl_start(anim_ctrl);
-            ((Objjump_arg0 *)arg0)->unk15C = 1;
+            ((PlayerState *)arg0)->unk15C.word = 1;
         }
         break;
     case 1:
@@ -369,7 +369,7 @@ void bsjump_entrypoint_8(struct player_state_s *arg0) {
     baphysics_set_vertical_velocity(arg0, 710.0f);
     baphysics_set_gravity(arg0, -1350.0f);
     func_800961AC(arg0, 6);
-    *(s32 *)((u8 *)arg0 + 0x15C) = 0;
+    arg0->unk15C.word = 0;
     func_80800000_bsjump((BtIntPtr)arg0);
 }
 
@@ -396,19 +396,19 @@ void bsjump_entrypoint_9(struct player_state_s *arg0) {
     if (velocity[1] < 0.0f) {
         func_800961AC(arg0, 1);
     }
-    switch (*(s32 *)((u8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
     case 0:
         if (anctrl_isStopped(control)) {
             anctrl_setSubrange(control, 0.0f, 0.6667f);
             anctrl_setDuration(control, 4.0f);
             anctrl_setPlaybackType(control, 1);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 1;
+            arg0->unk15C.word = 1;
         }
         if (func_8008DF8C(arg0, 0x82)) {
             anctrl_setSubrange(control, 0.0f, 1.0f);
             anctrl_setDuration(control, 1.4f);
             anctrl_setPlaybackType(control, 1);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            arg0->unk15C.word = 2;
         }
         break;
     case 1:
@@ -416,7 +416,7 @@ void bsjump_entrypoint_9(struct player_state_s *arg0) {
             anctrl_setSubrange(control, 0.0f, 1.0f);
             anctrl_setDuration(control, 2.0f);
             anctrl_setPlaybackType(control, 1);
-            *(s32 *)((u8 *)arg0 + 0x15C) = 2;
+            arg0->unk15C.word = 2;
         }
         break;
     case 2:
@@ -488,7 +488,7 @@ void bsjump_entrypoint_12(struct player_state_s *arg0) {
     baphysics_set_type(arg0, 6);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_8009BA9C(arg0, 0);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (arg0->unk15C.word) = 0;
     func_8008E944(arg0);
 }
 
@@ -508,13 +508,13 @@ void bsjump_entrypoint_13(struct player_state_s *arg0) {
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr(arg0);
     func_8009BB24(arg0, velocity);
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
         case 0:
             if (func_8008DF8C(arg0, 0x5A)) {
                 anctrl_setSubrange(anim_ctrl, 0.0f, 1.0f);
                 anctrl_setDuration(anim_ctrl, 2.0f);
                 anctrl_setPlaybackType(anim_ctrl, 1);
-                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+                arg0->unk15C.word = 1;
             }
             break;
         case 1:
@@ -562,7 +562,7 @@ void bsjump_entrypoint_17(struct player_state_s *arg0) {
         _batimer_set(arg0, 0, 0.0f);
         _batimer_set(arg0, 1, 0.01f);
     }
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (arg0->unk15C.word) = 0;
 }
 
 void bsjump_entrypoint_18(struct player_state_s *arg0) {

@@ -13,7 +13,7 @@ void gcboundDll_entrypoint_0(u8 *arg0) {
         arg0[i + 0x18] = 1;
     }
     (*(s32 *)(arg0 + 0xE0)) = 0;
-}    typedef struct { s32 unk0; BtIntPtr unk4; s32 unk8; BtIntPtr unkC; s32 unk10; BtIntPtr unk14; u8 pad18[0xC8]; BtIntPtr unkE0; } ObjboundDll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { s32 unk0; BtIntPtr unk4; s32 unk8; BtIntPtr unkC; s32 unk10; BtIntPtr unk14; u8 pad18[0xC8]; union { BtIntPtr unkE0; s16 * unkE0_s16p; u8 * unkE0_u8p; }; } ObjboundDll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -409,7 +409,7 @@ void func_80800D40_gcboundDll(void *arg0) {
     s32 sp2C;
     s32 var_s2;
 
-    var_s2 = func_800B4374(*(s16 **)((s8 *)arg0 + 0xE0));
+    var_s2 = func_800B4374(((ObjboundDll_arg0 *)arg0)->unkE0_s16p);
     if (var_s2 != 0) {
         do {
             sp2C = 0;
@@ -427,12 +427,12 @@ void func_80800D40_gcboundDll(void *arg0) {
                 var_s0 = temp_v0;
             }
             if (var_s0 != 0) {
-                func_800B4134((u8 **)((s8 *)arg0 + 0xE0), (s8 *)var_s0 + 0x18);
+                func_800B4134(&((ObjboundDll_arg0 *)arg0)->unkE0_u8p, (s8 *)var_s0 + 0x18);
                 var_s2 = sp2C + 1;
             }
         } while (var_s0 != 0);
     }
-    func_800B4354((u8 **)((s8 *)arg0 + 0xE0));
+    func_800B4354(&((ObjboundDll_arg0 *)arg0)->unkE0_u8p);
 }
 
 void gcboundDll_entrypoint_8(void *arg0) { void func_808008D8_gcboundDll(void *, s32, s32); void func_80800D40_gcboundDll(void *); func_808008D8_gcboundDll(arg0, (((ObjboundDll_arg0 *)arg0)->unk0), (((ObjboundDll_arg0 *)arg0)->unk4)); func_808008D8_gcboundDll(arg0, (((ObjboundDll_arg0 *)arg0)->unk8), (((ObjboundDll_arg0 *)arg0)->unkC)); func_808008D8_gcboundDll(arg0, (((ObjboundDll_arg0 *)arg0)->unk10), (((ObjboundDll_arg0 *)arg0)->unk14)); func_80800D40_gcboundDll(arg0); }

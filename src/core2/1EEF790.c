@@ -28,7 +28,7 @@ void func_80115EA8(f32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5)
     }
     *arg2 = 0.0f;
     *arg1 = arg0;
-}    typedef struct { f32 unk0; u8 * unk4; f32 unk8; } Obj1EEF790_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { f32 unk0; union { u8 * unk4; void * unk4_voidp; }; f32 unk8; } Obj1EEF790_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80115F98(void *arg0) {
     (((Obj1EEF790_arg0 *)arg0)->unk8) = 0.0f;
@@ -60,9 +60,9 @@ void func_80116024(void *arg0 BT_PASS2(, f32 *bt_a1)) {
 }
 
 void func_80116050(void *arg0, f32 arg1) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (4)))) + (4))) = arg1;
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (4)))) + (0x18))) = (f32) (arg1 * 0.5f);
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (4)))) + (0x40))) = arg1;
+    (*(f32 *)((s8 *)((((Obj1EEF790_arg0 *)arg0)->unk4_voidp)) + (4))) = arg1;
+    (*(f32 *)((s8 *)((((Obj1EEF790_arg0 *)arg0)->unk4_voidp)) + (0x18))) = (f32) (arg1 * 0.5f);
+    (*(f32 *)((s8 *)((((Obj1EEF790_arg0 *)arg0)->unk4_voidp)) + (0x40))) = arg1;
 }
 
 void func_8011607C(void *arg0, s32 arg1) {
@@ -169,5 +169,5 @@ s32 func_80116218(s32 *arg0, f32 *arg1) {
 }
 
 void func_801163A0(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 4) + 88) = arg1;
+    *(f32 *)((u8 *)*&((Obj1EEF790_arg0 *)arg0)->unk4_voidp + 88) = arg1;
 }

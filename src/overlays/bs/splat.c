@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "overlays/ba/playerstate.h"
 /* extern */
 
 struct player_state_s;
@@ -22,7 +22,7 @@ void bssplat_entrypoint_0(struct player_state_s *arg0) {
     }
     _badust_entrypoint_8(arg0);
     _bashake_entrypoint_0(arg0, 3, 2);
-}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objsplat_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 /* extern */
 
@@ -36,7 +36,7 @@ void func_8080009C_bssplat(void *arg0) {
     func_8009FFD8(arg0, 1, 1, 3, 3);
     bssplat_entrypoint_0(arg0);
     func_8009DF18(arg0, 0x427, 1.0f, 0x6D60);
-    (((Objsplat_arg0 *)arg0)->unk15C) = 0;
+    (((PlayerState *)arg0)->unk15C.word) = 0;
     func_8008E944(arg0);
 }
 
@@ -60,7 +60,7 @@ void func_80800114_bssplat(struct player_state_s *arg0) {
     sp24 = 0;
     sp20 = baanim_getAnimCtrlPtr(arg0);
     baphysics_set_target_horizontal_velocity(arg0, func_800F0E00(0.0f, baphysics_get_target_horizontal_velocity(arg0) - 15.0f));
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
     case 0:
         if (baphysics_get_target_horizontal_velocity(arg0) > 140.0f) {
             _badust_entrypoint_9(arg0);
@@ -70,7 +70,7 @@ void func_80800114_bssplat(struct player_state_s *arg0) {
         }
         if (anctrl_isStopped(sp20) != 0) {
             baanim_playForDuration_onceSmooth(arg0, 0xD2, 2.25f);
-            *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+            arg0->unk15C.word = 1;
         }
         break;
     case 1:

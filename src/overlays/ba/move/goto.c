@@ -1,6 +1,6 @@
 #include "common.h"
 
-struct player_state_s;
+struct player_state_s; typedef struct { u8 pad0[0xC8]; union { u8 * unkC8; void * unkC8_voidp; }; } Objgoto_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800000_bamovegoto(void *arg0, s32 arg1) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
@@ -9,8 +9,8 @@ void func_80800000_bamovegoto(void *arg0, s32 arg1) {
         baphysics_set_target_horizontal_velocity(arg0, 0.0f);
         func_8009BA9C(arg0, 0);
     }
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = (s8) arg1;
-}    typedef struct { u8 pad0[0xC8]; u8 * unkC8; } Objgoto_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+    (*(s8 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8_voidp)) + (0x54))) = (s8) arg1;
+}
 
 /* extern */
 
@@ -40,7 +40,7 @@ void bamovegoto_entrypoint_1(void *arg0) {
 }
 
 f32 bamovegoto_entrypoint_2(void *arg0) {
-    return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 116);
+    return *(f32 *)((u8 *)*&((Objgoto_arg0 *)arg0)->unkC8_voidp + 116);
 }
 
 /* extern */
@@ -54,7 +54,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) bamovegoto_entrypoint_3(void *arg0) {
 }
 
 s32 bamovegoto_entrypoint_4(void *arg0) {
-    return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) == 6;
+    return (*(u8 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8_voidp)) + (0x54))) == 6;
 }
 
 void bamovegoto_entrypoint_5(BtIntPtr arg0)
@@ -63,28 +63,28 @@ void bamovegoto_entrypoint_5(BtIntPtr arg0)
 }
 
 void bamovegoto_entrypoint_6(void *arg0) {
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x54))) = 0;
+    (*(s8 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8_voidp)) + (0x54))) = 0;
 }
 
 void bamovegoto_entrypoint_7(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 112) = arg1;
+    *(f32 *)((u8 *)*&((Objgoto_arg0 *)arg0)->unkC8_voidp + 112) = arg1;
 }
 
 void bamovegoto_entrypoint_8(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 120) = arg1;
+    *(f32 *)((u8 *)*&((Objgoto_arg0 *)arg0)->unkC8_voidp + 120) = arg1;
 }
 
 void bamovegoto_entrypoint_9(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 85) = arg1;
+    *(s8 *)((u8 *)*&((Objgoto_arg0 *)arg0)->unkC8_voidp + 85) = arg1;
 }
 
 void bamovegoto_entrypoint_10(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 200) + 86) = arg1;
+    *(s8 *)((u8 *)*&((Objgoto_arg0 *)arg0)->unkC8_voidp + 86) = arg1;
 }
 
 void bamovegoto_entrypoint_11(void *arg0, BtIntPtr arg1, BtIntPtr arg2) {
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x80))) = arg1;
-    (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x7C))) = arg2;
+    (*(s32 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8_voidp)) + (0x80))) = arg1;
+    (*(s32 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8_voidp)) + (0x7C))) = arg2;
 }
 
 /* extern */
@@ -99,7 +99,7 @@ void bamovegoto_entrypoint_12(void *arg0, f32 *arg1) {
 void bamovegoto_entrypoint_13(void *arg0) {
     void baphysics_set_type(void *self, s32 type);
     baphysics_set_type(arg0, 0xC);
-    if ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x55))) == 1) {
+    if ((*(u8 *)((s8 *)((((Objgoto_arg0 *)arg0)->unkC8_voidp)) + (0x55))) == 1) {
         func_80800000_bamovegoto(arg0, 2);
         return;
     }

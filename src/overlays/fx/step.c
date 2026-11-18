@@ -193,7 +193,7 @@ void *fxstep_entrypoint_1(void) {
         u8 sound1;
         u8 flag0;
         u8 flag1;
-    } *this = heap_alloc(0x28);
+    } *this = heap_alloc(sizeof(*this));
 
     this->flag0 = 0;
     this->flag1 = 1;

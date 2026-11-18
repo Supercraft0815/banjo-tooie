@@ -39,7 +39,7 @@ typedef struct {
     u8 padding[8];
 } SoundListStorage;
 
-SoundListStorage D_80126CC0_storage;    typedef struct { s32 unk0; s32 unk4; } Obj1E64F00_D_80126CC0; /* offsets.py genstruct: fields from raw offsets on &D_80126CC0; rename once understood */
+SoundListStorage D_80126CC0_storage; typedef struct { s32 unk0; union { s32 unk4; s16 * unk4_s16p; struct Entry * unk4_structEntryp; }; } Obj1E64F00_D_80126CC0; /* offsets.py genstruct: fields from raw offsets on &D_80126CC0; rename once understood */
 
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_8008B610(void) {
@@ -97,7 +97,7 @@ void func_8008B6E0(void) {
     s16 *var_s0;
 
     var_s0 = (s16 *)D_80126CC0;
-    while (var_s0 < *(s16 **)((s8 *)&D_80126CC0 + 4)) {
+    while (var_s0 < ((Obj1E64F00_D_80126CC0 *)&D_80126CC0)->unk4_s16p) {
             if (var_s0[2] != 0) {
                 temp_a0 = var_s0[0];
                 if ((temp_a0 != 0) && (var_s0[1] < 0x3B)) {

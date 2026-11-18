@@ -73,7 +73,7 @@ void gcmapsects_entrypoint_0(s16 arg0, s16 arg1, f32 *arg2, f32 *arg3, f32 *arg4
     map->sections[index].unk50 = 0;
     map->sections[index].unk54 = 0;
     map->count++;
-}    typedef struct { u8 pad0[0x68]; s32 unk68; s32 unk6C; f32 unk70; s16 unk74; u8 unk76; u8 unk77; s8 unk78; u8 pad79[0x1]; u8 unk7A; u8 unk7B; s8 unk7C; u8 pad7D[0x1]; s8 unk7E; s8 unk7F; u8 unk80; u8 pad81[0x1]; s8 unk82; } Objmapsects_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x40]; u16 unk40; u16 unk42; s32 unk44; s32 unk48; } Objmapsects_func_80800250_gcmapsects_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
+} typedef struct { u8 pad0[0x68]; union { s32 unk68; u8 * unk68_u8p; }; s32 unk6C; f32 unk70; s16 unk74; u8 unk76; u8 unk77; s8 unk78; u8 pad79[0x1]; u8 unk7A; u8 unk7B; s8 unk7C; u8 pad7D[0x1]; s8 unk7E; s8 unk7F; u8 unk80; u8 pad81[0x1]; s8 unk82; } Objmapsects_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x40]; u16 unk40; u16 unk42; s32 unk44; s32 unk48; } Objmapsects_func_80800250_gcmapsects_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 /* extern */
 
@@ -366,17 +366,17 @@ void func_80800B58_gcmapsects(void *arg0) {
     var_s2 = 0;
     if (((Objmapsects_arg0 *)arg0)->unk77 > 0) {
         do {
-            section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+            section = (void *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + var_s0);
             if (section->active && func_800D73CC(section->id) == 0) {
-                if (func_800E488C(((struct Section *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0))->id) != 0) {
-                    func_800D674C(((struct Section *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0))->id);
-                    func_800D70F8(((struct Section *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0))->id, 1);
-                    section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+                if (func_800E488C(((struct Section *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + var_s0))->id) != 0) {
+                    func_800D674C(((struct Section *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + var_s0))->id);
+                    func_800D70F8(((struct Section *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + var_s0))->id, 1);
+                    section = (void *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + var_s0);
                     section->loaded = 1;
                 } else {
-                    section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+                    section = (void *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + var_s0);
                     section->flag0 = 0;
-                    section = (void *)(*(u8 **)((u8 *)arg0 + 0x68) + var_s0);
+                    section = (void *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + var_s0);
                     section->flag1 = 0;
                 }
             }
@@ -987,13 +987,13 @@ void gcmapsects_entrypoint_15(void *arg0) {
         offset = 0;
         do {
             i++;
-            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry = (struct EntryFlags *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + offset);
             entry->active = 0;
-            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry = (struct EntryFlags *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + offset);
             entry->enabled = 1;
-            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry = (struct EntryFlags *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + offset);
             entry->saved = entry->visible;
-            entry = (struct EntryFlags *)(*(u8 **)((u8 *)arg0 + 0x68) + offset);
+            entry = (struct EntryFlags *)(((Objmapsects_arg0 *)arg0)->unk68_u8p + offset);
             entry->visible = *((u8 *)arg0 + 0x83);
             offset += 0x58;
         } while (i < *((u8 *)arg0 + 0x77));

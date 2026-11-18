@@ -1,6 +1,6 @@
 #include "common.h"
 
-typedef struct { u8 pad0[0x158]; void * unk158; u8 pad15C[0x28]; s32 unk184; } Objdeathmatch_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_badeathmatch(void *arg0) {
+typedef struct { u8 pad0[0x158]; union { void * unk158; u8 * unk158_u8p; }; u8 pad15C[0x28]; s32 unk184; } Objdeathmatch_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_badeathmatch(void *arg0) {
     (*(s8 *)((s8 *)((((Objdeathmatch_arg0 *)arg0)->unk158)) + (0x20))) = 1;
     (*(s8 *)((s8 *)((((Objdeathmatch_arg0 *)arg0)->unk158)) + (0x21))) = 0;
     (*(s8 *)((s8 *)((((Objdeathmatch_arg0 *)arg0)->unk158)) + (0x22))) = 0;
@@ -24,7 +24,7 @@ s32 badeathmatch_entrypoint_0(u8 *arg0) {
     s32 var_s1;
     u8 *temp_s2;
 
-    temp_s2 = (*(u8 **)((s8 *)(arg0) + (0x158)));
+    temp_s2 = (((Objdeathmatch_arg0 *)arg0)->unk158_u8p);
     var_s0 = 1;
     var_s1 = (((Objdeathmatch_badeathmatch_entrypoint_0_temp_s2 *)temp_s2)->unk20);
 loop_1:
@@ -43,7 +43,7 @@ loop_1:
             var_s1 = temp_v0_2;
         } while (((s16 *)temp_s2)[temp_v0_2] == 0);
     }
-    (*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x158)))) + (0x20))) = var_s1;
+    (*(u8 *)((s8 *)((((Objdeathmatch_arg0 *)arg0)->unk158_u8p)) + (0x20))) = var_s1;
     func_800FC6B0(_gcegg_entrypoint_2(var_s1));
     return var_s1;
 }
@@ -135,7 +135,7 @@ s32 badeathmatch_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
     {
         s32 sum;
         sum = *(s16 *)(*(u8 **)(arg0 + 0x158) + temp_v1 + 0x10) + arg2;
-        (*(s16 *)((s8 *)(((*(u8 **)((s8 *)(arg0) + (0x158))) + temp_v1)) + (0x10))) = func_800F0D90(sum, 0, sp2E);
+        (*(s16 *)((s8 *)(((((Objdeathmatch_arg0 *)arg0)->unk158_u8p) + temp_v1)) + (0x10))) = func_800F0D90(sum, 0, sp2E);
     }
     if (arg2 > 0) {
         s32 sp1C;
@@ -146,7 +146,7 @@ s32 badeathmatch_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
         }
         func_80101238(0x72, sp1C);
     }
-    return (*(s16 *)((s8 *)(((*(u8 **)((s8 *)(arg0) + (0x158))) + temp_v1)) + (0x10)));
+    return (*(s16 *)((s8 *)(((((Objdeathmatch_arg0 *)arg0)->unk158_u8p) + temp_v1)) + (0x10)));
 }    typedef struct { u8 pad0[0x20]; u8 unk20; u8 unk21; } Objdeathmatch_badeathmatch_entrypoint_6_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 s32 badeathmatch_entrypoint_6(void *arg0) {
@@ -196,7 +196,7 @@ s32 badeathmatch_entrypoint_9(void *arg0, s32 arg1) {
     u8 *temp_a2;
     BtIntPtr temp_v0;
 
-    temp_a2 = (*(u8 **)((s8 *)(arg0) + (0x158)));
+    temp_a2 = (((Objdeathmatch_arg0 *)arg0)->unk158_u8p);
     temp_v0 = (BtIntPtr)temp_a2 + (arg1 * 2);
     if ((((Objdeathmatch_badeathmatch_entrypoint_9_temp_a2 *)temp_a2)->unk21) != 0) {
         return (s32) (_batimer_get(arg0, 0xD) + 0.5f);

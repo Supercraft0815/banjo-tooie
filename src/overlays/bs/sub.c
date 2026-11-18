@@ -1,6 +1,6 @@
 #include "common.h"
 struct anctrl_s; 
-
+#include "overlays/ba/playerstate.h"
 void func_80800000_bssub(BtIntPtr arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0xF);
 }
@@ -124,33 +124,33 @@ void func_80800254_bssub(void *arg0)
     baphysics_set_gravity(arg0, 0.0f);
     baphysics_set_terminal_velocity(arg0, -4000.0f);
     _bamovethrust_entrypoint_4(arg0, 0.9f);
-    _bamovethrust_entrypoint_3(arg0, *((f32 *) (((u8 *) arg0) + 0x16C)));
+    _bamovethrust_entrypoint_3(arg0, ((PlayerState *)arg0)->unk16C);
   }
   else
   {
     baphysics_set_gravity(arg0, -1800.0f);
     baphysics_set_terminal_velocity(arg0, -4000.0f);
     _bamovethrust_entrypoint_4(arg0, 0.95f);
-    _bamovethrust_entrypoint_3(arg0, (*((f32 *) (((u8 *) arg0) + 0x16C))) * 0.25f);
+    _bamovethrust_entrypoint_3(arg0, (((PlayerState *)arg0)->unk16C) * 0.25f);
   }
   if (bakey_held((BtIntPtr) arg0, 8) || (_basub_entrypoint_2(arg0) != 0.0f))
   {
-    sp5C = func_80800030_bssub(*((f32 *) (((u8 *) arg0) + 0x16C)), sp4C);
+    sp5C = func_80800030_bssub(((PlayerState *)arg0)->unk16C, sp4C);
   }
   else
   {
-    sp5C = func_80800048_bssub(*((f32 *) (((u8 *) arg0) + 0x16C)), sp4C);
+    sp5C = func_80800048_bssub(((PlayerState *)arg0)->unk16C, sp4C);
   }
   if (_basub_entrypoint_2(arg0))
   {
-    *((f32 *) (((u8 *) arg0) + 0x16C)) = func_800F0D50((*((f32 *) (((u8 *) arg0) + 0x16C))) + sp5C, 0.0f, _basub_entrypoint_2(arg0));
+    ((PlayerState *)arg0)->unk16C = func_800F0D50((((PlayerState *)arg0)->unk16C) + sp5C, 0.0f, _basub_entrypoint_2(arg0));
   }
   else
   {
-    *((f32 *) (((u8 *) arg0) + 0x16C)) = func_800F0D50((*((f32 *) (((u8 *) arg0) + 0x16C))) + sp5C, 0.0f, sp54);
+    ((PlayerState *)arg0)->unk16C = func_800F0D50((((PlayerState *)arg0)->unk16C) + sp5C, 0.0f, sp54);
   }
-  _basub_entrypoint_13(arg0, func_800F10B4(*((f32 *) (((u8 *) arg0) + 0x16C)), 0.0f, sp54, 200.0f, 1350.0f));
-  sp50 = func_800F10B4(*((f32 *) (((u8 *) arg0) + 0x16C)), 0.0f, sp54, 0.8f, 1.1f);
+  _basub_entrypoint_13(arg0, func_800F10B4(((PlayerState *)arg0)->unk16C, 0.0f, sp54, 200.0f, 1350.0f));
+  sp50 = func_800F10B4(((PlayerState *)arg0)->unk16C, 0.0f, sp54, 0.8f, 1.1f);
   idealYaw = yaw_getIdeal(arg0);
   sp58 = func_800F1DCC(idealYaw, yaw_get(arg0));
   sp58 = mlAbsF(sp58);
@@ -175,12 +175,12 @@ void func_80800254_bssub(void *arg0)
     }
     else
     {
-      rate = func_800F10B4(*((f32 *) (((u8 *) arg0) + 0x16C)), 0.0f, sp54, func_800DC178(1.0f, 3.0f), 40.0f);
+      rate = func_800F10B4(((PlayerState *)arg0)->unk16C, 0.0f, sp54, func_800DC178(1.0f, 3.0f), 40.0f);
       func_800914FC((struct player_state_s *)arg0, rate, 0);
     }
   }
   else
-    if (((*((f32 *) (((u8 *) arg0) + 0x16C))) > 0.0f) && player_isStable(arg0))
+    if (((((PlayerState *)arg0)->unk16C) > 0.0f) && player_isStable(arg0))
   {
     func_8009C128(arg0, sp3C);
     sp38 = func_800B5BE4(8);
@@ -334,7 +334,7 @@ void func_808009B0_bssub(struct player_state_s *arg0) {
 
     if (func_8009E77C(arg0, 0xF) == 0) {
         _basub_entrypoint_10(arg0);
-        *(f32 *)((u8 *)arg0 + 0x170) = *(f32 *)((u8 *)arg0 + 0x16C) = 0.0f;
+        arg0->unk170 = arg0->unk16C = 0.0f;
         baphysics_set_gravity(arg0, 0);
         baphysics_set_terminal_velocity(arg0, -399.99f);
         func_800961AC(arg0, 9);
@@ -392,7 +392,7 @@ void func_80800B2C_bssub(BtIntPtr arg0) {
     _baspin_entrypoint_2(arg0, 0x130, 1.8f, 3, 1);
     _batimer_set(arg0, 9, 1.8f);
     func_800FC660(0x19);
-}                typedef struct { u8 pad0[0x15C]; s32 unk15C; u8 pad160[0xC]; f32 unk16C; u8 pad170[0x14]; s32 unk184; } Objsub_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 /* extern */
 
@@ -402,14 +402,14 @@ void func_80800BD8_bssub(void *arg0) {
     s32 func_80101180(s32, s32, BtIntPtr);
     _baspin_entrypoint_3();
     if (_batimer_decrement(arg0, 9) != 0) {
-        func_80101180(0x2C4, 0x71, (((Objsub_arg0 *)arg0)->unk184));
+        func_80101180(0x2C4, 0x71, (((PlayerState *)arg0)->unk184));
     }
 }
 
 /* extern */
 void func_80800C1C_bssub(void *arg0) {
     s32 _basudie_entrypoint_8(void *);
-    if (((Objsub_arg0 *)arg0)->unk15C) {
+    if (((PlayerState *)arg0)->unk15C.word) {
         func_80800B0C_bssub(arg0);
     } else {
         _basudie_entrypoint_8(arg0);
@@ -474,7 +474,7 @@ void func_80800E34_bssub(struct player_state_s *arg0) {
 
     func_808009B0_bssub(arg0);
     temp_v0 = func_800EA068(0x40);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = temp_v0;
+    (arg0->unk15C.word) = temp_v0;
     if (temp_v0 != 0) {
         func_80800B2C_bssub((BtIntPtr) arg0);
         return;
@@ -489,7 +489,7 @@ void func_80800E34_bssub(struct player_state_s *arg0) {
 void func_80800E98_bssub(void *arg0) {
     s32 _basudie_entrypoint_10(void *);
     func_80800AEC_bssub(BT_NATIVE_ONLY((BtIntPtr)arg0));
-    if ((((Objsub_arg0 *)arg0)->unk15C) != 0) {
+    if ((((PlayerState *)arg0)->unk15C.word) != 0) {
         func_80800BD8_bssub(arg0);
         return;
     }
@@ -605,7 +605,7 @@ void func_80801188_bssub(struct player_state_s *arg0) {
     func_80800768_bssub(arg0);
     func_80800254_bssub(arg0);
     func_80800834_bssub(arg0);
-    if (*(f32 *)((s8 *)arg0 + 0x16C) == 0.0f) {
+    if (arg0->unk16C == 0.0f) {
         sp24 = 0x131;
     }
     bs_setState(arg0, sp24);
@@ -735,7 +735,7 @@ void func_808014B8_bssub(BtIntPtr arg0) {
     _bsrest_entrypoint_16(arg0);
     func_8009B94C((u8 *)arg0, 0);
     func_8009BA9C(arg0, NULL);
-    (((Objsub_arg0 *)arg0)->unk16C) = 0.0f;
+    (((PlayerState *)arg0)->unk16C) = 0.0f;
 }
 
 /* extern */
@@ -793,7 +793,7 @@ void func_80801618_bssub(struct player_state_s *arg0) {
     func_80800768_bssub(arg0);
     func_80800254_bssub(arg0);
     func_80800834_bssub(arg0);
-    if (*(f32 *)((s8 *)arg0 + 0x16C) != 0.0f) {
+    if (arg0->unk16C != 0.0f) {
         sp24 = 0x12C;
     }
     bs_setState(arg0, sp24);

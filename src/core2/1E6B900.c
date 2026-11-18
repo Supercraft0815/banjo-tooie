@@ -3,7 +3,7 @@
 s32 func_80092010(void)
 {
 	return 0x118;
-}    typedef struct { u8 pad0[0x28]; f32 unk28; u8 pad2C[0x98]; u8 unkC4; u8 padC5[0x3]; f32 unkC8; } Obj1E6B900_func_80092018_temp_s0; /* offsets.py genstruct: fields from raw offsets on temp_s0; rename once understood */
+} typedef struct { u8 pad0[0x28]; f32 unk28; u8 pad2C[0x98]; u8 unkC4; u8 padC5[0x3]; f32 unkC8; } Obj1E6B900_func_80092018_temp_s0; /* offsets.py genstruct: fields from raw offsets on temp_s0; rename once understood */ typedef struct { u8 pad0[0x50]; union { void * unk50; u8 * unk50_u8p; }; u8 pad54[0x10]; union { void * unk64; u8 * unk64_u8p; }; u8 pad68[0x11C]; s32 unk184; } Obj1E6B900_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
@@ -19,7 +19,7 @@ void func_80092018(u8 *arg0) {
     f32 var_f0;
     u8 *temp_s0;
 
-    temp_s0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    temp_s0 = (((Obj1E6B900_arg0 *)arg0)->unk50_u8p);
     if ((((Obj1E6B900_func_80092018_temp_s0 *)temp_s0)->unkC4) != 0) {
         var_f0 = (((Obj1E6B900_func_80092018_temp_s0 *)temp_s0)->unkC8);
     } else {
@@ -43,7 +43,7 @@ void func_800920C8(void *arg0) {
     BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80093504();
     u8 *temp_v0;
 
-    temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+    temp_v0 = ((Obj1E6B900_arg0 *)arg0)->unk50_u8p;
     func_80093504(arg0, temp_v0 + 0x64, temp_v0 + 0x50);
 }
 
@@ -88,7 +88,7 @@ void func_800921E0(PlayerState *player, s32 id, f32 dst[3]) {
     if (func_800EEEA8(dst)) {
         func_8009C128(player, dst);
     }
-}    typedef struct { u8 pad0[0x50]; void * unk50; u8 pad54[0x10]; void * unk64; u8 pad68[0x11C]; s32 unk184; } Obj1E6B900_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_80092224(void *arg0) {
     (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x1A))) = 1;
@@ -1016,7 +1016,7 @@ void func_80093700(void *arg0, s32 arg1) {
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(Unkfunc_800E0960_1 *) func_8009370C(u8 *arg0) {
     void *func_800AE080(s16);
     Unkfunc_800E0960_1 *func_800AE6BC(BtIntPtr);
-    BT_NATIVE_ONLY(return) func_800AE6BC(func_800AE080((*(s16 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x90)))));
+    BT_NATIVE_ONLY(return) func_800AE6BC(func_800AE080((*(s16 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50_u8p)) + (0x90)))));
 }
 
 /* extern */
@@ -1275,9 +1275,9 @@ void func_80093E18(u8 *arg0, BT_IDO_ONLY(Gfx **arg1) BT_PASS2(Gfx **arg1, BtIntP
     sp24 = func_800A89F8();
     sp28 = func_800A88C4(sp24, BT_IDO_ONLY(func_800A5090(arg0)) BT_PASS2(func_800A5090(arg0), bt_a2));
     func_800E44FC(arg1);
-    if ((*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0xA1))) == 0) {
+    if ((*(u8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50_u8p)) + (0xA1))) == 0) {
         _bsfirstp_entrypoint_1(arg0, 1);
-        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+        temp_v0 = (((Obj1E6B900_arg0 *)arg0)->unk50_u8p);
         _bsfirstp_entrypoint_0(arg0, temp_v0 + 0xAC, temp_v0 + 0xB8);
         func_8009375C(arg0, arg1, 1);
     }
@@ -1444,7 +1444,7 @@ s32 func_800942D0(u8 *arg0, s32 arg1) {
     s32 sp1C;
 
     func_8001BDAC(&sp1C, 1);
-    if ((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x110))) != 0) {
+    if ((*(s32 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50_u8p)) + (0x110))) != 0) {
         sp1C += D_80117DD4[arg1][0];
     }
     return sp1C >= 0x32001;
@@ -1783,7 +1783,7 @@ void func_80094C0C(PlayerState *arg0, s32 arg1) {
 
 u8 func_80094C64(void *arg0, s32 arg1) {
     extern u8 *D_80117E30[];
-    return D_80117E30[**(u8 **)((u8 *)arg0 + 0x64)][arg1];
+    return D_80117E30[*((Obj1E6B900_arg0 *)arg0)->unk64_u8p][arg1];
 }
 
 void func_80094C88(void *arg0) {

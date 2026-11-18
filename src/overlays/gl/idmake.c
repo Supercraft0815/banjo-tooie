@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core1/heap.h"
 BtIntPtr func_80800000_glidmake(BtIntPtr arg0) {
     int func_800EEEA8(f32 vec[3]);
     BtIntPtr var_v1;

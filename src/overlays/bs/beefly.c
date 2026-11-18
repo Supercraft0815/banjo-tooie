@@ -1,6 +1,6 @@
 #include "common.h"
+#include "overlays/ba/playerstate.h"
 
-typedef struct player_state_s PlayerState;
 void func_8009C128(PlayerState *, f32[3]);
 
 void func_80800000_bsbeefly(PlayerState *arg0) {
@@ -50,7 +50,7 @@ void func_8080010C_bsbeefly(PlayerState *arg0) {
     baphysics_set_target_yaw(arg0, yaw_getIdeal(arg0));
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     baphysics_set_gravity(arg0, -1200.0f);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (arg0->unk15C.word) = 0;
 }
 
 struct anctrl_s;
@@ -71,12 +71,12 @@ void func_808001C4_bsbeefly(PlayerState *arg0) {
     sp24 = 0;
     sp20 = baanim_getAnimCtrlPtr(arg0);
     _bsbee_entrypoint_2(arg0);
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
         case 0:
             if (anctrl_isAt(sp20, 0.266f) != 0) {
                 baphysics_set_vertical_velocity(arg0, 1600.0f);
                 func_8009DE38(arg0, 0x406, 0.7f);
-                *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+                arg0->unk15C.word = 1;
             }
             break;
         case 1:
@@ -247,11 +247,11 @@ void func_80800600_bsbeefly(PlayerState *arg0) {
     func_8080039C_bsbeefly(arg0);
     if (sp34 != 0x8B) {
         _baboost_entrypoint_2(arg0, 1.0f);
-        *(s32 *)((s8 *)arg0 + 0x15C) = 0;
+        arg0->unk15C.word = 0;
     } else {
-        *(s32 *)((s8 *)arg0 + 0x15C) = 1;
+        arg0->unk15C.word = 1;
     }
-}    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objbeefly_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_80800708_bsbeefly(void *arg0) {
     extern f32 D_80800E28_bsbeefly[];
@@ -325,10 +325,10 @@ void func_80800708_bsbeefly(void *arg0) {
     }
     _babuzz_entrypoint_4(arg0, buzz);
     _babuzz_entrypoint_3(arg0);
-    switch (((Objbeefly_arg0 *)arg0)->unk15C) {
+    switch (((PlayerState *)arg0)->unk15C.word) {
     case 0:
         if (boost != 0) {
-            ((Objbeefly_arg0 *)arg0)->unk15C = 1;
+            ((PlayerState *)arg0)->unk15C.word = 1;
         }
         break;
     case 1:
@@ -344,7 +344,7 @@ void func_80800708_bsbeefly(void *arg0) {
         }
         if (boost == 0) {
             _bafly_entrypoint_20(arg0);
-            ((Objbeefly_arg0 *)arg0)->unk15C = 0;
+            ((PlayerState *)arg0)->unk15C.word = 0;
         }
         break;
     }

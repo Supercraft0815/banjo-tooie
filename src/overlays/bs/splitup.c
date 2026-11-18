@@ -1,6 +1,6 @@
 #include "common.h"
+#include "overlays/ba/playerstate.h"
 
-typedef struct player_state_s PlayerState;
 
 /* extern */
 
@@ -17,7 +17,7 @@ void bssplitup_entrypoint_0(void *arg0) {
     func_8009FFD8(arg0, 1, 1, 3, 2);
     func_8009B94C(arg0, 0);
     func_8009BA9C(arg0, 0);
-}    typedef struct { u8 pad0[0x184]; s32 unk184; } Objsplitup_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 /* extern */
 
@@ -31,7 +31,7 @@ void bssplitup_entrypoint_1(void *arg0) {
     sp1C = 0;
     if (baanim_isStopped() != 0) {
         sp1C = 1;
-        if (func_800F54E4() != (((Objsplitup_arg0 *)arg0)->unk184)) {
+        if (func_800F54E4() != (((PlayerState *)arg0)->unk184)) {
             func_800F457C(arg0, 2);
         }
     }
@@ -77,7 +77,7 @@ s32 func_8080012C_bssplitup(PlayerState *arg0, s32 arg1) {
     f32 sp3C[3];
     f32 *sp34[2];
 
-    (*(s32 *)((s8 *)arg0 + 0x15C)) = arg1;
+    (arg0->unk15C.word) = arg1;
     switch (arg1) {
     case 1:
         baanim_playForDuration_onceSmooth(arg0, 0xA3, 2.2f);
@@ -114,7 +114,7 @@ void bssplitup_entrypoint_4(PlayerState *arg0) {
     func_800A38F0(arg0, 0, 0);
     func_80092778(arg0);
     bastick_func_8009F258(arg0);
-    (*(s32 *)((s8 *)(arg0) + (0x15C))) = 0;
+    (arg0->unk15C.word) = 0;
     func_8080012C_bssplitup(arg0, 1);
 }
 
@@ -128,7 +128,7 @@ void bssplitup_entrypoint_5(PlayerState *arg0) {
     s32 sp24;
 
     sp24 = 0;
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    switch (arg0->unk15C.word) {
         case 1:
             if (baanim_isAt(arg0, 0.05f)) {
                 func_8080012C_bssplitup(arg0, 2);
@@ -144,7 +144,7 @@ void bssplitup_entrypoint_5(PlayerState *arg0) {
     }
     if (baanim_isStopped(arg0)) {
         sp24 = 0xBB;
-        if (func_800F54E4() != *(s32 *)((s8 *)arg0 + 0x184)) {
+        if (func_800F54E4() != arg0->unk184) {
             func_800F457C(arg0, 2);
         }
     }
@@ -157,7 +157,7 @@ void bssplitup_entrypoint_6(void *arg0) {
     void _baduo_entrypoint_7(PlayerState *arg0, s32 arg1);
     s32 func_800F8EE4(s32);
     _baduo_entrypoint_7(arg0, 3);
-    func_800F8EE4((((Objsplitup_arg0 *)arg0)->unk184));
+    func_800F8EE4((((PlayerState *)arg0)->unk184));
 }
 
 s32 bssplitup_entrypoint_7(s32 arg0) {

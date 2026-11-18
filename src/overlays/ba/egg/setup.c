@@ -13,7 +13,7 @@ s32 func_80800008_baeggsetup(void *arg0) {
     s32 result;
     result = func_8009E674(arg0, 2);
     return result == 0;
-}    typedef struct { u8 pad0[0x70]; f32 * unk70; } Objsetup_baeggsetup_entrypoint_1_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
+} typedef struct { u8 pad0[0x70]; union { f32 * unk70; u8 * unk70_u8p; }; } Objsetup_baeggsetup_entrypoint_1_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
 
 void baeggsetup_entrypoint_1(s32 arg0) {
     void func_800EE7F8(f32 *, f32 *);
@@ -34,7 +34,7 @@ void baeggsetup_entrypoint_1(s32 arg0) {
     func_800EE7F8(sp54, ((Objsetup_baeggsetup_entrypoint_1_self *)self)->unk70);
     func_800EE7F8(sp3C, ((Objsetup_baeggsetup_entrypoint_1_self *)self)->unk70 + 3);
     func_800EE7F8(sp48, ((Objsetup_baeggsetup_entrypoint_1_self *)self)->unk70 + 6);
-    switch ((*(u8 **)((u8 *)self + 0x70))[0x24]) {
+    switch ((((Objsetup_baeggsetup_entrypoint_1_self *)self)->unk70_u8p)[0x24]) {
     case 1:
         _cheggnormal_entrypoint_1(sp54, sp3C, sp48, arg0);
         return;
@@ -179,7 +179,7 @@ void baeggsetup_entrypoint_5(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3) {
     func_800EE7F8(*(f32 **)((s8 *)arg0 + 0x70) + 6, sp2C);
     *(s8 *)(*(u8 **)((s8 *)arg0 + 0x70) + 0x24) = arg1;
     _chbaddiesetup_entrypoint_1(&_baeggsetup_entrypoint_4, *(s32 *)((s8 *)arg0 + 0x184));
-}                  typedef struct { u8 pad0[0x70]; f32 * unk70; u8 pad74[0x110]; s32 unk184; } Objsetup_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x70]; union { f32 * unk70; u8 * unk70_u8p; }; u8 pad74[0x110]; s32 unk184; } Objsetup_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void baeggsetup_entrypoint_6(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
     s32 _chbaddiesetup_entrypoint_1(s32 *, BtIntPtr);
@@ -192,7 +192,7 @@ void baeggsetup_entrypoint_6(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4
     func_800EE7F8((((Objsetup_arg0 *)arg0)->unk70), arg2);
     func_800EE7F8((((Objsetup_arg0 *)arg0)->unk70) + 3, arg3);
     func_800EE7F8((((Objsetup_arg0 *)arg0)->unk70) + 6, arg4);
-    (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x70)))) + (0x24))) = (s8) arg1;
+    (*(s8 *)((s8 *)((((Objsetup_arg0 *)arg0)->unk70_u8p)) + (0x24))) = (s8) arg1;
     _chbaddiesetup_entrypoint_1(&_baeggsetup_entrypoint_4, (((Objsetup_arg0 *)arg0)->unk184));
 }
 

@@ -4,8 +4,8 @@ s32 bareact_entrypoint_0()
 {
     return 0x4;
 }
-struct Entry { u8 id; u8 data[15]; };
-void bareact_entrypoint_1(void *arg0, s32 arg1) { extern struct Entry D_808000B0_bareact[]; s32 i; for (i = 0; D_808000B0_bareact[i].id != 0; i++) { if (arg1 == D_808000B0_bareact[i].id) { *(void **)(*(void **)((s8 *)arg0 + 0xEC)) = &D_808000B0_bareact[i]; return; } } }    typedef struct { u8 pad0[0xEC]; void ** unkEC; } Objreact_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+struct Entry { u8 id; u8 data[15]; }; typedef struct { u8 pad0[0xEC]; union { void ** unkEC; void * unkEC_voidp; }; } Objreact_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+void bareact_entrypoint_1(void *arg0, s32 arg1) { extern struct Entry D_808000B0_bareact[]; s32 i; for (i = 0; D_808000B0_bareact[i].id != 0; i++) { if (arg1 == D_808000B0_bareact[i].id) { *(void **)(((Objreact_arg0 *)arg0)->unkEC_voidp) = &D_808000B0_bareact[i]; return; } } }
 
 u8 bareact_entrypoint_2(void *arg0) {
     return (*(u8 *)((s8 *)(*(((Objreact_arg0 *)arg0)->unkEC)) + (1)));

@@ -352,7 +352,7 @@ s32 func_80800970_bafpctrl(PlayerState *arg0) {
     }
     func_80800114_bafpctrl(arg0);
     return result;
-}    typedef struct { u8 pad0[0x90]; void * unk90; u8 pad94[0xF0]; BtIntPtr unk184; } Objfpctrl_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x90]; union { void * unk90; s32 * unk90_s32p; u8 * unk90_u8p; }; u8 pad94[0xF0]; BtIntPtr unk184; } Objfpctrl_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 u32 bafpctrl_entrypoint_1(void *arg0) {
     return *(u8 *)((u8 *)*&((Objfpctrl_arg0 *)arg0)->unk90 + 17);
@@ -412,11 +412,11 @@ void bafpctrl_entrypoint_11(void *arg0, s32 arg1, s32 arg2) {
     s32 *temp_v0_2;
 
     if (arg2 != 0) {
-        temp_v0 = (*(s32 **)((s8 *)(arg0) + (0x90)));
+        temp_v0 = (((Objfpctrl_arg0 *)arg0)->unk90_s32p);
         *temp_v0 |= arg1;
         return;
     }
-    temp_v0_2 = (*(s32 **)((s8 *)(arg0) + (0x90)));
+    temp_v0_2 = (((Objfpctrl_arg0 *)arg0)->unk90_s32p);
     *temp_v0_2 &= ~arg1;
 }
 
@@ -522,7 +522,7 @@ void bafpctrl_entrypoint_16(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32 bt_
 
 void bafpctrl_entrypoint_17(u8 *arg0) {
     void bafpctrl_entrypoint_14(void *, s32);
-    if ((*(u8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x90)))) + (0x13))) != 0) {
+    if ((*(u8 *)((s8 *)((((Objfpctrl_arg0 *)arg0)->unk90_u8p)) + (0x13))) != 0) {
         bafpctrl_entrypoint_14(arg0, 1);
     }
 }

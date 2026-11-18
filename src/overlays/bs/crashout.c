@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "overlays/ba/playerstate.h"
 struct player_state_s;
 
 void func_80800000_bscrashout(struct player_state_s *self) {
@@ -36,14 +36,14 @@ void func_808000B0_bscrashout(struct player_state_s *self, s32 state) {
     void func_800A4DFC(struct player_state_s *, s32);
     f32 yaw_getIdeal(struct player_state_s *);
 
-    *(s32 *)((s8 *)self + 0x15C) = state;
+    self->unk15C.word = state;
     switch (state) {
         case 1:
             baanim_playForDuration_onceSmooth(self, 0x3E, 1.4f);
             func_8009FFD8(self, 1, 3, 3, 3);
             baphysics_set_target_yaw(self, yaw_getIdeal(self));
-            baphysics_set_target_horizontal_velocity(self, *(f32 *)((s8 *)self + 0x16C));
-            baphysics_set_horizontal_velocity(self, 100.0f, *(f32 *)((s8 *)self + 0x16C));
+            baphysics_set_target_horizontal_velocity(self, self->unk16C);
+            baphysics_set_horizontal_velocity(self, 100.0f, self->unk16C);
             break;
         case 2:
             func_800951B4(self);
@@ -64,7 +64,7 @@ void bscrashout_entrypoint_0(BtIntPtr arg0)
     func_8009BD88();
     func_8008E95C(arg0);
     func_800951B4(arg0);
-}                typedef struct { u8 pad0[0x15C]; s32 unk15C; u8 pad160[0xC]; f32 unk16C; } Objcrashout_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 /* extern */
 
@@ -83,8 +83,8 @@ void bscrashout_entrypoint_1(void *arg0) {
     _bamotor_entrypoint_1(arg0, 1.0f, 0.5f, 0.5f);
     func_8008E944(arg0);
     func_8009514C(arg0);
-    (((Objcrashout_arg0 *)arg0)->unk15C) = 0;
-    (((Objcrashout_arg0 *)arg0)->unk16C) = 600.0f;
+    (((PlayerState *)arg0)->unk15C.word) = 0;
+    (((PlayerState *)arg0)->unk16C) = 600.0f;
     func_808000B0_bscrashout(arg0, 1);
 }
 
@@ -101,9 +101,9 @@ void bscrashout_entrypoint_2(struct player_state_s *arg0) {
     s32 next_state;
 
     next_state = 0;
-    func_800F1574((f32 *)((s8 *)arg0 + 0x16C), func_800D8FF8() * 300.0f);
-    baphysics_set_target_horizontal_velocity(arg0, *(f32 *)((s8 *)arg0 + 0x16C));
-    switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
+    func_800F1574(&arg0->unk16C, func_800D8FF8() * 300.0f);
+    baphysics_set_target_horizontal_velocity(arg0, arg0->unk16C);
+    switch (arg0->unk15C.word) {
         case 1:
             func_80800000_bscrashout(arg0);
             if (baanim_isAt(arg0, 0.2f) && !func_800A1718(arg0)) {

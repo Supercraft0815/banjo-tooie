@@ -18,7 +18,7 @@ void func_80800000_gcdialogcamera(s32 arg0, s32 *arg1, s32 *arg2) {
     }
     *arg2 = var_v1;
     *arg1 = var_v0;
-}    typedef struct { u8 pad0[0x12]; u16 unk12; u8 pad14[0x153]; u8 unk167; s32 unk168; s32 unk16C; } Objcamera_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0x12]; u16 unk12; u8 pad14[0x153]; u8 unk167; union { s32 unk168; void * unk168_voidp; }; s32 unk16C; } Objcamera_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_8080003C_gcdialogcamera(void *arg0, s32 arg1) {
     return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*&((Objcamera_arg0 *)arg0)->unk12 >> 1));
@@ -274,7 +274,7 @@ void gcdialogcamera_entrypoint_10(void *arg0, s32 arg1, s32 arg2) {
 
     func_80800000_gcdialogcamera(arg1, &sp24, &sp20);
     if (((Objcamera_arg0 *)arg0)->unk167 != 0) {
-        if (func_8080003C_gcdialogcamera(*(void **)((u8 *)arg0 + 0x168), ((Objcamera_arg0 *)arg0)->unk16C) != 0) {
+        if (func_8080003C_gcdialogcamera(((Objcamera_arg0 *)arg0)->unk168_voidp, ((Objcamera_arg0 *)arg0)->unk16C) != 0) {
             switch (_capod_entrypoint_4()) {
                 case -1:
                     func_80800620_gcdialogcamera(arg2);
