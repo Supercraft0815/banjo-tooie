@@ -2,7 +2,7 @@
 
 OSThread *chchuffy_entrypoint_0(void)
 {
-    extern u8 D_80802434_chchuffy[];
+    extern ActorData D_80802434_chchuffy[];
 
     return (OSThread *) D_80802434_chchuffy;
 }
@@ -372,11 +372,11 @@ void func_808009CC_chchuffy(Actor *arg0) {
     void func_8080130C_chchuffy(Actor *);
     s32 func_808016D0_chchuffy(BtIntPtr);
     void func_808017D4_chchuffy(Actor *, s32);
-    extern u32 D_80802320_chchuffy[];
-    extern u32 D_80802334_chchuffy[];
-    extern u32 D_80802348_chchuffy[];
-    extern u32 D_8080235C_chchuffy[];
-    extern u32 D_80802374_chchuffy[];
+    extern s16 D_80802320_chchuffy[10];
+    extern s16 D_80802334_chchuffy[10];
+    extern s16 D_80802348_chchuffy[10];
+    extern s16 D_8080235C_chchuffy[12];
+    extern s16 D_80802374_chchuffy[12];
     extern s32 _chchuffyglow_entrypoint_0;
     struct ChuffyUpdateData *data;
     Actor *other;
@@ -524,9 +524,9 @@ void func_80800FBC_chchuffy(Actor *arg0) {
     void func_80801DDC_chchuffy(Actor *);
     void func_80801EAC_chchuffy(Actor *);
     void func_80801F04_chchuffy(Actor *);
-    extern u32 D_8080238C_chchuffy[];
-    extern u32 D_808023A0_chchuffy[];
-    extern u32 D_808023C8_chchuffy[];
+    extern s16 D_8080238C_chchuffy[10];
+    extern s16 D_808023A0_chchuffy[20];
+    extern s16 D_808023C8_chchuffy[10];
     extern f32 D_808024D0_chchuffy[];
     extern f32 D_808024E8_chchuffy[];
     struct ChuffySoundData *data;
@@ -580,9 +580,9 @@ void func_8080115C_chchuffy(Actor *arg0) {
     void func_80801DDC_chchuffy(Actor *);
     void func_80801EAC_chchuffy(Actor *);
     void func_80801F04_chchuffy(Actor *);
-    extern u32 D_8080238C_chchuffy[];
-    extern u32 D_808023A0_chchuffy[];
-    extern u32 D_808023C8_chchuffy[];
+    extern s16 D_8080238C_chchuffy[10];
+    extern s16 D_808023A0_chchuffy[20];
+    extern s16 D_808023C8_chchuffy[10];
     extern f32 D_808024FC_chchuffy[];
     extern f32 D_80802534_chchuffy[];
     struct ChuffySoundData *data;
@@ -615,10 +615,10 @@ void func_8080115C_chchuffy(Actor *arg0) {
         }
     }
 }
-
+typedef struct { f32 v[2]; } ChuffyPair; typedef struct { s32 v[3]; } ChuffyIntVector; typedef struct { f32 v[3]; } ChuffyVector;
 void func_8080130C_chchuffy(Actor *arg0) {
-    typedef struct { f32 v[2]; } ChuffyPair;
-    typedef struct { f32 v[3]; } ChuffyVector;
+
+
     s32 _chmumbopad_entrypoint_0(s32 arg0);
     void _sumumbofx_entrypoint_0(Actor *arg0, u32 arg1, s32 arg2, s16 arg3);
     void _sumumbofx_entrypoint_2(u8 *arg0);
@@ -628,11 +628,11 @@ void func_8080130C_chchuffy(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     extern ChuffyPair D_80802568_chchuffy;
     extern ChuffyVector D_80802570_chchuffy;
-    extern ChuffyVector D_8080257C_chchuffy;
+    extern ChuffyIntVector D_8080257C_chchuffy;
     void *sp3C;
     ChuffyPair sp34;
     ChuffyVector sp28;
-    ChuffyVector sp1C;
+    ChuffyIntVector sp1C;
 
     _sumumbofx_entrypoint_0(arg0, 1, 0x41, _chmumbopad_entrypoint_0(0));
     sp3C = func_80100094(arg0, 1);
@@ -642,11 +642,11 @@ void func_8080130C_chchuffy(Actor *arg0) {
     sp34 = D_80802568_chchuffy;
     sp28 = D_80802570_chchuffy;
     sp1C = D_8080257C_chchuffy;
-    _sumumbofx_entrypoint_12(sp3C, &sp28, &sp34, &sp1C);
+    _sumumbofx_entrypoint_12(sp3C, &sp28, sp34.v, sp1C.v);
 }
 
 void func_808013E8_chchuffy(Actor *arg0, f32 *arg1, f32 *arg2) {
-    typedef struct { f32 v[3]; } ChuffyVector;
+
     void *func_80100094(Actor *, u32);
     void func_8010D254(f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -953,35 +953,35 @@ void func_80801C78_chchuffy(Actor *arg0) {
 void func_80801CF8_chchuffy(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_808025A0_chchuffy;
-    func_800BBCB8((f32 *)((u8 *)func_80100094(arg0, 0) + 0x2C), 0, 1.0f, arg1, &D_808025A0_chchuffy);
+    extern s16 D_808025A0_chchuffy[34];
+    func_800BBCB8((f32 *)((u8 *)func_80100094(arg0, 0) + 0x2C), 0, 1.0f, arg1, (s32 *)D_808025A0_chchuffy);
 }
 
 void func_80801D3C_chchuffy(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_808025E4_chchuffy;
+    extern s16 D_808025E4_chchuffy[38];
     f32 *temp_a0;
 
     temp_a0 = (f32 *)((u8 *)func_80100094(arg0, 0) + 8);
     if (arg0->unk7C_12) {
-        func_800BBCB8(temp_a0, 0, 1.0f, arg1, &D_808025E4_chchuffy);
+        func_800BBCB8(temp_a0, 0, 1.0f, arg1, (s32 *)D_808025E4_chchuffy);
     }
 }
 
 void func_80801D94_chchuffy(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_80802630_chchuffy;
+    extern s16 D_80802630_chchuffy[38];
     Actor **actor = &arg0;
-    func_800BBCB8((f32 *)((u8 *)func_80100094(*actor, 0) + 8), 0, 1.0f, arg1, &D_80802630_chchuffy);
+    func_800BBCB8((f32 *)((u8 *)func_80100094(*actor, 0) + 8), 0, 1.0f, arg1, (s32 *)D_80802630_chchuffy);
 }
 
 void func_80801DDC_chchuffy(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800C3058(u8, s32);
     u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
-    extern s32 D_8080267C_chchuffy;
+    extern s16 D_8080267C_chchuffy[10];
     struct {
         u8 pad0[0x14];
         f32 position[3];
@@ -991,7 +991,7 @@ void func_80801DDC_chchuffy(Actor *arg0) {
 
     data = func_80100094(arg0, 0);
     if (arg0->unk5F == 0) {
-        arg0->unk5F = func_800C4350(0, data->position, &D_8080267C_chchuffy);
+        arg0->unk5F = func_800C4350(0, data->position, (s32 *)D_8080267C_chchuffy);
         return;
     }
     if (data->sampleRate > 2000.0f && arg0->unk7C_12) {
@@ -1004,20 +1004,20 @@ void func_80801DDC_chchuffy(Actor *arg0) {
 void func_80801EAC_chchuffy(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     u8 _subaddieaudioloop_entrypoint_7(u8, u8 *, s32, s32 *, s32);
-    extern s32 D_80802690_chchuffy;
+    extern s16 D_80802690_chchuffy[10];
     u8 *sp24;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
     sp24 = temp_v0;
-    *sp24 = _subaddieaudioloop_entrypoint_7(*temp_v0, temp_v0 + 0x20, 1, &D_80802690_chchuffy, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
+    *sp24 = _subaddieaudioloop_entrypoint_7(*temp_v0, temp_v0 + 0x20, 1, (s32 *)D_80802690_chchuffy, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
 }
 
 void func_80801F04_chchuffy(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800C3058(u8, s32);
     u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
-    extern s32 D_808023DC_chchuffy;
+    extern s16 D_808023DC_chchuffy[8];
     struct {
         u8 unk0;
         u8 soundIndex;
@@ -1029,7 +1029,7 @@ void func_80801F04_chchuffy(Actor *arg0) {
 
     data = func_80100094(arg0, 0);
     if (data->soundIndex == 0) {
-        data->soundIndex = func_800C4350(0, data->position, &D_808023DC_chchuffy);
+        data->soundIndex = func_800C4350(0, data->position, (s32 *)D_808023DC_chchuffy);
     } else {
         func_800C3058(data->soundIndex, (s32)data->sampleRate);
         func_800C4350(data->soundIndex, data->position, NULL);
@@ -1080,7 +1080,7 @@ void func_80802060_chchuffy(Actor *arg0, void *arg1) {
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6C5C(BtIntPtr);
     void func_800F77E8(BtIntPtr, f32 *);
-    extern s32 D_808026A4_chchuffy;
+    extern s32 D_808026A4_chchuffy[2];
     Prop *prop;
     f32 sp38[3];
     f32 sp2C[3];
@@ -1091,7 +1091,7 @@ void func_80802060_chchuffy(Actor *arg0, void *arg1) {
     sp28 = (u32)((struct ChuffyContact *)arg1)->flags >> 5;
     if (func_800F6C5C(sp28) && func_800F55D0(sp28) == arg0->unk0) {
         func_800F5A00(sp28, sp38);
-        prop = _gccubesearch_entrypoint_6(&D_808026A4_chchuffy, sp38);
+        prop = _gccubesearch_entrypoint_6(D_808026A4_chchuffy, sp38);
         if (prop) {
             _gspropctrl_entrypoint_11(prop, sp2C);
         } else {
@@ -1121,10 +1121,10 @@ void func_80802164_chchuffy(Actor *arg0) {
     void func_800F7F00(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32, s32, f32);
     u32 func_8010A654(void ***, s32);
     void func_8010D254(f32 *);
-    extern f32 D_808026AC_chchuffy[];
-    extern f32 D_808026B0_chchuffy;
-    extern f32 D_808026B8_chchuffy[];
-    extern f32 D_808026BC_chchuffy;
+    extern f32 D_808026AC_chchuffy[3];
+
+    extern f32 D_808026B8_chchuffy[3];
+
     extern f32 D_808026C4_chchuffy[];
     extern f32 D_808026D0_chchuffy[];
     extern f32 D_808026DC_chchuffy[];
@@ -1135,7 +1135,7 @@ void func_80802164_chchuffy(Actor *arg0) {
     if (func_800DA298(0x95)) {
         func_8010D254(sp2C);
         if (func_800F0064(sp2C, 130.0f, D_808026AC_chchuffy) &&
-            D_808026B0_chchuffy < sp2C[1] && sp2C[1] <= D_808026BC_chchuffy) {
+            D_808026AC_chchuffy[1] < sp2C[1] && sp2C[1] <= D_808026B8_chchuffy[1]) {
             func_800F7F00(func_800F54E4(), D_808026AC_chchuffy, D_808026B8_chchuffy, 80.0f, 2, 2, 0.0f);
         }
         if (arg0->unk64_20 && !func_80090178(1)) {
@@ -1149,7 +1149,7 @@ void func_80802164_chchuffy(Actor *arg0) {
 
 OSThread *chchuffy_entrypoint_2(void)
 {
-    extern u8 D_808026F4_chchuffy[];
-
+    extern ActorData D_808026F4_chchuffy[];
     return (OSThread *) D_808026F4_chchuffy;
 }
+#include "uffy_data.inc"

@@ -1,5 +1,5 @@
 #include "common.h"
-
+struct MagnetVector { f32 v[3]; }; struct MagnetStartData { struct MagnetVector vector; s16 commands[6]; };
 void func_80800000_chfactorymagnet(Actor *arg0) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
@@ -470,8 +470,8 @@ void func_80800EF0_chfactorymagnet(Actor *arg0, s32 arg1) {
     void func_80101870(Actor *, void *);
     void func_808016A4_chfactorymagnet(Actor *, BtIntPtr);
     void func_80801A9C_chfactorymagnet(BtIntPtr, f32 *, f32 *);
-    struct MagnetVector { f32 v[3]; };
-    extern struct MagnetVector D_8080291C_chfactorymagnet;
+
+    extern struct MagnetStartData D_8080291C_chfactorymagnet;
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp3C;
@@ -479,7 +479,7 @@ void func_80800EF0_chfactorymagnet(Actor *arg0, s32 arg1) {
     u8 *temp_s1;
 
     sp3C = func_800F12D4(arg0->unk58, 0.25f, 1.0f, 0.0f, 1.0f);
-    sp30 = D_8080291C_chfactorymagnet;
+    sp30 = D_8080291C_chfactorymagnet.vector;
     temp_s1 = func_80100094(arg0, 0);
     func_80801A9C_chfactorymagnet((BtIntPtr)arg0, sp4C, sp40);
     func_800EFE50(arg0->position, sp4C, sp40, sp3C);
@@ -506,10 +506,10 @@ void func_80800FE8_chfactorymagnet(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_80103EF4(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_80802934_chfactorymagnet;
-    extern s32 D_80802940_chfactorymagnet;
-    extern s32 D_8080294C_chfactorymagnet;
-    extern s32 D_80802954_chfactorymagnet;
+    extern s16 D_80802934_chfactorymagnet[6];
+    extern s16 D_80802940_chfactorymagnet[6];
+    extern s16 D_8080294C_chfactorymagnet[4];
+    extern s16 D_80802954_chfactorymagnet[28];
     BtIntPtr sp74;
     Actor *sp70;
     f32 sp64[3];
@@ -521,11 +521,11 @@ void func_80800FE8_chfactorymagnet(Actor *arg0) {
     *(u8 *)&arg0->actorData[3] = _subaddieaudioloop_entrypoint_7(
         *(u8 *)&arg0->actorData[3], arg0->position,
         arg0->unk58 > 0.25f && arg0->unk58 < 1.0f,
-        &D_80802940_chfactorymagnet, arg0->unk70_0);
+        (s32 *)D_80802940_chfactorymagnet, arg0->unk70_0);
     *(u8 *)&arg0->unk54 = _subaddieaudioloop_entrypoint_7(
         *(u8 *)&arg0->unk54, arg0->position,
         arg0->unk58 > 0.0f && arg0->unk58 < 0.75f,
-        &D_80802940_chfactorymagnet, arg0->unk70_0);
+        (s32 *)D_80802940_chfactorymagnet, arg0->unk70_0);
     if ((arg0->unk58 <= 0.0f && ((f32 *)arg0->actorData)[7] > 0.0f) ||
         (arg0->unk58 >= 0.75f && ((f32 *)arg0->actorData)[7] < 0.75f)) {
         sp74 = func_800B53A4(4);
@@ -541,14 +541,14 @@ void func_80800FE8_chfactorymagnet(Actor *arg0) {
         sp58[1] += sp3C * func_800138D0(sp70->rotation[0]);
         sp64[2] += sp3C * func_80013970(sp70->rotation[0]);
         sp58[2] += sp3C * func_80013970(sp70->rotation[0]);
-        func_800BABB8(sp74, sp70->position, NULL, sp70->scale, &D_80802954_chfactorymagnet);
+        func_800BABB8(sp74, sp70->position, NULL, sp70->scale, (s32 *)D_80802954_chfactorymagnet);
         func_800BA1D0(sp74, sp4C, sp64, 1);
         func_800BA1D0(sp74, sp64, sp58, 2);
         func_800BA1D0(sp74, sp58, sp40, 1);
-        _subaddieaudioquick_entrypoint_2(arg0, sp70->position, &D_80802934_chfactorymagnet);
+        _subaddieaudioquick_entrypoint_2(arg0, sp70->position, D_80802934_chfactorymagnet);
     }
     if (arg0->unk58 >= 1.0f && ((f32 *)arg0->actorData)[7] < 1.0f) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080294C_chfactorymagnet);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080294C_chfactorymagnet);
     }
 }
 
@@ -750,13 +750,13 @@ void func_808019F4_chfactorymagnet(Actor *arg0, f32 *arg1, f32 *arg2) {
 
 void func_80801A9C_chfactorymagnet(BtIntPtr arg0, f32 *arg1, f32 *arg2) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
-    extern f32 D_8080298C_chfactorymagnet;
-    extern f32 D_80802998_chfactorymagnet;
+    extern f32 D_8080298C_chfactorymagnet[3];
+    extern f32 D_80802998_chfactorymagnet[3];
     if (arg1 != NULL) {
-        func_800EE7F8(arg1, &D_8080298C_chfactorymagnet);
+        func_800EE7F8(arg1, D_8080298C_chfactorymagnet);
     }
     if (arg2 != NULL) {
-        func_800EE7F8(arg2, &D_80802998_chfactorymagnet);
+        func_800EE7F8(arg2, D_80802998_chfactorymagnet);
     }
 }    typedef struct { u8 pad0[0x348]; s32 unk348; s32 unk34C; } Objmagnet_func_80801AE8_chfactorymagnet_temp_s0; /* offsets.py genstruct: fields from raw offsets on temp_s0; rename once understood */
 
@@ -787,12 +787,12 @@ void func_80801B74_chfactorymagnet(Actor *arg0) {
     void func_800C8FE0(s32, s32);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
-    typedef struct { f32 v[3]; } MagnetVector;
+
     typedef struct { u8 pad[0x348]; s32 first; s32 second; } MagnetData;
-    extern MagnetVector D_808029A4_chfactorymagnet;
-    extern MagnetVector D_808029B0_chfactorymagnet;
-    MagnetVector sp3C = D_808029A4_chfactorymagnet;
-    MagnetVector sp30 = D_808029B0_chfactorymagnet;
+    extern struct MagnetVector D_808029A4_chfactorymagnet;
+    extern struct MagnetVector D_808029B0_chfactorymagnet;
+    struct MagnetVector sp3C = D_808029A4_chfactorymagnet;
+    struct MagnetVector sp30 = D_808029B0_chfactorymagnet;
     MagnetData *data;
 
     data = func_80100094(arg0, 1);
@@ -827,7 +827,7 @@ void func_80801CD8_chfactorymagnet(Actor *arg0) {
         u8 alpha;
         u8 pad[2];
     } MagnetParticle;
-    extern s32 D_808029BC_chfactorymagnet[];
+    extern s16 D_808029BC_chfactorymagnet[36];
     f32 sp9C[3];
     f32 sp90[3];
     f32 t;
@@ -851,7 +851,7 @@ void func_80801CD8_chfactorymagnet(Actor *arg0) {
             }
             func_800BAA9C((void *)particle, data[offset].scale);
             func_800BA5B0((s16 *)particle, data[offset].alpha, data[offset].alpha);
-            func_800BABB8(particle, sp78, NULL, 1.0f, D_808029BC_chfactorymagnet);
+            func_800BABB8(particle, sp78, NULL, 1.0f, (s32 *)D_808029BC_chfactorymagnet);
         }
     }
 }                  typedef struct { u8 pad0[0x24]; s32 unk24; u8 pad28[0x5A]; s16 unk82; } Objmagnet_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
@@ -865,7 +865,7 @@ void func_80801E84_chfactorymagnet(u8 *arg0) {
 
 OSThread *chfactorymagnet_entrypoint_1(void)
 {
-    extern u8 D_80802A04_chfactorymagnet[];
+    extern ActorData D_80802A04_chfactorymagnet[];
 
     return (OSThread *) D_80802A04_chfactorymagnet;
 }
@@ -895,7 +895,7 @@ void func_80801EBC_chfactorymagnet(Actor *arg0) {
 
 OSThread *chfactorymagnet_entrypoint_2(void)
 {
-    extern u8 D_80802A4C_chfactorymagnet[];
+    extern ActorData D_80802A4C_chfactorymagnet[];
 
     return (OSThread *) D_80802A4C_chfactorymagnet;
 }
@@ -908,8 +908,8 @@ void func_80801FB8_chfactorymagnet(Actor *arg0) {
     s32 func_800D91EC(u8 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_80101FDC(Actor *, u32);
-    extern s32 D_80802A94_chfactorymagnet[];
-    extern s32 D_80802AA4_chfactorymagnet[];
+    extern s16 D_80802A94_chfactorymagnet[8];
+    extern s16 D_80802AA4_chfactorymagnet[8];
 
     switch (arg0->unk70_10) {
         case 1:
@@ -933,10 +933,10 @@ void func_80801FB8_chfactorymagnet(Actor *arg0) {
     }
     *(u8 *)&arg0->actorData[4] = _subaddieaudioloop_entrypoint_7(
         *(u8 *)&arg0->actorData[4], arg0->position, arg0->unk58 != 0.0f,
-        D_80802A94_chfactorymagnet, arg0->unk70_0);
+        (s32 *)D_80802A94_chfactorymagnet, arg0->unk70_0);
     *(u8 *)&arg0->actorData[5] = _subaddieaudioloop_entrypoint_7(
         *(u8 *)&arg0->actorData[5], arg0->position, arg0->unk58 != 0.0f,
-        D_80802AA4_chfactorymagnet, arg0->unk70_0);
+        (s32 *)D_80802AA4_chfactorymagnet, arg0->unk70_0);
     if (arg0->unk58 == 0.0f) {
         arg0->unk64_16 = 0;
     } else {
@@ -974,7 +974,7 @@ s32 func_808022D8_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfactorymagnet_entrypoint_3(void)
 {
-    extern u8 D_80802AB4_chfactorymagnet[];
+    extern ActorData D_80802AB4_chfactorymagnet[];
 
     return (OSThread *) D_80802AB4_chfactorymagnet;
 }
@@ -995,9 +995,9 @@ void func_80802390_chfactorymagnet(Actor *arg0) {
     s32 func_800D90A4(f32 *);
     f32 func_800DC178(f32, f32);
     void func_80101FDC(Actor *, u32);
-    extern s32 D_80802AFC_chfactorymagnet[];
+    extern s16 D_80802AFC_chfactorymagnet[42];
     extern f32 D_80802B50_chfactorymagnet[];
-    extern u32 D_80802B58_chfactorymagnet[];
+    extern s16 D_80802B58_chfactorymagnet[8];
     s32 active;
     f32 *first;
 
@@ -1006,8 +1006,8 @@ void func_80802390_chfactorymagnet(Actor *arg0) {
             if (func_800D90A4(&arg0->unk58)) {
                 if (_subaddiefind_entrypoint_2(0x3F5, 0)->unk70_10 == 0x11) {
                     first = (f32 *)&arg0->actorData[4];
-                    func_800BBCB8(first, (f32 *)&arg0->actorData[0], 1.0f, 10, D_80802AFC_chfactorymagnet);
-                    func_800BBCB8((f32 *)&arg0->actorData[0], first, 1.0f, 10, D_80802AFC_chfactorymagnet);
+                    func_800BBCB8(first, (f32 *)&arg0->actorData[0], 1.0f, 10, (s32 *)D_80802AFC_chfactorymagnet);
+                    func_800BBCB8((f32 *)&arg0->actorData[0], first, 1.0f, 10, (s32 *)D_80802AFC_chfactorymagnet);
                     arg0->actorData[3] = func_800C8A98();
                     func_800C8D4C(arg0->actorData[3], D_80802B50_chfactorymagnet);
                     func_800C8FE0(arg0->actorData[3], 1);
@@ -1033,7 +1033,7 @@ void func_80802390_chfactorymagnet(Actor *arg0) {
             } else {
                 active = func_8001210C(1);
                 func_800C8FB0(arg0->actorData[3], active ? 200 : 160, active ? 200 : 160, active ? 255 : 200);
-                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_80802B58_chfactorymagnet);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, (u32 *)D_80802B58_chfactorymagnet);
             }
             break;
     }
@@ -1107,7 +1107,7 @@ void func_8080281C_chfactorymagnet(u8 *arg0) {
 
 OSThread *chfactorymagnet_entrypoint_4(void)
 {
-    extern u8 D_80802B68_chfactorymagnet[];
-
+    extern ActorData D_80802B68_chfactorymagnet[];
     return (OSThread *) D_80802B68_chfactorymagnet;
 }
+#include "magnet_data.inc"

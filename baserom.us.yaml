@@ -6145,7 +6145,7 @@ segments:
     subsegments: 
       - [0x01FDA6E0, c, toxicpools]
       - [0x01FDB010, .rodata, toxicpools]
-      - [0x01FDB020, data, toxicpools]
+      - [0x01FDB020, .data, toxicpools]
       - [0x01FDB1C0, bss, toxicpools]
   - name: chbigtopticket_header
     dir: overlays/chbigtopticket
@@ -6373,7 +6373,7 @@ segments:
     subsegments: 
       - [0x01FE0EA0, c, mrsicecube]
       - [0x01FE1770, .rodata, mrsicecube]
-      - [0x01FE1790, data, mrsicecube]
+      - [0x01FE1790, .data, mrsicecube]
       - [0x01FE1970, bss, mrsicecube]
   - name: chgobihailfire_header
     dir: overlays/chgobihailfire
@@ -8739,7 +8739,7 @@ segments:
     subsegments: 
       - [0x0205DEB0, c, uffy]
       - [0x02060160, .rodata, uffy]
-      - [0x020601D0, data, uffy]
+      - [0x020601D0, .data, uffy]
       - [0x020605F0, bss, uffy]
   - name: chchuffycont_header
     dir: overlays/chchuffycont
@@ -11514,7 +11514,7 @@ segments:
     subsegments: 
       - [0x020BD170, c, magnet]
       - [0x020BF9D0, .rodata, magnet]
-      - [0x020BFA80, data, magnet]
+      - [0x020BFA80, .data, magnet]
       - [0x020BFD20, bss, magnet]
   - name: chfactorybtwmdoor_header
     dir: overlays/chfactorybtwmdoor

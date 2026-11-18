@@ -2,21 +2,21 @@
 
 OSThread *chfactorytoxicpools_entrypoint_0(void)
 {
-    extern u8 D_80800940_chfactorytoxicpools[];
+    extern ActorData D_80800940_chfactorytoxicpools[];
 
     return (OSThread *) D_80800940_chfactorytoxicpools;
 }
 
 OSThread *chfactorytoxicpools_entrypoint_1(void)
 {
-    extern u8 D_80800988_chfactorytoxicpools[];
+    extern ActorData D_80800988_chfactorytoxicpools[];
 
     return (OSThread *) D_80800988_chfactorytoxicpools;
 }
 
 OSThread *chfactorytoxicpools_entrypoint_2(void)
 {
-    extern u8 D_808009D0_chfactorytoxicpools[];
+    extern ActorData D_808009D0_chfactorytoxicpools[];
 
     return (OSThread *) D_808009D0_chfactorytoxicpools;
 }
@@ -96,7 +96,7 @@ s32 func_80800190_chfactorytoxicpools(Actor *arg0, s32 arg1, s32 arg2) {
     void _idworldmake_entrypoint_1(BtIntPtr arg0, s32 arg1, volatile unsigned int arg2, s32 arg3);
     void func_80800270_chfactorytoxicpools(Actor *);
     s32 _chswitch_entrypoint_10(Actor *, s32, s32);
-    extern f32 D_80800A18_chfactorytoxicpools[3];
+    extern s16 D_80800A18_chfactorytoxicpools[16];
     struct ToxicPoolData {
         s16 unk0;
         s16 state;
@@ -386,16 +386,16 @@ void func_80800898_chfactorytoxicpools(Actor *arg0) {
     void func_800EE780(f32 *, f32 *, f32 *);
     BtUIntPtr func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
-    extern s32 D_80800A38_chfactorytoxicpools;
-    extern s32 D_80800A74_chfactorytoxicpools;
-    extern s32 D_80800AB0_chfactorytoxicpools;
+    extern s16 D_80800A38_chfactorytoxicpools[30];
+    extern s16 D_80800A74_chfactorytoxicpools[30];
+    extern s16 D_80800AB0_chfactorytoxicpools[12];
     extern f32 D_80800AC8_chfactorytoxicpools[3];
     f32 sp34[3];
     f32 sp28[3];
-
     func_800F5A00(func_800F54E4(), sp28);
-    func_800BBCB8(sp28, NULL, 1.0f, 8, &D_80800A38_chfactorytoxicpools);
+    func_800BBCB8(sp28, NULL, 1.0f, 8, (s32 *)D_80800A38_chfactorytoxicpools);
     func_800EE780(sp34, sp28, D_80800AC8_chfactorytoxicpools);
-    func_800BBCB8(sp28, sp34, 1.0f, 4, &D_80800A74_chfactorytoxicpools);
-    _subaddieaudioquick_entrypoint_2(arg0, sp28, &D_80800AB0_chfactorytoxicpools);
+    func_800BBCB8(sp28, sp34, 1.0f, 4, (s32 *)D_80800A74_chfactorytoxicpools);
+    _subaddieaudioquick_entrypoint_2(arg0, sp28, D_80800AB0_chfactorytoxicpools);
 }
+#include "toxicpools_data.inc"

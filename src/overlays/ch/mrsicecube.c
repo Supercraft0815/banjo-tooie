@@ -1,15 +1,15 @@
-#include "common.h"
+#include "su/baddiedialog_descriptor.h"
 
 OSThread *chmrsicecube_entrypoint_0(void)
 {
-    extern u8 D_8080099C_chmrsicecube[];
+    extern ActorData D_8080099C_chmrsicecube[];
 
     return (OSThread *) D_8080099C_chmrsicecube;
 }
 
 OSThread *chmrsicecube_entrypoint_1(void)
 {
-    extern u8 D_808009E4_chmrsicecube[];
+    extern ActorData D_808009E4_chmrsicecube[];
 
     return (OSThread *) D_808009E4_chmrsicecube;
 }
@@ -109,8 +109,8 @@ void func_808000BC_chmrsicecube(Actor *arg0) {
 }
 
 s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, BtIntPtr arg2) {
-    extern s32 D_808008F0_chmrsicecube;
-    extern s32 D_80800A2C_chmrsicecube;
+    extern subaddiedialog_UnkStruct1 D_808008F0_chmrsicecube[4];
+    extern f32 D_80800A2C_chmrsicecube[4];
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     s32 _glcutDll_entrypoint_20(void);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
@@ -131,7 +131,7 @@ s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     switch (arg1) {
     case 0x2E:
         dialog = *(s16 *)&arg2;
-        if (_subaddiedialog_entrypoint_9(arg0, dialog, &D_808008F0_chmrsicecube, 4) == 1) {
+        if (_subaddiedialog_entrypoint_9(arg0, dialog, D_808008F0_chmrsicecube, 4) == 1) {
             func_8010A590(arg0);
         }
         func_80102424(arg0, 5);
@@ -146,7 +146,7 @@ s32 func_80800260_chmrsicecube(Actor *arg0, s32 arg1, BtIntPtr arg2) {
         }
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_80800A2C_chmrsicecube, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80800A2C_chmrsicecube, arg0->scale);
         break;
     case 0x95:
         sp20 = func_80100094(arg0, 0);
@@ -201,12 +201,12 @@ Unk80132ED0 *func_8080048C_chmrsicecube(u8 *arg0, s32 arg1, f32 *arg2) {
     Prop *_gccubesearch_entrypoint_6(s32 *, f32 *);
     Unk80132ED0 *_subaddiefind_entrypoint_12(s32);
     void func_800EE88C(f32 *, s16 *);
-    extern s32 D_80800A3C_chmrsicecube;
+    extern s32 D_80800A3C_chmrsicecube[2];
     Prop *prop;
     Unk80132ED0 *actor;
 
-    D_80800A3C_chmrsicecube = arg1;
-    prop = _gccubesearch_entrypoint_6(&D_80800A3C_chmrsicecube, (f32 *)(arg0 + 4));
+    D_80800A3C_chmrsicecube[0] = arg1;
+    prop = _gccubesearch_entrypoint_6(D_80800A3C_chmrsicecube, (f32 *)(arg0 + 4));
     if (prop == NULL) {
         return NULL;
     }
@@ -226,7 +226,7 @@ Unk80132ED0 *func_80800508_chmrsicecube(Actor *arg0) {
     void func_8010A570(Actor *);
     void func_8010A624(Actor *);
     void func_8080066C_chmrsicecube(u8 *, u8 *);
-    extern u16 D_80800910_chmrsicecube[][2];
+    extern u16 D_80800910_chmrsicecube[17][2];
     Actor *actor;
     s32 index;
     f32 sp2C[3];
@@ -268,10 +268,10 @@ Unk80132ED0 *func_80800508_chmrsicecube(Actor *arg0) {
 }
 
 void func_80800634_chmrsicecube(BtIntPtr arg0) {
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
-    extern s32 D_808008F0_chmrsicecube;
-    extern s32 D_80800A44_chmrsicecube;
-    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80800A44_chmrsicecube, &D_808008F0_chmrsicecube, 4);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
+    extern subaddiedialog_UnkStruct1 D_808008F0_chmrsicecube[4];
+    extern subaddiedialog_UnkStruct2 D_80800A44_chmrsicecube;
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80800A44_chmrsicecube, D_808008F0_chmrsicecube, 4);
 }    typedef struct { u8 pad0[0x4]; f32 unk4; } Objmrsicecube_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_8080066C_chmrsicecube(u8 *arg0, u8 *arg1)
@@ -296,8 +296,8 @@ void func_808006C4_chmrsicecube(Actor *arg0) {
     void func_8010A590(Actor *);
     u32 func_8010A654(void ***, s32);
     void func_80800818_chmrsicecube(u8 *);
-    extern u16 D_80800910_chmrsicecube[][2];
-    extern s32 D_80800A54_chmrsicecube;
+    extern u16 D_80800910_chmrsicecube[17][2];
+    extern s16 D_80800A54_chmrsicecube[8];
     struct MrsIceCubeLinkData { s32 unk0; s32 unk4; s32 unk8; } *sp2C;
     struct MrsIceCubeFlags {
         u8 pad[0x74];
@@ -313,7 +313,7 @@ void func_808006C4_chmrsicecube(Actor *arg0) {
     temp_v1 = arg0->actorData[4];
     if (temp_v1 == 0) {
         _subaddiedialog_entrypoint_11(arg0->unk0, 0x12D3, 0x44, 0, 0xA7);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800A54_chmrsicecube);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800A54_chmrsicecube);
         func_800DA544(0x378);
     }
     if (temp_s0 != NULL) {
@@ -336,18 +336,18 @@ void func_80800818_chmrsicecube(u8 *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     BtIntPtr func_800BBCB8(u8 *, u8 *, f32, s32, s32 *);
     void func_801094E0(f32 *arg0, f32 arg1);
-    extern s32 D_80800A64_chmrsicecube;
-    extern s32 D_80800A74_chmrsicecube;
+    extern s16 D_80800A64_chmrsicecube[8];
+    extern s16 D_80800A74_chmrsicecube[34];
     u8 sp2C[3];
 
     func_8080066C_chmrsicecube(arg0, sp2C);
-    func_800BBCB8(sp2C, arg0 + 4, (((Actor *)arg0)->scale), 0xC, &D_80800A74_chmrsicecube);
-    _subaddieaudioquick_entrypoint_2(arg0, sp2C, &D_80800A64_chmrsicecube);
+    func_800BBCB8(sp2C, arg0 + 4, (((Actor *)arg0)->scale), 0xC, (s32 *)D_80800A74_chmrsicecube);
+    _subaddieaudioquick_entrypoint_2(arg0, sp2C, D_80800A64_chmrsicecube);
     func_801094E0(sp2C, (((Actor *)arg0)->scale) * 3.0f);
 }
-
 void func_80800898_chmrsicecube(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
-    extern u32 D_80800AB8_chmrsicecube;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800AB8_chmrsicecube, 0.1f);
+    extern s16 D_80800AB8_chmrsicecube[6];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800AB8_chmrsicecube, 0.1f);
 }
+#include "mrsicecube_data.inc"

@@ -19,4 +19,24 @@ typedef struct {
 	/* 0x18 */ u8 unk18;
 }subaddiedialog_UnkStruct0;
 
+typedef struct {
+	/* 0x00 */ u32 TransformationType;
+	/* 0x04 */ s16 unk4;
+	/* 0x06 */ u8 unk6;
+	/* 0x07 */ u8 unk7;
+}subaddiedialog_UnkStruct1;
+
+typedef struct {
+	/* 0x00 */ u16 DialogFlag;//Dialog Flag
+	/* 0x02 */ u16 unk2;
+	/* 0x04 */ u16 unk4;
+	/* 0x06 */ s16 unk6;
+	/* 0x08 */ u16 unk8;
+	/* 0x0A */ u16 unkA;
+	/* 0x0C */ u8 unkC;
+	/* 0x0D */ u8 unkD;
+	/* 0x0E */ u8 unkE;
+
+}subaddiedialog_UnkStruct2;
+
 #endif

@@ -2142,3 +2142,19 @@ Nur ein Symbol ließ sich anhand seines Namens oder Typs Audio zuordnen.
 Die übrigen 50 Blöcke erfordern eine Inhaltsprüfung. Auf Nutzerwunsch
 bleiben die Pakete lokal. Der gehostete Tag-Lauf, die Inhaltsfreigabe
 sowie Signatur und Notarisierung der Mac-App stehen aus.
+
+## 2026-11-19 — N1, Giftbecken, Mrs. Icecube, Chuffy und Magnet
+
+Vier weitere Datenmodule liegen in C. Die Liste ist damit von 80 auf 76
+geschrumpft. In den Original-IDO-Objekten stimmen Lage, Größe und Code aller
+96 Funktionen überein. Die 2.624 Datenbytes enthalten 72 ursprüngliche
+Relokationen. Die C-Fassung des Giftbeckens schreibt das bisherige Adresswort
+`0x8011A298` als `D_8011A270 + 0x28`. Die zusätzliche Relokation ergibt beim
+Linken denselben Wert. Beide vollständigen ROM-Abbilder waren bytegleich.
+
+Im nativen IR blieben die 16.768 Funktionen und die 9.745 Adresskorrekturen
+erhalten. Zwei geänderte Chuffy-Funktionen wurden anhand ihrer Feldadressen
+und der Größe, Ausrichtung und Kopie der lokalen Vektoren geprüft. Zehn
+Testprogramme und alle 46 damaligen Referenzen mit 245.660 Retraces bestanden
+im Hauptbaum. Prüfobjekte und Protokolle liegen unter
+`build/acceptance/n1-2026-11-18/` in `proof/` und `logs/root-views4-*`.
