@@ -43,6 +43,10 @@ static void transfer(uint8_t *d, uint8_t *ram, unsigned a, unsigned g, unsigned 
     a &= 0xff8;
     g &= 0xfffff8;
     size = (size + 7) & ~7u;
+#ifdef BT_IMAGE_ACCESS_HOST
+    bt_image_range(0x80000000u + g, size);
+    if (size > 0x1000000u - g) bt_image_range(0x80000000u, size - (0x1000000u - g));
+#endif
     if (save && deferred) {
         if (size > sizeof deferred->bytes || deferred->size) bt_fatal("unexpected mixer DMA write (%u)", size);
         deferred->address = g;
@@ -354,7 +358,7 @@ void bt_mixer_audio(uint32_t task, const uint8_t *boot_data, unsigned boot_size,
     BtMixerWrite write;
     uint8_t *ram = bt_mem + 0x80000000u;
     memcpy(d, boot_data, boot_size);
-    memcpy(d + 0xfc0, G(task), 64);
+    memcpy(d + 0xfc0, G_range(task,64), 64);
     unsigned src = word(d, 0xff0), bytes = word(d, 0xff4);
     if (!bytes || (bytes & 7)) bt_fatal("invalid n_audio command list size %u", bytes);
     put_word(d, 0, word(d, 0) + word(d, 0xfd0));

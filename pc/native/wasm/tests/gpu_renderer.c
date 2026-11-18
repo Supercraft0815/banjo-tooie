@@ -1,5 +1,8 @@
 // Exercise guest CPU/GPU handoffs at native resolution with the existing RDP fixture. FB and FB2
 // are VI framebuffers (the GPU renderer draws only those); ZB and RTT stay with the software path.
+#ifdef BT_IMAGE_ACCESS_HOST
+#include "../host/image_memory.h"
+#endif
 #define main fixture_main
 #include "renderer.c"
 #undef main
@@ -118,8 +121,82 @@ static void strip_picture(int split) {
     free(pixels);
 }
 
+// Keep one published texture selected while its producer publishes other
+// pictures. Its contents must stay intact until the window releases it.
+static void *publish_more(void *unused) {
+    (void)unused;
+    for (int i=0;i<80;i++) {
+        rdp_begin(); target(FB); fill(i%2 ? 0x003F003F:0x07C107C1,0,0,W,H); rdp_end();
+    }
+    return NULL;
+}
+static int check_shared_frames(void) {
+    gpu_offscreen();
+    rdp_gpu_share(gpu_window);
+    fixture_memory(0x80010000ull);
+    rdp_register_framebuffer(FB,W,0);
+    rdp_begin();
+    rdp_command(0xED000000,W*4<<12|H*4);
+    target(FB); fill(0xF801F801,0,0,W,H);
+    rdp_end();
+    int w=0,h=0;
+    GLuint tex=rdp_frame_texture(FB,W,H,-1,&w,&h);
+    assert(tex && w==W && h==H);
+    pthread_t producer;
+    assert(!pthread_create(&producer,NULL,publish_more,NULL));
+    for (int i=0;i<32;i++) {
+        u8 pixels[W*H*4];
+        glBindTexture(GL_TEXTURE_2D,tex); glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels);
+        for (int j=0;j<W*H;j++) assert(pixels[j*4]==255 && !pixels[j*4+1] && !pixels[j*4+2]);
+        SDL_Delay(1);
+    }
+    pthread_join(producer,NULL);
+    tex=rdp_frame_texture(FB,W,H,-1,&w,&h);
+    u8 pixels[W*H*4];
+    glBindTexture(GL_TEXTURE_2D,tex); glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA,GL_UNSIGNED_BYTE,pixels);
+    for (int j=0;j<W*H;j++) assert(!pixels[j*4] && !pixels[j*4+1] && pixels[j*4+2]==255);
+    return 0;
+}
+
+static void check_draw_programs(void) {
+    rdp_register_framebuffer(FB,W,0);
+    rdp_register_framebuffer(FB2,W,0);
+    int wanted = atoi(getenv("BT_GPU_SPECIALIZE"));
+    for (int i=0;i<300;i++) {
+        rdp_begin(); scene(); rdp_end();
+        if (i>=48 && (!wanted || programs.draws)) break;
+        SDL_Delay(2);
+    }
+    if (wanted) assert(programs.draws && atomic_load(&programs.ready));
+    else assert(!programs.draws && !atomic_load(&programs.ready));
+    snapshot();
+}
+
+#ifdef BT_IMAGE_ACCESS_HOST
+static void check_image_access(void) {
+    rdp_register_framebuffer(FB, W, 0);
+    rdp_register_framebuffer(FB2, W, 0);
+    rdp_begin();
+    rdp_command(0xED000000, W * 4 << 12 | H * 4);
+    target(FB); fill(0xF801F801, 0, 0, W, H);
+    target(FB2); fill(0x003F003F, 0, 0, W, H);
+    rdp_end();
+    assert(!rd16(bt_mem + FB) && !rd16(bt_mem + FB2));
+    bt_image_scalar(FB - 1, 2);  // a word starts on the preceding, unowned page
+    assert(rd16(bt_mem + FB) == 0xF801 && !rd16(bt_mem + FB2));
+    bt_image_range(FB2 - 5000, 5002);  // bulk source begins more than a page away
+    assert(rd16(bt_mem + FB2) == 0x003F);
+    rdp_begin(); target(FB); fill(0x07C107C1, 0, 0, W, H); rdp_end();
+    bt_image_scalar(FB + 4, 2);
+    wr16(bt_mem + FB + 4, 0xFFFF);
+    rdp_begin(); target(FB); fill(0x003F003F, 0, 0, 1, 1); rdp_end();
+    bt_image_range(FB, W * H * 2);
+    assert(rd16(bt_mem + FB) == 0x003F && rd16(bt_mem + FB + 4) == 0xFFFF);
+}
+#endif
 
 int main(int argc, char **argv) {
+    if (argc==2 && !strcmp(argv[1],"shared")) return check_shared_frames();
     if (argc == 5) return sample_picture(atoi(argv[1]),atoi(argv[2]),atoi(argv[3]),atoi(argv[4]));
     rdp_gpu_share(NULL);
     if (getenv("BT_TEST_NO_BARRIER")) gpu_barrier_available = 0;
@@ -128,6 +205,10 @@ int main(int argc, char **argv) {
         strip_picture(!strcmp(argv[1],"strips")); return 0;
     }
     if (argc == 2 && !strcmp(argv[1], "depth")) { depth_writes(); return 0; }
+#ifdef BT_IMAGE_ACCESS_HOST
+    if (argc == 2 && !strcmp(argv[1], "image-access")) { check_image_access(); return 0; }
+#endif
+    if (argc==2 && !strcmp(argv[1],"programs")) { check_draw_programs(); return 0; }
     rdp_register_framebuffer(FB, W, 0);
     rdp_register_framebuffer(FB2, W, 0);
     // In the game the VI and graphics tasks live on separate host threads.

@@ -26,4 +26,28 @@ static inline int retrace_step(RetraceClock *c, double now, double refresh, doub
     if (fired == 1 || fired == 4) c->due = now + period;  // follow the display; far behind: start over
     return fired;
 }
+// Observed swap times and the next presentation on that timeline. Interpolation
+// uses display time even when the VI itself is driven by its 59.94 Hz timer.
+enum { BT_POSES_PER_PICTURE = 32 };
+typedef struct { double last, period; } DisplayCadence;
+static inline void display_swap(DisplayCadence *c, double now, int paced) {
+    double dt = now - c->last;
+    c->last = now;
+    c->period = paced && dt >= .001 && dt <= .05 ? dt : 0;
+}
+
+// Sample the expected display instants inside one game picture. The real
+// picture is already available at t=1. If the game stalls, bound both the
+// number of extra display-list passes and the associated frame storage.
+static inline int display_phases(DisplayCadence c, double start, double duration, float *phases) {
+    if (c.period <= 0 || duration <= 0) return 0;
+    double step = c.period * fmax(1, ceil(duration / (c.period * (BT_POSES_PER_PICTURE + 1))));
+    double first = c.last + (floor((start - c.last) / c.period) + 1) * c.period;
+    int n = 0;
+    for (double t = first; t < start + duration && n < BT_POSES_PER_PICTURE; t += step) {
+        double phase = (t - start) / duration;
+        if (phase > .0001 && phase < .9999) phases[n++] = (float)phase;
+    }
+    return n;
+}
 #endif

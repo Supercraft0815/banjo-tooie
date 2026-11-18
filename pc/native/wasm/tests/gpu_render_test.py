@@ -54,7 +54,7 @@ def check_samples(exe, env):
 def main():
     with tempfile.TemporaryDirectory(prefix='bt-gpu-test-') as tmp:
         exe = str(Path(tmp) / 'gpu-renderer')
-        subprocess.run([build.CLANG, '-O2', '-Wno-shift-op-parentheses', '-DBT_GPU_OPENGL=1',
+        subprocess.run([build.CLANG, '-O2', '-Wno-shift-op-parentheses', '-DBT_GPU_OPENGL=1', '-DBT_IMAGE_ACCESS_HOST=1',
                         '-I', str(HERE.parent / 'host'), *build.SDL_CFLAGS,
                         str(HERE / 'gpu_renderer.c'), str(HERE.parent / 'host/glad/gl.c'), '-o', exe,
                         '-lpthread', '-lm', *build.SDL_LIBS, *build.PLATFORM_LIBS[sys.platform]], check=True, capture_output=True)
@@ -86,6 +86,16 @@ def main():
         assert len(outputs[0]) == 128*96*4 and outputs[0] == outputs[1], 'filtered texrect strip seam at 4x'
         assert len(set(outputs[0][::4]))>8, 'empty strip fixture'
         print('PASS 4x: split and whole filtered texrect images have 12,288 identical pixels')
+        base = {**env,'BT_RENDERER':'gpu','BT_SCALE':'1'}
+        results = [subprocess.run([exe,'programs'],env={**base,'BT_GPU_SPECIALIZE':value},
+                                  check=True,capture_output=True,timeout=60).stdout for value in ('0','1')]
+        assert len(results[0])==16384 and results[0]==results[1]
+        print('PASS asynchronous and generic draw programs: 16,384 identical bytes')
+        subprocess.run([exe,'shared'],env=base,check=True,capture_output=True,timeout=60)
+        print('PASS held scanout remained red through 80 publications, newest frame is blue')
+        subprocess.run([exe, 'image-access'], env={**base, 'BT_GPU_DEMAND': '1'},
+                       check=True, capture_output=True, timeout=60)
+        print('PASS on-demand overlap for scalar and bulk accesses, CPU color write preserved')
         check_samples(exe, env)
         for name in ('gl', 'invalid'):
             run = subprocess.run([exe], env={**env, 'BT_RENDERER': name}, capture_output=True)

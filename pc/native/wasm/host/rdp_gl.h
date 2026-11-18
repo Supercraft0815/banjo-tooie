@@ -5,16 +5,17 @@
 // at N64 resolution: the player shadow's CI8 image (its depth tests deferred to the GPU, see
 // gpu_mask_defer), the pause menu's copy into Z memory, any image that is not a registered VI
 // framebuffer. The game sees N64 pixels where it looks for them:
-//   - every task ends with a resolve of the images it drew (average to 5-bit RGBA5551 in RDRAM),
-//     which lands before the DP event (with the real clock after the task returns, see gpu_finish);
+//   - ordinary hosts resolve their drawn images to RDRAM before the DP event. An image-aware
+//     guest can resolve them on first CPU or RDP access with BT_GPU_DEMAND=1. Software fallback
+//     and debug-audio hosts keep eager synchronization;
 //   - a texture load from a GPU image resolves it first (the bubble's view of the frame, the pause
 //     copy), mid-task, instead of syncing every draw;
 //   - CPU writes into a framebuffer (debug text, pixel fixes) differ from the last resolve and are
 //     imported at the next task or buffer swap, keeping the other subpixels.
 //   - the software path drawing into RDRAM resolves what is there first and marks GPU images it
 //     overlaps stale (re-imported before the GPU draws into them again);
-//   - depth is resolved into Z memory (compressed like the RDP stores it) at the end of each task
-//     that drew depth (the CPU samples it: 1EC1AD0.c), and before the software path draws over Z
+//   - depth is resolved into Z memory (compressed like the RDP stores it) before CPU reads
+//     (1EC1AD0.c), and before the software path draws over Z
 //     memory, loads it as a texture or depth-tests against it (the player shadow is a decal).
 // The depth clear (fill 0xFFFC into the Z image) runs on both sides.
 // CPU and software depth writes replace only changed guest pixels before the next depth draw.
@@ -25,6 +26,10 @@ static int gpu_enabled(void) {
         const char *name = getenv("BT_RENDERER");
         if (name && strcmp(name, "soft") && strcmp(name, "gpu")) bt_fatal("BT_RENDERER must be soft or gpu");
         gpu_on = name && !strcmp(name, "gpu");
+#ifndef BT_IMAGE_ACCESS_HOST
+        if (gpu_on && getenv("BT_GPU_DEMAND") && atoi(getenv("BT_GPU_DEMAND")))
+            bt_fatal("BT_GPU_DEMAND=1 needs a release gen/ built with BT_GPU_IMAGE_ACCESS=1");
+#endif
 #ifndef BT_GPU_OPENGL
         if (gpu_on) bt_fatal("this build has no GPU renderer");
 #endif
@@ -68,7 +73,8 @@ typedef struct {
 } GpuTarget;
 // rmw: the blender reads memory at scale 1; such batches draw one triangle at a time and blend in the
 // shader against the target itself (texture barrier), so every blend step rounds to RGBA5551 like rdp.c.
-typedef struct { GpuTarget *t; GLenum zfunc; GLboolean zmask; int decal, rmw, sc[4], first, count; } GpuBatch;
+typedef struct { GLuint name; GLint scale,frame,color16,rmw,soften; } DrawProgram;
+typedef struct { const DrawProgram *program; GpuTarget *t; GLenum zfunc; GLboolean zmask; int decal, rmw, sc[4], first, count; } GpuBatch;
 // border: what each of the 8 one-texel border pieces (L R T B, then corners LT RT LB RB) last got copied
 // from, as atlas source x | y << 16 plus 1 (0: never written); see gpu_seams.
 typedef struct { u64 key; u32 gen; u16 x, y; u32 border[8], stamp; int idx; } GpuTexture;
@@ -79,7 +85,7 @@ typedef struct { int slot; u16 w, h; u32 image; float v[3][4]; } GpuPiece;
 static struct {
     SDL_GLContext context;
     GLuint draw, import, resolve, zresolve, maskcopy, maskfrag;  // programs
-    GLint u_scale, u_frame, u_color16, u_rmw, u_soften, i_scale, i_every, i_depth, r_scale, z_scale, mc_off, mc_ia, mf_size;
+    GLint i_scale, i_every, i_depth, r_scale, z_scale, mc_off, mc_ia, mf_size;
     GLuint vao, vbo, empty_vao, mat_buffer, mat_texture, atlas, depth, import_tex[2], resolve_tex, resolve_fbo;
     GLuint blank;  // sampled as dst outside rmw batches (an empty unit makes the driver complain)
     GLuint atlas_fbo;  // the atlas as blit source and target for seam borders
@@ -105,8 +111,10 @@ static struct {
     int nrd, queuing;
     GLsync fence;
     // Direct presentation (gpu_show): a copy of each published picture the renderer no longer draws
-    // into, 0..2 the VI framebuffers' and 3..5 the in-between images'.
-    struct { GLuint tex; int w, h; } show[6];
+    // into. Only published, used sizes allocate texture storage.
+    struct { GLuint tex; GLsync ready, consumed; int w, h; } show[
+        sizeof scanout / sizeof *scanout + sizeof ip_out / sizeof *ip_out + 2];
+    GLuint displayed;
     GLuint show_fbo;
     struct { GLuint fbo, tex, program; GLint size; u32 stored_at; int w,h,guest_w; u8 *bytes; size_t length,capacity; } backdrop;
     GLuint mz_tex, mz_fbo, frag_vao, frag_vbo; int mz_w, mz_h, mz_from_gpu; u32 zgen, mz_gen, mz_zimg;
@@ -129,7 +137,7 @@ static void gpu_check(const char *what) {
     if (error) bt_fatal("OpenGL %s: 0x%x", what, error);
 }
 
-static GLuint gpu_program(const char *vs_text, const char *fs_text) {
+static GLuint gpu_build_program(const char *vs_text, const char *fs_text, int optional) {
     GLuint p = glCreateProgram();
     const char *text[2] = {vs_text, fs_text};
     for (int i = 0; i < 2; i++) {
@@ -138,16 +146,28 @@ static GLuint gpu_program(const char *vs_text, const char *fs_text) {
         glShaderSource(s, 1, &text[i], NULL);
         glCompileShader(s);
         glGetShaderiv(s, GL_COMPILE_STATUS, &ok);
-        if (!ok) { char log[4096]; glGetShaderInfoLog(s, sizeof log, NULL, log); bt_fatal("OpenGL shader: %s", log); }
+        if (!ok) {
+            char log[4096]; glGetShaderInfoLog(s, sizeof log, NULL, log);
+            if (!optional) bt_fatal("OpenGL shader: %s",log);
+            fprintf(stderr,"GPU shader specialization: %s\n",log);
+            glDeleteShader(s); glDeleteProgram(p); return 0;
+        }
         glAttachShader(p, s);
         glDeleteShader(s);
     }
     GLint ok;
     glLinkProgram(p);
     glGetProgramiv(p, GL_LINK_STATUS, &ok);
-    if (!ok) { char log[4096]; glGetProgramInfoLog(p, sizeof log, NULL, log); bt_fatal("OpenGL link: %s", log); }
+    if (!ok) {
+        char log[4096]; glGetProgramInfoLog(p,sizeof log,NULL,log);
+        if (!optional) bt_fatal("OpenGL link: %s",log);
+        fprintf(stderr,"GPU shader specialization: %s\n",log); glDeleteProgram(p); return 0;
+    }
     return p;
 }
+
+static GLuint gpu_program(const char *vs, const char *fs) { return gpu_build_program(vs, fs, 0); }
+#include "rdp_gl_programs.h"
 
 static void gpu_texture(GLuint *tex, GLenum internal, int w, int h, GLenum format, GLenum type) {
     if (!*tex) glGenTextures(1, tex);
@@ -240,6 +260,10 @@ void rdp_gpu_share(void *window) {
     if (!gpu.context || !SDL_GL_MakeCurrent(gpu_window, display)) bt_fatal("SDL render context: %s", SDL_GetError());
     done.context = SDL_GL_CreateContext(gpu_window);
     if (!done.context || !SDL_GL_MakeCurrent(gpu_window, display)) bt_fatal("SDL completion context: %s", SDL_GetError());
+    if (!getenv("BT_GPU_SPECIALIZE") || atoi(getenv("BT_GPU_SPECIALIZE"))) {
+        programs.context=SDL_GL_CreateContext(gpu_window);
+        if (!SDL_GL_MakeCurrent(gpu_window,display)) bt_fatal("restoring SDL display context: %s",SDL_GetError());
+    }
     SDL_GL_SetAttribute(SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 0);
 }
 
@@ -265,21 +289,17 @@ static void gpu_init(void) {
     glGetIntegerv(GL_MAX_SAMPLES, &gpu.max_samples);
     gpu.max_size = max_tex < max_rb ? max_tex : max_rb;
     gpu.draw = gpu_program(gpu_vertex_shader, gpu_fragment_shader);
+    programs.generic=draw_program(gpu.draw);
+    if (programs.context) {
+        pthread_t worker;
+        if (!pthread_create(&worker,NULL,compile_draw_programs,NULL)) pthread_detach(worker);
+        else programs.context=NULL;
+    }
     gpu.import = gpu_program(gpu_fullscreen_shader, gpu_import_shader);
     gpu.resolve = gpu_program(gpu_fullscreen_shader, gpu_resolve_shader);
     gpu.zresolve = gpu_program(gpu_fullscreen_shader, gpu_zresolve_shader);
     gpu.maskcopy = gpu_program(gpu_fullscreen_shader, gpu_maskcopy_shader);
     gpu.maskfrag = gpu_program(gpu_maskfrag_vertex_shader, gpu_maskfrag_shader);
-    glUseProgram(gpu.draw);
-    glUniform1i(glGetUniformLocation(gpu.draw, "atlas"), 0);
-    glUniform1i(glGetUniformLocation(gpu.draw, "silhouette"), 6);
-    glUniform1i(glGetUniformLocation(gpu.draw, "mats"), 1);
-    gpu.u_scale = glGetUniformLocation(gpu.draw, "scale");
-    gpu.u_frame = glGetUniformLocation(gpu.draw, "frame");
-    gpu.u_color16 = glGetUniformLocation(gpu.draw, "color16");
-    gpu.u_rmw = glGetUniformLocation(gpu.draw, "rmw");
-    glUniform1i(glGetUniformLocation(gpu.draw, "dst"), 4);
-    gpu.u_soften = glGetUniformLocation(gpu.draw, "soften");
     glUseProgram(gpu.maskcopy);
     glUniform1i(glGetUniformLocation(gpu.maskcopy, "image"), 2);
     gpu.mc_off = glGetUniformLocation(gpu.maskcopy, "off");
@@ -627,13 +647,14 @@ static void gpu_emit(GpuTarget *t, const GpuVertex *v, int n, int zon) {
               ((cyc == 1 && ((bl >> 14 & 3) == 1 || (bl >> 6 & 3) == 1)) || (bl >> (12 + sh) & 3) == 1 ||
                ((R.om_l & 0x4000) && (bl >> (4 + sh) & 3) == 1));
     gpu_scissor(t, sc);
+    const DrawProgram *program=select_draw_program(gpu.m+4*v[0].mat);
     GpuBatch *b = gpu.nb ? &gpu.b[gpu.nb - 1] : NULL;
-    if (!b || b->t != t || b->zfunc != zfunc || b->zmask != zmask || b->decal != decal || b->rmw != rmw ||
+    if (!b || b->program != program || b->t != t || b->zfunc != zfunc || b->zmask != zmask || b->decal != decal || b->rmw != rmw ||
         memcmp(b->sc, sc, sizeof sc)) {
         if (gpu.nb == gpu.cap_b && !(gpu.b = realloc(gpu.b, (size_t)(gpu.cap_b = gpu.cap_b * 2 + 64) * sizeof *gpu.b)))
             bt_fatal("allocating GPU batches");
         b = &gpu.b[gpu.nb++];
-        *b = (GpuBatch){.t = t, .zfunc = zfunc, .zmask = zmask, .decal = decal, .rmw = rmw, .first = gpu.nv};
+        *b = (GpuBatch){.program=program, .t = t, .zfunc = zfunc, .zmask = zmask, .decal = decal, .rmw = rmw, .first = gpu.nv};
         memcpy(b->sc, sc, sizeof sc);
     }
     if (gpu.nv + n > gpu.cap_v && !(gpu.v = realloc(gpu.v, (size_t)(gpu.cap_v = (gpu.nv + n) * 2) * sizeof *gpu.v)))
@@ -948,24 +969,29 @@ static void gpu_flush(void) {
     glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)gpu.nv * (GLsizeiptr)sizeof *gpu.v, gpu.v, GL_STREAM_DRAW);
     glBindBuffer(GL_TEXTURE_BUFFER, gpu.mat_buffer);
     glBufferData(GL_TEXTURE_BUFFER, (GLsizeiptr)gpu.nm * 4, gpu.m, GL_STREAM_DRAW);
-    glUseProgram(gpu.draw);
     glBindVertexArray(gpu.vao);
     glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, gpu.atlas);
     glActiveTexture(GL_TEXTURE1); glBindTexture(GL_TEXTURE_BUFFER, gpu.mat_texture);
     glActiveTexture(GL_TEXTURE6); glBindTexture(GL_TEXTURE_2D, gpu.shadow.texture ? gpu.shadow.texture : gpu.blank);
     glActiveTexture(GL_TEXTURE0);
-    glUniform1ui(gpu.u_frame, gpu.frame);
-    glUniform1i(gpu.u_soften, bt_setting(BT_SET_SMOOTH));
+    const DrawProgram *program=NULL;
     GpuTarget *bound = NULL;
     int decal = -1;
     for (int i = 0; i < gpu.nb; i++) {
         GpuBatch *b = &gpu.b[i];
+        if (program!=b->program) {
+            program=b->program;
+            glUseProgram(program->name);
+            glUniform1ui(program->frame,gpu.frame);
+            glUniform1i(program->soften,bt_setting(BT_SET_SMOOTH));
+            bound=NULL;
+        }
         if (b->t != bound) {
             bound = b->t;
             glBindFramebuffer(GL_FRAMEBUFFER, gpu_draw_fbo(bound));
             glViewport(0, 0, bound->pw, bound->ph);
-            glUniform2f(gpu.u_scale, bound->sx, bound->sy);
-            glUniform1i(gpu.u_color16, bound->sx == 1 && bound->sy == 1);
+            glUniform2f(program->scale, bound->sx, bound->sy);
+            glUniform1i(program->color16, bound->sx == 1 && bound->sy == 1);
         }
         glDepthFunc(b->zfunc);
         glDepthMask(b->zmask);
@@ -977,9 +1003,9 @@ static void gpu_flush(void) {
         glScissor(b->sc[0], b->sc[1], b->sc[2] > b->sc[0] ? b->sc[2] - b->sc[0] : 0, b->sc[3] > b->sc[1] ? b->sc[3] - b->sc[1] : 0);
         if (!b->rmw) { glDrawArrays(GL_TRIANGLES, b->first, b->count); continue; }
         glActiveTexture(GL_TEXTURE4); glBindTexture(GL_TEXTURE_2D, b->t->color);
-        glUniform1i(gpu.u_rmw, 1);
+        glUniform1i(program->rmw, 1);
         for (int k = 0; k < b->count; k += 3) { gpu_barrier(); glDrawArrays(GL_TRIANGLES, b->first + k, 3); }
-        glUniform1i(gpu.u_rmw, 0);
+        glUniform1i(program->rmw, 0);
         glBindTexture(GL_TEXTURE_2D, gpu.blank);
         glActiveTexture(GL_TEXTURE0);
     }
@@ -1028,12 +1054,46 @@ static void gpu_resolve_pass(GpuTarget *t, GLuint program, GLint scale, GLuint s
     gpu.resolves++;
 }
 
+// A guarded guest notifies raw scalar and bulk CPU accesses. Marks persist for
+// pages where images have lived. Only still-pending exact ranges cause a sync.
+#ifdef BT_IMAGE_ACCESS_HOST
+unsigned char bt_image_pages[4096];
+static _Atomic u64 pending_images[4];
+static int demand_images;
+static int demand_requested(void) {
+    const char *setting = getenv("BT_GPU_DEMAND");
+    return setting && atoi(setting);
+}
+static int defer_image(int slot, u32 address, GpuTarget *t) {
+    u64 bytes = (u64)t->width * t->height * 2;
+    u64 limit = address + bytes;
+    if (!demand_images || !bytes || address < 0x80000000u || limit > 0x81000000ull) return 0;
+    u64 range = (u64)address << 32 | bytes;
+    if (atomic_load(&pending_images[slot]) != range) {
+        u32 first = (address - 0x80000000u) >> 12;
+        u32 last = (u32)((limit - 1 - 0x80000000u) >> 12);
+        if (first) first--;  // a scalar on the preceding page may straddle this image
+        for (u32 i = first; i <= last; i++)
+            __atomic_store_n(&bt_image_pages[i], 1, __ATOMIC_RELAXED);
+        atomic_store(&pending_images[slot], range);
+    }
+    return 1;
+}
+static int pending_overlap(int slot, u64 address, u64 bytes) {
+    u64 range = atomic_load(&pending_images[slot]);
+    u64 start = range >> 32;
+    return range && address < start + (u32)range && start < address + bytes;
+}
+#endif
 static void gpu_resolve(GpuTarget *t) {
     int n = t->width * t->height * 2;
     u8 *dst = gptr(t->address, (u32)n);
     if (!t->drawn || !dst) return;
     gpu_resolve_pass(t, gpu.resolve, gpu.r_scale, t->color, dst, t->shadow);
     t->drawn = 0;
+#ifdef BT_IMAGE_ACCESS_HOST
+    if (demand_images) atomic_store(&pending_images[t - gpu.t], 0);
+#endif
 }
 
 // Z memory gets the GPU's depth: at the end of a task (the game samples it with the CPU, 1EC1AD0.c)
@@ -1043,8 +1103,29 @@ static void gpu_resolve_depth(void) {
     u8 *dst = t ? gptr(gpu.zaddr, (u32)(t->width * t->height * 2)) : NULL;
     gpu.zt = NULL;
     if (dst) gpu_resolve_pass(t, gpu.zresolve, gpu.z_scale, t->depth, dst, gpu.zshadow);
+#ifdef BT_IMAGE_ACCESS_HOST
+    if (demand_images) atomic_store(&pending_images[3], 0);  // allow readers through after the bytes are in RDRAM
+#endif
 }
 
+#ifdef BT_IMAGE_ACCESS_HOST
+void bt_image_access(u64 address, u64 bytes) {
+    if (!bytes || (!pending_overlap(0, address, bytes) && !pending_overlap(1, address, bytes) &&
+                   !pending_overlap(2, address, bytes) && !pending_overlap(3, address, bytes))) return;
+    if (!in_render_task) {
+        pthread_mutex_lock(&frame_lock);
+        gpu_init();
+        gpu_finish();
+    }
+    for (int i = 0; i < 3; i++)
+        if (pending_overlap(i, address, bytes)) gpu_resolve(&gpu.t[i]);
+    if (pending_overlap(3, address, bytes)) gpu_resolve_depth();
+    if (!in_render_task) {
+        gpu_release();
+        pthread_mutex_unlock(&frame_lock);
+    }
+}
+#endif
 static void gpu_resolve_address(u32 address) {
     for (int i = 0; i < 3; i++) {
         GpuTarget *t = &gpu.t[i];
@@ -1165,14 +1246,54 @@ static void gpu_install(GpuTarget *t, u32 *pixels) {
 // the game threads write. A window with the real clock reads its texture when it needs pixels.
 static int gpu_pictures(void) { return !gpu_share || bt_vclock_on; }
 
-// Copies t into show texture k for the window; the copy is on the GPU, nothing waits for it.
-static GLuint gpu_show(GpuTarget *t, int k) {
+// The window keeps its current texture across refreshes. When it selects a new
+// one, order writes after its last read and new reads after the producer's copy.
+static void gpu_window_picture(unsigned texture) {
+    if (texture == gpu.displayed) return;
+    for (size_t k=0; k<sizeof gpu.show/sizeof *gpu.show; k++) {
+        if (!gpu.show[k].tex) continue;
+        if (gpu.show[k].tex == gpu.displayed) {
+            if (gpu.show[k].consumed) glDeleteSync(gpu.show[k].consumed);
+            gpu.show[k].consumed = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+            glFlush();
+        }
+        if (gpu.show[k].tex == texture) glWaitSync(gpu.show[k].ready,0,GL_TIMEOUT_IGNORED);
+    }
+    gpu.displayed=texture;
+}
+
+static int gpu_published_texture(GLuint texture) {
+    if (!texture) return 0;
+    if (texture==gpu.displayed) return 1;
+    for (size_t i=0;i<sizeof scanout/sizeof *scanout;i++)
+        if (scanout[i].address && scanout[i].tex==texture) return 1;
+    for (size_t i=0;i<sizeof ip_out/sizeof *ip_out;i++)
+        if (ip_out[i].address && ip_out[i].tex==texture) return 1;
+    return 0;
+}
+
+// A spare surface permits a new copy while the previously published or selected
+// texture is still visible in another context. No CPU wait is needed.
+static GLuint gpu_show(GpuTarget *t) {
+    size_t k=0;
+    pthread_mutex_lock(&scanout_lock);
+    while (k<sizeof gpu.show/sizeof *gpu.show && gpu_published_texture(gpu.show[k].tex)) k++;
+    if (k==sizeof gpu.show/sizeof *gpu.show) bt_fatal("no spare presentation texture");
+    if (gpu.show[k].consumed) {
+        glWaitSync(gpu.show[k].consumed,0,GL_TIMEOUT_IGNORED);
+        glDeleteSync(gpu.show[k].consumed);
+        gpu.show[k].consumed=NULL;
+    }
+    if (gpu.show[k].ready) { glDeleteSync(gpu.show[k].ready); gpu.show[k].ready=NULL; }
+    pthread_mutex_unlock(&scanout_lock);
     int w = t->pw, h = t->ph;
     gpu_pass_begin();
-    if (gpu.show[k].w != w || gpu.show[k].h != h) {  // same name: the window may be drawing with it
+    pthread_mutex_lock(&scanout_lock);
+    if (gpu.show[k].w != w || gpu.show[k].h != h) {
         gpu_texture(&gpu.show[k].tex, GL_RGBA8, w, h, GL_RGBA, GL_UNSIGNED_BYTE);
         gpu.show[k].w = w; gpu.show[k].h = h;
     }
+    pthread_mutex_unlock(&scanout_lock);
     if (!gpu.show_fbo) glGenFramebuffers(1, &gpu.show_fbo);
     glBindFramebuffer(GL_READ_FRAMEBUFFER, gpu_draw_fbo(t));
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gpu.show_fbo);
@@ -1180,17 +1301,17 @@ static GLuint gpu_show(GpuTarget *t, int k) {
     glBlitFramebuffer(0, 0, w, h, 0, 0, w, h, GL_COLOR_BUFFER_BIT, GL_NEAREST);
     gpu_pass_end();
     gpu_check("show");
+    pthread_mutex_lock(&scanout_lock);
+    gpu.show[k].ready=glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
+    glFlush();  // make the sync visible to the window before its texture is published
+    pthread_mutex_unlock(&scanout_lock);
     return gpu.show[k].tex;
 }
 
-// shortcut: the window draws with a show texture without waiting for the copy's fence; it relies on
-// the GPU running the renderer's flushed commands first (the VI shows a picture only after the DP
-// event, behind gpu_end's fence). Add a fence per texture if a stale picture ever shows.
 static void gpu_publish(GpuTarget *t) {
     if (gpu_share) {
         int slot = (int)(t - gpu.t);
-        GLuint tex = gpu_show(t, slot);
-        if (!gpu.queuing) glFlush();  // gpu_end flushes behind its fence
+        GLuint tex = gpu_show(t);
         pthread_mutex_lock(&scanout_lock);
         if (!gpu_pictures() || scanout[slot].pixel_w != t->pw || scanout[slot].pixel_h != t->ph) {
             free(scanout[slot].pixels); scanout[slot].pixels = NULL;
@@ -1666,14 +1787,31 @@ static int gpu_done_later(u32 event) {
 
 static void gpu_end(void) {
     if (!gpu_enabled()) return;
+#ifdef BT_IMAGE_ACCESS_HOST
+    static int checked;
+    if (!checked) {
+        demand_images = demand_requested() && gpu_barrier_available > 0;
+        if (demand_requested() && !demand_images)
+            fprintf(stderr, "gpu: using eager image resolves on a driver that may switch to software at 1x\n");
+        checked = 1;
+    }
+#endif
     gpu_flush();
     gpu.queuing = 1;
     gpu_mask_finalize();  // queues the mask's depth when its fragments need it
     for (int i = 0; i < 3; i++) {
-        if (gpu.t[i].changed) gpu_publish(&gpu.t[i]);
-        gpu_resolve(&gpu.t[i]);
+        GpuTarget *t = &gpu.t[i];
+        if (t->changed) gpu_publish(t);
+#ifdef BT_IMAGE_ACCESS_HOST
+        if (t->drawn && defer_image(i, t->address, t)) continue;
+#endif
+        gpu_resolve(t);
     }
+#ifdef BT_IMAGE_ACCESS_HOST
+    if (!gpu.zt || !defer_image(3, gpu.zaddr, gpu.zt)) gpu_resolve_depth();
+#else
     gpu_resolve_depth();
+#endif
     gpu.queuing = 0;
     gpu.fence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
     glFlush();  // the completion thread waits for this fence from its own context
@@ -1686,6 +1824,8 @@ static void gpu_end(void) {
     if (stats && ++tasks % 300 == 0) {
         fprintf(stderr, "gpu: per task draws=%u batches=%u texture uploads=%u resolves=%u imports=%u mask copies=%u\n",
                 gpu.draws / 300, gpu.batches / 300, gpu.uploads / 300, gpu.resolves / 300, gpu.imports / 300, gpu.mask_copies / 300);
+        fprintf(stderr,"gpu: specialized %u draws, %u programs ready\n",programs.draws,atomic_load(&programs.ready));
+        programs.draws=0;
         gpu.draws = gpu.batches = gpu.uploads = gpu.resolves = gpu.imports = gpu.mask_copies = 0;
     }
 }
@@ -1774,13 +1914,18 @@ static void gpu_interp_begin(void) {
 
 static u32 *gpu_interp_end(int index, unsigned *tex, int *w, int *h, int *sx, int *sy) {
     *w = gpu.ipt.width; *h = gpu.ipt.height; *sx = gpu.ipt.sx; *sy = gpu.ipt.sy;
-    if (gpu_share) { *tex = gpu_show(&gpu.ipt, 3 + index); glFlush(); }  // the pass ends here: the window may show it
+    if (gpu_share) *tex = gpu_show(&gpu.ipt);  // the pass ends here: the window may show it
     u32 *picture = gpu_pictures() ? gpu_read_picture(&gpu.ipt) : NULL;
     gpu_release();
     return picture;
 }
 #else
+#ifdef BT_IMAGE_ACCESS_HOST
+unsigned char bt_image_pages[4096];
+void bt_image_access(u64 a, u64 n) { (void)a; (void)n; }
+#endif
 void rdp_framebuffer_copy(void) {}
+static void gpu_window_picture(unsigned tex) { (void)tex; }
 void rdp_gpu_share(void *window) { (void)window; }
 static void gpu_begin(void) { gpu_enabled(); }
 static void gpu_release(void) {}

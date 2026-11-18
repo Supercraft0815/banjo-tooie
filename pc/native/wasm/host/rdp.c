@@ -68,7 +68,12 @@ static u8 *gptr(u32 addr, u32 n) {
     if (snap_mem) return addr >= 0x80000000u && (u64)addr - 0x80000000u + n <= SNAP_LIMIT ? (u8 *)snap_mem + (addr - 0x80000000u) : NULL;
     return addr >= 0x80000000u && (u64)addr + n <= bt_inst.w2c_memory.size ? bt_mem + addr : NULL;
 }
-const u8 *rdp_mem(u32 addr, u32 n) { return gptr(addr, n); }
+const u8 *rdp_mem(u32 addr, u32 n) {
+#ifdef BT_IMAGE_ACCESS_HOST
+    if (!snap_mem) bt_image_range(addr,n);
+#endif
+    return gptr(addr,n);
+}
 static inline u16 rd16(const u8 *p) { return (u16)(p[0] << 8 | p[1]); }
 static inline void wr16(u8 *p, u32 v) { p[0] = (u8)(v >> 8); p[1] = (u8)v; }
 static inline int clamp8(int v) { return v < 0 ? 0 : v > 255 ? 255 : v; }
@@ -116,9 +121,12 @@ typedef struct {
 static Frame frames[3], depth;
 static int scaled_depth_row;
 static pthread_mutex_t frame_lock = PTHREAD_MUTEX_INITIALIZER;
+static _Thread_local int in_render_task;
 static pthread_mutex_t scanout_lock = PTHREAD_MUTEX_INITIALIZER;
-typedef struct { u32 address, *pixels; int width, height, pixel_w, pixel_h; unsigned tex; } Picture;
-static Picture scanout[3], ip_out[3];
+typedef struct { u32 address, *pixels; int width, height, pixel_w, pixel_h; unsigned tex; float phase; } Picture;
+static Picture scanout[3], ip_out[3 * BT_POSES_PER_PICTURE];
+static u32 ip_addresses[3];  // each VI buffer keeps its own pictures until it is drawn again
+static int ip_bank;
 // Frame interpolation: in-between pictures of a task's scanout image, rasterized from its display
 // list into host buffers (ip.color, ip.z). Guest memory, the RDP state and the noise sequence stay
 // as the real pass left them, so the game never sees these passes.
@@ -329,6 +337,7 @@ void rdp_begin(void) {
     rdp_scale();
     rdp_interp_wait();  // the previous picture's in-between passes use the same RDP state
     pthread_mutex_lock(&frame_lock);
+    in_render_task = 1;
     ip.armed = 0;
     ip.address = 0;
     gpu_begin();
@@ -345,6 +354,7 @@ void rdp_end(void) {
     resolve_all();  // still on the pool
     pool_task(0);
     if (gpu_enabled()) gpu_release();
+    in_render_task = 0;
     pthread_mutex_unlock(&frame_lock);
 }
 
@@ -359,8 +369,31 @@ static Picture *picture_slot(Picture *slots, int count, u32 address, int width, 
     }
     return NULL;
 }
+static Picture *in_between(u32 address, int width, int height, int index, int texture) {
+    if (index < 0 || index >= BT_POSES_PER_PICTURE) return NULL;
+    for (int i = 0; i < 3; i++) {
+        if (ip_addresses[i] == address)
+            return picture_slot(&ip_out[i * BT_POSES_PER_PICTURE + index], 1, address, width, height, texture);
+    }
+    return NULL;
+}
+int rdp_picture_phase(u32 address, float phase) {
+    float distance = 1 - phase;
+    int index = -1;
+    pthread_mutex_lock(&scanout_lock);
+    for (int i = 0; i < 3; i++) if (address && ip_addresses[i] == address) {
+        for (int j = 0; j < BT_POSES_PER_PICTURE; j++) {
+            Picture *p = &ip_out[i * BT_POSES_PER_PICTURE + j];
+            float d = fabsf(phase - p->phase);
+            if (p->address == address && d < distance) { distance = d; index = j; }
+        }
+        break;
+    }
+    pthread_mutex_unlock(&scanout_lock);
+    return index;
+}
 static Picture *picture_for(u32 address, int width, int height, int index, int texture) {
-    Picture *p = index >= 0 && index < 3 ? picture_slot(&ip_out[index], 1, address, width, height, texture) : NULL;
+    Picture *p = in_between(address, width, height, index, texture);
     return p ? p : picture_slot(scanout, 3, address, width, height, texture);
 }
 void rdp_reserve_pixels(u32 **pixels, size_t *capacity, int w, int h) {
@@ -384,10 +417,11 @@ int rdp_picture(u32 address, int width, int height, int index, u32 **pixels, siz
     return p != NULL;
 }
 // Existing integer-scale consumers reserve space for RDP_MAX_SX by RDP_MAX_SCALE.
-static int integer_picture(Picture *slots, int count, u32 address, int width, int height, u32 *pixels, int *sx) {
+static int integer_picture(int index, u32 address, int width, int height, u32 *pixels, int *sx) {
     int sy = 0;
     pthread_mutex_lock(&scanout_lock);
-    Picture *p = picture_slot(slots, count, address, width, height, 0);
+    Picture *p = index < 0 ? picture_slot(scanout, 3, address, width, height, 0)
+                           : in_between(address, width, height, index, 0);
     if (p && p->pixel_w % width == 0 && p->pixel_h % height == 0 &&
         p->pixel_w / width <= RDP_MAX_SX && p->pixel_h / height <= RDP_MAX_SCALE) {
         *sx = p->pixel_w / width; sy = p->pixel_h / height;
@@ -397,16 +431,18 @@ static int integer_picture(Picture *slots, int count, u32 address, int width, in
     return sy;
 }
 int rdp_frame(u32 address, int width, int height, u32 *pixels, int *sx) {
-    return integer_picture(scanout, 3, address, width, height, pixels, sx);
+    return integer_picture(-1, address, width, height, pixels, sx);
 }
 int rdp_interp_frame(u32 address, int width, int height, int index, u32 *pixels, int *sx) {
-    return index >= 0 && index < 3 ? integer_picture(&ip_out[index], 1, address, width, height, pixels, sx) : 0;
+    return index >= 0 ? integer_picture(index, address, width, height, pixels, sx) : 0;
 }
+static void gpu_window_picture(unsigned tex);  // scanout_lock is held
 unsigned rdp_frame_texture(u32 address, int width, int height, int index, int *w, int *h) {
     unsigned tex = 0;
     pthread_mutex_lock(&scanout_lock);
     Picture *p = picture_for(address, width, height, index, 1);
     if (p) { tex = p->tex; *w = p->pixel_w; *h = p->pixel_h; }
+    gpu_window_picture(tex);
     pthread_mutex_unlock(&scanout_lock);
     return tex;
 }
@@ -1039,7 +1075,7 @@ static void load_block(u32 w0, u32 w1) {
     u32 texels = (u32)(lrs - uls + 1), bytes = siz == 0 ? (texels + 1) / 2 : texels << (siz - 1);
     u32 src = R.timg + (((u32)(ult * R.timg_width + uls) << siz) >> 1), tm = (u32)tl->tmem * 8, acc = 0;
     for (u32 w = 0; w < (bytes + 7) / 8 && w < 512; w++, acc += (u32)dxt) {
-        const u8 *s = gptr(src + w * 8, 8);
+        const u8 *s = rdp_mem(src + w * 8, 8);
         u32 x = acc >> 11 & 1 ? 4 : 0;
         if (!s) break;
         if (siz == 3) {
@@ -1066,7 +1102,7 @@ static void load_tile(u32 w0, u32 w1) {
     for (int t = tt; t <= th; t++) {
         int row = t - tt;
         u32 x = row & 1 ? 4 : 0, rb = (u32)tl->tmem * 8 + (u32)(row * tl->line * 8);
-        const u8 *s = gptr(R.timg + (u32)(t * R.timg_width + sl) * bpp >> (siz == 0), (u32)(sh - sl + 1) * bpp);
+        const u8 *s = rdp_mem(R.timg + (u32)(t * R.timg_width + sl) * bpp >> (siz == 0), (u32)(sh - sl + 1) * bpp);
         if (!s) continue;
         for (int i = 0; i <= sh - sl; i++) {
             if (siz == 3) {
@@ -1090,7 +1126,7 @@ static void load_tlut(u32 w0, u32 w1) {
     Tile *tl = &R.tile[w1 >> 24 & 7];
     int uls = w0 >> 12 & 0xFFF, lrs = w1 >> 12 & 0xFFF, n = (lrs >> 2) - (uls >> 2) + 1;
     u32 tm = (u32)tl->tmem * 8;
-    const u8 *s = gptr(R.timg + (u32)(uls >> 2) * 2, (u32)(n > 0 ? n : 0) * 2);
+    const u8 *s = rdp_mem(R.timg + (u32)(uls >> 2) * 2, (u32)(n > 0 ? n : 0) * 2);
     if (!s || n <= 0 || n > 256) return;
     for (int i = 0; i < n; i++)
         for (int c = 0; c < 4; c++) { tmem_put(tm + i * 8 + c * 2, s[i * 2]); tmem_put(tm + i * 8 + c * 2 + 1, s[i * 2 + 1]); }
@@ -1162,13 +1198,23 @@ void rdp_interp_arm(int images) {
     if (ip.armed) { task_state = R; return; }
     // No in-betweens this task (60 Hz, interval 1): older ones must not be shown for this framebuffer.
     pthread_mutex_lock(&scanout_lock);
-    for (int i = 0; i < 3; i++) ip_out[i].address = 0;
+    for (int i = 0; i < 3 * BT_POSES_PER_PICTURE; i++) ip_out[i].address = 0;
     pthread_mutex_unlock(&scanout_lock);
 }
 
 static void interp_invalidate(void) {
     pthread_mutex_lock(&scanout_lock);
-    for (int i = 0; i < 3; i++) if (ip_out[i].address == ip.address) ip_out[i].address = 0;
+    static unsigned replace;
+    int bank = 0;
+    while (bank < 3 && ip_addresses[bank] != ip.address) bank++;
+    if (bank == 3) {
+        bank = 0;
+        while (bank < 3 && ip_addresses[bank]) bank++;
+        if (bank == 3) bank = (int)(replace++ % 3);
+    }
+    ip_bank = bank;
+    ip_addresses[bank] = ip.address;
+    for (int i = 0; i < BT_POSES_PER_PICTURE; i++) ip_out[bank * BT_POSES_PER_PICTURE + i].address = 0;
     pthread_mutex_unlock(&scanout_lock);
 }
 
@@ -1205,7 +1251,11 @@ int rdp_interp_begin(void) {
     state_gen++;
     ip.noise = noise_state;
     texture_epoch++;
-    if (gpu_enabled()) gpu_interp_begin();
+    if (gpu_enabled()) {
+        pthread_mutex_lock(&frame_lock);
+        in_render_task = 1;
+        gpu_interp_begin();
+    }
     else {
         memcpy(ip.color.data, ip.pre, ip.bytes);
         for (size_t i = 0; i < ip.bytes; i += 2) wr16(ip.z.data + i, 0xFFFC);
@@ -1214,8 +1264,8 @@ int rdp_interp_begin(void) {
     return 1;
 }
 
-void rdp_interp_end(int index) {
-    if (index < 0 || index >= 3) bt_fatal("rdp_interp_end: index %d", index);
+void rdp_interp_end(int index, float phase) {
+    if (index < 0 || index >= BT_POSES_PER_PICTURE) bt_fatal("rdp_interp_end: index %d", index);
     int w = ip.color.width, h = ip.color.height, sx = ip.color.sx, sy = ip.color.sy;
     unsigned tex = 0;  // GPU with a window: the image is a texture, and picture stays NULL unless dumps need it
     const u32 *picture = gpu_enabled() ? gpu_interp_end(index, &tex, &w, &h, &sx, &sy) : NULL;
@@ -1230,6 +1280,8 @@ void rdp_interp_end(int index) {
 #endif
     size_t n = (size_t)pw * ph;
     pthread_mutex_lock(&scanout_lock);
+    index += ip_bank * BT_POSES_PER_PICTURE;
+    ip_out[index].phase = phase;
     if (tex && !picture) { free(ip_out[index].pixels); ip_out[index].pixels = NULL; }
     else if (!ip_out[index].pixels || (size_t)ip_out[index].pixel_w * ip_out[index].pixel_h != n) {
         free(ip_out[index].pixels);
@@ -1245,6 +1297,10 @@ void rdp_interp_end(int index) {
         ip_out[index].pixels[i] = 0xFF000000u | c[0] << 16 | c[1] << 8 | c[2];
     }
     pthread_mutex_unlock(&scanout_lock);
+    if (in_render_task) {
+        in_render_task = 0;
+        pthread_mutex_unlock(&frame_lock);
+    }
 }
 
 

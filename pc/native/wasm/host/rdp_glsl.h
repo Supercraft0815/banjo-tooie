@@ -74,6 +74,7 @@ static const char gpu_fragment_shader[] =
 " vec2 dpx=dFdx(v_stp),dpy=dFdy(v_stp),dlx=dFdx(v_stl),dly=dFdy(v_stl);\n"
 " base=int(v_mat);\n"
 " uvec4 h0=texelFetch(mats,base),h1=texelFetch(mats,base+1),h2=texelFetch(mats,base+2),h3=texelFetch(mats,base+3);\n"
+"#ifdef BT_MATERIAL\n h0=BT_H0;h1.xy=BT_H1;\n#endif\n"
 " uint omh=h0.x,oml=h0.y,flags=h1.z;int mode=int(flags&7u);ivec2 px=ivec2(gl_FragCoord.xy);\n"
 " if(mode==4){uint f=h3.x,v=(int((float(px.x)+0.5)/scale.x)&1)!=0?(f&65535u):(f>>16);ivec4 c=rgba16(v);\n"
 "  o_color=vec4(vec3(c.rgb)/255.0,float(v&1u));o_factor=vec4(0.0);return;}\n"

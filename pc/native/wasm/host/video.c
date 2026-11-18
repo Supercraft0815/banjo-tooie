@@ -29,7 +29,7 @@
 #include "retrace.h"
 
 static void convert(u32 fb, int w, int h, u32 *out) {
-    const u8 *p = bt_mem + fb;
+    const u8 *p = G_range(fb, (u64)w*h*2);
     if ((u64)fb + (u64)w * h * 2 > bt_inst.w2c_memory.size) return;
     for (int i = 0; i < w * h; i++, p += 2) {
         u32 v = (u32)p[0] << 8 | p[1], r = v >> 11 & 31, g = v >> 6 & 31, b = v >> 1 & 31;
@@ -195,6 +195,7 @@ static void retrace_clock(void) {
     double now = (double)SDL_GetTicksNS() * 1e-9, since = now - clock.prev;
     const SDL_DisplayMode *mode = SDL_GetCurrentDisplayMode(SDL_GetDisplayForWindow(win));
     int n = vsync && !bt_vclock_on ? retrace_step(&clock, now, mode ? mode->refresh_rate : 0, 59.94 * bt_speed()) : -1;
+    bt_vi_display_swap(vsync && !bt_vclock_on);
     atomic_store(&bt_vi_display, n >= 0);
     if (n < 0) clock.on = 0;
     if (n < 0 && since < .002) SDL_Delay(2);  // nothing paces the loop
@@ -218,8 +219,10 @@ _Noreturn void bt_video_main(void) {
     int w = 320, h = 240;
     int show_controls = 0, shot = 0;
     u32 last = 0, frames = 0;
+    int last_index = -1;
     u32 previous_fb = 0, swaps = 0, fps_swaps = 0, repeated = 0, skipped = 0;
     u64 stats_start = 0, fps_start = 0;
+    u32 total_skipped=0, late_skipped=0;
     char fps_text[16] = "";
     if (!headless) upload(shown = gl.picture, 1, 1, &(u32){0});
     u64 start = SDL_GetTicks();
@@ -237,11 +240,26 @@ _Noreturn void bt_video_main(void) {
             bt_input_event(&e);
         }
         double secs = (SDL_GetTicks() - start) / 1000.0 * bt_speed();  // game time
-        if (quit_after > 0 && secs >= quit_after && !bt_vclock_on) exit(0);
+        if (quit_after > 0 && secs >= quit_after && !bt_vclock_on) {
+            if (bt_setting(BT_SET_RENDER_STATS))
+                fprintf(stderr,"video: skipped total=%u after first second=%u final partial=%u last retrace=%u\n",
+                        total_skipped,late_skipped,skipped,last);
+            exit(0);
+        }
         bt_input_update(secs, !headless);
         u32 fb, width, age, count = bt_vi_frame(&fb, &width, &age);
-        if (count == last) repeated++; else skipped += count - last - 1;  // presents without a new retrace; retraces never shown
-        if (count != last) {
+        if (count == last) repeated++;
+        else {
+            u32 missed = count-last-1;
+            if (missed && bt_setting(BT_SET_RENDER_STATS))
+                fprintf(stderr,"video: missed %u retraces before %u at %.3f s\n",missed,count,secs);
+            skipped += missed;
+            total_skipped += missed;
+            // Count each missed VI by its index, including skips which straddle one second.
+            if (count > 60 && missed) late_skipped += count-1-(last<59 ? 59:last);
+        }  // presents without a new retrace; retraces never shown
+        int new_retrace = count != last;
+        if (new_retrace) {
             last = count;
             if (fb && fb != previous_fb) swaps++, fps_swaps++;
             if (SDL_GetTicks() - fps_start >= 1000) {  // game pictures per second, for the FPS setting
@@ -256,8 +274,15 @@ _Noreturn void bt_video_main(void) {
                         swaps * 1000.0 / (now - stats_start), repeated, skipped);
                 swaps = repeated = skipped = 0; stats_start = now;
             }
+        }
+        int index = -1;
+        if (bt_setting(BT_SET_INTERP)) {
+            float phase = win ? bt_vi_phase(fb) : -1;
+            index = phase >= 0 ? rdp_picture_phase(fb, phase) : (int)age;
+        }
+        if (new_retrace || index != last_index) {
+            last_index = index;
             int base_w = width >= 16 && width <= 640 ? (int)width : 320, base_h = base_w * 3 / 4;
-            int index = bt_setting(BT_SET_INTERP) ? (int)age : -1;
             w = base_w; h = base_h;
             GLuint tex = win ? rdp_frame_texture(fb, base_w, base_h, index, &w, &h) : 0;
             int copied = !tex && rdp_picture(fb, base_w, base_h, index, &pixels, &capacity, &w, &h);
@@ -268,8 +293,8 @@ _Noreturn void bt_video_main(void) {
             have_pixels = !tex;
             if (win && !tex) upload(gl.picture, w, h, pixels);
             if (win) shown = tex ? tex : gl.picture;
-            frames++;
-            if (dump && !bt_vclock_on && every > 0 && frames % (u32)every == 0 && secs >= dump_from) {
+            if (new_retrace) frames++;
+            if (new_retrace && dump && !bt_vclock_on && every > 0 && frames % (u32)every == 0 && secs >= dump_from) {
                 char path[512];
                 int dw = w, dh = h;
                 u32 *dp = pixels;

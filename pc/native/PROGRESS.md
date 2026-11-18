@@ -1926,3 +1926,22 @@ Die drei geänderten Originalquellen haben dieselbe Zeilenzahl wie zuvor.
 Original-IDO ergab null abweichende Funktionen und Datenabschnitte. Das
 komplette Cartridge-Abbild stimmt byteweise. Belege und Einzelaufnahmen
 liegen unter `build/acceptance/a6-2026-11-17/`.
+
+## 2026-11-18 — A7, Bildübergabe und GPU-Lesezugriffe
+
+Der Fensterthread wartet auf die fertige Bildkopie. Langsame Leser können
+ihren Bildplatz behalten, während der Renderer weitere Bilder veröffentlicht.
+Die Tests halten ein Bild über 80 Veröffentlichungen und vergleichen den
+asynchron übersetzten Combiner mit dem allgemeinen Shader über 16.384 Bytes.
+Die Anzeige berechnet den Zwischenzeitpunkt für jeden Bildtermin. Die
+Zeitmodelltests decken 75, 144 und 165 Hz sowie wechselnde Intervalle ab.
+
+Ein mit `BT_GPU_IMAGE_ACCESS=1` gebauter Gast kann mit `BT_GPU_DEMAND=1`
+Farbe und Tiefe beim tatsächlichen Zugriff zurücklesen. In Spiral Mountain und
+Witchyworld entfielen jeweils 1.049 Farbrücklesungen. Für die Tiefenabfragen
+blieben jeweils alle 1.049 nötig. Die Laufzeiten schwankten je Szene, deshalb
+bleibt der bisherige Modus Standard. Der Vergleich über 46 Abläufe ergab
+245.660 identische Retraces und 1.777 identische Stichprobenbilder. Bei 1×
+bestanden alle 13.480 Bilder aus Intro und geladenem Spiel das Software-Orakel.
+Die fünfminütige Messung auf einem externen 4K/60-Hz-Display ist auf Wunsch
+zurückgestellt. Nachweise liegen unter `build/acceptance/a7-2026-11-18/`.

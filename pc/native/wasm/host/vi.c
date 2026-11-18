@@ -9,6 +9,13 @@ static pthread_mutex_t vi_lock = PTHREAD_MUTEX_INITIALIZER;
 static u32 vi_mq, vi_msg, vi_retrace = 1;
 static u32 vi_current, vi_next, vi_mode;
 static int vi_black;
+static DisplayCadence display;
+static double picture_start;
+static double monotonic_seconds(void) {
+    struct timespec t;
+    clock_gettime(CLOCK_MONOTONIC, &t);
+    return (double)t.tv_sec + t.tv_nsec * 1e-9;
+}
 static u32 vi_count, vi_since, vi_interval = 2;  // retrace of the last picture change, and the one before
 
 void w2c_env_osViSetEvent(struct w2c_env *env, u32 mq, u32 msg, u32 retrace) {
@@ -79,7 +86,11 @@ void bt_vi_retrace(u32 *mq, u32 *msg) {
     u32 count, fb, width;
     pthread_mutex_lock(&vi_lock);
     count = ++vi_count;
-    if (vi_next && vi_next != vi_current) { vi_interval = count - vi_since; vi_since = count; }
+    if (vi_next && vi_next != vi_current) {
+        vi_interval = count - vi_since;
+        vi_since = count;
+        if (!bt_vclock_on) picture_start = monotonic_seconds();
+    }
     if (vi_next) vi_current = vi_next;
     fb = vi_black ? 0 : vi_current;
     width = vi_mode ? gr32(vi_mode + 8) : 320;
@@ -125,11 +136,41 @@ u32 bt_vi_frame(u32 *fb, u32 *width, u32 *age) {
     return n;
 }
 
-int bt_vi_interval(void) {
+void bt_vi_display_swap(int paced) {
     pthread_mutex_lock(&vi_lock);
-    int k = (int)vi_interval;
+    display_swap(&display, monotonic_seconds(), paced);
     pthread_mutex_unlock(&vi_lock);
-    return k;
+}
+
+int bt_vi_phases(float *phases) {
+    pthread_mutex_lock(&vi_lock);
+    DisplayCadence cadence = display;
+    double begin = picture_start;
+    u32 interval = vi_interval;
+    pthread_mutex_unlock(&vi_lock);
+    double duration = interval / (59.94 * bt_speed());
+    if (begin > 0 && cadence.period > 0 && monotonic_seconds() - cadence.last < .1) {
+        // This task draws a future VI buffer. Use the next predicted game swap
+        // on the current game timeline, even when the render thread started late.
+        double intervals = fmax(1, ceil((cadence.last - begin) / duration));
+        return display_phases(cadence, begin + intervals * duration, duration, phases);
+    }
+    // No paced window: retain the deterministic per-VI sequence used by dumps.
+    int n = interval < 2 ? 0 : interval > 4 ? 3 : (int)interval - 1;
+    for (int i = 0; i < n; i++) phases[i] = (i + 1.0f) / (n + 1);
+    return n;
+}
+
+float bt_vi_phase(u32 fb) {
+    pthread_mutex_lock(&vi_lock);
+    double duration = vi_interval / (59.94 * bt_speed());
+    double next = display.last + display.period;
+    float phase = -1;
+    if (fb && fb == vi_current && display.period > 0 && picture_start > 0 &&
+        monotonic_seconds() - display.last < .1)
+        phase = (float)fmin(1, fmax(0, (next - picture_start) / duration));
+    pthread_mutex_unlock(&vi_lock);
+    return phase;
 }
 
 void bt_vi_init(void) {

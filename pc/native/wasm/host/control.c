@@ -72,11 +72,13 @@ static int execute(u32 count, u32 fb, u32 width, u32 age) {
             if (n > 256) n = 256;
             if ((u64)addr + n > bt_inst.w2c_memory.size) { say("error: address\n"); continue; }
             say("%08x:", addr);
+            bt_image_range(addr,n);
             for (u32 i = 0; i < n; i++) say(" %02x", bt_mem[addr + i]);
             say("\n");
         } else if (!strcmp(op, "poke")) {
             u32 addr = (u32)strtoul(a, NULL, 16), n = (u32)strlen(b) / 2;
             if ((u64)addr + n > bt_inst.w2c_memory.size) { say("error: address\n"); continue; }
+            bt_image_range(addr,n);
             for (u32 i = 0; i < n; i++) { char h[3] = {b[2 * i], b[2 * i + 1], 0}; bt_mem[addr + i] = (u8)strtoul(h, NULL, 16); }
         } else if (!strcmp(op, "warp")) {
             bt_control_warp = (u32)strtoul(a, NULL, 16) << 8 | ((u32)strtoul(b, NULL, 10) & 0xFF);

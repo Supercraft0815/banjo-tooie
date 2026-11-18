@@ -17,7 +17,35 @@ static int run(double refresh, double seconds, int *worst) {
     return total;
 }
 
+static void poses(double refresh) {
+    double start = 3.0021, duration = 1.0 / 29.97, period = 1.0 / refresh;
+    DisplayCadence c = {.last = 3, .period = period};
+    float phases[BT_POSES_PER_PICTURE];
+    int n = display_phases(c, start, duration, phases);
+    assert(n >= (int)(duration * refresh) && n <= (int)ceil(duration * refresh));
+    for (int i = 0; i < n; i++) {
+        double t = start + duration * phases[i];
+        assert(fabs((t - c.last) / period - round((t - c.last) / period)) < .00001);
+        assert(phases[i] > 0 && phases[i] < 1 && (!i || phases[i] > phases[i-1]));
+    }
+    printf("%.0f Hz, %d intermediate poses, first t=%.6f\n", refresh, n, phases[0]);
+}
 int main(void) {
+    poses(75); poses(144); poses(165);
+    DisplayCadence d = {0};
+    display_swap(&d, 1, 1);
+    display_swap(&d, 1.007, 1);  // 143 Hz, then 89 Hz
+    assert(fabs(d.period - .007) < 1e-9);
+    float before[BT_POSES_PER_PICTURE], after[BT_POSES_PER_PICTURE];
+    int a = display_phases(d, 1.0187, 1.0/30, before);
+    display_swap(&d, 1.0182, 1);
+    int b = display_phases(d, 1.0187, 1.0/30, after);
+    assert(fabs(d.period - .0112) < 1e-9 && a == 5 && b == 3 && fabs(before[0]-after[0]) > .1);
+    display_swap(&d, 1.0183, 1);
+    assert(!d.period && !display_phases(d, 1.019, 1.0/30, after));
+    display_swap(&d, 1.03, 0);
+    assert(!d.period);  // no pacing when vsync is disabled
+
     int worst, n = run(60, 100, &worst);
     assert(n >= 5999 && n <= 6000 && worst == 1);  // one retrace per refresh, none dropped or doubled
     n = run(120, 100, &worst);

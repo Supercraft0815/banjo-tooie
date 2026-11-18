@@ -434,11 +434,10 @@ static void ip_replay(Mat m) {
         for (int c = 0; c < 4; c++) m[r][c] = fmaf(m[r][c] - a[r][c], IP.t, a[r][c]);
 }
 
-// In-between pictures per game frame: the VI interval minus one, when the option is on.
+static float ip_phases[BT_POSES_PER_PICTURE];
 static int ip_images(void) {
     if (!bt_setting(BT_SET_INTERP) || bt_setting(BT_SET_FPS)) return 0;
-    int k = bt_vi_interval();
-    return k < 2 ? 0 : k > 4 ? 3 : k - 1;
+    return bt_vi_phases(ip_phases);
 }
 
 static void matrix(u32 w0, u32 w1, u32 pc) {
@@ -470,9 +469,9 @@ static void run(u32 dl);
 static void ip_passes(int images) {
     for (int i = 0; i < images && rdp_interp_begin(); i++) {
         IP.mode = 2; IP.at = IP.dat = IP.desync = 0;
-        IP.t = (i + 1.0f) / (images + 1);
+        IP.t = ip_phases[i];
         run(IP.dl);
-        rdp_interp_end(i);
+        rdp_interp_end(i, IP.t);
     }
     IP.frames++; IP.events += (unsigned)IP.n[IP.cur]; IP.desyncs += (unsigned)IP.desync;
     for (int i = 0; i < IP.n[IP.cur]; i++) IP.matched += IP.ev[IP.cur][i].match >= 0;
@@ -496,8 +495,8 @@ static void ip_start(void) {
 void gsp_run(u32 dl) {
     int stats = bt_setting(BT_SET_RENDER_STATS);
     static pthread_once_t worker_once = PTHREAD_ONCE_INIT;
-    int images = ip_images();
     rdp_begin();  // waits for the previous picture's in-between passes
+    int images = ip_images();
     static double window, total, peak;
     static unsigned tasks;
     struct timespec start, end;

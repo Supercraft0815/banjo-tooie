@@ -30,7 +30,7 @@ static u32 read_word(u32 address) {
 static u64 region_hash(u32 address, u32 size) {
     if (!address) return 0; // Absent state is distinct from a zero-filled region.
     check_range(address, size);
-    return hash_bytes(FNV_OFFSET, G(address), size);
+    return hash_bytes(FNV_OFFSET, G_range(address,size), size);
 }
 
 static void value(FILE *out, u32 word) {

@@ -14,6 +14,9 @@ The host stage needs gen/, clang >= 19, WABT's C runtime and SDL3.
 
 Files that do not compile are left out; their functions become traps that name
 themselves (see build/ilp32/compile_failures.txt).
+For experimental GPU read-on-demand, build the guest with BT_GPU_IMAGE_ACCESS=1
+and run its release host with BT_RENDERER=gpu BT_GPU_DEMAND=1. An older gen/
+or a debug-audio host retains eager synchronization.
 """
 import argparse
 import bisect
@@ -471,8 +474,15 @@ def build_guest(jobs, compiler_version):
     r = run([WASM2C, str(wasm), '-n', 'bt', '--num-outputs', str(GEN_OUTPUTS), '-o', str(tmp / 'game.c')])
     if r.returncode != 0:
         sys.exit('wasm2c failed:\n' + r.stderr[:8000])
+    image_aware = os.environ.get('BT_GPU_IMAGE_ACCESS') == '1'
     for p in sorted(tmp.iterdir()):
         text = p.read_text()
+        if image_aware:
+            if p.name == 'game.h':
+                text = '#define BT_GUEST_IMAGE_ACCESS 1\n' + text
+            if p.name == 'game-impl.h':
+                from image_access import instrument
+                text = instrument(text)
         if p.name == 'game-impl.h':
             assert CALL_CHECK in text and o32_thunks.CALL_OLD in text, 'wasm2c changed its CALL_INDIRECT check'
             text = text.replace(CALL_CHECK, CALL_CHECK_N64).replace(o32_thunks.CALL_OLD, o32_thunks.CALL_NEW) + SAFEPOINT
@@ -493,9 +503,12 @@ def build_guest(jobs, compiler_version):
 
 
 def build_host(jobs, gen, compiler_version):
-    # 4. Host executable.
-    write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, CXX, compiler_version] + HOST_FLAGS, from_gen=True))
-    tag = flags_hash([CLANG, compiler_version] + HOST_FLAGS)
+    # A gen/ produced before image access tracking can still build the eager host.
+    # Debug audio executes raw independent RSP DMA and uses eager synchronization.
+    image_access = not AUDIO_DEBUG and '#define BT_GUEST_IMAGE_ACCESS 1' in (gen / 'game.h').read_text()
+    host_flags = HOST_FLAGS + (['-DBT_IMAGE_ACCESS_HOST=1'] if image_access else [])
+    write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, CXX, compiler_version] + host_flags, from_gen=True))
+    tag = flags_hash([CLANG, compiler_version] + host_flags)
     host_srcs = sorted((HERE / 'host').glob('*.c')) + [HERE / 'host/glad/gl.c']
     if not AUDIO_DEBUG:
         host_srcs.remove(HERE / 'host/rsp.c')
@@ -512,7 +525,7 @@ def build_host(jobs, gen, compiler_version):
             return obj, None
         obj.parent.mkdir(parents=True, exist_ok=True)
         compiler = [CXX, '-std=c++11', '-I', str(IMGUI)] if src.suffix == '.cpp' else [CLANG]
-        r = run(compiler + HOST_FLAGS + ['-MMD', '-MF', str(dep), '-c', str(src), '-o', str(obj)])
+        r = run(compiler + host_flags + ['-MMD', '-MF', str(dep), '-c', str(src), '-o', str(obj)])
         return obj, (r.stderr if r.returncode else None)
 
     with cf.ThreadPoolExecutor(jobs) as ex:

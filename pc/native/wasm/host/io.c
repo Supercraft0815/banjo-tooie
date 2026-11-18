@@ -240,19 +240,19 @@ u32 w2c_env_rom_read(struct w2c_env *env, u32 dev, u32 dst, u32 n) {
     (void)env;
     dev &= 0x0FFFFFFF;
     if (dev > rom_size || n > rom_size - dev) bt_fatal("ROM read 0x%x+0x%x beyond the image", dev, n);
-    memcpy(G(dst), rom + dev, n);
+    memcpy(G_range(dst,n), rom + dev, n);
     return 0;
 }
 
 void w2c_env_write(struct w2c_env *env, u32 fd, u32 buf, u32 n) {
     (void)env;
-    if (write(fd == 1 ? 1 : 2, G(buf), n) < 0) {}
+    if (write(fd == 1 ? 1 : 2, G_range(buf,n), n) < 0) {}
 }
 
 _Noreturn void w2c_env_exit(struct w2c_env *env, u32 code) { (void)env; exit((int)code); }
 _Noreturn void w2c_env_unported(struct w2c_env *env, u32 name) {
     (void)env;
-    bt_fatal("unported %s called", (const char *)G(name));
+    bt_fatal("unported %s called", (const char *)G_range(name, bt_inst.w2c_memory.size - name));
 }
 
 // Guest file descriptors start at 3. SDL handles both disk files and read-only ROM slices.
@@ -281,6 +281,8 @@ u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
         if (!files[i]) {
             unsigned start, end;
             // "rom:START-END" opens that range of the cartridge image read-only.
+            bt_image_range(path, bt_inst.w2c_memory.size - path);
+            bt_image_range(mode, bt_inst.w2c_memory.size - mode);
             if (sscanf(G(path), "rom:%x-%x", &start, &end) == 2) {
                 if (start > end || end > rom_size) bt_fatal("ROM file %s beyond the image", (char *)G(path));
                 files[i] = SDL_IOFromConstMem(rom + start, end - start);
@@ -298,8 +300,8 @@ static SDL_IOStream *file(u32 fd) {
     return files[fd];
 }
 
-u32 w2c_env_fread(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_ReadIO(file(fd), G(buf), n); }
-u32 w2c_env_fwrite(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_WriteIO(file(fd), G(buf), n); }
+u32 w2c_env_fread(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_ReadIO(file(fd), G_range(buf,n), n); }
+u32 w2c_env_fwrite(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_WriteIO(file(fd), G_range(buf,n), n); }
 u32 w2c_env_fseek(struct w2c_env *env, u32 fd, u32 off, u32 whence) { (void)env; return SDL_SeekIO(file(fd), (s32)off, (SDL_IOWhence)whence) < 0 ? (u32)-1 : 0; }
 u32 w2c_env_ftell(struct w2c_env *env, u32 fd) { (void)env; return (u32)SDL_TellIO(file(fd)); }
 u32 w2c_env_fclose(struct w2c_env *env, u32 fd) {
@@ -315,9 +317,9 @@ u32 w2c_env_inflate_raw(struct w2c_env *env, u32 src, u32 src_len, u32 dst, u32 
     int r;
     (void)env;
     if (inflateInit2(&z, -15) != Z_OK) bt_fatal("inflateInit2 failed");
-    z.next_in = G(src);
+    z.next_in = G_range(src,src_len);
     z.avail_in = src_len;
-    z.next_out = G(dst);
+    z.next_out = G_range(dst,dst_len);
     z.avail_out = dst_len;
     r = inflate(&z, Z_FINISH);
     gw32(in_used, (u32)z.total_in);
@@ -347,7 +349,10 @@ static u32 inflate_rom_block(u32 dev, u32 n, u8 *dst, u64 capacity) {
 u32 w2c_env_rom_inflate(struct w2c_env *env, u32 dev, u32 n, u32 dst) {
     (void)env;
     if (dst > bt_inst.w2c_memory.size) bt_fatal("ROM inflate destination outside guest memory");
-    return inflate_rom_block(dev & 0x0fffffff, n, G(dst), bt_inst.w2c_memory.size - dst);
+    u32 off = dev & 0x0fffffff;
+    if (n >= 2 && off < rom_size && n <= rom_size-off)
+        bt_image_range(dst, ((u32)rom[off] << 8 | rom[off+1])*16);
+    return inflate_rom_block(off, n, G(dst), bt_inst.w2c_memory.size - dst);
 }
 
 // US core1 blocks (tools/tooie_utils.h); split positions from baserom.us.yaml relative to each block.

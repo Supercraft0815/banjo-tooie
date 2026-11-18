@@ -11,6 +11,10 @@ typedef uint64_t u64;
 static struct { struct { u64 size; } w2c_memory; } bt_inst = {{0x81000000u}};
 static u8 memory[0x1000000];
 static void *G(u32 address) { return memory + (address - 0x80000000u); }
+static void *G_range(u32 address, u64 bytes) {
+    assert(address >= 0x80000000u && (u64)address + bytes <= bt_inst.w2c_memory.size);
+    return G(address);
+}
 static u32 gr32(u32 a) { const u8 *p = G(a); return (u32)p[0] << 24 | p[1] << 16 | p[2] << 8 | p[3]; }
 static uint16_t gr16(u32 a) { const u8 *p = G(a); return p[0] << 8 | p[1]; }
 static void gw32(u32 a, u32 w) { u8 *p = G(a); p[0] = w >> 24; p[1] = w >> 16; p[2] = w >> 8; p[3] = w; }

@@ -3,19 +3,25 @@
 #define BT_HOST_GUEST_H
 #include <stdint.h>
 #include "game.h"
+#include "image_memory.h"
 
 extern w2c_bt bt_inst;
 extern u8 *bt_mem;
 
 // Guest address -> host pointer. Guest pointers are 32-bit offsets into linear memory.
-static inline void *G(u32 addr) { return bt_mem + addr; }
+static inline void *G(u32 addr) { bt_image_scalar(addr, 1); return bt_mem + addr; }
+static inline void *G_range(u32 addr, u64 bytes) {
+    (void)bytes;
+    bt_image_range(addr, bytes);
+    return bt_mem + addr;
+}
 // Guest memory is big-endian like N64 RDRAM (the bt-bigendian pass): values wider than a byte
 // go through these.
-static inline u16 gr16(u32 a) { const u8 *p = G(a); return (u16)(p[0] << 8 | p[1]); }
-static inline u32 gr32(u32 a) { u32 v; __builtin_memcpy(&v, G(a), 4); return __builtin_bswap32(v); }
+static inline u16 gr16(u32 a) { bt_image_scalar(a, 2); const u8 *p = bt_mem + a; return (u16)(p[0] << 8 | p[1]); }
+static inline u32 gr32(u32 a) { bt_image_scalar(a, 4); u32 v; __builtin_memcpy(&v, bt_mem + a, 4); return __builtin_bswap32(v); }
 static inline u64 gr64(u32 a) { return (u64)gr32(a) << 32 | gr32(a + 4); }
-static inline void gw16(u32 a, u32 v) { u8 *p = G(a); p[0] = (u8)(v >> 8); p[1] = (u8)v; }
-static inline void gw32(u32 a, u32 v) { v = __builtin_bswap32(v); __builtin_memcpy(G(a), &v, 4); }
+static inline void gw16(u32 a, u32 v) { bt_image_scalar(a, 2); u8 *p = bt_mem + a; p[0] = (u8)(v >> 8); p[1] = (u8)v; }
+static inline void gw32(u32 a, u32 v) { bt_image_scalar(a, 4); v = __builtin_bswap32(v); __builtin_memcpy(bt_mem + a, &v, 4); }
 static inline void gw64(u32 a, u64 v) { gw32(a, (u32)(v >> 32)); gw32(a + 4, (u32)v); }
 
 // Calls an OSThread entry with its initial guest registers.
@@ -43,7 +49,9 @@ void bt_control_retrace(u32 count, u32 fb, u32 width, u32 age); // BT_CONTROL: s
 extern int bt_control_on;              // BT_CONTROL is set: input and warps come from it (control.c)
 extern u32 bt_control_mask, bt_control_warp;
 u32 bt_vi_frame(u32 *fb, u32 *width, u32 *age);
-int bt_vi_interval(void);               // retraces between the last two picture changes (vi.c)
+void bt_vi_display_swap(int paced);     // observe the time a window swap actually returned
+int bt_vi_phases(float *phases);        // display instants inside the next game picture (vi.c)
+float bt_vi_phase(u32 fb);              // desired phase at the next swap, negative for VI-based presentation
 int bt_widescreen(void);                // the game's anamorphic 16:9 option is on (vi.c)
 _Noreturn void bt_video_main(void);    // main-thread window loop (video.c)
 void gsp_run(u32 dl);                  // runs a graphics task's display list (gsp.c)

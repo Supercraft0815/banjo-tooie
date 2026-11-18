@@ -4,6 +4,7 @@
 #ifndef BT_HOST_RDP_H
 #define BT_HOST_RDP_H
 #include "guest.h"
+#include "retrace.h"
 
 // A screen-space vertex from the RSP: x, y in pixels, z in 18-bit RDP depth units,
 // w the clip-space w (for perspective), c shade RGBA 0..255, s, t in texels * 32.
@@ -47,7 +48,8 @@ int rdp_picture(u32 address, int width, int height, int index, u32 **pixels, siz
 // rdp_frame for in-between image `index` of the picture last drawn into `address`.
 void rdp_interp_arm(int images);
 int rdp_interp_begin(void);
-void rdp_interp_end(int index);
+void rdp_interp_end(int index, float phase);
+int rdp_picture_phase(u32 address, float phase); // nearest available image; -1 selects the real picture
 int rdp_interp_frame(u32 address, int width, int height, int index, u32 *pixels, int *sx);
 // They run on a worker: the task posts them after rdp_end (a snapshot of game memory, 0 when the
 // task drew no VI image); the worker takes the job (rdp_interp_next, which makes rdp_mem read the
