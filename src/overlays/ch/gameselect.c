@@ -410,49 +410,49 @@ void func_80800998_chgameselect(Actor *arg0, void *arg1, s32 arg2) {
         return;
     }
 }
-
-void func_808009EC_chgameselect(Actor *arg0) {
+typedef void (*GameSelectEventCallback)(BT_PARAM_OR_VOID(BT_PASS2(Actor *, BT_PASS2(void *, BT_PASS2(s32, s32)))));
+void func_808009EC_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, BT_PASS2(void *option, BT_PASS2(s32 item, s32 event)))) {
     typedef struct {
-        void (*callback)(void);
+        GameSelectEventCallback callback;
         u8 pad4[0x30];
     } GameSelectCallback;
     void func_80800478_chgameselect(BtIntPtr, s32);
     extern GameSelectCallback D_80807DEC_chgameselect[];
-    void (*temp_v0)(void);
+    GameSelectEventCallback temp_v0;
 
     temp_v0 = D_80807DEC_chgameselect[arg0->unk70_10].callback;
     if (temp_v0 != NULL) {
-        temp_v0();
+        BT_IDO_ONLY(temp_v0();) BT_NATIVE_ONLY(temp_v0(arg0, option, item, event);)
         return;
     }
     func_80800478_chgameselect(arg0, 1);
 }
 
-void func_80800A4C_chgameselect(Actor *arg0) {
+void func_80800A4C_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, BT_PASS2(void *option, BT_PASS2(s32 item, s32 event)))) {
     typedef struct {
-        void (*callback)(void);
+        GameSelectEventCallback callback;
         u8 pad4[0x30];
     } GameSelectCallback;
     extern GameSelectCallback D_80807DFC_chgameselect[];
-    void (*temp_v0)(void);
+    GameSelectEventCallback temp_v0;
 
     temp_v0 = D_80807DFC_chgameselect[arg0->unk70_10].callback;
     if (temp_v0 != NULL) {
-        temp_v0();
+        BT_IDO_ONLY(temp_v0();) BT_NATIVE_ONLY(temp_v0(arg0, option, item, event);)
     }
 }
 
-void func_80800A9C_chgameselect(Actor *arg0) {
+void func_80800A9C_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, BT_PASS2(void *option, BT_PASS2(s32 item, s32 event)))) {
     typedef struct {
-        void (*callback)(void);
+        GameSelectEventCallback callback;
         u8 pad4[0x30];
     } GameSelectCallback;
     extern GameSelectCallback D_80807E00_chgameselect[];
-    void (*temp_v0)(void);
+    GameSelectEventCallback temp_v0;
 
     temp_v0 = D_80807E00_chgameselect[arg0->unk70_10].callback;
     if (temp_v0 != NULL) {
-        temp_v0();
+        BT_IDO_ONLY(temp_v0();) BT_NATIVE_ONLY(temp_v0(arg0, option, item, event);)
     }
 }
 
@@ -482,7 +482,7 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
 #endif
         break;
     case 2:
-        func_808009EC_chgameselect(actor);
+        func_808009EC_chgameselect(BT_IDO_ONLY(actor) BT_PASS2(actor, BT_PASS2(arg1, BT_PASS2(arg2, arg3))));
         break;
     case 4:
         func_808008D0_chgameselect(actor, arg1, arg2);
@@ -495,10 +495,10 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
 #endif
         break;
     case 6:
-        func_80800A9C_chgameselect(actor);
+        func_80800A9C_chgameselect(BT_IDO_ONLY(actor) BT_PASS2(actor, BT_PASS2(arg1, BT_PASS2(arg2, arg3))));
         break;
     case 7:
-        func_80800A4C_chgameselect(actor);
+        func_80800A4C_chgameselect(BT_IDO_ONLY(actor) BT_PASS2(actor, BT_PASS2(arg1, BT_PASS2(arg2, arg3))));
         break;
     case 0xFF:
         D_80807DF0_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
@@ -622,7 +622,7 @@ void func_80800E24_chgameselect(void *arg0) {
     f32 delta;
     f32 vertical;
     f32 horizontal;
-    f32 magnitude;
+    f32 magnitude; BT_NATIVE_ONLY(f32 stick[2];)
 
     data = func_80100094(arg0, 0);
     delta = func_800D8FF8();
@@ -631,7 +631,7 @@ void func_80800E24_chgameselect(void *arg0) {
             ((SelectActor *)arg0)->timer -= delta;
         }
         if (!((SelectActor *)arg0)->flag19 && ((SelectActor *)arg0)->timer <= 0.0f) {
-            func_80016068(0, &horizontal);
+            func_80016068(0, BT_IDO_ONLY(&horizontal) BT_NATIVE_ONLY(stick)); BT_NATIVE_ONLY(horizontal = stick[0]; vertical = stick[1];)
             magnitude = mlAbsF(horizontal);
             if (mlAbsF(vertical) < magnitude) {
                 vertical = 0.0f;

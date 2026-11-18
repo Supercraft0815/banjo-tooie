@@ -97,7 +97,8 @@ def first_difference(left, right, path=''):
 def read_trace(stream):
     header = json.loads(next(stream))
     fields = {'format', 'clock', 'build', 'rom', 'eeprom', 'BT_PRESS', 'BT_SCALE', 'BT_MUTE'}
-    if not isinstance(header, dict) or header.keys() != fields:
+    optional = {'BT_PRESS2', 'BT_PRESS3', 'BT_PRESS4'}
+    if not isinstance(header, dict) or not fields <= header.keys() <= fields | optional:
         raise ValueError('incomplete trace header')
     if header['format'] != 'bt-trace-1' or header['clock'] != 'vclock-build-local':
         raise ValueError('unsupported trace header')

@@ -25,3 +25,12 @@ same two inputs on the same edges. Applying that single CFG contraction made
 the complete canonical function identical. The 229-map sweep, all 29 traces,
 original IDO functions and data and both ROMs match. See model-cfg-full.diff
 and model-verification.json in build/acceptance/q5-inventory-2026-11-17/.
+
+2026-11-18  func_80800E24_chgameselect, func_80800AEC_chgameselect, func_808009EC_chgameselect, func_80800A4C_chgameselect, func_80800A9C_chgameselect
+The menu stick reader writes two floats. The native caller now reads both
+from the same two-element object. The original MIPS dispatcher and its three
+indirect-call thunks pass the actor, option, item and event in a0 through a3.
+The native dispatcher now forwards those four arguments. Previously the menu
+hand moved to the wrong row and confirming both characters dereferenced a
+missing option. The original IDO functions, data and complete ROM match.
+See menu-ir.log and multiplayer-proof.json in build/acceptance/q2-multiplayer-2026-11-17/.

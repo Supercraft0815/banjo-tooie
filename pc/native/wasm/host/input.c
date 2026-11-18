@@ -1,7 +1,7 @@
 // Controllers for the guest's osContGetReadData. Port 1: keyboard, the first SDL gamepad, and for
 // headless runs a timed script, BT_PRESS=secs:mask_hex,... (each mask held until the next entry;
 // bits 0-15 buttons, 16-23 stick x, 24-31 stick y as s8, e.g. 50000000 = stick fully up).
-// Ports 2-4: further gamepads in the order they were connected (multiplayer). Gamepads that can
+// Ports 2-4: further gamepads in connection order, or BT_PRESS2..BT_PRESS4 on the virtual clock. Gamepads that can
 // rumble act as Rumble Paks (BT_RUMBLE=0 turns that off).
 // Keyboard: WASD stick (Ctrl half speed), arrows C, Space A, Shift/X B, Q/Z Z,
 // E R, Tab L, Return/Escape Start, IJKL D-pad; F1 shows the bindings in video.c.
@@ -175,8 +175,9 @@ void bt_input_open_pads(void) {
     SDL_free(ids);
 }
 enum { SCRIPT_MAX = 1 << 16 };  // soak.py: one entry per half second for hours
-static struct { double t; u32 mask; } script[SCRIPT_MAX];
-static int nscript = -1;
+static struct { double t; u32 mask; } *script[PORTS];
+static int nscript[PORTS] = {-1, -1, -1, -1};
+static const char *const script_names[PORTS] = {"BT_PRESS", "BT_PRESS2", "BT_PRESS3", "BT_PRESS4"};
 
 void bt_input_event(const SDL_Event *e) {
     if (e->type == SDL_EVENT_WINDOW_FOCUS_LOST) {
@@ -225,20 +226,30 @@ static void gate(int raw_x, int raw_y, int *x, int *y, int port) {
     *y += (int)lroundf(fy * r);
 }
 
-static u32 script_at(double t) {
+static u32 script_at(u32 port, double t) {
     u32 m = 0;
-    if (nscript < 0) {
-        const char *s = getenv("BT_PRESS");
+    if (nscript[port] < 0) {
+        const char *s = getenv(script_names[port]);
         char *end;
-        nscript = 0;
-        while (s && *s && nscript < SCRIPT_MAX) {
-            script[nscript].t = strtod(s, &end);
+        size_t capacity = 0;
+        free(script[port]);
+        script[port] = NULL;
+        nscript[port] = 0;
+        if (s && *s) {
+            capacity = 1;
+            for (const char *p = s; *p; p++) capacity += (*p == ',');
+            if (capacity > SCRIPT_MAX) capacity = SCRIPT_MAX;
+            script[port] = calloc(capacity, sizeof *script[port]);
+            if (!script[port]) bt_fatal("BT_PRESS script allocation failed");
+        }
+        while (s && *s && (size_t)nscript[port] < capacity) {
+            script[port][nscript[port]].t = strtod(s, &end);
             if (*end != ':') break;
-            script[nscript++].mask = (u32)strtoul(end + 1, &end, 16);
+            script[port][nscript[port]++].mask = (u32)strtoul(end + 1, &end, 16);
             s = *end == ',' ? end + 1 : end;
         }
     }
-    for (int i = 0; i < nscript && t >= script[i].t; i++) m = script[i].mask;
+    for (int i = 0; i < nscript[port] && t >= script[port][i].t; i++) m = script[port][i].mask;
     return m;
 }
 
@@ -290,7 +301,7 @@ void bt_input_update(double t, int keyboard) {
         atomic_store(&state[i], pack(b, px, py));
     }
     if (!bt_vclock_on) {  // with the virtual clock pad_read applies the script
-        u32 m = script_at(t);
+        u32 m = script_at(0, t);
         buttons = m & 0xFFFF;
         x = (s8)(m >> 16);
         y = (s8)(m >> 24);
@@ -318,8 +329,16 @@ void bt_input_update(double t, int keyboard) {
 }
 
 u32 w2c_env_pad_mask(struct w2c_env *env) {
-    u32 mask = 1 | atomic_load(&keyboard_ports);  // port 1 always: keyboard and BT_PRESS
+    u32 mask = 1;  // port 1 always: keyboard and BT_PRESS
     (void)env;
+    if (bt_vclock_on) {
+        for (int i = 1; i < PORTS; i++) {
+            const char *value = getenv(script_names[i]);
+            if (value && *value) mask |= 1u << i;
+        }
+    }
+    if (getenv("BT_TRACE")) return mask;
+    mask |= atomic_load(&keyboard_ports);
     pthread_mutex_lock(&pad_lock);
     for (int i = 1; i < PORTS; i++) mask |= (u32)(pads[i] != NULL) << i;
     pthread_mutex_unlock(&pad_lock);
@@ -387,14 +406,16 @@ u32 w2c_env_pad_read(struct w2c_env *env, u32 port) {
     (void)env;
     if (port >= PORTS || atomic_load(&captured)) return 0;
     u32 s = atomic_load(&state[port]) | atomic_exchange(&presses[port], 0) << 16;
-    if (port) return getenv("BT_TRACE") ? 0 : s;
-    if (getenv("BT_TRACE")) s = 0; // The trace oracle accepts scripted input only.
-    if (bt_vclock_on) {  // script at virtual time, buttons combined, its stick wins when set
-        u32 m = bt_control_on > 0 && bt_control_mask ? bt_control_mask : script_at(bt_vclock_ticks() / 46875000.0);  // BT_PRESS runs under BT_CONTROL too
+    int trace = getenv("BT_TRACE") != NULL;
+    if (port && !trace && (!bt_vclock_on || !getenv(script_names[port]))) return s;
+    if (trace) s = 0;
+    if (bt_vclock_on) {
+        u32 m = !port && bt_control_on > 0 && bt_control_mask ? bt_control_mask
+                : script_at(port, bt_vclock_ticks() / 46875000.0);
         s |= (m & 0xFFFF) << 16;
         if (m >> 16) s = (s & 0xFFFF0000u) | (m >> 16 & 0xFF) << 8 | (m >> 24 & 0xFF);
     }
-    atomic_store(&last_buttons, s >> 16);
+    if (!port) atomic_store(&last_buttons, s >> 16);
     return s;
 }
 

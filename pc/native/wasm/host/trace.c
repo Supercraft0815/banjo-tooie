@@ -150,6 +150,13 @@ void bt_trace_init(const char *rom) {
             if (getenv(more[j])) h = hash_bytes(hash_bytes(h, more[j], strlen(more[j])), getenv(more[j]), strlen(getenv(more[j])));
         fprintf(trace, ",\"%s\":\"%016" PRIx64 "\"", names[i], h);
     }
+    for (unsigned port = 2; port <= 4; port++) {
+        char name[] = "BT_PRESS2";
+        name[8] = '0' + port;
+        const char *value = getenv(name);
+        if (value && *value)
+            fprintf(trace, ",\"%s\":\"%016" PRIx64 "\"", name, hash_bytes(FNV_OFFSET, value, strlen(value)));
+    }
     fputs("}\n", trace);
     if (ferror(trace)) bt_fatal("BT_TRACE: header write failed");
 }

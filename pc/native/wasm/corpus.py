@@ -13,6 +13,7 @@ import save_editor
 import trace_tools
 import corpus_worlds
 import corpus_bosses
+import corpus_multiplayer
 
 HERE = Path(__file__).resolve().parent
 
@@ -41,8 +42,15 @@ def worlds_script():
 
 
 def run_env(case):
-    """Scripted input of a case: BT_PRESS, and BT_WARP for map changes on a timetable."""
-    return {'BT_PRESS': case['press'], **({'BT_WARP': case['warp']} if case.get('warp') else {})}
+    """Return the exact scripted ports and optional map warp used by corpus.record."""
+    env = {'BT_PRESS': case['press']}
+    for port in range(2, 5):
+        script = case.get(f'press{port}')
+        if script is not None:
+            env[f'BT_PRESS{port}'] = script
+    if case.get('warp'):
+        env['BT_WARP'] = case['warp']
+    return env
 
 
 CASES = {
@@ -54,6 +62,7 @@ CASES = {
                'warp': ','.join(f'{36 + 20 * i}:{m:X}:1' for i, m in enumerate(WORLDS))},
     **corpus_worlds.CASES,
     **corpus_bosses.CASES,
+    **corpus_multiplayer.CASES,
 }
 
 
@@ -90,6 +99,9 @@ def trace_summary(directory, case):
             maps[key] = maps.get(key, 0) + 1
     if last is None or last['map'] != case['expected_map']:
         raise ValueError(f'{directory.name}: expected final map {case["expected_map"]}, got {last and last["map"]}')
+    players = case.get('expected_players', 0)
+    if players and (len(last['players']) < players or not all(p['present'] for p in last['players'][:players])):
+        raise ValueError(f'{directory.name}: expected {players} active players in the final scene')
     if abs(last['ticks'] / 46875000 - case['seconds']) > 0.1:
         raise ValueError(f'{directory.name}: run stopped before the requested game time')
     return {'build': header['build'], 'retraces': last['retrace'], 'maps': maps, 'last_map': last['map']}
@@ -135,7 +147,7 @@ def main():
                    'unvisited_named_maps': [name for key, name in known.items() if key not in seen],
                    'acceptance': {'emulator_comparison': False, 'human_playthrough': False,
                                   'all_bosses': False, 'all_minigames': False,
-                                  'all_transformations': False, 'multiplayer': False}}
+                                  'all_transformations': False, 'multiplayer': corpus_multiplayer.CASES.keys() <= results.keys()}}
         (output / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
         print(f'PASS: {len(results)} scenarios; {len(summary["unvisited_named_maps"])} named maps still unvisited')
     except (OSError, ValueError, StopIteration, subprocess.SubprocessError) as error:

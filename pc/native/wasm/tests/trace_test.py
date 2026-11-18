@@ -72,6 +72,14 @@ class TraceTest(unittest.TestCase):
             rows = [json.loads(line) for line in path.read_text().splitlines()]
             self.assertEqual(len(rows), 4)
             self.assertEqual(rows[0]['eeprom'], 'a430d84680aabd0b')
+            self.assertNotIn('BT_PRESS2', rows[0])
+            secondary = out / 'two-pads.jsonl'
+            subprocess.run([str(exe), str(rom)], cwd=tmp, check=True,
+                           env={**env, 'BT_PRESS2': '0:0', 'BT_TRACE': str(secondary)})
+            pads = [json.loads(line) for line in secondary.read_text().splitlines()]
+            self.assertEqual(self.compare(pads, pads)[0], 0)
+            with self.assertRaisesRegex(ValueError, 'BT_PRESS2'):
+                self.compare(rows, pads)
             self.assertEqual(rows[1]['actors'], [])
             self.assertEqual(rows[1]['players'][0], {'present': 0})
             self.assertEqual(rows[2]['map'], 395)

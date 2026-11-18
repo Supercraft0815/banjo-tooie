@@ -14,6 +14,7 @@ int bt_setting(int id) { return id == BT_SET_RUMBLE; }
 static u64 bt_vclock_ticks(void) { return 0; }
 static int bt_control_on;
 static u32 bt_control_mask, bt_control_warp;
+#define bt_fatal(...) abort()
 #include "../host/input.c"
 
 static void key(SDL_Scancode code, bool down) {
@@ -64,11 +65,21 @@ int main(void) {
     // A trace must ignore live buttons and stick while still applying BT_PRESS.
     bt_setenv("BT_TRACE", "fixture.jsonl", 1);
     bt_setenv("BT_PRESS", "0:50008000", 1);
-    nscript = -1; bt_vclock_on = 1;
+    nscript[0] = -1; bt_vclock_on = 1;
     key(SDL_SCANCODE_Q,true); key(SDL_SCANCODE_D,true); poll_keys();
     v = w2c_env_pad_read(NULL, 0);
     assert(v >> 16 == A && (s8)(v >> 8) == 0 && (s8)v == 80);
-    bt_unsetenv("BT_TRACE"); bt_unsetenv("BT_PRESS");
+    bt_setenv("BT_PRESS2", "0:00508000", 1);
+    bt_setenv("BT_PRESS3", "0:B0004000", 1);
+    bt_unsetenv("BT_PRESS4");
+    assert(w2c_env_pad_mask(NULL) == 7);
+    assert(w2c_env_pad_read(NULL, 1) == ((u32)A << 16 | 80u << 8));
+    assert(w2c_env_pad_read(NULL, 2) == ((u32)B << 16 | 0xB0u));
+    assert(w2c_env_pad_read(NULL, 3) == 0 && script[3] == NULL);
+    bt_unsetenv("BT_TRACE");
+    assert(w2c_env_pad_mask(NULL) == 7 && w2c_env_pad_read(NULL, 2) == ((u32)B << 16 | 0xB0u));
+    bt_unsetenv("BT_PRESS2"); bt_unsetenv("BT_PRESS3");
+    bt_unsetenv("BT_PRESS");
     // Stick: round deadzone, axes reach 80, a round stick's full diagonal reaches the N64's 65/65.
     int sx = 0, sy = 0;
     gate(4000, -4000, &sx, &sy, 0); assert(sx == 0 && sy == 0);
@@ -79,7 +90,7 @@ int main(void) {
     // Without gamepads only port 1 exists, nothing rumbles and the other ports read zero.
     assert(w2c_env_pad_mask(NULL) == 1 && w2c_env_rumble(NULL, 0, 2) == 0 && w2c_env_pad_read(NULL, 1) == 0);
     // A keyboard binding on port 2 also exposes that N64 port without a physical pad.
-    bt_vclock_on = 0; nscript = -1;
+    bt_vclock_on = 0; nscript[0] = -1;
     assert(SDL_PushEvent(&lost)); poll_keys();
     assert(bt_input_option("pad2.A", "key:H"));
     assert(!bt_input_option("pad2.A", "not-a-real-button"));

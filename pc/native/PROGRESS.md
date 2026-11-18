@@ -1881,3 +1881,24 @@ Versuche mit der Koordinatentransformation erreichten die Toleranz ebenfalls
 nicht. Die GPU-Abnahme dieser Plattformen und ein Lauf auf einem physischen
 Windows-Rechner sind offen. Nachweise liegen unter
 `build/acceptance/a3-2026-11-17/`.
+
+## 2026-11-18 — Q2, Mehrspieler
+
+Zwei skriptgesteuerte Controller erreichen über die Konsole in der
+Dateiauswahl alle 14 Mehrspielerspiele. Der Korpus enthält außerdem das
+Spielermenü und den Start der beiden Wiedergabelisten. Im Tempel-Shootout
+bestätigen beide Spieler ihre Figuren. Im Quiz erreichen sie die erste
+Frage und Antwort. Jeder der 17 Fälle lief zweimal mit identischen Zuständen
+und Bildern, insgesamt 83.384 Retraces und 683 verglichenen Bildpaaren.
+
+Zwei Quellkorrekturen machen diesen Weg spielbar. Die Menühand liest den
+vertikalen Stickwert aus dem zweiten Element des Ausgabepuffers. Die drei
+indirekten Menüaufrufe erhalten die ursprünglichen MIPS-Registerargumente
+einschließlich des Optionsobjekts. Original-IDO, Objektdaten und vollständige
+ROM stimmen byteweise überein. Die 29 vorhandenen Referenzdateien sind
+bytegleich mit ihrer Sicherung. Das erweiterte Gate bestand alle neun
+Testprogramme und 46 Abläufe mit zusammen 245.660 Retraces.
+
+Bildbogen, Eingaben und Vergleichsergebnisse liegen unter
+`build/acceptance/q2-multiplayer-2026-11-17/`. Weitere Einzelspieler-Bosse,
+Minispiele, Verwandlungen und die Solo-Figuren stehen noch aus.

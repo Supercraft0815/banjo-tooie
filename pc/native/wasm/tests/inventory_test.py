@@ -15,8 +15,8 @@ class InventoryTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             out = pathlib.Path(tmp)
             (out / 'gen').mkdir()
-            (out / 'game.map').write_text('80000010 100 10 __bt_data_0\n80000030 200 100 outer\n')
-            (out / 'gen/data.ll').write_text('@"tail" = alias i8, ptr getelementptr (i8, ptr @"__bt_data_0", i32 8)\n')
+            (out / 'game.map').write_text('80000010 100 10 __bt_data_0\n80000018 108 8 tail\n80000030 200 100 outer\n')
+            (out / 'gen/data.ll').write_text('@"__bt_place_tail" = alias i8, ptr getelementptr (i8, ptr @"__bt_data_0", i32 8)\n')
             table = xsym_report.symbols(out)
             table.extend((0x80000030+i, 1, f'inner{i}', None) for i in range(1, 71))
             table.sort()

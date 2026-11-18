@@ -16,8 +16,10 @@ import re
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 import corpus
+import trace_tools
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -40,7 +42,12 @@ def symbols(out):
         block = blocks.get(m.group(2))
         if block:
             offset = int(m.group(3) or 0)
-            table[m.group(1)] = (block[0] + offset, block[1] - offset, m.group(1), m.group(2))
+            address = block[0] + offset
+            name = m.group(1)
+            owner = name.removeprefix('__bt_place_')
+            if owner in table and table[owner][0] == address:
+                name = owner  # placeCData renamed this alias to its live C symbol.
+            table[name] = (address, block[1] - offset, name, m.group(2))
     return sorted(table.values())
 
 
@@ -70,10 +77,12 @@ def run_case(exe, rom, work, name):
     env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
     env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']),
                **corpus.run_env(case), BT_SAVE=str(work / 'bt_eeprom.bin'), BT_XSYM=str(hits))
-    with (work / 'run.log').open('w') as log:
+    with tempfile.TemporaryDirectory(dir=work) as tmp, (work / 'run.log').open('w') as log:
+        env['BT_TRACE'] = str(Path(tmp) / 'trace.jsonl')
         r = subprocess.run([str(exe), str(rom)], cwd=work, env=env, stdout=log, stderr=log, timeout=7200)
-    if r.returncode:
-        sys.exit('%s: exit %d, see %s' % (name, r.returncode, work / 'run.log'))
+        if r.returncode:
+            sys.exit('%s: exit %d, see %s' % (name, r.returncode, work / 'run.log'))
+        corpus.trace_summary(Path(tmp), case)
     return [l.split() for l in hits.read_text().splitlines()] if hits.exists() else []
 
 
@@ -99,7 +108,7 @@ def main():
     by_name = {t[2]: t for t in table}
     rows = {}
     for name in args.case or corpus.CASES:
-        for sid, addr in run_case(out / 'bt_game', args.rom.resolve(), out / 'runs' / name, name):
+        for sid, addr in run_case(out / trace_tools.GAME_NAME, args.rom.resolve(), out / 'runs' / name, name):
             a = int(addr, 16)
             hit, off = resolve(table, starts, a)
             if (sid, hit) not in rows:
