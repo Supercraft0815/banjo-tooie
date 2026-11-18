@@ -1945,3 +1945,19 @@ bleibt der bisherige Modus Standard. Der Vergleich über 46 Abläufe ergab
 bestanden alle 13.480 Bilder aus Intro und geladenem Spiel das Software-Orakel.
 Die fünfminütige Messung auf einem externen 4K/60-Hz-Display ist auf Wunsch
 zurückgestellt. Nachweise liegen unter `build/acceptance/a7-2026-11-18/`.
+
+## 2026-11-18 — Q3, acht Stunden Echtzeit und vollständiger Sanitizer-Korpus
+
+Der Heapcheck-Build lief 28.800 Sekunden mit Echtzeituhr durch und führte
+194 von 194 geplanten Kartenwechseln aus. RSS lag beim Start bei 50 MiB, nach
+fünf Minuten bei 24 MiB, in der Spitze bei 52 MiB und sechs Sekunden vor dem
+regulären Ende bei 15 MiB. Der Heap-Prüfer meldete keinen Fehler.
+
+Beim Start ohne vorhandenen Spielstand fand LeakSanitizer 301 Bytes im
+threadlokalen SDL-Fehlerpuffer. Der Host öffnet normale Dateien nun über
+stdio, unter Windows mit UTF-16-Pfaden. ROM-Teilstücke verwenden weiterhin
+den SDL-Speicherstrom. Beendete Gastthreads geben den SDL- und wasm-Zustand
+frei. Alle 46 Korpusfälle bestanden mit AddressSanitizer, UndefinedBehaviorSanitizer,
+LeakSanitizer und aktiviertem Audio-Befehlsvergleich. Alle 245.660 Retraces
+stimmen mit den akzeptierten Referenzen überein.
+Laufprotokolle liegen unter `build/acceptance/q3-2026-11-17/`.

@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <SDL3/SDL_thread.h>
 #include "guest.h"
 
 #define MAX_THREADS 64
@@ -250,6 +251,8 @@ void w2c_env_osDestroyThread(struct w2c_env *env, u32 t) {
         self->t = 0;
         dispatch();
         leave();
+        SDL_CleanupTLS();
+        wasm_rt_free_thread();
         pthread_exit(NULL);
     }
     if (state(t) == OS_STATE_RUNNABLE) unlink_thread(READY, t);

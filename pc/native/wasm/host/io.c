@@ -255,8 +255,22 @@ _Noreturn void w2c_env_unported(struct w2c_env *env, u32 name) {
     bt_fatal("unported %s called", (const char *)G_range(name, bt_inst.w2c_memory.size - name));
 }
 
-// Guest file descriptors start at 3. SDL handles both disk files and read-only ROM slices.
-static SDL_IOStream *files[32];
+// Disk errors are returned to the guest. Keep them out of the SDL error state of its scheduler thread.
+typedef struct { FILE *disk; SDL_IOStream *slice; } GuestFile;
+static GuestFile files[32];
+
+static FILE *open_disk(const char *path, const char *mode) {
+#ifdef _WIN32
+    wchar_t *wide_path = (wchar_t *)SDL_iconv_string("UTF-16LE", "UTF-8", path, strlen(path) + 1);
+    wchar_t *wide_mode = (wchar_t *)SDL_iconv_string("UTF-16LE", "UTF-8", mode, strlen(mode) + 1);
+    FILE *file = wide_path && wide_mode ? _wfopen(wide_path, wide_mode) : NULL;
+    SDL_free(wide_mode);
+    SDL_free(wide_path);
+    return file;
+#else
+    return fopen(path, mode);
+#endif
+}
 
 // The game's save file (guest/os.c opens "bt_eeprom.bin"): BT_SAVE=path if set; the working
 // directory for scripted runs (BT_HEADLESS, BT_VCLOCK) or when a save is already there; otherwise
@@ -278,37 +292,61 @@ const char *bt_host_path(const char *path) {
 u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
     (void)env;
     for (int i = 3; i < 32; i++) {
-        if (!files[i]) {
+        if (!files[i].disk && !files[i].slice) {
             unsigned start, end;
             // "rom:START-END" opens that range of the cartridge image read-only.
             bt_image_range(path, bt_inst.w2c_memory.size - path);
             bt_image_range(mode, bt_inst.w2c_memory.size - mode);
             if (sscanf(G(path), "rom:%x-%x", &start, &end) == 2) {
                 if (start > end || end > rom_size) bt_fatal("ROM file %s beyond the image", (char *)G(path));
-                files[i] = SDL_IOFromConstMem(rom + start, end - start);
+                files[i].slice = SDL_IOFromConstMem(rom + start, end - start);
             } else {
-                files[i] = SDL_IOFromFile(bt_host_path(G(path)), G(mode));
+                files[i].disk = open_disk(bt_host_path(G(path)), G(mode));
             }
-            return files[i] ? (u32)i : (u32)-1;
+            return files[i].disk || files[i].slice ? (u32)i : (u32)-1;
         }
     }
     return (u32)-1;
 }
 
-static SDL_IOStream *file(u32 fd) {
-    if (fd >= 32 || !files[fd]) bt_fatal("guest file %u is not open", fd);
-    return files[fd];
+static GuestFile *file(u32 fd) {
+    if (fd >= 32 || (!files[fd].disk && !files[fd].slice)) bt_fatal("guest file %u is not open", fd);
+    return &files[fd];
 }
 
-u32 w2c_env_fread(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_ReadIO(file(fd), G_range(buf,n), n); }
-u32 w2c_env_fwrite(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_WriteIO(file(fd), G_range(buf,n), n); }
-u32 w2c_env_fseek(struct w2c_env *env, u32 fd, u32 off, u32 whence) { (void)env; return SDL_SeekIO(file(fd), (s32)off, (SDL_IOWhence)whence) < 0 ? (u32)-1 : 0; }
-u32 w2c_env_ftell(struct w2c_env *env, u32 fd) { (void)env; return (u32)SDL_TellIO(file(fd)); }
-u32 w2c_env_fclose(struct w2c_env *env, u32 fd) {
-    int r = SDL_CloseIO(file(fd)) ? 0 : -1;
+u32 w2c_env_fread(struct w2c_env *env, u32 fd, u32 buf, u32 n) {
     (void)env;
-    files[fd] = NULL;
-    return (u32)r;
+    GuestFile *f = file(fd);
+    void *dst = G_range(buf, n);
+    return (u32)(f->disk ? fread(dst, 1, n, f->disk) : SDL_ReadIO(f->slice, dst, n));
+}
+
+u32 w2c_env_fwrite(struct w2c_env *env, u32 fd, u32 buf, u32 n) {
+    (void)env;
+    GuestFile *f = file(fd);
+    return f->disk ? (u32)fwrite(G_range(buf, n), 1, n, f->disk) : 0;
+}
+
+u32 w2c_env_fseek(struct w2c_env *env, u32 fd, u32 off, u32 whence) {
+    (void)env;
+    GuestFile *f = file(fd);
+    int failed = f->disk ? fseek(f->disk, (s32)off, whence) != 0
+                         : SDL_SeekIO(f->slice, (s32)off, (SDL_IOWhence)whence) < 0;
+    return failed ? (u32)-1 : 0;
+}
+
+u32 w2c_env_ftell(struct w2c_env *env, u32 fd) {
+    (void)env;
+    GuestFile *f = file(fd);
+    return (u32)(f->disk ? ftell(f->disk) : SDL_TellIO(f->slice));
+}
+
+u32 w2c_env_fclose(struct w2c_env *env, u32 fd) {
+    (void)env;
+    GuestFile *f = file(fd);
+    int result = f->disk ? fclose(f->disk) : SDL_CloseIO(f->slice) ? 0 : -1;
+    *f = (GuestFile){0};
+    return (u32)result;
 }
 
 // One raw DEFLATE stream; the guest zlib.h shim allows only this call.
