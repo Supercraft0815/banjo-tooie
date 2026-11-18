@@ -1,11 +1,13 @@
 // Window-thread UI. Both game renderers present using this SDL OpenGL context.
 #include "menu.h"
+#include "glad/gl.h"
 #include "imgui.h"
 #include "imgui_internal.h" // FocusItem moves the gamepad cursor without activating a slider.
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_sdl3.h"
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <initializer_list>
 
 static SDL_Window *window;
@@ -15,9 +17,58 @@ static SDL_ThreadID owner;
 static int page, port, capture = -1;
 static const char *const pages[] = {"Grafik", "Audio", "Steuerung", "Verbesserungen", "Debug"};
 
+static void mode_key(const SDL_DisplayMode *mode, char *key, size_t n) {
+    // Stable across SDL enumeration order and display IDs. Keep logical and backing sizes distinct.
+    std::snprintf(key, n, "%dx%d@%.3f/%.3f/%u", mode->w, mode->h,
+                  mode->refresh_rate, mode->pixel_density, (unsigned)mode->format);
+}
+
+void bt_menu_display_changed() {
+    const SDL_DisplayMode *selection = nullptr;
+    int count = 0;
+    auto **modes = SDL_GetFullscreenDisplayModes(SDL_GetDisplayForWindow(window), &count);
+    for (int i = 0; i < count; i++) {
+        char key[80]; mode_key(modes[i], key, sizeof key);
+        if (!std::strcmp(key, bt_fullscreen_mode())) { selection = modes[i]; break; }
+    }
+    if (!SDL_SetWindowFullscreenMode(window, selection)) SDL_Log("Vollbildmodus: %s", SDL_GetError());
+    SDL_free(modes);
+}
+
+static void mode_label(const SDL_DisplayMode *mode, char *text, size_t n) {
+    if (!mode) { std::snprintf(text, n, "Desktop"); return; }
+    std::snprintf(text, n, "%.0f × %.0f · %.2f Hz · %.1fx",
+                  mode->w * mode->pixel_density, mode->h * mode->pixel_density,
+                  mode->refresh_rate, mode->pixel_density);
+}
+
+static void fullscreen_modes() {
+    char label[100];
+    const auto *current = SDL_GetWindowFullscreenMode(window);
+    mode_label(current, label, sizeof label);
+    ImGui::TextUnformatted("Vollbildmodus");
+    ImGui::SetNextItemWidth(-1);
+    if (!ImGui::BeginCombo("##fullscreen_mode", label)) return;
+    if (ImGui::Selectable("Desktop", !current) && SDL_SetWindowFullscreenMode(window, nullptr))
+        bt_fullscreen_mode_set("");
+    int count = 0;
+    auto **modes = SDL_GetFullscreenDisplayModes(SDL_GetDisplayForWindow(window), &count);
+    for (int i = 0; i < count; i++) {
+        char key[80]; mode_key(modes[i], key, sizeof key);
+        mode_label(modes[i], label, sizeof label);
+        ImGui::PushID(i);
+        if (ImGui::Selectable(label, !std::strcmp(key, bt_fullscreen_mode())) && SDL_SetWindowFullscreenMode(window, modes[i]))
+            bt_fullscreen_mode_set(key);
+        ImGui::PopID();
+    }
+    SDL_free(modes);
+    ImGui::EndCombo();
+}
+
 int bt_menu_init(SDL_Window *win, SDL_GLContext gl) {
     window = win;
     context = gl;
+    if (window && *bt_fullscreen_mode()) bt_menu_display_changed();
     return window && context;
 }
 
@@ -122,8 +173,13 @@ static void option(int id) {
     ImGui::PushID(id);
     ImGui::SetNextItemWidth(-1);
     if (s->names[0]) {
-        int index = v - s->min;
-        if (ImGui::Combo("##value", &index, s->names, s->max - s->min + 1))
+        int index = v - s->min, count = s->max - s->min + 1;
+        if (id == BT_SET_MSAA) {
+            GLint samples = 0; glGetIntegerv(GL_MAX_SAMPLES, &samples);
+            while (count > 1 && (1 << (count - 1)) > samples) count--;
+            if (index >= count) index = count - 1;
+        }
+        if (ImGui::Combo("##value", &index, s->names, count))
             bt_setting_set(id, index + s->min);
     } else if (ImGui::SliderInt("##value", &v, s->min, s->max, "%d / 10"))
         bt_setting_set(id, v);
@@ -193,8 +249,9 @@ void bt_menu_draw(const char *fps, unsigned repeated, unsigned skipped) {
     ImGui::SeparatorText(pages[page]);
     switch (page) {
         case 0:
-            for (int id : {BT_SET_RENDERER, BT_SET_SCALE, BT_SET_WIDESCREEN, BT_SET_FULLSCREEN, BT_SET_FILTER,
+            for (int id : {BT_SET_RENDERER, BT_SET_GPU_WINDOW, BT_SET_SCALE, BT_SET_MSAA, BT_SET_WIDESCREEN, BT_SET_WINDOW_RES, BT_SET_BORDERLESS, BT_SET_FULLSCREEN, BT_SET_FILTER,
                            BT_SET_INTERP, BT_SET_SMOOTH, BT_SET_VSYNC}) option(id);
+            fullscreen_modes();
             break;
         case 1: option(BT_SET_VOLUME); option(BT_SET_AUDIO_LATENCY); break;
         case 2: controls(); break;

@@ -106,6 +106,7 @@ void osViSetXScale(f32 s) { (void)s; }
 void osViSetYScale(f32 s) { (void)s; }
 u32 BT_HOST(warp_poll)(void);
 u32 BT_HOST(widescreen_forced)(void);
+s32 bt_ultrawide(void) { return host_widescreen_forced() == 2; }
 u32 BT_HOST(frame_interval)(u32 game);
 s32 bt_frame_interval(s32 game) { return (s32)host_frame_interval((u32)game); }
 u32 BT_HOST(camera_stick)(void);

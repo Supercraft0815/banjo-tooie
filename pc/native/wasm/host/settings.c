@@ -13,7 +13,7 @@
 
 static BtSetting S[BT_SET_COUNT] = {
     [BT_SET_SCALE] = {"scale", "BT_SCALE", "Interne Auflösung", 1, RDP_MAX_SCALE, 1, {"1x (N64)", "2x", "3x", "4x"}},
-    [BT_SET_WIDESCREEN] = {"widescreen", "BT_WIDESCREEN", "Bildformat", 0, 1, 0, {"wie im Spiel", "immer 16:9"}},
+    [BT_SET_WIDESCREEN] = {"widescreen", "BT_WIDESCREEN", "Bildformat", 0, 2, 0, {"wie im Spiel", "immer 16:9", "immer 21:9"}},
     [BT_SET_FULLSCREEN] = {"fullscreen", NULL, "Vollbild", 0, 1, 0, {"aus", "an"}},
     [BT_SET_FILTER] = {"filter", NULL, "Bildfilter", 0, 1, 0, {"scharf", "weich"}},
     [BT_SET_RUMBLE] = {"rumble", "BT_RUMBLE", "Vibration", 0, 1, 1, {"aus", "an"}},
@@ -27,13 +27,18 @@ static BtSetting S[BT_SET_COUNT] = {
     [BT_SET_RENDERER] = {"renderer", NULL, "Renderer (Neustart)", 0, 1, 1, {"Software", "GPU (OpenGL)"}},
     [BT_SET_SHOW_FPS] = {"show_fps", "BT_SHOW_FPS", "FPS-Anzeige", 0, 1, 0, {"aus", "an"}},
     [BT_SET_SMOOTH] = {"smooth", "BT_SMOOTH", "Textglättung (GPU, ab 2x)", 0, 1, 1, {"aus", "an"}},
+    [BT_SET_GPU_WINDOW] = {"gpu_window_size", "BT_GPU_WINDOW", "GPU-Zielgröße", 0, 3, 0, {"fester Faktor", "Fensterauflösung", "Fenster bis 1440p", "Fenster bis 2160p"}},
+    [BT_SET_MSAA] = {"msaa", "BT_MSAA", "Kantenglättung (GPU)", 0, 3, 0, {"aus", "2x MSAA", "4x MSAA", "8x MSAA"}},
+    [BT_SET_WINDOW_RES] = {"window_size", "BT_WINDOW_SIZE", "Fenstergröße", 0, 2, 0, {"frei", "1440p", "2160p"}},
+    [BT_SET_BORDERLESS] = {"borderless", "BT_BORDERLESS", "Fensterrand", 0, 1, 0, {"mit Rahmen", "rahmenlos"}},
     [BT_SET_VSYNC] = {"vsync", NULL, "VSync", 0, 1, 1, {"aus", "an"}},
     [BT_SET_RENDER_STATS] = {"render_stats", "BT_RENDER_STATS", "Render-Statistik", 0, 1, 0, {"aus", "an"}},
     // Indexes into the dialog assets of the European ROM (io.c rom_add_language)
     [BT_SET_LANGUAGE] = {"language", "BT_LANG", "Sprache (Neustart, EU-ROM)", 0, 3, 0, {"Englisch", "Französisch", "Deutsch", "Spanisch"}},
 };
 static _Atomic int values[BT_SET_COUNT];
-static char path[1024];
+static char path[1024], fullscreen_mode[80];
+const char *bt_fullscreen_mode(void) { return fullscreen_mode; }
 int bt_setting(int id) { return atomic_load(&values[id]); }
 const BtSetting *bt_setting_info(int id) { return &S[id]; }
 
@@ -55,6 +60,10 @@ void bt_settings_load(void) {
         char line[200], key[64], text[128];
         while (f && fgets(line, sizeof line, f)) {
             if (line[0] == '#' || sscanf(line, "%63[^=]=%127[^\r\n]", key, text) != 2) continue;
+            if (!strcmp(key, "fullscreen_mode")) {
+                SDL_strlcpy(fullscreen_mode, text, sizeof fullscreen_mode);
+                continue;
+            }
             if (bt_input_option(key, text)) continue;
             for (int i = 0; i < BT_SET_COUNT; i++)
                 if (!strcmp(key, S[i].key)) {
@@ -105,6 +114,11 @@ static void save_option(const char *key, const char *value) {
         SDL_Log("Cannot replace %s: %s", path, SDL_GetError());
         SDL_RemovePath(tmp);
     }
+}
+
+void bt_fullscreen_mode_set(const char *mode) {
+    SDL_strlcpy(fullscreen_mode, mode, sizeof fullscreen_mode);
+    save_option("fullscreen_mode", mode);
 }
 
 void bt_settings_option(const char *key, const char *value) {

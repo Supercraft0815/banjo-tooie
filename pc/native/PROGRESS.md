@@ -1902,3 +1902,27 @@ Testprogramme und 46 Abläufe mit zusammen 245.660 Retraces.
 Bildbogen, Eingaben und Vergleichsergebnisse liegen unter
 `build/acceptance/q2-multiplayer-2026-11-17/`. Weitere Einzelspieler-Bosse,
 Minispiele, Verwandlungen und die Solo-Figuren stehen noch aus.
+
+## 2026-11-18 — A6, Auflösung, HUD und Bildpuffer
+
+Auf dem internen Retina-Display lieferte der GPU-Renderer 2.560 × 1.440 und
+3.840 × 2.160 Bildpunkte im Fenster und im Vollbild. Im 4K-Vollbild bestätigte
+der Rücklesetest die 3.840 × 2.160 große Spieltextur auf einer 4.112 × 2.658
+großen SDL-Zeichenfläche. Bei 2× und 4× MSAA änderten sich nur Kantenpixel.
+Der Treiber bot höchstens vier Samples an. Die HUD-Symbole behalten ihre
+Proportionen und Textzeilen einen gemeinsamen Anker. 21:9 zeigt zusätzlichen
+Szeneninhalt an beiden Seiten.
+
+Die Pause-Kopie erhielt alle 32.768 geprüften Bildpunkte. Zwei Teilstreifen
+und eine ungeteilte Textur lieferten bei 4× dieselben 12.288 Pixel. Die
+Tiefentests decken CPU-Schreibzugriffe, die Nutzung des Z-Puffers als
+Farbbild und den Wechsel der Tiefenadresse ab. Für die Originalübergänge
+stimmten alle 40 beobachteten Jiggy-Schreiboperationen mit der Software überein.
+Im 1×-Bildvergleich überschritt kein Bild die Toleranz, weder im Intro
+(2.694 Bilder, höchstens 0,056267 % abweichende Pixel) noch im geladenen
+Spiel (10.786 Bilder, höchstens 0,088008 %). Die 46 Korpusfälle bestehen.
+
+Die drei geänderten Originalquellen haben dieselbe Zeilenzahl wie zuvor.
+Original-IDO ergab null abweichende Funktionen und Datenabschnitte. Das
+komplette Cartridge-Abbild stimmt byteweise. Belege und Einzelaufnahmen
+liegen unter `build/acceptance/a6-2026-11-17/`.

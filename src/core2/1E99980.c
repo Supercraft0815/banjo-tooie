@@ -548,7 +548,7 @@ s32 func_800C0BC0(BtIntPtr gfx, BtIntPtr destination, BtIntPtr source) {
             }
         }
     }
-    gSPDisplayList(cur_gfx++, OS_K0_TO_PHYSICAL(D_8011A840));
+    BT_ILP32_ONLY(gDPNoOpTag(cur_gfx++, 0x42544350);) gSPDisplayList(cur_gfx++, OS_K0_TO_PHYSICAL(D_8011A840));
     gDPSetColorImage(cur_gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, OS_K0_TO_PHYSICAL(func_80014F00())); BT_NATIVE_ONLY(result = cur_gfx[-1].words.w1;)
     *(Gfx**)gfx = cur_gfx; BT_NATIVE_ONLY(return result;)
 }

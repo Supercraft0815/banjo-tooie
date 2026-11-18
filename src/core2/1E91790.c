@@ -277,12 +277,12 @@ s32 func_800B8CFC(u8 *arg0) {
     }
     return (s32) ((f32) var_s2 * D_801282C0.value);
 }
-
+#include "1E91790_glyph.inc"
 void func_800B8DEC(Gfx **arg0, s32 arg1, s32 arg2, u8 arg3) {
     arg3 = (u8) arg3;
     if (D_801282C0.data[0xC] != 0) {
         D_801282C0.data[8] = 0;
-        func_800B81CC(arg0, arg1, arg2, arg3);
+        native_glyph(arg0, arg1, arg2, arg3, arg1);
     }
 }
 
@@ -291,7 +291,7 @@ s32 func_800B8E28(BtIntPtr arg0, s32 arg1, s32 arg2, u8 *arg3) {
     u8 func_800D35BC(s32);
     s32 spacing;
     s32 width;
-    s32 advance;
+    s32 advance; BT_ILP32_ONLY(s32 anchor = arg1;)
 
     if (D_801282C0.data[0xC] != 0) {
         if (D_801282C0.data[7] != 0) {
@@ -299,9 +299,9 @@ s32 func_800B8E28(BtIntPtr arg0, s32 arg1, s32 arg2, u8 *arg3) {
         } else {
             spacing = (s32)((f32)(s32)func_800D35BC(D_801282C0.data[6]) * D_801282C0.value);
         }
-        D_801282C0.data[8] = 0;
+        D_801282C0.data[8] = 0; BT_ILP32_ONLY(if (widescreen_enabled) anchor += func_800B8CFC(arg3) / 2;)
         while (*arg3 != 0) {
-            advance = func_800B81CC((Gfx **)arg0, arg1, arg2, *arg3);
+            advance = native_glyph((Gfx **)arg0, arg1, arg2, *arg3, anchor);
             arg3++;
             if (D_801282C0.data[7] != 0 && D_801282C0.data[8] == 0) {
                 arg1 += advance / 2;

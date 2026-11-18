@@ -7,6 +7,11 @@
 // arguments are written out, IDO keeps the empty list. BT_PARAM_OR_VOID names, natively, the
 // register parameter a `(void)` function passes on that way. BT_IDO_ONLY: N64-only code, such as a
 // local prototype that a native header already declares with another type.
+#ifdef BT_ILP32
+#define BT_ILP32_ONLY(code) code
+#else
+#define BT_ILP32_ONLY(code)
+#endif
 #ifdef BT_NATIVE
 #define BT_NATIVE_ONLY(code) code
 #define BT_PASS2(a, b) a, b

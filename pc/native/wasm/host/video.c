@@ -72,20 +72,20 @@ static void screenshot(u32 *pixels, int w, int h) {
 
 // The picture for a retrace. With frame interpolation the first retraces of a new game frame show
 // its in-between images (rdp_interp_frame), the frame itself as many retraces later.
-static int picture(u32 fb, u32 age, int w, int h, u32 *out, int *sx) {
-    int s = bt_setting(BT_SET_INTERP) ? rdp_interp_frame(fb, w, h, (int)age, out, sx) : 0;
-    return s ? s : rdp_frame(fb, w, h, out, sx);
-}
-
 // Saves the picture of a retrace as BMP: the guest framebuffer, or the enlarged image with hires.
 int bt_video_save(const char *path, u32 fb, u32 width, u32 age, int hires) {
-    static u32 out[640 * 480 * RDP_MAX_SX * RDP_MAX_SCALE];
-    int w = width >= 16 && width <= 640 ? (int)width : 320, h = w * 3 / 4, sx = 1, sy = 0, ok = 0;
+    static u32 *out;
+    static size_t capacity;
+    int w = width >= 16 && width <= 640 ? (int)width : 320, h = w * 3 / 4, base_w = w, base_h = h, copied = 0, ok = 0;
     if (!fb) return 0;
     if (bt_setting(BT_SET_INTERP)) rdp_interp_wait();  // dumps do not depend on the worker's timing
-    if (hires || bt_setting(BT_SET_INTERP)) sy = picture(fb, age, w, h, out, &sx);
-    if (sy && !hires && (sx > 1 || sy > 1)) sy = 0;  // guest-sized dumps stay the guest image
-    if (sy) { w *= sx; h *= sy; } else convert(fb, w, h, out);
+    if (hires || bt_setting(BT_SET_INTERP))
+        copied = rdp_picture(fb, w, h, bt_setting(BT_SET_INTERP) ? (int)age : -1, &out, &capacity, &w, &h);
+    if (!copied || (!hires && (w != base_w || h != base_h))) {
+        w = base_w; h = base_h;
+        rdp_reserve_pixels(&out, &capacity, w, h);
+        convert(fb, w, h, out);
+    }
     SDL_Surface *s = SDL_CreateSurfaceFrom(w, h, SDL_PIXELFORMAT_XRGB8888, out, w * 4);
     if (s) { ok = SDL_SaveBMP(s, path); SDL_DestroySurface(s); }
     return ok;
@@ -120,7 +120,7 @@ static void apply_vsync(void) {
     if (!SDL_GL_SetSwapInterval(wanted_vsync)) SDL_Log("VSync: %s", SDL_GetError());
     vsync = SDL_GL_GetSwapInterval(&actual) && actual != 0;
 }
-static struct { GLuint program, vao, sampler, picture, ui; } gl;
+static struct { GLuint program, vao, sampler, picture, ui, read_fbo; } gl;
 
 // Main thread, before the game starts (the GPU renderer's contexts join this one's share group).
 void bt_video_window(void) {
@@ -132,6 +132,7 @@ void bt_video_window(void) {
     win = SDL_CreateWindow("Banjo-Tooie | WASD: Bewegen | Leertaste: A | Enter: Start | F1: Tastenhilfe", 960, 720,
                            SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
     if (!win || !SDL_GL_CreateContext(win)) bt_fatal("SDL window: %s", SDL_GetError());
+    int draw_w, draw_h; SDL_GetWindowSizeInPixels(win, &draw_w, &draw_h); rdp_window_size(draw_w, draw_h);
     apply_vsync();
     bt_menu_init(win, SDL_GL_GetCurrentContext());
     rdp_gpu_share(win);
@@ -168,6 +169,18 @@ static void upload(GLuint tex, int w, int h, const void *pixels) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, pixels);
 }
 
+// Read a bounded rectangle even if another context resizes the presentation texture.
+static void read_picture(GLuint tex, u32 **pixels, size_t *capacity, int w, int h) {
+    GLint prev;
+    rdp_reserve_pixels(pixels, capacity, w, h);
+    glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &prev);
+    if (!gl.read_fbo) glGenFramebuffers(1, &gl.read_fbo);
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, gl.read_fbo);
+    glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tex, 0);
+    glReadPixels(0, 0, w, h, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, *pixels);
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, (GLuint)prev);
+}
+
 static void draw(GLuint tex, int linear) {
     glSamplerParameteri(gl.sampler, GL_TEXTURE_MIN_FILTER, linear ? GL_LINEAR : GL_NEAREST);
     glSamplerParameteri(gl.sampler, GL_TEXTURE_MAG_FILTER, linear ? GL_LINEAR : GL_NEAREST);
@@ -196,10 +209,12 @@ _Noreturn void bt_video_main(void) {
     SDL_Surface *ui = NULL;    // key help and FPS use SDL's software renderer
     SDL_Renderer *ren = NULL;
     char ui_key[64] = "";      // what the ui texture shows
-    static u32 pixels[640 * 480 * RDP_MAX_SX * RDP_MAX_SCALE], dump_pixels[640 * 480];
+    u32 *pixels = NULL;
+    size_t capacity = 0;
+    static u32 dump_pixels[640 * 480];
     GLuint shown = 0;          // the picture's texture: the renderer's, or gl.picture with `pixels`
     int have_pixels = 0;       // `pixels` holds the shown picture
-    int wide = 0, fullscreen = 0;
+    int wide = 0, fullscreen = 0, window_res = -1, borderless = -1;
     int w = 320, h = 240;
     int show_controls = 0, shot = 0;
     u32 last = 0, frames = 0;
@@ -212,6 +227,7 @@ _Noreturn void bt_video_main(void) {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_EVENT_QUIT) exit(0);
+            if (win && e.type == SDL_EVENT_WINDOW_DISPLAY_CHANGED) bt_menu_display_changed();
             if (!headless && bt_menu_event(&e)) continue;
             if (e.type == SDL_EVENT_KEY_DOWN && !e.key.repeat && e.key.key == SDLK_F1)
                 show_controls = !show_controls;
@@ -241,11 +257,12 @@ _Noreturn void bt_video_main(void) {
                 swaps = repeated = skipped = 0; stats_start = now;
             }
             int base_w = width >= 16 && width <= 640 ? (int)width : 320, base_h = base_w * 3 / 4;
-            int sx = 1, scale = 0;
-            GLuint tex = win ? rdp_frame_texture(fb, base_w, base_h, bt_setting(BT_SET_INTERP) ? (int)age : -1, &sx, &scale) : 0;
-            if (!tex) scale = picture(fb, age, base_w, base_h, pixels, &sx);
-            w = base_w * (scale ? sx : 1); h = base_h * (scale ? scale : 1);
-            if (!scale) {
+            int index = bt_setting(BT_SET_INTERP) ? (int)age : -1;
+            w = base_w; h = base_h;
+            GLuint tex = win ? rdp_frame_texture(fb, base_w, base_h, index, &w, &h) : 0;
+            int copied = !tex && rdp_picture(fb, base_w, base_h, index, &pixels, &capacity, &w, &h);
+            if (!tex && !copied) {
+                rdp_reserve_pixels(&pixels, &capacity, w, h);
                 if (fb) convert(fb, w, h, pixels); else memset(pixels, 0, (size_t)w * h * sizeof *pixels);
             }
             have_pixels = !tex;
@@ -256,12 +273,12 @@ _Noreturn void bt_video_main(void) {
                 char path[512];
                 int dw = w, dh = h;
                 u32 *dp = pixels;
-                if (scale && !getenv("BT_DUMP_HIRES")) {
+                if ((tex || copied) && !getenv("BT_DUMP_HIRES")) {
                     dw = base_w; dh = base_h; dp = dump_pixels;
                     convert(fb, dw, dh, dp);
                 } else if (!have_pixels) {
-                    glBindTexture(GL_TEXTURE_2D, shown);
-                    glGetTexImage(GL_TEXTURE_2D, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, pixels);
+                    read_picture(shown, &pixels, &capacity, w, h);
+                    dp = pixels;
                     have_pixels = 1;
                 }
                 SDL_Surface *s = SDL_CreateSurfaceFrom(dw, dh, SDL_PIXELFORMAT_XRGB8888, dp, dw * 4);
@@ -272,26 +289,40 @@ _Noreturn void bt_video_main(void) {
         if (headless) { SDL_Delay(4); continue; }
         if (shot) {  // F12
             if (!have_pixels) {
-                glBindTexture(GL_TEXTURE_2D, shown);
-                glGetTexImage(GL_TEXTURE_2D, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, pixels);
+                read_picture(shown, &pixels, &capacity, w, h);
                 have_pixels = 1;
             }
-            screenshot(pixels, w, h);
+            if (pixels) screenshot(pixels, w, h);
             shot = 0;
         }
-        if (fullscreen != bt_setting(BT_SET_FULLSCREEN))  // F11 or the settings menu
-            SDL_SetWindowFullscreen(win, fullscreen = bt_setting(BT_SET_FULLSCREEN));
-        if (bt_widescreen() != wide) {  // 304 columns are 16:9 wide in the game's widescreen mode
+        int next_full = bt_setting(BT_SET_FULLSCREEN), next_res = bt_setting(BT_SET_WINDOW_RES);
+        int next_border = bt_setting(BT_SET_BORDERLESS), next_wide = bt_widescreen();
+        if (fullscreen != next_full && !SDL_SetWindowFullscreen(win, next_full)) SDL_Log("Vollbild: %s", SDL_GetError());
+        if (!next_full && (next_border != borderless || fullscreen)) SDL_SetWindowBordered(win, !next_border);
+        if (!next_full && (next_res != window_res || next_wide != wide || next_border != borderless || fullscreen)) {
             int ww, wh;
-            wide = !wide;
-            if (!(SDL_GetWindowFlags(win) & SDL_WINDOW_FULLSCREEN) && SDL_GetWindowSize(win, &ww, &wh))
-                SDL_SetWindowSize(win, wide ? wh * 16 / 9 : wh * 4 / 3, wh);
+            if (next_res) {
+                float density = SDL_GetWindowPixelDensity(win);
+                if (density <= 0) density = 1;
+                wh = (int)((next_res == 2 ? 2160 : 1440) / density + .5f);
+                ww = next_wide == 2 ? wh * 21 / 9 : next_wide ? wh * 16 / 9 : wh * 4 / 3;
+                SDL_Rect bounds;
+                if (next_border && SDL_GetDisplayUsableBounds(SDL_GetDisplayForWindow(win), &bounds) &&
+                    (ww > bounds.w || wh > bounds.h) && SDL_GetDisplayBounds(SDL_GetDisplayForWindow(win), &bounds))
+                    SDL_SetWindowPosition(win, bounds.x, bounds.y);
+                SDL_SetWindowSize(win, ww, wh);
+            } else if (next_wide != wide && SDL_GetWindowSize(win, &ww, &wh)) {
+                SDL_SetWindowSize(win, next_wide == 2 ? wh * 21 / 9 : next_wide ? wh * 16 / 9 : wh * 4 / 3, wh);
+            }
         }
+        fullscreen = next_full; window_res = next_res; borderless = next_border; wide = next_wide;
         // The picture, letterboxed to 4:3 or 16:9.
         int pw, ph;
         SDL_GetWindowSizeInPixels(win, &pw, &ph);
-        int vw = wide ? ph * 16 / 9 : ph * 4 / 3, vh = ph;
-        if (vw > pw) { vw = pw; vh = wide ? pw * 9 / 16 : pw * 3 / 4; }
+        rdp_window_size(pw, ph);
+        int aw = wide == 2 ? 21 : wide ? 16 : 4, ah = wide ? 9 : 3;
+        int vw = ph * aw / ah, vh = ph;
+        if (vw > pw) { vw = pw; vh = pw * ah / aw; }
         glViewport(0, 0, pw, ph);
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);

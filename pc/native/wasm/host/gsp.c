@@ -185,6 +185,25 @@ static void lerp(Vert *o, const Vert *a, const Vert *b, float t) {
     for (int i = 0; i < 10; i++) po[i] = fmaf(pb[i] - pa[i], t, pa[i]);
 }
 
+// Original 4:3 guOrtho for the 304x228 UI, with its left/right planes at ±2*width.
+// The game's widescreen-aware guOrtho has a smaller X coefficient and already compensates.
+static float hud_factor(void) {
+    int wide = bt_widescreen();
+    if (!wide || S.vscale[0] <= 0 || fabsf(S.proj[1][1] * (4 * S.vscale[1]) - 1) >= .02f ||
+        S.proj[2][3] != 0 || S.proj[3][3] != 1) return 1;
+    float x = S.proj[0][0] * (4 * S.vscale[0]);
+    if (fabsf(x - 1) < .02f) return wide == 2 ? 4.0f / 7 : .75f;
+    if (wide == 2 && fabsf(x - .75f) < .02f) return 16.0f / 21;
+    return 1;
+}
+
+// Anchor small HUD geometry to the nearest third of its viewport. Keep backgrounds full width.
+static float hud_anchor(float left, float right) {
+    float center = (left + right) * .5f;
+    return S.vtrans[0] + (center < S.vtrans[0] - S.vscale[0]/3 ? -S.vscale[0] :
+                          center > S.vtrans[0] + S.vscale[0]/3 ? S.vscale[0] : 0.0f);
+}
+
 static void draw_poly(Vert *in, int n, int flat_from) {
     Vert buf[2][16];
     Vert *cur = in;
@@ -213,6 +232,15 @@ static void draw_poly(Vert *in, int n, int flat_from) {
         memcpy(r[i].c, flat_from >= 0 ? S.v[flat_from].c : v->c, sizeof r[i].c);
         r[i].s = v->s;
         r[i].t = v->t;
+    }
+    float hud_scale = hud_factor();
+    if (hud_scale != 1) {
+        float left = r[0].x, right = r[0].x;
+        for (int i = 1; i < n; i++) { left = fminf(left, r[i].x); right = fmaxf(right, r[i].x); }
+        if (right - left < S.vscale[0] * (2.0f/3)) {
+            float anchor = hud_anchor(left, right);
+            for (int i = 0; i < n; i++) r[i].x = anchor + (r[i].x - anchor) * hud_scale;
+        }
     }
     for (int i = 1; i + 1 < n; i++)
         area += fmaf((r[i].x - r[0].x), (r[i + 1].y - r[0].y), -((r[i + 1].x - r[0].x) * (r[i].y - r[0].y)));
@@ -536,7 +564,10 @@ static void run(u32 dl) {
         if (tracing()) trace_ops[op]++;
         if (tracing() && getenv("BT_GFX_DUMP")) fprintf(stderr, "    %08x [%d]: %08x %08x\n", pc - 8, sp, w0, w1);
         switch (op) {
-        case 0x00: case 0xE0: case 0xD3: case 0xD4: case 0xD5: case 0xD6: case 0xDD: break;
+        case 0x00:
+            if (w0 == 0 && w1 == 0x42544350) rdp_framebuffer_copy();
+            break;
+        case 0xE0: case 0xD3: case 0xD4: case 0xD5: case 0xD6: case 0xDD: break;
         case 0x01: { int n = w0 >> 12 & 0xFF; ip_anchor(w1); load_vertices(seg_addr(w1), n, (int)(w0 >> 1 & 0x7F) - n); break; }
         case 0x02: {  // modify vertex
             int i = (w0 & 0xFFFF) / 2, where = w0 >> 16 & 0xFF;
@@ -602,7 +633,31 @@ static void run(u32 dl) {
         case 0xE4: case 0xE5: {
             const u8 *h = gmem(pc, 16);
             if (!h) return;
-            rdp_texrect(w0, w1, be32(h + 4), be32(h + 12), op == 0xE5);
+            u32 slope = be32(h + 12);
+            u32 tag = be32(h + 8);
+            int glyph = (tag & 0xfffffffc) == 0xf1425400u && (tag & 3) < 3;
+            int wide = bt_widescreen();
+            float hud_scale = glyph && wide ? (wide == 2 ? 4.0f / 7 : .75f) : hud_factor();
+            if (hud_scale != 1) {
+                int left = (w1 >> 12) & 0xfff, right = (w0 >> 12) & 0xfff;
+                if (right > left && right - left < S.vscale[0] * (8.0f/3)) {
+                    float anchor = glyph ? 4 * (S.vtrans[0] + ((int)(tag & 3) - 1) * S.vscale[0]) :
+                                           4 * hud_anchor(left / 4.0f, right / 4.0f);
+                    int x0 = (int)lroundf(anchor + (left - anchor) * hud_scale);
+                    int x1 = (int)lroundf(anchor + (right - anchor) * hud_scale);
+                    if (x1 > x0 && x0 >= 0 && x1 <= 0xfff) {
+                        unsigned shift = op == 0xE5 ? 0 : 16;
+                        int step = (s16)(slope >> shift);
+                        int adjusted = (int)lroundf(step * ((float)(right-left) / (x1-x0)));
+                        if (adjusted >= -32768 && adjusted <= 32767) {
+                            w0 = (w0 & ~0xfff000u) | (u32)x1 << 12;
+                            w1 = (w1 & ~0xfff000u) | (u32)x0 << 12;
+                            slope = (slope & ~(0xffffu << shift)) | (u32)(u16)adjusted << shift;
+                        }
+                    }
+                }
+            }
+            rdp_texrect(w0, w1, be32(h + 4), slope, op == 0xE5);
             pc += 16;
             break;
         }

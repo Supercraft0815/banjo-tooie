@@ -38,7 +38,7 @@ void w2c_env_osViSwapBuffer(struct w2c_env *env, u32 fb) {
     rdp_register_framebuffer(fb, (int)width, bt_widescreen());
 }
 
-int bt_widescreen(void) { return gr16(TRACE_widescreen_enabled) != 0; }
+int bt_widescreen(void) { return gr16(TRACE_widescreen_enabled) ? (bt_setting(BT_SET_WIDESCREEN) == 2 ? 2 : 1) : 0; }
 
 u32 w2c_env_osViGetCurrentFramebuffer(struct w2c_env *env) {
     u32 fb;

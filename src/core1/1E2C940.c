@@ -570,11 +570,11 @@ void func_80015CE8(void *arg0, void *arg1) {
 
 f32 func_80015D14(void *arg0) {
     extern f32 D_80041710;
-    f32 var_f2;
+    f32 var_f2; BT_ILP32_ONLY(extern s32 bt_ultrawide(void);)
 
     var_f2 = (f32) (((Obj1E2C940_arg0 *)arg0)->unk8) / (f32) (((Obj1E2C940_arg0 *)arg0)->unkA);
     if (widescreen_enabled != 0) {
-        var_f2 *= D_80041710;
+        var_f2 *= BT_ILP32_ONLY(bt_ultrawide() ? 1.75f :) D_80041710;
     }
     return var_f2;
 }

@@ -22,8 +22,9 @@ static u8 *bt_mem;
 _Noreturn void bt_fatal(const char *fmt, ...);
 #ifdef BT_GPU_OPENGL  // what rdp_gl.h takes from the host: the virtual clock finishes each task before it returns
 static int bt_vclock_on = 1;
-enum { BT_SET_SMOOTH, BT_SET_RENDER_STATS };
-static int bt_setting(int id) { (void)id; return 0; }
+enum { BT_SET_SMOOTH, BT_SET_RENDER_STATS, BT_SET_GPU_WINDOW, BT_SET_MSAA };
+static int test_msaa, test_window_size;
+static int bt_setting(int id) { return id == BT_SET_MSAA ? test_msaa : id == BT_SET_GPU_WINDOW ? test_window_size : 0; }
 static void bt_os_event(u32 event) { (void)event; }
 #endif
 #ifndef RDP_SOURCE

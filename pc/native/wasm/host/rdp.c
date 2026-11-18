@@ -117,7 +117,8 @@ static Frame frames[3], depth;
 static int scaled_depth_row;
 static pthread_mutex_t frame_lock = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t scanout_lock = PTHREAD_MUTEX_INITIALIZER;
-static struct { u32 address, *pixels; int width, height, sx, sy; unsigned tex; } scanout[3];  // tex: rdp_frame_texture
+typedef struct { u32 address, *pixels; int width, height, pixel_w, pixel_h; unsigned tex; } Picture;
+static Picture scanout[3], ip_out[3];
 // Frame interpolation: in-between pictures of a task's scanout image, rasterized from its display
 // list into host buffers (ip.color, ip.z). Guest memory, the RDP state and the noise sequence stay
 // as the real pass left them, so the game never sees these passes.
@@ -130,13 +131,17 @@ static struct {
     u32 noise;          // the real pass's noise state, restored after an in-between pass
     Frame color, z;     // targets at the render scale; color.address = address
 } ip;
-static struct { u32 address, *pixels; int width, height, sx, sy, valid; unsigned tex; } ip_out[3];
 static void interp_target(void);
 void rdp_interp_wait(void);
 static pthread_once_t scale_once = PTHREAD_ONCE_INIT;
 // render_scale is the vertical factor; render_sx the horizontal one. They differ in the game's
 // anamorphic widescreen mode, where 304 guest columns stand for a 16:9 picture.
 static int render_scale = 1, render_sx = 1;
+static _Atomic u32 window_pixels;
+void rdp_window_size(int width, int height) {
+    if (width > 0 && height > 0 && width <= 65535 && height <= 65535)
+        atomic_store(&window_pixels, (u32)width << 16 | (u32)height);
+}
 static _Atomic int requested_scale;  // from the settings menu; applied between tasks
 
 static void scale_init(void) {
@@ -178,15 +183,14 @@ static void frame_import(Frame *f) {
 static void frame_publish(Frame *f) {
     int slot = (int)(f - frames), n = f->width * f->height * render_sx * render_scale;
     pthread_mutex_lock(&scanout_lock);
-    if (scanout[slot].width != f->width || scanout[slot].height != f->height || scanout[slot].sx != render_sx ||
-        scanout[slot].sy != render_scale) {
+    if (!scanout[slot].pixels || scanout[slot].pixel_w != f->width * render_sx || scanout[slot].pixel_h != f->height * render_scale) {
         free(scanout[slot].pixels);
         scanout[slot].pixels = malloc((size_t)n * sizeof(u32));
         if (!scanout[slot].pixels) bt_fatal("allocating scanout image");
     }
     scanout[slot].address = f->address;
     scanout[slot].width = f->width; scanout[slot].height = f->height;
-    scanout[slot].sx = render_sx; scanout[slot].sy = render_scale;
+    scanout[slot].pixel_w = f->width * render_sx; scanout[slot].pixel_h = f->height * render_scale;
     for (int p = 0; p < n; p++) {
         int c[4]; rgba16(rd16(f->data + p * 2), c);
         scanout[slot].pixels[p] = 0xFF000000u | c[0] << 16 | c[1] << 8 | c[2];
@@ -227,7 +231,7 @@ void rdp_register_framebuffer(u32 address, int width, int widescreen) {
     if (gpu_enabled()) gpu_register(address, width, widescreen);
     pthread_mutex_unlock(&frame_lock);
     if (gpu_enabled() || rdp_scale() == 1 || width < 16 || width > 640 || !gptr(address, width * (width * 3 / 4) * 2)) return;
-    int sx = widescreen ? (render_scale * 4 + 1) / 3 : render_scale;  // nearest to 4:3 more columns
+    int sx = widescreen == 2 ? (render_scale * 7 + 2) / 4 : widescreen ? (render_scale * 4 + 1) / 3 : render_scale;  // nearest to 4:3 more columns
     if (sx != render_sx) rdp_interp_wait();
     pthread_mutex_lock(&frame_lock);  // no task runs while it is held
     if (sx != render_sx) {
@@ -346,33 +350,63 @@ void rdp_end(void) {
 
 int rdp_done_later(u32 event) { return gpu_done_later(event); }
 
-int rdp_frame(u32 address, int width, int height, u32 *pixels, int *sx) {
-    int scale = 0;
+// Caller holds scanout_lock. Fractional targets publish their physical dimensions.
+static Picture *picture_slot(Picture *slots, int count, u32 address, int width, int height, int texture) {
+    for (int i = 0; address && i < count; i++) {
+        Picture *p = &slots[i];
+        if (p->address == address && p->width == width && p->height == height &&
+            (texture ? p->tex != 0 : p->pixels != NULL)) return p;
+    }
+    return NULL;
+}
+static Picture *picture_for(u32 address, int width, int height, int index, int texture) {
+    Picture *p = index >= 0 && index < 3 ? picture_slot(&ip_out[index], 1, address, width, height, texture) : NULL;
+    return p ? p : picture_slot(scanout, 3, address, width, height, texture);
+}
+void rdp_reserve_pixels(u32 **pixels, size_t *capacity, int w, int h) {
+    if (w <= 0 || h <= 0 || (size_t)w > SIZE_MAX / sizeof(u32) / (size_t)h) bt_fatal("invalid picture dimensions");
+    size_t n = (size_t)w * h;
+    if (*capacity >= n) return;
+    u32 *new_pixels = realloc(*pixels, n * sizeof(u32));
+    if (!new_pixels) bt_fatal("allocating a %d x %d picture", w, h);
+    *pixels = new_pixels;
+    *capacity = n;
+}
+int rdp_picture(u32 address, int width, int height, int index, u32 **pixels, size_t *capacity, int *w, int *h) {
     pthread_mutex_lock(&scanout_lock);
-    for (int i = 0; i < 3; i++) {
-        if (!address || scanout[i].address != address || width != scanout[i].width || height != scanout[i].height) continue;
-        if (!scanout[i].pixels) continue;  // the picture is a texture only (rdp_frame_texture)
-        scale = scanout[i].sy;
-        *sx = scanout[i].sx;
-        memcpy(pixels, scanout[i].pixels, (size_t)width * height * *sx * scale * sizeof(u32));
-        break;
+    Picture *p = picture_for(address, width, height, index, 0);
+    if (p) {
+        *w = p->pixel_w; *h = p->pixel_h;
+        rdp_reserve_pixels(pixels, capacity, *w, *h);
+        memcpy(*pixels, p->pixels, (size_t)*w * *h * sizeof(u32));
     }
     pthread_mutex_unlock(&scanout_lock);
-    return scale;
+    return p != NULL;
 }
-
-unsigned rdp_frame_texture(u32 address, int width, int height, int index, int *sx, int *sy) {
-    unsigned tex = 0;
-    if (!address) return 0;
+// Existing integer-scale consumers reserve space for RDP_MAX_SX by RDP_MAX_SCALE.
+static int integer_picture(Picture *slots, int count, u32 address, int width, int height, u32 *pixels, int *sx) {
+    int sy = 0;
     pthread_mutex_lock(&scanout_lock);
-    if (index >= 0 && index < 3 && ip_out[index].valid && ip_out[index].tex && ip_out[index].address == address &&
-        ip_out[index].width == width && ip_out[index].height == height) {
-        tex = ip_out[index].tex; *sx = ip_out[index].sx; *sy = ip_out[index].sy;
+    Picture *p = picture_slot(slots, count, address, width, height, 0);
+    if (p && p->pixel_w % width == 0 && p->pixel_h % height == 0 &&
+        p->pixel_w / width <= RDP_MAX_SX && p->pixel_h / height <= RDP_MAX_SCALE) {
+        *sx = p->pixel_w / width; sy = p->pixel_h / height;
+        memcpy(pixels, p->pixels, (size_t)p->pixel_w * p->pixel_h * sizeof(u32));
     }
-    for (int i = 0; i < 3 && !tex; i++) {
-        if (scanout[i].address != address || !scanout[i].tex || width != scanout[i].width || height != scanout[i].height) continue;
-        tex = scanout[i].tex; *sx = scanout[i].sx; *sy = scanout[i].sy;
-    }
+    pthread_mutex_unlock(&scanout_lock);
+    return sy;
+}
+int rdp_frame(u32 address, int width, int height, u32 *pixels, int *sx) {
+    return integer_picture(scanout, 3, address, width, height, pixels, sx);
+}
+int rdp_interp_frame(u32 address, int width, int height, int index, u32 *pixels, int *sx) {
+    return index >= 0 && index < 3 ? integer_picture(&ip_out[index], 1, address, width, height, pixels, sx) : 0;
+}
+unsigned rdp_frame_texture(u32 address, int width, int height, int index, int *w, int *h) {
+    unsigned tex = 0;
+    pthread_mutex_lock(&scanout_lock);
+    Picture *p = picture_for(address, width, height, index, 1);
+    if (p) { tex = p->tex; *w = p->pixel_w; *h = p->pixel_h; }
     pthread_mutex_unlock(&scanout_lock);
     return tex;
 }
@@ -964,6 +998,9 @@ void rdp_triangle(const RdpVtx *va, const RdpVtx *vb, const RdpVtx *vc, int flag
     }
     int lod_on = tex && (R.om_h >> 16 & 1), filter = (R.om_h >> 12 & 3) != 0, zon = (flags & RDP_Z) != 0;
     u32 zdz = (u32)(fabsf(dx[A_Z]) + fabsf(dy[A_Z]));
+#ifdef BT_GPU_OPENGL
+    if (mdefer.on) gpu_shadow_triangle(v,flags,zdz);
+#endif
     Tri tr = {.bx0 = bx0, .bx1 = bx1, .by0 = by0, .by1 = by1, .bpp = bpp, .persp = persp, .tex = tex,
               .lod_on = lod_on, .filter = filter, .zon = zon, .dbg = dbg, .x0 = x0, .y0 = y0, .zdz = zdz};
     memcpy(tr.ea, ea, sizeof ea); memcpy(tr.eb, eb, sizeof eb); memcpy(tr.ec, ec, sizeof ec);
@@ -1125,13 +1162,13 @@ void rdp_interp_arm(int images) {
     if (ip.armed) { task_state = R; return; }
     // No in-betweens this task (60 Hz, interval 1): older ones must not be shown for this framebuffer.
     pthread_mutex_lock(&scanout_lock);
-    for (int i = 0; i < 3; i++) ip_out[i].valid = 0;
+    for (int i = 0; i < 3; i++) ip_out[i].address = 0;
     pthread_mutex_unlock(&scanout_lock);
 }
 
 static void interp_invalidate(void) {
     pthread_mutex_lock(&scanout_lock);
-    for (int i = 0; i < 3; i++) if (ip_out[i].address == ip.address) ip_out[i].valid = 0;
+    for (int i = 0; i < 3; i++) if (ip_out[i].address == ip.address) ip_out[i].address = 0;
     pthread_mutex_unlock(&scanout_lock);
 }
 
@@ -1187,40 +1224,30 @@ void rdp_interp_end(int index) {
     state_gen++;
     noise_state = ip.noise;
     texture_epoch++;
-    int n = w * h * sx * sy;
+    int pw = w * sx, ph = h * sy;
+#ifdef BT_GPU_OPENGL
+    if (picture || tex) { pw = gpu.ipt.pw; ph = gpu.ipt.ph; }
+#endif
+    size_t n = (size_t)pw * ph;
     pthread_mutex_lock(&scanout_lock);
     if (tex && !picture) { free(ip_out[index].pixels); ip_out[index].pixels = NULL; }
-    else if (!ip_out[index].pixels || ip_out[index].width * ip_out[index].height * ip_out[index].sx * ip_out[index].sy != n) {
+    else if (!ip_out[index].pixels || (size_t)ip_out[index].pixel_w * ip_out[index].pixel_h != n) {
         free(ip_out[index].pixels);
-        ip_out[index].pixels = malloc((size_t)n * sizeof(u32));
-        if (!ip_out[index].pixels) bt_fatal("allocating in-between image");
+        if (!(ip_out[index].pixels = malloc(n * sizeof(u32)))) bt_fatal("allocating in-between image");
     }
     ip_out[index].address = ip.address;
     ip_out[index].width = w; ip_out[index].height = h;
-    ip_out[index].sx = sx; ip_out[index].sy = sy;
+    ip_out[index].pixel_w = pw; ip_out[index].pixel_h = ph;
     ip_out[index].tex = tex;
     if (picture) memcpy(ip_out[index].pixels, picture, (size_t)n * sizeof(u32));
-    else if (!tex) for (int i = 0; i < n; i++) {
+    else if (!tex) for (size_t i = 0; i < n; i++) {
         int c[4]; rgba16(rd16(ip.color.data + i * 2), c);
         ip_out[index].pixels[i] = 0xFF000000u | c[0] << 16 | c[1] << 8 | c[2];
     }
-    ip_out[index].valid = 1;
     pthread_mutex_unlock(&scanout_lock);
 }
 
-int rdp_interp_frame(u32 address, int width, int height, int index, u32 *pixels, int *sx) {
-    int scale = 0;
-    if (index < 0 || index >= 3) return 0;
-    pthread_mutex_lock(&scanout_lock);
-    if (address && ip_out[index].valid && ip_out[index].pixels && ip_out[index].address == address &&
-        ip_out[index].width == width && ip_out[index].height == height) {
-        scale = ip_out[index].sy;
-        *sx = ip_out[index].sx;
-        memcpy(pixels, ip_out[index].pixels, (size_t)width * height * *sx * scale * sizeof(u32));
-    }
-    pthread_mutex_unlock(&scanout_lock);
-    return scale;
-}
+
 
 // The in-between passes run on gsp.c's worker thread, one job per picture: posted by the game's
 // task after rdp_end, waited for by the next task (and by rescaling) before the RDP state is touched.

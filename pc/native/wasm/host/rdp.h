@@ -14,13 +14,14 @@ enum { RDP_SHADE = 1, RDP_TEX = 2, RDP_Z = 4 };
 void rdp_command(u32 w0, u32 w1);  // raw RDP command; image addresses already resolved
 void rdp_triangle(const RdpVtx *a, const RdpVtx *b, const RdpVtx *c, int flags);
 void rdp_texrect(u32 w0, u32 w1, u32 st, u32 dsdt, int flip);
+void rdp_framebuffer_copy(void);  // tagged guest framebuffer copy, after its last tile
 void rdp_set_texture(int tile, int levels);  // from G_TEXTURE
 void rdp_othermode(int high, u32 mask, u32 value);
 
 int rdp_gpu(void);  // BT_RENDERER=gpu: OpenGL render targets (rdp_gl.h) instead of the software raster
 
 #define RDP_MAX_SCALE 4
-#define RDP_MAX_SX 5  // horizontal factor in widescreen mode: round(RDP_MAX_SCALE * 4 / 3)
+#define RDP_MAX_SX 7  // at 21:9 with a 4x vertical scale
 int rdp_scale(void);  // BT_SCALE=1 (default) to 4, vertical factor
 void rdp_request_scale(int scale);  // any thread; takes effect at the next buffer swap
 // widescreen: the game renders anamorphic 16:9, so the columns get a 4/3 larger factor
@@ -34,9 +35,12 @@ int rdp_frame(u32 address, int width, int height, u32 *pixels, int *sx);
 // Main thread, before the game starts: an SDL_Window with its GL context current, or NULL for
 // headless rendering. Load GL and create shared render/completion contexts on this thread.
 void rdp_gpu_share(void *window);
-// The texture (rows top first) holding the picture rdp_frame would copy, or with index 0..2 the one
-// rdp_interp_frame would; 0 when there is none (software renderer, no window).
-unsigned rdp_frame_texture(u32 address, int width, int height, int index, int *sx, int *sy);
+void rdp_window_size(int width, int height); // backing pixels available for the picture
+// For the renderer texture, outputs its actual dimensions in pixels (including fractional GPU scales).
+unsigned rdp_frame_texture(u32 address, int width, int height, int index, int *pixel_w, int *pixel_h);
+// Copy the published picture, optionally preferring in-between image index (0..2).
+void rdp_reserve_pixels(u32 **pixels, size_t *capacity, int w, int h);
+int rdp_picture(u32 address, int width, int height, int index, u32 **pixels, size_t *capacity, int *w, int *h);
 // Frame interpolation (presentation only): after rdp_begin, the in-between images this task may
 // make; one more pass of the same display list per image between rdp_interp_begin (0: the task
 // drew no VI image) and rdp_interp_end. rdp_interp_frame is

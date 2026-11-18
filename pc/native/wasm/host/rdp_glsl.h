@@ -16,8 +16,8 @@ static const char gpu_vertex_shader[] =
 
 static const char gpu_fragment_shader[] =
 "#version 330\n"
-"uniform usampler2D atlas; uniform usamplerBuffer mats; uniform ivec2 scale; uniform uint frame; uniform bool color16,rmw;\n"
-"uniform sampler2D dst; uniform bool soften;\n"
+"uniform usampler2D atlas; uniform usamplerBuffer mats; uniform vec2 scale; uniform uint frame; uniform bool color16,rmw;\n"
+"uniform sampler2D dst,silhouette; uniform bool soften;\n"
 "noperspective in vec4 v_shade; smooth in vec2 v_stp; noperspective in vec2 v_stl; flat in uint v_mat;\n"
 "layout(location=0,index=0) out vec4 o_color; layout(location=0,index=1) out vec4 o_factor;\n"
 "int base;\n"
@@ -36,6 +36,9 @@ static const char gpu_fragment_shader[] =
 " int cms=int(b.x&3u),cmt=int((b.x>>2)&3u),masks=int((b.x>>4)&15u),maskt=int((b.x>>8)&15u);\n"
 " int ms=(lrs-uls)>>2,mt=(lrt-ult)>>2;\n"
 " float s=shifted(st.x,int((b.x>>12)&15u))-float(uls)*0.25,t=shifted(st.y,int((b.x>>16)&15u))-float(ult)*0.25;\n"
+// Original CI8 clear alternates FF and FE. The projected model writes black.
+" if((b.y&2u)!=0u){bool inside=texelFetch(silhouette,ivec2(gl_FragCoord.xy),0).r>0.5;\n"
+" return ivec4(inside?0:255-(int(floor(st.x))&1));}\n"
 " if(!filt){int s0=int(floor(s)),t0=int(floor(t)),sc=wrapc(s0,cms,masks,ms),tc=wrapc(t0,cmt,maskt,mt);\n"
 "  if(!soften||scale.y<2)return texel(slot,sc,tc);\n"
 // soften: unfiltered texels (text, HUD) above 1x are interpolated with Catmull-Rom over alpha-weighted
@@ -72,7 +75,7 @@ static const char gpu_fragment_shader[] =
 " base=int(v_mat);\n"
 " uvec4 h0=texelFetch(mats,base),h1=texelFetch(mats,base+1),h2=texelFetch(mats,base+2),h3=texelFetch(mats,base+3);\n"
 " uint omh=h0.x,oml=h0.y,flags=h1.z;int mode=int(flags&7u);ivec2 px=ivec2(gl_FragCoord.xy);\n"
-" if(mode==4){uint f=h3.x,v=((px.x/scale.x)&1)!=0?(f&65535u):(f>>16);ivec4 c=rgba16(v);\n"
+" if(mode==4){uint f=h3.x,v=(int((float(px.x)+0.5)/scale.x)&1)!=0?(f&65535u):(f>>16);ivec4 c=rgba16(v);\n"
 "  o_color=vec4(vec3(c.rgb)/255.0,float(v&1u));o_factor=vec4(0.0);return;}\n"
 " S_prim=unpack(h2.x);S_env=unpack(h2.y);ivec4 fog=unpack(h2.z),blendc=unpack(h2.w);\n"
 " S_plod=int(h1.w&255u);S_k4=int((h1.w>>8)&511u);S_k5=int((h1.w>>17)&511u);\n"
@@ -137,6 +140,18 @@ static const char gpu_maskfrag_shader[] =
 " o_color=vec4(float(v.w&255u)/255.0);}\n";
 
 // A load from the 8-bit image: its texels into the atlas as decode_texel makes them (I8, or IA8 with ia).
+static const char gpu_shadow_vertex_shader[] =
+"#version 330\nlayout(location=0) in vec4 v; uniform vec2 viewport; noperspective out float z;flat out float dz;\n"
+"void main(){gl_Position=vec4(v.xy*2.0/viewport-1.0,0.0,1.0);z=v.z;dz=v.w;}\n";
+static const char gpu_shadow_fragment_shader[] =
+"#version 330\nuniform sampler2D scene;noperspective in float z;flat in float dz;out float mask;\n"
+"const uint shifts[8]=uint[8](6u,5u,4u,3u,2u,1u,0u,0u);\n"
+"const uint bases[8]=uint[8](0u,0x20000u,0x30000u,0x38000u,0x3C000u,0x3E000u,0x3F000u,0x3F800u);\n"
+"uint expz(uint a){return a<0x20000u?0u:a<0x30000u?1u:a<0x38000u?2u:a<0x3c000u?3u:a<0x3e000u?4u:a<0x3f000u?5u:a<0x3f800u?6u:7u;}\n"
+"uint quant(uint a,uint e){return bases[e]+(((a-bases[e])>>shifts[e])<<shifts[e]);}\n"
+"void main(){uint v=uint(clamp(z,0.,262143.)); uint d=uint(clamp(texelFetch(scene,ivec2(gl_FragCoord.xy),0).r*262144.,0.,262143.));\n"
+"uint e=expz(v),q=quant(v,e),o=quant(d,expz(d)),tol=uint(dz)+(2u<<shifts[e]);if(q>o+tol||o>q+tol)discard;mask=1.;}\n";
+
 static const char gpu_maskcopy_shader[] =
 "#version 330\n"
 "uniform sampler2D image;uniform ivec2 off;uniform bool ia;out uvec4 o_value;\n"
@@ -151,10 +166,14 @@ static const char gpu_fullscreen_shader[] =
 // CPU writes: pixels whose RDRAM value differs from the last resolve replace their subpixels.
 static const char gpu_import_shader[] =
 "#version 330\n"
-"uniform usampler2D image,shadow;uniform ivec2 scale;uniform int every;\n"
+"uniform usampler2D image,shadow;uniform vec2 scale;uniform int every;uniform bool isDepth;\n"
 "layout(location=0,index=0) out vec4 o_color;layout(location=0,index=1) out vec4 o_factor;\n"
-"void main(){ivec2 p=ivec2(gl_FragCoord.xy)/scale;uvec2 a=texelFetch(image,p,0).rg,b=texelFetch(shadow,p,0).rg;\n"
-" if(every==0&&a==b)discard;uint v=(a.r<<8)|a.g;ivec3 c=ivec3(int((v>>11)&31u),int((v>>6)&31u),int((v>>1)&31u));\n"
+"void main(){ivec2 p=ivec2(gl_FragCoord.xy/scale);uvec2 a=texelFetch(image,p,0).rg,b=texelFetch(shadow,p,0).rg;\n"
+" if(every==0&&a==b)discard;uint v=(a.r<<8)|a.g;gl_FragDepth=0.0;\n"
+" if(isDepth){const uint shifts[8]=uint[8](6u,5u,4u,3u,2u,1u,0u,0u);\n"
+" const uint bases[8]=uint[8](0u,0x20000u,0x30000u,0x38000u,0x3C000u,0x3E000u,0x3F000u,0x3F800u);\n"
+" uint code=v>>2,e=code>>11,z=bases[e]+(((code&2047u)+1u)<<shifts[e])-1u;\n"
+" gl_FragDepth=(float(z)+0.5)/262144.0;return;}ivec3 c=ivec3(int((v>>11)&31u),int((v>>6)&31u),int((v>>1)&31u));\n"
 " o_color=vec4(vec3((c<<3)|(c>>2))/255.0,float(v&1u));o_factor=vec4(0.0);}\n";
 
 // N64-resolution depth as RDRAM bytes (the game reads Z memory with the CPU): subpixel depths are
@@ -166,17 +185,17 @@ static const char gpu_zresolve_shader[] =
 "int zc(int z){int e=z<0x20000?0:z<0x30000?1:z<0x38000?2:z<0x3C000?3:z<0x3E000?4:z<0x3F000?5:z<0x3F800?6:7;\n"
 " return (e<<11)|(((z-ZB[e])>>ZS[e])&0x7FF);}\n"
 "int zd(int c){int e=(c>>11)&7;return ZB[e]+((c&0x7FF)<<ZS[e]);}\n"
-"void main(){ivec2 p=ivec2(gl_FragCoord.xy)*scale;int sum=0;\n"
-" for(int y=0;y<scale.y;y++)for(int x=0;x<scale.x;x++)\n"
-"  sum+=zd(zc(clamp(int(texelFetch(depth,p+ivec2(x,y),0).r*262144.0),0,0x3FFFF)));\n"
-" uint v=uint(zc(sum/(scale.x*scale.y)))<<2;o_value=uvec4(v>>8,v&255u,0u,0u);}\n";
+"void main(){ivec2 cell=ivec2(gl_FragCoord.xy), sz=textureSize(depth,0), p=(2*cell*sz+scale-1)/(2*scale);ivec2 span=(2*(cell+1)*sz+scale-1)/(2*scale)-p;int n=span.x*span.y,avg=0,rem=0;\n"
+" for(int y=0;y<span.y;y++){int row=0;for(int x=0;x<span.x;x++)\n"
+"  row+=zd(zc(clamp(int(texelFetch(depth,p+ivec2(x,y),0).r*262144.0),0,0x3FFFF)));rem+=row%n;avg+=row/n+rem/n;rem%=n;}\n"
+" uint v=uint(zc(avg))<<2;o_value=uvec4(v>>8,v&255u,0u,0u);}\n";
 
 // N64-resolution image as RDRAM bytes: subpixels averaged in 5-bit units like rdp.c's resolve.
 static const char gpu_resolve_shader[] =
 "#version 330\n"
 "uniform sampler2D color;uniform ivec2 scale;out uvec4 o_value;\n"
-"void main(){ivec2 p=ivec2(gl_FragCoord.xy)*scale;ivec3 sum=ivec3(0);int alpha=0;\n"
-" for(int y=0;y<scale.y;y++)for(int x=0;x<scale.x;x++){vec4 c=texelFetch(color,p+ivec2(x,y),0);\n"
+"void main(){ivec2 cell=ivec2(gl_FragCoord.xy), sz=textureSize(color,0), p=(2*cell*sz+scale-1)/(2*scale);ivec2 span=(2*(cell+1)*sz+scale-1)/(2*scale)-p;ivec3 sum=ivec3(0);int alpha=0;\n"
+" for(int y=0;y<span.y;y++)for(int x=0;x<span.x;x++){vec4 c=texelFetch(color,p+ivec2(x,y),0);\n"
 "  sum+=ivec3(round(c.rgb*255.0))>>3;alpha+=c.a>=0.5?1:0;}\n"
-" int n=scale.x*scale.y;ivec3 q=sum/n;\n"
+" int n=span.x*span.y;ivec3 q=sum/n;\n"
 " uint v=(uint(q.r)<<11)|(uint(q.g)<<6)|(uint(q.b)<<1)|(alpha*2>=n?1u:0u);o_value=uvec4(v>>8,v&255u,0u,0u);}\n";

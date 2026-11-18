@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Opt-in hardware check. Run outside the sandbox for SDL/OpenGL access on macOS."""
+import math
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -9,6 +11,44 @@ import tempfile
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import build
+
+
+def check_samples(exe, env):
+    env = {**env, 'BT_RENDERER': 'gpu', 'BT_SCALE': '2'}
+    def picture(level, w, h):
+        run = subprocess.run([exe, str(level), '0', str(w), str(h)], env=env, check=True, capture_output=True, timeout=60)
+        width, height, samples, maximum = map(int, re.search(rb'target=(\d+)x(\d+) samples=(\d+) max=(\d+)', run.stderr).groups())
+        assert (width,height)==(w,h) and len(run.stdout)==w*h*4
+        return run.stdout[::4], samples, maximum
+    w,h = 132,99 # 4.125 times the guest resolution
+    ref,off,_ = picture(0,w,h)
+    assert off==0 and set(ref)=={0,255}
+    vertices = [(x*w/32, y*h/24) for x,y in ((3,2),(26,5),(9,21))]
+    def edge_distance(x,y):
+        distances = []
+        for (ax,ay),(bx,by) in zip(vertices,vertices[1:]+vertices[:1]):
+            dx,dy = bx-ax,by-ay
+            t = min(1,max(0,((x-ax)*dx+(y-ay)*dy)/(dx*dx+dy*dy)))
+            distances.append(math.hypot(x-ax-t*dx,y-ay-t*dy))
+        return min(distances)
+    for level in (1,2,3):
+        pixels,samples,maximum = picture(level,w,h)
+        interior = edges = changed = 0
+        for y in range(h):
+            for x in range(w):
+                i=y*w+x
+                if edge_distance(x+.5,y+.5) > .72:  # half the pixel diagonal plus raster rounding
+                    interior += 1
+                    assert pixels[i]==ref[i], (x,y,'flat interior changed')
+                else:
+                    edges += 1
+                    changed += 0 < pixels[i] < 255
+        assert samples >= min(1 << level,maximum) and changed > 0
+        print(f'PASS {w}x{h} fractional raster, MSAA requested {1<<level}, actual {samples}, {interior} identical flat pixels, {changed}/{edges} edge pixels with partial coverage')
+    native,off,_ = picture(0,32,24)
+    requested,effective,_ = picture(3,32,24)
+    assert effective == 0 and native == requested
+    print('PASS 1x: 8x request leaves MSAA off and every pixel identical')
 
 
 def main():
@@ -32,6 +72,21 @@ def main():
                                   capture_output=True, timeout=60, check=True)
         assert fallback.stdout == output[0] and b'needs a texture barrier' in fallback.stderr
         print('PASS: missing texture barrier falls back to exact software rendering at 1x')
+        for scale in (1, 4):
+            outputs = []
+            for backend in ('soft','gpu'):
+                result = subprocess.run([exe, 'depth'], capture_output=True, timeout=60,
+                                        env={**env, 'BT_RENDERER': backend, 'BT_SCALE': str(scale)})
+                assert result.returncode == 0, (backend,scale,result.stderr.decode()[-1024:])
+                outputs.append(result.stdout)
+            assert outputs[0] == outputs[1] and len(outputs[0]) == 32*24*2
+            print(f'PASS {scale}x CPU depth write, borrowed Z as color and changed Z address')
+        outputs = [subprocess.run([exe, mode], env={**env, 'BT_RENDERER':'gpu', 'BT_SCALE':'4'},
+                                  check=True,capture_output=True,timeout=60).stdout for mode in ('whole','strips')]
+        assert len(outputs[0]) == 128*96*4 and outputs[0] == outputs[1], 'filtered texrect strip seam at 4x'
+        assert len(set(outputs[0][::4]))>8, 'empty strip fixture'
+        print('PASS 4x: split and whole filtered texrect images have 12,288 identical pixels')
+        check_samples(exe, env)
         for name in ('gl', 'invalid'):
             run = subprocess.run([exe], env={**env, 'BT_RENDERER': name}, capture_output=True)
             assert run.returncode and b'BT_RENDERER must be' in run.stderr

@@ -17,8 +17,7 @@
 //     that drew depth (the CPU samples it: 1EC1AD0.c), and before the software path draws over Z
 //     memory, loads it as a texture or depth-tests against it (the player shadow is a decal).
 // The depth clear (fill 0xFFFC into the Z image) runs on both sides.
-// shortcut: depth written by the software path or the CPU is not imported into GPU depth (the game
-// clears depth before drawing); import it if a scene draws against such depth.
+// CPU and software depth writes replace only changed guest pixels before the next depth draw.
 static int gpu_on = -1;
 static int gpu_barrier_available = -1;
 static int gpu_enabled(void) {
@@ -31,10 +30,13 @@ static int gpu_enabled(void) {
 #endif
         if (!gpu_on) fprintf(stderr, "renderer: soft\n");
     }
-    if (gpu_on && gpu_barrier_available == 0 && rdp_scale() == 1) {
+#ifdef BT_GPU_OPENGL
+    if (gpu_on && gpu_barrier_available == 0 && rdp_scale() == 1 &&
+        !(atomic_load(&window_pixels) && bt_setting(BT_SET_GPU_WINDOW))) {
         fprintf(stderr, "renderer: soft (exact 1x GPU rendering needs a texture barrier)\n");
         gpu_on = 0;
     }
+#endif
     return gpu_on;
 }
 int rdp_gpu(void) { return gpu_enabled(); }
@@ -55,9 +57,12 @@ enum { GPU_TRI, GPU_RECT, GPU_TEXRECT, GPU_COPY, GPU_FILL };  // material modes,
 typedef struct { float pos[4], shade[4], st[2]; u32 mat; } GpuVertex;
 typedef struct {
     u32 address;
-    int width, height, sx, sy;  // N64 size and scale
+    int width, height, pw, ph; // N64 dimensions and physical texels
+    float sx, sy;
     int drawn, changed;         // since the last resolve / since the last publish
     int stale;                  // the software path drew into its RDRAM (import before the GPU draws again)
+    int samples;
+    GLuint ms_fbo, ms_color, ms_depth;
     GLuint color, fbo, depth;   // depth: the shared Z texture, or the in-between target's own
     u8 *shadow;                 // RDRAM bytes after the last resolve or import
 } GpuTarget;
@@ -69,21 +74,29 @@ typedef struct { GpuTarget *t; GLenum zfunc; GLboolean zmask; int decal, rmw, sc
 typedef struct { u64 key; u32 gen; u16 x, y; u32 border[8], stamp; int idx; } GpuTexture;
 typedef struct { u64 gen; u32 tlut, agen; Tile desc; u16 x, y, w, h; int slot; } GpuTileMemo;
 // A filtered triangle that maps one clamped tile edge to edge (gpu_seams); x, y, s, t per corner.
-typedef struct { int slot; u16 w, h; float v[3][4]; } GpuPiece;
+typedef struct { int slot; u16 w, h; u32 image; float v[3][4]; } GpuPiece;
 
 static struct {
     SDL_GLContext context;
     GLuint draw, import, resolve, zresolve, maskcopy, maskfrag;  // programs
-    GLint u_scale, u_frame, u_color16, u_rmw, u_soften, i_scale, i_every, r_scale, z_scale, mc_off, mc_ia, mf_size;
+    GLint u_scale, u_frame, u_color16, u_rmw, u_soften, i_scale, i_every, i_depth, r_scale, z_scale, mc_off, mc_ia, mf_size;
     GLuint vao, vbo, empty_vao, mat_buffer, mat_texture, atlas, depth, import_tex[2], resolve_tex, resolve_fbo;
     GLuint blank;  // sampled as dst outside rmw batches (an empty unit makes the driver complain)
     GLuint atlas_fbo;  // the atlas as blit source and target for seam borders
     GpuPiece *piece; int npiece, cap_piece; u32 seam_stamp;
+    int max_size, max_samples, depth_samples;
+    u8 *zshadow; u32 zimage; int zw, zh, zvalid, zcheck;
+    GLuint ms_depth;
     int depth_w, depth_h, resolve_w, resolve_h, import_w, import_h;
     GpuTarget t[3], ipt, pre, none;  // VI framebuffers, in-between image and its starting picture
     // The 8-bit image with its deferred fragments (rdp.c mdefer): R8 at N64 size, composed for loads
     // (mask_composed); mz: N64 depth (RDRAM bytes) the fragments test against, current while
     // mz_gen == zgen; mz_cpu: the same bytes on the CPU when they came from RDRAM.
+    struct {
+        float (*vertices)[4]; int n, capacity, other, ready, w, h;
+        GLuint texture, fbo, vao, buffer, program;
+        u32 clear_address;
+    } shadow;
     GpuTarget mask; u32 mask_uid; int mask_composed;
     GLuint upbo, dpbo;  // texture uploads and readbacks go through them (gpu_upload, gpu_readback)
     // The task end's readbacks (gpu_end), queued behind one fence until gpu_finish: picture: the
@@ -95,6 +108,7 @@ static struct {
     // into, 0..2 the VI framebuffers' and 3..5 the in-between images'.
     struct { GLuint tex; int w, h; } show[6];
     GLuint show_fbo;
+    struct { GLuint fbo, tex, program; GLint size; u32 stored_at; int w,h,guest_w; u8 *bytes; size_t length,capacity; } backdrop;
     GLuint mz_tex, mz_fbo, frag_vao, frag_vbo; int mz_w, mz_h, mz_from_gpu; u32 zgen, mz_gen, mz_zimg;
     u8 *mz_cpu; size_t mz_cpu_n;
     GpuTarget *zt; u32 zaddr;  // depth drawn into t's Z texture since it was last written to RDRAM at zaddr
@@ -245,6 +259,11 @@ static void gpu_init(void) {
     if (pthread_create(&completion, NULL, gpu_done_main, NULL)) bt_fatal("starting the GPU completion thread");
     pthread_detach(completion);
 
+    GLint max_tex, max_rb;
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max_tex);
+    glGetIntegerv(GL_MAX_RENDERBUFFER_SIZE, &max_rb);
+    glGetIntegerv(GL_MAX_SAMPLES, &gpu.max_samples);
+    gpu.max_size = max_tex < max_rb ? max_tex : max_rb;
     gpu.draw = gpu_program(gpu_vertex_shader, gpu_fragment_shader);
     gpu.import = gpu_program(gpu_fullscreen_shader, gpu_import_shader);
     gpu.resolve = gpu_program(gpu_fullscreen_shader, gpu_resolve_shader);
@@ -253,6 +272,7 @@ static void gpu_init(void) {
     gpu.maskfrag = gpu_program(gpu_maskfrag_vertex_shader, gpu_maskfrag_shader);
     glUseProgram(gpu.draw);
     glUniform1i(glGetUniformLocation(gpu.draw, "atlas"), 0);
+    glUniform1i(glGetUniformLocation(gpu.draw, "silhouette"), 6);
     glUniform1i(glGetUniformLocation(gpu.draw, "mats"), 1);
     gpu.u_scale = glGetUniformLocation(gpu.draw, "scale");
     gpu.u_frame = glGetUniformLocation(gpu.draw, "frame");
@@ -272,6 +292,7 @@ static void gpu_init(void) {
     glUniform1i(glGetUniformLocation(gpu.import, "shadow"), 3);
     gpu.i_scale = glGetUniformLocation(gpu.import, "scale");
     gpu.i_every = glGetUniformLocation(gpu.import, "every");
+    gpu.i_depth = glGetUniformLocation(gpu.import, "isDepth");
     glUseProgram(gpu.resolve);
     glUniform1i(glGetUniformLocation(gpu.resolve, "color"), 2);
     gpu.r_scale = glGetUniformLocation(gpu.resolve, "scale");
@@ -328,19 +349,36 @@ static void gpu_attach(GpuTarget *t) {
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) bt_fatal("OpenGL incomplete framebuffer");
 }
 
-// (Re)allocates t at width x height N64 pixels and scale sx, sy; own_depth for the in-between image.
-static void gpu_target_init(GpuTarget *t, u32 address, int width, int height, int sx, int sy, int own_depth) {
-    int w = width * sx, h = height * sy;
+static int gpu_samples(int width, int height, int w, int h) {
+    int level = bt_setting(BT_SET_MSAA);
+    if (!level || (width == w && height == h)) return 0;
+    int samples = 1 << level;
+    while (samples > gpu.max_samples) samples /= 2;
+    return samples > 1 ? samples : 0;
+}
+
+static GLuint gpu_draw_fbo(const GpuTarget *t) { return t->samples ? t->ms_fbo : t->fbo; }
+static void gpu_renderbuffer(GLuint *rb, int samples, GLenum format, int w, int h) {
+    if (!*rb) glGenRenderbuffers(1, rb);
+    glBindRenderbuffer(GL_RENDERBUFFER, *rb);
+    glRenderbufferStorageMultisample(GL_RENDERBUFFER, samples, format, w, h);
+}
+
+// Use the same multisample Z buffer for every VI target, just as the guest does.
+static void gpu_target_init(GpuTarget *t, u32 address, int width, int height, int w, int h, int own_depth) {
+    int samples = gpu_samples(width, height, w, h);
     t->address = address;
-    if (t->width == width && t->height == height && t->sx == sx && t->sy == sy && t->color) return;
-    t->width = width; t->height = height; t->sx = sx; t->sy = sy;
+    if (t->width == width && t->height == height && t->pw == w && t->ph == h && t->samples == samples && t->color) return;
+    t->width = width; t->height = height; t->pw = w; t->ph = h; t->samples = samples;
+    t->sx = (float)w / width; t->sy = (float)h / height;
     gpu_texture(&t->color, GL_RGBA8, w, h, GL_RGBA, GL_UNSIGNED_BYTE);
     if (own_depth) gpu_texture(&t->depth, GL_DEPTH_COMPONENT32F, w, h, GL_DEPTH_COMPONENT, GL_FLOAT);
     else {  // VI framebuffers share one Z buffer, as BT shares its Z image between them
-        if (gpu.depth_w != w || gpu.depth_h != h) {
+        if (gpu.depth_w != w || gpu.depth_h != h || gpu.depth_samples != samples) {
             gpu_texture(&gpu.depth, GL_DEPTH_COMPONENT32F, w, h, GL_DEPTH_COMPONENT, GL_FLOAT);
-            gpu.depth_w = w; gpu.depth_h = h;
-            for (int i = 0; i < 3; i++) if (gpu.t[i].fbo && &gpu.t[i] != t) { gpu.t[i].depth = gpu.depth; gpu_attach(&gpu.t[i]); }
+            if (samples) gpu_renderbuffer(&gpu.ms_depth, samples, GL_DEPTH_COMPONENT32F, w, h);
+            else if (gpu.ms_depth) { glDeleteRenderbuffers(1, &gpu.ms_depth); gpu.ms_depth = 0; }
+            gpu.depth_w = w; gpu.depth_h = h; gpu.depth_samples = samples;
         }
         t->depth = gpu.depth;
         free(t->shadow);
@@ -348,18 +386,36 @@ static void gpu_target_init(GpuTarget *t, u32 address, int width, int height, in
         if (!t->shadow) bt_fatal("allocating a GPU target");
     }
     gpu_attach(t);
+    if (samples) {
+        gpu_renderbuffer(&t->ms_color, samples, GL_RGBA8, w, h);
+        if (own_depth) gpu_renderbuffer(&t->ms_depth, samples, GL_DEPTH_COMPONENT32F, w, h);
+        if (!t->ms_fbo) glGenFramebuffers(1, &t->ms_fbo);
+        glBindFramebuffer(GL_FRAMEBUFFER, t->ms_fbo);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, t->ms_color);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, own_depth ? t->ms_depth : gpu.ms_depth);
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) bt_fatal("incomplete multisample target");
+    } else if (t->ms_fbo) {
+        glDeleteFramebuffers(1, &t->ms_fbo); t->ms_fbo = 0;
+        glDeleteRenderbuffers(1, &t->ms_color); t->ms_color = 0;
+        if (t->ms_depth) { glDeleteRenderbuffers(1, &t->ms_depth); t->ms_depth = 0; }
+    }
+    if (!own_depth && bt_setting(BT_SET_RENDER_STATS))
+        fprintf(stderr, "renderer: target %dx%d -> %dx%d, MSAA %d (driver max %d)\n", width, height, w, h, samples, gpu.max_samples);
     glDisable(GL_SCISSOR_TEST);
     glClearColor(0, 0, 0, 1);
     glClearDepth(1);
     glDepthMask(GL_TRUE);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_SCISSOR_TEST);
+    if (!own_depth) gpu.zvalid = 0;
     gpu_check("render target");
 }
 
 // ---- Texture atlas: decoded tiles keyed by TMEM content, tile layout and TLUT mode
 static void gpu_flush(void);
 static void gpu_import(GpuTarget *t, int every);
+static void gpu_import_depth(GpuTarget *t);
+static void gpu_select_depth(GpuTarget *t);
 static void gpu_resolve_depth(void);
 static void gpu_mask_materialize(void);
 static void gpu_mask_copy(const GpuTexture *e, int k, int w, int h, int ia);
@@ -489,7 +545,7 @@ static int gpu_record(u32 *r, int mode, int tex, int tile, int seam) {
         o[2] = (u32)tl->uls | (u32)tl->ult << 16; o[3] = (u32)tl->lrs | (u32)tl->lrt << 16;
         o[4] = (u32)tl->cms | (u32)tl->cmt << 2 | (u32)tl->masks << 4 | (u32)tl->maskt << 8 |
                (u32)tl->shifts << 12 | (u32)tl->shiftt << 16;
-        o[5] = (u32)(i == 0 && seam);  // the shader may read tile 0's seam border (gpu_seams)
+        o[5] = i == 0 ? (u32)seam : 0;  // the shader may read tile 0's seam border (gpu_seams)
         o[6] = o[7] = 0;
     }
     return 16 + 8 * ntiles;
@@ -524,13 +580,14 @@ static int gpu_mask_defer(void);
 static void gpu_mask_depth(int w, int h);
 static int gpu_pick_triangle;  // gpu_pick is called for a triangle (the draws rdp.c can defer)
 
-static GpuTarget *gpu_pick(void) {
+static GpuTarget *gpu_pick(int uses_depth) {
     mdefer.on = 0;
     if (ip.on) return R.cimg == ip.address && R.cimg_siz == 2 && R.cimg_width == gpu.ipt.width ? &gpu.ipt : &gpu.none;
     for (int i = 0; i < 3; i++) {
         GpuTarget *t = &gpu.t[i];
         if (t->color && R.cimg_siz == 2 && t->address == R.cimg && t->width == R.cimg_width) {
             if (t->stale) { t->stale = 0; gpu_import(t, 0); }
+            if (uses_depth && R.zimg && (R.om_l & 0x30)) gpu_import_depth(t);
             return t;
         }
     }
@@ -544,6 +601,8 @@ static GpuTarget *gpu_pick(void) {
     // the pause backdrop in Z memory): GPU images and depth there are written out first, and so is the
     // depth its Z test reads (the shadow is a decal against the scene's depth).
     gpu_resolve_address(R.cimg);
+    if (R.cimg >= gpu.zimage && (u64)R.cimg < (u64)gpu.zimage + (u64)gpu.zw * gpu.zh * 2) gpu.zcheck = 1;
+    if (R.om_l & 0x20) gpu.zcheck = 1;
     if (gpu.zt && R.zimg == gpu.zaddr && (R.om_l & 0x30)) gpu_resolve_depth();
     for (int i = 0; i < 3; i++)
         if (gpu.t[i].color && R.cimg >= gpu.t[i].address && (u64)R.cimg < (u64)gpu.t[i].address + (u64)gpu.t[i].width * gpu.t[i].height * 2)
@@ -552,10 +611,10 @@ static GpuTarget *gpu_pick(void) {
 }
 
 static void gpu_scissor(const GpuTarget *t, int *sc) {
-    int x1 = R.sc_x1 * t->sx >> 2, y1 = R.sc_y1 * t->sy >> 2;
-    sc[0] = R.sc_x0 * t->sx >> 2; sc[1] = R.sc_y0 * t->sy >> 2;
-    sc[2] = x1 < t->width * t->sx ? x1 : t->width * t->sx;
-    sc[3] = y1 < t->height * t->sy ? y1 : t->height * t->sy;
+    int x1 = R.sc_x1 * t->sx * .25f, y1 = R.sc_y1 * t->sy * .25f;
+    sc[0] = R.sc_x0 * t->sx * .25f; sc[1] = R.sc_y0 * t->sy * .25f;
+    sc[2] = x1 < t->pw ? x1 : t->pw;
+    sc[3] = y1 < t->ph ? y1 : t->ph;
 }
 
 static void gpu_emit(GpuTarget *t, const GpuVertex *v, int n, int zon) {
@@ -612,14 +671,20 @@ static int gpu_seam_edge(float (*v)[4], int i, int j, int a, int n) {
     return -1;
 }
 
-static int gpu_seam_tile(const GpuTarget *t, const RdpVtx *const *in) {
+static int gpu_clamped_tile(const GpuTarget *t, int tile) {
     if (t->sx == 1 && t->sy == 1) return 0;
     if ((R.om_h >> 20 & 3) >= 2 || !(R.om_h >> 12 & 3) || (R.om_h >> 16 & 1)) return 0;  // filtered, no LOD
-    const Tile *tl = &R.tile[R.tex_tile & 7];
+    const Tile *tl = &R.tile[tile & 7];
     int ms = (tl->lrs - tl->uls) >> 2, mt = (tl->lrt - tl->ult) >> 2;
-    if (!(tl->cms & 2) || !(tl->cmt & 2) || tl->uls || tl->ult || tl->shifts || tl->shiftt) return 0;
+    if (!(tl->cms & 2) || !(tl->cmt & 2) || tl->shifts || tl->shiftt) return 0;
     if (ms < 1 || mt < 1 || ms > 1023 || mt > 1023) return 0;
     if ((tl->masks && ms + 1 != 1 << tl->masks) || (tl->maskt && mt + 1 != 1 << tl->maskt)) return 0;
+    return 1;
+}
+static int gpu_seam_tile(const GpuTarget *t, const RdpVtx *const *in) {
+    const Tile *tl = &R.tile[R.tex_tile & 7];
+    if (!gpu_clamped_tile(t, R.tex_tile) || tl->uls || tl->ult) return 0;
+    int ms = (tl->lrs - tl->uls) >> 2, mt = (tl->lrt - tl->ult) >> 2;
     float v[3][4];
     for (int i = 0; i < 3; i++) { v[i][0] = in[i]->x; v[i][1] = in[i]->y; v[i][2] = in[i]->s / 32; v[i][3] = in[i]->t / 32; }
     for (int i = 0; i < 3; i++)
@@ -627,13 +692,15 @@ static int gpu_seam_tile(const GpuTarget *t, const RdpVtx *const *in) {
     return 0;
 }
 
-static void gpu_piece(const RdpVtx *const *in) {
-    const GpuTileMemo *memo = &gpu.memo[R.tex_tile & 7];
+static void gpu_piece(const RdpVtx *const *in, int tile, u32 image) {
+    const GpuTileMemo *memo = &gpu.memo[tile & 7];
+    if (memo->gen != tmem_gen || memo->agen != gpu.atlas_gen ||
+        memcmp(&memo->desc, &R.tile[tile & 7], sizeof memo->desc)) return;
     if (gpu.npiece == gpu.cap_piece &&
         !(gpu.piece = realloc(gpu.piece, (size_t)(gpu.cap_piece = gpu.cap_piece * 2 + 64) * sizeof *gpu.piece)))
         bt_fatal("allocating GPU seam pieces");
     GpuPiece *p = &gpu.piece[gpu.npiece++];
-    p->slot = memo->slot; p->w = memo->w; p->h = memo->h;
+    p->image = image; p->slot = memo->slot; p->w = memo->w; p->h = memo->h;
     for (int i = 0; i < 3; i++) {
         p->v[i][0] = in[i]->x; p->v[i][1] = in[i]->y; p->v[i][2] = in[i]->s / 32; p->v[i][3] = in[i]->t / 32;
     }
@@ -695,7 +762,7 @@ static void gpu_seams(void) {
         for (int j = i + 1; j < ne && !memcmp(edge[j].p0, f->p0, sizeof f->p0) && !memcmp(edge[j].p1, f->p1, sizeof f->p1); j++) {
             GpuSeamEdge *g = &edge[j];
             const GpuPiece *pf = &gpu.piece[f->piece], *pg = &gpu.piece[g->piece];
-            if (g->kind != f->kind + 1 || pf->slot == pg->slot || pf->w != pg->w || pf->h != pg->h ||
+            if (pf->image != pg->image || g->kind != f->kind + 1 || pf->slot == pg->slot || pf->w != pg->w || pf->h != pg->h ||
                 fabsf(f->a - g->a) > 0.01f || fabsf(f->b - g->b) > 0.01f) continue;
             int A = gpu.tex[pg->slot].idx, B = gpu.tex[pf->slot].idx;  // A's R/B edge meets B's L/T edge
             int *ab = &nb[A][g->kind], *ba = &nb[B][f->kind];
@@ -739,14 +806,14 @@ static void gpu_seams(void) {
 static int gpu_triangle(const RdpVtx *a, const RdpVtx *b, const RdpVtx *c, int flags) {
     if (!gpu_enabled()) return 0;
     gpu_pick_triangle = 1;
-    GpuTarget *t = gpu_pick();
+    GpuTarget *t = gpu_pick(flags & RDP_Z);
     gpu_pick_triangle = 0;
     if (!t) return 0;
     if (t == &gpu.none || (R.om_h >> 20 & 3) >= 2) return 1;  // no triangles in fill/copy mode
     const RdpVtx *in[3] = {a, b, c};
     int seam = (flags & RDP_TEX) && gpu_seam_tile(t, in);
     u32 mat = gpu_material(GPU_TRI, (flags & RDP_TEX) != 0, R.tex_tile, seam);
-    if (seam) gpu_piece(in);
+    if (seam) gpu_piece(in, R.tex_tile, 0);
     GpuVertex v[3];
     for (int i = 0; i < 3; i++)
         gpu_vertex(&v[i], t, in[i]->x, in[i]->y, R.om_l >> 2 & 1 ? (float)R.prim_z : in[i]->z, in[i]->w,
@@ -769,18 +836,53 @@ static void gpu_quad(GpuTarget *t, int x0, int y0, int x1, int y1, u32 mat, floa
     gpu_emit(t, v, 6, zon && R.zimg);
 }
 
+// Texrect strips from a single source image use the same padded tile borders as
+// triangles. Local texel coordinates remove the load tile's origin. The endpoints
+// describe the command's geometric edges, independently of subpixel sample centers.
+static int gpu_rect_pieces(GpuTarget *t, int tile, int xl, int yl, int xh, int yh,
+                           u32 st, float ds, float dt, int flip, RdpVtx corners[4]) {
+    if (!gpu_clamped_tile(t, tile)) return 0;
+    const Tile *tl = &R.tile[tile];
+    float s0 = (s16)(st >> 16) - tl->uls * 8, t0 = (s16)st - tl->ult * 8;
+    for (int i = 0; i < 4; i++) {
+        RdpVtx *v = &corners[i];
+        v->x = (i & 1 ? xh : xl) * .25f; v->y = (i & 2 ? yh : yl) * .25f;
+        v->s = s0 + (flip ? v->y - yl*.25f : v->x - xl*.25f) * ds;
+        v->t = t0 + (flip ? v->x - xl*.25f : v->y - yl*.25f) * dt;
+    }
+    int w = ((tl->lrs - tl->uls) >> 2) + 1, h = ((tl->lrt - tl->ult) >> 2) + 1;
+    // Only full tiles qualify: adjacent glyphs and cropped sprites commonly
+    // share a screen edge without sharing the edge of their source image.
+    float lo_s = fminf(corners[0].s,corners[3].s)/32, hi_s = fmaxf(corners[0].s,corners[3].s)/32;
+    float lo_t = fminf(corners[0].t,corners[3].t)/32, hi_t = fmaxf(corners[0].t,corners[3].t)/32;
+    return lo_s >= -1.01f && lo_s <= .01f && hi_s >= w-1.01f && hi_s <= w+.01f &&
+           lo_t >= -1.01f && lo_t <= .01f && hi_t >= h-1.01f && hi_t <= h+.01f;
+}
+
 static int gpu_texrect(u32 w0, u32 w1, u32 st, u32 dsdt, int flip) {
     if (!gpu_enabled()) return 0;
-    GpuTarget *t = gpu_pick();
+    GpuTarget *t = gpu_pick((R.om_h >> 20 & 3) < 2 && (R.om_l & 4));
     if (!t) return 0;
     if (t == &gpu.none) return 1;
-    int kx = t->sx, ky = t->sy, cyc = R.om_h >> 20 & 3, tile = w1 >> 24 & 7;
+    float kx = t->sx, ky = t->sy;
+    int cyc = R.om_h >> 20 & 3, tile = w1 >> 24 & 7;
     int xh = w0 >> 12 & 0xFFF, yh = w0 & 0xFFF, xl = w1 >> 12 & 0xFFF, yl = w1 & 0xFFF;
     float dsdx = (s16)(dsdt >> 16) / 32.0f, dtdy = (s16)dsdt / 32.0f;  // texels * 32 per N64 pixel
-    int x0 = xl * kx >> 2, y0 = yl * ky >> 2, x1, y1;
+    int x0 = xl * kx * .25f, y0 = yl * ky * .25f, x1, y1;
     if (cyc >= 2) { x1 = ((xh >> 2) + 1) * kx; y1 = ((yh >> 2) + 1) * ky; dsdx /= 4; }
-    else { x1 = (xh * kx + 3) >> 2; y1 = (yh * ky + 3) >> 2; }
-    u32 mat = gpu_material(cyc == 2 ? GPU_COPY : GPU_TEXRECT, 1, tile, 0);
+    else { x1 = (int)ceilf(xh * kx * .25f); y1 = (int)ceilf(yh * ky * .25f); }
+    RdpVtx corners[4];
+    int seam = gpu_rect_pieces(t,tile,xl,yl,xh,yh,st,dsdx,dtdy,flip,corners);
+    int record = R.tsrc[(R.tile[tile].tmem * 8) & 4095];
+    int silhouette = gpu.shadow.ready && record && R.trec[record-1].timg == R.timg &&
+        R.tile[tile].fmt == 2 && R.tile[tile].siz == 1 && !flip && dsdt == 0x04000400 &&
+        (s16)(st >> 16) == xl * 8 && (s16)st == yl * 8 && t->pw == gpu.shadow.w && t->ph == gpu.shadow.h;
+    u32 mat = gpu_material(cyc == 2 ? GPU_COPY : GPU_TEXRECT, 1, tile, seam | (silhouette ? 2 : 0));
+    if (seam) {
+        const RdpVtx *first[] = {corners,corners+1,corners+2};
+        const RdpVtx *second[] = {corners+2,corners+1,corners+3};
+        gpu_piece(first,tile,R.timg); gpu_piece(second,tile,R.timg);
+    }
     gpu_quad(t, x0, y0, x1, y1, mat, (s16)(st >> 16), (s16)st, dsdx / kx, dtdy / ky, flip, cyc < 2 && (R.om_l >> 2 & 1));
     return 1;
 }
@@ -791,19 +893,36 @@ static int gpu_fill(int ulx, int uly, int lrx, int lry) {
     if (!gpu_enabled()) return 0;
     mdefer.on = 0;
     int cyc = R.om_h >> 20 & 3;
+    if (!ip.on && R.cimg_siz == 1) {
+        gpu.shadow.clear_address = cyc == 3 && R.fill == 0xFFFEFFFEu && ulx == 0 && uly == 0 &&
+            R.sc_x0 == 0 && R.sc_y0 == 0 && lrx/4+1 == R.cimg_width && lry/4+1 >= R.sc_y1/4 ? R.cimg : 0;
+    }
     if (cyc == 3 && R.zimg && R.cimg == R.zimg && R.cimg_siz == 2 && R.fill == 0xFFFCFFFCu) {
         GpuTarget *t = ip.on ? &gpu.ipt : NULL;
         for (int i = 0; i < 3 && !t; i++) if (gpu.t[i].color && gpu.t[i].width == R.cimg_width) t = &gpu.t[i];
         if (!t || !t->color || t->width != R.cimg_width) return ip.on;
-        int sc[4], x0 = ulx * t->sx >> 2, y0 = uly * t->sy >> 2, x1 = ((lrx >> 2) + 1) * t->sx, y1 = ((lry >> 2) + 1) * t->sy;
+        int sc[4], x0 = ulx * t->sx * .25f, y0 = uly * t->sy * .25f, x1 = ((lrx >> 2) + 1) * t->sx, y1 = ((lry >> 2) + 1) * t->sy;
         gpu_scissor(t, sc);
         if (x0 < sc[0]) x0 = sc[0];
         if (y0 < sc[1]) y0 = sc[1];
         if (x1 > sc[2]) x1 = sc[2];
         if (y1 > sc[3]) y1 = sc[3];
         if (x1 > x0 && y1 > y0) {
+            if (!ip.on) {
+                gpu_select_depth(t);
+                if (x0 == 0 && y0 == 0 && x1 == t->pw && y1 == t->ph) {
+                    // The CPU fill immediately below writes the same guest words.
+                    for (int i = 0; i < t->width * t->height; i++) wr16(gpu.zshadow + 2*i, 0xFFFC);
+                    gpu.zvalid = 1;
+                    gpu.zcheck = 0;
+                } else {
+                    // Apply older CPU writes first; this partial clear also changes RDRAM.
+                    gpu_import_depth(t);
+                    gpu.zcheck = 1;
+                }
+            }
             gpu_flush();
-            glBindFramebuffer(GL_FRAMEBUFFER, t->fbo);
+            glBindFramebuffer(GL_FRAMEBUFFER, gpu_draw_fbo(t));
             glScissor(x0, y0, x1 - x0, y1 - y0);
             glDepthMask(GL_TRUE);
             glClear(GL_DEPTH_BUFFER_BIT);
@@ -811,12 +930,13 @@ static int gpu_fill(int ulx, int uly, int lrx, int lry) {
         if (!ip.on) gpu.zgen++;
         return ip.on;
     }
-    GpuTarget *t = gpu_pick();
+    GpuTarget *t = gpu_pick(cyc < 3 && (R.om_l & 4));
     if (!t) return 0;
     if (t == &gpu.none) return 1;
-    int kx = t->sx, ky = t->sy, x0 = ulx * kx >> 2, y0 = uly * ky >> 2, x1, y1;
+    float kx = t->sx, ky = t->sy;
+    int x0 = ulx * kx * .25f, y0 = uly * ky * .25f, x1, y1;
     if (cyc >= 2) { x1 = ((lrx >> 2) + 1) * kx; y1 = ((lry >> 2) + 1) * ky; }  // fill/copy: inclusive
-    else { x1 = (lrx * kx + 3) >> 2; y1 = (lry * ky + 3) >> 2; }
+    else { x1 = (int)ceilf(lrx * kx * .25f); y1 = (int)ceilf(lry * ky * .25f); }
     gpu_quad(t, x0, y0, x1, y1, gpu_material(cyc == 3 ? GPU_FILL : GPU_RECT, 0, 0, 0), 0, 0, 0, 0, 0, cyc < 3 && (R.om_l >> 2 & 1));
     return 1;
 }
@@ -832,6 +952,8 @@ static void gpu_flush(void) {
     glBindVertexArray(gpu.vao);
     glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, gpu.atlas);
     glActiveTexture(GL_TEXTURE1); glBindTexture(GL_TEXTURE_BUFFER, gpu.mat_texture);
+    glActiveTexture(GL_TEXTURE6); glBindTexture(GL_TEXTURE_2D, gpu.shadow.texture ? gpu.shadow.texture : gpu.blank);
+    glActiveTexture(GL_TEXTURE0);
     glUniform1ui(gpu.u_frame, gpu.frame);
     glUniform1i(gpu.u_soften, bt_setting(BT_SET_SMOOTH));
     GpuTarget *bound = NULL;
@@ -840,9 +962,9 @@ static void gpu_flush(void) {
         GpuBatch *b = &gpu.b[i];
         if (b->t != bound) {
             bound = b->t;
-            glBindFramebuffer(GL_FRAMEBUFFER, bound->fbo);
-            glViewport(0, 0, bound->width * bound->sx, bound->height * bound->sy);
-            glUniform2i(gpu.u_scale, bound->sx, bound->sy);
+            glBindFramebuffer(GL_FRAMEBUFFER, gpu_draw_fbo(bound));
+            glViewport(0, 0, bound->pw, bound->ph);
+            glUniform2f(gpu.u_scale, bound->sx, bound->sy);
             glUniform1i(gpu.u_color16, bound->sx == 1 && bound->sy == 1);
         }
         glDepthFunc(b->zfunc);
@@ -873,9 +995,18 @@ static void gpu_flush(void) {
 static void gpu_pass_begin(void) { gpu_flush(); glDisable(GL_SCISSOR_TEST); glDisable(GL_DEPTH_TEST); }
 static void gpu_pass_end(void) { glEnable(GL_SCISSOR_TEST); glEnable(GL_DEPTH_TEST); glEnable(GL_BLEND); }
 
+// Readable color/depth are regular textures. Draws retain per-sample data until a reader needs it.
+static void gpu_samples_resolve(GpuTarget *t, GLbitfield mask) {
+    if (!t->samples) return;
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, t->ms_fbo);
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, t->fbo);
+    glBlitFramebuffer(0, 0, t->pw, t->ph, 0, 0, t->pw, t->ph, mask, GL_NEAREST);
+}
+
 // Draws program over t's N64-sized grid into the RG8UI resolve image and reads it into dst (and also).
 static void gpu_resolve_pass(GpuTarget *t, GLuint program, GLint scale, GLuint source, u8 *dst, u8 *also) {
     gpu_pass_begin();
+    gpu_samples_resolve(t, source == t->depth ? GL_DEPTH_BUFFER_BIT : GL_COLOR_BUFFER_BIT);
     if (gpu.resolve_w != t->width || gpu.resolve_h != t->height) {
         gpu_texture(&gpu.resolve_tex, GL_RG8UI, t->width, t->height, GL_RG_INTEGER, GL_UNSIGNED_BYTE);
         if (!gpu.resolve_fbo) glGenFramebuffers(1, &gpu.resolve_fbo);
@@ -887,7 +1018,7 @@ static void gpu_resolve_pass(GpuTarget *t, GLuint program, GLint scale, GLuint s
     glViewport(0, 0, t->width, t->height);
     glDisable(GL_BLEND);
     glUseProgram(program);
-    glUniform2i(scale, t->sx, t->sy);
+    glUniform2i(scale, t->width, t->height);
     glActiveTexture(GL_TEXTURE2); glBindTexture(GL_TEXTURE_2D, source);
     glBindVertexArray(gpu.empty_vao);
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -911,7 +1042,7 @@ static void gpu_resolve_depth(void) {
     GpuTarget *t = gpu.zt;
     u8 *dst = t ? gptr(gpu.zaddr, (u32)(t->width * t->height * 2)) : NULL;
     gpu.zt = NULL;
-    if (dst) gpu_resolve_pass(t, gpu.zresolve, gpu.z_scale, t->depth, dst, NULL);
+    if (dst) gpu_resolve_pass(t, gpu.zresolve, gpu.z_scale, t->depth, dst, gpu.zshadow);
 }
 
 static void gpu_resolve_address(u32 address) {
@@ -932,44 +1063,82 @@ static void gpu_mask_touch(u32 address) {
 }
 
 // RDRAM pixels that differ from the last resolve were written by the CPU (every: all of them).
-static void gpu_import(GpuTarget *t, int every) {
+static int gpu_import_image(GpuTarget *t, u32 address, u8 *shadow, int every, int depth_image) {
     int n = t->width * t->height * 2;
-    const u8 *src = gptr(t->address, (u32)n);
-    if (!src || (!every && !memcmp(src, t->shadow, (size_t)n))) return;
+    const u8 *src = gptr(address, (u32)n);
+    if (!src || (!every && !memcmp(src, shadow, (size_t)n))) return 0;
     gpu_pass_begin();
     int realloc_import = gpu.import_w != t->width || gpu.import_h != t->height;
     for (int i = 0; i < 2; i++) {
         glActiveTexture(GL_TEXTURE2 + i);
         if (realloc_import) gpu_texture(&gpu.import_tex[i], GL_RG8UI, t->width, t->height, GL_RG_INTEGER, GL_UNSIGNED_BYTE);
         glBindTexture(GL_TEXTURE_2D, gpu.import_tex[i]);
-        gpu_upload(0, 0, t->width, t->height, GL_RG_INTEGER, GL_UNSIGNED_BYTE, 2, i ? t->shadow : src);
+        gpu_upload(0, 0, t->width, t->height, GL_RG_INTEGER, GL_UNSIGNED_BYTE, 2, i ? shadow : src);
     }
     gpu.import_w = t->width; gpu.import_h = t->height;
-    glBindFramebuffer(GL_FRAMEBUFFER, t->fbo);
-    glViewport(0, 0, t->width * t->sx, t->height * t->sy);
+    glBindFramebuffer(GL_FRAMEBUFFER, gpu_draw_fbo(t));
+    glViewport(0, 0, t->pw, t->ph);
     glUseProgram(gpu.import);
-    glUniform2i(gpu.i_scale, t->sx, t->sy);
+    glUniform2f(gpu.i_scale, t->sx, t->sy);
     glUniform1i(gpu.i_every, every);
+    glUniform1i(gpu.i_depth, depth_image);
+    if (depth_image) {
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_ALWAYS);
+        glDepthMask(GL_TRUE);
+        glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+    }
     glBindVertexArray(gpu.empty_vao);
     glDrawArrays(GL_TRIANGLES, 0, 3);
+    if (depth_image) glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     gpu_pass_end();
     gpu_check("import");
-    memcpy(t->shadow, src, (size_t)n);
-    t->changed = 1;  // not drawn: RDRAM already holds this content
+    memcpy(shadow, src, (size_t)n);
     gpu.imports++;
+    return 1;
+}
+
+static void gpu_import(GpuTarget *t, int every) {
+    if (gpu_import_image(t, t->address, t->shadow, every, 0)) t->changed = 1;
+}
+
+// The GPU depth storage is shared by all VI images. Preserve each address before
+// selecting a new guest Z image and retain high-resolution samples at unchanged pixels.
+static void gpu_select_depth(GpuTarget *t) {
+    if (gpu.zimage == R.zimg && gpu.zw == t->width && gpu.zh == t->height) return;
+    gpu_resolve_depth();
+    if (gpu.zw != t->width || gpu.zh != t->height) {
+        free(gpu.zshadow);
+        gpu.zshadow = calloc((size_t)t->width * t->height, 2);
+        if (!gpu.zshadow) bt_fatal("allocating GPU depth shadow");
+        gpu.zw = t->width;
+        gpu.zh = t->height;
+    }
+    gpu.zimage = R.zimg;
+    gpu.zvalid = 0;
+}
+
+static void gpu_import_depth(GpuTarget *t) {
+    gpu_select_depth(t);
+    if (!gpu.zcheck && gpu.zvalid) return;
+    if (gpu_import_image(t, R.zimg, gpu.zshadow, !gpu.zvalid, 1)) gpu.zgen++;
+    gpu.zcheck = 0;
+    gpu.zvalid = 1;
 }
 
 // The picture of t at its resolution, as XRGB8888 rows (top first) in gpu.pixels.
 static u32 *gpu_read_picture(GpuTarget *t) {
-    size_t n = (size_t)t->width * t->sx * t->height * t->sy;
+    size_t n = (size_t)t->pw * t->ph;
     if (gpu.pixels_n < n) {
         free(gpu.pixels);
         if (!(gpu.pixels = malloc(n * sizeof *gpu.pixels))) bt_fatal("allocating the GPU picture");
         gpu.pixels_n = n;
     }
-    gpu_flush();
+    gpu_pass_begin();
+    gpu_samples_resolve(t, GL_COLOR_BUFFER_BIT);
     glBindFramebuffer(GL_READ_FRAMEBUFFER, t->fbo);
-    gpu_readback(t->width * t->sx, t->height * t->sy, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, 4, gpu.pixels, NULL, t);
+    gpu_readback(t->pw, t->ph, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, 4, gpu.pixels, NULL, t);
+    gpu_pass_end();
     gpu_check("picture");
     return gpu.pixels;
 }
@@ -977,9 +1146,9 @@ static u32 *gpu_read_picture(GpuTarget *t) {
 // Hands the picture to rdp_frame: the pixel buffers are swapped, not copied, under the lock.
 static void gpu_install(GpuTarget *t, u32 *pixels) {
     int slot = (int)(t - gpu.t);
-    size_t n = (size_t)t->width * t->sx * t->height * t->sy;
+    size_t n = (size_t)t->pw * t->ph;
     pthread_mutex_lock(&scanout_lock);
-    if (scanout[slot].width * scanout[slot].sx * scanout[slot].height * scanout[slot].sy != (int)n) {
+    if ((size_t)scanout[slot].pixel_w * scanout[slot].pixel_h != n) {
         free(scanout[slot].pixels);
         scanout[slot].pixels = NULL;
     }
@@ -988,7 +1157,7 @@ static void gpu_install(GpuTarget *t, u32 *pixels) {
     scanout[slot].pixels = pixels;
     scanout[slot].address = t->address;
     scanout[slot].width = t->width; scanout[slot].height = t->height;
-    scanout[slot].sx = t->sx; scanout[slot].sy = t->sy;
+    scanout[slot].pixel_w = t->pw; scanout[slot].pixel_h = t->ph;
     pthread_mutex_unlock(&scanout_lock);
 }
 
@@ -998,14 +1167,14 @@ static int gpu_pictures(void) { return !gpu_share || bt_vclock_on; }
 
 // Copies t into show texture k for the window; the copy is on the GPU, nothing waits for it.
 static GLuint gpu_show(GpuTarget *t, int k) {
-    int w = t->width * t->sx, h = t->height * t->sy;
+    int w = t->pw, h = t->ph;
     gpu_pass_begin();
     if (gpu.show[k].w != w || gpu.show[k].h != h) {  // same name: the window may be drawing with it
         gpu_texture(&gpu.show[k].tex, GL_RGBA8, w, h, GL_RGBA, GL_UNSIGNED_BYTE);
         gpu.show[k].w = w; gpu.show[k].h = h;
     }
     if (!gpu.show_fbo) glGenFramebuffers(1, &gpu.show_fbo);
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, t->fbo);
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, gpu_draw_fbo(t));
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gpu.show_fbo);
     glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gpu.show[k].tex, 0);
     glBlitFramebuffer(0, 0, w, h, 0, 0, w, h, GL_COLOR_BUFFER_BIT, GL_NEAREST);
@@ -1023,11 +1192,13 @@ static void gpu_publish(GpuTarget *t) {
         GLuint tex = gpu_show(t, slot);
         if (!gpu.queuing) glFlush();  // gpu_end flushes behind its fence
         pthread_mutex_lock(&scanout_lock);
-        if (!gpu_pictures()) { free(scanout[slot].pixels); scanout[slot].pixels = NULL; }
+        if (!gpu_pictures() || scanout[slot].pixel_w != t->pw || scanout[slot].pixel_h != t->ph) {
+            free(scanout[slot].pixels); scanout[slot].pixels = NULL;
+        }
         scanout[slot].tex = tex;
         scanout[slot].address = t->address;
         scanout[slot].width = t->width; scanout[slot].height = t->height;
-        scanout[slot].sx = t->sx; scanout[slot].sy = t->sy;
+            scanout[slot].pixel_w = t->pw; scanout[slot].pixel_h = t->ph;
         pthread_mutex_unlock(&scanout_lock);
     }
     if (gpu_pictures()) {
@@ -1035,6 +1206,75 @@ static void gpu_publish(GpuTarget *t) {
         if (!gpu.queuing) gpu_install(t, pixels);  // else gpu_finish does
     }
     t->changed = 0;
+}
+
+// Remember the higher-resolution version of the guest's explicit framebuffer copy into Z
+// memory. Restore it only if the complete guest copy is still intact; the regular tile pass
+// already handled cropped, modified, resized or otherwise unsupported copies in RDRAM.
+void rdp_framebuffer_copy(void) {
+    if (!gpu_enabled() || R.cimg_siz != 2 || R.timg_siz != 2 || R.cimg_width != R.timg_width) return;
+    GpuTarget *src = NULL, *dst = NULL;
+    for (int i = 0; i < 3; i++) {
+        GpuTarget *t = &gpu.t[i];
+        if (!t->color || t->width != R.cimg_width || (t->pw == t->width && t->ph == t->height)) continue;
+        if (t->address == R.cimg) dst = t;
+        if (t->address == R.timg) src = t;
+    }
+    if (ip.on) {
+        src = NULL; // an interpolation pass never changes the guest's snapshot
+        dst = R.cimg == ip.address ? &gpu.ipt : NULL;
+    }
+    if (src && R.cimg == R.zimg) {
+        size_t bytes = (size_t)src->width * src->height * 2;
+        const u8 *copy = gptr(R.cimg, (u32)bytes);
+        if (!copy) return;
+        if (gpu.backdrop.capacity < bytes) {
+            u8 *data = realloc(gpu.backdrop.bytes, bytes);
+            if (!data) bt_fatal("allocating pause backdrop");
+            gpu.backdrop.bytes = data; gpu.backdrop.capacity = bytes;
+        }
+        memcpy(gpu.backdrop.bytes, copy, bytes);
+        gpu_pass_begin();
+        if (gpu.backdrop.w != src->pw || gpu.backdrop.h != src->ph) {
+            gpu_texture(&gpu.backdrop.tex, GL_RGBA8, src->pw, src->ph, GL_RGBA, GL_UNSIGNED_BYTE);
+            gpu.backdrop.w = src->pw; gpu.backdrop.h = src->ph;
+        }
+        if (!gpu.backdrop.fbo) glGenFramebuffers(1, &gpu.backdrop.fbo);
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, gpu_draw_fbo(src));
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gpu.backdrop.fbo);
+        glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gpu.backdrop.tex, 0);
+        glBlitFramebuffer(0,0,src->pw,src->ph,0,0,src->pw,src->ph,GL_COLOR_BUFFER_BIT,GL_NEAREST);
+        gpu.backdrop.stored_at = R.cimg;
+        gpu.backdrop.length = bytes;
+        gpu.backdrop.guest_w = src->width;
+        gpu_pass_end();
+        gpu_check("capture backdrop");
+    } else if (dst && gpu.backdrop.stored_at && R.timg == gpu.backdrop.stored_at) {
+        size_t bytes = (size_t)dst->width * dst->height * 2;
+        const u8 *copy = gptr(R.timg, (u32)bytes);
+        if (dst->width != gpu.backdrop.guest_w || bytes != gpu.backdrop.length ||
+            !copy || memcmp(gpu.backdrop.bytes, copy, bytes)) return;
+        gpu_pass_begin();
+        if (!gpu.backdrop.program) {
+            static const char shader[] =
+                "#version 330\nuniform sampler2D image; uniform ivec2 dest; out vec4 color;\n"
+                "void main(){color=texelFetch(image,ivec2(gl_FragCoord.xy)*textureSize(image,0)/dest,0);}";
+            gpu.backdrop.program = gpu_program(gpu_fullscreen_shader, shader);
+            glUseProgram(gpu.backdrop.program);
+            glUniform1i(glGetUniformLocation(gpu.backdrop.program, "image"), 2);
+            gpu.backdrop.size = glGetUniformLocation(gpu.backdrop.program, "dest");
+        }
+        glBindFramebuffer(GL_FRAMEBUFFER, gpu_draw_fbo(dst));
+        glViewport(0,0,dst->pw,dst->ph);
+        glDisable(GL_BLEND);
+        glUseProgram(gpu.backdrop.program);
+        glUniform2i(gpu.backdrop.size,dst->pw,dst->ph);
+        glActiveTexture(GL_TEXTURE2); glBindTexture(GL_TEXTURE_2D,gpu.backdrop.tex);
+        glBindVertexArray(gpu.empty_vao); glDrawArrays(GL_TRIANGLES,0,3);
+        dst->drawn = dst->changed = 1;
+        gpu_pass_end();
+        gpu_check("restore backdrop");
+    }
 }
 
 // ---- The 8-bit image (1E7F6A0.c, func_800A6250): the player model, flattened along the light, drawn
@@ -1113,12 +1353,77 @@ static void gpu_mask_finalize(void) {
     while (passed--) noise_state = noise_state * 1664525u + 1013904223u;
     mdefer.n = 0;
     gpu.mask_composed = 0;
+    gpu.shadow.n = gpu.shadow.other = gpu.shadow.ready = 0;
 }
 
 // The image with its fragments on the GPU, for loads from it: RDRAM bytes, then one point per fragment.
+// The projected player model uses one untextured, black decal pass. Keep its
+// actual triangles for presentation. The guest still receives every original CI8 byte.
+static void gpu_shadow_triangle(const RdpVtx *const v[3], int flags, u32 dz) {
+    if (!mdefer.on || !gpu.zt || (gpu.zt->sx == 1 && gpu.zt->sy == 1)) return;
+    if (flags != (RDP_SHADE|RDP_Z) || R.om_h != 0x00982C00 || R.om_l != 0x0C192E10 ||
+        R.sc_x0 || R.sc_y0 || R.sc_x1 < mdefer.width*4 || R.sc_y1 < mdefer.height*4) {
+        gpu.shadow.other = 1;
+        return;
+    }
+    if (gpu.shadow.n + 3 > gpu.shadow.capacity) {
+        gpu.shadow.capacity = (gpu.shadow.n + 3) * 2;
+        gpu.shadow.vertices = realloc(gpu.shadow.vertices,(size_t)gpu.shadow.capacity*sizeof *gpu.shadow.vertices);
+        if (!gpu.shadow.vertices) bt_fatal("allocating shadow triangles");
+    }
+    for (int i=0; i<3; i++) {
+        float *p=gpu.shadow.vertices[gpu.shadow.n++];
+        p[0]=v[i]->x; p[1]=v[i]->y; p[2]=v[i]->z; p[3]=(float)dz;
+    }
+}
+
+static void gpu_shadow_geometry(void) {
+    GpuTarget *t=gpu.zt;
+    gpu.shadow.ready=0;
+    if (!t || gpu.shadow.clear_address != mdefer.base || !gpu.shadow.n || gpu.shadow.other || !gpu.mz_from_gpu || !mdefer.n) return;
+    // Other draws into this borrowed image retain their normal CI8 sampling.
+    for (int i=0; i<mdefer.n; i++) if (mdefer.f[i].value || mdefer.f[i].ztest != 1 || !mdefer.f[i].decal) return;
+    if (!gpu.shadow.program) {
+        gpu.shadow.program=gpu_program(gpu_shadow_vertex_shader,gpu_shadow_fragment_shader);
+        glGenFramebuffers(1,&gpu.shadow.fbo);
+        glGenVertexArrays(1,&gpu.shadow.vao);
+        glGenBuffers(1,&gpu.shadow.buffer);
+        glBindVertexArray(gpu.shadow.vao);
+        glBindBuffer(GL_ARRAY_BUFFER,gpu.shadow.buffer);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0,4,GL_FLOAT,GL_FALSE,sizeof *gpu.shadow.vertices,0);
+    }
+    gpu_pass_begin();
+    gpu_samples_resolve(t,GL_DEPTH_BUFFER_BIT);
+    glActiveTexture(GL_TEXTURE6);
+    if (gpu.shadow.w!=t->pw || gpu.shadow.h!=t->ph) {
+        gpu_texture(&gpu.shadow.texture,GL_R8,t->pw,t->ph,GL_RED,GL_UNSIGNED_BYTE);
+        gpu.shadow.w=t->pw; gpu.shadow.h=t->ph;
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER,gpu.shadow.fbo);
+    glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,gpu.shadow.texture,0);
+    if(glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE) bt_fatal("incomplete shadow target");
+    glViewport(0,0,t->pw,t->ph);
+    glClearBufferfv(GL_COLOR,0,(const GLfloat[4]){0,0,0,0});
+    glDisable(GL_BLEND);
+    glUseProgram(gpu.shadow.program);
+    glUniform2f(glGetUniformLocation(gpu.shadow.program,"viewport"),(float)t->width,(float)t->height);
+    glUniform1i(glGetUniformLocation(gpu.shadow.program,"scene"),2);
+    glActiveTexture(GL_TEXTURE2); glBindTexture(GL_TEXTURE_2D,t->depth);
+    glBindVertexArray(gpu.shadow.vao);
+    glBindBuffer(GL_ARRAY_BUFFER,gpu.shadow.buffer);
+    glBufferData(GL_ARRAY_BUFFER,(size_t)gpu.shadow.n*sizeof *gpu.shadow.vertices,gpu.shadow.vertices,GL_STREAM_DRAW);
+    glDrawArrays(GL_TRIANGLES,0,gpu.shadow.n);
+    glActiveTexture(GL_TEXTURE0);
+    gpu_pass_end();
+    gpu_check("projected shadow");
+    gpu.shadow.ready=1;
+}
+
 static void gpu_mask_compose(void) {
     GpuTarget *m = &gpu.mask;
     int w = mdefer.width, h = mdefer.height;
+    gpu_shadow_geometry();
     gpu_pass_begin();
     glActiveTexture(GL_TEXTURE2);
     if (!m->color || m->width != w || m->height != h) {
@@ -1127,7 +1432,7 @@ static void gpu_mask_compose(void) {
         glBindFramebuffer(GL_FRAMEBUFFER, m->fbo);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m->color, 0);
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) bt_fatal("OpenGL incomplete mask framebuffer");
-        m->width = w; m->height = h; m->sx = m->sy = 1;
+        m->width = w; m->height = h; m->pw = w; m->ph = h; m->sx = m->sy = 1;
     }
     glBindTexture(GL_TEXTURE_2D, m->color);
     gpu_upload(0, 0, w, h, GL_RED, GL_UNSIGNED_BYTE, 1, mdefer.bp);
@@ -1242,11 +1547,12 @@ static void gpu_mask_depth(int w, int h) {
         gpu.mz_w = w; gpu.mz_h = h;
     }
     if (on_gpu) {
+        gpu_samples_resolve(z, GL_DEPTH_BUFFER_BIT);
         glBindFramebuffer(GL_FRAMEBUFFER, gpu.mz_fbo);
         glViewport(0, 0, w, h);
         glDisable(GL_BLEND);
         glUseProgram(gpu.zresolve);
-        glUniform2i(gpu.z_scale, z->sx, z->sy);
+        glUniform2i(gpu.z_scale, z->width, z->height);
         glActiveTexture(GL_TEXTURE2); glBindTexture(GL_TEXTURE_2D, z->depth);
         glBindVertexArray(gpu.empty_vao);
         glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -1268,8 +1574,10 @@ static void gpu_begin(void) {
     if (!gpu_enabled()) return;
     gpu_init();
     gpu_finish();
+    gpu.shadow.n = gpu.shadow.other = gpu.shadow.ready = 0;
     gpu.frame++;
     
+    gpu.zcheck = 1;
     gpu.zgen++;  // the CPU may have written Z memory since
     for (int i = 0; i < 3; i++) if (gpu.t[i].color) gpu_import(&gpu.t[i], 0);
 }
@@ -1389,20 +1697,46 @@ static void gpu_register(u32 address, int width, int widescreen) {
     gpu_init();
     gpu_finish();
     int sy = rdp_scale(), sx = widescreen ? (sy * 4 + 1) / 3 : sy, slot = -1;
+    int height = width * 3 / 4, pw = width * sx, ph = height * sy;
+    if (widescreen == 2) pw = height * sy * 21 / 9;
+    u32 backing = atomic_load(&window_pixels);
+    int window_mode = bt_setting(BT_SET_GPU_WINDOW);
+    if (gpu_share && backing && window_mode) {
+        int ww = (int)(backing >> 16), wh = (int)(backing & 0xffff);
+        if (ww > gpu.max_size) ww = gpu.max_size;
+        if (wh > gpu.max_size) wh = gpu.max_size;
+        int cap_h = window_mode == 2 ? 1440 : window_mode == 3 ? 2160 : wh;
+        if (wh > cap_h) wh = cap_h;
+        int aspect_w = widescreen == 2 ? 21 : widescreen ? 16 : 4, aspect_h = widescreen ? 9 : 3;
+        ph = wh < ww * aspect_h / aspect_w ? wh : ww * aspect_h / aspect_w;
+        if (ph < height) ph = height;
+        pw = ph * aspect_w / aspect_h;
+        if (!gpu_barrier && pw == width && ph == height) {
+            // A minimized window can request native size. Only the exact renderer can do 1x blending.
+            gpu_on = 0;
+            fprintf(stderr, "renderer: soft (exact 1x GPU rendering needs a texture barrier)\n");
+            return;
+        }
+    }
     render_sx = sx;
     for (int i = 0; i < 3 && slot < 0; i++) if (gpu.t[i].color && gpu.t[i].address == address) slot = i;
     for (int i = 0; i < 3 && slot < 0; i++) if (!gpu.t[i].color) slot = i;
     if (slot < 0) slot = (int)(replace++ % 3);
     GpuTarget *t = &gpu.t[slot];
-    int fresh = t->address != address || t->width != width || t->sx != sx || t->sy != sy;
-    if (fresh) gpu_resolve(t);
-    for (int i = 0; i < 3; i++)  // a new scale: every image starts over from RDRAM
-        if (fresh && gpu.t[i].color && &gpu.t[i] != t && (gpu.t[i].sx != sx || gpu.t[i].sy != sy)) {
-            gpu_resolve(&gpu.t[i]);
-            gpu_target_init(&gpu.t[i], gpu.t[i].address, gpu.t[i].width, gpu.t[i].height, sx, sy, 0);
-            gpu_import(&gpu.t[i], 1);
+    int samples = gpu_samples(width, height, pw, ph);
+    int fresh = t->address != address || t->width != width || t->pw != pw || t->ph != ph || t->samples != samples;
+    if (fresh) {
+        // Complete reads from the old Z storage before resizing the shared renderbuffer.
+        gpu_resolve_depth();
+        for (int i = 0; i < 3; i++) gpu_resolve(&gpu.t[i]);
+        for (int i = 0; i < 3; i++) {
+            GpuTarget *other = &gpu.t[i];
+            if (!other->color || other == t || (other->pw == pw && other->ph == ph && other->samples == samples)) continue;
+            gpu_target_init(other, other->address, other->width, other->height, pw, ph, 0);
+            gpu_import(other, 1);
         }
-    gpu_target_init(t, address, width, width * 3 / 4, sx, sy, 0);
+    }
+    gpu_target_init(t, address, width, height, pw, ph, 0);
     gpu_import(t, fresh);
     if (t->changed) gpu_publish(t);
     gpu_release();
@@ -1411,14 +1745,14 @@ static void gpu_register(u32 address, int width, int widescreen) {
 // Frame interpolation: the in-between image is its own target, started from the picture the task
 // drew over; its depth is its own too.
 static void gpu_interp_target(void) {
-    GpuTarget *t = gpu_pick();
+    GpuTarget *t = gpu_pick(0);
     if (!t || t == &gpu.none) return;
-    gpu_target_init(&gpu.pre, 0, t->width, t->height, t->sx, t->sy, 1);
-    gpu_target_init(&gpu.ipt, R.cimg, t->width, t->height, t->sx, t->sy, 1);
+    gpu_target_init(&gpu.pre, 0, t->width, t->height, t->pw, t->ph, 1);
+    gpu_target_init(&gpu.ipt, R.cimg, t->width, t->height, t->pw, t->ph, 1);
     gpu_pass_begin();
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, t->fbo);
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gpu.pre.fbo);
-    glBlitFramebuffer(0, 0, t->width * t->sx, t->height * t->sy, 0, 0, t->width * t->sx, t->height * t->sy, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, gpu_draw_fbo(t));
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gpu_draw_fbo(&gpu.pre));
+    glBlitFramebuffer(0, 0, t->pw, t->ph, 0, 0, t->pw, t->ph, GL_COLOR_BUFFER_BIT, GL_NEAREST);
     gpu_pass_end();
     gpu_check("in-between start");
     ip.address = R.cimg;
@@ -1428,11 +1762,11 @@ static void gpu_interp_begin(void) {
     gpu_init();
     gpu_finish();
     gpu_pass_begin();
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, gpu.pre.fbo);
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gpu.ipt.fbo);
-    int w = gpu.ipt.width * gpu.ipt.sx, h = gpu.ipt.height * gpu.ipt.sy;
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, gpu_draw_fbo(&gpu.pre));
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gpu_draw_fbo(&gpu.ipt));
+    int w = gpu.ipt.pw, h = gpu.ipt.ph;
     glBlitFramebuffer(0, 0, w, h, 0, 0, w, h, GL_COLOR_BUFFER_BIT, GL_NEAREST);
-    glBindFramebuffer(GL_FRAMEBUFFER, gpu.ipt.fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, gpu_draw_fbo(&gpu.ipt));
     glDepthMask(GL_TRUE);
     glClear(GL_DEPTH_BUFFER_BIT);
     gpu_pass_end();
@@ -1446,6 +1780,7 @@ static u32 *gpu_interp_end(int index, unsigned *tex, int *w, int *h, int *sx, in
     return picture;
 }
 #else
+void rdp_framebuffer_copy(void) {}
 void rdp_gpu_share(void *window) { (void)window; }
 static void gpu_begin(void) { gpu_enabled(); }
 static void gpu_release(void) {}

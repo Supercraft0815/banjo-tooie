@@ -34,3 +34,13 @@ The native dispatcher now forwards those four arguments. Previously the menu
 hand moved to the wrong row and confirming both characters dereferenced a
 missing option. The original IDO functions, data and complete ROM match.
 See menu-ir.log and multiplayer-proof.json in build/acceptance/q2-multiplayer-2026-11-17/.
+
+2026-11-18  bt_ultrawide, func_80015D14, func_800B8DEC, func_800B8E28, native_glyph, func_800C0BC0
+The 21:9 setting selects a wider projection using the existing aspect correction.
+A glyph draw marks the horizontal anchor of the complete string so that the
+host preserves HUD letter spacing. A display-list no-op identifies the pause
+copy for the high-resolution backend. An original 4:3 frame uses its original
+projection and coordinates. The line-neutral source layout has identical
+canonical IR to the independently tested graphics implementation. Original IDO
+functions, data, and both ROM images match. See integrated-graphics-ir.log,
+integrated-ido.log and integrated-rom.json in build/acceptance/a6-2026-11-17/.
