@@ -2005,3 +2005,23 @@ vollständigen ROM-Abbilder Bytegleichheit. Beide nativen Gruppen wurden über
 Testprogramme und sämtliche 245.660 Retraces der 46 Fälle bestanden. Die
 Datenliste ist von 103 auf 92 Module gesunken. Die Prüfdaten liegen in
 `build/acceptance/n1-2026-11-18/proof/` unter `*tables*` und `*records*`.
+
+## 2026-11-18 — A11, Absturzberichte in den Plattformpaketen
+
+Der Bericht enthält Buildversion, letzte bekannte Spielkarte, Fehlertext,
+Aufrufkette und bis zu 200 Logzeilen. In einem normalen Lauf bis zur
+Dateiauswahl meldete der ausgelöste Trap die tatsächlich gelesene Karte
+0x0158 und die Gastfunktionen 800FFB74 und 800124EC. Die Symbolkarten
+werden relativ zum Programm geladen, im macOS-Bundle aus Contents/Resources.
+
+Auf macOS wurden fünf Fehlerpfade ausgelöst. Linux arm64 lieferte bei einem
+Speicherfehler die Kette vom Gast über den Startcode bis main. Unter Wine
+wurden ein Windows-Ausnahmebericht und der SDL-Dialog geprüft. Der
+integrierte Windows-Release-Build bestand außerdem den Original-Introtrace
+mit einem Unicode-Spielstandspfad und schrieb seinen Bericht unter einem
+Unicode-Dateinamen. Auf beiden Mac-Architekturen bestand der Paketstart mit
+2.698 identischen Retraces und der Bericht konnte die mitgelieferte Karte
+öffnen. Beschädigte Stacks können die Aufrufkette verkürzen.
+Ein nativer Windows-Hardwarelauf steht aus. Protokolle und Fehlerproben
+liegen unter `build/acceptance/a11-2026-11-17/` und
+`build/acceptance/a4-2026-11-18/`.

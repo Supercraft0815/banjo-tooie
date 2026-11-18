@@ -4,6 +4,7 @@
 #include <time.h>
 #include "rdp.h"
 #include "trace_symbols.h"
+#include "crash.h"
 
 static pthread_mutex_t vi_lock = PTHREAD_MUTEX_INITIALIZER;
 static u32 vi_mq, vi_msg, vi_retrace = 1;
@@ -98,6 +99,7 @@ void bt_vi_retrace(u32 *mq, u32 *msg) {
     if (vi_count % vi_retrace == 0) { *mq = vi_mq; *msg = vi_msg; }
     u32 age = count - vi_since;
     pthread_mutex_unlock(&vi_lock);
+    if (bt_mem) bt_crash_map_update(gr16(TRACE_D_80132DC2));
     if (bt_vclock_on) {
         bt_trace_retrace(count, fb, width);
         bt_video_retrace(count, fb, width, age);

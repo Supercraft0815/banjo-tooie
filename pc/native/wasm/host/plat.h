@@ -2,6 +2,10 @@
 #define BT_HOST_PLAT_H
 
 #include <stdlib.h>
+#include <stdio.h>
+
+const char *bt_path_env(const char *name);
+FILE *bt_disk_open(const char *path, const char *mode);
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN

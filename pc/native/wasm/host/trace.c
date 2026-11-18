@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "guest.h"
+#include "plat.h"
 #include "trace_symbols.h"
 
 #define FNV_OFFSET UINT64_C(14695981039346656037)
@@ -111,7 +112,7 @@ static void flags(FILE *out) {
 }
 
 static u64 file_hash(const char *path, int optional) {
-    FILE *file = fopen(path, "rb");
+    FILE *file = bt_disk_open(path, "rb");
     if (!file) {
         if (optional && errno == ENOENT) return 0;
         bt_fatal("BT_TRACE: cannot read %s: %s", path, strerror(errno));
@@ -126,13 +127,13 @@ static u64 file_hash(const char *path, int optional) {
 }
 
 void bt_trace_init(const char *rom) {
-    const char *path = getenv("BT_TRACE");
+    const char *path = bt_path_env("BT_TRACE");
     if (!path) return;
     if (!getenv("BT_VCLOCK") || !getenv("BT_HEADLESS"))
         bt_fatal("BT_TRACE requires BT_VCLOCK=1 and BT_HEADLESS=1 (scripted, build-local comparisons)");
     // Read inputs before opening the output, including when a path accidentally names an input file.
     u64 rom_hash = file_hash(rom, 0), eeprom_hash = file_hash(bt_host_path("bt_eeprom.bin"), 1);
-    trace = fopen(path, "wx");
+    trace = bt_disk_open(path, "wx");
     if (!trace) bt_fatal("BT_TRACE: cannot create %s: %s", path, strerror(errno));
     setvbuf(trace, NULL, _IOLBF, 0);
     fprintf(trace, "{\"format\":\"bt-trace-1\",\"clock\":\"vclock-build-local\",\"build\":\"%s\","

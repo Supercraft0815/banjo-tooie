@@ -31,6 +31,7 @@ void bt_call_guest(u32 fn, u32 arg, u32 thread);
 
 
 _Noreturn void bt_fatal(const char *fmt, ...);
+void bt_trap(wasm_rt_trap_t code);
 void bt_backtrace(void);  // host call stack to stderr
 void bt_os_post(u32 mq, u32 msg);  // from host threads: NOBLOCK send, dropped when full
 void bt_os_event(u32 event);

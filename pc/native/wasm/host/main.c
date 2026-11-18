@@ -1,9 +1,11 @@
 // Native entry point: loads the ROM, instantiates the guest and runs its boot code.
-#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "plat.h"
+#include <string.h>
 #include "guest.h"
+#include "crash.h"
+#include "plat.h"
+#include "crash_build.h"
 
 w2c_bt bt_inst;
 u8 *bt_mem;
@@ -23,38 +25,40 @@ void bt_call_guest(u32 fn, u32 arg, u32 thread) {
     }
 }
 
-#ifndef _WIN32
-// A stray guest pointer faults in the protected memory. Replaces the wasm2c handler, which
-// drops the fault PC: the backtrace alone only names the caller of an inlined or leaf function.
-static void on_fault(int sig, siginfo_t *si, void *uc) {
-    (void)sig;
-#if defined(__APPLE__) && defined(__arm64__)
-    fprintf(stderr, "bt_native: guest fault at address %p, pc 0x%llx\n", si->si_addr,
-            (unsigned long long)((ucontext_t *)uc)->uc_mcontext->__ss.__pc);
-#else
-    (void)uc;
-    fprintf(stderr, "bt_native: guest fault at address %p\n", si->si_addr);
-#endif
-    bt_backtrace();
-    abort();
-}
+#ifdef BT_CRASH_TEST
+void w2c_bt_func_800D5D70(w2c_bt *instance);
 #endif
 
 int main(int argc, char **argv) {
     bt_settings_load();
-    bt_video_init();  // SDL first: without a ROM argument a file dialog asks for it
+    const char *version = getenv("BT_VERSION");
+    const char *map_path = bt_path_env("BT_GAME_MAP");
+    const char *native_map = bt_path_env("BT_NATIVE_MAP");
+    bt_crash_init(version ? version : BT_BUILD_VERSION, map_path ? map_path : "game.map",
+                  native_map ? native_map : BT_NATIVE_MAP_PATH);
+    bt_video_init();
     const char *rom = argc > 1 ? argv[1] : bt_rom_find();
     if (argc > 1) bt_rom_open(rom);
     wasm_rt_init();
     wasm2c_bt_instantiate(&bt_inst, &env);
-#ifndef _WIN32
-    struct sigaction sa = {.sa_sigaction = on_fault, .sa_flags = SA_SIGINFO | SA_ONSTACK};
-    sigaction(SIGSEGV, &sa, NULL);
-    sigaction(SIGBUS, &sa, NULL);
+    bt_crash_install();
+#ifdef BT_CRASH_TEST
+    const char *crash_test = getenv("BT_CRASH_TEST");
+    if (crash_test && !strcmp(crash_test, "fatal")) bt_fatal("A11 injected fatal test");
+    if (crash_test && !strcmp(crash_test, "trap")) bt_trap(WASM_RT_TRAP_OOB);
+#ifdef _WIN32
+    if (crash_test && !strcmp(crash_test, "seh")) RaiseException(0xE0424242, 0, 0, NULL);
+#endif
 #endif
     bt_mem = bt_inst.w2c_memory.data;
     // Guest pointers start at 0x80000000; anything lower is a stray pointer.
     if (!bt_guard_low_memory(bt_mem)) bt_fatal("cannot protect low guest memory");
+#ifdef BT_CRASH_TEST
+    if (crash_test && (!strcmp(crash_test, "guesttrap") || !strcmp(crash_test, "guestsegv"))) {
+        w2c_bt_func_800D5D70(&bt_inst);
+    }
+    if (crash_test && !strcmp(crash_test, "segv")) *(volatile int *)0 = 1;
+#endif
     BT_SP = w2c_bt_bt_guest_boot_stack_top(&bt_inst);
     w2c_bt_bt_be_fixup(&bt_inst); // relocated words in the data, into big-endian order
     bt_trace_init(rom);

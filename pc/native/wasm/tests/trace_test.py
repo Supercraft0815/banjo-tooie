@@ -60,7 +60,7 @@ class TraceTest(unittest.TestCase):
             self.assertNotEqual(split, trace_tools.trace_header(out, HERE.parent, ['fixture']))
             (out / 'trace_symbols.h').write_text(split)
             exe = out / 'trace'
-            subprocess.run(['clang', '-std=c11', '-O2', '-Wall', '-Wextra', '-Werror',
+            subprocess.run([build.CLANG, '-D_DEFAULT_SOURCE', '-std=c11', '-O2', '-Wall', '-Wextra', '-Werror',
                             '-I', tmp, str(HERE / 'trace.c'), '-o', str(exe)], check=True)
             rom = out / 'rom'; rom.write_bytes(b'fixture ROM')
             path = out / 'trace.jsonl'

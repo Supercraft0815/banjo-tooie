@@ -18,6 +18,7 @@ For experimental GPU read-on-demand, build the guest with BT_GPU_IMAGE_ACCESS=1
 and run its release host with BT_RENDERER=gpu BT_GPU_DEMAND=1. An older gen/
 or a debug-audio host retains eager synchronization.
 """
+import json
 import argparse
 import bisect
 import concurrent.futures as cf
@@ -499,14 +500,41 @@ def build_guest(jobs, compiler_version):
               if re.match(r'[0-9a-f]{8} +[0-9a-f]+ +[0-9a-f]+ ', l))
     if top > 0x81000000 and not os.environ.get('BT_BIG'):
         sys.exit('guest data ends at 0x%x, above the 16 MB the RSP can address' % top)
+    write_crash_maps(gen)
     return gen
 
 
+def write_crash_maps(gen):
+    header = gen / 'crash_map_names.h'
+    source = ROOT / 'include/maps.h'
+    if header.is_file() and not source.is_file():
+        return
+    maps = re.findall(r'^\s*(MAP_[A-Z0-9_]+)\s*=\s*(0x[0-9A-Fa-f]+)', source.read_text(), re.M) if source.is_file() else []
+    cases = ''.join(f'    case {number}: return "{name}";\n' for name, number in maps)
+    write_if_changed(header, 'static const char *bt_crash_map_name(unsigned id) {\n    switch (id) {\n'
+                     + cases + '    default: return "unknown";\n    }\n}\n')
+
+
 def build_host(jobs, gen, compiler_version):
+    write_crash_maps(gen)
+    version = os.environ.get('BT_VERSION')
+    if not version and (ROOT / '.git').exists():
+        try:
+            rev = subprocess.run(['git', 'describe', '--always', '--dirty', '--abbrev=12'],
+                                 cwd=ROOT, capture_output=True, text=True)
+            if rev.returncode == 0:
+                version = rev.stdout.strip()
+        except FileNotFoundError:
+            pass
+    native_map = 'bt_game.native.map' if sys.platform == 'win32' else ''
+    write_if_changed(gen / 'crash_build.h', f'#define BT_BUILD_VERSION {json.dumps(version or "native-port")}\n'
+                     f'#define BT_NATIVE_MAP_PATH "{native_map}"\n')
     # A gen/ produced before image access tracking can still build the eager host.
     # Debug audio executes raw independent RSP DMA and uses eager synchronization.
     image_access = not AUDIO_DEBUG and '#define BT_GUEST_IMAGE_ACCESS 1' in (gen / 'game.h').read_text()
     host_flags = HOST_FLAGS + (['-DBT_IMAGE_ACCESS_HOST=1'] if image_access else [])
+    if sys.platform in ('darwin', 'linux'):
+        host_flags.append('-fno-omit-frame-pointer')
     write_if_changed(gen / 'trace_symbols.h', trace_tools.trace_header(OUT, HERE, [CLANG, CXX, compiler_version] + host_flags, from_gen=True))
     tag = flags_hash([CLANG, compiler_version] + host_flags)
     host_srcs = sorted((HERE / 'host').glob('*.c')) + [HERE / 'host/glad/gl.c']
@@ -534,7 +562,10 @@ def build_host(jobs, gen, compiler_version):
     if errors:
         sys.exit('host compile failed:\n' + '\n'.join(errors)[:8000])
     exe = OUT / ('bt_game.exe' if sys.platform == 'win32' else 'bt_game')
-    r = run([CXX, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread'] + SDL_LIBS + PLATFORM_LIBS[sys.platform] + shlex.split(os.environ.get('BT_HOST_FLAGS', '')))
+    link_map = ['-Wl,-Map=' + str(OUT / 'bt_game.native.map')] if sys.platform == 'win32' else []
+    export_symbols = ['-rdynamic'] if sys.platform == 'linux' else []
+    fault_symbols = ['-ldbghelp'] if sys.platform == 'win32' else []
+    r = run([CXX, '-o', str(exe)] + [str(o) for o, _ in built] + ['-lz', '-lm', '-lpthread'] + SDL_LIBS + PLATFORM_LIBS[sys.platform] + export_symbols + fault_symbols + link_map + shlex.split(os.environ.get('BT_HOST_FLAGS', '')))
     if r.returncode != 0:
         sys.exit('host link failed:\n' + r.stderr[:8000])
     print('built %s' % exe)

@@ -23,6 +23,8 @@ static const char *bt_host_path(const char *path) { return getenv("BT_SAVE") ? g
 static _Noreturn void bt_fatal(const char *fmt, ...) {
     va_list ap; va_start(ap, fmt); vfprintf(stderr, fmt, ap); va_end(ap); exit(3);
 }
+const char *bt_path_env(const char *name) { return getenv(name); }
+FILE *bt_disk_open(const char *path, const char *mode) { return fopen(path, mode); }
 #include "../host/trace.c"
 
 int main(int argc, char **argv) {

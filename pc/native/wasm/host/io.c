@@ -1,7 +1,6 @@
 // Host services for the guest: ROM image, controller, files, console, zlib and libm.
-#ifdef _WIN32
 #include "plat.h"
-#else
+#ifndef _WIN32
 #include <execinfo.h>
 #endif
 #ifdef __APPLE__
@@ -17,18 +16,22 @@
 #include <SDL3/SDL.h>
 #include "guest.h"
 #include "mixer.h"
+#include "crash.h"
 
 static unsigned char *rom;
 static u32 rom_size, us_size;  // the US dump; rom_size also counts the language assets after it
 
 _Noreturn void bt_fatal(const char *fmt, ...) {
+    char detail[2048];
     va_list ap;
     va_start(ap, fmt);
-    fputs("bt_native: ", stderr);
-    vfprintf(stderr, fmt, ap);
-    fputc('\n', stderr);
+    vsnprintf(detail, sizeof detail, fmt, ap);
     va_end(ap);
+    fprintf(stderr, "bt_native: %s\n", detail);
     bt_backtrace();
+    void *frames[48];
+    int count = bt_crash_capture(frames, 48);
+    bt_crash_report("bt_fatal", detail, (const void *const *)frames, (size_t)count);
     abort();
 }
 
@@ -59,6 +62,9 @@ void bt_backtrace(void) {
 void bt_trap(wasm_rt_trap_t code) {
     fprintf(stderr, "bt_native: guest trap: %s\n", wasm_rt_strerror(code));
     bt_backtrace();
+    void *frames[48];
+    int count = bt_crash_capture(frames, 48);
+    bt_crash_report("bt_trap", wasm_rt_strerror(code), (const void *const *)frames, (size_t)count);
     abort();
 }
 
@@ -73,7 +79,7 @@ static _Noreturn void rom_error(const char *path, const char *what) {
 // Reads a .z64 (big-endian), .v64 (byte-swapped) or .n64 (little-endian) image into big-endian
 // order. Returns NULL if the file cannot be opened.
 static unsigned char *image_read(const char *path, u32 *size) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = bt_disk_open(path, "rb");
     long n;
     if (!f) return NULL;
     fseek(f, 0, SEEK_END);
@@ -168,7 +174,7 @@ static void rom_add_language(void) {
         (path = pick_rom("Fuer die gewaehlte Sprache brauche ich die europaeische Banjo-Tooie-ROM (En,Fr,De,Es).\n"
                          "Eine Kopie wird fuer die naechsten Starts im Benutzerordner abgelegt."))) {
         eu = image_read(path, &n);
-        FILE *f = eu ? fopen(saved, "wb") : NULL;
+        FILE *f = eu ? bt_disk_open(saved, "wb") : NULL;
         if (!f || fwrite(eu, 1, n, f) != n) fprintf(stderr, "bt_native: cannot keep a ROM copy in %s\n", saved);
         if (f) fclose(f);
     }
@@ -229,7 +235,7 @@ const char *bt_rom_find(void) {
     if (!pick_rom("Bitte waehle deine Banjo-Tooie-ROM (US-Version) aus.\n"
                   "Eine Kopie wird fuer die naechsten Starts im Benutzerordner abgelegt.")) exit(0);
     bt_rom_open(picked);
-    FILE *f = fopen(saved, "wb");
+    FILE *f = bt_disk_open(saved, "wb");
     if (!f || fwrite(rom, 1, us_size, f) != us_size) fprintf(stderr, "bt_native: cannot keep a ROM copy in %s\n", saved);
     if (f) fclose(f);
     return saved;
@@ -259,7 +265,15 @@ _Noreturn void w2c_env_unported(struct w2c_env *env, u32 name) {
 typedef struct { FILE *disk; SDL_IOStream *slice; } GuestFile;
 static GuestFile files[32];
 
-static FILE *open_disk(const char *path, const char *mode) {
+const char *bt_path_env(const char *name) {
+#ifdef _WIN32
+    return SDL_getenv(name);  // SDL converts the wide Windows environment to UTF-8.
+#else
+    return getenv(name);
+#endif
+}
+
+FILE *bt_disk_open(const char *path, const char *mode) {
 #ifdef _WIN32
     wchar_t *wide_path = (wchar_t *)SDL_iconv_string("UTF-16LE", "UTF-8", path, strlen(path) + 1);
     wchar_t *wide_mode = (wchar_t *)SDL_iconv_string("UTF-16LE", "UTF-8", mode, strlen(mode) + 1);
@@ -280,7 +294,8 @@ const char *bt_host_path(const char *path) {
     if (strcmp(path, "bt_eeprom.bin")) return path;
     if (!save[0]) {
         char *dir;
-        if (getenv("BT_SAVE")) snprintf(save, sizeof save, "%s", getenv("BT_SAVE"));
+        const char *override = bt_path_env("BT_SAVE");
+        if (override) snprintf(save, sizeof save, "%s", override);
         else if (getenv("BT_HEADLESS") || getenv("BT_VCLOCK") || !access(path, F_OK) ||
                  !(dir = SDL_GetPrefPath("", "BanjoTooie"))) snprintf(save, sizeof save, "%s", path);
         else { snprintf(save, sizeof save, "%s%s", dir, path); SDL_free(dir); }
@@ -301,7 +316,7 @@ u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
                 if (start > end || end > rom_size) bt_fatal("ROM file %s beyond the image", (char *)G(path));
                 files[i].slice = SDL_IOFromConstMem(rom + start, end - start);
             } else {
-                files[i].disk = open_disk(bt_host_path(G(path)), G(mode));
+                files[i].disk = bt_disk_open(bt_host_path(G(path)), G(mode));
             }
             return files[i].disk || files[i].slice ? (u32)i : (u32)-1;
         }
