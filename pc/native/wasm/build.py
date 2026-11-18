@@ -59,6 +59,19 @@ def tool(name):
 def sdl_flags():
     prefix = os.environ.get('BT_SDL3')
     if prefix:
+        if os.environ.get('BT_SDL3_STATIC') == '1':
+            pc_dir = pathlib.Path(prefix) / 'lib' / 'pkgconfig'
+            env = dict(os.environ, PKG_CONFIG_PATH=str(pc_dir), PKG_CONFIG_ALLOW_SYSTEM_CFLAGS='1',
+                       PKG_CONFIG_ALLOW_SYSTEM_LIBS='1')
+            cflags = subprocess.run(['pkg-config', '--cflags', 'sdl3'], capture_output=True, text=True, env=env)
+            libs = subprocess.run(['pkg-config', '--static', '--libs', 'sdl3'], capture_output=True, text=True, env=env)
+            if cflags.returncode == libs.returncode == 0:
+                archive = pathlib.Path(prefix) / 'lib/libSDL3.a'
+                if not archive.is_file():
+                    raise RuntimeError(f'static SDL3 archive missing: {archive}')
+                return shlex.split(cflags.stdout), [str(archive) if flag == '-lSDL3' else flag
+                                                    for flag in shlex.split(libs.stdout)]
+            raise RuntimeError('BT_SDL3_STATIC=1 requires SDL3 pkg-config metadata with static link dependencies')
         return ['-I', str(pathlib.Path(prefix) / 'include')], ['-L' + str(pathlib.Path(prefix) / 'lib'), '-lSDL3']
     pkg = shutil.which('pkg-config')
     if pkg:

@@ -8,6 +8,7 @@ import unittest
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
+import build
 import save_editor as save
 
 
@@ -28,7 +29,7 @@ static s32 func_801168AC(u64 *s) {
     return (s32)*s;
 }
 #define __COMMON_H__
-#include "''' + str(save.ROOT / 'src/overlays/gl/crc.c') + '''"
+#include "''' + (save.ROOT / 'src/overlays/gl/crc.c').as_posix() + '''"
 int main(int argc, char **argv) {
     u8 data[440]; u32 result[2]; FILE *f = fopen(argv[1], "rb");
     if (!f || fread(data, 1, sizeof data, f) != sizeof data) return 2;
@@ -37,7 +38,7 @@ int main(int argc, char **argv) {
 }
 ''')
             exe = directory / 'crc'
-            subprocess.run(['clang', '-O2', '-Wno-int-to-void-pointer-cast', '-Wno-void-pointer-to-int-cast',
+            subprocess.run([build.CLANG, '-O2', '-Wno-int-to-void-pointer-cast', '-Wno-void-pointer-to-int-cast',
                             '-Wno-pointer-to-int-cast', '-Wno-int-to-pointer-cast', '-I', str(save.ROOT / 'include'),
                             str(source), '-o', str(exe)], check=True)
             for payload in (bytes(440), bytes(i % 256 for i in range(440)), save.new_record(2)[:-8]):

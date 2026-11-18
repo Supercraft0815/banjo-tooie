@@ -37,7 +37,8 @@ class TraceTest(unittest.TestCase):
 
     def test_guest_layout(self):
         # No generated overlay aliases or ROM assets are needed for these type checks.
-        flags = list(build.GUEST_FLAGS)
+        # This syntax-only ABI check also runs on host builders with clang 19.
+        flags = [f for f in build.GUEST_FLAGS if f != '-fwrapv-pointer']
         index = flags.index('-include')
         del flags[index:index + 2]
         subprocess.run([build.CLANG, *flags, '-std=c11', '-fsyntax-only', str(HERE / 'trace_layout.c')], check=True)

@@ -2122,3 +2122,23 @@ bei Funktionen oder Daten. Beide ROM-Abbilder waren bytegleich, der native
 IR-Vergleich ergab keine abweichende Funktion. Zehn Testprogramme, die
 Codemod-Tests und alle 46 Spielabläufe mit 245.660 Retraces bestanden.
 Belege liegen unter `build/acceptance/n3-2026-11-18/`.
+
+## 2026-11-19 — A4, lokale Pakete und privater Build-Workflow
+
+Die Universal-App enthält Intel- und Apple-Silicon-Code und bindet SDL3
+statisch ein. Beide Architekturen bestanden das Intro mit 2.698 Retraces.
+Das Windows-x64-ZIP bestand denselben Test unter Wine einschließlich eines
+Spielstands und Absturzberichts mit Unicode-Namen. Das x64-AppImage startete
+in einem sauberen Debian Trixie und das zusätzliche arm64-AppImage in einem
+sauberen Debian Bookworm. Beide lieferten die gleiche Intro-Referenz.
+Die Pakete und Protokolle liegen unter `build/acceptance/a4-2026-11-18/`,
+die geprüfte Universal-App und das Windows-ZIP unter `packages/integrated/`.
+
+Der lokale Workflow baut den Gast einmal und die Hosts für vier Plattformen.
+Er vergleicht die Spielabläufe anhand der aus den 46 akzeptierten Referenzen
+erzeugten SHA-256-Werte. Das Medieninventar fand bei 80 offenen
+Datenmodulen 51 initialisierte Datenblöcke über 1 KiB, davon acht aus C.
+Nur ein Symbol ließ sich anhand seines Namens oder Typs Audio zuordnen.
+Die übrigen 50 Blöcke erfordern eine Inhaltsprüfung. Auf Nutzerwunsch
+bleiben die Pakete lokal. Der gehostete Tag-Lauf, die Inhaltsfreigabe
+sowie Signatur und Notarisierung der Mac-App stehen aus.

@@ -1,0 +1,190 @@
+{
+  "cases": {
+    "ccl-entrance": {
+      "retrace_count": 2638,
+      "sha256": "c75e7c51ddf33d25d527d319f21bbff0ff647a09d3d2b66ed5d92f628b56858f"
+    },
+    "ccl-interior": {
+      "retrace_count": 2638,
+      "sha256": "c7b118a2907fbc58e98d52782ddf3a24cce7980117ce546e6a0c949d0efa9088"
+    },
+    "ck-entrance": {
+      "retrace_count": 2638,
+      "sha256": "a5dc93cb6f3d3b43aa25a243758424ea06578719821895a720054ecf78afb03e"
+    },
+    "ck-interior": {
+      "retrace_count": 2638,
+      "sha256": "87095e5c2d261634ae2520d0e819d85e37c716d8a2563413a86dbc9dd94b30b1"
+    },
+    "edited-save": {
+      "retrace_count": 10790,
+      "sha256": "b78cf9ef017fea48150b711fda34a16a6fc8c35bdc712bd1f25f2ab6f6ec6e77"
+    },
+    "ggm-entrance": {
+      "retrace_count": 2638,
+      "sha256": "0ccae00ab815e986d95ae36f713471b2c88b21368b77f6a5a4aca380a4731e9e"
+    },
+    "ggm-interior": {
+      "retrace_count": 2638,
+      "sha256": "bd218b0fecaa4c945cb06c10d4fd4232844986d02541d1ada1820e2eadab48b9"
+    },
+    "gi-entrance": {
+      "retrace_count": 2638,
+      "sha256": "ce82ad755a4653576ff68ac26d1272072b2979855aa0a8392ebbfcf4ce53a36c"
+    },
+    "gi-interior": {
+      "retrace_count": 2638,
+      "sha256": "99efdaab02a77e70deec679c79251d8c384ef0df386cacbf8e47c5462cd9ead2"
+    },
+    "hp-entrance": {
+      "retrace_count": 2638,
+      "sha256": "7dff3cfbe839ceeed83b11222242479ecae71ae96409d1560c9a2318d4c27897"
+    },
+    "hp-interior": {
+      "retrace_count": 2638,
+      "sha256": "d59169c70e9cc7d5446c21b189c14d257dde9d78d6ae6802c23c3c6ef5d2c26b"
+    },
+    "intro": {
+      "retrace_count": 2698,
+      "sha256": "fb4ce819774b9ab17f8b7061040d3f83e569246348aef1f0bf445698a0cc98fd"
+    },
+    "ioh-entrance": {
+      "retrace_count": 2638,
+      "sha256": "6da45d20283d5e9072d43a8997d35fa95ee37ea9bebe0302bf44c4bf20071914"
+    },
+    "ioh-interior": {
+      "retrace_count": 2638,
+      "sha256": "75ce61324dea21a48ad9da8d281b4f74108d88cc6e75c3ff7f8aba404542b3ea"
+    },
+    "jrl-entrance": {
+      "retrace_count": 2638,
+      "sha256": "a9562f8244f7971b79153ae810f1ac3e54fdd48dc32cffd10fe2156609c5138d"
+    },
+    "jrl-interior": {
+      "retrace_count": 2638,
+      "sha256": "ceece65b3994f330440d0b96854d32c7fa4c8764aacee4e4301586d1baa2432b"
+    },
+    "lord-woo-fak-fak": {
+      "retrace_count": 7193,
+      "sha256": "aa5cdad115db8a29541fdba1c5e36c4a59a8acd0cbbbb6a904c07dacbcefab9d"
+    },
+    "mp-all-games": {
+      "retrace_count": 4976,
+      "sha256": "cc37c21b18e7abc9698cfd5dbeaefaffeb6cdb7f9abf012025562dd6c886e513"
+    },
+    "mp-balloons": {
+      "retrace_count": 4256,
+      "sha256": "07eec52ec4e6b00b7477628fd79ffd8e1248efb2b857d4e79d70520ab8e9f9bb"
+    },
+    "mp-bee-hive": {
+      "retrace_count": 5395,
+      "sha256": "890a62f768c2b38d087a0cc46348fe6b41bfdefc1cbce6ee09e2b1f4baba6ce1"
+    },
+    "mp-chompas-belly": {
+      "retrace_count": 5095,
+      "sha256": "529efcec3500c9cfd7cf7a3909b49a8012520be912bb39f93d86747a9cba8b94"
+    },
+    "mp-clinkers-cavern": {
+      "retrace_count": 5155,
+      "sha256": "8d6a59ccdcad44a5d8a1119418297c082e00bc06874058f4d2f259ac600dbb8d"
+    },
+    "mp-colosseum-kickball": {
+      "retrace_count": 5275,
+      "sha256": "04154c89bc562fca368f71e28bc034496e5cdaf9f92ebd8721c2ae1ac11feb00"
+    },
+    "mp-dodgems": {
+      "retrace_count": 4856,
+      "sha256": "f98b0aefdb52b925ae19c57c51a264befc80b6b9dab0603a52296b261fc5173c"
+    },
+    "mp-hoop-hurry": {
+      "retrace_count": 4316,
+      "sha256": "35ed635e1e5fa50a2f8da85ad1ac0aa44afa70a6a13f3da325ed6a5f3c779199"
+    },
+    "mp-mayan-kickball": {
+      "retrace_count": 4736,
+      "sha256": "dd221bba35102af6a603c1a53c8711db7a6eba0f93ea4ad21189ce3038c33aaf"
+    },
+    "mp-menu": {
+      "retrace_count": 2398,
+      "sha256": "d9682d8e6a8c05b8599c548f79ceb00aa8d46635ab40a1de3a3fac1a10a87a84"
+    },
+    "mp-ordnance-shootout": {
+      "retrace_count": 4796,
+      "sha256": "e19bd24cab5c2a009a65e6912d02e2c25039a9ed64f32631cf3d41b852c0a9be"
+    },
+    "mp-packing": {
+      "retrace_count": 5215,
+      "sha256": "f84de88a4d05a2f1ed31989b32a73f7b83d833d5c354c7aa247b10263432b700"
+    },
+    "mp-quiz": {
+      "retrace_count": 6234,
+      "sha256": "fe54554c6f411526f70183d70553d63880f0a75c7e4ed615597cecaa38260d7e"
+    },
+    "mp-some-games": {
+      "retrace_count": 5335,
+      "sha256": "19cb7a4695ddf3a3fc5de7d6aa57acc0476644bfa55d74b7ad419fe486da3f8d"
+    },
+    "mp-submarine": {
+      "retrace_count": 5035,
+      "sha256": "f1e74b45725b57d94ee73cbb8f67c1bdd35289a0af853f070e3d860b45bfd8b1"
+    },
+    "mp-temple-shootout": {
+      "retrace_count": 5575,
+      "sha256": "58dd7c323e271062366ddb7af9b945f7ca962184f8343ebec7d5c1dce0a363f7"
+    },
+    "mp-trashcan": {
+      "retrace_count": 4736,
+      "sha256": "ec5c9d94f7f425a6a3d513573adbe4e68545cb543ce5ecac3be9cbaea5d15348"
+    },
+    "mr-patch": {
+      "retrace_count": 3837,
+      "sha256": "351d7c2097e7d3329ab9b0d6cdc36aa39e85cb5442d5aef119922c0a7967db47"
+    },
+    "mt-entrance": {
+      "retrace_count": 2638,
+      "sha256": "4fa3dbb663b4efa3155b99fedec7f0f6a0b860ae0b18f38b303d4e3a642473cc"
+    },
+    "mt-interior": {
+      "retrace_count": 2638,
+      "sha256": "71c609e62e32602446a6afb208cb03eca606412e30b59604e8b445ddd959f7a6"
+    },
+    "new-game": {
+      "retrace_count": 56943,
+      "sha256": "751321b8272d22b7d1be66de0e70383452334176945e756b3ce90cfd917a0d17"
+    },
+    "old-king-coal": {
+      "retrace_count": 3837,
+      "sha256": "eea9e3084364b1bf03ba0592828bab597eb34aaa0024114c94d4332087ab1bef"
+    },
+    "targitzan": {
+      "retrace_count": 3837,
+      "sha256": "5dc0eca4f8f486d2ef43443b69c0b434800b819ce9a2ba59f023ca6de9cb0bee"
+    },
+    "tdl-entrance": {
+      "retrace_count": 2638,
+      "sha256": "af7d8f608f68d98c5371f985f4f8c3a3c6d74b94d7c74f21e46d7a4657982320"
+    },
+    "tdl-interior": {
+      "retrace_count": 2638,
+      "sha256": "ffc3a34446474051f87e44a6b7d4439f071ca7819f84d89a5d1e02b8590db6a6"
+    },
+    "terry": {
+      "retrace_count": 3837,
+      "sha256": "149d122801a119b3ba50988af255ac4356cb63f75a17a4af9a8a1b1d9bfcee5d"
+    },
+    "worlds": {
+      "retrace_count": 16544,
+      "sha256": "e5ccc908fe793a105d4335eaf7aa4d47c6fd93613cb4a34ab3c55a3049f4e35a"
+    },
+    "ww-entrance": {
+      "retrace_count": 2638,
+      "sha256": "a01de6ab5a4f27c5c6a05a624f3a2a2eaa5c479f5f74b65e2b98e14c407c5567"
+    },
+    "ww-interior": {
+      "retrace_count": 2638,
+      "sha256": "303082c706ce26fd24a3f386bdfc02122177bbc9ae74189e003cbfaa9e438acd"
+    }
+  },
+  "format": "bt-reference-digests-1",
+  "normalization": "trace_tools.compare(cross_build=True)"
+}

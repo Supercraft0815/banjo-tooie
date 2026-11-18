@@ -29,6 +29,7 @@ import sys
 import tempfile
 import corpus
 import trace_tools
+import reference_manifest
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -36,7 +37,7 @@ OUT = Path(os.environ.get('BT_OUT', ROOT / 'build/ilp32')).resolve()
 REF = ROOT / 'build' / 'reference'
 CHECKLIST = HERE.parent / 'VARIANTE_A_CHECKLISTE.md'
 TESTS = ['build_test.py', 'play_test.py', 'trace_test.py', 'gate_test.py', 'save_test.py',
-         'inventory_test.py', 'printf_test.py', 'render_test.py', 'audio_mixer_test.py']
+         'inventory_test.py', 'printf_test.py', 'render_test.py', 'audio_mixer_test.py', 'a4_packaging_test.py']
 DEF = re.compile(r'^[A-Za-z_][^;\n{}()=]*?\b(\w+)\s*\([^;{}]*\)\s*\{', re.M)
 NOISE = re.compile(r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\'|^\s*#[^\n]*', re.S | re.M)
 
@@ -206,7 +207,11 @@ def check_result(name, directory, code, accept):
         return
     ref = REF / (name + '.jsonl')
     if not ref.exists():
-        raise ValueError(f'missing reference {ref}; review the repeated run before --accept')
+        manifest = os.environ.get('BT_REFERENCE_MANIFEST')
+        if manifest:
+            reference_manifest.verify(directory / 'trace.jsonl', name, manifest)
+            return
+        raise ValueError(f'missing reference {ref}; set BT_REFERENCE_MANIFEST to the private digest manifest or review repeated run before --accept')
     output = io.StringIO()
     with ref.open() as left, (directory / 'trace.jsonl').open() as right, contextlib.redirect_stdout(output):
         code = trace_tools.compare(left, right, cross_build=True)

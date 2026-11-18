@@ -1,0 +1,196 @@
+name: Private native PC packages
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  guest:
+    if: github.event.repository.private
+    runs-on: ubuntu-24.04
+    env:
+      BT_LLVM_BIN: /usr/lib/llvm-23/bin
+      BT_WABT: ${{ github.workspace }}/build/wabt
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.SECRETREPO }}
+          token: ${{ secrets.SECRETTOKEN }}
+          path: private-input
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install guest tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential binutils-mips-linux-gnu gcc-mips-linux-gnu libfmt-dev libtoml11-dev
+          curl -fsSL https://apt.llvm.org/llvm.sh -o "$RUNNER_TEMP/llvm.sh"
+          sudo bash "$RUNNER_TEMP/llvm.sh" 23
+          sudo apt-get install -y clang-23 llvm-23-dev llvm-23-tools lld-23
+          python -m pip install -r tools/requirements.txt -r tools/splat/requirements.txt
+          mkdir -p "$BT_WABT"
+          curl -fsSL https://github.com/WebAssembly/wabt/releases/download/1.0.42/wabt-1.0.42-linux-x64.tar.gz | tar xz -C "$BT_WABT" --strip-components=1
+      - name: Build and check the N64 map and the generated guest
+        run: |
+          cp private-input/baserom.us.z64 baserom.us.z64
+          make setup -j2
+          make check -j2
+          python pc/native/wasm/build.py guest -j 2
+          python pc/native/wasm/tests/printf_test.py
+          python pc/native/wasm/data_inventory.py build/ilp32/media-inventory.json
+          tar czf "$RUNNER_TEMP/guest.tgz" -C build ilp32/gen ilp32/game.map ilp32/media-inventory.json wabt/include wabt/share
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-private-guest
+          path: ${{ runner.temp }}/guest.tgz
+          retention-days: 1
+
+  host:
+    needs: guest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {runner: ubuntu-24.04, id: linux-x64}
+          - {runner: macos-15, id: macos-arm64}
+          - {runner: macos-15-intel, id: macos-x64}
+          - {runner: windows-2022, id: windows-x64}
+    runs-on: ${{ matrix.runner }}
+    env:
+      BT_WABT: ${{ github.workspace }}/build/wabt
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-private-guest
+          path: guest-artifact
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unpack the shared guest and C runtime
+        shell: bash
+        run: mkdir -p build && tar xzf guest-artifact/guest.tgz -C build
+      - name: Install Windows clang and MinGW libraries
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: CLANG64
+          update: true
+          install: >-
+            mingw-w64-clang-x86_64-clang mingw-w64-clang-x86_64-llvm
+            mingw-w64-clang-x86_64-SDL3 mingw-w64-clang-x86_64-zlib
+      - name: Select the Windows toolchain
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          prefix=$(cygpath -am /clang64)
+          echo "BT_LLVM_BIN=$prefix/bin" >> "$GITHUB_ENV"
+          echo "BT_SDL3=$prefix" >> "$GITHUB_ENV"
+          echo "$prefix/bin" >> "$GITHUB_PATH"
+      - name: Install Unix clang and SDL
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            brew install llvm pkgconf
+            echo "BT_LLVM_BIN=$(brew --prefix llvm)/bin" >> "$GITHUB_ENV"
+            echo BT_SDL3_STATIC=1 >> "$GITHUB_ENV"
+            shared=OFF; static=ON
+          else
+            sudo apt-get update
+            sudo apt-get install -y clang-19 pkg-config zlib1g-dev libgl-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev libasound2-dev libpulse-dev libwayland-dev libxkbcommon-dev libxtst-dev libxrender-dev libxinerama-dev libdrm-dev libgbm-dev libegl-dev libgles-dev wayland-protocols libdecor-0-dev
+            echo BT_LLVM_BIN=/usr/lib/llvm-19/bin >> "$GITHUB_ENV"
+            shared=ON; static=OFF
+          fi
+          curl -fsSLo "$RUNNER_TEMP/sdl.tgz" https://www.libsdl.org/release/SDL3-3.4.20.tar.gz
+          echo "f3bb06f55bed9557227a700af2ea62e49497ebdf58037732a731a5fb3ef8581f  $RUNNER_TEMP/sdl.tgz" | shasum -a 256 -c -
+          tar xzf "$RUNNER_TEMP/sdl.tgz" -C "$RUNNER_TEMP"
+          cmake -S "$RUNNER_TEMP/SDL3-3.4.20" -B "$RUNNER_TEMP/sdl-build" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$RUNNER_TEMP/sdl" -DCMAKE_INSTALL_LIBDIR=lib -DSDL_SHARED="$shared" -DSDL_STATIC="$static" -DSDL_TEST_LIBRARY=OFF
+          cmake --build "$RUNNER_TEMP/sdl-build" --target install --parallel 2
+          echo "BT_SDL3=$RUNNER_TEMP/sdl" >> "$GITHUB_ENV"
+          if [[ "$RUNNER_OS" == Linux ]]; then echo "LD_LIBRARY_PATH=$RUNNER_TEMP/sdl/lib" >> "$GITHUB_ENV"; fi
+      - name: Build host and run ROM-free host tests
+        shell: bash
+        run: |
+          python pc/native/wasm/build.py host -j 2
+          for test in build play trace gate save inventory render frame_compare a4_packaging; do
+            python "pc/native/wasm/tests/${test}_test.py"
+          done
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.SECRETREPO }}
+          token: ${{ secrets.SECRETTOKEN }}
+          path: private-input
+          persist-credentials: false
+      - name: Check cartridge audio and host startup
+        shell: bash
+        run: |
+          cp private-input/baserom.us.z64 baserom.us.z64
+          python pc/native/wasm/tests/audio_mixer_test.py
+          exe=build/ilp32/bt_game
+          if [[ "$RUNNER_OS" == Windows ]]; then exe="$exe.exe"; fi
+          python pc/native/wasm/tests/crash_report_smoke.py --exe "$exe"
+          export BT_REFERENCE_MANIFEST="$GITHUB_WORKSPACE/pc/native/wasm/reference_hashes.json"
+          if [[ "$RUNNER_OS" == Linux ]]; then
+            python pc/native/wasm/port.py gate --full --exe "$exe"
+          else
+            python pc/native/wasm/port.py gate --case intro --exe "$exe"
+          fi
+      - name: Assemble the platform package
+        shell: bash
+        run: |
+          mkdir -p private-package
+          case "$RUNNER_OS" in
+            Windows)
+              python pc/native/wasm/package.py --platform windows --exe build/ilp32/bt_game.exe --game-map build/ilp32/game.map --native-map build/ilp32/bt_game.native.map --runtime-dir "$BT_SDL3/bin" --objdump "$BT_LLVM_BIN/llvm-objdump.exe" --output private-package/BanjoTooie-windows-x64.zip ;;
+            macOS)
+              python pc/native/wasm/package.py --platform macos --exe build/ilp32/bt_game --game-map build/ilp32/game.map --output build/BanjoTooie.app
+              tar czf private-package/mac-slice.tgz -C build BanjoTooie.app ;;
+            Linux)
+              curl -fsSLo "$RUNNER_TEMP/appimagetool" https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+              chmod +x "$RUNNER_TEMP/appimagetool"
+              APPIMAGE_EXTRACT_AND_RUN=1 python pc/native/wasm/package.py --platform linux --exe build/ilp32/bt_game --game-map build/ilp32/game.map --runtime-dir "$BT_SDL3/lib" --appimagetool "$RUNNER_TEMP/appimagetool" --output build/BanjoTooie-x86_64.AppImage
+              tar czf private-package/BanjoTooie-linux-x64.tar.gz -C build BanjoTooie-x86_64.AppImage ;;
+          esac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pc-${{ matrix.id }}
+          path: private-package/
+          retention-days: 7
+
+  mac-universal:
+    needs: host
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pc-macos-*
+          path: slices
+      - name: Combine Intel and Apple Silicon
+        run: |
+          for arch in arm64 x64; do
+            mkdir "$arch"
+            tar xzf "slices/pc-macos-$arch/mac-slice.tgz" -C "$arch"
+          done
+          lipo -create arm64/BanjoTooie.app/Contents/MacOS/BanjoTooie x64/BanjoTooie.app/Contents/MacOS/BanjoTooie -output BanjoTooie
+          python3 pc/native/wasm/package.py --platform macos --exe BanjoTooie --game-map arm64/BanjoTooie.app/Contents/Resources/game.map --output BanjoTooie.app
+          ditto -c -k --keepParent BanjoTooie.app BanjoTooie-universal.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pc-macos-universal
+          path: BanjoTooie-universal.zip
+          retention-days: 7

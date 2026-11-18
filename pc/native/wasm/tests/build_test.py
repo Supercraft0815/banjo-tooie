@@ -28,16 +28,16 @@ class BuildTest(unittest.TestCase):
     def test_explicit_prefix_wins_over_path(self):
         with patch.dict(os.environ, {'BT_LLVM_BIN': '/custom llvm/bin', 'BT_WABT': '/custom wabt'}, clear=True), \
              patch.object(build.sys, 'platform', 'linux'), patch.object(build.shutil, 'which', return_value='/path/tool'):
-            self.assertEqual(build.tool('clang'), '/custom llvm/bin/clang')
-            self.assertEqual(build.tool('wasm2c'), '/custom wabt/bin/wasm2c')
+            self.assertEqual(build.tool('clang'), str(Path('/custom llvm/bin/clang')))
+            self.assertEqual(build.tool('wasm2c'), str(Path('/custom wabt/bin/wasm2c')))
         with patch.dict(os.environ, {}, clear=True), patch.object(build.shutil, 'which', return_value='/path/tool'):
             self.assertEqual(build.tool('opt'), '/path/tool')
 
     def test_sdl_prefix_and_pkg_config_quoting(self):
         with patch.dict(os.environ, {'BT_SDL3': '/SDL install'}, clear=True):
             cflags, libs = build.sdl_flags()
-            self.assertIn('/SDL install/include', cflags)
-            self.assertIn('-L/SDL install/lib', libs)
+            self.assertIn(str(Path('/SDL install/include')), cflags)
+            self.assertIn('-L' + str(Path('/SDL install/lib')), libs)
         with patch.dict(os.environ, {}, clear=True), patch.object(build.shutil, 'which', return_value='pkg-config'), \
              patch.object(build.subprocess, 'run', side_effect=[
                  subprocess.CompletedProcess([], 0, '-I"/SDL install/include"'),
