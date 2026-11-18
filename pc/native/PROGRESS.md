@@ -2073,3 +2073,17 @@ Rennstart, die Saucer-Fahrt, die verwandelte Spielfigur oder die Trennung
 des Duos. Auch fünf Glowbo-Fundflags im synthetischen Speicherstand
 genügten für Wumbas Dialog nicht. Die 46 Referenzen bleiben der geprüfte
 Korpus. Bild- und Laufbelege liegen unter `build/acceptance/q2-followup-2026-11-18/`.
+
+## 2026-11-18 — N1, acht weitere Datenmodule
+
+Die Klungo-, Minenlicht- und Achterbahntabellen umfassen 592 Datenbytes
+mit 28 Relokationen. Preload, Münzkiste, Eier und Quiz umfassen 1.152 Bytes
+mit sechs Relokationen. Zusammen blieben die Lage, der Umfang und die
+Instruktionen aller 103 betroffenen Originalfunktionen erhalten.
+
+Die native Prüfung umfasste 16.768 Funktionen und 9.745 Byte-Swap-Ziele
+je Gruppe. Nach der Integration bestanden der unveränderte IDO-Bau,
+der vollständige Vergleich der dekomprimierten ROM und aller Cartridge-Bytes,
+zehn Testprogramme und 46 Spielabläufe mit 245.660 Retraces. Die Arbeitsliste
+sank von 92 auf 84 Module. Belege liegen unter
+`build/acceptance/n1-2026-11-18/proof/` und in `logs/root-layout4-*-resume.log`.

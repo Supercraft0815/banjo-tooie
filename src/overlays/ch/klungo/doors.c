@@ -2,18 +2,27 @@
 
 OSThread *chklungodoors_entrypoint_0(void)
 {
-    extern u8 D_808004C0_chklungodoors[];
+    extern ActorData D_808004C0_chklungodoors[];
 
     return (OSThread *) D_808004C0_chklungodoors;
 }
 
 OSThread *chklungodoors_entrypoint_1(void)
 {
-    extern u8 D_80800508_chklungodoors[];
+    extern ActorData D_80800508_chklungodoors[];
 
     return (OSThread *) D_80800508_chklungodoors;
 }
 
+typedef struct {
+    s16 map;
+    s16 angle;
+    f32 scale;
+    u16 animation[2];
+    u16 flag;
+    u8 animated;
+    u8 sound;
+} DoorConfig;
 void func_80800018_chklungodoors(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
     s32 _chdoormake_entrypoint_4(Actor *, s32, s32);
@@ -25,16 +34,7 @@ void func_80800018_chklungodoors(Actor *arg0) {
     void func_80103110(void *, s32);
     u32 func_8010A5B0(Actor *, s32);
     void func_8010A800(Actor *, s32);
-    typedef struct {
-        s16 map;
-        s16 angle;
-        f32 scale;
-        s32 unk8;
-        u16 flag;
-        u8 animated;
-        u8 sound;
-    } DoorConfig;
-    extern DoorConfig D_80800490_chklungodoors[];
+    extern DoorConfig D_80800490_chklungodoors[3];
     s32 result;
     s32 i;
     DoorConfig *entry;
@@ -91,16 +91,16 @@ void func_80800234_chklungodoors(Actor *arg0) {
     s32 func_800D9078(f32 *arg0);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_8010A590(Actor *);
-    extern u8 D_8080049E_chklungodoors[];
-    extern u32 D_80800550_chklungodoors;
+    extern DoorConfig D_80800490_chklungodoors[3];
+    extern u32 D_80800550_chklungodoors[8];
     s32 sp2C;
     s32 temp_v0;
 
     _chdoor_entrypoint_0();
-    if (D_8080049E_chklungodoors[arg0->actorData[4] * 0x10] != 0) {
+    if (D_80800490_chklungodoors[arg0->actorData[4]].animated != 0) {
         temp_v0 = _subaddiefade_entrypoint_0(arg0);
         sp2C = temp_v0;
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, temp_v0 > 0, &D_80800550_chklungodoors);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, temp_v0 > 0, D_80800550_chklungodoors);
         _subaddieaudioloop_entrypoint_0(arg0, func_800F10B4((f32) sp2C, 0.0f, 255.0f, 0.7f, 1.4f));
         if (arg0->unk70_10 == 1 && func_800D9078((f32 *)&arg0->actorData[5]) != 0) {
             func_8010A590(arg0);
@@ -114,30 +114,29 @@ s32 func_80800300_chklungodoors(Actor *arg0, s32 arg1, s32 arg2) {
     f32 func_800EC75C(void *, f32 *);
     s32 func_80103140(Actor *, u32, u16);
     void func_8010A570(Actor *);
-    extern u16 D_80800498_chklungodoors[][8];
-    extern u16 D_8080049A_chklungodoors[][8];
-    extern u8 D_8080049E_chklungodoors[];
+    extern DoorConfig D_80800490_chklungodoors[3];
+
+
     f32 sp2C[3];
     void *volatile sp28;
-
     switch (arg1) {
         case 0x95:
             switch (arg0->unk6C_9) {
                 case 0x41F:
-                    func_80103140(arg0, D_80800498_chklungodoors[arg0->actorData[4]][0], arg0->unk0->unk16);
+                    func_80103140(arg0, D_80800490_chklungodoors[arg0->actorData[4]].animation[0], arg0->unk0->unk16);
                     break;
                 case 0x420:
-                    func_80103140(arg0, D_8080049A_chklungodoors[arg0->actorData[4]][0], arg0->unk0->unk16);
+                    func_80103140(arg0, D_80800490_chklungodoors[arg0->actorData[4]].animation[1], arg0->unk0->unk16);
                     break;
             }
             break;
         case 7:
-            if (D_8080049E_chklungodoors[arg0->actorData[4] * 0x10] != 0) {
+            if (D_80800490_chklungodoors[arg0->actorData[4]].animated != 0) {
                 func_8010A570(arg0);
             }
             break;
         case 8:
-            if (D_8080049E_chklungodoors[arg0->actorData[4] * 0x10] != 0) {
+            if (D_80800490_chklungodoors[arg0->actorData[4]].animated != 0) {
                 func_8010A570(arg0);
             }
             break;
@@ -151,3 +150,4 @@ s32 func_80800300_chklungodoors(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
 }
+#include "doors_data.inc"

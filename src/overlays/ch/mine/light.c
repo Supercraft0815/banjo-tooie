@@ -53,9 +53,9 @@ void func_8080011C_chminelight(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     void func_800EDDDC(BtIntPtr, f32 *, f32 *, f32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80800660_chminelight[];
-    extern s32 D_80800674_chminelight[];
-    extern s32 D_80800688_chminelight[];
+    extern s16 D_80800660_chminelight[9];
+    extern s16 D_80800674_chminelight[9];
+    extern s32 D_80800688_chminelight[9];
     u8 (*colors)[3];
     BtIntPtr world;
     s32 rgb[3];
@@ -128,8 +128,8 @@ void func_808004D4_chminelight(Actor *arg0) {
     void func_800C8900(s32, s32 *);
     s32 func_800DA298(s32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80800688_chminelight[];
-    extern u8 D_808006AC_chminelight[];
+    extern s32 D_80800688_chminelight[9];
+    extern ActorData D_808006AC_chminelight[1];
     s32 rgb[5];
     s32 *id;
     u8 *color;
@@ -166,7 +166,7 @@ void func_808004D4_chminelight(Actor *arg0) {
 
 OSThread *chminelight_entrypoint_0(void)
 {
-    extern u8 D_808006AC_chminelight[];
-
+    extern ActorData D_808006AC_chminelight[1];
     return (OSThread *) D_808006AC_chminelight;
 }
+#include "light_data.inc"

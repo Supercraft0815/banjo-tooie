@@ -2,7 +2,7 @@
 
 OSThread *sucoasterfly_entrypoint_0(void)
 {
-    extern u8 D_80802280_sucoasterfly[];
+    extern BtFnWord D_80802280_sucoasterfly[5];
 
     return (OSThread *) D_80802280_sucoasterfly;
 }
@@ -526,7 +526,7 @@ void func_80801108_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1, s32 arg2) 
     void func_80800EF0_sucoasterfly(Unk80132ED0 *arg0, u8 *arg1);
     void func_80800F44_sucoasterfly(Unk80132ED0 *arg0, BtIntPtr arg1);
     void func_80800FA8_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1);
-    extern s32 D_80802294_sucoasterfly;
+    extern s16 D_80802294_sucoasterfly[11];
     extern Actor *_chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw);
     s32 func_80108EF4(void *, s32);
     Actor *sp5C;
@@ -605,7 +605,7 @@ void func_80801108_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1, s32 arg2) 
             }
         }
         if (sp4C) {
-            func_8010D930(1, sp5C->unk70_0, sp5C->position, &D_80802294_sucoasterfly);
+            func_8010D930(1, sp5C->unk70_0, sp5C->position, (s32 *)D_80802294_sucoasterfly);
             _subaddiejoy_entrypoint_10(sp5C, 1.0f, 0.25f);
         }
     }
@@ -629,7 +629,7 @@ s32 func_808014AC_sucoasterfly(Actor *arg0, s32 arg1) {
     f32 func_8010CD28(Actor *);
     void func_80801A80_sucoasterfly(BtIntPtr);
     void func_80801CD0_sucoasterfly(Actor *, s32);
-    extern s32 D_808022AC_sucoasterfly;
+    extern s16 D_808022AC_sucoasterfly[8];
     struct CoasterFlyData {
         f32 position[3];
         f32 speed;
@@ -739,7 +739,7 @@ s32 func_808014AC_sucoasterfly(Actor *arg0, s32 arg1) {
         func_80801CD0_sucoasterfly(arg0, 2);
         break;
     case 12:
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808022AC_sucoasterfly);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808022AC_sucoasterfly);
         break;
     }
     BT_NATIVE_ONLY(return 0;) }
@@ -962,7 +962,7 @@ void func_80801CD0_sucoasterfly(Actor *arg0, s32 arg1) {
     void func_800C4B70(s32);
     void func_800C4B7C(s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern u8 D_808022BC_sucoasterfly[];
+    extern s16 D_808022BC_sucoasterfly[7];
     struct CoasterFlyData {
         u8 pad0[0x11];
         u8 track;
@@ -1128,8 +1128,8 @@ void func_8080215C_sucoasterfly(Actor *arg0) {
 u8 *sucoasterfly_entrypoint_5(Actor *arg0) {
     return (u8 *)func_80100094(arg0, 0U) + 0x1C;
 }
-
 void sucoasterfly_entrypoint_6(BT_NATIVE_ONLY(s32 bt_a0) BT_PASS2(, s32 bt_a1))
 {
     func_80101870(BT_PASS2(bt_a0, bt_a1));
 }
+#include "fly_data.inc"

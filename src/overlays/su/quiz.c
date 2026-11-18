@@ -1,5 +1,5 @@
 #include "su/quiz.h"
-
+typedef struct { s32 id; f32 volume; s32 rate; } QuizSound;
 s32 func_80800000_suquiz(u32 arg0) {
     extern void *D_80127614;
     s32 suquiz_entrypoint_4(void);
@@ -18,13 +18,13 @@ s32 func_80800000_suquiz(u32 arg0) {
 }
 
 f32 func_80800074_suquiz(s32 arg0, s32 arg1, s32 arg2) {
-    extern f32 D_80801050_suquiz[][3][2];
+    extern f32 D_80801050_suquiz[6][3][2];
     return D_80801050_suquiz[arg1][arg2][0];
 }
 
 f32 func_8080009C_suquiz(s32 arg0, s32 arg1, s32 arg2) {
-    extern f32 D_80801054_suquiz[][3][2];
-    return D_80801054_suquiz[arg1][arg2][0];
+    extern f32 D_80801050_suquiz[6][3][2];
+    return D_80801050_suquiz[arg1][arg2][1];
 }
 
 int func_808000C4_suquiz(s32 arg0) { s32 sp18[6]; void func_80015E80(s32, void *); func_80015E80(arg0, sp18); return sp18[1] == 1; }
@@ -64,7 +64,7 @@ void suquiz_entrypoint_0(void) {
         }
     }
 }
-
+struct QuizChoices { int values[4]; };
 void suquiz_entrypoint_1(void) {
     extern void *D_80127614;
     u8 _gcstatusDll_entrypoint_17(void);
@@ -82,9 +82,9 @@ void suquiz_entrypoint_1(void) {
     int count;
     int first;
     int last;
-    struct QuizChoices {
-        int values[4];
-    } choices;
+    struct QuizChoices
+
+choices;
     extern struct QuizChoices D_808010E0_suquiz;
     int running;
 
@@ -218,9 +218,9 @@ u8 suquiz_entrypoint_7(void) {
 
 f32 suquiz_entrypoint_8(s32 arg0) {
     s32 suquiz_entrypoint_4();
-    extern f32 D_80800F94_suquiz[][6][2];
+    extern f32 D_80800F90_suquiz[4][6][2];
     s32 row = suquiz_entrypoint_4();
-    return D_80800F94_suquiz[row][arg0][0];
+    return D_80800F90_suquiz[row][arg0][1];
 }
 
 s32 suquiz_entrypoint_9(s32 arg0) {
@@ -255,8 +255,8 @@ s32 suquiz_entrypoint_11(s32 arg0) {
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) suquiz_entrypoint_12(void) {
     int func_800DC298(f32);
     s32 suquiz_entrypoint_4();
-    extern f64 D_80800F74_suquiz[];
-    BT_NATIVE_ONLY(return) func_800DC298(*(f32 *)&D_80800F74_suquiz[suquiz_entrypoint_4()]);
+    extern f32 D_80800F70_suquiz[4][2];
+    BT_NATIVE_ONLY(return) func_800DC298(D_80800F70_suquiz[suquiz_entrypoint_4()][1]);
 }
 
 void suquiz_entrypoint_13(f32 *arg0) {
@@ -329,7 +329,7 @@ void suquiz_entrypoint_19(s32 arg0) {
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
     extern void *D_80127614;
-    extern f32 D_80800F90_suquiz[][6][2];
+    extern f32 D_80800F90_suquiz[4][6][2];
     s32 pad[6];
     f32 chance;
     f32 duration;
@@ -419,7 +419,7 @@ void suquiz_entrypoint_23(void) {
     s32 func_800D3948();
     s32 suquiz_entrypoint_4();
     extern void *D_80127614;
-    extern f32 D_80800F70_suquiz[][2];
+    extern f32 D_80800F70_suquiz[4][2];
     if (func_800D3948() != 0) {
         (((Objquiz_suquiz_entrypoint_23_D_80127614 *)D_80127614)->unk20) = (f32) ((f32) (s32) _gcstatusDll_entrypoint_17() * 60.0f);
     } else {
@@ -460,9 +460,9 @@ void suquiz_entrypoint_27(void) {
 
 void suquiz_entrypoint_28(s32 arg0, s32 arg1, s32 arg2) {
     void func_800C3F48(u32);
-    extern s32 D_808010FC_suquiz;
+    extern QuizSound D_808010FC_suquiz[7][4];
     void *temp_v0;
-
     temp_v0 = (arg1 * 0x30) + (arg0 * 0xC) + (s8 *)&D_808010FC_suquiz;
     func_800C3F48(((*(s32 *)temp_v0 & 0x7FF) + (((*(s32 *)((s8 *)temp_v0 + 8) >> 5) & 0x3FF) << 11)) + (((u32)(*(f32 *)((s8 *)temp_v0 + 4) * 1023.0f) & 0x7FF) << 21));
 }
+#include "quiz_data.inc"

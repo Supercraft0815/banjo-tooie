@@ -3371,7 +3371,7 @@ segments:
     subsegments: 
       - [0x01F67B30, c, preload]
       - [0x01F67D80, .rodata, preload]
-      - [0x01F67DD0, data, preload]
+      - [0x01F67DD0, .data, preload]
       - [0x01F67E60, bss, preload]
   - name: bapulse_header
     dir: overlays/bapulse
@@ -6603,7 +6603,7 @@ segments:
     subsegments: 
       - [0x01FED700, c, doors]
       - [0x01FEDB80, .rodata, doors]
-      - [0x01FEDB90, data, doors]
+      - [0x01FEDB90, .data, doors]
       - [0x01FEDC70, bss, doors]
   - name: chklungoleave_header
     dir: overlays/chklungoleave
@@ -8948,7 +8948,7 @@ segments:
     subsegments: 
       - [0x0206A430, c, light]
       - [0x0206AA70, .rodata, light]
-      - [0x0206AA90, data, light]
+      - [0x0206AA90, .data, light]
       - [0x0206AB30, bss, light]
   - name: chlakemonster_header
     dir: overlays/chlakemonster
@@ -10791,7 +10791,7 @@ segments:
     subsegments: 
       - [0x020A2050, c, coinbox]
       - [0x020A24A0, .rodata, coinbox]
-      - [0x020A24C0, data, coinbox]
+      - [0x020A24C0, .data, coinbox]
       - [0x020A2560, bss, coinbox]
   - name: chgoldstatue_header
     dir: overlays/chgoldstatue
@@ -13397,7 +13397,7 @@ segments:
     subsegments: 
       - [0x02116C80, c, egg]
       - [0x02116E80, .rodata, egg]
-      - [0x02116E80, data, egg]
+      - [0x02116E80, .data, egg]
       - [0x02116EF0, bss, egg]
   - name: gcextra_header
     dir: overlays/gcextra
@@ -15924,7 +15924,7 @@ segments:
     subsegments: 
       - [0x0215DD10, c, fly]
       - [0x0215FEF0, .rodata, fly]
-      - [0x0215FF90, data, fly]
+      - [0x0215FF90, .data, fly]
       - [0x0215FFE0, bss, fly]
   - name: suchase_header
     dir: overlays/suchase
@@ -16361,7 +16361,7 @@ segments:
     subsegments: 
       - [0x0216CF50, c, hit]
       - [0x0216DBF0, .rodata, hit]
-      - [0x0216DC00, data, hit]
+      - [0x0216DC00, .data, hit]
       - [0x0216DC80, bss, hit]
   - name: sueggmisc_header
     dir: overlays/sueggmisc
@@ -16684,7 +16684,7 @@ segments:
     subsegments: 
       - [0x02173D80, c, quiz]
       - [0x02174C80, .rodata, quiz]
-      - [0x02174CF0, data, quiz]
+      - [0x02174CF0, .data, quiz]
       - [0x02174FD0, bss, quiz]
   - name: sulights_header
     dir: overlays/sulights

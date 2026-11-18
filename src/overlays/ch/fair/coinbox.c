@@ -115,23 +115,23 @@ void func_80800264_chfaircoinbox(Actor *arg0, s32 arg1, s32 arg2) {
         return;
     }
 }
+typedef struct {
+    u16 unk0;
+    u16 unk2;
+    u16 unk4;
+    u16 unk6;
+    u32 unk8;
+    u16 unkC;
+    u16 unkE;
+    s16 unk10;
+    u16 unk12;
+    u16 unk14;
+    u8 unk16;
+    u8 unk17;
+    u8 unk18;
+} DialogRecord;
 
 void func_808002CC_chfaircoinbox(Actor *arg0) {
-    typedef struct {
-        u16 unk0;
-        u16 unk2;
-        u16 unk4;
-        u16 unk6;
-        u32 unk8;
-        u16 unkC;
-        u16 unkE;
-        s16 unk10;
-        u16 unk12;
-        u16 unk14;
-        u8 unk16;
-        u8 unk17;
-        u8 unk18;
-    } DialogRecord;
     u32 _subaddiedialog_entrypoint_7(Actor *, f32 *, DialogRecord *);
     void func_80090734(s32, f32 *);
 #ifndef BT_NATIVE
@@ -177,15 +177,15 @@ void chfaircoinbox_entrypoint_1(Unk80132ED0 *arg0) {
 }
 
 s32 func_808003C4_chfaircoinbox(Actor *arg0, s32 arg1, s32 arg2) {
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    extern u32 D_808004B8_chfaircoinbox;
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
+    extern f32 D_808004B8_chfaircoinbox[4];
     s16 *data = (s16 *)&arg2;
     switch (arg1) {
         case 0x2E:
             func_80800264_chfaircoinbox(arg0, data[0], data[1]);
             break;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_808004B8_chfaircoinbox, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_808004B8_chfaircoinbox, arg0->scale);
             break;
         default:
             return 0;
@@ -195,7 +195,7 @@ s32 func_808003C4_chfaircoinbox(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfaircoinbox_entrypoint_2(void)
 {
-    extern u8 D_808004C8_chfaircoinbox[];
-
+    extern ActorData D_808004C8_chfaircoinbox[];
     return (OSThread *) D_808004C8_chfaircoinbox;
 }
+#include "coinbox_data.inc"
