@@ -1,9 +1,11 @@
 # Playable ILP32 port
 
 The current game build compiles the decompiled C to wasm32, applies the LLVM
-passes, translates it with wasm2c and links it with the SDL3 host. The supported
-runtime is currently macOS; Linux/Windows runtime work is tracked as A3 in
-`../FAHRPLAN_SOH.md`. Platform link flags alone do not complete those ports.
+passes, translates it with wasm2c and links it with the SDL3 host. The software
+renderer and game logic passed the same 29 recorded scenarios on Apple Silicon,
+Debian arm64 and the x86-64 Windows executable under Wine. The macOS GPU passes
+the intro image comparison. Mesa llvmpipe and the Wine OpenGL path still exceed
+its tolerance. Physical Windows hardware has yet to be checked.
 
 Run commands from the repository root. The guest stage requires the existing N64
 build/extracted assets and your local ROM, clang >= 19, the LLVM tools/libraries

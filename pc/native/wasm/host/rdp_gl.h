@@ -229,8 +229,16 @@ void rdp_gpu_share(void *window) {
     SDL_GL_SetAttribute(SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 0);
 }
 
-// The calling thread owns the context: tasks and buffer swaps come from one game thread at a time.
+// VI buffer swaps and graphics tasks run on different host threads. WGL requires an
+// explicit release by the previous owner before another thread can bind the context.
+static _Thread_local SDL_GLContext previous_context;
+static void gpu_release(void) {
+    if (!SDL_GL_MakeCurrent(previous_context ? gpu_window : NULL, previous_context))
+        bt_fatal("releasing SDL render context: %s", SDL_GetError());
+}
+
 static void gpu_init(void) {
+    previous_context = SDL_GL_GetCurrentContext();
     if (!gpu.context || !SDL_GL_MakeCurrent(gpu_window, gpu.context)) bt_fatal("SDL render context: %s", SDL_GetError());
     if (gpu.draw) return;
     pthread_t completion;
@@ -1397,6 +1405,7 @@ static void gpu_register(u32 address, int width, int widescreen) {
     gpu_target_init(t, address, width, width * 3 / 4, sx, sy, 0);
     gpu_import(t, fresh);
     if (t->changed) gpu_publish(t);
+    gpu_release();
 }
 
 // Frame interpolation: the in-between image is its own target, started from the picture the task
@@ -1416,6 +1425,7 @@ static void gpu_interp_target(void) {
 }
 
 static void gpu_interp_begin(void) {
+    gpu_init();
     gpu_finish();
     gpu_pass_begin();
     glBindFramebuffer(GL_READ_FRAMEBUFFER, gpu.pre.fbo);
@@ -1431,11 +1441,14 @@ static void gpu_interp_begin(void) {
 static u32 *gpu_interp_end(int index, unsigned *tex, int *w, int *h, int *sx, int *sy) {
     *w = gpu.ipt.width; *h = gpu.ipt.height; *sx = gpu.ipt.sx; *sy = gpu.ipt.sy;
     if (gpu_share) { *tex = gpu_show(&gpu.ipt, 3 + index); glFlush(); }  // the pass ends here: the window may show it
-    return gpu_pictures() ? gpu_read_picture(&gpu.ipt) : NULL;
+    u32 *picture = gpu_pictures() ? gpu_read_picture(&gpu.ipt) : NULL;
+    gpu_release();
+    return picture;
 }
 #else
 void rdp_gpu_share(void *window) { (void)window; }
 static void gpu_begin(void) { gpu_enabled(); }
+static void gpu_release(void) {}
 static void gpu_end(void) {}
 static int gpu_triangle(const RdpVtx *a, const RdpVtx *b, const RdpVtx *c, int flags) { (void)a; (void)b; (void)c; (void)flags; return 0; }
 static int gpu_texrect(u32 w0, u32 w1, u32 st, u32 dsdt, int flip) { (void)w0; (void)w1; (void)st; (void)dsdt; (void)flip; return 0; }

@@ -2,7 +2,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/mman.h>
+#include "plat.h"
 #include "guest.h"
 
 w2c_bt bt_inst;
@@ -23,6 +23,7 @@ void bt_call_guest(u32 fn, u32 arg, u32 thread) {
     }
 }
 
+#ifndef _WIN32
 // A stray guest pointer faults in the protected memory. Replaces the wasm2c handler, which
 // drops the fault PC: the backtrace alone only names the caller of an inlined or leaf function.
 static void on_fault(int sig, siginfo_t *si, void *uc) {
@@ -37,6 +38,7 @@ static void on_fault(int sig, siginfo_t *si, void *uc) {
     bt_backtrace();
     abort();
 }
+#endif
 
 int main(int argc, char **argv) {
     bt_settings_load();
@@ -45,12 +47,14 @@ int main(int argc, char **argv) {
     if (argc > 1) bt_rom_open(rom);
     wasm_rt_init();
     wasm2c_bt_instantiate(&bt_inst, &env);
+#ifndef _WIN32
     struct sigaction sa = {.sa_sigaction = on_fault, .sa_flags = SA_SIGINFO | SA_ONSTACK};
     sigaction(SIGSEGV, &sa, NULL);
     sigaction(SIGBUS, &sa, NULL);
+#endif
     bt_mem = bt_inst.w2c_memory.data;
     // Guest pointers start at 0x80000000; anything lower is a stray pointer.
-    if (mprotect(bt_mem, 0x80000000u, PROT_NONE) != 0) perror("bt_native: protecting low guest memory");
+    if (!bt_guard_low_memory(bt_mem)) bt_fatal("cannot protect low guest memory");
     BT_SP = w2c_bt_bt_guest_boot_stack_top(&bt_inst);
     w2c_bt_bt_be_fixup(&bt_inst); // relocated words in the data, into big-endian order
     bt_trace_init(rom);

@@ -6,9 +6,7 @@
 int main(void) {
     const u32 fb=0x80010000u, zb=0x80040000u;
     const int width=304, height=228, count=120;
-    bt_inst.w2c_memory.size=0x80200000ull;
-    bt_mem=mmap(NULL,bt_inst.w2c_memory.size,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_ANON,-1,0);
-    assert(bt_mem!=MAP_FAILED);
+    fixture_memory(0x80200000ull);
     rdp_register_framebuffer(fb,width,0);
     // 32x32 RGBA16 checker texture in guest memory.
     for(int i=0;i<1024;i++) wr16(bt_mem+TEX+i*2, i&1 ? 0xF801 : 0x07C1);

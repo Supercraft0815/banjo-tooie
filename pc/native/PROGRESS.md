@@ -1864,3 +1864,20 @@ Kartensektionsfunktionen vollständig auf LLVM-IR-Ebene. Der 180-s-Sweep
 Alle 29 Referenzen und die Original-IDO-Prüfung bestanden. Quellen,
 IR-Vergleich und vollständige ROM-Prüfsummen stehen im Modellnachweis
 unter `build/acceptance/q5-inventory-2026-11-17/`.
+
+## 2026-11-18 — A3, Linux und Windows
+
+Der SDL3-Host lief auf macOS arm64, Debian arm64 und als x86-64-Windows-EXE
+unter Wine. Alle drei Läufe stimmen über 29 Fälle und 162.276 Retraces
+überein. Auf Karte 0x158 stimmen außerdem das Softwarebild bei Retrace 1.400
+und 2.199.168 PCM-Bytes überein. Der Host rundet die gemeinsamen
+Gleitkommaoperationen auf allen drei Plattformen gleich. OpenGL-Kontexte
+werden auf dem besitzenden Thread freigegeben, bevor ein anderer sie nutzt.
+
+Im Intro überschritten auf dem Mac 0 von 2.694 GPU-Bildern die Toleranz,
+unter Linux mit llvmpipe 2.676 und unter Wine 1.854. Die erste Abweichung
+liegt bei Bild 22. Ein gezielter Softwarepfad für einzelne Dreiecke und
+Versuche mit der Koordinatentransformation erreichten die Toleranz ebenfalls
+nicht. Die GPU-Abnahme dieser Plattformen und ein Lauf auf einem physischen
+Windows-Rechner sind offen. Nachweise liegen unter
+`build/acceptance/a3-2026-11-17/`.

@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
@@ -18,6 +19,22 @@ import build
 
 
 class TraceTest(unittest.TestCase):
+    def test_freeze_windows_runtime(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tree = Path(tmp)
+            exe = tree / 'bt_game.exe'
+            exe.write_bytes(b'program')
+            (tree / 'SDL3.DLL').write_bytes(b'library')
+            (tree / 'other.txt').write_text('unrelated')
+            work = tree / 'run'
+            work.mkdir()
+            with patch.object(trace_tools, 'GAME_NAME', 'bt_game.exe'):
+                copy = trace_tools.freeze_game(exe, work)
+            self.assertEqual(copy.name, 'bt_game.exe')
+            self.assertEqual(copy.read_bytes(), b'program')
+            self.assertEqual((work / 'SDL3.DLL').read_bytes(), b'library')
+            self.assertFalse((work / 'other.txt').exists())
+
     def test_guest_layout(self):
         # No generated overlay aliases or ROM assets are needed for these type checks.
         flags = list(build.GUEST_FLAGS)

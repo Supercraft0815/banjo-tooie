@@ -96,6 +96,9 @@ void bt_control_retrace(u32 count, u32 fb, u32 width, u32 age) {
         const char *p = getenv("BT_CONTROL");
         bt_control_on = p && *p && bt_vclock_on;
         if (p && *p && !bt_vclock_on) bt_fatal("BT_CONTROL needs BT_VCLOCK=1");
+#ifdef _WIN32
+        if (bt_control_on) bt_fatal("BT_CONTROL needs POSIX FIFOs");
+#endif
         if (bt_control_on) {
             snprintf(path_in, sizeof path_in, "%s.in", p);
             snprintf(path_out, sizeof path_out, "%s.out", p);

@@ -18,6 +18,8 @@ import sys
 import time
 from pathlib import Path
 
+import trace_tools
+
 ROOT = Path(__file__).resolve().parents[3]
 DIR = ROOT / 'build' / 'play'
 CTL = DIR / 'ctl'
@@ -26,7 +28,7 @@ CTL = DIR / 'ctl'
 def parse_start_args(args):
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('--dir', type=Path)
-    parser.add_argument('--exe', type=Path, default=ROOT / 'build' / 'ilp32' / 'bt_game')
+    parser.add_argument('--exe', type=Path, default=ROOT / 'build/ilp32' / trace_tools.GAME_NAME)
     parser.add_argument('--save', type=Path)
     parser.add_argument('--scale')
     options, rest = parser.parse_known_args(args)

@@ -3,8 +3,12 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <assert.h>
+#ifdef _WIN32
+#include <fcntl.h>
+#include <io.h>
+#else
 #include <sys/mman.h>
-#include <unistd.h>
+#endif
 #include <stdatomic.h>
 typedef uint8_t u8;
 typedef int8_t s8;
@@ -28,6 +32,19 @@ static void bt_os_event(u32 event) { (void)event; }
 #include RDP_SOURCE
 _Noreturn void bt_fatal(const char *fmt, ...) {
     va_list args; va_start(args, fmt); vfprintf(stderr, fmt, args); va_end(args); abort();
+}
+
+static void fixture_memory(size_t size) {
+    bt_inst.w2c_memory.size = size;
+#ifdef _WIN32
+    bt_mem = VirtualAlloc(NULL, size, MEM_RESERVE, PAGE_NOACCESS);
+    assert(bt_mem);
+    assert(VirtualAlloc(bt_mem + 0x80000000u, size - 0x80000000u, MEM_COMMIT, PAGE_READWRITE));
+    assert(_setmode(_fileno(stdout), _O_BINARY) != -1);
+#else
+    bt_mem = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
+    assert(bt_mem != MAP_FAILED);
+#endif
 }
 
 #define FB 0x80001000u
@@ -82,9 +99,7 @@ static void *read_scanout(void *unused) {
 }
 #endif
 int main(void) {
-    bt_inst.w2c_memory.size = 0x80010000ull;
-    bt_mem = mmap(NULL, bt_inst.w2c_memory.size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANON, -1, 0);
-    assert(bt_mem != MAP_FAILED);
+    fixture_memory(0x80010000ull);
 #ifndef BASELINE
     rdp_register_framebuffer(FB, W, 0);
     rdp_register_framebuffer(FB2, W, 0);

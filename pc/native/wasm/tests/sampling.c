@@ -2,9 +2,7 @@
 #include "renderer.c"
 #undef main
 int main(void) {
-    bt_inst.w2c_memory.size=0x80010000ull;
-    bt_mem=mmap(NULL,bt_inst.w2c_memory.size,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_ANON,-1,0);
-    assert(bt_mem!=MAP_FAILED);
+    fixture_memory(0x80010000ull);
     unsigned hash=2166136261u;
     for (int pass=0;pass<3;pass++) {
         for (int i=0;i<4096;i++) bt_mem[TEX+i]=(u8)(i*37+pass*71);

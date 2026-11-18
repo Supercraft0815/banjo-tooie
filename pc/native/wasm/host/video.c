@@ -25,7 +25,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <unistd.h>
 #include "rdp.h"
 #include "retrace.h"
 
@@ -270,7 +269,7 @@ _Noreturn void bt_video_main(void) {
                 if (s) { SDL_SaveBMP(s, path); SDL_DestroySurface(s); }
             }
         }
-        if (headless) { usleep(4000); continue; }
+        if (headless) { SDL_Delay(4); continue; }
         if (shot) {  // F12
             if (!have_pixels) {
                 glBindTexture(GL_TEXTURE_2D, shown);

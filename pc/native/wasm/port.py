@@ -28,10 +28,11 @@ import subprocess
 import sys
 import tempfile
 import corpus
+import trace_tools
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-OUT = ROOT / 'build' / 'ilp32'
+OUT = Path(os.environ.get('BT_OUT', ROOT / 'build/ilp32')).resolve()
 REF = ROOT / 'build' / 'reference'
 CHECKLIST = HERE.parent / 'VARIANTE_A_CHECKLISTE.md'
 TESTS = ['build_test.py', 'play_test.py', 'trace_test.py', 'gate_test.py', 'save_test.py',
@@ -144,7 +145,7 @@ def worklist(phase):
 
 
 def status():
-    print('build: %s' % ((OUT / 'bt_game').exists() and 'build/ilp32/bt_game' or 'none (run build.py)'))
+    print('build: %s' % (OUT / trace_tools.GAME_NAME if (OUT / trace_tools.GAME_NAME).is_file() else 'none (run build.py)'))
     for phase, what in (('traps', 'function traps (Phase 0)'), ('xsym', 'cross-symbol accesses (Phase 1)'),
                         ('data', '.data modules still in asm (Phase 1)'),
                         ('calls', 'IDO call fixes left to FixCalls (Phase 2)'), ('offsets', 'raw byte-offset accesses (Phase 5)'),
@@ -170,7 +171,12 @@ def status():
 
 
 def run_case(exe, name, work):
-    return corpus.record(exe, ROOT / 'baserom.us.z64', work, corpus.CASES[name], dump=False, timeout=3600)
+    case = corpus.CASES[name]
+    # Cross-platform runners can take several real seconds per emulated second.
+    try:
+        return corpus.record(exe, ROOT / 'baserom.us.z64', work, case, dump=False, timeout=max(3600, case['seconds'] * 16))
+    except subprocess.TimeoutExpired:
+        return 124
 
 
 def gate(cases, accept, exe=None):
@@ -187,13 +193,12 @@ def gate(cases, accept, exe=None):
             print('FAIL test %s:\n%s' % (t, (r.stdout + r.stderr)[-2000:]))
             return 1
     print('tests: %d passed' % len(TESTS))
-    return replay(cases, accept, OUT / 'bt_game')
+    return replay(cases, accept, OUT / trace_tools.GAME_NAME)
 
 
 def check_result(name, directory, code, accept):
     import contextlib
     import io
-    import trace_tools
     if code:
         raise ValueError(f'exit {code}, see {directory / "run.log"}')
     if accept:
@@ -221,8 +226,7 @@ def store_reference(directory, name):
 
 def replay(cases, accept, built):
     work = Path(tempfile.mkdtemp(prefix='gate-', dir=ROOT / 'build'))
-    exe = work / 'bt_game'
-    shutil.copy2(built, exe)  # a rebuild during the run must not change the binary
+    exe = trace_tools.freeze_game(built, work)
     failed = 0
     import concurrent.futures  # cases are separate processes and dirs on the virtual clock
     with concurrent.futures.ThreadPoolExecutor(min(len(cases), 4)) as pool:

@@ -1,3 +1,4 @@
+#include "../host/plat.h"
 #define BT_HOST_GUEST_H
 #include <stdint.h>
 #include <assert.h>
@@ -26,7 +27,7 @@ static void poll_keys(void) {
     bt_input_update(0, 1);
 }
 int main(void) {
-    unsetenv("BT_PRESS");
+    bt_unsetenv("BT_PRESS");
     assert(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_GAMEPAD));
     key(SDL_SCANCODE_W, true); key(SDL_SCANCODE_D, true); key(SDL_SCANCODE_SPACE, true);
     poll_keys();
@@ -61,13 +62,13 @@ int main(void) {
     assert(w2c_env_pad_read(NULL, 0) == 0);
     key(SDL_SCANCODE_SPACE,false); poll_keys();
     // A trace must ignore live buttons and stick while still applying BT_PRESS.
-    setenv("BT_TRACE", "fixture.jsonl", 1);
-    setenv("BT_PRESS", "0:50008000", 1);
+    bt_setenv("BT_TRACE", "fixture.jsonl", 1);
+    bt_setenv("BT_PRESS", "0:50008000", 1);
     nscript = -1; bt_vclock_on = 1;
     key(SDL_SCANCODE_Q,true); key(SDL_SCANCODE_D,true); poll_keys();
     v = w2c_env_pad_read(NULL, 0);
     assert(v >> 16 == A && (s8)(v >> 8) == 0 && (s8)v == 80);
-    unsetenv("BT_TRACE"); unsetenv("BT_PRESS");
+    bt_unsetenv("BT_TRACE"); bt_unsetenv("BT_PRESS");
     // Stick: round deadzone, axes reach 80, a round stick's full diagonal reaches the N64's 65/65.
     int sx = 0, sy = 0;
     gate(4000, -4000, &sx, &sy, 0); assert(sx == 0 && sy == 0);

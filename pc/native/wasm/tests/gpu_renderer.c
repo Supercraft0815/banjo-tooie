@@ -6,15 +6,23 @@
 
 static void snapshot(void) { assert(fwrite(bt_mem+FB, 1, 4*4096, stdout) == 4*4096); }
 
+static void *draw_first_task(void *unused) {
+    (void)unused;
+    rdp_begin(); scene(); rdp_end();
+    return NULL;
+}
+
 int main(void) {
     rdp_gpu_share(NULL);
     if (getenv("BT_TEST_NO_BARRIER")) gpu_barrier_available = 0;
-    bt_inst.w2c_memory.size = 0x80010000ull;
-    bt_mem = mmap(NULL, bt_inst.w2c_memory.size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANON, -1, 0);
-    assert(bt_mem != MAP_FAILED);
+    fixture_memory(0x80010000ull);
     rdp_register_framebuffer(FB, W, 0);
     rdp_register_framebuffer(FB2, W, 0);
-    rdp_begin(); scene(); rdp_end(); snapshot();
+    // In the game the VI and graphics tasks live on separate host threads.
+    pthread_t graphics;
+    assert(pthread_create(&graphics, NULL, draw_first_task, NULL) == 0);
+    assert(pthread_join(graphics, NULL) == 0);
+    snapshot();
     // CPU color writes survive another task, and borrowed depth keeps RGBA alpha bits.
     wr16(bt_mem+FB, 0x003F);
     rdp_begin(); target(ZB); fill(0xF80107C1,0,0,W,H); target(FB); rdp_end();

@@ -9,11 +9,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <unistd.h>
+#include "plat.h"
 #include "rdp.h"
 
 static int gpu_enabled(void);
 static void gpu_begin(void), gpu_end(void), gpu_resolve_address(u32 address);
+static void gpu_release(void);
 static void gpu_register(u32 address, int width, int widescreen);
 static void pool_task(int on);
 static int gpu_mask_load(void);
@@ -339,6 +340,7 @@ void rdp_end(void) {
     for (int i = 0; i < 3; i++) if (frames[i].changed) { gpu_finish(); frame_publish(&frames[i]); }
     resolve_all();  // still on the pool
     pool_task(0);
+    if (gpu_enabled()) gpu_release();
     pthread_mutex_unlock(&frame_lock);
 }
 
@@ -439,8 +441,8 @@ static float shifted(float v, int sh) { return sh == 0 ? v : sh < 11 ? v / (floa
 static void sample(int index, float s, float t, int filter, int *restrict o) {
     const Tile *tl = &R.tile[index & 7];
     int ms = (tl->lrs - tl->uls) >> 2, mt = (tl->lrt - tl->ult) >> 2;
-    s = shifted(s, tl->shifts) - tl->uls * 0.25f;
-    t = shifted(t, tl->shiftt) - tl->ult * 0.25f;
+    s = fmaf(-tl->uls, 0.25f, shifted(s, tl->shifts));
+    t = fmaf(-tl->ult, 0.25f, shifted(t, tl->shiftt));
     if (!filter) {
         texel(tl, wrap((int)floorf(s), tl->cms, tl->masks, ms), wrap((int)floorf(t), tl->cmt, tl->maskt, mt), o);
         return;
@@ -760,12 +762,12 @@ static void tri_rows(const Tri *tr, int ya, int yb, u32 *noise) {
             float px = x + 0.5f;
             int in = 1;
             for (int i = 0; i < 3 && in; i++) {
-                float e = ea[i] * px + eb[i] * py + ec[i];
+                float e = fmaf(ea[i], px, eb[i] * py) + ec[i];
                 in = e > 0 || (e == 0 && (ea[i] > 0 || (ea[i] == 0 && eb[i] > 0)));
             }
             if (!in) continue;
             float ox = px - x0, oy = py - y0, a[NA];
-            for (int k = 0; k < NA; k++) a[k] = f[0][k] + dx[k] * ox + dy[k] * oy;
+            for (int k = 0; k < NA; k++) a[k] = fmaf(dy[k], oy, fmaf(dx[k], ox, f[0][k]));
             u32 z = (R.om_l >> 2 & 1) ? R.prim_z : a[A_Z] <= 0 ? 0 : a[A_Z] >= 0x3FFFF ? 0x3FFFF : (u32)a[A_Z];
             // Reject hidden fragments before perspective division, filtering and shading.
             if (dbg != 2 && zon && zp && (R.om_l & 0x10) && !mdefer.on && !depth_pass(zp + x * 2, z, zdz)) continue;
@@ -776,10 +778,10 @@ static void tri_rows(const Tri *tr, int ya, int yb, u32 *noise) {
                 float s = (persp ? a[A_S] * w : a[A_S]) / 32.0f, t = (persp ? a[A_T] * w : a[A_T]) / 32.0f;
                 int t0i = R.tex_tile, t1i = R.tex_tile + 1;
                 if (lod_on) {
-                    float dsx = persp ? (dx[A_S] - s * 32 * dx[A_W]) * w : dx[A_S];
-                    float dtx = persp ? (dx[A_T] - t * 32 * dx[A_W]) * w : dx[A_T];
-                    float dsy = persp ? (dy[A_S] - s * 32 * dy[A_W]) * w : dy[A_S];
-                    float dty = persp ? (dy[A_T] - t * 32 * dy[A_W]) * w : dy[A_T];
+                    float dsx = persp ? fmaf(-s * 32, dx[A_W], dx[A_S]) * w : dx[A_S];
+                    float dtx = persp ? fmaf(-t * 32, dx[A_W], dx[A_T]) * w : dx[A_T];
+                    float dsy = persp ? fmaf(-s * 32, dy[A_W], dy[A_S]) * w : dy[A_S];
+                    float dty = persp ? fmaf(-t * 32, dy[A_W], dy[A_T]) * w : dy[A_T];
                     float l = fmaxf(fmaxf(fabsf(dsx), fabsf(dtx)), fmaxf(fabsf(dsy), fabsf(dty))) / 32.0f;
                     if (l >= 1.0f) {
                         int lv = (int)log2f(l);
@@ -871,7 +873,7 @@ static void *pool_worker(void *unused) {
 static void pool_task(int on) {
     if (on && !pool.started && render_scale > 1 && !gpu_enabled()) {  // scale 1 rasterizes on the caller
         const char *e = getenv("BT_THREADS");
-        long n = e ? atol(e) : sysconf(_SC_NPROCESSORS_ONLN) - 2;
+        long n = e ? atol(e) : bt_cpu_count() - 2;
         pool.nthreads = render_scale == 1 || n < 2 ? 1 : n > 8 ? 8 : (int)n;
         pool.started = 1;
         for (int i = 1; i < pool.nthreads; i++) {
@@ -929,7 +931,7 @@ void rdp_triangle(const RdpVtx *va, const RdpVtx *vb, const RdpVtx *vc, int flag
     float kx = (float)target_sx(), ky = (float)target_sy();
     float x0 = va->x * kx, y0 = va->y * ky, x1 = vb->x * kx, y1 = vb->y * ky;
     float x2 = vc->x * kx, y2 = vc->y * ky;
-    float area = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+    float area = fmaf(x1 - x0, y2 - y0, -((x2 - x0) * (y1 - y0)));
     if (!(fabsf(area) > 1e-6f)) return;
     int persp = R.om_h >> 19 & 1, tex = flags & RDP_TEX, bpp = pixel_bytes();
     float f[3][NA], dx[NA], dy[NA];
@@ -944,8 +946,8 @@ void rdp_triangle(const RdpVtx *va, const RdpVtx *vb, const RdpVtx *vc, int flag
     float inv = 1.0f / area;
     for (int k = 0; k < NA; k++) {
         float d1 = f[1][k] - f[0][k], d2 = f[2][k] - f[0][k];
-        dx[k] = (d1 * (y2 - y0) - d2 * (y1 - y0)) * inv;
-        dy[k] = (d2 * (x1 - x0) - d1 * (x2 - x0)) * inv;
+        dx[k] = fmaf(d1, y2 - y0, -d2 * (y1 - y0)) * inv;
+        dy[k] = fmaf(d2, x1 - x0, -d1 * (x2 - x0)) * inv;
     }
     int bx0 = (int)floorf(fminf(x0, fminf(x1, x2))), by0 = (int)floorf(fminf(y0, fminf(y1, y2)));
     int bx1 = (int)ceilf(fmaxf(x0, fmaxf(x1, x2))) + 1, by1 = (int)ceilf(fmaxf(y0, fmaxf(y1, y2))) + 1;
@@ -958,7 +960,7 @@ void rdp_triangle(const RdpVtx *va, const RdpVtx *vb, const RdpVtx *vc, int flag
     for (int i = 0; i < 3; i++) {  // E = ea*px + eb*py + ec
         ea[i] = -(fy[i] - ey[i]) * sg;
         eb[i] = (fx[i] - ex[i]) * sg;
-        ec[i] = -(ea[i] * ex[i] + eb[i] * ey[i]);
+        ec[i] = -fmaf(ea[i], ex[i], eb[i] * ey[i]);
     }
     int lod_on = tex && (R.om_h >> 16 & 1), filter = (R.om_h >> 12 & 3) != 0, zon = (flags & RDP_Z) != 0;
     u32 zdz = (u32)(fabsf(dx[A_Z]) + fabsf(dy[A_Z]));

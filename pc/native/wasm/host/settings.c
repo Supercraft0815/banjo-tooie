@@ -1,3 +1,4 @@
+#include "plat.h"
 // Persistent option table for the window menu and settings.ini in the user data directory.
 // Environment variables (BT_SCALE, BT_WIDESCREEN, BT_RUMBLE, BT_FPS60, BT_INTERP, BT_FREECAM) win over the file; scripted runs
 // (BT_HEADLESS) ignore the file, so their results never depend on the player's choices.
@@ -59,12 +60,12 @@ void bt_settings_load(void) {
                 if (!strcmp(key, S[i].key)) {
                     S[i].value = clamp(&S[i], atoi(text));
                     snprintf(text, sizeof text, "%d", S[i].value);
-                    if (S[i].env) setenv(S[i].env, text, 0);  // a variable already set wins
+                    if (S[i].env) bt_setenv(S[i].env, text, 0);  // a variable already set wins
                 }
         }
         if (f) fclose(f);
         // BT_RENDERER takes a name, not a number; scripted runs (no file) keep the software reference.
-        setenv("BT_RENDERER", S[BT_SET_RENDERER].value ? "gpu" : "soft", 0);
+        bt_setenv("BT_RENDERER", S[BT_SET_RENDERER].value ? "gpu" : "soft", 0);
     }
     if (getenv("BT_RENDERER")) S[BT_SET_RENDERER].value = !strcmp(getenv("BT_RENDERER"), "gpu");
     for (int i = 0; i < BT_SET_COUNT; i++) {

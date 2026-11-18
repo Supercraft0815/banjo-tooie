@@ -63,11 +63,25 @@ static u32 be32(const u8 *p) { return (u32)p[0] << 24 | p[1] << 16 | p[2] << 8 |
 static s16 be16(const u8 *p) { return (s16)(p[0] << 8 | p[1]); }
 static u32 seg_addr(u32 a) { return 0x80000000u | ((S.seg[a >> 24 & 15] + (a & 0x00FFFFFF)) & 0x00FFFFFF); }
 
+// Match the arm64 renderer's single-rounding operations on every host.
+static float dot3(const float *a, const float *b) {
+    float xy = fmaf(a[0], b[0], a[1] * b[1]);
+    return fmaf(a[2], b[2], xy);
+}
+
+static float transform_component(Mat m, int column, float x, float y, float z) {
+    float xy = fmaf(x, m[0][column], y * m[1][column]);
+    return fmaf(z, m[2][column], xy) + m[3][column];
+}
+
 static void mat_mul(Mat out, Mat a, Mat b) {  // out = a * b (row vectors: a applies first)
     Mat r;
     for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++)
-            r[i][j] = a[i][0] * b[0][j] + a[i][1] * b[1][j] + a[i][2] * b[2][j] + a[i][3] * b[3][j];
+        for (int j = 0; j < 4; j++) {
+            float xy = fmaf(a[i][0], b[0][j], a[i][1] * b[1][j]);
+            float xyz = fmaf(a[i][2], b[2][j], xy);
+            r[i][j] = fmaf(a[i][3], b[3][j], xyz);
+        }
     memcpy(out, r, sizeof r);
 }
 static void mat_ident(Mat m) {
@@ -87,7 +101,7 @@ static int read_mtx(u32 addr, Mat m) {
 }
 
 static void normalize(float *v) {
-    float l = sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+    float l = sqrtf(dot3(v, v));
     if (l > 1e-9f) { v[0] /= l; v[1] /= l; v[2] /= l; }
 }
 // Light directions into object space with the modelview matrix (as F3DEX2 does).
@@ -96,7 +110,7 @@ static void update_lights(void) {
     for (int i = 0; i < 10; i++) {
         const s8 *d = i < 8 ? S.ldir[i] : S.lookat[i - 8];
         float *o = i < 8 ? S.lobj[i] : S.lookobj[i - 8];
-        for (int r = 0; r < 3; r++) o[r] = m[r][0] * d[0] + m[r][1] * d[1] + m[r][2] * d[2];
+        for (int r = 0; r < 3; r++) o[r] = fmaf(m[r][2], d[2], fmaf(m[r][0], d[0], m[r][1] * d[1]));
         normalize(o);
     }
     S.lights_ok = 1;
@@ -112,10 +126,10 @@ static void load_vertices(u32 addr, int n, int v0) {
         if (!p) return;
         float x = be16(p), y = be16(p + 2), z = be16(p + 4);
         float(*m)[4] = S.mvp;
-        v->x = x * m[0][0] + y * m[1][0] + z * m[2][0] + m[3][0];
-        v->y = x * m[0][1] + y * m[1][1] + z * m[2][1] + m[3][1];
-        v->z = x * m[0][2] + y * m[1][2] + z * m[2][2] + m[3][2];
-        v->w = x * m[0][3] + y * m[1][3] + z * m[2][3] + m[3][3];
+        v->x = transform_component(m, 0, x, y, z);
+        v->y = transform_component(m, 1, x, y, z);
+        v->z = transform_component(m, 2, x, y, z);
+        v->w = transform_component(m, 3, x, y, z);
         const u8 *cn = p + 12;
         float nrm[3] = {(s8)cn[0], (s8)cn[1], (s8)cn[2]};
         if (S.geom & (G_LIGHTING | G_TEXTURE_GEN)) normalize(nrm);
@@ -123,9 +137,9 @@ static void load_vertices(u32 addr, int n, int v0) {
             float c[3];
             for (int k = 0; k < 3; k++) c[k] = S.lcol[S.nlights][k];
             for (int l = 0; l < S.nlights; l++) {
-                float d = nrm[0] * S.lobj[l][0] + nrm[1] * S.lobj[l][1] + nrm[2] * S.lobj[l][2];
+                float d = dot3(nrm, S.lobj[l]);
                 if (d > 0)
-                    for (int k = 0; k < 3; k++) c[k] += d * S.lcol[l][k];
+                    for (int k = 0; k < 3; k++) c[k] = fmaf(d, S.lcol[l][k], c[k]);
             }
             for (int k = 0; k < 3; k++) v->c[k] = c[k] > 255 ? 255 : c[k];
         } else {
@@ -134,11 +148,11 @@ static void load_vertices(u32 addr, int n, int v0) {
         v->c[3] = cn[3];
         float s = be16(p + 8), t = be16(p + 10);
         if (S.geom & G_TEXTURE_GEN) {
-            float gx = nrm[0] * S.lookobj[0][0] + nrm[1] * S.lookobj[0][1] + nrm[2] * S.lookobj[0][2];
-            float gy = nrm[0] * S.lookobj[1][0] + nrm[1] * S.lookobj[1][1] + nrm[2] * S.lookobj[1][2];
+            float gx = dot3(nrm, S.lookobj[0]);
+            float gy = dot3(nrm, S.lookobj[1]);
             if (S.geom & G_TEXTURE_GEN_LINEAR) {
-                gx = 1.0f - acosf(gx < -1 ? -1 : gx > 1 ? 1 : gx) * (2.0f / (float)M_PI);
-                gy = 1.0f - acosf(gy < -1 ? -1 : gy > 1 ? 1 : gy) * (2.0f / (float)M_PI);
+                gx = fmaf(-acosf(gx < -1 ? -1 : gx > 1 ? 1 : gx), 2.0f / (float)M_PI, 1.0f);
+                gy = fmaf(-acosf(gy < -1 ? -1 : gy > 1 ? 1 : gy), 2.0f / (float)M_PI, 1.0f);
             }
             s = (gx + 1.0f) * 16384.0f;
             t = (gy + 1.0f) * 16384.0f;
@@ -146,7 +160,7 @@ static void load_vertices(u32 addr, int n, int v0) {
         v->s = s * S.tex_s;
         v->t = t * S.tex_t;
         if (S.geom & G_FOG) {
-            float f = (v->w > 1e-6f ? v->z / v->w : -1.0f) * S.fog_m + S.fog_o;
+            float f = fmaf(v->w > 1e-6f ? v->z / v->w : -1.0f, S.fog_m, S.fog_o);
             v->c[3] = f < 0 ? 0 : f > 255 ? 255 : f;
         }
         v->clip = (v->x < -v->w ? CLIP_NX : 0) | (v->x > v->w ? CLIP_PX : 0) | (v->y < -v->w ? CLIP_NY : 0) |
@@ -159,16 +173,16 @@ static void load_vertices(u32 addr, int n, int v0) {
 static float plane(const Vert *v, int p) {
     switch (p) {
     case 0: return v->w - 1e-3f;
-    case 1: return GUARD * v->w - v->x;
-    case 2: return GUARD * v->w + v->x;
-    case 3: return GUARD * v->w - v->y;
-    default: return GUARD * v->w + v->y;
+    case 1: return fmaf(GUARD, v->w, -v->x);
+    case 2: return fmaf(GUARD, v->w, v->x);
+    case 3: return fmaf(GUARD, v->w, -v->y);
+    default: return fmaf(GUARD, v->w, v->y);
     }
 }
 static void lerp(Vert *o, const Vert *a, const Vert *b, float t) {
     const float *pa = &a->x, *pb = &b->x;
     float *po = &o->x;
-    for (int i = 0; i < 10; i++) po[i] = pa[i] + (pb[i] - pa[i]) * t;
+    for (int i = 0; i < 10; i++) po[i] = fmaf(pb[i] - pa[i], t, pa[i]);
 }
 
 static void draw_poly(Vert *in, int n, int flat_from) {
@@ -192,16 +206,16 @@ static void draw_poly(Vert *in, int n, int flat_from) {
     for (int i = 0; i < n; i++) {
         const Vert *v = &cur[i];
         float iw = 1.0f / v->w;
-        r[i].x = v->x * iw * S.vscale[0] + S.vtrans[0];
-        r[i].y = -v->y * iw * S.vscale[1] + S.vtrans[1];
-        r[i].z = (v->z * iw * S.vscale[2] + S.vtrans[2]) * 256.0f;
+        r[i].x = fmaf(v->x * iw, S.vscale[0], S.vtrans[0]);
+        r[i].y = fmaf(-v->y * iw, S.vscale[1], S.vtrans[1]);
+        r[i].z = fmaf(v->z * iw, S.vscale[2], S.vtrans[2]) * 256.0f;
         r[i].w = v->w;
         memcpy(r[i].c, flat_from >= 0 ? S.v[flat_from].c : v->c, sizeof r[i].c);
         r[i].s = v->s;
         r[i].t = v->t;
     }
     for (int i = 1; i + 1 < n; i++)
-        area += (r[i].x - r[0].x) * (r[i + 1].y - r[0].y) - (r[i + 1].x - r[0].x) * (r[i].y - r[0].y);
+        area += fmaf((r[i].x - r[0].x), (r[i + 1].y - r[0].y), -((r[i + 1].x - r[0].x) * (r[i].y - r[0].y)));
     if ((S.geom & G_CULL_BACK) && area > 0) return;
     if ((S.geom & G_CULL_FRONT) && area < 0) return;
     int flags = (S.geom & G_SHADE ? RDP_SHADE : 0) | (S.tex_on ? RDP_TEX : 0) | (S.geom & G_ZBUFFER ? RDP_Z : 0);
@@ -224,10 +238,10 @@ static void line3d(int a, int b, int wd) {
     if (a >= MAX_VTX || b >= MAX_VTX) return;
     const Vert *p = &S.v[a], *q = &S.v[b];
     if (p->w < 1e-3f || q->w < 1e-3f) return;
-    float ax = p->x / p->w * S.vscale[0] + S.vtrans[0], ay = -p->y / p->w * S.vscale[1] + S.vtrans[1];
-    float bx = q->x / q->w * S.vscale[0] + S.vtrans[0], by = -q->y / q->w * S.vscale[1] + S.vtrans[1];
+    float ax = fmaf(p->x / p->w, S.vscale[0], S.vtrans[0]), ay = fmaf(-p->y / p->w, S.vscale[1], S.vtrans[1]);
+    float bx = fmaf(q->x / q->w, S.vscale[0], S.vtrans[0]), by = fmaf(-q->y / q->w, S.vscale[1], S.vtrans[1]);
     // rdp_triangle scales the expanded quad, including this line width, exactly once.
-    float dx = bx - ax, dy = by - ay, l = sqrtf(dx * dx + dy * dy), h = (1.0f + wd * 0.5f) * 0.5f;
+    float dx = bx - ax, dy = by - ay, l = sqrtf(fmaf(dx, dx, dy * dy)), h = fmaf(wd, 0.5f, 1.0f) * 0.5f;
     if (l < 1e-6f) return;
     float nx = -dy / l * h, ny = dx / l * h;
     RdpVtx r[4];
@@ -237,7 +251,7 @@ static void line3d(int a, int b, int wd) {
         const Vert *v = src[i];
         r[i].x = (i < 2 ? ax : bx) + ox[i];
         r[i].y = (i < 2 ? ay : by) + oy[i];
-        r[i].z = (v->z / v->w * S.vscale[2] + S.vtrans[2]) * 256.0f;
+        r[i].z = fmaf(v->z / v->w, S.vscale[2], S.vtrans[2]) * 256.0f;
         r[i].w = v->w;
         memcpy(r[i].c, v->c, sizeof r[i].c);
         r[i].s = v->s;
@@ -338,7 +352,10 @@ static int ip_decide(int taken) {
 
 static float ip_dist(Mat a, Mat b) {
     float d = 0;
-    for (int c = 0; c < 3; c++) d += (a[3][c] - b[3][c]) * (a[3][c] - b[3][c]);
+    for (int c = 0; c < 3; c++) {
+        float delta = a[3][c] - b[3][c];
+        d = fmaf(delta, delta, d);
+    }
     return d;
 }
 
@@ -386,7 +403,7 @@ static void ip_replay(Mat m) {
         for (int c = 0; c < 3; c++) { d = fmaxf(d, fabsf(a[r][c] - m[r][c])); mag = fmaxf(mag, fabsf(m[r][c])); }
     if (d > 0.5f * mag || ip_dist(a, m) > IP_JUMP * IP_JUMP) return;
     for (int r = 0; r < 4; r++)
-        for (int c = 0; c < 4; c++) m[r][c] = a[r][c] + (m[r][c] - a[r][c]) * IP.t;
+        for (int c = 0; c < 4; c++) m[r][c] = fmaf(m[r][c] - a[r][c], IP.t, a[r][c]);
 }
 
 // In-between pictures per game frame: the VI interval minus one, when the option is on.
@@ -531,12 +548,12 @@ static void run(u32 dl) {
         case 0x03: if (ip_decide(culled((w0 & 0xFFFF) / 2, (w1 & 0xFFFF) / 2))) goto end_dl; break;
         case 0x04: {  // branch if the vertex is nearer than w1
             int i = (w0 & 0xFFF) / 2;
-            int near = 0;
+            int branch_taken = 0;
             if (i < MAX_VTX && S.v[i].w > 1e-6f) {
-                float z = (S.v[i].z / S.v[i].w * S.vscale[2] + S.vtrans[2]) * 32.0f;
-                near = z <= (float)(s32)w1 || S.v[i].clip & CLIP_W;
+                float z = fmaf(S.v[i].z / S.v[i].w, S.vscale[2], S.vtrans[2]) * 32.0f;
+                branch_taken = z <= (float)(s32)w1 || S.v[i].clip & CLIP_W;
             }
-            if (ip_decide(near)) pc = seg_addr(S.half1);
+            if (ip_decide(branch_taken)) pc = seg_addr(S.half1);
             break;
         }
         case 0x05: triangle((w0 >> 16 & 0xFF) / 2, (w0 >> 8 & 0xFF) / 2, (w0 & 0xFF) / 2); break;

@@ -6,7 +6,23 @@ import itertools
 import json
 from pathlib import Path
 import re
+import shutil
 import sys
+
+
+GAME_NAME = 'bt_game.exe' if sys.platform == 'win32' else 'bt_game'
+
+
+def freeze_game(source, directory):
+    """Preserve the executable and adjacent Windows runtime libraries for this run."""
+    source = Path(source).resolve()
+    exe = directory / GAME_NAME
+    shutil.copy2(source, exe)
+    if source.suffix.lower() == '.exe':
+        for dll in source.parent.iterdir():
+            if dll.suffix.lower() == '.dll' and dll.is_file():
+                shutil.copy2(dll, directory / dll.name)
+    return exe
 
 
 def map_defines(out):

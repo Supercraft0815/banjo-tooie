@@ -1,5 +1,9 @@
 // Host services for the guest: ROM image, controller, files, console, zlib and libm.
+#ifdef _WIN32
+#include "plat.h"
+#else
 #include <execinfo.h>
+#endif
 #ifdef __APPLE__
 #include <mach-o/dyld.h>
 #endif
@@ -43,7 +47,12 @@ void bt_backtrace(void) {
 #ifdef __APPLE__  // sweep.py feeds slide and addresses to atos, which also names inlined functions
     fprintf(stderr, "bt_native: image slide 0x%lx\n", (long)_dyld_get_image_vmaddr_slide(0));
 #endif
+#ifdef _WIN32
+    USHORT count = CaptureStackBackTrace(0, 48, frames, NULL);
+    for (USHORT i = 0; i < count; ++i) fprintf(stderr, "bt_native: frame %p\n", frames[i]);
+#else
     backtrace_symbols_fd(frames, backtrace(frames, 48), 2);
+#endif
 }
 
 // wasm2c runtime trap (WASM_RT_TRAP_HANDLER): out-of-bounds access, NULL call, division by zero...
@@ -246,8 +255,8 @@ _Noreturn void w2c_env_unported(struct w2c_env *env, u32 name) {
     bt_fatal("unported %s called", (const char *)G(name));
 }
 
-// Guest files: host FILE pointers in a small table, numbered from 3.
-static FILE *files[32];
+// Guest file descriptors start at 3. SDL handles both disk files and read-only ROM slices.
+static SDL_IOStream *files[32];
 
 // The game's save file (guest/os.c opens "bt_eeprom.bin"): BT_SAVE=path if set; the working
 // directory for scripted runs (BT_HEADLESS, BT_VCLOCK) or when a save is already there; otherwise
@@ -274,9 +283,9 @@ u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
             // "rom:START-END" opens that range of the cartridge image read-only.
             if (sscanf(G(path), "rom:%x-%x", &start, &end) == 2) {
                 if (start > end || end > rom_size) bt_fatal("ROM file %s beyond the image", (char *)G(path));
-                files[i] = fmemopen(rom + start, end - start, "rb");
+                files[i] = SDL_IOFromConstMem(rom + start, end - start);
             } else {
-                files[i] = fopen(bt_host_path(G(path)), G(mode));
+                files[i] = SDL_IOFromFile(bt_host_path(G(path)), G(mode));
             }
             return files[i] ? (u32)i : (u32)-1;
         }
@@ -284,17 +293,17 @@ u32 w2c_env_fopen(struct w2c_env *env, u32 path, u32 mode) {
     return (u32)-1;
 }
 
-static FILE *file(u32 fd) {
+static SDL_IOStream *file(u32 fd) {
     if (fd >= 32 || !files[fd]) bt_fatal("guest file %u is not open", fd);
     return files[fd];
 }
 
-u32 w2c_env_fread(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)fread(G(buf), 1, n, file(fd)); }
-u32 w2c_env_fwrite(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)fwrite(G(buf), 1, n, file(fd)); }
-u32 w2c_env_fseek(struct w2c_env *env, u32 fd, u32 off, u32 whence) { (void)env; return (u32)fseek(file(fd), (s32)off, (int)whence); }
-u32 w2c_env_ftell(struct w2c_env *env, u32 fd) { (void)env; return (u32)ftell(file(fd)); }
+u32 w2c_env_fread(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_ReadIO(file(fd), G(buf), n); }
+u32 w2c_env_fwrite(struct w2c_env *env, u32 fd, u32 buf, u32 n) { (void)env; return (u32)SDL_WriteIO(file(fd), G(buf), n); }
+u32 w2c_env_fseek(struct w2c_env *env, u32 fd, u32 off, u32 whence) { (void)env; return SDL_SeekIO(file(fd), (s32)off, (SDL_IOWhence)whence) < 0 ? (u32)-1 : 0; }
+u32 w2c_env_ftell(struct w2c_env *env, u32 fd) { (void)env; return (u32)SDL_TellIO(file(fd)); }
 u32 w2c_env_fclose(struct w2c_env *env, u32 fd) {
-    int r = fclose(file(fd));
+    int r = SDL_CloseIO(file(fd)) ? 0 : -1;
     (void)env;
     files[fd] = NULL;
     return (u32)r;

@@ -6,7 +6,6 @@ import json
 import os
 from pathlib import Path
 import re
-import shutil
 import subprocess
 import sys
 
@@ -98,7 +97,7 @@ def trace_summary(directory, case):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--exe', type=Path, default=HERE.parents[2] / 'build/ilp32/bt_game')
+    parser.add_argument('--exe', type=Path, default=HERE.parents[2] / 'build/ilp32' / trace_tools.GAME_NAME)
     parser.add_argument('--rom', type=Path, default=HERE.parents[2] / 'baserom.us.z64')
     parser.add_argument('--case', choices=CASES, action='append', help='defaults to all implemented cases')
     parser.add_argument('output', type=Path, help='new artifact directory; never overwrites previous evidence')
@@ -107,8 +106,7 @@ def main():
     try:
         output.mkdir()
         # A rebuild during a long corpus run must not change the binary between replays.
-        exe = output / 'bt_game'
-        shutil.copy2(args.exe.resolve(), exe)
+        exe = trace_tools.freeze_game(args.exe, output)
         results = {}
         for name in args.case or CASES:
             case = CASES[name]

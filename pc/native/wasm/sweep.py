@@ -29,6 +29,7 @@ EXPECTED = {
 }
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import save_editor  # noqa: E402
+import trace_tools
 
 
 def maps():
@@ -71,7 +72,7 @@ def run(exe, rom, out, map_id, exit_id, seconds):
     flags = [(flag, True) for flag in [*range(0x392, 0x39B), *save_editor.START_ABILITIES]]  # as corpus.py
     (directory / 'bt_eeprom.bin').write_bytes(save_editor.edit(bytes(2048), 0, flags, create=True))
     env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
-    env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_WARP=f'{WARP_AT}:{map_id:X}:{exit_id}',
+    env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_SAVE=str(directory / 'bt_eeprom.bin'), BT_WARP=f'{WARP_AT}:{map_id:X}:{exit_id}',
                BT_PRESS=press(WARP_AT, seconds), BT_EXIT_AFTER=str(end),
                BT_TRACE=str(directory / 'trace.jsonl'),
                BT_DUMP=str(directory / 'frame'), BT_DUMP_EVERY='60', BT_DUMP_FROM=str(end - 2.5))
@@ -121,15 +122,14 @@ def main():
     parser.add_argument('--exit', type=int, default=1)
     parser.add_argument('--seconds', type=int, default=25)
     parser.add_argument('--jobs', type=int, default=max(1, (os.cpu_count() or 2) - 2))
-    parser.add_argument('--exe', type=Path, default=ROOT / 'build/ilp32/bt_game')
+    parser.add_argument('--exe', type=Path, default=ROOT / 'build/ilp32' / trace_tools.GAME_NAME)
     parser.add_argument('--rom', type=Path, default=ROOT / 'baserom.us.z64')
     args = parser.parse_args()
     names = maps()
     ids = [int(m, 16) for m in args.map] if args.map else sorted(names)
     out = args.out.resolve()
     out.mkdir(parents=True, exist_ok=True)
-    exe = out / 'bt_game'  # frozen copy: a rebuild during the sweep must not change it
-    shutil.copy2(args.exe, exe)
+    exe = trace_tools.freeze_game(args.exe, out)
     with ThreadPoolExecutor(args.jobs) as pool:
         results = list(pool.map(lambda m: run(exe, args.rom.resolve(), out, m, args.exit, args.seconds), ids))
     counts = {}

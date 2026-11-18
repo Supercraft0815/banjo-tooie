@@ -3,6 +3,7 @@ import contextlib
 import io
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -13,6 +14,11 @@ import port
 
 
 class GateTest(unittest.TestCase):
+    def test_long_emulated_run_has_its_own_deadline(self):
+        with patch.object(port.corpus, 'record', side_effect=subprocess.TimeoutExpired('game', 1)) as record:
+            self.assertEqual(port.run_case(Path('game'), 'new-game', Path('run')), 124)
+            self.assertEqual(record.call_args.kwargs['timeout'], port.corpus.CASES['new-game']['seconds'] * 16)
+
     def test_reference_requires_explicit_accept_and_expected_end_state(self):
         header = dict.fromkeys(('build', 'rom', 'eeprom', 'BT_PRESS', 'BT_SCALE', 'BT_MUTE'), 'fixture')
         header.update(format='bt-trace-1', clock='vclock-build-local')

@@ -15,7 +15,7 @@ import math
 import os
 from pathlib import Path
 import re
-import shutil
+import trace_tools
 import struct
 import subprocess
 import sys
@@ -93,8 +93,7 @@ def replay(args):
     import corpus
     output = args.output.resolve()
     output.mkdir()  # Never overwrite prior evidence or saves.
-    exe = output / 'bt_game'
-    shutil.copy2(args.exe.resolve(), exe)
+    exe = trace_tools.freeze_game(args.exe, output)
     results = {}
     for name in args.case or corpus.CASES:
         case = corpus.CASES[name]
@@ -107,7 +106,7 @@ def replay(args):
                     bytes(2048), 0, [(f, True) for f in case['flags']], create=True))
             env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
             env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_RENDERER=renderer,
-                       BT_EXIT_AFTER=str(seconds), **corpus.run_env(case),
+                       BT_EXIT_AFTER=str(seconds), BT_SAVE=str(work / 'bt_eeprom.bin'), **corpus.run_env(case),
                        BT_DUMP=str(work / 'frame'), BT_DUMP_EVERY='1')
             with (work / 'run.log').open('w') as log:
                 run = subprocess.run([str(exe), str(args.rom.resolve())], cwd=work, env=env,
@@ -142,7 +141,7 @@ def main():
         else:
             p.add_argument('output', type=Path)
             p.add_argument('--renderer', choices=('gpu',), default='gpu')
-            p.add_argument('--exe', type=Path, default=ROOT / 'build/ilp32/bt_game')
+            p.add_argument('--exe', type=Path, default=ROOT / 'build/ilp32' / trace_tools.GAME_NAME)
             p.add_argument('--rom', type=Path, default=ROOT / 'baserom.us.z64')
             p.add_argument('--case', choices=('intro', 'new-game', 'edited-save', 'worlds'), action='append')
             p.add_argument('--seconds', type=float, help='partial diagnostic replay only')
