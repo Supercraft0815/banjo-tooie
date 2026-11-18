@@ -8,26 +8,32 @@ vom selben Tag.
 Kennzeichen wie in der Checkliste: **[Skript]**, **[Agent]**, **[Mensch]**.
 Aufwand: S = Tage, M = 1–2 Wochen, L = Wochen, XL = Monate (Agent-Zeit, grob).
 
-Umsetzung seit 2026-11-17 (Details/Nachweise in `PROGRESS.md`): P0.1 und P0.2
-abgeschlossen. Sechs lokale Themen-Commits `1565fcf78` bis `103b20ef1`, volles Gate
-PASS, N64-ROM bytegleich; offene Fehler mit zehn isolierten Proben dokumentiert.
-A1 ist unter macOS abgenommen (separate Gast-/Host-Stufen, Host nur aus `gen/`,
-volles Gate PASS); Linux-/Windows-Laufzeitabnahme bleibt A2/A3. Der Agententeil von
-Q1 ist fertig: 14 geprüfte Bildbögen mit Startpunkt, Pause-Menü und Ego-Sicht.
-Der Nutzer lässt den menschlichen Emulatorvergleich und die Abzeichnung vorläufig
-offen (17.11.2026); Q1 insgesamt ist deshalb nicht abgenommen.
-A2 läuft auf dem Mac über SDL3. GPU-Fixture und Intro-Bildvergleich sind grün.
-Die 75-s-Messung ergab zuletzt zwei ausgelassene Retraces bei höchstens einer
-erlaubten. Zahlen und Laufbedingungen stehen im A2-Eintrag in `PROGRESS.md`.
-A8 ist auf macOS abgenommen. Der C-Mixer ist Standard. Der befehlsweise
-Vergleich mit dem Original-Microcode bestand alle 24 registrierten Fälle.
-Bei `new-game` stimmen 83.772.256 PCM-Bytes überein.
+## Arbeitsstand am 18. November 2026
+
+Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausgangsstand vom
+16. November. Die Messergebnisse der einzelnen Änderungen stehen chronologisch in `PROGRESS.md`.
+
+| Paket | Geprüfter Stand | Offene Abnahme |
+|---|---|---|
+| P0 | Arbeitsstand gesichert, bekanntes Fehlverhalten mit zehn Proben dokumentiert | abgeschlossen |
+| Q1 | 14 Bildbögen mit Startpunkt, Pause und Ego-Sicht | Emulatorvergleich und Abzeichnung auf Nutzerwunsch zurückgestellt |
+| Q2 | 46 akzeptierte Fälle mit 245.660 Retraces, darunter fünf Bossbegegnungen und 17 Mehrspielerfälle | weitere Szenen und Verwandlungen |
+| Q3 | Acht Stunden mit Heapprüfung über 194 Karten, alle 46 Referenzen mit Host-Sanitizern bestanden | abgeschlossen |
+| Q4 | Menschlicher 100-%-Durchlauf | auf Nutzerwunsch zurückgestellt |
+| Q5 | Zonenbereinigung und drei Modellzugriffe wieder auf Originalcode, 229 Karten geprüft | weitere handportierte Teile |
+| A1–A3 | Gast und Host getrennt, SDL3 auf dem Mac, 29 gemeinsame Software-Referenzen auf macOS, Linux und unter Wine | A2 zuletzt 8 ausgelassene Retraces in 75 s bei höchstens einem erlaubten. GPU-Bildvergleich auf Mesa und unter Wine offen |
+| A4 | Universal-App, Windows-x64-ZIP und Linux-AppImages privat gebaut und mit echtem Intro gestartet | privater Tag-Lauf, Prüfung des Paketinhalts durch den Nutzer, macOS-Signatur und Notarisierung |
+| A5–A7 | ImGui-Menü und vier Eingabeplätze, GPU-Zielgrößen und HUD bis 4K geprüft, Interpolations- und Scanout-Tests bestanden | A7-Messung am externen 4K/60-Hz-Display auf Nutzerwunsch zurückgestellt |
+| A8 | C-Mixer als Standard, 24 Fälle gegen den Microcode, 83.772.256 identische PCM-Bytes in `new-game` | macOS-Abnahme abgeschlossen |
+| A9–A11 | A9 in Erprobung. A11-Absturzberichte auf macOS, Linux und unter Wine geprüft | A9-Mod-Paket und A10-Wunschliste. Die Wunschliste ist auf Nutzerwunsch zurückgestellt |
+| N1–N3 | 92 offene Datenmodule nach zwei ROM-exakten Serien, N2 von 163 auf 150 ungültige Aufrufvarianten, LP64-Umbau läuft | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
+| N4–N6 | Der direkte native Build setzt N1–N3 voraus | Umstellung nach dem Spike, Entscheidung über Little-Endian nach N5 |
 
 ---
 
-## 1. Wo der Port steht
+## 1. Ausgangsstand am 16. November 2026
 
-| Merkmal | SM64-Port / Ship of Harkinian | Banjo-Tooie heute | Paket |
+| Merkmal | SM64-Port / Ship of Harkinian | Banjo-Tooie am 16. November | Paket |
 |---|---|---|---|
 | Spielcode | direkt für x64/arm64 kompiliert | C → wasm32 → wasm2c → nativ (32-Bit-Sandbox) | N4, N5 |
 | Byte-Reihenfolge | Little-Endian, Assets beim Laden konvertiert | Big-Endian-Speicher über den Pass `bt-bigendian` | N6 |

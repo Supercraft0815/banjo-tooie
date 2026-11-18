@@ -30,7 +30,7 @@ typedef struct {
     void *(*unk0)(void *, void *);
     void (*update)(void *, void *);
     void (*free)(void *);
-    s32 unkC;
+    BtFnWord unkC;
     void (*unk10)(void *, u8);
 } ModuleEntry;
 extern ModuleEntry D_808008C0_vpmodule[];

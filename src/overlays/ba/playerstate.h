@@ -92,5 +92,8 @@ typedef struct player_state_s {
         struct bs_kazfly_s *kazfly;
     };
 } PlayerState;
+#ifndef BT_NATIVE
+typedef char bt_assert_player_state[(sizeof(PlayerState) == 0x18C) ? 1 : -1];
+#endif
 
 #endif

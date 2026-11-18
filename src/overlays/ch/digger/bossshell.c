@@ -37,7 +37,7 @@ void func_80800018_chdiggerbossshell(Actor *arg0) {
 /* extern */
 
 void func_808000B4_chdiggerbossshell(Actor *arg0) {
-    s32 _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
+    BtIntPtr _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
     f32 func_800D8FF8(void);
     void func_800EF174(f32 *, f32 *, f32);
     void func_800F1A88(f32 *, f32 *);

@@ -75,6 +75,9 @@ typedef struct {
     /* 0x28 */ u32 unk28;
     /* 0x2C */ u32 unk2C;
 } Unk80132ED0;
+#ifndef BT_NATIVE
+typedef char bt_assert_marker[(sizeof(Unk80132ED0) == 0x30) ? 1 : -1];
+#endif
 
 // size: unknown
 // Plain members sharing a word swap only where memory itself is little-endian; the ILP32 guest keeps
@@ -387,6 +390,9 @@ typedef struct Actor {
     /* 0x9B */ u8 alpha;
 #endif
 } Actor;
+#ifndef BT_NATIVE
+typedef char bt_assert_actor[(sizeof(Actor) == 0x9C) ? 1 : -1];
+#endif
 
 typedef struct ActorData {
     s16 unk0;

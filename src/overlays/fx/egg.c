@@ -101,13 +101,13 @@ BtIntPtr fxegg_entrypoint_4(f32 arg0[3], f32 arg1) {
     return sp1C;
 }
 
-s32 fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2) {
-    s32 _fxdlsmoke_entrypoint_0(f32 *);
+BtIntPtr fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2) {
+    BtIntPtr _fxdlsmoke_entrypoint_0(f32 *);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
     void func_800EFA20(void *, void *, f32);
     extern s32 D_80800614_fxegg[7];
-    s32 sp34;
+    BtIntPtr sp34;
     f32 sp28[3];
 
     sp34 = _fxdlsmoke_entrypoint_0(arg0);

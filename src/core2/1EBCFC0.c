@@ -579,8 +579,8 @@ void func_800E46E0(Gfx** gfx, void* addr) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012D500 BT_DATA(4, bss_core2bss2_1, 0xBC0);
-s32 D_8012D504 BT_DATA(4, bss_core2bss2_1, 0xBC4);
+BT_ILP32_ONLY(s32 D_8012D500 BT_DATA(4, bss_core2bss2_1, 0xBC0);)
+BT_ILP32_ONLY(s32 D_8012D504 BT_DATA(4, bss_core2bss2_1, 0xBC4);)
 s32 D_8012D508 BT_DATA(4, bss_core2bss2_1, 0xBC8);
 Mtx * D_8012D554 BT_DATA(4, bss_core2bss2_1, 0xC14);
 #endif

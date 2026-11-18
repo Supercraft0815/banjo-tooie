@@ -3,7 +3,7 @@
 void func_80800000_chtorpedo(u8 *arg0, u8 *arg1)
 {
   BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
-  s32 _fxdlsmoke_entrypoint_0(u8 *);
+  BtIntPtr _fxdlsmoke_entrypoint_0(u8 *);
   s32 *new_var;
   BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
   extern s32 D_808008F4_chtorpedo[9];

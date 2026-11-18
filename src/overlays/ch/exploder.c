@@ -351,7 +351,7 @@ void func_80800A18_chexploder(Actor *arg0) {
     chexploder_entrypoint_9(arg0, 2, 1);
 }
 
-s32 func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
+BtIntPtr func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
     typedef struct { f32 m[4][4]; } MtxF;
     typedef struct { u8 pad0[0x10]; s16 anim; } ExploderMarker;
     void *func_80100094(Actor *, u32);
@@ -594,7 +594,7 @@ void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void *func_80106790();
     u8 *func_801084B0(BtIntPtr, void **);
     s32 func_80108944(u8 *, void *);
-    s32 func_80800AC8_chexploder(u8 *, void *, u8 *, s32);
+    BtIntPtr func_80800AC8_chexploder(u8 *, void *, u8 *, s32);
     void *sp30;
     u8 *temp_v0;
     void *temp_s1;

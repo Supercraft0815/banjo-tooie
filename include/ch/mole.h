@@ -20,7 +20,7 @@ typedef struct {
 	/* 0x34 */ u32* unk34;
 	/* 0x38 */ u32* unk38; //80107C2C
 	/* 0x3C */ u32 unk3C;
-	/* 0x40 */ u32 unk40; //func_80800000
+	/* 0x40 */ BtFnWord unk40; //func_80800000
 	/* 0x44 */ u32 unk44;
 	/* 0x48 */ u32 unk48;
 

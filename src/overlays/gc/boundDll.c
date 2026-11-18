@@ -197,7 +197,7 @@ BtIntPtr func_808006A8_gcboundDll(u8 *arg0, s16 *arg1) {
     return ((*(u32 *)arg1 >> 9) * 0x18) + func_80800688_gcboundDll(arg0, arg1);
 }
 
-s32 func_808006E0_gcboundDll(u8 *arg0, s16 *arg1)
+BtIntPtr func_808006E0_gcboundDll(u8 *arg0, s16 *arg1)
 {
     BT_NATIVE_ONLY(return) func_808006A8_gcboundDll(arg0, arg1);
 }

@@ -44,7 +44,7 @@ void func_800A5C28(void);
 void func_800A5C94(void);
 void func_800A5CC4(void);
 void func_800A5CF0(s32);
-void func_800A5CFC(void);
+s32 func_800A5CFC(void);
 void func_800A5D1C(void);
 void *func_800A5D60(void);
 void func_800A5D6C(void);

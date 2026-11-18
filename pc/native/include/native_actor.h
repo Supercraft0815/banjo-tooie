@@ -219,7 +219,7 @@ s32 func_80102F74(void *, s32);
 s32 func_80102FA0(ActorData *, s32);
 void func_80102FDC(void *, f32);
 void func_80102FE8(void *, s32);
-void func_80103014(u8 *);
+s32 func_80103014(u8 *);
 void func_80103040(Actor *);
 void func_80103110(void *, s32);
 OSThread *func_80107C20(void);

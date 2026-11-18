@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80800000_chegggrenade(Actor *arg0) {
-    s32 _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
+    BtIntPtr _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
     void _suegg_entrypoint_20(Actor *, f32 *);
     f32 func_800D8FF8(void);
     void func_800EE7F8(f32 *, f32 *);

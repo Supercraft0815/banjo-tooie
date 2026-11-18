@@ -239,7 +239,7 @@ void func_808004A0_chinflatableboss(Actor *arg0) {
     void func_8080183C_chinflatableboss(Actor *);
     void func_80801B04_chinflatableboss(Actor *);
     s32 func_80801CB4_chinflatableboss(Actor *);
-    s32 func_8080200C_chinflatableboss(Actor *, f32 *, f32 *);
+    BtIntPtr func_8080200C_chinflatableboss(Actor *, f32 *, f32 *);
     void func_80802058_chinflatableboss(Actor *);
     void func_80802264_chinflatableboss(Actor *, f32, f32, f32 *, s16);
     void func_80802450_chinflatableboss(Actor *);
@@ -653,7 +653,7 @@ void func_80801164_chinflatableboss(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_808012EC_chinflatableboss(Actor *, f32[3], s32);
     void func_80801904_chinflatableboss(Actor *, s32, f32 *);
-    s32 func_80801FC0_chinflatableboss(u8 *, f32 *, f32 *);
+    BtIntPtr func_80801FC0_chinflatableboss(u8 *, f32 *, f32 *);
     void func_80802AD8_chinflatableboss(Actor *, s32, s32);
     struct anctrl_s *func_80104248(void *);
     void func_8008B1C8(struct anctrl_s *, f32);
@@ -1123,13 +1123,13 @@ void func_80801F4C_chinflatableboss(Actor *arg0) {
     func_80802A2C_chinflatableboss(func_80106790(sp24), (Unk80132ED0 *)sp28, 0x14, 0x438);
 }
 
-s32 func_80801FC0_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
+BtIntPtr func_80801FC0_chinflatableboss(u8 *arg0, f32 *arg1, f32 *arg2) {
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_80802F90_chinflatableboss[];
     BT_NATIVE_ONLY(return) func_800BABB8(0, arg1, arg2, (((Actor *)arg0)->scale) * 0.75f, &D_80802F90_chinflatableboss);
 }
 
-s32 func_8080200C_chinflatableboss(Actor *arg0, f32 *arg1, f32 *arg2) {
+BtIntPtr func_8080200C_chinflatableboss(Actor *arg0, f32 *arg1, f32 *arg2) {
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s32 D_80802FC4_chinflatableboss[];
     BT_NATIVE_ONLY(return) func_800BABB8(0, arg1, arg2, (arg0->scale) * 0.75f, &D_80802FC4_chinflatableboss);

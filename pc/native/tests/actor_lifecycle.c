@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #define CHECK(x) do {if(!(x)){fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,#x);exit(1);}}while(0)
 /* Player/camera, animation containers, effects and render consumers are observed boundaries. */
-u32 D_80127194;
+extern f32 D_80127194;
 extern s32 D_80135A50,D_80124390;
 static ActorData settings;
 static int initialized,updated,alternate,destroyed,activated,loads,unloads,stop_init,stop_activate;

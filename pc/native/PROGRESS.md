@@ -2025,3 +2025,32 @@ Unicode-Dateinamen. Auf beiden Mac-Architekturen bestand der Paketstart mit
 Ein nativer Windows-Hardwarelauf steht aus. Protokolle und Fehlerproben
 liegen unter `build/acceptance/a11-2026-11-17/` und
 `build/acceptance/a4-2026-11-18/`.
+
+## 2026-11-18 — A2, Messung nach dem Entsperren
+
+Auf dem aktiven internen Retina-Display (120 Hz) lief die 75-s-Eingabefolge
+mit dem synthetischen Weltenspielstand, GPU und vierfacher Auflösung durch.
+Acht Retraces wurden ausgelassen, davon sieben nach der ersten Sekunde.
+Der längste Renderauftrag dauerte 212,14 ms. Während des Laufs liefen auch
+die x64-Containerprüfungen und die macOS-Indizierung. Die Grenze von
+höchstens einem ausgelassenen Retrace wurde überschritten. Die vollständige
+Messung mit Einstellungen, Binärdatei-Hash und Systemlast liegt unter
+`build/acceptance/a7-2026-11-18/a2-unlock-20261118-065020/`.
+
+## 2026-11-18 — N3, LP64-Übersetzung und N64-Strukturgrößen
+
+Alle 1.109 Spielmodule lassen sich mit der 64-Bit-Hostkonfiguration syntaktisch
+übersetzen. Vorher scheiterten 14 Module. Die Zahl der gemeldeten Mischungen von
+Zeigern und Ganzzahlen sank von 1.075 auf 1.064. Korrigiert wurden unter anderem
+Rückgabewerte für Partikel, Funktionsadressen in den Mole- und VP-Tabellen,
+Kamerazeiger und die Deklarationen der nativen Schnittstellen. Die N64-Header
+prüfen die Größen von Actor (0x9C), Marker (0x30) und PlayerState (0x18C).
+
+Nach dem erneuten Übersetzen aller 1.114 C-Quelldateien im Original-IDO-Prüfbaum
+bestanden `make check` und der Bytevergleich für 35.098.224 dekomprimierte sowie
+33.554.432 Cartridge-Bytes. Der Vergleich aller kanonischen Gastfunktionen ergab
+keine Abweichung. Zehn Testprogramme und 46 Spielabläufe mit 245.660 Retraces
+bestanden. Der zusätzliche Linkversuch für den älteren CMake-Lebenszyklustest
+stoppt beim Übersetzen der separaten Kollisionsdatei und des Skelettparameters
+in `customhits_native.inc`. Der Befund und die Prüfläufe liegen unter
+`build/acceptance/n3-2026-11-18/`.

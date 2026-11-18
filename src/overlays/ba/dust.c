@@ -71,7 +71,7 @@ void badust_entrypoint_1(void *arg0) {
 
 typedef struct player_state_s PlayerState;
 void badust_entrypoint_2(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
-    s32 _fxdlsmoke_entrypoint_0(f32 *);
+    BtIntPtr _fxdlsmoke_entrypoint_0(f32 *);
     void func_800BA22C(BtIntPtr, s32);
     void func_800BA450(BtIntPtr, s16, s16, s16, s16, s16, s16);
     void func_800BA5BC(void *, f32, f32);
@@ -117,7 +117,7 @@ void badust_entrypoint_3(PlayerState *arg0, f32 arg1, f32 arg2) {
 }
 
 s32 badust_entrypoint_4(void *arg0, f32 arg1, f32 arg2) {
-    s32 _fxdlsmoke_entrypoint_0(f32 *);
+    BtIntPtr _fxdlsmoke_entrypoint_0(f32 *);
     void func_8009C128(PlayerState *, f32[3]);
     void func_800BA22C(BtIntPtr, s32);
     void func_800BA450(BtIntPtr, s16, s16, s16, s16, s16, s16);

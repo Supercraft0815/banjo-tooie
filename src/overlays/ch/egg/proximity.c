@@ -86,7 +86,7 @@ void func_80800164_cheggproximity(ProximityActor *arg0 BT_PASS2(, s32 bt_a1)) {
 }
 
 void func_808001CC_cheggproximity(Actor *arg0) {
-    s32 _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
+    BtIntPtr _fxegg_entrypoint_5(f32 arg0[3], f32 arg1[3], f32 arg2);
     void _suegg_entrypoint_20(Actor *, f32 *);
     f32 func_800D8FF8(void);
     void func_800EE7F8(f32 *, f32 *);

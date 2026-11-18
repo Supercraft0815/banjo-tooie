@@ -32,7 +32,7 @@ s32 func_800BDC5C(void);
 void func_800BDC68(void *);
 void func_800BDC90(void *);
 void func_800BDCB8(void);
-void func_800BDCDC(void);
+s32 func_800BDCDC(void);
 void func_800BDD00(void);
 NativeWorldCell **func_800BDD24(s32 *);
 s32 func_800BE09C(NativeWorldCell **,s32 *);
