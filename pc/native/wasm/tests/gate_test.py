@@ -14,6 +14,21 @@ import port
 
 
 class GateTest(unittest.TestCase):
+    def test_unvisited_map_reasons_use_sweep_evidence_without_counting_warps_as_replays(self):
+        known = {1: 'seen', 2: 'other', 3: 'static', 4: 'reached', 5: 'invalid', 6: 'excluded'}
+        probes = [{'map': '02', 'status': 'other-map', 'last_map': 'AF'}, {'map': '03', 'status': 'static'},
+                  {'map': '04', 'status': 'ok'}, {'map': '05', 'status': 'ok'}]
+        with patch.object(port.corpus.sweep, 'maps', return_value=known), \
+             patch.object(port.corpus.sweep, 'EXPECTED', {5: 'dummy map'}), \
+             patch.object(port.corpus, 'CASES', {'another-case': {'expected_map': 6}}):
+            missing = port.corpus.missing_maps({'case': {'maps': {'1': 2}}}, probes)
+        self.assertEqual(set(missing), set(known.values()) - {'seen'})
+        self.assertIn('0xAF', missing['other'])
+        self.assertIn('five seconds', missing['static'])
+        self.assertIn('repeat and image checks', missing['reached'])
+        self.assertEqual(missing['invalid'], 'dummy map')
+        self.assertIn('another-case', missing['excluded'])
+
     def test_long_emulated_run_has_its_own_deadline(self):
         with patch.object(port.corpus, 'record', side_effect=subprocess.TimeoutExpired('game', 1)) as record:
             self.assertEqual(port.run_case(Path('game'), 'new-game', Path('run')), 124)

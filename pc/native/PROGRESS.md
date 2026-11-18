@@ -2054,3 +2054,22 @@ bestanden. Der zusätzliche Linkversuch für den älteren CMake-Lebenszyklustest
 stoppt beim Übersetzen der separaten Kollisionsdatei und des Skelettparameters
 in `customhits_native.inc`. Der Befund und die Prüfläufe liegen unter
 `build/acceptance/n3-2026-11-18/`.
+
+## 2026-11-18 — Q2, Gründe je unbesuchter Karte
+
+Der Korpusbericht ordnet jeder unbesuchten benannten Karte einen Grund zu.
+Mit `corpus.py --sweep-summary <summary.json>` verwendet er zusätzlich die
+beobachtete Zielkarte oder das stehende Bild aus dem Karten-Sweep. Bei den
+46 akzeptierten Abläufen und 229 Warp-Proben blieben 172 benannte Karten
+ohne akzeptierten Besuch. Von diesen erreichten 97 ihr Warp-Ziel, 66
+endeten auf einer anderen Karte, vier zeigten ein stehendes Schlussbild und
+fünf sind als ungültige Einstiege bekannt.
+Die Zuordnung liegt unter `build/acceptance/q2-multiplayer-2026-11-17/unvisited-map-reasons.json`.
+
+Die Wiederholungen für Chilly-Willy (0x12C), Rennen (0x161), Saucer of
+Peril (0x124), Wumba, Mumbo und Solo-Spiel im Tempel ergaben reproduzierbare
+Kartenfolgen. Auf den Einzelbildern fehlten der aktive Bosskampf, der
+Rennstart, die Saucer-Fahrt, die verwandelte Spielfigur oder die Trennung
+des Duos. Auch fünf Glowbo-Fundflags im synthetischen Speicherstand
+genügten für Wumbas Dialog nicht. Die 46 Referenzen bleiben der geprüfte
+Korpus. Bild- und Laufbelege liegen unter `build/acceptance/q2-followup-2026-11-18/`.

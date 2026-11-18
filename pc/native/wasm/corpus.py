@@ -5,11 +5,11 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import os
 from pathlib import Path
-import re
 import subprocess
 import sys
 
 import save_editor
+import sweep
 import trace_tools
 import corpus_worlds
 import corpus_bosses
@@ -107,10 +107,43 @@ def trace_summary(directory, case):
     return {'build': header['build'], 'retraces': last['retrace'], 'maps': maps, 'last_map': last['map']}
 
 
+def missing_maps(results, sweep_results=()):
+    known = sweep.maps()
+    seen = {int(key) for row in results.values() for key in row['maps']}
+    probes = {int(row['map'], 16): row for row in sweep_results}
+    unvisited = {}
+    for key, name in known.items():
+        if key in seen:
+            continue
+        probe = probes.get(key, {})
+        targets = [case for case, route in CASES.items() if route['expected_map'] == key]
+        if targets:
+            reason = 'Available replay outside this selection: ' + ', '.join(targets)
+        elif key in sweep.EXPECTED:
+            reason = sweep.EXPECTED[key]
+        elif probe.get('status') == 'other-map':
+            reason = f"Warp probe finished on map 0x{probe['last_map']}. No reviewed replay stops on this map."
+        elif probe.get('status') == 'static':
+            reason = 'Warp probe reached the map, but its final picture stayed still for at least five seconds.'
+        elif probe.get('status') == 'ok':
+            reason = 'A warp probe reached the destination. No gameplay replay there has passed repeat and image checks.'
+        elif probe:
+            reason = 'Warp probe status: ' + probe['status']
+        elif '_CS_' in name or name.endswith('_STILL'):
+            reason = 'No reviewed replay triggers this scripted scene.'
+        elif 'WUMBA' in name or 'MUMBO' in name:
+            reason = 'No reviewed replay enters this hut with the interaction and game state required for its scene.'
+        else:
+            reason = 'No reviewed replay visits this location in the selected cases.'
+        unvisited[name] = reason
+    return unvisited
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--exe', type=Path, default=HERE.parents[2] / 'build/ilp32' / trace_tools.GAME_NAME)
     parser.add_argument('--rom', type=Path, default=HERE.parents[2] / 'baserom.us.z64')
+    parser.add_argument('--sweep-summary', type=Path, help='add per-map warp observations from sweep.py summary.json')
     parser.add_argument('--case', choices=CASES, action='append', help='defaults to all implemented cases')
     parser.add_argument('output', type=Path, help='new artifact directory; never overwrites previous evidence')
     args = parser.parse_args()
@@ -140,15 +173,16 @@ def main():
             result['identical_frame_dumps'] = len(images)
             results[name] = result
         # A map appearing in a trace is not a completed boss, transformation or minigame test.
-        known = dict((int(value, 16), name) for name, value in re.findall(
-            r'\b(MAP_\w+)\s*=\s*(0x[0-9A-Fa-f]+)', (save_editor.ROOT / 'include/maps.h').read_text()))
-        seen = {int(key) for row in results.values() for key in row['maps']}
+        probes = json.loads(args.sweep_summary.read_text())['results'] if args.sweep_summary else ()
+        missing = missing_maps(results, probes)
         summary = {'format': 'bt-corpus-1', 'cases': results,
-                   'unvisited_named_maps': [name for key, name in known.items() if key not in seen],
+                   'unvisited_named_maps': list(missing), 'unvisited_map_reasons': missing,
                    'acceptance': {'emulator_comparison': False, 'human_playthrough': False,
                                   'all_bosses': False, 'all_minigames': False,
                                   'all_transformations': False, 'multiplayer': corpus_multiplayer.CASES.keys() <= results.keys()}}
         (output / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+        for name, reason in missing.items():
+            print(f'{name}: {reason}')
         print(f'PASS: {len(results)} scenarios; {len(summary["unvisited_named_maps"])} named maps still unvisited')
     except (OSError, ValueError, StopIteration, subprocess.SubprocessError) as error:
         parser.exit(2, f'Corpus failed: {error}\n')
