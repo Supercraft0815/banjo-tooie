@@ -1,7 +1,7 @@
 #include "ch/mole.h"
 
 extern MoveData D_808001E0_chmole_maya[];
-extern D_808000D0 D_80800210_chmole_maya;
+extern ActorData D_80800210_chmole_maya;
 
 void func_80800000_chmole_maya(Actor* a0, u32 a1, u32 a2)
 {
@@ -60,7 +60,7 @@ s32 func_80800180_chmole_maya(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chmole_maya_entrypoint_1(void)
 {
-    extern u8 D_80800258_chmole_maya[];
-
+    extern ActorData D_80800258_chmole_maya[];
     return (OSThread *) D_80800258_chmole_maya;
 }
+#include "_maya_data.inc"

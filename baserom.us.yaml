@@ -3955,7 +3955,7 @@ segments:
     subsegments: 
       - [0x01F74220, c, swit]
       - [0x01F74FC0, .rodata, swit]
-      - [0x01F74FD0, data, swit]
+      - [0x01F74FD0, .data, swit]
       - [0x01F75010, bss, swit]
   - name: chpickups_header
     dir: overlays/chpickups
@@ -4792,7 +4792,7 @@ segments:
     subsegments: 
       - [0x01F9FB30, c, eatopage]
       - [0x01F9FE60, .rodata, eatopage]
-      - [0x01F9FE60, data, eatopage]
+      - [0x01F9FE60, .data, eatopage]
       - [0x01F9FEB0, bss, eatopage]
   - name: chwarriorbaddy_header
     dir: overlays/chwarriorbaddy
@@ -6297,7 +6297,7 @@ segments:
     subsegments: 
       - [0x01FDE000, c, appearfx]
       - [0x01FDE950, .rodata, appearfx]
-      - [0x01FDE970, data, appearfx]
+      - [0x01FDE970, .data, appearfx]
       - [0x01FDE9F0, bss, appearfx]
   - name: chbilldrillplate_header
     dir: overlays/chbilldrillplate
@@ -7576,7 +7576,7 @@ segments:
     subsegments: 
       - [0x02015920, c, squits]
       - [0x02015EC0, .rodata, squits]
-      - [0x02015ED0, data, squits]
+      - [0x02015ED0, .data, squits]
       - [0x02016050, bss, squits]
   - name: chbottlesplantgrill_header
     dir: overlays/chbottlesplantgrill
@@ -8242,7 +8242,7 @@ segments:
     subsegments: 
       - [0x02038680, c, _maya]
       - [0x02038860, .rodata, _maya]
-      - [0x02038860, data, _maya]
+      - [0x02038860, .data, _maya]
       - [0x02038920, bss, _maya]
   - name: chmole_mine_header
     dir: overlays/chmole_mine
@@ -13340,7 +13340,7 @@ segments:
     subsegments: 
       - [0x02115200, c, sectionDll]
       - [0x02115410, .rodata, sectionDll]
-      - [0x02115410, data, sectionDll]
+      - [0x02115410, .data, sectionDll]
       - [0x02115970, bss, sectionDll]
   - name: gccubesearch_header
     dir: overlays/gccubesearch
@@ -14632,7 +14632,7 @@ segments:
     subsegments: 
       - [0x0212E3E0, c, wibble]
       - [0x0212EB40, .rodata, wibble]
-      - [0x0212EB50, data, wibble]
+      - [0x0212EB50, .data, wibble]
       - [0x0212EBB0, bss, wibble]
   - name: idtwinklea_header
     dir: overlays/idtwinklea
@@ -14841,7 +14841,7 @@ segments:
     subsegments: 
       - [0x0213C800, c, wibble]
       - [0x0213CEF0, .rodata, wibble]
-      - [0x0213CF00, data, wibble]
+      - [0x0213CF00, .data, wibble]
       - [0x0213CF60, bss, wibble]
   - name: vpflicker_header
     dir: overlays/vpflicker
@@ -15544,7 +15544,7 @@ segments:
     subsegments: 
       - [0x0214CDC0, c, markersDll]
       - [0x0214CE50, .rodata, markersDll]
-      - [0x0214CE50, data, markersDll]
+      - [0x0214CE50, .data, markersDll]
       - [0x0214E090, bss, markersDll]
   - name: suexpressjoint_header
     dir: overlays/suexpressjoint
@@ -16095,7 +16095,7 @@ segments:
     subsegments: 
       - [0x021650F0, c, customhits]
       - [0x02165430, .rodata, customhits]
-      - [0x02165440, data, customhits]
+      - [0x02165440, .data, customhits]
       - [0x02165450, bss, customhits]
   - name: subaddielink_header
     dir: overlays/subaddielink
@@ -16456,7 +16456,7 @@ segments:
     subsegments: 
       - [0x0216E760, c, egg]
       - [0x0216F590, .rodata, egg]
-      - [0x0216F5A0, data, egg]
+      - [0x0216F5A0, .data, egg]
       - [0x0216F5E0, bss, egg]
   - name: sueggmove_header
     dir: overlays/sueggmove

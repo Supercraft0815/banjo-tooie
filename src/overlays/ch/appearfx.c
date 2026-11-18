@@ -1,8 +1,8 @@
 #include "common.h"
-
+typedef struct { s32 image; f32 scale; } AppearImage;
 OSThread *chappearfx_entrypoint_0(void)
 {
-    extern u8 D_80800990_chappearfx[];
+    extern ActorData D_80800990_chappearfx[];
 
     return (OSThread *) D_80800990_chappearfx;
 }
@@ -157,7 +157,7 @@ void func_808003A0_chappearfx(Actor *arg0, u8 *arg1) {
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
-    extern s32 D_80800970_chappearfx[][2];
+    extern AppearImage D_80800970_chappearfx[4];
     f32 size;
     ImageStruct *image;
     s32 i;
@@ -170,7 +170,7 @@ void func_808003A0_chappearfx(Actor *arg0, u8 *arg1) {
     particle = data->particles;
     arg0->unk7C_12 = 1;
     if (data->count != 0) {
-        image = func_800D674C(D_80800970_chappearfx[data->image][0]);
+        image = func_800D674C(D_80800970_chappearfx[data->image].image);
         func_800E2588((data->flags & 0x10) ? 0 : 1);
         func_800E2594((BtUIntPtr)arg1, image);
         func_800E24D8(1);
@@ -269,8 +269,8 @@ s32 chappearfx_entrypoint_3(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 func_80103EAC(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
-    extern f32 D_80800974_chappearfx[][2];
-    extern u8 D_808009D8_chappearfx[];
+    extern AppearImage D_80800970_chappearfx[4];
+    extern s16 D_808009D8_chappearfx[9];
     typedef struct {
         s16 count, capacity, flags, radius, upper, lower;
         u8 alpha, active;
@@ -285,7 +285,6 @@ s32 chappearfx_entrypoint_3(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 capacity;
     volatile f32 scale;
     AppearData *data;
-
     scale = *(f32 *)&arg3;
     source = func_80106790((Unk80132ED0 *)arg0);
     actor = func_80108528(0x3D9, source->position, 0, &source);
@@ -306,7 +305,7 @@ s32 chappearfx_entrypoint_3(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     data->flags = arg1;
     _subaddielink_entrypoint_0(data->link);
     data->kind = arg2;
-    func_80102FDC(actor, D_80800974_chappearfx[arg2][0]);
+    func_80102FDC(actor, D_80800970_chappearfx[arg2].scale);
     if (arg1 & 2) {
         _subaddieaudioquick_entrypoint_2(actor, actor->position, D_808009D8_chappearfx);
     }
@@ -320,3 +319,4 @@ s32 chappearfx_entrypoint_3(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
         _subaddiefade_entrypoint_2(source);
     }
 BT_NATIVE_ONLY(return 0;)}
+#include "appearfx_data.inc"

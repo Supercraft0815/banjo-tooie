@@ -1,6 +1,6 @@
 #include "common.h"
 
-/* extern */
+typedef struct { s16 map; s16 flags; u8 section; u8 pad; } SectionEntry;
 
 void gcsectionDll_entrypoint_0(s32 arg0, s32 arg1) {
     s32 _gclevel_entrypoint_2();
@@ -46,24 +46,24 @@ void gcsectionDll_entrypoint_1(s32 arg0) {
 }
 
 s16 *func_808000F0_gcsectionDll(s32 arg0, s32 arg1) {
-    extern s16 D_80800212_gcsectionDll[][3];
-    s16 *p = &D_80800212_gcsectionDll[0][2];
-    while (*p != 0) {
-        if (arg0 == *p) return p;
-        p += 3;
+    extern SectionEntry D_80800210_gcsectionDll[228];
+    SectionEntry *p = &D_80800210_gcsectionDll[1];
+    while (p->map != 0) {
+        if (arg0 == p->map) return &p->map;
+        p++;
     }
     if (arg1 != 0) return NULL;
     return NULL;
 }
 
  BtIntPtr gcsectionDll_entrypoint_2(s32 arg0) {
-    extern s16 D_80800210_gcsectionDll[];
+    extern SectionEntry D_80800210_gcsectionDll[228];
     return ((BtIntPtr) func_808000F0_gcsectionDll(arg0, 0) - (BtIntPtr) &D_80800210_gcsectionDll) / 6;
 }
 
 s32 gcsectionDll_entrypoint_3(BtIntPtr arg0, s32 arg1) {
-    extern s16 D_80800212_gcsectionDll[][3];
-    return (D_80800212_gcsectionDll[arg0][0] & arg1) ? 1 : 0;
+    extern SectionEntry D_80800210_gcsectionDll[228];
+    return (D_80800210_gcsectionDll[arg0].flags & arg1) ? 1 : 0;
 }
 
 u8 gcsectionDll_entrypoint_4(s32 arg0) {
@@ -71,10 +71,10 @@ u8 gcsectionDll_entrypoint_4(s32 arg0) {
 }
 
 /* extern */
-
 s32 gcsectionDll_entrypoint_5(s32 arg0) {
     if (func_808000F0_gcsectionDll(arg0, 1) != 0) {
         return 1;
     }
     return 0;
 }
+#include "sectionDll_data.inc"

@@ -1,12 +1,12 @@
 #include "common.h"
 
-s32 *func_80800000_vpwibble(s32 arg0) {
-    struct WibbleEntry {
-        s32 words[3];
-        s16 unkC;
-        s16 id;
-    };
-    extern struct WibbleEntry D_80800700_vpwibble[];
+struct WibbleEntry {
+    f32 values[3];
+    u8 parameters[2];
+    s16 id;
+};
+f32 *func_80800000_vpwibble(s32 arg0) {
+    extern struct WibbleEntry D_80800700_vpwibble[6];
     struct WibbleEntry *temp_v1;
     s32 i;
 
@@ -14,14 +14,14 @@ s32 *func_80800000_vpwibble(s32 arg0) {
     for (i = 0; i < 6; i++) {
         temp_v1 = &D_80800700_vpwibble[i];
         if (arg0 == temp_v1->id) {
-            return temp_v1->words;
+            return temp_v1->values;
         }
     }
-    return D_80800700_vpwibble[0].words;
+    return D_80800700_vpwibble[0].values;
 }
 
 s32 func_808000B0_vpwibble(u8 *arg0, s32 arg1) {
-    s32 *entry;
+    f32 *entry;
     f32 low, high, value;
 
     entry = func_80800000_vpwibble(arg1);
@@ -35,7 +35,7 @@ s32 func_808000B0_vpwibble(u8 *arg0, s32 arg1) {
     high = *(f32 *)(arg0 + 0x10);
     low = *(f32 *)(arg0 + 4);
     *(s16 *)(arg0 + 0x18) = (s32)((high + low) / 2);
-    value = ((f32 *)entry)[1];
+    value = entry[1];
     if (value < 0.0f) {
         *(s16 *)(arg0 + 0x1A) = (s32)-value;
         arg0[0x31] = 2;
@@ -54,8 +54,8 @@ s32 func_808000B0_vpwibble(u8 *arg0, s32 arg1) {
         arg0[0x32] = 0;
     }
     *(f32 *)(arg0 + 0x24) = 0.0f;
-    *(f32 *)(arg0 + 0x28) = 6.2831855f / ((f32 *)entry)[0];
-    value = ((f32 *)entry)[2];
+    *(f32 *)(arg0 + 0x28) = 6.2831855f / entry[0];
+    value = entry[2];
     if (value < 0.0f) {
         *(f32 *)(arg0 + 0x2C) = -value;
     } else {
@@ -160,7 +160,6 @@ void vpwibble_entrypoint_3(void *arg0, s32 arg1, BtUIntPtr arg2, BtIntPtr arg3) 
     f32 height;
     s32 shade;
     f32 offsets[2];
-
     arg3 = arg3 * 0x10 + arg2;
     if (arg2 < (u32)arg3) {
         do {
@@ -184,3 +183,4 @@ void vpwibble_entrypoint_3(void *arg0, s32 arg1, BtUIntPtr arg2, BtIntPtr arg3) 
         } while (arg2 < (u32)arg3);
     }
 }
+#include "wibble_data.inc"

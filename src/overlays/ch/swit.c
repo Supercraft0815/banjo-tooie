@@ -2,21 +2,21 @@
 
 OSThread *chswitch_entrypoint_0(void)
 {
-    extern u8 D_80800DB0_chswitch[];
+    extern BtFnWord D_80800DB0_chswitch[5];
 
     return (OSThread *) D_80800DB0_chswitch;
 }
 
 OSThread *chswitch_entrypoint_1(void)
 {
-    extern u8 D_80800DC4_chswitch[];
+    extern BtFnWord D_80800DC4_chswitch[5];
 
     return (OSThread *) D_80800DC4_chswitch;
 }
 
 OSThread *chswitch_entrypoint_2(void)
 {
-    extern u8 D_80800DD8_chswitch[];
+    extern BtFnWord D_80800DD8_chswitch[5];
 
     return (OSThread *) D_80800DD8_chswitch;
 }
@@ -511,7 +511,6 @@ s32 chswitch_entrypoint_14(Actor *arg0, s32 arg1) {
     void func_80103110(void *, s32);
     s32 sp24;
     s32 temp_v0;
-
     temp_v0 = func_800DA298(arg1);
     sp24 = temp_v0;
     arg0->actorData[7] = arg1;
@@ -525,3 +524,4 @@ s32 chswitch_entrypoint_14(Actor *arg0, s32 arg1) {
     func_80103110(arg0, 0);
     return sp24;
 }
+#include "swit_data.inc"

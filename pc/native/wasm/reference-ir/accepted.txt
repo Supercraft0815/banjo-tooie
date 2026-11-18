@@ -56,3 +56,12 @@ equivalent 32-bit address expressions. All 9,745 initialized swap targets
 match by original data owner and offset. See proof/ir-per-module.json,
 ir-data-linked.json, inner-aliases.json, ir-animation-linked.json and
 animation-aliases.json in build/acceptance/n1-2026-11-18/.
+
+2026-11-18  N1 marker, wibble and dialog tables
+The six table modules preserve all 16,768 normalized game functions and
+9,745 initial byte-swap targets after attributing each target to its data
+owner. The five record modules have two additional inner-label expressions.
+Each resolves to the same original byte offset for every 32-bit index.
+The IDO data bytes and relocations are unchanged for all eleven modules.
+See proof/ir-tables-linked.json, ir-records-linked.json and records-aliases.json
+in build/acceptance/n1-2026-11-18/.

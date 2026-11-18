@@ -1988,3 +1988,20 @@ identischen Retraces. Der mit demselben Clang 23 separat neu gebaute Hauptbaum
 hat dasselbe kanonische IR wie der geprüfte Kandidat. 103 Datenmodule stehen
 weiter auf der Arbeitsliste, gegenüber 113 vor diesem Paket. Die Belege
 liegen unter `build/acceptance/n1-2026-11-18/`.
+
+## 2026-11-18 — N1, elf weitere Datenmodule
+
+Sechs Tabellen mit 5.008 Datenbytes und 774 Relokationen sowie fünf Module
+mit 2.160 Datenbytes und 36 Relokationen liegen jetzt in C. Dazu gehört die
+Markertabelle mit 1.168 Einträgen. Beide Grenzen im Originalcode und der
+Datenumfang bestätigen diese Anzahl. Zwei Innenlabels der zweiten Gruppe
+sind als Feldoffsets nachgewiesen. Die Weldarhead-Umstellung blieb außerhalb
+des Pakets, weil IDO die Dialogfunktion vier Bytes kürzer übersetzte.
+
+Die 114 betroffenen Originalfunktionen haben dieselbe Größe und Lage.
+Im integrierten Baum ergaben der Original-IDO-Lauf und der Vergleich beider
+vollständigen ROM-Abbilder Bytegleichheit. Beide nativen Gruppen wurden über
+16.768 Funktionen und sämtliche 9.745 Byte-Swap-Ziele verglichen. Die neun
+Testprogramme und sämtliche 245.660 Retraces der 46 Fälle bestanden. Die
+Datenliste ist von 103 auf 92 Module gesunken. Die Prüfdaten liegen in
+`build/acceptance/n1-2026-11-18/proof/` unter `*tables*` und `*records*`.

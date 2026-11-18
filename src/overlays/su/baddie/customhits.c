@@ -12,7 +12,7 @@ typedef struct { u8 pad0[0x74]; u8 unk74; } Objcustomhits_arg0; /* offsets.py ge
 
 OSThread *subaddiecustomhits_entrypoint_1(void)
 {
-    extern u8 D_80800350_subaddiecustomhits[];
+    extern BtFnWord D_80800350_subaddiecustomhits[4];
 
     return (OSThread *) D_80800350_subaddiecustomhits;
 }
@@ -136,5 +136,5 @@ f32 subaddiecustomhits_entrypoint_5(Actor *arg0, f32 *arg1) {
     func_800EE7F8(arg1, arg0->position);
     return (f32)(u16)arg0->pad68 * arg0->scale * 1.15f;
 }
-
 #endif
+#include "customhits_data.inc"

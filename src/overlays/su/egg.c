@@ -5,7 +5,7 @@ void *func_80100094(Actor *, u32);
 
 OSThread *suegg_entrypoint_0(void)
 {
-    extern u8 D_80800E40_suegg[];
+    extern BtFnWord D_80800E40_suegg[5];
 
     return (OSThread *) D_80800E40_suegg;
 }    typedef struct { f32 unk0; f32 unk4; s32 unk8; } Objegg_func_8080000C_suegg_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
@@ -88,7 +88,7 @@ void suegg_entrypoint_4(Actor *arg0, s32 arg1) {
     s32 _gcegg_entrypoint_1(u32);
     void func_800FFAB0(Actor *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80800E54_suegg;
+    extern s16 D_80800E54_suegg[8];
     f32 *position[3];
     s32 flag;
     struct {
@@ -104,7 +104,7 @@ void suegg_entrypoint_4(Actor *arg0, s32 arg1) {
         if (!data->flag22) {
             data->flag23 = 0;
             flag = *(u32 *)((u8 *)arg0 + 0x70);
-            func_8010D930(0, (u8)(flag & 1), position[0] = arg0->position, &D_80800E54_suegg);
+            func_8010D930(0, (u8)(flag & 1), position[0] = arg0->position, (s32 *)D_80800E54_suegg);
             if (arg1 != 0) {
                 _fxegg_entrypoint_0(_gcegg_entrypoint_1(arg0->unk6C_9), position[0], arg0->scale);
             }
@@ -521,8 +521,8 @@ void suegg_entrypoint_22(Actor *arg0) {
 
 void suegg_entrypoint_23(Actor *arg0) {
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_80800E64_suegg;
-    func_8010D930(8, 0, arg0->position, &D_80800E64_suegg);
+    extern s16 D_80800E64_suegg[8];
+    func_8010D930(8, 0, arg0->position, (s32 *)D_80800E64_suegg);
 }
 
 /* extern */
@@ -536,7 +536,6 @@ s32 func_80800DC0_suegg(Actor *arg0, s32 arg1) {
         u8 active : 1;
         u8 : 6;
     } *temp_v0;
-
     if ((func_800D3948() == 0) && (func_800F6CC8(arg1) != 0)) {
         temp_v0 = func_80100094(arg0, 0);
         temp_v0->active = 1;
@@ -545,3 +544,4 @@ s32 func_80800DC0_suegg(Actor *arg0, s32 arg1) {
     }
     return 0;
 }
+#include "egg_data.inc"

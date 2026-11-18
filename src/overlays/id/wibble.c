@@ -68,13 +68,13 @@ void idwibble_entrypoint_0(s32 arg0, BtUIntPtr arg1, u8 *arg2, BtIntPtr arg3, vo
 void idwibble_entrypoint_1(s32 arg0) 
 {
 }
-s32 *func_80800324_idwibble(s32 arg0) {
-    struct WibbleEntry {
-        s32 words[3];
-        s16 unkC;
-        s16 id;
-    };
-    extern struct WibbleEntry D_80800770_idwibble[];
+struct WibbleEntry {
+    f32 values[3];
+    u8 parameters[2];
+    s16 id;
+};
+f32 *func_80800324_idwibble(s32 arg0) {
+    extern struct WibbleEntry D_80800770_idwibble[6];
     struct WibbleEntry *temp_v1;
     s32 i;
 
@@ -82,16 +82,16 @@ s32 *func_80800324_idwibble(s32 arg0) {
     for (i = 0; i < 6; i++) {
         temp_v1 = &D_80800770_idwibble[i];
         if (arg0 == temp_v1->id) {
-            return temp_v1->words;
+            return temp_v1->values;
         }
     }
-    return D_80800770_idwibble[0].words;
+    return D_80800770_idwibble[0].values;
 }               typedef struct { u8 pad0[0x18]; s16 unk18; s16 unk1A; u8 pad1C[0x8]; f32 unk24; f32 unk28; f32 unk2C; u8 pad30[0x3]; u8 unk33; s16 unk34; u8 pad36[0x1]; u8 unk37; } Objwibble_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     void func_800EE88C(f32 *, s16 *);
-    s32 *entry;
+    f32 *entry;
     s16 first[3];
     s16 second[3];
     f32 value;
@@ -108,7 +108,7 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     } else {
         *((u8 *)arg0 + 0x33) = 0;
     }
-    value = ((f32 *)entry)[1];
+    value = entry[1];
     if (value < 0.0f) {
         ((Objwibble_arg0 *)arg0)->unk1A = (s32)-value;
         *((u8 *)arg0 + 0x31) = 2;
@@ -130,8 +130,8 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         *((u8 *)arg0 + 0x32) = 0;
     }
     arg0[9] = 0.0f;
-    arg0[10] = 6.2831855f / ((f32 *)entry)[0];
-    value = ((f32 *)entry)[2];
+    arg0[10] = 6.2831855f / entry[0];
+    value = entry[2];
     if (value < 0.0f) {
         arg0[11] = -value;
     } else {
@@ -173,7 +173,7 @@ void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoin
 #else
 void idwibble_entrypoint_4(void *arg0, s32 arg1, s32 arg2) { s32 _glid_entrypoint_0(s32, s32, s32 *, void *); f32 func_800D8FF8(void); extern s32 _idwibble_entrypoint_0; f32 dt = func_800D8FF8(); f32 *velocity = &((Objwibble_arg0 *)arg0)->unk2C; f32 *position = &((Objwibble_arg0 *)arg0)->unk24; *position += dt * *velocity; _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0); }
 #endif
-
 void idwibble_entrypoint_5(void *arg0, s16 arg1) {
     (((Objwibble_arg0 *)arg0)->unk34) = arg1;
 }
+#include "wibble_data.inc"

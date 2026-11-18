@@ -2,7 +2,7 @@
 
 OSThread *chsquits_entrypoint_0(void)
 {
-    extern u8 D_808006D8_chsquits[];
+    extern ActorData D_808006D8_chsquits[];
 
     return (OSThread *) D_808006D8_chsquits;
 }                 typedef struct { u8 pad0[0x2C]; f32 unk2C; u8 pad30[0x3E]; u16 unk6E; } Objsquits_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
@@ -65,7 +65,7 @@ s32 func_80800108_chsquits(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_808001A4_chsquits(Actor *arg0) {
     s32 func_800DC128(s32, s32);
-    extern s16 D_808006C4_chsquits[];
+    extern s16 D_808006C4_chsquits[10];
     s32 count;
     s32 available;
     u32 i;
@@ -110,18 +110,18 @@ void func_80800358_chsquits(Actor *arg0) {
     }
 }
 
+typedef struct {
+    s16 sound;
+    s16 volume;
+    f32 pitch;
+    f32 time;
+} SquitsSound;
+typedef struct {
+    SquitsSound *sounds;
+    s32 count;
+    f32 duration;
+} SquitsSequence;
 void func_808003C4_chsquits(Actor *arg0) {
-    typedef struct {
-        s16 sound;
-        s16 volume;
-        f32 pitch;
-        f32 time;
-    } SquitsSound;
-    typedef struct {
-        SquitsSound *sounds;
-        s32 count;
-        f32 duration;
-    } SquitsSequence;
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800C4B64(f32);
     void func_800C4B70(s32);
@@ -130,7 +130,7 @@ void func_808003C4_chsquits(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     s32 func_80800528_chsquits(f32, f32, f32);
     extern SquitsSequence D_80800694_chsquits[];
-    extern u8 D_80800720_chsquits[];
+    extern s16 D_80800720_chsquits[7];
     s32 pad[2];
     s32 finished;
     f32 previous;
@@ -165,9 +165,9 @@ s32 func_80800528_chsquits(f32 arg0, f32 arg1, f32 arg2) {
 }
 
 /* extern */
-
 void func_80800564_chsquits(void *arg0) {
     s32 func_800DC128(s32, s32);
     (*(s32 *)((s8 *)(arg0) + (0x28))) = func_800DC128(0, 4);
     (*(f32 *)((s8 *)(arg0) + (0x2C))) = 0.0f;
 }
+#include "squits_data.inc"

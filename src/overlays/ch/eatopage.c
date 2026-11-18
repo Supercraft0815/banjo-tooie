@@ -2,7 +2,7 @@
 
 OSThread *chcheatopage_entrypoint_0(void)
 {
-    extern u8 D_80800330_chcheatopage[];
+    extern ActorData D_80800330_chcheatopage[];
 
     return (OSThread *) D_80800330_chcheatopage;
 }
@@ -109,7 +109,6 @@ void func_808002A0_chcheatopage(void *arg0 BT_PASS2(, s32 bt_a1)) {
         func_80103110(arg0, 1);
     }
 }
-
 int func_808002F0_chcheatopage(Actor *arg0) {
     extern u8 D_80800378_chcheatopage[1];
     s32 index;
@@ -118,3 +117,4 @@ int func_808002F0_chcheatopage(Actor *arg0) {
     }
     return 0;
 }
+#include "eatopage_data.inc"
