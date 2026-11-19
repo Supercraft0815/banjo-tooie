@@ -11,8 +11,6 @@ void func_800EFA20(void *,void *,f32),func_800EFB24(void *,void *,void *);
 void func_800EFE50(f32 *,f32 *,f32 *,f32);
 
 typedef struct { void (*unused[4])(void); s32 (*test)(Unk80132ED0 *,Unk80132ED0 *); } MarkerHitCallbacks;
-typedef struct { Unk80132ED0 *marker; s32 sphere; } MarkerHit;
-static Vector *marker_hits;
 
 static u32 marker_collision_mask(void) {
     s16 kind=func_800CB854(NULL);
@@ -85,7 +83,7 @@ Unk80132ED0 *func_800CD820(Unk80132ED0 *self,f32 *start,f32 *end,f32 radius) {
 }
 
 s32 func_800CDBA8(Unk80132ED0 *self,f32 *points,f32 *radii,s32 spheres) {
-    if(marker_hits) vector_clear(marker_hits);
+    marker_hits_clear();
     if(spheres<=0) return 0;
     u32 mask=marker_collision_mask();f32 center[3],position[3],reach;
     func_800EE7F8(center,points);
@@ -116,20 +114,11 @@ s32 func_800CDBA8(Unk80132ED0 *self,f32 *points,f32 *radii,s32 spheres) {
                     result=func_800EEB40(points+3*i,position)<extent*extent;
                 }
                 if(result) {
-                    /* The original 32-entry array can overflow in crowded cells. */
-                    if(!marker_hits) marker_hits=vector_new(sizeof(MarkerHit),32);
-                    MarkerHit *hit=vector_push_back(&marker_hits);
-                    *hit=(MarkerHit){prop->marker,i};break;
+                    marker_hits_append(prop->marker, i);
+                    break;
                 }
             }
         }
     }
-    return marker_hits ? vector_size(marker_hits) : 0;
-}
-
-Unk80132ED0 *func_800CDFA8(s32 index,s32 *sphere) {
-    if(!marker_hits || index<0 || index>=vector_size(marker_hits)) { if(sphere) *sphere=-1; return NULL; }
-    MarkerHit *hit=(MarkerHit *)vector_begin(marker_hits)+index;
-    if(sphere) *sphere=hit->sphere;
-    return hit->marker;
+    return marker_hit_count;
 }

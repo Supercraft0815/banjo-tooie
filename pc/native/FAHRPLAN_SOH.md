@@ -45,6 +45,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Renderfarben und Zeichenaufrufe. Die Zeichenroutine verwendet zusammengehörige Farbwerte, zwei Callback-Paare und die Mittelpunkt- und Radiusfelder des aktiven Assets. Der native Test prüft die Callback-Argumente in voller Zeigerbreite.
 
+- Markertreffer. Die ersten 32 Treffer liegen in den festen Feldern. Weitere Treffer behalten ihren Marker und ihre Kugelnummer in einem erweiterbaren Vektor.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

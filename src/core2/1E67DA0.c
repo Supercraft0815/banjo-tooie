@@ -114,7 +114,7 @@ void func_8008E6F0(PlayerState *arg0) {
     void func_800CB840(s32, BtIntPtr);
     void func_800CB870(void);
     s32 func_800CDBA8(void *, f32 (*)[3], f32 *, s32);
-    BtIntPtr func_800CDFA8(s32, s32 *);
+    BT_NATIVE_ONLY(Unk80132ED0 *) BT_IDO_ONLY(BtIntPtr) func_800CDFA8(s32, s32 *);
     extern f32 D_80126CE0[][3];
     extern f32 D_80126D08[];
     f32 position[3];

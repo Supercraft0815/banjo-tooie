@@ -1,4 +1,53 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "vector.h"
+
+enum { MARKER_HIT_CAPACITY = 32 };
+Unk80132ED0 *D_8012AF70[MARKER_HIT_CAPACITY];
+#ifdef BT_ILP32
+u8 D_8012AFF0[MARKER_HIT_CAPACITY];
+#else
+s32 D_8012AFF0[MARKER_HIT_CAPACITY];
+#endif
+
+typedef struct { Unk80132ED0 *marker; s32 sphere; } MarkerHit;
+static Vector *extra_hits;
+static s32 marker_hit_count;
+
+static void marker_hits_clear(void) {
+    marker_hit_count = 0;
+    if (extra_hits) vector_clear(extra_hits);
+}
+
+static void marker_hits_append(Unk80132ED0 *marker, s32 sphere) {
+    if (marker_hit_count < MARKER_HIT_CAPACITY) {
+        D_8012AF70[marker_hit_count] = marker;
+        D_8012AFF0[marker_hit_count] = sphere;
+    } else {
+        MarkerHit *hit;
+        if (!extra_hits) extra_hits = vector_new(sizeof(MarkerHit), MARKER_HIT_CAPACITY);
+        hit = vector_push_back(&extra_hits);
+        hit->marker = marker;
+        hit->sphere = sphere;
+    }
+    ++marker_hit_count;
+}
+
+Unk80132ED0 *func_800CDFA8(s32 index, s32 *sphere) {
+    MarkerHit *hit;
+    if (index < 0 || index >= marker_hit_count) {
+        if (sphere) *sphere = -1;
+        return NULL;
+    }
+    if (index < MARKER_HIT_CAPACITY) {
+        if (sphere) *sphere = D_8012AFF0[index];
+        return D_8012AF70[index];
+    }
+    hit = (MarkerHit *)vector_begin(extra_hits) + (index - MARKER_HIT_CAPACITY);
+    if (sphere) *sphere = hit->sphere;
+    return hit->marker;
+}
+#endif
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_collision.h"
 static f32 D_8012B010;
@@ -377,8 +426,8 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
     void func_800EF334(f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
 
-    extern u8 D_8012AF70[];
-    extern u8 D_8012AFF0[];
+    BT_IDO_ONLY(extern u8 D_8012AF70[];)
+    BT_IDO_ONLY(extern u8 D_8012AFF0[];)
     register s32 count;
     s32 *cubes;
     f32 center[3];
@@ -400,9 +449,9 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
     f32 *radii;
     Callbacks *callbacks;
 
-    count = 0;
+    BT_NATIVE_ONLY(marker_hits_clear(); if (arg3 <= 0) return 0;) count = 0;
     if (func_800CB854(NULL) != 0) {
-        mask = 1 << (func_800CB854(NULL) + 0x1F);
+        mask = BT_DATA_FIELD(1u << (((u32)func_800CB854(NULL) + 31) & 31), 1 << (func_800CB854(NULL) + 0x1F));
     } else {
         mask = 0;
     }
@@ -472,8 +521,8 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
                                                     result = ((Custom *)custom)->test(marker, point, *radii, contact, ((Marker *)marker)->flags.query.value);
                                                     if (result != 0) {
                                                         ((Marker *)marker)->flags.result.value = result;
-                                                        D_8012AFF0[count] = i;
-                                                        ((u8 **)D_8012AF70)[count] = marker;
+                                                        BT_IDO_ONLY(D_8012AFF0[count] = i;) BT_NATIVE_ONLY(marker_hits_append((Unk80132ED0 *)marker, i);)
+                                                        BT_IDO_ONLY(((u8 **)D_8012AF70)[count] = marker;)
                                                         count++;
                                                         break;
                                                     }
@@ -481,8 +530,8 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
                                                     radius = func_800EC75C(marker, position);
                                                     distance = func_800EEB40(point, position);
                                                     if (distance < (*radii + radius) * (*radii + radius)) {
-                                                        D_8012AF70[count + 0x80] = i;
-                                                        ((u8 **)D_8012AF70)[count] = marker;
+                                                        BT_IDO_ONLY(D_8012AF70[count + 0x80] = i;) BT_NATIVE_ONLY(marker_hits_append((Unk80132ED0 *)marker, i);)
+                                                        BT_IDO_ONLY(((u8 **)D_8012AF70)[count] = marker;)
                                                         count++;
                                                         break;
                                                     }
@@ -508,11 +557,13 @@ next_prop:
     return count;
 }
 
+#ifndef BT_NATIVE
 s32 func_800CDFA8(s32 arg0, s32 *arg1) {
     extern u8 D_8012AF70[];
     *arg1 = D_8012AF70[arg0 + 0x80];
     return *(s32 *)(D_8012AF70 + (arg0 << 2));
 }
+#endif
 
 #endif
 
