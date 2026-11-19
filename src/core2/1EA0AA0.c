@@ -1,33 +1,33 @@
 #include "core2/1EA0AA0.h"
 
-typedef struct CallbackEntry {
-    s16 unk0;
-    Prop *enabled;
-    void (*unk8)(struct CallbackEntry *);
-    void (*callback)(struct CallbackEntry *);
-    void (*update)(struct CallbackEntry *);
-} CallbackEntry;
-extern CallbackEntry D_8011A8A0[5];
+typedef struct MapPropAction {
+    s16 prop_id;
+    Prop *prop;
+    void (*on_find)(struct MapPropAction *);
+    void (*on_trigger)(struct MapPropAction *);
+    void (*on_update)(struct MapPropAction *);
+} MapPropAction;
+#include "map_prop_actions.inc"
 
 
 typedef struct {
     u8 unk0;
     s8 unk1;
 } D_8012760C_unk;
-extern u8 D_8011A904;
-extern s16 D_8011A910[];
+
+
 extern D_8012760C_unk D_8012760C;
-extern s8 D_8012AAF0;    typedef struct { u8 pad0[0x4]; void * unk4; } Obj1EA0AA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+extern s8 D_8012AAF0;
 
 /* extern */
 
-f32 func_800C71B0(BtIntPtr arg0, f32 arg1) {
+f32 func_800C71B0(MapPropAction *action, f32 arg1) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 var_f12;
     f32 var_f2;
     u32 temp_t7;
 
-    temp_t7 = (u32) (*(u16 *)((s8 *)((((Obj1EA0AA0_arg0 *)arg0)->unk4)) + (6))) >> 7;
+    temp_t7 = action->prop->unk6_7;
     if (temp_t7 == 0x32) {
         var_f2 = arg1;
     } else {
@@ -37,41 +37,41 @@ f32 func_800C71B0(BtIntPtr arg0, f32 arg1) {
     return var_f2;
 }
 
-void func_800C7230(s32 arg0)
+void func_800C7230(MapPropAction *action)
 {
-    func_800FF01C(func_800C71B0(arg0, 0.2f));
+    func_800FF01C(func_800C71B0(action, 0.2f));
 }
 
-void func_800C725C(s32 arg0)
+void func_800C725C(MapPropAction *action)
 {
-    func_800C4308(func_800C71B0(arg0, 0.51f), 1.0f);
+    func_800C4308(func_800C71B0(action, 0.51f), 1.0f);
 }
 
-void func_800C7290(s32 arg0)
+void func_800C7290(MapPropAction *action)
 {
-    func_800FC9B4(1, func_800C71B0(arg0, 0.2f));
+    func_800FC9B4(1, func_800C71B0(action, 0.2f));
 }
-void func_800C72C0(s32* arg0)
+void func_800C72C0(MapPropAction *action)
 {
-    if (D_8011A904 != 0)
+    if (D_8011A904.active != 0)
     {
-        D_8011A904 = 0;
-        arg0[1] = 0;
+        D_8011A904.active = 0;
+        action->prop = NULL;
     }
 }
 
-void func_800C72E4(s32 arg0)
+void func_800C72E4(MapPropAction *action)
 {
 }
-void func_800C72EC(s32* arg0)
+void func_800C72EC(MapPropAction *action)
 {
-    if (D_8011A904 != 0) {
-        D_8011A904 = 0;
-        arg0[1] = 0;
+    if (D_8011A904.active != 0) {
+        D_8011A904.active = 0;
+        action->prop = NULL;
     }
 }
 
-void func_800C7310(s32 arg0)
+void func_800C7310(MapPropAction *action)
 {
     _gcgoto_entrypoint_8(0, 0);
 }
@@ -97,16 +97,16 @@ void func_800C7364(s32 arg0, s32 arg1, s32* arg2)
 void func_800C73A4(void) {
     void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
     void func_800FF000(s32);
-    CallbackEntry *ptr;
+    MapPropAction *ptr;
     s32 sp28;
 
     ptr = D_8011A8A0;
     func_800FF000(0);
     func_800FC9B4(0, 0.0f);
     for (; ptr != &D_8011A8A0[5]; ptr++) {
-        ptr->enabled = _gccubesearch_entrypoint_14(ptr->unk0, 0);
-        if (ptr->enabled != 0 && ptr->unk8 != NULL) {
-            ptr->unk8(ptr);
+        ptr->prop = _gccubesearch_entrypoint_14(ptr->prop_id, 0);
+        if (ptr->prop != 0 && ptr->on_find != NULL) {
+            ptr->on_find(ptr);
         }
     }
     sp28 = 0;
@@ -120,19 +120,19 @@ void func_800C73A4(void) {
 }
 
 void func_800C7494(void) {
-    CallbackEntry *ptr;
+    MapPropAction *ptr;
     if (*(u8 *)&D_8012AAF0 != 0) {
         for (ptr = D_8011A8A0; ptr != &D_8011A8A0[5]; ptr++) {
-            if (ptr->enabled != 0 && ptr->callback != NULL) ptr->callback(ptr);
+            if (ptr->prop != 0 && ptr->on_trigger != NULL) ptr->on_trigger(ptr);
         }
     }
 }
 
 void func_800C7500(void) {
-    CallbackEntry *entry;
+    MapPropAction *entry;
     for (entry = D_8011A8A0; entry != &D_8011A8A0[5]; entry++) {
-        if (entry->enabled != 0 && entry->update != NULL) {
-            entry->update(entry);
+        if (entry->prop != 0 && entry->on_update != NULL) {
+            entry->on_update(entry);
         }
     }
     func_800C4308(0.0f, 1.0f);

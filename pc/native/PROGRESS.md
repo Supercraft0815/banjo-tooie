@@ -2744,3 +2744,14 @@ Referenzen überein. Original-IDO bestätigt 16.401 Funktionen und beide
 vollständigen ROM-Abbilder. Die MIPS-Ladebefehle und die Vorher/Nachher-
 Liste stehen in `build/acceptance/n2-2026-11-18/leaf-width-proof.json`
 und `leaf-width-off-variants.json`, die Gesamtläufe in `current-leaf*`.
+
+## 2026-11-19 — N1, HUD-Belegung und Karteneinstellungen
+
+Sechs Tabellenpakete senken die Zahl der aus Assembler bezogenen
+Einträge von 298 auf 234. Der HUD-Test prüft die Belegung und Freigabe
+aller 91 Einträge. Für die Kamera prüft der Einzeltest 617 Kombinationen
+mit den kartenspezifischen Einstellungen. Der gemeinsame Stand besteht
+60 Sanitizertests, elf Gastsuiten und alle 74 Replays mit 447.849
+Retraces. Original-IDO bestätigt 16.401 Funktionen und beide ROM-Abbilder.
+Die Prüfprotokolle liegen unter
+`build/acceptance/n1-2026-11-18/current-six-camera*`.

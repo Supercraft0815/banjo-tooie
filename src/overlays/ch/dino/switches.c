@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 struct SwitchEntry {
     u16 unk0;
     u16 flag;
@@ -113,8 +113,8 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
     s32 func_80800108_chdinoswitches(u8 *arg0);
     extern struct SwitchEntry D_80800B20_chdinoswitches[12];
-    extern u8 D_8011A270[];
-    extern u8 D_8011A248[];
+
+
     s32 unused[2];
     Unk80132ED0 *sp1C;
     s32 index;
@@ -162,7 +162,7 @@ s32 func_808003E8_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80103110(Actor *, u32);
     void _chdinoswitches_entrypoint_4(s32, s32);
-    extern u8 D_8011A248[];
+
     extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     BtIntPtr callback;
     Unk80132ED0 *temp;

@@ -1,8 +1,8 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 struct PrisonBitsChoices { u8 values[15]; };
 
-extern u8 D_8011A270[];
+
 extern u32 D_80800F20_chprisonbits[];
 void _chdoor_entrypoint_0();
 s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);

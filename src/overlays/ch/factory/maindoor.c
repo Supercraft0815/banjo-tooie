@@ -1,5 +1,5 @@
 #include "ch/factory/maindoor.h"
-
+#include "core2/switch_animations.h"
 /* extern */
 
 void func_80800000_chfactorymaindoor(Actor *arg0) {
@@ -158,11 +158,11 @@ OSThread *chfactorymaindoor_entrypoint_2(void)
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 void _chswitch_entrypoint_4();
 u32 D_808004C0_chfactorymaindoor [3] BT_DATA(4, overlays_ch_factory_maindoor, 0x0) = { 0x1305B0, 0x18000A, 0x1330000 };
 u32 D_808004CC_chfactorymaindoor [2] BT_DATA(4, overlays_ch_factory_maindoor, 0xC) = { 0x1304C7, 0x180000 };
 ActorData D_808004D4_chfactorymaindoor [1] BT_DATA(4, overlays_ch_factory_maindoor, 0x14) = { { 285, 1016, 2172, 1, 0, (void (*)(struct Actor *))func_80800078_chfactorymaindoor, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 327680000, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chfactorymaindoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 9218, (void (*)(struct Actor *, long, long))func_808001F0_chfactorymaindoor, 0 } };
-ActorData D_8080051C_chfactorymaindoor [1] BT_DATA(4, overlays_ch_factory_maindoor, 0x5C) = { { 283, 1017, 1977, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800344_chfactorymaindoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808003A8_chfactorymaindoor, 0 } };
-ActorData D_80800564_chfactorymaindoor [1] BT_DATA(4, overlays_ch_factory_maindoor, 0xA4) = { { 835, 1242, 2185, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_4, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080041C_chfactorymaindoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_8080043C_chfactorymaindoor, 0 } };
+ActorData D_8080051C_chfactorymaindoor [1] BT_DATA(4, overlays_ch_factory_maindoor, 0x5C) = { { 283, 1017, 1977, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800344_chfactorymaindoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808003A8_chfactorymaindoor, 0 } };
+ActorData D_80800564_chfactorymaindoor [1] BT_DATA(4, overlays_ch_factory_maindoor, 0xA4) = { { 835, 1242, 2185, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_4, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080041C_chfactorymaindoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_8080043C_chfactorymaindoor, 0 } };

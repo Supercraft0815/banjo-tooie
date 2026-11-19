@@ -5,11 +5,11 @@
 
 typedef struct {
     f32 duration;
-    BT_BITFIELD_ORDER(u16 unk4_2 : 14, u16 type : 2);
-    BT_BITFIELD_ORDER(u16 type : 2, u16 unk4_2 : 14);
-    u16 unk6;
-} AnimationEntry;
+    u16 animation_and_mode;
+    u16 flags;
 
+} AnimationEntry;
+#include "actor_animation_presets.inc"
 void func_8010DAE0(BtIntPtr arg0, s32 arg1) {
     typedef struct anctrl_s AnimCtrl;
     typedef enum asset_e AssetId;
@@ -27,9 +27,9 @@ void func_8010DAE0(BtIntPtr arg0, s32 arg1) {
     extern Entry D_80124740[];
     s32 flags;
 
-    flags = D_80124740[arg1].unk6;
+    flags = D_80124740[arg1].flags;
     anctrl_reset((AnimCtrl *)arg0);
-    anctrl_setIndex((AnimCtrl *)arg0, (*(u32 *)((u8 *)&D_80124740[arg1] + 4) >> 18));
+    anctrl_setIndex((AnimCtrl *)arg0, ACTOR_ANIMATION_ID(D_80124740[arg1]));
     anctrl_setDuration((AnimCtrl *)arg0, D_80124740[arg1].duration);
     if (flags & 1) {
         anctrl_setPlaybackType((AnimCtrl *)arg0, 2);
@@ -146,7 +146,7 @@ void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
             if (state->unk5 == 0) {
                 func_8008B304(control);
                 func_8008C200(state->unk0, (BtIntPtr)func_800B27E0((u8 *)arg2), (BtIntPtr)func_8008AEDC((void *)control));
-                if (D_80124740[arg1].type == 2) {
+                if ((D_80124740[arg1].animation_and_mode & 3) == 2) {
                     buffers = func_800A7180();
                     state->unk10 = (BtIntPtr)((u8 *)buffers[1] + 0x40);
                     control = (BtIntPtr)func_800AE080(state->unk0);
@@ -155,7 +155,7 @@ void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
             }
             control = (BtIntPtr)func_800AE080(state->unk0);
             func_800DF72C(control);
-            switch (D_80124740[arg1].type) {
+            switch ((D_80124740[arg1].animation_and_mode & 3)) {
             case 1:
                 if (state->unk8 == 0) {
                     state->unk8 = func_80100D24((BtIntPtr)arg2, arg0->unk0->unk14, 2, 0, arg0->unk0->unk16, 0);

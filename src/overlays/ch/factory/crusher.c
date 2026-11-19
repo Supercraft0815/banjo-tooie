@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 OSThread *chfactorycrusher_entrypoint_0(void)
 {
     extern ActorData D_80800A50_chfactorycrusher[];
@@ -370,7 +370,7 @@ s32 func_808009BC_chfactorycrusher(Actor *arg0, s32 arg1, s32 arg2) {
 /* data_to_c.py: from asm/data/overlays/ch/factory/crusher.data.s */
 void func_80105834();
 void func_80107C2C();
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_6();
 int func_80101870();
 ActorData D_80800A50_chfactorycrusher [1] BT_DATA(4, overlays_ch_factory_crusher, 0x0) = { { 799, 954, 1866, 1, 0, (void (*)(struct Actor *))func_80800150_chfactorycrusher, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8080067C_chfactorycrusher, 0, 0, 0, 0, 8192, 1024, 0, 0, 28, 0, (void (*)(struct Actor *))func_80800018_chfactorycrusher, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 1026, (void (*)(struct Actor *, long, long))func_80800580_chfactorycrusher, 0 } };

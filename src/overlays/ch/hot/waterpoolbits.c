@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 OSThread *chhotwaterpoolbits_entrypoint_0(void)
 {
     extern ActorData D_80800930_chhotwaterpoolbits[];
@@ -348,7 +348,7 @@ void chhotwaterpoolbits_entrypoint_5(Actor *arg0, f32 arg1) {
     _subaddieaudioquick_entrypoint_2(arg0, sp28, D_80800AC0_chhotwaterpoolbits);
 }
 /* data_to_c.py: from asm/data/overlays/ch/hot/waterpoolbits.data.s */
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);

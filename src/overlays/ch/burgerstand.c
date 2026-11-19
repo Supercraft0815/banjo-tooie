@@ -1,5 +1,5 @@
 #include "ch/burgerstand.h"
-
+#include "core2/switch_animations.h"
 OSThread *chburgerstand_entrypoint_0(void)
 {
     extern ActorData D_80800C28_chburgerstand[];
@@ -398,7 +398,7 @@ extern u8 D_80800C10_chburgerstand[];
 void func_80102EC0();
 void _chdoor_entrypoint_0();
 void _chdoor_entrypoint_1();
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_6();
 s32 D_80800BC0_chburgerstand[10] BT_DATA(4, overlays_ch_burgerstand, 0x0) = { 1, 279576832, 1, -65024, 512, 285540608, 512, -130560, -73729, 303039232 };
 u8 D_80800BE8_chburgerstand[40] BT_DATA(4, overlays_ch_burgerstand, 0x28) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x94, 0x00, 0x00, 0x00, 0xDC, 0x00, 0x01, 0x41, 0x94, 0x00, 0x00, 0x00, 0xDC, 0x00, 0x01, 0x3F, 0xE0, 0x00, 0x00, 0x00, 0xDD, 0x00, 0x02, 0x41, 0x94, 0x00, 0x00, 0x00, 0xDC, 0x00, 0x01 };

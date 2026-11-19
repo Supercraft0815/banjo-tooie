@@ -1,5 +1,5 @@
 #include "ch/minelightswitch.h"
-
+#include "core2/switch_animations.h"
 s32 func_80800000_chminelightswitch(s32 arg0, s32 arg1, s32 arg2) {
     s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
     void _glcutDll_entrypoint_6(u32, u32);
@@ -34,7 +34,7 @@ OSThread *chminelightswitch_entrypoint_0(void)
     return (OSThread *) D_808000C0_chminelightswitch;
 }
 /* data_to_c.py: from asm/data/overlays/ch/mine/lightswitch.data.s */
-extern u8 D_8011A248[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);

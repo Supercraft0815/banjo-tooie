@@ -1,5 +1,5 @@
 #include "ch/crusher.h"
-
+#include "core2/switch_animations.h"
 s32 func_80800000_chcrusher(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80108474(u32, f32 *, s32);
     f32 position[3];
@@ -369,7 +369,7 @@ void func_80107C2C();
 void func_80101870 ( Actor * arg0 , void * arg1 );
 void func_80108ED0();
 extern u8 D_80800CB0_chcrusher[];
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_13();
 void _chswitch_entrypoint_0();
 u32 D_80800B30_chcrusher [6] BT_DATA(4, overlays_ch_crusher, 0x0) = { 0x1304CE, 0xD00E6, 0x1330016, 0x7D000001, 0x1F41388, 0 };
@@ -385,5 +385,5 @@ u32 D_80800CA0_chcrusher [4] BT_DATA(4, overlays_ch_crusher, 0x170) = { 0x1304CB
 u8 D_80800CB0_chcrusher[24] BT_DATA(4, overlays_ch_crusher, 0x180) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4B, 0x18, 0x96, 0x80, 0x00, 0x8D, 0x00, 0x00, 0x41, 0x16, 0xDB, 0x6E, 0x00, 0x8D, 0x00, 0x00 };
 ActorData D_80800CC8_chcrusher [1] BT_DATA(4, overlays_ch_crusher, 0x198) = { { 607, 379, 1668, 1, (void *)D_80800CB0_chcrusher, (void (*)(struct Actor *))func_808008FC_chcrusher, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 8, 1028, (void (*)(struct Actor *))func_80800ACC_chcrusher, 0, 0, 0, (void (*)(struct Actor *))func_80800A98_chcrusher, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32640, 2, 0, 0 } };
 u32 D_80800D10_chcrusher [4] BT_DATA(4, overlays_ch_crusher, 0x1E0) = { 0x1304CD, 0x164650, 0x101F4, 0x13880000 };
-ActorData D_80800D20_chcrusher [1] BT_DATA(4, overlays_ch_crusher, 0x1F0) = { { 8, 381, 1669, 1, (void *)((u8 *)D_8011A270 + 0x28), (void (*)(struct Actor *))_chswitch_entrypoint_13, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 4104, 2060, 0, (BtIntPtr)_chswitch_entrypoint_0, 0, 0, (void (*)(struct Actor *))func_80800AD4_chcrusher, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32767, 2048, 0, 0 } };
+ActorData D_80800D20_chcrusher [1] BT_DATA(4, overlays_ch_crusher, 0x1F0) = { { 8, 381, 1669, 1, (void *)BT_DATA_FIELD(D_8011A298, (u8 *)D_8011A270 + 0x28), (void (*)(struct Actor *))_chswitch_entrypoint_13, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 4104, 2060, 0, (BtIntPtr)_chswitch_entrypoint_0, 0, 0, (void (*)(struct Actor *))func_80800AD4_chcrusher, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32767, 2048, 0, 0 } };
 ActorData D_80800D68_chcrusher [1] BT_DATA(4, overlays_ch_crusher, 0x238) = { { 344, 902, 1708, 1, 0, 0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 2, 4, 0, 0, 0, 0, 0, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2050, 0, 0 } };

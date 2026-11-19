@@ -1,25 +1,25 @@
 #include "core2/1EABAC0.h"
-
-extern struct D_8011B45C_entry { u32 start; u32 count; } D_8011B45C[];     
+#include "hud_allocation.inc"
+extern s16 D_8012B2C0[48];
 
 u8 *func_800D21D0(s32 arg0) {
-    extern s32 D_8011AFB0;
-    return (u8 *)&D_8011AFB0 + (arg0 * 12 - 0x900);
+    extern HudDisplayItem D_8011AFB0[91];
+    return BT_DATA_FIELD((u8 *)&D_8011AFB0[arg0 - 0xC0], (u8 *)&D_8011AFB0 + (arg0 * 12 - 0x900));
 }
 
 s32 func_800D21F0(s32 arg0, s32 arg1) {
-    extern s32 D_8012B2C0;
+    extern s16 D_8012B2C0[48];
     BtUIntPtr i;
     BtUIntPtr end;
     u8 value;
 
-    i = D_8011B45C[arg1].count;
-    end = D_8011B45C[arg1].start + i;
+    i = (BtUIntPtr)D_8011B45C[arg1].slots;
+    end = D_8011B45C[arg1].count + i;
     if (i < end) {
         do {
             value = *(u8 *)i;
             i++;
-            if (arg0 == ((s16 *)&D_8012B2C0)[value]) {
+            if (arg0 == D_8012B2C0[value]) {
                 return value;
             }
         } while (i < end);
@@ -28,18 +28,18 @@ s32 func_800D21F0(s32 arg0, s32 arg1) {
 }
 
 s32 func_800D225C(s32 arg0) {
-    extern s32 D_8012B2C0;
+    extern s16 D_8012B2C0[48];
     BtUIntPtr i;
     BtUIntPtr end;
     u8 value;
 
-    i = D_8011B45C[arg0].count;
-    end = D_8011B45C[arg0].start + i;
+    i = (BtUIntPtr)D_8011B45C[arg0].slots;
+    end = D_8011B45C[arg0].count + i;
     if (i < end) {
         do {
             value = *(u8 *)i;
             i++;
-            if (((s16 *)&D_8012B2C0)[value] == -1) {
+            if (D_8012B2C0[value] == -1) {
                 return value;
             }
         } while (i < end);
@@ -47,12 +47,12 @@ s32 func_800D225C(s32 arg0) {
     return -1;
 }
 
-u8 func_800D22C8(s32 arg0) { extern struct D_8011B460_entry { u8 *ptr; u32 pad; } D_8011B460[]; return D_8011B460[arg0].ptr[0]; }                     typedef struct { u8 unk0; u8 unk1; u8 unk2; u8 pad3[0x3]; s16 unk6; f32 unk8; } Obj1EABAC0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+u8 func_800D22C8(s32 arg0) { BT_IDO_ONLY(extern struct D_8011B460_entry { u8 *ptr; u32 pad; } D_8011B460[];) return BT_DATA_FIELD(D_8011B45C[arg0].slots[0], D_8011B460[arg0].ptr[0]); }                     typedef struct { u8 unk0; u8 unk1; u8 unk2; u8 pad3[0x3]; s16 unk6; f32 unk8; } Obj1EABAC0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_800D22E0(u8 *arg0, u32 arg1) {
     s32 func_800FA708(u32, s32, s32, u32);
     void func_800FA9B4(s32, s32);
-    extern s32 D_8012B2C0;
+    extern s16 D_8012B2C0[48];
     s32 sp24;
     s32 temp_v0;
     s32 var_s0;
@@ -74,7 +74,7 @@ s32 func_800D22E0(u8 *arg0, u32 arg1) {
         sp24 = temp_v0;
         if (temp_v0 != 0) {
             func_800FA9B4(var_s0, (((Obj1EABAC0_arg0 *)arg0)->unk6));
-            ((s16 *)&D_8012B2C0)[var_s0] = arg1;
+            D_8012B2C0[var_s0] = arg1;
         }
     }
     return sp24;
@@ -102,8 +102,8 @@ int func_800D23E8(void *arg0, s32 arg1) {
     return temp_v0 >= 0 && func_800FA874(temp_v0, (((Obj1EABAC0_arg0 *)arg0)->unk1)) == 1;
 }
 
-void func_800D2438(void) { extern s32 D_8011AFB0; extern s32 D_8011B3F4; extern s32 D_8012B2C0; extern s32 D_8012B320; BtUIntPtr end; BtUIntPtr ptr; end = (BtUIntPtr)&D_8011B3F4;
-    ptr = (BtUIntPtr)&D_8011AFB0; for (;;) { *(s16 *)(ptr + 4) = -1; *(s16 *)(ptr + 6) = 0; *(f32 *)(ptr + 8) = 0.0f; ptr += 12; if (ptr >= end) break; } end = (BtUIntPtr)&D_8012B320; ptr = (BtUIntPtr)&D_8012B2C0; for (;;) { ptr += 8; *(s16 *)(ptr - 6) = -1; *(s16 *)(ptr - 4) = -1; *(s16 *)(ptr - 2) = -1; *(s16 *)(ptr - 8) = -1; if (ptr == end) break; } }    typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; f32 unk8; } Obj1EABAC0_func_800D2498_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+void func_800D2438(void) { extern HudDisplayItem D_8011AFB0[91]; extern u8 D_8011B3F4[4]; extern s16 D_8012B2C0[48]; extern s32 D_8012B320; BtUIntPtr end; BtUIntPtr ptr; end = (BtUIntPtr)BT_DATA_FIELD(D_8011AFB0 + 91, &D_8011B3F4);
+    ptr = (BtUIntPtr)&D_8011AFB0; for (;;) { *(s16 *)(ptr + 4) = -1; *(s16 *)(ptr + 6) = 0; *(f32 *)(ptr + 8) = 0.0f; ptr += 12; if (ptr >= end) break; } end = (BtUIntPtr)BT_DATA_FIELD(D_8012B2C0 + 48, &D_8012B320); ptr = (BtUIntPtr)&D_8012B2C0; for (;;) { ptr += 8; *(s16 *)(ptr - 6) = -1; *(s16 *)(ptr - 4) = -1; *(s16 *)(ptr - 2) = -1; *(s16 *)(ptr - 8) = -1; if (ptr == end) break; } }    typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; f32 unk8; } Obj1EABAC0_func_800D2498_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 
@@ -142,8 +142,8 @@ void func_800D2574(void)
   f32 func_800D8FF8(void);
   int func_800FA874(s32 arg0, s32 arg1);
   s32 func_800FA8E8(s32 arg0, s32 arg1);
-  extern s32 D_8011AFB0;
-  extern s32 D_8012B2C0;
+  extern HudDisplayItem D_8011AFB0[91];
+  extern s16 D_8012B2C0[48];
   f32 delta;
   f32 current;
   f32 difference;
@@ -164,7 +164,7 @@ void func_800D2574(void)
     }
       if (func_800FA8E8(handle, entry[1]) != 1)
       {
-        ((s16 *) (&D_8012B2C0))[handle] = -1;
+        D_8012B2C0[handle] = -1;
         continue;
       }
       if (func_800FA874(handle, entry[1]) != 0)
@@ -249,6 +249,6 @@ u32 func_800D28E8(s32 arg0) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012B2C0 BT_DATA(4, bss_core2bss1_2, 0x30);
+s16 D_8012B2C0[48] BT_DATA(4, bss_core2bss1_2, 0x30);
 s32 D_8012B320 BT_DATA(4, bss_core2bss1_2, 0x90);
 #endif

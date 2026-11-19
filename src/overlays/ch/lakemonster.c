@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 extern u32 D_80801FF0_chlakemonster[];
 OSThread *_chswitch_entrypoint_0(void);
 void _chswitch_entrypoint_13();
@@ -161,8 +161,8 @@ BtFnWord D_808022E0_chlakemonster[] = {
     (BtFnWord)func_80801E60_chlakemonster, 0x00000000,
 };
 
-extern u8 D_8011A270[]; BtFnWord D_80802328_chlakemonster[] = { /* animation table: D_8011A270 + 0x28 */
-    0x02E70370, 0x094B0001, (BtFnWord)(D_8011A270 + 0x28), (BtFnWord)_chswitch_entrypoint_13,
+BtFnWord D_80802328_chlakemonster[] = { /* switch animation table */
+    0x02E70370, 0x094B0001, (BtFnWord)BT_DATA_FIELD(D_8011A298, (u8 *)D_8011A270 + 0x28), (BtFnWord)_chswitch_entrypoint_13,
     (BtFnWord)func_80105834, (BtFnWord)func_80101870, 0x00000000, 0x00000000,
     0x00000000, 0x00000808, (BtFnWord)func_80801EE4_chlakemonster, (BtFnWord)_chswitch_entrypoint_0,
     0x00000000, (BtFnWord)func_80801EA8_chlakemonster, (BtFnWord)func_80107C2C, 0x80080C00,

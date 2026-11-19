@@ -2,7 +2,7 @@
 #include "1EAC200_native.inc"
 #else
 #include "common.h"
-
+#include "fog_configs.inc"
 extern struct {
     u8 unk0;
     u8 pad1[3];
@@ -40,21 +40,21 @@ void func_800D2970(void) {
 
 void func_800D298C(void) {
     s32 func_800EA05C();
-    extern u8 D_8011B530[][0x10];
-    u8 (*var_s0)[0x10];
+
+    NativeFogConfig *var_s0;
     int temp_v0;
 
     var_s0 = D_8011B530;
     temp_v0 = func_800EA05C();
     *((u8 *)&D_8012B320 + 1) = *(u8 *)&D_8012B320 = 0;
     *((u8 *)&D_8012B320 + 4) = *((u8 *)&D_8012B320 + 0x18) = 0;
-    while (*(s16 *)*var_s0 != -1) {
-            if (temp_v0 == *(s16 *)*var_s0) {
-                if ((*var_s0)[2] & 1) {
-                    func_800D2910(0, *var_s0);
+    while (var_s0->map != -1) {
+            if (temp_v0 == var_s0->map) {
+                if (var_s0->flags & 1) {
+                    func_800D2910(0, (u8 *)var_s0);
                 }
-                if ((*var_s0)[2] & 2) {
-                    func_800D2910(1, *var_s0);
+                if (var_s0->flags & 2) {
+                    func_800D2910(1, (u8 *)var_s0);
                 }
             }
             var_s0++;

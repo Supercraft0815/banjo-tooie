@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 OSThread *chicestationbits_entrypoint_0(void)
 {
     extern ActorData D_80800280_chicestationbits[];
@@ -101,7 +101,7 @@ void func_808001E0_chicestationbits(Actor *arg0, s32 arg1, s32 arg2) {
     _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
 }
 /* data_to_c.py: from asm/data/overlays/ch/icestationbits.data.s */
-extern u8 D_8011A248[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);

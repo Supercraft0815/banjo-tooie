@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 void func_80800000_chfactorysparkroom(Actor *arg0) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     s32 _glsplinefind_entrypoint_3(f32 *);
@@ -533,7 +533,7 @@ OSThread *chfactorysparkroom_entrypoint_1(void)
 void func_80105834(Actor*);
 void func_80108ED0();
 void func_80107C2C();
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 void func_80101870(Actor* arg0, void* arg1);
 s32 D_80801060_chfactorysparkroom[4] BT_DATA(4, overlays_ch_factory_sparkroom, 0x0) = { 1246510, 1461792, 852198, 18415616 };
@@ -549,4 +549,4 @@ struct SparkRoomColor D_808010F0_chfactorysparkroom BT_DATA(4, overlays_ch_facto
 struct SparkColor D_808010FC_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0x9C) = { { 255, 255, 255 } };
 ActorData D_80801108_chfactorysparkroom [1] BT_DATA(4, overlays_ch_factory_sparkroom, 0xA8) = { { 344, 1043, 1721, 1, 0, (void (*)(struct Actor *))func_8080013C_chfactorysparkroom, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800838_chfactorysparkroom, 0, 0, 0, 0, 2, 1024, (void (*)(struct Actor *))func_80800D30_chfactorysparkroom, (BtIntPtr)func_80108ED0, 528, 0, (void (*)(struct Actor *))func_80800000_chfactorysparkroom, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1024, (void (*)(struct Actor *, long, long))func_80800D90_chfactorysparkroom, 0 } };
 struct SparkRoomPosition D_80801150_chfactorysparkroom BT_DATA(4, overlays_ch_factory_sparkroom, 0xF0) = { { -2500.0f, 0.0f, 0.0f } };
-ActorData D_8080115C_chfactorysparkroom [1] BT_DATA(4, overlays_ch_factory_sparkroom, 0xFC) = { { 835, 1005, 2179, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800E94_chfactorysparkroom, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_80800EC8_chfactorysparkroom, 0 } };
+ActorData D_8080115C_chfactorysparkroom [1] BT_DATA(4, overlays_ch_factory_sparkroom, 0xFC) = { { 835, 1005, 2179, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800E94_chfactorysparkroom, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_80800EC8_chfactorysparkroom, 0 } };

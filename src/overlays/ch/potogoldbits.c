@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 /* extern */
 
 void func_80800000_chpotogoldbits(BtIntPtr arg0) {
@@ -260,7 +260,7 @@ OSThread *chpotogoldbits_entrypoint_3(void)
     return (OSThread *) D_808009D0_chpotogoldbits;
 }
 /* data_to_c.py: from asm/data/overlays/ch/potogoldbits.data.s */
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
@@ -268,7 +268,7 @@ OSThread *func_80108ED0(void);
 void func_80107C2C();
 void _chdoor_entrypoint_0();
 s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
-ActorData D_80800920_chpotogoldbits [1] BT_DATA(4, overlays_ch_potogoldbits, 0x0) = { { 835, 1031, 2093, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chpotogoldbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80800030_chpotogoldbits, 0 } };
+ActorData D_80800920_chpotogoldbits [1] BT_DATA(4, overlays_ch_potogoldbits, 0x0) = { { 835, 1031, 2093, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chpotogoldbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80800030_chpotogoldbits, 0 } };
 s32 D_80800968_chpotogoldbits[4] BT_DATA(4, overlays_ch_potogoldbits, 0x48) = { 1246649, 1466792, 655616, 131072 };
 s32 D_80800978_chpotogoldbits[4] BT_DATA(4, overlays_ch_potogoldbits, 0x58) = { 1246695, 1474559, 655616, 131072 };
 ActorData D_80800988_chpotogoldbits [1] BT_DATA(4, overlays_ch_potogoldbits, 0x68) = { { 172, 1032, 2095, 1, 0, (void (*)(struct Actor *))func_80800188_chpotogoldbits, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 1065353216, 0, 0, 2, 18432, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080007C_chpotogoldbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800618_chpotogoldbits, 0 } };

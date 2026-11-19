@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 void func_80800000_choildrill(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
     void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
@@ -488,7 +488,7 @@ extern u8 D_808012B0_choildrill[];
 void func_80105834(Actor*);
 void func_80108ED0();
 void func_80107C2C();
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 void func_80101870 ( Actor * , void * );
 u8 D_808012B0_choildrill[80] BT_DATA(4, overlays_ch_oildrill, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x4A, 0x00, 0x00 };
@@ -503,4 +503,4 @@ s32 D_80801450_choildrill [16] BT_DATA(4, overlays_ch_oildrill, 0x1A0) = { 19030
 f32 D_80801490_choildrill [ 3 ] BT_DATA(4, overlays_ch_oildrill, 0x1E0) = { -5530.0f, 3015.0f, 4600.0f };
 f32 D_8080149C_choildrill [ 3 ] BT_DATA(4, overlays_ch_oildrill, 0x1EC) = { -6230.0f, 2980.0f, 6520.0f };
 ActorData D_808014A8_choildrill [1] BT_DATA(4, overlays_ch_oildrill, 0x1F8) = { { 344, 1156, 2335, 2, (void *)D_808012B0_choildrill, (void (*)(struct Actor *))func_80800104_choildrill, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80800F08_choildrill, 262164000, 0, 0, 0, 128, 3104, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_choildrill, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1026, (void (*)(struct Actor *, long, long))func_80800BCC_choildrill, 0 } };
-ActorData D_808014F0_choildrill [1] BT_DATA(4, overlays_ch_oildrill, 0x240) = { { 344, 1157, 2354, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808010C0_choildrill, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80801110_choildrill, 0 } };
+ActorData D_808014F0_choildrill [1] BT_DATA(4, overlays_ch_oildrill, 0x240) = { { 344, 1157, 2354, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808010C0_choildrill, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80801110_choildrill, 0 } };

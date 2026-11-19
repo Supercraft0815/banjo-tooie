@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 OSThread *chtrashcompactor_entrypoint_0(void)
 {
     extern ActorData D_808008D0_chtrashcompactor[];
@@ -349,7 +349,7 @@ void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
 void func_80102EC0();
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_6();
 void _chdoor_entrypoint_0();
 s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);

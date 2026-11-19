@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 #ifdef BT_NATIVE
 void func_80800000_chlavaarchgrill3switches(BtIntPtr bt_a0, s32 bt_a1)
 #else
@@ -87,11 +87,11 @@ OSThread *chlavaarchgrill3switches_entrypoint_2(void)
     return (OSThread *) D_80800280_chlavaarchgrill3switches;
 }
 /* data_to_c.py: from asm/data/overlays/ch/lava/archgrill3switches.data.s */
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
-ActorData D_808001F0_chlavaarchgrill3switches [1] BT_DATA(4, overlays_ch_lava_archgrill3switches, 0x0) = { { 835, 1170, 1976, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_808000C0_chlavaarchgrill3switches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10258, (void (*)(struct Actor *, long, long))func_808000F0_chlavaarchgrill3switches, 0 } };
-ActorData D_80800238_chlavaarchgrill3switches [1] BT_DATA(4, overlays_ch_lava_archgrill3switches, 0x48) = { { 835, 1171, 1977, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800124_chlavaarchgrill3switches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10258, (void (*)(struct Actor *, long, long))func_80800154_chlavaarchgrill3switches, 0 } };
-ActorData D_80800280_chlavaarchgrill3switches [1] BT_DATA(4, overlays_ch_lava_archgrill3switches, 0x90) = { { 835, 1172, 1976, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800188_chlavaarchgrill3switches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10258, (void (*)(struct Actor *, long, long))func_808001B8_chlavaarchgrill3switches, 0 } };
+ActorData D_808001F0_chlavaarchgrill3switches [1] BT_DATA(4, overlays_ch_lava_archgrill3switches, 0x0) = { { 835, 1170, 1976, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_808000C0_chlavaarchgrill3switches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10258, (void (*)(struct Actor *, long, long))func_808000F0_chlavaarchgrill3switches, 0 } };
+ActorData D_80800238_chlavaarchgrill3switches [1] BT_DATA(4, overlays_ch_lava_archgrill3switches, 0x48) = { { 835, 1171, 1977, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800124_chlavaarchgrill3switches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10258, (void (*)(struct Actor *, long, long))func_80800154_chlavaarchgrill3switches, 0 } };
+ActorData D_80800280_chlavaarchgrill3switches [1] BT_DATA(4, overlays_ch_lava_archgrill3switches, 0x90) = { { 835, 1172, 1976, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800188_chlavaarchgrill3switches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 10258, (void (*)(struct Actor *, long, long))func_808001B8_chlavaarchgrill3switches, 0 } };

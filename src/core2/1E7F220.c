@@ -7,7 +7,7 @@ typedef struct {
     s16 medium[3];
     s16 far[3];
 } CameraDistanceEntry;
-
+#include "camera_distances.inc"
 CameraDistanceEntry *func_800A5930(s32 id) {
     extern CameraDistanceEntry *D_801270F0;
     s32 func_800EA05C(void);
@@ -35,7 +35,7 @@ void func_800A59B8(s32 id, s32 *vec11, s32 *vec12, s32 *vec13, s32 *vec21, s32 *
 }
 
 void func_800A5A4C(void) {
-    typedef struct { s32 id; CameraDistanceEntry *table; } MapEntry;
+    typedef LevelCameraDistance MapEntry;
     extern CameraDistanceEntry *D_801270F0;
     extern CameraDistanceEntry D_80119BC0[];
     extern MapEntry D_80119BD8[];
@@ -45,7 +45,7 @@ void func_800A5A4C(void) {
     D_801270F0 = D_80119BC0;
     for (i = 0; D_80119BD8[i].id != 0; i++) {
         if (D_80119BD8[i].id == level) {
-            D_801270F0 = D_80119BD8[i].table;
+            D_801270F0 = D_80119BD8[i].entries;
         }
     }
 }

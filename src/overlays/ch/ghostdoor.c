@@ -1,5 +1,5 @@
 #include "ch/ghostdoor.h"
-
+#include "core2/switch_animations.h"
 OSThread *chghostdoor_entrypoint_0(void)
 {
     extern ActorData D_80800220_chghostdoor[];
@@ -92,7 +92,7 @@ void _chdoor_entrypoint_0();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
-extern u8 D_8011A248[];
+
 void _chswitch_entrypoint_6();
 ActorData D_80800220_chghostdoor [1] BT_DATA(4, overlays_ch_ghostdoor, 0x0) = { { 172, 836, -1, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chghostdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11266, (void (*)(struct Actor *, long, long))func_808000F4_chghostdoor, 0 } };
 ActorData D_80800268_chghostdoor [1] BT_DATA(4, overlays_ch_ghostdoor, 0x48) = { { 835, 840, 2157, 1, (void *)D_8011A248, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2060, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800190_chghostdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808001BC_chghostdoor, 0 } };

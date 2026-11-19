@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "switch_animations.inc"
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spawn_queue.h"
 #include "memory.h"

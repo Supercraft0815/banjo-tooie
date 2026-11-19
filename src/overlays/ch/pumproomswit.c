@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 OSThread *chpumproomswitch_entrypoint_0(void)
 {
     extern ActorData D_80800380_chpumproomswitch[];
@@ -128,13 +128,13 @@ s32 func_808002A0_chpumproomswitch(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 /* data_to_c.py: from asm/data/overlays/ch/pumproomswit.data.s */
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
 void func_8010A730();
-ActorData D_80800380_chpumproomswitch [1] BT_DATA(4, overlays_ch_pumproomswit, 0x0) = { { 835, 843, 1976, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2060, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chpumproomswitch, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808000BC_chpumproomswitch, 0 } };
+ActorData D_80800380_chpumproomswitch [1] BT_DATA(4, overlays_ch_pumproomswit, 0x0) = { { 835, 843, 1976, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2060, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chpumproomswitch, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11282, (void (*)(struct Actor *, long, long))func_808000BC_chpumproomswitch, 0 } };
 ActorData D_808003C8_chpumproomswitch [1] BT_DATA(4, overlays_ch_pumproomswit, 0x48) = { { 816, 978, 0, 1, 0, (void (*)(struct Actor *))func_808001E4_chpumproomswitch, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800194_chpumproomswitch, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 1538, (void (*)(struct Actor *, long, long))func_808002A0_chpumproomswitch, 0 } };
 s32 D_80800410_chpumproomswitch[5] BT_DATA(4, overlays_ch_pumproomswit, 0x90) = { 33947667, 78905366, 786432001, 32771500, 0 };
 s32 D_80800424_chpumproomswitch[7] BT_DATA(4, overlays_ch_pumproomswit, 0xA4) = { 33947667, 78905366, 524288001, 52433300, 0, 0, 0 };

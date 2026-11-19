@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 s32 func_80800000_chdrawbridgeswitches(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 _chswitch_entrypoint_7(BtIntPtr, s32); BT_NATIVE_ONLY(s32 native_ret;)
     void _chswitch_entrypoint_8(s32 *arg0, s32 arg1);
@@ -83,12 +83,12 @@ OSThread *chdrawbridgeswitches_entrypoint_2(void)
     return (OSThread *) D_808002A0_chdrawbridgeswitches;
 }
 /* data_to_c.py: from asm/data/overlays/ch/drawbridgeswites.data.s */
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 OSThread *_chswitch_entrypoint_2(void);
 void func_80107C2C();
-ActorData D_80800210_chdrawbridgeswitches [1] BT_DATA(4, overlays_ch_drawbridgeswites, 0x0) = { { 835, 1184, 1976, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)_chswitch_entrypoint_2, 0, 0, (void (*)(struct Actor *))func_808000D0_chdrawbridgeswitches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808000F4_chdrawbridgeswitches, 0 } };
-ActorData D_80800258_chdrawbridgeswitches [1] BT_DATA(4, overlays_ch_drawbridgeswites, 0x48) = { { 835, 1185, 1977, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)_chswitch_entrypoint_2, 0, 0, (void (*)(struct Actor *))func_80800128_chdrawbridgeswitches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_8080014C_chdrawbridgeswitches, 0 } };
-ActorData D_808002A0_chdrawbridgeswitches [1] BT_DATA(4, overlays_ch_drawbridgeswites, 0x90) = { { 835, 1341, 2370, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800180_chdrawbridgeswitches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808001B0_chdrawbridgeswitches, 0 } };
+ActorData D_80800210_chdrawbridgeswitches [1] BT_DATA(4, overlays_ch_drawbridgeswites, 0x0) = { { 835, 1184, 1976, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)_chswitch_entrypoint_2, 0, 0, (void (*)(struct Actor *))func_808000D0_chdrawbridgeswitches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808000F4_chdrawbridgeswitches, 0 } };
+ActorData D_80800258_chdrawbridgeswitches [1] BT_DATA(4, overlays_ch_drawbridgeswites, 0x48) = { { 835, 1185, 1977, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)_chswitch_entrypoint_2, 0, 0, (void (*)(struct Actor *))func_80800128_chdrawbridgeswitches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_8080014C_chdrawbridgeswitches, 0 } };
+ActorData D_808002A0_chdrawbridgeswitches [1] BT_DATA(4, overlays_ch_drawbridgeswites, 0x90) = { { 835, 1341, 2370, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800180_chdrawbridgeswitches, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808001B0_chdrawbridgeswitches, 0 } };

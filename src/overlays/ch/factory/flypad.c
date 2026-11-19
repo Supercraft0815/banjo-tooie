@@ -1,5 +1,5 @@
 #include "ch/factory/flypad.h"
-
+#include "core2/switch_animations.h"
 OSThread *chfactoryflypad_entrypoint_0(void)
 {
     extern ActorData D_80800250_chfactoryflypad[];
@@ -88,7 +88,7 @@ s32 func_80800130_chfactoryflypad(Actor *arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 /* data_to_c.py: from asm/data/overlays/ch/factory/flypad.data.s */
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_6();
 void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);

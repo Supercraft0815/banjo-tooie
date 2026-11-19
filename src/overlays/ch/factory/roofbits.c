@@ -1,5 +1,5 @@
 #include "ch/factory/roofbits.h"
-
+#include "core2/switch_animations.h"
 /* extern */
 
 void func_80800000_chfactoryroofbits(BtIntPtr arg0) {
@@ -281,9 +281,9 @@ void func_80108ED0();
 void func_80107C2C();
 void _chdoor_entrypoint_0();
 s32 _chdoor_entrypoint_1 ( Actor * , s32 , BtIntPtr );
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
-extern u8 D_8011A248[];
+
 s32 D_80800920_chfactoryroofbits[18] BT_DATA(4, overlays_ch_factory_roofbits, 0x0) = { 84934685, 165478443, 100665344, 2228736, 41944576, 134217749, 38, 1638400, 458796, -1310700, -1310700, 2621460, 2121824, 1619001354, -1245234, -1310700, 3276820, 85590016 };
 s32 D_80800968_chfactoryroofbits[3] BT_DATA(4, overlays_ch_factory_roofbits, 0x48) = { 1246368, 1469792, 0 };
 ActorData D_80800974_chfactoryroofbits [1] BT_DATA(4, overlays_ch_factory_roofbits, 0x54) = { { 291, 651, 1808, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 406, 0, 0, 3072, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_80800000_chfactoryroofbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11264, (void (*)(struct Actor *, long, long))func_8080003C_chfactoryroofbits, 0 } };
@@ -292,6 +292,6 @@ s32 D_808009FC_chfactoryroofbits[3] BT_DATA(4, overlays_ch_factory_roofbits, 0xD
 ActorData D_80800A08_chfactoryroofbits [1] BT_DATA(4, overlays_ch_factory_roofbits, 0xE8) = { { 309, 1010, 1806, 1, 0, (void (*)(struct Actor *))func_80102EC0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808005DC_chfactoryroofbits, 0, 0, 0, 0, 0, 2048, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808003C4_chfactoryroofbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11264, (void (*)(struct Actor *, long, long))func_80800414_chfactoryroofbits, 0 } };
 ActorData D_80800A50_chfactoryroofbits [1] BT_DATA(4, overlays_ch_factory_roofbits, 0x130) = { { 172, 1011, 1805, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 3076, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800624_chfactoryroofbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
 struct RoofPosition D_80800A98_chfactoryroofbits BT_DATA(4, overlays_ch_factory_roofbits, 0x178) = { { -2260.0f, 5500.0f, -1139.0f } };
-ActorData D_80800AA4_chfactoryroofbits [1] BT_DATA(4, overlays_ch_factory_roofbits, 0x184) = { { 835, 1012, 2185, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808006E8_chfactoryroofbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80800708_chfactoryroofbits, 0 } };
+ActorData D_80800AA4_chfactoryroofbits [1] BT_DATA(4, overlays_ch_factory_roofbits, 0x184) = { { 835, 1012, 2185, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)func_80108ED0, 0, 0, (void (*)(struct Actor *))func_808006E8_chfactoryroofbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_80800708_chfactoryroofbits, 0 } };
 ActorData D_80800AEC_chfactoryroofbits [1] BT_DATA(4, overlays_ch_factory_roofbits, 0x1CC) = { { 835, 1140, 2157, 1, (void *)D_8011A248, (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_808007B8_chfactoryroofbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11282, (void (*)(struct Actor *, long, long))func_808007E4_chfactoryroofbits, 0 } };
 ActorData D_80800B34_chfactoryroofbits [1] BT_DATA(4, overlays_ch_factory_roofbits, 0x214) = { { 172, 1241, 2253, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 3072, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800840_chfactoryroofbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11282, (void (*)(struct Actor *, long, long))func_80800890_chfactoryroofbits, 0 } };

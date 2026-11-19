@@ -128,6 +128,12 @@ D_80117F38 = playerStates + 0x8;
 D_80117E3C = eggFirePolicies + 0x0;
 D_80117E3D = eggFirePolicies + 0x1;
 
+/* Original pointer field in the HUD slot selection table. */
+D_8011B460 = D_8011B45C + 0x4;
+
+/* Original interior of the first actor animation preset. */
+D_80124744 = D_80124740 + 0x4;
+
 /* Aliases within audio storage. */
 D_80079FA2 = D_80079FA0 + 0x2;
 D_80079FA3 = D_80079FA0 + 0x3;

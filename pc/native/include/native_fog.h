@@ -1,7 +1,6 @@
 #ifndef BT_NATIVE_FOG_H
 #define BT_NATIVE_FOG_H
-#include "common.h"
-typedef struct {s16 map;u8 flags,padding;f32 start,end;u8 color[4];} NativeFogConfig;
+#include "fog_config.h"
 _Static_assert(sizeof(NativeFogConfig)==16,"fog configuration scalar layout");
 void func_800D2910(s32,const NativeFogConfig *);
 void func_800D2970(void);

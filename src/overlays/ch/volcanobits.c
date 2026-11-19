@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 OSThread *chvolcanobits_entrypoint_0(void)
 {
     extern ActorData D_80801154_chvolcanobits[];
@@ -541,7 +541,7 @@ void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
 OSThread *func_80108ED0(void);
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_6();
 void func_801018A4();
 void func_8010A730();

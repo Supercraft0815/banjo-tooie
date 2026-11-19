@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 OSThread *chfactoryliftdoor_entrypoint_0(void)
 {
     extern ActorData D_80800140_chfactoryliftdoor[];
@@ -65,8 +65,8 @@ void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
 s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_13();
 OSThread *_chswitch_entrypoint_0(void);
 ActorData D_80800140_chfactoryliftdoor [1] BT_DATA(4, overlays_ch_factory_liftdoor, 0x0) = { { 172, 952, 1864, 1, 0, (void (*)(struct Actor *))_chdoor_entrypoint_0, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 16384, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800018_chfactoryliftdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11346, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
-ActorData D_80800188_chfactoryliftdoor [1] BT_DATA(4, overlays_ch_factory_liftdoor, 0x48) = { { 169, 953, 1865, 1, (void *)((u8 *)D_8011A270 + 0x28), (void (*)(struct Actor *))_chswitch_entrypoint_13, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)_chswitch_entrypoint_0, 0, 0, (void (*)(struct Actor *))func_8080008C_chfactoryliftdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11280, (void (*)(struct Actor *, long, long))func_808000F0_chfactoryliftdoor, 0 } };
+ActorData D_80800188_chfactoryliftdoor [1] BT_DATA(4, overlays_ch_factory_liftdoor, 0x48) = { { 169, 953, 1865, 1, (void *)BT_DATA_FIELD(D_8011A298, (u8 *)D_8011A270 + 0x28), (void (*)(struct Actor *))_chswitch_entrypoint_13, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, (BtIntPtr)_chswitch_entrypoint_0, 0, 0, (void (*)(struct Actor *))func_8080008C_chfactoryliftdoor, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32760, 11280, (void (*)(struct Actor *, long, long))func_808000F0_chfactoryliftdoor, 0 } };

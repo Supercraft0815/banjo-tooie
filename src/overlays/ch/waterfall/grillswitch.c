@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 void func_80800000_chwaterfallgrillswitch(s32 arg0, s32 arg1, s32 arg2) {
     s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -23,7 +23,7 @@ OSThread *chwaterfallgrillswitch_entrypoint_0(void)
     return (OSThread *) D_80800090_chwaterfallgrillswitch;
 }
 /* data_to_c.py: from asm/data/overlays/ch/waterfall/grillswitch.data.s */
-extern u8 D_8011A248[];
+
 void _chswitch_entrypoint_6();
 void func_80102EC0();
 void func_80101870(Actor* arg0, void* arg1);

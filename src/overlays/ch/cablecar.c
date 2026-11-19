@@ -2,7 +2,7 @@
 #include "core2/1EB5980.h"
 #include "core2/1ED8C80.h"
 #include "su/baddieaudioquick.h"
-
+#include "core2/switch_animations.h"
 extern f32 D_80800F40_chcablecar[3];
 extern s16 D_80800F4C_chcablecar[];
 extern s16 D_80800F58_chcablecar[];
@@ -569,7 +569,7 @@ void func_80800E30_chcablecar(BtIntPtr arg0) {
 void func_80105834(Actor*);
 void func_801018A4();
 void func_80107C2C();
-extern u8 D_8011A248[];
+
 void _chswitch_entrypoint_6();
 void func_80101870(Actor* arg0, void* arg1);
 s32 _chswitch_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2);

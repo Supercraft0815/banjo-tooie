@@ -1,5 +1,5 @@
 #include "ch/hellterskelter.h"
-
+#include "core2/switch_animations.h"
 OSThread *chhellterskelter_entrypoint_0(void)
 {
     extern ActorData D_808007C8_chhellterskelter[];
@@ -260,7 +260,7 @@ void func_80800680_chhellterskelter(Actor *arg0, s32 arg1)
 void func_80105834 ( Actor * );
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
-extern u8 D_8011A270[];
+
 void _chswitch_entrypoint_6();
 extern u8 D_808007B0_chhellterskelter[];
 void func_80102EC0();

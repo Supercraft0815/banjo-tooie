@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core2/switch_animations.h"
 /* extern */
 
 void func_80800000_chfantasytrashcanbits(Actor *arg0) {
@@ -91,7 +91,7 @@ void func_80105834(Actor*);
 void func_80101870(Actor* arg0, void* arg1);
 void func_80107C2C();
 s32 _chdoor_entrypoint_1(Actor *arg0, s32 arg1, BtIntPtr arg2);
-extern u8 D_8011A1BC[];
+
 void _chswitch_entrypoint_6();
 ActorData D_80800240_chfantasytrashcanbits [1] BT_DATA(4, overlays_ch_fantasy_trashcanbits, 0x0) = { { 172, 1036, 2252, 1, 0, (void (*)(struct Actor *))func_808000EC_chfantasytrashcanbits, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 163840000, 0, 0, 0, 0, 2048, 0, 0, 0, 0, (void (*)(struct Actor *))func_80800000_chfantasytrashcanbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 9218, (void (*)(struct Actor *, long, long))_chdoor_entrypoint_1, 0 } };
-ActorData D_80800288_chfantasytrashcanbits [1] BT_DATA(4, overlays_ch_fantasy_trashcanbits, 0x48) = { { 835, 1035, 1977, 1, (void *)((u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_808001A8_chfantasytrashcanbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808001D8_chfantasytrashcanbits, 0 } };
+ActorData D_80800288_chfantasytrashcanbits [1] BT_DATA(4, overlays_ch_fantasy_trashcanbits, 0x48) = { { 835, 1035, 1977, 1, (void *)BT_DATA_FIELD(D_8011A220, (u8 *)D_8011A1BC + 0x64), (void (*)(struct Actor *))_chswitch_entrypoint_6, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_80101870, 0, 0, 0, 0, 0, 2056, 0, 0, 0, 0, (void (*)(struct Actor *))func_808001A8_chfantasytrashcanbits, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 11266, (void (*)(struct Actor *, long, long))func_808001D8_chfantasytrashcanbits, 0 } };

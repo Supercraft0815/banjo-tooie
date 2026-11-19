@@ -9,10 +9,7 @@ static struct {
     struct {u8 active;s16 color[4];f32 start,end;} entries[2];
     s16 color[4],*layers;s32 layer_count;
 } fog;
-static const NativeFogConfig fog_configs[]={
-    {0x181,3,0,6500,17000,{64,64,128,192}},
-    {0xFC,3,0,4000,18000,{15,63,83,127}},
-};
+#include "fog_configs.inc"
 void func_800D2910(s32 index,const NativeFogConfig *config) {
     if(!config || index<0 || index>=2)return;
     fog.entries[index].active=1;
@@ -22,9 +19,9 @@ void func_800D2910(s32 index,const NativeFogConfig *config) {
 void func_800D2970(void) {fog.entries[0].active=fog.entries[1].active=fog.count=fog.color_sent=0;}
 void native_fog_load_map(s32 map) {
     func_800D2970();
-    for(unsigned i=0;i<sizeof(fog_configs)/sizeof(*fog_configs);++i)if(fog_configs[i].map==map) {
-        if(fog_configs[i].flags&1)func_800D2910(0,fog_configs+i);
-        if(fog_configs[i].flags&2)func_800D2910(1,fog_configs+i);
+    for(unsigned i=0;D_8011B530[i].map!=-1;++i)if(D_8011B530[i].map==map) {
+        if(D_8011B530[i].flags&1)func_800D2910(0,D_8011B530+i);
+        if(D_8011B530[i].flags&2)func_800D2910(1,D_8011B530+i);
     }
 }
 void func_800D298C(void) {s32 func_800EA05C(void);native_fog_load_map(func_800EA05C());}
