@@ -341,7 +341,7 @@ void idbounce_entrypoint_3(void *arg0) {
     state[3]--;
 }
 
-void idbounce_entrypoint_4(void *arg0, s32 arg1, BtIntPtr arg2, s32 arg3, s32 arg4) {
+void idbounce_entrypoint_4(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 arg4) {
     s32 *func_80800874_idbounce(s32 arg0);
     s16 _glidmake_entrypoint_3(s32 *arg0, s32 arg1);
     void *heap_alloc(s32);
@@ -424,7 +424,7 @@ void idbounce_entrypoint_4(void *arg0, s32 arg1, BtIntPtr arg2, s32 arg3, s32 ar
     counter[3]++;
 }
 
-void idbounce_entrypoint_5(void *arg0, BtIntPtr arg1, s32 arg2) {
+void idbounce_entrypoint_5(void *arg0, void *arg1, s32 arg2) {
     f32 func_800D8FF8(void);
     u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);

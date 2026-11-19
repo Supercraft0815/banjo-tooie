@@ -22,17 +22,18 @@ void func_808000E8_idglowa(void *arg0, s32 arg1) {
     (((GlowEffect *)arg0)->unk0) = arg1;
 }
 
-void idglowa_entrypoint_2(s32 arg0) 
+void idglowa_entrypoint_2(void *arg0)
 {
 }               typedef struct { s32 unk0; f32 unk4; f32 unk8; } Objglowa_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
-void idglowa_entrypoint_3(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void idglowa_entrypoint_3(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 flags) {
     (((Objglowa_arg0 *)arg0)->unk0) = 0;
     (((Objglowa_arg0 *)arg0)->unk4) = 0.5f;
     (((Objglowa_arg0 *)arg0)->unk8) = (f32) ((f32) (arg1 + 1) * 0.01f);
     func_808000E8_idglowa(arg0, 1);
 }
 
-void idglowa_entrypoint_4(GlowEffect *arg0, void *arg1, s32 arg2) {
+void idglowa_entrypoint_4(void *data, void *arg1, s32 arg2) {
+    GlowEffect *arg0 = data;
     f32 func_800D8FF8(void);
     int func_800F1574(f32 *, f32);
     void _glid_entrypoint_0(void *, s32, void *, BtIntPtr);

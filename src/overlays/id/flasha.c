@@ -47,12 +47,12 @@ s32 idflasha_entrypoint_1(s16 *arg0) {
     return arg0[0];
 }
 
-void idflasha_entrypoint_2(s32 arg0) 
+void idflasha_entrypoint_2(void *arg0)
 {
 }
 /* extern */
 
-void idflasha_entrypoint_3(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void idflasha_entrypoint_3(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 flags) {
     s32 func_80800038_idflasha(BtIntPtr, s32);
     (((Objflasha_arg0 *)arg0)->unk0) = 0;
     (((Objflasha_arg0 *)arg0)->unk4) = 0;
@@ -61,7 +61,7 @@ void idflasha_entrypoint_3(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_80800038_idflasha((BtIntPtr)arg0, 0);
 }
 
-void idflasha_entrypoint_4(void *arg0, BtIntPtr arg1, s32 arg2) {
+void idflasha_entrypoint_4(void *arg0, void *arg1, s32 arg2) {
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800D8FF8(void);
     s32 func_800F1574(f32 *, f32);

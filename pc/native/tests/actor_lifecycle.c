@@ -87,7 +87,7 @@ void func_80106E88(void *actor) {CHECK(actor);}
 void func_80104F2C(void *actor,s32 first,s32 second) {CHECK(actor && !first && !second);}
 void func_80108F08(void *a,void *b,s32 c) {CHECK(0);}
 void *_dbvpl_entrypoint_0(void *data,s32 index) {CHECK(0);return NULL;}
-NativeActorItemType D_80124440[11];
+ActorItemType D_80124440[11] = {0};
 static s16 empty_meshes[]={0};
 void *_glidmake_entrypoint_5(u16 asset,void *scale) {CHECK(asset==148 && !scale);return heap_alloc(16);}
 s16 *_glidmake_entrypoint_1(void *model) {CHECK(model);return empty_meshes;}

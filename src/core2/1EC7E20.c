@@ -7,7 +7,7 @@ typedef struct { u8 pad0[0x24]; BtIntPtr unk24; u8 pad28[0x4]; BtIntPtr unk2C; }
     (((Obj1EC7E20_arg0 *)arg0)->unk2C) = defrag((((Obj1EC7E20_arg0 *)arg0)->unk2C));
 }
 
-void func_800EE55C(u8 *arg0) {
+void func_800EE55C(void *arg0) {
     BtIntPtr defrag(BtIntPtr);
     s32 sp1C;
 

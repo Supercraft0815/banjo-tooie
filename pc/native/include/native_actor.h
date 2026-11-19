@@ -149,18 +149,13 @@ typedef struct {
     void *model;
     Vector *items;
 } NativeActorItems;
+#include "core2/mesh_effect.h"
 typedef struct {
     void *model;
     s16 type, id;
-    _Alignas(void *) u8 data[0xA0];
+    _Alignas(void *) u8 data[sizeof(MeshEffect)];
 } NativeActorItem;
-typedef struct {
-    void (*create)(void *, s32, void *, s32, s32);
-    void (*update)(void *, void *, s32);
-    void (*destroy)(void *);
-    void (*defrag)(void *);
-} NativeActorItemType;
-extern NativeActorItemType D_80124440[];
+#include "core2/actor_item_types.h"
 
 void func_80105410(void);
 void func_80105438(void);

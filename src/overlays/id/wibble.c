@@ -65,7 +65,7 @@ void idwibble_entrypoint_0(s32 arg0, BtUIntPtr arg1, u8 *arg2, BtIntPtr arg3, vo
     }
 }
 
-void idwibble_entrypoint_1(s32 arg0) 
+void idwibble_entrypoint_1(void *arg0)
 {
 }
 struct WibbleEntry {
@@ -88,7 +88,12 @@ f32 *func_80800324_idwibble(s32 arg0) {
     return D_80800770_idwibble[0].values;
 }               typedef struct { u8 pad0[0x18]; s16 unk18; s16 unk1A; u8 pad1C[0x8]; f32 unk24; f32 unk28; f32 unk2C; u8 pad30[0x3]; u8 unk33; s16 unk34; u8 pad36[0x1]; u8 unk37; } Objwibble_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
+#ifdef BT_NATIVE
+void idwibble_entrypoint_2(void *data, s32 arg1, void *arg2, s32 arg3, s32 arg4) {
+    f32 *arg0 = data;
+#else
 void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+#endif
     void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     void func_800EE88C(f32 *, s16 *);
     f32 *entry;
@@ -98,7 +103,7 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
     entry = func_80800324_idwibble(arg1);
     arg1 %= 100;
-    _glidmake_entrypoint_2(arg2, arg3, (u8 *)first, (u8 *)second);
+    _glidmake_entrypoint_2((BtIntPtr)arg2, arg3, (u8 *)first, (u8 *)second);
     ((Objwibble_arg0 *)arg0)->unk18 = (first[1] + second[1]) / 2;
     func_800EE88C(arg0, first);
     func_800EE88C(arg0 + 3, second);
@@ -145,7 +150,12 @@ void idwibble_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     }
 }
 
+#ifdef BT_NATIVE
+void idwibble_entrypoint_3(void *data, void *arg1, s32 arg2) {
+    f32 *arg0 = data;
+#else
 void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
+#endif
     s32 _glid_entrypoint_0(BtIntPtr, s32, s32 *, void *);
     f32 func_800D8FF8(void);
     s32 func_800E3D0C(void *, void *);
@@ -163,7 +173,7 @@ void idwibble_entrypoint_3(f32 *arg0, s32 arg1, s32 arg2) {
     sp34.y += ((Objwibble_arg0 *)arg0)->unk34;
     sp28.y += ((Objwibble_arg0 *)arg0)->unk34;
     if (((Objwibble_arg0 *)arg0)->unk37 || func_800E3D0C(arg0, arg0 + 3)) {
-        _glid_entrypoint_0(arg1, arg2, &_idwibble_entrypoint_0, arg0);
+        _glid_entrypoint_0((BtIntPtr)arg1, arg2, &_idwibble_entrypoint_0, arg0);
     }
     }
 }

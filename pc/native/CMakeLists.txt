@@ -58,6 +58,7 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/core2/inflate_rodata.c"
     "${BT_ROOT}/src/core2/model_materials.c"
     "${BT_ROOT}/src/core2/player_form_data.c"
+    "${BT_ROOT}/src/core2/actor_item_types.c"
     "${BT_ROOT}/src/core2/dialog_render_data.c"
     "${BT_ROOT}/src/core2/player_motion_data.c"
     "${BT_ROOT}/src/core2/face_culling_data.c"

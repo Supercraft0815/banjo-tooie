@@ -82,10 +82,15 @@ void idflame_entrypoint_1(s32 arg0, s16 *arg1, s32 arg2, s32 arg3) {
     B_80800560_idflame.end++;
 }
 
-void idflame_entrypoint_2(s32 arg0) 
+void idflame_entrypoint_2(void *arg0)
 {
 }
+#ifdef BT_NATIVE
+void idflame_entrypoint_3(void *data, s32 arg1, void *arg2, s32 arg3, s32 flags) {
+    u8 *arg0 = data;
+#else
 void idflame_entrypoint_3(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
+#endif
     void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
     void _glidmake_entrypoint_2(void *arg0, s32 arg1, s16 *arg2, s16 *arg3);
     s16 _glidmake_entrypoint_3(s32 *arg0, s32 arg1);
@@ -148,7 +153,12 @@ void idflame_entrypoint_3(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
     }
 }
 
+#ifdef BT_NATIVE
+void idflame_entrypoint_4(void *data, void *arg1, s32 arg2) {
+    u8 *arg0 = data;
+#else
 void idflame_entrypoint_4(u8 *arg0, BtIntPtr arg1, s32 arg2) {
+#endif
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800D8FF8(void);
 #ifndef BT_NATIVE

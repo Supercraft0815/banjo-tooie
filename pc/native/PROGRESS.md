@@ -3096,3 +3096,17 @@ Trigger-Einträge. Der integrierte Stand besteht 11 Gastsuiten, 74 Fälle mit
 16.401 Originalfunktionen und die beiden ROM-Abbilder sind geprüft. Belege
 unter `build/acceptance/n1-2026-11-18/current-baddie-sfx*` sowie den dortigen
 `current-*-readers.json`.
+
+### 2026-11-19 – Methoden für die elf Actor-Modell-Effekte
+
+Die elf Einträge für Modell-Effekte liegen in einer gemeinsamen C-Tabelle.
+Alle 34 Methoden sind mit ihren Implementierungen verknüpft. Der native
+Actor reserviert für den Mesh-Effekt auch auf LP64 genügend Platz für seine
+beiden Funktionszeiger. Der Sanitizertest ruft den echten Konstruktor mit
+einem Modell oberhalb von 4 GiB auf und prüft das letzte Feld im Effekt.
+
+Der strenge Scan meldet 15 Assembler-Dateneinträge. 64 Sanitizertests, elf
+Gastsuiten und 74 Replays mit 447.849 Retraces bestehen. Alle 9.703
+Zeigerwörter liegen an denselben Originaladressen. Der Original-IDO-Build
+bestätigt die 16.401 Funktionen sowie beide ROM-Abbilder. Belege unter
+`build/acceptance/n1-2026-11-18/current-item-methods*`.

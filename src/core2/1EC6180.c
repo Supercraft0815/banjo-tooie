@@ -2,36 +2,7 @@
 #include "mesh_effect_presets.inc"
 void func_800ED964(void *);
 
-typedef struct {
-    u8 unk0;
-    f32 unk4;
-    f32 unk8;
-    void (*unkC)(void *);
-    void (*unk10)(void *);
-    s16 unk14[3];
-    s16 unk1A[3];
-    f32 unk20;
-    f32 unk24;
-    u8 unk28;
-    u8 unk29;
-    u8 pad2A[2];
-    f32 unk2C[3];
-    f32 unk38[3];
-    f32 unk44;
-    f32 unk48;
-    s16 unk4C;
-    s16 unk4E;
-    f32 unk50[4];
-    f32 unk60[4];
-    f32 unk70;
-    f32 unk74;
-    f32 unk78[3];
-    f32 unk84;
-    f32 unk88[3];
-    f32 unk94;
-    f32 unk98;
-    f32 unk9C;
-} MeshEffect;     
+#include "core2/mesh_effect.h"
 
 
 void func_800EC890(s32 arg0) 
@@ -268,7 +239,8 @@ int func_800EDA2C(void *self, f32 arg1[3]) {
 
 /* extern */
 
-void func_800EDAF4(u8 *arg0) {
+void func_800EDAF4(void *data) {
+    u8 *arg0 = data;
     BT_IDO_ONLY(s32 func_800C2FDC();) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     s32 temp_a1;
 
@@ -278,7 +250,7 @@ void func_800EDAF4(u8 *arg0) {
     }
 }
 
-void func_800EDB20(void *self, s32 arg1, void *model, s32 mesh_id) {
+void func_800EDB20(void *self, s32 arg1, void *model, s32 mesh_id, s32 flags) {
     void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     MeshEffect *arg0 = self;
     arg0->unk0 = 0;
@@ -471,7 +443,12 @@ void func_800EE100(s16 *arg0, s32 arg1) {
     arg0[38] = arg1;
 }
 
+#ifdef BT_NATIVE
+void func_800EE108(void *data, void *model, s32 mesh_id) {
+    MeshEffect *arg0 = data;
+#else
 void func_800EE108(MeshEffect *arg0, BtIntPtr model, s32 mesh_id) {
+#endif
     f32 func_800D8FF8(void);
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800C395C(u8);

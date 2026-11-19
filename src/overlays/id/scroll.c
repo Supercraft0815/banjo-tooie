@@ -18,15 +18,16 @@ void idscroll_entrypoint_0(s16 arg0, BtUIntPtr arg1, u8 *arg2, s32 arg3, s16 *ar
     }
 }
 
-void idscroll_entrypoint_1(s32 arg0) 
+void idscroll_entrypoint_1(void *arg0)
 {
 }               typedef struct { f32 unk0; u8 pad4[0x4]; f32 unk8; } Objscroll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
-void idscroll_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void idscroll_entrypoint_2(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 flags) {
     (((Objscroll_arg0 *)arg0)->unk0) = 0.0f;
     (((Objscroll_arg0 *)arg0)->unk8) = (f32) arg1;
 }
 
-void idscroll_entrypoint_3(ScrollEffect *arg0, void *model, s32 mesh_id) {
+void idscroll_entrypoint_3(void *data, void *model, s32 mesh_id) {
+    ScrollEffect *arg0 = data;
     f32 func_800D8FF8(void);
     void _glid_entrypoint_0(void *, s32, void *, BtIntPtr);
 #ifndef BT_NATIVE

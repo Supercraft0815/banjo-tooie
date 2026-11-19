@@ -31,7 +31,7 @@ static void update(void *data,void *model,s32 id) {
 static void destroy(void *data) { CHECK(payload(data)->magic==0xA1C70F5); ++destroyed; }
 static void compact(void *data) { CHECK(payload(data)->magic==0xA1C70F5); ++compacted; }
 #define ITEM_CALLBACKS {create,update,destroy,NULL}
-NativeActorItemType D_80124440[] = {
+ActorItemType D_80124440[] = {
     ITEM_CALLBACKS,ITEM_CALLBACKS,ITEM_CALLBACKS,ITEM_CALLBACKS,ITEM_CALLBACKS,
     ITEM_CALLBACKS,ITEM_CALLBACKS,ITEM_CALLBACKS,ITEM_CALLBACKS,ITEM_CALLBACKS,
     {create,update,destroy,compact}

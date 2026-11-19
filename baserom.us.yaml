@@ -709,7 +709,7 @@ segments:
       - [0x1EFDCD0, .data, 1EDAEA0]
       - [0x1EFDCF0, .data, 1EDD9C0]
       - [0x1EFDD10, .data, 1EDDC40]
-      - [0x1EFDD30, data]
+      - [0x1EFDD30, .data, actor_item_types]
       - [0x1EFDDE0, .data, 1EE06E0]
       - [0x1EFDE40, .data, 1EE1500]
       - [0x1EFDE70, .data, 1EE1510]

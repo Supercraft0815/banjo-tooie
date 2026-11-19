@@ -25,10 +25,11 @@ s32 idwater_entrypoint_1(s16 *arg0) {
     return arg0[8];
 }
 
-void idwater_entrypoint_2(s32 arg0) 
+void idwater_entrypoint_2(void *arg0)
 {
 }
-void idwater_entrypoint_3(WaterEffect *arg0, s32 arg1, void *arg2, s32 arg3) {
+void idwater_entrypoint_3(void *data, s32 arg1, void *arg2, s32 arg3, s32 flags) {
+    WaterEffect *arg0 = data;
     f32 func_800DC264(f32, f32);
     arg0->d_tc[0] = 0;
     arg0->d_tc[1] = 0;
@@ -42,7 +43,7 @@ void idwater_entrypoint_3(WaterEffect *arg0, s32 arg1, void *arg2, s32 arg3) {
     arg0->unk1C = 0.0f;
 }             typedef struct { s16 unk0; s16 unk2; f32 unk4; f32 unk8; s16 unkC; s16 unkE; s16 unk10; u8 pad12[0x2]; f32 unk14; f32 unk18; f32 unk1C; } Objwater_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void idwater_entrypoint_4(void *arg0, BtIntPtr arg1, s32 arg2) {
+void idwater_entrypoint_4(void *arg0, void *arg1, s32 arg2) {
     void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
     f32 func_800138D0(f32);
     f32 func_80013970(f32);

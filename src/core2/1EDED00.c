@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/actor_item_types.h"
 
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_actor.h"
@@ -13,8 +14,6 @@ Unk80132ED0 *D_80136ED8;
 #define ITEM_SIZE ((s32)sizeof(NativeActorItem))
 #define ITEM_MODEL(i) ((i)->model)
 #define ITEM_ID(i) ((i)->id)
-#define ITEM_UPDATE(t) ((t).update)
-#define ITEM_DEFRAG(t) ((t).defrag)
 #define ITEM_ENTRY_SIZE ((s32)sizeof(NativeActorItems))
 #define OWNER_INDEX(a, original) (((s16 *)&((Actor *)(a))->pad90)[0])
 #define ITEM_ENTRY(e, field, original) (((NativeActorItems *)(e))->field)
@@ -26,8 +25,6 @@ Unk80132ED0 *D_80136ED8;
 #define ITEM_SIZE 0xA8
 #define ITEM_MODEL(i) ((i)->unk0)
 #define ITEM_ID(i) ((i)->unk6)
-#define ITEM_UPDATE(t) ((t).unk4)
-#define ITEM_DEFRAG(t) ((t).unkC)
 #define ITEM_ENTRY_SIZE 8
 #define OWNER_INDEX(a, original) (original)
 #define ITEM_ENTRY(e, field, original) (original)
@@ -44,13 +41,7 @@ typedef struct {
 
 extern s32 D_80136ED8;
 
-typedef struct {
-    void (*create)(void *, s32, s32, s32, s32);
-    void (*unk4)(void *, s32, s32);
-    void (*destroy)(void *);
-    s32 unkC;
-} ItemType;
-extern ItemType D_80124440[];
+
 
 #endif
 
@@ -540,7 +531,7 @@ void func_80105CD0(void) {
     typedef NativeActorItem Item;
 #else
     typedef struct {
-        s32 unk0;
+        void *unk0;
         s16 type;
         s16 unk6;
         u8 data[0xA0];
@@ -555,11 +546,7 @@ void func_80105CD0(void) {
 #endif
     Item *item;
     Item *end;
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
     void (*callback)(void *);
-#else
-    s32 callback;
-#endif
 
     if (D_80136ED0 != 0) {
         capacity = freelist_capacity(D_80136ED0);
@@ -571,9 +558,9 @@ void func_80105CD0(void) {
                 end = (Item *)vector_end(ITEM_ENTRY(entry, items, entry[1]));
                 item = (Item *)vector_begin(ITEM_ENTRY(entry, items, entry[1]));
                 for (; item < end; item++) {
-                    callback = ITEM_DEFRAG(D_80124440[item->type]);
+                    callback = D_80124440[item->type].defrag;
                     if (callback) {
-                        ((void (*)(void *))callback)(item->data);
+                        callback(item->data);
                     }
                 }
             }
@@ -704,7 +691,7 @@ void func_80106138(void *arg0) {
     typedef NativeActorItem Item;
 #else
     typedef struct {
-        s32 unk0;
+        void *unk0;
         s16 type;
         s16 unk6;
         u8 data[0xA0];
@@ -781,7 +768,7 @@ void func_801061D8(Actor *arg0) {
     typedef NativeActorItem Item;
 #else
     typedef struct {
-        s32 unk0;
+        void *unk0;
         s16 type;
         s16 unk6;
         u8 data[0xA0];
@@ -814,7 +801,7 @@ void func_801061D8(Actor *arg0) {
             item = (Item *)vector_begin(ITEM_ENTRY(entry, items, entry[1]));
             if (item < end) {
                 do {
-                    ITEM_UPDATE(D_80124440[item->type])(item->data, ITEM_MODEL(item), ITEM_ID(item));
+                    D_80124440[item->type].update(item->data, ITEM_MODEL(item), ITEM_ID(item));
                     item++;
                 } while (item < end);
             }
@@ -847,7 +834,7 @@ void *func_80106320(s32 *arg0, s32 arg1, s32 arg2, s32 arg3)
     typedef NativeActorItems Entry;
 #else
     typedef struct {
-        s32 unk0;
+        void *unk0;
         void *items;
     } Entry;
 #endif
@@ -855,7 +842,7 @@ void *func_80106320(s32 *arg0, s32 arg1, s32 arg2, s32 arg3)
     typedef NativeActorItem Item;
 #else
     typedef struct {
-        s32 unk0;
+        void *unk0;
         s16 type;
         s16 unk6;
         u8 data[0xA0];

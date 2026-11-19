@@ -53,10 +53,10 @@ typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk1
     }
 }
 
-void idwave_entrypoint_1(s32 arg0) 
+void idwave_entrypoint_1(void *arg0)
 {
 }
-void idwave_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void idwave_entrypoint_2(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 flags) {
     void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     struct Wave { f32 f[10]; s16 a; s16 b; f32 c; };
     s16 sp28[3];
@@ -79,7 +79,7 @@ void idwave_entrypoint_2(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-void idwave_entrypoint_3(void *arg0, BtIntPtr arg1, s32 arg2) {
+void idwave_entrypoint_3(void *arg0, void *arg1, s32 arg2) {
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     f32 func_800138D0(f32);
     f32 func_80013970(f32);
