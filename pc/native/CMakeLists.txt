@@ -397,6 +397,10 @@ elseif(UNIX)
 endif()
 add_test(NAME native_inventory_counters COMMAND bt_native_inventory_counters_test)
 
+add_executable(bt_native_save_slots_test tests/save_slots.c "${BT_ROOT}/src/overlays/gl/savegame.c")
+target_link_libraries(bt_native_save_slots_test PRIVATE bt_native_core)
+add_test(NAME native_save_slots COMMAND bt_native_save_slots_test)
+
 add_executable(bt_native_world_props_test tests/world_props.c tests/marker_world.c)
 target_link_libraries(bt_native_world_props_test PRIVATE bt_native_core)
 if(APPLE)

@@ -52,7 +52,6 @@ u8 D_801270C0[16] BT_DATA(4, bss_core2bss1_0_1, 0x60);
 u8 D_801270E0[16] BT_DATA(4, bss_core2bss1_0_1, 0x80);
 u8 D_80127114[1] BT_DATA(4, bss_core2bss1_0_1, 0xB4);
 u8 D_801275D0[16] BT_DATA(4, bss_core2bss1_0_1, 0x570);
-u8 D_80127618[20] BT_DATA(4, bss_core2bss1_0_1, 0x5B8);
 u8 D_80127636[2] BT_DATA(4, bss_core2bss1_0_1, 0x5D6);
 u8 D_80127640[2] BT_DATA(4, bss_core2bss1_0_1, 0x5E0);
 u8 D_80127642[5] BT_DATA(4, bss_core2bss1_0_1, 0x5E2);

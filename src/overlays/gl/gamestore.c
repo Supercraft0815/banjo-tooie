@@ -99,7 +99,7 @@ s32 func_8080013C_glgamestore() {
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glgamestore_entrypoint_2(s32 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glgamestore_entrypoint_2(s32 arg0, BtIntPtr arg1) {
     s32 func_8080013C_glgamestore();
     BT_NATIVE_ONLY(return) func_8080013C_glgamestore(func_80800038_glgamestore(arg0), arg1, 0x1C0);
 }
