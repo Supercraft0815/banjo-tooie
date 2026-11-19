@@ -39,7 +39,7 @@ void func_800E82EC(void) {
     s16 freelist_capacity(FreeList *);
     s32 freelist_is_element_alive(FreeList *, s32);
     u16 func_8001A0C0(s32, s32);
-    s32 func_800A8984(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8984(s32);
     void func_800CA6D4(void *, f32 *, f32 *);
     s32 func_800DA298(s32);
     f32 func_800E81E0(s32, s32, f32, f32);
@@ -80,7 +80,7 @@ void func_800E82EC(void) {
     s32 i;
     s32 slot;
     s32 capacity;
-    s32 camera;
+    BtIntPtr camera;
     f32 near;
     f32 far;
     f32 reciprocal;

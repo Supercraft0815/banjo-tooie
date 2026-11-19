@@ -313,7 +313,7 @@ void func_800F5008(BtIntPtr arg0) {
 void func_800F50D0(BtIntPtr arg0) {
     void _bainvisible_entrypoint_9(void **arg0, s32 arg1, void *arg2);
     void func_80098BA8(void *, BtIntPtr);
-    s32 func_800A8984(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8984(s32);
     s32 func_800A89F8();
     void func_800CA7E4(BtIntPtr, s32 *);
     extern s32 D_801354B8;

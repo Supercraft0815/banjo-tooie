@@ -2713,3 +2713,19 @@ vollständigen ROM-Abbilder. Die Nachweise stehen unter
 `build/acceptance/n1-2026-11-18/` in `current-six-dispatch-full.log`,
 `current-six-dispatch-ctest.log`, `current-six-dispatch-ido/result.json`
 und den Einzelprüfungen in `proof/`.
+
+## 2026-11-19 — N3, fünf Kamerafenster und ihre Lebensdauer
+
+Die Kameraverwaltung speichert und verschiebt die Adressen ihrer fünf
+Fenster in Zeigerbreite. Der isolierte LP64-Test prüft 21 Neuaufbauten,
+Tausch und Freigabe mit dem Rechteckpool des Spiels bei 304 × 228 und
+1.920 × 1.080 Pixeln. Auf derselben Ausgangsbasis sinkt die Zahl der
+LP64-Warnstellen von 783 auf 776. Beide Läufe mit der vorhandenen
+Typzuordnung zählen 223 verschiebbare Rohzugriffe.
+
+Alle 60 nativen Sanitizertests, elf Gastsuiten und 74 Replays mit
+447.849 Retraces bestehen. Die kanonische Gast-IR ist identisch.
+Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen
+ROM-Abbilder. Die Nachweise liegen unter
+`build/acceptance/n1-2026-11-18/current-viewport*` und in
+`proof/viewport-slot-summary.json`.

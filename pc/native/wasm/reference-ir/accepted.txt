@@ -236,3 +236,15 @@ the maximum within a counter row. HUD references and model thresholds use
 their named table fields. The individual proofs preserve guest functions
 and the 9,688 swap targets; current-six-settings-ido/result.json and the
 current-six-settings replay log cover the cumulative build.
+
+2026-11-19  N2 step effect and N1 player-state dispatch/egg selection
+The step-effect call preserves the original position pointer in a1. The
+three audio wrappers and the map-sector callback finish without a scalar
+result. The remaining differences in current-closed-ir.log are the signed
+or unsigned extension of halfword/word arguments and the order in which
+integer operands are extended. The MIPS caller evidence is recorded in
+n2-2026-11-18/signature-7-9-closed-report.md and switch-minimal-sites.json.
+The six subsequent N1 stages expose typed inflater, lighting, prop, air,
+state and egg tables. LLVM addresses fields with a typed array index and
+a field offset. The fixup still visits the same data words. See the
+per-stage checks in n1-2026-11-18/proof and current-six-dispatch-ir.log.

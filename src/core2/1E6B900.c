@@ -1265,10 +1265,10 @@ void func_80093E18(u8 *arg0, BT_IDO_ONLY(Gfx **arg1) BT_PASS2(Gfx **arg1, BtIntP
     s32 func_8009375C(u8 *, Gfx **, s32);
     s32 func_80093864(u8 *, Gfx **, s32);
     BtIntPtr func_800A5090(void *);
-    s32 func_800A88C4(s32, BT_IDO_ONLY(BtIntPtr) BT_PASS2(BtIntPtr, BtIntPtr));
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A88C4(s32, BT_IDO_ONLY(BtIntPtr) BT_PASS2(BtIntPtr, BtIntPtr));
     s32 func_800A89F8();
     void func_800E44FC(Gfx **);
-    s32 sp28;
+    BtIntPtr sp28;
     s32 sp24;
     u8 *temp_v0;
 

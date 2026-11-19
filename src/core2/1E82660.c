@@ -128,7 +128,7 @@ s32 func_800A9010(void) {
 
 s32 func_800A907C(s32 arg0, s32 arg1, s32 arg2) {
     extern s16 D_801276D0;
-    s32 func_800A88C4();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A88C4();
     u8 *func_800CA334(void);
     void *func_8010FB34(s32, s32);
 
@@ -162,7 +162,7 @@ s32 func_800A907C(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_800A91A8(s32 arg0) {
     extern s16 D_801276D0;
-    s32 func_800A88C4();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A88C4();
     s16 temp_a0;
 
     if (arg0 >= 0) {
@@ -175,8 +175,8 @@ void func_800A91A8(s32 arg0) {
 
 void func_800A91F4(s32 arg0) {
     extern s16 D_801276D0;
-    s32 func_800A8948(s32);
-    s32 func_800A8984(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8948(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8984(s32);
     void func_800CA364(void *);
     void func_8010FBD4(void *);
     s16 *temp_s0;
@@ -270,7 +270,7 @@ s32 func_800A940C(s32 arg0) {
 
 s32 func_800A9420(s32 arg0) {
     extern s16 D_801276D0;
-    s32 func_800A8984(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8984(s32);
     return *(s32 *)((u8 *)&D_801276D0 + arg0 * 4 + 0x38) ==
         func_800A8984(*(s32 *)((u8 *)&D_801276D0 + arg0 * 4 + 0x18));
 }    typedef struct { s16 unk0; } Obj1E82660_D_801276D0; /* offsets.py genstruct: fields from raw offsets on &D_801276D0; rename once understood */
@@ -337,8 +337,8 @@ void func_800A9514(f32 *arg0, f32 *arg1) {
 void func_800A95C4(BT_PARAM_OR_VOID(s32 bt_a0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2))) {
     extern s16 D_801276D0;
     extern s16 D_801276F0;
-    s32 func_800A88C4();
-    s32 func_800A8984(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A88C4();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8984(s32);
     void *func_800CA384(void *);
     void *func_80110068(void *, s32);
     s32 *var_s0;

@@ -32,11 +32,11 @@ extern void* D_801276BC;
 typedef struct
 {
     void *unk0;
-    s32 unk4;
+    BT_NATIVE_ONLY(union { BtIntPtr unk4; void *camera; };) BT_IDO_ONLY(s32 unk4;)
     f32 unk8;
 } unk_D_80127688;
 extern unk_D_80127688 D_80127688[];
-
+#include "viewport_slots.inc"
 Gfx **func_800A7180(void)
 {
     return &D_80127658;
@@ -884,15 +884,15 @@ s32 func_800A84EC(s32 arg0, BtIntPtr arg1) {
     s32 sp30;
     s32 sp2C;
     s32 sp28;
-    if (D_80127688[arg0].unk0 != NULL) {
-        func_800158E4(D_80127688[arg0].unk0);
+    if (viewportSlots[arg0].unk0 != NULL) {
+        func_800158E4(viewportSlots[arg0].unk0);
     }
     func_800A8424(arg1, &sp34, &sp30, &sp2C, &sp28);
-    D_80127688[arg0].unk0 = func_8001592C(sp34, sp30, sp2C, sp28);
-    arg1 = D_80127688[arg0].unk4;
-    D_80127688[arg0].unk8 = 40.0f;
+    viewportSlots[arg0].unk0 = func_8001592C(sp34, sp30, sp2C, sp28);
+    arg1 = viewportSlots[arg0].unk4;
+    viewportSlots[arg0].unk8 = 40.0f;
     if (arg1 != 0) {
-        func_80015CE8(D_80127688[arg0].unk0, arg1);
+        func_80015CE8(viewportSlots[arg0].unk0, arg1);
     }
     func_800C54CC(arg0, 40.0f, 1.0f); BT_NATIVE_ONLY(return 0;)
 }
@@ -903,14 +903,14 @@ s32 func_800A85A8(void) {
     s32 var_s0;
     unk_D_80127688 *var_s1;
 
-    var_s1 = D_80127688;
+    var_s1 = viewportSlots;
     var_s0 = 0;
     do {
         if (var_s1->unk0 != 0) {
             func_800A84EC(var_s0, func_800A8380(var_s0));
         }
         var_s0 += 1;
-        var_s1 = (unk_D_80127688 *)((u8 *)var_s1 + 0xC);
+        var_s1++;
     } while (var_s0 != 4);
     return func_800A84EC(4, 0);
 }
@@ -920,8 +920,8 @@ void func_800A861C(void) {
     extern s32 D_80127678;
 
     D_80127678 = 0;
-    D_80127688[4].unk4 = (BtIntPtr) func_800CA334();
-    func_800E42B4(D_80127688[4].unk4);
+    viewportSlots[4].unk4 = (BtIntPtr) func_800CA334();
+    func_800E42B4(viewportSlots[4].unk4);
     func_800A84EC(4, 0);
     func_800C5464();
     func_800A89BC(4);
@@ -932,8 +932,8 @@ void func_800A8670(void)
   void func_800C54F0(s32 arg0);
   s32 var_s0;
   unk_D_80127688 *var_s1;
-  s32 *new_var;
- var_s0 = 0; var_s1 = D_80127688; do {
+  BtIntPtr *new_var;
+ var_s0 = 0; var_s1 = viewportSlots; do {
     new_var = &var_s1->unk4;
     if ((var_s1->unk0 != 0) && ((*new_var) != 0))
     {
@@ -947,31 +947,31 @@ void func_800A8670(void)
 
 void func_800A86D8(void)
 {
-    if (D_801276BC != 0)
+    if (VIEWPORT_DEFAULT_CAMERA != 0)
     {
-        D_801276BC = func_800CA384(D_801276BC);
+        VIEWPORT_DEFAULT_CAMERA = func_800CA384(VIEWPORT_DEFAULT_CAMERA);
     }
 }
 
 void func_800A8710(void)
 {
     extern s32 D_801276C4;
-    s32 (*var_s0)[3];
+    ViewportReleaseEntry *var_s0;
     BtIntPtr temp_a0;
     void func_800158E4(s32 *);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800CA364(s32);
 #endif
-    func_800CA364(D_80127688[4].unk4);
-    D_80127688[4].unk4 = 0;
-    var_s0 = (s32 (*)[3])((s8 *)&D_801276BC - 0x34); do {
-        temp_a0 = var_s0[0][0];
+    func_800CA364(viewportSlots[4].unk4);
+    viewportSlots[4].unk4 = 0;
+    var_s0 = VIEWPORT_RELEASE_BEGIN; do {
+        temp_a0 = (BtIntPtr) VIEWPORT_RELEASE_HANDLE(var_s0);
         if (temp_a0 != 0) {
             func_800158E4((s32 *)temp_a0);
-            var_s0[0][0] = 0;
+            VIEWPORT_RELEASE_HANDLE(var_s0) = 0;
         }
         var_s0++;
-    } while (var_s0 != (s32 (*)[3])&D_801276C4);
+    } while (var_s0 != VIEWPORT_RELEASE_END);
 }
 
 s32 func_800A877C(s32 arg0) {
@@ -979,7 +979,7 @@ s32 func_800A877C(s32 arg0) {
     s32 func_800A84EC(s32, BtIntPtr);
     s32 func_800A85A8();
     extern s32 D_80127670;
-    if (D_80127688[arg0].unk0 != 0) {
+    if (viewportSlots[arg0].unk0 != 0) {
         return 1;
     } else {
         if (arg0 >= D_80127670) {
@@ -996,75 +996,75 @@ s32 func_800A87FC(s32 arg0) {
     extern s32 D_80127670;
     s32 i;
 
-    if (D_80127688[arg0].unk0 == NULL) {
+    if (viewportSlots[arg0].unk0 == NULL) {
         return 0;
     }
-    func_800158E4(D_80127688[arg0].unk0);
-    D_80127688[arg0].unk0 = NULL;
-    D_80127688[arg0].unk4 = 0;
+    func_800158E4(viewportSlots[arg0].unk0);
+    viewportSlots[arg0].unk0 = NULL;
+    viewportSlots[arg0].unk4 = 0;
     if (arg0 + 1 == D_80127670) {
         D_80127670 = 0;
         i = 0;
         do {
             i++;
-            if (D_80127688[arg0].unk0 != NULL) {
+            if (viewportSlots[arg0].unk0 != NULL) {
                 D_80127670++;
             }
         } while (i != 4);
         func_800A85A8();
     }
     if (D_80127670 == 0) {
-        func_800E42B4((BtIntPtr)D_801276BC);
+        func_800E42B4((BtIntPtr)VIEWPORT_DEFAULT_CAMERA);
     }
     return 1;
 }
 
 /* extern */
 
-s32 func_800A88C4(s32 arg0, BtIntPtr arg1, BtIntPtr arg2) {
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A88C4(s32 arg0, BtIntPtr arg1, BtIntPtr arg2) {
     void func_80015CE8(void *, void *);
-    s32 sp1C;
+    BtIntPtr sp1C;
 
-    arg2 = D_80127688[arg0].unk0;
+    arg2 = (BtIntPtr)viewportSlots[arg0].unk0;
     if (arg2 == 0) {
         return 0;
     }
-    sp1C = D_80127688[arg0].unk4;
-    D_80127688[arg0].unk4 = arg1;
+    sp1C = viewportSlots[arg0].unk4;
+    viewportSlots[arg0].unk4 = arg1;
     func_80015CE8(arg2, arg1);
     if (arg0 == D_80127674) {
-        func_800E42B4(D_80127688[arg0].unk4);
+        func_800E42B4(viewportSlots[arg0].unk4);
     }
     return sp1C;
 }
 
-s32 func_800A8948(s32 arg0)
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8948(s32 arg0)
 {
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
-    if (D_80127688[arg0].unk0 == 0)
+    if (viewportSlots[arg0].unk0 == 0)
     {
         return 0;
     }
-    temp_v0 = D_80127688[arg0].unk4;
-    D_80127688[arg0].unk4 = 0;
+    temp_v0 = viewportSlots[arg0].unk4;
+    viewportSlots[arg0].unk4 = 0;
     return temp_v0;
 }
 
-s32 func_800A8984(s32 arg0) 
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8984(s32 arg0)
 {
-    return D_80127688[arg0].unk4;
+    return viewportSlots[arg0].unk4;
 }
 
 void *func_800A89A0(s32 arg0) 
 {
-    return D_80127688[arg0].unk0;
+    return viewportSlots[arg0].unk0;
 }
 
 void func_800A89BC(s32 arg0)
 {
     D_80127674 = arg0;
-    func_800E42B4(D_80127688[arg0].unk4);
+    func_800E42B4(viewportSlots[arg0].unk4);
 }
 
 s32 func_800A89F8()
@@ -1074,7 +1074,7 @@ s32 func_800A89F8()
 
 void func_800A8A04(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4)
 {
-    func_80015CC0(D_80127688[arg0].unk0, arg1, arg2, arg3, arg4);
+    func_80015CC0(viewportSlots[arg0].unk0, arg1, arg2, arg3, arg4);
 }
 
 /* extern */
@@ -1094,7 +1094,7 @@ void func_800A8A88(s32 arg0, f32 arg1) {
     BtIntPtr temp_a2;
     unk_D_80127688 *temp_v0;
 
-    temp_v0 = &D_80127688[arg0];
+    temp_v0 = &viewportSlots[arg0];
     temp_a2 = temp_v0->unk4;
     temp_v0->unk8 = arg1;
     if (temp_a2 != 0) {
@@ -1104,12 +1104,12 @@ void func_800A8A88(s32 arg0, f32 arg1) {
 
 f32 func_800A8AD4(s32 arg0) 
 {
-    return D_80127688[arg0].unk8;
+    return viewportSlots[arg0].unk8;
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_800A8AF0(s32 arg0)
 {
-    BT_NATIVE_ONLY(return) func_80015D14(D_80127688[arg0].unk0);
+    BT_NATIVE_ONLY(return) func_80015D14(viewportSlots[arg0].unk0);
 }
 
 /* extern */
@@ -1124,7 +1124,7 @@ void func_800A8B24(BtIntPtr arg0, s32 arg1) {
     s32 sp28;
     BtIntPtr sp24;
 
-    sp24 = D_80127688[D_80127674].unk0;
+    sp24 = viewportSlots[D_80127674].unk0;
     func_80015CC0(sp24, (BtIntPtr) &sp34, (BtIntPtr) &sp30, (BtIntPtr) &sp2C, (BtIntPtr) &sp28);
     func_800E7FB0(sp34, sp30, sp2C, sp28);
     func_800E7EC0(arg0);
@@ -1142,22 +1142,22 @@ s32 func_800A8BD4(Gfx **arg0, s32 arg1, s32 arg2) {
     extern s32 D_80127670;
 
     if (arg1 >= 0) {
-        ((s32 *)&D_80127670)[1] = arg1 - 1;
+        VIEWPORT_CURRENT = arg1 - 1;
     }
-    if ((((s32 *)&D_80127670)[1] >= 0) &&
-        (D_80127688[((s32 *)&D_80127670)[1]].unk4 != 0)) {
-        func_800C5668(((s32 *)&D_80127670)[1], arg0);
+    if ((VIEWPORT_CURRENT >= 0) &&
+        (viewportSlots[VIEWPORT_CURRENT].unk4 != 0)) {
+        func_800C5668(VIEWPORT_CURRENT, arg0);
     }
-    ((s32 *)&D_80127670)[1]++;
-    for (; ((s32 *)&D_80127670)[1] < 4; ((s32 *)&D_80127670)[1]++) {
-        if (D_80127688[((s32 *)&D_80127670)[1]].unk0 != 0) {
+    VIEWPORT_CURRENT++;
+    for (; VIEWPORT_CURRENT < 4; VIEWPORT_CURRENT++) {
+        if (viewportSlots[VIEWPORT_CURRENT].unk0 != 0) {
             break;
         }
     }
-    if (((s32 *)&D_80127670)[1] >= 4) {
+    if (VIEWPORT_CURRENT >= 4) {
         return 0;
     }
-    func_800A89BC(((s32 *)&D_80127670)[1]);
+    func_800A89BC(VIEWPORT_CURRENT);
     func_800A8B24(arg0, arg2);
     return 1;
 }
