@@ -12,20 +12,19 @@ void func_800B8CA4(s32 shakiness);
 
 void func_800B8CE0(s32 color);
 void func_800B8CF0(f32 size);
-extern struct {
-	u8 data[0x10];  // D_801282C0
-	s32 unk10;  // Texture format
-	f32 value;
-} D_801282C0;
-extern s8 D_801282C1; 
-extern s8 D_801282C2; 
-extern s8 D_801282C3; //Transparency
-extern s8 D_801282C4; //Shakiness
-extern s8 D_801282C6; //Font
-extern s8 D_801282C7;
-
-extern s8 D_801282C9; //Pattern
-
-extern f32 D_801282D4; //Size
+typedef struct {
+    u8 color[4];
+    u8 shakiness, active, font, proportional, firstGlyph, pattern;
+    u8 patternWidth, patternHeight, fontReady;
+    u8 padding[3];
+    s32 textureFormat;
+    f32 size;
+} FontDrawState;
+extern FontDrawState D_801282C0;
+#ifndef BT_NATIVE
+extern s8 D_801282C3, D_801282C4, D_801282C5, D_801282C6, D_801282C7, D_801282C9;
+extern s32 D_801282D0;
+extern f32 D_801282D4;
+#endif
 
 #endif

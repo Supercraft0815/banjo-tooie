@@ -1,7 +1,7 @@
 #ifndef BT_NATIVE_WORLD_PROPS_H
 #define BT_NATIVE_WORLD_PROPS_H
 #include "native_marker.h"
-typedef struct { s16 models[2], dynamic[2]; } NativeWorldCell;
+#include "native_world_grid_data.h"
 extern u8 *D_80132DB0, *D_80132DB4;
 void func_800E96E0(void);
 void func_800E9708(void);

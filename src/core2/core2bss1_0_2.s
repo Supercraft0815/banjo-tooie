@@ -95,31 +95,7 @@ dlabel D_801282B4
     /* 801282B4 */ .space 0x0C
 
 dlabel D_801282C0
-    /* 801282C0 */ .space 0x03
-
-dlabel D_801282C3
-    /* 801282C3 */ .space 0x01
-
-dlabel D_801282C4
-    /* 801282C4 */ .space 0x01
-
-dlabel D_801282C5
-    /* 801282C5 */ .space 0x01
-
-dlabel D_801282C6
-    /* 801282C6 */ .space 0x01
-
-dlabel D_801282C7
-    /* 801282C7 */ .space 0x02
-
-dlabel D_801282C9
-    /* 801282C9 */ .space 0x07
-
-dlabel D_801282D0
-    /* 801282D0 */ .space 0x04
-
-dlabel D_801282D4
-    /* 801282D4 */ .space 0x0C
+    /* 801282C0 */ .space 0x20
 
 dlabel D_801282E0
     /* 801282E0 */ .space 0x0D
@@ -149,40 +125,7 @@ dlabel D_8012839C
     /* 8012839C */ .space 0x74
 
 dlabel D_80128410
-    /* 80128410 */ .space 0x04
-
-dlabel D_80128414
-    /* 80128414 */ .space 0x08
-
-dlabel D_8012841C
-    /* 8012841C */ .space 0x04
-
-dlabel D_80128420
-    /* 80128420 */ .space 0x0C
-
-dlabel D_8012842C
-    /* 8012842C */ .space 0x08
-
-dlabel D_80128434
-    /* 80128434 */ .space 0x04
-
-dlabel D_80128438
-    /* 80128438 */ .space 0x0C
-
-dlabel D_80128444
-    /* 80128444 */ .space 0x08
-
-dlabel D_8012844C
-    /* 8012844C */ .space 0x02
-
-dlabel D_8012844E
-    /* 8012844E */ .space 0x02
-
-dlabel D_80128450
-    /* 80128450 */ .space 0x04
-
-dlabel D_80128454
-    /* 80128454 */ .space 0x04
+    /* 80128410 */ .space 0x48
 
 dlabel D_80128458
     /* 80128458 */ .space 0x70

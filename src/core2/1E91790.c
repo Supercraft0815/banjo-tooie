@@ -1,5 +1,9 @@
 #include "core2/1E91790.h"
 #include "common.h"
+#ifdef BT_NATIVE
+FontDrawState D_801282C0;
+_Static_assert(sizeof(FontDrawState) == 24, "font drawing state");
+#endif
 
 /* Operand order matches the game's display-list packing. */
 #define textLoadTile(pkt, cmd, tile, uls, ult, lrs, lrt) { \
@@ -29,8 +33,8 @@ void func_800B7EA0(BtIntPtr arg0, s32 arg1) {
     s32 sp34;
 
     func_800AF614((Gfx **) arg0, (s16 *) func_800D674C(arg1), 0, 0x100, 1, 2, 2, &sp38[0], &sp34);
-    D_801282C0.data[0xA] = (u8) sp38[0];
-    D_801282C0.data[0xB] = (u8) sp34;
+    D_801282C0.patternWidth = (u8) sp38[0];
+    D_801282C0.patternHeight = (u8) sp34;
 }
 
 void func_800B7F14(Gfx **arg0) {
@@ -40,7 +44,7 @@ void func_800B7F14(Gfx **arg0) {
     { Gfx *g = (*arg0)++; g->words.w0 = 0xDE000000; g->words.w1 = (u32)((u8 *)D_8011A630 - (u8 *)0x80000000); }
     { Gfx *g = (*arg0)++;
     g->words.w0 = 0xE3001201;
-    if (D_801282C0.data[6] == 1) {
+    if (D_801282C0.font == 1) {
         g->words.w1 = 0x2000;
     } else {
         g->words.w1 = 0;
@@ -48,15 +52,15 @@ void func_800B7F14(Gfx **arg0) {
     }
     { Gfx *g = (*arg0)++;
     g->words.w0 = 0xFA000000;
-    g->words.w1 = ((u32)D_801282C0.data[3] & 0xFF) | (u32)(((D_801282C0.data[1] & 0xFF) << 16) | ((D_801282C0.data[2] & 0xFF) << 8) | ((D_801282C0.data[0] & 0xFF) << 24)); }
-    if (D_801282C0.data[9] != 0) {
+    g->words.w1 = ((u32)D_801282C0.color[3] & 0xFF) | (u32)(((D_801282C0.color[1] & 0xFF) << 16) | ((D_801282C0.color[2] & 0xFF) << 8) | ((D_801282C0.color[0] & 0xFF) << 24)); }
+    if (D_801282C0.pattern != 0) {
         { Gfx *g = (*arg0)++;
         g->words.w0 = 0xE3000A01; g->words.w1 = 0x100000; }
         { Gfx *g = (*arg0)++;
         g->words.w0 = 0xFC117E03; g->words.w1 = 0xFF0FF3FF; }
         { Gfx *g = (*arg0)++;
         g->words.w0 = 0xE200001C; g->words.w1 = 0x0C184A40; }
-        func_800B7EA0((BtIntPtr)arg0, D_801282C0.data[9] + 0xC24);
+        func_800B7EA0((BtIntPtr)arg0, D_801282C0.pattern + 0xC24);
     } else {
         { Gfx *g = (*arg0)++;
         g->words.w0 = 0xE3000A01; g->words.w1 = 0; }
@@ -65,39 +69,37 @@ void func_800B7F14(Gfx **arg0) {
         { Gfx *g = (*arg0)++;
         g->words.w0 = 0xE200001C; g->words.w1 = 0x504A40; }
     }
-    D_801282C0.data[5] = 1;
-    D_801282C0.data[0xC] = func_800D3724(D_801282C0.data[6]);
+    D_801282C0.active = 1;
+    D_801282C0.fontReady = func_800D3724(D_801282C0.font);
 }
 
 void func_800B80D0(Gfx **arg0) {
     Gfx *g = (*arg0)++;
     g->words.w0 = 0xFA000000;
-    g->words.w1 = ((u32)D_801282C0.data[3] & 0xFF) | (u32)(((D_801282C0.data[1] & 0xFF) << 16) | ((D_801282C0.data[2] & 0xFF) << 8) | ((D_801282C0.data[0] & 0xFF) << 24));
+    g->words.w1 = ((u32)D_801282C0.color[3] & 0xFF) | (u32)(((D_801282C0.color[1] & 0xFF) << 16) | ((D_801282C0.color[2] & 0xFF) << 8) | ((D_801282C0.color[0] & 0xFF) << 24));
 }
 
 void func_800B811C(Gfx **arg0) {
     extern Gfx D_8011A668[];
-    extern s8 D_801282C5;
-    Gfx *v1 = (*arg0)++; v1->words.w0 = 0xDE000000; v1->words.w1 = (u32)((u8 *)D_8011A668 - (u8 *)0x80000000); D_801282C5 = 0;
+    Gfx *v1 = (*arg0)++; v1->words.w0 = 0xDE000000; v1->words.w1 = (u32)((u8 *)D_8011A668 - (u8 *)0x80000000); BT_DATA_FIELD(D_801282C0.active, D_801282C5) = 0;
 }
 
 void *func_800B8148(u8 *ch) {
     s32 func_800B0D58(s16 *);
     s16 *func_800D3524(s32);
     s32 func_800D35D0();
-    extern s32 D_801282D0;
     s32 sp1C;
     s16 *temp_v0;
 
-    sp1C = func_800D35D0((u8) D_801282C6, *ch);
+    sp1C = func_800D35D0((u8) BT_DATA_FIELD(D_801282C0.font, D_801282C6), *ch);
     if (sp1C == -1) {
         return NULL;
     }
-    temp_v0 = func_800D3524((u8) D_801282C6);
+    temp_v0 = func_800D3524((u8) BT_DATA_FIELD(D_801282C0.font, D_801282C6));
     if (temp_v0 == NULL) {
         return NULL;
     }
-    D_801282D0 = func_800B0D58(temp_v0);
+    BT_DATA_FIELD(D_801282C0.textureFormat, D_801282D0) = func_800B0D58(temp_v0);
     *ch = (u8) sp1C;
     return temp_v0;
 }
@@ -117,31 +119,31 @@ s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch) {
     tex = func_800B0D60(font) + glyph->offset;
     g = *gfx;
     /* IDO scheduling requires each load/sync trio to stay on one source line. */
-    if (D_801282C0.unk10 == 0x800) {
+    if (D_801282C0.textureFormat == 0x800) {
         gDPSetTextureImage(g++, G_IM_FMT_RGBA, G_IM_SIZ_32b, glyph->imgWidth, tex + 0x80000000);
         gDPSetTile(g++, G_IM_FMT_RGBA, G_IM_SIZ_32b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
         gDPSetTile(g++, G_IM_FMT_RGBA, G_IM_SIZ_32b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
-    } else if (D_801282C0.unk10 == 0x200) {
+    } else if (D_801282C0.textureFormat == 0x200) {
         gDPSetTextureImage(g++, G_IM_FMT_IA, G_IM_SIZ_16b, glyph->imgWidth, tex + 0x80000000);
         gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_16b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
         gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_16b, ((glyph->width * 2 + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
-    } else if (D_801282C0.unk10 == 0x100) {
+    } else if (D_801282C0.textureFormat == 0x100) {
         gDPSetTextureImage(g++, G_IM_FMT_IA, G_IM_SIZ_8b, glyph->imgWidth, tex + 0x80000000);
         gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
         gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
-    } else if (D_801282C0.unk10 == 0x40) {
+    } else if (D_801282C0.textureFormat == 0x40) {
         gDPSetTextureImage(g++, G_IM_FMT_I, G_IM_SIZ_8b, glyph->imgWidth, tex + 0x80000000);
         gDPSetTile(g++, G_IM_FMT_I, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2); gDPPipeSync(g++);
         gDPSetTile(g++, G_IM_FMT_I, G_IM_SIZ_8b, ((glyph->width + 7) >> 3), 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         textLoadTile(g++, G_SETTILESIZE, G_TX_RENDERTILE, 0, 0, (glyph->width - 1) << 2, (glyph->height - 1) << 2);
-    } else if (D_801282C0.unk10 == 0x20) {
+    } else if (D_801282C0.textureFormat == 0x20) {
         gDPSetTextureImage(g++, G_IM_FMT_I, G_IM_SIZ_8b, (glyph->imgWidth >> 1), tex + 0x80000000);
         gDPSetTile(g++, G_IM_FMT_I, G_IM_SIZ_8b, (((glyph->width >> 1) + 7) >> 3), 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 0, 0, G_TX_CLAMP, 0, 0);
         gDPLoadSync(g++); textLoadTile(g++, G_LOADTILE, G_TX_LOADTILE, 0, 0, (glyph->width - 1) << 1, (glyph->height - 1) << 2); gDPPipeSync(g++);
@@ -151,13 +153,13 @@ s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch) {
         return 0;
     }
     fx = x;
-    w = glyph->width * D_801282C0.value;
-    h = glyph->height * D_801282C0.value;
-    if (D_801282C0.data[7] == 0 || D_801282C0.data[8] == 0) {
+    w = glyph->width * D_801282C0.size;
+    h = glyph->height * D_801282C0.size;
+    if (D_801282C0.proportional == 0 || D_801282C0.firstGlyph == 0) {
         fx -= w * 0.5f;
     }
     fy = y - glyph->unk1 * 0.5f;
-    if (D_801282C0.data[4] != 0) {
+    if (D_801282C0.shakiness != 0) {
         fx += func_800DC178(-2.0f, 2.0f);
         fy += func_800DC178(-2.0f, 2.0f);
     }
@@ -173,16 +175,16 @@ s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch) {
             | _SHIFTL(MAX((s16)(s32)(fy * 4.0f), 0), 0, 12);
         gImmp1(g++, G_RDPHALF_1,
             _SHIFTL(0 - (((s16)(s32)(fx * 4.0f) < 0)
-                ? (((s16)(s32)(1024.0f / D_801282C0.value) < 0)
-                    ? MAX(((s16)(s32)(fx * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)
-                    : MIN(((s16)(s32)(fx * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)) : 0), 16, 16)
+                ? (((s16)(s32)(1024.0f / D_801282C0.size) < 0)
+                    ? MAX(((s16)(s32)(fx * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.size)) >> 7, 0)
+                    : MIN(((s16)(s32)(fx * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.size)) >> 7, 0)) : 0), 16, 16)
             | _SHIFTL(0 - (((s32)(fy * 4.0f) < 0)
-                ? (((s16)(s32)(1024.0f / D_801282C0.value) < 0)
-                    ? MAX(((s16)(s32)(fy * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)
-                    : MIN(((s16)(s32)(fy * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.value)) >> 7, 0)) : 0), 0, 16));
+                ? (((s16)(s32)(1024.0f / D_801282C0.size) < 0)
+                    ? MAX(((s16)(s32)(fy * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.size)) >> 7, 0)
+                    : MIN(((s16)(s32)(fy * 4.0f) * (s16)(s32)(1024.0f / D_801282C0.size)) >> 7, 0)) : 0), 0, 16));
         gImmp1(g++, G_RDPHALF_2,
-            _SHIFTL((s32)(1024.0f / D_801282C0.value), 16, 16)
-            | _SHIFTL((s32)(1024.0f / D_801282C0.value), 0, 16));
+            _SHIFTL((s32)(1024.0f / D_801282C0.size), 16, 16)
+            | _SHIFTL((s32)(1024.0f / D_801282C0.size), 0, 16));
     }
     *gfx = g;
     return w;
@@ -192,72 +194,72 @@ s32 func_800B81CC(Gfx **gfx, s32 x, s32 y, u8 ch) {
 
 #ifndef NON_MATCHING
 void func_800B8C50(void) {
-    D_801282C0.data[2] = 0xFF;
-    D_801282C0.data[1] = D_801282C0.data[2];
-    D_801282C0.data[0] = D_801282C0.data[1];
-    D_801282C0.data[3] = D_801282C0.data[0];
-    D_801282C0.data[9] = 0;
-    D_801282C0.data[7] = D_801282C0.data[9];
-    D_801282C0.data[4] = D_801282C0.data[7];
-    D_801282C0.data[6] = D_801282C0.data[4];
-    D_801282C0.value = 1.0f;
+    D_801282C0.color[2] = 0xFF;
+    D_801282C0.color[1] = D_801282C0.color[2];
+    D_801282C0.color[0] = D_801282C0.color[1];
+    D_801282C0.color[3] = D_801282C0.color[0];
+    D_801282C0.pattern = 0;
+    D_801282C0.proportional = D_801282C0.pattern;
+    D_801282C0.shakiness = D_801282C0.proportional;
+    D_801282C0.font = D_801282C0.shakiness;
+    D_801282C0.size = 1.0f;
 }
 #else
 //Reset Text Parameters
 void func_800B8C50(void)
 {
-	D_801282C0.data[2] = 0xFF;
-	D_801282C0.data[1] = 0xFF;
-	D_801282C0.data[0] = 0xFF;
-	D_801282C0.data[3] = 0xFF;
-	D_801282C0.data[9] = 0; //Color
-	D_801282C0.data[7] = 0; 
-	D_801282C0.data[4] = 0; //Shakiness
-	D_801282C0.data[6] = 0; //Font
-	D_801282C0.value = 1.0f; //Size
+	D_801282C0.color[2] = 0xFF;
+	D_801282C0.color[1] = 0xFF;
+	D_801282C0.color[0] = 0xFF;
+	D_801282C0.color[3] = 0xFF;
+	D_801282C0.pattern = 0; //Color
+	D_801282C0.proportional = 0;
+	D_801282C0.shakiness = 0; //Shakiness
+	D_801282C0.font = 0; //Font
+	D_801282C0.size = 1.0f; //Size
 }
 #endif
 
 //Set Text Transparency
 void func_800B8C8C(s32 Transparency)
 {
-	D_801282C0.data[3] = Transparency;
+	D_801282C0.color[3] = Transparency;
 }
 
 //Set Text Font
 void func_800B8C98(s32 Font)
 {
-	D_801282C0.data[6] = Font;
+	D_801282C0.font = Font;
 }
 
 //Set Text Shakiness
 void func_800B8CA4(s32 shakiness)
 {
-	D_801282C0.data[4] = shakiness;
+	D_801282C0.shakiness = shakiness;
 }
 
 void func_800B8CB0(s32 unk)
 {
-	D_801282C0.data[7] = unk;
+	D_801282C0.proportional = unk;
 }
 
 void func_800B8CBC(s8 arg0, s8 arg1, s8 arg2)
 {
-	D_801282C0.data[0] = arg0;
-	D_801282C0.data[1] = arg1;
-	D_801282C0.data[2] = arg2;
+	D_801282C0.color[0] = arg0;
+	D_801282C0.color[1] = arg1;
+	D_801282C0.color[2] = arg2;
 }
 
 //Set Text Color
 void func_800B8CE0(s32 color)
 {
-	D_801282C0.data[9] = color-0xC24;
+	D_801282C0.pattern = color-0xC24;
 }
 
 //Set Text Size
 void func_800B8CF0(f32 size)
 {
-	D_801282D4 = size;
+	BT_DATA_FIELD(D_801282C0.size, D_801282D4) = size;
 }
 
 s32 func_800B8CFC(u8 *arg0) {
@@ -271,17 +273,17 @@ s32 func_800B8CFC(u8 *arg0) {
     var_s2 = 0;
     var_s3 = 0;
     for (var_s1 = 0; var_s1 < func_800E7188(arg0); var_s1++) {
-        temp_v0 = func_800D36C4(D_801282C0.data[6], arg0[var_s1]);
+        temp_v0 = func_800D36C4(D_801282C0.font, arg0[var_s1]);
         var_s2 = (s32) ((f32) var_s2 + ((f32) (temp_v0 + var_s3) * 0.5f));
         var_s3 = temp_v0;
     }
-    return (s32) ((f32) var_s2 * D_801282C0.value);
+    return (s32) ((f32) var_s2 * D_801282C0.size);
 }
 #include "1E91790_glyph.inc"
 void func_800B8DEC(Gfx **arg0, s32 arg1, s32 arg2, u8 arg3) {
     arg3 = (u8) arg3;
-    if (D_801282C0.data[0xC] != 0) {
-        D_801282C0.data[8] = 0;
+    if (D_801282C0.fontReady != 0) {
+        D_801282C0.firstGlyph = 0;
         native_glyph(arg0, arg1, arg2, arg3, arg1);
     }
 }
@@ -293,21 +295,21 @@ s32 func_800B8E28(BtIntPtr arg0, s32 arg1, s32 arg2, u8 *arg3) {
     s32 width;
     s32 advance; BT_ILP32_ONLY(s32 anchor = arg1;)
 
-    if (D_801282C0.data[0xC] != 0) {
-        if (D_801282C0.data[7] != 0) {
-            width = (s32)((f32)func_800D3574(D_801282C0.data[6]) * D_801282C0.value);
+    if (D_801282C0.fontReady != 0) {
+        if (D_801282C0.proportional != 0) {
+            width = (s32)((f32)func_800D3574(D_801282C0.font) * D_801282C0.size);
         } else {
-            spacing = (s32)((f32)(s32)func_800D35BC(D_801282C0.data[6]) * D_801282C0.value);
+            spacing = (s32)((f32)(s32)func_800D35BC(D_801282C0.font) * D_801282C0.size);
         }
-        D_801282C0.data[8] = 0; BT_ILP32_ONLY(if (widescreen_enabled) anchor += func_800B8CFC(arg3) / 2;)
+        D_801282C0.firstGlyph = 0; BT_ILP32_ONLY(if (widescreen_enabled) anchor += func_800B8CFC(arg3) / 2;)
         while (*arg3 != 0) {
             advance = native_glyph((Gfx **)arg0, arg1, arg2, *arg3, anchor);
             arg3++;
-            if (D_801282C0.data[7] != 0 && D_801282C0.data[8] == 0) {
+            if (D_801282C0.proportional != 0 && D_801282C0.firstGlyph == 0) {
                 arg1 += advance / 2;
-                D_801282C0.data[8] = 1;
+                D_801282C0.firstGlyph = 1;
             } else {
-                arg1 += D_801282C0.data[7] != 0 ? (advance != 0 ? advance : width) : spacing;
+                arg1 += D_801282C0.proportional != 0 ? (advance != 0 ? advance : width) : spacing;
             }
         }
     }
@@ -616,12 +618,4 @@ f32 D_80127148 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0xE8);
 f32 D_80127154 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0xF4);
 f32 D_80127160 [ 3 ] BT_DATA(4, bss_core2bss1_0_1, 0x100);
 f32 D_8012716C BT_DATA(4, bss_core2bss1_0_1, 0x10C);
-s8 D_801282C3 BT_DATA(4, bss_core2bss1_0_2, 0xB23);
-s8 D_801282C4 BT_DATA(4, bss_core2bss1_0_2, 0xB24);
-s8 D_801282C5 BT_DATA(4, bss_core2bss1_0_2, 0xB25);
-s8 D_801282C6 BT_DATA(4, bss_core2bss1_0_2, 0xB26);
-s8 D_801282C7 BT_DATA(4, bss_core2bss1_0_2, 0xB27);
-s8 D_801282C9 BT_DATA(4, bss_core2bss1_0_2, 0xB29);
-s32 D_801282D0 BT_DATA(4, bss_core2bss1_0_2, 0xB30);
-f32 D_801282D4 BT_DATA(4, bss_core2bss1_0_2, 0xB34);
 #endif

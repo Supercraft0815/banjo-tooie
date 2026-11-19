@@ -19,6 +19,12 @@ s32 func_800D3104(BtIntPtr,void *);
 void func_800D2EE4(void);
 s32 func_800EA068(s32);
 void func_8010A874(BtIntPtr);
+#elif defined(BT_ILP32)
+#include "native_world_grid_data.h"
+typedef NativeWorldGrid Bounds;
+Bounds D_80128410;
+NativeWorldCell *D_80128458[28], *D_801284C8[28], *D_80128538[29];
+_Static_assert(sizeof(Bounds) == 0x48 && sizeof(NativeWorldCell) == 8, "world grid layout");
 #else
 typedef struct { s32 unk0; s32 lower[3]; s32 upper[3]; s32 pad[9]; f32 scale; } Bounds;
 extern Bounds D_80128410;
@@ -26,6 +32,9 @@ extern s32 D_80128434;
 
 #endif
 
+#define WORLD_MODEL_NEIGHBORS BT_DATA_FIELD((s32 *)D_80128458, &D_80128458)
+#define WORLD_DYNAMIC_NEIGHBORS BT_DATA_FIELD((s32 *)D_801284C8, &D_801284C8)
+#define WORLD_ALL_NEIGHBORS BT_DATA_FIELD((s32 *)D_80128538, &D_80128538)
 void func_800BD570()
 {
     _gccubeDll_entrypoint_1(&D_80128410);
@@ -67,9 +76,9 @@ void func_800BD600(void) {
     s32 defrag(s32);
     s32 func_800D2EE4();
     s32 func_800E9DF8();
-    extern s32 D_80128454;
-    (D_80128410.unk0) = defrag((D_80128410.unk0));
-    D_80128454 = defrag((*(s32 *)((s8 *)(&D_80128410) + (0x44))));
+    BT_IDO_ONLY(extern s32 D_80128454;)
+    BT_DATA_FIELD(D_80128410.cells = (void *)defrag((s32)D_80128410.cells), D_80128410.unk0 = defrag(D_80128410.unk0));
+    BT_DATA_FIELD(D_80128410.model_counts, D_80128454) = defrag((*(s32 *)((s8 *)(&D_80128410) + (0x44))));
     func_800E9DF8();
     func_800D2EE4();
 }
@@ -85,9 +94,9 @@ void func_800BD64C(s32 *out,f32 *position) {
 }
 #else
 void func_800BD64C(s32 *arg0, f32 *arg1) {
-    extern s32 D_8012841C;
+    BT_IDO_ONLY(extern s32 D_8012841C;)
     struct { s32 words[16]; volatile f32 scale; } *base = (void *)&D_80128410;
-    s32 *bounds = &D_8012841C - 3;
+    s32 *bounds = BT_DATA_FIELD((s32 *)&D_80128410, &D_8012841C - 3);
     s32 i;
     for (i = 0; i < 3; i++) {
         if (arg1[i] >= 0.0f) {
@@ -155,18 +164,18 @@ void func_800BD860(NativeWorldCell *cell,s32 *out) {
 }
 #else
 void func_800BD860(s32 arg0, s32 *arg1) {
-    extern s32 D_8012841C;
+    BT_IDO_ONLY(extern s32 D_8012841C;)
     s32 i;
     s32 offset;
     s32 remainder;
 
-    offset = (arg0 - D_80128410.unk0) >> 3;
-    arg1[2] = offset / ((s32 *)&D_80128410)[8];
-    remainder = offset - arg1[2] * ((s32 *)&D_80128410)[8];
-    arg1[1] = remainder / ((s32 *)&D_80128410)[7];
-    arg1[0] = remainder - arg1[1] * ((s32 *)&D_80128410)[7];
+    offset = (arg0 - BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0)) >> 3;
+    arg1[2] = offset / BT_DATA_FIELD(D_80128410.plane_stride, ((s32 *)&D_80128410)[8]);
+    remainder = offset - arg1[2] * BT_DATA_FIELD(D_80128410.plane_stride, ((s32 *)&D_80128410)[8]);
+    arg1[1] = remainder / BT_DATA_FIELD(D_80128410.row_stride, ((s32 *)&D_80128410)[7]);
+    arg1[0] = remainder - arg1[1] * BT_DATA_FIELD(D_80128410.row_stride, ((s32 *)&D_80128410)[7]);
     for (i = 0; i < 3; i++) {
-        arg1[i] += ((s32 *)&D_80128410)[i + 1];
+        arg1[i] += BT_DATA_FIELD(D_80128410.lower[i], ((s32 *)&D_80128410)[i + 1]);
     }
 }
 #endif
@@ -205,12 +214,12 @@ s32 func_800BD97C(s32 *position) {
 #else
 s32 func_800BD97C(s32 *arg0) {
     void func_800EFB58(void *, void *, void *);
-    extern s32 D_80128414;
-    extern f32 D_80128450;
+    BT_IDO_ONLY(extern s32 D_80128414;)
+    BT_IDO_ONLY(extern f32 D_80128450;)
     s32 position[3];
     s32 relative[3];
     s32 i;
-    f32 scale = D_80128450;
+    f32 scale = BT_DATA_FIELD(D_80128410.scale, D_80128450);
 
     for (i = 0; i < 3; i++) {
         if (arg0[i] >= 0) {
@@ -219,17 +228,17 @@ s32 func_800BD97C(s32 *arg0) {
             position[i] = (s32)((f32)arg0[i] * scale + -1.0f);
         }
     }
-    if ((position[0] < ((s32 *)&D_80128410)[1]) ||
-        (position[1] < ((s32 *)&D_80128410)[2]) ||
-        (position[2] < ((s32 *)&D_80128410)[3]) ||
-        (((s32 *)&D_80128410)[4] < position[0]) ||
-        (((s32 *)&D_80128410)[5] < position[1]) ||
-        (((s32 *)&D_80128410)[6] < position[2])) {
+    if ((position[0] < BT_DATA_FIELD(D_80128410.lower[0], ((s32 *)&D_80128410)[1])) ||
+        (position[1] < BT_DATA_FIELD(D_80128410.lower[1], ((s32 *)&D_80128410)[2])) ||
+        (position[2] < BT_DATA_FIELD(D_80128410.lower[2], ((s32 *)&D_80128410)[3])) ||
+        (BT_DATA_FIELD(D_80128410.upper[0], ((s32 *)&D_80128410)[4]) < position[0]) ||
+        (BT_DATA_FIELD(D_80128410.upper[1], ((s32 *)&D_80128410)[5]) < position[1]) ||
+        (BT_DATA_FIELD(D_80128410.upper[2], ((s32 *)&D_80128410)[6]) < position[2])) {
         return -1;
     }
-    func_800EFB58(relative, position, &D_80128414);
-    return relative[0] + relative[1] * ((s32 *)&D_80128410)[7] +
-        relative[2] * ((s32 *)&D_80128410)[8];
+    func_800EFB58(relative, position, &BT_DATA_FIELD(D_80128410.lower[0], D_80128414));
+    return relative[0] + relative[1] * BT_DATA_FIELD(D_80128410.row_stride, ((s32 *)&D_80128410)[7]) +
+        relative[2] * BT_DATA_FIELD(D_80128410.plane_stride, ((s32 *)&D_80128410)[8]);
 }
 #endif
 
@@ -244,18 +253,18 @@ NativeWorldCell *func_800BDAD4(s32 *position) {
 }
 #else
 s32 func_800BDAD4(s32 position[3]) {
-    extern u8 D_80128444;
-    if ((position[0] < ((s32 *)&D_80128410)[1]) ||
-        (position[1] < ((s32 *)&D_80128410)[2]) ||
-        (position[2] < ((s32 *)&D_80128410)[3]) ||
-        (((s32 *)&D_80128410)[4] < position[0]) ||
-        (((s32 *)&D_80128410)[5] < position[1]) ||
-        (((s32 *)&D_80128410)[6] < position[2])) {
-        return (s32)&D_80128444;
+    BT_IDO_ONLY(extern u8 D_80128444;)
+    if ((position[0] < BT_DATA_FIELD(D_80128410.lower[0], ((s32 *)&D_80128410)[1])) ||
+        (position[1] < BT_DATA_FIELD(D_80128410.lower[1], ((s32 *)&D_80128410)[2])) ||
+        (position[2] < BT_DATA_FIELD(D_80128410.lower[2], ((s32 *)&D_80128410)[3])) ||
+        (BT_DATA_FIELD(D_80128410.upper[0], ((s32 *)&D_80128410)[4]) < position[0]) ||
+        (BT_DATA_FIELD(D_80128410.upper[1], ((s32 *)&D_80128410)[5]) < position[1]) ||
+        (BT_DATA_FIELD(D_80128410.upper[2], ((s32 *)&D_80128410)[6]) < position[2])) {
+        return (s32)&BT_DATA_FIELD(D_80128410.fallback, D_80128444);
     }
-    return D_80128410.unk0 + (position[0] - ((s32 *)&D_80128410)[1]) * 8 +
-        (position[1] - ((s32 *)&D_80128410)[2]) * ((s32 *)&D_80128410)[7] * 8 +
-        (position[2] - ((s32 *)&D_80128410)[3]) * ((s32 *)&D_80128410)[8] * 8;
+    return BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (position[0] - BT_DATA_FIELD(D_80128410.lower[0], ((s32 *)&D_80128410)[1])) * 8 +
+        (position[1] - BT_DATA_FIELD(D_80128410.lower[1], ((s32 *)&D_80128410)[2])) * BT_DATA_FIELD(D_80128410.row_stride, ((s32 *)&D_80128410)[7]) * 8 +
+        (position[2] - BT_DATA_FIELD(D_80128410.lower[2], ((s32 *)&D_80128410)[3])) * BT_DATA_FIELD(D_80128410.plane_stride, ((s32 *)&D_80128410)[8]) * 8;
 }
 #endif
 
@@ -265,12 +274,12 @@ NativeWorldCell *func_800BDB9C(s32 index) {
 }
 #else
 s32 func_800BDB9C(s32 arg0) {
-    extern u8 D_80128444;
+    BT_IDO_ONLY(extern u8 D_80128444;)
     s32 result;
     if (arg0 < 0) {
-        result = (s32)&D_80128444;
+        result = (s32)&BT_DATA_FIELD(D_80128410.fallback, D_80128444);
     } else {
-        result = arg0 * 8 + D_80128410.unk0;
+        result = arg0 * 8 + BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0);
     }
     return result;
 }
@@ -303,8 +312,8 @@ void func_800BDBEC(f32 *arg0) {
 NativeWorldCell *func_800BDC44(void) { return &native_world_grid.fallback; }
 #else
 void * func_800BDC44(void) {
-    extern u8 D_80128444;
-    return &D_80128444;
+    BT_IDO_ONLY(extern u8 D_80128444;)
+    return &BT_DATA_FIELD(D_80128410.fallback, D_80128444);
 }
 #endif
 
@@ -313,7 +322,7 @@ s32 func_800BDC50(void) { return native_world_grid.count; }
 #else
 s32 func_800BDC50()
 {
-    return D_80128434;
+    return BT_DATA_FIELD(D_80128410.count, D_80128434);
 }
 #endif
 
@@ -321,8 +330,8 @@ s32 func_800BDC50()
 s32 func_800BDC5C(void) { return native_world_grid.cell_size; }
 #else
 s32 func_800BDC5C(void) {
-    extern s16 D_8012844C;
-    return *(s16 *)((u8 *)&D_8012844C + 0);
+    BT_IDO_ONLY(extern s16 D_8012844C;)
+    return *(s16 *)((u8 *)&BT_DATA_FIELD(D_80128410.cell_size, D_8012844C) + 0);
 }
 #endif
 
@@ -406,9 +415,9 @@ NativeWorldCell **func_800BDD24(s32 *position) {
 s32 *func_800BDD24(s32 *arg0)
 {
     s32 func_800E9DC4(s16 *);
-    extern s32 D_8012841C;
-    extern f32 D_80128450;
-    extern s32 D_80128458;
+    BT_IDO_ONLY(extern s32 D_8012841C;)
+    BT_IDO_ONLY(extern f32 D_80128450;)
+    BT_IDO_ONLY(extern s32 D_80128458;)
     s32 index;
     s32 base;
     s32 count;
@@ -419,43 +428,43 @@ s32 *func_800BDD24(s32 *arg0)
 
     for (index = 0; index < 3; index++) {
         if (arg0[index] >= 0) {
-            value = (f32)arg0[index] * D_80128450;
+            value = (f32)arg0[index] * BT_DATA_FIELD(D_80128410.scale, D_80128450);
         } else {
-            value = (f32)arg0[index] * D_80128450;
+            value = (f32)arg0[index] * BT_DATA_FIELD(D_80128410.scale, D_80128450);
         }
-        pos[index] = (s32)(value - ((s32 *)&D_80128410)[index + 1]);
+        pos[index] = (s32)(value - BT_DATA_FIELD(D_80128410.lower[index], ((s32 *)&D_80128410)[index + 1]));
     }
     count = 0;
-    if (pos[0] > 0 && pos[0] < ((s32 *)&D_80128410)[10] - 1 &&
-        pos[1] > 0 && pos[1] < ((s32 *)&D_80128410)[11] - 1 &&
-        pos[2] > 0 && pos[2] < ((s32 *)&D_80128410)[12] - 1) {
-        base = (pos[0] + (pos[1] - 1) * ((s32 *)&D_80128410)[7] +
-            (pos[2] - 1) * ((s32 *)&D_80128410)[8]) - 1;
+    if (pos[0] > 0 && pos[0] < BT_DATA_FIELD(D_80128410.dimensions[0], ((s32 *)&D_80128410)[10]) - 1 &&
+        pos[1] > 0 && pos[1] < BT_DATA_FIELD(D_80128410.dimensions[1], ((s32 *)&D_80128410)[11]) - 1 &&
+        pos[2] > 0 && pos[2] < BT_DATA_FIELD(D_80128410.dimensions[2], ((s32 *)&D_80128410)[12]) - 1) {
+        base = (pos[0] + (pos[1] - 1) * BT_DATA_FIELD(D_80128410.row_stride, ((s32 *)&D_80128410)[7]) +
+            (pos[2] - 1) * BT_DATA_FIELD(D_80128410.plane_stride, ((s32 *)&D_80128410)[8])) - 1;
         index = base;
         iter[0] = 0; do {
             for (iter[1] = 0; iter[1] < 3; iter[1]++) {
                 for (iter[2] = 0; iter[2] < 3; iter[2]++) {
-                    if (func_800E9DC4((s16 *)(D_80128410.unk0 + (index << 3)))) {
-                        (&D_80128458)[count++] = D_80128410.unk0 + (index << 3);
+                    if (func_800E9DC4((s16 *)(BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3)))) {
+                        (WORLD_MODEL_NEIGHBORS)[count++] = BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3);
                     }
                     index++;
                 }
-                index = (index + ((s32 *)&D_80128410)[7]) - (new_var = 3);
+                index = (index + BT_DATA_FIELD(D_80128410.row_stride, ((s32 *)&D_80128410)[7])) - (new_var = 3);
             }
-            base += ((s32 *)&D_80128410)[8];
+            base += BT_DATA_FIELD(D_80128410.plane_stride, ((s32 *)&D_80128410)[8]);
             index = base;
         } while (++iter[0] < 3);
     } else {
         for (iter[0] = pos[0] - 1; iter[0] < pos[0] + 2; iter[0]++) {
-            if (iter[0] >= 0 && iter[0] < ((s32 *)&D_80128410)[10]) {
+            if (iter[0] >= 0 && iter[0] < BT_DATA_FIELD(D_80128410.dimensions[0], ((s32 *)&D_80128410)[10])) {
                 for (iter[1] = pos[1] - 1; iter[1] < pos[1] + 2; iter[1]++) {
-                    if (iter[1] >= 0 && iter[1] < ((s32 *)&D_80128410)[11]) {
+                    if (iter[1] >= 0 && iter[1] < BT_DATA_FIELD(D_80128410.dimensions[1], ((s32 *)&D_80128410)[11])) {
                         for (iter[2] = pos[2] - 1; iter[2] < pos[2] + 2; iter[2]++) {
-                            if (iter[2] >= 0 && iter[2] < ((s32 *)&D_80128410)[12]) {
-                                index = iter[0] + iter[1] * ((s32 *)&D_80128410)[7] +
-                                    iter[2] * ((s32 *)&D_80128410)[8];
-                                if (func_800E9DC4((s16 *)(D_80128410.unk0 + (index << 3)))) {
-                                    (&D_80128458)[count++] = D_80128410.unk0 + (index << 3);
+                            if (iter[2] >= 0 && iter[2] < BT_DATA_FIELD(D_80128410.dimensions[2], ((s32 *)&D_80128410)[12])) {
+                                index = iter[0] + iter[1] * BT_DATA_FIELD(D_80128410.row_stride, ((s32 *)&D_80128410)[7]) +
+                                    iter[2] * BT_DATA_FIELD(D_80128410.plane_stride, ((s32 *)&D_80128410)[8]);
+                                if (func_800E9DC4((s16 *)(BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3)))) {
+                                    (WORLD_MODEL_NEIGHBORS)[count++] = BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3);
                                 }
                             }
                         }
@@ -464,8 +473,8 @@ s32 *func_800BDD24(s32 *arg0)
             }
         }
     }
-    (&D_80128458)[count] = 0;
-    return &D_80128458;
+    (WORLD_MODEL_NEIGHBORS)[count] = 0;
+    return WORLD_MODEL_NEIGHBORS;
 }
 #endif
 
@@ -475,8 +484,8 @@ s32 func_800BE09C(NativeWorldCell **out,s32 *position) { return native_world_nei
 s32 func_800BE09C(s32 *arg0, s32 *arg1)
 {
   s32 func_800E9DCC(s16 *);
-  extern s32 D_8012841C;
-  extern f32 D_80128450;
+  BT_IDO_ONLY(extern s32 D_8012841C;)
+  BT_IDO_ONLY(extern f32 D_80128450;)
   s32 index;
   s32 base;
   s32 count;
@@ -488,19 +497,19 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
   {
     if (arg1[index] >= 0)
     {
-      value = ((f32) arg1[index]) * D_80128450;
+      value = ((f32) arg1[index]) * BT_DATA_FIELD(D_80128410.scale, D_80128450);
     }
     else
     {
-      value = ((f32) arg1[index]) * D_80128450;
+      value = ((f32) arg1[index]) * BT_DATA_FIELD(D_80128410.scale, D_80128450);
     }
-    pos[index] = (s32) (value - ((s32 *)&D_80128410)[index + 1]);
+    pos[index] = (s32) (value - BT_DATA_FIELD(D_80128410.lower[index], ((s32 *)&D_80128410)[index + 1]));
   }
 
   count = 0;
-  if ((((((pos[0] > 0) && (pos[0] < ((D_80128410.pad[3]) - 1))) && (pos[1] > 0)) && (pos[1] < ((D_80128410.pad[4]) - 1))) && (pos[2] > 0)) && (pos[2] < ((D_80128410.pad[5]) - 1)))
+  if ((((((pos[0] > 0) && (pos[0] < ((BT_DATA_FIELD(D_80128410.dimensions[0], D_80128410.pad[3])) - 1))) && (pos[1] > 0)) && (pos[1] < ((BT_DATA_FIELD(D_80128410.dimensions[1], D_80128410.pad[4])) - 1))) && (pos[2] > 0)) && (pos[2] < ((BT_DATA_FIELD(D_80128410.dimensions[2], D_80128410.pad[5])) - 1)))
   {
-    base = ((pos[0] + ((pos[1] - 1) * (D_80128410.pad[0]))) + ((pos[2] - 1) * (D_80128410.pad[1]))) - 1;
+    base = ((pos[0] + ((pos[1] - 1) * (BT_DATA_FIELD(D_80128410.row_stride, D_80128410.pad[0])))) + ((pos[2] - 1) * (BT_DATA_FIELD(D_80128410.plane_stride, D_80128410.pad[1])))) - 1;
     index = base;
     iter[0] = 0;
     do
@@ -509,17 +518,17 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
       {
         for (iter[2] = 0; iter[2] < 3; iter[2]++)
         {
-          if (func_800E9DCC((s16 *) (D_80128410.unk0 + (index << 3))))
+          if (func_800E9DCC((s16 *) (BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3))))
           {
-            arg0[count++] = D_80128410.unk0 + (index << 3);
+            arg0[count++] = BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3);
           }
           index++;
         }
 
-        index = (index + (D_80128410.pad[0])) - (new_var = 3);
+        index = (index + (BT_DATA_FIELD(D_80128410.row_stride, D_80128410.pad[0]))) - (new_var = 3);
       }
 
-      base += D_80128410.pad[1];
+      base += BT_DATA_FIELD(D_80128410.plane_stride, D_80128410.pad[1]);
       index = base;
     } while (++iter[0] < 3);
 
@@ -528,20 +537,20 @@ s32 func_800BE09C(s32 *arg0, s32 *arg1)
   {
     for (iter[0] = pos[0] - 1; iter[0] < (pos[0] + 2); iter[0]++)
     {
-      if ((iter[0] >= 0) && (iter[0] < (D_80128410.pad[3])))
+      if ((iter[0] >= 0) && (iter[0] < (BT_DATA_FIELD(D_80128410.dimensions[0], D_80128410.pad[3]))))
       {
         for (iter[1] = pos[1] - 1; iter[1] < (pos[1] + 2); iter[1]++)
         {
-          if ((iter[1] >= 0) && (iter[1] < (D_80128410.pad[4])))
+          if ((iter[1] >= 0) && (iter[1] < (BT_DATA_FIELD(D_80128410.dimensions[1], D_80128410.pad[4]))))
           {
             for (iter[2] = pos[2] - 1; iter[2] < (pos[2] + 2); iter[2]++)
             {
-              if ((iter[2] >= 0) && (iter[2] < (D_80128410.pad[5])))
+              if ((iter[2] >= 0) && (iter[2] < (BT_DATA_FIELD(D_80128410.dimensions[2], D_80128410.pad[5]))))
               {
-                index = (iter[0] + (iter[1] * (D_80128410.pad[0]))) + (iter[2] * (D_80128410.pad[1]));
-                if (func_800E9DCC((s16 *) (D_80128410.unk0 + (index << 3))))
+                index = (iter[0] + (iter[1] * (BT_DATA_FIELD(D_80128410.row_stride, D_80128410.pad[0])))) + (iter[2] * (BT_DATA_FIELD(D_80128410.plane_stride, D_80128410.pad[1])));
+                if (func_800E9DCC((s16 *) (BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3))))
                 {
-                  arg0[count++] = D_80128410.unk0 + (index << 3);
+                  arg0[count++] = BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0) + (index << 3);
                 }
               }
             }
@@ -567,12 +576,12 @@ NativeWorldCell **func_800BE3F8(f32 *position) {
 s32 *func_800BE3F8(u8 *arg0) {
     void func_800EE904(s32 dst[3], f32 src[3]);
     s32 func_800BE09C(s32 *, s32 *);
-    extern s32 D_801284C8;
+    BT_IDO_ONLY(extern s32 D_801284C8;)
     s32 sp1C[3];
 
     func_800EE904(sp1C, (f32 *) arg0);
-    (&D_801284C8)[func_800BE09C(&D_801284C8, sp1C)] = 0;
-    return &D_801284C8;
+    (WORLD_DYNAMIC_NEIGHBORS)[func_800BE09C(WORLD_DYNAMIC_NEIGHBORS, sp1C)] = 0;
+    return WORLD_DYNAMIC_NEIGHBORS;
 }
 #endif
 
@@ -588,19 +597,19 @@ s32 *func_800BE444(f32 *arg0) {
     void func_800EE904(s32 dst[3], f32 src[3]);
     s32 func_800BE09C(s32 *, s32 *);
     s32 func_800E9DCC(s16 *);
-    extern u8 D_80128444;
-    extern s32 D_80128538;
+    BT_IDO_ONLY(extern u8 D_80128444;)
+    BT_IDO_ONLY(extern s32 D_80128538;)
     s32 sp1C[3];
     s32 count;
 
     func_800EE904(sp1C, arg0);
-    count = func_800BE09C(&D_80128538, sp1C);
-    if (func_800E9DCC((s16 *)&D_80128444)) {
-        (&D_80128538)[count] = (s32)&D_80128444;
+    count = func_800BE09C(WORLD_ALL_NEIGHBORS, sp1C);
+    if (func_800E9DCC((s16 *)&BT_DATA_FIELD(D_80128410.fallback, D_80128444))) {
+        (WORLD_ALL_NEIGHBORS)[count] = (s32)&BT_DATA_FIELD(D_80128410.fallback, D_80128444);
         count++;
     }
-    (&D_80128538)[count] = 0;
-    return &D_80128538;
+    (WORLD_ALL_NEIGHBORS)[count] = 0;
+    return WORLD_ALL_NEIGHBORS;
 }
 #endif
 
@@ -613,17 +622,17 @@ s32 func_800BE4C4(void) {
 }
 #else
 s32 func_800BE4C4(void) {
-    extern u8 D_80128444;
+    BT_IDO_ONLY(extern u8 D_80128444;)
     s32 func_800E9CF4(u8 *);
     u8 *var_s0;
     u8 *temp_s1;
 
-    temp_s1 = *(u8 **)&D_80128410 + (D_80128410.pad[2]) * 8;
+    temp_s1 = *(u8 **)&D_80128410 + (BT_DATA_FIELD(D_80128410.count, D_80128410.pad[2])) * 8;
     var_s0 = *(u8 **)&D_80128410;
     for (; var_s0 < temp_s1; var_s0 += 8) {
         func_800E9CF4(var_s0);
     }
-    return func_800E9CF4(&D_80128444);
+    return func_800E9CF4(&BT_DATA_FIELD(D_80128410.fallback, D_80128444));
 }
 #endif
 
@@ -634,8 +643,8 @@ void func_800BE52C(NativeWorldCell **begin,NativeWorldCell **end) {
 }
 #else
 void func_800BE52C(s32 *arg0, s32 *arg1) {
-    *arg0 = (D_80128410.unk0);
-    *arg1 = (D_80128410.unk0) + ((D_80128410.pad[2]) << 3);
+    *arg0 = (BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0));
+    *arg1 = (BT_DATA_FIELD((s32)D_80128410.cells, D_80128410.unk0)) + ((BT_DATA_FIELD(D_80128410.count, D_80128410.pad[2])) << 3);
 }
 #endif
 
@@ -646,10 +655,10 @@ void func_800BE554(s32 *lower,s32 *upper) {
 #else
 void func_800BE554(s32 *arg0, s32 *arg1) {
     void func_800EE830(s32 dst[3], s32 src[3]);
-    extern s32 D_80128414;
-    extern s32 D_80128420;
-    func_800EE830(arg0, &D_80128414);
-    func_800EE830(arg1, &D_80128420);
+    BT_IDO_ONLY(extern s32 D_80128414;)
+    BT_IDO_ONLY(extern s32 D_80128420;)
+    func_800EE830(arg0, &BT_DATA_FIELD(D_80128410.lower[0], D_80128414));
+    func_800EE830(arg1, &BT_DATA_FIELD(D_80128410.upper[0], D_80128420));
 }
 #endif
 
@@ -661,10 +670,10 @@ void func_800BE58C(s32 *dimensions,s32 *strides) {
 #else
 void func_800BE58C(s32 *arg0, s32 *arg1) {
     void func_800EE830(s32 dst[3], s32 src[3]);
-    extern s32 D_80128438;
-    extern s32 D_8012842C;
-    func_800EE830(arg0, &D_80128438);
-    func_800EE830(arg1, &D_8012842C);
+    BT_IDO_ONLY(extern s32 D_80128438;)
+    BT_IDO_ONLY(extern s32 D_8012842C;)
+    func_800EE830(arg0, &BT_DATA_FIELD(D_80128410.dimensions[0], D_80128438));
+    func_800EE830(arg1, &BT_DATA_FIELD(D_80128410.row_stride, D_8012842C));
 }
 #endif
 
@@ -675,9 +684,9 @@ u8 *func_800BE5C4(void *cell) {
 }
 #else
 u8 *func_800BE5C4(u8 *arg0) {
-    extern u8 D_8012844E;
+    BT_IDO_ONLY(extern u8 D_8012844E;)
     if (arg0 == (u8 *)&D_80128410 + 0x34) {
-        return &D_8012844E;
+        return &BT_DATA_FIELD(D_80128410.fallback_models, D_8012844E);
     }
     return *(u8 **)((u8 *)&D_80128410 + 0x44) + ((arg0 - *(u8 **)&D_80128410) >> 3);
 }

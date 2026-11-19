@@ -398,3 +398,11 @@ the 16,401 original IDO functions and both complete ROM images. The LP64
 tests use high pointers for all 44 dynamic emitters and the shared theme
 state. Evidence under build/acceptance/n1-2026-11-18/current-effect-pools*
 and current-music-region-state*.
+
+2026-11-19  World cell lookup and font drawing state
+The corrected guest retains the original traversal order. Nineteen functions
+change the address expressions for font fields, grid dimensions, neighbor
+arrays and the fallback cell. The original linker addresses of all 9,703
+fixups are unchanged. The 125-cell guest probe checks lookup and the ordered
+contents of all three neighbor lists. All 74 reference replays match. See
+n1-2026-11-18/current-grid-retail-ir.log and current-grid-retail-full.log.

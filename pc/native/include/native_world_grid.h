@@ -1,17 +1,6 @@
 #ifndef BT_NATIVE_WORLD_GRID_H
 #define BT_NATIVE_WORLD_GRID_H
 #include "native_world_props.h"
-typedef struct {
-    NativeWorldCell *cells;
-    s32 lower[3], upper[3];
-    s32 row_stride, plane_stride, count;
-    s32 dimensions[3];
-    NativeWorldCell fallback;
-    s16 cell_size;
-    u8 fallback_models, padding;
-    f32 scale;
-    u8 *model_counts;
-} NativeWorldGrid;
 extern NativeWorldGrid native_world_grid;
 void func_800BD570(void);
 void func_800BD594(BtIntPtr);

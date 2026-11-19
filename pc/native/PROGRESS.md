@@ -3224,3 +3224,22 @@ Original-IDO-Vergleich bestätigt 16.401 Funktionen und beide vollständigen
 ROM-Abbilder. Der LP64-Scan meldet 683 Warnstellen und 204 verschiebbare
 Offsets. Belege unter `build/acceptance/n1-2026-11-18/current-effect-pools*`
 und `current-music-region-state*`.
+
+### 2026-11-19 – Weltraster und Schriftzustand (N1)
+
+Die erste Fassung übernahm die LP64-Suchroutinen in den 32-Bit-Gast. 52 Replays
+stimmten überein, 22 wichen ab. In Mayahem Temple war ab Retrace 2.097 die
+Anwesenheit des Spielers verschieden. In der geprüften Fassung verwendet der
+Gast die ursprünglichen Suchschleifen und greift auf den gemeinsamen
+Rasterzustand sowie drei Nachbarlisten mit 28, 28 und 29 Plätzen zu. Ein
+32-Bit-Test prüft an 125 Zellen die Nachbarreihenfolge, die Behandlung der
+Randzellen und die Rückgabe der Ersatzzelle. Die Schrift verwendet einen
+24-Byte-Zustand für Farbe, Stil, Texturformat und Größe.
+
+Der Vergleich mit dem Referenzkorpus ergibt 74 von 74 gleichen Replays und
+447.849 gleiche Retraces. Elf Gastsuiten und 64 Sanitizertests bestehen.
+Original-IDO bestätigt 16.401 Funktionen in 1.114 ursprünglichen Modulen
+sowie Bytegleichheit beider ROM-Abbilder. Die 9.703 Laufzeit-Zeigerwörter
+liegen an ihren ursprünglichen Adressen. Belege unter
+`build/acceptance/n1-2026-11-18/current-grid-retail*`. Die Abweichungen des
+ersten Versuchs stehen in `current-grid-font-full.log`.
