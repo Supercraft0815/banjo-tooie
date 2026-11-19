@@ -97,7 +97,7 @@ void func_80800048_chsunlightspell(Actor *arg0) {
 struct SunlightColor { s32 rgb[3]; };
 void func_80800404_chsunlightspell(Actor *arg0, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
-    s16 _chmumbopad_entrypoint_0(s32);
+    BT_IDO_ONLY(s16 _chmumbopad_entrypoint_0(s32);) BT_NATIVE_ONLY(s32 _chmumbopad_entrypoint_0(s32);)
     void _subaddieaudioloop_entrypoint_2(Actor *);
     BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
@@ -134,7 +134,7 @@ void func_80800404_chsunlightspell(Actor *arg0, s32 arg1) {
         break;
     case 3:
         sp34 = D_808008A4_chsunlightspell;
-        _sumumbofx_entrypoint_0(arg0, 1, 0x2E, _chmumbopad_entrypoint_0(6));
+        _sumumbofx_entrypoint_0(arg0, 1, 0x2E, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(6));
         _sumumbofx_entrypoint_2(func_80100094(arg0, 1));
         _sumumbofx_entrypoint_15(func_80100094(arg0, 1), 3.0f);
         _sumumbofx_entrypoint_24(func_80100094(arg0, 1), 0.5f);

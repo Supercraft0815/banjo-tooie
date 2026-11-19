@@ -332,7 +332,7 @@ void func_808009BC_chklungophial(Actor *arg0, s32 arg1) {
     void func_800E2530(f32);
     void func_800E2588(u32);
     void func_800E2594(BtUIntPtr arg0, void *arg1);
-    s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);
+    BT_IDO_ONLY(s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);) BT_NATIVE_ONLY(s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);)
     void func_800E2A14(BtIntPtr);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void *func_80100094(Actor *, u32);
@@ -370,7 +370,7 @@ void func_808009BC_chklungophial(Actor *arg0, s32 arg1) {
                     temp_f0 = var_s0->speed;
                     func_800EFA4C(sp4C, temp_f0, temp_f0, temp_f0);
                     func_800E2530(var_s0->angle);
-                    func_800E2720(arg1, (s32) var_s0->elapsed, 0, var_s0->position, sp4C, 0xFF);
+                    func_800E2720(BT_NATIVE_ONLY((u8 *)) arg1, (s32) var_s0->elapsed, 0, var_s0->position, sp4C, 0xFF);
                 }
                 var_s1 += 1;
                 var_s0++;

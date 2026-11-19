@@ -198,7 +198,7 @@ void func_808003F4_gcmapsects(void *arg0, s32 arg1)
 void func_808005D0_gcmapsects(void *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_5(s32, s32);
     s32 _glidmake_entrypoint_4(s32);
-    s32 _glidmake_entrypoint_5(u16, s32);
+    BT_IDO_ONLY(s32 _glidmake_entrypoint_5(u16, s32);) BT_NATIVE_ONLY(void *_glidmake_entrypoint_5(s32, f32 *);)
     s32 _idworldmake_entrypoint_0(s32, s32);
     s32 _idworldmake_entrypoint_2(s32);
     u8 *func_800B274C(u8 *);
@@ -234,7 +234,7 @@ void func_808005D0_gcmapsects(void *arg0, s32 arg1, s32 arg2) {
             (map->flags & (1 << i)) && !map->sections[arg1].objects[i]) {
             if (func_800B274C(i ? func_800D674C(map->sections[arg1].assets[i]) : arg2)) {
                 struct Section *section = &map->sections[arg1];
-                map->sections[arg1].objects[i] = _glidmake_entrypoint_5(section->assets[i], section);
+                map->sections[arg1].objects[i] = BT_NATIVE_ONLY((BtIntPtr)) _glidmake_entrypoint_5(section->assets[i], BT_NATIVE_ONLY((f32 *)) section);
             } else {
                 map->sections[arg1].objects[i] = 0;
             }
@@ -1051,7 +1051,7 @@ void gcmapsects_entrypoint_17(void *arg0)
 void gcmapsects_entrypoint_18(u8 *arg0, s32 arg1) {
     s32 func_800B2840(s32);
     void func_800BF774(void);
-    s32 func_800D62E4(s32);
+    BT_IDO_ONLY(s32 func_800D62E4(s32);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     s32 func_800D674C(s32);
     s32 func_800D731C(s32);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
@@ -1115,7 +1115,7 @@ void gcmapsects_entrypoint_18(u8 *arg0, s32 arg1) {
 void gcmapsects_entrypoint_19(u8 *arg0, s32 arg1) {
     s32 func_800B2840(s32);
     void func_800BF774(void);
-    s32 func_800D62E4(s32);
+    BT_IDO_ONLY(s32 func_800D62E4(s32);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     s32 func_800D674C(s32);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, s32);
     f32 func_800DF428(f32);
@@ -1267,7 +1267,7 @@ s32 gcmapsects_entrypoint_22(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     void func_800BEB58(s32);
-    s32 func_800D62E4(s32);
+    BT_IDO_ONLY(s32 func_800D62E4(s32);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     s32 func_800D674C(s32);
     struct Section {
         u8 pad0[0x40];
@@ -1326,7 +1326,7 @@ s32 gcmapsects_entrypoint_23(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     void func_800BEB58(s32);
-    s32 func_800D62E4(s32);
+    BT_IDO_ONLY(s32 func_800D62E4(s32);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     s32 func_800D674C(s32);
     struct Section {
         u8 pad0[0x40];
@@ -1376,7 +1376,7 @@ s32 gcmapsects_entrypoint_25(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     void func_800BEB58(s32);
-    s32 func_800D62E4(s32);
+    BT_IDO_ONLY(s32 func_800D62E4(s32);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     s32 func_800D674C(s32);
     struct Section {
         f32 position[3];
@@ -1431,7 +1431,7 @@ void *gcmapsects_entrypoint_26(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, u32 arg
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     void func_800BEB58(s32);
-    s32 func_800D62E4(s32);
+    BT_IDO_ONLY(s32 func_800D62E4(s32);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     s32 func_800D674C(s32);
     struct Section {
         u8 pad0[0x40];
@@ -1475,7 +1475,7 @@ void *gcmapsects_entrypoint_26(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, u32 arg
 
 s32 gcmapsects_entrypoint_27(s32 arg0) {
     void *func_800BF704(void);
-    s32 func_800D62E4(s32);
+    BT_IDO_ONLY(s32 func_800D62E4(s32);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     void *func_800D6B0C(s32);
     void *map;
     s32 temp_t7;

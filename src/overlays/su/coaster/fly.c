@@ -1100,7 +1100,7 @@ void func_80802080_sucoasterfly(Actor *arg0) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _suexpression_entrypoint_1(u8);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 pad;
     TrackData *sp20;
 

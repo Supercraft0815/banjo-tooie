@@ -163,7 +163,11 @@ void func_80800484_chintrochar(Actor *arg0) {
     void func_800DA544(s32 index);
     s32 func_80103140(Actor *, u32, u16);
     void func_80800000_chintrochar(Actor *);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 func_808000FC_chintrochar(Actor *);
+#else
     s32 func_808000FC_chintrochar();
+#endif
     void func_80800398_chintrochar(Actor *);
     void func_80803E98_chintrochar(Actor *);
 
@@ -172,7 +176,9 @@ void func_80800484_chintrochar(Actor *arg0) {
     BT_NATIVE_ONLY(IntroCharRow) BT_IDO_ONLY(u16) *temp_v0;
 
     temp_s1 = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags10, func_80804160_chintrochar[arg0->unk74_7][0]);
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    func_808000FC_chintrochar(arg0);
+#elif defined(BT_NATIVE)
     ((s32 (*)())func_808000FC_chintrochar)();
 #else
     func_808000FC_chintrochar();

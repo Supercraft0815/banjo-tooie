@@ -238,7 +238,7 @@ void func_80800634_chjigsawbitcont(BtIntPtr arg0) {
     s32 func_8001211C();
     BtIntPtr func_800BBCB8(BtIntPtr, BtIntPtr, s32, s32, s32 *);
     f32 func_800DC0C0();
-    s32 func_800E3E8C(BtIntPtr, s32);
+    BT_IDO_ONLY(s32 func_800E3E8C(BtIntPtr, s32);) BT_NATIVE_ONLY(s32 func_800E3E8C(f32 *, f32);)
     s32 func_800FFAB0(BtIntPtr);
     s32 func_8010C9B0(BtIntPtr, s32);
     s32 func_8080040C_chjigsawbitcont(BtIntPtr);
@@ -248,7 +248,7 @@ void func_80800634_chjigsawbitcont(BtIntPtr arg0) {
 
     temp_a0 = arg0 + 4;
     sp24 = temp_a0;
-    if ((func_800E3E8C(temp_a0, 0x42480000) != 0) && !(func_8001211C() & 3) && (func_800DC0C0() < 0.1f)) {
+    if ((func_800E3E8C(BT_NATIVE_ONLY((f32 *)) temp_a0, BT_IDO_ONLY(0x42480000) BT_NATIVE_ONLY(50.0f)) != 0) && !(func_8001211C() & 3) && (func_800DC0C0() < 0.1f)) {
         func_800BBCB8(sp24, 0, 0x3F800000, 2, (s32 *)D_80800A00_chjigsawbitcont);
     }
     if (func_8010C9B0(sp24, 0x32) != 0) {

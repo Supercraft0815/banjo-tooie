@@ -21,7 +21,7 @@ typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x1C]; f32 unk28; f32
 void func_80800090_chdinofamilysmall(u8 *arg0) {
     s32 _chdinofamilyfx_entrypoint_0(u8 *);
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
-    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s16);)
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s32);) BT_NATIVE_ONLY(u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
     s32 _subaddiedialog_entrypoint_4(u8 *, s32, s32);
     s32 _sudeflect_entrypoint_1(u8 *, f32, f32, f32, s32);
     s32 _sumumbofx_entrypoint_14(BtIntPtr);
@@ -57,7 +57,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
     switch (((struct StateBits *)(arg0 + 0x70))->state) {
     case 1:
         if (_subaddiedialog_entrypoint_4(arg0 + 4, 0x258, 0) != 0) {
-            _subaddiedialog_entrypoint_11((((Objfamilysmall_arg0 *)arg0)->unk0), 0x17CB, 0xF, arg0 + 4, 0x39);
+            _subaddiedialog_entrypoint_11(BT_NATIVE_ONLY((Unk80132ED0 *)) (((Objfamilysmall_arg0 *)arg0)->unk0), 0x17CB, 0xF, BT_NATIVE_ONLY((f32 *)) (arg0 + 4), 0x39);
         }
         _sudeflect_entrypoint_1(arg0 + 4, (*(f32 *)(arg0 + 0x38)) * 235.0f, 0, (*(f32 *)(arg0 + 0x38)) * 179.0f, 0x1E);
         _chdinofamilyfx_entrypoint_0(arg0);
@@ -148,7 +148,7 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
         return;
     case 9:
         if (_subaddiedialog_entrypoint_4(arg0 + 4, 0x258, 0) != 0) {
-            _subaddiedialog_entrypoint_11((((Objfamilysmall_arg0 *)arg0)->unk0), 0x17CC, 0xF, arg0 + 4, 0x39);
+            _subaddiedialog_entrypoint_11(BT_NATIVE_ONLY((Unk80132ED0 *)) (((Objfamilysmall_arg0 *)arg0)->unk0), 0x17CC, 0xF, BT_NATIVE_ONLY((f32 *)) (arg0 + 4), 0x39);
         }
         _sudeflect_entrypoint_1(arg0 + 4, (*(f32 *)(arg0 + 0x38)) * 235.0f, 0, (*(f32 *)(arg0 + 0x38)) * 179.0f, 0x1E);
         _chdinofamilyfx_entrypoint_0(arg0);

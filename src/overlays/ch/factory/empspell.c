@@ -992,7 +992,7 @@ void func_80801E9C_chfactoryempspell(Actor *arg0, f32 arg1) {
 /* extern */
 
 void func_80801F30_chfactoryempspell(Actor *arg0) {
-    s16 _chmumbopad_entrypoint_0(s32);
+    BT_IDO_ONLY(s16 _chmumbopad_entrypoint_0(s32);) BT_NATIVE_ONLY(s32 _chmumbopad_entrypoint_0(s32);)
     s32 _sumumbofx_entrypoint_0(BtIntPtr, s32, s32, s16);
     s32 _sumumbofx_entrypoint_2(BtIntPtr);
     s32 _sumumbofx_entrypoint_24(BtIntPtr, s32);
@@ -1008,7 +1008,7 @@ void func_80801F30_chfactoryempspell(Actor *arg0) {
     sp2C[0] = 0;
     sp2C[1] = 0;
     sp2C[2] = 0;
-    _sumumbofx_entrypoint_0(arg0, 0, 0x28, _chmumbopad_entrypoint_0(0xB));
+    _sumumbofx_entrypoint_0(arg0, 0, 0x28, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(0xB));
     sp24 = func_80100094(arg0, 0);
     _sumumbofx_entrypoint_2(sp24);
     _sumumbofx_entrypoint_24(sp24, 0x3F000000);

@@ -82,7 +82,7 @@ block_4:
 void func_80800088_chmrsboggy(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
@@ -161,12 +161,12 @@ void func_808004F4_chmrsboggy(BtIntPtr arg0) {
     s32 _suexpression_entrypoint_12(BtIntPtr, s32, s32);
     s32 _suexpression_entrypoint_17(BtIntPtr, s32);
     BtIntPtr _suexpression_entrypoint_20();
-    BtIntPtr _suexpression_entrypoint_7(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(BtIntPtr, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     BtIntPtr sp1C;
     BtIntPtr temp_v0;
 
     if (_suexpression_entrypoint_20() == 0) {
-        temp_v0 = _suexpression_entrypoint_7(arg0, 1, 0x3E);
+        temp_v0 = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(BT_NATIVE_ONLY((Actor *)) arg0, 1, 0x3E);
         sp1C = temp_v0;
         _suexpression_entrypoint_12(temp_v0, 0x42700000, 0x41A00000);
         _suexpression_entrypoint_17(sp1C, 0x3E8);
@@ -179,19 +179,19 @@ void func_80800548_chmrsboggy(Actor* arg0)
 }
 void func_80800568_chmrsboggy(void *arg0) {
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_808007CC_chmrsboggy(Actor *, s32, s32);
     s32 temp_v0;
 
     temp_v0 = _subaddiedialog_entrypoint_8((BtIntPtr)arg0, (s8 *)arg0 + 4, D_80800B30_chmrsboggy, D_80800A20_chmrsboggy, 7);
-    if ((temp_v0 != 0) && (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, temp_v0, D_80800A20_chmrsboggy, 7) != 3)) {
+    if ((temp_v0 != 0) && (_subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, temp_v0, D_80800A20_chmrsboggy, 7) != 3)) {
         func_808007CC_chmrsboggy(arg0, 3, 0);
     }
 }
 
 void func_808005D8_chmrsboggy(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_800D1000(s32, s32, f32 *, s32, BtIntPtr);
     void func_800DA524(s32);
@@ -208,7 +208,7 @@ void func_808005D8_chmrsboggy(Actor *arg0, s32 arg1, s32 arg2) {
         func_80800878_chmrsboggy(arg0, 0x99, 0x30, NULL);
         return;
     }
-    temp_v0 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800A58_chmrsboggy, 5);
+    temp_v0 = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80800A58_chmrsboggy, 5);
     if ((temp_v0 != 3) && (temp_v0 != 0)) {
         func_80102FE8(arg0, 0);
         func_80102424(arg0, 8);

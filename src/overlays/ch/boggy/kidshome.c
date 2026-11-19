@@ -62,7 +62,7 @@ void func_808000DC_chboggykidshome(Actor* arg0)
 }
 s32 func_808000FC_chboggykidshome(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     s32 func_808002C0_chboggykidshome(void *);
@@ -78,7 +78,7 @@ s32 func_808000FC_chboggykidshome(Actor *arg0, s32 arg1, s32 arg2) {
         func_80102424(arg0, 1);
         break;
     case 0x95:
-        expression = _suexpression_entrypoint_7(arg0, 1, (s16)func_808002C0_chboggykidshome(arg0));
+        expression = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, (s16)func_808002C0_chboggykidshome(arg0));
         _suexpression_entrypoint_12(expression, 0x42700000, 0x41A00000);
         _suexpression_entrypoint_17(expression, 1000);
         break;

@@ -1,4 +1,5 @@
 #include "su/baddiedialog_descriptor.h"
+BT_NATIVE_ONLY(u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
 
 void func_80102424(Actor *, s32);
 

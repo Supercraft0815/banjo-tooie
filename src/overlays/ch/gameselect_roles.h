@@ -115,12 +115,17 @@ static inline void game_select_root_set_child(Actor *actor, unsigned slot, Unk80
 #define GAME_SELECT_OPTION_HANDLE(pointer) (pointer)
 #define GAME_SELECT_OPTION_STATE(pointer) (pointer)
 #if defined(BT_NATIVE)
-#define GAME_SELECT_OPTION_GET2(state, item, guest_call) ((s32 (*)())_gcnewoption_entrypoint_20)(state, item)
+#define GAME_SELECT_OPTION_GET2(state, item, guest_call) _gcnewoption_entrypoint_20((BtIntPtr)(state), item)
 #else
 #define GAME_SELECT_OPTION_GET2(state, item, guest_call) _gcnewoption_entrypoint_20(state, item)
 #endif
+#if defined(BT_NATIVE)
+#define GAME_SELECT_OPTION_GET4(state, item, value, actor) _gcnewoption_entrypoint_20((BtIntPtr)(state), item)
+#define GAME_SELECT_ROW6_GET_OPTION(state, item, option_ptr, actor) _gcnewoption_entrypoint_20((BtIntPtr)(state), item)
+#else
 #define GAME_SELECT_OPTION_GET4(state, item, value, actor) _gcnewoption_entrypoint_20(state, item, value, actor)
 #define GAME_SELECT_ROW6_GET_OPTION(state, item, option_ptr, actor) _gcnewoption_entrypoint_20(state, (unsigned long long)(*option_ptr), *option_ptr, actor)
+#endif
 #define GAME_SELECT_LP64(native, original) original
 #define GAME_SELECT_ORIGINAL(code) code
 #define GAME_SELECT_BOX(actor) ((actor)->actorData[4])

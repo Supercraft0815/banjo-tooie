@@ -280,7 +280,7 @@ void func_808006D4_chfriesstand(Actor *arg0) {
 s32 func_80800904_chfriesstand(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1, 0x51);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42480000, 0x41A00000);
@@ -310,7 +310,7 @@ void func_808009A4_chfriesstand(Actor *arg0) {
 
 void func_808009F0_chfriesstand(Actor *arg0, s32 arg1, s16 arg2) {
     void _capod_entrypoint_14(void);
-    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_8008FC9C(s32);
     void func_80090708(s32);
     void func_80102424(Actor *, s32);
@@ -341,7 +341,7 @@ void func_808009F0_chfriesstand(Actor *arg0, s32 arg1, s16 arg2) {
 }
 
 void func_80800AEC_chfriesstand(Actor *arg0, s32 arg1, s16 arg2) {
-    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_8010D254(f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);

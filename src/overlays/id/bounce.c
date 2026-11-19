@@ -435,7 +435,7 @@ void idbounce_entrypoint_5(void *arg0, void *arg1, s32 arg2) {
     void func_800EF3DC(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
-    void _glid_entrypoint_1(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+    BT_IDO_ONLY(void _glid_entrypoint_1(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, u8 *, s16, s32), BtIntPtr arg3);) BT_NATIVE_ONLY(void _glid_entrypoint_1(u8 *, s32, void (*)(u8 *, BtUIntPtr, u8 *, s32, u8 *), BtIntPtr);)
 #ifndef BT_NATIVE
     extern s32 _idbounce_entrypoint_0;
 #endif

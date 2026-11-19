@@ -82,7 +82,7 @@ void suflamefx_entrypoint_3(FlameFxData *arg0, BtIntPtr arg1) {
     void *func_800D674C(s32);
     void func_800E2588(u32);
     void func_800E2594(BtUIntPtr, void *);
-    s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);
+    BT_IDO_ONLY(s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);) BT_NATIVE_ONLY(s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);)
     void func_800E2A14(BtIntPtr);
     s32 func_800E3E8C(f32 *, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -103,7 +103,7 @@ void suflamefx_entrypoint_3(FlameFxData *arg0, BtIntPtr arg1) {
                 temp_f0 = var_s0->scale;
                 if (temp_f0 > 0.05f) {
                     func_800EFA4C(sp54, temp_f0, temp_f0, temp_f0);
-                    func_800E2720(arg1, var_s0->frame, 0, var_s0->position, sp54, 0xFF);
+                    func_800E2720(BT_NATIVE_ONLY((u8 *)) arg1, var_s0->frame, 0, var_s0->position, sp54, 0xFF);
                 }
                 var_s1++;
                 var_s0++;

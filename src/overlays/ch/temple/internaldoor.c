@@ -1,4 +1,5 @@
 #include "common.h"
+BT_NATIVE_ONLY(s32 func_80103140(Actor *, u32, u16);)
 
 OSThread *chtempleinternaldoor_entrypoint_0(void)
 {

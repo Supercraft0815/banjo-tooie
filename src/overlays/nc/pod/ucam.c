@@ -281,7 +281,7 @@ void func_808007D0_ncpoducam(u8 *arg0) {
 }
 
 s32 func_80800854_ncpoducam(u8 *arg0, s16 *arg1) {
-    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s16, BtIntPtr);
+    BT_IDO_ONLY(s32 _ncpod_entrypoint_5(s16 *, void *, s32, s16, BtIntPtr);) BT_NATIVE_ONLY(s32 _ncpod_entrypoint_5(BtIntPtr, void *, s32, s32, BtIntPtr);)
     s32 _suspline_entrypoint_7(void *);
     void *func_8001B798(s16);
     void *func_80110024(s16 *);
@@ -289,7 +289,7 @@ s32 func_80800854_ncpoducam(u8 *arg0, s16 *arg1) {
     s32 result;
 
     finished = 0;
-    result = _ncpod_entrypoint_5(arg1, func_80110024(arg1), 0xE, *(s16 *)(arg0 + 0x58), 0);
+    result = _ncpod_entrypoint_5(BT_NATIVE_ONLY((BtIntPtr)) arg1, func_80110024(arg1), 0xE, *(s16 *)(arg0 + 0x58), 0);
     if (result == 4) {
         return result;
     }
@@ -303,7 +303,7 @@ s32 func_80800854_ncpoducam(u8 *arg0, s16 *arg1) {
             break;
     }
     if (finished != 0) {
-        result = _ncpod_entrypoint_5(arg1, func_80110024(arg1), 0xC, *(s16 *)(arg0 + 0x58), 0);
+        result = _ncpod_entrypoint_5(BT_NATIVE_ONLY((BtIntPtr)) arg1, func_80110024(arg1), 0xC, *(s16 *)(arg0 + 0x58), 0);
         if (result == 4) {
             return result;
         }
@@ -393,7 +393,7 @@ void func_80800A94_ncpoducam(u8 *arg0, s16 *arg1) {
 }
 
 s32 func_80800B74_ncpoducam(u8 *arg0, s16 *arg1) {
-    s32 _ncpod_entrypoint_5(s16 *, void *, s32, s16, BtIntPtr);
+    BT_IDO_ONLY(s32 _ncpod_entrypoint_5(s16 *, void *, s32, s16, BtIntPtr);) BT_NATIVE_ONLY(s32 _ncpod_entrypoint_5(BtIntPtr, void *, s32, s32, BtIntPtr);)
     s32 _suspline_entrypoint_1(void *);
     s32 _susplinet_entrypoint_2(void *);
     void *func_8001B798(s16);
@@ -416,14 +416,14 @@ s32 func_80800B74_ncpoducam(u8 *arg0, s16 *arg1) {
     if (active != 0) {
         if (*(s16 *)(arg0 + 0x48) & 0x20) {
             func_8080145C_ncpoducam(arg0, arg1, 2);
-            result = _ncpod_entrypoint_5(arg1, func_80110024(arg1), 0xB, *(s16 *)(arg0 + 0x58), 0);
+            result = _ncpod_entrypoint_5(BT_NATIVE_ONLY((BtIntPtr)) arg1, func_80110024(arg1), 0xB, *(s16 *)(arg0 + 0x58), 0);
             if (result == 4) {
                 return result;
             } else {
                 *(s32 *)(arg0 + 0x4C) = result;
             }
         } else {
-            result = _ncpod_entrypoint_5(arg1, func_80110024(arg1), 0xB, *(s16 *)(arg0 + 0x58), 0);
+            result = _ncpod_entrypoint_5(BT_NATIVE_ONLY((BtIntPtr)) arg1, func_80110024(arg1), 0xB, *(s16 *)(arg0 + 0x58), 0);
             if (result == 4) {
                 return result;
             }

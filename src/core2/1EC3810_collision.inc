@@ -34,7 +34,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     typedef struct { CollisionCallback collide; } CollisionTable;
     typedef CollisionTable *(*GetCollisionTable)(void);
     typedef struct { BT_BITFIELD_ORDER(u32 upper : 14, u32 lower : 17); u32 excluded : 1; BT_BITFIELD_ORDER(u32 lower : 17, u32 upper : 14); } ActorFlags;
-    s32 _gsproplookup_entrypoint_0();
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_0();) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_0(void *);)
     s32 func_800AAEF4(f32 *, f32, f32 *, f32 *);
     s32 func_800AB868(u8 *, s32, f32 *, f32 *, f32, s32, s32, s32, s32);
     f32 func_800B2354(void *);
@@ -44,7 +44,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     u8 *func_800BFC54(s32);
     void func_800BFC74(s32);
     s16 func_800CB854(BtIntPtr *);
-    void func_800D62E4(u16);
+    BT_IDO_ONLY(void func_800D62E4(u16);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
     void func_800EA400(s32, u8 *, BtIntPtr, s32);
@@ -152,14 +152,14 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 }
 
 s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, volatile s32 arg5, volatile u32 arg6) {
-    s32 _gsproplookup_entrypoint_0();
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_0();) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_0(void *);)
     u8 *func_800AC848(u8 *, s32, f32 *, f32 *, f32, s32, s32, f32, f32 *, s32, u32);
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     u8 *func_800BFC54(s32);
     void func_800BFC74(s32);
     s16 func_800CB854(BtIntPtr *);
-    void func_800D62E4(u16);
+    BT_IDO_ONLY(void func_800D62E4(u16);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
     f32 func_800EEAD4(s32, f32 *);
@@ -304,13 +304,13 @@ s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
         u32 disabled:1;
         BT_BITFIELD_ORDER(u32 unused2:17, u32 unused : 14);
     } ActorFlags;
-    s32 _gsproplookup_entrypoint_0(u8 *);
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_0(u8 *);) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_0(void *);)
     s32 func_800AD1AC(s32, s32, f32 *, f32 *, f32, s32, f32, f32 *, u32);
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     u8 *func_800BFC54(s32);
     s16 func_800CB854(BtIntPtr *);
-    void func_800D62E4(u16);
+    BT_IDO_ONLY(void func_800D62E4(u16);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
     f32 func_800EEAD4(s32, f32 *);

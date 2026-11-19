@@ -58,6 +58,7 @@ u8 *func_800BFC54(s32 arg0)
 
 void func_800BFC74(BT_NATIVE_ONLY(s32 bt_a0))
 {
+    BT_NATIVE_ONLY(void func_800D62E4(s32);)
     BT_IDO_ONLY(func_800D62E4();) BT_NATIVE_ONLY(func_800D62E4(bt_a0);)
 }
 

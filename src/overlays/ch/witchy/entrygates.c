@@ -1,4 +1,5 @@
 #include "ch/witchyentrygates.h"
+BT_NATIVE_ONLY(s32 func_80103140(Actor *, u32, u16);)
 
 extern BtUIntPtr D_808001F0_chwitchyentrygates[20];
 

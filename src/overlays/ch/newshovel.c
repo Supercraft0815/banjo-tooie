@@ -127,7 +127,7 @@ s32 func_80800330_chnewshovel(Actor *arg0, s32 arg1, s32 *arg2) {
     void _suexpression_entrypoint_13(void *, f32 *, f32 *);
     void _suexpression_entrypoint_14(void *, f32, f32);
     BtIntPtr _suexpression_entrypoint_20();
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     void func_800DF744(s32, s32);
     void func_800EFD24(f32 *);
     void func_800FFAB0(Actor *);

@@ -1086,7 +1086,7 @@ int func_80801DB4_gcdialogexec(u8 *arg0) {
         s32 (*callback)(void *, s16, u8);
     } Dialog;
     s32 _gldialog_entrypoint_1();
-    s32 _subaddiedialog_entrypoint_14(void *, s16, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_14(void *, s16, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_14(BtIntPtr, s32, s32);)
     s32 result = -1;
     s32 flag1;
     s32 flag2;
@@ -1115,7 +1115,7 @@ int func_80801DB4_gcdialogexec(u8 *arg0) {
     if (dialog->caller != NULL && func_80800000_gcdialogexec(dialog->caller, dialog->callerArg)) {
         if (*(u16 *)((u8 *)dialog->caller + 0x18) & 1) {
             flag2 = 1;
-            result = _subaddiedialog_entrypoint_14(dialog->caller, dialog->dialogId, dialog->index[dialog->current]);
+            result = _subaddiedialog_entrypoint_14(BT_NATIVE_ONLY((BtIntPtr)) dialog->caller, dialog->dialogId, dialog->index[dialog->current]);
             if (result < 0) {
                 result = -1 - result;
                 flag2 = 0;
@@ -1158,7 +1158,7 @@ int func_80802020_gcdialogexec(u8 *arg0) {
         s32 (*callback)(void *, s16, s32);
     } Dialog;
     s32 _gldialog_entrypoint_1();
-    s32 _subaddiedialog_entrypoint_14(void *, s16, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_14(void *, s16, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_14(BtIntPtr, s32, s32);)
     void func_800E6DD8(char *, s32, s32, s32);
     s32 pad;
     s32 count;
@@ -1196,7 +1196,7 @@ int func_80802020_gcdialogexec(u8 *arg0) {
             buffer[0] = 0;
             if (count > 0) {
                 do {
-                    func_800E6DD8((char *)(buffer + offset), _subaddiedialog_entrypoint_14(((Dialog *)arg0)->caller, ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->sequence++), 0, format);
+                    func_800E6DD8((char *)(buffer + offset), _subaddiedialog_entrypoint_14(BT_NATIVE_ONLY((BtIntPtr)) ((Dialog *)arg0)->caller, ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->sequence++), 0, format);
                     result++;
                     while (buffer[offset]) offset++;
                 offset++;

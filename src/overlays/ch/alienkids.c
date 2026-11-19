@@ -869,11 +869,11 @@ void func_80801884_chalienkids(Actor *arg0) {
 void func_8080193C_chalienkids(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     BtIntPtr temp_v0;
 
     if (func_80100094(arg0, 1U) == NULL) {
-        temp_v0 = _suexpression_entrypoint_7(arg0, 1, 0xB7);
+        temp_v0 = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, 0xB7);
         _suexpression_entrypoint_12(temp_v0, 0x42700000, 0x41700000);
         _suexpression_entrypoint_17(temp_v0, 0x3E8);
     }

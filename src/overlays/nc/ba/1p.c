@@ -14,10 +14,10 @@ int func_80800008_ncba1p(BtIntPtr arg0, f32 *arg1, f32 *arg2) {
 
 void func_8080004C_ncba1p(void **arg0, s32 arg1) {
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
-    s32 func_80110840();
+    BT_IDO_ONLY(s32 func_80110840(BT_NATIVE_ONLY((s32 *)arg0));) BT_NATIVE_ONLY(s32 func_80110840(s32 *);)
     s32 temp_a0;
 
-    temp_a0 = func_80110840();
+    temp_a0 = func_80110840(BT_NATIVE_ONLY((s32 *)arg0));
     if ((*(u8 *)((s8 *)(*arg0) + (0x51))) == 0) {
         func_800F7B9C(temp_a0, arg1);
         (*(s8 *)((s8 *)(*arg0) + (0x51))) = 1;
@@ -114,9 +114,9 @@ void func_808003DC_ncba1p(f32 **arg0, f32 *arg1, f32 *arg2) {
 void ncba1p_entrypoint_1(u8 **arg0) {
     s32 _plcamera_entrypoint_1(s32);
     s32 func_800EFD24(u8 *);
-    s32 func_80110840();
+    BT_IDO_ONLY(s32 func_80110840(BT_NATIVE_ONLY((s32 *)arg0));) BT_NATIVE_ONLY(s32 func_80110840(s32 *);)
     s32 func_80111590(u8 **, s32, s32, s32, f32);
-    if (_plcamera_entrypoint_1(func_80110840()) == 0) {
+    if (_plcamera_entrypoint_1(func_80110840(BT_NATIVE_ONLY((s32 *)arg0))) == 0) {
         func_800EFD24(*arg0);
         func_800EFD24(*arg0 + 0xC);
         func_800EFD24(*arg0 + 0x18);

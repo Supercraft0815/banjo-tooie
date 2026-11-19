@@ -353,7 +353,7 @@ void func_8080075C_chnicecavemenguard(Actor *arg0) {
 void func_808007A8_chnicecavemenguard(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     BtIntPtr temp_v0;
 
     if (func_80100094(arg0, 1U) == NULL) {

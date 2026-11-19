@@ -1,4 +1,5 @@
 #include "common.h"
+BT_NATIVE_ONLY(u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
 
 extern u32 D_80801A18_chnewmumbo[];
 void func_80105834(Actor *);

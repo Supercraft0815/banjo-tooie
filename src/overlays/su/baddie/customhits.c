@@ -20,7 +20,7 @@ OSThread *subaddiecustomhits_entrypoint_1(void)
 s32 subaddiecustomhits_entrypoint_2(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 arg4) {
     s32 func_8001211C(void);
     s32 func_800AE0B8(s32 *);
-    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);
+    BT_IDO_ONLY(s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, s32, f32, s32, s32);) BT_NATIVE_ONLY(s32 func_800B1F8C(u8 *, f32 *, f32 *, f32, f32 *, BtIntPtr, f32 *, f32, f32 *, s32);)
     u8 *func_800B2824(u8 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 *func_801027F4(u8 *);
@@ -56,7 +56,7 @@ s32 subaddiecustomhits_entrypoint_2(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, s32 
     if (actor->scale == 0.0f) {
         result = 0;
     } else {
-        result = func_800B1F8C(sp44, actor->position, func_801027F4((u8 *)actor), actor->scale, 0, sp3C, (s32)arg1, arg2, arg3, arg4);
+        result = BT_NATIVE_ONLY((s16)) func_800B1F8C(sp44, actor->position, func_801027F4((u8 *)actor), actor->scale, 0, BT_NATIVE_ONLY((BtIntPtr)) sp3C, BT_IDO_ONLY((s32)) arg1, arg2, BT_NATIVE_ONLY((f32 *)) arg3, arg4);
     }
     if (result != 0) {
         hit = (void *)func_80104124();

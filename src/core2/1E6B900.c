@@ -316,11 +316,19 @@ void func_80092778(PlayerState *arg0) {
     void _bapreload_entrypoint_0(void *arg0, s32 arg1, s16 *arg2, s16 *arg3);
     void func_80092EC8(PlayerState *, s32);
     void func_8009312C(PlayerState *, s32);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 func_800A3274(PlayerState *);
+#else
     s32 func_800A3274();
+#endif
     s16 sp1E;
     s16 sp1C;
 
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    _bapreload_entrypoint_0(arg0, func_800A3274(arg0), &sp1E, &sp1C);
+#else
     _bapreload_entrypoint_0(arg0, func_800A3274(), &sp1E, &sp1C);
+#endif
     func_80092EC8(arg0, sp1E);
     func_8009312C(arg0, sp1C);
 }

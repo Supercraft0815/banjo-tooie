@@ -336,7 +336,7 @@ void func_8080094C_chcactusofstrength(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     void func_800C31DC(u8, f32);
     void func_800C3BDC(u8);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     f32 func_800F0E00(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13F0(f32, f32);

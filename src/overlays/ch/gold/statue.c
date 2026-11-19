@@ -3,7 +3,7 @@
 /* extern */
 
 void func_80800000_chgoldstatue(BtIntPtr arg0) {
-    s16 _chmumbopad_entrypoint_0(s32);
+    BT_IDO_ONLY(s16 _chmumbopad_entrypoint_0(s32);) BT_NATIVE_ONLY(s32 _chmumbopad_entrypoint_0(s32);)
     s32 _sumumbofx_entrypoint_0(BtIntPtr, s32, s32, s16);
     s32 _sumumbofx_entrypoint_15(BtIntPtr, s32);
     s32 _sumumbofx_entrypoint_2(BtIntPtr);
@@ -13,7 +13,7 @@ void func_80800000_chgoldstatue(BtIntPtr arg0) {
     BtIntPtr sp1C;
     BtIntPtr temp_v0;
 
-    _sumumbofx_entrypoint_0(arg0, 1, 0x2D, _chmumbopad_entrypoint_0(2));
+    _sumumbofx_entrypoint_0(arg0, 1, 0x2D, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(2));
     temp_v0 = func_80100094(arg0, 1);
     sp1C = temp_v0;
     _sumumbofx_entrypoint_2(temp_v0);

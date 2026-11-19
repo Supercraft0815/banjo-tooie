@@ -6,7 +6,7 @@ void subaddieaudioquick_entrypoint_0(u8 arg0, s32 arg1) { void func_800C32C4(u8,
 
 u8 subaddieaudioquick_entrypoint_1(Actor *arg0, f32 *arg1) {
     typedef struct { u8 pad[0x70]; BT_BITFIELD_ORDER(u32 unused : 31, u32 active : 1); BT_BITFIELD_ORDER(u32 active : 1, u32 unused : 31); } Flags;
-    u8 func_800C4350(s32, f32 *, s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32 *, s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     extern s32 D_808001D0_subaddieaudioquick[4];
     u8 saved;
     s32 result;
@@ -18,7 +18,7 @@ u8 subaddieaudioquick_entrypoint_1(Actor *arg0, f32 *arg1) {
 
 /* extern */
 
-void subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2) { void func_800C3BDC(u8); u8 func_800C4350(s32, f32[3], s32 *); u8 subaddieaudioquick_entrypoint_1(Actor *, f32 *); u8 sp1F; sp1F = subaddieaudioquick_entrypoint_1(arg0, arg1); func_800C4350(sp1F & 0xFF, arg1, arg2); func_800C3BDC(sp1F); }
+void subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2) { void func_800C3BDC(u8); BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);) u8 subaddieaudioquick_entrypoint_1(Actor *, f32 *); u8 sp1F; sp1F = subaddieaudioquick_entrypoint_1(arg0, arg1); func_800C4350(sp1F & 0xFF, arg1, arg2); func_800C3BDC(sp1F); }
 
 /* extern */
 

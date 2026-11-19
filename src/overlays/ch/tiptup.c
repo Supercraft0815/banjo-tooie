@@ -395,7 +395,7 @@ void func_80800694_chtiptup(Actor *arg0) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     s32 func_80101E4C(Actor *, f32 *);
     s32 func_801022E4(Actor *);
     f32 *sp20[2];

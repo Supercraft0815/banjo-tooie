@@ -308,7 +308,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     void _gcnewoption_entrypoint_11(s16 *arg0);
     void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
     void _gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4);
-    void _gcnewoption_entrypoint_40(BtIntPtr, s32, s32, s32, f32, f32);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_40(BtIntPtr, s32, s32, s32, f32, f32);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);)
     void _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
     void _gcnewoption_entrypoint_8(s16 *arg0, s32 arg1);
     void _gcnewoption_entrypoint_9(s16 *arg0, s32 arg1);
@@ -358,7 +358,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
         case 1:
             _gcnewoption_entrypoint_4(arg0, 1, &_gcnewoption_entrypoint_35, 0, 0x1850);
             sp44 = func_80100094(arg0, 1);
-            _gcnewoption_entrypoint_40(sp44, 0x41, 0x22, 0x20, 0.8f, 1.0f);
+            _gcnewoption_entrypoint_40(BT_NATIVE_ONLY((void *)) sp44, 0x41, 0x22, 0x20, 0.8f, 1.0f);
             _gcnewoption_entrypoint_8(sp44, 5);
             _gcnewoption_entrypoint_9(sp44, 0xC);
             _gcnewoption_entrypoint_10(sp44, 0);
@@ -369,7 +369,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
         case 2:
             _gcnewoption_entrypoint_4(arg0, 1, &_gcnewoption_entrypoint_35, 0, func_808000B4_chmusicmenu(*(s32 *)(arg0 + 0x30)));
             sp40 = func_80100094(arg0, 1);
-            _gcnewoption_entrypoint_40(sp40, 0x41, 0x22, 0x20, 0.8f, 1.0f);
+            _gcnewoption_entrypoint_40(BT_NATIVE_ONLY((void *)) sp40, 0x41, 0x22, 0x20, 0.8f, 1.0f);
             value = D_808014F4_chmusicmenu[*(s32 *)(arg0 + 0x30)].count;
             _gcnewoption_entrypoint_8(sp40, value < 5 ? value : 5);
             _gcnewoption_entrypoint_9(sp40, D_808014F4_chmusicmenu[*(s32 *)(arg0 + 0x30)].count);

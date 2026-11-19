@@ -203,13 +203,21 @@ void func_808005FC_bafpctrl(BtIntPtr arg0, f32 *arg1) {
 
 void func_8080064C_bafpctrl(PlayerState *arg0) {
     void baflag_clear(void *self, s32 id);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 func_8009CC68(PlayerState *);
+#else
     s32 func_8009CC68();
+#endif
     s32 func_8009E674(PlayerState *, s32);
     s32 func_8010D930(s32, s32, BtIntPtr, s32 *);
     void func_80110C2C(PlayerState *self);
     s32 func_80800424_bafpctrl(PlayerState *, s32);
     extern s32 D_808010B0_bafpctrl[4];
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    if (func_8009CC68(arg0) == 0) {
+#else
     if (func_8009CC68() == 0) {
+#endif
         func_8010D930(0xC, func_8009E674(arg0, 2), 0, D_808010B0_bafpctrl);
     }
     func_80110C2C(func_800A4CA8(arg0));
@@ -430,9 +438,9 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bafpctrl_entrypoint_12(BT_IDO_ONLY(void *a
 /* extern */
 
 void bafpctrl_entrypoint_13(void *arg0, s32 arg1) {
-    s32 _baeggcursor_entrypoint_6();
+    BT_IDO_ONLY(s32 _baeggcursor_entrypoint_6(BT_PASS2(arg0, arg1));) BT_NATIVE_ONLY(void _baeggcursor_entrypoint_6(void *, s32);)
     (*(s8 *)((s8 *)((((Objfpctrl_arg0 *)arg0)->unk90)) + (0x13))) = arg1;
-    _baeggcursor_entrypoint_6();
+    _baeggcursor_entrypoint_6(BT_PASS2(arg0, arg1));
 }    typedef struct { u8 pad0[0x10]; u8 unk10; } Objfpctrl_bafpctrl_entrypoint_14_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 void bafpctrl_entrypoint_14(void *arg0, s32 arg1) {

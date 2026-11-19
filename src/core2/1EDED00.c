@@ -579,7 +579,7 @@ void func_80105CD0(void) {
 
 void func_80105DFC(Actor *arg0) {
     s16 *_glidmake_entrypoint_1();
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#if defined(BT_NATIVE)
     void *_glidmake_entrypoint_5(s32 arg0, f32 *arg1);
 #else
     s32 _glidmake_entrypoint_5(u16, s32);
@@ -612,7 +612,7 @@ void func_80105DFC(Actor *arg0) {
     if (OWNER_INDEX(arg0, ((Owner *)arg0)->index) == 0) {
         entry = freelist_next(&D_80136ED0, &sp38);
         OWNER_INDEX(arg0, ((Owner *)arg0)->index) = sp38;
-        ITEM_ENTRY(entry, model, entry[0]) = _glidmake_entrypoint_5(arg0->unk0->unk14, 0);
+        ITEM_ENTRY(entry, model, entry[0]) = BT_ILP32_ONLY((BtIntPtr)) _glidmake_entrypoint_5(arg0->unk0->unk14, 0);
         if (ITEM_ENTRY(entry, model, entry[0]) == 0) {
             freelist_erase(D_80136ED0, sp38);
             OWNER_INDEX(arg0, ((Owner *)arg0)->index) = 0;

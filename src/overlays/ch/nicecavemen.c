@@ -162,7 +162,7 @@ s32 func_808003D8_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
     BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
     s32 _subaddiepalette_entrypoint_4(void *, void *);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     s32 func_800DA298(s32);
@@ -225,7 +225,7 @@ s32 func_808003D8_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
         case 0x57:
             return func_808013D0_chnicecavemen(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
         case 0x95:
-            expression = _suexpression_entrypoint_7(arg0, 1, 0xA2);
+            expression = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, 0xA2);
             _suexpression_entrypoint_12(expression, 0x42700000, 0x41700000);
             _suexpression_entrypoint_17(expression, 0x320);
             break;
@@ -283,7 +283,7 @@ void func_80800624_chnicecavemen(Actor *arg0, s32 arg1) {
 void func_8080077C_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_10(s32);
     BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void _subaddieitem_entrypoint_0(BtIntPtr, BtUIntPtr, s32, s32);
     void _subaddieitem_entrypoint_2(BtIntPtr);
     void func_800C01A8(s16, s32);
@@ -338,10 +338,10 @@ void func_8080077C_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
         func_80800AB8_chnicecavemen(arg0, 12);
         break;
     default:
-        sp38 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801810_chnicecavemen, 7);
-        sp34 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801848_chnicecavemen, 7);
-        sp30 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801880_chnicecavemen, 7);
-        sp2C = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_808018B8_chnicecavemen, 4);
+        sp38 = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80801810_chnicecavemen, 7);
+        sp34 = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80801848_chnicecavemen, 7);
+        sp30 = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80801880_chnicecavemen, 7);
+        sp2C = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_808018B8_chnicecavemen, 4);
         if (_subaddiedialog_entrypoint_10(sp38) || _subaddiedialog_entrypoint_10(sp30)) {
             if (func_80801580_chnicecavemen((f32 *)arg0)) {
                 _subaddiedialog_entrypoint_11(arg0->unk0, func_8080126C_chnicecavemen(arg0), 0x4E, arg0->position, 0xA2);
@@ -651,7 +651,7 @@ s32 func_8080126C_chnicecavemen(void *arg0) {
 
 s32 func_8080134C_chnicecavemen(Actor *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_80801464_chnicecavemen(Actor *, s32, s32);
     s32 temp_v0;
 
@@ -660,7 +660,7 @@ s32 func_8080134C_chnicecavemen(Actor *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32
     if (temp_v0 == 0) {
         return 0;
     }
-    if (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, temp_v0, arg2, arg3) != 3) {
+    if (_subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, temp_v0, arg2, arg3) != 3) {
         func_80801464_chnicecavemen(arg0, 2, 0);
     }
     return 1;

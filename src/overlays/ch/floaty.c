@@ -2,6 +2,7 @@
 #ifdef BT_NATIVE
 #include "core2/particle_script.h"
 #endif
+BT_NATIVE_ONLY(s32 func_80103140(Actor *, u32, u16);)
 
 OSThread *chfloaty_entrypoint_0(void)
 {

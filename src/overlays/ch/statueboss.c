@@ -993,7 +993,7 @@ s16 func_80801724_chstatueboss(u8 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4)
     s32 pad;
     void *func_800AE080(s16);
     s32 func_800AE0E8(s16);
-    s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, BtIntPtr, f32, s32, s32);
+    BT_IDO_ONLY(s16 func_800B1F8C(u8 *, f32 *, f32 *, f32, s32, void *, BtIntPtr, f32, s32, s32);) BT_NATIVE_ONLY(s32 func_800B1F8C(u8 *, f32 *, f32 *, f32, f32 *, BtIntPtr, f32 *, f32, f32 *, s32);)
     u8 *func_800B2824(u8 *);
     u8 *func_80103AA0(u8 *);
     Actor *func_80106790(Unk80132ED0 *);
@@ -1020,7 +1020,7 @@ s16 func_80801724_chstatueboss(u8 *arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4)
     }
     arg4 = func_80801694_chstatueboss(temp_v0);
     sp3C = func_800B2824(sp44);
-    sp48->handle = func_800B1F8C(sp3C, temp_v0->position, temp_v0->rotation, temp_v0->scale, 0, func_800AE080(((struct Resource *)arg0)->handle), arg1, arg2, arg3, arg4);
+    sp48->handle = func_800B1F8C(sp3C, temp_v0->position, temp_v0->rotation, temp_v0->scale, 0, BT_NATIVE_ONLY((BtIntPtr)) func_800AE080(((struct Resource *)arg0)->handle), BT_NATIVE_ONLY((f32 *)) arg1, arg2, BT_NATIVE_ONLY((f32 *)) arg3, arg4);
     return sp48->handle;
 }
 

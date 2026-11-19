@@ -259,7 +259,7 @@ void func_808009C0_chcrusherboulder(u8 *arg0) {
 void func_80800A1C_chcrusherboulder(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    s16 _chmumbopad_entrypoint_0(s32);
+    BT_IDO_ONLY(s16 _chmumbopad_entrypoint_0(s32);) BT_NATIVE_ONLY(s32 _chmumbopad_entrypoint_0(s32);)
     s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
     s32 _sumumbofx_entrypoint_2(void *);
     void _sumumbofx_entrypoint_4(void *);
@@ -295,7 +295,7 @@ void func_80800A1C_chcrusherboulder(Actor *arg0, s32 arg1) {
     switch (arg1) {
         case 2:
             arg0->position[1] = 750.0f;
-            _sumumbofx_entrypoint_0(arg0, 1, 0x19, _chmumbopad_entrypoint_0(1));
+            _sumumbofx_entrypoint_0(arg0, 1, 0x19, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(1));
             sp4C = func_80100094(arg0, 1);
             _sumumbofx_entrypoint_2(sp4C);
             _sumumbofx_entrypoint_4(sp4C);
@@ -330,7 +330,7 @@ void func_80800A1C_chcrusherboulder(Actor *arg0, s32 arg1) {
             *(f32 *)&arg0->actorData[3] = *(f32 *)&sp3F;
             break;
         case 8:
-            _sumumbofx_entrypoint_0(arg0, 1, 0x2D, _chmumbopad_entrypoint_0(1));
+            _sumumbofx_entrypoint_0(arg0, 1, 0x2D, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(1));
             sp38 = func_80100094(arg0, 1);
             _sumumbofx_entrypoint_2(sp38);
             _sumumbofx_entrypoint_24(sp38, 0.65f);

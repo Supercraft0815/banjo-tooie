@@ -1,4 +1,5 @@
 #include "boss_tables.h"
+BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
 
 extern BoilerBossAnimations D_80802B7C_chboilerboss;
 void func_801018A4(Actor *, BtIntPtr);

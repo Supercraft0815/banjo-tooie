@@ -2,7 +2,8 @@
 
 void inantab_entrypoint_0(BT_NATIVE_ONLY(s32 bt_a0 BT_PASS2(, s32 bt_a1)))
 {
-    func_800BF744();
+    BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
+    func_800BF744(BT_PASS2(bt_a0, bt_a1));
 }
 
 void _anseq_entrypoint_2(s16 *, f32, void *, s32, s32);

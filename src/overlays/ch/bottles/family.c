@@ -240,7 +240,7 @@ void func_80800630_chbottlesfamily(Actor *arg0) {
 }
 
 s32 func_80800720_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     void func_800DF744(s32, s32);

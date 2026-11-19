@@ -440,7 +440,7 @@ s32 func_808009C4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void func_80102424(Actor *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     void _suexpression_entrypoint_14(void *, f32, f32);
     void _suexpression_entrypoint_8(Actor *, u32);

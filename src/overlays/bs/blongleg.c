@@ -1,5 +1,6 @@
 #include "bs_script.h"
 #include "bs/blongleg.h"
+BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
 struct anctrl_s;
 
 s32 func_80800000_bsblongleg(PlayerState* arg0)

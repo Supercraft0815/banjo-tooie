@@ -1,6 +1,7 @@
 #include "gameselect_tables.h"
 #include "gameselect_bss.inc"
 #include "gameselect_roles.h"
+BT_NATIVE_ONLY(s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);)
 GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_4(s32, void *);)
 
 struct anctrl_s;
@@ -1579,12 +1580,12 @@ void func_80802AD4_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3,
     Actor *func_80106790(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
-    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, BtUIntPtr, s32);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, BtUIntPtr, s32);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_4(Actor *, s16, BtIntPtr, BtIntPtr, s32);)
     void _gcnewoption_entrypoint_36(OptionState *);
     void _gcnewoption_entrypoint_8(OptionState *, u32);
     void _gcnewoption_entrypoint_9(OptionState *, u32);
-    void _gcnewoption_entrypoint_10(OptionState *, u8);
-    void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_10(OptionState *, u8);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_10(void *, s32);)
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);)
     void _gcnewoption_entrypoint_42(OptionState *, f32);
     void _gcnewoption_entrypoint_11(OptionState *);
     extern u32 _gcnewoption_entrypoint_35;
@@ -1595,7 +1596,7 @@ void func_80802AD4_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3,
     u8 mode;
 
     actor = func_80106790(arg0);
-    _gcnewoption_entrypoint_4(actor, 0, &_gcnewoption_entrypoint_35, 0, arg1);
+    _gcnewoption_entrypoint_4(actor, 0, BT_NATIVE_ONLY((BtIntPtr)) &_gcnewoption_entrypoint_35, 0, arg1);
     option = func_80100094(actor, 0);
     _gcnewoption_entrypoint_36(option);
     count = arg4;
@@ -1701,13 +1702,13 @@ void func_80802DB4_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3,
 void func_80802E38_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     Actor *func_80106790(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
-    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, BtUIntPtr, s32);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, BtUIntPtr, s32);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_4(Actor *, s16, BtIntPtr, BtIntPtr, s32);)
     void _gcnewoption_entrypoint_36(OptionState *);
     void _gcnewoption_entrypoint_8(OptionState *, u32);
     void _gcnewoption_entrypoint_9(OptionState *, u32);
-    void _gcnewoption_entrypoint_10(OptionState *, u8);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_10(OptionState *, u8);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_10(void *, s32);)
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
-    void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);)
     void _gcnewoption_entrypoint_42(OptionState *, f32);
     void _gcnewoption_entrypoint_11(OptionState *);
     extern u32 _gcnewoption_entrypoint_35;
@@ -1717,7 +1718,7 @@ void func_80802E38_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3)
     s32 i;
 
     actor = func_80106790(arg0);
-    _gcnewoption_entrypoint_4(actor, 0, &_gcnewoption_entrypoint_35, 0, arg1);
+    _gcnewoption_entrypoint_4(actor, 0, BT_NATIVE_ONLY((BtIntPtr)) &_gcnewoption_entrypoint_35, 0, arg1);
     option = func_80100094(actor, 0);
     _gcnewoption_entrypoint_36(option);
     if (arg3 <= 0) {
@@ -1849,13 +1850,13 @@ void func_80803248_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3,
 void func_808032CC_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     Actor *func_80106790(Unk80132ED0 *);
     void *func_80100094(Actor *, u32);
-    void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, BtUIntPtr, s32);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_4(Actor *, u32, u32 *, BtUIntPtr, s32);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_4(Actor *, s16, BtIntPtr, BtIntPtr, s32);)
     void _gcnewoption_entrypoint_36(OptionState *);
     void _gcnewoption_entrypoint_8(OptionState *, u32);
     void _gcnewoption_entrypoint_9(OptionState *, u32);
-    void _gcnewoption_entrypoint_10(OptionState *, u8);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_10(OptionState *, u8);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_10(void *, s32);)
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
-    void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);
+    BT_IDO_ONLY(void _gcnewoption_entrypoint_40(OptionState *, s32, s32, u8, f32, f32);) BT_NATIVE_ONLY(void _gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);)
     void _gcnewoption_entrypoint_42(OptionState *, f32);
     void _gcnewoption_entrypoint_11(OptionState *);
     extern u32 _gcnewoption_entrypoint_35;
@@ -1865,7 +1866,7 @@ void func_808032CC_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3)
     s32 i;
 
     actor = func_80106790(arg0);
-    _gcnewoption_entrypoint_4(actor, 0, &_gcnewoption_entrypoint_35, 0, arg1);
+    _gcnewoption_entrypoint_4(actor, 0, BT_NATIVE_ONLY((BtIntPtr)) &_gcnewoption_entrypoint_35, 0, arg1);
     option = func_80100094(actor, 0);
     _gcnewoption_entrypoint_36(option);
     if (arg3 <= 0) {
@@ -1906,7 +1907,7 @@ void func_80803420_chgameselect(Actor *arg0, BtIntPtr arg1) {
     _gcnewoption_entrypoint_41((OptionState *)arg1, arg0->actorData[6]);
 }
 
-void func_808034BC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) { s32 _gcnewoption_entrypoint_17(); GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();) void *func_80100094(Actor *, u32); void func_80803604_chgameselect(BtIntPtr, s32, s32, s32); u8 *sp28[2]; s32 var_a3; s32 var_s0; u8 *var_s1; var_s0 = arg2; switch (arg3) { case 0: func_80803420_chgameselect(arg0, (BtIntPtr)arg1); return; case 4: func_80803604_chgameselect((BtIntPtr)arg1, var_s0, _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(arg1), var_s0), 1); return; case 5: _gcnewoption_entrypoint_37(arg1, 1U); return; case 2: case 3: sp28[0] = func_80100094(arg0, 1); func_80800AEC_chgameselect(arg0->unk3C, arg1, -1, 0xFC); var_s0 = 0; var_s1 = sp28[0]; if ((s32)arg0->actorData[5] > 0) { do { if (_gcnewoption_entrypoint_17(arg1, var_s0) != 0) { var_a3 = 0xFE; } else { var_a3 = 0xFD; } func_80800AEC_chgameselect(arg0->unk3C, arg1, *var_s1, var_a3); var_s0 += 1; var_s1 += 6; } while (var_s0 < (s32)arg0->actorData[5]); } func_80802FE4_chgameselect(arg0); func_80800AEC_chgameselect(arg0->unk3C, NULL, -1, arg3); default: return; } }
+void func_808034BC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) { s32 _gcnewoption_entrypoint_17(); BT_IDO_ONLY(s32 _gcnewoption_entrypoint_20();) void *func_80100094(Actor *, u32); void func_80803604_chgameselect(BtIntPtr, s32, s32, s32); u8 *sp28[2]; s32 var_a3; s32 var_s0; u8 *var_s1; var_s0 = arg2; switch (arg3) { case 0: func_80803420_chgameselect(arg0, (BtIntPtr)arg1); return; case 4: func_80803604_chgameselect((BtIntPtr)arg1, var_s0, _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(arg1), var_s0), 1); return; case 5: _gcnewoption_entrypoint_37(arg1, 1U); return; case 2: case 3: sp28[0] = func_80100094(arg0, 1); func_80800AEC_chgameselect(arg0->unk3C, arg1, -1, 0xFC); var_s0 = 0; var_s1 = sp28[0]; if ((s32)arg0->actorData[5] > 0) { do { if (_gcnewoption_entrypoint_17(arg1, var_s0) != 0) { var_a3 = 0xFE; } else { var_a3 = 0xFD; } func_80800AEC_chgameselect(arg0->unk3C, arg1, *var_s1, var_a3); var_s0 += 1; var_s1 += 6; } while (var_s0 < (s32)arg0->actorData[5]); } func_80802FE4_chgameselect(arg0); func_80800AEC_chgameselect(arg0->unk3C, NULL, -1, arg3); default: return; } }
 
 void func_80803604_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_8080407C_chgameselect(BtIntPtr, s32, s32);
@@ -2561,7 +2562,7 @@ void func_808046D0_chgameselect(GAME_SELECT_ROW6_OPEN_PARAMS(arg0, arg1)) {
     } while (var_s0 != 3);
 }
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#if defined(BT_NATIVE)
 s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
 #else
 s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
@@ -2580,7 +2581,7 @@ s32 func_80804750_chgameselect(GAME_SELECT_ROW6_SELECT_PARAMS(arg0, arg1, arg2))
     if (temp_v0 == -2) {
         func_80804A38_chgameselect(arg0);
     } else if (temp_v0 != 0) {
-        GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
+        BT_IDO_ONLY(s32 _gcnewoption_entrypoint_20();)
 sp20 = GAME_SELECT_OPTION_GET2(arg1, arg2,
             ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2));
         func_80803C80_chgameselect();
@@ -2694,7 +2695,7 @@ void func_80804A38_chgameselect(void *arg0) {
 
 void func_80804A8C_chgameselect(GAME_SELECT_ROW6_EVENT3_PARAMS(arg0, arg1, arg2))
 {
-  #if defined(BT_NATIVE) && !defined(BT_ILP32)
+  #if defined(BT_NATIVE)
 s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
 #else
 s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
@@ -2716,7 +2717,7 @@ s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
 /* extern */
 
 void func_80804AF0_chgameselect(GAME_SELECT_ROW6_EVENT3_PARAMS(arg0, arg1, arg2)) {
-    #if defined(BT_NATIVE) && !defined(BT_ILP32)
+    #if defined(BT_NATIVE)
 s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
 #else
 s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
@@ -3212,7 +3213,7 @@ void func_8080569C_chgameselect(Actor *arg0, BT_IDO_ONLY(s32 arg1) BT_PASS2(s32 
 
 s32 func_8080595C_chgameselect(GAME_SELECT_ROW5_SELECT_PARAMS(arg0, arg1, arg2)) {
     s32 _gcnewoption_entrypoint_19(OptionState *, s32);
-    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
+    BT_IDO_ONLY(s32 _gcnewoption_entrypoint_20();)
     void func_80803C60_chgameselect(void);
     void func_80803C80_chgameselect(void);
     void func_808069C8_chgameselect(s32);
@@ -3545,7 +3546,7 @@ void func_808062CC_chgameselect(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_808062EC_chgameselect(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
-    #if defined(BT_NATIVE) && !defined(BT_ILP32)
+    #if defined(BT_NATIVE)
 s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
 #else
 s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
@@ -3569,7 +3570,7 @@ s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
 
 void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
-    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
+    BT_IDO_ONLY(s32 _gcnewoption_entrypoint_20();)
     u32 *func_80100074(Actor *, u32, u32);
     s32 count;
     s32 i;
@@ -3580,7 +3581,7 @@ void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
     if (count > 0) {
         do {
 #ifdef BT_NATIVE
-            func_808062CC_chgameselect(i, ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, i));
+            func_808062CC_chgameselect(i, _gcnewoption_entrypoint_20((BtIntPtr)arg1, i));
 #else
             func_808062CC_chgameselect(i, _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(arg1), i));
 #endif
@@ -3924,7 +3925,7 @@ void func_80806AF4_chgameselect(GAME_SELECT_ROW5_OPTION_SET(arg0, arg1, arg2)) {
 }
 
 void func_80806B5C_chgameselect(GAME_SELECT_ROW5_EVENT_PARAMS(arg0, arg1, arg2)) {
-    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
+    BT_IDO_ONLY(s32 _gcnewoption_entrypoint_20();)
     s32 option;
     s32 count;
 
@@ -3942,7 +3943,7 @@ option = GAME_SELECT_OPTION_GET2(arg1, arg2,
 }
 
 void func_80806BD4_chgameselect(GAME_SELECT_ROW5_EVENT_PARAMS(arg0, arg1, arg2)) {
-    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
+    BT_IDO_ONLY(s32 _gcnewoption_entrypoint_20();)
     s32 option;
     s32 count;
 

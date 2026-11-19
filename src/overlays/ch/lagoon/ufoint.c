@@ -280,7 +280,7 @@ void func_808007B4_chlagoonufoint(void *arg0) {
 }
 
 void func_80800820_chlagoonufoint(Actor *arg0, f32 *arg1) {
-    u8 func_800C4350(s32, f32[3], s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     extern s32 D_80801B10_chlagoonufoint[3];
     u8 var_a3;
     Actor *actor;

@@ -216,7 +216,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddierouteDll_entrypoint_1(Actor *);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s16);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s16);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 func_800DA298(s32);
     s32 func_800DF744(s32, u32);
     void func_800F497C(BtIntPtr);
@@ -288,7 +288,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
             func_80800CFC_chkingjinjo(arg0, 0x17, 0x2020);
         }
         expression = func_800DA298(0x360) != 0 ? 0xA5 : 0xAE;
-        expression_id = _suexpression_entrypoint_7(arg0, 1, (s16)expression);
+        expression_id = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, (s16)expression);
         _suexpression_entrypoint_12((void *)expression_id, 0x42700000, 0x41A00000);
         _suexpression_entrypoint_17((void *)expression_id, 0x5DC);
         break;

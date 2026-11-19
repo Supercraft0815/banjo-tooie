@@ -219,7 +219,7 @@ void gcmapDll_entrypoint_1(void *arg0) {
     s32 _dblight_entrypoint_0(s32, s32, s32 *);
     s32 _dblight_entrypoint_1(s32, s32, s32);
     s32 _glid_entrypoint_6(s32, s32);
-    s32 _glidmake_entrypoint_5(u16, s32);
+    BT_IDO_ONLY(s32 _glidmake_entrypoint_5(u16, s32);) BT_NATIVE_ONLY(void *_glidmake_entrypoint_5(s32, f32 *);)
     s32 _idworldmake_entrypoint_0(s32, s32);
     s32 _rtlight_entrypoint_1(s32, s32, s32);
     s32 _vpmodule_entrypoint_0(s32, s32, s32 *);
@@ -289,7 +289,7 @@ void gcmapDll_entrypoint_1(void *arg0) {
         func_800B2464(((struct Map *)arg0)->vertices1, color, ((struct Map *)arg0)->vertices1);
     }
     if ((((struct Map *)arg0)->model0 != 0 && func_800A946C() < 3 ? func_800B274C(((struct Map *)arg0)->model0) : 0) != 0) {
-        ((struct Map *)arg0)->glid0 = _glidmake_entrypoint_5(((struct Map *)arg0)->id0, 0);
+        ((struct Map *)arg0)->glid0 = BT_NATIVE_ONLY((BtIntPtr)) _glidmake_entrypoint_5(((struct Map *)arg0)->id0, 0);
     } else {
         ((struct Map *)arg0)->glid0 = 0;
     }
@@ -297,7 +297,7 @@ void gcmapDll_entrypoint_1(void *arg0) {
         _idworldmake_entrypoint_0(((struct Map *)arg0)->glid0, 1);
     }
     if ((((struct Map *)arg0)->model1 != 0 && func_800A946C() < 3 ? func_800B274C(((struct Map *)arg0)->model1) : 0) != 0) {
-        ((struct Map *)arg0)->glid1 = _glidmake_entrypoint_5(((struct Map *)arg0)->id1, 0);
+        ((struct Map *)arg0)->glid1 = BT_NATIVE_ONLY((BtIntPtr)) _glidmake_entrypoint_5(((struct Map *)arg0)->id1, 0);
     } else {
         ((struct Map *)arg0)->glid1 = 0;
     }
@@ -396,7 +396,7 @@ void func_808005A8_gcmapDll(u8 *arg0) {
 /* extern */
 
 void func_80800668_gcmapDll(s32 arg0, s16 (*arg1)[2], s32 arg2) {
-    s32 func_800BF744(s16, s16);
+    BT_IDO_ONLY(s32 func_800BF744(s16, s16);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
     s32 var_s1;
     s16 (*var_s0)[2];
 
@@ -480,7 +480,7 @@ void gcmapDll_entrypoint_3(u8 *arg0) {
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     u8 *func_800B284C(u8 *);
-    s32 func_800BF744(s16, s16);
+    BT_IDO_ONLY(s32 func_800BF744(s16, s16);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
     void func_800D70D0(s32);
     void func_800D71F4(s32);
     s32 func_800D731C(s32);

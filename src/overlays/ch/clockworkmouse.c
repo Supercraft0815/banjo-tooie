@@ -1,4 +1,5 @@
 #include "overlays/ch/clockworkmouse.h"
+BT_NATIVE_ONLY(s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);)
 
 #define CLOCKWORK_DATA(arg0) ((ClockworkActorData*)(arg0->actorData))
 
@@ -791,7 +792,7 @@ void func_80801CFC_chclockworkmouse(Actor* actor, s32 arg1) {
         for (var_s0 = 0; var_s0 < 10; var_s0++) {
             if (temp_s4->unkF0[var_s0] == 2) {
                 func_800EFA4C(sp50, temp_s4->unkAC[var_s0], temp_s4->unkAC[var_s0], temp_s4->unkAC[var_s0]);
-                func_800E2720(arg1, 0, 0, &temp_s4->unkC.vecs[var_s0], sp50, 0xFF);
+                func_800E2720(BT_NATIVE_ONLY((u8 *)) arg1, 0, 0, &temp_s4->unkC.vecs[var_s0], sp50, 0xFF);
             }
         }
         func_800E2A14(arg1);

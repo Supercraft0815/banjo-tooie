@@ -239,7 +239,7 @@ void func_8080045C_chbouncycastle(Actor *arg0) {
 void func_8080051C_chbouncycastle(Actor *arg0) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
     BT_IDO_ONLY(s32 func_800C3868(s32, f32, f32, f32, f32);) BT_NATIVE_ONLY(void func_800C3868(u8, f32, f32, f32, f32);)
-    u8 func_800C4350(s32, f32[3], s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_80101E14(Actor *, f32);
     extern s32 D_80800A50_chbouncycastle[3];

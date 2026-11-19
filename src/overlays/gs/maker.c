@@ -270,9 +270,9 @@ void gsmaker_entrypoint_13(GsFile *, void *, s32);
 /* extern */
 
 void gsmaker_entrypoint_0(void *arg0) {
-    s32 func_800D6CEC(s16);
-    s32 func_800D70F8(s16, s32);
-    s32 func_800D721C(s16, s32);
+    s32 func_800D6CEC(BT_IDO_ONLY(s16) BT_NATIVE_ONLY(s32));
+    s32 func_800D70F8(BT_IDO_ONLY(s16) BT_NATIVE_ONLY(s32), s32);
+    s32 func_800D721C(BT_IDO_ONLY(s16) BT_NATIVE_ONLY(s32), s32);
     void heap_free(void *);
     if ((((GsFile *)arg0)->mode) == 2) {
         func_800D721C((((GsFile *)arg0)->asset_id), 0);

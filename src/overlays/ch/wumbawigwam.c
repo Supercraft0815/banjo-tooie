@@ -216,7 +216,7 @@ void func_80800B9C_chwumbawigwam(u8 *arg0, s32 arg1) {
     typedef struct { s32 pad[4]; f32 scale[3]; } WigwamData;
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     void _chglowbo_entrypoint_6(void);
-    s16 _chmumbopad_entrypoint_0(s32);
+    BT_IDO_ONLY(s16 _chmumbopad_entrypoint_0(s32);) BT_NATIVE_ONLY(s32 _chmumbopad_entrypoint_0(s32);)
     s32 _subaddieDll_entrypoint_4(u8 *, s32);
     s32 _sumumbofx_entrypoint_0(u8 *, s32, s32, s16);
     s32 _sumumbofx_entrypoint_1(u8 *, s32);
@@ -250,7 +250,7 @@ void func_80800B9C_chwumbawigwam(u8 *arg0, s32 arg1) {
         sp34[0] = 0;
         sp34[1] = 0;
         sp34[2] = 0;
-        _sumumbofx_entrypoint_0(arg0, 1, 0x28, _chmumbopad_entrypoint_0(9));
+        _sumumbofx_entrypoint_0(arg0, 1, 0x28, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(9));
         _sumumbofx_entrypoint_2(func_80100094(arg0, 1));
         _sumumbofx_entrypoint_25(func_80100094(arg0, 1), 0x7D, sp34);
         sp28 = func_80100094(arg0, 1);

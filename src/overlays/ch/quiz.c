@@ -617,7 +617,7 @@ void func_80800F34_chquiz(s32 *arg0, void *arg1) {
 
 void func_80800FBC_chquiz(BtIntPtr arg0) {
     s32 _ncpod_entrypoint_17(BtIntPtr, s32);
-    s32 _ncpod_entrypoint_18(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr));
+    BT_IDO_ONLY(s32 _ncpod_entrypoint_18(s32);) BT_NATIVE_ONLY(s16 _ncpod_entrypoint_18(s16 *);)
     s32 func_800A89F8();
     s32 func_800A9478(s32);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
@@ -626,7 +626,7 @@ void func_80800FBC_chquiz(BtIntPtr arg0) {
 
     temp_v0 = func_800F5EF8(func_800A9478(func_800A89F8()));
     sp1C = temp_v0;
-    if (_ncpod_entrypoint_18(temp_v0) == 0x2C) {
+    if (_ncpod_entrypoint_18(BT_NATIVE_ONLY((s16 *)) temp_v0) == 0x2C) {
         _ncpod_entrypoint_17(sp1C, 0);
     }
 }
@@ -1538,7 +1538,7 @@ s32 func_80802A2C_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     void _chblink_entrypoint_4(s16);
     Actor *_subaddiefind_entrypoint_11(s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_8(Actor *, s32);
     s32 _suquiz_entrypoint_11(s32);
     s32 _suquiz_entrypoint_21(s32, s32);
@@ -2954,7 +2954,7 @@ s32 func_808058F0_chquiz(s32 *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_11(void);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_17();
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_18(void);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_8(Actor *, s32);
     s32 _suquiz_entrypoint_19(s32);
     s32 _suquiz_entrypoint_23(void);

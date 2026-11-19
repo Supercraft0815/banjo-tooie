@@ -1,4 +1,5 @@
 #include "ch/handcart.h"
+BT_NATIVE_ONLY(s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);)
 
 #define HANDCART_DATA(arg0) ((HandcartActorData*)(arg0->actorData))
 typedef struct { s16 sound[8]; const char *names[3]; } HandcartSounds;
@@ -1175,7 +1176,7 @@ void func_8080256C_chhandcart(Actor* arg0, u32 arg1)
         {
             if (temp_s5->unk87C[var_s0] != 0)
             {
-                func_800E2720(arg1, 0, 0, temp_s5->unkC[var_s0 + 0x3C], sp50, temp_s5->unk87C[var_s0]);
+                func_800E2720(BT_NATIVE_ONLY((u8 *)) arg1, 0, 0, temp_s5->unkC[var_s0 + 0x3C], sp50, temp_s5->unk87C[var_s0]);
             }
         }
 

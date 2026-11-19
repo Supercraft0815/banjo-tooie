@@ -8,8 +8,13 @@ s32 func_8009CF90()
 /* extern */
 
 void func_8009CF98(PlayerState *arg0) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void yaw_init(PlayerState *);
+    yaw_init(arg0);
+#else
     s32 yaw_init();
     yaw_init();
+#endif
     (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xFC)))) + (4))) = 0.0f;
     (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xFC)))) + (0))) = 0;
     func_8009D2D8(arg0, 1);

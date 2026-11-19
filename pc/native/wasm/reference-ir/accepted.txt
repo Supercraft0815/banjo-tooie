@@ -449,3 +449,9 @@ handling or bounds. The cell cache, vertex samples, shared handle table,
 nine point lights and five additive lights have typed storage. All 9,703
 fixups, both complete ROM images and all 74 replays match. See
 n1-2026-11-18/current-collision-lights-ir.log and current-collision-lights-full.log.
+
+2026-11-19  Caller and provider signatures for the build without FixCalls
+Fifteen guest functions change their signedness, parameter widths, or calls
+to providers with corrected signatures. All 9,703 relocation targets, both
+complete ROM images and all 74 regular replays match. See
+n1-2026-11-18/current-nopass-checked-ir.log and current-nopass-checked-full.log.

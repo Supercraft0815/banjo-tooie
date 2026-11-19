@@ -174,7 +174,7 @@ void func_80800514_chpawnbroker(Actor* arg0)
 s32 func_80800534_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
     extern u32 D_80800F60_chpawnbroker[4];
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     void func_80108B04(Actor *, u32);
@@ -200,7 +200,7 @@ s32 func_80800534_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
             func_80800AA8_chpawnbroker(arg0);
             return 4;
         case 0x95:
-            expression = _suexpression_entrypoint_7(arg0, 1, 0x53);
+            expression = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, 0x53);
             _suexpression_entrypoint_12(expression, 0x428C0000, 0x41F00000);
             _suexpression_entrypoint_17(expression, 0x3E8);
             func_80108B04(arg0, 0x354);
@@ -258,7 +258,7 @@ void func_808006FC_chpawnbroker(Actor *arg0, s32 arg1) {
 
 s32 func_808007BC_chpawnbroker(Actor *arg0, void *arg1, s32 *arg2, s32 arg3, s32 arg4) {
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     s32 temp_v0;
 
     *(s16 *)arg1 = arg4;
@@ -266,7 +266,7 @@ s32 func_808007BC_chpawnbroker(Actor *arg0, void *arg1, s32 *arg2, s32 arg3, s32
     if (temp_v0 == 0) {
         return 0;
     }
-    if (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, temp_v0, arg2, arg3) != 3) {
+    if (_subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, temp_v0, arg2, arg3) != 3) {
         return 1;
     }
     return 0;

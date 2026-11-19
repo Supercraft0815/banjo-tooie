@@ -338,7 +338,7 @@ void sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1) {
     void func_800E24D8(s32);
     void func_800E2588(u32);
     void func_800E2594(BtUIntPtr arg0, void *arg1);
-    s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);
+    BT_IDO_ONLY(s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);) BT_NATIVE_ONLY(s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);)
     void func_800E2A14(BtIntPtr);
     void func_800EFA4C(f32 *, f32, f32, f32);
 
@@ -363,7 +363,7 @@ void sumumbofx_entrypoint_8(u8 *arg0, BtIntPtr arg1) {
             temp_f0 = *(f32 *)(var_s0 + 0x1C);
             if (temp_f0 > 0.005f) {
                 func_800EFA4C(sp68, temp_f0, temp_f0, temp_f0);
-                func_800E2720(arg1, 0, 0, (f32 *)(var_s0 + 0x10), sp68, (s32) ((*(f32 *)(arg0 + 4) * 127.0f) + 128.0f));
+                func_800E2720(BT_NATIVE_ONLY((u8 *)) arg1, 0, 0, (f32 *)(var_s0 + 0x10), sp68, (s32) ((*(f32 *)(arg0 + 4) * 127.0f) + 128.0f));
             }
             var_s1 += 1;
             var_s0 += 0x2C;

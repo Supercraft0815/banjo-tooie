@@ -588,10 +588,10 @@ void func_800EBC0C(s32 arg0, s32 *arg1, void *arg2, s32 arg3) {
     } Prop;
     s32 func_800BD948(s32);
     s32 func_800DC214(s32, s32);
-    void *func_800E99E0(void);
+    BT_IDO_ONLY(void *func_800E99E0(void);) BT_NATIVE_ONLY(void *func_800E99E0(s16 *);)
     Prop *prop;
 
-    prop = func_800E99E0();
+    prop = func_800E99E0(BT_NATIVE_ONLY((s16 *)arg0));
     prop->position[0] = arg1[0];
     prop->position[1] = arg1[1];
     prop->position[2] = arg1[2];

@@ -101,7 +101,7 @@ NativeMarkerProp *func_800E9804(NativeWorldCell *cube) {
 }
 #else
 void *func_800E9804(s16 *arg0) {
-    s32 func_800B3CDC();
+    BT_IDO_ONLY(s32 func_800B3CDC();) BT_NATIVE_ONLY(s16 *func_800B3CDC(u8 **, void *);)
     s32 func_800BE4C4();
     void func_800E9CF4(s16 *);
     extern s32 D_80132DB4;
@@ -111,7 +111,7 @@ void *func_800E9804(s16 *arg0) {
 
     oldList = D_80132DB4;
     oldCount = arg0[2];
-    result = (void *)func_800B3CDC(&D_80132DB4, arg0 + 2, arg0);
+    BT_IDO_ONLY(result = (void *)func_800B3CDC(&D_80132DB4, arg0 + 2, arg0);) BT_NATIVE_ONLY(result = (void *)func_800B3CDC((u8 **)&D_80132DB4, arg0 + 2);)
     ((u8 *)result)[0xB] &= 0xFFFE;
     if (oldList != D_80132DB4) {
         func_800BE4C4();
@@ -128,9 +128,9 @@ Prop *func_800E9898(NativeWorldCell *cube) {
 }
 #else
 void *func_800E9898(s32 arg0) {
-    s32 func_800B3CDC(s32 *, s32);
+    BT_IDO_ONLY(s32 func_800B3CDC(s32 *, s32);) BT_NATIVE_ONLY(s16 *func_800B3CDC(u8 **, void *);)
     extern s32 D_80132DB0;
-    return (void *)func_800B3CDC(&D_80132DB0, arg0);
+    return (void *)func_800B3CDC(BT_NATIVE_ONLY((u8 **)) &D_80132DB0, BT_NATIVE_ONLY((void *)) arg0);
 }
 #endif
 

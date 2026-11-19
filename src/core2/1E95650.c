@@ -65,7 +65,7 @@ void func_800BBFDC(void *arg0, BtIntPtr arg1) {
     void func_800E2530(f32);
     void func_800E2588(u32);
     void func_800E2594(BtUIntPtr arg0, void *arg1);
-    s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);
+    BT_IDO_ONLY(s32 func_800E2720(BtIntPtr, s32, s32, f32 *, f32 *, s32);) BT_NATIVE_ONLY(s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);)
     s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5, s32 arg6);
     void func_800E2A14(BtIntPtr arg0);
     void func_800EFA4C(f32 *, f32, f32, f32);
@@ -109,7 +109,7 @@ void func_800BBFDC(void *arg0, BtIntPtr arg1) {
                 ((struct DrawFlags *)((u8 *)var_s0 + 0x39))->drawn |= func_800E28A4(arg1, (s16) (*(s16 *)((s8 *)(var_s0) + (0x2C))) >> 8, var_s4, sp78, sp6C, sp60, (s32) ((*(f32 *)((s8 *)(var_s0) + (0xC))) * (f32) (u32) (*(u8 *)((s8 *)(arg0) + (0x83)))));
             } else {
                 func_800E2530((*(f32 *)((s8 *)(var_s0) + (0x18))));
-                ((struct DrawFlags *)((u8 *)var_s0 + 0x39))->drawn |= func_800E2720(arg1, (s16) (*(s16 *)((s8 *)(var_s0) + (0x2C))) >> 8, var_s4, sp78, sp60, (s32) ((*(f32 *)((s8 *)(var_s0) + (0xC))) * (f32) (u32) (*(u8 *)((s8 *)(arg0) + (0x83)))));
+                ((struct DrawFlags *)((u8 *)var_s0 + 0x39))->drawn |= func_800E2720(BT_NATIVE_ONLY((u8 *)) arg1, (s16) (*(s16 *)((s8 *)(var_s0) + (0x2C))) >> 8, var_s4, sp78, sp60, (s32) ((*(f32 *)((s8 *)(var_s0) + (0xC))) * (f32) (u32) (*(u8 *)((s8 *)(arg0) + (0x83)))));
             }
             var_s0 += 0x3C;
         } while (var_s0 < (u8 *)((ParticleEmitter *)arg0)->end);

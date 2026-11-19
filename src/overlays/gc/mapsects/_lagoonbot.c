@@ -41,10 +41,10 @@ void gcmapsects_lagoonbot_entrypoint_1(NativeMap *arg0) {
 #include "common.h"
 
 void gcmapsects_lagoonbot_entrypoint_0(void) {
-    void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32);
-    void _gcmapsects_entrypoint_1(s32, s32);
-    void _gcmapsects_entrypoint_2(s32, s32);
-    void _gcmapsects_entrypoint_3(s32, s32);
+    BT_IDO_ONLY(void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_0(s16, s16, f32 *, f32 *, f32 *, f32);)
+    BT_IDO_ONLY(void _gcmapsects_entrypoint_1(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_1(s16, s32);)
+    BT_IDO_ONLY(void _gcmapsects_entrypoint_2(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_2(s16, s32);)
+    BT_IDO_ONLY(void _gcmapsects_entrypoint_3(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_3(s16, s16);)
     void _gcmapsects_entrypoint_10(s32);
     void _gcmapsects_entrypoint_12(void (*)(u8 *));
     void _gcmapsects_entrypoint_14(s32);
@@ -93,7 +93,7 @@ void gcmapsects_lagoonbot_entrypoint_1(u8 *arg0) {
     f32 func_800136E4(f32);
     f32 func_80013728(f32);
     void func_800E39A8(s32, s32);
-    u8 func_800E3E8C(void *, f32);
+    BT_IDO_ONLY(u8 func_800E3E8C(void *, f32);) BT_NATIVE_ONLY(s32 func_800E3E8C(f32 *, f32);)
     extern s32 D_808002F4_gcmapsects_lagoonbot;
     f32 position[3];
     f32 rotation[3];
@@ -108,7 +108,7 @@ void gcmapsects_lagoonbot_entrypoint_1(u8 *arg0) {
         active = arg0[0x7E] = 0;
     }
     if (active && position[1] < 4000.0f && rotation[0] >= 0.0f) {
-        arg0[0x7E] = func_800E3E8C(&D_808002F4_gcmapsects_lagoonbot, 982.0f);
+        arg0[0x7E] = BT_NATIVE_ONLY((u8)) func_800E3E8C(&D_808002F4_gcmapsects_lagoonbot, 982.0f);
     }
 }
 

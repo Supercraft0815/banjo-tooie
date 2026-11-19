@@ -236,7 +236,7 @@ void func_808005AC_chburgerstand(Actor *arg0) {
 s32 func_808006B4_chburgerstand(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1, 0x50);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42480000, 0x41A00000);
@@ -267,7 +267,7 @@ void func_80800754_chburgerstand(Actor *arg0) {
 void func_808007A0_chburgerstand(Actor *arg0, s32 arg1, s16 arg2) {
     void func_80102424(Actor *, s32);
     void _capod_entrypoint_14(void);
-    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_8008FC9C(s32);
     void func_80090708(s32);
     Actor *func_80106790(Unk80132ED0 *);
@@ -294,7 +294,7 @@ void func_808007A0_chburgerstand(Actor *arg0, s32 arg1, s16 arg2) {
 }
 
 void func_8080087C_chburgerstand(Actor *arg0, s32 arg1, s16 arg2) {
-    s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(Actor *, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_8010D254(f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);

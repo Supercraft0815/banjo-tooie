@@ -6,7 +6,7 @@ void func_80800000_indrv_audio(void *arg0, s32 arg1, s32 *arg2) {
     BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8(void);
     void func_800C3AE0(u8, f32);
     void func_800C3BDC(u8 id);
-    u8 func_800C4350();
+    BT_IDO_ONLY(u8 func_800C4350();) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     void func_800DBEFC(s32 *, s32, f32 *);
     void func_800EE88C(f32 *, s16 *);
     f32 func_800F1DF4(f32 *, f32 *);
@@ -35,7 +35,7 @@ void func_80800000_indrv_audio(void *arg0, s32 arg1, s32 *arg2) {
 
 void func_808000BC_indrv_audio(BtIntPtr arg0, s32 *arg1) {
     void func_800C3BDC(u8 id);
-    u8 func_800C4350(s32, BtIntPtr, s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, BtIntPtr, s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     u8 sp1F;
 
     u8 temp_v0;

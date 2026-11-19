@@ -232,7 +232,7 @@ s32 func_80800564_chmadamegrunty(Actor *arg0) {
 
 void func_80800670_chmadamegrunty(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
-    s32 func_800D175C(s16, s16);
+    BT_IDO_ONLY(s32 func_800D175C(s16, s16);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     s32 func_800D3EF4(s32);
     s32 func_800EE7F8(s32 *, u8 *);
     s32 func_800EF1B8(s32 *, f32, s32);
@@ -365,7 +365,7 @@ void func_808009AC_chmadamegrunty(Actor *arg0, s32 arg1, f32 arg2) {
     void func_800C301C(u8, s32);
     void func_800C31DC(u8, f32);
     void func_800C3BDC(u8);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     f32 func_800DC178(f32, f32);
     extern s32 D_80800C4C_chmadamegrunty;
     u8 sp27;

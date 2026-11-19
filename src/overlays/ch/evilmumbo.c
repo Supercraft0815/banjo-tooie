@@ -1,4 +1,5 @@
 #include "evilmumbo_tables.h"
+BT_NATIVE_ONLY(s32 func_801032B0(Actor *, u16, u16);)
 
 extern ActorAnimationEntry D_80804090_chevilmumbo[22];
 void func_8080129C_chevilmumbo(Actor *);

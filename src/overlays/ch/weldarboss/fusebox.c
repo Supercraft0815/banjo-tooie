@@ -25,7 +25,7 @@ OSThread *chweldarbossfusebox_entrypoint_2(void)
 
 void func_80800024_chweldarbossfusebox(BtIntPtr arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
     s32 _subaddiefade_entrypoint_14(BtIntPtr);
-    s32 func_800BF744(s32, s32);
+    BT_IDO_ONLY(s32 func_800BF744(s32, s32);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
     s32 func_800DA298(s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800FFAB0(Actor *);
@@ -68,7 +68,7 @@ void func_80800140_chweldarbossfusebox(BtIntPtr arg0) {
     s32 _chexploder_entrypoint_6(BtIntPtr, s32, s32);
     s32 _chexploder_entrypoint_7(BtIntPtr, s32, s32);
     s32 _subaddieaudioquick_entrypoint_2(BtIntPtr, s32, s32 *);
-    s32 func_800BF744(s32, s32);
+    BT_IDO_ONLY(s32 func_800BF744(s32, s32);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
     BtIntPtr func_80101080();
     BtIntPtr func_80106790(BtIntPtr);
     extern s32 D_80800660_chweldarbossfusebox[4];
@@ -90,7 +90,7 @@ void func_808001BC_chweldarbossfusebox(f32 *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(
     void func_800EFA4C(f32 position[3], f32 x, f32 y, f32 z);
     s32 _subaddiefade_entrypoint_14(BtIntPtr);
     s32 _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
-    s32 func_800BF744(s32, s32);
+    BT_IDO_ONLY(s32 func_800BF744(s32, s32);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800FFAB0(Actor *);
@@ -137,7 +137,7 @@ s32 func_80800268_chweldarbossfusebox(Actor *arg0, s32 arg1, s32 arg2) {
 void func_8080032C_chweldarbossfusebox(BtIntPtr arg0) {
     s32 _chexploder_entrypoint_15(BtIntPtr, s32, s32);
     s32 _subaddieaudioquick_entrypoint_2(BtIntPtr, s32, s32 *);
-    s32 func_800BF744(s32, s32);
+    BT_IDO_ONLY(s32 func_800BF744(s32, s32);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
     BtIntPtr func_80101080();
     BtIntPtr func_80106790(BtIntPtr);
     extern s32 D_80800660_chweldarbossfusebox[4];

@@ -163,7 +163,7 @@ void func_80800434_chflamer(Actor *arg0, s32 arg1) {
     BtIntPtr func_800D674C(s32);
     s32 func_800E2588(s32);
     s32 func_800E2594(BtIntPtr, BtIntPtr);
-    s32 func_800E2720(BtIntPtr, s32, s16, s32 *, s32 *, s32);
+    BT_IDO_ONLY(s32 func_800E2720(BtIntPtr, s32, s16, s32 *, s32 *, s32);) BT_NATIVE_ONLY(s32 func_800E2720(u8 *, s32, s32, f32 *, f32 *, s32);)
     s32 func_800E2A14(BtIntPtr);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
@@ -191,7 +191,7 @@ void func_80800434_chflamer(Actor *arg0, s32 arg1) {
             func_800EE88C(sp68, (u8 *)(u8 *)var_s0 + 8);
             func_800EF04C(sp68, arg0->position);
             func_800EFA4C(sp5C, temp_f20, temp_f20, temp_f20);
-            func_800E2720(arg1, (s32) (((Objflamer_func_80800434_chflamer_var_s0 *)var_s0)->unk0), (((Objflamer_func_80800434_chflamer_var_s0 *)var_s0)->unk6), sp68, sp5C, 0xC0);
+            func_800E2720(BT_NATIVE_ONLY((u8 *)) arg1, (s32) (((Objflamer_func_80800434_chflamer_var_s0 *)var_s0)->unk0), (((Objflamer_func_80800434_chflamer_var_s0 *)var_s0)->unk6), BT_NATIVE_ONLY((f32 *)) sp68, BT_NATIVE_ONLY((f32 *)) sp5C, 0xC0);
             var_s2 += 1;
             var_s0 = (u8 *)(u8 *)var_s0 + (0x14);
         } while (var_s2 < (((Objflamer_func_80800434_chflamer_temp_s5 *)temp_s5)->unk16));

@@ -333,7 +333,7 @@ void func_80800870_sucoasterhit(Actor *arg0, Actor *arg1, s32 arg2, s32 arg3) {
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
     void func_800C3BDC(u8);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     f32 func_800DC178(f32, f32);
     extern s16 D_80800CDC_sucoasterhit[6];
     struct SoundData {

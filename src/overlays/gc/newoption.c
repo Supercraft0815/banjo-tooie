@@ -322,7 +322,7 @@ void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
     };
     s32 _gczoombox_entrypoint_2(s32, BtIntPtr);
     void _gczoombox_entrypoint_28(s32, s16);
-    s32 _gczoombox_entrypoint_29(s32);
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_29(s32);) BT_NATIVE_ONLY(s16 _gczoombox_entrypoint_29(void *);)
     BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     f32 savedPosition;
     s32 savedHeight;
@@ -342,7 +342,7 @@ void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
                 entry = (struct RenderOption *)((u8 *)((struct RenderOption *)arg0) + index * 4);
                 if (entry->positions[0] < ((struct RenderOption *)arg0)->spacing) {
                     savedPosition = entry->positions[0];
-                    savedHeight = _gczoombox_entrypoint_29(entry->boxes[0]);
+                    savedHeight = _gczoombox_entrypoint_29(BT_NATIVE_ONLY((void *)(BtUIntPtr)) entry->boxes[0]);
                     _gczoombox_entrypoint_28(entry->boxes[0], ((struct RenderOption *)arg0)->height);
                     _gczoombox_entrypoint_38(entry->boxes[0], entry->positions[0] + ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
                     _gczoombox_entrypoint_2(entry->boxes[0], arg1);
@@ -352,7 +352,7 @@ void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
                 count = ((struct RenderOption *)arg0)->count;
                 if (((struct RenderOption *)arg0)->spacing * count < entry->positions[0]) {
                     savedPosition = entry->positions[0];
-                    savedHeight = _gczoombox_entrypoint_29(entry->boxes[0]);
+                    savedHeight = _gczoombox_entrypoint_29(BT_NATIVE_ONLY((void *)(BtUIntPtr)) entry->boxes[0]);
                     _gczoombox_entrypoint_28(entry->boxes[0], ((struct RenderOption *)arg0)->height);
                     _gczoombox_entrypoint_38(entry->boxes[0], entry->positions[0] - ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
                     _gczoombox_entrypoint_2(entry->boxes[0], arg1);
@@ -1028,7 +1028,7 @@ void gcnewoption_entrypoint_29(void *arg0, s32 arg1) {
 
 void gcnewoption_entrypoint_30(BtIntPtr arg0, s16 *arg1) {
     s32 func_800DC128(s32, s32);
-    u16 _gczoomboxdata_entrypoint_5(s32);
+    BT_IDO_ONLY(u16 _gczoomboxdata_entrypoint_5(s32);) BT_NATIVE_ONLY(s32 _gczoomboxdata_entrypoint_5(s32);)
     s32 _gczoomboxdata_entrypoint_6(s32);
 #ifdef BT_NATIVE
 #ifdef BT_NATIVE
@@ -1068,11 +1068,11 @@ void gcnewoption_entrypoint_30(BtIntPtr arg0, s16 *arg1) {
                 value = func_800DC128(12, 210);
                 if (_gczoomboxdata_entrypoint_6(value)) {
                     key = (u16)_gczoomboxdata_entrypoint_5(value);
-                    if (key != _gczoomboxdata_entrypoint_5(*(s16 *)(arg0 + 0x236))) {
+                    if (key != BT_NATIVE_ONLY((u16)) _gczoomboxdata_entrypoint_5(*(s16 *)(arg0 + 0x236))) {
                         valid = 1;
                         if (arg1 != NULL) {
                             for (previous = 0; arg1[previous] != -1; previous++) {
-                                if (key == _gczoomboxdata_entrypoint_5(arg1[previous])) {
+                                if (key == BT_NATIVE_ONLY((u16)) _gczoomboxdata_entrypoint_5(arg1[previous])) {
                                     valid = 0;
                                     break;
                                 }
@@ -1080,7 +1080,7 @@ void gcnewoption_entrypoint_30(BtIntPtr arg0, s16 *arg1) {
                         }
                         if (valid) {
                             for (previous = i - 1; previous >= 0; previous--) {
-                                if (key == _gczoomboxdata_entrypoint_5(chosen[previous])) {
+                                if (key == BT_NATIVE_ONLY((u16)) _gczoomboxdata_entrypoint_5(chosen[previous])) {
                                     valid = 0;
                                     break;
                                 }
@@ -1232,7 +1232,7 @@ void func_80801B5C_gcnewoption(void *arg0) {
         BT_BITFIELD_ORDER(u8 rest : 7, u8 moving : 1);
     };
     void _gczoombox_entrypoint_28(s32, s16);
-    s32 _gczoombox_entrypoint_29(s32);
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_29(s32);) BT_NATIVE_ONLY(s16 _gczoombox_entrypoint_29(void *);)
     BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     s32 i;
     s32 index;
@@ -1271,12 +1271,12 @@ void func_80801B5C_gcnewoption(void *arg0) {
                 *(s16 *)((u8 *)arg0 + 0x34) = spacing - 20.0f;
             }
             if ((*(f32 *)((u8 *)arg0 + 0x14)) * 0.66f < (*(f32 *)(entry + 0x80)) && (*(f32 *)(entry + 0x80)) < ((f32)*(s16 *)((u8 *)arg0 + 2) + 0.66f) * (*(f32 *)((u8 *)arg0 + 0x14))) {
-                height = value = _gczoombox_entrypoint_29(*(s32 *)(entry + 0x3C));
+                height = value = _gczoombox_entrypoint_29(BT_NATIVE_ONLY((void *)(BtUIntPtr)) *(s32 *)(entry + 0x3C));
                 if (value < 236) {
                     _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), (s16)height + 20);
                 }
             } else {
-                height = value = _gczoombox_entrypoint_29(*(s32 *)(entry + 0x3C));
+                height = value = _gczoombox_entrypoint_29(BT_NATIVE_ONLY((void *)(BtUIntPtr)) *(s32 *)(entry + 0x3C));
                 if (value >= 20) {
                     _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), (s16)height - 20);
                 }

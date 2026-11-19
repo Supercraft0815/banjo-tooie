@@ -189,7 +189,7 @@ void func_808002E8_chjollyroger(BtIntPtr arg0) {
 s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     s32 func_800DA298(s32);
@@ -233,7 +233,7 @@ s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x57:
         return func_80800DD8_chjollyroger(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
     case 0x95:
-        expression = _suexpression_entrypoint_7(arg0, 1, 0x55);
+        expression = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, 0x55);
         _suexpression_entrypoint_12(expression, 0x42700000, 0x41A00000);
         _suexpression_entrypoint_17(expression, 1000);
         break;
@@ -255,7 +255,7 @@ void func_8080056C_chjollyroger(void *arg0) {
 
 s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_80800E6C_chjollyroger(Actor *, s32, s32);
     extern subaddiedialog_UnkStruct2 D_80801448_chjollyroger;
     BT_IDO_ONLY(extern s8 D_80801456_chjollyroger;)
@@ -266,7 +266,7 @@ s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     if (temp_v0 == 0) {
         return 0;
     }
-    if (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, temp_v0, arg1, arg2) != 3) {
+    if (_subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, temp_v0, arg1, arg2) != 3) {
         func_80800E6C_chjollyroger(arg0, 3, 0);
     }
     return 1;
@@ -274,7 +274,7 @@ s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
 
 void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void _subaddieitem_entrypoint_2(BtIntPtr);
     void func_800C01A8(s16, s32);
     void func_800C0850(void);
@@ -321,7 +321,7 @@ void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
         return;
     default:
         if (func_800DA298(0xC0)) {
-            switch (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801238_chjollyroger, 7)) {
+            switch (_subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80801238_chjollyroger, 7)) {
             case 1:
                 if (!func_800D0A9C(0x24, 1)) {
                     func_800F7F98(func_800F54E4(), 1);
@@ -342,7 +342,7 @@ void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
                 return;
             }
         } else {
-            temp = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80801200_chjollyroger, 7);
+            temp = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80801200_chjollyroger, 7);
             if (temp == 1 || temp == 2) {
                 if (!func_800DA298(0xC2) && !func_800DA298(0x41)) {
                     _subaddiedialog_entrypoint_11(arg0->unk0, 0x1002, 0x4E, arg0->position, 0x55);
@@ -448,7 +448,7 @@ void func_80800AEC_chjollyroger(Actor *arg0) {
 BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtUIntPtr) arg2) {
 
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     u32 func_800F54E4(void);
@@ -471,7 +471,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_80800BA0_chjollyroger(Actor *arg0
             _gcdialogcamera_entrypoint_3(D_808012B8_chjollyroger, arg0->scale);
             break;
         case 0x95:
-            expression = _suexpression_entrypoint_7(arg0, 1, 0x56);
+            expression = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, 0x56);
             _suexpression_entrypoint_12(expression, 0x42700000, 0x41A00000);
             _suexpression_entrypoint_17(expression, 1000);
             break;

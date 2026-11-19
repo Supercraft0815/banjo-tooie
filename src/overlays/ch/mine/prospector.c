@@ -213,7 +213,7 @@ s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
     void _gcdialogcamera_entrypoint_4(f32 *);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     void func_800DA544(GameFlag);
     void func_80102424(Actor *, s32);
     void func_808006EC_chmineprospector(Actor *, s32, s32);
@@ -264,7 +264,7 @@ s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, s32 *, s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     void func_808009B0_chmineprospector(Actor *, s32, s32);
 
     BT_IDO_ONLY(extern s8 D_8080111A_chmineprospector;)
@@ -275,7 +275,7 @@ s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
     if (temp_v0 == 0) {
         return 0;
     }
-    switch (_subaddiedialog_entrypoint_9((BtIntPtr)arg0, temp_v0, arg1, arg2)) {
+    switch (_subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, temp_v0, arg1, arg2)) {
     case 1:
         func_808009B0_chmineprospector(arg0, 3, 0);
         break;
@@ -325,7 +325,7 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102424(Actor *, s32);
     void _glcutDll_entrypoint_6(u32, u32);
     s32 _subaddiedialog_entrypoint_10(s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     void func_80800970_chmineprospector(Actor *);
     void func_80800A64_chmineprospector(Actor *, s32, s32);
@@ -341,9 +341,9 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
         func_80102424(arg0, 6);
         return;
     }
-    sp34 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F20_chmineprospector, 7);
-    sp30 = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F58_chmineprospector, 7);
-    sp2C = _subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F90_chmineprospector, 4);
+    sp34 = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80800F20_chmineprospector, 7);
+    sp30 = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80800F58_chmineprospector, 7);
+    sp2C = _subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80800F90_chmineprospector, 4);
     if (_subaddiedialog_entrypoint_10(sp2C) != 0) {
         func_80800970_chmineprospector(arg0);
         func_80102424(arg0, 6);
@@ -364,11 +364,11 @@ void func_808006EC_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_8080084C_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_10(s32);
-    s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);) BT_NATIVE_ONLY(u8 _subaddiedialog_entrypoint_9(Actor *, s32, void *, s32);)
     s32 func_80108B04(BtIntPtr, s32);
     void func_80800A64_chmineprospector(Actor *, s32, s32);
 
-    if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9((BtIntPtr)arg0, arg1, D_80800F58_chmineprospector, 7)) != 0) {
+    if (_subaddiedialog_entrypoint_10(_subaddiedialog_entrypoint_9(BT_IDO_ONLY((BtIntPtr)) arg0, arg1, D_80800F58_chmineprospector, 7)) != 0) {
         func_80800A64_chmineprospector(arg0, 1, 0x30);
         func_80108B04(arg0, 0);
     }
@@ -536,7 +536,7 @@ block_8:
 }
 
 s32 func_80800CD4_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     if (arg1 == 0x95) {
         _suexpression_entrypoint_7(arg0, 1, 0x32);

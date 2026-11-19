@@ -511,10 +511,18 @@ void func_80110C88(BtIntPtr arg0) { void func_80110CC0(BtIntPtr, s32, s32, s32, 
 /* extern */
 
 void func_80110CC0(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4) {
-    s32 func_8011539C();
-    s32 func_80115D08(BtIntPtr, s32, s32, s32, f32);
-    func_8011539C();
-    func_80115D08(arg0, arg1, arg2, arg3, arg4);
+    BT_IDO_ONLY(s32 func_8011539C();)
+    BT_IDO_ONLY(s32 func_80115D08(BtIntPtr, s32, s32, s32, f32);)
+    BT_NATIVE_ONLY(void func_8011539C(void *, f32, f32, f32);)
+    BT_NATIVE_ONLY(void func_80115D08(void *, f32, f32, f32, f32);)
+    BT_NATIVE_ONLY(union { s32 bits; f32 value; } x;)
+    BT_NATIVE_ONLY(union { s32 bits; f32 value; } y;)
+    BT_NATIVE_ONLY(union { s32 bits; f32 value; } z;)
+    BT_NATIVE_ONLY(x.bits = arg1; y.bits = arg2; z.bits = arg3;)
+    BT_IDO_ONLY(func_8011539C();)
+    BT_NATIVE_ONLY(func_8011539C((void *)arg0, x.value, y.value, z.value);)
+    BT_IDO_ONLY(func_80115D08(arg0, arg1, arg2, arg3, arg4);)
+    BT_NATIVE_ONLY(func_80115D08((void *)arg0, x.value, y.value, z.value, arg4);)
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80110D08(BT_PASS2(void *bt_a0, s32 bt_a1))

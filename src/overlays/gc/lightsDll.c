@@ -85,12 +85,13 @@ void vector_free(struct Vector *vec);
 struct Vector *vector_new(u32, u32);
 void func_800C8C90(s32);
 void func_800C8F08(s32, f32 *);
-void gclightsDll_entrypoint_1(); BT_NATIVE_ONLY(void gclightsDll_entrypoint_0(struct Vector **);)
+BT_IDO_ONLY(void gclightsDll_entrypoint_1();) BT_NATIVE_ONLY(void gclightsDll_entrypoint_1(struct Vector **);) BT_NATIVE_ONLY(void gclightsDll_entrypoint_0(struct Vector **);)
 
 void func_80800000_gclightsDll(s32 arg0)
 {
-    gclightsDll_entrypoint_1();
-    _gclightsDll_entrypoint_0(arg0);
+    BT_NATIVE_ONLY(void _gclightsDll_entrypoint_0(struct Vector **);)
+    gclightsDll_entrypoint_1(BT_NATIVE_ONLY((struct Vector **)arg0));
+    _gclightsDll_entrypoint_0(BT_NATIVE_ONLY((struct Vector **)) arg0);
 }
 void gclightsDll_entrypoint_0(struct Vector **arg0) {
     void gclightsDll_entrypoint_5(f32 *);

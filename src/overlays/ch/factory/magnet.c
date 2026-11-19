@@ -437,7 +437,7 @@ s32 func_80800B20_chfactorymagnet(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void *func_80800E40_chfactorymagnet(Actor *arg0) {
-    s16 _chmumbopad_entrypoint_0(s32);
+    BT_IDO_ONLY(s16 _chmumbopad_entrypoint_0(s32);) BT_NATIVE_ONLY(s32 _chmumbopad_entrypoint_0(s32);)
     s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
     s32 _sumumbofx_entrypoint_2(void *);
     s32 _sumumbofx_entrypoint_24(void *, s32);
@@ -451,7 +451,7 @@ void *func_80800E40_chfactorymagnet(Actor *arg0) {
     sp28[0] = 0;
     sp28[1] = 0;
     sp28[2] = 0;
-    _sumumbofx_entrypoint_0(arg0, 0, 0x28, _chmumbopad_entrypoint_0(0xA));
+    _sumumbofx_entrypoint_0(arg0, 0, 0x28, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(0xA));
     temp_v0 = func_80100094(arg0, 0);
     _sumumbofx_entrypoint_2(temp_v0);
     _sumumbofx_entrypoint_25(temp_v0, 0x8C, sp28);
@@ -577,7 +577,7 @@ s32 func_808012E4_chfactorymagnet(BtIntPtr arg0, f32 arg1) {
 
 void chfactorymagnet_entrypoint_0(s32 arg0, s32 arg1) {
     s32 _chmrtannoy_entrypoint_0();
-    s32 func_800C05B8(s32, s32, s32, s32, BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 func_800C05B8(s32, s32, s32, s32, BtIntPtr, s32, s32);) BT_NATIVE_ONLY(s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, s32, s16);)
     s32 func_800DA298(s32);
     s32 func_800DA524(s32);
     s32 func_800EA05C();

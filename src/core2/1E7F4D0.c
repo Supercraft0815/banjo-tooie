@@ -59,7 +59,7 @@ void func_800A5C28(void) {
 #endif
     s32 _subaddietaxi_entrypoint_4();
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
-    s32 func_8001E204();
+    BT_IDO_ONLY(s32 func_8001E204();) BT_NATIVE_ONLY(u8 func_8001E204(void);)
 #endif
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800BDCDC();

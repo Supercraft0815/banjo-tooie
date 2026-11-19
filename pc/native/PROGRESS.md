@@ -3361,3 +3361,19 @@ Der instrumentierte Lauf des vorigen Kartenspeicherstands über alle 74 Fälle
 meldet 257 Zugriffsstellen in 77 Funktionen und 32 Symbolgruppen bei
 6.388 instrumentierten Stellen. Beim letzten Vergleich waren es 435 Stellen
 in 127 Funktionen und 43 Gruppen.
+
+### 2026-11-19 – Aufrufsignaturen ohne FixCalls (N2)
+
+105 C-Module und drei zugehörige Include-Dateien geben den Aufrufern die
+Originalargumente und Rückgabewerte. Beim Modell einer Sammelobjektgruppe
+behält der LP64-Build den Zeiger in seiner natürlichen Breite.
+Der Diagnosebuild ohne FixCalls linkt mit null ungültigen Aufrufvarianten.
+Das Intro stimmt für alle 2.698 Retraces. Die übrigen 73 Fälle des separaten
+Diagnoselaufs haben Abweichungen.
+
+Im regulären Port bestehen alle 74 Fälle mit 447.849 Retraces, elf Gastsuiten
+und 66 Sanitizertests. 15 Gastfunktionen ändern ihre IR. Alle 9.703 Fixups
+behalten ihre Zieladressen. Original-IDO bestätigt alle 16.401 Funktionen
+und beide vollständigen ROMs. Belege stehen unter
+`build/acceptance/n1-2026-11-18/current-nopass-checked*` und
+`build/acceptance/n2-cumulative-nopass-2026-11-19/gate74-batch16.log`.

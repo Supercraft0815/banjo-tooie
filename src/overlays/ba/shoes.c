@@ -46,11 +46,19 @@ void func_80800020_bashoes(void *arg0) {
 /* extern */
 
 void func_808000D4_bashoes(void *arg0, s32 arg1) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void _baalarm_free(PlayerState *);
+#else
     void _baalarm_free();
+#endif
     void bastatetimer_set(void *, s32, f32);
     void func_800A0DB8(void *, s32);
     void func_800C77DC(s32);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    _baalarm_free((PlayerState *)arg0);
+#else
     _baalarm_free();
+#endif
     func_800A0DB8(arg0, 1);
     if (arg1 != 0) {
         func_800C77DC(1);
@@ -61,11 +69,19 @@ void func_808000D4_bashoes(void *arg0, s32 arg1) {
 /* extern */
 
 void func_80800128_bashoes(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void _baalarm_new(PlayerState *);
+#else
     s32 _baalarm_new();
+#endif
     void baflag_clear(void *self, s32 id);
     void func_800A0DB8(void *, s32);
     void func_80800020_bashoes(void *);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    _baalarm_new((PlayerState *)arg0);
+#else
     _baalarm_new();
+#endif
     baflag_clear(arg0, arg1);
     func_800A0DB8(arg0, arg2);
     if (arg3 != 0) {

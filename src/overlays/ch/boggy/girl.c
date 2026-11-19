@@ -432,7 +432,7 @@ void func_80800A4C_chboggygirl(Actor *arg0) {
 void func_80800ABC_chboggygirl(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     if (func_80100094(arg0, 1U) == NULL) {
         _suexpression_entrypoint_7(arg0, 1, 0x3C);
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 0x42700000, 0x41A00000);

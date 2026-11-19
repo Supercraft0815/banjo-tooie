@@ -975,11 +975,11 @@ s32 func_80801DD0_chaliendad(void) {
 void func_80801E28_chaliendad(Actor *arg0) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
+    BT_IDO_ONLY(BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);) BT_NATIVE_ONLY(void *_suexpression_entrypoint_7(Actor *, s32, s16);)
     BtIntPtr temp_v0;
 
     if (func_80100094(arg0, 1U) == NULL) {
-        temp_v0 = _suexpression_entrypoint_7(arg0, 1, 0x62);
+        temp_v0 = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(arg0, 1, 0x62);
         _suexpression_entrypoint_12(temp_v0, 0x42700000, 0x41700000);
         _suexpression_entrypoint_17(temp_v0, 0x3E8);
     }

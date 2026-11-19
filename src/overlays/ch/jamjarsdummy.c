@@ -1,4 +1,5 @@
 #include "common.h"
+BT_NATIVE_ONLY(s32 func_80103140(Actor *, u32, u16);)
 typedef struct { u16 animation; s16 state; } JamjarsAnimation;
 void func_80800000_chjamjarsdummy(Actor *arg0, s32 arg1) {
     void _subaddiefade_entrypoint_8(Actor *, s32);

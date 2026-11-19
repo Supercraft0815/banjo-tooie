@@ -28,7 +28,7 @@ void func_8009D3F8(s32 arg0, s32 arg1) {
 
 s32 func_8009D454(PlayerState *arg0, volatile u8 arg1, s32 *arg2) {
     void func_8009C128(PlayerState *, f32[3]);
-    u8 func_800C4350(s32, f32[3], s32 *);
+    BT_IDO_ONLY(u8 func_800C4350(s32, f32[3], s32 *);) BT_NATIVE_ONLY(u8 func_800C4350(u8, f32 *, s32 *);)
     BT_IDO_ONLY(extern s32 D_80119210;)
     f32 sp1C[3];
     s32 var_a0;

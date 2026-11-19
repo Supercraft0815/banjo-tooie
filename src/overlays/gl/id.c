@@ -36,7 +36,7 @@ void glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32
 
 /* extern */
 
-void glid_entrypoint_1(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, u8 *, s16, s32), BtIntPtr arg3) {
+void glid_entrypoint_1(u8 *arg0, s32 arg1, BT_IDO_ONLY(s32 (*arg2)(u8 *, u8 *, u8 *, s16, s32)) BT_NATIVE_ONLY(void (*arg2)(u8 *, BtUIntPtr, u8 *, s32, u8 *)), BtIntPtr arg3) {
     void *func_800B2190(void *);
     s32 temp_a1;
     u8 *temp_s3;
@@ -62,7 +62,7 @@ void glid_entrypoint_1(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, u8 *, s16, s3
             if ((BtUIntPtr) var_s0 < (BtUIntPtr) temp_s2) {
                 do {
                     temp_t9 = (((Objid_glid_entrypoint_1_var_s0 *)var_s0)->unk0) * 0x10;
-                    arg2(var_s1, temp_t9 + temp_s3, temp_t9 + temp_s4, (((Objid_glid_entrypoint_1_var_s0 *)var_s0)->unk2), arg3);
+                    arg2(var_s1, BT_NATIVE_ONLY((BtUIntPtr)) (temp_t9 + temp_s3), temp_t9 + temp_s4, (((Objid_glid_entrypoint_1_var_s0 *)var_s0)->unk2), BT_NATIVE_ONLY((u8 *)) arg3);
                     var_s1 += (((Objid_glid_entrypoint_1_var_s0 *)var_s0)->unk2) * 0x10;
                     var_s0 += 4;
                 } while ((BtUIntPtr) var_s0 < (BtUIntPtr) temp_s2);

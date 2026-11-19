@@ -679,7 +679,7 @@ void func_80801424_gczoombox(void *arg0, BtIntPtr arg1) {
     s32 _fxdialog_entrypoint_0();
     void _fxdialog_entrypoint_1(s32, s32);
     void _fxdialog_entrypoint_2(f32);
-    s32 _fxdialog_entrypoint_3(BtIntPtr, f32, u8, s32);
+    BT_IDO_ONLY(s32 _fxdialog_entrypoint_3(BtIntPtr, f32, u8, s32);) BT_NATIVE_ONLY(void *_fxdialog_entrypoint_3(BtIntPtr, f32, s32, s32);)
     u8 direction;
 
     _fxdialog_entrypoint_0();

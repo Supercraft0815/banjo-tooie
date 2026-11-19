@@ -262,7 +262,7 @@ void func_808004BC_chhoopswoop(Actor *arg0) {
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_800A16BC(s32);
-    s32 func_800BF744(s32, s32);
+    BT_IDO_ONLY(s32 func_800BF744(s32, s32);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
     s32 func_800D395C(void);
     u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
@@ -820,7 +820,7 @@ void func_8080153C_chhoopswoop(void *arg0)
 {
   s32 _subaddiemulti_entrypoint_1(s32, s32);
   s32 func_800BF544(s32, s32, s32);
-  s32 func_800BF744(s32, s32);
+  BT_IDO_ONLY(s32 func_800BF744(s32, s32);) BT_NATIVE_ONLY(void func_800BF744(s32, s32);)
   func_800BF744(1, 0);
   func_800BF744(2, 1);
   func_800BF544(0, 0, 0);

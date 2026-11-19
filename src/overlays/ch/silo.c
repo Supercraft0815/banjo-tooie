@@ -1,4 +1,5 @@
 #include "gc/newoption.h"
+BT_NATIVE_ONLY(u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
 
 typedef struct {
     s16 unk0[3];

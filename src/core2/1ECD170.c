@@ -507,13 +507,21 @@ void func_800F44DC(void *arg0, s32 arg1) {
 }
 #else
 void func_800F44DC(void *arg0, s32 arg1) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s16 *func_800A4C88(void *);
+#else
     s32 func_800A4C88();
+#endif
     void func_8010F9C0(BtIntPtr, s32);
     s32 var_a1;
     s32 temp_a0;
 
     (*(s32 *)((s8 *)(arg0) + (0x17C))) = arg1;
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    temp_a0 = (BtIntPtr)func_800A4C88(arg0);
+#else
     temp_a0 = func_800A4C88();
+#endif
     if (arg1 != 0) {
         var_a1 = 2;
     } else {

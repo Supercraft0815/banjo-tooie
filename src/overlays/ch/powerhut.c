@@ -170,7 +170,7 @@ s32 chpowerhut_entrypoint_3(Actor *arg0, s32 arg1, s32 arg2, u16 *arg3) {
 /* extern */
 
 void func_80800400_chpowerhut(BtIntPtr arg0) {
-    s16 _chmumbopad_entrypoint_0(s32);
+    BT_IDO_ONLY(s16 _chmumbopad_entrypoint_0(s32);) BT_NATIVE_ONLY(s32 _chmumbopad_entrypoint_0(s32);)
     s32 _sumumbofx_entrypoint_0(BtIntPtr, s32, s32, s16);
     s32 _sumumbofx_entrypoint_15(BtIntPtr, s32);
     s32 _sumumbofx_entrypoint_2(BtIntPtr);
@@ -180,7 +180,7 @@ void func_80800400_chpowerhut(BtIntPtr arg0) {
     BtIntPtr sp1C;
     BtIntPtr temp_v0;
 
-    _sumumbofx_entrypoint_0(arg0, 1, 0x14, _chmumbopad_entrypoint_0(3));
+    _sumumbofx_entrypoint_0(arg0, 1, 0x14, BT_NATIVE_ONLY((s16)) _chmumbopad_entrypoint_0(3));
     temp_v0 = func_80100094(arg0, 1);
     sp1C = temp_v0;
     _sumumbofx_entrypoint_2(temp_v0);

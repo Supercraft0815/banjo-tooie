@@ -549,7 +549,7 @@ void func_80800F04_chsabreman(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 
 s32 func_80800F74_chsabreman(s32 arg0, BtIntPtr arg1, BtIntPtr arg2) {
     Prop *_gccubesearch_entrypoint_15(u32, u32, f32 *);
-    s32 func_800C05B8(s32, s32, s32, s32, BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 func_800C05B8(s32, s32, s32, s32, BtIntPtr, s32, s32);) BT_NATIVE_ONLY(s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, s32, s16);)
     s32 func_800CBC3C(BtIntPtr);
     s32 func_800EA05C();
     void func_800EE88C(f32 *, s16 *);

@@ -3,7 +3,7 @@
 typedef struct { s16 map; s16 flags; u8 section; u8 pad; } SectionEntry;
 
 void gcsectionDll_entrypoint_0(s32 arg0, s32 arg1) {
-    s32 _gclevel_entrypoint_2();
+    s32 _gclevel_entrypoint_2(BT_NATIVE_ONLY(s32));
     u8 _gcstatusDll_entrypoint_11(void);
     void func_8001A578(s32 arg0);
     void func_800A13B0(s32 arg0);
@@ -12,7 +12,7 @@ void gcsectionDll_entrypoint_0(s32 arg0, s32 arg1) {
     s32 gcsectionDll_entrypoint_3(BtIntPtr, s32);
     s32 temp_v0;
 
-    temp_v0 = _gclevel_entrypoint_2();
+    temp_v0 = _gclevel_entrypoint_2(BT_NATIVE_ONLY(arg0));
     if ((temp_v0 >= 0xF) && (temp_v0 < 0x20)) {
         if (gcsectionDll_entrypoint_3(gcsectionDll_entrypoint_2(arg0), 0x20) != 0) {
             func_8001A578(_gcstatusDll_entrypoint_11());
