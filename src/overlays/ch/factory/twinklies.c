@@ -240,7 +240,7 @@ s32 func_8080040C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080064C_chfactorytwinklies(Actor *arg0) {
-    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _susubgame_entrypoint_2(void *, BtIntPtr);
     s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void func_800A16BC(s32);
     void func_800CE88C(s32, s32);
@@ -364,7 +364,7 @@ void func_80800748_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
 s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); BtUIntPtr func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
 
 void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) { 
-    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _susubgame_entrypoint_2(void *, BtIntPtr);
     void func_800CD08C(s32, f32 *);
     s32 func_800DC128(s32, s32);
     void func_800EE7F8(f32 *, f32 *);

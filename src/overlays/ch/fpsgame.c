@@ -403,7 +403,7 @@ s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void *func_80100094(Actor *, u32);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_15();
-    u32 _suegg_entrypoint_7(void *);
+    BT_IDO_ONLY(u32) BT_NATIVE_ONLY(s16) _suegg_entrypoint_7(void *);
     void _sumultiscore_entrypoint_5(u8 *, s32, s32, s32);
     void _sumultiscore_entrypoint_9(u8 *, BtIntPtr, s32, s32);
     s32 func_800F5410(BtIntPtr);
@@ -504,7 +504,7 @@ s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, BtIntPtr arg2) {
 
 void func_80800BCC_chfpsgame(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void *func_80100094(Actor *, u32);
-    s32 _gcstatusDll_entrypoint_16(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_16(BtIntPtr);
     void _sumultiscore_entrypoint_7(u8 *, BtIntPtr, s32, s32);
     void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
     struct {

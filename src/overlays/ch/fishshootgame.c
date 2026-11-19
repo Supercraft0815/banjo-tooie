@@ -75,7 +75,7 @@ void func_8080000C_chfishshootgame(Actor *arg0) {
 
 void func_80800178_chfishshootgame(Actor *arg0) {
     s32 _susubgame_entrypoint_11(s32);
-    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _susubgame_entrypoint_2(void *, BtIntPtr);
     s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
@@ -291,7 +291,7 @@ void func_808003B0_chfishshootgame(Actor *arg0, s32 arg1) {
 void func_8080076C_chfishshootgame(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_800DA544(s32 index);
-    s32 _susubgame_entrypoint_2(void *, BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _susubgame_entrypoint_2(void *, BtIntPtr);
     s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     s32 _susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);

@@ -1577,7 +1577,7 @@ void func_80802D9C_chstoneballcontrol(Actor *arg0, Actor *arg1) {
 }
 
 void func_80802E30_chstoneballcontrol(Actor *arg0, u32 arg1) {
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     void func_800F5A00(BtIntPtr, f32 *);
     Actor *func_80106790(Unk80132ED0 *);
@@ -1592,7 +1592,7 @@ void func_80802E30_chstoneballcontrol(Actor *arg0, u32 arg1) {
 }
 
 void func_80802EA0_chstoneballcontrol(Actor *arg0, Actor *arg1) {
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     Actor *func_80106790(Unk80132ED0 *);
     Actor *parent;
@@ -1694,7 +1694,7 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     void _sukickball_entrypoint_10(u8 *, s32, s32);
     void _sukickball_entrypoint_11(u8 *, s32);
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
@@ -1890,7 +1890,7 @@ void func_80803724_chstoneballcontrol(Actor *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
     f32 _subaddiejoy_entrypoint_3();
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     void _sukickball_entrypoint_14(Actor *);
     f32 _sukickball_entrypoint_15(s32);
     void _sukickball_entrypoint_16(s32, f32 *);
@@ -2123,7 +2123,7 @@ s32 func_80803FF4_chstoneballcontrol(s32 arg0, s32 arg1) {
 void func_808040B8_chstoneballcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     void _sukickball_entrypoint_4(s32, void *);
     void func_8080419C_chstoneballcontrol(Actor *, s32);
     Actor *parent;
@@ -2169,7 +2169,7 @@ void func_8080419C_chstoneballcontrol(Actor *arg0, s32 arg1) {
 
 void func_80804218_chstoneballcontrol(Actor *arg0) {
     f32 func_800DC178(f32, f32);
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     void _sukickball_entrypoint_4(s32, void *);
     Actor *func_80106790(Unk80132ED0 *);
     f32 func_80102D78();
@@ -2197,7 +2197,7 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     typedef StoneballVector Vec3;
     typedef struct { BT_BITFIELD_ORDER(u8 high:3, u8 low : 4); u8 active:1; BT_BITFIELD_ORDER(u8 low:4, u8 high : 3); } BallFlags;
 
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
     s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
     s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
@@ -2436,7 +2436,7 @@ void func_80804B60_chstoneballcontrol(Actor *arg0) {
     typedef StoneballVector Vec3;
     typedef struct { f32 position[3]; f32 speed; f32 velocity[3]; } BallMotion;
 
-    s32 _sukickball_entrypoint_12(u8 *, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sukickball_entrypoint_12(u8 *, s32);
     f32 func_800136E4(f32);
     f32 func_800D8FF8(void);
     void func_800EE780(f32 *, f32 *, f32 *);

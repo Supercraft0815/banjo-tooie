@@ -1627,7 +1627,7 @@ void func_80094824(PlayerState *arg0) {
 }
 
 s32 func_80094864(PlayerState *arg0) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     s32 bainput_func_80097C7C();
     void func_800D1824(s32);
     int func_800F6774(BtUIntPtr);
@@ -1720,7 +1720,7 @@ s32 func_80094A10(PlayerState *arg0) {
 /* extern */
 
 void func_80094AB4(void *arg0) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     s32 _gcegg_entrypoint_6(s32);
     u8 func_80094C64(void *, s32);
     void func_800D1824(s32);
@@ -1739,7 +1739,7 @@ void func_80094AB4(void *arg0) {
 }
 
 s32 func_80094B14(PlayerState *arg0) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     s32 _plsu_entrypoint_1(s32);
     int baflag_isTrue(PlayerState *, s32);
     void func_800D1824(s32);
@@ -1763,7 +1763,7 @@ s32 func_80094B14(PlayerState *arg0) {
 /* extern */
 
 s32 func_80094BC0(PlayerState *arg0) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     if (func_80094348(arg0, 4) != 0) {
         return 1;
     }
@@ -1773,7 +1773,7 @@ s32 func_80094BC0(PlayerState *arg0) {
 /* extern */
 
 void func_80094C0C(PlayerState *arg0, s32 arg1) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     s32 func_8009EA2C(void);
     void func_800D1804(s32);
     if ((func_80094348(arg0, 4) == 0) && ((arg1 != 2) || (func_8009EA2C() == 0))) {
@@ -1787,7 +1787,7 @@ u8 func_80094C64(void *arg0, s32 arg1) {
 }
 
 void func_80094C88(void *arg0) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     s32 _gcegg_entrypoint_6(s32);
     void func_800D1824(s32);
     s32 var_s1;
@@ -1811,7 +1811,7 @@ void func_80094C88(void *arg0) {
 }
 
 void func_80094D04(void *arg0) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     s32 _gcegg_entrypoint_6(s32);
     s32 func_800D1C5C(u32);
     s32 func_800D27C8(s32);
@@ -1841,7 +1841,7 @@ void func_80094D04(void *arg0) {
 }
 
 s32 func_80094DA8(void *arg0) {
-    s32 _gcegg_entrypoint_5(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcegg_entrypoint_5(s32);
     s32 _gcegg_entrypoint_6(s32);
     s32 func_800D1C5C(u32);
     int func_800D27F4(s32);
@@ -1869,7 +1869,7 @@ s32 func_80094DA8(void *arg0) {
 /* extern */
 
 void func_80094E40(s32 arg0) {
-    s32 _gcegg_entrypoint_2(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) _gcegg_entrypoint_2(s32);
     void func_800FC660(u32);
     func_800FC660(_gcegg_entrypoint_2(arg0));
 }

@@ -41,7 +41,7 @@ void func_808000B8_cheggfire(void *arg0) {
     void _suegg_entrypoint_23(void *);
     void _suegg_entrypoint_3(void *);
     void _sueggmisc_entrypoint_1(void *);
-    s32 _sueggmove_entrypoint_3(void *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _sueggmove_entrypoint_3(void *);
     void func_80800000_cheggfire(void *);
     struct FireData {
         u8 pad[0x39];

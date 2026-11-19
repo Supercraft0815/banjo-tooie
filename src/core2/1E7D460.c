@@ -486,11 +486,11 @@ s32 func_800A4978(PlayerState *arg0) {
     return 1;
 }
 
-void func_800A4A14(BtIntPtr arg0) { if (func_800A4338() != 0) return; func_800A4190(arg0); func_800A4878(arg0); }
+void func_800A4A14(BtIntPtr arg0) { if (func_800A4338(BT_NATIVE_ONLY(arg0)) != 0) return; func_800A4190(arg0); func_800A4878(arg0); }
 
 void func_800A4A4C(BtIntPtr arg0)
 {
-    func_800A4190();
+    func_800A4190(BT_NATIVE_ONLY(arg0));
     func_800A4878(arg0);
 }
 void func_800A4A74(PlayerState *arg0) { if (func_800A4338(arg0) != 0) return; if (func_800A4978(arg0) != 0) return; func_800A4190(arg0); func_800A4878(arg0); func_800A3F14(arg0, 2); }

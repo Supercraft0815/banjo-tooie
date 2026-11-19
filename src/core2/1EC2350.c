@@ -17,7 +17,7 @@ void func_800E8A60(void) {
 }
 
 void func_800E8A68(void) {
-    s32 freelist_capacity(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) freelist_capacity(s32);
     s32 freelist_is_element_alive(s32, s32);
     f32 func_800D8FF8(void);
     void *func_800E8CB0(u8);

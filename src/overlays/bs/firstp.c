@@ -3363,7 +3363,7 @@ void bsfirstp_entrypoint_26(BtIntPtr arg0) {
     s32 _badeathmatch_entrypoint_5(BtIntPtr, s32, s32);
     s32 _baduo_entrypoint_14(BtIntPtr, f32 *);
     s32 _gcegg_entrypoint_7(s32);
-    s32 _suegg_entrypoint_6(BtIntPtr, f32 *, s32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) _suegg_entrypoint_6(BtIntPtr, f32 *, s32 *);
     s32 _sueggmisc_entrypoint_2(f32 *, s32);
     s32 bs_getCurrentState(struct player_state_s *);
     s32 bs_setState(void *, s32);
@@ -4794,7 +4794,7 @@ enum yaw_type_e;
 enum ba_physics_type_e;
 
 void func_80807AF8_bsfirstp(struct player_state_s *arg0) {
-    s32 _gcstatusDll_entrypoint_13();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_13();
     s32 _gcstatusDll_entrypoint_3(s32, s32);
     s32 bainput_enable(void *, s32, s32);
     void func_8009B7C0(struct player_state_s *);

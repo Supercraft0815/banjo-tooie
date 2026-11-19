@@ -2867,7 +2867,7 @@ void func_80804F38_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcstatusDll_entrypoint_4(s32);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
-    s32 _gcfrontend_entrypoint_6(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcfrontend_entrypoint_6(s32);
     s32 func_808068E8_chgameselect(void);
     void func_808069C8_chgameselect(s32);
     s32 func_80806A30_chgameselect(void);
@@ -3806,7 +3806,7 @@ void func_808068AC_chgameselect(void *arg0, s32 arg1) {
 
 s32 func_808068E8_chgameselect(void) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
-    s32 _gcstatusDll_entrypoint_16(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_16(BtIntPtr);
     s32 _gcstatusDll_entrypoint_6(s32, s32);
     s32 func_80806AA8_chgameselect(void);
     s32 pad0;

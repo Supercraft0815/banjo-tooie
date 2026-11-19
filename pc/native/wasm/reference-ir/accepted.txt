@@ -248,3 +248,11 @@ The six subsequent N1 stages expose typed inflater, lighting, prop, air,
 state and egg tables. LLVM addresses fields with a typed array index and
 a field offset. The fixup still visits the same data words. See the
 per-stage checks in n1-2026-11-18/proof and current-six-dispatch-ir.log.
+
+2026-11-19  N2 caller extensions for byte and halfword getter results
+current-leaf-ir.log lists 13 consumer bodies: 11 now zero-extend the
+byte, and the two comparisons against four now use an unsigned byte.
+leaf-width-proof.json verifies the actual MIPS load into v0 and every
+instruction through the return (including the delay slot). The camera
+arguments in the same package have identical canonical IR with FixCalls
+enabled. See build/acceptance/n2-2026-11-18/current-leaf*.

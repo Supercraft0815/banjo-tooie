@@ -1338,7 +1338,7 @@ void func_80802BF4_gczoombox(u8 *arg0) {
 }
 
 void func_80802C80_gczoombox(u8 *arg0, s32 arg1) {
-    s32 _gczoomboxdata_entrypoint_3(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gczoomboxdata_entrypoint_3(s32);
     void _gczoomboxdata_entrypoint_4(s32, s32, s16 *, s16 *, f32 *);
     s32 func_800DC214(s32, s32);
     struct SoundBox {

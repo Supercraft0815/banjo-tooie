@@ -106,12 +106,12 @@ void subaddiemulti_entrypoint_4(s32 arg0) {
 
 BtUIntPtr subaddiemulti_entrypoint_5(void *arg0)
 {
-  u32 _suegg_entrypoint_7(void *);
+  BT_IDO_ONLY(u32) BT_NATIVE_ONLY(s16) _suegg_entrypoint_7(void *);
   s32 _sueggmisc_entrypoint_0();
   BtUIntPtr func_800F54E4(void *);
   if (_sueggmisc_entrypoint_0() != 0)
   {
-    return _suegg_entrypoint_7(arg0);
+    return (u32)_suegg_entrypoint_7(arg0);
   }
   if ((((u32) (((Objmulti_arg0 *)arg0)->unk24)) >> 0x16) == 0)
   {

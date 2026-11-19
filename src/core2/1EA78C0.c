@@ -11,7 +11,7 @@ void func_800CDFD0(void **arg0) {
     void func_800D5318(void *, BtIntPtr);
     s32 func_800DAB54(s32 *, s32);
     u32 func_800E9D68(BtUIntPtr);
-    s32 func_800E9DD4(BtUIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) func_800E9DD4(BtUIntPtr);
     void func_800EC370(void **, void *);
     extern s32 D_8012B020;
     s32 pad;
@@ -104,7 +104,7 @@ void func_800CE308(void) {
     void func_800DAB8C(void *bitfield, s32 set);
     u32 func_800E9D68(BtUIntPtr);
     void * func_800E9D90(void *cube);
-    s32 func_800E9DD4(BtUIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) func_800E9DD4(BtUIntPtr);
     extern s32 D_8012B020;
     BtUIntPtr sp34;
     u32 sp30;

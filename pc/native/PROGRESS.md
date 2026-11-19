@@ -2729,3 +2729,18 @@ Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen
 ROM-Abbilder. Die Nachweise liegen unter
 `build/acceptance/n1-2026-11-18/current-viewport*` und in
 `proof/viewport-slot-summary.json`.
+
+## 2026-11-19 — N2, Rückgabebreiten bei Ei-, Status- und Minispielabfragen
+
+Bei 14 Funktionen stammt der Rückgabewert auf allen Ausführungspfaden
+aus derselben Halbwort- oder Byte-Ladeanweisung. 40 native Deklarationen
+übernehmen nun deren Breite und Vorzeichen. Zwei Kameraaufrufe erhalten
+außerdem ihr erstes Argument so, wie es das N64 im Register weiterreicht.
+Der Linker erzeugt mit abgeschaltetem FixCalls noch 59 ungültige
+Aufrufvarianten. Vor diesen Korrekturen waren es 72.
+
+Alle elf Suiten und 74 Replays mit 447.849 Retraces stimmen mit den
+Referenzen überein. Original-IDO bestätigt 16.401 Funktionen und beide
+vollständigen ROM-Abbilder. Die MIPS-Ladebefehle und die Vorher/Nachher-
+Liste stehen in `build/acceptance/n2-2026-11-18/leaf-width-proof.json`
+und `leaf-width-off-variants.json`, die Gesamtläufe in `current-leaf*`.
