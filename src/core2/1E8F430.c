@@ -20,7 +20,7 @@ extern TextCommandState D_80128180;
 
 extern s32 D_801282B4;
 
-void func_800B5B40(void) {
+void func_800B5B40(void) { BT_NATIVE_ONLY(void func_800B58D4(u8);)
     extern s32 D_80128151;
     extern s32 D_80128179;
     u8 *var_s0;

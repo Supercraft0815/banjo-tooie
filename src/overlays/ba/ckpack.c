@@ -140,7 +140,7 @@ void babackpack_entrypoint_9(PlayerState *self) {
     babackpack_set_state(self, 1);
 }
 
-void babackpack_set_state(PlayerState *self, BaBackpackState state) {
+BT_NATIVE_ONLY(void func_80100E18(s16);) void babackpack_set_state(PlayerState *self, BaBackpackState state) {
     s16 sp2E;
     s16 sp2C;
     s32 tmp_v1;

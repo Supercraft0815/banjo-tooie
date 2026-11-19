@@ -226,7 +226,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     BtIntPtr func_800F54E4(void);
     s32 func_801015D0(Actor *);
     void func_80102424(Actor *, s32);
-    void func_801032B0(void *, u16, u16);
+    BT_IDO_ONLY(void func_801032B0(void *, u16, u16);) BT_NATIVE_ONLY(s32 func_801032B0(Actor *, u16, u16);)
     void func_808009FC_chkingjinjo(Actor *, s32, s16);
     void func_80800B28_chkingjinjo(Actor *);
     s32 func_80800BBC_chkingjinjo(void *, s32, s32);

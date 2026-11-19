@@ -739,7 +739,7 @@ s32 func_800FCCD4(s32 track_id) {
     return (ptr == NULL || ((Obj1ED4E30_func_800FCCD4_ptr *)ptr)->unk28 == -1) ? 0 : 1;
 }
 
-void func_800FCD14(s32 arg0, s32 arg1) {
+void func_800FCD14(s32 arg0, s32 arg1) { BT_NATIVE_ONLY(void func_800174C0(u8, s32);)
     void *ptr = func_800FB5F8(arg0);
     if (ptr != NULL) {
         func_800174C0(((BtIntPtr)ptr - (BtIntPtr)D_801357D0) / 80 & 0xFF, arg1);

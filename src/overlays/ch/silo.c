@@ -1,4 +1,4 @@
-#include "common.h"
+#include "gc/newoption.h"
 
 typedef struct {
     s16 unk0[3];
@@ -80,13 +80,13 @@ s32 func_808001A8_chsilo(void *arg0) {
 /* extern */
 
 void func_80800210_chsilo(BtIntPtr arg0, BtIntPtr arg1) {
-    s32 _gcnewoption_entrypoint_32(BtIntPtr, s32);
-    _gcnewoption_entrypoint_32(arg1, 111);
+
+    _gcnewoption_entrypoint_32((void *)arg1, 111);
 }
 
 void func_80800238_chsilo(void *arg0, BtIntPtr arg1) {
-    s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
-    void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
+
+
 
     s32 var_s0;
     s32 var_s1;
@@ -95,7 +95,7 @@ void func_80800238_chsilo(void *arg0, BtIntPtr arg1) {
     var_s0 = 1;
     do {
         if (func_8080015C_chsilo(arg0, var_s0) != 0) {
-            _gcnewoption_entrypoint_12(arg1, var_s1, (s16) (var_s0 + 9));
+            _gcnewoption_entrypoint_12((OptionState *)arg1, var_s1, (s16) (var_s0 + 9));
             _gcnewoption_entrypoint_31(arg1, var_s1, BT_DATA_FIELD(D_808012E0_chsilo.options, D_808012EC_chsilo)[var_s0 - 1].icon);
             var_s1 += 1;
         }
@@ -168,15 +168,15 @@ s32 func_80800420_chsilo(Actor *arg0, s32 arg1) {
 }
 
 s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
-    s32 _gcnewoption_entrypoint_10(BtIntPtr, s32);
-    s32 _gcnewoption_entrypoint_11(BtIntPtr);
-    s32 _gcnewoption_entrypoint_14(BtIntPtr, s32, s32, s32, f32);
-    s32 _gcnewoption_entrypoint_4(u8 *, s32, s32 *, BtIntPtr, s32);
-    s32 _gcnewoption_entrypoint_40(BtIntPtr, s32, s32, s32, f32, f32);
-    s32 _gcnewoption_entrypoint_42(BtIntPtr, f32);
-    s32 _gcnewoption_entrypoint_6(u8 *, s32);
-    s32 _gcnewoption_entrypoint_8(BtIntPtr, s32);
-    s32 _gcnewoption_entrypoint_9(BtIntPtr, s32);
+
+
+
+
+
+
+
+
+
     s32 _plcamera_entrypoint_3(BtIntPtr, s32);
     s32 _subaddieDll_entrypoint_4(void *, s32);
     s32 _subaddieaudioquick_entrypoint_2(u8 *, f32 *, s32 *);
@@ -194,10 +194,10 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     void func_80800398_chsilo(Actor *, s32);
     s32 func_80800420_chsilo(Actor *, s32);
     extern s16 D_808012C0_chsilo[8];
-    extern s32 _gcnewoption_entrypoint_35;
+    void _gcnewoption_entrypoint_35(s32, s32, s32, s32);
     BtIntPtr camera;
     s32 count;
-    BtIntPtr option;
+    void *option;
     struct SiloFlag { BT_BITFIELD_ORDER(u8 high : 3, u8 low : 4); u8 active : 1; BT_BITFIELD_ORDER(u8 low : 4, u8 high : 3); };
 
     switch ((u32)*(u16 *)(arg0 + 0x72) >> 10) {
@@ -213,7 +213,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
             *(f32 *)(arg0 + 0x24) = 0.5f;
             break;
         case 5:
-            _gcnewoption_entrypoint_6(arg0, 0);
+            _gcnewoption_entrypoint_6((Actor *)arg0, 0);
             func_80090708(0);
             func_8010A828((void **)arg0, 2);
             break;
@@ -244,12 +244,12 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
             break;
         case 5:
             count = func_808001A8_chsilo((BtIntPtr)arg0);
-            _gcnewoption_entrypoint_4(arg0, 0, &_gcnewoption_entrypoint_35, 0, 0x184F);
+            _gcnewoption_entrypoint_4((Actor *)arg0, 0, BT_NATIVE_ONLY((BtIntPtr)) BT_IDO_ONLY((u32 *))_gcnewoption_entrypoint_35, 0, 0x184F);
             option = func_80100094((BtIntPtr)arg0, 0);
             _gcnewoption_entrypoint_8(option, count >= 6 ? 5 : count);
             _gcnewoption_entrypoint_9(option, count);
             _gcnewoption_entrypoint_10(option, 0);
-            func_80800210_chsilo((BtIntPtr)arg0, option);
+            func_80800210_chsilo((BtIntPtr)arg0, (BtIntPtr)option);
             _gcnewoption_entrypoint_14(option, 0, 1, 3, 4.0f);
             _gcnewoption_entrypoint_40(option, 0x41, 0x22, 0x20, 0.8f, 1.0f);
             _gcnewoption_entrypoint_42(option, 0.1f);
@@ -330,11 +330,11 @@ void func_8080087C_chsilo(Actor *arg0) {
 
 void func_808009E8_chsilo(Actor *volatile arg0) {
     void *func_80100094(Actor *, u32);
-    s32 _gcnewoption_entrypoint_6(u8 *, s32);
+
     void func_80800398_chsilo(Actor *, s32);
     Actor *actor;
     if (func_80100094(*(Actor **)&arg0, 0) != 0) {
-        _gcnewoption_entrypoint_6((u8 *)*(Actor **)&arg0, 0);
+        _gcnewoption_entrypoint_6(*(Actor **)&arg0, 0);
     }
     actor = arg0;
     if ((*(Actor **)&arg0)->unk70_10 == 0xA) {
@@ -385,7 +385,7 @@ void func_80800A40_chsilo(Actor *arg0) {
 
 void func_80800B80_chsilo(Actor *arg0) {
     s32 _gcgoto_entrypoint_1(s32, s32);
-    s32 _gcnewoption_entrypoint_0(BtIntPtr);
+
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddieaudioquick_entrypoint_2(u8 *, f32 *, s32 *);
     s32 func_8008FA2C(s32, s32);
@@ -557,7 +557,7 @@ s32 func_80801080_chsilo(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_808011C8_chsilo(BtIntPtr arg0, s32 arg1) {
-    s32 _gcnewoption_entrypoint_1(BtIntPtr, BtIntPtr);
+
     s32 func_800EB854();
     void *func_80100094(Actor *, u32);
     s32 func_801018A4(BtIntPtr, BtIntPtr);
@@ -566,7 +566,7 @@ void func_808011C8_chsilo(BtIntPtr arg0, s32 arg1) {
     if (func_800EB854() == 3) {
         temp_v0 = func_80100094(arg0, 0);
         if (temp_v0 != 0) {
-            _gcnewoption_entrypoint_1(temp_v0, arg1);
+            _gcnewoption_entrypoint_1((void *)temp_v0, arg1);
         }
     } else {
         func_801018A4(arg0, arg1);

@@ -278,7 +278,7 @@ void func_800A759C(s32 arg0, s32 arg1) {
 
 void func_800A76F4(BT_IDO_ONLY(s32 arg0) BT_PASS2(s32 arg0, s32 bt_a1)) {
     s32 _cosectionstor_entrypoint_3(enum map_e);
-    s32 _glintrosyncDll_entrypoint_0(s16);
+    BT_IDO_ONLY(s32 _glintrosyncDll_entrypoint_0(s16);) BT_NATIVE_ONLY(void _glintrosyncDll_entrypoint_0(s32);)
     s32 _glintrosyncDll_entrypoint_1();
     void func_80015768(void);
     s32 func_8001A2B0();

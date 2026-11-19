@@ -2395,3 +2395,18 @@ Im isolierten gemeinsamen Build stimmen alle 74 Spielspuren über 447.849
 Retraces überein. Die elf Testsuiten bestehen ebenfalls. Protokoll und
 Einzelvergleiche liegen unter `build/acceptance/n1-2026-11-18/full74-battery.log`
 und im Unterordner `proof/`.
+
+## 2026-11-19 — N2, elf korrigierte Aufrufvarianten
+
+Im Menücode des Silos ersetzt der gemeinsame Options-Header 15 lokale
+Deklarationen. Der Code übergibt die Öffnen-Funktion als Funktionsadresse.
+Die übrigen Änderungen korrigieren Parameter und Rückgabewerte bei Audio,
+Rucksack, Intro, Hüpfburg, King Jingaling und Linseneffekten.
+
+Der Link ohne `bt-fixcalls` meldet 139 statt 150 ungültige Aufrufvarianten.
+Mit der normalen Passkette liefert der Vergleich aller Gastfunktionen dieselbe
+kanonische IR. Alle elf Testsuiten und alle 74 Replays mit 447.849 Retraces
+bestehen. Original-IDO ergibt dieselben Funktionen und beide vollständigen
+ROMs. Belege stehen unter `build/acceptance/n2-2026-11-18/` in
+`signature-batch-one-ido/result.json`, `signature-ir.log` und
+`signature-gate-74.log`.
