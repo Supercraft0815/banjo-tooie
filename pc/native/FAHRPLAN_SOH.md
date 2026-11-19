@@ -26,7 +26,7 @@ Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausga
 | A5–A7 | ImGui-Menü und vier Eingabeplätze, GPU-Zielgrößen und HUD bis 4K geprüft, Interpolations- und Scanout-Tests bestanden | A7-Messung am externen 4K/60-Hz-Display auf Nutzerwunsch zurückgestellt |
 | A8 | C-Mixer als Standard, alle 74 Korpusfälle gegen den Microcode, 83.772.256 identische PCM-Bytes in `new-game` | macOS-Abnahme abgeschlossen |
 | A9–A11 | A9 ersetzt HUD-Texturen und Modell-Assets nach Paketpriorität. A11-Absturzberichte auf macOS, Linux und unter Wine geprüft | Rice-CRC für Emulator-Texturpakete offen. A10-Wunschliste auf Nutzerwunsch zurückgestellt |
-| N1–N3 | 5 offene Datenmodule. Der Gast kompiliert die Bitfelder direkt aus C. N2 von 163 auf 98 ungültige Aufrufvarianten. N3 hat 971 LP64-Warnstellen, 207 verschiebbare Offsets und 45 feste Heapgrößen | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
+| N1–N3 | 5 offene Datenmodule. Der Gast kompiliert die Bitfelder direkt aus C. N2 von 163 auf 98 ungültige Aufrufvarianten. N3 hat 954 LP64-Warnstellen, 207 verschiebbare Offsets und 45 feste Heapgrößen | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
 | N4–N6 | Der direkte native Build setzt N1–N3 voraus | Umstellung nach dem Spike, Entscheidung über Little-Endian nach N5 |
 
 ---

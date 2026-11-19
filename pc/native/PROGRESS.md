@@ -2540,3 +2540,18 @@ mit der Windows-x64-EXE unter Wine/llvmpipe und 0,059153 Prozent auf dem
 Apple M4 Pro. Die 65.536 Bytes des Renderer-Fixtures stimmten ebenfalls überein.
 Die drei Bildvergleiche liegen unter
 `build/acceptance/a3-current-2026-11-18/checkout/build/a3-{linux-final,wine-final,macos-4e6e}/`.
+
+## 2026-11-19 — N3, verschiebbare Inventarzähler
+
+Die 21 verschlüsselten Inventarzähler speichern ihre Heapadresse jetzt in
+einem Zeiger. Der LP64-Test lädt die 42 Speicherbytes einschließlich gesetzter
+höchster Bits, wechselt dreimal die Heapseite, defragmentiert den Block und
+prüft das Rücklesen, kurze Eingaben und das Freigeben. Damit sinkt die Zahl
+der Warnstellen von 971 auf 954 in 256 Dateien. Alle 55 nativen Tests bestanden.
+
+Die 25 Funktionen des Moduls behielten unter Original-IDO ihre Adressen, Größen
+und Instruktionen. Beide ROMs sind bytegleich. Die kanonische Gast-IR blieb
+in allen Funktionen gleich. Elf Testsuiten und alle 74 Replays mit 447.849
+Retraces bestanden. Belege liegen in `build/acceptance/n3-2026-11-18/` unter
+`counters-ido/result.json`, `counters-ir.log`, `counters-native-tests.log`,
+`counters-hazards.log` und `counters-gate.log`.
