@@ -212,6 +212,40 @@ else()
 endif()
 add_test(NAME native_input COMMAND bt_native_input_test)
 
+add_executable(bt_native_optionstate_lp64_test tests/optionstate_lp64.c tests/digger_option_layout.c)
+target_link_libraries(bt_native_optionstate_lp64_test PRIVATE bt_native_options)
+target_include_directories(bt_native_optionstate_lp64_test PRIVATE "${BT_ROOT}" "${BT_ROOT}/lib/ultralib/include")
+target_compile_options(bt_native_optionstate_lp64_test PRIVATE -ffunction-sections -fdata-sections)
+if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+    target_compile_options(bt_native_optionstate_lp64_test PRIVATE "SHELL:-include \"${CMAKE_CURRENT_SOURCE_DIR}/include/PR/ultratypes.h\"")
+endif()
+if(APPLE)
+    target_link_options(bt_native_optionstate_lp64_test PRIVATE -Wl,-dead_strip)
+else()
+    target_link_options(bt_native_optionstate_lp64_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_optionstate_lp64 COMMAND bt_native_optionstate_lp64_test)
+
+add_executable(bt_native_digger_option_runtime_test tests/digger_option_runtime.c "${BT_ROOT}/src/overlays/ch/digger/boss.c")
+add_dependencies(bt_native_digger_option_runtime_test bt_native_overlay_aliases)
+target_compile_features(bt_native_digger_option_runtime_test PRIVATE c_std_11)
+target_compile_definitions(bt_native_digger_option_runtime_test PRIVATE BT_NATIVE=1 BT_NATIVE_LITTLE_ENDIAN=1 _LANGUAGE_C BUILD_VERSION=VERSION_J _FINALROM F3DEX_GBI_2)
+target_include_directories(bt_native_digger_option_runtime_test PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/include" "${BT_ROOT}/include"
+    "${BT_ROOT}/lib/ultralib/include" "${BT_ROOT}/src")
+target_compile_options(bt_native_digger_option_runtime_test PRIVATE
+    -ffunction-sections -fdata-sections -fno-builtin -fno-strict-aliasing -fwrapv
+    "SHELL:-include \"${BT_OVERLAY_ALIASES}\""
+    "SHELL:-include \"${CMAKE_CURRENT_SOURCE_DIR}/include/PR/ultratypes.h\""
+    "SHELL:-include \"${CMAKE_CURRENT_SOURCE_DIR}/include/native_prototypes.h\""
+    -Wno-implicit-function-declaration -Wno-deprecated-non-prototype -Wno-int-conversion -Wno-incompatible-pointer-types)
+if(APPLE)
+    target_link_options(bt_native_digger_option_runtime_test PRIVATE -Wl,-dead_strip)
+else()
+    target_link_options(bt_native_digger_option_runtime_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_digger_option_runtime COMMAND bt_native_digger_option_runtime_test)
+
 set(BT_DRONE_FIXTURE "${CMAKE_CURRENT_BINARY_DIR}/generated/drone_fixture.c")
 add_custom_command(OUTPUT "${BT_DRONE_FIXTURE}"
     COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/drone_fixture.py"

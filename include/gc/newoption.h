@@ -3,9 +3,7 @@
 
 #include "common.h"
 
-typedef struct {
-	u8 data[0x260];
-} OptionState;
+#include "gc/newoption_state.h"
 
 #ifdef BT_NATIVE
 void _gcnewoption_entrypoint_0(void *arg0);
@@ -33,7 +31,7 @@ void _gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg
 void _gcnewoption_entrypoint_5(OptionState*, void*, u8, s16, s32);
 #endif
 #ifdef BT_NATIVE
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32) _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
 #else
 void _gcnewoption_entrypoint_6(OptionState*, u32);
 #endif

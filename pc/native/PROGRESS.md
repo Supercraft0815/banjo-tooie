@@ -3541,3 +3541,9 @@ Im strengen Dialog-Build endeten zunächst alle 74 Replays bei einem indirekten 
 Beim gleichen Quellstand mit abgeschaltetem DataGroup stimmen 19 Replays vollständig überein. In 52 Fällen erscheint die erste Abweichung bei Retrace 1.769 an Position und Drehung einer Figur in Spiral Mountain. Im längeren neuen Spiel tritt sie bei Retrace 46.512 auf. Ein Host-Mitschnitt über 1.859 Retraces zeigt, dass beide Zufallsgeneratoren in beiden Builds über den gesamten Vergleich denselben Zustand haben. Bereits bei Retrace 1.765 fehlen im privaten Zustand eines Digger drei Koordinaten seines Zielvektors.
 
 Die zwei Abstürze betrafen den Weltenlauf und den Eingang von Jolly Roger’s Lagoon. Die obere Lagune schaltet zwei Abschnitte ab. Ohne die Nachbarschaft ihrer ursprünglichen Labels lief diese Liste über ihr Ende. Im isolierten Build mit der korrigierten Grenze erreicht der Eingangsfall seine erwartete Karte 0x1A7 und endet nach 2.638 Retraces. Die frühe Positionsabweichung bleibt in diesem Stand sichtbar. Die Eingangsprotokolle, der reguläre Korpus und die Host-Mitschnitte stehen unter `build/acceptance/n1-2026-11-18/` in `game-data-without-datagroup.log`, `dialog-game-data-bounds-full.log`, `lagoon-top-without-datagroup.log` und `diagnose-digger/`.
+
+### 2026-11-19 – Optionsmenü und Digger-Fly (N1/N3)
+
+Zwei neue Tests prüfen den Optionszustand und den Digger-Fly-Ablauf mit den Produktionsfunktionen.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 70 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 9 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-option-width*`.

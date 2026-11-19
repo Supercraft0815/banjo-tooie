@@ -56,8 +56,13 @@ PauseState* gcnewpause_entrypoint_0(u32 arg0)
 	PauseState* pauseMemory;
 	s8* var_0;
 	u32 index;
+	#if defined(BT_NATIVE) && !defined(BT_ILP32)
+	pauseMemory = heap_alloc((s32)(__builtin_offsetof(PauseState, optionState) + sizeof(OptionState)));
+	bzero(pauseMemory, __builtin_offsetof(PauseState, optionState));
+#else
 	pauseMemory = heap_alloc(_gcnewoption_entrypoint_2() + 0x30);
 	bzero(pauseMemory, 0x30);
+#endif
 	pauseMemory->unkC = arg0;
 	func_80800534_gcnewpause(pauseMemory, 1U);
 	pauseMemory->HeaderAndButtonOffset += BT_DATA_FIELD(D_80802124_gcnewpause.setup.first[0], *(s8 *)&D_80802124_gcnewpause);
@@ -319,7 +324,7 @@ void gcnewpause_entrypoint_3(BtUIntPtr arg0, PauseState* pauseMenu)
 	switch (temp_v0)
 	{
 	case 2: //Draw Options
-		_gcnewoption_entrypoint_1(&pauseMenu->optionState, arg0);
+		_gcnewoption_entrypoint_1(pauseMenu->optionState.data, arg0);
 		break;
 	case 5: //Draw Gameover
 		func_80801DA0_gcnewpause(pauseMenu, arg0);
@@ -427,11 +432,19 @@ void func_80800534_gcnewpause(PauseState* pauseMenu, u32 targetPage)
 	}
 }
 //Callback Function for interfacing with option menu
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void gcnewpause_entrypoint_4(void *arg0, OptionState* arg1, u32 arg2, u32 arg3)
+#else
 void gcnewpause_entrypoint_4(u32 arg0, OptionState* arg1, u32 arg2, u32 arg3)
+#endif
 {
 	PauseState* pauseMenu;
 
+	#if defined(BT_NATIVE) && !defined(BT_ILP32)
+	pauseMenu = (PauseState*)(((u8*)arg1) - __builtin_offsetof(PauseState, optionState));
+#else
 	pauseMenu = (PauseState*)(((u8*)arg1) - 0x30);
+#endif
 	switch (arg3)
 	{
 	case 0: //Setup Option Text
@@ -457,7 +470,7 @@ void gcnewpause_entrypoint_4(u32 arg0, OptionState* arg1, u32 arg2, u32 arg3)
 			}
 		}
 		else //If we have a confirmation warning
-			if (_gcnewoption_entrypoint_38(arg1, 0) != 0)
+			if (_gcnewoption_entrypoint_38((u8 *)arg1, 0) != 0)
 			{
 				if (D_80802070_gcnewpause[pauseMenu->ActivePauseMenuVariant].options[arg2].Function == 2)
 				{
@@ -480,7 +493,7 @@ void gcnewpause_entrypoint_4(u32 arg0, OptionState* arg1, u32 arg2, u32 arg3)
 		}
 		else
 		{
-			if (_gcnewoption_entrypoint_39(arg1) != 0)
+			if (_gcnewoption_entrypoint_39((u8 *)arg1) != 0)
 			{
 				if (pauseMenu->unkE == ((u8)pauseMenu->unk11))
 				{
@@ -508,19 +521,19 @@ void func_80800A08_gcnewpause(PauseState* pauseMenu)
 	Option* options;
 
 	bzero(&pauseMenu->optionState, _gcnewoption_entrypoint_2());
-	_gcnewoption_entrypoint_5(&pauseMenu->optionState, _gcnewpause_entrypoint_4, 0U, D_80802070_gcnewpause[pauseMenu->ActivePauseMenuVariant].unk1, 0);
+	_gcnewoption_entrypoint_5(&pauseMenu->optionState, (BtIntPtr)_gcnewpause_entrypoint_4, 0U, D_80802070_gcnewpause[pauseMenu->ActivePauseMenuVariant].unk1, 0);
 	_gcnewoption_entrypoint_10(&pauseMenu->optionState, 2U);
 	optionSize = D_80802070_gcnewpause[pauseMenu->ActivePauseMenuVariant].Size;
 	options = D_80802070_gcnewpause[pauseMenu->ActivePauseMenuVariant].options;
-	_gcnewoption_entrypoint_8(&pauseMenu->optionState, optionSize);
-	_gcnewoption_entrypoint_9(&pauseMenu->optionState, optionSize);
-	_gcnewoption_entrypoint_46(&pauseMenu->optionState, pauseMenu->unkC);
+	_gcnewoption_entrypoint_8((s16 *)pauseMenu->optionState.data, optionSize);
+	_gcnewoption_entrypoint_9((s16 *)pauseMenu->optionState.data, optionSize);
+	_gcnewoption_entrypoint_46((s8 *)pauseMenu->optionState.data, pauseMenu->unkC);
 
 	for (i = 0; i < optionSize; i++) 
 	{
 		// @fake to swap s0 and s1
 		if ((!pauseMenu->ActivePauseMenuVariant) && (!pauseMenu->ActivePauseMenuVariant)) {}
-		_gcnewoption_entrypoint_31(&pauseMenu->optionState, i, options[i].Icon);
+		_gcnewoption_entrypoint_31((BtIntPtr)&pauseMenu->optionState, i, options[i].Icon);
 	}
 	_gcnewoption_entrypoint_36(&pauseMenu->optionState);
 	menuVariant = pauseMenu->ActivePauseMenuVariant;
@@ -563,7 +576,7 @@ void func_80800A08_gcnewpause(PauseState* pauseMenu)
 		pauseMenu->ConfirmTextEnd = 7;
 	}
 	_gcnewoption_entrypoint_42(&pauseMenu->optionState, 0.1f);
-	_gcnewoption_entrypoint_11(&pauseMenu->optionState);
+	_gcnewoption_entrypoint_11((s16 *)pauseMenu->optionState.data);
 }
 
 void func_80800C54_gcnewpause(PauseState* arg0, OptionState* arg1) 
@@ -1198,7 +1211,7 @@ void func_80801DA0_gcnewpause(PauseState* pauseMenu,BtUIntPtr a1)
 	coord[1] = 171.0f;
 
 	func_800DF410(pauseMenu->GameOverTransparency);
-	func_800DF944(a1, coord, 0.0f, 0.25f, 0, 1, func_800D674C(0x640));
+	func_800DF944((void *)a1, coord, 0.0f, 0.25f, 0, 1, func_800D674C(0x640));
 }
 
 //Handle Switching between are you sure and the button prompts

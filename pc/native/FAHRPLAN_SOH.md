@@ -49,6 +49,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Spielerrückkehr. Beide Rückkehrpositionen, Blickrichtung, Karten-ID und Steuerflags teilen sich einen Zustand. Die Warteliste für Kartenwechsel verwendet native Vektorzeiger.
 
+- Optionsmenü und Digger-Fly. Zwei neue Tests prüfen den Optionszustand und den Digger-Fly-Ablauf mit den Produktionsfunktionen.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

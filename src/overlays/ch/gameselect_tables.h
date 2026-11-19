@@ -1,4 +1,5 @@
 #include "core2/actor_animation_entry.h"
+#include "gc/newoption_state.h"
 
 typedef struct {
     s16 model, value;
@@ -6,9 +7,6 @@ typedef struct {
 typedef struct {
     s16 text, id, value;
 } SelectEntry;
-typedef struct {
-    u8 data[0x260];
-} OptionState;
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #define GAME_SELECT_OPTION_DISPATCH_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2
 #define GAME_SELECT_ROW6_OPEN_PARAMS(a0, a1) Actor *a0, void *a1, s32 item, s32 event

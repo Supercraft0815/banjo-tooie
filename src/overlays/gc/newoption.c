@@ -1,6 +1,44 @@
 #include "gc/newoption.h"
 
-typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; u8 padE[0x6]; f32 unk14; f32 unk18; u8 pad1C[0x4]; union { BtIntPtr unk20; u8 * unk20_u8p; }; s8 unk24; u8 pad25[0x1]; s16 unk26; s16 unk28; s16 unk2A; f32 unk2C; f32 unk30; s16 unk34; u8 pad36[0x2]; f32 unk38; u8 pad3C[0x1FA]; s16 unk236; s16 unk238; u8 pad23A[0x2]; union { u32 * unk23C; u8 * unk23C_u8p; }; u8 pad240[0x14]; s16 unk254; s16 unk256; f32 unk258; f32 unk25C; } Objnewoption_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ s32 func_80800000_gcnewoption(u8 *arg0, s32 arg1) {
+typedef struct { u8 pad0[0x20]; u8 *box; u8 pad24[0x18]; u8 *boxes[29]; s16 items[202];
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    u32 callback; s32 parameter; s32 context;
+#else
+    void (*callback)(s32, void *, s32, s32); s32 parameter; Unk80132ED0 *context;
+#endif
+} OptionStateGuestLayout;
+
+typedef void (*OptionStateCallbackFn)(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32), void *, s32, s32);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define option_state_box(state) optionstate_native_box(state)
+#define option_state_set_box(state, box) optionstate_native_set_box(state, box)
+#define option_state_item_box(state, index) optionstate_native_item_box(state, index)
+#define option_state_set_item_box(state, index, box) optionstate_native_set_item_box(state, index, box)
+#define option_state_item_box_slot(state, slot) optionstate_native_item_box_slot(state, slot)
+#define option_state_set_item_box_slot(state, slot, box) optionstate_native_set_item_box_slot(state, slot, box)
+#define option_state_text(state) optionstate_native_text(state)
+#define option_state_set_text(state, text) optionstate_native_set_text(state, text)
+#define option_state_callback(state) optionstate_native_callback(state)
+#define option_state_set_callback(state, callback) optionstate_native_set_callback(state, callback)
+#define option_state_context(state) optionstate_native_context(state)
+#define option_state_set_context(state, context) optionstate_native_set_context(state, context)
+#else
+#define option_state_box(state) (((OptionStateGuestLayout *)(state))->box)
+#define option_state_set_box(state, value) (((OptionStateGuestLayout *)(state))->box = (value))
+#define option_state_item_box(state, index) (((OptionStateGuestLayout *)(state))->boxes[(index)])
+#define option_state_set_item_box(state, index, value) (((OptionStateGuestLayout *)(state))->boxes[(index)] = (value))
+#define option_state_item_box_slot(state, slot) (*(u8 **)(slot))
+#define option_state_set_item_box_slot(state, slot, box) (*(u8 **)(slot) = (box))
+#define option_state_text(state) (*(u32 **)((u8 *)(state) + 0x23C))
+#define option_state_set_text(state, text) (*(u32 **)((u8 *)(state) + 0x23C) = (text))
+#define option_state_callback(state) (((OptionStateGuestLayout *)(state))->callback)
+#define option_state_set_callback(state, cb) (((struct OptionInit *)(state))->callback = (s32)(cb))
+#define option_state_context(state) (((OptionStateGuestLayout *)(state))->context)
+#define option_state_set_context(state, ctx) (((struct OptionInit *)(state))->context = (ctx))
+#endif
+#line 3 "src/overlays/gc/newoption.c"
+
+typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; u8 padE[0x6]; f32 unk14; f32 unk18; u8 pad1C[0x4]; union { u32 unk20; u32 unk20_u8p; }; s8 unk24; u8 pad25[0x1]; s16 unk26; s16 unk28; s16 unk2A; f32 unk2C; f32 unk30; s16 unk34; u8 pad36[0x2]; f32 unk38; u8 pad3C[0x1FA]; s16 unk236; s16 unk238; u8 pad23A[0x2]; u32 unk23C; u8 pad240[0x14]; s16 unk254; s16 unk256; f32 unk258; f32 unk25C; } Objnewoption_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ s32 func_80800000_gcnewoption(u8 *arg0, s32 arg1) {
     s16 temp_v0;
     s32 var_v1;
 
@@ -49,14 +87,20 @@ void gcnewoption_entrypoint_0(void *arg0) {
         BT_BITFIELD_ORDER(u32 flag08 : 1, u32 flag20 : 1);
         BT_BITFIELD_ORDER(u32 kind : 3, u32 flag40 : 1);
         BT_BITFIELD_ORDER(u32 flagsRest : 24, u32 flag80 : 1);
-        u8 *box;
+        u32 box;
         u8 boxState;
         u8 unk25[0x17];
-        u8 *boxes[29];
+        u32 boxes[29];
         s16 items[202];
-        void (*callback)(s32, void *, s32, s32);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+        u32 callback;
         s32 unk248;
         s32 context;
+#else
+        void (*callback)(s32, void *, s32, s32);
+        s32 unk248;
+        Unk80132ED0 *context;
+#endif
         s8 controller;
     };
     void func_80800D28_gcnewoption(void *);
@@ -90,7 +134,7 @@ void gcnewoption_entrypoint_0(void *arg0) {
     s32 event;
 
     ((struct Option *)arg0)->flag80 = 0;
-    if (((struct Option *)arg0)->box) {
+    if (option_state_box(arg0)) {
         previousState = ((struct Option *)arg0)->boxState;
     }
 
@@ -101,7 +145,7 @@ void gcnewoption_entrypoint_0(void *arg0) {
             break;
         case 1:
             func_80800D28_gcnewoption(arg0);
-            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, selection = ((struct Option *)arg0)->selected, event = 0);
+            option_state_callback(arg0)(option_state_context(arg0), arg0, selection = ((struct Option *)arg0)->selected, event = 0);
             ((struct Option *)arg0)->state = 2;
 
             break;
@@ -115,8 +159,8 @@ void gcnewoption_entrypoint_0(void *arg0) {
                     ((struct Option *)arg0)->state = 4;
                 } else {
                     ((struct Option *)arg0)->state = 5;
-                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 8);
-                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 10);
+                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 8);
+                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 10);
                 }
             }
             func_808019D0_gcnewoption(arg0);
@@ -126,11 +170,11 @@ void gcnewoption_entrypoint_0(void *arg0) {
             for (i = 0; i < ((struct Option *)arg0)->count; i++) {
                 index = func_80800000_gcnewoption((u8 *)arg0, i);
                 func_808027DC_gcnewoption(arg0, i);
-                _gczoombox_entrypoint_4(((struct Option *)arg0)->boxes[index]);
+                _gczoombox_entrypoint_4(option_state_item_box(arg0, index));
             }
             func_80801B5C_gcnewoption(arg0);
-            if (((struct Option *)arg0)->box) {
-                _gczoombox_entrypoint_4(((struct Option *)arg0)->box);
+            if (option_state_box(arg0)) {
+                _gczoombox_entrypoint_4(option_state_box(arg0));
             }
             func_80802998_gcnewoption(arg0);
             i = 3;
@@ -146,8 +190,8 @@ void gcnewoption_entrypoint_0(void *arg0) {
                 func_80015E80(((struct Option *)arg0)->controller, buttons);
                 if (buttons[1] == 1) {
                     if (((struct Option *)arg0)->kind == 2) {
-                        if (((struct Option *)arg0)->callback) {
-                            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 5);
+                        if (option_state_callback(arg0)) {
+                            option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 5);
                         }
                     } else {
                         ((struct Option *)arg0)->flag20 = 1;
@@ -158,8 +202,8 @@ void gcnewoption_entrypoint_0(void *arg0) {
                     switch ((s32)((struct Option *)arg0)->kind) {
                         case 0:
                             if (((struct Option *)arg0)->items[((struct Option *)arg0)->selected] == -1) {
-                                if (((struct Option *)arg0)->callback) {
-                                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 3);
+                                if (option_state_callback(arg0)) {
+                                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 3);
                                     return;
                                 }
                             } else {
@@ -169,14 +213,14 @@ void gcnewoption_entrypoint_0(void *arg0) {
 
                             break;
                         case 1:
-                            if (((struct Option *)arg0)->callback) {
-                                ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 1);
+                            if (option_state_callback(arg0)) {
+                                option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 1);
                             }
 
                             break;
                         case 2:
-                            if (((struct Option *)arg0)->callback) {
-                                ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 4);
+                            if (option_state_callback(arg0)) {
+                                option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 4);
                             }
 
                             break;
@@ -206,13 +250,13 @@ void gcnewoption_entrypoint_0(void *arg0) {
                             ((struct Option *)arg0)->flag40 = 0;
                         }
                     } else if (stick[0] > 0.8f) {
-                        if (((struct Option *)arg0)->callback) {
-                            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 7);
+                        if (option_state_callback(arg0)) {
+                            option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 7);
                         }
                         ((struct Option *)arg0)->flag40 = 1;
                     } else if (stick[0] < -0.8f) {
-                        if (((struct Option *)arg0)->callback) {
-                            ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 6);
+                        if (option_state_callback(arg0)) {
+                            option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 6);
                         }
                         ((struct Option *)arg0)->flag40 = 1;
                     }
@@ -254,12 +298,12 @@ update_timer:
             break;
         case 12:
             ((struct Option *)arg0)->state = 13;
-            if (((struct Option *)arg0)->callback) {
+            if (option_state_callback(arg0)) {
                 if (((struct Option *)arg0)->flag20) {
-                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 2);
+                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 2);
                     return;
                 } else {
-                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 3);
+                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 3);
                     return;
                 }
             }
@@ -272,8 +316,8 @@ update_timer:
             func_808019D0_gcnewoption(arg0);
             if (func_8080241C_gcnewoption(arg0)) {
                 ((struct Option *)arg0)->state = 5;
-                if (((struct Option *)arg0)->callback) {
-                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 10);
+                if (option_state_callback(arg0)) {
+                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 10);
                 }
             }
 
@@ -283,8 +327,8 @@ update_timer:
             if (func_80802534_gcnewoption(arg0)) {
                 ((struct Option *)arg0)->state = 5;
                 func_80802B24_gcnewoption(arg0, 0);
-                if (((struct Option *)arg0)->callback) {
-                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 10);
+                if (option_state_callback(arg0)) {
+                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 10);
                 }
             }
 
@@ -292,10 +336,10 @@ update_timer:
         default:
             break;
     }
-    if (((struct Option *)arg0)->box) {
+    if (option_state_box(arg0)) {
         if (i == ((struct Option *)arg0)->state || ((struct Option *)arg0)->state == 5 || ((struct Option *)arg0)->state == 10) {
                 if (previousState != i && ((struct Option *)arg0)->boxState == i) {
-                    ((struct Option *)arg0)->callback(((struct Option *)arg0)->context, arg0, ((struct Option *)arg0)->selected, 9);
+                    option_state_callback(arg0)(option_state_context(arg0), arg0, ((struct Option *)arg0)->selected, 9);
                 }
 
         }
@@ -304,6 +348,76 @@ update_timer:
 
 /* extern */
 
+
+#line 307 "src/overlays/gc/newoption.c"
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
+    struct RenderOption {
+        s16 state;
+        s16 count;
+        u8 pad4[0x10];
+        f32 spacing;
+        u8 pad18[8];
+        s32 box;
+        u8 pad24[0x10];
+        s16 height;
+        u8 pad36[6];
+        s32 boxes[17];
+        f32 positions[17];
+        u8 padC4[0x192];
+        s16 offset;
+    };
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_2(s32, BtIntPtr);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_2(u8 *, BtIntPtr);)
+    BT_IDO_ONLY(void _gczoombox_entrypoint_28(s32, s16);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_28(u8 *, s16);)
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_29(s32);) BT_NATIVE_ONLY(s16 _gczoombox_entrypoint_29(void *);)
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
+    f32 savedPosition;
+    s32 savedHeight;
+    s32 index;
+    s32 i;
+    int count;
+    struct RenderOption *box;
+    struct RenderOption *entry;
+
+    if (((struct RenderOption *)arg0)->state >= 2 && ((struct RenderOption *)arg0)->state < 12) {
+        i = 0;
+        box = ((struct RenderOption *)arg0);
+        if (((struct RenderOption *)arg0)->count > 0) {
+            do {
+                index = func_80800000_gcnewoption((u8 *)((struct RenderOption *)arg0), i);
+                _gczoombox_entrypoint_2(option_state_item_box(arg0, i), arg1);
+                entry = (struct RenderOption *)((u8 *)((struct RenderOption *)arg0) + index * 4);
+                if (entry->positions[0] < ((struct RenderOption *)arg0)->spacing) {
+                    savedPosition = entry->positions[0];
+                    savedHeight = _gczoombox_entrypoint_29(option_state_item_box(arg0, index));
+                    _gczoombox_entrypoint_28(option_state_item_box(arg0, index), ((struct RenderOption *)arg0)->height);
+                    _gczoombox_entrypoint_38(option_state_item_box(arg0, index), entry->positions[0] + ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
+                    _gczoombox_entrypoint_2(option_state_item_box(arg0, index), arg1);
+                    _gczoombox_entrypoint_38(option_state_item_box(arg0, index), ((struct RenderOption *)arg0)->offset + savedPosition);
+                    _gczoombox_entrypoint_28(option_state_item_box(arg0, index), (s16)savedHeight);
+                }
+                count = ((struct RenderOption *)arg0)->count;
+                if (((struct RenderOption *)arg0)->spacing * count < entry->positions[0]) {
+                    savedPosition = entry->positions[0];
+                    savedHeight = _gczoombox_entrypoint_29(option_state_item_box(arg0, index));
+                    _gczoombox_entrypoint_28(option_state_item_box(arg0, index), ((struct RenderOption *)arg0)->height);
+                    _gczoombox_entrypoint_38(option_state_item_box(arg0, index), entry->positions[0] - ((struct RenderOption *)arg0)->spacing * ((struct RenderOption *)arg0)->count + ((struct RenderOption *)arg0)->offset);
+                    _gczoombox_entrypoint_2(option_state_item_box(arg0, index), arg1);
+                    _gczoombox_entrypoint_38(option_state_item_box(arg0, index), ((struct RenderOption *)arg0)->offset + savedPosition);
+                    _gczoombox_entrypoint_28(option_state_item_box(arg0, index), (s16)savedHeight);
+                }
+                count = ((struct RenderOption *)arg0)->count;
+                i++;
+                box = (struct RenderOption *)((u8 *)box + 4);
+            } while (i < count);
+        }
+        if (option_state_box(arg0) != NULL) {
+            _gczoombox_entrypoint_2(option_state_box(arg0), arg1);
+        }
+    }
+}
+#else
+#line 307 "src/overlays/gc/newoption.c"
 void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
     struct RenderOption {
         s16 state;
@@ -321,7 +435,7 @@ void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
         s16 offset;
     };
     s32 _gczoombox_entrypoint_2(s32, BtIntPtr);
-    void _gczoombox_entrypoint_28(s32, s16);
+    BT_IDO_ONLY(void _gczoombox_entrypoint_28(s32, s16);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_28(u8 *, s16);)
     BT_IDO_ONLY(s32 _gczoombox_entrypoint_29(s32);) BT_NATIVE_ONLY(s16 _gczoombox_entrypoint_29(void *);)
     BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     f32 savedPosition;
@@ -369,10 +483,17 @@ void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
         }
     }
 }
+#endif
+#line 371 "src/overlays/gc/newoption.c"
+
 
 int gcnewoption_entrypoint_2(void)
 {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+	return sizeof(OptionState);
+#else
 	return 0x260;
+#endif
 }
 
 s32 gcnewoption_entrypoint_3(u8 *arg0) {
@@ -380,7 +501,7 @@ s32 gcnewoption_entrypoint_3(u8 *arg0) {
     u8 *text;
 
     offset = 3;
-    text = ((Objnewoption_arg0 *)arg0)->unk23C_u8p;
+    text = (u8 *)option_state_text(arg0);
     if (text[offset] != 0x8D) {
         do {
             offset += text[offset + 1];
@@ -392,6 +513,42 @@ s32 gcnewoption_entrypoint_3(u8 *arg0) {
 
 /* extern */
 
+
+#line 395 "src/overlays/gc/newoption.c"
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4) {
+    u32 *func_80100074(Actor *, u32, u32);
+    void *func_80100094(Actor *, u32);
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    void gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3, Unk80132ED0 *arg4);
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *arg0, s32 arg1, s32 arg2, s32 arg3, Unk80132ED0 *arg4);
+#endif
+#else
+    void gcnewoption_entrypoint_5(void *, s32, s32, s32, Unk80132ED0 *);
+#endif
+    func_80100074(arg0, arg1, gcnewoption_entrypoint_2());
+    gcnewoption_entrypoint_5(func_80100094(arg0, arg1), arg2, arg3, arg4, arg0->unk0);
+}
+#else
+#line 395 "src/overlays/gc/newoption.c"
 void gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtIntPtr arg3, s32 arg4) {
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
@@ -423,9 +580,117 @@ void gcnewoption_entrypoint_4(Actor *arg0, volatile s16 arg1, BtIntPtr arg2, BtI
     func_80100074(arg0, arg1, 0x260);
     gcnewoption_entrypoint_5(func_80100094(arg0, arg1), arg2, arg3, arg4, arg0->unk0);
 }
+#endif
+#line 425 "src/overlays/gc/newoption.c"
+
 
 /* extern */
 
+
+#line 429 "src/overlays/gc/newoption.c"
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3, Unk80132ED0 *arg4) {
+    struct OptionInit {
+        s16 state;
+        u8 pad2[10];
+        s16 dialog;
+        u8 padE[10];
+        f32 timer;
+        BT_BITFIELD_ORDER(u8 flag80 : 1, u8 kind : 3);
+        BT_BITFIELD_ORDER(u8 flag40 : 1, u8 flag08 : 1);
+        BT_BITFIELD_ORDER(u8 flag20 : 1, u8 flag10 : 1);
+        BT_BITFIELD_ORDER(u8 flag10 : 1, u8 flag20 : 1);
+        BT_BITFIELD_ORDER(u8 flag08 : 1, u8 flag40 : 1);
+        BT_BITFIELD_ORDER(u8 kind : 3, u8 flag80 : 1);
+        BT_BITFIELD_ORDER(u8 flag180 : 1, char : 0);
+        BT_BITFIELD_ORDER(u8 flag140 : 1, u8 flag101 : 1);
+        BT_BITFIELD_ORDER(u8 flag120 : 1, u8 flag102 : 1);
+        BT_BITFIELD_ORDER(u8 flag110 : 1, u8 flag104 : 1);
+        u8 flag108 : 1;
+        BT_BITFIELD_ORDER(u8 flag104 : 1, u8 flag110 : 1);
+        BT_BITFIELD_ORDER(u8 flag102 : 1, u8 flag120 : 1);
+        BT_BITFIELD_ORDER(u8 flag101 : 1, u8 flag140 : 1; u8 flag180 : 1);
+        u16 rest;
+        u8 pad20[0x90];
+        s16 values[30];
+        s16 positions[30];
+        s16 colors[30][3];
+        s16 sizes[30];
+        s8 enabled[30];
+        s16 mode;
+        s16 count;
+        s16 pad23A;
+        u32 text;
+        s16 textId;
+        s16 pad242;
+        s32 callback;
+        s32 parameter;
+        s32 context;
+        s8 controller;
+    };
+    u32 *_gldbstring_entrypoint_0(u32 *, u32);
+    s32 _gldialog_entrypoint_0(void);
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+#ifdef BT_NATIVE
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
+#endif
+#else
+    void gcnewoption_entrypoint_40(void *, s32, s32, s32, f32, f32);
+#endif
+    struct OptionInit *option = arg0;
+    s32 i;
+
+    option->state = 0;
+    option_state_set_text(arg0, _gldbstring_entrypoint_0(option_state_text(arg0), arg3));
+    option->textId = arg3;
+    option_state_set_callback(arg0, (OptionStateCallbackFn)arg1);
+    option->parameter = (u8)arg2;
+    option_state_set_context(arg0, arg4);
+    option->flag10 = 0;
+    option->flag08 = 0;
+    option->flag110 = 0;
+    option->flag140 = 0;
+    option->flag180 = 0;
+    option->flag120 = 0;
+    option->flag108 = 0;
+    option->count = 0;
+    option->flag104 = 0;
+    option->mode = 13;
+    option->dialog = _gldialog_entrypoint_0();
+    option->flag102 = 0;
+    gcnewoption_entrypoint_40(arg0, 44, 28, 50, 1.0f, 1.0f);
+    option->controller = 0;
+    option->timer = 0.0f;
+    for (i = 0; i < 30; i++) {
+        option->values[i] = 0;
+        option->positions[i] = -1;
+        option->colors[i][0] = 255;
+        option->colors[i][1] = 255;
+        option->colors[i][2] = 255;
+        option->sizes[i] = 12;
+        option->enabled[i] = 0;
+    }
+}
+#else
+#line 429 "src/overlays/gc/newoption.c"
 void gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3, Unk80132ED0 *arg4) {
     struct OptionInit {
         s16 state;
@@ -526,10 +791,13 @@ void gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3
         option->enabled[i] = 0;
     }
 }
+#endif
+#line 528 "src/overlays/gc/newoption.c"
+
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32) gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1) {
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);
     gcnewoption_entrypoint_7(func_80100094(arg0, arg1));
@@ -541,7 +809,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32) gcnewoption_entrypoint_6(Actor *arg0, vola
 void gcnewoption_entrypoint_7(OptionState *a0) {
     void _gldbstring_entrypoint_2(s32 arg0);
     void func_8080103C_gcnewoption(u8 *);
-    if (((*(s16 *)((s8 *)(a0) + (0))) != 0xD) || ((*(s32 *)((s8 *)(a0) + (0x20))) != 0)) {
+    if (((*(s16 *)((s8 *)(a0) + (0))) != 0xD) || (option_state_box(a0) != NULL)) {
         func_8080103C_gcnewoption(a0->data);
     }
     _gldbstring_entrypoint_2(*(s16 *)((s8 *)a0 + 0x240));
@@ -568,6 +836,141 @@ void gcnewoption_entrypoint_11(s16 *arg0) {
     *arg0 = 1;
 }
 
+
+#line 571 "src/overlays/gc/newoption.c"
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_80800D28_gcnewoption(void *data)
+{
+  void _gczoombox_entrypoint_20(void *arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
+  void _gczoombox_entrypoint_21(void *, s32);
+  void _gczoombox_entrypoint_23(void *arg0, s32 arg1);
+  void _gczoombox_entrypoint_26(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4);
+  void _gczoombox_entrypoint_41(void *arg0, f32 arg1);
+  void _gczoombox_entrypoint_42(void *arg0, f32 arg1);
+  void _gczoombox_entrypoint_44(void *arg0, s32 arg1);
+  u8 *_gczoombox_entrypoint_5(s32 y, s32 portrait_id, s32 arg2, s32 arg3, BtIntPtr callback);
+  int _gczoombox_entrypoint_8();
+  u32 *_gldbstring_entrypoint_1(u32 *, s16);
+  s32 func_80802A9C_gcnewoption(u8 *);
+  struct Sc
+  {
+    u8 pad[0x14];
+    f32 f;
+  };
+  struct Fb
+  {
+    u8 pad[0x1C];
+    BT_BITFIELD_ORDER(u8 hi : 2, u8 rest : 5);
+    u8 clr : 1;
+    BT_BITFIELD_ORDER(u8 rest : 5, u8 hi : 2);
+  };
+  struct Flags
+  {
+    u8 pad[0x1C];
+    BT_BITFIELD_ORDER(unsigned int a : 3, unsigned int g : 16);
+    BT_BITFIELD_ORDER(unsigned int hide : 1, unsigned int f : 1);
+    BT_BITFIELD_ORDER(unsigned int b : 2, unsigned int option : 1);
+    BT_BITFIELD_ORDER(unsigned int clear : 1, unsigned int text : 1);
+    BT_BITFIELD_ORDER(unsigned int c : 2, unsigned int e : 1);
+    BT_BITFIELD_ORDER(unsigned int d : 1, unsigned int no_text : 1);
+    unsigned int fast : 1;
+    BT_BITFIELD_ORDER(unsigned int no_text : 1, unsigned int d : 1);
+    BT_BITFIELD_ORDER(unsigned int e : 1, unsigned int c : 2);
+    BT_BITFIELD_ORDER(unsigned int text : 1, unsigned int clear : 1);
+    BT_BITFIELD_ORDER(unsigned int option : 1, unsigned int b : 2);
+    BT_BITFIELD_ORDER(unsigned int f : 1, unsigned int hide : 1);
+    BT_BITFIELD_ORDER(unsigned int g : 16, unsigned int a : 3);
+  };
+struct Sc2 { u8 pad[0x256]; s16 w; };
+  u8 *arg0 = data;
+  f32 temp_f20;
+  int temp_s5;
+  int var_v0;
+  int temp_v0;
+  u8 *var_s0;
+  u8 *var_s2;
+  u8 *var_s3;
+  u8 *var_s4;
+  var_s3 = arg0;
+  var_v0 = 0;
+  if ((*((s16 *) (arg0 + 2))) > 0)
+  {
+    var_s0 = arg0;
+    var_s2 = arg0;
+    var_s4 = arg0;
+    do
+    {
+      temp_s5 = var_v0 + 1;
+      if (temp_s5)
+      {
+      }
+      if (1)
+      {
+        temp_f20 = (f32) temp_s5;
+        option_state_set_item_box_slot(arg0, var_s0 + 0x3C, _gczoombox_entrypoint_5((s32)(((temp_f20 * 1.0f) * ((struct Sc *)arg0)->f) + (f32)((struct Sc2 *)arg0)->w), *((s16 *)(var_s3 + 0x1DC)), 2, ((struct Flags *)arg0)->option, 0));
+        _gczoombox_entrypoint_41(option_state_item_box_slot(arg0, var_s0 + 0x3C), 45.0f);
+        _gczoombox_entrypoint_41(option_state_item_box_slot(arg0, var_s0 + 0x3C), 45.0f);
+        _gczoombox_entrypoint_42(option_state_item_box_slot(arg0, var_s0 + 0x3C), 0.3f);
+        _gczoombox_entrypoint_26(option_state_item_box_slot(arg0, var_s0 + 0x3C), *((s16 *) (arg0 + 0x254)), *((f32 *) (arg0 + 0x258)), *((f32 *) (arg0 + 0x25C)), 0);
+        _gczoombox_entrypoint_44(option_state_item_box_slot(arg0, var_s0 + 0x3C), ((u32) arg0[0x1D]) >> 7);
+        _gczoombox_entrypoint_23(option_state_item_box_slot(arg0, var_s0 + 0x3C), (*((s16 *) (arg0 + 0x238))) == 0);
+        if (((struct Flags *) arg0)->fast)
+        {
+          _gczoombox_entrypoint_20(option_state_item_box_slot(arg0, var_s0 + 0x3C), 100.0f, 0, 2, 0.1f, 0, 0);
+        }
+        if ((arg0[0x1C] & 7) == 3)
+        {
+          _gczoombox_entrypoint_41(option_state_item_box_slot(arg0, var_s0 + 0x3C), 1000.0f);
+          _gczoombox_entrypoint_21(option_state_item_box_slot(arg0, var_s0 + 0x3C), 0);
+        }
+        var_s3 += 2;
+        var_s0 += 4;
+        var_s2 += 6;
+        var_s4 += 1;
+      }
+      *((f32 *) (var_s0 + 0x7C)) = (temp_f20 * 1.0f) * ((struct Sc *) arg0)->f;
+      *((s16 *) (var_s2 + 0x58)) = 0xFF;
+      var_v0 = *((s16 *) (var_s2 + 0x58));
+      *((s16 *) (var_s2 + 0x56)) = var_v0;
+      *((s16 *) (var_s2 + 0x54)) = var_v0;
+      *((s16 *) (var_s3 + 0x4E)) = -1;
+      var_v0 = temp_s5;
+      *((s8 *) (var_s4 + 0x77)) = *((s16 *) (var_s3 + 0x1DA));
+    }
+    while (temp_s5 < (*((s16 *) (arg0 + 2))));
+  }
+  if ((arg0[0x1C] & 7) == 3)
+  {
+    *((s16 *) (arg0 + 6)) = -1;
+  }
+  else
+  {
+    *((s16 *) (arg0 + 6)) = 0;
+  }
+  *((s16 *) (arg0 + 8)) = 0;
+  ((struct Fb *) arg0)->clr = 0;
+  if (((struct Flags *) arg0)->hide)
+  {
+    option_state_set_box(arg0, NULL);
+  }
+  else
+  {
+    option_state_set_box(arg0, _gczoombox_entrypoint_5(0x1C, *((s16 *) (arg0 + 0x236)), 0, 0, 0));
+    if (!((struct Flags *) arg0)->no_text)
+    {
+      ((struct Flags *) arg0)->text = 1;
+      _gczoombox_entrypoint_8(option_state_box(arg0), _gldbstring_entrypoint_1(option_state_text(arg0), *((s16 *) (arg0 + 0x26))));
+    }
+    _gczoombox_entrypoint_23(option_state_box(arg0), (*((s16 *) (arg0 + 0x238))) == 0);
+    if (((struct Flags *) arg0)->fast)
+    {
+      _gczoombox_entrypoint_20(option_state_box(arg0), 30.0f, 0, 2, 0.1f, 0, 0);
+    }
+  }
+  func_80802A9C_gcnewoption(arg0);
+}
+#else
+#line 571 "src/overlays/gc/newoption.c"
 void func_80800D28_gcnewoption(void *data)
 {
   void _gczoombox_entrypoint_20(void *arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
@@ -695,14 +1098,17 @@ struct Sc2 { u8 pad[0x256]; s16 w; };
     }
   }
   func_80802A9C_gcnewoption(arg0);
-}    typedef struct { u8 pad0[0x3C]; s32 unk3C; } Objnewoption_func_8080103C_gcnewoption_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
+}
+#endif
+#line 698 "src/overlays/gc/newoption.c"
+    typedef struct { u8 pad0[0x3C]; s32 unk3C; } Objnewoption_func_8080103C_gcnewoption_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 void func_8080103C_gcnewoption(u8 *arg0)
 {
   void _gczoombox_entrypoint_0(void *arg0);
   s16 var_v0;
-  BtIntPtr temp_a0;
-  BtIntPtr temp_a0_2;
+  u8 *temp_a0;
+  u8 *temp_a0_2;
   s32 var_s1;
   u8 *var_s0;
   var_v0 = ((Objnewoption_arg0 *)arg0)->unk2;
@@ -712,11 +1118,11 @@ void func_8080103C_gcnewoption(u8 *arg0)
   {
     do
     {
-      temp_a0 = ((Objnewoption_func_8080103C_gcnewoption_var_s0 *)var_s0)->unk3C;
+      temp_a0 = option_state_item_box_slot(arg0, var_s0 + 0x3C);
       if (temp_a0 != 0)
       {
         _gczoombox_entrypoint_0(temp_a0);
-        ((Objnewoption_func_8080103C_gcnewoption_var_s0 *)var_s0)->unk3C = 0;
+        option_state_set_item_box_slot(arg0, var_s0 + 0x3C, NULL);
         *((s8 *) (((s8 *) (arg0 + var_s1)) + 0x94)) = -1;
         var_v0 = ((Objnewoption_arg0 *)arg0)->unk2;
       }
@@ -725,11 +1131,11 @@ void func_8080103C_gcnewoption(u8 *arg0)
     }
     while (var_s1 < var_v0);
   }
-  temp_a0_2 = ((Objnewoption_arg0 *)arg0)->unk20;
+  temp_a0_2 = option_state_box(arg0);
   if (temp_a0_2 != 0)
   {
     _gczoombox_entrypoint_0(temp_a0_2);
-    ((Objnewoption_arg0 *)arg0)->unk20 = 0;
+    option_state_set_box(arg0, NULL);
     var_v0 = 0xFF;
     ((Objnewoption_arg0 *)arg0)->unk24 = var_v0;
   }
@@ -929,9 +1335,9 @@ void gcnewoption_entrypoint_26(u8 *arg0, s32 arg1) {
     if ((((Objnewoption_arg0 *)arg0)->unk2) > 0) {
         do {
             temp_v0 = func_80800000_gcnewoption(arg0, var_s1);
-            if (*(s32 *)((BtIntPtr)arg0 + temp_v0 * 4 + 0x3C) != 0) {
+            if (option_state_item_box(arg0, temp_v0) != 0) {
                 var_a1 = arg1 ? 0 : 1;
-                _gczoombox_entrypoint_44(*(s32 *)((BtIntPtr)arg0 + temp_v0 * 4 + 0x3C), var_a1);
+                _gczoombox_entrypoint_44(option_state_item_box(arg0, temp_v0), var_a1);
             }
             var_s1 += 1;
         } while (var_s1 < (((Objnewoption_arg0 *)arg0)->unk2));
@@ -953,8 +1359,8 @@ void gcnewoption_entrypoint_27(u8 *arg0, s32 arg1, s32 arg2) {
     func_80800000_gcnewoption(arg0, temp_v0);
     if (sp20 != -1) {
         temp_v0_2 = func_80800000_gcnewoption(arg0, sp20);
-        if (*(s32 *)((BtIntPtr)arg0 + temp_v0_2 * 4 + 0x3C) != 0) {
-            _gczoombox_entrypoint_40((u8 *)*(s32 *)((BtIntPtr)arg0 + temp_v0_2 * 4 + 0x3C), arg2);
+        if (option_state_item_box(arg0, temp_v0_2) != 0) {
+            _gczoombox_entrypoint_40((u8 *)option_state_item_box(arg0, temp_v0_2), arg2);
         }
     }
 }
@@ -992,12 +1398,12 @@ void gcnewoption_entrypoint_28(void *arg0) {
         u8 flag : 1;
         BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2);
     };
-    BtIntPtr temp_a0;
+    u8 *temp_a0;
     s32 i;
     u8 *ptr;
 
     gcnewoption_entrypoint_42(arg0, 0.1f);
-    temp_a0 = ((Objnewoption_arg0 *)arg0)->unk20;
+    temp_a0 = option_state_box(arg0);
     ((struct Flags28 *)arg0)->flag = 1;
     if (temp_a0 != 0) {
         _gczoombox_entrypoint_20(temp_a0, 30.0f, 0, 2, 0.1f, 0, 0);
@@ -1006,7 +1412,7 @@ void gcnewoption_entrypoint_28(void *arg0) {
     if (((Objnewoption_arg0 *)arg0)->unk2 > 0) {
         ptr = arg0;
         do {
-            temp_a0 = *(s32 *)(ptr + 0x3C);
+            temp_a0 = option_state_item_box_slot(arg0, ptr + 0x3C);
             if (temp_a0 != 0) {
                 _gczoombox_entrypoint_20(temp_a0, 100.0f, 0, 2, 0.1f, 0, 0);
             }
@@ -1103,16 +1509,16 @@ void gcnewoption_entrypoint_31(BtIntPtr arg0, s32 arg1, s16 arg2) {
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) gcnewoption_entrypoint_32(void *arg0, s16 arg1) {
     int _gczoombox_entrypoint_37(u8 *arg0, s16 arg1);
     (((Objnewoption_arg0 *)arg0)->unk236) = arg1;
-    BT_NATIVE_ONLY(return) _gczoombox_entrypoint_37((((Objnewoption_arg0 *)arg0)->unk20), arg1);
+    BT_NATIVE_ONLY(return) _gczoombox_entrypoint_37((option_state_box(arg0)), arg1);
 }
 
 void gcnewoption_entrypoint_33(void *arg0) {
     void _gczoombox_entrypoint_23(void *arg0, s32 arg1);
-    BtIntPtr temp_a2;
+    u8 *temp_a2;
     s32 var_s0;
     u8 *var_s1;
 
-    temp_a2 = ((Objnewoption_arg0 *)arg0)->unk20;
+    temp_a2 = option_state_box(arg0);
     ((Objnewoption_arg0 *)arg0)->unk238 = 1;
     if (temp_a2 != 0) {
         _gczoombox_entrypoint_23(temp_a2, 0);
@@ -1121,7 +1527,7 @@ void gcnewoption_entrypoint_33(void *arg0) {
     var_s1 = arg0;
     if (((Objnewoption_arg0 *)arg0)->unk2 > 0) {
         do {
-            _gczoombox_entrypoint_23(*(s32 *)(var_s1 + 0x3C), 0);
+            _gczoombox_entrypoint_23(option_state_item_box_slot(arg0, var_s1 + 0x3C), 0);
             var_s0 += 1;
             var_s1 += 4;
         } while (var_s0 < ((Objnewoption_arg0 *)arg0)->unk2);
@@ -1140,12 +1546,12 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
     int _gczoombox_entrypoint_32();
     int _gczoombox_entrypoint_8();
     u32 *_gldbstring_entrypoint_1(u32 *, s16);
-    s32 temp_a2;
+    u8 *temp_a2;
 
-    temp_a2 = (((Objnewoption_arg0 *)arg0)->unk20);
+    temp_a2 = option_state_box(arg0);
     if (temp_a2 != 0) {
         _gczoombox_entrypoint_32(temp_a2);
-        _gczoombox_entrypoint_8((((Objnewoption_arg0 *)arg0)->unk20), _gldbstring_entrypoint_1((((Objnewoption_arg0 *)arg0)->unk23C), arg1));
+        _gczoombox_entrypoint_8((option_state_box(arg0)), _gldbstring_entrypoint_1((option_state_text(arg0)), arg1));
         ((struct Flags *)arg0)->active = 1;
         (((Objnewoption_arg0 *)arg0)->unk30) = (f32) (((Objnewoption_arg0 *)arg0)->unk2C);
     } else {
@@ -1164,11 +1570,11 @@ void func_808019D0_gcnewoption(void *option) {
     };
     struct Boxes {
         u8 pad[0x3C];
-        u8 *boxes[29];
+        u32 boxes[29];
     };
     struct Header {
         u8 pad[0x20];
-        u8 *box;
+        u32 box;
     };
     void _gczoombox_entrypoint_21(void *, s32);
     u32 _gczoombox_entrypoint_22(void *);
@@ -1198,21 +1604,21 @@ void func_808019D0_gcnewoption(void *option) {
                 } else {
                     active = 0;
                 }
-                _gczoombox_entrypoint_40(((struct Boxes *)option)->boxes[index], active);
+                _gczoombox_entrypoint_40(option_state_item_box(option, index), active);
             } else {
-                _gczoombox_entrypoint_40(((struct Boxes *)option)->boxes[index], ((u8 *)option)[item + 0x218]);
+                _gczoombox_entrypoint_40(option_state_item_box(option, index), ((u8 *)option)[item + 0x218]);
             }
-            if (selected == i && _gczoombox_entrypoint_22(((struct Boxes *)option)->boxes[index]) == 0) {
+            if (selected == i && _gczoombox_entrypoint_22(option_state_item_box(option, index)) == 0) {
                 func_808010E0_gcnewoption(option, item);
             }
-            _gczoombox_entrypoint_21(((struct Boxes *)option)->boxes[index], selected == i);
-            _gczoombox_entrypoint_4(((struct Boxes *)option)->boxes[index]);
+            _gczoombox_entrypoint_21(option_state_item_box(option, index), selected == i);
+            _gczoombox_entrypoint_4(option_state_item_box(option, index));
         }
         func_80801B5C_gcnewoption(option);
     }
-    if (((struct Header *)option)->box != 0) {
-        box = ((struct Header *)option)->box;
-        result = _gczoombox_entrypoint_3(((struct Header *)option)->box);
+    if (option_state_box(option) != 0) {
+        box = option_state_box(option);
+        result = _gczoombox_entrypoint_3(option_state_box(option));
         _gczoombox_entrypoint_4(box);
         switch (*(s16 *)option) {
         case 3:
@@ -1231,7 +1637,7 @@ void func_80801B5C_gcnewoption(void *arg0) {
         BT_BITFIELD_ORDER(u8 moving : 1, u8 rest : 7);
         BT_BITFIELD_ORDER(u8 rest : 7, u8 moving : 1);
     };
-    void _gczoombox_entrypoint_28(s32, s16);
+    BT_IDO_ONLY(void _gczoombox_entrypoint_28(s32, s16);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_28(u8 *, s16);)
     BT_IDO_ONLY(s32 _gczoombox_entrypoint_29(s32);) BT_NATIVE_ONLY(s16 _gczoombox_entrypoint_29(void *);)
     BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     s32 i;
@@ -1257,12 +1663,12 @@ void func_80801B5C_gcnewoption(void *arg0) {
             if (limit < delta) {
                 entry = (u8 *)arg0 + index * 4;
                 *(f32 *)(entry + 0x80) = *(f32 *)((u8 *)arg0 + 0x14) * (f32)(*(s16 *)((u8 *)arg0 + 2) + 1);
-                _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), 0);
+                _gczoombox_entrypoint_28(option_state_item_box_slot(arg0, entry + 0x3C), 0);
                 *(s16 *)((u8 *)arg0 + 0x34) = 255;
             } else if (delta < -limit) {
                 entry = (u8 *)arg0 + index * 4;
                 *(f32 *)(entry + 0x80) = 0.0f;
-                _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), 0);
+                _gczoombox_entrypoint_28(option_state_item_box_slot(arg0, entry + 0x3C), 0);
                 *(s16 *)((u8 *)arg0 + 0x34) = 255;
             }
             entry = (u8 *)arg0 + index * 4;
@@ -1271,14 +1677,14 @@ void func_80801B5C_gcnewoption(void *arg0) {
                 *(s16 *)((u8 *)arg0 + 0x34) = spacing - 20.0f;
             }
             if ((*(f32 *)((u8 *)arg0 + 0x14)) * 0.66f < (*(f32 *)(entry + 0x80)) && (*(f32 *)(entry + 0x80)) < ((f32)*(s16 *)((u8 *)arg0 + 2) + 0.66f) * (*(f32 *)((u8 *)arg0 + 0x14))) {
-                height = value = _gczoombox_entrypoint_29(BT_NATIVE_ONLY((void *)(BtUIntPtr)) *(s32 *)(entry + 0x3C));
+                height = value = _gczoombox_entrypoint_29(option_state_item_box_slot(arg0, entry + 0x3C));
                 if (value < 236) {
-                    _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), (s16)height + 20);
+                    _gczoombox_entrypoint_28(option_state_item_box_slot(arg0, entry + 0x3C), (s16)height + 20);
                 }
             } else {
-                height = value = _gczoombox_entrypoint_29(BT_NATIVE_ONLY((void *)(BtUIntPtr)) *(s32 *)(entry + 0x3C));
+                height = value = _gczoombox_entrypoint_29(option_state_item_box_slot(arg0, entry + 0x3C));
                 if (value >= 20) {
-                    _gczoombox_entrypoint_28(*(s32 *)(entry + 0x3C), (s16)height - 20);
+                    _gczoombox_entrypoint_28(option_state_item_box_slot(arg0, entry + 0x3C), (s16)height - 20);
                 }
             }
             if (target != (*(f32 *)(entry + 0x80))) {
@@ -1297,7 +1703,7 @@ void func_80801B5C_gcnewoption(void *arg0) {
                         ((struct Flags *)arg0)->moving = 1;
                     }
                 }
-                    _gczoombox_entrypoint_38(*(s32 *)(entry + 0x3C), (f32)*(s16 *)((u8 *)arg0 + 0x256) + (*(f32 *)(entry + 0x80)));
+                    _gczoombox_entrypoint_38(option_state_item_box_slot(arg0, entry + 0x3C), (f32)*(s16 *)((u8 *)arg0 + 0x256) + (*(f32 *)(entry + 0x80)));
             }
             i = next;
         } while (next < *(s16 *)((u8 *)arg0 + 2));
@@ -1312,8 +1718,8 @@ s32 func_80801E68_gcnewoption(void *arg0) {
     s32 pad;
     s32 result;
     u32 state;
-    BtIntPtr box;
-    BtIntPtr headerBox;
+    u8 *box;
+    u8 *headerBox;
     s32 i;
     u32 headerState;
     u8 *ptr;
@@ -1325,32 +1731,32 @@ s32 func_80801E68_gcnewoption(void *arg0) {
     if (((Objnewoption_arg0 *)arg0)->unk2 > 0) {
         stateptr = arg0;
         do {
-            state = _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x3C));
+            state = _gczoombox_entrypoint_3((u8 *)option_state_item_box_slot(arg0, ptr + 0x3C));
             switch (state) {
             case 0:
                 if (i == 0) {
-                    box = ((Objnewoption_arg0 *)arg0)->unk20;
+                    box = option_state_box(arg0);
                     if (box == 0 || _gczoombox_entrypoint_3((u8 *)box) == 1 ||
-                        _gczoombox_entrypoint_3((u8 *)*&((Objnewoption_arg0 *)arg0)->unk20) == 2 ||
-                        _gczoombox_entrypoint_3((u8 *)*&((Objnewoption_arg0 *)arg0)->unk20) == 3 ||
+                        _gczoombox_entrypoint_3(option_state_box(arg0)) == 2 ||
+                        _gczoombox_entrypoint_3(option_state_box(arg0)) == 3 ||
                         func_800D9078(&((Objnewoption_arg0 *)arg0)->unk38)) {
-                        _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
+                        _gczoombox_entrypoint_9(option_state_item_box_slot(arg0, ptr + 0x3C));
                         if (*(f32 *)(ptr + 0x9C) == 0.0f) {
                             *(f32 *)(ptr + 0x9C) = ((Objnewoption_arg0 *)arg0)->unk18;
                         }
                     }
-                } else if (_gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x38)) == 1 ||
-                           _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x38)) == 2 ||
-                           _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x38)) == 3 ||
+                } else if (_gczoombox_entrypoint_3((u8 *)option_state_item_box_slot(arg0, ptr + 0x38)) == 1 ||
+                           _gczoombox_entrypoint_3((u8 *)option_state_item_box_slot(arg0, ptr + 0x38)) == 2 ||
+                           _gczoombox_entrypoint_3((u8 *)option_state_item_box_slot(arg0, ptr + 0x38)) == 3 ||
                            func_800D9078((f32 *)(ptr + 0x98))) {
-                    _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
+                    _gczoombox_entrypoint_9(option_state_item_box_slot(arg0, ptr + 0x3C));
                     if (*(f32 *)(ptr + 0x9C) == 0.0f) {
                         *(f32 *)(ptr + 0x9C) = ((Objnewoption_arg0 *)arg0)->unk18;
                     }
                 }
                 break;
             case 1:
-                _gczoombox_entrypoint_11(*(s32 *)(ptr + 0x3C));
+                _gczoombox_entrypoint_11(option_state_item_box_slot(arg0, ptr + 0x3C));
                 *(s8 *)(stateptr + 0x94) = state;
                 break;
             case 2:
@@ -1366,7 +1772,7 @@ s32 func_80801E68_gcnewoption(void *arg0) {
             stateptr++;
         } while (i < ((Objnewoption_arg0 *)arg0)->unk2);
     }
-    headerBox = ((Objnewoption_arg0 *)arg0)->unk20;
+    headerBox = option_state_box(arg0);
     if (headerBox != 0) {
         headerState = _gczoombox_entrypoint_3((u8 *)headerBox);
         switch (headerState) {
@@ -1376,8 +1782,8 @@ s32 func_80801E68_gcnewoption(void *arg0) {
         case 0:
             result = 0;
             if (headerState != *((u8 *)arg0 + 0x24)) {
-                _gczoombox_entrypoint_9(((Objnewoption_arg0 *)arg0)->unk20);
-                _gczoombox_entrypoint_11(((Objnewoption_arg0 *)arg0)->unk20);
+                _gczoombox_entrypoint_9(option_state_box(arg0));
+                _gczoombox_entrypoint_11(option_state_box(arg0));
                 if (((Objnewoption_arg0 *)arg0)->unk38 == 0.0f) {
                     ((Objnewoption_arg0 *)arg0)->unk38 = ((Objnewoption_arg0 *)arg0)->unk18;
                 }
@@ -1400,7 +1806,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
     s32 firstState;
     s32 headerState;
     s32 finalState;
-    BtIntPtr box;
+    u8 *box;
     u8 *ptr;
     s8 *stateptr;
 
@@ -1410,7 +1816,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
     if (((Objnewoption_arg0 *)arg0)->unk2 > 0) {
         ptr = arg0;
         do {
-            firstState = _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x3C));
+            firstState = _gczoombox_entrypoint_3((u8 *)option_state_item_box_slot(arg0, ptr + 0x3C));
             if (firstState == 0 || firstState == 2 || firstState == 3) {
                 busy = 1;
             }
@@ -1419,7 +1825,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
         } while (i < ((Objnewoption_arg0 *)arg0)->unk2);
         i = 0;
     }
-    box = ((Objnewoption_arg0 *)arg0)->unk20;
+    box = option_state_box(arg0);
     if (box != 0) {
         headerState = _gczoombox_entrypoint_3((u8 *)box);
         switch (headerState) {
@@ -1433,7 +1839,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
     if (((Objnewoption_arg0 *)arg0)->unk2 > 0) {
         ptr = arg0;
         do {
-            state = _gczoombox_entrypoint_3((u8 *)*(s32 *)(ptr + 0x3C));
+            state = _gczoombox_entrypoint_3((u8 *)option_state_item_box_slot(arg0, ptr + 0x3C));
             switch (state) {
                 case 0:
                 case 2:
@@ -1441,7 +1847,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
                     stateptr = (s8 *)arg0 + i;
                     result = 0;
                     if (state != stateptr[0x94]) {
-                        _gczoombox_entrypoint_33(*(s32 *)(ptr + 0x3C));
+                        _gczoombox_entrypoint_33(option_state_item_box_slot(arg0, ptr + 0x3C));
                     }
                     stateptr[0x94] = state;
                     break;
@@ -1450,7 +1856,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
                     if (busy == 0) {
                         stateptr = (s8 *)arg0 + i;
                         if (state != stateptr[0x94]) {
-                            _gczoombox_entrypoint_10(*(s32 *)(ptr + 0x3C));
+                            _gczoombox_entrypoint_10(option_state_item_box_slot(arg0, ptr + 0x3C));
                         }
                         stateptr[0x94] = state;
                     }
@@ -1466,7 +1872,7 @@ s32 func_808020C4_gcnewoption(void *arg0) {
             ptr += 4;
         } while (i < ((Objnewoption_arg0 *)arg0)->unk2);
     }
-    box = ((Objnewoption_arg0 *)arg0)->unk20;
+    box = option_state_box(arg0);
     if (box != 0) {
         finalState = _gczoombox_entrypoint_3((u8 *)box);
         switch (finalState) {
@@ -1479,13 +1885,13 @@ s32 func_808020C4_gcnewoption(void *arg0) {
             case 3:
                 result = 0;
                 if (finalState != ((u8 *)arg0)[0x24]) {
-                    _gczoombox_entrypoint_33(((Objnewoption_arg0 *)arg0)->unk20);
+                    _gczoombox_entrypoint_33(option_state_box(arg0));
                 }
                 break;
             case 4:
                 result = 0;
                 if (finalState != ((u8 *)arg0)[0x24]) {
-                    _gczoombox_entrypoint_10(((Objnewoption_arg0 *)arg0)->unk20);
+                    _gczoombox_entrypoint_10(option_state_box(arg0));
                 }
                 break;
         }
@@ -1511,7 +1917,7 @@ s32 func_808022E0_gcnewoption(void *arg0) {
         do {
             if (func_80800070_gcnewoption(arg0, i) != ((Objnewoption_arg0 *)arg0)->unk6) {
                 index = func_80800000_gcnewoption((u8 *)arg0, i);
-                state = _gczoombox_entrypoint_3((u8 *)((s32 *)arg0 + index)[15]);
+                state = _gczoombox_entrypoint_3((u8 *)option_state_item_box(arg0, index));
                 stateptr = (s8 *)arg0 + index;
                 switch (state) {
                     case 0:
@@ -1520,13 +1926,13 @@ s32 func_808022E0_gcnewoption(void *arg0) {
                         result = 0;
                         ptr = (u8 *)((s32 *)arg0 + index);
                         if (state != stateptr[0x94]) {
-                            _gczoombox_entrypoint_12(*(s32 *)(ptr + 0x3C));
-                            _gczoombox_entrypoint_10(*(s32 *)(ptr + 0x3C));
+                            _gczoombox_entrypoint_12(option_state_item_box_slot(arg0, ptr + 0x3C));
+                            _gczoombox_entrypoint_10(option_state_item_box_slot(arg0, ptr + 0x3C));
                         }
                         break;
                     case 4:
                         if (state != stateptr[0x94]) {
-                            _gczoombox_entrypoint_10(((s32 *)arg0 + index)[15]);
+                            _gczoombox_entrypoint_10(option_state_item_box(arg0, index));
                         }
                         break;
                     case 5:
@@ -1556,14 +1962,14 @@ s32 func_8080241C_gcnewoption(void *arg0) {
         do {
             if (func_80800070_gcnewoption(((u8 *)arg0), i) != ((Objnewoption_arg0 *)arg0)->unk6) {
                 index = func_80800000_gcnewoption(((u8 *)arg0), i);
-                state = _gczoombox_entrypoint_3((u8 *)((s32 *)((u8 *)arg0) + index)[15]);
+                state = _gczoombox_entrypoint_3((u8 *)option_state_item_box(arg0, index));
                 switch (state) {
                     case 0:
                     case 2:
                     case 3:
                         result = 0;
                         if (state != *(s8 *)(((u8 *)arg0) + index + 0x94)) {
-                            _gczoombox_entrypoint_33(((s32 *)((u8 *)arg0) + index)[15]);
+                            _gczoombox_entrypoint_33(option_state_item_box(arg0, index));
                             ((s16 *)((u8 *)arg0) + index)[40] = -1;
                         }
                         break;
@@ -1598,20 +2004,20 @@ s32 func_80802534_gcnewoption(u8 *arg0) {
         do {
             if (func_80800070_gcnewoption(arg0, i) != *(s16 *)(arg0 + 6)) {
                 index = func_80800000_gcnewoption(arg0, i);
-                state = _gczoombox_entrypoint_3((u8 *)((s32 *)arg0 + index)[15]);
+                state = _gczoombox_entrypoint_3((u8 *)option_state_item_box(arg0, index));
                 switch (state) {
                     case 0:
                         result = 0;
                         ptr = (u8 *)((s32 *)arg0 + index);
                         if (state != *(s8 *)(arg0 + index + 0x94)) {
-                            _gczoombox_entrypoint_9(*(s32 *)(ptr + 0x3C));
-                            _gczoombox_entrypoint_11(*(s32 *)(ptr + 0x3C));
+                            _gczoombox_entrypoint_9(option_state_item_box_slot(arg0, ptr + 0x3C));
+                            _gczoombox_entrypoint_11(option_state_item_box_slot(arg0, ptr + 0x3C));
                         }
                         break;
                     case 4:
                         result = 0;
                         if (state != *(s8 *)(arg0 + index + 0x94)) {
-                            _gczoombox_entrypoint_11(((s32 *)arg0 + index)[15]);
+                            _gczoombox_entrypoint_11(option_state_item_box(arg0, index));
                         }
                         break;
                     case 2:
@@ -1634,18 +2040,18 @@ s32 func_80802674_gcnewoption(void *arg0) {
 
     result = 1;
     index = func_80800000_gcnewoption(((u8 *)arg0), func_80800038_gcnewoption(((u8 *)arg0), ((Objnewoption_arg0 *)arg0)->unk6));
-    state = _gczoombox_entrypoint_3((u8 *)((s32 *)((u8 *)arg0) + index)[15]);
+    state = _gczoombox_entrypoint_3((u8 *)option_state_item_box(arg0, index));
     switch (state) {
         case 0:
         case 3:
             if (state != *(s8 *)(((u8 *)arg0) + index + 0x94)) {
-                _gczoombox_entrypoint_34(((s32 *)((u8 *)arg0) + index)[15]);
+                _gczoombox_entrypoint_34(option_state_item_box(arg0, index));
             }
             result = 0;
             break;
         case 4:
             if (state != *(s8 *)(((u8 *)arg0) + index + 0x94)) {
-                _gczoombox_entrypoint_10(((s32 *)((u8 *)arg0) + index)[15]);
+                _gczoombox_entrypoint_10(option_state_item_box(arg0, index));
             }
             result = 0;
             break;
@@ -1658,8 +2064,8 @@ s32 func_80802674_gcnewoption(void *arg0) {
             break;
     }
     *(s8 *)(((u8 *)arg0) + index + 0x94) = state;
-    if (((Objnewoption_arg0 *)arg0)->unk20_u8p) {
-        state = _gczoombox_entrypoint_3(((Objnewoption_arg0 *)arg0)->unk20_u8p);
+    if (option_state_box(arg0)) {
+        state = _gczoombox_entrypoint_3(option_state_box(arg0));
         switch (state) {
             case 0:
             case 2:
@@ -1667,13 +2073,13 @@ s32 func_80802674_gcnewoption(void *arg0) {
             case 6:
                 result = 0;
                 if (state != ((u8 *)arg0)[0x24]) {
-                    _gczoombox_entrypoint_34(((Objnewoption_arg0 *)arg0)->unk20);
+                    _gczoombox_entrypoint_34(option_state_box(arg0));
                 }
                 break;
             case 4:
                 result = 0;
                 if (state != ((u8 *)arg0)[0x24]) {
-                    _gczoombox_entrypoint_10(((Objnewoption_arg0 *)arg0)->unk20);
+                    _gczoombox_entrypoint_10(option_state_box(arg0));
                 }
                 break;
         }
@@ -1705,11 +2111,11 @@ void func_808027DC_gcnewoption(void *arg0, s32 arg1) {
         *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5E) != *(s16 *)(((u8 *)arg0 + source * 6) + 0x12C) ||
         ((u8 *)arg0)[dest + 0x78] != *(s16 *)(((u8 *)arg0 + source * 2) + 0x1DC) ||
         language != ((Objnewoption_arg0 *)arg0)->unkC) {
-        _gczoombox_entrypoint_32(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C));
-        _gczoombox_entrypoint_27(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), (s16 *)(((u8 *)arg0 + source * 6) + 0x128));
-        _gczoombox_entrypoint_8(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), _gldbstring_entrypoint_1(((Objnewoption_arg0 *)arg0)->unk23C, text));
-        _gczoombox_entrypoint_40((u8 *)*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), ((u8 *)arg0)[source + 0x218]);
-        _gczoombox_entrypoint_36(*(s32 *)(((u8 *)arg0 + dest * 4) + 0x3C), *(s16 *)(((u8 *)arg0 + source * 2) + 0x1DC));
+        _gczoombox_entrypoint_32(option_state_item_box(arg0, dest));
+        _gczoombox_entrypoint_27(option_state_item_box(arg0, dest), (s16 *)(((u8 *)arg0 + source * 6) + 0x128));
+        _gczoombox_entrypoint_8(option_state_item_box(arg0, dest), _gldbstring_entrypoint_1(option_state_text(arg0), text));
+        _gczoombox_entrypoint_40((u8 *)option_state_item_box(arg0, dest), ((u8 *)arg0)[source + 0x218]);
+        _gczoombox_entrypoint_36(option_state_item_box(arg0, dest), *(s16 *)(((u8 *)arg0 + source * 2) + 0x1DC));
         *(s16 *)((u8 *)arg0 + dest * 2 + 0x50) = text;
         *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5A) = *(s16 *)(((u8 *)arg0 + source * 6) + 0x128);
         *(s16 *)(((u8 *)arg0 + dest * 6) + 0x5C) = *(s16 *)(((u8 *)arg0 + source * 6) + 0x12A);
@@ -1728,7 +2134,7 @@ void func_80802998_gcnewoption(void *arg0) {
         u8 pad0[0x1D];
         BT_BITFIELD_ORDER(u8 flagsTop : 5, u8 flagsLow : 2); u8 active : 1; BT_BITFIELD_ORDER(u8 flagsLow : 2, u8 flagsTop : 5);
         u8 pad1E[2];
-        u8 *box;
+        u32 box;
         u8 pad24[2];
         s16 current;
         s16 start;
@@ -1736,23 +2142,23 @@ void func_80802998_gcnewoption(void *arg0) {
         f32 delay;
         f32 timer;
         u8 pad34[0x208];
-        u32 *strings;
+        u32 strings;
     };
     s16 next;
     s16 start;
 
-    if (((struct OptionDetails *)arg0)->box != NULL && ((start = ((struct OptionDetails *)arg0)->start) != 0 || ((struct OptionDetails *)arg0)->end != 0)) {
+    if (option_state_box(arg0) != NULL && ((start = ((struct OptionDetails *)arg0)->start) != 0 || ((struct OptionDetails *)arg0)->end != 0)) {
         if (((struct OptionDetails *)arg0)->timer <= 0.0f) {
             next = ((struct OptionDetails *)arg0)->current + 1;
             if (((struct OptionDetails *)arg0)->end < next) {
                 next = start - 1;
             }
-            _gczoombox_entrypoint_32(((struct OptionDetails *)arg0)->box);
-            _gczoombox_entrypoint_8(((struct OptionDetails *)arg0)->box, (char *)_gldbstring_entrypoint_1(((struct OptionDetails *)arg0)->strings, next));
+            _gczoombox_entrypoint_32(option_state_box(arg0));
+            _gczoombox_entrypoint_8(option_state_box(arg0), (char *)_gldbstring_entrypoint_1(option_state_text(arg0), next));
             ((struct OptionDetails *)arg0)->active = 1;
             ((struct OptionDetails *)arg0)->current = next;
             ((struct OptionDetails *)arg0)->timer = ((struct OptionDetails *)arg0)->delay;
-        } else if (_gczoombox_entrypoint_3(((struct OptionDetails *)arg0)->box) == 3) {
+        } else if (_gczoombox_entrypoint_3(option_state_box(arg0)) == 3) {
             ((struct OptionDetails *)arg0)->timer -= func_800D8FF8();
         }
     }
@@ -1852,7 +2258,7 @@ s32 gcnewoption_entrypoint_38(u8 *arg0, s32 arg1) {
         (((Objnewoption_arg0 *)arg0)->unk0) = 9;
         func_80802B24_gcnewoption(arg0, 1);
         if (arg1 != 0) {
-            _gczoombox_entrypoint_41((*(s32 *)((s8 *)(((0, arg0) + (sp24 * 4))) + (0x3C))), 1000.0f);
+            _gczoombox_entrypoint_41(option_state_item_box(arg0, sp24), 1000.0f);
         }
         return 1;
     }
@@ -1872,7 +2278,7 @@ s32 gcnewoption_entrypoint_39(u8 *arg0)
     sp24 = func_80800000_gcnewoption(arg0, func_80800038_gcnewoption(arg0, (s32) (((Objnewoption_arg0 *)arg0)->unk6)));
     func_80802A9C_gcnewoption(arg0);
     ((Objnewoption_arg0 *)arg0)->unk0 = 0xA;
-    _gczoombox_entrypoint_41(*((s32 *) (((s8 *) (((0, arg0)) + (sp24 * 4))) + 0x3C)), 45.0f);
+    _gczoombox_entrypoint_41(option_state_item_box(arg0, sp24), 45.0f);
     return 1;
   }
   return 0;
@@ -1945,19 +2351,19 @@ void gcnewoption_entrypoint_44(void *arg0, s32 arg1) {
     };
     ((struct Flags *)arg0)->hidden = arg1;
     if (arg1 != 0) {
-        _gczoombox_entrypoint_20((((Objnewoption_arg0 *)arg0)->unk20), 0.0f, 0, 2, 0.1f, 0, 0);
+        _gczoombox_entrypoint_20((option_state_box(arg0)), 0.0f, 0, 2, 0.1f, 0, 0);
         return;
     }
     if (!((struct Flags *)arg0)->initialized) {
-        _gczoombox_entrypoint_32((((Objnewoption_arg0 *)arg0)->unk20));
-        _gczoombox_entrypoint_8((((Objnewoption_arg0 *)arg0)->unk20), _gldbstring_entrypoint_1((((Objnewoption_arg0 *)arg0)->unk23C), (((Objnewoption_arg0 *)arg0)->unk26)));
+        _gczoombox_entrypoint_32((option_state_box(arg0)));
+        _gczoombox_entrypoint_8((option_state_box(arg0)), _gldbstring_entrypoint_1((option_state_text(arg0)), (((Objnewoption_arg0 *)arg0)->unk26)));
         ((struct Flags *)arg0)->initialized = 1;
     }
     if (((struct Flags *)arg0)->wide) {
-        _gczoombox_entrypoint_20((((Objnewoption_arg0 *)arg0)->unk20), 30.0f, 0, 2, 0.1f, 0, 0);
+        _gczoombox_entrypoint_20((option_state_box(arg0)), 30.0f, 0, 2, 0.1f, 0, 0);
         return;
     }
-    _gczoombox_entrypoint_20((((Objnewoption_arg0 *)arg0)->unk20), 15.0f, 0, 2, 0.1f, 0, 0);
+    _gczoombox_entrypoint_20((option_state_box(arg0)), 15.0f, 0, 2, 0.1f, 0, 0);
 }
 
 s32 gcnewoption_entrypoint_45(s16 *arg0) {

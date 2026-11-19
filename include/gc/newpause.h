@@ -108,8 +108,13 @@ u32 gcnewpause_entrypoint_2(PauseState* a0);
 u32 _gcnewpause_entrypoint_2(PauseState* a0);
 void gcnewpause_entrypoint_3(BtUIntPtr arg0, PauseState* pauseMenu);
 void _gcnewpause_entrypoint_3(BtUIntPtr arg0, PauseState* pauseMenu);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void gcnewpause_entrypoint_4(void *arg0, OptionState* arg1, u32 arg2, u32 arg3);
+void _gcnewpause_entrypoint_4(void *arg0, OptionState* arg1, u32 arg2, u32 arg3);
+#else
 void gcnewpause_entrypoint_4(u32 arg0, OptionState* arg1, u32 arg2, u32 arg3);
 void _gcnewpause_entrypoint_4(u32 arg0, OptionState* arg1, u32 arg2, u32 arg3);
+#endif
 
 void func_80800534_gcnewpause(PauseState* a0, u32 a1);
 void func_80800A08_gcnewpause(PauseState*);

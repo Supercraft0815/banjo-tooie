@@ -1,4 +1,4 @@
-#include "common.h"
+#include "gc/newoption_state.h"
 #include "core2/particle_colors.h"
 #include "boss_tables.h"
 void func_80800000_chdiggerboss(Actor *arg0) {
@@ -188,7 +188,7 @@ void func_80800508_chdiggerboss(Actor *arg0, u32 arg1) {
     temp_v0 = func_800EB854();
     if (temp_v0 != 0) {
         if (temp_v0 == 3) {
-            _gcnewoption_entrypoint_1((u8 *)func_80100094(arg0, 0) + 0x10C, arg1);
+            _gcnewoption_entrypoint_1((u8 *)func_80100094(arg0, 0) + BT_LP64_ONLY(0x110) BT_ILP32_ONLY(0x10C) BT_IDO_ONLY(0x10C), arg1);
         }
     } else {
         func_80101808(arg0, func_801017D0);
@@ -384,7 +384,7 @@ void func_808008F8_chdiggerboss(BtIntPtr arg0) {
         var_s0 += 1;
     } while (var_s0 != 0xF);
     (((Objboss_arg0 *)arg0)->unk75) = (u8) ((((Objboss_arg0 *)arg0)->unk75) & 0xFFFD);
-    temp_s0_2 = func_80100074(arg0, 0, _gcnewoption_entrypoint_2() + 0x10C);
+    temp_s0_2 = func_80100074(arg0, 0, _gcnewoption_entrypoint_2() + BT_LP64_ONLY(0x110) BT_ILP32_ONLY(0x10C) BT_IDO_ONLY(0x10C));
     func_80109FE8(arg0, 0);
     func_80109EEC(arg0, 0x40);
     func_80102FDC(arg0, 0.25f);
@@ -1662,13 +1662,13 @@ s32 func_80802D00_chdiggerboss(Actor *arg0) {
         s16 unk46;
         u8 pad48[4];
         f32 unk4C;
-        u8 pad50[0xBC];
-        u8 option[1];
+        u8 pad50[0xBC BT_LP64_ONLY(+4)];
+        OptionState option;
     } *data;
     u8 *option;
 
     data = func_80100094(arg0, 0);
-    option = ((struct DiggerBossData *)func_80100094(arg0, 0))->option;
+    option = ((struct DiggerBossData *)func_80100094(arg0, 0))->option.data;
     switch (data->state) {
     case 0:
         break;
@@ -1865,14 +1865,14 @@ void func_80803224_chdiggerboss(Actor *arg0) {
     void func_8010A828(void **, s32);
     s32 _gcnewoption_entrypoint_2(void);
     void _gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3, Unk80132ED0 *arg4);
-    void _gcnewoption_entrypoint_8(s16 *arg0, s32 arg1);
-    void _gcnewoption_entrypoint_9(s16 *arg0, s32 arg1);
+    void _gcnewoption_entrypoint_8(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s16 *) arg0, s32 arg1);
+    void _gcnewoption_entrypoint_9(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s16 *) arg0, s32 arg1);
     void _gcnewoption_entrypoint_10(void *arg0, s32 arg1);
-    void _gcnewoption_entrypoint_11(BtIntPtr);
+    void _gcnewoption_entrypoint_11(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr));
     void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
-    void _gcnewoption_entrypoint_28(BtIntPtr);
-    void _gcnewoption_entrypoint_29(BtIntPtr, s32);
-    void _gcnewoption_entrypoint_30(BtIntPtr, s16 *);
+    void _gcnewoption_entrypoint_28(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr));
+    void _gcnewoption_entrypoint_29(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr), s32);
+    void _gcnewoption_entrypoint_30(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr), s16 *);
     BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void bzero(void *, int);
     extern s32 _gcnewoption_entrypoint_35;
@@ -1886,14 +1886,21 @@ void func_80803224_chdiggerboss(Actor *arg0) {
         u16 unk44;
         u8 pad46[2];
         s8 unk48;
-        u8 pad49[0xC3];
-        u8 options[0x260];
+        u8 pad49[0xC3 BT_LP64_ONLY(+4)];
+        OptionState options;
     } DiggerBossData;
-    BtIntPtr options;
+    #if defined(BT_NATIVE) && !defined(BT_ILP32)
+    _Static_assert(offsetof(DiggerBossData, options) == 0x110, "native Digger option alignment");
+    _Static_assert(sizeof(DiggerBossData) == 0x478, "native Digger option allocation extent");
+#elif defined(BT_ILP32)
+    _Static_assert(offsetof(DiggerBossData, options) == 0x10C, "O32 Digger option alignment");
+    _Static_assert(sizeof(DiggerBossData) == 0x36C, "O32 Digger option allocation extent");
+#endif
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) options;
     DiggerBossData *data;
 
     data = func_80100094(arg0, 0);
-    options = ((DiggerBossData *)func_80100094(arg0, 0))->options;
+    options = BT_LP64_ONLY(&((DiggerBossData *)func_80100094(arg0, 0))->options) BT_ILP32_ONLY(((DiggerBossData *)func_80100094(arg0, 0))->options.data) BT_IDO_ONLY((BtIntPtr)((DiggerBossData *)func_80100094(arg0, 0))->options.data);
     bzero(options, _gcnewoption_entrypoint_2());
     _gcnewoption_entrypoint_5(options, &_gcnewoption_entrypoint_35, 0, data->unk44, arg0->unk0);
     _gcnewoption_entrypoint_8(options, 3);
@@ -2006,7 +2013,7 @@ void chdiggerboss_entrypoint_2(s32 arg0, BtIntPtr arg1) {
     temp_v0 = func_80106790(arg1);
     sp1C = temp_v0;
     sp18 = func_80100094(temp_v0, 0);
-    temp_a0 = ((u8 *)func_80100094(sp1C, 0)) + 0x10C;
+    temp_a0 = ((u8 *)func_80100094(sp1C, 0)) + BT_LP64_ONLY(0x110) BT_ILP32_ONLY(0x10C) BT_IDO_ONLY(0x10C);
     if ((((Objboss_chdiggerboss_entrypoint_2_sp18 *)sp18)->unk40) == 2) {
         _gcnewoption_entrypoint_37(temp_a0, 1);
     }
