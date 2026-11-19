@@ -4,7 +4,7 @@
 void gcmapsects_lagoonbot_entrypoint_0(void) {
     gcmapsects_entrypoint_10(sizeof(lagoon_sections)/sizeof(*lagoon_sections));
     for(unsigned i=0;i<sizeof(lagoon_sections)/sizeof(*lagoon_sections);++i) {
-        const NativeMapSectionConfig *s=lagoon_sections+i;
+        const MapSectionConfig *s=lagoon_sections+i;
         gcmapsects_entrypoint_0(s->assets[0],s->assets[1],s->position,s->minimum,s->maximum,s->height);
     }
     for(unsigned i=0;i<sizeof(lagoon_links)/sizeof(*lagoon_links);++i)gcmapsects_entrypoint_3(lagoon_links[i][0],lagoon_links[i][1]);

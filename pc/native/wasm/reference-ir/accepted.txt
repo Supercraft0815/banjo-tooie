@@ -313,3 +313,11 @@ consumer in the original MIPS. The setter copies three floats in order
 to player->unkE4 + 9 from the second argument, as func_800EE7F8 did.
 The LP64 sanitizer probe also checks overlapping input and output.
 See n2-2026-11-18/current-position-camera-ir.log and current-position-host.log.
+
+2026-11-19  N1 Lagoon map sections and boot inflater
+gcmapsects_lagoontop_entrypoint_0 indexes five MapSectionConfig rows
+at stride 44. Its original pointer termination test and the five-iteration
+loop select the same ROM fields. bt_be_fixup still swaps the same 9,688
+distinct symbol/offset pairs after Splat splits and block renumbering.
+See n1-2026-11-18/lagoon-section-fields-proof.json and
+current-camera-lagoon-fixup-slots.json.

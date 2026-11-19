@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "mesh_effect_presets.inc"
 void func_800ED964(void *);
 
 typedef struct {
@@ -37,12 +37,12 @@ typedef struct {
 void func_800EC890(s32 arg0) 
 {
 }               typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk14; s16 unk18; s8 unk1A; s8 unk1B; s8 unk1C; u8 pad1D[0xC]; s8 unk29; u8 pad2A[0x1A]; f32 unk44; f32 unk48; s16 unk4C; s16 unk4E; } Obj1EC6180_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
-void func_800EC898(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
-    typedef struct { s16 map; s16 id; s16 scale; s16 offset; } Entry;
+void func_800EC898(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
+
     void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     s32 func_800EA05C();
-    extern Entry D_80123580[];
-    Entry *var_t0;
+
+    MeshEffectPreset *var_t0;
     s16 temp_v0_2;
     s16 var_v1;
     s32 temp_lo;
@@ -50,7 +50,7 @@ void func_800EC898(u8 *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
     temp_v0 = func_800EA05C();
     for (var_t0 = D_80123580; var_t0->map != 0; var_t0++) {
-        if (temp_v0 == var_t0->map && arg3 == var_t0->id) {
+        if (temp_v0 == var_t0->map && arg3 == var_t0->mesh) {
             break;
         }
     }

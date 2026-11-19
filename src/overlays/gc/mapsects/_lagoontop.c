@@ -2,9 +2,9 @@
 #include "native_map_sections.h"
 #include "native_lagoontop_data.inc"
 void gcmapsects_lagoontop_entrypoint_0(void) {
-    gcmapsects_entrypoint_10(sizeof(lagoon_sections)/sizeof(*lagoon_sections));
-    for(unsigned i=0;i<sizeof(lagoon_sections)/sizeof(*lagoon_sections);++i) {
-        const NativeMapSectionConfig *s=lagoon_sections+i;
+    gcmapsects_entrypoint_10(sizeof(lagoonTopSections)/sizeof(*lagoonTopSections));
+    for(unsigned i=0;i<sizeof(lagoonTopSections)/sizeof(*lagoonTopSections);++i) {
+        const MapSectionConfig *s=lagoonTopSections+i;
         gcmapsects_entrypoint_0(s->assets[0],s->assets[1],s->position,s->minimum,s->maximum,s->height);
     }
     for(unsigned i=0;i<sizeof(lagoon_links)/sizeof(*lagoon_links);++i)gcmapsects_entrypoint_3(lagoon_links[i][0],lagoon_links[i][1]);
@@ -86,8 +86,8 @@ void gcmapsects_lagoontop_entrypoint_1(NativeMap *arg0) {
 
 #else
 #include "common.h"
-
-void gcmapsects_lagoontop_entrypoint_0(void) { void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32); void _gcmapsects_entrypoint_1(s32, s32); void _gcmapsects_entrypoint_2(s32, s32); void _gcmapsects_entrypoint_3(s32, s32); void _gcmapsects_entrypoint_10(s32); void _gcmapsects_entrypoint_12(void (*)(u8 *)); void _gcmapsects_lagoontop_entrypoint_1(u8 *); extern s16 D_80800630_gcmapsects_lagoontop[]; extern s16 D_8080063C_gcmapsects_lagoontop[]; extern s16 D_80800648_gcmapsects_lagoontop[]; extern s16 D_8080070C_gcmapsects_lagoontop[]; extern s16 D_8080071C_gcmapsects_lagoontop[]; extern s32 D_80800720_gcmapsects_lagoontop; extern s32 D_80800724_gcmapsects_lagoontop[2]; s16 *section; s16 *scale; u32 limit; s32 i; s16 *rotation; _gcmapsects_entrypoint_10(5); i = 0; do { _gcmapsects_entrypoint_0(D_80800630_gcmapsects_lagoontop[i * 22 + 19], D_80800630_gcmapsects_lagoontop[i * 22 + 20], &D_80800630_gcmapsects_lagoontop[i * 22], &D_8080063C_gcmapsects_lagoontop[i * 22], &D_80800648_gcmapsects_lagoontop[i * 22], D_80800630_gcmapsects_lagoontop[i * 22 + 18]); i++; } while ((void *)&D_80800648_gcmapsects_lagoontop[i * 22] < (void *)D_80800724_gcmapsects_lagoontop); section = D_8080070C_gcmapsects_lagoontop; i = 0; do { _gcmapsects_entrypoint_3(section[0], section[1]); section += 2; i++; limit = (u32)i < 4; } while (limit); section = D_8080071C_gcmapsects_lagoontop; do { _gcmapsects_entrypoint_1(*section, 0); _gcmapsects_entrypoint_2(*section, 0); section++; } while ((void *)section != &D_80800720_gcmapsects_lagoontop); _gcmapsects_entrypoint_12(_gcmapsects_lagoontop_entrypoint_1); }
+#include "gc/map_section_config.h"
+void gcmapsects_lagoontop_entrypoint_0(void) { BT_NATIVE_ONLY(extern MapSectionConfig lagoonTopSections[5];) void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32); void _gcmapsects_entrypoint_1(s32, s32); void _gcmapsects_entrypoint_2(s32, s32); void _gcmapsects_entrypoint_3(s32, s32); void _gcmapsects_entrypoint_10(s32); void _gcmapsects_entrypoint_12(void (*)(u8 *)); void _gcmapsects_lagoontop_entrypoint_1(u8 *); extern s16 D_80800630_gcmapsects_lagoontop[]; extern s16 D_8080063C_gcmapsects_lagoontop[]; extern s16 D_80800648_gcmapsects_lagoontop[]; extern s16 D_8080070C_gcmapsects_lagoontop[]; extern s16 D_8080071C_gcmapsects_lagoontop[]; extern s32 D_80800720_gcmapsects_lagoontop; extern s32 D_80800724_gcmapsects_lagoontop[2]; s16 *section; s16 *scale; u32 limit; s32 i; s16 *rotation; _gcmapsects_entrypoint_10(5); i = 0; do { _gcmapsects_entrypoint_0(BT_DATA_FIELD(lagoonTopSections[i].assets[0], D_80800630_gcmapsects_lagoontop[i * 22 + 19]), BT_DATA_FIELD(lagoonTopSections[i].assets[1], D_80800630_gcmapsects_lagoontop[i * 22 + 20]), BT_DATA_FIELD(lagoonTopSections[i].position, &D_80800630_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].minimum, &D_8080063C_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].maximum, &D_80800648_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].height, D_80800630_gcmapsects_lagoontop[i * 22 + 18])); i++; } while (BT_DATA_FIELD(i < 5, (void *)&D_80800648_gcmapsects_lagoontop[i * 22] < (void *)D_80800724_gcmapsects_lagoontop)); section = D_8080070C_gcmapsects_lagoontop; i = 0; do { _gcmapsects_entrypoint_3(section[0], section[1]); section += 2; i++; limit = (u32)i < 4; } while (limit); section = D_8080071C_gcmapsects_lagoontop; do { _gcmapsects_entrypoint_1(*section, 0); _gcmapsects_entrypoint_2(*section, 0); section++; } while ((void *)section != &D_80800720_gcmapsects_lagoontop); _gcmapsects_entrypoint_12(_gcmapsects_lagoontop_entrypoint_1); }
 
 void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
     typedef struct {
@@ -172,9 +172,7 @@ void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
 
 #endif
 /* data_to_c.py: from asm/data/overlays/gc/mapsects/_lagoontop.data.s */
-s16 D_80800630_gcmapsects_lagoontop [6] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0x0) = { -14836, -24576, 17932, -24576, -14854, 0 };
-s16 D_8080063C_gcmapsects_lagoontop [6] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xC) = { -14714, 26112, 17826, -32768, -14753, 28672 };
-s16 D_80800648_gcmapsects_lagoontop [98] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0x18) = { 17700, -32768, 17978, -18432, 17332, -32768, -1, 1831, 0, 0, -14836, -24576, 17932, -24576, -14833, -16384, -14781, -21504, 17926, 24576, -14781, 20480, -14936, -16384, 17956, 4096, -14920, 24576, -1, 1844, 0, 0, -14836, -24576, 17658, 0, -15032, 0, -14779, -18432, -15353, 0, -14934, -30720, -14890, -16384, 17826, -32768, -15610, 0, 7500, 1832, 0, 0, -14933, -8192, 17558, 0, -14883, -8192, -14879, -6144, 17503, -16384, -14836, 21504, -15023, -4096, 17619, -16384, -14945, 26624, 7500, 1835, 0, 0, -14936, -16384, -15210, 0, 17558, 0, -14878, -22528, -15130, 0, -15359, 16384, -14972, -26624, -15642, 0, 17767, 16384, 7500, 1836, 0, 0 };
+#include "lagoon_top_sections.inc"
 s16 D_8080070C_gcmapsects_lagoontop [8] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xDC) = { 1, 0, 0, 2, 2, 4, 2, 3 };
 s16 D_8080071C_gcmapsects_lagoontop [2] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xEC) = { 3, 4 };
 s32 D_80800720_gcmapsects_lagoontop BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xF0) = -972206080;

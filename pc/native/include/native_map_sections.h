@@ -13,7 +13,7 @@ struct NativeMapSection {
     u8 flags,pinned[2];
     void *instances[2];
 };
-typedef struct {f32 position[3],minimum[3],maximum[3];s16 height;u16 assets[2];} NativeMapSectionConfig;
+#include "gc/map_section_config.h"
 void gcmapsects_entrypoint_0(s16,s16,const f32 *,const f32 *,const f32 *,f32);
 void gcmapsects_entrypoint_1(s16,s32);
 void gcmapsects_entrypoint_2(s16,s32);

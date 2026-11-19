@@ -337,6 +337,12 @@ SECTIONS
     {
         D_80801456_chjollyroger = D_80801448_chjollyroger + 0xE;
     }
+    .gcmapsects_lagoontop :
+    {
+        D_80800630_gcmapsects_lagoontop = lagoonTopSections + 0x0;
+        D_8080063C_gcmapsects_lagoontop = lagoonTopSections + 0xC;
+        D_80800648_gcmapsects_lagoontop = lagoonTopSections + 0x18;
+    }
     .chaliendad :
     {
         D_808026C0_chaliendad = D_808026BC_chaliendad + 0x4;
@@ -355,3 +361,11 @@ D_8012AA04 = 0x8012AA04;
 D_8007B038 = D_80079FA0 + 0x1098; /* end of the six music players (func_80016C00) */
 D_8007B2EC = 0x8007B2EC;
 D_8007DB54 = 0x8007DB54;
+
+/* Assembly labels within the boot inflater tables. */
+boot_mask_bits = boot_inflate_tables + 0x0;
+boot_cplens = boot_inflate_tables + 0x22;
+boot_cpdist = boot_inflate_tables + 0x60;
+boot_border = boot_inflate_tables + 0x9C;
+boot_cplext = boot_inflate_tables + 0xAF;
+boot_cpdext = boot_inflate_tables + 0xCE;

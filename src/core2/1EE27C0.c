@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "1EE27C0_data.inc"
 OSThread *func_80108ED0(void)
 {
     extern u8 D_801245D0[];
@@ -222,7 +222,7 @@ OSThread *func_80109518(void)
 }
 
 s32 func_80109524(s32 arg0) {
-    extern s16 D_801245A0[8][8];
+    extern s16 D_801245A0[3][8];
     return D_801245A0[arg0][0];
 }    typedef struct { u8 pad0[0x24]; u32 unk24; } Obj1EE27C0_arg2; /* offsets.py genstruct: fields from raw offsets on arg2; rename once understood */
 

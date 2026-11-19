@@ -2887,3 +2887,21 @@ in den Actorflags bei Retrace 5.084. Der zuvor gemessene Positionsfehler
 bei Retrace 4.842 ist behoben. Belege unter
 `build/acceptance/n2-2026-11-18/current-position-camera*`,
 `current-position-host.log` und `oracle-position-camera*.jsonl`.
+
+## 2026-11-19 — N1, Boot-Inflater, Kamerafärbung und Lagunenkarten
+
+Der Boot-Inflater hat zwei Datenwörter und sechs Huffman-Tabellen mit
+den ursprünglichen Adressen. Die Kamerafärbung, drei Mesh-Effekte und
+24 Animations-IDs verwenden C-Daten. Der strenge Scan sinkt von 218
+auf 206 offene Einträge. Die fünf Kartenabschnitte des oberen
+Lagunenteils haben nun je einen 44-Byte-Datensatz. Der Instrumentierungslauf
+mit `worlds` führt alle drei zuvor erfassten Zugriffe weiter aus.
+Sie liegen jetzt innerhalb des zugehörigen Datensatzes. Die 220 Bytes
+aller fünf Datensätze stimmen mit der ROM überein.
+
+Alle 9.688 Wörter der Byteorder-Korrektur sind vor und nach der
+Änderung denselben Symbolen und Offsets zugeordnet. Geprüft sind
+74 Replays mit 447.849 Retraces, elf Gastsuiten, 62 native
+Sanitizertests, 16.401 Funktionen und beide Original-IDO-ROMs.
+Belege unter `build/acceptance/n1-2026-11-18/current-camera-lagoon*`
+und in `lagoon-section-fields-proof.json`.
