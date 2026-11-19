@@ -181,7 +181,7 @@ void gcgoto_entrypoint_6(s32 arg0, s32 arg1) {
     func_8080011C_gcgoto(arg0, arg1, 0, 1);
 }
 
-void gcgoto_entrypoint_7(s32 arg0, s32 arg1) {
+void gcgoto_entrypoint_7(Prop *arg0, Unk80132ED0 *arg1) {
 }
 /* extern */
 
@@ -194,37 +194,37 @@ void gcgoto_entrypoint_8(s32 arg0, s32 arg1) {
         func_800A7AD4(1, 2);
         func_800FC1CC(0, 0x320);
         func_800FE3EC();
-        gcgoto_entrypoint_7(arg0, arg1);
+        gcgoto_entrypoint_7((Prop *)(BtIntPtr)arg0, (Unk80132ED0 *)(BtIntPtr)arg1);
     }
 }
 
 /* extern */
 
-void gcgoto_entrypoint_9(BtIntPtr arg0, s32 arg1) {
+void gcgoto_entrypoint_9(Prop *arg0, Unk80132ED0 *arg1) {
     s32 func_8008FD48();
     if (func_8008FD48() == 8) {
-        func_808003D0_gcgoto(arg0, 0xBC02);
+        func_808003D0_gcgoto(arg0->position, 0xBC02);
     }
 }
 
 /* extern */
 
-void gcgoto_entrypoint_10(BtIntPtr arg0, s32 arg1) {
+void gcgoto_entrypoint_10(Prop *arg0, Unk80132ED0 *arg1) {
     s32 func_8008FD48();
     if (func_8008FD48() == 8) {
-        func_808003D0_gcgoto(arg0, 0xC403);
+        func_808003D0_gcgoto(arg0->position, 0xC403);
     }
 }
 
-void gcgoto_entrypoint_11(BtIntPtr arg0, u32 arg1)
+void gcgoto_entrypoint_11(Prop *arg0, Unk80132ED0 *arg1)
 {
     s32 sp1C;
     s32 sp18;
 
-    _sutempleboss_entrypoint_0(arg0, &sp1C, &sp18);
+    _sutempleboss_entrypoint_0((BtUIntPtr)arg0, &sp1C, &sp18);
     if (sp1C != 0)
     {
-        func_808003D0_gcgoto(arg0, (sp1C << 8) + sp18);
+        func_808003D0_gcgoto(arg0->position, (sp1C << 8) + sp18);
     }
 }
 

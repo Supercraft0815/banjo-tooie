@@ -61,6 +61,7 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/core2/dialog_render_data.c"
     "${BT_ROOT}/src/core2/player_motion_data.c"
     "${BT_ROOT}/src/core2/face_culling_data.c"
+    "${BT_ROOT}/src/core2/particle_draw_data.c"
     "${BT_ROOT}/src/core1/trig_constants.c"
     "${BT_ROOT}/src/core1/trig_tables.c"
     "${BT_ROOT}/src/core2/1EB5E70_geometry.inc"
@@ -399,6 +400,18 @@ add_test(NAME native_inventory_counters COMMAND bt_native_inventory_counters_tes
 add_executable(bt_native_particle_registry_test tests/particle_registry.c
     "${BT_ROOT}/src/core2/1E8DFA0.c" "${BT_ROOT}/src/core2/1E93440.c")
 add_executable(bt_native_transition_registry_test tests/transition_registry.c "${BT_ROOT}/src/core2/1EA1DA0.c")
+add_executable(bt_native_core1_sound_data_test tests/core1_sound_data.c
+    "${BT_ROOT}/src/core1/1E389F0.c" "${BT_ROOT}/src/core1/1E38970.c"
+    "${BT_ROOT}/src/core1/1E3DEF0.c")
+target_compile_options(bt_native_core1_sound_data_test PRIVATE -ffunction-sections -fdata-sections)
+target_link_libraries(bt_native_core1_sound_data_test PRIVATE bt_native_options)
+if(APPLE)
+    target_link_options(bt_native_core1_sound_data_test PRIVATE -Wl,-dead_strip)
+else()
+    target_link_options(bt_native_core1_sound_data_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_core1_sound_data COMMAND bt_native_core1_sound_data_test)
+
 add_executable(bt_native_timer_queue_test tests/timer_queue.c "${BT_ROOT}/src/core2/1EA1DA0.c")
 target_link_libraries(bt_native_particle_registry_test PRIVATE bt_native_options)
 target_link_libraries(bt_native_transition_registry_test PRIVATE bt_native_options)

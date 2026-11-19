@@ -11,7 +11,7 @@ void func_800BA670(BtIntPtr, s32);
 void func_800BA75C(BtIntPtr, f32[3]);
 void func_800BA77C(BtIntPtr, s16, s16, s16);
 void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
-void func_800BAB80(BtIntPtr, f32 *);
+#include "core2/particle_colors.h"
 BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
 
 #endif // __CORE2_1E93440_H__

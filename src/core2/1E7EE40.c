@@ -4,17 +4,17 @@
 #include "memory.h"
 
 
-void func_800A5550(void *event,void *data) {
+void func_800A5550(Prop *event, Unk80132ED0 *data) {
     s16 *func_800A93E4(BtIntPtr);
     PlayerState *func_80110014(s16 *);
     void _ncbaspline_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2);
-    _ncbaspline_entrypoint_5(func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),(BtIntPtr)event,(BtIntPtr)data);
+    _ncbaspline_entrypoint_5(func_80110014(func_800A93E4((data->unk18 >> 5) & 0x7FF)),(BtIntPtr)event,(BtIntPtr)data);
 }
-void func_800A5598(void *event,void *data) {
+void func_800A5598(Prop *event, Unk80132ED0 *data) {
     s16 *func_800A93E4(BtIntPtr);
     PlayerState *func_80110014(s16 *);
     void _ncbaspline_entrypoint_6(BtIntPtr arg0, void *arg1, BtIntPtr arg2);
-    _ncbaspline_entrypoint_6((BtIntPtr)func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),event,(BtIntPtr)data);
+    _ncbaspline_entrypoint_6((BtIntPtr)func_80110014(func_800A93E4((data->unk18 >> 5) & 0x7FF)),event,(BtIntPtr)data);
 }
 void func_800A55E0(void) { _cadbmgrDll_entrypoint_0(&D_80119540,0x7D); }
 void func_800A5608(s32 maximum) { _cadbmgrDll_entrypoint_0(&D_80119540,maximum); }
@@ -63,20 +63,20 @@ BT_IDO_ONLY(extern s32 D_80119540;)
 
 /* extern */
 
-void func_800A5550(s32 arg0, void *arg1) {
+void func_800A5550(Prop *arg0, Unk80132ED0 *arg1) {
     s32 _ncbaspline_entrypoint_5(s32, s32, void *);
     s32 func_800A93E4(u32);
     s32 func_80110014(s32);
-    _ncbaspline_entrypoint_5(func_80110014(func_800A93E4((u32) (*(u16 *)((s8 *)(arg1) + 0x1A)) >> 5)), arg0, arg1);
+    _ncbaspline_entrypoint_5(func_80110014(func_800A93E4(BT_DATA_FIELD((arg1->unk18 >> 5) & 0x7FF, (u32)(*(u16 *)((s8 *)arg1 + 0x1A)) >> 5))), (BtIntPtr)arg0, arg1);
 }
 
 /* extern */
 
-void func_800A5598(s32 arg0, void *arg1) {
+void func_800A5598(Prop *arg0, Unk80132ED0 *arg1) {
     s32 _ncbaspline_entrypoint_6(s32, s32, void *);
     s32 func_800A93E4(u32);
     s32 func_80110014(s32);
-    _ncbaspline_entrypoint_6(func_80110014(func_800A93E4((u32) (*(u16 *)((s8 *)(arg1) + 0x1A)) >> 5)), arg0, arg1);
+    _ncbaspline_entrypoint_6(func_80110014(func_800A93E4(BT_DATA_FIELD((arg1->unk18 >> 5) & 0x7FF, (u32)(*(u16 *)((s8 *)arg1 + 0x1A)) >> 5))), (BtIntPtr)arg0, arg1);
 }
 
 /* extern */

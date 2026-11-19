@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core1/sfx_player.h"
 
 typedef struct {
     u8 velocityMin, velocityMax, keyMin, keyMax, keyBase;
@@ -28,7 +29,7 @@ void func_800205D0(void *arg0) {
     extern struct SfxState *D_800411D0;
     extern struct SfxState *D_800411D4;
     extern struct SfxState *D_800411D8;
-    extern s16 D_800411E0;
+    BT_IDO_ONLY(extern s16 D_800411E0;)
     u32 mask;
 
     mask = osSetIntMask(1U);
@@ -50,7 +51,7 @@ void func_800205D0(void *arg0) {
         D_800411D8 = arg0;
     }
     if (*(u8 *)((u8 *)arg0 + 0x44) & 4) {
-        D_800411E0 -= 1;
+        BT_DATA_FIELD(sfx_voice_count.active, D_800411E0) -= 1;
     }
     *(u8 *)((u8 *)arg0 + 0x45) = 0;
     if (*(void ***)((u8 *)arg0 + 0x30) != NULL) {
@@ -251,6 +252,20 @@ void func_80020CA0(u8 arg0, u16 arg1) {
     osSetIntMask(mask);
 }
 
+#ifdef BT_NATIVE
+void func_80020D80(BtIntPtr arg0, BtIntPtr arg1) {
+    s32 func_80020F70(BtIntPtr);
+    extern void *D_800411F0;
+    extern void *D_800411F4;
+    if (D_800411F0 == NULL) {
+        D_800411F0 = (void *)arg0;
+        if (D_800411F4 == NULL) {
+            D_800411F4 = D_800411F0;
+            func_80020F70(arg1);
+        }
+    }
+}
+#else
 void func_80020D80(s32 arg0, s32 arg1) {
     s32 func_80020F70(BtIntPtr);
     extern s32 D_800411F0;
@@ -263,7 +278,20 @@ void func_80020D80(s32 arg0, s32 arg1) {
         }
     }
 }
+#endif
 
+#ifdef BT_NATIVE
+void func_80020DEC(s32 arg0) {
+    void func_80027200(void);
+    extern void *D_800411F0;
+    extern void *D_800411F4;
+    if (D_800411F0 != NULL) {
+        func_80027200();
+        D_800411F0 = NULL;
+        D_800411F4 = NULL;
+    }
+}
+#else
 void func_80020DEC(s32 arg0) {
     void func_80027200(void);
     extern s32 D_800411F0;
@@ -274,3 +302,4 @@ void func_80020DEC(s32 arg0) {
         D_800411F4 = 0;
     }
 }
+#endif

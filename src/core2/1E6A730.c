@@ -1,5 +1,9 @@
 #include "core2/1E6A730.h"
 
+s16 D_80117DB0[16] BT_DATA(4, player_particle_commands, 0) = {
+    44, -15, 0, -15, 15, 50, 15, 282, 0
+};
+
 s32 func_80090E40(void)
 {
 	return 0x18;
@@ -11,9 +15,8 @@ void func_80090E48(void *arg0) {
     void func_80092E5C(PlayerState *, f32 *);
     void func_8009DF94(PlayerState *, s32, f32, s32);
     BtIntPtr func_8009FBB0(PlayerState *, f32[3], f32);
-    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
     f32 func_800DC178(f32, f32);
-    extern s32 D_80117DB0;
 
 
     f32 sp34[3];
@@ -24,7 +27,7 @@ void func_80090E48(void *arg0) {
     } else {
         func_80092DE4(arg0, sp34);
     }
-    func_800BABB8(func_8009FBB0(arg0, sp34, 0.0f), 0, 0, 1.0f, &D_80117DB0);
+    func_800BABB8(func_8009FBB0(arg0, sp34, 0.0f), 0, 0, 1.0f, D_80117DB0);
     temp_v1 = (((Obj1E6A730_arg0 *)arg0)->unk30);
     if (((((Obj1E6A730_func_80090E48_temp_v1 *)temp_v1)->unkF) != 0) && ((((Obj1E6A730_func_80090E48_temp_v1 *)temp_v1)->unk0) == 0.0f)) {
         (((Obj1E6A730_func_80090E48_temp_v1 *)temp_v1)->unk0) = (f32) 0.12f;

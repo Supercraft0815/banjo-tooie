@@ -3076,3 +3076,23 @@ Der LP64-Test prüft 75 Zustandswechsel und 150 Flagabfragen. Der Originalbuild
 bestätigt alle 16.401 Funktionen und beide ROMs. Belege unter
 `build/acceptance/n1-2026-11-18/baddie-independent-oracle/` und
 `current-baddie-states*`.
+
+### 2026-11-19 – Gemeinsame Spieler-, Effekt-, Trigger- und Audiodaten
+
+Der strenge Gastscan sinkt von 55 auf 16 Assembler-Dateneinträge. Der
+Quellstand umfasst Augenbewegungen und Partikelskripte, das Zeichnen der
+Partikel, den Schatten-Actor, Trefferreaktionen, die 86 Größenabfragen für
+Spielerkomponenten und die beiden Trigger-Tabellen mit je 80 Einträgen.
+Die Audioverwaltung verwendet die vollständige Tabelle mit 128 Panoramawerten.
+Der Synthesizer führt seine Audioplayer und physischen Stimmen über typisierte
+Listen. Der Host-Test prüft beide Entnahmelisten und die Verkettung eines
+neuen Players mit der richtigen Abtastposition.
+
+Im 64-Bit-Test bleiben Actor-, Marker- und Komponentenzeiger oberhalb von
+4 GiB erhalten. Geprüft wurden unter anderem 1.024 Actor-Feldänderungen, alle
+86 Größenabfragen jeweils mit kaltem und warmem Cache und alle 160
+Trigger-Einträge. Der integrierte Stand besteht 11 Gastsuiten, 74 Fälle mit
+447.849 Retraces und 64 Sanitizertests. Alle 9.703 korrigierten Zeigerwörter,
+16.401 Originalfunktionen und die beiden ROM-Abbilder sind geprüft. Belege
+unter `build/acceptance/n1-2026-11-18/current-baddie-sfx*` sowie den dortigen
+`current-*-readers.json`.

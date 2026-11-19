@@ -87,7 +87,11 @@ void func_8001268C(void) {
         s16 unk8;
         struct AudioInfo *self;
     };
+#ifdef BT_NATIVE
+    void func_80020D80(BtIntPtr, BtIntPtr);
+#else
     void func_80020D80(s32, s32);
+#endif
     void func_80020E40(ALLink *, ALLink *);
     s32 func_80020EE4(s32, s32, void *, s32, s32);
     void func_800128C0(void *);
@@ -124,7 +128,11 @@ void func_8001268C(void) {
     D_8006A1A8.params = BT_DATA_FIELD(core1_audio_config.effect_params, D_8003CA44);
     D_8006A1A8.heap = &D_80046A78;
     D_8006A1A8.outputRate = osAiSetFrequency(22050);
+#ifdef BT_NATIVE
+    func_80020D80((BtIntPtr)&D_8006A158, (BtIntPtr)&D_8006A1A8);
+#else
     func_80020D80((s32)&D_8006A158, (s32)&D_8006A1A8);
+#endif
     ((Obj1E2A0E0_D_80069A40 *)&D_80069A40)->unk4 = 0;
     D_80069A40 = 0;
     for (i = 0; i < 89; i++) {

@@ -1,4 +1,5 @@
 #include "core2/1E67DA0.h"
+#include "marker_hit_callbacks.h"
 
 s32 func_8008E4B0(void) {
     return sizeof(BaUnknownC);
@@ -49,7 +50,7 @@ void func_8008E530(PlayerState *self, Unk80132ED0 *marker) {
 void func_8008E618(PlayerState *self) {
     struct Entry {
         u8 pad0[8];
-        u8 *(*callback)(void);
+        OSThread *(*callback)(void);
         u8 padC[14];
         BT_BITFIELD_ORDER(u16 player : 11, u16 low1A : 5);
         BT_BITFIELD_ORDER(u16 low1A : 5, u16 player : 11);
@@ -60,15 +61,25 @@ void func_8008E618(PlayerState *self) {
     };
     void func_8009C128(PlayerState *, f32[3]);
     void *func_800EBFD4(f32 *, s32, u32);
-    u8 *func_8008ED70(void);
+    OSThread *func_8008ED70(void);
     void baflag_clear(PlayerState *, int);
     f32 position[3];
 
     func_8009C128(self, position);
     *(struct Entry **)self->unkC = func_800EBFD4(position, 1, 0);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    {
+        void func_800EC340(void *, s32);
+        Unk80132ED0 *marker = *(Unk80132ED0 **)self->unkC;
+        marker->unk28 |= 1u << 10;
+        marker->callback = func_8008ED70;
+        func_800EC340(marker, self->unk184);
+    }
+#else
     (*(struct Entry **)self->unkC)->flag = 1;
     (*(struct Entry **)self->unkC)->callback = func_8008ED70;
     (*(struct Entry **)self->unkC)->player = self->unk184;
+#endif
     baflag_clear(self, 8);
     self->unkC->unk18 = -1;
 } typedef struct { u8 pad0[0xC]; union { s32 * unkC; void * unkC_voidp; }; u8 pad10[0xA]; u16 unk1A; } Obj1E67DA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
@@ -212,7 +223,7 @@ s32 func_8008E9B8(PlayerState *arg0, s32 **arg1) {
     return 3;
 }
 
-void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
+void func_8008E9E4(void *arg0, void *arg1, s32 arg2) {
     s32 _glhittableDll_entrypoint_5(s32);
     s32 _glhittableDll_entrypoint_6(s32);
     s32 _glhittableDll_entrypoint_8();
@@ -256,7 +267,7 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
     sp30 = _glhittableDll_entrypoint_8(arg2);
     sp2C = 0;
     sp24 = func_80106790((Unk80132ED0 *)arg1);
-    sp28 = (u32)*&((Obj1E67DA0_arg0 *)arg0)->unk1A >> 5;
+    sp28 = MARKER_HIT_LAYOUT((((Unk80132ED0 *)arg0)->unk18 >> 5) & 0x7FF, (u32)*&((Obj1E67DA0_arg0 *)arg0)->unk1A >> 5);
     sp20 = func_800F53D0(sp28);
     if (_glhittableDll_entrypoint_9(arg2) != 0) {
         baflag_set(sp20, 8);
@@ -286,7 +297,7 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
         if (sp2C != 2 || sp1C != 0) {
             switch (sp2C) {
             case 0:
-                func_8009AD14(sp20, arg1);
+                func_8009AD14(sp20, (BtIntPtr)arg1);
                 func_8009E7C8(sp20, 0x72);
                 break;
             case 1:
@@ -294,7 +305,7 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
                 if ((result = func_8010108C(sp24, 0x50, (sp34 << 16) | (sp28 & 0xFFFF))) > 0) {
                     sp34 = func_800F0D90(result - 1, 0, 4);
                 }
-                func_800F76B0(sp28, sp34 + 8, arg1);
+                func_800F76B0(sp28, sp34 + 8, (BtIntPtr)arg1);
                 _bamotor_entrypoint_1(sp20, 0.8f, (f32)sp34 + 0.2f, 0.3f);
                 break;
             case 2:
@@ -302,7 +313,7 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
                 if ((result = func_8010108C(sp24, 0x50, (sp34 << 16) | (sp28 & 0xFFFF))) > 0) {
                     sp34 = func_800F0D90(result - 1, 0, 4);
                 }
-                func_800F79DC(sp28, sp34 + 3, arg1);
+                func_800F79DC(sp28, sp34 + 3, (BtIntPtr)arg1);
                 _bamotor_entrypoint_1(sp20, 1.0f, (f32)sp34 + 0.3f, 0.5f);
                 if (*(s32 *)((u8 *)func_80100368(sp24) + 0x24) & 0x03000000) {
                     func_801096C8(sp24, **(s32 **)((u8 *)sp20 + 0xC));
@@ -313,11 +324,14 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
     }
 }
 
-extern u8 D_80117CAC[];
+u32 D_80117CA0[3] BT_DATA(4, player_impact, 0) = {0};
+MarkerHitMethods D_80117CAC BT_DATA(4, player_impact, 0xC) = {
+    {NULL, NULL, NULL}, func_8008E9E4, NULL
+};
 
-u8 *func_8008ED70(void)
+OSThread *func_8008ED70(void)
 {
-    return D_80117CAC;
+    return (OSThread *)&D_80117CAC;
 }
 
 #ifdef BT_NATIVE

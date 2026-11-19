@@ -429,3 +429,6 @@ D_8011951C = player_form_data + 0x31C;
 D_80119540 = player_form_data + 0x340;
 D_80117F02 = player_node_mapping + 2;
 D_80123E5E = D_80123E40 + 0x1E;
+D_8011A5C2 = particle_emitter_settings + 2;
+D_8004138E = D_80041290 + 0xFE;
+D_800411E0 = sfx_voice_count;

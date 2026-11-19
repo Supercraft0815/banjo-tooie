@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 extern u16 D_80804FC0_chstoneballcontrol[10];
 typedef struct { f32 v[3]; } StoneballVector;
 void func_80801BE0_chstoneballcontrol(Actor *);
@@ -47,9 +48,8 @@ u8 D_8080511C_chstoneballcontrol[] = {
     0xFF, 0xFF, 0xFF, 0xC8,
 };
 
-u32 D_80805120_chstoneballcontrol[] = {
-    0xFFFFFFC8, 0x000000FF, 0x000000FF, 0x000000FF,
-    0x000000C8,
+struct { u8 color[4]; s32 channels[4]; } D_80805120_chstoneballcontrol = {
+    {255, 255, 255, 200}, {255, 255, 255, 200}
 };
 
 s32 D_80805134_chstoneballcontrol[] = {
@@ -138,8 +138,8 @@ u32 D_808053A4_chstoneballcontrol[] = {
 
 StoneballVector D_8080540C_chstoneballcontrol = {{0.0f, 0.0f, 0.0f}};
 
-s32 D_80805418_chstoneballcontrol[] = {
-    0xFFFFFFC8,
+u8 D_80805418_chstoneballcontrol[4] = {
+    255, 255, 255, 200,
 };
 
 StoneballVector D_8080541C_chstoneballcontrol = {{0.0f, 0.0f, 0.0f}};
@@ -1093,7 +1093,7 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     void _subaddiefade_entrypoint_3(Actor *);
     void _sukickball_entrypoint_11(u8 *, s32);
     s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
-    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+
     void func_800F4F98(s32, void *);
     void *func_80100094(Actor *, u32);
     s32 func_80101FDC(u8 *, s32);
@@ -1129,7 +1129,7 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 6) {
         func_808024F8_chstoneballcontrol(arg0);
         _subaddiefade_entrypoint_3(arg0);
-        func_800B4470(arg0 + 4, 0, D_8080511C_chstoneballcontrol, 1, 0.75f, 0.0f, 0x7D, 0xFA, 0);
+        func_800B4470((f32 *)(arg0 + 4), 0, D_8080511C_chstoneballcontrol, 1, 0.75f, 0.0f, 0x7D, 0xFA, 0);
         kind = *(u32 *)(*(u8 **)arg0 + 0x24) >> 22;
         if (kind != 0x254) {
             if (kind == 0x267) {
@@ -1180,7 +1180,7 @@ void func_80801BE0_chstoneballcontrol(Actor *arg0) {
     f32 func_800137C4(void);
     void func_8008FB58(f32 *, f32, f32);
     s32 func_80090178(s32);
-    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     f32 func_800DC0C0(void);
@@ -1269,7 +1269,7 @@ void func_80801BE0_chstoneballcontrol(Actor *arg0) {
                 func_800EE7F8((f32 *)arg0->actorData, carrier->position);
             }
             if (func_800EFBFC(oldPosition, arg0->position) > 25.0f && func_800DC0C0() < 0.1f) {
-                func_800B4470((u8 *)oldPosition, 0, D_80805120_chstoneballcontrol, 1, 0.75f, 0.0f, 75, 150, 0);
+                func_800B4470(oldPosition, 0, D_80805120_chstoneballcontrol.color, 1, 0.75f, 0.0f, 75, 150, 0);
             }
             func_800D9078((f32 *)data);
             func_80803148_chstoneballcontrol((u8 *)arg0);
@@ -1297,7 +1297,7 @@ void func_80801BE0_chstoneballcontrol(Actor *arg0) {
             }
             func_80803148_chstoneballcontrol((u8 *)arg0);
             if (func_800DC0C0() < 0.15f && ((f32 *)arg0->actorData)[3] > 120.0f) {
-                func_800B4470((u8 *)arg0->position, 0, D_80805120_chstoneballcontrol, 1, 0.75f, 0.0f, 50, 100, 0);
+                func_800B4470(arg0->position, 0, D_80805120_chstoneballcontrol.color, 1, 0.75f, 0.0f, 50, 100, 0);
             }
             func_808023AC_chstoneballcontrol((u8 *)arg0);
             break;
@@ -1896,7 +1896,7 @@ void func_80803724_chstoneballcontrol(Actor *arg0) {
     void _sukickball_entrypoint_16(s32, f32 *);
     void _sukickball_entrypoint_2(Actor *, f32, f32);
     s32 _sukickball_entrypoint_5(Actor *, f32 *);
-    void func_800B4470(u8 *, s32, void *, s32, f32, f32, s32, s32, s32);
+
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);
@@ -1955,7 +1955,7 @@ void func_80803724_chstoneballcontrol(Actor *arg0) {
                 anctrl_setPlaybackType(func_80104248(arg0), 3);
                 arg0->unk50 = 1.0f;
                 ((BallMotion *)arg0->actorData)->speed = 1050.0f;
-                func_800B4470((u8 *)arg0->position, 0, D_80805418_chstoneballcontrol, 1, 0.75f, 0, 125, 250, 0);
+                func_800B4470(arg0->position, 0, D_80805418_chstoneballcontrol, 1, 0.75f, 0, 125, 250, 0);
             }
         } else if (0 != arg0->unk50) {
             arg0->unk50 += sp5C;

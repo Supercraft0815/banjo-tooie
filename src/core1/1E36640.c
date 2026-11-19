@@ -1,7 +1,5 @@
 #include "common.h"
-
-
-
+#include "core1/sfx_player.h"
 
 typedef struct {
     u8 velocityMin;
@@ -49,18 +47,10 @@ typedef struct {
     union { s32 data; f32 pitch; } value;
     s32 padC;
 } SfxEvent;
-typedef struct {
-    u8 pad0[0x14];
-    ALEventQueue queue;
-    u8 pad28[0x1C];
-    s32 maxVoices;
-    s32 frameTime;
-    s32 pad4C;
-    s32 currentTime;
-} SfxPlayer;
+
 extern SfxState *D_800411D4;
 extern SfxPlayer *D_800411DC;
-extern s16 D_800411E0;
+BT_IDO_ONLY(extern s16 D_800411E0;)
 extern struct {u8 pad0[0x3C];s32 numFxBusses;} *D_800411F4;
 extern s16 *D_8007EA24;
 void func_8001EE34(SfxEvent *);
@@ -82,7 +72,7 @@ void func_8001EB10(s32 *arg0) {
     BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
     void func_800263C0(ALEventQueue *, ALEventListItem *, s32);
     s32 func_8002645C(ALEventQueue *, SfxEvent *);
-    void func_800267F0(s32 *);
+    void func_800267F0(ALPlayer *);
     s32 func_8001ED68(void *);
     extern SfxState *D_800411D8;
     u32 i;
@@ -106,10 +96,10 @@ void func_8001EB10(s32 *arg0) {
     for (i = 0; i < *(u16 *)&arg0[4]; i++) {
         D_8007EA24[i] = 0x7FFF;
     }
-    *(s32 *)D_800411DC = 0;
-    *(s32 (**)(void *))((u8 *)D_800411DC + 8) = func_8001ED68;
-    *(SfxPlayer **)((u8 *)D_800411DC + 4) = D_800411DC;
-    func_800267F0((s32 *)D_800411DC);
+    D_800411DC->player.next = NULL;
+    D_800411DC->player.handler = func_8001ED68;
+    D_800411DC->player.clientData = D_800411DC;
+    func_800267F0(&D_800411DC->player);
     event.type = 0x20;
     func_80026500(&D_800411DC->queue, &event, D_800411DC->frameTime, 1);
     D_800411DC->pad4C = func_8002645C(&D_800411DC->queue, (SfxEvent *)D_800411DC->pad28);
@@ -186,7 +176,7 @@ void func_8001EE34(SfxEvent *arg0) {
         config.fxBus = (s16) state->fxBus;
         config.priority = (s16) state->priority;
         config.unityPitch = 0;
-        atLimit = D_800411E0 >= D_800411DC->maxVoices;
+        atLimit = BT_DATA_FIELD(sfx_voice_count.active, D_800411E0) >= D_800411DC->maxVoices;
         if ((atLimit == 0) || (state->flags & 0x10)) {
             allocated = func_800268D0(&state->voice, &config);
         }
@@ -236,7 +226,7 @@ void func_8001EE34(SfxEvent *arg0) {
         fxMix |= state->fxMix & 0x80;
         func_80026CB0(&state->voice, (ALWaveTable *) &sound->pad16[2], state->pitchRatio * state->pitch, (s16) volume, (u8) (s32) pan, (u8) fxMix, 0U, 0.0f, 0U, time);
         state->phase = 1;
-        D_800411E0 += 1;
+        BT_DATA_FIELD(sfx_voice_count.active, D_800411E0) += 1;
         if (!(state->flags & 2)) {
             if (time == 0) {
                 state->envelopeVolume = (s16) sound->decayVolume;

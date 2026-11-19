@@ -201,7 +201,7 @@ void _chweather_entrypoint_7();
 void _chshockjump_entrypoint_0();
 void _chbeehive_entrypoint_0();
 void _chzubba_entrypoint_0();
-void func_800A7168();
+ActorData *func_800A7168(void);
 void _chquizremotectrl_entrypoint_0();
 void _chfootwear_entrypoint_0();
 void _chglowbo_entrypoint_0();

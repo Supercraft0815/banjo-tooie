@@ -2,23 +2,23 @@
 #include "1EE27C0_data.inc"
 OSThread *func_80108ED0(void)
 {
-    extern u8 D_801245D0[];
 
-    return (OSThread *) D_801245D0;
+
+    return (OSThread *)&D_801245D0;
 }
 
 OSThread *func_80108EDC(void)
 {
-    extern u8 D_801245E4[];
 
-    return (OSThread *) D_801245E4;
+
+    return (OSThread *)&D_801245E4;
 }
 
 OSThread *func_80108EE8(void)
 {
-    extern u8 D_801245F8[];
 
-    return (OSThread *) D_801245F8;
+
+    return (OSThread *)&D_801245F8;
 }                   typedef struct { u8 pad0[0x4]; s32 * unk4; u16 unk8; u8 padA[0x5C]; u16 unk66; u8 pad68[0x2A]; s16 unk92; } Obj1EE27C0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_80108EF4(void *arg0, s32 arg1) {
@@ -83,7 +83,7 @@ void func_80108F08(void *arg0, void *arg1, s32 arg2) {
     void func_800C4B7C(s32);
     s32 func_8010D930(s32 arg0, s32 arg1, f32 *arg2, s32 *arg3);
     void _subaddiejoy_entrypoint_10(void *, f32, f32);
-    extern s32 D_8012460C;
+
     HitActor *actor;
     s32 effect;
     s32 bounce;
@@ -199,7 +199,7 @@ void func_80108F08(void *arg0, void *arg1, s32 arg2) {
             if (part && bounce) {
                 sound = actor->id == 0x31E ? 0x41F : 0x415;
                 func_800C4B7C(sound);
-                func_8010D930(1, actor->flag, actor->position, &D_8012460C);
+                func_8010D930(1, actor->flag, actor->position, (s32 *)D_8012460C);
                 if (func_80102FA0(flags, 0x02000000) || func_80102FA0(flags, 0x01000000)) {
                     _subaddiejoy_entrypoint_10(actor, 1.0f, 0.25f);
                 }
@@ -210,13 +210,13 @@ void func_80108F08(void *arg0, void *arg1, s32 arg2) {
 
 void func_801094E0(f32 *arg0, f32 arg1) {
     BtIntPtr func_800BBCB8(f32 *arg0, f32 *arg1, f32 arg2, s32 arg3, s32 *arg4);
-    extern s32 D_8012461C;
-    func_800BBCB8(arg0, (BtIntPtr) arg0, arg1, 3, &D_8012461C);
+
+    func_800BBCB8(arg0, arg0, arg1, 3, (s32 *)D_8012461C);
 }
 
 OSThread *func_80109518(void)
 {
-    extern u8 D_8012464C[];
+
 
     return (OSThread *) D_8012464C;
 }
@@ -301,10 +301,10 @@ void func_80109704(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 ar
 }
 
 void func_80109748(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6, s32 arg7) {
-    void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
+
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
-    extern f32 D_80124688[];
+
     f32 spA4[3];
     f32 sp98[3];
     s32 i;
@@ -559,30 +559,30 @@ void func_80109F08(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80109F18(s32 arg0, volatile s32 arg1) {
-    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
-    func_8010114C(arg0, 0x3E, arg1);
+void func_80109F18(void *marker, void *volatile other) {
+
+    func_8010114C(BT_DATA_FIELD(marker, (s32)marker), 0x3E, (BtUIntPtr)other);
 }
 
 /* extern */
 
-void func_80109F40(s32 arg0, volatile s32 arg1) {
-    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
-    func_8010114C(arg0, 0x3F, arg1);
+void func_80109F40(void *marker, void *volatile other) {
+
+    func_8010114C(BT_DATA_FIELD(marker, (s32)marker), 0x3F, (BtUIntPtr)other);
 }
 
 /* extern */
 
-void func_80109F68(s32 arg0, volatile s32 arg1) {
-    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
-    func_8010114C(arg0, 0x40, arg1);
+void func_80109F68(void *marker, void *volatile other) {
+
+    func_8010114C(BT_DATA_FIELD(marker, (s32)marker), 0x40, (BtUIntPtr)other);
 }
 
 /* extern */
 
-void func_80109F90(s32 arg0, volatile s32 arg1) {
-    s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
-    func_8010114C(arg0, 0x41, arg1);
+s32 func_80109F90(void *marker, void *volatile other) {
+
+    return func_8010114C(BT_DATA_FIELD(marker, (s32)marker), 0x41, (BtUIntPtr)other);
 }
 
 /* extern */
@@ -644,7 +644,7 @@ Unk80132ED0 *func_8010A01C(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
     int func_800F0BD0(f32 *, f32 *, f32, f32);
     f32 func_800F0C68(f32 *, f32 *, f32, f32);
     void *func_80101080(void);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+
     void func_80103DFC(void *, f32 *);
     void *func_80106790(BtIntPtr);
     s32 *list;
@@ -722,7 +722,7 @@ void func_8010A2FC(Actor *arg0, f32 *arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void *func_80101080(void);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+
     f32 *var_s0;
     f32 temp_f0;
     f32 var_f22;

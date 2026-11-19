@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 
 OSThread *chcactusofstrength_entrypoint_0(void)
 {
@@ -293,7 +294,7 @@ void func_80800718_chcactusofstrength(void *arg0) {
 }
 
 void func_80800780_chcactusofstrength(Actor *arg0) {
-    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
+
     void func_800C4104(s32, f32, s32, BtIntPtr, f32, f32);
     void func_80101FDC(Actor *, u32);
     void _subaddieDll_entrypoint_4(Actor *, u32);

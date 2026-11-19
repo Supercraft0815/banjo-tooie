@@ -102,8 +102,8 @@ void func_800A6250(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4) {
     s32 _bapreload_entrypoint_1(s32, s32 *);
     f32 baroll_get(PlayerState *);
     f32 func_80013A7C(f32);
-    BtIntPtr func_8001575C(void);
-    s32 func_80019CD4(void);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) func_8001575C(void);
+    MtxF *func_80019CD4(void);
     BtIntPtr func_8008CA74(PlayerState *);
     u32 func_80092738(s32 *);
     f32 func_80092BDC(PlayerState *);
@@ -397,7 +397,7 @@ void func_800A6B24(Actor *arg0) {
     }
 }
 
-void func_800A6DAC(Actor *arg0, s32 arg1) {
+void func_800A6DAC(Actor *arg0, BtIntPtr arg1) {
     s32 _plsu_entrypoint_1(s32);
     s32 func_800F5410(BtIntPtr);
     s32 func_800F55FC(BtIntPtr);
@@ -469,9 +469,9 @@ void func_800A6FF0(Actor *arg0) {
 
 /* extern */
 
-void func_800A7088(void *arg0) {
+void func_800A7088(Actor *arg0) {
     s32 func_800F7364(u32);
-    func_800F7364((u32) (((Obj1E7F6A0_arg0 *)arg0)->unk76) >> 7);
+    func_800F7364(BT_DATA_FIELD(arg0->unk74_7, (u32)(((Obj1E7F6A0_arg0 *)arg0)->unk76) >> 7));
 }
 
 void func_800A70B0(BT_NATIVE_ONLY(Unk80132ED0 *bt_a0))
@@ -489,7 +489,7 @@ void func_800A70D0(Unk80132ED0 *arg0, s32 arg1) {
     struct Fields *actor;
 
     actor = (struct Fields *)func_80106790(arg0);
-    actor->value = arg1;
+    BT_DATA_FIELD(((Actor *)actor)->unk74_7, actor->value) = arg1;
 }
 
 void func_800A7108(Unk80132ED0 *arg0, f32 arg1) {
@@ -501,10 +501,33 @@ void func_800A7130(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     struct Fields { u8 pad[0x65]; BT_BITFIELD_ORDER(u8 other : 7, u8 bit : 1); BT_BITFIELD_ORDER(u8 bit : 1, u8 other : 7); } *actor;
     actor = (struct Fields *)func_80106790(arg0);
-    actor->bit = arg1;
+    BT_DATA_FIELD(((Actor *)actor)->unk64_16, actor->bit) = arg1;
 }
 
-void * func_800A7168(void) {
-    extern u8 D_8011A3A0;
+void func_80102EC0(Actor *);
+#ifdef BT_NATIVE
+Actor *func_80107C2C(s32 *, s32, ActorData *, NativeActorFactory, Prop *);
+#else
+void *func_80107C2C(s32 *, s32, void *, s32, void *);
+#endif
+
+ActorData D_8011A3A0 BT_DATA(4, shadow_graphics, 0xC0) = {
+    0x32, 0x215, -1, 1, NULL,
+    func_800A6FF0, func_80102EC0,
+#ifdef BT_NATIVE
+    {.draw_actor = func_800A6DAC},
+#else
+    (void (*)(s32, s32))func_800A6DAC,
+#endif
+    0, 0, 0, 0, 0x800, 4, func_800A7088, 0, 0, 0, func_800A6EF4,
+#ifdef BT_NATIVE
+    func_80107C2C,
+#else
+    (void (*)(void *, s32, void *, s32, void *))func_80107C2C,
+#endif
+    -32768, 2, NULL, 0
+};
+
+ActorData *func_800A7168(void) {
     return &D_8011A3A0;
 }

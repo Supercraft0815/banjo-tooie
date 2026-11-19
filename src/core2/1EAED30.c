@@ -590,3 +590,6 @@ void native_assets_shutdown(void) {
 #include "bt_data.h"
 s32 D_8012B7F0 BT_DATA(4, bss_core2bss1_2_status_tail, 0x3D0);
 #endif
+
+/* ROM offset of the first asset-directory word, eight bytes after the header. */
+s32 D_8011B900 BT_DATA(4, asset_directory_offset, 0) = 0x5188;

@@ -1,5 +1,13 @@
 #include "common.h"
 
+extern s16 D_80041290[128];
+#ifdef BT_NATIVE
+#define BT_PAN_RIGHT(p) D_80041290[127 - (p)]
+#else
+extern s16 D_8004138E[];
+#define BT_PAN_RIGHT(p) D_8004138E[-(p)]
+#endif
+
 /* extern */
 
 void func_8002ACE0(BtIntPtr arg0, s32 arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5) {
@@ -62,7 +70,7 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
         u8 pad94[0x24];
         s32 changed;
     };
-    extern s16 D_80041290[], D_8004138E[];
+
     extern u8 D_8007EA30, D_8007EA31, D_8007EA32;
     extern s32 func_8002CC9C(BtIntPtr arg0, s32 arg1, BtIntPtr arg2);
     extern void *func_8002B7C8(void *, s16 *, s16 *, s32, void *);
@@ -117,7 +125,7 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
                 if (!D_8007EA30) {
                     voice->mixLeft &= 0xFFFE;
                 }
-                voice->mixRight = D_8004138E[-(start->settings.start.mix & 0x7F)] & 0xFFFE;
+                voice->mixRight = BT_PAN_RIGHT(start->settings.start.mix & 0x7F) & 0xFFFE;
                 if (D_8007EA32) {
                     voice->pan = (voice->pan >> 1) + 32;
                 } else if (D_8007EA31) {
@@ -128,7 +136,7 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
                     voice->right = 1;
                 } else {
                     voice->left = (D_80041290[voice->pan] * voice->volume) >> 15;
-                    voice->right = (D_8004138E[-voice->pan] * voice->volume) >> 15;
+                    voice->right = (BT_PAN_RIGHT(voice->pan) * voice->volume) >> 15;
                 }
                 voice->pitch = start->value.pitch;
                 voice->mode = start->mode;
@@ -143,7 +151,7 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
                 output = func_8002B7C8(voice, &flags, &offset, count, output);
                 if (voice->elapsed >= voice->duration) {
                     voice->leftTarget = (D_80041290[voice->pan] * voice->volume) >> 15;
-                    voice->rightTarget = (D_8004138E[-voice->pan] * voice->volume) >> 15;
+                    voice->rightTarget = (BT_PAN_RIGHT(voice->pan) * voice->volume) >> 15;
                     voice->elapsed = voice->duration;
                     voice->left = voice->leftTarget;
                     voice->right = voice->rightTarget;
@@ -182,7 +190,7 @@ void *func_8002AD60(void *arg0, s32 arg1, void *arg2) {
                         }
                     }
                     voice->mixLeft = (D_80041290[voice->head->value.integer & 0x7F] & 0xFFFE) | (voice->mixLeft & 1);
-                    voice->mixRight = (D_8004138E[-(voice->head->value.integer & 0x7F)] & 0xFFFE) | (voice->mixRight & 1);
+                    voice->mixRight = (BT_PAN_RIGHT(voice->head->value.integer & 0x7F) & 0xFFFE) | (voice->mixRight & 1);
                 }
                 voice->dirty = 1;
                 break;
@@ -277,7 +285,7 @@ s32 func_8002B684(void *arg0, s32 arg1, void *arg2) {
 void *func_8002B7C8(void *arg0, s16 *arg1, s16 *arg2, s32 arg3, void *arg4) {
     s16 func_8002BAAC(f32, f32, s32, u16 *);
     Acmd *func_8002D030(u8 *, s16 *, s32, Acmd *);
-    extern s16 D_80041290[], D_8004138E[];
+
     Acmd *sp34;
     u8 *sp30;
     Acmd *sp2C;
@@ -294,7 +302,7 @@ void *func_8002B7C8(void *arg0, s16 *arg1, s16 *arg2, s32 arg3, void *arg4) {
         *(s32 *)(sp30 + 0x78) = 0;
         *(s16 *)(sp30 + 0x68) = (s16)((s32)(*(s16 *)(sp30 + 0x5A) * D_80041290[*(s16 *)(sp30 + 0x58)]) >> 15);
         *(s16 *)(sp30 + 0x66) = func_8002BAAC((f32)*(s16 *)(sp30 + 0x5C), (f32)*(s16 *)(sp30 + 0x68), *(s32 *)(sp30 + 0x74), (u16 *)(sp30 + 0x64));
-        *(s16 *)(sp30 + 0x6E) = (s16)((s32)(*(s16 *)(sp30 + 0x5A) * D_8004138E[-*(s16 *)(sp30 + 0x58)]) >> 15);
+        *(s16 *)(sp30 + 0x6E) = (s16)((s32)(*(s16 *)(sp30 + 0x5A) * BT_PAN_RIGHT(*(s16 *)(sp30 + 0x58))) >> 15);
         *(s16 *)(sp30 + 0x6C) = func_8002BAAC((f32)*(s16 *)(sp30 + 0x5E), (f32)*(s16 *)(sp30 + 0x6E), *(s32 *)(sp30 + 0x74), (u16 *)(sp30 + 0x6A));
         sp2C = sp34++;
         sp2C->words.w0 = (*(s16 *)(sp30 + 0x5C) & 0xFFFF) | 0x09060000;

@@ -298,7 +298,7 @@ void func_80028DF0(void *arg0, BtIntPtr arg1, s16 arg2, BtIntPtr arg3) {
     } Header;
     BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
     s32 func_80028A24(s16 *);
-    extern s32 D_80041268;
+    extern s32 D_80041268[];
 
     u16 i;
     u16 cursor;
@@ -315,7 +315,7 @@ void func_80028DF0(void *arg0, BtIntPtr arg1, s16 arg2, BtIntPtr arg3) {
             data = ((Input *)arg1)->data[arg2];
             break;
         default:
-            data = &D_80041268;
+            data = D_80041268;
             break;
     }
     cursor = 0;

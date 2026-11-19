@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "prop_triggers.inc"
 void func_800D5250()
 {
     func_800D52B0();
@@ -47,19 +47,19 @@ s32 func_800D52F4(void) {
     return *&((Obj1EAEB40_D_8012B432 *)&D_8012B432)->unk0;
 }
 
-void func_800D5300(s32 arg0, s32 arg1) {
+void func_800D5300(Prop *prop, Unk80132ED0 *marker) {
 }
-void func_800D530C(s32 arg0, s32 arg1) {
+void func_800D530C(Prop *prop, Unk80132ED0 *marker) {
 }                     typedef struct { u8 pad0[0x8]; u16 unk8; u8 padA[0x2]; s32 unkC; } Obj1EAEB40_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
-void func_800D5318(void *arg0, BtIntPtr arg1) {
+void func_800D5318(Prop *arg0, Unk80132ED0 *arg1) {
     extern s32 _gspropctrl_entrypoint_2(void *);
     extern s32 _gspropctrl_entrypoint_3(void *);
     extern s32 _gspropctrl_entrypoint_4(void *);
     extern void _gspropctrl_entrypoint_5(void *, s32);
     extern s32 func_8001211C(void);
     extern s32 _gcsectionskip_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2, u32 arg3, u8 *arg4);
-    extern void (*D_8011B680[])(void *, s32);
-    extern void (*D_8011B7C0[])(void *, s32);
+
+
     s32 frame;
 
     switch (_gspropctrl_entrypoint_2(arg0)) {
@@ -71,9 +71,9 @@ void func_800D5318(void *arg0, BtIntPtr arg1) {
             _gspropctrl_entrypoint_5(arg0, frame);
             break;
         case 5:
-            _gcsectionskip_entrypoint_1(arg0, ((Obj1EAEB40_arg0 *)arg0)->unk8 + 0xA0,
-                ((Obj1EAEB40_arg0 *)arg0)->unkC & 0x7FFFFF,
-                *((u8 *)arg0 + 0xB), arg1);
+            _gcsectionskip_entrypoint_1((BtIntPtr)arg0, arg0->ItemID + 0xA0,
+                BT_DATA_FIELD(arg0->unkC_0, ((Obj1EAEB40_arg0 *)arg0)->unkC & 0x7FFFFF),
+                BT_DATA_FIELD((u8)arg0->unkA, *((u8 *)arg0 + 0xB)), (u8 *)arg1);
             break;
         case 4:
             D_8011B7C0[_gspropctrl_entrypoint_4(arg0)](arg0, arg1);

@@ -51,6 +51,7 @@ typedef struct {
     s32 unk4C;
 } PoolFreeList;
 
+
 s32 func_80020F70(BtIntPtr arg0) {
     extern PoolFreeList *D_800411F4;
     void *func_800272B0(s32 arg0, void *arg1, s32 arg2);

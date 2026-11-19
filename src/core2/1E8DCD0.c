@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 
 void func_800B43E0(void) {
     extern u8 D_80127F00[3];
@@ -18,7 +19,7 @@ void func_800B4428(void) {
     }
 }
 
-void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type) {
+void func_800B4470(f32 position[3], f32 velocity[3], u8 color[4], s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type) {
     extern u8 D_80127F00[3];
     extern u16 D_8011A5B0[];
     void *func_800B56D0(u8);
@@ -26,7 +27,7 @@ void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultD
     void func_800BA3FC(BtIntPtr, s32);
     void func_800BA75C(BtIntPtr, f32[3]);
     void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);
-    void func_800BAB80(BtIntPtr, f32 *);
+
     void func_800BA594(void *, f32, f32);
     void func_800BA5A8(s16 *, s32);
     void func_800BA5B0(s16 *, s32, s32);

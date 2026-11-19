@@ -13,8 +13,8 @@ typedef struct NativeCameraDatabase {
 } NativeCameraDatabase;
 #include "core2/player_form_data.h"
 #define D_80119540 (player_form_data.database)
-void func_800A5550(void *, void *);
-void func_800A5598(void *, void *);
+void func_800A5550(Prop *, Unk80132ED0 *);
+void func_800A5598(Prop *, Unk80132ED0 *);
 void func_800A55E0(void);
 void func_800A5608(s32);
 void func_800A5630(void);

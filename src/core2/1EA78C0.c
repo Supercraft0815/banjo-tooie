@@ -8,7 +8,7 @@ void func_800CDFD0(void **arg0) {
     s32 *func_800BDD24(s32 *);
     int func_800CE1A8(void *, void *, s32);
     s32 func_800CE21C(s32);
-    void func_800D5318(void *, BtIntPtr);
+    void func_800D5318(Prop *, Unk80132ED0 *);
     s32 func_800DAB54(s32 *, s32);
     u32 func_800E9D68(BtUIntPtr);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) func_800E9DD4(BtUIntPtr);
@@ -43,11 +43,11 @@ void func_800CDFD0(void **arg0) {
                     if (center[1] - radius < position[1] && position[1] < center[1] + radius) {
                         if (((struct PropFlags *)prop)->flag) {
                             if (func_800CE1A8(position, center, radius)) {
-                                func_800D5318((void *)prop, (BtIntPtr)arg0);
+                                func_800D5318((Prop *)prop, (Unk80132ED0 *)arg0);
                             }
                         } else if (center[0] - radius < position[0] && position[0] < center[0] + radius &&
                                    center[2] - radius < position[2] && position[2] < center[2] + radius) {
-                            func_800D5318((void *)prop, (BtIntPtr)arg0);
+                            func_800D5318((Prop *)prop, (Unk80132ED0 *)arg0);
                         }
                     }
                 }

@@ -14,7 +14,7 @@ typedef struct {
     BT_BITFIELD_ORDER(u32 flags : 4, u32 index : 7);
 } ActorPathView;
 
-void func_80102EC0(s32 arg0) 
+void func_80102EC0(Actor *actor)
 {
 }
 #if defined(BT_NATIVE) && !defined(BT_ILP32)

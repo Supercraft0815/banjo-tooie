@@ -907,7 +907,7 @@ s32 func_80801998_chpotogoldgame(s16 *arg0) {
     return (s32) (sp24 / 72.0f);
 }
 
-void chpotogoldgame_entrypoint_2(s32 arg0, Unk80132ED0 *arg1) {
+void chpotogoldgame_entrypoint_2(Prop *arg0, Unk80132ED0 *arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_800DA298(s32);
     void func_800DA544(s32);

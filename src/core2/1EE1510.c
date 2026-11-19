@@ -28,7 +28,7 @@ OSThread *func_80107C20(void)
     return (OSThread *)&D_80124580;
 }
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 Actor *func_80107C2C(s32 *arg0, s32 arg1, ActorData *arg2, NativeActorFactory arg3, Prop *arg4)
 #else
 void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
@@ -194,7 +194,7 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
 #ifdef BT_NATIVE // ILP32 too: guard or init the original lacks
     if (!actor) return NULL;
 #endif
-    AF(actor, factory, actor->unk10) = arg3;
+    AF(actor, factory, actor->unk10) = HOST(arg3, (s32)arg3);
     AF(actor, unk70_10, actor->state) = HOST(arg2->unk6, ((struct Info *)arg2)->unk6);
     actor->position[0] = arg0[0];
     actor->position[1] = arg0[1];
@@ -315,7 +315,7 @@ void *func_80107C2C(s32 *arg0, s32 arg1, void *arg2, s32 arg3, void *arg4)
     func_80106E88(actor);
     func_80104F2C(actor, func_80102FA0(arg2, 0x40000000), func_80102FA0(arg2, 0x10));
     if (func_800BEC1C()) _subaddiezone_entrypoint_0(actor);
-    return actor;
+    return (Actor *)actor;
 }
 
 Actor *func_80108454(s32 arg0, s32 *arg1, u32 arg2) {

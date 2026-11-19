@@ -455,7 +455,7 @@ void func_800BAB60(ParticleEmitter *emitter BT_PASS2(, void *bt_a0)) {
 
 /* extern */
 
-void func_800BAB80(BtIntPtr arg0, f32 *arg1) {
+void func_800BAB80(BtIntPtr arg0, u8 arg1[4]) {
     ParticleEmitter *emitter = (ParticleEmitter *)arg0;
     void func_800F2EBC(void *arg0, void *arg1);
     func_800F2EBC(emitter->color, arg1);

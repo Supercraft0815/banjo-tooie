@@ -381,7 +381,7 @@ void func_80800998_chcoderoombits(Actor *arg0) {
     }
 }
 
-void chcoderoombits_entrypoint_1(s32 arg0, Unk80132ED0 *arg1) {
+void chcoderoombits_entrypoint_1(Prop *arg0, Unk80132ED0 *arg1) {
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 *func_800BEC10(void);
     void func_800DBEFC(s32 *, s32, f32 *);

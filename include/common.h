@@ -408,7 +408,7 @@ typedef struct ActorData {
     void *unk8;
     void (*unkC_func)(Actor* actor);
     void (*unk10_func)(Actor* actor);
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
     union {
         void (*unk14_func)(s32, s32);
         void (*draw_actor)(Actor *, BtIntPtr);

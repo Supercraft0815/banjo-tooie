@@ -29,7 +29,7 @@ s32 D_80800764_chwallsnakebaddy[10] BT_DATA(4, overlays_ch_wallsnakebaddy, 0xC4)
     2818560, 41943085, 22938050, 2556104, 13107600, 26214427, -65471264, 2293964, 786452, 0};
 s32 D_8080078C_chwallsnakebaddy[3] BT_DATA(4, overlays_ch_wallsnakebaddy, 0xEC) = {786532, 2115214,
                                                                                    12451840};
-f32 D_80800798_chwallsnakebaddy[1] BT_DATA(4, overlays_ch_wallsnakebaddy, 0xF8) = {2.1623413e+19f};
+u8 D_80800798_chwallsnakebaddy[4] BT_DATA(4, overlays_ch_wallsnakebaddy, 0xF8) = {0x5F, 0x96, 0x0A, 0xE6};
 s32 D_8080079C_chwallsnakebaddy[3] BT_DATA(4, overlays_ch_wallsnakebaddy, 0xFC) = {1246239, 1458792,
                                                                                    0};
 s32 D_808007A8_chwallsnakebaddy[3] BT_DATA(4, overlays_ch_wallsnakebaddy, 0x108) = {1246229,

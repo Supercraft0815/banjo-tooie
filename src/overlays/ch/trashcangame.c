@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 #include "core2/actor_animation_entry.h"
 s32 func_800F64A4(BtIntPtr, s32);
 #include "su/baddiedialog_descriptor.h"
@@ -686,10 +687,10 @@ typedef struct {
     BT_BITFIELD_ORDER(u32 particleSubIndex : 6, u32 pad70_16 : 9);
     BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 particleIndex : 7);
 } ChTrashcanParticleActor;
-struct ColorTable { f32 values[4]; };
+struct ColorTable { u8 values[4][4]; };
 void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
     void func_800BA22C(BtIntPtr, s32);
-    void func_800BAB80(BtIntPtr, f32 *);
+
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800C6920(f32[3], f32, f32, s32);
     void func_800CD08C(s32, f32 *);
@@ -708,7 +709,7 @@ void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {
         func_800CD08C(arg0->particleIndex - 1, position);
         position[1] = func_800C6920(position, 1000.0f, -1000.0f, 0);
         emitter = func_800BABB8(0, position, position, 1.0f, D_80803174_chtrashcangame);
-        func_800BAB80(emitter, &colors.values[func_800DC128(0, 4)]);
+        func_800BAB80(emitter, colors.values[func_800DC128(0, 4)]);
         func_800BA22C(emitter, 1);
         arg0->particleTimer = func_800DC178(1.0f, 2.0f);
     }
@@ -1091,7 +1092,7 @@ s32 func_8080292C_chtrashcangame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     BtIntPtr func_800B53A4(s32);
     void func_800BA22C(BtIntPtr, s32);
     void func_800BA670(BtIntPtr, s32);
-    void func_800BAB80(BtIntPtr, f32 *);
+
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800C4140(u32, f32 *, u32);
     s32 func_800D3948(void);
@@ -1099,7 +1100,7 @@ s32 func_8080292C_chtrashcangame(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     s32 func_800FFA88(Unk80132ED0 *);
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80803324_chtrashcangame[], D_80803364_chtrashcangame[];
-    extern f32 D_80803394_chtrashcangame[], D_80803398_chtrashcangame[], D_8080339C_chtrashcangame[];
+    extern u8 D_80803394_chtrashcangame[], D_80803398_chtrashcangame[], D_8080339C_chtrashcangame[];
     BtIntPtr sp3C;
     BtIntPtr sp38;
     Actor *sp34;

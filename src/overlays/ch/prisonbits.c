@@ -567,7 +567,7 @@ int func_80800DFC_chprisonbits(Actor *arg0) {
     return !func_800DA298(0x5B) && func_80090128() && func_8010C500(arg0);
 }
 
-void chprisonbits_entrypoint_5(s32 arg0, s32 arg1) {
+void chprisonbits_entrypoint_5(Prop *arg0, Unk80132ED0 *arg1) {
     BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800DA298(s32);

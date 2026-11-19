@@ -1,4 +1,5 @@
 #include "klungo_potions.h"
+#include "core2/particle_colors.h"
 
 extern KlungoAnimations D_80803A4C_chklungo;
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
@@ -1533,7 +1534,7 @@ void func_80802940_chklungo(Actor *arg0) {
 s32 func_8080299C_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     BtIntPtr func_800B53A4(s32);
-    void func_800BAB80(BtIntPtr, void *);
+
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);

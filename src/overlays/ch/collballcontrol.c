@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 
 void _sukickball_entrypoint_0();
 void _sukickball_entrypoint_1();
@@ -97,9 +98,8 @@ u8 D_80804DF0_chcollballcontrol[] = {
     0xFF, 0xFF, 0xFF, 0xC8,
 };
 
-s32 D_80804DF4_chcollballcontrol[] = {
-    0xFFFFFFC8, 0x000000FF, 0x000000FF, 0x000000FF,
-    0x000000C8,
+struct { u8 color[4]; s32 channels[4]; } D_80804DF4_chcollballcontrol = {
+    {255, 255, 255, 200}, {255, 255, 255, 200}
 };
 
 s32 D_80804E08_chcollballcontrol[] = {
@@ -188,8 +188,8 @@ u32 D_808050A4_chcollballcontrol[] = {
     0x00000000, 0x00000000, 0x00000000,
 };
 
-s32 D_808050B0_chcollballcontrol[] = {
-    0xFFFFFFC8,
+u8 D_808050B0_chcollballcontrol[4] = {
+    255, 255, 255, 200,
 };
 
 u32 D_808050B4_chcollballcontrol[] = {
@@ -1096,7 +1096,7 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     void _subaddiefade_entrypoint_3(Actor *);
     void _sukickball_entrypoint_11(u8 *, s32);
     s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
-    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
+
     void func_800F4F98(s32, void *);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *actor,u32 state);
@@ -1132,7 +1132,7 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     if (((u32)*(u16 *)(arg0 + 0x72) >> 10) == 6) {
         func_808021D4_chcollballcontrol(arg0);
         _subaddiefade_entrypoint_3(arg0);
-        func_800B4470(arg0 + 4, 0, D_80804DF0_chcollballcontrol, 1, 0.75f, 0.0f, 0x7D, 0xFA, 0);
+        func_800B4470((f32 *)(arg0 + 4), 0, D_80804DF0_chcollballcontrol, 1, 0.75f, 0.0f, 0x7D, 0xFA, 0);
         kind = *(u32 *)(*(u8 **)arg0 + 0x24) >> 22;
         if (kind != 0x43) {
             if (kind == 0x44) {
@@ -1182,7 +1182,7 @@ void func_80801A20_chcollballcontrol(Actor *arg0) {
     BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
     f32 func_800137AC(f32);
     f32 func_800137C4(void);
-    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
+
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
     f32 func_800DC0C0(void);
@@ -1255,7 +1255,7 @@ void func_80801A20_chcollballcontrol(Actor *arg0) {
                 func_800EE7F8((f32 *)arg0->actorData, carrier->position);
             }
             if (func_800EFBFC(previous, arg0->position) > 25.0f && func_800DC0C0() < 0.1f) {
-                func_800B4470((u8 *)previous, 0, D_80804DF4_chcollballcontrol, 1, 0.75f, 0.0f, 75, 150, 0);
+                func_800B4470(previous, 0, D_80804DF4_chcollballcontrol.color, 1, 0.75f, 0.0f, 75, 150, 0);
             }
             func_800D9078(data);
             func_80802CE0_chcollballcontrol((u8 *)arg0);
@@ -1283,7 +1283,7 @@ void func_80801A20_chcollballcontrol(Actor *arg0) {
             }
             func_80802CE0_chcollballcontrol((u8 *)arg0);
             if (func_800DC0C0() < 0.15f && ((f32 *)arg0->actorData)[3] > 120.0f) {
-                func_800B4470((u8 *)arg0->position, 0, D_80804DF4_chcollballcontrol, 1, 0.75f, 0.0f, 50, 100, 0);
+                func_800B4470(arg0->position, 0, D_80804DF4_chcollballcontrol.color, 1, 0.75f, 0.0f, 50, 100, 0);
             }
             func_808020B0_chcollballcontrol(arg0);
             break;
@@ -1906,7 +1906,7 @@ void func_80803484_chcollballcontrol(Actor *arg0) {
     void _sukickball_entrypoint_2(Actor *, f32, f32);
     s32 _sukickball_entrypoint_5(Actor *, f32 *);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
-    void func_800B4470(f32 position[3], f32 velocity[3], f32 *color, s32 useDefaultDrawMode, f32 lifetime, f32 additionalYVelocity, s32 startingScale, s32 finalScale, s32 type);
+
     f32 func_800D8FF8(void);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
@@ -1966,7 +1966,7 @@ void func_80803484_chcollballcontrol(Actor *arg0) {
                 anctrl_setPlaybackType(func_80104248(arg0), 3);
                 arg0->unk50 = 1.0f;
                 ((f32 *)arg0->actorData)[3] = 1050.0f;
-                func_800B4470((u8 *)arg0->position, 0, D_808050B0_chcollballcontrol, 1, 0.75f, 0.0f, 125, 250, 0);
+                func_800B4470(arg0->position, 0, D_808050B0_chcollballcontrol, 1, 0.75f, 0.0f, 125, 250, 0);
             }
         } else if (arg0->unk50 != 0) {
             arg0->unk50 += sp5C;

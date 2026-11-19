@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 
 void func_80800000_chwallsnakebaddy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -64,7 +65,7 @@ void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
     BtIntPtr func_800B53A4(s32);
     void func_800BA22C(BtIntPtr, s32);
     void func_800BA670(BtIntPtr, s32);
-    void func_800BAB80(BtIntPtr, f32 *);
+
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800DBEFC(s32 *, s32, f32 *);
     void func_800DF744(s32, s32);
@@ -77,7 +78,7 @@ void func_8080027C_chwallsnakebaddy(Actor *arg0, void *arg1) {
     extern u8 D_8080075C_chwallsnakebaddy[];
     extern s32 D_80800764_chwallsnakebaddy[];
     extern s32 D_8080078C_chwallsnakebaddy[];
-    extern f32 D_80800798_chwallsnakebaddy[];
+    extern u8 D_80800798_chwallsnakebaddy[];
     BtIntPtr smokeEmitter;
     s32 active;
     f32 position[3];

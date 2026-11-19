@@ -35,7 +35,7 @@ Timing7 D_8080312C_chtrashcangame BT_DATA(4, overlays_ch_trashcangame,
 Timing7 D_80803148_chtrashcangame BT_DATA(4, overlays_ch_trashcangame,
                                           0x158) = {{0.131f, 0.216f, 0.307f, 0.39f, 0.681f, 0.767f, -1.0f}};
 struct ColorTable D_80803164_chtrashcangame BT_DATA(4, overlays_ch_trashcangame, 0x174) = {
-    {-1.8439942e-25f, -2.4278304e-25f, 2.2176738e+22f, 1.6843753e+22f}};
+    {{0x96, 0x64, 0x46, 0x82}, {0x96, 0x96, 0x46, 0x82}, {0x64, 0x96, 0x46, 0x82}, {0x64, 0x64, 0x46, 0x82}}};
 s32 D_80803174_chtrashcangame[16] BT_DATA(4, overlays_ch_trashcangame, 0x184) = {
     17825821, 165412888, 2,       201330432, 1769572,  13107222, 100663340, 50,
     0,        6553600,   2228275, 3343360,   83886101, 6684800,  2818816,   67108864};
@@ -106,9 +106,9 @@ s32 D_80803324_chtrashcangame[16] BT_DATA(4, overlays_ch_trashcangame, 0x334) = 
     1446914, 2293849, 2818432,   33554436, 6684679, 196657,  -1310700, 0};
 s32 D_80803364_chtrashcangame[12] BT_DATA(4, overlays_ch_trashcangame, 0x374) = {
     101711901, 165281819, -65471364, 2949620, 39321614, 20, 1445888, 2293785, 2818432, 33554481, -3276750, 0};
-f32 D_80803394_chtrashcangame[1] BT_DATA(4, overlays_ch_trashcangame, 0x3A4) = {-2.1270897e-07f};
-f32 D_80803398_chtrashcangame[1] BT_DATA(4, overlays_ch_trashcangame, 0x3A8) = {2.6621532e+22f};
-f32 D_8080339C_chtrashcangame[1] BT_DATA(4, overlays_ch_trashcangame, 0x3AC) = {1.6875599e+22f};
+u8 D_80803394_chtrashcangame[4] BT_DATA(4, overlays_ch_trashcangame, 0x3A4) = {0xB4, 0x64, 0x64, 0xFF};
+u8 D_80803398_chtrashcangame[4] BT_DATA(4, overlays_ch_trashcangame, 0x3A8) = {0x64, 0xB4, 0x64, 0xFF};
+u8 D_8080339C_chtrashcangame[4] BT_DATA(4, overlays_ch_trashcangame, 0x3AC) = {0x64, 0x64, 0xB4, 0xFF};
 ActorData D_808033A0_chtrashcangame[1] BT_DATA(4, overlays_ch_trashcangame, 0x3B0) = {
     {290,
      1142,

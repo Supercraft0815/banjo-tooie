@@ -1,0 +1,180 @@
+typedef struct {
+    s32 size;
+    s32 (*measure)(BT_NATIVE_ONLY(void));
+} PlayerComponentSize;
+
+s32 _baalarm_get_size(void);
+s32 baanim_get_size(void);
+s32 _baattach_entrypoint_0(void);
+s32 func_8008E4B0(void);
+s32 _bababykaz_entrypoint_0(void);
+s32 _babackpack_get_size(void);
+s32 func_8008ED80(void);
+s32 _babee_entrypoint_0(void);
+s32 func_800908A0(void);
+s32 _baboost_entrypoint_0(void);
+s32 _babounce_entrypoint_0(void);
+s32 func_80090B90(void);
+s32 func_80090E40(void);
+s32 _babuzz_entrypoint_0(void);
+s32 func_800A3B70(void);
+s32 bastatetimerList_getSize(void);
+s32 bakey_getStructSize(void);
+s32 _bacough_entrypoint_0(void);
+s32 func_80091E10(void);
+s32 func_80091EA0(void);
+s32 func_80092010(void);
+s32 _badrone_entrypoint_0(void);
+s32 _baduo_entrypoint_0(void);
+s32 _badust_entrypoint_0(void);
+s32 _baeggaim_entrypoint_0(void);
+s32 func_80094340(void);
+s32 _baeggcursor_entrypoint_0(void);
+s32 _baeggfire_entrypoint_0(void);
+s32 _baeggsetup_entrypoint_0(void);
+s32 func_80094E70(void);
+s32 func_80094F80(void);
+s32 func_80095380(void);
+s32 baflag_getStuctSize(void);
+s32 _baflameline_entrypoint_0(void);
+s32 _baflamethrower_entrypoint_0(void);
+s32 _bafly_entrypoint_0(void);
+s32 _bafpctrl_entrypoint_0(void);
+s32 func_80095790(void);
+s32 func_800967C0(void);
+s32 _bahold_entrypoint_0(void);
+s32 func_800A3040(void);
+s32 bainput_getStructSize(void);
+s32 _bainvisible_entrypoint_0(void);
+s32 func_80098210(void);
+s32 _bakaztorpedo_entrypoint_0(void);
+s32 func_800A21C0(void);
+s32 func_80098BA0(void);
+s32 func_80098890(void);
+s32 func_800995B0(void);
+s32 func_8009AD70(void);
+s32 func_8009AE00(void);
+s32 _bamoveledge_entrypoint_0(void);
+s32 _bamum_entrypoint_0(void);
+s32 func_8009BD30(void);
+s32 _bapackctrl_entrypoint_0(void);
+s32 func_8009BE20(void);
+s32 func_80098530(void);
+s32 func_8009C030(void);
+s32 _bapulse_entrypoint_0(void);
+s32 _bareact_entrypoint_0(void);
+s32 func_8009CC10(void);
+s32 baroll_getStructSize(void);
+s32 yaw_size(void);
+s32 func_8009CF90(void);
+s32 _basetup_entrypoint_0(void);
+s32 func_8009D3D0(void);
+s32 func_800A1960(void);
+s32 _bashoes_entrypoint_0(void);
+s32 _basnowball_entrypoint_0(void);
+s32 func_8009E130(void);
+s32 _baspin_entrypoint_0(void);
+s32 _basquash_entrypoint_0(void);
+s32 func_8009E5C0(void);
+s32 func_800A26B0(void);
+s32 bastick_getStructSize(void);
+s32 func_8009F300(void);
+s32 _basub_entrypoint_0(void);
+s32 _baswim_entrypoint_0(void);
+s32 func_800A06E0(void);
+s32 _batimer_get_size(void);
+s32 _batranslate_entrypoint_0(void);
+s32 _bavan_entrypoint_0(void);
+s32 _bawandglow_entrypoint_0(void);
+s32 _bawasher_entrypoint_0(void);
+s32 func_800A0E50(void);
+s32 _bawobble_entrypoint_0(void);
+
+PlayerComponentSize D_801235D0[86] BT_DATA(4, player_component_sizes, 0) = {
+    {-1, _baalarm_get_size},
+    {-1, baanim_get_size},
+    {-1, _baattach_entrypoint_0},
+    {-1, func_8008E4B0},
+    {-1, _bababykaz_entrypoint_0},
+    {-1, _babackpack_get_size},
+    {-1, func_8008ED80},
+    {-1, _babee_entrypoint_0},
+    {-1, func_800908A0},
+    {-1, _baboost_entrypoint_0},
+    {-1, _babounce_entrypoint_0},
+    {-1, func_80090B90},
+    {-1, func_80090E40},
+    {-1, _babuzz_entrypoint_0},
+    {-1, func_800A3B70},
+    {-1, bastatetimerList_getSize},
+    {-1, bakey_getStructSize},
+    {-1, _bacough_entrypoint_0},
+    {-1, func_80091E10},
+    {-1, func_80091EA0},
+    {-1, func_80092010},
+    {-1, _badrone_entrypoint_0},
+    {-1, _baduo_entrypoint_0},
+    {-1, _badust_entrypoint_0},
+    {-1, _baeggaim_entrypoint_0},
+    {-1, func_80094340},
+    {-1, _baeggcursor_entrypoint_0},
+    {-1, _baeggfire_entrypoint_0},
+    {-1, _baeggsetup_entrypoint_0},
+    {-1, func_80094E70},
+    {-1, func_80094F80},
+    {-1, func_80095380},
+    {-1, baflag_getStuctSize},
+    {-1, _baflameline_entrypoint_0},
+    {-1, _baflamethrower_entrypoint_0},
+    {-1, _bafly_entrypoint_0},
+    {-1, _bafpctrl_entrypoint_0},
+    {-1, func_80095790},
+    {-1, func_800967C0},
+    {-1, _bahold_entrypoint_0},
+    {-1, func_800A3040},
+    {-1, bainput_getStructSize},
+    {-1, _bainvisible_entrypoint_0},
+    {-1, func_80098210},
+    {-1, _bakaztorpedo_entrypoint_0},
+    {-1, func_800A21C0},
+    {-1, func_80098BA0},
+    {-1, func_80098890},
+    {-1, func_800995B0},
+    {-1, func_8009AD70},
+    {-1, func_8009AE00},
+    {-1, _bamoveledge_entrypoint_0},
+    {-1, _bamum_entrypoint_0},
+    {-1, func_8009BD30},
+    {-1, _bapackctrl_entrypoint_0},
+    {-1, func_8009BE20},
+    {-1, func_80098530},
+    {-1, func_8009C030},
+    {-1, _bapulse_entrypoint_0},
+    {-1, _bareact_entrypoint_0},
+    {-1, func_8009CC10},
+    {-1, baroll_getStructSize},
+    {-1, yaw_size},
+    {-1, func_8009CF90},
+    {-1, _basetup_entrypoint_0},
+    {-1, func_8009D3D0},
+    {-1, func_800A1960},
+    {-1, _bashoes_entrypoint_0},
+    {-1, _basnowball_entrypoint_0},
+    {-1, func_8009E130},
+    {-1, _baspin_entrypoint_0},
+    {-1, _basquash_entrypoint_0},
+    {-1, func_8009E5C0},
+    {-1, func_800A26B0},
+    {-1, bastick_getStructSize},
+    {-1, func_8009F300},
+    {-1, _basub_entrypoint_0},
+    {-1, _baswim_entrypoint_0},
+    {-1, func_800A06E0},
+    {-1, _batimer_get_size},
+    {-1, _batranslate_entrypoint_0},
+    {-1, _bavan_entrypoint_0},
+    {-1, _bawandglow_entrypoint_0},
+    {-1, _bawasher_entrypoint_0},
+    {-1, func_800A0E50},
+    {-1, _bawobble_entrypoint_0},
+};

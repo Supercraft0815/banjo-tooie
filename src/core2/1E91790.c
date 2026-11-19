@@ -35,9 +35,9 @@ void func_800B7EA0(BtIntPtr arg0, s32 arg1) {
 
 void func_800B7F14(Gfx **arg0) {
     s32 func_800D3724(s32);
-    extern s32 D_8011A630;
+    extern Gfx D_8011A630[];
 
-    { Gfx *g = (*arg0)++; g->words.w0 = 0xDE000000; g->words.w1 = (u32)((u8 *)&D_8011A630 - (u8 *)0x80000000); }
+    { Gfx *g = (*arg0)++; g->words.w0 = 0xDE000000; g->words.w1 = (u32)((u8 *)D_8011A630 - (u8 *)0x80000000); }
     { Gfx *g = (*arg0)++;
     g->words.w0 = 0xE3001201;
     if (D_801282C0.data[6] == 1) {
@@ -76,9 +76,9 @@ void func_800B80D0(Gfx **arg0) {
 }
 
 void func_800B811C(Gfx **arg0) {
-    extern s32 D_8011A668;
+    extern Gfx D_8011A668[];
     extern s8 D_801282C5;
-    Gfx *v1 = (*arg0)++; v1->words.w0 = 0xDE000000; v1->words.w1 = (u32)((u8 *)&D_8011A668 - (u8 *)0x80000000); D_801282C5 = 0;
+    Gfx *v1 = (*arg0)++; v1->words.w0 = 0xDE000000; v1->words.w1 = (u32)((u8 *)D_8011A668 - (u8 *)0x80000000); D_801282C5 = 0;
 }
 
 void *func_800B8148(u8 *ch) {

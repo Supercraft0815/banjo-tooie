@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 
 OSThread *chdiggergroundgen_entrypoint_0(void)
 {
@@ -129,10 +130,10 @@ void func_8080035C_chdiggergroundgen(Actor *arg0) {
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_8001395C(f32);
     s32 func_8008FB10(f32 *, f32, f32, f32);
-    void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
+
     void func_800C4104(s32, f32, s32, BtIntPtr, f32, f32);
     void func_80101FDC(Actor *, u32);
-    extern f32 D_80800554_chdiggergroundgen[];
+    extern u8 D_80800554_chdiggergroundgen[];
     f32 *data;
     Actor *actor;
     s32 finished;
@@ -158,4 +159,4 @@ void func_8010A730();
 void func_80107C2C();
 ActorData D_80800500_chdiggergroundgen [1] BT_DATA(4, overlays_ch_digger_groundgen, 0x0) = { { 419, 306, 0, 1, 0, (void (*)(struct Actor *))func_80800034_chdiggergroundgen, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_8010A730, 0, 0, 0, 0, 0, 1, 0, 0, 20, 0, (void (*)(struct Actor *))func_8080000C_chdiggergroundgen, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, (void (*)(struct Actor *, long, long))func_808000AC_chdiggergroundgen, 0 } };
 u8 D_80800548_chdiggergroundgen [12] BT_DATA(4, overlays_ch_digger_groundgen, 0x48) = { 0, 0x13, 4, 0xBE, 0, 0xD, 0, 0xF3, 1, 0xC, 0, 0 };
-f32 D_80800554_chdiggergroundgen [3] BT_DATA(4, overlays_ch_digger_groundgen, 0x54) = { 1.7665089e+28f, 0.0f, 0.0f };
+u8 D_80800554_chdiggergroundgen[12] BT_DATA(4, overlays_ch_digger_groundgen, 0x54) = {0x6E, 0x64, 0x50, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};

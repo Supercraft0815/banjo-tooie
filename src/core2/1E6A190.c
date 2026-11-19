@@ -3,33 +3,53 @@
 #include "core2/1E6A190.h"
 
 typedef struct {
-    u8 pad0[0xC];
-} Unk_1E6A190_1;
+    f32 delay;
+    u8 eye;
+    f32 duration;
+} EyeSequenceStep;
 
-typedef struct {
-    f32 unk0;
-    u8 unk4;
-    f32 unk8;
-} Unk_1E6A190_0;
+EyeSequenceStep D_80117CC0[5] BT_DATA(4, player_eye_sequences, 0x0) = {
+    {0.3f, 1, 0.1f},
+    {0.034f, 0, 0.1f},
+    {0.3f, 1, 0.1f},
+    {0.034f, 0, 0.1f},
+    {1.0f, 4, 0.0f},
+};
 
-extern Unk_1E6A190_0 D_80117CC0;
-extern Unk_1E6A190_0 D_80117CFC;
-extern Unk_1E6A190_0 D_80117D80;
+EyeSequenceStep D_80117CFC[11] BT_DATA(4, player_eye_sequences, 0x3c) = {
+    {2.0f, 1, 0.1f},
+    {0.034f, 0, 0.1f},
+    {5.0f, 1, 0.06f},
+    {0.034f, 0, 0.06f},
+    {0.2f, 1, 0.09f},
+    {0.034f, 0, 0.09f},
+    {1.0f, 1, 0.1f},
+    {0.034f, 0, 0.1f},
+    {5.0f, 1, 0.1f},
+    {0.034f, 0, 0.1f},
+    {1.0f, 4, 0.0f},
+};
+
+EyeSequenceStep D_80117D80[3] BT_DATA(4, player_eye_sequences, 0xc0) = {
+    {0.0f, 1, 0.1f},
+    {0.034f, 0, 0.1f},
+    {0.0f, 4, 0.0f},
+};
 
 s32 func_800908A0(void) {
     return sizeof(BaUnknown20);
 }
 
-Unk_1E6A190_0 *func_800908A8(s32 arg0) {
+EyeSequenceStep *func_800908A8(s32 arg0) {
     switch (arg0) {
     case 0:
-        return &D_80117D80;
+        return D_80117D80;
 
     case 1:
-        return &D_80117CFC;
+        return D_80117CFC;
     
     case 2:
-        return &D_80117CC0;
+        return D_80117CC0;
 
     default:
         return NULL;
@@ -57,7 +77,7 @@ void func_80090938(PlayerState *self) {
 void func_8009097C(PlayerState *self, s32 arg1) {
     self->unk20->unk0 = arg1;
     self->unk20->unk8 = 0;
-    self->unk20->unk4 = func_800908A8(arg1)->unk0;
+    self->unk20->unk4 = func_800908A8(arg1)->delay;
     func_800908F0(self, 2);
 }
 
@@ -81,7 +101,7 @@ void func_80090A4C(PlayerState *arg0) {
     void func_800950FC(PlayerState *, s32, f32);
     f32 mlAbsF(f32);
     f32 remaining;
-    Unk_1E6A190_0 *entry;
+    EyeSequenceStep *entry;
 
     remaining = func_800D8FF8();
     while (remaining > 0.0f) {
@@ -91,10 +111,10 @@ void func_80090A4C(PlayerState *arg0) {
         }
         remaining = mlAbsF(arg0->unk20->unk4);
         entry = func_800908A8(arg0->unk20->unk0) + arg0->unk20->unk8;
-        func_800950FC(arg0, entry->unk4, entry->unk8);
+        func_800950FC(arg0, entry->eye, entry->duration);
         entry++;
-        if (entry->unk4 == 4) {
-            if (entry->unk0 == 0.0f) {
+        if (entry->eye == 4) {
+            if (entry->delay == 0.0f) {
                 func_800908F0(arg0, 1);
                 return;
             }
@@ -103,6 +123,6 @@ void func_80090A4C(PlayerState *arg0) {
         } else {
             arg0->unk20->unk8++;
         }
-        arg0->unk20->unk4 = entry->unk0;
+        arg0->unk20->unk4 = entry->delay;
     }
 }

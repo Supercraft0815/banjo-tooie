@@ -1,5 +1,5 @@
 #include "core2/1ECD170.h"
-
+#include "player_component_sizes.inc"
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F3880(s32 arg0)
 {
     func_80098E64();
@@ -403,17 +403,11 @@ s32 func_800F424C(void *arg0) {
 }
 
 s32 func_800F4354(s32 arg0) {
-    typedef struct {
-        s32 value;
-        s32 (*callback)(s32);
-    } CacheEntry;
-    extern CacheEntry D_801235D0[];
-
-    if (D_801235D0[arg0].value >= 0) {
-        return D_801235D0[arg0].value;
+    if (D_801235D0[arg0].size >= 0) {
+        return D_801235D0[arg0].size;
     }
-    D_801235D0[arg0].value = D_801235D0[arg0].callback(arg0);
-    return D_801235D0[arg0].value;
+    D_801235D0[arg0].size = D_801235D0[arg0].measure(BT_IDO_ONLY(arg0));
+    return D_801235D0[arg0].size;
 }    typedef struct { u8 pad0[0x180]; s32 unk180; s32 unk184; } Obj1ECD170_func_800F43A8_var_s2; /* offsets.py genstruct: fields from raw offsets on var_s2; rename once understood */
 
 /* extern */

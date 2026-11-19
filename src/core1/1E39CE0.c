@@ -164,7 +164,7 @@ void func_800221B0(MusicPlayer *arg0, ALSeqpConfig *arg1) {
     s32 func_8002241C(MusicPlayer *);
     void func_80026100(void *);
     void func_800263C0(ALEventQueue *, ALEventListItem *, s32);
-    void func_80026860(s32 *);
+    void func_80026860(ALPlayer *);
     void func_8002A0CC(void *);
     s32 i;
     ALEventListItem *events;
@@ -210,7 +210,7 @@ void func_800221B0(MusicPlayer *arg0, ALSeqpConfig *arg1) {
     arg0->node.next = NULL;
     *(s32 (**)(MusicPlayer *))((u8 *)arg0 + 8) = func_8002241C;
     arg0->node.clientData = arg0;
-    func_80026860((s32 *)arg0);
+    func_80026860((ALPlayer *)arg0);
 }
 
 s32 func_8002241C(MusicPlayer *arg0) {

@@ -19,11 +19,11 @@ f32 D_80801320_chquicksandbaddy[10][2] BT_DATA(4, overlays_ch_quicksandbaddy, 0x
     {2.0f, 0.75f}, {2.4f, 0.7f},  {2.5f, -2.0f}, {2.8f, 0.65f}, {5.5f, -1.0f}};
 s32 D_80801370_chquicksandbaddy[8] BT_DATA(4, overlays_ch_quicksandbaddy, 0xD0) = {
     1903067, 1445889, 2818688, 50331669, 4194496, 2228352, 8388992, 33554432};
-s32 D_80801390_chquicksandbaddy BT_DATA(4, overlays_ch_quicksandbaddy, 0xF0) = 140;
+u8 D_80801390_chquicksandbaddy[4] BT_DATA(4, overlays_ch_quicksandbaddy, 0xF0) = {0, 0, 0, 140};
 s32 D_80801394_chquicksandbaddy[16] BT_DATA(4, overlays_ch_quicksandbaddy, 0xF4) = {
     1903065,  1834008, -58982355, 19661200, 1445888, 2293790, 1376268, 15073323,
     67109888, 3080320, 8388608,   3342425,  153,     3276790, 7,       65536};
-s32 D_808013D4_chquicksandbaddy BT_DATA(4, overlays_ch_quicksandbaddy, 0x134) = 255;
+u8 D_808013D4_chquicksandbaddy[4] BT_DATA(4, overlays_ch_quicksandbaddy, 0x134) = {0, 0, 0, 255};
 ActorData D_808013D8_chquicksandbaddy[1] BT_DATA(4, overlays_ch_quicksandbaddy, 0x138) = {
     {344,
      495,

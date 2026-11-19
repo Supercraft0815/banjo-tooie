@@ -1,7 +1,8 @@
 // These bss variables were migrated to this standalone file to make bss migration for other C files easier, but they all belong to other C files.
 #include "types.h"
+#include "core1/sfx_player.h"
 
-u8 D_8007E9C0[0x64];
+SfxPlayer D_8007E9C0;
 
 s32 D_8007EA24;
 u8 pad1[8];

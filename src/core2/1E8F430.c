@@ -1,4 +1,5 @@
 #include "core2/1E8F430.h"
+#include "core2/particle_draw_data.h"
 
 typedef struct {
     s32 vector;
@@ -20,6 +21,22 @@ extern TextCommandState D_80128180;
 
 extern s32 D_801282B4;
 
+#ifdef BT_NATIVE
+void func_800B5B40(void) {
+    void func_800B58D4(u8);
+    for (s32 i = 1; i < 41; ++i) {
+        func_800B58D4(D_80128150[i]);
+        D_80128150[i] = 0;
+    }
+}
+
+void func_800B5B88(void) {
+    u8 func_800B5758(s32);
+    for (s32 i = 1; i < 41; ++i) {
+        D_80128150[i] = func_800B5758(particle_emitter_settings[i].capacity);
+    }
+}
+#else
 void func_800B5B40(void) { BT_NATIVE_ONLY(void func_800B58D4(u8);)
     extern s32 D_80128151;
     extern s32 D_80128179;
@@ -52,6 +69,8 @@ void func_800B5B88(void) {
         var_s0[-1] = temp_v0;
     } while (var_s0 != var_s2);
 }
+
+#endif
 
 BtIntPtr func_800B5BE4(s32 arg0) {
     void *func_800B56D0(u8);
@@ -585,7 +604,7 @@ void func_800B7448(Gfx **arg0) {
     s32 vector_clear(s32);
     BtUIntPtr vector_end(s32);
     s32 vector_size(s32);
-    extern s32 D_8011A620;
+    extern u8 D_8011A620[16];
     struct FlagWord { BT_BITFIELD_ORDER(u32 upper : 16, u32 lower : 10); BT_BITFIELD_ORDER(u32 font : 4, u32 highlight : 1); u32 bit11 : 1; BT_BITFIELD_ORDER(u32 highlight : 1, u32 font : 4); BT_BITFIELD_ORDER(u32 lower : 10, u32 upper : 16); };
     s32 var_s0;
     f32 sp88;
@@ -612,7 +631,7 @@ void func_800B7448(Gfx **arg0) {
                     if (((struct FlagWord *)(var_s1 + 4))->highlight) {
                         temp_s3 = func_800D35BC(((struct FlagWord *)(var_s1 + 4))->font);
                         temp_f20 = (f32) ((func_800E7188((((Obj1E8F430_func_800B7448_var_s1 *)var_s1)->unkC)) - 1) * temp_s3);
-                        func_800E7828(arg0, &D_8011A620);
+                        func_800E7828(arg0, (s32 *)D_8011A620);
                         func_800E7778(arg0, 0);
                         func_800E76A4(arg0, 2);
                         temp_f14 = (f32) (temp_s3 / 2);
@@ -883,9 +902,7 @@ void func_800B7E38(void) {
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
 s32 D_80127128 BT_DATA(4, bss_core2bss1_0_1, 0xC8);
-u8 D_80128150 [ 1 ] BT_DATA(4, bss_core2bss1_0_2, 0x9B0);
-s32 D_80128151 BT_DATA(4, bss_core2bss1_0_2, 0x9B1);
-s32 D_80128179 BT_DATA(4, bss_core2bss1_0_2, 0x9D9);
+u8 D_80128150[41] BT_DATA(4, bss_core2bss1_0_2, 0x9B0);
 TextCommandState D_80128180 BT_DATA(4, bss_core2bss1_0_2, 0x9E0);
 s8 D_8012818F BT_DATA(4, bss_core2bss1_0_2, 0x9EF);
 s8 D_80128190 BT_DATA(4, bss_core2bss1_0_2, 0x9F0);

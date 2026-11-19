@@ -180,8 +180,8 @@ static void test_archive(const char *path) {
 }
 int main(int argc,char **argv) {
     test_fields();test_insertion();test_stream();
-    u16 data[14]={0};data[13]=123<<5;data_token=data;event_token=&slot;
-    func_800A5550(event_token,data);func_800A5598(event_token,data);CHECK(routed==3);
+    Unk80132ED0 marker={0};Prop prop={0};marker.unk18=0xace0001f|(123<<5);data_token=&marker;event_token=&prop;
+    func_800A5550(&prop,&marker);func_800A5598(&prop,&marker);CHECK(routed==3);
     CHECK(argc==1 || argc==2);if(argc==2)test_archive(argv[1]);
     puts("Native camera database: eight types, field layouts, insertion, stream bounds and cleanup passed.");return 0;
 }

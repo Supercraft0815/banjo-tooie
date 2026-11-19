@@ -221,11 +221,11 @@ f32 func_80090010()
     return func_800F5F24(func_800F54E4());
 }    typedef struct { u8 pad0[0x1A]; u16 unk1A; } Obj1E691A0_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
-void func_80090038(BtIntPtr arg0, void *arg1) {
+void func_80090038(Prop *arg0, Unk80132ED0 *arg1) {
     f32 sp1C[3];
 
-    func_800EE88C(sp1C, (s16 *) arg0);
-    func_800F7CF4((u32) (&((Obj1E691A0_arg1 *)arg1)->unk1A)[0] >> 5, 0x58, sp1C);
+    func_800EE88C(sp1C, arg0->position);
+    func_800F7CF4(BT_DATA_FIELD((arg1->unk18 >> 5) & 0x7FF, (u32)((Obj1E691A0_arg1 *)arg1)->unk1A >> 5), 0x58, sp1C);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090080()

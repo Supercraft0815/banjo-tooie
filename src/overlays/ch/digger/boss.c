@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_colors.h"
 #include "boss_tables.h"
 void func_80800000_chdiggerboss(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
@@ -2513,7 +2514,7 @@ void func_808042FC_chdiggerboss(Actor *arg0, Unkfunc_800E0960_1 *arg1, u8 *arg2)
 void func_808043D8_chdiggerboss(Actor *arg0, f32 arg1, u8 *arg2) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     BtIntPtr func_800B53A4(s32);
-    void func_800BAB80(BtIntPtr, u8 *);
+
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     extern s16 D_80809FE0_chdiggerboss[36];
     f32 sp24[3];
@@ -4376,7 +4377,7 @@ void func_80807B54_chdiggerboss(Actor *arg0) {
     s32 _subaddiefind_entrypoint_9(s32);
     void _sucoaster_entrypoint_4(Actor *);
     f32 func_8001395C(f32);
-    void func_800B4470(f32 *, f32 *, u8 *, s32, f32, f32, s32, s32, s32);
+
     void func_800C4104(s32, f32, s32, BtIntPtr, f32, f32);
     s32 func_800D9078(f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);

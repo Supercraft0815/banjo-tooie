@@ -543,3 +543,6 @@ void func_800E9EE8(s32 arg0) {
     }
 }
 #endif
+
+/* No named reader survives for these original data words. */
+u32 D_80123530[4] BT_DATA(4, world_grid_tail, 0) = {0};

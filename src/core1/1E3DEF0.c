@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern ALSynth *D_800411F4;
+
 void func_800263C0(ALEventQueue *arg0, ALEventListItem *arg1, s32 arg2) {
     void func_80020E40(ALLink *, ALLink *);
     s32 i;
@@ -115,33 +117,30 @@ void func_800266B0(ALEventQueue *arg0, s16 arg1) {
     osSetIntMask(sp1C);
 }
 
-void func_80026780(s32 *arg0) {
-    extern s32 *D_800411F4;
+void func_80026780(ALPlayer *arg0) {
     u32 mask;
     mask = osSetIntMask(1U);
-    arg0[4] = D_800411F4[8];
-    arg0[0] = D_800411F4[0];
-    D_800411F4[0] = (BtIntPtr)arg0;
+    arg0->samplesLeft = D_800411F4->curSamples;
+    arg0->next = D_800411F4->head;
+    D_800411F4->head = arg0;
     osSetIntMask(mask);
 }
 
-void func_800267F0(s32 *arg0) {
-    extern s32 *D_800411F4;
+void func_800267F0(ALPlayer *arg0) {
     u32 mask;
     mask = osSetIntMask(1U);
-    arg0[4] = D_800411F4[8];
-    arg0[0] = D_800411F4[0];
-    D_800411F4[0] = (BtIntPtr)arg0;
+    arg0->samplesLeft = D_800411F4->curSamples;
+    arg0->next = D_800411F4->head;
+    D_800411F4->head = arg0;
     osSetIntMask(mask);
 }
 
-void func_80026860(s32 *arg0) {
-    extern s32 *D_800411F4;
+void func_80026860(ALPlayer *arg0) {
     u32 mask;
     mask = osSetIntMask(1U);
-    arg0[4] = D_800411F4[8];
-    arg0[0] = D_800411F4[0];
-    D_800411F4[0] = (BtIntPtr)arg0;
+    arg0->samplesLeft = D_800411F4->curSamples;
+    arg0->next = D_800411F4->head;
+    D_800411F4->head = arg0;
     osSetIntMask(mask);
 }
 
@@ -149,7 +148,6 @@ s32 func_800268D0(ALVoice *arg0, ALVoiceConfig *arg1) {
     s32 *func_80021794(void);
     s32 func_80026AA4(ALLink **, s16);
     s32 func_8002B684(void *, s32, void *);
-    extern s32 *D_800411F4;
     struct PhysicalVoice {
         ALLink node;
         ALVoice *voice;
@@ -176,7 +174,7 @@ s32 func_800268D0(ALVoice *arg0, ALVoiceConfig *arg1) {
             arg0->pvoice = (struct PVoice_s *)sp24;
             sp20 = func_80021794();
             if (sp20 != NULL) {
-                sp20[1] = D_800411F4[7];
+                sp20[1] = D_800411F4->paramSamples;
                 ((s16 *)sp20)[4] = 0xB;
                 sp20[3] = 0;
                 sp20[4] = 0x170;
@@ -185,7 +183,7 @@ s32 func_800268D0(ALVoice *arg0, ALVoiceConfig *arg1) {
             }
             sp20 = func_80021794();
             if (sp20 != NULL) {
-                sp20[1] = D_800411F4[7] + ((struct PhysicalVoice *)sp24)->offset;
+                sp20[1] = D_800411F4->paramSamples + ((struct PhysicalVoice *)sp24)->offset;
                 ((s16 *)sp20)[4] = 0xF;
                 sp20[0] = 0;
                 func_8002B684(arg0->pvoice, 3, sp20);
@@ -203,7 +201,6 @@ s32 func_800268D0(ALVoice *arg0, ALVoiceConfig *arg1) {
 s32 func_80026AA4(ALLink **arg0, s16 arg1) {
     void func_80020E40(ALLink *, ALLink *);
     void func_80020E74(ALLink *);
-    extern s32 *D_800411F4;
     struct PhysicalVoice {
         ALLink node;
         ALVoice *voice;
@@ -215,17 +212,17 @@ s32 func_80026AA4(ALLink **arg0, s16 arg1) {
     s32 sp1C;
 
     sp1C = 0;
-    if ((sp24 = (ALLink *)D_800411F4[5]) != NULL) {
+    if ((sp24 = D_800411F4->pLameList.next) != NULL) {
         *arg0 = sp24;
         func_80020E74(sp24);
-        func_80020E40(sp24, (ALLink *)&D_800411F4[3]);
+        func_80020E40(sp24, &D_800411F4->pAllocList);
     } else {
-        if ((sp24 = (ALLink *)D_800411F4[1]) != NULL) {
+        if ((sp24 = D_800411F4->pFreeList.next) != NULL) {
             *arg0 = sp24;
             func_80020E74(sp24);
-            func_80020E40(sp24, (ALLink *)&D_800411F4[3]);
+            func_80020E40(sp24, &D_800411F4->pAllocList);
         } else {
-            if ((sp24 = (ALLink *)D_800411F4[3]) != NULL) {
+            if ((sp24 = D_800411F4->pAllocList.next) != NULL) {
                 do {
                     sp20 = (struct PhysicalVoice *)sp24;
                     if (sp20->voice->priority <= arg1 && sp20->offset == 0) {
