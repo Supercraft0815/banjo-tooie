@@ -1074,7 +1074,7 @@ s32 func_808019A4_gcnewpause(u32 arg0, u32 arg1)
 		}
 		index++;
 	}
-	if (func_8080190C_gcnewpause(func_800DADEC(arg0), 0x22, 0x1B, 4, arg1) != 0)
+	BT_NATIVE_ONLY(u16 func_800DADEC(s32);) if (func_8080190C_gcnewpause(func_800DADEC(arg0), 0x22, 0x1B, 4, arg1) != 0)
 	{
 		var_s5 = 1;
 	}

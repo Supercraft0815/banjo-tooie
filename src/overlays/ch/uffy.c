@@ -657,7 +657,7 @@ void func_808013E8_chchuffy(Actor *arg0, f32 *arg1, f32 *arg2) {
     s32 _sumumbofx_entrypoint_5(void *, f32);
     void _sumumbofx_entrypoint_18(void *, f32);
     void _sumumbofx_entrypoint_16(void *, f32);
-    void _sumumbofx_entrypoint_11(void *arg0, BtIntPtr bt_a1);
+    void _sumumbofx_entrypoint_11(void *arg0, BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(f32 *) position);
     void _sumumbofx_entrypoint_14(u8 *arg0);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101DDC(Actor *);

@@ -45,7 +45,7 @@ s32 func_80800100_chcrusherboulder(u8 *arg0, f32 *arg1) {
     extern struct Vector D_80801394_chcrusherboulder;
     void _sumumbofx_entrypoint_7(u8 *arg0, f32 arg1, s32 arg2, s32 arg3, f32 *arg4, f32 *arg5, f32 *arg6);
     void _sumumbofx_entrypoint_14(u8 *arg0);
-    void _sumumbofx_entrypoint_11(void *arg0, BtIntPtr bt_a1);
+    void _sumumbofx_entrypoint_11(void *arg0, BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(f32 *) position);
     struct Vector sp3C = D_80801388_chcrusherboulder;
     struct Vector sp30 = D_80801394_chcrusherboulder;
 

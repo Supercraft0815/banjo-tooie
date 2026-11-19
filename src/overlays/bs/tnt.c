@@ -29,7 +29,7 @@ void func_80800060_bstnt(BtIntPtr arg0)
 {
 }
 void func_80800068_bstnt(void *arg0) {
-    extern s32 D_80802230_bstnt[3];
+    BT_NATIVE_ONLY(struct player_state_s; s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);) extern s32 D_80802230_bstnt[3];
     (*(s8 *)((s8 *)(arg0) + (0x160))) = func_8009D454(arg0, 0, D_80802230_bstnt);
 }
 

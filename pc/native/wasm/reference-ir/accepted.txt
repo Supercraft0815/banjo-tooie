@@ -282,3 +282,11 @@ addresses and only floating-point registers for the three values. The
 six changed IR bodies drop an unused artificial integer result. The
 74 reference traces and the native vector test match. See
 n2-2026-11-18/current-contact-hud-ir.log and current-contact-hud-ido/.
+
+2026-11-19  N2 player lighting and flight boost
+func_80800540_bskazfly passes 0x3f800000 in a1 (1.0f). The old call
+passed integer bit pattern 1. func_808002F4_chglowbo passes the
+unsigned model halfword read with lhu. func_808019A4_gcnewpause gets
+an unsigned halfword from func_800DADEC. These are the three changed
+bodies in n2-2026-11-18/current-player-light-ir.log. The original
+instructions are in player-light-mips.txt in the same directory.

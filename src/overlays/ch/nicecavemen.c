@@ -373,7 +373,7 @@ void func_8080077C_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800AB8_chnicecavemen(Actor *arg0, s32 arg1) {
-    s32 _subaddiepalette_entrypoint_2(Actor *, void *, s32, f32);
+    BT_IDO_ONLY(s32 _subaddiepalette_entrypoint_2(Actor *, void *, s32, f32);) BT_NATIVE_ONLY(s32 _subaddiepalette_entrypoint_2(Actor *, void *, u16, f32);)
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     BtUIntPtr func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
@@ -606,7 +606,7 @@ s32 func_80801178_chnicecavemen(Actor *arg0) {
 
 void func_80801200_chnicecavemen(Actor *arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 _subaddiepalette_entrypoint_0(void *, void *, s32);
+    BT_IDO_ONLY(s32 _subaddiepalette_entrypoint_0(void *, void *, s32);) BT_NATIVE_ONLY(s32 _subaddiepalette_entrypoint_0(Actor *, u8 *, u16);)
     s32 func_800DA298(s32);
     void *func_80100094(Actor *, u32);
     u8 *sp1C;

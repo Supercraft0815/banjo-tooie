@@ -13,9 +13,7 @@ typedef struct ba_boost_s {
 } BaBoost;
 
 extern s32 _baboost_entrypoint_1(PlayerState *self);
-#ifndef BT_NATIVE
-extern void _baboost_entrypoint_2(PlayerState *self, f32);
-#endif
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) _baboost_entrypoint_2(PlayerState *self, f32);
 extern void _baboost_entrypoint_5(PlayerState *self);
 
 #endif // __BA_BOOST_H__

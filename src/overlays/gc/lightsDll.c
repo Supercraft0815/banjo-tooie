@@ -116,7 +116,7 @@ void gclightsDll_entrypoint_2(s32 arg0, s32 arg1) {
     u32 vector_end(s32);
     void *vector_push_back(struct Vector **);
     s32 gclightsDll_entrypoint_4(void);
-    void gclightsDll_entrypoint_5(f32 *);
+    BT_NATIVE_ONLY(void func_800C8CB8(s32, f32 *);) void gclightsDll_entrypoint_5(f32 *);
     void func_800C8F64(s32, s32);
     u32 current;
     u32 end;

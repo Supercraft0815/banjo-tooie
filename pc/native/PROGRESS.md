@@ -2822,3 +2822,17 @@ Retraces und 62 native Sanitizertests. Alle 16.401 Original-IDO-Funktionen
 und beide ROM-Abbilder stimmen überein. Belege liegen unter
 `build/acceptance/n2-2026-11-18/current-contact-hud*` und in
 `save-switch-minimal-sites.json` und `oracle-hud-forward.jsonl` daneben.
+
+## 2026-11-19 — N2, Spielerbeleuchtung und Flugimpuls
+
+Die Verbraucher der Spielerbeleuchtung und der Paletten verwenden die
+Argumentbreiten ihrer Anbieter. Kazooies Flugimpuls erhält den Faktor
+1,0 als Gleitkommazahl. Bei Glowbo und im Pausenmenü bleiben die
+Rückgabewerte vorzeichenlos. Ohne FixCalls sinkt die Zahl ungültiger
+Linkervarianten von 51 auf 40. Die drei Änderungen der kanonischen IR
+sind mit den Original-MIPS-Instruktionen abgeglichen. Alle 74 Replays
+mit 447.849 Retraces, elf Gastsuiten und 62 native Sanitizertests
+bestehen. Alle 16.401 Original-IDO-Funktionen und beide ROM-Abbilder
+stimmen überein. Belege liegen unter
+`build/acceptance/n2-2026-11-18/current-player-light*`, die
+Originalinstruktionen in `player-light-mips.txt`.

@@ -426,12 +426,12 @@ s32 sumumbofx_entrypoint_10(u8 *arg0) {
 /* extern */
 
 #ifdef BT_NATIVE
-void sumumbofx_entrypoint_11(void *arg0, BtIntPtr bt_a1) {
+void sumumbofx_entrypoint_11(void *arg0, f32 *position) {
 #else
 void sumumbofx_entrypoint_11(void *arg0) {
 #endif
-    s32 func_800C8CB8(s16);
-    func_800C8CB8((((Objmumbofx_arg0 *)arg0)->unk5E));
+    BT_IDO_ONLY(s32 func_800C8CB8(s16);) BT_NATIVE_ONLY(void func_800C8CB8(s32, f32 *);)
+    func_800C8CB8((((Objmumbofx_arg0 *)arg0)->unk5E) BT_PASS2(, position));
 }
 
 void func_80800F8C_sumumbofx(u8 *arg0) {

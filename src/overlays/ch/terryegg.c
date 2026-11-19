@@ -50,7 +50,7 @@ void func_808000A8_chterryegg(Actor *arg0) {
     s32 _plsu_entrypoint_3(BtIntPtr arg0);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddiepalette_entrypoint_1(void *arg0, u8 *arg1);
-    s32 _subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3);
+    s32 _subaddiepalette_entrypoint_2(BT_IDO_ONLY(void **) BT_NATIVE_ONLY(Actor *) arg0, void *arg1, u16 arg2, f32 arg3);
     s32 func_800D9078();
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F7BC8(BtIntPtr, s32, Unk80132ED0 *);

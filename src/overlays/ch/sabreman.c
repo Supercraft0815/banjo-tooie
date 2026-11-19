@@ -118,7 +118,7 @@ void func_80800218_chsabreman(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     void _subaddiepalette_entrypoint_1(void *arg0, u8 *arg1);
-    s32 _subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3);
+    s32 _subaddiepalette_entrypoint_2(BT_IDO_ONLY(void **) BT_NATIVE_ONLY(Actor *) arg0, void *arg1, u16 arg2, f32 arg3);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
     s32 _subaddietaxi_entrypoint_1(Actor *, s32);
     s32 _subaddietaxi_entrypoint_11(Actor *, s32);

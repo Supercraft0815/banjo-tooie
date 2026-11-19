@@ -5,6 +5,7 @@
 #include "overlays/ba/playerstate.h"
 
 void _bareact_entrypoint_1(PlayerState *self, s32);
+BT_NATIVE_ONLY(u8 _bareact_entrypoint_2(void *);)
 f32 _bareact_entrypoint_3(PlayerState *self);
 f32 _bareact_entrypoint_4(PlayerState *self);
 f32 _bareact_entrypoint_5(PlayerState *self);

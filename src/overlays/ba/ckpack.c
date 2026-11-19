@@ -1,12 +1,12 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(s16 func_80100D24(s32, s32, s32, s32, s32, s32);)
 #include "core2/anctrl.h"
 #include "overlays/ba/anim.h"
 #include "overlays/ba/backpack.h"
 #include "overlays/ba/playerstate.h"
-
+BT_NATIVE_ONLY(s32 func_80100A74(s16, s32);)
 #include "core2/1EB5E70.h"
-
+BT_NATIVE_ONLY(s32 func_80100AC4(s16);)
 BtIntPtr func_8008CA74(PlayerState *self);
 void func_800A0714(BtIntPtr, s32);
 

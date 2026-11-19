@@ -58,7 +58,7 @@ void subaddiepalette_entrypoint_1(void *arg0, u8 *arg1) {
     }
 }
 
-s32 subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3) {
+s32 subaddiepalette_entrypoint_2(BT_IDO_ONLY(void **) BT_NATIVE_ONLY(Actor *) arg0, void *arg1, u16 arg2, f32 arg3) {
     u16 old;
     old = *(u16 *)arg1;
     if (old == arg2) return 0;
@@ -67,7 +67,7 @@ s32 subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3) {
     ((Objpalette_arg1 *)arg1)->unk8 = arg3;
     ((Objpalette_arg1 *)arg1)->unk2 = old;
     *(u16 *)arg1 = arg2;
-    *(u16 *)((s8 *)*arg0 + 22) = arg2;
+    BT_IDO_ONLY(*(u16 *)((s8 *)*arg0 + 22)) BT_NATIVE_ONLY(arg0->unk0->unk16) = arg2;
     return 1;
 }
 
