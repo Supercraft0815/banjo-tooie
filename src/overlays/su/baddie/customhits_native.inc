@@ -20,7 +20,7 @@ s32 subaddiecustomhits_entrypoint_2(Unk80132ED0 *marker,f32 *point,f32 radius,f3
     u8 *model=func_80103AA0(marker);
     void *skeleton=func_801040A8(actor);
     if(!model || !func_800AE0B8(skeleton) || actor->scale==0) return 0;
-    s32 result=func_800B1F8C(func_800B2824(model),actor->position,func_801027F4(actor),actor->scale,0,skeleton,point,radius,normal,kind);
+    s32 result=func_800B1F8C(func_800B2824(model),actor->position,func_801027F4(actor),actor->scale,0,(BtIntPtr)skeleton,point,radius,normal,kind);
     if(result) {
         NativeActorHit *hit=func_80104124();
         func_800EE7F8(hit->position,point);hit->radius=radius;

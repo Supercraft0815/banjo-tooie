@@ -48,14 +48,14 @@ void gspropsDll_entrypoint_2(NativeWorldCell *cell, s32 pass) {
         if (!duration) duration = 300;
         if (flags & 32) size *= 5;
         if (prop->unk6_1 == 7 && selected == (pass != 0)) {
-            func_800CBA68(prop->ItemID, prop, size, duration,
+            func_800CBA68(prop->ItemID, (BtIntPtr)prop, size, duration,
                          flags >> 21, (flags >> 9) & 1, selected);
         }
         if (!pass) {
             if (prop->unk6_1 == 9)
-                func_800CBAC8(prop->ItemID, prop, size, flags & 3, duration);
+                func_800CBAC8(prop->ItemID, (BtIntPtr)prop, size, flags & 3, duration);
             else if (prop->unk6_1 == 12)
-                func_800CBB18(prop->ItemID, prop, size, duration, flags & 3, (flags >> 9) & 1);
+                func_800CBB18(prop->ItemID, (BtIntPtr)prop, size, duration, flags & 3, (flags >> 9) & 1);
         }
     }
 }

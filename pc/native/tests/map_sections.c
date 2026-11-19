@@ -25,12 +25,12 @@ f32 func_800DC178(f32 a,f32 b) {CHECK(a==-1 && b==1);++random_calls;return 0;}
 void func_800DF738(void *data) {draw_vectors=data;}
 void func_800DF83C(void *data) {draw_zones=data;}
 void func_800DF5D8(u32 r,u32 g,u32 b,s32 a) {draw_color[0]=r;draw_color[1]=g;draw_color[2]=b;draw_color[3]=a;}
-void _rtlight_entrypoint_2(void *state,void *vertices,void *normals,s32 copies) {
+void _rtlight_entrypoint_2(u8 *state,void *vertices,u8 *normals,s32 copies) {
     CHECK(state && vertices && normals && (copies==1 || copies==2));++light_updates;
 }
 void _vpmodule_entrypoint_2(void *state,void *data) {CHECK(state && data);++module_updates;}
 void _vpmodule_entrypoint_3(void *state,void *data,void *vertices) {CHECK(state && data && vertices);++module_draws;}
-s32 _vpmodule_entrypoint_4(void *state,void *data,s32 a,s32 b) {CHECK(state && data && a==4 && b==7);++module_commands;return 1;}
+s32 _vpmodule_entrypoint_4(BtIntPtr state,u8 *data,s32 a,s32 b) {CHECK(state && data && a==4 && b==7);++module_commands;return 1;}
 void _idworldmake_entrypoint_6(void *state,s32 a,s32 b) {CHECK(state && a==4 && b==7);++instance_commands;}
 void _idworldmake_entrypoint_7(void *state,s32 a,s32 b) {CHECK(state && a==4 && b==7);++instance_commands;}
 void *_dbvpl_entrypoint_0(void *data,s32 index) {CHECK(data && !index);return vpl_mode ? data : NULL;}

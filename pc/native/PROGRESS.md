@@ -2410,3 +2410,20 @@ bestehen. Original-IDO ergibt dieselben Funktionen und beide vollständigen
 ROMs. Belege stehen unter `build/acceptance/n2-2026-11-18/` in
 `signature-batch-one-ido/result.json`, `signature-ir.log` und
 `signature-gate-74.log`.
+
+## 2026-11-19 — N3, Kollisionskontakte und Drohnen-Callbacks
+
+Die Kollisionskontakte führen die Referenz auf den Anhang eines Actors als
+16-Bit-Index. Die Schnittstellen für den zugehörigen Speicherpool, die
+Kartenabschnitte und die Drohnenzustände verwenden die tatsächlichen
+Zeiger- und Callbacktypen. Der Stand hat 1.016 statt 1.028 LP64-Warnstellen.
+
+Die eigenständigen Mathematik- und Animationstests lesen die Sinustabelle
+aus der lokalen ROM. Animations- und Geometrie-Fixtures verwenden die
+Skalierung und Abschnittsgrenzen des Spiels. Alle 53 nativen CTests, die
+elf ILP32-Testsuiten und alle 74 Replays bestehen. Die drei Änderungen
+der kanonischen ILP32-Darstellung sind in `wasm/reference-ir/accepted.txt`
+erläutert. Die IDO-Prüfung verglich in der gemeinsamen Quellfassung 2.053
+Funktionen sowie beide vollständigen ROMs. Belege liegen unter
+`build/acceptance/n3-2026-11-18/` und in
+`build/acceptance/n1-2026-11-18/root-current47-ido/result.json`.

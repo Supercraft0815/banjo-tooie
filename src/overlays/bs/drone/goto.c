@@ -168,7 +168,7 @@ void func_8080032C_bsdronegoto(void *arg0) {
 
 /* extern */
 
-void bsdronegoto_entrypoint_0(void *arg0) {
+void bsdronegoto_entrypoint_0(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     s32 _badata_entrypoint_14(void *);
     s32 _gcgoto_entrypoint_14(s32);
     s32 func_80091E48(void *, s32);
@@ -198,7 +198,7 @@ void bsdronegoto_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsdronegoto_entrypoint_2(void *arg0) {
+void bsdronegoto_entrypoint_2(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     s32 _gcgoto_entrypoint_14(s32);
     void func_80091E6C(void *);
     s32 func_80800000_bsdronegoto(void *, s32);

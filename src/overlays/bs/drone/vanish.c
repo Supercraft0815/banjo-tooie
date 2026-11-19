@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(struct player_state_s;)
 typedef struct { u8 pad0[0x188]; union { void * unk188; s32 * unk188_s32p; }; } Objvanish_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_bsdronevanish(void *arg0, s32 arg1) {
     void _batimer_set(struct player_state_s *, s32, f32);
     void func_80093370(void *, s32);
@@ -93,7 +93,7 @@ void func_808002A4_bsdronevanish(void *arg0) {
 
 /* extern */
 
-void bsdronevanish_entrypoint_0(void *arg0) {
+void bsdronevanish_entrypoint_0(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     void _badata_entrypoint_3(void *self, void *assetId, f32 *arg2);
     void _bastatemem_entrypoint_0(void *, s32);
     s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
@@ -113,7 +113,7 @@ void bsdronevanish_entrypoint_0(void *arg0) {
     func_80800000_bsdronevanish(arg0, 1);
 }
 
-void bsdronevanish_entrypoint_1(void *arg0) {
+void bsdronevanish_entrypoint_1(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     s32 _badata_entrypoint_34(BtIntPtr);
     s32 _batimer_decrement(void *, s32);
     f32 _batimer_get(void *, s32);
@@ -152,7 +152,7 @@ void bsdronevanish_entrypoint_1(void *arg0) {
 
 /* extern */
 
-void bsdronevanish_entrypoint_2(void *arg0) {
+void bsdronevanish_entrypoint_2(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     void _bastatemem_entrypoint_1(void *arg0);
     s32 func_80092778(void *);
     s32 func_800961AC(void *, s32);

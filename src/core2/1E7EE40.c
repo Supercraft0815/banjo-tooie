@@ -9,13 +9,13 @@ void func_800A5550(void *event,void *data) {
     s16 *func_800A93E4(BtIntPtr);
     PlayerState *func_80110014(s16 *);
     void _ncbaspline_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2);
-    _ncbaspline_entrypoint_5(func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),event,data);
+    _ncbaspline_entrypoint_5(func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),(BtIntPtr)event,(BtIntPtr)data);
 }
 void func_800A5598(void *event,void *data) {
     s16 *func_800A93E4(BtIntPtr);
     PlayerState *func_80110014(s16 *);
     void _ncbaspline_entrypoint_6(BtIntPtr arg0, void *arg1, BtIntPtr arg2);
-    _ncbaspline_entrypoint_6(func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),event,data);
+    _ncbaspline_entrypoint_6((BtIntPtr)func_80110014(func_800A93E4(*(u16 *)((u8 *)data+0x1A)>>5)),event,(BtIntPtr)data);
 }
 void func_800A55E0(void) { _cadbmgrDll_entrypoint_0(&D_80119540,0x7D); }
 void func_800A5608(s32 maximum) { _cadbmgrDll_entrypoint_0(&D_80119540,maximum); }

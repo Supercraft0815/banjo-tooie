@@ -1,6 +1,6 @@
 /* data_to_c.py: from asm/data/overlays/bs/drone.data.s */
-extern void _bsdronefalldie_entrypoint_0(BtIntPtr arg0);
-extern void _bsdronefalldie_entrypoint_2(BtIntPtr arg0);
+extern void _bsdronefalldie_entrypoint_0(PlayerState *);
+extern void _bsdronefalldie_entrypoint_2(PlayerState *);
 BT_LP64_ONLY(const) NativeDroneState D_80800180_bsdrone[16] BT_DATA(4, overlays_bs_drone, 0x0) = {
     {1, (DroneCallback)_bsdronegoto_entrypoint_0, (DroneCallback)_bsdronegoto_entrypoint_1,
      (DroneCallback)_bsdronegoto_entrypoint_2, (DroneCallback)_bsdronegoto_entrypoint_3},

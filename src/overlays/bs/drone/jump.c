@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(struct player_state_s;)
 /* extern */
 
 typedef struct { u8 pad0[0x54]; s8 * unk54; u8 pad58[0x138]; f32 unk190; f32 unk194; } Objjump_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ typedef struct { u8 pad0[0x4]; f32 unk4; } Objjump_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */ void bsdronejump_entrypoint_0(void *arg0, void *arg1, f32 arg2) {
@@ -17,12 +17,12 @@ typedef struct { u8 pad0[0x54]; s8 * unk54; u8 pad58[0x138]; f32 unk190; f32 unk
     (((Objjump_arg1 *)arg1)->unk4) += new_var;
 }
 
-void bsdronejump_entrypoint_1(s32 arg0)
+void bsdronejump_entrypoint_1(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct player_state_s *) arg0)
 {
     func_800961A0(arg0,0);
 }
 
-void bsdronejump_entrypoint_2(void *arg0) {
+void bsdronejump_entrypoint_2(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     void _badata_entrypoint_8(void *, s32 *, f32 *, f32 *);
     void baanim_playForDuration_loopStartingAt(void *, s32, f32, f32);
     void func_8009FFD8();
@@ -56,15 +56,15 @@ void bsdronejump_entrypoint_2(void *arg0) {
     func_800961A0(arg0, 1);
 }
 
-void bsdronejump_entrypoint_3(BT_NATIVE_ONLY(s32 bt_a0))
+void bsdronejump_entrypoint_3(BT_NATIVE_ONLY(struct player_state_s *bt_a0))
 {
     func_80099AA8(BT_NATIVE_ONLY(bt_a0));
 }
 
 /* extern */
 
-void bsdronejump_entrypoint_4(BtIntPtr arg0) {
-    s32 _badata_entrypoint_34(BtIntPtr);
+void bsdronejump_entrypoint_4(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
+    s32 _badata_entrypoint_34(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *));
     void bs_setState(void *self, s32 nextState);
     s32 _bamovegoto_entrypoint_4();
     s32 var_a1;
@@ -72,7 +72,7 @@ void bsdronejump_entrypoint_4(BtIntPtr arg0) {
 
     sp1C = 0;
     var_a1 = sp1C;
-    if (_bamovegoto_entrypoint_4() != 0) {
+    if (_bamovegoto_entrypoint_4(BT_NATIVE_ONLY(arg0)) != 0) {
         var_a1 = _badata_entrypoint_34(arg0);
     }
     bs_setState(arg0, var_a1);

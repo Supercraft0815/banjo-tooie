@@ -23,9 +23,9 @@ void func_80800000_bsdronebitten(struct player_state_s *arg0) {
     baphysics_set_target_horizontal_velocity(arg0, func_800F1214(sp1C, 30.0f, 500.0f));
 }
 
-void bsdronebitten_entrypoint_0(s32 arg0)
+void bsdronebitten_entrypoint_0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct player_state_s *) arg0)
 {
-    func_8008E95C();
+    func_8008E95C(BT_NATIVE_ONLY(arg0));
     bastick_popZone(arg0);
 }
 /* extern */
@@ -121,9 +121,9 @@ void bsdronebitten_entrypoint_5(void *arg0, void *arg1, f32 arg2)
   }
 }
 
-void bsdronebitten_entrypoint_6(BtIntPtr arg0)
+void bsdronebitten_entrypoint_6(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *) arg0)
 {
-    void _bafpctrl_entrypoint_19(BtIntPtr);
+    void _bafpctrl_entrypoint_19(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(PlayerState *));
     func_800961A0((s32 *)arg0, 0);
     func_8008E95C(arg0);
     _bafpctrl_entrypoint_19(arg0);

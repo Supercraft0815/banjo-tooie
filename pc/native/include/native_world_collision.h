@@ -18,6 +18,8 @@ s32 func_800CD6B4(Unk80132ED0 *,f32 *,f32,f32 *,s32);
 Unk80132ED0 *func_800CD820(Unk80132ED0 *,f32 *,f32 *,f32);
 s32 func_800CDBA8(Unk80132ED0 *,f32 *,f32 *,s32);
 Unk80132ED0 *func_800CDFA8(s32,s32 *);
+int func_800EA3A0(void);
+void func_800EA400(s32,Unk80132ED0 *,f32 *,void *);
 void func_800EA600(void (*)(uintptr_t,uintptr_t),uintptr_t);
 void func_800EA614(void);
 void *func_800EA628(NativeWorldCell *,f32 *,f32 *,f32 *,u32);

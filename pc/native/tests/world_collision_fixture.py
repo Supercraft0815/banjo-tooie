@@ -26,7 +26,7 @@ struct.pack_into(">5h9h", model, 216, 1, 1, 0, 3, 3, -100, 0, -100, -100, 0, 100
 model[244:256] = bytes((127,0,0,0,0,127,0,0,0,0,127,0))
 struct.pack_into(">6h", model, 256, 0, -1, 1, -1, 2, -2)
 payload, entries = bytearray(), []
-animation = bytes((0,0,0,10,0,1,0,0,0,0x16,0,2,0,0,0,128,0,10,1,0))
+animation = bytes((0,0,0,10,0,1,0,0,0,0x16,0,2,0,0,0,64,0,10,0,128))
 for i in range(1501):
     data = model if i in (148, 1500) else (bytes((255,64,255,128)) if i == 149 else animation if i in (151,152) else b"")
     entries.append(len(payload) << 6 | (0 if i in (148,1500) else 6 if i in (151,152) else 1))

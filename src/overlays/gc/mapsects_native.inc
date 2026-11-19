@@ -80,7 +80,7 @@ void func_808005D0_gcmapsects(NativeMap *map,s32 index,void *model) {
     }
     for(int i=0;i<2;++i)if(s->assets[i] && (map->section_flags[S_INSTANCES]&(1<<i)) && !s->instances[i]) {
         void *asset=i ? func_800D674C(s->assets[i]) : model;
-        if(asset && func_800B274C(asset))s->instances[i]=_glidmake_entrypoint_5(s->assets[i],s);
+        if(asset && func_800B274C(asset))s->instances[i]=_glidmake_entrypoint_5(s->assets[i],s->position);
         if(s->instances[i])_idworldmake_entrypoint_0(s->instances[i],2);
     }
     for(int i=0;i<2;++i)if(s->instances[i]) {

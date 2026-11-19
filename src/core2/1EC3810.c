@@ -6,7 +6,7 @@
 #include BT_LP64_HEADER("native_actor_model.h")
 #include BT_LP64_HEADER("core2/1EAF950.h")
 #endif
-
+#include "core2/1EB2130.h"
 extern u16 D_80132DC2;
 extern s32 D_80132DC0;
 
@@ -268,6 +268,25 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) func_800EA370()
 
 #include "1EC3810_prop_hooks.inc"
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+static struct {
+    f32 position[3];
+    Unk80132ED0 *marker;
+    u16 *indices;
+} world_contacts[8];
+
+int func_800EA3A0(void) {
+    for (int i = 0; i < 8; i++) world_contacts[i] = (typeof(world_contacts[0])){0};
+    return 0;
+}
+
+void func_800EA400(s32 slot, Unk80132ED0 *marker, f32 *position, void *indices) {
+    if ((u32)slot >= 8) return;
+    func_800EE7F8(world_contacts[slot].position, position);
+    world_contacts[slot].marker = marker;
+    world_contacts[slot].indices = indices;
+}
+#else
 int func_800EA3A0(void) {
     extern s32 D_80132DD0;
     extern f32 D_80132DD8;
@@ -293,32 +312,40 @@ void func_800EA400(s32 arg0, u8 *arg1, BtIntPtr arg2, s32 arg3) {
     *(u8 **)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x14) = arg1;
     *(s32 *)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x18) = arg3;
 }
+#endif
 
 void func_800EA45C(void) {
-    void func_800D8B80(s16, s32, f32 *, f32 *, f32, s32, u16 *, u8 *, f32 *);
-    void func_800F5A00(BtIntPtr, f32 *);
+    BT_IDO_ONLY(void func_800D8B80(s16, s32, f32 *, f32 *, f32, s32, u16 *, u8 *, f32 *);)
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32 *);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     u8 *func_80103C94(Actor *);
 #endif
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80132DD0;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define CONTACT_FIELD(i, field) world_contacts[i].field
+#define CONTACT_POSITION(i) world_contacts[i].position
+#else
     struct Entry { Unk80132ED0 *marker; u16 *indices; f32 position[3]; };
+#define CONTACT_FIELD(i, field) ((struct Entry *)&D_80132DD0)[(i) + 1].field
+#define CONTACT_POSITION(i) ((struct Entry *)&D_80132DD0)[i].position
+#endif
     s32 var_s1;
     f32 sp60[3];
     Actor *temp_s0;
 
     for (var_s1 = 0; var_s1 != 8; var_s1++) {
-        if (((struct Entry *)&D_80132DD0)[var_s1 + 1].marker != NULL) {
-            temp_s0 = func_80106790(((struct Entry *)&D_80132DD0)[var_s1 + 1].marker);
+        if (CONTACT_FIELD(var_s1, marker) != NULL) {
+            temp_s0 = func_80106790(CONTACT_FIELD(var_s1, marker));
             func_800F5A00(var_s1, sp60);
-            func_800D8B80(((s16 *)&temp_s0->pad80)[0], var_s1, temp_s0->position, temp_s0->rotation, temp_s0->scale, 0, ((struct Entry *)&D_80132DD0)[var_s1 + 1].indices, func_80103C94(temp_s0), ((struct Entry *)&D_80132DD0)[var_s1].position);
+            func_800D8B80(BT_DATA_FIELD((s16)temp_s0->attachment_handle, ((s16 *)&temp_s0->pad80)[0]), var_s1, temp_s0->position, temp_s0->rotation, temp_s0->scale, 0, CONTACT_FIELD(var_s1, indices), func_80103C94(temp_s0), CONTACT_POSITION(var_s1));
         }
     }
 }    typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1EC3810_func_800EA51C_var_s2; /* offsets.py genstruct: fields from raw offsets on var_s2; rename once understood */
 
 void func_800EA51C(void) {
-    s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, BtIntPtr, f32 *, f32 *);
-    void func_800F5A00(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, BtIntPtr, f32 *, f32 *);)
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F8418(BtIntPtr, f32 *);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     u8 *func_80103C94(Actor *);
@@ -331,21 +358,33 @@ void func_800EA51C(void) {
     s32 var_s1;
     Actor *temp_s0;
 
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     var_s2 = &D_80132DD0;
+#endif
     var_s1 = 0;
     do {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+        temp_a0 = world_contacts[var_s1].marker;
+#else
         temp_a0 = *(Unk80132ED0 **)&var_s2[5];
+#endif
         if (temp_a0 != 0) {
             temp_s0 = func_80106790(temp_a0);
             func_800F5A00(var_s1, sp60);
-            if (func_800D89C8(*(s16 *)&temp_s0->pad80, var_s1, temp_s0->position, temp_s0->rotation, temp_s0->scale, 0, func_80103C94(temp_s0), sp60, sp60) != 0) {
+            if (func_800D89C8(BT_DATA_FIELD((s16)temp_s0->attachment_handle, *(s16 *)&temp_s0->pad80), var_s1, temp_s0->position, temp_s0->rotation, temp_s0->scale, 0, func_80103C94(temp_s0), sp60, sp60) != 0) {
                 sp60[1] -= 10.0f;
                 func_800F8418(var_s1, sp60);
             }
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+            world_contacts[var_s1].marker = NULL;
+#else
             (((Obj1EC3810_func_800EA51C_var_s2 *)var_s2)->unk14) = 0;
+#endif
         }
         var_s1 += 1;
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
         var_s2 += 5;
+#endif
     } while (var_s1 != 8);
 }
 

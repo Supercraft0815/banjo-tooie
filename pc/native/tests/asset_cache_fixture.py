@@ -11,7 +11,7 @@ import zlib
 def main():
     payload, entries = bytearray(), []
     for index in range(160):
-        raw = struct.pack(">10H", 0, 10, 1, 0, 0x16, 2, 0, index * 128, 10, (index + 1) * 128)
+        raw = struct.pack(">10H", 0, 10, 1, 0, 0x16, 2, 0, index * 64, 10, (index + 1) * 64)
         flags = 6
         if index & 1:
             encoder = zlib.compressobj(wbits=-15)

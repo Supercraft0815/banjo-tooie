@@ -8,7 +8,7 @@
 #include "core2/1EB2840.h"
 #include "core2/1ECA640.h"
 #include "core2/1EDA900.h"
-
+BT_LP64_ONLY(void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);)
 s32 func_80800000_bsdronebubbled(PlayerState *self) {
     s32 result;
     result = func_8010114C(self->drone->marker, 0x2C, self->unk184);

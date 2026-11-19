@@ -13,8 +13,8 @@
 /* Controlled asset lookup/clock/render boundaries; resource sampling executes game C. */
 static s16 *assets[2];
 static const u8 resource_bytes[2][20] = {
-    {0,0, 0,10, 0,1, 0,0, 0,0x16, 0,2, 0,0, 0,128, 0,10, 1,0},
-    {0,0, 0,10, 0,1, 0,0, 0,0x16, 0,2, 0,0, 1,0, 0,10, 1,128}
+    {0,0, 0,10, 0,1, 0,0, 0,0x16, 0,2, 0,0, 0,64, 0,10, 0,128},
+    {0,0, 0,10, 0,1, 0,0, 0,0x16, 0,2, 0,0, 0,128, 0,10, 0,192}
 };
 static int callbacks, render_calls;
 static BoneTransformList *last_pose;

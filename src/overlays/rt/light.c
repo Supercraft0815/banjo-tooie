@@ -194,7 +194,7 @@ void func_808005AC_rtlight(s32 arg0, s32 *range) {
     range[2] = (s32)(values[2] * 16384.0f);
 }
 
-void rtlight_entrypoint_2(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
+void rtlight_entrypoint_2(u8 *arg0, void *arg1, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8 *) arg2, s32 arg3) {
     typedef struct {
         s16 r, g, b, index;
         u8 color[3];

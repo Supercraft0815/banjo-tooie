@@ -258,8 +258,8 @@ void func_808005C4_vpmodule(u8 *arg0, u8 *arg1, u8 *arg2) {
     }
 }    typedef struct { u8 pad0[0x1]; s8 unk1; } Objmodule_vpmodule_entrypoint_4_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
-s32 vpmodule_entrypoint_4(s32 arg0, u8 *arg1, s32 arg2, s32 arg3) {
-    u32 temp_t0;
+s32 vpmodule_entrypoint_4(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3) {
+    BtUIntPtr temp_t0;
     BtUIntPtr var_v1;
 
     var_v1 = arg0 + 8;

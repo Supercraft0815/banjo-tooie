@@ -267,7 +267,7 @@ void func_80800758_bsdronexform(void *arg0, s32 arg1) {
 
 /* extern */
 
-void bsdronexform_entrypoint_1(void *arg0) {
+void bsdronexform_entrypoint_1(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     struct player_state_s;
     void _badronemem_entrypoint_1(void *arg0);
     void baflag_clear(struct player_state_s *, s32);
@@ -285,7 +285,7 @@ void bsdronexform_entrypoint_1(void *arg0) {
 
 /* extern */
 
-void bsdronexform_entrypoint_2(void *arg0) {
+void bsdronexform_entrypoint_2(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     struct player_state_s;
     void _badata_entrypoint_2(struct player_state_s *, s32 *, f32 *);
     void _badronemem_entrypoint_0(void *, s32);
@@ -327,7 +327,7 @@ f32 func_80800B5C_bsdronexform(void *self, s32 id, f32 arg2, f32 arg3, f32 arg4)
     return func_800F10B4(_batimer_get(self, id), arg2, 0.0f, arg3, arg4);
 }
 
-void bsdronexform_entrypoint_3(void *arg0)
+void bsdronexform_entrypoint_3(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0)
 {
   s32 _badata_entrypoint_34(void *);
   s32 _batimer_decrement(void *, s32);

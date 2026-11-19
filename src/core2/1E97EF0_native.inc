@@ -5,9 +5,9 @@
 #include "memory.h"
 void _glid_entrypoint_5(void *,void *),_glid_entrypoint_6(void *,void *);
 void _vpmodule_entrypoint_2(void *,void *),_vpmodule_entrypoint_3(void *,void *,void *);
-s32 _vpmodule_entrypoint_4(s32 arg0, u8 *arg1, s32 arg2, s32 arg3);
+s32 _vpmodule_entrypoint_4(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3);
 void _idworldmake_entrypoint_5(void *,s32),_idworldmake_entrypoint_6(void *,s32,s32),_idworldmake_entrypoint_7(void *,s32,s32);
-void _rtlight_entrypoint_2(u8 *arg0, void *arg1, s32 arg2, s32 arg3);
+void _rtlight_entrypoint_2(u8 *arg0, void *arg1, u8 *arg2, s32 arg3);
 void *_dbvpl_entrypoint_0(void *,s32);
 s32 func_800EA340(void);
 void *func_800DE448(f32 *,f32 *,f32,f32 *,void *);
@@ -164,7 +164,7 @@ s8 func_800BF8E4(void) {
 }
 void func_800BF99C(s32 i,s32 a,s32 b) {
     NativeMapLayer *s=map_layer(i);if(!s)return;
-    if(s->module)_vpmodule_entrypoint_4(s->module,s->vpl,a,b);
+    if(s->module)_vpmodule_entrypoint_4((BtIntPtr)s->module,s->vpl,a,b);
     if(s->instances)_idworldmake_entrypoint_7(s->instances,a,b);
 }
 s32 func_800BFA1C(f32 *point,s32 *unused) {

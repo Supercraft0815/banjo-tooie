@@ -17,6 +17,7 @@ static void make_model(u8 *bytes) {
     put(bytes+144,4,4); /* Empty geometry command; display list at 152 is empty. */
     put(bytes+10,0xA501,2);put(bytes+12,152,4);put(bytes+16,80,4);
     for(int i=20;i<=64;i+=4)put(bytes+i,160,4);
+    put(bytes+160+0x1C,0x30,4); /* Empty VPL cell table starts after its header. */
     put(bytes+28,224,4);put(bytes+240,1,2); /* One empty collision cell. */
     put(bytes+68,123,2);put(bytes+70,456,2);put(bytes+72,0x42F70000,4);
     s16 header[]={-101,-202,-303,404,505,606,-3,4,5,17,700,5};

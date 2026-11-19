@@ -8,10 +8,10 @@ import tempfile
 import zlib
 
 def model(second=False):
-    data = bytearray(268)
+    data = bytearray(340)
     struct.pack_into(">I", data, 0, 11)
     struct.pack_into(">H", data, 8, 80)
-    for field, offset in [(16, 88), (28, 240), (32, 200), (36, 192), (48, 160), (52, 184), (56, 176)]:
+    for field, offset in [(16, 88), (28, 240), (32, 200), (36, 192), (48, 268), (52, 292), (56, 176)]:
         struct.pack_into(">I", data, field, offset)
     bounds = (-4000, -1000, -2000, 3000, 9000, 10000) if second else (-1000, -2000, -3000, 4000, 5000, 6000)
     struct.pack_into(">9h3H", data, 88, *bounds, 1, 2, 3, 17, 700, 4)
@@ -21,6 +21,7 @@ def model(second=False):
     struct.pack_into(">6h2B", data, 202, -10, -10, -10, 10, 10, 10, 0, 0)
     struct.pack_into(">6h2B", data, 216, 0, 0, 0, 20, 20, 20, 0, 0)
     struct.pack_into(">H", data, 256, 1)  # one empty collision cell
+    struct.pack_into(">I", data, 292 + 0x1C, 0x30)  # Empty VPL cell table after its header.
     expanded = data[:88] + bytearray(8) + data[88:]
     for field in range(4, 68, 4):
         if field == 8:

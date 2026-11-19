@@ -9,7 +9,10 @@
     exit(1); } } while (0)
 
 static void near(f32 actual, f32 expected) {
-    CHECK(fabsf(actual - expected) < 0.0001f);
+    if (!(fabsf(actual - expected) < 0.0001f)) {
+        fprintf(stderr, "Expected %.8g, sampled %.8g\n", expected, actual);
+        exit(1);
+    }
 }
 static f32 sample(u16 *channel, f32 time, s32 period) {
     return func_800E04C0((u8 *)channel, time, period);
@@ -119,7 +122,7 @@ static void test_invalid_resources(void) {
     resource = native_animation_decode(bytes, sizeof(bytes));
     CHECK(resource);
     func_800E0050(resource, 0, 1, transform);
-    near(transform[0], 90);
+    near(transform[0], 180); /* Duplicate times select the last key, 11520 / 64. */
     heap_free(resource);
     pack_resource(bytes); bytes[1] = 11;
     CHECK(!native_animation_decode(bytes, sizeof(bytes)));

@@ -146,7 +146,7 @@ def sources():
     game = [f for f in game if f not in replaced]
     # input.c replaces the controller module for host input; here the game's own SI code runs.
     native = sorted(str(p.relative_to(ROOT)) for p in NATIVE.glob('*.c') if p.name != 'input.c')
-    native += ['pc/native/platform/rdram.c', 'pc/native/platform/handwritten.c']
+    native += ['pc/native/platform/rdram.c', 'pc/native/platform/handwritten.c', 'pc/native/platform/trig.c']
     guest = sorted(str(p.relative_to(ROOT)) for p in (HERE / 'guest').glob('*.c'))
     # libultra's math, bit-exact with the N64 (fixed_matrix.c has the matrix conversions and guOrtho).
     # sinf/cosf come from the host: their constants are big-endian {hi, lo} double halves.

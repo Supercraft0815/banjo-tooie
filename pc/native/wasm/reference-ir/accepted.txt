@@ -72,3 +72,12 @@ scalar. Its callee reads a full XYZ vector, as it does from the original IDO
 stack. The HAG 1 body and child now spawn at (0, 7500, 0). This is the only
 normalized game function change in the isolated Q2 comparison. See
 build/acceptance/q2-followup-2026-11-18/isolated-hag-ir.log.
+
+2026-11-19  N3 native callbacks and attachment indices
+func_800D88F8 returns the low 16 bits of the 32-bit index populated by
+freelist_next. This equals the big-endian halfword formerly read at +2.
+func_800EA45C now passes a typed null direction pointer to func_800D8B80.
+func_800139F8 returns the binary32 constants -2^127 and +2^127 directly
+in its zero-cosine branch. These are exactly the former bit patterns
+0xff000000 and 0x7f000000. These are the only changes in the comparison
+with 0ecf2e0c5. See build/acceptance/n3-2026-11-18/native-74-canonical.log.

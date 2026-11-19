@@ -1992,7 +1992,7 @@ void func_800F83E4(BtIntPtr arg0, f32 arg1) {
     baphysics_set_vertical_velocity(D_80135490.players[arg0], arg1);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F8418(BtIntPtr arg0 BT_PASS2(, s32 bt_a1))
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F8418(BtIntPtr arg0 BT_PASS2(, f32 *bt_a1))
 {
     BT_NATIVE_ONLY(return) func_800F4648(D_80135490.players[arg0] BT_PASS2(, bt_a1));
 }

@@ -498,7 +498,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
                 break;
             case 0x29:
                 temp_v0_3 = (*(s32 *)((s8 *)(var_s1) + (8)));
-                func_800C04C8(var_s1[1] & 0xFFFF, (temp_v0_3 >> 0x18) & 0x3F, temp_v0_3 & 0xFFFF, (temp_v0_3 >> 0x10) & 0xF, &_glsplinecs_entrypoint_0);
+                func_800C04C8(var_s1[1] & 0xFFFF, (temp_v0_3 >> 0x18) & 0x3F, temp_v0_3 & 0xFFFF, (temp_v0_3 >> 0x10) & 0xF, BT_LP64_ONLY((BtIntPtr)) &_glsplinecs_entrypoint_0);
                 temp_s2->index += 1;
                 break;
             case 0x1B:

@@ -715,7 +715,7 @@ Actor *func_80108C90(s32 arg0, s32 *arg1, u32 arg2, Prop *arg3) {
     ActorFactory factory;
     ActorData *data;
 
-    factory = _gemarkersDll_entrypoint_0(arg0);
+    factory = (ActorFactory)_gemarkersDll_entrypoint_0(arg0);
     if (factory == NULL) {
         return NULL;
     }

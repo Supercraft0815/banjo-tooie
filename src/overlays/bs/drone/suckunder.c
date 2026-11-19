@@ -12,7 +12,7 @@ void func_80800000_bsdronesuckunder(struct player_state_s *arg0) {
     func_8009BA9C(arg0, sp1C);
 }
 
-void bsdronesuckunder_entrypoint_0(s32 arg0)
+void bsdronesuckunder_entrypoint_0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct player_state_s *) arg0)
 {
     func_800961A0(arg0,0);
 }
@@ -35,13 +35,13 @@ void bsdronesuckunder_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsdronesuckunder_entrypoint_2(BtIntPtr arg0) {
+void bsdronesuckunder_entrypoint_2(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     void func_80099AA8(void *arg0);
     void func_80099B94(void *arg0);
     s32 func_8009E6EC();
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY(arg0));
     if ((temp_v0 == 0x26) || (temp_v0 == 0x51) || (temp_v0 == 0x52) || (temp_v0 == 0x6A)) {
         func_80099B94(arg0);
         return;

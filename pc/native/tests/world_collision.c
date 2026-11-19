@@ -81,7 +81,8 @@ static void test_static_model(void) {
     CHECK(notifications==1 && notified==prop->sprite);
     prop->flags&=~0x10;b[1]=95;CHECK(!func_800EA628(cell,a,b,normal,0));
     prop->flags|=0x10;prop->sprite=0xFFF00000;b[1]=95;CHECK(!func_800EA628(cell,a,b,normal,0));
-    prop->sprite=(4u<<20)|(45<<8);b[1]=95;CHECK(!func_800EA628(cell,a,b,normal,0));
+    /* With 90 degrees of yaw, (75, 75) lies exactly on the hypotenuse. */
+    prop->sprite=(4u<<20)|(45<<8);a[2]=b[2]=50;b[1]=95;CHECK(!func_800EA628(cell,a,b,normal,0));
     a[0]=b[0]=75;a[2]=b[2]=125;b[1]=95;CHECK(func_800EA628(cell,a,b,normal,0));
     prop->sprite=4u<<20;prop->flags=(200<<8)|0x12;a[0]=b[0]=-50;a[2]=b[2]=50;b[1]=95;
     CHECK(func_800EA628(cell,a,b,normal,0) && b[1]==100);

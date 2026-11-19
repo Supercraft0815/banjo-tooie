@@ -115,7 +115,7 @@ void bsdroneslide_entrypoint_1(PlayerState *arg0) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void bs_setState(void *self, s32 nextState);
     int func_8008E148(PlayerState *);
-    void func_8009BF5C(BtIntPtr, f32);
+    void func_8009BF5C(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(PlayerState *), f32);
     void func_8009D658(PlayerState *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 player_inWater(PlayerState *);
@@ -160,8 +160,8 @@ void bsdroneslide_entrypoint_1(PlayerState *arg0) {
 
 /* extern */
 
-void bsdroneslide_entrypoint_2(BtIntPtr arg0) {
-    void func_8009BF5C(BtIntPtr, f32);
+void bsdroneslide_entrypoint_2(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
+    void func_8009BF5C(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(PlayerState *), f32);
     void func_800A4E30(PlayerState *arg0);
     func_8009BF5C(arg0, 0.0f);
     func_800A4E30(arg0);

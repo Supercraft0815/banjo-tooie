@@ -1,15 +1,15 @@
 #include "common.h"
-
-void bsdronewaitbabykaz_entrypoint_0(s32 arg0) 
+BT_NATIVE_ONLY(struct player_state_s;)
+void bsdronewaitbabykaz_entrypoint_0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct player_state_s *) arg0)
 {
 }
 /* extern */
 
-void bsdronewaitbabykaz_entrypoint_1(BtIntPtr arg0) {
+void bsdronewaitbabykaz_entrypoint_1(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     void _badata_entrypoint_3(void *self, void *assetId, f32 *arg2);
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
-    s32 func_8009FFD8(BtIntPtr, s32, s32, s32, s32);
-    s32 sp24;
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);) BT_NATIVE_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
+    BT_IDO_ONLY(s32 func_8009FFD8(BtIntPtr, s32, s32, s32, s32);) BT_NATIVE_ONLY(void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);)
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32) sp24;
     s32 sp20;
 
     _badata_entrypoint_3(arg0, &sp20, &sp24);
@@ -62,10 +62,10 @@ void bsdronewaitbabykaz_entrypoint_2(struct player_state_s *arg0) {
     }
 }
 
-void bsdronewaitbabykaz_entrypoint_3(s32 arg0) {
-    s32 _badata_entrypoint_34(BtIntPtr);
+void bsdronewaitbabykaz_entrypoint_3(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
+    s32 _badata_entrypoint_34(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *));
     s32 _plsu_entrypoint_1(s32);
-    s32 bs_setState(BtIntPtr, s32);
+    BT_IDO_ONLY(s32 bs_setState(BtIntPtr, s32);) BT_NATIVE_ONLY(void bs_setState(struct player_state_s *, s32);)
     s32 var_a1;
     s32 sp1C;
 
