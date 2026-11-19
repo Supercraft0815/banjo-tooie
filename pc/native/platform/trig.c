@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "core1/trig_tables.h"
 
 // src/core1/1E2B200.s: table-based trigonometry in degrees (and scaled variants).
 // The constants and tables are the ROM data the asm reads.
@@ -8,9 +8,6 @@ extern volatile f32 D_800416D0[], D_800416D4[], D_800416D8[], D_800416DC[];
 extern volatile f32 D_800416E0[], D_800416E4[], D_800416E8[], D_800416EC[];
 extern volatile f32 D_800416F0[], D_800416F4[], D_800416F8[], D_800416FC[];
 extern volatile f32 D_80041700[], D_80041704[], D_80041708[], D_8004170C[];
-extern f32 D_8003CC90[2];  // last cos, sin of func_80013818
-extern f32 D_8003D3A0[];   // sine table
-extern u8 D_8003CCA0[];    // arcsine index tables
 
 static f32 angle_mod(f32 a, f32 k, f32 period) {
     f32 r = a - (f32)(s32)(a * k) * period;
@@ -64,12 +61,11 @@ static f32 arcsin_scaled(f32 x, f32 scale) {
         scale = -scale;
         v = -v;
     }
-    s8 c = (s8)D_8003CCA0[(u32)v >> 12];
-    if (c < 0) c = (s8)D_8003CCA0[(s32)((u32)v >> 6) - 0xF7F];
-    const u8 *e = D_8003CCA0 + c;
-    s32 base = *(const s32 *)(e + 0x84), first = *(const s32 *)(e + 0x88), shift = *(const s32 *)(e + 0x8C);
-    u32 slot = (((u32)(v - base) >> (shift & 31)) + first) << 1;
-    s16 h = *(const s16 *)(D_8003CCA0 + slot + 0xF4);
+    s8 offset = D_8003CCA0.range_offsets[(u32)v >> 12];
+    if (offset < 0) offset = D_8003CCA0.range_offsets[(s32)((u32)v >> 6) - 0xF7F];
+    const ArcsineRange *range = &D_8003CCA0.ranges[offset / (s32)sizeof(ArcsineRange)];
+    u32 slot = ((u32)(v - range->base) >> (range->shift & 31)) + range->first;
+    s16 h = D_8003CCA0.sample_indices[slot];
     const f32 *t = D_8003D3A0 + h;
     return ((x - t[0]) / (t[1] - t[0]) + (f32)h) * scale;
 }

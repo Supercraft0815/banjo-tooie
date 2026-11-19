@@ -402,3 +402,5 @@ D_8003F760 = core1_runtime_data + 0x280;
 D_8003F764 = core1_runtime_data + 0x284;
 D_8003F778 = core1_runtime_data + 0x298;
 D_80041180 = core1_runtime_data + 0x1CA0;
+D_80122DC8 = model_material_modes;
+D_80122DCC = model_material_modes + 4;

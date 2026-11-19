@@ -1,6 +1,7 @@
 #ifndef BT_NATIVE_RENDER_H
 #define BT_NATIVE_RENDER_H
 #include "native_skinning.h"
+#include "core2/model_materials.h"
 typedef struct {u32 header[2];Gfx commands[];} NativeDisplayList;
 typedef struct {s16 light[3];u8 color[4];} NativeVertexLight;
 typedef struct {
@@ -78,7 +79,8 @@ void func_8010F270(void);
 int native_texture_projection_apply(NativeRenderData *,f32 *,s32 *,s32);
 Gfx *native_model_modes(s16);
 enum {NATIVE_MODEL_RENDER_PACKETS=58};
-extern Gfx native_model_render_banks[8][NATIVE_MODEL_RENDER_PACKETS],native_model_render_restore[3];
+extern Gfx native_model_render_banks[8][NATIVE_MODEL_RENDER_PACKETS];
+#define native_model_render_restore D_80122DB0
 Gfx *native_model_render_modes(s32 depth,s32 alpha);
 void func_80013C80(Mtx *,LookAt *,f32,f32,f32,f32,f32,f32,f32,f32,f32);
 #endif

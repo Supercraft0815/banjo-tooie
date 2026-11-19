@@ -2978,3 +2978,22 @@ Alle elf Gastsuiten, 74 Replays mit 447.849 Retraces und 62 Sanitizertests
 bestehen. Der Vergleich mit Original-IDO prüft 16.401 Funktionen und
 beide vollständigen ROM-Abbilder. Belege unter
 `build/acceptance/n1-2026-11-18/current-materials-raster*`.
+
+## 2026-11-19 — N1, Trigonometrie und Texturmaterialien
+
+Die Winkelberechnung nutzt im Gast und auf dem 64-Bit-Host dieselben
+10.016 Bytes Tabellendaten. Ein vollständiger Vergleich der vier inversen
+Winkelfunktionen mit der bisherigen ROM-Referenz deckt alle 524.289
+quantisierten Eingaben ab. Dazu kommen Sinus und Kosinus für 5.761
+Winkel. Alle 8.434.712 Ergebnisbytes stimmen überein.
+
+Drei Texturtabellen von je 24 Grafikbefehlen und fünf Paare aus deckenden
+und durchscheinenden Materialien gehören jetzt den gemeinsamen Quellen.
+Das Originalobjekt umfasst 640 Bytes und enthält alle zehn ursprünglichen
+Zeigerrelokationen. Der strenge Scan fällt über 108 auf 102 Dateneinträge.
+Bei beiden Schritten bleiben alle 9.688 beim Start umgewandelten Wörter an
+derselben N64-Adresse. Jeweils elf Gastsuiten, 74 Referenzen mit 447.849
+Retraces, 63 Sanitizertests, 16.401 Originalfunktionen und beide
+ROM-Abbilder sind geprüft. Die Vergleiche stehen unter
+`build/acceptance/n1-2026-11-18/current-trig-lookup*` und
+`current-texture-modes*`.

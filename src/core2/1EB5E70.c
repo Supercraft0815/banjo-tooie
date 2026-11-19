@@ -286,14 +286,14 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         {
             Gfx *packet = gfx++;
             packet->words.w0 = _SHIFTL(G_MOVEWORD, 24, 8) | _SHIFTL(G_MW_SEGMENT, 16, 8) | (3 * 4);
-            opaque_mode = (void *)D_80122DC8[D_8012CA28 * 2];
+            opaque_mode = BT_DATA_FIELD(model_material_modes[D_8012CA28].opaque, (void *)D_80122DC8[D_8012CA28 * 2]);
             packet->words.w1 = osVirtualToPhysical(opaque_mode);
         }
     } else {
         {
             Gfx *packet = gfx++;
             packet->words.w0 = _SHIFTL(G_MOVEWORD, 24, 8) | _SHIFTL(G_MW_SEGMENT, 16, 8) | (3 * 4);
-            translucent_mode = (void *)D_80122DCC[D_8012CA28 * 2];
+            translucent_mode = BT_DATA_FIELD(model_material_modes[D_8012CA28].translucent, (void *)D_80122DCC[D_8012CA28 * 2]);
             packet->words.w1 = osVirtualToPhysical(translucent_mode);
         }
     }
