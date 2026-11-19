@@ -1,18 +1,20 @@
 #include "core2/1EAF950.h"
-
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-#include "native_assets.h"
-#include "native_spline.h"
-#include "native_actor.h"
-#include "native_marker.h"
-NativeSplineContext native_spline_context;
-#define D_8012BE70 native_spline_context
+#include "core2/spline_context.h"
+#ifdef BT_NATIVE
+NativeSplineContext D_8012BE70;
 #define D_8012BFF4 native_spline_context.handle0
 #define D_8012BFF6 native_spline_context.handle1
 #define D_8012BFFC native_spline_context.pad18C
 #define D_8012BF70 native_spline_context.actors
 #define D_8012C000 native_spline_context.value0
 #define D_8012C014 native_spline_context.cache
+#endif
+
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#include "native_assets.h"
+#include "native_spline.h"
+#include "native_actor.h"
+#include "native_marker.h"
 struct NativeAssetEntry {
     u32 frame : 27;
     u32 type : 4;
@@ -41,7 +43,6 @@ u8 D_8012B800[136 * 12] BT_DATA(4, bss_core2bss1_2_status_tail, 0x3E0);
 extern u8 D_8012B800[];
 #endif
 #define SPLINE_ACTOR(actor, field, original) (original)
-#define SPLINE_FIELD(ctx, field, original) (original)
 #define CACHE_ENTRY_SIZE 12
 #define CACHE_INFO(p) (*(u32 *)((p) + 8))
 #define CACHE_TYPE(p) ((*(u32 *)(p) << 27) >> 28)
@@ -49,7 +50,7 @@ extern u8 D_8012B800[];
 
 struct Unk800C7A68;
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 D_8012BE70;
 #endif
 
@@ -855,7 +856,7 @@ void * func_800D7400(void) {
 void func_800D740C(void)
 {
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 D_8012BFFC;
 #endif
 
@@ -896,7 +897,7 @@ s32 func_800D7488(s16 arg0, s16 arg1) {
 }
 
 void *func_800D7520(s32 arg0) { void *func_8001B798(s16);
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s16 D_8012BFF4;
 #endif
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
@@ -907,7 +908,7 @@ extern s16 D_8012BFF4;
 u8 *func_800D7570(s32 arg0) {
     void *func_8001B798(s16);
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s16 D_8012BFF6;
 #endif
 
@@ -935,7 +936,7 @@ extern s16 D_8012BFF6;
 s32 func_800D75DC(s32 arg0, f32 arg1) {
     void *func_8001B798(s16);
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s16 D_8012BFF6;
 #endif
 
@@ -1141,17 +1142,17 @@ u32 unused4;
     f32 func_800136E4(f32);
     f32 func_800F1DCC(f32, f32);
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 D_8012BF70[];
 #endif
 
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern f32 D_8012C000;
 #endif
 
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 *D_8012C014;
 #endif
 
@@ -1268,7 +1269,7 @@ s32 func_800D7E38(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) 
     s32 _glsplinenode_entrypoint_1(void *, void *, void *, NodeList *);
     extern s32 D_8011B920;
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s16 D_8012BFF6;
 #endif
 
@@ -1395,12 +1396,12 @@ f32 pod;
     void *func_80105494();
     extern u8 D_8012BE6F[];
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s16 D_8012BFF4;
 #endif
 
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 D_8012BFFC;
 #endif
 
@@ -1419,7 +1420,7 @@ extern s32 D_8012BFFC;
     wrapped = 0;
     state = func_80105494(arg0);
     speed = state->speed;
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
     if (state->path < 0 || state->path >= native_spline_context.count || state->condition > 128) return 0;
 #endif
     if (state->path == -1) {
@@ -1496,7 +1497,7 @@ s32 func_800D8588(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
 #endif
     void *func_80105494(Actor *);
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 D_8012BE70;
 #endif
 
@@ -1534,7 +1535,7 @@ void func_800D8648(s32 arg0, f32 *arg1) {
 /* extern */
 
 void func_800D8674(void) {
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
     void *defrag(void *);
 #else
     s32 defrag(s32);
@@ -1555,7 +1556,7 @@ void func_800D86F0(s32 arg0, f32 arg1, f32 *arg2) {
     void *func_8001B798(s16);
     void func_800C7A68(struct Unk800C7A68 *, f32, f32 *);
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s16 D_8012BFF4;
 #endif
 
@@ -1566,7 +1567,7 @@ void func_800D8744(void) {
     f32 _glintrosyncDll_entrypoint_5();
     f32 func_800D8FF8();
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern f32 D_8012C000;
 #endif
 
@@ -1586,13 +1587,13 @@ void func_800D87B0()
     _glsplineDll_entrypoint_2((u8 *)&D_8012BE70);
 }
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 void func_800D87D4(Actor *arg0, s32 arg1) {
     native_spline_context.actors[arg1] = arg0->unk0;
 #else
 void func_800D87D4(s32 *arg0, s32 arg1) {
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 D_8012BF70[];
 #endif
 
@@ -1600,13 +1601,13 @@ extern s32 D_8012BF70[];
 #endif
 }
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 Unk80132ED0 *func_800D87EC(s32 arg0) {
     return native_spline_context.actors[arg0];
 #else
 s32 func_800D87EC(s32 arg0) {
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 D_8012BF70[];
 #endif
 
@@ -1619,13 +1620,13 @@ void func_800D8800(void) {
 
 void func_800D8808(s32 arg0) {
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 extern s32 *D_8012C014;
 #endif
 
 
     if (arg0 != 0) {
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
         native_spline_context.cache[arg0 - 1].used = 0;
 #else
         ((s8 *)D_8012C014)[arg0 * 12 - 12] &= 0xFF7F;

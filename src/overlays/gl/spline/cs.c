@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/spline_context.h"
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spline.h"
 #include "native_actor.h"
@@ -14,7 +15,6 @@ typedef s32 SplineCSAnim;
 #define CS_ANIM(v) (v)
 #define CS_ANIM_VALUE(v) (v)
 #define CS_PATH(v) (v)
-#define SPLINE_FIELD(c, field, original) (original)
 #endif
 
 /* extern */

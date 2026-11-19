@@ -455,3 +455,10 @@ Fifteen guest functions change their signedness, parameter widths, or calls
 to providers with corrected signatures. All 9,703 relocation targets, both
 complete ROM images and all 74 regular replays match. See
 n1-2026-11-18/current-nopass-checked-ir.log and current-nopass-checked-full.log.
+
+2026-11-19  Spline context, movable vectors and region music handles
+Twenty-one guest functions change, including the endian fixup for the three
+world-vector pointers and five LP64 helpers removed from the guest. All
+9,703 previous fixups retain their addresses. The three additional words
+point to D_80127EF0, D_80127EF4 and D_80127EF8. Both complete ROMs and
+all 74 replays match. See n1-2026-11-18/current-spline-storage-ir.log.

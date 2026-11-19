@@ -4,6 +4,8 @@
 #include "memory.h"
 
 s32 D_8011B920;
+
+#ifndef BT_ILP32
 void native_spline_clear_commands(NativeSplineContext *context) {
     heap_free(context->offsets);
     heap_free(context->commands);
@@ -58,3 +60,4 @@ s32 native_spline_command_words(s32 *script, s32 count, s32 index) {
     }
     return words <= count - index && words <= 0x2000 - index ? words : 0;
 }
+#endif

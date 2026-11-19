@@ -9,7 +9,7 @@ extern void func_800BFCD0(s32 index, s32 value);
 extern void func_800BFF70(void);
 extern void func_800BFFF4(void);
 
-s32 D_80127EF8;
+struct Vector *D_80127EF8;
 
 f32 func_800D8FF8(void) { return 0.25f; }
 

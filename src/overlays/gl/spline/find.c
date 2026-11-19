@@ -1,8 +1,8 @@
 #include "common.h"
+#include "core2/spline_context.h"
 #ifdef BT_NATIVE
 #include "native_spline.h"
 #else
-#define SPLINE_FIELD(ctx, field, original) (original)
 #endif
 
 /* extern */

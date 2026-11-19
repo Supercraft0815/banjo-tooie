@@ -35,7 +35,7 @@ void func_800E9F20(s32 arg0, s32 arg1) {
     void func_800F5008(BtIntPtr arg0);
     void func_800F50D0(BtIntPtr arg0);
     void func_800F51CC(void);
-    extern s32 D_80127EF4;
+    extern BT_NATIVE_ONLY(struct Vector *) BT_IDO_ONLY(s32) D_80127EF4;
     extern s16 D_80132DCC;
     BtIntPtr temp_v0;
 
@@ -476,7 +476,7 @@ s32 func_800EB350(Actor *arg0, f32 *arg1, f32 *arg2) {
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
 struct Vector * D_80127EF0 BT_DATA(4, bss_core2bss1_0_2, 0x750);
-s32 D_80127EF4 BT_DATA(4, bss_core2bss1_0_2, 0x754);
+struct Vector *D_80127EF4 BT_DATA(4, bss_core2bss1_0_2, 0x754);
 struct Vector *D_80127EF8 BT_DATA(4, bss_core2bss1_0_2, 0x758);
 s32 D_80132DC0 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x860);
 u16 D_80132DC2 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x862);

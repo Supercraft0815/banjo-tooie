@@ -1,9 +1,9 @@
 #include "common.h"
+#include "core2/spline_context.h"
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spline.h"
 #include "native_actor.h"
 #else
-#define SPLINE_FIELD(ctx, field, original) (original)
 #endif
 struct Unk800C7A68;
 

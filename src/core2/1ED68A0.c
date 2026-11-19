@@ -495,18 +495,18 @@ void func_800FDC58(s32 arg0) {
                 if (track != -1) {
                     func_800FC934(track, D_801359C0.volume, 1.0f);
                 }
-                for (i = -3; i != 0; i++) {
-                    if (D_80135A2C[i]) {
-                        func_800FC934(D_80135A2C[i], D_801359C0.volume, 1.0f);
+                for (i = BT_DATA_FIELD(0, -3); i != BT_DATA_FIELD(3, 0); i++) {
+                    if (BT_DATA_FIELD(D_80135A20[i], D_80135A2C[i])) {
+                        func_800FC934(BT_DATA_FIELD(D_80135A20[i], D_80135A2C[i]), D_801359C0.volume, 1.0f);
                     }
                 }
             } else {
                 if (track != -1) {
                     func_800FC934(track, 0.0f, 1.0f);
                 }
-                for (i = -3; i != 0; i++) {
-                    if (D_80135A2C[i]) {
-                        func_800FC934(D_80135A2C[i], 0.0f, 1.0f);
+                for (i = BT_DATA_FIELD(0, -3); i != BT_DATA_FIELD(3, 0); i++) {
+                    if (BT_DATA_FIELD(D_80135A20[i], D_80135A2C[i])) {
+                        func_800FC934(BT_DATA_FIELD(D_80135A20[i], D_80135A2C[i]), 0.0f, 1.0f);
                     }
                 }
             }

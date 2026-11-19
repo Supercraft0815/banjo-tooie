@@ -73,25 +73,7 @@ dlabel D_8012BE6F
     /* 8012BE6F */ .space 0x01
 
 dlabel D_8012BE70
-    /* 8012BE70 */ .space 0x100
-
-dlabel D_8012BF70
-    /* 8012BF70 */ .space 0x84
-
-dlabel D_8012BFF4
-    /* 8012BFF4 */ .space 0x02
-
-dlabel D_8012BFF6
-    /* 8012BFF6 */ .space 0x06
-
-dlabel D_8012BFFC
-    /* 8012BFFC */ .space 0x04
-
-dlabel D_8012C000
-    /* 8012C000 */ .space 0x14
-
-dlabel D_8012C014
-    /* 8012C014 */ .space 0x0C
+    /* 8012BE70 */ .space 0x1B0
 
 dlabel D_8012C020
     /* 8012C020 */ .space 0x10

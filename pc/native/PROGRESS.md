@@ -3377,3 +3377,21 @@ behalten ihre Zieladressen. Original-IDO bestätigt alle 16.401 Funktionen
 und beide vollständigen ROMs. Belege stehen unter
 `build/acceptance/n1-2026-11-18/current-nopass-checked*` und
 `build/acceptance/n2-cumulative-nopass-2026-11-19/gate74-batch16.log`.
+
+### 2026-11-19 – Spline-Pfade und verschiebbare Weltvektoren (N1/N3)
+
+Die Skriptsteuerung fasst je 128 aktuelle und anfängliche Zähler,
+33 Actor-Zeiger, zwei Heap-Handles, die Skriptoffsets und den Zielcache
+in einem C-Objekt zusammen. Der Gast behält das 0x1B0-Byte-Layout.
+Beim Verschieben werden Cache und Skriptoffsets aktualisiert. Drei
+Weltvektoren behalten auf LP64 ihre vollständigen Zeiger. Nur der
+64-Bit-Port braucht den separaten Lader für die nativen Skriptbefehle.
+
+Der reguläre Build besteht alle 74 Replays mit 447.849 Retraces, elf
+Gastsuiten und 66 Sanitizertests. Original-IDO bestätigt alle 16.401
+Funktionen und beide ROMs. Die IR ändert sich in 21 Funktionen, darunter
+fünf aus dem Gast entfernte LP64-Helfer. Alle bisherigen 9.703
+Laufzeit-Fixups behalten ihre Adresse. Drei neue Zeigerwörter in einer
+Compilerkonstante verweisen auf die drei Weltvektoren an den
+Originaladressen 0x80127EF0, 0x80127EF4 und 0x80127EF8. Belege unter
+`build/acceptance/n1-2026-11-18/current-spline-storage*`.

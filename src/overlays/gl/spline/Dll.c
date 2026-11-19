@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/spline_context.h"
 typedef struct { s16 level; s16 result; } SplineMapCommand;
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spline.h"
@@ -6,7 +7,6 @@ typedef struct { s16 level; s16 result; } SplineMapCommand;
 #include "memory.h"
 #define EVENT_COMMAND_ID(data) (((u32 *)(data))[3] >> 24)
 #else
-#define SPLINE_FIELD(ctx, field, original) (original)
 #define EVENT_COMMAND_ID(data) ((data)[12])
 #endif
 struct ImageStruct; BT_ILP32_ONLY(void rare_memset(void *, u8, int);)
@@ -71,7 +71,7 @@ void glsplineDll_entrypoint_0(void *arg0) {
         s16 ids;
         s16 pad12;
     } Spline;
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
     typedef NativeSplineTarget Cache;
     typedef NativeSplineContext Context;
 #else
