@@ -3477,3 +3477,13 @@ Mit der vom Aufrufer übergebenen Ausgangsnummer besteht der kumulative Diagnose
 Die Tore verwenden zwölf Paare aus Tür-ID und Auslösedistanz. Die beiden Audiobusse lesen die überlappenden Routing-Bytes aus einem gemeinsamen C-Objekt. Gast- und LP64-Proben prüfen die erzeugten Mischbefehle.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 6 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-door-audio*`.
+
+### 2026-11-19 – Fremdsymbolzugriffe nach der Markersuche (N1)
+
+Der instrumentierte Korpus mit allen 74 Replays überwachte 6.413 Stellen. Es bleiben 72 Zugriffe in 31 Funktionen und 15 Gruppen. Beim vorherigen Messlauf nach dem Spline-Paket waren es 133 Zugriffe in 55 Funktionen und 23 Gruppen. Die Einzeltreffer mit Quellfunktion und Zieladresse stehen in `build/acceptance/n1-2026-11-18/current-marker-buckets-source/build/ilp32-xsym/xsym_report.tsv`.
+
+### 2026-11-19 – Warteschleifen ohne Safepoints-Pass (N2)
+
+Im isolierten Taxistand übernimmt der C-Quelltext die Rückgabe der Rechenzeit an den Scheduler. Ohne den Safepoints-Pass stimmen alle 74 deterministischen Replays mit 447.849 Retraces überein. Elf Gastsuiten und 68 Sanitizertests bestehen. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Alle 9.706 Fixup-Adressen bleiben erhalten. Belege unter `build/acceptance/n1-2026-11-18/current-source-scheduling*`.
+
+Mit echter Uhr beendeten alle 74 Eingabefolgen den Lauf mit Exitcode 0 und laufendem Bildwechsel. Dabei erreichten 52 Fälle ihre Zielkarte, beim Kontrolllauf mit Pass waren es 58. Die Einzelmessungen zu beiden Builds stehen unter `build/acceptance/n2-safepoints-rebase-2026-11-19/wallclock-decoder-cic-source/` und `wallclock-control/`. Die verhaltensgleiche Umstellung im fortlaufenden Quellstand wird separat geprüft.
