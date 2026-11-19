@@ -21,7 +21,7 @@ Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausga
 | Q3 | Acht Stunden mit Heapprüfung über 194 Karten, alle 46 Referenzen mit Host-Sanitizern bestanden | abgeschlossen |
 | Q4 | Menschlicher 100-%-Durchlauf | auf Nutzerwunsch zurückgestellt |
 | Q5 | Zonenbereinigung, Modell- und Blockpool-Zugriffe auf Originalcode. 1.109 übersetzte Spieldateien, keine der 27 LP64-Ersatzdateien im Gast aktiv. 229 Karten geprüft | ILP32-Inventar abgeschlossen. LP64-Aufräumen nach N4 |
-| A1–A3 | Gast und Host getrennt, SDL3 auf dem Mac, 29 gemeinsame Software-Referenzen auf macOS, Linux und unter Wine | A2 zuletzt 8 ausgelassene Retraces in 75 s bei höchstens einem erlaubten. GPU-Bildvergleich auf Mesa und unter Wine offen |
+| A1–A3 | Gast und Host getrennt, SDL3 auf dem Mac, 29 gemeinsame Software-Referenzen und je 2.694 geprüfte Intro-Bilder auf macOS, Linux und unter Wine | A2 zuletzt 8 ausgelassene Retraces in 75 s bei höchstens einem erlaubten. Windows wurde unter Wine geprüft |
 | A4 | Universal-App, Windows-x64-ZIP und Linux-AppImages privat gebaut und mit echtem Intro gestartet | Pakete bleiben auf Nutzerwunsch lokal. Tag-Lauf, öffentliche Inhaltsfreigabe, macOS-Signatur und Notarisierung sind offen |
 | A5–A7 | ImGui-Menü und vier Eingabeplätze, GPU-Zielgrößen und HUD bis 4K geprüft, Interpolations- und Scanout-Tests bestanden | A7-Messung am externen 4K/60-Hz-Display auf Nutzerwunsch zurückgestellt |
 | A8 | C-Mixer als Standard, alle 74 Korpusfälle gegen den Microcode, 83.772.256 identische PCM-Bytes in `new-game` | macOS-Abnahme abgeschlossen |

@@ -45,8 +45,12 @@ static const char gpu_fragment_shader[] =
 // Original CI8 clear alternates FF and FE. The projected model writes black.
 " if((b.y&2u)!=0u){bool inside=texelFetch(silhouette,ivec2(gl_FragCoord.xy),0).r>0.5;\n"
 " return ivec4(inside?0:255-(int(floor(st.x))&1));}\n"
-" if(!filt){int s0=int(floor(s)),t0=int(floor(t)),sc=wrapc(s0,cms,masks,ms,factor),tc=wrapc(t0,cmt,maskt,mt,factor);\n"
-"  if(!soften||scale.y<2)return texel(slot,sc,tc);\n"
+// Interpolation may undershoot an integer texel. Preserve genuine 1/32-texel steps.
+" if(!filt){if(!soften||scale.y<2){float ns=round(s),nt=round(t),"
+"es=min(4.0e-6*max(1.0,abs(s)),1.0/64.0),et=min(4.0e-6*max(1.0,abs(t)),1.0/64.0);"
+"if(abs(s-ns)<=es)s=ns;if(abs(t-nt)<=et)t=nt;\n"
+"  int s0=int(floor(s)),t0=int(floor(t)),sc=wrapc(s0,cms,masks,ms,factor),tc=wrapc(t0,cmt,maskt,mt,factor);return texel(slot,sc,tc);\n"
+" }\n"
 // soften: unfiltered texels (text, HUD) above 1x are interpolated with Catmull-Rom over alpha-weighted
 // color, so 4x4 blocks become smooth, still sharp glyph edges; transparent texels add no color.
 "  float u=s-0.5,v=t-0.5,iu=floor(u),iv=floor(v);vec2 f=vec2(u-iu,v-iv);\n"

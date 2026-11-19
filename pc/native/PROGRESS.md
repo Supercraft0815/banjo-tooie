@@ -2524,3 +2524,19 @@ Alle elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Original-IDO
 bestätigte 3.763 Funktionen in 142 Modulen und beide vollständigen ROMs.
 Die Belege stehen in `build/acceptance/n2-2026-11-18/signature-four-gate.log`,
 `signature-four-original-loads.log` und `signature-four-ido/result.json`.
+
+## 2026-11-19 — A3, punktgefilterte Texturen auf drei Plattformen
+
+Auf Mesa und unter Wine landeten interpolierte Koordinaten knapp unter ganzzahligen
+Texelgrenzen beim falschen Nachbarn. Der Shader rundet beim direkten Punkt-Sampling
+solche Koordinaten auf die Grenze. Der Korrekturabstand bleibt unter einem halben
+N64-Texturschritt von 1/32. Der GPU-Test prüft beide Vorzeichen bis ±8192,
+den Nachbartexel und die getrennte Behandlung gefilterter Texturen.
+
+Im vollständigen Intro bestanden auf jedem Host 2.694 von 2.694 Bildern bei
+Kanaltoleranz 9 und höchstens 0,5 Prozent abweichenden Pixeln pro Bild. Das
+schlechteste Bild lag bei 0,103878 Prozent auf Linux/llvmpipe, 0,056267 Prozent
+mit der Windows-x64-EXE unter Wine/llvmpipe und 0,059153 Prozent auf dem
+Apple M4 Pro. Die 65.536 Bytes des Renderer-Fixtures stimmten ebenfalls überein.
+Die drei Bildvergleiche liegen unter
+`build/acceptance/a3-current-2026-11-18/checkout/build/a3-{linux-final,wine-final,macos-4e6e}/`.

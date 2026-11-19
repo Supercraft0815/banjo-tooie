@@ -147,6 +147,46 @@ static void strip_picture(int split) {
     free(pixels);
 }
 
+// Read one textured pixel with the real RDP/GL path. Coordinates are expressed in
+// N64 1/32-texel units at vertices; the large cases probe float precision at +/-8192.
+static int point_boundary_picture(int which) {
+    fixture_memory(0x80010000ull);
+    for (int i=0;i<4096;i++) {
+        u16 texel=(i&1)?0x07C1:0xF801; // alternating green/red RGBA5551
+        wr16(bt_mem+TEX+i*2,texel);
+    }
+    rdp_register_framebuffer(FB,W,0);
+    rdp_begin();
+    rdp_command(0xED000000,W*4<<12|H*4);
+    target(FB); fill(0x00010001,0,0,W,H);
+    rdp_command(0xEF000000,0);
+    if (which==3) rdp_command(0xEF001000,0); // bilinear filtering
+    rdp_command(0xFD10001F,TEX);
+    rdp_command(0xF5100100,7u<<24);
+    rdp_command(0xF0000000,7u<<24|255u<<14);
+    rdp_command(0xFD00001F|(2u<<19),TEX);
+    rdp_command(0xF5001000|(2u<<19),(0u<<24)|3u<<20|5u<<14|5u<<4);
+    rdp_command(0xF3000000,1023u<<12|128u);
+    rdp_command(0xF2000000,124u<<12|124u);
+    for (int i=0;i<2;i++) {
+        R.rgb[i][0]=R.rgb[i][1]=R.rgb[i][2]=C_ZERO; R.rgb[i][3]=C_T0;
+        R.alpha[i][0]=R.alpha[i][1]=R.alpha[i][2]=C_ZERO; R.alpha[i][3]=C_T0_A;
+    }
+    rdp_set_texture(0,1);
+    float s=which==0?(1.0f-2.5e-6f)*32.0f:
+            which==1?(8192.0f-1.0f/32.0f)*32.0f:
+            which==2?(-8192.0f-1.0f/32.0f)*32.0f:
+                     (1.0f-1.0f/256.0f)*32.0f;
+    RdpVtx a={.x=0,.y=0,.w=1,.s=s},b=a,c=a;
+    b.x=31; c.y=23;
+    target(FB); rdp_triangle(&a,&b,&c,RDP_TEX); rdp_end();
+    u32 *pixels=NULL; size_t cap=0; int w=0,h=0;
+    assert(rdp_picture(FB,W,H,-1,&pixels,&cap,&w,&h) && w==W && h==H);
+    assert(fwrite((u8 *)&pixels[5*W+5],1,4,stdout)==4);
+    free(pixels);
+    return 0;
+}
+
 // Keep one published texture selected while its producer publishes other
 // pictures. Its contents must stay intact until the window releases it.
 static void *publish_more(void *unused) {
@@ -225,6 +265,7 @@ int main(int argc, char **argv) {
     if (argc==2 && !strcmp(argv[1],"shared")) return check_shared_frames();
     if (argc == 5) return sample_picture(atoi(argv[1]),atoi(argv[2]),atoi(argv[3]),atoi(argv[4]));
     rdp_gpu_share(NULL);
+    if (argc==3 && !strcmp(argv[1],"point-boundary")) return point_boundary_picture(atoi(argv[2]));
     if (getenv("BT_TEST_NO_BARRIER")) gpu_barrier_available = 0;
     fixture_memory(0x80010000ull);
     if (argc == 2 && (!strcmp(argv[1],"whole") || !strcmp(argv[1],"strips"))) {

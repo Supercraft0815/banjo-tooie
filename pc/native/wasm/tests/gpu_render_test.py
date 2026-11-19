@@ -52,6 +52,23 @@ def check_samples(exe, env):
     print('PASS 1x: 8x request leaves MSAA off and every pixel identical')
 
 
+
+def check_point_boundaries(exe, env):
+    for case, expected in ((0, (0,255,0)), (1, (0,255,0)), (2, (0,255,0))):
+        run = subprocess.run([exe, 'point-boundary', str(case)], env={**env, 'BT_RENDERER':'gpu', 'BT_SCALE':'1'},
+                             capture_output=True, timeout=60)
+        assert run.returncode == 0, (case, run.stderr.decode()[-1600:])
+        assert len(run.stdout)==4, (case, run.stdout)
+        red,green,blue,alpha=run.stdout
+        assert (red,green,blue)==expected and alpha==255, (case, tuple(run.stdout))
+    # At 255/256 the filtered texel is within one 8-bit level of column 1.
+    run = subprocess.run([exe, 'point-boundary', '3'], env={**env, 'BT_RENDERER':'gpu', 'BT_SCALE':'1'},
+                         capture_output=True, timeout=60)
+    assert run.returncode == 0, ('filtered', run.stderr.decode()[-1600:])
+    assert len(run.stdout)==4 and 253 <= run.stdout[1] <= 255 and run.stdout[0] <= 1, tuple(run.stdout)
+    print('PASS point sample ULP snap and +/-8192 1/32 boundaries; filtered 255/256 remains within one level')
+
+
 def main():
     with tempfile.TemporaryDirectory(prefix='bt-gpu-test-') as tmp:
         exe = str(Path(tmp) / 'gpu-renderer')
@@ -111,6 +128,7 @@ def main():
                        check=True, capture_output=True, timeout=60)
         print('PASS on-demand overlap for scalar and bulk accesses, CPU color write preserved')
         check_samples(exe, env)
+        check_point_boundaries(exe, env)
         for name in ('gl', 'invalid'):
             run = subprocess.run([exe], env={**env, 'BT_RENDERER': name}, capture_output=True)
             assert run.returncode and b'BT_RENDERER must be' in run.stderr
