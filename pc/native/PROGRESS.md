@@ -3051,3 +3051,28 @@ strenge Scan findet 55 verbleibende Assembler-Einträge. 11 Gastsuiten,
 74 Replays mit 447.849 Retraces und 63 Sanitizertests bestehen. Alle 9.688
 Zeigerwort-Adressen, 16.401 Originalfunktionen und beide ROM-Abbilder stimmen
 überein. Belege unter `build/acceptance/n1-2026-11-18/current-track-culling*`.
+
+### 2026-11-19 – Digger-Fly-Zustandswechsel in Jinjo Village
+
+15 Gegnerbeschreibungen enthielten die N64-Adressen `0x80124550` und
+`0x80124564` als Zahlen. Der Gast verschiebt beide Tabellen beim Linken.
+Ein Schreib-Watchpoint in `worlds` zeigte je nach Datenanordnung Zustand 0
+oder 63. Der alte gekoppelte Replay-Vergleich hatte Zustand 0 akzeptiert.
+
+In der Original-ROM stehen an beiden Adressen je fünf Paare aus Zustand und
+Flags. Alle 15 Beschreibungen verwenden jetzt symbolische Verweise. Der Gast
+korrigiert damit 9.703 Zeigerwörter beim Start. In einer unabhängigen Prüfung
+blieb der bisherige Gast unverändert kompiliert. Nach dem Laden wurden allein
+die 15 nachgewiesenen Zeiger auf die bytegleichen Originaltabellen gesetzt.
+Der Kontrolllauf erreicht in Jinjo Village bei Retrace 24.604 Zustand 13 und
+bei 24.676 Zustand 14. Alle 27.093 Retraces stimmen mit dem korrigierten
+Quellbuild überein. Gegen den alten Stand ändern sich 1.350 Actor-Snapshots
+und 72 Bildprüfsummen ausschließlich in dieser Karte. Die übrigen 73 Fälle
+sind identisch. Die Referenzen sind gesichert und nur der Weltendurchlauf
+hat einen neuen Digest. Der Korpus prüft diesen Gegnerzustand ausdrücklich.
+
+11 Gastsuiten, 74 Fälle mit 447.849 Retraces und 63 Sanitizertests bestehen.
+Der LP64-Test prüft 75 Zustandswechsel und 150 Flagabfragen. Der Originalbuild
+bestätigt alle 16.401 Funktionen und beide ROMs. Belege unter
+`build/acceptance/n1-2026-11-18/baddie-independent-oracle/` und
+`current-baddie-states*`.

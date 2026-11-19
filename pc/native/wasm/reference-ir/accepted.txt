@@ -322,9 +322,12 @@ distinct symbol/offset pairs after Splat splits and block renumbering.
 See n1-2026-11-18/lagoon-section-fields-proof.json and
 current-camera-lagoon-fixup-slots.json.
 
-2026-11-19  N2 Humba transformation dialogue
-func_808015DC_chhumba consumes the return values of func_800903D0 and
-func_800903F8. The original MIPS branches on those values to send event
-0x89 and enter states 10 and 15. All ten transformation replays pass
-through states 9, 10 and 11 to 12 and set the form-specific dialogue flag.
-See n2-2026-11-18/humba-original-flow-original-mips.txt and humba-live-form/.
+2026-11-19  N1 Coaster enemy state tables
+ActorData.unk44 carries a retail pointer in 15 enemy descriptors. The compiled
+guest needs 15 additional pointer-word fixups at offset 0x44. The targets are
+the two five-entry state tables at N64 addresses 0x80124550 and 0x80124564.
+The getter now passes the Actor to func_80100368 and both consumers index the
+state and flags as separate halfwords. At retrace 24604 the Digger Fly enters
+state 13, followed by 14 at 24676. An independent run with the previous guest
+and only the 15 relocated words reproduced all 27,093 retraces of worlds.
+See n1-2026-11-18/baddie-independent-oracle/original-words.json.

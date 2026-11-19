@@ -67,6 +67,7 @@ CASES = {
     'new-game': {'seconds': 950, 'press': script(), 'expected_map': 175, 'flags': None},
     'edited-save': {'seconds': 180, 'press': script(), 'expected_map': 175, 'flags': list(range(0x392, 0x39B)) + save_editor.START_ABILITIES},
     'worlds': {'seconds': WORLD_WARPS[-1][0] + 20, 'press': worlds_script(), 'expected_map': WORLDS[-1], 'expected_route': WORLDS,
+               'expected_actor_map': 0x142, 'expected_actor_state': (0x65E, 13),
                'flags': list(range(0x392, 0x39B)) + save_editor.START_ABILITIES,
                'warp': ','.join(f'{start}:{m:X}:1' for start, m in WORLD_WARPS)},
     **corpus_worlds.CASES,
@@ -115,6 +116,7 @@ def replay(exe, rom, directory, case):
 def trace_summary(directory, case):
     maps, last = {}, None
     encounter = case.get('expected_actor_state')
+    encounter_map = case.get('expected_actor_map', case['expected_map'])
     saw_encounter = encounter is None
     route = iter(case.get('expected_route', ()))
     next_map = next(route, None)
@@ -137,7 +139,7 @@ def trace_summary(directory, case):
                         position = struct.unpack('>3f', struct.pack('>3I', *actor['position']))
                         if position != expected:
                             raise ValueError(f'{directory.name}: actor {actor["id"]:#x} spawned at {position}, expected {expected}')
-            if not saw_encounter and last['map'] == case['expected_map']:
+            if not saw_encounter and last['map'] == encounter_map:
                 actor_id, state = encounter
                 # Actor.unk70_10 occupies bits 10..15 of the word at +0x70.
                 saw_encounter = any(actor['id'] == actor_id and (actor['health_flags'][5] >> 10 & 63) == state
