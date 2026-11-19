@@ -5,6 +5,9 @@
 #include "overlays/ba/key.h"
 #include "overlays/ba/physics.h"
 #include "overlays/ba/playerstate.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/backpack.h"
+#endif
 #include "overlays/ba/yaw.h"
 #include "bs.h"
 #include "overlays/bs/state.h"
@@ -28,7 +31,7 @@ BtIntPtr func_80800000_bsbanpackwhack(BtIntPtr arg0, f32 arg1) {
 }
 
 void func_80800074_bsbanpackwhack(PlayerState * self, BtIntPtr arg1) {
-    s32 tmp_v0 = func_80800000_bsbanpackwhack(arg1, yaw_get(self));
+    BtIntPtr tmp_v0 = func_80800000_bsbanpackwhack(arg1, yaw_get(self));
     func_800BA22C(tmp_v0, 1);
 }
 

@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 #include "core2/particle_colors.h"
 #include "core2/actor_animation_entry.h"
 void func_80800000_chquicksandbaddy(Actor *arg0) {
@@ -385,7 +388,7 @@ void chquicksandbaddy_entrypoint_0(s32 arg0, BtIntPtr arg1) {
     BtIntPtr func_800B53A4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
 
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);)
     f32 func_800DC0C0();
     s32 func_808010A0_chquicksandbaddy(void *);
     extern s32 D_80801370_chquicksandbaddy[8];
@@ -396,7 +399,7 @@ void chquicksandbaddy_entrypoint_0(s32 arg0, BtIntPtr arg1) {
     if ((func_800DC0C0() < 0.75f) && (func_808010A0_chquicksandbaddy(D_80801390_chquicksandbaddy) != 0) && (func_8001210C(3) != 0)) {
         temp_v0 = func_800B53A4(1);
         sp24 = temp_v0;
-        func_800BABB8(temp_v0, arg1, 0, 0x40000000, D_80801370_chquicksandbaddy);
+        func_800BABB8(temp_v0, BT_NATIVE_ONLY((f32 *))(arg1), 0, BT_DATA_FIELD(2.0f, 0x40000000), BT_NATIVE_ONLY((s16 *))D_80801370_chquicksandbaddy);
         func_800BAB80(sp24, D_80801390_chquicksandbaddy);
         func_800BA22C(sp24, 1);
     }
@@ -409,7 +412,7 @@ void func_80800FC8_chquicksandbaddy(f32 *arg0, f32 arg1, s32 arg2) {
     void func_800BA544(void *emitter, BtIntPtr arg1);
     void func_800BA714(void *emitter, s16 min, s16 max);
 
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);)
     s32 func_808010A0_chquicksandbaddy(void *);
     extern s32 D_80801394_chquicksandbaddy[16];
     extern u8 D_808013D4_chquicksandbaddy[4];
@@ -420,7 +423,7 @@ void func_80800FC8_chquicksandbaddy(f32 *arg0, f32 arg1, s32 arg2) {
 
     if (func_808010A0_chquicksandbaddy(D_808013D4_chquicksandbaddy) != 0) {
         temp_v0 = func_800B53A4(arg2);
-        func_800BABB8(temp_v0, arg0, arg0, 0x3F800000, D_80801394_chquicksandbaddy);
+        func_800BABB8(temp_v0, BT_NATIVE_ONLY((f32 *))(arg0), BT_NATIVE_ONLY((f32 *))(arg0), BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80801394_chquicksandbaddy);
         if (arg2 >= 2) {
             func_800BA714(temp_v0, 0x32, 0x64);
         }

@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
@@ -2220,7 +2223,7 @@ void func_80803CC4_chflysaucer(BtIntPtr arg0, s32 arg1) {
     BtIntPtr func_800B53A4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
     BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);)
     BtIntPtr sp24;
     BtIntPtr temp_a1;
     BtIntPtr temp_v0;
@@ -2228,7 +2231,7 @@ void func_80803CC4_chflysaucer(BtIntPtr arg0, s32 arg1) {
     temp_v0 = func_800B53A4(6);
     temp_a1 = arg0 + 4;
     sp24 = temp_v0;
-    func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3FB33333, &(*(s32 *)D_808046DC_chflysaucer));
+    func_800BABB8(temp_v0, BT_NATIVE_ONLY((f32 *))(temp_a1), BT_NATIVE_ONLY((f32 *))(temp_a1), BT_DATA_FIELD(1.4f, 0x3FB33333), BT_DATA_FIELD((s16 *)D_808046DC_chflysaucer, &(*(s32 *)D_808046DC_chflysaucer)));
     func_800BA3FC(sp24, arg1);
     func_800BA22C(sp24, 6);
 }

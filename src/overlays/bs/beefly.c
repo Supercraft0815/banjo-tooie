@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 #include "overlays/ba/playerstate.h"
 #include "bs_script.h"
 void func_8009C128(PlayerState *, f32[3]);
@@ -17,7 +20,7 @@ void func_80800000_bsbeefly(PlayerState *arg0) {
 }    typedef struct { u8 pad0[0x4]; f32 unk4; } Objbeefly_func_808000A4_bsbeefly_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 void func_808000A4_bsbeefly(BtIntPtr arg0) {
-    BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);)
     extern s32 D_80800DE8_bsbeefly[12];
     f32 sp24[3];
     s32 sp20;
@@ -25,7 +28,7 @@ void func_808000A4_bsbeefly(BtIntPtr arg0) {
     sp20 = func_800B5BE4(0x22);
     func_8009C128(arg0, sp24);
     ((Objbeefly_func_808000A4_bsbeefly_sp24 *)sp24)->unk4 += 45.0f;
-    func_800BABB8(sp20, sp24, 0, 0x3F800000, D_80800DE8_bsbeefly);
+    func_800BABB8(sp20, BT_NATIVE_ONLY((f32 *))(sp24), 0, BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800DE8_bsbeefly);
 }
 
 /* extern */

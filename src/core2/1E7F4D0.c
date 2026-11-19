@@ -1,8 +1,9 @@
 #include "common.h"
 #include "switch_animations.inc"
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 #include "native_spawn_queue.h"
 #include "memory.h"
+#ifndef BT_ILP32
 #include "native_actor.h"
 #include "core2/1EC3810.h"
 void _gccollectDll_entrypoint_4(void);
@@ -11,7 +12,11 @@ void func_800BDCDC(void);
 void func_800FFB74(void);
 void func_801002C0(void);
 void _subaddietaxi_entrypoint_3(void);
+#endif
 NativeSpawnQueue D_80127110;
+#ifdef BT_ILP32
+_Static_assert(sizeof(NativeSpawnQueue) == 8 && sizeof(NativeSpawnCall) == 0x20, "spawn queue layout");
+#endif
 #define D_80127114 D_80127110.count
 #define D_80127115 D_80127110.enabled
 #define QUEUE_STORAGE D_80127110.callbacks
@@ -28,10 +33,14 @@ void func_800A5BE0()
 /* extern */
 
 void func_800A5C04(void) {
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
+#ifndef BT_ILP32
     if (QUEUE_STORAGE) return;
+#endif
     QUEUE_STORAGE = heap_alloc(NATIVE_SPAWN_CAPACITY * sizeof(NativeSpawnCall));
+#ifndef BT_ILP32
     D_80127110.count = 0;
+#endif
 #else
     s32 heap_alloc(s32);
     D_80127110 = heap_alloc(0x2C0);
@@ -41,7 +50,7 @@ void func_800A5C04(void) {
 /* extern */
 
 void func_800A5C28(void) {
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     s32 _chbaddieDll_entrypoint_1(s32 *);
 #endif
     void _cosectionstor_entrypoint_4(s32);
@@ -78,7 +87,7 @@ void func_800A5C28(void) {
 /* extern */
 
 void func_800A5C94(void) {
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     extern s8 D_80127115;
 #endif
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
@@ -92,7 +101,7 @@ void func_800A5C94(void) {
 /* extern */
 
 void func_800A5CC4(void) {
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     s32 _chbaddieDll_entrypoint_2(s32 *);
 #endif
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
@@ -103,7 +112,7 @@ void func_800A5CC4(void) {
 }
 
 void func_800A5CF0(s32 arg0) {
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     extern s8 D_80127115;
 #endif
     *(s8 *)((u8 *)&D_80127115 + 0) = arg0;
@@ -118,14 +127,14 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800A5CFC()
 }
 
 void func_800A5D1C(void) {
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     s32 _chbaddieDll_entrypoint_3(s32 *);
 #endif
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800FFB74();
 #endif
     s32 func_8010D1E8();
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     extern u8 D_80127114;
 #endif
     if (D_80127114 != 0) {
@@ -142,7 +151,7 @@ void * func_800A5D60(void) {
 /* extern */
 
 void func_800A5D6C(void) {
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     s32 defrag(s32);
 #endif
     if (QUEUE_STORAGE != 0) {

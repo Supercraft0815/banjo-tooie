@@ -5,19 +5,7 @@
 .section .bss
 
 dlabel D_80127090
-    /* 80127090 */ .space 0x02
-
-dlabel D_80127092
-    /* 80127092 */ .space 0x02
-
-dlabel D_80127094
-    /* 80127094 */ .space 0x03
-
-dlabel D_80127097
-    /* 80127097 */ .space 0x02
-
-dlabel D_80127099
-    /* 80127099 */ .space 0x07
+    /* 80127090 */ .space 0x10
 
 dlabel D_801270A0
     /* 801270A0 */ .space 0x10
@@ -41,13 +29,10 @@ dlabel D_80127100
     /* 80127100 */ .space 0x10
 
 dlabel D_80127110
-    /* 80127110 */ .space 0x04
+    /* 80127110 */ .space 0x10
 
-dlabel D_80127114
-    /* 80127114 */ .space 0x01
-
-dlabel D_80127115
-    /* 80127115 */ .space 0x13
+dlabel D_80127120
+    /* 80127120 */ .space 8
 
 dlabel D_80127128
     /* 80127128 */ .space 0x04

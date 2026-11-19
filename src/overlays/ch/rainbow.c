@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 
 /* extern */
 
@@ -177,7 +180,7 @@ void func_80800440_chrainbow(Actor *arg0) {
 void func_808005E0_chrainbow(BtIntPtr arg0, s32 arg1) {
     BtIntPtr func_800B53A4(s32);
     BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);)
     extern s32 D_80800FD0_chrainbow[13];
     BtIntPtr sp24;
     BtIntPtr temp_v0;
@@ -185,7 +188,7 @@ void func_808005E0_chrainbow(BtIntPtr arg0, s32 arg1) {
     temp_v0 = func_800B53A4(1);
     sp24 = temp_v0;
     func_800BA3FC(temp_v0, arg1 + 0x9DF);
-    func_800BABB8(sp24, arg0, 0, 0x3F800000, D_80800FD0_chrainbow);
+    func_800BABB8(sp24, BT_NATIVE_ONLY((f32 *))(arg0), 0, BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800FD0_chrainbow);
 }
 
 void func_8080063C_chrainbow(Actor *arg0, f32 arg1, s32 arg2) {

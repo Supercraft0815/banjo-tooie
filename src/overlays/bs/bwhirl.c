@@ -1,5 +1,8 @@
 #include "common.h"
 #ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
+#ifdef BT_NATIVE
 #include "overlays/ba/anim_smooth.h"
 #endif
 typedef struct player_state_s PlayerState;
@@ -92,7 +95,7 @@ void func_80800200_bsbwhirl(u8 *arg0) {
     BtIntPtr func_800B5BE4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
     BT_IDO_ONLY(s32 func_800BA930(BtIntPtr, s16, s32, s16, s32, s32, s32);) BT_NATIVE_ONLY(void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);)
-    BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);)
     void func_800EF04C(f32 *, f32 *);
     s32 func_800EFCD8(f32 *, f32, s32);
     f32 yaw_get(u8 *);
@@ -109,7 +112,7 @@ void func_80800200_bsbwhirl(u8 *arg0) {
     sp60[1] = 0.0f;
     func_800EF04C(sp3C, sp60);
     sp38 = func_800B5BE4(0xE);
-    func_800BABB8(sp38, sp3C, 0, 0x3F800000, D_80800F5C_bsbwhirl);
+    func_800BABB8(sp38, BT_NATIVE_ONLY((f32 *))(sp3C), 0, BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800F5C_bsbwhirl);
     func_8009BB24(arg0, sp60);
     func_800EFCD8(sp54, (*(f32 *)((s8 *)(arg0) + (0x170))), 0x437A0000);
     func_800EFCD8(sp48, (*(f32 *)((s8 *)(arg0) + (0x170))) + 45.0f, 0x437A0000);

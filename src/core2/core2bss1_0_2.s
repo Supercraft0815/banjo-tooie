@@ -116,13 +116,7 @@ dlabel D_801285B0
     /* 801285B0 */ .space 0x1C0
 
 dlabel D_80128770
-    /* 80128770 */ .space 0x04
-
-dlabel D_80128774
-    /* 80128774 */ .space 0x04
-
-dlabel D_80128778
-    /* 80128778 */ .space 0x138
+    /* 80128770 */ .space 0x140
 
 dlabel D_801288B0
     /* 801288B0 */ .space 0x08

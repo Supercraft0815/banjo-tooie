@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 
 OSThread *chfloaty_entrypoint_0(void)
 {
@@ -300,7 +303,7 @@ void func_80800BD8_chfloaty(BtIntPtr arg0, s32 arg1) {
     s32 func_8001210C(s32);
     BtIntPtr func_800B5BE4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);)
     void func_80800CA0_chfloaty(Actor *);
     extern s16 D_80800EA8_chfloaty[36];
     BtIntPtr sp24;
@@ -311,7 +314,7 @@ void func_80800BD8_chfloaty(BtIntPtr arg0, s32 arg1) {
         temp_v0 = func_800B5BE4(0x1C);
         temp_a1 = arg0 + 4;
         sp24 = temp_v0;
-        func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3F800000, (s32 *)D_80800EA8_chfloaty);
+        func_800BABB8(temp_v0, BT_NATIVE_ONLY((f32 *))(temp_a1), BT_NATIVE_ONLY((f32 *))(temp_a1), BT_DATA_FIELD(1.0f, 0x3F800000), BT_IDO_ONLY((s32 *))D_80800EA8_chfloaty);
         func_800BA22C(sp24, arg1);
     }
     func_80800CA0_chfloaty((Actor *) arg0);

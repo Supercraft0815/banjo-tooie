@@ -1,16 +1,19 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 
-void fxmumbo_entrypoint_0(s32 arg0, s32 arg1) {
+void fxmumbo_entrypoint_0(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg0, s32 arg1) {
     BtIntPtr func_800B5BE4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);)
     extern s32 D_80800060_fxmumbo[20];
     BtIntPtr sp24;
     BtIntPtr temp_v0;
 
     temp_v0 = func_800B5BE4(0xD);
     sp24 = temp_v0;
-    func_800BABB8(temp_v0, arg0, 0, 0x3F800000, D_80800060_fxmumbo);
+    func_800BABB8(temp_v0, arg0, 0, BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800060_fxmumbo);
     func_800BA22C(sp24, arg1);
 }
 /* data_to_c.py: from asm/data/overlays/fx/mumbo.data.s */

@@ -1,27 +1,30 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 
 /* extern */
 
-void fxsparkle_entrypoint_1(BtIntPtr arg0, s32 arg1);
+void fxsparkle_entrypoint_1(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) arg0, s32 arg1);
 
 void fxsparkle_entrypoint_0(s16 *arg0, s32 arg1) {
     f32 sp1C[3];
 
     func_800EE88C(sp1C, arg0);
-    fxsparkle_entrypoint_1((BtIntPtr)sp1C, arg1);
+    fxsparkle_entrypoint_1(BT_IDO_ONLY((BtIntPtr))sp1C, arg1);
 }
 
-void fxsparkle_entrypoint_1(BtIntPtr arg0, s32 arg1) {
-    s32 _fxspgold_entrypoint_2();
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, BtIntPtr);
+void fxsparkle_entrypoint_1(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) arg0, s32 arg1) {
+    BT_NATIVE_ONLY(BtIntPtr _fxspgold_entrypoint_2(f32 *);) BT_IDO_ONLY(s32 _fxspgold_entrypoint_2();)
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, BtIntPtr);)
     extern BtIntPtr D_808003AC_fxsparkle[];
-    s32 temp_a0;
+    BtIntPtr temp_a0;
     BtIntPtr temp_v1;
 
-    temp_a0 = _fxspgold_entrypoint_2();
+    temp_a0 = _fxspgold_entrypoint_2(BT_NATIVE_ONLY(arg0));
     temp_v1 = D_808003AC_fxsparkle[arg1];
     if (temp_v1 != 0) {
-        func_800BABB8(temp_a0, arg0, 0, 0x3F800000, temp_v1);
+        func_800BABB8(temp_a0, arg0, 0, BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))temp_v1);
     }
 }
 

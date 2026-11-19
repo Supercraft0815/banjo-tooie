@@ -1,4 +1,7 @@
 #include "core2/1EAE6C0.h"
+#ifdef BT_NATIVE
+#include "core2/1ED4E30.h"
+#endif
 
 typedef struct { u8 kind, value, maximum; } InventoryEntry; extern InventoryEntry D_8011B640[20];
 extern s32 D_8012B420;

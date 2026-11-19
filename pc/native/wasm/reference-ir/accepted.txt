@@ -421,3 +421,10 @@ the velocity output call. All 9,703 runtime fixups retain their original
 address. Original IDO matches every function and both full ROM images.
 All 74 reference traces (447,849 retraces) match. Evidence in
 n1-2026-11-18/current-player-components-ir.log and current-player-components-full.log.
+
+2026-11-19  Particle queue, form HUD and sky configuration
+Twenty-two guest functions change when accessing the queue, HUD fields,
+sky layers, particle handles and corrected return types. The 9,703 runtime
+fixups retain their original addresses. Both complete ROM images and all
+74 reference replays match. See n1-2026-11-18/current-particle-sky-ir.log
+and current-particle-sky-full.log.

@@ -3290,3 +3290,19 @@ Mit der Typzuordnung des Vergleichslaufs ergeben sich weiterhin 204
 verschiebbare Offsets in 36 Dateien. Eine reine Neuinferenz aus direkten
 Aufrufern liefert 212 in 41 Dateien. Beide Arbeitslisten liegen unter
 `build/acceptance/n1-2026-11-18/current-player-components*`.
+
+### 2026-11-19 – Partikeleffekte, Formen-HUD und Himmel (N1/N3)
+
+Der Gast verwendet für die Spawn-Warteschlange denselben Datentyp wie der
+native Code. Die 21 Glitzerskripte und zwei Effektaufrufer haben in der
+LP64-Probe 44 Aufrufe mit den Originalpositionen und den Skalierungen
+1, 1,4 und 2 ausgelöst. Der Gasttest für das Formen-HUD prüft Initialisierung,
+Anzeigeanforderungen und Kartenwechsel über die echten Funktionen.
+
+Für 42 Karten liest der native Himmel die Modellnummern, Skalierungen,
+Drehraten und Vertex-Schalter beider Ebenen aus C. Die LP64-Probe vergleicht
+die Datensätze mit 1.552 Originalbytes und prüft zwei unbekannte Karten.
+Alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 66 Sanitizertests
+bestehen. Original-IDO bestätigt alle 16.401 Funktionen und beide ROMs.
+Die 9.703 Laufzeit-Fixups behalten ihre Originaladresse. Belege unter
+`build/acceptance/n1-2026-11-18/current-particle-sky*`.

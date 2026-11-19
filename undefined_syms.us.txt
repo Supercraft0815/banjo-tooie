@@ -214,6 +214,12 @@ D_8013255C = D_8012D690 + 0x4ECC;
 
 /* Typed view and aliases within the music state storage. */
 D_801359C0_storage = D_801359C0;
+D_80127092 = D_80127090 + 0x2;
+D_80127094 = D_80127090 + 0x4;
+D_80127097 = D_80127090 + 0x7;
+D_80127099 = D_80127090 + 0x9;
+D_80127114 = D_80127110 + 0x4;
+D_80127115 = D_80127110 + 0x5;
 D_80135498 = D_80135490 + 0x8;
 D_801354B0 = D_80135490 + 0x20;
 D_801354B8 = D_80135490 + 0x28;
@@ -605,3 +611,7 @@ D_80123E5E = D_80123E40 + 0x1E;
 D_8011A5C2 = particle_emitter_settings + 2;
 D_8004138E = D_80041290 + 0xFE;
 D_800411E0 = sfx_voice_count;
+
+/* Legacy relocation names in the unified SkyState BSS object. */
+D_80128774 = D_80128770 + 0x4;
+D_80128778 = D_80128770 + 0x8;

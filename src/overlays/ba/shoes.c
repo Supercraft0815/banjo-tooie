@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 typedef struct player_state_s PlayerState;
 
 s32 bashoes_entrypoint_0() 
@@ -317,33 +320,33 @@ void bashoes_entrypoint_15(PlayerState *arg0) {
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(BtIntPtr) bashoes_entrypoint_16(BtIntPtr arg0) {
     void func_8009C128(PlayerState *, f32[3]);
     BtIntPtr func_800B53A4(s32);
-    BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);)
     extern s32 D_80800AD0_bashoes[31];
     s32 sp24[3];
     BtIntPtr sp20;
 
     sp20 = func_800B53A4(6);
     func_8009C128(arg0, &sp24);
-    BT_NATIVE_ONLY(return) func_800BABB8(sp20, &sp24, &sp24, 0x3F800000, D_80800AD0_bashoes);
+    BT_NATIVE_ONLY(return) func_800BABB8(sp20, BT_NATIVE_ONLY((f32 *))(&sp24), BT_NATIVE_ONLY((f32 *))(&sp24), BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800AD0_bashoes);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(BtIntPtr) bashoes_entrypoint_17(BtIntPtr arg0) {
     void func_8009C128(PlayerState *, f32[3]);
     BtIntPtr func_800B53A4(s32);
-    BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);)
     extern s32 D_80800B4C_bashoes[17];
     s32 sp24[3];
     BtIntPtr sp20;
 
     sp20 = func_800B53A4(30);
     func_8009C128(arg0, &sp24);
-    BT_NATIVE_ONLY(return) func_800BABB8(sp20, &sp24, &sp24, 0x3F800000, D_80800B4C_bashoes);
+    BT_NATIVE_ONLY(return) func_800BABB8(sp20, BT_NATIVE_ONLY((f32 *))(&sp24), BT_NATIVE_ONLY((f32 *))(&sp24), BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800B4C_bashoes);
 }    typedef struct { u8 pad0[0x4]; f32 unk4; } Objshoes_bashoes_entrypoint_18_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 void bashoes_entrypoint_18(BtIntPtr arg0) {
     s32 func_80092E08(BtIntPtr, s32 *);
     BtIntPtr func_800B53A4(s32);
-    BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);)
     extern s32 D_80800B90_bashoes[17];
     f32 sp28;
     s32 sp24[2];
@@ -352,13 +355,13 @@ void bashoes_entrypoint_18(BtIntPtr arg0) {
     sp20 = func_800B53A4(0xA);
     func_80092E08(arg0, sp24);
     ((Objshoes_bashoes_entrypoint_18_sp24 *)sp24)->unk4 -= 30.0f;
-    func_800BABB8(sp20, sp24, sp24, 0x3F800000, D_80800B90_bashoes);
+    func_800BABB8(sp20, BT_NATIVE_ONLY((f32 *))(sp24), BT_NATIVE_ONLY((f32 *))(sp24), BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800B90_bashoes);
 }    typedef struct { u8 pad0[0x4]; f32 unk4; } Objshoes_bashoes_entrypoint_19_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */
 
 void bashoes_entrypoint_19(BtIntPtr arg0) {
     s32 func_80092E2C(BtIntPtr, s32 *);
     BtIntPtr func_800B53A4(s32);
-    BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);)
     extern s32 D_80800B90_bashoes[17];
     f32 sp28;
     s32 sp24[2];
@@ -367,7 +370,7 @@ void bashoes_entrypoint_19(BtIntPtr arg0) {
     sp20 = func_800B53A4(0xA);
     func_80092E2C(arg0, sp24);
     ((Objshoes_bashoes_entrypoint_19_sp24 *)sp24)->unk4 -= 30.0f;
-    func_800BABB8(sp20, sp24, sp24, 0x3F800000, D_80800B90_bashoes);
+    func_800BABB8(sp20, BT_NATIVE_ONLY((f32 *))(sp24), BT_NATIVE_ONLY((f32 *))(sp24), BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800B90_bashoes);
 }
 
 void bashoes_entrypoint_20(PlayerState *arg0) {

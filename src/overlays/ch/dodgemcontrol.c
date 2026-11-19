@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 
 struct DodgemValues { s32 values[4]; };
 struct dodgem_vector { f32 v[3]; };
@@ -998,7 +1001,7 @@ void func_80801B94_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
     BtIntPtr func_800B53A4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
     BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
-    BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);)
     s32 func_80103DFC(BtIntPtr, s32 *);
     extern s32 D_80804E78_chdodgemcontrol[];
     extern s32 D_80804EA4_chdodgemcontrol[];
@@ -1007,7 +1010,7 @@ void func_80801B94_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
 
     sp2C = func_800B53A4(0xC);
     func_80103DFC(arg0, sp20);
-    func_800BABB8(sp2C, sp20, sp20, 0x3F800000, &D_80804E78_chdodgemcontrol);
+    func_800BABB8(sp2C, BT_NATIVE_ONLY((f32 *))(sp20), BT_NATIVE_ONLY((f32 *))(sp20), BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))&D_80804E78_chdodgemcontrol);
     func_800BA3FC(sp2C, arg1);
     func_800BA22C(sp2C, 0xC);
     _subaddieaudioquick_entrypoint_2(arg0, sp20, &D_80804EA4_chdodgemcontrol);

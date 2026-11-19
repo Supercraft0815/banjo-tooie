@@ -1,4 +1,7 @@
 #include "ch/crusher.h"
+#ifdef BT_NATIVE
+#include "core2/particle_script.h"
+#endif
 #include "core2/switch_animations.h"
 s32 func_80800000_chcrusher(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80108474(u32, f32 *, s32);
@@ -104,9 +107,9 @@ void func_808000D4_chcrusher(Actor *arg0) {
 }
 
 void func_80800394_chcrusher(u8 *arg0) {
-    BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
+    BT_IDO_ONLY(BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);)
     extern s32 D_80800BF0_chcrusher[20];
-    func_800BABB8(0, arg0 + 0x28, 0, 0x3F800000, D_80800BF0_chcrusher);
+    func_800BABB8(0, BT_NATIVE_ONLY((f32 *))(arg0 + 0x28), 0, BT_DATA_FIELD(1.0f, 0x3F800000), BT_NATIVE_ONLY((s16 *))D_80800BF0_chcrusher);
     (*(f32 *)((s8 *)(arg0) + (0x24))) = 0.3f;
 }
 
