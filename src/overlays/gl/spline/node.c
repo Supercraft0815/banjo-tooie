@@ -213,7 +213,7 @@ u8 unused7c[0x114];
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     Spline *func_80105494(Actor *);
 #endif
-    extern s16 D_808009B0_glsplinenode[];
+    extern s16 D_808009B0_glsplinenode[8];
 #ifdef BT_NATIVE
     void _glsplinenode_entrypoint_0(s32, s32, s32);
 #else
@@ -235,7 +235,6 @@ u8 unused7c[0x114];
     s32 jumped;
 #endif
     register Actor *actor;
-
     sp7C = func_80105494(*(Actor **)&arg1);
     sp78 = 0;
     if ((*(u32 *)(arg2 + 0xC)) & 1) {
@@ -290,7 +289,7 @@ u8 unused7c[0x114];
             if ((((Node *)arg2)->wc.flags.dialog) == 1) {
                 func_800C04C8(((Node *)arg2)->wc.flags.state,
                     ((Node *)arg2)->w10.bits.dialog, NODE_BYTE(arg2, 6),
-                    (u32)NODE_BYTE(arg2, 7) >> 4, &_glsplinenode_entrypoint_0);
+                    (u32)NODE_BYTE(arg2, 7) >> 4, (BtIntPtr)&_glsplinenode_entrypoint_0);
             }
             break;
         }
@@ -445,3 +444,4 @@ u8 unused7c[0x114];
     }
     return sp78;
 }
+#include "node_data.inc"

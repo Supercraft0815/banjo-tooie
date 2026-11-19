@@ -1,10 +1,10 @@
 #include "common.h"
-
+#include "bossbattery_tables.h"
 OSThread *chdiggerbossbattery_entrypoint_0(void)
 {
-    extern u8 D_808002F0_chdiggerbossbattery[];
+    extern ActorData D_808002F0_chdiggerbossbattery;
 
-    return (OSThread *) D_808002F0_chdiggerbossbattery;
+    return (OSThread *)&D_808002F0_chdiggerbossbattery;
 }
 
 /* extern */
@@ -33,11 +33,11 @@ void func_80800090_chdiggerbossbattery(Actor *arg0) {
     int func_800DC298(f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    extern u32 D_80800338_chdiggerbossbattery;
+
     f32 sp2C[3];
 
 
-    _subaddieaudioloop_entrypoint_4(arg0, (f32 *)arg0->actorData, 1, &D_80800338_chdiggerbossbattery);
+    _subaddieaudioloop_entrypoint_4(arg0, (f32 *)arg0->actorData, 1, (u32 *)D_80800338_chdiggerbossbattery.audio);
     if (func_800D9078(&arg0->unk58) != 0) {
         func_800EE7F8(sp2C, (f32 *)arg0->actorData);
         func_800EF1B8(sp2C, (func_800DC298(0.5f) ? 1.0f : -1.0f) * 90.0f, 80.0f);
@@ -64,10 +64,9 @@ s32 func_80800170_chdiggerbossbattery(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80106790(Unk80132ED0 *);
     void func_8010A570(Actor *);
     void func_8010A624(Actor *);
-    extern u8 D_808002F0_chdiggerbossbattery[];
+    extern ActorData D_808002F0_chdiggerbossbattery;
     f32 sp2C[3];
     Actor *actor;
-
     switch (arg1) {
     case 0x40: {
         register Actor *battery;
@@ -90,7 +89,7 @@ s32 func_80800170_chdiggerbossbattery(Actor *arg0, s32 arg1, s32 arg2) {
         _chexploder_entrypoint_13(actor, 1);
         break;
     case 0x95:
-        func_80103140(arg0, ((u16 *)(D_808002F0_chdiggerbossbattery - 8))[arg0->unk74_7], 0);
+        func_80103140(arg0, BT_DATA_FIELD(D_80800338_chdiggerbossbattery.model[arg0->unk74_7 - 50], ((u16 *)((u8 *)&D_808002F0_chdiggerbossbattery - 8))[arg0->unk74_7]), 0);
         break;
     case 0x1F:
         func_801015D0(arg0);
@@ -101,3 +100,4 @@ s32 func_80800170_chdiggerbossbattery(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return 1;
 }
+#include "bossbattery_data.inc"

@@ -2,7 +2,14 @@
 
 extern u8 D_8012762C;
 extern s8 D_8012762D;
-extern u8 D_808003C0_gclevel[];
+extern u8 D_808003C0_gclevel[15];
+typedef struct {
+    s16 id;
+    u16 visitedFlag;
+    s16 map;
+    s8 exits[2];
+} LevelEntry;
+extern LevelEntry D_808003D0_gclevel[10];
 
 void func_8080016C_gclevel(s32, s32, s32, s32);
 s32 func_80800270_gclevel(s32, s32, s32);
@@ -48,19 +55,18 @@ void gclevel_entrypoint_1(void)
 s32 gclevel_entrypoint_2(s32 arg0)
 {
     return D_8012762C = _gcsectionDll_entrypoint_4(arg0);
-}    typedef struct { u8 pad0[0x2]; u16 unk2; } Objlevel_gclevel_entrypoint_3_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+}
 
-/* extern */
 
 u32 gclevel_entrypoint_3(u32 level) {
-    void *func_80800314_gclevel(s32);
-    void *temp_v0;
+    LevelEntry *func_80800314_gclevel(s32);
+    LevelEntry *temp_v0;
 
     temp_v0 = func_80800314_gclevel(level);
     if (temp_v0 == NULL) {
         return 1U;
     }
-    return func_800DA298((enum flag_e) (((Objlevel_gclevel_entrypoint_3_temp_v0 *)temp_v0)->unk2));
+    return func_800DA298((enum flag_e) temp_v0->visitedFlag);
 }
 
 /* extern */
@@ -112,29 +118,29 @@ s32 gclevel_entrypoint_4(s32 arg0)
         return (D_808003C0_gclevel[D_8012762C - 0xD]) & arg0;
     }
     return 0;
-}    typedef struct { u8 pad0[0x2]; u16 unk2; s16 unk4; s8 unk6; s8 unk7; } Objlevel_func_80800270_gclevel_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+}
 
 /* extern */
 
 s32 func_80800270_gclevel(s32 arg0, s32 arg1, s32 arg2) {
-    void *func_80800314_gclevel(s32);
+    LevelEntry *func_80800314_gclevel(s32);
     s32 temp_v1;
-    void *temp_v0;
+    LevelEntry *temp_v0;
 
     temp_v0 = func_80800314_gclevel(arg2);
     if (temp_v0 == NULL) {
         return 1;
     } else {
-        temp_v1 = (((Objlevel_func_80800270_gclevel_temp_v0 *)temp_v0)->unk4);
+        temp_v1 = temp_v0->map;
         if (temp_v1 == -1) {
-            func_800DA544((enum flag_e) (((Objlevel_func_80800270_gclevel_temp_v0 *)temp_v0)->unk2));
+            func_800DA544((enum flag_e) temp_v0->visitedFlag);
             goto done;
         } else {
-        if ((arg0 == temp_v1) && ((arg1 == (((Objlevel_func_80800270_gclevel_temp_v0 *)temp_v0)->unk6)) || (arg1 == (((Objlevel_func_80800270_gclevel_temp_v0 *)temp_v0)->unk7)))) {
-            func_800DA544((enum flag_e) (((Objlevel_func_80800270_gclevel_temp_v0 *)temp_v0)->unk2));
+        if ((arg0 == temp_v1) && ((arg1 == temp_v0->exits[0]) || (arg1 == temp_v0->exits[1]))) {
+            func_800DA544((enum flag_e) temp_v0->visitedFlag);
             goto done;
         } else {
-            return func_800DA298((enum flag_e) (((Objlevel_func_80800270_gclevel_temp_v0 *)temp_v0)->unk2));
+            return func_800DA298((enum flag_e) temp_v0->visitedFlag);
         }
         }
     }
@@ -142,14 +148,8 @@ done:
     return 1;
 }
 
-void *func_80800314_gclevel(s32 arg0) {
-    struct LevelEntry {
-        s16 id;
-        s16 flag;
-        s32 unk4;
-    };
-    extern struct LevelEntry D_808003D0_gclevel[];
-    struct LevelEntry *entry;
+LevelEntry *func_80800314_gclevel(s32 arg0) {
+    LevelEntry *entry;
     s32 i;
 
     for (i = 0; i < 10; i++) {
@@ -160,9 +160,9 @@ void *func_80800314_gclevel(s32 arg0) {
     }
     return NULL;
 }
-
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
 s8 D_8012762D BT_DATA(4, bss_core2bss1_0_1, 0x5CD);
 #endif
+#include "level_data.inc"

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "uffycont_tables.h"
 
 void func_80800000_chchuffycont(Actor *arg0, s32 arg1) {
     void _gcnewoption_entrypoint_6(Actor *arg0, volatile s16 arg1);
@@ -157,7 +158,6 @@ void func_80800494_chchuffycont(BtIntPtr arg0, BtIntPtr arg1) {
     void _gcnewoption_entrypoint_12(void *a0, u32 optionIndex, s16 textIndex);
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     int func_808006A4_chchuffycont(s32);
-    extern s16 D_80800B20_chchuffycont;
     s32 var_s0;
     s32 var_s1;
 
@@ -166,7 +166,7 @@ void func_80800494_chchuffycont(BtIntPtr arg0, BtIntPtr arg1) {
     do {
         if (func_808006A4_chchuffycont(var_s0) != 0) {
             _gcnewoption_entrypoint_12(arg1, var_s1, (s16) (var_s0 + 0xA));
-            _gcnewoption_entrypoint_31(arg1, var_s1, ((s16 *)((u8 *)&D_80800B20_chchuffycont + var_s0 * 10))[4]);
+            _gcnewoption_entrypoint_31(arg1, var_s1, D_80800B20_chchuffycont.data.stations[var_s0].icon);
             var_s1 += 1;
         }
         var_s0 += 1;
@@ -182,16 +182,17 @@ void func_80800540_chchuffycont(Actor *arg0, s32 arg1) {
     s32 func_800DA298(s32);
     void func_800DA544(s32 index);
     void func_80800000_chchuffycont(Actor *, s32);
-    extern s16 D_80800B20_chchuffycont;
-    extern s16 D_80800B66_chchuffycont;
-    s16 *entry;
+    ChuffyStation *entry;
 
-    entry = (s16 *)((u8 *)&D_80800B20_chchuffycont + arg1 * 10);
-    if (entry[0] == 0x12A && func_800DA298(0x171) == 0) {
+    entry = &D_80800B20_chchuffycont.data.stations[arg1];
+    if (entry->map == 0x12A && func_800DA298(0x171) == 0) {
         func_80800000_chchuffycont(arg0, 6);
         return;
     }
-    func_800DA544(entry[2]); entry = &D_80800B20_chchuffycont; loop: if (func_800DA298(entry[1]) == 0) { entry += 5; if (entry != &D_80800B66_chchuffycont) { goto loop; } } if (*entry == 0xEC) { func_800DA544(0x6E7); } _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(*entry); _glcutDll_entrypoint_10(0xD0); _glcutDll_entrypoint_22(0x6F); _glcutDll_entrypoint_16();
+    func_800DA544(entry->visitFlag);
+        entry = D_80800B20_chchuffycont.scan; loop: if (func_800DA298(entry->currentFlag) == 0) {
+        entry++; if (entry != CHUFFY_STATION_END) { goto loop; }
+        } if (entry->map == 0xEC) { func_800DA544(0x6E7); } _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(entry->map); _glcutDll_entrypoint_10(0xD0); _glcutDll_entrypoint_22(0x6F); _glcutDll_entrypoint_16();
 }
 
 /* extern */
@@ -217,11 +218,10 @@ void func_80800620_chchuffycont(Actor *arg0, s32 arg1) {
 }
 
 int func_808006A4_chchuffycont(s32 arg0) {
-  extern s16 D_80800B20_chchuffycont;
   s32 func_800DA298(s32);
-    return (!(*(s16 *)((u8 *)&D_80800B20_chchuffycont + arg0 * 10 + 6) + 1)
-        || func_800DA298(*(s16 *)((u8 *)&D_80800B20_chchuffycont + arg0 * 10 + 6)))
-        && !func_800DA298(*(s16 *)((u8 *)&D_80800B20_chchuffycont + arg0 * 10 + 2));
+    return (!(D_80800B20_chchuffycont.data.stations[arg0].prerequisite + 1)
+        || func_800DA298(D_80800B20_chchuffycont.data.stations[arg0].prerequisite))
+        && !func_800DA298(D_80800B20_chchuffycont.data.stations[arg0].currentFlag);
 }
 
 s32 func_8080070C_chchuffycont(BtIntPtr arg0) {
@@ -262,28 +262,26 @@ s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
   void func_800DA3B8(s32, s32);
   s32 func_800EA05C(void);
   extern u8 D_8012762C;
-  extern s16 D_80800B20_chchuffycont;
-  extern s16 D_80800B66_chchuffycont;
-  register s16 *end;
-  s16 *first_end;
-  s16 *var_s0;
-  s16 *var_v1;
+  register ChuffyStation *end;
+  ChuffyStation *first_end;
+  ChuffyStation *var_s0;
+  ChuffyStation *var_v1;
   s32 temp_s0;
   s32 temp_v0;
   if (func_800EA05C() == 0xD0)
   {
-    var_s0 = &D_80800B20_chchuffycont;
-    first_end = &D_80800B66_chchuffycont;
+    var_s0 = D_80800B20_chchuffycont.scan;
+    first_end = CHUFFY_STATION_END;
     do
     {
-      if (func_800DA298(var_s0[1]) != 0)
+      if (func_800DA298(var_s0->currentFlag) != 0)
       {
         break;
       }
-      var_s0 += 5;
+      var_s0++;
     }
     while (var_s0 != first_end);
-    *arg0 = *var_s0;
+    *arg0 = var_s0->map;
     *arg1 = 2;
     if (func_800DA298(0x66B) != 0)
     {
@@ -298,11 +296,14 @@ s32 chchuffycont_entrypoint_0(s32 *arg0, s32 *arg1)
       }
     }
     func_800DA3B8(0x66B, 0);
- return 1; } temp_v0 = func_800EA05C(); var_v1 = &D_80800B20_chchuffycont; end = &D_80800B66_chchuffycont; do { if (temp_v0 == (*var_v1)) { break; }
-    var_v1 += 5;
+ return 1;
+        }
+        temp_v0 = func_800EA05C(); var_v1 = D_80800B20_chchuffycont.scan; end = CHUFFY_STATION_END; do { if (temp_v0 == (var_v1->map)) {
+        break; }
+    var_v1++;
   }
   while (var_v1 != end);
-  if (func_800DA298(var_v1[1]) != 0)
+  if (func_800DA298(var_v1->currentFlag) != 0)
   {
     *arg0 = 0xD0;
     *arg1 = 1;
@@ -321,12 +322,11 @@ s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
     s32 func_800DA298(s32);
     s32 func_800EA05C();
     extern u8 D_8012762C;
-    extern s16 D_80800B20_chchuffycont;
-    extern s16 D_80800B66_chchuffycont;
-    s16 *ptr;
-    s16 *end;
-    s16 *scan;
-    s16 *scan_end;
+
+    ChuffyStation *ptr;
+    ChuffyStation *end;
+    ChuffyStation *scan;
+    ChuffyStation *scan_end;
     s32 section;
     s32 map;
     s32 result;
@@ -338,12 +338,12 @@ s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
             *arg0 = 0xD7;
             *arg1 = 3;
         } else {
-            ptr = &D_80800B20_chchuffycont; end = &D_80800B66_chchuffycont; do { if (func_800DA298(ptr[1]) != 0) {
+            ptr = D_80800B20_chchuffycont.scan; end = CHUFFY_STATION_END; do { if (func_800DA298(ptr->currentFlag) != 0) {
                     break;
                 }
-                ptr += 5;
+                ptr++;
             } while (ptr != end);
-            *arg0 = *ptr;
+            *arg0 = ptr->map;
             *arg1 = 3;
         }
         section = BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(*arg0);
@@ -352,12 +352,12 @@ s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
         }
         result = 1;
     } else {
-        scan = &D_80800B20_chchuffycont; scan_end = &D_80800B66_chchuffycont; do { if (map == *scan) {
+        scan = D_80800B20_chchuffycont.scan; scan_end = CHUFFY_STATION_END; do { if (map == scan->map) {
                 break;
             }
-            scan += 5;
+            scan++;
         } while (scan != scan_end);
-        if (func_800DA298(scan[1]) != 0 ||
+        if (func_800DA298(scan->currentFlag) != 0 ||
             (map == 0xD7 && func_800DA298(0x95) == 0)) {
             *arg0 = 0x121;
             result = 1;
@@ -372,28 +372,28 @@ s32 chchuffycont_entrypoint_1(s32 *arg0, s32 *arg1) {
 
 void func_80800A7C_chchuffycont(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
-    extern u32 D_80800B68_chchuffycont;
-    extern f32 D_80800B78_chchuffycont;
-    _subaddieaudioloop_entrypoint_4(arg0, &D_80800B78_chchuffycont, 1U, &D_80800B68_chchuffycont);
+
+    extern f32 D_80800B78_chchuffycont[3];
+    _subaddieaudioloop_entrypoint_4(arg0, D_80800B78_chchuffycont, 1U, (u32 *)D_80800B20_chchuffycont.data.audio);
 }
 
 OSThread *chchuffycont_entrypoint_2(void)
 {
-    extern u8 D_80800B84_chchuffycont[];
+    extern ActorData D_80800B84_chchuffycont;
 
-    return (OSThread *) D_80800B84_chchuffycont;
+    return (OSThread *)&D_80800B84_chchuffycont;
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) chchuffycont_entrypoint_3(void)
 {
-  extern s16 D_80800B20_chchuffycont;
-  extern s16 D_80800B66_chchuffycont;
   BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcsectionDll_entrypoint_4(s32);
   s32 func_800DA298(s32);
-  s16 *var_s0;
-  s16 *var_s1;
- var_s0 = &D_80800B20_chchuffycont; var_s1 = &D_80800B66_chchuffycont; loop_1: if (func_800DA298(var_s0[1]) == 0) { var_s0 += 5; if (var_s0 != var_s1) { goto loop_1; }
-  }
+  ChuffyStation *var_s0;
+  ChuffyStation *var_s1;
 
-  BT_NATIVE_ONLY(return) BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(*var_s0);
+ var_s0 = D_80800B20_chchuffycont.scan; var_s1 = CHUFFY_STATION_END; loop_1: if (func_800DA298(var_s0->currentFlag) == 0) {
+        var_s0++; if (var_s0 != var_s1) { goto loop_1; }
+  }
+  BT_NATIVE_ONLY(return) BT_NATIVE_ONLY((s8)) _gcsectionDll_entrypoint_4(var_s0->map);
 }
+#include "uffycont_data.inc"

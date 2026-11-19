@@ -1,4 +1,5 @@
 #include "common.h"
+#include "musicmenu_tables.h"
 
 /* extern */
 
@@ -37,7 +38,7 @@ s32 func_808000B4_chmusicmenu(s32 arg0) {
 }
 
 struct MusicMenuEntry {
-    s16 (*unk0)[2];
+    struct MusicMenuTrack *tracks;
     u8 count;
     u8 sound;
     u16 unk6;
@@ -48,7 +49,7 @@ void func_808000D0_chmusicmenu(Actor *arg0, BtIntPtr arg1) {
     void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void _gcnewoption_entrypoint_33(BtIntPtr);
     int func_800DC298(f32);
-    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];
     struct MusicMenuEntry *entry;
     struct MusicMenuEntry *entry2;
     s32 i;
@@ -83,13 +84,12 @@ void func_808000D0_chmusicmenu(Actor *arg0, BtIntPtr arg1) {
 }
 
 void func_8080021C_chmusicmenu(Actor *arg0, BtIntPtr arg1) {
-    struct MusicMenuColor { s16 components[3]; };
     void _gcnewoption_entrypoint_12(void *a0, u32 optionIndex, s16 textIndex);
     void _gcnewoption_entrypoint_13(BtIntPtr arg0, s32 arg1, void *arg2);
     void _gcnewoption_entrypoint_27(BtIntPtr, s32, s32);
     void _gcnewoption_entrypoint_41(BtIntPtr, s32);
     s32 func_800FCF50(s32);
-    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];
     extern struct MusicMenuColor D_80801554_chmusicmenu;
     extern struct MusicMenuColor D_8080155C_chmusicmenu;
     s32 i;
@@ -111,7 +111,7 @@ void func_8080021C_chmusicmenu(Actor *arg0, BtIntPtr arg1) {
             color2 = D_8080155C_chmusicmenu;
             for (i = 0; i < D_808014F4_chmusicmenu[arg0->actorData[6]].count; i++) {
                 _gcnewoption_entrypoint_12(arg1, i, i + 10);
-                if (func_800FCF50(D_808014F4_chmusicmenu[arg0->actorData[6]].unk0[i][0])) {
+                if (func_800FCF50(D_808014F4_chmusicmenu[arg0->actorData[6]].tracks[i].id)) {
                     _gcnewoption_entrypoint_13(arg1, i, &color1);
                 } else {
                     _gcnewoption_entrypoint_13(arg1, i, &color2);
@@ -131,18 +131,13 @@ void func_80800400_chmusicmenu(Actor *arg0) {
     s32 func_800FCDE0(s32, s32, f32);
     s32 func_800FCED0(s32, s32, f32);
     void func_800FEF94(s32, s32, s32, s32 *, s16 *);
-    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];
     struct MusicMenuActorData {
         s32 selection;
         s32 unk4[2];
         f32 value;
         s32 unk10[2];
         s32 category;
-    };
-    struct MusicMenuTrack {
-        s16 id;
-        u8 index;
-        s8 bank;
     };
     s32 selection;
     s32 sp38;
@@ -153,7 +148,7 @@ void func_80800400_chmusicmenu(Actor *arg0) {
     selection = (s32)arg0->actorData[0];
     if (selection >= 0 &&
         (!arg0->unk74_30 || !arg0->unk74_29)) {
-        tracks = (struct MusicMenuTrack *)D_808014F4_chmusicmenu[arg0->actorData[6]].unk0;
+        tracks = D_808014F4_chmusicmenu[arg0->actorData[6]].tracks;
         if (tracks[selection].bank != -1) {
             sp38 = -1;
             sp36 = -1;
@@ -173,7 +168,7 @@ void func_80800560_chmusicmenu(Actor *arg0, s32 arg1, f32 arg2) {
     void func_800FC660(u32);
     void func_800FCAE0(u32, u32, u32);
     void func_80800400_chmusicmenu(Actor *);
-    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];
     struct MusicMenuActorData {
         s32 selection;
         s32 unk4[2];
@@ -181,12 +176,12 @@ void func_80800560_chmusicmenu(Actor *arg0, s32 arg1, f32 arg2) {
         s32 unk10[2];
         s32 category;
     };
-    s16 (*tracks)[2] = D_808014F4_chmusicmenu[arg0->actorData[6]].unk0;
+    struct MusicMenuTrack *tracks = D_808014F4_chmusicmenu[arg0->actorData[6]].tracks;
 
     if (arg2 == 0.0f) {
-        func_800FC660(tracks[arg0->actorData[0]][0]);
+        func_800FC660(tracks[arg0->actorData[0]].id);
     } else {
-        func_800FCAE0(tracks[arg0->actorData[0]][0], -1, 0x14D);
+        func_800FCAE0(tracks[arg0->actorData[0]].id, -1, 0x14D);
     }
     arg0->unk74_30 = 0;
     arg0->unk74_29 = 0;
@@ -199,7 +194,7 @@ void func_80800610_chmusicmenu(Actor *arg0) {
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
     void func_800FEC60(u32);
-    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];
     struct MusicMenuActorData {
         s32 selection;
         s32 unk4[2];
@@ -209,15 +204,15 @@ void func_80800610_chmusicmenu(Actor *arg0) {
         s32 category;
     };
     s16 track;
-    s16 (*tracks)[2];
+    struct MusicMenuTrack *tracks;
 
     if (!arg0->unk64_20) {
         func_800FEC60(5);
         arg0->unk64_20 = 1;
         func_800DA544(0);
     }
-    tracks = D_808014F4_chmusicmenu[arg0->actorData[6]].unk0;
-    track = tracks[arg0->actorData[0]][0];
+    tracks = D_808014F4_chmusicmenu[arg0->actorData[6]].tracks;
+    track = tracks[arg0->actorData[0]].id;
     if (arg0->unk74_7) {
         func_800FCAE0((int)arg0->unk74_7, 0, 0x14D);
         func_800FCA90(arg0->unk74_7);
@@ -257,14 +252,14 @@ void func_8080079C_chmusicmenu(u8 *arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 func_800FCF50(s32);
     BtIntPtr func_80100094(u8 *, s32);
     void func_80800930_chmusicmenu(u8 *, s32);
-    extern struct MusicMenuEntry D_808014F4_chmusicmenu[];
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];
     Actor *actor = (Actor *)arg0;
     u32 selected;
     s32 index = arg2;
 
     switch (arg3) {
         case 4:
-            if (func_800FCF50(D_808014F4_chmusicmenu[actor->actorData[6]].unk0[index][0])) {
+            if (func_800FCF50(D_808014F4_chmusicmenu[actor->actorData[6]].tracks[index].id)) {
                 if (!actor->unk64_19 && index != actor->actorData[0]) {
                     _gcnewoption_entrypoint_27(arg1, index, 1);
                     selected = actor->actorData[0];
@@ -330,7 +325,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     void func_80102424(Actor *, s32);
     void func_808000D0_chmusicmenu(Actor *, BtIntPtr);
     void func_80800714_chmusicmenu(Actor *);
-    extern u8 D_808014F8_chmusicmenu[];
+    extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];
     extern s32 _gcnewoption_entrypoint_35;
     extern s32 func_8010D5DC;
     BtIntPtr sp44;
@@ -375,9 +370,9 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
             _gcnewoption_entrypoint_4(arg0, 1, &_gcnewoption_entrypoint_35, 0, func_808000B4_chmusicmenu(*(s32 *)(arg0 + 0x30)));
             sp40 = func_80100094(arg0, 1);
             _gcnewoption_entrypoint_40(sp40, 0x41, 0x22, 0x20, 0.8f, 1.0f);
-            value = D_808014F8_chmusicmenu[*(s32 *)(arg0 + 0x30) * 8];
+            value = D_808014F4_chmusicmenu[*(s32 *)(arg0 + 0x30)].count;
             _gcnewoption_entrypoint_8(sp40, value < 5 ? value : 5);
-            _gcnewoption_entrypoint_9(sp40, D_808014F8_chmusicmenu[*(s32 *)(arg0 + 0x30) * 8]);
+            _gcnewoption_entrypoint_9(sp40, D_808014F4_chmusicmenu[*(s32 *)(arg0 + 0x30)].count);
             _gcnewoption_entrypoint_10(sp40, 2);
             func_808000D0_chmusicmenu(arg0, sp40);
             _gcnewoption_entrypoint_14(sp40, 0, 1, 3, 4.0f);
@@ -416,7 +411,7 @@ void func_80800CBC_chmusicmenu(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
     void func_8010A828(void **, s32);
-    extern s16 D_808012A0_chmusicmenu;
+    extern s16 D_808012A0_chmusicmenu[48];
     s32 var_s0;
 
     arg0->actorData[6] = -1;
@@ -431,7 +426,7 @@ void func_80800CBC_chmusicmenu(Actor *arg0) {
     } else {
         func_80800930_chmusicmenu(arg0, 7);
     }
-    while ((&D_808012A0_chmusicmenu)[var_s0] != 0x9A) {
+    while (D_808012A0_chmusicmenu[var_s0] != 0x9A) {
         var_s0++;
     }
     func_800DA3B8(var_s0 + 0x53E, func_800DA298(0x43));
@@ -536,6 +531,7 @@ s32 func_80801040_chmusicmenu(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_80101080(void);
     void func_8080079C_chmusicmenu(u8 *, void *, s32, s32);
 
+
     switch (arg1) {
         case 0x20:
             func_8080079C_chmusicmenu(arg0, func_80101080(), *(s16 *)&arg2, *((s16 *)&arg2 + 1));
@@ -550,16 +546,18 @@ s32 func_80801040_chmusicmenu(u8 *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chmusicmenu_entrypoint_0(void)
 {
-    extern u8 D_8080157C_chmusicmenu[];
+    extern ActorData D_8080157C_chmusicmenu;
 
-    return (OSThread *) D_8080157C_chmusicmenu;
+
+    return (OSThread *)&D_8080157C_chmusicmenu;
 }
 
 OSThread *chmusicmenu_entrypoint_1(void)
 {
-    extern u8 D_808015C4_chmusicmenu[];
+    extern ActorData D_808015C4_chmusicmenu;
 
-    return (OSThread *) D_808015C4_chmusicmenu;
+
+    return (OSThread *)&D_808015C4_chmusicmenu;
 }
 
 s32 func_808010C4_chmusicmenu(Actor *arg0, s32 arg1, s32 arg2) {
@@ -575,6 +573,7 @@ s32 func_808010C4_chmusicmenu(Actor *arg0, s32 arg1, s32 arg2) {
     s32 enabled;
     s32 i;
     s32 count;
+
 
     switch (arg1) {
     case 0x95:
@@ -614,7 +613,8 @@ s32 func_808010C4_chmusicmenu(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chmusicmenu_entrypoint_2(void)
 {
-    extern u8 D_8080160C_chmusicmenu[];
+    extern ActorData D_8080160C_chmusicmenu;
 
-    return (OSThread *) D_8080160C_chmusicmenu;
+    return (OSThread *)&D_8080160C_chmusicmenu;
 }
+#include "musicmenu_data.inc"

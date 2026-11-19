@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "char_tables.h"
 void func_80800000_chintrochar(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void *_suexpression_entrypoint_7(Actor *, s32, s16);
@@ -9,9 +9,9 @@ void func_80800000_chintrochar(Actor *arg0) {
     void _suexpression_entrypoint_5(void *, s32);
     s16 func_8001B668(s32, s32);
     void *func_8001B798(s16);
-    extern u16 D_80804790_chintrochar[][16];
+
     s16 *data;
-    u16 *config;
+    BT_NATIVE_ONLY(IntroCharRow) BT_IDO_ONLY(u16) *config;
     u32 flags;
     s32 size0;
     s32 size1;
@@ -19,13 +19,13 @@ void func_80800000_chintrochar(Actor *arg0) {
     s16 handle;
     void *buffer;
     void *result;
-    u16 *entry;
+    BT_NATIVE_ONLY(IntroCharRow) BT_IDO_ONLY(u16) *entry;
 
     data = func_80100094(arg0, 2);
-    config = D_80804790_chintrochar[arg0->unk74_7];
+    config = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7), INTRO_CHAR_RAW_ROW(arg0->unk74_7));
     entry = config;
-    handle = (s16)entry[-0x31D];
-    flags = *(u32 *)&entry[-0x318];
+    handle = BT_DATA_FIELD(entry->expression, (s16)entry[-0x31D]);
+    flags = BT_DATA_FIELD(entry->flags10, *(u32 *)&entry[-0x318]);
     _suexpression_entrypoint_7(arg0, 1, handle);
     if (flags & 0x40000) {
         _suexpression_entrypoint_12(func_80100094(arg0, 1), 160.0f, 120.0f);
@@ -47,7 +47,7 @@ s32 func_808000FC_chintrochar(Actor *arg0) {
     void func_80108658(void *, s32, s32, void *);
     void func_8010A63C(Actor *);
     void func_8010A800(Actor *, s32);
-    extern u16 D_80804790_chintrochar[][16];
+
     struct IntroFlags {
         u8 pad0[0x70];
         BT_BITFIELD_ORDER(u8 pad70 : 7, u8 flag70 : 1);
@@ -71,8 +71,8 @@ s32 func_808000FC_chintrochar(Actor *arg0) {
     s32 flags2;
     s32 color[3];
 
-    flags = *(u32 *)&D_80804790_chintrochar[arg0->unk74_7][-0x31C] & 0x3FFFFFFF;
-    flags2 = *(u32 *)&D_80804790_chintrochar[arg0->unk74_7][-0x31A] & 0x3FFFFFFF;
+    flags = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags8, *(u32 *)&INTRO_CHAR_RAW_ROW(arg0->unk74_7)[-0x31C]) & 0x3FFFFFFF;
+    flags2 = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flagsC, *(u32 *)&INTRO_CHAR_RAW_ROW(arg0->unk74_7)[-0x31A]) & 0x3FFFFFFF;
     if (flags & 0x400) {
         _subaddieDll_entrypoint_0(arg0);
     }
@@ -87,9 +87,9 @@ s32 func_808000FC_chintrochar(Actor *arg0) {
     }
     if (flags2 & 0x80000010) {
         ((struct IntroFlags *)arg0)->flag7B = 1;
-        color[0] = ((u8 *)D_80804790_chintrochar[arg0->unk74_7])[-0x62C];
-        color[1] = ((u8 *)D_80804790_chintrochar[arg0->unk74_7])[-0x62B];
-        color[2] = ((u8 *)D_80804790_chintrochar[arg0->unk74_7])[-0x62A];
+        color[0] = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->color[0], ((u8 *)INTRO_CHAR_RAW_ROW(arg0->unk74_7))[-0x62C]);
+        color[1] = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->color[1], ((u8 *)INTRO_CHAR_RAW_ROW(arg0->unk74_7))[-0x62B]);
+        color[2] = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->color[2], ((u8 *)INTRO_CHAR_RAW_ROW(arg0->unk74_7))[-0x62A]);
         _subaddiefade_entrypoint_11(arg0, color);
     }
     if (flags & 0x20000) {
@@ -118,10 +118,10 @@ void func_808002FC_chintrochar(Actor *arg0) {
     s16 func_800AE020(void);
     u8 *func_800DBFF8(void);
     void func_80105DFC(Actor *arg0);
-    extern u32 func_80804158_chintrochar[][8];
+    BT_IDO_ONLY(extern u32 func_80804158_chintrochar[][8];)
     u32 flags;
 
-    flags = func_80804158_chintrochar[arg0->unk74_7][0] & 0x3FFFFFFF;
+    flags = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags8, func_80804158_chintrochar[arg0->unk74_7][0]) & 0x3FFFFFFF;
     if (flags & 0x40) {
         arg0->unk0->unk4 = func_800DBFF8();
     }
@@ -166,19 +166,19 @@ void func_80800484_chintrochar(Actor *arg0) {
     s32 func_808000FC_chintrochar();
     void func_80800398_chintrochar(Actor *);
     void func_80803E98_chintrochar(Actor *);
-    extern u16 D_80804790_chintrochar[][16];
-    extern u32 func_80804160_chintrochar[][8];
-    s32 temp_s1;
-    u16 *temp_v0;
 
-    temp_s1 = func_80804160_chintrochar[arg0->unk74_7][0];
+    BT_IDO_ONLY(extern u32 func_80804160_chintrochar[][8];)
+    s32 temp_s1;
+    BT_NATIVE_ONLY(IntroCharRow) BT_IDO_ONLY(u16) *temp_v0;
+
+    temp_s1 = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags10, func_80804160_chintrochar[arg0->unk74_7][0]);
 #ifdef BT_NATIVE
     ((s32 (*)())func_808000FC_chintrochar)();
 #else
     func_808000FC_chintrochar();
 #endif
-    temp_v0 = D_80804790_chintrochar[arg0->unk74_7];
-    func_80103140(arg0, temp_v0[-0x320], temp_v0[-0x31F]);
+    temp_v0 = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7), INTRO_CHAR_RAW_ROW(arg0->unk74_7));
+    func_80103140(arg0, BT_DATA_FIELD(temp_v0->model, temp_v0[-0x320]), BT_DATA_FIELD(temp_v0->unk2, temp_v0[-0x31F]));
     if (temp_s1 & 0x40) {
         func_80800000_chintrochar(arg0);
     }
@@ -201,17 +201,17 @@ void func_80800540_chintrochar(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80105BE0(Actor *, s32);
     void func_80108B04(Actor *, u32);
-    extern u16 D_80804790_chintrochar[][16];
+
     s16 *data;
     u32 flags;
-    u16 *config;
+    BT_NATIVE_ONLY(IntroCharRow) BT_IDO_ONLY(u16) *config;
     s32 index;
 
     arg0->unk64_19 = 1;
     index = arg0->unk74_7;
-    config = D_80804790_chintrochar[index];
-    flags = *(u32 *)&config[-0x318];
-    _chanim_entrypoint_7(arg0, (s16)config[-0x31E]);
+    config = BT_DATA_FIELD(INTRO_CHAR_ROW(index), INTRO_CHAR_RAW_ROW(index));
+    flags = BT_DATA_FIELD(config->flags10, *(u32 *)&config[-0x318]);
+    _chanim_entrypoint_7(arg0, BT_DATA_FIELD((s16)config->anim, (s16)config[-0x31E]));
     func_80100074(arg0, 2, 0x10C);
     data = func_80100094(arg0, 2);
     data[0x60] = _anseq_entrypoint_6();
@@ -240,13 +240,13 @@ void func_80800648_chintrochar(Actor *arg0) {
     void _chblink_entrypoint_3(s16 arg0);
     void func_8001B754(s16);
     void func_800ADFE0(s16);
-    extern u32 func_80804158_chintrochar[][8];
+    BT_IDO_ONLY(extern u32 func_80804158_chintrochar[][8];)
     s16 *data;
     s16 handle;
     u32 flags;
 
     data = func_80100094(arg0, 2);
-    flags = func_80804158_chintrochar[arg0->unk74_7][0] & 0x3FFFFFFF;
+    flags = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags8, func_80804158_chintrochar[arg0->unk74_7][0]) & 0x3FFFFFFF;
     if (flags & 0x20) {
         handle = *(s16 *)&arg0->unk0->unk10;
         if (handle != 0) {
@@ -932,7 +932,7 @@ void func_80803418_chintrochar(Actor *arg0, s32 arg1) {
     void func_800C4B70(s32);
     void func_800C4B7C(s32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_808052F8_chintrochar;
+    extern s16 D_808052F8_chintrochar[8];
     s32 *sp34;
     s32 sp30;
     f32 sp2C;
@@ -951,7 +951,7 @@ void func_80803418_chintrochar(Actor *arg0, s32 arg1) {
         func_800C4B70(sp28);
         func_800C4B7C(sp30);
         var_a1 = arg0->unk70_0;
-        func_8010D930(2, var_a1, arg0->position, &D_808052F8_chintrochar);
+        func_8010D930(2, var_a1, arg0->position, (s32 *)D_808052F8_chintrochar);
     }
 }
 
@@ -975,8 +975,8 @@ void func_808034C4_chintrochar(Actor *arg0) {
     void *func_8001B798(s16);
     s32 _subaddiefade_entrypoint_0(Actor *);
     void _chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2);
-    extern u32 func_80804160_chintrochar[][8];
-    extern f32 func_8080416C_chintrochar[][8];
+    BT_IDO_ONLY(extern u32 func_80804160_chintrochar[][8];)
+    BT_IDO_ONLY(extern f32 func_8080416C_chintrochar[][8];)
     struct IntroUpdateData {
         u8 pad[0xC0];
         s16 sequence;
@@ -998,7 +998,7 @@ void func_808034C4_chintrochar(Actor *arg0) {
 
     data = func_80100094(arg0, 2);
     sequence = _anseq_entrypoint_9(data->sequence);
-    flags = func_80804160_chintrochar[arg0->unk74_7][0];
+    flags = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags10, func_80804160_chintrochar[arg0->unk74_7][0]);
     func_8010588C(arg0);
     if (flags & 0x100) {
         arg0->rotation[0] = 0.0f;
@@ -1043,7 +1043,7 @@ void func_808034C4_chintrochar(Actor *arg0) {
     } else {
         arg0->unk64_16 = arg0->unk64_19;
     }
-    shadow = func_8080416C_chintrochar[arg0->unk74_7][0];
+    shadow = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->shadow, func_8080416C_chintrochar[arg0->unk74_7][0]);
     if (shadow > 0.0f) {
         _chbadshad_entrypoint_1(arg0, arg0->position, shadow);
     }
@@ -1055,11 +1055,11 @@ void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
     void _suexpression_entrypoint_19(void *, Actor *);
     BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    extern u32 func_80804160_chintrochar[][8];
-    extern s16 D_80805308_chintrochar[];
-    extern s16 D_8080530E_chintrochar[];
-    extern s16 D_80805310_chintrochar[];
-    extern s16 D_80805316_chintrochar[];
+    BT_IDO_ONLY(extern u32 func_80804160_chintrochar[][8];)
+    extern s16 D_80805308_chintrochar[4];
+
+    extern s16 D_80805310_chintrochar[4];
+
     s16 *data;
     f32 *values;
     BtIntPtr model;
@@ -1070,7 +1070,7 @@ void func_8080374C_chintrochar(Actor *arg0, s32 arg1) {
     if (data[0x63] != 0) {
         _suexpression_entrypoint_19(func_8001B798(data[0x63]), arg0);
     }
-    if (func_80804160_chintrochar[arg0->unk74_7][0] & 0x10000) {
+    if (BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags10, func_80804160_chintrochar[arg0->unk74_7][0]) & 0x10000) {
         model = func_8010262C(arg0->unk0, 6);
         if (model != 0) {
             values = func_80100094(arg0, 2);
@@ -1094,7 +1094,7 @@ void func_80803888_chintrochar(Actor *arg0) {
     void *func_8001B798(s16);
     s32 func_801015D0(Actor *);
     void func_800DF830(s32);
-    extern u32 func_80804160_chintrochar[][8];
+    BT_IDO_ONLY(extern u32 func_80804160_chintrochar[][8];)
     s16 *data;
     u32 flags;
     s16 blink0;
@@ -1102,7 +1102,7 @@ void func_80803888_chintrochar(Actor *arg0) {
     s16 expression;
 
     data = func_80100094(arg0, 2);
-    flags = func_80804160_chintrochar[arg0->unk74_7][0];
+    flags = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags10, func_80804160_chintrochar[arg0->unk74_7][0]);
     func_80103D48(&arg0->unk0);
     _chanim_entrypoint_8(arg0);
     blink0 = data[0x61];
@@ -1161,7 +1161,7 @@ void func_80803990_chintrochar(Actor *arg0, Gfx **arg1) {
     }
     func_800B811C(arg1);
 }
-
+struct IntroCoords { f32 values[2]; };
 void func_80803A78_chintrochar(Actor *arg0, Gfx **arg1) {
     void *func_800DE448(f32 *, f32 *, f32, f32 *, u8 *);
     void *func_800DF944(void *, f32 *, f32, f32, f32 *, s32, void *);
@@ -1177,14 +1177,14 @@ void func_80803A78_chintrochar(Actor *arg0, Gfx **arg1) {
     int func_80101970(Actor *);
     BtIntPtr func_8010347C(Unk80132ED0 *);
     u8 *func_801039E4(Unk80132ED0 *);
-    extern u32 func_80804160_chintrochar[][8];
-    extern f32 func_80804168_chintrochar[][8];
-    struct IntroCoords { f32 values[2]; };
+    BT_IDO_ONLY(extern u32 func_80804160_chintrochar[][8];)
+    BT_IDO_ONLY(extern f32 func_80804168_chintrochar[][8];)
+
     extern struct IntroCoords D_80805318_chintrochar;
     u32 flags;
     f32 orientation[3];
 
-    flags = func_80804160_chintrochar[arg0->unk74_7][0];
+    flags = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags10, func_80804160_chintrochar[arg0->unk74_7][0]);
     if (flags & 2) {
         if (flags & 0x8000) {
             struct IntroCoords coords = D_80805318_chintrochar;
@@ -1225,7 +1225,7 @@ void func_80803A78_chintrochar(Actor *arg0, Gfx **arg1) {
             func_80101970(arg0);
         }
         if (flags & 0x200) {
-            func_800DF464(func_80804168_chintrochar[arg0->unk74_7][0]);
+            func_800DF464(BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->scale, func_80804168_chintrochar[arg0->unk74_7][0]));
         }
         func_800DF47C(func_801017D0, arg0);
         func_800DE448(arg0->position, arg0->rotation, arg0->scale, NULL, func_801039E4(arg0->unk0));
@@ -1240,7 +1240,7 @@ s32 func_80803D0C_chintrochar(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102FDC(void *, f32);
     void func_80103110(void *, s32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
-    extern u32 func_80804160_chintrochar[][8];
+    BT_IDO_ONLY(extern u32 func_80804160_chintrochar[][8];)
     s32 i;
     u8 *data;
     Actor *child;
@@ -1267,7 +1267,7 @@ s32 func_80803D0C_chintrochar(Actor *arg0, s32 arg1, s32 arg2) {
             }
             break;
         case 0x3D:
-            flags = func_80804160_chintrochar[arg0->unk74_7][0];
+            flags = BT_DATA_FIELD(INTRO_CHAR_ROW(arg0->unk74_7)->flags10, func_80804160_chintrochar[arg0->unk74_7][0]);
             if (flags & 0x20000) {
                 data = func_80100094(arg0, 2);
                 for (i = 0; i < 2; i++) {
@@ -1286,9 +1286,9 @@ s32 func_80803D0C_chintrochar(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chintrochar_entrypoint_0(void)
 {
-    extern u8 D_8080532C_chintrochar[];
+    extern ActorData D_8080532C_chintrochar;
 
-    return (OSThread *) D_8080532C_chintrochar;
+    return (OSThread *)&D_8080532C_chintrochar;
 }
 
 void func_80803E98_chintrochar(Actor *arg0) {
@@ -1399,7 +1399,6 @@ void chintrochar_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132
     s16 *data;
     s32 offset;
     Vtx *end;
-
     data = func_80100094(func_80106790(arg4), 2);
     switch (arg0) {
     case 1:
@@ -1420,3 +1419,4 @@ void chintrochar_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132
         break;
     }
 }
+#include "char_data.inc"

@@ -504,7 +504,7 @@ int func_80800E24_gczoombox(u8 arg0) {
 
 void func_80800E44_gczoombox(u8 *arg0, u8 *arg1, u8 *arg2) {
     void _fxfontstring_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2);
-    extern u8 D_80803E80_gczoombox[];
+    extern s16 D_80803E30_gczoombox[9]; BT_IDO_ONLY(extern u8 D_80803E80_gczoombox[];)
     s32 color[5];
     f32 temp_f0;
     f32 var_f10;
@@ -528,7 +528,7 @@ void func_80800E44_gczoombox(u8 *arg0, u8 *arg1, u8 *arg2) {
     while (*var_s1 != 0) {
         if (func_80800E24_gczoombox(*var_s1) != 0) {
             *var_s0 = 0;
-            _fxfontstring_entrypoint_3(arg1, ((s16 *)D_80803E80_gczoombox)[0x5F - *var_s1], (s32) *(f32 *)(arg0 + 0x1E8));
+            _fxfontstring_entrypoint_3(arg1, BT_DATA_FIELD(D_80803E30_gczoombox[0x87 - *var_s1], ((s16 *)D_80803E80_gczoombox)[0x5F - *var_s1]), (s32) *(f32 *)(arg0 + 0x1E8));
             var_s0 = arg1;
             while (*var_s0 != 0) {
                 var_s0++;
@@ -1016,7 +1016,7 @@ void gczoombox_entrypoint_4(u8 *box) {
     void func_80800964_gczoombox(void *);
     s32 func_80801C0C_gczoombox(void *, u8 *);
     void gczoombox_entrypoint_14(u8 *);
-    extern u8 D_80803E44_gczoombox[];
+    extern f32 D_80803E44_gczoombox[7][2];
     s32 face[6];
     s32 side[3];
     f32 interval;
@@ -1256,9 +1256,9 @@ void gczoombox_entrypoint_4(u8 *box) {
             }
         }
         if (((struct Flags *)(box + 0x1E4))->b24) {
-            (*(s16 *)(box + 0x1AE)) = func_800F3780((*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7) + ((struct Box *)box)->startX;
+            (*(s16 *)(box + 0x1AE)) = func_800F3780((*(f32 *)(box + 0x1E0)), (u8 *)D_80803E44_gczoombox, 7) + ((struct Box *)box)->startX;
         } else {
-            (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX - func_800F3780((*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7);
+            (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX - func_800F3780((*(f32 *)(box + 0x1E0)), (u8 *)D_80803E44_gczoombox, 7);
         }
         if ((*(f32 *)(box + 0x1E0)) >= 1.0f) {
             (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX;
@@ -1279,9 +1279,9 @@ void gczoombox_entrypoint_4(u8 *box) {
             }
         }
         if (((struct Flags *)(box + 0x1E4))->b24) {
-            (*(s16 *)(box + 0x1AE)) = func_800F3780(1.0f - (*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7) + ((struct Box *)box)->startX;
+            (*(s16 *)(box + 0x1AE)) = func_800F3780(1.0f - (*(f32 *)(box + 0x1E0)), (u8 *)D_80803E44_gczoombox, 7) + ((struct Box *)box)->startX;
         } else {
-            (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX - func_800F3780(1.0f - (*(f32 *)(box + 0x1E0)), D_80803E44_gczoombox, 7);
+            (*(s16 *)(box + 0x1AE)) = ((struct Box *)box)->startX - func_800F3780(1.0f - (*(f32 *)(box + 0x1E0)), (u8 *)D_80803E44_gczoombox, 7);
         }
         if ((*(f32 *)(box + 0x1E0)) >= 1.0f) {
             ((struct Flags *)(box + 0x1E4))->b28 = 0;
@@ -1961,7 +1961,6 @@ void gczoombox_entrypoint_44(void *arg0, s32 arg1) {
     }
     ((struct Flags *)arg0)->flag = 0;
 }
-
 void gczoombox_entrypoint_45(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1E7];
@@ -1975,3 +1974,4 @@ void gczoombox_entrypoint_45(void *arg0, s32 arg1) {
     }
     ((struct Flags *)arg0)->flag = 0;
 }
+#include "zoombox_data.inc"

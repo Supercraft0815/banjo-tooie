@@ -30,22 +30,22 @@
 #include "gc/level.h"
 #include "gc/audiolist.h"
 
+#include "newpause_tables.h"
+extern PauseOption D_80802070_gcnewpause[7];
+extern f32 D_808021CC_gcnewpause[3][2];
+extern f32 D_808021E4_gcnewpause[3][2];
 
-extern PauseOption D_80802070_gcnewpause[];
-extern void* D_808021CC_gcnewpause;
-extern void* D_808021E4_gcnewpause;
+extern TotalsFlags D_808020A8_gcnewpause[12];
+extern InventoryDisplay D_808020D8_gcnewpause[19];
+extern PausePageOffsets D_80802124_gcnewpause;
 
-extern TotalsFlags D_808020A8_gcnewpause[];
-extern InventoryDisplay D_808020D8_gcnewpause[];
-extern s8 D_80802124_gcnewpause[];
-extern s8 D_80802125_gcnewpause;
-extern MemorySetupStruct D_80802126_gcnewpause[];
-extern s8 D_8080212E_gcnewpause;
-extern ItemCountDisplay D_80802130_gcnewpause[];
-extern AbilityTracking D_8080215C_gcnewpause[];
+
+
+extern ItemCountDisplay D_80802130_gcnewpause[7];
+extern AbilityTracking D_8080215C_gcnewpause[26];
 extern unk80802190 D_80802190_gcnewpause[6];
 extern u8 D_808021B4_gcnewpause[12];
-extern void* D_808021C0_gcnewpause;
+extern s16 D_808021C0_gcnewpause[6];
 extern u8 D_8012762D;
 
 
@@ -60,18 +60,18 @@ PauseState* gcnewpause_entrypoint_0(u32 arg0)
 	bzero(pauseMemory, 0x30);
 	pauseMemory->unkC = arg0;
 	func_80800534_gcnewpause(pauseMemory, 1U);
-	pauseMemory->HeaderAndButtonOffset += *D_80802124_gcnewpause;
-	pauseMemory->HeaderAndButtonOffset += D_80802125_gcnewpause;
+	pauseMemory->HeaderAndButtonOffset += BT_DATA_FIELD(D_80802124_gcnewpause.setup.first[0], *(s8 *)&D_80802124_gcnewpause);
+	pauseMemory->HeaderAndButtonOffset += BT_DATA_FIELD(D_80802124_gcnewpause.setup.first[1], D_80802125_gcnewpause);
 	index = 0;
 	do
 	{
-		pauseMemory->HeaderAndButtonOffset += D_80802126_gcnewpause[index].a1;
-		pauseMemory->HeaderAndButtonOffset += D_80802126_gcnewpause[index].a2;
-		pauseMemory->HeaderAndButtonOffset += D_80802126_gcnewpause[index].a3;
-		pauseMemory->HeaderAndButtonOffset += D_80802126_gcnewpause[index].a4;
+		pauseMemory->HeaderAndButtonOffset += BT_DATA_FIELD(D_80802124_gcnewpause.setup.groups[index].a1, D_80802126_gcnewpause[index].a1);
+		pauseMemory->HeaderAndButtonOffset += BT_DATA_FIELD(D_80802124_gcnewpause.setup.groups[index].a2, D_80802126_gcnewpause[index].a2);
+		pauseMemory->HeaderAndButtonOffset += BT_DATA_FIELD(D_80802124_gcnewpause.setup.groups[index].a3, D_80802126_gcnewpause[index].a3);
+		pauseMemory->HeaderAndButtonOffset += BT_DATA_FIELD(D_80802124_gcnewpause.setup.groups[index].a4, D_80802126_gcnewpause[index].a4);
 		index++;
-		var_0 = (&D_80802126_gcnewpause[index].a1);
-	} while (&D_8080212E_gcnewpause != var_0);
+		var_0 = BT_DATA_FIELD((s8 *)(D_80802124_gcnewpause.setup.groups + index), &D_80802126_gcnewpause[index].a1);
+	} while (BT_DATA_FIELD((s8 *)(D_80802124_gcnewpause.setup.groups + 2), &D_8080212E_gcnewpause) != var_0);
 
 	return pauseMemory;
 }
@@ -620,7 +620,7 @@ void func_80800CE4_gcnewpause(PauseState* pauseMenu, OptionState *arg1, s32 sele
 void func_80800DE0_gcnewpause(f32 a0) 
 {
 	func_800C4B64(a0);
-	func_800C4AF0(NULL, &D_808021C0_gcnewpause);
+	func_800C4AF0(NULL, D_808021C0_gcnewpause);
 }
 
 //Draw Main Screen Non Option UI
@@ -798,7 +798,7 @@ u8 func_80801248_gcnewpause(s16* a0, u8* a1, u32 a2) {
 	{
 		if (*a1 < 0xAU)
 		{
-			*a0 += D_80802124_gcnewpause[*a1];
+			*a0 += D_80802124_gcnewpause.offsets[*a1];
 			*a1 += 1;
 		}
 	}
@@ -806,7 +806,7 @@ u8 func_80801248_gcnewpause(s16* a0, u8* a1, u32 a2) {
 	{
 		temp_t1 = *a1 - 1;
 		*a1 = temp_t1;
-		*a0 -= D_80802124_gcnewpause[temp_t1 & 0xFF];
+		*a0 -= D_80802124_gcnewpause.offsets[temp_t1 & 0xFF];
 	}
 	else
 	{
@@ -841,11 +841,11 @@ void func_8080136C_gcnewpause(PauseState* pauseMenu)
 	temp_v0 = func_800E8B74(0xB59);
 	pauseMenu->ShowBButton = temp_v0;
 	func_800E8D28(temp_v0, 0.6f);
-	func_800E8D5C(pauseMenu->ShowBButton, &D_808021CC_gcnewpause, 3);
+	func_800E8D5C(pauseMenu->ShowBButton, D_808021CC_gcnewpause, 3);
 	temp_v0_2 = func_800E8B74(0xB57);
 	pauseMenu->JoystickIndicator = temp_v0_2;
 	func_800E8D28(temp_v0_2, 0.8f);
-	func_800E8D5C(pauseMenu->JoystickIndicator, &D_808021E4_gcnewpause, 3);
+	func_800E8D5C(pauseMenu->JoystickIndicator, D_808021E4_gcnewpause, 3);
 	pauseMenu->MoveRightJoystickTrigger = 0;
 	pauseMenu->MoveLeftJoystickTrigger = 0;
 	temp_t7 = -pauseMenu->HeaderAndButtonOffset;
@@ -1234,7 +1234,6 @@ s32 func_80801EF0_gcnewpause(BtIntPtr a0)
 {
 	return func_80801E80_gcnewpause(0,0xC);
 }
-
 //Check if any Jinjo is collected
 u32 func_80801F18_gcnewpause(BtUIntPtr a0)
 {
@@ -1248,3 +1247,4 @@ u32 func_80801F18_gcnewpause(BtUIntPtr a0)
 	}
 	return 0x0;
 }
+#include "newpause_data.inc"

@@ -4,15 +4,6 @@
 #include "memory.h"
 
 s32 D_8011B920;
-s16 D_808009B0_glsplinenode[8] = {0, 5, 6, 7, 0, 0, 0, 0};
-s32 D_80800FC0_glsplineDll[2] = {0, 0x002D0001};
-/* Native definitions of the original overlay's map-to-command table. */
-struct { s16 level, result; } D_80800FC8_glsplineDll[] = {
-    {13, 0xAFF}, {3, 0}, {10, 0}, {7, 0}, {2, 0}, {1, 0}, {4, 0},
-    {15, 0}, {5, 0}, {16, 0}, {6, 0}, {12, 0}, {18, 0}, {19, 0},
-    {20, 0}, {21, 0}, {22, 0}, {23, 0}, {24, 0}, {25, 0}, {26, 0}, {17, 0}, {-1, 0}
-};
-
 void native_spline_clear_commands(NativeSplineContext *context) {
     heap_free(context->offsets);
     heap_free(context->commands);

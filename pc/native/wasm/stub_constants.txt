@@ -31,3 +31,5 @@ asm/data/overlays/ch/pumproomgrill.data.s 0x8080011C _bsbtrot_entrypoint_10
 asm/data/overlays/ch/quicksandbaddy.data.s 0x80801414 boot_thread_stack+0x1F22
 asm/data/overlays/ch/smalltrexdoor.data.s 0x8080031C boot_thread_stack+0x1F22
 asm/data/overlays/ch/transparencypot.data.s 0x808001EC boot_thread_stack+0x1F20
+# Front-end scene range [2], start/count/first save flag.
+asm/data/overlays/gc/frontend.data.s 0x80800D98 D_80046A88+0x1A172

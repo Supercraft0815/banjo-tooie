@@ -1,5 +1,18 @@
 #include "common.h"
+typedef struct {
+    s16 sound;
+    s16 rate;
+    f32 volume;
+} ZoomSound;
 
+typedef struct {
+    u16 asset;
+    s8 x;
+    s8 y;
+    ZoomSound *sounds;
+    u8 count;
+    u8 padding[3];
+} ZoomEntry;
 void gczoomboxdata_entrypoint_0(s32 arg0) {
     u8 func_800C2E04(void);
     void func_800C301C(u8, s32);
@@ -15,21 +28,11 @@ void gczoomboxdata_entrypoint_0(s32 arg0) {
     f32 func_800DC264(f32, f32);
     void func_800FC6B0(u32);
     s32 func_800FCCD4(s32);
-    extern u8 D_80800AA8_gczoomboxdata[];
-    typedef struct {
-        s16 sound;
-        s16 rate;
-        f32 volume;
-    } Sound;
-    typedef struct {
-        u8 pad[4];
-        Sound *sounds;
-        u8 count;
-        u8 pad9[3];
-    } Entry;
+    extern ZoomEntry D_80800AA8_gczoomboxdata[210];
+
     s32 choice;
-    Entry *entry;
-    Sound *selected;
+    ZoomEntry *entry;
+    ZoomSound *selected;
     s32 rate;
     f32 volume;
     f32 lower = 0.2f;
@@ -38,7 +41,7 @@ void gczoomboxdata_entrypoint_0(s32 arg0) {
     f32 high;
     u8 id;
 
-    entry = &((Entry *)D_80800AA8_gczoomboxdata)[arg0];
+    entry = &D_80800AA8_gczoomboxdata[arg0];
     if (entry->sounds != NULL && entry->count != 0) {
         if (entry->sounds->volume == -1.0f) {
             if (!func_800FCCD4(entry->sounds->sound)) {
@@ -92,51 +95,46 @@ void gczoomboxdata_entrypoint_0(s32 arg0) {
 }
 
 u16 gczoomboxdata_entrypoint_1(s32 arg0) {
-    extern u8 D_80800AA8_gczoomboxdata[];
-    return *(u16 *)(D_80800AA8_gczoomboxdata + arg0 * 0xC);
+    extern ZoomEntry D_80800AA8_gczoomboxdata[210];
+    return D_80800AA8_gczoomboxdata[arg0].asset;
 }
 
 void gczoomboxdata_entrypoint_2(s32 arg0, s8 *arg1, s8 *arg2) {
-    extern u8 D_80800AA8_gczoomboxdata[];
-    typedef struct {
-        u16 unk0;
-        s8 unk2;
-        s8 unk3;
-        u8 padding[8];
-    } Entry;
-    Entry *entry;
+    extern ZoomEntry D_80800AA8_gczoomboxdata[210];
 
-    entry = &((Entry *)D_80800AA8_gczoomboxdata)[arg0];
-    *arg1 = entry->unk2;
-    *arg2 = entry->unk3;
+    ZoomEntry *entry;
+
+    entry = &D_80800AA8_gczoomboxdata[arg0];
+    *arg1 = entry->x;
+    *arg2 = entry->y;
 }
 
 u8 gczoomboxdata_entrypoint_3(s32 arg0) {
-    extern u8 D_80800AB0_gczoomboxdata[];
-    return D_80800AB0_gczoomboxdata[(arg0 * 3) * 4];
+    extern ZoomEntry D_80800AA8_gczoomboxdata[210];
+    return D_80800AA8_gczoomboxdata[arg0].count;
 }
 
 void gczoomboxdata_entrypoint_4(s32 arg0, s32 arg1, s16 *arg2, s16 *arg3, f32 *arg4) {
-    extern u8 D_80800AA8_gczoomboxdata[];
-    u8 *entry;
-    entry = D_80800AA8_gczoomboxdata + arg0 * 0xC;
-    *arg2 = *(s16 *)(*(s32 *)(entry + 4) + arg1 * 8);
-    *arg3 = *(s16 *)(*(s32 *)(entry + 4) + arg1 * 8 + 2);
-    *arg4 = *(f32 *)(*(s32 *)(entry + 4) + arg1 * 8 + 4);
+    extern ZoomEntry D_80800AA8_gczoomboxdata[210];
+    ZoomEntry *entry;
+    entry = &D_80800AA8_gczoomboxdata[arg0];
+    *arg2 = entry->sounds[arg1].sound;
+    *arg3 = entry->sounds[arg1].rate;
+    *arg4 = entry->sounds[arg1].volume;
 }
 
 s32 gczoomboxdata_entrypoint_5(register s32 arg0) {
     s32 func_800D58FC(BtIntPtr arg0);
-    extern u8 D_80800AA8_gczoomboxdata[];
+    extern ZoomEntry D_80800AA8_gczoomboxdata[210];
     union { struct { u16 pad; u16 value; } write; struct { u16 pad; volatile u16 value; } read; } saved;
     u16 asset;
     s32 flag;
-
     if (arg0 == 0x44) {
         return 0;
     }
-    arg0 *= 0xC;
-    asset = *(u16 *)(D_80800AA8_gczoomboxdata + arg0);
+
+    arg0 *= sizeof(ZoomEntry);
+    asset = ((ZoomEntry *)((u8 *)D_80800AA8_gczoomboxdata + arg0))->asset;
     if (asset == 0 || (saved.write.value = asset, flag = func_800D58FC(asset), asset = saved.read.value, flag == 4)) {
         return 0;
     }
@@ -159,3 +157,5 @@ s32 gczoomboxdata_entrypoint_6(BT_PARAM_OR_VOID(s32 bt_a0)) {
     }
     return 1;
 }
+
+#include "zoomboxdata_data.inc"

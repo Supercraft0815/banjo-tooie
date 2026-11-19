@@ -1,4 +1,5 @@
 #include "common.h"
+typedef struct { s16 level; s16 result; } SplineMapCommand;
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_spline.h"
 #include "native_assets.h"
@@ -9,7 +10,6 @@
 #define EVENT_COMMAND_ID(data) ((data)[12])
 #endif
 struct ImageStruct;
-
 /* extern */
 
 s32 func_80800000_glsplineDll(u32 *arg0, s32 *arg1, u32 *arg2, u32 *arg3, u32 *arg4, u32 *arg5, s32 *arg6, void *arg7) {
@@ -355,7 +355,7 @@ void glsplineDll_entrypoint_0(void *arg0) {
 
 s16 func_80800C70_glsplineDll(void) {
     extern u8 D_8012762C;
-    extern struct { s16 level; s16 result; } D_80800FC8_glsplineDll[];
+    extern SplineMapCommand D_80800FC8_glsplineDll[23];
     s32 i = 0;
     while (D_8012762C != D_80800FC8_glsplineDll[i].level && D_80800FC8_glsplineDll[i].level != -1) {
         i++;
@@ -518,7 +518,6 @@ if (!offset) {}
       value = *(p++);
       SPLINE_FIELD(arg0, initial_counters[(value >> 16) & 0x7F], arg0[((value >> 16) & 0x7F) + 0x80]) = (u8) (value & 0xFFUL);
     }
-
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
     if (p == end) goto invalid_commands;
 #endif
@@ -529,3 +528,4 @@ invalid_commands:
   native_spline_clear_commands(context);
 #endif
 }
+#include "Dll_data.inc"

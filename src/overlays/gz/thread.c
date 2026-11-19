@@ -46,7 +46,6 @@ void gzthread_entrypoint_1(s32 arg0) {
     u32 pc;
     u32 sp;
     u8 **name;
-
     if (arg0 >= 0) {
         row = arg0 + 7;
         i = 0;
@@ -92,3 +91,4 @@ void gzthread_entrypoint_1(s32 arg0) {
         name++;
     } while (index != 10);
 }
+#include "thread_data.inc"

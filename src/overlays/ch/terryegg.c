@@ -1,29 +1,29 @@
 #include "common.h"
-
+typedef struct { s32 (*test)(s32, BtIntPtr, f32 *); void (*update)(s32, void *, s32, s32); u8 camera[4]; } TerryEggTaxi;
 OSThread *chterryegg_entrypoint_0(void)
 {
-    extern u8 D_80801260_chterryegg[];
+    extern TerryEggTaxi D_80801260_chterryegg;
 
-    return (OSThread *) D_80801260_chterryegg;
+    return (OSThread *)&D_80801260_chterryegg;
 }
 
 OSThread *chterryegg_entrypoint_1(void)
 {
-    extern u8 D_80801328_chterryegg[];
+    extern ActorData D_80801328_chterryegg[1];
 
     return (OSThread *) D_80801328_chterryegg;
 }
 
 OSThread *chterryegg_entrypoint_2(void)
 {
-    extern u8 D_80801370_chterryegg[];
+    extern ActorData D_80801370_chterryegg[1];
 
     return (OSThread *) D_80801370_chterryegg;
 }
 
 OSThread *chterryegg_entrypoint_3(void)
 {
-    extern u8 D_808013B8_chterryegg[];
+    extern ActorData D_808013B8_chterryegg[1];
 
     return (OSThread *) D_808013B8_chterryegg;
 }
@@ -240,7 +240,7 @@ void func_808005C4_chterryegg(Actor *arg0) {
     void func_80801050_chterryegg(Actor *);
     int func_80801080_chterryegg(BtIntPtr);
     s32 func_808010DC_chterryegg(void);
-    extern u8 D_80801260_chterryegg[];
+    extern TerryEggTaxi D_80801260_chterryegg;
     s32 active = 1;
     s32 *data;
     f32 position[3];
@@ -273,7 +273,7 @@ void func_808005C4_chterryegg(Actor *arg0) {
                     _subaddiedialog_entrypoint_11(arg0->unk0, 0x17E1, 0x44, arg0->position, 0);
                     _subaddieDll_entrypoint_4(arg0, 1);
                     if (*data != -1) {
-                        _capod_entrypoint_13(arg0->unk0, NULL, D_80801260_chterryegg[arg0->unk74_7 - 0x2A], 0x31);
+                        _capod_entrypoint_13(arg0->unk0, NULL, D_80801260_chterryegg.camera[arg0->unk74_7 - 0x32], 0x31);
                         func_801058C4(arg0, *data, 200.0f, 1);
                     }
                 }
@@ -341,11 +341,11 @@ void func_808009B4_chterryegg(Actor *arg0) {
     void func_800FFAB0(Actor *);
     void func_80105834(Actor *);
     s32 func_80105A5C(Actor *);
-    extern u32 D_80801400_chterryegg;
+    extern s16 D_80801400_chterryegg[8];
 
     if (arg0->unk70_10 == 5) {
         func_80105834(arg0);
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801400_chterryegg, 0.25f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801400_chterryegg, 0.25f);
         if (func_80105A5C(arg0) != 0) {
             _capod_entrypoint_14();
             func_800FFAB0(arg0);
@@ -558,10 +558,10 @@ void func_80800FE0_chterryegg(u8 *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 func_800D9078(BtIntPtr);
     f32 func_800DC178(f32, f32);
-    extern s32 D_80801410_chterryegg;
+    extern s16 D_80801410_chterryegg[10];
     func_800D9078(arg0 + 0x58);
     if ((((Actor *)arg0)->unk58) <= 0.0f) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80801410_chterryegg);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, D_80801410_chterryegg);
         (((Actor *)arg0)->unk58) = func_800DC178(1.5f, 2.5f);
     }
 }
@@ -569,19 +569,19 @@ void func_80800FE0_chterryegg(u8 *arg0) {
 s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
 
 void func_80801050_chterryegg(Actor *arg0) {
-    extern u32 D_80801424_chterryegg;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801424_chterryegg, 0.81f);
+    extern s16 D_80801424_chterryegg[10];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801424_chterryegg, 0.81f);
 }
 
 int func_80801080_chterryegg(BtIntPtr arg0) {
-    extern u32 D_8080126C_chterryegg;
-    extern u32 D_80801438_chterryegg;
-    BT_NATIVE_ONLY(return) _subaddieaudioquick_entrypoint_4(arg0, (f32 *) (arg0 + 4), &D_8080126C_chterryegg, &D_80801438_chterryegg);
+    extern s16 D_8080126C_chterryegg[10];
+    extern f32 D_80801438_chterryegg[6];
+    BT_NATIVE_ONLY(return) _subaddieaudioquick_entrypoint_4(arg0, (f32 *) (arg0 + 4), D_8080126C_chterryegg, D_80801438_chterryegg);
 }
 
 void func_808010B0_chterryegg(Actor *arg0) {
-    extern u32 D_80801450_chterryegg;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801450_chterryegg, 0.0f);
+    extern s16 D_80801450_chterryegg[6];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801450_chterryegg, 0.0f);
 }
 
 /* extern */
@@ -622,7 +622,6 @@ s32 func_80801138_chterryegg(void *arg0)
 
 f32 func_80801188_chterryegg(Actor *arg0, s32 arg1) {
     f32 var_f2;
-
     if (arg1 != 0) {
         if (func_808010DC_chterryegg() == 1) {
             var_f2 = 4.0f;
@@ -637,3 +636,4 @@ f32 func_80801188_chterryegg(Actor *arg0, s32 arg1) {
     }
     return var_f2;
 }
+#include "terryegg_data.inc"

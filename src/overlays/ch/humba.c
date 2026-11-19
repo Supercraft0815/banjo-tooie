@@ -1,4 +1,5 @@
 #include "common.h"
+#include "humba_tables.h"
 
 s32 func_800EA05C(void);     
 
@@ -112,20 +113,18 @@ void func_80800338_chhumba(u8 *arg0, s32 arg1, s32 arg2) {
 
 s32 func_80800384_chhumba(u8 *arg0) {
     s32 func_800EA05C();
-    extern s32 D_80802648_chhumba;
     if (func_800EA05C() == 0x122) {
         return 0x13;
     }
-    return ((s32 *)(&D_80802648_chhumba))[((((Objhumba_arg0 *)arg0)->unk6C) & 0x1FF)];
+    return HUMBA_FORM(D_808025A4_chhumba, ((((Objhumba_arg0 *)arg0)->unk6C) & 0x1FF));
 }
 
 s32 func_808003CC_chhumba(u8 *arg0) {
     s32 func_800EA05C();
-    extern s16 D_8080266E_chhumba[];
     if (func_800EA05C() == 0x122) {
         return 0x11AA;
     }
-    return D_8080266E_chhumba[((((Objhumba_arg0 *)arg0)->unk6C) & 0x1FF)];
+    return HUMBA_DIALOG(D_808025A4_chhumba, ((((Objhumba_arg0 *)arg0)->unk6C) & 0x1FF));
 }
 
 /* extern */
@@ -159,7 +158,7 @@ s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
     BtIntPtr func_80103CB8(Actor *, BtUIntPtr);
     Actor *func_801084B0(BtIntPtr, Actor **);
     void func_8010D254(f32 *);
-    extern s32 D_80802684_chhumba;
+    extern f32 D_80802684_chhumba[4];
     Actor *sp2C;
     f32 sp20[3];
 
@@ -196,7 +195,7 @@ s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
             }
             break;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_80802684_chhumba, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80802684_chhumba, arg0->scale);
             break;
         case 0x57:
             if (_gcdialogcamera_entrypoint_0(arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16)) {
@@ -443,11 +442,11 @@ void func_80800C6C_chhumba(s32 *arg0) {
 
 void func_80800CC8_chhumba(Actor *volatile arg0) {
     void func_8008FB10(BtIntPtr, f32, f32, f32);
-    extern s32 D_80802694_chhumba;
+    extern f32 D_80802694_chhumba[3];
     f32 temp_f0;
 
     temp_f0 = arg0->scale;
-    func_8008FB10((BtIntPtr) &D_80802694_chhumba, temp_f0 * 1600.0f, temp_f0 * 72.0f, temp_f0 * 350.0f);
+    func_8008FB10((BtIntPtr) D_80802694_chhumba, temp_f0 * 1600.0f, temp_f0 * 72.0f, temp_f0 * 350.0f);
 }
 
 /* extern */
@@ -465,12 +464,12 @@ s32 func_80800D2C_chhumba(BtIntPtr arg0) {
 void func_80800D74_chhumba(Actor *arg0) {
     BtIntPtr func_800B53A4(s32);
     void func_800BA22C(BtIntPtr, s32);
-    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
-    extern s32 D_808026A0_chhumba;
+    extern s16 D_808026A0_chhumba[40];
     s32 sp3C;
     BtIntPtr sp38;
     f32 sp2C[3];
@@ -483,7 +482,7 @@ void func_80800D74_chhumba(Actor *arg0) {
         sp24 = func_800DC178(0.0f, 360.0f);
         func_800EEB9C(sp2C, sp24, arg0->scale * func_800DC178(0.0f, 1000.0f));
         sp2C[1] = -50.0f;
-        func_800BABB8(sp38, sp2C, NULL, 1.0f, &D_808026A0_chhumba);
+        func_800BABB8(sp38, sp2C, NULL, 1.0f, D_808026A0_chhumba);
         func_800BA22C(sp38, sp3C);
     }
 }
@@ -518,7 +517,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     s32 func_80800B40_chhumba(u8 *);
     s32 func_80800C20_chhumba(u8 *);
     void func_80800C6C_chhumba(s32 *);
-    extern s32 D_80802590_chhumba;
+    extern s16 D_80802590_chhumba[10];
     f32 sp34[3];
     Actor *sp30;
     f32 sp24[3];
@@ -535,7 +534,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
             func_80090658(0);
             _fxsplash_entrypoint_1(sp34);
             _fxsplash25d_entrypoint_0(sp34);
-            _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, &D_80802590_chhumba);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0 + 4, (s32 *)D_80802590_chhumba);
             func_808007F8_chhumba(arg0);
             func_800FC660(0xE);
             func_80800338_chhumba((BtIntPtr)arg0, 0x11B4, 0xF);
@@ -633,7 +632,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
             return;
     }
 }
-
+struct HumbaVector { f32 v[3]; };
 void func_80801260_chhumba(Actor *arg0) {
     void func_8008FE68(f32 *);
     void func_8008FF40(f32 *);
@@ -641,7 +640,7 @@ void func_80801260_chhumba(Actor *arg0) {
     void func_800907C0(f32 *);
     void func_800EF334(f32 *, f32);
     f32 func_800F1DCC(f32, f32);
-    struct HumbaVector { f32 v[3]; };
+
     extern struct HumbaVector D_808026F0_chhumba;
     struct HumbaVector target;
     s32 i;
@@ -695,8 +694,8 @@ void func_8080144C_chhumba(f32 arg0) {
     BtUIntPtr func_800F54E4(void);
     void func_800F7F50(BtIntPtr, void *, void *, f32, s32, s32);
     void func_8010D254(f32 *);
-    extern f32 D_808026FC_chhumba[];
-    extern f32 D_8080272C_chhumba[];
+    extern f32 D_808026FC_chhumba[4][3];
+    extern f32 D_8080272C_chhumba[3];
     s32 pad;
     f32 sp98[3];
     f32 sp8C[3];
@@ -712,7 +711,7 @@ void func_8080144C_chhumba(f32 arg0) {
     } else {
         var_f20 = 100.0f;
     }
-    var_s0 = D_808026FC_chhumba;
+    var_s0 = D_808026FC_chhumba[0];
     do {
         func_800EFA20(sp98, var_s0, arg0);
         func_800EE7F8(sp80, sp98);
@@ -724,7 +723,7 @@ void func_8080144C_chhumba(f32 arg0) {
             func_800F7F50(func_800F54E4(), sp98, sp80, var_f20, 2, 1);
         }
         var_s0 += 3;
-    } while (var_s0 != D_8080272C_chhumba);
+    } while (var_s0 != BT_DATA_FIELD((f32 *)(D_808026FC_chhumba + 4), D_8080272C_chhumba));
 }
 
 void *func_80100094(Actor *, u32);
@@ -996,7 +995,7 @@ void func_80801F74_chhumba(Actor *arg0) {
     s32 func_800EA05C();
     void func_800FFAB0(Actor *);
     Actor *func_80108474(u32, f32 *, s32);
-    extern f32 D_8080272C_chhumba[];
+    extern f32 D_8080272C_chhumba[3];
     Prop *sp24;
     s32 sp20;
     s32 temp_v0;
@@ -1071,9 +1070,9 @@ void func_808021F4_chhumba(Actor* arg0)
 }
 OSThread *chhumba_entrypoint_0(void)
 {
-    extern u8 D_80802738_chhumba[];
+    extern ActorData D_80802738_chhumba;
 
-    return (OSThread *) D_80802738_chhumba;
+    return (OSThread *)&D_80802738_chhumba;
 }
 
 /* extern */
@@ -1089,7 +1088,8 @@ void func_80802234_chhumba(void *arg0) {
 
 OSThread *chhumba_entrypoint_1(void)
 {
-    extern u8 D_80802780_chhumba[];
+    extern ActorData D_80802780_chhumba;
 
-    return (OSThread *) D_80802780_chhumba;
+    return (OSThread *)&D_80802780_chhumba;
 }
+#include "humba_data.inc"

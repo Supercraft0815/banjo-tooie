@@ -25,7 +25,7 @@ s32 badrone_entrypoint_0(void) {
 }
 
 u8 badrone_entrypoint_1(PlayerState *self) {
-    extern u8 D_80800630_badrone[];
+    extern u8 D_80800630_badrone[16];
     return D_80800630_badrone[self->drone->type];
 }
 
@@ -208,7 +208,7 @@ void badrone_entrypoint_32(PlayerState *self) {
     drone = self->drone;
     drone->type = drone->pending_type;
 }
-
 void badrone_entrypoint_33(PlayerState *self, f32 look_at[3]) {
     func_800EE7F8(self->drone->look_at, look_at);
 }
+#include "drone_data.inc"

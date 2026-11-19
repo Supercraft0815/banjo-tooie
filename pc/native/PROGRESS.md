@@ -2379,3 +2379,19 @@ Testsuiten und alle 74 Spielabläufe mit insgesamt 447.849 Retraces.
 Davon wurden 1.740 in 424 Funktionen erreicht, mit 1.810 Paaren aus Zugriffsstelle
 und Ziel in 117 Gruppen. Die Berichte stehen unter
 `xsym-current74-source/build/ilp32/` und in `build/ilp32-xsym/`.
+
+## 2026-11-19 — N1, 28 Datenmodule von Menüs bis Chuffys Batterie
+
+Die Dialog- und Menütabellen, Zwischensequenzen, Gesichtsausdrücke, Drohnenzustände
+und Stationsdaten liegen jetzt bei ihren C-Quellen. Die doppelte native Tabelle
+für Drohnenzustände entfällt. Der Level-Test liest die Totals-Menüflags aus der
+originalen Leveltabelle. Es bleiben 17 der zuvor 45 offenen Datenmodule.
+
+Original-IDO reproduziert alle 544 Funktionen der 28 Module an denselben
+Adressen und mit denselben Größen. Die neun Einzelprüfungen erfassen 32.528
+Datenbytes und 824 Relokationen sowie die vollständigen komprimierten und
+dekomprimierten ROMs. Jede Stufe vergleicht 16.768 normalisierte Gastfunktionen.
+Im isolierten gemeinsamen Build stimmen alle 74 Spielspuren über 447.849
+Retraces überein. Die elf Testsuiten bestehen ebenfalls. Protokoll und
+Einzelvergleiche liegen unter `build/acceptance/n1-2026-11-18/full74-battery.log`
+und im Unterordner `proof/`.

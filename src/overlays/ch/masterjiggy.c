@@ -1,10 +1,10 @@
 #include "common.h"
-
+#include "masterjiggy_config.h"
 OSThread *chmasterjiggy_entrypoint_0(void)
 {
-    extern u8 D_8080164C_chmasterjiggy[];
+    extern MasterJiggyConfig D_8080164C_chmasterjiggy;
 
-    return (OSThread *) D_8080164C_chmasterjiggy;
+    return (OSThread *)&D_8080164C_chmasterjiggy.actor;
 }
 
 void func_8080000C_chmasterjiggy(Actor *arg0) {
@@ -70,8 +70,8 @@ void func_808001B0_chmasterjiggy(BtIntPtr arg0) {
 
 s32 func_808001D0_chmasterjiggy(Unk80132ED0 **arg0, s32 arg1) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
-    extern s16 D_80801620_chmasterjiggy[];
-    s16 *entry = (s16 *)((s8 *)D_80801620_chmasterjiggy + arg1 * 4);
+    extern s16 D_80801620_chmasterjiggy[11][2];
+    s16 *entry = D_80801620_chmasterjiggy[arg1];
     return _subaddiedialog_entrypoint_11(*arg0, entry[0], entry[1], &((Actor *)arg0)->position[0], 0x97);
 }
 
@@ -336,7 +336,7 @@ s32 func_808007F0_chmasterjiggy(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chmasterjiggy_entrypoint_1(void)
 {
-    extern u8 D_808016F8_chmasterjiggy[];
+    extern ActorData D_808016F8_chmasterjiggy[1];
 
     return (OSThread *) D_808016F8_chmasterjiggy;
 }    typedef struct { u8 pad0[0x38]; f32 unk38; } Objmasterjiggy_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
@@ -355,14 +355,14 @@ void func_8080096C_chmasterjiggy(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
     f32 func_800F1214(f32, f32, f32);
-    extern u32 D_80801740_chmasterjiggy;
-    extern s32 D_80801750_chmasterjiggy;
+    extern s16 D_80801740_chmasterjiggy[8];
+    extern s16 D_80801750_chmasterjiggy[8];
     _subaddieaudioloop_entrypoint_4(arg0, arg0->position,
-        arg0->unk64_20 && ((MasterJiggyData *)arg0->actorData)->amount > 0.0f, &D_80801740_chmasterjiggy);
+        arg0->unk64_20 && ((MasterJiggyData *)arg0->actorData)->amount > 0.0f, D_80801740_chmasterjiggy);
     _subaddieaudioloop_entrypoint_1((u8 *)arg0,
         (s32)func_800F1214(((MasterJiggyData *)arg0->actorData)->amount, 5000.0f, 13000.0f));
     ((MasterJiggyData *)arg0->actorData)->sound = _subaddieaudioloop_entrypoint_7(((MasterJiggyData *)arg0->actorData)->sound, arg0->position,
-        ((MasterJiggyData *)arg0->actorData)->amount > 0.0f, &D_80801750_chmasterjiggy, 0);
+        ((MasterJiggyData *)arg0->actorData)->amount > 0.0f, D_80801750_chmasterjiggy, 0);
 }
 
 void func_80800A40_chmasterjiggy(Actor *arg0) {
@@ -451,7 +451,7 @@ void func_80800C08_chmasterjiggy(Actor *arg0, void *arg1) {
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     void func_80101870(Actor *, void *);
     f32 mlAbsF(f32);
-    extern s32 D_80801790_chmasterjiggy;
+    extern s32 D_80801790_chmasterjiggy[3];
     f32 rotation[3];
     f32 yaw;
     f32 position[3];
@@ -466,14 +466,14 @@ void func_80800C08_chmasterjiggy(Actor *arg0, void *arg1) {
     }
     fade = ((MasterJiggyData *)arg0->actorData)->fade;
     if (fade > 0.0f) {
-        _sufade_entrypoint_0((s32)(fade * 255.0f), &D_80801790_chmasterjiggy);
+        _sufade_entrypoint_0((s32)(fade * 255.0f), D_80801790_chmasterjiggy);
     }
     if (((MasterJiggyData *)arg0->actorData)->amount > 0.0f && arg0->unk64_20) {
         func_800E3980(position);
         if (func_800F1E6C(arg0->position, position, &yaw)) {
             difference = mlAbsF(func_800F1DCC(yaw, rotation[1])) / 25.0f;
             if (difference < 1.0f) {
-                _sufade_entrypoint_0((s32)(((MasterJiggyData *)arg0->actorData)->amount * ((1.0f - difference) * 100.0f)), &D_80801790_chmasterjiggy);
+                _sufade_entrypoint_0((s32)(((MasterJiggyData *)arg0->actorData)->amount * ((1.0f - difference) * 100.0f)), D_80801790_chmasterjiggy);
             }
         }
     }
@@ -526,7 +526,7 @@ void func_80800E58_chmasterjiggy(Actor *arg0, s32 arg1) {
     void func_800FFAB0(Actor *);
     s32 func_80101180(s32, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);
-    extern f32 D_80801690_chmasterjiggy[];
+    extern MasterJiggyConfig D_8080164C_chmasterjiggy;
     extern f32 D_808016B0_chmasterjiggy[][2];
     extern f32 D_808016E8_chmasterjiggy[][2];
     f32 duration;
@@ -534,7 +534,7 @@ void func_80800E58_chmasterjiggy(Actor *arg0, s32 arg1) {
     func_80101FDC(arg0, arg1);
     ((MasterJiggyData *)arg0->actorData)->progress = 0.0f;
     if (arg1 > 0) {
-        duration = D_80801690_chmasterjiggy[arg1];
+        duration = D_8080164C_chmasterjiggy.stateDuration[arg1 - 1];
         if (duration > 0.0f) {
             ((MasterJiggyData *)arg0->actorData)->rate = 1.0f / duration;
         } else {
@@ -614,7 +614,7 @@ void func_808010E4_chmasterjiggy(Actor *arg0) {
     void func_800BA22C(BtIntPtr, s32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE780(f32 *, f32 *, f32 *);
-    extern s32 D_8080179C_chmasterjiggy[];
+    extern s16 D_8080179C_chmasterjiggy[34];
     extern f32 D_808017E0_chmasterjiggy[3];
     f32 sp2C[3];
     if ((((MasterJiggyData *)arg0->actorData)->amount > 0.0f) && arg0->unk64_20) {
@@ -622,7 +622,7 @@ void func_808010E4_chmasterjiggy(Actor *arg0) {
             func_800EE780(sp2C, arg0->position, D_808017E0_chmasterjiggy);
             ((MasterJiggyData *)arg0->actorData)->emitter = func_800B53A4(0x32);
             func_800B5534(((MasterJiggyData *)arg0->actorData)->emitter);
-            ((MasterJiggyData *)arg0->actorData)->emitter = func_800BABB8(((MasterJiggyData *)arg0->actorData)->emitter, arg0->position, sp2C, 1.0f, D_8080179C_chmasterjiggy);
+            ((MasterJiggyData *)arg0->actorData)->emitter = func_800BABB8(((MasterJiggyData *)arg0->actorData)->emitter, arg0->position, sp2C, 1.0f, (s32 *)D_8080179C_chmasterjiggy);
         }
         func_800BA22C(((MasterJiggyData *)arg0->actorData)->emitter, 4);
     }
@@ -667,7 +667,6 @@ void func_80801488_chmasterjiggy(Actor *arg0) {
     BtIntPtr func_800E1720(s32);
     f32 var_f0;
     s32 var_v1;
-
     var_f0 = ((MasterJiggyData *)arg0->actorData)->amount;
     if (var_f0 > 0.0f) {
         var_v1 = ((MasterJiggyData *)arg0->actorData)->handle;
@@ -685,3 +684,4 @@ void func_80801488_chmasterjiggy(Actor *arg0) {
         ((MasterJiggyData *)arg0->actorData)->handle = 0;
     }
 }
+#include "masterjiggy_data.inc"

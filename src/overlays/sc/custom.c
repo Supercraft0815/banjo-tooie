@@ -303,5 +303,5 @@ void sccustom_entrypoint_7(s32 arg0) {
     func_808006C4_sccustom(arg0, func_8080084C_sccustom());
 #endif
 }
-
 const char R_80800910_sccustom[] = "LOTS";
+#include "custom_data.inc"

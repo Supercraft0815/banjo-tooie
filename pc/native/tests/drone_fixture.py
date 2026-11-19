@@ -1,19 +1,24 @@
 """Generate test callbacks and expectations from the original drone data table."""
 
 import re
+import struct
 import sys
 from pathlib import Path
 
 
 def main():
-    source, output = map(Path, sys.argv[1:])
-    entries = re.findall(r"\.(byte|word)\s+(\w+)", source.read_text())
-    if entries[:4] != [("byte", "0x01")] + [("byte", "0x00")] * 3:
-        raise ValueError("unexpected initial drone type/padding")
-    if len(entries) != 83 or any(kind != "word" for kind, _ in entries[4:]):
-        raise ValueError("expected 16 original 20-byte drone entries")
-    words = ["0x01000000"] + [value for _, value in entries[4:]]
-    rows = [words[i:i + 5] for i in range(0, len(words), 5)]
+    rom, symbols, output = map(Path, sys.argv[1:])
+    callbacks = {int(addr, 16): name for name, addr in re.findall(
+        r"^(\w+) = (0x[0-9A-Fa-f]+);", symbols.read_text(), re.M)}
+    for address in (0x80099AA8, 0x80099B94):
+        callbacks[address] = f"func_{address:08X}"
+    callbacks[0] = "0x00000000"
+    # US bsdrone .data from baserom.us.yaml. Read the expected callback order
+    # independently of the C definitions linked into the test executable.
+    with rom.open("rb") as stream:
+        stream.seek(0x01F1C480)
+        rows = [[f"0x{kind:08X}", *(callbacks[value] for value in values)]
+                for kind, *values in struct.iter_unpack(">5I", stream.read(16 * 20))]
     if [int(row[0], 16) for row in rows] != [i << 24 for i in range(1, 16)] + [0]:
         raise ValueError("unexpected drone state order")
     names = list(dict.fromkeys(name for row in rows for name in row[1:]

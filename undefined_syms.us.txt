@@ -144,6 +144,32 @@ SECTIONS
     {
         D_808012EC_chsilo = D_808012E0_chsilo + 0xC;
     }
+    .suexpressjoint :
+    {
+        D_80801820_suexpressjoint = D_80801818_suexpressjoint + 0x8;
+        D_80801830_suexpressjoint = D_80801818_suexpressjoint + 0x18;
+        D_80801838_suexpressjoint = D_80801818_suexpressjoint + 0x20;
+    }
+    .gcfrontend :
+    {
+        D_80800DA4_gcfrontend = D_80800D80_gcfrontend + 0x24;
+    }
+    .glintrosyncDll :
+    {
+        D_808004A8_glintrosyncDll = D_808004A0_glintrosyncDll + 0x8;
+        D_808004B0_glintrosyncDll = D_808004A0_glintrosyncDll + 0x10;
+        D_808004B8_glintrosyncDll = D_808004A0_glintrosyncDll + 0x18;
+    }
+    .chchuffycont :
+    {
+        D_80800B66_chchuffycont = D_80800B20_chchuffycont + 0x46;
+    }
+    .gcnewpause :
+    {
+        D_80802125_gcnewpause = D_80802124_gcnewpause + 0x1;
+        D_80802126_gcnewpause = D_80802124_gcnewpause + 0x2;
+        D_8080212E_gcnewpause = D_80802124_gcnewpause + 0xA;
+    }
     .chintrochar :
     {
         func_80804158_chintrochar = func_80804054_chintrochar + 0x104;

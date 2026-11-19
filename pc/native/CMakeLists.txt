@@ -161,7 +161,7 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/overlays/gs/propsDll.c"
     "${BT_ROOT}/src/overlays/gs/propmarker.c"
     "${BT_ROOT}/src/overlays/gs/maker.c"
-    platform/rdram.c memory.c input.c drone_states.c quaternion.c animation_resource.c assets.c wasm/host/mod_assets.c cic.c spline.c model.c)
+    platform/rdram.c memory.c input.c quaternion.c animation_resource.c assets.c wasm/host/mod_assets.c cic.c spline.c model.c)
 target_link_libraries(bt_native_core PUBLIC bt_native_options ZLIB::ZLIB)
 if(UNIX AND NOT APPLE)
     target_link_libraries(bt_native_core PUBLIC m)
@@ -199,8 +199,8 @@ add_test(NAME native_input COMMAND bt_native_input_test)
 set(BT_DRONE_FIXTURE "${CMAKE_CURRENT_BINARY_DIR}/generated/drone_fixture.c")
 add_custom_command(OUTPUT "${BT_DRONE_FIXTURE}"
     COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/drone_fixture.py"
-        "${BT_ROOT}/asm/data/overlays/bs/drone.data.s" "${BT_DRONE_FIXTURE}"
-    DEPENDS tests/drone_fixture.py "${BT_ROOT}/asm/data/overlays/bs/drone.data.s"
+        "${BT_ROOT}/decompressed.us.z64" "${BT_ROOT}/syscall_symbol_addrs.us.txt" "${BT_DRONE_FIXTURE}"
+    DEPENDS tests/drone_fixture.py "${BT_ROOT}/decompressed.us.z64" "${BT_ROOT}/syscall_symbol_addrs.us.txt"
     VERBATIM)
 add_executable(bt_native_drone_test "${BT_DRONE_FIXTURE}")
 target_link_libraries(bt_native_drone_test PRIVATE bt_native_core)

@@ -1424,7 +1424,7 @@ segments:
     subsegments: 
       - [0x01F1C300, c, drone]
       - [0x01F1C480, .rodata, drone]
-      - [0x01F1C480, data, drone]
+      - [0x01F1C480, .data, drone]
       - [0x01F1C5C0, bss, drone]
   - name: bsdronebitten_header
     dir: overlays/bsdronebitten
@@ -2972,7 +2972,7 @@ segments:
     subsegments: 
       - [0x01F5EE90, c, drone]
       - [0x01F5F4C0, .rodata, drone]
-      - [0x01F5F4C0, data, drone]
+      - [0x01F5F4C0, .data, drone]
       - [0x01F5F4D0, bss, drone]
   - name: badronemem_header
     dir: overlays/badronemem
@@ -4297,7 +4297,7 @@ segments:
     subsegments: 
       - [0x01F810E0, c, masterjiggy]
       - [0x01F82610, .rodata, masterjiggy]
-      - [0x01F826A0, data, masterjiggy]
+      - [0x01F826A0, .data, masterjiggy]
       - [0x01F828D0, bss, masterjiggy]
   - name: chjiggygamenew_header
     dir: overlays/chjiggygamenew
@@ -4355,7 +4355,7 @@ segments:
     subsegments: 
       - [0x01F88DB0, c, warppad]
       - [0x01F89E20, .rodata, warppad]
-      - [0x01F89E30, data, warppad]
+      - [0x01F89E30, .data, warppad]
       - [0x01F8A110, bss, warppad]
   - name: chjiggytemple_header
     dir: overlays/chjiggytemple
@@ -5936,7 +5936,7 @@ segments:
     subsegments: 
       - [0x01FD0980, c, terryegg]
       - [0x01FD1B90, .rodata, terryegg]
-      - [0x01FD1BE0, data, terryegg]
+      - [0x01FD1BE0, .data, terryegg]
       - [0x01FD1DE0, bss, terryegg]
   - name: charmouredcaveman_header
     dir: overlays/charmouredcaveman
@@ -6221,7 +6221,7 @@ segments:
     subsegments: 
       - [0x01FDBD40, c, coderoombits]
       - [0x01FDCD80, .rodata, coderoombits]
-      - [0x01FDCEB0, data, coderoombits]
+      - [0x01FDCEB0, .data, coderoombits]
       - [0x01FDD060, bss, coderoombits]
   - name: chdingpot_header
     dir: overlays/chdingpot
@@ -7766,7 +7766,7 @@ segments:
     subsegments: 
       - [0x02023E10, c, bossbattery]
       - [0x02024100, .rodata, bossbattery]
-      - [0x02024100, data, bossbattery]
+      - [0x02024100, .data, bossbattery]
       - [0x02024160, bss, bossbattery]
   - name: chgruntyfireballbig_header
     dir: overlays/chgruntyfireballbig
@@ -8414,7 +8414,7 @@ segments:
     subsegments: 
       - [0x02044260, c, handcart]
       - [0x02048620, .rodata, handcart]
-      - [0x02048920, data, handcart]
+      - [0x02048920, .data, handcart]
       - [0x02049120, bss, handcart]
   - name: chcredits_header
     dir: overlays/chcredits
@@ -8682,7 +8682,7 @@ segments:
     subsegments: 
       - [0x02055940, c, humba]
       - [0x02057BD0, .rodata, humba]
-      - [0x02057ED0, data, humba]
+      - [0x02057ED0, .data, humba]
       - [0x02058110, bss, humba]
   - name: chflysaucer_header
     dir: overlays/chflysaucer
@@ -8758,7 +8758,7 @@ segments:
     subsegments: 
       - [0x020606C0, c, uffycont]
       - [0x020611D0, .rodata, uffycont]
-      - [0x020611E0, data, uffycont]
+      - [0x020611E0, .data, uffycont]
       - [0x02061290, bss, uffycont]
   - name: chcheatomenu_header
     dir: overlays/chcheatomenu
@@ -8891,7 +8891,7 @@ segments:
     subsegments: 
       - [0x02064300, c, char]
       - [0x02068670, .rodata, char]
-      - [0x02068A90, data, char]
+      - [0x02068A90, .data, char]
       - [0x020696A0, bss, char]
   - name: chintrocam_header
     dir: overlays/chintrocam
@@ -9328,7 +9328,7 @@ segments:
     subsegments: 
       - [0x020809D0, c, musicmenu]
       - [0x02081C20, .rodata, musicmenu]
-      - [0x02081C70, data, musicmenu]
+      - [0x02081C70, .data, musicmenu]
       - [0x02082030, bss, musicmenu]
   - name: chmole_hailfire_header
     dir: overlays/chmole_hailfire
@@ -12922,7 +12922,7 @@ segments:
     subsegments: 
       - [0x020FB960, c, zoombox]
       - [0x020FF720, .rodata, zoombox]
-      - [0x020FF790, data, zoombox]
+      - [0x020FF790, .data, zoombox]
       - [0x020FF7E0, bss, zoombox]
   - name: gccubeDll_header
     dir: overlays/gccubeDll
@@ -13264,7 +13264,7 @@ segments:
     subsegments: 
       - [0x02110920, c, frontend]
       - [0x02111140, .rodata, frontend]
-      - [0x02111160, data, frontend]
+      - [0x02111160, .data, frontend]
       - [0x02111750, bss, frontend]
   - name: gctransitionDll_header
     dir: overlays/gctransitionDll
@@ -13302,7 +13302,7 @@ segments:
     subsegments: 
       - [0x02112AE0, c, newpause]
       - [0x02114A50, .rodata, newpause]
-      - [0x02114AC0, data, newpause]
+      - [0x02114AC0, .data, newpause]
       - [0x02114CE0, bss, newpause]
   - name: gclevel_header
     dir: overlays/gclevel
@@ -13321,7 +13321,7 @@ segments:
     subsegments: 
       - [0x02114D60, c, level]
       - [0x02115120, .rodata, level]
-      - [0x02115120, data, level]
+      - [0x02115120, .data, level]
       - [0x02115180, bss, level]
   - name: gcsectionDll_header
     dir: overlays/gcsectionDll
@@ -13435,7 +13435,7 @@ segments:
     subsegments: 
       - [0x02117180, c, zoomboxdata]
       - [0x02117530, .rodata, zoomboxdata]
-      - [0x02117540, data, zoomboxdata]
+      - [0x02117540, .data, zoomboxdata]
       - [0x02118600, bss, zoomboxdata]
   - name: gcgamefix_header
     dir: overlays/gcgamefix
@@ -13568,7 +13568,7 @@ segments:
     subsegments: 
       - [0x0211AAF0, c, Dll]
       - [0x0211BAB0, .rodata, Dll]
-      - [0x0211BAB0, data, Dll]
+      - [0x0211BAB0, .data, Dll]
       - [0x0211BB20, bss, Dll]
   - name: glsplinenode_header
     dir: overlays/glsplinenode
@@ -13587,7 +13587,7 @@ segments:
     subsegments: 
       - [0x0211BBA0, c, node]
       - [0x0211C510, .rodata, node]
-      - [0x0211C550, data, node]
+      - [0x0211C550, .data, node]
       - [0x0211C560, bss, node]
   - name: gleeprom_header
     dir: overlays/gleeprom
@@ -13682,7 +13682,7 @@ segments:
     subsegments: 
       - [0x0211D810, c, introsyncDll]
       - [0x0211DC90, .rodata, introsyncDll]
-      - [0x0211DCB0, data, introsyncDll]
+      - [0x0211DCB0, .data, introsyncDll]
       - [0x0211DDE0, bss, introsyncDll]
   - name: glhittableDll_header
     dir: overlays/glhittableDll
@@ -14366,7 +14366,7 @@ segments:
     subsegments: 
       - [0x02129FF0, c, attract]
       - [0x0212A3C0, .rodata, attract]
-      - [0x0212A3C0, data, attract]
+      - [0x0212A3C0, .data, attract]
       - [0x0212A4A0, bss, attract]
   - name: gsproplookup_header
     dir: overlays/gsproplookup
@@ -14784,7 +14784,7 @@ segments:
     subsegments: 
       - [0x02139E00, c, drv_audio]
       - [0x0213A030, .rodata, drv_audio]
-      - [0x0213A030, data, drv_audio]
+      - [0x0213A030, .data, drv_audio]
       - [0x0213B850, bss, drv_audio]
   - name: mlwave_header
     dir: overlays/mlwave
@@ -15563,7 +15563,7 @@ segments:
     subsegments: 
       - [0x0214E1D0, c, expressjoint]
       - [0x0214EC10, .rodata, expressjoint]
-      - [0x0214EC30, data, expressjoint]
+      - [0x0214EC30, .data, expressjoint]
       - [0x0214FB50, bss, expressjoint]
   - name: suexpression_header
     dir: overlays/suexpression
@@ -15734,7 +15734,7 @@ segments:
     subsegments: 
       - [0x02158120, c, expressmorph]
       - [0x021588F0, .rodata, expressmorph]
-      - [0x02158900, data, expressmorph]
+      - [0x02158900, .data, expressmorph]
       - [0x02159510, bss, expressmorph]
   - name: sufreezy_header
     dir: overlays/sufreezy
@@ -16532,7 +16532,7 @@ segments:
     subsegments: 
       - [0x02170FF0, c, infobar]
       - [0x021718A0, .rodata, infobar]
-      - [0x021718A0, data, infobar]
+      - [0x021718A0, .data, infobar]
       - [0x02171DB0, bss, infobar]
   - name: sccustom_header
     dir: overlays/sccustom
@@ -16551,7 +16551,7 @@ segments:
     subsegments: 
       - [0x02171E70, c, custom]
       - [0x02172780, .rodata, custom]
-      - [0x02172790, data, custom]
+      - [0x02172790, .data, custom]
       - [0x021727A0, bss, custom]
   - name: seqdat_header
     dir: overlays/seqdat
@@ -16798,7 +16798,7 @@ segments:
     subsegments: 
       - [0x02177340, c, reg]
       - [0x021778E0, .rodata, reg]
-      - [0x021781E0, data, reg]
+      - [0x021781E0, .data, reg]
       - [0x02178710, bss, reg]
   - name: gzthread_header
     dir: overlays/gzthread
@@ -16817,7 +16817,7 @@ segments:
     subsegments: 
       - [0x021787C0, c, thread]
       - [0x02178A70, .rodata, thread]
-      - [0x02178B40, data, thread]
+      - [0x02178B40, .data, thread]
       - [0x02178B70, bss, thread]
   - name: gzpublic_header
     dir: overlays/gzpublic

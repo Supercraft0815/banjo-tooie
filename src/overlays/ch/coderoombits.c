@@ -1,8 +1,8 @@
 #include "common.h"
-
+typedef struct { u8 unk0; u8 unk1; } CodeRoomCell;
 OSThread *chcoderoombits_entrypoint_0(void)
 {
-    extern u8 D_80801170_chcoderoombits[];
+    extern ActorData D_80801170_chcoderoombits[1];
 
     return (OSThread *) D_80801170_chcoderoombits;
 }
@@ -11,14 +11,14 @@ void func_8080000C_chcoderoombits(Actor *arg0) {
     u32* func_80100074(Actor*, u32, u32);
     void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
     void _susubgame_entrypoint_12(void *arg0, void *arg1);
-    extern s32 D_80801308_chcoderoombits;
+    extern s32 D_80801308_chcoderoombits[4];
     u32 *sp1C;
     u32 *temp_v0;
 
     temp_v0 = func_80100074(arg0, 0U, 0x182U);
     sp1C = temp_v0;
     _susubgame_entrypoint_0(arg0, temp_v0, 1);
-    _susubgame_entrypoint_12(sp1C, &D_80801308_chcoderoombits);
+    _susubgame_entrypoint_12(sp1C, D_80801308_chcoderoombits);
 }
 
 struct player_state_s;
@@ -388,7 +388,7 @@ void chcoderoombits_entrypoint_1(s32 arg0, Unk80132ED0 *arg1) {
     void func_800EC398(Unk80132ED0 *, f32 *);
     void func_80101FDC(Actor *, u32);
     s32 func_8080052C_chcoderoombits(Actor *arg0, u8 *arg1);
-    extern struct { u8 unk0; u8 unk1; } D_808011B8_chcoderoombits[5][6];
+    extern CodeRoomCell D_808011B8_chcoderoombits[5][6];
     f32 origin[3];
     f32 position[3];
     int x;
@@ -593,7 +593,6 @@ s32 func_80800FDC_chcoderoombits(void) {
     } while (var_s0 != var_s2);
     return var_s1;
 }
-
 const char R_80801040_chcoderoombits[] = "IPWNBZ";
 const char R_80801048_chcoderoombits[] = "CWNBPWDQ";
 const char R_80801054_chcoderoombits[] = "WSSQ";
@@ -616,3 +615,4 @@ const char R_80801100_chcoderoombits[] = "SKOVZP";
 const char R_80801108_chcoderoombits[] = "AOSSFJOSSFQGWIONY";
 const char R_8080111C_chcoderoombits[] = "INQBYOQB";
 const char R_80801128_chcoderoombits[] = "GYNFOBNSNOKQZK";
+#include "coderoombits_data.inc"

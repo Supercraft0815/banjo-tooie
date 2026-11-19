@@ -113,7 +113,7 @@ const char R_80800B44_gzreg[] = "";
 
 struct GzRegEntry {
     s32 mask;
-    s32 value : 32;
+    s32 value;
     s8 *name;
 };
 
@@ -180,9 +180,9 @@ void func_808000CC_gzreg(s8 *arg0, f32 arg1) {
 
 void gzreg_entrypoint_0(void *arg0) {
     void func_8001D37C(BtIntPtr arg0, ...);
-    extern struct GzRegEntry D_80800FF0_gzreg;
-    extern struct GzRegEntry D_80801140_gzreg;
-    extern struct GzRegEntry D_808012B4_gzreg;
+    extern struct GzRegEntry D_80800FF0_gzreg[28];
+    extern struct GzRegEntry D_80801140_gzreg[31];
+    extern struct GzRegEntry D_808012B4_gzreg[23];
     s8 sp50[24];
     s8 sp40[16];
     s8 sp30[16];
@@ -192,7 +192,7 @@ void gzreg_entrypoint_0(void *arg0) {
     func_8001D37C("pc:x%08X\n", ((Objreg_arg0 *)arg0)->unk11C);
     func_80800000_gzreg(context->cause,
         "cause",
-        &D_80800FF0_gzreg);
+        D_80800FF0_gzreg);
     func_8001D37C("\n");
     func_8001D37C("at:x%08X v0:x%08X v1:x%08X a0:x%08X\n",
         (u32)context->at,
@@ -232,7 +232,7 @@ void gzreg_entrypoint_0(void *arg0) {
     func_8001D37C("ra:x%08X %s          badvaddr:x%08X\n",
         (u32)context->ra, "          ", context->badvaddr);
     func_8001D37C("\n");
-    func_80800000_gzreg(context->fpcsr, "fpcsr", &D_808012B4_gzreg);
+    func_80800000_gzreg(context->fpcsr, "fpcsr", D_808012B4_gzreg);
     func_8001D37C("\n");
     func_808000CC_gzreg(sp50, context->fp0.f.f_even);
     func_808000CC_gzreg(sp40, context->fp2.f.f_even);
@@ -257,15 +257,15 @@ void gzreg_entrypoint_0(void *arg0) {
     func_808000CC_gzreg(sp50, context->fp30.f.f_even);
     func_8001D37C("f30 %-13s\n", sp50);
     func_8001D37C("\n");
-    func_80800000_gzreg(context->sr, "sr", &D_80801140_gzreg);
+    func_80800000_gzreg(context->sr, "sr", D_80801140_gzreg);
 }
 
 void gzreg_entrypoint_1(void)
 {
     void func_8001D37C(BtIntPtr arg0, ...);
     s32 heap_bytes_free(void);
-    extern struct GzRegEntry D_80800EA0_gzreg;
-    extern struct GzRegEntry D_80800F30_gzreg;
+    extern struct GzRegEntry D_80800EA0_gzreg[12];
+    extern struct GzRegEntry D_80800F30_gzreg[16];
     func_8001D37C("RDP current = 0x%08X   (0x%016llx) \n",
         IO_READ(DPC_CURRENT_REG) + K0BASE,
         *(u64 *)(IO_READ(DPC_CURRENT_REG) + K0BASE));
@@ -275,11 +275,11 @@ void gzreg_entrypoint_1(void)
     func_8001D37C("RDP end     = 0x%08X   (0x%016llx) \n",
         IO_READ(DPC_END_REG) + K0BASE,
         *(u64 *)(IO_READ(DPC_END_REG) + K0BASE));
-    func_80800000_gzreg(IO_READ(DPC_STATUS_REG), "\nRDP status:", &D_80800EA0_gzreg);
-    func_80800000_gzreg(IO_READ(SP_STATUS_REG), "\nRSP status:", &D_80800F30_gzreg);
+    func_80800000_gzreg(IO_READ(DPC_STATUS_REG), "\nRDP status:", D_80800EA0_gzreg);
+    func_80800000_gzreg(IO_READ(SP_STATUS_REG), "\nRSP status:", D_80800F30_gzreg);
     func_8001D37C("\nFree memory was %d bytes.\n", heap_bytes_free());
 }
-
 s32 gzreg_entrypoint_2(void *arg0) {
     return *(s32 *)((u8 *)arg0 + 0x11C);
 }
+#include "reg_data.inc"

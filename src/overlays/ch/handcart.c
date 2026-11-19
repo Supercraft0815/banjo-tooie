@@ -1,29 +1,29 @@
 #include "ch/handcart.h"
 
 #define HANDCART_DATA(arg0) ((HandcartActorData*)(arg0->actorData))
-
+typedef struct { s16 sound[8]; const char *names[3]; } HandcartSounds;
 extern f32 func_80013970(f32);
 
-extern u32 D_808046C0_chhandcart;
-extern u32 D_808046D4_chhandcart;
-extern u32 D_808046E8_chhandcart;
+extern s16 D_808046C0_chhandcart[10];
+extern s16 D_808046D4_chhandcart[10];
+extern s16 D_808046E8_chhandcart[6];
 extern unk80804B84* D_80804B84_chhandcart[4];
 extern s32 D_80804B94_chhandcart[4];
 extern unk80804D84* (D_80804D84_chhandcart[4]);
 extern s32 D_80804D94_chhandcart[4];
-extern s32 D_80804DA4_chhandcart;
+extern s16 D_80804DA4_chhandcart[10];
 extern f32 D_80804DB8_chhandcart[3];
-extern void* D_80804DC4_chhandcart;
-extern void* D_80804E6C_chhandcart;
-extern u32 D_80804E0C_chhandcart;
-extern u32 D_80804E18_chhandcart;
-extern u32 D_80804E2C_chhandcart;
-extern u32 D_80804E38_chhandcart;
-extern u32 D_80804E4C_chhandcart;
-extern u32 D_80804E5C_chhandcart;
-extern f32 D_808046F4_chhandcart;
-extern u32 D_80804704_chhandcart;
-extern u32 D_80804714_chhandcart;
+extern ActorData D_80804DC4_chhandcart;
+extern ActorData D_80804E6C_chhandcart;
+extern f32 D_80804E0C_chhandcart[3];
+extern f32 D_80804E18_chhandcart[5];
+extern f32 D_80804E2C_chhandcart[3];
+extern f32 D_80804E38_chhandcart[5];
+extern f32 D_80804E4C_chhandcart[4];
+extern f32 D_80804E5C_chhandcart[4];
+extern s16 D_808046F4_chhandcart[8];
+extern s16 D_80804704_chhandcart[8];
+extern HandcartSounds D_80804714_chhandcart;
 
 s32 func_80800000_chhandcart(void)
 {
@@ -447,7 +447,7 @@ void func_80800CD0_chhandcart(Actor* arg0)
         func_80101CDC(arg0, temp_f0_2);
         if (arg0->unk5F == 0)
         {
-            arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, &D_80804DA4_chhandcart);
+            arg0->unk5F = func_800C4350(arg0->unk5F, arg0->position, (s32 *)D_80804DA4_chhandcart);
             return;
         }
         func_800C31DC(arg0->unk5F, func_800F10B4(temp_f0_2, 0.5f, 3.0f, 1.2f, 0.8f));
@@ -471,8 +471,8 @@ void func_80800E58_chhandcart(Actor* arg0, s32 arg1)
 
 void func_80800EA0_chhandcart(Actor *arg0)
 {
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804704_chhandcart);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804714_chhandcart);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804704_chhandcart);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804714_chhandcart.sound);
 }
 
 void func_80800EE4_chhandcart(Actor* arg0, s32 arg1) 
@@ -802,7 +802,7 @@ void func_80801850_chhandcart(Actor* arg0)
     }
     if ((temp_v0->unk91C >= 2.0f) && (temp_v0->unk934[2] < 2.0f))
     {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808046F4_chhandcart);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808046F4_chhandcart);
         temp_v0->unk934[0] = 0.1f;
         if (func_800DC0C0() < 0.5f)
         {
@@ -811,7 +811,7 @@ void func_80801850_chhandcart(Actor* arg0)
     }
     if ((temp_v0->unk91C <= -2.0f) && (temp_v0->unk934[2] > -2.0f))
     {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808046F4_chhandcart);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808046F4_chhandcart);
         temp_v0->unk934[1] = 0.1f;
         if (func_800DC0C0() < 0.5f)
         {
@@ -1199,27 +1199,27 @@ void func_80802690_chhandcart(Actor* arg0)
     switch (func_801022E4(arg0))
     {
     case 0x7D:
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808046C0_chhandcart, 0.1f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, (u32 *)D_808046C0_chhandcart, 0.1f);
         if (((f32)temp_v0->unk0 <= 0.0f) && (func_800DC298(0.03f) != 0) && (func_800C0638() == 0))
         {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808046D4_chhandcart);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_808046D4_chhandcart);
             temp_v0->unk0 = 1.5f;
             return;
         }
     default:
         return;
     case 0x89:
-        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808046C0_chhandcart, &D_80804E0C_chhandcart);
+        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, (u32 *)D_808046C0_chhandcart, D_80804E0C_chhandcart);
         return;
     case 0x8A:
-        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808046C0_chhandcart, &D_80804E18_chhandcart);
+        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, (u32 *)D_808046C0_chhandcart, D_80804E18_chhandcart);
         return;
     case 0x85:
-        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808046E8_chhandcart, &D_80804E2C_chhandcart);
+        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, (u32 *)D_808046E8_chhandcart, D_80804E2C_chhandcart);
         return;
     case 0x80:
-        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_808046C0_chhandcart, &D_80804E38_chhandcart);
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_808046E8_chhandcart, 0.9f);
+        _subaddieaudioquick_entrypoint_4(arg0, arg0->position, (u32 *)D_808046C0_chhandcart, D_80804E38_chhandcart);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, (u32 *)D_808046E8_chhandcart, 0.9f);
         break;
     }
 }
@@ -2096,11 +2096,11 @@ s32 func_80803FC4_chhandcart(Actor* arg0, s32 arg1, u32 arg2)
     case52://Such a weird thing to do
         if (func_801022E4(arg0) == 0x7D)
         {
-            _gcdialogcamera_entrypoint_3(&D_80804E4C_chhandcart, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80804E4C_chhandcart, arg0->scale);
         }
         else
         {
-            _gcdialogcamera_entrypoint_3(&D_80804E5C_chhandcart, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80804E5C_chhandcart, arg0->scale);
         }
         break;
     case 31:
@@ -2134,7 +2134,7 @@ void* chhandcart_entrypoint_2(void)
 {
     return &D_80804E6C_chhandcart;
 }
-
 const char R_808043C0_chhandcart[] = "Wait";
 const char R_808043C8_chhandcart[] = "Race";
 const char R_808043D0_chhandcart[] = "Report";
+#include "handcart_data.inc"
