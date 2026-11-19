@@ -2755,3 +2755,18 @@ mit den kartenspezifischen Einstellungen. Der gemeinsame Stand besteht
 Retraces. Original-IDO bestätigt 16.401 Funktionen und beide ROM-Abbilder.
 Die Prüfprotokolle liegen unter
 `build/acceptance/n1-2026-11-18/current-six-camera*`.
+
+## 2026-11-19 — N3, Spielerregistrierung und Kameracontroller
+
+Der neue LP64-Test verbindet acht Einträge in der Spielerregistrierung
+mit den vier Kameracontrollern. Er prüft ihre Besitzerzeiger auch nach
+dem Verschieben von 32 Objekten. Die Kindobjekte für Kamerabewegung und
+Projektion werden im Test durch verschiebbare Testobjekte dargestellt.
+
+Die gleichartig gemessene Ausgangsbasis mit den neuen N1-Kameratabellen
+hat 777 LP64-Warnstellen. Mit den korrigierten Besitzerzeigern sind es
+764. Der Offset-Scan mit derselben Typzuordnung zählt jeweils 223.
+Alle 61 Sanitizertests, elf Gastsuiten und 74 Replays mit 447.849
+Retraces bestehen. Die kanonische Gast-IR, 16.401 Original-IDO-Funktionen
+und beide ROM-Abbilder stimmen überein. Die Protokolle liegen unter
+`build/acceptance/n1-2026-11-18/current-player-viewports*`.

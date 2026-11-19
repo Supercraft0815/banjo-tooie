@@ -668,6 +668,23 @@ else()
 endif()
 add_test(NAME native_camera_frame COMMAND bt_native_camera_frame_test)
 
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    add_executable(bt_native_player_viewports_test tests/player_viewports.c
+        "${BT_ROOT}/src/core2/1EA3AA0.c" "${BT_ROOT}/src/core2/1EE92B0.c")
+    target_compile_definitions(bt_native_player_viewports_test PRIVATE
+        heap_alloc=viewport_test_alloc heap_free=viewport_test_free defrag=viewport_test_defrag)
+    target_link_libraries(bt_native_player_viewports_test PRIVATE bt_native_core bt_native_test_trig_data)
+    if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+        target_compile_options(bt_native_player_viewports_test PRIVATE -ffunction-sections -fdata-sections)
+        if(APPLE)
+            target_link_options(bt_native_player_viewports_test PRIVATE -Wl,-dead_strip)
+        else()
+            target_link_options(bt_native_player_viewports_test PRIVATE -Wl,--gc-sections)
+        endif()
+    endif()
+    add_test(NAME native_player_viewports COMMAND bt_native_player_viewports_test)
+endif()
+
 add_executable(bt_native_textures_test tests/textures.c)
 target_link_libraries(bt_native_textures_test PRIVATE bt_native_core)
 if(APPLE)

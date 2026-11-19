@@ -1,13 +1,49 @@
 /* The four player slots are followed by the shared view in slot four. */
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
-static unk_D_80127688 viewportSlots[5];
-typedef unk_D_80127688 ViewportReleaseEntry;
+#include "common.h"
+#include "native_camera_frame.h"
+
+typedef struct {
+    void *unk0;
+    union { BtIntPtr unk4; void *camera; };
+    f32 unk8;
+} ViewportSlot;
+
+static ViewportSlot viewportSlots[5];
+typedef ViewportSlot ViewportReleaseEntry;
+extern s32 D_80127674;
+void func_80015CE8(void *, void *);
+
+BtIntPtr func_800A88C4(s32 view, BtIntPtr camera, BtIntPtr unused) {
+    ViewportSlot *slot = &viewportSlots[view];
+    if (!slot->unk0) return 0;
+    void *previous = slot->camera;
+    slot->camera = (void *)camera;
+    func_80015CE8(slot->unk0, slot->camera);
+    if (view == D_80127674) func_800E42B4(slot->camera);
+    return (BtIntPtr)previous;
+}
+
+BtIntPtr func_800A8948(s32 view) {
+    ViewportSlot *slot = &viewportSlots[view];
+    if (!slot->unk0) return 0;
+    void *previous = slot->camera;
+    slot->camera = NULL;
+    if (view == D_80127674) func_800E42B4(viewportSlots[4].camera);
+    return (BtIntPtr)previous;
+}
+
+BtIntPtr func_800A8984(s32 view) {
+    return (BtIntPtr)viewportSlots[view].camera;
+}
+
 #define VIEWPORT_DEFAULT_CAMERA viewportSlots[4].camera
 #define VIEWPORT_CURRENT D_80127674
 #define VIEWPORT_RELEASE_BEGIN viewportSlots
 #define VIEWPORT_RELEASE_END (viewportSlots + 5)
 #define VIEWPORT_RELEASE_HANDLE(entry) ((entry)->unk0)
 #else
+typedef unk_D_80127688 ViewportSlot;
 #define viewportSlots D_80127688
 typedef s32 ViewportReleaseEntry[3];
 #define VIEWPORT_DEFAULT_CAMERA D_801276BC

@@ -1,5 +1,5 @@
 #include "core2/1EEC090.h"
-
+BT_LP64_ONLY(void *defrag(void *);)
 s32 func_80113FF0(void *arg0) {
     typedef struct {
         s32 unk;

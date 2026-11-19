@@ -901,7 +901,7 @@ s32 func_800A85A8(void) {
     s32 func_800A8380(s32);
     s32 func_800A84EC(s32, BtIntPtr);
     s32 var_s0;
-    unk_D_80127688 *var_s1;
+    ViewportSlot *var_s1;
 
     var_s1 = viewportSlots;
     var_s0 = 0;
@@ -931,7 +931,7 @@ void func_800A8670(void)
 {
   void func_800C54F0(s32 arg0);
   s32 var_s0;
-  unk_D_80127688 *var_s1;
+  ViewportSlot *var_s1;
   BtIntPtr *new_var;
  var_s0 = 0; var_s1 = viewportSlots; do {
     new_var = &var_s1->unk4;
@@ -962,7 +962,7 @@ void func_800A8710(void)
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_800CA364(s32);
 #endif
-    func_800CA364(viewportSlots[4].unk4);
+    BT_LP64_ONLY(func_800E42B4(NULL);) func_800CA364(viewportSlots[4].unk4);
     viewportSlots[4].unk4 = 0;
     var_s0 = VIEWPORT_RELEASE_BEGIN; do {
         temp_a0 = (BtIntPtr) VIEWPORT_RELEASE_HANDLE(var_s0);
@@ -1020,7 +1020,7 @@ s32 func_800A87FC(s32 arg0) {
 }
 
 /* extern */
-
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
 BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A88C4(s32 arg0, BtIntPtr arg1, BtIntPtr arg2) {
     void func_80015CE8(void *, void *);
     BtIntPtr sp1C;
@@ -1055,7 +1055,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A8984(s32 arg0)
 {
     return viewportSlots[arg0].unk4;
 }
-
+#endif
 void *func_800A89A0(s32 arg0) 
 {
     return viewportSlots[arg0].unk0;
@@ -1092,7 +1092,7 @@ void func_800A8A88(s32 arg0, f32 arg1) {
     s32 func_800CA558(s32, f32);
 #endif
     BtIntPtr temp_a2;
-    unk_D_80127688 *temp_v0;
+    ViewportSlot *temp_v0;
 
     temp_v0 = &viewportSlots[arg0];
     temp_a2 = temp_v0->unk4;

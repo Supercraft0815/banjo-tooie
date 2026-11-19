@@ -1,5 +1,5 @@
-#include "core2/1E82660.h"
-
+#include "player_viewports.inc"
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
 void func_800A8D70(s32 arg0, s32 arg1) {
     BtIntPtr _gcsectionDll_entrypoint_2(s32);
     s32 _gcsectionDll_entrypoint_3(BtIntPtr, s32);
@@ -410,7 +410,7 @@ s32 func_800A9768(s32 arg0) {
     }
 }
 
-/* extern */
+#endif
 
 void func_800A9800(void) {
     void func_800A9828(s32, s32, s32);
