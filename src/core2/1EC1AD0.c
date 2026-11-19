@@ -28,7 +28,7 @@ void func_800E829C(void) {
 
     for (j = 0; j < 2; j++) {
         for (i = 0; i < 5; i++) {
-            DEPTH_FIELD(depthFrameState.depth[j][i].active, *(s32 *)((s8 *)&D_8012D600 + j * 60 + i * 12 + 12)) = 0;
+            DEPTH_FIELD(D_8012D600.depth[j][i].active, *(s32 *)((s8 *)&D_8012D600 + j * 60 + i * 12 + 12)) = 0;
         }
     }
 }
@@ -283,11 +283,3 @@ void func_800E8A20(void) {
         DEPTH_LIST = freelist_defrag(DEPTH_LIST);
     }
 }
-
-#ifdef BT_NATIVE
-/* bss_to_c.py: native definitions of asm .bss labels */
-#include "bt_data.h"
-DEPTH_RETAIL(FreeList * D_8012D600 BT_DATA(4, bss_core2bss2_1, 0xCC0);)
-DEPTH_RETAIL(s32 D_8012D678 BT_DATA(4, bss_core2bss2_1, 0xD38);)
-DEPTH_RETAIL(s32 D_8012D67C BT_DATA(4, bss_core2bss2_1, 0xD3C);)
-#endif

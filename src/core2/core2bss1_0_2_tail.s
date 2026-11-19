@@ -7,7 +7,4 @@ dlabel D_8012AA20
     /* 8012AA20 */ .space 0x20
 
 dlabel D_8012AA40
-    /* 8012AA40 */ .space 0x84
-
-dlabel D_8012AAC4
-    /* 8012AAC4 */ .space 0x0C
+    /* 8012AA40 */ .space 0x90

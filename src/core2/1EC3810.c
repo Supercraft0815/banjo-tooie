@@ -268,27 +268,32 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) func_800EA370()
 
 #include "1EC3810_prop_hooks.inc"
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-static struct {
+#ifdef BT_NATIVE
+typedef struct {
     f32 position[3];
     Unk80132ED0 *marker;
     u16 *indices;
-} world_contacts[8];
+} WorldContact;
+WorldContact D_80132DD8[8];
+#ifdef BT_ILP32
+_Static_assert(sizeof(WorldContact) == 0x14, "world contact layout");
+#endif
 
 int func_800EA3A0(void) {
-    for (int i = 0; i < 8; i++) world_contacts[i] = (typeof(world_contacts[0])){0};
+    for (int i = 0; i < 8; i++) D_80132DD8[i] = (typeof(D_80132DD8[0])){0};
     return 0;
 }
 
 void func_800EA400(s32 slot, Unk80132ED0 *marker, f32 *position, void *indices) {
+    void func_800EE7F8(f32 *, f32 *);
     if ((u32)slot >= 8) return;
-    func_800EE7F8(world_contacts[slot].position, position);
-    world_contacts[slot].marker = marker;
-    world_contacts[slot].indices = indices;
+    func_800EE7F8(D_80132DD8[slot].position, position);
+    D_80132DD8[slot].marker = marker;
+    D_80132DD8[slot].indices = indices;
 }
 #else
 int func_800EA3A0(void) {
-    extern s32 D_80132DD0;
+    BT_IDO_ONLY(extern s32 D_80132DD0;)
     extern f32 D_80132DD8;
     extern f32 D_80132E78;
     void func_800EFD24(f32 *);
@@ -307,7 +312,7 @@ int func_800EA3A0(void) {
 }
 
 void func_800EA400(s32 arg0, u8 *arg1, BtIntPtr arg2, s32 arg3) {
-    extern s32 D_80132DD0;
+    BT_IDO_ONLY(extern s32 D_80132DD0;)
     func_800EE7F8((f32 *)((u8 *)&D_80132DD0 + arg0 * 0x14 + 8), (f32 *)arg2);
     *(u8 **)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x14) = arg1;
     *(s32 *)((u8 *)&D_80132DD0 + arg0 * 0x14 + 0x18) = arg3;
@@ -316,15 +321,15 @@ void func_800EA400(s32 arg0, u8 *arg1, BtIntPtr arg2, s32 arg3) {
 
 void func_800EA45C(void) {
     BT_IDO_ONLY(void func_800D8B80(s16, s32, f32 *, f32 *, f32, s32, u16 *, u8 *, f32 *);)
-    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     u8 *func_80103C94(Actor *);
 #endif
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_80132DD0;
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-#define CONTACT_FIELD(i, field) world_contacts[i].field
-#define CONTACT_POSITION(i) world_contacts[i].position
+    BT_IDO_ONLY(extern s32 D_80132DD0;)
+#ifdef BT_NATIVE
+#define CONTACT_FIELD(i, field) D_80132DD8[i].field
+#define CONTACT_POSITION(i) D_80132DD8[i].position
 #else
     struct Entry { Unk80132ED0 *marker; u16 *indices; f32 position[3]; };
 #define CONTACT_FIELD(i, field) ((struct Entry *)&D_80132DD0)[(i) + 1].field
@@ -345,26 +350,26 @@ void func_800EA45C(void) {
 
 void func_800EA51C(void) {
     BT_IDO_ONLY(s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, BtIntPtr, f32 *, f32 *);)
-    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32 *);
+    void func_800F5A00(BtIntPtr, f32 *);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     u8 *func_80103C94(Actor *);
 #endif
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_80132DD0;
-    s32 *var_s2;
+    BT_IDO_ONLY(extern s32 D_80132DD0;)
+    BT_IDO_ONLY(s32 *var_s2;)
     f32 sp60[3];
     Unk80132ED0 *temp_a0;
     s32 var_s1;
     Actor *temp_s0;
 
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     var_s2 = &D_80132DD0;
 #endif
     var_s1 = 0;
     do {
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-        temp_a0 = world_contacts[var_s1].marker;
+#ifdef BT_NATIVE
+        temp_a0 = D_80132DD8[var_s1].marker;
 #else
         temp_a0 = *(Unk80132ED0 **)&var_s2[5];
 #endif
@@ -375,14 +380,14 @@ void func_800EA51C(void) {
                 sp60[1] -= 10.0f;
                 func_800F8418(var_s1, sp60);
             }
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-            world_contacts[var_s1].marker = NULL;
+#ifdef BT_NATIVE
+            D_80132DD8[var_s1].marker = NULL;
 #else
             (((Obj1EC3810_func_800EA51C_var_s2 *)var_s2)->unk14) = 0;
 #endif
         }
         var_s1 += 1;
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
         var_s2 += 5;
 #endif
     } while (var_s1 != 8);
@@ -485,7 +490,5 @@ s16 D_80132DC8 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x868);
 s16 D_80132DCA BT_DATA(4, bss_core2bss2_1_reset_tail, 0x86A);
 s16 D_80132DCC BT_DATA(4, bss_core2bss2_1_reset_tail, 0x86C);
 u16 D_80132DCE BT_DATA(4, bss_core2bss2_1_reset_tail, 0x86E);
-s32 D_80132DD0 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x870);
-f32 D_80132DD8 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x878);
 f32 D_80132E78 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x918);
 #endif

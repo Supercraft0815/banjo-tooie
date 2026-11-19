@@ -5,13 +5,6 @@
 
 s16 _gsproplookup_entrypoint_0(NativeMarkerProp *);
 f32 func_800EEAD4(f32 *,f32 *);
-static void (*world_hit_callback)(uintptr_t,uintptr_t);
-static uintptr_t world_hit_userdata;
-void func_800EA600(void (*callback)(uintptr_t,uintptr_t),uintptr_t userdata) {
-    world_hit_callback=callback;world_hit_userdata=userdata;
-}
-void func_800EA614(void) { world_hit_callback=NULL;world_hit_userdata=0; }
-
 void *func_800EA628(NativeWorldCell *cell,f32 *start,f32 *end,f32 *normal,u32 flags) {
     void *result=NULL;
     NativeMarkerProp *prop=func_800E9E88(cell),*limit=func_800E9EB4(cell);
@@ -54,7 +47,7 @@ void *func_800EA628(NativeWorldCell *cell,f32 *start,f32 *end,f32 *normal,u32 fl
             void *mesh=func_800B2720(model);
             if(mesh) {
                 void *hit=func_800AB868(mesh,func_80103CDC(actor,model),actor->position,actor->rotation,actor->scale,start,end,normal,flags);
-                if(hit && world_hit_callback) world_hit_callback((uintptr_t)marker,world_hit_userdata);
+                if(hit && D_80132DD0) D_80132DD0((uintptr_t)marker,D_80132DD4);
                 BtIntPtr context;
                 if(hit && func_800CB854(&context)==1) {
                     func_801039E4(marker);
@@ -83,7 +76,7 @@ void *func_800EAA2C(NativeWorldCell *cell,f32 *start,f32 *end,f32 radius,f32 *no
                 f32 rotation[3]={0,(f32)((prop->sprite>>8)&255)*2,(f32)(prop->sprite&255)*2};
                 void *hit=func_800AC848(mesh,func_800B2840(model),position,rotation,(f32)(prop->flags>>8)*0.009999999776f,start,end,radius,normal,iterations,flags);
                 /* Static props pass their packed first word, not an actor marker. */
-                if(hit && world_hit_callback) world_hit_callback(prop->sprite,world_hit_userdata);
+                if(hit && D_80132DD0) D_80132DD0(prop->sprite,D_80132DD4);
                 if(hit) result=hit;
             }
             if(model) func_800D62E4(id);

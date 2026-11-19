@@ -55,8 +55,6 @@ u8 D_80128D08[128] BT_DATA(4, bss_core2bss1_0_2, 0x1568);
 u8 D_80128D88[8] BT_DATA(4, bss_core2bss1_0_2, 0x15E8);
 u8 D_80128D90[7168] BT_DATA(4, bss_core2bss1_0_2, 0x15F0);
 u8 bss_core2bss1_0_2__end[1] BT_DATA(1, bss_core2bss1_0_2, 0x31FF);
-u8 D_8012AA40[132] BT_DATA(4, bss_core2bss1_0_2_tail, 0x20);
-u8 D_8012AAC4[12] BT_DATA(4, bss_core2bss1_0_2_tail, 0xA4);
 u8 D_8012AB00[4] BT_DATA(4, bss_core2bss1_1, 0x20);
 u8 D_8012AB04[12] BT_DATA(4, bss_core2bss1_1, 0x24);
 u8 D_8012AB10[12] BT_DATA(4, bss_core2bss1_1, 0x30);
@@ -83,7 +81,6 @@ u8 D_8012CA20[8] BT_DATA(4, bss_core2bss2_1, 0xE0);
 
 u8 bss_core2bss2_1__end[1] BT_DATA(1, bss_core2bss2_1, 0xD4F);
 u8 D_80132DA8[8] BT_DATA(4, bss_core2bss2_1_reset_tail, 0x848);
-u8 D_80132DD4[4] BT_DATA(4, bss_core2bss2_1_reset_tail, 0x874);
 u8 bss_core2bss2_1_reset_tail__end[1] BT_DATA(1, bss_core2bss2_1_reset_tail, 0x91F);
 u8 D_80132EA0[32] BT_DATA(16, bss_core2bss2_2, 0x0);
 u8 D_80132EC0[16] BT_DATA(4, bss_core2bss2_2, 0x20);

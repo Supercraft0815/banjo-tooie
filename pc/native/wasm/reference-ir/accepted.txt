@@ -479,3 +479,6 @@ n1-2026-11-18/current-dialog-forwarded-ir-status.txt and current-dialog-forwarde
 Seven guest functions change how they index weather records, test emitter
 pointers or use their storage. Both complete ROMs, all 74 replays and all
 9,706 fixup addresses match. See n1-2026-11-18/current-weather-emitters-ir.log.
+
+2026-11-19  Depth queries and collision contacts
+12 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-depth-queries-ir.log.

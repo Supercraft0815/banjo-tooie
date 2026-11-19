@@ -1,6 +1,21 @@
+#ifdef BT_NATIVE
+#include "common.h"
+void (*D_80132DD0)(uintptr_t, uintptr_t);
+uintptr_t D_80132DD4;
+
+void func_800EA600(void (*callback)(uintptr_t, uintptr_t), uintptr_t userdata) {
+    D_80132DD0 = callback;
+    D_80132DD4 = userdata;
+}
+void func_800EA614(void) {
+    D_80132DD0 = NULL;
+    D_80132DD4 = 0;
+}
+#endif
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "1EC3810_collision_native.inc"
 #else
+#ifndef BT_NATIVE
 void func_800EA600(s32 arg0, s32 arg1) {
     extern s32 D_80132DD0;
     (*(s32 *)((s8 *)(&D_80132DD0) + (0))) = arg0;
@@ -13,6 +28,7 @@ void func_800EA614(void) {
     (*(s32 *)((s8 *)(&D_80132DD0) + (4))) = 0;
 }
 
+#endif
 s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     typedef struct {
         union {
@@ -47,15 +63,15 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     BT_IDO_ONLY(void func_800D62E4(u16);) BT_NATIVE_ONLY(void func_800D62E4(s32);)
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
-    void func_800EA400(s32, u8 *, BtIntPtr, s32);
+    BT_IDO_ONLY(void func_800EA400(s32, u8 *, BtIntPtr, s32);)
     s32 func_800EB350(Actor *, f32 *, f32 *);
     void func_80103508(u8 *);
     s32 func_801039E4(s32);
     u8 *func_80103AA0(u8 *);
     s32 func_80103CDC(u8 *, u8 *);
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_80132DD0;
-    extern s32 D_80132DD4;
+    BT_IDO_ONLY(extern s32 D_80132DD0;)
+    BT_IDO_ONLY(extern s32 D_80132DD4;)
 
     s32 result;
     Prop *prop;
@@ -126,12 +142,12 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
                                 if (collision != NULL) {
                                     hit = func_800AB868(collision, func_80103CDC(actor, model), (f32 *)(actor + 4), (f32 *)(actor + 0x44), *(f32 *)(actor + 0x38), arg1, arg2, arg3, arg4);
                                     if (hit != 0 && D_80132DD0 != 0) {
-                                        ((void (*)(u8 *, s32))D_80132DD0)(marker, D_80132DD4);
+                                        BT_NATIVE_ONLY(D_80132DD0((uintptr_t)marker, D_80132DD4);) BT_IDO_ONLY(((void (*)(u8 *, s32))D_80132DD0)(marker, D_80132DD4);)
                                     }
                                     if (hit != 0 && func_800CB854(&context) == 1) {
                                         func_801039E4((s32)marker);
                                         if (*(u16 *)(actor + 0x80) != 0) {
-                                            func_800EA400(context, marker, arg2, hit);
+                                            func_800EA400(context, BT_NATIVE_ONLY((Unk80132ED0 *))marker, BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((void *))hit);
                                         }
                                     }
                                     if (hit != 0) {
@@ -169,8 +185,8 @@ s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, vo
     s32 func_80103CDC(u8 *, u8 *);
     Actor *func_80106790(Unk80132ED0 *);
 
-    extern s32 D_80132DD0;
-    extern s32 D_80132DD4;
+    BT_IDO_ONLY(extern s32 D_80132DD0;)
+    BT_IDO_ONLY(extern s32 D_80132DD4;)
     typedef u8 *(*CollisionFunc)(u8 *, s32, s32, f32, f32 *, s32, u32);
     typedef struct {
         s32 unused;
@@ -224,7 +240,7 @@ s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, vo
                         hit = func_800AC848(collision, func_800B2840((s32)model), position, rotation,
                             (f32)prop[10] * 0.01f, arg1, arg2, arg3, arg4, arg5, arg6);
                         if (hit != 0 && D_80132DD0 != 0) {
-                            ((void (*)(s32, s32))D_80132DD0)(*(s32 *)prop, D_80132DD4);
+                            BT_NATIVE_ONLY(D_80132DD0(*(u32 *)prop, D_80132DD4);) BT_IDO_ONLY(((void (*)(s32, s32))D_80132DD0)(*(s32 *)prop, D_80132DD4);)
                         }
                         if (hit != 0) {
                             result = (s32)hit;

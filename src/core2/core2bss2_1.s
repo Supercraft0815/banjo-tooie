@@ -185,13 +185,7 @@ dlabel D_8012D5F4
     /* 8012D5F4 */ .space 0x0C
 
 dlabel D_8012D600
-    /* 8012D600 */ .space 0x78
-
-dlabel D_8012D678
-    /* 8012D678 */ .space 0x04
-
-dlabel D_8012D67C
-    /* 8012D67C */ .space 0x04
+    /* 8012D600 */ .space 0x80
 
 dlabel D_8012D680
     /* 8012D680 */ .space 0x10

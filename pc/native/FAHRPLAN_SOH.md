@@ -29,6 +29,10 @@ Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausga
 | N1–N3 | Der klassische Datenmodul-Scan meldet 0. Auch der strenge Scan meldet 0. Der Build mit `BT_NO_ASMDATA=1` besteht alle 74 Replays. Der Gast kompiliert die Bitfelder direkt aus C. N2 hat die lokalen Stack-Arrays im C-Quelltext. Der Diagnosebuild ohne FixCalls linkt nach der Korrektur der Aufrufsignaturen mit 0 der ursprünglich 163 ungültigen Aufrufvarianten. Das Intro besteht dort mit 2.698 Retraces, die übrigen 73 Replays weichen noch ab. Die Spieler-Kontaktvektoren und die HUD-Stilübergabe laufen mit den Originalargumenten. Nach der Spielerregistrierung und den 86 Komponenten bleiben 671 LP64-Warnstellen und mit derselben Typzuordnung 204 verschiebbare Offsets. Die 266 Karten-Speicherplätze, der Dialogcache und die Intro-Uhr haben eigene C-Objekte. Der XSYM-Lauf über alle 74 Fälle bis einschließlich der Spline-Pfade misst 133 Fremdzugriffe in 55 Funktionen und 23 Gruppen. Der Asset-Decoder verarbeitet auf beiden Wortbreiten vier parallele Streams mit den drei Deflate-Blocktypen. Zehn weitere Module reichen die Argumente für Dialog, Licht und Figuren im Quelltext weiter. Ihre normalisierte Gast-IR ist identisch. Die sechs Wettertypen verwenden eigene Speicherbereiche für 50 Blätter und 30 Regentropfen | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
 | N4–N6 | Der direkte native Build setzt N1–N3 voraus | Umstellung nach dem Spike, Entscheidung über Little-Endian nach N5 |
 
+Weitere geprüfte N1-/N3-Pakete am 19. November
+
+- Tiefenabfragen und Kollisionskontakte. Zwei Tiefenpuffer mit je fünf Kameraplätzen, acht Kontakt-Callbacks und die Kollisionsverwaltung haben eigene C-Objekte. Gast- und LP64-Proben prüfen das Umschalten und die Callback-Übergabe.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

@@ -1,17 +1,22 @@
 /* The retail BSS block holds the list, ten projection snapshots and the current sample bank. */
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 typedef struct {
     f32 a, b;
     s32 active;
 } DepthSnapshot;
-static struct {
+typedef struct {
     FreeList *list;
     DepthSnapshot depth[2][5];
     s32 index;
-} depthFrameState;
-#define DEPTH_STATE (&depthFrameState)
-#define DEPTH_LIST (depthFrameState.list)
-#define DEPTH_INDEX (depthFrameState.index)
+} DepthFrameState;
+DepthFrameState D_8012D600;
+#ifdef BT_ILP32
+_Static_assert(sizeof(DepthFrameState) == 0x80, "depth frame banks");
+_Static_assert(__builtin_offsetof(DepthFrameState, index) == 0x7C, "depth read bank");
+#endif
+#define DEPTH_STATE (&D_8012D600)
+#define DEPTH_LIST (D_8012D600.list)
+#define DEPTH_INDEX (D_8012D600.index)
 #define DEPTH_RETAIL(decl)
 #define DEPTH_FIELD(host, retail) host
 #else
