@@ -1,61 +1,107 @@
 #include "common.h"
 #include "gl/introsync_state.h"
 #include "inflate_tables.inc"
-typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D56C; /* offsets.py genstruct: fields from raw offsets on D_8012D56C; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D564; /* offsets.py genstruct: fields from raw offsets on D_8012D564; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D560; /* offsets.py genstruct: fields from raw offsets on D_8012D560; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D568; /* offsets.py genstruct: fields from raw offsets on D_8012D568; rename once understood */ s32 func_800E4730(s32 arg0) {
-    extern void *D_8012D560;
-    extern void *D_8012D564;
-    extern void *D_8012D568;
-    extern void *D_8012D56C;
-    if ((D_8012D560 != NULL) && (arg0 == (((Obj1EBE020_func_800E4730_D_8012D560 *)D_8012D560)->unk3A))) {
+struct huft {
+    u8 e, b;
+    union { u16 n; struct huft *t; } v;
+};
+struct decoder {
+    u8 *input;
+    s32 input_pos;
+    u8 *output;
+    u32 bits, count, output_pos;
+    struct huft *tl, *td;
+    s32 bl, bd;
+    struct huft *tables;
+    s32 used, offset;
+    u8 *allocation;
+    u8 stage, final;
+    s16 asset, limit;
+};
+enum { decode_table_capacity = 0x2800 / 8 };
+#ifdef BT_NATIVE
+struct decoder *D_8012D560[4];
+void *D_8012D570;
+#ifdef BT_ILP32
+_Static_assert(sizeof(struct decoder) == 0x40, "asset decoder size");
+_Static_assert(sizeof(struct huft) == 8, "Huffman table entry");
+_Static_assert(__builtin_offsetof(struct decoder, tables) == 0x28, "Huffman workspace");
+_Static_assert(__builtin_offsetof(struct decoder, allocation) == 0x34, "decoded asset");
+_Static_assert(__builtin_offsetof(struct decoder, asset) == 0x3A, "decoded asset id");
+#endif
+#endif
+
+s32 func_800E4730(s32 arg0) {
+#ifdef BT_NATIVE
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (D_8012D560[i] && D_8012D560[i]->asset == arg0) return i;
+    }
+    return -1;
+#else
+    extern struct decoder *D_8012D560[];
+    extern struct decoder *D_8012D564;
+    extern struct decoder *D_8012D568;
+    extern struct decoder *D_8012D56C;
+    if ((D_8012D560[0] != NULL) && (arg0 == D_8012D560[0]->asset)) {
         return 0;
     }
-    if ((D_8012D564 != NULL) && (arg0 == (((Obj1EBE020_func_800E4730_D_8012D564 *)D_8012D564)->unk3A))) {
+    if ((D_8012D564 != NULL) && (arg0 == D_8012D564->asset)) {
         return 1;
     }
-    if ((D_8012D568 != NULL) && (arg0 == (((Obj1EBE020_func_800E4730_D_8012D568 *)D_8012D568)->unk3A))) {
+    if ((D_8012D568 != NULL) && (arg0 == D_8012D568->asset)) {
         return 2;
     }
-    if ((D_8012D56C != NULL) && (arg0 == (((Obj1EBE020_func_800E4730_D_8012D56C *)D_8012D56C)->unk3A))) {
+    if ((D_8012D56C != NULL) && (arg0 == D_8012D56C->asset)) {
         return 3;
     }
     return -1;
-}    typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E47CC_D_8012D56C; /* offsets.py genstruct: fields from raw offsets on D_8012D56C; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E47CC_D_8012D564; /* offsets.py genstruct: fields from raw offsets on D_8012D564; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E47CC_D_8012D560; /* offsets.py genstruct: fields from raw offsets on D_8012D560; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E47CC_D_8012D568; /* offsets.py genstruct: fields from raw offsets on D_8012D568; rename once understood */
+#endif
+}
 
 s32 func_800E47CC(void) {
-    extern void *D_8012D560;
-    extern void *D_8012D564;
-    extern void *D_8012D568;
-    extern void *D_8012D56C;
-    if (D_8012D560 == NULL) {
+#ifdef BT_NATIVE
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (!D_8012D560[i] || D_8012D560[i]->asset == -1) return i;
+    }
+    return -1;
+#else
+    extern struct decoder *D_8012D560[];
+    extern struct decoder *D_8012D564;
+    extern struct decoder *D_8012D568;
+    extern struct decoder *D_8012D56C;
+    if (D_8012D560[0] == NULL) {
         return 0;
     }
-    if ((((Obj1EBE020_func_800E47CC_D_8012D560 *)D_8012D560)->unk3A) == -1) {
+    if (D_8012D560[0]->asset == -1) {
         return 0;
     }
     if (D_8012D564 == NULL) {
         return 1;
     }
-    if ((((Obj1EBE020_func_800E47CC_D_8012D564 *)D_8012D564)->unk3A) == -1) {
+    if (D_8012D564->asset == -1) {
         return 1;
     }
     if (D_8012D568 == NULL) {
         return 2;
     }
-    if ((((Obj1EBE020_func_800E47CC_D_8012D568 *)D_8012D568)->unk3A) == -1) {
+    if (D_8012D568->asset == -1) {
         return 2;
     }
     if (D_8012D56C == NULL) {
         return 3;
     }
-    if ((((Obj1EBE020_func_800E47CC_D_8012D56C *)D_8012D56C)->unk3A) == -1) {
+    if (D_8012D56C->asset == -1) {
         return 3;
     }
     return -1;
+#endif
 }
 
 s32 func_800E488C(s32 arg0) {
-    extern void *D_8012D560;
-    BtIntPtr heap_alloc(s32);
+    BT_IDO_ONLY(extern struct decoder *D_8012D560[];)
+    void *heap_alloc(s32);
     void heap_free(void *);
     void func_8001311C(u8 *, s32);
     s32 func_800D5A6C(s32);
@@ -66,7 +112,7 @@ s32 func_800E488C(s32 arg0) {
     s32 func_800E659C(void *);
     s32 func_800E6728(void *);
     s32 index;
-    u8 *state;
+    struct decoder *state;
     s32 size;
     s32 status;
     u32 result;
@@ -75,38 +121,42 @@ s32 func_800E488C(s32 arg0) {
     if (index == -1) {
         index = func_800E47CC();
         if (index < 0) return 0;
-        (&D_8012D560)[index] = heap_alloc(0x40);
-        *((u8 *)(&D_8012D560)[index] + 0x38) = 1;
-        *(s16 *)((u8 *)(&D_8012D560)[index] + 0x3A) = arg0;
-        *(s16 *)((u8 *)(&D_8012D560)[index] + 0x3C) = 2500;
+        D_8012D560[index] = heap_alloc(sizeof(*state));
+        D_8012D560[index]->stage = 1;
+        D_8012D560[index]->asset = arg0;
+        D_8012D560[index]->limit = 2500;
     }
-    state = (&D_8012D560)[index];
-    if (state[0x38] == 0) return 1;
-    switch (state[0x38]) {
+    state = D_8012D560[index];
+    if (state->stage == 0) return 1;
+    switch (state->stage) {
     case 1:
-        *(void **)(state + 0x34) = NULL;
-        *(s32 *)(state + 0xC) = 0;
-        *(s32 *)(state + 0x10) = 0;
-        *(s32 *)(state + 0x14) = 0;
-        *(void **)(state + 0x28) = heap_alloc(0x2800);
-        *(s32 *)(state + 0x30) = func_800D5A6C(*(s16 *)(state + 0x3A));
-        *(void **)state = heap_alloc(0x1800);
-        func_8001311C(*(u8 **)state, *(s32 *)(state + 0x30));
-        *(s32 *)(state + 0x30) += 0x1800;
-        size = **(u32 **)state;
+        state->allocation = NULL;
+        state->bits = 0;
+        state->count = 0;
+        state->output_pos = 0;
+        state->tables = heap_alloc(decode_table_capacity * sizeof(struct huft));
+        state->offset = func_800D5A6C(state->asset);
+        state->input = heap_alloc(0x1800);
+        func_8001311C(state->input, state->offset);
+        state->offset += 0x1800;
+#ifdef BT_NATIVE
+        size = ((u32)state->input[0] << 8) | state->input[1];
+#else
+        size = *(u32 *)state->input;
         size = (u32)size >> 16;
+#endif
         size *= 16;
-        *(s32 *)(state + 4) = 2;
-        *(void **)(state + 0x34) = heap_alloc(size);
-        if (*(void **)(state + 0x34) == NULL) {
+        state->input_pos = 2;
+        state->allocation = heap_alloc(size);
+        if (state->allocation == NULL) {
             func_800E4B1C(index);
             return 0;
         }
-        *(void **)(state + 8) = *(void **)(state + 0x34);
-        state[0x38] = 2;
+        state->output = state->allocation;
+        state->stage = 2;
         return 0;
     case 2:
-        *(s32 *)(state + 0x2C) = 0;
+        state->used = 0;
         result = 0;
         status = func_800E4D28(state);
         switch (status) {
@@ -114,36 +164,36 @@ s32 func_800E488C(s32 arg0) {
             do {
                 func_800E5EC0((void *)state);
             } while (++result < 0);
-            state[0x38] = 3;
+            state->stage = 3;
             break;
         case 0:
             func_800E6728(state);
-            state[0x38] = 4;
+            state->stage = 4;
             return 0;
         case 1:
             func_800E659C(state);
-            state[0x38] = 4;
+            state->stage = 4;
             break;
         }
         return 0;
     case 3:
-        if (func_800E4E54(state) == 0) state[0x38] = 4;
+        if (func_800E4E54(state) == 0) state->stage = 4;
         return 0;
     case 4:
-        if (state[0x39]) {
-            if (*(void **)(state + 0x28) != NULL) {
-                heap_free(*(void **)(state + 0x28));
-                *(void **)(state + 0x28) = NULL;
+        if (state->final) {
+            if (state->tables != NULL) {
+                heap_free(state->tables);
+                state->tables = NULL;
             }
-            if (*(void **)state != NULL) {
-                heap_free(*(void **)state);
-                *(void **)state = NULL;
+            if (state->input != NULL) {
+                heap_free(state->input);
+                state->input = NULL;
             }
-            state[0x38] = 0;
-            osWritebackDCache(*(void **)(state + 0x34), *(s32 *)(state + 0x14));
+            state->stage = 0;
+            osWritebackDCache(state->allocation, state->output_pos);
             return 1;
         } else {
-            state[0x38] = 2;
+            state->stage = 2;
             return 0;
         }
     case 0:
@@ -157,7 +207,7 @@ s32 func_800E488C(s32 arg0) {
 s32 func_800E4AF0(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 func_800E4730();
 #ifdef BT_NATIVE
-    if (((s32 (*)())func_800E4730)() < 0) {
+    if (func_800E4730(bt_a0) < 0) {
 #else
     if (func_800E4730() < 0) {
 #endif
@@ -168,19 +218,19 @@ s32 func_800E4AF0(BT_PARAM_OR_VOID(s32 bt_a0)) {
 
 s32 func_800E4B1C(s32 arg0) {
     void heap_free(void *);
-    extern void *D_8012D560;
-    if ((&D_8012D560)[arg0] != NULL) {
-        if (*(void **)((s8 *)(&D_8012D560)[arg0] + 0x34) != NULL) {
-            heap_free(*(void **)((s8 *)(&D_8012D560)[arg0] + 0x34));
+    BT_IDO_ONLY(extern struct decoder *D_8012D560[];)
+    if (D_8012D560[arg0] != NULL) {
+        if (D_8012D560[arg0]->allocation != NULL) {
+            heap_free(D_8012D560[arg0]->allocation);
         }
-        if (*(void **)(&D_8012D560)[arg0] != NULL) {
-            heap_free(*(void **)(&D_8012D560)[arg0]);
+        if (D_8012D560[arg0]->input != NULL) {
+            heap_free(D_8012D560[arg0]->input);
         }
-        if (*(void **)((s8 *)(&D_8012D560)[arg0] + 0x28) != NULL) {
-            heap_free(*(void **)((s8 *)(&D_8012D560)[arg0] + 0x28));
+        if (D_8012D560[arg0]->tables != NULL) {
+            heap_free(D_8012D560[arg0]->tables);
         }
-        heap_free((&D_8012D560)[arg0]);
-        (&D_8012D560)[arg0] = NULL;
+        heap_free(D_8012D560[arg0]);
+        D_8012D560[arg0] = NULL;
     }
     BT_NATIVE_ONLY(return 0;) }
 
@@ -192,7 +242,7 @@ s32 func_800E4BB8(BT_PARAM_OR_VOID(s32 bt_a0)) {
     s32 temp_v0;
 
 #ifdef BT_NATIVE
-    temp_v0 = ((s32 (*)())func_800E4730)();
+    temp_v0 = func_800E4730(bt_a0);
 #else
     temp_v0 = func_800E4730();
 #endif
@@ -201,17 +251,17 @@ s32 func_800E4BB8(BT_PARAM_OR_VOID(s32 bt_a0)) {
     }
     func_800E4B1C(temp_v0);
     return 1;
-}    typedef struct { u8 pad0[0x34]; s32 unk34; } Obj1EBE020_func_800E4BF4_temp_a0; /* offsets.py genstruct: fields from raw offsets on temp_a0; rename once understood */
+}
 
-s32 func_800E4BF4(s32 arg0) {
+void * func_800E4BF4(s32 arg0) {
     s32 func_800E488C(s32);
     void heap_free(void *);
-    extern void *D_8012D560;
+    BT_IDO_ONLY(extern struct decoder *D_8012D560[];)
     s32 sp24;
-    s32 sp20;
+    void * sp20;
     s32 temp_v0;
-    void **temp_s0;
-    void *temp_a0;
+    struct decoder **temp_s0;
+    struct decoder *temp_a0;
 
     temp_v0 = func_800E4730(arg0);
     sp24 = temp_v0;
@@ -223,17 +273,27 @@ s32 func_800E4BF4(s32 arg0) {
 
         } while (func_800E488C(arg0) == 0);
     }
-    temp_s0 = &(&D_8012D560)[sp24];
+    temp_s0 = &D_8012D560[sp24];
     temp_a0 = *temp_s0;
-    sp20 = (((Obj1EBE020_func_800E4BF4_temp_a0 *)temp_a0)->unk34);
+    sp20 = temp_a0->allocation;
     heap_free(temp_a0);
     *temp_s0 = NULL;
     return sp20;
 }
 
-void func_800E4C7C(void) { extern void *D_8012D560; extern long D_8012D570; extern void *defrag(void *);  void **p;
-p=&D_8012D560; do { if(*p) *p=defrag(*p); p++; } while(p!=(void **)(unsigned long)&D_8012D570); D_8012D570=(long)defrag((void *)D_8012D570); }
-
+#ifdef BT_NATIVE
+void func_800E4C7C(void) {
+    void *defrag(void *);
+    s32 i;
+    for (i = 0; i < 4; i++) {
+        if (D_8012D560[i]) D_8012D560[i] = defrag(D_8012D560[i]);
+    }
+    D_8012D570 = defrag(D_8012D570);
+}
+#else
+void func_800E4C7C(void) { extern struct decoder *D_8012D560[]; extern void *D_8012D570; extern void *defrag(void *);  void **p;
+p=(void **)D_8012D560; do { if(*p) *p=defrag(*p); p++; } while(p!=(void **)(unsigned long)&D_8012D570); D_8012D570=defrag(D_8012D570); }
+#endif
 
 /* extern */
 
@@ -249,18 +309,6 @@ void func_800E4CE8(void) {
 }
 
 s32 func_800E4D28(void *arg0) {
-    struct decoder {
-        u8 *input;
-        s32 input_pos;
-        u8 *output;
-        u32 bits;
-        u32 count;
-        s32 unused14[7];
-        s32 offset;
-        s32 unused34;
-        u8 unused38;
-        u8 final;
-    };
     void func_8001311C(u8 *, s32);
     struct decoder *d = arg0;
     u32 count;
@@ -312,43 +360,17 @@ s32 func_800E4D28(void *arg0) {
 }
 
 s32 func_800E4E54(void *arg0) {
-    struct code {
-        u8 e;
-        u8 b;
-        union {
-            u16 n;
-            struct code *t;
-        } v;
-    };
-    struct decoder {
-        u8 *input;
-        s32 input_pos;
-        u8 *output;
-        u32 bits;
-        u32 count;
-        u32 output_pos;
-        struct code *tl;
-        struct code *td;
-        s32 bl;
-        s32 bd;
-        s32 unused28;
-        s32 unused2c;
-        s32 offset;
-        s32 unused34;
-        s32 unused38;
-        s16 limit;
-    };
     void func_8001311C(u8 *, s32);
     extern u16 D_801232C0[];
     register unsigned int e;
-    struct code *t;
+    struct huft *t;
     register u32 b;
     register unsigned int k;
     u32 ml;
     u32 md;
     s32 counter = 0;
-    struct code *tl;
-    struct code *td;
+    struct huft *tl;
+    struct huft *td;
     u8 *slide;
     unsigned int w;
 
@@ -474,40 +496,17 @@ s32 func_800E4E54(void *arg0) {
 }
 
 s32 func_800E5390(void *arg0) {
-    struct code {
-        u8 e;
-        u8 b;
-        union {
-            u16 n;
-            struct code *t;
-        } v;
-    };
-    struct decoder {
-        u8 *input;
-        s32 input_pos;
-        u8 *output;
-        u32 bits;
-        u32 count;
-        u32 output_pos;
-        struct code *tl;
-        struct code *td;
-        s32 bl;
-        s32 bd;
-        s32 unused28;
-        s32 unused2c;
-        s32 offset;
-    };
     void func_8001311C(u8 *, s32);
     extern u16 D_801232C0[];
     register unsigned int e;
-    struct code *t;
+    struct huft *t;
     register u32 b;
     register unsigned int k;
     u32 ml;
     u32 md;
     u8 *slide = ((struct decoder *)arg0)->output;
-    struct code *tl = ((struct decoder *)arg0)->tl;
-    struct code *td = ((struct decoder *)arg0)->td;
+    struct huft *tl = ((struct decoder *)arg0)->tl;
+    struct huft *td = ((struct decoder *)arg0)->td;
     unsigned int w;
 
     b = ((struct decoder *)arg0)->bits;
@@ -621,7 +620,7 @@ s32 func_800E5390(void *arg0) {
     return 0;
 }
 
-int func_800E589C(unsigned int *b, unsigned int n, unsigned int s, u16 *d, u8 *e, struct huft **t, int *m, struct workspace *state) {
+int func_800E589C(unsigned int *b, unsigned int n, unsigned int s, u16 *d, u8 *e, struct huft **t, int *m, struct decoder *state) {
     unsigned int a;
     unsigned int c[17];
     unsigned int f;
@@ -633,14 +632,7 @@ int func_800E589C(unsigned int *b, unsigned int n, unsigned int s, u16 *d, u8 *e
     int l;
     register unsigned int *p;
     register struct huft *q;
-    struct huft {
-        u8 e;
-        u8 b;
-        union {
-            u16 n;
-            struct huft *t;
-        } v;
-    } r;
+    struct huft r;
     struct huft *u[16];
     unsigned int v[288];
     register int w;
@@ -648,11 +640,6 @@ int func_800E589C(unsigned int *b, unsigned int n, unsigned int s, u16 *d, u8 *e
     unsigned int *xp;
     int y;
     unsigned int z;
-    struct workspace {
-        u8 pad[0x28];
-        struct huft *tables;
-        s32 used;
-    };
 
     bzero(c, sizeof(c));
     p = b;
@@ -769,30 +756,7 @@ int func_800E589C(unsigned int *b, unsigned int n, unsigned int s, u16 *d, u8 *e
     return y != 0 && g != 1;
 }
 
-int func_800E5EC0(struct workspace *arg0) {
-    struct code {
-        u8 e;
-        u8 b;
-        union {
-            u16 n;
-            struct code *t;
-        } v;
-    };
-    struct decoder {
-        u8 *input;
-        s32 input_pos;
-        u8 *output;
-        u32 bits;
-        unsigned int count;
-        unsigned int output_pos;
-        struct code *tl;
-        struct code *td;
-        int bl;
-        int bd;
-        struct code *tables;
-        s32 used;
-        s32 offset;
-    };
+int func_800E5EC0(struct decoder *arg0) {
     void func_8001311C(u8 *, s32);
     extern u8 D_801231F0[];
 
@@ -806,8 +770,8 @@ int func_800E5EC0(struct workspace *arg0) {
     unsigned int l;
     unsigned int m;
     unsigned int n;
-    struct code *tl;
-    struct code *td;
+    struct huft *tl;
+    struct huft *td;
     int bl;
     int bd;
     unsigned int nb;
@@ -960,7 +924,7 @@ int func_800E5EC0(struct workspace *arg0) {
     ((struct decoder *)arg0)->tl = tl;
     ((struct decoder *)arg0)->td = td;
     return 0;
-}    typedef struct { u8 pad0[0x18]; struct huft * unk18; struct huft * unk1C; } Obj1EBE020_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 s32 func_800E659C(void *arg0) {
     extern u16 D_80123204[];
@@ -993,25 +957,15 @@ s32 func_800E659C(void *arg0) {
     }
     bd = 5;
     func_800E589C(l, 30, 0, D_80123264, D_801232A0, &td, &bd, arg0);
-    *(int *)((u8 *)arg0 + 0x20) = bl;
-    *(int *)((u8 *)arg0 + 0x24) = bd;
-    ((Obj1EBE020_arg0 *)arg0)->unk18 = tl;
-    ((Obj1EBE020_arg0 *)arg0)->unk1C = td;
+    ((struct decoder *)arg0)->bl = bl;
+    ((struct decoder *)arg0)->bd = bd;
+    ((struct decoder *)arg0)->tl = tl;
+    ((struct decoder *)arg0)->td = td;
     func_800E5390(arg0);
     return 0;
 }
 
 s32 func_800E6728(void *arg0) {
-    struct decoder {
-        u8 *input;
-        s32 input_pos;
-        u8 *output;
-        u32 bits;
-        u32 count;
-        s32 output_pos;
-        s32 unused18[6];
-        s32 offset;
-    };
     void func_8001311C(u8 *, s32);
     struct decoder *d = arg0;
     s32 unused;
@@ -1096,12 +1050,8 @@ s32 func_800E6728(void *arg0) {
 }
 
 void func_800E692C(void) {
-    BtIntPtr heap_alloc(s32);
-#ifdef BT_NATIVE
-    extern long D_8012D570; // same type as in func_800E4C7C
-#else
-    extern s32 D_8012D570;
-#endif
+    void *heap_alloc(s32);
+    BT_IDO_ONLY(extern void *D_8012D570;)
     D_8012D570 = heap_alloc(0x40);
 }
 
@@ -1154,9 +1104,4 @@ u32 func_800E6A00(void) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-void * D_8012D560 BT_DATA(4, bss_core2bss2_1, 0xC20);
-void * D_8012D564 BT_DATA(4, bss_core2bss2_1, 0xC24);
-void * D_8012D568 BT_DATA(4, bss_core2bss2_1, 0xC28);
-void * D_8012D56C BT_DATA(4, bss_core2bss2_1, 0xC2C);
-long D_8012D570 BT_DATA(4, bss_core2bss2_1, 0xC30);
 #endif

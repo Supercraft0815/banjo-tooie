@@ -282,6 +282,20 @@ endif()
 add_test(NAME native_assets COMMAND "${Python3_EXECUTABLE}"
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/assets_fixture.py" "$<TARGET_FILE:bt_native_assets_test>")
 
+add_executable(bt_native_asset_decoder_test tests/asset_decoder.c memory.c platform/rdram.c
+    "${BT_ROOT}/src/core2/1EBE020.c")
+target_link_libraries(bt_native_asset_decoder_test PRIVATE bt_native_options)
+if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+    target_compile_options(bt_native_asset_decoder_test PRIVATE -ffunction-sections -fdata-sections)
+endif()
+if(APPLE)
+    target_link_options(bt_native_asset_decoder_test PRIVATE -Wl,-dead_strip)
+else()
+    target_link_options(bt_native_asset_decoder_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_asset_decoder COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/asset_decoder_fixture.py" "$<TARGET_FILE:bt_native_asset_decoder_test>")
+
 add_executable(bt_native_database_test tests/database.c)
 target_link_libraries(bt_native_database_test PRIVATE bt_native_core)
 if(APPLE)

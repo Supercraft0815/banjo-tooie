@@ -3395,3 +3395,19 @@ Laufzeit-Fixups behalten ihre Adresse. Drei neue Zeigerwörter in einer
 Compilerkonstante verweisen auf die drei Weltvektoren an den
 Originaladressen 0x80127EF0, 0x80127EF4 und 0x80127EF8. Belege unter
 `build/acceptance/n1-2026-11-18/current-spline-storage*`.
+
+### 2026-11-19 – Vier parallele Asset-Decoder (N1/N3)
+
+Jeder offene Asset-Stream besitzt seinen eigenen Eingabepuffer, Lesestand
+und seine Huffman-Tabellen. Die Reservierung für die Tabellen richtet
+sich nach der tatsächlichen Zeigerbreite. Der neue CTest erzeugt getrennte
+Deflate-Streams mit gespeicherten Blöcken sowie festen und dynamischen
+Huffman-Codes. Er prüft die entpackten Bytes, das Nachladen an der
+0x1800-Byte-Grenze und die Wiederverwendung eines abgebrochenen Streams.
+Die gezielte Gastprobe liest ebenfalls vier Streams gleichzeitig.
+
+Alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 67 Sanitizertests
+bestehen. Original-IDO bestätigt alle 16.401 Funktionen und beide
+vollständigen ROMs. Fünf Gastfunktionen ändern ihre IR. Alle 9.706
+Laufzeit-Fixups behalten ihre Zieladressen. Belege unter
+`build/acceptance/n1-2026-11-18/current-asset-decoder*`.

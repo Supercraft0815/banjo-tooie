@@ -324,7 +324,7 @@ void *func_800D5B34(s32 arg0)
 {
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
   s32 func_800E4AF0();
-  s32 func_800E4BF4(s32);
+  void *func_800E4BF4(s32);
   void *func_800E6950(s32, s32, void *);
   void *_gldbDll_entrypoint_0(s32, s32 *);
   void *heap_alloc(s32);

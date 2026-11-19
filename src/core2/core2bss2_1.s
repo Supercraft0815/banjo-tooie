@@ -161,16 +161,7 @@ dlabel D_8012D558
     /* 8012D558 */ .space 0x08
 
 dlabel D_8012D560
-    /* 8012D560 */ .space 0x04
-
-dlabel D_8012D564
-    /* 8012D564 */ .space 0x04
-
-dlabel D_8012D568
-    /* 8012D568 */ .space 0x04
-
-dlabel D_8012D56C
-    /* 8012D56C */ .space 0x04
+    /* 8012D560 */ .space 0x10
 
 dlabel D_8012D570
     /* 8012D570 */ .space 0x10

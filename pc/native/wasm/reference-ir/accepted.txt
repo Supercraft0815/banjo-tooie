@@ -462,3 +462,9 @@ world-vector pointers and five LP64 helpers removed from the guest. All
 9,703 previous fixups retain their addresses. The three additional words
 point to D_80127EF0, D_80127EF4 and D_80127EF8. Both complete ROMs and
 all 74 replays match. See n1-2026-11-18/current-spline-storage-ir.log.
+
+2026-11-19  Concurrent asset decoders
+Five guest functions change how they index the four independent decoder
+records and read their size headers. All 9,706 fixup locations, both complete
+ROM images and all 74 replay traces match. See
+n1-2026-11-18/current-asset-decoder-ir.log and current-asset-decoder-full.log.
