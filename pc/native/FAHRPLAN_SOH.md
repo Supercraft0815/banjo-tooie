@@ -47,6 +47,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Markertreffer. Die ersten 32 Treffer liegen in den festen Feldern. Weitere Treffer behalten ihren Marker und ihre Kugelnummer in einem erweiterbaren Vektor.
 
+- Spielerrückkehr. Beide Rückkehrpositionen, Blickrichtung, Karten-ID und Steuerflags teilen sich einen Zustand. Die Warteliste für Kartenwechsel verwendet native Vektorzeiger.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

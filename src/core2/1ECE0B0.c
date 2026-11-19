@@ -2,6 +2,19 @@
 #include "core2/1EC3810.h"
 #ifdef BT_NATIVE
 #include "core2/1ECD170.h"
+#include "vector.h"
+
+typedef struct {
+    u8 mode, overridePosition, flagsCleared, pad3, flag4, flag5, pad6[2];
+    f32 position10[3];
+    f32 yaw;
+    f32 position11[3];
+    s32 map;
+} PlayerReturnState;
+Vector *D_801354F0;
+PlayerReturnState D_801354F8;
+_Static_assert(sizeof(PlayerReturnState) == 0x28, "player return state");
+
 void func_800F3BB0(PlayerState *, f32[3]);
 #endif
 
@@ -13,12 +26,12 @@ extern s32 func_8009E674(PlayerState *, s32);
 BT_IDO_ONLY(extern u8 D_801354DA;)
 
 BT_IDO_ONLY(extern u32 D_801354DC;)
-extern u8 D_801354F8;
-extern u8 D_801354F9;
-extern u8 D_801354FC;
-extern u8 D_801354FD;
+BT_IDO_ONLY(extern u8 D_801354F8;)
+BT_IDO_ONLY(extern u8 D_801354F9;)
+BT_IDO_ONLY(extern u8 D_801354FC;)
+BT_IDO_ONLY(extern u8 D_801354FD;)
 
-extern f32 D_8013550C;
+BT_IDO_ONLY(extern f32 D_8013550C;)
 
 void func_800F47C0(void (*arg0)(PlayerState *)) {
     BT_IDO_ONLY(extern u8 D_801354B0[];)
@@ -2135,13 +2148,13 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F8874(s32 arg0)
 }
 
 void *func_800F88A0(s32 arg0) {
-    BtUIntPtr vector_begin(s32);
-    BtUIntPtr vector_end(s32);
-    extern s32 D_801354F0;
-    BtUIntPtr sp1C;
-    BtUIntPtr temp_v0;
-    BtUIntPtr var_v1;
-    u32 result;
+    BT_IDO_ONLY(BtUIntPtr vector_begin(s32);)
+    BT_IDO_ONLY(BtUIntPtr vector_end(s32);)
+    BT_IDO_ONLY(extern s32 D_801354F0;)
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) sp1C;
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) temp_v0;
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) var_v1;
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(u32) result;
 
     sp1C = vector_begin(D_801354F0);
     temp_v0 = vector_end(D_801354F0);
@@ -2175,7 +2188,7 @@ s32 func_800F8914(u8 *arg0, BtIntPtr arg1) {
 }
 
 s32 func_800F89BC(void) {
-    if (D_801354F8 == 2) {
+    if (BT_DATA_FIELD(D_801354F8.mode, D_801354F8) == 2) {
         return 0xB;
     }
     return 1;
@@ -2183,24 +2196,24 @@ s32 func_800F89BC(void) {
 
 s32 func_800F89E4(s32 arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    extern s32 D_80135500;
-    extern s32 D_80135510;
-    extern s32 D_8013551C;
+    BT_IDO_ONLY(extern s32 D_80135500;)
+    BT_IDO_ONLY(extern s32 D_80135510;)
+    BT_IDO_ONLY(extern s32 D_8013551C;)
     s32 sp1C;
 
     if (arg0 == 0xA) {
-        func_800EE7F8(arg1, (f32 *)&D_80135500);
-        sp1C = D_8013551C;
+        func_800EE7F8(arg1, BT_DATA_FIELD(D_801354F8.position10, (f32 *)&D_80135500));
+        sp1C = BT_DATA_FIELD(D_801354F8.map, D_8013551C);
     } else if (arg0 == 0xB) {
-        func_800EE7F8(arg1, (f32 *)&D_80135510);
-        sp1C = D_8013551C;
+        func_800EE7F8(arg1, BT_DATA_FIELD(D_801354F8.position11, (f32 *)&D_80135510));
+        sp1C = BT_DATA_FIELD(D_801354F8.map, D_8013551C);
     }
     return sp1C;
 }
 
 f32 func_800F8A50(void)
 {
-	return D_8013550C;
+	return BT_DATA_FIELD(D_801354F8.yaw, D_8013550C);
 }
 
 /* extern */
@@ -2226,12 +2239,12 @@ u8 func_800F8A80(BT_PARAM_OR_VOID(s32 bt_a0)) {
 }    typedef struct { u8 unk0; u8 unk1; } Obj1ECE0B0_func_800F8AA4_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
 
 s32 func_800F8AA4(void) {
-    BtUIntPtr vector_begin(s32);
-    BtUIntPtr vector_end(s32);
-    extern s32 D_801354F0;
-    BtUIntPtr sp1C;
-    BtUIntPtr temp_v0;
-    BtUIntPtr var_v1;
+    BT_IDO_ONLY(BtUIntPtr vector_begin(s32);)
+    BT_IDO_ONLY(BtUIntPtr vector_end(s32);)
+    BT_IDO_ONLY(extern s32 D_801354F0;)
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) sp1C;
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) temp_v0;
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) var_v1;
     s32 result;
 
     sp1C = vector_begin(D_801354F0);
@@ -2250,28 +2263,28 @@ void func_800F8B0C(s32 arg0, f32 *arg1) { void *func_800F88A0(); void func_800EE
 void func_800F8B38(s32 arg0, f32 *arg1) { void *func_800F88A0(); void func_800EE7F8(f32 *, f32 *); func_800EE7F8(arg1, (f32 *)((u8 *)func_800F88A0(arg0) + 0x30)); }
 
 s32 func_800F8B64(void) {
-	return (s32)D_801354F9;
+	return (s32)BT_DATA_FIELD(D_801354F8.overridePosition, D_801354F9);
 }
 
 u8 func_800F8B70(void) {
-	return D_801354FC;
+	return BT_DATA_FIELD(D_801354F8.flag4, D_801354FC);
 }
 
 u8 func_800F8B7C(void)
 {
-	return D_801354FD;
+	return BT_DATA_FIELD(D_801354F8.flag5, D_801354FD);
 }
 
 u8 func_800F8B88(void) {
-	return D_801354F8;
+	return BT_DATA_FIELD(D_801354F8.mode, D_801354F8);
 }
 
 void func_800F8B94(void) {
-    extern s32 D_801354F0;
-    extern s32 D_80135500;
-    extern s32 D_80135510;
-    BtUIntPtr vector_begin(s32);
-    BtUIntPtr vector_end(s32);
+    BT_IDO_ONLY(extern s32 D_801354F0;)
+    BT_IDO_ONLY(extern s32 D_80135500;)
+    BT_IDO_ONLY(extern s32 D_80135510;)
+    BT_IDO_ONLY(BtUIntPtr vector_begin(s32);)
+    BT_IDO_ONLY(BtUIntPtr vector_end(s32);)
     s32 func_800F8D80(s32, u8 *);
     u8 *entry;
     u8 *begin;
@@ -2285,8 +2298,8 @@ void func_800F8B94(void) {
             player = func_800F6204(0);
             func_800F7E64(player, entry[0]);
             func_800F8268(player, entry[0x1D], entry[0x1C]);
-            if ((&D_801354F8)[1] && (entry[0] == 10 || entry[0] == 11)) {
-                func_800F8294(player, entry[0] == 10 ? (f32 *)&D_80135500 : (f32 *)&D_80135510);
+            if (BT_DATA_FIELD(D_801354F8.overridePosition, (&D_801354F8)[1]) && (entry[0] == 10 || entry[0] == 11)) {
+                func_800F8294(player, entry[0] == 10 ? BT_DATA_FIELD(D_801354F8.position10, (f32 *)&D_80135500) : BT_DATA_FIELD(D_801354F8.position11, (f32 *)&D_80135510));
             } else {
                 func_800F8294(player, (f32 *)(entry + 0x24));
             }
@@ -2294,7 +2307,7 @@ void func_800F8B94(void) {
             if (entry[1]) {
                 func_800F80D8(player);
             }
-            if (D_801354F8 != 1 && (entry[0] == 10 || entry[0] == 11)) {
+            if (BT_DATA_FIELD(D_801354F8.mode, D_801354F8) != 1 && (entry[0] == 10 || entry[0] == 11)) {
                 func_800F8358(player, 1);
             }
             switch (entry[2]) {
@@ -2344,40 +2357,41 @@ s32 func_800F8DA8(BT_PARAM_OR_VOID(s32 bt_a0)) {
 
 void func_800F8DD8(void) {
     void func_800F9A24(void);
-    void vector_free(void *vec);
-    extern s32 D_801354F0;
+    BT_IDO_ONLY(void vector_free(void *vec);)
+    BT_IDO_ONLY(extern s32 D_801354F0;)
     func_800F9A24();
     vector_free(D_801354F0);
     D_801354F0 = 0;
-}    typedef struct { u8 unk0; s8 unk1; u8 pad2[0x2]; s8 unk4; s8 unk5; u8 pad6[0xE]; f32 unk14; u8 pad18[0xC]; s32 unk24; } Obj1ECE0B0_D_801354F8; /* offsets.py genstruct: fields from raw offsets on &D_801354F8; rename once understood */
+}
+BT_IDO_ONLY(typedef struct { u8 unk0; s8 unk1; u8 pad2[0x2]; s8 unk4; s8 unk5; u8 pad6[0xE]; f32 unk14; u8 pad18[0xC]; s32 unk24; } Obj1ECE0B0_D_801354F8;)
 
 void func_800F8E08(void) {
     void func_800EFD24(f32 vec[3]);
     void func_800F9A44(void);
-    void * vector_new(u32 element_size, u32 count);
-    extern s32 D_801354F0;
-    extern s32 D_80135500;
-    extern s32 D_80135510;
-    extern s32 D_8013551C;
+    BT_IDO_ONLY(void * vector_new(u32 element_size, u32 count);)
+    BT_IDO_ONLY(extern s32 D_801354F0;)
+    BT_IDO_ONLY(extern s32 D_80135500;)
+    BT_IDO_ONLY(extern s32 D_80135510;)
+    BT_IDO_ONLY(extern s32 D_8013551C;)
     D_801354F0 = vector_new(0x3C, 2);
-    (((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk1) = 0;
-    (((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk4) = 0;
-    (((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk5) = 0;
-    (((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk0) = 0;
+    (BT_DATA_FIELD(D_801354F8.overridePosition, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk1)) = 0;
+    (BT_DATA_FIELD(D_801354F8.flag4, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk4)) = 0;
+    (BT_DATA_FIELD(D_801354F8.flag5, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk5)) = 0;
+    (BT_DATA_FIELD(D_801354F8.mode, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk0)) = 0;
     func_800F911C(1);
-    func_800EFD24(&D_80135500);
-    func_800EFD24(&D_80135510);
-    D_8013551C = 0;
+    func_800EFD24(BT_DATA_FIELD(D_801354F8.position10, &D_80135500));
+    func_800EFD24(BT_DATA_FIELD(D_801354F8.position11, &D_80135510));
+    BT_DATA_FIELD(D_801354F8.map, D_8013551C) = 0;
     func_800F9A44();
 }
 
 /* extern */
 
 s32 func_800F8E78(s32 arg0) {
-    extern s32 D_801354F0;
+    BT_IDO_ONLY(extern s32 D_801354F0;)
     void *func_800F88A0();
-    void vector_erase(void *vec, u32 index);
-    s32 vector_index_of(void *vec, void *element);
+    BT_IDO_ONLY(void vector_erase(void *vec, u32 index);)
+    BT_IDO_ONLY(s32 vector_index_of(void *vec, void *element);)
     void *var_v0;
 
     var_v0 = func_800F88A0(arg0);
@@ -2394,10 +2408,10 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F8EBC(s32 a0)
 /* extern */
 
 s32 func_800F8EE4(s32 arg0) {
-    extern s32 D_801354F0;
+    BT_IDO_ONLY(extern s32 D_801354F0;)
     void *func_800F88A0();
     s32 func_800F8914(u8 *, BtIntPtr);
-    u8 *vector_push_back(s32 *);
+    BT_IDO_ONLY(u8 *vector_push_back(s32 *);)
     u8 *temp_v0;
 
     temp_v0 = func_800F88A0(func_800F5410(arg0));
@@ -2410,27 +2424,27 @@ s32 func_800F8EE4(s32 arg0) {
 void func_800F8F3C(void) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    BtUIntPtr vector_begin(s32);
-    BtUIntPtr vector_end(s32);
-    extern s32 D_801354F0;
-    extern s32 D_80135500;
-    extern s32 D_80135510;
-    BtUIntPtr begin;
-    BtUIntPtr end;
-    BtUIntPtr entry;
+    BT_IDO_ONLY(BtUIntPtr vector_begin(s32);)
+    BT_IDO_ONLY(BtUIntPtr vector_end(s32);)
+    BT_IDO_ONLY(extern s32 D_801354F0;)
+    BT_IDO_ONLY(extern s32 D_80135500;)
+    BT_IDO_ONLY(extern s32 D_80135510;)
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) begin;
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) end;
+    BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtUIntPtr) entry;
 
-    if (D_801354F8 == 2 && D_801354F0 != 0) {
+    if (BT_DATA_FIELD(D_801354F8.mode, D_801354F8) == 2 && D_801354F0 != 0) {
         begin = vector_begin(D_801354F0);
         end = vector_end(D_801354F0);
         for (entry = begin; entry < end; entry += 0x3C) {
             if (*(u8 *)entry == 0xA) {
-                func_800EE7F8((f32 *)(entry + 0x24), (f32 *)&D_80135500);
-                *(s16 *)(entry + 0x22) = ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk24;
-                func_800EFA4C((f32 *)(entry + 0x30), 0.0f, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk14, 0.0f);
+                func_800EE7F8((f32 *)(entry + 0x24), BT_DATA_FIELD(D_801354F8.position10, (f32 *)&D_80135500));
+                *(s16 *)(entry + 0x22) = BT_DATA_FIELD(D_801354F8.map, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk24);
+                func_800EFA4C((f32 *)(entry + 0x30), 0.0f, BT_DATA_FIELD(D_801354F8.yaw, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk14), 0.0f);
             } else if (*(u8 *)entry == 0xB) {
-                func_800EE7F8((f32 *)(entry + 0x24), (f32 *)&D_80135510);
-                *(s16 *)(entry + 0x22) = ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk24;
-                func_800EFA4C((f32 *)(entry + 0x30), 0.0f, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk14, 0.0f);
+                func_800EE7F8((f32 *)(entry + 0x24), BT_DATA_FIELD(D_801354F8.position11, (f32 *)&D_80135510));
+                *(s16 *)(entry + 0x22) = BT_DATA_FIELD(D_801354F8.map, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk24);
+                func_800EFA4C((f32 *)(entry + 0x30), 0.0f, BT_DATA_FIELD(D_801354F8.yaw, ((Obj1ECE0B0_D_801354F8 *)&D_801354F8)->unk14), 0.0f);
             }
         }
     }
@@ -2443,73 +2457,74 @@ void func_800F9070(s32 arg0, s32 arg1) {
 
 void func_800F9098(s32 arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    extern s32 D_80135500;
-    extern s32 D_80135510;
-    extern s32 D_8013551C;
+    BT_IDO_ONLY(extern s32 D_80135500;)
+    BT_IDO_ONLY(extern s32 D_80135510;)
+    BT_IDO_ONLY(extern s32 D_8013551C;)
     if (arg0 == 0xA) {
-        func_800EE7F8((f32 *)&D_80135500, arg1);
+        func_800EE7F8(BT_DATA_FIELD(D_801354F8.position10, (f32 *)&D_80135500), arg1);
     } else if (arg0 == 0xB) {
-        func_800EE7F8((f32 *)&D_80135510, arg1);
+        func_800EE7F8(BT_DATA_FIELD(D_801354F8.position11, (f32 *)&D_80135510), arg1);
     }
-    D_8013551C = func_800EA05C();
-}    typedef struct { f32 unk0; } Obj1ECE0B0_D_8013550C; /* offsets.py genstruct: fields from raw offsets on &D_8013550C; rename once understood */
+    BT_DATA_FIELD(D_801354F8.map, D_8013551C) = func_800EA05C();
+}
+BT_IDO_ONLY(typedef struct { f32 unk0; } Obj1ECE0B0_D_8013550C;)
 
 void func_800F90EC(f32 arg0) {
-    extern f32 D_8013550C;
-    ((Obj1ECE0B0_D_8013550C *)&D_8013550C)->unk0 = arg0;
+    BT_IDO_ONLY(extern f32 D_8013550C;)
+    BT_DATA_FIELD(D_801354F8.yaw, ((Obj1ECE0B0_D_8013550C *)&D_8013550C)->unk0) = arg0;
 }
 
 void func_800F90F8(s32 arg0) {
-	D_801354F9 = arg0;
+	BT_DATA_FIELD(D_801354F8.overridePosition, D_801354F9) = arg0;
 }
 
 void func_800F9104(s32 arg0) {
-    extern u8 D_801354FC;
-    D_801354FC = arg0;
+    BT_IDO_ONLY(extern u8 D_801354FC;)
+    BT_DATA_FIELD(D_801354F8.flag4, D_801354FC) = arg0;
 }
 
 void func_800F9110(s32 arg0) {
-    extern u8 D_801354FD;
-    D_801354FD = arg0;
+    BT_IDO_ONLY(extern u8 D_801354FD;)
+    BT_DATA_FIELD(D_801354F8.flag5, D_801354FD) = arg0;
 }
 
 void func_800F911C(s32 arg0) {
     void func_800CF840(s32 arg0);
-    if (D_801354F8 == 3) {
+    if (BT_DATA_FIELD(D_801354F8.mode, D_801354F8) == 3) {
         func_800CF840(0);
     }
-    if ((D_801354F8 = arg0) == 3) {
+    if ((BT_DATA_FIELD(D_801354F8.mode, D_801354F8) = arg0) == 3) {
         func_800CF840(1);
     }
 }
 
 void func_800F9178(void)
 {
-    extern u8 D_801354FA;
+    BT_IDO_ONLY(extern u8 D_801354FA;)
 
-    D_801354FA = 0;
+    BT_DATA_FIELD(D_801354F8.flagsCleared, D_801354FA) = 0;
 }
 
 s32 func_800F9184(void) {
-    extern u8 D_801354FA;
-    return D_801354FA == 0;
+    BT_IDO_ONLY(extern u8 D_801354FA;)
+    return BT_DATA_FIELD(D_801354F8.flagsCleared, D_801354FA) == 0;
 }
 
 void func_800F9198(void) {
     void func_800F9C6C(void);
-    extern u8 D_801354FA;
-    if (D_801354FA == 0) {
+    BT_IDO_ONLY(extern u8 D_801354FA;)
+    if (BT_DATA_FIELD(D_801354F8.flagsCleared, D_801354FA) == 0) {
         func_800F90F8(0);
         func_800F9104(0);
         func_800F9110(0);
-        D_801354FA = 1;
+        BT_DATA_FIELD(D_801354F8.flagsCleared, D_801354FA) = 1;
     }
     func_800F9C6C();
 }
 
 void func_800F91EC(void) {
-    void * vector_defrag(void *vec);
-    extern s32 D_801354F0;
+    BT_IDO_ONLY(void * vector_defrag(void *vec);)
+    BT_IDO_ONLY(extern s32 D_801354F0;)
     D_801354F0 = vector_defrag(D_801354F0);
 }
 
@@ -2594,18 +2609,3 @@ void func_800F93C4(u32 *arg0, s32 *arg1) {
 }
 
 /* extern */
-
-#ifdef BT_NATIVE
-/* bss_to_c.py: native definitions of asm .bss labels */
-#include "bt_data.h"
-s32 D_801354F0 BT_DATA(4, bss_core2bss2_2, 0x2650);
-u8 D_801354F8 BT_DATA(4, bss_core2bss2_2, 0x2658);
-u8 D_801354F9 BT_DATA(4, bss_core2bss2_2, 0x2659);
-u8 D_801354FA BT_DATA(4, bss_core2bss2_2, 0x265A);
-u8 D_801354FC BT_DATA(4, bss_core2bss2_2, 0x265C);
-u8 D_801354FD BT_DATA(4, bss_core2bss2_2, 0x265D);
-s32 D_80135500 BT_DATA(4, bss_core2bss2_2, 0x2660);
-f32 D_8013550C BT_DATA(4, bss_core2bss2_2, 0x266C);
-s32 D_80135510 BT_DATA(4, bss_core2bss2_2, 0x2670);
-s32 D_8013551C BT_DATA(4, bss_core2bss2_2, 0x267C);
-#endif

@@ -8,12 +8,7 @@ extern s32 func_8009E674(PlayerState *, s32);
 BT_IDO_ONLY(extern u8 D_801354DA;)
 
 BT_IDO_ONLY(extern u32 D_801354DC;)
-extern u8 D_801354F8;
-extern u8 D_801354F9;
-extern u8 D_801354FC;
-extern u8 D_801354FD;
 
-extern f32 D_8013550C;
 
 void func_800F9400(s32 arg0) {
     void func_800C964C(s32 arg0);
