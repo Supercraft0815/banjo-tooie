@@ -54,10 +54,11 @@ dlabel D_8012B7F8
     /* 8012B7F8 */ .space 0x08
 
 dlabel D_8012B800
-    /* 8012B800 */ .space 0x0A
+    /* 8012B800 */ .space 0x660
 
-dlabel D_8012B80A
-    /* 8012B80A */ .space 0x656
+/* The original high-nibble lookup starts ten bytes into the first record. */
+.globl D_8012B80A
+D_8012B80A = D_8012B800 + 0xA
 
 dlabel D_8012BE60
     /* 8012BE60 */ .space 0x02

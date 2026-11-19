@@ -35,7 +35,11 @@ s16 D_8012BE60, D_8012BE62, D_8012BE64;
 #define CACHE_INFO(p) ((u32)((struct NativeAssetEntry *)(p))->id << 18)
 #define CACHE_TYPE(p) (((struct NativeAssetEntry *)(p))->type)
 #else
+#ifdef BT_ILP32
+u8 D_8012B800[136 * 12] BT_DATA(4, bss_core2bss1_2_status_tail, 0x3E0);
+#else
 extern u8 D_8012B800[];
+#endif
 #define SPLINE_ACTOR(actor, field, original) (original)
 #define SPLINE_FIELD(ctx, field, original) (original)
 #define CACHE_ENTRY_SIZE 12
@@ -706,7 +710,7 @@ u32 func_800D7138(s32 arg0) {
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
         return native_asset_cache[temp_v0].hi;
 #else
-        return (u32) *(u16 *) (D_8012B80A + (temp_v0 * 0xC)) >> 0xC;
+        return (u32) *(u16 *) (BT_DATA_FIELD(D_8012B800 + 0xA, D_8012B80A) + (temp_v0 * CACHE_ENTRY_SIZE)) >> 0xC;
 #endif
     }
     return -1U;
@@ -1632,6 +1636,5 @@ extern s32 *D_8012C014;
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-u8 D_8012B80A [ 1622 ] BT_DATA(4, bss_core2bss1_2_status_tail, 0x3EA);
 u8 D_8012BE6F [ 1 ] BT_DATA(4, bss_core2bss1_2_status_tail, 0xA4F);
 #endif

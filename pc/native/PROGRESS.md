@@ -2945,3 +2945,20 @@ Die kanonische Gast-IR stimmt mit dem vorigen Stand überein. Elf Gastsuiten,
 Original-IDO-Funktionen und beide ROM-Abbilder sind geprüft. Belege unter
 `build/acceptance/n2-2026-11-18/camera-player-on-humba*`, `on-humba-*`
 und `current-player-interrupt-host/`.
+
+## 2026-11-19 — N1, Speicherbereich des Asset-Caches
+
+Die 136 Cacheeinträge belegen gemeinsam 1.632 Bytes. Das Halbwort für
+die Typabfrage liegt zehn Bytes hinter dem Beginn des ersten Eintrags.
+Der Gast greift jetzt innerhalb dieses Arrays darauf zu. Das
+Original-IDO-Objekt führt die alte Adresse als Innenlabel. Auch die
+Adresse des nachfolgenden Symbols stimmt.
+
+Bei der Instrumentierung über alle 74 Szenarien überschreitet kein
+Cachezugriff mehr die Grenze seines Objekts. Im gesamten Spiel melden
+6.151 instrumentierte Stellen noch 1.446 Fremdzugriffe in 350 Funktionen
+und 80 Gruppen. Die einzige Änderung der kanonischen Gastfunktionen ist
+der gleichwertige Innenoffset in `func_800D7138`. Elf Gastsuiten,
+74 Referenzen mit 447.849 Retraces und 62 Sanitizertests bestehen.
+16.401 Original-IDO-Funktionen und beide ROM-Abbilder sind bytegleich.
+Die Belege liegen unter `build/acceptance/n1-2026-11-18/current-cache-records*`.
