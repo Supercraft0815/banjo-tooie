@@ -71,10 +71,7 @@ dlabel D_80127F20
     /* 80127F20 */ .space 0x08
 
 dlabel D_80127F28
-    /* 80127F28 */ .space 0x0C
-
-dlabel D_80127F34
-    /* 80127F34 */ .space 0x210
+    /* 80127F28 */ .space 0x21C
 
 dlabel D_80128144
     /* 80128144 */ .space 0x0C

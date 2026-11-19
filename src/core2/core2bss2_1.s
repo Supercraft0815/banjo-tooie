@@ -131,19 +131,7 @@ dlabel D_8012CF8C
     /* 8012CF8C */ .space 0x04
 
 dlabel D_8012CF90
-    /* 8012CF90 */ .space 0x14
-
-dlabel D_8012CFA4
-    /* 8012CFA4 */ .space 0x08
-
-dlabel D_8012CFAC
-    /* 8012CFAC */ .space 0x0C
-
-dlabel D_8012CFB8
-    /* 8012CFB8 */ .space 0x4C
-
-dlabel D_8012D004
-    /* 8012D004 */ .space 0x464
+    /* 8012CF90 */ .space 0x4D8
 
 dlabel D_8012D468
     /* 8012D468 */ .space 0x08

@@ -2,6 +2,8 @@
 #include "music_region_settings.inc"
 /* Fourteen music counters and the adjacent state bytes. */
 u8 D_80135A10[16];
+BT_IDO_ONLY(extern) MusicRegionState D_801359C0;
+BT_NATIVE_ONLY(_Static_assert(sizeof(MusicRegionState) == 0x44, "music region state");)
 
 void func_800FCFB0(s32 arg0, s32 arg1, MusicRegionSettings *arg2, s32 arg3, f32 arg4) {
     typedef MusicRegionSettings MusicSettings;
@@ -14,7 +16,7 @@ void func_800FCFB0(s32 arg0, s32 arg1, MusicRegionSettings *arg2, s32 arg3, f32 
     s32 func_800FCCD4(s32);
     s32 func_800FCDE0(s32, s32, f32);
     s32 func_800FCED0(s32, s32, f32);
-    extern u8 D_801359D5;
+    BT_IDO_ONLY(extern u8 D_801359D5;)
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
     extern u8 D_80135A3C[3];
@@ -39,7 +41,7 @@ void func_800FCFB0(s32 arg0, s32 arg1, MusicRegionSettings *arg2, s32 arg3, f32 
         D_80135A20[arg0] = arg1;
         if (!func_800FCCD4(arg1)) {
             func_800FC688(arg1, func_80017764(arg1));
-            D_801359D5 = 1;
+            BT_DATA_FIELD(D_801359C0.mixChanged, D_801359D5) = 1;
         }
         if (arg1 == 0x4B) {
             func_800FC97C(arg1, 0.125f, 1.0f);
@@ -68,8 +70,7 @@ void func_800FCFB0(s32 arg0, s32 arg1, MusicRegionSettings *arg2, s32 arg3, f32 
 }
 
 void func_800FD2A0(f32 *arg0, s32 arg1) {
-    extern s32 D_801359C0;
-    extern u8 D_801359D1, D_80135A1E;
+    BT_IDO_ONLY(extern u8 D_801359D1;) extern u8 D_80135A1E;
     extern MusicRegionSettings *D_80135A04;
     extern f32 D_80135A44;
     extern s32 D_80123F68[], D_80123FC8[];
@@ -90,9 +91,9 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
     s32 section;
     f32 volume;
 
-    switch (((s16 *)&D_801359C0)[0x10]) {
+    switch (D_801359C0.areaEnabled) {
         case 1:
-            switch (func_800CBBE0(((s32 *)&D_801359C0)[0xA])) {
+            switch (func_800CBBE0(D_801359C0.region)) {
                 case 3:
                     if (arg0[0] < D_801241E4[2] ||
                         arg0[2] < D_801241E4[1] ||
@@ -147,9 +148,9 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
         case 17:
             section = _gcmapsects_entrypoint_7(arg0);
             if (section != -1) {
-                D_801359D1 = section;
+                BT_DATA_FIELD(D_801359C0.area, D_801359D1) = section;
             }
-            switch (((u8 *)&D_801359C0)[0x11]) {
+            switch (D_801359C0.area) {
                 case 2:
                 case 3:
                 case 4:
@@ -161,9 +162,9 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
         case 18:
             section = _gcmapsects_entrypoint_7(arg0);
             if (section != -1) {
-                D_801359D1 = section;
+                BT_DATA_FIELD(D_801359C0.area, D_801359D1) = section;
             }
-            switch (((u8 *)&D_801359C0)[0x11]) {
+            switch (D_801359C0.area) {
                 case 3:
                     if (arg1) {
                         func_800FCFB0(0, 0x4B, MUSIC_REGION(34, D_8012401C), arg1, 1.75f);
@@ -191,9 +192,9 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
         case 19:
             section = _gcmapsects_entrypoint_7(arg0);
             if (section != -1) {
-                D_801359D1 = section;
+                BT_DATA_FIELD(D_801359C0.area, D_801359D1) = section;
             }
-            switch (((u8 *)&D_801359C0)[0x11]) {
+            switch (D_801359C0.area) {
                 case 0:
                 case 1:
                 case 2:
@@ -217,7 +218,7 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
             D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 5:
-            if (!((u8 *)&D_801359C0)[0x40]) {
+            if (!D_801359C0.overrideMode) {
                 func_800FCFB0(0, 0x4B, MUSIC_REGION(32, D_80124004), arg1, 1.75f);
             }
             D_80135A04 = MUSIC_REGION(33, &D_80124010);
@@ -285,28 +286,26 @@ void func_800FDBB8(s32 arg0) {
 
     extern s32 D_80124010;
     extern s32 D_80124224[][2];
-    extern u8 D_80135A00[];
+    BT_IDO_ONLY(extern u8 D_80135A00[];)
     extern MusicRegionSettings *D_80135A04;
     s32 sp20;
     s32 temp_t9;
     s32 *temp_v0;
 
-    temp_t9 = D_80124224[D_80135A00[0]][0];
+    temp_t9 = D_80124224[BT_DATA_FIELD(D_801359C0.overrideMode, D_80135A00[0])][0];
     sp20 = temp_t9;
     if (temp_t9 != -1) {
-        func_800FCFB0(temp_t9, D_80124224[D_80135A00[0]][1], D_80123E84, arg0, 0.0f);
+        func_800FCFB0(temp_t9, D_80124224[BT_DATA_FIELD(D_801359C0.overrideMode, D_80135A00[0])][1], D_80123E84, arg0, 0.0f);
         D_80135A04 = MUSIC_REGION(33, &D_80124010);
     }
 }
 
 u32 func_800FDC28(u32 arg0) {
-    extern s32 D_801359C0;
     extern u8 D_80135A10[];
-    BtUIntPtr result = (BtUIntPtr)&D_801359C0;
-    if (arg0 != ((u8 *)result)[0x40]) {
-        ((u8 *)result)[0x40] = arg0;
+    if (arg0 != D_801359C0.overrideMode) {
+        D_801359C0.overrideMode = arg0;
         if (!(arg0 & 0xFF)) {
-            ((s8 *)result)[0x18] = 1;
+            D_801359C0.changed = 1;
         }
     } BT_NATIVE_ONLY(return 0;)
 }
@@ -316,34 +315,8 @@ void func_800FDC58(s32 arg0) {
 
 
 
-    typedef struct {
-        f32 volume;
-        f32 tempoScale;
-        s16 track;
-        u8 padA[5];
-        u8 retry;
-        u8 lastMode;
-        u8 pad11[2];
-        u8 audible;
-        u8 volumeChanged;
-        u8 pad15;
-        u8 active;
-        u8 frozen;
-        u8 changed;
-        u8 pad19[7];
-        s16 areaEnabled;
-        s16 settingsIndex;
-        u8 pad24[4];
-        s32 region;
-        f32 distance;
-        u8 pad30[12];
-        f32 timer;
-        u8 pad40;
-        u8 locked;
-    } MusicState;
-    extern s32 D_801359C0;
-    extern s32 D_801359E8;
-    extern f32 D_801359EC;
+    BT_IDO_ONLY(extern s32 D_801359E8;)
+    BT_IDO_ONLY(extern f32 D_801359EC;)
     extern s32 D_80123FC8[], D_80124010, D_801241CC[]; extern MusicRegionSettings *D_80135A04;
     extern s32 D_80124064, D_80124124, D_8012419C;
     extern MusicRegionSettings *D_80135A08;
@@ -380,12 +353,12 @@ void func_800FDC58(s32 arg0) {
     f32 fadeTime;
     s32 fade;
 
-    oldRetry = ((u8 *)&D_801359C0)[15];
-    if (((u8 *)&D_801359C0)[65] || !((u8 *)&D_801359C0)[22]) {
+    oldRetry = D_801359C0.retry;
+    if (D_801359C0.locked || !D_801359C0.active) {
         return;
     }
-    if (((f32 *)&D_801359C0)[15] > 0.0f) {
-        ((f32 *)&D_801359C0)[15] -= func_800D8FF8();
+    if (D_801359C0.timer > 0.0f) {
+        D_801359C0.timer -= func_800D8FF8();
     }
     if (!func_80090200()) {
         return;
@@ -395,9 +368,9 @@ void func_800FDC58(s32 arg0) {
     } else {
         arg0 = 0;
     }
-    if (!((u8 *)&D_801359C0)[23]) {
-        if (((s16 *)&D_801359C0)[17] != -1) {
-            D_80135A04 = &D_80123E84[((s16 *)&D_801359C0)[17]];
+    if (!D_801359C0.frozen) {
+        if (D_801359C0.settingsIndex != -1) {
+            D_80135A04 = &D_80123E84[D_801359C0.settingsIndex];
         } else {
             D_80135A04 = 0;
         }
@@ -405,12 +378,12 @@ void func_800FDC58(s32 arg0) {
         for (i = 0; i < 3; i++) {
             D_80135A3C[i] = 0;
         }
-        if (func_800CCEF4(position, &D_801359E8, &D_801359EC, 0, 0)) {
-            region = func_800CBBE0(((s32 *)&D_801359C0)[10]);
-            if (!func_800CBC00(((s32 *)&D_801359C0)[10])) {
+        if (func_800CCEF4(position, &BT_DATA_FIELD(D_801359C0.region, D_801359E8), &BT_DATA_FIELD(D_801359C0.distance.value, D_801359EC), 0, 0)) {
+            region = func_800CBBE0(D_801359C0.region);
+            if (!func_800CBC00(D_801359C0.region)) {
                 D_80135A04 = &D_80123E84[region];
             } else {
-                switch (func_800CBBE0(((s32 *)&D_801359C0)[10])) {
+                switch (func_800CBBE0(D_801359C0.region)) {
                     case 0:
                         func_800FCFB0(0, 0x47, D_80123E84, arg0, 1.75f);
                         D_80135A04 = MUSIC_REGION(27, D_80123FC8);
@@ -461,7 +434,7 @@ void func_800FDC58(s32 arg0) {
                 }
             }
         }
-        if (((s16 *)&D_801359C0)[16]) {
+        if (D_801359C0.areaEnabled) {
             func_800FD2A0(position, arg0);
         }
         func_800FDBB8(arg0);
@@ -480,51 +453,51 @@ void func_800FDC58(s32 arg0) {
         }
     }
     func_800FE914(oldRetry);
-    if (!((u8 *)&D_801359C0)[23]) {
-        if (D_80135A04 != D_80135A08 || arg0 != ((u8 *)&D_801359C0)[16] || ((u8 *)&D_801359C0)[15] || ((u8 *)&D_801359C0)[24]) {
-            if (!((u8 *)&D_801359C0)[15]) {
+    if (!D_801359C0.frozen) {
+        if (D_80135A04 != D_80135A08 || arg0 != D_801359C0.lastMode || D_801359C0.retry || D_801359C0.changed) {
+            if (!D_801359C0.retry) {
                 fade = 1;
             } else {
-                ((u8 *)&D_801359C0)[15]--;
+                D_801359C0.retry--;
                 fade = 0;
-                if (((s16 *)&D_801359C0)[4] != -1) {
-                    func_800FC97C(((s16 *)&D_801359C0)[4], 0.25f, 1.0f);
+                if (D_801359C0.track != -1) {
+                    func_800FC97C(D_801359C0.track, 0.25f, 1.0f);
                 }
             }
             D_80135A08 = D_80135A04;
-            ((u8 *)&D_801359C0)[16] = arg0;
-            if (D_80135A04 && ((s16 *)&D_801359C0)[4] != -1) {
+            D_801359C0.lastMode = arg0;
+            if (D_80135A04 && D_801359C0.track != -1) {
                 if (arg0) {
-                    if (!func_800FCDE0(((s16 *)&D_801359C0)[4], ((MusicSettings *)D_80135A04)->volume[1], (f32)fade)) {
-                        ((u8 *)&D_801359C0)[15] = 1;
+                    if (!func_800FCDE0(D_801359C0.track, ((MusicSettings *)D_80135A04)->volume[1], (f32)fade)) {
+                        D_801359C0.retry = 1;
                     }
                     if (((MusicSettings *)D_80135A04)->tempo[1] != -1) {
-                        if (!func_800FCED0(((s16 *)&D_801359C0)[4], (s32)(((f32 *)&D_801359C0)[1] * (60000000 / ((MusicSettings *)D_80135A04)->tempo[1])), (f32)fade)) {
-                            ((u8 *)&D_801359C0)[15] = 1;
+                        if (!func_800FCED0(D_801359C0.track, (s32)(D_801359C0.tempoScale * (60000000 / ((MusicSettings *)D_80135A04)->tempo[1])), (f32)fade)) {
+                            D_801359C0.retry = 1;
                         }
                     }
                 } else {
-                    if (!func_800FCDE0(((s16 *)&D_801359C0)[4], ((MusicSettings *)D_80135A04)->volume[0], (f32)fade)) {
-                        ((u8 *)&D_801359C0)[15] = 1;
+                    if (!func_800FCDE0(D_801359C0.track, ((MusicSettings *)D_80135A04)->volume[0], (f32)fade)) {
+                        D_801359C0.retry = 1;
                     }
                     if (((MusicSettings *)D_80135A04)->tempo[0] != -1) {
-                        if (!func_800FCED0(((s16 *)&D_801359C0)[4], (s32)(((f32 *)&D_801359C0)[1] * (60000000 / ((MusicSettings *)D_80135A04)->tempo[0])), (f32)fade)) {
-                            ((u8 *)&D_801359C0)[15] = 1;
+                        if (!func_800FCED0(D_801359C0.track, (s32)(D_801359C0.tempoScale * (60000000 / ((MusicSettings *)D_80135A04)->tempo[0])), (f32)fade)) {
+                            D_801359C0.retry = 1;
                         }
                     }
                 }
             }
-            ((u8 *)&D_801359C0)[24] = ((u8 *)&D_801359C0)[15];
+            D_801359C0.changed = D_801359C0.retry;
         }
-        if (((u8 *)&D_801359C0)[20]) {
-            track = ((s16 *)&D_801359C0)[4];
-            if (((u8 *)&D_801359C0)[19]) {
+        if (D_801359C0.volumeChanged) {
+            track = D_801359C0.track;
+            if (D_801359C0.audible) {
                 if (track != -1) {
-                    func_800FC934(track, ((f32 *)&D_801359C0)[0], 1.0f);
+                    func_800FC934(track, D_801359C0.volume, 1.0f);
                 }
                 for (i = -3; i != 0; i++) {
                     if (D_80135A2C[i]) {
-                        func_800FC934(D_80135A2C[i], ((f32 *)&D_801359C0)[0], 1.0f);
+                        func_800FC934(D_80135A2C[i], D_801359C0.volume, 1.0f);
                     }
                 }
             } else {
@@ -537,14 +510,14 @@ void func_800FDC58(s32 arg0) {
                     }
                 }
             }
-            ((u8 *)&D_801359C0)[20] = 0;
+            D_801359C0.volumeChanged = 0;
         }
     }
 }
 
 void func_800FE3EC(void) {
     void func_800FCA90(s32);
-    extern s16 D_801359C8;
+    BT_IDO_ONLY(extern s16 D_801359C8;)
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
     extern u8 D_80135A3C[3];
@@ -552,7 +525,7 @@ void func_800FE3EC(void) {
     u32 temp_a0;
     s32 var_s1;
 
-    temp_a0 = D_801359C8;
+    temp_a0 = BT_DATA_FIELD(D_801359C0.track, D_801359C8);
     if (temp_a0 != -1U) {
         func_800FCA90(temp_a0);
     }
@@ -573,9 +546,9 @@ void func_800FE3EC(void) {
 s32 func_800FE4E4(void) {
     void func_800C77DC(s32);
     void func_800FC74C(u32);
-    extern s16 D_801359C8;
-    extern s8 D_801359D7;
-    extern s8 D_80135A01;
+    BT_IDO_ONLY(extern s16 D_801359C8;)
+    BT_IDO_ONLY(extern s8 D_801359D7;)
+    BT_IDO_ONLY(extern s8 D_80135A01;)
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
     extern u8 D_80135A3C[3];
@@ -583,12 +556,12 @@ s32 func_800FE4E4(void) {
     u32 temp_a0;
     s32 var_s1;
 
-    if ((u8) D_801359D7 != 0) {
+    if ((u8) BT_DATA_FIELD(D_801359C0.frozen, D_801359D7) != 0) {
         return 0;
     }
     func_800C77DC(1);
     func_800FDC28(0U);
-    temp_a0 = D_801359C8;
+    temp_a0 = BT_DATA_FIELD(D_801359C0.track, D_801359C8);
     if (temp_a0 != -1U) {
         func_800FC74C(temp_a0);
     }
@@ -604,7 +577,7 @@ s32 func_800FE4E4(void) {
             }
         }
     }
-    D_80135A01 = 1;
+    BT_DATA_FIELD(D_801359C0.locked, D_80135A01) = 1;
     return 1;
 }
 
@@ -614,35 +587,24 @@ void func_800FE614(void)
   extern f32 D_80135A30[3];
   extern u8 D_80135A3C[3];
   extern s32 D_80135A40;
-  struct State
-  {
-    u8 pad[0x34];
-    u8 a[2];
-    s16 b[2];
-    u8 rest[0xA];
-  };
-  extern struct State D_801359C0_storage;
-  struct Bytes
-  {
-    u8 value[3];
-  };
-  struct State *state;
+  BT_IDO_ONLY(extern MusicRegionState D_801359C0_storage;)
+  MusicRegionState *state;
   unsigned int i;
-  ((u8 *) (&D_801359C0_storage))[0x16] = 1;
-  ((u8 *) (&D_801359C0_storage))[0x17] = 0;
-  state = (struct State *) (&D_801359C0_storage);
+  state = BT_DATA_FIELD(&D_801359C0, &D_801359C0_storage);
+  state->active = 1;
+  state->frozen = 0;
   D_80135A40 = -1;
   for (i = 0; i < 2; i++)
   {
-    state->a[i] = 0;
-    state->b[i] = 0;
+    state->instrumentHandles[i] = 0;
+    state->instrumentPresets[i] = 0;
   }
 
   for (i = 0; i < 3; i++)
   {
     D_80135A20[i] = 0;
     D_80135A30[i] = 0.0f;
-    ((struct Bytes *) (&D_80135A3C))->value[i] = 0;
+    D_80135A3C[i] = 0;
   }
 
  for (i = 0; i < 14; i++) {
@@ -653,25 +615,24 @@ void func_800FE614(void)
 }
 
 void func_800FE6F8(s32 arg0) {
-    extern u8 D_801359D6;
-    if ((arg0 == 0) && (D_801359D6 != 0)) {
+    BT_IDO_ONLY(extern u8 D_801359D6;)
+    if ((arg0 == 0) && (BT_DATA_FIELD(D_801359C0.active, D_801359D6) != 0)) {
         func_800FE4E4();
     }
-    D_801359D6 = (u8) arg0;
+    BT_DATA_FIELD(D_801359C0.active, D_801359D6) = (u8) arg0;
 }
 
 void func_800FE734(u32 arg0) {
-    extern s8 D_801359D7;
-    D_801359D7 = (s8) arg0;
+    BT_IDO_ONLY(extern s8 D_801359D7;)
+    BT_DATA_FIELD(D_801359C0.frozen, D_801359D7) = (s8) arg0;
 }
 
 void func_800FE740(void) {
-    extern s32 D_801359C0;
     extern u8 D_80135A10[];
     s16 _cothemedll_entrypoint_1(s32);
-    s32 _cothemedll_entrypoint_3(s32 *, s32);
+    BT_NATIVE_ONLY(void _cothemedll_entrypoint_3(MusicRegionState *);) BT_IDO_ONLY(s32 _cothemedll_entrypoint_3(MusicRegionState *, s32);)
     s32 func_800EA05C();
-    extern s16 D_801359E2;
+    BT_IDO_ONLY(extern s16 D_801359E2;)
     extern MusicRegionSettings *D_80135A08;
     extern f32 D_80135A0C;
     s32 sp1C[2];
@@ -683,11 +644,16 @@ void func_800FE740(void) {
     }
     D_80135A08 = 0;
     D_80135A0C = 0.0f;
+#ifdef BT_NATIVE
+    sp1C[1] = temp_a1;
+    _cothemedll_entrypoint_3(&D_801359C0);
+#else
     sp1C[1] = temp_a1; _cothemedll_entrypoint_3(&D_801359C0, temp_a1);
-    D_801359E2 = _cothemedll_entrypoint_1(sp1C[1]);
+#endif
+    BT_DATA_FIELD(D_801359C0.settingsIndex, D_801359E2) = _cothemedll_entrypoint_1(sp1C[1]);
 }
 
-s32 func_800FE7A8(s32 arg0) { extern s16 D_801359C8; extern s32 D_80135A20[]; extern u8 D_80135A3C[3]; extern s32 D_80135A40; s32 var_v0; u8 *var_v1; if (arg0 == D_801359C8) { return 1; } var_v0 = 0; var_v1 = D_80135A3C; if (D_80135A40 > 0) {
+s32 func_800FE7A8(s32 arg0) { BT_IDO_ONLY(extern s16 D_801359C8;) extern s32 D_80135A20[]; extern u8 D_80135A3C[3]; extern s32 D_80135A40; s32 var_v0; u8 *var_v1; if (arg0 == BT_DATA_FIELD(D_801359C0.track, D_801359C8)) { return 1; } var_v0 = 0; var_v1 = D_80135A3C; if (D_80135A40 > 0) {
         for (; var_v0 < 3; var_v0++, var_v1++) {
             if ((*var_v1 != 0) && (arg0 == D_80135A20[var_v0])) {
                 return 1;
@@ -695,17 +661,16 @@ s32 func_800FE7A8(s32 arg0) { extern s16 D_801359C8; extern s32 D_80135A20[]; ex
         }
     }
     return 0;
-}    typedef struct { f32 unk0; f32 unk4; u8 pad8[0x8]; u8 unk10; u8 pad11[0x2]; s8 unk13; s8 unk14; } Obj1ED68A0_D_801359C0; /* offsets.py genstruct: fields from raw offsets on &D_801359C0; rename once understood */
+}
 
 void func_800FE820(f32 arg0) {
-    extern s32 D_801359C0;
-    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk10) = 0xFF;
-    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk4) = (f32) (1.0f / arg0);
+    (D_801359C0.lastMode) = 0xFF;
+    (D_801359C0.tempoScale) = (f32) (1.0f / arg0);
 }
 
 void func_800FE844(u32 arg0) {
-    extern s8 D_801359CE;
-    D_801359CE = (s8) arg0;
+    BT_IDO_ONLY(extern s8 D_801359CE;)
+    BT_DATA_FIELD(D_801359C0.mode, D_801359CE) = (s8) arg0;
 }
 
 void func_800FE850()
@@ -716,32 +681,30 @@ void func_800FE850()
 void func_800FE870()
 {
     func_800DA544(FLAG2_675_UNK);
-}    typedef struct { u8 unk0; } Obj1ED68A0_D_801359CE; /* offsets.py genstruct: fields from raw offsets on &D_801359CE; rename once understood */
+}
 
 u32 func_800FE890(void) {
-    extern s8 D_801359CE;
-    return *&((Obj1ED68A0_D_801359CE *)&D_801359CE)->unk0;
+    BT_IDO_ONLY(extern s8 D_801359CE;)
+    return (u8)BT_DATA_FIELD(D_801359C0.mode, D_801359CE);
 }
 
 void func_800FE89C(void) {
-    extern s8 D_801359CF;
-    D_801359CF = 1;
+    BT_IDO_ONLY(extern s8 D_801359CF;)
+    BT_DATA_FIELD(D_801359C0.retry, D_801359CF) = 1;
 }
 
 void func_800FE8AC(void) {
-    extern s8 D_801359D8;
-    D_801359D8 = 1;
+    BT_IDO_ONLY(extern s8 D_801359D8;)
+    BT_DATA_FIELD(D_801359C0.changed, D_801359D8) = 1;
 }
 
 void func_800FE8BC(s32 arg0, s32 arg1) {
-    void _cothemedll_entrypoint_5(void *arg0, s32 arg1, s32 arg2);
-    extern s32 D_801359C0;
+    void _cothemedll_entrypoint_5(MusicRegionState *arg0, s32 arg1, s32 arg2);
     _cothemedll_entrypoint_5(&D_801359C0, arg0, arg1);
 }
 
 void func_800FE8EC(s32 arg0) {
-    void _cothemedll_entrypoint_4(void *arg0, s32 arg1);
-    extern s32 D_801359C0;
+    void _cothemedll_entrypoint_4(MusicRegionState *arg0, s32 arg1);
     _cothemedll_entrypoint_4(&D_801359C0, arg0);
 }
 
@@ -755,9 +718,9 @@ void func_800FE914(s32 arg0) {
     extern s32 D_80123E60;
     extern s32 D_801242DC[];
     extern FadeTimes D_80124314[];
-    extern s16 D_801359C8, D_801359CA, D_801359E4;
-    extern u8 D_801359D5;
-    extern f32 D_801359F0, D_80135A0C;
+    BT_IDO_ONLY(extern s16 D_801359C8;) BT_IDO_ONLY(extern s16 D_801359CA;) BT_IDO_ONLY(extern s16 D_801359E4;)
+    BT_IDO_ONLY(extern u8 D_801359D5;)
+    BT_IDO_ONLY(extern f32 D_801359F0;) extern f32 D_80135A0C;
     extern u8 D_80135A10[];
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
@@ -781,14 +744,14 @@ void func_800FE914(s32 arg0) {
     FadeTimes *pair;
 
     duration = 1.75f;
-    volume = D_801359CA;
+    volume = BT_DATA_FIELD(D_801359C0.trackVolume, D_801359CA);
     for (i = 0; i < 14; i++) {
         if (D_80135A10[i]) {
             pair = &D_80124314[i];
             
             switch (i) {
             case 3:
-                value = D_801359CA * D_801359F0;
+                value = BT_DATA_FIELD(D_801359C0.trackVolume, D_801359CA) * BT_DATA_FIELD(D_801359C0.volumeScale, D_801359F0);
                 fade = volume;
                 if (value < fade) {
                     volume = value;
@@ -809,22 +772,22 @@ void func_800FE914(s32 arg0) {
             }
         }
     }
-    if (D_801359E4 < volume) {
+    if (BT_DATA_FIELD(D_801359C0.appliedVolume, D_801359E4) < volume) {
         duration = D_80135A0C;
     }
-    if (volume != D_801359E4 || D_80123E60) {
-        if (D_801359C8 != -1) {
-            if (!func_800FCCD4(D_801359C8)) {
-                func_800FC688(D_801359C8, func_80017764(D_801359C8));
+    if (volume != BT_DATA_FIELD(D_801359C0.appliedVolume, D_801359E4) || D_80123E60) {
+        if (BT_DATA_FIELD(D_801359C0.track, D_801359C8) != -1) {
+            if (!func_800FCCD4(BT_DATA_FIELD(D_801359C0.track, D_801359C8))) {
+                func_800FC688(BT_DATA_FIELD(D_801359C0.track, D_801359C8), func_80017764(BT_DATA_FIELD(D_801359C0.track, D_801359C8)));
             }
-            result = func_800FC4B0(D_801359C8, -1, volume, arg0 ? 0.0f : duration);
+            result = func_800FC4B0(BT_DATA_FIELD(D_801359C0.track, D_801359C8), -1, volume, arg0 ? 0.0f : duration);
             if (result) {
-                func_800FCB00(D_801359C8, volume, result, 0);
+                func_800FCB00(BT_DATA_FIELD(D_801359C0.track, D_801359C8), volume, result, 0);
             }
         }
         D_80123E60 = 0;
     }
-    if (volume != D_801359E4 || D_801359D5 || D_80123E60) {
+    if (volume != BT_DATA_FIELD(D_801359C0.appliedVolume, D_801359E4) || BT_DATA_FIELD(D_801359C0.mixChanged, D_801359D5) || D_80123E60) {
         if (D_80135A40 > 0) {
             for (j = 0; j < 3; j++) {
                 if (D_80135A20[j] && D_80135A3C[j] && func_800FCCD4(D_80135A20[j])) {
@@ -839,15 +802,15 @@ void func_800FE914(s32 arg0) {
         } else {
             D_80135A0C = 0.0f;
         }
-        D_801359D5 = 0;
+        BT_DATA_FIELD(D_801359C0.mixChanged, D_801359D5) = 0;
     }
-    D_801359E4 = volume;
-    if (&D_801359C8) {}
-}    typedef struct { f32 unk0; } Obj1ED68A0_D_801359F0; /* offsets.py genstruct: fields from raw offsets on &D_801359F0; rename once understood */
+    BT_DATA_FIELD(D_801359C0.appliedVolume, D_801359E4) = volume;
+    if (&BT_DATA_FIELD(D_801359C0.track, D_801359C8)) {}
+}
 
 void func_800FEC1C(f32 arg0) {
-    extern f32 D_801359F0;
-    ((Obj1ED68A0_D_801359F0 *)&D_801359F0)->unk0 = arg0;
+    BT_IDO_ONLY(extern f32 D_801359F0;)
+    BT_DATA_FIELD(D_801359C0.volumeScale, D_801359F0) = arg0;
 }
 
 s32 func_800FEC28(s32 arg0) {
@@ -858,7 +821,7 @@ s32 func_800FEC28(s32 arg0) {
     return arg0;
 }
 void func_800FEC60(u32 arg0) {
-    extern f32 D_801359F0;
+    BT_IDO_ONLY(extern f32 D_801359F0;)
     extern s32 D_80123E60;
     extern u8 D_80135A10[];
     s32 temp_v0;
@@ -867,7 +830,7 @@ void func_800FEC60(u32 arg0) {
     temp_v1 = D_80135A10 + temp_v0;
     *temp_v1 = *temp_v1 + 1;
     if (temp_v0 == 3) {
-        D_801359F0 = 1.0f;
+        BT_DATA_FIELD(D_801359C0.volumeScale, D_801359F0) = 1.0f;
     }
     D_80123E60 = 1;
 }
@@ -954,35 +917,34 @@ void func_800FEDC4(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
     void func_800C3A40(u8, f32, f32, f32);
     void func_800C3BDC(u8);
     s32 func_800EA05C();
-    extern s32 D_801359C0;
     BT_IDO_ONLY(extern s16 D_80123E5E;)
     extern MusicInstrumentPreset D_80123E64[4];
 
-    if (arg1 == *(s16 *)((u8 *)&D_801359C0 + arg0 * 2 + 0x36) && arg1 != 0) {
-        func_800C3648(*((u8 *)&D_801359C0 + arg0 + 0x34), func_800EA05C());
-        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(BT_DATA_FIELD(D_80123E64[arg1 - 1].volume, *(s16 *)((u8 *)&D_80123E5E + arg1 * 8)) * arg2));
+    if (arg1 == D_801359C0.instrumentPresets[arg0] && arg1 != 0) {
+        func_800C3648(D_801359C0.instrumentHandles[arg0], func_800EA05C());
+        func_800C3058(D_801359C0.instrumentHandles[arg0], (s32)(BT_DATA_FIELD(D_80123E64[arg1 - 1].volume, *(s16 *)((u8 *)&D_80123E5E + arg1 * 8)) * arg2));
         return;
     }
-    if (*((u8 *)&D_801359C0 + arg0 + 0x34) != 0) {
+    if (D_801359C0.instrumentHandles[arg0] != 0) {
         if (arg3 != 0.0f) {
-            func_800C3A40(*((u8 *)&D_801359C0 + arg0 + 0x34), 0.0f, 0.0f, arg3);
+            func_800C3A40(D_801359C0.instrumentHandles[arg0], 0.0f, 0.0f, arg3);
         } else {
-            func_800C2FDC(*((u8 *)&D_801359C0 + arg0 + 0x34));
+            func_800C2FDC(D_801359C0.instrumentHandles[arg0]);
         }
-        *((u8 *)&D_801359C0 + arg0 + 0x34) = 0;
+        D_801359C0.instrumentHandles[arg0] = 0;
     }
     if (arg1 != 0) {
-        *((u8 *)&D_801359C0 + arg0 + 0x34) = func_800C2E04();
-        func_800C330C(*((u8 *)&D_801359C0 + arg0 + 0x34), 3);
-        func_800C301C(*((u8 *)&D_801359C0 + arg0 + 0x34), BT_DATA_FIELD(D_80123E64[arg1 - 1].id, *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 8)));
-        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(BT_DATA_FIELD(D_80123E64[arg1 - 1].volume, *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 6)) * arg2));
-        func_800C31DC(*((u8 *)&D_801359C0 + arg0 + 0x34), BT_DATA_FIELD(D_80123E64[arg1 - 1].rate, *(f32 *)((u8 *)&D_80123E64 + arg1 * 8 - 4)));
-        func_800C36F4(*((u8 *)&D_801359C0 + arg0 + 0x34), 0xFF);
-        func_800C368C(*((u8 *)&D_801359C0 + arg0 + 0x34), 0);
-        func_800C33DC(*((u8 *)&D_801359C0 + arg0 + 0x34), 0);
-        func_800C3BDC(*((u8 *)&D_801359C0 + arg0 + 0x34));
+        D_801359C0.instrumentHandles[arg0] = func_800C2E04();
+        func_800C330C(D_801359C0.instrumentHandles[arg0], 3);
+        func_800C301C(D_801359C0.instrumentHandles[arg0], BT_DATA_FIELD(D_80123E64[arg1 - 1].id, *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 8)));
+        func_800C3058(D_801359C0.instrumentHandles[arg0], (s32)(BT_DATA_FIELD(D_80123E64[arg1 - 1].volume, *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 6)) * arg2));
+        func_800C31DC(D_801359C0.instrumentHandles[arg0], BT_DATA_FIELD(D_80123E64[arg1 - 1].rate, *(f32 *)((u8 *)&D_80123E64 + arg1 * 8 - 4)));
+        func_800C36F4(D_801359C0.instrumentHandles[arg0], 0xFF);
+        func_800C368C(D_801359C0.instrumentHandles[arg0], 0);
+        func_800C33DC(D_801359C0.instrumentHandles[arg0], 0);
+        func_800C3BDC(D_801359C0.instrumentHandles[arg0]);
     }
-    *(s16 *)((u8 *)&D_801359C0 + arg0 * 2 + 0x36) = arg1;
+    D_801359C0.instrumentPresets[arg0] = arg1;
 }    typedef struct { u8 pad0[0x4]; s32 unk4; u8 pad8[0x2]; s16 unkA; } Obj1ED68A0_func_800FEF94_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x4]; s16 unk8; } Obj1ED68A0_func_800FEF94_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
@@ -1002,21 +964,18 @@ void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
 }
 
 void func_800FF000(s32 arg0) {
-    extern s32 D_801359C0;
-    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk13) = (s8) arg0;
-    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk0) = 0.2f;
+    (D_801359C0.audible) = (s8) arg0;
+    (D_801359C0.volume) = 0.2f;
 }
 
 void func_800FF01C(f32 arg0) {
-    extern s32 D_801359C0;
-    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk13) = 1;
-    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk14) = 1;
-    (((Obj1ED68A0_D_801359C0 *)&D_801359C0)->unk0) = arg0;
+    (D_801359C0.audible) = 1;
+    (D_801359C0.volumeChanged) = 1;
+    (D_801359C0.volume) = arg0;
 }
 
 void func_800FF038(s32 arg0) {
-    void _cothemedll_entrypoint_2(void *arg0, s32 arg1);
-    extern s32 D_801359C0;
+    void _cothemedll_entrypoint_2(MusicRegionState *arg0, s32 arg1);
     _cothemedll_entrypoint_2(&D_801359C0, arg0);
 }
 
@@ -1137,21 +1096,6 @@ f32 func_800FF060(f32 arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_801359C0 BT_DATA(4, bss_core2bss2_2, 0x2B20);
-s16 D_801359C8 BT_DATA(4, bss_core2bss2_2, 0x2B28);
-s8 D_801359CE BT_DATA(4, bss_core2bss2_2, 0x2B2E);
-s8 D_801359CF BT_DATA(4, bss_core2bss2_2, 0x2B2F);
-u8 D_801359D1 BT_DATA(4, bss_core2bss2_2, 0x2B31);
-u8 D_801359D5 BT_DATA(4, bss_core2bss2_2, 0x2B35);
-u8 D_801359D6 BT_DATA(4, bss_core2bss2_2, 0x2B36);
-s8 D_801359D7 BT_DATA(4, bss_core2bss2_2, 0x2B37);
-s8 D_801359D8 BT_DATA(4, bss_core2bss2_2, 0x2B38);
-s16 D_801359E2 BT_DATA(4, bss_core2bss2_2, 0x2B42);
-s32 D_801359E8 BT_DATA(4, bss_core2bss2_2, 0x2B48);
-f32 D_801359EC BT_DATA(4, bss_core2bss2_2, 0x2B4C);
-f32 D_801359F0 BT_DATA(4, bss_core2bss2_2, 0x2B50);
-u8 D_80135A00 [ 1 ] BT_DATA(4, bss_core2bss2_2, 0x2B60);
-s8 D_80135A01 BT_DATA(4, bss_core2bss2_2, 0x2B61);
 MusicRegionSettings *D_80135A04 BT_DATA(4, bss_core2bss2_2, 0x2B64);
 MusicRegionSettings *D_80135A08 BT_DATA(4, bss_core2bss2_2, 0x2B68);
 f32 D_80135A0C BT_DATA(4, bss_core2bss2_2, 0x2B6C);

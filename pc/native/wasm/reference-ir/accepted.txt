@@ -385,3 +385,16 @@ colors during drawing, and checks a high glyph pixel address. The 32-bit
 entry remains 20 bytes and the command state remains 44 bytes. See the
 current-render-settings-ir.log and current-text-queue-ir.log reports in
 n1-2026-11-18. Both guest builds matched all 447,849 retraces.
+
+2026-11-19  Emitter entries, camera shake curves and regional music state
+The camera functions in current-effect-pools-ir.log index ten 124-byte records.
+The generated address starts at D_8012CF90, including for the eight curve
+points at +0x34 and their count at +0x78. The update loop ends at index ten.
+The eighteen functions in current-music-region-state-ir.log use fields of
+D_801359C0 in place of interior labels. The two instrument handles start at
++0x34 and their two halfword presets at +0x36. Both stages preserve all
+9,703 runtime fixup addresses, the 74 reference streams (447,849 retraces),
+the 16,401 original IDO functions and both complete ROM images. The LP64
+tests use high pointers for all 44 dynamic emitters and the shared theme
+state. Evidence under build/acceptance/n1-2026-11-18/current-effect-pools*
+and current-music-region-state*.

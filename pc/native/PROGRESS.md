@@ -3206,3 +3206,21 @@ Retraces. 64 Sanitizertests bestehen. Der Original-IDO-Vergleich bestätigt
 Laufzeit-Zeigerwörter liegen an den Originaladressen. Belege unter
 `build/acceptance/n1-2026-11-18/current-render-settings*` und
 `current-text-queue*`.
+
+### 2026-11-19: Emitter-Pool, Kameraerschütterung und regionale Musik (N1)
+
+Der Emitter-Pool umfasst den reservierten Eintrag null und 44 nutzbare Einträge.
+Der LP64-Test belegt alle 44 Plätze mit Zeigern oberhalb von 4 GiB, verschiebt
+alle Emitter, gibt sie frei und belegt den ersten Platz erneut. Der Kameratest
+belegt zehn Erschütterungseinträge, prüft die Auswahl bei voller Belegung
+und liest alle acht Punkte der letzten Kurve zurück.
+
+Spielkern und Themen-Overlay verwenden denselben 68-Byte-Musikzustand. Die
+LP64-Probe prüft den Zustandswechsel mit dem echten Themen-Overlay, drei
+Musikspuren und die Zuordnung der beiden Instrumente zu ihren Sound-Handles.
+Jeder Teilstand besteht elf Gastsuiten und 74 Replays mit 447.849 Retraces.
+Im gemeinsamen Stand bestehen alle 64 Tests mit ASan/UBSan. Der
+Original-IDO-Vergleich bestätigt 16.401 Funktionen und beide vollständigen
+ROM-Abbilder. Der LP64-Scan meldet 683 Warnstellen und 204 verschiebbare
+Offsets. Belege unter `build/acceptance/n1-2026-11-18/current-effect-pools*`
+und `current-music-region-state*`.

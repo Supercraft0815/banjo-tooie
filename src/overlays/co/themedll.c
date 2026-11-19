@@ -1,9 +1,8 @@
-#include "common.h"
+#include "core2/1ED68A0.h"
 
 u32 func_800FE890(void);
 
 s32 func_80800000_cothemedll(s32 arg0) {
-    s32 func_800DA298(s32);
     extern s16 D_80800730_cothemedll[][3];
     extern s16 D_80800D34_cothemedll[][3];
     s32 var_s1;
@@ -41,11 +40,10 @@ s16 cothemedll_entrypoint_1(BT_PARAM_OR_VOID(s32 bt_a0)) {
 #else
     return D_80800730_cothemedll[func_80800000_cothemedll()][2];
 #endif
-}    typedef struct { u8 pad0[0x4]; f32 unk4; s16 unk8; s16 unkA; s16 unkC; s8 unkE; u8 padF[0x1]; u8 unk10; u8 unk11; s8 unk12; s8 unk13; s8 unk14; s8 unk15; u8 unk16; u8 pad17[0x5]; s32 unk1C; s16 unk20; s16 unk22; s16 unk24; u8 pad26[0x2]; s32 unk28; s32 unk2C; u8 pad30[0x11]; s8 unk41; } Objthemedll_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
-void cothemedll_entrypoint_2(void *arg0, s32 arg1) {
+void cothemedll_entrypoint_2(MusicRegionState *arg0, s32 arg1) {
     void func_80016DF8(s32);
-    s32 func_800DA9E4(s32, s32);
     void func_800FC74C(u32);
     s32 func_800FCCD4(s32);
     u32 func_800FDC28(u32);
@@ -73,10 +71,10 @@ void cothemedll_entrypoint_2(void *arg0, s32 arg1) {
             i++;
         } while (i != 2);
     }
-    ((Objthemedll_arg0 *)arg0)->unk41 = 1;
+    arg0->locked = 1;
 }    typedef struct { u8 pad0[0x2]; u16 unk2; } Objthemedll_cothemedll_entrypoint_3_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
-void cothemedll_entrypoint_3(void *arg0) {
+void cothemedll_entrypoint_3(MusicRegionState *arg0) {
     u32 func_80017764(s32);
     s32 func_800EA05C();
     s32 func_80800000_cothemedll(s32);
@@ -93,33 +91,33 @@ void cothemedll_entrypoint_3(void *arg0) {
     temp_v0 = func_800EA05C();
     sp24 = temp_v0;
     sp20 = func_80800000_cothemedll(temp_v0);
-    (((Objthemedll_arg0 *)arg0)->unk41) = 0;
-    (((Objthemedll_arg0 *)arg0)->unk28) = -1;
-    (((Objthemedll_arg0 *)arg0)->unk2C) = -1;
-    (((Objthemedll_arg0 *)arg0)->unk10) = 0xFF;
-    (((Objthemedll_arg0 *)arg0)->unk11) = 0xFF;
+    (arg0->locked) = 0;
+    (arg0->region) = -1;
+    (arg0->distance.bits) = -1;
+    (arg0->lastMode) = 0xFF;
+    (arg0->area) = 0xFF;
     if (func_800FE890() != 2) {
-        (((Objthemedll_arg0 *)arg0)->unk1C) = 0;
-        (((Objthemedll_arg0 *)arg0)->unk22) = 0;
-        (((Objthemedll_arg0 *)arg0)->unk20) = 0;
-        (((Objthemedll_arg0 *)arg0)->unk12) = 0;
-        (((Objthemedll_arg0 *)arg0)->unk13) = 0;
-        (((Objthemedll_arg0 *)arg0)->unk14) = 1;
-        (((Objthemedll_arg0 *)arg0)->unk15) = 1;
-        (((Objthemedll_arg0 *)arg0)->unk4) = 1.0f;
-        if ((((Objthemedll_arg0 *)arg0)->unk16) != 0) {
+        (arg0->unk1C) = 0;
+        (arg0->settingsIndex) = 0;
+        (arg0->areaEnabled) = 0;
+        (arg0->unk12) = 0;
+        (arg0->audible) = 0;
+        (arg0->volumeChanged) = 1;
+        (arg0->mixChanged) = 1;
+        (arg0->tempoScale) = 1.0f;
+        if ((arg0->active) != 0) {
             temp_v0_2 = D_80800730_cothemedll[sp20];
-            (((Objthemedll_arg0 *)arg0)->unkC) = (s16) ((((Objthemedll_cothemedll_entrypoint_3_temp_v0_2 *)temp_v0_2)->unk2) & 3);
-            (((Objthemedll_arg0 *)arg0)->unk8) = (s16) ((s16) (((Objthemedll_cothemedll_entrypoint_3_temp_v0_2 *)temp_v0_2)->unk2) >> 2);
-            if ((((Objthemedll_arg0 *)arg0)->unk8) != -1) {
-                (((Objthemedll_arg0 *)arg0)->unkA) = func_80017764((((Objthemedll_arg0 *)arg0)->unk8));
+            (arg0->flags) = (s16) ((((Objthemedll_cothemedll_entrypoint_3_temp_v0_2 *)temp_v0_2)->unk2) & 3);
+            (arg0->track) = (s16) ((s16) (((Objthemedll_cothemedll_entrypoint_3_temp_v0_2 *)temp_v0_2)->unk2) >> 2);
+            if ((arg0->track) != -1) {
+                (arg0->trackVolume) = func_80017764((arg0->track));
             } else {
-                (((Objthemedll_arg0 *)arg0)->unkA) = 0x4E20;
+                (arg0->trackVolume) = 0x4E20;
             }
-            (((Objthemedll_arg0 *)arg0)->unk24) = 0;
+            (arg0->appliedVolume) = 0;
             for (var_v1 = 0; D_80800CB4_cothemedll[var_v1][0] != -1; var_v1++) {
                 if (sp24 == D_80800CB4_cothemedll[var_v1][0]) {
-                    (((Objthemedll_arg0 *)arg0)->unk20) = D_80800CB4_cothemedll[var_v1][1];
+                    (arg0->areaEnabled) = D_80800CB4_cothemedll[var_v1][1];
                 }
             }
         }
@@ -170,34 +168,33 @@ void func_80800388_cothemedll(s32 arg0) {
     }
 }
 
-void cothemedll_entrypoint_4(void *arg0, s32 arg1) {
-    s32 func_800DA298(s32);
+void cothemedll_entrypoint_4(MusicRegionState *arg0, s32 arg1) {
     void func_800FC2C4(s32, s32);
     u32 func_800FDC28(u32);
     void func_800FE3EC(void);
     s32 func_80800000_cothemedll(s32);
     extern s16 D_80800730_cothemedll[][3];
     s32 theme;
-    (*(s8 *)((s8 *)(arg0) + (0x12))) = 1;
+    (arg0->unk12) = 1;
     if (func_800DA298(0x674) == 0) {
         func_800FDC28(0);
     }
     func_80800388_cothemedll(arg1);
     if (func_800FE890() == 0) {
         theme = D_80800730_cothemedll[func_80800000_cothemedll(arg1)][1];
-        if (((theme >> 2) != (*(s16 *)((s8 *)(arg0) + (8)))) || ((*(u8 *)((s8 *)(arg0) + (0x41))) != 0)) {
+        if (((theme >> 2) != BT_DATA_FIELD(arg0->track, *(s16 *)((s8 *)(arg0) + (8)))) || ((arg0->locked) != 0)) {
             func_800FC2C4(0, 0x7D0);
             func_800FE3EC();
         } else {
-            (*(s8 *)((s8 *)(arg0) + (0xE))) = 1;
+            (arg0->mode) = 1;
         }
     }
-    (*(u8 *)((s8 *)(arg0) + (0x41))) = 1U;
+    (arg0->locked) = 1U;
 }
 
 /* extern */
 
-void func_80800524_cothemedll(void *arg0, s32 arg1) {
+void func_80800524_cothemedll(MusicRegionState *arg0, s32 arg1) {
     void func_800FC884(void);
     s32 func_800FCCD4(s32);
     void func_800FE89C(void);
@@ -206,17 +203,17 @@ void func_80800524_cothemedll(void *arg0, s32 arg1) {
     if (arg1 != 0) {
         func_800FC884();
     }
-    temp_a0 = (((Objthemedll_arg0 *)arg0)->unk8);
+    temp_a0 = arg0->track;
     if ((temp_a0 != -1) && (func_800FCCD4(temp_a0) == 0)) {
         func_800FE89C();
     }
 }
 
-void cothemedll_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
+void cothemedll_entrypoint_5(MusicRegionState *arg0, s32 arg1, s32 arg2) {
     void func_800FC348(u32, u32, u32);
     void func_800FEC60(u32);
     void func_800FECB8(u32);
-    void **arg = &arg0;
+    MusicRegionState **arg = &arg0;
 
     if (arg1 == 1) {
         func_800FC348(-1, 0xFA0, 4);
@@ -229,14 +226,14 @@ void cothemedll_entrypoint_5(void *arg0, s32 arg1, s32 arg2) {
             break;
         case 0:
         case 2:
-            if (*(u8 *)((s8 *)*arg + 0xE) == 0) {
-                if (*(s16 *)((s8 *)*arg + 0xC) & 1) {
+            if ((*arg)->mode == 0) {
+                if ((*arg)->flags & 1) {
                     func_80800524_cothemedll(*arg, 0);
                 } else {
                     func_80800524_cothemedll(*arg, 1);
                 }
             } else {
-                *(u8 *)((s8 *)*arg + 0xE) = 0;
+                (*arg)->mode = 0;
             }
             break;
     }
