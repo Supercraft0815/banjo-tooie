@@ -17,7 +17,7 @@ s16 *func_800B39D0(u8 *arg0, s32 arg1) {
         u8 data[1];
     } *record = (struct Record *) arg0;
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     return (s16 *)(arg0 + POOL_HEADER + arg1 * record->stride);
 #else
     return (s16 *) (record->data + arg1 * record->stride);
@@ -373,7 +373,7 @@ void func_800B4354(u8 **arg0)
 
 s32 func_800B4374(s16 *arg0)
 {
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
     return *POOL_HEAD(arg0);
 #else
     return arg0[2];

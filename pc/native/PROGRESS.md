@@ -2333,3 +2333,23 @@ Ein separater Build aus `e5c081ace` mit ausschließlich den A9-Änderungen
 bestand alle 71 Spielspuren. Im regulären CMake-Build bestehen die Tests
 `native_assets` und `native_animation_resources`. Die Erkennung externer
 Rice-CRC-Dateinamen steht noch aus.
+
+## 2026-11-19 — Q5, Blockpool und verbleibende native Zweige
+
+Der ILP32-Gast liest den Kopfindex des Blockpools und die Adresse eines
+Pool-Eintrags wieder mit den ursprünglichen Ausdrücken. Das vollständige
+WASM-Modul vor und nach der Änderung ist bytegleich. Original-IDO baut
+alle 18 Funktionen mit identischen Objektabschnitten, Funktionsgrenzen
+und beiden ROMs. Der 180-Sekunden-Test über 229 Karten meldete 123 erreichte
+Ziele, 87 Weiterleitungen, 14 statische Szenen und dieselben fünf bekannten
+Sonderfälle. Die Details stehen in `build/acceptance/q5-original-2026-11-19/`.
+
+Der Präprozessorlauf über alle 1.109 Spielmodule expandiert keine der 27
+`*_native.inc`-Dateien. Im Gast bleiben Plattformzugriffe, Heap und Boot,
+die nativen Optionen, Asset-Ersatz und die dokumentierten ABI-Anpassungen.
+Der Callback-Verteiler in `ch/bad/dieDll.c` behält zusätzlich die im
+Native-README beschriebene Behandlung von Rekursion, überfüllter Queue und
+Cleanup während eines Callbacks. Die Dateizuordnung und die Klassifikation
+der aktiven Zweige stehen in
+`build/acceptance/q5-inventory-2026-11-17/REPORT.md`. Der direkte LP64-Port
+verwendet die Ersatzdateien bis zur Abnahme von N4.
