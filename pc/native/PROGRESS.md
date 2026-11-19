@@ -3493,3 +3493,11 @@ Mit echter Uhr beendeten alle 74 Eingabefolgen den Lauf mit Exitcode 0 und laufe
 Die fünf Vertexpuffer und die beiden Freilisten behalten bei der Defragmentierung ihre Daten. Der LP64-Test prüft auch belegte und freigegebene Listeneinträge.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 4 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-vertex-lists*`.
+
+### 2026-11-19 – Fünf verbliebene Fremdsymbolzugriffe im Dialog (N1)
+
+Im isolierten Stand bis zum Speichertransport bestehen elf Gastsuiten und alle 74 Replays mit zusammen 447.849 Retraces. Ein zweiter, instrumentierter Lauf über denselben Korpus prüfte 6.459 Stellen. Zwei Schreibzugriffe in `func_800C00E0` und drei Lese- oder Schreibzugriffe in `func_800C075C` treffen noch andere Labels desselben Dialogzustands. Die betroffenen Felder liegen bei 0x12C, 0x15C und 0x180. Canary Mary und das Mehrspielerquiz lösen alle fünf Zugriffe aus. Der Bericht mit Einzeladressen steht unter `build/acceptance/n1-2026-11-18/bisect-prefix-14/build/ilp32-xsym/xsym_report.tsv`. Die schrittweise Übernahme der geprüften Quellen läuft.
+
+### 2026-11-19 – Paarvergleich der Scheduler mit echter Uhr (N2)
+
+Sieben Eingabefolgen liefen jeweils gleichzeitig auf dem Taxistand mit Compilerpass und auf demselben Stand mit expliziter Übergabe an den Scheduler. Beide Varianten erreichten bei allen sieben Paaren die erwartete Zielkarte und beendeten den Lauf regulär. Im Weltenlauf erreichten sie nach 27.000 Retraces die Karte 0x14F. Das vollständige Messprotokoll einschließlich der größten Abstände zwischen Bildwechseln steht unter `build/acceptance/n2-safepoints-rebase-2026-11-19/wallclock-paired.log`. Die übrigen Fälle stammen aus dem vorangegangenen Echtzeitlauf.
