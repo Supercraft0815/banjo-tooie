@@ -8,21 +8,21 @@ typedef struct { s32 unk0; s32 unk4; s32 unk8; } Objpropprop_arg1; /* offsets.py
 
 /* extern */
 
-f32 func_8080001C_gspropprop(BT_PARAM_OR_VOID(s32 bt_a0)) {
-    s32 _gsproplookup_entrypoint_1();
+f32 func_8080001C_gspropprop(BT_PARAM_OR_VOID(u16 *prop)) {
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_1();) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_1(u16 *);)
     s32 func_800B0CFC(BtIntPtr);
     BtIntPtr func_800BFC94(s32);
-    return (f32) func_800B0CFC(func_800BFC94(_gsproplookup_entrypoint_1()));
+    return (f32) func_800B0CFC(func_800BFC94(_gsproplookup_entrypoint_1(BT_NATIVE_ONLY(prop))));
 }
 
 /* extern */
 
-f32 func_80800050_gspropprop(BT_PARAM_OR_VOID(s32 bt_a0)) {
-    s32 _gsproplookup_entrypoint_0();
+f32 func_80800050_gspropprop(BT_PARAM_OR_VOID(u16 *prop)) {
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_0();) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_0(u16 *);)
     f32 func_800B2354(BtIntPtr);
     BtIntPtr func_800B2840(BtIntPtr);
     s32 func_800BFC34(s32);
-    return func_800B2354(func_800B2840(func_800BFC34(_gsproplookup_entrypoint_0())));
+    return func_800B2354(func_800B2840(func_800BFC34(_gsproplookup_entrypoint_0(BT_NATIVE_ONLY(prop)))));
 }
 
 f32 gspropprop_entrypoint_1(void *arg0) {
@@ -70,7 +70,7 @@ void gspropprop_entrypoint_2(void *prop) {
         BT_BITFIELD_ORDER(u8 actorMirrored : 1, u8 padBb : 5);
         BT_BITFIELD_ORDER(u8 padBb : 5, u8 actorMirrored : 1; u8 padB : 2);
     } SpriteProp;
-    s32 _gsproplookup_entrypoint_1();
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_1();) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_1(u16 *);)
     s32 func_8001211C();
     BtIntPtr func_800BFC94(s32);
     void *func_800EC3E8(void *data);
@@ -163,8 +163,8 @@ void gspropprop_entrypoint_3(void *arg0, BtIntPtr arg1) {
         u32 isModel : 1;
         BT_BITFIELD_ORDER(u32 padB : 1, u32 pad8 : 30);
     } Prop;
-    s32 _gsproplookup_entrypoint_0();
-    s32 _gsproplookup_entrypoint_1();
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_0();) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_0(u16 *);)
+    BT_IDO_ONLY(s32 _gsproplookup_entrypoint_1();) BT_NATIVE_ONLY(s16 _gsproplookup_entrypoint_1(u16 *);)
     void func_800BFAD0(BtIntPtr, f32 *, f32 *, f32, s32);
     void func_800BFB58(BtIntPtr, void *, f32, s32, s32, s32, s32, s32, s32);
     void func_800EE88C(f32 *, s16 *);

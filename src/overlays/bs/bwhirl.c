@@ -88,7 +88,7 @@ void func_80800200_bsbwhirl(u8 *arg0) {
     void func_8009C128(PlayerState *, f32[3]);
     BtIntPtr func_800B5BE4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
-    s32 func_800BA930(BtIntPtr, s16, s32, s16, s32, s32, s32);
+    BT_IDO_ONLY(s32 func_800BA930(BtIntPtr, s16, s32, s16, s32, s32, s32);) BT_NATIVE_ONLY(void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);)
     BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);
     void func_800EF04C(f32 *, f32 *);
     s32 func_800EFCD8(f32 *, f32, s32);

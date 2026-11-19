@@ -90,3 +90,10 @@ stores the same values in the same order. func_800CB9FC, func_800CBA20,
 func_800CBA44 and gccubeDll_entrypoint_6 now return void. The final caller
 func_800BDD00 discards the result. The symbolic comparison covers all 19
 changed canonical functions in build/acceptance/n3-2026-11-18/bounds-address-proof.log.
+
+2026-11-19  N2 particle velocity arguments in func_80800200_bsbwhirl
+The explicit i16 particle velocity prototype truncates the fifth argument
+before loading and converting the last coordinate. The previous version
+truncated the same SSA value after that load. Both versions pass identical
+i16 values to func_800BA930. The conversion cannot read or modify memory.
+See build/acceptance/n2-2026-11-18/signature-two-ir.log.

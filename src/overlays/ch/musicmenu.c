@@ -46,7 +46,7 @@ struct MusicMenuEntry {
 
 void func_808000D0_chmusicmenu(Actor *arg0, BtIntPtr arg1) {
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
-    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void _gcnewoption_entrypoint_33(BtIntPtr);
     int func_800DC298(f32);
     extern struct MusicMenuEntry D_808014F4_chmusicmenu[12];

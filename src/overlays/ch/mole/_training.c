@@ -255,7 +255,7 @@ void chmole_training_entrypoint_0(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg
 
 void func_808008E4_chmole_training(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
-    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     s32 func_800DA298(s32);
     s32 var_s0;
 

@@ -2443,3 +2443,17 @@ verglich 2.245 Funktionen in 88 Modulen sowie beide vollständigen ROMs.
 Die Belege stehen in `build/acceptance/n3-2026-11-18/bounds-address-proof.log`,
 `gate-bounds.log` im selben Ordner und
 `build/acceptance/n1-2026-11-18/root-strict-bounds-ido/result.json`.
+
+## 2026-11-19 — N2, Signaturen für Dialoge, Audio und Objektabfragen
+
+29 Dateien verwenden die tatsächlichen Parameter und Rückgabetypen ihrer
+Aufrufe. Die Prop-Abfrage reicht den Zeiger auf den Datensatz ausdrücklich
+weiter. Ohne `bt-fixcalls` bleiben 126 statt 139 ungültige Aufrufvarianten.
+Mit der normalen Passkette bestehen alle elf Testsuiten und alle 74 Replays
+mit 447.849 identischen Retraces. In der kanonischen IR ändert sich nur die
+Reihenfolge einer unabhängigen Integer-Konvertierung im Wirbelangriff.
+
+Original-IDO erzeugte für 2.363 Funktionen in 99 Modulen dieselben
+Instruktionen, Adressen und Größen. Beide ROM-Vergleiche bestanden.
+Belege stehen in `build/acceptance/n2-2026-11-18/signature-two-ido/result.json`,
+`signature-two-gate.log` und `signature-two-ir.log`.

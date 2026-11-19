@@ -8,11 +8,13 @@ void func_800C2718(void);
 u8 func_800C2E04(void);
 s32 func_800C2FDC(u8 id);
 void func_800C301C(u8 id, s32);
+BT_NATIVE_ONLY(void func_800C3058(u8 index, s32 sample_rate);)
 void func_800C31DC(u8 id, f32);
 void func_800C330C(u8 id, s32);
 void func_800C334C(u8 id, s32);
 void func_800C3418(u8 id, s32);
 BT_NATIVE_ONLY(void func_800C35E8(u8 index, f32 position[3]);)
+BT_NATIVE_ONLY(void func_800C368C(u8 index, s32 value);)
 void func_800C3730(u8 id, f32, f32, f32);
 s32 func_800C39A0(u8 id);
 void func_800C3BDC(u8 id);

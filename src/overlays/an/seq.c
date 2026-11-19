@@ -96,7 +96,7 @@ void anseq_entrypoint_4(s16 *pSeqIndx, f32 duration, void *func_ptr, s32 arg3, s
     func_80800134_anseq(pSeqIndx, duration, 4, func_ptr, arg3, arg4, arg5, arg6);
 }
 
-void anseq_entrypoint_5(s16 arg0) {
+void anseq_entrypoint_5(s16 arg0) { BT_NATIVE_ONLY(void func_8001B754(s16);)
     s16* v0 = (s16 *) func_8001B798(arg0);
     func_800B2D48(*v0);
     func_8001B754(arg0);

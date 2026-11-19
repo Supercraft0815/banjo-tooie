@@ -1872,7 +1872,7 @@ void func_80803224_chdiggerboss(Actor *arg0) {
     void _gcnewoption_entrypoint_28(BtIntPtr);
     void _gcnewoption_entrypoint_29(BtIntPtr, s32);
     void _gcnewoption_entrypoint_30(BtIntPtr, s32 *);
-    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void bzero(void *, int);
     extern s32 _gcnewoption_entrypoint_35;
     extern s32 D_80809F34_chdiggerboss;

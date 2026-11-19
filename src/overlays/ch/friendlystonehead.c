@@ -238,14 +238,14 @@ s32 func_80800540_chfriendlystonehead(Actor *arg0) {
 
 void func_80800680_chfriendlystonehead(s32 *arg0, s32 arg1) {
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
-    s32 func_800C01A8(s32, s32);
+    BT_IDO_ONLY(s32 func_800C01A8(s32, s32);) BT_NATIVE_ONLY(void func_800C01A8(s16, s32);)
     func_800C01A8(0x6B, 0);
     _capod_entrypoint_13(*arg0, 0, arg1, 0x2010);
 }
 
 void func_808006C4_chfriendlystonehead(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
-    s32 func_800C01A8(s32, s32);
+    BT_IDO_ONLY(s32 func_800C01A8(s32, s32);) BT_NATIVE_ONLY(void func_800C01A8(s16, s32);)
     s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     void func_800DA544(s32 index);
 

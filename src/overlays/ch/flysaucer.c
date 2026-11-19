@@ -2219,7 +2219,7 @@ void func_80803C3C_chflysaucer(Actor *arg0) {
 void func_80803CC4_chflysaucer(BtIntPtr arg0, s32 arg1) {
     BtIntPtr func_800B53A4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
-    s32 func_800BA3FC(BtIntPtr, s32);
+    BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
     BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
     BtIntPtr sp24;
     BtIntPtr temp_a1;

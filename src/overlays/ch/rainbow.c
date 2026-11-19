@@ -176,7 +176,7 @@ void func_80800440_chrainbow(Actor *arg0) {
 
 void func_808005E0_chrainbow(BtIntPtr arg0, s32 arg1) {
     BtIntPtr func_800B53A4(s32);
-    s32 func_800BA3FC(BtIntPtr, s32);
+    BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
     BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
     extern s32 D_80800FD0_chrainbow[13];
     BtIntPtr sp24;

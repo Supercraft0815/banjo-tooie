@@ -89,7 +89,7 @@ BtIntPtr func_808000FC_chquiz(Actor *arg0, s32 arg1) {
     void _gcnewoption_entrypoint_25(void *arg0, s32 arg1);
     void _gcnewoption_entrypoint_26(u8 *arg0, s32 arg1);
     void _gcnewoption_entrypoint_28(BtIntPtr);
-    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void _gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
     void *func_80100094(Actor *, u32);
     void *heap_alloc(s32);

@@ -8,7 +8,7 @@ void fxtwinkle_entrypoint_0(BtIntPtr arg0)
 void fxtwinkle_entrypoint_1(f32 *arg0, enum asset_e arg1) {
     BtIntPtr func_800B53A4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
-    s32 func_800BA3FC(BtIntPtr, s16);
+    BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s16);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
     BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);
     extern s32 D_808000F0_fxtwinkle[7];
     BtIntPtr sp24;
@@ -24,7 +24,7 @@ void fxtwinkle_entrypoint_1(f32 *arg0, enum asset_e arg1) {
 void fxtwinkle_entrypoint_2(f32 *arg0, enum asset_e arg1) {
     BtIntPtr func_800B53A4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
-    s32 func_800BA3FC(BtIntPtr, s16);
+    BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s16);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
     BtIntPtr func_800BABB8(BtIntPtr, f32 *, BtIntPtr, s32, s32 *);
     extern s32 D_8080010C_fxtwinkle[9];
     BtIntPtr sp24;

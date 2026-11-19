@@ -352,7 +352,7 @@ void func_808008B8_chcheato(BtIntPtr arg0, s32 arg1) {
 
 void func_8080098C_chcheato(BtIntPtr arg0, BtIntPtr arg1) {
     void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
-    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void _gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
     _gcnewoption_entrypoint_14(arg1, 0, 1, 2, 4.0f);
     _gcnewoption_entrypoint_40(arg1, 0x41, 0x22, 0x20, 0.8f, 1.0f);

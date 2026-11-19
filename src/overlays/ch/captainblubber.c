@@ -181,7 +181,7 @@ void func_808001F0_chcaptainblubber(Actor *arg0) {
     func_8080143C_chcaptainblubber(arg0);
 }
 
-s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) {
+s32 func_80800580_chcaptainblubber(Actor *arg0, s32 arg1, s32 arg2) { BT_NATIVE_ONLY(void func_800C01A8(s16, s32);)
     BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);

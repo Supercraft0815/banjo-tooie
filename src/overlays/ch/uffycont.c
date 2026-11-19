@@ -150,7 +150,7 @@ void func_80800440_chchuffycont(Actor *arg0) {
 /* extern */
 
 void func_8080046C_chchuffycont(BtIntPtr arg0, BtIntPtr arg1) {
-    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     _gcnewoption_entrypoint_32(arg1, 66);
 }
 

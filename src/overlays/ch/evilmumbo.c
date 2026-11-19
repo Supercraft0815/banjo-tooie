@@ -324,7 +324,7 @@ void func_80800670_chevilmumbo(Actor *arg0) {
     func_800EE7F8(arg0->position, local.position);
 }
 
-void func_80800774_chevilmumbo(Actor *arg0) {
+void func_80800774_chevilmumbo(Actor *arg0) { BT_NATIVE_ONLY(void _suexpression_entrypoint_4(u8 *, s16);)
     func_801032B0(arg0, 0x816, arg0->unk0->unk16);
     arg0->unk64_20 = 1;
     _suexpression_entrypoint_4(func_80100094(arg0, 1), 0x77);

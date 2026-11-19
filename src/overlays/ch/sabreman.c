@@ -42,7 +42,7 @@ int func_80800030_chsabreman(Actor *arg0) {
     };
     s32 _glcutDll_entrypoint_20();
     void _subaddielink_entrypoint_0(void *arg0);
-    void _subaddiepalette_entrypoint_0(Actor *arg0, u8 *arg1, u16 arg2);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) _subaddiepalette_entrypoint_0(Actor *arg0, u8 *arg1, u16 arg2);
     s32 func_800CB3E0(s32);
     s32 func_800DA564(s32, s32);
     void func_800FFAB0(Actor *);

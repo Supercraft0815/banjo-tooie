@@ -123,7 +123,7 @@ s32 func_80800194_chcheatomenu(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3)
 s32 func_80800364_chcheatomenu(Actor *arg0, void *arg1) {
     void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
     void _gcnewoption_entrypoint_31(BtIntPtr arg0, s32 arg1, s16 arg2);
-    void _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void _gcnewoption_entrypoint_40(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
     s32 func_800F1418(s32, s32);
     s32 func_80800800_chcheatomenu(void);

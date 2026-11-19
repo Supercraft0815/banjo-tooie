@@ -31,7 +31,7 @@ void func_808000B0_scinfobar(void *arg0) {
 }
 
 void func_808000C4_scinfobar(u32 *arg0, s32 temp_a1) {
-    void func_800E8C08();
+    BT_IDO_ONLY(void func_800E8C08();) BT_NATIVE_ONLY(void func_800E8C08(u8);)
     void scinfobar_entrypoint_3(void *, s32);
     void scinfobar_entrypoint_8(u32 *, s32);
     void scinfobar_entrypoint_9(u32 *, s32);
@@ -114,12 +114,12 @@ void *scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void scinfobar_entrypoint_1(void *arg0, s32 temp_a1) {
-    void func_800E8C08();
+    BT_IDO_ONLY(void func_800E8C08();) BT_NATIVE_ONLY(void func_800E8C08(u8);)
     void heap_free(void *memory);
 
     temp_a1 = (((Objinfobar_arg0 *)arg0)->unk32);
     if (temp_a1 != 0) {
-        func_800E8C08(temp_a1 & 0xFF, temp_a1, arg0);
+        BT_IDO_ONLY(func_800E8C08(temp_a1 & 0xFF, temp_a1, arg0);) BT_NATIVE_ONLY(func_800E8C08((u8)temp_a1);)
     }
     heap_free(arg0);
 }
@@ -312,7 +312,7 @@ void func_808006EC_scinfobar(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3) {
     void _fxdialog_entrypoint_0(void);
     void _fxdialog_entrypoint_1(s32 arg0, s32 arg1);
     void _fxdialog_entrypoint_2(f32);
-    void _fxdialog_entrypoint_3(BtIntPtr arg0, f32 arg1, s32 arg2, s32 arg3);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) _fxdialog_entrypoint_3(BtIntPtr arg0, f32 arg1, s32 arg2, s32 arg3);
     _fxdialog_entrypoint_0();
     _fxdialog_entrypoint_1(arg2, arg3);
     _fxdialog_entrypoint_2((*(f32 *)((s8 *)(arg1) + (0xC))));

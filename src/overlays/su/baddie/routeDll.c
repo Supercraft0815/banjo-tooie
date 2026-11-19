@@ -221,7 +221,7 @@ void subaddierouteDll_entrypoint_2(void *arg0) {
     }
 }
 
-void subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2) {
+void subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2) { BT_NATIVE_ONLY(void rare_memset(void *, u8, int);)
     void func_80800564_subaddierouteDll(BtIntPtr, void *);
     rare_memset(arg1, 0, 0xC);
     func_80800564_subaddierouteDll(arg0, arg1);

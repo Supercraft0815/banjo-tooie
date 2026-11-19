@@ -997,7 +997,7 @@ void func_80801B94_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     BtIntPtr func_800B53A4(s32);
     s32 func_800BA22C(BtIntPtr, s32);
-    s32 func_800BA3FC(BtIntPtr, s32);
+    BT_IDO_ONLY(s32 func_800BA3FC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_800BA3FC(BtIntPtr, s32);)
     BtIntPtr func_800BABB8(BtIntPtr, s32 *, s32 *, s32, s32 *);
     s32 func_80103DFC(BtIntPtr, s32 *);
     extern s32 D_80804E78_chdodgemcontrol[];

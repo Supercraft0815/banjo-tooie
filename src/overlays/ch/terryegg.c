@@ -106,7 +106,7 @@ s32 func_8080023C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiefind_entrypoint_7(Actor *, s32, s32);
-    void _subaddiepalette_entrypoint_0(Actor *arg0, u8 *arg1, u16 arg2);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) _subaddiepalette_entrypoint_0(Actor *arg0, u8 *arg1, u16 arg2);
     void _subaddiepalette_entrypoint_3(Actor *, void *, s32);
     void _subaddiepalette_entrypoint_4(void *arg0, void *arg1);
     s32 func_800DA298(s32);

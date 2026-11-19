@@ -1359,7 +1359,7 @@ void func_80802BC8_chhandcart(Actor* arg0)
 }
 
 void func_80802CE8_chhandcart(Actor* arg0, s32 arg1)
-{
+{ BT_NATIVE_ONLY(void func_800C01A8(s16, s32);)
     Actor* sp2C;
     CanaryMaryMemory* canaryMary;
     s32 sp24;

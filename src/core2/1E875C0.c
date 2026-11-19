@@ -116,7 +116,7 @@ u8 *func_800ADF98(void) {
     return temp_v0;
 }    typedef struct { u8 pad0[0xC]; s16 unkC; } Obj1E875C0_func_800ADFE0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-void func_800ADFE0(s16 arg0) { void *func_800AE080(s16); s32 func_8001B754(s16); s32 func_800E0A70(s16); void *temp_v0; temp_v0 = func_800AE080(arg0); if ((((Obj1E875C0_func_800ADFE0_temp_v0 *)temp_v0)->unkC) != 0) { func_800E0A70(((Obj1E875C0_func_800ADFE0_temp_v0 *)temp_v0)->unkC); } func_8001B754(arg0); }
+void func_800ADFE0(s16 arg0) { void *func_800AE080(s16); BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8001B754(s16); s32 func_800E0A70(s16); void *temp_v0; temp_v0 = func_800AE080(arg0); if ((((Obj1E875C0_func_800ADFE0_temp_v0 *)temp_v0)->unkC) != 0) { func_800E0A70(((Obj1E875C0_func_800ADFE0_temp_v0 *)temp_v0)->unkC); } func_8001B754(arg0); }
 
 s16 func_800AE020(void) {
     s32 func_80019CD4(void);

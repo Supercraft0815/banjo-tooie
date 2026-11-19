@@ -9,7 +9,7 @@ typedef struct { s16 level; s16 result; } SplineMapCommand;
 #define SPLINE_FIELD(ctx, field, original) (original)
 #define EVENT_COMMAND_ID(data) ((data)[12])
 #endif
-struct ImageStruct;
+struct ImageStruct; BT_ILP32_ONLY(void rare_memset(void *, u8, int);)
 /* extern */
 
 s32 func_80800000_glsplineDll(u32 *arg0, s32 *arg1, u32 *arg2, u32 *arg3, u32 *arg4, u32 *arg5, s32 *arg6, void *arg7) {

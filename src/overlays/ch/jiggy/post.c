@@ -73,7 +73,7 @@ void func_80800068_chjiggypost(Actor *arg0) {
 }
 
 void func_808001C4_chjiggypost(Actor* arg0, s32 arg1, s32 arg2)
-{
+{ BT_NATIVE_ONLY(void func_800C01A8(s16, s32);)
     s32 var_a1;
 
     switch (arg1)
