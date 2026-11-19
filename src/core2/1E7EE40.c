@@ -162,7 +162,7 @@ s32 func_800A57EC(s32 arg0) {
 
 /* extern */
 
-s32 func_800A5800(s32 arg0) {
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8 *) func_800A5800(s32 arg0) {
     s32 func_800A5790(s32, s32);
     void *temp_v0;
     s32 temp_v1;
@@ -171,7 +171,7 @@ s32 func_800A5800(s32 arg0) {
     temp_v1 = arg0 * 2;
     temp_v0 = D_80119540 + temp_v1;
     (*(s32 *)((s8 *)(D_80119540) + (0x34))) = func_800A5790((*(u8 *)((s8 *)(temp_v0) + (0x3C))), (*(u8 *)((s8 *)(temp_v0) + (0x3D))));
-    return (*(s32 *)((s8 *)(D_80119540) + (0x34)));
+    return *(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u8 **))((s8 *)D_80119540 + 0x34);
 }
 
 s32 func_800A5854(s32 arg0) {

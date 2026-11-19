@@ -82,7 +82,7 @@ void ncbafixpos_entrypoint_4(u8 *arg0, s32 arg1) {
     s32 _cadbfunc_entrypoint_4(u8 *);
     s32 _cadbfunc_entrypoint_6(s32 *, s32 *);
     s32 _cadbfunc_entrypoint_8(s32 *, s32 *);
-    s32 func_800A5800(s32);
+    BT_IDO_ONLY(s32 func_800A5800(s32);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     s32 func_80111B8C(u8 *, s32, s32);
     s32 func_80112570(u8 *, u8 *, s32);
     s32 sp2C;

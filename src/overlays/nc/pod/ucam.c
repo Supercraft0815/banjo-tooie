@@ -154,7 +154,7 @@ void func_808003A8_ncpoducam(u8 *arg0, s32 arg1) {
     void _suspline_entrypoint_5(BtIntPtr, f32 *);
     f32 func_800136E4(f32);
     void *func_8001B798(s16);
-    s32 func_800A5800(s16);
+    BT_IDO_ONLY(s32 func_800A5800(s16);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     s32 func_800EE7F8();
     void func_800EF04C(f32 *, f32 *);
     void func_800EF5A0(f32 *, f32 *, f32, f32, f32);
@@ -437,7 +437,7 @@ s32 func_80800B74_ncpoducam(u8 *arg0, s16 *arg1) {
 /* extern */
 
 s32 func_80800CB8_ncpoducam(s16 arg0, s32 arg1) {
-    s32 func_800A5800(s16);
+    BT_IDO_ONLY(s32 func_800A5800(s16);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     s32 _cadbfunc_entrypoint_16(s16 *);
     s32 var_s0;
 
@@ -470,7 +470,7 @@ void func_80800D28_ncpoducam(u8 *arg0) {
     void _susplinet_entrypoint_19(void *, s32, u32, u32);
     s16 func_8001B668(s32, s32);
     void *func_8001B798(s16);
-    s32 func_800A5800(s16);
+    BT_IDO_ONLY(s32 func_800A5800(s16);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     u8 *vectors[2];
     f32 *values[2];
     s32 count;
@@ -541,7 +541,7 @@ void func_80800F64_ncpoducam(u8 *arg0) {
     void _suspline_entrypoint_19(void *, s32, s32, s32, s32, s32);
     s16 func_8001B668(s32, s32);
     void *func_8001B798(s16);
-    s32 func_800A5800(s16);
+    BT_IDO_ONLY(s32 func_800A5800(s16);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     s32 func_800EE7F8();
     void func_800EF04C(f32 *, f32 *);
     void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
@@ -621,7 +621,7 @@ void func_80801274_ncpoducam(u8 *arg0) {
     void _suspline_entrypoint_19(void *, s32, s32, s32, s32, s32);
     s16 func_8001B668(s32, s32);
     void *func_8001B798(s16);
-    s32 func_800A5800(s16);
+    BT_IDO_ONLY(s32 func_800A5800(s16);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     void func_800F0EF0(s32, f32 *);
     u8 *vectors[2];
     f32 *values[3];

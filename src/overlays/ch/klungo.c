@@ -1739,7 +1739,7 @@ void func_80802FCC_chklungo(Actor *arg0) {
 void func_80803000_chklungo(Actor *arg0) {
     BtUIntPtr func_800F54E4(void);
     void* func_80100094(Actor*, u32);
-    s32 func_800F4AF4(u32, s32);
+    BT_IDO_ONLY(s32 func_800F4AF4(u32, s32);) BT_NATIVE_ONLY(s32 func_800F4AF4(s32, s32);)
     void func_808030A4_chklungo(Actor *);
     u8 *sp1C;
     u8 *temp_v0;

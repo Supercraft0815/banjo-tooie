@@ -225,10 +225,10 @@ void func_800E8870(u8 arg0, f32 arg1) {
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800E88AC(u8 arg0, s32 arg1) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800E88AC(u8 arg0, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32 *) arg1) {
     s32 func_800A89F8();
     s32 func_800E8918(u8, s32, BtIntPtr, BtIntPtr);
-    BT_NATIVE_ONLY(return) func_800E8918(arg0, func_800A89F8(), 0, arg1);
+    BT_NATIVE_ONLY(return) func_800E8918(arg0, func_800A89F8(), 0, BT_NATIVE_ONLY((BtIntPtr)) arg1);
 }
 
 /* extern */

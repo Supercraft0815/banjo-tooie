@@ -376,7 +376,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(u8 *) func_80103AA0(u8 *arg0)
 /* extern */
 
 s32 func_80103AC0(Actor *arg0) {
-    s32 func_800D6C34(u16);
+    BT_IDO_ONLY(s32 func_800D6C34(u16);) BT_NATIVE_ONLY(s32 func_800D6C34(s32);)
     return func_800D6C34((arg0->unk0->unk14));
 }
 

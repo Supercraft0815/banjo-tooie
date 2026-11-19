@@ -79,12 +79,12 @@ void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     } FlareActor;
     extern FlareSet D_808008F0_chlensflare[7];
     s32 func_800BFFB4(s32, s32, f32 *);
-    void func_800E8830(s32, f32 *);
-    s32 func_800E88AC(s32, f32 *);
+    BT_IDO_ONLY(void func_800E8830(s32, f32 *);) BT_NATIVE_ONLY(void func_800E8830(u8, f32 *);)
+    BT_IDO_ONLY(s32 func_800E88AC(s32, f32 *);) BT_NATIVE_ONLY(s32 func_800E88AC(u8, f32 *);)
     f32 mlAbsF(f32);
     void func_800E40DC(f32, f32, f32 *, f32 *);
     void func_800EFB24(void *, void *, void *);
-    void func_800EFA88(void *, u8, u8, u8);
+    BT_IDO_ONLY(void func_800EFA88(void *, u8, u8, u8);) BT_NATIVE_ONLY(void func_800EFA88(void *, s32, s32, s32);)
     void func_800B99CC(BtIntPtr, s32, f32 *);
     void func_800E24F8(s32, s32, s32);
     void func_800E2530(f32);

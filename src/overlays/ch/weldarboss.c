@@ -2002,7 +2002,7 @@ s32 func_808033D8_chweldarboss(Actor *arg0) {
 void func_8080340C_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_808034A0_chweldarboss(Actor *);
-    s32 func_800F4AF4(s16, s32);
+    BT_IDO_ONLY(s32 func_800F4AF4(s16, s32);) BT_NATIVE_ONLY(s32 func_800F4AF4(s32, s32);)
     u8 *temp_v0;
     u8 *sp1C;
 

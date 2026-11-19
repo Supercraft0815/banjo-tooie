@@ -2785,3 +2785,21 @@ Im regulären Build sind kanonische IR, elf Suiten und 74 Replays mit
 447.849 Retraces geprüft. Das Original-IDO-Ergebnis stimmt für alle 16.401
 Funktionen und beide ROM-Abbilder. Die Protokolle stehen unter
 `build/acceptance/n2-2026-11-18/current-slots*`.
+
+## 2026-11-19 — N2, Aufrufsignaturen für Kamera und Grafik
+
+Animation, Lens Flare und Kamerazustand verwenden die Breiten und
+Zeigertypen ihrer tatsächlichen Anbieter. Vier kanonische Gastfunktionen
+ändern sich. Das MIPS-Original lädt die Animations- und Farbwerte als
+vorzeichenlose Bytes und die Modellkennung als vorzeichenloses Halbwort.
+Die Zahl ungültiger Linkervarianten bei abgeschaltetem FixCalls sinkt
+von 59 auf 51. Die vollständigen 74 Referenzen mit 447.849 Retraces,
+elf Suiten, 61 native Sanitizertests, 16.401 Original-IDO-Funktionen
+und beide ROM-Abbilder sind geprüft. Die Nachweise stehen unter
+`build/acceptance/n2-2026-11-18/current-graphics*` und in
+`graphics-width-mips.txt`.
+
+Der aktualisierte Fremdsymbolbericht auf dem Stand des N1-Kamerapakets
+umfasst alle 74 Replays. Von 6.151 instrumentierten Stellen greifen
+1.549 in ein benachbartes Symbol. Die 82 Gruppen und die Einzelzugriffe
+stehen in `build/acceptance/n1-2026-11-18/current-six-camera-source/build/ilp32-xsym/`.

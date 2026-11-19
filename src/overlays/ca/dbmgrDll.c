@@ -179,7 +179,7 @@ s32 func_808000F4_cadbmgrDll(s32 arg0) {
     s32 _cadbfunc_entrypoint_31(s32);
     s32 _cadbfunc_entrypoint_33(f32);
     s32 _cadbfunc_entrypoint_35(s32);
-    s32 func_800A5800(s32);
+    BT_IDO_ONLY(s32 func_800A5800(s32);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     s32 func_800A5854(s32);
     void func_800E3980(f32 *);
     void func_800E3A58(f32 *);

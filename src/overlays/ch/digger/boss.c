@@ -1598,7 +1598,7 @@ void func_80802BE0_chdiggerboss(BtIntPtr arg0, f32 arg1) {
 }
 
 void func_80802C0C_chdiggerboss(BtIntPtr arg0) {
-    s32 func_800F4AF4(u32, s32);
+    BT_IDO_ONLY(s32 func_800F4AF4(u32, s32);) BT_NATIVE_ONLY(s32 func_800F4AF4(s32, s32);)
     void func_80802C40_chdiggerboss(BtIntPtr);
     func_800F4AF4(func_80802248_chdiggerboss(arg0), 0x14);
     func_80802C40_chdiggerboss(arg0);

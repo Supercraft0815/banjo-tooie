@@ -265,3 +265,11 @@ func_800D2438 compares the same array ends (+1092 and +96). The animation
 index in func_8010DAE0 occupies the upper 14 bits of the first halfword,
 also the upper 14 bits of the original big-endian word. The individual
 table and ROM checks are in build/acceptance/n1-2026-11-18/proof.
+
+2026-11-19  N2 animation flags, palette channels and model IDs
+func_8008BD94 and func_8008BEB4 pass the loop byte with lbu into a2.
+func_808000FC_chlensflare passes three RGB channels with lbu, including
+the blue channel in the call delay slot. func_80103AC0 passes the model
+ID with lhu in its delay slot. These explain the four sign-extension
+changes in n2-2026-11-18/current-graphics-ir.log. Each instruction is
+recorded in graphics-width-mips.txt.

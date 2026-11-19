@@ -26,7 +26,7 @@ Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausga
 | A5–A7 | ImGui-Menü und vier Eingabeplätze, GPU-Zielgrößen und HUD bis 4K geprüft, Interpolations- und Scanout-Tests bestanden | A7-Messung am externen 4K/60-Hz-Display auf Nutzerwunsch zurückgestellt |
 | A8 | C-Mixer als Standard, alle 74 Korpusfälle gegen den Microcode, 83.772.256 identische PCM-Bytes in `new-game` | macOS-Abnahme abgeschlossen |
 | A9–A11 | A9 ersetzt HUD-Texturen und Modell-Assets nach Paketpriorität und lädt Rice-Texturen. A11-Absturzberichte auf macOS, Linux und unter Wine geprüft | A10-Wunschliste auf Nutzerwunsch zurückgestellt |
-| N1–N3 | Der klassische Datenmodul-Scan meldet 0. Der Gast kompiliert die Bitfelder direkt aus C. N2 hat die lokalen Stack-Arrays im C-Quelltext und 59 der ursprünglich 163 ungültigen Aufrufvarianten übrig. N3 hat 764 LP64-Warnstellen und 223 verschiebbare Offsets | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
+| N1–N3 | Der klassische Datenmodul-Scan meldet 0. Der Gast kompiliert die Bitfelder direkt aus C. N2 hat die lokalen Stack-Arrays im C-Quelltext und 51 der ursprünglich 163 ungültigen Aufrufvarianten übrig. N3 hat 764 LP64-Warnstellen und 223 verschiebbare Offsets | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
 | N4–N6 | Der direkte native Build setzt N1–N3 voraus | Umstellung nach dem Spike, Entscheidung über Little-Endian nach N5 |
 
 ---
@@ -446,7 +446,7 @@ Ziel: der native Build braucht `data.py` nicht mehr.
    Die letzten fünf Module (Athlete, Klungo, Evil Mumbo, Quiz und Game Select) sind aufgeteilt. Der kumulative Original-IDO-Vergleich umfasst 3.372 Funktionen in 113 Modulen und beide vollständigen ROMs. Alle 74 Replays mit 447.849 Retraces stimmen überein. Nach den fünf folgenden Rodata-Paketen meldet der strenge Scan noch 558 Einträge für Assembler-Daten, Rodata und BSS. Fünf Dateien wurden dafür entlang der ursprünglichen Objektgrenzen geteilt. Die folgenden sechs Pakete senken die Liste auf 471 Einträge (415 Daten, 56 Rodata). Alle 18 verbliebenen BSS-Symbole haben nun einen C-Eigentümer. Nach den Tabellen für Jolly Roger, den Alienvater, den Kesselboss, Bewegungs- und Trefferwerte, Musik und Cheats verbleiben 386 Einträge (330 Daten, 56 Rodata). Zeichensatz, drei Datenmodule für Dialoge und Zähler, Sammelobjekte, HUD, Spielermodelle und gemeinsame Effekte senken die Liste weiter auf 338 (282 Daten, 56 Rodata). Nach den Tabellen für Dekompression, Beleuchtung, Objektflags, Lufttimer, Spielerzustände und Ei-Auswahl bleiben 298 Einträge (242 Daten und 56 Rodata). Die HUD-Belegung, Nebelwerte, Animationsvorgaben, Objektaktionen, Kameraabstände und Karteneinstellungen bringen die Liste auf 234 (178 Daten und 56 Rodata).
 3. `port.py worklist xsym` (348 Zugriffe, 86 Dateien, Gruppen in
    `build/ilp32-xsym/xsym_groups.tsv`): je Gruppe erst die Daten als ein C-Objekt, dann die
-   Zugriffe. Nach Q2 den Bericht neu erzeugen.
+   Zugriffe. Der Messlauf nach Q2 und dem N1-Kamerapaket prüft 6.151 Stellen über alle 74 Fälle. Er findet 1.549 Fremdsymbolzugriffe in 362 Funktionen und fasst sie zu 82 Gruppen zusammen.
 4. Rodata-Branch `claude/awesome-lovelace-b12e6f`: 41 Pfade fügen sich sauber, 11 Konflikte,
    6 neue Dateisplits (Vorschau in `build/ilp32/phase01-validation/rodata-preview/`). Je
    Konfliktdatei die heutigen Funktionskörper behalten und nur die Rodata-Aufteilung übernehmen;

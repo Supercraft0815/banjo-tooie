@@ -63,7 +63,7 @@ void func_80800098_chevilmumbo(BtIntPtr arg0) {
 void func_808000BC_chevilmumbo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     BtUIntPtr func_800F54E4(void);
-    s32 func_800F4AF4(u32, s32);
+    BT_IDO_ONLY(s32 func_800F4AF4(u32, s32);) BT_NATIVE_ONLY(s32 func_800F4AF4(s32, s32);)
     void func_80800000_chevilmumbo(Actor *);
     struct {
         u8 pad0[0x95];

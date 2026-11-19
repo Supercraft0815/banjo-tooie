@@ -2186,7 +2186,7 @@ void func_80803CE0_chgameselect()
 s32 func_80803D00_chgameselect(s32 arg0, s32 arg1) {
     s32 _cadbfunc_entrypoint_0(s32 *);
     s32 _cadbfunc_entrypoint_2(s32 *);
-    s32 func_800A5800(s32);
+    BT_IDO_ONLY(s32 func_800A5800(s32);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     void func_800E39D8(GAME_SELECT_LP64(f32 *, BtIntPtr) arg0, GAME_SELECT_LP64(f32 *, BtIntPtr) arg1);
     union {
         s32 word;
@@ -4466,7 +4466,7 @@ s32 func_808079D0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 GAME_SELECT_LP64(s32 func_80807A10_chgameselect(Actor *arg0, s32 arg1, s32 arg2), s32 func_80807A10_chgameselect(arg0, arg1, arg2)) {
     s32 _cadbfunc_entrypoint_0(s32 *);
     s32 _cadbfunc_entrypoint_2(s32 *);
-    s32 func_800A5800(s32);
+    BT_IDO_ONLY(s32 func_800A5800(s32);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     void func_800E39A8(f32 *, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
     void func_800EFE50(f32 *, void *, void *, f32);

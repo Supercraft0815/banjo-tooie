@@ -252,7 +252,7 @@ s32 func_800A4338(arg0) {
     s32 func_80090E30(PlayerState *);
     s32 func_800A5854(s32);
     s32 func_800A5904();
-    s32 func_800A5800(s32);
+    BT_IDO_ONLY(s32 func_800A5800(s32);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
     s32 bs_getCurrentState(PlayerState *);
     s32 func_8009CA70(PlayerState *, s32, s32);
     void func_800A3EC8(PlayerState *, s32);

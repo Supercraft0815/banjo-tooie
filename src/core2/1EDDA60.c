@@ -47,12 +47,12 @@ void func_801041C8(void) {
 }
 
 struct anctrl_s *func_80104200(s16 arg0) {
-    void *freelist_at(s32, s16);
+    BT_IDO_ONLY(void *freelist_at(s32, s16);) BT_NATIVE_ONLY(struct FreeList; void *freelist_at(struct FreeList *, s32);)
     extern s32 D_80136E70;
     struct anctrl_s *var_v1;
 
     if (arg0 != 0) {
-        var_v1 = freelist_at(D_80136E70, arg0);
+        var_v1 = freelist_at(BT_NATIVE_ONLY((struct FreeList *)) D_80136E70, arg0);
     } else {
         var_v1 = 0;
     }

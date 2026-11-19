@@ -1,5 +1,5 @@
 #include "common.h"
-#include "core2/1EB93C0.h"
+#include "core2/animation_resource.h"
 /* IDO keeps overlapping linker-symbol views; the host uses actual struct fields. */
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "memory.h"
@@ -452,7 +452,7 @@ void func_8008BD94(void *arg0) {
     struct ImageStruct *func_800D674C(s32);
 #else
     s32 func_800D674C(s32);
-    void func_800E0170(s32, f32, u8, s32);
+    BT_IDO_ONLY(void func_800E0170(s32, f32, u8, s32);)
 #endif
 
     if (ANIM_FIELD(arg0, pending, *(u8 *)((u8 *)arg0 + 0x1B)) == 1 && func_8008BC94(arg0)) {
@@ -476,7 +476,7 @@ void func_8008BEB4(u8 *arg0) {
     struct ImageStruct *func_800D674C(s32);
 #else
     s32 func_800D674C(s32);
-    void func_800E0170(s32, f32, u8, s32);
+    BT_IDO_ONLY(void func_800E0170(s32, f32, u8, s32);)
 #endif
 
     if (ANIM_FIELD(arg0, pending, arg0[0x1B]) == 1 && ANIM_FIELD(arg0, fresh, arg0[0x1D]) == 0) {
