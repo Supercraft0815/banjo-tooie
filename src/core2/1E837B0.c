@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "map_heap_limits.inc"
 typedef struct {
     s16 current;
     u8 flag;
@@ -10,8 +10,8 @@ ProgressData D_80127780;
 
 void func_800A9EC0(s32 arg0) {
     extern s32 D_80127770;
-    extern s16 D_8011A480[][2];
-    extern s16 D_8011A498[][2];
+    BT_IDO_ONLY(extern s16 D_8011A498[][2];)
+
     s32 i;
 
     D_80127770 = 0x3E800;
@@ -22,7 +22,7 @@ loop_1:
         return;
     }
     i++;
-    if (D_8011A498 != &D_8011A480[i]) {
+    if (BT_DATA_FIELD(D_8011A480 + 6, D_8011A498) != &D_8011A480[i]) {
         goto loop_1;
     }
 }

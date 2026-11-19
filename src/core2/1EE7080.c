@@ -1,6 +1,6 @@
 #include "common.h"
-
-typedef struct { s8 flag; s32 value; } Entry; extern u8 D_80124730[13]; extern Entry D_80136F90[13][2]; 
+u8 D_80124730[13] BT_DATA(1, sound_slot_counts, 0) = {1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1};
+typedef struct { s8 flag; s32 value; } Entry; extern Entry D_80136F90[13][2];
 
 void func_8010D790(void) { int i; u32 j; u8 *counts; int count; i = 0; j = 0; do { counts = &D_80124730[i]; count = *counts; j = 0; if (count > 0) { loop: j++; D_80136F90[i][(s32)j - 1].flag = 0; D_80136F90[i][(s32)j - 1].value = -1; count = D_80124730[i]; if ((s32)j < count) goto loop; } i++; } while (i != 13); }
 

@@ -1,5 +1,5 @@
 #include "core2/1E831D0.h"
-
+#include "attract_inventory.inc"
 void func_800A98E0(void) {
     void _gsattract_entrypoint_3(void);
     extern u8 D_80127760;
@@ -175,9 +175,9 @@ void func_800A9D08(void) {
     void func_800D3A20(s32 arg0);
     void func_800D3A88(void);
     void func_800D3AF0(s32 arg0);
-    extern u8 D_8011A470[];
-    extern s16 D_8011A478;
-    extern s16 D_8011A47C;
+    BT_IDO_ONLY(extern s16 D_8011A47C;)
+
+
     s16 *short_ptr;
     u32 i;
     u8 *byte_ptr;
@@ -193,7 +193,7 @@ void func_800A9D08(void) {
         i++;
         byte_ptr++;
     } while ((u32)(u64)i < 7U);
-    short_ptr = &D_8011A478; short_end = &D_8011A47C;
+    short_ptr = D_8011A478; short_end = BT_DATA_FIELD(D_8011A478 + 2, &D_8011A47C);
     do {
         func_800D3A20(*short_ptr);
         short_ptr++;

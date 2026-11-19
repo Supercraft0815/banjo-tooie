@@ -1,7 +1,7 @@
 #include "common.h"
 
 typedef struct FreeList FreeList;
-
+#include "depth_frame_state.inc"
 f32 func_800E81E0(s32 x, s32 y, f32 offset, f32 scale) {
     u16 func_8001A0C0(s32, s32);
     f32 mlAbsF(f32);
@@ -21,14 +21,14 @@ f32 func_800E81E0(s32 x, s32 y, f32 offset, f32 scale) {
 }
 
 void func_800E829C(void) {
-    extern FreeList *D_8012D600;
-    extern s32 D_8012D678;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
+    DEPTH_RETAIL(extern s32 D_8012D678;)
     int i;
     int j;
 
     for (j = 0; j < 2; j++) {
         for (i = 0; i < 5; i++) {
-            *(s32 *)((s8 *)&D_8012D600 + j * 60 + i * 12 + 12) = 0;
+            DEPTH_FIELD(depthFrameState.depth[j][i].active, *(s32 *)((s8 *)&D_8012D600 + j * 60 + i * 12 + 12)) = 0;
         }
     }
 }
@@ -47,7 +47,7 @@ void func_800E82EC(void) {
     void func_800EF334(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 mlAbsF(f32);
-    extern FreeList *D_8012D600;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
     typedef struct {
         f32 a;
         f32 b;
@@ -86,7 +86,7 @@ void func_800E82EC(void) {
     f32 reciprocal;
     Entry *entry;
     Sample *sample;
-    DepthView *depth;
+    DEPTH_FIELD(DepthSnapshot, DepthView) *depth;
     f32 difference;
     f32 factor = 2.0f;
 
@@ -95,27 +95,27 @@ void func_800E82EC(void) {
         if (camera != 0) {
             func_800CA6D4((void *)camera, &near, &far);
             reciprocal = 1.0f / (near - far);
-            ((State *)&D_8012D600)->depth[((State *)&D_8012D600)->index][i].a = -((near + far) * reciprocal);
-            ((State *)&D_8012D600)->depth[((State *)&D_8012D600)->index][i].b = -(factor * near * far * reciprocal);
-            ((State *)&D_8012D600)->depth[((State *)&D_8012D600)->index][i].active = 1;
+            DEPTH_STATE->depth[DEPTH_STATE->index][i].a = -((near + far) * reciprocal);
+            DEPTH_STATE->depth[DEPTH_STATE->index][i].b = -(factor * near * far * reciprocal);
+            DEPTH_STATE->depth[DEPTH_STATE->index][i].active = 1;
         } else {
-            ((State *)&D_8012D600)->depth[((State *)&D_8012D600)->index][i].active = 0;
+            DEPTH_STATE->depth[DEPTH_STATE->index][i].active = 0;
         }
     }
-    if (++((State *)&D_8012D600)->index >= 2) {
-        ((State *)&D_8012D600)->index = 0;
+    if (++DEPTH_STATE->index >= 2) {
+        DEPTH_STATE->index = 0;
     }
     if (func_800DA298(0xD4E) || func_800DA298(0xD4F)) {
         _chjiggygamenew_entrypoint_2();
     }
-    if (D_8012D600 != 0) {
-        capacity = freelist_capacity(D_8012D600);
+    if (DEPTH_LIST != 0) {
+        capacity = freelist_capacity(DEPTH_LIST);
         for (slot = 1; slot < capacity; slot++) {
-            if (freelist_is_element_alive(D_8012D600, slot)) {
-                entry = freelist_at(D_8012D600, slot);
+            if (freelist_is_element_alive(DEPTH_LIST, slot)) {
+                entry = freelist_at(DEPTH_LIST, slot);
                 for (i = 0; i < 5; i++) {
-                    sample = &entry->sample[((State *)&D_8012D600)->index][i];
-                    if (sample->valid && (depth = (DepthView *)((u8 *)&((State *)&D_8012D600)->depth[((State *)&D_8012D600)->index][i] - 4), depth->active)) {
+                    sample = &entry->sample[DEPTH_STATE->index][i];
+                    if (sample->valid && (depth = DEPTH_FIELD(&DEPTH_STATE->depth[DEPTH_STATE->index][i], (DepthView *)((u8 *)&DEPTH_STATE->depth[DEPTH_STATE->index][i] - 4)), depth->active)) {
                         if (!(sample->x < 0.0f) && !(sample->x >= 304.0f) && !(sample->y < 0.0f) && !(sample->y >= 228.0f)) {
                             switch (entry->mode) {
                                 case 1:
@@ -155,10 +155,10 @@ void func_800E82EC(void) {
 
 void func_800E86DC(void) {
     void freelist_free(FreeList *);
-    extern FreeList *D_8012D600;
-    if (D_8012D600 != 0) {
-        freelist_free(D_8012D600);
-        D_8012D600 = 0;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
+    if (DEPTH_LIST != 0) {
+        freelist_free(DEPTH_LIST);
+        DEPTH_LIST = 0;
     }
 }
 
@@ -166,7 +166,7 @@ u8 func_800E8714(s32 arg0) {
     FreeList *freelist_new(s32, s32);
     void *freelist_next(FreeList **, s32 *);
     void bzero(void *, int);
-    extern FreeList *D_8012D600;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
     typedef struct {
         f32 data[13];
         s16 visible;
@@ -183,10 +183,10 @@ u8 func_800E8714(s32 arg0) {
     s32 i;
     s32 j;
 
-    if (D_8012D600 == NULL) {
-        D_8012D600 = freelist_new(0x244, 4);
+    if (DEPTH_LIST == NULL) {
+        DEPTH_LIST = freelist_new(0x244, 4);
     }
-    entry = freelist_next(&D_8012D600, &index);
+    entry = freelist_next(&DEPTH_LIST, &index);
     bzero(entry, 0x244);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 5; j++) {
@@ -202,25 +202,25 @@ void func_800E87E0(u8 arg0) {
     void freelist_erase(FreeList *, s32);
     void freelist_free(FreeList *);
     s32 freelist_used_count(FreeList *);
-    extern FreeList *D_8012D600;
-    freelist_erase(D_8012D600, arg0);
-    if (freelist_used_count(D_8012D600) == 0) {
-        freelist_free(D_8012D600);
-        D_8012D600 = 0;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
+    freelist_erase(DEPTH_LIST, arg0);
+    if (freelist_used_count(DEPTH_LIST) == 0) {
+        freelist_free(DEPTH_LIST);
+        DEPTH_LIST = 0;
     }
 }
 
 void func_800E8830(u8 arg0, f32 arg1[3]) {
-    extern FreeList *D_8012D600;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
     void *freelist_at(FreeList *, s32);
     void func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8(freelist_at(D_8012D600, arg0), arg1);
+    func_800EE7F8(freelist_at(DEPTH_LIST, arg0), arg1);
 }
 
 void func_800E8870(u8 arg0, f32 arg1) {
     void *freelist_at(FreeList *, s32);
-    extern FreeList *D_8012D600;
-    (*(f32 *)((s8 *)freelist_at(D_8012D600, arg0) + 0xC)) = arg1;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
+    (*(f32 *)((s8 *)freelist_at(DEPTH_LIST, arg0) + 0xC)) = arg1;
 }
 
 /* extern */
@@ -240,21 +240,21 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800E88E4(u8 arg0) {
 }
 
 s32 func_800E8918(u8 arg0, s32 arg1, BtIntPtr arg2, BtIntPtr arg3) {
-    extern FreeList *D_8012D600;
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
     void *freelist_at(FreeList *, s32);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800C4C34(s32, BtIntPtr, BtIntPtr, s32 *);
     f32 func_800E3928(BtIntPtr, BtIntPtr);
     void func_800E3980(f32 *);
-    extern s32 D_8012D67C;
+    DEPTH_RETAIL(extern s32 D_8012D67C;)
     f32 sp34[3];
     u8 *entry;
     u8 *base;
     s32 result;
     s32 sp24;
 
-    base = freelist_at(D_8012D600, arg0);
-    entry = (u8 *)((BtIntPtr)base + D_8012D67C * 0x118) + arg1 * 0x38;
+    base = freelist_at(DEPTH_LIST, arg0);
+    entry = (u8 *)((BtIntPtr)base + DEPTH_INDEX * 0x118) + arg1 * 0x38;
     entry += 0x10;
     if (*(s16 *)(entry + 0x36) != 0) {
         *(s16 *)(entry + 0x36) = 0;
@@ -278,16 +278,16 @@ s32 func_800E8918(u8 arg0, s32 arg1, BtIntPtr arg2, BtIntPtr arg3) {
 
 void func_800E8A20(void) {
     FreeList *freelist_defrag(FreeList *);
-    extern FreeList *D_8012D600;
-    if (D_8012D600 != 0) {
-        D_8012D600 = freelist_defrag(D_8012D600);
+    DEPTH_RETAIL(extern FreeList *D_8012D600;)
+    if (DEPTH_LIST != 0) {
+        DEPTH_LIST = freelist_defrag(DEPTH_LIST);
     }
 }
 
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-FreeList * D_8012D600 BT_DATA(4, bss_core2bss2_1, 0xCC0);
-s32 D_8012D678 BT_DATA(4, bss_core2bss2_1, 0xD38);
-s32 D_8012D67C BT_DATA(4, bss_core2bss2_1, 0xD3C);
+DEPTH_RETAIL(FreeList * D_8012D600 BT_DATA(4, bss_core2bss2_1, 0xCC0);)
+DEPTH_RETAIL(s32 D_8012D678 BT_DATA(4, bss_core2bss2_1, 0xD38);)
+DEPTH_RETAIL(s32 D_8012D67C BT_DATA(4, bss_core2bss2_1, 0xD3C);)
 #endif

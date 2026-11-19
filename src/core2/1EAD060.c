@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "attract_command.inc"
 int func_800D3770(void) {
     extern u8 D_8012762C;
     extern s8 D_8012B3F1;
@@ -97,7 +97,7 @@ void func_800D3970(void) { void func_800D37D4(void); void func_800D3A14(s32); vo
 void func_800D39A8(void) {
     s16 func_800B2DC0(s32, s32);
     extern s16 D_8012B3FC;
-    D_8012B3FC = func_800B2DC0(0x14, 1);
+    D_8012B3FC = func_800B2DC0(sizeof(AttractCommand), 1);
 }    typedef struct { s8 unk0; } Obj1EAD060_D_8012B3F2; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F2; rename once understood */
 
 void func_800D39D0(s32 arg0) {
@@ -106,9 +106,9 @@ void func_800D39D0(s32 arg0) {
 }
 
 void func_800D39DC(s32 arg0) {
-    BtIntPtr func_800D3B6C(s32, s32 *, s32, s32, s32);
+    BtIntPtr func_800D3B6C(s32, AttractCallback, s32, s32, s32);
     if (arg0 >= 0) {
-        func_800D3B6C(1, (s32 *) func_800D39D0, arg0, 0, 0);
+        func_800D3B6C(1, (AttractCallback) func_800D39D0, arg0, 0, 0);
     }
 }    typedef struct { s8 unk0; } Obj1EAD060_D_8012B3F3; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F3; rename once understood */
 
@@ -118,80 +118,80 @@ void func_800D3A14(s32 arg0) {
 }
 
 void func_800D3A20(s32 arg0) {
-    BtIntPtr func_800D3B6C(s32, s32 *, s32, s32, s32);
-    extern s32 func_800DA544;
-    func_800D3B6C(1, &func_800DA544, arg0, 0, 0);
+    BtIntPtr func_800D3B6C(s32, AttractCallback, s32, s32, s32);
+    void func_800DA544(GameFlag);
+    func_800D3B6C(1, (AttractCallback) ATTRACT_GAME_FLAG, arg0, 0, 0);
 }
 
 void func_800D3A54(s32 arg0, s32 arg1) {
-    BtIntPtr func_800D3B6C(s32, s32 *, s32, s32, s32);
-    extern s32 func_800C70B0;
-    func_800D3B6C(2, &func_800C70B0, arg0, arg1, 0);
+    BtIntPtr func_800D3B6C(s32, AttractCallback, s32, s32, s32);
+    void func_800C70B0(s32, s32);
+    func_800D3B6C(2, (AttractCallback) func_800C70B0, arg0, arg1, 0);
 }
 
 void func_800D3A88(void) {
-    BtIntPtr func_800D3B6C(s32, s32 *, s32, s32, s32);
-    extern s32 func_800C7010;
-    func_800D3B6C(0, &func_800C7010, 0, 0, 0);
+    BtIntPtr func_800D3B6C(s32, AttractCallback, s32, s32, s32);
+    void func_800C7010(void);
+    func_800D3B6C(0, (AttractCallback) func_800C7010, 0, 0, 0);
 }
 
 void func_800D3ABC(s32 arg0, s32 arg1) {
-    BtIntPtr func_800D3B6C(s32, s32 *, s32, s32, s32);
-    extern s32 func_800D1864;
-    func_800D3B6C(3, &func_800D1864, arg0, arg1, 0);
+    BtIntPtr func_800D3B6C(s32, AttractCallback, s32, s32, s32);
+    void func_800D1864(u32, u32, u32);
+    func_800D3B6C(3, (AttractCallback) func_800D1864, arg0, arg1, 0);
 }
 
 void func_800D3AF0(s32 arg0) {
-    BtIntPtr func_800D3B6C(s32, s32 *, s32, s32, s32);
-    extern s32 func_800D1864;
-    func_800D3B6C(3, &func_800D1864, arg0, 0x3E8, 0);
+    BtIntPtr func_800D3B6C(s32, AttractCallback, s32, s32, s32);
+    void func_800D1864(u32, u32, u32);
+    func_800D3B6C(3, (AttractCallback) func_800D1864, arg0, 0x3E8, 0);
 }
 
 void func_800D3B24(void) {
-    BtIntPtr func_800D3B6C(s32, s32 *, s32, s32, s32);
+    BtIntPtr func_800D3B6C(s32, AttractCallback, s32, s32, s32);
     void func_800DC324(s32 arg0);
-    func_800D3B6C(1, (s32 *) func_800DC324, osGetCount(), 0, 0);
+    func_800D3B6C(1, (AttractCallback) func_800DC324, osGetCount(), 0, 0);
 }
 
 u32 func_800D3B60(void) {
     extern s8 D_8012B3F3;
     return (u8)D_8012B3F3;
-}    typedef struct { s8 unk0; u8 pad1[0x3]; s32 * unk4; s32 unk8; s32 unkC; s32 unk10; } Obj1EAD060_func_800D3B6C_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+}
 
-BtIntPtr func_800D3B6C(s32 arg0, s32 *arg1, s32 arg2, s32 arg3, s32 arg4) {
+BtIntPtr func_800D3B6C(s32 arg0, AttractCallback arg1, s32 arg2, s32 arg3, s32 arg4) {
     extern s16 D_8012B3FC;
     void* func_800B2A58(s16 arg0);
-    u8 *temp_v0;
+    AttractCommand *temp_v0;
 
     temp_v0 = func_800B2A58(D_8012B3FC);
-    (((Obj1EAD060_func_800D3B6C_temp_v0 *)temp_v0)->unk0) = (s8) arg0;
-    (((Obj1EAD060_func_800D3B6C_temp_v0 *)temp_v0)->unk4) = arg1;
-    (((Obj1EAD060_func_800D3B6C_temp_v0 *)temp_v0)->unk8) = arg2;
-    (((Obj1EAD060_func_800D3B6C_temp_v0 *)temp_v0)->unkC) = arg3;
-    (((Obj1EAD060_func_800D3B6C_temp_v0 *)temp_v0)->unk10) = arg4;
+    temp_v0->count = (s8) arg0;
+    temp_v0->callback.zero = arg1;
+    temp_v0->args[0] = arg2;
+    temp_v0->args[1] = arg3;
+    temp_v0->args[2] = arg4;
     return (BtIntPtr) temp_v0;
 }
 
 void func_800D3BC8(void *arg0) {
-    struct Entry {
-        u8 count;
-        void (*callback)();
-        s32 args[3];
-    };
-    struct Entry *entry = arg0;
+    AttractCommand *entry = arg0;
+    /* Each queued callback uses its declared arity. In O32 the same address
+     * occupies one word. Native builds store a full function pointer. */
+    BT_NATIVE_ONLY(_Static_assert(sizeof(entry->callback) == sizeof(void (*)(void)),
+                                  "command callback width");)
+
 
     switch (entry->count) {
         case 0:
-            entry->callback();
+            entry->callback.zero();
             break;
         case 1:
-            entry->callback(entry->args[0]);
+            entry->callback.one(entry->args[0]);
             break;
         case 2:
-            entry->callback(entry->args[0], entry->args[1]);
+            entry->callback.two(entry->args[0], entry->args[1]);
             break;
         case 3:
-            entry->callback(entry->args[0], entry->args[1], entry->args[2]);
+            entry->callback.three(entry->args[0], entry->args[1], entry->args[2]);
             break;
     }
 }
@@ -213,7 +213,7 @@ void func_800D3C70(void) {
         end = vector_end(vec);
         while (entry < end) {
             func_800D3BC8(entry);
-            entry += 0x14;
+            entry += sizeof(AttractCommand);
         }
         func_800B2D48(D_8012B3FC);
         D_8012B3FC = 0;

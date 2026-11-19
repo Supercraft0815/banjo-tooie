@@ -134,6 +134,12 @@ D_8011B460 = D_8011B45C + 0x4;
 /* Original interior of the first actor animation preset. */
 D_80124744 = D_80124740 + 0x4;
 
+/* One-past address used by the original list iteration. */
+D_8011A47C = D_8011A478 + 0x4;
+
+/* One-past address used by the original list iteration. */
+D_8011A498 = D_8011A480 + 0x18;
+
 /* Aliases within audio storage. */
 D_80079FA2 = D_80079FA0 + 0x2;
 D_80079FA3 = D_80079FA0 + 0x3;

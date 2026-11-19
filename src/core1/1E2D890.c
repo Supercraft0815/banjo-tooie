@@ -132,7 +132,7 @@ void func_80015F5C(s32 arg0, void *arg1) {
 
 s32 func_80015F84(s32 arg0) {
     extern s32 D_80079A14;
-    return *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8));
+    return BT_DATA_FIELD(D_800799E0[arg0].unk0[13], *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8)));
 }
 
 s32 func_80015FA0(s32 arg0) {
@@ -146,7 +146,7 @@ s32 func_80015FA0(s32 arg0) {
         return 0U;
     }
     if (arg0 != 0) {
-        var_v1 = *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8));
+        var_v1 = BT_DATA_FIELD(D_800799E0[arg0].unk0[13], *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8)));
     } else {
         var_v1 = D_80079AF4;
     }

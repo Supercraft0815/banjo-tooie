@@ -2836,3 +2836,18 @@ bestehen. Alle 16.401 Original-IDO-Funktionen und beide ROM-Abbilder
 stimmen überein. Belege liegen unter
 `build/acceptance/n2-2026-11-18/current-player-light*`, die
 Originalinstruktionen in `player-light-mips.txt`.
+
+## 2026-11-19 — N1/N3, Eingabefolgen, Schatten und Tiefenzustand
+
+Fünf Datenpakete entfernen 16 Einträge aus der strengen Assemblerliste.
+Beim gemeinsamen Gastbuild verbleiben 162 Daten- und 56 Rodata-Einträge.
+Die beiden Tiefenpuffer für je fünf Kameraansichten teilen sich im
+64-Bit-Build nun denselben Zustand wie die zugehörige Liste und ihr
+Bankindex. Der native Test prüft den Wechsel zwischen den beiden Bänken.
+
+Alle elf Gastsuiten, 74 Replays mit 447.849 Retraces, 62 Sanitizertests,
+16.401 Original-IDO-Funktionen und beide ROM-Abbilder sind geprüft. Auf
+diesem Stand zählt der LP64-Scan 766 Warnstellen und der Offset-Scan 223
+verschiebbare Zugriffe. Die Nachweise einschließlich der vier Änderungen
+der kanonischen Gast-IR stehen unter
+`build/acceptance/n1-2026-11-18/current-input-shadow*` und `proof/`.

@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "shadow_graphics.inc"
 void func_800A5DB0(Actor *arg0) {
     void *func_800D674C(s32);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, void *);
@@ -37,8 +37,8 @@ void func_800A5DB0(Actor *arg0) {
 }
 
 void func_800A5EC4(Gfx **arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
-    extern Gfx D_8011A2F8[];
-    extern Gfx D_8011A350[];
+
+
     Gfx *gfx = *arg0;
     s32 rows;
     s32 end;
@@ -47,7 +47,7 @@ void func_800A5EC4(Gfx **arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg
         arg4 = (arg4 + 15) & 0xFFF0;
         if (arg5 != 0) {
             rows = 0x1000 / arg4;
-            gSPDisplayList(gfx++, D_8011A2F8 - 0x10000000);
+            gSPDisplayList(gfx++, SHADOW_SUBLIST(D_8011A2F8));
             gDPSetBlendColor(gfx++, 0, 0, 0, 1);
             gDPSetPrimColor(gfx++, 0, 0, 0, 0, 0, (arg6 << 7) / 255);
 if (!arg1) {}
@@ -67,20 +67,20 @@ if (!arg1) {}
                     gImmp1(gfx++, G_RDPHALF_2, _SHIFTL(0x400, 16, 16) | _SHIFTL(0x400, 0, 16));
                 }
             }
-            gSPDisplayList(gfx++, D_8011A350 - 0x10000000);
+            gSPDisplayList(gfx++, SHADOW_SUBLIST(D_8011A350));
             *arg0 = gfx;
         }
     }
 }
 
 void func_800A61D4(void) {
-    typedef struct { s32 color[4]; } Color;
+
     void func_800DF580(void *arg0, void *arg1);
     void func_800DF830(s32 arg0);
-    extern Color D_8011A380;
-    extern Color D_8011A390;
-    Color sp28 = D_8011A380;
-    Color sp18 = D_8011A390;
+
+
+    ShadowColor sp28 = D_8011A380;
+    ShadowColor sp18 = D_8011A390;
     func_800DF580(&sp28, &sp18);
     func_800DF830(3);
 }
@@ -436,7 +436,7 @@ void func_800A6EF4(Actor *arg0) {
     s32 func_800D3948(void);
     s32 func_800EA05C();
     void func_8010A800(Actor *, s32);
-    extern s16 D_8011A2E0[];
+
     s32 i;
     s32 sp20;
 

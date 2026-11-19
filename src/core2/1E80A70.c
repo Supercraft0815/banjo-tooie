@@ -21,8 +21,8 @@ typedef struct {
     u8 unk1B;
     u8 unk1C;
 } D_80127630_unk;
-extern s32 D_8011A3F0;
-extern s32 D_8011A3F4;
+#include "controller_sequence.inc"
+#include "viewport_layout.inc"
 
 extern D_80127630_unk D_80127630;
 
@@ -799,8 +799,8 @@ void func_800A8278(void) {
     void func_80015F28(s32, void *);
     s32 func_80015F84(s32);
     void func_80015FFC(s32, void *);
-    extern s32 D_8011A3F8[];
-    extern s32 D_8011A418;
+
+
     s32 current;
     s32 i;
     s32 buttons[14];
@@ -829,7 +829,7 @@ s32 func_800A8380(s32 arg0) {
     extern s32 D_80127670;
     s32 base;
 
-    if (((Obj1E80A70_D_80127670 *)&D_80127670)->unk8 == 0) {
+    if (VIEWPORT_SPLIT_VERTICAL == 0) {
         base = 1;
     } else {
         base = 7;
@@ -850,24 +850,24 @@ s32 func_800A8380(s32 arg0) {
 }    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; } Obj1E80A70_func_800A8424_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_800A8424(BtIntPtr arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4) {
-    extern s16 D_8011A420[][4];
+
     extern s32 D_80127670;
     s16 *temp_v0;
 
-    temp_v0 = D_8011A420[arg0];
-    *arg1 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) * temp_v0[0];
+    temp_v0 = D_8011A420.bounds[arg0];
+    *arg1 = VIEWPORT_HALF_WIDTH * temp_v0[0];
     if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk0) == 1) {
         *arg1 += 1;
     }
-    *arg2 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) * temp_v0[1];
+    *arg2 = VIEWPORT_HALF_HEIGHT * temp_v0[1];
     if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk2) != 0) {
         *arg2 += 1;
     }
-    *arg3 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) * temp_v0[2];
+    *arg3 = VIEWPORT_HALF_WIDTH * temp_v0[2];
     if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk4) == 1) {
         *arg3 -= 1;
     }
-    *arg4 = (((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) * temp_v0[3];
+    *arg4 = VIEWPORT_HALF_HEIGHT * temp_v0[3];
     if ((((Obj1E80A70_func_800A8424_temp_v0 *)temp_v0)->unk6) == 1) {
         *arg4 -= 1;
     }
@@ -1171,9 +1171,9 @@ void func_800A8CCC(BtIntPtr arg0, s32 arg1)
 void func_800A8D00(s32 arg0, s32 arg1) {
     s32 func_800A85A8();
     extern s32 D_80127670;
-    if ((arg0 != ((((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) * 2)) || (arg1 != ((((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) * 2))) {
-        (((Obj1E80A70_D_80127670 *)&D_80127670)->unkC) = (s32) (arg0 / 2);
-        (((Obj1E80A70_D_80127670 *)&D_80127670)->unk10) = (s32) (arg1 / 2);
+    if ((arg0 != (VIEWPORT_HALF_WIDTH * 2)) || (arg1 != (VIEWPORT_HALF_HEIGHT * 2))) {
+        VIEWPORT_HALF_WIDTH = (s32) (arg0 / 2);
+        VIEWPORT_HALF_HEIGHT = (s32) (arg1 / 2);
         func_800A85A8();
     }
 }

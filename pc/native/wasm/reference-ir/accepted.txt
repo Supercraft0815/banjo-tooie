@@ -290,3 +290,11 @@ unsigned model halfword read with lhu. func_808019A4_gcnewpause gets
 an unsigned halfword from func_800DADEC. These are the three changed
 bodies in n2-2026-11-18/current-player-light-ir.log. The original
 instructions are in player-light-mips.txt in the same directory.
+
+2026-11-19  N1 typed sound slots and controller commands
+func_80015F84 and func_80015FA0 read byte 52 of a 56-byte sound slot.
+The former D_80079A14 is D_800799E0 + 52. func_800A9D08 tests the
+same address as D_8011A478 + 4. func_800A9EC0 tests whether four times
+the index equals D_8011A498 - D_8011A480 (24) in a 32-bit address:
+the low 30 bits of the index must equal six. No other guest function
+changes. See n1-2026-11-18/current-input-shadow-ir.log and proof/.
