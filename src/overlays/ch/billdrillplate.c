@@ -1,22 +1,22 @@
 #include "common.h"
-
+typedef struct { u16 sourceMap; u16 targetMap; u16 values[7]; u8 flags[2]; } DrillPlateEntry;
 OSThread *chbilldrillplate_entrypoint_0(void)
 {
-    extern u8 D_808010DC_chbilldrillplate[];
+    extern ActorData D_808010DC_chbilldrillplate[1];
 
     return (OSThread *) D_808010DC_chbilldrillplate;
 }
 
 OSThread *chbilldrillplate_entrypoint_1(void)
 {
-    extern u8 D_80801124_chbilldrillplate[];
+    extern ActorData D_80801124_chbilldrillplate[];
 
     return (OSThread *) D_80801124_chbilldrillplate;
 }
 
 OSThread *chbilldrillplate_entrypoint_2(void)
 {
-    extern u8 D_8080116C_chbilldrillplate[];
+    extern ActorData D_8080116C_chbilldrillplate[];
 
     return (OSThread *) D_8080116C_chbilldrillplate;
 }
@@ -57,7 +57,7 @@ void func_808000B0_chbilldrillplate(Actor *arg0) {
     void func_8010A570(Actor *);
     void func_8010A624(Actor *);
     void func_808002A0_chbilldrillplate(BtIntPtr);
-    extern u8 D_808011B4_chbilldrillplate[];
+    extern s16 D_808011B4_chbilldrillplate[8];
     struct PlateFlags {
         BT_BITFIELD_ORDER(u32 unused:28, u32 unused2 : 3);
         u32 active:1;
@@ -185,10 +185,10 @@ void func_80800408_chbilldrillplate(Actor *arg0) {
     void func_80103110(void *, s32);
     void func_80800B9C_chbilldrillplate(Actor *);
     s32 func_80800C98_chbilldrillplate(Actor *volatile, f32 *, f32);
-    extern s32 D_808011C4_chbilldrillplate[];
-    extern s32 D_808011D4_chbilldrillplate[];
-    extern s32 D_808011E0_chbilldrillplate[];
-    extern s32 D_808011F0_chbilldrillplate[];
+    extern s16 D_808011C4_chbilldrillplate[8];
+    extern s16 D_808011D4_chbilldrillplate[6];
+    extern s16 D_808011E0_chbilldrillplate[8];
+    extern s16 D_808011F0_chbilldrillplate[24];
     f32 *link;
     f32 height;
     f32 dt;
@@ -245,7 +245,7 @@ void func_80800408_chbilldrillplate(Actor *arg0) {
             for (i = 0; i != 8; i++) {
                 func_800EE7F8(vec, arg0->position);
                 func_800EF1B8(vec, (f32)i * 45.0f, func_800DC178(100.0f, 120.0f));
-                func_800BABB8(particles, vec, arg0->position, 1.5f, D_808011F0_chbilldrillplate);
+                func_800BABB8(particles, vec, arg0->position, 1.5f, (s32 *)D_808011F0_chbilldrillplate);
             }
             func_800E15CC(0, 30.0f, 0.9f);
             func_80018820(0, 2.0f, 0.3f);
@@ -417,7 +417,7 @@ void func_80800B9C_chbilldrillplate(Actor *arg0) {
     void func_80101010(f32 *);
     s32 func_80101180(s32, s32, BtIntPtr);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern u8 D_80801220_chbilldrillplate[];
+    extern s16 D_80801220_chbilldrillplate[10];
     f32 sp2C[3];
     f32 sp20[3];
 
@@ -499,8 +499,8 @@ void func_80800DA4_chbilldrillplate(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    extern s32 D_80801234_chbilldrillplate;
-    extern s32 D_80801244_chbilldrillplate;
+    extern s16 D_80801234_chbilldrillplate[8];
+    extern s16 D_80801244_chbilldrillplate[30];
     f32 sp7C[3];
     f32 sp70[3];
     BtIntPtr temp_s5;
@@ -509,12 +509,12 @@ void func_80800DA4_chbilldrillplate(Actor *arg0) {
     if (arg0->unk70_10 == 2 && func_800D9078(&arg0->unk58)) {
         func_800EE7F8(sp7C, arg0->position);
         sp7C[1] -= 150.0f;
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801234_chbilldrillplate);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801234_chbilldrillplate);
         temp_s5 = func_800B53A4(5);
         for (var_s1 = 0; var_s1 != 5; var_s1++) {
             func_800EE7F8(sp70, arg0->position);
             func_800EF1B8(sp70, (f32)var_s1 * 72.0f, func_800DC178(100.0f, 120.0f));
-            func_800BABB8(temp_s5, sp70, sp7C, 1.4f, &D_80801244_chbilldrillplate);
+            func_800BABB8(temp_s5, sp70, sp7C, 1.4f, (s32 *)D_80801244_chbilldrillplate);
         }
         _chexploder_entrypoint_3(arg0, sp7C, 8);
     }
@@ -550,17 +550,17 @@ s32 func_80800F24_chbilldrillplate(Actor *arg0, s32 arg1, s32 arg2) {
 void *func_80800FCC_chbilldrillplate(void)
 {
   s32 func_800EA05C();
-  extern u16 D_808010A0_chbilldrillplate;
-  extern u8 D_808010DC_chbilldrillplate[];
+  extern DrillPlateEntry D_808010A0_chbilldrillplate[3];
+  extern ActorData D_808010DC_chbilldrillplate[1];
   s32 temp_v0;
-  u16 *var_v1;
+  DrillPlateEntry *var_v1;
   temp_v0 = func_800EA05C();
- var_v1 = &D_808010A0_chbilldrillplate; loop_1: if (temp_v0 == (*var_v1)) {
+ var_v1 = D_808010A0_chbilldrillplate; loop_1: if (temp_v0 == var_v1->sourceMap) {
     return var_v1;
   }
 
-  var_v1 += 0xA;
-  if (((u8 *) var_v1) == D_808010DC_chbilldrillplate)
+  var_v1++;
+  if ((void *)var_v1 == (void *)D_808010DC_chbilldrillplate)
   {
     return NULL;
   }
@@ -570,19 +570,19 @@ void *func_80800FCC_chbilldrillplate(void)
 void *func_80801020_chbilldrillplate(void)
 {
   s32 func_800EA05C();
-  extern u16 D_808010A0_chbilldrillplate;
-  extern u8 D_808010DC_chbilldrillplate[];
-  u16 *var_v1;
+  extern DrillPlateEntry D_808010A0_chbilldrillplate[3];
+  extern ActorData D_808010DC_chbilldrillplate[1];
+  DrillPlateEntry *var_v1;
   s32 temp_v0;
   temp_v0 = func_800EA05C();
- var_v1 = &D_808010A0_chbilldrillplate; loop_1: if (temp_v0 == var_v1[1]) {
+ var_v1 = D_808010A0_chbilldrillplate; loop_1: if (temp_v0 == var_v1->targetMap) {
     return var_v1;
   }
-
-  var_v1 += 0xA;
-  if (((u8 *) var_v1) == D_808010DC_chbilldrillplate)
+  var_v1++;
+  if ((void *)var_v1 == (void *)D_808010DC_chbilldrillplate)
   {
     return NULL;
   }
   goto loop_1;
 }
+#include "billdrillplate_data.inc"

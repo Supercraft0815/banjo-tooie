@@ -2230,3 +2230,25 @@ bei Bild 22. Ab Bild 25 überschritten weitere Bilder die Schwelle, insgesamt
 2.673. Die größte Abweichung lag weiterhin bei 18,95 Prozent der Pixel.
 Die Versuche und Bilder stehen im isolierten Testcheckout unter
 `build/acceptance/a3-current-2026-11-18/PORTABILITY-RESULTS.md`.
+
+## 2026-11-19 — N1, neun Tabellen für Actor-Daten und Dialoge
+
+Die Daten für die Minenzellentür, die Bill-Drill-Platte, den Feuergenerator,
+den Intro-Ticker, den Giftgasraum, Bottles’ Familie, Conga, Eato und
+Weldars Kopf liegen jetzt in C. Die Zahl der offenen Datenmodule sank
+von 70 auf 61. Original-IDO erzeugte alle 142 Funktionen mit gleichem
+Code, gleicher Lage und Größe. Die Tabellen umfassen 3.984 Datenbytes und
+207 ursprüngliche Relokationen. Vier Adressausdrücke und sechs Schreibzugriffe
+auf Tabellenfelder wurden gegen das native Vorgängerabbild geprüft. In
+beiden Schritten blieben die 16.768 Gastfunktionen und 9.745 Datenkorrekturen
+erhalten. Im Hauptbaum bestanden beide vollständigen ROM-Vergleiche,
+zehn Testprogramme und 56 Spielabläufe mit 315.790 Retraces.
+
+Der Datenkonverter kann jetzt einen typisierten Funktionszeiger benennen,
+wenn an dieser Wortposition im Original exakt die Adresse seines
+Syscall-Stubs steht. Drei Werkzeugtests und 16 echte Infobar-Einträge
+wurden gegen das ursprüngliche Objekt, die ROM, die Linkerkarte und
+das bisherige native Datenabbild geprüft. Berichte und Protokolle liegen
+in `build/acceptance/n1-2026-11-18/` unter `proof/fieldtables5-summary.json`,
+`proof/dialog4-summary.json`, `proof/literal-stubs-oracle.json` und
+`logs/root-fieldtables-dialog9-*`.

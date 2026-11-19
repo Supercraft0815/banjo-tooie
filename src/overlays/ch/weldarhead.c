@@ -1,8 +1,8 @@
-#include "common.h"
+#include "su/baddiedialog_descriptor.h"
 
 OSThread *chweldarhead_entrypoint_0(void)
 {
-    extern u8 D_808004F0_chweldarhead[];
+    extern ActorData D_808004F0_chweldarhead[];
 
     return (OSThread *) D_808004F0_chweldarhead;
 }
@@ -23,7 +23,7 @@ void func_8080000C_chweldarhead(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80108B04(Actor *, u32);
-    extern s32 D_808004E0_chweldarhead[];
+    extern f32 D_808004E0_chweldarhead[4];
     extern s32 func_8010D5DC;
     f32 *data;
     f32 position[6];
@@ -32,7 +32,7 @@ void func_8080000C_chweldarhead(Actor *arg0) {
 
     data = func_80100094(arg0, 0);
     _susubgame_entrypoint_0(arg0, (u32 *)(data + 6), 0);
-    _susubgame_entrypoint_12((u32 *)(data + 6), D_808004E0_chweldarhead);
+    _susubgame_entrypoint_12((u32 *)(data + 6), (s32 *)D_808004E0_chweldarhead);
     if (func_800DA298(0x18C) == 0) {
         func_800FFAB0(arg0);
         return;
@@ -55,13 +55,13 @@ void func_8080000C_chweldarhead(Actor *arg0) {
 }
 
 void func_80800170_chweldarhead(u8 *arg0) {
-    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, subaddiedialog_UnkStruct0 *);
     s32 _sudeflect_entrypoint_0(f32 *, f32, f32, s32);
     s32 func_800DC128(s32, s32);
-    extern s32 D_80800538_chweldarhead;
-    extern s16 D_8080053E_chweldarhead;
+    extern subaddiedialog_UnkStruct0 D_80800538_chweldarhead;
+    BT_IDO_ONLY(extern s16 D_8080053E_chweldarhead;)
     if (((Actor *) arg0)->unk70_10 == 1) {
-        D_8080053E_chweldarhead = func_800DC128(0, 4) + 0x1361;
+        BT_DATA_FIELD(D_80800538_chweldarhead.unk6, D_8080053E_chweldarhead) = func_800DC128(0, 4) + 0x1361;
         _subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_80800538_chweldarhead);
     }
     _sudeflect_entrypoint_0((f32 *) (arg0 + 4), 20.0f, 120.0f, 0xA);
@@ -71,12 +71,12 @@ s32 func_808001E4_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_8080038C_chweldarhead(Actor *, s32, s32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _gcdialogcamera_entrypoint_3(f32 *, f32);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80102FDC(void *, f32);
     void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
-    extern s32 D_808004E0_chweldarhead[];
+    extern f32 D_808004E0_chweldarhead[4];
     f32 *data;
     Actor *spawned;
 
@@ -119,7 +119,6 @@ void func_8080038C_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor *, u32);
     void func_80102424(Actor *, s32);
     u8 *data;
-
     data = func_80100094(arg0, 0);
     switch (arg1) {
         case 0x1360:
@@ -134,3 +133,4 @@ void func_8080038C_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
             break;
     }
 }
+#include "weldarhead_data.inc"

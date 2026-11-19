@@ -1,17 +1,17 @@
 #include "common.h"
-
-s32 func_80800000_chintroticker(u8 *arg0) {
+typedef struct { s16 map; s16 next; } IntroTickerMap;
+struct TickerMusic { s16 map; s16 stopTrack; s16 playTrack; s16 padding; }; s32 func_80800000_chintroticker(u8 *arg0) {
     s32 func_800EA05C();
     void func_800FC6B0(u32);
     void func_800FCA90(u32);
     void func_800FCAE0(u32, u32, u32);
     s32 func_800FCCD4(s32);
-    struct TickerMusic {
-        s16 map;
-        s16 stopTrack;
-        s16 playTrack;
-        s16 padding;
-    };
+
+
+
+
+
+
     extern struct TickerMusic D_80800830_chintroticker[];
     extern s32 D_808008A8_chintroticker[];
     struct TickerMusic *entry;
@@ -165,14 +165,14 @@ void func_808002DC_chintroticker(u8 *arg0) {
     void func_800FFAB0(Actor *);
     s32 func_80800000_chintroticker(u8 *);
     extern s32 D_808008C0_chintroticker;
-    extern s16 D_808008C4_chintroticker;
+    extern IntroTickerMap D_808008C4_chintroticker[28];
     s32 *var_s0;
     s32 *end;
     s32 temp_s2;
     Actor *actor = (Actor *)arg0;
 
     temp_s2 = func_800EA05C();
-    var_s0 = &D_808008C0_chintroticker; end = (s32 *)&D_808008C4_chintroticker;
+    var_s0 = &D_808008C0_chintroticker; end = (s32 *)D_808008C4_chintroticker;
     do {
         if (temp_s2 == *var_s0) {
             _glintrosyncDll_entrypoint_2(0.0f);
@@ -260,27 +260,27 @@ void func_808004A8_chintroticker(BtIntPtr arg0, s32 arg1) {
 
 void func_80800530_chintroticker(BtIntPtr arg0, s32 arg1) {
     void func_808004A8_chintroticker(BtIntPtr, s32);
-    extern s16 D_808008C4_chintroticker;
-    s16 *var_v1;
+    extern IntroTickerMap D_808008C4_chintroticker[28];
+    IntroTickerMap *var_v1;
     s16 temp_a1;
     u32 var_v0;
 
-    var_v1 = &D_808008C4_chintroticker;
+    var_v1 = D_808008C4_chintroticker;
     for (var_v0 = 0; var_v0 != 0x1C; var_v0++) {
-        if (arg1 == *var_v1) {
+        if (arg1 == var_v1->map) {
             break;
         }
-        var_v1 += 2;
+        var_v1++;
     }
     if (var_v0 < 0x1CU) {
 loop_4:
-        temp_a1 = var_v1[1];
+        temp_a1 = var_v1->next;
         var_v0 += 1;
         if (temp_a1 < 0) {
             func_808004A8_chintroticker(arg0, temp_a1);
             return;
         }
-        var_v1 += 2;
+        var_v1++;
         if (var_v0 >= 0x1CU) {
 
         } else {
@@ -300,21 +300,21 @@ void func_808005AC_chintroticker(BtIntPtr arg0) {
     void _glintrosyncDll_entrypoint_4(f32);
     f32 func_800D9004(void);
     f32 func_800D8FF8(void);
-    extern s16 D_808008C4_chintroticker;
-    extern u8 D_80800934_chintroticker[];
-    s16 *entry;
+    extern IntroTickerMap D_808008C4_chintroticker[28];
+    extern ActorData D_80800934_chintroticker[1];
+    IntroTickerMap *entry;
     void *end;
     s32 map;
     Actor *actor = (Actor *)arg0;
 
     map = func_800EA05C();
     if (func_800DA9E4(0, 0)) {
-        entry = &D_808008C4_chintroticker; end = D_80800934_chintroticker;
+        entry = D_808008C4_chintroticker; end = D_80800934_chintroticker;
         do {
-            if (map == entry[0]) {
-                func_808004A8_chintroticker(arg0, entry[1]);
+            if (map == entry->map) {
+                func_808004A8_chintroticker(arg0, entry->next);
             }
-            entry += 2;
+            entry++;
         } while (entry != end);
     }
     switch (actor->unk79_4) {
@@ -337,7 +337,7 @@ void func_808005AC_chintroticker(BtIntPtr arg0) {
 
 OSThread *chintroticker_entrypoint_0(void)
 {
-    extern u8 D_80800934_chintroticker[];
-
+    extern ActorData D_80800934_chintroticker[1];
     return (OSThread *) D_80800934_chintroticker;
 }
+#include "ticker_data.inc"

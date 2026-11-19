@@ -1,14 +1,14 @@
-#include "common.h"
+#include "su/baddiedialog_descriptor.h"
 
 OSThread *chcheato_entrypoint_0(void)
 {
-    extern u8 D_80800E98_chcheato[];
+    extern ActorData D_80800E98_chcheato[];
 
     return (OSThread *) D_80800E98_chcheato;
 }
 
 /* extern */
-
+struct CheatoSounds { s16 values[2]; };
 void func_8080000C_chcheato(Actor *arg0) {
     void _subaddieitem_entrypoint_0(BtIntPtr, BtUIntPtr, s32, s32);
     void *func_80100094(Actor *, u32);
@@ -87,9 +87,9 @@ s32 func_80800204_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80800C64_chcheato(void *, s32, s32);
     void *func_80101080(void);
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
-    extern u32 D_80800E50_chcheato;
+    extern f32 D_80800E50_chcheato[4];
 
     switch (arg1) {
     case 0x2E:
@@ -106,7 +106,7 @@ s32 func_80800204_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
         func_80800AB4_chcheato((BtIntPtr)arg0, (BtIntPtr)func_80101080(), ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_80800E50_chcheato, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80800E50_chcheato, arg0->scale);
         break;
     case 0x95:
         arg0->unk64_20 = 0;
@@ -139,18 +139,18 @@ void func_8080035C_chcheato(void *arg0, BtIntPtr arg1)
 }
 
 void func_808003C4_chcheato(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
+    s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, subaddiedialog_UnkStruct0 *);
     int func_80800824_chcheato(s32 *);
     void func_80800D08_chcheato(Actor *, s32, s32);
-    extern s32 D_80800EE0_chcheato;
-    extern s16 D_80800EE6_chcheato;
-    extern s16 D_80800EF4_chcheato;
+    extern subaddiedialog_UnkStruct0 D_80800EE0_chcheato;
+    BT_IDO_ONLY(extern s16 D_80800EE6_chcheato;)
+    BT_IDO_ONLY(extern s16 D_80800EF4_chcheato;)
     s32 sp1C;
     s32 temp_v0;
 
     sp1C = 0xE;
-    D_80800EE6_chcheato = func_80800824_chcheato(&sp1C);
-    D_80800EF4_chcheato = sp1C;
+    BT_DATA_FIELD(D_80800EE0_chcheato.unk6, D_80800EE6_chcheato) = func_80800824_chcheato(&sp1C);
+    BT_DATA_FIELD(D_80800EE0_chcheato.unk14, D_80800EF4_chcheato) = sp1C;
     temp_v0 = _subaddiedialog_entrypoint_7(arg0, arg0->position, &D_80800EE0_chcheato);
     if ((temp_v0 != 0) && (temp_v0 != 0x1208)) {
         func_80800D08_chcheato(arg0, 3, 0);
@@ -246,16 +246,16 @@ void func_80800434_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
         return;
     }
 }
-
+struct CheatoTimes { f32 values[2]; };
 void func_808006B8_chcheato(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800C4B7C(s32);
     s32 func_80101E14(Actor *, f32);
-    struct CheatoTimes { f32 values[2]; };
-    struct CheatoSounds { s16 values[2]; };
+
+
     extern struct CheatoTimes D_80800EFC_chcheato;
     extern struct CheatoSounds D_80800F04_chcheato;
-    extern s32 D_80800F08_chcheato;
+    extern s16 D_80800F08_chcheato[12];
     struct CheatoTimes times;
     struct CheatoSounds sounds;
     s32 i;
@@ -265,7 +265,7 @@ void func_808006B8_chcheato(Actor *arg0) {
     for (i = 0; i < 2; i++) {
         if (func_80101E14(arg0, times.values[i]) != 0) {
             func_800C4B7C(sounds.values[i]);
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800F08_chcheato);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800F08_chcheato);
         }
     }
 }
@@ -320,11 +320,11 @@ s32 func_80800888_chcheato(void) {
     func_800D3EF4(temp_v0);
     return sp1C + 0x114A;
 }
-
+typedef struct { s16 data[3]; } OptionColors;
 void func_808008B8_chcheato(BtIntPtr arg0, s32 arg1) {
-    typedef struct {
-        s16 data[3];
-    } OptionColors;
+
+
+
     void _gcnewoption_entrypoint_12(void *a0, u32 optionIndex, s16 textIndex);
     void _gcnewoption_entrypoint_13(BtIntPtr arg0, s32 arg1, void *arg2);
     s32 _gcnewoption_entrypoint_17();
@@ -480,19 +480,18 @@ void func_80800D08_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
     void _capod_entrypoint_8(s32);
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_5(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_8(void);
-    extern u32 D_80800E50_chcheato;
-
+    extern f32 D_80800E50_chcheato[4];
     switch (arg0->unk6C_0) {
         case 0:
             _capod_entrypoint_2(arg0->unk0, 0x19, 0);
         case 1:
             _capod_entrypoint_8(1);
             arg0->unk6C_0 = 2;
-            _gcdialogcamera_entrypoint_3(&D_80800E50_chcheato, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80800E50_chcheato, arg0->scale);
             _gcdialogcamera_entrypoint_4(arg0->position);
             _gcdialogcamera_entrypoint_5(arg0->rotation);
             _gcdialogcamera_entrypoint_8();
@@ -500,3 +499,4 @@ void func_80800D08_chcheato(Actor *arg0, s32 arg1, s32 arg2) {
             _capod_entrypoint_7(arg1, arg2);
     }
 }
+#include "eato_data.inc"

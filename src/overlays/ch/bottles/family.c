@@ -1,22 +1,22 @@
-#include "common.h"
+#include "su/baddiedialog_descriptor.h"
 
 OSThread *chbottlesfamily_entrypoint_0(void)
 {
-    extern u8 D_80800DE0_chbottlesfamily[];
+    extern ActorData D_80800DE0_chbottlesfamily[];
 
     return (OSThread *) D_80800DE0_chbottlesfamily;
 }
 
 OSThread *chbottlesfamily_entrypoint_1(void)
 {
-    extern u8 D_80800E28_chbottlesfamily[];
+    extern ActorData D_80800E28_chbottlesfamily[];
 
     return (OSThread *) D_80800E28_chbottlesfamily;
 }
 
 OSThread *chbottlesfamily_entrypoint_2(void)
 {
-    extern u8 D_80800E70_chbottlesfamily[];
+    extern ActorData D_80800E70_chbottlesfamily[];
 
     return (OSThread *) D_80800E70_chbottlesfamily;
 }
@@ -37,12 +37,12 @@ void func_80800080_chbottlesfamily(Actor *arg0) {
     s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     u32 *_suexpression_entrypoint_20(Actor *);
-    s32 func_808009F0_chbottlesfamily(BtIntPtr, s32 *);
-    extern u32 D_80800EB8_chbottlesfamily;
-    extern u32 D_80800ECC_chbottlesfamily;
-    extern s32 D_80800EDC_chbottlesfamily;
+    s32 func_808009F0_chbottlesfamily(BtIntPtr, subaddiedialog_UnkStruct0 *);
+    extern s16 D_80800EB8_chbottlesfamily[10];
+    extern f32 D_80800ECC_chbottlesfamily[4];
+    extern subaddiedialog_UnkStruct0 D_80800EDC_chbottlesfamily;
     _sudeflect_entrypoint_0(arg0->position, arg0->scale * 50.0f, arg0->scale * 50.0f, 0xA);
-    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800EB8_chbottlesfamily, &D_80800ECC_chbottlesfamily);
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80800EB8_chbottlesfamily, D_80800ECC_chbottlesfamily);
     _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
     if (arg0->unk70_10 == 1) {
         func_808009F0_chbottlesfamily((BtIntPtr)arg0, &D_80800EDC_chbottlesfamily);
@@ -92,7 +92,7 @@ void func_808001B0_chbottlesfamily(Actor *arg0) {
     s32 func_808004B4_chbottlesfamily(BtIntPtr);
     void func_80800520_chbottlesfamily(Actor *);
     void func_808005D0_chbottlesfamily(Actor *);
-    extern s32 D_80800EF8_chbottlesfamily;
+    extern s16 D_80800EF8_chbottlesfamily[6];
     struct {
         u16 unk0[3];
         u16 unk6;
@@ -116,7 +116,7 @@ void func_808001B0_chbottlesfamily(Actor *arg0) {
             break;
         case 3:
             if (func_800D9078(&data->unkC)) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800EF8_chbottlesfamily);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800EF8_chbottlesfamily);
                 data->unkC = func_800DC178(2.5f, 5.0f);
             }
             func_80105230(arg0, NULL);
@@ -161,16 +161,16 @@ s32 func_8080046C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_808004B4_chbottlesfamily(BtIntPtr arg0) {
     s32 func_800DA298(s32);
-    s32 func_808009F0_chbottlesfamily(BtIntPtr, s32 *);
-    extern s32 D_80800F04_chbottlesfamily;
-    extern s16 D_80800F08_chbottlesfamily;
+    s32 func_808009F0_chbottlesfamily(BtIntPtr, subaddiedialog_UnkStruct0 *);
+    extern subaddiedialog_UnkStruct0 D_80800F04_chbottlesfamily;
+    BT_IDO_ONLY(extern s16 D_80800F08_chbottlesfamily;)
     if (func_800DA298(0x3B) != 0) {
         return 0;
     }
     if (func_800DA298(0x1A5) != 0) {
-        D_80800F08_chbottlesfamily = 0x1539;
+        BT_DATA_FIELD(D_80800F04_chbottlesfamily.unk4, D_80800F08_chbottlesfamily) = 0x1539;
     } else {
-        D_80800F08_chbottlesfamily = 0x1501;
+        BT_DATA_FIELD(D_80800F04_chbottlesfamily.unk4, D_80800F08_chbottlesfamily) = 0x1501;
     }
     return func_808009F0_chbottlesfamily(arg0, &D_80800F04_chbottlesfamily);
 }
@@ -196,8 +196,8 @@ void func_80800520_chbottlesfamily(Actor *arg0) {
 }
 
 void func_808005D0_chbottlesfamily(Actor *arg0) {
-    extern u32 D_80800F20_chbottlesfamily;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800F20_chbottlesfamily, 0x3DA3D70A);
+    extern s16 D_80800F20_chbottlesfamily[6];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800F20_chbottlesfamily, 0x3DA3D70A);
 }
 
 /* extern */
@@ -218,25 +218,25 @@ void func_80800630_chbottlesfamily(Actor *arg0) {
     u32 *_suexpression_entrypoint_20(Actor *);
     u8 func_800C4350(u8 index, f32 *position, s32 *command_list);
     s32 func_80101E4C(Actor *, f32 *);
-    s32 func_808009F0_chbottlesfamily(BtIntPtr, s32 *);
-    extern s32 D_80800F2C_chbottlesfamily;
-    extern s32 D_80800F48_chbottlesfamily;
-    extern u32 D_80800F58_chbottlesfamily;
-    extern f32 D_80800F68_chbottlesfamily;
-    extern u32 D_80800F78_chbottlesfamily;
+    s32 func_808009F0_chbottlesfamily(BtIntPtr, subaddiedialog_UnkStruct0 *);
+    extern subaddiedialog_UnkStruct0 D_80800F2C_chbottlesfamily;
+    extern s16 D_80800F48_chbottlesfamily[8];
+    extern s16 D_80800F58_chbottlesfamily[8];
+    extern f32 D_80800F68_chbottlesfamily[4];
+    extern f32 D_80800F78_chbottlesfamily[4];
 
     _sudeflect_entrypoint_0(arg0->position, arg0->scale * 50.0f, arg0->scale * 50.0f, 0xA);
     _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
     if (arg0->unk70_10 == 1) {
         func_808009F0_chbottlesfamily((BtIntPtr) arg0, &D_80800F2C_chbottlesfamily);
     }
-    if (func_80101E4C(arg0, &D_80800F68_chbottlesfamily) != 0) {
+    if (func_80101E4C(arg0, D_80800F68_chbottlesfamily) != 0) {
         if (arg0->unk5F == 0) {
             arg0->unk5F = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
         }
-        func_800C4350(arg0->unk5F, arg0->position, &D_80800F48_chbottlesfamily);
+        func_800C4350(arg0->unk5F, arg0->position, (s32 *)D_80800F48_chbottlesfamily);
     }
-    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800F58_chbottlesfamily, &D_80800F78_chbottlesfamily);
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80800F58_chbottlesfamily, D_80800F78_chbottlesfamily);
 }
 
 s32 func_80800720_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
@@ -331,8 +331,8 @@ void func_8080099C_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-s32 func_808009F0_chbottlesfamily(BtIntPtr arg0, s32 *arg1) {
-    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+s32 func_808009F0_chbottlesfamily(BtIntPtr arg0, subaddiedialog_UnkStruct0 *arg1) {
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, subaddiedialog_UnkStruct0 *);
     void func_80800C08_chbottlesfamily(Actor *, s32, s32);
     s32 temp_v0;
     s32 var_v1;
@@ -351,14 +351,14 @@ s32 func_808009F0_chbottlesfamily(BtIntPtr arg0, s32 *arg1) {
  s32 func_80800A44_chbottlesfamily(Actor *arg0) { u32 temp_t7; temp_t7 = arg0->unk6C_9; switch (temp_t7) { case 0x43C: return 0xB0; case 0x43D: return 0xB1; default: return 0xAF; } }
 
 void func_80800A84_chbottlesfamily(Actor *arg0) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    s32 _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _gcdialogcamera_entrypoint_4(f32 *);
     void _gcdialogcamera_entrypoint_5(f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_8010CD28(Actor *);
-    extern s32 D_80800F88_chbottlesfamily;
-    extern s32 D_80800F98_chbottlesfamily;
-    extern s32 D_80800FA8_chbottlesfamily;
+    extern f32 D_80800F88_chbottlesfamily[4];
+    extern f32 D_80800F98_chbottlesfamily[4];
+    extern f32 D_80800FA8_chbottlesfamily[4];
     f32 sp2C[3];
     u32 temp_t7;
 
@@ -366,16 +366,16 @@ void func_80800A84_chbottlesfamily(Actor *arg0) {
     if (temp_t7 != 0x43B) {
         if (temp_t7 != 0x43C) {
             if (temp_t7 == 0x43D) {
-                _gcdialogcamera_entrypoint_3(&D_80800F88_chbottlesfamily, arg0->scale);
+                _gcdialogcamera_entrypoint_3(D_80800F88_chbottlesfamily, arg0->scale);
                 _gcdialogcamera_entrypoint_5(arg0->rotation);
             }
         } else {
             func_800EFA4C(sp2C, 0.0f, func_8010CD28(arg0), 0.0f);
-            _gcdialogcamera_entrypoint_3(&D_80800F98_chbottlesfamily, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80800F98_chbottlesfamily, arg0->scale);
             _gcdialogcamera_entrypoint_5(sp2C);
         }
     } else {
-        _gcdialogcamera_entrypoint_3(&D_80800FA8_chbottlesfamily, arg0->scale * 3.0f);
+        _gcdialogcamera_entrypoint_3(D_80800FA8_chbottlesfamily, arg0->scale * 3.0f);
         _gcdialogcamera_entrypoint_5(arg0->rotation);
     }
     _gcdialogcamera_entrypoint_4(arg0->position);
@@ -428,7 +428,6 @@ void func_80800C08_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800CA4_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
     void _capod_entrypoint_6(Unk80132ED0 *, s32, s32);
-
     switch (arg0->unk6C_0) {
         case 0:
             _capod_entrypoint_2(arg0->unk0, 0x18, arg2);
@@ -439,3 +438,4 @@ void func_80800CA4_chbottlesfamily(Actor *arg0, s32 arg1, s32 arg2) {
             break;
     }
 }
+#include "family_data.inc"

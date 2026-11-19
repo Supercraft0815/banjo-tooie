@@ -101,6 +101,29 @@ SECTIONS
     {
         D_80801E16_chsabreman = D_80801E08_chsabreman + 0xE;
     }
+    .chtoxicroombits :
+    {
+        D_80801004_chtoxicroombits = D_80800FB0_chtoxicroombits + 0x54;
+        D_80801005_chtoxicroombits = D_80800FB0_chtoxicroombits + 0x55;
+    }
+    .chconga :
+    {
+        D_808006FC_chconga = D_808006F8_chconga + 0x4;
+        D_808006FE_chconga = D_808006F8_chconga + 0x6;
+    }
+    .chcheato :
+    {
+        D_80800EE6_chcheato = D_80800EE0_chcheato + 0x6;
+        D_80800EF4_chcheato = D_80800EE0_chcheato + 0x14;
+    }
+    .chbottlesfamily :
+    {
+        D_80800F08_chbottlesfamily = D_80800F04_chbottlesfamily + 0x4;
+    }
+    .chweldarhead :
+    {
+        D_8080053E_chweldarhead = D_80800538_chweldarhead + 0x6;
+    }
     .chintrochar :
     {
         func_80804158_chintrochar = func_80804054_chintrochar + 0x104;

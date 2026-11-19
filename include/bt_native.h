@@ -26,4 +26,6 @@
 #define BT_PARAM_OR_VOID(decl) void
 #define BT_IDO_ONLY(code) code
 #endif
+/* IDO needs the original overlay symbol to retain its instruction and relocation layout. */
+#define BT_DATA_FIELD(field, symbol) (BT_NATIVE_ONLY(field) BT_IDO_ONLY(symbol))
 #endif

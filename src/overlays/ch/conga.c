@@ -1,8 +1,8 @@
 #include "ch/conga.h"
-
+#include "su/baddiedialog_descriptor.h"
 OSThread *chconga_entrypoint_0(void)
 {
-    extern u8 D_808006A0_chconga[];
+    extern ActorData D_808006A0_chconga[];
 
     return (OSThread *) D_808006A0_chconga;
 }
@@ -107,11 +107,11 @@ void func_80800280_chconga(Actor* arg0)
 s32 func_808002A0_chconga(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800374_chconga(Actor *, s32, s32);
     s32 func_80800478_chconga(Actor *, s32, s32);
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void *_suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2);
     void _suexpression_entrypoint_12(void *, f32, f32);
     void *func_80100094(Actor *, u32);
-    extern u32 D_808006E8_chconga;
+    extern f32 D_808006E8_chconga[4];
 
     switch (arg1) {
     case 0x2E:
@@ -120,7 +120,7 @@ s32 func_808002A0_chconga(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x30:
         return func_80800478_chconga(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_808006E8_chconga, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_808006E8_chconga, arg0->scale);
         break;
     case 0x95:
         _suexpression_entrypoint_7(arg0, 1, 0x52);
@@ -191,36 +191,36 @@ s32 func_808004BC_chconga(BtIntPtr arg0, s32 arg1) {
 }
 
 void func_80800538_chconga(BtIntPtr arg0) {
-    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, subaddiedialog_UnkStruct0 *);
     s32 func_800D1A04(s32);
     s32 func_800DA298(s32);
     BtIntPtr func_800F54E4();
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
-    extern s32 D_808006F8_chconga;
-    extern s16 D_808006FC_chconga;
-    extern s16 D_808006FE_chconga;
+    extern subaddiedialog_UnkStruct0 D_808006F8_chconga;
+    BT_IDO_ONLY(extern s16 D_808006FC_chconga;)
+    BT_IDO_ONLY(extern s16 D_808006FE_chconga;)
     if ((func_800DA298(0x4A) != 0) && (func_800F64A4(func_800F54E4(), 1) != 0)) {
-        D_808006FE_chconga = func_808004BC_chconga(arg0, 0x1101);
+        BT_DATA_FIELD(D_808006F8_chconga.unk6, D_808006FE_chconga) = func_808004BC_chconga(arg0, 0x1101);
     } else {
         if (func_800D1A04(0x4D) >= 4) {
-            D_808006FC_chconga = 0x10B1;
+            BT_DATA_FIELD(D_808006F8_chconga.unk4, D_808006FC_chconga) = 0x10B1;
         } else {
-            D_808006FC_chconga = 0x10B0;
+            BT_DATA_FIELD(D_808006F8_chconga.unk4, D_808006FC_chconga) = 0x10B0;
         }
         if (func_800D1A04(0x4D) >= 4) {
-            D_808006FE_chconga = 0x10B3;
+            BT_DATA_FIELD(D_808006F8_chconga.unk6, D_808006FE_chconga) = 0x10B3;
         } else {
-            D_808006FE_chconga = 0x10B2;
+            BT_DATA_FIELD(D_808006F8_chconga.unk6, D_808006FE_chconga) = 0x10B2;
         }
     }
     if (_subaddiedialog_entrypoint_7(arg0, arg0 + 4, &D_808006F8_chconga) == 0x1101) {
         func_80101180(0x46E, 7, 0);
     }
 }
-
 void func_80800618_chconga(Actor *arg0) {
-    extern u32 D_80800714_chconga;
-    extern u32 D_80800724_chconga;
-    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, &D_80800714_chconga, &D_80800724_chconga);
+    extern s16 D_80800714_chconga[8];
+    extern f32 D_80800724_chconga[7];
+    _subaddieaudioquick_entrypoint_4(arg0, arg0->position, D_80800714_chconga, D_80800724_chconga);
 }
+#include "conga_data.inc"

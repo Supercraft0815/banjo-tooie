@@ -79,7 +79,7 @@ def const_offsets(asm):
     return {a - base for f, a in data.CONSTANTS if f == path}
 
 
-def image(asm):
+def image(asm, raw_stubs=None):
     """labels {name: offset}, bytes, relocations {offset: (symbol, addend)} of the .data block."""
     blocks = [b for b in data.parse_file(asm) if b[0] == 'data']
     if len(blocks) != 1:
@@ -107,6 +107,10 @@ def image(asm):
             buf[o:o + len(value)] = value
         elif kind != 'space':
             raise Refuse('item ' + kind)
+        if raw_stubs is not None and kind in ('word', 'float') and addr % 4 == 0 and o not in rel:
+            stub = data.STUBS.get(int.from_bytes(buf[o:o + 4], 'big'))
+            if stub:
+                raw_stubs[o] = stub
     return {n: a - base for n, a in labels.items()}, bytes(buf), rel
 
 
@@ -138,6 +142,7 @@ NEED = '\0need'  # key in names: declarations the appended block must add
 BLOCK = '\0block'  # key in names: {symbol: file-scope redeclaration} for block-scope-only declarations
 FIELD = '\0field'  # key in names: lp64_words.type_edit edits for struct fields whose words hold addresses
 GENERIC = '\0generic'  # key in names: declare unknown functions as `void f();`, not by their header line
+RAW_STUBS = '\0stubs'  # assembly word offsets that name exact syscall entry stubs
 SRC = '\0src'  # key in names: the C file's text (a function called without declaration is `int f()`)
 
 
@@ -229,6 +234,8 @@ def init(t, buf, o, rel, names, retype, field=None):
         if o in rel:
             return symbol(*rel[o], names, t.spelling)
         v = int.from_bytes(buf[o:o + 4], 'big')
+        if t.get_pointee().kind in (T.FUNCTIONPROTO, T.FUNCTIONNOPROTO) and o in names.get(RAW_STUBS, {}):
+            return symbol(names[RAW_STUBS][o], 0, names, t.spelling)
         lab = core_label(v)
         if lab:  # splat left an address inside a core table raw: the label plus offset (no overlay reloc)
             return symbol(lab[0], v - lab[1], names, t.spelling)
@@ -290,15 +297,17 @@ def plan(mod, generic=False, native=False):
     i, rom, name, asm, c = mod
     names = {}
     try:
-        labels, buf, rel = image(asm)
+        raw_stubs = {}
+        labels, buf, rel = image(asm, raw_stubs)
         for o in const_offsets(asm):
+            raw_stubs.pop(o, None)
             rel.pop(o, None)  # a flag that only equals a core address: the raw number (no overlay reloc either)
         if not labels:
             raise Refuse('no labels')
         if 'data_to_c.py' in c.read_text():
             raise Refuse('done')
         tu = ci.Index.create().parse(str(c), offsets.ARGS)
-        decls, names, typedefs = collections.defaultdict(list), {GENERIC: generic, BLOCK: {}, SRC: c.read_text()}, {}
+        decls, names, typedefs = collections.defaultdict(list), {GENERIC: generic, BLOCK: {}, SRC: c.read_text(), RAW_STUBS: raw_stubs}, {}
         file_scope = set()
 
         def visit(x, top=True):
@@ -830,6 +839,21 @@ def dump_norm(lines, consts):
     return bytes(buf), rels
 
 
+def matching_literal_stubs(new_lines, old_lines):
+    """Offsets where an R_MIPS_32 names exactly the original literal callback address."""
+    new_bytes, new_rels = dump_norm(new_lines, set())
+    old_bytes, old_rels = dump_norm(old_lines, set())
+    relocated = {int(offset, 16) for offset, _, _ in old_rels}
+    matches = set()
+    for offset, kind, symbol in new_rels:
+        o = int(offset, 16)
+        if kind == 'R_MIPS_32' and o % 4 == 0 and o not in relocated and o + 4 <= len(old_bytes):
+            address = int.from_bytes(old_bytes[o:o + 4], 'big')
+            if new_bytes[o:o + 4] == bytes(4) and data.STUBS.get(address) == symbol:
+                matches.add(o)
+    return matches
+
+
 def verify(tree):
     tree = tree.resolve()
     entries = [json.loads(l) for l in LOG.read_text().splitlines()] if LOG.exists() else []
@@ -853,6 +877,7 @@ def verify(tree):
         consts = const_offsets(ROOT / asm_rel)
         consts |= {int(o, 16) for o, _, sym in dump_norm(a, set())[1] if core_label(int(sym.split('+')[0][2:10], 16)
                    if re.match(r'D_80[0-3][0-9A-F]{5}\b', sym) else 0)}
+        consts |= matching_literal_stubs(a, b)
         norm = [dump_norm(x, consts) for x in (a, b)]
         if not a or norm[0] != norm[1]:
             bad.append(e['c'])

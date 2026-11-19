@@ -4773,7 +4773,7 @@ segments:
     subsegments: 
       - [0x01F9EB90, c, eato]
       - [0x01F9F950, .rodata, eato]
-      - [0x01F9F9E0, data, eato]
+      - [0x01F9F9E0, .data, eato]
       - [0x01F9FAC0, bss, eato]
   - name: chcheatopage_header
     dir: overlays/chcheatopage
@@ -4983,7 +4983,7 @@ segments:
     subsegments: 
       - [0x01FA5BD0, c, minecelldoor]
       - [0x01FA5D10, .rodata, minecelldoor]
-      - [0x01FA5D10, data, minecelldoor]
+      - [0x01FA5D10, .data, minecelldoor]
       - [0x01FA5DA0, bss, minecelldoor]
   - name: chmadamegrunty_header
     dir: overlays/chmadamegrunty
@@ -5156,7 +5156,7 @@ segments:
     subsegments: 
       - [0x01FAF300, c, conga]
       - [0x01FAF950, .rodata, conga]
-      - [0x01FAF970, data, conga]
+      - [0x01FAF970, .data, conga]
       - [0x01FAFA40, bss, conga]
   - name: chstarspinnerplanet_header
     dir: overlays/chstarspinnerplanet
@@ -6316,7 +6316,7 @@ segments:
     subsegments: 
       - [0x01FDEAD0, c, billdrillplate]
       - [0x01FDFB50, .rodata, billdrillplate]
-      - [0x01FDFB70, data, billdrillplate]
+      - [0x01FDFB70, .data, billdrillplate]
       - [0x01FDFD50, bss, billdrillplate]
   - name: chrainripples_header
     dir: overlays/chrainripples
@@ -6831,7 +6831,7 @@ segments:
     subsegments: 
       - [0x01FF4FF0, c, family]
       - [0x01FF5D20, .rodata, family]
-      - [0x01FF5D40, data, family]
+      - [0x01FF5D40, .data, family]
       - [0x01FF5FB0, bss, family]
   - name: chnutsnbolts_header
     dir: overlays/chnutsnbolts
@@ -7329,7 +7329,7 @@ segments:
     subsegments: 
       - [0x02012E40, c, weldarhead]
       - [0x02013270, .rodata, weldarhead]
-      - [0x02013320, data, weldarhead]
+      - [0x02013320, .data, weldarhead]
       - [0x020133A0, bss, weldarhead]
   - name: chcamerawibble_header
     dir: overlays/chcamerawibble
@@ -8204,7 +8204,7 @@ segments:
     subsegments: 
       - [0x02036200, c, gen]
       - [0x02037640, .rodata, gen]
-      - [0x02037770, data, gen]
+      - [0x02037770, .data, gen]
       - [0x02037D20, bss, gen]
   - name: chtimetable_header
     dir: overlays/chtimetable
@@ -8490,7 +8490,7 @@ segments:
     subsegments: 
       - [0x0204CB80, c, ticker]
       - [0x0204D270, .rodata, ticker]
-      - [0x0204D3B0, data, ticker]
+      - [0x0204D3B0, .data, ticker]
       - [0x0204D500, bss, ticker]
   - name: chstadiumdoors_header
     dir: overlays/chstadiumdoors
@@ -11628,7 +11628,7 @@ segments:
     subsegments: 
       - [0x020C5420, c, toxicroombits]
       - [0x020C6300, .rodata, toxicroombits]
-      - [0x020C6320, data, toxicroombits]
+      - [0x020C6320, .data, toxicroombits]
       - [0x020C64A0, bss, toxicroombits]
   - name: chgoldfish_header
     dir: overlays/chgoldfish

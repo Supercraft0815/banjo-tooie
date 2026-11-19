@@ -1,5 +1,5 @@
 #include "common.h"
-
+typedef struct { ActorData actor; u8 stages[6][2]; s16 audio[6]; } ToxicRoomData;
 s32 func_80800000_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
     void _chskeletonexplode_entrypoint_7(Actor *, f32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
@@ -16,9 +16,9 @@ s32 func_80800000_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808004C8_chtoxicroombits(s32);
     s32 func_808004F0_chtoxicroombits(void);
     extern Vec3f D_80800F00_chtoxicroombits;
-    extern s32 D_80800F0C_chtoxicroombits[];
-    extern s32 D_80800F54_chtoxicroombits[];
-    extern s32 D_80800FA0_chtoxicroombits[];
+    extern s16 D_80800F0C_chtoxicroombits[36];
+    extern s16 D_80800F54_chtoxicroombits[38];
+    extern s16 D_80800FA0_chtoxicroombits[8];
     Vec3f sp2C;
     f32 *sp20;
 
@@ -27,7 +27,7 @@ s32 func_80800000_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
             sp20 = arg0->position;
             _subaddieaudioquick_entrypoint_2(arg0, sp20, D_80800FA0_chtoxicroombits);
             if (arg0->unk0->unk14 == 0x884) {
-                func_800BBCB8(sp20, NULL, 1.0f, 5, D_80800F54_chtoxicroombits);
+                func_800BBCB8(sp20, NULL, 1.0f, 5, (s32 *)D_80800F54_chtoxicroombits);
                 if (!func_800DA298(0x1BD)) {
                     func_800DA544(0x1BD);
                     func_80108B04(arg0, 0);
@@ -35,7 +35,7 @@ s32 func_80800000_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
                     func_80101180(0x3EB, 0x34, 0);
                 }
             } else {
-                func_800BBCB8(sp20, NULL, 1.0f, 5, D_80800F0C_chtoxicroombits);
+                func_800BBCB8(sp20, NULL, 1.0f, 5, (s32 *)D_80800F0C_chtoxicroombits);
                 if (!func_800D0A9C(0x38, 1)) {
                     func_808004C8_chtoxicroombits(func_808004F0_chtoxicroombits() - 1);
                     if (!func_808004F0_chtoxicroombits()) {
@@ -104,19 +104,19 @@ void func_808001D4_chtoxicroombits(Actor *arg0, void *arg1) {
 
 OSThread *chtoxicroombits_entrypoint_0(void)
 {
-    extern u8 D_80800FB0_chtoxicroombits[];
+    extern ToxicRoomData D_80800FB0_chtoxicroombits;
 
-    return (OSThread *) D_80800FB0_chtoxicroombits;
+    return (OSThread *)&D_80800FB0_chtoxicroombits.actor;
 }
 
-extern u32 D_80801004_chtoxicroombits;
+extern ToxicRoomData D_80800FB0_chtoxicroombits; BT_IDO_ONLY(extern u32 D_80801004_chtoxicroombits;)
 s32 func_808004F0_chtoxicroombits(void);
-u8 func_80800410_chtoxicroombits(void) { s32 value = func_808004F0_chtoxicroombits() ? func_808004F0_chtoxicroombits() : 6; return ((u8 *)&D_80801004_chtoxicroombits)[-(value * 2)]; }
+u8 func_80800410_chtoxicroombits(void) { s32 value = func_808004F0_chtoxicroombits() ? func_808004F0_chtoxicroombits() : 6; return BT_DATA_FIELD((u8 *)&D_80800FB0_chtoxicroombits + offsetof(ToxicRoomData, audio), (u8 *)&D_80801004_chtoxicroombits)[-(value * 2)]; }
 
 f32 func_80800458_chtoxicroombits(void) {
-    extern u8 D_80801005_chtoxicroombits[];
+    BT_IDO_ONLY(extern u8 D_80801005_chtoxicroombits[];)
     s32 value = func_808004F0_chtoxicroombits() ? func_808004F0_chtoxicroombits() : 6;
-    return (f32)(u32)D_80801005_chtoxicroombits[-(value * 2)] / 10.0f;
+    return (f32)(u32)BT_DATA_FIELD((u8 *)&D_80800FB0_chtoxicroombits + offsetof(ToxicRoomData, audio) + 1, D_80801005_chtoxicroombits)[-(value * 2)] / 10.0f;
 }
 
 /* extern */
@@ -196,7 +196,7 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
     f32 func_80800458_chtoxicroombits(void);
     void func_80800960_chtoxicroombits(u8 *, s32);
     int func_80800BE4_chtoxicroombits(u8 *);
-    extern u32 D_80801004_chtoxicroombits;
+    extern ToxicRoomData D_80800FB0_chtoxicroombits;
     u8 *found[20];
     f32 movement;
     f32 camera[3];
@@ -222,7 +222,7 @@ void func_80800630_chtoxicroombits(u8 *arg0) {
     } else {
         _subaddieaudioloop_entrypoint_1(arg0, 0x55F0);
     }
-    _subaddieaudioloop_entrypoint_4((Actor *)arg0, (f32 *)(arg0 + 4), 1, &D_80801004_chtoxicroombits);
+    _subaddieaudioloop_entrypoint_4((Actor *)arg0, (f32 *)(arg0 + 4), 1, BT_DATA_FIELD((u32 *)D_80800FB0_chtoxicroombits.audio, &D_80801004_chtoxicroombits));
     radius = 16.0f;
     if (*(f32 *)(arg0 + 0x34) / radius <= func_800D91B8((f32 *)(arg0 + 0x58))) {
         *(f32 *)(arg0 + 0x58) -= *(f32 *)(arg0 + 0x34) / radius;
@@ -392,7 +392,7 @@ s32 func_80800CB0_chtoxicroombits(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chtoxicroombits_entrypoint_1(void)
 {
-    extern u8 D_80801034_chtoxicroombits[];
-
+    extern ActorData D_80801034_chtoxicroombits[];
     return (OSThread *) D_80801034_chtoxicroombits;
 }
+#include "toxicroombits_data.inc"

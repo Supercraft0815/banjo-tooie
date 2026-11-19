@@ -1,10 +1,10 @@
 #include "common.h"
-
+typedef struct { ActorData actor; s16 trailing[36]; } TntDoorData;
 OSThread *chtntminecelldoor_entrypoint_0(void)
 {
-    extern u8 D_80800140_chtntminecelldoor[];
+    extern TntDoorData D_80800140_chtntminecelldoor;
 
-    return (OSThread *) D_80800140_chtntminecelldoor;
+    return (OSThread *)&D_80800140_chtntminecelldoor.actor;
 }
 
 void func_8080000C_chtntminecelldoor(s32 arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3))
@@ -49,10 +49,10 @@ void func_808000F4_chtntminecelldoor(BtIntPtr arg0) {
     BtIntPtr func_80106790(BtIntPtr);
     BtIntPtr sp1C;
     BtIntPtr temp_v0;
-
     temp_v0 = func_80106790(func_80101080());
     sp1C = temp_v0;
     _chexploder_entrypoint_13(temp_v0, 1);
     _chexploder_entrypoint_12(sp1C, 0x3C);
     func_800DA544(0x85);
 }
+#include "minecelldoor_data.inc"
