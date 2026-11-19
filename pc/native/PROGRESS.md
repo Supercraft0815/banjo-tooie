@@ -2770,3 +2770,18 @@ Alle 61 Sanitizertests, elf Gastsuiten und 74 Replays mit 447.849
 Retraces bestehen. Die kanonische Gast-IR, 16.401 Original-IDO-Funktionen
 und beide ROM-Abbilder stimmen überein. Die Protokolle liegen unter
 `build/acceptance/n1-2026-11-18/current-player-viewports*`.
+
+## 2026-11-19 — N2, Slotnummern der Spielauswahl
+
+Vier Aufrufe für Spielstand und Status übernehmen den ersten
+Registerparameter auch im ILP32-Gast. Zwei weitere Stellen rufen die
+Spielstandabfrage direkt mit der Slotnummer auf. Ohne FixCalls tritt
+in der Diagnose der fehlerhafte Schreibzugriff auf den Gesundheitswert
+bei Retrace 1.378 damit nicht mehr auf. Die erste sichtbare Abweichung
+liegt nun bei Retrace 1.854. Der Linker zählt weiter 59 ungültige
+Aufrufvarianten.
+
+Im regulären Build sind kanonische IR, elf Suiten und 74 Replays mit
+447.849 Retraces geprüft. Das Original-IDO-Ergebnis stimmt für alle 16.401
+Funktionen und beide ROM-Abbilder. Die Protokolle stehen unter
+`build/acceptance/n2-2026-11-18/current-slots*`.

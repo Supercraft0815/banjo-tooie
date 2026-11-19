@@ -1929,7 +1929,7 @@ void func_80803658_chgameselect(s32 bt_a0)
 void func_80803658_chgameselect()
 #endif
 {
-    _glsavegame_entrypoint_9(GAME_SELECT_LP64(bt_a0, ));
+    _glsavegame_entrypoint_9(BT_NATIVE_ONLY(bt_a0));
 }
 
 #ifdef BT_NATIVE
@@ -1938,7 +1938,7 @@ void func_80803678_chgameselect(s32 bt_a0)
 void func_80803678_chgameselect()
 #endif
 {
-    func_800D37C0(GAME_SELECT_LP64(bt_a0, ));
+    func_800D37C0(BT_NATIVE_ONLY(bt_a0));
 }
 
 void func_80803698_chgameselect(s32 arg0, s32 arg1)
@@ -1963,7 +1963,7 @@ s32 func_808036F8_chgameselect(s32 bt_a0)
 s32 func_808036F8_chgameselect()
 #endif
 {
-    return _glsavegame_entrypoint_2(GAME_SELECT_LP64(bt_a0, ));
+    return _glsavegame_entrypoint_2(BT_NATIVE_ONLY(bt_a0));
 }
 
 s32 func_80803718_chgameselect()
@@ -1978,7 +1978,7 @@ s32 func_80803738_chgameselect(s32 arg0, s32 *arg1, s32 *arg2) {
     u8 *save;
 
 #ifdef BT_NATIVE
-    if (((s32 (*)())func_808036F8_chgameselect)() != 0) {
+    if (func_808036F8_chgameselect(arg0) != 0) {
 #else
     if (func_808036F8_chgameselect() != 0) {
 #endif
@@ -2001,7 +2001,7 @@ s32 func_808037C0_chgameselect(s32 arg0) {
     s32 flag360;
 
 #ifdef BT_NATIVE
-    if (((s32 (*)())func_808036F8_chgameselect)() != 0) {
+    if (func_808036F8_chgameselect(arg0) != 0) {
 #else
     if (func_808036F8_chgameselect() != 0) {
 #endif
@@ -3884,7 +3884,7 @@ void func_80806A88_chgameselect(s32 bt_a0)
 void func_80806A88_chgameselect()
 #endif
 {
-    _gcstatusDll_entrypoint_5(GAME_SELECT_LP64(bt_a0, ));
+    _gcstatusDll_entrypoint_5(BT_NATIVE_ONLY(bt_a0));
 }
 
 s32 func_80806AA8_chgameselect(void) {

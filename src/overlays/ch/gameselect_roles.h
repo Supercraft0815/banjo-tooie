@@ -1,6 +1,13 @@
 #ifndef CH_GAMESELECT_ROLES_H
 #define CH_GAMESELECT_ROLES_H
 
+#ifdef BT_NATIVE
+s32 _glsavegame_entrypoint_2(s32);
+s32 _glsavegame_entrypoint_9(s32);
+void func_800D37C0(s32);
+void _gcstatusDll_entrypoint_5(s32);
+#endif
+
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "memory.h"
 
@@ -8,13 +15,9 @@ s32 _gcnewoption_entrypoint_38(u8 *, s32);
 s32 _gcnewoption_entrypoint_39(u8 *);
 void _glsavegame_entrypoint_0(void);
 void _glsavegame_entrypoint_1(void);
-s32 _glsavegame_entrypoint_2(s32);
 s32 _glsavegame_entrypoint_3(void);
-s32 _glsavegame_entrypoint_9(s32);
-void func_800D37C0(s32);
 void func_800D37D4(void);
 void func_800FC660(u32);
-void _gcstatusDll_entrypoint_5(s32);
 
 void _gczoombox_entrypoint_0(void *);
 void _gczoombox_entrypoint_2(u8 *, BtIntPtr);
