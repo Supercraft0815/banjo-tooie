@@ -75,7 +75,7 @@ u8 D_80126E4C[4] BT_DATA(4, bss_core2bss1_sound_tail, 0x16C);
 u8 D_80126E5C[484] BT_DATA(4, bss_core2bss1_sound_tail, 0x17C);
 u8 bss_core2bss1_sound_tail__end[1] BT_DATA(1, bss_core2bss1_sound_tail, 0x36F);
 u8 bss_core2bss2__end[1] BT_DATA(1, bss_core2bss2, 0x5F);
-u8 D_8012CA20[8] BT_DATA(4, bss_core2bss2_1, 0xE0);
+u8 D_8012CA24[4] BT_DATA(4, bss_core2bss2_1, 0xE4);
 
 u8 bss_core2bss2_1__end[1] BT_DATA(1, bss_core2bss2_1, 0xD4F);
 u8 D_80132DA8[8] BT_DATA(4, bss_core2bss2_1_reset_tail, 0x848);

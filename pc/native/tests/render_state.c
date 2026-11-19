@@ -22,8 +22,10 @@ static void test_state(void) {
     CHECK(func_800DF324()==&pose && native_render.data.animation==bones && native_render.data.matrices==matrices && native_render.data.display_list==display);
     CHECK(func_800DF8B4(&native_render.data)==vertices && func_800DF8BC(&native_render.data)==colors && func_800DF8CC(&native_render.data)==normals);
     CHECK(func_800DF8D4(&native_render.data));native_render.data.animated_vertices=textures;CHECK(!func_800DF8D4(&native_render.data));
-    func_800DF47C(callback,(uintptr_t)vertices);func_800DF490(callback,(uintptr_t)bones);
-    native_render.before(native_render.before_arg);CHECK(callback_value==(uintptr_t)vertices);native_render.after(native_render.after_arg);CHECK(callback_value==(uintptr_t)bones);
+    uintptr_t high_callback_arg=(uintptr_t)0x123456789abcULL;
+    func_800DF47C(callback,high_callback_arg);func_800DF490(callback,high_callback_arg+1);
+    CHECK(native_render.before_arg==high_callback_arg && native_render.after_arg==high_callback_arg+1);
+    native_render.before(native_render.before_arg);CHECK(callback_value==high_callback_arg);native_render.after(native_render.after_arg);CHECK(callback_value==high_callback_arg+1);
     func_800DF660(2,(uintptr_t)colors,(uintptr_t)display,17);CHECK(native_render.callback_mode==1 && native_render.callback_type==2 && native_render.callback_args[1]==(uintptr_t)display && native_render.env[3]==17);
     func_800DF660(0,0,0,99);CHECK(!native_render.callback_mode && native_render.env[3]==17);
     func_800DF738(vertices);func_800DF83C(textures);func_800DF7F8(123,20,30);CHECK(native_render.attachments==vertices && native_render.zone_override==textures && native_render.radius==30);

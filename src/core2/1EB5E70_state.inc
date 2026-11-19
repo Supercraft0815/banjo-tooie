@@ -57,10 +57,16 @@ void func_800DF3E0(void) {
     }
 }
 
+#ifdef BT_NATIVE
+void func_800DF410(s32 arg0) {
+    D_8012C988.env[3] = arg0;
+}
+#else
 void func_800DF410(s32 arg0) {
     extern s32 D_8012C9A4;
     *(s32 *)((u8 *)&D_8012C9A4 + 0) = arg0;
 }
+#endif
 
 void func_800DF41C(s32 arg0) {
     *(s32 *)((u8 *)&D_8012C824 + 0) = arg0;
@@ -94,17 +100,31 @@ void func_800DF470(s32 arg0) {
     *(s32 *)((u8 *)&D_8012C834 + 0) = arg0;
 }
 
+#ifdef BT_NATIVE
+void func_800DF47C(s32 arg0, s32 arg1) {
+    D_8012C9A8.before = (void (*)(s32))arg0;
+    D_8012C9A8.before_arg = arg1;
+}
+#else
 void func_800DF47C(s32 arg0, s32 arg1) {
     extern s32 D_8012C9A8;
     (*(s32 *)((s8 *)(&D_8012C9A8) + (0))) = arg0;
     (*(s32 *)((s8 *)(&D_8012C9A8) + (4))) = arg1;
 }
+#endif
 
+#ifdef BT_NATIVE
+void func_800DF490(s32 arg0, s32 arg1) {
+    D_8012C9A8.after = (void (*)(s32))arg0;
+    D_8012C9A8.after_arg = arg1;
+}
+#else
 void func_800DF490(s32 arg0, s32 arg1) {
     extern s32 D_8012C9A8;
     (*(s32 *)((s8 *)(&D_8012C9A8) + (8))) = arg0;
     (*(s32 *)((s8 *)(&D_8012C9A8) + (0xC))) = arg1;
 }
+#endif
 
 void func_800DF4A4(s32 arg0)
 {
@@ -117,6 +137,13 @@ void func_800DF4B0(s32 arg0) {
     D_8012CF8C = D_80123198[arg0];
 }
 
+#ifdef BT_NATIVE
+void func_800DF4CC(s32 arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    D_8012C9B8.mode = 1;
+    func_800EE7F8(D_8012C9B8.values, (f32 *)arg0);
+}
+#else
 void func_800DF4CC(s32 arg0) {
     void func_800EE7F8(f32 *, f32 *);
     extern s32 D_8012C9B8;
@@ -124,7 +151,15 @@ void func_800DF4CC(s32 arg0) {
     D_8012C9B8 = 1;
     func_800EE7F8((f32 *)&D_8012C9BC, (f32 *)arg0);
 }
+#endif
 
+#ifdef BT_NATIVE
+void func_800DF500(f32 arg0, f32 arg1, f32 arg2) {
+    void func_800EFA4C(f32 *, f32, f32, f32);
+    D_8012C9B8.mode = 2;
+    func_800EFA4C(D_8012C9B8.values, arg0, arg1, arg2);
+}
+#else
 void func_800DF500(f32 arg0, f32 arg1, f32 arg2) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     extern s32 D_8012C9B8;
@@ -132,7 +167,16 @@ void func_800DF500(f32 arg0, f32 arg1, f32 arg2) {
     D_8012C9B8 = 2;
     func_800EFA4C((f32 *)&D_8012C9BC, arg0, arg1, arg2);
 }
+#endif
 
+#ifdef BT_NATIVE
+void func_800DF540(s32 arg0) {
+    s32 func_800F293C(s32 *, s32);
+    extern s32 D_8012C9C8;
+    D_8012C9B8.mode = 3;
+    func_800F293C(&D_8012C9C8, arg0);
+}
+#else
 void func_800DF540(s32 arg0) {
     s32 func_800F293C(s32 *, s32);
     extern s32 D_8012C9B8;
@@ -140,12 +184,27 @@ void func_800DF540(s32 arg0) {
     D_8012C9B8 = 3;
     func_800F293C(&D_8012C9C8, arg0);
 }
+#endif
 
 void func_800DF574(s32 arg0) {
     extern s16 D_8012CA38;
     *(s16 *)((u8 *)&D_8012CA38 + 0) = arg0;
 }
 
+#ifdef BT_NATIVE
+void func_800DF580(void *arg0, void *arg1) {
+    extern s32 D_8012C83C;
+    D_8012C83C = 1;
+    D_8012C988.env[0] = (s32) (*(s32 *)((s8 *)(arg0) + (0)));
+    D_8012C988.env[1] = (s32) (*(s32 *)((s8 *)(arg0) + (4)));
+    D_8012C988.env[2] = (s32) (*(s32 *)((s8 *)(arg0) + (8)));
+    D_8012C988.env[3] = (s32) (*(s32 *)((s8 *)(arg0) + (0xC)));
+    D_8012C988.prim[0] = (s32) (*(s32 *)((s8 *)(arg1) + (0)));
+    D_8012C988.prim[1] = (s32) (*(s32 *)((s8 *)(arg1) + (4)));
+    D_8012C988.prim[2] = (s32) (*(s32 *)((s8 *)(arg1) + (8)));
+    D_8012C988.prim[3] = (s32) (*(s32 *)((s8 *)(arg1) + (0xC)));
+}
+#else
 void func_800DF580(void *arg0, void *arg1) {
     extern s32 D_8012C83C;
     extern s32 D_8012C988;
@@ -159,7 +218,30 @@ void func_800DF580(void *arg0, void *arg1) {
     (*(s32 *)((s8 *)(&D_8012C988) + (8))) = (s32) (*(s32 *)((s8 *)(arg1) + (8)));
     (*(s32 *)((s8 *)(&D_8012C988) + (0xC))) = (s32) (*(s32 *)((s8 *)(arg1) + (0xC)));
 }
+#endif
 
+#ifdef BT_NATIVE
+void func_800DF5D8(u32 arg0, u32 arg1, u32 arg2, s32 arg3) {
+    extern s32 D_8012C83C;
+    D_8012C83C = 2;
+    if ((s32) arg0 >= 0x100) {
+        D_8012C988.env[0] = (s32)(0xFFU);
+    } else {
+        D_8012C988.env[0] = (s32)(arg0);
+    }
+    if ((s32) arg1 >= 0x100) {
+        D_8012C988.env[1] = (s32)(0xFFU);
+    } else {
+        D_8012C988.env[1] = (s32)(arg1);
+    }
+    if ((s32) arg2 >= 0x100) {
+        D_8012C988.env[2] = (s32)(0xFFU);
+    } else {
+        D_8012C988.env[2] = (s32)(arg2);
+    }
+    func_800DF410(arg3);
+}
+#else
 void func_800DF5D8(u32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     extern s32 D_8012C83C;
     extern s32 D_8012C988;
@@ -181,6 +263,7 @@ void func_800DF5D8(u32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     }
     func_800DF410(arg3);
 }
+#endif
 
 void func_800DF660(s32 arg0, s32 arg1, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg2, s32 arg3) {
     extern s32 D_8012C838;
@@ -196,6 +279,24 @@ void func_800DF660(s32 arg0, s32 arg1, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) a
     func_800DF410(arg3);
 }
 
+#ifdef BT_NATIVE
+void func_800DF6BC(s32 arg0, s32 arg1) {
+    extern s32 D_8012C83C;
+    s32 var_v0;
+
+    D_8012C83C = 3;
+    if (arg0 >= 0x100) {
+        var_v0 = 0xFF;
+    } else {
+        var_v0 = arg0;
+    }
+    D_8012C988.prim[3] = var_v0;
+    D_8012C988.prim[2] = var_v0;
+    D_8012C988.prim[1] = var_v0;
+    D_8012C988.prim[0] = var_v0;
+    func_800DF410(arg1);
+}
+#else
 void func_800DF6BC(s32 arg0, s32 arg1) {
     extern s32 D_8012C83C;
     extern s32 D_8012C988;
@@ -213,6 +314,7 @@ void func_800DF6BC(s32 arg0, s32 arg1) {
     (*(s32 *)((s8 *)(&D_8012C988) + (0))) = var_v0;
     func_800DF410(arg1);
 }
+#endif
 
 void func_800DF714(BT_NATIVE_ONLY(Mtx *) BT_IDO_ONLY(s32) arg0)
 {
@@ -270,12 +372,20 @@ void func_800DF7E8(u8 arg0) {
     BT_DATA_FIELD(D_8012C948.texture_animation, D_8012C96C) = arg0;
 }
 
+#ifdef BT_NATIVE
+void func_800DF7F8(s32 arg0, f32 arg1, f32 arg2) {
+    D_8012CA18.asset_id = arg0;
+    D_8012CA18.center = arg1;
+    D_8012CA18.radius = arg2;
+}
+#else
 void func_800DF7F8(s32 arg0, f32 arg1, f32 arg2) {
     extern s32 D_8012CA18;
     (*(s32 *)((s8 *)(&D_8012CA18) + (0))) = arg0;
     (*(f32 *)((s8 *)(&D_8012CA18) + (4))) = arg1;
     (*(f32 *)((s8 *)(&D_8012CA18) + (8))) = arg2;
 }
+#endif
 
 void func_800DF818(BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(s32) arg0)
 {

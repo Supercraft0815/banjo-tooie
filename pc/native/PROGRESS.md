@@ -3507,3 +3507,9 @@ Sieben Eingabefolgen liefen jeweils gleichzeitig auf dem Taxistand mit Compilerp
 Die Suchposition und die Liste der bis zu acht Spieler besitzen typisierte Speicherbereiche. Die Figuren verwenden dieselben Treffer und Positionsfilter.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 7 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-proximity*`.
+
+### 2026-11-19 – Renderfarben und Zeichenaufrufe (N1/N3)
+
+Die Zeichenroutine verwendet zusammengehörige Farbwerte, zwei Callback-Paare und die Mittelpunkt- und Radiusfelder des aktiven Assets. Der native Test prüft die Callback-Argumente in voller Zeigerbreite.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 4 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-render-packed*`.

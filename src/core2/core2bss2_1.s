@@ -11,28 +11,13 @@ dlabel D_8012C948
     /* 8012C948 */ .space 0x40
 
 dlabel D_8012C988
-    /* 8012C988 */ .space 0x1C
-
-dlabel D_8012C9A4
-    /* 8012C9A4 */ .space 0x04
+    /* 8012C988 */ .space 0x20
 
 dlabel D_8012C9A8
-    /* 8012C9A8 */ .space 0x04
-
-dlabel D_8012C9AC
-    /* 8012C9AC */ .space 0x04
-
-dlabel D_8012C9B0
-    /* 8012C9B0 */ .space 0x04
-
-dlabel D_8012C9B4
-    /* 8012C9B4 */ .space 0x04
+    /* 8012C9A8 */ .space 0x10
 
 dlabel D_8012C9B8
-    /* 8012C9B8 */ .space 0x04
-
-dlabel D_8012C9BC
-    /* 8012C9BC */ .space 0x0C
+    /* 8012C9B8 */ .space 0x10
 
 dlabel D_8012C9C8
     /* 8012C9C8 */ .space 0x40
@@ -47,13 +32,9 @@ dlabel D_8012CA11
     /* 8012CA11 */ .space 0x07
 
 dlabel D_8012CA18
-    /* 8012CA18 */ .space 0x04
+    /* 8012CA18 */ .space 0x0C
 
-dlabel D_8012CA1C
-    /* 8012CA1C */ .space 0x04
-
-dlabel D_8012CA20
-    /* 8012CA20 */ .space 0x08
+    /* 8012CA24 */ .space 0x04
 
 dlabel D_8012CA28
     /* 8012CA28 */ .space 0x10

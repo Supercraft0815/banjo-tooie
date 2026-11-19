@@ -43,6 +43,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Suche nach Spielern in der Nähe. Die Suchposition und die Liste der bis zu acht Spieler besitzen typisierte Speicherbereiche. Die Figuren verwenden dieselben Treffer und Positionsfilter.
 
+- Renderfarben und Zeichenaufrufe. Die Zeichenroutine verwendet zusammengehörige Farbwerte, zwei Callback-Paare und die Mittelpunkt- und Radiusfelder des aktiven Assets. Der native Test prüft die Callback-Argumente in voller Zeigerbreite.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

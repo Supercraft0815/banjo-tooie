@@ -32,6 +32,21 @@ typedef struct {
 #endif
 
 s32 D_8012C850[60];
+typedef struct { s32 prim[4]; s32 env[4]; } RenderColorState;
+typedef struct { void (*before)(s32); s32 before_arg; void (*after)(s32); s32 after_arg; } RenderCallbackState;
+typedef struct { s32 mode; f32 values[3]; } RenderTransformState;
+typedef struct { s32 asset_id; f32 center; f32 radius; } RenderAssetDrawState;
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+_Static_assert(sizeof(RenderColorState) == 0x20, "O32 render colors");
+_Static_assert(sizeof(RenderCallbackState) == 0x10, "O32 render callbacks");
+_Static_assert(sizeof(RenderTransformState) == 0x10, "O32 render transform");
+_Static_assert(sizeof(RenderAssetDrawState) == 0x0C, "O32 asset draw state");
+_Static_assert(offsetof(RenderColorState, env[3]) == 0x1C, "O32 environment alpha offset");
+_Static_assert(offsetof(RenderCallbackState, after) == 0x08, "O32 callback offset");
+_Static_assert(offsetof(RenderTransformState, values) == 0x04, "O32 transform values offset");
+_Static_assert(offsetof(RenderAssetDrawState, radius) == 0x08, "O32 radius offset");
+#endif
+
 
 typedef void (*GeoCommandFunction)(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void *), u8 *);
 extern GeoCommandFunction *D_8012CF8C;
@@ -78,6 +93,45 @@ extern LookAtBuffer D_8012CA40;
 #endif
 
 BT_IDO_ONLY(extern DisplayListView *D_8012C960;)
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define RENDER_COLORS native_render
+#define RENDER_BEFORE native_render.before
+#define RENDER_BEFORE_ARG native_render.before_arg
+#define RENDER_AFTER native_render.after
+#define RENDER_AFTER_ARG native_render.after_arg
+#define RENDER_TRANSFORM_MODE native_render.transform_mode
+#define RENDER_TRANSFORM_VALUES native_render.transform
+#define RENDER_ASSET_ID native_render.asset_id
+#define RENDER_ENV_ALPHA native_render.env[3]
+#elif defined(BT_NATIVE)
+extern RenderColorState D_8012C988;
+extern RenderCallbackState D_8012C9A8;
+extern RenderTransformState D_8012C9B8;
+extern RenderAssetDrawState D_8012CA18;
+#define RENDER_COLORS D_8012C988
+#define RENDER_BEFORE D_8012C9A8.before
+#define RENDER_BEFORE_ARG D_8012C9A8.before_arg
+#define RENDER_AFTER D_8012C9A8.after
+#define RENDER_AFTER_ARG D_8012C9A8.after_arg
+#define RENDER_TRANSFORM_MODE D_8012C9B8.mode
+#define RENDER_TRANSFORM_VALUES D_8012C9B8.values
+#define RENDER_ASSET_ID D_8012CA18.asset_id
+#define RENDER_ENV_ALPHA D_8012C988.env[3]
+#else
+extern s32 D_8012C988, D_8012C9A4, D_8012C9A8, D_8012C9AC;
+extern void (*D_8012C9B0)(s32);
+extern s32 D_8012C9B4, D_8012C9B8, D_8012C9BC, D_8012CA18;
+#define RENDER_COLORS (*(RenderColors *)&D_8012C988)
+#define RENDER_BEFORE ((void (*)(s32))D_8012C9A8)
+#define RENDER_BEFORE_ARG D_8012C9AC
+#define RENDER_AFTER D_8012C9B0
+#define RENDER_AFTER_ARG D_8012C9B4
+#define RENDER_TRANSFORM_MODE D_8012C9B8
+#define RENDER_TRANSFORM_VALUES ((f32 *)&D_8012C9B8 + 1)
+#define RENDER_ASSET_ID D_8012CA18
+#define RENDER_ENV_ALPHA D_8012C9A4
+#endif
+
 
 extern s32 D_8012C824;
 extern s32 D_8012C940;
@@ -122,18 +176,13 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         s16 padding;
         u8 data[1][8];
     } TextureData;
-    extern s32 D_8012C988;
     extern s32 D_8012C828, D_8012C834, D_8012C838, D_8012C83C;
     extern f32 D_8012C82C, D_8012C830;
     extern u8 D_8012C840;
-    extern s32 D_8012C848, D_8012C9A4;
-    extern s32 D_8012C9A8;
-    extern s32 D_8012C9AC;
-    extern void (*D_8012C9B0)(s32);
-    extern s32 D_8012C9B4, D_8012C9B8, D_8012C9BC, D_8012C9C8;
-    extern s32 D_8012CA08, D_8012CA18, D_8012CA28; BT_IDO_ONLY(extern s32 D_8012CA0C;) BT_NATIVE_ONLY(extern void *D_8012CA0C;)
+    extern s32 D_8012C848;
     extern u8 D_8012CA11;
     extern f32 D_8012CA1C, D_8012CA20;
+    extern s32 D_8012CA08, D_8012CA28, D_8012C9C8; BT_NATIVE_ONLY(extern void *D_8012CA0C;) BT_IDO_ONLY(extern s32 D_8012CA0C;)
     extern s32 D_8012CE58;
     extern s32 D_8012CE98;
     extern f32 D_8012CEB8[3];
@@ -244,11 +293,11 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         func_800DE318();
         return NULL;
     }
-    if (D_8012C9A8 != NULL) {
-        ((void (*)(s32))D_8012C9A8)(D_8012C9AC);
+    if (RENDER_BEFORE != NULL) {
+        RENDER_BEFORE(RENDER_BEFORE_ARG);
     }
     if (arg5 == 0) {
-        arg5 = (ModelData *)func_800D674C(D_8012CA18);
+        arg5 = (ModelData *)func_800D674C(RENDER_ASSET_ID);
         if (arg5 == 0) {
             func_800DE318();
             return NULL;
@@ -271,7 +320,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         tmp_f0 = D_8012C82C - 700.0f;
         if (tmp_f0 < distance) {
             alpha = (s32)((1.0f - (distance - tmp_f0) / 700.0f) * 256.0f);
-            ((RenderColors *)&D_8012C988)->env[3] = (D_8012C9A4 * alpha) / 256;
+            RENDER_COLORS.env[3] = (RENDER_ENV_ALPHA * alpha) / 256;
         }
     }
     gfx = arg0->gfx;
@@ -286,22 +335,22 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
             }
         }
     }
-    if (((RenderColors *)&D_8012C988)->prim[3] && D_8012C83C != 3) {
-        ((RenderColors *)&D_8012C988)->env[3] = ((RenderColors *)&D_8012C988)->env[3] + (((RenderColors *)&D_8012C988)->prim[3] * (255 - ((RenderColors *)&D_8012C988)->env[3])) / 255;
-        ((RenderColors *)&D_8012C988)->prim[3] = 0;
+    if (RENDER_COLORS.prim[3] && D_8012C83C != 3) {
+        RENDER_COLORS.env[3] = RENDER_COLORS.env[3] + (RENDER_COLORS.prim[3] * (255 - RENDER_COLORS.env[3])) / 255;
+        RENDER_COLORS.prim[3] = 0;
     }
     gDPPipeSync(gfx++);
     gDPPipelineMode(gfx++, G_PM_1PRIMITIVE);
     gDPSetCycleType(gfx++, G_CYC_2CYCLE);
     gDPSetBlendColor(gfx++, 0, 0, 0, 128);
-    gDPSetPrimColor(gfx++, 0, 0, ((RenderColors *)&D_8012C988)->prim[0], ((RenderColors *)&D_8012C988)->prim[1], ((RenderColors *)&D_8012C988)->prim[2], ((RenderColors *)&D_8012C988)->prim[3]);
-    gDPSetEnvColor(gfx++, ((RenderColors *)&D_8012C988)->env[0], ((RenderColors *)&D_8012C988)->env[1], ((RenderColors *)&D_8012C988)->env[2], ((RenderColors *)&D_8012C988)->env[3]);
+    gDPSetPrimColor(gfx++, 0, 0, RENDER_COLORS.prim[0], RENDER_COLORS.prim[1], RENDER_COLORS.prim[2], RENDER_COLORS.prim[3]);
+    gDPSetEnvColor(gfx++, RENDER_COLORS.env[0], RENDER_COLORS.env[1], RENDER_COLORS.env[2], RENDER_COLORS.env[3]);
     if (D_8012CA28) {
         gSPSetGeometryMode(gfx++, G_ZBUFFER);
     } else {
         gSPClearGeometryMode(gfx++, G_ZBUFFER);
     }
-    if (((RenderColors *)&D_8012C988)->env[3] == 255) {
+    if (RENDER_COLORS.env[3] == 255) {
         {
             Gfx *packet = gfx++;
             packet->words.w0 = _SHIFTL(G_MOVEWORD, 24, 8) | _SHIFTL(G_MW_SEGMENT, 16, 8) | (3 * 4);
@@ -370,15 +419,19 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     }
     func_80019CD4();
     func_80019750(object_position, arg2, arg3, arg4);
-    switch (D_8012C9B8) {
+    switch (RENDER_TRANSFORM_MODE) {
         case 1:
-            mlMtxRotatePYR(((f32 *)&D_8012C9B8)[1], ((f32 *)&D_8012C9B8)[2], ((f32 *)&D_8012C9B8)[3]);
+            mlMtxRotatePYR(RENDER_TRANSFORM_VALUES[0], RENDER_TRANSFORM_VALUES[1], RENDER_TRANSFORM_VALUES[2]);
             break;
         case 2:
-            mlMtxScale_xyz(((f32 *)&D_8012C9B8)[1], ((f32 *)&D_8012C9B8)[2], ((f32 *)&D_8012C9B8)[3]);
+            mlMtxScale_xyz(RENDER_TRANSFORM_VALUES[0], RENDER_TRANSFORM_VALUES[1], RENDER_TRANSFORM_VALUES[2]);
             break;
         case 3:
+            #if defined(BT_NATIVE) && !defined(BT_ILP32)
+            mlMtxApply(&native_render.extra_matrix);
+#else
             func_80018C50(&D_8012C9C8);
+#endif
             break;
     }
     mlMtxGet(&D_8012CE58);
@@ -403,7 +456,13 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     D_8012C948.rotation = arg2;
     D_8012C948.scale = arg3;
     D_8012C948.origin = arg4;
+    #if defined(BT_NATIVE) && !defined(BT_ILP32)
+    D_8012C948.extra_rotation = RENDER_TRANSFORM_MODE == 1 ? RENDER_TRANSFORM_VALUES : NULL;
+#elif defined(BT_NATIVE)
+    D_8012C948.extra_rotation = RENDER_TRANSFORM_MODE == 1 ? D_8012C9B8.values : NULL;
+#else
     D_8012C948.extra_rotation = D_8012C9B8 == 1 ? (f32 *)&D_8012C9BC : NULL;
+#endif
     if (arg2) {
         func_800EE7F8(D_8012CEB8, arg2);
     } else {
@@ -447,8 +506,8 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     if (arg5->flags & 0x10) {
         func_8010F270();
     }
-    if (D_8012C9B0) {
-        D_8012C9B0(D_8012C9B4);
+    if (RENDER_AFTER) {
+        RENDER_AFTER(RENDER_AFTER_ARG);
     }
     if (arg5->flags & 4) {
         LookAt *current = D_8012CA40.current;
@@ -512,20 +571,16 @@ u8 D_8012C840 BT_DATA(4, bss_core2bss2, 0x50);
 s32 D_8012C844 BT_DATA(4, bss_core2bss2, 0x54);
 s32 D_8012C848 BT_DATA(4, bss_core2bss2, 0x58);
 s32 D_8012C940 BT_DATA(16, bss_core2bss2_1, 0x0);
-s32 D_8012C988 BT_DATA(4, bss_core2bss2_1, 0x48);
-s32 D_8012C9A4 BT_DATA(4, bss_core2bss2_1, 0x64);
-s32 D_8012C9A8 BT_DATA(4, bss_core2bss2_1, 0x68);
-s32 D_8012C9AC BT_DATA(4, bss_core2bss2_1, 0x6C);
-void ( * D_8012C9B0 ) ( s32 ) BT_DATA(4, bss_core2bss2_1, 0x70);
-s32 D_8012C9B4 BT_DATA(4, bss_core2bss2_1, 0x74);
-s32 D_8012C9B8 BT_DATA(4, bss_core2bss2_1, 0x78);
-s32 D_8012C9BC BT_DATA(4, bss_core2bss2_1, 0x7C);
+#if defined(BT_ILP32)
+RenderColorState D_8012C988 BT_DATA(4, bss_core2bss2_1, 0x48);
+RenderCallbackState D_8012C9A8 BT_DATA(4, bss_core2bss2_1, 0x68);
+RenderTransformState D_8012C9B8 BT_DATA(4, bss_core2bss2_1, 0x78);
+RenderAssetDrawState D_8012CA18 BT_DATA(4, bss_core2bss2_1, 0xD8);
+#endif
 s32 D_8012C9C8 BT_DATA(4, bss_core2bss2_1, 0x88);
 void *D_8012CA0C BT_DATA(4, bss_core2bss2_1, 0xCC);
 s32 D_8012CA08 BT_DATA(4, bss_core2bss2_1, 0xC8);
 u8 D_8012CA11 BT_DATA(4, bss_core2bss2_1, 0xD1);
-s32 D_8012CA18 BT_DATA(4, bss_core2bss2_1, 0xD8);
-f32 D_8012CA1C BT_DATA(4, bss_core2bss2_1, 0xDC);
 s32 D_8012CA28 BT_DATA(4, bss_core2bss2_1, 0xE8);
 s16 D_8012CA38 BT_DATA(4, bss_core2bss2_1, 0xF8);
 s32 D_8012CE58 BT_DATA(4, bss_core2bss2_1, 0x518);
