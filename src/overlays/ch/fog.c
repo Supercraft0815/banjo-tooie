@@ -13,7 +13,7 @@ void func_80800020_chfog(Actor *arg0) {
     void func_800E3980(f32 *);
     s32 func_800EA05C(void);
     void func_800EFD24(f32 *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
@@ -139,7 +139,7 @@ void func_8080032C_chfog(f32 *arg0) {
     void func_800E3B50(f32 *, f32 *, f32 *);
     void func_800E3980(f32 *);
     void func_800EFB24(void *, void *, void *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F690C(BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800D90A4(f32 *);

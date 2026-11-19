@@ -306,7 +306,7 @@ void func_80800A2C_chtoxicroombits(Actor *arg0, void *arg1) {
 int func_80800BE4_chtoxicroombits(u8 *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800F48BC(BtIntPtr, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6C5C(BtIntPtr);
     f32 sp1C[3];

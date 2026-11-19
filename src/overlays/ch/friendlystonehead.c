@@ -191,7 +191,7 @@ void func_80800444_chfriendlystonehead(Actor *arg0) {
 
 s32 func_80800540_chfriendlystonehead(Actor *arg0) {
     s32 func_800EA05C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800DA564(s32, s32);
     void func_800DA7A8(s32 startIndex, s32 set, s32 length);

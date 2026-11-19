@@ -40,7 +40,7 @@ void func_80800128_chboilerid(Actor *arg0) {
     void func_8010D254(f32 *);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     void func_80101FDC(Actor *, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800D9078(f32 *);
     void chboilerid_entrypoint_5(Actor *);
     s32 func_800F6C5C(BtIntPtr);

@@ -64,7 +64,7 @@ void func_8080013C_chfactorysparkroom(Actor *arg0) {
     f32 func_800EFC7C(void *, void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     int func_800F3214(void *, void *, void *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F55FC(BtIntPtr);
     s32 func_800F581C(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);
@@ -275,7 +275,7 @@ void func_80800838_chfactorysparkroom(Actor *arg0, void *arg1) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1828(f32 *, f32 *);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A2C(BtIntPtr, s32, f32 *);
     void *func_80100094(Actor *, u32);
     BtIntPtr func_8010347C(Unk80132ED0 *);

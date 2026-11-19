@@ -376,7 +376,7 @@ void sumumbofx_entrypoint_9(u8 *arg0, Gfx **arg1) {
     void func_800B99CC(Gfx **, s32, s32 *);
     f32 func_800EEB40(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     f32 sp4C;
     f32 sp40[3];
@@ -473,7 +473,7 @@ void sumumbofx_entrypoint_14(u8 *arg0) {
     s32 func_800D9078(f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800FCAE0(u32, u32, u32);
     f32 sumumbofx_entrypoint_26(void *);

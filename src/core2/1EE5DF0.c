@@ -98,7 +98,7 @@ s32 func_8010C754(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(s32 bt_a0))) {
 void func_8010C788(BtIntPtr arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 _plsu_entrypoint_1(s32);
     s32 func_800F4EC8(BtIntPtr, BtIntPtr, f32, f32, f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     u8 func_800F8B88(void);
     BtIntPtr sp24;
     s32 temp_v0;
@@ -317,7 +317,7 @@ void func_8010CEAC(void *arg0) { void func_8010D600(BtIntPtr); f32 func_80102D78
 
 s32 func_8010CEF8(f32 *arg0, s32 arg1) {
     s32 func_800F0008(f32[3], f32, f32[3], f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5794(BtIntPtr, f32[3], s32);
     s32 func_800F57C0(BtIntPtr);
     f32 sp54[3];
@@ -340,7 +340,7 @@ s32 func_8010CEF8(f32 *arg0, s32 arg1) {
 s32 func_8010CFBC(f32 *arg0, s32 arg1, s32 arg2) {
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F0008(f32[3], f32, f32[3], f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5794(BtIntPtr, f32[3], s32);
     s32 func_800F57C0(BtIntPtr);
     BtIntPtr temp_v0;
@@ -460,7 +460,7 @@ s32 func_8010D284()
 /* extern */
 
 BtIntPtr func_8010D290(s32 arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
     BtIntPtr temp_v0;

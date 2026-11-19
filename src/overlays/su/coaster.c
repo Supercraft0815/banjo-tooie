@@ -1382,7 +1382,7 @@ BtIntPtr func_80802760_sucoaster(BtIntPtr arg0) {
         BT_BITFIELD_ORDER(u32 flag : 1, u32 pad18_20 : 8);
         BT_BITFIELD_ORDER(u32 pad18_0 : 19, u32 track : 4);
     } CoasterData;
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BtIntPtr func_8010D290(s32);
     void *_sucoasterdata_entrypoint_1(u32);
     CoasterData *data = (CoasterData *)arg0;

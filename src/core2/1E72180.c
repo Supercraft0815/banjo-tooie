@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "overlays/ba/playerstate.h"
 s32 func_80098890() 
 {
     return 0x1C;
@@ -191,7 +191,7 @@ void func_80098C48(void *arg0) {
     void func_8009CF98(void *arg0);
     void func_8009D4D8(void *arg0);
     void func_8009E390(void *arg0);
-    void func_8009E7AC(void *arg0);
+    void func_8009E7AC(PlayerState *arg0);
     void func_8009FE78(void *arg0);
     void func_800A0C44(void *arg0);
     void func_800A0FF0(void *arg0);
@@ -287,7 +287,7 @@ void func_80098E64(void *self) {
     void func_8009EAF4(s32);
     void func_8009E9D8(s32);
     void func_8009E9FC(f32);
-    s32 func_8009E71C(void *, s32);
+    s32 func_8009E71C(PlayerState *, s32);
     void func_8009EB18(s32);
     void bs_setState(void *self, s32 nextState);
     void _baattach_entrypoint_3(void *);

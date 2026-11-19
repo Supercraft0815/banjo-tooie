@@ -234,7 +234,7 @@ void glsplinecs_entrypoint_1(SplineCSController *arg0, Actor *arg1) {
     void func_800D7754(Actor *, s32);
     void func_8009086C(s32);
     void func_80090708(s32);
-    s32 func_8008FFE8(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8(void);
     s32 _seqdefine_entrypoint_0(s32);
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
     Actor *_subaddiefind_entrypoint_12(s32);

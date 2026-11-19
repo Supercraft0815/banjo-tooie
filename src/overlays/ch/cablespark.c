@@ -287,7 +287,7 @@ s32 func_80800970_chcablespark(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     s32 func_800F0008(f32[3], f32, f32[3], f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F57F0(BtIntPtr, f32 *);
     s32 func_800F6478(BtIntPtr);
     s32 func_800F7B9C(BtIntPtr, s32);

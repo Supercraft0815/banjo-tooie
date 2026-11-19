@@ -28,7 +28,7 @@ void func_80800024_chbilldrillboulder(Actor *arg0) {
     void func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F77E8(BtIntPtr, f32 *);
     s32 func_800F7F98(BtIntPtr, u32);
     Actor *_subaddiefind_entrypoint_2(s32, s32 *);

@@ -1,7 +1,17 @@
 #ifndef CH_GAMESELECT_ROLES_H
 #define CH_GAMESELECT_ROLES_H
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define GAME_SELECT_OPTION_HANDLE(pointer) ((BtIntPtr)(pointer))
+#define GAME_SELECT_OPTION_STATE(pointer) ((OptionState *)(BtIntPtr)(pointer))
+#define GAME_SELECT_OPTION_GET2(state, item, guest_call) _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(state), item)
+#define GAME_SELECT_OPTION_GET4(state, item, value, actor) _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(state), item)
+#define GAME_SELECT_ROW6_GET_OPTION(state, item, option_ptr, actor) _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(state), item)
+s16 _gcnewoption_entrypoint_20(BtIntPtr option_state, s32 item);
+void _gcnewoption_entrypoint_24(BtIntPtr option_state, s32 item, s32 value);
+void _gcnewoption_entrypoint_12(OptionState *option_state, u32 item, s16 text);
+void func_808049E8_chgameselect(BtIntPtr, s32, s32);
+void func_80806AF4_chgameselect(BtIntPtr, s32, s32);
 s32 _glsavegame_entrypoint_2(s32);
 s32 _glsavegame_entrypoint_9(s32);
 void func_800D37C0(s32);
@@ -102,6 +112,15 @@ static inline void game_select_root_set_child(Actor *actor, unsigned slot, Unk80
     if (actor->game_select_root_data) actor->game_select_root_data->children[slot - 3] = marker;
 }
 #else
+#define GAME_SELECT_OPTION_HANDLE(pointer) (pointer)
+#define GAME_SELECT_OPTION_STATE(pointer) (pointer)
+#if defined(BT_NATIVE)
+#define GAME_SELECT_OPTION_GET2(state, item, guest_call) ((s32 (*)())_gcnewoption_entrypoint_20)(state, item)
+#else
+#define GAME_SELECT_OPTION_GET2(state, item, guest_call) _gcnewoption_entrypoint_20(state, item)
+#endif
+#define GAME_SELECT_OPTION_GET4(state, item, value, actor) _gcnewoption_entrypoint_20(state, item, value, actor)
+#define GAME_SELECT_ROW6_GET_OPTION(state, item, option_ptr, actor) _gcnewoption_entrypoint_20(state, (unsigned long long)(*option_ptr), *option_ptr, actor)
 #define GAME_SELECT_LP64(native, original) original
 #define GAME_SELECT_ORIGINAL(code) code
 #define GAME_SELECT_BOX(actor) ((actor)->actorData[4])

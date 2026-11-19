@@ -71,7 +71,7 @@ void func_808001AC_chicywind(f32 *arg0) {
     f32 func_800F1DF4(f32 *, f32 *);
     void func_800F48BC(BtIntPtr, f32 *);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5578(BtIntPtr);
     s32 func_800F55A4(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);

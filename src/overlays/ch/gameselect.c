@@ -351,7 +351,7 @@ void func_8080086C_chgameselect(Actor *arg0, s32 arg1) {
     }
 }
 
-void func_808008D0_chgameselect(Actor *arg0, BtIntPtr arg1, s32 arg2) {
+void func_808008D0_chgameselect(GAME_SELECT_OPTION_DISPATCH_PARAMS(arg0, arg1, arg2)) {
 
 
 
@@ -372,7 +372,7 @@ void func_808008D0_chgameselect(Actor *arg0, BtIntPtr arg1, s32 arg2) {
     }
 }
 
-void func_80800944_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+void func_80800944_chgameselect(GAME_SELECT_ROW6_EVENT5_PARAMS(arg0, arg1, arg2)) {
 
 
 
@@ -486,7 +486,7 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
         func_808009EC_chgameselect(BT_IDO_ONLY(actor) BT_PASS2(actor, BT_PASS2(arg1, BT_PASS2(arg2, arg3))));
         break;
     case 4:
-        func_808008D0_chgameselect(actor, (BtIntPtr)arg1, arg2);
+        func_808008D0_chgameselect(actor, BT_NATIVE_ONLY(arg1) BT_IDO_ONLY((BtIntPtr)arg1), arg2);
         break;
     case 5:
 #ifdef BT_NATIVE
@@ -1766,7 +1766,7 @@ void func_80802FE4_chgameselect(Actor *arg0) {
 
 void func_80803048_chgameselect(Actor *arg0, BtIntPtr arg1) {
     void *func_80100094(Actor *, u32);
-    s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);))
     void _gcnewoption_entrypoint_41(OptionState *, s32);
     void func_8080401C_chgameselect(BtIntPtr, s32, s32);
     s32 var_s0;
@@ -1776,9 +1776,9 @@ void func_80803048_chgameselect(Actor *arg0, BtIntPtr arg1) {
     var_s0 = 0;
     if ((s32)arg0->actorData[5] > 0) {
         do {
-            _gcnewoption_entrypoint_12(arg1, var_s0, var_s1[1]);
+            _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg1), var_s0, var_s1[1]);
             if (*(s8 *)(var_s1 + 2) >= 0) {
-                func_8080401C_chgameselect(arg1, var_s0, 0);
+                func_8080401C_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), var_s0, 0);
             }
             var_s0 += 1;
             var_s1 += 6;
@@ -1887,7 +1887,7 @@ void func_808032CC_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3)
 
 void func_80803420_chgameselect(Actor *arg0, BtIntPtr arg1) {
     void *func_80100094(Actor *, u32);
-    s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);))
     void _gcnewoption_entrypoint_41(OptionState *, s32);
     void func_80803604_chgameselect(BtIntPtr, s32, s32, s32);
     s32 var_s0;
@@ -1897,7 +1897,7 @@ void func_80803420_chgameselect(Actor *arg0, BtIntPtr arg1) {
     var_s0 = 0;
     if ((s32)arg0->actorData[5] > 0) {
         do {
-            _gcnewoption_entrypoint_12(arg1, var_s0, var_s1[1]);
+            _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg1), var_s0, var_s1[1]);
             func_80803604_chgameselect(arg1, var_s0, *(s8 *)(var_s1 + 3), 0);
             var_s0 += 1;
             var_s1 += 6;
@@ -1906,7 +1906,7 @@ void func_80803420_chgameselect(Actor *arg0, BtIntPtr arg1) {
     _gcnewoption_entrypoint_41((OptionState *)arg1, arg0->actorData[6]);
 }
 
-void func_808034BC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) { s32 _gcnewoption_entrypoint_17(); s32 _gcnewoption_entrypoint_20(); void *func_80100094(Actor *, u32); void func_80803604_chgameselect(BtIntPtr, s32, s32, s32); u8 *sp28[2]; s32 var_a3; s32 var_s0; u8 *var_s1; var_s0 = arg2; switch (arg3) { case 0: func_80803420_chgameselect(arg0, (BtIntPtr)arg1); return; case 4: func_80803604_chgameselect((BtIntPtr)arg1, var_s0, _gcnewoption_entrypoint_20(arg1, var_s0), 1); return; case 5: _gcnewoption_entrypoint_37(arg1, 1U); return; case 2: case 3: sp28[0] = func_80100094(arg0, 1); func_80800AEC_chgameselect(arg0->unk3C, arg1, -1, 0xFC); var_s0 = 0; var_s1 = sp28[0]; if ((s32)arg0->actorData[5] > 0) { do { if (_gcnewoption_entrypoint_17(arg1, var_s0) != 0) { var_a3 = 0xFE; } else { var_a3 = 0xFD; } func_80800AEC_chgameselect(arg0->unk3C, arg1, *var_s1, var_a3); var_s0 += 1; var_s1 += 6; } while (var_s0 < (s32)arg0->actorData[5]); } func_80802FE4_chgameselect(arg0); func_80800AEC_chgameselect(arg0->unk3C, NULL, -1, arg3); default: return; } }
+void func_808034BC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) { s32 _gcnewoption_entrypoint_17(); GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();) void *func_80100094(Actor *, u32); void func_80803604_chgameselect(BtIntPtr, s32, s32, s32); u8 *sp28[2]; s32 var_a3; s32 var_s0; u8 *var_s1; var_s0 = arg2; switch (arg3) { case 0: func_80803420_chgameselect(arg0, (BtIntPtr)arg1); return; case 4: func_80803604_chgameselect((BtIntPtr)arg1, var_s0, _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(arg1), var_s0), 1); return; case 5: _gcnewoption_entrypoint_37(arg1, 1U); return; case 2: case 3: sp28[0] = func_80100094(arg0, 1); func_80800AEC_chgameselect(arg0->unk3C, arg1, -1, 0xFC); var_s0 = 0; var_s1 = sp28[0]; if ((s32)arg0->actorData[5] > 0) { do { if (_gcnewoption_entrypoint_17(arg1, var_s0) != 0) { var_a3 = 0xFE; } else { var_a3 = 0xFD; } func_80800AEC_chgameselect(arg0->unk3C, arg1, *var_s1, var_a3); var_s0 += 1; var_s1 += 6; } while (var_s0 < (s32)arg0->actorData[5]); } func_80802FE4_chgameselect(arg0); func_80800AEC_chgameselect(arg0->unk3C, NULL, -1, arg3); default: return; } }
 
 void func_80803604_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_8080407C_chgameselect(BtIntPtr, s32, s32);
@@ -2543,10 +2543,10 @@ void func_80804694_chgameselect(void *arg0) {
     _glglobalsettings_entrypoint_2();
 }
 
-void func_808046D0_chgameselect(s32 arg0, s32 arg1) {
+void func_808046D0_chgameselect(GAME_SELECT_ROW6_OPEN_PARAMS(arg0, arg1)) {
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     s32 func_80804948_chgameselect(s32);
-    void func_808049E8_chgameselect(s32, s32, s32);
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(void func_808049E8_chgameselect(s32, s32, s32);))
 
     s16 *var_s1;
     s32 var_s0;
@@ -2554,15 +2554,19 @@ void func_808046D0_chgameselect(s32 arg0, s32 arg1) {
     var_s1 = D_808083E0_chgameselect;
     var_s0 = 0;
     do {
-        func_808049E8_chgameselect(arg1, var_s0, func_80804948_chgameselect(var_s0));
-        _gcnewoption_entrypoint_31(arg1, var_s0, *var_s1);
+        func_808049E8_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), var_s0, func_80804948_chgameselect(var_s0));
+        _gcnewoption_entrypoint_31(GAME_SELECT_OPTION_HANDLE(arg1), var_s0, *var_s1);
         var_s0 += 1;
         var_s1++;
     } while (var_s0 != 3);
 }
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
+#else
 s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
-s32 func_80804750_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+#endif
+s32 func_80804750_chgameselect(GAME_SELECT_ROW6_SELECT_PARAMS(arg0, arg1, arg2)) {
     void func_80803C80_chgameselect(void);
     void func_8080499C_chgameselect(s32, s32);
     void func_80804A38_chgameselect(void *);
@@ -2576,12 +2580,9 @@ s32 func_80804750_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     if (temp_v0 == -2) {
         func_80804A38_chgameselect(arg0);
     } else if (temp_v0 != 0) {
-        s32 _gcnewoption_entrypoint_20();
-#ifdef BT_NATIVE
-        sp20 = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2);
-#else
-        sp20 = _gcnewoption_entrypoint_20(arg1, arg2);
-#endif
+        GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
+sp20 = GAME_SELECT_OPTION_GET2(arg1, arg2,
+            ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2));
         func_80803C80_chgameselect();
         func_8080499C_chgameselect(arg2, sp20);
         if (arg2 == 1) {
@@ -2611,10 +2612,10 @@ s32 func_80804750_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     return var_s0;
 }
 
-void func_80804878_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+void func_80804878_chgameselect(GAME_SELECT_ROW6_EVENT5_PARAMS(arg0, arg1, arg2)) {
     void _glglobalsettings_entrypoint_6(s32, s32);
     s32 func_80804948_chgameselect(s32);
-    void func_808049E8_chgameselect(s32, s32, s32);
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(void func_808049E8_chgameselect(s32, s32, s32);))
     void func_80804A38_chgameselect(void *);
 
     if (arg0->actorData[0] != 0) {
@@ -2623,7 +2624,7 @@ void func_80804878_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
             _glglobalsettings_entrypoint_6(0, 0);
             return;
         }
-        func_808049E8_chgameselect(arg1, arg2, func_80804948_chgameselect(arg2));
+        func_808049E8_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), arg2, func_80804948_chgameselect(arg2));
         return;
     }
     func_80802C7C_chgameselect(game_select_root_child(arg0, 6));
@@ -2666,11 +2667,11 @@ void func_8080499C_chgameselect(s32 arg0, s32 arg1) {
 
 /* extern */
 
-void func_808049E8_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
-    s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);
-    _gcnewoption_entrypoint_24(arg0, arg1, arg2);
-    _gcnewoption_entrypoint_12(arg0, arg1, (s16) ((arg1 * 5) + arg2 + 0xA));
+void func_808049E8_chgameselect(GAME_SELECT_ROW6_OPTION_SET(arg0, arg1, arg2)) {
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);))
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);))
+    _gcnewoption_entrypoint_24(GAME_SELECT_OPTION_HANDLE(arg0), arg1, arg2);
+    _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg0), arg1, (s16) ((arg1 * 5) + arg2 + 0xA));
 }
 
 /* extern */
@@ -2691,35 +2692,43 @@ void func_80804A38_chgameselect(void *arg0) {
     }
 }
 
-void func_80804A8C_chgameselect(u8 *arg0, s32 arg1, s32 arg2)
+void func_80804A8C_chgameselect(GAME_SELECT_ROW6_EVENT3_PARAMS(arg0, arg1, arg2))
 {
-  s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
+  #if defined(BT_NATIVE) && !defined(BT_ILP32)
+s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
+#else
+s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
+#endif
   s32 var_a2;
   s32 *option;
   if ((((Objgameselect_arg0 *)arg0)->unk18) > 0)
   {
     option = &arg2;
-    var_a2 = _gcnewoption_entrypoint_20(arg1, (unsigned long long) (*option), *option, arg0) + 1;
+    var_a2 = GAME_SELECT_ROW6_GET_OPTION(arg1, arg2, option, arg0) + 1;
     if (var_a2 >= (((Objgameselect_arg0 *)arg0)->unk18))
     {
       var_a2 = 0;
     }
-    func_808049E8_chgameselect(arg1, arg2, var_a2);
+    func_808049E8_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), arg2, var_a2);
   }
 }
 
 /* extern */
 
-void func_80804AF0_chgameselect(u8 *arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
+void func_80804AF0_chgameselect(GAME_SELECT_ROW6_EVENT3_PARAMS(arg0, arg1, arg2)) {
+    #if defined(BT_NATIVE) && !defined(BT_ILP32)
+s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
+#else
+s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
+#endif
     s32 var_a2;
 
     if ((((Objgameselect_arg0 *)arg0)->unk18) > 0) {
-        var_a2 = _gcnewoption_entrypoint_20(arg1, arg2, arg2, arg0) - 1;
+        var_a2 = GAME_SELECT_OPTION_GET4(arg1, arg2, arg2, arg0) - 1;
         if (var_a2 < 0) {
             var_a2 = (((Objgameselect_arg0 *)arg0)->unk18) - 1;
         }
-        func_808049E8_chgameselect(arg1, arg2, var_a2);
+        func_808049E8_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), arg2, var_a2);
     }
 }
 
@@ -3055,8 +3064,8 @@ void func_80805474_chgameselect(BtIntPtr arg0,s32 arg1)
     func_8080537C_chgameselect((Actor *)arg0,0x1,arg1);
 }
 
-void func_80805498_chgameselect(Actor *arg0, BtIntPtr arg1) {
-    s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
+void func_80805498_chgameselect(GAME_SELECT_ROW5_OPEN_PARAMS(arg0, arg1)) {
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);))
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     void _gcnewoption_entrypoint_41(OptionState *, s32);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
@@ -3066,7 +3075,7 @@ void func_80805498_chgameselect(Actor *arg0, BtIntPtr arg1) {
     s32 func_808062A8_chgameselect();
     s32 func_808068E8_chgameselect(void);
     s32 func_80806A30_chgameselect(void);
-    void func_80806AF4_chgameselect(BtIntPtr, s32, s32);
+    GAME_SELECT_ORIGINAL(void func_80806AF4_chgameselect(BtIntPtr, s32, s32);)
 
 
     s32 i;
@@ -3080,9 +3089,9 @@ void func_80805498_chgameselect(Actor *arg0, BtIntPtr arg1) {
         i = 0;
         icons = D_808083FC_chgameselect;
         do {
-            _gcnewoption_entrypoint_12(arg1, i, i + 12);
-            _gcnewoption_entrypoint_31(arg1, i, *icons);
-            func_80805BA0_chgameselect(arg1, i, 0);
+            _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg1), i, i + 12);
+            _gcnewoption_entrypoint_31(GAME_SELECT_OPTION_HANDLE(arg1), i, *icons);
+            func_80805BA0_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), i, 0);
             i++;
             icons++;
         } while (i != 3);
@@ -3092,24 +3101,24 @@ void func_80805498_chgameselect(Actor *arg0, BtIntPtr arg1) {
     case 4:
         count = _gcstatusDll_entrypoint_10();
         for (i = 0; i < count; i++) {
-            func_80806218_chgameselect(arg1, i, func_808062A8_chgameselect(i), 0);
+            func_80806218_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), i, func_808062A8_chgameselect(i), 0);
         }
         break;
     case 6:
-        _gcnewoption_entrypoint_12(arg1, 0, 0);
-        _gcnewoption_entrypoint_12(arg1, 1, 1);
-        _gcnewoption_entrypoint_12(arg1, 2, 2);
-        func_80806AF4_chgameselect(arg1, 4, func_80806A30_chgameselect());
+        _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg1), 0, 0);
+        _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg1), 1, 1);
+        _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg1), 2, 2);
+        func_80806AF4_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), 4, func_80806A30_chgameselect());
         if (_gcstatusDll_entrypoint_10() < 3) {
-            _gcnewoption_entrypoint_12(arg1, 3, 12);
-            func_8080401C_chgameselect(arg1, 3, 0);
+            _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg1), 3, 12);
+            func_8080401C_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), 3, 0);
         } else {
-            func_80806AF4_chgameselect(arg1, 3, func_808068E8_chgameselect());
+            func_80806AF4_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), 3, func_808068E8_chgameselect());
         }
         icons = D_8080840C_chgameselect;
         i = 0;
         do {
-            _gcnewoption_entrypoint_31(arg1, i, *icons);
+            _gcnewoption_entrypoint_31(GAME_SELECT_OPTION_HANDLE(arg1), i, *icons);
             i++;
             icons++;
         } while (i != 5);
@@ -3142,7 +3151,7 @@ void func_8080569C_chgameselect(Actor *arg0, BT_IDO_ONLY(s32 arg1) BT_PASS2(s32 
     switch (arg0->actorData[0]) {
     case 0:
         for (i = 0; i < 3; i++) {
-            func_80805BA0_chgameselect(arg1, i, 1);
+            func_80805BA0_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), i, 1);
         }
         break;
     case 4:
@@ -3201,9 +3210,9 @@ void func_8080569C_chgameselect(Actor *arg0, BT_IDO_ONLY(s32 arg1) BT_PASS2(s32 
     }
 }
 
-s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
+s32 func_8080595C_chgameselect(GAME_SELECT_ROW5_SELECT_PARAMS(arg0, arg1, arg2)) {
     s32 _gcnewoption_entrypoint_19(OptionState *, s32);
-    s32 _gcnewoption_entrypoint_20();
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
     void func_80803C60_chgameselect(void);
     void func_80803C80_chgameselect(void);
     void func_808069C8_chgameselect(s32);
@@ -3221,11 +3230,8 @@ s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
     case 6:
         if (arg2 == 3 || arg2 == 4) {
             if (arg0->actorData[1] != -1) {
-#ifdef BT_NATIVE
-                temp = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2);
-#else
-                temp = _gcnewoption_entrypoint_20(arg1, arg2);
-#endif
+temp = GAME_SELECT_OPTION_GET2(arg1, arg2,
+                    ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2));
                 if (arg2 == 3) {
                     func_808069C8_chgameselect(temp);
                 } else {
@@ -3249,13 +3255,13 @@ s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
     return -1;
 }
 
-void func_80805AC0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
+void func_80805AC0_chgameselect(GAME_SELECT_ROW5_EVENT5_PARAMS(arg0, arg1, arg2)) {
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80802C48_chgameselect(Unk80132ED0 *);
     void func_80802C7C_chgameselect(Unk80132ED0 *);
     s32 func_808068E8_chgameselect(void);
     s32 func_80806A30_chgameselect(void);
-    void func_80806AF4_chgameselect(BtIntPtr, s32, s32);
+    GAME_SELECT_ORIGINAL(void func_80806AF4_chgameselect(BtIntPtr, s32, s32);)
     s32 state;
     s32 temp;
     Actor *actor;
@@ -3277,7 +3283,7 @@ void func_80805AC0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
             } else {
                 state = func_80806A30_chgameselect();
             }
-            func_80806AF4_chgameselect(arg1, arg2, state);
+            func_80806AF4_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), arg2, state);
             return;
         }
         func_80802C7C_chgameselect(game_select_root_child(actor, 6));
@@ -3506,14 +3512,14 @@ void func_808061A8_chgameselect(Actor *arg0) {
 }
 
 void func_80806218_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
-    s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);))
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);))
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     BT_IDO_ONLY(s32 _gczoomboxdata_entrypoint_0(s16);) BT_NATIVE_ONLY(void _gczoomboxdata_entrypoint_0(s32);)
 
 
-    _gcnewoption_entrypoint_24(arg0, arg1, arg2);
-    _gcnewoption_entrypoint_12(arg0, arg1, (s16) ((arg1 * 0xA) + arg2));
+    _gcnewoption_entrypoint_24(GAME_SELECT_OPTION_HANDLE(arg0), arg1, arg2);
+    _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg0), arg1, (s16) ((arg1 * 0xA) + arg2));
     _gcnewoption_entrypoint_31(arg0, arg1, D_8080841C_chgameselect[arg2]);
     if (arg3 != 0) {
         _gczoomboxdata_entrypoint_0(D_8080841C_chgameselect[arg2]);
@@ -3539,11 +3545,15 @@ void func_808062CC_chgameselect(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_808062EC_chgameselect(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
-    s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
+    #if defined(BT_NATIVE) && !defined(BT_ILP32)
+s16 _gcnewoption_entrypoint_20(BtIntPtr, s32);
+#else
+s32 _gcnewoption_entrypoint_20(BtIntPtr, s32, s32, u8 *);
+#endif
     s32 func_800DA298(s32);
     s32 var_a2;
 
-    var_a2 = _gcnewoption_entrypoint_20(arg0, arg1, arg2, arg3) + arg2;
+    var_a2 = GAME_SELECT_OPTION_GET4(arg0, arg1, arg2, arg3) + arg2;
     if (var_a2 == 2) {
         if (func_800DA298(0xC0B) == 0) {
             var_a2 += arg2;
@@ -3559,7 +3569,7 @@ void func_808062EC_chgameselect(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
 
 void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
-    s32 _gcnewoption_entrypoint_20();
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
     u32 *func_80100074(Actor *, u32, u32);
     s32 count;
     s32 i;
@@ -3572,7 +3582,7 @@ void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
 #ifdef BT_NATIVE
             func_808062CC_chgameselect(i, ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, i));
 #else
-            func_808062CC_chgameselect(i, _gcnewoption_entrypoint_20(arg1, i));
+            func_808062CC_chgameselect(i, _gcnewoption_entrypoint_20(GAME_SELECT_OPTION_HANDLE(arg1), i));
 #endif
             i++;
         } while (i < count);
@@ -3898,9 +3908,9 @@ s32 func_80806AD4_chgameselect(void)
 
 /* extern */
 
-void func_80806AF4_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
-    s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);
+void func_80806AF4_chgameselect(GAME_SELECT_ROW5_OPTION_SET(arg0, arg1, arg2)) {
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);))
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);))
     s32 sp1C;
     s32 var_v0;
 
@@ -3909,20 +3919,17 @@ void func_80806AF4_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
     } else {
         sp1C = 0xF;
     }
-    _gcnewoption_entrypoint_24(arg0, arg1, arg2);
-    _gcnewoption_entrypoint_12(arg0, arg1, (s16) (sp1C + arg2));
+    _gcnewoption_entrypoint_24(GAME_SELECT_OPTION_HANDLE(arg0), arg1, arg2);
+    _gcnewoption_entrypoint_12(GAME_SELECT_OPTION_STATE(arg0), arg1, (s16) (sp1C + arg2));
 }
 
-void func_80806B5C_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_20();
+void func_80806B5C_chgameselect(GAME_SELECT_ROW5_EVENT_PARAMS(arg0, arg1, arg2)) {
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
     s32 option;
     s32 count;
 
-#ifdef BT_NATIVE
-    option = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2) + 1;
-#else
-    option = _gcnewoption_entrypoint_20(arg1, arg2) + 1;
-#endif
+option = GAME_SELECT_OPTION_GET2(arg1, arg2,
+        ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2)) + 1;
     if (arg2 == 3) {
         count = func_80806AA8_chgameselect();
     } else {
@@ -3931,19 +3938,16 @@ void func_80806B5C_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     if (option >= count) {
         option = 0;
     }
-    func_80806AF4_chgameselect(arg1, arg2, option);
+    func_80806AF4_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), arg2, option);
 }
 
-void func_80806BD4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_20();
+void func_80806BD4_chgameselect(GAME_SELECT_ROW5_EVENT_PARAMS(arg0, arg1, arg2)) {
+    GAME_SELECT_ORIGINAL(GAME_SELECT_ORIGINAL(s32 _gcnewoption_entrypoint_20();))
     s32 option;
     s32 count;
 
-#ifdef BT_NATIVE
-    option = ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2) - 1;
-#else
-    option = _gcnewoption_entrypoint_20(arg1, arg2) - 1;
-#endif
+option = GAME_SELECT_OPTION_GET2(arg1, arg2,
+        ((s32 (*)())_gcnewoption_entrypoint_20)(arg1, arg2)) - 1;
     if (arg2 == 3) {
         count = func_80806AA8_chgameselect();
     } else {
@@ -3952,7 +3956,7 @@ void func_80806BD4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     if (option < 0) {
         option = count - 1;
     }
-    func_80806AF4_chgameselect(arg1, arg2, option);
+    func_80806AF4_chgameselect(GAME_SELECT_OPTION_HANDLE(arg1), arg2, option);
 }
 
 OSThread *chgameselect_entrypoint_6(void)

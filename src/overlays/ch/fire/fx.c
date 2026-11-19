@@ -95,7 +95,7 @@ void chfirefx_entrypoint_3(Actor *arg0) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800EFC7C(void *, void *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F6478(BtIntPtr);
     int func_800F6AA4(BtIntPtr);

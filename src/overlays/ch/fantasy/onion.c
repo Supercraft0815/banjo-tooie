@@ -87,7 +87,7 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     s32 func_800EF934(f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F5B38(BtIntPtr, f32 *);
     s32 func_800F5C94(BtIntPtr);

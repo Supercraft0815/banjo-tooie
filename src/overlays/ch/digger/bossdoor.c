@@ -11,7 +11,7 @@ void func_8080000C_chdiggerbossdoor(void *arg0) {
     s32 _capod_entrypoint_21(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_800DA298(s32);
     s32 func_800EA090(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8294(BtIntPtr, f32 *);
     s32 func_8010108C(Actor *, s32, BtIntPtr);
     void func_80800370_chdiggerbossdoor(s32 *);
@@ -41,7 +41,7 @@ void func_808000B0_chdiggerbossdoor(Actor *actor) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     s32 func_800F4BB8(BtUIntPtr, u32, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F55FC(BtIntPtr);
     void func_800F8294(BtIntPtr, f32 *);
     void func_80101FDC(Actor *, u32);

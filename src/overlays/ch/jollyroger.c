@@ -193,7 +193,7 @@ s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     s32 func_800DA298(s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_80102424(Actor *, s32);
     void func_80800624_chjollyroger(Actor *, s32, s32);
@@ -282,7 +282,7 @@ void func_80800624_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     s32 func_800D1A04(s32);
     s32 func_800DA298(s32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
@@ -369,7 +369,7 @@ void func_80800930_chjollyroger(Actor *arg0) {
     s32 func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80102424(Actor *, s32);
     s32 func_80105230(Actor *, f32 *);
@@ -451,7 +451,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_80800BA0_chjollyroger(Actor *arg0
     BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F8300();
     void func_80800D28_chjollyroger(BtIntPtr, s32, s32);
     s32 func_80800DD8_chjollyroger(void *, s32, s32);
@@ -485,7 +485,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_80800BA0_chjollyroger(Actor *arg0
 
 void func_80800CC4_chjollyroger(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80102424(Actor *, s32);
     s32 var_a1;
@@ -498,7 +498,7 @@ void func_80800CC4_chjollyroger(Actor *arg0) {
 /* extern */
 
 void func_80800D28_chjollyroger(BtIntPtr arg0, s32 arg1, s32 arg2) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F82D4(BtIntPtr, s32);
     void func_80102424(Actor *, s32);
     s32 func_80105A9C(BtIntPtr, s32);

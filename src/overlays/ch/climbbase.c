@@ -67,7 +67,7 @@ void func_80800128_chclimbbase(Actor *arg0) {
 
 void func_80800200_chclimbbase(Actor *arg0) {
     void func_800EFB24(void *, void *, void *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7F00(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32, s32, f32);
     void func_800F7F50(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32, s32);
     void func_8010D254(f32 *);

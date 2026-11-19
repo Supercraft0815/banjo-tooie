@@ -35,7 +35,7 @@ void func_80800054_chlavagargoyle(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -111,7 +111,7 @@ s32 func_80800394_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EF04C(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_80101010(f32 *);
     void *func_80101080(void);
@@ -176,7 +176,7 @@ s32 func_80800394_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 func_8080064C_chlavagargoyle(Actor *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6478(BtIntPtr);
     s32 func_8010C710(Actor *);
     s32 func_8010CD88(Actor *, f32, f32);
@@ -284,7 +284,7 @@ s32 func_80800A2C_chlavagargoyle(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800C8FE0(s32, s32);
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     f32 func_80103EAC(Actor *);
     void func_80800B8C_chlavagargoyle(Actor *, f32 *, BtIntPtr);

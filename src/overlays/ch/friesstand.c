@@ -59,7 +59,7 @@ void func_808000C4_chfriesstand(Actor *arg0) {
     BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     s32 func_800D1A04(s32);
     s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800FC660(u32);
     void func_800FFA88(Unk80132ED0 *);

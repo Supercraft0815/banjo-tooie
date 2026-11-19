@@ -17,7 +17,7 @@ void func_8080000C_chweldarhead(Actor *arg0) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8294(BtIntPtr, f32 *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);

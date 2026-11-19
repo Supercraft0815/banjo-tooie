@@ -85,7 +85,7 @@ void func_80800134_chtemplelobbydoor(Actor *arg0, s32 arg1) {
     s32 func_800DA9E4(s32, s32);
     s32 func_800EA090(void);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s8 *sp24;
 
@@ -111,7 +111,7 @@ void func_80800134_chtemplelobbydoor(Actor *arg0, s32 arg1) {
 s32 func_80800248_chtemplelobbydoor(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_14(void);
     s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);

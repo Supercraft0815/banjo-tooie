@@ -14,7 +14,7 @@ void func_8080000C_chanemone(Actor *arg0) {
     s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     s32 func_800D9078(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);

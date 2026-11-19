@@ -56,7 +56,7 @@ void func_808000B8_chfootwear(Actor *arg0) {
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_800F549C(BtIntPtr, int);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80102BF8(void *, f32, f32, f32);
     f32 func_80102D78(Actor *, f32 *);
     s32 func_8010D23C(void);

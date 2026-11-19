@@ -153,7 +153,7 @@ void func_80800394_basetup(struct player_state_s *self) {
     s32 func_8008DAA8(void *);
     s32 func_8008E23C(struct player_state_s *);
     void func_800F457C(void *, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 _badrone_entrypoint_29(struct player_state_s *);
     s32 bs_getCurrentState(struct player_state_s *);
     void bs_setState(void *self, s32 nextState);

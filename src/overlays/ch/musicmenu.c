@@ -317,7 +317,7 @@ void func_80800930_chmusicmenu(u8 *arg0, s32 arg1) {
     s32 func_8008F904(s32 *, BtIntPtr);
     s32 func_8008F938(s32);
     s32 func_8008F990(s32 *, s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F82D4(BtIntPtr, s32);
     s32 func_800F8300(BtIntPtr, s32, u8 *);
     BtIntPtr func_80100094(u8 *, s32);

@@ -22,7 +22,7 @@ void func_80800048_chjadesnake(Actor *arg0) {
 
 int func_8080009C_chjadesnake(BtIntPtr arg0) {
     s32 pad;
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F56AC(BtIntPtr);
     s32 func_800F6478(BtIntPtr);
     s32 func_800F651C(BtIntPtr);
@@ -69,7 +69,7 @@ void func_80800150_chjadesnake(Actor *arg0) {
     s32 func_800DA9E4(GameFlag, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F56AC(BtIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);

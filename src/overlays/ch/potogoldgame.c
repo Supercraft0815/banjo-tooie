@@ -46,7 +46,7 @@ void func_80800124_chpotogoldgame(Actor *arg0) {
     s32 func_800D2498(u32, s32, u32);
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80108B04(Actor *, u32);
@@ -146,7 +146,7 @@ s32 func_80800434_chpotogoldgame(BtIntPtr arg0, s32 arg1) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800D211C(s32);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F7C0C(BtIntPtr, s32, f32);
     s32 func_800F7CF4(BtIntPtr, s32, void *);
@@ -359,7 +359,7 @@ s32 func_80800A94_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void func_800C0850(void);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800D211C(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(BtIntPtr, s32);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
     void func_80108B04(Actor *, u32);
@@ -1058,7 +1058,7 @@ void func_8080219C_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     f32 func_800F5F24(BtUIntPtr);
     f32 sp3C[3];

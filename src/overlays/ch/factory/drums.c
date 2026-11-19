@@ -157,7 +157,7 @@ s32 func_80800130_chfactorydrums(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF2A0(f32 *);
     void func_800EF3DC(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     u8 *actors[10];
     s32 count;
@@ -260,7 +260,7 @@ void func_808003DC_chfactorydrums(Actor *arg0) {
     f32 func_800F1214(f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     void func_80102BAC(Actor *, f32, f32, f32);
     void func_80108B04(Actor *, s32);

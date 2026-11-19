@@ -109,7 +109,7 @@ void func_808000BC_chtrashcompactor(void *arg0) {
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F6478(BtIntPtr);

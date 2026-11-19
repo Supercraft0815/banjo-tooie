@@ -145,7 +145,7 @@ void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     void * func_800F53D0(BtIntPtr arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -306,7 +306,7 @@ s32 func_8080093C_chtrashcangame(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _glcutDll_entrypoint_20();
     void func_800BF744(s32, s32);
     s32 func_800D395C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80108B04(Actor *, u32);
     void func_8080134C_chtrashcangame(Actor *, s32, s32);
     s32 func_80801558_chtrashcangame(Actor *, s32, s32);
@@ -975,7 +975,7 @@ void func_808021BC_chtrashcangame(Actor *arg0) {
     f32 func_800C6920(f32 *, f32, f32, s32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_80102424(void *, s32);
     f32 sp2C[3];
@@ -1001,7 +1001,7 @@ void func_8080223C_chtrashcangame(Actor *arg0) {
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800FFA88(Unk80132ED0 *);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -1169,7 +1169,7 @@ OSThread *chtrashcangame_entrypoint_2(void)
 void func_80802C40_chtrashcangame(Actor *arg0) {
     s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 sp1C[3];
 
     if (func_800F64A4(func_800F54E4(), 0x400) != 0) {

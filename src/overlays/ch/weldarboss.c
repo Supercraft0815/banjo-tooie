@@ -229,7 +229,7 @@ void func_80800018_chweldarboss(Actor *arg0) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_19(s32);
     s32 _glcutDll_entrypoint_20(void);
-    void _plcamera_entrypoint_8(s32 *arg0);
+    void _plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0);
     void _subaddielink_entrypoint_0(void *arg0);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     void func_800BF744(s32, s32);
@@ -237,7 +237,7 @@ void func_80800018_chweldarboss(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800F497C(BtIntPtr);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
@@ -303,7 +303,7 @@ void func_80800018_chweldarboss(Actor *arg0) {
         func_800F608C(map, 1);
         func_800F8294(map, local->unk18);
         func_800F497C(map);
-        _plcamera_entrypoint_8(map);
+        _plcamera_entrypoint_8(BT_NATIVE_ONLY((u32)) map);
         func_80801AA0_chweldarboss(arg0, 6);
         func_80802214_chweldarboss(arg0, 0x1356, 0xF);
         func_80803CF0_chweldarboss(arg0, 0x11, 0x30);
@@ -375,7 +375,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
     s32 func_800F0064(f32 *, f32, f32 *);
     f32 func_800F0D50(f32, f32, f32);
     f32 func_800F1DF4(f32[3], f32[3]);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32[3]);
     s32 func_800F64A4(BtIntPtr characterIndex, s32 transformationType);
     void func_800F82D4(BtIntPtr, s32);
@@ -1902,7 +1902,7 @@ s32 func_80803184_chweldarboss(Actor *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     s32 func_800F0008(f32 *, f32, f32 *, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_800F5BF0(BtIntPtr, f32 *);
     s32 func_800F6478(BtIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
@@ -2040,7 +2040,7 @@ void func_808034A0_chweldarboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800EE7F8(f32 *, f32 *);
     void _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     BtIntPtr func_80110014(s32 *);
     void func_80116088(u8 *, BtIntPtr);
     WeldarCameraData *sp34;
@@ -2349,7 +2349,7 @@ void func_80803D64_chweldarboss(Actor *arg0) {
 /* extern */
 
 BtIntPtr func_80803D98_chweldarboss(BtIntPtr arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     BtIntPtr func_8010D290(s32);
     BtIntPtr temp_v0;
     BtIntPtr var_v1;

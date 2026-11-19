@@ -43,7 +43,7 @@ void func_800A5430(f32 rotation[3], f32 position[3], f32 arg2, f32 dest[3]) {
 /* extern */
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800A5490(void) {
-    s32 func_8008FFE8();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8();
     s32 func_8010FFD8(BtIntPtr);
     BT_NATIVE_ONLY(return) func_8010FFD8(func_8008FFE8());
 }

@@ -14,7 +14,7 @@ typedef struct { u8 pad0[0x38]; f32 unk38; u8 pad3C[0x18]; f32 unk54; } Objhand_
 
 void func_80800024_chlavahand(Actor *arg0) {
     f32 func_800F1F0C(f32 *, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_80102424(Actor *, s32);
     s32 func_80103140(Actor *, u32, u16);

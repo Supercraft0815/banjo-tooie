@@ -274,7 +274,7 @@ void func_80800718_chhotwaterpoolbits(Actor *arg0) {
     void chhotwaterpoolbits_entrypoint_5(Actor *, f32);
     s32 func_800D9078(f32 *);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5578(BtIntPtr);
     s32 func_800F55FC(BtIntPtr);
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5628(BtIntPtr);
@@ -328,7 +328,7 @@ void chhotwaterpoolbits_entrypoint_5(Actor *arg0, f32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_800EE780(f32 *, f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800F7620(BtIntPtr, f32, f32, f32);
     extern s32 D_80800A88_chhotwaterpoolbits[];

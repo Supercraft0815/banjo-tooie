@@ -29,7 +29,7 @@ void func_80800084_chdinofoot(Actor *arg0) {
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
     f32 func_800F3780(f32, u8 *, s16);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -132,7 +132,7 @@ void func_80800310_chdinofoot(BtIntPtr arg0, BtIntPtr arg1) {
 /* extern */
 
 void func_8080035C_chdinofoot(Actor *arg0, Unk80132ED0 *arg1) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     f32 func_80101F24(Actor *);
@@ -167,7 +167,7 @@ s32 func_80800480_chdinofoot(Actor *arg0) {
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800DA298(s32);
     void func_800DA544(s32 index);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F6478(BtIntPtr);
@@ -221,7 +221,7 @@ void func_808005C4_chdinofoot(Actor *arg0) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     f32 difference[3];
     f32 player[3];

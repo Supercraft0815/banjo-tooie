@@ -38,7 +38,7 @@ void func_80800000_chnests(Actor *arg0) {
 void func_808002E0_chnests(void *);     
 void func_80800098_chnests(void *arg0) {
     s32 func_800D3948(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7150(BtIntPtr);
     func_80800000_chnests(arg0);
     if ((func_800D3948() == 0) && (func_800F7150(func_800F54E4()) != 0)) {

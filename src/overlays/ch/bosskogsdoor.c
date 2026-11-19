@@ -197,7 +197,7 @@ s32 func_80800714_chbosskogsdoor(Actor *arg0, s32 arg1, s32 arg2) {
     void _glcutDll_entrypoint_6(u32, u32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80102204(Actor *);
     s32 func_80102424(void *, s32);

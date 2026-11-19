@@ -108,7 +108,7 @@ void func_808002E0_chboxingglove(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     f32 func_800DC178(f32, f32);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80101FDC(Actor *, u32);
     void func_80102424(Actor *, s32);
     Actor *func_80106790(Unk80132ED0 *);

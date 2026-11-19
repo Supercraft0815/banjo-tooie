@@ -208,7 +208,7 @@ void func_80800454_chalienkids(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
     s32 func_800D9078(f32 *);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7BC8(BtIntPtr, s32, Unk80132ED0 *);
     void func_800F82D4(BtIntPtr, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -301,7 +301,7 @@ s32 func_80800648_chalienkids(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F77E8(BtIntPtr, f32 *);
     void func_800F8300(BtIntPtr, s32, f32 *);
     s32 func_80101180(s32, s32, BtIntPtr);

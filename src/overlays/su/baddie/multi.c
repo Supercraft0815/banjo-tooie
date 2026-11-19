@@ -60,7 +60,7 @@ void subaddiemulti_entrypoint_2(void) {
 
 void subaddiemulti_entrypoint_3(s32 arg0) {
     void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
-    void _plcamera_entrypoint_8(s32 *arg0);
+    void _plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0);
     void func_800EE88C(f32 *, s16 *);
     void func_800EFD24(f32 *);
     s32 func_800F6438(BtUIntPtr);
@@ -80,7 +80,7 @@ void subaddiemulti_entrypoint_3(s32 arg0) {
             sp30[1] = temp_v0->FlagOrRotation;
             func_800F8294(var_s0, sp3C);
             func_800F832C(var_s0, sp30);
-            _plcamera_entrypoint_8(var_s0);
+            _plcamera_entrypoint_8(BT_NATIVE_ONLY((u32)) var_s0);
         }
         var_s0 += 1;
         arg0 += 1;
@@ -90,7 +90,7 @@ void subaddiemulti_entrypoint_3(s32 arg0) {
 /* extern */
 
 void subaddiemulti_entrypoint_4(s32 arg0) {
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     s32 func_800F6438(BtUIntPtr);
     s32 _ncfixposrot_entrypoint_8(BtIntPtr, s32);
     s32 var_s0;
@@ -108,7 +108,7 @@ BtUIntPtr subaddiemulti_entrypoint_5(void *arg0)
 {
   BT_IDO_ONLY(u32) BT_NATIVE_ONLY(s16) _suegg_entrypoint_7(void *);
   s32 _sueggmisc_entrypoint_0();
-  BtUIntPtr func_800F54E4(void *);
+  u32 func_800F54E4(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(void));
   if (_sueggmisc_entrypoint_0() != 0)
   {
     return (u32)_suegg_entrypoint_7(arg0);
@@ -117,7 +117,7 @@ BtUIntPtr subaddiemulti_entrypoint_5(void *arg0)
   {
     return (((u16) (((Objmulti_arg0 *)arg0)->unk1A)) & 0xFFFFFFFFu) >> 5;
   }
-  return func_800F54E4(arg0);
+  return func_800F54E4(BT_IDO_ONLY(arg0));
 }
 
 void subaddiemulti_entrypoint_6(f32 *arg0, f32 arg1) {

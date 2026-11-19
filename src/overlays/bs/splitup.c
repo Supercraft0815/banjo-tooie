@@ -25,7 +25,7 @@ void bssplitup_entrypoint_1(void *arg0) {
     s32 baanim_isStopped();
     void bs_setState(void *self, s32 nextState);
     void func_800F457C(void *arg0, s32 arg1);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 sp1C;
 
     sp1C = 0;
@@ -123,7 +123,7 @@ void bssplitup_entrypoint_5(PlayerState *arg0) {
     s32 baanim_isStopped();
     void bs_setState(void *self, s32 nextState);
     void func_800F457C(void *arg0, s32 arg1);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_8080012C_bssplitup(PlayerState *, s32);
     s32 sp24;
 

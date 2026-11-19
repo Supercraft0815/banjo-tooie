@@ -53,7 +53,7 @@ s32 gcdialogcamera_entrypoint_1(s32 arg0, s32 arg1, BtIntPtr arg2) {
 /* extern */
 
 void gcdialogcamera_entrypoint_2(void *arg0) {
-    s32 _capod_entrypoint_0(s32, s32, s32);
+    s32 _capod_entrypoint_0(s32, s32, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr));
     s32 _capod_entrypoint_4();
     void _capod_entrypoint_7(s32 arg0, s32 arg1);
     s32 temp_v0;
@@ -64,7 +64,7 @@ void gcdialogcamera_entrypoint_2(void *arg0) {
             _capod_entrypoint_7(0, 0x64);
             return;
         }
-        _capod_entrypoint_0(0x57, 0x10000, (((Objcamera_arg0 *)arg0)->unk168));
+        _capod_entrypoint_0(0x57, 0x10000, BT_IDO_ONLY((((Objcamera_arg0 *)arg0)->unk168)) BT_NATIVE_ONLY((BtIntPtr)((Objcamera_arg0 *)arg0)->unk168_voidp));
     }
 }
 
@@ -146,7 +146,7 @@ void gcdialogcamera_entrypoint_6(BtIntPtr arg0)
 void func_8080030C_gcdialogcamera(void) {
     void _capod_entrypoint_10(s32 arg0, BtIntPtr arg1);
     void _capod_entrypoint_11(s32 arg0, BtIntPtr arg1);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32[3]);
     void func_800F5DC8(BtIntPtr player, f32 rotation[3]);
     f32 position[3];
@@ -227,7 +227,7 @@ void gcdialogcamera_entrypoint_7(BtUIntPtr arg0, f32 *arg1) {
 
 void func_808005C0_gcdialogcamera(void) {
     void _capod_entrypoint_9(s32 arg0, BtIntPtr arg1);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void gcdialogcamera_entrypoint_7(BtUIntPtr, f32 *);
     f32 sp20[4];
 
@@ -255,7 +255,7 @@ s32 func_80800620_gcdialogcamera(s32 arg0) {
 
 /* extern */
 
-void gcdialogcamera_entrypoint_9(s32 arg0, s32 arg1, s32 arg2) {
+void gcdialogcamera_entrypoint_9(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_5(s32 arg0);
     void _capod_entrypoint_7(s32 arg0, s32 arg1);
     gcdialogcamera_entrypoint_6(arg0);
@@ -267,7 +267,7 @@ void gcdialogcamera_entrypoint_9(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void gcdialogcamera_entrypoint_10(void *arg0, s32 arg1, s32 arg2) {
-    s32 _capod_entrypoint_0(s32, s32, s32);
+    s32 _capod_entrypoint_0(s32, s32, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr));
     s32 _capod_entrypoint_4();
     s32 sp24;
     s32 sp20;
@@ -279,21 +279,21 @@ void gcdialogcamera_entrypoint_10(void *arg0, s32 arg1, s32 arg2) {
                 case -1:
                     func_80800620_gcdialogcamera(arg2);
                 case 6:
-                    gcdialogcamera_entrypoint_9(((Objcamera_arg0 *)arg0)->unk168, sp24, sp20);
+                    gcdialogcamera_entrypoint_9(BT_IDO_ONLY(((Objcamera_arg0 *)arg0)->unk168) BT_NATIVE_ONLY((BtIntPtr)((Objcamera_arg0 *)arg0)->unk168_voidp), sp24, sp20);
                     return;
                 default:
-                    switch (_capod_entrypoint_0(0x57, (sp20 << 16) | sp24, ((Objcamera_arg0 *)arg0)->unk168)) {
+                    switch (_capod_entrypoint_0(0x57, (sp20 << 16) | sp24, BT_IDO_ONLY(((Objcamera_arg0 *)arg0)->unk168) BT_NATIVE_ONLY((BtIntPtr)((Objcamera_arg0 *)arg0)->unk168_voidp))) {
                         case 0:
                         case 1:
                             break;
                         case 2:
-                            gcdialogcamera_entrypoint_9(((Objcamera_arg0 *)arg0)->unk168, sp24, sp20);
+                            gcdialogcamera_entrypoint_9(BT_IDO_ONLY(((Objcamera_arg0 *)arg0)->unk168) BT_NATIVE_ONLY((BtIntPtr)((Objcamera_arg0 *)arg0)->unk168_voidp), sp24, sp20);
                             return;
                     }
                     break;
             }
         } else if (_capod_entrypoint_4() == 6) {
-            gcdialogcamera_entrypoint_9(((Objcamera_arg0 *)arg0)->unk168, sp24, sp20);
+            gcdialogcamera_entrypoint_9(BT_IDO_ONLY(((Objcamera_arg0 *)arg0)->unk168) BT_NATIVE_ONLY((BtIntPtr)((Objcamera_arg0 *)arg0)->unk168_voidp), sp24, sp20);
         }
     }
 }

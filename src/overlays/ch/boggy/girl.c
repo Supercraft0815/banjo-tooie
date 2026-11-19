@@ -450,7 +450,7 @@ void func_80800B28_chboggygirl(Actor* arg0)
 /* extern */
 
 s32 func_80800B5C_chboggygirl(s32 arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F640C(BtIntPtr, s32);
     s32 func_800F64A4(BtIntPtr, s32);
     BtIntPtr sp1C;

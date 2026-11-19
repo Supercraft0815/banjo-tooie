@@ -391,7 +391,7 @@ void func_808008C0_chclinker(BtIntPtr arg0)
     func_808008E0_chclinker(arg0,0x5);
 }
 
-BtUIntPtr func_800F54E4(void);
+u32 func_800F54E4(void);
 s32 func_800F7F98(BtIntPtr, u32);
 s32 func_80800BDC_chclinker(Actor *, s32);    typedef struct { u8 pad0[0x4]; f32 unk4; } Objclinker_func_808008E0_chclinker_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
 
@@ -484,7 +484,7 @@ int func_808008E0_chclinker(Actor *arg0, s32 arg1) {
     BT_NATIVE_ONLY(return 0;)}
 
 s32 func_80800BDC_chclinker(Actor *arg0, s32 arg1) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void _chmrtannoy_entrypoint_0(void);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
@@ -521,7 +521,7 @@ void func_80800D24_chclinker(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
     void _glcutDll_entrypoint_6(u32, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
 
     switch (func_800C064C()) {
@@ -624,7 +624,7 @@ void func_8080100C_chclinker(Actor *arg0, volatile s32 arg1) {
     s32 func_800EA090(void);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80101FDC(Actor *, u32);
     void _bsfirstp_entrypoint_18(s32 arg0, s32 arg1);
     Actor **actor = &arg0;
@@ -670,7 +670,7 @@ void func_8080112C_chclinker(Actor *arg0) {
 s32 func_808011A8_chclinker(Actor *arg0, s32 arg1, u32 arg2) {
     s32 _capod_entrypoint_14(void);
     s32 func_800D0A9C(u32, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_80101FDC(Actor *, u32);
 

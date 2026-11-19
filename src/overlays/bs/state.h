@@ -115,7 +115,8 @@ typedef struct bs_state_s {
     /* 0x00 */ BanjoStateId previous;
     /* 0x04 */ BanjoStateId current;
     /* 0x08 */ BanjoStateId next;
-    /* 0x0C */ s16 unkC;
+    /* 0x0C */ s16 interrupt_id;
+    /* 0x0E */ s16 interrupt_result;
 } BanjoState;
 
 BanjoStateId bs_getTypeOfJump(PlayerState *self);

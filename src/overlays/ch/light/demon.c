@@ -44,7 +44,7 @@ s32 func_80800060_chlightdemon(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_808000D8_chlightdemon(s32 arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F581C(BtIntPtr);
     void func_800F796C(BtIntPtr arg0,s32 arg1);
     BtIntPtr sp1C;

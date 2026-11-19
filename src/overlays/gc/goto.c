@@ -76,7 +76,7 @@ void func_808001E0_gcgoto(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_80090358(f32 *, f32, void *, BtIntPtr);
     void func_800A1618(s32);
     f32 func_800EEAD4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void gcgoto_entrypoint_4(s32, s32, f32, f32, s32);
     extern s32 D_80800740_gcgoto[4];
     f32 playerPos[3];
@@ -147,7 +147,7 @@ void gcgoto_entrypoint_4(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void func_8008FE68(f32 *);
     void func_800EEB9C(f32[3], f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void _plcamera_entrypoint_11(BtUIntPtr, f32 *);
     void func_800A1618(s32);
     void func_80090358(f32 *, f32, void *, BtIntPtr);

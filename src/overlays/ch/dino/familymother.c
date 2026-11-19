@@ -105,7 +105,7 @@ void func_808000A0_chdinofamilymother(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     s32 func_800DA298(s32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_808008E4_chdinofamilymother(BtIntPtr);
     void func_8080096C_chdinofamilymother(Actor *);
     void func_8080119C_chdinofamilymother(Actor *, s32, s32, s32);
@@ -294,7 +294,7 @@ void func_808005EC_chdinofamilymother(Actor *arg0, s32 arg1) {
     void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800DA298(s32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);

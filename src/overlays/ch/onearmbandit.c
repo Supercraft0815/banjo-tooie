@@ -254,7 +254,7 @@ void func_80800740_chonearmbandit(u8 *arg0, f32 arg1) {
     f32 func_800F1DCC(f32, f32);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     f32 func_80101F24(Actor *);
     void func_80102BF8(void *, f32, f32, f32);
@@ -354,7 +354,7 @@ void func_80800AB8_chonearmbandit(Actor *arg0) {
     f32 func_800F1DCC(f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     int func_800F20BC(f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80102FDC(Actor *, f32);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80108944(Actor *, Actor *);

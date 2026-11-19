@@ -39,7 +39,7 @@ void func_80800060_chelectricfence(Actor *arg0) {
 
 s32 func_8080010C_chelectricfence(Actor *arg0, s32 arg1, void *volatile arg2) {
     f32 func_800EC75C(void *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_8010A570(Actor *);

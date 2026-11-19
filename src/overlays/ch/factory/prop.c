@@ -208,7 +208,7 @@ void func_80800674_chfactoryprop(u8 *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F55FC(BtIntPtr);
     extern s32 D_80800D08_chfactoryprop[3];
     extern s32 D_80800D14_chfactoryprop[4];

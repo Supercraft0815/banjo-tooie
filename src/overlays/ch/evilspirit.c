@@ -50,7 +50,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
     s32 _subaddiefade_entrypoint_2();
     void _subaddiefade_entrypoint_3(Actor *);
     s32 func_8001210C(s32);
-    s32 func_8008FFE8();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8();
     s32 func_800C9510(void);
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
@@ -68,7 +68,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
     s32 func_8010CAC0(f32 *, u32);
     f32 func_8010CD28(Actor *);
     s32 func_8010D23C(void);
-    BtIntPtr func_80110014(s32);
+    BtIntPtr func_80110014(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32 *));
     void func_80116088(BtIntPtr, f32 *);
     void func_808012CC_chevilspirit(Actor *);
     void func_80801344_chevilspirit(u8 *);
@@ -131,7 +131,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
             }
             break;
         case 6:
-            func_80116088(func_80110014(func_8008FFE8()), arg0->position);
+            func_80116088(func_80110014(BT_NATIVE_ONLY((s32 *)) func_8008FFE8()), arg0->position);
             if (func_800C9510()) {
                 func_80801A6C_chevilspirit(arg0, 0);
             } else if (!func_80801840_chevilspirit(arg0)) {
@@ -297,9 +297,9 @@ void func_808007B4_chevilspirit(Actor *arg0, BtIntPtr arg1) {
     void func_800E253C(f32);
     void func_800E257C(s32);
     void func_800E30E0(BtIntPtr, void *, s32, void *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     BtIntPtr func_801067C4(s32 *);
@@ -328,7 +328,7 @@ void func_808007B4_chevilspirit(Actor *arg0, BtIntPtr arg1) {
     if (func_800DB9B0() == 0) {
         player = func_800F54E4();
         func_800F5A00(player, position);
-        func_8010FFB0((f32 **)func_800F5EF8(player), translation, rotation);
+        func_8010FFB0((f32 **)func_800F5EF8(BT_NATIVE_ONLY((u32)) player), translation, rotation);
         func_800A8A04(func_800A89F8(), &x, &y, &width, &height);
         screen[0] = (width + x - 25) << 2;
         screen[1] = (height + y - 21) << 2;
@@ -890,7 +890,7 @@ void func_80801C04_chevilspirit(Actor *arg0) {
     s32 func_800DA298(s32);
     s32 func_800EA05C(void);
     void func_800EE7F8(f32 *, f32 *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
@@ -972,7 +972,7 @@ void func_80801E18_chevilspirit(void *arg0) {
 /* extern */
 
 s32 func_80801EC4_chevilspirit(BtIntPtr arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F6D24(BtIntPtr);
     s32 func_800F8004(BtIntPtr);
     BtIntPtr sp1C;
@@ -990,12 +990,12 @@ s32 func_80801EC4_chevilspirit(BtIntPtr arg0) {
 }
 
 void func_80801F1C_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
-    void _plcamera_entrypoint_8(s32 *arg0);
+    void _plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0);
     void _subaddiefade_entrypoint_5(void *arg0);
     s32 _susubgame_entrypoint_4(void *, void *);
     s32 func_800DA544(s32);
     f32 func_800DC178(f32, f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);

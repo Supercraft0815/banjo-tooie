@@ -56,7 +56,7 @@ void func_80800080_chnutsnbolts(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32
     void func_800EFDE8(f32 *, u8 *, f32 *);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6478(BtIntPtr);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);

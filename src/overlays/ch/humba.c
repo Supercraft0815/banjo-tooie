@@ -312,7 +312,7 @@ s32 func_80800934_chhumba(Actor *arg0, s32 arg1) {
     s32 func_80016B30(s32, s32);
     s32 func_8008FA60(s32, s32);
     s32 func_80090080();
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5FE0(BtIntPtr);
     void func_8010D254(f32 *);
     f32 sp3C;
@@ -346,7 +346,7 @@ s32 func_80800934_chhumba(Actor *arg0, s32 arg1) {
 
 s32 func_80800A50_chhumba(Actor *arg0) {
     s32 func_800EA05C();
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F71D4(BtIntPtr);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
     void func_8010D254(f32 *);
@@ -691,7 +691,7 @@ void func_8080144C_chhumba(f32 arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFA20(void *, void *, f32);
     void func_800EFB24(void *, void *, void *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7F50(BtIntPtr, void *, void *, f32, s32, s32);
     void func_8010D254(f32 *);
     extern f32 D_808026FC_chhumba[4][3];

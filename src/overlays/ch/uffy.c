@@ -1117,7 +1117,7 @@ void func_80802164_chchuffy(Actor *arg0) {
     s32 func_800DA298(s32);
     int func_800DB9B0(void);
     int func_800F0064(f32 *, f32, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7F00(BtIntPtr, BtIntPtr, BtIntPtr, f32, s32, s32, f32);
     u32 func_8010A654(void ***, s32);
     void func_8010D254(f32 *);

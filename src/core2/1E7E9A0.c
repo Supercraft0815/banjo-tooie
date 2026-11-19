@@ -1,5 +1,5 @@
 #include "core2/1E7E9A0.h"
-
+BT_NATIVE_ONLY(BtIntPtr func_8008FFE8(void); s32 func_8010FAE4(s16 *); void func_8010FD88(u8 *);)
 void func_800A50B0(s32 arg0)
 {
     void func_8010F9C0(BtIntPtr, s32);
@@ -8,7 +8,7 @@ void func_800A50B0(s32 arg0)
 
 void func_800A50DC()
 {
-    func_8010FAE4(func_8008FFE8());
+    func_8010FAE4(BT_NATIVE_ONLY((s16 *)) func_8008FFE8());
 }
 
 void func_800A5104(BT_NATIVE_ONLY(s32 bt_a0) BT_PASS2(, s32 bt_a1))
@@ -23,7 +23,7 @@ void func_800A5124(BT_NATIVE_ONLY(s32 bt_a0))
 
 void func_800A5144()
 {
-    func_8010FD88(func_8008FFE8());
+    func_8010FD88(BT_NATIVE_ONLY((u8 *)) func_8008FFE8());
 }    typedef struct { f32 unk0; } Obj1E7E9A0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */

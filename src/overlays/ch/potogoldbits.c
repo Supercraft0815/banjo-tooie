@@ -31,7 +31,7 @@ void func_8080007C_chpotogoldbits(Actor *arg0) {
     s32 func_800EA05C(void);
     s32 func_800EA090(void);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800FFA88();
     void func_80101FDC(Actor *, u32);

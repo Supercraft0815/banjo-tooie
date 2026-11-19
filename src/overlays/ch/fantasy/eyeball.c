@@ -37,7 +37,7 @@ void func_808000D8_chfantasyeyeball(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(,
     void func_800DA544(s32 index);
     f32 func_800DC178(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     int func_800F6720(BtIntPtr);
     void func_800FC6B0(u32);
     void func_800FFA88(Unk80132ED0 *);
@@ -289,7 +289,7 @@ s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2 BT_PASS2(, s3
     void func_800EEBF0(f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800FC6B0(u32);
     void *func_80100094(Actor *, u32);
@@ -496,7 +496,7 @@ void func_808011D0_chfantasyeyeball(Actor *arg0, f32 arg1, f32 arg2, f32 arg3) {
 void func_80801290_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_800A50B0(s32 arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     void func_800F82D4(BtIntPtr arg0,s32 arg1);
 
@@ -515,7 +515,7 @@ void func_80801290_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80801314_chfantasyeyeball(void *arg0) {
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_800A50B0(s32 arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     void func_800F82D4(BtIntPtr arg0,s32 arg1);
     func_800F82D4(func_800F54E4(), 0);
@@ -560,7 +560,7 @@ void func_808013F8_chfantasyeyeball(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F18FC(f32 *, f32 *, f32 *);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     void func_80801740_chfantasyeyeball(Actor *, f32 *);
@@ -725,7 +725,7 @@ s32 func_80801A50_chfantasyeyeball(Actor *arg0, s32 arg1, Unk80132ED0 *volatile 
     f32 func_800DC178(f32, f32);
     void func_800DF744(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80101080(void);

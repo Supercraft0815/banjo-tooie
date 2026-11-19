@@ -64,7 +64,7 @@ void func_808001CC_chfireicestorm(Actor *arg0) {
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
     f32 func_800DC178(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F55FC(BtIntPtr);
     s32 func_800F6478(BtIntPtr);
     void func_80108B04(Actor *, u32);
@@ -225,7 +225,7 @@ Actor *func_80800608_chfireicestorm(Actor *arg0) {
     void func_800EF368(f32 *, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFB24(void *, void *, void *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_800F5BF0(BtIntPtr, f32 *);
     void func_80102FDC(Actor *, f32);
     s32 func_80103140(Actor *, u32, u16);

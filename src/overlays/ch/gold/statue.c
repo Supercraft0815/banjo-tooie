@@ -58,7 +58,7 @@ s32 func_80800150_chgoldstatue(BtIntPtr arg0, s32 arg1) {
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
     s32 func_800DA524(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7D38(BtIntPtr, s32, void *, f32);
     s32 func_80101180(s32, s32, BtIntPtr);
     void func_80102424(Actor *, s32);
@@ -173,7 +173,7 @@ void func_80800528_chgoldstatue(Actor *arg0) {
     void _sumumbofx_entrypoint_16(void *, f32);
     s32 func_800DA298(s32);
     s32 func_800DA544(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);

@@ -36,7 +36,7 @@ void func_8080009C_chgoldfish(u8 *arg0) {
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F1214(f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F71D4(BtIntPtr);
     void func_8010C964(Actor *);
     s32 func_8010CE70(u8 *, s32, s32);
@@ -144,7 +144,7 @@ s32 func_808004AC_chgoldfish(u8 *arg0, s32 arg1, s32 arg2) {
     void func_800C7074(s32 arg0, s32 arg1);
     void func_800CF700(void);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_808005F0_chgoldfish(u8 *, s32);
     extern s32 D_80800D3C_chgoldfish[4];
@@ -190,7 +190,7 @@ void func_808005F0_chgoldfish(u8 *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFCD8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_800F8300(BtIntPtr, s32, f32 *);
     void func_800FC6B0(u32);

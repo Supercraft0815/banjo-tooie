@@ -4,7 +4,7 @@ void func_80800000_chwumbawigwam(Actor *arg0) {
     s32 func_800DA298(s32);
     s32 func_800EA05C(void);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     f32 func_80103EAC(u8 *);
     s32 func_8010C9FC(f32 *, s32, s32, s32);
@@ -72,7 +72,7 @@ void func_80800158_chwumbawigwam(u8 *arg0) {
     f32 func_800F0E00(f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F64A4(BtIntPtr, s32);
     BtIntPtr func_80100094(u8 *, s32);

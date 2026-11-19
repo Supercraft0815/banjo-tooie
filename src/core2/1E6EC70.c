@@ -42,7 +42,7 @@ s32 func_800953E0(PlayerState *arg0, void *arg1, s32 arg2) {
         TRANSFORM_2_SNOWBALL = 0x2,
         TRANSFORM_1_BK = 0x1
     } func_800A3274(PlayerState *);
-    s32 func_8009E71C(void *, s32);
+    s32 func_8009E71C(PlayerState *, s32);
     extern u8 D_80117E60[];
 
     *(s32 *)arg1 = 0;

@@ -539,9 +539,9 @@ void func_808009DC_chflysaucer(Actor *arg0, s32 arg1) {
     void func_800904C8(s32);
     void func_800F4CEC(BtIntPtr, u32);
     void func_800F4CC0(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800BF4A4(s32, s32);
-    s32 func_8008FFE8(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8(void);
     void func_8010FD38(BtIntPtr, f32);
     struct anctrl_s *func_80104200(s16);
     struct anctrl_s *func_80104268(u32 *);
@@ -1013,7 +1013,7 @@ void func_80801568_chflysaucer(Actor *arg0, s32 arg1) {
     s32 func_800D0A9C(u32, u32);
     s32 func_800D395C(void);
     s32 func_800DA9E4(s32, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7C0C(BtIntPtr, s32, f32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -1728,7 +1728,7 @@ void func_80802CF0_chflysaucer(Actor *arg0) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EF4E4(f32 *, f32, f32, f32, f32, f32);
     void func_800EF6A8(f32 *, f32 *, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F81D4(BtUIntPtr, f32 *);
     f32 distance;
     f32 position[3];

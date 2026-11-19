@@ -13,7 +13,7 @@ void func_8080000C_chcheatopage(Actor *arg0) { void func_80103110(void *, s32); 
 void func_80800070_chcheatopage(Actor *arg0) {
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80103110(void *, s32);
@@ -63,7 +63,7 @@ void func_80800194_chcheatopage(Actor *arg0, BtIntPtr arg1) {
     void func_800D0BD4(s32, u32);
     void func_800D1844(s32);
     s32 func_800DA9E4(s32, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);

@@ -446,7 +446,7 @@ s32 func_808003F8_chdragonbrothers(Actor *arg0) {
 
 s32 func_80800438_chdragonbrothers(Actor *arg0) {
     s32 _ncpod_entrypoint_17(BtIntPtr, s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     s32 *temp_v1;
 
@@ -552,7 +552,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808006C8_chdragonbrothers(Actor *arg0
     void func_800EFCD8(f32 *, f32, f32);
     f32 func_800F1DCC(f32, f32);
     void func_800F5A00(BtIntPtr, f32 *);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     void *func_80110024(s16 *);
     f32 dt;
@@ -609,7 +609,7 @@ void func_808008C8_chdragonbrothers(Actor *arg0) {
     void func_800A5144();
     f32 func_800F1DF4(f32 *, f32 *);
     void func_800F5A00(BtIntPtr, f32 *);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     void func_808005A4_chdragonbrothers(void *, s32);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808006C8_chdragonbrothers(Actor *);
@@ -638,7 +638,7 @@ void func_8080098C_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _ncpod_entrypoint_16(BtIntPtr, BtIntPtr, s32, s32);
     s32 _ncpod_entrypoint_21(BtIntPtr, s32, s32);
     s32 _ncpod_entrypoint_25(BtIntPtr, s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     void *func_80110024(s16 *);
     u8 *data;
@@ -663,7 +663,7 @@ void func_8080098C_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, BtIntPtr arg3) {
     s32 _ncpod_entrypoint_16(BtIntPtr, BtIntPtr, s32, s32);
     s32 _ncpod_entrypoint_20(BtIntPtr, BtIntPtr, s32, s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     u8 *sp1C;
 
@@ -684,7 +684,7 @@ void func_80800A80_chdragonbrothers(Actor *arg0, s32 arg1, s32 arg2, BtIntPtr ar
 
 void func_80800B34_chdragonbrothers(Actor *arg0, s32 arg1) {
     s32 _ncpod_entrypoint_17(BtIntPtr, s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     void func_808008C8_chdragonbrothers(Actor *);
     u8 *sp1C;
@@ -1250,7 +1250,7 @@ s32 func_80801D40_chdragonbrothers(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void func_800EF1B8(f32 *, f32, f32);
     void func_800EF934(f32 *, f32 *, f32);
     f32 func_800F2094(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6478(BtIntPtr);
     int func_800F6AA4(BtIntPtr);
     void *func_80100094(Actor *, u32);
@@ -2244,7 +2244,7 @@ s32 func_80804350_chdragonbrothers(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     void _chexploder_entrypoint_13(BtIntPtr, u32);
     void _chexploder_entrypoint_15(BtIntPtr, u32, f32);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr, u32);
     void *func_80101080(void);
     Actor *func_80106790(Unk80132ED0 *);

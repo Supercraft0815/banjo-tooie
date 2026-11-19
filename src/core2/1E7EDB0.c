@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(BtIntPtr func_8008FFE8(void); void _ncfixposrot_entrypoint_8(BtIntPtr, s32);)
 /* extern */
 
 void func_800A54C0(s32 arg0) {
@@ -22,5 +22,5 @@ void func_800A54F8(s32 arg0)
 
 void func_800A5524(void) {
     void _ncfixposrot_entrypoint_9(s32 *arg0);
-    _ncfixposrot_entrypoint_9(func_8008FFE8());
+    _ncfixposrot_entrypoint_9(BT_NATIVE_ONLY((s32 *)) func_8008FFE8());
 }

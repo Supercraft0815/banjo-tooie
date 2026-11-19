@@ -16,7 +16,7 @@ f32 func_80800000_idbounce(void) {
 }
 
 void idbounce_entrypoint_0(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4) {
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F83E4(BtIntPtr, f32);
     extern s32 D_8013546C;
     extern u8 D_80135480[];
@@ -97,7 +97,7 @@ void idbounce_entrypoint_0(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4) {
 
 void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
 {
-  BtIntPtr func_800F54E4(void);
+  u32 func_800F54E4(void);
   void func_800F83E4(BtIntPtr, f32);
   f32 sqrtf(f32);
   extern s32 D_8013546C;
@@ -201,7 +201,7 @@ void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
 }                    
 
 void idbounce_entrypoint_2(u8 *arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F83E4(BtIntPtr, f32);
     extern s32 D_8013546C;
     f32 temp_f30;
@@ -314,7 +314,7 @@ s32 *func_80800874_idbounce(s32 arg0) {
 /* extern */
 
 int func_808008B4_idbounce(void) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F55FC(BtIntPtr);
     s32 func_800F6C5C(BtIntPtr);
     BtIntPtr sp1C;
@@ -426,7 +426,7 @@ void idbounce_entrypoint_4(void *arg0, s32 arg1, BtIntPtr arg2, s32 arg3, s32 ar
 
 void idbounce_entrypoint_5(void *arg0, BtIntPtr arg1, s32 arg2) {
     f32 func_800D8FF8(void);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800F5D70(BtIntPtr, f32 *);
     void func_800EF3DC(f32 *, f32 *);
@@ -485,7 +485,7 @@ void idbounce_entrypoint_6(void) {
 }
 
 void idbounce_entrypoint_7(void) {
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F83E4(BtIntPtr, f32);
     extern u8 D_80135480[];
     if (D_80135480[1] != 0 && D_80135480[2] == 0) {

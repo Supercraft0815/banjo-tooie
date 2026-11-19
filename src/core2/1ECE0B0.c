@@ -444,7 +444,7 @@ f32 func_800F549C(BtIntPtr arg0, int arg1) {
 }
 
 //Get Which Character is in Control
-BtUIntPtr func_800F54E4(void)
+u32 func_800F54E4(void)
 {
 	return D_801354DC;
 }
@@ -781,9 +781,9 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5ECC(s32 arg0)
     BT_NATIVE_ONLY(return) func_800A4C68(D_80135490.players[arg0]);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5EF8(BtIntPtr arg0)
+BT_NATIVE_ONLY(s16 *func_800A4C88(void *);) BT_IDO_ONLY(void) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32) arg0)
 {
-    BT_NATIVE_ONLY(return) func_800A4C88(D_80135490.players[arg0]);
+    BT_NATIVE_ONLY(return (BtIntPtr)) func_800A4C88(D_80135490.players[arg0]);
 }
 
 f32 func_800F5F24(BtUIntPtr arg0)

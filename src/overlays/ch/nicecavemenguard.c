@@ -146,7 +146,7 @@ void func_808000D4_chnicecavemenguard(Actor *arg0) {
     void _suexpression_entrypoint_10(void *arg0, Unk80132ED0 *arg1, f32 *arg2);
     void func_800DA544(s32 index);
     s32 func_800F4F34(BtUIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     s32 func_800F7F98(BtIntPtr arg0, u32 arg1);
@@ -225,7 +225,7 @@ void func_80800388_chnicecavemenguard(Actor* arg0)
 s32 func_808003A8_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_80102424(Actor *, s32);
     void func_808004FC_chnicecavemenguard(void *);

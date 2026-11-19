@@ -853,7 +853,7 @@ s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, 
     void func_800C0658(void);
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     void func_800EFD24(f32 vec[3]);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5B0C(BtIntPtr dialog);
     void func_800F82D4(BtIntPtr dialog, s32 text);
     void func_800F8300(BtIntPtr dialog, s32 mode, f32 *position);

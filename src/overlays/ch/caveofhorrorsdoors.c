@@ -29,7 +29,7 @@ s32 func_8080006C_chcaveofhorrorsdoors(Actor *arg0, s32 arg1, volatile s32 arg2)
     void _chexploder_entrypoint_3(void *, void *, u32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F8300(BtIntPtr, s32, BtIntPtr);
     void func_80800144_chcaveofhorrorsdoors(BtIntPtr);
     f32 sp2C[3];

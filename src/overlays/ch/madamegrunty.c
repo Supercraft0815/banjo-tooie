@@ -39,7 +39,7 @@ void func_8080005C_chmadamegrunty(Actor *arg0) {
     s32 func_800D9078(f32 *);
     s32 func_800D90A4(f32 *);
     void func_800F4924(BtIntPtr, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_80101180(s32, s32, BtIntPtr);
     void func_80800200_chmadamegrunty(Actor *);
     void func_808003B0_chmadamegrunty(Actor *);
@@ -102,7 +102,7 @@ void func_80800200_chmadamegrunty(Actor *arg0) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4AC0(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F6478(BtIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
@@ -130,7 +130,7 @@ void func_808002BC_chmadamegrunty(Actor *arg0) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4AC0(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
     void func_8080082C_chmadamegrunty(void *, s32);
@@ -154,7 +154,7 @@ void func_808002BC_chmadamegrunty(Actor *arg0) {
 void func_808003B0_chmadamegrunty(Actor *arg0) {
     s32 _capod_entrypoint_14(void);
     int func_800DC298(f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7C0C(BtIntPtr arg0, s32 arg1, f32 arg2);
     void func_800F82D4(BtIntPtr, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -173,7 +173,7 @@ void func_808003B0_chmadamegrunty(Actor *arg0) {
 
 void func_80800460_chmadamegrunty(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800F82D4(BtIntPtr, s32);
     void func_8080082C_chmadamegrunty(void *, s32);
@@ -237,7 +237,7 @@ void func_80800670_chmadamegrunty(Actor *arg0) {
     s32 func_800EE7F8(s32 *, u8 *);
     s32 func_800EF1B8(s32 *, f32, s32);
     void func_800F4924(BtIntPtr, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800FC660(s32);
     s32 func_80101FDC(void *, s32);
 

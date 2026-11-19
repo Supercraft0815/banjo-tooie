@@ -159,12 +159,12 @@ f32 func_80114444(s32 arg0) {
 
 s32 func_8011447C(f32 *arg0, f32 *arg1) {
     s32 func_800F5898();
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     s32 func_800F6438(BtUIntPtr);
     int func_800F6640(s32);
     s32 func_800F6690(s32);
     s32 func_800F6BE4(BtIntPtr);
-    PlayerState *func_80110014(s32);
+    BT_IDO_ONLY(PlayerState *) BT_NATIVE_ONLY(BtIntPtr) func_80110014(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32 *));
     f32 temp_f20;
     s32 var_s0;
     f32 sp4C[3];
@@ -175,7 +175,7 @@ s32 func_8011447C(f32 *arg0, f32 *arg1) {
     if (func_800F5898() > 0) {
         do {
             if ((func_800F6BE4(var_s0) != 0) && (func_800F6BE4(var_s0) != 0) && (func_800F6438(var_s0) != 0) && (func_800F6640(var_s0) != 0) && (func_800F6690(var_s0) != 0)) {
-                temp_f20 = func_80112550(func_80110014(func_800F5EF8(var_s0)), sp4C);
+                temp_f20 = func_80112550(func_80110014(BT_NATIVE_ONLY((s32 *)) func_800F5EF8(var_s0)), sp4C);
                 var_s2 |= func_801143A4(arg0, sp4C, func_80114444(var_s0) * temp_f20, arg1);
             }
             var_s0 += 1;

@@ -165,7 +165,7 @@ void func_80800338_chfactorytoxicpools(Actor *arg0) {
     void _chswitch_entrypoint_13(Actor *);
     s32 func_800D9078(f32 *);
     void func_80103110(Actor *, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     struct ToxicPoolData {
@@ -194,7 +194,7 @@ void func_80800338_chfactorytoxicpools(Actor *arg0) {
 s32 func_808003DC_chfactorytoxicpools(Actor *arg0, s32 arg1, void * volatile arg2) {
     s32 _capod_entrypoint_14(void);
     void _glcutDll_entrypoint_6(u32, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
     void func_80103110(Actor *, u32);
@@ -307,7 +307,7 @@ void func_80800670_chfactorytoxicpools(Actor *arg0) {
     s32 func_800CC338(f32 *, s32, s32);
     s32 func_800D9078(f32 *);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5578(BtIntPtr);
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5628(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);
@@ -384,7 +384,7 @@ void func_80800898_chfactorytoxicpools(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE780(f32 *, f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     extern s16 D_80800A38_chfactorytoxicpools[30];
     extern s16 D_80800A74_chfactorytoxicpools[30];

@@ -63,7 +63,7 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
     s32 func_800E1610(s32, f32, f32, f32 *);
     f32 func_800F0E00(f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5578(BtIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F7F98(BtIntPtr, u32);
@@ -190,7 +190,7 @@ void func_80800150_chfactorycrusher(Actor *arg0) {
 
 s32 func_80800580_chfactorycrusher(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *_subaddiefind_entrypoint_1(Actor *arg0, s32 arg1, s32 arg2, f32 *arg3);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -241,7 +241,7 @@ void func_8080067C_chfactorycrusher(s32 arg0, s32 arg1) {
 
 void func_808006CC_chfactorycrusher(Actor *arg0) {
     void func_800EE780(f32 dst[3], f32 a[3], f32 b[3]);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void* func_80100094(Actor*, u32);
     s32 func_800F4D18(BtUIntPtr, f32 *, f32 *);
     f32 *sp3C;
@@ -257,7 +257,7 @@ void func_808006CC_chfactorycrusher(Actor *arg0) {
 /* extern */
 
 int func_80800738_chfactorycrusher(BtIntPtr arg0, f32 *arg1) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6478(BtIntPtr);
     f32 temp_f0;
@@ -277,7 +277,7 @@ int func_80800738_chfactorycrusher(BtIntPtr arg0, f32 *arg1) {
 /* extern */
 
 int func_80800800_chfactorycrusher(Actor *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5578(BtIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
@@ -320,7 +320,7 @@ void func_808008B8_chfactorycrusher(BtIntPtr arg0, f32 arg1) {
 }
 
 void func_808008F0_chfactorycrusher(Actor *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     f32 lower;

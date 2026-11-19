@@ -9,7 +9,7 @@ void sutempleboss_entrypoint_0(s16 *arg0, s32 *arg1, s32 *arg2) {
     void func_800EE88C(f32 *, s16 *);
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_800F4BE4(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 result;
     s32 side;
     s32 pad;

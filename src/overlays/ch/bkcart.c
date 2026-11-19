@@ -67,7 +67,7 @@ void func_80800130_chbkcart(Actor *arg0) {
     s32 func_800DA298(s32);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -150,7 +150,7 @@ s32 func_808004DC_chbkcart(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddierouteDll_entrypoint_1(Actor *);
     void func_800C4140(u32, f32 *, u32);
     void func_800DA544(GameFlag);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80102424(Actor *, s32);
     s32 func_80103140(Actor *, u32, u16);
     void func_80108B04(Actor *, u32);

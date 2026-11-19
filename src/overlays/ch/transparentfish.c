@@ -152,7 +152,7 @@ void func_80800348_chtransparentfish(Actor *actor)
 {
     s32 _subaddiesect_entrypoint_0(Actor *arg0, s32 arg1, s32 arg2);
     void func_80800AC4_chtransparentfish(Actor *, f32 *, s32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
     s32 func_800F690C(BtIntPtr);
     f32 func_80103EAC(Actor *);

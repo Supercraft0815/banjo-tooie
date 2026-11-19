@@ -156,7 +156,7 @@ void func_8080041C_cheggsplode(Actor *arg0) {
     void func_800187B4(s32, f32, f32, f32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     s32 func_800E1610(s32, f32, f32, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F54F0(BtIntPtr);
     s32 func_800F6BE4(BtIntPtr);
     void *func_80100094(Actor *, u32);

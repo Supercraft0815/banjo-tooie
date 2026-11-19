@@ -169,7 +169,7 @@ OSThread *chmonsterinterior_entrypoint_4(void)
 void func_8080003C_chmonsterinterior(Actor *arg0) {
     void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
     void _susubgame_entrypoint_11(s32 arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
@@ -196,7 +196,7 @@ void func_808000BC_chmonsterinterior(Actor *arg0) {
     int func_800D9154(f32 *, f32);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7C0C(BtIntPtr, s32, f32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
@@ -261,7 +261,7 @@ s32 func_808002D4_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D395C(void);
     s32 func_800DA9E4(s32, s32);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr, u32);
     int func_800F7C58(BtIntPtr arg0, s32 arg1, s32 arg2);
     void func_800F82D4(BtIntPtr, s32);
@@ -406,7 +406,7 @@ void func_8080078C_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800D395C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);

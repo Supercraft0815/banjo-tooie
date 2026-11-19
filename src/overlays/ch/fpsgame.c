@@ -552,7 +552,7 @@ s32 func_80800CF8_chfpsgame(Actor *arg0, s32 arg1) {
     void _sumultiscore_entrypoint_10(void *, s32);
     void func_800AA20C(s32, s32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     s32 func_80101238(s32, s32);

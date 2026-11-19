@@ -38,7 +38,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     s32 _chcredits_entrypoint_1(void);
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
-    void _plcamera_entrypoint_8(s32 *arg0);
+    void _plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0);
     void _subaddieDll_entrypoint_10(s32, void *);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _subaddiemarker_entrypoint_0(Actor *, s32, BossMarker *, s32);
@@ -52,7 +52,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
@@ -149,7 +149,7 @@ void func_8080000C_chinflatableboss(Actor *arg0) {
         func_800F8294(player, data->positions[1]);
         func_800F8300(player, 2, position);
         func_800F497C(player);
-        _plcamera_entrypoint_8(player);
+        _plcamera_entrypoint_8(BT_NATIVE_ONLY((u32)) player);
         func_800DA544(2);
         func_80802A00_chinflatableboss(arg0, 0x22, 0x20);
         _subaddiedialog_entrypoint_11(arg0->unk0, 0x1087, 0x107, position, 0x3A);
@@ -422,7 +422,7 @@ s32 func_80800A98_chinflatableboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F49A8(BtIntPtr, s32);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8300(BtIntPtr, s32, f32 *);
     u32 func_800FDC28(u32);
     void func_800FFAB0(Actor *);
@@ -1348,7 +1348,7 @@ s32 func_8080272C_chinflatableboss(Actor *arg0) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -1413,7 +1413,7 @@ void func_80802910_chinflatableboss(Actor *arg0) {
     void _gcfrontend_entrypoint_9(s32 arg0);
     void func_800A51C0(void);
     void func_800DA544(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);

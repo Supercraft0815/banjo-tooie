@@ -27,7 +27,7 @@ void func_80800014_chkingjinjobits(u8 *arg0) {
     s32 func_800DA298(s32);
     void func_800DA524(s32 index);
     void func_800DA544(s32 index);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
@@ -109,7 +109,7 @@ void func_80800014_chkingjinjobits(u8 *arg0) {
 
 s32 func_8080029C_chkingjinjobits(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800EA05C(void);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void func_80800354_chkingjinjobits(Actor *);
@@ -159,7 +159,7 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
     void func_800F49A8(BtIntPtr, s32);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800FFAB0(Actor *);
     void func_80101FDC(Actor *, u32);
     extern s32 func_8010D5DC;

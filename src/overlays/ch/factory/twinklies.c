@@ -54,7 +54,7 @@ void func_80800048_chfactorytwinklies(Actor *arg0) {
     void func_800D2748(s32, s32);
     PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     struct {
         s32 counts[16];
@@ -105,7 +105,7 @@ void func_808001A0_chfactorytwinklies(Actor *arg0) {
     int func_800D9154(f32 *, f32);
     f32 func_800DC0C0(void);
     f32 func_800DC178(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7ECC(BtIntPtr, s32, f32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
@@ -182,7 +182,7 @@ s32 func_8080040C_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800D395C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -297,7 +297,7 @@ void func_80800748_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
     s32 func_800D395C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -361,7 +361,7 @@ void func_80800748_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); BtUIntPtr func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
+s32 func_808009EC_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) { void *func_80100094(Actor *, u32); s16 func_800D211C(s32); u32 func_800F54E4(void); s32 *data; data = func_80100094(arg0, 0); switch (arg1) { case 0x1347: return data[func_800F54E4()]; case 0x1345: return 0x28; case 0x1375: case 0x1385: return func_800D211C(0x83); default: return 0; } }
 
 void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) { 
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _susubgame_entrypoint_2(void *, BtIntPtr);
@@ -406,7 +406,7 @@ s32 func_80800B80_chfactorytwinklies(Actor *arg0, s32 *arg1) {
     s32 func_800D0A9C(u32, u32);
     s32 func_800D2054(s32, s32, s32);
     s32 func_800D395C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800FC6B0(u32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);

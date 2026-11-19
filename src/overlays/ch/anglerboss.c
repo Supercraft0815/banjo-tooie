@@ -84,7 +84,7 @@ void func_80800018_changlerboss(Actor *arg0) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, Unk80132ED0 *);
     void func_800F4AC0(BtIntPtr, f32 *, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
@@ -185,7 +185,7 @@ void func_808002E0_changlerboss(Actor *arg0) {
     f32 func_800EEB40(f32 *, f32 *);
     void func_800EFE50(f32 *, void *, void *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6438(BtUIntPtr);
     void func_800F82D4(BtIntPtr, s32);
@@ -474,7 +474,7 @@ s32 func_80800B7C_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
     void func_800EE7F8(f32 *, f32 *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -898,10 +898,10 @@ void func_8080170C_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
     void _gcfrontend_entrypoint_9(s32 arg0);
-    void _plcamera_entrypoint_8(s32 *arg0);
+    void _plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0);
     s32 func_800D395C(void);
     void func_800DA544(s32 index);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
     void func_80108B04(Actor *arg0, u32 arg1);
@@ -1420,7 +1420,7 @@ s32 func_80802430_changlerboss(Actor *arg0) {
 /* extern */
 
 BtIntPtr func_808025AC_changlerboss(BtIntPtr arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     BtIntPtr func_8010D290(s32);
     BtIntPtr temp_v0;
     BtIntPtr var_v1;

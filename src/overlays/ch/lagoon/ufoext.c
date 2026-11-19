@@ -16,7 +16,7 @@ s32 func_80800000_chlagoonufoext(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4AC0(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);

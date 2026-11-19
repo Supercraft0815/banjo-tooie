@@ -31,7 +31,7 @@ void func_8080007C_chfantasylakebits(Actor *arg0) {
     int func_800DB9B0(void);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void func_80800300_chfantasylakebits(BtIntPtr, s16);
     extern u32 D_80800920_chfantasylakebits[];
@@ -102,7 +102,7 @@ void func_80800344_chfantasylakebits(Actor *arg0, s32 arg1) {
     void func_800DA524(s32 index);
     void func_800DA544(s32);
     s32 func_800EA05C();
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5628(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800F9C38(void);

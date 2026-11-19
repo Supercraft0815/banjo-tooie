@@ -401,7 +401,7 @@ void func_80800A4C_chdiggerboss(Actor *arg0) {
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_800D395C(void);
     s32 func_800D9078(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(BtIntPtr, s32);
     int func_800F7C58(BtIntPtr, s32, s32);
     void func_800F82D4(BtIntPtr, s32);
@@ -1085,7 +1085,7 @@ void func_80801DE0_chdiggerboss(Actor *arg0) {
     void func_800C964C(s32);
     s32 func_800DA298(s32);
     s32 func_800EA05C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     int func_800F7C58(BtIntPtr, s32, s32);
     void func_800F82D4(BtIntPtr, s32);
     void func_800F8444(BtIntPtr, f32 *);
@@ -1236,7 +1236,7 @@ Actor *func_80802228_chdiggerboss(Actor *arg0) {
 }
 
 s32 func_80802248_chdiggerboss(BtIntPtr arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BtIntPtr func_8010D290(s32);
     BtIntPtr temp_v0;
     int var_v1;
@@ -1454,7 +1454,7 @@ void func_80802778_chdiggerboss(Actor *arg0, s32 arg1) {
 
 s32 func_808027F4_chdiggerboss(BtIntPtr arg0) {
     s32 _capod_entrypoint_3(s32 arg0);
-    void _plcamera_entrypoint_8(s32 *arg0);
+    void _plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     int result;
@@ -1469,7 +1469,7 @@ s32 func_808027F4_chdiggerboss(BtIntPtr arg0) {
     }
     if (*(s16 *)(data + 8) != 0) {
         _capod_entrypoint_3(0);
-        _plcamera_entrypoint_8(sp20);
+        _plcamera_entrypoint_8(BT_NATIVE_ONLY((u32)) sp20);
         *(s16 *)(data + 8) = 0;
         return 1;
     }
@@ -1559,7 +1559,7 @@ s32 func_80802AB8_chdiggerboss(Actor *arg0, s32 arg1) {
     void _gcfrontend_entrypoint_9(s32 arg0);
     void _gcgoto_entrypoint_2(s32 arg0, s32 arg1, s32 arg2);
     void func_800A7AD4(s32, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     s32 func_80803660_chdiggerboss(Actor *, s32, s32);
     s32 func_80803BE8_chdiggerboss(BtIntPtr, s32, s32);
@@ -1607,7 +1607,7 @@ void func_80802C0C_chdiggerboss(BtIntPtr arg0) {
 void func_80802C40_chdiggerboss(BtIntPtr arg0) {
     void _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     BtIntPtr func_80110014(s32 *);
     void func_80116088(u8 *, BtIntPtr);
     f32 sp2C[3];
@@ -1645,7 +1645,7 @@ s32 func_80802D00_chdiggerboss(Actor *arg0) {
     s32 _gcnewoption_entrypoint_37(BtIntPtr, s32);
     s32 _gcnewoption_entrypoint_7(u8 *);
     s32 func_800D9078(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
@@ -1729,7 +1729,7 @@ void func_80802F00_chdiggerboss(BtIntPtr arg0, s32 arg1) {
     void func_800EF04C(f32 *, f32 *);
     f32 func_800EFB8C(f32 *, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F7F98(BtIntPtr, u32);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
@@ -1756,7 +1756,7 @@ void func_80802F00_chdiggerboss(BtIntPtr arg0, s32 arg1) {
 }
 
 void func_80802FEC_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
@@ -3173,7 +3173,7 @@ void func_80805A00_chdiggerboss(BtIntPtr arg0, s32 arg1) {
 s32 func_80805A64_chdiggerboss(Actor *arg0) {
     f32 func_800D8FF8(void);
     s32 func_800D9078(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6D24(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void func_80805B8C_chdiggerboss(Actor *, f32);
@@ -3300,7 +3300,7 @@ s32 func_80805DF4_chdiggerboss(Actor *arg0) {
     void func_800EFD24(f32 *);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6D24(BtIntPtr);
     void *func_80100094(Actor *, u32);
     s32 func_8010B990(Actor *, s32);
@@ -3740,7 +3740,7 @@ void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, DiggerBossAttack *arg2) {
     void rare_memcpy(void *, void *, int);
     s32 func_80803BE8_chdiggerboss(BtIntPtr, s32, s32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(BtIntPtr, s32);
     void func_80806B38_chdiggerboss(Actor *);
     struct DiggerBossInitData {
@@ -4281,7 +4281,7 @@ s32 func_8080783C_chdiggerboss(Actor *arg0, s32 arg1) {
     s32 func_800D9078(f32 *arg0);
     s32 func_800D90A4(f32 *arg0);
     int func_800DC298(f32 arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800FE850();
     s32 func_8010CFBC(f32 *arg0, s32 arg1, s32 arg2);
@@ -4382,7 +4382,7 @@ void func_80807B54_chdiggerboss(Actor *arg0) {
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);

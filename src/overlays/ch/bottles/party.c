@@ -64,7 +64,7 @@ void func_80800170_chbottlesparty(BtIntPtr arg) {
     s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
     s32 func_800D90A4(f32 *);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     s32 func_8010CAC0(f32 *, u32);

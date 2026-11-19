@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_800907C0(f32 *);
-BtUIntPtr func_800F54E4(void);
+u32 func_800F54E4(void);
 
 s32 func_80800000_chbanjocurrent(void)
 {
@@ -184,7 +184,7 @@ void func_808005F4_chbanjocurrent(Actor *arg0) {
     void func_80090794(BtIntPtr arg0);
     void func_800907C0(f32 *);
     f32 func_800D8FF8(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_800F5E50(BtIntPtr);
     f32 func_800F5E7C(BtIntPtr);
     f32 func_800F5F7C(BtIntPtr);

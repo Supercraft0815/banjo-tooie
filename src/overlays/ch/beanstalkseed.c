@@ -35,7 +35,7 @@ s32 func_8080026C_chbeanstalkseed(u8 *arg0, s32 arg1, s32 arg2)
   void func_800DA544(s32 index);
   s32 func_800F5410(BtIntPtr);
   s32 *new_var;
-  BtIntPtr func_800F54E4();
+  u32 func_800F54E4(void);
   void func_800FC6B0(u32 track_id);
   void func_800FFA88(Unk80132ED0 *marker);
   if (arg1 == 0x3E)
@@ -70,7 +70,7 @@ s32 func_80800328_chbeanstalkseed(s32 bt_a0) {
 s32 func_80800328_chbeanstalkseed(void) {
 #endif
     s32 func_800D1A04(s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F66F0(BtIntPtr);
     s32 func_800F6720(BtIntPtr);
@@ -105,7 +105,7 @@ void func_808003D8_chbeanstalkseed(Actor *arg0) {
     s32 func_800F0064(f32 *, f32, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13C4(f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7F50(BtIntPtr, f32 *, f32 *, f32, s32, s32);
     void func_800FFA88(Unk80132ED0 *marker);
     u32 *func_80100074(Actor *, u32, u32);

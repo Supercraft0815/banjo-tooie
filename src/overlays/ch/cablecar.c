@@ -375,7 +375,7 @@ void func_80800914_chcablecar(Actor *arg0) {
     void _susubgame_entrypoint_8(Actor *, void *, s32, s32, s32);
     void func_800EF04C(f32 *, f32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8294(BtIntPtr, f32 *);
     void func_800F8444(BtIntPtr, f32 *);
     typedef struct {
@@ -463,7 +463,7 @@ s32 func_80800BD0_chcablecar(Actor *arg0) {
     void func_800DA544(s32 index);
     s32 func_800F4BB8(BtUIntPtr, u32, s32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     int func_800F6B40(BtIntPtr);
     s32 func_800F6C5C(BtIntPtr);
@@ -508,7 +508,7 @@ void func_80800D14_chcablecar(Actor *arg0, s32 arg1) {
     void _subaddieDll_entrypoint_4(Actor *, u32);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6C88(BtIntPtr);
     s32 func_800F76B0(BtIntPtr, s32, BtIntPtr);
     void func_80103014(u8 *);

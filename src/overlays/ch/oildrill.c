@@ -449,7 +449,7 @@ s32 func_80801110_choildrill(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     int func_800F6B94(BtIntPtr);
     s32 func_80101180(s32, s32, BtIntPtr);
     Actor *actor = (Actor *)arg0;

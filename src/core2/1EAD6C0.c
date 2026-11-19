@@ -71,7 +71,7 @@ s32 func_800D3F2C(s32 arg0) {
 
 void func_800D3F58(BtIntPtr arg0, s32 arg1) {
     void func_800DA3B8(GameFlag, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F4924(BtIntPtr, s32);
     BT_IDO_ONLY(extern u16 D_8011B5C0[][4];)
     BT_IDO_ONLY(extern u16 D_8011B608[][4];)

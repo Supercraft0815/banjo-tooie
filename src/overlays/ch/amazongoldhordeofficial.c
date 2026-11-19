@@ -72,7 +72,7 @@ void func_80800150_chamazongoldhordeofficial(Actor *arg0) {
     void func_800DA544(s32 index);
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F56AC(BtIntPtr);
     f32 func_800F5F7C(BtIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
@@ -369,14 +369,14 @@ void func_80800A84_chamazongoldhordeofficial(Actor *arg0) {
 }
 
 int func_80800C18_chamazongoldhordeofficial(void) {
-    BtIntPtr func_800F54E4(); s32 func_800F640C(BtIntPtr,s32); s32 func_8008FE14();
+    u32 func_800F54E4(void); s32 func_800F640C(BtIntPtr,s32); s32 func_8008FE14();
     return func_800F640C(func_800F54E4(), 0x1D9) || func_8008FE14() == 0x1D9;
 }
 
 s32 func_80800C60_chamazongoldhordeofficial(BtIntPtr arg0) {
     s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
     s32 func_800DA298(s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F56AC(BtIntPtr);
     extern s32 D_80801324_chamazongoldhordeofficial[7];
     extern s32 D_80801340_chamazongoldhordeofficial[7];

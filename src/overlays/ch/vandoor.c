@@ -13,7 +13,7 @@ void func_8080000C_chvandoor(Actor *arg0) {
     void func_800DA524(s32);
     s32 func_800EA05C();
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_8010A800(Actor *, s32);
     void func_80800388_chvandoor(Actor *, s32);

@@ -13,7 +13,7 @@ void func_8080003C_chtntmineshoot(BtIntPtr arg0) {
 void func_80800078_chtntmineshoot(f32 *arg0, f32 arg1) {
     void func_800187B4(s32, f32, f32, f32);
     s32 func_800E1610(s32, f32, f32, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     extern s32 D_808025CC_chtntmineshoot[4];
     f32 sp1C[3];
@@ -44,7 +44,7 @@ void func_80800188_chtntmineshoot(f32 *arg0) {
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     f32 func_800F5F24(BtUIntPtr);
     extern s32 D_808025F8_chtntmineshoot[19];
@@ -253,7 +253,7 @@ void func_808006D0_chtntmineshoot(Actor *arg0, u8 *arg1) {
 
 void func_80800830_chtntmineshoot(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
     f32 func_800F13F0(f32, f32);
@@ -469,7 +469,7 @@ int func_80800E64_chtntmineshoot(Actor *arg0, s32 arg1) {
     s32 func_80801974_chtntmineshoot(Actor *, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
     void _susubgame_entrypoint_11(s32 arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     int func_800D284C(s32 a0);
     s32 func_800F7F98(BtIntPtr, u32);
     s16 func_800D211C(s32 arg0);
@@ -618,7 +618,7 @@ void func_80801318_chtntmineshoot(Actor *arg0) {
     void func_800C3CE8(u8);
     s32 func_800D9078(f32 *);
     f32 func_800DC178(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -667,7 +667,7 @@ void func_8080146C_chtntmineshoot(Actor *arg0) {
     void func_800C3CE8(u8);
     s32 func_800D9078(f32 *);
     f32 func_800DC178(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -775,7 +775,7 @@ s32 func_80801658_chtntmineshoot(Actor **arg0) {
 s32 func_80801714_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800D0A9C(u32, u32);
     s32 func_800D395C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC660(u32);
     void *func_80100094(Actor *, u32);
@@ -842,7 +842,7 @@ s32 func_80801714_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_80801974_chtntmineshoot(Actor *arg0, s32 arg1) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 dialog;
@@ -879,7 +879,7 @@ s32 func_80801A18_chtntmineshoot(BtIntPtr arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80801A54_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
     void func_800A7AD4(s32, s32);
@@ -952,7 +952,7 @@ void func_80801C20_chtntmineshoot(u8 *arg0) {
     s32 func_800EA090(void);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80101FDC(Actor *, u32);
     extern s32 _bsfirstp_entrypoint_18;
     typedef struct { u32 pad[29]; BT_BITFIELD_ORDER(u32 pad74_19 : 13, u32 pad74_0 : 18); u32 active : 1; BT_BITFIELD_ORDER(u32 pad74_0 : 18, u32 pad74_19 : 13); } ActorFlags;
@@ -1006,7 +1006,7 @@ s32 func_80801DEC_chtntmineshoot(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800D0A9C(u32, u32);
     s32 func_800EA090(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_80101FDC(Actor *, u32);

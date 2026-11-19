@@ -764,7 +764,7 @@ void func_80801384_bsbabykaz(struct player_state_s *arg0) {
     s32 func_8009CC68(struct player_state_s *);
     int func_800DB9B0(void);
     void func_800F3BB0(struct player_state_s *, f32[3]);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6D24(BtIntPtr);
     void func_800F9ADC(void);
     s32 func_80101180(s32, s32, BtIntPtr);

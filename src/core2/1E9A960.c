@@ -61,11 +61,11 @@ void func_800C1070(f32 *arg0, f32 *arg1) {
     void func_800E3980(f32 *);
     s32 func_800EA068(s32);
     s32 func_800F5310();
-    s32 func_800F5EF8(BtIntPtr);
-    s32 func_8010FFA8(s32);
-    void func_8010FFB0(s32, f32 *, f32 *);
-    s32 temp_v0;
-    s32 sp28;
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
+    s32 func_8010FFA8(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16 *));
+    void func_8010FFB0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32 **), f32 *, f32 *);
+    BtIntPtr temp_v0;
+    BtIntPtr sp28;
     f32 sp1C[3];
 
     if (func_800F5310() != 0) {
@@ -88,14 +88,14 @@ s32 func_800C1104(u16 *arg0) {
     s32 func_800EA068(s32);
     s32 func_800F5310();
     s32 func_800F5D18(BtIntPtr);
-    s32 func_800F5EF8(BtIntPtr);
-    s32 func_8010FFA8(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
+    s32 func_8010FFA8(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16 *));
     s32 func_8010FFD8(BtIntPtr);
     s32 _plsu_entrypoint_0(f32 *, f32 *);
     f32 sp24[3];
     s32 pad;
     s32 sp1C;
-    s32 sp18;
+    BtIntPtr sp18;
 
     if (func_800F5310() != 0) {
         if (func_800EA068(0x20) != 0) {

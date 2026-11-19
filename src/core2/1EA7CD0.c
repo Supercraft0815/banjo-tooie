@@ -83,7 +83,7 @@ s32 func_800CE628(void) {
     f32 func_800D9004(void);
     int func_800DB9B0(void);
     s32 func_800EA09C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F68B8(BtIntPtr);
     s32 func_800F6D24(BtIntPtr);
     int func_800F8004(BtIntPtr);
@@ -297,7 +297,7 @@ s32 func_800CEB80(s32 arg0, s32 arg1) {
 void func_800CEBD8(s32 arg0, s32 arg1) {
     int func_800D284C(s32);
     int func_800DB9B0(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F68B8(BtIntPtr);
     s32 func_800F6D24(BtIntPtr);
     int func_800F8004(BtIntPtr);
@@ -470,7 +470,7 @@ void func_800CF190(void) {
     s32 func_800CF580(void);
     f32 func_800CF67C(void);
     s32 func_800D9078(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr, u32);
     extern f32 D_8012B174;
     extern s32 D_8012B160;
@@ -517,7 +517,7 @@ void func_800CF2B0(void) {
 
 void func_800CF2D4(s32 arg0) {
     s32 func_800D3E40(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6604(BtIntPtr);
     void func_800F7B9C(BtIntPtr, u32);
     f32 func_800CF67C(void);
@@ -563,7 +563,7 @@ void func_800CF40C(s32 arg0) {
 
 void func_800CF494(void) {
     s32 func_800D3E40(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6604(BtIntPtr);
     void func_800F7B9C(BtIntPtr, u32);
     s16 func_800CF640(void);
@@ -602,7 +602,7 @@ void func_800CF494(void) {
 s32 func_800CF580(void) {
     s32 func_800A9C98();
     s32 func_800D3E40(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F6BE4(BtIntPtr);
     s32 func_800F6D24(BtIntPtr);

@@ -169,7 +169,7 @@ s32 func_80800638_chlinkpipefan(Actor *arg0, u32 arg1, Unk80132ED0 *volatile arg
     void func_800DF6BC(s32, s32);
     void func_800DF744(s32, s32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);
     void func_800FFA88(Unk80132ED0 *);
     void *func_80101080(void);

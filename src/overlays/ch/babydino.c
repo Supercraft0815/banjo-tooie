@@ -125,7 +125,7 @@ void func_80800448_chbabydino(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800DA544(GameFlag);
     int func_800DB9B0(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_80102424(Actor *, s32);
     extern s32 D_80800700_chbabydino[10];

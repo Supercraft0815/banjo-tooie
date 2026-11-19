@@ -3,7 +3,7 @@
 
 void func_80800000_indrv_audio(void *arg0, s32 arg1, s32 *arg2) {
 
-    s32 *func_8008FFE8(void);
+    BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8(void);
     void func_800C3AE0(u8, f32);
     void func_800C3BDC(u8 id);
     u8 func_800C4350();
@@ -11,7 +11,7 @@ void func_80800000_indrv_audio(void *arg0, s32 arg1, s32 *arg2) {
     void func_800EE88C(f32 *, s16 *);
     f32 func_800F1DF4(f32 *, f32 *);
     int func_800F20BC(f32, f32, f32);
-    void func_8010FFB0(s32 *, f32 *, f32 *);
+    void func_8010FFB0(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(f32 **), f32 *, f32 *);
     f32 sp3C[3];
     u8 sp3B;
     f32 sp2C[3];
@@ -25,7 +25,7 @@ void func_80800000_indrv_audio(void *arg0, s32 arg1, s32 *arg2) {
     }
     sp3B = func_800C4350(0, sp3C, (s32 *)D_80801478_indrv_audio);
     func_800C4350(sp3B & 0xFF, sp3C, arg2);
-    func_8010FFB0(func_8008FFE8(), sp2C, sp20);
+    func_8010FFB0(BT_NATIVE_ONLY((f32 **)) func_8008FFE8(), sp2C, sp20);
 
     if (func_800F20BC(sp20[1], func_800F1DF4(sp3C, sp2C), 50.0f) == 0) {
         func_800C3AE0(sp3B, 0.25f);

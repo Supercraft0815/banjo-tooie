@@ -64,7 +64,7 @@ void func_8080015C_chtntbox(Actor *arg0, s32 arg1) {
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     s32 func_800E1610(s32, f32, f32, f32 *);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     int func_800F7A7C(BtIntPtr, s32, s32, s32, f32 *);
     void func_800FFAB0(Actor *);
     s32 func_80107070(Actor *, u32);

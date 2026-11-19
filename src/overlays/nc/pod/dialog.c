@@ -451,15 +451,15 @@ s16 ncpoddialog_entrypoint_2(void) {
 
 void func_808012A0_ncpoddialog(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2) {
     void _plcamera_entrypoint_14(s32 *arg0, BtIntPtr arg1, BtIntPtr arg2);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     s32 func_800F690C();
     s32 func_800F693C(BtIntPtr);
-    s32 func_8010FFB0(s32, BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8010FFB0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32 **), BtIntPtr, BtIntPtr);
     if ((func_800F690C() != 0) || (func_800F693C(arg0) != 0)) {
         _plcamera_entrypoint_14(arg0, arg1, arg2);
         return;
     }
-    func_8010FFB0(func_800F5EF8(arg0), arg1, arg2);
+    func_8010FFB0(BT_NATIVE_ONLY((f32 **)) func_800F5EF8(BT_NATIVE_ONLY((u32)) arg0), arg1, arg2);
 }
 
 s32 func_80801310_ncpoddialog(f32 *arg0, s16 *arg1) {

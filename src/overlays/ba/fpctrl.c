@@ -132,7 +132,7 @@ void func_808003BC_bafpctrl(PlayerState *arg0) {
 
 s32 func_80800424_bafpctrl(PlayerState *arg0, s32 arg1) {
     s32 func_8009E674(PlayerState *, s32);
-    s32 func_8009E71C(void *, s32);
+    s32 func_8009E71C(PlayerState *, s32);
     int func_800C6E38(s32);
     s32 func_8010D930();
     void _baeggaim_entrypoint_1(BtIntPtr arg0);

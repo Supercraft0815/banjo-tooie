@@ -15,7 +15,7 @@ void func_8080000C_chconga(BtIntPtr arg0) {
     void _subaddieitem_entrypoint_1(s8 *arg0, s32 arg1);
     s32 func_800D395C();
     s32 func_800DA298(s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800FFAB0(Actor *actor);
     void *func_80100094(Actor *, u32);
@@ -194,7 +194,7 @@ void func_80800538_chconga(BtIntPtr arg0) {
     s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, subaddiedialog_UnkStruct0 *);
     s32 func_800D1A04(s32);
     s32 func_800DA298(s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_80101180(s32, s32, BtIntPtr);
     extern subaddiedialog_UnkStruct0 D_808006F8_chconga;

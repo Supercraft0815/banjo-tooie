@@ -5,7 +5,7 @@
 typedef struct { u8 pad0[0x24]; u32 unk24; } Objfish_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */ void func_80800000_chboggyfish(s32 *arg0, void *arg1) {
     void func_800D1844(s32 arg0);
     void func_800DA544(s32 index);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F6388(BtIntPtr arg0, s32 arg1);
     void func_800FC6B0(u32 track_id);
     void func_800FFA88(Unk80132ED0 *marker);

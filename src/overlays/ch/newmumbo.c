@@ -350,7 +350,7 @@ s32 func_808004E8_chnewmumbo(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_8080073C_chnewmumbo(Actor *arg0, s32 arg1) {
     s32 _plsu_entrypoint_1(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr, u32);
     void func_800F8300();
     if (!arg0->unk64_19) {
@@ -364,7 +364,7 @@ void func_8080073C_chnewmumbo(Actor *arg0, s32 arg1) {
 
 void func_808007B0_chnewmumbo(u8 *arg0) {
     struct Flags { BT_BITFIELD_ORDER(unsigned int : 12, unsigned int : 1); BT_BITFIELD_ORDER(unsigned int active : 1, unsigned int  : 18); BT_BITFIELD_ORDER(unsigned int : 18, unsigned int active : 1; unsigned int  : 12); };
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     if (((struct Flags *)(arg0 + 0x64))->active) {
         func_800F82D4(func_800F54E4(), 0);

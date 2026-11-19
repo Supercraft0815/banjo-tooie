@@ -336,7 +336,7 @@ void func_80800948_chfactorybattery(Actor *arg0) {
 
 void func_808009C8_chfactorybattery(Actor *arg0) {
     s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     f32 func_80103EAC(Actor *);
     f32 func_80103EF4(Actor *);
     s32 pad[1];
@@ -382,7 +382,7 @@ void func_80800AB8_chfactorybattery(Actor *arg0) {
     s32 func_800DC128(s32, s32);
     f32 func_800F1DF4(f32 *, f32 *);
     f32 func_800F3780(f32, u8 *, s16);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s32 func_8010108C(Actor *, s32, BtIntPtr);
     f32 func_80101F24(Actor *);
@@ -520,7 +520,7 @@ s32 func_80801040_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddierouteDll_entrypoint_1(Actor *);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     void func_800DF744(s32, s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     int func_800F7A2C(BtIntPtr arg0, s32 arg1, f32 *arg2);
     s32 func_801015D0(Actor *);
     s32 func_80107070(Actor *, s32);
@@ -613,7 +613,7 @@ void func_8080130C_chfactorybattery(Actor *arg0, s32 arg1) {
     void _subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1);
     void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void func_800DA544(s32 index);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     int func_800F7A2C(BtIntPtr arg0, s32 arg1, f32 *arg2);
     u32 *func_80100074(Actor *, u32, u32);
     void *func_80100094(Actor *, u32);

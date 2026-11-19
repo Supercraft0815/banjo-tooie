@@ -19,7 +19,7 @@ void func_8080000C_chcamwaypoint(u8 *arg0) {
 void func_8080005C_chcamwaypoint(Actor *arg0) {
     s32 _ncbawaypoint_entrypoint_2(BtIntPtr, f32 *, u32 *, u32);
     void func_8008FE68(f32 *);
-    s32 func_8008FFE8();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8();
     s32 func_800EFFB4(f32 *, f32, f32 *);
     s32 func_8010FAE4(s16 *);
     BtIntPtr func_80110014(s32 *);

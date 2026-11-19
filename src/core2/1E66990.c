@@ -87,7 +87,7 @@ s32 func_8008D40C(PlayerState *arg0) {
     s32 func_8008E0C8(PlayerState *);
     void func_8009C128(PlayerState *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     int func_800F6774(BtUIntPtr);
     s32 func_800F6C5C(BtIntPtr);
@@ -301,7 +301,7 @@ int func_8008DD04(PlayerState *arg0) {
 }
 
 s32 func_8008DD70(PlayerState *arg0) {
-    s32 func_8009E71C(void *, s32);
+    s32 func_8009E71C(PlayerState *, s32);
     return func_8009E71C(arg0, 5);
 }
 

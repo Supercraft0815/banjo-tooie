@@ -136,7 +136,7 @@ void func_80800218_chsabreman(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     void func_800EE88C(f32 *, s16 *);
     f32 func_800EEB40(f32 *, f32 *);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F6CC8(BtIntPtr);
     void func_800F82D4(BtIntPtr, s32);
@@ -341,7 +341,7 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800C01A8(s16, s32);
     s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
     s32 func_800DA564(s32, s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F8300(BtIntPtr, s32, BtIntPtr);
     void func_800FC660(u32);
     void func_800FFAB0(Actor *);

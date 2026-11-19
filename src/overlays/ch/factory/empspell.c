@@ -502,7 +502,7 @@ void func_80800A08_chfactoryempspell(Actor *arg0) {
     f32 func_800F0D50(f32, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F48BC(BtIntPtr, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6C5C(BtIntPtr);
     f32 mlAbsF(f32);
@@ -564,7 +564,7 @@ void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     int func_800EFED0(f32 *, f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     void func_801017D0(Actor *);
@@ -867,7 +867,7 @@ void func_80801B2C_chfactoryempspell(Actor *arg0) {
     void func_800C8E54(s32, f32, f32);
     void func_800C8F64(s32, s32);
     void func_800C8FB0(s32, u32, u32, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 var_s1;
@@ -897,7 +897,7 @@ void func_80801C00_chfactoryempspell(Actor *arg0, f32 arg1) {
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F1214(f32, f32, f32);
     int func_800F3214(void *, void *, void *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     struct {

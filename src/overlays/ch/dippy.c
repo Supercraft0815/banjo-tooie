@@ -213,7 +213,7 @@ void func_80800530_chdippy(Actor *arg0) {
     f32 func_800F1DF4(f32 *, f32 *);
     int func_800F20BC(f32, f32, f32);
     s32 func_800F4BB8(BtUIntPtr, u32, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_800F5F24(BtUIntPtr);
     s32 func_800F5FE0(BtIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);

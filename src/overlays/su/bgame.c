@@ -143,7 +143,7 @@ s32 susubgame_entrypoint_5(BtIntPtr arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4
 void susubgame_entrypoint_6(s32 *arg0, u8 *arg1, s32 arg2, s32 arg3, BtIntPtr arg4) {
     s32 _ncpod_entrypoint_20(BtIntPtr, BtIntPtr, s32, s32);
     BtIntPtr func_800A93E4(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80800814_susubgame(s32 *, void *, s32);
 
     if (arg4 == 0) {
@@ -244,7 +244,7 @@ s32 susubgame_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800F49A8(BtIntPtr, s32);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
     void func_800F832C(BtIntPtr, f32 *);
@@ -342,7 +342,7 @@ void func_80800814_susubgame(s32 *arg0, void *arg1, s32 arg2) {
 int func_808008DC_susubgame(s32 arg0) {
     s32 func_800A9420(s32);
     s32 func_800D3948(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     if (func_800D3948() != 0) {
         return func_800F6438(arg0) != 0 && func_800A9420(arg0) != 0;

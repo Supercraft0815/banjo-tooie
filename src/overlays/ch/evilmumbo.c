@@ -32,7 +32,7 @@ u32 D_808044E4_chevilmumbo[] = {
 void func_80800000_chevilmumbo(Actor *arg0) {
     s32 _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6C88(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void func_808000BC_chevilmumbo(Actor *);
@@ -62,7 +62,7 @@ void func_80800098_chevilmumbo(BtIntPtr arg0) {
 
 void func_808000BC_chevilmumbo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(s32 func_800F4AF4(u32, s32);) BT_NATIVE_ONLY(s32 func_800F4AF4(s32, s32);)
     void func_80800000_chevilmumbo(Actor *);
     struct {
@@ -94,7 +94,7 @@ void func_80800144_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_6(Unk80132ED0 *);
     void _gcdialogcamera_entrypoint_8(void);
     void func_800F4B20(BtIntPtr arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     struct {
         u8 pad0[0x95];
         u8 unk95;
@@ -124,7 +124,7 @@ void func_808001F4_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2, Unk80132ED0 *arg
     s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     s32 _capod_entrypoint_6(BtIntPtr arg0, s32 arg1, s32 arg2);
     void func_800F4B20(BtIntPtr arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     struct {
         u8 pad0[0x95];
         u8 unk95;
@@ -150,7 +150,7 @@ void *func_80100094(Actor *, u32);
 
 void func_80800290_chevilmumbo(Actor *arg0) {
     void func_800F4B20(BtIntPtr arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     struct {
         u8 pad0[0x95];
         u8 unk95;
@@ -213,7 +213,7 @@ void func_808003DC_chevilmumbo(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80090708(s32);
     void _suexpression_entrypoint_12(void *arg0, f32 arg1, f32 arg2);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F4CC0(BtIntPtr);
     u32 func_800FDC28(u32);
     void func_80800ECC_chevilmumbo(Actor *, s32);

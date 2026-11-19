@@ -10,7 +10,7 @@ OSThread *chballoonbomb_entrypoint_0(void)
 void func_8080000C_chballoonbomb(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     int func_800DC298(f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     void func_8010D09C(BtIntPtr, f32 *, f32);
     s32 pad;

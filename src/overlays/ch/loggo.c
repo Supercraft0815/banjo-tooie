@@ -41,7 +41,7 @@ void func_808000AC_chloggo(Actor *arg0) {
     s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
     s32 func_800D0A9C(u32, u32);
     s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_80800398_chloggo(Actor *);
     void func_80800460_chloggo(Actor *);
     extern s32 D_808005E0_chloggo[];
@@ -138,7 +138,7 @@ void func_80800398_chloggo(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800F77E8(BtIntPtr, f32 *);
     void func_80102424(Actor *, s32);

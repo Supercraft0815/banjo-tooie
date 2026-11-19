@@ -19,7 +19,7 @@ void func_80800000_chicekeydoor(u8 *arg0) {
     void func_800DA544(s32 index);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F82D4(BtIntPtr, s32);
     s32 func_800FC660(s32);
     s32 func_80101FDC(u8 *, s32);
@@ -119,7 +119,7 @@ s32 func_80800318_chicekeydoor(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_800D7520(s32);
     s32 func_800DA298(s32);
     void func_800EF1B8(f32 *, f32, f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800F8300();
     s32 func_80101FDC(u8 *, s32);

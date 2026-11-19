@@ -166,7 +166,7 @@ void func_80800294_sucoasterhit(Unk80132ED0 *arg0, BtIntPtr arg1, s32 arg2) {
     void _chfreezy_entrypoint_1(void *, s16 *);
     void func_8010965C(Actor *);
     s32 func_8010A430(Actor *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800EB860(s32 (*filter)(s16 *, uintptr_t), uintptr_t data);
     s32 func_80108EF4(void *arg0, s32 arg1);
     f32 func_800EC708(Unk80132ED0 *);

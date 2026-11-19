@@ -75,7 +75,7 @@ void func_80800128_chnicecavemen(Actor *arg0) {
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_800DA298(s32);
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr, u32);
     void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
@@ -166,7 +166,7 @@ s32 func_808003D8_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     s32 _suexpression_entrypoint_17(void *, s32);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
@@ -375,7 +375,7 @@ void func_8080077C_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800AB8_chnicecavemen(Actor *arg0, s32 arg1) {
     BT_IDO_ONLY(s32 _subaddiepalette_entrypoint_2(Actor *, void *, s32, f32);) BT_NATIVE_ONLY(s32 _subaddiepalette_entrypoint_2(Actor *, void *, u16, f32);)
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     int func_801021BC(Actor *, s32);
@@ -585,7 +585,7 @@ s32 func_80801178_chnicecavemen(Actor *arg0) {
     s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
     void func_800DA544(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8300();
     void *func_80100094(Actor *, u32);
     CavemanData *sp34;
@@ -625,7 +625,7 @@ void func_80801200_chnicecavemen(Actor *arg0) {
 
 s32 func_8080126C_chnicecavemen(void *arg0) {
     int func_800DC298(f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F640C(BtIntPtr, s32);
     BtIntPtr sp24;
     s32 var_v1;
@@ -734,7 +734,7 @@ void func_80801508_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 int func_80801580_chnicecavemen(f32 *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F640C(BtIntPtr, s32);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_8010CB84(f32 *, u32);

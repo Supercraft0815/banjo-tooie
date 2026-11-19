@@ -70,7 +70,7 @@ void func_80800148_chshockjump(Actor *arg0, s32 arg1) {
     void _subaddiefade_entrypoint_8(Actor *, s32);
     int func_800C6E38(s32);
     f32 func_800F15F8(f32, f32, f32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_80101870(void *, BtIntPtr);
     s32 var_a0;

@@ -69,7 +69,7 @@ void func_80800224_chfactorymagnet(Actor *arg0) {
     void func_800EF334(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
@@ -241,7 +241,7 @@ void func_8080083C_chfactorymagnet(BtIntPtr arg0) {
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void func_800EE7F8(f32 dst[3], f32 src[3]);
     s32 func_800F4EC8(BtIntPtr, s32 *, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 sp24[3];
 
     func_800EE7F8(sp24, _subaddiefind_entrypoint_2(0x3FC, 0)->position);
@@ -558,7 +558,7 @@ s32 func_808012E4_chfactorymagnet(BtIntPtr arg0, f32 arg1) {
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 func_80090178(s32);
     f32 func_800EFC7C(void *, void *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     f32 sp24[3];
     Actor *sp20;
@@ -612,7 +612,7 @@ void func_80801508_chfactorymagnet(Actor *arg0, s32 arg1) {
     f32 func_800DC0C0(void);
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     struct MagnetParticle {
@@ -876,7 +876,7 @@ void func_80801EBC_chfactorymagnet(Actor *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     void func_800F4D74(BtIntPtr, f32 *, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_80103EF4(Actor *);
     Actor *func_80106790(Unk80132ED0 *);
     f32 sp3C[3];

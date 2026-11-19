@@ -405,7 +405,7 @@ void func_80800B88_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
 
 s32 func_80800C00_chpawnbroker(s32 arg0, s32 arg1) {
     s32 func_800D1A04(s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     if (arg1 > 0) {
         if (func_800D1A04(0x4E) >= arg0) {

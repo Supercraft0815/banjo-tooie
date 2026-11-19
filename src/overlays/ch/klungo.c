@@ -42,7 +42,7 @@ void func_8080000C_chklungo(Actor *arg0) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
     s32 _glsplinefind_entrypoint_0(s32 arg0, f32 arg1[3]);
-    void _plcamera_entrypoint_8(s32 *arg0);
+    void _plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0);
     s32 _subaddiemarker_entrypoint_0(Actor *, s32, f32 *, s32);
     void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
@@ -51,7 +51,7 @@ void func_8080000C_chklungo(Actor *arg0) {
     s32 func_800D395C(void);
     s32 func_800DA298(s32);
     void func_800F497C(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
     void func_800FFAB0(Actor *);
@@ -133,7 +133,7 @@ void func_8080000C_chklungo(Actor *arg0) {
             func_800F608C(camera, 1);
             func_800F8294(camera, data->camera);
             func_800F497C(camera);
-            _plcamera_entrypoint_8(camera);
+            _plcamera_entrypoint_8(BT_NATIVE_ONLY((u32)) camera);
             func_80802588_chklungo(arg0, 2, 1);
             func_80803158_chklungo(arg0, D_808038A0_chklungo[data->unk8].dialog[1], 0xE);
             func_80801964_chklungo(arg0, 8);
@@ -178,7 +178,7 @@ void func_808002D0_chklungo(Actor *arg0) {
     void func_800EFD24(f32 vec[3]);
     void func_800EFE50(f32 *, void *, void *, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
@@ -980,7 +980,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
     void func_800F49A8(BtIntPtr, s32);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     u32 func_800FDC28(u32);
     void *func_80100094(Actor *, u32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -1737,7 +1737,7 @@ void func_80802FCC_chklungo(Actor *arg0) {
 /* extern */
 
 void func_80803000_chklungo(Actor *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void* func_80100094(Actor*, u32);
     BT_IDO_ONLY(s32 func_800F4AF4(u32, s32);) BT_NATIVE_ONLY(s32 func_800F4AF4(s32, s32);)
     void func_808030A4_chklungo(Actor *);
@@ -1756,7 +1756,7 @@ void func_80803000_chklungo(Actor *arg0) {
 /* extern */
 
 void func_8080305C_chklungo(Actor *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void* func_80100094(Actor*, u32);
     void func_800F4B20(BtIntPtr arg0);
     u8 *sp1C;
@@ -1774,8 +1774,8 @@ void func_808030A4_chklungo(Actor *arg0) {
     s32 _plcamera_entrypoint_10(BtIntPtr);
     void _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
-    s32 func_800F5EF8(BtIntPtr);
+    u32 func_800F54E4(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     BtIntPtr func_80110014(s32 *);
     void func_80116088(u8 *, BtIntPtr);
@@ -1832,7 +1832,7 @@ void func_80803208_chklungo(s32 *arg0) {
 void func_8080322C_chklungo(Actor *arg0, f32 arg1) {
     s32 func_800CC338(s32 *, s32, s32);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_8010D09C(BtIntPtr, f32 *, f32);
     s32 func_80803304_chklungo(Actor *, f32 *);
     BtIntPtr func_80803390_chklungo(void *, f32 *);

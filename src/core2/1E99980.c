@@ -382,7 +382,7 @@ s32 func_800C0A34(void) {
     s32 func_800D3948();
     s32 func_800DA298(s32);
     int func_800DB9B0(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     int func_800F6774(BtUIntPtr);
     extern u8 D_8012762C;

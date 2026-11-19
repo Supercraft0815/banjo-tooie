@@ -295,7 +295,7 @@ s32 chswitch_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcaudiolist_entrypoint_0(s32 arg0);
     s32 func_800DA298(s32 index);
     s32 func_800F5410(BtIntPtr arg0);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     Unk80132ED0 *func_800F55D0(BtIntPtr);
     s32 func_800F55FC(BtIntPtr arg0);
     s32 func_800F6438(BtUIntPtr arg0);
@@ -448,7 +448,7 @@ void chswitch_entrypoint_13(Actor *arg0) {
     f32 func_800D8FF8(void);
     void func_800DA524(s32);
     void func_800DA544(s32 index);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6CC8(BtIntPtr);
     s32 func_8010108C(Actor *, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);

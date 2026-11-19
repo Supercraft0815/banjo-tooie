@@ -459,7 +459,7 @@ s32 func_80800B68_chtoothyfish(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     void func_800F4A00(BtIntPtr, s32);
     void func_800F4A2C(BtIntPtr, f32 *);
     void func_800F4A8C(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
     void func_800F832C(BtIntPtr arg0,f32* a1);

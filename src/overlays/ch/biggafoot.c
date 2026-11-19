@@ -60,7 +60,7 @@ void func_80800100_chbiggafoot(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
@@ -178,7 +178,7 @@ s32 func_808004D4_chbiggafoot(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F0D50(f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_800FFAB0(Actor *);
     s32 func_801015D0(Actor *);
@@ -299,7 +299,7 @@ void func_808008D4_chbiggafoot(BtIntPtr arg0) {
 
 s32 func_808008FC_chbiggafoot(Actor *arg0) {
     s32 func_800F0008(f32 [3], f32, f32 [3], f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_800F5BF0(BtIntPtr, f32 *);
     s32 func_800F6478(BtIntPtr);
     f32 sp24[3];
@@ -319,7 +319,7 @@ s32 func_808008FC_chbiggafoot(Actor *arg0) {
 /* extern */
 
 void func_80800980_chbiggafoot(void *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5A00(BtIntPtr, s32 *);
     s32 func_800F6438(BtIntPtr);
     s32 func_80102BF8(void *, s32, s32, s32);
@@ -335,7 +335,7 @@ void func_80800980_chbiggafoot(void *arg0) {
 
 s32 func_808009EC_chbiggafoot(Actor *arg0) {
     s32 func_800D9078(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6478(BtIntPtr);
     s32 func_8010C9B0(f32 *, u32);
     s32 sp1C;

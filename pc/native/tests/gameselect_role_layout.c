@@ -1,4 +1,5 @@
 #include "common.h"
+#include "gameselect_tables.h"
 #include "gameselect_roles.h"
 #include <stdint.h>
 #include <stdlib.h>
@@ -108,6 +109,62 @@ static int test_panel(void) {
     return draws != 4 || closed != 4 || data->buffer || allocations != releases;
 }
 
+
+void func_80800A4C_chgameselect(Actor *, void *, s32, s32);
+void func_80800A9C_chgameselect(Actor *, void *, s32, s32);
+void func_80806B5C_chgameselect(Actor *, void *, s32, s32);
+void func_80806BD4_chgameselect(Actor *, void *, s32, s32);
+void func_80804A8C_chgameselect(Actor *, void *, s32, s32);
+void func_80804AF0_chgameselect(Actor *, void *, s32, s32);
+GameSelectState D_80807DD0_chgameselect[10];
+static u8 option_count = 3;
+void gcnewoption_entrypoint_24(BtIntPtr option_state, s32 item, s32 value) {
+    ((s16 *)option_state)[item + 0x58] = (s16)value;
+}
+s16 gcnewoption_entrypoint_20(BtIntPtr option_state, s32 item) {
+    return ((s16 *)option_state)[item + 0x58];
+}
+void gcnewoption_entrypoint_12(OptionState *option_state, u32 item, s16 text) {
+    ((s16 *)(option_state->data + 0xEC))[item] = text;
+}
+u8 gcstatusDll_entrypoint_10(void) { return option_count; }
+static void copy_raw(void *dst, const void *src, size_t count) {
+    u8 *d = dst; const u8 *s = src;
+    while (count--) *d++ = *s++;
+}
+static int test_option_rows(void) {
+    Actor actor = {0};
+    OptionState state = {0};
+    s16 value, text;
+    if ((uintptr_t)&state <= UINT32_MAX) return 10;
+    D_80807DD0_chgameselect[5].onEvent7 = func_80806B5C_chgameselect;
+    D_80807DD0_chgameselect[5].onEvent6 = func_80806BD4_chgameselect;
+    D_80807DD0_chgameselect[6].onEvent7 = func_80804A8C_chgameselect;
+    D_80807DD0_chgameselect[6].onEvent6 = func_80804AF0_chgameselect;
+    actor.unk70_10 = 5;
+    { s32 visible_count = 3; copy_raw((u8 *)&actor + 0x18, &visible_count, sizeof(visible_count)); }
+    gcnewoption_entrypoint_24((BtIntPtr)&state, 0, 2);
+    func_80800A4C_chgameselect(&actor, &state, 0, 7);
+    value = ((s16 *)state.data)[0x58];
+    text = ((s16 *)(state.data + 0xEC))[0];
+    if (value != 0 || text != 15) return 11;
+    func_80800A9C_chgameselect(&actor, &state, 0, 6);
+    value = ((s16 *)state.data)[0x58];
+    text = ((s16 *)(state.data + 0xEC))[0];
+    if (value != 2 || text != 17) return 21;
+
+    actor.unk70_10 = 6;
+    gcnewoption_entrypoint_24((BtIntPtr)&state, 1, 2);
+    func_80800A4C_chgameselect(&actor, &state, 1, 7);
+    value = ((s16 *)state.data)[0x59];
+    text = ((s16 *)(state.data + 0xEC))[1];
+    if (value != 0 || text != 15) return 12;
+    func_80800A9C_chgameselect(&actor, &state, 1, 6);
+    value = ((s16 *)state.data)[0x59];
+    text = ((s16 *)(state.data + 0xEC))[1];
+    return value != 2 || text != 17 ? 99 : 0;
+}
+
 int main(void) {
     Actor actors[2] = {0};
     Actor moved;
@@ -132,5 +189,6 @@ int main(void) {
     func_80800440_chgameselect(&actors[1]);
     func_80800440_chgameselect(&moved);
     if (test_boxes() || test_panel()) return 1;
+    { int option_test = test_option_rows(); if (option_test) return option_test; }
     return moved.game_select_root_data || actors[1].game_select_root_data || allocations != releases;
 }

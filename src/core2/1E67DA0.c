@@ -95,7 +95,7 @@ void func_8008E6F0(PlayerState *arg0) {
     s32 func_80091E80(u8 *, s32);
     s32 func_8008DAA8(void *);
     s32 func_800EA068(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F5410(BtIntPtr);
     s32 func_800F6D24(BtIntPtr);
     u8 func_800F8B88(void);
@@ -227,7 +227,7 @@ void func_8008E9E4(void *arg0, BtIntPtr arg1, s32 arg2) {
     s32 func_800D3948(void);
     s32 func_800F0D90(s32, s32, s32);
     PlayerState *func_800F53D0(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6774(BtIntPtr);
     s32 func_800F6C1C(s32);
     s32 func_800F76B0(BtIntPtr arg0, s32 arg1, BtIntPtr arg2);

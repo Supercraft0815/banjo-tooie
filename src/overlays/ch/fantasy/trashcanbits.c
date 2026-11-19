@@ -8,7 +8,7 @@ void func_80800000_chfantasytrashcanbits(Actor *arg0) {
     void _chdoormake_entrypoint_8(void *, u32);
     void _chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3);
     s32 func_800EA090(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_8010108C();
     void func_80101FDC(Actor *, u32);
@@ -32,7 +32,7 @@ void func_808000EC_chfantasytrashcanbits(Actor *arg0) {
     void _chdoor_entrypoint_0(BtIntPtr arg0);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     f32 func_800EFC7C(void *, void *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_8010108C();
     f32 sp2C[3];

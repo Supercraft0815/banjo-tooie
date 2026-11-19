@@ -304,7 +304,7 @@ void func_80800518_chprisonbits(Actor *arg0) {
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     f32 func_800D8FF8(void);
     int func_800F0064(f32 *, f32, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     s32 func_80102128(Actor *, s32, s32, f32, s32);

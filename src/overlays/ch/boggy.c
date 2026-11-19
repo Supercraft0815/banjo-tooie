@@ -15,7 +15,7 @@ typedef struct { u8 pad0[0x38]; f32 unk38; } Objboggy_arg0; /* offsets.py genstr
 void func_80800054_chboggy(Actor *arg0, s32 arg1, s32 arg2) {
     u8 _subaddiedialog_entrypoint_9();
     void func_800DA544(s32 index);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     extern s32 D_80800790_chboggy[14];
@@ -80,7 +80,7 @@ void func_80800220_chboggy(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800DA544(s32 index);
     s32 func_800902E4(f32 *, f32, s32, Actor **);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F640C(BtIntPtr, s32);
     s32 func_8008FE14(void);
     s32 func_80090818(void);

@@ -30,7 +30,7 @@ s32 func_808000A0_charea51gate(Actor *arg0, s32 arg1, s32 *volatile arg2) {
     void _chexploder_entrypoint_4(Actor *arg0, s16 *arg1, s32 arg2);
     s32 func_8001210C(s32);
     void func_800EC398(Unk80132ED0 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);

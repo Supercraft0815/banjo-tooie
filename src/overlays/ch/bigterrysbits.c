@@ -31,7 +31,7 @@ void func_80800024_chbigterrysbits(void *arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800D395C();
     s32 func_800DA298(s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_8010108C(void *, s32, BtIntPtr);
     void func_80101FDC(Actor *, u32);

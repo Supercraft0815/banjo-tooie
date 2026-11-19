@@ -115,7 +115,7 @@ void func_808002DC_chgobiwitchy(Actor *arg0) { s32 _capod_entrypoint_21(Unk80132
     s32 func_800DA298(s32);
     void func_800DA524(GameFlag);
     int func_800DB9B0(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     extern s32 D_808003C0_chgobiwitchy[10];

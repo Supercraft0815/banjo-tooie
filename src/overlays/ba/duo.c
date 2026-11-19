@@ -83,7 +83,7 @@ void baduo_entrypoint_7(PlayerState *arg0, s32 arg1) {
     void func_8009ADF0(void *, s32, s32);
     void func_800A38F0(PlayerState *, s32, s32);
     int _bashoes_entrypoint_6(void *arg0, s32 arg1);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     *(u8 *)*(void **)((u8 *)arg0 + 0x58) = arg1;
     switch (*(u8 *)*(void **)((u8 *)arg0 + 0x58)) {
@@ -154,7 +154,7 @@ void baduo_entrypoint_13(PlayerState *arg0) {
     int func_800D5034(s32, s32);
     f32 func_800F1F0C(f32 *, f32 *, f32);
     PlayerState *func_800F53D0(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F5B0C(BtIntPtr);
     void func_800F759C(s32);

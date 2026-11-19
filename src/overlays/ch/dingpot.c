@@ -19,7 +19,7 @@ void func_80800040_chdingpot(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_800F4CC0(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7844(BtUIntPtr, f32 *, f32, f32);
     void func_800F82D4(BtIntPtr arg0,s32 arg1);
     s32 func_80101DDC(Actor *);
@@ -79,7 +79,7 @@ void func_80800040_chdingpot(Actor *arg0) {
 s32 func_8080021C_chdingpot(Actor *arg0, s32 arg1, volatile s32 arg2) {
     void func_80102424(Actor *, s32);
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     extern s32 D_808005A4_chdingpot[4];
 
@@ -143,7 +143,7 @@ void func_80800388_chdingpot(Actor *arg0) {
     s32 func_800DA298(s32);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800F4CEC(BtIntPtr, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F7F98(BtIntPtr, u32);

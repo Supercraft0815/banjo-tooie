@@ -99,7 +99,7 @@ int func_8080000C_chnastycavemen(void) {
 /* extern */
 
 int func_80800060_chnastycavemen(void) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F640C(BtIntPtr, s32);
     s32 func_8008FE14();
     return (func_8008FE14() == 0x1D9) ||
@@ -296,7 +296,7 @@ void func_8080067C_chnastycavemen(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 func_8008FB10(f32 *arg0, f32 arg1, f32 arg2, f32 arg3);
     s32 func_800902E4(f32 *, f32, s32, Actor **);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F55FC(BtIntPtr arg0);
     void * func_80100094(Actor *arg0, u32 arg1);
     s32 func_80101DDC(Actor *arg0);
@@ -382,7 +382,7 @@ s32 func_808009BC_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
     u32 _glcutDll_entrypoint_19(s32);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F640C(BtIntPtr, s32);
     void func_800FFA88(Unk80132ED0 *);
     void func_80105A9C(Actor *, f32);

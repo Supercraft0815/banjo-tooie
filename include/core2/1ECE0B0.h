@@ -34,7 +34,7 @@ s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
 PlayerState* func_800F53D0(BtIntPtr arg0);
 PlayerState* func_800F53E4(s32 arg0);
 //Get the character control index
-BtUIntPtr func_800F54E4(void);
+u32 func_800F54E4(void);
 s32 func_800F5578(BtIntPtr);
 Unk80132ED0* func_800F56D8(BtIntPtr arg0);
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32[3]);

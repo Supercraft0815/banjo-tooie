@@ -726,7 +726,7 @@ void func_800A3A80(PlayerState *arg0) {
     s32 func_80096568(void *, s32);
     void func_8009BD18(void *, f32);
     void func_8009C128(PlayerState *, f32[3]);
-    s32 func_8009E71C(void *, s32);
+    s32 func_8009E71C(PlayerState *, s32);
     s32 func_800A3644(void *);
     s32 func_800D9078(f32 *arg0);
     s32 player_inWater(PlayerState *);

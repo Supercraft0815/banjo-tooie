@@ -24,7 +24,7 @@ void func_80800018_chklungophial(Actor *arg0) {
     int func_800DC298(f32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EFD24(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     void func_80108A30(s32, void *, f32, s32);
     void func_8010D12C(BtIntPtr, f32 *, f32, s32);

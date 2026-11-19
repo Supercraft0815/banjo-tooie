@@ -104,7 +104,7 @@ void func_80800140_chmumbopad(void *arg0) {
     s32 func_800DA298(s32);
     int func_800EA05C(void);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800FFAB0(BtIntPtr);
     void func_80101FDC(Actor *, u32);
     s32 func_80103140(void **, s32, u16);
@@ -367,7 +367,7 @@ void func_808008CC_chmumbopad(void *arg0, s32 arg1) {
     void func_800DA544(s32 index);
     s32 func_800DA564(s32, s32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 buttons[6];
 
     if (func_800F54E4() == arg1) {

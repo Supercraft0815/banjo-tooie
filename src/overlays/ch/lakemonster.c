@@ -411,7 +411,7 @@ void func_80800968_chlakemonster(Actor *arg0) {
 void func_808009CC_chlakemonster(void) {
     void _gcgoto_entrypoint_1(u32 a0, u32 a1);
     void func_800DA544(s32 index);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     void func_800F7C9C(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3);
     func_800F7C9C(func_800F54E4(), 0x95, 0x116, 0xA);
     _gcgoto_entrypoint_1(0x123, 1);
@@ -741,7 +741,7 @@ s32 func_80801494_chlakemonster(BtIntPtr arg0, s32 arg1) {
     void func_80090708(s32);
     void func_8009086C(s32);
     int func_800C6E38(s32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     u32 func_800FDC28(u32);
     u32 *func_80100074(Actor *, u32, u32);

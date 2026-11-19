@@ -182,7 +182,7 @@ void func_808000AC_chboggyfatboy(Actor *arg0) {
     void func_800DA544(s32 index);
     void func_800EE88C(f32 *, s16 *);
     int func_800F0064(f32 *, f32, f32 *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_8010108C(Actor *, s32, BtIntPtr);
     s32 func_80101DDC(Actor *);
@@ -341,7 +341,7 @@ s32 func_808005AC_chboggyfatboy(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800C9C70(f32, u32, f32, u32, f32 *, f32, f32);
     s32 func_800DA298(s32);
     s32 func_800DA980(s32, s32);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80800808_chboggyfatboy(Actor *, s32, s32);
     void func_808009E0_chboggyfatboy(Actor *);
@@ -670,7 +670,7 @@ void func_80800FAC_chboggyfatboy(Actor* arg0)
 /* extern */
 
 s32 func_80800FE0_chboggyfatboy(s32 arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     s32 func_800F640C(BtIntPtr, s32);
     s32 func_800F64A4(BtIntPtr, s32);
     BtIntPtr sp1C;

@@ -969,7 +969,7 @@ void func_808034C4_chintrochar(Actor *arg0) {
     void _chanim_entrypoint_9(Actor *);
     void _chanim_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2);
     s32 func_800DA298(s32);
-    s32 func_8008FFE8();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_8008FFE8();
     void func_8010FFB0(f32 **, f32 *, f32 *);
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     void *func_8001B798(s16);
@@ -1029,7 +1029,7 @@ void func_808034C4_chintrochar(Actor *arg0) {
     }
     if (flags & 0x40) {
         if (flags & 0x40000) {
-            func_8010FFB0(func_8008FFE8(), position, rotation);
+            func_8010FFB0(BT_NATIVE_ONLY((f32 **)) func_8008FFE8(), position, rotation);
             _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, position);
         } else {
             _suexpression_entrypoint_10(func_80100094(arg0, 1), arg0->unk0, 0);

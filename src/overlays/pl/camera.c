@@ -1,7 +1,7 @@
 #include "common.h"
 
-s32 func_800F5EF8(BtIntPtr);
-void func_80110720(s8 *, s32);
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
+void func_80110720(s8 *, s32); BT_NATIVE_ONLY(void func_80110928(void *); void func_8010FD88(u8 *);)
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) plcamera_entrypoint_0(s32 *arg0) { BtIntPtr func_80110014(s32 *); BtIntPtr sp1C = func_800F5EF8(arg0); func_801108A0(func_80110014(sp1C)); func_8010FD88(sp1C); BT_NATIVE_ONLY(return 0;) }
 
@@ -68,7 +68,7 @@ void plcamera_entrypoint_7(s32 arg0, f32 *arg1, f32 arg2, f32 arg3) {
     }
 }
 
-void plcamera_entrypoint_8(s32 *arg0) { BtIntPtr func_80110014(s32 *); BtIntPtr sp1C = func_800F5EF8(arg0); func_80110928(func_80110014(sp1C)); func_8010FD88(sp1C); }
+void plcamera_entrypoint_8(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(u32) arg0) { BtIntPtr func_80110014(s32 *); BtIntPtr sp1C = func_800F5EF8(arg0); func_80110928(BT_NATIVE_ONLY((void *)) func_80110014(BT_NATIVE_ONLY((s32 *)) sp1C)); func_8010FD88(BT_NATIVE_ONLY((u8 *)) sp1C); }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) plcamera_entrypoint_9(s32 *arg0, s32 arg1, s32 arg2) { BtIntPtr func_80110014(s32 *); BT_NATIVE_ONLY(return) func_801110EC(func_80110014(func_800F5EF8(arg0)), arg1, arg2); }
 
@@ -102,7 +102,7 @@ void plcamera_entrypoint_11(BtIntPtr arg0, f32 *arg1) {
     void func_800F5A00(BtIntPtr, f32 *);
     void func_8010FE14(s32 *, f32 *, f32 *);
     BtIntPtr func_80110014(s32 *);
-    void func_80110720(s8 *, s32);
+    void func_80110720(s8 *, s32); BT_NATIVE_ONLY(void func_80110928(void *); void func_8010FD88(u8 *);)
     void func_801107F0(void *, f32 *);
     s32 *sp5C;
     s8 *sp58;
@@ -113,7 +113,7 @@ void plcamera_entrypoint_11(BtIntPtr arg0, f32 *arg1) {
     f32 sp24;
     f32 sp18[3];
 
-    sp5C = func_800F5EF8(arg0);
+    sp5C = func_800F5EF8(BT_NATIVE_ONLY((u32)) arg0);
     sp58 = func_80110014(sp5C);
     func_800F5A00(arg0, sp40);
     func_801107F0(sp58, sp4C);

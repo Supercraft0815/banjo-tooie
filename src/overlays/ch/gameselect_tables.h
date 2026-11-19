@@ -9,14 +9,46 @@ typedef struct {
 typedef struct {
     u8 data[0x260];
 } OptionState;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define GAME_SELECT_OPTION_DISPATCH_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2
+#define GAME_SELECT_ROW6_OPEN_PARAMS(a0, a1) Actor *a0, void *a1, s32 item, s32 event
+#define GAME_SELECT_ROW5_OPEN_PARAMS(a0, a1) Actor *a0, void *a1, s32 item, s32 event
+#define GAME_SELECT_ROW6_SELECT_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2
+#define GAME_SELECT_ROW5_SELECT_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2
+#define GAME_SELECT_ROW6_EVENT5_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2
+#define GAME_SELECT_ROW5_EVENT5_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2
+#define GAME_SELECT_ROW6_EVENT_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2, s32 event
+#define GAME_SELECT_ROW6_EVENT3_PARAMS(a0, a1, a2) u8 *a0, void *a1, s32 a2
+#define GAME_SELECT_ROW5_EVENT_PARAMS(a0, a1, a2) Actor *a0, void *a1, s32 a2, s32 event
+#define GAME_SELECT_ROW6_OPTION_SET(a0, a1, a2) BtIntPtr a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW5_OPTION_SET(a0, a1, a2) BtIntPtr a0, s32 a1, s32 a2
+#else
+#define GAME_SELECT_OPTION_DISPATCH_PARAMS(a0, a1, a2) Actor *a0, BtIntPtr a1, s32 a2
+#define GAME_SELECT_ROW6_OPEN_PARAMS(a0, a1) s32 a0, s32 a1
+#define GAME_SELECT_ROW5_OPEN_PARAMS(a0, a1) Actor *a0, BtIntPtr a1
+#define GAME_SELECT_ROW6_SELECT_PARAMS(a0, a1, a2) Actor *a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW5_SELECT_PARAMS(a0, a1, a2) Actor *a0, OptionState *a1, s32 a2
+#define GAME_SELECT_ROW6_EVENT5_PARAMS(a0, a1, a2) Actor *a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW5_EVENT5_PARAMS(a0, a1, a2) Actor *a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW6_EVENT_PARAMS(a0, a1, a2) s32 a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW6_EVENT3_PARAMS(a0, a1, a2) u8 *a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW5_EVENT_PARAMS(a0, a1, a2) s32 a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW6_OPTION_SET(a0, a1, a2) s32 a0, s32 a1, s32 a2
+#define GAME_SELECT_ROW5_OPTION_SET(a0, a1, a2) BtIntPtr a0, s32 a1, s32 a2
+#endif
 typedef void (*GameSelectEventCallback)(
     BT_PARAM_OR_VOID(BT_PASS2(Actor *, BT_PASS2(void *, BT_PASS2(s32, s32)))));
 typedef s32 (*GameSelectInit)(Actor *);
 typedef void (*GameSelectExit)(BT_PARAM_OR_VOID(void *));
 typedef s32 (*GameSelectChange)(Actor *, s32, s32 *);
 typedef void (*GameSelectOpen)(Actor *, void *, s32, s32);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+typedef s32 (*GameSelectSelect)(Actor *, void *, s32);
+typedef void (*GameSelectEvent5)(Actor *, void *, s32);
+#else
 typedef s32 (*GameSelectSelect)(Actor *, BtIntPtr, s32);
 typedef void (*GameSelectEvent5)(Actor *, s32, s32);
+#endif
 typedef void (*GameSelectEvent3)(Actor *, void *, s32);
 typedef void (*GameSelectGetOption)(Actor *, s32 *);
 typedef struct {

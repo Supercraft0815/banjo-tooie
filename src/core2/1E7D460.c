@@ -560,8 +560,8 @@ int func_800A4C68(void *arg0) {
 /* extern */
 
 s16 *func_800A4C88(void *arg0) {
-    s16 *func_800A93E4(BtIntPtr);
-    return func_800A93E4((((PlayerState *)arg0)->unk184));
+    BtIntPtr func_800A93E4(BtIntPtr);
+    return (s16 *)func_800A93E4((((PlayerState *)arg0)->unk184));
 }
 
 /* extern */

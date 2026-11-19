@@ -9,7 +9,7 @@ void func_80800000_chsmalltrexdoor(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800EEAD4(f32 *, f32 *);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_80101FDC(Actor *, u32);
     f32 func_80103EAC(Actor *);
@@ -42,7 +42,7 @@ void func_80800150_chsmalltrexdoor(Actor *arg0) {
     f32 func_800EEAD4(f32 *, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
     f32 func_800F2094(f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_8010108C();
     f32 sp2C[3];
@@ -71,7 +71,7 @@ void func_80800244_chsmalltrexdoor(Actor *arg0, s32 arg1, s32 arg2) {
     } DoorData;
     s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
     s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     if (((arg1 == 0x1D) || (arg1 == 0x1E)) && (func_800F52B8(func_800F54E4(), arg0->unk0) == 0x18)) {
         ((DoorData *)arg0->actorData)->unk1C = 4.0f;
         _chdoor_entrypoint_1(arg0, 7, 0);

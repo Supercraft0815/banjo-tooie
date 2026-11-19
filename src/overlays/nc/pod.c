@@ -207,13 +207,13 @@ s32 ncpod_entrypoint_5(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3, BtIntPtr a
 
 /* extern */
 
-s32 ncpod_entrypoint_6(s32 arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4) {
+s32 ncpod_entrypoint_6(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0, void *arg1, s32 arg2, s32 arg3, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg4) {
     void func_80101074(void *);
     s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     s32 func_808002E8_ncpod(void *, s32);
     if ((func_808002E8_ncpod((((Objpod_arg1 *)arg1)->unk8), (((Objpod_arg1 *)arg1)->unkC)) != 0) && ((*(u16 *)((s8 *)((((Objpod_arg1 *)arg1)->unk8)) + (0x18))) & 1)) {
         func_80101074((void *)arg4);
-        return func_8010114C((*(s32 *)((s8 *)(arg1) + (8))), arg2, arg3);
+        return func_8010114C(BT_IDO_ONLY((*(s32 *)((s8 *)(arg1) + (8)))) BT_NATIVE_ONLY((BtIntPtr)((Objpod_arg1 *)arg1)->unk8), arg2, arg3);
     }
     return -1;
 }
@@ -620,14 +620,14 @@ s32 ncpod_entrypoint_26(void *arg0, void *arg1, void *arg2, s32 arg3, s32 arg4) 
 
 /* extern */
 
-s32 ncpod_entrypoint_27(s32 arg0, s32 arg1) {
+s32 ncpod_entrypoint_27(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0, s32 arg1) {
     void func_8010F9C0(BtIntPtr, s32);
-    void *func_80110024();
+    BT_IDO_ONLY(void *func_80110024();) BT_NATIVE_ONLY(void *func_80110024(s16 *);)
     s32 ncpod_entrypoint_17(BtIntPtr, s32);
     s32 sp18;
     s32 temp_v0;
 
-    func_80110024();
+    func_80110024(BT_NATIVE_ONLY((s16 *)arg0));
     temp_v0 = ncpod_entrypoint_17(arg0, arg1);
     sp18 = temp_v0;
     func_8010F9C0(arg0, 2);

@@ -126,7 +126,7 @@ void func_80800260_subaddieDll(Actor *arg0, s32 arg1) {
 
 s32 subaddieDll_entrypoint_6(Actor *arg0, s32 arg1) {
     s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     if (func_800F52B8(func_800F54E4(), arg0->unk0) != 0xB) {
         return 1;
     }

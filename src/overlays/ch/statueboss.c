@@ -194,7 +194,7 @@ void func_8080000C_chstatueboss(Actor *arg0) {
     void func_800F49A8(BtIntPtr, s32);
     void func_800F49D4(BtIntPtr, void *, Unk80132ED0 *);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
     u32 func_800FDC28(u32);
@@ -291,7 +291,7 @@ void func_80800298_chstatueboss(Actor *arg0) {
     s32 func_800E15CC(s32, f32, f32);
     void func_800EF1B8(f32 *, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     u32 func_800FDC28(u32);
     s32 func_80101DDC(Actor *);
@@ -508,7 +508,7 @@ s32 func_80800934_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
         u8 unk1CE;
     } StatueBossState;
     void *func_80100094(Actor *, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     s32 func_800D395C(void);
     u32 func_800FDC28(u32);
@@ -1033,7 +1033,7 @@ void func_80801804_chstatueboss(Actor *arg0, s32 arg1) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     int func_800F20BC(f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6438(BtUIntPtr);
     void func_80108B04(Actor *, u32);
     f32 func_8010CD28(Actor *);

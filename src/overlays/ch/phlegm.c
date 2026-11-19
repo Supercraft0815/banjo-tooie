@@ -298,7 +298,7 @@ void func_80800850_chphlegm(Actor *arg0) {
     void func_800DA544(s32 index);
     f32 func_800DC178(f32, f32);
     s32 func_800EFFB4(f32 *, f32, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F55FC(BtIntPtr);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);

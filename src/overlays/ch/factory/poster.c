@@ -25,7 +25,7 @@ void func_8080005C_chfactoryposter(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_800BF744(s32, s32);
     void func_800DA544(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6438(BtUIntPtr);
     void func_800FFAB0(Actor *);

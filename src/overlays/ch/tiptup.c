@@ -355,7 +355,7 @@ void func_80800534_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800578_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_80102424(Actor *, s32);
     void func_808007CC_chtiptup(void *);
@@ -505,7 +505,7 @@ void func_80800934_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_808009B4_chtiptup(Actor *arg0) { void func_800DA544(s32 index); BtUIntPtr func_800F54E4(void); s32 func_80101DDC(Actor *arg0); s32 func_80101E14(Actor *arg0, f32 arg1); f32 func_80101F24(Actor *arg0); void func_80102424(Actor *arg0, s32 arg1); void func_80105854(Actor *arg0); void func_80105A9C(Actor *arg0, f32 arg1); Actor * func_80106790(Unk80132ED0 *arg0); void func_8010A590(Actor *arg0); void _chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2); void _subaddieDll_entrypoint_4(void *arg0, s32 arg1); void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2); s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3); u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4); s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *arg0, s32 arg1, f32 *arg2); f32 func_800F3780(f32 arg0, u8 *arg1, s16 arg2); s32 func_800F4F34(BtUIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3); s32 func_800F52B8(BtIntPtr arg0, Unk80132ED0 *arg1); void func_800F82D4(BtIntPtr arg0,s32 arg1); void func_80800E2C_chtiptup(Actor *arg0); void func_80800E9C_chtiptup(Actor *arg0); Actor *sp44; Actor *sp40; if (_subaddieskeleton_entrypoint_3(arg0->unk0, 4, (f32 *)arg0->actorData)) { _chbadshad_entrypoint_1(arg0, (f32 *)arg0->actorData, 0.8); } switch (arg0->unk70_10) { case 1: return; case 2: func_80800E2C_chtiptup(arg0); if (func_80101DDC(arg0)) { func_80102424(arg0, 3); func_8010A590(arg0); sp44 = func_80106790(arg0->unk3C); func_800F82D4(func_800F54E4(), 0); _subaddiedialog_entrypoint_11(sp44->unk0, 0xFF9, 0xC, sp44->position, 0x54); } break; case 3: case 7: if (func_80101E14(arg0, 0.2f)) { arg0->unk64_19 = (u8)(arg0->unk64_19 ^ 1); if (arg0->unk64_19) { _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801620_chtiptup); } } break; case 4: _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_8080162C_chtiptup, 0.4f); if (func_80101DDC(arg0)) { func_80102424(arg0, 5); _subaddieDll_entrypoint_4(arg0, 1); func_800DA544(0xBE); sp40 = func_80106790(arg0->unk3C); func_80102424(sp40, 3); _subaddieaudioquick_entrypoint_2(sp40, sp40->position, D_80801638_chtiptup); func_80800808_chtiptup(sp40, 3, 1); _subaddiedialog_entrypoint_11(sp40->unk0, 0xFFA, 0x46, sp40->position, 0x54); _subaddieDll_entrypoint_4(sp40, 1); } break; case 5: func_80800E9C_chtiptup(arg0); func_80105A9C(arg0, func_800F3780(func_80101F24(arg0), D_80801644_chtiptup, 3) * 200.0f); func_80105854(arg0); break; case 6: func_80800E2C_chtiptup(arg0); if (func_80101DDC(arg0)) { func_80102424(arg0, 7); } break; } if (func_800F52B8(func_800F54E4(), arg0->unk0) != 1) { func_800F4F34(func_800F54E4(), (f32 *)arg0->actorData, 0.0f, 30.0f); } }
+void func_808009B4_chtiptup(Actor *arg0) { void func_800DA544(s32 index); u32 func_800F54E4(void); s32 func_80101DDC(Actor *arg0); s32 func_80101E14(Actor *arg0, f32 arg1); f32 func_80101F24(Actor *arg0); void func_80102424(Actor *arg0, s32 arg1); void func_80105854(Actor *arg0); void func_80105A9C(Actor *arg0, f32 arg1); Actor * func_80106790(Unk80132ED0 *arg0); void func_8010A590(Actor *arg0); void _chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2); void _subaddieDll_entrypoint_4(void *arg0, s32 arg1); void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2); s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3); u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4); s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *arg0, s32 arg1, f32 *arg2); f32 func_800F3780(f32 arg0, u8 *arg1, s16 arg2); s32 func_800F4F34(BtUIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3); s32 func_800F52B8(BtIntPtr arg0, Unk80132ED0 *arg1); void func_800F82D4(BtIntPtr arg0,s32 arg1); void func_80800E2C_chtiptup(Actor *arg0); void func_80800E9C_chtiptup(Actor *arg0); Actor *sp44; Actor *sp40; if (_subaddieskeleton_entrypoint_3(arg0->unk0, 4, (f32 *)arg0->actorData)) { _chbadshad_entrypoint_1(arg0, (f32 *)arg0->actorData, 0.8); } switch (arg0->unk70_10) { case 1: return; case 2: func_80800E2C_chtiptup(arg0); if (func_80101DDC(arg0)) { func_80102424(arg0, 3); func_8010A590(arg0); sp44 = func_80106790(arg0->unk3C); func_800F82D4(func_800F54E4(), 0); _subaddiedialog_entrypoint_11(sp44->unk0, 0xFF9, 0xC, sp44->position, 0x54); } break; case 3: case 7: if (func_80101E14(arg0, 0.2f)) { arg0->unk64_19 = (u8)(arg0->unk64_19 ^ 1); if (arg0->unk64_19) { _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801620_chtiptup); } } break; case 4: _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_8080162C_chtiptup, 0.4f); if (func_80101DDC(arg0)) { func_80102424(arg0, 5); _subaddieDll_entrypoint_4(arg0, 1); func_800DA544(0xBE); sp40 = func_80106790(arg0->unk3C); func_80102424(sp40, 3); _subaddieaudioquick_entrypoint_2(sp40, sp40->position, D_80801638_chtiptup); func_80800808_chtiptup(sp40, 3, 1); _subaddiedialog_entrypoint_11(sp40->unk0, 0xFFA, 0x46, sp40->position, 0x54); _subaddieDll_entrypoint_4(sp40, 1); } break; case 5: func_80800E9C_chtiptup(arg0); func_80105A9C(arg0, func_800F3780(func_80101F24(arg0), D_80801644_chtiptup, 3) * 200.0f); func_80105854(arg0); break; case 6: func_80800E2C_chtiptup(arg0); if (func_80101DDC(arg0)) { func_80102424(arg0, 7); } break; } if (func_800F52B8(func_800F54E4(), arg0->unk0) != 1) { func_800F4F34(func_800F54E4(), (f32 *)arg0->actorData, 0.0f, 30.0f); } }
 
 /* extern */
 
@@ -543,7 +543,7 @@ s32 func_80800D78_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *other;
     void _subaddieDll_entrypoint_4(void *, s32);
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8300();
     void func_800FC660(u32);
     void func_80102424(Actor *, s32);
@@ -616,7 +616,7 @@ void func_80800FE8_chtiptup(Actor *arg0) {
 #ifndef BT_NATIVE
     void func_800DA544(GameFlag);
 #endif
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
     u8 pad[4];
     BtIntPtr temp_v0;
@@ -680,7 +680,7 @@ s32 func_80801180_chtiptup(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F77E8(BtIntPtr, f32 *);
     void func_800F8300();
     void func_80102424(Actor *, s32);

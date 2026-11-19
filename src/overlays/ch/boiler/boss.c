@@ -66,7 +66,7 @@ void func_80800030_chboilerboss(Actor *arg0) {
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
     s32 func_800FFAB0(BtIntPtr);
@@ -183,7 +183,7 @@ void func_80800324_chboilerboss(Actor *arg0) {
     int func_800DC298(f32);
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
@@ -336,7 +336,7 @@ s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _gcfrontend_entrypoint_10(void);
     s32 func_800D395C(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8300();
     u32 func_800FDC28(u32);
     s32 func_800FFAB0(BtIntPtr);
@@ -1320,7 +1320,7 @@ void func_808024DC_chboilerboss(Actor *arg0) {
 /* extern */
 
 void func_80802538_chboilerboss(BtIntPtr arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     BT_IDO_ONLY(s32 func_800F4AF4(u32, s32);) BT_NATIVE_ONLY(s32 func_800F4AF4(s32, s32);)
     void func_808025DC_chboilerboss(Actor *);
@@ -1339,7 +1339,7 @@ void func_80802538_chboilerboss(BtIntPtr arg0) {
 /* extern */
 
 void func_80802594_chboilerboss(BtIntPtr arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void *func_80100094(Actor *, u32);
     s32 func_800F4B20(BtUIntPtr);
     u8 *sp1C;
@@ -1357,8 +1357,8 @@ void func_808025DC_chboilerboss(Actor *arg0) {
     s32 _plcamera_entrypoint_10(BtIntPtr);
     void _plcamera_entrypoint_9(BtIntPtr, f32 *, f32);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
-    s32 func_800F5EF8(BtIntPtr);
+    u32 func_800F54E4(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80100094(Actor *, u32);
     BtIntPtr func_80110014(s32 *);
     void func_80116088(u8 *, BtIntPtr);

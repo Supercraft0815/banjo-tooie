@@ -136,7 +136,7 @@ void func_80800378_chsilo(Actor *arg0) {
 void func_80800398_chsilo(Actor *arg0, s32 arg1) {
     void func_800F4CC0(BtIntPtr);
     void func_800F4CEC(BtIntPtr, u32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     if (arg1 != 0) {
         if (!arg0->unk74_29) {
             func_800F4CEC(func_800F54E4(), 0x33);
@@ -151,7 +151,7 @@ void func_80800398_chsilo(Actor *arg0, s32 arg1) {
 /* extern */
 
 s32 func_80800420_chsilo(Actor *arg0, s32 arg1) {
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(BtIntPtr, s32);
     if (arg1 != 0) {
         if (!arg0->unk64_19) {
@@ -186,7 +186,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     void func_800C964C(s32);
     s32 func_800DA544(s32);
     void func_800EE7F8(f32 *, f32 *);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F82D4(BtIntPtr, s32);
     void *func_80100094(Actor *, u32);
     s32 func_80102424(u8 *, s32);

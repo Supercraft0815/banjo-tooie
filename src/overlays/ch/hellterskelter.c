@@ -116,7 +116,7 @@ void func_808002E8_chhellterskelter(s32 arg0)
 {
 }
 void func_808002F0_chhellterskelter(Actor *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F6478(BtIntPtr);
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);

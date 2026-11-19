@@ -2924,3 +2924,24 @@ Sanitizertests bestehen. Der Original-IDO-Vergleich umfasst 16.401 Funktionen
 und beide vollständigen ROMs. Die MIPS-Befehle, Speichermessungen und
 Vergleiche liegen unter `build/acceptance/n2-2026-11-18/humba-original-flow*`
 und `humba-live-form/`.
+
+## 2026-11-19 — N3, Kamera, Rucksack und Spielerzustand
+
+Die Kameraabfragen verwenden die ganzzahlige Spielernummer. Controller,
+Bewegungsdaten und Kameraknoten behalten ihre volle Zeigerbreite. Das gilt
+auch für den Kopiervorgang im Auswahlmenü und die Vektor-, Farb- und
+Vertexpuffer beim Zeichnen des Rucksacks. Der Interrupt-Handler liest den
+Zustand über den Spieler und schreibt Anforderung und Antwort in die beiden
+Halbwörter des Zustandsobjekts.
+
+Die nativen Einzeltests prüfen echte Adressen oberhalb von 4 GiB, die
+beiden Menüzeilen, zwei Zeichenaufrufe, den Standardwert des Interrupts und
+alle vier Antworten seines Callbacks. Der LP64-Scan fällt von 766 auf
+730 Warnstellen. 222 Feldzugriffe können sich durch breitere Zeiger
+verschieben. Alle untersuchten Dateien kompilieren für LP64.
+
+Die kanonische Gast-IR stimmt mit dem vorigen Stand überein. Elf Gastsuiten,
+74 Replays mit 447.849 Retraces und 62 Sanitizertests bestehen. Alle 16.401
+Original-IDO-Funktionen und beide ROM-Abbilder sind geprüft. Belege unter
+`build/acceptance/n2-2026-11-18/camera-player-on-humba*`, `on-humba-*`
+und `current-player-interrupt-host/`.

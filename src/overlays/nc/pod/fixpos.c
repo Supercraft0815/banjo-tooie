@@ -80,7 +80,7 @@ s32 func_808001A8_ncpodfixpos(u8 *arg0) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800F5BC4(BtIntPtr arg0, f32 *arg1);
     void func_80103DFC(Actor *, f32 *);

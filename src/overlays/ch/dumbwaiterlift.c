@@ -176,7 +176,7 @@ void func_808003C4_chdumbwaiterlift(Actor *arg0) {
     void _subaddieDll_entrypoint_4(void *, s32);
     s32 func_800EA090(void);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F608C(BtIntPtr, s32);
     void func_800F8294(BtIntPtr, f32 *);
     void func_800F832C(BtIntPtr, f32 *);
@@ -241,7 +241,7 @@ void func_80800608_chdumbwaiterlift(Actor *arg0, void *arg1, s32 arg2, s32 arg3)
     s32 _capod_entrypoint_21(BtIntPtr, BtIntPtr, s32, s32);
     void _subaddieDll_entrypoint_4(void *, s32);
     void func_800EE7F8(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void func_800F8444(BtIntPtr, f32 *);
     void func_80101FDC(Actor *, u32);
@@ -398,7 +398,7 @@ void func_80800A8C_chdumbwaiterlift(Actor *arg0) {
     void _gcdialogcamera_entrypoint_8();
     void _subaddieDll_entrypoint_4(void *, s32);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F8444(BtIntPtr, f32 *);
     f32 sp24[3];
 

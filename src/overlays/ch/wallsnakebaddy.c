@@ -4,7 +4,7 @@ void func_80800000_chwallsnakebaddy(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     f32 func_800D8FF8(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_800F5F7C(BtUIntPtr);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);

@@ -96,7 +96,7 @@ void func_80800194_chkingjinjo(Actor *arg0) {
     s32 func_800DC128(s32, s32);
     f32 func_800DC178(f32, f32);
     s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_80101DDC(Actor *);
@@ -223,7 +223,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F49A8(BtIntPtr, s32);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A58(BtIntPtr, f32 *, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_801015D0(Actor *);
     void func_80102424(Actor *, s32);
     BT_IDO_ONLY(void func_801032B0(void *, u16, u16);) BT_NATIVE_ONLY(s32 func_801032B0(Actor *, u16, u16);)

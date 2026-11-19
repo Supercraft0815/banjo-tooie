@@ -21,7 +21,7 @@ s32 func_80800050_chfantasycannon(s32 bt_a0) {
 #else
 s32 func_80800050_chfantasycannon(void) {
 #endif
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64DC(BtIntPtr);
     s32 func_8010C500();
     if (func_8010C500() == 0) {
@@ -36,7 +36,7 @@ s32 func_80800050_chfantasycannon(void) {
 void func_808000A4_chfantasycannon(void) {
     BtIntPtr func_800B5BE4(s32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32[3]);
     extern s32 D_80800CF8_chfantasycannon[14];
     f32 sp2C[3];
@@ -107,7 +107,7 @@ void func_80800228_chfantasycannon(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F4CC0(BtIntPtr);
     void func_800F4CEC(BtIntPtr, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6C5C(BtIntPtr);
     void func_800F7B9C(BtIntPtr arg0,u32 a1);
     void func_800F8294(BtIntPtr arg0,f32* a1);
@@ -204,12 +204,12 @@ s32 func_80800544_chfantasycannon(Actor *arg0, s32 arg1) {
     void func_800EEC30(f32 *, f32, f32, f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
-    s32 func_800F5EF8(BtIntPtr);
+    u32 func_800F54E4(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     int func_800F78EC(BtIntPtr, f32 *, f32, f32);
     void func_800F8294(BtIntPtr arg0,f32* a1);
     void *func_80100094(Actor *, u32);
-    void func_8010FFB0(s32, f32 *, f32 *);
+    void func_8010FFB0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32 **), f32 *, f32 *);
     f32 *sp84;
     f32 sp78[3];
     f32 sp6C[3];
@@ -243,7 +243,7 @@ s32 func_80800544_chfantasycannon(Actor *arg0, s32 arg1) {
             }
         }
         _subaddieDll_entrypoint_4(arg0, 1);
-        func_8010FFB0(func_800F5EF8(func_800F54E4()), sp6C, sp78);
+        func_8010FFB0(BT_NATIVE_ONLY((f32 **)) func_800F5EF8(func_800F54E4()), sp6C, sp78);
         _capod_entrypoint_2(arg0->unk0, 0x2D, 0x10804);
         _capod_entrypoint_8(0);
         _capod_entrypoint_1(sp6C, sp78);
@@ -304,7 +304,7 @@ void func_808008B0_chfantasycannon(Actor *arg0) {
     void func_800A516C(f32 *, f32 *, f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     f32 sp4C[3];

@@ -7,7 +7,7 @@ void func_80800000_chfactorytrashbelt(Actor *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F48BC(BtIntPtr, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6C5C(BtIntPtr);
     extern u32 D_808005C0_chfactorytrashbelt[5];

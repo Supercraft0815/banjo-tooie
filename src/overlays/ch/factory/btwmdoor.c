@@ -3,7 +3,7 @@
 /* extern */
 
 void func_80800000_chfactorybtwmdoor(Actor *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_8010C500(Actor *);
     *(f32 *)&arg0->actorData[7] = arg0->position[1];
@@ -23,7 +23,7 @@ void func_80800068_chfactorybtwmdoor(Actor *arg0) {
     s32 func_800D90A4(f32 *);
     int func_800D91EC(f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     f32 func_80103EF4(Actor *);

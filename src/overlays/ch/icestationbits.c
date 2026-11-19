@@ -28,7 +28,7 @@ void func_80800018_chicestationbits(BtIntPtr arg0) {
 s32 func_80800050_chicestationbits(s32 arg0, s32 arg1, s32 arg2) {
     s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
     void _glcutDll_entrypoint_6(u32, u32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     int func_800F6B94(BtIntPtr);
     s32 result;
 

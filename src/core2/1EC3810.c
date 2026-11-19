@@ -394,7 +394,7 @@ void func_800EA51C(void) {
 
 s32 func_800EB15C(void *arg0) {
     s32 func_800D3948(void);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6774(BtUIntPtr);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     s32 func_80102F74(Unk80132ED0 *, s32);

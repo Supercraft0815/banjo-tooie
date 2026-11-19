@@ -114,7 +114,7 @@ s32 func_8080023C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800DF6BC(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F77E8(BtIntPtr, f32 *);
     void func_800F8300(BtIntPtr, s32, f32 *);
     void *func_80100094(Actor *, u32);
@@ -225,7 +225,7 @@ void func_808005C4_chterryegg(Actor *arg0) {
     void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     void func_800EFD24(f32 *);
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);

@@ -1,6 +1,6 @@
 #include "quiz_tables.h"
 
-BtUIntPtr func_800F54E4(void);
+u32 func_800F54E4(void);
 
 
 void func_80105834(Actor *);
@@ -596,12 +596,12 @@ void func_80800F34_chquiz(s32 *arg0, void *arg1) {
     s32 _ncpod_entrypoint_16(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_800A89F8();
     s32 func_800A9478(s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void func_8010FD88(u8 *arg0);
     void *func_80110024(s16 *);
     s32 func_80801170_chquiz(s32 *, void *);
     BtIntPtr sp1C;
-    s32 temp_v0;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800F5EF8(func_800A9478(func_800A89F8()));
     sp1C = temp_v0;
@@ -617,12 +617,12 @@ void func_80800F34_chquiz(s32 *arg0, void *arg1) {
 
 void func_80800FBC_chquiz(BtIntPtr arg0) {
     s32 _ncpod_entrypoint_17(BtIntPtr, s32);
-    s32 _ncpod_entrypoint_18(s32);
+    s32 _ncpod_entrypoint_18(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr));
     s32 func_800A89F8();
     s32 func_800A9478(s32);
-    s32 func_800F5EF8(BtIntPtr);
-    s32 sp1C;
-    s32 temp_v0;
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
+    BtIntPtr sp1C;
+    BtIntPtr temp_v0;
 
     temp_v0 = func_800F5EF8(func_800A9478(func_800A89F8()));
     sp1C = temp_v0;
@@ -661,7 +661,7 @@ void func_80801058_chquiz(Actor *arg0, QuizCamera *data, f32 arg2, s8 arg3, s8 a
     s32 _ncpod_entrypoint_13(BtIntPtr);
     s32 func_800A89F8();
     s32 func_800A9478(s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void func_800EE7F8(f32 *, f32 *);
     void func_8010FFB0(s32 *, f32 *, f32 *);
     void *func_80110024(s16 *);
@@ -707,7 +707,7 @@ s32 func_80801170_chquiz(s32 *arg0, void *arg1) {
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     void func_800F16AC(u8 *, f32 *, f32 *, f32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80110024(s16 *);
     f32 position[3];
     f32 rotation[3];
@@ -772,7 +772,7 @@ s32 func_80801408_chquiz(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
     s32 _ncpod_entrypoint_20(BtIntPtr, BtIntPtr, s32, s32);
     s32 func_800A89F8();
     s32 func_800A9478(s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     s32 temp_v0;
 
     temp_v0 = _ncpod_entrypoint_20(func_800F5EF8(func_800A9478(func_800A89F8())), (BtIntPtr) arg0->unk0, arg2, arg3 | 0x20);
@@ -786,7 +786,7 @@ void func_80801470_chquiz(BtIntPtr arg0, u8 *arg1) {
     s32 _ncpod_entrypoint_12(BtIntPtr, s32);
     s32 func_800A89F8();
     s32 func_800A9478(s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void func_8010FFB0(s32 *, f32 *, f32 *);
     void *func_80110024(s16 *);
     if ((*(u8 *)((s8 *)(arg1) + (0x5C))) == 4) {
@@ -799,7 +799,7 @@ void func_80801470_chquiz(BtIntPtr arg0, u8 *arg1) {
 s32 func_808014F8_chquiz(s32 arg0, s32 arg1) {
     s32 func_800A89F8();
     s32 func_800A9478(s32);
-    s32 func_800F5EF8(BtIntPtr);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800F5EF8(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(u32));
     void *func_80110024(s16 *);
     s32 _ncpod_entrypoint_15(BtIntPtr, s32, s32);
     return _ncpod_entrypoint_15(func_80110024(func_800F5EF8(func_800A9478(func_800A89F8()))), arg0, arg1);

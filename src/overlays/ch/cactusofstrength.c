@@ -173,7 +173,7 @@ void func_808003EC_chcactusofstrength(void *arg0) {
 
 s32 func_80800440_chcactusofstrength(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *_subaddiefind_entrypoint_0(f32 *, s32, s32, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_800FFAB0(Actor *);
     void func_808004F8_chcactusofstrength(Actor *, s32);
@@ -207,7 +207,7 @@ void func_808004F8_chcactusofstrength(Actor *arg0, s32 arg1) {
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     s32 func_800CEAA8(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC618(s32, s32);
     void func_80101FDC(Actor *, u32);

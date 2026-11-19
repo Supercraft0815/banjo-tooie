@@ -155,7 +155,7 @@ void bs_setState(PlayerState *self, BanjoStateId nextState) {
         }
         self->state->previous = self->state->current;
         self->state->current = self->state->next;
-        self->state->next = NULL;
+        self->state->next = BS_STATE_0_INVALID;
         if (func_8009CAF8(self, self->state->current) != NULL) {
             func_8009CAF8(self, self->state->current)(self);
         }
@@ -178,7 +178,7 @@ s32 func_8009E6C4(PlayerState *arg0, s32 arg1) {
 }
 
 s32 func_8009E6EC(PlayerState *self) {
-    return self->state->unkC;
+    return self->state->interrupt_id;
 }
 
 s32 bs_getCurrentState(PlayerState *self) {
@@ -195,40 +195,40 @@ s32 bs_getPreviousState(PlayerState *self) {
 
 /* extern */
 
-s32 func_8009E71C(void *arg0, s32 arg1) {
+s32 func_8009E71C(PlayerState *arg0, s32 arg1) {
     s16 func_8009CBDC(PlayerState *arg0, s32 arg1);
-    return func_8009CBDC(arg0, (*(s32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x120)))) + (4)))) == arg1;
+    return func_8009CBDC(arg0, arg0->state->current) == arg1;
 }
 
 s32 func_8009E74C(PlayerState *arg0, s32 arg1) {
     s16 func_8009CBDC(PlayerState *arg0, s32 arg1);
-    return func_8009CBDC((BtIntPtr)arg0, arg0->state->next) == arg1;
+    return func_8009CBDC(arg0, arg0->state->next) == arg1;
 }
 
 s32 func_8009E77C(PlayerState *arg0, s32 arg1) {
     s16 func_8009CBDC(PlayerState *arg0, s32 arg1);
-    return func_8009CBDC((BtIntPtr)arg0, arg0->state->previous) == arg1;
-}    typedef struct { u8 pad0[0x120]; void * unk120; } Obj1E77A20_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+    return func_8009CBDC(arg0, arg0->state->previous) == arg1;
+}
 
-void func_8009E7AC(void *arg0) {
-    (*(s32 *)((s8 *)((((Obj1E77A20_arg0 *)arg0)->unk120)) + (0))) = 0;
-    (*(s32 *)((s8 *)((((Obj1E77A20_arg0 *)arg0)->unk120)) + (4))) = 0;
-    (*(s32 *)((s8 *)((((Obj1E77A20_arg0 *)arg0)->unk120)) + (8))) = 0;
+void func_8009E7AC(PlayerState *arg0) {
+    arg0->state->previous = BS_STATE_0_INVALID;
+    arg0->state->current = BS_STATE_0_INVALID;
+    arg0->state->next = BS_STATE_0_INVALID;
 }
 
 s32 func_8009E7C8(PlayerState *arg0, s32 arg1) {
     void (*func_8009CB44(PlayerState *, s32))(PlayerState *);
 
-    (*(s16 **)((u8 *)arg0 + 0x120))[6] = arg1;
-    (*(s16 **)((u8 *)arg0 + 0x120))[7] = 1;
+    arg0->state->interrupt_id = arg1;
+    arg0->state->interrupt_result = 1;
     if (func_8009CB44(arg0, arg0->state->current) != NULL) {
         func_8009CB44(arg0, arg0->state->current)(arg0);
     }
-    return (*(s16 **)((u8 *)arg0 + 0x120))[7];
+    return arg0->state->interrupt_result;
 }
 
 void func_8009E830(PlayerState *arg0, s32 arg1) {
-    (*(s16 **)((u8 *)arg0 + 0x120))[7] = arg1;
+    arg0->state->interrupt_result = arg1;
 }
 
 /* extern */
@@ -237,7 +237,7 @@ void func_8009E83C(PlayerState *arg0) {
     void (*func_8009CB90(PlayerState *, s32))(PlayerState *);
     void (*temp_v0)(PlayerState *);
 
-    temp_v0 = func_8009CB90(arg0, (*(s32 *)((s8 *)arg0->state + 4)));
+    temp_v0 = func_8009CB90(arg0, arg0->state->current);
     if (temp_v0 != NULL) {
         temp_v0(arg0);
     }

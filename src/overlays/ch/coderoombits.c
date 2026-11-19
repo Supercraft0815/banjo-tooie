@@ -39,7 +39,7 @@ void func_80800058_chcoderoombits(Actor *arg0) {
     void func_800F4A8C(BtIntPtr, f32 *, f32);
     s32 func_800F52B8(BtIntPtr, Unk80132ED0 *);
     PlayerState *func_800F53D0(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F5C94(BtIntPtr);
     s32 func_800F6478(BtIntPtr);
@@ -123,7 +123,7 @@ s32 func_8080033C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
     s32 *func_800BEC10(void);
     void func_800DBEFC(s32 *, s32, f32 *);
     PlayerState *func_800F53D0(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7CF4(BtIntPtr, s32, void *);
     void func_80101FDC(Actor *, u32);
     void func_8080040C_chcoderoombits(Actor *, s32, s32);
@@ -153,7 +153,7 @@ s32 func_8080033C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_8080040C_chcoderoombits(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _susubgame_entrypoint_4(void *, BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
@@ -203,7 +203,7 @@ s32 func_8080052C_chcoderoombits(Actor *arg0, u8 *arg1) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA298(s32);
     void func_800DA544(s32 index);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC660(u32);
     s32 func_8080077C_chcoderoombits(Actor *, struct CodeRoomBit *);
@@ -296,7 +296,7 @@ s32 func_8080077C_chcoderoombits(Actor *arg0, struct CodeRoomBit *arg1) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800D3F2C(s32);
     void func_800DA544(s32 index);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void func_800FC660(u32);
     s32 func_80800FDC_chcoderoombits(void);

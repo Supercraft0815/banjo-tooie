@@ -61,7 +61,7 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
     void func_800EFB24(f32 *, f32 *, f32 *);
     f32 func_800F1DF4(f32 *, f32 *);
     s32 func_800F4F34(BtUIntPtr arg0, f32 *arg1, f32 arg2, f32 arg3);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     BT_IDO_ONLY(f32 func_800F5628(BtIntPtr);) BT_NATIVE_ONLY(s32 func_800F5628(BtIntPtr);)
     s32 func_800F56AC(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);
@@ -333,7 +333,7 @@ s32 func_80800DBC_chquicksandbaddy(Actor *arg0) {
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);
     s32 func_800D90A4(f32 *);
     f32 func_800EEB40(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     Unk80132ED0 *func_800F55D0(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6C5C(BtIntPtr);

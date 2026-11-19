@@ -78,7 +78,7 @@ void func_80800194_chweldarbossdoors(Actor *arg0) {
     void _chdoormake_entrypoint_8(void *, u32);
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_80101FDC(Actor *, u32);
     s32 var_a0;

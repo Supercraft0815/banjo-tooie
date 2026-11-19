@@ -362,7 +362,7 @@ s32 func_800F424C(void *arg0) {
     s32 func_8008E974(u8 *);
     s32 func_8009E674(struct player_state_s *, s32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6D24(BtIntPtr);
     int func_800F8004(BtIntPtr);
     BtIntPtr temp_v0;

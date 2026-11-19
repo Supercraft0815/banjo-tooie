@@ -150,7 +150,7 @@ f32 func_80800360_chbanjoctrl(f32 arg0) {
 void func_808003F8_chbanjoctrl(Actor *arg0) {
     s32 _chhotwaterpoolbits_entrypoint_5(BtIntPtr, s32);
     void func_800EFCD8(f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6478(BtIntPtr);
     s32 func_800F6C5C(BtIntPtr);
     s32 func_800F7D90(BtIntPtr, s32, void *, s32);
@@ -184,7 +184,7 @@ void func_808003F8_chbanjoctrl(Actor *arg0) {
 
 s32 chbanjoctrl_entrypoint_1(s32 arg0) {
     s32 _chhotwaterpoolbits_entrypoint_5(BtIntPtr, s32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7B9C(BtIntPtr, s32);
     if (func_800F7B9C(func_800F54E4(), 0x51) == 2) {
         _chhotwaterpoolbits_entrypoint_5(arg0, 0x3F800000);
@@ -196,7 +196,7 @@ s32 chbanjoctrl_entrypoint_1(s32 arg0) {
 void func_80800544_chbanjoctrl(BtIntPtr arg0) {
     void func_800C4AF0(f32 *, void *);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7620(BtIntPtr, f32, f32, f32);
     extern f32 D_808012C4_chbanjoctrl[];
     extern f32 D_808012D4_chbanjoctrl[];
@@ -219,7 +219,7 @@ void func_80800544_chbanjoctrl(BtIntPtr arg0) {
 /* extern */
 
 s32 chbanjoctrl_entrypoint_2(s32 arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F798C(BtIntPtr, s32, s32);
     void func_80800544_chbanjoctrl(BtIntPtr);
     if (func_800F798C(func_800F54E4(), 0xD, 3) != 0) {
@@ -247,7 +247,7 @@ void func_80800684_chbanjoctrl(void *arg0, f32 arg1, BtIntPtr arg2, BtIntPtr arg
 /* extern */
 
 int func_808006A8_chbanjoctrl(void *arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F6DA0(BtIntPtr);
     s32 func_800F6E40(BtIntPtr);
@@ -301,7 +301,7 @@ s32 func_808007D8_chbanjoctrl(u8 *arg0) {
 }
 
 s32 func_80800824_chbanjoctrl(BtIntPtr arg0, BtIntPtr arg1) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F5D70(BtIntPtr, f32 *);
     int func_800F6720(BtIntPtr);
     s32 func_800F7B9C(BtIntPtr, s32);
@@ -335,7 +335,7 @@ s32 func_8080091C_chbanjoctrl(BtIntPtr arg0, BtIntPtr arg1) {
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     void func_800EFD24(f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F586C(BtIntPtr, f32 *, f32 *);
     int func_800F6720(BtIntPtr);
     int func_800F7700(BtIntPtr, s32, f32 *);
@@ -388,7 +388,7 @@ BT_NATIVE_ONLY(return 0;) }
 /* extern */
 
 void func_80800ADC_chbanjoctrl(BtIntPtr arg0) {
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_80800824_chbanjoctrl(BtIntPtr, BtIntPtr);
     s32 func_8080091C_chbanjoctrl(BtIntPtr, BtIntPtr);
     BtIntPtr sp1C;
@@ -403,7 +403,7 @@ void func_80800ADC_chbanjoctrl(BtIntPtr arg0) {
 void func_80800B18_chbanjoctrl(Actor *arg0) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     s32 func_800F5410(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     void func_800F7814(BtIntPtr, f32 *);
     s32 func_800F7E3C(BtIntPtr, s32);
     f32 mlAbsF(f32);
@@ -436,13 +436,13 @@ void func_80800B18_chbanjoctrl(Actor *arg0) {
     func_800F7814(player, position);
 }
 
-/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { BtUIntPtr func_800F54E4(void); BT_IDO_ONLY(s32 func_800F8418(BtIntPtr, u8 *, u8 *);) BT_NATIVE_ONLY(void func_800F8418(BtIntPtr, f32 *);) f32 temp_f0; temp_f0 = (((Actor *)arg0)->position[1]); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; BT_IDO_ONLY(func_800F8418(func_800F54E4(), arg0 + 0x18, arg0);) BT_NATIVE_ONLY(func_800F8418(func_800F54E4(), (f32 *)(arg0 + 0x18));) } }
+/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { u32 func_800F54E4(void); BT_IDO_ONLY(s32 func_800F8418(BtIntPtr, u8 *, u8 *);) BT_NATIVE_ONLY(void func_800F8418(BtIntPtr, f32 *);) f32 temp_f0; temp_f0 = (((Actor *)arg0)->position[1]); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; BT_IDO_ONLY(func_800F8418(func_800F54E4(), arg0 + 0x18, arg0);) BT_NATIVE_ONLY(func_800F8418(func_800F54E4(), (f32 *)(arg0 + 0x18));) } }
 
 /* extern */
 
 void func_80800D50_chbanjoctrl(u8 *arg0) {
     s32 func_800D90A4(BtIntPtr);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F56AC(BtIntPtr);
     s32 func_800F6C5C(BtIntPtr);
     s32 func_800F6DA0(BtIntPtr);
@@ -457,7 +457,7 @@ void func_80800DF8_chbanjoctrl(u8 *arg0) {
     s32 func_800C696C(f32 *, f32, f32, s32, f32 *);
     void func_800EEB9C(f32 *, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     Unk80132ED0 *func_800F55D0(BtIntPtr);
     s32 func_800F56AC(BtIntPtr);
     s32 func_800F6438(BtUIntPtr);
@@ -526,7 +526,7 @@ void func_8080102C_chbanjoctrl(Actor *arg0) {
 
 void func_80801088_chbanjoctrl(Actor *arg0) {
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     int func_800F6720(BtIntPtr);
     BtIntPtr sp1C;
 

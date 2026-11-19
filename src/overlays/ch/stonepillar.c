@@ -463,7 +463,7 @@ void func_80800CC8_chstonepillar(Actor *arg0, s32 arg1) {
     s32 func_800D0B68(u32, u32);
     s32 func_800DA298(s32);
     void func_800DA544(s32 index);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
     int func_80800DD8_chstonepillar(Actor *);
@@ -517,7 +517,7 @@ void func_80800E30_chstonepillar(Actor *arg0) {
     void func_800DA524(s32 index);
     void func_800DA544(s32 index);
     void func_800DA7A8(s32 startIndex, s32 set, s32 length);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6CC8(BtIntPtr);
     s32 func_800F7F98(BtIntPtr, u32);
     void *func_80100094(Actor *, u32);
@@ -608,7 +608,7 @@ void func_808010CC_chstonepillar(BtIntPtr arg0) {
     void _glcutDll_entrypoint_6(u32, u32);
     s32 func_800DA298(s32);
     s32 func_800EA05C();
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F6CC8(BtIntPtr);
     if ((func_800DA298(0x9D9) == 0) && (func_800EA05C() != 0xB9) && (func_800F6CC8(func_800F54E4()) == 0)) {
         _glcutDll_entrypoint_6(0xB9, 0xB);

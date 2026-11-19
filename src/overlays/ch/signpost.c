@@ -16,7 +16,7 @@ void func_8080000C_chsignpost(Actor *arg0) {
 void func_80800058_chsignpost(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800DA544(s32 index);
-    BtUIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     s32 func_800F4B8C(BtUIntPtr, u32, s32);
     s32 func_8010CAC0(f32 *, u32);
     int func_8010CD88(Actor *, f32, f32);

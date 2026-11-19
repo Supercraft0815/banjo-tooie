@@ -31,7 +31,7 @@ void func_80800024_chfactoryrobot(void *arg0) {
     func_80105010();
 }
 
-BtUIntPtr func_800F54E4(void);
+u32 func_800F54E4(void);
 
 void func_80800058_chfactoryrobot(Actor *arg0) {
     s32 func_800D9078(f32 *arg0);

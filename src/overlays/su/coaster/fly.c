@@ -63,7 +63,7 @@ void sucoasterfly_entrypoint_3(Actor *arg0) {
     f32 func_800F1DCC(f32, f32);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
     int func_800F20BC(f32, f32, f32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_800F5BF0(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80101D7C(Actor *);
@@ -515,7 +515,7 @@ void func_80801108_sucoasterfly(Unk80132ED0 *arg0, Unk80132ED0 *arg1, s32 arg2) 
     void func_800EC370(void **, void *);
     f32 func_800EC708(Unk80132ED0 *);
     s32 func_800F0E28(s32, s32);
-    BtIntPtr func_800F54E4(void);
+    u32 func_800F54E4(void);
     f32 func_800F5F24(BtUIntPtr);
     s32 func_800F6C1C(s32);
     s32 func_800F70EC(s32);
@@ -830,7 +830,7 @@ void func_808019A0_sucoasterfly(Actor *arg0) {
 /* extern */
 
 void func_80801A80_sucoasterfly(BtIntPtr arg0) {
-    BtIntPtr func_800F54E4();
+    u32 func_800F54E4(void);
     f32 func_800F5BF0(BtIntPtr, f32 *);
     func_800F5BF0(func_800F54E4(), (f32 *)(arg0 + 0x18));
 }
