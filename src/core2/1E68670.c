@@ -322,14 +322,14 @@ void func_8008F6B8(struct player_state_s *player, s32 actor_id) {
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008F748(s32 arg0, s32 arg1, BtIntPtr arg2) {
+void func_8008F748(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct player_state_s *) arg0, s32 arg1, BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(Actor *) arg2) {
     void *_gccubesearch_entrypoint_0(s32 actor_id, Actor *actor);
     void _gspropctrl_entrypoint_11(void *arg0, void *arg1);
-    s32 func_800A3514(s32, s32 *);
-    s32 sp1C[3];
+    BT_IDO_ONLY(s32 func_800A3514(s32, s32 *);) BT_NATIVE_ONLY(void func_800A3514(struct player_state_s *, f32 *);)
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32) sp1C[3];
 
     _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_0(arg1, arg2), sp1C);
-    BT_NATIVE_ONLY(return) func_800A3514(arg0, sp1C);
+    func_800A3514(arg0, sp1C);
 }
 
 /* extern */

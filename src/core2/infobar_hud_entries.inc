@@ -64,7 +64,8 @@ HudInfoEntry D_80123880[48] BT_DATA(4, hud_info_entries, 0) = {
 
 s8 D_80123DC0[10] BT_DATA(1, hud_info_entries, 0x540) = {21, 17, 13, 10, 7, 5, 3, 2, -1, -1};
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
+void _scinfobar_entrypoint_1(void *, s32);
 void _scinfobar_entrypoint_3(void *, s32);
 void _scinfobar_entrypoint_8(u32 *, s32);
 #define HUD_STYLE(handle, style) _scinfobar_entrypoint_3((handle), (style))

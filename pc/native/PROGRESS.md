@@ -2803,3 +2803,22 @@ Der aktualisierte Fremdsymbolbericht auf dem Stand des N1-Kamerapakets
 umfasst alle 74 Replays. Von 6.151 instrumentierten Stellen greifen
 1.549 in ein benachbartes Symbol. Die 82 Gruppen und die Einzelzugriffe
 stehen in `build/acceptance/n1-2026-11-18/current-six-camera-source/build/ilp32-xsym/`.
+
+## 2026-11-19 — N2, Spielervektoren und HUD-Stil
+
+Sieben Spielerfunktionen lesen und schreiben jeweils drei Gleitkommazahlen
+im Kontaktzustand. Der neue LP64-Test prüft die drei schreibbaren Felder und
+den vierten Lesezugriff über die tatsächliche Kopierfunktion. Die HUD-Einträge
+geben ihren Stil auch unter ILP32 beim Zeichnen und Freigeben weiter.
+
+Auf dem separaten Diagnosestand mit weiteren vorläufigen Aufrufkorrekturen
+lieferte die HUD-Korrektur ohne FixCalls wieder vollständige Referenzläufe
+für die Eingänge von Mayahem Temple und Jolly Roger’s Lagoon. Den früheren
+Bildfehler bei Retrace 1.854 reproduziert dort gezielt der Aufruf von
+`scinfobar_entrypoint_3` ohne Stil. Drei Humba-Fälle liefen nach der
+Vektorkorrektur bis zum Ende und wichen bei Retrace 4.842 in der Position ab.
+Der reguläre Build besteht alle elf Gastsuiten, 74 Replays mit 447.849
+Retraces und 62 native Sanitizertests. Alle 16.401 Original-IDO-Funktionen
+und beide ROM-Abbilder stimmen überein. Belege liegen unter
+`build/acceptance/n2-2026-11-18/current-contact-hud*` und in
+`save-switch-minimal-sites.json` und `oracle-hud-forward.jsonl` daneben.

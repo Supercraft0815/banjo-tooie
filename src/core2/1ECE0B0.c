@@ -1977,14 +1977,14 @@ void func_800F8358(s32 arg0, s32 arg1) {
     _baduo_entrypoint_7(D_80135490.players[arg0], 3);
 }
 
-void func_800F838C(s32 arg0 BT_PASS2(, BT_PASS2(s32 bt_a1, s32 bt_a2)))
+void func_800F838C(s32 arg0 BT_PASS2(, BT_PASS2(s32 actor_id, Actor *actor)))
 {
-    func_8008F748(D_80135490.players[arg0] BT_PASS2(, BT_PASS2(bt_a1, bt_a2)));
+    BT_NATIVE_ONLY(void func_8008F748(PlayerState *, s32, Actor *);) func_8008F748(D_80135490.players[arg0] BT_PASS2(, BT_PASS2(actor_id, actor)));
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F83B8(s32 arg0 BT_PASS2(, s32 bt_a1))
+void func_800F83B8(s32 arg0 BT_PASS2(, f32 *source))
 {
-    BT_NATIVE_ONLY(return) func_800A3514(D_80135490.players[arg0] BT_PASS2(, bt_a1));
+    func_800A3514(D_80135490.players[arg0] BT_PASS2(, source));
 }
 
 void func_800F83E4(BtIntPtr arg0, f32 arg1) {

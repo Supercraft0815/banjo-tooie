@@ -42,7 +42,7 @@ init_entries:
 
 void func_800FA130(s32 arg0, s32 arg1) {
     void *_scinfobar_entrypoint_0(s32 arg0, s32 arg1, s32 arg2);
-    BT_LP64_ONLY(void _scinfobar_entrypoint_1(void *, s32);) BT_ILP32_ONLY(s32 _scinfobar_entrypoint_1(s32);) BT_IDO_ONLY(s32 _scinfobar_entrypoint_1(s32);)
+    BT_IDO_ONLY(s32 _scinfobar_entrypoint_1(s32);)
     void _scinfobar_entrypoint_6(BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(s32), s32);
     extern HudInfoEntry D_80123880[48];
 
@@ -211,7 +211,7 @@ void func_800FA608(void)
   extern s8 D_80123DC0[10];
   BtIntPtr new_var;
   HudInfoEntry *var_s0;
-  BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(s32) temp_a0;
+  BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) temp_a0;
  var_s0 = D_80123880; do { temp_a0 = var_s0->handle;
     if (temp_a0 != 0)
     {
@@ -225,11 +225,11 @@ void func_800FA608(void)
 
 void func_800FA660(BT_PARAM_OR_VOID(BT_PASS2(s32 bt_a0, s32 bt_a1)))
 {
-  BT_LP64_ONLY(void _scinfobar_entrypoint_1(void *, s32);) BT_ILP32_ONLY(s32 _scinfobar_entrypoint_1(s32);) BT_IDO_ONLY(s32 _scinfobar_entrypoint_1(s32);)
+  BT_IDO_ONLY(s32 _scinfobar_entrypoint_1(s32);)
   extern s8 D_80123DC0[10];
   extern HudInfoEntry D_80123880[48];
   HudInfoEntry *var_s0;
-  BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(s32) temp_a0;
+  BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) temp_a0;
  var_s0 = D_80123880; do {
     temp_a0 = var_s0->handle;
     if (temp_a0 != 0)

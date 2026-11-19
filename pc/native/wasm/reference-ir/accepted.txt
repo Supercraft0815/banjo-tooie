@@ -273,3 +273,12 @@ the blue channel in the call delay slot. func_80103AC0 passes the model
 ID with lhu in its delay slot. These explain the four sign-extension
 changes in n2-2026-11-18/current-graphics-ir.log. Each instruction is
 recorded in graphics-width-mips.txt.
+
+2026-11-19  N2 player contact vector results
+func_8008F748, func_80090768 and func_800F83B8 forward to void setters.
+func_800A32C4, func_800A33CC and func_800A3514 copy three floats using
+func_800EE7F8. The MIPS copy uses its two argument registers for the
+addresses and only floating-point registers for the three values. The
+six changed IR bodies drop an unused artificial integer result. The
+74 reference traces and the native vector test match. See
+n2-2026-11-18/current-contact-hud-ir.log and current-contact-hud-ido/.

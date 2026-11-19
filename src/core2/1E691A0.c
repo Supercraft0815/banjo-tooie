@@ -419,9 +419,9 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090734(s32 arg0,f32* arg1)
     BT_NATIVE_ONLY(return) func_800F8300(func_800F54E4(),arg0,arg1);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80090768(s32 arg0)
+void func_80090768(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32 *) arg0)
 {
-    BT_NATIVE_ONLY(return) func_800F83B8(func_800F54E4(),arg0);
+    BT_NATIVE_ONLY(void func_800F83B8(s32, f32 *);) func_800F83B8(func_800F54E4(),arg0);
 }
 
 void func_80090794(BtIntPtr arg0)

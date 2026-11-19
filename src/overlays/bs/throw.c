@@ -46,7 +46,7 @@ void bsthrow_entrypoint_1(void *arg0) {
     void bs_setState(void *self, s32 nextState);
     Unk80132ED0 *_bahold_entrypoint_5(void *);
     void _bahold_entrypoint_6(void *arg0, BtIntPtr arg1);
-    void func_800A33CC(void *, f32 *);
+    void func_800A33CC(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(PlayerState *), f32 *);
     s32 sp4C;
     s32 sp48;
     f32 sp3C[3];

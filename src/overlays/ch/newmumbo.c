@@ -434,7 +434,7 @@ void func_8080092C_chnewmumbo(Actor *arg0) {
     s32 func_80090248(void);
     s32 func_800902E4(f32 *, f32, s32, Actor **);
     void func_80090658(s32);
-    s32 func_80090768(f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_80090768(f32 *);
     s32 func_80090818(void);
     s32 func_800C0638(void);
     BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)

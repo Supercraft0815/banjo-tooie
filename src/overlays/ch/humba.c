@@ -495,7 +495,7 @@ void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
     Unk80132ED0 *func_8008FDEC(void);
     void func_80090658(s32);
     void func_80090708(s32);
-    s32 func_80090768(f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_80090768(f32 *);
     s32 func_800907EC(s32);
     s32 func_8009EA2C(void);
     void func_8009EAAC(s32);

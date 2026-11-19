@@ -1,5 +1,5 @@
 #include "core2/1E7BFA0.h"
-
+#include "player_contact_vectors.inc"
 s32 func_800A26B0() 
 {
     return 0xC;
@@ -427,9 +427,9 @@ f32 func_800A3298(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x48))) - func_800964DC();
 }
 
-/* Single line: IDO schedules this prologue by source line. */
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800A32C4(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); BT_NATIVE_ONLY(return) func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xA0)); }
-
+#ifndef BT_NATIVE
+void func_800A32C4(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xA0)); }
+#endif
 u32 func_800A32EC(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 43);
 }
@@ -444,12 +444,12 @@ s32 func_800A3304(PlayerState *arg0) {
     u8 func_800F8B88(void);
     return func_800F8B88() == 1;
 }
-
+#ifndef BT_NATIVE
 void func_800A3328(void *arg0, s32 arg1) {
     s32 func_800EE7F8();
     func_800EE7F8(arg1, (u8 *)*&((Obj1E7BFA0_arg0 *)arg0)->unkA0 + 0x2C);
 }
-
+#endif
 u32 func_800A3354(void *arg0) {
     return *(u8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 84);
 }
@@ -470,11 +470,11 @@ f32 func_800A3394(PlayerState *arg0) {
     return *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 36);
 }
 
-/* Single line: IDO schedules this prologue by source line. */
+#ifndef BT_NATIVE
 void func_800A33A0(PlayerState *arg0, f32 arg1[3]) { s32 func_800EE7F8(); func_800EE7F8(arg1, *(s32 *)((u8 *)arg0 + 0xA0) + 0xC); }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800A33CC(void *arg0, f32 *arg1) { s32 func_800EE7F8(); BT_NATIVE_ONLY(return) func_800EE7F8(arg1, (u8 *)*(void **)((u8 *)arg0 + 0xA0) + 0x18); }
-
+void func_800A33CC(void *arg0, f32 *arg1) { s32 func_800EE7F8(); func_800EE7F8(arg1, (u8 *)*(void **)((u8 *)arg0 + 0xA0) + 0x18); }
+#endif
 u32 func_800A33F8(void *arg0) {
     return *(u8 *)((u8 *)*&((Obj1E7BFA0_arg0 *)arg0)->unkA0 + 40);
 }
@@ -504,12 +504,12 @@ void func_800A3410(PlayerState *arg0, s32 arg1) {
 void func_800A34A0(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 42) = arg1;
 }
-
+#ifndef BT_NATIVE
 void func_800A34AC(PlayerState *arg0, f32 arg1[3]) {
     s32 func_800EE7F8();
     func_800EE7F8(*(void **)((u8 *)arg0 + 0xA0), arg1);
 }
-
+#endif
 void func_800A34CC(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 43) = arg1;
 }
@@ -523,19 +523,19 @@ void func_800A34E4(void *arg0, s32 arg1) {
 }
 
 /* extern */
-
-void func_800A34F0(void *arg0 BT_PASS2(, s32 bt_a1)) {
+#ifndef BT_NATIVE
+void func_800A34F0(void *arg0) {
     s32 func_800EE7F8(s32);
     func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xA0))) + 0xC);
 }
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800A3514(void *arg0 BT_PASS2(, s32 bt_a1)) {
+void func_800A3514(void *arg0) {
     s32 func_800EE7F8(s32);
-    BT_NATIVE_ONLY(return) func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xA0))) + 0x18);
+    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0xA0))) + 0x18);
 }
-
+#endif
 void func_800A3538(void *arg0, s32 arg1) {
     *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 160) + 40) = arg1;
 }

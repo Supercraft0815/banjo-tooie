@@ -84,7 +84,7 @@ void func_80800220_chboggy(Actor *arg0) {
     s32 func_800F640C(BtIntPtr, s32);
     s32 func_8008FE14(void);
     s32 func_80090818(void);
-    s32 func_80090768(f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_80090768(f32 *);
     void func_800D1824(s32);
     void func_800F8300();
     s32 func_80101E14(Actor *, f32);

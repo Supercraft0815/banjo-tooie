@@ -66,7 +66,7 @@ void func_80800150_chamazongoldhordeofficial(Actor *arg0) {
     void func_8008F990(f32 *, f32);
     s32 func_8008FE14(void);
     void func_800902E4(f32 *, f32, s32, Actor **);
-    s32 func_80090768(f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_80090768(f32 *);
     s32 func_80090818(void);
     f32 func_800D8FF8(void);
     void func_800DA544(s32 index);

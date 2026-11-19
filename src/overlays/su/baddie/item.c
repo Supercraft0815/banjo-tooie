@@ -39,7 +39,7 @@ s32 subaddieitem_entrypoint_3(Actor *arg0, void *arg1, u8 *arg2) {
     Unk80132ED0 *func_8008FDEC(void);
     s32 func_8008FE14(void);
     s32 func_800902E4(f32 *, f32, s32, Actor **);
-    s32 func_80090768(f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_80090768(f32 *);
     s32 func_80090658();
     s32 func_80090818(void);
     f32 func_800D8FF8(void);
