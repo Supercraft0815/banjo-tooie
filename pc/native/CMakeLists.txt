@@ -38,8 +38,7 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang")
     target_compile_options(bt_native_options INTERFACE -Wno-deprecated-non-prototype)
 endif()
 
-# The light section is shared with the N64 translation unit, whose event/transition
-# sections still fail the full-source audit until their native port is integrated.
+# The point-light tests also build the light section independently.
 set_source_files_properties("${BT_ROOT}/src/core2/1EA1DA0_lights.inc" PROPERTIES LANGUAGE C)
 set_source_files_properties("${BT_ROOT}/src/core2/1E8A670_vertices.inc" PROPERTIES LANGUAGE C)
 
@@ -399,19 +398,25 @@ add_test(NAME native_inventory_counters COMMAND bt_native_inventory_counters_tes
 
 add_executable(bt_native_particle_registry_test tests/particle_registry.c
     "${BT_ROOT}/src/core2/1E8DFA0.c" "${BT_ROOT}/src/core2/1E93440.c")
+add_executable(bt_native_transition_registry_test tests/transition_registry.c "${BT_ROOT}/src/core2/1EA1DA0.c")
+add_executable(bt_native_timer_queue_test tests/timer_queue.c "${BT_ROOT}/src/core2/1EA1DA0.c")
 target_link_libraries(bt_native_particle_registry_test PRIVATE bt_native_options)
-if(MSVC)
-    target_compile_options(bt_native_particle_registry_test PRIVATE /Gy /Gw)
-    target_link_options(bt_native_particle_registry_test PRIVATE /OPT:REF)
-elseif(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
-    target_compile_options(bt_native_particle_registry_test PRIVATE -ffunction-sections -fdata-sections)
-endif()
-if(APPLE)
-    target_link_options(bt_native_particle_registry_test PRIVATE -Wl,-dead_strip)
-elseif(NOT MSVC AND CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
-    target_link_options(bt_native_particle_registry_test PRIVATE -Wl,--gc-sections)
-endif()
-add_test(NAME native_particle_registry COMMAND bt_native_particle_registry_test)
+target_link_libraries(bt_native_transition_registry_test PRIVATE bt_native_options)
+target_link_libraries(bt_native_timer_queue_test PRIVATE bt_native_core)
+foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue)
+    if(MSVC)
+        target_compile_options(bt_native_${registry_test}_test PRIVATE /Gy /Gw)
+        target_link_options(bt_native_${registry_test}_test PRIVATE /OPT:REF)
+    elseif(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+        target_compile_options(bt_native_${registry_test}_test PRIVATE -ffunction-sections -fdata-sections)
+    endif()
+    if(APPLE)
+        target_link_options(bt_native_${registry_test}_test PRIVATE -Wl,-dead_strip)
+    elseif(NOT MSVC AND CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+        target_link_options(bt_native_${registry_test}_test PRIVATE -Wl,--gc-sections)
+    endif()
+    add_test(NAME native_${registry_test} COMMAND bt_native_${registry_test}_test)
+endforeach()
 
 add_executable(bt_native_save_slots_test tests/save_slots.c "${BT_ROOT}/src/overlays/gl/savegame.c")
 target_link_libraries(bt_native_save_slots_test PRIVATE bt_native_core)

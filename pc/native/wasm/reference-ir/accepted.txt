@@ -131,3 +131,15 @@ bodies. The debug texts have their original bytes. Each comparison covers
 link preserves all function addresses and instructions across the five new
 translation-unit boundaries. See proof/rodata-*-whole.json and
 current-rodata-ido/result.json in build/acceptance/n1-2026-11-18/.
+
+2026-11-19  N3 transition and timer records
+The transition registry uses the count at D_8012AB54, exactly 20 bytes
+after the five N64 slots. The timer uses D_8012AB64, four bytes after
+the vector. The renderer addresses the transition data at offset 8,
+its duration at 12, and the control and update count at 0x2c and 0x30.
+The timer dispatcher retains the marker pointer for func_800C9B30.
+Sound and dialog now pass the payload size explicitly: the queue copies
+only those bytes instead of reading 0x50 bytes from a smaller source.
+The native tests exercise both real callers, dispatch, relocation and
+a short buffer. See root-transition-timers-ir.log and the full replay,
+IDO and CTest reports in build/acceptance/n3-2026-11-18/.

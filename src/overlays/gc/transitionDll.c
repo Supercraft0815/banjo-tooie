@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/transition.h"
 
 void *func_80800000_gctransitionDll(s32 arg0) {
     extern u8 D_80800CB0_gctransitionDll[];
@@ -29,26 +30,6 @@ void func_80800098_gctransitionDll(s32 *arg0, f32 *arg1) {
 
 void func_808000D8_gctransitionDll(BtIntPtr address, s32 arg1, void *arg2) {
     typedef struct anctrl_s AnimCtrl;
-    struct TransitionData {
-        u8 kind;
-        u8 pad[3];
-        f32 duration;
-        s32 asset;
-        s32 animation;
-        s32 unk10;
-    };
-    struct Transition {
-        s32 unk0;
-        s32 unk4;
-        struct TransitionData data;
-        u8 state;
-        u8 pad1D[3];
-        s32 asset;
-        s32 unk24;
-        f32 timer;
-        AnimCtrl *control;
-        s32 unk30;
-    };
     void _gcaudiolist_entrypoint_0(s32 arg0);
     AnimCtrl *func_8008AD80(s32);
     void anctrl_reset(AnimCtrl *);
@@ -68,13 +49,13 @@ void func_808000D8_gctransitionDll(BtIntPtr address, s32 arg1, void *arg2) {
     void func_800FC8EC();
     void func_800FCB54(s32, s32, s32, f32);
     u32 state = arg1;
-    struct Transition *arg0 = (struct Transition *) address;
+    Transition *arg0 = (Transition *) address;
 
     if (arg0->control != NULL) {
         func_8008ADBC(arg0->control);
         arg0->control = NULL;
     }
-    arg0->unk4 = 0;
+    arg0->draw_count = 0;
     arg0->timer = 0.0f;
     if (arg2 != NULL) {
         aligned4_memcpy(&arg0->data, arg2, 0x14);
@@ -86,15 +67,15 @@ void func_808000D8_gctransitionDll(BtIntPtr address, s32 arg1, void *arg2) {
     } else if (state == 7) {
         arg0->asset = 0xB46;
     } else if (arg2 != NULL) {
-        if (((struct TransitionData *)arg2)->asset != 0) {
-            arg0->asset = ((struct TransitionData *)arg2)->asset;
+        if (((TransitionData *)arg2)->asset != 0) {
+            arg0->asset = ((TransitionData *)arg2)->asset;
         }
     }
-    if (arg2 != NULL && ((struct TransitionData *)arg2)->animation != 0) {
+    if (arg2 != NULL && ((TransitionData *)arg2)->animation != 0) {
         arg0->control = func_8008AD80(0);
         anctrl_reset(arg0->control);
-        anctrl_setIndex(arg0->control, ((struct TransitionData *)arg2)->animation);
-        anctrl_setDuration(arg0->control, ((struct TransitionData *)arg2)->duration);
+        anctrl_setIndex(arg0->control, ((TransitionData *)arg2)->animation);
+        anctrl_setDuration(arg0->control, ((TransitionData *)arg2)->duration);
         anctrl_setPlaybackType(arg0->control, 1);
         if (state == 6) {
             func_8008B188(arg0->control, 0);
@@ -124,22 +105,18 @@ void func_808000D8_gctransitionDll(BtIntPtr address, s32 arg1, void *arg2) {
         func_800C9214(arg0);
         return;
     }
-    arg0->unk30 = 0;
+    arg0->update_count = 0;
     arg0->state = state;
 }
 
-void gctransitionDll_entrypoint_0(s32 *arg0, Gfx **arg1) {
-    struct TransitionScale {
-        u8 pad[0x18];
-        f32 scale;
-    };
-    void func_8008B304(BtIntPtr);
+void gctransitionDll_entrypoint_0(Transition *arg0, Gfx **arg1) {
+    void func_8008B304(struct anctrl_s *);
     void * func_8008B4D4(void *arg0);
     void func_800B99CC(Gfx **, s32, s32 *);
     BtIntPtr func_800D674C(s32);
     void func_800DE318(void);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
-    void func_800DF41C(BtIntPtr);
+    void func_800DF41C(void *);
     void func_800DF830(s32);
     void func_800E3BAC(f32 *);
     void func_800E3C30(f32 *);
@@ -161,10 +138,10 @@ void gctransitionDll_entrypoint_0(s32 *arg0, Gfx **arg1) {
     f32 position[3];
     f32 scale;
 
-    arg0[1]++;
-    if (((u8 *)arg0)[0x1C] != 1) {
+    arg0->draw_count++;
+    if (arg0->state != 1) {
         func_800E41CC();
-        if (arg0[0x2C / 4] != 0) {
+        if (arg0->control != 0) {
             func_800EFA4C(camera, 0, 0, 350.0f);
         } else {
             func_800EFA4C(camera, 0, 0, 300.0f);
@@ -176,80 +153,80 @@ void gctransitionDll_entrypoint_0(s32 *arg0, Gfx **arg1) {
         func_800E3CE8();
         func_800E44FC(arg1);
         func_800EFD24(position);
-        if (arg0[0x2C / 4] != 0) {
+        if (arg0->control != 0) {
             gDPSetTextureFilter((*arg1)++, G_TF_POINT);
             gDPSetColorDither((*arg1)++, G_CD_DISABLE);
-            func_8008B304(arg0[0x2C / 4]);
-            func_800DF41C(func_8008B4D4((void *)arg0[0x2C / 4]));
+            func_8008B304(arg0->control);
+            func_800DF41C(func_8008B4D4(arg0->control));
         }
         func_800DF830(0);
-        if (((u8 *)arg0)[0x1C] == 2 || ((u8 *)arg0)[0x1C] == 7) {
-            func_800DE448(position, rotation, 1.0f, NULL, func_800D674C(arg0[0x20 / 4]));
-            if (arg0[0x2C / 4] != 0) {
+        if (arg0->state == 2 || arg0->state == 7) {
+            func_800DE448(position, rotation, 1.0f, NULL, func_800D674C(arg0->asset));
+            if (arg0->control != 0) {
                 gDPSetTextureFilter((*arg1)++, G_TF_BILERP);
                 gDPSetColorDither((*arg1)++, G_CD_MAGICSQ);
             }
             func_800E4208();
             return;
         }
-        fraction = ((f32 *)arg0)[0x28 / 4] / ((f32 *)arg0)[0xC / 4];
-        if (((u8 *)arg0)[0x1C] == 5) {
-            switch (((u8 *)arg0)[8]) {
+        fraction = arg0->timer / arg0->data.duration;
+        if (arg0->state == 5) {
+            switch (arg0->data.kind) {
                 default:
-                    rotation[2] = ((f32 *)arg0)[0x24 / 4] - 90.0f * fraction;
-                    scale = ((f32 *)arg0)[0x18 / 4] * fraction + 0.1f;
+                    rotation[2] = arg0->rotation - 90.0f * fraction;
+                    scale = arg0->data.scale * fraction + 0.1f;
                     break;
                 case 16:
-                    scale = ((f32 *)arg0)[0x18 / 4];
+                    scale = arg0->data.scale;
                     break;
                 case 22:
                 case 24:
                     rotation[2] = 0.0f;
-                    scale = ((f32 *)arg0)[0x18 / 4] * fraction + 0.1f;
+                    scale = arg0->data.scale * fraction + 0.1f;
                     break;
             }
-            func_80800098_gctransitionDll(arg0, &scale);
-            func_800DE448(position, rotation, scale, NULL, func_800D674C(arg0[0x20 / 4]));
-        } else if (((u8 *)arg0)[0x1C] == 6) {
-            switch (((u8 *)arg0)[8]) {
+            func_80800098_gctransitionDll(&arg0->id, &scale);
+            func_800DE448(position, rotation, scale, NULL, func_800D674C(arg0->asset));
+        } else if (arg0->state == 6) {
+            switch (arg0->data.kind) {
                 default:
-                    rotation[2] = ((f32 *)arg0)[0x24 / 4] - 90.0f * fraction;
-                    scale = (1.0f - fraction) * ((struct TransitionScale *)arg0)->scale + 0.1f;
+                    rotation[2] = arg0->rotation - 90.0f * fraction;
+                    scale = (1.0f - fraction) * arg0->data.scale + 0.1f;
                     break;
                 case 17:
-                    scale = ((f32 *)arg0)[0x18 / 4];
+                    scale = arg0->data.scale;
                     break;
                 case 10:
                     rotation[2] = 0.0f;
-                    scale = ((f32 *)arg0)[0x18 / 4] * (1.0f - func_800F1480(fraction)) + 0.1f;
+                    scale = arg0->data.scale * (1.0f - func_800F1480(fraction)) + 0.1f;
                     break;
                 case 23:
                 case 25:
                     rotation[2] = 0.0f;
-                    scale = (1.0f - fraction) * ((struct TransitionScale *)arg0)->scale + 0.1f;
+                    scale = (1.0f - fraction) * arg0->data.scale + 0.1f;
                     break;
             }
-            if (arg0[0x30 / 4] >= 3 || ((u8 *)arg0)[8] != 17) {
-                func_80800098_gctransitionDll(arg0, &scale);
-                func_800DE448(position, rotation, scale, NULL, func_800D674C(arg0[0x20 / 4]));
+            if (arg0->update_count >= 3 || arg0->data.kind != 17) {
+                func_80800098_gctransitionDll(&arg0->id, &scale);
+                func_800DE448(position, rotation, scale, NULL, func_800D674C(arg0->asset));
             } else {
                 func_800DE318();
             }
-        } else if (((u8 *)arg0)[0x1C] == 3) {
+        } else if (arg0->state == 3) {
             func_800B99CC(arg1, (s32)((1.0f - fraction) * 255.0f + 0.5f), D_808010D8_gctransitionDll);
-        } else if (((u8 *)arg0)[0x1C] == 4) {
+        } else if (arg0->state == 4) {
             func_800B99CC(arg1, (s32)(fraction * 255.0f + 0.5f), D_808010D8_gctransitionDll);
-        } else if (((u8 *)arg0)[0x1C] == 8) {
+        } else if (arg0->state == 8) {
             if (fraction <= 0.5f) {
                 fraction = 1.0f;
             } else {
                 fraction = 1.0f - (fraction - 0.5f) / 0.5f;
             }
             func_800B99CC(arg1, (s32)(fraction * 255.0f + 0.5f), D_808010CC_gctransitionDll);
-        } else if (((u8 *)arg0)[0x1C] == 9) {
+        } else if (arg0->state == 9) {
             func_800B99CC(arg1, (s32)(fraction * 255.0f + 0.5f), D_808010CC_gctransitionDll);
         }
-        if (arg0[0x2C / 4] != 0) {
+        if (arg0->control != 0) {
             gDPSetTextureFilter((*arg1)++, G_TF_BILERP);
         }
         func_800E4208();
@@ -288,7 +265,7 @@ int gctransitionDll_entrypoint_4(void *arg0) {
 
 void gctransitionDll_entrypoint_5(u8 *arg0) {
     void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
-    func_808000D8_gctransitionDll(arg0, 0x1, 0);
+    func_808000D8_gctransitionDll((BtIntPtr)arg0, 0x1, 0);
 }    typedef struct { u8 pad0[0x1]; u8 unk1; } ObjtransitionDll_gctransitionDll_entrypoint_6_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
@@ -325,11 +302,11 @@ void gctransitionDll_entrypoint_8(u8 *arg0, s32 arg1) {
     func_808000D8_gctransitionDll((BtIntPtr) arg0, 1U, NULL);
 }
 
-void gctransitionDll_entrypoint_9(u8 *arg0) {
-    struct anctrl_s;
+void gctransitionDll_entrypoint_9(Transition *arg0) {
+
     f32 _glintrosyncDll_entrypoint_5(void);
     f32 func_800D8FF8(void);
-    s32 func_8008ADE4(s32);
+    void func_8008ADE4(struct anctrl_s *);
     void func_80090684(s32);
     s32 anctrl_isStopped(struct anctrl_s *);
     s32 func_800EA170(void);
@@ -338,16 +315,16 @@ void gctransitionDll_entrypoint_9(u8 *arg0) {
     void func_808000D8_gctransitionDll(BtIntPtr, s32, void *);
     f32 delta;
 
-    if (arg0[0x1D]) {
+    if (arg0->intro_sync) {
         delta = _glintrosyncDll_entrypoint_5();
     } else {
         delta = func_800D8FF8();
     }
-    if (arg0[8]) {
-        if (*(s32 *)(arg0 + 0x2C)) {
-            func_8008ADE4(*(s32 *)(arg0 + 0x2C));
-            if (arg0[0x1C] == 5) {
-                switch (*(u32 *)(arg0 + 0x30)) {
+    if (arg0->data.kind) {
+        if (arg0->control) {
+            func_8008ADE4(arg0->control);
+            if (arg0->state == 5) {
+                switch ((u32)arg0->update_count) {
                     case 0:
                     case 3:
                         break;
@@ -362,16 +339,16 @@ void gctransitionDll_entrypoint_9(u8 *arg0) {
                         osViBlack(0);
                         break;
                     default:
-                        *(f32 *)(arg0 + 0x28) += delta;
+                        arg0->timer += delta;
                         break;
                 }
             } else {
-                switch (*(u32 *)(arg0 + 0x30)) {
+                switch ((u32)arg0->update_count) {
                     case 0:
                     case 1:
                         break;
                     default:
-                        *(f32 *)(arg0 + 0x28) += delta;
+                        arg0->timer += delta;
                         break;
                     case 2:
                         func_800EA34C(0);
@@ -379,26 +356,26 @@ void gctransitionDll_entrypoint_9(u8 *arg0) {
                 }
             }
         } else {
-            *(f32 *)(arg0 + 0x28) += delta;
+            arg0->timer += delta;
         }
-        if (*(f32 *)(arg0 + 0xC) < *(f32 *)(arg0 + 0x28) ||
-            (*(struct anctrl_s **)(arg0 + 0x2C) && anctrl_isStopped(*(struct anctrl_s **)(arg0 + 0x2C)))) {
-            *(f32 *)(arg0 + 0x28) = *(f32 *)(arg0 + 0xC);
-            if (arg0[0x1C] == 5 || arg0[0x1C] == 6) {
-                *(f32 *)(arg0 + 0x24) -= 90.0f;
-                if (*(f32 *)(arg0 + 0x24) < -360.0f) {
-                    *(f32 *)(arg0 + 0x24) += 360.0f;
+        if (arg0->data.duration < arg0->timer ||
+            (arg0->control && anctrl_isStopped(arg0->control))) {
+            arg0->timer = arg0->data.duration;
+            if (arg0->state == 5 || arg0->state == 6) {
+                arg0->rotation -= 90.0f;
+                if (arg0->rotation < -360.0f) {
+                    arg0->rotation += 360.0f;
                 }
-                if (*(f32 *)(arg0 + 0x24) > 360.0f) {
-                    *(f32 *)(arg0 + 0x24) -= 360.0f;
+                if (arg0->rotation > 360.0f) {
+                    arg0->rotation -= 360.0f;
                 }
             }
-            func_808000D8_gctransitionDll((BtIntPtr)arg0, arg0[0xA], NULL);
-            if (*(s32 *)(arg0 + 0x2C)) {
+            func_808000D8_gctransitionDll((BtIntPtr)arg0, arg0->data.next_state, NULL);
+            if (arg0->control) {
                 func_800EA170();
             }
         }
-        *(s32 *)(arg0 + 0x30) += 1;
+        arg0->update_count += 1;
     }
 }
 /* data_to_c.py: from asm/data/overlays/gc/transitionDll.data.s */

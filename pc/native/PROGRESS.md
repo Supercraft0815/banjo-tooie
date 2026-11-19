@@ -2584,3 +2584,18 @@ Die elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Die
 Nachweise liegen unter `build/acceptance/n1-2026-11-18/` in
 `current-rodata-ido/result.json`, `current-rodata-74.log` und den fünf
 Einzelprüfungen `proof/rodata-*-whole.json`.
+
+## 2026-11-19 — N3, Kartenübergänge und Timer
+
+Alle fünf Übergänge behalten ihren Animationszeiger beim Verschieben des
+Heaps. Anlegen, Aktualisieren und Löschen verwenden dasselbe Layout.
+Die Timerwarteschlange bewahrt Marker, Dialogposition und Lautstärke.
+Ihre beiden Aufrufer übergeben die tatsächliche Größe des kopierten
+Datenblocks. Der 64-Bit-Test verwendet die Vektorimplementierung des Spiels
+und prüft auch einen übergroßen Auftrag. Alle 59 nativen Tests bestanden.
+
+Auf dem gemeinsamen Rodata-Stand sanken die LP64-Warnstellen von 934 auf
+913, die verschiebbaren Rohzugriffe von 224 auf 223. Original-IDO bestätigt
+alle 102 Funktionen der beiden geänderten Module und beide ROM-Abbilder.
+Alle elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Die
+Messungen liegen unter `build/acceptance/n3-2026-11-18/root-transition-timers*`.
