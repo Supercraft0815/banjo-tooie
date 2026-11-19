@@ -1,5 +1,23 @@
 #include "common.h"
 #include "marker_defaults.inc"
+#ifdef BT_NATIVE
+#include "core2/1EC8070.h"
+typedef struct {
+    s32 position[3], distance, type;
+    void *cube, *prop;
+    s32 kind;
+    s32 (*filter)(s16 *, uintptr_t);
+    uintptr_t userdata;
+} MarkerSearch;
+MarkerSearch D_80132EA0;
+Unk80132ED0 D_80132ED0[200];
+u8 D_80135450[25];
+s32 D_8013546C;
+#ifdef BT_ILP32
+_Static_assert(sizeof(Unk80132ED0) == 0x30, "marker slot layout");
+_Static_assert(__builtin_offsetof(MarkerSearch, filter) == 0x20 && sizeof(MarkerSearch) == 0x28, "marker search filter layout");
+#endif
+#endif
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_grid.h"
 #include "native_actor.h"
@@ -9,16 +27,7 @@
 #include "core2/1EAF950.h"
 #include "core2/1EC8070.h"
 typedef struct { NativeMarkerProp *prop; s32 distance; } MarkerGroupElement;
-static struct {
-    s32 position[3], distance, type;
-    void *cube, *prop;
-    s32 kind;
-    s32 (*filter)(s16 *, uintptr_t);
-    uintptr_t userdata;
-} marker_search;
-static Unk80132ED0 marker_pool[200];
-static u8 marker_used[25];
-static s32 marker_generation;
+
 
 /* World cells retain ownership of their movable prop arrays. */
 s32 func_800DC214(s32, s32);
@@ -325,10 +334,10 @@ s32 func_800EB854(void) {
     return D_80132E80.selected;
 }
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 void func_800EB860(s32 (*filter)(s16 *, uintptr_t), uintptr_t data) {
-    marker_search.filter = filter;
-    marker_search.userdata = data;
+    D_80132EA0.filter = filter;
+    D_80132EA0.userdata = data;
 }
 #else
 void func_800EB860(s32 arg0, s32 arg1) {
@@ -338,8 +347,8 @@ void func_800EB860(s32 arg0, s32 arg1) {
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-void func_800EB874(void) { marker_search.filter = NULL; }
+#ifdef BT_NATIVE
+void func_800EB874(void) { D_80132EA0.filter = NULL; }
 #else
 void func_800EB874(void)
 {
@@ -349,13 +358,16 @@ void func_800EB874(void)
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 void func_800EB880(s32 *position, s32 type, s32 radius) {
-    func_800EE830(marker_search.position, position);
-    marker_search.type = type;
-    marker_search.distance = radius * radius;
-    marker_search.cube = marker_search.prop = NULL;
-    marker_search.kind = 0;
+    D_80132EA0.position[0] = position[0];
+    D_80132EA0.position[1] = position[1];
+    D_80132EA0.position[2] = position[2];
+    D_80132EA0.type = type;
+    D_80132EA0.cube = NULL;
+    D_80132EA0.distance = radius * radius;
+    D_80132EA0.prop = NULL;
+    D_80132EA0.kind = 0;
 }
 #else
 void func_800EB880(s32 *arg0, s32 arg1, s32 arg2) {
@@ -375,38 +387,38 @@ void func_800EB880(s32 *arg0, s32 arg1, s32 arg2) {
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800EB8C0(void *cube) {
     s32 x, y, z, distance, group;
-    if (func_800E9DCC(cube) && (marker_search.type==1 || marker_search.type==2)) {
+    if (func_800E9DCC(cube) && (D_80132EA0.type==1 || D_80132EA0.type==2)) {
         NativeMarkerProp *prop=func_800E9E88(cube), *end=func_800E9EB4(cube);
         for (; prop<end; ++prop) {
             if (prop->flags & 1) continue;
-            x=prop->position[0]-marker_search.position[0];
-            y=prop->position[1]-marker_search.position[1];
-            z=prop->position[2]-marker_search.position[2];
+            x=prop->position[0]-D_80132EA0.position[0];
+            y=prop->position[1]-D_80132EA0.position[1];
+            z=prop->position[2]-D_80132EA0.position[2];
             distance=x*x+y*y+z*z;
             group=(prop->flags & 2) ? 2 : 1;
-            if (distance<marker_search.distance && group==marker_search.type) {
-                marker_search.distance=distance; marker_search.cube=cube;
-                marker_search.prop=prop; marker_search.kind=group;
+            if (distance<D_80132EA0.distance && group==D_80132EA0.type) {
+                D_80132EA0.distance=distance; D_80132EA0.cube=cube;
+                D_80132EA0.prop=prop; D_80132EA0.kind=group;
             }
         }
     }
-    if (func_800E9DC4(cube) && marker_search.type==3) {
+    if (func_800E9DC4(cube) && D_80132EA0.type==3) {
         Prop *prop=func_800E9D68(cube), *end=func_800E9D90(cube);
         for (; prop<end; ++prop) {
-            x=prop->position[0]-marker_search.position[0];
-            y=prop->position[1]-marker_search.position[1];
-            z=prop->position[2]-marker_search.position[2];
+            x=prop->position[0]-D_80132EA0.position[0];
+            y=prop->position[1]-D_80132EA0.position[1];
+            z=prop->position[2]-D_80132EA0.position[2];
             distance=x*x+y*y+z*z;
-            if (distance>=marker_search.distance) continue;
-            if (marker_search.filter) {
-                if (!marker_search.filter(prop->position, marker_search.userdata)) continue;
-                x=prop->position[0]-marker_search.position[0];
-                y=prop->position[1]-marker_search.position[1];
-                z=prop->position[2]-marker_search.position[2];
+            if (distance>=D_80132EA0.distance) continue;
+            if (D_80132EA0.filter) {
+                if (!D_80132EA0.filter(prop->position, D_80132EA0.userdata)) continue;
+                x=prop->position[0]-D_80132EA0.position[0];
+                y=prop->position[1]-D_80132EA0.position[1];
+                z=prop->position[2]-D_80132EA0.position[2];
                 distance=x*x+y*y+z*z;
             }
-            marker_search.distance=distance; marker_search.cube=cube;
-            marker_search.prop=prop; marker_search.kind=3;
+            D_80132EA0.distance=distance; D_80132EA0.cube=cube;
+            D_80132EA0.prop=prop; D_80132EA0.kind=3;
         }
     }
 }
@@ -426,7 +438,7 @@ void func_800EB8C0(s32 arg0) {
     s32 func_800E9DCC(s16 *);
     s32 func_800E9E88(s32);
     u32 func_800E9EB4(s16 *);
-    extern s32 D_80132EA0;
+    BT_IDO_ONLY(extern s32 D_80132EA0;)
     Entry *entry;
     s16 *prop;
     u32 end;
@@ -437,59 +449,59 @@ void func_800EB8C0(s32 arg0) {
     s32 type;
     s32 group;
 
-    if (func_800E9DCC((s16 *)arg0) && ((type = (*(s32 *)((s8 *)&D_80132EA0 + 0x10))) == 1 || type == 2)) {
+    if (func_800E9DCC((s16 *)arg0) && ((type = BT_DATA_FIELD(D_80132EA0.type, (*(s32 *)((s8 *)&D_80132EA0 + 0x10)))) == 1 || type == 2)) {
         entry = (Entry *)func_800E9E88((s32)arg0);
         end = func_800E9EB4((s16 *)arg0);
         for (; (u32)entry < end; entry++) {
             if (!entry->disabled) {
-                z1 = entry->z - (*(s32 *)((s8 *)&D_80132EA0 + 0x8));
-                x1 = entry->x - (*(s32 *)((s8 *)&D_80132EA0 + 0x0));
-                y1 = entry->y - (*(s32 *)((s8 *)&D_80132EA0 + 0x4));
+                z1 = entry->z - BT_DATA_FIELD(D_80132EA0.position[2], (*(s32 *)((s8 *)&D_80132EA0 + 0x8)));
+                x1 = entry->x - BT_DATA_FIELD(D_80132EA0.position[0], (*(s32 *)((s8 *)&D_80132EA0 + 0x0)));
+                y1 = entry->y - BT_DATA_FIELD(D_80132EA0.position[1], (*(s32 *)((s8 *)&D_80132EA0 + 0x4)));
                 distance1 = z1*z1 + x1*x1 + y1*y1;
-                if (distance1 < (*(s32 *)((s8 *)&D_80132EA0 + 0xC))) {
+                if (distance1 < BT_DATA_FIELD(D_80132EA0.distance, (*(s32 *)((s8 *)&D_80132EA0 + 0xC)))) {
                     group = entry->type ? 2 : 1;
-                    type = (*(s32 *)((s8 *)&D_80132EA0 + 0x10));
+                    type = BT_DATA_FIELD(D_80132EA0.type, (*(s32 *)((s8 *)&D_80132EA0 + 0x10)));
                     if (group == type) {
-                    (*(s32 *)((s32)&D_80132EA0 + 0xC)) = distance1;
-                    (*(s32 *)((s8 *)&D_80132EA0 + 0x14)) = (s32)arg0;
-                    (*(s32 *)((s8 *)&D_80132EA0 + 0x18)) = (s32)entry;
-                    (*(s32 *)((s8 *)&D_80132EA0 + 0x1C)) = type;
+                    BT_DATA_FIELD(D_80132EA0.distance, (*(s32 *)((s32)&D_80132EA0 + 0xC))) = distance1;
+                    BT_NATIVE_ONLY(D_80132EA0.cube = (void *)arg0;) BT_IDO_ONLY((*(s32 *)((s8 *)&D_80132EA0 + 0x14)) = (s32)arg0;)
+                    BT_NATIVE_ONLY(D_80132EA0.prop = (void *)entry;) BT_IDO_ONLY((*(s32 *)((s8 *)&D_80132EA0 + 0x18)) = (s32)entry;)
+                    BT_DATA_FIELD(D_80132EA0.kind, (*(s32 *)((s8 *)&D_80132EA0 + 0x1C))) = type;
                     }
                 }
             }
         }
     }
-    if (func_800E9DC4((s16 *)arg0) && (*(s32 *)((s8 *)&D_80132EA0 + 0x10)) == 3) {
+    if (func_800E9DC4((s16 *)arg0) && BT_DATA_FIELD(D_80132EA0.type, (*(s32 *)((s8 *)&D_80132EA0 + 0x10))) == 3) {
         prop = (s16 *)func_800E9D68((s16 *)arg0);
         prop_end = func_800E9D90((s16 *)arg0);
         for (; (u32)prop < prop_end; prop += 10) {
-            z = prop[2] - (*(s32 *)((s8 *)&D_80132EA0 + 0x8));
-            x = prop[0] - (*(s32 *)((s8 *)&D_80132EA0 + 0x0));
-            y = prop[1] - (*(s32 *)((s8 *)&D_80132EA0 + 0x4));
+            z = prop[2] - BT_DATA_FIELD(D_80132EA0.position[2], (*(s32 *)((s8 *)&D_80132EA0 + 0x8)));
+            x = prop[0] - BT_DATA_FIELD(D_80132EA0.position[0], (*(s32 *)((s8 *)&D_80132EA0 + 0x0)));
+            y = prop[1] - BT_DATA_FIELD(D_80132EA0.position[1], (*(s32 *)((s8 *)&D_80132EA0 + 0x4)));
             distance = z*z + x*x + y*y;
-            if (distance < (*(s32 *)((s8 *)&D_80132EA0 + 0xC))) {
-                if ((*(s32 (**)(s16 *, s32))((s8 *)&D_80132EA0 + 0x20))) {
-                    if (!((*(s32 (**)(s16 *, s32))((s8 *)&D_80132EA0 + 0x20)))(prop, (*(s32 *)((s8 *)&D_80132EA0 + 0x24)))) {
+            if (distance < BT_DATA_FIELD(D_80132EA0.distance, (*(s32 *)((s8 *)&D_80132EA0 + 0xC)))) {
+                if (BT_DATA_FIELD(D_80132EA0.filter, (*(s32 (**)(s16 *, s32))((s8 *)&D_80132EA0 + 0x20)))) {
+                    if (!(BT_DATA_FIELD(D_80132EA0.filter, (*(s32 (**)(s16 *, s32))((s8 *)&D_80132EA0 + 0x20))))(prop, BT_DATA_FIELD(D_80132EA0.userdata, (*(s32 *)((s8 *)&D_80132EA0 + 0x24))))) {
                         continue;
                     }
-                    z = prop[2] - (*(s32 *)((s8 *)&D_80132EA0 + 0x8));
-                    x = prop[0] - (*(s32 *)((s8 *)&D_80132EA0 + 0x0));
-                    y = prop[1] - (*(s32 *)((s8 *)&D_80132EA0 + 0x4));
+                    z = prop[2] - BT_DATA_FIELD(D_80132EA0.position[2], (*(s32 *)((s8 *)&D_80132EA0 + 0x8)));
+                    x = prop[0] - BT_DATA_FIELD(D_80132EA0.position[0], (*(s32 *)((s8 *)&D_80132EA0 + 0x0)));
+                    y = prop[1] - BT_DATA_FIELD(D_80132EA0.position[1], (*(s32 *)((s8 *)&D_80132EA0 + 0x4)));
                     distance = z*z + x*x + y*y;
                 }
-                (*(s32 *)((s32)&D_80132EA0 + 0xC)) = distance;
-                (*(s32 *)((s8 *)&D_80132EA0 + 0x14)) = (s32)arg0;
-                (*(s32 *)((s8 *)&D_80132EA0 + 0x18)) = (s32)prop;
-                (*(s32 *)((s8 *)&D_80132EA0 + 0x1C)) = (*(s32 *)((s8 *)&D_80132EA0 + 0x10));
+                BT_DATA_FIELD(D_80132EA0.distance, (*(s32 *)((s32)&D_80132EA0 + 0xC))) = distance;
+                BT_NATIVE_ONLY(D_80132EA0.cube = (void *)arg0;) BT_IDO_ONLY((*(s32 *)((s8 *)&D_80132EA0 + 0x14)) = (s32)arg0;)
+                BT_NATIVE_ONLY(D_80132EA0.prop = (void *)prop;) BT_IDO_ONLY((*(s32 *)((s8 *)&D_80132EA0 + 0x18)) = (s32)prop;)
+                BT_DATA_FIELD(D_80132EA0.kind, (*(s32 *)((s8 *)&D_80132EA0 + 0x1C))) = BT_DATA_FIELD(D_80132EA0.type, (*(s32 *)((s8 *)&D_80132EA0 + 0x10)));
             }
         }
     }
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 s32 func_800EBB30(void **cube, void **prop) {
-    *cube=marker_search.cube; *prop=marker_search.prop; return marker_search.kind;
+    *cube=D_80132EA0.cube; *prop=D_80132EA0.prop; return D_80132EA0.kind;
 }
 #else
 s32 func_800EBB30(s32 *arg0, s32 *arg1) {
@@ -514,8 +526,8 @@ OSThread *func_800EBB50(void)
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-void func_800EBB5C(void) { marker_generation=0x6B7; }
+#ifdef BT_NATIVE
+void func_800EBB5C(void) { D_8013546C=0x6B7; }
 #else
 void func_800EBB5C(void) {
     extern s32 D_8013546C;
@@ -526,7 +538,7 @@ void func_800EBB5C(void) {
 void func_800EBB6C(void) {
 }
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 s32 func_800EBB74(void) { return 1; }
 #else
 s32 func_800EBB74(void) {
@@ -535,10 +547,10 @@ s32 func_800EBB74(void) {
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 void func_800EBB94(void) {
-    for (s32 i=0; i<25; ++i) marker_used[i]=0;
-    for (s32 i=0; i<200; ++i) marker_pool[i].unk10 &= 0xFFFF0001u;
+    for (s32 i=0; i<25; ++i) D_80135450[i]=0;
+    for (s32 i=0; i<200; ++i) D_80132ED0[i].pool_flags &= 1;
 }
 #else
 void func_800EBB94(void) {
@@ -660,19 +672,28 @@ void func_800EBD2C(u8 *arg0, s32 arg1, s32 arg2) {
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 void *func_800EBD78(void) {
-    for (s32 bucket=0; bucket<25; ++bucket) {
-        if (marker_used[bucket]==0xFF) continue;
-        for (s32 slot=0; slot<8; ++slot) {
-            u8 bit=0x80 >> slot;
-            if (!(marker_used[bucket] & bit)) {
-                marker_used[bucket] |= bit;
-                return &marker_pool[bucket*8+slot];
-            }
+    s32 bucket = 0;
+    s32 slot = 0;
+    u32 mask = 0x80;
+    u8 used;
+
+    if (D_80135450[0] == 0xFF) {
+next_bucket:
+        ++bucket;
+        if (bucket < 25) {
+            if (D_80135450[bucket] == 0xFF) goto next_bucket;
         }
     }
-    return NULL;
+    if (bucket == 25) return NULL;
+    used = D_80135450[bucket];
+    while (used & mask) {
+        mask >>= 1;
+        ++slot;
+    }
+    D_80135450[bucket] = (u8)(used | mask);
+    return &D_80132ED0[bucket * 8 + slot];
 }
 #else
 void *func_800EBD78(void) {
@@ -710,14 +731,14 @@ loop_2:
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 void func_800EBE24(void *data) {
-    uintptr_t offset=(uintptr_t)data-(uintptr_t)marker_pool;
+    uintptr_t offset=(uintptr_t)data-(uintptr_t)D_80132ED0;
     size_t index;
-    if (offset>=sizeof(marker_pool) || offset%sizeof(marker_pool[0])) return;
-    index=offset/sizeof(marker_pool[0]);
-    marker_pool[index].unk10 &= 0xFFFF0001u;
-    marker_used[index>>3] &= D_80123554[index & 7];
+    if (offset>=sizeof(D_80132ED0) || offset%sizeof(D_80132ED0[0])) return;
+    index=offset/sizeof(D_80132ED0[0]);
+    D_80132ED0[index].pool_flags &= 1;
+    D_80135450[index>>3] &= D_80123554[index & 7];
 }
 #else
 void func_800EBE24(void *arg0) {
@@ -1263,8 +1284,8 @@ int func_800EC800(void *arg0) {
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-void func_800EC828(void) { if (--marker_generation<0x6B7) marker_generation=0x7FFF; }
+#ifdef BT_NATIVE
+void func_800EC828(void) { if (--D_8013546C<0x6B7) D_8013546C=0x7FFF; }
 #else
 void func_800EC828(void) {
     extern s32 D_80132ED0;
@@ -1275,10 +1296,10 @@ void func_800EC828(void) {
 }
 #endif
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 s32 func_800EC854(void) {
-    s32 result=marker_generation;
-    if (++marker_generation>=0x8000) marker_generation=0x6B7;
+    s32 result=D_8013546C;
+    if (++D_8013546C>=0x8000) D_8013546C=0x6B7;
     return result;
 }
 #else

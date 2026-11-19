@@ -35,6 +35,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Taxi-Anbieter. Die 16 Taxiplätze speichern ihre Anbieter, Positionen, Blickrichtungen und Karten in typisierten Einträgen. Der neue native Test prüft sechs Anbieter und die Platzverwaltung.
 
+- Markersuche und Attract-Zustand. Gast- und LP64-Proben prüfen alle 200 Markerplätze, Wiederverwendung und Generation, Positionsfilter und die zugehörigen Weltdaten. Sie prüfen auch den Attract-Zustand und die Demo-Auswahl.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

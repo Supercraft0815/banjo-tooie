@@ -3455,3 +3455,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Die 16 Taxiplätze speichern ihre Anbieter, Positionen, Blickrichtungen und Karten in typisierten Einträgen. Der neue native Test prüft sechs Anbieter und die Platzverwaltung.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 9 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-taxi-state*`.
+
+### 2026-11-19 – Markersuche und Attract-Zustand (N1/N3)
+
+Gast- und LP64-Proben prüfen alle 200 Markerplätze, Wiederverwendung und Generation, Positionsfilter und die zugehörigen Weltdaten. Sie prüfen auch den Attract-Zustand und die Demo-Auswahl.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 14 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-marker-buckets*`.

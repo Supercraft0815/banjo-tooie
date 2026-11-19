@@ -58,7 +58,20 @@ typedef struct {
 #else
     /* 0x0C */ u32 unkC;
 #endif
+#ifdef BT_NATIVE
+    union {
+        u32 unk10;
+        struct {
+#if defined(BT_NATIVE_LITTLE_ENDIAN) && !defined(BT_ILP32)
+            u16 pool_flags, flags_high;
+#else
+            u16 flags_high, pool_flags;
+#endif
+        };
+    };
+#else
     /* 0x10 */ u32 unk10;
+#endif
     /* 0x14 */ u16 unk14;
     /* 0x16 */ u16 unk16;
     /* 0x18 */ u32 unk18;

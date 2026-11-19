@@ -5,16 +5,10 @@
 .section .bss
 
 dlabel D_80132EA0
-    /* 80132EA0 */ .space 0x20
-
-dlabel D_80132EC0
-    /* 80132EC0 */ .space 0x10
+    /* 80132EA0 */ .space 0x30
 
 dlabel D_80132ED0
-    /* 80132ED0 */ .space 0x19
-
-dlabel D_80132EE9
-    /* 80132EE9 */ .space 0x2567
+    /* 80132ED0 */ .space 0x2580
 
 dlabel D_80135450
     /* 80135450 */ .space 0x1C
