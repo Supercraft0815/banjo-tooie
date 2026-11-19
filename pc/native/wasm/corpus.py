@@ -14,6 +14,7 @@ import trace_tools
 import corpus_worlds
 import corpus_bosses
 import corpus_multiplayer
+import corpus_transformations
 
 HERE = Path(__file__).resolve().parent
 
@@ -63,18 +64,29 @@ CASES = {
     **corpus_worlds.CASES,
     **corpus_bosses.CASES,
     **corpus_multiplayer.CASES,
+    **corpus_transformations.CASES,
 }
+
+
+def prepare_save(directory, case):
+    """Reset the isolated replay's EEPROM to the case's initial inventory and flags."""
+    path = directory / 'bt_eeprom.bin'
+    if case['flags'] is not None:
+        image = save_editor.edit(bytes(2048), 0, [(flag, True) for flag in case['flags']],
+                                 create=True, items=case.get('items', ()))
+        path.write_bytes(image)
+    else:
+        path.unlink(missing_ok=True)
+    return path
 
 
 def record(exe, rom, directory, case, *, dump, timeout):
     directory.mkdir(parents=True)
-    if case['flags'] is not None:
-        image = save_editor.edit(bytes(2048), 0, [(flag, True) for flag in case['flags']], create=True)
-        (directory / 'bt_eeprom.bin').write_bytes(image)
+    save = prepare_save(directory, case)
     env = {key: value for key, value in os.environ.items()
            if not key.startswith('BT_') or key in ('BT_AUDIO', 'BT_AUDIO_CHECK')}
     env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']),
-               **run_env(case), BT_TRACE=str(directory / 'trace.jsonl'), BT_SAVE=str(directory / 'bt_eeprom.bin'))
+               **run_env(case), BT_TRACE=str(directory / 'trace.jsonl'), BT_SAVE=str(save))
     if dump:
         env.update(BT_DUMP=str(directory / 'frame'), BT_DUMP_EVERY=str(case.get('dump_every', 1800)))
     with (directory / 'run.log').open('w') as log:
@@ -102,6 +114,14 @@ def trace_summary(directory, case):
     players = case.get('expected_players', 0)
     if players and (len(last['players']) < players or not all(p['present'] for p in last['players'][:players])):
         raise ValueError(f'{directory.name}: expected {players} active players in the final scene')
+    if 'expected_player_state' in case:
+        player = next(iter(last['players']), {})
+        actual = player['status'][0] if player.get('status') else None
+        if actual != case['expected_player_state']:
+            raise ValueError(f'{directory.name}: expected player state {case["expected_player_state"]}, got {actual}')
+    expected_flags = case.get('expected_permanent_flags_hash')
+    if expected_flags and (len(last['flags']) < 2 or last['flags'][1] != expected_flags):
+        raise ValueError(f'{directory.name}: unexpected permanent flags after the transformation')
     if abs(last['ticks'] / 46875000 - case['seconds']) > 0.1:
         raise ValueError(f'{directory.name}: run stopped before the requested game time')
     return {'build': header['build'], 'retraces': last['retrace'], 'maps': maps, 'last_map': last['map']}

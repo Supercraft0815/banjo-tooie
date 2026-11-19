@@ -16,6 +16,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import trace_tools
 import build
+import corpus
 
 
 class TraceTest(unittest.TestCase):
@@ -86,6 +87,13 @@ class TraceTest(unittest.TestCase):
             self.assertEqual(rows[2]['map'], 395)
             self.assertEqual(rows[2]['players'][0]['position'], [0x3F800000, 0, 0])
             self.assertEqual(rows[2]['players'][0]['status'], [0, 7, 0])
+            case = {'expected_map': rows[-1]['map'], 'seconds': rows[-1]['ticks'] / 46875000,
+                    'expected_player_state': 0}
+            self.assertEqual(corpus.trace_summary(out, case)['retraces'], 3)
+            with self.assertRaisesRegex(ValueError, 'expected player state 176, got 0'):
+                corpus.trace_summary(out, dict(case, expected_player_state=176))
+            with self.assertRaisesRegex(ValueError, 'unexpected permanent flags'):
+                corpus.trace_summary(out, dict(case, expected_permanent_flags_hash='different'))
             self.assertEqual(rows[2]['actors'][0]['id'], 0x42)
             self.assertNotEqual(rows[1]['flags'][1], rows[2]['flags'][1])
             for key in ('state', 'actors', 'players', 'framebuffer'):

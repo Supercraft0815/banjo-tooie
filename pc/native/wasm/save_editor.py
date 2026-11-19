@@ -68,7 +68,7 @@ def new_record(slot):
 START_ABILITIES = [0xED + a for a in [*range(0x14), 0x31]] + [0xEE + a for a in range(0x3C, 0x49)]
 
 
-def edit(image, slot, changes, create=False):
+def edit(image, slot, changes, create=False, *, items=()):
     if len(image) != 2048 or slot not in range(3):
         raise ValueError('expected exactly 2048 EEPROM bytes and logical slot 0..2')
     image = bytearray(image)
@@ -94,7 +94,8 @@ def edit(image, slot, changes, create=False):
         raise ValueError('expected one valid physical record for the logical slot')
     start = matches[0]
     block = image[start:start + SLOT_SIZE]
-    flags, _ = records(block)[6]
+    fields = records(block)
+    flags, _ = fields[6]
     for flag, enabled in changes:
         if not 0x28 < flag < 0x5A5:
             raise ValueError(f'flag {flag:#x} is not in the permanent save bank')
@@ -103,6 +104,13 @@ def edit(image, slot, changes, create=False):
             block[flags + bit // 8] |= 1 << (bit & 7)
         else:
             block[flags + bit // 8] &= ~(1 << (bit & 7))
+    inventory, size = fields[4]
+    for item, count in items:
+        # func_800D1DFC writes the 21 item counters 0x40..0x54 as big-endian halfwords.
+        index = item - 0x40
+        if not 0 <= index < size // 2 or not 0 <= count <= 0x7FFF:
+            raise ValueError('expected an inventory item 0x40..0x54 and a count 0..32767')
+        struct.pack_into('>H', block, inventory + 2 * index, count)
     block[-8:] = checksum(block[:-8])
     records(block)
     image[start:start + SLOT_SIZE] = block
@@ -117,13 +125,16 @@ def main():
     parser.add_argument('--create', action='store_true', help='create a new logical game record')
     parser.add_argument('--set-flag', action='append', default=[], metavar='NAME_OR_ID')
     parser.add_argument('--clear-flag', action='append', default=[], metavar='NAME_OR_ID')
+    parser.add_argument('--item', nargs=2, action='append', default=[], metavar=('ID', 'COUNT'),
+                        help='set a saved inventory counter, e.g. --item 0x48 1 for one Glowbo')
     args = parser.parse_args()
     names = dict((name, int(number, 16)) for name, number in re.findall(
         r'\b(FLAG_\w+)\s*=\s*(0x[0-9A-Fa-f]+)', (ROOT / 'include/gameflags.h').read_text()))
     try:
         changes = [(names[name] if name in names else int(name, 0), enabled)
                    for items, enabled in ((args.set_flag, True), (args.clear_flag, False)) for name in items]
-        result = edit(args.input.read_bytes() if args.input else bytes(2048), args.slot, changes, args.create)
+        items = [(int(item, 0), int(count, 0)) for item, count in args.item]
+        result = edit(args.input.read_bytes() if args.input else bytes(2048), args.slot, changes, args.create, items=items)
         with args.output.open('xb') as output:
             output.write(result)
     except (OSError, ValueError) as error:

@@ -13,6 +13,17 @@ import save_editor as save
 
 
 class SaveTest(unittest.TestCase):
+    def test_inventory_counter_round_trip(self):
+        image = save.edit(bytes(2048), 1, [], create=True, items=[(0x48, 3)])
+        block = image[0x100:0x100 + save.SLOT_SIZE]
+        inventory, _ = save.records(block)[4]
+        self.assertEqual(block[inventory + 16:inventory + 18], b'\x00\x03')
+        self.assertEqual(save.edit(image, 1, [], items=[(0x48, 0)]),
+                         save.edit(bytes(2048), 1, [], create=True))
+        for invalid in ((0x3F, 1), (0x55, 1), (0x48, -1), (0x48, 0x8000)):
+            with self.assertRaises(ValueError):
+                save.edit(image, 1, [], items=[invalid])
+
     def test_original_crc(self):
         with tempfile.TemporaryDirectory(prefix='bt-save-test-') as tmp:
             directory = Path(tmp)

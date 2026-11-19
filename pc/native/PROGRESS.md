@@ -2158,3 +2158,23 @@ und der Größe, Ausrichtung und Kopie der lokalen Vektoren geprüft. Zehn
 Testprogramme und alle 46 damaligen Referenzen mit 245.660 Retraces bestanden
 im Hauptbaum. Prüfobjekte und Protokolle liegen unter
 `build/acceptance/n1-2026-11-18/` in `proof/` und `logs/root-views4-*`.
+
+## 2026-11-19 — Q2, zehn Verwandlungen bei Humba Wumba
+
+Der Korpus enthält jetzt 56 Spielabläufe. Jede der zehn Verwandlungen lief
+zweimal über 7.013 Retraces. Pro Paar waren der vollständige Trace und 23
+Aufnahmen identisch. Die Bildbögen zeigen Steinling, Zünder, Geldtransporter,
+U-Boot, beide T-Rex-Formen, Waschmaschine, Schneeball, Biene und Drachen-Kazooie.
+Nach der Verwandlung prüft der Korpus den Spielerzustand. Bei Drachen-Kazooie
+bleibt der Bewegungszustand derselbe. Ein Lesezugriff im laufenden Spiel
+bestätigte die neu gesetzten Zahlungs- und Fähigkeitsflags `0xDE` und
+`0x3EC`. Der Referenzlauf prüft daher zusätzlich den Hash der permanenten Flags.
+Der Spielstandeditor setzt den benötigten Glowbo oder Mega-Glowbo im Inventar.
+
+Im Hauptbaum bestanden zehn Testprogramme und alle 56 Referenzen mit
+315.790 Retraces. Die alten 46 Referenzen behielten ihre Digests. Von den
+229 benannten Karten sind noch 162 ohne akzeptierten Besuch. Die Begründung
+je Karte steht in
+`build/acceptance/q2-followup-2026-11-18/coverage56/summary.json`.
+Dort liegen im übergeordneten Ordner auch die vier Bildbögen, die
+Wiederholungsbelege, der Live-Flagvergleich und `root-full56.log`.

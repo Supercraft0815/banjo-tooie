@@ -101,12 +101,10 @@ def replay(args):
         for renderer in ('soft', args.renderer):
             work = output / name / renderer
             work.mkdir(parents=True)
-            if case['flags'] is not None:
-                (work / 'bt_eeprom.bin').write_bytes(corpus.save_editor.edit(
-                    bytes(2048), 0, [(f, True) for f in case['flags']], create=True))
+            save = corpus.prepare_save(work, case)
             env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
             env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_RENDERER=renderer,
-                       BT_EXIT_AFTER=str(seconds), BT_SAVE=str(work / 'bt_eeprom.bin'), **corpus.run_env(case),
+                       BT_EXIT_AFTER=str(seconds), BT_SAVE=str(save), **corpus.run_env(case),
                        BT_DUMP=str(work / 'frame'), BT_DUMP_EVERY='1')
             with (work / 'run.log').open('w') as log:
                 run = subprocess.run([str(exe), str(args.rom.resolve())], cwd=work, env=env,

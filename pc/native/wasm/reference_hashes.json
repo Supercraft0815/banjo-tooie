@@ -176,6 +176,46 @@
       "retrace_count": 16544,
       "sha256": "e5ccc908fe793a105d4335eaf7aa4d47c6fd93613cb4a34ab3c55a3049f4e35a"
     },
+    "wumba-baby-t-rex": {
+      "retrace_count": 7013,
+      "sha256": "712b62129090c33972d16bccb7fb3a8b7b1f184918c1c690f3a14b6ab6d8f83a"
+    },
+    "wumba-bee": {
+      "retrace_count": 7013,
+      "sha256": "83b3bd6db8d62ed97c1c765d8a2481ce7b2ccc8e0990bae120629f9967eec547"
+    },
+    "wumba-daddy-t-rex": {
+      "retrace_count": 7013,
+      "sha256": "58bd61cda74b8c2706c8eb1803070fbd127e629c80f78a13a9d9c5542b773701"
+    },
+    "wumba-detonator": {
+      "retrace_count": 7013,
+      "sha256": "d8ee8a1e9e95c2626f6247d1f34d859225426013a09b70ea31039a09c0c4c148"
+    },
+    "wumba-dragon-kazooie": {
+      "retrace_count": 7013,
+      "sha256": "7490bc643ddb44b248c690edc4c5249c76760265672d2a8b0513660f8caf6925"
+    },
+    "wumba-money-van": {
+      "retrace_count": 7013,
+      "sha256": "10fb8233861134e7ea0bb7e5d3f4fa5fb57498b50894be436a5a1d39463f3680"
+    },
+    "wumba-snowball": {
+      "retrace_count": 7013,
+      "sha256": "3cccea427dc309054da51ef9fe683765d82331ed549d11c69e3b91a34c20d218"
+    },
+    "wumba-stony": {
+      "retrace_count": 7013,
+      "sha256": "030538ba2de741da42839660f899a327156ceadedd4c2872623479082122e609"
+    },
+    "wumba-submarine": {
+      "retrace_count": 7013,
+      "sha256": "962938f382a76340d7f62229071d86c7d2b8d0a546ee16bdd8f566b67f8e9efa"
+    },
+    "wumba-washer": {
+      "retrace_count": 7013,
+      "sha256": "8750826359d35f499d99ace16cfcf38ce7654e77a28d0d8fe69c0b1df19c1bf7"
+    },
     "ww-entrance": {
       "retrace_count": 2638,
       "sha256": "a01de6ab5a4f27c5c6a05a624f3a2a2eaa5c479f5f74b65e2b98e14c407c5567"

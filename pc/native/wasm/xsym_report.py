@@ -11,6 +11,7 @@ symbol actually hit. Output: <out>/xsym_report.tsv plus a short summary on stdou
 import argparse
 import bisect
 import collections
+from concurrent.futures import ThreadPoolExecutor
 import os
 import re
 from pathlib import Path
@@ -69,14 +70,10 @@ def run_case(exe, rom, work, name):
     work.mkdir(parents=True, exist_ok=True)
     hits = work / 'xsym_hits.txt'
     hits.unlink(missing_ok=True)
-    if case['flags'] is not None:
-        image = corpus.save_editor.edit(bytes(2048), 0, [(f, True) for f in case['flags']], create=True)
-        (work / 'bt_eeprom.bin').write_bytes(image)
-    else:
-        (work / 'bt_eeprom.bin').unlink(missing_ok=True)
+    save = corpus.prepare_save(work, case)
     env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
     env.update(BT_VCLOCK='1', BT_HEADLESS='1', BT_EXIT_AFTER=str(case['seconds']),
-               **corpus.run_env(case), BT_SAVE=str(work / 'bt_eeprom.bin'), BT_XSYM=str(hits))
+               **corpus.run_env(case), BT_SAVE=str(save), BT_XSYM=str(hits))
     with tempfile.TemporaryDirectory(dir=work) as tmp, (work / 'run.log').open('w') as log:
         env['BT_TRACE'] = str(Path(tmp) / 'trace.jsonl')
         r = subprocess.run([str(exe), str(rom)], cwd=work, env=env, stdout=log, stderr=log, timeout=7200)
@@ -91,8 +88,11 @@ def main():
     ap.add_argument('--out', type=Path, default=ROOT / 'build' / 'ilp32-xsym')
     ap.add_argument('--rom', type=Path, default=ROOT / 'baserom.us.z64')
     ap.add_argument('--case', action='append', choices=corpus.CASES, help='default: all registered cases')
+    ap.add_argument('--jobs', type=int, default=1, help='number of independent replays to run at once')
     ap.add_argument('--no-build', action='store_true')
     args = ap.parse_args()
+    if args.jobs < 1:
+        ap.error('--jobs must be positive')
     out = args.out.resolve()
     if not args.no_build:
         env = dict(os.environ, BT_XSYM='1', BT_OUT=str(out))
@@ -107,14 +107,19 @@ def main():
     starts = [t[0] for t in table]
     by_name = {t[2]: t for t in table}
     rows = {}
-    for name in args.case or corpus.CASES:
-        for sid, addr in run_case(out / trace_tools.GAME_NAME, args.rom.resolve(), out / 'runs' / name, name):
-            a = int(addr, 16)
-            hit, off = resolve(table, starts, a)
-            if (sid, hit) not in rows:
-                func, via, width, kind = sites[sid]
-                delta = '%+d' % (a - by_name[via][0]) if via in by_name else '?'
-                rows[sid, hit] = (func, via, delta, hit if not off else '%s+0x%x' % (hit, off), width, kind, name)
+    cases = list(dict.fromkeys(args.case or corpus.CASES))
+    def replay(name):
+        return run_case(out / trace_tools.GAME_NAME, args.rom.resolve(), out / 'runs' / name, name)
+
+    with ThreadPoolExecutor(args.jobs) as pool:
+        for name, hits in zip(cases, pool.map(replay, cases)):
+            for sid, addr in hits:
+                a = int(addr, 16)
+                hit, off = resolve(table, starts, a)
+                if (sid, hit) not in rows:
+                    func, via, width, kind = sites[sid]
+                    delta = '%+d' % (a - by_name[via][0]) if via in by_name else '?'
+                    rows[sid, hit] = (func, via, delta, hit if not off else '%s+0x%x' % (hit, off), width, kind, name)
     report = out / 'xsym_report.tsv'
     with report.open('w') as f:
         f.write('site\tfunction\tvia\toffset\thit\twidth\tkind\tfirst_case\n')
