@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/taxi.h"
 typedef struct { s32 (*test)(s32, BtIntPtr, f32 *); void (*update)(s32, void *, s32, s32); u8 camera[4]; } TerryEggTaxi;
 OSThread *chterryegg_entrypoint_0(void)
 {
@@ -356,7 +356,7 @@ void func_808009B4_chterryegg(Actor *arg0) {
 s32 func_80800A2C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _glcutDll_entrypoint_19(s32);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
-    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, TaxiProviderGetter arg2, s32 arg3);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     void func_800FFAB0(Actor *);
     void func_80102424(Actor *, s32);
@@ -365,7 +365,7 @@ s32 func_80800A2C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800C08_chterryegg(Actor *);
     void func_80800E88_chterryegg(Actor *, s32);
     s32 func_80801138_chterryegg(void *);
-    extern OSThread *_chterryegg_entrypoint_0(void);
+    extern OSThread *BT_NATIVE_ONLY(chterryegg_entrypoint_0) BT_IDO_ONLY(_chterryegg_entrypoint_0)(void);
     struct TerryEggFlags {
         u8 pad[0x74];
         BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 20);
@@ -388,7 +388,7 @@ s32 func_80800A2C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
         if (_glcutDll_entrypoint_19(0x33)) {
             _subaddieDll_entrypoint_4(arg0, 1);
         }
-        if (_subaddietaxi_entrypoint_13(arg0, arg0->unk74_7 - 0x2B, _chterryegg_entrypoint_0, 3)) {
+        if (_subaddietaxi_entrypoint_13(arg0, arg0->unk74_7 - 0x2B, BT_NATIVE_ONLY(chterryegg_entrypoint_0) BT_IDO_ONLY(_chterryegg_entrypoint_0), 3)) {
             func_80800C08_chterryegg(arg0);
             if (func_80801138_chterryegg(arg0)) {
                 arg0->unk64_16 = 1;

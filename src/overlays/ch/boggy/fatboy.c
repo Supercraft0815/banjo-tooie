@@ -1,3 +1,4 @@
+#include "core2/taxi.h"
 #include "ch/boggy/fatboy.h"
 
 u32 D_80801154_chboggyfatboy[];
@@ -471,7 +472,7 @@ void func_80800998_chboggyfatboy(Actor *arg0) {
 
 void func_808009E0_chboggyfatboy(Actor *arg0) {
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
-    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, TaxiProviderGetter arg2, s32 arg3);
     s32 func_800DA298(s32);
     void func_800DA524(s32 index);
     void func_800FFAB0(Actor *);
@@ -485,7 +486,7 @@ void func_808009E0_chboggyfatboy(Actor *arg0) {
         func_800FFAB0(arg0);
         return;
     }
-    if (_subaddietaxi_entrypoint_13(arg0, 1, &_chboggyfatboy_entrypoint_0, 7) != 0) {
+    if (_subaddietaxi_entrypoint_13(arg0, 1, BT_NATIVE_ONLY(chboggyfatboy_entrypoint_0) BT_IDO_ONLY(&_chboggyfatboy_entrypoint_0), 7) != 0) {
         func_80800078_chboggyfatboy(arg0);
         func_80102FDC(arg0, 1.0f);
     } else {

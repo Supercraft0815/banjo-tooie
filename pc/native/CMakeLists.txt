@@ -199,6 +199,10 @@ else()
 endif()
 add_test(NAME native_level_query COMMAND bt_native_level_test)
 
+add_executable(bt_native_taxi_test tests/taxi.c "${BT_ROOT}/src/core2/1EA4CD0.c")
+target_link_libraries(bt_native_taxi_test PRIVATE bt_native_options)
+add_test(NAME native_taxi_owner COMMAND bt_native_taxi_test)
+
 add_executable(bt_native_input_test tests/input.c)
 target_link_libraries(bt_native_input_test PRIVATE bt_native_core)
 if(APPLE)

@@ -1,3 +1,4 @@
+#include "core2/taxi.h"
 #include "su/baddiedialog_descriptor.h"
 
 void func_80800D30_chsabreman(Actor *, s32);
@@ -336,7 +337,7 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddielink_entrypoint_1(u8 *arg0, u8 *arg1);
     void _subaddiepalette_entrypoint_4(void *arg0, void *arg1);
-    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, TaxiProviderGetter arg2, s32 arg3);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     void func_800C01A8(s16, s32);
     s32 func_800D1000(s32, s32, s32 *, s32, BtIntPtr);
@@ -446,7 +447,7 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
             return func_8080167C_chsabreman((BtIntPtr)arg0, arg2 & 0xFFFF, ((u32)arg2 & 0xFFFF0000) >> 16);
         case 0x95:
             *(s32 *)((u8 *)arg0 + 0x50) = 0;
-            if (_glcutDll_entrypoint_20() || _subaddietaxi_entrypoint_13(arg0, 0xB, &_chsabreman_entrypoint_0, 3)) {
+            if (_glcutDll_entrypoint_20() || _subaddietaxi_entrypoint_13(arg0, 0xB, BT_NATIVE_ONLY(chsabreman_entrypoint_0) BT_IDO_ONLY(&_chsabreman_entrypoint_0), 3)) {
                 func_80800030_chsabreman(arg0);
             } else if (((struct SabremanFlags *)((u8 *)arg0 + 0x78))->active) {
                 func_800FFAB0(arg0);

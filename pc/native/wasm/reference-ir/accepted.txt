@@ -482,3 +482,6 @@ pointers or use their storage. Both complete ROMs, all 74 replays and all
 
 2026-11-19  Depth queries and collision contacts
 12 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-depth-queries-ir.log.
+
+2026-11-19  Taxi providers and return slots
+9 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-taxi-state-ir.log.

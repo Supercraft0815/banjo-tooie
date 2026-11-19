@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/taxi.h"
 #ifdef BT_NATIVE
 #include "core2/particle_script.h"
 #endif
@@ -219,7 +219,7 @@ void func_808006AC_chfloaty(Actor *arg0, s32 arg1) {
 }
 
 s32 func_8080090C_chfloaty(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, TaxiProviderGetter arg2, s32 arg3);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     void func_800DF744(s32, s32);
     s32 func_801015D0(Actor *);
@@ -266,7 +266,7 @@ s32 func_8080090C_chfloaty(Actor *arg0, s32 arg1, s32 arg2) {
         sp1C->unk74_7 = arg0->unk74_7;
         return 1;
     case 0x95:
-        if (_subaddietaxi_entrypoint_13(arg0, arg0->unk74_7 - 0x25, &_chfloaty_entrypoint_0, 1)) {
+        if (_subaddietaxi_entrypoint_13(arg0, arg0->unk74_7 - 0x25, BT_NATIVE_ONLY(chfloaty_entrypoint_0) BT_IDO_ONLY(&_chfloaty_entrypoint_0), 1)) {
             func_80102FDC(arg0, 1.0f);
             if (!func_800DA298(arg0->unk74_7 + 0x320)) {
                 func_808006AC_chfloaty(arg0, 1);

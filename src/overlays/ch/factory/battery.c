@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/taxi.h"
 
 OSThread *chfactorybattery_entrypoint_0(void)
 {
@@ -70,7 +70,7 @@ s32 func_808001F8_chfactorybattery(Actor *arg0) {
     s32 func_80800444_chfactorybattery(void);
     void func_808006E4_chfactorybattery(Actor *);
     void func_8080130C_chfactorybattery(Actor *, s32);
-    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, TaxiProviderGetter arg2, s32 arg3);
     void _subaddieDll_entrypoint_1(Actor *arg0);
     void _subaddierouteDll_entrypoint_1(Actor *);
 #ifndef BT_NATIVE
@@ -95,7 +95,7 @@ s32 func_808001F8_chfactorybattery(Actor *arg0) {
     if (arg0->unk7A_5) {
         if (func_80800678_chfactorybattery(arg0)) {
             if (!func_80800558_chfactorybattery(arg0)) {
-                if (_subaddietaxi_entrypoint_13(arg0, func_80800678_chfactorybattery(arg0), &_chfactorybattery_entrypoint_0, 3)) {
+                if (_subaddietaxi_entrypoint_13(arg0, func_80800678_chfactorybattery(arg0), BT_NATIVE_ONLY(chfactorybattery_entrypoint_0) BT_IDO_ONLY(&_chfactorybattery_entrypoint_0), 3)) {
                     arg0->unk64_24 = 1;
                 } else {
                     func_800FFAB0(arg0);

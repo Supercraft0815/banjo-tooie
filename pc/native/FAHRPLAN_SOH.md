@@ -33,6 +33,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Tiefenabfragen und Kollisionskontakte. Zwei Tiefenpuffer mit je fünf Kameraplätzen, acht Kontakt-Callbacks und die Kollisionsverwaltung haben eigene C-Objekte. Gast- und LP64-Proben prüfen das Umschalten und die Callback-Übergabe.
 
+- Taxi-Anbieter. Die 16 Taxiplätze speichern ihre Anbieter, Positionen, Blickrichtungen und Karten in typisierten Einträgen. Der neue native Test prüft sechs Anbieter und die Platzverwaltung.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

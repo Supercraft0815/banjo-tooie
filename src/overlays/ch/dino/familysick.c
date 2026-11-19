@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/taxi.h"
 void func_80102424(Actor *, s32);      
 
 OSThread *chdinofamilysick_entrypoint_0(void)
@@ -108,7 +108,7 @@ s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     s32 _glcutDll_entrypoint_20();
-    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3);
+    s32 _subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, TaxiProviderGetter arg2, s32 arg3);
     s32 _subaddietaxi_entrypoint_2(Actor *, s32);
     s32 func_800CB3E0(s32);
     s32 func_800DA298(s32);
@@ -158,7 +158,7 @@ s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
                     func_800FFAB0(arg0);
                     return 1;
                 }
-                if (!_subaddietaxi_entrypoint_13(arg0, 2, &_chdinofamilysick_entrypoint_0, 7)) {
+                if (!_subaddietaxi_entrypoint_13(arg0, 2, BT_NATIVE_ONLY(chdinofamilysick_entrypoint_0) BT_IDO_ONLY(&_chdinofamilysick_entrypoint_0), 7)) {
                     func_800FFAB0(arg0);
                     return 1;
                 }

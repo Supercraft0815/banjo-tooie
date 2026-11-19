@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/taxi.h"
 
 void subaddietaxi_entrypoint_0(Actor *arg0, s32 arg1, f32 *arg2, s32 arg3) {
     void func_800EE7F8(f32 *, f32 *);
@@ -121,7 +121,7 @@ void subaddietaxi_entrypoint_3(void) {
 s32 subaddietaxi_entrypoint_4(void) {
     s32 func_800CB3E0(s32 arg0);
     f32 func_800CB3FC(volatile s32, f32 *, s32 *);
-    s32 func_800CB534(s32, f32 *, f32);
+    void func_800CB534(s32, f32 *, f32);
     s32 func_800CB698(s32, s32);
     void func_800CB70C(s32);
     s32 func_800EA05C();
@@ -410,8 +410,8 @@ s32 subaddietaxi_entrypoint_12(u8 *arg0, s32 arg1) {
 
 /* extern */
 
-s32 subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
-    s32 func_800CB4D0(s32, BtIntPtr, s32);
+s32 subaddietaxi_entrypoint_13(Actor *arg0, s32 arg1, TaxiProviderGetter arg2, s32 arg3) {
+    s32 func_800CB4D0(s32, TaxiProviderGetter, s32);
     void func_800CB70C(s32);
     void func_800CB764(s32, f32 *, f32, s32, s32);
     s32 func_800EA05C();

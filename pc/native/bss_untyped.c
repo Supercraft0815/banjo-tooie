@@ -60,8 +60,6 @@ u8 D_8012AB04[12] BT_DATA(4, bss_core2bss1_1, 0x24);
 u8 D_8012AB10[12] BT_DATA(4, bss_core2bss1_1, 0x30);
 u8 D_8012AB1C[12] BT_DATA(4, bss_core2bss1_1, 0x3C);
 u8 D_8012AB28[24] BT_DATA(4, bss_core2bss1_1, 0x48);
-u8 D_8012AB72[2] BT_DATA(4, bss_core2bss1_1, 0x92);
-u8 D_8012AB74[4] BT_DATA(4, bss_core2bss1_1, 0x94);
 u8 D_8012AF70[128] BT_DATA(4, bss_core2bss1_1, 0x490);
 u8 D_8012AFF0[32] BT_DATA(4, bss_core2bss1_1, 0x510);
 u8 bss_core2bss1_1_counter_tail__end[1] BT_DATA(1, bss_core2bss1_1_counter_tail, 0xDF);

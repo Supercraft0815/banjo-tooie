@@ -1,4 +1,141 @@
-#include "common.h"
+#include "core2/taxi.h"
+#ifdef BT_NATIVE
+
+s32 func_800CB3E0(s32 arg0) {
+    return D_8012AB70[arg0].state;
+}
+
+f32 func_800CB3FC(volatile s32 arg0, f32 *arg1, s32 *arg2) {
+    void func_800EE7F8(f32 *, f32 *);
+    TaxiSlot *slot = &D_8012AB70[arg0];
+
+    func_800EE7F8(arg1, slot->return_position);
+    *arg2 = slot->return_map;
+    return slot->return_yaw;
+}
+
+f32 func_800CB45C(volatile s32 arg0, f32 *arg1, s32 *arg2, s32 *arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    TaxiSlot *slot = &D_8012AB70[arg0];
+
+    func_800EE7F8(arg1, slot->spawn_position);
+    *arg2 = slot->spawn_map;
+    *arg3 = slot->spawn_flags;
+    return slot->spawn_yaw;
+}
+s32 func_800CB4D0(s32 arg0, TaxiProviderGetter arg1, s32 arg2) {
+    TaxiSlot *slot = &D_8012AB70[arg0];
+    if (slot->state == 0) {
+        slot->state = 1;
+        slot->provider = arg1;
+        slot->registration_flags = arg2;
+        return 1;
+    }
+    return 0;
+}
+
+s16 func_800CB518(s32 arg0) {
+    return D_8012AB70[arg0].registration_flags;
+}
+
+void func_800CB534(s32 arg0, f32 *arg1, f32 arg2) {
+    TaxiSlot *slot = &D_8012AB70[arg0];
+    TaxiMethods *methods = (TaxiMethods *)slot->provider();
+    union { f32 value; s32 bits; } yaw;
+    yaw.value = arg2;
+    methods->spawn(arg0, arg1, yaw.bits, slot->spawn_flags);
+}
+
+/* extern */
+
+void func_800CB598(s32 arg0, f32 *arg1, f32 arg2) {
+    void func_800CB534(s32, f32 *, f32);
+    s32 func_800CB698(s32, s32);
+    func_800CB698(arg0, 4);
+    func_800CB534(arg0, arg1, arg2);
+}
+
+/* extern */
+
+void func_800CB5D4(s32 arg0, f32 *arg1, f32 arg2) {
+    void func_800CB534(s32, f32 *, f32);
+    s32 func_800CB698(s32, s32);
+    func_800CB698(arg0, 3);
+    func_800CB534(arg0, arg1, arg2);
+}
+
+void func_800CB610(void) {
+}
+
+void func_800CB618(void) {
+    s32 i;
+    void func_800EFD24(f32 *);
+    for (i = 0; i < 16; i++) {
+        TaxiSlot *slot = &D_8012AB70[i];
+        slot->index = (u8)i;
+        slot->state = 0;
+        slot->provider = NULL;
+        slot->spawn_yaw = 0.0f;
+        func_800EFD24(slot->spawn_position);
+    }
+}
+
+s32 func_800CB698(s32 arg0, s32 arg1) {
+    D_8012AB70[arg0].state = (u8)arg1; BT_NATIVE_ONLY(return 0;)
+}
+
+void func_800CB6B4(s32 arg0, f32 *arg1, f32 arg2, s32 arg3) {
+    void func_800EE7F8(f32 *, f32 *);
+    TaxiSlot *slot = &D_8012AB70[arg0];
+    func_800EE7F8(slot->return_position, arg1);
+    slot->return_yaw = arg2;
+    slot->return_map = (s16)arg3;
+}
+
+void func_800CB70C(s32 arg0) {
+    void func_800EE7F8(f32 *, f32 *);
+    TaxiSlot *slot = &D_8012AB70[arg0];
+    func_800EE7F8(slot->return_position, slot->spawn_position);
+    slot->return_yaw = slot->spawn_yaw;
+    slot->return_map = slot->spawn_map;
+    slot->return_flags = slot->spawn_flags;
+}
+
+void func_800CB764(s32 arg0, f32 *arg1, f32 arg2, s32 arg3, s32 arg4) {
+    void func_800EE7F8(f32 dst[3], f32 src[3]);
+    TaxiSlot *slot = &D_8012AB70[arg0];
+    func_800EE7F8(slot->spawn_position, arg1);
+    slot->spawn_yaw = arg2;
+    slot->spawn_map = (s16)arg3;
+    slot->spawn_flags = (s16)arg4;
+}
+
+s32 func_800CB7C4(s32 arg0, f32 *arg1, f32 *arg2) {
+    TaxiMethods *methods;
+    void func_800FC63C(u32, u32);
+    s32 result;
+
+    methods = (TaxiMethods *)D_8012AB70[arg0].provider();
+    result = methods->interact(arg0, arg1, arg2);
+    if (result == 2) {
+        func_800FC63C(0xE, 0x7FFF);
+    }
+    return result;
+}
+
+#ifdef BT_NATIVE
+/* bss_to_c.py: native definitions of asm .bss labels */
+#include "bt_data.h"
+TaxiSlot D_8012AB70[16] BT_DATA(4, bss_core2bss1_1, 0x90);
+#if defined(BT_ILP32)
+_Static_assert(offsetof(TaxiSlot, index) == 0 && offsetof(TaxiSlot, state) == 1, "taxi state byte");
+_Static_assert(sizeof(TaxiSlot) == 0x30, "taxi slot ILP32 size");
+_Static_assert(offsetof(TaxiSlot, provider) == 4 && offsetof(TaxiSlot, spawn_position) == 8 && offsetof(TaxiSlot, return_position) == 0x1C, "taxi ILP32 offsets");
+#endif
+_Static_assert(sizeof(D_8012AB70) == 16 * sizeof(TaxiSlot), "taxi pool count");
+#endif
+
+#else
 
 s32 func_800CB3E0(s32 arg0) {
     extern u8 D_8012AB71[];
@@ -148,4 +285,6 @@ s32 func_800CB7C4(s32 arg0, f32 *arg1, f32 *arg2) {
 u8 D_8012AB70 [ 1 ] BT_DATA(4, bss_core2bss1_1, 0x90);
 u8 D_8012AB71 [ 1 ] BT_DATA(4, bss_core2bss1_1, 0x91);
 u8 D_8012AB78 [ 760 ] BT_DATA(4, bss_core2bss1_1, 0x98);
+#endif
+
 #endif

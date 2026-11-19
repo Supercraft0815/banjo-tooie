@@ -3449,3 +3449,9 @@ alle 16.401 Funktionen und beide vollständigen ROMs. Belege unter
 Zwei Tiefenpuffer mit je fünf Kameraplätzen, acht Kontakt-Callbacks und die Kollisionsverwaltung haben eigene C-Objekte. Gast- und LP64-Proben prüfen das Umschalten und die Callback-Übergabe.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 67 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 12 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-depth-queries*`.
+
+### 2026-11-19 – Taxi-Anbieter (N1/N3)
+
+Die 16 Taxiplätze speichern ihre Anbieter, Positionen, Blickrichtungen und Karten in typisierten Einträgen. Der neue native Test prüft sechs Anbieter und die Platzverwaltung.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 9 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-taxi-state*`.
