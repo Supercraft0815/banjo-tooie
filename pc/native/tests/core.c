@@ -47,6 +47,15 @@ static void test_vector(void) {
     vec = vector_defrag(vec);
     CHECK(vector_index_of(vec, vector_at(vec, 7)) == 7);
     CHECK(vector_end(vec) == vector_at(vec, vector_size(vec)));
+    s32 bytes = (s32)((u8 *)vec->mem_end - (u8 *)vec);
+    Vector *moved = heap_alloc(bytes);
+    rare_memcpy(moved, vec, bytes);
+    vector_update_pointers(moved);
+    CHECK(vector_begin(moved) == moved->data && vector_size(moved) == 39);
+    CHECK((u8 *)moved->mem_end == (u8 *)moved + bytes);
+    CHECK(*(void **)vector_at(moved, 2) == &objects[39]);
+    vector_free(vec);
+    vec = moved;
     vector_pop_back_n(vec, 2);
     CHECK(vector_size(vec) == 37);
     vector_clear(vec);

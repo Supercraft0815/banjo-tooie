@@ -2472,3 +2472,19 @@ Größen und Bytes für 3.041 Funktionen in 126 Modulen. Beide vollständigen
 ROMs stimmen mit dem Original überein. Belege liegen unter
 `build/acceptance/n2-2026-11-18/` in `signature-three-ido/result.json`,
 `signature-three-proof.log` und `signature-three-gate.log`.
+
+## 2026-11-19 — N3, Vektoren nach dem Verschieben im Heap
+
+Vektoren speichern den Abstand von Anfang, Ende und Kapazitätsgrenze beim
+Verschieben in Zeigerbreite. Ein neuer Test kopiert einen gefüllten Vektor
+in einen zweiten Heapblock und prüft Größe, Kapazität und gespeicherte
+Zeiger nach dem Reparieren seiner Adressen. Auch die Lichterliste behandelt
+die Anzahl freier Plätze innerhalb der tatsächlichen Kapazität.
+
+Der Stand mit den vorigen Signaturkorrekturen zählt 971 LP64-Warnstellen in
+257 Dateien. Davon entfallen zwölf beseitigte Warnstellen auf Vektoren und
+Lichter. Alle 54 nativen Tests und 74 Replays mit 447.849 Retraces bestanden.
+Die kanonische Gast-IR der Vektoränderung ist identisch. Original-IDO prüfte
+2.384 Funktionen in 100 Modulen und beide vollständigen ROMs. Die Ergebnisse
+stehen in `build/acceptance/n3-2026-11-18/` in `gate-vector.log`,
+`vector-native-tests.log`, `vector-ir.log` und `vector-ido/result.json`.

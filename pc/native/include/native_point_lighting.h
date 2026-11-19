@@ -29,7 +29,8 @@ static inline s32 native_point_word(f32 value) {
     return isfinite(value) && value>=-2147483648.0f && value<2147483648.0f ? (s32)value : INT_MIN;
 }
 static inline s32 native_point_capacity(s32 amount,s32 available) {
-    s64 count=amount<0 ? -(s64)amount : amount;return count<available ? count : available;
+    s64 count = amount < 0 ? -(s64)amount : amount;
+    return count < available ? (s32)count : available;
 }
 static inline s32 native_point_attenuation(const NativePointLight *light,const Vtx *vertex) {
     s32 x=light->position[0]-vertex->v.ob[0],y=light->position[1]-vertex->v.ob[1],z=light->position[2]-vertex->v.ob[2];

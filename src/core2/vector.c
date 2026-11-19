@@ -1,7 +1,7 @@
 #include "memory.h"
 #include "vector.h"
-
-// Alternate memory management functions?
+/* The signed byte count of an element in a vector fits the game heap. */
+#define VECTOR_OFFSET(vec, item) ((s32)((u8 *)(item) - (u8 *)(vec)->begin))
 s16 func_8001B668(s32, s32); // alloc
 void* func_8001B798(s16); // get
 void* func_8001B710(s16, s32); // realloc
@@ -25,11 +25,11 @@ void* vector_at(Vector* vec, s32 index) {
 }
 
 s32 vector_index_of(Vector* vec, void* element) {
-    return ((u8*)element - (u8*)vec->begin) / vec->element_size;
+    return VECTOR_OFFSET(vec, element) / vec->element_size;
 }
 
 s32 vector_size(Vector* vec) {
-    return ((u8*)vec->end - (u8*)vec->begin) / vec->element_size;
+    return VECTOR_OFFSET(vec, vec->end) / vec->element_size;
 }
 
 void* vector_end(Vector* vec) {
@@ -44,7 +44,7 @@ void* vector_push_back(Vector** vec_ptr) {
 
     vec = *vec_ptr;
     if(vec->end == vec->mem_end) {
-        size = ((u8*)vec->end - (u8*)vec->begin)/vec->element_size;
+        size = VECTOR_OFFSET(vec, vec->end)/vec->element_size;
         mem_size = size + 5;
         vec = heap_realloc(vec, mem_size * vec->element_size + sizeof(Vector));
         vec->begin = &vec->data;
@@ -66,7 +66,7 @@ void* func_800B2A58(s16 arg0) {
 
     vec = func_8001B798(arg0);
     if(vec->end == vec->mem_end) {
-        size = ((u8*)vec->end - (u8*)vec->begin)/vec->element_size;
+        size = VECTOR_OFFSET(vec, vec->end)/vec->element_size;
         mem_size = size + 5;
         vec = func_8001B710(arg0, mem_size * vec->element_size + sizeof(Vector));
         vec->begin = &vec->data;
@@ -84,7 +84,7 @@ void* vector_insert(Vector** vec_ptr, s32 index) {
 
     vector_push_back(vec_ptr);
     vec = *vec_ptr;
-    i = ((u8*)vec->end - (u8*)vec->begin) / vec->element_size;
+    i = VECTOR_OFFSET(vec, vec->end) / vec->element_size;
     while(index < --i) {
         aligned4_memcpy((u8*)vec->begin + i *vec->element_size, (u8*)vec->begin + (i - 1) * vec->element_size, vec->element_size);
     }
@@ -103,7 +103,7 @@ void* func_800B2C1C(s16 arg0, s32 index) {
 #else
     //! BUG: Use after free: func_800B2A58 can reallocate the vector, so `vec` may be invalid at this point.
 #endif
-    i = ((u8*)vec->end - (u8*)vec->begin) / vec->element_size;
+    i = VECTOR_OFFSET(vec, vec->end) / vec->element_size;
     while(index < --i) {
         aligned4_memcpy((u8*)vec->begin + i *vec->element_size, (u8*)vec->begin + (i - 1) * vec->element_size, vec->element_size);
     }
@@ -144,7 +144,7 @@ s16 func_800B2DC0(u32 element_size, u32 count) {
 void vector_erase(Vector* vec, u32 index) {
     u8* cur_element = (u8*)vec->begin + index * vec->element_size;\
     u8* next_element = (u8*)vec->begin + (index + 1) * vec->element_size;\
-    u32 size = (u8*)vec->end - (u8*)vec->begin;
+    u32 size = VECTOR_OFFSET(vec, vec->end);
     
     aligned4_memcpy(cur_element, next_element, size - (index + 1) * vec->element_size);
     vec->end = (u8*)vec->end - vec->element_size;
@@ -168,8 +168,8 @@ void vector_assign(Vector* vec, s32 index, void* value) {
 }
 
 Vector* vector_defrag(Vector* vec) {
-    s32 old_size;
-    s32 old_mem_size;
+    BtIntPtr old_size;
+    BtIntPtr old_mem_size;
 
     old_size = (u8*)vec->end - (u8*)vec->begin;
     old_mem_size = (u8*) vec->mem_end - (u8*)vec->begin;
@@ -181,8 +181,8 @@ Vector* vector_defrag(Vector* vec) {
 }
 
 void vector_update_pointers(Vector* vec) {
-    u32 size = (u8*)vec->end - (u8*)vec->begin;
-    u32 mem_size = (u8*)vec->mem_end - (u8*)vec->begin;
+    BtIntPtr size = (u8*)vec->end - (u8*)vec->begin;
+    BtIntPtr mem_size = (u8*)vec->mem_end - (u8*)vec->begin;
     vec->begin = vec->data;
     vec->end = (u8*)vec->begin + size;
     vec->mem_end = (u8*)vec->begin + mem_size;
