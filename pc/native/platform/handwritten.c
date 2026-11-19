@@ -1,5 +1,5 @@
 // Native equivalents of handwritten assembly functions in src/*.s.
-#include <ultra64.h>
+#include "core2/inflate_state.h"
 
 // src/core1/1E35D40.s: reads one big-endian ROM word through the PI.
 s32 rom_read_word(u32 address, u32 *value) {
@@ -82,9 +82,8 @@ static s32 rng_step(u64 *state) {
     return (s32)t;
 }
 
-extern u64 D_80124A70;
-s32 func_80116850(void) { return rng_step(&D_80124A70); }
-s32 func_80116898(s64 seed) { D_80124A70 = seed + 1; return 0; }
+s32 func_80116850(void) { return rng_step(&core2_inflate_state.random_seed); }
+s32 func_80116898(s64 seed) { core2_inflate_state.random_seed = (u64)seed + 1; return 0; }
 s32 func_801168AC(u64 *state) { return rng_step(state); }
 
 // asm/nonmatchings/core2/1ED8C80/func_80100368.s: returns what the actor's own getter at +0x10 returns.

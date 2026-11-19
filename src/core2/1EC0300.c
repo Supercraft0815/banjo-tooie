@@ -415,3 +415,9 @@ void func_800E7480(s8 *arg0, BtIntPtr arg1, u8 *arg2) {
         }
     }
 }
+
+/* The retail formatter retains these special-value strings alongside its finite-value code. */
+struct {
+    char nan[4], signaling_nan[8], infinity[4], negative_infinity[8];
+    char padding[8];
+} D_801232F0 BT_DATA(4, number_format_strings, 0) = {"NaN", "sNaN", "INF", "-INF", {0}};

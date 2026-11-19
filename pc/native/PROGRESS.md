@@ -2997,3 +2997,22 @@ Retraces, 63 Sanitizertests, 16.401 Originalfunktionen und beide
 ROM-Abbilder sind geprüft. Die Vergleiche stehen unter
 `build/acceptance/n1-2026-11-18/current-trig-lookup*` und
 `current-texture-modes*`.
+
+## 2026-11-19 — N1, Audio-Konfiguration, Zufallszustand und Bodenkontakt
+
+Die Audio-Konfiguration umfasst die acht FX-Abschnitte, das Echo-Preset,
+die sieben echten Funktionseinträge, die DMA-Verwaltung und die Nachricht
+zum Aufgabenabschluss. Auf dem 64-Bit-Host behält die Nachricht ihre
+Adresse. Zwei Aufrufe der originalen Startfunktion starten den Audiothread
+genau einmal.
+
+Die Zufallsfolge stimmt für sechs Saatwerte über jeweils 10.000 Schritte,
+einschließlich der 64-Bit-Grenzwerte. Die Initialisierung erhält beide
+vollen Pufferadressen. Der Test für die gemeinsame Bodennormale führt
+512 gemischte und 512 zurückgesetzte Kontakte durch und prüft die
+benachbarten 160 Bytes. Der strenge Scan sinkt von 102 über 95 auf 90.
+Je Stand bestehen elf Gastsuiten und 74 Replays mit 447.849 Retraces.
+Alle 9.688 Zeigerwort-Adressen, 16.401 Originalfunktionen und beide ROMs
+sind geprüft. Belege unter
+`build/acceptance/n1-2026-11-18/current-core-audio-config*` und
+`current-rng-ground*`.

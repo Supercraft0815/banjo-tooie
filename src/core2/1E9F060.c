@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "ground_normal.inc"
 typedef struct {
     f32 unk0;
     f32 unk4;
@@ -292,7 +292,7 @@ void func_800C5F40(void *ptr, void *arg1, void *triangle) {
 }
 
 void func_800C5F8C(void *ptr) {
-    extern u8 D_8011A890[];
+
     void func_800C5EB8(void *, f32, s32, s32, void *, s32, void *);
     func_800C5EB8(ptr, -18000.0f, 0, 0, D_8011A890, 0, NULL);
 }    typedef struct { u8 pad0[0x8]; s32 unk8; } Obj1E9F060_func_800C5FCC_triangle; /* offsets.py genstruct: fields from raw offsets on triangle; rename once understood */

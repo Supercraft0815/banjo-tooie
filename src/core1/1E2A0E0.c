@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core1/audio_config_data.h"
 struct AudioConfig {
     s32 maxVVoices, maxPVoices, maxUpdates, unkC;
     s32 *(*dmaproc)(s32 **);
@@ -92,7 +92,7 @@ void func_8001268C(void) {
     s32 func_80020EE4(s32, s32, void *, s32, s32);
     void func_800128C0(void *);
     s32 *func_80012D4C(s32 **);
-    extern s32 D_8003CA44[];
+    BT_IDO_ONLY(extern s32 D_8003CA44[];)
     extern s32 D_800459E0[];
     extern OSThread D_800459F8;
     extern __OSThreadOddFpStorage D_80045BA8;
@@ -121,7 +121,7 @@ void func_8001268C(void) {
     D_8006A1A8.unkC = 1;
     D_8006A1A8.dmaproc = func_80012D4C;
     D_8006A1A8.fxType = 6;
-    D_8006A1A8.params = D_8003CA44;
+    D_8006A1A8.params = BT_DATA_FIELD(core1_audio_config.effect_params, D_8003CA44);
     D_8006A1A8.heap = &D_80046A78;
     D_8006A1A8.outputRate = osAiSetFrequency(22050);
     func_80020D80((s32)&D_8006A158, (s32)&D_8006A1A8);
@@ -154,8 +154,8 @@ void func_800128C0(void *arg) {
     s32 func_800129FC(s32, s32);
     void func_80012B74(s32);
     void func_800E96B0(s32);
-    extern OSMesg D_8003CC5C;
-    extern s32 D_8003CC60;
+    BT_IDO_ONLY(extern OSMesg D_8003CC5C;)
+    BT_IDO_ONLY(extern s32 D_8003CC60;)
     extern s32 D_800459E0[];
     extern u8 D_80045BB8[];
     extern OSMesgQueue D_80045BF0;
@@ -164,11 +164,11 @@ void func_800128C0(void *arg) {
 
     while (TRUE) {
         osRecvMesg(D_80045BB8, NULL, OS_MESG_BLOCK);
-        if (func_800129FC(D_800459E0[(s32)D_8006A148 % 3 + 2], D_8003CC60)) {
+        if (func_800129FC(D_800459E0[(s32)D_8006A148 % 3 + 2], BT_DATA_FIELD(core1_audio_config.last_task, D_8003CC60))) {
             if (skip_handle_done_mesg == 0) {
-                osRecvMesg(&D_80045BF0, &D_8003CC5C, OS_MESG_BLOCK);
-                func_80012B74(((s32 *)D_8003CC5C)[1]);
-                D_8003CC60 = ((s32 *)D_8003CC5C)[1];
+                osRecvMesg(&D_80045BF0, &BT_DATA_FIELD(core1_audio_config.completed_task, D_8003CC5C), OS_MESG_BLOCK);
+                func_80012B74(((s32 *)BT_DATA_FIELD(core1_audio_config.completed_task, D_8003CC5C))[1]);
+                BT_DATA_FIELD(core1_audio_config.last_task, D_8003CC60) = ((s32 *)BT_DATA_FIELD(core1_audio_config.completed_task, D_8003CC5C))[1];
             } else {
                 skip_handle_done_mesg--;
             }
@@ -228,11 +228,11 @@ s32 func_800129FC(s32 arg0, s32 arg1) {
 }
 
 void func_80012B74(s32 arg0) {
-    extern s32 D_8003CC64[1];
+    BT_IDO_ONLY(extern s32 D_8003CC64[1];)
     s32 i;
-    if (((osAiGetLength() >> 2) == 0) && (D_8003CC64[0] == 0)) {
+    if (((osAiGetLength() >> 2) == 0) && (BT_DATA_FIELD(core1_audio_config.ai_buffer, D_8003CC64)[0] == 0)) {
         for (i = 0; i < 1; i = 1) {
-            D_8003CC64[i] = 0;
+            BT_DATA_FIELD(core1_audio_config.ai_buffer, D_8003CC64)[i] = 0;
         }
     }
 } typedef struct { u8 unk0; u8 pad1[0x3]; union { struct dma_node * unk4; void * unk4_voidp; }; union { void * unk8; s32 * unk8_s32p; struct dma_node * unk8_structdma_nodep; }; } Obj1E2A0E0_D_80069A30; /* offsets.py genstruct: fields from raw offsets on &D_80069A30; rename once understood */
@@ -361,10 +361,10 @@ void func_80012D84(void) {
 #endif
 
 void func_80012EA0(void) {
-    extern s32 D_8003CA40;
+    BT_IDO_ONLY(extern s32 D_8003CA40;)
     extern OSThread D_800459F8;
-    if (D_8003CA40 == 0) {
-        D_8003CA40 = 1;
+    if (BT_DATA_FIELD(core1_audio_config.dma_initialized, D_8003CA40) == 0) {
+        BT_DATA_FIELD(core1_audio_config.dma_initialized, D_8003CA40) = 1;
         osStartThread(&D_800459F8);
     }
 }
@@ -415,7 +415,7 @@ void *func_80012F6C(void) {
 }
 
 void rom_dma_read(u8 *arg0, BtIntPtr arg1, s32 arg2) {
-    extern s32 D_8003CC70;
+    BT_IDO_ONLY(extern s32 D_8003CC70;)
     extern u8 D_80076940[];
     extern u8 D_8007695C[];
     s32 i;
@@ -425,30 +425,30 @@ void rom_dma_read(u8 *arg0, BtIntPtr arg1, s32 arg2) {
     i = 0;
     chunks = arg2 / 0x20000;
     for (; i < chunks;) {
-        D_8003CC70++;
+        BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)++;
         osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg1, arg0, 0x20000, (OSMesgQueue *) D_8007695C);
         osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
         arg1 += 0x20000;
         arg0 += 0x20000;
         i++;
-        D_8003CC70--;
+        BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)--;
     }
-    D_8003CC70++;
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)++;
     osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg1, arg0, arg2 % 0x20000, (OSMesgQueue *) D_8007695C);
     osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
-    D_8003CC70--;
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)--;
     osInvalDCache(arg0, arg2);
 }
 
 void func_8001311C(u8 *arg0, s32 arg1) {
-    extern s32 D_8003CC70;
+    BT_IDO_ONLY(extern s32 D_8003CC70;)
     extern u8 D_80076940[];
     extern u8 D_8007695C[];
     osWritebackDCache(arg0, 0x1800);
-    D_8003CC70++;
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)++;
     osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg1, arg0, 0x1800, (OSMesgQueue *) D_8007695C);
     osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
-    D_8003CC70--;
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)--;
     osInvalDCache(arg0, 0x1800);
 }
 
@@ -468,48 +468,48 @@ static void *native_dma_dst[8];
 static s32 native_dma_len[8];
 
 void func_80013224(u32 arg0, void *arg1, s32 arg2) {
-    extern s32 D_8003CC70;
+    BT_IDO_ONLY(extern s32 D_8003CC70;)
     extern u8 D_80076940[];
     extern u8 D_8007695C[];
 
-    D_8003CC70++;
-    native_dma_dst[D_8003CC70] = arg1;
-    native_dma_len[D_8003CC70] = arg2;
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)++;
+    native_dma_dst[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)] = arg1;
+    native_dma_len[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)] = arg2;
     osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg0, arg1, arg2, (OSMesgQueue *) D_8007695C);
 }
 
 void func_800132BC(void) {
     extern u8 D_8007695C[];
-    extern s32 D_8003CC70;
+    BT_IDO_ONLY(extern s32 D_8003CC70;)
 
     osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
-    osInvalDCache(native_dma_dst[D_8003CC70], native_dma_len[D_8003CC70]);
-    D_8003CC70 -= 1;
+    osInvalDCache(native_dma_dst[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)], native_dma_len[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)]);
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70) -= 1;
 }
 #else
 void func_80013224(u32 arg0, void *arg1, s32 arg2) {
-    extern s32 D_8003CC70;
+    BT_IDO_ONLY(extern s32 D_8003CC70;)
     extern s32 D_800769CC[];
     extern s32 D_800769D0[];
     extern u8 D_80076940[];
     extern u8 D_8007695C[];
 
-    D_8003CC70++;
-    D_800769CC[D_8003CC70] = (s32) arg1;
-    D_800769D0[D_8003CC70] = arg2;
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)++;
+    D_800769CC[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)] = (s32) arg1;
+    D_800769D0[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)] = arg2;
     osWritebackDCache(arg1, arg2);
     osPiStartDma((OSIoMesg *) D_80076940, 0, 0, arg0, arg1, arg2, (OSMesgQueue *) D_8007695C);
 }
 
 void func_800132BC(void) {
     extern u8 D_8007695C[];
-    extern s32 D_8003CC70;
+    BT_IDO_ONLY(extern s32 D_8003CC70;)
     extern s32 D_800769CC[];
     extern s32 D_800769D0[];
 
     osRecvMesg((OSMesgQueue *) D_8007695C, NULL, 1);
-    osInvalDCache(D_800769CC[D_8003CC70], D_800769D0[D_8003CC70]);
-    D_8003CC70 -= 1;
+    osInvalDCache(D_800769CC[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)], D_800769D0[BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70)]);
+    BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70) -= 1;
 }
 #endif
 
@@ -520,11 +520,11 @@ void func_80013324(u32 arg0, void *arg1, s32 arg2)
 }
 
 void func_8001334C(void) {
-    extern s32 D_8003CC70;
-    if (D_8003CC70 > 0) {
+    BT_IDO_ONLY(extern s32 D_8003CC70;)
+    if (BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70) > 0) {
         do {
             func_800132BC();
-        } while (D_8003CC70 > 0);
+        } while (BT_DATA_FIELD(core1_audio_config.dma_pending, D_8003CC70) > 0);
     }
 }
 

@@ -1,12 +1,12 @@
 #include "common.h"
-
+#include "core2/inflate_state.h"
 void func_801168F0(void) {
     extern s32 D_8000E800;
     extern s32 D_80011000;
-    extern s32 *D_80124A80;
-    extern s32 *D_80124A8C;
-    D_80124A8C = &D_80011000;
-    D_80124A80 = &D_8000E800;
+    BT_IDO_ONLY(extern s32 *D_80124A80;)
+    BT_IDO_ONLY(extern s32 *D_80124A8C;)
+    BT_DATA_FIELD(core2_inflate_state.input_buffer, D_80124A8C) = &D_80011000;
+    BT_DATA_FIELD(core2_inflate_state.workspace, D_80124A80) = &D_8000E800;
 }
 
 void func_80116914(u32 *b, u32 n, u32 s, u16 *d, u8 *e, struct Huft **t, s32 *m) {
@@ -18,7 +18,7 @@ void func_80116914(u32 *b, u32 n, u32 s, u16 *d, u8 *e, struct Huft **t, s32 *m)
             struct Huft *t;
         } v;
     } Huft;
-    extern s32 *D_80124A80;
+    BT_IDO_ONLY(extern s32 *D_80124A80;)
     extern s32 D_80137388;
     u32 a;
     u32 c[17];
@@ -114,7 +114,7 @@ void func_80116914(u32 *b, u32 n, u32 s, u16 *d, u8 *e, struct Huft **t, s32 *m)
                     }
                 }
                 z = 1 << j;
-                q = D_80137388 + (Huft *)D_80124A80;
+                q = D_80137388 + (Huft *)BT_DATA_FIELD(core2_inflate_state.workspace, D_80124A80);
                 D_80137388 += z + 1;
                 *t = q + 1;
                 *(t = &q->v.t) = 0;
@@ -158,3 +158,8 @@ void func_80116914(u32 *b, u32 n, u32 s, u16 *d, u8 *e, struct Huft **t, s32 *m)
 #include "bt_data.h"
 s32 D_80137388 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1968);
 #endif
+
+/* The core2 RNG precedes the inflater's table workspace and input buffer. */
+Core2InflateState core2_inflate_state BT_DATA(8, core2_inflate_state, 0) = {
+    0xAB8D9F7781280783ULL, 0, NULL, {0, 0}, NULL
+};
