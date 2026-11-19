@@ -107,10 +107,10 @@ void func_80800250_bsbbilldrill(void *arg0) {
 struct player_state_s;
 
 void func_80800298_bsbbilldrill(struct player_state_s *arg0) {
-    s32 _bswalk_entrypoint_1();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) _bswalk_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *));
     f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
-    _bswalk_entrypoint_1();
+    _bswalk_entrypoint_1(BT_NATIVE_ONLY(arg0));
     baphysics_set_target_horizontal_velocity(arg0, baphysics_get_target_horizontal_velocity(arg0) * 0.1f);
 }
 
@@ -280,7 +280,7 @@ void bsbbilldrill_entrypoint_1(void *arg0) {
 void bsbbilldrill_entrypoint_2(struct player_state_s *arg0) {
     s32 _batimer_decrement(void *, s32);
     f32 _batimer_get(void *, s32);
-    s32 _bswalk_entrypoint_1();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) _bswalk_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *));
     void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
     void baflag_clear(struct player_state_s *, int);
     void baflag_set(struct player_state_s *, s32);

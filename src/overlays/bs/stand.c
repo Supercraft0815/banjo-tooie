@@ -14,7 +14,7 @@ s32 func_80800018_bsstand(s32 *arg0, s32 arg1) {
     return arg1;
 }
 
-s32 func_80800038_bsstand(self, next_state) {
+s32 func_80800038_bsstand(BT_NATIVE_ONLY(PlayerState *) self, BT_NATIVE_ONLY(s32) next_state) {
     s32 _badrone_entrypoint_24(PlayerState *);
     s32 _badrone_entrypoint_25(PlayerState *);
     void _baduo_entrypoint_12(PlayerState *);
@@ -380,7 +380,7 @@ s32 bsstand_entrypoint_7(s32 arg0) {
     return ((s32 *)&D_80800DA8_bsstand)[arg0];
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bsstand_entrypoint_8(BT_NATIVE_ONLY(s32 bt_a0) BT_PASS2(, s32 bt_a1))
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bsstand_entrypoint_8(BT_NATIVE_ONLY(PlayerState *bt_a0) BT_PASS2(, s32 bt_a1))
 {
     BT_NATIVE_ONLY(return) func_80800038_bsstand(BT_PASS2(bt_a0, bt_a1));
 }

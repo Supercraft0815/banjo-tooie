@@ -18,9 +18,9 @@ enum ba_physics_type_e;
 s32 bastick_getZone(PlayerState *);
 s32 func_8008DE24(PlayerState *);
 
-void func_80800000_bswalk();
+void func_80800000_bswalk(BT_NATIVE_ONLY(PlayerState *));
 
-void func_80800000_bswalk(self) {
+void func_80800000_bswalk(BT_NATIVE_ONLY(PlayerState *) self) {
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     f32 bastick_distance(PlayerState *);
     f32 bastick_getZonePosition(PlayerState *);
@@ -106,7 +106,7 @@ f32 bswalk_entrypoint_0(s32 arg0) {
     return 500.0f;
 }
 
-void bswalk_entrypoint_1(BT_NATIVE_ONLY(s32 bt_a0))
+void bswalk_entrypoint_1(BT_NATIVE_ONLY(PlayerState *bt_a0))
 {
     func_80800000_bswalk(BT_NATIVE_ONLY(bt_a0));
 }

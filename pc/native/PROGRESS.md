@@ -2299,3 +2299,14 @@ Im nativen Build stimmen die 71 bestehenden Spielspuren bei allen
 421.115 Retraces überein. Belege liegen unter
 `build/acceptance/n1-2026-11-18/root-current16-ido/result.json` und
 `logs/root-current16-full71.log` im selben Abnahmeordner.
+
+## 2026-11-19 — N3, Spielerzeiger beim Stehen und Gehen
+
+Stand-, Lauf- und Bohrattacken übergeben den Spieler in den nativen
+Aufrufen als `PlayerState *`. Der LP64-Scan meldet 1.028 Warnstellen in
+264 Dateien, 32 weniger als zuvor. Alle 71 Spielspuren sind vor und nach
+dieser Typänderung identisch. Der kanonische Vergleich aller Gastfunktionen
+blieb leer. Das IDO-Objekt jeder der drei Quelldateien mit insgesamt 60
+Funktionen und beide ROMs sind bytegleich. Prüfprotokolle und Spurhashes
+stehen in `build/acceptance/n3-2026-11-18/player-calls-ido/result.json`
+und `root-player-current-pairs.json` im selben Ordner.
