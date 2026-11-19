@@ -7,7 +7,7 @@ typedef struct { u8 pad0[0x48]; s32 unk48; u8 pad4C[0xC]; f32 unk58; } Objplatue
     s32 _chdoormake_entrypoint_5(void *, s32);
     s32 _chdoormake_entrypoint_6(void *, s32);
     s32 _chdoormake_entrypoint_8(void *, s32);
-    s32 _chdoormake_entrypoint_9(void *, s32, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(void *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
     f32 func_80103EF4();
     _chdoormake_entrypoint_3(arg0, (((Objplatuegrill_arg0 *)arg0)->unk48), 0x42B40000, func_80103EF4() * 1.1f, 1, 0x3EA);
     _chdoormake_entrypoint_5(arg0, 0x40000000);

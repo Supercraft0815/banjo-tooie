@@ -97,3 +97,11 @@ before loading and converting the last coordinate. The previous version
 truncated the same SSA value after that load. Both versions pass identical
 i16 values to func_800BA930. The conversion cannot read or modify memory.
 See build/acceptance/n2-2026-11-18/signature-two-ir.log.
+
+2026-11-19  N2 door, dialog and status signatures
+func_80800E64_chboilerboss and func_808062A8_chgameselect zero-extend the
+unsigned byte read by the original IDO lbu. func_80801268_gcdialogexec,
+gcdialogexec_entrypoint_10 and subaddieDll_entrypoint_12 move pure integer
+conversions past independent loads. Inlining these conversions gives identical
+canonical instructions in each complete function. See
+build/acceptance/n2-2026-11-18/signature-three-proof.log.

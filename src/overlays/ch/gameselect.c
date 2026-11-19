@@ -3502,7 +3502,7 @@ void func_80806218_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
     s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
-    s32 _gczoomboxdata_entrypoint_0(s16);
+    BT_IDO_ONLY(s32 _gczoomboxdata_entrypoint_0(s16);) BT_NATIVE_ONLY(void _gczoomboxdata_entrypoint_0(s32);)
     extern u8 D_8080841C_chgameselect[];
 
     _gcnewoption_entrypoint_24(arg0, arg1, arg2);
@@ -3520,8 +3520,8 @@ s32 func_808062A8_chgameselect(s32 bt_a0) {
 #else
 s32 func_808062A8_chgameselect(void) {
 #endif
-    s32 _gcstatusDll_entrypoint_13();
-    return _gcstatusDll_entrypoint_13() + (-1);
+    BT_IDO_ONLY(s32 _gcstatusDll_entrypoint_13();) BT_NATIVE_ONLY(u8 _gcstatusDll_entrypoint_13(s32);)
+    return _gcstatusDll_entrypoint_13(BT_NATIVE_ONLY(bt_a0)) + (-1);
 }
 
 void func_808062CC_chgameselect(s32 arg0, s32 arg1) {

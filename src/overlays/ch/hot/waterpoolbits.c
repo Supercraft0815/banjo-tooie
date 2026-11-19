@@ -73,7 +73,7 @@ void func_80800124_chhotwaterpoolbits(Actor *arg0) {
     void _chdoormake_entrypoint_5(Actor *, f32);
     void _chdoormake_entrypoint_6(Actor *, s32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
     if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 300.0f, 0x60, 0x167) != 0) {
         _chdoormake_entrypoint_5(arg0, 2.0f);
         _chdoormake_entrypoint_6(arg0, 0x3E19999A);

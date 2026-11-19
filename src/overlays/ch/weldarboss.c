@@ -2107,7 +2107,7 @@ void func_80803624_chweldarboss(Actor *arg0) {
 }
 
 void func_8080367C_chweldarboss(Actor *arg0) {
-    void func_800D2498(u32 itemDisplayUI, u32 value,u32 a2);
+    BT_IDO_ONLY(void func_800D2498(u32 itemDisplayUI, u32 value,u32 a2);) BT_NATIVE_ONLY(s32 func_800D2498(u32, s32, u32);)
     void *func_80100094(Actor *, u32);
     u32 temp_t6;
 

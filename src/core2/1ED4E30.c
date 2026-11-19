@@ -20,13 +20,13 @@ extern s32 D_80135960;                                    typedef struct { u8 pa
 
 void func_800FB540(void *arg0) {
     void func_800DA544(GameFlag);
-    s32 func_800FED70(s16, void *);
+    BT_IDO_ONLY(s32 func_800FED70(s16, void *);) BT_NATIVE_ONLY(void func_800FED70(s32);)
     extern s16 D_80123DE0;
     s16 *var_v1;
     s32 var_v0;
 
     if ((((Obj1ED4E30_arg0 *)arg0)->unk33) == 0) {
-        func_800FED70((((Obj1ED4E30_arg0 *)arg0)->unk28), arg0);
+        BT_IDO_ONLY(func_800FED70((((Obj1ED4E30_arg0 *)arg0)->unk28), arg0);) BT_NATIVE_ONLY(func_800FED70(((Obj1ED4E30_arg0 *)arg0)->unk28);)
         (((Obj1ED4E30_arg0 *)arg0)->unk33) = 1U;
         for (var_v1 = &D_80123DE0, var_v0 = 0; var_v0 < 0x30; var_v0++, var_v1++) {
             if ((((Obj1ED4E30_arg0 *)arg0)->unk28) == *var_v1) {
@@ -40,9 +40,9 @@ void func_800FB540(void *arg0) {
 /* extern */
 
 void func_800FB5BC(void *arg0) {
-    s32 func_800FED90(s16, void *);
+    BT_IDO_ONLY(s32 func_800FED90(s16, void *);) BT_NATIVE_ONLY(s32 func_800FED90(s32);)
     if ((((Obj1ED4E30_arg0 *)arg0)->unk33) != 0) {
-        func_800FED90((((Obj1ED4E30_arg0 *)arg0)->unk28), arg0);
+        BT_IDO_ONLY(func_800FED90((((Obj1ED4E30_arg0 *)arg0)->unk28), arg0);) BT_NATIVE_ONLY(func_800FED90(((Obj1ED4E30_arg0 *)arg0)->unk28);)
         (((Obj1ED4E30_arg0 *)arg0)->unk33) = 0U;
     }
 }

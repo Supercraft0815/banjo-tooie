@@ -325,8 +325,8 @@ void func_808008F0_chdinoswitches(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
     void _chdoormake_entrypoint_5(Actor *, f32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
-    s32 _chdoormake_entrypoint_12(Actor *, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_12(Actor *, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_12(Actor *, s32, u16);)
     s32 _chdoormake_entrypoint_10(void *, s32, s32);
     void func_8010A800(Actor *, s32);
     struct SwitchEntry *entry;

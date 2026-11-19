@@ -689,7 +689,7 @@ void func_8080150C_chfactorybattery(Actor *arg0) {
     void _chdoormake_entrypoint_5(Actor *, f32);
     void _chdoormake_entrypoint_6(Actor *, s32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
     s32 func_800DA298(s32);
     s32 func_800EA05C(void);
     s32 func_80103140(Actor *, u32, u16);

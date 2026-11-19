@@ -187,7 +187,7 @@ void func_80800544_chwaspstatue(Actor *arg0) {
     void _chdoormake_entrypoint_5(Actor *, f32);
     void _chdoormake_entrypoint_6(Actor *, s32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
     s32 func_800DA298(s32);
     void func_800DA3B8(s32, s32);
     BtUIntPtr func_800F54E4(void);

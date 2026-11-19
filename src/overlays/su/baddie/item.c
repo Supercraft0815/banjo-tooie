@@ -90,7 +90,7 @@ s32 subaddieitem_entrypoint_3(Actor *arg0, void *arg1, u8 *arg2) {
 
 void func_80800224_subaddieitem(Actor *arg0, u8 *arg1, Actor *arg2) {
     s32 _subaddielink_entrypoint_0();
-    void func_800D175C(s32, s32);
+    BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     s32 func_800D1B34(s32);
     void func_800FC660(u32);
     void func_800FFAB0(Actor *);

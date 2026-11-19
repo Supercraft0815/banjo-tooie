@@ -333,7 +333,7 @@ void func_80099B94(PlayerState *arg0) {
     void func_800A391C(PlayerState *, f32);
     s32 func_800A3970(PlayerState *, s32);
     s32 func_800A9420(s32);
-    void func_800D175C(s32, s32);
+    BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     s32 func_800F40EC(PlayerState *);
     s32 func_800F64A4(BtIntPtr, s32);
     void func_800F7B9C(BtIntPtr, s32);

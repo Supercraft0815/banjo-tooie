@@ -1065,10 +1065,10 @@ void func_80802090_chevilspirit(Actor *arg0, s32 *arg1) {
 
 void func_80802118_chevilspirit(void *arg0) {
     s32 func_800C2FDC(u8);
-    s32 func_800C3D78(s32, u8);
+    BT_IDO_ONLY(s32 func_800C3D78(s32, u8);) BT_NATIVE_ONLY(int func_800C3D78(u8);)
     u8 temp_a1;
     temp_a1 = (((Actor *)arg0)->unk5F);
-    if ((temp_a1 != 0) && (func_800C3D78(temp_a1 & 0xFF, temp_a1) == 0)) {
+    if ((temp_a1 != 0) && (BT_IDO_ONLY(func_800C3D78(temp_a1 & 0xFF, temp_a1)) BT_NATIVE_ONLY(func_800C3D78((u8)temp_a1)) == 0)) {
         func_800C2FDC((((Actor *)arg0)->unk5F));
         (((Actor *)arg0)->unk5F) = 0U;
     }

@@ -10,12 +10,12 @@ OSThread *chbottlesplantgrill_entrypoint_0(void)
 /* extern */
 
 void func_8080000C_chbottlesplantgrill(Actor *arg0) {
-    s32 _chdoormake_entrypoint_12(Actor *, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_12(Actor *, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_12(Actor *, s32, u16);)
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
     void _chdoormake_entrypoint_5(Actor *, f32);
     void _chdoormake_entrypoint_6(Actor *, s32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);

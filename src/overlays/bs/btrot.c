@@ -1153,7 +1153,7 @@ s32 bsbtrot_entrypoint_31(s32 arg0) {
 
 void bsbtrot_entrypoint_32(PlayerState *arg0) {
     void _bareact_entrypoint_1(void *arg0, s32 arg1);
-    s32 _bareact_entrypoint_2();
+    BT_IDO_ONLY(s32 _bareact_entrypoint_2();) BT_NATIVE_ONLY(u8 _bareact_entrypoint_2(void *);)
     f32 _bareact_entrypoint_3(PlayerState *);
     f32 _bareact_entrypoint_4(PlayerState *);
     f32 _bareact_entrypoint_5(PlayerState *);
@@ -1196,7 +1196,7 @@ void bsbtrot_entrypoint_32(PlayerState *arg0) {
 /* extern */
 
 void bsbtrot_entrypoint_33(PlayerState *arg0) {
-    s32 _bareact_entrypoint_2();
+    BT_IDO_ONLY(s32 _bareact_entrypoint_2();) BT_NATIVE_ONLY(u8 _bareact_entrypoint_2(void *);)
     s32 anctrl_isStopped(AnimCtrl *);
     AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
     int baanim_isAt(PlayerState *, f32);
@@ -1208,7 +1208,7 @@ void bsbtrot_entrypoint_33(PlayerState *arg0) {
     s32 sp24;
 
     sp24 = 0;
-    if (_bareact_entrypoint_2() == 2) {
+    if (_bareact_entrypoint_2(BT_NATIVE_ONLY(arg0)) == 2) {
         func_80800438_bsbtrot(arg0);
     }
     if (baanim_isAt(arg0, 0.3f) != 0) {

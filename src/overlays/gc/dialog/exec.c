@@ -692,7 +692,7 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, BtIn
   void _gczoombox_entrypoint_10(void *);
   int _gczoombox_entrypoint_24(s32, s32);
   int _gczoombox_entrypoint_25(s32, s32);
-  int _gczoombox_entrypoint_35(s32, void *, s32, s32);
+  BT_IDO_ONLY(int _gczoombox_entrypoint_35(s32, void *, s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_35(u8 *, BtIntPtr, s16, s32);)
   s32 func_800A9C98(void);
   int func_80801038_gcdialogexec(void *, s32);
   void func_80800A50_gcdialogexec(u8 *, s32);
@@ -1268,7 +1268,7 @@ void gcdialogexec_entrypoint_10(void *arg0) {
     void _gczoombox_entrypoint_12(void *);
     int _gczoombox_entrypoint_18();
     int _gczoombox_entrypoint_32();
-    int _gczoombox_entrypoint_35();
+    BT_IDO_ONLY(int _gczoombox_entrypoint_35();) BT_NATIVE_ONLY(void _gczoombox_entrypoint_35(u8 *, BtIntPtr, s16, s32);)
     int _gczoombox_entrypoint_37(s32, s16);
     int _gczoombox_entrypoint_39();
     int _subaddiedialog_entrypoint_15();

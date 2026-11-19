@@ -994,7 +994,7 @@ void gczoombox_entrypoint_4(u8 *box) {
         u8 pad1B4[0x19];
         u8 speed;
     };
-    void _gcaudiolist_entrypoint_1(s32, s16);
+    BT_IDO_ONLY(void _gcaudiolist_entrypoint_1(s32, s16);) BT_NATIVE_ONLY(void _gcaudiolist_entrypoint_1(s32, s32);)
     s32 _gldialog_entrypoint_1();
     f32 _glintrosyncDll_entrypoint_5();
     void func_80015E80(s32, void *);

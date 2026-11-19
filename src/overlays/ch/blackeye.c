@@ -315,7 +315,7 @@ s32 func_80800BC4_chblackeye(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _suexpression_entrypoint_12(void *, s32, s32);
     BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     void func_800D0BD4(s32, u32);
-    void func_800D175C(s32, s32);
+    BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     void func_800DF744(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);

@@ -534,8 +534,8 @@ void func_80800D50_chboilerboss(Actor *arg0, s32 *arg1) {
 /* extern */
 
 void func_80800E64_chboilerboss(void *arg0) {
-    s32 func_800D2498(s32, u8, s32, void *);
-    func_800D2498(0xC7, (((Actor *)arg0)->pad5E), 0, arg0);
+    BT_IDO_ONLY(s32 func_800D2498(s32, u8, s32, void *);) BT_NATIVE_ONLY(s32 func_800D2498(u32, s32, u32);)
+    BT_IDO_ONLY(func_800D2498(0xC7, (((Actor *)arg0)->pad5E), 0, arg0);) BT_NATIVE_ONLY(func_800D2498(0xC7, (((Actor *)arg0)->pad5E), 0);)
 }
 
 void func_80800E90_chboilerboss(Actor *arg0, s32 *arg1) {

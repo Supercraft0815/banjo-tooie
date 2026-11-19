@@ -2457,3 +2457,18 @@ Original-IDO erzeugte für 2.363 Funktionen in 99 Modulen dieselben
 Instruktionen, Adressen und Größen. Beide ROM-Vergleiche bestanden.
 Belege stehen in `build/acceptance/n2-2026-11-18/signature-two-ido/result.json`,
 `signature-two-gate.log` und `signature-two-ir.log`.
+
+## 2026-11-19 — N2, Türen, Dialogboxen und Spielerreaktionen
+
+33 Quelldateien und Header verwenden die tatsächlichen Aufrufsignaturen. Ohne
+`bt-fixcalls` sinkt die Zahl ungültiger Varianten von 126 auf 113. Das betrifft
+unter anderem die Türen, die Audioliste und das Lesen des Spielstands im Menü.
+
+In zwei Funktionen liest der Gast Zähler jetzt wie das N64-Original als
+vorzeichenlose Bytes. Bei drei weiteren Funktionen ist nur die Reihenfolge
+unabhängiger Typumwandlungen verschieden. Alle elf Testsuiten und 74 Replays
+mit 447.849 Retraces bestanden. Original-IDO lieferte dieselben Adressen,
+Größen und Bytes für 3.041 Funktionen in 126 Modulen. Beide vollständigen
+ROMs stimmen mit dem Original überein. Belege liegen unter
+`build/acceptance/n2-2026-11-18/` in `signature-three-ido/result.json`,
+`signature-three-proof.log` und `signature-three-gate.log`.

@@ -15,7 +15,7 @@ void func_8080000C_chdingpot(Actor *arg0) {
 void func_80800040_chdingpot(Actor *arg0) {
     void _subaddieDll_entrypoint_4(Actor *, s32);
     void func_800C3F48(s32);
-    void func_800D175C(s32, s32);
+    BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void func_800F4CC0(BtIntPtr);

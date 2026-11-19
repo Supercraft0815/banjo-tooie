@@ -273,7 +273,7 @@ s32 func_808007EC_chhumba(BtIntPtr arg0) {
 /* extern */
 
 void func_808007F8_chhumba(Actor *arg0) {
-    void func_800D175C(s32, s32);
+    BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     void func_800DA544(GameFlag);
     func_800DA544(arg0->unk6C_0 + 0xD5);
     if (arg0->unk74_29) {

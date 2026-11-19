@@ -136,7 +136,7 @@ s32 func_808003A8_chgoldsnakehead(s32 arg0, s32 arg1, volatile s32 arg2) {
 void func_808003E0_chgoldsnakehead(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor*, f32, f32, f32, s32, s32);
     void _chdoormake_entrypoint_8(void*, u32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
     if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 200.0f, 0x41, 0x18B) != 0) {
         _chdoormake_entrypoint_8(arg0, 5U);
         _chdoormake_entrypoint_9(arg0, 0, 6, 0x10);
@@ -147,8 +147,8 @@ void func_80800440_chgoldsnakehead(Actor *arg0) {
     s32 _chdoormake_entrypoint_3(Actor *, f32, f32, f32, s32, s32);
     void _chdoormake_entrypoint_6(Actor *, s32);
     void _chdoormake_entrypoint_8(void *, u32);
-    s32 _chdoormake_entrypoint_12(Actor *, s32, s32);
-    s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_12(Actor *, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_12(Actor *, s32, u16);)
+    BT_IDO_ONLY(s32 _chdoormake_entrypoint_9(Actor *, s32, s32, s32);) BT_NATIVE_ONLY(void _chdoormake_entrypoint_9(Actor *, s32, u16, s32);)
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);

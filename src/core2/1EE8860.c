@@ -5,7 +5,7 @@
 
 void func_8010EF70(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 func_800192FC(s32 *, s32 *);
-    u8 func_800DF8D4();
+    BT_IDO_ONLY(u8 func_800DF8D4();) BT_NATIVE_ONLY(int func_800DF8D4(s32 *);)
     s32 func_800DF8F8(s32);
     s32 func_800EE97C(s32 *, s32 *, s32 *);
     s32 func_800EF2A0(s32 *);
@@ -18,7 +18,7 @@ void func_8010EF70(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     extern s32 D_8013722C;
     extern u8 D_80137238;
     D_80137210 = arg0;
-    D_80137238 = func_800DF8D4();
+    D_80137238 = func_800DF8D4(BT_NATIVE_ONLY((s32 *)arg0));
     func_800EFB24(&D_80137214, func_800DF8F8(arg0), arg3);
     func_800EF368(&D_80137214, -1.0f);
     func_800EFA4C(&D_8013722C, 0.0f, 1.0f, 0.0f);

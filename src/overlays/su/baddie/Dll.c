@@ -222,7 +222,7 @@ s32 subaddieDll_entrypoint_11(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void subaddieDll_entrypoint_12(void *arg0, void *arg1) {
-    s16 func_800DC128(s16, s16, void *);
-    (((ObjDll_arg1 *)arg1)->unk0) = func_800DC128((((ObjDll_arg0 *)arg0)->unk0), (((ObjDll_arg0 *)arg0)->unk4), arg0);
-    (((ObjDll_arg1 *)arg1)->unk2) = func_800DC128((((ObjDll_arg0 *)arg0)->unk2), (((ObjDll_arg0 *)arg0)->unk6), arg0);
+    BT_IDO_ONLY(s16 func_800DC128(s16, s16, void *);) BT_NATIVE_ONLY(s32 func_800DC128(s32, s32);)
+    BT_IDO_ONLY((((ObjDll_arg1 *)arg1)->unk0) = func_800DC128((((ObjDll_arg0 *)arg0)->unk0), (((ObjDll_arg0 *)arg0)->unk4), arg0);) BT_NATIVE_ONLY((((ObjDll_arg1 *)arg1)->unk0) = func_800DC128((((ObjDll_arg0 *)arg0)->unk0), (((ObjDll_arg0 *)arg0)->unk4));)
+    BT_IDO_ONLY((((ObjDll_arg1 *)arg1)->unk2) = func_800DC128((((ObjDll_arg0 *)arg0)->unk2), (((ObjDll_arg0 *)arg0)->unk6), arg0);) BT_NATIVE_ONLY((((ObjDll_arg1 *)arg1)->unk2) = func_800DC128((((ObjDll_arg0 *)arg0)->unk2), (((ObjDll_arg0 *)arg0)->unk6));)
 }

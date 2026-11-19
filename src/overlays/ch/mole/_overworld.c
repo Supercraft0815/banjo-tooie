@@ -2,7 +2,7 @@
 
 s32 func_80800000_chmole_overworld(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _sumole_entrypoint_3();
-    void func_800D175C(s32, s32);
+    BT_IDO_ONLY(void func_800D175C(s32, s32);) BT_NATIVE_ONLY(s32 func_800D175C(s32, s32);)
     s32 func_800D1A04(s32);
     u32 func_800D1A6C(u32);
     extern s32 D_80800190_chmole_overworld[20];
