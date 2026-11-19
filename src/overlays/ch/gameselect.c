@@ -1,5 +1,5 @@
 #include "gameselect_tables.h"
-
+#include "gameselect_bss.inc"
 s32 _gczoombox_entrypoint_4(s32, void *);
 
 struct anctrl_s;

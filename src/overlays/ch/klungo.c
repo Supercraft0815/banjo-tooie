@@ -1,4 +1,4 @@
-#include "klungo_tables.h"
+#include "klungo_potions.h"
 
 extern KlungoAnimations D_80803A4C_chklungo;
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
@@ -157,7 +157,7 @@ void func_8080000C_chklungo(Actor *arg0) {
 
 void func_808002D0_chklungo(Actor *arg0) {
     void _gcfrontend_entrypoint_9(s32 arg0);
-    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 _subaddiefade_entrypoint_0(Actor *);
     s32 _subaddiefind_entrypoint_9(s32);
     void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
@@ -1004,8 +1004,8 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
 
 
     extern u16 D_80803A2C_chklungo[8];
-    extern u8 D_80803BC0_chklungo[];
-    extern u8 D_80803BD0_chklungo[];
+    extern s16 D_80803BC0_chklungo[8];
+    extern s16 D_80803BD0_chklungo[7];
     struct KlungoState {
         s16 unk0;
         s16 unk2;
@@ -1428,21 +1428,21 @@ void func_808025CC_chklungo(Actor *arg0, s32 arg1) {
 }
 
 void func_80802634_chklungo(Actor *arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(Actor*, f32*, u32*, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
-    extern u32 D_80803BE0_chklungo;
-    extern u32 D_80803BEC_chklungo;
-    extern u32 D_80803BFC_chklungo;
-    extern u32 D_80803C0C_chklungo;
-    extern u32 D_80803C1C_chklungo;
-    extern u32 D_80803C2C_chklungo;
+    extern s16 D_80803BE0_chklungo[5];
+    extern s16 D_80803BEC_chklungo[7];
+    extern s16 D_80803BFC_chklungo[7];
+    extern s16 D_80803C0C_chklungo[8];
+    extern f32 D_80803C1C_chklungo[4];
+    extern f32 D_80803C2C_chklungo[4];
     f32 *temp_s1;
 
     temp_s1 = &arg0->position[0];
-    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80803BE0_chklungo, 0.2f);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, &D_80803BEC_chklungo, 0.78f);
-    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80803C0C_chklungo, &D_80803C2C_chklungo);
-    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, &D_80803BFC_chklungo, &D_80803C1C_chklungo);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, D_80803BE0_chklungo, 0.2f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_s1, D_80803BEC_chklungo, 0.78f);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, D_80803C0C_chklungo, D_80803C2C_chklungo);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_s1, D_80803BFC_chklungo, D_80803C1C_chklungo);
 }
 
 void func_808026CC_chklungo(Actor *arg0) {
@@ -1451,34 +1451,34 @@ void func_808026CC_chklungo(Actor *arg0) {
     s32 func_800E15CC(s32, f32, f32);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
-    extern s32 D_80803C3C_chklungo;
-    extern f32 D_80803C54_chklungo;
-    if (func_80101E4C(arg0, &D_80803C54_chklungo) != 0) {
+    extern s16 D_80803C3C_chklungo[11];
+    extern f32 D_80803C54_chklungo[6];
+    if (func_80101E4C(arg0, D_80803C54_chklungo) != 0) {
         func_80018820(0, 0.8f, 0.3f);
         func_800E15CC(0, 5.0f, 0.7f);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80803C3C_chklungo);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803C3C_chklungo);
         return;
     }
     if (func_80101E14(arg0, 0.7f) != 0) {
         func_80018820(0, 1.0f, 0.4f);
         func_800E15CC(0, 10.0f, 0.8f);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80803C3C_chklungo);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803C3C_chklungo);
     }
 }
 
 void func_80802798_chklungo(Actor *arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
     extern Actor *_chbaddiesetup_entrypoint_10(s32 id, s32 x, s32 y, s32 z, s32 yaw);
     void func_800EE7F8(f32 *, f32 *);
     void func_80018820(s32, f32, f32);
     s32 func_800E15CC(s32, f32, f32);
-    extern u32 D_80803C6C_chklungo;
-    extern u32 D_80803C74_chklungo;
+    extern s16 D_80803C6C_chklungo[4];
+    extern s16 D_80803C74_chklungo[7];
     f32 position[3];
 
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803C74_chklungo, 0.7f);
-    if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803C6C_chklungo, 0.8f)) {
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80803C74_chklungo, 0.7f);
+    if (_subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80803C6C_chklungo, 0.8f)) {
         func_800EE7F8(position, arg0->position);
         position[1] += 80.0f;
         _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 5, *(s32 *)&position[0], *(s32 *)&position[1], *(s32 *)&position[2], *(s32 *)&arg0->rotation[1]);
@@ -1493,7 +1493,7 @@ void func_80802864_chklungo(Actor *arg0) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
     void func_800C3BDC(u8);
     u8 func_800C4350(u8, f32[3], s32 *);
-    extern s32 D_80803C84_chklungo;
+    extern s16 D_80803C84_chklungo[10];
     u8 *data;
 
     if (func_80101E14(arg0, 0.0f) != 0) {
@@ -1501,21 +1501,21 @@ void func_80802864_chklungo(Actor *arg0) {
         if (data[0x48] == 0) {
             data[0x48] = _subaddieaudioquick_entrypoint_1(arg0, arg0->position);
         }
-        func_800C4350(data[0x48], arg0->position, &D_80803C84_chklungo);
+        func_800C4350(data[0x48], arg0->position, (s32 *)D_80803C84_chklungo);
         func_800C3BDC(data[0x48]);
     }
 }
 
 void func_808028E8_chklungo(Actor *arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    extern u32 D_80803C98_chklungo;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803C98_chklungo, 0.0f);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
+    extern s16 D_80803C98_chklungo[8];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80803C98_chklungo, 0.0f);
 }
 
 void func_80802914_chklungo(Actor *arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    extern u32 D_80803CA8_chklungo;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80803CA8_chklungo, 0.0f);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
+    extern s16 D_80803CA8_chklungo[7];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80803CA8_chklungo, 0.0f);
 }
 
 void func_80802940_chklungo(Actor *arg0) {
@@ -1523,23 +1523,23 @@ void func_80802940_chklungo(Actor *arg0) {
     void func_80018820(s32, f32, f32);
     s32 func_800E15CC(s32, f32, f32);
     s32 func_8080299C_chklungo();
-    extern s32 D_80803CB8_chklungo;
+    extern s16 D_80803CB8_chklungo[4];
     func_8080299C_chklungo();
     func_80018820(0, 1.0f, 0.4f);
     func_800E15CC(0, 10.0f, 0.8f);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80803CB8_chklungo);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803CB8_chklungo);
 }
 
 s32 func_8080299C_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     BtIntPtr func_800B53A4(s32);
     void func_800BAB80(BtIntPtr, void *);
-    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
 
-    extern s32 D_80803CC0_chklungo;
+    extern s16 D_80803CC0_chklungo[26];
     BtIntPtr particles;
     s32 i;
     f32 sp74[3];
@@ -1552,7 +1552,7 @@ s32 func_8080299C_chklungo(Actor *arg0) {
         func_800EEB9C(sp74, (f32)i * 45.0f, func_800DC178(120.0f, 160.0f));
         func_800EF04C(sp74, arg0->position);
         sp74[1] += func_800DC178(10.0f, 50.0f);
-        func_800BABB8(particles, sp74, arg0->position, 1.0f, &D_80803CC0_chklungo);
+        func_800BABB8(particles, sp74, arg0->position, 1.0f, D_80803CC0_chklungo);
     }
     BT_NATIVE_ONLY(return 0;) }
 
@@ -1562,12 +1562,12 @@ void func_80802B10_chklungo(Actor *arg0) {
     s32 func_800E15CC(s32, f32, f32);
     s32 func_80101E14(Actor *, f32);
     s32 func_8080299C_chklungo();
-    extern s32 D_80803CF4_chklungo;
+    /* This cue ends in bytes also used by the potion order table. */
     if (func_80101E14(arg0, 0.8f) != 0) {
         func_8080299C_chklungo(arg0);
         func_800E15CC(0, 30.0f, 0.9f);
         func_80018820(0, 1.5f, 0.6f);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80803CF4_chklungo);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, KLUNGO_POTION_CUE);
     }
 }
 
@@ -1648,8 +1648,8 @@ u8 func_80802DF4_chklungo(Actor *arg0) {
     s32 func_800DA980(s32, s32);
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
-    extern u8 D_80803D01_chklungo[][3];
-    extern u8 D_80803D04_chklungo[];
+    BT_IDO_ONLY(extern u8 D_80803D01_chklungo[][3];)
+    BT_IDO_ONLY(extern u8 D_80803D04_chklungo[];)
     s32 sp2C;
     s32 sp28;
     s32 selected;
@@ -1682,7 +1682,7 @@ u8 func_80802DF4_chklungo(Actor *arg0) {
             } while (i < 3);
             value = i + 1;
             i = 0;
-            entry = D_80803D04_chklungo + sp2C;
+            entry = BT_DATA_FIELD(KLUNGO_ORDER_BYTES + 3, D_80803D04_chklungo) + sp2C;
             do {
                 if (value == *entry) {
                     sp28 = i + 1;
@@ -1697,14 +1697,14 @@ u8 func_80802DF4_chklungo(Actor *arg0) {
             func_800DA7A8(0x315, sp28, 3);
         }
     }
-    result = D_80803D01_chklungo[sp28][sp2C];
+    result = BT_DATA_FIELD(KLUNGO_ORDER_BYTES[3 * sp28 + sp2C], D_80803D01_chklungo[sp28][sp2C]);
     return result;
 }
 
 void func_80802F30_chklungo(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern s32 D_80803D18_chklungo;
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80803D18_chklungo);
+    extern s16 D_80803D18_chklungo[8];
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803D18_chklungo);
 }
 
 void func_80802F58_chklungo(Actor *arg0) {
@@ -1712,11 +1712,11 @@ void func_80802F58_chklungo(Actor *arg0) {
     s32 func_800C0638(void);
     void *func_80100094(Actor *, u32);
     s32 func_80803158_chklungo(Actor *, s32, s32);
-    extern s32 D_80803D28_chklungo;
+    extern s16 D_80803D28_chklungo[7];
     u8 *sp1C;
 
     sp1C = func_80100094(arg0, 0);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80803D28_chklungo);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803D28_chklungo);
     if ((*(s16 *)(sp1C + 0x24) == 0) && (func_800C0638() == 0)) {
         func_80803158_chklungo(arg0, 0x1630, 0x44);
         *(s16 *)(sp1C + 0x24) = 1;
@@ -1825,8 +1825,8 @@ f32 func_808031E4_chklungo(void *arg0) {
 
 void func_80803208_chklungo(s32 *arg0) {
     s32 func_80105230();
-    extern s32 D_80803D38_chklungo;
-    func_80105230(arg0, &D_80803D38_chklungo);
+    extern f32 D_80803D38_chklungo[3];
+    func_80105230(arg0, D_80803D38_chklungo);
 }
 
 void func_8080322C_chklungo(Actor *arg0, f32 arg1) {
@@ -1920,7 +1920,7 @@ void func_80803464_chklungo(BtIntPtr arg0, void *arg1, f32 *arg2, f32 *arg3) {
     func_800EE7F8(arg3, arg1);
     func_800EF1B8(arg3, sp1C, (f32) (((Objklungo_arg1 *)arg1)->unkC));
 }
-
+#include "klungo_tail_data.inc"
 s32 func_808034CC_chklungo(void *arg0) {
     s32 func_800CBD84(f32 *);
     void func_800EE7F8(f32 *, f32 *);

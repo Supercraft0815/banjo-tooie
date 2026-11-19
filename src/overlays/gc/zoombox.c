@@ -1,5 +1,5 @@
 #include "common.h"
-
+u8 D_80803E80_gczoombox[32];
 typedef struct { u8 pad0[0x12]; u16 unk12; u8 pad14[0x11C]; BtIntPtr unk130; u8 pad134[0x6]; s16 unk13A; s32 unk13C; u16 unk140; u16 unk142; u8 pad144[0x8]; f32 unk14C; u8 pad150[0x1A]; s16 unk16A; u8 pad16C[0x4]; u8 unk170; u8 unk171; s16 unk172; u8 unk174; s8 unk175; u8 pad176[0x1]; u8 unk177; u8 pad178[0x4]; void * unk17C; u8 pad180[0x24]; f32 unk1A4; f32 unk1A8; s16 unk1AC; s16 unk1AE; s16 unk1B0; s16 unk1B2; s8 unk1B4; s8 unk1B5; s8 unk1B6; u8 pad1B7[0x5]; s16 unk1BC; u8 pad1BE[0xE]; s8 unk1CC; s8 unk1CD; u8 pad1CE[0x1]; s8 unk1CF; u8 pad1D0[0x1]; s8 unk1D1; u8 pad1D2[0x6]; f32 unk1D8; f32 unk1DC; u8 pad1E0[0x4]; u8 unk1E4; u8 pad1E5[0x7]; f32 unk1EC; f32 unk1F0; f32 unk1F4; } Objzoombox_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_gczoombox(void *arg0) {
     s32 func_800C2FDC(u8 index);
     void func_800FC74C(u32 track_id);
@@ -292,7 +292,7 @@ s32 func_808006B4_gczoombox(void *arg0, s32 arg1) {
 }
 
 void func_808006E0_gczoombox(void *ptr, s32 arg1) {
-    extern u8 D_80803E80_gczoombox[];
+    extern u8 D_80803E80_gczoombox[32];
     f32 func_800DC1AC(void);
     s32 count;
     s32 out;
@@ -504,7 +504,7 @@ int func_80800E24_gczoombox(u8 arg0) {
 
 void func_80800E44_gczoombox(u8 *arg0, u8 *arg1, u8 *arg2) {
     void _fxfontstring_entrypoint_3(u8 *arg0, s32 arg1, s32 arg2);
-    extern s16 D_80803E30_gczoombox[9]; BT_IDO_ONLY(extern u8 D_80803E80_gczoombox[];)
+    extern s16 D_80803E30_gczoombox[9]; BT_IDO_ONLY(extern u8 D_80803E80_gczoombox[32];)
     s32 color[5];
     f32 temp_f0;
     f32 var_f10;

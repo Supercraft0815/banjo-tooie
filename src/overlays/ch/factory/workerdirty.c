@@ -1,5 +1,5 @@
 #include "ch/factory/workerdirty.h"
-
+#include "su/baddiedialog_descriptor.h"
 void func_80800394_chfactoryworkerdirty(Actor *arg0);
 void func_80105834(Actor *);
 void func_80101870(Actor *, void *);
@@ -64,7 +64,7 @@ int func_808000AC_chfactoryworkerdirty(Actor *arg0, s32 arg1) {
     void func_80102424(Actor *, s32);
     s32 func_801032B0(Actor *, u16, u16);
     void func_80800AF8_chfactoryworkerdirty();
-    extern s32 D_80800F80_chfactoryworkerdirty;
+    extern s16 D_80800F80_chfactoryworkerdirty[7];
     struct {
         s32 unk0;
         s32 unk4;
@@ -80,7 +80,7 @@ int func_808000AC_chfactoryworkerdirty(Actor *arg0, s32 arg1) {
         func_8080000C_chfactoryworkerdirty(arg0);
         func_801032B0(arg0, 0x83B, arg0->unk0->unk16);
         func_80102424(arg0, 2);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800F80_chfactoryworkerdirty);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800F80_chfactoryworkerdirty);
         break;
     case 4:
         func_80800068_chfactoryworkerdirty(&data->unk0, 1, 1);
@@ -162,8 +162,8 @@ void func_80800340_chfactoryworkerdirty(Actor* arg0)
 
 void func_8080036C_chfactoryworkerdirty(BtIntPtr arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    extern s32 D_80800F90_chfactoryworkerdirty;
-    _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), &D_80800F90_chfactoryworkerdirty);
+    extern s16 D_80800F90_chfactoryworkerdirty[8];
+    _subaddieaudioquick_entrypoint_2((Actor *)arg0, (f32 *)(arg0 + 4), D_80800F90_chfactoryworkerdirty);
 }
 
 void func_80800394_chfactoryworkerdirty(Actor *arg0) {
@@ -181,10 +181,10 @@ void func_80800394_chfactoryworkerdirty(Actor *arg0) {
     void func_80800700_chfactoryworkerdirty(Actor *arg0);
     void func_80800994_chfactoryworkerdirty(u8 *arg0);
     void func_80800C98_chfactoryworkerdirty(Actor *arg0);
-    extern s32 D_80800F40_chfactoryworkerdirty;
-    extern u32 D_80800FA0_chfactoryworkerdirty;
-    extern u32 D_80800FB0_chfactoryworkerdirty;
-    extern s32 D_80800FC0_chfactoryworkerdirty;
+    extern s16 D_80800F40_chfactoryworkerdirty[32];
+    extern s16 D_80800FA0_chfactoryworkerdirty[8];
+    extern s16 D_80800FB0_chfactoryworkerdirty[8];
+    extern s16 D_80800FC0_chfactoryworkerdirty[8];
     struct {
         int unk0;
         int unk4;
@@ -197,7 +197,7 @@ void func_80800394_chfactoryworkerdirty(Actor *arg0) {
     data = func_80100094(arg0, 0U);
     func_80800C98_chfactoryworkerdirty(arg0);
     if (arg0->unk70_10 == 2) {
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800FA0_chfactoryworkerdirty, 0.5f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800FA0_chfactoryworkerdirty, 0.5f);
         if (func_80101DDC(arg0) != 0) {
             func_80102424(arg0, 3);
         }
@@ -208,7 +208,7 @@ void func_80800394_chfactoryworkerdirty(Actor *arg0) {
             if (func_80101E14(arg0, 0.13f) != 0 || func_80101E14(arg0, 0.215f) != 0 || func_80101E14(arg0, 0.27f) != 0 || func_80101E14(arg0, 0.34f) != 0) {
                 func_8080036C_chfactoryworkerdirty((BtIntPtr)arg0);
             }
-            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800FB0_chfactoryworkerdirty, 0.4f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800FB0_chfactoryworkerdirty, 0.4f);
         }
         _sudeflect_entrypoint_1(arg0->position, 120.0, 0.0f, 70.0f, 10);
         func_8080061C_chfactoryworkerdirty(arg0);
@@ -222,13 +222,13 @@ void func_80800394_chfactoryworkerdirty(Actor *arg0) {
     case 7:
     case 8:
         if (func_800C0638() == 0 && func_80101E14(arg0, 0.46f) != 0) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800FC0_chfactoryworkerdirty);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800FC0_chfactoryworkerdirty);
         }
         if (data->unk8 > 0) {
             amount = func_800F10B4(data->unk8, 0, 8.0f, 0, 5.0f);
             data->unkC += amount;
             count = (s32)data->unkC;
-            func_800BBCB8(arg0->position, NULL, 1.0f, count, &D_80800F40_chfactoryworkerdirty);
+            func_800BBCB8(arg0->position, NULL, 1.0f, count, (s32 *)D_80800F40_chfactoryworkerdirty);
             data->unkC -= count;
             func_800D9078(&data->unk8);
         }
@@ -246,18 +246,18 @@ void func_8080061C_chfactoryworkerdirty(Actor *arg0) {
     s32 func_80090178(AllowedTransformation);
 #endif
     s32 func_808009C0_chfactoryworkerdirty(void);
-    s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
+    u32 _subaddiedialog_entrypoint_7(Actor *, f32 *, subaddiedialog_UnkStruct0 *);
     void func_80090734(s32, f32 *);
-    extern s32 D_80800FD0_chfactoryworkerdirty;
-    extern u16 D_80800FD4_chfactoryworkerdirty;
-    extern u16 D_80800FD6_chfactoryworkerdirty;
-    extern s32 D_80800FEC_chfactoryworkerdirty;
-    s32 *dialog;
+    extern subaddiedialog_UnkStruct0 D_80800FD0_chfactoryworkerdirty;
+    BT_IDO_ONLY(extern u16 D_80800FD4_chfactoryworkerdirty;)
+    BT_IDO_ONLY(extern u16 D_80800FD6_chfactoryworkerdirty;)
+    extern subaddiedialog_UnkStruct0 D_80800FEC_chfactoryworkerdirty;
+    subaddiedialog_UnkStruct0 *dialog;
 
     if (func_80090178(0x40) != 0) {
         dialog = &D_80800FD0_chfactoryworkerdirty;
         if (func_808009C0_chfactoryworkerdirty() != 0) {
-            D_80800FD4_chfactoryworkerdirty = D_80800FD6_chfactoryworkerdirty;
+            BT_DATA_FIELD(D_80800FD0_chfactoryworkerdirty.unk4, D_80800FD4_chfactoryworkerdirty) = BT_DATA_FIELD(D_80800FD0_chfactoryworkerdirty.unk6, D_80800FD6_chfactoryworkerdirty);
         }
         arg0->unk74_30 = 0;
     } else {
@@ -283,18 +283,18 @@ void func_8080061C_chfactoryworkerdirty(Actor *arg0) {
 void func_80800700_chfactoryworkerdirty(Actor *arg0) {
     s32 func_808009E4_chfactoryworkerdirty(void);
     s32 func_80800A54_chfactoryworkerdirty(void);
-    s32 _subaddiedialog_entrypoint_7(Actor *, f32 *, s32 *);
+    u32 _subaddiedialog_entrypoint_7(Actor *, f32 *, subaddiedialog_UnkStruct0 *);
     void func_80090734(s32, f32 *);
-    extern s32 D_80801008_chfactoryworkerdirty;
-    extern s16 D_8080100C_chfactoryworkerdirty;
+    extern subaddiedialog_UnkStruct0 D_80801008_chfactoryworkerdirty;
+    BT_IDO_ONLY(extern s16 D_8080100C_chfactoryworkerdirty;)
     f32 *position[1];
 
     if (func_808009E4_chfactoryworkerdirty() != 0) {
-        D_8080100C_chfactoryworkerdirty = 0x1350;
+        BT_DATA_FIELD(D_80801008_chfactoryworkerdirty.unk4, D_8080100C_chfactoryworkerdirty) = 0x1350;
     } else if (func_80800A54_chfactoryworkerdirty() == 1) {
-        D_8080100C_chfactoryworkerdirty = 0x134F;
+        BT_DATA_FIELD(D_80801008_chfactoryworkerdirty.unk4, D_8080100C_chfactoryworkerdirty) = 0x134F;
     } else {
-        D_8080100C_chfactoryworkerdirty = 0x134E;
+        BT_DATA_FIELD(D_80801008_chfactoryworkerdirty.unk4, D_8080100C_chfactoryworkerdirty) = 0x134E;
     }
     position[0] = arg0->position;
     if (_subaddiedialog_entrypoint_7(arg0, position[0], &D_80801008_chfactoryworkerdirty) != 0) {
@@ -345,11 +345,11 @@ void func_80800864_chfactoryworkerdirty(Actor *arg0) {
 }
 
 s32 func_808008A4_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2) {
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     s32 func_801022E4(Actor *);
     void func_80800D48_chfactoryworkerdirty(Actor *);
-    extern u32 D_80801024_chfactoryworkerdirty;
-    extern u32 D_80801034_chfactoryworkerdirty;
+    extern f32 D_80801024_chfactoryworkerdirty[4];
+    extern f32 D_80801034_chfactoryworkerdirty[4];
 
     switch (arg1) {
     case 0x3D:
@@ -357,10 +357,10 @@ s32 func_808008A4_chfactoryworkerdirty(Actor *arg0, s32 arg1, s32 arg2) {
         return 0;
     case 0x52:
         if (func_801022E4(arg0) == 0x35E) {
-            _gcdialogcamera_entrypoint_3(&D_80801024_chfactoryworkerdirty, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80801024_chfactoryworkerdirty, arg0->scale);
             return 1;
         }
-        _gcdialogcamera_entrypoint_3(&D_80801034_chfactoryworkerdirty, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80801034_chfactoryworkerdirty, arg0->scale);
         return 1;
     case 0x2E:
         func_80800788_chfactoryworkerdirty(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
@@ -455,7 +455,7 @@ void func_80800B40_chfactoryworkerdirty(void) {
     func_800DA7A8(FLAG_42D_PROGRESS_GI_SKIVVY_WASHED_OUTSIDE, func_80800A04_chfactoryworkerdirty() + 1, 6);
 #endif
 }
-
+#include "workerdirty_tail_data.inc"
 void chfactoryworkerdirty_entrypoint_1(Unk80132ED0 *arg0, s32 arg1) {
     Actor *actor;
 

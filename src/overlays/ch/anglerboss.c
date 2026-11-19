@@ -216,8 +216,8 @@ void func_808002E0_changlerboss(Actor *arg0) {
     void func_808025EC_changlerboss(Actor *);
     void func_80802680_changlerboss(Actor *);
 
-    extern u32 D_80802F50_changlerboss[];
-    extern u32 D_80802F60_changlerboss[];
+    extern s16 D_80802F50_changlerboss[8];
+    extern s16 D_80802F60_changlerboss[8];
     struct AnglerBossActorFlags {
         u8 pad0[0x7A];
         BT_BITFIELD_ORDER(u8 pad7A_15 : 2, u8 unk7A_8 : 1);
@@ -682,7 +682,7 @@ void func_80801070_changlerboss(Actor *arg0, s32 arg1) {
     s32 func_80801C50_changlerboss(Actor *);
     void func_808021E4_changlerboss(Actor *, u32, u32);
     void func_808027F8_changlerboss(void *);
-    extern u32 D_80802F70_changlerboss;
+    extern s16 D_80802F70_changlerboss[8];
     struct {
         u8 pad0[0x1B];
         u8 unk1B[6];
@@ -712,7 +712,7 @@ void func_80801070_changlerboss(Actor *arg0, s32 arg1) {
                 func_808012E0_changlerboss(arg0, 9);
                 sp3C->unk24[index] = 2.0f;
                 _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802DAC_changlerboss);
-                _subaddieaudioquick_entrypoint_2(arg0, sp3C->unk3C[index], &D_80802F70_changlerboss);
+                _subaddieaudioquick_entrypoint_2(arg0, sp3C->unk3C[index], D_80802F70_changlerboss);
                 if (func_80801C50_changlerboss(arg0) == 5) {
                     func_80109FE8(arg0, 0);
                     func_808027F8_changlerboss(arg0);
@@ -757,7 +757,7 @@ void func_808012E0_changlerboss(Actor *arg0, s32 arg1) {
     s32 func_80801C50_changlerboss(Actor *);
     void func_808021E4_changlerboss(Actor *, u32, u32);
     void func_808027F8_changlerboss(void *);
-    extern u32 D_80802F80_changlerboss;
+    extern s16 D_80802F80_changlerboss[5];
     struct {
         u8 pad0[0x90];
         s16 unk90;
@@ -832,7 +832,7 @@ void func_808012E0_changlerboss(Actor *arg0, s32 arg1) {
         break;
     case 24:
         func_800FDC28(0);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80802F80_changlerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80802F80_changlerboss);
         func_808027F8_changlerboss(arg0);
         func_808021E4_changlerboss(arg0, 0x16U, 0x38U);
         break;
@@ -852,7 +852,7 @@ void func_808012E0_changlerboss(Actor *arg0, s32 arg1) {
 
 void func_808015F4_changlerboss(Actor *arg0, BtIntPtr arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    extern s16 D_80802F8C_changlerboss[][3][3];
+    extern s16 D_80802F8C_changlerboss[6][3][3];
     struct {
         u8 pad0[0x1B];
         s8 state[6];
@@ -1365,7 +1365,7 @@ void func_80802340_changlerboss(Actor *arg0) {
     s32 func_801022E4(Actor *);
     s32 func_80102320(Actor *, f32, f32);
     s32 func_80802430_changlerboss(Actor *);
-    extern u32 D_80802FF8_changlerboss;
+    extern s16 D_80802FF8_changlerboss[7];
 
     switch (func_801022E4(arg0)) {
     case 0x3EC:
@@ -1377,7 +1377,7 @@ void func_80802340_changlerboss(Actor *arg0) {
         if ((func_80102320(arg0, 0.25f, 0.75f) != 0) && (func_800DC298(0.1f) != 0)) {
             func_80802430_changlerboss(arg0);
         }
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80802FF8_changlerboss, 0.4f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80802FF8_changlerboss, 0.4f);
         break;
     case 0x33F:
         if (func_80101E14(arg0, 0.85f) != 0) {
@@ -1395,9 +1395,9 @@ s32 func_80802430_changlerboss(Actor *arg0) {
     void func_800BA7C4(void *, f32, f32);
     void func_800BA7FC(void *, f32, f32);
     void func_800BA994(u8 *, s16, s16, s16, s16, s16, s16);
-    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
     s32 func_800DC128(s32, s32);
-    extern s32 D_80803008_changlerboss;
+    extern s16 D_80803008_changlerboss[37];
     f32 sp44[3];
     s32 sp40;
     f32 temp_f20;
@@ -1408,7 +1408,7 @@ s32 func_80802430_changlerboss(Actor *arg0) {
         sp40 = func_800DC128(1, 3);
         temp_v0_2 = func_800B53A4(sp40);
         temp_f20 = arg0->scale * 1.3f;
-        func_800BABB8(temp_v0_2, sp44, 0, 1.0f, &D_80803008_changlerboss);
+        func_800BABB8(temp_v0_2, sp44, 0, 1.0f, D_80803008_changlerboss);
         func_800BA568(temp_v0_2, (s16) (s32) (sp44[1] + 1000.0f));
         func_800BA7C4(temp_v0_2, 0.16f * temp_f20, 0.3f * temp_f20);
         func_800BA7FC(temp_v0_2, 0.45f * temp_f20, 0.6f * temp_f20);
@@ -1436,7 +1436,7 @@ BtIntPtr func_808025AC_changlerboss(BtIntPtr arg0) {
 void func_808025EC_changlerboss(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void *func_80100094(Actor *, u32);
-    extern s16 D_80803054_changlerboss;
+    extern s16 D_80803054_changlerboss[6];
     s32 i;
     struct {
         f32 pad0[15];
@@ -1446,7 +1446,7 @@ void func_808025EC_changlerboss(Actor *arg0) {
 
     sp30 = func_80100094(arg0, 0);
     for (i = 0; i < 6; i++) {
-        _subaddieskeleton_entrypoint_2(arg0->unk0, (&D_80803054_changlerboss)[i], sp30->unk3C[i]);
+        _subaddieskeleton_entrypoint_2(arg0->unk0, D_80803054_changlerboss[i], sp30->unk3C[i]);
     }
     _subaddieskeleton_entrypoint_2(arg0->unk0, 0xC, sp30->unk84);
 }
@@ -1454,12 +1454,12 @@ void func_808025EC_changlerboss(Actor *arg0) {
 void func_80802680_changlerboss(Actor *arg0) {
     BtIntPtr func_800B53A4(s32);
     void func_800BA22C(BtIntPtr, s32);
-    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
     f32 func_800D8FF8(void);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void *func_80100094(Actor *, u32);
     void func_80103DFC(Actor *, f32 *);
-    extern s32 D_80803060_changlerboss[];
+    extern s16 D_80803060_changlerboss[27];
     f32 position[3];
     f32 delta;
     f32 scale;
@@ -1600,7 +1600,7 @@ s32 func_80802A90_changlerboss(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return result;
 }
-
+#include "anglerboss_tail_data.inc"
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"

@@ -189,7 +189,7 @@ void func_800FB968(void)
   f32 func_800D8FF8(void);
   f32 func_800F13F0(f32, f32);
   void func_800FDC58(s32);
-  extern f32 D_80126150;
+  extern const f32 musicTrackBlendRate[];
   extern u8 D_801359B0;
   MusicTrack *track;
   s32 index;
@@ -206,7 +206,7 @@ void func_800FB968(void)
     mode = func_800A5490();
     *mode_ptr = mode;
   }
-  blend = D_80126150; track = D_801357D0; do {
+  blend = musicTrackBlendRate[0]; track = D_801357D0; do {
     if (track->track_id >= 0) {
       ((f32 *) track)[1] = func_800F13F0(((f32 *) track)[1] + delta, 600.0f);
       if ((((f32 *) track)[1] > 1.0f) && func_80017778(track - D_801357D0)) {
@@ -834,7 +834,7 @@ s32 func_800FCF50(s32 arg0)
   while (var_v0 != var_a1);
   return 1;
 }
-
+const f32 musicTrackBlendRate[] = {0.05f};
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"

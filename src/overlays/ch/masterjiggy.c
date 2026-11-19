@@ -6,7 +6,7 @@ OSThread *chmasterjiggy_entrypoint_0(void)
 
     return (OSThread *)&D_8080164C_chmasterjiggy.actor;
 }
-
+f32 B_808017F0_chmasterjiggy[3];
 void func_8080000C_chmasterjiggy(Actor *arg0) {
     Prop *_gccubesearch_entrypoint_0(u32, Actor *);
     void _gspropctrl_entrypoint_11(Prop *, f32[3]);
@@ -91,7 +91,7 @@ s32 func_80800220_chmasterjiggy(BtIntPtr arg0, s32 arg1) {
     void func_80101EE4(Actor *, f32);
     void func_80102424(Actor *, s32);
     void func_80108A30(s32, void *, f32, s32);
-    extern s32 B_808017F0_chmasterjiggy;
+
     extern s32 func_8010D5DC;
     f32 sp24[3];
 
@@ -119,7 +119,7 @@ s32 func_80800220_chmasterjiggy(BtIntPtr arg0, s32 arg1) {
         ((Actor *)arg0)->unk58 = 1.0f;
         break;
     case 5:
-        func_80108A30(0x4B1, &B_808017F0_chmasterjiggy, 0.0f, 0x32);
+        func_80108A30(0x4B1, B_808017F0_chmasterjiggy, 0.0f, 0x32);
         ((f32 *)((Actor *)arg0)->actorData)[7] = 1.0f;
         break;
     case 9:

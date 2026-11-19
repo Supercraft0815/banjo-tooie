@@ -143,3 +143,10 @@ only those bytes instead of reading 0x50 bytes from a smaller source.
 The native tests exercise both real callers, dispatch, relocation and
 a short buffer. See root-transition-timers-ir.log and the full replay,
 IDO and CTest reports in build/acceptance/n3-2026-11-18/.
+
+2026-11-19  N1 overlay BSS, literal pools and actor data
+The six stages from rodata-stable2 through strict-evilmumbo1 retain the
+original addresses of the BSS owners, floating-point literals and actor
+tables. Their individual reports identify the data bytes and relocations.
+See proof/*-whole.json for those stages and current-strict-six-ido/result.json
+for the cumulative comparison in build/acceptance/n1-2026-11-18/.

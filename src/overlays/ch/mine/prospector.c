@@ -1,4 +1,4 @@
-#include "common.h"
+#include "su/baddiedialog_descriptor.h"
 
 void func_80800024_chmineprospector(Actor *arg0);
 void func_80105834(Actor *);
@@ -82,7 +82,7 @@ u32 D_80801104_chmineprospector[] = {
     0x00130451, 0x00180000
 };
 
-s32 D_8080110C_chmineprospector = 0x00820000;
+subaddiedialog_UnkStruct2 D_8080110C_chmineprospector = {0x82, 0, 300, 63, 0, 12, 6, 50, 2};
 
 void *func_80100094(Actor *, u32);
 
@@ -263,14 +263,14 @@ s32 func_80800398_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 s32 func_80800540_chmineprospector(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, s32 *, s32);
     s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
     void func_808009B0_chmineprospector(Actor *, s32, s32);
 
-    extern s8 D_8080111A_chmineprospector;
+    BT_IDO_ONLY(extern s8 D_8080111A_chmineprospector;)
     s32 temp_v0;
 
-    D_8080111A_chmineprospector = arg3;
+    BT_DATA_FIELD(D_8080110C_chmineprospector.unkE, D_8080111A_chmineprospector) = arg3;
     temp_v0 = _subaddiedialog_entrypoint_8((BtIntPtr)arg0, (u8 *)arg0 + 0x28, &D_8080110C_chmineprospector, arg1, arg2);
     if (temp_v0 == 0) {
         return 0;
@@ -298,26 +298,26 @@ void func_808005F0_chmineprospector(Actor *arg0) {
 void func_80800638_chmineprospector(Actor *arg0) {
 
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
-    extern u32 D_8080111C_chmineprospector;
+    extern s16 D_8080111C_chmineprospector[6];
     f32 *sp1C[2];
 
     sp1C[1] = (f32 *) ((u8 *) arg0 + 0x28);
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], &D_8080111C_chmineprospector, 0.03f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], D_8080111C_chmineprospector, 0.03f);
     _subaddieaudioquick_entrypoint_3(arg0, sp1C[1], D_80800FB0_chmineprospector, 0.65f);
 }
 
 void func_8080068C_chmineprospector(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
-    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
+    s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, void *, f32 *);
     s32 func_800DC298(f32);
-    extern u32 D_80801128_chmineprospector;
-    extern u32 D_80801134_chmineprospector;
-    extern u32 D_80801144_chmineprospector;
+    extern s16 D_80801128_chmineprospector[5];
+    extern s16 D_80801134_chmineprospector[8];
+    extern f32 D_80801144_chmineprospector[9];
     f32 * volatile sp1C;
 
-    _subaddieaudioquick_entrypoint_4(arg0, sp1C = (f32 *) ((u8 *) arg0 + 0x28), &D_80801128_chmineprospector, &D_80801144_chmineprospector);
+    _subaddieaudioquick_entrypoint_4(arg0, sp1C = (f32 *) ((u8 *) arg0 + 0x28), D_80801128_chmineprospector, D_80801144_chmineprospector);
     if (func_800DC298(0.3f) != 0) {
-        _subaddieaudioquick_entrypoint_3(arg0, sp1C, &D_80801134_chmineprospector, 0.5f);
+        _subaddieaudioquick_entrypoint_3(arg0, sp1C, D_80801134_chmineprospector, 0.5f);
     }
 }
 
@@ -548,39 +548,39 @@ s32 func_80800CD4_chmineprospector(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800D34_chmineprospector(Actor *arg0) {
-    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, u32 *);
+    void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 func_800DC298(f32);
-    extern s32 D_80801168_chmineprospector;
-    extern s32 D_80801178_chmineprospector;
+    extern s16 D_80801168_chmineprospector[8];
+    extern s16 D_80801178_chmineprospector[6];
     f32 * volatile sp1C;
 
-    _subaddieaudioquick_entrypoint_3(arg0, sp1C = &arg0->position[0], &D_80801168_chmineprospector, 0.5f);
+    _subaddieaudioquick_entrypoint_3(arg0, sp1C = &arg0->position[0], D_80801168_chmineprospector, 0.5f);
     if (func_800DC298(0.1f) != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, sp1C, &D_80801178_chmineprospector);
+        _subaddieaudioquick_entrypoint_2(arg0, sp1C, D_80801178_chmineprospector);
     }
 }
 
 void func_80800D8C_chmineprospector(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
-    void _subaddieaudioquick_entrypoint_4(Actor*, f32*, u32*, u32*);
-    extern u32 D_80801184_chmineprospector;
-    extern u32 D_80801194_chmineprospector;
-    extern u32 D_808011A0_chmineprospector;
-    extern u32 D_808011AC_chmineprospector;
+    s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, void *, f32 *);
+    extern s16 D_80801184_chmineprospector[7];
+    extern s16 D_80801194_chmineprospector[5];
+    extern s16 D_808011A0_chmineprospector[6];
+    extern f32 D_808011AC_chmineprospector[3];
 
     f32 * volatile temp_a1;
 
-    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = &arg0->position[0], &D_80801184_chmineprospector, &D_808011AC_chmineprospector);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_80801194_chmineprospector, 0.75f);
-    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, &D_808011A0_chmineprospector, 0.6f);
+    _subaddieaudioquick_entrypoint_4(arg0, temp_a1 = &arg0->position[0], D_80801184_chmineprospector, D_808011AC_chmineprospector);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, D_80801194_chmineprospector, 0.75f);
+    _subaddieaudioquick_entrypoint_3(arg0, temp_a1, D_808011A0_chmineprospector, 0.6f);
 }
 
 void func_80800DF8_chmineprospector(s32 arg0) 
 {
 }
 /* extern */
-
+#include "prospector_tail_data.inc"
 void func_80800E00_chmineprospector(Actor *arg0) {
     s32 _suexpression_entrypoint_8(Actor *, s32);
     if (func_80100094(arg0, 1U) != NULL) {

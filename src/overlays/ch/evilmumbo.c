@@ -7,7 +7,7 @@ void func_801018A4(Actor *, BtIntPtr);
 void func_808023E8_chevilmumbo(Actor *);
 OSThread *func_80108ED0(void);
 void func_8080241C_chevilmumbo(Actor *);
-void *func_80107C2C(s32 *, s32, void *, s32, void *);
+#include "actor_factory_decl.h"
 s32 func_80802618_chevilmumbo(Actor *, s32, s32);
 
 BtFnWord D_80804460_chevilmumbo[] = {
@@ -1619,7 +1619,7 @@ void func_80803388_chevilmumbo(Actor *arg0) {
     arg0->rotation[0] = func_800F1828(arg0->position, sp24);
 }
 
-s32 func_808034C8_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
+BtIntPtr func_808034C8_chevilmumbo(Actor *arg0, s32 arg1, BtUIntPtr arg2) {
     void func_800D93A0(f32[4], f32[3]);
     void func_800DF41C(BtIntPtr);
     void func_800DFF2C(u8 **, s32, f32[4]);
@@ -1673,7 +1673,7 @@ void func_808035A8_chevilmumbo(u8 *arg0, s32 arg1) {
 
 OSThread *chevilmumbo_entrypoint_1(void)
 {
-    extern u8 D_808044F0_chevilmumbo[];
+    extern ActorData D_808044F0_chevilmumbo[1];
 
     return (OSThread *) D_808044F0_chevilmumbo;
 }
@@ -1715,7 +1715,7 @@ void func_80803700_chevilmumbo(Actor *arg0) {
     s32 func_800DA298(s32);
     void func_800EFA20(void *, void *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
-    extern f32 D_80804538_chevilmumbo[];
+    extern f32 D_80804538_chevilmumbo[3];
     extern u16 D_80804234_chevilmumbo[8];
     f32 dt;
 
@@ -1762,7 +1762,7 @@ void func_80803700_chevilmumbo(Actor *arg0) {
     }
 }
 
-void func_80803918_chevilmumbo(s32 arg0) 
+void func_80803918_chevilmumbo(Actor *arg0)
 {
 }
 /* extern */
@@ -1774,7 +1774,7 @@ void func_80803920_chevilmumbo(Actor *arg0) {
     func_8080362C_chevilmumbo(arg0, 1);
 }
 
-s32 func_8080395C_chevilmumbo(s32 arg0, s32 arg1, s32 arg2) {
+BtIntPtr func_8080395C_chevilmumbo(Actor *arg0, s32 arg1, BtUIntPtr arg2) {
     if (arg1 == 0xB) {
         return 3;
     }
@@ -1783,7 +1783,7 @@ s32 func_8080395C_chevilmumbo(s32 arg0, s32 arg1, s32 arg2) {
 
 OSThread *chevilmumbo_entrypoint_2(void)
 {
-    extern u8 D_80804544_chevilmumbo[];
+    extern ActorData D_80804544_chevilmumbo[1];
 
     return (OSThread *) D_80804544_chevilmumbo;
 }    typedef struct { u8 pad0[0x78]; f32 unk78; } Objevilmumbo_func_8080398C_chevilmumbo_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
@@ -1842,12 +1842,12 @@ void func_80803A24_chevilmumbo(BtIntPtr arg0, s32 arg1) {
     ((struct State *)arg0)->state = arg1;
 }
 
-void func_80803B28_chevilmumbo(s32 arg0)
+void func_80803B28_chevilmumbo(Actor *arg0)
 {
-    func_80803A24_chevilmumbo(arg0,0x2);
+    func_80803A24_chevilmumbo((BtIntPtr)arg0, 2);
 }
 
-void func_80803B48_chevilmumbo(s32 arg0) 
+void func_80803B48_chevilmumbo(Actor *arg0)
 {
 }
 void func_80803B50_chevilmumbo(Actor *arg0) {
@@ -1884,7 +1884,7 @@ void func_80803B50_chevilmumbo(Actor *arg0) {
     }
 }
 
-s32 func_80803C88_chevilmumbo(void *arg0, s32 arg1, s32 arg2) {
+BtIntPtr func_80803C88_chevilmumbo(Actor *arg0, s32 arg1, BtUIntPtr arg2) {
     s32 result;
     void func_800DF410(s32);
     void func_800DF830(s32);
@@ -1899,10 +1899,10 @@ s32 func_80803C88_chevilmumbo(void *arg0, s32 arg1, s32 arg2) {
     }
     return result;
 }
-
+#include "evilmumbo_tail_data.inc"
 OSThread *chevilmumbo_entrypoint_3(void)
 {
-    extern u8 D_8080458C_chevilmumbo[];
+    extern ActorData D_8080458C_chevilmumbo[1];
 
     return (OSThread *) D_8080458C_chevilmumbo;
 }

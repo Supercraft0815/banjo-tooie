@@ -103,7 +103,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CA440(void *arg0) {
     void func_800CA6C0(void *, f32, f32);
     void func_800CA6F0(void *, f32);
     s32 func_800CAF34(s32);
-    extern f32 D_80125970;
+    extern const f32 projectionAspectRatio[];
     f32 sp20;
 
     func_800CA5F8(arg0, 0.0f, 0.0f, 0.0f);
@@ -113,7 +113,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CA440(void *arg0) {
     (((Obj1EA3AA0_arg0 *)arg0)->unkE4) = 40.0f;
     sp20 = (((Obj1EA3AA0_arg0 *)arg0)->unkE4) * 0.5f;
     (((Obj1EA3AA0_arg0 *)arg0)->unkF4) = 1.0f / func_800139F8(sp20);
-    (((Obj1EA3AA0_arg0 *)arg0)->unkE8) = D_80125970;
+    (((Obj1EA3AA0_arg0 *)arg0)->unkE8) = projectionAspectRatio[0];
     func_800CA218(arg0, sp20);
     func_800CA2A8(arg0, sp20);
     BT_NATIVE_ONLY(return) func_800CAF34((s32)arg0);
@@ -351,7 +351,7 @@ void func_800CB0E8(u8 *arg0, f32 *arg1, s32 arg2) { void func_800EE7F8(f32 *, f3
 
 u16 func_800CB124(s32 arg0, MtxF *arg1) {
     void func_800F274C(MtxF *);
-    extern f32 D_80125974, D_80125978, D_8012597C, D_80125980;
+    extern const f32 projectionUpperThreshold[], projectionLowerThreshold[], projectionMaximumDepth[], projectionMinimumDepth[];
     s32 i, j;
     f32 near;
     f32 far;
@@ -367,11 +367,11 @@ u16 func_800CB124(s32 arg0, MtxF *arg1) {
         far = near + 100.0f;
     }
     depth = (2 * near * far / (near - far)) * 0.5f;
-    if (D_80125974 < depth || depth < D_80125978) {
-        if (D_80125974 < depth) {
-            depth = D_8012597C;
+    if (projectionUpperThreshold[0] < depth || depth < projectionLowerThreshold[0]) {
+        if (projectionUpperThreshold[0] < depth) {
+            depth = projectionMaximumDepth[0];
         } else {
-            depth = D_80125980;
+            depth = projectionMinimumDepth[0];
         }
         near = (-(depth / 0.5f) * far) / (2 * far - depth / 0.5f);
     }
@@ -397,5 +397,5 @@ u16 func_800CB124(s32 arg0, MtxF *arg1) {
     }
     return norm;
 }
-
+#include "1EA3AA0_constants.inc"
 #endif

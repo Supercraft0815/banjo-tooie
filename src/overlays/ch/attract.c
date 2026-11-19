@@ -1,5 +1,5 @@
 #include "common.h"
-
+s32 B_80800540_chattract[3];
 /* Each actor selects one of five fade and animation records. */
 struct AttractEntry {
     u16 animation;
@@ -149,10 +149,10 @@ void chattract_entrypoint_1(s32 arg0) {
 void chattract_entrypoint_2(s32 arg0) {
     void func_800EC828(void);
     Actor *func_80108454(s32, s32 *, u32);
-    extern s32 B_80800540_chattract;
+
     Actor *temp_v0;
     Unk80132ED0 *temp_v0_2;
-    temp_v0 = func_80108454(0x4B5, &B_80800540_chattract, 0);
+    temp_v0 = func_80108454(0x4B5, B_80800540_chattract, 0);
     if (temp_v0 != NULL) {
         temp_v0->unk74_7 = arg0 + 1;
         temp_v0_2 = temp_v0->unk0;

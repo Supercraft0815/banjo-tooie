@@ -193,6 +193,21 @@ SECTIONS
     {
         D_808025B4_sumole = D_8080256C_sumole + 0x48;
     }
+    .chmineprospector :
+    {
+        D_8080111A_chmineprospector = D_8080110C_chmineprospector + 0xE;
+    }
+    .chklungo :
+    {
+        D_80803D01_chklungo = D_80803CF4_chklungo + 0xD;
+        D_80803D04_chklungo = D_80803CF4_chklungo + 0x10;
+    }
+    .chfactoryworkerdirty :
+    {
+        D_80800FD4_chfactoryworkerdirty = D_80800FD0_chfactoryworkerdirty + 0x4;
+        D_80800FD6_chfactoryworkerdirty = D_80800FD0_chfactoryworkerdirty + 0x6;
+        D_8080100C_chfactoryworkerdirty = D_80801008_chfactoryworkerdirty + 0x4;
+    }
 }
 
 /* Audio channel volumes and the end of the sample buffers. */

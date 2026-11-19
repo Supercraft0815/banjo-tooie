@@ -6,7 +6,7 @@ OSThread *chterryegg_entrypoint_0(void)
 
     return (OSThread *)&D_80801260_chterryegg;
 }
-
+Prop *B_80801460_chterryegg[4];
 OSThread *chterryegg_entrypoint_1(void)
 {
     extern ActorData D_80801328_chterryegg[1];
@@ -466,7 +466,7 @@ void func_80800D20_chterryegg(s32 arg0, void *arg1, s32 arg2, s32 arg3) {
 void func_80800D88_chterryegg(s32 arg0, f32 *arg1) {
     s32 _gccubesearch_entrypoint_9(s32, Prop **, s32);
     void func_800EE88C(f32 *, s16 *);
-    extern Prop *B_80801460_chterryegg[4];
+
     s32 count;
     s32 i;
     s32 id;

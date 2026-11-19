@@ -2599,3 +2599,15 @@ Auf dem gemeinsamen Rodata-Stand sanken die LP64-Warnstellen von 934 auf
 alle 102 Funktionen der beiden geänderten Module und beide ROM-Abbilder.
 Alle elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Die
 Messungen liegen unter `build/acceptance/n3-2026-11-18/root-transition-timers*`.
+
+## 2026-11-19 — N1, BSS und Datentabellen der Spielobjekte
+
+Die sechs Pakete ab `rodata-stable2` überführen die letzten 18 BSS-Symbole
+und die Tabellen von Anglerboss, Prospektor, Klungo, Fabrikarbeiter und
+Evil Mumbo in C. Der strenge Datenimport zählt jetzt 415 Daten- und
+56 Rodata-Einträge. Vorher waren es zusammen 558 einschließlich BSS.
+
+Der kumulative Neubau mit Original-IDO bestätigt alle 16.401 Funktionen
+samt Adresse, Größe und Instruktionen sowie beide vollständigen ROM-Abbilder.
+Alle elf Suiten und 74 Replays mit 447.849 Retraces bestanden. Die Nachweise
+liegen unter `build/acceptance/n1-2026-11-18/current-strict-six*`.

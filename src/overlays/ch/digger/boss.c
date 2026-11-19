@@ -50,7 +50,7 @@ void func_80800000_chdiggerboss(Actor *arg0) {
         break;
     }
 }
-
+f32 B_8080A300_chdiggerboss[3];
 void func_80800180_chdiggerboss(Actor *arg0, s32 arg1) {
     s32 func_801022E4(Actor *);
     void func_80102424(Actor *, s32);
@@ -962,7 +962,7 @@ s32 func_80801A04_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EE7F8(f32 *, f32 *);
     u32 func_800FDC28(u32);
     s32 func_800D395C(void);
-    extern u8 B_8080A300_chdiggerboss;
+
     Actor *other;
     s32 pad;
     BtIntPtr data;
@@ -1060,8 +1060,8 @@ s32 func_80801A04_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
                 !func_80802288_chdiggerboss(arg0)) {
                 return 0;
             }
-            func_80802298_chdiggerboss((u8 *)arg0, &B_8080A300_chdiggerboss);
-            func_80101074((BtIntPtr)&B_8080A300_chdiggerboss);
+            func_80802298_chdiggerboss((u8 *)arg0, (u8 *)B_8080A300_chdiggerboss);
+            func_80101074((BtIntPtr)B_8080A300_chdiggerboss);
             break;
         case 0x90:
             func_80809310_chdiggerboss(arg0);

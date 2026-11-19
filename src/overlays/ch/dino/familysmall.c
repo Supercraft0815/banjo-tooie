@@ -1,7 +1,7 @@
 #include "common.h"
 #include "core2/actor_animation_entry.h"
 /* extern */
-
+f32 dinoScaleHistory[5][3];
 typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x1C]; f32 unk28; f32 unk2C; f32 unk30; f32 unk34; f32 unk38; } Objfamilysmall_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chdinofamilysmall(u8 *arg0) {
     s32 _glcutDll_entrypoint_20();
     s32 func_800DA298(s32);
@@ -293,11 +293,11 @@ void func_80800C10_chdinofamilysmall(Actor *arg0, BtIntPtr arg1) {
     void func_800EE7F8(f32 *, f32 *);
     s32 func_801015D0(Actor *);
     void func_801018A4(Actor *, BtIntPtr);
-    extern f32 B_80800F70_chdinofamilysmall[3];
-    extern f32 B_80800F94_chdinofamilysmall[3];
-    extern f32 B_80800FA0_chdinofamilysmall[3];
-    f32 *dst;
-    f32 *src;
+    /* Shift the four older scale samples back to front. */
+    /* Keep the native source cursor within the array after its final copy. */
+
+    f32 (*dst)[3];
+    f32 (*src)[3];
     s32 i;
 
     if (func_80100094(arg0, 1)) {
@@ -305,19 +305,19 @@ void func_80800C10_chdinofamilysmall(Actor *arg0, BtIntPtr arg1) {
     }
     if (arg0->unk70_10 == 6) {
         func_801015D0(arg0);
-        dst = B_80800FA0_chdinofamilysmall; src = B_80800F94_chdinofamilysmall;
-        for (i = 4; i != 0; i--, dst -= 3, src -= 3) {
-            func_800EE7F8(dst, src);
-            if (dst[0] != 0.0f && dst[1] != 0.0f && dst[2] != 0.0f) {
+        dst = &dinoScaleHistory[4]; src = &dinoScaleHistory[3];
+        for (i = 4; i != 0; i--, dst--, src -= BT_DATA_FIELD(i != 0, 1)) {
+            func_800EE7F8(*dst, *src);
+            if ((*dst)[0] != 0.0f && (*dst)[1] != 0.0f && (*dst)[2] != 0.0f) {
                 func_800DF744(3, 1);
-                func_800DF500(dst[0], dst[1], dst[2]);
+                func_800DF500((*dst)[0], (*dst)[1], (*dst)[2]);
                 func_800DF410(160 - i * 30);
                 func_800DF830(2);
                 func_800DE498(arg1, arg0->position, arg0->rotation, arg0->scale, NULL,
                     func_800D674C(arg0->unk0->unk14));
             }
         }
-        func_800EE7F8(B_80800F70_chdinofamilysmall, ((DinoData *)arg0->actorData)->scale);
+        func_800EE7F8(dinoScaleHistory[0], ((DinoData *)arg0->actorData)->scale);
         if (((DinoData *)arg0->actorData)->scale[0] != 0.0f &&
             ((DinoData *)arg0->actorData)->scale[1] != 0.0f &&
             ((DinoData *)arg0->actorData)->scale[2] != 0.0f) {

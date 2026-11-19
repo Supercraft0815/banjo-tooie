@@ -691,7 +691,7 @@ segments:
       - [0x1EFF1D0, .rodata, 1EA0AA0]
       - [0x1EFF210, .rodata, 1EA1270]
       - [0x1EFF220, .rodata, 1EA1DA0]
-      - [0x1EFF260, rodata]
+      - [0x1EFF260, .rodata, 1EA3AA0]
       - [0x1EFF280, .rodata, 1EA5180]
       - [0x1EFF290, .rodata, 1EA6B20]
       - [0x1EFF2A0, .rodata, 1EA78C0]
@@ -726,7 +726,7 @@ segments:
       - [0x1EFF960, .rodata, 1ECE0B0]
       - [0x1EFF980, .rodata, 1ED2CF0]
       - [0x1EFFA30, .rodata, 1ED4440]
-      - [0x1EFFA40, rodata]
+      - [0x1EFFA40, .rodata, 1ED4E30]
       - [0x1EFFA50, .rodata, 1ED68A0]
       - [0x1EFFD20, .rodata, 1EDAEA0]
       - [0x1EFFD30, .rodata, 1EDDC40]
@@ -4313,7 +4313,7 @@ segments:
       - [0x01F810E0, c, masterjiggy]
       - [0x01F82610, .rodata, masterjiggy]
       - [0x01F826A0, .data, masterjiggy]
-      - [0x01F828D0, bss, masterjiggy]
+      - [0x01F828D0, .bss, masterjiggy]
   - name: chjiggygamenew_header
     dir: overlays/chjiggygamenew
     type: bin
@@ -4485,7 +4485,7 @@ segments:
       - [0x01F8E370, c, gameselect]
       - [0x01F95FB0, .rodata, gameselect]
       - [0x01F96120, .data, gameselect_tables]
-      - [0x01F968C0, bss, gameselect]
+      - [0x01F968C0, .bss, gameselect]
   - name: chjiggybeam_header
     dir: overlays/chjiggybeam
     type: bin
@@ -4523,7 +4523,7 @@ segments:
       - [0x01F96A70, c, attract]
       - [0x01F96EB0, .rodata, attract]
       - [0x01F96EB0, .data, attract]
-      - [0x01F96FB0, bss, attract]
+      - [0x01F96FB0, .bss, attract]
   - name: chwitchytents_header
     dir: overlays/chwitchytents
     type: bin
@@ -4903,7 +4903,6 @@ segments:
       - [0x01FA2560, c, prospector]
       - [0x01FA33A0, .rodata, prospector]
       - [0x01FA3480, .data, prospector]
-      - [0x01FA3670, data, prospector_tail]
       - [0x01FA3720, bss, prospector]
   - name: chonearmbandit_header
     dir: overlays/chonearmbandit
@@ -5952,7 +5951,7 @@ segments:
       - [0x01FD0980, c, terryegg]
       - [0x01FD1B90, .rodata, terryegg]
       - [0x01FD1BE0, .data, terryegg]
-      - [0x01FD1DE0, bss, terryegg]
+      - [0x01FD1DE0, .bss, terryegg]
   - name: charmouredcaveman_header
     dir: overlays/charmouredcaveman
     type: bin
@@ -6561,7 +6560,6 @@ segments:
       - [0x01FEBB10, .rodata, klungo]
       - [0x01FEBE20, .data, klungo_tables]
       - [0x01FEC0E0, .data, klungo]
-      - [0x01FEC140, data, klungo_data_tail]
       - [0x01FEC2D0, bss, klungo]
   - name: chklungophial_header
     dir: overlays/chklungophial
@@ -6999,7 +6997,6 @@ segments:
       - [0x02001380, c, anglerboss]
       - [0x02003E90, .rodata, anglerboss]
       - [0x02004120, .data, anglerboss]
-      - [0x020042D0, data, anglerboss_tail]
       - [0x02004430, bss, anglerboss]
   - name: changlerbossflare_header
     dir: overlays/changlerbossflare
@@ -7706,7 +7703,7 @@ segments:
       - [0x02018860, c, boss]
       - [0x02021F30, .rodata, boss]
       - [0x020224C0, .data, boss]
-      - [0x02022B60, bss, boss]
+      - [0x02022B60, .bss, boss]
   - name: chdiggerbossdoor_header
     dir: overlays/chdiggerbossdoor
     type: bin
@@ -8640,7 +8637,6 @@ segments:
       - [0x02054A30, .rodata, evilmumbo]
       - [0x02054DC0, .data, evilmumbo_tables]
       - [0x02055190, .data, evilmumbo]
-      - [0x02055220, data, evilmumbo_tail]
       - [0x02055310, bss, evilmumbo]
   - name: chmole_witchy_header
     dir: overlays/chmole_witchy
@@ -10978,7 +10974,6 @@ segments:
       - [0x020A6160, c, workerdirty]
       - [0x020A6F50, .rodata, workerdirty]
       - [0x020A7030, .data, workerdirty]
-      - [0x020A70A0, data, workerdirty_tail]
       - [0x020A71B0, bss, workerdirty]
   - name: chfactoryworkerwear_header
     dir: overlays/chfactoryworkerwear
@@ -12101,7 +12096,7 @@ segments:
       - [0x020DF370, c, familysmall]
       - [0x020E01A0, .rodata, familysmall]
       - [0x020E0200, .data, familysmall]
-      - [0x020E02E0, bss, familysmall]
+      - [0x020E02E0, .bss, familysmall]
   - name: chdinofamilysick_header
     dir: overlays/chdinofamilysick
     type: bin
@@ -12938,7 +12933,7 @@ segments:
       - [0x020FB960, c, zoombox]
       - [0x020FF720, .rodata, zoombox]
       - [0x020FF790, .data, zoombox]
-      - [0x020FF7E0, bss, zoombox]
+      - [0x020FF7E0, .bss, zoombox]
   - name: gccubeDll_header
     dir: overlays/gccubeDll
     type: bin
@@ -16567,7 +16562,7 @@ segments:
       - [0x02171E70, c, custom]
       - [0x02172780, .rodata, custom]
       - [0x02172790, .data, custom]
-      - [0x021727A0, bss, custom]
+      - [0x021727A0, .bss, custom]
   - name: seqdat_header
     dir: overlays/seqdat
     type: bin
