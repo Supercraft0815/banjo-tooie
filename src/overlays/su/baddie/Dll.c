@@ -78,12 +78,24 @@ s32 subaddieDll_entrypoint_3(Actor *arg0) {
 /* extern */
 
 void subaddieDll_entrypoint_4(void *arg0, s32 arg1) {
+#ifdef BT_NATIVE
+    void *func_80100368(void *);
+    Actor *actor = arg0;
+    u32 radius = 0;
+
+    if (arg1 == 0) {
+        ActorData *descriptor = func_80100368(actor);
+        radius = (u32)descriptor->unk18 & 0xFFFF0000;
+    }
+    actor->flags7C = (actor->flags7C & 0xFFFF) | radius;
+#else
     void *func_80100368();
     if (arg1 != 0) {
         (((ObjDll_arg0 *)arg0)->unk7C) = 0U;
         return;
     }
     (((ObjDll_arg0 *)arg0)->unk7C) = (u16) (*(u16 *)((s8 *)(func_80100368()) + (0x18)));
+#endif
 }
 
 /* extern */

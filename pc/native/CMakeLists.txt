@@ -423,7 +423,7 @@ add_executable(bt_native_gameselect_roles_test tests/gameselect_role_layout.c
 target_include_directories(bt_native_gameselect_roles_test PRIVATE "${BT_ROOT}/src/overlays/ch")
 target_link_libraries(bt_native_gameselect_roles_test PRIVATE bt_native_options)
 set_source_files_properties("${BT_ROOT}/src/core2/player_contact_vectors.inc" PROPERTIES LANGUAGE C)
-add_executable(bt_native_player_vectors_test tests/player_vectors.c "${BT_ROOT}/src/core2/player_contact_vectors.inc")
+add_executable(bt_native_player_vectors_test tests/player_vectors.c "${BT_ROOT}/src/core2/player_contact_vectors.inc" "${BT_ROOT}/src/core2/1E75920.c")
 target_link_libraries(bt_native_player_vectors_test PRIVATE bt_native_core)
 foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles player_vectors)
     if(MSVC)

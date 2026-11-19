@@ -1,30 +1,31 @@
 #include "common.h"
+BT_NATIVE_ONLY(extern volatile u8 D_80127610[4];)
 typedef struct { s16 map; s16 unk2; s8 title; s8 secondaryTitle; s8 stringIndex; u8 pad; } CreditEntry;
 typedef struct { u8 pad0[0x3]; u8 unk3; u8 unk4; } Objcredits_D_8012760D; /* offsets.py genstruct: fields from raw offsets on &D_8012760D; rename once understood */ s16 func_80800000_chcredits(s32 arg0) {
-    extern s32 D_8012760D;
+    BT_IDO_ONLY(extern s32 D_8012760D;)
     extern CreditEntry D_80801200_chcredits[105];
 
     /* Start the map lookup at the following credits record. */
-    if ((((Objcredits_D_8012760D *)&D_8012760D)->unk4) == 2) {
+    if ((BT_DATA_FIELD(D_80127610[1], ((Objcredits_D_8012760D *)&D_8012760D)->unk4)) == 2) {
         return D_80801200_chcredits[arg0 + 24].map;
     }
     return D_80801200_chcredits[arg0 + 1].map;
 }
 
 s16 func_8080003C_chcredits(s32 arg0) {
-    extern s32 D_8012760D;
+    BT_IDO_ONLY(extern s32 D_8012760D;)
     extern CreditEntry D_80801200_chcredits[105];
 
     /* The second credits sequence begins at record 23. */
-    if ((((Objcredits_D_8012760D *)&D_8012760D)->unk4) == 2) {
+    if ((BT_DATA_FIELD(D_80127610[1], ((Objcredits_D_8012760D *)&D_8012760D)->unk4)) == 2) {
         return D_80801200_chcredits[arg0 + 23].unk2;
     }
     return D_80801200_chcredits[arg0].unk2;
 }
 
 s32 func_80800078_chcredits(void) {
-    extern s32 D_8012760D;
-    u8 *ptr = (u8 *)(BtUIntPtr)((s8 *)&D_8012760D + 3);
+    BT_IDO_ONLY(extern s32 D_8012760D;)
+    u8 *ptr = (u8 *)BT_DATA_FIELD((BtUIntPtr)D_80127610, (BtUIntPtr)((s8 *)&D_8012760D + 3));
     if (ptr[1] == 2) {
         return ptr[0] >= 0x51U;
     }
@@ -32,8 +33,8 @@ s32 func_80800078_chcredits(void) {
 }
 
 void func_808000B4_chcredits(s32 arg0) {
-    extern s32 D_8012760D;
-    s8 *ptr = (s8 *)(BtUIntPtr)((s8 *)&D_8012760D + 3);
+    BT_IDO_ONLY(extern s32 D_8012760D;)
+    s8 *ptr = (s8 *)BT_DATA_FIELD((BtUIntPtr)D_80127610, (BtUIntPtr)((s8 *)&D_8012760D + 3));
     ptr[1] = arg0;
     ptr[0] = 0;
 }
@@ -45,7 +46,7 @@ void func_808000C8_chcredits()
 
 s32 func_808000E8_chcredits(void) { void _gcfrontend_entrypoint_9(s32 arg0); extern volatile u8 D_80127610[]; volatile u8 *ptr = D_80127610; switch (ptr[2]) { case 0: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000C8_chcredits(); break; } break; case 1: _gcfrontend_entrypoint_9(0x85); ptr = D_80127610; switch (ptr[1]) { case 0: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; case 2: switch (ptr[1]) { case 0: func_808000B4_chcredits(1); break; case 1: func_808000B4_chcredits(2); break; case 2: func_808000C8_chcredits(); break; } break; } BT_NATIVE_ONLY(return 0;) }
 
-void chcredits_entrypoint_0(s32 arg0) { void func_800DA544(s32 index); s32 func_808000E8_chcredits(); extern s32 D_8012760D; volatile s8 *ptr; ptr = (s8 *)(BtUIntPtr)((s8 *)&D_8012760D + 3); ptr[1] = 0; ptr[2] = arg0; func_808000E8_chcredits(); func_800DA544(0x650); _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(func_80800000_chcredits(-1)); _glcutDll_entrypoint_22(0x8C); _glcutDll_entrypoint_16(); }
+void chcredits_entrypoint_0(s32 arg0) { void func_800DA544(s32 index); s32 func_808000E8_chcredits(); BT_IDO_ONLY(extern s32 D_8012760D;) volatile s8 *ptr; ptr = (s8 *)BT_DATA_FIELD((BtUIntPtr)D_80127610, (BtUIntPtr)((s8 *)&D_8012760D + 3)); ptr[1] = 0; ptr[2] = arg0; func_808000E8_chcredits(); func_800DA544(0x650); _glcutDll_entrypoint_0(); _glcutDll_entrypoint_7(func_80800000_chcredits(-1)); _glcutDll_entrypoint_22(0x8C); _glcutDll_entrypoint_16(); }
 
 s32 chcredits_entrypoint_1(void) {
     extern volatile u8 D_80127610[];
@@ -56,14 +57,14 @@ s32 chcredits_entrypoint_1(void) {
     return -1;
 }
 
-void func_808002A4_chcredits(s32 *arg0) { void func_80800710_chcredits(s32 *, s32); void func_808003E8_chcredits(s32 *, s32); extern s32 D_8012760D; if ((((Objcredits_D_8012760D *)&D_8012760D)->unk3) == 0) { func_80800710_chcredits(arg0, 2); } else { func_80800710_chcredits(arg0, 3); } func_808003E8_chcredits(arg0, func_8080003C_chcredits(((Objcredits_D_8012760D *)&D_8012760D)->unk3)); }
+void func_808002A4_chcredits(s32 *arg0) { void func_80800710_chcredits(s32 *, s32); void func_808003E8_chcredits(s32 *, s32); BT_IDO_ONLY(extern s32 D_8012760D;) if ((BT_DATA_FIELD(D_80127610[0], ((Objcredits_D_8012760D *)&D_8012760D)->unk3)) == 0) { func_80800710_chcredits(arg0, 2); } else { func_80800710_chcredits(arg0, 3); } func_808003E8_chcredits(arg0, func_8080003C_chcredits(BT_DATA_FIELD(D_80127610[0], ((Objcredits_D_8012760D *)&D_8012760D)->unk3))); }
 
 void func_80800300_chcredits(s32 *arg0) {
     s32 _capod_entrypoint_14(void);
     void _glcutDll_entrypoint_24(u32, u32, u32);
     s32 func_800EA05C();
     s32 func_808000E8_chcredits();
-    extern s32 D_8012760D;
+    BT_IDO_ONLY(extern s32 D_8012760D;)
     extern volatile u8 D_80127610[];
     volatile struct { s32 map; } saved;
     s32 map;
@@ -73,7 +74,7 @@ void func_80800300_chcredits(s32 *arg0) {
         func_808000E8_chcredits();
         return;
     }
-    map = func_80800000_chcredits(((Objcredits_D_8012760D *)&D_8012760D)->unk3);
+    map = func_80800000_chcredits(BT_DATA_FIELD(D_80127610[0], ((Objcredits_D_8012760D *)&D_8012760D)->unk3));
     ptr = (u8 *)D_80127610;
     ptr[0] = ptr[0] + (saved.map = map, 1);
     current = func_800EA05C();
@@ -462,7 +463,7 @@ s32 func_80800F50_chcredits(Actor *arg0, Gfx **arg1) {
     void func_800B8CB0(s32);
     s32 func_800E7188(u8 *);
     void *func_80100094(Actor *, u32);
-    extern s32 D_8012760D;
+    BT_IDO_ONLY(extern s32 D_8012760D;)
     BtIntPtr text;
     s32 i;
     s32 titleY;
@@ -472,7 +473,7 @@ s32 func_80800F50_chcredits(Actor *arg0, Gfx **arg1) {
     func_800B8C50();
     func_800B7F14(arg1);
     func_800B8CB0(1);
-    if (((u8 *)&D_8012760D)[4] == 2) {
+    if (BT_DATA_FIELD(D_80127610[1], ((u8 *)&D_8012760D)[4]) == 2) {
         titleY = 0xA0;
         bodyY = 0xAF;
         if (func_800E7188((u8 *)(text + 0x80))) {

@@ -552,7 +552,7 @@ void func_800A3550(void *arg0, s32 arg1) {
 
 void func_800A355C(void *arg0) {
     s32 func_8008EF3C(struct player_state_s *arg0, Unk80132ED0 *arg1);
-    f32 func_8009C150();
+    BT_IDO_ONLY(f32 func_8009C150();) BT_NATIVE_ONLY(f32 func_8009C150(PlayerState *);)
     s32 func_800F3ED0(void *);
     s32 player_inWater(PlayerState *);
     int player_isStable(PlayerState *);
@@ -560,7 +560,7 @@ void func_800A355C(void *arg0) {
     s32 sp20;
     void *temp_v0;
 
-    sp24 = func_8009C150();
+    sp24 = func_8009C150(BT_NATIVE_ONLY((PlayerState *)arg0));
     sp20 = func_800F3ED0(arg0);
     if ((player_isStable(arg0) != 0) || (player_inWater(arg0) != 0) || ((sp20 == 0xA) && (func_8008EF3C(arg0, 0) != 3)) || (sp20 == 5)) {
         func_800A3550(arg0, 1);

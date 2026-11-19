@@ -1,4 +1,7 @@
 #include "core2/1ECD170.h"
+#ifdef BT_NATIVE
+#include "core2/1E75920.h"
+#endif
 #include "player_component_sizes.inc"
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F3880(s32 arg0)
 {
@@ -65,7 +68,7 @@ s32 func_800F3930(struct player_state_s *arg0, s32 arg1, s32 arg2) {
 
 struct player_state_s;
 s32 func_800F3A78(struct player_state_s *arg0, s32 arg1, s32 arg2) {
-    int func_8009C128(void *, f32[3]);
+    BT_IDO_ONLY(int func_8009C128(void *, f32[3]);)
     f32 bastick_distance(struct player_state_s *);
     s32 func_8009E674(struct player_state_s *, s32);
     s32 func_800A9C98(void);
@@ -109,15 +112,10 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_800F3B90(PlayerState *arg0, f32 *arg1
 }
 
 #ifdef BT_NATIVE
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F3BB0(BtIntPtr bt_a0, BtIntPtr bt_a1)
+void func_800F3BB0(PlayerState *player, f32 position[3]) {
+    func_8009C128(player, position);
 #else
-void func_800F3BB0()
-#endif
-{
-#ifdef BT_NATIVE
-    int func_8009C128(void *, f32[3]);
-    BT_NATIVE_ONLY(return func_8009C128((void *)bt_a0, (f32 *)bt_a1);)
-#else
+void func_800F3BB0() {
     func_8009C128();
 #endif
 }    typedef struct { u8 pad0[0x184]; s32 unk184; } Obj1ECD170_func_800F3BD0_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
@@ -341,7 +339,7 @@ s32 func_800F40EC(PlayerState *arg0) {
 }
 
 void func_800F4200(u8 *arg0, f32 *arg1) {
-    int func_8009C128(void *, f32[3]);
+    BT_IDO_ONLY(int func_8009C128(void *, f32[3]);)
     void func_8009C1CC(u8 *arg0, BtIntPtr arg1);
     void func_800EE780(f32 *, f32 *, f32 *);
     f32 sp24[3];
@@ -478,14 +476,14 @@ void func_800F4524(s32 *arg0, s32 arg1) {
 
 /* extern */
 
-void func_800F452C(BT_IDO_ONLY(BtIntPtr arg0) BT_PASS2(BtIntPtr arg0, s32 bt_a1)) {
+void func_800F452C(BT_IDO_ONLY(BtIntPtr arg0) BT_PASS2(PlayerState *arg0, f32 position[3])) {
     void func_80095C94(PlayerState *self);
-    s32 func_8009C0BC();
+    BT_IDO_ONLY(s32 func_8009C0BC();)
     void func_800A10A0(PlayerState *arg0);
     void func_800A380C(void *arg0);
     void func_800A4030(void *arg0);
     void func_800A4B08(PlayerState *arg0);
-    func_8009C0BC(BT_PASS2(arg0, bt_a1));
+    func_8009C0BC(BT_PASS2(arg0, position));
     func_80095C94(arg0);
     func_800A10A0(arg0);
     func_800A4030(arg0);

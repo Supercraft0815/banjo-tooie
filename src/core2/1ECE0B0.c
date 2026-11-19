@@ -2,6 +2,7 @@
 #include "core2/1EC3810.h"
 #ifdef BT_NATIVE
 #include "core2/1ECD170.h"
+void func_800F3BB0(PlayerState *, f32[3]);
 #endif
 
 extern struct {
@@ -623,9 +624,9 @@ void func_800F59D4(s32 arg0)
     _bapackctrl_entrypoint_1(D_80135490.players[arg0]);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr arg0,f32* a1)
+void func_800F5A00(BtIntPtr arg0,f32* a1)
 {
-    BT_NATIVE_ONLY(return) func_800F3BB0(D_80135490.players[arg0],a1);
+    func_800F3BB0(D_80135490.players[arg0],a1);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A2C(BtIntPtr arg0 BT_PASS2(, BT_PASS2(s32 bt_a1, s32 bt_a2)))
@@ -889,7 +890,7 @@ s32 func_800F6224(s32 arg0)
   s32 func_800A907C(s32, s32, s32);
   void func_800A92A8(s32, s32);
   u8 *func_800F43A8(s32);
-  void func_800F452C();
+  BT_IDO_ONLY(void func_800F452C();)
   f32 position[3];
   s32 pad;
   PlayerState *player;
@@ -918,9 +919,9 @@ s32 func_800F6224(s32 arg0)
   goto loop;
 }
 
-void func_800F452C();
+BT_IDO_ONLY(void func_800F452C();)
 
-PlayerState *func_800F6308(s32 arg0, s32 arg1, s32 arg2) {
+PlayerState *func_800F6308(s32 arg0, s32 arg1, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32 *) arg2) {
     s32 func_800A8FDC(void);
     s32 func_800A907C(s32, s32, s32);
     void func_800A92A8(s32, s32);
@@ -2527,9 +2528,9 @@ s32 func_800F9214(s32 bt_a0) {
 #else
 s32 func_800F9214(void) {
 #endif
-    int func_800F6720();
+    BT_IDO_ONLY(int func_800F6720();) BT_NATIVE_ONLY(int func_800F6720(BtIntPtr);)
 #ifdef BT_NATIVE
-    if (((int (*)())func_800F6720)() != 0) {
+    if (func_800F6720(bt_a0) != 0) {
 #else
     if (func_800F6720() != 0) {
 #endif

@@ -59,22 +59,7 @@ dlabel D_8012AE74
     /* 8012AE74 */ .space 0x0C
 
 dlabel D_8012AE80
-    /* 8012AE80 */ .space 0x04
-
-dlabel D_8012AE84
-    /* 8012AE84 */ .space 0x08
-
-dlabel D_8012AE8C
-    /* 8012AE8C */ .space 0x08
-
-dlabel D_8012AE94
-    /* 8012AE94 */ .space 0x04
-
-dlabel D_8012AE98
-    /* 8012AE98 */ .space 0xC8
-
-dlabel D_8012AF60
-    /* 8012AF60 */ .space 0x10
+    /* 8012AE80 */ .space 0xF0
 
 dlabel D_8012AF70
     /* 8012AF70 */ .space 0x80

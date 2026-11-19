@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "core2/1ECD170.h"
+#endif
 #include "common.h"
 
 typedef struct player_state_s PlayerState;
@@ -223,7 +226,7 @@ void baduo_entrypoint_13(PlayerState *arg0) {
 
 /* extern */
 
-void baduo_entrypoint_14(void *arg0, s32 arg1) {
+void baduo_entrypoint_14(void *arg0, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32 *) arg1) {
     void _bababykaz_entrypoint_10(PlayerState *self, s32 arg1);
     void _bababykaz_entrypoint_8(PlayerState *self);
     void _bsfirstp_entrypoint_28(void *arg0, void *arg1);
@@ -232,7 +235,7 @@ void baduo_entrypoint_14(void *arg0, s32 arg1) {
     void func_800A3410(PlayerState *, s32);
     void func_800A38F0(PlayerState *, s32, s32);
     void func_800A91A8(s32);
-    s32 func_800F452C(BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(s32 func_800F452C(BtIntPtr, BtIntPtr);)
     PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F6224(s32);
     void func_80800008_baduo(BtIntPtr, BtIntPtr);
@@ -272,7 +275,7 @@ void baduo_entrypoint_15(PlayerState *arg0, f32 *arg1) {
     PlayerState *func_800A4CA8(PlayerState *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800F3BB0(PlayerState *, f32[3]);
-    s32 func_800F452C(BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(s32 func_800F452C(BtIntPtr, BtIntPtr);)
     PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F6224(s32);
     void func_800F8128(s32);
@@ -360,7 +363,7 @@ void baduo_entrypoint_16(PlayerState *arg0) {
 void baduo_entrypoint_17(void *arg0, BtIntPtr arg1) {
     void bs_setState(void *self, s32 nextState);
     void func_8009C128(PlayerState *, f32[3]);
-    s32 func_800F452C(BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(s32 func_800F452C(BtIntPtr, BtIntPtr);)
     s32 func_800F45B0(BtIntPtr, s32, BtIntPtr);
     PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F6224(s32);
@@ -371,7 +374,7 @@ void baduo_entrypoint_17(void *arg0, BtIntPtr arg1) {
     func_8009C128(arg0, sp1C);
     temp_v0 = func_800F53D0(func_800F6224((((Objduo_arg0 *)arg0)->unk184)));
     sp28 = temp_v0;
-    func_800F452C((BtIntPtr) temp_v0, arg1);
+    func_800F452C(BT_IDO_ONLY((BtIntPtr))temp_v0, BT_NATIVE_ONLY((f32 *))arg1);
     bs_setState((BtIntPtr) sp28, 1);
     func_800F45B0((BtIntPtr) sp28, 2, (BtIntPtr) sp1C);
 }
@@ -382,7 +385,7 @@ void baduo_entrypoint_18(PlayerState *arg0, BtIntPtr arg1) {
     void func_8009DB04(PlayerState *, s32, f32, s32);
     void func_800A3410(PlayerState *, s32);
     void func_800A38F0(PlayerState *, s32, s32);
-    s32 func_800F452C(BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(s32 func_800F452C(BtIntPtr, BtIntPtr);)
     s32 func_800F45B0(BtIntPtr, s32, BtIntPtr);
     PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F6224(s32);
@@ -400,7 +403,7 @@ void baduo_entrypoint_18(PlayerState *arg0, BtIntPtr arg1) {
     temp_v0 = func_800F6224(*(s32 *)((s8 *)arg0 + 0x184));
     sp24 = temp_v0;
     temp_v0_2 = func_800F53D0(temp_v0);
-    func_800F452C((BtIntPtr)temp_v0_2, arg1);
+    func_800F452C(BT_IDO_ONLY((BtIntPtr))temp_v0_2, BT_NATIVE_ONLY((f32 *))arg1);
     func_800A3410(temp_v0_2, 0xD);
     func_80092778(temp_v0_2);
     bs_setState((BtIntPtr)temp_v0_2, 0xE5);
@@ -448,7 +451,7 @@ void baduo_entrypoint_20(PlayerState *arg0, BtIntPtr arg1, f32 arg2) {
     void func_80092778(PlayerState *);
     void func_800A3410(PlayerState *, s32);
     void func_800A38F0(PlayerState *, s32, s32);
-    s32 func_800F452C(BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(s32 func_800F452C(BtIntPtr, BtIntPtr);)
     s32 func_800F45B0(BtIntPtr, s32, BtIntPtr);
     PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F6224(s32);
@@ -464,7 +467,7 @@ void baduo_entrypoint_20(PlayerState *arg0, BtIntPtr arg1, f32 arg2) {
 
     sp24 = func_800F6224(*(s32 *)((s8 *)arg0 + 0x184));
     temp_s0 = func_800F53D0(sp24);
-    func_800F452C((BtIntPtr)temp_s0, arg1);
+    func_800F452C(BT_IDO_ONLY((BtIntPtr))temp_s0, BT_NATIVE_ONLY((f32 *))arg1);
     func_80800008_baduo((BtIntPtr)arg0, (BtIntPtr)temp_s0);
     func_800A3410(temp_s0, 0xE);
     func_80092778(temp_s0);
@@ -494,7 +497,7 @@ void baduo_entrypoint_21(PlayerState *arg0) {
     void func_800A38F0(PlayerState *, s32, s32);
     void func_800A91A8(s32);
     void func_800D5234(s32);
-    s32 func_800F452C(BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(s32 func_800F452C(BtIntPtr, BtIntPtr);)
     PlayerState *func_800F53D0(BtIntPtr);
     s32 func_800F6224(s32);
     void func_800F80D8(u32 arg0);
@@ -512,7 +515,7 @@ void baduo_entrypoint_21(PlayerState *arg0) {
     sp34 = func_800F6224((*(s32 *)((s8 *)(arg0) + (0x184))));
     temp_s1 = func_800F53D0(sp34);
     func_8009C128(arg0, sp24);
-    func_800F452C((BtIntPtr)temp_s1, (BtIntPtr)sp24);
+    func_800F452C(BT_IDO_ONLY((BtIntPtr))temp_s1, BT_IDO_ONLY((BtIntPtr))sp24);
     func_800A3410(arg0, 0xA);
     func_800A3410(temp_s1, 0xB);
     func_80092778(temp_s1);

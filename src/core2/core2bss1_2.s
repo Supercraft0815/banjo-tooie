@@ -20,22 +20,7 @@ dlabel D_8012B370
     /* 8012B370 */ .space 0x80
 
 dlabel D_8012B3F0
-    /* 8012B3F0 */ .space 0x01
-
-dlabel D_8012B3F1
-    /* 8012B3F1 */ .space 0x01
-
-dlabel D_8012B3F2
-    /* 8012B3F2 */ .space 0x01
-
-dlabel D_8012B3F3
-    /* 8012B3F3 */ .space 0x01
-
-dlabel D_8012B3F4
-    /* 8012B3F4 */ .space 0x01
-
-dlabel D_8012B3F5
-    /* 8012B3F5 */ .space 0x07
+    /* 8012B3F0 */ .space 0xC
 
 dlabel D_8012B3FC
     /* 8012B3FC */ .space 0x04

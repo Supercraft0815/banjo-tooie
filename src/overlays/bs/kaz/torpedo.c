@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "core2/1ECD170.h"
+#endif
 #include "bs_script.h"
 #include "common.h"
 #include "overlays/bs/kaz/torpedo.h"
@@ -279,7 +282,7 @@ void func_8080088C_bskaztorpedo(PlayerState *self, s32 arg1) {
 }
 
 void func_808008D4_bskaztorpedo(PlayerState *self) {
-    void func_800F452C();
+    BT_IDO_ONLY(void func_800F452C();)
     int event;
     f32 position[3];
     event = func_8009E6EC(self);

@@ -1,3 +1,6 @@
+#ifdef BT_NATIVE
+#include "core2/1ECD170.h"
+#endif
 #include "common.h"
 
 s32 basetup_entrypoint_0() 
@@ -227,7 +230,7 @@ s32 func_80800534_basetup(struct player_state_s *arg0) {
     s32 func_8009EA64(void);
     int func_800A3274(struct player_state_s *);
     s32 func_800DB9B0();
-    void func_800F452C();
+    BT_IDO_ONLY(void func_800F452C();)
     s32 func_800F89E4(s32, f32 *);
     f32 func_800F8A50(void);
     u8 func_800F8B7C(void);
@@ -365,7 +368,7 @@ void basetup_entrypoint_2(struct player_state_s *arg0) {
     s32 func_800EA068(s32);
     s32 func_800EA090(void);
     void func_800F44DC(void *, s32);
-    void func_800F452C(struct player_state_s *, f32 *);
+    BT_IDO_ONLY(void func_800F452C(struct player_state_s *, f32 *);)
     void func_800F497C(BtIntPtr);
     void func_800F49D4(BtIntPtr, void *, BtIntPtr);
     void func_800F4A8C(BtIntPtr, f32 *, f32);

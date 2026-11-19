@@ -1,11 +1,12 @@
 #include "common.h"
+BT_NATIVE_ONLY(struct player_state_s;)
 
 void bahitspline_entrypoint_0(void *self)
 {
     void func_80095870(void *, f32 *, f32 *);
     s32 func_8009588C(s32 *);
     void func_8009C0F8(void *, f32 *);
-    s32 func_8009C21C(u8 *);
+    BT_IDO_ONLY(s32 func_8009C21C(u8 *);) BT_NATIVE_ONLY(void func_8009C21C(struct player_state_s *);)
     void *func_800C6C94(f32 *, f32, f32 *, u32);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EE7F8(f32 *, f32 *);

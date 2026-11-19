@@ -1,3 +1,16 @@
+#ifdef BT_NATIVE
+#include "common.h"
+typedef struct {
+    f32 position[3];
+    Unk80132ED0 *marker;
+    s16 map;
+} LevelJiggyState;
+
+LevelJiggyState D_8012B180[10];
+#ifdef BT_ILP32
+_Static_assert(sizeof(LevelJiggyState) == 0x14, "level jiggy layout");
+#endif
+#endif
 #include "core2/1EA9160.h"
 #include "gameflags.h"
 #include "collectible_settings.inc"
@@ -366,15 +379,15 @@ s32 func_800D04A0(BtIntPtr arg0, s32 arg1) {
     return var_s2;
 }
 
-void func_800D053C(u32 arg0, u32 arg1) { s32 func_800CFC5C(s32); s32 func_800EA05C(); extern s16 D_8012B190[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14) = func_800EA05C(); } } }
+void func_800D053C(u32 arg0, u32 arg1) { s32 func_800CFC5C(s32); s32 func_800EA05C(); BT_IDO_ONLY(extern s16 D_8012B190[];) s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { BT_DATA_FIELD(D_8012B180[temp_v0].map, *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14)) = func_800EA05C(); } } }
 
-void func_800D0594(s32 arg0, s32 arg1, s32 arg2) { s32 func_800CFC5C(s32); extern s16 D_8012B190[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14) = *(s16 *)((u8 *)&arg2 + 2); } } }
+void func_800D0594(s32 arg0, s32 arg1, s32 arg2) { s32 func_800CFC5C(s32); BT_IDO_ONLY(extern s16 D_8012B190[];) s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { BT_DATA_FIELD(D_8012B180[temp_v0].map, *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14)) = BT_DATA_FIELD((s16)arg2, *(s16 *)((u8 *)&arg2 + 2)); } } }
 
-void func_800D05E4(s32 arg0, s32 arg1, BtIntPtr arg2) { s32 func_800CFC5C(s32); extern s32 D_8012B18C[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { *(s32 *)((u8 *)D_8012B18C + temp_v0 * 0x14) = arg2; } } }
+void func_800D05E4(s32 arg0, s32 arg1, BtIntPtr arg2) { s32 func_800CFC5C(s32); BT_IDO_ONLY(extern s32 D_8012B18C[];) s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { BT_DATA_FIELD(D_8012B180[temp_v0].marker, *(s32 *)((u8 *)D_8012B18C + temp_v0 * 0x14)) = BT_NATIVE_ONLY((Unk80132ED0 *))arg2; } } }
 
- Unk80132ED0 *func_800D0634(u32 arg0, u32 arg1) { extern s32 D_8012B18C[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return *(Unk80132ED0 **)((u8 *)D_8012B18C + temp_v0 * 0x14); } } return 0; }
+ Unk80132ED0 *func_800D0634(u32 arg0, u32 arg1) { BT_IDO_ONLY(extern s32 D_8012B18C[];) s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return BT_DATA_FIELD(D_8012B180[temp_v0].marker, *(Unk80132ED0 **)((u8 *)D_8012B18C + temp_v0 * 0x14)); } } return 0; }
 
-s16 func_800D0684(s32 arg0, s32 arg1) { s32 func_800CFC5C(s32); extern s16 D_8012B190[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14); } } return 0; }
+s16 func_800D0684(s32 arg0, s32 arg1) { s32 func_800CFC5C(s32); BT_IDO_ONLY(extern s16 D_8012B190[];) s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return BT_DATA_FIELD(D_8012B180[temp_v0].map, *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14)); } } return 0; }
 
 s32 func_800D06D4(s32 itemIndex, s32 itemType) {
     BT_IDO_ONLY(extern u8 D_8011ABC6[][2];)
@@ -394,9 +407,9 @@ s32 func_800D06D4(s32 itemIndex, s32 itemType) {
     return -1;
 }
 
-void func_800D0778(s32 arg0, s32 arg1, f32 *arg2) { s32 func_800CFC5C(s32); extern f32 D_8012B180[][5]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { func_800EE7F8(D_8012B180[temp_v0], arg2); } } }
+void func_800D0778(s32 arg0, s32 arg1, f32 *arg2) { s32 func_800CFC5C(s32); BT_IDO_ONLY(extern f32 D_8012B180[][5];) s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { func_800EE7F8(BT_DATA_FIELD(D_8012B180[temp_v0].position, D_8012B180[temp_v0]), arg2); } } }
 
-void func_800D07CC(s32 arg0, s32 arg1, f32 *arg2) { s32 func_800CFC5C(s32); extern f32 D_8012B180[][5]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { func_800EE7F8(arg2, D_8012B180[temp_v0]); } } }
+void func_800D07CC(s32 arg0, s32 arg1, f32 *arg2) { s32 func_800CFC5C(s32); BT_IDO_ONLY(extern f32 D_8012B180[][5];) s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { func_800EE7F8(arg2, BT_DATA_FIELD(D_8012B180[temp_v0].position, D_8012B180[temp_v0])); } } }
 
 s32 func_800D0820(s32 itemType) {
     s32 result = -1;
@@ -826,6 +839,4 @@ block_6:
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012B18C [ 1 ] BT_DATA(4, bss_core2bss1_1_counter_tail, 0xC);
-s16 D_8012B190 [ 96 ] BT_DATA(4, bss_core2bss1_1_counter_tail, 0x10);
 #endif

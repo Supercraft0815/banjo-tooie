@@ -701,12 +701,8 @@ void func_800CD1E0(s32 arg0, u8 *arg1, f32 arg2) {
 }
 
 #ifdef BT_NATIVE
-/* bss_to_c.py: native definitions of asm .bss labels */
-#include "bt_data.h"
-BoundContext D_8012AE80 BT_DATA(4, bss_core2bss1_1, 0x3A0);
-
-
-
-
-
+BoundContext D_8012AE80;
+#ifdef BT_ILP32
+_Static_assert(sizeof(BoundContext) == 0xE4, "bound context");
+#endif
 #endif

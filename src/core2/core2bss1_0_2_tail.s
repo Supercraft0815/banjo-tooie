@@ -4,10 +4,7 @@
 
 .section .bss
 dlabel D_8012AA20
-    /* 8012AA20 */ .space 0x03
-
-dlabel D_8012AA23
-    /* 8012AA23 */ .space 0x1D
+    /* 8012AA20 */ .space 0x20
 
 dlabel D_8012AA40
     /* 8012AA40 */ .space 0x84

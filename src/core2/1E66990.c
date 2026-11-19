@@ -346,9 +346,9 @@ s32 func_8008DE50(BT_PARAM_OR_VOID(s32 bt_a0)) {
 /* extern */
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008DE74(BtIntPtr arg0) {
-    s32 bs_getCurrentState();
+    BT_IDO_ONLY(s32 bs_getCurrentState();) BT_NATIVE_ONLY(s32 bs_getCurrentState(PlayerState *);)
     s32 func_8009CA70(PlayerState *arg0, s32 arg1, s32 arg2);
-    BT_NATIVE_ONLY(return) func_8009CA70(arg0, bs_getCurrentState(), 0x4000);
+    BT_NATIVE_ONLY(return) func_8009CA70(arg0, bs_getCurrentState(BT_NATIVE_ONLY((PlayerState *)arg0)), 0x4000);
 }
 
 int func_8008DEA4(PlayerState *player, f32 position[3], f32 range) {

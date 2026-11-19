@@ -1,8 +1,30 @@
 #include "common.h"
 #include "attract_command.inc"
+
+typedef struct {
+    s8 pending_slot;
+    s8 current_slot;
+    u8 game_mode;
+    u8 mode_option;
+    u8 option4;
+    u8 option5;
+    s16 backup_handle;
+    s8 saved_slot;
+    u8 backup_state;
+    u8 saved_game_mode;
+    u8 saved_option;
+} AttractSaveState;
+
+#ifdef BT_NATIVE
+AttractSaveState D_8012B3F0;
+_Static_assert(sizeof(AttractSaveState) == 12, "attract save state");
+#else
+extern AttractSaveState D_8012B3F0;
+#endif
+
 int func_800D3770(void) {
     extern u8 D_8012762C;
-    extern s8 D_8012B3F1;
+    BT_IDO_ONLY(extern s8 D_8012B3F1;)
     s32 level;
     int flag;
 
@@ -11,24 +33,22 @@ int func_800D3770(void) {
     if (level == 0x11) {
         flag = 0;
     }
-    return (D_8012B3F1 + 1) && flag;
-}    typedef struct { s8 unk0; s8 unk1; u8 unk2; u8 unk3; u8 pad4[0x2]; s16 unk6; s8 unk8; u8 unk9; u8 unkA; u8 unkB; } Obj1EAD060_D_8012B3F0; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F0; rename once understood */
+    return (BT_DATA_FIELD(D_8012B3F0.current_slot, D_8012B3F1) + 1) && flag;
+}
 
 void func_800D37C0(s32 arg0) {
-    extern s32 D_8012B3F0;
-    (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk0) = arg0;
-    (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk1) = arg0;
+    D_8012B3F0.pending_slot = arg0;
+    D_8012B3F0.current_slot = arg0;
 }
 
 void func_800D37D4(void) {
-    extern s32 D_8012B3F0;
-    (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk1) = -1;
-    (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk0) = (s8) (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk1);
-}    typedef struct { s8 unk0; } Obj1EAD060_D_8012B3F1; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F1; rename once understood */
+    D_8012B3F0.current_slot = -1;
+    D_8012B3F0.pending_slot = (s8) D_8012B3F0.current_slot;
+}
 
 s32 func_800D37F0(void) {
-    extern s8 D_8012B3F1;
-    return *&((Obj1EAD060_D_8012B3F1 *)&D_8012B3F1)->unk0;
+    BT_IDO_ONLY(extern s8 D_8012B3F1;)
+    return BT_DATA_FIELD(D_8012B3F0.current_slot, D_8012B3F1);
 }
 
 void func_800D37FC(void) {
@@ -37,21 +57,20 @@ void func_800D37FC(void) {
     void func_8001B754(s16);
     void *func_8001B798(s16);
     void func_800D3C70(void);
-    extern s32 D_8012B3F0;
 
-    if ((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) == 3) {
-        _glgamedata_entrypoint_2(func_8001B798((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk6)));
-        func_8001B754((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk6));
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk1) = (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk8);
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk3) = (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unkB);
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk2) = (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unkA);
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) = 0;
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk8) = -1;
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk6) = 0;
+    if (D_8012B3F0.backup_state == 3) {
+        _glgamedata_entrypoint_2(func_8001B798(D_8012B3F0.backup_handle));
+        func_8001B754(D_8012B3F0.backup_handle);
+        D_8012B3F0.current_slot = D_8012B3F0.saved_slot;
+        D_8012B3F0.mode_option = D_8012B3F0.saved_option;
+        D_8012B3F0.game_mode = D_8012B3F0.saved_game_mode;
+        D_8012B3F0.backup_state = 0;
+        D_8012B3F0.saved_slot = -1;
+        D_8012B3F0.backup_handle = 0;
     }
-    if ((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk0) != -1) {
-        _glsavegame_entrypoint_8((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk0));
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk0) = -1;
+    if (D_8012B3F0.pending_slot != -1) {
+        _glsavegame_entrypoint_8(D_8012B3F0.pending_slot);
+        D_8012B3F0.pending_slot = -1;
     }
     func_800D3C70();
 }
@@ -61,35 +80,34 @@ void func_800D389C(void) {
     s32 _glsavegame_entrypoint_7(s32 arg0);
     s16 func_8001B668(s32, s32);
     void *func_8001B798(s16);
-    extern s32 D_8012B3F0;
 
     if (func_800D3770() != 0) {
-        _glsavegame_entrypoint_7((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk1));
+        _glsavegame_entrypoint_7(D_8012B3F0.current_slot);
     }
-    if ((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) == 1) {
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk6) = func_8001B668(0, 0x1C0);
-        _glgamedata_entrypoint_1(func_8001B798((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk6)));
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk8) = (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk1);
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unkB) = (u8) (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk3);
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unkA) = (u8) (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk2);
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk1) = -1;
-        (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) = 2U;
+    if (D_8012B3F0.backup_state == 1) {
+        D_8012B3F0.backup_handle = func_8001B668(0, 0x1C0);
+        _glgamedata_entrypoint_1(func_8001B798(D_8012B3F0.backup_handle));
+        D_8012B3F0.saved_slot = D_8012B3F0.current_slot;
+        D_8012B3F0.saved_option = (u8) D_8012B3F0.mode_option;
+        D_8012B3F0.saved_game_mode = (u8) D_8012B3F0.game_mode;
+        D_8012B3F0.current_slot = -1;
+        D_8012B3F0.backup_state = 2U;
     }
 }
 
 s32 func_800D3934(void) {
-    extern s8 D_8012B3F2;
-    return (u8) D_8012B3F2 == 1;
+    BT_IDO_ONLY(extern s8 D_8012B3F2;)
+    return BT_DATA_FIELD(D_8012B3F0.game_mode, *(u8 *)&D_8012B3F2) == 1;
 }
 
 s32 func_800D3948(void) {
-    extern s8 D_8012B3F2;
-    return (u8) D_8012B3F2 == 3;
+    BT_IDO_ONLY(extern s8 D_8012B3F2;)
+    return BT_DATA_FIELD(D_8012B3F0.game_mode, *(u8 *)&D_8012B3F2) == 3;
 }
 
 s32 func_800D395C(void) {
-    extern s8 D_8012B3F2;
-    return (u8) D_8012B3F2 == 2;
+    BT_IDO_ONLY(extern s8 D_8012B3F2;)
+    return BT_DATA_FIELD(D_8012B3F0.game_mode, *(u8 *)&D_8012B3F2) == 2;
 }
 
 void func_800D3970(void) { void func_800D37D4(void); void func_800D3A14(s32); void func_800D3CF8(s32); void func_800D3D10(s32); func_800D37D4(); func_800D3A14(1); func_800D3CF8(0); func_800D3D10(1); }
@@ -98,11 +116,11 @@ void func_800D39A8(void) {
     s16 func_800B2DC0(s32, s32);
     extern s16 D_8012B3FC;
     D_8012B3FC = func_800B2DC0(sizeof(AttractCommand), 1);
-}    typedef struct { s8 unk0; } Obj1EAD060_D_8012B3F2; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F2; rename once understood */
+}
 
 void func_800D39D0(s32 arg0) {
-    extern s8 D_8012B3F2;
-    ((Obj1EAD060_D_8012B3F2 *)&D_8012B3F2)->unk0 = arg0;
+    BT_IDO_ONLY(extern s8 D_8012B3F2;)
+    BT_DATA_FIELD(D_8012B3F0.game_mode, D_8012B3F2) = arg0;
 }
 
 void func_800D39DC(s32 arg0) {
@@ -110,11 +128,11 @@ void func_800D39DC(s32 arg0) {
     if (arg0 >= 0) {
         func_800D3B6C(1, (AttractCallback) func_800D39D0, arg0, 0, 0);
     }
-}    typedef struct { s8 unk0; } Obj1EAD060_D_8012B3F3; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F3; rename once understood */
+}
 
 void func_800D3A14(s32 arg0) {
-    extern s8 D_8012B3F3;
-    ((Obj1EAD060_D_8012B3F3 *)&D_8012B3F3)->unk0 = arg0;
+    BT_IDO_ONLY(extern s8 D_8012B3F3;)
+    BT_DATA_FIELD(D_8012B3F0.mode_option, D_8012B3F3) = arg0;
 }
 
 void func_800D3A20(s32 arg0) {
@@ -154,8 +172,8 @@ void func_800D3B24(void) {
 }
 
 u32 func_800D3B60(void) {
-    extern s8 D_8012B3F3;
-    return (u8)D_8012B3F3;
+    BT_IDO_ONLY(extern s8 D_8012B3F3;)
+    return (u8)BT_DATA_FIELD(D_8012B3F0.mode_option, D_8012B3F3);
 }
 
 BtIntPtr func_800D3B6C(s32 arg0, AttractCallback arg1, s32 arg2, s32 arg3, s32 arg4) {
@@ -218,38 +236,37 @@ void func_800D3C70(void) {
         func_800B2D48(D_8012B3FC);
         D_8012B3FC = 0;
     }
-}    typedef struct { s8 unk0; } Obj1EAD060_D_8012B3F4; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F4; rename once understood */
+}
 
 void func_800D3CF8(s32 arg0) {
-    extern s8 D_8012B3F4;
-    ((Obj1EAD060_D_8012B3F4 *)&D_8012B3F4)->unk0 = arg0;
+    BT_IDO_ONLY(extern s8 D_8012B3F4;)
+    BT_DATA_FIELD(D_8012B3F0.option4, D_8012B3F4) = arg0;
 }
 
 u32 func_800D3D04(void) {
-    extern s8 D_8012B3F4;
-    return *(u8 *)&D_8012B3F4;
-}    typedef struct { s8 unk0; } Obj1EAD060_D_8012B3F5; /* offsets.py genstruct: fields from raw offsets on &D_8012B3F5; rename once understood */
+    BT_IDO_ONLY(extern s8 D_8012B3F4;)
+    return BT_DATA_FIELD(D_8012B3F0.option4, *(u8 *)&D_8012B3F4);
+}
 
 void func_800D3D10(s32 arg0) {
-    extern s8 D_8012B3F5;
-    ((Obj1EAD060_D_8012B3F5 *)&D_8012B3F5)->unk0 = arg0;
+    BT_IDO_ONLY(extern s8 D_8012B3F5;)
+    BT_DATA_FIELD(D_8012B3F0.option5, D_8012B3F5) = arg0;
 }
 
 u32 func_800D3D1C(void) {
-    extern s8 D_8012B3F5;
-    return *(u8 *)&D_8012B3F5;
+    BT_IDO_ONLY(extern s8 D_8012B3F5;)
+    return BT_DATA_FIELD(D_8012B3F0.option5, *(u8 *)&D_8012B3F5);
 }
 
 s32 func_800D3D28(void) {
-    extern s32 D_8012B3F0;
-    if ((((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) != 0) {
+    if (D_8012B3F0.backup_state != 0) {
         return 0;
     }
-    (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) = 1U;
+    D_8012B3F0.backup_state = 1U;
     return 1;
 }
 
-int func_800D3D58(void) { extern s32 D_8012B3F0; switch (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) { case 1: (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) = 0; return 1; case 2: (((Obj1EAD060_D_8012B3F0 *)&D_8012B3F0)->unk9) = 3; return 1; default: return 0; } }
+int func_800D3D58(void) { switch (D_8012B3F0.backup_state) { case 1: D_8012B3F0.backup_state = 0; return 1; case 2: D_8012B3F0.backup_state = 3; return 1; default: return 0; } }
 
 /* extern */
 
@@ -257,14 +274,3 @@ s32 func_800D3DA4(s32 arg0) {
     s32 func_800F54F0(BtIntPtr);
     return func_800F54F0(arg0);
 }
-
-#ifdef BT_NATIVE
-/* bss_to_c.py: native definitions of asm .bss labels */
-#include "bt_data.h"
-s32 D_8012B3F0 BT_DATA(4, bss_core2bss1_2, 0x160);
-s8 D_8012B3F1 BT_DATA(4, bss_core2bss1_2, 0x161);
-s8 D_8012B3F2 BT_DATA(4, bss_core2bss1_2, 0x162);
-s8 D_8012B3F3 BT_DATA(4, bss_core2bss1_2, 0x163);
-s8 D_8012B3F4 BT_DATA(4, bss_core2bss1_2, 0x164);
-s8 D_8012B3F5 BT_DATA(4, bss_core2bss1_2, 0x165);
-#endif

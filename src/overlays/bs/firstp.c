@@ -3361,7 +3361,7 @@ void func_808058F0_bsfirstp(void *arg0) {
 
 void bsfirstp_entrypoint_26(BtIntPtr arg0) {
     s32 _badeathmatch_entrypoint_5(BtIntPtr, s32, s32);
-    s32 _baduo_entrypoint_14(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32 _baduo_entrypoint_14(BtIntPtr, f32 *);) BT_NATIVE_ONLY(void _baduo_entrypoint_14(void *, f32 *);)
     s32 _gcegg_entrypoint_7(s32);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) _suegg_entrypoint_6(BtIntPtr, f32 *, s32 *);
     s32 _sueggmisc_entrypoint_2(f32 *, s32);

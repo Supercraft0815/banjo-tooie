@@ -39,9 +39,8 @@ s32 player_inWater(PlayerState *self) {
 s32 func_8009BAF4(void *self) {
     check(self == expected_player); return physics_mode;
 }
-s32 func_8009C128(PlayerState *self, f32 output[3]) {
+void func_8009C128(PlayerState *self, f32 output[3]) {
     check(self == expected_player); func_800EE7F8(output, current_position);
-    return 0;
 }
 void _bamovegoto_entrypoint_12(PlayerState *self, f32 *destination) {
     check(self == expected_player); move_count++; last_destination = destination;

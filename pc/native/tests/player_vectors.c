@@ -1,6 +1,33 @@
 #include <stdint.h>
 #include "core2/1E7BFA0.h"
 
+#include "core2/1E75920.h"
+
+void func_8009C038(PlayerState *);
+void func_8009C08C(PlayerState *);
+void func_8009C15C(PlayerState *, f32[3]);
+void func_8009C188(PlayerState *, f32[3]);
+
+static int position_history(void) {
+    PlayerState player = {0};
+    f32 storage[12], out[3];
+    f32 position[] = {8.25f, -7.5f, 0.125f};
+
+    player.unkE4 = storage;
+    func_8009C038(&player);
+    func_8009C0BC(&player, position);
+    func_8009C15C(&player, out);
+    for (int i = 0; i < 3; i++) if (out[i] != position[i]) return 5;
+    storage[0] = 91;
+    func_8009C1F8(&player, position);
+    func_8009C08C(&player);
+    func_8009C128(&player, out);
+    if (out[0] != 91 || storage[3] != 91) return 6;
+    func_8009C188(&player, out);
+    for (int i = 0; i < 3; i++) if (out[i] != position[i] || storage[i + 9] != 0) return 7;
+    return 0;
+}
+
 int main(void) {
     PlayerState player = {0};
     f32 fields[14] = {0};
@@ -24,5 +51,6 @@ int main(void) {
     for (int j = 0; j < 3; j++) fields[11 + j] = -values[j];
     read_vector[3](&player, result);
     for (int j = 0; j < 3; j++) if (result[j] != fields[11 + j]) return 4;
-    return fields[9] != 0.0f || fields[10] != 0.0f;
+    if (fields[9] != 0.0f || fields[10] != 0.0f) return 5;
+    return position_history();
 }

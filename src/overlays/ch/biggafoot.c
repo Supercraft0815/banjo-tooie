@@ -69,7 +69,7 @@ void func_80800100_chbiggafoot(Actor *arg0) {
     void func_80102424(Actor *, s32);
     void func_80102B2C(Actor *, f32);
     s32 func_80102BF8(void *, s32, s32, s32);
-    f32 func_80102D78(void *, s32 *);
+    BT_IDO_ONLY(f32 func_80102D78(void *, s32 *);) BT_NATIVE_ONLY(f32 func_80102D78(Actor *, f32 *);)
     void func_80108B04(Actor *, u32);
     void func_8010A570(Actor *);
     void func_8010A590(Actor *);
@@ -136,7 +136,7 @@ void func_80800100_chbiggafoot(Actor *arg0) {
         func_80800C04_chbiggafoot(arg0);
         break;
     case 9:
-        arg0->unk54 = func_80102D78(arg0, (s32 *)arg0->actorData);
+        arg0->unk54 = func_80102D78(arg0, BT_DATA_FIELD((f32 *)arg0->actorData, (s32 *)arg0->actorData));
         ((f32 *)arg0->actorData)[3] = func_800F3780(func_80101F24(arg0), D_80801124_chbiggafoot, 3) * 400.0f;
         func_80102B2C(arg0, func_800D8FF8() * 100.0f);
         func_8010B990(arg0, 0x1005);
@@ -320,11 +320,11 @@ s32 func_808008FC_chbiggafoot(Actor *arg0) {
 
 void func_80800980_chbiggafoot(void *arg0) {
     u32 func_800F54E4(void);
-    s32 func_800F5A00(BtIntPtr, s32 *);
+    BT_IDO_ONLY(s32 func_800F5A00(BtIntPtr, s32 *);) BT_NATIVE_ONLY(void func_800F5A00(BtIntPtr, f32 *);)
     s32 func_800F6438(BtIntPtr);
     s32 func_80102BF8(void *, s32, s32, s32);
-    f32 func_80102D78(void *, s32 *);
-    s32 sp1C[3];
+    BT_IDO_ONLY(f32 func_80102D78(void *, s32 *);) BT_NATIVE_ONLY(f32 func_80102D78(Actor *, f32 *);)
+    BT_IDO_ONLY(s32 sp1C[3];) BT_NATIVE_ONLY(f32 sp1C[3];)
 
     if (func_800F6438(func_800F54E4()) != 0) {
         func_800F5A00(func_800F54E4(), sp1C);

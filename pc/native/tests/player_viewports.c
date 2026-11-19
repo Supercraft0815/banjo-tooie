@@ -3,6 +3,8 @@
 #include <stddef.h>
 #include <stdio.h>
 
+#include "common.h"
+#include "core2/viewport_layout.inc"
 #include "core2/viewport_slots.inc"
 #include "core2/player_viewports.inc"
 
@@ -12,7 +14,6 @@ BtIntPtr func_8010FF80(s32 *);
 BtIntPtr func_80110014(s32 *);
 BtIntPtr func_80110060(s32 *);
 
-s32 D_80127674;
 static unsigned allocations;
 static void *rendererCamera[4];
 
@@ -76,7 +77,7 @@ int main(void) {
     uintptr_t old[8][4];
     NativeCamera shared;
     viewportSlots[4].camera = &shared;
-    D_80127674 = 2;
+    VIEWPORT_CURRENT = 2;
     func_800A8D70(7, 0);
     for (s32 i = 0; i < 8; i++) {
         CHECK(func_800A907C(i, i % 4, -1) == i % 4);

@@ -194,7 +194,7 @@ void func_800C7618(s32 arg0, s32 arg1) {
     func_800FC788(arg0, 0);
 }
 
-void func_800C76E8(void) { extern s8 D_8012760D; s8 var_v1; s32 temp_v0; var_v1 = D_8012760C.unk1; if (var_v1 == 0) { switch (D_8012760C.unk0) { case 0: case 1: break; default: temp_v0 = func_800C75A0((s32) D_8012760C.unk0); func_800C7618(temp_v0, 1); func_800FECB8(0xAU); var_v1 = D_8012760D; break; } } D_8012760C.unk1 = var_v1 + 1; }
+void func_800C76E8(void) { BT_IDO_ONLY(extern s8 D_8012760D;) s8 var_v1; s32 temp_v0; var_v1 = D_8012760C.unk1; if (var_v1 == 0) { switch (D_8012760C.unk0) { case 0: case 1: break; default: temp_v0 = func_800C75A0((s32) D_8012760C.unk0); func_800C7618(temp_v0, 1); func_800FECB8(0xAU); var_v1 = BT_DATA_FIELD(D_8012760C.unk1, D_8012760D); break; } } D_8012760C.unk1 = var_v1 + 1; }
 
 void func_800C775C(void) {
     if (D_8012760C.unk1 == 1) {
@@ -215,7 +215,7 @@ void func_800C775C(void) {
 }
 
 void func_800C77DC(s32 arg0) {
-    extern s8 D_8012760D;
+    BT_IDO_ONLY(extern s8 D_8012760D;)
 
     switch (D_8012760C.unk0) {
     case 2: case 3: case 4:
@@ -273,6 +273,5 @@ void func_800C7900(void)
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
 D_8012760C_unk D_8012760C BT_DATA(4, bss_core2bss1_0_1, 0x5AC);
-s8 D_8012760D BT_DATA(4, bss_core2bss1_0_1, 0x5AD);
 s8 D_8012AAF0 BT_DATA(4, bss_core2bss1_1, 0x10);
 #endif

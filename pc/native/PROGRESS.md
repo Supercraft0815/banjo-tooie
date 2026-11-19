@@ -3162,3 +3162,25 @@ im Build ausgewiesen. 64 Sanitizertests bestehen. Original-IDO bestätigt alle
 erreichen 1.336 von 6.216 überwachten Stellen ein fremdes Symbol. Die Treffer
 verteilen sich auf 301 Funktionen und 64 Gruppen. Belege unter
 `build/acceptance/n1-2026-11-18/current-fog-state*`.
+
+### 2026-11-19 – Spielerposition, Spielstand und Viewports auf LP64
+
+Der Spielerzustand verweist auf vier Positionsvektoren. Die Leser und
+Schreiber erhalten den Spieler und den Vektor aus dem ursprünglichen Aufruf.
+Die Höhenabfrage gibt den Spieler an die Positionsabfrage weiter. Jeder der
+zehn Jiggy-Einträge speichert einen eigenen Markerzeiger, eine Karten-ID und
+drei Koordinaten. Die Credits lesen ihre eigene Tabelle. Die vier Attract-Modi
+verwenden denselben Spielzustand. Der Bildschirmwechsel und die fünf
+Viewport-Slots behalten ihre Renderer- und Kamerazeiger. Der Framebuffer hat
+drei Zeigerplätze.
+
+Die LP64-Tests prüfen die gespeicherten Adressen oberhalb von 4 GiB, beide
+Credits-Folgen und die horizontale und vertikale Bildschirmteilung samt
+Trennlinie. Der Gesamtstand besteht 64 Sanitizertests, elf Gastsuiten und alle
+74 Replays mit 447.849 Retraces. Der Original-IDO-Build bestätigt dieselben
+16.401 Funktionen und beide ROM-Abbilder. Die 9.703 Laufzeit-Zeigerwörter
+liegen an ihren Originaladressen. Der LP64-Scan meldet 685 Warnstellen in
+230 Dateien und keine fehlgeschlagene Übersetzung. Mit denselben abgeleiteten
+Typinformationen verbleiben 204 verschiebbare Offsets in 36 Dateien. Belege
+unter `build/acceptance/n1-2026-11-18/current-viewport-owners*`,
+`current-save-records*` und `current-player-vectors-corrected-full.log`.

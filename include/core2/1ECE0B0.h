@@ -37,7 +37,7 @@ PlayerState* func_800F53E4(s32 arg0);
 u32 func_800F54E4(void);
 s32 func_800F5578(BtIntPtr);
 Unk80132ED0* func_800F56D8(BtIntPtr arg0);
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32[3]);
+void func_800F5A00(BtIntPtr, f32[3]);
 void func_800F5D44(BtIntPtr, f32*);
 f32 func_800F5F24(BtUIntPtr);
 s32 func_800F5FE0(BtIntPtr);

@@ -362,3 +362,15 @@ records. Five geometry commands discard volatile argument copies unused by
 the command. See n1-2026-11-18/current-renderer-callbacks-ir.log,
 current-respawn-stack-ir.log and current-fog-state-ir.log. Both the normal
 and strict data builds match all 447,849 retraces.
+
+2026-11-19  Player position, save records and viewports
+The position copy functions and their two forwarding wrappers return void.
+The four vectors have three floats each. Their update copies the pending
+position and clears its source. The crate and actor flag tests read the
+same bits in the original actor word. The ten jiggy records, attract-mode
+state, credits tables and color transition now use the fields belonging to
+their C objects. The game transition and the five viewport slots preserve
+the original phase, slot selection and screen dimensions. The frame buffer
+test round-trips all three host pointers. All 9,703 fixup words remain at
+the original addresses. See n1-2026-11-18/current-player-vectors-ir.log,
+current-save-records-ir.log and current-viewport-owners-ir.log.

@@ -26,10 +26,10 @@ OSThread *chcrate_entrypoint_2(void)
 void func_80800024_chcrate(BtIntPtr arg0) {
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *actor);
-    s32 func_80800380_chcrate();
+    BT_IDO_ONLY(s32 func_80800380_chcrate();) BT_NATIVE_ONLY(s32 func_80800380_chcrate(u8 *);)
     s32 temp_v0;
 
-    temp_v0 = func_80800380_chcrate();
+    temp_v0 = func_80800380_chcrate(BT_NATIVE_ONLY((u8 *)arg0));
     if ((temp_v0 != 0) && (func_800DA298(temp_v0) != 0)) {
         func_800FFAB0(arg0);
     }
@@ -159,8 +159,8 @@ s32 func_80800380_chcrate(u8 *arg0) {
     s32 ret = 0;
     s32 temp;
 
-    if (((struct CrateData *)arg0)->index < 0x32) {
-        temp = 0x31 - ((struct CrateData *)arg0)->index;
+    if (BT_DATA_FIELD(((Actor *)arg0)->unk74_7, ((struct CrateData *)arg0)->index) < 0x32) {
+        temp = 0x31 - BT_DATA_FIELD(((Actor *)arg0)->unk74_7, ((struct CrateData *)arg0)->index);
         ret = temp + 0xA40;
         return ret;
     }
