@@ -435,3 +435,10 @@ all 90 nodes, button counters and input snapshots retain their original
 layout. All 9,703 fixups, both complete ROM images and all 74 replays
 match. See n1-2026-11-18/current-controller-retail-ir.log and
 current-controller-retail-full.log.
+
+2026-11-19  Section storage, dialog cache and intro clock
+Twenty-nine guest functions change their address expressions or slot bounds.
+The 266 map slots, dialog cache, intro clock and overlay counters have their
+own C storage. All 9,703 runtime fixups retain the original addresses, both
+ROMs match byte for byte, and all 74 replays match. See
+n1-2026-11-18/current-section-storage-ir.log and current-section-storage-full.log.

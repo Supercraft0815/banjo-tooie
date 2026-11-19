@@ -1,4 +1,5 @@
-#include "common.h"
+#include "gl/introsync_state.h"
+BT_NATIVE_ONLY(IntroSyncState D_801275D0;)
 struct IntroSyncEntry {
     s32 id;
     f32 value;
@@ -50,10 +51,10 @@ u32 func_808000BC_glintrosyncDll(s32 arg0) {
     u32 temp_v0;
 
     temp_v0 = osGetCount();
-    if (temp_v0 >= (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C)) {
-        var_a0 = temp_v0 - (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C);
+    if (temp_v0 >= (BT_DATA_FIELD(D_801275D0.count, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C))) {
+        var_a0 = temp_v0 - (BT_DATA_FIELD(D_801275D0.count, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C));
     } else {
-        var_a0 = (0xFFFFFFFF - (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C)) + temp_v0 + 1;
+        var_a0 = (0xFFFFFFFF - (BT_DATA_FIELD(D_801275D0.count, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C))) + temp_v0 + 1;
     }
     return (u32)((f32)var_a0 * 0.021333333f);
 }
@@ -63,17 +64,19 @@ u32 func_808000BC_glintrosyncDll(s32 arg0) {
 void glintrosyncDll_entrypoint_0(s32 arg0) {
     extern f32 D_80127194;
     s32 func_80800000_glintrosyncDll(s32);
-    (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C) = osGetCount();
-    (((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk440) = func_80800000_glintrosyncDll(arg0);
+    (BT_DATA_FIELD(D_801275D0.count, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk43C)) = osGetCount();
+    (BT_DATA_FIELD(D_801275D0.index, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk440)) = func_80800000_glintrosyncDll(arg0);
 }
 
 void glintrosyncDll_entrypoint_1(void) {
+#ifndef BT_NATIVE
     struct IntroSyncState {
         u32 count;
         s32 index;
         f32 time;
     };
     extern struct IntroSyncState D_801275D0;
+#endif
     s32 index;
     f32 delay;
     u32 duration;
@@ -95,16 +98,16 @@ void glintrosyncDll_entrypoint_1(void) {
 
 void glintrosyncDll_entrypoint_2(f32 arg0) {
     extern f32 D_80127194;
-    ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk444 = arg0;
+    BT_DATA_FIELD(D_801275D0.time, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk444) = arg0;
 }
 
 f32 glintrosyncDll_entrypoint_3(void) {
     extern f32 D_80127194;
-    return *&((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk444;
+    return *&BT_DATA_FIELD(D_801275D0.time, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk444);
 }
 
-void glintrosyncDll_entrypoint_4(f32 arg0) { extern f32 D_80127194; f32 temp_f0; f32 *temp_v0; temp_v0 = (f32 *)(BtUIntPtr)((u8 *)&D_80127194 + 0x43C); temp_f0 = temp_v0[2];
-    if ((temp_f0 < 364.5f) && ((temp_f0 + arg0) >= 364.5f)) { temp_v0[3] = 0.86f; } temp_v0[2] = temp_f0 + arg0; }
+void glintrosyncDll_entrypoint_4(f32 arg0) { extern f32 D_80127194; f32 temp_f0; f32 *temp_v0; BT_IDO_ONLY(temp_v0 = (f32 *)(BtUIntPtr)((u8 *)&D_80127194 + 0x43C);) temp_f0 = BT_DATA_FIELD(D_801275D0.time, temp_v0[2]);
+    if ((temp_f0 < 364.5f) && ((temp_f0 + arg0) >= 364.5f)) { BT_DATA_FIELD(D_801275D0.rate, temp_v0[3]) = 0.86f; } BT_DATA_FIELD(D_801275D0.time, temp_v0[2]) = temp_f0 + arg0; }
 
 f32 glintrosyncDll_entrypoint_5(void) {
     s32 func_800C954C(void);
@@ -112,9 +115,9 @@ f32 glintrosyncDll_entrypoint_5(void) {
     f32 func_800D9004(void);
     extern f32 D_80127194;
     if (func_800C954C() != 0) {
-        return *&((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk448 * func_800D8FF8();
+        return *&BT_DATA_FIELD(D_801275D0.rate, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk448) * func_800D8FF8();
     }
-    return *&((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk448 * func_800D9004();
+    return *&BT_DATA_FIELD(D_801275D0.rate, ((ObjintrosyncDll_D_80127194 *)&D_80127194)->unk448) * func_800D9004();
 }
 
 void glintrosyncDll_entrypoint_6(s32 arg0)
@@ -126,18 +129,18 @@ void glintrosyncDll_entrypoint_6(s32 arg0)
   u8 *state;
   if (_gcsectionDll_entrypoint_4(arg0) == 0xD)
   {
-    state = (u8 *) ((BtUIntPtr) (((u8 *) (&D_80127194)) + 0x43C));
-    state[0x10] = 1;
+    BT_IDO_ONLY(state = (u8 *) ((BtUIntPtr) (((u8 *) (&D_80127194)) + 0x43C));)
+    BT_DATA_FIELD(D_801275D0.active, state[0x10]) = 1;
   }
   else
   {
-    state = (u8 *) ((BtUIntPtr) (((u8 *) (&D_80127194)) + 0x43C));
-    state[0x10] = 0;
+    BT_IDO_ONLY(state = (u8 *) ((BtUIntPtr) (((u8 *) (&D_80127194)) + 0x43C));)
+    BT_DATA_FIELD(D_801275D0.active, state[0x10]) = 0;
   }
- *((f32 *) (state + 0xC)) = 1.0f; if (state[0x10] != 0) { entry = D_808004F8_glintrosyncDll; do {
+ BT_DATA_FIELD(D_801275D0.rate, *((f32 *) (state + 0xC))) = 1.0f; if (BT_DATA_FIELD(D_801275D0.active, state[0x10]) != 0) { entry = D_808004F8_glintrosyncDll; do {
       if (arg0 == entry->id)
       {
-        *((f32 *) (state + 0xC)) = entry->value;
+        BT_DATA_FIELD(D_801275D0.rate, *((f32 *) (state + 0xC))) = entry->value;
         break;
       }
       entry++;

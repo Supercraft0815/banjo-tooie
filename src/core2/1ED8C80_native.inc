@@ -18,7 +18,7 @@ void _subaddiefade_entrypoint_7(Actor *),func_80106F70(Actor *),func_80104780(Ac
 void _chbounce_entrypoint_8(Actor *),_subaddiezone_entrypoint_0(void *);
 f32 func_800136E4(f32),func_800EEB40(f32 *,f32 *);
 s32 func_800EFFB4(f32 *,f32,f32 *),_suautobaddies_entrypoint_1(void);
-extern f32 D_80127194;
+extern s32 D_80127194;
 s32 D_80135A50; extern s32 D_80124390;
 
 void func_800FF390(void) {

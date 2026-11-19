@@ -115,7 +115,7 @@ s32 func_800FF564(void) {
     void func_80106A28(void);
     void func_80106E18(void);
     void func_8010DF98(void);
-    extern f32 D_80127194;
+    BT_NATIVE_ONLY(extern s32 D_80127194;) BT_IDO_ONLY(extern f32 D_80127194;)
     extern s32 D_80135A50;
     s32 sp2C;
     Actor *actor;
@@ -131,7 +131,7 @@ s32 func_800FF564(void) {
         actor->unk0 = NULL;
     }
     D_80135A50 = 0;
-    *(s32 *)&D_80127194 = 0;
+    BT_DATA_FIELD(D_80127194, *(s32 *)&D_80127194) = 0;
     func_801041A0();
     func_80104378();
     func_80105438();
@@ -707,6 +707,6 @@ s32 func_8010038C(Actor *arg0, f32 *arg1) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-f32 D_80127194 BT_DATA(4, bss_core2bss1_0_1, 0x134);
+s32 D_80127194 BT_DATA(4, bss_core2bss1_0_1, 0x134);
 s32 D_80135A50 BT_DATA(4, bss_core2bss2_2_music_tail, 0x30);
 #endif

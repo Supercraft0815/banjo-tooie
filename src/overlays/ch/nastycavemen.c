@@ -1,4 +1,5 @@
 #include "common.h"
+BT_NATIVE_ONLY(s16 D_801275CA;)
 
 void func_80102EC0(s32);
 void func_8080067C_chnastycavemen(Actor *arg0);
@@ -145,7 +146,7 @@ int func_8080010C_chnastycavemen(BtIntPtr arg0) {
             func_800904C8(0x97);
             break;
         default:
-            func_808000AC_chnastycavemen(((Objnastycavemen_D_80127194 *)&D_80127194)->unk436, &sp24, &sp20);
+            func_808000AC_chnastycavemen(BT_DATA_FIELD(D_801275CA, ((Objnastycavemen_D_80127194 *)&D_80127194)->unk436), &sp24, &sp20);
             _gcgoto_entrypoint_1(sp24, sp20);
             break;
     }
@@ -372,8 +373,8 @@ void func_80800968_chnastycavemen(void) {
     s32 func_800EA090(void);
     s32 sp1C;
     sp1C = func_800EA090();
-    if (((((Objnastycavemen_D_80127194 *)&D_80127194)->unk436) == 0) || ((sp1C != 0) && (func_80090178(0x10000) == 0))) {
-        (((Objnastycavemen_D_80127194 *)&D_80127194)->unk436) = (s16) sp1C;
+    if (((BT_DATA_FIELD(D_801275CA, ((Objnastycavemen_D_80127194 *)&D_80127194)->unk436)) == 0) || ((sp1C != 0) && (func_80090178(0x10000) == 0))) {
+        (BT_DATA_FIELD(D_801275CA, ((Objnastycavemen_D_80127194 *)&D_80127194)->unk436)) = (s16) sp1C;
     }
 }
 

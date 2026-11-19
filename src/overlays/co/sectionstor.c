@@ -1,20 +1,31 @@
 #include "common.h"
 
 struct Slot { s32 *ptr; };
-extern struct Slot D_80127198[];
+enum { SECTION_STORAGE_SLOTS = 266 };
+extern struct Slot D_80127198[SECTION_STORAGE_SLOTS];
 
 void cosectionstor_entrypoint_0(void) {
     extern f32 D_80127194;
     s32 i;
 
     for (i = 1; i < 267; i++) {
-        ((s32 *)&D_80127194)[i] = 0;
+        BT_DATA_FIELD(D_80127198[i - 1].ptr, ((s32 *)&D_80127194)[i]) = 0;
     }
 }
 
 void cosectionstor_entrypoint_1(void) {
     void heap_free(void *);
     extern f32 D_80127194;
+#ifdef BT_NATIVE
+    struct Slot *slot = D_80127198;
+    do {
+        if (slot->ptr) {
+            heap_free(slot->ptr);
+            slot->ptr = NULL;
+        }
+        slot++;
+    } while (slot != D_80127198 + SECTION_STORAGE_SLOTS);
+#else
     void **var_s0;
     void **end;
     void *temp_a0;
@@ -28,11 +39,19 @@ void cosectionstor_entrypoint_1(void) {
         }
         var_s0++;
     } while (var_s0 != end);
+#endif
 }
 
 void cosectionstor_entrypoint_2(void)
 {
   BtIntPtr defrag(BtIntPtr);
+#ifdef BT_NATIVE
+    struct Slot *slot = D_80127198;
+    do {
+        if (slot->ptr) slot->ptr = (s32 *)defrag((BtIntPtr)slot->ptr);
+        slot++;
+    } while (slot != D_80127198 + SECTION_STORAGE_SLOTS);
+#else
   s32 *new_var;
   s32 *new_var2;
   extern f32 D_80127194;
@@ -40,6 +59,7 @@ void cosectionstor_entrypoint_2(void)
   s32 *var_s1;
   s32 temp_a0;
  do { var_s0 = (s32 *) ((&D_80127194) + 1); new_var = (new_var2 = (s32 *) ((&D_80127194) + 267)); var_s1 = new_var2; do { temp_a0 = *var_s0; if (temp_a0) { *var_s0 = defrag(temp_a0); } var_s0++; } while (var_s0 != var_s1); } while (0);
+#endif
 }
 
 void cosectionstor_entrypoint_3(s32 arg0) {
@@ -56,7 +76,7 @@ void cosectionstor_entrypoint_3(s32 arg0) {
     s32 sp28;
     struct Slot *temp_s0;
 
-    if (arg0 >= 0xA0) {
+    if (arg0 >= 0xA0 BT_NATIVE_ONLY(&& arg0 < 0xA0 + SECTION_STORAGE_SLOTS)) {
         arg0 -= 0xA0;
         func_800FF44C();
         temp_s0 = &D_80127198[(u32)arg0];
@@ -88,7 +108,7 @@ void cosectionstor_entrypoint_4(s32 arg0) {
     s32 bits;
     s32 sp24;
 
-    if (arg0 >= 0xA0) {
+    if (arg0 >= 0xA0 BT_NATIVE_ONLY(&& arg0 < 0xA0 + SECTION_STORAGE_SLOTS)) {
         arg0 -= 0xA0;
         if (*(s32 *volatile *)&D_80127198[(u32)arg0].ptr != NULL) {
             temp_v0 = D_80127198[(u32)arg0].ptr;
@@ -106,5 +126,5 @@ void cosectionstor_entrypoint_4(s32 arg0) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-struct Slot D_80127198 [ 270 ] BT_DATA(4, bss_core2bss1_0_1, 0x138);
+struct Slot D_80127198[SECTION_STORAGE_SLOTS] BT_DATA(4, bss_core2bss1_0_1, 0x138);
 #endif

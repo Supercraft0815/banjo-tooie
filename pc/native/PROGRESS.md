@@ -3327,3 +3327,17 @@ Alle 9.703 Fixups behalten ihre Originaladresse. Die erste Gastlinkung
 deckte gemischte ROM- und RAM-Adresskommentare in der Assemblerdatei auf.
 Die korrigierte Fassung und ihre Belege liegen unter
 `build/acceptance/n1-2026-11-18/current-controller-retail*`.
+
+### 2026-11-19 – Kartenspeicher, Dialogcache und Intro-Uhr (N1/N3)
+
+Die 266 Kartenplätze für 0xA0 bis 0x1A9 speichern Zeiger in Hostbreite.
+Die LP64-Probe füllt alle Plätze, verschiebt die Daten und prüft Rücklesen,
+Freigabe und die Grenzen der Kartenliste. Sie wechselt zwischen zwei
+Dialogsprachen und prüft die Intro-Uhr über einen Zeitüberlauf hinweg.
+Sprungziel, Höhlenmenschen- und Untertassenzähler verwenden eigene Felder.
+
+Alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 66 Sanitizertests
+bestehen. Alle 16.401 Originalfunktionen, beide vollständigen ROMs und
+die Zieladressen aller 9.703 Laufzeit-Fixups stimmen mit der Referenz
+überein. Die 29 Änderungen im Gast-IR und die zugehörigen Vergleiche
+stehen unter `build/acceptance/n1-2026-11-18/current-section-storage*`.

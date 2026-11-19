@@ -1,5 +1,10 @@
 #include "gc/goto.h"
 
+#ifdef BT_NATIVE
+struct GotoState { u8 disabled; u8 pad1[3]; s32 unk4; };
+struct GotoState D_801275C0;
+#define GOTO_DISABLED D_801275C0.disabled
+#else
 typedef struct
 {
     u8 unk0[0x42C];
@@ -8,6 +13,8 @@ typedef struct
 
 /* extern */
 extern UNKD_80127194 D_80127194;
+#define GOTO_DISABLED D_80127194.unk42C
+#endif
 
 s32 func_80800000_gcgoto(s8 *arg0, s16 arg1) {
     s32 i = 0;
@@ -46,7 +53,7 @@ void gcgoto_entrypoint_0(s32 *arg0, s32 *arg1) {
 
 void func_8080011C_gcgoto(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
 {
-    if (D_80127194.unk42C == 0)
+    if (GOTO_DISABLED == 0)
     {
         if ((arg0 == 0xCE) && (arg1 == 4))
         {
@@ -84,7 +91,7 @@ void func_808001E0_gcgoto(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     Prop *prop;
     f32 distance;
 
-    if (D_80127194.unk42C == 0) {
+    if (GOTO_DISABLED == 0) {
         if (arg0 != NULL) {
             prop = _gccubesearch_entrypoint_5(D_80800740_gcgoto, arg0);
         } else {
@@ -129,7 +136,7 @@ void func_808003D0_gcgoto(s16 *arg0, s32 arg1) {
     f32 vec[3];
     f32 unused[3];
 
-    if (D_80127194.unk42C == 0) {
+    if (GOTO_DISABLED == 0) {
         if (arg0 != 0) {
             func_800EE88C(vec, arg0);
             func_808001E0_gcgoto(vec, arg1 >> 8, arg1 & 0xFF, 0);
@@ -232,18 +239,23 @@ void gcgoto_entrypoint_12(void) {
 }
 
 void gcgoto_entrypoint_13(void) {
-    BtUIntPtr address = (BtUIntPtr)&D_80127194.unk42C;
+#ifdef BT_NATIVE
+    D_801275C0.disabled = 0;
+    D_801275C0.unk4 = 0;
+#else
+    BtUIntPtr address = (BtUIntPtr)&GOTO_DISABLED;
     u8 *state = (u8 *)address;
     state[0] = 0;
     *(s32 *)(state + 4) = 0;
+#endif
 }
 
 void gcgoto_entrypoint_14(s32 arg0) {
-    *(s8 *)((u8 *)&D_80127194 + 1068) = arg0;
+    BT_DATA_FIELD(GOTO_DISABLED, *(s8 *)((u8 *)&D_80127194 + 1068)) = arg0;
 }
 
 u32 gcgoto_entrypoint_15(void) {
-    return D_80127194.unk42C;
+    return GOTO_DISABLED;
 }
 /* data_to_c.py: from asm/data/overlays/gc/goto.data.s */
 s8 D_80800710_gcgoto[16] BT_DATA(4, overlays_gc_goto, 0x0) = { 3, 15, 1, 2, 14, 13, 30, 4, 5, 0, 6, 9, -1, 0, 0, 0 };

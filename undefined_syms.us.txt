@@ -217,6 +217,7 @@ D_8013255C = D_8012D690 + 0x4ECC;
 
 /* Typed view and aliases within the music state storage. */
 D_801359C0_storage = D_801359C0;
+D_801275E0 = D_801275D0 + 0x10;
 D_800799F8 = D_800799E0 + 0x18;
 D_80079A04 = D_800799E0 + 0x24;
 D_80079A14 = D_800799E0 + 0x34;

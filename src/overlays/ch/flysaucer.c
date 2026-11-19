@@ -1,5 +1,8 @@
 #include "common.h"
 #ifdef BT_NATIVE
+s16 D_801275C8;
+#endif
+#ifdef BT_NATIVE
 #include "core2/particle_script.h"
 #endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
@@ -366,7 +369,7 @@ void func_808004F0_chflysaucer(void) {
 #endif
     void func_808017D0_chflysaucer();
     extern s32 D_80127194;
-    (((Objflysaucer_D_80127194 *)&D_80127194)->unk434) = 0;
+    (BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434)) = 0;
     func_808017D0_chflysaucer();
 }
 
@@ -709,37 +712,37 @@ u32 func_80800E48_chflysaucer(BtIntPtr arg0) {
     s32 func_800D395C(void);
     extern s32 D_80127194;
     if (func_800D395C() != 0) {
-        if (func_800D211C(0x8D) < ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) {
+        if (func_800D211C(0x8D) < BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434)) {
             return 4;
         }
         return 5;
     }
     if (func_800D0A9C(0x18, 1) == 0 && func_800D0A9C(9, 4) == 0) {
-        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x1F4 &&
-            ((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x190) {
+        if (BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) >= 0x1F4 &&
+            BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) >= 0x190) {
             return 3;
         }
-        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x1F4) {
+        if (BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) >= 0x1F4) {
             return 1;
         }
-        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x190) {
+        if (BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) >= 0x190) {
             return 2;
         }
         return 0;
     }
     if (func_800D0A9C(0x18, 1) == 0) {
-        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x1F4) {
+        if (BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) >= 0x1F4) {
             return 1;
         }
         return 0;
     }
     if (func_800D0A9C(9, 4) == 0) {
-        if (((Objflysaucer_D_80127194 *)&D_80127194)->unk434 >= 0x190) {
+        if (BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) >= 0x190) {
             return 2;
         }
         return 0;
     }
-    if (func_800D211C(0x8D) < ((Objflysaucer_D_80127194 *)&D_80127194)->unk434) {
+    if (func_800D211C(0x8D) < BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434)) {
         return 4;
     } else {
         return 5;
@@ -853,18 +856,18 @@ void func_80801130_chflysaucer(BtIntPtr arg0) {
         return;
     case 1:
         func_808012A4_chflysaucer((Actor *)arg0, 7);
-        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
+        func_800D2054(0, 0x8D, BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434));
         return;
     case 2:
         func_808012A4_chflysaucer((Actor *)arg0, 8);
-        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
+        func_800D2054(0, 0x8D, BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434));
         return;
     case 3:
         func_808012A4_chflysaucer((Actor *)arg0, 9);
-        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
+        func_800D2054(0, 0x8D, BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434));
         return;
     case 4:
-        func_800D2054(0, 0x8D, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434);
+        func_800D2054(0, 0x8D, BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434));
         func_8080105C_chflysaucer((Actor *)arg0, 0x10E4, 1);
         return;
     case 5:
@@ -1715,7 +1718,7 @@ void func_808024E0_chflysaucer(Actor *arg0) {
                 func_800D2770(0xC0, 0);
                 data->started = 1;
             } else {
-                func_800D24E8(0xC0, ((struct FlysaucerCounter *)&D_80127194)->count, 0);
+                func_800D24E8(0xC0, BT_DATA_FIELD(D_801275C8, ((struct FlysaucerCounter *)&D_80127194)->count), 0);
             }
             func_80802044_chflysaucer(arg0);
             break;
@@ -2254,8 +2257,8 @@ s32 func_80803D30_chflysaucer(Actor *arg0, s32 arg1, s32 arg2) {
             if (_subaddiefade_entrypoint_0(arg0) >= 0x61) {
                 func_80803CC4_chflysaucer((BtIntPtr) arg0, ((s16 *)D_80804704_chflysaucer)[arg0->unk79_4]);
                 _chscorepoints_entrypoint_2(arg0->unk79_4 + 1, 0, arg0->position, 1);
-                temp_v0 = (s16 *)&D_80127194;
-                temp_v0 += 0x21A;
+                temp_v0 = BT_DATA_FIELD(&D_801275C8, (s16 *)&D_80127194);
+                BT_IDO_ONLY(temp_v0 += 0x21A;)
                 *temp_v0 = *temp_v0 + arg0->unk79_4 + 1;
                 func_80803BF0_chflysaucer(arg0, 2);
                 func_8010A570(arg0);
