@@ -3461,3 +3461,13 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Gast- und LP64-Proben prüfen alle 200 Markerplätze, Wiederverwendung und Generation, Positionsfilter und die zugehörigen Weltdaten. Sie prüfen auch den Attract-Zustand und die Demo-Auswahl.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 14 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-marker-buckets*`.
+
+### 2026-11-19 – Bildwechsel bei 1080p und 60 Hz (A2)
+
+Das reguläre Spielprogramm aus dem geprüften Marker-Build verlor bei der 75-s-Eingabefolge acht von 4.499 Retraces. Alle acht lagen nach der ersten Sekunde. Während der Messung liefen weitere Builds. Auf demselben externen Display maß der Diagnosebuild mit Zeitstempeln für den Bildwechsel 48 ausgelassene Retraces, während ein zweiter Prozess alle zwei Sekunden den Displayzustand abfragte. Mit passiver Beobachtung und ohne laufende Displayabfragen waren es in einem Lauf null. Der reguläre Build überschreitet die A2-Grenze. Auf dem internen 120-Hz-Display gilt weiterhin die Messung vom 18. November.
+
+Programm-Hashes, Spielkonfiguration und Zähler stehen unter `build/acceptance/a2-2026-11-17/diag-2026-11-19/` in `active-swap-clock-20261119-221401`, `passive-swap-clock-20261119-221954` und `accepted-game-20261119-222236`.
+
+### 2026-11-19 – Kartenausgang ohne FixCalls (N2)
+
+Mit der vom Aufrufer übergebenen Ausgangsnummer besteht der kumulative Diagnosebuild ohne FixCalls sechs vollständige Replays. Intro, Spielstand, die Innenräume von Glitter Gulch Mine, Witchyworld und Terrydactyland sowie das Mehrspielermenü stimmen mit ihren Referenzen überein. Die übrigen 68 Fälle zeigen Abweichungen oder brechen ab. Alle Einzelergebnisse stehen unter `build/acceptance/n2-cumulative-nopass-2026-11-19/gate74-canonical48/`.
