@@ -67,6 +67,7 @@ void bt_video_init(void);       // video.c: SDL_Init on the main thread, before 
 void bt_video_window(void);     // video.c: the window and its OpenGL context; main thread, before the game starts
 #include "menu.h"
 void bt_rom_open(const char *path);
+const char *bt_rom_title(void);
 const char *bt_rom_find(void);
 int bt_input_bind(const char *button, const char *names);  // input.c: settings.ini key.X=...  // io.c: no ROM argument (may show a file dialog)
 void bt_trace_init(const char *rom);

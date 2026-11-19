@@ -119,6 +119,20 @@ void bt_rom_open(const char *path) {
     if (!rom_load(path)) rom_error(path, "Die ROM wurde nicht gefunden (Pfad als erstes Argument angeben).");
 }
 
+const char *bt_rom_title(void) {
+    static char title[21];
+    if (!rom) return "";
+    size_t n = 20;
+    while (n && (rom[0x20 + n - 1] == ' ' || rom[0x20 + n - 1] == 0)) n--;
+    if (n > sizeof title - 1) n = sizeof title - 1;
+    for (size_t i = 0; i < n; i++) {
+        unsigned char c = rom[0x20 + i];
+        title[i] = (c >= 0x20 && c <= 0x7e) ? (char)c : '_';
+    }
+    title[n] = 0;
+    return title;
+}
+
 static char picked[1024];
 static _Atomic int picking;
 static void SDLCALL on_pick(void *data, const char *const *files, int filter) {

@@ -81,6 +81,21 @@ def main():
             png(temp / 'mods' / package / 'textures' / f'{key}_{leaf_width}x{leaf_height}.png',
                 width, height, color)
 
+        # The combined loader must honor package order across Rice and native keys.
+        cross_rgba = bytes((1, 2, 3, 4)) * 16
+        cross_hash = hash_texture(2, 0, 4, 4, cross_rgba)
+        rice_crc, palette_crc = 0x06040200, 0x44003240
+        png(temp / 'mods' / 'ricefirst' / 'textures' /
+            f'BANJO TOOIE#{rice_crc:08X}#2#0#{palette_crc:08X}_ciByRGBA.png',
+            12, 12, bytes((200, 10, 20, 255)))
+        png(temp / 'mods' / 'nativesecond' / 'textures' / f'{cross_hash}_4x4.png',
+            8, 8, bytes((0, 0, 255, 255)))
+        png(temp / 'mods' / 'nativefirst' / 'textures' / f'{cross_hash}_4x4.png',
+            8, 8, bytes((0, 0, 255, 255)))
+        png(temp / 'mods' / 'ricesecond' / 'textures' /
+            f'BANJO TOOIE#{rice_crc:08X}#2#0#{palette_crc:08X}_ciByRGBA.png',
+            12, 12, bytes((200, 10, 20, 255)))
+
         test_c = temp / 'test.c'
         test_c.write_text(r'''#include "mod_texture.h"
 #include "stb_image.h"
@@ -117,10 +132,66 @@ int main(int argc, char **argv) {
     if(!decoded||dw!=2||dh!=2||channels!=4)return 9;
     for(int i=0;i<16;i++)if(decoded[i]!=((unsigned char*)pixels)[i])return 10;
     stbi_image_free(decoded);
+    bt_mod_texture_init_rom("ricefirst,nativesecond", "BANJO TOOIE");
+    int selected=0;
+    p=bt_mod_texture_load_best(CROSS_HASH,4,4,1,0x06040200u,0x44003240u,2,0,&w,&h,&selected);
+    if(!p||w!=12||h!=12||!selected||((unsigned char*)p)[0]!=200)return 11;
+    bt_mod_texture_init_rom("nativefirst,ricesecond", "BANJO TOOIE");
+    p=bt_mod_texture_load_best(CROSS_HASH,4,4,1,0x06040200u,0x44003240u,2,0,&w,&h,&selected);
+    if(!p||w!=8||h!=8||selected||((unsigned char*)p)[2]!=255)return 12;
+
+    // Model the real 16-bit LoadBlock transfer with DXT=512. TMEM owns the bytes
+    // after the guest reuses the original RDRAM source area.
+    unsigned char source[2048], saved[2048], tmem[4096]={0}, unpacked[2048];
+    for(int i=0;i<2048;i++)source[i]=saved[i]=(unsigned char)(i*37+11);
+    unsigned acc=0;
+    for(unsigned word=0;word<256;word++) {
+        unsigned swizzle=((acc>>11)&1)?4:0;
+        for(unsigned i=0;i<8;i++)tmem[((word*8+i)^swizzle)&4095]=source[word*8+i];
+        acc+=512;
+    }
+    uint32_t expected_crc=bt_mod_texture_rice_crc32(saved,64,64,0,32);
+    memset(source,0xff,sizeof source);
+    int stride=0;
+    if(!bt_mod_texture_rice_tmem_unpack(tmem,sizeof tmem,0,32,64,64,0,unpacked,sizeof unpacked,&stride))return 13;
+    if(stride!=32||memcmp(unpacked,saved,sizeof saved)||
+       bt_mod_texture_rice_crc32(unpacked,64,64,0,stride)!=expected_crc||
+       bt_mod_texture_rice_crc32(source,64,64,0,32)==expected_crc)return 14;
+
+    // 8-bit odd width and 16-bit rows both exercise the odd-row XOR-4 path.
+    memset(tmem,0,sizeof tmem);
+    unsigned char ci8[15], out8[15];
+    for(int i=0;i<15;i++)ci8[i]=(unsigned char)(i*13+3);
+    for(int y=0;y<3;y++)for(int x=0;x<5;x++)tmem[((y*8+x)^(y&1?4:0))&4095]=ci8[y*5+x];
+    if(!bt_mod_texture_rice_tmem_unpack(tmem,sizeof tmem,0,8,5,3,1,out8,sizeof out8,&stride)||
+       stride!=5||memcmp(ci8,out8,sizeof ci8)||
+       bt_mod_texture_rice_crc32(ci8,5,3,1,5)!=bt_mod_texture_rice_crc32(out8,5,3,1,stride))return 15;
+
+    memset(tmem,0,sizeof tmem);
+    unsigned char rgba16[30], out16[30];
+    for(int i=0;i<30;i++)rgba16[i]=(unsigned char)(i*17+9);
+    for(int y=0;y<3;y++)for(int x=0;x<5;x++)for(int b=0;b<2;b++)
+        tmem[((y*16+x*2+b)^(y&1?4:0))&4095]=rgba16[y*10+x*2+b];
+    if(!bt_mod_texture_rice_tmem_unpack(tmem,sizeof tmem,0,16,5,3,2,out16,sizeof out16,&stride)||
+       stride!=10||memcmp(rgba16,out16,sizeof rgba16)||
+       bt_mod_texture_rice_crc32(rgba16,5,3,2,10)!=bt_mod_texture_rice_crc32(out16,5,3,2,stride))return 16;
+
+    // 32-bit N64 texels split RG and BA across the lower/upper TMEM planes.
+    memset(tmem,0,sizeof tmem);
+    unsigned char rgba32[60], out32[60];
+    for(int i=0;i<60;i++)rgba32[i]=(unsigned char)(i*29+7);
+    for(int y=0;y<3;y++)for(int x=0;x<5;x++) {
+        unsigned a=((y*16+x*2)^(y&1?4:0))&0x7ff; int d=y*20+x*4;
+        tmem[a]=rgba32[d]; tmem[a+1]=rgba32[d+1];
+        tmem[a|0x800]=rgba32[d+2]; tmem[(a+1)|0x800]=rgba32[d+3];
+    }
+    if(!bt_mod_texture_rice_tmem_unpack(tmem,sizeof tmem,0,16,5,3,3,out32,sizeof out32,&stride)||
+       stride!=20||memcmp(rgba32,out32,sizeof rgba32)||
+       bt_mod_texture_rice_crc32(rgba32,5,3,3,20)!=bt_mod_texture_rice_crc32(out32,5,3,3,stride))return 17;
     bt_mod_texture_shutdown();
     return 0;
 }
-'''.replace('HASH_VALUE', f'0x{key}ULL'))
+'''.replace('HASH_VALUE', f'0x{key}ULL').replace('CROSS_HASH', f'0x{cross_hash}ULL'))
         exe = temp / 'test'
         subprocess.run(['cc', '-std=c11', '-I', str(HOST), '-I', str(THIRD_PARTY),
                         str(test_c), str(HOST / 'mod_texture.c'), '-lz', '-o', str(exe)], check=True)
@@ -130,7 +201,7 @@ int main(int argc, char **argv) {
         subprocess.run([str(exe), str(dump)], cwd=temp, env=env, check=True)
         width, height, pixels = decode_dump(dump)
         assert (width, height, pixels) == (2, 2, bytes((17, 34, 51, 255)) * 4)
-        print('A9 textures: package priority, 8x/4x/3x, bad aspect, 1x, base dimensions, and PNG dump decode: PASS')
+        print('A9 textures: native package order; cross-format Rice/native precedence both ways; LoadBlock TMEM overwrite, odd-width CI8, RGBA16 and split-plane RGBA32 swizzle: PASS')
 
 
 if __name__ == '__main__':

@@ -492,6 +492,21 @@ static u64 gpu_tmem_hash(void) {
 }
 
 // Atlas place of tile i as the shader samples it: texel (s, t) for s < w, t < h after wrapping.
+static u8 *gpu_rice_tmem_bytes(const Tile *tl, int w, int h, int *stride_out) {
+    if (!tl || tl->siz < 0 || tl->siz > 3 || w <= 0 || h <= 0 || (tl->siz == 0 && (w & 1))) return NULL;
+    int stride = tl->siz == 0 ? w / 2 : w;
+    size_t bytes = (size_t)stride * (size_t)h;
+    if (!bytes || bytes > 1024u * 1024u) return NULL;
+    u8 *out = malloc(bytes);
+    if (!out) return NULL;
+    if (!bt_mod_texture_rice_tmem_unpack(R.tmem, sizeof R.tmem, (u32)tl->tmem * 8,
+                                         (u32)tl->line * 8, w, h, tl->siz, out, bytes, stride_out)) {
+        free(out);
+        return NULL;
+    }
+    return out;
+}
+
 static void gpu_tile_image(int i, u16 *x, u16 *y, u16 *pw, u16 *ph) {
     const Tile *tl = &R.tile[i & 7];
     GpuTileMemo *memo = &gpu.memo[i & 7];
@@ -505,6 +520,49 @@ static void gpu_tile_image(int i, u16 *x, u16 *y, u16 *pw, u16 *ph) {
     int w = tl->masks ? 1 << (tl->masks < 10 ? tl->masks : 10) : ms < 0 ? 1 : ms > 1023 ? 1024 : ms + 1;
     int h = tl->maskt ? 1 << (tl->maskt < 10 ? tl->maskt : 10) : mt < 0 ? 1 : mt > 1023 ? 1024 : mt + 1;
     int own = R.tsrc_live ? gpu_tile_owner(tl, w, h, (int)(R.om_h >> 15 & 1)) : 0;
+    Tile no_rice = {0};
+    const Tile *rice = tl->rice_generation ? &no_rice : tl;
+    if (!rice->rice_valid) for (int j = 0; j < 8; j++) {
+        const Tile *candidate = &R.tile[j];
+        if (candidate->rice_valid && !candidate->rice_generation && candidate->tmem == tl->tmem &&
+            candidate->fmt == tl->fmt && candidate->siz == tl->siz) {
+            rice = candidate;
+            break;
+        }
+    }
+    Tile rice_block;
+    if (!rice->rice_valid && own == 0 && tl->fmt == 2 && tl->siz <= 1 &&
+        rice_probe_block_valid && rice_probe_block_generation != 0 && rice_probe_block_tmem == (u32)tl->tmem * 8 &&
+        rice_probe_block_fmt == tl->fmt && rice_probe_block_siz == 2 && rice_probe_block_src == R.timg &&
+        (tl->siz != 0 || !(w & 1))) {
+        int stride = tl->siz == 0 ? w / 2 : w;
+        u32 expected = (u32)(stride * h);
+        const Tile *candidate = NULL;
+        for (int j = 0; j < 8; j++) {
+            const Tile *p = &R.tile[j];
+            if (p->rice_valid && p->rice_generation == rice_probe_block_generation && p->fmt == tl->fmt &&
+                p->tmem == tl->tmem && p->rice_size == 2 && p->rice_addr == rice_probe_block_src) {
+                candidate = p;
+                break;
+            }
+        }
+        int origin_ok = candidate && rice_probe_block_bytes == expected && rdp_mem(rice_probe_block_src, expected) != NULL &&
+                        (u32)tl->line * 8 >= (u32)stride;
+        for (int y = 0; origin_ok && y < h; y++) {
+            u32 base = (u32)tl->tmem * 8 + (u32)y * (u32)tl->line * 8;
+            u32 swizzle = y & 1 ? 4 : 0;
+            for (int x = 0; x < w; x++) {
+                u32 a = (tl->siz == 0 ? base + (u32)(x >> 1) : base + (u32)x) ^ swizzle;
+                if (rice_tmem_generation[a & 0xFFF] != rice_probe_block_generation) { origin_ok = 0; break; }
+            }
+        }
+        if (origin_ok) {
+            rice_block = *candidate;
+            rice_block.rice_width = w; rice_block.rice_height = h; rice_block.rice_stride = stride;
+            rice_block.rice_size = tl->siz; rice_block.rice_format = tl->fmt; rice_block.rice_valid = 1;
+            rice = &rice_block;
+        }
+    }
     if (own < 0) { gpu_mask_materialize(); own = 0; }
     u64 key = own ? gpu_mix(gpu_mix(0x4D41534Bull << 32 | R.trec[own - 1].uid, (u64)(tl->fmt == 3)), (u64)w | (u64)h << 16) :
                     gpu_mix(gpu_mix(gpu_tmem_hash(), (u64)tl->fmt | (u64)tl->siz << 3 | (u64)tl->line << 5 | (u64)tl->tmem << 14 |
@@ -513,7 +571,7 @@ static void gpu_tile_image(int i, u16 *x, u16 *y, u16 *pw, u16 *ph) {
     while (gpu.tex[slot].gen == gpu.atlas_gen && gpu.tex[slot].key != key) slot = (slot + 1) & (GPU_TEXTURES - 1);
     GpuTexture *e = &gpu.tex[slot];
     if (e->gen != gpu.atlas_gen) {
-        int rw = 0, rh = 0;
+        int rw = 0, rh = 0, replacement_factor = 0;
         u32 *replacement = NULL;
         if (!own) {
             for (int t = 0; t < h; t++) for (int s = 0; s < w; s++) {
@@ -523,8 +581,42 @@ static void gpu_tile_image(int i, u16 *x, u16 *y, u16 *pw, u16 *ph) {
             if (mods) {
                 u64 hash = bt_mod_texture_hash(tl->fmt, tl->siz, w, h, gpu.decode);
                 bt_mod_texture_dump(hash, w, h, gpu.decode);
-                replacement = bt_mod_texture_load(hash, w, h, &rw, &rh);
+                int rice_valid = 0, rice_selected = 0;
+                u32 texture_crc = 0, palette_crc = 0;
+                int rice_w = 0, rice_h = 0;
+                if (rice->rice_valid && rice->rice_width > 0 && rice->rice_height > 0 &&
+                    rice->rice_size == tl->siz && rice->rice_format == tl->fmt &&
+                    !(tl->siz == 0 && (rice->rice_width & 1))) {
+                    rice_w = rice->rice_width; rice_h = rice->rice_height;
+                    int rice_stride = 0;
+                    u8 *source = gpu_rice_tmem_bytes(tl, rice_w, rice_h, &rice_stride);
+                    int line = (rice_w << tl->siz) >> 1;
+                    if (source && line >= 4 && rice_stride >= line) {
+                        texture_crc = bt_mod_texture_rice_crc32(source, rice_w, rice_h, tl->siz, rice_stride);
+                        int ci = tl->fmt == 2 && tl->siz <= 1;
+                        if (ci) {
+                            int max_index = bt_mod_texture_rice_max_index(source, rice_w, rice_h, tl->siz, rice_stride);
+                            int bank = tl->siz == 0 ? tl->pal : 0;
+                            u8 packed[512] = {0};
+                            rice_valid = max_index >= 0 && bank * 16 + max_index < 256;
+                            for (int n = 0; rice_valid && n <= max_index; n++) {
+                                int index = bank * 16 + n;
+                                if (!R.rice_palette_valid[index]) { rice_valid = 0; break; }
+                                packed[n * 2] = R.tmem[0x800 + index * 8];
+                                packed[n * 2 + 1] = R.tmem[0x800 + index * 8 + 1];
+                            }
+                            if (rice_valid)
+                                palette_crc = bt_mod_texture_rice_palette_crc(packed, max_index, tl->siz);
+                        } else {
+                            rice_valid = 1;
+                        }
+                        free(source);
+                    }
+                }
+                replacement = bt_mod_texture_load_best(hash, w, h, rice_valid, texture_crc, palette_crc,
+                                                       tl->fmt, tl->siz, &rw, &rh, &rice_selected);
                 if (rw > gpu.max_size || rh > gpu.max_size) replacement = NULL;
+                if (replacement) replacement_factor = rw / (rice_selected ? rice_w : w);
             }
         }
         if (!replacement && (gpu.ax + w + 2 > GPU_ATLAS)) { gpu.ay += gpu.shelf; gpu.ax = gpu.shelf = 0; }  // + 2: seam border
@@ -533,7 +625,7 @@ static void gpu_tile_image(int i, u16 *x, u16 *y, u16 *pw, u16 *ph) {
             gpu_tile_image(i, x, y, pw, ph);
             return;
         }
-        *e = (GpuTexture){.key = key, .gen = gpu.atlas_gen, .factor = replacement ? rw / w : 1};
+        *e = (GpuTexture){.key = key, .gen = gpu.atlas_gen, .factor = replacement ? replacement_factor : 1};
         gpu.ntex++;
         if (replacement) {
             glGenTextures(1, &e->mod_tex);
@@ -1642,7 +1734,13 @@ static void gpu_mask_materialize(void) {
             for (int i = 0; i < r->w; i++) {
                 u32 a = ((rb + (u32)i) ^ x) & 0xFFF;
                 if (R.tsrc[a] != k + 1) continue;
-                if (src) R.tmem[a] = src[i];  // load_tile skips rows outside memory
+                if (src) {
+                    // This deferred GPU load replaces the prior TMEM byte. Any Rice
+                    // source whose load owned it is no longer a complete RDRAM tile.
+                    if (R.rice_tmem_owner[a]) R.tile[R.rice_tmem_owner[a] - 1].rice_valid = 0;
+                    R.rice_tmem_owner[a] = 0;
+                    R.tmem[a] = src[i];  // load_tile skips rows outside memory
+                }
                 R.tsrc[a] = 0; r->bytes--; R.tsrc_live--;
             }
         }

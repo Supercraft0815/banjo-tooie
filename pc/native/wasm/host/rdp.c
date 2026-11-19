@@ -22,10 +22,18 @@ static void gpu_mask_touch(u32 address);
 static void gpu_finish(void);  // the last task's GPU output is in RDRAM and scanout
 static int gpu_done_later(u32 event);
 static int load_tile_tile;  // the tile of the load_tile in progress, for gpu_mask_load
+static int rice_load_owner; // tile+1 while a known RDRAM load writes TMEM; zero for unknown sources
+static u32 rice_probe_block_src, rice_probe_block_bytes, rice_probe_block_tmem;
+static u32 rice_probe_block_generation, rice_block_generation, rice_load_generation;
+static u32 rice_tmem_generation[4096];
+static int rice_probe_block_fmt, rice_probe_block_siz, rice_probe_block_valid;
 
 typedef struct {
     int fmt, siz, line, tmem, pal, cms, cmt, masks, maskt, shifts, shiftt;
     int uls, ult, lrs, lrt;  // 10.2
+    u32 rice_addr;
+    u32 rice_generation;
+    int rice_width, rice_height, rice_stride, rice_size, rice_format, rice_valid;
 } Tile;
 
 // Combiner sources; the *_A entries hold an alpha in all four channels.
@@ -56,6 +64,8 @@ static struct {
     // GPU renderer: TMEM bytes a load took from the GPU's CI8 image (gpu_mask_load) hold record + 1
     // here and stale bytes in tmem until the record is replayed from RDRAM (gpu_mask_materialize).
     u8 tsrc[4096];
+    u8 rice_palette_valid[256];
+    u8 rice_tmem_owner[4096];
     struct { u32 timg; int width, x0, y0, w, h, tmem, line, bytes; u32 uid; } trec[8];
     int tsrc_live;  // owned bytes of all records
 } R = {.sc_x1 = 320 << 2, .sc_y1 = 240 << 2, .cimg_width = 320, .cimg_siz = 2};
@@ -81,6 +91,11 @@ static inline int clamp8(int v) { return v < 0 ? 0 : v > 255 ? 255 : v; }
 static inline void tmem_put(u32 a, u8 v) {
     a &= 0xFFF;
     R.tmem[a] = v;
+    if (R.rice_tmem_owner[a]) R.tile[R.rice_tmem_owner[a] - 1].rice_valid = 0;
+    R.rice_tmem_owner[a] = (u8)rice_load_owner;
+    rice_tmem_generation[a] = rice_load_generation;
+    if (a >= 0x800 && a < 0x1000 && ((a - 0x800) & 7) < 2)
+        R.rice_palette_valid[(a - 0x800) >> 3] = 0;
     if (R.tsrc[a]) { R.trec[R.tsrc[a] - 1].bytes--; R.tsrc_live--; R.tsrc[a] = 0; }
 }
 static u64 texture_epoch = 1;
@@ -1065,6 +1080,7 @@ static void set_combine(u32 w0, u32 w1) {
 static void color(int *c, u32 w) { c[0] = w >> 24; c[1] = w >> 16 & 255; c[2] = w >> 8 & 255; c[3] = w & 255; }
 
 static void load_block(u32 w0, u32 w1) {
+    rice_load_owner = 0;
     texture_epoch++;
     tmem_gen++;
     resolve_texture(R.timg);
@@ -1074,6 +1090,18 @@ static void load_block(u32 w0, u32 w1) {
     tl->uls = uls << 2; tl->ult = ult << 2; tl->lrs = lrs << 2; tl->lrt = dxt << 2;
     u32 texels = (u32)(lrs - uls + 1), bytes = siz == 0 ? (texels + 1) / 2 : texels << (siz - 1);
     u32 src = R.timg + (((u32)(ult * R.timg_width + uls) << siz) >> 1), tm = (u32)tl->tmem * 8, acc = 0;
+    tl->rice_valid = 0;
+    rice_probe_block_src = src; rice_probe_block_bytes = bytes; rice_probe_block_tmem = tm;
+    rice_probe_block_generation = ++rice_block_generation;
+    if (!rice_probe_block_generation) rice_probe_block_generation = ++rice_block_generation;
+    rice_probe_block_fmt = tl->fmt; rice_probe_block_siz = siz;
+    rice_probe_block_valid = rdp_mem(src, bytes) != NULL;
+    rice_load_owner = (int)(tl - R.tile) + 1;
+    rice_load_generation = rice_probe_block_generation;
+    tl->rice_addr = src; tl->rice_generation = rice_probe_block_generation;
+    tl->rice_width = tl->rice_height = tl->rice_stride = 0;
+    tl->rice_size = siz; tl->rice_format = tl->fmt;
+    if (getenv("BT_RICE_TRACE")) fprintf(stderr, "bt_rice: load-block tile=%ld src=%08x texels=%u size=%d\n", (long)(tl - R.tile), src, texels, siz);
     for (u32 w = 0; w < (bytes + 7) / 8 && w < 512; w++, acc += (u32)dxt) {
         const u8 *s = rdp_mem(src + w * 8, 8);
         u32 x = acc >> 11 & 1 ? 4 : 0;
@@ -1086,6 +1114,9 @@ static void load_block(u32 w0, u32 w1) {
             for (int i = 0; i < 8; i++) tmem_put((tm + w * 8 + i) ^ x, s[i]);
         }
     }
+    tl->rice_valid = rice_probe_block_valid && tl->fmt == 2 && siz == 2;
+    rice_load_owner = 0;
+    rice_load_generation = 0;
 }
 
 static void load_tile(u32 w0, u32 w1) {
@@ -1094,16 +1125,29 @@ static void load_tile(u32 w0, u32 w1) {
     Tile *tl = &R.tile[w1 >> 24 & 7];
     tl->uls = w0 >> 12 & 0xFFF; tl->ult = w0 & 0xFFF; tl->lrs = w1 >> 12 & 0xFFF; tl->lrt = w1 & 0xFFF;
     load_tile_tile = w1 >> 24 & 7;
-    if (gpu_mask_load()) return;  // from the GPU's CI8 image: no RDRAM read, no sync
+    tl->rice_valid = 0;
+    tl->rice_generation = 0;
+    if (gpu_mask_load()) {
+        for (int k = 0; k < 8; k++) R.tile[k].rice_valid = 0;
+        memset(R.rice_tmem_owner, 0, sizeof R.rice_tmem_owner);
+        if (getenv("BT_RICE_TRACE")) fprintf(stderr, "bt_rice: load-tile tile=%d gpu-owned; origin rejected\n", load_tile_tile);
+        return;  // from the GPU's CI8 image: no RDRAM read, no sync
+    }
+    rice_load_owner = load_tile_tile + 1;
     resolve_texture(R.timg);
     gpu_mask_touch(R.timg);
     int sl = tl->uls >> 2, tt = tl->ult >> 2, sh = tl->lrs >> 2, th = tl->lrt >> 2, siz = R.timg_siz;
     int bpp = siz == 3 ? 4 : siz == 2 ? 2 : 1;
+    int width = sh - sl + 1, height = th - tt + 1;
+    int stride = (R.timg_width << siz) >> 1;
+    u32 rice_addr = R.timg + ((((u32)tt * (u32)R.timg_width + (u32)sl) << siz) + 1u) / 2u;
+    int rice_ok = width > 0 && height > 0 && stride >= ((width << siz) >> 1) &&
+                  ((width << siz) >> 1) >= 4 && rdp_mem(rice_addr, (u32)((height - 1) * stride + ((width << siz) >> 1))) != NULL;
     for (int t = tt; t <= th; t++) {
         int row = t - tt;
         u32 x = row & 1 ? 4 : 0, rb = (u32)tl->tmem * 8 + (u32)(row * tl->line * 8);
         const u8 *s = rdp_mem(R.timg + (u32)(t * R.timg_width + sl) * bpp >> (siz == 0), (u32)(sh - sl + 1) * bpp);
-        if (!s) continue;
+        if (!s) { rice_ok = 0; continue; }
         for (int i = 0; i <= sh - sl; i++) {
             if (siz == 3) {
                 u32 a = ((rb + i * 2) ^ x) & 0x7FF;
@@ -1116,9 +1160,19 @@ static void load_tile(u32 w0, u32 w1) {
             }
         }
     }
+    rice_load_owner = 0;
+    if (rice_ok) {
+        tl->rice_addr = rice_addr; tl->rice_width = width; tl->rice_height = height;
+        tl->rice_stride = stride; tl->rice_size = siz; tl->rice_format = tl->fmt;
+        tl->rice_valid = 1;
+    }
+    if (getenv("BT_RICE_TRACE"))
+        fprintf(stderr, "bt_rice: load-tile tile=%d src=%08x size=%d fmt=%d dims=%dx%d stride=%d valid=%d\n",
+                load_tile_tile, rice_addr, siz, tl->fmt, width, height, stride, rice_ok);
 }
 
 static void load_tlut(u32 w0, u32 w1) {
+    rice_load_owner = 0;
     texture_epoch++;
     tmem_gen++;
     resolve_texture(R.timg);
@@ -1128,8 +1182,14 @@ static void load_tlut(u32 w0, u32 w1) {
     u32 tm = (u32)tl->tmem * 8;
     const u8 *s = rdp_mem(R.timg + (u32)(uls >> 2) * 2, (u32)(n > 0 ? n : 0) * 2);
     if (!s || n <= 0 || n > 256) return;
-    for (int i = 0; i < n; i++)
+    u32 palette_src = R.timg + (u32)(uls >> 2) * 2;
+    for (int i = 0; i < n; i++) {
         for (int c = 0; c < 4; c++) { tmem_put(tm + i * 8 + c * 2, s[i * 2]); tmem_put(tm + i * 8 + c * 2 + 1, s[i * 2 + 1]); }
+        if (tm >= 0x800 && tm < 0x1000 && ((tm - 0x800) & 7) == 0) {
+            u32 index = (tm - 0x800) / 8 + (u32)i;
+            if (index < 256) R.rice_palette_valid[index] = 1;
+        }
+    }
 }
 
 void rdp_command(u32 w0, u32 w1) {

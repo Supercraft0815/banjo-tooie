@@ -119,6 +119,15 @@ with a matching file wins. An empty list uses the original resources.
   PNG in `mods/first/textures/` with the exact filename from the dump. The
   dimensions in the filename describe the original tile. Enlarge both axes by
   the same integer factor of at least two.
+- Rice-style texture keys can also be used in `mods/<package>/textures/`.
+  Name an image `<ROM title>#<texture CRC32>#<format hex>#<size hex>_all.png`,
+  or use `_ciByRGBA.png` / `_allciByRGBA.png`. CI textures may add
+  `#<palette CRC32>` before the suffix. For example:
+  `BANJO TOOIE#932D76A3#2#0#07E8D994_ciByRGBA.png`. Use the internal title from
+  the loaded ROM header and the N64 format/size values in hexadecimal. These keys
+  follow the same package order as native hash filenames, so the first package
+  containing either matching key wins. Rice replacements also need a uniform
+  integer scale of at least 2×.
 - For models and other assets, set `BT_ASSET_DUMP` to an output directory.
   Put the replacement's uncompressed bytes under the same eight-digit
   hexadecimal filename, for example `mods/first/assets/000006ea.bin`.

@@ -32,7 +32,6 @@ void w2c_bt_func_800D5D70(w2c_bt *instance);
 
 int main(int argc, char **argv) {
     bt_settings_load();
-    bt_mod_texture_init(getenv("BT_MOD_ORDER"));
     const char *version = getenv("BT_VERSION");
     const char *map_path = bt_path_env("BT_GAME_MAP");
     const char *native_map = bt_path_env("BT_NATIVE_MAP");
@@ -41,6 +40,8 @@ int main(int argc, char **argv) {
     bt_video_init();
     const char *rom = argc > 1 ? argv[1] : bt_rom_find();
     if (argc > 1) bt_rom_open(rom);
+    bt_mod_texture_init_rom(getenv("BT_MOD_ORDER"), bt_rom_title());
+
     wasm_rt_init();
     wasm2c_bt_instantiate(&bt_inst, &env);
     bt_crash_install();
