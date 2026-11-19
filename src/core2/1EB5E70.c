@@ -22,12 +22,14 @@ typedef struct {
     s32 normals;
 } ModelData;
 
+#ifndef BT_NATIVE
 typedef struct {
     LookAt buffer[32];
     LookAt *current;
     LookAt *end;
     f32 position[3];
 } LookAtBuffer;
+#endif
 
 s32 D_8012C850[60];
 
@@ -56,14 +58,26 @@ typedef struct GeometryRenderData {
     u8 texture_animation;
     u8 pad25[3];
     u8 *zones;
-    s32 unk2C;
+    BT_NATIVE_ONLY(void *colors;) BT_IDO_ONLY(s32 unk2C;)
     u8 *normals;
     u8 *animated_vertices;
     Mtx *matrices;
 } RenderData;
 #endif
 
-extern DisplayListView *D_8012C960;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define D_8012C948 native_render.data
+#define D_8012CA40 native_render.look_at
+#elif defined(BT_NATIVE)
+RenderData D_8012C948;
+LookAtBuffer D_8012CA40;
+_Static_assert(sizeof(RenderData) == 0x3C && sizeof(LookAtBuffer) == 0x418, "render settings");
+#else
+extern RenderData D_8012C948;
+extern LookAtBuffer D_8012CA40;
+#endif
+
+BT_IDO_ONLY(extern DisplayListView *D_8012C960;)
 
 extern s32 D_8012C824;
 extern s32 D_8012C940;
@@ -108,7 +122,6 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         s16 padding;
         u8 data[1][8];
     } TextureData;
-    extern RenderData D_8012C948;
     extern s32 D_8012C988;
     extern s32 D_8012C828, D_8012C834, D_8012C838, D_8012C83C;
     extern f32 D_8012C82C, D_8012C830;
@@ -121,8 +134,6 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     extern s32 D_8012CA08, D_8012CA18, D_8012CA28; BT_IDO_ONLY(extern s32 D_8012CA0C;) BT_NATIVE_ONLY(extern void *D_8012CA0C;)
     extern u8 D_8012CA11;
     extern f32 D_8012CA1C, D_8012CA20;
-    extern f32 D_8012CE48[3];
-    extern LookAtBuffer D_8012CA40;
     extern s32 D_8012CE58;
     extern s32 D_8012CE98;
     extern f32 D_8012CEB8[3];
@@ -501,17 +512,6 @@ u8 D_8012C840 BT_DATA(4, bss_core2bss2, 0x50);
 s32 D_8012C844 BT_DATA(4, bss_core2bss2, 0x54);
 s32 D_8012C848 BT_DATA(4, bss_core2bss2, 0x58);
 s32 D_8012C940 BT_DATA(16, bss_core2bss2_1, 0x0);
-RenderData D_8012C948 BT_DATA(4, bss_core2bss2_1, 0x8);
-f32 * D_8012C94C BT_DATA(4, bss_core2bss2_1, 0xC);
-s32 D_8012C95C BT_DATA(4, bss_core2bss2_1, 0x1C);
-DisplayListView * D_8012C960 BT_DATA(4, bss_core2bss2_1, 0x20);
-s32 D_8012C964 BT_DATA(4, bss_core2bss2_1, 0x24);
-s32 D_8012C968 BT_DATA(4, bss_core2bss2_1, 0x28);
-s8 D_8012C96C BT_DATA(4, bss_core2bss2_1, 0x2C);
-s32 D_8012C970 BT_DATA(4, bss_core2bss2_1, 0x30);
-s32 D_8012C974 BT_DATA(4, bss_core2bss2_1, 0x34);
-s32 D_8012C978 BT_DATA(4, bss_core2bss2_1, 0x38);
-s32 D_8012C980 BT_DATA(4, bss_core2bss2_1, 0x40);
 s32 D_8012C988 BT_DATA(4, bss_core2bss2_1, 0x48);
 s32 D_8012C9A4 BT_DATA(4, bss_core2bss2_1, 0x64);
 s32 D_8012C9A8 BT_DATA(4, bss_core2bss2_1, 0x68);
@@ -528,8 +528,6 @@ s32 D_8012CA18 BT_DATA(4, bss_core2bss2_1, 0xD8);
 f32 D_8012CA1C BT_DATA(4, bss_core2bss2_1, 0xDC);
 s32 D_8012CA28 BT_DATA(4, bss_core2bss2_1, 0xE8);
 s16 D_8012CA38 BT_DATA(4, bss_core2bss2_1, 0xF8);
-LookAtBuffer D_8012CA40 BT_DATA(8, bss_core2bss2_1, 0x100);
-f32 D_8012CE48 [ 3 ] BT_DATA(4, bss_core2bss2_1, 0x508);
 s32 D_8012CE58 BT_DATA(4, bss_core2bss2_1, 0x518);
 s32 D_8012CE98 BT_DATA(4, bss_core2bss2_1, 0x558);
 f32 D_8012CEA8 BT_DATA(4, bss_core2bss2_1, 0x568);

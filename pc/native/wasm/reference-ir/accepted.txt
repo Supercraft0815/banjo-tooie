@@ -374,3 +374,14 @@ the original phase, slot selection and screen dimensions. The frame buffer
 test round-trips all three host pointers. All 9,703 fixup words remain at
 the original addresses. See n1-2026-11-18/current-player-vectors-ir.log,
 current-save-records-ir.log and current-viewport-owners-ir.log.
+
+2026-11-19  Render settings and text queue
+The 22 render-setting differences address fields of the geometry state,
+the LookAt buffer and the command lengths. The 11 text differences use the
+entry's actual font, width and jitter bits, a typed vector element stride
+and its four color bytes. The draw routine ignores the color setter's return.
+The LP64 reader probe grows the queue, checks ten distinct text pointers and
+colors during drawing, and checks a high glyph pixel address. The 32-bit
+entry remains 20 bytes and the command state remains 44 bytes. See the
+current-render-settings-ir.log and current-text-queue-ir.log reports in
+n1-2026-11-18. Both guest builds matched all 447,849 retraces.

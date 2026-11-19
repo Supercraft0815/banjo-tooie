@@ -60,8 +60,8 @@ def main():
     print('  top files:')
     for file, n in collections.Counter(r[0] for r in rows).most_common(args.top):
         print('  %6d %s' % (n, file))
-    if failed:
-        (build.ROOT / 'build' / 'hazards64_failed.txt').write_text('\n'.join(failed) + '\n')
+    failures_path = path.with_name('hazards64_failed.txt')
+    failures_path.write_text(''.join(f'{src}\n' for src in failed))
 
 
 if __name__ == '__main__':

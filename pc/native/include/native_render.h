@@ -1,6 +1,7 @@
 #ifndef BT_NATIVE_RENDER_H
 #define BT_NATIVE_RENDER_H
 #include "native_skinning.h"
+#include "core2/geometry_callbacks.h"
 #include "core2/model_materials.h"
 typedef struct {u32 header[2];Gfx commands[];} NativeDisplayList;
 typedef struct {s16 light[3];u8 color[4];} NativeVertexLight;
@@ -20,7 +21,7 @@ typedef struct {
     uintptr_t callback_args[2];u8 callback_type;
     s32 asset_id;f32 center_radius,radius;s32 depth_mode;Gfx *custom_modes[2];
     s16 unknown_short[2];u32 geometry_mode;
-    LookAt look_at[32];LookAt *look_current,*look_end;f32 look_position[3];
+    LookAtBuffer look_at;
     NativeRenderData data;
 } NativeRenderState;
 extern NativeRenderState native_render;

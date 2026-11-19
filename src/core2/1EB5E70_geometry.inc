@@ -4,17 +4,15 @@
 void func_800DE2A4(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void *), u8 *);
 
 void func_800DC580(void *arg0, void *arg1) {
-    extern RenderData D_8012C948;
     (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * D_8012C948.scale);
     (*(f32 *)((s8 *)(arg0) + (4))) = (f32) ((*(f32 *)((s8 *)(arg1) + (4))) * D_8012C948.scale);
     (*(f32 *)((s8 *)(arg0) + (8))) = (f32) ((*(f32 *)((s8 *)(arg1) + (8))) * D_8012C948.scale);
 }
 
 void func_800DC5BC(void *arg0, void *arg1) {
-    extern RenderData D_8012C948;
-    ((f32 *)arg0)[0] = ((f32 *)arg1)[0] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[0];
-    ((f32 *)arg0)[1] = ((f32 *)arg1)[1] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[1];
-    ((f32 *)arg0)[2] = ((f32 *)arg1)[2] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[2];
+    ((f32 *)arg0)[0] = ((f32 *)arg1)[0] * D_8012C948.scale + D_8012C948.position[0];
+    ((f32 *)arg0)[1] = ((f32 *)arg1)[1] * D_8012C948.scale + D_8012C948.position[1];
+    ((f32 *)arg0)[2] = ((f32 *)arg1)[2] * D_8012C948.scale + D_8012C948.position[2];
 }
 
 void func_800DC61C(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(s32 arg1) BT_NATIVE_ONLY(u8 *command)) {
@@ -38,7 +36,6 @@ void func_800DC634(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ON
     void mlMtxScale(f32);
     void mlMtxTranslate(f32, f32, f32);
     void mlMtx_push_translation(f32, f32, f32);
-    extern RenderData D_8012C948;
     extern f32 D_8012CEA8;
     extern f32 D_8012CEAC;
     struct ModelContext {
@@ -78,7 +75,6 @@ void func_800DC740(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ON
     void mlMtxScale(f32);
     void mlMtxTranslate(f32, f32, f32);
     void mlMtx_push_translation(f32, f32, f32);
-    extern RenderData D_8012C948;
     extern f32 D_8012CEA8;
     extern f32 D_8012CEAC;
     struct ModelContext {
@@ -118,7 +114,6 @@ void func_800DC84C(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ON
     void mlMtxScale(f32);
     void mlMtxTranslate(f32, f32, f32);
     void mlMtx_push_translation(f32, f32, f32);
-    extern RenderData D_8012C948;
     extern f32 D_8012CEA8;
     extern f32 D_8012CEAC;
     struct ModelContext {
@@ -158,7 +153,7 @@ void func_800DC958(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
     s32 func_800EF3DC(s32 *, s32 *);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     void mlMtxPop(void);
-    extern s32 D_8012C968;
+    BT_IDO_ONLY(extern s32 D_8012C968;)
     extern s32 D_8012CE58;
     extern s32 D_8012CE98;
     extern f32 D_8012CEC8;
@@ -176,7 +171,7 @@ void func_800DC958(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
     s32 temp_v0_5;
 
     if (arg1[0x21] & 2) {
-        func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, *(s8 *)(arg1 + 0x20)));
+        func_80019AA0(&D_8012CE58, func_800ADE2C(BT_DATA_FIELD(D_8012C948.animation, D_8012C968), *(s8 *)(arg1 + 0x20)));
     }
     func_800193C4((f32 *)&D_8012CEE0, (f32 *)(arg1 + 8));
     func_800193C4((f32 *)&D_8012CEF0, (f32 *)(arg1 + 0x14));
@@ -379,7 +374,7 @@ void func_800DCF48(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ON
 #endif
     void mlMtxApply(Mtx *);
     void mlMtxPop(void);
-    extern s32 D_8012C968;
+    BT_IDO_ONLY(extern s32 D_8012C968;)
     extern s32 D_8012CE58;
     struct ModelContext {
         Gfx *gfx;
@@ -393,15 +388,15 @@ void func_800DCF48(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ON
     };
     struct Command *cmd = (struct Command *)data;
 
-    if (D_8012C968) {
-        func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, cmd->matrix_id));
+    if (BT_DATA_FIELD(D_8012C948.animation, D_8012C968)) {
+        func_80019AA0(&D_8012CE58, func_800ADE2C(BT_DATA_FIELD(D_8012C948.animation, D_8012C968), cmd->matrix_id));
         mlMtxApply(context->mtx);
         gSPMatrix(context->gfx++, context->mtx++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
     if (cmd->branch_offset) {
         func_800DE2A4(model, (u8 *)cmd + cmd->branch_offset);
     }
-    if (D_8012C968) {
+    if (BT_DATA_FIELD(D_8012C948.animation, D_8012C968)) {
         mlMtxPop();
         gSPPopMatrix(context->gfx++, G_MTX_MODELVIEW);
     }
@@ -413,13 +408,12 @@ void func_800DD024(BT_IDO_ONLY(Gfx **gfx) BT_NATIVE_ONLY(void *context), BT_IDO_
     struct Command *cmd = (struct Command *)data;
     Gfx *gfx_sub_list;
 
-    gfx_sub_list = &D_8012C960->commands[cmd->index];
+    gfx_sub_list = &BT_DATA_FIELD(D_8012C948.display_list, D_8012C960)->commands[cmd->index];
     gSPDisplayList((*gfx)++, osVirtualToPhysical(gfx_sub_list));
 }
 
 void func_800DD07C(void *model, u8 *data) {
     void mlMtxApply(Mtx *);
-    extern RenderData D_8012C948;
     struct ModelContext {
         Gfx *gfx;
         Mtx *mtx;
@@ -431,11 +425,11 @@ void func_800DD07C(void *model, u8 *data) {
     int i;
     struct RenderState { u8 padding[0x18]; DisplayListView *list; };
 
-    gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[0] + ((struct RenderState *)&D_8012C948)->list->commands));
+    gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[0] + D_8012C948.display_list->commands));
     mlMtxApply(context->mtx);
     for (i = 1; cmd->gfx_index[i] != 0; i++) {
         gSPMatrix(gfx++, context->mtx, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[i] + ((struct RenderState *)&D_8012C948)->list->commands));
+        gSPDisplayList(gfx++, osVirtualToPhysical(cmd->gfx_index[i] + D_8012C948.display_list->commands));
     }
     context->gfx = gfx;
     context->mtx++;
@@ -449,7 +443,7 @@ void func_800DD19C(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
 void func_800DD1C0(BT_IDO_ONLY(Gfx **gfx) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
     BT_NATIVE_ONLY(Gfx **gfx = (Gfx **)context;)
     struct Command { u8 padding[0xA]; s16 index; };
-    gSPDisplayList((*gfx)++, osVirtualToPhysical(&D_8012C960->commands[((struct Command *)data)->index]));
+    gSPDisplayList((*gfx)++, osVirtualToPhysical(&BT_DATA_FIELD(D_8012C948.display_list, D_8012C960)->commands[((struct Command *)data)->index]));
 }
 
 void func_800DD214(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
@@ -539,14 +533,14 @@ void func_800DD410(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
     void func_800DC028(s32, s32, s32);
     void mlMtxPop(void);
     extern s32 D_8012C844;
-    extern s32 D_8012C968;
+    BT_IDO_ONLY(extern s32 D_8012C968;)
     extern s32 D_8012CE58;
     struct Command { u8 padding[8]; s16 index; s16 anim_mtx_id; f32 point[3]; };
     f32 sp20[4];
 
     if (D_8012C844 != 0) {
-        if (D_8012C968 != 0) {
-            func_80019AA0(&D_8012CE58, func_800ADE2C(D_8012C968, ((struct Command *)arg1)->anim_mtx_id));
+        if (BT_DATA_FIELD(D_8012C948.animation, D_8012C968) != 0) {
+            func_80019AA0(&D_8012CE58, func_800ADE2C(BT_DATA_FIELD(D_8012C948.animation, D_8012C968), ((struct Command *)arg1)->anim_mtx_id));
             func_800193C4(sp20, ((struct Command *)arg1)->point);
             mlMtxPop();
         } else {
@@ -560,7 +554,6 @@ void func_800DD410(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
 
 void func_800DD4AC(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     extern s32 D_8012C844;
-    extern RenderData D_8012C948;
     void func_800EFA20(void *arg0, void *arg1, f32 arg2);
     void func_800DC028(s32, s32, s32);
     f32 sp18[4];
@@ -571,7 +564,7 @@ void func_800DD4AC(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
     }
 }
 
-void func_800DD504(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) { extern s32 D_8012C844; extern RenderData D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
+void func_800DD504(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) { extern s32 D_8012C844; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); BT_IDO_ONLY(extern f32 *D_8012C94C;) f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale); func_800EF04C(sp18, BT_DATA_FIELD(D_8012C948.position, D_8012C94C)); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
 void func_800DD56C(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
     struct SelectorCommand {
         u32 header[2];
@@ -638,7 +631,7 @@ void func_800DD65C(BT_IDO_ONLY(Gfx **arg0) BT_NATIVE_ONLY(void *context), BT_IDO
     if (D_8012CEC4 != NULL) {
         D_8012CEC4(BT_NATIVE_ONLY((f32 *))mtx, sp38, *(s16 *)((u8 *)arg1 + 0xC));
     }
-    list = &D_8012C960->commands[*(s16 *)((u8 *)arg1 + 8)];
+    list = &BT_DATA_FIELD(D_8012C948.display_list, D_8012C960)->commands[*(s16 *)((u8 *)arg1 + 8)];
     packet = (*arg0)++;
     packet->words.w0 = 0xDE000000;
     packet->words.w1 = osVirtualToPhysical(list);
@@ -694,7 +687,7 @@ void func_800DD728(BT_IDO_ONLY(struct GeoContext800DD728 *context) BT_NATIVE_ONL
     }
     packet = context->gfx++;
     packet->words.w0 = 0xDE000000;
-    packet->words.w1 = osVirtualToPhysical(command->indices[0] + D_8012C960->commands);
+    packet->words.w1 = osVirtualToPhysical(command->indices[0] + BT_DATA_FIELD(D_8012C948.display_list, D_8012C960)->commands);
     for (i = 1; command->indices[i]; i++) {
             if (command->flags && (command->flags & 1)) {
                 if (command->counts2[i]) {
@@ -717,7 +710,7 @@ void func_800DD728(BT_IDO_ONLY(struct GeoContext800DD728 *context) BT_NATIVE_ONL
             matrixPacket->words.w1 = (u32)context->mtx;
             listPacket = context->gfx++;
             listPacket->words.w0 = 0xDE000000;
-            listPacket->words.w1 = osVirtualToPhysical(command->indices[i] + D_8012C960->commands);
+            listPacket->words.w1 = osVirtualToPhysical(command->indices[i] + BT_DATA_FIELD(D_8012C948.display_list, D_8012C960)->commands);
     }
     context->mtx++;
 }
@@ -777,7 +770,7 @@ void func_800DD998(BT_IDO_ONLY(struct GeoContext800DD998 *context) BT_NATIVE_ONL
         }
         list = context->gfx++;
         list->words.w0 = 0xDE000000;
-        list->words.w1 = osVirtualToPhysical(command->indices[i] * 8 + (u8 *)D_8012C960 + 8);
+        list->words.w1 = osVirtualToPhysical(command->indices[i] * 8 + (u8 *)BT_DATA_FIELD(D_8012C948.display_list, D_8012C960) + 8);
         packet = context->gfx++;
         packet->words.w0 = 0xDA380002;
         i++;
@@ -788,7 +781,6 @@ void func_800DD998(BT_IDO_ONLY(struct GeoContext800DD998 *context) BT_NATIVE_ONL
 
 void func_800DDB38(void *arg0, u8 *arg1) {
     void mlMtxApply(Mtx *);
-    extern RenderData D_8012C948;
     struct DrawContext {
         Gfx *gfx;
         Mtx *mtx;
@@ -807,7 +799,7 @@ void func_800DDB38(void *arg0, u8 *arg1) {
     do {
         list = context->gfx++;
         list->words.w0 = 0xDE000000;
-        list->words.w1 = osVirtualToPhysical(*(u8 **)((u8 *)&D_8012C948 + 0x18) + command->indices[i] * 8 + 8);
+        list->words.w1 = osVirtualToPhysical(BT_DATA_FIELD((u8 *)D_8012C948.display_list, *(u8 **)((u8 *)&D_8012C948 + 0x18)) + command->indices[i] * 8 + 8);
         packet = context->gfx++;
         i++;
         packet->words.w0 = 0xDA380002;
@@ -818,7 +810,6 @@ void func_800DDB38(void *arg0, u8 *arg1) {
 
 void func_800DDC28(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     s32 func_800E3D0C(f32 *, f32 *);
-    extern RenderData D_8012C948;
     f32 scaled_min[3];
     f32 scaled_max[3];
     s32 i;
@@ -845,8 +836,7 @@ void func_800DDD14(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
-    extern RenderData D_8012C948;
-    extern f32 *D_8012C94C;
+    BT_IDO_ONLY(extern f32 *D_8012C94C;)
     f32 sp34[3];
     f32 sp28[3];
     s32 pad[2];
@@ -856,8 +846,8 @@ void func_800DDD14(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT
         func_800EE88C(sp28, (s16 *)(arg1 + 0xE));
         func_800EF334(sp34, D_8012C948.scale);
         func_800EF334(sp28, D_8012C948.scale);
-        func_800EF04C(sp34, D_8012C94C);
-        func_800EF04C(sp28, D_8012C94C);
+        func_800EF04C(sp34, BT_DATA_FIELD(D_8012C948.position, D_8012C94C));
+        func_800EF04C(sp28, BT_DATA_FIELD(D_8012C948.position, D_8012C94C));
         if (func_800E3D0C(sp34, sp28) != 0) {
             arg1 += *(s16 *)(arg1 + 0x14);
             func_800DE2A4(arg0, arg1);
@@ -875,7 +865,6 @@ void func_800DDDC4(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT
     void func_800EE88C(f32 *, s16 *);
     void func_800EF334(f32 *, f32);
     void mlMtxPop(void);
-    extern RenderData D_8012C948;
     extern s32 D_8012CE58;
     f32 pos[3];
     f32 radius;
@@ -896,8 +885,8 @@ void func_800DDDC4(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT
     } else {
         func_800EE88C(pos, (s16 *)(arg1 + 8));
         radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
-        if (*(s32 *)((u8 *)&D_8012C948 + 0x20)) {
-            func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), *(s16 *)(arg1 + 0x12)));
+        if (BT_DATA_FIELD(D_8012C948.animation, *(s32 *)((u8 *)&D_8012C948 + 0x20))) {
+            func_80019AA0(&D_8012CE58, func_800ADE2C(BT_DATA_FIELD(D_8012C948.animation, *(s32 *)((u8 *)&D_8012C948 + 0x20)), *(s16 *)(arg1 + 0x12)));
             func_80019224(pos, pos);
             mlMtxPop();
         } else {
@@ -917,7 +906,6 @@ void func_800DDF14(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF334(f32 *, f32);
-    extern RenderData D_8012C948;
     f32 sp2C[3];
     f32 radius;
     s32 offset;
@@ -942,8 +930,7 @@ void func_800DDFA0(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
-    extern RenderData D_8012C948;
-    extern f32 *D_8012C94C;
+    BT_IDO_ONLY(extern f32 *D_8012C94C;)
     f32 sp2C[3];
     f32 radius;
     s32 offset;
@@ -951,7 +938,7 @@ void func_800DDFA0(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT
 
     func_800EE88C(sp2C, (s16 *)(arg1 + 8));
     func_800EF334(sp2C, D_8012C948.scale);
-    func_800EF04C(sp2C, D_8012C94C);
+    func_800EF04C(sp2C, BT_DATA_FIELD(D_8012C948.position, D_8012C94C));
     radius = (f32)*(s16 *)(arg1 + 0xE) * D_8012C948.scale;
     if (func_800E3E8C(sp2C, radius) == 0) {
         return;
@@ -969,10 +956,10 @@ void func_800DE03C(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
     BT_IDO_ONLY(s32 _dbzone_entrypoint_0(s32, u8 *, u8, u8 *);) BT_NATIVE_ONLY(s32 _dbzone_entrypoint_0(u8 *, u8 *, u32);)
     s32 _glzone_entrypoint_3(s32, s32);
     extern s32 D_8012C848;
-    extern s32 D_8012C970;
+    BT_IDO_ONLY(extern s32 D_8012C970;)
     s32 temp_v0;
 
-    temp_v0 = BT_IDO_ONLY(_dbzone_entrypoint_0(D_8012C970, arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA))), arg1)) BT_NATIVE_ONLY(_dbzone_entrypoint_0((u8 *)(BtIntPtr)D_8012C970, arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA)))));
+    temp_v0 = BT_IDO_ONLY(_dbzone_entrypoint_0(BT_DATA_FIELD(D_8012C948.zones, D_8012C970), arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA))), arg1)) BT_NATIVE_ONLY(_dbzone_entrypoint_0((u8 *)(BtIntPtr)BT_DATA_FIELD(D_8012C948.zones, D_8012C970), arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA)))));
     if (((temp_v0 == 0) && ((*(u8 *)((s8 *)(arg1) + (0xB))) & 1)) || ((temp_v0 != 0) && ((*(u8 *)((s8 *)(arg1) + (0xB))) & 2))) {
         if (D_8012C848 != 0) {
             if (((struct camera_command *)arg1)->zone != 0) {
@@ -991,7 +978,6 @@ void func_800DE0D8(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
 #endif
     MtxF *mlMtx_get_stack_pointer(void);
     void mlMtxPop(void);
-    extern RenderData D_8012C948;
     extern s32 D_8012CE58;
     BT_IDO_ONLY(extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);)
     struct command { s32 header[2]; s16 count; s16 id; struct { s16 bone; s16 tag; } entries[1]; };
@@ -1002,7 +988,7 @@ void func_800DE0D8(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY
     sp48[0] = command->id;
     if (D_8012CEC4 != NULL) {
         for (i = 0; i < command->count; i++) {
-                func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), command->entries[i].bone));
+                func_80019AA0(&D_8012CE58, func_800ADE2C(BT_DATA_FIELD(D_8012C948.animation, *(s32 *)((u8 *)&D_8012C948 + 0x20)), command->entries[i].bone));
                 D_8012CEC4(BT_NATIVE_ONLY((f32 *))mlMtx_get_stack_pointer(), sp48, command->entries[i].tag);
                 mlMtxPop();
         }

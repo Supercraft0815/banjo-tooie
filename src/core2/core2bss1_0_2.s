@@ -86,31 +86,7 @@ dlabel D_80128179
     /* 80128179 */ .space 0x07
 
 dlabel D_80128180
-    /* 80128180 */ .space 0x0F
-
-dlabel D_8012818F
-    /* 8012818F */ .space 0x01
-
-dlabel D_80128190
-    /* 80128190 */ .space 0x01
-
-dlabel D_80128191
-    /* 80128191 */ .space 0x01
-
-dlabel D_80128192
-    /* 80128192 */ .space 0x01
-
-dlabel D_80128193
-    /* 80128193 */ .space 0x01
-
-dlabel D_80128194
-    /* 80128194 */ .space 0x04
-
-dlabel D_80128198
-    /* 80128198 */ .space 0x0C
-
-dlabel D_801281A4
-    /* 801281A4 */ .space 0x0C
+    /* 80128180 */ .space 0x30
 
 dlabel D_801281B0
     /* 801281B0 */ .space 0x100

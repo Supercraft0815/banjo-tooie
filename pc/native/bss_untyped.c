@@ -142,8 +142,6 @@ u8 D_80126E5C[484] BT_DATA(4, bss_core2bss1_sound_tail, 0x17C);
 u8 bss_core2bss1_sound_tail__end[1] BT_DATA(1, bss_core2bss1_sound_tail, 0x36F);
 u8 bss_core2bss2__end[1] BT_DATA(1, bss_core2bss2, 0x5F);
 u8 D_8012CA20[8] BT_DATA(4, bss_core2bss2_1, 0xE0);
-u8 D_8012CE40[4] BT_DATA(4, bss_core2bss2_1, 0x500);
-u8 D_8012CE44[4] BT_DATA(4, bss_core2bss2_1, 0x504);
 
 u8 D_8012CF90[20] BT_DATA(4, bss_core2bss2_1, 0x650);
 u8 D_8012D4A0[4] BT_DATA(4, bss_core2bss2_1, 0xB60);
@@ -182,7 +180,6 @@ u8 D_80137240[4] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1820);
 u8 D_80137244[4] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1824);
 u8 D_80137248[8] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1828);
 u8 D_80137250[208] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1830);
-u8 D_80137342[48] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1922);
 u8 bss_core2bss2_2_music_tail__end[1] BT_DATA(1, bss_core2bss2_2_music_tail, 0x196F);
 u8 D_80801370[64] BT_DATA(16, bss_drone_xform, 0x0);
 u8 bss_fx_dialog__end[1] BT_DATA(1, bss_fx_dialog, 0x1F);

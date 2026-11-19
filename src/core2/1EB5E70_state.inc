@@ -32,8 +32,7 @@ void func_800DF35C(void) {
 }
 
 void func_800DF38C(void) {
-    extern LookAtBuffer D_8012CA40;
-    extern f32 D_8012CE48[3];
+    BT_IDO_ONLY(extern f32 D_8012CE48[3];)
     extern u8 D_8012C840;
 #ifndef BT_NATIVE
     s32 func_800ADF98(void);
@@ -46,7 +45,7 @@ void func_800DF38C(void) {
     buffer = &D_8012CA40;
     buffer->current = buffer->buffer;
     buffer->end = buffer->current + 32;
-    func_800EFD24(D_8012CE48);
+    func_800EFD24(BT_DATA_FIELD(D_8012CA40.position, D_8012CE48));
     *(s32 *)&D_8012C840 = func_800ADF98();
     func_8010E334();
 }
@@ -110,7 +109,7 @@ void func_800DF490(s32 arg0, s32 arg1) {
 void func_800DF4A4(s32 arg0)
 {
 
-    D_8012C960 = (DisplayListView *)arg0;
+    BT_DATA_FIELD(D_8012C948.display_list, D_8012C960) = (DisplayListView *)arg0;
 }
 
 void func_800DF4B0(s32 arg0) {
@@ -215,25 +214,25 @@ void func_800DF6BC(s32 arg0, s32 arg1) {
     func_800DF410(arg1);
 }
 
-void func_800DF714(s32 arg0)
+void func_800DF714(BT_NATIVE_ONLY(Mtx *) BT_IDO_ONLY(s32) arg0)
 {
-    extern s32 D_8012C980;
+    BT_IDO_ONLY(extern s32 D_8012C980;)
 
-    D_8012C980 = arg0;
+    BT_DATA_FIELD(D_8012C948.matrices, D_8012C980) = arg0;
 }
 
-void func_800DF720(s32 arg0)
+void func_800DF720(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg0)
 {
-    extern s32 D_8012C974;
+    BT_IDO_ONLY(extern s32 D_8012C974;)
 
-    D_8012C974 = arg0;
+    BT_DATA_FIELD(D_8012C948.colors, D_8012C974) = arg0;
 }
 
-void func_800DF72C(s32 arg0)
+void func_800DF72C(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg0)
 {
-    extern s32 D_8012C968;
+    BT_IDO_ONLY(extern s32 D_8012C968;)
 
-    D_8012C968 = arg0;
+    BT_DATA_FIELD(D_8012C948.animation, D_8012C968) = arg0;
 }
 
 void func_800DF738(s32 arg0)
@@ -259,16 +258,16 @@ void func_800DF7C4(s32 arg0, s32 arg1) {
     D_8012C850[arg0] = -arg1;
 }
 
-void func_800DF7DC(s32 arg0)
+void func_800DF7DC(BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(s32) arg0)
 {
-    extern s32 D_8012C95C;
+    BT_IDO_ONLY(extern s32 D_8012C95C;)
 
-    D_8012C95C = arg0;
+    BT_DATA_FIELD(D_8012C948.textures, D_8012C95C) = arg0;
 }
 
 void func_800DF7E8(u8 arg0) {
-    extern s8 D_8012C96C;
-    D_8012C96C = arg0;
+    BT_IDO_ONLY(extern s8 D_8012C96C;)
+    BT_DATA_FIELD(D_8012C948.texture_animation, D_8012C96C) = arg0;
 }
 
 void func_800DF7F8(s32 arg0, f32 arg1, f32 arg2) {
@@ -278,18 +277,18 @@ void func_800DF7F8(s32 arg0, f32 arg1, f32 arg2) {
     (*(f32 *)((s8 *)(&D_8012CA18) + (8))) = arg2;
 }
 
-void func_800DF818(s32 arg0)
+void func_800DF818(BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(s32) arg0)
 {
-    extern s32 D_8012C964;
+    BT_IDO_ONLY(extern s32 D_8012C964;)
 
-    D_8012C964 = arg0;
+    BT_DATA_FIELD(D_8012C948.vertices, D_8012C964) = arg0;
 }
 
-void func_800DF824(s32 arg0)
+void func_800DF824(BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(s32) arg0)
 {
-    extern s32 D_8012C978;
+    BT_IDO_ONLY(extern s32 D_8012C978;)
 
-    D_8012C978 = arg0;
+    BT_DATA_FIELD(D_8012C948.normals, D_8012C978) = arg0;
 }
 
 void func_800DF830(s32 arg0)

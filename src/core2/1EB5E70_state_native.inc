@@ -9,8 +9,8 @@ s32 func_800DF33C(s32 index) {return index>=0 && index<60 ? native_render.switch
 s32 func_800DF350(void) {return native_render.visible;}
 void func_800DF35C(void) {func_800ADF5C(native_render.scratch);native_render.scratch=NULL;func_8010E390();}
 void func_800DF38C(void) {
-    func_800DE318();native_render.look_current=native_render.look_at;native_render.look_end=native_render.look_at+32;
-    for(int i=0;i<3;++i)native_render.look_position[i]=0;
+    func_800DE318();native_render.look_at.current=native_render.look_at.buffer;native_render.look_at.end=native_render.look_at.buffer+32;
+    for(int i=0;i<3;++i)native_render.look_at.position[i]=0;
     native_render.scratch=func_800ADF98();func_8010E334();
 }
 void func_800DF3E0(void) {for(int i=0;i<60;++i)native_render.switches[i]=0;}

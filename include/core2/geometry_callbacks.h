@@ -3,6 +3,13 @@
 
 #include "common.h"
 
+typedef struct {
+    LookAt buffer[32];
+    LookAt *current;
+    LookAt *end;
+    f32 position[3];
+} LookAtBuffer;
+
 struct GeometryRenderData;
 typedef void (*GeometryBegin)(struct GeometryRenderData *, s32, void *, const f32 *);
 typedef void (*GeometryVertex)(f32 *, s32 *, s32);

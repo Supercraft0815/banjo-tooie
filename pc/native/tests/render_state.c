@@ -12,7 +12,7 @@ static uintptr_t callback_value;
 static void callback(uintptr_t value) {callback_value=value;}
 static void near(f32 value,f32 expected) {CHECK(fabsf(value-expected)<0.0001f);}
 static void test_state(void) {
-    func_800DF38C();CHECK(*func_800DF330() && func_8010E3B8());CHECK(native_render.look_current==native_render.look_at && native_render.look_end==native_render.look_at+32);
+    func_800DF38C();CHECK(*func_800DF330() && func_8010E3B8());CHECK(native_render.look_at.current==native_render.look_at.buffer && native_render.look_at.end==native_render.look_at.buffer+32);
     CHECK(native_render.distance==30000 && native_render.range_scale==1 && native_render.cull && native_render.env[3]==255);
     CHECK(func_800DF33C(1)==1 && !func_800DF33C(2));
     BoneTransformList pose={0};NativeVertexList *vertices=heap_alloc(sizeof(*vertices));NativeBoneMatrices *bones=func_800ADF98();

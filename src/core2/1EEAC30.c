@@ -420,6 +420,6 @@ void func_801120CC(s32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s16 D_80137340 [ 25 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0x1920);
+s16 D_80137340[25];
 s16 D_80137372 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1952);
 #endif

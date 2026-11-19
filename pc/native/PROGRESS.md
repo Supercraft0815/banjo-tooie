@@ -3184,3 +3184,25 @@ liegen an ihren Originaladressen. Der LP64-Scan meldet 685 Warnstellen in
 Typinformationen verbleiben 204 verschiebbare Offsets in 36 Dateien. Belege
 unter `build/acceptance/n1-2026-11-18/current-viewport-owners*`,
 `current-save-records*` und `current-player-vectors-corrected-full.log`.
+
+### 2026-11-19 – Renderzustand und Textwarteschlange
+
+Der Renderer verwendet gemeinsame Felder für Texturen, Displayliste, Vertices,
+Animation und Farben. Die 32 LookAt-Einträge, ihre Grenzen und die Blickposition
+gehören zu einem Objekt. Die Tabelle mit den 25 Befehlslängen ist ein C-Array.
+
+Die Textwarteschlange legt ihre Einträge mit `sizeof(TextEntry)` an.
+Ein LP64-Test stellt zehn verschiedene Textadressen über 4 GiB mit eigenen
+RGBA-Werten ein. Die Warteschlange wächst dabei über ihre acht anfänglichen
+Plätze. Die Zeichenroutine liest die zehn Einträge in Reihenfolge. Die
+Glyphenabfrage liefert die vollständige Pixeladresse zurück. Nach dem Leeren
+bleibt ein zweiter Zeichenaufruf leer. Der primäre LP64-Scan meldet 683
+Warnstellen in 230 Dateien und null fehlgeschlagene Übersetzungen. Seine
+Fehlerdatei wird auch nach einem erfolgreichen Folgelauf aktualisiert.
+
+Beide Teilstände bestehen elf Gastsuiten und je 74 Replays mit 447.849
+Retraces. 64 Sanitizertests bestehen. Der Original-IDO-Vergleich bestätigt
+16.401 identische Funktionen und beide vollständigen ROM-Abbilder. Alle 9.703
+Laufzeit-Zeigerwörter liegen an den Originaladressen. Belege unter
+`build/acceptance/n1-2026-11-18/current-render-settings*` und
+`current-text-queue*`.
