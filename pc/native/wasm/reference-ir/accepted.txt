@@ -321,3 +321,10 @@ loop select the same ROM fields. bt_be_fixup still swaps the same 9,688
 distinct symbol/offset pairs after Splat splits and block renumbering.
 See n1-2026-11-18/lagoon-section-fields-proof.json and
 current-camera-lagoon-fixup-slots.json.
+
+2026-11-19  N2 Humba transformation dialogue
+func_808015DC_chhumba consumes the return values of func_800903D0 and
+func_800903F8. The original MIPS branches on those values to send event
+0x89 and enter states 10 and 15. All ten transformation replays pass
+through states 9, 10 and 11 to 12 and set the form-specific dialogue flag.
+See n2-2026-11-18/humba-original-flow-original-mips.txt and humba-live-form/.

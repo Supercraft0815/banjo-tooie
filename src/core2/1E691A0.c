@@ -325,13 +325,13 @@ void func_8009039C(s32 arg0,BtIntPtr arg1)
     func_800F7700(func_800F54E4(),arg0,arg1);
 }
 
-void func_800903D0(f32 *arg0) { void func_800903F8(f32 *, f32, f32); func_800903F8(arg0, 840.0f, -1500.0f); }
+s32 func_800903D0(f32 *arg0) { return func_800903F8(arg0, 840.0f, -1500.0f); }
 
 /* extern */
 
-void func_800903F8(f32 *arg0, f32 arg1, f32 arg2) {
+s32 func_800903F8(f32 *arg0, f32 arg1, f32 arg2) {
     s32 func_800F7844(BtUIntPtr, f32 *, f32, f32);
-    func_800F7844(func_800F54E4(), arg0, arg1, arg2);
+    return func_800F7844(func_800F54E4(), arg0, arg1, arg2);
 }
 
 void func_80090434(s32 arg0)

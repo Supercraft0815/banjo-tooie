@@ -126,9 +126,9 @@ void func_808002E8_chsilo(Actor *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800378_chsilo(BtIntPtr arg0) {
-    s32 func_800903D0(BtIntPtr);
-    func_800903D0(arg0 + 0x18);
+void func_80800378_chsilo(Actor *arg0) {
+    s32 func_800903D0(f32 *);
+    func_800903D0((f32 *)arg0->actorData);
 }
 
 /* extern */
@@ -280,7 +280,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
             func_80800398_chsilo(arg0, 0);
             *(f32 *)(arg0 + 0x2C) = *(f32 *)(arg0 + 8) - 25.0f;
             func_800907C0((f32 *)(arg0 + 0x28));
-            func_80800378_chsilo((BtIntPtr)arg0);
+            func_80800378_chsilo((Actor *)arg0);
             break;
     }
     return 1;
@@ -433,7 +433,7 @@ void func_80800B80_chsilo(Actor *arg0) {
                     }
                 } else {
                     func_80800104_chsilo(arg0, 0xDA8, 0);
-                    func_80800378_chsilo((BtIntPtr)arg0);
+                    func_80800378_chsilo((Actor *)arg0);
                     func_808004C0_chsilo((u8 *)arg0, 7);
                 }
             } else {
@@ -460,7 +460,7 @@ void func_80800B80_chsilo(Actor *arg0) {
                 func_80800398_chsilo(arg0, 0);
                 func_80800420_chsilo(arg0, 0);
                 _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, D_808012E0_chsilo.audio);
-                func_80800378_chsilo((BtIntPtr)arg0);
+                func_80800378_chsilo((Actor *)arg0);
                 func_808004C0_chsilo((u8 *)arg0, 7);
             } else {
                 *(f32 *)&arg0->actorData[5] += 300.0f * delta;

@@ -2905,3 +2905,22 @@ Alle 9.688 Wörter der Byteorder-Korrektur sind vor und nach der
 Sanitizertests, 16.401 Funktionen und beide Original-IDO-ROMs.
 Belege unter `build/acceptance/n1-2026-11-18/current-camera-lagoon*`
 und in `lagoon-section-fields-proof.json`.
+
+## 2026-11-19 — Humbas Dialogabschluss bei allen zehn Verwandlungen
+
+Zwei Wrapper geben das Ergebnis des Spieler-Interrupts wieder an Humba zurück.
+Der MIPS-Code prüft genau diesen Wert und schaltet die Dialogroutine weiter.
+Im alten Gast blieben alle zehn Verwandlungen bis zum Ende des Replays in
+Zustand 9. Jetzt durchlaufen sie die Zustände 10 und 11 und enden in 12.
+Bei jeder Form wurden Spielerform und Dialogflag im laufenden Spiel vor und
+nach der Verwandlung gelesen. Bei Dragon Kazooie wurden zusätzlich Bezahlung
+und Freischaltung geprüft.
+
+Der Replayschreiber führt den aktuellen Spielerzustand im zweiten Feld.
+Der Korpus verwendet dieses Feld jetzt für alle Formen und für die neun
+Mumbo-Fälle. Die zehn betroffenen Referenzen wurden einzeln gesichert und
+ersetzt. Elf Gastsuiten, 74 Replays mit 447.849 Retraces und 62 native
+Sanitizertests bestehen. Der Original-IDO-Vergleich umfasst 16.401 Funktionen
+und beide vollständigen ROMs. Die MIPS-Befehle, Speichermessungen und
+Vergleiche liegen unter `build/acceptance/n2-2026-11-18/humba-original-flow*`
+und `humba-live-form/`.

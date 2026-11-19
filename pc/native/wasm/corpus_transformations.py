@@ -24,14 +24,14 @@ def wumba_press(dive=False):
 
 
 SCENES = (
-    ('stony', 0xB6, 176),
+    ('stony', 0xB6, 179),
     ('detonator', 0xE9, 268),
     ('money-van', 0xD5, 282),
-    ('submarine', 0x120, 70),
-    ('baby-t-rex', 0x11E, 321),
-    ('daddy-t-rex', 0x122, 333),
-    ('washer', 0x11F, 142),
-    ('snowball', 0x135, 388),
+    ('submarine', 0x120, 305),
+    ('baby-t-rex', 0x11E, 325),
+    ('daddy-t-rex', 0x122, 337),
+    ('washer', 0x11F, 50),
+    ('snowball', 0x135, 381),
     ('bee', 0x140, 133),
     ('dragon-kazooie', 0x157, 1),
 )
@@ -41,6 +41,7 @@ CASES = {
         'flags': FLAGS, 'items': [(0x54 if form == 'dragon-kazooie' else 0x48, 1)],
         'seconds': 117, 'press': wumba_press(dive=form == 'submarine'),
         'warp': f'34:{map_id:X}:1', 'expected_map': map_id, 'expected_player_state': state,
+        'expected_actor_state': (0x675, 12),
         'dump_every': 300,
     }
     for form, map_id, state in SCENES
@@ -48,4 +49,4 @@ CASES = {
 
 # Dragon Kazooie shares Banjo's movement state. A live read verified that the
 # Mega Glowbo payment (0xDE) and Dragon Kazooie ability (0x3EC) are set in this bank.
-CASES['wumba-dragon-kazooie']['expected_permanent_flags_hash'] = '9b088606dbde9a78'
+CASES['wumba-dragon-kazooie']['expected_permanent_flags_hash'] = '69acadb66d7f4cd4'

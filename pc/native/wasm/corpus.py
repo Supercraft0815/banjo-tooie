@@ -158,7 +158,7 @@ def trace_summary(directory, case):
     if 'expected_player_state' in case:
         slot = case.get('expected_player_slot', 0)
         player = last['players'][slot] if 0 <= slot < len(last['players']) else {}
-        actual = player['status'][0] if player.get('present') else None
+        actual = player['status'][1] if player.get('present') else None
         if actual != case['expected_player_state']:
             raise ValueError(f'{directory.name}: expected player state {case["expected_player_state"]}, got {actual}')
     expected_flags = case.get('expected_permanent_flags_hash')

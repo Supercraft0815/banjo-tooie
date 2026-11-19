@@ -94,7 +94,7 @@ def skull_case(map_id, route, paid_flags=None):
         events.extend((f'{walk:.5f}:35000000', f'{walk + .65:.5f}:0',
                        f'{walk + 1.1:.5f}:4000', f'{walk + 1.4:.5f}:0'))
         case.update(seconds=math.ceil(walk + 4), expected_players=2, expected_player_slot=1,
-                    expected_player_state=239, expected_permanent_flags_hash=paid_flags)
+                    expected_player_state=229, expected_permanent_flags_hash=paid_flags)
     return dict(case, press=','.join(events))
 
 
