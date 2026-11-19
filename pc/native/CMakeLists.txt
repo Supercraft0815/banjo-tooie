@@ -403,7 +403,11 @@ add_executable(bt_native_timer_queue_test tests/timer_queue.c "${BT_ROOT}/src/co
 target_link_libraries(bt_native_particle_registry_test PRIVATE bt_native_options)
 target_link_libraries(bt_native_transition_registry_test PRIVATE bt_native_options)
 target_link_libraries(bt_native_timer_queue_test PRIVATE bt_native_core)
-foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue)
+add_executable(bt_native_gameselect_roles_test tests/gameselect_role_layout.c
+    "${BT_ROOT}/src/overlays/ch/gameselect.c")
+target_include_directories(bt_native_gameselect_roles_test PRIVATE "${BT_ROOT}/src/overlays/ch")
+target_link_libraries(bt_native_gameselect_roles_test PRIVATE bt_native_options)
+foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles)
     if(MSVC)
         target_compile_options(bt_native_${registry_test}_test PRIVATE /Gy /Gw)
         target_link_options(bt_native_${registry_test}_test PRIVATE /OPT:REF)

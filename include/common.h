@@ -389,6 +389,12 @@ typedef struct Actor {
     /* 0x9A */ u8 pad9A;
     /* 0x9B */ u8 alpha;
 #endif
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    union {
+        struct GameSelectRootData *game_select_root_data;
+        struct GameSelectBoxData *game_select_box_data;
+    };
+#endif
 } Actor;
 #ifndef BT_NATIVE
 typedef char bt_assert_actor[(sizeof(Actor) == 0x9C) ? 1 : -1];
@@ -402,7 +408,14 @@ typedef struct ActorData {
     void *unk8;
     void (*unkC_func)(Actor* actor);
     void (*unk10_func)(Actor* actor);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    union {
+        void (*unk14_func)(s32, s32);
+        void (*draw_actor)(Actor *, BtIntPtr);
+    };
+#else
     void (*unk14_func)(s32 arg0, s32 arg1);
+#endif
     s32 unk18;
 #ifdef BT_NATIVE
     union { s32 unk1C; f32 shadow_scale; };

@@ -2640,3 +2640,22 @@ Alle elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Der
 gemeinsame Original-IDO-Neubau erhielt alle 16.401 Funktionen sowie beide
 ROM-Abbilder bytegenau. Die Belege liegen unter
 `build/acceptance/n1-2026-11-18/current-six-actors*`.
+
+## 2026-11-19 — N3, Spielstandauswahl auf 64 Bit
+
+Der Menü-Actor hält die fünf Kindmarker in seiner vorhandenen
+256-Byte-Allokation. Die beiden Dialogtypen besitzen eigene Box- und
+Textdaten. Das Ergebnispanel reserviert seinen Actor-Puffer in Hostgröße
+und verwendet getrennte Plätze für vier Boxen, vier Texte und den
+gemeinsamen Textpuffer. Die Draw-Callbacks reichen den Renderkontext
+in Zeigerbreite weiter.
+
+Der neue Test durchläuft Anlegen, Zeichnen und Freigeben mit Adressen
+oberhalb von 4 GiB. Alle 60 nativen Tests bestanden unter ASan/UBSan.
+Die beiden Scans auf identischer Ausgangsbasis zählen 913 bzw. 796
+LP64-Warnstellen, jeweils 223 kritische Offsets. Alle elf Suiten und
+74 Replays mit 447.849 Retraces bestanden. Original-IDO bestätigt alle
+16.401 Funktionen und beide ROM-Abbilder. Die Belege liegen unter
+`build/acceptance/n3-current-gameselect-2026-11-19/` in
+`current-game-select-ido/result.json`, `current-game-select-full.log`,
+`role-ctest.log` und den beiden Hazard-Berichten.

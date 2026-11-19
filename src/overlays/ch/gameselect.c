@@ -1,6 +1,7 @@
 #include "gameselect_tables.h"
 #include "gameselect_bss.inc"
-s32 _gczoombox_entrypoint_4(s32, void *);
+#include "gameselect_roles.h"
+GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_4(s32, void *);)
 
 struct anctrl_s;
 
@@ -66,7 +67,7 @@ void func_8080000C_chgameselect(Actor *arg0) {
     func_80108B04(arg0, 0x4B9);
     arg0->actorData[7] = 0;
     arg0->unk58 = 0.1f;
-    *(void **)&arg0->unk50 = heap_alloc(0x100);
+    GAME_SELECT_LP64(game_select_root_init(arg0, heap_alloc(0x100)), *(void **)&arg0->unk50 = heap_alloc(0x100));
 }
 
 void func_8080015C_chgameselect(Actor *arg0) {
@@ -93,7 +94,7 @@ void func_8080015C_chgameselect(Actor *arg0) {
                 if (D_8011A3F0 != 0) {
                     func_80803C80_chgameselect();
                 }
-                func_808016E8_chgameselect((Unk80132ED0 *)arg0->actorData[4], arg0->unk79_4);
+                func_808016E8_chgameselect(game_select_root_child(arg0, 4), arg0->unk79_4);
                 func_80800478_chgameselect((BtIntPtr)arg0, arg0->unk6C_0);
             }
             break;
@@ -125,21 +126,21 @@ s32 func_80800228_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
                         arg0->unk3C = child->unk0;
                         break;
                     case 0x4AB:
-                        arg0->actorData[4] = (BtUIntPtr)child->unk0;
+                        GAME_SELECT_LP64(game_select_root_set_child(arg0, 4, child->unk0), arg0->actorData[4] = (BtUIntPtr)child->unk0);
                         child->scale = arg0->scale;
                         break;
                     case 0x4AA:
-                        arg0->actorData[5] = (BtUIntPtr)child->unk0;
+                        GAME_SELECT_LP64(game_select_root_set_child(arg0, 5, child->unk0), arg0->actorData[5] = (BtUIntPtr)child->unk0);
                         break;
                     case 0x4A9:
-                        arg0->actorData[3] = (BtUIntPtr)child->unk0;
+                        GAME_SELECT_LP64(game_select_root_set_child(arg0, 3, child->unk0), arg0->actorData[3] = (BtUIntPtr)child->unk0);
                         child->unk64_20 = 1;
                         break;
                     case 0x4AC:
-                        arg0->actorData[6] = (BtUIntPtr)child->unk0;
+                        GAME_SELECT_LP64(game_select_root_set_child(arg0, 6, child->unk0), arg0->actorData[6] = (BtUIntPtr)child->unk0);
                         break;
                     case 0x1E8:
-                        arg0->actorData[7] = (BtUIntPtr)child->unk0;
+                        GAME_SELECT_LP64(game_select_root_set_child(arg0, 7, child->unk0), arg0->actorData[7] = (BtUIntPtr)child->unk0);
                         break;
                 }
             } else {
@@ -171,10 +172,10 @@ s32 func_80800228_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800440_chgameselect(void *arg0) {
     void func_808036D8_chgameselect(void);
-    void *mem;
+    BT_NATIVE_ONLY(void heap_free(void *);) void *mem;
 
     func_808036D8_chgameselect();
-    mem = ((Objgameselect_arg0 *)arg0)->unk50;
+    mem = GAME_SELECT_LP64(game_select_root_detach((Actor *)arg0), ((Objgameselect_arg0 *)arg0)->unk50);
     if (mem != NULL) {
         heap_free(mem);
     }
@@ -198,7 +199,7 @@ void func_80800478_chgameselect(BtIntPtr arg0, s32 arg1) {
     typedef struct {
         s32 count;
         s32 first;
-        void *second;
+        GAME_SELECT_LP64(s32, void *) second;
     } GameSelectData;
     s32 option;
     GameSelectExit exitCallback;
@@ -213,23 +214,23 @@ void func_80800478_chgameselect(BtIntPtr arg0, s32 arg1) {
         func_80101FDC(actor, arg1);
         data = (GameSelectData *)actor->actorData;
         data->count = 0;
-        data->second = (void *)-1; data->first = -1;
+        data->second = GAME_SELECT_LP64(-1, (void *)-1); data->first = -1;
         if (D_80807DD0_chgameselect[actor->unk70_10].init != NULL) {
             option = D_80807DD0_chgameselect[actor->unk70_10].init(actor);
         }
         if (actor->unk70_10 != 1) {
             if (actor->unk70_10 == 8) {
-                func_80802780_chgameselect(actor->actorData[3], 0);
+                func_80802780_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child(actor, 3), actor->actorData[3]), 0);
                 func_8080218C_chgameselect(actor->unk79_4, 1);
-                func_80801658_chgameselect(actor->actorData[4], 1);
-                func_80801714_chgameselect((Unk80132ED0 *)actor->actorData[4], 0);
+                func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child(actor, 4), actor->actorData[4]), 1);
+                func_80801714_chgameselect(game_select_root_child(actor, 4), 0);
             }
         } else {
                 option = func_80803DCC_chgameselect(actor->unk79_4);
                 func_80803D00_chgameselect(0, 1);
         }
         if (option != -1) {
-            func_808026C8_chgameselect((Unk80132ED0 *)actor->actorData[5], option);
+            func_808026C8_chgameselect(game_select_root_child(actor, 5), option);
         }
     }
 }
@@ -253,9 +254,9 @@ void func_808005D4_chgameselect(Actor *arg0, s32 arg1) {
         } else {
             func_808036B8_chgameselect(option);
         }
-        func_80802640_chgameselect((Unk80132ED0 *)arg0->actorData[5],
+        func_80802640_chgameselect(game_select_root_child(arg0, 5),
             D_80807DB0_chgameselect[arg0->unk79_4].model, 0);
-        func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5],
+        func_808026C8_chgameselect(game_select_root_child(arg0, 5),
             func_80803DCC_chgameselect(arg0->unk79_4));
     }
 }
@@ -314,7 +315,7 @@ void func_808006A0_chgameselect(Actor *arg0, s32 arg1) {
         if (next != -1) {
             changed = 1;
         } else {
-            func_80800478_chgameselect(arg0,
+            func_80800478_chgameselect((BtIntPtr)arg0,
                 D_80807DB0_chgameselect[arg0->unk79_4].value);
         }
     }
@@ -322,7 +323,7 @@ void func_808006A0_chgameselect(Actor *arg0, s32 arg1) {
         func_80803C60_chgameselect();
     }
     if (next != -1) {
-        func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], next);
+        func_808026C8_chgameselect(game_select_root_child(arg0, 5), next);
     }
 }
 
@@ -338,7 +339,7 @@ void func_8080086C_chgameselect(Actor *arg0, s32 arg1) {
     default:
     case 3:
     case 4:
-        func_80800478_chgameselect(arg0, 1);
+        func_80800478_chgameselect((BtIntPtr)arg0, 1);
         /* fallthrough */
     case 2:
     case 5:
@@ -367,7 +368,7 @@ void func_808008D0_chgameselect(Actor *arg0, BtIntPtr arg1, s32 arg2) {
         var_a3 = temp_v0(arg0, arg1, arg2);
     }
     if (var_a3 != -1) {
-        func_808026C8_chgameselect((Unk80132ED0 *)(*actor)->actorData[5], var_a3);
+        func_808026C8_chgameselect(game_select_root_child((*actor), 5), var_a3);
     }
 }
 
@@ -425,7 +426,7 @@ void func_808009EC_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, B
         BT_IDO_ONLY(temp_v0();) BT_NATIVE_ONLY(temp_v0(arg0, option, item, event);)
         return;
     }
-    func_80800478_chgameselect(arg0, 1);
+    func_80800478_chgameselect((BtIntPtr)arg0, 1);
 }
 
 void func_80800A4C_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, BT_PASS2(void *option, BT_PASS2(s32 item, s32 event)))) {
@@ -485,7 +486,7 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
         func_808009EC_chgameselect(BT_IDO_ONLY(actor) BT_PASS2(actor, BT_PASS2(arg1, BT_PASS2(arg2, arg3))));
         break;
     case 4:
-        func_808008D0_chgameselect(actor, arg1, arg2);
+        func_808008D0_chgameselect(actor, (BtIntPtr)arg1, arg2);
         break;
     case 5:
 #ifdef BT_NATIVE
@@ -529,7 +530,7 @@ void func_80800CA0_chgameselect(Unk80132ED0 *arg0) {
         D_80807DD0_chgameselect[actor->unk70_10].getOption(actor, &sp1C);
     }
     if (sp1C != -1) {
-        func_808026C8_chgameselect((Unk80132ED0 *)actor->actorData[5], sp1C);
+        func_808026C8_chgameselect(game_select_root_child(actor, 5), sp1C);
     }
 }
 
@@ -841,13 +842,13 @@ void func_808015DC_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
     actor = func_80106790(arg0);
     switch (arg1) {
         case 1:
-            _subaddiefade_entrypoint_12(actor, 0xFF, 0, 0);
+            _subaddiefade_entrypoint_12((u8 *)actor, 0xFF, 0, 0);
             break;
         case 2:
-            _subaddiefade_entrypoint_12(actor, 0, 0xFF, 0);
+            _subaddiefade_entrypoint_12((u8 *)actor, 0, 0xFF, 0);
             break;
         default:
-            _subaddiefade_entrypoint_12(actor, 0xFF, 0xFF, 0xFF);
+            _subaddiefade_entrypoint_12((u8 *)actor, 0xFF, 0xFF, 0xFF);
             break;
     }
 }
@@ -938,12 +939,12 @@ void func_80801AC4_chgameselect(Actor *arg0) {
     u32 _subaddiefade_entrypoint_0(u8 *);
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_800B237C(void *, f32[3], f32 *);
-    void func_80101010(BtIntPtr);
+    void func_80101010(GAME_SELECT_LP64(f32 *, BtIntPtr));
     s32 func_80101DDC(Actor *);
     void func_80102424(Actor *, s32);
     void *func_80103C94(Actor *actor);
     void func_8080179C_chgameselect(Actor *);
-    BtIntPtr temp_v0;
+    GAME_SELECT_LP64(void *, BtIntPtr) temp_v0;
     f32 sp28[3];
     f32 sp24;
 
@@ -973,8 +974,8 @@ s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     s32 _gcfrontend_entrypoint_2(void);
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void *func_8008AEDC(void *);
-    void func_8008B304(BtIntPtr);
-    void func_8008C200(s16, BtIntPtr, BtIntPtr);
+    void func_8008B304(GAME_SELECT_LP64(struct anctrl_s *, BtIntPtr));
+    void func_8008C200(s16, GAME_SELECT_LP64(void *, BtIntPtr), GAME_SELECT_LP64(void *, BtIntPtr));
     u8 *func_800B27E0(u8 *);
     void func_80102424(Actor *, s32);
     s32 func_801032B0(Actor *, u16, u16);
@@ -1019,7 +1020,7 @@ s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, BtIntPtr arg2) {
         }
         break;
     case 31:
-        func_80801D74_chgameselect(arg0, arg2);
+        func_80801D74_chgameselect(arg0, (u8 *)arg2);
         break;
     case 33:
         values = (s16 *)&arg2;
@@ -1056,9 +1057,9 @@ void func_80801D74_chgameselect(Actor *arg0, u8 *arg1) {
     void func_80103D48(void **arg0);
     s32 func_80103D70(void **arg0);
     struct anctrl_s * func_80104248(void *arg0);
-    void func_8008B304(BtIntPtr arg0);
+    void func_8008B304(GAME_SELECT_LP64(struct anctrl_s *, BtIntPtr) arg0);
     void * func_8008AEDC(void *arg0);
-    void func_8008C200(s16 arg0, BtIntPtr arg1, BtIntPtr arg2);
+    void func_8008C200(s16 arg0, GAME_SELECT_LP64(void *, BtIntPtr) arg1, GAME_SELECT_LP64(void *, BtIntPtr) arg2);
     void * func_800AE080(s16 arg0);
     void func_800DF72C(BtIntPtr arg0);
     void func_800DF410(s32 arg0);
@@ -1086,12 +1087,12 @@ void func_80801D74_chgameselect(Actor *arg0, u8 *arg1) {
     control = func_80104248(arg0);
     data = (GameSelectRenderData *)arg0->unk0;
     if (control && !arg0->unk7C_12) {
-        func_8008B304((BtIntPtr)control);
+        func_8008B304(GAME_SELECT_LP64(, (BtIntPtr))control);
     }
     if (data->skeleton) {
         animation = func_800B27E0(arg1);
         if (control && animation && !arg0->unk7C_12) {
-            func_8008C200(data->skeleton, (BtIntPtr)animation, (BtIntPtr)func_8008AEDC(control));
+            func_8008C200(data->skeleton, GAME_SELECT_LP64(, (BtIntPtr))animation, GAME_SELECT_LP64(, (BtIntPtr))func_8008AEDC(control));
         }
         func_800DF72C((BtIntPtr)func_800AE080(data->skeleton));
     }
@@ -1204,31 +1205,31 @@ OSThread *chgameselect_entrypoint_4(void)
 /* extern */
 
 void func_808021E4_chgameselect(void *arg0) {
-    void _gczoombox_entrypoint_19(void *arg0);
-    BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_19(void *arg0);)
+    GAME_SELECT_ORIGINAL(BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);)
     void *heap_alloc(s32);
-    BtIntPtr temp_v0;
+    GAME_SELECT_LP64(u8 *, BtIntPtr) temp_v0;
 
     temp_v0 = _gczoombox_entrypoint_5(0xC8, 0xC, 2, 0, 0);
-    (((Objgameselect_arg0 *)arg0)->unk28) = temp_v0;
+    GAME_SELECT_LP64(game_select_box_init(arg0, (u8 *)temp_v0);, (((Objgameselect_arg0 *)arg0)->unk28) = temp_v0;)
     _gczoombox_entrypoint_19(temp_v0);
-    (((Objgameselect_arg0 *)arg0)->unk24) = heap_alloc(0x40);
-    (((Objgameselect_arg0 *)arg0)->unk34) = heap_alloc(0x40);
+    GAME_SELECT_ORIGINAL((((Objgameselect_arg0 *)arg0)->unk24) = heap_alloc(0x40);)
+    GAME_SELECT_ORIGINAL((((Objgameselect_arg0 *)arg0)->unk34) = heap_alloc(0x40);)
 }
 
 void func_80802248_chgameselect(Actor *arg0) {
-    void _gczoombox_entrypoint_10(void *arg0);
-    s32 _gczoombox_entrypoint_11(s32);
-    void _gczoombox_entrypoint_12();
-    void _gczoombox_entrypoint_15();
-    void _gczoombox_entrypoint_16(s32);
-    void _gczoombox_entrypoint_17();
-    void _gczoombox_entrypoint_18();
-    int _gczoombox_entrypoint_32();
-    s32 _gczoombox_entrypoint_4();
-    int _gczoombox_entrypoint_7();
-    int _gczoombox_entrypoint_8();
-    s32 _gczoombox_entrypoint_9(BtIntPtr);
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_10(void *arg0);)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_11(s32);)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_12();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_15();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_16(s32);)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_17();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_18();)
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_32();)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_4();)
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_7();)
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_8();)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_9(BtIntPtr);)
     void func_800DB8BC(char *, s32);
     void func_800E6A58(char *, char);
     void func_800E73D4(s8 *);
@@ -1250,58 +1251,59 @@ void func_80802248_chgameselect(Actor *arg0) {
         }
     }
     if (arg0->actorData[0]) {
-        _gczoombox_entrypoint_18(arg0->actorData[4]);
-        _gczoombox_entrypoint_16(arg0->actorData[4]);
-        _gczoombox_entrypoint_9(arg0->actorData[4]);
-        _gczoombox_entrypoint_11(arg0->actorData[4]);
+        _gczoombox_entrypoint_18(GAME_SELECT_BOX(arg0));
+        _gczoombox_entrypoint_16(GAME_SELECT_BOX(arg0));
+        _gczoombox_entrypoint_9(GAME_SELECT_BOX(arg0));
+        _gczoombox_entrypoint_11(GAME_SELECT_BOX(arg0));
     } else if (state) {
         if (state != (s32)arg0->actorData[5]) {
-            _gczoombox_entrypoint_18(arg0->actorData[4]);
-            _gczoombox_entrypoint_16(arg0->actorData[4]);
-            _gczoombox_entrypoint_9(arg0->actorData[4]);
-            _gczoombox_entrypoint_11(arg0->actorData[4]);
-            func_800E73D4((s8 *)arg0->actorData[3]);
-            func_800E73D4((s8 *)arg0->actorData[7]);
+            _gczoombox_entrypoint_18(GAME_SELECT_BOX(arg0));
+            _gczoombox_entrypoint_16(GAME_SELECT_BOX(arg0));
+            _gczoombox_entrypoint_9(GAME_SELECT_BOX(arg0));
+            _gczoombox_entrypoint_11(GAME_SELECT_BOX(arg0));
+            func_800E73D4((s8 *)GAME_SELECT_FIRST_TEXT(arg0));
+            func_800E73D4((s8 *)GAME_SELECT_SECOND_TEXT(arg0));
             value = arg0->unk79_4 + 1;
             if (func_80803738_chgameselect(arg0->unk79_4, &time, &count)) {
-                func_80803E94_chgameselect((char *)arg0->actorData[3], 0x18F3, 1, 1, &value);
-                func_800DB8BC((char *)arg0->actorData[3], time);
-                func_800E6A58((char *)arg0->actorData[3], ',');
+                func_80803E94_chgameselect(GAME_SELECT_FIRST_TEXT(arg0), 0x18F3, 1, 1, &value);
+                func_800DB8BC(GAME_SELECT_FIRST_TEXT(arg0), time);
+                func_800E6A58(GAME_SELECT_FIRST_TEXT(arg0), ',');
                 value = count;
                 if (count == 1) {
-                    func_80803E94_chgameselect((char *)arg0->actorData[7], 0x18F3, 3, 1, &value);
+                    func_80803E94_chgameselect(GAME_SELECT_SECOND_TEXT(arg0), 0x18F3, 3, 1, &value);
                 } else {
-                    func_80803E94_chgameselect((char *)arg0->actorData[7], 0x18F3, 2, 1, &value);
+                    func_80803E94_chgameselect(GAME_SELECT_SECOND_TEXT(arg0), 0x18F3, 2, 1, &value);
                 }
             } else {
-                func_80803E94_chgameselect((char *)arg0->actorData[3], 0x18F3, 0, 1, &value);
+                func_80803E94_chgameselect(GAME_SELECT_FIRST_TEXT(arg0), 0x18F3, 0, 1, &value);
             }
-            _gczoombox_entrypoint_32(arg0->actorData[4]);
-            if (*(u8 *)arg0->actorData[7]) {
-                B_80808558_chgameselect[0] = (char *)arg0->actorData[3];
-                B_80808558_chgameselect[1] = (char *)arg0->actorData[7];
-                _gczoombox_entrypoint_7(arg0->actorData[4], 2, B_80808558_chgameselect);
+            _gczoombox_entrypoint_32(GAME_SELECT_BOX(arg0));
+            if (*(u8 *)GAME_SELECT_SECOND_TEXT(arg0)) {
+                B_80808558_chgameselect[0] = GAME_SELECT_FIRST_TEXT(arg0);
+                B_80808558_chgameselect[1] = GAME_SELECT_SECOND_TEXT(arg0);
+                _gczoombox_entrypoint_7(GAME_SELECT_BOX(arg0), 2, B_80808558_chgameselect);
             } else {
-                _gczoombox_entrypoint_8(arg0->actorData[4], (char *)arg0->actorData[3]);
+                _gczoombox_entrypoint_8(GAME_SELECT_BOX(arg0), GAME_SELECT_FIRST_TEXT(arg0));
             }
         }
     } else {
-        _gczoombox_entrypoint_15(arg0->actorData[4]);
-        _gczoombox_entrypoint_17(arg0->actorData[4]);
-        _gczoombox_entrypoint_12(arg0->actorData[4]);
-        _gczoombox_entrypoint_10(arg0->actorData[4]);
+        _gczoombox_entrypoint_15(GAME_SELECT_BOX(arg0));
+        _gczoombox_entrypoint_17(GAME_SELECT_BOX(arg0));
+        _gczoombox_entrypoint_12(GAME_SELECT_BOX(arg0));
+        _gczoombox_entrypoint_10(GAME_SELECT_BOX(arg0));
     }
     arg0->actorData[5] = state;
-#ifdef BT_NATIVE
-    ((s32 (*)())_gczoombox_entrypoint_4)(arg0->actorData[4]);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    ((s32 (*)())_gczoombox_entrypoint_4)(GAME_SELECT_BOX(arg0));
 #else
-    _gczoombox_entrypoint_4(arg0->actorData[4]);
+    _gczoombox_entrypoint_4(GAME_SELECT_BOX(arg0));
 #endif
 }
 
 void func_80802620_chgameselect(void *arg0);
 
 void func_80802480_chgameselect(void *arg0) {
+#if !defined(BT_NATIVE) || defined(BT_ILP32)
     void *temp_a0;
     void *temp_a1;
 
@@ -1313,39 +1315,40 @@ void func_80802480_chgameselect(void *arg0) {
     if (temp_a0 != NULL) {
         heap_free(temp_a0);
     }
+#endif
     func_80802620_chgameselect(arg0);
 }
 
 /* extern */
 
 void func_808024D4_chgameselect(void *arg0) {
-    s32 _gczoombox_entrypoint_11(s32);
-    BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);
-    s32 _gczoombox_entrypoint_9(BtIntPtr);
-    BtIntPtr temp_v0;
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_11(s32);)
+    GAME_SELECT_ORIGINAL(BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_9(BtIntPtr);)
+    GAME_SELECT_LP64(u8 *, BtIntPtr) temp_v0;
 
     temp_v0 = _gczoombox_entrypoint_5(0x1C, 0xD, 2, 1, 0);
-    (((Objgameselect_arg0 *)arg0)->unk28) = temp_v0;
+    GAME_SELECT_LP64(game_select_box_init(arg0, (u8 *)temp_v0);, (((Objgameselect_arg0 *)arg0)->unk28) = temp_v0;)
     _gczoombox_entrypoint_9(temp_v0);
-    _gczoombox_entrypoint_11((((Objgameselect_arg0 *)arg0)->unk28));
-    (((Objgameselect_arg0 *)arg0)->unk1C) = -1;
+    _gczoombox_entrypoint_11(GAME_SELECT_LP64(((Actor *)arg0)->game_select_box_data->box, (((Objgameselect_arg0 *)arg0)->unk28)));
+    GAME_SELECT_LP64(((Actor *)arg0)->actorData[1], (((Objgameselect_arg0 *)arg0)->unk1C)) = -1;
 }
 
 /* extern */
 
 void func_80802530_chgameselect(void *arg0) {
-    s32 _gczoombox_entrypoint_3(s32, void *);
-    s32 _gczoombox_entrypoint_4(s32, void *);
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_3(s32, void *);)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_4(s32, void *);)
     void func_80800CA0_chgameselect();
     s32 temp_v0;
 
-    _gczoombox_entrypoint_4((((Objgameselect_arg0 *)arg0)->unk28), arg0);
-    temp_v0 = _gczoombox_entrypoint_3((((Objgameselect_arg0 *)arg0)->unk28), arg0);
-    if (temp_v0 != (((Objgameselect_arg0 *)arg0)->unk20)) {
-        (((Objgameselect_arg0 *)arg0)->unk20) = temp_v0;
+    GAME_SELECT_LP64(_gczoombox_entrypoint_4(((Actor *)arg0)->game_select_box_data->box), _gczoombox_entrypoint_4((((Objgameselect_arg0 *)arg0)->unk28), arg0));
+    temp_v0 = GAME_SELECT_LP64(_gczoombox_entrypoint_3(((Actor *)arg0)->game_select_box_data->box), _gczoombox_entrypoint_3((((Objgameselect_arg0 *)arg0)->unk28), arg0));
+    if (temp_v0 != GAME_SELECT_LP64(((Actor *)arg0)->actorData[2], (((Objgameselect_arg0 *)arg0)->unk20))) {
+        GAME_SELECT_LP64(((Actor *)arg0)->actorData[2], (((Objgameselect_arg0 *)arg0)->unk20)) = temp_v0;
         if (temp_v0 == 3) {
 #ifdef BT_NATIVE
-            ((void (*)())func_80800CA0_chgameselect)((*(s32 *)((s8 *)(arg0) + (0x3C))), arg0);
+            GAME_SELECT_LP64(func_80800CA0_chgameselect(((Actor *)arg0)->unk3C);, ((void (*)())func_80800CA0_chgameselect)((*(s32 *)((s8 *)(arg0) + (0x3C))), arg0);)
 #else
             func_80800CA0_chgameselect((((Objgameselect_arg0 *)arg0)->unk3C), arg0);
 #endif
@@ -1356,18 +1359,22 @@ void func_80802530_chgameselect(void *arg0) {
 void _gldbstring_entrypoint_2(s32 a0);
 
 void func_80802588_chgameselect(void *arg0) {
-    if ((((Objgameselect_arg0 *)arg0)->unk30) != 0) {
-        _gldbstring_entrypoint_2(((Objgameselect_arg0 *)arg0)->unk18);
-        (((Objgameselect_arg0 *)arg0)->unk30) = 0;
+    if (GAME_SELECT_LP64(((Actor *)arg0)->game_select_box_data->strings, (((Objgameselect_arg0 *)arg0)->unk30)) != 0) {
+        _gldbstring_entrypoint_2(GAME_SELECT_LP64(((Actor *)arg0)->actorData[0], ((Objgameselect_arg0 *)arg0)->unk18));
+        GAME_SELECT_LP64(((Actor *)arg0)->game_select_box_data->strings, (((Objgameselect_arg0 *)arg0)->unk30)) = 0;
     }
     func_80802620_chgameselect(arg0);
 }
 
 /* extern */
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_808025CC_chgameselect(Actor *arg0, BtIntPtr bt_a1) {
+#else
 void func_808025CC_chgameselect(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32 bt_a1)) {
-    s32 _gczoombox_entrypoint_2();
-    _gczoombox_entrypoint_2(BT_IDO_ONLY((((Objgameselect_arg0 *)arg0)->unk28)) BT_PASS2((((Objgameselect_arg0 *)arg0)->unk28), bt_a1));
+#endif
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_2();)
+    _gczoombox_entrypoint_2(BT_IDO_ONLY(GAME_SELECT_LP64(((Actor *)arg0)->game_select_box_data->box, (((Objgameselect_arg0 *)arg0)->unk28))) BT_PASS2(GAME_SELECT_LP64(((Actor *)arg0)->game_select_box_data->box, (((Objgameselect_arg0 *)arg0)->unk28)), bt_a1));
 }
 
 s32 func_808025EC_chgameselect(void *arg0, s32 arg1, s32 arg2) {
@@ -1388,13 +1395,13 @@ s32 func_808025EC_chgameselect(void *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80802620_chgameselect(void *arg0) {
-    s32 _gczoombox_entrypoint_0(s32);
-    _gczoombox_entrypoint_0((((Objgameselect_arg0 *)arg0)->unk28));
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_0(s32);)
+    _gczoombox_entrypoint_0(GAME_SELECT_LP64(((Actor *)arg0)->game_select_box_data->box, (((Objgameselect_arg0 *)arg0)->unk28))); GAME_SELECT_LP64(game_select_box_release(arg0);, )
 }
 
 void func_80802640_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     Actor *func_80106790(Unk80132ED0 *);
-    int _gczoombox_entrypoint_32();
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_32();)
     u32 *_gldbstring_entrypoint_0(u32 *, u32);
     void _gldbstring_entrypoint_2(s32);
     Actor *actor;
@@ -1404,46 +1411,46 @@ void func_80802640_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     actor = func_80106790(arg0);
     textId = *textIdSource;
     if (textId != actor->actorData[0]) {
-        if (actor->actorData[6] != 0) {
+        if (GAME_SELECT_LP64(actor->game_select_box_data->strings, actor->actorData[6]) != 0) {
             _gldbstring_entrypoint_2(actor->actorData[0]);
             textId = *textIdSource;
-            actor->actorData[6] = 0;
+            GAME_SELECT_LP64(actor->game_select_box_data->strings = NULL;, actor->actorData[6] = 0;)
         }
         actor->actorData[0] = textId;
         if (textId != 0) {
-            *(u32 **)&actor->actorData[6] = _gldbstring_entrypoint_0(*(u32 **)&actor->actorData[6], textId);
+            GAME_SELECT_LP64(actor->game_select_box_data->strings, *(u32 **)&actor->actorData[6]) = _gldbstring_entrypoint_0(GAME_SELECT_LP64(actor->game_select_box_data->strings, *(u32 **)&actor->actorData[6]), textId);
         }
         actor->actorData[1] = -1;
-        _gczoombox_entrypoint_32(actor->actorData[4]);
+        _gczoombox_entrypoint_32(GAME_SELECT_BOX(actor));
     }
 }
 
 void func_808026C8_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
-    int _gczoombox_entrypoint_32();
-    int _gczoombox_entrypoint_8();
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_32();)
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_8();)
     u32 *_gldbstring_entrypoint_1(u32 *, s16);
     Actor *actor;
 
     actor = func_80106790(arg0);
     if (arg1 != actor->actorData[1]) {
         actor->actorData[1] = arg1;
-        _gczoombox_entrypoint_32(actor->actorData[4]);
-        _gczoombox_entrypoint_8(actor->actorData[4], _gldbstring_entrypoint_1(*(u32 **)((s8 *)actor + 0x30), *(s16 *)((s8 *)actor + 0x1E)));
+        _gczoombox_entrypoint_32(GAME_SELECT_BOX(actor));
+        _gczoombox_entrypoint_8(GAME_SELECT_BOX(actor), GAME_SELECT_LP64((char *), )_gldbstring_entrypoint_1(GAME_SELECT_LP64(actor->game_select_box_data->strings, *(u32 **)((s8 *)actor + 0x30)), GAME_SELECT_LP64((s16)actor->actorData[1], *(s16 *)((s8 *)actor + 0x1E))));
         actor->actorData[2] = -1;
     }
 }
 
 void func_80802730_chgameselect(Unk80132ED0 *arg0, BtIntPtr arg1) {
     Actor *func_80106790(Unk80132ED0 *);
-    int _gczoombox_entrypoint_32();
-    int _gczoombox_entrypoint_8();
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_32();)
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_8();)
     Actor *actor;
 
     actor = func_80106790(arg0);
     actor->actorData[1] = -1;
-    _gczoombox_entrypoint_32(actor->actorData[4]);
-    _gczoombox_entrypoint_8(actor->actorData[4], arg1);
+    _gczoombox_entrypoint_32(GAME_SELECT_BOX(actor));
+    _gczoombox_entrypoint_8(GAME_SELECT_BOX(actor), GAME_SELECT_LP64((char *)arg1, arg1));
     actor->actorData[2] = -1;
 }
 
@@ -1497,7 +1504,7 @@ void func_808027DC_chgameselect(Actor *arg0) {
                 entries = func_80100094(arg0, 1);
                 selected = (_gcnewoption_entrypoint_45((BtIntPtr)option) * 6 + entries)[3];
                 if (selected >= 0) {
-                    func_808026C8_chgameselect((Unk80132ED0 *)func_80106790(arg0->unk3C)->actorData[3], selected);
+                    func_808026C8_chgameselect(game_select_root_child(func_80106790(arg0->unk3C), 3), selected);
                 }
                 break;
             case 3:
@@ -1520,7 +1527,7 @@ void func_808027DC_chgameselect(Actor *arg0) {
                 }
                 break;
         }
-        _gcnewoption_entrypoint_0((BtIntPtr)option);
+        _gcnewoption_entrypoint_0(GAME_SELECT_LP64(, (BtIntPtr))option);
     }
 }
 
@@ -1670,7 +1677,7 @@ void func_80802D40_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     actor = func_80106790(arg0);
     actor->actorData[4] = arg1;
     actor->actorData[5] = 0;
-    func_80802640_chgameselect(func_80106790(actor->unk3C)->actorData[3], arg2, 0);
+    func_80802640_chgameselect(GAME_SELECT_LP64(game_select_root_child(func_80106790(actor->unk3C), 3), func_80106790(actor->unk3C)->actorData[3]), arg2, 0);
     func_80100074(actor, 1U, actor->actorData[4] * 6);
     func_80101FDC(actor, 2U);
 }
@@ -1723,7 +1730,7 @@ void func_80802E38_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3)
     actor->actorData[6] = arg2;
     entry = func_80100094(actor, 1);
     for (; i < (s32)actor->actorData[5]; i++, entry += 3) {
-        _gcnewoption_entrypoint_31(option, i, entry[2]);
+        _gcnewoption_entrypoint_31((BtIntPtr)option, i, entry[2]);
     }
     _gcnewoption_entrypoint_40(option, 0x41, 0x22, 0x20, 0.8f, 1.0f);
     _gcnewoption_entrypoint_42(option, 0.1f);
@@ -1754,7 +1761,7 @@ void func_80802FE4_chgameselect(Actor *arg0) {
     arg0->actorData[4] = 0;
     arg0->unk64_20 = 0;
     _gcnewoption_entrypoint_6(arg0, 0);
-    func_80802640_chgameselect(func_80106790(arg0->unk3C)->actorData[3], 0, 0);
+    func_80802640_chgameselect(GAME_SELECT_LP64(game_select_root_child(func_80106790(arg0->unk3C), 3), func_80106790(arg0->unk3C)->actorData[3]), 0, 0);
 }
 
 void func_80803048_chgameselect(Actor *arg0, BtIntPtr arg1) {
@@ -1777,7 +1784,7 @@ void func_80803048_chgameselect(Actor *arg0, BtIntPtr arg1) {
             var_s1 += 6;
         } while (var_s0 < (s32)arg0->actorData[5]);
     }
-    _gcnewoption_entrypoint_41(arg1, arg0->actorData[6]);
+    _gcnewoption_entrypoint_41((OptionState *)arg1, arg0->actorData[6]);
 }
 
 void func_808030EC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
@@ -1793,13 +1800,13 @@ void func_808030EC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) {
 
     switch (arg3) {
     case 0:
-        func_80803048_chgameselect(arg0, arg1);
+        func_80803048_chgameselect(arg0, (BtIntPtr)arg1);
         return;
     case 3:
         if (_gcnewoption_entrypoint_19(arg1, arg2) != 0) {
             func_80803C60_chgameselect();
             sp24 = func_80106790(arg0->unk3C);
-            func_808026C8_chgameselect(sp24->actorData[5], ((s8 *)func_80100094(arg0, 1U))[arg2 * 6 + 2]);
+            func_808026C8_chgameselect(GAME_SELECT_LP64(game_select_root_child(sp24, 5), sp24->actorData[5]), ((s8 *)func_80100094(arg0, 1U))[arg2 * 6 + 2]);
             return;
         }
     case 2:
@@ -1871,7 +1878,7 @@ void func_808032CC_chgameselect(Unk80132ED0 *arg0, s32 arg1, s32 arg2, s32 arg3)
     actor->actorData[6] = arg2;
     entry = func_80100094(actor, 1);
     for (; i < (s32)actor->actorData[5]; i++, entry += 3) {
-        _gcnewoption_entrypoint_31(option, i, entry[2]);
+        _gcnewoption_entrypoint_31((BtIntPtr)option, i, entry[2]);
     }
     _gcnewoption_entrypoint_40(option, 0x41, 0x22, 0x20, 0.8f, 1.0f);
     _gcnewoption_entrypoint_42(option, 0.1f);
@@ -1896,10 +1903,10 @@ void func_80803420_chgameselect(Actor *arg0, BtIntPtr arg1) {
             var_s1 += 6;
         } while (var_s0 < (s32)arg0->actorData[5]);
     }
-    _gcnewoption_entrypoint_41(arg1, arg0->actorData[6]);
+    _gcnewoption_entrypoint_41((OptionState *)arg1, arg0->actorData[6]);
 }
 
-void func_808034BC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) { s32 _gcnewoption_entrypoint_17(); s32 _gcnewoption_entrypoint_20(); void *func_80100094(Actor *, u32); void func_80803604_chgameselect(BtIntPtr, s32, s32, s32); u8 *sp28[2]; s32 var_a3; s32 var_s0; u8 *var_s1; var_s0 = arg2; switch (arg3) { case 0: func_80803420_chgameselect(arg0, arg1); return; case 4: func_80803604_chgameselect(arg1, var_s0, _gcnewoption_entrypoint_20(arg1, var_s0), 1); return; case 5: _gcnewoption_entrypoint_37(arg1, 1U); return; case 2: case 3: sp28[0] = func_80100094(arg0, 1); func_80800AEC_chgameselect(arg0->unk3C, arg1, -1, 0xFC); var_s0 = 0; var_s1 = sp28[0]; if ((s32)arg0->actorData[5] > 0) { do { if (_gcnewoption_entrypoint_17(arg1, var_s0) != 0) { var_a3 = 0xFE; } else { var_a3 = 0xFD; } func_80800AEC_chgameselect(arg0->unk3C, arg1, *var_s1, var_a3); var_s0 += 1; var_s1 += 6; } while (var_s0 < (s32)arg0->actorData[5]); } func_80802FE4_chgameselect(arg0); func_80800AEC_chgameselect(arg0->unk3C, NULL, -1, arg3); default: return; } }
+void func_808034BC_chgameselect(Actor *arg0, void *arg1, s32 arg2, s32 arg3) { s32 _gcnewoption_entrypoint_17(); s32 _gcnewoption_entrypoint_20(); void *func_80100094(Actor *, u32); void func_80803604_chgameselect(BtIntPtr, s32, s32, s32); u8 *sp28[2]; s32 var_a3; s32 var_s0; u8 *var_s1; var_s0 = arg2; switch (arg3) { case 0: func_80803420_chgameselect(arg0, (BtIntPtr)arg1); return; case 4: func_80803604_chgameselect((BtIntPtr)arg1, var_s0, _gcnewoption_entrypoint_20(arg1, var_s0), 1); return; case 5: _gcnewoption_entrypoint_37(arg1, 1U); return; case 2: case 3: sp28[0] = func_80100094(arg0, 1); func_80800AEC_chgameselect(arg0->unk3C, arg1, -1, 0xFC); var_s0 = 0; var_s1 = sp28[0]; if ((s32)arg0->actorData[5] > 0) { do { if (_gcnewoption_entrypoint_17(arg1, var_s0) != 0) { var_a3 = 0xFE; } else { var_a3 = 0xFD; } func_80800AEC_chgameselect(arg0->unk3C, arg1, *var_s1, var_a3); var_s0 += 1; var_s1 += 6; } while (var_s0 < (s32)arg0->actorData[5]); } func_80802FE4_chgameselect(arg0); func_80800AEC_chgameselect(arg0->unk3C, NULL, -1, arg3); default: return; } }
 
 void func_80803604_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_8080407C_chgameselect(BtIntPtr, s32, s32);
@@ -1922,7 +1929,7 @@ void func_80803658_chgameselect(s32 bt_a0)
 void func_80803658_chgameselect()
 #endif
 {
-    _glsavegame_entrypoint_9();
+    _glsavegame_entrypoint_9(GAME_SELECT_LP64(bt_a0, ));
 }
 
 #ifdef BT_NATIVE
@@ -1931,7 +1938,7 @@ void func_80803678_chgameselect(s32 bt_a0)
 void func_80803678_chgameselect()
 #endif
 {
-    func_800D37C0();
+    func_800D37C0(GAME_SELECT_LP64(bt_a0, ));
 }
 
 void func_80803698_chgameselect(s32 arg0, s32 arg1)
@@ -1956,7 +1963,7 @@ s32 func_808036F8_chgameselect(s32 bt_a0)
 s32 func_808036F8_chgameselect()
 #endif
 {
-    return _glsavegame_entrypoint_2();
+    return _glsavegame_entrypoint_2(GAME_SELECT_LP64(bt_a0, ));
 }
 
 s32 func_80803718_chgameselect()
@@ -1977,7 +1984,7 @@ s32 func_80803738_chgameselect(s32 arg0, s32 *arg1, s32 *arg2) {
 #endif
         save = _glsavegame_entrypoint_4(arg0);
         *arg1 = func_800DB7C0(save);
-        *arg2 = func_800D04A0(save, 1);
+        *arg2 = func_800D04A0((BtIntPtr)save, 1);
         return *arg1 < 0 ? 0 : 1;
     }
     return 0;
@@ -2149,7 +2156,7 @@ void func_80803B3C_chgameselect(BtIntPtr arg0) {
 
 void func_80803B84_chgameselect(s32 arg0) { s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0; temp_v0 = func_800AA120(); end = D_80808370_chgameselect.enter + 6; var_v1 = D_80808370_chgameselect.enter; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
 
-void func_80803BE8_chgameselect(Actor *arg0) { void func_800AA054(s32); void func_800AA074(); s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0;  func_800AA074(); func_800AA054(*(s32 *)&arg0->unk54); temp_v0 = func_800AA120(); end = D_80808370_chgameselect.resume + 5; var_v1 = D_80808370_chgameselect.resume; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
+void func_80803BE8_chgameselect(Actor *arg0) { void func_800AA054(s32); void func_800AA074(); s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0;  func_800AA074(); func_800AA054(*(s32 *)&arg0->unk54); temp_v0 = func_800AA120(); end = D_80808370_chgameselect.resume + 5; var_v1 = D_80808370_chgameselect.resume; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect((BtIntPtr)arg0); }
 
 void func_80803C60_chgameselect()
 {
@@ -2180,7 +2187,7 @@ s32 func_80803D00_chgameselect(s32 arg0, s32 arg1) {
     s32 _cadbfunc_entrypoint_0(s32 *);
     s32 _cadbfunc_entrypoint_2(s32 *);
     s32 func_800A5800(s32);
-    void func_800E39D8(BtIntPtr arg0, BtIntPtr arg1);
+    void func_800E39D8(GAME_SELECT_LP64(f32 *, BtIntPtr) arg0, GAME_SELECT_LP64(f32 *, BtIntPtr) arg1);
     union {
         s32 word;
         struct {
@@ -2197,7 +2204,7 @@ s32 func_80803D00_chgameselect(s32 arg0, s32 arg1) {
         func_800A5800(arg0);
         _cadbfunc_entrypoint_0(sp28);
         _cadbfunc_entrypoint_2(sp1C);
-        func_800E39D8((BtIntPtr) sp28, (BtIntPtr) sp1C);
+        func_800E39D8(GAME_SELECT_LP64((f32 *), (BtIntPtr)) sp28, GAME_SELECT_LP64((f32 *), (BtIntPtr)) sp1C);
     }
 BT_NATIVE_ONLY(return 0;) }
 
@@ -2294,7 +2301,7 @@ void func_80803F90_chgameselect(char *arg0, s32 arg1, s16 *arg2) {
     s32 var_s1;
     s16 *var_s0;
 
-    func_800E73D4(arg0);
+    func_800E73D4((s8 *)arg0);
     var_s1 = 0;
     if (arg1 > 0) {
         var_s0 = arg2;
@@ -2311,11 +2318,11 @@ void func_80803F90_chgameselect(char *arg0, s32 arg1, s16 *arg2) {
 }
 
 void func_8080401C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_13(BtIntPtr, s32, s32 *);
+    GAME_SELECT_LP64(void, s32) _gcnewoption_entrypoint_13(BtIntPtr, s32, GAME_SELECT_LP64(void *, s32 *));
     s32 _gcnewoption_entrypoint_19(OptionState *, s32);
     s32 _gcnewoption_entrypoint_23(BtIntPtr, s32);
 
-    if (_gcnewoption_entrypoint_19(arg0, arg1) == 0) {
+    if (_gcnewoption_entrypoint_19((OptionState *)arg0, arg1) == 0) {
         _gcnewoption_entrypoint_23(arg0, arg1);
         _gcnewoption_entrypoint_13(arg0, arg1, D_80808370_chgameselect.color);
         if (arg2 != 0) {
@@ -2325,7 +2332,7 @@ void func_8080401C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080407C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_13(BtIntPtr, s32, s32 *);
+    GAME_SELECT_LP64(void, s32) _gcnewoption_entrypoint_13(BtIntPtr, s32, GAME_SELECT_LP64(void *, s32 *));
     s32 _gcnewoption_entrypoint_17();
     s32 _gcnewoption_entrypoint_21(BtIntPtr, s32);
 
@@ -2339,7 +2346,7 @@ void func_8080407C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808040DC_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
-    s32 _gcnewoption_entrypoint_13(BtIntPtr, s32, s32 *);
+    GAME_SELECT_LP64(void, s32) _gcnewoption_entrypoint_13(BtIntPtr, s32, GAME_SELECT_LP64(void *, s32 *));
     s32 _gcnewoption_entrypoint_18();
     s32 _gcnewoption_entrypoint_22(BtIntPtr, s32);
 
@@ -2352,7 +2359,7 @@ void func_808040DC_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
     }
 }
 
-s32 func_8080413C_chgameselect(Actor *arg0) { void func_800DA3B8(s32, s32); func_8080218C_chgameselect(arg0->unk79_4, 1); func_80801658_chgameselect(arg0->actorData[4], 1); func_80803D00_chgameselect(arg0->unk79_4 + 8, 1); func_800DA3B8(0xD69, func_80803718_chgameselect()); func_80803888_chgameselect((BtIntPtr)arg0, func_808037C0_chgameselect(arg0->unk79_4), 0); return -1; }
+s32 func_8080413C_chgameselect(Actor *arg0) { void func_800DA3B8(s32, s32); func_8080218C_chgameselect(arg0->unk79_4, 1); func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child(arg0, 4), arg0->actorData[4]), 1); func_80803D00_chgameselect(arg0->unk79_4 + 8, 1); func_800DA3B8(0xD69, func_80803718_chgameselect()); func_80803888_chgameselect((BtIntPtr)arg0, func_808037C0_chgameselect(arg0->unk79_4), 0); return -1; }
 
 /* extern */
 
@@ -2361,9 +2368,9 @@ s32 func_808041C8_chgameselect(void *arg0) {
     s32 func_808016A0_chgameselect(BtIntPtr, s32);
     void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80803D00_chgameselect(s32, s32);
-    func_808015DC_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 2);
-    func_808016A0_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 1);
-    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 0);
+    func_808015DC_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 2);
+    func_808016A0_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 1);
+    func_808016E8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x28)))), 0);
     func_80803D00_chgameselect(1, 1);
     return 1;
 }
@@ -2380,11 +2387,11 @@ void func_80804220_chgameselect(void *arg0) {
     s32 func_80803D60_chgameselect(s32);
     func_8080218C_chgameselect((((Objgameselect_arg0 *)arg0)->unk1C), func_80803D60_chgameselect((((Objgameselect_arg0 *)arg0)->unk1C)));
     func_8080218C_chgameselect((((Objgameselect_arg0 *)arg0)->unk20), func_80803D60_chgameselect((((Objgameselect_arg0 *)arg0)->unk20)));
-    func_80801758_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), -1);
-    func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
-    func_808015DC_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
-    func_808016A0_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
-    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 3);
+    func_80801758_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x28)))), -1);
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
+    func_808015DC_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
+    func_808016A0_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
+    func_808016E8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x28)))), 3);
 }
 
 int func_808042A8_chgameselect(Actor *arg0, s32 arg1, s32 *arg2) {
@@ -2440,7 +2447,7 @@ void func_80804404_chgameselect(u8 *arg0, s32 arg1) {
     void func_80800478_chgameselect();
 
     if (*(s32 *)(arg0 + 0x18) >= 3) {
-        func_80800478_chgameselect(arg0, 1);
+        func_80800478_chgameselect((BtIntPtr)arg0, 1);
     } else {
         arg0[0x65] &= ~0x10;
     }
@@ -2453,9 +2460,9 @@ s32 func_8080444C_chgameselect(void *arg0) {
     s32 func_808016A0_chgameselect(BtIntPtr, s32);
     void func_808016E8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80803D00_chgameselect(s32, s32);
-    func_808015DC_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 1);
-    func_808016A0_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 1);
-    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 0);
+    func_808015DC_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 1);
+    func_808016A0_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 1);
+    func_808016E8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x28)))), 0);
     func_80803D00_chgameselect(1, 1);
     return 1;
 }
@@ -2470,10 +2477,10 @@ void func_808044A4_chgameselect(void *arg0) {
     s32 func_8080218C_chgameselect(s32, s32);
     s32 func_80803D60_chgameselect(s32);
     func_8080218C_chgameselect((((Objgameselect_arg0 *)arg0)->unk1C), func_80803D60_chgameselect((((Objgameselect_arg0 *)arg0)->unk1C)));
-    func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
-    func_808015DC_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
-    func_808016A0_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
-    func_808016E8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x28))), 4);
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
+    func_808015DC_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
+    func_808016A0_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
+    func_808016E8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 4), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x28)))), 4);
 }
 
 s32 func_8080450C_chgameselect(Actor *arg0, s32 arg1, s32 *arg2) {
@@ -2485,7 +2492,7 @@ s32 func_8080450C_chgameselect(Actor *arg0, s32 arg1, s32 *arg2) {
                 *arg2 = 2;
                 arg0->actorData[0] = 1;
                 arg0->actorData[1] = arg1;
-                func_80801658_chgameselect(arg0->actorData[4], 1);
+                func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child(arg0, 4), arg0->actorData[4]), 1);
                 arg0->unk64_20 = 1;
             } else {
                 *arg2 = 5;
@@ -2497,7 +2504,7 @@ s32 func_8080450C_chgameselect(Actor *arg0, s32 arg1, s32 *arg2) {
                 *arg2 = 3;
                 arg0->actorData[0] = 2;
                 func_80803658_chgameselect(arg0->actorData[1]);
-                func_80801714_chgameselect((Unk80132ED0 *)arg0->actorData[4], 1);
+                func_80801714_chgameselect(game_select_root_child(arg0, 4), 1);
             }
             break;
     }
@@ -2520,8 +2527,8 @@ s32 func_8080462C_chgameselect(u8 *arg0) {
     void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     s32 func_80803D00_chgameselect(s32, s32);
 
-    func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 1);
-    func_80802AD4_chgameselect((((Objgameselect_arg0 *)arg0)->unk30), D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, 3, 1, 0);
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 1);
+    func_80802AD4_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (((Objgameselect_arg0 *)arg0)->unk30)), D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, 3, 1, 0);
     func_80803D00_chgameselect(5, 1);
     return 1;
 }
@@ -2531,8 +2538,8 @@ s32 func_8080462C_chgameselect(u8 *arg0) {
 void func_80804694_chgameselect(void *arg0) {
     s32 _glglobalsettings_entrypoint_2();
     s32 func_80801658_chgameselect(BtIntPtr, s32);
-    func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
-    func_80802BE8_chgameselect((((Objgameselect_arg0 *)arg0)->unk30));
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
+    func_80802BE8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (((Objgameselect_arg0 *)arg0)->unk30)));
     _glglobalsettings_entrypoint_2();
 }
 
@@ -2584,7 +2591,7 @@ s32 func_80804750_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
             func_80804A38_chgameselect(arg0);
         }
     } else if (temp_v0 == 0) {
-        func_80802C10_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        func_80802C10_chgameselect(game_select_root_child(arg0, 6));
         switch (arg2) {
         case 0:
             var_s0 = 2;
@@ -2619,13 +2626,13 @@ void func_80804878_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
         func_808049E8_chgameselect(arg1, arg2, func_80804948_chgameselect(arg2));
         return;
     }
-    func_80802C7C_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+    func_80802C7C_chgameselect(game_select_root_child(arg0, 6));
 }
 
 void func_808048F8_chgameselect(u8 *arg0, s32 *arg1) {
     s32 func_80802C48_chgameselect(Unk80132ED0 *);
     if ((((Objgameselect_arg0 *)arg0)->unk18) < -1) {
-        func_80802C48_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))));
+        func_80802C48_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x30)))));
         (((Objgameselect_arg0 *)arg0)->unk18) = 0;
         *arg1 = 1;
     }
@@ -2672,15 +2679,15 @@ void func_80804A38_chgameselect(void *arg0) {
     s32 func_800FFA88(BtIntPtr);
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80802C48_chgameselect(Unk80132ED0 *);
-    s32 temp_a0;
+    GAME_SELECT_LP64(BtIntPtr, s32) temp_a0;
 
-    func_80802C48_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))));
-    func_808026C8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C))), 1);
-    temp_a0 = (*(s32 *)((s8 *)(arg0) + (0x34)));
+    func_80802C48_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x30)))));
+    func_808026C8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 5), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C)))), 1);
+    temp_a0 = GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 7), (*(s32 *)((s8 *)(arg0) + (0x34))));
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
     if (temp_a0 != 0) {
         func_800FFA88(temp_a0);
-        (*(s32 *)((s8 *)(arg0) + (0x34))) = 0;
+        GAME_SELECT_LP64(game_select_root_set_child((Actor *)arg0, 7, NULL), (*(s32 *)((s8 *)(arg0) + (0x34))) = 0);
     }
 }
 
@@ -2722,7 +2729,7 @@ s32 func_80804B4C_chgameselect(void *arg0) {
     s32 func_80801658_chgameselect(BtIntPtr, s32);
     s32 func_80803D00_chgameselect(s32, s32);
     void func_80804C30_chgameselect(void *, s32);
-    func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 1);
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 1);
     func_80803D00_chgameselect(6, 1);
     func_80804C30_chgameselect(arg0, 0);
     return -1;
@@ -2732,7 +2739,7 @@ s32 func_80804B4C_chgameselect(void *arg0) {
 
 void func_80804B90_chgameselect(void *arg0) {
     s32 func_80801658_chgameselect(BtIntPtr, s32);
-    func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
 }
 
 /* extern */
@@ -2770,17 +2777,17 @@ void func_80804C30_chgameselect(void *arg0, s32 arg1) {
 
     count = 0;
     selected = 0;
-    func_80802D40_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], 3, 0);
+    func_80802D40_chgameselect(game_select_root_child(((Actor *)arg0), 6), 3, 0);
     for (i = 0; i != 3; i++) {
-        if (_gcfrontend_entrypoint_1(D_808083E8_chgameselect[i].id)) { func_80802DB4_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], i, i + 10, -1, -1, D_808083E8_chgameselect[i].value);
+        if (_gcfrontend_entrypoint_1(D_808083E8_chgameselect[i].id)) { func_80802DB4_chgameselect(game_select_root_child(((Actor *)arg0), 6), i, i + 10, -1, -1, D_808083E8_chgameselect[i].value);
             if (arg1 == D_808083E8_chgameselect[i].id) {
                 selected = count;
             }
             count++;
         }
     }
-    func_80802E38_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, selected, 0);
-    func_808026C8_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[5], 2);
+    func_80802E38_chgameselect(game_select_root_child(((Actor *)arg0), 6), D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, selected, 0);
+    func_808026C8_chgameselect(game_select_root_child(((Actor *)arg0), 5), 2);
 }
 
 void func_80804D30_chgameselect(Actor *arg0, s32 arg1) {
@@ -2801,21 +2808,21 @@ void func_80804D30_chgameselect(Actor *arg0, s32 arg1) {
     sp38 = (sp30 = &D_808083E8_chgameselect[arg1])->id;
     temp_s2 = _gcfrontend_entrypoint_4(sp38);
     sp40 = _gcfrontend_entrypoint_5(sp38);
-    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], temp_s2, 0);
+    func_80802D40_chgameselect(game_select_root_child(arg0, 6), temp_s2, 0);
     var_s1 = 0;
     if (temp_s2 > 0) {
         var_s0 = sp40;
         do {
             if (_gcfrontend_entrypoint_3(var_s0) != 0) {
                 sp40 = _gcfrontend_entrypoint_14(var_s0);
-                func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], var_s0, var_s1, -1, -1, sp40);
+                func_80802DB4_chgameselect(game_select_root_child(arg0, 6), var_s0, var_s1, -1, -1, sp40);
             }
             var_s1 += 1;
             var_s0 += 1;
         } while (var_s1 != temp_s2);
     }
-    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], sp30->text, 0, 0);
-    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], arg1 + 3);
+    func_80802E38_chgameselect(game_select_root_child(arg0, 6), sp30->text, 0, 0);
+    func_808026C8_chgameselect(game_select_root_child(arg0, 5), arg1 + 3);
     arg0->actorData[0] = sp38;
 }
 
@@ -2826,7 +2833,7 @@ s32 func_80804E34_chgameselect(u8 *arg0) {
     void func_80805310_chgameselect(u8 *);
     void func_808065C0_chgameselect(BtIntPtr);
 
-    func_80801658_chgameselect(((Actor *)arg0)->actorData[4], 1);
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child(((Actor *)arg0), 4), ((Actor *)arg0)->actorData[4]), 1);
     if (_gcstatusDll_entrypoint_18() == 10) {
         ((Actor *)arg0)->actorData[2] = 0;
     } else if (_gcstatusDll_entrypoint_18() == 20) {
@@ -2852,7 +2859,7 @@ s32 func_80804E34_chgameselect(u8 *arg0) {
 
 void func_80804F14_chgameselect(void *arg0) {
     s32 func_80801658_chgameselect(BtIntPtr, s32);
-    func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 0);
+    func_80801658_chgameselect(GAME_SELECT_LP64((BtIntPtr)game_select_root_child((Actor *)arg0, 4), (((Objgameselect_arg0 *)arg0)->unk28)), 0);
 }
 
 void func_80804F38_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
@@ -2882,7 +2889,7 @@ void func_80804F38_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
 
     switch (arg0->actorData[0]) {
     case 0:
-        func_80802BE8_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        func_80802BE8_chgameselect(game_select_root_child(arg0, 6));
         _gcstatusDll_entrypoint_2(arg2 + 2);
         func_808069C8_chgameselect(func_808068E8_chgameselect());
         func_80806A88_chgameselect(func_80806A30_chgameselect());
@@ -2964,7 +2971,7 @@ void func_808051B4_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
 
     switch (arg0->actorData[0]) {
     case 0:
-        func_80802BE8_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        func_80802BE8_chgameselect(game_select_root_child(arg0, 6));
         func_80800478_chgameselect((BtIntPtr)arg0, 1);
         return;
     case 1:
@@ -3012,9 +3019,9 @@ void func_80805310_chgameselect(u8 *arg0) {
     void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     void func_80802D04_chgameselect(Unk80132ED0 *, s32);
 
-    func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, 3, 1, 0);
-    func_80802D04_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))), 1);
-    func_808026C8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C))), 2);
+    func_80802AD4_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(s32 *)((s8 *)(arg0) + (0x30)))), D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, 3, 1, 0);
+    func_80802D04_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x30)))), 1);
+    func_808026C8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 5), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C)))), 2);
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
 }
 
@@ -3029,23 +3036,23 @@ void func_8080537C_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     GameSelectMenu *entry;
 
     entry = &D_80808424_chgameselect[arg1];
-    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], (s32) entry->count, (s32) entry->description);
+    func_80802D40_chgameselect(game_select_root_child(arg0, 6), (s32) entry->count, (s32) entry->description);
     i = 0;
     if ((s32)entry->count > 0) {
 loop:
         {
-firstOffset = entry->firstOffset; offset = firstOffset >= 0 ? firstOffset + i : -1; items = entry->icons; item = items != NULL ? items[i] : 0x9D; func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], i, entry->first + i, -1, offset, item); i++;
+firstOffset = entry->firstOffset; offset = firstOffset >= 0 ? firstOffset + i : -1; items = entry->icons; item = items != NULL ? items[i] : 0x9D; func_80802DB4_chgameselect(game_select_root_child(arg0, 6), i, entry->first + i, -1, offset, item); i++;
         }
         if (i < (s32)entry->count) goto loop;
     }
-    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], (s32) entry->title, arg2, 4);
-    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], (s32) entry->option);
+    func_80802E38_chgameselect(game_select_root_child(arg0, 6), (s32) entry->title, arg2, 4);
+    func_808026C8_chgameselect(game_select_root_child(arg0, 5), (s32) entry->option);
     arg0->actorData[0] = arg1;
 }
 
 void func_80805474_chgameselect(BtIntPtr arg0,s32 arg1)
 {
-    func_8080537C_chgameselect(arg0,0x1,arg1);
+    func_8080537C_chgameselect((Actor *)arg0,0x1,arg1);
 }
 
 void func_80805498_chgameselect(Actor *arg0, BtIntPtr arg1) {
@@ -3179,15 +3186,15 @@ void func_8080569C_chgameselect(Actor *arg0, BT_IDO_ONLY(s32 arg1) BT_PASS2(s32 
                 break;
             }
         }
-        if (i == count && func_80802F8C_chgameselect((Unk80132ED0 *)arg0->actorData[6])) {
+        if (i == count && func_80802F8C_chgameselect(game_select_root_child(arg0, 6))) {
             arg0->unk64_20 = 1;
         }
         break;
     case 6:
-        func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[3], _gcnewoption_entrypoint_45(arg1) + 30);
+        func_808026C8_chgameselect(game_select_root_child(arg0, 3), _gcnewoption_entrypoint_45(arg1) + 30);
         break;
     default:
-        if (func_80015FA0(0) && func_80802F8C_chgameselect((Unk80132ED0 *)arg0->actorData[6])) {
+        if (func_80015FA0(0) && func_80802F8C_chgameselect(game_select_root_child(arg0, 6))) {
             arg0->unk64_20 = 1;
         }
         break;
@@ -3209,7 +3216,7 @@ s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
             func_80803C60_chgameselect();
             return arg2 + 0x23;
         }
-        func_80802CC0_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        func_80802CC0_chgameselect(game_select_root_child(arg0, 6));
         break;
     case 6:
         if (arg2 == 3 || arg2 == 4) {
@@ -3230,12 +3237,12 @@ s32 func_8080595C_chgameselect(Actor *arg0, OptionState *arg1, s32 arg2) {
                     func_80803C60_chgameselect();
                     return 0x1E;
                 }
-                func_80802C10_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+                func_80802C10_chgameselect(game_select_root_child(arg0, 6));
                 arg0->actorData[1] = arg2;
                 return arg2 == 3 ? 0x1F : 0x20;
             }
         }
-        func_80802CC0_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+        func_80802CC0_chgameselect(game_select_root_child(arg0, 6));
         func_80803C80_chgameselect();
         break;
     }
@@ -3257,13 +3264,13 @@ void func_80805AC0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     state = actor->actorData[0];
     switch (state) {
     case 0:
-        func_80802C7C_chgameselect((Unk80132ED0 *)actor->actorData[6]);
+        func_80802C7C_chgameselect(game_select_root_child(actor, 6));
         return;
     case 6:
         temp = actor->actorData[1];
         if (temp != -1 && arg2 == temp) {
-            func_80802C48_chgameselect((Unk80132ED0 *)actor->actorData[6]);
-            func_808026C8_chgameselect((Unk80132ED0 *)actor->actorData[5], 9);
+            func_80802C48_chgameselect(game_select_root_child(actor, 6));
+            func_808026C8_chgameselect(game_select_root_child(actor, 5), 9);
             actor->actorData[1] = -1;
             if (arg2 == 3) {
                 state = func_808068E8_chgameselect();
@@ -3273,7 +3280,7 @@ void func_80805AC0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
             func_80806AF4_chgameselect(arg1, arg2, state);
             return;
         }
-        func_80802C7C_chgameselect((Unk80132ED0 *)actor->actorData[6]);
+        func_80802C7C_chgameselect(game_select_root_child(actor, 6));
         return;
     }
 }
@@ -3306,20 +3313,20 @@ void func_80805BFC_chgameselect(Actor *arg0, s32 arg1) {
 
     temp_s2 = _gcfrontend_entrypoint_4(3);
     sp30[0] = _gcfrontend_entrypoint_5(3);
-    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], temp_s2, 0);
+    func_80802D40_chgameselect(game_select_root_child(arg0, 6), temp_s2, 0);
     var_s1 = 0;
     if (temp_s2 > 0) {
         var_s0 = sp30[0];
         do {
             if (_gcfrontend_entrypoint_3(var_s0) != 0) {
-                func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], var_s0, var_s1, -1, -1, _gcfrontend_entrypoint_14(var_s0));
+                func_80802DB4_chgameselect(game_select_root_child(arg0, 6), var_s0, var_s1, -1, -1, _gcfrontend_entrypoint_14(var_s0));
             }
             var_s1 += 1;
             var_s0 += 1;
         } while (var_s1 != temp_s2);
     }
-    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0x18E4, arg1, 0);
-    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], 4);
+    func_80802E38_chgameselect(game_select_root_child(arg0, 6), 0x18E4, arg1, 0);
+    func_808026C8_chgameselect(game_select_root_child(arg0, 5), 4);
     arg0->actorData[0] = 2;
 }
 
@@ -3360,17 +3367,17 @@ void func_80805CD8_chgameselect(Actor *arg0, s32 arg1) {
         selection = func_80806A30_chgameselect() + 20;
         break;
     }
-    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], 4, 0);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0, 0, -1, -1, D_80808404_chgameselect[0]);
+    func_80802D40_chgameselect(game_select_root_child(arg0, 6), 4, 0);
+    func_80802DB4_chgameselect(game_select_root_child(arg0, 6), 0, 0, -1, -1, D_80808404_chgameselect[0]);
     value = func_80805ECC_chgameselect((s32 *)arg0, 1);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 1, value + 0x23, flag ? 0x26 : -1, -1, D_80808404_chgameselect[1]);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 2, selection, -1, -1, D_80808404_chgameselect[2]);
+    func_80802DB4_chgameselect(game_select_root_child(arg0, 6), 1, value + 0x23, flag ? 0x26 : -1, -1, D_80808404_chgameselect[1]);
+    func_80802DB4_chgameselect(game_select_root_child(arg0, 6), 2, selection, -1, -1, D_80808404_chgameselect[2]);
     value = func_80805ECC_chgameselect((s32 *)arg0, 3);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 3, value + 0x1B, flag ? 0x27 : -1, -1, D_80808404_chgameselect[3]);
-    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0x18F4, arg1, 4);
-    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], 6);
+    func_80802DB4_chgameselect(game_select_root_child(arg0, 6), 3, value + 0x1B, flag ? 0x27 : -1, -1, D_80808404_chgameselect[3]);
+    func_80802E38_chgameselect(game_select_root_child(arg0, 6), 0x18F4, arg1, 4);
+    func_808026C8_chgameselect(game_select_root_child(arg0, 5), 6);
     arg0->actorData[0] = 3;
-    func_80802D04_chgameselect((Unk80132ED0 *)arg0->actorData[6], 1);
+    func_80802D04_chgameselect(game_select_root_child(arg0, 6), 1);
 }
 
 s32 func_80805ECC_chgameselect(s32 *arg0, s32 arg1) {
@@ -3491,9 +3498,9 @@ void func_808061A8_chgameselect(Actor *arg0) {
     void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     u32 *func_80100074(Actor *, u32, u32);
 
-    func_80802AD4_chgameselect(arg0->actorData[6], 0x18EF, _gcstatusDll_entrypoint_10(), 0, 0);
-    func_80802D04_chgameselect((Unk80132ED0 *)arg0->actorData[6], 1);
-    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], 7);
+    func_80802AD4_chgameselect(GAME_SELECT_LP64(game_select_root_child(arg0, 6), arg0->actorData[6]), 0x18EF, _gcstatusDll_entrypoint_10(), 0, 0);
+    func_80802D04_chgameselect(game_select_root_child(arg0, 6), 1);
+    func_808026C8_chgameselect(game_select_root_child(arg0, 5), 7);
     arg0->actorData[0] = 4;
     func_80100074(arg0, 1U, 0x14U);
 }
@@ -3570,7 +3577,7 @@ void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
             i++;
         } while (i < count);
     }
-    func_80802BE8_chgameselect((Unk80132ED0 *)arg0->actorData[6]);
+    func_80802BE8_chgameselect(game_select_root_child(arg0, 6));
     func_80100074(arg0, 1, 0);
 }
 
@@ -3592,21 +3599,21 @@ void func_80806408_chgameselect(Actor *arg0) {
 
     temp_s3 = _gcfrontend_entrypoint_4(3);
     temp_s2 = _gcfrontend_entrypoint_5(3);
-    func_808031F4_chgameselect((Unk80132ED0 *)arg0->actorData[6], temp_s3);
+    func_808031F4_chgameselect(game_select_root_child(arg0, 6), temp_s3);
     var_s1 = 0;
     if (temp_s3 > 0) {
         var_s0 = temp_s2;
         do {
             if (_gcfrontend_entrypoint_3(var_s0) != 0) {
                 temp_s2_2 = func_800AA274(var_s0);
-                func_80803248_chgameselect((Unk80132ED0 *)arg0->actorData[6], var_s0, var_s1, temp_s2_2, _gcfrontend_entrypoint_14(var_s0));
+                func_80803248_chgameselect(game_select_root_child(arg0, 6), var_s0, var_s1, temp_s2_2, _gcfrontend_entrypoint_14(var_s0));
             }
             var_s1 += 1;
             var_s0 += 1;
         } while (var_s1 != temp_s3);
     }
-    func_808032CC_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0x18E4, 0, 0);
-    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], 5);
+    func_808032CC_chgameselect(game_select_root_child(arg0, 6), 0x18E4, 0, 0);
+    func_808026C8_chgameselect(game_select_root_child(arg0, 5), 5);
     arg0->actorData[0] = 8;
 }
 
@@ -3652,7 +3659,7 @@ void func_80806540_chgameselect(BtIntPtr arg0) {
             var_s0 += 1;
         } while (var_s1 != temp_s2);
     }
-    func_80806744_chgameselect(arg0);
+    func_80806744_chgameselect((void *)arg0);
 }
 
 /* extern */
@@ -3661,7 +3668,7 @@ void func_808065C0_chgameselect(BtIntPtr arg0) {
     void func_80108B04(Actor *, u32);
     s32 func_80803D00_chgameselect(s32, s32);
     func_80803D00_chgameselect(7, 1);
-    func_80108B04(arg0, 0x4B6);
+    func_80108B04((Actor *)arg0, 0x4B6);
 }
 
 void func_808065F4_chgameselect(Actor *arg0) {
@@ -3675,7 +3682,7 @@ void func_808065F4_chgameselect(Actor *arg0) {
     s32 count;
     s32 state;
 
-    func_80802640_chgameselect((Unk80132ED0 *)arg0->actorData[5],
+    func_80802640_chgameselect(game_select_root_child(arg0, 5),
         D_80807DB0_chgameselect[arg0->unk79_4].model, 0);
     if (func_800AA240() != 0) {
         count = func_800AA0D0();
@@ -3781,10 +3788,10 @@ void func_80806834_chgameselect(void *arg0) {
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     void func_80802D04_chgameselect(Unk80132ED0 *, s32);
-    func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), 0x18F0, 5, 1, 4);
-    func_80802D04_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))), 1);
-    func_808026C8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C))), 9);
-    func_80802640_chgameselect((*(s32 *)((s8 *)(arg0) + (0x24))), 0x18F0, 0);
+    func_80802AD4_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(s32 *)((s8 *)(arg0) + (0x30)))), 0x18F0, 5, 1, 4);
+    func_80802D04_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x30)))), 1);
+    func_808026C8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 5), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C)))), 9);
+    func_80802640_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 3), (*(s32 *)((s8 *)(arg0) + (0x24)))), 0x18F0, 0);
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 6;
     (*(s32 *)((s8 *)(arg0) + (0x1C))) = -1;
 }
@@ -3793,8 +3800,8 @@ void func_80806834_chgameselect(void *arg0) {
 
 void func_808068AC_chgameselect(void *arg0, s32 arg1) {
     void func_80802640_chgameselect(Unk80132ED0 *, s32, s32);
-    func_80802BE8_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))));
-    func_80802640_chgameselect((*(s32 *)((s8 *)(arg0) + (0x24))), 0, 0);
+    func_80802BE8_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(s32 *)((s8 *)(arg0) + (0x30)))));
+    func_80802640_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 3), (*(s32 *)((s8 *)(arg0) + (0x24)))), 0, 0);
 }
 
 s32 func_808068E8_chgameselect(void) {
@@ -3877,7 +3884,7 @@ void func_80806A88_chgameselect(s32 bt_a0)
 void func_80806A88_chgameselect()
 #endif
 {
-    _gcstatusDll_entrypoint_5();
+    _gcstatusDll_entrypoint_5(GAME_SELECT_LP64(bt_a0, ));
 }
 
 s32 func_80806AA8_chgameselect(void) {
@@ -3956,43 +3963,48 @@ OSThread *chgameselect_entrypoint_6(void)
 }
 
 void func_80806C54_chgameselect(Actor *arg0) {
-    BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);
-    s32 _gczoombox_entrypoint_26(BtIntPtr, s32, f32, f32, s32);
+    GAME_SELECT_ORIGINAL(BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_26(BtIntPtr, s32, f32, f32, s32);)
     void func_800C9F48(f32, u8 *, s32);
     void *func_80100094(Actor *, u32);
     void *heap_alloc(s32);
     void func_808073AC_chgameselect(Actor *);
-    struct {
+    struct GameSelectOriginalBoxes {
         s32 boxes[4];
         void *buffers[4];
         void *buffer;
         s16 unk24;
         s16 unk26;
-    } *data, *entry;
+    } *entry; GAME_SELECT_LP64(GameSelectPanel *, struct GameSelectOriginalBoxes *) data;
     s32 i;
     s32 y;
-    BtIntPtr box;
+    GAME_SELECT_LP64(u8 *, BtIntPtr) box;
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    data = game_select_panel_init(arg0);
+    if (!data) return;
+#else
     data = func_80100094(arg0, 0);
+#endif
     arg0->unk6C_0 = _gcstatusDll_entrypoint_10();
     i = 0;
     y = 0x42;
-    entry = data;
+    GAME_SELECT_ORIGINAL(entry = data;)
     if (arg0->unk6C_0) {
       do {
         box = _gczoombox_entrypoint_5(y, 0xC, 2, 0, 0);
-        entry->boxes[0] = box;
+        GAME_SELECT_LP64(data->entries[i], entry->boxes[0]) = box;
         _gczoombox_entrypoint_26(box, 0x41, 0.8f, 1.0f, 0);
-        func_800C9F48((f32)i * 0.1f, arg0->unk0, i);
-        entry->buffers[0] = heap_alloc(0x100);
+        func_800C9F48((f32)i * 0.1f, (u8 *)arg0->unk0, i);
+        GAME_SELECT_LP64(data->texts[i], entry->buffers[0]) = heap_alloc(0x100);
         i++;
         y += 0x26;
-        entry = (void *)((u8 *)entry + sizeof(s32));
+        GAME_SELECT_ORIGINAL(entry = (void *)((u8 *)entry + sizeof(s32));)
       } while ((u32)i < arg0->unk6C_0);
     }
     data->buffer = heap_alloc(0x100);
-    data->unk26 = 0;
-    data->unk24 = data->unk26;
+    GAME_SELECT_LP64(data->initialized, data->unk26) = 0;
+    GAME_SELECT_LP64(data->winner, data->unk24) = GAME_SELECT_LP64(data->initialized, data->unk26);
     func_808073AC_chgameselect(arg0);
 }
 
@@ -4001,19 +4013,19 @@ s32 func_80807790_chgameselect(Actor *, s32);
 void func_80807824_chgameselect(Actor *);
 
 void func_80806D98_chgameselect(Actor *arg0) {
-    s32 _gczoombox_entrypoint_4();
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_4();)
     void *func_80100094(Actor *, u32);
     s32 func_80016B30(s32, s32);
     s32 func_800AA0D0(void);
     s32 func_800FFAB0(Actor *);
     s32 func_8010114C(Unk80132ED0 *, s32, BtIntPtr);
     u32 i;
-    s32 *data;
+    GAME_SELECT_LP64(u8 **, s32 *)data;
 
     data = func_80100094(arg0, 0);
     for (i = 0; i < arg0->unk6C_0; i++) {
 #ifdef BT_NATIVE
-        ((s32 (*)())_gczoombox_entrypoint_4)(data[i]);
+        GAME_SELECT_LP64(_gczoombox_entrypoint_4(data[i]);, ((s32 (*)())_gczoombox_entrypoint_4)(data[i]);)
 #else
         _gczoombox_entrypoint_4(data[i]);
 #endif
@@ -4072,11 +4084,11 @@ void func_80806D98_chgameselect(Actor *arg0) {
     }
 }
 
-void func_80806FAC_chgameselect(Actor *arg0, s32 arg1) {
-    s32 _gczoombox_entrypoint_2();
+void func_80806FAC_chgameselect(Actor *arg0, BtIntPtr arg1) {
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_2();)
     void *func_80100094(Actor *, u32);
-    s32 *entry;
-    s32 *data;
+    GAME_SELECT_LP64(u8 **, s32 *)entry;
+    GAME_SELECT_LP64(u8 **, s32 *)data;
     u32 i;
 
     i = 0;
@@ -4089,7 +4101,7 @@ void func_80806FAC_chgameselect(Actor *arg0, s32 arg1) {
 }
 
 void func_80807030_chgameselect(Actor *arg0) {
-    s32 _gczoombox_entrypoint_0(s32);
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_0(s32);)
     void *func_80100094(Actor *, u32);
     s32 pad;
     u8 *sp28;
@@ -4100,6 +4112,15 @@ void func_80807030_chgameselect(Actor *arg0) {
     u8 *temp_v0;
     u8 *var_s0;
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    GameSelectPanel *panel = func_80100094(arg0, 0);
+    for (int i = 0; i < 4; ++i) {
+        if (panel->entries[i]) _gczoombox_entrypoint_0(panel->entries[i]);
+        if (panel->texts[i]) heap_free(panel->texts[i]);
+    }
+    if (panel->buffer) heap_free(panel->buffer);
+    *panel = (GameSelectPanel){0};
+#else
     temp_v0 = func_80100094(arg0, 0);
     sp28 = temp_v0;
     var_s1 = 0;
@@ -4120,15 +4141,16 @@ void func_80807030_chgameselect(Actor *arg0) {
     if (temp_a0_3 != NULL) {
         heap_free(temp_a0_3);
     }
+#endif
 }
 
 s32 func_808070C0_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
-    void _gczoombox_entrypoint_18();
-    void _gczoombox_entrypoint_16(s32);
-    s32 _gczoombox_entrypoint_9(BtIntPtr);
-    s32 _gczoombox_entrypoint_11(s32);
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_18();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_16(s32);)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_9(BtIntPtr);)
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_11(s32);)
     void *func_80100094(Actor *, u32);
-    s32 *data;
+    GAME_SELECT_LP64(u8 **, s32 *)data;
 
     if (arg1 == 0x22) {
         data = func_80100094(arg0, 0);
@@ -4155,12 +4177,12 @@ void func_8080714C_chgameselect(Actor *arg0, s32 (*arg1)(s32), s32 arg2, s32 arg
     void func_800AA220(s32, s32);
     void _sumultiscore_entrypoint_0(s32 *, s32 *, s32);
     void _sumultiscore_entrypoint_1(s32 *, s32 *, s32);
-    int _gczoombox_entrypoint_8();
-    void _gczoombox_entrypoint_27(s32, s16 *);
+    GAME_SELECT_ORIGINAL(int _gczoombox_entrypoint_8();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_27(s32, s16 *);)
     extern s32 B_80808560_chgameselect[];
 
     s32 i;
-    GameSelectScoreData *data;
+    GAME_SELECT_LP64(GameSelectPanel, GameSelectScoreData) *data;
     s32 scores[4];
     s32 players[4];
 
@@ -4212,10 +4234,10 @@ void func_808073AC_chgameselect(Actor *arg0) {
     void func_8080714C_chgameselect(Actor *, s32 (*)(s32), s32, s32, s32, s32, s32);
     extern s16 B_80808570_chgameselect[4];
     Unk80132ED0 *sp3C;
-    GameSelectTextData *sp38;
+    GAME_SELECT_LP64(GameSelectPanel, GameSelectTextData) *sp38;
     s32 sp34;
 
-    sp3C = (Unk80132ED0 *)func_80106790(arg0->unk3C)->actorData[5];
+    sp3C = game_select_root_child(func_80106790(arg0->unk3C), 5);
     sp38 = func_80100094(arg0, 0);
     if (func_800AA0D0() == 1) {
         func_8080714C_chgameselect(arg0, func_800AA180, 1, 0x1E, 0x1F, 0, 0);
@@ -4245,10 +4267,10 @@ void func_808074C8_chgameselect(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_8080714C_chgameselect(Actor *, s32 (*)(s32), s32, s32, s32, s32, s32);
     extern s32 B_80808588_chgameselect[2];
-    GameSelectTextData *sp30[2];
+    GAME_SELECT_LP64(GameSelectPanel, GameSelectTextData) *sp30[2];
     Unk80132ED0 *temp_s0;
 
-    temp_s0 = (Unk80132ED0 *)func_80106790(arg0->unk3C)->actorData[5];
+    temp_s0 = game_select_root_child(func_80106790(arg0->unk3C), 5);
     func_8080714C_chgameselect(arg0, func_800AA16C, 1, 0x1E, 0x1F, 0, 1);
     if (func_800AA240() != 0) {
         func_80802640_chgameselect(temp_s0, 0x18F3, 0);
@@ -4270,16 +4292,16 @@ void func_808075D0_chgameselect(Actor *arg0, s32 arg1) {
         s16 count;
         s16 initialized;
     } GameSelectZoomData;
-    s32 _gczoombox_entrypoint_11(s32);
-    void _gczoombox_entrypoint_12();
-    void _gczoombox_entrypoint_17();
-    void _gczoombox_entrypoint_18();
-    void _gczoombox_entrypoint_34();
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_11(s32);)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_12();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_17();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_18();)
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_34();)
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     s32 func_800AA240(void);
     u32 i;
-    GameSelectZoomData *data;
+    GAME_SELECT_LP64(GameSelectPanel, GameSelectZoomData) *data;
 
     data = func_80100094(arg0, 0);
     switch (arg1) {
@@ -4330,10 +4352,10 @@ void func_808075D0_chgameselect(Actor *arg0, s32 arg1) {
 }
 
 s32 func_80807790_chgameselect(Actor *arg0, s32 arg1) {
-    s32 _gczoombox_entrypoint_3();
+    GAME_SELECT_ORIGINAL(s32 _gczoombox_entrypoint_3();)
     void *func_80100094(Actor *, u32);
-    s32 *entry;
-    s32 *data;
+    GAME_SELECT_LP64(u8 **, s32 *)entry;
+    GAME_SELECT_LP64(u8 **, s32 *)data;
     u32 i;
 
     i = 0;
@@ -4355,10 +4377,10 @@ void func_80807824_chgameselect(Actor *arg0) {
     } GameSelectZoomData;
     void *func_80100094(Actor *, u32);
     s32 func_8001211C(void);
-    void _gczoombox_entrypoint_27(s32, s16 *);
+    GAME_SELECT_ORIGINAL(void _gczoombox_entrypoint_27(s32, s16 *);)
     extern s16 B_80808590_chgameselect[];
-    GameSelectZoomData *data;
-    s32 *entry;
+    GAME_SELECT_LP64(GameSelectPanel, GameSelectZoomData) *data;
+    GAME_SELECT_LP64(u8 **, s32 *)entry;
     s32 phase;
     s32 brightness;
     s16 color;
@@ -4376,12 +4398,12 @@ void func_80807824_chgameselect(Actor *arg0) {
     B_80808590_chgameselect[0] = color;
     i = 0;
     entry = data->entries;
-    if (data->count > 0) {
+    if (GAME_SELECT_LP64(data->winner, data->count) > 0) {
         do {
             _gczoombox_entrypoint_27(*entry, B_80808590_chgameselect);
             i++;
             entry++;
-        } while (i < data->count);
+        } while (i < GAME_SELECT_LP64(data->winner, data->count));
     }
 }
 
@@ -4400,7 +4422,7 @@ void func_808078F0_chgameselect(void *arg0) {
 
 void func_80807900_chgameselect(Actor *arg0) {
     f32 func_800D8FF8(void);
-    void func_800E39D8(BtIntPtr, BtIntPtr);
+    void func_800E39D8(GAME_SELECT_LP64(f32 *, BtIntPtr), GAME_SELECT_LP64(f32 *, BtIntPtr));
     void func_800EFE50(f32 *, void *, void *, f32);
     void func_800F16AC(u8 *, f32 *, f32 *, f32);
     void func_80101FDC(Actor *, u32);
@@ -4415,7 +4437,7 @@ void func_80807900_chgameselect(Actor *arg0) {
         }
         func_800EFE50(sp34, arg0->position, arg0->actorData, ((f32 *)arg0->actorData)[7]);
         func_800F16AC(sp28, arg0->rotation, &((f32 *)arg0->actorData)[4], ((f32 *)arg0->actorData)[7]);
-        func_800E39D8(sp34, sp28);
+        func_800E39D8(sp34, GAME_SELECT_LP64((f32 *), )sp28);
         func_80101180(0x4AB, 0x23, 0);
     }
 }
@@ -4441,7 +4463,7 @@ s32 func_808079D0_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
     return 1;
 }
 
-s32 func_80807A10_chgameselect(arg0, arg1, arg2) {
+GAME_SELECT_LP64(s32 func_80807A10_chgameselect(Actor *arg0, s32 arg1, s32 arg2), s32 func_80807A10_chgameselect(arg0, arg1, arg2)) {
     s32 _cadbfunc_entrypoint_0(s32 *);
     s32 _cadbfunc_entrypoint_2(s32 *);
     s32 func_800A5800(s32);

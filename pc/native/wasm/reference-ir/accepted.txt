@@ -218,3 +218,13 @@ also contains the write-only radius. strict-coresmall4-whole.json checks
 the initializer before optimization and each surviving guest field.
 The cumulative IDO and replay checks are under current-six-actors* in
 build/acceptance/n1-2026-11-18/.
+
+2026-11-19  N3 game-select root, dialog and score-panel records
+The sole canonical difference is func_80806C54_chgameselect. Its loop
+has two induction variables: the element address starts at the panel
+and advances four bytes, while the player index starts at zero and
+advances one. LLVM exchanges their PHI definition order. Every use,
+including the text pointer at offset 16 and the timed callback's index,
+follows the corresponding variable. The original linked code and ROM
+are byte-identical. See current-game-select-ir.log and role-ctest.log
+in build/acceptance/n3-current-gameselect-2026-11-19/.

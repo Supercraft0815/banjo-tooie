@@ -16,7 +16,13 @@ void func_80802480_chgameselect(void *);
 void func_808024D4_chgameselect(void *);
 void func_80802530_chgameselect(void *);
 void func_80802588_chgameselect(void *);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_808025CC_chgameselect(Actor *, BtIntPtr);
+#define GAME_SELECT_DRAW(fn) .draw_actor = fn
+#else
 void func_808025CC_chgameselect(void *);
+#define GAME_SELECT_DRAW(fn) (void (*)(s32, s32))fn
+#endif
 s32 func_808025EC_chgameselect(void *, s32, s32);
 void func_808027D4_chgameselect(s32);
 void func_808027DC_chgameselect(Actor *);
@@ -63,7 +69,7 @@ void func_80806B5C_chgameselect(s32, s32, s32);
 void func_80806BD4_chgameselect(s32, s32, s32);
 void func_80806C54_chgameselect(Actor *);
 void func_80806D98_chgameselect(Actor *);
-void func_80806FAC_chgameselect(Actor *, s32);
+void func_80806FAC_chgameselect(Actor *, BtIntPtr);
 void func_80807030_chgameselect(Actor *);
 s32 func_808070C0_chgameselect(Actor *, s32, s32);
 void func_808078F0_chgameselect(void *);
@@ -218,7 +224,7 @@ ActorData D_80808298_chgameselect BT_DATA(4, overlays_ch_gameselect, 0x4E8) = {
     0,
     (void (*)(struct Actor *))func_80802248_chgameselect,
     (void (*)(struct Actor *))func_80102EC0,
-    (void (*)(s32, s32))func_808025CC_chgameselect,
+    GAME_SELECT_DRAW(func_808025CC_chgameselect),
     0,
     0,
     0,
@@ -245,7 +251,7 @@ ActorData D_808082E0_chgameselect BT_DATA(4, overlays_ch_gameselect, 0x530) = {
     0,
     (void (*)(struct Actor *))func_80802530_chgameselect,
     (void (*)(struct Actor *))func_80102EC0,
-    (void (*)(s32, s32))func_808025CC_chgameselect,
+    GAME_SELECT_DRAW(func_808025CC_chgameselect),
     0,
     0,
     0,
@@ -339,7 +345,7 @@ ActorData D_808084B4_chgameselect BT_DATA(4, overlays_ch_gameselect, 0x704) = {
     0,
     (void (*)(struct Actor *))func_80806D98_chgameselect,
     (void (*)(struct Actor *))func_80102EC0,
-    (void (*)(s32, s32))func_80806FAC_chgameselect,
+    GAME_SELECT_DRAW(func_80806FAC_chgameselect),
     0,
     0,
     0,
